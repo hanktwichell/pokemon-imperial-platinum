@@ -38,9 +38,11 @@
 #include "field_task.h"
 #include "field_transition.h"
 #include "party.h"
+#include "pokedex.h"
 #include "pokemon.h"
 #include "special_encounter.h"
 #include "system_vars.h"
+#include "trainer_info.h"
 #include "unk_0203D1B8.h"
 #include "unk_02054884.h"
 #endif
@@ -774,6 +776,11 @@ static void SovereignTest_SetupNewGame(FieldSystem *fieldSystem)
     Bag_TryAddItem(bag, ITEM_METAL_ALLOY, 1, HEAP_ID_FIELD2);
     Bag_TryAddItem(bag, ITEM_MEGA_RING, 1, HEAP_ID_FIELD2);
     VarsFlags_SetFlag(SaveData_GetVarsFlags(fieldSystem->saveData), FLAG_SOVEREIGN_MEGA_UNLOCKED); // as Fantina's gift does
+    // The Pokédex with the National Dex, as Rowan gives it (decision 21).
+    Pokedex_ObtainPokedex(SaveData_GetPokedex(fieldSystem->saveData));
+    VarsFlags_SetFlag(SaveData_GetVarsFlags(fieldSystem->saveData), FLAG_HAS_POKEDEX);
+    Pokedex_ObtainNationalDex(SaveData_GetPokedex(fieldSystem->saveData));
+    TrainerInfo_GiveNationalDex(SaveData_GetTrainerInfo(fieldSystem->saveData));
     Bag_TryAddItem(bag, ITEM_ADAMANT_MINT, 1, HEAP_ID_FIELD2);
     Bag_TryAddItem(bag, ITEM_ABILITY_CAPSULE, 2, HEAP_ID_FIELD2);
     Bag_TryAddItem(bag, ITEM_ABILITY_PATCH, 1, HEAP_ID_FIELD2);

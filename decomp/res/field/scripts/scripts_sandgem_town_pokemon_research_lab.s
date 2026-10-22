@@ -248,6 +248,7 @@ SandgemTownLab_ObtainPokedex:
     Message SandgemTownLab_Text_GoodAnswer
     GivePokedex
     SetFlag FLAG_HAS_POKEDEX
+    SetNationalDexEnabled // Sovereign (decision 21): the National Dex from the start
     BufferPlayerName 0
     Message SandgemTownLab_Text_PlayerObtainedThePokedex
     PlayFanfare SEQ_FANFA4_sseq

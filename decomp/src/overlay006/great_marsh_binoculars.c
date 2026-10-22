@@ -19,8 +19,8 @@
 #include "map_matrix.h"
 #include "narc.h"
 #include "player_avatar.h"
-#include "pokedex.h"
 #include "special_encounter.h"
+#include "system_flags.h"
 
 int GreatMarshBinoculars_GetMonSpecies(FieldSystem *fieldSystem)
 {
@@ -32,7 +32,8 @@ int GreatMarshBinoculars_GetMonSpecies(FieldSystem *fieldSystem)
         encounterTable[i] = encounterData->grassEncounters.encounters[i].species;
     }
 
-    BOOL natDexObtained = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(FieldSystem_GetSaveData(fieldSystem)));
+    // Sovereign (decision 21): the Great Marsh extras stay post-game (they followed the National Dex).
+    BOOL natDexObtained = SystemFlag_CheckGameCompleted(SaveData_GetVarsFlags(FieldSystem_GetSaveData(fieldSystem)));
 
     ReplaceGreatMarshDailyEncounters(SpecialEncounter_GetDailyMon(SaveData_GetSpecialEncounters(fieldSystem->saveData), DAILY_MARSH), natDexObtained, fieldSystem->location->mapHeaderID, &encounterTable[6], &encounterTable[7]);
     WildEncounters_ReplaceTimedEncounters(encounterData, &encounterTable[2], &encounterTable[3]);

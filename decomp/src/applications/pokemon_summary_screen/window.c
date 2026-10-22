@@ -1047,7 +1047,7 @@ static void DrawInfoPageWindows(PokemonSummaryScreen *summaryScreen)
     Window_FillTilemap(&summaryScreen->extraWindows[SUMMARY_WINDOW_EXP], 0);
     Window_FillTilemap(&summaryScreen->extraWindows[SUMMARY_WINDOW_EXP_NEXT_LV], 0);
 
-    u32 dexNum = GetDexNumber(summaryScreen->data->dexMode, summaryScreen->monData.species);
+    u32 dexNum = GetDexNumber(TRUE, summaryScreen->monData.species); // Sovereign (decision 21): always National Dex numbers
 
     if (dexNum != 0) {
         SetAndFormatNumberBuf(summaryScreen, PokemonSummary_Text_DexNumberTemplate, dexNum, DEX_NUMBER_DIGITS(dexNum), PADDING_MODE_ZEROES);
