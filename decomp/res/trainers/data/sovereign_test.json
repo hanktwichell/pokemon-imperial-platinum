@@ -32,7 +32,8 @@
             "ivs": {
                 "atk": 0
             },
-            "gender": "male"
+            "gender": "male",
+            "ball": "ITEM_LUXURY_BALL"
         },
         {
             "species": "SPECIES_VENUSAUR",
@@ -57,7 +58,8 @@
             "ivs": {
                 "atk": 0
             },
-            "gender": "female"
+            "gender": "female",
+            "ball": "ITEM_LUXURY_BALL"
         },
         {
             "species": "SPECIES_TYRANITAR",
@@ -80,7 +82,8 @@
                 "spd": 4
             },
             "ivs": {},
-            "gender": "male"
+            "gender": "male",
+            "ball": "ITEM_LUXURY_BALL"
         },
         {
             "species": "SPECIES_GARCHOMP",
@@ -104,7 +107,8 @@
             },
             "ivs": {},
             "gender": "male",
-            "shiny": true
+            "shiny": true,
+            "ball": "ITEM_LUXURY_BALL"
         },
         {
             "species": "SPECIES_KYOGRE",
@@ -128,7 +132,8 @@
             },
             "ivs": {
                 "atk": 0
-            }
+            },
+            "ball": "ITEM_LUXURY_BALL"
         },
         {
             "species": "SPECIES_ARCHALUDON",
@@ -155,7 +160,7 @@
             },
             "gender": "female",
             "shiny": true,
-            "ball": "ITEM_ULTRA_BALL"
+            "ball": "ITEM_LUXURY_BALL"
         }
     ],
     "messages": [

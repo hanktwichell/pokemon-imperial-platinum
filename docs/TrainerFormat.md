@@ -28,7 +28,7 @@ Sovereign's fields (all optional; any of them on any party member switches the w
 | `evs` | `{"hp": 252, "spa": 252, "spd": 4}` | EVs by stat, same keys. At most 255 per stat (252 is the useful most: every 4 EVs is one stat point) and 510 in total. A stat left out is 0. |
 | `gender` | `"female"` | `"male"` or `"female"`. Ignored for single-gender and genderless species. Left out: from the personality value. |
 | `shiny` | `true` | shiny or not (default `false`) |
-| `ball` | `"ITEM_ULTRA_BALL"` | the Poké Ball it's sent out from (default Poké Ball). Must be an item with an ID below 256 (the Pokémon stores its ball in one byte). |
+| `ball` | `"ITEM_LUXURY_BALL"` | the Poké Ball it's sent out from (default Poké Ball). Must be an item with an ID below 256 (the Pokémon stores its ball in one byte). |
 
 Example (from `sovereign_test.json`):
 
@@ -46,7 +46,8 @@ Example (from `sovereign_test.json`):
     "evs": {"hp": 4, "atk": 252, "spe": 252},
     "ivs": {},
     "gender": "male",
-    "shiny": true
+    "shiny": true,
+    "ball": "ITEM_LUXURY_BALL"
 }
 ```
 

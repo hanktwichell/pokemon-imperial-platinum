@@ -173,3 +173,21 @@ earlier commits were merged through PR #14.
   Scratch files may not survive the session; make a new one with `drive.py` (menu → SAVE, wait about 1,500 frames,
   `export:`).
 - In a double battle, the A button doesn't confirm a target; tap it (e.g. `touch:60,40` for the left opponent).
+
+---
+
+## CA-0003 — 2026-10-22, 3:32 pm US Central (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** owner request, every Pokémon on the developer team is in a Luxury Ball.
+- `TRAINER_SOVEREIGN_TEST` (the developer team) now sends out all six from Luxury Balls; Archaludon's Ultra Ball was
+  only a test pick.
+- `docs/DeveloperBattle.md` records it for the real fight.
+- `check_trainer_party.py` passes on the rebuilt test ROM and checks the ball on all six.
+
+**Files modified:** `decomp/res/trainers/data/sovereign_test.json`, `docs/DeveloperBattle.md`,
+`docs/TrainerFormat.md` (example), `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Get CI green on PR #16 (E9) and merge it.
+2. Item 12b, the AI review for doubles, using `TRAINER_SOVEREIGN_TEST` as the opponent.
+3. After E7 merges: give the test team Charizardite Y, the Blue Orb and Assault Vest.

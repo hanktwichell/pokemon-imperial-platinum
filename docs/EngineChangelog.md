@@ -23,14 +23,14 @@ Poké Ball per Pokémon, as optional fields in the trainer JSON. Reference: `doc
 - **Prize money** reads the new layout too (`BattleScript_CalcPrizeMoney`).
 - **Test trainer:** `TRAINER_SOVEREIGN_TEST` ("Ace Trainer Twich"), added at the end of the trainer list with the
   unused flag after the last trainer flag. Its team is the developer team (`docs/DeveloperBattle.md`) at Lv. 100 in a
-  double battle; Charizardite Y, the Blue Orb and Assault Vest arrive with E7. The test build's SELECT+R now battles
+  double battle, every Pokémon in a Luxury Ball (owner); Charizardite Y, the Blue Orb and Assault Vest arrive with E7. The test build's SELECT+R now battles
   it instead of the Route 209 rival.
 - **New test tool:** `tools/test/check_trainer_party.py` starts that battle, decrypts each Pokémon the game builds for
   the opponent (hook on `Party_AddPokemon`), and compares it with the JSON, including all six stats recomputed from
   base stats, IVs, EVs and nature.
 - Verified:
   - `check_trainer_party.py` passes for all six Pokémon: nature, gender, ability (two Hidden Abilities and one slot
-    pick), IVs, EVs, moves, items, shininess (Garchomp, Archaludon), Ultra Ball and stats.
+    pick), IVs, EVs, moves, items, shininess (Garchomp, Archaludon), Luxury Balls and stats.
   - It fails as it should against a deliberately wrong JSON.
   - In battle, Charizard ♂ and Venusaur ♀ lead at Lv. 100 and a turn plays out normally.
   - The normal ROM passes `boot_smoke.py`.

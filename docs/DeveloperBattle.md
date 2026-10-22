@@ -28,7 +28,7 @@ Changes from the first version:
 | 5 | Kyogre | Blue Orb | Drizzle (Primal: Primordial Sea) | Modest | 252 HP / 252 SpA / 4 SpD | 0 Atk | Water Spout, Origin Pulse, Ice Beam, Protect | Primal Reversion |
 | 6 | Archaludon ♀ (shiny) | Assault Vest | Stamina | Modest | 252 HP / 156 SpD / 100 Spe | 0 Atk | Electro Shot, Body Press, Flash Cannon, Dragon Pulse | |
 
-Unlisted IVs are 31. Every EV spread is within 252 per stat / 510 total. The owner's sets include Tera Types
+Every Pokémon on the team is in a **Luxury Ball** (owner, 2026-10-22). Unlisted IVs are 31. Every EV spread is within 252 per stat / 510 total. The owner's sets include Tera Types
 (Archaludon: Grass), but Sovereign has no Terastallization, so they're unused.
 
 ## What the engine needs before this fight works as written
