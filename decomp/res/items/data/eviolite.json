@@ -1,0 +1,30 @@
+{
+  "name": "Eviolite",
+  "plural": "Eviolites",
+  "article": "an",
+  "description": [
+    "A mysterious evolutionary lump. When\n",
+    "held by a Pokémon that can still evolve,\n",
+    "it raises both Defense and Sp. Def."
+  ],
+  "icon": {
+    "sprite": "none_NCGR",
+    "palette": "none_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 4000,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 40,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseCategory": "BATTLE_USE_CATEGORY_NONE",
+  "itemUseParams": null
+}

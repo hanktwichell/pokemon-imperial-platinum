@@ -38,7 +38,22 @@ reset to main `5b427e88` after PR #14 merged. Everything below is on main; nothi
   - Balls can be thrown only once the Totem is alone; it is caught in Totem form.
   - Still to fill in: the helper species per trial, and each aura checked against Bulbapedia.
 
-**E7 started (design only):**
+**E7 step 1 done: the 245 new items exist (IDs 468–712).**
+- `tools/engine/gen_items.py` writes `decomp/res/items/data/<item>.json` and appends the constants to
+  `decomp/generated/items.txt`. Run it again after editing the list; it's idempotent.
+- Names, prices, fling power and descriptions come from PokeAPI. The 26 Gen IX items PokeAPI has no English text for
+  use descriptions written in `DESCRIPTIONS` in the generator. ASCII ' becomes ’, since Platinum's charmap has no '.
+- For now every new item:
+  - uses the placeholder "none" icon;
+  - has `HOLD_EFFECT_NONE`;
+  - has no field use, except evolution items (`ITEM_USE_FUNC_EVO_STONE`, Scrolls included).
+- Key items go to the Key Items pocket; everything else goes to Items.
+- Names are capped at 16 characters. Three are shortened in `SHORT_NAMES`: Unremark. Teacup, Masterpc. Teacup,
+  Darkness Scroll.
+- Verified (test build): ROM builds, `boot_smoke.py` passes, a save continues, the bag opens, a wild battle works.
+- **Not checked yet:** the new items on screen (none is in the test bag yet).
+
+**E7 design:**
 - `data/items_sovereign.yaml` lists the **245 new items**, every name checked against PokeAPI:
   - 38 held items and 18 Gems.
   - Form items: Memories, Drives, Nectars, Sweets, Rusted Sword/Shield, the four masks, the origin
@@ -72,7 +87,12 @@ reset to main `5b427e88` after PR #14 merged. Everything below is on main; nothi
 
 ## 3. Next 3 steps (E7 items)
 
-1. **Write `tools/engine/gen_items.py`** to add the 245 items from `data/items_sovereign.yaml`.
+1. **Finish E7's item basics.** `gen_items.py` is done; still to do:
+   - Give the test bag some new items (e.g. in `SovereignTest_SetupNewGame`, `src/script_manager.c`) and check them
+     on screen.
+   - Real icons, from PokeAPI item sprites converted to 24×24 / 16 colours, credited in CITATIONS.
+   - Mint and Ability Capsule/Patch use functions.
+   - The reference notes below are kept for this work.
    - How items work in the decomp:
      - IDs come from `decomp/generated/items.txt`: append before `MAX_ITEMS`, after `ITEM_SECRET_KEY` (#467).
      - Each `ITEM_X` reads `decomp/res/items/data/x.json`. Fields: name, plural, article, description (≤3 lines,
@@ -89,7 +109,7 @@ reset to main `5b427e88` after PR #14 merged. Everything below is on main; nothi
      CITATIONS.
    - New hold effects start as `HOLD_EFFECT_NONE`; their battle effects are a later checklist step.
    - Mints and the Ability Capsule/Patch need new field-use functions (QoL item).
-2. **Check item names in game.** Platinum's longest item name is 12 characters, but many new names are 14–19
+2. **Check item names on screen.** Platinum's longest item name is 12 characters, but many new names are 14–19
    (Heavy-Duty Boots, Ultranecrozium Z, Unremarkable Teacup, and Mega Stones like Charizardite X). The bag's name
    buffer is 18 characters (`src/applications/bag/main.c:1009`). Test what fits in the bag list, the shop list and
    the battle bag, then add a short-name table like `SHORT_NAMES` in `gen_new_species.py` for anything that

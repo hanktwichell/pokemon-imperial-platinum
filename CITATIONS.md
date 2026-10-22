@@ -24,7 +24,7 @@ the same commit.**
 
 | What | Source | Credit / licence |
 |---|---|---|
-| Species, stats, types, abilities, evolutions, learnsets, Pokédex text, Mega Evolution data, item and Mega Stone names (`data/species.csv`, `data/megas.csv`, validation in `tools/design/*`; in the ROM via `tools/engine/gen_*.py`) | PokeAPI — https://github.com/PokeAPI/pokeapi (`data/v2/csv`) | PokeAPI contributors, BSD-3-Clause. Pokémon data © Nintendo / Game Freak / The Pokémon Company. |
+| Species, stats, types, abilities, evolutions, learnsets, Pokédex text, Mega Evolution data, item and Mega Stone names, item prices and descriptions (`data/species.csv`, `data/megas.csv`, validation in `tools/design/*`; in the ROM via `tools/engine/gen_*.py`) | PokeAPI — https://github.com/PokeAPI/pokeapi (`data/v2/csv`) | PokeAPI contributors, BSD-3-Clause. Pokémon data © Nintendo / Game Freak / The Pokémon Company. |
 | Vanilla Platinum field-item script names and hidden-item list (used to choose and validate Mega Stone placements) | pret/pokeplatinum decompilation — https://github.com/pret/pokeplatinum | pret contributors. |
 | Pokémon Champions battle rules (`docs/BattleMechanics.md`, `tools/engine/apply_champions_moves.py`): values read from Showdown's Champions mod, no code copied | Pokémon Showdown — https://github.com/smogon/pokemon-showdown (`data/mods/champions/`, HEAD `8476966`, 2026-10-22) | Smogon / Pokémon Showdown contributors, MIT licence; the Champions data credits the research of Kaphotics and Anubis. |
 | Pokémon Champions rule research (cross-checks) | Serebii (serebii.net/pokemonchampions), Bulbapedia, Smogon's "Champions battle mechanics research" thread, Victory Road VGC | Their respective authors; facts only, no text copied. |

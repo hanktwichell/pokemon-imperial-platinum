@@ -4,6 +4,26 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E7 step 1 — 245 new items (in progress)
+
+- **245 items added** after Platinum's last (#468–712), from `data/items_sovereign.yaml` by
+  `tools/engine/gen_items.py`:
+  - held items and Gems;
+  - form-change items (Memories, Drives, Nectars, Sweets, the Rusted Sword/Shield, Ogerpon's masks, the origin
+    crystals, Ultranecrozium Z, Blue/Red Orb);
+  - evolution items;
+  - Mints, Ability Capsule and Ability Patch;
+  - key items (Mega Ring, Light/Dark Stone, Prison Bottle, Scrolls, DNA Splicers, N-Solarizer/Lunarizer, Reins of
+    Unity, Zygarde Cube, Reveal Glass);
+  - 92 Mega Stones.
+- Names, prices and descriptions come from PokeAPI. 26 Gen IX descriptions are written in the generator. Three names
+  over 16 characters are shortened.
+- First pass:
+  - placeholder icon;
+  - no hold effects yet;
+  - evolution items use the evolution-stone field use.
+- Verified with the test build: builds, boots, a save continues, the bag opens, a wild battle works.
+
 ## E6 step 2 — species #494–1025
 
 All 1025 species are in the game, with species ID = National Dex number (Egg is 1026, Bad Egg 1027).

@@ -1,0 +1,30 @@
+{
+  "name": "Prison Bottle",
+  "plural": "Prison Bottles",
+  "article": "a",
+  "description": [
+    "A bottle believed to have been used to\n",
+    "seal away the power of a certain Pokémon\n",
+    "long, long ago."
+  ],
+  "icon": {
+    "sprite": "none_NCGR",
+    "palette": "none_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 0,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": true,
+  "canRegister": false,
+  "fieldPocket": "POCKET_KEY_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseCategory": "BATTLE_USE_CATEGORY_NONE",
+  "itemUseParams": null
+}
