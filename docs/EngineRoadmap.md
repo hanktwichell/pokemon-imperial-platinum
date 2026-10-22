@@ -57,7 +57,7 @@ Estimates are in working sessions (about 5 hours each). Runtime checks use the t
 | 4 | E1 | **Imperial identity.** ROM title/banner, own save signature | ✅ | — | banner "Pokémon Imperial Platinum"; vanilla saves load as empty |
 | 5 | — | **Test build:** test party at new game, SELECT = wild battle, SELECT+R = trainer battle; never shipped | ✅ | — | first in-battle checks pass (E13 verified) |
 | 6 | E2–E5 | **Gen IX data pass** (one PR): all abilities (IDs, names, descriptions; new ones registered with no effect yet), all moves (Gen IX data; new moves mapped to the closest existing effect and animation), widened learnset format, Hidden Ability slot, Gen IX stats/types/learnsets for #1–493. Generated from PokeAPI with a fidelity checklist | ✅ moves (E3), learnsets/stats/types (E5), abilities and Hidden Abilities (E2/E4) | — | builds; every move usable in battle; HA shown |
-| 7 | E14 | **Approved QoL:** IV/EV viewer (✅), Repel prompt (✅), HM-free field moves (✅), Gen VI+ breeding (✅), type-effectiveness indicator (design question for the owner: the move buttons have no room for the text); Mints, Infinite Repel and Ability Capsule after E7/E4 | 🟡 4/9 | 1–2 | each feature tested |
+| 7 | E14 | **Approved QoL:** IV/EV viewer (✅), Repel prompt (✅), HM-free field moves (✅), Gen VI+ breeding (✅), ~~type-effectiveness indicator~~ (shelved by the owner); Mints, Infinite Repel and Ability Capsule after E7/E4 | 🟡 4/8 | 1–2 | each feature tested |
 | 8 | E6 | **Species expansion to 1025.** species.txt, data for #494–1025, placeholder sprites/icons, cries from PokeAPI, Pokédex sizes, the stray constants above | | 3–6 | new species catchable; National Dex shows 1025 |
 | 9 | E7 | **Items.** Mega Stones, evolution items, Gen V+ held items, key items, icons | | 2–3 | items in bag and usable |
 | 10 | E8 | **Mega Evolution / Primal Reversion.** Forms, battle flow, touch-screen toggle, AI, boss-critical abilities, animation | | 3–5 | Mega usable vs. AI |
@@ -68,7 +68,7 @@ Estimates are in working sessions (about 5 hours each). Runtime checks use the t
 | 13 | T1 | **Team compositions** (deferred by the owner until the engine features are done): the 21 post-Jupiter boss teams with the owner's Mega picks (`BossFights_MegaPicks.md`; Lucas uses Dawn's teams), then revise every boss team with Gen IX moves/abilities | | 1–2 | teams validated by `gen_trainer_docs.py` |
 | 14 | E10 | **Renegade port.** Wild tables, trainers, items, NPCs/QoL, type and move changes, scripts per Renegade's docs | | 3–6 | Renegade docs satisfied |
 | 15 | E11 | **Imperial content.** Encounter plan, E4 format scripts, starter Interviewers, Mega vendors and field stones, post-game legendaries | | 3–5 | Imperial docs satisfied |
-| 16 | T2 | **Developer final battle** (owner request): Red-style hidden double battle, custom team and trainer, with a **custom AI** written for this fight. Waiting on the owner's team, trainer text and sprites | waiting | 1–2 | battle playable; custom AI tested |
+| 16 | T2 | **Developer final battle** (owner request): Red-style hidden double battle, custom team and trainer, with a **custom AI** written for this fight. Team received (`DeveloperBattle.md`); waiting on trainer text, sprites and level | team in | 1–2 | battle playable; custom AI tested |
 | 17 | E12 | **Graphics.** Convert sprites, add fronts as sourced, real icons | waiting on art | 2–4 | `SpriteChecklist.xlsx` all green |
 | 18 | — | **Playtest pass** (automated with the test build, then the owner's playthrough) | | 1–2 | no blockers |
 

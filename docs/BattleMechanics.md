@@ -78,7 +78,7 @@ The full research notes, with confidence levels and URLs, are in the [research n
 | Types: Snap Trap Steel, Growth Grass | Grass, Normal | Steel, Grass | ✅ same script |
 | Make It Rain −2 Sp. Atk; Dire Claw 30%; Toxic Thread −2 Speed; Salt Cure 1/16 (1/8 vs Water/Steel); Rage Fist counter resets on switch; Unseen Fist ×0.25 through Protect | — | changed | ⏳ item 11 (these moves are placeholders/approximate now; they'll be built with the Champions numbers) |
 | Slicing/punch/sound flag changes (Crush Claw, Dragon Claw, Metal Claw, Shadow Claw, Dire Claw slicing; Double Shock punching; Howl, Dragon Cheer sound) | — | changed | ⏳ item 11, with Sharpness/Iron Fist |
-| Protect & co. at 8 PP, and every move's PP on Champions' fixed scale (5→8, 10→12, 15→16, 20+→20; no PP Ups) | Gen IX PP + PP Ups | fixed PP | ➖ **not adopted for now**: Imperial keeps main-series PP and PP Ups because they're part of the RPG's item economy. Owner to confirm. |
+| Protect & co. at 8 PP, and every move's PP on Champions' fixed scale (5→8, 10→12, 15→16, 20+→20; no PP Ups) | Gen IX PP + PP Ups | fixed PP | ➖ **not adopted** (owner, 2026-10-22): Imperial keeps main-series PP and PP Ups ("a fun part of the game"). |
 | Moves removed from Champions (Pursuit, Return, Frustration, Hidden Power, Teleport, Hail, Snatch, Magic Coat…) | — | not available | ➖ kept in Imperial: Champions removes them from its roster, not as a battle rule. Hail now summons Snow. |
 
 ## Abilities and items
