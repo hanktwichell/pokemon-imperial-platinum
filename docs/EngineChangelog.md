@@ -36,8 +36,15 @@ players and the verification that was run.
     - The player's Garchomp Mega Evolved in a wild battle (a temporary always-Mega hook stood in for the button) and
       didn't again on turn 2.
     - After the battle, Garchomp was back to its normal stats with its Garchompite.
-  - Still to do: the MEGA button (until then the player can't choose Mega Evolution), Primal Reversion, the
-    animation and the AI review.
+  - Still to do: the MEGA button (until then the player can't choose Mega Evolution), the animation and the AI
+    review.
+- **Primal Reversion** (step 3): Kyogre holding the Blue Orb and Groudon holding the Red Orb revert as they enter
+  battle. It runs as a new switch-in state (`SWITCH_IN_CHECK_STATE_SOVEREIGN_PRIMAL`), before weather abilities.
+  - No button or Mega Ring is needed, and it doesn't use up the trainer's Mega Evolution.
+  - Primordial Sea and Desolate Land aren't in the engine yet, so Primal Kyogre keeps Drizzle.
+  - A caught Primal reverts in `BattleSystem_SetPokemonCatchData`, because it skips the battle-end revert.
+  - Verified (temporary Kyogre leading the test party): "KYOGRE's Primal Reversion! It reverted to its primal form!",
+    then Drizzle's rain. After running from the battle, Kyogre was back to its normal stats.
 - Test build: Garchomp holds a Garchompite and the Mega flag is set at new game.
 
 ## E7 part 2 — shops and icon placement (in progress)

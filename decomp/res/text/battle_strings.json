@@ -8572,6 +8572,27 @@
         "The foe’s {STRVAR_1 1, 0, 0} has Mega\n",
         "Evolved into Mega {STRVAR_1 0, 1, 0}!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignPrimalReversion_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s Primal Reversion!\n",
+        "It reverted to its primal form!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignPrimalReversion_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} reverted\n",
+        "to its primal form!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignPrimalReversion_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} reverted\n",
+        "to its primal form!"
+      ]
     }
   ]
 }
