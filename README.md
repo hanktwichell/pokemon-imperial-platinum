@@ -1,6 +1,6 @@
 # Pokémon Imperial Platinum
 
-A ROM hack of Pokémon Platinum built on Drayano's **Pokémon Renegade Platinum** (used with permission). It adds all
+A ROM hack of Pokémon Platinum built on Drayano's **Pokémon Renegade Platinum**. It adds all
 **1025 Pokémon**, **Mega Evolution and Primal Reversion**, a **singles/doubles Elite Four**, and post-game quests for every
 new legendary. Renegade's story and quality-of-life features stay as they are.
 
