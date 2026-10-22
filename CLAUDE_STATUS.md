@@ -598,3 +598,21 @@ Mimikyu's two). Either add a 12th trial (e.g. Wishiwashi) or say 11. Also open: 
 **Files modified:** `docs/Story.md`, `CLAUDE_STATUS.md`.
 
 **Next 3 steps:** merge PR #17; then 12b partner safety (`docs/AIReview.md` #1–#2); then 12b #3.
+
+---
+
+## CA-0009 — 2026-10-22, 4:13 pm US Central (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** the owner's post-game event order, in `docs/Story.md`, `DeveloperBattle.md` and decision 23.
+1. First Hall of Fame: the player is directed to Spear Pillar for a Dialga/Palkia disturbance; both are catchable.
+2. The Elite Four rematch is locked (by the League's save-prompt NPC) until both encounters are completed.
+3. Elite Four rematches are unlimited from then until the Sovereign battle.
+4. After the second win against Cynthia, she sends the player back to Spear Pillar: the Sovereign battle.
+
+**Open:** who directs the player to Spear Pillar after the first Hall of Fame (Cynthia, Rowan, the Celestic elder);
+whether the Elite Four can be rematched after the Sovereign battle.
+
+**Files modified:** `docs/Story.md`, `docs/DeveloperBattle.md`, `docs/ProjectStatus.md`, `CLAUDE_STATUS.md`.
+(Uncommitted on disk: the 12b partner-safety AI change, still being tested; not part of this commit.)
+
+**Next 3 steps:** merge PR #17; test and commit the 12b partner-safety change; then 12b #3.

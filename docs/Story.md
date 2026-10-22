@@ -50,13 +50,21 @@ The player learns about the Sovereign passively, without ever meeting one before
 - **Spear Pillar** (Galactic's climax): a brief glimpse of ruins on the summit showing a throne that was never part
   of Platinum's map. It goes unexplained, and the story moves on to Giratina.
 
-### After the Hall of Fame
-- **Dialga and Palkia** appear at Spear Pillar once the player has **entered the Hall of Fame** (owner). This replaces
-  Platinum's National Dex condition, since Sovereign gives the National Dex from the start (decision 21).
+### After the Hall of Fame: event order (owner)
+
+1. **First time as Champion** (first Hall of Fame entry). The player is directed to **Spear Pillar** to resolve a
+   disturbance involving Dialga and Palkia. Both can be **caught** there. Who directs the player is open (see *Open*).
+2. **The Elite Four rematch stays locked until both the Dialga and Palkia encounters are completed.** The NPC at the
+   Pokémon League who prompts you to save before the Elite Four blocks the rematch until then.
+3. **Elite Four rematch.** Once it's open, the player may rematch the Elite Four any number of times, from completing
+   Dialga and Palkia up to the Sovereign battle.
+4. **After beating Cynthia the second time,** Cynthia directs the player back to Spear Pillar to resolve the mystery
+   that has been unfolding all game. That opens the throne room and the battle with Sovereign Twich.
+
+Alongside these, after the first Hall of Fame:
 - **The Chronicles** (Archivist): each chapter's legendaries arrive from another world. The Archivist works out that
   someone opened the way on purpose, and starts to suspect the Sovereign.
 - **Regional Forms Park:** its owner keeps a log of where each regional form "came through".
-- **Elite Four rematch.** Once that and Dialga and Palkia are both done, the throne room at Spear Pillar opens.
 
 ### The final battle: Sovereign Twich at the throne
 - **Before the battle,** Twich refers to the Totem trials: the player has passed all **11** of his trials, so they're
@@ -71,10 +79,13 @@ The player learns about the Sovereign passively, without ever meeting one before
 
 ## Engineering notes
 
-- **Dialga/Palkia trigger:** set by entering the Hall of Fame instead of by the National Pokédex. Find the flag or
-  variable Platinum's Spear Pillar post-game script checks.
-- **Twich's unlock:** the Elite Four rematch won (Sovereign's E4 format: `docs/EliteFourFormat.md`) and both Dialga
-  and Palkia encountered at Spear Pillar (caught or defeated, depending on how Platinum's script sets its flags).
+- **Dialga/Palkia trigger:** the first Hall of Fame entry, instead of the National Pokédex. Find the flag or variable
+  Platinum's Spear Pillar post-game script checks, plus a scene or message directing the player there.
+- **Elite Four rematch lock:** the League's save-prompt NPC checks a "Dialga and Palkia both done" condition
+  (caught or defeated) before letting the player through for a rematch.
+- **Twich's unlock:** the second win against Cynthia (the Elite Four rematch, Sovereign's E4 format:
+  `docs/EliteFourFormat.md`) sets the flag that opens the throne room, and Cynthia's scene sends the player there.
+  Elite Four rematches stay repeatable afterwards (unlimited until the Sovereign battle).
 - **The Sovereign title** shows in three places (owner): the Trainer Card, the Hall of Fame record, and NPC lines
   after the battle (a flag the relevant scripts check).
 - **Cynthia's appearance:** a scripted scene after the battle at Spear Pillar, using her existing overworld sprite.
@@ -85,6 +96,13 @@ The player learns about the Sovereign passively, without ever meeting one before
 - **The throne room at Spear Pillar:** a map change (a new area or a new state of the existing map).
 - **Who builds what** (owner's plan split): the story content is E11 (Claude B). The developer battle itself is T2
   (Claude A).
+
+## Open
+
+- **Who directs the player to Spear Pillar after the first Hall of Fame?** Options: Cynthia at the Hall of Fame,
+  Professor Rowan by phone/visit, or the Celestic Town elder.
+- **After the Sovereign battle,** can the Elite Four still be rematched? (The owner's rule covers the time up to
+  the Sovereign battle.)
 
 ## Settled after review
 

@@ -122,8 +122,9 @@ Made by the owner (2026-10-22):
     End goal (owner): **shield leading into succession**. The Sovereign stitched other worlds into Sinnoh to hold it
     together against Galactic; Twich, the last heir, has held the seams alone and uses the Totem trials to find a
     successor. Beating him grants the player the **Sovereign title**, and **Cynthia** (very close to Twich; the
-    reason he uses Garchomp) arrives to congratulate them. Dialga and Palkia appear at Spear Pillar after entering the
-    Hall of Fame.
+    reason he uses Garchomp) arrives to congratulate them. Event order: first Hall of Fame → Dialga and Palkia at
+    Spear Pillar (catchable) → Elite Four rematch, locked until both are done and then repeatable → after the second
+    win against Cynthia, she sends the player to Spear Pillar for the Sovereign battle.
 
 Open:
 - Regional Forms Park (decision 22): which zone holds which forms, encounter rates, and when it opens (Route 221
