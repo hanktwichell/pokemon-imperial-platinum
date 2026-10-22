@@ -3,6 +3,25 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## E2 / E4 — Gen IX abilities and Hidden Abilities
+
+- **All 314 abilities**, ability ID = official ability number (`tools/engine/gen_abilities.py`, from PokeAPI;
+  `docs/AbilityChecklist.md`). Platinum's 123 keep their Gen IV battle behaviour. The 191 newer ones (Gen V–IX and
+  the Legends: Z-A Mega abilities) have names and descriptions that show on the summary screen, but **no battle effect
+  yet**; the checklist tracks which get implemented (roadmap item 11). Names over 15 characters are shortened Gen V-style
+  (e.g. NeutralizingGas); 79 descriptions were rewritten by hand to fit Gen IV's two-line box.
+- **Ability IDs above 255:** the ability is stored as 9 bits in the Pokémon data (the old byte plus a spare bit in
+  block B), and battle, AI, day care, wild-encounter and Battle Frontier code now carry it as 16 bits.
+- **Hidden Abilities:** species data has a third ability slot. A Pokémon has a "hidden ability" flag (block B, kept
+  through evolution); with it set, the Pokémon uses its species' Hidden Ability. Nothing gives the flag yet (wild
+  Pokémon and gifts never start with it); breeding, the Ability Patch and boss trainers will use it later.
+- **Species abilities (#1–493 and forms):** Gen IX ability 1 / ability 2 / Hidden Ability
+  (`tools/engine/gen_species_gen9.py`; changes listed in `docs/SpeciesGen9Changes.md`).
+
+Verified in the emulator (test build): a Gallade with the flag shows **Justified** (its Hidden Ability) and one given
+**Sharpness** (ID 292) shows it with the new description, so the 9th bit is stored and read back; the IV/EV viewer
+(E14) cycles stats → IVs → EVs on the SKILLS page as intended. The normal build passes.
+
 ## E3 — Gen IX moves (data pass)
 
 - **All 919 moves**, move ID = official move number (`tools/engine/gen_moves.py`, from PokeAPI; `docs/MoveChecklist.md`).
@@ -27,7 +46,7 @@ new moves; effect fidelity for the approximate/placeholder moves is roadmap item
 ## Test build (never shipped)
 
 - `meson -Dimperial_test=true` (`tools/test/build_test_rom.sh` → `decomp/build_test/`): a new game starts with a test
-  party (Garchomp 50, Turtwig 15, Starly 5) and items (3 Rare Candies, 10 Potions, 10 Poké Balls). In the overworld,
+  party (Garchomp 50 with Gen IX moves, Turtwig 15, Starly 5, two Gallade 30 with Justified and Sharpness) and items (3 Rare Candies, 10 Potions, 10 Poké Balls). In the overworld,
   **SELECT** starts a wild battle (Chansey Lv. 30) and **SELECT+R** a trainer battle (Barry, Route 209). Normal builds
   and CI don't define `IMPERIAL_TEST`, so none of this is in the real game.
 - Fixed while building it: the setup first allocated from a heap that doesn't exist yet at new-game start (the NULL
@@ -50,7 +69,7 @@ the new build (new game starts); header and banner read back from the ROM; boot 
 - On the **SKILLS** page, **SELECT** cycles the six numbers between stats, IVs and EVs. The page title changes to
   "POKéMON SKILLS" / "POKéMON IVs" / "POKéMON EVs"; the view is kept while switching Pokémon or pages.
 
-Verified: builds. **Not yet tested in-game** (needs a party Pokémon; part of the test-build pass).
+Verified in the emulator (test build, with the E2/E4 pass): SELECT cycles the SKILLS page through stats, IVs and EVs, with the title changing to match.
 
 ## E13 — Options additions (level cap, Infinite Rare Candy, party Exp. Share, music volume)
 

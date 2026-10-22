@@ -783,7 +783,7 @@ void Daycare_GiveEggFromDaycare(Daycare *daycare, Party *party, TrainerInfo *tra
 static int Party_GetEggCyclesToSubtract(Party *party)
 {
     u8 i;
-    u8 ability;
+    u16 ability;
     int partyCount = Party_GetCurrentCount(party);
 
     for (i = 0; i < partyCount; i++) {

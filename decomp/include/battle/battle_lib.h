@@ -647,7 +647,7 @@ BOOL BattleSystem_CanWhirlwind(BattleSystem *battleSys, BattleContext *battleCtx
  * @param battler
  * @return The battler's ability
  */
-u8 Battler_Ability(BattleContext *battleCtx, int battler);
+u16 Battler_Ability(BattleContext *battleCtx, int battler);
 
 /**
  * @brief Check if the given defender has the specified ability, treating it as

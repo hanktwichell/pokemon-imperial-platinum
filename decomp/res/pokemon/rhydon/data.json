@@ -27,7 +27,7 @@
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_SLOW",
     "egg_groups": [ "EGG_GROUP_MONSTER", "EGG_GROUP_FIELD" ],
-    "abilities": [ "ABILITY_LIGHTNING_ROD", "ABILITY_ROCK_HEAD" ],
+    "abilities": [ "ABILITY_LIGHTNING_ROD", "ABILITY_ROCK_HEAD", "ABILITY_RECKLESS" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_GRAY",
     "flip_sprite": false,

@@ -81,7 +81,7 @@ typedef struct BattleMon {
     u8 formNum : 5;
     u8 isShiny : 1;
     u8 padding0026_06 : 2;
-    u8 ability;
+    u16 ability; // Imperial: u16 (Gen IX ability IDs go past 255)
 
     u32 weatherAbilityAnnounced : 1;
     u32 intimidateAnnounced : 1;

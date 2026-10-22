@@ -322,7 +322,7 @@ typedef struct UpdatePartyMonMessage {
 
 typedef struct RefreshPartyStatusMessage {
     u8 command;
-    u8 ability;
+    u16 ability; // Imperial: u16
     u16 move;
 } RefreshPartyStatusMessage;
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Build the Imperial *test* ROM (never ship it) into decomp/build_test/pokeplatinum.us.nds.
-# The test build adds: a test party and items at new game (Garchomp 50, Turtwig 15, Starly 5, 3 Rare Candies),
+# The test build adds: a test party and items at new game (Garchomp 50 with Gen IX moves, Turtwig 15, Starly 5, two Gallade 30 with Justified [hidden ability] and Sharpness [ID 292], 3 Rare Candies),
 # SELECT in the overworld = wild battle (Chansey 30), SELECT+R = trainer battle (src/overlay005/field_control.c).
 set -euo pipefail
 cd "$(dirname "$0")/../../decomp"

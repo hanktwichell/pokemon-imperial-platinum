@@ -27,7 +27,7 @@
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_FAST",
     "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
-    "abilities": [ "ABILITY_CUTE_CHARM", "ABILITY_NONE" ],
+    "abilities": [ "ABILITY_CUTE_CHARM", "ABILITY_COMPETITIVE", "ABILITY_FRIEND_GUARD" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PINK",
     "flip_sprite": true,

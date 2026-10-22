@@ -1,7 +1,7 @@
 #ifndef POKEPLATINUM_SPECIES_H
 #define POKEPLATINUM_SPECIES_H
 
-#define MAX_ABILITIES  2
+#define MAX_ABILITIES  3 // Imperial: ability 1, ability 2, hidden ability (vanilla: 2)
 #define MAX_EGG_GROUPS 2
 #define MAX_TYPES      2
 
@@ -53,7 +53,7 @@ typedef struct SpeciesData {
     u8 baseFriendship;
     u8 expRate;
     u8 eggGroups[MAX_EGG_GROUPS];
-    u8 abilities[MAX_ABILITIES];
+    u16 abilities[MAX_ABILITIES]; // Imperial: u16
     u8 safariFleeRate;
     u8 bodyColor : 7;
     u8 flipSprite : 1;

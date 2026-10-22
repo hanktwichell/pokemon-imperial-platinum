@@ -381,7 +381,7 @@ typedef struct PokemonSummaryMonData {
     u16 spAttack;
     u16 spDefense;
     u16 speed;
-    u8 ability;
+    u16 ability; // Imperial: u16
     u8 nature;
     u8 ivs[STAT_MAX]; // Imperial: shown on the SKILLS page with SELECT
     u8 evs[STAT_MAX];

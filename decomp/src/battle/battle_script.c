@@ -340,7 +340,7 @@ static int BattleScript_CalcCatchShakes(BattleSystem *battleSys, BattleContext *
 static void BattleScript_LoadPartyLevelUpIcon(BattleSystem *battleSys, BattleScriptTaskData *data, Pokemon *mon);
 static void BattleScript_FreePartyLevelUpIcon(BattleSystem *battleSys, BattleScriptTaskData *data);
 static void BattleScript_UpdateFriendship(BattleSystem *battleSys, BattleContext *battleCtx, int faintingBattler);
-static void BattleAI_SetAbility(BattleContext *battleCtx, u8 battler, u8 ability);
+static void BattleAI_SetAbility(BattleContext *battleCtx, u8 battler, u16 ability);
 static void BattleAI_SetHeldItem(BattleContext *battleCtx, u8 battler, u16 item);
 static void BattleScript_GetExpTask(SysTask *task, void *inData);
 static void BattleScript_CatchMonTask(SysTask *task, void *inData);
@@ -7775,7 +7775,8 @@ static BOOL BtlCmd_GenerateEndOfBattleItem(BattleSystem *battleSys, BattleContex
     // Declare C89-style to match
     int rnd, i, j, max;
     u16 species, item;
-    u8 ability, level;
+    u16 ability;
+    u8 level;
     Pokemon *mon;
 
     BattleScript_Iter(battleCtx, 1);
@@ -12120,7 +12121,7 @@ static void BattleScript_UpdateFriendship(BattleSystem *battleSys, BattleContext
  * @param battler
  * @param ability
  */
-static void BattleAI_SetAbility(BattleContext *battleCtx, u8 battler, u8 ability)
+static void BattleAI_SetAbility(BattleContext *battleCtx, u8 battler, u16 ability)
 {
     battleCtx->aiContext.battlerAbilities[battler] = ability;
 }

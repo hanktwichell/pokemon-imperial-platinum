@@ -75,7 +75,7 @@ typedef struct WildEncounters_FieldParams {
     BOOL ignoreAbilityBlock; // skips the check for Intimidate/Keen Eye blocking low level encounters
     u8 firstBattlerLevel;
     u8 isFirstMonEgg;
-    u8 firstMonAbility;
+    u16 firstMonAbility; // Imperial: u16
     u8 encounterRatesForms[2]; // from encounterData. Only used for Shellos/Gastrodon
     u8 unownTableID;
 } WildEncounters_FieldParams;
@@ -89,7 +89,7 @@ static BOOL ShouldGetRandomEncounter(FieldSystem *fieldSystem, const u32 encount
 static u8 GetTileEncounterRateAndType(FieldSystem *fieldSystem, u8 tileBehavior, u8 *encounterType);
 static BOOL GracePeriodStepsUsed(FieldSystem *fieldSystem, u32 param1);
 static BOOL CheckEncounterRateSuccess(FieldSystem *fieldSystem, u32 encounterRate);
-static BOOL TryGetSlotForTypeMatchAbility(Pokemon *unused, const WildEncounters_FieldParams *encParams, const EncounterSlot *encTable, const u8 maxEncounters, const u8 type, const u8 ability, u8 *encSlot);
+static BOOL TryGetSlotForTypeMatchAbility(Pokemon *unused, const WildEncounters_FieldParams *encParams, const EncounterSlot *encTable, const u8 maxEncounters, const u8 type, const u16 ability, u8 *encSlot);
 static BOOL FirstMonAbilityPreventsEncounter(const WildEncounters_FieldParams *encParams, Pokemon *firstMon, const u8 wildLevel);
 static int GetGrassEncounterRate(FieldSystem *fieldSystem);
 static int GetSurfEncounterRate(FieldSystem *fieldSystem);
@@ -1314,7 +1314,7 @@ static BOOL ForceMatchingTypeEncounterSlot(const EncounterSlot *encounterTable, 
 }
 
 // 50% chance to force encounterSlot to correspond to a mon of type if one exists and the lead mon has ability
-static BOOL TryGetSlotForTypeMatchAbility(Pokemon *unused, const WildEncounters_FieldParams *encounterFieldParams, const EncounterSlot *encounterTable, const u8 maxEncounters, const u8 type, const u8 ability, u8 *encounterSlot)
+static BOOL TryGetSlotForTypeMatchAbility(Pokemon *unused, const WildEncounters_FieldParams *encounterFieldParams, const EncounterSlot *encounterTable, const u8 maxEncounters, const u8 type, const u16 ability, u8 *encounterSlot)
 {
     if (!encounterFieldParams->isFirstMonEgg && encounterFieldParams->firstMonAbility == ability && LCRNG_RandMod(2) == 0) {
         return ForceMatchingTypeEncounterSlot(encounterTable, maxEncounters, type, encounterSlot);

@@ -27,12 +27,14 @@
 #include "vars_flags.h"
 
 #ifdef IMPERIAL_TEST
+#include "generated/abilities.h"
 #include "generated/items.h"
 #include "generated/species.h"
 
 #include "bag.h"
 #include "party.h"
 #include "pokemon.h"
+#include "system_vars.h"
 #include "unk_02054884.h"
 #endif
 
@@ -715,6 +717,21 @@ static void ImperialTest_SetupNewGame(FieldSystem *fieldSystem)
     Pokemon_SetMoveSlot(garchomp, MOVE_DAZZLING_GLEAM, 1);
     Pokemon_SetMoveSlot(garchomp, MOVE_PLAY_ROUGH, 2);
     Pokemon_SetMoveSlot(garchomp, MOVE_ELECTROWEB, 3);
+
+    // Gallade with its hidden ability (Justified: tests the hidden-ability flag) and one with Sharpness
+    // (ID 292: tests ability IDs above 255).
+    Pokemon_GiveMonFromScript(HEAP_ID_FIELD2, fieldSystem->saveData, SPECIES_GALLADE, 30, ITEM_NONE, 0, 0);
+    Pokemon *gallade = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), 3);
+    u8 hasHiddenAbility = TRUE;
+    Pokemon_SetValue(gallade, MON_DATA_HAS_HIDDEN_ABILITY, &hasHiddenAbility);
+    Pokemon_CalcAbility(gallade);
+
+    Pokemon_GiveMonFromScript(HEAP_ID_FIELD2, fieldSystem->saveData, SPECIES_GALLADE, 30, ITEM_NONE, 0, 0);
+    u16 sharpness = ABILITY_SHARPNESS;
+    Pokemon_SetValue(Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), 4), MON_DATA_ABILITY, &sharpness);
+
+    // Show POKéMON in the start menu (normally unlocked by getting a starter).
+    SystemVars_SetPlayerStarter(SaveData_GetVarsFlags(fieldSystem->saveData), SPECIES_TURTWIG);
     Bag_TryAddItem(bag, ITEM_RARE_CANDY, 3, HEAP_ID_FIELD2);
     Bag_TryAddItem(bag, ITEM_POTION, 10, HEAP_ID_FIELD2);
     Bag_TryAddItem(bag, ITEM_POKE_BALL, 10, HEAP_ID_FIELD2);
