@@ -23,7 +23,7 @@
     },
     "held_items": {
         "common": "ITEM_NONE",
-        "rare": "ITEM_NONE"
+        "rare": "ITEM_MISTY_SEED"
     },
     "gender_ratio": "GENDER_RATIO_FEMALE_75",
     "hatch_cycles": 20,

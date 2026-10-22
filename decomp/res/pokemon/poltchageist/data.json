@@ -118,7 +118,13 @@
             "MOVE_UPROAR"
         ]
     },
-    "evolutions": [],
+    "evolutions": [
+        [
+            "EVO_USE_ITEM",
+            "ITEM_UNREMARKABLE_TEACUP",
+            "SPECIES_SINISTCHA"
+        ]
+    ],
     "offspring": "SPECIES_POLTCHAGEIST",
     "footprint": {
         "has": false,

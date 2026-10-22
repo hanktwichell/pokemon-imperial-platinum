@@ -1,0 +1,30 @@
+{
+  "name": "Naughty Mint",
+  "plural": "Naughty Mints",
+  "article": "a",
+  "description": [
+    "When a Pokémon smells this mint, its\n",
+    "Attack will grow more easily, but its\n",
+    "Sp. Def will grow more slowly."
+  ],
+  "icon": {
+    "sprite": "naughty_mint_NCGR",
+    "palette": "naughty_mint_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 20,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 10,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_MEDICINE",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_HEALING",
+  "battleUseCategory": "BATTLE_USE_CATEGORY_NONE",
+  "itemUseParams": null
+}

@@ -114,7 +114,9 @@
             "MOVE_UPROAR"
         ]
     },
-    "evolutions": [  ],
+    "evolutions": [
+        [ "EVO_USE_ITEM", "ITEM_PEAT_BLOCK", "SPECIES_URSALUNA" ]
+    ],
     "offspring": "SPECIES_TEDDIURSA",
     "footprint": {
         "has": true,

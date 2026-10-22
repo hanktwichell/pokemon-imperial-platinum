@@ -108,7 +108,18 @@
             "MOVE_DESTINY_BOND"
         ]
     },
-    "evolutions": [],
+    "evolutions": [
+        [
+            "EVO_USE_ITEM",
+            "ITEM_AUSPICIOUS_ARMOR",
+            "SPECIES_ARMAROUGE"
+        ],
+        [
+            "EVO_USE_ITEM",
+            "ITEM_MALICIOUS_ARMOR",
+            "SPECIES_CERULEDGE"
+        ]
+    ],
     "offspring": "SPECIES_CHARCADET",
     "footprint": {
         "has": false,

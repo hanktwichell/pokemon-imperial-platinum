@@ -1,0 +1,30 @@
+{
+  "name": "Float Stone",
+  "plural": "Float Stones",
+  "article": "a",
+  "description": [
+    "An item to be held by a Pokémon. This\n",
+    "very light stone reduces the weight of\n",
+    "a Pokémon when held."
+  ],
+  "icon": {
+    "sprite": "float_stone_NCGR",
+    "palette": "float_stone_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 4000,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseCategory": "BATTLE_USE_CATEGORY_NONE",
+  "itemUseParams": null
+}

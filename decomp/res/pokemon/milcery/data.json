@@ -111,7 +111,13 @@
             "MOVE_BABY_DOLL_EYES"
         ]
     },
-    "evolutions": [],
+    "evolutions": [
+        [
+            "EVO_USE_ITEM",
+            "ITEM_STRAWBERRY_SWEET",
+            "SPECIES_ALCREMIE"
+        ]
+    ],
     "offspring": "SPECIES_MILCERY",
     "footprint": {
         "has": false,

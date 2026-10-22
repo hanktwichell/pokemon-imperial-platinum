@@ -67,7 +67,23 @@
             "MOVE_SUCKER_PUNCH"
         ]
     },
-    "evolutions": [],
+    "evolutions": [
+        [
+            "EVO_USE_ITEM",
+            "ITEM_TART_APPLE",
+            "SPECIES_FLAPPLE"
+        ],
+        [
+            "EVO_USE_ITEM",
+            "ITEM_SWEET_APPLE",
+            "SPECIES_APPLETUN"
+        ],
+        [
+            "EVO_USE_ITEM",
+            "ITEM_SYRUPY_APPLE",
+            "SPECIES_DIPPLIN"
+        ]
+    ],
     "offspring": "SPECIES_APPLIN",
     "footprint": {
         "has": false,

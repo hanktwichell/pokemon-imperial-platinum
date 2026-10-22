@@ -24,7 +24,7 @@ the same commit.**
 
 | What | Source | Credit / licence |
 |---|---|---|
-| Species, stats, types, abilities, evolutions, learnsets, Pokédex text, Mega Evolution data, item and Mega Stone names (`data/species.csv`, `data/megas.csv`, validation in `tools/design/*`; in the ROM via `tools/engine/gen_*.py`) | PokeAPI — https://github.com/PokeAPI/pokeapi (`data/v2/csv`) | PokeAPI contributors, BSD-3-Clause. Pokémon data © Nintendo / Game Freak / The Pokémon Company. |
+| Species, stats, types, abilities, evolutions, learnsets, Pokédex text, Mega Evolution data, item and Mega Stone names, item prices and descriptions (`data/species.csv`, `data/megas.csv`, validation in `tools/design/*`; in the ROM via `tools/engine/gen_*.py`) | PokeAPI — https://github.com/PokeAPI/pokeapi (`data/v2/csv`) | PokeAPI contributors, BSD-3-Clause. Pokémon data © Nintendo / Game Freak / The Pokémon Company. |
 | Vanilla Platinum field-item script names and hidden-item list (used to choose and validate Mega Stone placements) | pret/pokeplatinum decompilation — https://github.com/pret/pokeplatinum | pret contributors. |
 | Pokémon Champions battle rules (`docs/BattleMechanics.md`, `tools/engine/apply_champions_moves.py`): values read from Showdown's Champions mod, no code copied | Pokémon Showdown — https://github.com/smogon/pokemon-showdown (`data/mods/champions/`, HEAD `8476966`, 2026-10-22) | Smogon / Pokémon Showdown contributors, MIT licence; the Champions data credits the research of Kaphotics and Anubis. |
 | Pokémon Champions rule research (cross-checks) | Serebii (serebii.net/pokemonchampions), Bulbapedia, Smogon's "Champions battle mechanics research" thread, Victory Road VGC | Their respective authors; facts only, no text copied. |
@@ -86,6 +86,12 @@ Location: `assets/sprites/icons_placeholder/` (converted by `tools/sprites/make_
 #494–809, Sword/Shield icons for #810–898, Scarlet/Violet icons for #899–1025). The icon art is © Nintendo / Game Freak /
 The Pokémon Company; PokeAPI hosts it. In the ROM as `decomp/res/pokemon/<species>/icon.png` (written by
 `tools/engine/gen_new_species.py`). **Placeholders only**, to be replaced by DS-style icons.
+
+### Item icons for the 245 new items (#468–712)
+Location: `decomp/res/items/icons/<item>.png` + `.pal`, converted by `tools/engine/gen_items.py` (reduced to 15 colours
+plus transparent, at most 24×24 px). Source: **PokeAPI sprites**, https://github.com/PokeAPI/sprites (commit
+`97a7832`), `sprites/items/<item>.png`. The item art is © Nintendo / Game Freak / The Pokémon Company; PokeAPI hosts
+it. **Placeholders**, to be replaced by DS-style icons where the owner wants.
 
 ## Audio
 

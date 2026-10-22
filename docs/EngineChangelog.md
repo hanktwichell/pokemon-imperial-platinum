@@ -4,6 +4,60 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E7 step 1 — 245 new items (in progress)
+
+- **245 items added** after Platinum's last (#468–712), from `data/items_sovereign.yaml` by
+  `tools/engine/gen_items.py`:
+  - held items and Gems;
+  - form-change items (Memories, Drives, Nectars, Sweets, the Rusted Sword/Shield, Ogerpon's masks, the origin
+    crystals, Ultranecrozium Z, Blue/Red Orb);
+  - evolution items;
+  - Mints, Ability Capsule and Ability Patch;
+  - key items (Mega Ring, Light/Dark Stone, Prison Bottle, Scrolls, DNA Splicers, N-Solarizer/Lunarizer, Reins of
+    Unity, Zygarde Cube, Reveal Glass);
+  - 92 Mega Stones.
+- Names, prices and descriptions come from PokeAPI. 26 Gen IX descriptions are written in the generator. Three names
+  over 16 characters are shortened.
+- Descriptions wrap by pixel width, measured with the message font (`res/fonts/font_message.json`). The box fits
+  214 pixels: Platinum's widest line. A wrap by character count overflowed it.
+- New names reach 94 pixels (Platinum's widest is 72). They fit the bag list, the "was given" message and the summary
+  screen's Item field. Shop lists are checked when the shops are added.
+- Icons: each new item has a bag icon converted from PokeAPI's item sprites (32×32, 4-bit, 15 colours plus
+  transparent; big renders scaled to fit 24 px). They're listed in `res/items/icons/meson.build` and
+  `item_icon.order` inside generator-owned blocks.
+- **The 16 waiting evolutions are wired up.** Rerunning `gen_new_species.py` resolved all of them; none wait any
+  more:
+  - Applin → Flapple/Appletun/Dipplin; Charcadet → Armarouge/Ceruledge; Duraludon → Archaludon; Kubfu → Urshifu
+    (Single Strike; Rapid Strike comes with the forms milestone); Scyther → Kleavor (Scizor kept); Ursaring →
+    Ursaluna; and the rest listed in `NewSpecies.md`.
+  - New species' wild held items now include the new items PokeAPI lists (e.g. Absorb Bulb).
+- **Mints, Ability Capsule and Ability Patch work** (Medicine pocket; used from the bag on a party Pokémon):
+  - A Mint sets the nature used for stats and shown on the summary. It's stored in 5 spare bits of the Pokémon data
+    (`mintNature`). Breeding, Synchronize and flavour likes keep the personality value's nature, as in Gen VIII.
+  - The Ability Capsule swaps between the two regular abilities. A spare bit (`abilitySlotSwapped`) keeps the swap
+    through evolution. It has no effect on a Pokémon with its Hidden Ability or with only one regular ability.
+  - The Ability Patch switches between the regular and Hidden Ability (Scarlet/Violet rules).
+  - Messages: "X's stats may have changed due to the Adamant Mint!" and "X's Ability changed to Y!".
+  - Code: `PartyMenu_TryUseSovereignTrainingItem` (`src/applications/party_menu/main.c`), the `BoxPokemon_GetNature`
+    and `BoxPokemon_CalcAbility` overrides (`src/pokemon.c`), and `MON_DATA_MINT_NATURE` /
+    `MON_DATA_ABILITY_SLOT_SWAPPED`.
+- Not done yet: hold effects.
+- Test build:
+  - NEW GAME skips Rowan's intro (hold L to play it). Player "A", rival "Barry".
+  - The new-game bag has six of the new items.
+  - `drive.py` boots with a blank battery: py-desmume reloads `~/.config/desmume/<rom>.dsv`, so "fresh" boots were
+    continuing an old save.
+  - `new_game.sh` reaches the bedroom from a blank battery.
+- Verified with the test build:
+  - The new items appear in the right pockets (Mega Ring in Key Items) with names, descriptions and their icons.
+  - Heavy-Duty Boots can be given to Garchomp and shows on its summary screen.
+  - Using an evolution item opens the party screen, with "UNABLE!" for Pokémon it doesn't evolve.
+  - Metal Alloy on Duraludon (temporary test party): ABLE!, then Duraludon evolved into Archaludon and the item was
+    used up.
+  - Adamant Mint on Garchomp: the message, then "Adamant nature." with Attack raised and Sp. Atk lowered on the stats
+    page. Ability Patch on Garchomp: Sand Veil → Rough Skin. Ability Capsule on Archaludon: Sturdy → Stamina. Ability
+    Capsule on Garchomp (Hidden Ability): "It won't have any effect."
+
 ## E6 step 2 — species #494–1025
 
 All 1025 species are in the game, with species ID = National Dex number (Egg is 1026, Bad Egg 1027).

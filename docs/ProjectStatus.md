@@ -21,7 +21,7 @@ and T2 only. See `EngineRoadmap.md` for the per-milestone breakdown.
 | E0b | Fairy type + Gen VI+ type chart | ✅ done (checked against the official chart) |
 | E13 | Options: level cap, Infinite Rare Candy, party Exp. Share, music volume | ✅ done (PR #5); verified in battle with the test build |
 | E1 | Own save signature, ROM title/banner "Pokémon Sovereign Platinum" | ✅ done (PR #7) |
-| E14 | Approved QoL | 🟡 4 of 8 done (IV/EV viewer, Repel prompt, HM-free field moves, Gen VI+ breeding; all tested in-game). The type-effectiveness indicator is shelved by the owner. Mints, Infinite Repel and Ability Capsule wait for E7/E4 |
+| E14 | Approved QoL | 🟡 4 of 8 done (IV/EV viewer, Repel prompt, HM-free field moves, Gen VI+ breeding; all tested in-game). The type-effectiveness indicator is shelved by the owner. Mints and the Ability Capsule/Patch work as items (E7); their sales and the Infinite Repel come next |
 | — | Test build (`tools/test/build_test_rom.sh`): test party at new game, SELECT = wild battle, SELECT+R = trainer battle | ✅ working |
 | E3 | All 919 moves, ID = official number; 93 new moves exact, 76 approximate, 211 placeholder (`MoveChecklist.md`) | ✅ done (PR #9); tested in battle |
 | E5 | Gen IX stats, types and learnsets for #1–493 and forms; 32-bit learnset entries | ✅ done (PR #9); tested in battle |
@@ -96,8 +96,28 @@ Made by the owner (2026-10-22):
     afterwards in its Totem form. Totems call allies: each trial is a double battle where the Totem calls up to 2
     reserve helpers into the empty slot, and balls can be thrown only once the Totem is alone (owner, 2026-10-22).
     Placements, levels and the mechanic: `data/totem_trials.yaml`.
+19. **Trade evolutions follow Renegade's system** (owner, 2026-10-22, after briefly considering a Link Stone): plain
+    trade evolutions evolve at Level 36, and trade-with-item evolutions by using the item like a stone.
+20. **Special evolutions** (Gholdengo's 999 coins, Malamar's upside-down console and other conditions Gen IV can't
+    check) are to be discussed with the owner later. Until then the methods in `EvolutionChanges_Sovereign.md`
+    stand.
+21. **After E7/E8, the next focus is the Pokédex** (owner, 2026-10-22): every new Pokémon is in the dex, and a dex
+    number never shows "???".
+    - The **National Dex is unlocked when Rowan gives the player the Pokédex**.
+    - Everything (summary, Pokédex, lists) refers to a Pokémon by its **National Dex number**.
+    - The **Sinnoh dex is cosmetic**: a view inside the Pokédex only. This replaces the "Sinnoh dex stays" part of
+      decision 6 for numbering.
+    - To check when building it: other things Platinum gates on the National Dex flag (some wild encounters, Pal
+      Park, Rowan's post-league upgrade event). Keep or move each one deliberately.
+22. **Pal Park is removed, along with the GBA "Migrate" option** (owner, 2026-10-22; it can't work in a ROM hack).
+    Its grounds on Route 221 become the **Regional Forms Park**: Pal Park's four areas (field, forest, mountain, sea)
+    become Alola, Galar, Hisui and Paldea zones where the 59 regional forms (decision 16) live as wild Pokémon. The
+    Catching Show layout is reused. Built with milestone FM, once regional forms exist.
 
 Open:
+- Regional Forms Park (decision 22): which zone holds which forms, encounter rates, and when it opens (Route 221
+  needs Surf; with the National Dex from the start, Pal Park's old National Dex gate no longer applies).
+- Special evolutions (decision 20): owner discussion pending.
 - The developer battle: Lv. 100 at Spear Pillar, leads Charizard-Y + Venusaur, custom weather-control AI (`DeveloperBattle.md`). Opponent: Sovereign Dev Twich. Open: text, sprites (owner's sprite coming soon), Charizard's final moveset.
 - Front sprites and the part 2 shiny pack (owner is sourcing them).
 - hg-engine and Smogon credit lists: Claude compiles them (owner, 2026-10-22).

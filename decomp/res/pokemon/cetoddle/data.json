@@ -135,7 +135,13 @@
             "MOVE_ICICLE_CRASH"
         ]
     },
-    "evolutions": [],
+    "evolutions": [
+        [
+            "EVO_USE_ITEM",
+            "ITEM_ICE_STONE",
+            "SPECIES_CETITAN"
+        ]
+    ],
     "offspring": "SPECIES_CETODDLE",
     "footprint": {
         "has": false,

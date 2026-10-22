@@ -1,0 +1,30 @@
+{
+  "name": "Pass Orb",
+  "plural": "Pass Orbs",
+  "article": "a",
+  "description": [
+    "A mysterious orb containing the power\n",
+    "of the Unova region, to be used when\n",
+    "generating Pass Power."
+  ],
+  "icon": {
+    "sprite": "pass_orb_NCGR",
+    "palette": "pass_orb_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 200,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseCategory": "BATTLE_USE_CATEGORY_NONE",
+  "itemUseParams": null
+}

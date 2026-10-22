@@ -6,6 +6,9 @@
 # held item (day/night), knows move, species in party, male/female level, Atk/Def comparison,
 # beauty, and three special locations (Mt. Coronet, Moss Rock, Ice Rock).
 # Precedents from Renegade Platinum: trade evolutions -> Level 36; trade-holding-item -> "use item".
+# Owner, 2026-10-22: trade evolutions keep Renegade's system (decision 19 in docs/ProjectStatus.md). Special evolutions
+# (Gholdengo, Malamar and others the engine can't check) will be discussed later (decision 20); the methods below
+# stand until then.
 #
 # new_items: items that must be added to the item table. All are sold by Renegade's Snowpoint City
 # evolution-item seller ($10,000 each) unless "where" says otherwise.

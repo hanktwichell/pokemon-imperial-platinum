@@ -1,0 +1,30 @@
+{
+  "name": "Steel Gem",
+  "plural": "Steel Gems",
+  "article": "a",
+  "description": [
+    "A gem with an essence of steel. When\n",
+    "held, it strengthens the power of a\n",
+    "Steel-type move one time."
+  ],
+  "icon": {
+    "sprite": "steel_gem_NCGR",
+    "palette": "steel_gem_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 200,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseCategory": "BATTLE_USE_CATEGORY_NONE",
+  "itemUseParams": null
+}
