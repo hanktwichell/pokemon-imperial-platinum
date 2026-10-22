@@ -6,7 +6,7 @@ players and the verification that was run.
 
 ## E7 part 2 — shops and icon placement (in progress)
 
-- **Post-Champion money** (owner, decision 23). Every check is the Hall of Fame flag (`FLAG_GAME_COMPLETED`):
+- **Post-Champion money** (owner, decision 24). Every check is the Hall of Fame flag (`FLAG_GAME_COMPLETED`):
   - **Half price in every money shop** (`Shop_GetItemPrice`, `overlay007/shop_menu.c`): Poké Marts, specialty
     counters, decorations and Seals. Battle Point shops are unchanged.
   - **3× prize money** from post-game rematches: the Elite Four and Cynthia rematches, the eight Gym Leader rematches
@@ -44,6 +44,39 @@ players and the verification that was run.
 - **Test build: SELECT+L+R warps** to the next place in `sSovereignTestWarps` (`src/script_manager.c`), looping. For
   now the stops are the Veilstone Store 2F clerk, Route 202's grass and the Survival Area Youngster. Add stops there
   to test other map scripts.
+
+## E9 — Sovereign trainer format
+
+Trainers can now be written exactly: nature, ability (including Hidden Abilities), IVs, EVs, gender, shininess and
+Poké Ball per Pokémon, as optional fields in the trainer JSON. Reference: `docs/TrainerFormat.md`.
+
+- **Format:** a party that uses any of the new fields is packed as `TrainerMonSovereign` (38 bytes per Pokémon,
+  `TRDATATYPE_SOVEREIGN`); every other party keeps Platinum's four layouts.
+  - Platinum's 928 trainers pack byte-for-byte as before (`trdata.narc` and `trpoke.narc` compared member by member).
+  - The new layout stores the whole species ID and the form separately.
+- **How the game builds the Pokémon** (`src/trainer_data.c`):
+  - It starts from Platinum's seeded personality value and changes it as little as possible to give the requested
+    nature, gender and ability slot.
+  - A Hidden Ability uses Sovereign's Hidden Ability flag; shininess comes from the OT ID.
+  - IVs, EVs and form are set, then the ability and stats are recalculated.
+- **Packer checks** (`tools/dataproc/src/trainerproc.c`): IVs 0–31; EVs at most 255 per stat and 510 in total; gender
+  `"male"`/`"female"`; ball item IDs below 256.
+- **Prize money** reads the new layout too (`BattleScript_CalcPrizeMoney`).
+- **Test trainer:** `TRAINER_SOVEREIGN_TEST` ("Ace Trainer Twich"), added at the end of the trainer list with the
+  unused flag after the last trainer flag. Its team is the developer team (`docs/DeveloperBattle.md`) at Lv. 100 in a
+  double battle, every Pokémon in a Luxury Ball (owner), with every held item from the owner's sets (E7's Charizardite Y, Blue Orb and Assault Vest included; Mega Evolution and Primal Reversion come with E8). The test build's SELECT+R now battles
+  it instead of the Route 209 rival.
+- **New test tool:** `tools/test/check_trainer_party.py` starts that battle, decrypts each Pokémon the game builds for
+  the opponent (hook on `Party_AddPokemon`), and compares it with the JSON, including all six stats recomputed from
+  base stats, IVs, EVs and nature.
+- Verified:
+  - `check_trainer_party.py` passes for all six Pokémon: nature, gender, ability (two Hidden Abilities and one slot
+    pick), IVs, EVs, moves, items, shininess (Garchomp, Archaludon), Luxury Balls and stats.
+  - It fails as it should against a deliberately wrong JSON.
+  - In battle, Charizard ♂ and Venusaur ♀ lead at Lv. 100 and a turn plays out normally.
+  - The normal ROM passes `boot_smoke.py`.
+  - Not checked in game: prize money for this layout, because the test party can't beat a Lv. 100 team. It reads the
+    last Pokémon's level, as the other four layouts do.
 
 ## E7 step 1 — 245 new items (in progress)
 

@@ -47,7 +47,7 @@ evolution stones and held items are never replaced. Full table with map and scri
 
 ## After the Champion
 
-Owner decision 23 (`ProjectStatus.md`):
+Owner decision 24 (`ProjectStatus.md`):
 
 - Every shop that takes money sells at **half price**. Battle Point shops are unchanged.
 - Items **no shop sells** (Nuggets, Pearls, shards, found items) **sell for their full price**. Items a shop sells

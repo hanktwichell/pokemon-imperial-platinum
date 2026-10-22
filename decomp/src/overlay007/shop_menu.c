@@ -1338,7 +1338,7 @@ static u32 Shop_GetItemPrice(ShopMenu *shopMenu, u16 itemId)
         price = CapsuleMenu_GetSealPrice(itemId);
     }
 
-    // Sovereign (decision 23): everything bought with money is half price after the Hall of Fame.
+    // Sovereign (decision 24): everything bought with money is half price after the Hall of Fame.
     if (SystemFlag_CheckGameCompleted(shopMenu->varsFlags)) {
         price /= 2;
     }

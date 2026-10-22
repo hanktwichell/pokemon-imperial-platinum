@@ -30,7 +30,7 @@ and T2 only. See `EngineRoadmap.md` for the per-milestone breakdown.
 | E6 | Species expansion to 1025 | ✅ done: all 532 Gen V–IX species (`NewSpecies.md`) with placeholder sprites, Easy Chat words, English-only Pokédex; tested in battle and on the summary screen. No cries for the new species yet (last step). 16 evolutions wait on E7 items |
 | E7 | Items (Mega Stones, new held/evolution items) | not started |
 | E8 | Mega Evolution / Primal Reversion | not started |
-| E9 | Extended trainer data (natures, EVs, abilities, forms) | not started |
+| E9 | Extended trainer data (natures, EVs, abilities, forms) | ✅ done: `docs/TrainerFormat.md` |
 | E10 / E11 | Renegade port; Sovereign content (encounters, E4 format, gifts, post-game) | not started |
 | E12 | Graphics (convert sprites, icons) | waiting on the owner's front sprites |
 | T1 | Boss team compositions with the owner's Mega picks; revise all boss teams | deferred by the owner until the engine features are done |
@@ -115,7 +115,14 @@ Made by the owner (2026-10-22):
     Catching Show layout is reused. Built with milestone FM, once regional forms exist.
     - **Galarian Articuno, Zapdos and Moltres** roam the **Galar zone** as rare encounters (low odds). That's the only
       place they can be caught (owner, 2026-10-22).
-23. **Post-Champion money** (owner, 2026-10-22, all four options). Built in E7 part 2:
+23. **The story: the Sovereign** (owner, 2026-10-22; `docs/Story.md`). The Sovereign are Sinnoh's old ruling class.
+    Unseen by the player, they merge other Pokémon worlds into Sinnoh, in a story that runs alongside Team
+    Galactic's. One vague reference comes early, then the player learns more through the Totem trials (the
+    Sovereign's tests) and the Chronicles. Everything comes together in the final battle against **Sovereign Twich**
+    (renamed from Sovereign Dev Twich), the last surviving member of the lineage, whose dialogue nods to him being the
+    developer. That battle opens after the Elite Four rematch and the Dialga and Palkia encounters at Spear Pillar.
+    The Sovereign's end goal is still to be chosen (options in `Story.md`).
+24. **Post-Champion money** (owner, 2026-10-22, all four options). Built in E7 part 2:
     - every shop that takes money sells at **half price** after the Hall of Fame (Battle Point shops are unchanged);
     - **3× prize money** from the Elite Four and Cynthia rematches, the Gym Leader rematches and the five Battleground
       trainers (`Sovereign_PostgamePrizeMultiplier` in `battle_script.c`). The developer battle joins the list once
@@ -130,6 +137,6 @@ Open:
 - Regional Forms Park (decision 22): which zone holds which forms, encounter rates, and when it opens (Route 221
   needs Surf; with the National Dex from the start, Pal Park's old National Dex gate no longer applies).
 - Special evolutions (decision 20): owner discussion pending.
-- The developer battle: Lv. 100 at Spear Pillar, leads Charizard-Y + Venusaur, custom weather-control AI (`DeveloperBattle.md`). Opponent: Sovereign Dev Twich. Open: text, sprites (owner's sprite coming soon), Charizard's final moveset.
+- The developer battle: Lv. 100 at Spear Pillar, leads Charizard-Y + Venusaur, custom weather-control AI (`DeveloperBattle.md`). Opponent: Sovereign Twich (decision 23). Open: text, sprites (owner's sprite coming soon).
 - Front sprites and the part 2 shiny pack (owner is sourcing them).
 - hg-engine and Smogon credit lists: Claude compiles them (owner, 2026-10-22).

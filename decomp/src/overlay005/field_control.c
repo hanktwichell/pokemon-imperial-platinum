@@ -183,14 +183,16 @@ void FieldInput_Update(FieldInput *input, FieldSystem *fieldSystem, u16 pressedK
 #ifdef SOVEREIGN_TEST
 static int sSovereignTestBattleResult;
 
-// Test build only (meson -Dsovereign_test=true): a wild battle (Chansey Lv. 30) or, with env != NULL, a trainer battle.
+// Test build only (meson -Dsovereign_test=true): a wild battle (Chansey Lv. 30) or, with env != NULL, a trainer battle
+// (TRAINER_SOVEREIGN_TEST).
 static BOOL SovereignTest_BattleTask(FieldTask *task)
 {
     int *state = FieldTask_GetState(task);
 
     if (*state == 0) {
         if (FieldTask_GetEnv(task) != NULL) {
-            Encounter_NewVsTrainer(task, TRAINER_RIVAL_ROUTE_209_TURTWIG, TRAINER_NONE, TRAINER_NONE, HEAP_ID_FIELD2, &sSovereignTestBattleResult);
+            // TRAINER_SOVEREIGN_TEST: a double battle against the developer team in the Sovereign trainer format (E9).
+            Encounter_NewVsTrainer(task, TRAINER_SOVEREIGN_TEST, TRAINER_NONE, TRAINER_NONE, HEAP_ID_FIELD2, &sSovereignTestBattleResult);
         } else {
             Encounter_NewVsSpeciesAtLevel(task, SPECIES_CHANSEY, 30, &sSovereignTestBattleResult, FALSE);
         }

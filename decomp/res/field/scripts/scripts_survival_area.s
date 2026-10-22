@@ -33,7 +33,7 @@ SurvivalArea_RemoveWarpBattleground:
     End
 
 SurvivalArea_Youngster:
-    // Sovereign (decision 23): after the Champion he gives 3 Nuggets once a day.
+    // Sovereign (decision 24): after the Champion he gives 3 Nuggets once a day.
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer

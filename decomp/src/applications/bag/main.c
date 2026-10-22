@@ -2640,7 +2640,7 @@ static int ProcessItemListInput_SellItems(BagController *controller)
 
             controller->selectedItemCount = 1;
 
-            // Sovereign (decision 23): after the Champion, items no shop sells go for their full price.
+            // Sovereign (decision 24): after the Champion, items no shop sells go for their full price.
             if (!SystemFlag_CheckGameCompleted(SaveData_GetVarsFlags(controller->bagCtx->saveData))
                 || Shop_IsItemSoldInMarts(controller->bagCtx->selectedItem)) {
                 controller->soldItemPrice >>= 1;
