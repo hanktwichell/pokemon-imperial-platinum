@@ -43,7 +43,7 @@ is the fallback if space ever runs out.
 **Placeholder sprites:** the new species use Unown-? until milestone E12. Both male and female copies are written,
 since Platinum shows the female sprite for female Pokémon.
 
-**Developer battle:** Tyranitar's Protect is now Ice Punch (owner).
+**Developer battle:** Charizard-Y's Ancient Power is now Hurricane, and Tyranitar's Protect is now Ice Punch (owner).
 
 ## 2. Files modified (uncommitted)
 

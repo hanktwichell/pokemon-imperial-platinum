@@ -12,11 +12,11 @@ written for this fight. Roadmap item T2; the AI review for doubles is item 12b.
   - **Sand:** Tyranitar + Garchomp.
   - **Rain:** Kyogre + Archaludon (rain makes Electro Shot fire in one turn).
 
-## Team (owner, 2026-10-22; Tyranitar's Protect → Ice Punch the same day)
+## Team (owner, 2026-10-22; later the same day Charizard's Ancient Power → Hurricane and Tyranitar's Protect → Ice Punch)
 
 | # | Pokémon | Item | Ability | Nature | EVs | IVs | Moves | Notes |
 |---|---|---|---|---|---|---|---|---|
-| 1 | Charizard ♂ | Charizardite Y | Blaze (Mega: Drought) | Modest | 252 SpA / 4 SpD / 252 Spe | 0 Atk | Weather Ball, Heat Wave, Ancient Power, Protect | Mega Evolves |
+| 1 | Charizard ♂ | Charizardite Y | Blaze (Mega: Drought) | Modest | 252 SpA / 4 SpD / 252 Spe | 0 Atk | Weather Ball, Heat Wave, Hurricane, Protect | Mega Evolves; Hurricane replaced Ancient Power (owner, 2026-10-22) |
 | 2 | Venusaur ♀ | Focus Sash | Chlorophyll | Modest | 4 HP / 252 SpA / 252 Spe | 0 Atk | Sleep Powder, Leaf Storm, Sludge Bomb, Protect | |
 | 3 | Tyranitar ♂ | Assault Vest | Sand Stream | Adamant | 252 HP / 252 Atk / 4 SpD | — | Rock Slide, Crunch, Low Kick, Ice Punch | Ice Punch replaced Protect (owner, 2026-10-22); Assault Vest blocks status moves anyway |
 | 4 | Garchomp ♂ (shiny) | Life Orb | Rough Skin | Jolly | 4 HP / 252 Atk / 252 Spe | — | Dragon Claw, Stomping Tantrum, Fire Fang, Protect | |
@@ -36,6 +36,7 @@ recorded but unused (Sovereign has no Terastallization).
 | Mega Evolution (Charizard Y) and Primal Reversion (Kyogre) | E8 | |
 | Stamina, Primordial Sea, Drought (on Mega Charizard Y) | E8 / item 11 | Stamina and Primordial Sea have no battle effect yet |
 | Electro Shot (charge turn, skipped in rain) and Stomping Tantrum (double power after a failed move) | item 11 | both are plain hits for now; Origin Pulse is exact |
+| Hurricane's weather accuracy (never misses in rain, 50% in sun) | item 11 | it hits and may confuse, with 70% accuracy in any weather, for now |
 | Custom AI for this fight, and doubles awareness | T2 / 12b | |
 
 ## Interactions worth knowing (owner's call; nothing changed)
@@ -46,6 +47,7 @@ recorded but unused (Sovereign has no Terastallization).
   change the weather on switch-in. Ability weather lasts 5 turns in Sovereign (Champions rules); Primal weather is
   permanent while the Primal is out.
 - **Archaludon's Electro Shot** needs rain to fire in one turn, so it pairs with Kyogre.
+- **Charizard's Hurricane** drops to 50% accuracy in its own sun (Drought), and never misses in Kyogre's rain.
 
 ## Custom AI (to-do)
 
@@ -62,7 +64,7 @@ Taking control of the weather by switching weather setters in and out is central
 
 ## To-do
 
-- [ ] Owner may adjust Charizard's moveset.
+- [x] Charizard's moveset: Hurricane replaced Ancient Power (owner, 2026-10-22).
 - [ ] Custom AI (above).
 - [x] Trainer name, class and the game's name (see *Naming*).
 
