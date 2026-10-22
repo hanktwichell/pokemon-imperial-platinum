@@ -1527,7 +1527,7 @@ static const u8 sBattleHallAppGridOrder[20] = {
     TYPE_STEEL,
     BATTLE_HALL_MON_SUMMARY,
     BATTLE_HALL_MON_SUMMARY,
-    TYPE_MYSTERY
+    TYPE_FAIRY
 };
 
 u8 BattleHall_CursorPosToType(u8 cursorPos)

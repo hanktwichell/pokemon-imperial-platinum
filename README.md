@@ -18,6 +18,7 @@ whole ROM from source, so no base ROM is needed to develop. Milestones are in
 |---|---|
 | [`docs/ProjectStatus.md`](docs/ProjectStatus.md) | What's done, what's blocked, open decisions, roadmap |
 | [`docs/EngineRoadmap.md`](docs/EngineRoadmap.md) | Decomp milestones (E0–E12), species ID scheme, where data lives |
+| [`docs/EngineChangelog.md`](docs/EngineChangelog.md) | Every engine change made so far, and how it was verified |
 | [`docs/TechnicalDesign.md`](docs/TechnicalDesign.md) | Engine work: species expansion, Mega mechanic, items, trainer data, sprites |
 | [`docs/WildPokemon_Imperial.md`](docs/WildPokemon_Imperial.md) | Every encounter table (slot-exact), new species marked ★ |
 | [`docs/TrainerPokemon_Imperial.md`](docs/TrainerPokemon_Imperial.md) | Boss teams with Megas; E4 and Cynthia singles + doubles sets |

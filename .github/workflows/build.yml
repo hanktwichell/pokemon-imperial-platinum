@@ -14,7 +14,7 @@ jobs:
         run: |
           sudo dpkg --add-architecture i386
           sudo apt-get update -qq
-          sudo apt-get install -y -qq bison flex g++ gcc-arm-none-eabi make ninja-build pkg-config wget python3 xz-utils nasm libc6:i386 libpng-dev
+          sudo apt-get install -y -qq bison flex g++ gcc-arm-none-eabi make ninja-build pkg-config wget python3 xz-utils nasm libc6:i386 libpng-dev libgl1 libglib2.0-0t64 libx11-6
       - name: Cache subprojects and toolchain
         uses: actions/cache@v4
         with:
@@ -23,9 +23,22 @@ jobs:
             decomp/tools/metroskrew
           key: deps-${{ hashFiles('decomp/subprojects/*.wrap', 'decomp/Makefile') }}
       - name: Build
-        # `make` also checks the ROM hash; drop to `make rom` once Imperial changes the ROM.
-        run: make -C decomp -j"$(nproc)"
-      # The ROM is never uploaded: it contains Nintendo's copyrighted code and assets.
+        # Imperial changes the ROM, so build without the retail checksum check.
+        run: make -C decomp rom -j"$(nproc)"
+      - name: Boot smoke test (headless DeSmuME)
+        env:
+          SDL_VIDEODRIVER: dummy
+          SDL_AUDIODRIVER: dummy
+        run: |
+          pip install --break-system-packages -q py-desmume pillow
+          python3 -W ignore tools/test/boot_smoke.py decomp/build/pokeplatinum.us.nds build/smoke
+      - name: Upload boot screenshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: boot-screenshots
+          path: build/smoke/*.png
+      # The ROM itself is never uploaded: it contains Nintendo's copyrighted code and assets.
 
   docs:
     runs-on: ubuntu-24.04
@@ -42,6 +55,8 @@ jobs:
           git -C /tmp/pokeapi sparse-checkout set data/v2/csv
           git -C /tmp/pokeapi fetch -q --depth 1 --filter=blob:none origin "$(cat tools/POKEAPI_COMMIT)"
           git -C /tmp/pokeapi checkout -q FETCH_HEAD
+      - name: Type chart matches the official chart
+        run: python3 tools/test/check_type_chart.py /tmp/pokeapi/data/v2/csv decomp
       - name: Regenerate and validate docs
         run: tools/regenerate_docs.sh /tmp/pokeapi/data/v2/csv decomp
       - name: Generated files are up to date

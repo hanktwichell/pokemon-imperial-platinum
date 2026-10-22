@@ -3978,13 +3978,6 @@ static BOOL BtlCmd_TryConversion(BattleSystem *battleSys, BattleContext *battleC
         }
 
         moveType = MOVE_DATA(ATTACKING_MON.moves[i]).type;
-        if (moveType == TYPE_MYSTERY) {
-            if (MON_HAS_TYPE(battleCtx->attacker, TYPE_GHOST)) {
-                moveType = TYPE_GHOST;
-            } else {
-                moveType = TYPE_NORMAL;
-            }
-        }
 
         if (MON_IS_NOT_TYPE(battleCtx->attacker, moveType)) {
             break;
@@ -4002,14 +3995,6 @@ static BOOL BtlCmd_TryConversion(BattleSystem *battleSys, BattleContext *battleC
 
             moveType = MOVE_DATA(ATTACKING_MON.moves[i]).type;
 
-            // Handle Curse as a Ghost-type move for Ghost-type Pokemon
-            if (moveType == TYPE_MYSTERY) {
-                if (MON_HAS_TYPE(battleCtx->attacker, TYPE_GHOST)) {
-                    moveType = TYPE_GHOST;
-                } else {
-                    moveType = TYPE_NORMAL;
-                }
-            }
         } while (MON_HAS_TYPE(battleCtx->attacker, moveType));
 
         ATTACKING_MON.type1 = moveType;
@@ -6025,7 +6010,8 @@ static BOOL BtlCmd_CalcHiddenPowerParams(BattleSystem *battleSys, BattleContext 
     battleCtx->movePower = battleCtx->movePower * 40 / 63 + 30;
     battleCtx->moveType = battleCtx->moveType * 15 / 63 + 1;
 
-    if (battleCtx->moveType >= TYPE_MYSTERY) {
+    // Hidden Power is never Fairy-type; skip over it.
+    if (battleCtx->moveType >= TYPE_FAIRY) {
         battleCtx->moveType++;
     }
 

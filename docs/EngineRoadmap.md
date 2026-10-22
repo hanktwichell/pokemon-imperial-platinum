@@ -22,6 +22,13 @@ Decisions this plan follows (project owner, 2026-10-22):
 | Items | `decomp/generated/items.txt` + item data | |
 | Trainers | `decomp/src/trainer_data.c` + trainer data files | Species packed as 10 bits + 6-bit form, so it can't hold species > 1023 → replaced by the Imperial trainer format |
 
+Engine limits found so far:
+- Level-up learnset entries pack the move into **9 bits** (`SpeciesLearnsetEntry`, max move 511), so the format must
+  widen before Gen IX moves exist (~920 moves).
+- `MoveTable.flags` is a `u8` (8 flags); Gen IX needs more (punch, sound, bite, pulse, ballistic, powder, dance,
+  slicing, wind…).
+- The AI copies the whole move table into battle memory (`AIContext.moveTable[MAX_MOVES]`, 16 bytes per move).
+
 Stray hard-coded numbers found so far (must be fixed when species are added):
 `src/pokemon.c:4935` (`496 - 1 + form`), `src/overlay065/ov65_0222DCE0.c:3700-3704` (`495`), `src/trainer_data.c` (`& 0x3FF`).
 
@@ -35,7 +42,8 @@ are incompatible, which the owner has accepted.
 
 | # | Milestone | Done when |
 |---|---|---|
-| E0 | **Import & build.** Decomp vendored, offline-friendly build, CI build | `make -C decomp` reproduces the official ROM hash |
+| E0 | **Import & build.** Decomp vendored, offline-friendly build, CI build | ✅ `make -C decomp` reproduced the official ROM hash |
+| E0b | **Fairy type + Gen VI+ type chart** | ✅ type charts match the official chart |
 | E1 | **Imperial identity.** Separate build target / ROM title, own save magic | ROM boots as "Imperial Platinum"; vanilla saves rejected cleanly |
 | E2 | **Abilities → Gen IX.** All ~310 abilities in the enum with names and descriptions; existing behaviour kept; new abilities registered as no-ops, tracked in a checklist | builds; ability names show in summary |
 | E3 | **Moves → Gen IX.** All ~919 moves with Gen IX data (type, power, accuracy, PP, priority, class, target, flags) generated from PokeAPI; new moves mapped to the closest existing battle effect and animation; per-move fidelity tracked | builds; every move usable in battle |

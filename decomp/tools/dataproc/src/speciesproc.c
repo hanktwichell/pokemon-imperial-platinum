@@ -997,9 +997,10 @@ static void PackDexData(int archive, const DexData *data)
         Archive_Pack(archive, list + start, (i - start) * sizeof(*list));
     }
 
-    // Files 27 through 44: species by type, without the Mystery type
+    // Files 27 through 44: species by type. The Pokédex search screen only has
+    // the 17 original types, so Fairy (formerly ???) is left out for now.
     for (u8 type = 0; type < NUM_POKEMON_TYPES; type++) {
-        if (type == TYPE_MYSTERY) continue;
+        if (type == TYPE_FAIRY) continue;
 
         size_t count = 0;
         for (u16 s = 1; IsNationalDex(s); s++) {
