@@ -629,6 +629,12 @@
     .long \battler
     .endm
 
+    // Sovereign (12b): load how much of the attacker's partner's current HP the current move would take, as a
+    // percentage (0 if the partner is immune, at most 100), or AI_PARTNER_NOT_HIT if the move doesn't hit the partner.
+    .macro LoadPartnerDamagePercent
+    .long AICMD_LOADPARTNERDAMAGEPERCENT
+    .endm
+
     .equ TABLE_END, 0xFFFFFFFF
 
     .macro TableEntry entry:req

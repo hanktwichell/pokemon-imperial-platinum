@@ -4,6 +4,25 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## 12b (part 1) — doubles AI: moves that hit its own partner
+
+- In double battles, the AI now weighs every damaging move that also hits its partner (any move aimed at all
+  adjacent Pokémon) by how much of the partner's HP it would take.
+  - The estimate uses the game's damage calc, so type matchups, abilities and HP all count.
+  - Platinum checked only Earthquake, Magnitude, Discharge, Lava Plume and Surf, by name and by the partner's type.
+    Explosion and every Gen V+ ally-hitting move weren't checked at all.
+  - Scoring: partner unhurt (immune or absorbs) +2, knocked out −10, half or more −5, a quarter or more −3,
+    less −1.
+- New AI script command `LoadPartnerDamagePercent` (`src/battle/trainer_ai/trainer_ai.c`, `asm/macros/aicmd.inc`).
+  Platinum's five by-name handlers are removed from `script.s`, which also fixes their known bugs: Discharge next to
+  a Ground-type partner, Surf next to Rock types, and a lone Pokémon getting −3 for Earthquake.
+- Gen V+ immunities (Sap Sipper, Earth Eater, Telepathy…) are added to the check as item 11 gives those abilities
+  their effects.
+- Verified in the test build with `tools/test/log_ai_partner_damage.py`: Earthquake reads 0% next to a Flying
+  partner, Surf 0% next to Water Absorb, and super-effective, neutral and resisted hits scale as expected. A doubles
+  turn plays normally. The trainer checker and `boot_smoke.py` pass. Reference: `docs/AIReview.md`.
+
+
 ## E9 — Sovereign trainer format
 
 Trainers can now be written exactly: nature, ability (including Hidden Abilities), IVs, EVs, gender, shininess and

@@ -616,3 +616,35 @@ whether the Elite Four can be rematched after the Sovereign battle.
 (Uncommitted on disk: the 12b partner-safety AI change, still being tested; not part of this commit.)
 
 **Next 3 steps:** merge PR #17; test and commit the 12b partner-safety change; then 12b #3.
+
+---
+
+## CA-0010 — 2026-10-22, 4:22 pm US Central (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:**
+- **12b #1–#2, partner safety in doubles.**
+  - The new AI command `LoadPartnerDamagePercent` estimates how much of the partner's HP any move aimed at every
+    adjacent Pokémon would take, using the game's damage calc. Immunities come from the type chart and from
+    Platinum's absorbing abilities.
+  - `TagStrategy_CheckSpecialScoring` scores it: +2 unhurt, −10 KO, −5 for ≥50%, −3 for ≥25%, −1 otherwise.
+  - Platinum's by-name handlers for Earthquake, Magnitude, Discharge, Lava Plume and Surf are removed.
+- **Verified in game** with the new `tools/test/log_ai_partner_damage.py`: Earthquake reads 0% next to Charizard
+  and Surf 0% next to a Water Absorb Vaporeon, and the other hits scale as expected. A doubles turn plays, the trainer
+  checker passes, and `boot_smoke.py` passes.
+  - Bug found and fixed while testing: `TrainerAI_MoveType` returns Normal for ordinary moves (it only handles
+    variable-type ones), so the absorb check uses the move's own type.
+- **Story:** a Totem-trial prompts-and-gate proposal in `docs/Story.md` (owner request).
+  - Gate: the Sovereign battle needs all 11 trials; the main story stays ungated.
+  - Prompts: a Sovereign Seal progress item, Pokémon Center rumours, Town Map marks, and Cynthia pointing out unlit
+    gems.
+  - Waiting on the owner's answer.
+
+**Files modified:** `decomp/src/battle/trainer_ai/trainer_ai.c`, `decomp/src/battle/trainer_ai/script.s`,
+`decomp/asm/macros/aicmd.inc`, `decomp/include/data/scripts/aicmd.h`, `decomp/include/constants/battle/trainer_ai.h`,
+`tools/test/log_ai_partner_damage.py` (new), `docs/AIReview.md`, `docs/EngineChangelog.md`, `docs/Story.md`,
+`CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. PR and merge this.
+2. 12b #3: give spread moves credit for hitting both foes.
+3. 12b #8: check the Gen V+ ally-targeted support moves. Then item 11, boss-team effects first.

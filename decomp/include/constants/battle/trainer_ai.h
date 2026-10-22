@@ -52,4 +52,7 @@
 #define CHECK_LOWER_THAN_TARGET  1
 #define CHECK_EQUAL_TO_TARGET    2
 
+// Sovereign (12b): LoadPartnerDamagePercent's result when the current move doesn't hit the attacker's partner.
+#define AI_PARTNER_NOT_HIT 255
+
 #endif

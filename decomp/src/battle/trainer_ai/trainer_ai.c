@@ -177,6 +177,7 @@ static void AICmd_CheckIfHighestDamageWithPartner(BattleSystem *battleSys, Battl
 static void AICmd_IfBattlerFainted(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_IfBattlerNotFainted(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_LoadAbility(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_LoadPartnerDamagePercent(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static u8 TrainerAI_MainSingles(BattleSystem *battleSys, BattleContext *battleCtx);
 static u8 TrainerAI_MainDoubles(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -2659,6 +2660,97 @@ static void AICmd_LoadAbility(BattleSystem *battleSys, BattleContext *battleCtx)
     u8 battler = AIScript_Battler(battleCtx, inBattler);
 
     AI_CONTEXT.calcTemp = Battler_Ability(battleCtx, battler);
+}
+
+// Sovereign (12b): partner abilities that stop the partner from being hurt by a move of this type. Only abilities
+// whose effect the battle engine already has; Levitate is handled by the type chart. Gen V+ immunities (Sap Sipper,
+// Storm Drain's and Lightning Rod's absorption, Earth Eater, Telepathy...) belong here once item 11 builds them.
+static BOOL AI_PartnerAbsorbsMoveType(BattleContext *battleCtx, int partner, int moveType)
+{
+    int ability = Battler_Ability(battleCtx, partner);
+
+    switch (moveType) {
+    case TYPE_ELECTRIC:
+        return ability == ABILITY_VOLT_ABSORB || ability == ABILITY_MOTOR_DRIVE;
+    case TYPE_WATER:
+        return ability == ABILITY_WATER_ABSORB || ability == ABILITY_DRY_SKIN;
+    case TYPE_FIRE:
+        return ability == ABILITY_FLASH_FIRE;
+    }
+
+    return FALSE;
+}
+
+/**
+ * @brief Sovereign (12b): load how much of the attacker's partner's current HP the current move would take.
+ *
+ * Moves aimed at every adjacent Pokémon (Earthquake, Surf, Discharge, Explosion, Bulldoze...) also hit the user's
+ * partner. This estimates that hit with the same damage calc the AI uses for its targets, at the highest roll.
+ *
+ * Loads 0 if the partner is unhurt (immune or absorbs it), otherwise the damage as a percentage of the partner's
+ * current HP (at most 100), or AI_PARTNER_NOT_HIT if the move doesn't hit the partner at all: not a double battle,
+ * no living partner, a move that doesn't hit every adjacent Pokémon, or a move that deals no direct damage.
+ */
+static void AICmd_LoadPartnerDamagePercent(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    AIScript_Iter(battleCtx, 1);
+
+    int partner = AI_CONTEXT.attacker ^ 2;
+    AI_CONTEXT.calcTemp = AI_PARTNER_NOT_HIT;
+
+    if ((battleSys->battleType & BATTLE_TYPE_DOUBLES) == FALSE
+        || battleCtx->battleMons[partner].curHP == 0
+        || MOVE_DATA(AI_CONTEXT.move).range != RANGE_ALL_ADJACENT) {
+        return;
+    }
+
+    int noCalcIdx;
+    for (noCalcIdx = 0; sNoDamageCalcMoveEffects[noCalcIdx] != 0xFFFF; noCalcIdx++) {
+        if (MOVE_DATA(AI_CONTEXT.move).effect == sNoDamageCalcMoveEffects[noCalcIdx]) {
+            break;
+        }
+    }
+
+    int altPowerIdx;
+    for (altPowerIdx = 0; sAltPowerMoveEffects[altPowerIdx] != 0xFFFF; altPowerIdx++) {
+        if (MOVE_DATA(AI_CONTEXT.move).effect == sAltPowerMoveEffects[altPowerIdx]) {
+            break;
+        }
+    }
+
+    if (sAltPowerMoveEffects[altPowerIdx] == 0xFFFF
+        && (MOVE_DATA(AI_CONTEXT.move).power <= 1 || sNoDamageCalcMoveEffects[noCalcIdx] != 0xFFFF)) {
+        return;
+    }
+
+    // The move's own type: TrainerAI_MoveType only covers variable-type moves, and none of those hit every adjacent
+    // Pokémon.
+    if (AI_PartnerAbsorbsMoveType(battleCtx, partner, MOVE_DATA(AI_CONTEXT.move).type)) {
+        AI_CONTEXT.calcTemp = 0;
+        return;
+    }
+
+    u8 ivs[STAT_MAX];
+    for (int stat = STAT_HP; stat < STAT_MAX; stat++) {
+        ivs[stat] = BattleMon_Get(battleCtx, AI_CONTEXT.attacker, BATTLEMON_HP_IV + stat, NULL);
+    }
+
+    // TrainerAI_CalcDamage works on AI_CONTEXT.defender, so point it at the partner for this one estimate.
+    u8 defender = AI_CONTEXT.defender;
+    AI_CONTEXT.defender = partner;
+    u32 damage = TrainerAI_CalcDamage(battleSys,
+        battleCtx,
+        AI_CONTEXT.move,
+        battleCtx->battleMons[AI_CONTEXT.attacker].heldItem,
+        ivs,
+        AI_CONTEXT.attacker,
+        Battler_Ability(battleCtx, AI_CONTEXT.attacker),
+        battleCtx->battleMons[AI_CONTEXT.attacker].moveEffectsData.embargoTurns,
+        100);
+    AI_CONTEXT.defender = defender;
+
+    u32 percent = damage * 100 / battleCtx->battleMons[partner].curHP;
+    AI_CONTEXT.calcTemp = percent > 100 ? 100 : percent;
 }
 
 /**

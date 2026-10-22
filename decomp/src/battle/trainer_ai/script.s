@@ -6730,11 +6730,45 @@ TagStrategy_TryPrioritizingQuadEffective:
     GoTo TagStrategy_CheckSpecialScoring
 
 TagStrategy_CheckSpecialScoring:
+    // Sovereign (12b): a move that also hits our partner (any move aimed at every adjacent Pokemon) is scored by how
+    // much of the partner's HP it would take, using the same damage calc as for the targets:
+    //  - The partner is immune or absorbs it, score +2
+    //  - It would knock the partner out, score -10
+    //  - It would take at least half of the partner's HP, score -5
+    //  - At least a quarter, score -3
+    //  - Less, score -1
+    //
+    // This replaces Platinum's checks by name for Earthquake, Magnitude, Discharge, Lava Plume and Surf, which covered
+    // only those five moves, judged the partner by type alone (missing Steel and dual types, and its HP), and gave a
+    // Pokemon without a partner -3 for Earthquake.
+    LoadPartnerDamagePercent
+    IfLoadedEqualTo AI_PARTNER_NOT_HIT, TagStrategy_CheckSpecialScoringByMove
+    IfLoadedEqualTo 0, TagStrategy_PartnerUnhurt
+    IfLoadedGreaterThan 99, TagStrategy_PartnerKnockedOut
+    IfLoadedGreaterThan 49, TagStrategy_PartnerBadlyHurt
+    IfLoadedGreaterThan 24, TagStrategy_PartnerHurt
+    AddToMoveScore -1
+    GoTo TagStrategy_CheckSpecialScoringByMove
+
+TagStrategy_PartnerUnhurt:
+    AddToMoveScore 2
+    GoTo TagStrategy_CheckSpecialScoringByMove
+
+TagStrategy_PartnerKnockedOut:
+    AddToMoveScore -10
+    GoTo TagStrategy_CheckSpecialScoringByMove
+
+TagStrategy_PartnerBadlyHurt:
+    AddToMoveScore -5
+    GoTo TagStrategy_CheckSpecialScoringByMove
+
+TagStrategy_PartnerHurt:
+    AddToMoveScore -3
+
+TagStrategy_CheckSpecialScoringByMove:
     // Handle each of these moves with their own routine
     IfMoveEqualTo MOVE_SKILL_SWAP, TagStrategy_SkillSwap
     LoadTypeFrom LOAD_MOVE_TYPE
-    IfMoveEqualTo MOVE_EARTHQUAKE, TagStrategy_Earthquake
-    IfMoveEqualTo MOVE_MAGNITUDE, TagStrategy_Earthquake
     IfMoveEqualTo MOVE_FUTURE_SIGHT, TagStrategy_FutureSight
     IfMoveEqualTo MOVE_DOOM_DESIRE, TagStrategy_FutureSight
     IfMoveEqualTo MOVE_RAIN_DANCE, TagStrategy_RainDance
@@ -7124,29 +7158,6 @@ TagStrategy_Unused_2:
     IfLoadedEqualTo AI_MOVE_IS_HIGHEST_DAMAGE, ScorePlus2
     PopOrEnd 
 
-TagStrategy_Earthquake:
-    // If the move is Earthquake and our partner:
-    //  - Is immune to Earthquake (has Levitate, a Flying typing, or Magnet Rise), score +2
-    //  - Is weak to Earthquake (has Fire, Electric, Poison, or Rock typing), score -10
-    //  - Otherwise, score -3
-    //
-    // Note that this does not check for if the partner is alive; this means that a solo
-    // battler will score Earthquake and Magnitude an additional -3
-    IfMoveEffect AI_BATTLER_ATTACKER_PARTNER, MOVE_EFFECT_MAGNET_RISE, ScorePlus2
-    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_LEVITATE
-    IfLoadedEqualTo AI_HAVE, ScorePlus2
-    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_FLYING
-    IfLoadedEqualTo AI_HAVE, ScorePlus2
-    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_FIRE
-    IfLoadedEqualTo AI_HAVE, ScoreMinus10
-    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_ELECTRIC
-    IfLoadedEqualTo AI_HAVE, ScoreMinus10
-    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_POISON
-    IfLoadedEqualTo AI_HAVE, ScoreMinus10
-    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_ROCK
-    IfLoadedEqualTo AI_HAVE, ScoreMinus10
-    GoTo ScoreMinus3
-
 TagStrategy_FutureSight:
     // If the move is Future Sight or Doom Desire:
     //  - If we have no partner, apply no additional modifiers
@@ -7213,12 +7224,11 @@ TagStrategy_SkillSwap:
     PopOrEnd 
 
 TagStrategy_CheckElectricMove:
-    // If the move is Discharge, handle it similarly to Earthquake. Otherwise, apply all of the
-    // following which are met:
+    // Apply all of the following which are met (Sovereign: Discharge's hit on our partner is scored by
+    // TagStrategy_CheckSpecialScoring):
     //  - The target's partner would redirect the move with Lightning Rod, score -1; additional
     //    score -8 if the target's partner is also a Ground type
     //  - The attacker's partner has Lightning Rod, score -10
-    IfMoveEqualTo MOVE_DISCHARGE, TagStrategy_SpreadElectricMove
     CheckBattlerAbility AI_BATTLER_DEFENDER_PARTNER, ABILITY_LIGHTNING_ROD
     IfLoadedEqualTo AI_HAVE, TagStrategy_TargetProtectedByLightningRod
     GoTo TagStrategy_PartnerHasLightningRod
@@ -7232,42 +7242,16 @@ TagStrategy_TargetProtectedByLightningRod:
 TagStrategy_PartnerHasLightningRod:
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_LIGHTNING_ROD
     IfLoadedEqualTo AI_HAVE, ScoreMinus10
-    IfMoveEqualTo MOVE_DISCHARGE, TagStrategy_SpreadElectricMove
     GoTo TagStrategy_CheckElectric_End
-
-TagStrategy_SpreadElectricMove:
-    // If our partner has Volt Absorb or Motor Drive, score +3
-    //
-    // If our partner otherwise has a Water or Flying typing, score -10
-    //
-    // If our partner otherwise has a Ground typing, score +3
-    //
-    // Else, score -3
-    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_MOTOR_DRIVE
-    IfLoadedEqualTo AI_HAVE, ScorePlus3
-    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_VOLT_ABSORB
-    IfLoadedEqualTo AI_HAVE, ScorePlus3
-    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_WATER
-    IfLoadedEqualTo AI_HAVE, ScoreMinus10
-    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_FLYING
-    IfLoadedEqualTo AI_HAVE, ScoreMinus10
-
-    // BUG: This should be before the checks for all other types; in its present position, the
-    // vanilla trainer AI will never use Discharge if their partner is, e.g., Swampert or Gliscor
-    // (which should be treated as Immune to the move, but are not).
-    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_GROUND
-    IfLoadedEqualTo AI_HAVE, ScorePlus3
-    AddToMoveScore -3
 
 TagStrategy_CheckElectric_End:
     PopOrEnd 
 
 TagStrategy_CheckWaterMove:
-    // If the move is Surf, handle it similarly to Earthquake. Otherwise, apply all of the
-    // following which are met:
+    // Apply all of the following which are met (Sovereign: Surf's hit on our partner is scored by
+    // TagStrategy_CheckSpecialScoring):
     //  - The target's partner would redirect the move with Storm Drain, score -1
     //  - The attacker's partner has Storm Drain, score -10
-    IfMoveEqualTo MOVE_SURF, TagStrategy_SpreadWaterMove
     CheckBattlerAbility AI_BATTLER_DEFENDER_PARTNER, ABILITY_STORM_DRAIN
     IfLoadedEqualTo AI_NOT_HAVE, TagStrategy_CheckPartnerStormDrain
     AddToMoveScore -1
@@ -7276,62 +7260,19 @@ TagStrategy_CheckPartnerStormDrain:
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_STORM_DRAIN
     IfLoadedEqualTo AI_HAVE, ScoreMinus10
 
-    // This line should never result in a branch
-    IfMoveEqualTo MOVE_SURF, TagStrategy_SpreadWaterMove
     GoTo TagStrategy_CheckWater_End
-
-TagStrategy_SpreadWaterMove:
-    // If our partner has Dry Skin or Water Absorb, score +3
-    //
-    // If our partner otherwise has a Ground or Fire typing, score -10
-    //
-    // Else, score -3
-    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_DRY_SKIN
-    IfLoadedEqualTo AI_HAVE, ScorePlus3
-    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_WATER_ABSORB
-    IfLoadedEqualTo AI_HAVE, ScorePlus3
-
-    // BUG: This should also include a similar check for the Rock type
-    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_GROUND
-    IfLoadedEqualTo AI_HAVE, ScoreMinus10
-    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_FIRE
-    IfLoadedEqualTo AI_HAVE, ScoreMinus10
-    AddToMoveScore -3
 
 TagStrategy_CheckWater_End:
     PopOrEnd 
 
 TagStrategy_CheckFireMove:
-    // If the AI's Flash Fire has been activated, score additional +1 on top of all further modifiers
-    //
-    // If the move is Lava Plume, then:
-    //  - If our partner has Dry Skin or Flash Fire, score +3
-    //  - If our partner has a Grass, Steel, Ice, or Bug typing, score -10
-    //  - Otherwise, score -3
+    // If the AI's Flash Fire has been activated, score +1 (Sovereign: Lava Plume's hit on our partner is scored by
+    // TagStrategy_CheckSpecialScoring)
     IfActivatedFlashFire AI_BATTLER_ATTACKER, TagStrategy_FlashFireScorePlus1
-    GoTo TagStrategy_CheckLavaPlume
+    GoTo TagStrategy_CheckFire_End
 
 TagStrategy_FlashFireScorePlus1:
     AddToMoveScore 1
-
-TagStrategy_CheckLavaPlume:
-    IfMoveEqualTo MOVE_LAVA_PLUME, TagStrategy_SpreadFireMove
-    GoTo TagStrategy_CheckFire_End
-
-TagStrategy_SpreadFireMove:
-    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_DRY_SKIN
-    IfLoadedEqualTo AI_HAVE, ScoreMinus3
-    CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_FLASH_FIRE
-    IfLoadedEqualTo AI_HAVE, ScorePlus3
-    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_GRASS
-    IfLoadedEqualTo AI_HAVE, ScoreMinus10
-    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_STEEL
-    IfLoadedEqualTo AI_HAVE, ScoreMinus10
-    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_ICE
-    IfLoadedEqualTo AI_HAVE, ScoreMinus10
-    FlagBattlerIsType AI_BATTLER_ATTACKER_PARTNER, TYPE_BUG
-    IfLoadedEqualTo AI_HAVE, ScoreMinus10
-    AddToMoveScore -3
 
 TagStrategy_CheckFire_End:
     PopOrEnd 
