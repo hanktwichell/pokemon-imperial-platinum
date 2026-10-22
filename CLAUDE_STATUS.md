@@ -113,3 +113,63 @@ earlier commits were merged through PR #14.
 2. Design the Sovereign trainer-mon format (one layout carrying every field), keeping Platinum's trainers loading
    the same.
 3. Build it, convert the existing trainers, and test a trainer battle in the test build (SELECT+R).
+
+---
+
+## CA-0002 — 2026-10-22, 3:21 pm US Central (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented: milestone E9, the Sovereign trainer format.** Reference: `docs/TrainerFormat.md`.
+- **New optional fields** on each trainer party member: `nature`, `ability`, `ivs`, `evs`, `gender`, `shiny` and
+  `ball`.
+  - Any one of them switches the party to the new 38-byte layout `TrainerMonSovereign` (`TRDATATYPE_SOVEREIGN`),
+    which also stores the whole species ID.
+  - Platinum's 928 trainers pack byte-for-byte as before.
+- **How the game builds each Pokémon:**
+  - It takes Platinum's seeded personality value and changes it as little as possible to get the nature, gender and
+    ability slot.
+  - Hidden Abilities use Sovereign's flag; shininess comes from the OT ID.
+  - IVs, EVs and form are set, then the ability and stats are recalculated.
+- **Test trainer `TRAINER_SOVEREIGN_TEST`:** the developer team at Lv. 100, as a double battle. The test build's
+  SELECT+R battles it now (it was the Route 209 rival).
+  - It took the unused `FLAG_UNK_0x08F0` as its defeated flag.
+  - "Adding a trainer" steps are in `TrainerFormat.md`.
+- **New tool `tools/test/check_trainer_party.py ROM XMAP SAVE [JSON]`:** decrypts the opponent's Pokémon in game and
+  compares them with the JSON, stats included.
+- **Verified:**
+  - The checker passes for all six Pokémon (two Hidden Abilities, two shinies, an Ultra Ball, every nature, IV and EV
+    stat) and fails, as it should, on a wrong JSON.
+  - The battle starts and a turn plays out normally.
+  - The normal ROM passes `boot_smoke.py`.
+  - The docs regeneration (`tools/regenerate_docs.sh`) shows no change apart from `SpriteChecklist.xlsx`, which is
+    unrelated (probably my local PokeAPI copy) and was not committed.
+- **Owner clarification recorded:** EVs cap at 255 per stat in the game, and 252 is the useful most (4 EVs = 1 stat
+  point). The packer allows 255.
+
+**Files modified:**
+- `decomp/include/struct_defs/trainer_data.h`
+- `decomp/tools/dataproc/src/trainerproc.c`
+- `decomp/src/trainer_data.c`
+- `decomp/src/battle/battle_script.c` (prize money)
+- `decomp/generated/trainers.txt` and `decomp/generated/vars_flags.txt`
+- `decomp/res/trainers/data/sovereign_test.json` (new)
+- `decomp/src/overlay005/field_control.c` (test hook)
+- `tools/test/check_trainer_party.py` (new) and `tools/test/build_test_rom.sh` (comment)
+- `docs/TrainerFormat.md` (new), `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `docs/ProjectStatus.md`,
+  `docs/DeveloperBattle.md`
+- `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Open the E9 PR, get CI green and merge. The CB session's E7 branch will meet a small merge conflict at the top of
+   `docs/EngineChangelog.md` and the bottom of this file; keep both sides.
+2. Next non-E7 item: **12b, the AI review for doubles**. It builds on this (the test trainer is a ready doubles
+   opponent) and leads into T2's custom weather AI. Alternatively item 11 (effect fidelity), avoiding hold-item effects
+   (E7).
+3. Once E7 is merged: give `sovereign_test.json`'s Charizard, Kyogre and Archaludon their Charizardite Y, Blue Orb
+   and Assault Vest.
+
+**Testing tips:**
+- A bedroom battery save that works with `check_trainer_party.py`:
+  `/tmp/claude-0/-home-user-pokemon-imperial-platinum/320147ff-836b-5cb0-8a81-b2884a5e01ab/scratchpad/arch/bedroom_new.sav`.
+  Scratch files may not survive the session; make a new one with `drive.py` (menu → SAVE, wait about 1,500 frames,
+  `export:`).
+- In a double battle, the A button doesn't confirm a target; tap it (e.g. `touch:60,40` for the left opponent).

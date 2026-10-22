@@ -21,6 +21,7 @@ enum TrainerDataType {
     TRDATATYPE_WITH_MOVES,
     TRDATATYPE_WITH_ITEM,
     TRDATATYPE_WITH_MOVES_AND_ITEM,
+    TRDATATYPE_SOVEREIGN, // Sovereign (milestone E9): every field, see TrainerMonSovereign
 };
 
 typedef struct TrainerHeader {
@@ -64,5 +65,45 @@ typedef struct TrainerMonWithMovesAndItem {
     u16 moves[LEARNED_MOVES_MAX];
     u16 cbSeal;
 } TrainerMonWithMovesAndItem;
+
+// Sovereign (milestone E9): the trainer format for hand-built teams. A party uses it when any member sets nature,
+// ability, ivs, evs, gender, shiny or ball (see tools/dataproc/src/trainerproc.c); every other party keeps
+// Platinum's layouts above, so Platinum's trainers pack and behave exactly as before.
+#define TRAINER_MON_NATURE_DEFAULT 0xFF // nature, gender: take it from the personality value, as Platinum does
+#define TRAINER_MON_GENDER_DEFAULT 0xFF
+
+#define TRAINER_MON_FLAG_MOVES (1 << 0) // the moves below replace the level-up moves
+#define TRAINER_MON_FLAG_SHINY (1 << 1)
+
+// The IVs and EVs, in this order.
+enum TrainerMonStat {
+    TRAINER_MON_STAT_HP = 0,
+    TRAINER_MON_STAT_ATTACK,
+    TRAINER_MON_STAT_DEFENSE,
+    TRAINER_MON_STAT_SPEED,
+    TRAINER_MON_STAT_SP_ATTACK,
+    TRAINER_MON_STAT_SP_DEFENSE,
+    TRAINER_MON_STAT_COUNT,
+};
+
+typedef struct TrainerMonSovereign {
+    u16 ivScale; // only seeds the personality value, as in Platinum's layouts; the IVs are below
+    u16 level;
+    u16 species; // the whole species ID (no form bits)
+    u16 item;
+    u16 moves[LEARNED_MOVES_MAX];
+    u16 ability; // ABILITY_NONE: from the personality value, as Platinum does
+    u16 ball; // the Poké Ball item; ITEM_NONE: a Poké Ball
+    u16 cbSeal;
+    u8 form;
+    u8 nature;
+    u8 gender;
+    u8 flags;
+    u8 ivs[TRAINER_MON_STAT_COUNT];
+    u8 evs[TRAINER_MON_STAT_COUNT];
+} TrainerMonSovereign;
+
+// Big enough for a full party in any layout.
+#define TRAINER_PARTY_BUFFER_SIZE (sizeof(TrainerMonSovereign) * MAX_PARTY_SIZE)
 
 #endif // POKEPLATINUM_STRUCT_TRAINER_DATA_H

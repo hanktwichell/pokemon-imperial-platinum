@@ -35,7 +35,7 @@ Unlisted IVs are 31. Every EV spread is within 252 per stat / 510 total. The own
 
 | Need | Milestone | Status |
 |---|---|---|
-| Per-mon nature, ability, EVs, IVs, held item, gender and shininess in trainer data | E9 | the trainer format will carry these |
+| Per-mon nature, ability, EVs, IVs, held item, gender and shininess in trainer data | E9 | ✅ done. The team is already in this format as the test build's `TRAINER_SOVEREIGN_TEST` (SELECT+R) |
 | Archaludon (#1018) | E6 step 2 | species being added now |
 | Charizardite Y, Blue Orb, Assault Vest | E7 | Life Orb, Focus Sash and Choice Band exist already |
 | Mega Evolution (Charizard Y) and Primal Reversion (Kyogre) | E8 | |

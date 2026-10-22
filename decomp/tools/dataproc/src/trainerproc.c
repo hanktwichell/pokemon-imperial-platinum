@@ -10,6 +10,7 @@
 #include "constants/battle.h"
 #include "constants/moves.h"
 #include "constants/pokemon.h"
+#include "generated/genders.h"
 #include "generated/trainers.h"
 #include "generated/trainer_classes.h"
 #include "generated/vars_flags.h"
@@ -29,9 +30,11 @@ enum {
 enum { F_TRAINER_SCRIPTS };
 enum { T_TRAINER_MESSAGES, T_TRAINER_NAMES };
 
+#define L_ABILITY       "enum Ability"
 #define L_AI_FLAG       "enum AIFlag"
 #define L_ITEM          "enum Item"
 #define L_MOVE          "enum Move"
+#define L_NATURE        "enum Nature"
 #define L_SPECIES       "enum Species"
 #define L_TRAINER_CLASS "enum TrainerClass"
 #define L_MESSAGE_TYPE  "enum TrainerMessageType"
@@ -46,9 +49,11 @@ static Driver driver = {
     },
 
     .lookups = (Lookup[]) {
+        LOOKUP_ENUM("generated/abilities.h",             L_ABILITY),
         LOOKUP_ENUM("generated/ai_flags.h",              L_AI_FLAG),
         LOOKUP_ENUM("generated/items.h",                 L_ITEM),
         LOOKUP_ENUM("generated/moves.h",                 L_MOVE),
+        LOOKUP_ENUM("generated/natures.h",               L_NATURE),
         LOOKUP_ENUM("generated/species.h",               L_SPECIES),
         LOOKUP_ENUM("generated/trainer_classes.h",       L_TRAINER_CLASS),
         LOOKUP_ENUM("generated/trainer_message_types.h", L_MESSAGE_TYPE),
@@ -170,6 +175,125 @@ static void PackParty(dp_node party, size_t size, bool hasItems, bool hasMoves)
     Archive_Pack(A_TRAINER_PARTIES, data, length + (-length & 3));
 }
 
+// Sovereign (milestone E9): the fields only TrainerMonSovereign carries. A party that sets any of them on any member
+// is packed in that layout.
+static const char *const sSovereignFields[] = { ".nature", ".ability", ".ivs", ".evs", ".gender", ".shiny", ".ball" };
+
+static bool UsesSovereignFormat(dp_node party, size_t size)
+{
+    for (size_t i = 0; i < size; i++) {
+        for (size_t f = 0; f < sizeof(sSovereignFields) / sizeof(*sSovereignFields); f++) {
+            if (!dp_missing(dp_try(dp_arr_at(party, i), sSovereignFields[f]))) return true;
+        }
+    }
+
+    return false;
+}
+
+// In TrainerMonSovereign's stat order.
+static const char *const sStatKeys[TRAINER_MON_STAT_COUNT] = { ".hp", ".atk", ".def", ".spe", ".spa", ".spd" };
+
+// "ivs": {"hp": 31, ...}. A stat the object leaves out is 31; without the object, every IV comes from iv_scale as in
+// Platinum's layouts.
+static void ReadIVs(dp_node member, u8 ivScale, u8 *ivs)
+{
+    const dp_node obj = dp_try(member, ".ivs");
+    for (int stat = 0; stat < TRAINER_MON_STAT_COUNT; stat++) {
+        if (dp_missing(obj)) {
+            ivs[stat] = (u8)(ivScale * MAX_IVS_SINGLE_STAT / MAX_IV_SCALE);
+        } else {
+            const dp_node iv = dp_try(obj, sStatKeys[stat]);
+            ivs[stat] = dp_missing(iv) ? MAX_IVS_SINGLE_STAT : (u8)dp_uint_in(iv, 0, MAX_IVS_SINGLE_STAT);
+        }
+    }
+}
+
+// "evs": {"hp": 252, ...}: at most 255 per stat (252 is the useful most, as every 4 EVs is one stat point) and 510 in
+// total, as in the game; a stat it leaves out is 0.
+static void ReadEVs(dp_node member, u8 *evs)
+{
+    const dp_node obj = dp_try(member, ".evs");
+    unsigned total = 0;
+    for (int stat = 0; stat < TRAINER_MON_STAT_COUNT; stat++) {
+        const dp_node ev = dp_missing(obj) ? obj : dp_try(obj, sStatKeys[stat]);
+        evs[stat] = dp_missing(ev) ? 0 : (u8)dp_uint_in(ev, 0, MAX_EVS_SINGLE_STAT);
+        total += evs[stat];
+    }
+
+    if (total > MAX_EVS_ALL_STATS) {
+        dp_error(obj, "EVs total %u; the most is %d", total, MAX_EVS_ALL_STATS);
+    }
+}
+
+// "gender": "male" or "female"; leave it out to take it from the personality value (and for single-gender species).
+static u8 ReadGender(dp_node member)
+{
+    const dp_node gender = dp_try(member, ".gender");
+    if (dp_missing(gender)) return TRAINER_MON_GENDER_DEFAULT;
+
+    const char *s = dp_string(gender);
+    if (s && strcmp(s, "male") == 0) return GENDER_MALE;
+    if (s && strcmp(s, "female") == 0) return GENDER_FEMALE;
+
+    dp_error(gender, "expected \"male\" or \"female\"");
+    return TRAINER_MON_GENDER_DEFAULT;
+}
+
+static void PackPartySovereign(dp_node party, size_t size)
+{
+    TrainerMonSovereign data[MAX_PARTY_SIZE];
+    memset(data, 0, sizeof(data));
+
+    for (size_t i = 0; i < size; i++) {
+        const dp_node member = dp_arr_at(party, i);
+        TrainerMonSovereign *mon = &data[i];
+
+        mon->ivScale = dp_u16_at(member, ".iv_scale");
+        mon->level   = dp_u16_at(member, ".level");
+        mon->species = dp_u16(dp_lookup_at(member, ".species", L_SPECIES));
+        mon->form    = dp_u8_at(member, ".form");
+        mon->cbSeal  = dp_u16_at(member, ".ball_seal");
+
+        const dp_node item = dp_try(member, ".item");
+        if (!dp_missing(item)) mon->item = dp_u16(dp_lookup(item, L_ITEM));
+
+        const dp_node moves = dp_try(member, ".moves");
+        if (!dp_missing(moves)) {
+            mon->flags |= TRAINER_MON_FLAG_MOVES;
+            if (dp_arr_len(moves) > LEARNED_MOVES_MAX) {
+                dp_warn(moves, "more than %d moves defined for party member; the rest will be ignored!", LEARNED_MOVES_MAX);
+            }
+
+            for (dp_each(move, j, moves)) {
+                if (j == LEARNED_MOVES_MAX) break;
+                mon->moves[j] = dp_u16(dp_lookup(move, L_MOVE));
+            }
+        }
+
+        const dp_node nature = dp_try(member, ".nature");
+        mon->nature = dp_missing(nature) ? TRAINER_MON_NATURE_DEFAULT : dp_u8(dp_lookup(nature, L_NATURE));
+
+        const dp_node ability = dp_try(member, ".ability");
+        if (!dp_missing(ability)) mon->ability = dp_u16(dp_lookup(ability, L_ABILITY));
+
+        const dp_node ball = dp_try(member, ".ball");
+        if (!dp_missing(ball)) {
+            mon->ball = dp_u16(dp_lookup(ball, L_ITEM));
+            if (mon->ball > UINT8_MAX) dp_error(ball, "a Pokémon stores its ball in one byte, so the ball's item ID must be below 256");
+        }
+
+        const dp_node shiny = dp_try(member, ".shiny");
+        if (!dp_missing(shiny) && dp_bool(shiny)) mon->flags |= TRAINER_MON_FLAG_SHINY;
+
+        mon->gender = ReadGender(member);
+        ReadIVs(member, (u8)mon->ivScale, mon->ivs);
+        ReadEVs(member, mon->evs);
+    }
+
+    size_t length = size * sizeof(TrainerMonSovereign);
+    Archive_Pack(A_TRAINER_PARTIES, data, length + (-length & 3));
+}
+
 static TrainerHeader ProcTrainer(dp_node root, size_t index)
 {
     const dp_node party = dp_at(root, ".party");
@@ -185,8 +309,10 @@ static TrainerHeader ProcTrainer(dp_node root, size_t index)
     const bool hasItems = dp_type_of(dp_try(party, ".[0].item")) == DP_STRING;
     const bool hasMoves = dp_type_of(dp_try(party, ".[0].moves")) == DP_ARRAY;
 
+    const bool sovereign = UsesSovereignFormat(party, size);
+
     TrainerHeader header = {
-        .monDataType = (hasMoves ? TRDATATYPE_WITH_MOVES : 0) | (hasItems ? TRDATATYPE_WITH_ITEM : 0),
+        .monDataType = sovereign ? TRDATATYPE_SOVEREIGN : (hasMoves ? TRDATATYPE_WITH_MOVES : 0) | (hasItems ? TRDATATYPE_WITH_ITEM : 0),
         .trainerType = dp_u8(dp_lookup_at(root, ".class", L_TRAINER_CLASS)),
         .partySize   = (u8)size,
         .battleType  = dp_bool_at(root, ".double_battle") ? BATTLE_TYPE_DOUBLES : 0,
@@ -207,7 +333,11 @@ static TrainerHeader ProcTrainer(dp_node root, size_t index)
     }
 
     Archive_Pack(A_TRAINER_HEADERS, &header, sizeof(header));
-    PackParty(party, size, hasItems, hasMoves);
+    if (sovereign) {
+        PackPartySovereign(party, size);
+    } else {
+        PackParty(party, size, hasItems, hasMoves);
+    }
     return header;
 }
 

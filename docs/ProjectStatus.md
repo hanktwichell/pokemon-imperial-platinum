@@ -30,7 +30,7 @@ and T2 only. See `EngineRoadmap.md` for the per-milestone breakdown.
 | E6 | Species expansion to 1025 | ✅ done: all 532 Gen V–IX species (`NewSpecies.md`) with placeholder sprites, Easy Chat words, English-only Pokédex; tested in battle and on the summary screen. No cries for the new species yet (last step). 16 evolutions wait on E7 items |
 | E7 | Items (Mega Stones, new held/evolution items) | not started |
 | E8 | Mega Evolution / Primal Reversion | not started |
-| E9 | Extended trainer data (natures, EVs, abilities, forms) | not started |
+| E9 | Extended trainer data (natures, EVs, abilities, forms) | ✅ done: `docs/TrainerFormat.md` |
 | E10 / E11 | Renegade port; Sovereign content (encounters, E4 format, gifts, post-game) | not started |
 | E12 | Graphics (convert sprites, icons) | waiting on the owner's front sprites |
 | T1 | Boss team compositions with the owner's Mega picks; revise all boss teams | deferred by the owner until the engine features are done |
