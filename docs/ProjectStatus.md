@@ -93,11 +93,11 @@ Made by the owner (2026-10-22):
     in E8.
 18. **Totem forms** (12 forms, 11 species) appear only as optional one-time Totem trials scattered along the main
     story, all before the Elite Four, never in the wild. Each Totem has its stat-raising Totem aura and can be caught
-    afterwards in its Totem form. Totems call allies (owner, 2026-10-22). Approved placements: `data/totem_trials.yaml`.
+    afterwards in its Totem form. Totems call allies: each trial is a double battle where the Totem calls up to 2
+    reserve helpers into the empty slot, and balls can be thrown only once the Totem is alone (owner, 2026-10-22).
+    Placements, levels and the mechanic: `data/totem_trials.yaml`.
 
 Open:
-- Totem trials (decision 18): places and levels approved; Totems call allies. Waiting for the owner's OK on the
-  ally mechanic proposed in `data/totem_trials.yaml` (double battle with up to 2 reserve helpers).
 - The developer battle: Lv. 100 at Spear Pillar, leads Charizard-Y + Venusaur, custom weather-control AI (`DeveloperBattle.md`). Opponent: Sovereign Dev Twich. Open: text, sprites (owner's sprite coming soon), Charizard's final moveset.
 - Front sprites and the part 2 shiny pack (owner is sourcing them).
 - hg-engine and Smogon credit lists: Claude compiles them (owner, 2026-10-22).

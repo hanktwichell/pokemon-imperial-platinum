@@ -25,7 +25,7 @@ trials:
   - {totem: Kommo-o,           level: 57, location: Mt. Coronet (route to Spear Pillar), after: Cyrus and Saturn (Galactic HQ), before: Mars and Jupiter (Spear Pillar), aura: "+1 to every stat", why: "Jangmo-o lives at Mt. Coronet's summit"}
   - {totem: Togedemaru,        level: 60, location: Vista Lighthouse (Sunyshore City), after: Galactic Boss Cyrus (Distortion World), before: Leader Volkner, aura: "+1 Defense", why: "the Electric/Steel Totem in the Electric Gym city's lighthouse"}
 
-# Ally calling (owner: yes, 2026-10-22). Proposed mechanic, waiting for the owner's OK:
+# Ally calling (owner, 2026-10-22: approved and locked in):
 #   - The trial is a double battle from the start: "Totem X called its ally!" The Totem (with its aura) and one helper
 #     face the player's first two Pokémon. A player with one Pokémon fights 1 vs 2.
 #   - When the helper faints, the Totem calls the next one into the empty slot, the way a trainer sends out a reserve.
