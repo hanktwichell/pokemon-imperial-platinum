@@ -1,0 +1,8456 @@
+{
+ "grass_rates": [
+  20,
+  20,
+  10,
+  10,
+  10,
+  10,
+  5,
+  5,
+  4,
+  4,
+  1,
+  1
+ ],
+ "water_rates": [
+  60,
+  30,
+  5,
+  4,
+  1
+ ],
+ "areas": [
+  {
+   "name": "Twinleaf Town",
+   "levels": "Levels: 20 - 40 (Surfing)",
+   "tags": [
+    "lake"
+   ],
+   "grass": null,
+   "water": {
+    "Surf": [
+     "Psyduck",
+     "Golduck",
+     "Psyduck",
+     "Psyduck",
+     "Psyduck"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Poliwag",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Poliwag",
+     "Araquanid",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Poliwhirl",
+     "Palafin",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Route 201",
+   "levels": "Levels: 4 - 5 (Walking)",
+   "tags": [
+    "field"
+   ],
+   "grass": [
+    {
+     "morning": "Starly",
+     "day": "Starly",
+     "night": "Starly"
+    },
+    {
+     "morning": "Bidoof",
+     "day": "Bidoof",
+     "night": "Bidoof"
+    },
+    {
+     "morning": "Pidgey",
+     "day": "Pidgey",
+     "night": "Hoothoot"
+    },
+    {
+     "morning": "Kricketot",
+     "day": "Nidoran♂",
+     "night": "Kricketot"
+    },
+    {
+     "morning": "Nidoran♂",
+     "day": "Nidoran♂",
+     "night": "Nidoran♂"
+    },
+    {
+     "morning": "Pidove",
+     "day": "Pidove",
+     "night": "Pidove"
+    },
+    {
+     "morning": "Nidoran♀",
+     "day": "Nidoran♀",
+     "night": "Nidoran♀"
+    },
+    {
+     "morning": "Stufful",
+     "day": "Stufful",
+     "night": "Stufful"
+    },
+    {
+     "morning": "Skwovet",
+     "day": "Skwovet",
+     "night": "Skwovet"
+    },
+    {
+     "morning": "Wooloo",
+     "day": "Wooloo",
+     "night": "Wooloo"
+    },
+    {
+     "morning": "Starly",
+     "day": "Starly",
+     "night": "Starly"
+    },
+    {
+     "morning": "Starly",
+     "day": "Starly",
+     "night": "Starly"
+    }
+   ],
+   "water": {},
+   "radar": [
+    [
+     "Doduo",
+     22
+    ]
+   ],
+   "honey": []
+  },
+  {
+   "name": "Lake Verity",
+   "levels": "Levels: 4 - 5 (Walking), 20 - 40 (Surfing)",
+   "tags": [
+    "lake"
+   ],
+   "grass": [
+    {
+     "morning": "Starly",
+     "day": "Starly",
+     "night": "Starly"
+    },
+    {
+     "morning": "Bidoof",
+     "day": "Bidoof",
+     "night": "Bidoof"
+    },
+    {
+     "morning": "Surskit",
+     "day": "Surskit",
+     "night": "Surskit"
+    },
+    {
+     "morning": "Munna",
+     "day": "Munna",
+     "night": "Gothita"
+    },
+    {
+     "morning": "Azurill",
+     "day": "Azurill",
+     "night": "Azurill"
+    },
+    {
+     "morning": "Solosis",
+     "day": "Solosis",
+     "night": "Solosis"
+    },
+    {
+     "morning": "Psyduck",
+     "day": "Psyduck",
+     "night": "Psyduck"
+    },
+    {
+     "morning": "Hatenna",
+     "day": "Hatenna",
+     "night": "Hatenna"
+    },
+    {
+     "morning": "Wingull",
+     "day": "Wingull",
+     "night": "Wingull"
+    },
+    {
+     "morning": "Milcery",
+     "day": "Milcery",
+     "night": "Milcery"
+    },
+    {
+     "morning": "Starly",
+     "day": "Starly",
+     "night": "Starly"
+    },
+    {
+     "morning": "Starly",
+     "day": "Starly",
+     "night": "Starly"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Surskit",
+     "Masquerain",
+     "Surskit",
+     "Surskit",
+     "Surskit"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Gyarados",
+     "Gyarados",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [
+    [
+     "Wynaut",
+     22
+    ]
+   ],
+   "honey": []
+  },
+  {
+   "name": "Route 202",
+   "levels": "Levels: 5 - 6 (Walking)",
+   "tags": [
+    "field"
+   ],
+   "grass": [
+    {
+     "morning": "Shinx",
+     "day": "Shinx",
+     "night": "Shinx"
+    },
+    {
+     "morning": "Zigzagoon",
+     "day": "Zigzagoon",
+     "night": "Zigzagoon"
+    },
+    {
+     "morning": "Sentret",
+     "day": "Sentret",
+     "night": "Hoothoot"
+    },
+    {
+     "morning": "Woobat",
+     "day": "Woobat",
+     "night": "Rufflet"
+    },
+    {
+     "morning": "Rattata",
+     "day": "Rattata",
+     "night": "Rattata"
+    },
+    {
+     "morning": "Litleo",
+     "day": "Litleo",
+     "night": "Litleo"
+    },
+    {
+     "morning": "Poochyena",
+     "day": "Poochyena",
+     "night": "Poochyena"
+    },
+    {
+     "morning": "Lechonk",
+     "day": "Lechonk",
+     "night": "Lechonk"
+    },
+    {
+     "morning": "Growlithe",
+     "day": "Growlithe",
+     "night": "Growlithe"
+    },
+    {
+     "morning": "Shinx",
+     "day": "Shinx",
+     "night": "Shinx"
+    },
+    {
+     "morning": "Burmy",
+     "day": "Burmy",
+     "night": "Burmy"
+    },
+    {
+     "morning": "Shinx",
+     "day": "Shinx",
+     "night": "Shinx"
+    }
+   ],
+   "water": {},
+   "radar": [
+    [
+     "Houndour",
+     22
+    ]
+   ],
+   "honey": []
+  },
+  {
+   "name": "Route 204 ~ South",
+   "levels": "Levels: 6 - 7 (Walking), 20 - 40 (Surfing)",
+   "tags": [
+    "field",
+    "forest"
+   ],
+   "grass": [
+    {
+     "morning": "Starly",
+     "day": "Starly",
+     "night": "Starly"
+    },
+    {
+     "morning": "Budew",
+     "day": "Budew",
+     "night": "Budew"
+    },
+    {
+     "morning": "Wurmple",
+     "day": "Wurmple",
+     "night": "Oddish"
+    },
+    {
+     "morning": "Ledyba",
+     "day": "Sunkern",
+     "night": "Spinarak"
+    },
+    {
+     "morning": "Bellsprout",
+     "day": "Bellsprout",
+     "night": "Bellsprout"
+    },
+    {
+     "morning": "Patrat",
+     "day": "Patrat",
+     "night": "Patrat"
+    },
+    {
+     "morning": "Ralts",
+     "day": "Ralts",
+     "night": "Ralts"
+    },
+    {
+     "morning": "Deerling",
+     "day": "Deerling",
+     "night": "Deerling"
+    },
+    {
+     "morning": "Caterpie",
+     "day": "Caterpie",
+     "night": "Caterpie"
+    },
+    {
+     "morning": "Scatterbug",
+     "day": "Scatterbug",
+     "night": "Scatterbug"
+    },
+    {
+     "morning": "Weedle",
+     "day": "Weedle",
+     "night": "Weedle"
+    },
+    {
+     "morning": "Tarountula",
+     "day": "Tarountula",
+     "night": "Tarountula"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Marill",
+     "Azumarill",
+     "Marill",
+     "Marill",
+     "Marill"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Goldeen",
+     "Corphish",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Goldeen",
+     "Corphish",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Seaking",
+     "Crawdaunt",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [
+    [
+     "Roselia",
+     22
+    ]
+   ],
+   "honey": []
+  },
+  {
+   "name": "Ravaged Path",
+   "levels": "Levels: 6 - 8 (Walking), 20 - 40 (Surfing)",
+   "tags": [
+    "cave"
+   ],
+   "grass": [
+    {
+     "morning": "Zubat",
+     "day": "Zubat",
+     "night": "Zubat"
+    },
+    {
+     "morning": "Geodude",
+     "day": "Geodude",
+     "night": "Geodude"
+    },
+    {
+     "morning": "Wooper",
+     "day": "Wooper",
+     "night": "Wooper"
+    },
+    {
+     "morning": "Purrloin",
+     "day": "Purrloin",
+     "night": "Golett"
+    },
+    {
+     "morning": "Psyduck",
+     "day": "Psyduck",
+     "night": "Psyduck"
+    },
+    {
+     "morning": "Silicobra",
+     "day": "Silicobra",
+     "night": "Silicobra"
+    },
+    {
+     "morning": "Sandshrew",
+     "day": "Sandshrew",
+     "night": "Sandshrew"
+    },
+    {
+     "morning": "Toxel",
+     "day": "Toxel",
+     "night": "Toxel"
+    },
+    {
+     "morning": "Makuhita",
+     "day": "Makuhita",
+     "night": "Makuhita"
+    },
+    {
+     "morning": "Zubat",
+     "day": "Zubat",
+     "night": "Zubat"
+    },
+    {
+     "morning": "Zubat",
+     "day": "Zubat",
+     "night": "Zubat"
+    },
+    {
+     "morning": "Zubat",
+     "day": "Zubat",
+     "night": "Zubat"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Wooper",
+     "Quagsire",
+     "Wooper",
+     "Wooper",
+     "Wooper"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Barboach",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Barboach",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Whiscash",
+     "Gyarados",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Route 203",
+   "levels": "Levels: 7 - 8 (Walking), 20 - 40 (Surfing)",
+   "tags": [
+    "field"
+   ],
+   "grass": [
+    {
+     "morning": "Starly",
+     "day": "Starly",
+     "night": "Starly"
+    },
+    {
+     "morning": "Bidoof",
+     "day": "Bidoof",
+     "night": "Bidoof"
+    },
+    {
+     "morning": "Spearow",
+     "day": "Spearow",
+     "night": "Spearow"
+    },
+    {
+     "morning": "Audino",
+     "day": "Audino",
+     "night": "Bunnelby"
+    },
+    {
+     "morning": "Seedot",
+     "day": "Seedot",
+     "night": "Seedot"
+    },
+    {
+     "morning": "Pikipek",
+     "day": "Pikipek",
+     "night": "Pikipek"
+    },
+    {
+     "morning": "Lotad",
+     "day": "Lotad",
+     "night": "Lotad"
+    },
+    {
+     "morning": "Tandemaus",
+     "day": "Tandemaus",
+     "night": "Tandemaus"
+    },
+    {
+     "morning": "Cubone",
+     "day": "Cubone",
+     "night": "Cubone"
+    },
+    {
+     "morning": "Starly",
+     "day": "Starly",
+     "night": "Starly"
+    },
+    {
+     "morning": "Abra",
+     "day": "Abra",
+     "night": "Abra"
+    },
+    {
+     "morning": "Starly",
+     "day": "Starly",
+     "night": "Starly"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Psyduck",
+     "Golduck",
+     "Psyduck",
+     "Psyduck",
+     "Psyduck"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Corphish",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Corphish",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Crawdaunt",
+     "Gyarados",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [
+    [
+     "Pineco",
+     22
+    ]
+   ],
+   "honey": []
+  },
+  {
+   "name": "Oreburgh Gate ~ 1F",
+   "levels": "Levels: 7 - 9 (Walking)",
+   "tags": [
+    "cave"
+   ],
+   "grass": [
+    {
+     "morning": "Zubat",
+     "day": "Zubat",
+     "night": "Zubat"
+    },
+    {
+     "morning": "Geodude",
+     "day": "Geodude",
+     "night": "Geodude"
+    },
+    {
+     "morning": "Diglett",
+     "day": "Diglett",
+     "night": "Diglett"
+    },
+    {
+     "morning": "Scraggy",
+     "day": "Scraggy",
+     "night": "Mudbray"
+    },
+    {
+     "morning": "Riolu",
+     "day": "Riolu",
+     "night": "Riolu"
+    },
+    {
+     "morning": "Sinistea",
+     "day": "Sinistea",
+     "night": "Sinistea"
+    },
+    {
+     "morning": "Zubat",
+     "day": "Zubat",
+     "night": "Zubat"
+    },
+    {
+     "morning": "Zubat",
+     "day": "Zubat",
+     "night": "Zubat"
+    },
+    {
+     "morning": "Zubat",
+     "day": "Zubat",
+     "night": "Zubat"
+    },
+    {
+     "morning": "Zubat",
+     "day": "Zubat",
+     "night": "Zubat"
+    },
+    {
+     "morning": "Zubat",
+     "day": "Zubat",
+     "night": "Zubat"
+    },
+    {
+     "morning": "Zubat",
+     "day": "Zubat",
+     "night": "Zubat"
+    }
+   ],
+   "water": {},
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Oreburgh Gate ~ B1F",
+   "levels": "Levels: 8 - 10 (Walking), 20 - 40 (Surfing)",
+   "tags": [
+    "cave"
+   ],
+   "grass": [
+    {
+     "morning": "Zubat",
+     "day": "Zubat",
+     "night": "Zubat"
+    },
+    {
+     "morning": "Geodude",
+     "day": "Geodude",
+     "night": "Geodude"
+    },
+    {
+     "morning": "Diglett",
+     "day": "Diglett",
+     "night": "Diglett"
+    },
+    {
+     "morning": "Zorua",
+     "day": "Zorua",
+     "night": "Nickit"
+    },
+    {
+     "morning": "Riolu",
+     "day": "Riolu",
+     "night": "Riolu"
+    },
+    {
+     "morning": "Morpeko",
+     "day": "Morpeko",
+     "night": "Morpeko"
+    },
+    {
+     "morning": "Zubat",
+     "day": "Zubat",
+     "night": "Zubat"
+    },
+    {
+     "morning": "Zubat",
+     "day": "Zubat",
+     "night": "Zubat"
+    },
+    {
+     "morning": "Zubat",
+     "day": "Zubat",
+     "night": "Zubat"
+    },
+    {
+     "morning": "Zubat",
+     "day": "Zubat",
+     "night": "Zubat"
+    },
+    {
+     "morning": "Zubat",
+     "day": "Zubat",
+     "night": "Zubat"
+    },
+    {
+     "morning": "Zubat",
+     "day": "Zubat",
+     "night": "Zubat"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Zubat",
+     "Golbat",
+     "Zubat",
+     "Zubat",
+     "Zubat"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Barboach",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Barboach",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Whiscash",
+     "Gyarados",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Route 207",
+   "levels": "Levels: 9 - 10 (Walking), 21 (Honey Tree)",
+   "tags": [
+    "mountain"
+   ],
+   "grass": [
+    {
+     "morning": "Machop",
+     "day": "Machop",
+     "night": "Machop"
+    },
+    {
+     "morning": "Rhyhorn",
+     "day": "Rhyhorn",
+     "night": "Rhyhorn"
+    },
+    {
+     "morning": "Ponyta",
+     "day": "Ponyta",
+     "night": "Ponyta"
+    },
+    {
+     "morning": "Pansear",
+     "day": "Pansear",
+     "night": "Pancham"
+    },
+    {
+     "morning": "Phanpy",
+     "day": "Phanpy",
+     "night": "Phanpy"
+    },
+    {
+     "morning": "Rookidee",
+     "day": "Rookidee",
+     "night": "Rookidee"
+    },
+    {
+     "morning": "Larvitar",
+     "day": "Larvitar",
+     "night": "Larvitar"
+    },
+    {
+     "morning": "Machop",
+     "day": "Machop",
+     "night": "Machop"
+    },
+    {
+     "morning": "Machop",
+     "day": "Machop",
+     "night": "Machop"
+    },
+    {
+     "morning": "Machop",
+     "day": "Machop",
+     "night": "Machop"
+    },
+    {
+     "morning": "Machop",
+     "day": "Machop",
+     "night": "Machop"
+    },
+    {
+     "morning": "Machop",
+     "day": "Machop",
+     "night": "Machop"
+    }
+   ],
+   "water": {},
+   "radar": [
+    [
+     "Stantler",
+     22
+    ]
+   ],
+   "honey": [
+    [
+     "Aipom",
+     30
+    ],
+    [
+     "Slakoth",
+     20
+    ],
+    [
+     "Metapod",
+     20
+    ],
+    [
+     "Kakuna",
+     20
+    ],
+    [
+     "Munchlax",
+     10
+    ]
+   ]
+  },
+  {
+   "name": "Oreburgh Mine ~ 1F",
+   "levels": "Levels: 9 - 10 (Walking)",
+   "tags": [
+    "cave",
+    "mine"
+   ],
+   "grass": [
+    {
+     "morning": "Geodude",
+     "day": "Geodude",
+     "night": "Geodude"
+    },
+    {
+     "morning": "Zubat",
+     "day": "Zubat",
+     "night": "Zubat"
+    },
+    {
+     "morning": "Whismur",
+     "day": "Whismur",
+     "night": "Whismur"
+    },
+    {
+     "morning": "Roggenrola",
+     "day": "Roggenrola",
+     "night": "Dwebble"
+    },
+    {
+     "morning": "Aron",
+     "day": "Aron",
+     "night": "Aron"
+    },
+    {
+     "morning": "Archen",
+     "day": "Archen",
+     "night": "Archen"
+    },
+    {
+     "morning": "Onix",
+     "day": "Onix",
+     "night": "Onix"
+    },
+    {
+     "morning": "Pawniard",
+     "day": "Pawniard",
+     "night": "Pawniard"
+    },
+    {
+     "morning": "Trapinch",
+     "day": "Trapinch",
+     "night": "Trapinch"
+    },
+    {
+     "morning": "Cufant",
+     "day": "Cufant",
+     "night": "Cufant"
+    },
+    {
+     "morning": "Geodude",
+     "day": "Geodude",
+     "night": "Geodude"
+    },
+    {
+     "morning": "Geodude",
+     "day": "Geodude",
+     "night": "Geodude"
+    }
+   ],
+   "water": {},
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Oreburgh Mine ~ B1F",
+   "levels": "Levels: 10 - 11 (Walking)",
+   "tags": [
+    "cave",
+    "mine"
+   ],
+   "grass": [
+    {
+     "morning": "Geodude",
+     "day": "Geodude",
+     "night": "Geodude"
+    },
+    {
+     "morning": "Zubat",
+     "day": "Zubat",
+     "night": "Zubat"
+    },
+    {
+     "morning": "Whismur",
+     "day": "Whismur",
+     "night": "Whismur"
+    },
+    {
+     "morning": "Drilbur",
+     "day": "Drilbur",
+     "night": "Tirtouga"
+    },
+    {
+     "morning": "Aron",
+     "day": "Aron",
+     "night": "Aron"
+    },
+    {
+     "morning": "Ferroseed",
+     "day": "Ferroseed",
+     "night": "Ferroseed"
+    },
+    {
+     "morning": "Onix",
+     "day": "Onix",
+     "night": "Onix"
+    },
+    {
+     "morning": "Rockruff",
+     "day": "Rockruff",
+     "night": "Rockruff"
+    },
+    {
+     "morning": "Trapinch",
+     "day": "Trapinch",
+     "night": "Trapinch"
+    },
+    {
+     "morning": "Nacli",
+     "day": "Nacli",
+     "night": "Nacli"
+    },
+    {
+     "morning": "Geodude",
+     "day": "Geodude",
+     "night": "Geodude"
+    },
+    {
+     "morning": "Geodude",
+     "day": "Geodude",
+     "night": "Geodude"
+    }
+   ],
+   "water": {},
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Route 204 ~ North",
+   "levels": "Levels: 11 - 12 (Walking)",
+   "tags": [
+    "field",
+    "forest"
+   ],
+   "grass": [
+    {
+     "morning": "Starly",
+     "day": "Starly",
+     "night": "Starly"
+    },
+    {
+     "morning": "Budew",
+     "day": "Budew",
+     "night": "Budew"
+    },
+    {
+     "morning": "Wurmple",
+     "day": "Wurmple",
+     "night": "Oddish"
+    },
+    {
+     "morning": "Ledyba",
+     "day": "Sunkern",
+     "night": "Spinarak"
+    },
+    {
+     "morning": "Bellsprout",
+     "day": "Bellsprout",
+     "night": "Bellsprout"
+    },
+    {
+     "morning": "Lillipup",
+     "day": "Lillipup",
+     "night": "Lillipup"
+    },
+    {
+     "morning": "Ralts",
+     "day": "Ralts",
+     "night": "Ralts"
+    },
+    {
+     "morning": "Shelmet",
+     "day": "Shelmet",
+     "night": "Shelmet"
+    },
+    {
+     "morning": "Caterpie",
+     "day": "Caterpie",
+     "night": "Caterpie"
+    },
+    {
+     "morning": "Swirlix",
+     "day": "Swirlix",
+     "night": "Swirlix"
+    },
+    {
+     "morning": "Weedle",
+     "day": "Weedle",
+     "night": "Weedle"
+    },
+    {
+     "morning": "Smoliv",
+     "day": "Smoliv",
+     "night": "Smoliv"
+    }
+   ],
+   "water": {},
+   "radar": [
+    [
+     "Roselia",
+     22
+    ]
+   ],
+   "honey": []
+  },
+  {
+   "name": "Valley Windworks",
+   "levels": "Levels: 11 - 13 (Walking), 20 - 40 (Surfing), 12 (Honey Tree)",
+   "tags": [
+    "electric",
+    "field"
+   ],
+   "grass": [
+    {
+     "morning": "Magnemite",
+     "day": "Magnemite",
+     "night": "Magnemite"
+    },
+    {
+     "morning": "Elekid",
+     "day": "Elekid",
+     "night": "Elekid"
+    },
+    {
+     "morning": "Electrike",
+     "day": "Electrike",
+     "night": "Electrike"
+    },
+    {
+     "morning": "Blitzle",
+     "day": "Blitzle",
+     "night": "Emolga"
+    },
+    {
+     "morning": "Voltorb",
+     "day": "Voltorb",
+     "night": "Voltorb"
+    },
+    {
+     "morning": "Joltik",
+     "day": "Joltik",
+     "night": "Joltik"
+    },
+    {
+     "morning": "Drifloon",
+     "day": "Drifloon",
+     "night": "Drifloon"
+    },
+    {
+     "morning": "Helioptile",
+     "day": "Helioptile",
+     "night": "Helioptile"
+    },
+    {
+     "morning": "Pachirisu",
+     "day": "Pachirisu",
+     "night": "Pachirisu"
+    },
+    {
+     "morning": "Dedenne",
+     "day": "Dedenne",
+     "night": "Dedenne"
+    },
+    {
+     "morning": "Tadbulb",
+     "day": "Tadbulb",
+     "night": "Tadbulb"
+    },
+    {
+     "morning": "Wattrel",
+     "day": "Wattrel",
+     "night": "Wattrel"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Shellos",
+     "Tentacool",
+     "Gastrodon",
+     "Shellos",
+     "Shellos"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Shellder",
+     "Chinchou",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Shellder",
+     "Chinchou",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Cloyster",
+     "Lanturn",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [
+    [
+     "Plusle",
+     11
+    ],
+    [
+     "Minun",
+     11
+    ]
+   ],
+   "honey": [
+    [
+     "Aipom",
+     30
+    ],
+    [
+     "Slakoth",
+     20
+    ],
+    [
+     "Caterpie",
+     20
+    ],
+    [
+     "Weedle",
+     20
+    ],
+    [
+     "Munchlax",
+     10
+    ]
+   ]
+  },
+  {
+   "name": "Floaroma Meadow",
+   "levels": "Levels: 12 (Honey Tree)",
+   "tags": [
+    "flower"
+   ],
+   "grass": null,
+   "water": {},
+   "radar": [],
+   "honey": [
+    [
+     "Cherubi",
+     30
+    ],
+    [
+     "Shroomish",
+     20
+    ],
+    [
+     "Exeggcute",
+     20
+    ],
+    [
+     "Seedot",
+     20
+    ],
+    [
+     "Tangela",
+     10
+    ]
+   ]
+  },
+  {
+   "name": "Route 205 ~ South",
+   "levels": "Levels: 11 - 13 (Walking), 20 - 40 (Surfing), 12 (Honey Tree)",
+   "tags": [
+    "field",
+    "river"
+   ],
+   "grass": [
+    {
+     "morning": "Shellos",
+     "day": "Shellos",
+     "night": "Shellos"
+    },
+    {
+     "morning": "Mareep",
+     "day": "Mareep",
+     "night": "Mareep"
+    },
+    {
+     "morning": "Hoppip",
+     "day": "Hoppip",
+     "night": "Venonat"
+    },
+    {
+     "morning": "Minccino",
+     "day": "Minccino",
+     "night": "Fletchling"
+    },
+    {
+     "morning": "Buizel",
+     "day": "Buizel",
+     "night": "Buizel"
+    },
+    {
+     "morning": "Yungoos",
+     "day": "Yungoos",
+     "night": "Yungoos"
+    },
+    {
+     "morning": "Pachirisu",
+     "day": "Pachirisu",
+     "night": "Pachirisu"
+    },
+    {
+     "morning": "Squawkabilly",
+     "day": "Squawkabilly",
+     "night": "Squawkabilly"
+    },
+    {
+     "morning": "Spewpa",
+     "day": "Spewpa",
+     "night": "Spewpa"
+    },
+    {
+     "morning": "Shellos",
+     "day": "Shellos",
+     "night": "Shellos"
+    },
+    {
+     "morning": "Shellos",
+     "day": "Shellos",
+     "night": "Shellos"
+    },
+    {
+     "morning": "Shellos",
+     "day": "Shellos",
+     "night": "Shellos"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Shellos",
+     "Tentacool",
+     "Gastrodon",
+     "Shellos",
+     "Shellos"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Shellder",
+     "Chinchou",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Shellder",
+     "Chinchou",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Cloyster",
+     "Lanturn",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [
+    [
+     "Plusle",
+     11
+    ],
+    [
+     "Minun",
+     11
+    ]
+   ],
+   "honey": [
+    [
+     "Combee",
+     30
+    ],
+    [
+     "Burmy",
+     20
+    ],
+    [
+     "Pineco",
+     20
+    ],
+    [
+     "Wurmple",
+     20
+    ],
+    [
+     "Heracross",
+     10
+    ]
+   ]
+  },
+  {
+   "name": "Eterna Forest",
+   "levels": "Levels: 14 - 16 (Walking)",
+   "tags": [
+    "forest"
+   ],
+   "grass": [
+    {
+     "morning": "Buneary",
+     "day": "Buneary",
+     "night": "Buneary"
+    },
+    {
+     "morning": "Shroomish",
+     "day": "Shroomish",
+     "night": "Shroomish"
+    },
+    {
+     "morning": "Paras",
+     "day": "Paras",
+     "night": "Murkrow"
+    },
+    {
+     "morning": "Slakoth",
+     "day": "Slakoth",
+     "night": "Misdreavus"
+    },
+    {
+     "morning": "Slakoth",
+     "day": "Slakoth",
+     "night": "Slakoth"
+    },
+    {
+     "morning": "Petilil",
+     "day": "Petilil",
+     "night": "Petilil"
+    },
+    {
+     "morning": "Nincada",
+     "day": "Nincada",
+     "night": "Nincada"
+    },
+    {
+     "morning": "Spritzee",
+     "day": "Spritzee",
+     "night": "Spritzee"
+    },
+    {
+     "morning": "Taillow",
+     "day": "Taillow",
+     "night": "Taillow"
+    },
+    {
+     "morning": "Grubbin",
+     "day": "Grubbin",
+     "night": "Grubbin"
+    },
+    {
+     "morning": "Dottler",
+     "day": "Dottler",
+     "night": "Dottler"
+    },
+    {
+     "morning": "Vivillon",
+     "day": "Vivillon",
+     "night": "Vivillon"
+    }
+   ],
+   "water": {},
+   "radar": [
+    [
+     "Beautifly",
+     11
+    ],
+    [
+     "Dustox",
+     11
+    ]
+   ],
+   "honey": []
+  },
+  {
+   "name": "Eterna Forest (Outside)",
+   "levels": "Levels: 15 (Honey Tree)",
+   "tags": [
+    "forest"
+   ],
+   "grass": null,
+   "water": {},
+   "radar": [],
+   "honey": [
+    [
+     "Beedrill",
+     100
+    ]
+   ]
+  },
+  {
+   "name": "Old Chateau (All Rooms)",
+   "levels": "Levels: 15 - 18 (Walking)",
+   "tags": [
+    "ghost"
+   ],
+   "grass": [
+    {
+     "morning": "Gastly",
+     "day": "Gastly",
+     "night": "Gastly"
+    },
+    {
+     "morning": "Rattata",
+     "day": "Rattata",
+     "night": "Rattata"
+    },
+    {
+     "morning": "Duskull",
+     "day": "Duskull",
+     "night": "Duskull"
+    },
+    {
+     "morning": "Yamask",
+     "day": "Yamask",
+     "night": "Litwick"
+    },
+    {
+     "morning": "Shuppet",
+     "day": "Shuppet",
+     "night": "Shuppet"
+    },
+    {
+     "morning": "Honedge",
+     "day": "Honedge",
+     "night": "Honedge"
+    },
+    {
+     "morning": "Raticate",
+     "day": "Raticate",
+     "night": "Raticate"
+    },
+    {
+     "morning": "Greavard",
+     "day": "Greavard",
+     "night": "Greavard"
+    },
+    {
+     "morning": "Haunter",
+     "day": "Haunter",
+     "night": "Haunter"
+    },
+    {
+     "morning": "Gastly",
+     "day": "Gastly",
+     "night": "Gastly"
+    },
+    {
+     "morning": "Dreepy",
+     "day": "Dreepy",
+     "night": "Dreepy"
+    },
+    {
+     "morning": "Gastly",
+     "day": "Gastly",
+     "night": "Gastly"
+    }
+   ],
+   "water": {},
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Route 205 ~ North",
+   "levels": "Levels: 15 - 17 (Walking), 20 - 40 (Surfing), 16 (Honey Tree)",
+   "tags": [
+    "forest",
+    "river"
+   ],
+   "grass": [
+    {
+     "morning": "Bidoof",
+     "day": "Bidoof",
+     "night": "Bidoof"
+    },
+    {
+     "morning": "Slowpoke",
+     "day": "Slowpoke",
+     "night": "Slowpoke"
+    },
+    {
+     "morning": "Marill",
+     "day": "Marill",
+     "night": "Marill"
+    },
+    {
+     "morning": "Pansage",
+     "day": "Pansage",
+     "night": "Sewaddle"
+    },
+    {
+     "morning": "Croagunk",
+     "day": "Croagunk",
+     "night": "Croagunk"
+    },
+    {
+     "morning": "Karrablast",
+     "day": "Karrablast",
+     "night": "Karrablast"
+    },
+    {
+     "morning": "Exeggcute",
+     "day": "Exeggcute",
+     "night": "Exeggcute"
+    },
+    {
+     "morning": "Blipbug",
+     "day": "Blipbug",
+     "night": "Blipbug"
+    },
+    {
+     "morning": "Volbeat",
+     "day": "Volbeat",
+     "night": "Volbeat"
+    },
+    {
+     "morning": "Rellor",
+     "day": "Rellor",
+     "night": "Rellor"
+    },
+    {
+     "morning": "Illumise",
+     "day": "Illumise",
+     "night": "Illumise"
+    },
+    {
+     "morning": "Larvesta",
+     "day": "Larvesta",
+     "night": "Larvesta"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Marill",
+     "Azumarill",
+     "Marill",
+     "Marill",
+     "Marill"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Corphish",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Corphish",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Crawdaunt",
+     "Gyarados",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [
+    [
+     "Yanma",
+     22
+    ]
+   ],
+   "honey": [
+    [
+     "Starly",
+     30
+    ],
+    [
+     "Pidgey",
+     20
+    ],
+    [
+     "Hoothoot",
+     20
+    ],
+    [
+     "Taillow",
+     20
+    ],
+    [
+     "Farfetch'd",
+     10
+    ]
+   ]
+  },
+  {
+   "name": "Eterna City",
+   "levels": "Levels: 20 - 40 (Surfing)",
+   "tags": [
+    "city"
+   ],
+   "grass": null,
+   "water": {
+    "Surf": [
+     "Psyduck",
+     "Golduck",
+     "Psyduck",
+     "Psyduck",
+     "Psyduck"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Poliwag",
+     "Dratini",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Poliwag",
+     "Dratini",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Poliwhirl",
+     "Dragonair",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Route 211 ~ West",
+   "levels": "Levels: 16 - 18 (Walking)",
+   "tags": [
+    "mountain"
+   ],
+   "grass": [
+    {
+     "morning": "Meditite",
+     "day": "Meditite",
+     "night": "Meditite"
+    },
+    {
+     "morning": "Machop",
+     "day": "Machop",
+     "night": "Machop"
+    },
+    {
+     "morning": "Swablu",
+     "day": "Swablu",
+     "night": "Swablu"
+    },
+    {
+     "morning": "Darumaka",
+     "day": "Darumaka",
+     "night": "Crabrawler"
+    },
+    {
+     "morning": "Teddiursa",
+     "day": "Teddiursa",
+     "night": "Teddiursa"
+    },
+    {
+     "morning": "Clobbopus",
+     "day": "Clobbopus",
+     "night": "Clobbopus"
+    },
+    {
+     "morning": "Natu",
+     "day": "Natu",
+     "night": "Natu"
+    },
+    {
+     "morning": "Meditite",
+     "day": "Meditite",
+     "night": "Meditite"
+    },
+    {
+     "morning": "Chingling",
+     "day": "Chingling",
+     "night": "Chingling"
+    },
+    {
+     "morning": "Meditite",
+     "day": "Meditite",
+     "night": "Meditite"
+    },
+    {
+     "morning": "Meditite",
+     "day": "Meditite",
+     "night": "Meditite"
+    },
+    {
+     "morning": "Meditite",
+     "day": "Meditite",
+     "night": "Meditite"
+    }
+   ],
+   "water": {},
+   "radar": [
+    [
+     "Tyrogue",
+     22
+    ]
+   ],
+   "honey": []
+  },
+  {
+   "name": "Mt. Coronet ~ Route 211 Entrance",
+   "levels": "Levels: 16 - 18 (Walking)",
+   "tags": [
+    "cave"
+   ],
+   "grass": [
+    {
+     "morning": "Geodude",
+     "day": "Geodude",
+     "night": "Geodude"
+    },
+    {
+     "morning": "Bronzor",
+     "day": "Bronzor",
+     "night": "Bronzor"
+    },
+    {
+     "morning": "Cleffa",
+     "day": "Cleffa",
+     "night": "Cleffa"
+    },
+    {
+     "morning": "Sandygast",
+     "day": "Sandygast",
+     "night": "Impidimp"
+    },
+    {
+     "morning": "Nosepass",
+     "day": "Nosepass",
+     "night": "Nosepass"
+    },
+    {
+     "morning": "Tinkatink",
+     "day": "Tinkatink",
+     "night": "Tinkatink"
+    },
+    {
+     "morning": "Chingling",
+     "day": "Chingling",
+     "night": "Chingling"
+    },
+    {
+     "morning": "Geodude",
+     "day": "Geodude",
+     "night": "Geodude"
+    },
+    {
+     "morning": "Zubat",
+     "day": "Zubat",
+     "night": "Zubat"
+    },
+    {
+     "morning": "Geodude",
+     "day": "Geodude",
+     "night": "Geodude"
+    },
+    {
+     "morning": "Beldum",
+     "day": "Beldum",
+     "night": "Beldum"
+    },
+    {
+     "morning": "Geodude",
+     "day": "Geodude",
+     "night": "Geodude"
+    }
+   ],
+   "water": {},
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Route 211 ~ East",
+   "levels": "Levels: 18 - 19 (Walking), 18 (Honey Tree)",
+   "tags": [
+    "mountain"
+   ],
+   "grass": [
+    {
+     "morning": "Meditite",
+     "day": "Meditite",
+     "night": "Meditite"
+    },
+    {
+     "morning": "Machop",
+     "day": "Machop",
+     "night": "Machop"
+    },
+    {
+     "morning": "Swablu",
+     "day": "Swablu",
+     "night": "Swablu"
+    },
+    {
+     "morning": "Mienfoo",
+     "day": "Mienfoo",
+     "night": "Minior"
+    },
+    {
+     "morning": "Teddiursa",
+     "day": "Teddiursa",
+     "night": "Teddiursa"
+    },
+    {
+     "morning": "Fletchinder",
+     "day": "Fletchinder",
+     "night": "Fletchinder"
+    },
+    {
+     "morning": "Natu",
+     "day": "Natu",
+     "night": "Natu"
+    },
+    {
+     "morning": "Corvisquire",
+     "day": "Corvisquire",
+     "night": "Corvisquire"
+    },
+    {
+     "morning": "Bagon",
+     "day": "Bagon",
+     "night": "Bagon"
+    },
+    {
+     "morning": "Pawmo",
+     "day": "Pawmo",
+     "night": "Pawmo"
+    },
+    {
+     "morning": "Meditite",
+     "day": "Meditite",
+     "night": "Meditite"
+    },
+    {
+     "morning": "Meditite",
+     "day": "Meditite",
+     "night": "Meditite"
+    }
+   ],
+   "water": {},
+   "radar": [
+    [
+     "Tyrogue",
+     22
+    ]
+   ],
+   "honey": [
+    [
+     "Aipom",
+     30
+    ],
+    [
+     "Slakoth",
+     20
+    ],
+    [
+     "Metapod",
+     20
+    ],
+    [
+     "Kakuna",
+     20
+    ],
+    [
+     "Munchlax",
+     10
+    ]
+   ]
+  },
+  {
+   "name": "Mt. Coronet ~ Tunnel to Route 211 Entrance",
+   "levels": "Levels: 18 - 19 (Walking)",
+   "tags": [
+    "cave"
+   ],
+   "grass": [
+    {
+     "morning": "Geodude",
+     "day": "Geodude",
+     "night": "Geodude"
+    },
+    {
+     "morning": "Bronzor",
+     "day": "Bronzor",
+     "night": "Bronzor"
+    },
+    {
+     "morning": "Clefairy",
+     "day": "Clefairy",
+     "night": "Clefairy"
+    },
+    {
+     "morning": "Rolycoly",
+     "day": "Rolycoly",
+     "night": "Maschiff"
+    },
+    {
+     "morning": "Nosepass",
+     "day": "Nosepass",
+     "night": "Nosepass"
+    },
+    {
+     "morning": "Varoom",
+     "day": "Varoom",
+     "night": "Varoom"
+    },
+    {
+     "morning": "Chimecho",
+     "day": "Chimecho",
+     "night": "Chimecho"
+    },
+    {
+     "morning": "Thievul",
+     "day": "Thievul",
+     "night": "Thievul"
+    },
+    {
+     "morning": "Zubat",
+     "day": "Zubat",
+     "night": "Zubat"
+    },
+    {
+     "morning": "Geodude",
+     "day": "Geodude",
+     "night": "Geodude"
+    },
+    {
+     "morning": "Beldum",
+     "day": "Beldum",
+     "night": "Beldum"
+    },
+    {
+     "morning": "Geodude",
+     "day": "Geodude",
+     "night": "Geodude"
+    }
+   ],
+   "water": {},
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Mt. Coronet ~ B1F",
+   "levels": "Levels: 18 - 20 (Walking), 30 - 45 (Surfing)",
+   "tags": [
+    "cave",
+    "dragon"
+   ],
+   "grass": [
+    {
+     "morning": "Geodude",
+     "day": "Geodude",
+     "night": "Geodude"
+    },
+    {
+     "morning": "Bronzor",
+     "day": "Bronzor",
+     "night": "Bronzor"
+    },
+    {
+     "morning": "Clefairy",
+     "day": "Clefairy",
+     "night": "Clefairy"
+    },
+    {
+     "morning": "Tyrunt",
+     "day": "Tyrunt",
+     "night": "Applin"
+    },
+    {
+     "morning": "Nosepass",
+     "day": "Nosepass",
+     "night": "Nosepass"
+    },
+    {
+     "morning": "Glimmet",
+     "day": "Glimmet",
+     "night": "Glimmet"
+    },
+    {
+     "morning": "Chimecho",
+     "day": "Chimecho",
+     "night": "Chimecho"
+    },
+    {
+     "morning": "Geodude",
+     "day": "Geodude",
+     "night": "Geodude"
+    },
+    {
+     "morning": "Zubat",
+     "day": "Zubat",
+     "night": "Zubat"
+    },
+    {
+     "morning": "Geodude",
+     "day": "Geodude",
+     "night": "Geodude"
+    },
+    {
+     "morning": "Metang",
+     "day": "Metang",
+     "night": "Metang"
+    },
+    {
+     "morning": "Deino",
+     "day": "Deino",
+     "night": "Deino"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Spheal",
+     "Seel",
+     "Sealeo",
+     "Spheal",
+     "Spheal"
+    ],
+    "Old Rod": [
+     "Feebas",
+     "Feebas",
+     "Feebas",
+     "Feebas",
+     "Feebas"
+    ],
+    "Good Rod": [
+     "Feebas",
+     "Feebas",
+     "Feebas",
+     "Feebas",
+     "Feebas"
+    ],
+    "Super Rod": [
+     "Feebas",
+     "Feebas",
+     "Feebas",
+     "Feebas",
+     "Feebas"
+    ]
+   },
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Mt. Coronet ~ Route 216 Entrance",
+   "levels": "Levels: 18 - 19 (Walking)",
+   "tags": [
+    "cave",
+    "snow"
+   ],
+   "grass": [
+    {
+     "morning": "Geodude",
+     "day": "Geodude",
+     "night": "Geodude"
+    },
+    {
+     "morning": "Bronzor",
+     "day": "Bronzor",
+     "night": "Bronzor"
+    },
+    {
+     "morning": "Clefairy",
+     "day": "Clefairy",
+     "night": "Clefairy"
+    },
+    {
+     "morning": "Klink",
+     "day": "Klink",
+     "night": "Amaura"
+    },
+    {
+     "morning": "Nosepass",
+     "day": "Nosepass",
+     "night": "Nosepass"
+    },
+    {
+     "morning": "Snom",
+     "day": "Snom",
+     "night": "Snom"
+    },
+    {
+     "morning": "Chimecho",
+     "day": "Chimecho",
+     "night": "Chimecho"
+    },
+    {
+     "morning": "Geodude",
+     "day": "Geodude",
+     "night": "Geodude"
+    },
+    {
+     "morning": "Zubat",
+     "day": "Zubat",
+     "night": "Zubat"
+    },
+    {
+     "morning": "Geodude",
+     "day": "Geodude",
+     "night": "Geodude"
+    },
+    {
+     "morning": "Beldum",
+     "day": "Beldum",
+     "night": "Beldum"
+    },
+    {
+     "morning": "Frigibax",
+     "day": "Frigibax",
+     "night": "Frigibax"
+    }
+   ],
+   "water": {},
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Route 216",
+   "levels": "Levels: 18 - 20 (Walking)",
+   "tags": [
+    "snow"
+   ],
+   "grass": [
+    {
+     "morning": "Snover",
+     "day": "Snover",
+     "night": "Snover"
+    },
+    {
+     "morning": "Swinub",
+     "day": "Swinub",
+     "night": "Swinub"
+    },
+    {
+     "morning": "Smoochum",
+     "day": "Smoochum",
+     "night": "Smoochum"
+    },
+    {
+     "morning": "Vanillite",
+     "day": "Vanillite",
+     "night": "Cubchoo"
+    },
+    {
+     "morning": "Snorunt",
+     "day": "Snorunt",
+     "night": "Snorunt"
+    },
+    {
+     "morning": "Bergmite",
+     "day": "Bergmite",
+     "night": "Bergmite"
+    },
+    {
+     "morning": "Sneasel",
+     "day": "Sneasel",
+     "night": "Sneasel"
+    },
+    {
+     "morning": "Cetoddle",
+     "day": "Cetoddle",
+     "night": "Cetoddle"
+    },
+    {
+     "morning": "Snover",
+     "day": "Snover",
+     "night": "Snover"
+    },
+    {
+     "morning": "Snover",
+     "day": "Snover",
+     "night": "Snover"
+    },
+    {
+     "morning": "Snover",
+     "day": "Snover",
+     "night": "Snover"
+    },
+    {
+     "morning": "Snover",
+     "day": "Snover",
+     "night": "Snover"
+    }
+   ],
+   "water": {},
+   "radar": [
+    [
+     "Delibird",
+     22
+    ]
+   ],
+   "honey": []
+  },
+  {
+   "name": "Route 206",
+   "levels": "Levels: 20 - 22 (Walking), 21 (Honey Tree)",
+   "tags": [
+    "mountain",
+    "city"
+   ],
+   "grass": [
+    {
+     "morning": "Stunky",
+     "day": "Stunky",
+     "night": "Stunky"
+    },
+    {
+     "morning": "Slugma",
+     "day": "Slugma",
+     "night": "Slugma"
+    },
+    {
+     "morning": "Mankey",
+     "day": "Mankey",
+     "night": "Mankey"
+    },
+    {
+     "morning": "Sawk",
+     "day": "Sawk",
+     "night": "Elgyem"
+    },
+    {
+     "morning": "Magby",
+     "day": "Magby",
+     "night": "Magby"
+    },
+    {
+     "morning": "Espurr",
+     "day": "Espurr",
+     "night": "Espurr"
+    },
+    {
+     "morning": "Spoink",
+     "day": "Spoink",
+     "night": "Spoink"
+    },
+    {
+     "morning": "Indeedee",
+     "day": "Indeedee",
+     "night": "Indeedee"
+    },
+    {
+     "morning": "Numel",
+     "day": "Numel",
+     "night": "Numel"
+    },
+    {
+     "morning": "Gumshoos",
+     "day": "Gumshoos",
+     "night": "Gumshoos"
+    },
+    {
+     "morning": "Gligar",
+     "day": "Gligar",
+     "night": "Gligar"
+    },
+    {
+     "morning": "Oinkologne",
+     "day": "Oinkologne",
+     "night": "Oinkologne"
+    }
+   ],
+   "water": {},
+   "radar": [
+    [
+     "Torkoal",
+     22
+    ]
+   ],
+   "honey": [
+    [
+     "Combee",
+     30
+    ],
+    [
+     "Burmy",
+     20
+    ],
+    [
+     "Pineco",
+     20
+    ],
+    [
+     "Silcoon",
+     10
+    ],
+    [
+     "Cascoon",
+     10
+    ],
+    [
+     "Heracross",
+     10
+    ]
+   ]
+  },
+  {
+   "name": "Wayward Cave (Both)",
+   "levels": "Levels: 20 - 22",
+   "tags": [
+    "cave",
+    "dragon"
+   ],
+   "grass": [
+    {
+     "morning": "Zubat",
+     "day": "Zubat",
+     "night": "Zubat"
+    },
+    {
+     "morning": "Geodude",
+     "day": "Geodude",
+     "night": "Geodude"
+    },
+    {
+     "morning": "Gible",
+     "day": "Gible",
+     "night": "Gible"
+    },
+    {
+     "morning": "Zubat",
+     "day": "Zubat",
+     "night": "Zubat"
+    },
+    {
+     "morning": "Baltoy",
+     "day": "Baltoy",
+     "night": "Baltoy"
+    },
+    {
+     "morning": "Zubat",
+     "day": "Zubat",
+     "night": "Zubat"
+    },
+    {
+     "morning": "Sandshrew",
+     "day": "Sandshrew",
+     "night": "Sandshrew"
+    },
+    {
+     "morning": "Zubat",
+     "day": "Zubat",
+     "night": "Zubat"
+    },
+    {
+     "morning": "Onix",
+     "day": "Onix",
+     "night": "Onix"
+    },
+    {
+     "morning": "Zubat",
+     "day": "Zubat",
+     "night": "Zubat"
+    },
+    {
+     "morning": "Sableye",
+     "day": "Sableye",
+     "night": "Sableye"
+    },
+    {
+     "morning": "Zubat",
+     "day": "Zubat",
+     "night": "Zubat"
+    }
+   ],
+   "water": {},
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Mt. Coronet ~ Route 207 Entrance",
+   "levels": "Levels: 22 - 23 (Walking), 20 - 40 (Surfing)",
+   "tags": [
+    "cave"
+   ],
+   "grass": [
+    {
+     "morning": "Geodude",
+     "day": "Geodude",
+     "night": "Geodude"
+    },
+    {
+     "morning": "Bronzor",
+     "day": "Bronzor",
+     "night": "Bronzor"
+    },
+    {
+     "morning": "Clefairy",
+     "day": "Clefairy",
+     "night": "Clefairy"
+    },
+    {
+     "morning": "Klefki",
+     "day": "Klefki",
+     "night": "Falinks"
+    },
+    {
+     "morning": "Nosepass",
+     "day": "Nosepass",
+     "night": "Nosepass"
+    },
+    {
+     "morning": "Stonjourner",
+     "day": "Stonjourner",
+     "night": "Stonjourner"
+    },
+    {
+     "morning": "Chimecho",
+     "day": "Chimecho",
+     "night": "Chimecho"
+    },
+    {
+     "morning": "Clodsire",
+     "day": "Clodsire",
+     "night": "Clodsire"
+    },
+    {
+     "morning": "Golbat",
+     "day": "Golbat",
+     "night": "Golbat"
+    },
+    {
+     "morning": "Geodude",
+     "day": "Geodude",
+     "night": "Geodude"
+    },
+    {
+     "morning": "Metang",
+     "day": "Metang",
+     "night": "Metang"
+    },
+    {
+     "morning": "Geodude",
+     "day": "Geodude",
+     "night": "Geodude"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Zubat",
+     "Golbat",
+     "Zubat",
+     "Zubat",
+     "Zubat"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Barboach",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Barboach",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Whiscash",
+     "Gyarados",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Route 208",
+   "levels": "Levels: 23 - 24 (Walking), 20 - 40 (Surfing), 23 (Honey Tree)",
+   "tags": [
+    "field",
+    "mountain"
+   ],
+   "grass": [
+    {
+     "morning": "Bibarel",
+     "day": "Bibarel",
+     "night": "Bibarel"
+    },
+    {
+     "morning": "Roselia",
+     "day": "Roselia",
+     "night": "Roselia"
+    },
+    {
+     "morning": "Skitty",
+     "day": "Skitty",
+     "night": "Skitty"
+    },
+    {
+     "morning": "Timburr",
+     "day": "Timburr",
+     "night": "Throh"
+    },
+    {
+     "morning": "Jigglypuff",
+     "day": "Jigglypuff",
+     "night": "Jigglypuff"
+    },
+    {
+     "morning": "Furfrou",
+     "day": "Furfrou",
+     "night": "Furfrou"
+    },
+    {
+     "morning": "Kirlia",
+     "day": "Kirlia",
+     "night": "Kirlia"
+    },
+    {
+     "morning": "Komala",
+     "day": "Komala",
+     "night": "Komala"
+    },
+    {
+     "morning": "Zangoose",
+     "day": "Zangoose",
+     "night": "Zangoose"
+    },
+    {
+     "morning": "Herdier",
+     "day": "Herdier",
+     "night": "Herdier"
+    },
+    {
+     "morning": "Seviper",
+     "day": "Seviper",
+     "night": "Seviper"
+    },
+    {
+     "morning": "Trumbeak",
+     "day": "Trumbeak",
+     "night": "Trumbeak"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Psyduck",
+     "Golduck",
+     "Psyduck",
+     "Psyduck",
+     "Psyduck"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Goldeen",
+     "Remoraid",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Goldeen",
+     "Remoraid",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Seaking",
+     "Octillery",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [
+    [
+     "Dunsparce",
+     22
+    ]
+   ],
+   "honey": [
+    [
+     "Cherubi",
+     30
+    ],
+    [
+     "Shroomish",
+     20
+    ],
+    [
+     "Exeggcute",
+     20
+    ],
+    [
+     "Seedot",
+     20
+    ],
+    [
+     "Tangela",
+     10
+    ]
+   ]
+  },
+  {
+   "name": "Route 212 ~ North",
+   "levels": "Levels: 24 - 26 (Walking), 20 - 40 (Surfing), 25 (Honey Tree)",
+   "tags": [
+    "field",
+    "rain"
+   ],
+   "grass": [
+    {
+     "morning": "Staravia",
+     "day": "Staravia",
+     "night": "Staravia"
+    },
+    {
+     "morning": "Marill",
+     "day": "Marill",
+     "night": "Marill"
+    },
+    {
+     "morning": "Roselia",
+     "day": "Roselia",
+     "night": "Roselia"
+    },
+    {
+     "morning": "Maractus",
+     "day": "Maractus",
+     "night": "Skiddo"
+    },
+    {
+     "morning": "Weepinbell",
+     "day": "Weepinbell",
+     "night": "Weepinbell"
+    },
+    {
+     "morning": "Phantump",
+     "day": "Phantump",
+     "night": "Phantump"
+    },
+    {
+     "morning": "Gloom",
+     "day": "Gloom",
+     "night": "Gloom"
+    },
+    {
+     "morning": "Watchog",
+     "day": "Watchog",
+     "night": "Watchog"
+    },
+    {
+     "morning": "Kirlia",
+     "day": "Kirlia",
+     "night": "Kirlia"
+    },
+    {
+     "morning": "Tranquill",
+     "day": "Tranquill",
+     "night": "Tranquill"
+    },
+    {
+     "morning": "Smeargle",
+     "day": "Smeargle",
+     "night": "Smeargle"
+    },
+    {
+     "morning": "Greedent",
+     "day": "Greedent",
+     "night": "Greedent"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Marill",
+     "Azumarill",
+     "Marill",
+     "Marill",
+     "Marill"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Goldeen",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Goldeen",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Seaking",
+     "Gyarados",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [
+    [
+     "Farfetch'd",
+     22
+    ]
+   ],
+   "honey": [
+    [
+     "Cherubi",
+     30
+    ],
+    [
+     "Shroomish",
+     20
+    ],
+    [
+     "Exeggcute",
+     20
+    ],
+    [
+     "Nuzleaf",
+     20
+    ],
+    [
+     "Tangela",
+     10
+    ]
+   ]
+  },
+  {
+   "name": "Trophy Garden",
+   "levels": "Levels: 24 - 26",
+   "tags": [
+    "flower",
+    "city"
+   ],
+   "grass": [
+    {
+     "morning": "Pichu",
+     "day": "Pichu",
+     "night": "Pichu"
+    },
+    {
+     "morning": "Pikachu",
+     "day": "Pikachu",
+     "night": "Pikachu"
+    },
+    {
+     "morning": "Cleffa",
+     "day": "Cleffa",
+     "night": "Cleffa"
+    },
+    {
+     "morning": "Pichu",
+     "day": "Pichu",
+     "night": "Pichu"
+    },
+    {
+     "morning": "Igglybuff",
+     "day": "Igglybuff",
+     "night": "Igglybuff"
+    },
+    {
+     "morning": "Pichu",
+     "day": "Pichu",
+     "night": "Pichu"
+    },
+    {
+     "morning": "Togepi",
+     "day": "Togepi",
+     "night": "Togepi"
+    },
+    {
+     "morning": "Pichu",
+     "day": "Pichu",
+     "night": "Pichu"
+    },
+    {
+     "morning": "Porygon",
+     "day": "Porygon",
+     "night": "Porygon"
+    },
+    {
+     "morning": "Pichu",
+     "day": "Pichu",
+     "night": "Pichu"
+    },
+    {
+     "morning": "Happiny",
+     "day": "Happiny",
+     "night": "Happiny"
+    },
+    {
+     "morning": "Eevee",
+     "day": "Eevee",
+     "night": "Eevee"
+    }
+   ],
+   "water": {},
+   "radar": [
+    [
+     "Castform",
+     22
+    ]
+   ],
+   "honey": []
+  },
+  {
+   "name": "Route 209",
+   "levels": "Levels: 24 - 26 (Walking), 20 - 40 (Surfing), 27 (Honey Tree)",
+   "tags": [
+    "field",
+    "ghost"
+   ],
+   "grass": [
+    {
+     "morning": "Staravia",
+     "day": "Staravia",
+     "night": "Staravia"
+    },
+    {
+     "morning": "Glameow",
+     "day": "Glameow",
+     "night": "Glameow"
+    },
+    {
+     "morning": "Vulpix",
+     "day": "Vulpix",
+     "night": "Vulpix"
+    },
+    {
+     "morning": "Sigilyph",
+     "day": "Sigilyph",
+     "night": "Vullaby"
+    },
+    {
+     "morning": "Bonsly",
+     "day": "Bonsly",
+     "night": "Bonsly"
+    },
+    {
+     "morning": "Inkay",
+     "day": "Inkay",
+     "night": "Inkay"
+    },
+    {
+     "morning": "Mime Jr.",
+     "day": "Mime Jr.",
+     "night": "Mime Jr."
+    },
+    {
+     "morning": "Pumpkaboo",
+     "day": "Pumpkaboo",
+     "night": "Pumpkaboo"
+    },
+    {
+     "morning": "Snubbull",
+     "day": "Snubbull",
+     "night": "Snubbull"
+    },
+    {
+     "morning": "Oranguru",
+     "day": "Oranguru",
+     "night": "Oranguru"
+    },
+    {
+     "morning": "Meowth",
+     "day": "Meowth",
+     "night": "Meowth"
+    },
+    {
+     "morning": "Chansey",
+     "day": "Chansey",
+     "night": "Chansey"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Psyduck",
+     "Golduck",
+     "Psyduck",
+     "Psyduck",
+     "Psyduck"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Goldeen",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Goldeen",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Seaking",
+     "Gyarados",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [
+    [
+     "Purugly",
+     22
+    ]
+   ],
+   "honey": [
+    [
+     "Staravia",
+     30
+    ],
+    [
+     "Pidgeotto",
+     20
+    ],
+    [
+     "Noctowl",
+     20
+    ],
+    [
+     "Swellow",
+     20
+    ],
+    [
+     "Farfetch'd",
+     10
+    ]
+   ]
+  },
+  {
+   "name": "Lost Tower",
+   "levels": "Levels: 26 - 30",
+   "tags": [
+    "ghost"
+   ],
+   "grass": [
+    {
+     "morning": "Shuppet",
+     "day": "Shuppet",
+     "night": "Shuppet"
+    },
+    {
+     "morning": "Duskull",
+     "day": "Duskull",
+     "night": "Duskull"
+    },
+    {
+     "morning": "Golbat",
+     "day": "Golbat",
+     "night": "Golbat"
+    },
+    {
+     "morning": "Shuppet",
+     "day": "Shuppet",
+     "night": "Shuppet"
+    },
+    {
+     "morning": "Haunter",
+     "day": "Haunter",
+     "night": "Haunter"
+    },
+    {
+     "morning": "Shuppet",
+     "day": "Shuppet",
+     "night": "Shuppet"
+    },
+    {
+     "morning": "Murkrow",
+     "day": "Murkrow",
+     "night": "Murkrow"
+    },
+    {
+     "morning": "Shuppet",
+     "day": "Shuppet",
+     "night": "Shuppet"
+    },
+    {
+     "morning": "Misdreavus",
+     "day": "Misdreavus",
+     "night": "Misdreavus"
+    },
+    {
+     "morning": "Shuppet",
+     "day": "Shuppet",
+     "night": "Shuppet"
+    },
+    {
+     "morning": "Dusclops",
+     "day": "Dusclops",
+     "night": "Dusclops"
+    },
+    {
+     "morning": "Shuppet",
+     "day": "Shuppet",
+     "night": "Shuppet"
+    }
+   ],
+   "water": {},
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Solaceon Ruins",
+   "levels": "Levels: 20 - 30",
+   "tags": [
+    "ruins"
+   ],
+   "grass": [
+    {
+     "morning": "Unown",
+     "day": "Unown",
+     "night": "Unown"
+    },
+    {
+     "morning": "Unown",
+     "day": "Unown",
+     "night": "Unown"
+    },
+    {
+     "morning": "Unown",
+     "day": "Unown",
+     "night": "Unown"
+    },
+    {
+     "morning": "Unown",
+     "day": "Unown",
+     "night": "Unown"
+    },
+    {
+     "morning": "Unown",
+     "day": "Unown",
+     "night": "Unown"
+    },
+    {
+     "morning": "Unown",
+     "day": "Unown",
+     "night": "Unown"
+    },
+    {
+     "morning": "Unown",
+     "day": "Unown",
+     "night": "Unown"
+    },
+    {
+     "morning": "Unown",
+     "day": "Unown",
+     "night": "Unown"
+    },
+    {
+     "morning": "Unown",
+     "day": "Unown",
+     "night": "Unown"
+    },
+    {
+     "morning": "Unown",
+     "day": "Unown",
+     "night": "Unown"
+    },
+    {
+     "morning": "Unown",
+     "day": "Unown",
+     "night": "Unown"
+    },
+    {
+     "morning": "Unown",
+     "day": "Unown",
+     "night": "Unown"
+    }
+   ],
+   "water": {},
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Route 210 ~ South",
+   "levels": "Levels: 28 - 30 (Walking), 29 (Honey Tree)",
+   "tags": [
+    "field",
+    "flower"
+   ],
+   "grass": [
+    {
+     "morning": "Kricketune",
+     "day": "Kricketune",
+     "night": "Kricketune"
+    },
+    {
+     "morning": "Nuzleaf",
+     "day": "Nuzleaf",
+     "night": "Nuzleaf"
+    },
+    {
+     "morning": "Pidgeotto",
+     "day": "Pidgeotto",
+     "night": "Noctowl"
+    },
+    {
+     "morning": "Cottonee",
+     "day": "Cottonee",
+     "night": "Bouffalant"
+    },
+    {
+     "morning": "Scyther",
+     "day": "Scyther",
+     "night": "Scyther"
+    },
+    {
+     "morning": "Flabébé",
+     "day": "Flabébé",
+     "night": "Flabébé"
+    },
+    {
+     "morning": "Pinsir",
+     "day": "Pinsir",
+     "night": "Pinsir"
+    },
+    {
+     "morning": "Centiskorch",
+     "day": "Centiskorch",
+     "night": "Centiskorch"
+    },
+    {
+     "morning": "Miltank",
+     "day": "Miltank",
+     "night": "Miltank"
+    },
+    {
+     "morning": "Morelull",
+     "day": "Morelull",
+     "night": "Morelull"
+    },
+    {
+     "morning": "Tauros",
+     "day": "Tauros",
+     "night": "Tauros"
+    },
+    {
+     "morning": "Floette",
+     "day": "Floette",
+     "night": "Floette"
+    }
+   ],
+   "water": {},
+   "radar": [
+    [
+     "Kecleon",
+     22
+    ]
+   ],
+   "honey": [
+    [
+     "Combee",
+     30
+    ],
+    [
+     "Pineco",
+     20
+    ],
+    [
+     "Silcoon",
+     10
+    ],
+    [
+     "Cascoon",
+     10
+    ],
+    [
+     "Wormadam",
+     10
+    ],
+    [
+     "Mothim",
+     10
+    ],
+    [
+     "Heracross",
+     10
+    ]
+   ]
+  },
+  {
+   "name": "Route 215",
+   "levels": "Levels: 27 - 30 (Walking), 28 (Honey Tree)",
+   "tags": [
+    "rain",
+    "mountain"
+   ],
+   "grass": [
+    {
+     "morning": "Marill",
+     "day": "Marill",
+     "night": "Marill"
+    },
+    {
+     "morning": "Drowzee",
+     "day": "Drowzee",
+     "night": "Drowzee"
+    },
+    {
+     "morning": "Lickitung",
+     "day": "Lickitung",
+     "night": "Lickitung"
+    },
+    {
+     "morning": "Durant",
+     "day": "Durant",
+     "night": "Bounsweet"
+    },
+    {
+     "morning": "Kadabra",
+     "day": "Kadabra",
+     "night": "Kadabra"
+    },
+    {
+     "morning": "Passimian",
+     "day": "Passimian",
+     "night": "Passimian"
+    },
+    {
+     "morning": "Mightyena",
+     "day": "Mightyena",
+     "night": "Mightyena"
+    },
+    {
+     "morning": "Charjabug",
+     "day": "Charjabug",
+     "night": "Charjabug"
+    },
+    {
+     "morning": "Linoone",
+     "day": "Linoone",
+     "night": "Linoone"
+    },
+    {
+     "morning": "Shiinotic",
+     "day": "Shiinotic",
+     "night": "Shiinotic"
+    },
+    {
+     "morning": "Hypno",
+     "day": "Hypno",
+     "night": "Hypno"
+    },
+    {
+     "morning": "Marill",
+     "day": "Marill",
+     "night": "Marill"
+    }
+   ],
+   "water": {},
+   "radar": [
+    [
+     "Absol",
+     22
+    ]
+   ],
+   "honey": [
+    [
+     "Aipom",
+     30
+    ],
+    [
+     "Vigoroth",
+     20
+    ],
+    [
+     "Metapod",
+     20
+    ],
+    [
+     "Kakuna",
+     20
+    ],
+    [
+     "Munchlax",
+     10
+    ]
+   ]
+  },
+  {
+   "name": "Route 214",
+   "levels": "Levels: 28 - 32 (Walking), 20 - 40 (Surfing), 30 (Honey Tree)",
+   "tags": [
+    "mountain",
+    "desert"
+   ],
+   "grass": [
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    },
+    {
+     "morning": "Houndour",
+     "day": "Houndour",
+     "night": "Houndour"
+    },
+    {
+     "morning": "Rhyhorn",
+     "day": "Rhyhorn",
+     "night": "Rhyhorn"
+    },
+    {
+     "morning": "Sandile",
+     "day": "Sandile",
+     "night": "Stunfisk"
+    },
+    {
+     "morning": "Numel",
+     "day": "Numel",
+     "night": "Numel"
+    },
+    {
+     "morning": "Oricorio",
+     "day": "Oricorio",
+     "night": "Oricorio"
+    },
+    {
+     "morning": "Spoink",
+     "day": "Spoink",
+     "night": "Spoink"
+    },
+    {
+     "morning": "Toedscool",
+     "day": "Toedscool",
+     "night": "Toedscool"
+    },
+    {
+     "morning": "Cacnea",
+     "day": "Cacnea",
+     "night": "Cacnea"
+    },
+    {
+     "morning": "Diggersby",
+     "day": "Diggersby",
+     "night": "Diggersby"
+    },
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    },
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Psyduck",
+     "Golduck",
+     "Psyduck",
+     "Psyduck",
+     "Psyduck"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Goldeen",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Goldeen",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Seaking",
+     "Seismitoad",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [
+    [
+     "Spinda",
+     22
+    ]
+   ],
+   "honey": [
+    [
+     "Aipom",
+     30
+    ],
+    [
+     "Vigoroth",
+     20
+    ],
+    [
+     "Butterfree",
+     20
+    ],
+    [
+     "Beedrill",
+     20
+    ],
+    [
+     "Munchlax",
+     10
+    ]
+   ]
+  },
+  {
+   "name": "Maniac Tunnel",
+   "levels": "Levels: 28 - 32",
+   "tags": [
+    "cave",
+    "ruins"
+   ],
+   "grass": [
+    {
+     "morning": "Diglett",
+     "day": "Diglett",
+     "night": "Diglett"
+    },
+    {
+     "morning": "Whismur",
+     "day": "Whismur",
+     "night": "Whismur"
+    },
+    {
+     "morning": "Hippopotas",
+     "day": "Hippopotas",
+     "night": "Hippopotas"
+    },
+    {
+     "morning": "Diglett",
+     "day": "Diglett",
+     "night": "Diglett"
+    },
+    {
+     "morning": "Trapinch",
+     "day": "Trapinch",
+     "night": "Trapinch"
+    },
+    {
+     "morning": "Diglett",
+     "day": "Diglett",
+     "night": "Diglett"
+    },
+    {
+     "morning": "Loudred",
+     "day": "Loudred",
+     "night": "Loudred"
+    },
+    {
+     "morning": "Diglett",
+     "day": "Diglett",
+     "night": "Diglett"
+    },
+    {
+     "morning": "Ditto",
+     "day": "Ditto",
+     "night": "Ditto"
+    },
+    {
+     "morning": "Diglett",
+     "day": "Diglett",
+     "night": "Diglett"
+    },
+    {
+     "morning": "Dugtrio",
+     "day": "Dugtrio",
+     "night": "Dugtrio"
+    },
+    {
+     "morning": "Diglett",
+     "day": "Diglett",
+     "night": "Diglett"
+    }
+   ],
+   "water": {},
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Valor Lakefront",
+   "levels": "Levels: 31 - 33",
+   "tags": [
+    "lake",
+    "field"
+   ],
+   "grass": [
+    {
+     "morning": "Girafarig",
+     "day": "Girafarig",
+     "night": "Girafarig"
+    },
+    {
+     "morning": "Bibarel",
+     "day": "Bibarel",
+     "night": "Bibarel"
+    },
+    {
+     "morning": "Nidorina",
+     "day": "Nidorina",
+     "night": "Nidorina"
+    },
+    {
+     "morning": "Girafarig",
+     "day": "Girafarig",
+     "night": "Girafarig"
+    },
+    {
+     "morning": "Nidorino",
+     "day": "Nidorino",
+     "night": "Nidorino"
+    },
+    {
+     "morning": "Girafarig",
+     "day": "Girafarig",
+     "night": "Girafarig"
+    },
+    {
+     "morning": "Kricketune",
+     "day": "Kricketune",
+     "night": "Kricketune"
+    },
+    {
+     "morning": "Girafarig",
+     "day": "Girafarig",
+     "night": "Girafarig"
+    },
+    {
+     "morning": "Girafarig",
+     "day": "Girafarig",
+     "night": "Girafarig"
+    },
+    {
+     "morning": "Girafarig",
+     "day": "Girafarig",
+     "night": "Girafarig"
+    },
+    {
+     "morning": "Girafarig",
+     "day": "Girafarig",
+     "night": "Girafarig"
+    },
+    {
+     "morning": "Girafarig",
+     "day": "Girafarig",
+     "night": "Girafarig"
+    }
+   ],
+   "water": {},
+   "radar": [
+    [
+     "Venomoth",
+     22
+    ]
+   ],
+   "honey": []
+  },
+  {
+   "name": "Route 213",
+   "levels": "Levels: 32 - 34 (Walking), 20 - 40 (Surfing), 33 (Honey Tree)",
+   "tags": [
+    "sea",
+    "beach"
+   ],
+   "grass": [
+    {
+     "morning": "Gastrodon",
+     "day": "Gastrodon",
+     "night": "Gastrodon"
+    },
+    {
+     "morning": "Floatzel",
+     "day": "Floatzel",
+     "night": "Floatzel"
+    },
+    {
+     "morning": "Chatot",
+     "day": "Chatot",
+     "night": "Pelipper"
+    },
+    {
+     "morning": "Panpour",
+     "day": "Panpour",
+     "night": "Ducklett"
+    },
+    {
+     "morning": "Pelipper",
+     "day": "Pelipper",
+     "night": "Pelipper"
+    },
+    {
+     "morning": "Binacle",
+     "day": "Binacle",
+     "night": "Binacle"
+    },
+    {
+     "morning": "Swellow",
+     "day": "Swellow",
+     "night": "Swellow"
+    },
+    {
+     "morning": "Wugtrio",
+     "day": "Wugtrio",
+     "night": "Wugtrio"
+    },
+    {
+     "morning": "Shuckle",
+     "day": "Shuckle",
+     "night": "Shuckle"
+    },
+    {
+     "morning": "Gastrodon",
+     "day": "Gastrodon",
+     "night": "Gastrodon"
+    },
+    {
+     "morning": "Gastrodon",
+     "day": "Gastrodon",
+     "night": "Gastrodon"
+    },
+    {
+     "morning": "Gastrodon",
+     "day": "Gastrodon",
+     "night": "Gastrodon"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Tentacool",
+     "Wingull",
+     "Tentacruel",
+     "Cramorant",
+     "Tentacool"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Remoraid",
+     "Wailmer",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Remoraid",
+     "Wailmer",
+     "Basculin",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Octillery",
+     "Wailord",
+     "Dracovish",
+     "Dondozo"
+    ]
+   },
+   "radar": [
+    [
+     "Absol",
+     22
+    ]
+   ],
+   "honey": [
+    [
+     "Staravia",
+     30
+    ],
+    [
+     "Pidgeotto",
+     20
+    ],
+    [
+     "Noctowl",
+     20
+    ],
+    [
+     "Swellow",
+     20
+    ],
+    [
+     "Farfetch'd",
+     10
+    ]
+   ]
+  },
+  {
+   "name": "Pastoria City",
+   "levels": "Levels: 20 - 40 (Surfing)",
+   "tags": [
+    "marsh"
+   ],
+   "grass": null,
+   "water": {
+    "Surf": [
+     "Tentacool",
+     "Shellos",
+     "Tentacruel",
+     "Tentacool",
+     "Tentacool"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Poliwag",
+     "Carvanha",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Poliwag",
+     "Carvanha",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Poliwhirl",
+     "Sharpedo",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Great Marsh ~ Area 1/2",
+   "levels": "Levels: 33 - 36 (Walking), 20 - 40 (Surfing)",
+   "tags": [
+    "marsh"
+   ],
+   "grass": [
+    {
+     "morning": "Bibarel",
+     "day": "Bibarel",
+     "night": "Bibarel"
+    },
+    {
+     "morning": "Quagsire",
+     "day": "Quagsire",
+     "night": "Quagsire"
+    },
+    {
+     "morning": "Tropius",
+     "day": "Tropius",
+     "night": "Tropius"
+    },
+    {
+     "morning": "Trubbish",
+     "day": "Trubbish",
+     "night": "Shroodle"
+    },
+    {
+     "morning": "Tangela",
+     "day": "Tangela",
+     "night": "Tangela"
+    },
+    {
+     "morning": "Poltchageist",
+     "day": "Poltchageist",
+     "night": "Poltchageist"
+    },
+    {
+     "morning": "Carnivine",
+     "day": "Carnivine",
+     "night": "Carnivine"
+    },
+    {
+     "morning": "Accelgor",
+     "day": "Accelgor",
+     "night": "Accelgor"
+    },
+    {
+     "morning": "Steenee",
+     "day": "Steenee",
+     "night": "Steenee"
+    },
+    {
+     "morning": "Sneasler",
+     "day": "Sneasler",
+     "night": "Sneasler"
+    },
+    {
+     "morning": "Orbeetle",
+     "day": "Orbeetle",
+     "night": "Orbeetle"
+    },
+    {
+     "morning": "Bibarel",
+     "day": "Bibarel",
+     "night": "Bibarel"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Wooper",
+     "Quagsire",
+     "Wooper",
+     "Wooper",
+     "Wooper"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Barboach",
+     "Carvanha",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Barboach",
+     "Carvanha",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Whiscash",
+     "Sharpedo",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Great Marsh ~ Area 3/4",
+   "levels": "Levels: 33 - 36 (Walking), 20 - 40 (Surfing)",
+   "tags": [
+    "marsh"
+   ],
+   "grass": [
+    {
+     "morning": "Parasect",
+     "day": "Parasect",
+     "night": "Parasect"
+    },
+    {
+     "morning": "Exeggcute",
+     "day": "Exeggcute",
+     "night": "Exeggcute"
+    },
+    {
+     "morning": "Croagunk",
+     "day": "Croagunk",
+     "night": "Croagunk"
+    },
+    {
+     "morning": "Fomantis",
+     "day": "Fomantis",
+     "night": "Bramblin"
+    },
+    {
+     "morning": "Toxicroak",
+     "day": "Toxicroak",
+     "night": "Toxicroak"
+    },
+    {
+     "morning": "Simisage",
+     "day": "Simisage",
+     "night": "Simisage"
+    },
+    {
+     "morning": "Kangaskhan",
+     "day": "Kangaskhan",
+     "night": "Kangaskhan"
+    },
+    {
+     "morning": "Gourgeist",
+     "day": "Gourgeist",
+     "night": "Gourgeist"
+    },
+    {
+     "morning": "Yanma",
+     "day": "Yanma",
+     "night": "Yanma"
+    },
+    {
+     "morning": "Eldegoss",
+     "day": "Eldegoss",
+     "night": "Eldegoss"
+    },
+    {
+     "morning": "Rabsca",
+     "day": "Rabsca",
+     "night": "Rabsca"
+    },
+    {
+     "morning": "Parasect",
+     "day": "Parasect",
+     "night": "Parasect"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Wooper",
+     "Quagsire",
+     "Wooper",
+     "Wooper",
+     "Wooper"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Barboach",
+     "Carvanha",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Barboach",
+     "Carvanha",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Whiscash",
+     "Sharpedo",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Great Marsh ~ Area 5/6",
+   "levels": "Levels: 33 - 36 (Walking), 20 - 40 (Surfing)",
+   "tags": [
+    "marsh"
+   ],
+   "grass": [
+    {
+     "morning": "Skorupi",
+     "day": "Skorupi",
+     "night": "Skorupi"
+    },
+    {
+     "morning": "Gulpin",
+     "day": "Gulpin",
+     "night": "Gulpin"
+    },
+    {
+     "morning": "Shroomish",
+     "day": "Shroomish",
+     "night": "Shroomish"
+    },
+    {
+     "morning": "Salandit",
+     "day": "Salandit",
+     "night": "Capsakid"
+    },
+    {
+     "morning": "Swalot",
+     "day": "Swalot",
+     "night": "Swalot"
+    },
+    {
+     "morning": "Whirlipede",
+     "day": "Whirlipede",
+     "night": "Whirlipede"
+    },
+    {
+     "morning": "Breloom",
+     "day": "Breloom",
+     "night": "Breloom"
+    },
+    {
+     "morning": "Ribombee",
+     "day": "Ribombee",
+     "night": "Ribombee"
+    },
+    {
+     "morning": "Drapion",
+     "day": "Drapion",
+     "night": "Drapion"
+    },
+    {
+     "morning": "Toxtricity",
+     "day": "Toxtricity",
+     "night": "Toxtricity"
+    },
+    {
+     "morning": "Scolipede",
+     "day": "Scolipede",
+     "night": "Scolipede"
+    },
+    {
+     "morning": "Skorupi",
+     "day": "Skorupi",
+     "night": "Skorupi"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Wooper",
+     "Quagsire",
+     "Wooper",
+     "Wooper",
+     "Wooper"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Barboach",
+     "Carvanha",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Barboach",
+     "Carvanha",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Whiscash",
+     "Sharpedo",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Route 212 ~ South",
+   "levels": "Levels: 33 - 36 (Walking), 20 - 40 (Surfing), Honey Tree (34)",
+   "tags": [
+    "marsh",
+    "rain"
+   ],
+   "grass": [
+    {
+     "morning": "Croagunk",
+     "day": "Croagunk",
+     "night": "Croagunk"
+    },
+    {
+     "morning": "Grimer",
+     "day": "Grimer",
+     "night": "Grimer"
+    },
+    {
+     "morning": "Koffing",
+     "day": "Koffing",
+     "night": "Koffing"
+    },
+    {
+     "morning": "Venipede",
+     "day": "Venipede",
+     "night": "Foongus"
+    },
+    {
+     "morning": "Ekans",
+     "day": "Ekans",
+     "night": "Ekans"
+    },
+    {
+     "morning": "Gossifleur",
+     "day": "Gossifleur",
+     "night": "Gossifleur"
+    },
+    {
+     "morning": "Weepinbell",
+     "day": "Weepinbell",
+     "night": "Weepinbell"
+    },
+    {
+     "morning": "Gogoat",
+     "day": "Gogoat",
+     "night": "Gogoat"
+    },
+    {
+     "morning": "Lombre",
+     "day": "Lombre",
+     "night": "Lombre"
+    },
+    {
+     "morning": "Trevenant",
+     "day": "Trevenant",
+     "night": "Trevenant"
+    },
+    {
+     "morning": "Arbok",
+     "day": "Arbok",
+     "night": "Arbok"
+    },
+    {
+     "morning": "Dolliv",
+     "day": "Dolliv",
+     "night": "Dolliv"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Shellos",
+     "Wooper",
+     "Gastrodon",
+     "Shellos",
+     "Shellos"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Barboach",
+     "Remoraid",
+     "Skrelp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Barboach",
+     "Remoraid",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Whiscash",
+     "Octillery",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [
+    [
+     "Muk",
+     11
+    ],
+    [
+     "Weezing",
+     11
+    ]
+   ],
+   "honey": [
+    [
+     "Cherrim",
+     30
+    ],
+    [
+     "Shroomish",
+     20
+    ],
+    [
+     "Exeggcute",
+     20
+    ],
+    [
+     "Nuzleaf",
+     20
+    ],
+    [
+     "Tangela",
+     10
+    ]
+   ]
+  },
+  {
+   "name": "Route 210 ~ North",
+   "levels": "Levels: 34 - 38 (Walking), 20 - 40 (Surfing), Honey Tree (37)",
+   "tags": [
+    "fog",
+    "dragon"
+   ],
+   "grass": [
+    {
+     "morning": "Swablu",
+     "day": "Swablu",
+     "night": "Swablu"
+    },
+    {
+     "morning": "Fearow",
+     "day": "Fearow",
+     "night": "Fearow"
+    },
+    {
+     "morning": "Machoke",
+     "day": "Machoke",
+     "night": "Machoke"
+    },
+    {
+     "morning": "Druddigon",
+     "day": "Druddigon",
+     "night": "Noibat"
+    },
+    {
+     "morning": "Drifblim",
+     "day": "Drifblim",
+     "night": "Drifblim"
+    },
+    {
+     "morning": "Turtonator",
+     "day": "Turtonator",
+     "night": "Turtonator"
+    },
+    {
+     "morning": "Zangoose",
+     "day": "Zangoose",
+     "night": "Zangoose"
+    },
+    {
+     "morning": "Goomy",
+     "day": "Goomy",
+     "night": "Goomy"
+    },
+    {
+     "morning": "Seviper",
+     "day": "Seviper",
+     "night": "Seviper"
+    },
+    {
+     "morning": "Farigiraf",
+     "day": "Farigiraf",
+     "night": "Farigiraf"
+    },
+    {
+     "morning": "Skarmory",
+     "day": "Skarmory",
+     "night": "Skarmory"
+    },
+    {
+     "morning": "Shelgon",
+     "day": "Shelgon",
+     "night": "Shelgon"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Psyduck",
+     "Golduck",
+     "Psyduck",
+     "Psyduck",
+     "Psyduck"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Horsea",
+     "Dratini",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Horsea",
+     "Dratini",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Seadra",
+     "Dragonair",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [
+    [
+     "Altaria",
+     22
+    ]
+   ],
+   "honey": [
+    [
+     "Staravia",
+     30
+    ],
+    [
+     "Pidgeotto",
+     20
+    ],
+    [
+     "Noctowl",
+     20
+    ],
+    [
+     "Swellow",
+     20
+    ],
+    [
+     "Farfetch'd",
+     10
+    ]
+   ]
+  },
+  {
+   "name": "Celestic Town",
+   "levels": "Levels: 20 - 40 (Surfing)",
+   "tags": [
+    "ruins"
+   ],
+   "grass": null,
+   "water": {
+    "Surf": [
+     "Wingull",
+     "Mantyke",
+     "Pelipper",
+     "Wingull",
+     "Wingull"
+    ],
+    "Old Rod": [
+     "Luvdisc",
+     "Horsea",
+     "Corsola",
+     "Luvdisc",
+     "Luvdisc"
+    ],
+    "Good Rod": [
+     "Luvdisc",
+     "Horsea",
+     "Corsola",
+     "Luvdisc",
+     "Luvdisc"
+    ],
+    "Super Rod": [
+     "Luvdisc",
+     "Seadra",
+     "Corsola",
+     "Luvdisc",
+     "Luvdisc"
+    ]
+   },
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Route 221",
+   "levels": "Levels: 38 - 40 (Walking), 30 - 45 (Surf), 39 (Honey Tree)",
+   "tags": [
+    "sea",
+    "forest"
+   ],
+   "grass": [
+    {
+     "morning": "Sudowoodo",
+     "day": "Sudowoodo",
+     "night": "Sudowoodo"
+    },
+    {
+     "morning": "Skuntank",
+     "day": "Skuntank",
+     "night": "Skuntank"
+    },
+    {
+     "morning": "Nidorina",
+     "day": "Nidorina",
+     "night": "Nidorina"
+    },
+    {
+     "morning": "Wimpod",
+     "day": "Wimpod",
+     "night": "Whimsicott"
+    },
+    {
+     "morning": "Nidorino",
+     "day": "Nidorino",
+     "night": "Nidorino"
+    },
+    {
+     "morning": "Cinccino",
+     "day": "Cinccino",
+     "night": "Cinccino"
+    },
+    {
+     "morning": "Farfetch'd",
+     "day": "Farfetch'd",
+     "night": "Farfetch'd"
+    },
+    {
+     "morning": "Sylveon",
+     "day": "Sylveon",
+     "night": "Sylveon"
+    },
+    {
+     "morning": "Girafarig",
+     "day": "Girafarig",
+     "night": "Girafarig"
+    },
+    {
+     "morning": "Obstagoon",
+     "day": "Obstagoon",
+     "night": "Obstagoon"
+    },
+    {
+     "morning": "Dodrio",
+     "day": "Dodrio",
+     "night": "Dodrio"
+    },
+    {
+     "morning": "Slurpuff",
+     "day": "Slurpuff",
+     "night": "Slurpuff"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Wingull",
+     "Tentacool",
+     "Pelipper",
+     "Golisopod",
+     "Wingull"
+    ],
+    "Old Rod": [
+     "Krabby",
+     "Horsea",
+     "Clamperl",
+     "Dewpider",
+     "Krabby"
+    ],
+    "Good Rod": [
+     "Krabby",
+     "Horsea",
+     "Clamperl",
+     "Krabby",
+     "Krabby"
+    ],
+    "Super Rod": [
+     "Kingler",
+     "Horsea",
+     "Huntail",
+     "Kingler",
+     "Gorebyss"
+    ]
+   },
+   "radar": [],
+   "honey": [
+    [
+     "Cherrim",
+     30
+    ],
+    [
+     "Shroomish",
+     20
+    ],
+    [
+     "Exeggcute",
+     20
+    ],
+    [
+     "Nuzleaf",
+     20
+    ],
+    [
+     "Tangela",
+     10
+    ]
+   ]
+  },
+  {
+   "name": "Fuego Ironworks",
+   "levels": "Levels: 36 - 40 (Walking), 30 - 45 (Surf), 40 (Honey Tree)",
+   "tags": [
+    "electric",
+    "fire"
+   ],
+   "grass": [
+    {
+     "morning": "Magnemite",
+     "day": "Magnemite",
+     "night": "Magnemite"
+    },
+    {
+     "morning": "Magmar",
+     "day": "Magmar",
+     "night": "Magmar"
+    },
+    {
+     "morning": "Magneton",
+     "day": "Magneton",
+     "night": "Magneton"
+    },
+    {
+     "morning": "Heatmor",
+     "day": "Heatmor",
+     "night": "Sizzlipede"
+    },
+    {
+     "morning": "Manectric",
+     "day": "Manectric",
+     "night": "Manectric"
+    },
+    {
+     "morning": "Pawmi",
+     "day": "Pawmi",
+     "night": "Pawmi"
+    },
+    {
+     "morning": "Forretress",
+     "day": "Forretress",
+     "night": "Forretress"
+    },
+    {
+     "morning": "Dracozolt",
+     "day": "Dracozolt",
+     "night": "Dracozolt"
+    },
+    {
+     "morning": "Arctozolt",
+     "day": "Arctozolt",
+     "night": "Arctozolt"
+    },
+    {
+     "morning": "Armarouge",
+     "day": "Armarouge",
+     "night": "Armarouge"
+    },
+    {
+     "morning": "Heliolisk",
+     "day": "Heliolisk",
+     "night": "Heliolisk"
+    },
+    {
+     "morning": "Bellibolt",
+     "day": "Bellibolt",
+     "night": "Bellibolt"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Shellos",
+     "Tentacool",
+     "Gastrodon",
+     "Shellos",
+     "Shellos"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Finneon",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Lumineon",
+     "Shellder",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [
+    [
+     "Weezing",
+     22
+    ]
+   ],
+   "honey": [
+    [
+     "Combee",
+     30
+    ],
+    [
+     "Forretress",
+     10
+    ],
+    [
+     "Wormadam",
+     10
+    ],
+    [
+     "Mothim",
+     10
+    ],
+    [
+     "Beautifly",
+     10
+    ],
+    [
+     "Dustox",
+     10
+    ],
+    [
+     "Heracross",
+     10
+    ],
+    [
+     "Vespiquen",
+     10
+    ]
+   ]
+  },
+  {
+   "name": "Route 218",
+   "levels": "Levels: 38 - 39 (Walking), 20 - 45 (Surfing), 39 (Honey Tree)",
+   "tags": [
+    "sea"
+   ],
+   "grass": [
+    {
+     "morning": "Floatzel",
+     "day": "Floatzel",
+     "night": "Floatzel"
+    },
+    {
+     "morning": "Gastrodon",
+     "day": "Gastrodon",
+     "night": "Gastrodon"
+    },
+    {
+     "morning": "Chatot",
+     "day": "Chatot",
+     "night": "Purugly"
+    },
+    {
+     "morning": "Bombirdier",
+     "day": "Bombirdier",
+     "night": "Swoobat"
+    },
+    {
+     "morning": "Purugly",
+     "day": "Purugly",
+     "night": "Purugly"
+    },
+    {
+     "morning": "Beartic",
+     "day": "Beartic",
+     "night": "Beartic"
+    },
+    {
+     "morning": "Mr. Mime",
+     "day": "Mr. Mime",
+     "night": "Mr. Mime"
+    },
+    {
+     "morning": "Talonflame",
+     "day": "Talonflame",
+     "night": "Talonflame"
+    },
+    {
+     "morning": "Electrode",
+     "day": "Electrode",
+     "night": "Electrode"
+    },
+    {
+     "morning": "Toucannon",
+     "day": "Toucannon",
+     "night": "Toucannon"
+    },
+    {
+     "morning": "Ditto",
+     "day": "Ditto",
+     "night": "Ditto"
+    },
+    {
+     "morning": "Floatzel",
+     "day": "Floatzel",
+     "night": "Floatzel"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Tentacool",
+     "Shellos",
+     "Tentacruel",
+     "Tentacool",
+     "Tentacool"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Finneon",
+     "Staryu",
+     "Clauncher",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Finneon",
+     "Staryu",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Lumineon",
+     "Starmie",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [],
+   "honey": [
+    [
+     "Combee",
+     30
+    ],
+    [
+     "Forretress",
+     10
+    ],
+    [
+     "Wormadam",
+     10
+    ],
+    [
+     "Mothim",
+     10
+    ],
+    [
+     "Beautifly",
+     10
+    ],
+    [
+     "Dustox",
+     10
+    ],
+    [
+     "Heracross",
+     10
+    ],
+    [
+     "Vespiquen",
+     10
+    ]
+   ]
+  },
+  {
+   "name": "Canalave City",
+   "levels": "Levels: 30 - 45 (Surfing)",
+   "tags": [
+    "sea",
+    "city"
+   ],
+   "grass": null,
+   "water": {
+    "Surf": [
+     "Tentacool",
+     "Shellos",
+     "Tentacruel",
+     "Tentacool",
+     "Tentacool"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Finneon",
+     "Staryu",
+     "Wishiwashi",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Finneon",
+     "Staryu",
+     "Veluza",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Lumineon",
+     "Starmie",
+     "Barraskewda",
+     "Gyarados"
+    ]
+   },
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Iron Island ~ Outside",
+   "levels": "Levels: 30 - 45 (Surfing)",
+   "tags": [
+    "sea",
+    "steel"
+   ],
+   "grass": null,
+   "water": {
+    "Surf": [
+     "Wingull",
+     "Tentacool",
+     "Pelipper",
+     "Simipour",
+     "Wingull"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Finneon",
+     "Qwilfish",
+     "Pyukumuku",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Finneon",
+     "Qwilfish",
+     "Drednaw",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Lumineon",
+     "Qwilfish",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Iron Island ~ Inside ~ 1F, B1F",
+   "levels": "Levels: 41 - 43",
+   "tags": [
+    "cave",
+    "steel"
+   ],
+   "grass": [
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    },
+    {
+     "morning": "Golbat",
+     "day": "Golbat",
+     "night": "Golbat"
+    },
+    {
+     "morning": "Lairon",
+     "day": "Lairon",
+     "night": "Lairon"
+    },
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    },
+    {
+     "morning": "Mawile",
+     "day": "Mawile",
+     "night": "Mawile"
+    },
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    },
+    {
+     "morning": "Sableye",
+     "day": "Sableye",
+     "night": "Sableye"
+    },
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    },
+    {
+     "morning": "Nosepass",
+     "day": "Nosepass",
+     "night": "Nosepass"
+    },
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    },
+    {
+     "morning": "Rhydon",
+     "day": "Rhydon",
+     "night": "Rhydon"
+    },
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    }
+   ],
+   "water": {},
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Iron Island ~ Inside ~ B2F, B3F",
+   "levels": "Levels: 43 - 45",
+   "tags": [
+    "cave",
+    "steel"
+   ],
+   "grass": [
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    },
+    {
+     "morning": "Golbat",
+     "day": "Golbat",
+     "night": "Golbat"
+    },
+    {
+     "morning": "Lairon",
+     "day": "Lairon",
+     "night": "Lairon"
+    },
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    },
+    {
+     "morning": "Mawile",
+     "day": "Mawile",
+     "night": "Mawile"
+    },
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    },
+    {
+     "morning": "Sableye",
+     "day": "Sableye",
+     "night": "Sableye"
+    },
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    },
+    {
+     "morning": "Nosepass",
+     "day": "Nosepass",
+     "night": "Nosepass"
+    },
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    },
+    {
+     "morning": "Rhydon",
+     "day": "Rhydon",
+     "night": "Rhydon"
+    },
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    }
+   ],
+   "water": {},
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Route 217",
+   "levels": "Levels: 44 - 48",
+   "tags": [
+    "snow"
+   ],
+   "grass": [
+    {
+     "morning": "Piloswine",
+     "day": "Piloswine",
+     "night": "Piloswine"
+    },
+    {
+     "morning": "Snorunt",
+     "day": "Snorunt",
+     "night": "Snorunt"
+    },
+    {
+     "morning": "Sneasel",
+     "day": "Sneasel",
+     "night": "Sneasel"
+    },
+    {
+     "morning": "Piloswine",
+     "day": "Piloswine",
+     "night": "Piloswine"
+    },
+    {
+     "morning": "Jynx",
+     "day": "Jynx",
+     "night": "Jynx"
+    },
+    {
+     "morning": "Piloswine",
+     "day": "Piloswine",
+     "night": "Piloswine"
+    },
+    {
+     "morning": "Abomasnow",
+     "day": "Abomasnow",
+     "night": "Abomasnow"
+    },
+    {
+     "morning": "Piloswine",
+     "day": "Piloswine",
+     "night": "Piloswine"
+    },
+    {
+     "morning": "Glalie",
+     "day": "Glalie",
+     "night": "Glalie"
+    },
+    {
+     "morning": "Piloswine",
+     "day": "Piloswine",
+     "night": "Piloswine"
+    },
+    {
+     "morning": "Delibird",
+     "day": "Delibird",
+     "night": "Delibird"
+    },
+    {
+     "morning": "Piloswine",
+     "day": "Piloswine",
+     "night": "Piloswine"
+    }
+   ],
+   "water": {},
+   "radar": [
+    [
+     "Froslass",
+     22
+    ]
+   ],
+   "honey": []
+  },
+  {
+   "name": "Acuity Lakefront",
+   "levels": "Levels: 45 - 49",
+   "tags": [
+    "snow"
+   ],
+   "grass": [
+    {
+     "morning": "Piloswine",
+     "day": "Piloswine",
+     "night": "Piloswine"
+    },
+    {
+     "morning": "Snorunt",
+     "day": "Snorunt",
+     "night": "Snorunt"
+    },
+    {
+     "morning": "Sneasel",
+     "day": "Sneasel",
+     "night": "Sneasel"
+    },
+    {
+     "morning": "Piloswine",
+     "day": "Piloswine",
+     "night": "Piloswine"
+    },
+    {
+     "morning": "Jynx",
+     "day": "Jynx",
+     "night": "Jynx"
+    },
+    {
+     "morning": "Piloswine",
+     "day": "Piloswine",
+     "night": "Piloswine"
+    },
+    {
+     "morning": "Abomasnow",
+     "day": "Abomasnow",
+     "night": "Abomasnow"
+    },
+    {
+     "morning": "Piloswine",
+     "day": "Piloswine",
+     "night": "Piloswine"
+    },
+    {
+     "morning": "Glalie",
+     "day": "Glalie",
+     "night": "Glalie"
+    },
+    {
+     "morning": "Piloswine",
+     "day": "Piloswine",
+     "night": "Piloswine"
+    },
+    {
+     "morning": "Delibird",
+     "day": "Delibird",
+     "night": "Delibird"
+    },
+    {
+     "morning": "Piloswine",
+     "day": "Piloswine",
+     "night": "Piloswine"
+    }
+   ],
+   "water": {},
+   "radar": [
+    [
+     "Froslass",
+     22
+    ]
+   ],
+   "honey": []
+  },
+  {
+   "name": "Snowpoint Temple",
+   "levels": "Levels: 47 - 50",
+   "tags": [
+    "snow",
+    "ruins"
+   ],
+   "grass": [
+    {
+     "morning": "Golbat",
+     "day": "Golbat",
+     "night": "Golbat"
+    },
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    },
+    {
+     "morning": "Sneasel",
+     "day": "Sneasel",
+     "night": "Sneasel"
+    },
+    {
+     "morning": "Golbat",
+     "day": "Golbat",
+     "night": "Golbat"
+    },
+    {
+     "morning": "Steelix",
+     "day": "Steelix",
+     "night": "Steelix"
+    },
+    {
+     "morning": "Golbat",
+     "day": "Golbat",
+     "night": "Golbat"
+    },
+    {
+     "morning": "Jynx",
+     "day": "Jynx",
+     "night": "Jynx"
+    },
+    {
+     "morning": "Golbat",
+     "day": "Golbat",
+     "night": "Golbat"
+    },
+    {
+     "morning": "Glalie",
+     "day": "Glalie",
+     "night": "Glalie"
+    },
+    {
+     "morning": "Golbat",
+     "day": "Golbat",
+     "night": "Golbat"
+    },
+    {
+     "morning": "Froslass",
+     "day": "Froslass",
+     "night": "Froslass"
+    },
+    {
+     "morning": "Weavile",
+     "day": "Weavile",
+     "night": "Weavile"
+    }
+   ],
+   "water": {},
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Lake Acuity",
+   "levels": "Levels: 49 - 51 (Walking), 45 - 50 (Surfing)",
+   "tags": [
+    "snow",
+    "lake"
+   ],
+   "grass": [
+    {
+     "morning": "Sneasel",
+     "day": "Sneasel",
+     "night": "Sneasel"
+    },
+    {
+     "morning": "Abomasnow",
+     "day": "Abomasnow",
+     "night": "Abomasnow"
+    },
+    {
+     "morning": "Piloswine",
+     "day": "Piloswine",
+     "night": "Piloswine"
+    },
+    {
+     "morning": "Mr. Rime",
+     "day": "Mr. Rime",
+     "night": "Eiscue"
+    },
+    {
+     "morning": "Jynx",
+     "day": "Jynx",
+     "night": "Jynx"
+    },
+    {
+     "morning": "Vanillish",
+     "day": "Vanillish",
+     "night": "Vanillish"
+    },
+    {
+     "morning": "Glalie",
+     "day": "Glalie",
+     "night": "Glalie"
+    },
+    {
+     "morning": "Cryogonal",
+     "day": "Cryogonal",
+     "night": "Cryogonal"
+    },
+    {
+     "morning": "Cetitan",
+     "day": "Cetitan",
+     "night": "Cetitan"
+    },
+    {
+     "morning": "Vanilluxe",
+     "day": "Vanilluxe",
+     "night": "Vanilluxe"
+    },
+    {
+     "morning": "Arctibax",
+     "day": "Arctibax",
+     "night": "Arctibax"
+    },
+    {
+     "morning": "Frosmoth",
+     "day": "Frosmoth",
+     "night": "Frosmoth"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Sealeo",
+     "Dewgong",
+     "Lapras",
+     "Arctovish",
+     "Sealeo"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Gyarados",
+     "Gyarados",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [
+    [
+     "Wobbuffet",
+     22
+    ]
+   ],
+   "honey": []
+  },
+  {
+   "name": "Mt. Coronet ~ 2F",
+   "levels": "Levels: 49 - 51 (Walking)",
+   "tags": [
+    "cave"
+   ],
+   "grass": [
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    },
+    {
+     "morning": "Bronzong",
+     "day": "Bronzong",
+     "night": "Bronzong"
+    },
+    {
+     "morning": "Clefairy",
+     "day": "Clefairy",
+     "night": "Clefairy"
+    },
+    {
+     "morning": "Klawf",
+     "day": "Klawf",
+     "night": "Garbodor"
+    },
+    {
+     "morning": "Nosepass",
+     "day": "Nosepass",
+     "night": "Nosepass"
+    },
+    {
+     "morning": "Klang",
+     "day": "Klang",
+     "night": "Klang"
+    },
+    {
+     "morning": "Chimecho",
+     "day": "Chimecho",
+     "night": "Chimecho"
+    },
+    {
+     "morning": "Tinkatuff",
+     "day": "Tinkatuff",
+     "night": "Tinkatuff"
+    },
+    {
+     "morning": "Golbat",
+     "day": "Golbat",
+     "night": "Golbat"
+    },
+    {
+     "morning": "Gigalith",
+     "day": "Gigalith",
+     "night": "Gigalith"
+    },
+    {
+     "morning": "Metang",
+     "day": "Metang",
+     "night": "Metang"
+    },
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    }
+   ],
+   "water": {},
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Mt. Coronet ~ 3F",
+   "levels": "Levels: 49 - 51 (Walking)",
+   "tags": [
+    "cave"
+   ],
+   "grass": [
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    },
+    {
+     "morning": "Bronzong",
+     "day": "Bronzong",
+     "night": "Bronzong"
+    },
+    {
+     "morning": "Clefairy",
+     "day": "Clefairy",
+     "night": "Clefairy"
+    },
+    {
+     "morning": "Orthworm",
+     "day": "Orthworm",
+     "night": "Zoroark"
+    },
+    {
+     "morning": "Nosepass",
+     "day": "Nosepass",
+     "night": "Nosepass"
+    },
+    {
+     "morning": "Pangoro",
+     "day": "Pangoro",
+     "night": "Pangoro"
+    },
+    {
+     "morning": "Chimecho",
+     "day": "Chimecho",
+     "night": "Chimecho"
+    },
+    {
+     "morning": "Revavroom",
+     "day": "Revavroom",
+     "night": "Revavroom"
+    },
+    {
+     "morning": "Golbat",
+     "day": "Golbat",
+     "night": "Golbat"
+    },
+    {
+     "morning": "Conkeldurr",
+     "day": "Conkeldurr",
+     "night": "Conkeldurr"
+    },
+    {
+     "morning": "Metang",
+     "day": "Metang",
+     "night": "Metang"
+    },
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    }
+   ],
+   "water": {},
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Mt. Coronet ~ Snow Area",
+   "levels": "Levels: 50 - 52",
+   "tags": [
+    "snow",
+    "mountain"
+   ],
+   "grass": [
+    {
+     "morning": "Abomasnow",
+     "day": "Abomasnow",
+     "night": "Abomasnow"
+    },
+    {
+     "morning": "Medicham",
+     "day": "Medicham",
+     "night": "Medicham"
+    },
+    {
+     "morning": "Loudred",
+     "day": "Loudred",
+     "night": "Loudred"
+    },
+    {
+     "morning": "Abomasnow",
+     "day": "Abomasnow",
+     "night": "Abomasnow"
+    },
+    {
+     "morning": "Absol",
+     "day": "Absol",
+     "night": "Absol"
+    },
+    {
+     "morning": "Abomasnow",
+     "day": "Abomasnow",
+     "night": "Abomasnow"
+    },
+    {
+     "morning": "Donphan",
+     "day": "Donphan",
+     "night": "Donphan"
+    },
+    {
+     "morning": "Abomasnow",
+     "day": "Abomasnow",
+     "night": "Abomasnow"
+    },
+    {
+     "morning": "Ursaring",
+     "day": "Ursaring",
+     "night": "Ursaring"
+    },
+    {
+     "morning": "Abomasnow",
+     "day": "Abomasnow",
+     "night": "Abomasnow"
+    },
+    {
+     "morning": "Abomasnow",
+     "day": "Abomasnow",
+     "night": "Abomasnow"
+    },
+    {
+     "morning": "Abomasnow",
+     "day": "Abomasnow",
+     "night": "Abomasnow"
+    }
+   ],
+   "water": {},
+   "radar": [
+    [
+     "Clefable",
+     22
+    ]
+   ],
+   "honey": []
+  },
+  {
+   "name": "Mt. Coronet ~ 4F",
+   "levels": "Levels: 50 - 52 (Walking), 35 - 55 (Surfing)",
+   "tags": [
+    "cave",
+    "dragon"
+   ],
+   "grass": [
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    },
+    {
+     "morning": "Bronzong",
+     "day": "Bronzong",
+     "night": "Bronzong"
+    },
+    {
+     "morning": "Clefairy",
+     "day": "Clefairy",
+     "night": "Clefairy"
+    },
+    {
+     "morning": "Doublade",
+     "day": "Doublade",
+     "night": "Appletun"
+    },
+    {
+     "morning": "Nosepass",
+     "day": "Nosepass",
+     "night": "Nosepass"
+    },
+    {
+     "morning": "Copperajah",
+     "day": "Copperajah",
+     "night": "Copperajah"
+    },
+    {
+     "morning": "Chimecho",
+     "day": "Chimecho",
+     "night": "Chimecho"
+    },
+    {
+     "morning": "Tyrantrum",
+     "day": "Tyrantrum",
+     "night": "Tyrantrum"
+    },
+    {
+     "morning": "Golbat",
+     "day": "Golbat",
+     "night": "Golbat"
+    },
+    {
+     "morning": "Grimmsnarl",
+     "day": "Grimmsnarl",
+     "night": "Grimmsnarl"
+    },
+    {
+     "morning": "Metang",
+     "day": "Metang",
+     "night": "Metang"
+    },
+    {
+     "morning": "Zweilous",
+     "day": "Zweilous",
+     "night": "Zweilous"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Zubat",
+     "Golbat",
+     "Zubat",
+     "Zubat",
+     "Zubat"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Horsea",
+     "Dratini",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Horsea",
+     "Dratini",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Seadra",
+     "Dragonair",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Mt. Coronet ~ Summit",
+   "levels": "Levels: 51 - 53 (Walking)",
+   "tags": [
+    "peak",
+    "dragon"
+   ],
+   "grass": [
+    {
+     "morning": "Abomasnow",
+     "day": "Abomasnow",
+     "night": "Abomasnow"
+    },
+    {
+     "morning": "Medicham",
+     "day": "Medicham",
+     "night": "Medicham"
+    },
+    {
+     "morning": "Loudred",
+     "day": "Loudred",
+     "night": "Loudred"
+    },
+    {
+     "morning": "Noivern",
+     "day": "Noivern",
+     "night": "Drampa"
+    },
+    {
+     "morning": "Absol",
+     "day": "Absol",
+     "night": "Absol"
+    },
+    {
+     "morning": "Beheeyem",
+     "day": "Beheeyem",
+     "night": "Beheeyem"
+    },
+    {
+     "morning": "Donphan",
+     "day": "Donphan",
+     "night": "Donphan"
+    },
+    {
+     "morning": "Fraxure",
+     "day": "Fraxure",
+     "night": "Fraxure"
+    },
+    {
+     "morning": "Ursaring",
+     "day": "Ursaring",
+     "night": "Ursaring"
+    },
+    {
+     "morning": "Duraludon",
+     "day": "Duraludon",
+     "night": "Duraludon"
+    },
+    {
+     "morning": "Axew",
+     "day": "Axew",
+     "night": "Axew"
+    },
+    {
+     "morning": "Jangmo-o",
+     "day": "Jangmo-o",
+     "night": "Jangmo-o"
+    }
+   ],
+   "water": {},
+   "radar": [
+    [
+     "Clefable",
+     22
+    ]
+   ],
+   "honey": []
+  },
+  {
+   "name": "Mt. Coronet ~ 5F",
+   "levels": "Levels: 51 - 53 (Walking)",
+   "tags": [
+    "cave"
+   ],
+   "grass": [
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    },
+    {
+     "morning": "Bronzong",
+     "day": "Bronzong",
+     "night": "Bronzong"
+    },
+    {
+     "morning": "Clefairy",
+     "day": "Clefairy",
+     "night": "Clefairy"
+    },
+    {
+     "morning": "Liepard",
+     "day": "Liepard",
+     "night": "Escavalier"
+    },
+    {
+     "morning": "Nosepass",
+     "day": "Nosepass",
+     "night": "Nosepass"
+    },
+    {
+     "morning": "Bewear",
+     "day": "Bewear",
+     "night": "Bewear"
+    },
+    {
+     "morning": "Chimecho",
+     "day": "Chimecho",
+     "night": "Chimecho"
+    },
+    {
+     "morning": "Houndstone",
+     "day": "Houndstone",
+     "night": "Houndstone"
+    },
+    {
+     "morning": "Golbat",
+     "day": "Golbat",
+     "night": "Golbat"
+    },
+    {
+     "morning": "Krookodile",
+     "day": "Krookodile",
+     "night": "Krookodile"
+    },
+    {
+     "morning": "Metang",
+     "day": "Metang",
+     "night": "Metang"
+    },
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    }
+   ],
+   "water": {},
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Mt. Coronet ~ 6F",
+   "levels": "Levels: 51 - 53 (Walking)",
+   "tags": [
+    "cave"
+   ],
+   "grass": [
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    },
+    {
+     "morning": "Bronzong",
+     "day": "Bronzong",
+     "night": "Bronzong"
+    },
+    {
+     "morning": "Clefairy",
+     "day": "Clefairy",
+     "night": "Clefairy"
+    },
+    {
+     "morning": "Boldore",
+     "day": "Boldore",
+     "night": "Amoonguss"
+    },
+    {
+     "morning": "Nosepass",
+     "day": "Nosepass",
+     "night": "Nosepass"
+    },
+    {
+     "morning": "Palossand",
+     "day": "Palossand",
+     "night": "Palossand"
+    },
+    {
+     "morning": "Chimecho",
+     "day": "Chimecho",
+     "night": "Chimecho"
+    },
+    {
+     "morning": "Sinistcha",
+     "day": "Sinistcha",
+     "night": "Sinistcha"
+    },
+    {
+     "morning": "Golbat",
+     "day": "Golbat",
+     "night": "Golbat"
+    },
+    {
+     "morning": "Aegislash",
+     "day": "Aegislash",
+     "night": "Aegislash"
+    },
+    {
+     "morning": "Metang",
+     "day": "Metang",
+     "night": "Metang"
+    },
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    }
+   ],
+   "water": {},
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Mt. Coronet ~ 7F",
+   "levels": "Levels: 51 - 53 (Walking)",
+   "tags": [
+    "cave",
+    "dragon"
+   ],
+   "grass": [
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    },
+    {
+     "morning": "Bronzong",
+     "day": "Bronzong",
+     "night": "Bronzong"
+    },
+    {
+     "morning": "Clefairy",
+     "day": "Clefairy",
+     "night": "Clefairy"
+    },
+    {
+     "morning": "Ferrothorn",
+     "day": "Ferrothorn",
+     "night": "Flapple"
+    },
+    {
+     "morning": "Nosepass",
+     "day": "Nosepass",
+     "night": "Nosepass"
+    },
+    {
+     "morning": "Runerigus",
+     "day": "Runerigus",
+     "night": "Runerigus"
+    },
+    {
+     "morning": "Chimecho",
+     "day": "Chimecho",
+     "night": "Chimecho"
+    },
+    {
+     "morning": "Dipplin",
+     "day": "Dipplin",
+     "night": "Dipplin"
+    },
+    {
+     "morning": "Golbat",
+     "day": "Golbat",
+     "night": "Golbat"
+    },
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    },
+    {
+     "morning": "Metang",
+     "day": "Metang",
+     "night": "Metang"
+    },
+    {
+     "morning": "Sliggoo",
+     "day": "Sliggoo",
+     "night": "Sliggoo"
+    }
+   ],
+   "water": {},
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Sendoff Spring",
+   "levels": "Level: 53 - 54 (Walking), 45 - 55 (Surfing)",
+   "tags": [
+    "ruins",
+    "lake",
+    "ghost"
+   ],
+   "grass": [
+    {
+     "morning": "Staravia",
+     "day": "Staravia",
+     "night": "Staravia"
+    },
+    {
+     "morning": "Bibarel",
+     "day": "Bibarel",
+     "night": "Bibarel"
+    },
+    {
+     "morning": "Chimecho",
+     "day": "Chimecho",
+     "night": "Chimecho"
+    },
+    {
+     "morning": "Mimikyu",
+     "day": "Mimikyu",
+     "night": "Flittle"
+    },
+    {
+     "morning": "Solrock",
+     "day": "Solrock",
+     "night": "Solrock"
+    },
+    {
+     "morning": "Musharna",
+     "day": "Musharna",
+     "night": "Musharna"
+    },
+    {
+     "morning": "Lunatone",
+     "day": "Lunatone",
+     "night": "Lunatone"
+    },
+    {
+     "morning": "Wyrdeer",
+     "day": "Wyrdeer",
+     "night": "Wyrdeer"
+    },
+    {
+     "morning": "Dusclops",
+     "day": "Dusclops",
+     "night": "Dusclops"
+    },
+    {
+     "morning": "Gholdengo",
+     "day": "Gholdengo",
+     "night": "Gholdengo"
+    },
+    {
+     "morning": "Drakloak",
+     "day": "Drakloak",
+     "night": "Drakloak"
+    },
+    {
+     "morning": "Hattrem",
+     "day": "Hattrem",
+     "night": "Hattrem"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Golduck",
+     "Golduck",
+     "Basculegion",
+     "Golduck",
+     "Golduck"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Frillish",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Bruxish",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Jellicent",
+     "Dhelmise",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [
+    [
+     "Wobbuffet",
+     22
+    ]
+   ],
+   "honey": []
+  },
+  {
+   "name": "Lake Valor",
+   "levels": "Level: 53 - 54 (Walking), 35 - 55 (Surfing)",
+   "tags": [
+    "lake"
+   ],
+   "grass": [
+    {
+     "morning": "Haunter",
+     "day": "Haunter",
+     "night": "Haunter"
+    },
+    {
+     "morning": "Golbat",
+     "day": "Golbat",
+     "night": "Golbat"
+    },
+    {
+     "morning": "Bronzong",
+     "day": "Bronzong",
+     "night": "Bronzong"
+    },
+    {
+     "morning": "Comfey",
+     "day": "Comfey",
+     "night": "Gothorita"
+    },
+    {
+     "morning": "Chimecho",
+     "day": "Chimecho",
+     "night": "Chimecho"
+    },
+    {
+     "morning": "Duosion",
+     "day": "Duosion",
+     "night": "Duosion"
+    },
+    {
+     "morning": "Dusclops",
+     "day": "Dusclops",
+     "night": "Dusclops"
+    },
+    {
+     "morning": "Florges",
+     "day": "Florges",
+     "night": "Florges"
+    },
+    {
+     "morning": "Banette",
+     "day": "Banette",
+     "night": "Banette"
+    },
+    {
+     "morning": "Meowstic",
+     "day": "Meowstic",
+     "night": "Meowstic"
+    },
+    {
+     "morning": "Alcremie",
+     "day": "Alcremie",
+     "night": "Alcremie"
+    },
+    {
+     "morning": "Dachsbun",
+     "day": "Dachsbun",
+     "night": "Dachsbun"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Surskit",
+     "Masquerain",
+     "Surskit",
+     "Surskit",
+     "Surskit"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Finizen",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Gyarados",
+     "Gyarados",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [
+    [
+     "Wobbuffet",
+     22
+    ]
+   ],
+   "honey": []
+  },
+  {
+   "name": "Route 222",
+   "levels": "Level: 53 - 54 (Walking), 54 (Honey Tree), 35 - 55 (Surfing)",
+   "tags": [
+    "beach",
+    "electric"
+   ],
+   "grass": [
+    {
+     "morning": "Electabuzz",
+     "day": "Electabuzz",
+     "night": "Electabuzz"
+    },
+    {
+     "morning": "Floatzel",
+     "day": "Floatzel",
+     "night": "Floatzel"
+    },
+    {
+     "morning": "Chatot",
+     "day": "Chatot",
+     "night": "Luxio"
+    },
+    {
+     "morning": "Togedemaru",
+     "day": "Togedemaru",
+     "night": "Yamper"
+    },
+    {
+     "morning": "Luxio",
+     "day": "Luxio",
+     "night": "Luxio"
+    },
+    {
+     "morning": "Pincurchin",
+     "day": "Pincurchin",
+     "night": "Pincurchin"
+    },
+    {
+     "morning": "Purugly",
+     "day": "Purugly",
+     "night": "Purugly"
+    },
+    {
+     "morning": "Klinklang",
+     "day": "Klinklang",
+     "night": "Klinklang"
+    },
+    {
+     "morning": "Pelipper",
+     "day": "Pelipper",
+     "night": "Pelipper"
+    },
+    {
+     "morning": "Zebstrika",
+     "day": "Zebstrika",
+     "night": "Zebstrika"
+    },
+    {
+     "morning": "Flaaffy",
+     "day": "Flaaffy",
+     "night": "Flaaffy"
+    },
+    {
+     "morning": "Boltund",
+     "day": "Boltund",
+     "night": "Boltund"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Tentacool",
+     "Wingull",
+     "Tentacruel",
+     "Tentacool",
+     "Tentacool"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Remoraid",
+     "Wailmer",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Remoraid",
+     "Wailmer",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Wailmer",
+     "Octillery",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [
+    [
+     "Delcatty",
+     22
+    ]
+   ],
+   "honey": [
+    [
+     "Tangela",
+     30
+    ],
+    [
+     "Heracross",
+     30
+    ],
+    [
+     "Farfetch'd",
+     30
+    ],
+    [
+     "Snorlax",
+     10
+    ]
+   ]
+  },
+  {
+   "name": "Sunyshore City",
+   "levels": "Level: 50 - 60 (Surfing)",
+   "tags": [
+    "sea",
+    "electric",
+    "city"
+   ],
+   "grass": null,
+   "water": {
+    "Surf": [
+     "Tentacruel",
+     "Pelipper",
+     "Mantine",
+     "Tentacruel",
+     "Tentacruel"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Krabby",
+     "Staryu",
+     "Tynamo",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Krabby",
+     "Staryu",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Kingler",
+     "Starmie",
+     "Eelektrik",
+     "Eelektross"
+    ]
+   },
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Route 223",
+   "levels": "Level: 50 - 60 (Surfing)",
+   "tags": [
+    "sea"
+   ],
+   "grass": null,
+   "water": {
+    "Surf": [
+     "Tentacruel",
+     "Pelipper",
+     "Mantine",
+     "Tentacruel",
+     "Tentacruel"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Remoraid",
+     "Wailmer",
+     "Chewtle",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Remoraid",
+     "Wailmer",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Wailmer",
+     "Octillery",
+     "Clawitzer",
+     "Gyarados"
+    ]
+   },
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Pokémon League",
+   "levels": "Level: 50 - 60 (Surfing)",
+   "tags": [
+    "sea",
+    "city"
+   ],
+   "grass": null,
+   "water": {
+    "Surf": [
+     "Tentacruel",
+     "Pelipper",
+     "Mantine",
+     "Tentacruel",
+     "Tentacruel"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Luvdisc",
+     "Corsola",
+     "Mareanie",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Luvdisc",
+     "Corsola",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Luvdisc",
+     "Corsola",
+     "Toxapex",
+     "Gyarados"
+    ]
+   },
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Victory Road ~ 1F",
+   "levels": "Level: 59 (Walking)",
+   "tags": [
+    "cave",
+    "dragon"
+   ],
+   "grass": [
+    {
+     "morning": "Machoke",
+     "day": "Machoke",
+     "night": "Machoke"
+    },
+    {
+     "morning": "Golbat",
+     "day": "Golbat",
+     "night": "Golbat"
+    },
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    },
+    {
+     "morning": "Bisharp",
+     "day": "Bisharp",
+     "night": "Grapploct"
+    },
+    {
+     "morning": "Medicham",
+     "day": "Medicham",
+     "night": "Medicham"
+    },
+    {
+     "morning": "Kleavor",
+     "day": "Kleavor",
+     "night": "Kleavor"
+    },
+    {
+     "morning": "Hariyama",
+     "day": "Hariyama",
+     "night": "Hariyama"
+    },
+    {
+     "morning": "Archaludon",
+     "day": "Archaludon",
+     "night": "Archaludon"
+    },
+    {
+     "morning": "Gabite",
+     "day": "Gabite",
+     "night": "Gabite"
+    },
+    {
+     "morning": "Pawmot",
+     "day": "Pawmot",
+     "night": "Pawmot"
+    },
+    {
+     "morning": "Rhydon",
+     "day": "Rhydon",
+     "night": "Rhydon"
+    },
+    {
+     "morning": "Machoke",
+     "day": "Machoke",
+     "night": "Machoke"
+    }
+   ],
+   "water": {},
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Victory Road ~ 2F",
+   "levels": "Level: 59 (Walking)",
+   "tags": [
+    "cave",
+    "dragon"
+   ],
+   "grass": [
+    {
+     "morning": "Steelix",
+     "day": "Steelix",
+     "night": "Steelix"
+    },
+    {
+     "morning": "Magneton",
+     "day": "Magneton",
+     "night": "Magneton"
+    },
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    },
+    {
+     "morning": "Mandibuzz",
+     "day": "Mandibuzz",
+     "night": "Polteageist"
+    },
+    {
+     "morning": "Kadabra",
+     "day": "Kadabra",
+     "night": "Kadabra"
+    },
+    {
+     "morning": "Overqwil",
+     "day": "Overqwil",
+     "night": "Overqwil"
+    },
+    {
+     "morning": "Lickitung",
+     "day": "Lickitung",
+     "night": "Lickitung"
+    },
+    {
+     "morning": "Haxorus",
+     "day": "Haxorus",
+     "night": "Haxorus"
+    },
+    {
+     "morning": "Golbat",
+     "day": "Golbat",
+     "night": "Golbat"
+    },
+    {
+     "morning": "Garganacl",
+     "day": "Garganacl",
+     "night": "Garganacl"
+    },
+    {
+     "morning": "Marowak",
+     "day": "Marowak",
+     "night": "Marowak"
+    },
+    {
+     "morning": "Steelix",
+     "day": "Steelix",
+     "night": "Steelix"
+    }
+   ],
+   "water": {},
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Victory Road ~ B1F",
+   "levels": "Level: 59 (Walking), 50 - 60 (Surfing)",
+   "tags": [
+    "cave",
+    "dragon"
+   ],
+   "grass": [
+    {
+     "morning": "Azumarill",
+     "day": "Azumarill",
+     "night": "Azumarill"
+    },
+    {
+     "morning": "Floatzel",
+     "day": "Floatzel",
+     "night": "Floatzel"
+    },
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    },
+    {
+     "morning": "Morgrem",
+     "day": "Morgrem",
+     "night": "Lokix"
+    },
+    {
+     "morning": "Mawile",
+     "day": "Mawile",
+     "night": "Mawile"
+    },
+    {
+     "morning": "Brambleghast",
+     "day": "Brambleghast",
+     "night": "Brambleghast"
+    },
+    {
+     "morning": "Sableye",
+     "day": "Sableye",
+     "night": "Sableye"
+    },
+    {
+     "morning": "Goodra",
+     "day": "Goodra",
+     "night": "Goodra"
+    },
+    {
+     "morning": "Dewgong",
+     "day": "Dewgong",
+     "night": "Dewgong"
+    },
+    {
+     "morning": "Azumarill",
+     "day": "Azumarill",
+     "night": "Azumarill"
+    },
+    {
+     "morning": "Golbat",
+     "day": "Golbat",
+     "night": "Golbat"
+    },
+    {
+     "morning": "Azumarill",
+     "day": "Azumarill",
+     "night": "Azumarill"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Floatzel",
+     "Golbat",
+     "Floatzel",
+     "Floatzel",
+     "Floatzel"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Tatsugiri",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Gyarados",
+     "Gyarados",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Victory Road ~ 1F Back 1",
+   "levels": "Level: 59 (Walking)",
+   "tags": [
+    "cave",
+    "dragon"
+   ],
+   "grass": [
+    {
+     "morning": "Azumarill",
+     "day": "Azumarill",
+     "night": "Azumarill"
+    },
+    {
+     "morning": "Floatzel",
+     "day": "Floatzel",
+     "night": "Floatzel"
+    },
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    },
+    {
+     "morning": "Malamar",
+     "day": "Malamar",
+     "night": "Perrserker"
+    },
+    {
+     "morning": "Machoke",
+     "day": "Machoke",
+     "night": "Machoke"
+    },
+    {
+     "morning": "Naclstack",
+     "day": "Naclstack",
+     "night": "Naclstack"
+    },
+    {
+     "morning": "Medicham",
+     "day": "Medicham",
+     "night": "Medicham"
+    },
+    {
+     "morning": "Kommo-o",
+     "day": "Kommo-o",
+     "night": "Kommo-o"
+    },
+    {
+     "morning": "Steelix",
+     "day": "Steelix",
+     "night": "Steelix"
+    },
+    {
+     "morning": "Tinkaton",
+     "day": "Tinkaton",
+     "night": "Tinkaton"
+    },
+    {
+     "morning": "Golbat",
+     "day": "Golbat",
+     "night": "Golbat"
+    },
+    {
+     "morning": "Azumarill",
+     "day": "Azumarill",
+     "night": "Azumarill"
+    }
+   ],
+   "water": {},
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Victory Road ~ 1F Back 2",
+   "levels": "Level: 59 (Walking), 50 - 60 (Surfing)",
+   "tags": [
+    "cave",
+    "dragon"
+   ],
+   "grass": [
+    {
+     "morning": "Azumarill",
+     "day": "Azumarill",
+     "night": "Azumarill"
+    },
+    {
+     "morning": "Floatzel",
+     "day": "Floatzel",
+     "night": "Floatzel"
+    },
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    },
+    {
+     "morning": "Cursola",
+     "day": "Cursola",
+     "night": "Mabosstiff"
+    },
+    {
+     "morning": "Machoke",
+     "day": "Machoke",
+     "night": "Machoke"
+    },
+    {
+     "morning": "Toedscruel",
+     "day": "Toedscruel",
+     "night": "Toedscruel"
+    },
+    {
+     "morning": "Medicham",
+     "day": "Medicham",
+     "night": "Medicham"
+    },
+    {
+     "morning": "Baxcalibur",
+     "day": "Baxcalibur",
+     "night": "Baxcalibur"
+    },
+    {
+     "morning": "Dewgong",
+     "day": "Dewgong",
+     "night": "Dewgong"
+    },
+    {
+     "morning": "Azumarill",
+     "day": "Azumarill",
+     "night": "Azumarill"
+    },
+    {
+     "morning": "Golbat",
+     "day": "Golbat",
+     "night": "Golbat"
+    },
+    {
+     "morning": "Azumarill",
+     "day": "Azumarill",
+     "night": "Azumarill"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Sealeo",
+     "Dewgong",
+     "Lapras",
+     "Sealeo",
+     "Sealeo"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Dragalge",
+     "Gyarados",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Victory Road ~ 1F Back 3",
+   "levels": "Level: 59 (Walking)",
+   "tags": [
+    "cave",
+    "dragon"
+   ],
+   "grass": [
+    {
+     "morning": "Azumarill",
+     "day": "Azumarill",
+     "night": "Azumarill"
+    },
+    {
+     "morning": "Floatzel",
+     "day": "Floatzel",
+     "night": "Floatzel"
+    },
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    },
+    {
+     "morning": "Crabominable",
+     "day": "Crabominable",
+     "night": "Sirfetch’d"
+    },
+    {
+     "morning": "Machoke",
+     "day": "Machoke",
+     "night": "Machoke"
+    },
+    {
+     "morning": "Grafaiai",
+     "day": "Grafaiai",
+     "night": "Grafaiai"
+    },
+    {
+     "morning": "Medicham",
+     "day": "Medicham",
+     "night": "Medicham"
+    },
+    {
+     "morning": "Hydrapple",
+     "day": "Hydrapple",
+     "night": "Hydrapple"
+    },
+    {
+     "morning": "Steelix",
+     "day": "Steelix",
+     "night": "Steelix"
+    },
+    {
+     "morning": "Azumarill",
+     "day": "Azumarill",
+     "night": "Azumarill"
+    },
+    {
+     "morning": "Golbat",
+     "day": "Golbat",
+     "night": "Golbat"
+    },
+    {
+     "morning": "Azumarill",
+     "day": "Azumarill",
+     "night": "Azumarill"
+    }
+   ],
+   "water": {},
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Route 224",
+   "levels": "Level: 59 (Walking), 50 - 60 (Surfing)",
+   "tags": [
+    "field",
+    "flower",
+    "sea"
+   ],
+   "grass": [
+    {
+     "morning": "Beautifly",
+     "day": "Beautifly",
+     "night": "Beautifly"
+    },
+    {
+     "morning": "Dustox",
+     "day": "Dustox",
+     "night": "Dustox"
+    },
+    {
+     "morning": "Chatot",
+     "day": "Chatot",
+     "night": "Gloom"
+    },
+    {
+     "morning": "Dudunsparce",
+     "day": "Dudunsparce",
+     "night": "Cutiefly"
+    },
+    {
+     "morning": "Weepinbell",
+     "day": "Weepinbell",
+     "night": "Weepinbell"
+    },
+    {
+     "morning": "Fidough",
+     "day": "Fidough",
+     "night": "Fidough"
+    },
+    {
+     "morning": "Roselia",
+     "day": "Roselia",
+     "night": "Roselia"
+    },
+    {
+     "morning": "Hawlucha",
+     "day": "Hawlucha",
+     "night": "Hawlucha"
+    },
+    {
+     "morning": "Gastrodon",
+     "day": "Gastrodon",
+     "night": "Gastrodon"
+    },
+    {
+     "morning": "Cyclizar",
+     "day": "Cyclizar",
+     "night": "Cyclizar"
+    },
+    {
+     "morning": "Shuckle",
+     "day": "Shuckle",
+     "night": "Shuckle"
+    },
+    {
+     "morning": "Xatu",
+     "day": "Xatu",
+     "night": "Xatu"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Tentacruel",
+     "Pelipper",
+     "Gastrodon",
+     "Tentacruel",
+     "Tentacruel"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Luvdisc",
+     "Corsola",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Luvdisc",
+     "Corsola",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Luvdisc",
+     "Corsola",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Turnback Cave",
+   "levels": "Level: 65 - 66 (Walking)",
+   "tags": [
+    "ghost",
+    "cave"
+   ],
+   "grass": [
+    {
+     "morning": "Golbat",
+     "day": "Golbat",
+     "night": "Golbat"
+    },
+    {
+     "morning": "Haunter",
+     "day": "Haunter",
+     "night": "Haunter"
+    },
+    {
+     "morning": "Dusclops",
+     "day": "Dusclops",
+     "night": "Dusclops"
+    },
+    {
+     "morning": "Dragapult",
+     "day": "Dragapult",
+     "night": "Gimmighoul"
+    },
+    {
+     "morning": "Banette",
+     "day": "Banette",
+     "night": "Banette"
+    },
+    {
+     "morning": "Cofagrigus",
+     "day": "Cofagrigus",
+     "night": "Cofagrigus"
+    },
+    {
+     "morning": "Bronzong",
+     "day": "Bronzong",
+     "night": "Bronzong"
+    },
+    {
+     "morning": "Ceruledge",
+     "day": "Ceruledge",
+     "night": "Ceruledge"
+    },
+    {
+     "morning": "Chimecho",
+     "day": "Chimecho",
+     "night": "Chimecho"
+    },
+    {
+     "morning": "Chandelure",
+     "day": "Chandelure",
+     "night": "Chandelure"
+    },
+    {
+     "morning": "Lunatone",
+     "day": "Lunatone",
+     "night": "Lunatone"
+    },
+    {
+     "morning": "Espathra",
+     "day": "Espathra",
+     "night": "Espathra"
+    }
+   ],
+   "water": {},
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Route 225",
+   "levels": "Levels: 65 - 67 (Walking), 65 - 67 (Surfing)",
+   "tags": [
+    "mountain",
+    "fighting"
+   ],
+   "grass": [
+    {
+     "morning": "Fearow",
+     "day": "Fearow",
+     "night": "Fearow"
+    },
+    {
+     "morning": "Machoke",
+     "day": "Machoke",
+     "night": "Machoke"
+    },
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    },
+    {
+     "morning": "Gurdurr",
+     "day": "Gurdurr",
+     "night": "Scrafty"
+    },
+    {
+     "morning": "Raticate",
+     "day": "Raticate",
+     "night": "Raticate"
+    },
+    {
+     "morning": "Mienshao",
+     "day": "Mienshao",
+     "night": "Mienshao"
+    },
+    {
+     "morning": "Primeape",
+     "day": "Primeape",
+     "night": "Primeape"
+    },
+    {
+     "morning": "Flamigo",
+     "day": "Flamigo",
+     "night": "Flamigo"
+    },
+    {
+     "morning": "Hariyama",
+     "day": "Hariyama",
+     "night": "Hariyama"
+    },
+    {
+     "morning": "Annihilape",
+     "day": "Annihilape",
+     "night": "Annihilape"
+    },
+    {
+     "morning": "Grumpig",
+     "day": "Grumpig",
+     "night": "Grumpig"
+    },
+    {
+     "morning": "Hakamo-o",
+     "day": "Hakamo-o",
+     "night": "Hakamo-o"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Poliwhirl",
+     "Golduck",
+     "Poliwhirl",
+     "Poliwhirl",
+     "Poliwhirl"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Barboach",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Barboach",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Whiscash",
+     "Gyarados",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Route 226",
+   "levels": "Levels: 65 - 67 (Walking), 65 - 67 (Surfing)",
+   "tags": [
+    "sea",
+    "mountain"
+   ],
+   "grass": [
+    {
+     "morning": "Raticate",
+     "day": "Raticate",
+     "night": "Raticate"
+    },
+    {
+     "morning": "Fearow",
+     "day": "Fearow",
+     "night": "Fearow"
+    },
+    {
+     "morning": "Arbok",
+     "day": "Arbok",
+     "night": "Arbok"
+    },
+    {
+     "morning": "Carracosta",
+     "day": "Carracosta",
+     "night": "Barbaracle"
+    },
+    {
+     "morning": "Sandslash",
+     "day": "Sandslash",
+     "night": "Sandslash"
+    },
+    {
+     "morning": "Unfezant",
+     "day": "Unfezant",
+     "night": "Unfezant"
+    },
+    {
+     "morning": "Rapidash",
+     "day": "Rapidash",
+     "night": "Rapidash"
+    },
+    {
+     "morning": "Archeops",
+     "day": "Archeops",
+     "night": "Archeops"
+    },
+    {
+     "morning": "Dodrio",
+     "day": "Dodrio",
+     "night": "Dodrio"
+    },
+    {
+     "morning": "Corviknight",
+     "day": "Corviknight",
+     "night": "Corviknight"
+    },
+    {
+     "morning": "Kingler",
+     "day": "Kingler",
+     "night": "Kingler"
+    },
+    {
+     "morning": "Raticate",
+     "day": "Raticate",
+     "night": "Raticate"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Pelipper",
+     "Tentacruel",
+     "Pelipper",
+     "Pelipper",
+     "Pelipper"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Horsea",
+     "Relicanth",
+     "Wiglett",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Horsea",
+     "Relicanth",
+     "Palpitoad",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Seadra",
+     "Relicanth",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Route 227",
+   "levels": "Levels: 65 - 67 (Walking), 65 - 67 (Surfing)",
+   "tags": [
+    "volcano"
+   ],
+   "grass": [
+    {
+     "morning": "Rhydon",
+     "day": "Rhydon",
+     "night": "Rhydon"
+    },
+    {
+     "morning": "Camerupt",
+     "day": "Camerupt",
+     "night": "Camerupt"
+    },
+    {
+     "morning": "Skarmory",
+     "day": "Skarmory",
+     "night": "Skarmory"
+    },
+    {
+     "morning": "Charcadet",
+     "day": "Charcadet",
+     "night": "Simisear"
+    },
+    {
+     "morning": "Gligar",
+     "day": "Gligar",
+     "night": "Gligar"
+    },
+    {
+     "morning": "Pyroar",
+     "day": "Pyroar",
+     "night": "Pyroar"
+    },
+    {
+     "morning": "Weezing",
+     "day": "Weezing",
+     "night": "Weezing"
+    },
+    {
+     "morning": "Volcarona",
+     "day": "Volcarona",
+     "night": "Volcarona"
+    },
+    {
+     "morning": "Torkoal",
+     "day": "Torkoal",
+     "night": "Torkoal"
+    },
+    {
+     "morning": "Scovillain",
+     "day": "Scovillain",
+     "night": "Scovillain"
+    },
+    {
+     "morning": "Spinda",
+     "day": "Spinda",
+     "night": "Spinda"
+    },
+    {
+     "morning": "Rhydon",
+     "day": "Rhydon",
+     "night": "Rhydon"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Poliwhirl",
+     "Poliwhirl",
+     "Poliwhirl",
+     "Poliwhirl",
+     "Poliwhirl"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Barboach",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Barboach",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Whiscash",
+     "Gyarados",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Route 228",
+   "levels": "Levels: 65 - 67 (Walking), 65 - 67 (Surfing)",
+   "tags": [
+    "desert"
+   ],
+   "grass": [
+    {
+     "morning": "Cacturne",
+     "day": "Cacturne",
+     "night": "Cacturne"
+    },
+    {
+     "morning": "Sandslash",
+     "day": "Sandslash",
+     "night": "Sandslash"
+    },
+    {
+     "morning": "Dugtrio",
+     "day": "Dugtrio",
+     "night": "Dugtrio"
+    },
+    {
+     "morning": "Krokorok",
+     "day": "Krokorok",
+     "night": "Galvantula"
+    },
+    {
+     "morning": "Vibrava",
+     "day": "Vibrava",
+     "night": "Vibrava"
+    },
+    {
+     "morning": "Mudsdale",
+     "day": "Mudsdale",
+     "night": "Mudsdale"
+    },
+    {
+     "morning": "Claydol",
+     "day": "Claydol",
+     "night": "Claydol"
+    },
+    {
+     "morning": "Spidops",
+     "day": "Spidops",
+     "night": "Spidops"
+    },
+    {
+     "morning": "Hippowdon",
+     "day": "Hippowdon",
+     "night": "Hippowdon"
+    },
+    {
+     "morning": "Leavanny",
+     "day": "Leavanny",
+     "night": "Leavanny"
+    },
+    {
+     "morning": "Metang",
+     "day": "Metang",
+     "night": "Metang"
+    },
+    {
+     "morning": "Vikavolt",
+     "day": "Vikavolt",
+     "night": "Vikavolt"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Poliwhirl",
+     "Poliwhirl",
+     "Poliwhirl",
+     "Poliwhirl",
+     "Poliwhirl"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Barboach",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Barboach",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Whiscash",
+     "Gyarados",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Route 229",
+   "levels": "Levels: 65 - 67 (Walking), 65 - 67 (Surfing)",
+   "tags": [
+    "forest"
+   ],
+   "grass": [
+    {
+     "morning": "Scyther",
+     "day": "Scyther",
+     "night": "Scyther"
+    },
+    {
+     "morning": "Pinsir",
+     "day": "Pinsir",
+     "night": "Pinsir"
+    },
+    {
+     "morning": "Ledian",
+     "day": "Sunkern",
+     "night": "Ariados"
+    },
+    {
+     "morning": "Nymble",
+     "day": "Nymble",
+     "night": "Swadloon"
+    },
+    {
+     "morning": "Roselia",
+     "day": "Roselia",
+     "night": "Roselia"
+    },
+    {
+     "morning": "Lilligant",
+     "day": "Lilligant",
+     "night": "Lilligant"
+    },
+    {
+     "morning": "Venomoth",
+     "day": "Venomoth",
+     "night": "Venomoth"
+    },
+    {
+     "morning": "Sawsbuck",
+     "day": "Sawsbuck",
+     "night": "Sawsbuck"
+    },
+    {
+     "morning": "Illumise",
+     "day": "Illumise",
+     "night": "Illumise"
+    },
+    {
+     "morning": "Aromatisse",
+     "day": "Aromatisse",
+     "night": "Aromatisse"
+    },
+    {
+     "morning": "Volbeat",
+     "day": "Volbeat",
+     "night": "Volbeat"
+    },
+    {
+     "morning": "Lurantis",
+     "day": "Lurantis",
+     "night": "Lurantis"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Masquerain",
+     "Masquerain",
+     "Masquerain",
+     "Masquerain",
+     "Masquerain"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Goldeen",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Goldeen",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Seaking",
+     "Gyarados",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Resort Area",
+   "levels": "Levels: 1 - 100 (Surf), 1 - 100 (All Rods)",
+   "tags": [
+    "sea"
+   ],
+   "grass": null,
+   "water": {
+    "Surf": [
+     "Magikarp",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Tympole",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Alomomola",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Magikarp",
+     "Swanna",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ]
+   },
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Route 230",
+   "levels": "Levels: 65 - 67 (Walking), 65 - 67 (Surfing)",
+   "tags": [
+    "sea"
+   ],
+   "grass": [
+    {
+     "morning": "Pelipper",
+     "day": "Pelipper",
+     "night": "Pelipper"
+    },
+    {
+     "morning": "Floatzel",
+     "day": "Floatzel",
+     "night": "Floatzel"
+    },
+    {
+     "morning": "Gastrodon",
+     "day": "Gastrodon",
+     "night": "Gastrodon"
+    },
+    {
+     "morning": "Braviary",
+     "day": "Braviary",
+     "night": "Avalugg"
+    },
+    {
+     "morning": "Golduck",
+     "day": "Golduck",
+     "night": "Golduck"
+    },
+    {
+     "morning": "Kilowattrel",
+     "day": "Kilowattrel",
+     "night": "Kilowattrel"
+    },
+    {
+     "morning": "Tropius",
+     "day": "Tropius",
+     "night": "Tropius"
+    },
+    {
+     "morning": "Pelipper",
+     "day": "Pelipper",
+     "night": "Pelipper"
+    },
+    {
+     "morning": "Zangoose",
+     "day": "Zangoose",
+     "night": "Zangoose"
+    },
+    {
+     "morning": "Pelipper",
+     "day": "Pelipper",
+     "night": "Pelipper"
+    },
+    {
+     "morning": "Seviper",
+     "day": "Seviper",
+     "night": "Seviper"
+    },
+    {
+     "morning": "Togetic",
+     "day": "Togetic",
+     "night": "Togetic"
+    }
+   ],
+   "water": {
+    "Surf": [
+     "Sealeo",
+     "Tentacruel",
+     "Sealeo",
+     "Sealeo",
+     "Sealeo"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Corsola",
+     "Wailmer",
+     "Arrokuda",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Corsola",
+     "Wailmer",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Corsola",
+     "Wailord",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Stark Mountain (Outside)",
+   "levels": "Levels: 66 - 68 (Walking)",
+   "tags": [
+    "volcano",
+    "cave"
+   ],
+   "grass": [
+    {
+     "morning": "Fearow",
+     "day": "Fearow",
+     "night": "Fearow"
+    },
+    {
+     "morning": "Rhydon",
+     "day": "Rhydon",
+     "night": "Rhydon"
+    },
+    {
+     "morning": "Camerupt",
+     "day": "Camerupt",
+     "night": "Camerupt"
+    },
+    {
+     "morning": "Excadrill",
+     "day": "Excadrill",
+     "night": "Lampent"
+    },
+    {
+     "morning": "Machoke",
+     "day": "Machoke",
+     "night": "Machoke"
+    },
+    {
+     "morning": "Salazzle",
+     "day": "Salazzle",
+     "night": "Salazzle"
+    },
+    {
+     "morning": "Skarmory",
+     "day": "Skarmory",
+     "night": "Skarmory"
+    },
+    {
+     "morning": "Carbink",
+     "day": "Carbink",
+     "night": "Carbink"
+    },
+    {
+     "morning": "Gligar",
+     "day": "Gligar",
+     "night": "Gligar"
+    },
+    {
+     "morning": "Hydreigon",
+     "day": "Hydreigon",
+     "night": "Hydreigon"
+    },
+    {
+     "morning": "Magmar",
+     "day": "Magmar",
+     "night": "Magmar"
+    },
+    {
+     "morning": "Coalossal",
+     "day": "Coalossal",
+     "night": "Coalossal"
+    }
+   ],
+   "water": {},
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Stark Mountain (Entrance)",
+   "levels": "Levels: 67 - 69 (Walking)",
+   "tags": [
+    "volcano",
+    "cave"
+   ],
+   "grass": [
+    {
+     "morning": "Golbat",
+     "day": "Golbat",
+     "night": "Golbat"
+    },
+    {
+     "morning": "Rhydon",
+     "day": "Rhydon",
+     "night": "Rhydon"
+    },
+    {
+     "morning": "Magcargo",
+     "day": "Magcargo",
+     "night": "Magcargo"
+    },
+    {
+     "morning": "Darmanitan",
+     "day": "Darmanitan",
+     "night": "Golurk"
+    },
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    },
+    {
+     "morning": "Carkol",
+     "day": "Carkol",
+     "night": "Carkol"
+    },
+    {
+     "morning": "Machoke",
+     "day": "Machoke",
+     "night": "Machoke"
+    },
+    {
+     "morning": "Aurorus",
+     "day": "Aurorus",
+     "night": "Aurorus"
+    },
+    {
+     "morning": "Weezing",
+     "day": "Weezing",
+     "night": "Weezing"
+    },
+    {
+     "morning": "Ursaluna",
+     "day": "Ursaluna",
+     "night": "Ursaluna"
+    },
+    {
+     "morning": "Muk",
+     "day": "Muk",
+     "night": "Muk"
+    },
+    {
+     "morning": "Golbat",
+     "day": "Golbat",
+     "night": "Golbat"
+    }
+   ],
+   "water": {},
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Stark Mountain (Interior)",
+   "levels": "Levels: 67 - 69 (Walking)",
+   "tags": [
+    "volcano",
+    "cave"
+   ],
+   "grass": [
+    {
+     "morning": "Magcargo",
+     "day": "Magcargo",
+     "night": "Magcargo"
+    },
+    {
+     "morning": "Rhydon",
+     "day": "Rhydon",
+     "night": "Rhydon"
+    },
+    {
+     "morning": "Golbat",
+     "day": "Golbat",
+     "night": "Golbat"
+    },
+    {
+     "morning": "Crustle",
+     "day": "Crustle",
+     "night": "Lycanroc"
+    },
+    {
+     "morning": "Graveler",
+     "day": "Graveler",
+     "night": "Graveler"
+    },
+    {
+     "morning": "Sandaconda",
+     "day": "Sandaconda",
+     "night": "Sandaconda"
+    },
+    {
+     "morning": "Machoke",
+     "day": "Machoke",
+     "night": "Machoke"
+    },
+    {
+     "morning": "Glimmora",
+     "day": "Glimmora",
+     "night": "Glimmora"
+    },
+    {
+     "morning": "Weezing",
+     "day": "Weezing",
+     "night": "Weezing"
+    },
+    {
+     "morning": "Kingambit",
+     "day": "Kingambit",
+     "night": "Kingambit"
+    },
+    {
+     "morning": "Muk",
+     "day": "Muk",
+     "night": "Muk"
+    },
+    {
+     "morning": "Magcargo",
+     "day": "Magcargo",
+     "night": "Magcargo"
+    }
+   ],
+   "water": {},
+   "radar": [],
+   "honey": []
+  }
+ ],
+ "placed": {
+  "Axew": "Mt. Coronet ~ Summit (grass)",
+  "Deino": "Mt. Coronet ~ B1F (grass)",
+  "Larvesta": "Route 205 ~ North (grass)",
+  "Goomy": "Route 210 ~ North (grass)",
+  "Jangmo-o": "Mt. Coronet ~ Summit (grass)",
+  "Dreepy": "Old Chateau (All Rooms) (grass)",
+  "Frigibax": "Mt. Coronet ~ Route 216 Entrance (grass)",
+  "Fraxure": "Mt. Coronet ~ Summit (grass)",
+  "Zweilous": "Mt. Coronet ~ 4F (grass)",
+  "Sliggoo": "Mt. Coronet ~ 7F (grass)",
+  "Hakamo-o": "Route 225 (grass)",
+  "Drakloak": "Sendoff Spring (grass)",
+  "Arctibax": "Lake Acuity (grass)",
+  "Cryogonal": "Lake Acuity (grass)",
+  "Hawlucha": "Route 224 (grass)",
+  "Carbink": "Stark Mountain (Outside) (grass)",
+  "Dhelmise": "Sendoff Spring (Super Rod)",
+  "Dracozolt": "Fuego Ironworks (grass)",
+  "Arctozolt": "Fuego Ironworks (grass)",
+  "Dracovish": "Route 213 (Super Rod)",
+  "Arctovish": "Lake Acuity (Surf)",
+  "Duraludon": "Mt. Coronet ~ Summit (grass)",
+  "Cyclizar": "Route 224 (grass)",
+  "Flamigo": "Route 225 (grass)",
+  "Dondozo": "Route 213 (Super Rod)",
+  "Archeops": "Route 226 (grass)",
+  "Volcarona": "Route 227 (grass)",
+  "Gogoat": "Route 212 ~ South (grass)",
+  "Tyrantrum": "Mt. Coronet ~ 4F (grass)",
+  "Aurorus": "Stark Mountain (Entrance) (grass)",
+  "Sylveon": "Route 221 (grass)",
+  "Noivern": "Mt. Coronet ~ Summit (grass)",
+  "Golisopod": "Route 221 (Surf)",
+  "Centiskorch": "Route 210 ~ South (grass)",
+  "Wyrdeer": "Sendoff Spring (grass)",
+  "Basculegion": "Sendoff Spring (Surf)",
+  "Armarouge": "Fuego Ironworks (grass)",
+  "Ceruledge": "Turnback Cave (grass)",
+  "Glimmora": "Stark Mountain (Interior) (grass)",
+  "Cetitan": "Lake Acuity (grass)",
+  "Farigiraf": "Route 210 ~ North (grass)",
+  "Dudunsparce": "Route 224 (grass)",
+  "Gholdengo": "Sendoff Spring (grass)",
+  "Archaludon": "Victory Road ~ 1F (grass)",
+  "Vanilluxe": "Lake Acuity (grass)",
+  "Klinklang": "Route 222 (grass)",
+  "Chandelure": "Turnback Cave (grass)",
+  "Haxorus": "Victory Road ~ 2F (grass)",
+  "Hydreigon": "Stark Mountain (Outside) (grass)",
+  "Florges": "Lake Valor (grass)",
+  "Goodra": "Victory Road ~ B1F (grass)",
+  "Kommo-o": "Victory Road ~ 1F Back 1 (grass)",
+  "Obstagoon": "Route 221 (grass)",
+  "Mr. Rime": "Lake Acuity (grass)",
+  "Dragapult": "Turnback Cave (grass)",
+  "Ursaluna": "Stark Mountain (Entrance) (grass)",
+  "Annihilape": "Route 225 (grass)",
+  "Kingambit": "Stark Mountain (Interior) (grass)",
+  "Baxcalibur": "Victory Road ~ 1F Back 2 (grass)",
+  "Hydrapple": "Victory Road ~ 1F Back 3 (grass)",
+  "Patrat": "Route 204 ~ South (grass)",
+  "Lillipup": "Route 204 ~ North (grass)",
+  "Purrloin": "Ravaged Path (grass)",
+  "Pansage": "Route 205 ~ North (grass)",
+  "Pansear": "Route 207 (grass)",
+  "Panpour": "Route 213 (grass)",
+  "Munna": "Lake Verity (grass)",
+  "Pidove": "Route 201 (grass)",
+  "Blitzle": "Valley Windworks (grass)",
+  "Roggenrola": "Oreburgh Mine ~ 1F (grass)",
+  "Woobat": "Route 202 (grass)",
+  "Drilbur": "Oreburgh Mine ~ B1F (grass)",
+  "Audino": "Route 203 (grass)",
+  "Timburr": "Route 208 (grass)",
+  "Tympole": "Resort Area (Old Rod)",
+  "Throh": "Route 208 (grass)",
+  "Sawk": "Route 206 (grass)",
+  "Sewaddle": "Route 205 ~ North (grass)",
+  "Venipede": "Route 212 ~ South (grass)",
+  "Cottonee": "Route 210 ~ South (grass)",
+  "Petilil": "Eterna Forest (grass)",
+  "Basculin": "Route 213 (Good Rod)",
+  "Sandile": "Route 214 (grass)",
+  "Darumaka": "Route 211 ~ West (grass)",
+  "Maractus": "Route 212 ~ North (grass)",
+  "Dwebble": "Oreburgh Mine ~ 1F (grass)",
+  "Scraggy": "Oreburgh Gate ~ 1F (grass)",
+  "Sigilyph": "Route 209 (grass)",
+  "Yamask": "Old Chateau (All Rooms) (grass)",
+  "Tirtouga": "Oreburgh Mine ~ B1F (grass)",
+  "Archen": "Oreburgh Mine ~ 1F (grass)",
+  "Trubbish": "Great Marsh ~ Area 1/2 (grass)",
+  "Zorua": "Oreburgh Gate ~ B1F (grass)",
+  "Minccino": "Route 205 ~ South (grass)",
+  "Gothita": "Lake Verity (grass)",
+  "Solosis": "Lake Verity (grass)",
+  "Ducklett": "Route 213 (grass)",
+  "Vanillite": "Route 216 (grass)",
+  "Deerling": "Route 204 ~ South (grass)",
+  "Emolga": "Valley Windworks (grass)",
+  "Karrablast": "Route 205 ~ North (grass)",
+  "Foongus": "Route 212 ~ South (grass)",
+  "Frillish": "Sendoff Spring (Old Rod)",
+  "Alomomola": "Resort Area (Good Rod)",
+  "Joltik": "Valley Windworks (grass)",
+  "Ferroseed": "Oreburgh Mine ~ B1F (grass)",
+  "Klink": "Mt. Coronet ~ Route 216 Entrance (grass)",
+  "Tynamo": "Sunyshore City (Old Rod)",
+  "Elgyem": "Route 206 (grass)",
+  "Litwick": "Old Chateau (All Rooms) (grass)",
+  "Cubchoo": "Route 216 (grass)",
+  "Shelmet": "Route 204 ~ North (grass)",
+  "Stunfisk": "Route 214 (grass)",
+  "Mienfoo": "Route 211 ~ East (grass)",
+  "Druddigon": "Route 210 ~ North (grass)",
+  "Golett": "Ravaged Path (grass)",
+  "Pawniard": "Oreburgh Mine ~ 1F (grass)",
+  "Bouffalant": "Route 210 ~ South (grass)",
+  "Rufflet": "Route 202 (grass)",
+  "Vullaby": "Route 209 (grass)",
+  "Heatmor": "Fuego Ironworks (grass)",
+  "Durant": "Route 215 (grass)",
+  "Bunnelby": "Route 203 (grass)",
+  "Fletchling": "Route 205 ~ South (grass)",
+  "Scatterbug": "Route 204 ~ South (grass)",
+  "Litleo": "Route 202 (grass)",
+  "Flabébé": "Route 210 ~ South (grass)",
+  "Skiddo": "Route 212 ~ North (grass)",
+  "Pancham": "Route 207 (grass)",
+  "Furfrou": "Route 208 (grass)",
+  "Espurr": "Route 206 (grass)",
+  "Honedge": "Old Chateau (All Rooms) (grass)",
+  "Spritzee": "Eterna Forest (grass)",
+  "Swirlix": "Route 204 ~ North (grass)",
+  "Inkay": "Route 209 (grass)",
+  "Binacle": "Route 213 (grass)",
+  "Skrelp": "Route 212 ~ South (Old Rod)",
+  "Clauncher": "Route 218 (Old Rod)",
+  "Helioptile": "Valley Windworks (grass)",
+  "Tyrunt": "Mt. Coronet ~ B1F (grass)",
+  "Amaura": "Mt. Coronet ~ Route 216 Entrance (grass)",
+  "Dedenne": "Valley Windworks (grass)",
+  "Klefki": "Mt. Coronet ~ Route 207 Entrance (grass)",
+  "Phantump": "Route 212 ~ North (grass)",
+  "Pumpkaboo": "Route 209 (grass)",
+  "Bergmite": "Route 216 (grass)",
+  "Noibat": "Route 210 ~ North (grass)",
+  "Pikipek": "Route 203 (grass)",
+  "Yungoos": "Route 205 ~ South (grass)",
+  "Grubbin": "Eterna Forest (grass)",
+  "Crabrawler": "Route 211 ~ West (grass)",
+  "Oricorio": "Route 214 (grass)",
+  "Cutiefly": "Route 224 (grass)",
+  "Rockruff": "Oreburgh Mine ~ B1F (grass)",
+  "Wishiwashi": "Canalave City (Old Rod)",
+  "Mareanie": "Pokémon League (Old Rod)",
+  "Mudbray": "Oreburgh Gate ~ 1F (grass)",
+  "Dewpider": "Route 221 (Old Rod)",
+  "Fomantis": "Great Marsh ~ Area 3/4 (grass)",
+  "Morelull": "Route 210 ~ South (grass)",
+  "Salandit": "Great Marsh ~ Area 5/6 (grass)",
+  "Stufful": "Route 201 (grass)",
+  "Bounsweet": "Route 215 (grass)",
+  "Comfey": "Lake Valor (grass)",
+  "Oranguru": "Route 209 (grass)",
+  "Passimian": "Route 215 (grass)",
+  "Wimpod": "Route 221 (grass)",
+  "Sandygast": "Mt. Coronet ~ Route 211 Entrance (grass)",
+  "Pyukumuku": "Iron Island ~ Outside (Old Rod)",
+  "Minior": "Route 211 ~ East (grass)",
+  "Komala": "Route 208 (grass)",
+  "Turtonator": "Route 210 ~ North (grass)",
+  "Togedemaru": "Route 222 (grass)",
+  "Mimikyu": "Sendoff Spring (grass)",
+  "Bruxish": "Sendoff Spring (Good Rod)",
+  "Drampa": "Mt. Coronet ~ Summit (grass)",
+  "Skwovet": "Route 201 (grass)",
+  "Rookidee": "Route 207 (grass)",
+  "Blipbug": "Route 205 ~ North (grass)",
+  "Nickit": "Oreburgh Gate ~ B1F (grass)",
+  "Gossifleur": "Route 212 ~ South (grass)",
+  "Wooloo": "Route 201 (grass)",
+  "Chewtle": "Route 223 (Old Rod)",
+  "Yamper": "Route 222 (grass)",
+  "Rolycoly": "Mt. Coronet ~ Tunnel to Route 211 Entrance (grass)",
+  "Applin": "Mt. Coronet ~ B1F (grass)",
+  "Silicobra": "Ravaged Path (grass)",
+  "Cramorant": "Route 213 (Surf)",
+  "Arrokuda": "Route 230 (Old Rod)",
+  "Sizzlipede": "Fuego Ironworks (grass)",
+  "Clobbopus": "Route 211 ~ West (grass)",
+  "Sinistea": "Oreburgh Gate ~ 1F (grass)",
+  "Hatenna": "Lake Verity (grass)",
+  "Impidimp": "Mt. Coronet ~ Route 211 Entrance (grass)",
+  "Milcery": "Lake Verity (grass)",
+  "Falinks": "Mt. Coronet ~ Route 207 Entrance (grass)",
+  "Pincurchin": "Route 222 (grass)",
+  "Snom": "Mt. Coronet ~ Route 216 Entrance (grass)",
+  "Stonjourner": "Mt. Coronet ~ Route 207 Entrance (grass)",
+  "Eiscue": "Lake Acuity (grass)",
+  "Indeedee": "Route 206 (grass)",
+  "Morpeko": "Oreburgh Gate ~ B1F (grass)",
+  "Cufant": "Oreburgh Mine ~ 1F (grass)",
+  "Lechonk": "Route 202 (grass)",
+  "Tarountula": "Route 204 ~ South (grass)",
+  "Nymble": "Route 229 (grass)",
+  "Pawmi": "Fuego Ironworks (grass)",
+  "Tandemaus": "Route 203 (grass)",
+  "Fidough": "Route 224 (grass)",
+  "Smoliv": "Route 204 ~ North (grass)",
+  "Squawkabilly": "Route 205 ~ South (grass)",
+  "Nacli": "Oreburgh Mine ~ B1F (grass)",
+  "Charcadet": "Route 227 (grass)",
+  "Tadbulb": "Valley Windworks (grass)",
+  "Wattrel": "Valley Windworks (grass)",
+  "Maschiff": "Mt. Coronet ~ Tunnel to Route 211 Entrance (grass)",
+  "Shroodle": "Great Marsh ~ Area 1/2 (grass)",
+  "Bramblin": "Great Marsh ~ Area 3/4 (grass)",
+  "Toedscool": "Route 214 (grass)",
+  "Klawf": "Mt. Coronet ~ 2F (grass)",
+  "Capsakid": "Great Marsh ~ Area 5/6 (grass)",
+  "Rellor": "Route 205 ~ North (grass)",
+  "Flittle": "Sendoff Spring (grass)",
+  "Tinkatink": "Mt. Coronet ~ Route 211 Entrance (grass)",
+  "Wiglett": "Route 226 (Old Rod)",
+  "Bombirdier": "Route 218 (grass)",
+  "Finizen": "Lake Valor (Old Rod)",
+  "Varoom": "Mt. Coronet ~ Tunnel to Route 211 Entrance (grass)",
+  "Orthworm": "Mt. Coronet ~ 3F (grass)",
+  "Glimmet": "Mt. Coronet ~ B1F (grass)",
+  "Greavard": "Old Chateau (All Rooms) (grass)",
+  "Cetoddle": "Route 216 (grass)",
+  "Veluza": "Canalave City (Good Rod)",
+  "Tatsugiri": "Victory Road ~ B1F (Good Rod)",
+  "Gimmighoul": "Turnback Cave (grass)",
+  "Poltchageist": "Great Marsh ~ Area 1/2 (grass)",
+  "Watchog": "Route 212 ~ North (grass)",
+  "Herdier": "Route 208 (grass)",
+  "Liepard": "Mt. Coronet ~ 5F (grass)",
+  "Simisage": "Great Marsh ~ Area 3/4 (grass)",
+  "Simisear": "Route 227 (grass)",
+  "Simipour": "Iron Island ~ Outside (Surf)",
+  "Musharna": "Sendoff Spring (grass)",
+  "Tranquill": "Route 212 ~ North (grass)",
+  "Zebstrika": "Route 222 (grass)",
+  "Boldore": "Mt. Coronet ~ 6F (grass)",
+  "Swoobat": "Route 218 (grass)",
+  "Excadrill": "Stark Mountain (Outside) (grass)",
+  "Gurdurr": "Route 225 (grass)",
+  "Palpitoad": "Route 226 (Good Rod)",
+  "Swadloon": "Route 229 (grass)",
+  "Whirlipede": "Great Marsh ~ Area 5/6 (grass)",
+  "Whimsicott": "Route 221 (grass)",
+  "Lilligant": "Route 229 (grass)",
+  "Krokorok": "Route 228 (grass)",
+  "Darmanitan": "Stark Mountain (Entrance) (grass)",
+  "Crustle": "Stark Mountain (Interior) (grass)",
+  "Scrafty": "Route 225 (grass)",
+  "Cofagrigus": "Turnback Cave (grass)",
+  "Carracosta": "Route 226 (grass)",
+  "Garbodor": "Mt. Coronet ~ 2F (grass)",
+  "Zoroark": "Mt. Coronet ~ 3F (grass)",
+  "Cinccino": "Route 221 (grass)",
+  "Gothorita": "Lake Valor (grass)",
+  "Duosion": "Lake Valor (grass)",
+  "Swanna": "Resort Area (Super Rod)",
+  "Vanillish": "Lake Acuity (grass)",
+  "Sawsbuck": "Route 229 (grass)",
+  "Escavalier": "Mt. Coronet ~ 5F (grass)",
+  "Amoonguss": "Mt. Coronet ~ 6F (grass)",
+  "Jellicent": "Sendoff Spring (Super Rod)",
+  "Galvantula": "Route 228 (grass)",
+  "Ferrothorn": "Mt. Coronet ~ 7F (grass)",
+  "Klang": "Mt. Coronet ~ 2F (grass)",
+  "Eelektrik": "Sunyshore City (Super Rod)",
+  "Beheeyem": "Mt. Coronet ~ Summit (grass)",
+  "Lampent": "Stark Mountain (Outside) (grass)",
+  "Beartic": "Route 218 (grass)",
+  "Accelgor": "Great Marsh ~ Area 1/2 (grass)",
+  "Mienshao": "Route 225 (grass)",
+  "Golurk": "Stark Mountain (Entrance) (grass)",
+  "Bisharp": "Victory Road ~ 1F (grass)",
+  "Braviary": "Route 230 (grass)",
+  "Mandibuzz": "Victory Road ~ 2F (grass)",
+  "Diggersby": "Route 214 (grass)",
+  "Fletchinder": "Route 211 ~ East (grass)",
+  "Spewpa": "Route 205 ~ South (grass)",
+  "Pyroar": "Route 227 (grass)",
+  "Floette": "Route 210 ~ South (grass)",
+  "Pangoro": "Mt. Coronet ~ 3F (grass)",
+  "Meowstic": "Lake Valor (grass)",
+  "Doublade": "Mt. Coronet ~ 4F (grass)",
+  "Aromatisse": "Route 229 (grass)",
+  "Slurpuff": "Route 221 (grass)",
+  "Malamar": "Victory Road ~ 1F Back 1 (grass)",
+  "Barbaracle": "Route 226 (grass)",
+  "Dragalge": "Victory Road ~ 1F Back 2 (Super Rod)",
+  "Clawitzer": "Route 223 (Super Rod)",
+  "Heliolisk": "Fuego Ironworks (grass)",
+  "Trevenant": "Route 212 ~ South (grass)",
+  "Gourgeist": "Great Marsh ~ Area 3/4 (grass)",
+  "Avalugg": "Route 230 (grass)",
+  "Trumbeak": "Route 208 (grass)",
+  "Gumshoos": "Route 206 (grass)",
+  "Charjabug": "Route 215 (grass)",
+  "Crabominable": "Victory Road ~ 1F Back 3 (grass)",
+  "Ribombee": "Great Marsh ~ Area 5/6 (grass)",
+  "Lycanroc": "Stark Mountain (Interior) (grass)",
+  "Toxapex": "Pokémon League (Super Rod)",
+  "Mudsdale": "Route 228 (grass)",
+  "Araquanid": "Twinleaf Town (Good Rod)",
+  "Lurantis": "Route 229 (grass)",
+  "Shiinotic": "Route 215 (grass)",
+  "Salazzle": "Stark Mountain (Outside) (grass)",
+  "Bewear": "Mt. Coronet ~ 5F (grass)",
+  "Steenee": "Great Marsh ~ Area 1/2 (grass)",
+  "Palossand": "Mt. Coronet ~ 6F (grass)",
+  "Greedent": "Route 212 ~ North (grass)",
+  "Corvisquire": "Route 211 ~ East (grass)",
+  "Dottler": "Eterna Forest (grass)",
+  "Thievul": "Mt. Coronet ~ Tunnel to Route 211 Entrance (grass)",
+  "Eldegoss": "Great Marsh ~ Area 3/4 (grass)",
+  "Drednaw": "Iron Island ~ Outside (Good Rod)",
+  "Boltund": "Route 222 (grass)",
+  "Carkol": "Stark Mountain (Entrance) (grass)",
+  "Flapple": "Mt. Coronet ~ 7F (grass)",
+  "Appletun": "Mt. Coronet ~ 4F (grass)",
+  "Sandaconda": "Stark Mountain (Interior) (grass)",
+  "Barraskewda": "Canalave City (Super Rod)",
+  "Toxtricity": "Great Marsh ~ Area 5/6 (grass)",
+  "Grapploct": "Victory Road ~ 1F (grass)",
+  "Polteageist": "Victory Road ~ 2F (grass)",
+  "Hattrem": "Sendoff Spring (grass)",
+  "Morgrem": "Victory Road ~ B1F (grass)",
+  "Perrserker": "Victory Road ~ 1F Back 1 (grass)",
+  "Cursola": "Victory Road ~ 1F Back 2 (grass)",
+  "Sirfetch’d": "Victory Road ~ 1F Back 3 (grass)",
+  "Runerigus": "Mt. Coronet ~ 7F (grass)",
+  "Alcremie": "Lake Valor (grass)",
+  "Frosmoth": "Lake Acuity (grass)",
+  "Copperajah": "Mt. Coronet ~ 4F (grass)",
+  "Kleavor": "Victory Road ~ 1F (grass)",
+  "Sneasler": "Great Marsh ~ Area 1/2 (grass)",
+  "Overqwil": "Victory Road ~ 2F (grass)",
+  "Oinkologne": "Route 206 (grass)",
+  "Spidops": "Route 228 (grass)",
+  "Lokix": "Victory Road ~ B1F (grass)",
+  "Pawmo": "Route 211 ~ East (grass)",
+  "Dachsbun": "Lake Valor (grass)",
+  "Dolliv": "Route 212 ~ South (grass)",
+  "Naclstack": "Victory Road ~ 1F Back 1 (grass)",
+  "Bellibolt": "Fuego Ironworks (grass)",
+  "Kilowattrel": "Route 230 (grass)",
+  "Mabosstiff": "Victory Road ~ 1F Back 2 (grass)",
+  "Grafaiai": "Victory Road ~ 1F Back 3 (grass)",
+  "Brambleghast": "Victory Road ~ B1F (grass)",
+  "Toedscruel": "Victory Road ~ 1F Back 2 (grass)",
+  "Scovillain": "Route 227 (grass)",
+  "Rabsca": "Great Marsh ~ Area 3/4 (grass)",
+  "Espathra": "Turnback Cave (grass)",
+  "Tinkatuff": "Mt. Coronet ~ 2F (grass)",
+  "Wugtrio": "Route 213 (grass)",
+  "Palafin": "Twinleaf Town (Super Rod)",
+  "Revavroom": "Mt. Coronet ~ 3F (grass)",
+  "Houndstone": "Mt. Coronet ~ 5F (grass)",
+  "Clodsire": "Mt. Coronet ~ Route 207 Entrance (grass)",
+  "Dipplin": "Mt. Coronet ~ 7F (grass)",
+  "Sinistcha": "Mt. Coronet ~ 6F (grass)",
+  "Unfezant": "Route 226 (grass)",
+  "Gigalith": "Mt. Coronet ~ 2F (grass)",
+  "Conkeldurr": "Mt. Coronet ~ 3F (grass)",
+  "Seismitoad": "Route 214 (Super Rod)",
+  "Leavanny": "Route 228 (grass)",
+  "Scolipede": "Great Marsh ~ Area 5/6 (grass)",
+  "Krookodile": "Mt. Coronet ~ 5F (grass)",
+  "Eelektross": "Sunyshore City (Super Rod)",
+  "Talonflame": "Route 218 (grass)",
+  "Vivillon": "Eterna Forest (grass)",
+  "Aegislash": "Mt. Coronet ~ 6F (grass)",
+  "Toucannon": "Route 218 (grass)",
+  "Vikavolt": "Route 228 (grass)",
+  "Corviknight": "Route 226 (grass)",
+  "Orbeetle": "Great Marsh ~ Area 1/2 (grass)",
+  "Coalossal": "Stark Mountain (Outside) (grass)",
+  "Grimmsnarl": "Mt. Coronet ~ 4F (grass)",
+  "Pawmot": "Victory Road ~ 1F (grass)",
+  "Garganacl": "Victory Road ~ 2F (grass)",
+  "Tinkaton": "Victory Road ~ 1F Back 1 (grass)",
+  "Toxel": "Ravaged Path (grass)"
+ },
+ "unplaced_regular_species": [
+  "Dubwool",
+  "Maushold",
+  "Stoutland",
+  "Gothitelle",
+  "Reuniclus",
+  "Tsareena",
+  "Hatterene",
+  "Arboliva"
+ ]
+}

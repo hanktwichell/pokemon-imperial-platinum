@@ -1,0 +1,9 @@
+# Never commit ROMs or saves.
+*.nds
+*.sav
+*.dsv
+*.srm
+# OS / editor noise
+.DS_Store
+__pycache__/
+*.pyc

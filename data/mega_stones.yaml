@@ -1,0 +1,65 @@
+# Imperial Platinum — where every Mega Stone / Primal orb comes from.
+# Rendered into docs/MegaEvolution.md by tools/design/gen_mega_doc.py, which also checks that
+# every trigger item in data/megas.csv has exactly one source.
+#
+# field: overworld item balls that replace a low-value pickup (Potion-tier healing, status heals,
+#        Poké/Great Balls, Repels, Escape Ropes, X items). TMs, evolution stones, held items and
+#        other meaningful items are never replaced. "script" is the vanilla pokeplatinum script
+#        name (res/field/scripts/scripts_visible_items.s); Renegade may have moved a few items, so
+#        each one must be confirmed in DSPRE before editing.
+
+key_item:
+  name: Mega Ring
+  source: Leader Fantina, Hearthome Gym — given together with the Relic Badge.
+  unlocks: Mega Evolution in battle (flag FLAG_IMPERIAL_MEGA_UNLOCKED).
+
+field:
+  - {stone: Alakazite,     replaces: Poké Ball,     location: Route 203,                script: VisibleItems_Route203_PokeBall,        why: Abra lives on Route 203}
+  - {stone: Aggronite,     replaces: Potion,        location: Oreburgh Mine B2F,        script: VisibleItems_OreburghMineB2F_Potion,   why: Aron lives in Oreburgh Mine}
+  - {stone: Lopunnite,     replaces: Potion,        location: Eterna Forest,            script: VisibleItems_EternaForest_Potion,      why: Buneary lives in Eterna Forest}
+  - {stone: Sablenite,     replaces: Escape Rope,   location: Wayward Cave 1F,          script: VisibleItems_WaywardCave1F_EscapeRope, why: Sableye lives in Wayward Cave; Jupiter's Mega Sableye is fought nearby}
+  - {stone: Tyranitarite,  replaces: Super Potion,  location: Route 207,                script: VisibleItems_Route207_SuperPotion,     why: Larvitar lives on Route 207}
+  - {stone: Gardevoirite,  replaces: Great Ball,    location: Route 208,                script: VisibleItems_Route208_GreatBall,       why: Ralts line is common early}
+  - {stone: Banettite,     replaces: Hyper Potion,  location: Route 209,                script: VisibleItems_Route209_HyperPotion,     why: next to the Lost Tower}
+  - {stone: Pinsirite,     replaces: Hyper Potion,  location: Route 210 (South),        script: VisibleItems_Route210South_HyperPotion, why: Pinsir lives on Route 210}
+  - {stone: Absolite,      replaces: Hyper Potion,  location: Route 215,                script: VisibleItems_Route215_HyperPotion,     why: Absol lives on Route 215}
+  - {stone: Kangaskhanite, replaces: Great Ball,    location: Great Marsh (Area 3),     script: VisibleItems_GreatMarsh3_GreatBall,    why: Kangaskhan lives in the Great Marsh}
+  - {stone: Swampertite,   replaces: Hyper Potion,  location: Route 212 (South),        script: VisibleItems_Route212South_HyperPotion, why: rainy marsh route for a Water/Ground Mega}
+  - {stone: Abomasite,     replaces: Full Heal,     location: Route 216,                script: VisibleItems_Route216_FullHeal,        why: Snover lives on Route 216}
+  - {stone: Glalitite,     replaces: Full Heal,     location: Snowpoint Temple B4F,     script: VisibleItems_SnowpointTempleB4F_FullHeal, why: Snorunt line lives around Snowpoint}
+  - {stone: Garchompite,   replaces: Max Repel,     location: Victory Road 1F,          script: VisibleItems_VictoryRoad1F_MaxRepel,   why: Gible/Gabite live in Victory Road}
+  - {stone: Heatranite,    replaces: Full Heal,     location: Stark Mountain (Room 1),  script: VisibleItems_StarkMountainRoom1_FullHeal, why: Heatran's home; post-game}
+
+vendors:
+  - name: Mega Stone Collector (Hearthome)
+    location: Hearthome City — house west of the Pokémon Center (new NPC)
+    unlock: after the Relic Badge (Fantina)
+    price: 10000
+    stock: [Venusaurite, Charizardite X, Charizardite Y, Blastoisinite, Beedrillite, Pidgeotite, Ampharosite,
+            Houndoominite, Manectite, Lucarionite, Medichamite, Cameruptite, Altarianite, Audinite, Slowbronite,
+            Clefablite, Victreebelite, Meganiumite, Chesnaughtite, Pyroarite, Floettite, Chimechite, Staraptite,
+            Golurkite, Meowsticite, Scraftinite, Excadrite, Glimmoranite, Raichunite X]
+  - name: Mega Stone Trader (Pastoria)
+    location: Pastoria City — house next to the Great Marsh gate (new NPC)
+    unlock: after the Fen Badge (Wake)
+    price: 10000
+    stock: [Blazikenite, Sceptilite, Gengarite, Heracronite, Galladite, Feraligite, Emboarite, Delphoxite,
+            Greninjite, Sharpedonite, Gyaradosite, Scizorite, Mawilite, Steelixite, Starminite, Barbaracite,
+            Dragalgite, Scolipite, Eelektrossite, Chandelurite, Malamarite, Hawluchanite, Skarmorite, Crabominite,
+            Golisopite, Scovillainite, Raichunite Y, Aerodactylite, Drampanite, Falinksite]
+  - name: Mega Stone Sage (Snowpoint)
+    location: Snowpoint City — same house as Renegade's evolution-item seller (second NPC)
+    unlock: after the Icicle Badge (Candice)
+    price: 10000
+    stock: [Froslassite, Salamencite, Metagrossite, Dragoninite, Baxcalibrite, Tatsugirinite, Absolite Z, Lucarionite Z]
+  - name: Mega Stone Curator (Survival Area)
+    location: Survival Area — house left of the Pokémon Center (new NPC)
+    unlock: after becoming Champion
+    price: 30000
+    stock: [Mewtwonite X, Mewtwonite Y, Latiasite, Latiosite, Diancite, Zygardite, Darkranite, Magearnite,
+            Zeraorite, Garchompite Z]
+
+events:
+  - {item: Red Orb, source: "Given by the Groudon shrine event once Groudon is caught (Renegade's Groudon event; see SpecialEvents.txt)."}
+  - {item: Blue Orb, source: "Given by the Kyogre shrine event once Kyogre is caught (Renegade's Kyogre event)."}
+  - {item: "Dragon Ascent (move; no stone)", source: "Move tutor in the Route 212 tutor house teaches Dragon Ascent to Rayquaza after it is caught. Mega Rayquaza needs Dragon Ascent and no held stone."}
