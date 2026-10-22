@@ -59,11 +59,12 @@ The player learns about the Sovereign passively, without ever meeting one before
 - **Elite Four rematch.** Once that and Dialga and Palkia are both done, the throne room at Spear Pillar opens.
 
 ### The final battle: Sovereign Twich at the throne
-- **Before the battle,** Twich refers to the Totem trials: the player has passed all of his trials, so they're the one
-  he has been waiting for. The owner writes the dialogue, along with what the Sovereign were doing; every hint from the
+- **Before the battle,** Twich refers to the Totem trials: the player has passed all **11** of his trials, so they're
+  the one he has been waiting for. The owner writes the dialogue, along with what the Sovereign were doing; every hint from the
   early game, the trials and the Chronicles pays off here.
 - **The battle:** the developer team, Lv. 100 doubles (`docs/DeveloperBattle.md`).
-- **After the battle:** the player is granted the **Sovereign title**.
+- **After the battle:** the player is granted the **Sovereign title**. It shows on the Trainer Card, in the Hall of
+  Fame record, and in how NPCs address the player from then on (owner).
 - **Cynthia arrives** to congratulate the player (owner):
   - She is very close to Twich. Their exact relationship is hinted at but never stated, and kept PG.
   - She is the reason Twich uses a Garchomp, her signature Pokémon.
@@ -74,8 +75,8 @@ The player learns about the Sovereign passively, without ever meeting one before
   variable Platinum's Spear Pillar post-game script checks.
 - **Twich's unlock:** the Elite Four rematch won (Sovereign's E4 format: `docs/EliteFourFormat.md`) and both Dialga
   and Palkia encountered at Spear Pillar (caught or defeated, depending on how Platinum's script sets its flags).
-- **The Sovereign title:** decide where it shows. Options: on the Trainer Card, in the Hall of Fame record, or as how
-  NPCs address the player afterwards.
+- **The Sovereign title** shows in three places (owner): the Trainer Card, the Hall of Fame record, and NPC lines
+  after the battle (a flag the relevant scripts check).
 - **Cynthia's appearance:** a scripted scene after the battle at Spear Pillar, using her existing overworld sprite.
 - **Totem trial messages:** one short text per trial, plus the crown mark (a small graphic or a symbol in the text).
 - **New text:** the Oreburgh exhibit, Rowan's remark, the Celestic elder's lines, a Canalave book, the Archivist's
@@ -85,9 +86,7 @@ The player learns about the Sovereign passively, without ever meeting one before
 - **Who builds what** (owner's plan split): the story content is E11 (Claude B). The developer battle itself is T2
   (Claude A).
 
-## Open
+## Settled after review
 
-- **12 trials or 11?** The owner's example line says "all 12 of my totem trials". `data/totem_trials.yaml` has **11**
-  trials (11 Totem Pokémon, 12 Totem forms, because Mimikyu has Disguised and Busted). Either add a 12th trial (for
-  example Wishiwashi, whose Sun/Moon trial has no Totem form of its own), or the line says 11.
-- **Where the Sovereign title shows** (see the engineering notes).
+- **11 trials** (owner): Twich's line refers to 11 Totem trials, the number in `data/totem_trials.yaml`.
+- **The title** shows on the Trainer Card, in the Hall of Fame record and in NPC lines (owner).

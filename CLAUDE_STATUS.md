@@ -586,3 +586,15 @@ Mimikyu's two). Either add a 12th trial (e.g. Wishiwashi) or say 11. Also open: 
 1. Merge this docs PR.
 2. 12b: partner safety by move range (`docs/AIReview.md` #1–#2).
 3. Then 12b #3 (spread credit) and item 11's boss-team effects.
+
+---
+
+## CA-0008 — 2026-10-22, 4:08 pm US Central (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** two owner answers recorded in `docs/Story.md`.
+- Twich's dialogue refers to **11** Totem trials (the owner's "12" was a slip).
+- The Sovereign title shows on the **Trainer Card**, in the **Hall of Fame record**, and in **NPC lines** afterwards.
+
+**Files modified:** `docs/Story.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:** merge PR #17; then 12b partner safety (`docs/AIReview.md` #1–#2); then 12b #3.
