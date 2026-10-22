@@ -39,7 +39,7 @@ typedef struct {
     int fatherMoves[LEARNED_MOVES_MAX];
     int sharedMoves[LEARNED_MOVES_MAX];
     int motherMoves[LEARNED_MOVES_MAX];
-    u16 eggSpeciesLevelUpMoves[50];
+    u16 eggSpeciesLevelUpMoves[MAX_LEARNSET_ENTRIES + 1];
     u16 eggSpeciesEggMoves[MAX_EGG_MOVES];
 } EggMoveBuilder;
 

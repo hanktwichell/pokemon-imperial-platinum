@@ -36,15 +36,19 @@
         "by_level": [
             [ 1, "MOVE_SCRATCH" ],
             [ 1, "MOVE_GROWL" ],
-            [ 7, "MOVE_FOCUS_ENERGY" ],
-            [ 10, "MOVE_EMBER" ],
-            [ 16, "MOVE_PECK" ],
-            [ 19, "MOVE_SAND_ATTACK" ],
-            [ 25, "MOVE_FIRE_SPIN" ],
-            [ 28, "MOVE_QUICK_ATTACK" ],
-            [ 34, "MOVE_SLASH" ],
-            [ 37, "MOVE_MIRROR_MOVE" ],
-            [ 43, "MOVE_FLAMETHROWER" ]
+            [ 3, "MOVE_EMBER" ],
+            [ 6, "MOVE_QUICK_ATTACK" ],
+            [ 9, "MOVE_FLAME_CHARGE" ],
+            [ 12, "MOVE_DETECT" ],
+            [ 15, "MOVE_SAND_ATTACK" ],
+            [ 18, "MOVE_AERIAL_ACE" ],
+            [ 21, "MOVE_SLASH" ],
+            [ 24, "MOVE_BOUNCE" ],
+            [ 27, "MOVE_FOCUS_ENERGY" ],
+            [ 30, "MOVE_FLAMETHROWER" ],
+            [ 33, "MOVE_FEATHER_DANCE" ],
+            [ 36, "MOVE_REVERSAL" ],
+            [ 39, "MOVE_FLARE_BLITZ" ]
         ],
         "by_tm": [
             "TM06",
@@ -85,21 +89,16 @@
             "MOVE_LAST_RESORT",
             "MOVE_BOUNCE",
             "MOVE_HEAT_WAVE",
-            "MOVE_SWIFT"
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
         ],
         "egg_moves": [
+            "MOVE_PECK",
             "MOVE_COUNTER",
-            "MOVE_REVERSAL",
-            "MOVE_ENDURE",
-            "MOVE_SWAGGER",
-            "MOVE_ROCK_SLIDE",
-            "MOVE_SMELLING_SALT",
             "MOVE_CRUSH_CLAW",
-            "MOVE_BATON_PASS",
-            "MOVE_AGILITY",
-            "MOVE_NIGHT_SLASH",
+            "MOVE_FEINT",
             "MOVE_LAST_RESORT",
-            "MOVE_FEINT"
+            "MOVE_NIGHT_SLASH"
         ]
     },
     "evolutions": [

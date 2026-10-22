@@ -5,7 +5,7 @@
         "defense": 85,
         "speed": 55,
         "special_attack": 125,
-        "special_defense": 65
+        "special_defense": 75
     },
     "types": [ "TYPE_GRASS", "TYPE_PSYCHIC" ],
     "catch_rate": 45,
@@ -34,17 +34,27 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_STOMP" ],
+            [ 1, "MOVE_LEAF_STORM" ],
             [ 1, "MOVE_SEED_BOMB" ],
-            [ 1, "MOVE_BARRAGE" ],
+            [ 1, "MOVE_WORRY_SEED" ],
+            [ 1, "MOVE_BULLET_SEED" ],
+            [ 1, "MOVE_EXTRASENSORY" ],
+            [ 1, "MOVE_UPROAR" ],
+            [ 1, "MOVE_SYNTHESIS" ],
+            [ 1, "MOVE_PSYSHOCK" ],
+            [ 1, "MOVE_REFLECT" ],
             [ 1, "MOVE_HYPNOSIS" ],
             [ 1, "MOVE_CONFUSION" ],
-            [ 1, "MOVE_STOMP" ],
-            [ 17, "MOVE_STOMP" ],
-            [ 27, "MOVE_EGG_BOMB" ],
-            [ 37, "MOVE_WOOD_HAMMER" ],
-            [ 47, "MOVE_LEAF_STORM" ]
+            [ 1, "MOVE_SOLAR_BEAM" ],
+            [ 1, "MOVE_LEECH_SEED" ],
+            [ 1, "MOVE_MEGA_DRAIN" ],
+            [ 1, "MOVE_ABSORB" ],
+            [ 1, "MOVE_WOOD_HAMMER" ],
+            [ 1, "MOVE_GIGA_DRAIN" ]
         ],
         "by_tm": [
+            "TM04",
             "TM06",
             "TM09",
             "TM10",
@@ -55,6 +65,7 @@
             "TM19",
             "TM21",
             "TM22",
+            "TM26",
             "TM27",
             "TM29",
             "TM32",
@@ -86,10 +97,13 @@
         "by_tutor": [
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
             "MOVE_ANCIENT_POWER",
             "MOVE_SYNTHESIS",
             "MOVE_ZEN_HEADBUTT",
-            "MOVE_SEED_BOMB"
+            "MOVE_SEED_BOMB",
+            "MOVE_TRICK",
+            "MOVE_UPROAR"
         ]
     },
     "evolutions": [  ],

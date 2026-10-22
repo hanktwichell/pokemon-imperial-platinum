@@ -34,19 +34,20 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_CURSE" ],
-            [ 1, "MOVE_PURSUIT" ],
+            [ 1, "MOVE_NIGHT_SHADE" ],
             [ 1, "MOVE_CONFUSE_RAY" ],
-            [ 1, "MOVE_SPITE" ],
-            [ 1, "MOVE_SHADOW_SNEAK" ],
-            [ 7, "MOVE_FAINT_ATTACK" ],
-            [ 13, "MOVE_HYPNOSIS" ],
-            [ 19, "MOVE_DREAM_EATER" ],
-            [ 25, "MOVE_OMINOUS_WIND" ],
-            [ 31, "MOVE_SUCKER_PUNCH" ],
-            [ 37, "MOVE_NASTY_PLOT" ],
-            [ 43, "MOVE_MEMENTO" ],
-            [ 49, "MOVE_DARK_PULSE" ]
+            [ 5, "MOVE_SHADOW_SNEAK" ],
+            [ 10, "MOVE_SPITE" ],
+            [ 15, "MOVE_PAYBACK" ],
+            [ 20, "MOVE_NASTY_PLOT" ],
+            [ 25, "MOVE_HEX" ],
+            [ 30, "MOVE_MEMENTO" ],
+            [ 35, "MOVE_SUCKER_PUNCH" ],
+            [ 40, "MOVE_CURSE" ],
+            [ 45, "MOVE_SHADOW_BALL" ],
+            [ 50, "MOVE_DARK_PULSE" ],
+            [ 55, "MOVE_HYPNOSIS" ],
+            [ 60, "MOVE_DREAM_EATER" ]
         ],
         "by_tm": [
             "TM03",
@@ -71,11 +72,13 @@
             "TM44",
             "TM45",
             "TM46",
+            "TM48",
             "TM49",
             "TM58",
             "TM61",
             "TM62",
             "TM63",
+            "TM66",
             "TM68",
             "TM70",
             "TM77",
@@ -85,24 +88,25 @@
             "TM83",
             "TM85",
             "TM87",
-            "TM90"
+            "TM90",
+            "TM92"
         ],
         "by_tutor": [
             "MOVE_ICY_WIND",
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
             "MOVE_SPITE",
+            "MOVE_HELPING_HAND",
             "MOVE_TRICK",
             "MOVE_SUCKER_PUNCH",
             "MOVE_UPROAR"
         ],
         "egg_moves": [
+            "MOVE_DISABLE",
+            "MOVE_SMOKE_SCREEN",
             "MOVE_DESTINY_BOND",
             "MOVE_PAIN_SPLIT",
-            "MOVE_SMOKE_SCREEN",
-            "MOVE_IMPRISON",
-            "MOVE_GRUDGE",
-            "MOVE_SHADOW_SNEAK"
+            "MOVE_ALLY_SWITCH"
         ]
     },
     "evolutions": [  ],

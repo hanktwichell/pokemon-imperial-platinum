@@ -1,0 +1,28 @@
+{
+    "name": "Mortal Spin",
+    "description": [
+        "The user performs a\n",
+        "spin attack that can\n",
+        "also eliminate the\n",
+        "effects of such moves\n",
+        "as Bind, Wrap, and."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_POISON",
+    "power": 30,
+    "accuracy": 100,
+    "pp": 15,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_ADJACENT_OPPONENTS",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

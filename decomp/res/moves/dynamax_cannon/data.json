@@ -1,0 +1,27 @@
+{
+    "name": "Dynamax Cannon",
+    "description": [
+        "The user unleashes a\n",
+        "strong beam from its\n",
+        "core."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_DRAGON",
+    "power": 100,
+    "accuracy": 100,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

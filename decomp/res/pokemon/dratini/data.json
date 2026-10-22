@@ -36,17 +36,18 @@
         "by_level": [
             [ 1, "MOVE_WRAP" ],
             [ 1, "MOVE_LEER" ],
-            [ 5, "MOVE_THUNDER_WAVE" ],
-            [ 11, "MOVE_TWISTER" ],
-            [ 15, "MOVE_DRAGON_RAGE" ],
-            [ 21, "MOVE_SLAM" ],
-            [ 25, "MOVE_AGILITY" ],
+            [ 5, "MOVE_TWISTER" ],
+            [ 10, "MOVE_THUNDER_WAVE" ],
+            [ 15, "MOVE_DRAGON_TAIL" ],
+            [ 20, "MOVE_AGILITY" ],
+            [ 25, "MOVE_SLAM" ],
             [ 31, "MOVE_AQUA_TAIL" ],
             [ 35, "MOVE_DRAGON_RUSH" ],
-            [ 41, "MOVE_SAFEGUARD" ],
-            [ 45, "MOVE_DRAGON_DANCE" ],
-            [ 51, "MOVE_OUTRAGE" ],
-            [ 55, "MOVE_HYPER_BEAM" ]
+            [ 40, "MOVE_SAFEGUARD" ],
+            [ 45, "MOVE_RAIN_DANCE" ],
+            [ 50, "MOVE_DRAGON_DANCE" ],
+            [ 55, "MOVE_OUTRAGE" ],
+            [ 60, "MOVE_HYPER_BEAM" ]
         ],
         "by_tm": [
             "TM03",
@@ -57,6 +58,7 @@
             "TM13",
             "TM14",
             "TM15",
+            "TM16",
             "TM17",
             "TM18",
             "TM20",
@@ -75,6 +77,7 @@
             "TM45",
             "TM58",
             "TM59",
+            "TM68",
             "TM73",
             "TM78",
             "TM82",
@@ -86,20 +89,21 @@
         ],
         "by_tutor": [
             "MOVE_ICY_WIND",
+            "MOVE_IRON_HEAD",
             "MOVE_AQUA_TAIL",
             "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
             "MOVE_OUTRAGE",
             "MOVE_TWISTER",
             "MOVE_SWIFT"
         ],
         "egg_moves": [
-            "MOVE_LIGHT_SCREEN",
-            "MOVE_MIST",
-            "MOVE_HAZE",
             "MOVE_SUPERSONIC",
+            "MOVE_MIST",
             "MOVE_DRAGON_BREATH",
-            "MOVE_DRAGON_DANCE",
-            "MOVE_DRAGON_RUSH"
+            "MOVE_EXTREME_SPEED",
+            "MOVE_WATER_PULSE",
+            "MOVE_AQUA_JET"
         ]
     },
     "evolutions": [

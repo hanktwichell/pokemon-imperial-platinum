@@ -36,7 +36,7 @@
         "by_level": [
             [ 1, "MOVE_HEADBUTT" ],
             [ 3, "MOVE_GROWL" ],
-            [ 7, "MOVE_WATER_SPORT" ],
+            [ 7, "MOVE_CHARM" ],
             [ 11, "MOVE_ICY_WIND" ],
             [ 13, "MOVE_ENCORE" ],
             [ 17, "MOVE_ICE_SHARD" ],
@@ -49,7 +49,8 @@
             [ 41, "MOVE_DIVE" ],
             [ 43, "MOVE_AQUA_TAIL" ],
             [ 47, "MOVE_ICE_BEAM" ],
-            [ 51, "MOVE_SAFEGUARD" ]
+            [ 51, "MOVE_SAFEGUARD" ],
+            [ 53, "MOVE_SNOWSCAPE" ]
         ],
         "by_tm": [
             "TM03",
@@ -72,6 +73,7 @@
             "TM55",
             "TM56",
             "TM58",
+            "TM72",
             "TM78",
             "TM82",
             "TM83",
@@ -85,18 +87,21 @@
             "MOVE_ICY_WIND",
             "MOVE_AQUA_TAIL",
             "MOVE_SNORE",
-            "MOVE_SIGNAL_BEAM"
+            "MOVE_HELPING_HAND",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_UPROAR"
         ],
         "egg_moves": [
+            "MOVE_HORN_DRILL",
+            "MOVE_DISABLE",
             "MOVE_LICK",
             "MOVE_PERISH_SONG",
-            "MOVE_DISABLE",
-            "MOVE_HORN_DRILL",
-            "MOVE_SLAM",
-            "MOVE_ENCORE",
             "MOVE_FAKE_OUT",
-            "MOVE_ICICLE_SPEAR",
-            "MOVE_SIGNAL_BEAM"
+            "MOVE_STOCKPILE",
+            "MOVE_SPIT_UP",
+            "MOVE_SWALLOW",
+            "MOVE_ENTRAINMENT",
+            "MOVE_BELCH"
         ]
     },
     "evolutions": [

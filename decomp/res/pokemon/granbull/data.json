@@ -7,7 +7,7 @@
         "special_attack": 60,
         "special_defense": 60
     },
-    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
+    "types": [ "TYPE_FAIRY", "TYPE_FAIRY" ],
     "catch_rate": 75,
     "base_exp_reward": 178,
     "ev_yields": {
@@ -34,19 +34,21 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_ICE_FANG" ],
-            [ 1, "MOVE_FIRE_FANG" ],
-            [ 1, "MOVE_THUNDER_FANG" ],
+            [ 1, "MOVE_OUTRAGE" ],
             [ 1, "MOVE_TACKLE" ],
-            [ 1, "MOVE_SCARY_FACE" ],
             [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_ICE_FANG" ],
+            [ 1, "MOVE_SCARY_FACE" ],
+            [ 1, "MOVE_FIRE_FANG" ],
             [ 1, "MOVE_CHARM" ],
+            [ 1, "MOVE_THUNDER_FANG" ],
             [ 7, "MOVE_BITE" ],
             [ 13, "MOVE_LICK" ],
             [ 19, "MOVE_HEADBUTT" ],
             [ 27, "MOVE_ROAR" ],
-            [ 35, "MOVE_RAGE" ],
-            [ 43, "MOVE_TAKE_DOWN" ],
+            [ 35, "MOVE_LAST_RESORT" ],
+            [ 43, "MOVE_PLAY_ROUGH" ],
             [ 51, "MOVE_PAYBACK" ],
             [ 59, "MOVE_CRUNCH" ]
         ],
@@ -109,7 +111,12 @@
             "MOVE_SUPERPOWER",
             "MOVE_ICE_PUNCH",
             "MOVE_SNORE",
-            "MOVE_LAST_RESORT"
+            "MOVE_SPITE",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_OUTRAGE",
+            "MOVE_LAST_RESORT",
+            "MOVE_UPROAR"
         ]
     },
     "evolutions": [  ],

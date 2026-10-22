@@ -34,15 +34,16 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_COUNTER" ],
+            [ 1, "MOVE_MIRROR_COAT" ],
+            [ 1, "MOVE_SAFEGUARD" ],
+            [ 1, "MOVE_DESTINY_BOND" ],
             [ 1, "MOVE_SPLASH" ],
             [ 1, "MOVE_CHARM" ],
             [ 1, "MOVE_ENCORE" ],
-            [ 15, "MOVE_COUNTER" ],
-            [ 15, "MOVE_MIRROR_COAT" ],
-            [ 15, "MOVE_SAFEGUARD" ],
-            [ 15, "MOVE_DESTINY_BOND" ]
+            [ 1, "MOVE_AMNESIA" ]
         ],
-        "by_tm": [  ],
+        "by_tm": [ "TM20" ],
         "by_tutor": [  ]
     },
     "evolutions": [

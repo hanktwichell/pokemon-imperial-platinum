@@ -34,12 +34,11 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_AGILITY" ],
             [ 1, "MOVE_SCRATCH" ],
-            [ 1, "MOVE_FORESIGHT" ],
-            [ 1, "MOVE_DEFENSE_CURL" ],
             [ 1, "MOVE_QUICK_ATTACK" ],
-            [ 4, "MOVE_DEFENSE_CURL" ],
-            [ 7, "MOVE_QUICK_ATTACK" ],
+            [ 1, "MOVE_DEFENSE_CURL" ],
+            [ 1, "MOVE_COIL" ],
             [ 13, "MOVE_FURY_SWIPES" ],
             [ 17, "MOVE_HELPING_HAND" ],
             [ 21, "MOVE_FOLLOW_ME" ],
@@ -48,7 +47,7 @@
             [ 36, "MOVE_SUCKER_PUNCH" ],
             [ 42, "MOVE_AMNESIA" ],
             [ 46, "MOVE_BATON_PASS" ],
-            [ 50, "MOVE_ME_FIRST" ],
+            [ 50, "MOVE_DOUBLE_EDGE" ],
             [ 56, "MOVE_HYPER_VOICE" ]
         ],
         "by_tm": [
@@ -107,7 +106,11 @@
             "MOVE_AQUA_TAIL",
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_SEED_BOMB",
             "MOVE_LAST_RESORT",
+            "MOVE_TRICK",
             "MOVE_KNOCK_OFF",
             "MOVE_SUCKER_PUNCH",
             "MOVE_SWIFT",

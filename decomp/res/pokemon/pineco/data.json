@@ -40,8 +40,8 @@
             [ 9, "MOVE_BUG_BITE" ],
             [ 12, "MOVE_TAKE_DOWN" ],
             [ 17, "MOVE_RAPID_SPIN" ],
-            [ 20, "MOVE_BIDE" ],
-            [ 23, "MOVE_NATURAL_GIFT" ],
+            [ 20, "MOVE_ROLLOUT" ],
+            [ 23, "MOVE_CURSE" ],
             [ 28, "MOVE_SPIKES" ],
             [ 31, "MOVE_PAYBACK" ],
             [ 34, "MOVE_EXPLOSION" ],
@@ -55,6 +55,7 @@
             "TM11",
             "TM16",
             "TM17",
+            "TM18",
             "TM19",
             "TM21",
             "TM22",
@@ -78,6 +79,7 @@
             "TM80",
             "TM82",
             "TM83",
+            "TM84",
             "TM87",
             "TM90",
             "HM04",
@@ -86,17 +88,18 @@
         "by_tutor": [
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
-            "MOVE_IRON_DEFENSE"
+            "MOVE_HELPING_HAND",
+            "MOVE_SEED_BOMB",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_SWIFT"
         ],
         "egg_moves": [
-            "MOVE_REFLECT",
             "MOVE_PIN_MISSILE",
-            "MOVE_FLAIL",
-            "MOVE_SWIFT",
             "MOVE_COUNTER",
+            "MOVE_SWIFT",
+            "MOVE_FLAIL",
             "MOVE_SAND_TOMB",
-            "MOVE_REVENGE",
-            "MOVE_DOUBLE_EDGE",
+            "MOVE_POWER_TRICK",
             "MOVE_TOXIC_SPIKES"
         ]
     },

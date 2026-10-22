@@ -36,17 +36,18 @@
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_DEFENSE_CURL" ],
-            [ 4, "MOVE_MUD_SPORT" ],
-            [ 8, "MOVE_ROCK_POLISH" ],
-            [ 11, "MOVE_ROCK_THROW" ],
-            [ 15, "MOVE_MAGNITUDE" ],
-            [ 18, "MOVE_SELFDESTRUCT" ],
-            [ 22, "MOVE_ROLLOUT" ],
-            [ 25, "MOVE_ROCK_BLAST" ],
-            [ 29, "MOVE_EARTHQUAKE" ],
-            [ 32, "MOVE_EXPLOSION" ],
-            [ 36, "MOVE_DOUBLE_EDGE" ],
-            [ 39, "MOVE_STONE_EDGE" ]
+            [ 6, "MOVE_ROCK_POLISH" ],
+            [ 10, "MOVE_ROLLOUT" ],
+            [ 12, "MOVE_BULLDOZE" ],
+            [ 16, "MOVE_ROCK_THROW" ],
+            [ 18, "MOVE_SMACK_DOWN" ],
+            [ 24, "MOVE_SELFDESTRUCT" ],
+            [ 28, "MOVE_STEALTH_ROCK" ],
+            [ 30, "MOVE_ROCK_BLAST" ],
+            [ 34, "MOVE_EARTHQUAKE" ],
+            [ 36, "MOVE_EXPLOSION" ],
+            [ 40, "MOVE_DOUBLE_EDGE" ],
+            [ 42, "MOVE_STONE_EDGE" ]
         ],
         "by_tm": [
             "TM01",
@@ -94,14 +95,17 @@
             "MOVE_SNORE",
             "MOVE_ANCIENT_POWER",
             "MOVE_EARTH_POWER",
+            "MOVE_IRON_DEFENSE",
             "MOVE_SUCKER_PUNCH"
         ],
         "egg_moves": [
             "MOVE_MEGA_PUNCH",
-            "MOVE_ROCK_SLIDE",
+            "MOVE_CURSE",
+            "MOVE_FLAIL",
+            "MOVE_DYNAMIC_PUNCH",
             "MOVE_BLOCK",
             "MOVE_HAMMER_ARM",
-            "MOVE_FLAIL"
+            "MOVE_WIDE_GUARD"
         ]
     },
     "evolutions": [

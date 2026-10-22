@@ -5,7 +5,7 @@
         "defense": 70,
         "speed": 100,
         "special_attack": 50,
-        "special_defense": 50
+        "special_defense": 60
     },
     "types": [ "TYPE_NORMAL", "TYPE_FLYING" ],
     "catch_rate": 45,
@@ -34,20 +34,19 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_CLOSE_COMBAT" ],
+            [ 1, "MOVE_WING_ATTACK" ],
             [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_GROWL" ],
             [ 1, "MOVE_QUICK_ATTACK" ],
-            [ 1, "MOVE_WING_ATTACK" ],
-            [ 5, "MOVE_QUICK_ATTACK" ],
-            [ 9, "MOVE_WING_ATTACK" ],
             [ 13, "MOVE_DOUBLE_TEAM" ],
             [ 18, "MOVE_ENDEAVOR" ],
             [ 23, "MOVE_WHIRLWIND" ],
             [ 28, "MOVE_AERIAL_ACE" ],
             [ 33, "MOVE_TAKE_DOWN" ],
-            [ 34, "MOVE_CLOSE_COMBAT" ],
             [ 41, "MOVE_AGILITY" ],
-            [ 49, "MOVE_BRAVE_BIRD" ]
+            [ 49, "MOVE_BRAVE_BIRD" ],
+            [ 57, "MOVE_FINAL_GAMBIT" ]
         ],
         "by_tm": [
             "TM06",
@@ -84,10 +83,12 @@
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
             "MOVE_AIR_CUTTER",
+            "MOVE_HELPING_HAND",
             "MOVE_ENDEAVOR",
             "MOVE_TWISTER",
             "MOVE_HEAT_WAVE",
-            "MOVE_SWIFT"
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
         ]
     },
     "evolutions": [  ],

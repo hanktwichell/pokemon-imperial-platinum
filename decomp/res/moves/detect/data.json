@@ -17,7 +17,7 @@
         "chance": 0
     },
     "range": "RANGE_USER",
-    "priority": 3,
+    "priority": 4,
     "flags": [],
     "contest": {
         "effect": "CONTEST_EFFECT_LOW_VOLTAGE_ADVANTAGE",

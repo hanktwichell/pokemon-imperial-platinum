@@ -35,19 +35,19 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 4, "MOVE_TAIL_WHIP" ],
-            [ 7, "MOVE_BUBBLE" ],
-            [ 10, "MOVE_WITHDRAW" ],
-            [ 13, "MOVE_WATER_GUN" ],
-            [ 16, "MOVE_BITE" ],
-            [ 19, "MOVE_RAPID_SPIN" ],
-            [ 22, "MOVE_PROTECT" ],
-            [ 25, "MOVE_WATER_PULSE" ],
-            [ 28, "MOVE_AQUA_TAIL" ],
-            [ 31, "MOVE_SKULL_BASH" ],
-            [ 34, "MOVE_IRON_DEFENSE" ],
-            [ 37, "MOVE_RAIN_DANCE" ],
-            [ 40, "MOVE_HYDRO_PUMP" ]
+            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 3, "MOVE_WATER_GUN" ],
+            [ 6, "MOVE_WITHDRAW" ],
+            [ 9, "MOVE_RAPID_SPIN" ],
+            [ 12, "MOVE_BITE" ],
+            [ 15, "MOVE_WATER_PULSE" ],
+            [ 18, "MOVE_PROTECT" ],
+            [ 21, "MOVE_RAIN_DANCE" ],
+            [ 24, "MOVE_AQUA_TAIL" ],
+            [ 27, "MOVE_SHELL_SMASH" ],
+            [ 30, "MOVE_IRON_DEFENSE" ],
+            [ 33, "MOVE_HYDRO_PUMP" ],
+            [ 36, "MOVE_WAVE_CRASH" ]
         ],
         "by_tm": [
             "TM01",
@@ -92,22 +92,20 @@
             "MOVE_ICE_PUNCH",
             "MOVE_AQUA_TAIL",
             "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
             "MOVE_ZEN_HEADBUTT",
             "MOVE_IRON_DEFENSE"
         ],
         "egg_moves": [
-            "MOVE_MIRROR_COAT",
-            "MOVE_HAZE",
             "MOVE_MIST",
-            "MOVE_FORESIGHT",
             "MOVE_FLAIL",
-            "MOVE_REFRESH",
-            "MOVE_MUD_SPORT",
-            "MOVE_YAWN",
-            "MOVE_MUDDY_WATER",
+            "MOVE_MIRROR_COAT",
             "MOVE_FAKE_OUT",
+            "MOVE_YAWN",
+            "MOVE_WATER_SPOUT",
             "MOVE_AQUA_RING",
-            "MOVE_AQUA_JET"
+            "MOVE_AQUA_JET",
+            "MOVE_LIFE_DEW"
         ]
     },
     "evolutions": [

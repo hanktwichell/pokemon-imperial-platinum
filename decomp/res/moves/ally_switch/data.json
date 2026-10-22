@@ -1,0 +1,28 @@
+{
+    "name": "Ally Switch",
+    "description": [
+        "The user teleports\n",
+        "using a strange power\n",
+        "and switches places\n",
+        "with one of its\n",
+        "allies."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_PSYCHIC",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 15,
+    "effect": {
+        "type": "BATTLE_EFFECT_DO_NOTHING",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 2,
+    "flags": [
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

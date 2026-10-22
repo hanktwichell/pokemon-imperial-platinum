@@ -34,21 +34,23 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_CURSE" ],
-            [ 1, "MOVE_YAWN" ],
             [ 1, "MOVE_TACKLE" ],
-            [ 6, "MOVE_GROWL" ],
-            [ 11, "MOVE_WATER_GUN" ],
-            [ 15, "MOVE_CONFUSION" ],
-            [ 20, "MOVE_DISABLE" ],
-            [ 25, "MOVE_HEADBUTT" ],
-            [ 29, "MOVE_WATER_PULSE" ],
-            [ 34, "MOVE_ZEN_HEADBUTT" ],
-            [ 39, "MOVE_SLACK_OFF" ],
-            [ 43, "MOVE_AMNESIA" ],
-            [ 48, "MOVE_PSYCHIC" ],
-            [ 53, "MOVE_RAIN_DANCE" ],
-            [ 57, "MOVE_PSYCH_UP" ]
+            [ 1, "MOVE_CURSE" ],
+            [ 3, "MOVE_GROWL" ],
+            [ 6, "MOVE_WATER_GUN" ],
+            [ 9, "MOVE_YAWN" ],
+            [ 12, "MOVE_CONFUSION" ],
+            [ 15, "MOVE_DISABLE" ],
+            [ 18, "MOVE_WATER_PULSE" ],
+            [ 21, "MOVE_HEADBUTT" ],
+            [ 24, "MOVE_ZEN_HEADBUTT" ],
+            [ 27, "MOVE_AMNESIA" ],
+            [ 30, "MOVE_SURF" ],
+            [ 33, "MOVE_SLACK_OFF" ],
+            [ 36, "MOVE_PSYCHIC" ],
+            [ 39, "MOVE_PSYCH_UP" ],
+            [ 42, "MOVE_RAIN_DANCE" ],
+            [ 45, "MOVE_HEAL_PULSE" ]
         ],
         "by_tm": [
             "TM03",
@@ -82,6 +84,7 @@
             "TM58",
             "TM67",
             "TM70",
+            "TM72",
             "TM73",
             "TM77",
             "TM78",
@@ -93,7 +96,8 @@
             "TM90",
             "TM92",
             "HM03",
-            "HM04"
+            "HM04",
+            "HM07"
         ],
         "by_tutor": [
             "MOVE_DIVE",
@@ -101,22 +105,17 @@
             "MOVE_ICY_WIND",
             "MOVE_AQUA_TAIL",
             "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
             "MOVE_SIGNAL_BEAM",
             "MOVE_ZEN_HEADBUTT",
             "MOVE_TRICK",
             "MOVE_SWIFT"
         ],
         "egg_moves": [
-            "MOVE_SAFEGUARD",
-            "MOVE_BELLY_DRUM",
-            "MOVE_FUTURE_SIGHT",
             "MOVE_STOMP",
-            "MOVE_MUD_SPORT",
-            "MOVE_SLEEP_TALK",
-            "MOVE_SNORE",
-            "MOVE_ME_FIRST",
+            "MOVE_BELLY_DRUM",
             "MOVE_BLOCK",
-            "MOVE_ZEN_HEADBUTT"
+            "MOVE_BELCH"
         ]
     },
     "evolutions": [

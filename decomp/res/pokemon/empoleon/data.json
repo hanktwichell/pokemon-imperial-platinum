@@ -34,23 +34,22 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_AQUA_JET" ],
             [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_GROWL" ],
-            [ 1, "MOVE_BUBBLE" ],
-            [ 4, "MOVE_GROWL" ],
-            [ 8, "MOVE_BUBBLE" ],
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 1, "MOVE_METAL_CLAW" ],
             [ 11, "MOVE_SWORDS_DANCE" ],
             [ 15, "MOVE_PECK" ],
-            [ 16, "MOVE_METAL_CLAW" ],
             [ 19, "MOVE_BUBBLE_BEAM" ],
             [ 24, "MOVE_SWAGGER" ],
             [ 28, "MOVE_FURY_ATTACK" ],
             [ 33, "MOVE_BRINE" ],
-            [ 36, "MOVE_AQUA_JET" ],
             [ 39, "MOVE_WHIRLPOOL" ],
             [ 46, "MOVE_MIST" ],
             [ 52, "MOVE_DRILL_PECK" ],
-            [ 59, "MOVE_HYDRO_PUMP" ]
+            [ 59, "MOVE_HYDRO_PUMP" ],
+            [ 66, "MOVE_WAVE_CRASH" ]
         ],
         "by_tm": [
             "TM03",
@@ -76,6 +75,8 @@
             "TM44",
             "TM45",
             "TM47",
+            "TM51",
+            "TM54",
             "TM55",
             "TM56",
             "TM58",
@@ -84,6 +85,7 @@
             "TM72",
             "TM75",
             "TM76",
+            "TM77",
             "TM78",
             "TM80",
             "TM82",
@@ -107,9 +109,14 @@
             "MOVE_FURY_CUTTER",
             "MOVE_ICY_WIND",
             "MOVE_SNORE",
+            "MOVE_AIR_CUTTER",
+            "MOVE_HELPING_HAND",
             "MOVE_SIGNAL_BEAM",
+            "MOVE_VACUUM_WAVE",
             "MOVE_IRON_DEFENSE",
-            "MOVE_KNOCK_OFF"
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
         ]
     },
     "evolutions": [  ],

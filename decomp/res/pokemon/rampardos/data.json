@@ -34,21 +34,23 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_ENDEAVOR" ],
             [ 1, "MOVE_HEADBUTT" ],
             [ 1, "MOVE_LEER" ],
-            [ 6, "MOVE_FOCUS_ENERGY" ],
-            [ 10, "MOVE_PURSUIT" ],
+            [ 1, "MOVE_FOCUS_ENERGY" ],
+            [ 10, "MOVE_ROCK_SMASH" ],
             [ 15, "MOVE_TAKE_DOWN" ],
             [ 19, "MOVE_SCARY_FACE" ],
             [ 24, "MOVE_ASSURANCE" ],
-            [ 28, "MOVE_ANCIENT_POWER" ],
-            [ 30, "MOVE_ENDEAVOR" ],
-            [ 36, "MOVE_ZEN_HEADBUTT" ],
-            [ 43, "MOVE_SCREECH" ],
-            [ 52, "MOVE_HEAD_SMASH" ]
+            [ 28, "MOVE_SLAM" ],
+            [ 36, "MOVE_ANCIENT_POWER" ],
+            [ 43, "MOVE_ZEN_HEADBUTT" ],
+            [ 51, "MOVE_SCREECH" ],
+            [ 58, "MOVE_HEAD_SMASH" ]
         ],
         "by_tm": [
             "TM01",
+            "TM02",
             "TM05",
             "TM06",
             "TM10",

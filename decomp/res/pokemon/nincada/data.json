@@ -34,16 +34,16 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_SAND_ATTACK" ],
             [ 1, "MOVE_SCRATCH" ],
-            [ 1, "MOVE_HARDEN" ],
-            [ 5, "MOVE_LEECH_LIFE" ],
-            [ 9, "MOVE_SAND_ATTACK" ],
-            [ 14, "MOVE_FURY_SWIPES" ],
-            [ 19, "MOVE_MIND_READER" ],
-            [ 25, "MOVE_FALSE_SWIPE" ],
-            [ 31, "MOVE_MUD_SLAP" ],
-            [ 38, "MOVE_METAL_CLAW" ],
-            [ 45, "MOVE_DIG" ]
+            [ 5, "MOVE_HARDEN" ],
+            [ 10, "MOVE_FALSE_SWIPE" ],
+            [ 15, "MOVE_MUD_SLAP" ],
+            [ 21, "MOVE_ABSORB" ],
+            [ 25, "MOVE_METAL_CLAW" ],
+            [ 30, "MOVE_FURY_SWIPES" ],
+            [ 35, "MOVE_MIND_READER" ],
+            [ 40, "MOVE_DIG" ]
         ],
         "by_tm": [
             "TM06",
@@ -79,13 +79,11 @@
             "MOVE_SPITE"
         ],
         "egg_moves": [
-            "MOVE_ENDURE",
-            "MOVE_FAINT_ATTACK",
             "MOVE_GUST",
-            "MOVE_SILVER_WIND",
-            "MOVE_BUG_BUZZ",
+            "MOVE_FLAIL",
             "MOVE_NIGHT_SLASH",
-            "MOVE_BUG_BITE"
+            "MOVE_BUG_BITE",
+            "MOVE_FINAL_GAMBIT"
         ]
     },
     "evolutions": [

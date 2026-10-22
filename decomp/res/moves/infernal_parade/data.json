@@ -1,0 +1,25 @@
+{
+    "name": "Infernal Parade",
+    "description": [
+        "The user attacks with\n",
+        "myriad fireballs."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_GHOST",
+    "power": 60,
+    "accuracy": 100,
+    "pp": 15,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

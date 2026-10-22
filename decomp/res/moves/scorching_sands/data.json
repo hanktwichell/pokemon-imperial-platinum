@@ -1,0 +1,27 @@
+{
+    "name": "Scorching Sands",
+    "description": [
+        "The user throws\n",
+        "scorching sand at the\n",
+        "target to attack."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_GROUND",
+    "power": 70,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_BURN_HIT",
+        "chance": 30
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

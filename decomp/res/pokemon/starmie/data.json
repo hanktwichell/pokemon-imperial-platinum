@@ -34,11 +34,22 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_WATER_GUN" ],
             [ 1, "MOVE_RAPID_SPIN" ],
-            [ 1, "MOVE_RECOVER" ],
+            [ 1, "MOVE_MINIMIZE" ],
             [ 1, "MOVE_SWIFT" ],
-            [ 28, "MOVE_CONFUSE_RAY" ]
+            [ 1, "MOVE_PSYBEAM" ],
+            [ 1, "MOVE_BRINE" ],
+            [ 1, "MOVE_LIGHT_SCREEN" ],
+            [ 1, "MOVE_POWER_GEM" ],
+            [ 1, "MOVE_PSYCHIC" ],
+            [ 1, "MOVE_SURF" ],
+            [ 1, "MOVE_RECOVER" ],
+            [ 1, "MOVE_COSMIC_POWER" ],
+            [ 1, "MOVE_HYDRO_PUMP" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_HARDEN" ],
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 1, "MOVE_CONFUSE_RAY" ]
         ],
         "by_tm": [
             "TM03",

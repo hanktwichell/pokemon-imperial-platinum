@@ -34,20 +34,21 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_HORN_ATTACK" ],
+            [ 1, "MOVE_HAMMER_ARM" ],
+            [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_TAIL_WHIP" ],
-            [ 1, "MOVE_STOMP" ],
-            [ 1, "MOVE_FURY_ATTACK" ],
-            [ 9, "MOVE_STOMP" ],
-            [ 13, "MOVE_FURY_ATTACK" ],
-            [ 21, "MOVE_SCARY_FACE" ],
-            [ 25, "MOVE_ROCK_BLAST" ],
-            [ 33, "MOVE_TAKE_DOWN" ],
-            [ 37, "MOVE_HORN_DRILL" ],
-            [ 42, "MOVE_HAMMER_ARM" ],
-            [ 45, "MOVE_STONE_EDGE" ],
-            [ 49, "MOVE_EARTHQUAKE" ],
-            [ 57, "MOVE_MEGAHORN" ]
+            [ 1, "MOVE_SMACK_DOWN" ],
+            [ 1, "MOVE_BULLDOZE" ],
+            [ 15, "MOVE_HORN_ATTACK" ],
+            [ 20, "MOVE_SCARY_FACE" ],
+            [ 25, "MOVE_STOMP" ],
+            [ 30, "MOVE_ROCK_BLAST" ],
+            [ 35, "MOVE_DRILL_RUN" ],
+            [ 40, "MOVE_TAKE_DOWN" ],
+            [ 47, "MOVE_EARTHQUAKE" ],
+            [ 54, "MOVE_STONE_EDGE" ],
+            [ 61, "MOVE_MEGAHORN" ],
+            [ 68, "MOVE_HORN_DRILL" ]
         ],
         "by_tm": [
             "TM01",
@@ -116,10 +117,12 @@
             "MOVE_AQUA_TAIL",
             "MOVE_SNORE",
             "MOVE_SPITE",
+            "MOVE_HELPING_HAND",
             "MOVE_ENDEAVOR",
             "MOVE_OUTRAGE",
             "MOVE_ANCIENT_POWER",
             "MOVE_EARTH_POWER",
+            "MOVE_IRON_DEFENSE",
             "MOVE_UPROAR"
         ]
     },

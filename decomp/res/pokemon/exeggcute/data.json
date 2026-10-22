@@ -34,20 +34,19 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_BARRAGE" ],
-            [ 1, "MOVE_UPROAR" ],
+            [ 1, "MOVE_ABSORB" ],
             [ 1, "MOVE_HYPNOSIS" ],
-            [ 7, "MOVE_REFLECT" ],
-            [ 11, "MOVE_LEECH_SEED" ],
-            [ 17, "MOVE_BULLET_SEED" ],
-            [ 19, "MOVE_STUN_SPORE" ],
-            [ 21, "MOVE_POISON_POWDER" ],
-            [ 23, "MOVE_SLEEP_POWDER" ],
-            [ 27, "MOVE_CONFUSION" ],
-            [ 33, "MOVE_WORRY_SEED" ],
-            [ 37, "MOVE_NATURAL_GIFT" ],
-            [ 43, "MOVE_SOLAR_BEAM" ],
-            [ 47, "MOVE_PSYCHIC" ]
+            [ 5, "MOVE_REFLECT" ],
+            [ 10, "MOVE_LEECH_SEED" ],
+            [ 15, "MOVE_MEGA_DRAIN" ],
+            [ 20, "MOVE_CONFUSION" ],
+            [ 25, "MOVE_SYNTHESIS" ],
+            [ 30, "MOVE_BULLET_SEED" ],
+            [ 35, "MOVE_GIGA_DRAIN" ],
+            [ 40, "MOVE_EXTRASENSORY" ],
+            [ 45, "MOVE_UPROAR" ],
+            [ 50, "MOVE_WORRY_SEED" ],
+            [ 55, "MOVE_SOLAR_BEAM" ]
         ],
         "by_tm": [
             "TM06",
@@ -89,22 +88,23 @@
         "by_tutor": [
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
             "MOVE_ANCIENT_POWER",
             "MOVE_SYNTHESIS",
+            "MOVE_ZEN_HEADBUTT",
             "MOVE_SEED_BOMB",
+            "MOVE_TRICK",
             "MOVE_UPROAR"
         ],
         "egg_moves": [
-            "MOVE_SYNTHESIS",
-            "MOVE_MOONLIGHT",
-            "MOVE_REFLECT",
-            "MOVE_ANCIENT_POWER",
-            "MOVE_PSYCH_UP",
-            "MOVE_INGRAIN",
+            "MOVE_POISON_POWDER",
+            "MOVE_STUN_SPORE",
+            "MOVE_SLEEP_POWDER",
             "MOVE_CURSE",
-            "MOVE_NATURE_POWER",
-            "MOVE_LUCKY_CHANT",
-            "MOVE_LEAF_STORM"
+            "MOVE_MOONLIGHT",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_INGRAIN",
+            "MOVE_BLOCK"
         ]
     },
     "evolutions": [

@@ -1,0 +1,28 @@
+{
+    "name": "Magnetic Flux",
+    "description": [
+        "The user manipulates\n",
+        "magnetic fields,\n",
+        "which boosts the\n",
+        "Defense and Sp."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_ELECTRIC",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 20,
+    "effect": {
+        "type": "BATTLE_EFFECT_DEF_SPD_UP",
+        "chance": 0
+    },
+    "range": "RANGE_USER_SIDE",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_SNATCH",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

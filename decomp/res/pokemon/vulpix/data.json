@@ -34,21 +34,21 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_TAIL_WHIP" ],
             [ 1, "MOVE_EMBER" ],
-            [ 4, "MOVE_TAIL_WHIP" ],
-            [ 7, "MOVE_ROAR" ],
-            [ 11, "MOVE_QUICK_ATTACK" ],
-            [ 14, "MOVE_WILL_O_WISP" ],
-            [ 17, "MOVE_CONFUSE_RAY" ],
-            [ 21, "MOVE_IMPRISON" ],
-            [ 24, "MOVE_FLAMETHROWER" ],
-            [ 27, "MOVE_SAFEGUARD" ],
-            [ 31, "MOVE_PAYBACK" ],
-            [ 34, "MOVE_FIRE_SPIN" ],
-            [ 37, "MOVE_CAPTIVATE" ],
-            [ 41, "MOVE_GRUDGE" ],
-            [ 44, "MOVE_EXTRASENSORY" ],
-            [ 47, "MOVE_FIRE_BLAST" ]
+            [ 4, "MOVE_DISABLE" ],
+            [ 8, "MOVE_QUICK_ATTACK" ],
+            [ 12, "MOVE_SPITE" ],
+            [ 16, "MOVE_INCINERATE" ],
+            [ 20, "MOVE_CONFUSE_RAY" ],
+            [ 24, "MOVE_WILL_O_WISP" ],
+            [ 28, "MOVE_EXTRASENSORY" ],
+            [ 32, "MOVE_FLAMETHROWER" ],
+            [ 36, "MOVE_IMPRISON" ],
+            [ 40, "MOVE_FIRE_SPIN" ],
+            [ 44, "MOVE_SAFEGUARD" ],
+            [ 48, "MOVE_INFERNO" ],
+            [ 52, "MOVE_FIRE_BLAST" ]
         ],
         "by_tm": [
             "TM05",
@@ -69,6 +69,7 @@
             "TM44",
             "TM45",
             "TM50",
+            "TM53",
             "TM58",
             "TM61",
             "TM66",
@@ -84,22 +85,20 @@
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
             "MOVE_SPITE",
+            "MOVE_HELPING_HAND",
             "MOVE_ZEN_HEADBUTT",
             "MOVE_HEAT_WAVE",
             "MOVE_SWIFT"
         ],
         "egg_moves": [
-            "MOVE_FAINT_ATTACK",
+            "MOVE_ROAR",
             "MOVE_HYPNOSIS",
             "MOVE_FLAIL",
-            "MOVE_SPITE",
-            "MOVE_DISABLE",
+            "MOVE_MEMENTO",
             "MOVE_HOWL",
-            "MOVE_PSYCH_UP",
-            "MOVE_HEAT_WAVE",
-            "MOVE_FLARE_BLITZ",
-            "MOVE_EXTRASENSORY",
-            "MOVE_ENERGY_BALL"
+            "MOVE_HEALING_WISH",
+            "MOVE_FLAME_CHARGE",
+            "MOVE_BABY_DOLL_EYES"
         ]
     },
     "evolutions": [

@@ -35,19 +35,18 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SPLASH" ],
-            [ 7, "MOVE_PSYWAVE" ],
-            [ 10, "MOVE_ODOR_SLEUTH" ],
+            [ 7, "MOVE_CONFUSION" ],
+            [ 10, "MOVE_GROWL" ],
             [ 14, "MOVE_PSYBEAM" ],
-            [ 15, "MOVE_PSYCH_UP" ],
-            [ 18, "MOVE_CONFUSE_RAY" ],
-            [ 21, "MOVE_MAGIC_COAT" ],
-            [ 26, "MOVE_ZEN_HEADBUTT" ],
+            [ 18, "MOVE_PSYCH_UP" ],
+            [ 22, "MOVE_CONFUSE_RAY" ],
             [ 29, "MOVE_REST" ],
-            [ 29, "MOVE_SNORE" ],
-            [ 34, "MOVE_PAYBACK" ],
-            [ 41, "MOVE_PSYCHIC" ],
-            [ 46, "MOVE_POWER_GEM" ],
-            [ 48, "MOVE_BOUNCE" ]
+            [ 29, "MOVE_POWER_GEM" ],
+            [ 33, "MOVE_SNORE" ],
+            [ 38, "MOVE_PSYSHOCK" ],
+            [ 40, "MOVE_PAYBACK" ],
+            [ 44, "MOVE_PSYCHIC" ],
+            [ 50, "MOVE_BOUNCE" ]
         ],
         "by_tm": [
             "TM04",
@@ -88,25 +87,30 @@
             "TM86",
             "TM87",
             "TM90",
+            "TM91",
             "TM92"
         ],
         "by_tutor": [
             "MOVE_ICY_WIND",
             "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
             "MOVE_SIGNAL_BEAM",
             "MOVE_ZEN_HEADBUTT",
             "MOVE_BOUNCE",
             "MOVE_TRICK",
-            "MOVE_SWIFT"
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
         ],
         "egg_moves": [
-            "MOVE_FUTURE_SIGHT",
-            "MOVE_EXTRASENSORY",
-            "MOVE_SUBSTITUTE",
-            "MOVE_TRICK",
-            "MOVE_ZEN_HEADBUTT",
+            "MOVE_WHIRLWIND",
             "MOVE_AMNESIA",
-            "MOVE_MIRROR_COAT"
+            "MOVE_MIRROR_COAT",
+            "MOVE_FUTURE_SIGHT",
+            "MOVE_TRICK",
+            "MOVE_EXTRASENSORY",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_SIMPLE_BEAM"
         ]
     },
     "evolutions": [

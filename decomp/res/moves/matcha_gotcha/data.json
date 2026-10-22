@@ -1,0 +1,26 @@
+{
+    "name": "Matcha Gotcha",
+    "description": [
+        "The user fires a\n",
+        "blast of tea that it\n",
+        "mixed."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_GRASS",
+    "power": 80,
+    "accuracy": 90,
+    "pp": 15,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

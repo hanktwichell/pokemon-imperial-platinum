@@ -3,6 +3,27 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## E3 — Gen IX moves (data pass)
+
+- **All 919 moves**, move ID = official move number (`tools/engine/gen_moves.py`, from PokeAPI; `docs/MoveChecklist.md`).
+- **Platinum's 467 moves** keep their battle effects; 103 of them take Gen IX power, accuracy, PP, type or priority
+  (e.g. Tackle 40/100, Flamethrower 90, Charm/Sweet Kiss/Moonlight → Fairy, Protect +4, Fake Out +3). Priorities all
+  use the Gen IX scale, so relative order stays consistent.
+- **380 new moves** (#468–919) with Gen IX type, category, power, accuracy, PP, priority, target, contact/protect/
+  Magic Coat/Snatch/Mirror Move flags, a description (newest flavour text that fits Gen IV's box) and an animation
+  borrowed from an existing move of the same type and category. Each is mapped to Platinum's battle effects:
+  **93 exact, 76 approximate, 211 placeholder** (plain hit / does nothing). Names over 15 characters are shortened
+  Gen V-style (e.g. PrecipiceBlade); the rest fit the move buttons as they are.
+- **No Z-Moves or Max Moves** (owner decision): their 72 numbers are empty slots with 0 PP that nothing can learn;
+  Metronome skips them.
+- **Learnset format:** level-up entries are now 32-bit (`u16` move + `u16` level), up to 48 per species; the move
+  reminder and day care follow.
+
+Verified in the emulator (test build): Garchomp with Precipice Blades, Dazzling Gleam, Play Rough and Electroweb —
+names, types and PP show on the move buttons, and Precipice Blades hits with its animation; the battle (AI move
+table now 920 entries) runs normally. Boot smoke test passes. **Next:** E5 learnsets so species actually learn the
+new moves; effect fidelity for the approximate/placeholder moves is roadmap item 11.
+
 ## Test build (never shipped)
 
 - `meson -Dimperial_test=true` (`tools/test/build_test_rom.sh` → `decomp/build_test/`): a new game starts with a test

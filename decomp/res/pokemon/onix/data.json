@@ -34,23 +34,24 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_MUD_SPORT" ],
             [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_HARDEN" ],
             [ 1, "MOVE_BIND" ],
-            [ 6, "MOVE_SCREECH" ],
-            [ 9, "MOVE_ROCK_THROW" ],
-            [ 14, "MOVE_RAGE" ],
-            [ 17, "MOVE_ROCK_TOMB" ],
-            [ 22, "MOVE_SANDSTORM" ],
-            [ 25, "MOVE_SLAM" ],
-            [ 30, "MOVE_ROCK_POLISH" ],
-            [ 33, "MOVE_DRAGON_BREATH" ],
-            [ 38, "MOVE_CURSE" ],
-            [ 41, "MOVE_IRON_TAIL" ],
-            [ 46, "MOVE_SAND_TOMB" ],
-            [ 49, "MOVE_DOUBLE_EDGE" ],
-            [ 54, "MOVE_STONE_EDGE" ]
+            [ 1, "MOVE_ROCK_THROW" ],
+            [ 4, "MOVE_SMACK_DOWN" ],
+            [ 8, "MOVE_ROCK_POLISH" ],
+            [ 12, "MOVE_DRAGON_BREATH" ],
+            [ 16, "MOVE_CURSE" ],
+            [ 20, "MOVE_ROCK_SLIDE" ],
+            [ 24, "MOVE_SCREECH" ],
+            [ 28, "MOVE_SAND_TOMB" ],
+            [ 32, "MOVE_STEALTH_ROCK" ],
+            [ 36, "MOVE_SLAM" ],
+            [ 40, "MOVE_SANDSTORM" ],
+            [ 44, "MOVE_DIG" ],
+            [ 48, "MOVE_IRON_TAIL" ],
+            [ 52, "MOVE_STONE_EDGE" ],
+            [ 56, "MOVE_DOUBLE_EDGE" ]
         ],
         "by_tm": [
             "TM05",
@@ -102,13 +103,13 @@
             "MOVE_TWISTER"
         ],
         "egg_moves": [
-            "MOVE_ROCK_SLIDE",
-            "MOVE_FLAIL",
-            "MOVE_EXPLOSION",
-            "MOVE_BLOCK",
             "MOVE_DEFENSE_CURL",
+            "MOVE_FLAIL",
             "MOVE_ROLLOUT",
-            "MOVE_ROCK_BLAST"
+            "MOVE_BLOCK",
+            "MOVE_HEAD_SMASH",
+            "MOVE_WIDE_GUARD",
+            "MOVE_DRAGON_TAIL"
         ]
     },
     "evolutions": [

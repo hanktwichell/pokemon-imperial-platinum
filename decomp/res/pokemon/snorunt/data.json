@@ -34,18 +34,21 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_HEADBUTT" ],
             [ 1, "MOVE_POWDER_SNOW" ],
-            [ 1, "MOVE_LEER" ],
-            [ 4, "MOVE_DOUBLE_TEAM" ],
-            [ 10, "MOVE_BITE" ],
-            [ 13, "MOVE_ICY_WIND" ],
-            [ 19, "MOVE_HEADBUTT" ],
-            [ 22, "MOVE_PROTECT" ],
-            [ 28, "MOVE_ICE_FANG" ],
-            [ 31, "MOVE_CRUNCH" ],
-            [ 37, "MOVE_ICE_SHARD" ],
-            [ 40, "MOVE_HAIL" ],
-            [ 46, "MOVE_BLIZZARD" ]
+            [ 1, "MOVE_ASTONISH" ],
+            [ 5, "MOVE_LEER" ],
+            [ 10, "MOVE_DOUBLE_TEAM" ],
+            [ 15, "MOVE_ICE_SHARD" ],
+            [ 20, "MOVE_PROTECT" ],
+            [ 25, "MOVE_ICY_WIND" ],
+            [ 30, "MOVE_FROST_BREATH" ],
+            [ 35, "MOVE_BITE" ],
+            [ 40, "MOVE_ICE_FANG" ],
+            [ 45, "MOVE_SNOWSCAPE" ],
+            [ 50, "MOVE_WEATHER_BALL" ],
+            [ 55, "MOVE_CRUNCH" ],
+            [ 60, "MOVE_BLIZZARD" ]
         ],
         "by_tm": [
             "TM03",
@@ -79,14 +82,15 @@
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
-            "MOVE_SPITE"
+            "MOVE_SPITE",
+            "MOVE_HELPING_HAND"
         ],
         "egg_moves": [
-            "MOVE_BLOCK",
-            "MOVE_SPIKES",
-            "MOVE_ROLLOUT",
             "MOVE_DISABLE",
-            "MOVE_BIDE"
+            "MOVE_ROLLOUT",
+            "MOVE_BLOCK",
+            "MOVE_SWITCHEROO",
+            "MOVE_ICICLE_CRASH"
         ]
     },
     "evolutions": [

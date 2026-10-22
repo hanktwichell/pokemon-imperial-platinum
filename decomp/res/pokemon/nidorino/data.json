@@ -35,18 +35,18 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_POISON_STING" ],
             [ 1, "MOVE_PECK" ],
-            [ 7, "MOVE_FOCUS_ENERGY" ],
-            [ 9, "MOVE_DOUBLE_KICK" ],
-            [ 13, "MOVE_POISON_STING" ],
-            [ 20, "MOVE_FURY_ATTACK" ],
-            [ 23, "MOVE_HORN_ATTACK" ],
-            [ 28, "MOVE_HELPING_HAND" ],
-            [ 35, "MOVE_TOXIC_SPIKES" ],
-            [ 38, "MOVE_FLATTER" ],
-            [ 43, "MOVE_POISON_JAB" ],
-            [ 50, "MOVE_CAPTIVATE" ],
-            [ 58, "MOVE_HORN_DRILL" ]
+            [ 1, "MOVE_FOCUS_ENERGY" ],
+            [ 15, "MOVE_FURY_ATTACK" ],
+            [ 22, "MOVE_TOXIC_SPIKES" ],
+            [ 29, "MOVE_DOUBLE_KICK" ],
+            [ 36, "MOVE_HORN_ATTACK" ],
+            [ 43, "MOVE_HELPING_HAND" ],
+            [ 50, "MOVE_TOXIC" ],
+            [ 57, "MOVE_FLATTER" ],
+            [ 64, "MOVE_POISON_JAB" ],
+            [ 71, "MOVE_EARTH_POWER" ]
         ],
         "by_tm": [
             "TM03",
@@ -87,6 +87,7 @@
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
+            "MOVE_EARTH_POWER",
             "MOVE_SUCKER_PUNCH"
         ]
     },

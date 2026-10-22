@@ -34,12 +34,13 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_LUCKY_CHANT" ],
-            [ 1, "MOVE_MAGICAL_LEAF" ],
             [ 1, "MOVE_GROWL" ],
-            [ 1, "MOVE_PSYWAVE" ],
             [ 1, "MOVE_SPITE" ],
-            [ 1, "MOVE_ASTONISH" ]
+            [ 1, "MOVE_ASTONISH" ],
+            [ 1, "MOVE_MAGICAL_LEAF" ],
+            [ 1, "MOVE_POWER_GEM" ],
+            [ 1, "MOVE_PHANTOM_FORCE" ],
+            [ 1, "MOVE_MYSTICAL_FIRE" ]
         ],
         "by_tm": [
             "TM04",
@@ -82,6 +83,7 @@
             "TM82",
             "TM83",
             "TM85",
+            "TM86",
             "TM87",
             "TM90",
             "TM92"
@@ -91,6 +93,7 @@
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
             "MOVE_SPITE",
+            "MOVE_HELPING_HAND",
             "MOVE_TRICK",
             "MOVE_SUCKER_PUNCH",
             "MOVE_SWIFT",

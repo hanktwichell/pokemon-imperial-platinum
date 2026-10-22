@@ -1,0 +1,27 @@
+{
+    "name": "Trailblaze",
+    "description": [
+        "The user attacks\n",
+        "suddenly as if\n",
+        "leaping out from tall\n",
+        "grass."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_GRASS",
+    "power": 50,
+    "accuracy": 100,
+    "pp": 20,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

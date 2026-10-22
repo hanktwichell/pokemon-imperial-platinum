@@ -34,17 +34,18 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_PECK" ],
             [ 1, "MOVE_GROWL" ],
-            [ 5, "MOVE_LEER" ],
-            [ 9, "MOVE_FURY_ATTACK" ],
-            [ 13, "MOVE_PURSUIT" ],
-            [ 17, "MOVE_AERIAL_ACE" ],
-            [ 21, "MOVE_MIRROR_MOVE" ],
+            [ 1, "MOVE_PECK" ],
+            [ 4, "MOVE_LEER" ],
+            [ 8, "MOVE_ASSURANCE" ],
+            [ 11, "MOVE_FURY_ATTACK" ],
+            [ 15, "MOVE_AERIAL_ACE" ],
+            [ 18, "MOVE_WING_ATTACK" ],
+            [ 22, "MOVE_TAKE_DOWN" ],
             [ 25, "MOVE_AGILITY" ],
-            [ 29, "MOVE_ASSURANCE" ],
-            [ 33, "MOVE_ROOST" ],
-            [ 37, "MOVE_DRILL_PECK" ]
+            [ 29, "MOVE_FOCUS_ENERGY" ],
+            [ 32, "MOVE_ROOST" ],
+            [ 36, "MOVE_DRILL_PECK" ]
         ],
         "by_tm": [
             "TM06",
@@ -63,6 +64,7 @@
             "TM46",
             "TM47",
             "TM51",
+            "TM54",
             "TM58",
             "TM78",
             "TM82",
@@ -81,18 +83,18 @@
             "MOVE_AIR_CUTTER",
             "MOVE_TWISTER",
             "MOVE_HEAT_WAVE",
-            "MOVE_SWIFT"
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
         ],
         "egg_moves": [
-            "MOVE_FAINT_ATTACK",
-            "MOVE_FALSE_SWIPE",
-            "MOVE_SCARY_FACE",
-            "MOVE_QUICK_ATTACK",
-            "MOVE_TRI_ATTACK",
-            "MOVE_ASTONISH",
-            "MOVE_SKY_ATTACK",
             "MOVE_WHIRLWIND",
-            "MOVE_UPROAR"
+            "MOVE_QUICK_ATTACK",
+            "MOVE_SKY_ATTACK",
+            "MOVE_TRI_ATTACK",
+            "MOVE_SCARY_FACE",
+            "MOVE_UPROAR",
+            "MOVE_FEATHER_DANCE",
+            "MOVE_ASTONISH"
         ]
     },
     "evolutions": [

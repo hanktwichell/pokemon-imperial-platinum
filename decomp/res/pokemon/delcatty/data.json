@@ -3,7 +3,7 @@
         "hp": 70,
         "attack": 65,
         "defense": 65,
-        "speed": 70,
+        "speed": 90,
         "special_attack": 55,
         "special_defense": 55
     },
@@ -34,10 +34,23 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_FAKE_OUT" ],
             [ 1, "MOVE_ATTRACT" ],
+            [ 1, "MOVE_BABY_DOLL_EYES" ],
+            [ 1, "MOVE_CHARM" ],
+            [ 1, "MOVE_COPYCAT" ],
+            [ 1, "MOVE_COVET" ],
+            [ 1, "MOVE_DISARMING_VOICE" ],
+            [ 1, "MOVE_DOUBLE_EDGE" ],
+            [ 1, "MOVE_FACADE" ],
+            [ 1, "MOVE_FAKE_OUT" ],
+            [ 1, "MOVE_FURY_SWIPES" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_HEAL_BELL" ],
+            [ 1, "MOVE_PAYBACK" ],
+            [ 1, "MOVE_PLAY_ROUGH" ],
             [ 1, "MOVE_SING" ],
-            [ 1, "MOVE_DOUBLE_SLAP" ]
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_TAIL_WHIP" ]
         ],
         "by_tm": [
             "TM03",

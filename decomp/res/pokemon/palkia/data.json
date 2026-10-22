@@ -34,17 +34,18 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_DRAGON_BREATH" ],
             [ 1, "MOVE_SCARY_FACE" ],
-            [ 10, "MOVE_WATER_PULSE" ],
-            [ 20, "MOVE_ANCIENT_POWER" ],
-            [ 30, "MOVE_DRAGON_CLAW" ],
-            [ 40, "MOVE_SPACIAL_REND" ],
-            [ 50, "MOVE_HEAL_BLOCK" ],
-            [ 60, "MOVE_EARTH_POWER" ],
-            [ 70, "MOVE_SLASH" ],
-            [ 80, "MOVE_AQUA_TAIL" ],
-            [ 90, "MOVE_AURA_SPHERE" ]
+            [ 1, "MOVE_WATER_PULSE" ],
+            [ 8, "MOVE_DRAGON_BREATH" ],
+            [ 16, "MOVE_ANCIENT_POWER" ],
+            [ 24, "MOVE_SLASH" ],
+            [ 32, "MOVE_AQUA_RING" ],
+            [ 48, "MOVE_AURA_SPHERE" ],
+            [ 56, "MOVE_POWER_GEM" ],
+            [ 64, "MOVE_AQUA_TAIL" ],
+            [ 72, "MOVE_EARTH_POWER" ],
+            [ 80, "MOVE_SPACIAL_REND" ],
+            [ 88, "MOVE_HYDRO_PUMP" ]
         ],
         "by_tm": [
             "TM01",
@@ -98,18 +99,21 @@
             "HM01",
             "HM03",
             "HM04",
-            "HM06"
+            "HM06",
+            "HM07"
         ],
         "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
+            "MOVE_ICY_WIND",
             "MOVE_AQUA_TAIL",
             "MOVE_SNORE",
             "MOVE_OUTRAGE",
             "MOVE_ANCIENT_POWER",
             "MOVE_EARTH_POWER",
             "MOVE_TWISTER",
+            "MOVE_TRICK",
             "MOVE_SWIFT"
         ]
     },

@@ -34,12 +34,23 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_THUNDER_FANG" ],
-            [ 1, "MOVE_BITE" ],
-            [ 1, "MOVE_ROAR" ],
+            [ 1, "MOVE_EXTREME_SPEED" ],
+            [ 1, "MOVE_PLAY_ROUGH" ],
             [ 1, "MOVE_FIRE_FANG" ],
-            [ 1, "MOVE_ODOR_SLEUTH" ],
-            [ 39, "MOVE_EXTREME_SPEED" ]
+            [ 1, "MOVE_FLARE_BLITZ" ],
+            [ 1, "MOVE_HOWL" ],
+            [ 1, "MOVE_HELPING_HAND" ],
+            [ 1, "MOVE_CRUNCH" ],
+            [ 1, "MOVE_RETALIATE" ],
+            [ 1, "MOVE_REVERSAL" ],
+            [ 1, "MOVE_AGILITY" ],
+            [ 1, "MOVE_EMBER" ],
+            [ 1, "MOVE_ROAR" ],
+            [ 1, "MOVE_BITE" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_FLAME_WHEEL" ],
+            [ 1, "MOVE_TAKE_DOWN" ],
+            [ 5, "MOVE_FLAMETHROWER" ]
         ],
         "by_tm": [
             "TM05",
@@ -81,6 +92,7 @@
             "MOVE_IRON_HEAD",
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
+            "MOVE_OUTRAGE",
             "MOVE_HEAT_WAVE",
             "MOVE_SWIFT"
         ]

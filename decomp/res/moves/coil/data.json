@@ -1,0 +1,29 @@
+{
+    "name": "Coil",
+    "description": [
+        "The user coils up and\n",
+        "concentrates. This\n",
+        "boosts its Attack and\n",
+        "Defense stats as well\n",
+        "as its accuracy."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_POISON",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 20,
+    "effect": {
+        "type": "BATTLE_EFFECT_ATK_DEF_UP",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_SNATCH",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

@@ -37,16 +37,16 @@
             [ 1, "MOVE_SCRATCH" ],
             [ 1, "MOVE_SAND_ATTACK" ],
             [ 4, "MOVE_GROWL" ],
-            [ 7, "MOVE_ASTONISH" ],
-            [ 12, "MOVE_MAGNITUDE" ],
-            [ 15, "MOVE_MUD_SLAP" ],
-            [ 18, "MOVE_DIG" ],
-            [ 23, "MOVE_SUCKER_PUNCH" ],
-            [ 26, "MOVE_EARTH_POWER" ],
-            [ 29, "MOVE_MUD_BOMB" ],
-            [ 34, "MOVE_SLASH" ],
-            [ 37, "MOVE_EARTHQUAKE" ],
-            [ 40, "MOVE_FISSURE" ]
+            [ 8, "MOVE_ASTONISH" ],
+            [ 12, "MOVE_MUD_SLAP" ],
+            [ 16, "MOVE_BULLDOZE" ],
+            [ 20, "MOVE_SUCKER_PUNCH" ],
+            [ 24, "MOVE_SLASH" ],
+            [ 28, "MOVE_SANDSTORM" ],
+            [ 32, "MOVE_DIG" ],
+            [ 36, "MOVE_EARTH_POWER" ],
+            [ 40, "MOVE_EARTHQUAKE" ],
+            [ 44, "MOVE_FISSURE" ]
         ],
         "by_tm": [
             "TM06",
@@ -69,6 +69,8 @@
             "TM46",
             "TM58",
             "TM65",
+            "TM71",
+            "TM75",
             "TM76",
             "TM78",
             "TM80",
@@ -82,19 +84,19 @@
         "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_ANCIENT_POWER",
             "MOVE_EARTH_POWER",
-            "MOVE_SUCKER_PUNCH"
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_UPROAR"
         ],
         "egg_moves": [
-            "MOVE_FAINT_ATTACK",
-            "MOVE_SCREECH",
+            "MOVE_HEADBUTT",
             "MOVE_ANCIENT_POWER",
-            "MOVE_PURSUIT",
-            "MOVE_BEAT_UP",
-            "MOVE_UPROAR",
-            "MOVE_ROCK_SLIDE",
-            "MOVE_MUD_BOMB",
-            "MOVE_ASTONISH"
+            "MOVE_MEMENTO",
+            "MOVE_HONE_CLAWS",
+            "MOVE_FINAL_GAMBIT"
         ]
     },
     "evolutions": [

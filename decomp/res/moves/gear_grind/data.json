@@ -1,0 +1,29 @@
+{
+    "name": "Gear Grind",
+    "description": [
+        "The user attacks by\n",
+        "throwing steel gears\n",
+        "at its target twice."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_STEEL",
+    "power": 50,
+    "accuracy": 85,
+    "pp": 15,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT_TWICE",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

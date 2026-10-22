@@ -34,23 +34,24 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_CURSE" ],
-            [ 1, "MOVE_YAWN" ],
+            [ 1, "MOVE_WITHDRAW" ],
             [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_GROWL" ],
-            [ 6, "MOVE_GROWL" ],
-            [ 11, "MOVE_WATER_GUN" ],
-            [ 15, "MOVE_CONFUSION" ],
-            [ 20, "MOVE_DISABLE" ],
-            [ 25, "MOVE_HEADBUTT" ],
-            [ 29, "MOVE_WATER_PULSE" ],
-            [ 34, "MOVE_ZEN_HEADBUTT" ],
-            [ 37, "MOVE_WITHDRAW" ],
-            [ 41, "MOVE_SLACK_OFF" ],
-            [ 47, "MOVE_AMNESIA" ],
-            [ 54, "MOVE_PSYCHIC" ],
-            [ 61, "MOVE_RAIN_DANCE" ],
-            [ 67, "MOVE_PSYCH_UP" ]
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 1, "MOVE_CURSE" ],
+            [ 9, "MOVE_YAWN" ],
+            [ 12, "MOVE_CONFUSION" ],
+            [ 15, "MOVE_DISABLE" ],
+            [ 18, "MOVE_WATER_PULSE" ],
+            [ 21, "MOVE_HEADBUTT" ],
+            [ 24, "MOVE_ZEN_HEADBUTT" ],
+            [ 27, "MOVE_AMNESIA" ],
+            [ 30, "MOVE_SURF" ],
+            [ 33, "MOVE_SLACK_OFF" ],
+            [ 36, "MOVE_PSYCHIC" ],
+            [ 41, "MOVE_PSYCH_UP" ],
+            [ 46, "MOVE_RAIN_DANCE" ],
+            [ 51, "MOVE_HEAL_PULSE" ]
         ],
         "by_tm": [
             "TM01",
@@ -104,7 +105,8 @@
             "TM92",
             "HM03",
             "HM04",
-            "HM06"
+            "HM06",
+            "HM07"
         ],
         "by_tutor": [
             "MOVE_DIVE",
@@ -114,6 +116,7 @@
             "MOVE_ICE_PUNCH",
             "MOVE_AQUA_TAIL",
             "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
             "MOVE_SIGNAL_BEAM",
             "MOVE_ZEN_HEADBUTT",
             "MOVE_IRON_DEFENSE",

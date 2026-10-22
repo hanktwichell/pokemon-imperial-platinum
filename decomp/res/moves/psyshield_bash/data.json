@@ -1,0 +1,27 @@
+{
+    "name": "Psyshield Bash",
+    "description": [
+        "Cloaking itself in\n",
+        "psychic energy, the\n",
+        "user slams into the\n",
+        "target."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_PSYCHIC",
+    "power": 70,
+    "accuracy": 90,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

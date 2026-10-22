@@ -10,7 +10,7 @@
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
     "power": 0,
-    "accuracy": 90,
+    "accuracy": 85,
     "pp": 15,
     "effect": {
         "type": "BATTLE_EFFECT_ATK_UP_2_STATUS_CONFUSION",

@@ -34,12 +34,13 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_TAIL_WHIP" ],
             [ 1, "MOVE_THUNDER_SHOCK" ],
-            [ 1, "MOVE_CHARM" ],
-            [ 5, "MOVE_TAIL_WHIP" ],
-            [ 10, "MOVE_THUNDER_WAVE" ],
-            [ 13, "MOVE_SWEET_KISS" ],
-            [ 18, "MOVE_NASTY_PLOT" ]
+            [ 4, "MOVE_PLAY_NICE" ],
+            [ 8, "MOVE_SWEET_KISS" ],
+            [ 12, "MOVE_NUZZLE" ],
+            [ 16, "MOVE_NASTY_PLOT" ],
+            [ 20, "MOVE_CHARM" ]
         ],
         "by_tm": [
             "TM06",
@@ -53,6 +54,7 @@
             "TM25",
             "TM27",
             "TM32",
+            "TM33",
             "TM34",
             "TM42",
             "TM43",
@@ -68,11 +70,13 @@
             "TM83",
             "TM86",
             "TM87",
-            "TM90"
+            "TM90",
+            "HM03"
         ],
         "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
+            "MOVE_THUNDER_PUNCH",
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
             "MOVE_SIGNAL_BEAM",
@@ -81,16 +85,13 @@
             "MOVE_UPROAR"
         ],
         "egg_moves": [
-            "MOVE_REVERSAL",
-            "MOVE_BIDE",
+            "MOVE_FLAIL",
             "MOVE_PRESENT",
-            "MOVE_ENCORE",
-            "MOVE_DOUBLE_SLAP",
-            "MOVE_WISH",
-            "MOVE_CHARGE",
             "MOVE_FAKE_OUT",
-            "MOVE_THUNDER_PUNCH",
-            "MOVE_TICKLE"
+            "MOVE_CHARGE",
+            "MOVE_WISH",
+            "MOVE_TICKLE",
+            "MOVE_DISARMING_VOICE"
         ]
     },
     "evolutions": [

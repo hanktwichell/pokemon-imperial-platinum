@@ -35,14 +35,13 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 1, "MOVE_FORESIGHT" ],
             [ 6, "MOVE_QUICK_ATTACK" ],
             [ 11, "MOVE_DOUBLE_TEAM" ],
-            [ 14, "MOVE_SONIC_BOOM" ],
+            [ 14, "MOVE_AIR_CUTTER" ],
             [ 17, "MOVE_DETECT" ],
             [ 22, "MOVE_SUPERSONIC" ],
             [ 27, "MOVE_UPROAR" ],
-            [ 30, "MOVE_PURSUIT" ],
+            [ 30, "MOVE_BUG_BITE" ],
             [ 33, "MOVE_ANCIENT_POWER" ],
             [ 38, "MOVE_HYPNOSIS" ],
             [ 43, "MOVE_WING_ATTACK" ],
@@ -74,6 +73,8 @@
             "TM58",
             "TM62",
             "TM70",
+            "TM75",
+            "TM77",
             "TM78",
             "TM82",
             "TM83",
@@ -94,13 +95,8 @@
         ],
         "egg_moves": [
             "MOVE_WHIRLWIND",
-            "MOVE_REVERSAL",
-            "MOVE_LEECH_LIFE",
-            "MOVE_SIGNAL_BEAM",
-            "MOVE_SILVER_WIND",
-            "MOVE_FEINT",
-            "MOVE_FAINT_ATTACK",
-            "MOVE_PURSUIT"
+            "MOVE_DOUBLE_EDGE",
+            "MOVE_FEINT"
         ]
     },
     "evolutions": [

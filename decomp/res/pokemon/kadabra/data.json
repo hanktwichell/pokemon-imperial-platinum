@@ -34,20 +34,20 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_TELEPORT" ],
-            [ 1, "MOVE_KINESIS" ],
             [ 1, "MOVE_CONFUSION" ],
-            [ 16, "MOVE_CONFUSION" ],
-            [ 18, "MOVE_DISABLE" ],
-            [ 22, "MOVE_MIRACLE_EYE" ],
-            [ 24, "MOVE_PSYBEAM" ],
-            [ 28, "MOVE_REFLECT" ],
-            [ 30, "MOVE_RECOVER" ],
-            [ 34, "MOVE_PSYCHO_CUT" ],
-            [ 36, "MOVE_ROLE_PLAY" ],
-            [ 40, "MOVE_PSYCHIC" ],
-            [ 42, "MOVE_FUTURE_SIGHT" ],
-            [ 46, "MOVE_TRICK" ]
+            [ 1, "MOVE_KINESIS" ],
+            [ 1, "MOVE_DISABLE" ],
+            [ 1, "MOVE_TELEPORT" ],
+            [ 5, "MOVE_PSYBEAM" ],
+            [ 10, "MOVE_REFLECT" ],
+            [ 15, "MOVE_ALLY_SWITCH" ],
+            [ 20, "MOVE_PSYCHO_CUT" ],
+            [ 25, "MOVE_RECOVER" ],
+            [ 30, "MOVE_PSYSHOCK" ],
+            [ 35, "MOVE_PSYCHIC" ],
+            [ 40, "MOVE_ROLE_PLAY" ],
+            [ 45, "MOVE_FUTURE_SIGHT" ],
+            [ 50, "MOVE_CALM_MIND" ]
         ],
         "by_tm": [
             "TM01",
@@ -103,7 +103,8 @@
             "MOVE_SIGNAL_BEAM",
             "MOVE_ZEN_HEADBUTT",
             "MOVE_TRICK",
-            "MOVE_KNOCK_OFF"
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT"
         ]
     },
     "evolutions": [

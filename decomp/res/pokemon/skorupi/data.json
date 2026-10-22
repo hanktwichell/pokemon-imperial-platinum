@@ -34,18 +34,24 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_BITE" ],
             [ 1, "MOVE_POISON_STING" ],
             [ 1, "MOVE_LEER" ],
-            [ 6, "MOVE_KNOCK_OFF" ],
-            [ 12, "MOVE_PIN_MISSILE" ],
-            [ 17, "MOVE_ACUPRESSURE" ],
-            [ 23, "MOVE_SCARY_FACE" ],
-            [ 28, "MOVE_TOXIC_SPIKES" ],
-            [ 34, "MOVE_BUG_BITE" ],
-            [ 39, "MOVE_POISON_FANG" ],
-            [ 45, "MOVE_CRUNCH" ],
-            [ 50, "MOVE_CROSS_POISON" ]
+            [ 3, "MOVE_HONE_CLAWS" ],
+            [ 6, "MOVE_FELL_STINGER" ],
+            [ 9, "MOVE_POISON_FANG" ],
+            [ 12, "MOVE_BITE" ],
+            [ 15, "MOVE_TOXIC_SPIKES" ],
+            [ 18, "MOVE_BUG_BITE" ],
+            [ 21, "MOVE_VENOSHOCK" ],
+            [ 24, "MOVE_KNOCK_OFF" ],
+            [ 27, "MOVE_SCARY_FACE" ],
+            [ 30, "MOVE_PIN_MISSILE" ],
+            [ 33, "MOVE_TOXIC" ],
+            [ 36, "MOVE_NIGHT_SLASH" ],
+            [ 39, "MOVE_CROSS_POISON" ],
+            [ 42, "MOVE_X_SCISSOR" ],
+            [ 45, "MOVE_ACUPRESSURE" ],
+            [ 48, "MOVE_CRUNCH" ]
         ],
         "by_tm": [
             "TM06",
@@ -96,15 +102,10 @@
             "MOVE_KNOCK_OFF"
         ],
         "egg_moves": [
-            "MOVE_FAINT_ATTACK",
-            "MOVE_SCREECH",
-            "MOVE_SAND_ATTACK",
-            "MOVE_SLASH",
-            "MOVE_CONFUSE_RAY",
             "MOVE_WHIRLWIND",
-            "MOVE_AGILITY",
-            "MOVE_PURSUIT",
-            "MOVE_NIGHT_SLASH"
+            "MOVE_SAND_ATTACK",
+            "MOVE_CONFUSE_RAY",
+            "MOVE_SLASH"
         ]
     },
     "evolutions": [

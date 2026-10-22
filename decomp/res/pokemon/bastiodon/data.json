@@ -34,20 +34,19 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_BLOCK" ],
             [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_PROTECT" ],
             [ 1, "MOVE_TAUNT" ],
             [ 1, "MOVE_METAL_SOUND" ],
-            [ 6, "MOVE_TAUNT" ],
-            [ 10, "MOVE_METAL_SOUND" ],
             [ 15, "MOVE_TAKE_DOWN" ],
             [ 19, "MOVE_IRON_DEFENSE" ],
             [ 24, "MOVE_SWAGGER" ],
             [ 28, "MOVE_ANCIENT_POWER" ],
-            [ 30, "MOVE_BLOCK" ],
             [ 36, "MOVE_ENDURE" ],
             [ 43, "MOVE_METAL_BURST" ],
-            [ 52, "MOVE_IRON_HEAD" ]
+            [ 51, "MOVE_IRON_HEAD" ],
+            [ 58, "MOVE_HEAVY_SLAM" ]
         ],
         "by_tm": [
             "TM05",
@@ -68,6 +67,7 @@
             "TM27",
             "TM28",
             "TM32",
+            "TM33",
             "TM34",
             "TM35",
             "TM37",

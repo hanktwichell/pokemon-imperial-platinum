@@ -10,7 +10,7 @@
     "class": "CLASS_STATUS",
     "type": "TYPE_ELECTRIC",
     "power": 0,
-    "accuracy": 100,
+    "accuracy": 90,
     "pp": 20,
     "effect": {
         "type": "BATTLE_EFFECT_STATUS_PARALYZE",

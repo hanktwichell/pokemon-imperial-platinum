@@ -34,11 +34,9 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_NASTY_PLOT" ],
-            [ 1, "MOVE_EMBER" ],
             [ 1, "MOVE_QUICK_ATTACK" ],
-            [ 1, "MOVE_CONFUSE_RAY" ],
-            [ 1, "MOVE_SAFEGUARD" ]
+            [ 1, "MOVE_FLAMETHROWER" ],
+            [ 1, "MOVE_TAIL_WHIP" ]
         ],
         "by_tm": [
             "TM04",
@@ -54,6 +52,7 @@
             "TM23",
             "TM27",
             "TM28",
+            "TM30",
             "TM32",
             "TM35",
             "TM38",
@@ -62,6 +61,7 @@
             "TM44",
             "TM45",
             "TM50",
+            "TM53",
             "TM58",
             "TM61",
             "TM66",
@@ -79,6 +79,7 @@
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
             "MOVE_SPITE",
+            "MOVE_HELPING_HAND",
             "MOVE_ZEN_HEADBUTT",
             "MOVE_HEAT_WAVE",
             "MOVE_SWIFT"

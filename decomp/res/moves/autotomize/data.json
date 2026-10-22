@@ -1,0 +1,29 @@
+{
+    "name": "Autotomize",
+    "description": [
+        "The user sheds part\n",
+        "of its body to make\n",
+        "itself lighter and\n",
+        "sharply raise its\n",
+        "Speed stat."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_STEEL",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 15,
+    "effect": {
+        "type": "BATTLE_EFFECT_SPEED_UP_2",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_SNATCH",
+        "MOVE_FLAG_HIDES_SHADOWS"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

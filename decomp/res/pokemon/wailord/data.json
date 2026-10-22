@@ -34,24 +34,24 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_SOAK" ],
+            [ 1, "MOVE_NOBLE_ROAR" ],
             [ 1, "MOVE_SPLASH" ],
             [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_ASTONISH" ],
             [ 1, "MOVE_WATER_GUN" ],
-            [ 1, "MOVE_ROLLOUT" ],
-            [ 4, "MOVE_GROWL" ],
-            [ 7, "MOVE_WATER_GUN" ],
-            [ 11, "MOVE_ROLLOUT" ],
-            [ 14, "MOVE_WHIRLPOOL" ],
-            [ 17, "MOVE_ASTONISH" ],
-            [ 21, "MOVE_WATER_PULSE" ],
-            [ 24, "MOVE_MIST" ],
-            [ 27, "MOVE_REST" ],
-            [ 31, "MOVE_BRINE" ],
-            [ 34, "MOVE_WATER_SPOUT" ],
-            [ 37, "MOVE_AMNESIA" ],
-            [ 46, "MOVE_DIVE" ],
-            [ 54, "MOVE_BOUNCE" ],
-            [ 62, "MOVE_HYDRO_PUMP" ]
+            [ 15, "MOVE_MIST" ],
+            [ 18, "MOVE_WATER_PULSE" ],
+            [ 21, "MOVE_HEAVY_SLAM" ],
+            [ 24, "MOVE_BRINE" ],
+            [ 27, "MOVE_WHIRLPOOL" ],
+            [ 30, "MOVE_DIVE" ],
+            [ 33, "MOVE_BOUNCE" ],
+            [ 36, "MOVE_BODY_SLAM" ],
+            [ 39, "MOVE_REST" ],
+            [ 44, "MOVE_AMNESIA" ],
+            [ 49, "MOVE_HYDRO_PUMP" ],
+            [ 54, "MOVE_WATER_SPOUT" ]
         ],
         "by_tm": [
             "TM03",
@@ -93,6 +93,7 @@
             "MOVE_ROLLOUT",
             "MOVE_IRON_HEAD",
             "MOVE_SNORE",
+            "MOVE_ZEN_HEADBUTT",
             "MOVE_BOUNCE"
         ]
     },

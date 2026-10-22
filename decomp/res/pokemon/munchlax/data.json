@@ -34,21 +34,22 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_METRONOME" ],
-            [ 1, "MOVE_ODOR_SLEUTH" ],
             [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_LICK" ],
             [ 4, "MOVE_DEFENSE_CURL" ],
-            [ 9, "MOVE_AMNESIA" ],
-            [ 12, "MOVE_LICK" ],
-            [ 17, "MOVE_RECYCLE" ],
-            [ 20, "MOVE_SCREECH" ],
-            [ 25, "MOVE_STOCKPILE" ],
-            [ 28, "MOVE_SWALLOW" ],
-            [ 33, "MOVE_BODY_SLAM" ],
-            [ 36, "MOVE_FLING" ],
-            [ 41, "MOVE_ROLLOUT" ],
-            [ 44, "MOVE_NATURAL_GIFT" ],
-            [ 49, "MOVE_LAST_RESORT" ]
+            [ 8, "MOVE_RECYCLE" ],
+            [ 12, "MOVE_COVET" ],
+            [ 16, "MOVE_BITE" ],
+            [ 20, "MOVE_STOCKPILE" ],
+            [ 20, "MOVE_SWALLOW" ],
+            [ 24, "MOVE_SCREECH" ],
+            [ 28, "MOVE_BODY_SLAM" ],
+            [ 32, "MOVE_FLING" ],
+            [ 36, "MOVE_AMNESIA" ],
+            [ 40, "MOVE_METRONOME" ],
+            [ 44, "MOVE_FLAIL" ],
+            [ 48, "MOVE_BELLY_DRUM" ],
+            [ 52, "MOVE_LAST_RESORT" ]
         ],
         "by_tm": [
             "TM01",
@@ -66,6 +67,7 @@
             "TM25",
             "TM26",
             "TM27",
+            "TM28",
             "TM29",
             "TM30",
             "TM31",
@@ -82,6 +84,7 @@
             "TM56",
             "TM58",
             "TM67",
+            "TM68",
             "TM78",
             "TM80",
             "TM82",
@@ -102,6 +105,7 @@
             "MOVE_SUPERPOWER",
             "MOVE_ICE_PUNCH",
             "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
             "MOVE_ZEN_HEADBUTT",
             "MOVE_GUNK_SHOT",
             "MOVE_SEED_BOMB",
@@ -109,14 +113,11 @@
             "MOVE_UPROAR"
         ],
         "egg_moves": [
-            "MOVE_LICK",
-            "MOVE_CHARM",
             "MOVE_DOUBLE_EDGE",
+            "MOVE_COUNTER",
+            "MOVE_FISSURE",
             "MOVE_CURSE",
-            "MOVE_SUBSTITUTE",
-            "MOVE_WHIRLWIND",
-            "MOVE_PURSUIT",
-            "MOVE_ZEN_HEADBUTT"
+            "MOVE_BELCH"
         ]
     },
     "evolutions": [

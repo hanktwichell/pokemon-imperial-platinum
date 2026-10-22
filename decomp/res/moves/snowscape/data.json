@@ -1,0 +1,28 @@
+{
+    "name": "Snowscape",
+    "description": [
+        "The user summons a\n",
+        "snowstorm lasting\n",
+        "five turns. This\n",
+        "boosts the Defense\n",
+        "stats of Ice types."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_ICE",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_DO_NOTHING",
+        "chance": 0
+    },
+    "range": "RANGE_FIELD",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

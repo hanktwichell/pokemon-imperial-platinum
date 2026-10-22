@@ -7,11 +7,16 @@
 
 #define MAX_EVOLUTIONS 7
 
-#define MAX_LEARNSET_ENTRIES        20
+#define MAX_LEARNSET_ENTRIES        48 // Imperial: Gen IX learnsets (vanilla: 20)
 #define LEARNSET_NO_MOVE_TO_LEARN   0
 #define LEARNSET_MOVE_ALREADY_KNOWN 0xFFFE
 #define LEARNSET_ALL_SLOTS_FILLED   0xFFFF
-#define LEARNSET_SENTINEL_ENTRY     0xFFFF
+#define LEARNSET_SENTINEL_ENTRY     0xFFFFFFFF // Imperial: entries are 32-bit (vanilla: 16-bit 0xFFFF)
+
+// Imperial: a level-up learnset entry is read as one u32: move in the low 16 bits, level in the high 16
+// (vanilla packed a 9-bit move and 7-bit level into a u16, which can't hold moves above 511).
+#define LEARNSET_ENTRY_MOVE(entry)  ((u16)((entry) & 0xFFFF))
+#define LEARNSET_ENTRY_LEVEL(entry) ((u16)((entry) >> 16))
 
 typedef struct SpeciesBaseStats {
     u8 hp;
@@ -64,8 +69,8 @@ typedef struct SpeciesEvolution {
 } SpeciesEvolution;
 
 typedef struct SpeciesLearnsetEntry {
-    u16 move : 9;
-    u16 level : 7;
+    u16 move;
+    u16 level;
 } SpeciesLearnsetEntry;
 
 // This struct is not explicitly used; it is provided to document and enforce the size of

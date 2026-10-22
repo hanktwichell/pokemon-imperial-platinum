@@ -34,17 +34,23 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_WATER_GUN" ],
             [ 1, "MOVE_ASTONISH" ],
-            [ 3, "MOVE_GROWL" ],
-            [ 5, "MOVE_ABSORB" ],
-            [ 7, "MOVE_NATURE_POWER" ],
-            [ 11, "MOVE_FAKE_OUT" ],
-            [ 15, "MOVE_FURY_SWIPES" ],
-            [ 19, "MOVE_WATER_SPORT" ],
-            [ 25, "MOVE_BUBBLE_BEAM" ],
-            [ 31, "MOVE_ZEN_HEADBUTT" ],
-            [ 37, "MOVE_UPROAR" ],
-            [ 45, "MOVE_HYDRO_PUMP" ]
+            [ 1, "MOVE_TEETER_DANCE" ],
+            [ 1, "MOVE_ABSORB" ],
+            [ 1, "MOVE_KNOCK_OFF" ],
+            [ 1, "MOVE_FAKE_OUT" ],
+            [ 1, "MOVE_FLAIL" ],
+            [ 9, "MOVE_MIST" ],
+            [ 12, "MOVE_MEGA_DRAIN" ],
+            [ 18, "MOVE_FURY_SWIPES" ],
+            [ 24, "MOVE_BUBBLE_BEAM" ],
+            [ 30, "MOVE_LEECH_SEED" ],
+            [ 36, "MOVE_GIGA_DRAIN" ],
+            [ 50, "MOVE_ZEN_HEADBUTT" ],
+            [ 57, "MOVE_ENERGY_BALL" ],
+            [ 64, "MOVE_HYDRO_PUMP" ]
         ],
         "by_tm": [
             "TM03",
@@ -96,6 +102,7 @@
             "MOVE_SYNTHESIS",
             "MOVE_ZEN_HEADBUTT",
             "MOVE_SEED_BOMB",
+            "MOVE_KNOCK_OFF",
             "MOVE_UPROAR"
         ]
     },

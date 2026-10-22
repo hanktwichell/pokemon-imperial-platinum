@@ -36,17 +36,18 @@
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_GROWL" ],
-            [ 5, "MOVE_TAIL_WHIP" ],
-            [ 9, "MOVE_HEADBUTT" ],
-            [ 13, "MOVE_SAND_ATTACK" ],
-            [ 17, "MOVE_ODOR_SLEUTH" ],
-            [ 21, "MOVE_MUD_SPORT" ],
-            [ 25, "MOVE_PIN_MISSILE" ],
-            [ 29, "MOVE_COVET" ],
-            [ 33, "MOVE_FLAIL" ],
-            [ 37, "MOVE_REST" ],
-            [ 41, "MOVE_BELLY_DRUM" ],
-            [ 45, "MOVE_FLING" ]
+            [ 3, "MOVE_SAND_ATTACK" ],
+            [ 6, "MOVE_TAIL_WHIP" ],
+            [ 9, "MOVE_COVET" ],
+            [ 12, "MOVE_HEADBUTT" ],
+            [ 15, "MOVE_BABY_DOLL_EYES" ],
+            [ 18, "MOVE_PIN_MISSILE" ],
+            [ 21, "MOVE_REST" ],
+            [ 24, "MOVE_TAKE_DOWN" ],
+            [ 27, "MOVE_FLING" ],
+            [ 30, "MOVE_FLAIL" ],
+            [ 33, "MOVE_BELLY_DRUM" ],
+            [ 36, "MOVE_DOUBLE_EDGE" ]
         ],
         "by_tm": [
             "TM03",
@@ -99,13 +100,9 @@
             "MOVE_SWIFT"
         ],
         "egg_moves": [
-            "MOVE_CHARM",
-            "MOVE_PURSUIT",
-            "MOVE_SUBSTITUTE",
+            "MOVE_EXTREME_SPEED",
             "MOVE_TICKLE",
-            "MOVE_TRICK",
-            "MOVE_HELPING_HAND",
-            "MOVE_MUD_SLAP"
+            "MOVE_SIMPLE_BEAM"
         ]
     },
     "evolutions": [

@@ -34,22 +34,23 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_POISON_STING" ],
             [ 1, "MOVE_ABSORB" ],
-            [ 4, "MOVE_GROWTH" ],
-            [ 7, "MOVE_POISON_STING" ],
-            [ 10, "MOVE_STUN_SPORE" ],
-            [ 13, "MOVE_MEGA_DRAIN" ],
-            [ 16, "MOVE_LEECH_SEED" ],
-            [ 19, "MOVE_MAGICAL_LEAF" ],
-            [ 22, "MOVE_GRASS_WHISTLE" ],
-            [ 25, "MOVE_GIGA_DRAIN" ],
-            [ 28, "MOVE_TOXIC_SPIKES" ],
-            [ 31, "MOVE_SWEET_SCENT" ],
-            [ 34, "MOVE_INGRAIN" ],
-            [ 37, "MOVE_TOXIC" ],
-            [ 40, "MOVE_PETAL_DANCE" ],
-            [ 43, "MOVE_AROMATHERAPY" ],
-            [ 46, "MOVE_SYNTHESIS" ]
+            [ 1, "MOVE_GROWTH" ],
+            [ 1, "MOVE_STUN_SPORE" ],
+            [ 1, "MOVE_WORRY_SEED" ],
+            [ 5, "MOVE_MEGA_DRAIN" ],
+            [ 10, "MOVE_LEECH_SEED" ],
+            [ 15, "MOVE_MAGICAL_LEAF" ],
+            [ 20, "MOVE_TOXIC_SPIKES" ],
+            [ 25, "MOVE_SWEET_SCENT" ],
+            [ 30, "MOVE_GIGA_DRAIN" ],
+            [ 35, "MOVE_SYNTHESIS" ],
+            [ 40, "MOVE_TOXIC" ],
+            [ 45, "MOVE_PETAL_BLIZZARD" ],
+            [ 50, "MOVE_AROMATHERAPY" ],
+            [ 55, "MOVE_INGRAIN" ],
+            [ 60, "MOVE_PETAL_DANCE" ]
         ],
         "by_tm": [
             "TM06",
@@ -89,7 +90,8 @@
             "MOVE_SNORE",
             "MOVE_SYNTHESIS",
             "MOVE_SEED_BOMB",
-            "MOVE_SWIFT"
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
         ],
         "egg_moves": [
             "MOVE_SPIKES",

@@ -1,0 +1,28 @@
+{
+    "name": "Spicy Extract",
+    "description": [
+        "The user emits an\n",
+        "incredibly spicy\n",
+        "extract, sharply\n",
+        "boosting the target’s\n",
+        "Attack stat and."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_GRASS",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 15,
+    "effect": {
+        "type": "BATTLE_EFFECT_DO_NOTHING",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

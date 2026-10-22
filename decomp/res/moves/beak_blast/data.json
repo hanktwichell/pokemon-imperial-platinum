@@ -1,0 +1,28 @@
+{
+    "name": "Beak Blast",
+    "description": [
+        "The user first heats\n",
+        "up its beak, and then\n",
+        "it attacks the\n",
+        "target."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_FLYING",
+    "power": 100,
+    "accuracy": 100,
+    "pp": 15,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": -3,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

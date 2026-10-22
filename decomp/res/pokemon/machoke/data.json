@@ -37,17 +37,18 @@
             [ 1, "MOVE_LOW_KICK" ],
             [ 1, "MOVE_LEER" ],
             [ 1, "MOVE_FOCUS_ENERGY" ],
-            [ 7, "MOVE_FOCUS_ENERGY" ],
-            [ 10, "MOVE_KARATE_CHOP" ],
-            [ 13, "MOVE_FORESIGHT" ],
-            [ 19, "MOVE_SEISMIC_TOSS" ],
-            [ 22, "MOVE_REVENGE" ],
-            [ 25, "MOVE_VITAL_THROW" ],
-            [ 32, "MOVE_SUBMISSION" ],
-            [ 36, "MOVE_WAKE_UP_SLAP" ],
-            [ 40, "MOVE_CROSS_CHOP" ],
-            [ 44, "MOVE_SCARY_FACE" ],
-            [ 51, "MOVE_DYNAMIC_PUNCH" ]
+            [ 1, "MOVE_REVENGE" ],
+            [ 12, "MOVE_LOW_SWEEP" ],
+            [ 16, "MOVE_KNOCK_OFF" ],
+            [ 20, "MOVE_SCARY_FACE" ],
+            [ 24, "MOVE_VITAL_THROW" ],
+            [ 31, "MOVE_STRENGTH" ],
+            [ 36, "MOVE_DUAL_CHOP" ],
+            [ 42, "MOVE_BULK_UP" ],
+            [ 48, "MOVE_SEISMIC_TOSS" ],
+            [ 54, "MOVE_DYNAMIC_PUNCH" ],
+            [ 60, "MOVE_CROSS_CHOP" ],
+            [ 66, "MOVE_DOUBLE_EDGE" ]
         ],
         "by_tm": [
             "TM01",
@@ -55,6 +56,7 @@
             "TM08",
             "TM10",
             "TM11",
+            "TM16",
             "TM17",
             "TM18",
             "TM21",
@@ -94,7 +96,8 @@
             "MOVE_ICE_PUNCH",
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
-            "MOVE_VACUUM_WAVE"
+            "MOVE_VACUUM_WAVE",
+            "MOVE_KNOCK_OFF"
         ]
     },
     "evolutions": [

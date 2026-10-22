@@ -34,21 +34,23 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_POISON_GAS" ],
+            [ 1, "MOVE_DOUBLE_HIT" ],
             [ 1, "MOVE_TACKLE" ],
-            [ 1, "MOVE_SMOG" ],
             [ 1, "MOVE_SMOKE_SCREEN" ],
-            [ 6, "MOVE_SMOG" ],
-            [ 10, "MOVE_SMOKE_SCREEN" ],
-            [ 15, "MOVE_ASSURANCE" ],
-            [ 19, "MOVE_SELFDESTRUCT" ],
-            [ 24, "MOVE_SLUDGE" ],
-            [ 28, "MOVE_HAZE" ],
-            [ 33, "MOVE_DOUBLE_HIT" ],
-            [ 40, "MOVE_EXPLOSION" ],
-            [ 48, "MOVE_SLUDGE_BOMB" ],
-            [ 55, "MOVE_DESTINY_BOND" ],
-            [ 63, "MOVE_MEMENTO" ]
+            [ 1, "MOVE_SMOG" ],
+            [ 1, "MOVE_POISON_GAS" ],
+            [ 1, "MOVE_HEAT_WAVE" ],
+            [ 12, "MOVE_CLEAR_SMOG" ],
+            [ 16, "MOVE_ASSURANCE" ],
+            [ 20, "MOVE_SLUDGE" ],
+            [ 24, "MOVE_HAZE" ],
+            [ 28, "MOVE_SELFDESTRUCT" ],
+            [ 32, "MOVE_SLUDGE_BOMB" ],
+            [ 38, "MOVE_TOXIC" ],
+            [ 44, "MOVE_BELCH" ],
+            [ 50, "MOVE_EXPLOSION" ],
+            [ 56, "MOVE_MEMENTO" ],
+            [ 62, "MOVE_DESTINY_BOND" ]
         ],
         "by_tm": [
             "TM06",
@@ -92,6 +94,8 @@
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
             "MOVE_SPITE",
+            "MOVE_GUNK_SHOT",
+            "MOVE_HEAT_WAVE",
             "MOVE_UPROAR"
         ]
     },

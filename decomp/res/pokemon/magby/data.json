@@ -34,18 +34,20 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_SMOG" ],
             [ 1, "MOVE_LEER" ],
-            [ 7, "MOVE_EMBER" ],
-            [ 10, "MOVE_SMOKE_SCREEN" ],
-            [ 16, "MOVE_FAINT_ATTACK" ],
-            [ 19, "MOVE_FIRE_SPIN" ],
-            [ 25, "MOVE_CONFUSE_RAY" ],
+            [ 1, "MOVE_SMOG" ],
+            [ 4, "MOVE_EMBER" ],
+            [ 8, "MOVE_SMOKE_SCREEN" ],
+            [ 12, "MOVE_CLEAR_SMOG" ],
+            [ 16, "MOVE_FLAME_WHEEL" ],
+            [ 20, "MOVE_CONFUSE_RAY" ],
+            [ 24, "MOVE_SCARY_FACE" ],
             [ 28, "MOVE_FIRE_PUNCH" ],
-            [ 34, "MOVE_LAVA_PLUME" ],
-            [ 37, "MOVE_FLAMETHROWER" ],
-            [ 43, "MOVE_SUNNY_DAY" ],
-            [ 46, "MOVE_FIRE_BLAST" ]
+            [ 32, "MOVE_LAVA_PLUME" ],
+            [ 36, "MOVE_LOW_KICK" ],
+            [ 40, "MOVE_FLAMETHROWER" ],
+            [ 44, "MOVE_SUNNY_DAY" ],
+            [ 48, "MOVE_FIRE_BLAST" ]
         ],
         "by_tm": [
             "TM01",
@@ -73,6 +75,7 @@
             "TM78",
             "TM82",
             "TM83",
+            "TM84",
             "TM87",
             "TM90",
             "HM06"
@@ -87,15 +90,13 @@
             "MOVE_UPROAR"
         ],
         "egg_moves": [
-            "MOVE_KARATE_CHOP",
-            "MOVE_MEGA_PUNCH",
-            "MOVE_BARRIER",
-            "MOVE_SCREECH",
-            "MOVE_CROSS_CHOP",
-            "MOVE_THUNDER_PUNCH",
             "MOVE_MACH_PUNCH",
+            "MOVE_BELLY_DRUM",
             "MOVE_DYNAMIC_PUNCH",
-            "MOVE_FLARE_BLITZ"
+            "MOVE_CROSS_CHOP",
+            "MOVE_FOCUS_PUNCH",
+            "MOVE_FOLLOW_ME",
+            "MOVE_BELCH"
         ]
     },
     "evolutions": [

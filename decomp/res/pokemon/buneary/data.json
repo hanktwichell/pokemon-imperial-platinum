@@ -36,18 +36,19 @@
         "by_level": [
             [ 1, "MOVE_SPLASH" ],
             [ 1, "MOVE_POUND" ],
-            [ 1, "MOVE_DEFENSE_CURL" ],
-            [ 1, "MOVE_FORESIGHT" ],
-            [ 6, "MOVE_ENDURE" ],
-            [ 13, "MOVE_FRUSTRATION" ],
+            [ 4, "MOVE_DEFENSE_CURL" ],
+            [ 8, "MOVE_BABY_DOLL_EYES" ],
+            [ 12, "MOVE_AFTER_YOU" ],
             [ 16, "MOVE_QUICK_ATTACK" ],
-            [ 23, "MOVE_JUMP_KICK" ],
-            [ 26, "MOVE_BATON_PASS" ],
-            [ 33, "MOVE_AGILITY" ],
-            [ 36, "MOVE_DIZZY_PUNCH" ],
-            [ 43, "MOVE_CHARM" ],
-            [ 46, "MOVE_BOUNCE" ],
-            [ 53, "MOVE_HEALING_WISH" ]
+            [ 20, "MOVE_DOUBLE_KICK" ],
+            [ 24, "MOVE_CHARM" ],
+            [ 28, "MOVE_BATON_PASS" ],
+            [ 32, "MOVE_HEADBUTT" ],
+            [ 36, "MOVE_AGILITY" ],
+            [ 40, "MOVE_ENTRAINMENT" ],
+            [ 44, "MOVE_FLATTER" ],
+            [ 48, "MOVE_BOUNCE" ],
+            [ 52, "MOVE_HEALING_WISH" ]
         ],
         "by_tm": [
             "TM01",
@@ -75,6 +76,7 @@
             "TM57",
             "TM58",
             "TM60",
+            "TM66",
             "TM73",
             "TM78",
             "TM82",
@@ -87,6 +89,9 @@
         ],
         "by_tutor": [
             "MOVE_MUD_SLAP",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_ICE_PUNCH",
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
             "MOVE_ENDEAVOR",
@@ -96,18 +101,15 @@
             "MOVE_UPROAR"
         ],
         "egg_moves": [
-            "MOVE_FAKE_TEARS",
-            "MOVE_FAKE_OUT",
-            "MOVE_ENCORE",
+            "MOVE_FLAIL",
             "MOVE_SWEET_KISS",
-            "MOVE_DOUBLE_HIT",
-            "MOVE_ATTRACT",
-            "MOVE_LOW_KICK",
-            "MOVE_SKY_UPPERCUT",
+            "MOVE_FAKE_OUT",
+            "MOVE_FOCUS_PUNCH",
+            "MOVE_TEETER_DANCE",
+            "MOVE_COPYCAT",
             "MOVE_SWITCHEROO",
-            "MOVE_THUNDER_PUNCH",
-            "MOVE_ICE_PUNCH",
-            "MOVE_FIRE_PUNCH"
+            "MOVE_DOUBLE_HIT",
+            "MOVE_CIRCLE_THROW"
         ]
     },
     "evolutions": [

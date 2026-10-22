@@ -34,18 +34,19 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_GROWL" ],
             [ 1, "MOVE_TACKLE" ],
-            [ 6, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 5, "MOVE_TAIL_WHIP" ],
             [ 10, "MOVE_EMBER" ],
-            [ 15, "MOVE_FLAME_WHEEL" ],
-            [ 19, "MOVE_STOMP" ],
-            [ 24, "MOVE_FIRE_SPIN" ],
-            [ 28, "MOVE_TAKE_DOWN" ],
-            [ 33, "MOVE_AGILITY" ],
-            [ 37, "MOVE_FIRE_BLAST" ],
-            [ 42, "MOVE_BOUNCE" ],
-            [ 46, "MOVE_FLARE_BLITZ" ]
+            [ 15, "MOVE_FLAME_CHARGE" ],
+            [ 20, "MOVE_AGILITY" ],
+            [ 25, "MOVE_FLAME_WHEEL" ],
+            [ 30, "MOVE_STOMP" ],
+            [ 35, "MOVE_FIRE_SPIN" ],
+            [ 41, "MOVE_TAKE_DOWN" ],
+            [ 45, "MOVE_INFERNO" ],
+            [ 50, "MOVE_FIRE_BLAST" ],
+            [ 55, "MOVE_FLARE_BLITZ" ]
         ],
         "by_tm": [
             "TM06",
@@ -80,13 +81,12 @@
             "MOVE_SWIFT"
         ],
         "egg_moves": [
-            "MOVE_FLAME_WHEEL",
-            "MOVE_THRASH",
             "MOVE_DOUBLE_KICK",
-            "MOVE_HYPNOSIS",
-            "MOVE_CHARM",
+            "MOVE_HORN_DRILL",
+            "MOVE_THRASH",
             "MOVE_DOUBLE_EDGE",
-            "MOVE_HORN_DRILL"
+            "MOVE_HYPNOSIS",
+            "MOVE_MORNING_SUN"
         ]
     },
     "evolutions": [

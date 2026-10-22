@@ -7,7 +7,7 @@
         "special_attack": 40,
         "special_defense": 20
     },
-    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
+    "types": [ "TYPE_NORMAL", "TYPE_FAIRY" ],
     "catch_rate": 170,
     "base_exp_reward": 39,
     "ev_yields": {
@@ -34,12 +34,14 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_POUND" ],
             [ 1, "MOVE_SING" ],
-            [ 1, "MOVE_CHARM" ],
-            [ 5, "MOVE_DEFENSE_CURL" ],
-            [ 9, "MOVE_POUND" ],
-            [ 13, "MOVE_SWEET_KISS" ],
-            [ 17, "MOVE_COPYCAT" ]
+            [ 1, "MOVE_COPYCAT" ],
+            [ 4, "MOVE_DEFENSE_CURL" ],
+            [ 8, "MOVE_SWEET_KISS" ],
+            [ 12, "MOVE_DISARMING_VOICE" ],
+            [ 16, "MOVE_DISABLE" ],
+            [ 20, "MOVE_CHARM" ]
         ],
         "by_tm": [
             "TM03",
@@ -88,17 +90,18 @@
             "MOVE_ENDEAVOR",
             "MOVE_LAST_RESORT",
             "MOVE_BOUNCE",
+            "MOVE_SWIFT",
             "MOVE_UPROAR"
         ],
         "egg_moves": [
             "MOVE_PERISH_SONG",
+            "MOVE_ROLLOUT",
             "MOVE_PRESENT",
-            "MOVE_FAINT_ATTACK",
             "MOVE_WISH",
-            "MOVE_FAKE_TEARS",
-            "MOVE_LAST_RESORT",
             "MOVE_COVET",
-            "MOVE_GRAVITY"
+            "MOVE_GRAVITY",
+            "MOVE_LAST_RESORT",
+            "MOVE_HEAL_PULSE"
         ]
     },
     "evolutions": [

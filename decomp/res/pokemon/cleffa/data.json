@@ -7,7 +7,7 @@
         "special_attack": 45,
         "special_defense": 55
     },
-    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
+    "types": [ "TYPE_FAIRY", "TYPE_FAIRY" ],
     "catch_rate": 150,
     "base_exp_reward": 37,
     "ev_yields": {
@@ -35,15 +35,17 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_POUND" ],
-            [ 1, "MOVE_CHARM" ],
-            [ 4, "MOVE_ENCORE" ],
-            [ 7, "MOVE_SING" ],
-            [ 10, "MOVE_SWEET_KISS" ],
-            [ 13, "MOVE_COPYCAT" ],
-            [ 16, "MOVE_MAGICAL_LEAF" ]
+            [ 1, "MOVE_SPLASH" ],
+            [ 1, "MOVE_COPYCAT" ],
+            [ 4, "MOVE_SING" ],
+            [ 8, "MOVE_SWEET_KISS" ],
+            [ 12, "MOVE_DISARMING_VOICE" ],
+            [ 16, "MOVE_ENCORE" ],
+            [ 20, "MOVE_CHARM" ]
         ],
         "by_tm": [
             "TM03",
+            "TM04",
             "TM06",
             "TM10",
             "TM11",
@@ -92,19 +94,14 @@
             "MOVE_ZEN_HEADBUTT",
             "MOVE_LAST_RESORT",
             "MOVE_TRICK",
+            "MOVE_SWIFT",
             "MOVE_UPROAR"
         ],
         "egg_moves": [
             "MOVE_PRESENT",
-            "MOVE_METRONOME",
-            "MOVE_AMNESIA",
-            "MOVE_BELLY_DRUM",
-            "MOVE_SPLASH",
-            "MOVE_MIMIC",
             "MOVE_WISH",
-            "MOVE_SUBSTITUTE",
-            "MOVE_FAKE_TEARS",
-            "MOVE_COVET"
+            "MOVE_TICKLE",
+            "MOVE_HEAL_PULSE"
         ]
     },
     "evolutions": [

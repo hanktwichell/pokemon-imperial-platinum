@@ -34,17 +34,19 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_LEECH_LIFE" ],
-            [ 5, "MOVE_SUPERSONIC" ],
-            [ 9, "MOVE_ASTONISH" ],
-            [ 13, "MOVE_BITE" ],
-            [ 17, "MOVE_WING_ATTACK" ],
-            [ 21, "MOVE_CONFUSE_RAY" ],
+            [ 1, "MOVE_ABSORB" ],
+            [ 1, "MOVE_SUPERSONIC" ],
+            [ 5, "MOVE_ASTONISH" ],
+            [ 10, "MOVE_MEAN_LOOK" ],
+            [ 15, "MOVE_POISON_FANG" ],
+            [ 20, "MOVE_QUICK_GUARD" ],
             [ 25, "MOVE_AIR_CUTTER" ],
-            [ 29, "MOVE_MEAN_LOOK" ],
-            [ 33, "MOVE_POISON_FANG" ],
-            [ 37, "MOVE_HAZE" ],
-            [ 41, "MOVE_AIR_SLASH" ]
+            [ 30, "MOVE_BITE" ],
+            [ 35, "MOVE_HAZE" ],
+            [ 40, "MOVE_VENOSHOCK" ],
+            [ 45, "MOVE_CONFUSE_RAY" ],
+            [ 50, "MOVE_AIR_SLASH" ],
+            [ 55, "MOVE_LEECH_LIFE" ]
         ],
         "by_tm": [
             "TM06",
@@ -92,16 +94,13 @@
             "MOVE_UPROAR"
         ],
         "egg_moves": [
-            "MOVE_QUICK_ATTACK",
-            "MOVE_PURSUIT",
-            "MOVE_FAINT_ATTACK",
             "MOVE_GUST",
+            "MOVE_WING_ATTACK",
             "MOVE_WHIRLWIND",
-            "MOVE_CURSE",
-            "MOVE_NASTY_PLOT",
             "MOVE_HYPNOSIS",
-            "MOVE_ZEN_HEADBUTT",
-            "MOVE_BRAVE_BIRD"
+            "MOVE_QUICK_ATTACK",
+            "MOVE_CURSE",
+            "MOVE_DEFOG"
         ]
     },
     "evolutions": [

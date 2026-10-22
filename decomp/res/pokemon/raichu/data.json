@@ -3,7 +3,7 @@
         "hp": 60,
         "attack": 90,
         "defense": 55,
-        "speed": 100,
+        "speed": 110,
         "special_attack": 90,
         "special_defense": 80
     },
@@ -34,10 +34,27 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_THUNDER_SHOCK" ],
-            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_THUNDER_PUNCH" ],
+            [ 1, "MOVE_ELECTRO_BALL" ],
+            [ 1, "MOVE_DISCHARGE" ],
+            [ 1, "MOVE_NASTY_PLOT" ],
+            [ 1, "MOVE_FEINT" ],
+            [ 1, "MOVE_IRON_TAIL" ],
+            [ 1, "MOVE_SPARK" ],
+            [ 1, "MOVE_CHARM" ],
+            [ 1, "MOVE_SWEET_KISS" ],
+            [ 1, "MOVE_PLAY_NICE" ],
+            [ 1, "MOVE_NUZZLE" ],
             [ 1, "MOVE_QUICK_ATTACK" ],
-            [ 1, "MOVE_THUNDERBOLT" ]
+            [ 1, "MOVE_AGILITY" ],
+            [ 1, "MOVE_THUNDER" ],
+            [ 1, "MOVE_THUNDER_WAVE" ],
+            [ 1, "MOVE_THUNDER_SHOCK" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_DOUBLE_TEAM" ],
+            [ 1, "MOVE_LIGHT_SCREEN" ],
+            [ 5, "MOVE_THUNDERBOLT" ]
         ],
         "by_tm": [
             "TM01",
@@ -55,6 +72,7 @@
             "TM28",
             "TM31",
             "TM32",
+            "TM33",
             "TM34",
             "TM42",
             "TM43",
@@ -74,6 +92,7 @@
             "TM86",
             "TM87",
             "TM90",
+            "HM03",
             "HM04",
             "HM06"
         ],
@@ -83,6 +102,7 @@
             "MOVE_THUNDER_PUNCH",
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
             "MOVE_SIGNAL_BEAM",
             "MOVE_MAGNET_RISE",
             "MOVE_KNOCK_OFF",

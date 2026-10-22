@@ -34,20 +34,22 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_POISON_GAS" ],
             [ 1, "MOVE_POUND" ],
+            [ 1, "MOVE_POISON_GAS" ],
             [ 4, "MOVE_HARDEN" ],
             [ 7, "MOVE_MUD_SLAP" ],
             [ 12, "MOVE_DISABLE" ],
-            [ 17, "MOVE_MINIMIZE" ],
-            [ 20, "MOVE_SLUDGE" ],
-            [ 23, "MOVE_MUD_BOMB" ],
-            [ 28, "MOVE_FLING" ],
-            [ 33, "MOVE_SCREECH" ],
-            [ 36, "MOVE_SLUDGE_BOMB" ],
-            [ 39, "MOVE_ACID_ARMOR" ],
-            [ 44, "MOVE_GUNK_SHOT" ],
-            [ 49, "MOVE_MEMENTO" ]
+            [ 15, "MOVE_SLUDGE" ],
+            [ 18, "MOVE_MUD_SHOT" ],
+            [ 21, "MOVE_MINIMIZE" ],
+            [ 26, "MOVE_TOXIC" ],
+            [ 29, "MOVE_SLUDGE_BOMB" ],
+            [ 32, "MOVE_SLUDGE_WAVE" ],
+            [ 37, "MOVE_SCREECH" ],
+            [ 40, "MOVE_GUNK_SHOT" ],
+            [ 43, "MOVE_ACID_ARMOR" ],
+            [ 46, "MOVE_BELCH" ],
+            [ 48, "MOVE_MEMENTO" ]
         ],
         "by_tm": [
             "TM06",
@@ -67,6 +69,7 @@
             "TM34",
             "TM35",
             "TM36",
+            "TM37",
             "TM38",
             "TM39",
             "TM41",
@@ -77,6 +80,7 @@
             "TM46",
             "TM56",
             "TM58",
+            "TM60",
             "TM64",
             "TM66",
             "TM78",
@@ -94,20 +98,20 @@
             "MOVE_FIRE_PUNCH",
             "MOVE_ICE_PUNCH",
             "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_ZEN_HEADBUTT",
             "MOVE_GUNK_SHOT"
         ],
         "egg_moves": [
             "MOVE_HAZE",
-            "MOVE_MEAN_LOOK",
-            "MOVE_LICK",
-            "MOVE_IMPRISON",
             "MOVE_CURSE",
-            "MOVE_SHADOW_PUNCH",
-            "MOVE_EXPLOSION",
-            "MOVE_SHADOW_SNEAK",
+            "MOVE_MEAN_LOOK",
             "MOVE_STOCKPILE",
+            "MOVE_SPIT_UP",
             "MOVE_SWALLOW",
-            "MOVE_SPIT_UP"
+            "MOVE_SHADOW_PUNCH",
+            "MOVE_SHADOW_SNEAK",
+            "MOVE_ACID_SPRAY"
         ]
     },
     "evolutions": [

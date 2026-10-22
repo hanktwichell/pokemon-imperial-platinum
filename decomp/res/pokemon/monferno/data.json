@@ -34,20 +34,20 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_MACH_PUNCH" ],
             [ 1, "MOVE_SCRATCH" ],
             [ 1, "MOVE_LEER" ],
             [ 1, "MOVE_EMBER" ],
-            [ 7, "MOVE_EMBER" ],
             [ 9, "MOVE_TAUNT" ],
-            [ 14, "MOVE_MACH_PUNCH" ],
             [ 16, "MOVE_FURY_SWIPES" ],
             [ 19, "MOVE_FLAME_WHEEL" ],
             [ 26, "MOVE_FEINT" ],
             [ 29, "MOVE_TORMENT" ],
             [ 36, "MOVE_CLOSE_COMBAT" ],
             [ 39, "MOVE_FIRE_SPIN" ],
-            [ 46, "MOVE_SLACK_OFF" ],
-            [ 49, "MOVE_FLARE_BLITZ" ]
+            [ 46, "MOVE_ACROBATICS" ],
+            [ 49, "MOVE_SLACK_OFF" ],
+            [ 56, "MOVE_FLARE_BLITZ" ]
         ],
         "by_tm": [
             "TM01",
@@ -72,14 +72,17 @@
             "TM43",
             "TM44",
             "TM45",
+            "TM46",
             "TM50",
             "TM52",
             "TM56",
             "TM58",
+            "TM60",
             "TM61",
             "TM65",
             "TM75",
             "TM76",
+            "TM77",
             "TM78",
             "TM80",
             "TM82",
@@ -102,10 +105,13 @@
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
             "MOVE_ENDEAVOR",
+            "MOVE_ZEN_HEADBUTT",
             "MOVE_VACUUM_WAVE",
             "MOVE_GUNK_SHOT",
             "MOVE_HEAT_WAVE",
-            "MOVE_SWIFT"
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
         ]
     },
     "evolutions": [

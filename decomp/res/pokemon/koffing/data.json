@@ -34,19 +34,21 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_POISON_GAS" ],
             [ 1, "MOVE_TACKLE" ],
-            [ 6, "MOVE_SMOG" ],
-            [ 10, "MOVE_SMOKE_SCREEN" ],
-            [ 15, "MOVE_ASSURANCE" ],
-            [ 19, "MOVE_SELFDESTRUCT" ],
-            [ 24, "MOVE_SLUDGE" ],
-            [ 28, "MOVE_HAZE" ],
-            [ 33, "MOVE_GYRO_BALL" ],
-            [ 37, "MOVE_EXPLOSION" ],
-            [ 42, "MOVE_SLUDGE_BOMB" ],
-            [ 46, "MOVE_DESTINY_BOND" ],
-            [ 51, "MOVE_MEMENTO" ]
+            [ 1, "MOVE_POISON_GAS" ],
+            [ 4, "MOVE_SMOG" ],
+            [ 8, "MOVE_SMOKE_SCREEN" ],
+            [ 12, "MOVE_CLEAR_SMOG" ],
+            [ 16, "MOVE_ASSURANCE" ],
+            [ 20, "MOVE_SLUDGE" ],
+            [ 24, "MOVE_HAZE" ],
+            [ 28, "MOVE_SELFDESTRUCT" ],
+            [ 32, "MOVE_SLUDGE_BOMB" ],
+            [ 36, "MOVE_TOXIC" ],
+            [ 40, "MOVE_BELCH" ],
+            [ 44, "MOVE_EXPLOSION" ],
+            [ 48, "MOVE_MEMENTO" ],
+            [ 52, "MOVE_DESTINY_BOND" ]
         ],
         "by_tm": [
             "TM06",
@@ -88,18 +90,16 @@
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
             "MOVE_SPITE",
+            "MOVE_GUNK_SHOT",
             "MOVE_UPROAR"
         ],
         "egg_moves": [
-            "MOVE_SCREECH",
-            "MOVE_PSYWAVE",
-            "MOVE_PSYBEAM",
-            "MOVE_DESTINY_BOND",
-            "MOVE_PAIN_SPLIT",
-            "MOVE_WILL_O_WISP",
-            "MOVE_GRUDGE",
+            "MOVE_CURSE",
             "MOVE_SPITE",
-            "MOVE_CURSE"
+            "MOVE_PAIN_SPLIT",
+            "MOVE_STOCKPILE",
+            "MOVE_SPIT_UP",
+            "MOVE_SWALLOW"
         ]
     },
     "evolutions": [

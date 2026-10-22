@@ -1,0 +1,28 @@
+{
+    "name": "Bitter Blade",
+    "description": [
+        "The user focuses its\n",
+        "bitter feelings\n",
+        "toward the world of\n",
+        "the living into a\n",
+        "slashing attack."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_FIRE",
+    "power": 90,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

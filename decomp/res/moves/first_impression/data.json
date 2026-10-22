@@ -1,0 +1,31 @@
+{
+    "name": "FirstImpressn",
+    "description": [
+        "Although this move\n",
+        "has great power, it\n",
+        "only works the first\n",
+        "turn each time the\n",
+        "user enters battle."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_BUG",
+    "power": 90,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_PRIORITY_1",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 2,
+    "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

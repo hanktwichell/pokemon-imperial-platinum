@@ -36,19 +36,16 @@
         "by_level": [
             [ 1, "MOVE_PECK" ],
             [ 1, "MOVE_LEER" ],
-            [ 6, "MOVE_NIGHT_SHADE" ],
-            [ 9, "MOVE_TELEPORT" ],
-            [ 12, "MOVE_LUCKY_CHANT" ],
-            [ 17, "MOVE_MIRACLE_EYE" ],
-            [ 20, "MOVE_ME_FIRST" ],
-            [ 23, "MOVE_CONFUSE_RAY" ],
-            [ 28, "MOVE_WISH" ],
-            [ 33, "MOVE_PSYCHO_SHIFT" ],
-            [ 36, "MOVE_FUTURE_SIGHT" ],
-            [ 39, "MOVE_OMINOUS_WIND" ],
-            [ 44, "MOVE_POWER_SWAP" ],
-            [ 44, "MOVE_GUARD_SWAP" ],
-            [ 47, "MOVE_PSYCHIC" ]
+            [ 5, "MOVE_STORED_POWER" ],
+            [ 10, "MOVE_TELEPORT" ],
+            [ 15, "MOVE_CONFUSE_RAY" ],
+            [ 20, "MOVE_NIGHT_SHADE" ],
+            [ 26, "MOVE_PSYCHO_SHIFT" ],
+            [ 30, "MOVE_POWER_SWAP" ],
+            [ 35, "MOVE_GUARD_SWAP" ],
+            [ 35, "MOVE_PSYCHIC" ],
+            [ 40, "MOVE_WISH" ],
+            [ 45, "MOVE_FUTURE_SIGHT" ]
         ],
         "by_tm": [
             "TM04",
@@ -104,16 +101,12 @@
             "MOVE_SWIFT"
         ],
         "egg_moves": [
-            "MOVE_HAZE",
             "MOVE_DRILL_PECK",
             "MOVE_QUICK_ATTACK",
-            "MOVE_FAINT_ATTACK",
-            "MOVE_STEEL_WING",
-            "MOVE_PSYCH_UP",
             "MOVE_FEATHER_DANCE",
-            "MOVE_REFRESH",
-            "MOVE_ZEN_HEADBUTT",
-            "MOVE_SUCKER_PUNCH"
+            "MOVE_ROOST",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_SIMPLE_BEAM"
         ]
     },
     "evolutions": [

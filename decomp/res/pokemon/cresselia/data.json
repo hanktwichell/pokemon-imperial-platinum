@@ -2,10 +2,10 @@
     "base_stats": {
         "hp": 120,
         "attack": 70,
-        "defense": 120,
+        "defense": 110,
         "speed": 85,
         "special_attack": 75,
-        "special_defense": 130
+        "special_defense": 120
     },
     "types": [ "TYPE_PSYCHIC", "TYPE_PSYCHIC" ],
     "catch_rate": 3,
@@ -36,16 +36,19 @@
         "by_level": [
             [ 1, "MOVE_CONFUSION" ],
             [ 1, "MOVE_DOUBLE_TEAM" ],
-            [ 11, "MOVE_SAFEGUARD" ],
-            [ 20, "MOVE_MIST" ],
-            [ 29, "MOVE_AURORA_BEAM" ],
-            [ 38, "MOVE_FUTURE_SIGHT" ],
-            [ 47, "MOVE_SLASH" ],
-            [ 57, "MOVE_MOONLIGHT" ],
-            [ 66, "MOVE_PSYCHO_CUT" ],
-            [ 75, "MOVE_PSYCHO_SHIFT" ],
-            [ 84, "MOVE_LUNAR_DANCE" ],
-            [ 93, "MOVE_PSYCHIC" ]
+            [ 6, "MOVE_MIST" ],
+            [ 12, "MOVE_AURORA_BEAM" ],
+            [ 18, "MOVE_PSYBEAM" ],
+            [ 24, "MOVE_ALLY_SWITCH" ],
+            [ 30, "MOVE_SLASH" ],
+            [ 36, "MOVE_PSYCHO_CUT" ],
+            [ 42, "MOVE_MOONLIGHT" ],
+            [ 48, "MOVE_SAFEGUARD" ],
+            [ 54, "MOVE_PSYCHIC" ],
+            [ 60, "MOVE_MOONBLAST" ],
+            [ 66, "MOVE_FUTURE_SIGHT" ],
+            [ 72, "MOVE_LUNAR_DANCE" ],
+            [ 72, "MOVE_LUNAR_BLESSING" ]
         ],
         "by_tm": [
             "TM04",
@@ -60,6 +63,8 @@
             "TM20",
             "TM21",
             "TM22",
+            "TM24",
+            "TM25",
             "TM27",
             "TM29",
             "TM30",

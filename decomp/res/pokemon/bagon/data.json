@@ -34,17 +34,18 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_RAGE" ],
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_EMBER" ],
             [ 5, "MOVE_BITE" ],
-            [ 10, "MOVE_LEER" ],
-            [ 16, "MOVE_HEADBUTT" ],
-            [ 20, "MOVE_FOCUS_ENERGY" ],
-            [ 25, "MOVE_EMBER" ],
-            [ 31, "MOVE_DRAGON_BREATH" ],
+            [ 10, "MOVE_DRAGON_BREATH" ],
+            [ 15, "MOVE_HEADBUTT" ],
+            [ 20, "MOVE_SCARY_FACE" ],
+            [ 25, "MOVE_CRUNCH" ],
+            [ 31, "MOVE_DRAGON_CLAW" ],
             [ 35, "MOVE_ZEN_HEADBUTT" ],
-            [ 40, "MOVE_SCARY_FACE" ],
-            [ 46, "MOVE_CRUNCH" ],
-            [ 50, "MOVE_DRAGON_CLAW" ],
+            [ 40, "MOVE_FOCUS_ENERGY" ],
+            [ 45, "MOVE_FLAMETHROWER" ],
+            [ 50, "MOVE_OUTRAGE" ],
             [ 55, "MOVE_DOUBLE_EDGE" ]
         ],
         "by_tm": [
@@ -83,19 +84,18 @@
         "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
+            "MOVE_IRON_HEAD",
             "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
             "MOVE_OUTRAGE",
             "MOVE_ZEN_HEADBUTT",
-            "MOVE_TWISTER"
+            "MOVE_TWISTER",
+            "MOVE_IRON_DEFENSE"
         ],
         "egg_moves": [
-            "MOVE_HYDRO_PUMP",
             "MOVE_THRASH",
-            "MOVE_DRAGON_RAGE",
+            "MOVE_DEFENSE_CURL",
             "MOVE_TWISTER",
-            "MOVE_DRAGON_DANCE",
-            "MOVE_FIRE_FANG",
-            "MOVE_SHADOW_CLAW",
             "MOVE_DRAGON_RUSH"
         ]
     },

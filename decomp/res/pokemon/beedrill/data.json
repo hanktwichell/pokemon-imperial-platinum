@@ -1,7 +1,7 @@
 {
     "base_stats": {
         "hp": 65,
-        "attack": 80,
+        "attack": 90,
         "defense": 40,
         "speed": 75,
         "special_attack": 45,
@@ -35,17 +35,21 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_FURY_ATTACK" ],
-            [ 10, "MOVE_FURY_ATTACK" ],
-            [ 13, "MOVE_FOCUS_ENERGY" ],
-            [ 16, "MOVE_TWINEEDLE" ],
-            [ 19, "MOVE_RAGE" ],
-            [ 22, "MOVE_PURSUIT" ],
-            [ 25, "MOVE_TOXIC_SPIKES" ],
-            [ 28, "MOVE_PIN_MISSILE" ],
-            [ 31, "MOVE_AGILITY" ],
-            [ 34, "MOVE_ASSURANCE" ],
-            [ 37, "MOVE_POISON_JAB" ],
-            [ 40, "MOVE_ENDEAVOR" ]
+            [ 1, "MOVE_BUG_BITE" ],
+            [ 1, "MOVE_HARDEN" ],
+            [ 1, "MOVE_POISON_STING" ],
+            [ 1, "MOVE_STRING_SHOT" ],
+            [ 11, "MOVE_FURY_CUTTER" ],
+            [ 14, "MOVE_LASER_FOCUS" ],
+            [ 20, "MOVE_FOCUS_ENERGY" ],
+            [ 23, "MOVE_VENOSHOCK" ],
+            [ 26, "MOVE_ASSURANCE" ],
+            [ 29, "MOVE_TOXIC_SPIKES" ],
+            [ 32, "MOVE_PIN_MISSILE" ],
+            [ 35, "MOVE_POISON_JAB" ],
+            [ 38, "MOVE_AGILITY" ],
+            [ 41, "MOVE_ENDEAVOR" ],
+            [ 44, "MOVE_FELL_STINGER" ]
         ],
         "by_tm": [
             "TM06",

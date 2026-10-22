@@ -1,6 +1,6 @@
 {
     "base_stats": {
-        "hp": 70,
+        "hp": 90,
         "attack": 95,
         "defense": 85,
         "speed": 70,
@@ -34,19 +34,22 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_FLARE_BLITZ" ],
+            [ 1, "MOVE_MORNING_SUN" ],
             [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_HARDEN" ],
             [ 1, "MOVE_CONFUSION" ],
-            [ 9, "MOVE_ROCK_THROW" ],
-            [ 12, "MOVE_FIRE_SPIN" ],
-            [ 20, "MOVE_ROCK_POLISH" ],
-            [ 23, "MOVE_PSYWAVE" ],
-            [ 31, "MOVE_EMBARGO" ],
-            [ 34, "MOVE_COSMIC_POWER" ],
-            [ 42, "MOVE_HEAL_BLOCK" ],
-            [ 45, "MOVE_ROCK_SLIDE" ],
-            [ 53, "MOVE_SOLAR_BEAM" ],
-            [ 56, "MOVE_EXPLOSION" ]
+            [ 1, "MOVE_ROCK_THROW" ],
+            [ 5, "MOVE_HYPNOSIS" ],
+            [ 10, "MOVE_ROCK_POLISH" ],
+            [ 15, "MOVE_ROCK_SLIDE" ],
+            [ 20, "MOVE_ZEN_HEADBUTT" ],
+            [ 25, "MOVE_COSMIC_POWER" ],
+            [ 30, "MOVE_PSYCHIC" ],
+            [ 35, "MOVE_STONE_EDGE" ],
+            [ 40, "MOVE_SOLAR_BEAM" ],
+            [ 45, "MOVE_WONDER_ROOM" ],
+            [ 50, "MOVE_EXPLOSION" ]
         ],
         "by_tm": [
             "TM04",
@@ -56,6 +59,7 @@
             "TM15",
             "TM16",
             "TM17",
+            "TM18",
             "TM20",
             "TM21",
             "TM22",
@@ -85,6 +89,7 @@
             "TM70",
             "TM71",
             "TM74",
+            "TM75",
             "TM76",
             "TM77",
             "TM80",
@@ -106,6 +111,7 @@
             "MOVE_ZEN_HEADBUTT",
             "MOVE_EARTH_POWER",
             "MOVE_IRON_DEFENSE",
+            "MOVE_HEAT_WAVE",
             "MOVE_SWIFT"
         ]
     },

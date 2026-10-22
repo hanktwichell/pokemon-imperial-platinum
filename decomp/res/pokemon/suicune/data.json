@@ -34,20 +34,23 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_BITE" ],
+            [ 1, "MOVE_GUST" ],
             [ 1, "MOVE_LEER" ],
-            [ 8, "MOVE_BUBBLE_BEAM" ],
-            [ 15, "MOVE_RAIN_DANCE" ],
-            [ 22, "MOVE_GUST" ],
-            [ 29, "MOVE_AURORA_BEAM" ],
-            [ 36, "MOVE_MIST" ],
-            [ 43, "MOVE_MIRROR_COAT" ],
-            [ 50, "MOVE_ICE_FANG" ],
-            [ 57, "MOVE_TAILWIND" ],
-            [ 64, "MOVE_EXTRASENSORY" ],
-            [ 71, "MOVE_HYDRO_PUMP" ],
-            [ 78, "MOVE_CALM_MIND" ],
-            [ 85, "MOVE_BLIZZARD" ]
+            [ 1, "MOVE_MIST" ],
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 6, "MOVE_WATER_PULSE" ],
+            [ 12, "MOVE_BITE" ],
+            [ 18, "MOVE_CALM_MIND" ],
+            [ 24, "MOVE_ROAR" ],
+            [ 30, "MOVE_ICE_FANG" ],
+            [ 36, "MOVE_TAILWIND" ],
+            [ 42, "MOVE_CRUNCH" ],
+            [ 48, "MOVE_EXTRASENSORY" ],
+            [ 54, "MOVE_SURF" ],
+            [ 60, "MOVE_MIRROR_COAT" ],
+            [ 66, "MOVE_RAIN_DANCE" ],
+            [ 72, "MOVE_HYDRO_PUMP" ],
+            [ 78, "MOVE_BLIZZARD" ]
         ],
         "by_tm": [
             "TM03",
@@ -95,8 +98,13 @@
             "MOVE_IRON_HEAD",
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
             "MOVE_SIGNAL_BEAM",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_EXTREME_SPEED",
+            "MOVE_SHEER_COLD"
         ]
     },
     "evolutions": [  ],

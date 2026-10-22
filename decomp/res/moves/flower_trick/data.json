@@ -1,0 +1,27 @@
+{
+    "name": "Flower Trick",
+    "description": [
+        "The user throws a\n",
+        "rigged bouquet of\n",
+        "flowers at the\n",
+        "target."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_GRASS",
+    "power": 70,
+    "accuracy": 0,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

@@ -1,0 +1,29 @@
+{
+    "name": "Struggle Bug",
+    "description": [
+        "The user attacks by\n",
+        "struggling against\n",
+        "opposing Pokémon.\n",
+        "This also lowers\n",
+        "their Sp. Atk stats."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_BUG",
+    "power": 50,
+    "accuracy": 100,
+    "pp": 20,
+    "effect": {
+        "type": "BATTLE_EFFECT_LOWER_SP_ATK_HIT",
+        "chance": 100
+    },
+    "range": "RANGE_ADJACENT_OPPONENTS",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

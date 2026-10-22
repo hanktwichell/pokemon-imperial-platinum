@@ -35,18 +35,18 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 4, "MOVE_THUNDER_WAVE" ],
-            [ 9, "MOVE_LEER" ],
-            [ 12, "MOVE_HOWL" ],
-            [ 17, "MOVE_QUICK_ATTACK" ],
-            [ 20, "MOVE_SPARK" ],
-            [ 25, "MOVE_ODOR_SLEUTH" ],
-            [ 28, "MOVE_BITE" ],
-            [ 33, "MOVE_THUNDER_FANG" ],
-            [ 36, "MOVE_ROAR" ],
-            [ 41, "MOVE_DISCHARGE" ],
-            [ 44, "MOVE_CHARGE" ],
-            [ 49, "MOVE_THUNDER" ]
+            [ 1, "MOVE_THUNDER_WAVE" ],
+            [ 4, "MOVE_LEER" ],
+            [ 8, "MOVE_HOWL" ],
+            [ 12, "MOVE_QUICK_ATTACK" ],
+            [ 16, "MOVE_SHOCK_WAVE" ],
+            [ 20, "MOVE_BITE" ],
+            [ 24, "MOVE_THUNDER_FANG" ],
+            [ 28, "MOVE_ROAR" ],
+            [ 32, "MOVE_DISCHARGE" ],
+            [ 36, "MOVE_CHARGE" ],
+            [ 40, "MOVE_WILD_CHARGE" ],
+            [ 44, "MOVE_THUNDER" ]
         ],
         "by_tm": [
             "TM05",
@@ -84,18 +84,14 @@
             "MOVE_SNORE",
             "MOVE_SIGNAL_BEAM",
             "MOVE_MAGNET_RISE",
-            "MOVE_SWIFT"
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
         ],
         "egg_moves": [
-            "MOVE_CRUNCH",
             "MOVE_HEADBUTT",
-            "MOVE_UPROAR",
             "MOVE_CURSE",
-            "MOVE_SWIFT",
-            "MOVE_DISCHARGE",
-            "MOVE_ICE_FANG",
-            "MOVE_FIRE_FANG",
-            "MOVE_THUNDER_FANG"
+            "MOVE_SPARK",
+            "MOVE_SWITCHEROO"
         ]
     },
     "evolutions": [

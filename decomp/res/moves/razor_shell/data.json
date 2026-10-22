@@ -1,0 +1,30 @@
+{
+    "name": "Razor Shell",
+    "description": [
+        "The user cuts the\n",
+        "target with sharp\n",
+        "shells to inflict\n",
+        "damage."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_WATER",
+    "power": 75,
+    "accuracy": 95,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_LOWER_DEFENSE_HIT",
+        "chance": 50
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_HIDES_SHADOWS"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

@@ -35,16 +35,18 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_WATER_GUN" ],
-            [ 6, "MOVE_LOCK_ON" ],
-            [ 10, "MOVE_PSYBEAM" ],
-            [ 14, "MOVE_AURORA_BEAM" ],
-            [ 19, "MOVE_BUBBLE_BEAM" ],
-            [ 23, "MOVE_FOCUS_ENERGY" ],
-            [ 27, "MOVE_BULLET_SEED" ],
-            [ 32, "MOVE_WATER_PULSE" ],
-            [ 36, "MOVE_SIGNAL_BEAM" ],
-            [ 40, "MOVE_ICE_BEAM" ],
-            [ 45, "MOVE_HYPER_BEAM" ]
+            [ 1, "MOVE_HELPING_HAND" ],
+            [ 4, "MOVE_WATER_PULSE" ],
+            [ 8, "MOVE_FOCUS_ENERGY" ],
+            [ 12, "MOVE_PSYBEAM" ],
+            [ 16, "MOVE_AURORA_BEAM" ],
+            [ 20, "MOVE_BUBBLE_BEAM" ],
+            [ 24, "MOVE_LOCK_ON" ],
+            [ 28, "MOVE_BULLET_SEED" ],
+            [ 32, "MOVE_ICE_BEAM" ],
+            [ 36, "MOVE_HYDRO_PUMP" ],
+            [ 40, "MOVE_SOAK" ],
+            [ 44, "MOVE_HYPER_BEAM" ]
         ],
         "by_tm": [
             "TM03",
@@ -85,6 +87,7 @@
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
             "MOVE_SIGNAL_BEAM",
             "MOVE_GUNK_SHOT",
             "MOVE_SEED_BOMB",
@@ -92,15 +95,12 @@
             "MOVE_SWIFT"
         ],
         "egg_moves": [
-            "MOVE_AURORA_BEAM",
-            "MOVE_OCTAZOOKA",
             "MOVE_SUPERSONIC",
             "MOVE_HAZE",
-            "MOVE_SCREECH",
-            "MOVE_THUNDER_WAVE",
-            "MOVE_ROCK_BLAST",
-            "MOVE_SNORE",
-            "MOVE_FLAIL"
+            "MOVE_FLAIL",
+            "MOVE_OCTAZOOKA",
+            "MOVE_WATER_SPOUT",
+            "MOVE_ACID_SPRAY"
         ]
     },
     "evolutions": [

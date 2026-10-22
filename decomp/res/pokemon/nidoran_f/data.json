@@ -35,18 +35,18 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_GROWL" ],
-            [ 1, "MOVE_SCRATCH" ],
-            [ 7, "MOVE_TAIL_WHIP" ],
-            [ 9, "MOVE_DOUBLE_KICK" ],
-            [ 13, "MOVE_POISON_STING" ],
-            [ 19, "MOVE_FURY_SWIPES" ],
-            [ 21, "MOVE_BITE" ],
-            [ 25, "MOVE_HELPING_HAND" ],
-            [ 31, "MOVE_TOXIC_SPIKES" ],
-            [ 33, "MOVE_FLATTER" ],
-            [ 37, "MOVE_CRUNCH" ],
-            [ 43, "MOVE_CAPTIVATE" ],
-            [ 45, "MOVE_POISON_FANG" ]
+            [ 1, "MOVE_POISON_STING" ],
+            [ 5, "MOVE_SCRATCH" ],
+            [ 10, "MOVE_TAIL_WHIP" ],
+            [ 15, "MOVE_FURY_SWIPES" ],
+            [ 20, "MOVE_TOXIC_SPIKES" ],
+            [ 25, "MOVE_DOUBLE_KICK" ],
+            [ 30, "MOVE_BITE" ],
+            [ 35, "MOVE_HELPING_HAND" ],
+            [ 40, "MOVE_TOXIC" ],
+            [ 45, "MOVE_FLATTER" ],
+            [ 50, "MOVE_CRUNCH" ],
+            [ 55, "MOVE_EARTH_POWER" ]
         ],
         "by_tm": [
             "TM03",
@@ -87,17 +87,17 @@
         "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
-            "MOVE_HELPING_HAND"
+            "MOVE_HELPING_HAND",
+            "MOVE_EARTH_POWER"
         ],
         "egg_moves": [
+            "MOVE_TAKE_DOWN",
             "MOVE_SUPERSONIC",
             "MOVE_DISABLE",
-            "MOVE_TAKE_DOWN",
-            "MOVE_FOCUS_ENERGY",
-            "MOVE_CHARM",
             "MOVE_COUNTER",
-            "MOVE_BEAT_UP",
-            "MOVE_PURSUIT"
+            "MOVE_SKULL_BASH",
+            "MOVE_POISON_FANG",
+            "MOVE_POISON_TAIL"
         ]
     },
     "evolutions": [

@@ -35,9 +35,8 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_ABSORB" ],
             [ 1, "MOVE_WITHDRAW" ],
-            [ 5, "MOVE_WITHDRAW" ],
-            [ 9, "MOVE_ABSORB" ],
             [ 13, "MOVE_RAZOR_LEAF" ],
             [ 17, "MOVE_CURSE" ],
             [ 22, "MOVE_BITE" ],
@@ -49,6 +48,7 @@
             [ 52, "MOVE_LEAF_STORM" ]
         ],
         "by_tm": [
+            "TM05",
             "TM06",
             "TM09",
             "TM10",
@@ -86,8 +86,10 @@
         "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SUPERPOWER",
+            "MOVE_IRON_HEAD",
             "MOVE_SNORE",
             "MOVE_SYNTHESIS",
+            "MOVE_ZEN_HEADBUTT",
             "MOVE_EARTH_POWER",
             "MOVE_SEED_BOMB"
         ]

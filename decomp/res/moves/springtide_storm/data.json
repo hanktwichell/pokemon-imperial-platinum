@@ -1,0 +1,28 @@
+{
+    "name": "SpringtideStrm",
+    "description": [
+        "The user attacks by\n",
+        "wrapping opposing\n",
+        "Pokémon in fierce\n",
+        "winds brimming with\n",
+        "love and hate."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_FAIRY",
+    "power": 100,
+    "accuracy": 80,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_ADJACENT_OPPONENTS",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

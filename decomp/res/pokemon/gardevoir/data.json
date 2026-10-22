@@ -7,7 +7,7 @@
         "special_attack": 125,
         "special_defense": 115
     },
-    "types": [ "TYPE_PSYCHIC", "TYPE_PSYCHIC" ],
+    "types": [ "TYPE_PSYCHIC", "TYPE_FAIRY" ],
     "catch_rate": 45,
     "base_exp_reward": 208,
     "ev_yields": {
@@ -34,23 +34,27 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_HEALING_WISH" ],
+            [ 1, "MOVE_DAZZLING_GLEAM" ],
             [ 1, "MOVE_GROWL" ],
             [ 1, "MOVE_CONFUSION" ],
+            [ 1, "MOVE_MYSTICAL_FIRE" ],
             [ 1, "MOVE_DOUBLE_TEAM" ],
-            [ 1, "MOVE_TELEPORT" ],
-            [ 6, "MOVE_CONFUSION" ],
-            [ 10, "MOVE_DOUBLE_TEAM" ],
-            [ 12, "MOVE_TELEPORT" ],
-            [ 17, "MOVE_WISH" ],
-            [ 22, "MOVE_MAGICAL_LEAF" ],
-            [ 25, "MOVE_CALM_MIND" ],
-            [ 33, "MOVE_PSYCHIC" ],
-            [ 40, "MOVE_IMPRISON" ],
-            [ 45, "MOVE_FUTURE_SIGHT" ],
-            [ 53, "MOVE_CAPTIVATE" ],
-            [ 60, "MOVE_HYPNOSIS" ],
-            [ 65, "MOVE_DREAM_EATER" ]
+            [ 1, "MOVE_MISTY_TERRAIN" ],
+            [ 1, "MOVE_CHARM" ],
+            [ 1, "MOVE_DISARMING_VOICE" ],
+            [ 1, "MOVE_HEALING_WISH" ],
+            [ 1, "MOVE_HEAL_PULSE" ],
+            [ 9, "MOVE_HYPNOSIS" ],
+            [ 12, "MOVE_DRAINING_KISS" ],
+            [ 15, "MOVE_TELEPORT" ],
+            [ 18, "MOVE_PSYBEAM" ],
+            [ 23, "MOVE_LIFE_DEW" ],
+            [ 28, "MOVE_WISH" ],
+            [ 35, "MOVE_CALM_MIND" ],
+            [ 42, "MOVE_PSYCHIC" ],
+            [ 49, "MOVE_MOONBLAST" ],
+            [ 56, "MOVE_DREAM_EATER" ],
+            [ 63, "MOVE_FUTURE_SIGHT" ]
         ],
         "by_tm": [
             "TM04",
@@ -84,6 +88,7 @@
             "TM56",
             "TM57",
             "TM58",
+            "TM61",
             "TM67",
             "TM68",
             "TM70",
@@ -108,7 +113,9 @@
             "MOVE_HELPING_HAND",
             "MOVE_SIGNAL_BEAM",
             "MOVE_ZEN_HEADBUTT",
+            "MOVE_VACUUM_WAVE",
             "MOVE_TRICK",
+            "MOVE_KNOCK_OFF",
             "MOVE_SWIFT"
         ]
     },

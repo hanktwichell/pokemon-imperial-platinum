@@ -1,7 +1,7 @@
 {
     "base_stats": {
         "hp": 90,
-        "attack": 85,
+        "attack": 95,
         "defense": 95,
         "speed": 70,
         "special_attack": 70,
@@ -34,12 +34,10 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_DYNAMIC_PUNCH" ],
+            [ 1, "MOVE_BODY_SLAM" ],
             [ 1, "MOVE_BUBBLE_BEAM" ],
-            [ 1, "MOVE_HYPNOSIS" ],
-            [ 1, "MOVE_DOUBLE_SLAP" ],
-            [ 1, "MOVE_SUBMISSION" ],
-            [ 43, "MOVE_DYNAMIC_PUNCH" ],
-            [ 53, "MOVE_MIND_READER" ]
+            [ 1, "MOVE_HYPNOSIS" ]
         ],
         "by_tm": [
             "TM01",
@@ -48,6 +46,7 @@
             "TM07",
             "TM08",
             "TM10",
+            "TM12",
             "TM13",
             "TM14",
             "TM15",
@@ -69,8 +68,10 @@
             "TM52",
             "TM56",
             "TM58",
+            "TM60",
             "TM66",
             "TM68",
+            "TM77",
             "TM78",
             "TM80",
             "TM82",
@@ -91,7 +92,11 @@
             "MOVE_ICE_PUNCH",
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
-            "MOVE_VACUUM_WAVE"
+            "MOVE_ENDEAVOR",
+            "MOVE_VACUUM_WAVE",
+            "MOVE_EARTH_POWER",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT"
         ]
     },
     "evolutions": [  ],

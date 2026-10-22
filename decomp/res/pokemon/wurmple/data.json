@@ -34,8 +34,8 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_STRING_SHOT" ],
+            [ 1, "MOVE_TACKLE" ],
             [ 5, "MOVE_POISON_STING" ],
             [ 15, "MOVE_BUG_BITE" ]
         ],

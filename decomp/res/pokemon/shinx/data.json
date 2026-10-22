@@ -35,21 +35,25 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 5, "MOVE_LEER" ],
-            [ 9, "MOVE_CHARGE" ],
-            [ 13, "MOVE_SPARK" ],
-            [ 17, "MOVE_BITE" ],
-            [ 21, "MOVE_ROAR" ],
-            [ 25, "MOVE_SWAGGER" ],
-            [ 29, "MOVE_THUNDER_FANG" ],
-            [ 33, "MOVE_CRUNCH" ],
-            [ 37, "MOVE_SCARY_FACE" ],
-            [ 41, "MOVE_DISCHARGE" ]
+            [ 1, "MOVE_LEER" ],
+            [ 4, "MOVE_THUNDER_SHOCK" ],
+            [ 8, "MOVE_CHARGE" ],
+            [ 12, "MOVE_BITE" ],
+            [ 16, "MOVE_SPARK" ],
+            [ 20, "MOVE_ROAR" ],
+            [ 24, "MOVE_VOLT_SWITCH" ],
+            [ 28, "MOVE_SCARY_FACE" ],
+            [ 32, "MOVE_THUNDER_WAVE" ],
+            [ 36, "MOVE_CRUNCH" ],
+            [ 40, "MOVE_DISCHARGE" ],
+            [ 44, "MOVE_SWAGGER" ],
+            [ 48, "MOVE_WILD_CHARGE" ]
         ],
         "by_tm": [
             "TM05",
             "TM06",
             "TM10",
+            "TM11",
             "TM16",
             "TM17",
             "TM18",
@@ -80,17 +84,19 @@
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
             "MOVE_SIGNAL_BEAM",
             "MOVE_MAGNET_RISE",
             "MOVE_SWIFT"
         ],
         "egg_moves": [
-            "MOVE_ICE_FANG",
-            "MOVE_FIRE_FANG",
-            "MOVE_THUNDER_FANG",
+            "MOVE_DOUBLE_KICK",
+            "MOVE_TAKE_DOWN",
             "MOVE_QUICK_ATTACK",
             "MOVE_HOWL",
-            "MOVE_TAKE_DOWN"
+            "MOVE_SHOCK_WAVE",
+            "MOVE_NIGHT_SLASH",
+            "MOVE_BABY_DOLL_EYES"
         ]
     },
     "evolutions": [

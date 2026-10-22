@@ -1,0 +1,29 @@
+{
+    "name": "Pyro Ball",
+    "description": [
+        "The user attacks by\n",
+        "igniting a small\n",
+        "stone and launching\n",
+        "it as a fiery ball at\n",
+        "the target."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_FIRE",
+    "power": 120,
+    "accuracy": 90,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_BURN_HIT",
+        "chance": 10
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

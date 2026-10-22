@@ -1,0 +1,29 @@
+{
+    "name": "Infestation",
+    "description": [
+        "The target is\n",
+        "infested and attacked\n",
+        "for four to five\n",
+        "turns."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_BUG",
+    "power": 20,
+    "accuracy": 100,
+    "pp": 20,
+    "effect": {
+        "type": "BATTLE_EFFECT_BIND_HIT",
+        "chance": 100
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

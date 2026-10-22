@@ -34,20 +34,23 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_BITE" ],
+            [ 1, "MOVE_STOMP" ],
             [ 1, "MOVE_LEER" ],
-            [ 8, "MOVE_EMBER" ],
-            [ 15, "MOVE_ROAR" ],
-            [ 22, "MOVE_FIRE_SPIN" ],
-            [ 29, "MOVE_STOMP" ],
-            [ 36, "MOVE_FLAMETHROWER" ],
-            [ 43, "MOVE_SWAGGER" ],
-            [ 50, "MOVE_FIRE_FANG" ],
-            [ 57, "MOVE_LAVA_PLUME" ],
-            [ 64, "MOVE_EXTRASENSORY" ],
-            [ 71, "MOVE_FIRE_BLAST" ],
-            [ 78, "MOVE_CALM_MIND" ],
-            [ 85, "MOVE_ERUPTION" ]
+            [ 1, "MOVE_EMBER" ],
+            [ 1, "MOVE_SMOKE_SCREEN" ],
+            [ 6, "MOVE_FLAME_WHEEL" ],
+            [ 12, "MOVE_BITE" ],
+            [ 18, "MOVE_CALM_MIND" ],
+            [ 24, "MOVE_ROAR" ],
+            [ 30, "MOVE_FIRE_FANG" ],
+            [ 36, "MOVE_SCARY_FACE" ],
+            [ 42, "MOVE_CRUNCH" ],
+            [ 48, "MOVE_EXTRASENSORY" ],
+            [ 54, "MOVE_LAVA_PLUME" ],
+            [ 60, "MOVE_SWAGGER" ],
+            [ 66, "MOVE_SUNNY_DAY" ],
+            [ 72, "MOVE_FIRE_BLAST" ],
+            [ 78, "MOVE_ERUPTION" ]
         ],
         "by_tm": [
             "TM04",
@@ -92,8 +95,13 @@
             "MOVE_MUD_SLAP",
             "MOVE_IRON_HEAD",
             "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
             "MOVE_HEAT_WAVE",
             "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_SACRED_FIRE",
+            "MOVE_EXTREME_SPEED"
         ]
     },
     "evolutions": [  ],

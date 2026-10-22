@@ -34,23 +34,26 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_QUICK_ATTACK" ],
             [ 1, "MOVE_LEER" ],
-            [ 7, "MOVE_THUNDER_SHOCK" ],
-            [ 10, "MOVE_LOW_KICK" ],
-            [ 16, "MOVE_SWIFT" ],
-            [ 19, "MOVE_SHOCK_WAVE" ],
-            [ 25, "MOVE_LIGHT_SCREEN" ],
+            [ 1, "MOVE_QUICK_ATTACK" ],
+            [ 4, "MOVE_THUNDER_SHOCK" ],
+            [ 8, "MOVE_CHARGE" ],
+            [ 12, "MOVE_SWIFT" ],
+            [ 16, "MOVE_SHOCK_WAVE" ],
+            [ 20, "MOVE_THUNDER_WAVE" ],
+            [ 24, "MOVE_SCREECH" ],
             [ 28, "MOVE_THUNDER_PUNCH" ],
-            [ 34, "MOVE_DISCHARGE" ],
-            [ 37, "MOVE_THUNDERBOLT" ],
-            [ 43, "MOVE_SCREECH" ],
-            [ 46, "MOVE_THUNDER" ]
+            [ 32, "MOVE_DISCHARGE" ],
+            [ 36, "MOVE_LOW_KICK" ],
+            [ 40, "MOVE_THUNDERBOLT" ],
+            [ 44, "MOVE_LIGHT_SCREEN" ],
+            [ 48, "MOVE_THUNDER" ]
         ],
         "by_tm": [
             "TM01",
             "TM06",
             "TM10",
+            "TM12",
             "TM16",
             "TM17",
             "TM18",
@@ -67,6 +70,7 @@
             "TM44",
             "TM45",
             "TM46",
+            "TM52",
             "TM56",
             "TM57",
             "TM58",
@@ -88,18 +92,17 @@
             "MOVE_HELPING_HAND",
             "MOVE_SIGNAL_BEAM",
             "MOVE_MAGNET_RISE",
+            "MOVE_KNOCK_OFF",
             "MOVE_SWIFT",
             "MOVE_UPROAR"
         ],
         "egg_moves": [
-            "MOVE_KARATE_CHOP",
-            "MOVE_BARRIER",
-            "MOVE_ROLLING_KICK",
-            "MOVE_MEDITATE",
+            "MOVE_DYNAMIC_PUNCH",
             "MOVE_CROSS_CHOP",
-            "MOVE_FIRE_PUNCH",
-            "MOVE_ICE_PUNCH",
-            "MOVE_DYNAMIC_PUNCH"
+            "MOVE_FOCUS_PUNCH",
+            "MOVE_FOLLOW_ME",
+            "MOVE_HAMMER_ARM",
+            "MOVE_FEINT"
         ]
     },
     "evolutions": [

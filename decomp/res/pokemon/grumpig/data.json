@@ -34,22 +34,20 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_SPLASH" ],
-            [ 1, "MOVE_PSYWAVE" ],
-            [ 1, "MOVE_ODOR_SLEUTH" ],
+            [ 1, "MOVE_TEETER_DANCE" ],
             [ 1, "MOVE_PSYBEAM" ],
-            [ 7, "MOVE_PSYWAVE" ],
-            [ 10, "MOVE_ODOR_SLEUTH" ],
-            [ 14, "MOVE_PSYBEAM" ],
-            [ 15, "MOVE_PSYCH_UP" ],
-            [ 18, "MOVE_CONFUSE_RAY" ],
-            [ 21, "MOVE_MAGIC_COAT" ],
+            [ 1, "MOVE_CONFUSION" ],
+            [ 1, "MOVE_SPLASH" ],
+            [ 1, "MOVE_BELCH" ],
+            [ 18, "MOVE_PSYCH_UP" ],
+            [ 22, "MOVE_CONFUSE_RAY" ],
             [ 26, "MOVE_ZEN_HEADBUTT" ],
-            [ 29, "MOVE_REST" ],
-            [ 29, "MOVE_SNORE" ],
-            [ 37, "MOVE_PAYBACK" ],
-            [ 47, "MOVE_PSYCHIC" ],
-            [ 55, "MOVE_POWER_GEM" ],
+            [ 29, "MOVE_POWER_GEM" ],
+            [ 35, "MOVE_REST" ],
+            [ 35, "MOVE_SNORE" ],
+            [ 42, "MOVE_PSYSHOCK" ],
+            [ 46, "MOVE_PAYBACK" ],
+            [ 52, "MOVE_PSYCHIC" ],
             [ 60, "MOVE_BOUNCE" ]
         ],
         "by_tm": [
@@ -66,6 +64,7 @@
             "TM21",
             "TM23",
             "TM27",
+            "TM28",
             "TM29",
             "TM30",
             "TM31",
@@ -99,6 +98,7 @@
             "TM86",
             "TM87",
             "TM90",
+            "TM91",
             "TM92"
         ],
         "by_tutor": [
@@ -108,11 +108,16 @@
             "MOVE_FIRE_PUNCH",
             "MOVE_ICE_PUNCH",
             "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
             "MOVE_SIGNAL_BEAM",
             "MOVE_ZEN_HEADBUTT",
+            "MOVE_EARTH_POWER",
+            "MOVE_SEED_BOMB",
             "MOVE_BOUNCE",
             "MOVE_TRICK",
-            "MOVE_SWIFT"
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
         ]
     },
     "evolutions": [  ],

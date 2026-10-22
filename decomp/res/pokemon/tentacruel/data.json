@@ -34,21 +34,21 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_WRAP" ],
             [ 1, "MOVE_POISON_STING" ],
-            [ 1, "MOVE_SUPERSONIC" ],
-            [ 1, "MOVE_CONSTRICT" ],
-            [ 5, "MOVE_SUPERSONIC" ],
-            [ 8, "MOVE_CONSTRICT" ],
-            [ 12, "MOVE_ACID" ],
-            [ 15, "MOVE_TOXIC_SPIKES" ],
-            [ 19, "MOVE_BUBBLE_BEAM" ],
-            [ 22, "MOVE_WRAP" ],
-            [ 26, "MOVE_BARRIER" ],
-            [ 29, "MOVE_WATER_PULSE" ],
-            [ 36, "MOVE_POISON_JAB" ],
-            [ 42, "MOVE_SCREECH" ],
-            [ 49, "MOVE_HYDRO_PUMP" ],
-            [ 55, "MOVE_WRING_OUT" ]
+            [ 1, "MOVE_ACID" ],
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 1, "MOVE_REFLECT_TYPE" ],
+            [ 12, "MOVE_SUPERSONIC" ],
+            [ 16, "MOVE_WATER_PULSE" ],
+            [ 20, "MOVE_SCREECH" ],
+            [ 24, "MOVE_BUBBLE_BEAM" ],
+            [ 28, "MOVE_HEX" ],
+            [ 34, "MOVE_ACID_ARMOR" ],
+            [ 40, "MOVE_POISON_JAB" ],
+            [ 46, "MOVE_SURF" ],
+            [ 52, "MOVE_SLUDGE_WAVE" ],
+            [ 58, "MOVE_HYDRO_PUMP" ]
         ],
         "by_tm": [
             "TM03",
@@ -89,7 +89,9 @@
             "MOVE_DIVE",
             "MOVE_ICY_WIND",
             "MOVE_SNORE",
-            "MOVE_KNOCK_OFF"
+            "MOVE_GUNK_SHOT",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT"
         ]
     },
     "evolutions": [  ],

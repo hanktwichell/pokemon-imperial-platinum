@@ -1,0 +1,32 @@
+{
+    "name": "Tail Slap",
+    "description": [
+        "The user attacks by\n",
+        "striking the target\n",
+        "with its hard tail.\n",
+        "This move hits two to\n",
+        "five times in a row."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_NORMAL",
+    "power": 25,
+    "accuracy": 85,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_MULTI_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

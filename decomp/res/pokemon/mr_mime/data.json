@@ -7,7 +7,7 @@
         "special_attack": 100,
         "special_defense": 120
     },
-    "types": [ "TYPE_PSYCHIC", "TYPE_PSYCHIC" ],
+    "types": [ "TYPE_PSYCHIC", "TYPE_FAIRY" ],
     "catch_rate": 45,
     "base_exp_reward": 136,
     "ev_yields": {
@@ -34,26 +34,27 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_MAGICAL_LEAF" ],
+            [ 1, "MOVE_QUICK_GUARD" ],
+            [ 1, "MOVE_WIDE_GUARD" ],
             [ 1, "MOVE_POWER_SWAP" ],
             [ 1, "MOVE_GUARD_SWAP" ],
-            [ 1, "MOVE_BARRIER" ],
-            [ 1, "MOVE_CONFUSION" ],
-            [ 4, "MOVE_COPYCAT" ],
-            [ 8, "MOVE_MEDITATE" ],
-            [ 11, "MOVE_ENCORE" ],
-            [ 15, "MOVE_DOUBLE_SLAP" ],
-            [ 18, "MOVE_MIMIC" ],
-            [ 22, "MOVE_LIGHT_SCREEN" ],
-            [ 22, "MOVE_REFLECT" ],
-            [ 25, "MOVE_PSYBEAM" ],
-            [ 29, "MOVE_SUBSTITUTE" ],
-            [ 32, "MOVE_RECYCLE" ],
-            [ 36, "MOVE_TRICK" ],
-            [ 39, "MOVE_PSYCHIC" ],
-            [ 43, "MOVE_ROLE_PLAY" ],
-            [ 46, "MOVE_BATON_PASS" ],
-            [ 50, "MOVE_SAFEGUARD" ]
+            [ 1, "MOVE_POUND" ],
+            [ 1, "MOVE_COPYCAT" ],
+            [ 1, "MOVE_BATON_PASS" ],
+            [ 1, "MOVE_ENCORE" ],
+            [ 12, "MOVE_CONFUSION" ],
+            [ 16, "MOVE_ROLE_PLAY" ],
+            [ 20, "MOVE_PROTECT" ],
+            [ 24, "MOVE_RECYCLE" ],
+            [ 28, "MOVE_PSYBEAM" ],
+            [ 32, "MOVE_MIMIC" ],
+            [ 36, "MOVE_LIGHT_SCREEN" ],
+            [ 36, "MOVE_REFLECT" ],
+            [ 36, "MOVE_SAFEGUARD" ],
+            [ 40, "MOVE_SUCKER_PUNCH" ],
+            [ 44, "MOVE_DAZZLING_GLEAM" ],
+            [ 48, "MOVE_PSYCHIC" ],
+            [ 52, "MOVE_TEETER_DANCE" ]
         ],
         "by_tm": [
             "TM01",
@@ -110,6 +111,7 @@
         ],
         "by_tutor": [
             "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
             "MOVE_THUNDER_PUNCH",
             "MOVE_FIRE_PUNCH",
             "MOVE_ICE_PUNCH",
@@ -118,7 +120,9 @@
             "MOVE_SIGNAL_BEAM",
             "MOVE_ZEN_HEADBUTT",
             "MOVE_IRON_DEFENSE",
-            "MOVE_TRICK"
+            "MOVE_TRICK",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_UPROAR"
         ],
         "egg_moves": [
             "MOVE_FUTURE_SIGHT",

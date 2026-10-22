@@ -34,17 +34,20 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_HORN_ATTACK" ],
+            [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_TAIL_WHIP" ],
-            [ 9, "MOVE_STOMP" ],
-            [ 13, "MOVE_FURY_ATTACK" ],
-            [ 21, "MOVE_SCARY_FACE" ],
-            [ 25, "MOVE_ROCK_BLAST" ],
-            [ 33, "MOVE_TAKE_DOWN" ],
-            [ 37, "MOVE_HORN_DRILL" ],
-            [ 45, "MOVE_STONE_EDGE" ],
-            [ 49, "MOVE_EARTHQUAKE" ],
-            [ 57, "MOVE_MEGAHORN" ]
+            [ 5, "MOVE_SMACK_DOWN" ],
+            [ 10, "MOVE_BULLDOZE" ],
+            [ 15, "MOVE_HORN_ATTACK" ],
+            [ 20, "MOVE_SCARY_FACE" ],
+            [ 25, "MOVE_STOMP" ],
+            [ 30, "MOVE_ROCK_BLAST" ],
+            [ 35, "MOVE_DRILL_RUN" ],
+            [ 40, "MOVE_TAKE_DOWN" ],
+            [ 45, "MOVE_EARTHQUAKE" ],
+            [ 50, "MOVE_STONE_EDGE" ],
+            [ 55, "MOVE_MEGAHORN" ],
+            [ 60, "MOVE_HORN_DRILL" ]
         ],
         "by_tm": [
             "TM05",
@@ -105,18 +108,12 @@
             "MOVE_UPROAR"
         ],
         "egg_moves": [
-            "MOVE_CRUNCH",
-            "MOVE_REVERSAL",
-            "MOVE_ROCK_SLIDE",
             "MOVE_COUNTER",
-            "MOVE_MAGNITUDE",
-            "MOVE_SWORDS_DANCE",
             "MOVE_CURSE",
-            "MOVE_CRUSH_CLAW",
+            "MOVE_METAL_BURST",
+            "MOVE_ROCK_POLISH",
             "MOVE_DRAGON_RUSH",
-            "MOVE_ICE_FANG",
-            "MOVE_FIRE_FANG",
-            "MOVE_THUNDER_FANG"
+            "MOVE_GUARD_SPLIT"
         ]
     },
     "evolutions": [

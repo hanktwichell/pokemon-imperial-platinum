@@ -36,18 +36,20 @@
         "by_level": [
             [ 1, "MOVE_POISON_STING" ],
             [ 1, "MOVE_STRING_SHOT" ],
-            [ 5, "MOVE_SCARY_FACE" ],
-            [ 8, "MOVE_CONSTRICT" ],
-            [ 12, "MOVE_LEECH_LIFE" ],
+            [ 5, "MOVE_ABSORB" ],
+            [ 8, "MOVE_INFESTATION" ],
+            [ 12, "MOVE_SCARY_FACE" ],
             [ 15, "MOVE_NIGHT_SHADE" ],
             [ 19, "MOVE_SHADOW_SNEAK" ],
             [ 22, "MOVE_FURY_SWIPES" ],
             [ 26, "MOVE_SUCKER_PUNCH" ],
-            [ 29, "MOVE_SPIDER_WEB" ],
-            [ 33, "MOVE_AGILITY" ],
-            [ 36, "MOVE_PIN_MISSILE" ],
-            [ 40, "MOVE_PSYCHIC" ],
-            [ 43, "MOVE_POISON_JAB" ]
+            [ 29, "MOVE_AGILITY" ],
+            [ 33, "MOVE_PIN_MISSILE" ],
+            [ 36, "MOVE_PSYCHIC" ],
+            [ 40, "MOVE_POISON_JAB" ],
+            [ 44, "MOVE_CROSS_POISON" ],
+            [ 47, "MOVE_STICKY_WEB" ],
+            [ 51, "MOVE_TOXIC_THREAD" ]
         ],
         "by_tm": [
             "TM06",
@@ -70,6 +72,7 @@
             "TM58",
             "TM70",
             "TM78",
+            "TM81",
             "TM82",
             "TM83",
             "TM84",
@@ -77,19 +80,18 @@
             "TM90"
         ],
         "by_tutor": [
+            "MOVE_SPITE",
             "MOVE_SIGNAL_BEAM",
             "MOVE_BOUNCE",
+            "MOVE_KNOCK_OFF",
             "MOVE_SUCKER_PUNCH"
         ],
         "egg_moves": [
-            "MOVE_PSYBEAM",
             "MOVE_DISABLE",
-            "MOVE_SONIC_BOOM",
-            "MOVE_BATON_PASS",
-            "MOVE_PURSUIT",
-            "MOVE_SIGNAL_BEAM",
-            "MOVE_TOXIC_SPIKES",
-            "MOVE_POISON_JAB"
+            "MOVE_MEGAHORN",
+            "MOVE_NIGHT_SLASH",
+            "MOVE_RAGE_POWDER",
+            "MOVE_LUNGE"
         ]
     },
     "evolutions": [

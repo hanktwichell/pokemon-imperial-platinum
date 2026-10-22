@@ -34,14 +34,17 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_ASTONISH" ],
-            [ 1, "MOVE_PURSUIT" ],
-            [ 1, "MOVE_HAZE" ],
             [ 1, "MOVE_WING_ATTACK" ],
+            [ 1, "MOVE_HAZE" ],
+            [ 1, "MOVE_ASTONISH" ],
+            [ 1, "MOVE_SUCKER_PUNCH" ],
+            [ 1, "MOVE_NIGHT_SLASH" ],
+            [ 1, "MOVE_QUASH" ],
             [ 25, "MOVE_SWAGGER" ],
             [ 35, "MOVE_NASTY_PLOT" ],
-            [ 45, "MOVE_NIGHT_SLASH" ],
-            [ 55, "MOVE_DARK_PULSE" ]
+            [ 45, "MOVE_FOUL_PLAY" ],
+            [ 55, "MOVE_DARK_PULSE" ],
+            [ 65, "MOVE_COMEUPPANCE" ]
         ],
         "by_tm": [
             "TM04",
@@ -80,16 +83,20 @@
             "TM85",
             "TM87",
             "TM88",
+            "TM89",
             "TM90",
             "HM02",
             "HM05"
         ],
         "by_tutor": [
             "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
             "MOVE_SUPERPOWER",
             "MOVE_OMINOUS_WIND",
             "MOVE_SPITE",
             "MOVE_AIR_CUTTER",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
             "MOVE_TWISTER",
             "MOVE_HEAT_WAVE",
             "MOVE_SUCKER_PUNCH",

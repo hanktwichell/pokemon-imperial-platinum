@@ -34,19 +34,21 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_WRAP" ],
             [ 1, "MOVE_ASTONISH" ],
-            [ 1, "MOVE_CONSTRICT" ],
-            [ 8, "MOVE_ACID" ],
-            [ 15, "MOVE_INGRAIN" ],
-            [ 22, "MOVE_CONFUSE_RAY" ],
-            [ 29, "MOVE_AMNESIA" ],
-            [ 36, "MOVE_GASTRO_ACID" ],
-            [ 43, "MOVE_ANCIENT_POWER" ],
-            [ 50, "MOVE_ENERGY_BALL" ],
-            [ 57, "MOVE_STOCKPILE" ],
-            [ 57, "MOVE_SPIT_UP" ],
-            [ 57, "MOVE_SWALLOW" ],
-            [ 64, "MOVE_WRING_OUT" ]
+            [ 4, "MOVE_ACID" ],
+            [ 8, "MOVE_CONFUSE_RAY" ],
+            [ 12, "MOVE_INGRAIN" ],
+            [ 16, "MOVE_ANCIENT_POWER" ],
+            [ 20, "MOVE_MEGA_DRAIN" ],
+            [ 24, "MOVE_BRINE" ],
+            [ 28, "MOVE_AMNESIA" ],
+            [ 32, "MOVE_GASTRO_ACID" ],
+            [ 36, "MOVE_GIGA_DRAIN" ],
+            [ 41, "MOVE_STOCKPILE" ],
+            [ 41, "MOVE_SPIT_UP" ],
+            [ 41, "MOVE_SWALLOW" ],
+            [ 44, "MOVE_ENERGY_BALL" ]
         ],
         "by_tm": [
             "TM06",
@@ -67,6 +69,7 @@
             "TM44",
             "TM45",
             "TM53",
+            "TM55",
             "TM58",
             "TM69",
             "TM70",
@@ -90,11 +93,10 @@
             "MOVE_SEED_BOMB"
         ],
         "egg_moves": [
-            "MOVE_BARRIER",
+            "MOVE_BIND",
             "MOVE_RECOVER",
+            "MOVE_CURSE",
             "MOVE_MIRROR_COAT",
-            "MOVE_ROCK_SLIDE",
-            "MOVE_WRING_OUT",
             "MOVE_TICKLE"
         ]
     },

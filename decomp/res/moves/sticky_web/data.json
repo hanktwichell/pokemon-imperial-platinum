@@ -1,0 +1,29 @@
+{
+    "name": "Sticky Web",
+    "description": [
+        "The user weaves a\n",
+        "sticky net around the\n",
+        "opposing team, which\n",
+        "lowers their Speed\n",
+        "stats upon switching."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_BUG",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 20,
+    "effect": {
+        "type": "BATTLE_EFFECT_DO_NOTHING",
+        "chance": 0
+    },
+    "range": "RANGE_OPPONENT_SIDE",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_MAGIC_COAT",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

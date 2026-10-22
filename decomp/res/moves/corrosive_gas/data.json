@@ -1,0 +1,31 @@
+{
+    "name": "Corrosive Gas",
+    "description": [
+        "The user surrounds\n",
+        "everything around it\n",
+        "with highly acidic\n",
+        "gas and melts away\n",
+        "items they hold."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_POISON",
+    "power": 0,
+    "accuracy": 100,
+    "pp": 40,
+    "effect": {
+        "type": "BATTLE_EFFECT_DO_NOTHING",
+        "chance": 0
+    },
+    "range": "RANGE_ALL_ADJACENT",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MAGIC_COAT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

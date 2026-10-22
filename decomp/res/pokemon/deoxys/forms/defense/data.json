@@ -34,22 +34,22 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_LEER" ],
             [ 1, "MOVE_WRAP" ],
-            [ 9, "MOVE_NIGHT_SHADE" ],
-            [ 17, "MOVE_TELEPORT" ],
-            [ 25, "MOVE_KNOCK_OFF" ],
-            [ 33, "MOVE_SPIKES" ],
-            [ 41, "MOVE_PSYCHIC" ],
-            [ 49, "MOVE_SNATCH" ],
-            [ 57, "MOVE_PSYCHO_SHIFT" ],
-            [ 65, "MOVE_ZEN_HEADBUTT" ],
-            [ 73, "MOVE_IRON_DEFENSE" ],
-            [ 73, "MOVE_AMNESIA" ],
-            [ 81, "MOVE_RECOVER" ],
-            [ 89, "MOVE_PSYCHO_BOOST" ],
-            [ 97, "MOVE_COUNTER" ],
-            [ 97, "MOVE_MIRROR_COAT" ]
+            [ 1, "MOVE_LEER" ],
+            [ 7, "MOVE_NIGHT_SHADE" ],
+            [ 13, "MOVE_TELEPORT" ],
+            [ 19, "MOVE_KNOCK_OFF" ],
+            [ 25, "MOVE_SPIKES" ],
+            [ 31, "MOVE_PSYCHIC" ],
+            [ 37, "MOVE_PROTECT" ],
+            [ 43, "MOVE_SKILL_SWAP" ],
+            [ 49, "MOVE_ZEN_HEADBUTT" ],
+            [ 55, "MOVE_AMNESIA" ],
+            [ 55, "MOVE_IRON_DEFENSE" ],
+            [ 61, "MOVE_RECOVER" ],
+            [ 67, "MOVE_PSYCHO_BOOST" ],
+            [ 73, "MOVE_COUNTER" ],
+            [ 73, "MOVE_MIRROR_COAT" ]
         ],
         "by_tm": [
             "TM01",
@@ -97,6 +97,7 @@
             "TM73",
             "TM76",
             "TM77",
+            "TM79",
             "TM80",
             "TM82",
             "TM83",
@@ -113,12 +114,17 @@
         ],
         "by_tutor": [
             "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_ICE_PUNCH",
             "MOVE_SNORE",
             "MOVE_SIGNAL_BEAM",
             "MOVE_ZEN_HEADBUTT",
             "MOVE_IRON_DEFENSE",
             "MOVE_TRICK",
-            "MOVE_KNOCK_OFF"
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT"
         ]
     },
     "evolutions": [  ]

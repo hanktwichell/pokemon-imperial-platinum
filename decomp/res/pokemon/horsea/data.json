@@ -34,18 +34,19 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_BUBBLE" ],
-            [ 4, "MOVE_SMOKE_SCREEN" ],
-            [ 8, "MOVE_LEER" ],
-            [ 11, "MOVE_WATER_GUN" ],
-            [ 14, "MOVE_FOCUS_ENERGY" ],
-            [ 18, "MOVE_BUBBLE_BEAM" ],
-            [ 23, "MOVE_AGILITY" ],
-            [ 26, "MOVE_TWISTER" ],
-            [ 30, "MOVE_BRINE" ],
-            [ 35, "MOVE_HYDRO_PUMP" ],
-            [ 38, "MOVE_DRAGON_DANCE" ],
-            [ 42, "MOVE_DRAGON_PULSE" ]
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 5, "MOVE_SMOKE_SCREEN" ],
+            [ 10, "MOVE_TWISTER" ],
+            [ 15, "MOVE_FOCUS_ENERGY" ],
+            [ 20, "MOVE_DRAGON_BREATH" ],
+            [ 25, "MOVE_BUBBLE_BEAM" ],
+            [ 30, "MOVE_AGILITY" ],
+            [ 35, "MOVE_WATER_PULSE" ],
+            [ 40, "MOVE_DRAGON_PULSE" ],
+            [ 45, "MOVE_HYDRO_PUMP" ],
+            [ 50, "MOVE_DRAGON_DANCE" ],
+            [ 55, "MOVE_RAIN_DANCE" ]
         ],
         "by_tm": [
             "TM03",
@@ -86,14 +87,11 @@
             "MOVE_SWIFT"
         ],
         "egg_moves": [
-            "MOVE_FLAIL",
-            "MOVE_AURORA_BEAM",
-            "MOVE_OCTAZOOKA",
             "MOVE_DISABLE",
+            "MOVE_AURORA_BEAM",
             "MOVE_SPLASH",
-            "MOVE_DRAGON_RAGE",
-            "MOVE_DRAGON_BREATH",
-            "MOVE_SIGNAL_BEAM"
+            "MOVE_FLAIL",
+            "MOVE_CLEAR_SMOG"
         ]
     },
     "evolutions": [

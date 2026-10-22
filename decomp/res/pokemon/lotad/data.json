@@ -34,17 +34,19 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_GROWL" ],
             [ 1, "MOVE_ASTONISH" ],
-            [ 3, "MOVE_GROWL" ],
-            [ 5, "MOVE_ABSORB" ],
-            [ 7, "MOVE_NATURE_POWER" ],
-            [ 11, "MOVE_MIST" ],
-            [ 15, "MOVE_NATURAL_GIFT" ],
-            [ 19, "MOVE_MEGA_DRAIN" ],
-            [ 25, "MOVE_BUBBLE_BEAM" ],
-            [ 31, "MOVE_ZEN_HEADBUTT" ],
-            [ 37, "MOVE_RAIN_DANCE" ],
-            [ 45, "MOVE_ENERGY_BALL" ]
+            [ 3, "MOVE_ABSORB" ],
+            [ 6, "MOVE_WATER_GUN" ],
+            [ 9, "MOVE_MIST" ],
+            [ 12, "MOVE_MEGA_DRAIN" ],
+            [ 16, "MOVE_FLAIL" ],
+            [ 20, "MOVE_BUBBLE_BEAM" ],
+            [ 24, "MOVE_LEECH_SEED" ],
+            [ 28, "MOVE_GIGA_DRAIN" ],
+            [ 33, "MOVE_RAIN_DANCE" ],
+            [ 38, "MOVE_ZEN_HEADBUTT" ],
+            [ 43, "MOVE_ENERGY_BALL" ]
         ],
         "by_tm": [
             "TM03",
@@ -88,12 +90,11 @@
             "MOVE_UPROAR"
         ],
         "egg_moves": [
-            "MOVE_SYNTHESIS",
+            "MOVE_COUNTER",
             "MOVE_RAZOR_LEAF",
             "MOVE_SWEET_SCENT",
-            "MOVE_LEECH_SEED",
-            "MOVE_FLAIL",
-            "MOVE_WATER_GUN",
+            "MOVE_SYNTHESIS",
+            "MOVE_TEETER_DANCE",
             "MOVE_TICKLE"
         ]
     },

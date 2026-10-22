@@ -34,20 +34,20 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_ASTONISH" ],
-            [ 3, "MOVE_MUD_SLAP" ],
-            [ 8, "MOVE_POISON_STING" ],
-            [ 10, "MOVE_TAUNT" ],
-            [ 15, "MOVE_PURSUIT" ],
-            [ 17, "MOVE_FAINT_ATTACK" ],
-            [ 22, "MOVE_REVENGE" ],
-            [ 24, "MOVE_SWAGGER" ],
-            [ 29, "MOVE_MUD_BOMB" ],
-            [ 31, "MOVE_SUCKER_PUNCH" ],
-            [ 36, "MOVE_NASTY_PLOT" ],
-            [ 38, "MOVE_POISON_JAB" ],
-            [ 43, "MOVE_SLUDGE_BOMB" ],
-            [ 45, "MOVE_FLATTER" ]
+            [ 1, "MOVE_POISON_STING" ],
+            [ 1, "MOVE_MUD_SLAP" ],
+            [ 4, "MOVE_ASTONISH" ],
+            [ 8, "MOVE_TAUNT" ],
+            [ 12, "MOVE_FLATTER" ],
+            [ 16, "MOVE_LOW_KICK" ],
+            [ 20, "MOVE_VENOSHOCK" ],
+            [ 24, "MOVE_SUCKER_PUNCH" ],
+            [ 28, "MOVE_SWAGGER" ],
+            [ 32, "MOVE_POISON_JAB" ],
+            [ 36, "MOVE_TOXIC" ],
+            [ 40, "MOVE_NASTY_PLOT" ],
+            [ 44, "MOVE_SLUDGE_BOMB" ],
+            [ 48, "MOVE_BELCH" ]
         ],
         "by_tm": [
             "TM01",
@@ -67,6 +67,7 @@
             "TM32",
             "TM36",
             "TM39",
+            "TM40",
             "TM41",
             "TM42",
             "TM43",
@@ -77,7 +78,9 @@
             "TM52",
             "TM56",
             "TM58",
+            "TM60",
             "TM63",
+            "TM65",
             "TM66",
             "TM78",
             "TM79",
@@ -108,17 +111,15 @@
             "MOVE_SUCKER_PUNCH"
         ],
         "egg_moves": [
-            "MOVE_ME_FIRST",
-            "MOVE_FEINT",
-            "MOVE_DYNAMIC_PUNCH",
             "MOVE_HEADBUTT",
-            "MOVE_VACUUM_WAVE",
-            "MOVE_MEDITATE",
-            "MOVE_FAKE_OUT",
-            "MOVE_WAKE_UP_SLAP",
-            "MOVE_SMELLING_SALT",
+            "MOVE_COUNTER",
+            "MOVE_DYNAMIC_PUNCH",
             "MOVE_CROSS_CHOP",
-            "MOVE_BULLET_PUNCH"
+            "MOVE_FAKE_OUT",
+            "MOVE_FEINT",
+            "MOVE_VACUUM_WAVE",
+            "MOVE_BULLET_PUNCH",
+            "MOVE_QUICK_GUARD"
         ]
     },
     "evolutions": [

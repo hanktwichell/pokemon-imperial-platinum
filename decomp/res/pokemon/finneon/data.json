@@ -36,17 +36,17 @@
         "by_level": [
             [ 1, "MOVE_POUND" ],
             [ 6, "MOVE_WATER_GUN" ],
-            [ 10, "MOVE_ATTRACT" ],
             [ 13, "MOVE_RAIN_DANCE" ],
             [ 17, "MOVE_GUST" ],
             [ 22, "MOVE_WATER_PULSE" ],
-            [ 26, "MOVE_CAPTIVATE" ],
+            [ 26, "MOVE_ATTRACT" ],
             [ 29, "MOVE_SAFEGUARD" ],
             [ 33, "MOVE_AQUA_RING" ],
             [ 38, "MOVE_WHIRLPOOL" ],
             [ 42, "MOVE_U_TURN" ],
             [ 45, "MOVE_BOUNCE" ],
-            [ 49, "MOVE_SILVER_WIND" ]
+            [ 49, "MOVE_TAILWIND" ],
+            [ 54, "MOVE_SOAK" ]
         ],
         "by_tm": [
             "TM03",
@@ -65,6 +65,7 @@
             "TM43",
             "TM44",
             "TM45",
+            "TM46",
             "TM55",
             "TM58",
             "TM62",
@@ -88,19 +89,21 @@
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
             "MOVE_AIR_CUTTER",
+            "MOVE_HELPING_HAND",
             "MOVE_TWISTER",
             "MOVE_BOUNCE",
             "MOVE_SWIFT"
         ],
         "egg_moves": [
+            "MOVE_PSYBEAM",
+            "MOVE_AURORA_BEAM",
+            "MOVE_AGILITY",
+            "MOVE_CONFUSE_RAY",
+            "MOVE_FLAIL",
             "MOVE_SWEET_KISS",
             "MOVE_CHARM",
-            "MOVE_FLAIL",
-            "MOVE_AQUA_TAIL",
-            "MOVE_SPLASH",
-            "MOVE_PSYBEAM",
             "MOVE_TICKLE",
-            "MOVE_AGILITY"
+            "MOVE_AQUA_TAIL"
         ]
     },
     "evolutions": [

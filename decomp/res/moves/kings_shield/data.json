@@ -1,0 +1,25 @@
+{
+    "name": "King’s Shield",
+    "description": [
+        "The user takes a\n",
+        "defensive stance\n",
+        "while it protects\n",
+        "itself from damage."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_STEEL",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_PROTECT",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 4,
+    "flags": [],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

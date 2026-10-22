@@ -35,18 +35,22 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SCRATCH" ],
-            [ 3, "MOVE_DEFENSE_CURL" ],
-            [ 7, "MOVE_SAND_ATTACK" ],
-            [ 9, "MOVE_POISON_STING" ],
-            [ 13, "MOVE_RAPID_SPIN" ],
-            [ 15, "MOVE_SWIFT" ],
-            [ 19, "MOVE_FURY_SWIPES" ],
-            [ 21, "MOVE_ROLLOUT" ],
-            [ 25, "MOVE_FURY_CUTTER" ],
-            [ 27, "MOVE_SAND_TOMB" ],
-            [ 31, "MOVE_SLASH" ],
-            [ 33, "MOVE_GYRO_BALL" ],
-            [ 37, "MOVE_SANDSTORM" ]
+            [ 1, "MOVE_DEFENSE_CURL" ],
+            [ 3, "MOVE_POISON_STING" ],
+            [ 6, "MOVE_SAND_ATTACK" ],
+            [ 9, "MOVE_ROLLOUT" ],
+            [ 12, "MOVE_FURY_CUTTER" ],
+            [ 15, "MOVE_RAPID_SPIN" ],
+            [ 18, "MOVE_BULLDOZE" ],
+            [ 21, "MOVE_SWIFT" ],
+            [ 24, "MOVE_FURY_SWIPES" ],
+            [ 27, "MOVE_AGILITY" ],
+            [ 30, "MOVE_SLASH" ],
+            [ 33, "MOVE_DIG" ],
+            [ 36, "MOVE_GYRO_BALL" ],
+            [ 39, "MOVE_SWORDS_DANCE" ],
+            [ 42, "MOVE_SANDSTORM" ],
+            [ 45, "MOVE_EARTHQUAKE" ]
         ],
         "by_tm": [
             "TM01",
@@ -69,9 +73,11 @@
             "TM44",
             "TM45",
             "TM46",
+            "TM54",
             "TM56",
             "TM58",
             "TM65",
+            "TM71",
             "TM74",
             "TM75",
             "TM76",
@@ -93,20 +99,18 @@
             "MOVE_FURY_CUTTER",
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
+            "MOVE_ENDEAVOR",
             "MOVE_EARTH_POWER",
             "MOVE_KNOCK_OFF",
             "MOVE_SWIFT"
         ],
         "egg_moves": [
-            "MOVE_FLAIL",
-            "MOVE_SAFEGUARD",
             "MOVE_COUNTER",
-            "MOVE_RAPID_SPIN",
-            "MOVE_ROCK_SLIDE",
+            "MOVE_FLAIL",
+            "MOVE_MUD_SLAP",
             "MOVE_METAL_CLAW",
-            "MOVE_SWORDS_DANCE",
-            "MOVE_CRUSH_CLAW",
-            "MOVE_NIGHT_SLASH"
+            "MOVE_NIGHT_SLASH",
+            "MOVE_HONE_CLAWS"
         ]
     },
     "evolutions": [
