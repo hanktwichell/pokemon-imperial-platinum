@@ -3,6 +3,24 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## E1 — Imperial identity and save format
+
+- **Own save signature** (`SECTOR_SIGNATURE` 0x20261022 instead of Platinum's 0x20060623). A Platinum or Renegade
+  Platinum save fails the check and loads as "no save data" (the game goes straight to a new game) instead of being
+  misread by Imperial's different save layout.
+- **ROM header title** `IMPERIAL PL` and **DS menu banner** "Pokémon Imperial Platinum". The game code stays `CPUE`
+  so emulators, save tools and cheat databases still recognise the game and its save type.
+
+Verified: a save written by the previous build loads on that build (Continue → Route 201) and is treated as empty by
+the new build (new game starts); header and banner read back from the ROM; boot smoke test passes.
+
+## E14 (part) — IV/EV viewer on the summary screen
+
+- On the **SKILLS** page, **SELECT** cycles the six numbers between stats, IVs and EVs. The page title changes to
+  "POKéMON SKILLS" / "POKéMON IVs" / "POKéMON EVs"; the view is kept while switching Pokémon or pages.
+
+Verified: builds. **Not yet tested in-game** (needs a party Pokémon; part of the test-build pass).
+
 ## E13 — Options additions (level cap, Infinite Rare Candy, party Exp. Share, music volume)
 
 - **Options menu:** four new rows in the normal OPTIONS list, after FRAME: **LEVEL CAP** (ON/OFF, default OFF),

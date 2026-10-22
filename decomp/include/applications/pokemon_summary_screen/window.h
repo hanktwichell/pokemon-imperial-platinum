@@ -23,6 +23,7 @@ void PokemonSummaryScreen_PrintLevel(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_PrintItemName(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_ClearAndPrintButtonPrompt(PokemonSummaryScreen *summaryScreen, u32 entryID);
 void PokemonSummaryScreen_DrawExtraWindows(PokemonSummaryScreen *summaryScreen);
+void PokemonSummaryScreen_RedrawSkillsPage(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_PrintRibbonIndexAndMax(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_PrintRibbonNameAndDesc(PokemonSummaryScreen *summaryScreen);
 void PokemonSummaryScreen_PrintBattleMoveAttributes(PokemonSummaryScreen *summaryScreen, u32 move);
