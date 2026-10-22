@@ -9,6 +9,7 @@
 # level: just below the level cap of the next required fight (data/level_caps.yaml), so a trial is tough but legal.
 # after: the last required fight before the trial opens. before: the fight whose cap the level sits under.
 # aura: the stat boost the Totem gets at the start of the battle, as in its original trial (Sun/Moon or Ultra Sun/Ultra Moon).
+#       Written from memory: check each against Bulbapedia before building the trials.
 # why: why this place (a species' Sovereign wild location from data/encounters_sovereign.json, or a theme).
 
 trials:
