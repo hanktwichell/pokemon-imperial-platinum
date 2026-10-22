@@ -734,3 +734,15 @@ The gold pieces and the Crown Diamond are unchanged.
 **Files modified:** `docs/Story.md`, `data/item_sprites.csv`, `docs/SpriteChecklist.xlsx`, `CLAUDE_STATUS.md`.
 
 **Next 3 steps:** merge PR #19; 12b #3 (spread credit); 12b #8 (ally support moves).
+
+---
+
+## CA-0015 — 2026-10-22, 5:10 pm US Central (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** the second cut is **rose**, not pear (owner). Crown pieces 7–9 are now Rose Emerald, Rose Sapphire
+and Rose Ruby (2, 4 and 5 stay Oval Emerald, Oval Sapphire and Oval Ruby). Item names have a 16-character limit, and
+all of these fit.
+
+**Files modified:** `docs/Story.md`, `data/item_sprites.csv`, `docs/SpriteChecklist.xlsx`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:** merge PR #19; 12b #3 (spread credit); 12b #8 (ally support moves).

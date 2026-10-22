@@ -113,7 +113,7 @@ such NPC exists, a new one is placed (E11 finds them).
   player catches it**), the player finds a crown piece on the ground.
 - **The pieces** (owner: a mix of rubies, emeralds, sapphires and gold shards/fragments). The key-items pocket shows
   no counts, so each piece has its own name. Every jewel is a finished, cut stone fit for royalty (owner: no uncut
-  gems on the Sovereign's crown); each kind comes twice, told apart by cut (oval and pear). Names and order are a
+  gems on the Sovereign's crown); each kind comes twice, told apart by cut (oval and rose; the rose cut is the classic cut of old crown jewels). Names and order are a
   proposal; the owner can rename any of them:
 
   | # | Trial | Piece |
@@ -124,9 +124,9 @@ such NPC exists, a new one is placed (E11 finds them).
   | 4 | Mimikyu (Old Chateau) | Oval Sapphire |
   | 5 | Alolan Marowak (Lost Tower) | Oval Ruby |
   | 6 | Alolan Raticate (Galactic Warehouse) | Gold Sliver |
-  | 7 | Lurantis (Great Marsh) | Pear Emerald |
-  | 8 | Araquanid (Route 213) | Pear Sapphire |
-  | 9 | Salazzle (Fuego Ironworks) | Pear Ruby |
+  | 7 | Lurantis (Great Marsh) | Rose Emerald |
+  | 8 | Araquanid (Route 213) | Rose Sapphire |
+  | 9 | Salazzle (Fuego Ironworks) | Rose Ruby |
   | 10 | Kommo-o (Mt. Coronet) | Gold Flake |
   | 11 | Togedemaru (Vista Lighthouse) | **Crown Diamond** |
 
