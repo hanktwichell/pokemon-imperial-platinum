@@ -121,7 +121,12 @@ Made by the owner (2026-10-22):
     Sovereign's tests) and the Chronicles. Everything comes together in the final battle against **Sovereign Twich**
     (renamed from Sovereign Dev Twich), the last surviving member of the lineage, whose dialogue nods to him being the
     developer. That battle opens after the Elite Four rematch and the Dialga and Palkia encounters at Spear Pillar.
-    The Sovereign's end goal is still to be chosen (options in `Story.md`).
+    End goal (owner): **shield leading into succession**. The Sovereign stitched other worlds into Sinnoh to hold it
+    together against Galactic; Twich, the last heir, has held the seams alone and uses the Totem trials to find a
+    successor. Beating him grants the player the **Sovereign title**, and **Cynthia** (very close to Twich; the
+    reason he uses Garchomp) arrives to congratulate them. Event order: first Hall of Fame → Dialga and Palkia at
+    Spear Pillar (catchable) → Elite Four rematch, locked until both are done and then repeatable → after the second
+    win against Cynthia, she sends the player to Spear Pillar for the Sovereign battle.
 24. **Post-Champion money** (owner, 2026-10-22, all four options). Built in E7 part 2:
     - every shop that takes money sells at **half price** after the Hall of Fame (Battle Point shops are unchanged);
     - **3× prize money** from the Elite Four and Cynthia rematches, the Gym Leader rematches and the five Battleground

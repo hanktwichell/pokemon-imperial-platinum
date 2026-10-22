@@ -685,6 +685,64 @@ battle's trainer text and sprite, batched answers to open questions, and the own
 
 ---
 
+## CA-0007 — 2026-10-22, 4:06 pm US Central (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented: the owner's story decisions, in `docs/Story.md` (rewritten as the decided story) and decision 23.**
+- **End goal: shield leading into succession.** The Sovereign stitched other worlds into Sinnoh to hold it together
+  against Galactic's tear at Spear Pillar. Twich, the last heir, has held the seams alone and uses the Totem trials to
+  find a successor. Beating him grants the player the **Sovereign title**.
+- **Early hints:** both the Oreburgh Museum fragment and Professor Rowan's remark.
+- **Dialga and Palkia** appear at Spear Pillar after entering the **Hall of Fame** (replaces Platinum's National Dex
+  condition).
+- **Twich's pre-battle dialogue** refers to the player passing his Totem trials.
+- **Cynthia** arrives after the battle to congratulate the player. She's very close to Twich (hinted, PG) and is the
+  reason he uses Garchomp.
+- **The owner writes Twich's dialogue;** no developer puns from me.
+
+**Open:** the owner's example says "all 12 of my totem trials", but there are 11 trials (12 Totem forms counting
+Mimikyu's two). Either add a 12th trial (e.g. Wishiwashi) or say 11. Also open: where the Sovereign title shows
+(Trainer Card, Hall of Fame record, NPC lines).
+
+**Files modified:** `docs/Story.md`, `docs/ProjectStatus.md` (decision 23), `docs/DeveloperBattle.md`,
+`CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Merge this docs PR.
+2. 12b: partner safety by move range (`docs/AIReview.md` #1–#2).
+3. Then 12b #3 (spread credit) and item 11's boss-team effects.
+
+---
+
+## CA-0008 — 2026-10-22, 4:08 pm US Central (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** two owner answers recorded in `docs/Story.md`.
+- Twich's dialogue refers to **11** Totem trials (the owner's "12" was a slip).
+- The Sovereign title shows on the **Trainer Card**, in the **Hall of Fame record**, and in **NPC lines** afterwards.
+
+**Files modified:** `docs/Story.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:** merge PR #17; then 12b partner safety (`docs/AIReview.md` #1–#2); then 12b #3.
+
+---
+
+## CA-0009 — 2026-10-22, 4:13 pm US Central (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** the owner's post-game event order, in `docs/Story.md`, `DeveloperBattle.md` and decision 23.
+1. First Hall of Fame: the player is directed to Spear Pillar for a Dialga/Palkia disturbance; both are catchable.
+2. The Elite Four rematch is locked (by the League's save-prompt NPC) until both encounters are completed.
+3. Elite Four rematches are unlimited from then until the Sovereign battle.
+4. After the second win against Cynthia, she sends the player back to Spear Pillar: the Sovereign battle.
+
+**Open:** who directs the player to Spear Pillar after the first Hall of Fame (Cynthia, Rowan, the Celestic elder);
+whether the Elite Four can be rematched after the Sovereign battle.
+
+**Files modified:** `docs/Story.md`, `docs/DeveloperBattle.md`, `docs/ProjectStatus.md`, `CLAUDE_STATUS.md`.
+(Uncommitted on disk: the 12b partner-safety AI change, still being tested; not part of this commit.)
+
+**Next 3 steps:** merge PR #17; test and commit the 12b partner-safety change; then 12b #3.
+
+---
+
 ## CB-0012 — 2026-10-22, 4:19 pm US Central (session on `claude/sweet-wright-rk4wl1`)
 
 **Implemented: post-Champion money (owner, all four options), now decision 24.** Claude A's story decision took
