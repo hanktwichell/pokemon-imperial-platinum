@@ -86,11 +86,11 @@ Made by the owner (2026-10-22):
     - No Dynamax or Gigantamax: none of the 34 Gigantamax forms (decision 9 stands).
     - No unplayable forms, i.e. forms a player can never use in battle: Eternamax Eternatus, Koraidon's four Builds
       and Miraidon's four Modes.
-    This leaves 283 alternate Pokémon (99 of them Mega/Primal) plus about 228 cosmetic forms.
+    - Terapagos-Stellar is shelved for now (it needs Terastallization, which Sovereign doesn't have).
+    This leaves 282 alternate Pokémon (99 of them Mega/Primal) plus about 228 cosmetic forms.
 
 Open:
 - The developer battle: Lv. 100 at Spear Pillar, leads Charizard-Y + Venusaur, custom weather-control AI (`DeveloperBattle.md`). Opponent: Sovereign Dev Twich. Open: text, sprites (owner's sprite coming soon), Charizard's final moveset.
 - Front sprites and the part 2 shiny pack (owner is sourcing them).
-- Forms (decision 16): how Totem forms are obtained. Terapagos-Stellar only exists through Terastallization, which
-  Sovereign doesn't have: keep it with another trigger, or count it as unplayable?
+- Forms (decision 16): how Totem forms are obtained.
 - hg-engine and Smogon credit lists: Claude compiles them (owner, 2026-10-22).
