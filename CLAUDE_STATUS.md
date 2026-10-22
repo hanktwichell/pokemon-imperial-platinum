@@ -141,7 +141,7 @@ running in a subagent at handoff. If it's lost, redo it before writing `gen_item
 
 ---
 
-## CB-0001 — 2026-10-22, about 3:05 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+## CB-0001 — 2026-10-22, 2:46 pm US Central (session on `claude/sweet-wright-rk4wl1`)
 
 From now on this file is append-only (owner rule, recorded in `CLAUDE.md`). Everything above this line was written
 by this session before the rule. This entry updates it without rewriting it.
@@ -175,7 +175,7 @@ by this session before the rule. This entry updates it without rewriting it.
 
 ---
 
-## CB-0002 — 2026-10-22, about 3:40 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+## CB-0002 — 2026-10-22, 2:53 pm US Central (session on `claude/sweet-wright-rk4wl1`)
 
 **Implemented:**
 - **The E7 items are verified in game.** On a truly new game, the six test items appear in the right pockets (Mega
