@@ -483,12 +483,12 @@ static void ProcLevelLearnset(dp_node root)
         if (i == MAX_LEARNSET_ENTRIES) break;
 
         data.entries[count++] = (SpeciesLearnsetEntry){
-            .move  = dp_bits(dp_lookup(dp_arr_at(entry, 1), L_MOVE), 9),
+            .move  = dp_bits(dp_lookup(dp_arr_at(entry, 1), L_MOVE), 16),
             .level = dp_bits(dp_arr_at(entry, 0), 7),
         };
     }
 
-    data.entries[count++] = (SpeciesLearnsetEntry){ .move = 0x1FF, .level = 0x7F }; // terminator
+    data.entries[count++] = (SpeciesLearnsetEntry){ .move = 0xFFFF, .level = 0xFFFF }; // terminator (Imperial: 32-bit entries)
 
     size_t size = count * sizeof(*data.entries);
     Archive_Pack(A_LEVEL_LEARNSETS, &data, size + (-size & 3));

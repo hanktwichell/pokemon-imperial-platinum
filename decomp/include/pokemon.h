@@ -796,7 +796,7 @@ BOOL Pokemon_SetRotomForm(Pokemon *mon, int form, int moveSlot);
  * @param monForm
  * @param[out] monLevelUpMoves Pointer to a u16 array to store the move table
  */
-void Pokemon_LoadLevelUpMovesOf(int monSpecies, int monForm, u16 *monLevelUpMoves);
+void Pokemon_LoadLevelUpMovesOf(int monSpecies, int monForm, u32 *monLevelUpMoves);
 
 /**
  * @brief Play a Pokemon's cry, according to the given species and form number.
