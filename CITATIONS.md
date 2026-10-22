@@ -31,6 +31,11 @@ the same commit.**
 
 ## Sprites
 
+### Artwork sourcing
+Finding and gathering the sprite artwork used in Sovereign Platinum:
+
+- **Nolan Herkomer**
+
 ### "DPPt Style Gen VI and Beyond" sprite pack (back sprites, normal + shiny)
 Location: `assets/sprites/packs/dppt_gen6_and_beyond/` (Pokémon Essentials v19+ layout, kept unmodified).
 Supplied by the project owner. The pack's own `Credits.txt` is kept verbatim next to the sprites. Per-file artist
