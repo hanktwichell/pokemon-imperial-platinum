@@ -1,3 +1,4 @@
 option('gdb_debugging', type : 'boolean', value : false)
 option('revision', type : 'combo', choices: ['0', '1'], value : '1')
 option('logging_enabled', type: 'boolean', value: false)
+option('imperial_test', type: 'boolean', value: false, description: 'Imperial test build (never ship): test party at new game, SELECT starts a wild battle, SELECT+R a trainer battle')

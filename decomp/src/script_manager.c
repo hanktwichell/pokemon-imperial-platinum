@@ -26,6 +26,14 @@
 #include "trainer_data.h"
 #include "vars_flags.h"
 
+#ifdef IMPERIAL_TEST
+#include "generated/items.h"
+#include "generated/species.h"
+
+#include "bag.h"
+#include "unk_02054884.h"
+#endif
+
 #include "res/field/scripts/scr_seq.naix"
 
 // clang-format off
@@ -688,9 +696,28 @@ HiddenItemTilePosition *FieldSystem_GetNearbyHiddenItems(FieldSystem *fieldSyste
     return hiddenItems;
 }
 
+#ifdef IMPERIAL_TEST
+// Test build only: a party and items to test with (see tools/test/build_test_rom.sh). Uses HEAP_ID_FIELD2:
+// it exists this early (InitFieldSystem creates it), unlike HEAP_ID_FIELD1.
+static void ImperialTest_SetupNewGame(FieldSystem *fieldSystem)
+{
+    Bag *bag = SaveData_GetBag(fieldSystem->saveData);
+
+    Pokemon_GiveMonFromScript(HEAP_ID_FIELD2, fieldSystem->saveData, SPECIES_GARCHOMP, 50, ITEM_NONE, 0, 0);
+    Pokemon_GiveMonFromScript(HEAP_ID_FIELD2, fieldSystem->saveData, SPECIES_TURTWIG, 15, ITEM_NONE, 0, 0);
+    Pokemon_GiveMonFromScript(HEAP_ID_FIELD2, fieldSystem->saveData, SPECIES_STARLY, 5, ITEM_NONE, 0, 0);
+    Bag_TryAddItem(bag, ITEM_RARE_CANDY, 3, HEAP_ID_FIELD2);
+    Bag_TryAddItem(bag, ITEM_POTION, 10, HEAP_ID_FIELD2);
+    Bag_TryAddItem(bag, ITEM_POKE_BALL, 10, HEAP_ID_FIELD2);
+}
+#endif
+
 void FieldSystem_InitNewGameState(FieldSystem *fieldSystem)
 {
     FieldSystem_RunScript(fieldSystem, SCRIPT_ID(INIT_NEW_GAME, 0));
+#ifdef IMPERIAL_TEST
+    ImperialTest_SetupNewGame(fieldSystem);
+#endif
 }
 
 void FieldSystem_RunScript(FieldSystem *fieldSystem, u16 scriptID)

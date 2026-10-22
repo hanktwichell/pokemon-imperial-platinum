@@ -1,58 +1,69 @@
-# Imperial Platinum — Project Status & Roadmap
+# Imperial Platinum — Progress Report
 
 _Last updated: 2026-10-22_
 
-## Done (design phase)
+**Where we are:** the design phase is finished and engine work has started on the pret/pokeplatinum decompilation.
+The ROM builds in CI on every PR. The first engine milestones are merged: Fairy type, the Options additions, and the
+Imperial save format/identity (PR open). Next is the combined Gen IX data pass (E2–E5), then the species expansion.
+
+**Estimate to a first playable version:** about 25–40 more working sessions, roughly 3–6 weeks at one or two sessions
+a day. The two biggest uncertainties are fitting 1025 species into the DS engine (E6) and how exactly the Gen IX move
+and ability effects behave (the long tail after E2–E5). The owner's sprites and the developer-battle team gate graphics
+and T2 only. See `EngineRoadmap.md` for the per-milestone breakdown.
+
+## Engine milestones
+
+| # | Milestone | Status |
+|---|---|---|
+| E0 | Decomp imported; build reproduces the retail ROM; CI builds every PR | ✅ done |
+| E0b | Fairy type + Gen VI+ type chart | ✅ done (checked against the official chart) |
+| E13 | Options: level cap, Infinite Rare Candy, party Exp. Share, music volume | ✅ done (PR #5); verified in battle with the test build |
+| E1 | Own save signature, ROM title/banner "Pokémon Imperial Platinum" | ✅ built and verified (PR #7, merging) |
+| E14 | Approved QoL | 🟡 1 of 9 built (IV/EV viewer, PR #7; in-game test pending). Next: Repel prompt, type-effectiveness indicator, HM-free field moves, Gen VI+ breeding. Mints, Infinite Repel and Ability Capsule wait for E7/E4 |
+| — | Test build (`tools/test/build_test_rom.sh`): test party at new game, SELECT = wild battle, SELECT+R = trainer battle | ✅ working |
+| E2–E5 | Gen IX data pass: abilities, moves, Hidden Abilities, stats/types/learnsets for #1–493 | ⏭ next |
+| E6 | Species expansion to 1025 (+ cries from PokeAPI's archive) | not started |
+| E7 | Items (Mega Stones, new held/evolution items) | not started |
+| E8 | Mega Evolution / Primal Reversion | not started |
+| E9 | Extended trainer data (natures, EVs, abilities, forms) | not started |
+| E10 / E11 | Renegade port; Imperial content (encounters, E4 format, gifts, post-game) | not started |
+| E12 | Graphics (convert sprites, icons) | waiting on the owner's front sprites |
+| T1 | Boss team compositions with the owner's Mega picks; revise all boss teams | deferred by the owner until the engine features are done |
+| T2 | Developer final battle (Red-style double battle) | waiting on the owner's team, text and sprites |
+
+## Design work (done)
 
 | Area | Result | Where |
 |---|---|---|
-| Species data | All 1025 species, with 532 to add (442 regular, 45 legendary, 14 mythical, 11 Ultra Beasts, 20 Paradox) | `data/species.csv` |
-| Wild encounters | Every Renegade table re-slotted to Gen IV slot rates. **389** added species directly catchable, **8** by evolving a catchable pre-evolution, **45** starter-line species as gifts. No Renegade species lost. | `docs/WildPokemon_Imperial.md` |
-| Starters | Gen V–IX starters through Pokémon Center Interviewers, as Renegade does for Kanto/Johto/Hoenn | `docs/GiftPokemon_Imperial.md` |
-| Mega Evolution | 99 forms (XY, ORAS, Legends: Z-A + Mega Dimension), 15 field stones (replacing Potions etc.), 4 vendors, Mega Ring from Fantina, animation spec | `docs/MegaEvolution.md` |
-| Boss teams | Megas for Jupiter (from Eterna), Aaron, Fantina, Maylene, Wake, Cyrus ×3, Saturn ×2, Mars ×2, Jupiter (Spear Pillar), Byron, Candice, Volkner, Fight Area; E4 + Cynthia singles/doubles for both rounds; validated | `docs/TrainerPokemon_Imperial.md` |
-| Elite Four format | 2 singles + 2 doubles flow, rematch options, script design | `docs/EliteFourFormat.md` |
-| Evolutions | 54 added species given Gen IV-compatible methods; 16 new evolution items | `docs/EvolutionChanges_Imperial.md` |
-| Post-game legendaries | 90 species across five "Chronicle" chapters | `docs/PostgameLegendaries.md` |
-| Sprites | Two owner-supplied packs merged: fronts and backs for all 532 added species, partial shinies, 44/99 Mega backs; DS-readiness flagged per file | `docs/SpriteChecklist.xlsx`, `docs/SpriteLog.md` |
+| Species data | All 1025 species, 532 to add | `data/species.csv` |
+| Wild encounters | 389 added species catchable directly, 8 by evolving, 45 starter-line gifts; no Renegade species lost | `docs/WildPokemon_Imperial.md` |
+| Starters | Gen V–IX starters from Pokémon Center Interviewers | `docs/GiftPokemon_Imperial.md` |
+| Mega Evolution | 99 forms, field stones, vendors, Mega Ring from Fantina, animation spec | `docs/MegaEvolution.md` |
+| Boss Megas | Owner's picks for every big fight after Jupiter, including Barry (Mega Staraptor); Lucas uses Dawn's teams | `docs/BossFights_MegaPicks.md`, `docs/TrainerPokemon_Imperial.md` |
+| Level caps | 21 steps from Roark to the Cynthia rematch | `data/level_caps.yaml` |
+| Elite Four format | 2 singles + 2 doubles, rematch options | `docs/EliteFourFormat.md` |
+| Evolutions | Gen IV-compatible methods for added species; 16 new evolution items | `docs/EvolutionChanges_Imperial.md` |
+| Post-game legendaries | 90 species in five chapters | `docs/PostgameLegendaries.md` |
+| Sprites | Fronts and backs for all 532 added species (owner packs); placeholder icons from PokeAPI | `docs/SpriteChecklist.xlsx` |
+| Cries | 493 in the game; 532 needed, all with a source in PokeAPI's cry archive | `docs/CryChecklist.xlsx` |
 | Citations | Every asset and dataset credited | `CITATIONS.md` |
-
-## Blocked / not started
-
-1. **No base ROM in the repository.** Renegade is distributed as xdelta patches that need a Pokémon Platinum (US) dump.
-   ROMs can't be downloaded or provided here. A developer must supply their own (`tools/build/apply_renegade_patch.sh`).
-2. **Engine:** the decomp route is chosen; setup has started (see `TechnicalDesign.md`).
-3. **Sprites** (`SpriteChecklist.xlsx`): all 532 added species now have a front and a back sprite. 196 have a shiny
-   front and 389 a shiny back. Box/party icons and most Mega sprites are still missing. About a third of the fronts
-   and backs are 96×96 and need cropping (most fit) or resizing for the DS.
-4. All engine work: species expansion, Mega battle mechanic and UI, new abilities, item table expansion, extended trainer
-   data (EVs/natures), scripts and maps, encounter table entry, and play-testing.
 
 ## Decisions
 
-Made (2026-10-22):
-1. **Engine route: rebuild on the pret/pokeplatinum decompilation.** Renegade's changes are re-implemented from its documentation.
-2. **Gen IX data everywhere:** current-generation moves, abilities (including Hidden Abilities), learnsets and base stats.
-3. **Early Aaron** (Route 208) keeps Mega Scizor. Every other big fight after the Eterna Jupiter battle also gets a Mega;
-   the list awaiting picks is in `BossFights_MegaPicks.md`.
-4. **Save format:** Imperial has its own save format (no Renegade save compatibility).
+Made by the owner (2026-10-22):
+1. Rebuild on the pret/pokeplatinum decomp; Imperial has its own save format.
+2. Gen IX moves, abilities (with Hidden Abilities), learnsets and base stats everywhere.
+3. Every big fight after the Eterna Jupiter battle has a Mega, with these exceptions: Saturn on Route 212, Ace Trainer
+   Gene, and the Battleground's Gardenia, Cheryl and Buck. Lucas uses Dawn's teams.
+4. Options: level cap, Infinite Rare Candy (needs the cap), party Exp. Share, music volume, all in the normal OPTIONS list.
+5. QoL proposals 1–6, 8, 9 and 11 approved; #7 kept as a proposal; #10 dropped.
+6. The Sinnoh dex stays as in Platinum; the National Dex holds all 1025. Cries for new species come from PokeAPI's archive.
+7. Boss team compositions wait until the engine features are done (T1).
+8. A Red-style developer final battle will be added (T2). It gets a custom AI; the trainer AI is also reviewed for double battles (12b).
+9. No Z-Moves, Max Moves, Dynamax or Gigantamax.
 
 Open:
-- Which Megas the fights in `BossFights_MegaPicks.md` use.
-- Which QoL proposals in `QualityOfLife.md` to approve.
-- Front sprites (the owner is sourcing them).
+- The developer battle: team, trainer text, sprites, location (suggested: Mt. Coronet summit after the post-game).
+- Front sprites and the part 2 shiny pack (owner is sourcing them).
 - Regional forms (Alolan/Galarian/Hisuian/Paldean): out of scope for now.
-
-## Roadmap
-
-| Phase | Work | Depends on |
-|---|---|---|
-| 1 | Pick the engine route; set up the build (base ROM or decomp + Renegade port) | Decision 1, a ROM dump |
-| 2 | Species expansion: data tables, Pokédex, icons, placeholder sprites/cries | Phase 1 |
-| 3 | Items: Mega Stones, evolution items, key items, shops | Phase 1 |
-| 4 | Mega Evolution: forms, battle flow, UI, AI, boss abilities, animation | Phases 2–3 |
-| 5 | Extended trainer data; enter all boss/League teams; E4 format scripts | Phase 4 |
-| 6 | Wild tables, evolution changes, starter Interviewers, field items, vendors | Phases 2–3 |
-| 7 | Post-game legendary quests and new maps | Phases 2, 5 |
-| 8 | Sprites: convert backs, source fronts, palettes; Mega art | parallel |
-| 9 | Play-testing and balance passes; regenerate the docs | all |
+- hg-engine and Smogon credit lists: Claude compiles them (owner, 2026-10-22).
