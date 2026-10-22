@@ -1,0 +1,177 @@
+{
+    "base_stats": {
+        "hp": 95,
+        "attack": 145,
+        "defense": 130,
+        "speed": 120,
+        "special_attack": 120,
+        "special_defense": 90
+    },
+    "types": [
+        "TYPE_DRAGON",
+        "TYPE_FLYING"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 218,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 3,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 40,
+    "base_friendship": 35,
+    "exp_rate": "EXP_RATE_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_DRAGON",
+        "EGG_GROUP_DRAGON"
+    ],
+    "abilities": [
+        "ABILITY_NONE",
+        "ABILITY_NONE",
+        "ABILITY_NONE"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_FLY"
+            ],
+            [
+                1,
+                "MOVE_ROOST"
+            ],
+            [
+                1,
+                "MOVE_DRAGON_BREATH"
+            ],
+            [
+                1,
+                "MOVE_DRAGON_TAIL"
+            ],
+            [
+                1,
+                "MOVE_EMBER"
+            ],
+            [
+                1,
+                "MOVE_DUAL_WINGBEAT"
+            ],
+            [
+                1,
+                "MOVE_LEER"
+            ],
+            [
+                1,
+                "MOVE_BITE"
+            ],
+            [
+                1,
+                "MOVE_PROTECT"
+            ],
+            [
+                15,
+                "MOVE_HEADBUTT"
+            ],
+            [
+                20,
+                "MOVE_SCARY_FACE"
+            ],
+            [
+                25,
+                "MOVE_CRUNCH"
+            ],
+            [
+                33,
+                "MOVE_DRAGON_CLAW"
+            ],
+            [
+                39,
+                "MOVE_ZEN_HEADBUTT"
+            ],
+            [
+                46,
+                "MOVE_FOCUS_ENERGY"
+            ],
+            [
+                55,
+                "MOVE_FLAMETHROWER"
+            ],
+            [
+                73,
+                "MOVE_DOUBLE_EDGE"
+            ]
+        ],
+        "by_tm": [
+            "TM02",
+            "TM05",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM23",
+            "TM26",
+            "TM27",
+            "TM31",
+            "TM32",
+            "TM35",
+            "TM38",
+            "TM39",
+            "TM40",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM47",
+            "TM51",
+            "TM58",
+            "TM59",
+            "TM65",
+            "TM68",
+            "TM71",
+            "TM78",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM87",
+            "TM90",
+            "HM01",
+            "HM02",
+            "HM04",
+            "HM05",
+            "HM06"
+        ],
+        "by_tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_ROLLOUT",
+            "MOVE_IRON_HEAD",
+            "MOVE_AQUA_TAIL",
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_AIR_CUTTER",
+            "MOVE_HELPING_HAND",
+            "MOVE_OUTRAGE",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_TWISTER",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_HEAT_WAVE",
+            "MOVE_SWIFT"
+        ]
+    },
+    "evolutions": []
+}

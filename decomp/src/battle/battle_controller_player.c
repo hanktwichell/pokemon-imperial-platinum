@@ -319,6 +319,8 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
     for (int i = 0; i < maxBattlers; i++) {
         switch (battleCtx->curCommandState[i]) {
         case COMMAND_SELECTION_INIT:
+            battleCtx->sovereignMegaPending &= ~FlagIndex(i); // Sovereign (E8): chosen again with the move
+
             // No need to reinitialize if the same controller acts for both battlers on a side.
             if ((battleType & BATTLE_TYPE_DOUBLES)
                 && (battleType & BATTLE_TYPE_2vs2) == FALSE
@@ -522,6 +524,16 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
                         battleCtx->nextCommandState[i] = COMMAND_SELECTION_MOVE_SELECT_INIT;
                     }
                 } else {
+                    // Sovereign (E8): the move menu's MEGA toggle comes in the input's second byte. Trainers' AI
+                    // Mega Evolves as soon as it can (docs/MegaEvolution.md).
+                    BOOL megaEvolve = BattlerData_GetBootState(BattleSystem_GetBattlerData(battleSys, i)) == BATTLER_BOOT_STATE_AI
+                        || battleCtx->ioBuffer[i][1] != 0;
+
+                    battleCtx->sovereignMegaPending &= ~FlagIndex(i);
+                    if (megaEvolve && BattleSystem_SovereignMegaForm(battleSys, battleCtx, i)) {
+                        battleCtx->sovereignMegaPending |= FlagIndex(i);
+                    }
+
                     battleCtx->battlerActions[i][2] = battleCtx->ioBuffer[i][0];
                     battleCtx->moveSlot[i] = battleCtx->ioBuffer[i][0] - 1;
                     battleCtx->moveSelected[i] = battleCtx->battleMons[i].moves[battleCtx->moveSlot[i]];
@@ -870,6 +882,57 @@ static void BattleControllerPlayer_CheckPreMoveActions(BattleSystem *battleSys, 
     }
 }
 
+// Sovereign (E8): run the next pending Mega Evolution, fastest first, then the switch-in abilities it brings
+// (Mega Charizard Y's Drought). Returns TRUE while a script was started; BranchActions runs again afterwards.
+static BOOL BattleControllerPlayer_SovereignMegaEvolve(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
+
+    if (battleCtx->sovereignMegaSwitchInCheck) {
+        int nextSeq = BattleSystem_TriggerEffectOnSwitch(battleSys, battleCtx);
+
+        if (nextSeq) {
+            LOAD_SUBSEQ(nextSeq);
+            battleCtx->commandNext = battleCtx->command;
+            battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+            return TRUE;
+        }
+
+        battleCtx->sovereignMegaSwitchInCheck = FALSE;
+    }
+
+    for (int i = 0; i < maxBattlers && battleCtx->sovereignMegaPending; i++) {
+        int battler = battleCtx->monSpeedOrder[i];
+
+        if ((battleCtx->sovereignMegaPending & FlagIndex(battler)) == FALSE) {
+            continue;
+        }
+
+        battleCtx->sovereignMegaPending &= ~FlagIndex(battler);
+
+        // Checked again: a partner may have used the trainer's Mega Evolution already this turn.
+        int form = BattleSystem_SovereignMegaForm(battleSys, battleCtx, battler);
+        if (battleCtx->battlerActions[battler][BATTLE_ACTION_SELECTED_COMMAND] != PLAYER_INPUT_FIGHT || form == 0) {
+            continue;
+        }
+
+        BattleController_EmitClearMessageBox(battleSys);
+        battleCtx->msgBattlerTemp = battler;
+        battleCtx->msgItemTemp = battleCtx->battleMons[battler].heldItem;
+        battleCtx->msgTemp = battleCtx->battleMons[battler].species == SPECIES_RAYQUAZA; // no stone: "fervent wish"
+        BattleSystem_SovereignMegaEvolve(battleSys, battleCtx, battler, form);
+        battleCtx->sovereignMegaResort = TRUE;
+        battleCtx->sovereignMegaSwitchInCheck = TRUE;
+
+        LOAD_SUBSEQ(subscript_sovereign_mega_evolution);
+        battleCtx->commandNext = battleCtx->command;
+        battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
 static void BattleControllerPlayer_BranchActions(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
@@ -887,10 +950,18 @@ static void BattleControllerPlayer_BranchActions(BattleSystem *battleSys, Battle
 
     BattleSystem_SortMonSpeedOrder(battleSys, battleCtx);
 
+    // Sovereign (E8): Mega Evolution, after switches and items and before the turn's first move.
+    if (battleCtx->turnOrderCounter < maxBattlers
+        && battleCtx->battlerActions[battleCtx->battlerActionOrder[battleCtx->turnOrderCounter]][BATTLE_ACTION_SELECTED_COMMAND] == PLAYER_INPUT_FIGHT
+        && BattleControllerPlayer_SovereignMegaEvolve(battleSys, battleCtx)) {
+        return;
+    }
+
     // Sovereign: dynamic speed (Gen VIII+ / Pokémon Champions). Before each action, the battlers still waiting to
     // use a move are re-sorted by their current Speed and priority, so a Speed change earlier in the turn (Icy Wind,
-    // paralysis, Tailwind...) affects who moves next. Gen IV fixed the order at the start of the turn.
-    if (battleCtx->turnOrderCounter > 0 && battleCtx->turnOrderCounter < maxBattlers - 1
+    // paralysis, Tailwind...) affects who moves next. Gen IV fixed the order at the start of the turn. A Mega
+    // Evolution's new Speed counts from its own turn (Gen VII+), so the order is re-sorted after one, too.
+    if ((battleCtx->turnOrderCounter > 0 || battleCtx->sovereignMegaResort) && battleCtx->turnOrderCounter < maxBattlers - 1
         && (BattleSystem_GetBattleType(battleSys) & (BATTLE_TYPE_SAFARI | BATTLE_TYPE_PAL_PARK)) == FALSE) {
         for (int i = battleCtx->turnOrderCounter; i < maxBattlers - 1; i++) {
             for (int j = i + 1; j < maxBattlers; j++) {
@@ -909,8 +980,11 @@ static void BattleControllerPlayer_BranchActions(BattleSystem *battleSys, Battle
         }
     }
 
+    battleCtx->sovereignMegaResort = FALSE;
+
     if (battleCtx->turnOrderCounter == maxBattlers) {
         battleCtx->turnOrderCounter = 0;
+        battleCtx->sovereignMegaPending = 0;
         battleCtx->command = BATTLE_CONTROL_CHECK_FIELD_CONDITIONS;
     } else {
         battleCtx->command = battleCtx->battlerActions[battleCtx->battlerActionOrder[battleCtx->turnOrderCounter]][BATTLE_ACTION_PICK_COMMAND];
@@ -4865,6 +4939,12 @@ static void BattleSystem_RecordCommand(BattleSystem *battleSys, BattleContext *b
             case BATTLE_CONTROL_FIGHT:
                 if (battleCtx->recordedCommandFlags[battler] & RECORDED_CMD_FLAG_TARGET) {
                     recordedAction = battleCtx->battlerActions[battler][2];
+
+                    // Sovereign (E8): the move slot's top bit records a Mega Evolution (Task_RecordingShowMoveSelectMenu).
+                    if (battleCtx->sovereignMegaPending & FlagIndex(battler)) {
+                        recordedAction |= 0x80;
+                    }
+
                     BattleSystem_Record(battleSys, battler, recordedAction);
                 }
 

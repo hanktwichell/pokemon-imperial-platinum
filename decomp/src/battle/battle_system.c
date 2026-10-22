@@ -1116,6 +1116,12 @@ int BattleSystem_GetMetBebe(BattleSystem *battleSys)
     return battleSys->metBebe;
 }
 
+// Sovereign (E8): TRUE once the player has the Mega Ring.
+BOOL BattleSystem_IsMegaUnlocked(BattleSystem *battleSys)
+{
+    return battleSys->megaUnlocked;
+}
+
 void BattleSystem_TryIncrementRecordValue(BattleSystem *battleSys, int id)
 {
     if (battleSys->battleStatusMask & BATTLE_STATUS_RECORDING) {

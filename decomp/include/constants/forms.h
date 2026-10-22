@@ -1,6 +1,7 @@
 #ifndef POKEPLATINUM_CONSTANTS_FORMS_H
 #define POKEPLATINUM_CONSTANTS_FORMS_H
 
+#include "constants/sovereign_forms.h"
 #include "constants/species.h"
 
 #define MOVESET_FORM_DEOXYS_ATTACK   NATIONAL_DEX_COUNT + 1
@@ -16,7 +17,7 @@
 #define MOVESET_FORM_ROTOM_FAN       NATIONAL_DEX_COUNT + 11
 #define MOVESET_FORM_ROTOM_MOW       NATIONAL_DEX_COUNT + 12
 
-#define MOVESET_MAX MOVESET_FORM_ROTOM_MOW
+#define MOVESET_MAX (MOVESET_FORM_ROTOM_MOW + SOVEREIGN_FORM_COUNT) // Sovereign: its forms have tutor sets too
 
 #define UNOWN_FORM_A     0
 #define UNOWN_FORM_B     1

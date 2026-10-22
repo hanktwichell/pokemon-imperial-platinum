@@ -6,3 +6,7 @@ pokegra_files += files('female_back.png')
 pokegra_files += files('female_front.png')
 
 pokefoot_files += files('footprint.png')
+
+# Sovereign forms (tools/engine/gen_forms.py): start
+species_data_files += files('forms/mega/data.json')
+# Sovereign forms: end

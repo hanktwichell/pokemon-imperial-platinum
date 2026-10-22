@@ -79,6 +79,24 @@
     {
       "id": "pl_msg_00000109_00008",
       "garbage": 15
+    },
+    {
+      "id": "HearthomeGym_Text_SovereignFantinaMegaRing",
+      "en_US": [
+        "Oh, and one more thing!\n",
+        "Please, take this Mega Ring!"
+      ]
+    },
+    {
+      "id": "HearthomeGym_Text_SovereignFantinaExplainMegaRing",
+      "en_US": [
+        "When a Pokémon holds its own\n",
+        "Mega Stone, the Mega Ring lets it\r",
+        "Mega Evolve in battle. Only one\n",
+        "Pokémon, once in each battle!\r",
+        "Such beauty, Mega Evolution...\n",
+        "I want to see it, I do!"
+      ]
     }
   ]
 }

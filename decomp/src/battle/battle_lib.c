@@ -3645,6 +3645,7 @@ enum SwitchInCheckState {
     SWITCH_IN_CHECK_STATE_START = 0,
 
     SWITCH_IN_CHECK_STATE_FIELD_WEATHER = SWITCH_IN_CHECK_STATE_START,
+    SWITCH_IN_CHECK_STATE_SOVEREIGN_PRIMAL, // Sovereign (E8)
     SWITCH_IN_CHECK_STATE_TRACE,
     SWITCH_IN_CHECK_STATE_WEATHER_ABILITIES,
     SWITCH_IN_CHECK_STATE_INTIMIDATE,
@@ -3730,6 +3731,31 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
             }
 
             battleCtx->switchInCheckState++;
+            break;
+
+        case SWITCH_IN_CHECK_STATE_SOVEREIGN_PRIMAL:
+            // Sovereign (E8): Kyogre holding the Blue Orb and Groudon holding the Red Orb revert as they come in, before
+            // weather abilities, with no button or Mega Ring (docs/MegaEvolution.md).
+            for (i = 0; i < maxBattlers; i++) {
+                battler = battleCtx->monSpeedOrder[i];
+                BattleMon *mon = &battleCtx->battleMons[battler];
+
+                if (mon->curHP && mon->formNum == 0 && (mon->statusVolatile & VOLATILE_CONDITION_TRANSFORM) == FALSE) {
+                    int form = Pokemon_SovereignBattleForm(mon->species, mon->heldItem, mon->moves, TRUE);
+
+                    if (form) {
+                        BattleSystem_SovereignChangeBattleForm(battleSys, battleCtx, battler, form);
+                        battleCtx->msgBattlerTemp = battler;
+                        subscript = subscript_sovereign_primal_reversion;
+                        result = SWITCH_IN_CHECK_RESULT_BREAK;
+                        break;
+                    }
+                }
+            }
+
+            if (i == maxBattlers) {
+                battleCtx->switchInCheckState++;
+            }
             break;
 
         case SWITCH_IN_CHECK_STATE_TRACE:
@@ -6272,6 +6298,15 @@ void BattleSystem_SetPokemonCatchData(BattleSystem *battleSys, BattleContext *ba
     }
 
     Pokemon_SetCatchData(mon, trInfo, ball, mapHeader, terrain, HEAP_ID_BATTLE);
+
+    // Sovereign (E8): a caught Primal goes straight to the party or PC, so it reverts here, not at the battle's end.
+    int form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+    if (form && Pokemon_IsSovereignBattleForm(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), form)) {
+        form = 0;
+        Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+        Pokemon_CalcAbility(mon);
+        Pokemon_CalcLevelAndStats(mon);
+    }
 }
 
 u8 BattleContext_IOBufferVal(BattleContext *battleCtx, int battler)
@@ -6483,6 +6518,94 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
     }
 
     return result;
+}
+
+// Sovereign (E8): the bit in sovereignMegaUsed for the trainer who owns this battler. Each trainer may Mega Evolve once
+// per battle: in a multi or tag battle each battler is its own trainer's; otherwise a side's battlers share one.
+u8 BattleSystem_SovereignMegaTrainerBit(BattleSystem *battleSys, int battler)
+{
+    if (BattleSystem_GetBattleType(battleSys) & (BATTLE_TYPE_2vs2 | BATTLE_TYPE_TAG)) {
+        return FlagIndex(battler);
+    }
+
+    return FlagIndex(BattleSystem_GetBattlerSide(battleSys, battler));
+}
+
+// Sovereign (E8): the form this battler can Mega Evolve into right now, or 0 (docs/MegaEvolution.md).
+int BattleSystem_SovereignMegaForm(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
+{
+    BattleMon *mon = &battleCtx->battleMons[battler];
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
+    u8 side = BattleSystem_GetBattlerSide(battleSys, battler);
+
+    if ((battleType & BATTLE_TYPE_NO_MOVES)
+        || mon->curHP == 0
+        || mon->formNum != 0
+        || (mon->statusVolatile & VOLATILE_CONDITION_TRANSFORM)
+        || (battleCtx->sovereignMegaUsed & BattleSystem_SovereignMegaTrainerBit(battleSys, battler))) {
+        return 0;
+    }
+
+    // Wild Pokémon never Mega Evolve. The player needs the Mega Ring; AI partners and opposing trainers don't.
+    if (side != BATTLER_US) {
+        if ((battleType & BATTLE_TYPE_TRAINER) == FALSE) {
+            return 0;
+        }
+    } else if (BattlerData_GetBootState(BattleSystem_GetBattlerData(battleSys, battler)) != BATTLER_BOOT_STATE_AI
+        && BattleSystem_IsMegaUnlocked(battleSys) == FALSE) {
+        return 0;
+    }
+
+    return Pokemon_SovereignBattleForm(mon->species, mon->heldItem, mon->moves, FALSE);
+}
+
+// Sovereign (E8): change a battler into its Mega or Primal form: stats, types and, when the engine has it, the form's
+// ability. The party Pokémon takes the form too (it keeps it if it switches out) and reverts when the battle ends
+// (BattleMain_CopyBattleSysToDTOAndFree).
+void BattleSystem_SovereignChangeBattleForm(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int form)
+{
+    BattleMon *mon = &battleCtx->battleMons[battler];
+    Pokemon *tmp = Pokemon_New(HEAP_ID_BATTLE);
+
+    Pokemon_Copy(BattleSystem_GetPartyPokemon(battleSys, battler, battleCtx->selectedPartySlot[battler]), tmp);
+    Pokemon_SetValue(tmp, MON_DATA_FORM, &form);
+    Pokemon_CalcLevelAndStats(tmp);
+
+    mon->attack = Pokemon_GetValue(tmp, MON_DATA_ATK, NULL);
+    mon->defense = Pokemon_GetValue(tmp, MON_DATA_DEF, NULL);
+    mon->speed = Pokemon_GetValue(tmp, MON_DATA_SPEED, NULL);
+    mon->spAttack = Pokemon_GetValue(tmp, MON_DATA_SP_ATK, NULL);
+    mon->spDefense = Pokemon_GetValue(tmp, MON_DATA_SP_DEF, NULL);
+    mon->type1 = SpeciesData_GetFormValue(mon->species, form, SPECIES_DATA_TYPE_1);
+    mon->type2 = SpeciesData_GetFormValue(mon->species, form, SPECIES_DATA_TYPE_2);
+    mon->formNum = form;
+    Heap_Free(tmp);
+
+    // A Mega whose ability the engine lacks keeps its own (its form data lists none: tools/engine/gen_forms.py).
+    // A new ability takes effect at once, as if the Pokémon had just switched in (Mega Charizard Y's Drought).
+    u16 ability = SpeciesData_GetFormValue(mon->species, form, SPECIES_DATA_ABILITY_1);
+    if (ability != ABILITY_NONE && ability != mon->ability) {
+        mon->ability = ability;
+        mon->weatherAbilityAnnounced = FALSE;
+        mon->intimidateAnnounced = FALSE;
+        mon->traceAnnounced = FALSE;
+        mon->downloadAnnounced = FALSE;
+        mon->anticipationAnnounced = FALSE;
+        mon->forewarnAnnounced = FALSE;
+        mon->friskAnnounced = FALSE;
+        mon->moldBreakerAnnounced = FALSE;
+        mon->pressureAnnounced = FALSE;
+    }
+
+    battleCtx->battleStatusMask2 |= SYSCTL_RECALC_MON_STATS;
+    BattleController_EmitUpdatePartyMon(battleSys, battleCtx, battler);
+}
+
+// Sovereign (E8): Mega Evolve a battler; its trainer can't Mega Evolve again this battle.
+void BattleSystem_SovereignMegaEvolve(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int form)
+{
+    BattleSystem_SovereignChangeBattleForm(battleSys, battleCtx, battler, form);
+    battleCtx->sovereignMegaUsed |= BattleSystem_SovereignMegaTrainerBit(battleSys, battler);
 }
 
 void BattleSystem_InitPartyOrder(BattleSystem *battleSys, BattleContext *battleCtx)

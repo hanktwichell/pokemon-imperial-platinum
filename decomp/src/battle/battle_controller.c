@@ -772,6 +772,15 @@ void BattleController_EmitShowMoveSelectMenu(BattleSystem *battleSys, BattleCont
 
     message.invalidMoves = BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_ALL);
 
+    // Sovereign (E8): offer Mega Evolution unless this trainer's other Pokémon already chose it this turn.
+    message.canMegaEvolve = BattleSystem_SovereignMegaForm(battleSys, battleCtx, battler) != 0;
+    for (int i = 0; i < BattleSystem_GetMaxBattlers(battleSys); i++) {
+        if (i != battler && (battleCtx->sovereignMegaPending & FlagIndex(i))
+            && BattleSystem_SovereignMegaTrainerBit(battleSys, i) == BattleSystem_SovereignMegaTrainerBit(battleSys, battler)) {
+            message.canMegaEvolve = FALSE;
+        }
+    }
+
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(MoveSelectMenuMessage));
 }
 

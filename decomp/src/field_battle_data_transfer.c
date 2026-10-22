@@ -4,6 +4,7 @@
 #include <string.h>
 
 #include "constants/battle.h"
+#include "constants/savedata/vars_flags.h"
 #include "constants/heap.h"
 #include "constants/narc.h"
 #include "constants/overworld_weather.h"
@@ -83,6 +84,7 @@ FieldBattleDTO *FieldBattleDTO_New(enum HeapID heapID, u32 battleType)
     dto->mapEvolutionMethod = 0;
     dto->visitedContestHall = TRUE;
     dto->metBebe = TRUE;
+    dto->megaUnlocked = TRUE;
     dto->fieldWeather = OVERWORLD_WEATHER_CLEAR;
 
     for (i = 0; i < MAX_BATTLERS; i++) {
@@ -264,6 +266,7 @@ void FieldBattleDTO_InitFromGameState(FieldBattleDTO *dto, const FieldSystem *fi
     dto->mapEvolutionMethod = MapHeader_GetMapEvolutionMethod(mapHeaderID);
     dto->visitedContestHall = PokemonSummaryScreen_ShowContestData(saveData);
     dto->metBebe = SystemFlag_CheckMetBebe(SaveData_GetVarsFlags(saveData));
+    dto->megaUnlocked = VarsFlags_CheckFlag(SaveData_GetVarsFlags(saveData), FLAG_SOVEREIGN_MEGA_UNLOCKED);
     dto->fieldWeather = FieldOverworldState_GetWeather(fieldOverworldState);
     dto->bagCursor = bagCursor;
     dto->subscreenCursorOn = subscreenCursorOn;

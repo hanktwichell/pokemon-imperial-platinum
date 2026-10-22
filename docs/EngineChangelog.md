@@ -4,6 +4,61 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E8 — Mega Evolution and Primal Reversion (in progress)
+
+- **The 99 Mega and Primal forms exist as data** (step 1). `tools/engine/gen_forms.py` reads `data/megas.csv` and
+  writes each form's stats, types and ability, packed after Platinum's alternate forms (`TechnicalDesign.md` §4).
+  - 42 forms have their Mega ability, because the battle engine has it. The other 57 (an ability the engine lacks, or
+    none listed yet) keep the Pokémon's own ability, as `MegaEvolution.md` says.
+  - Sprites and icons are the base species' until E12.
+  - Verified: with the test Garchomp's form set to 1 (temporary hook), the summary showed Mega Garchomp's stats
+    (Attack 182 at Lv. 50).
+- **15 Mega Stones in the field** (`data/mega_stones.yaml`), placed by `tools/engine/place_mega_stones.py` in the item
+  balls they replace. Verified: the Route 203 ball gives the Alakazite.
+- **Fantina gives the Mega Ring** with the Relic Badge, after TM65, and sets `FLAG_SOVEREIGN_MEGA_UNLOCKED`
+  (formerly `FLAG_UNUSED_0x006F`). A player who already has the badge gets it by talking to her again. Verified by
+  beating Fantina with the test party.
+- Test build: SELECT+L+R stops at the Alakazite ball and in front of Fantina.
+- **Mega Evolution in battle** (step 2; `battle_controller_player.c`, `battle_lib.c`):
+  - It happens after switches and items and before the turn's first move, fastest first. The remaining moves are then
+    re-sorted, so the Mega's Speed counts that turn (Gen VII+).
+  - Stats, types and (when the engine has it) the ability change. A new ability takes effect at once, like a switch-in
+    (Mega Charizard Y's Drought sets the sun).
+  - Once per trainer per battle; in multi and tag battles each trainer gets one. The player needs the Mega Ring
+    (`FieldBattleDTO.megaUnlocked`). Wild Pokémon never Mega Evolve. Trainers' AI Mega Evolves as soon as it can.
+  - The party Pokémon stays Mega while switched out. Every Mega/Primal form reverts when the battle ends
+    (`BattleMain_CopyBattleSysToDTOAndFree`).
+  - Messages: "<Pokémon>'s <stone> is reacting to the Mega Ring!", then "<Pokémon> has Mega Evolved into Mega
+    <species>!". The new subscript is `subscript_sovereign_mega_evolution`; the sprite flashes with Platinum's
+    form-change mosaic.
+  - Verified in the test build:
+    - The test trainer's Charizard Mega Evolved on turn 1 and Drought set the sun.
+    - The player's Garchomp Mega Evolved in a wild battle (a temporary always-Mega hook stood in for the button) and
+      didn't again on turn 2.
+    - After the battle, Garchomp was back to its normal stats with its Garchompite.
+  - Still to do: the animation and the AI review.
+- **The MEGA EVOLUTION toggle** (step 3; `battle_subscreen.c`, `battle_display.c`). When the active Pokémon can Mega
+  Evolve, the move menu shows "Mega Evolution: OFF (SELECT)" in the strip above the moves. Touching it or pressing
+  SELECT turns it "ON" (in red); the move chosen next Mega Evolves the Pokémon.
+  - The server says whether to offer it: it isn't offered when the trainer's other Pokémon chose it this turn, or once
+    the trainer has used it.
+  - The choice travels in the second byte of the selected move. Battle recordings store it in the move slot's top bit,
+    so replays Mega Evolve too.
+  - It's a text label (one more font sprite; the pool grows to 14). A drawn button can replace it with E12's graphics.
+  - Verified:
+    - Wild battle: the label shows and SELECT and touch both toggle it. Choosing a move with it on Mega Evolved
+      Garchomp, and the label was gone on turn 2.
+    - Doubles vs. the test trainer: Turtwig's menu has no label. Garchomp (toggle on) and the foe's Charizard both
+      Mega Evolved that turn, fastest first.
+- **Primal Reversion** (step 3): Kyogre holding the Blue Orb and Groudon holding the Red Orb revert as they enter
+  battle. It runs as a new switch-in state (`SWITCH_IN_CHECK_STATE_SOVEREIGN_PRIMAL`), before weather abilities.
+  - No button or Mega Ring is needed, and it doesn't use up the trainer's Mega Evolution.
+  - Primordial Sea and Desolate Land aren't in the engine yet, so Primal Kyogre keeps Drizzle.
+  - A caught Primal reverts in `BattleSystem_SetPokemonCatchData`, because it skips the battle-end revert.
+  - Verified (temporary Kyogre leading the test party): "KYOGRE's Primal Reversion! It reverted to its primal form!",
+    then Drizzle's rain. After running from the battle, Kyogre was back to its normal stats.
+- Test build: Garchomp holds a Garchompite and the Mega flag is set at new game.
+
 ## E7 part 2 — shops and icon placement (in progress)
 
 - **Post-Champion money** (owner, decision 24). Every check is the Hall of Fame flag (`FLAG_GAME_COMPLETED`):

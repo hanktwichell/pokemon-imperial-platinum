@@ -714,7 +714,7 @@ static void SovereignTest_SetupNewGame(FieldSystem *fieldSystem)
 {
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
 
-    Pokemon_GiveMonFromScript(HEAP_ID_FIELD2, fieldSystem->saveData, SPECIES_GARCHOMP, 50, ITEM_NONE, 0, 0);
+    Pokemon_GiveMonFromScript(HEAP_ID_FIELD2, fieldSystem->saveData, SPECIES_GARCHOMP, 50, ITEM_GARCHOMPITE, 0, 0); // E8: Mega Garchomp
     Pokemon_GiveMonFromScript(HEAP_ID_FIELD2, fieldSystem->saveData, SPECIES_TURTWIG, 15, ITEM_NONE, 0, 0);
     Pokemon_GiveMonFromScript(HEAP_ID_FIELD2, fieldSystem->saveData, SPECIES_STARLY, 5, ITEM_NONE, 0, 0);
 
@@ -773,6 +773,7 @@ static void SovereignTest_SetupNewGame(FieldSystem *fieldSystem)
     Bag_TryAddItem(bag, ITEM_CHARIZARDITE_X, 1, HEAP_ID_FIELD2);
     Bag_TryAddItem(bag, ITEM_METAL_ALLOY, 1, HEAP_ID_FIELD2);
     Bag_TryAddItem(bag, ITEM_MEGA_RING, 1, HEAP_ID_FIELD2);
+    VarsFlags_SetFlag(SaveData_GetVarsFlags(fieldSystem->saveData), FLAG_SOVEREIGN_MEGA_UNLOCKED); // as Fantina's gift does
     Bag_TryAddItem(bag, ITEM_ADAMANT_MINT, 1, HEAP_ID_FIELD2);
     Bag_TryAddItem(bag, ITEM_ABILITY_CAPSULE, 2, HEAP_ID_FIELD2);
     Bag_TryAddItem(bag, ITEM_ABILITY_PATCH, 1, HEAP_ID_FIELD2);
@@ -830,6 +831,8 @@ static const struct {
     { MAP_HEADER_VEILSTONE_STORE_2F, 3, 6, FACE_LEFT }, // the vitamin / held item / Gem clerk
     { MAP_HEADER_ROUTE_202, 163, 822, FACE_UP }, // tall grass out of the trainers' sight (tools/test/find_tiles.py)
     { MAP_HEADER_SURVIVAL_AREA, 667, 339, FACE_UP }, // the Youngster who gives 3 Nuggets a day after the Champion
+    { MAP_HEADER_ROUTE_203, 211, 751, FACE_UP }, // the item ball that holds the Alakazite (data/mega_stones.yaml)
+    { MAP_HEADER_HEARTHOME_CITY_GYM_LEADER_ROOM, 4, 11, FACE_UP }, // Fantina, who gives the Mega Ring with the Relic Badge
 };
 
 static u8 sSovereignTestWarpIndex;

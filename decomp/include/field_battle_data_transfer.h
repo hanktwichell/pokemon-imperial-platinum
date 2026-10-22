@@ -88,6 +88,7 @@ typedef struct FieldBattleDTO {
     u8 recordedChatter[MAX_BATTLERS];
     SaveData *saveData;
     u32 recordingStopped;
+    BOOL megaUnlocked; // Sovereign (E8): the player has the Mega Ring (FLAG_SOVEREIGN_MEGA_UNLOCKED)
 } FieldBattleDTO;
 
 FieldBattleDTO *FieldBattleDTO_New(enum HeapID heapID, u32 battleType);
