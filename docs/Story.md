@@ -1,105 +1,93 @@
 # Sovereign Platinum — Story
 
-Status: **draft**. Owner decisions are marked **(owner)**; everything else is a proposal for the owner to choose
-from or change.
+Status: **direction decided by the owner (2026-10-22)**. Text is still to be written. The owner writes Twich's
+dialogue; the other text follows the beats below. Owner decision 23 in `docs/ProjectStatus.md`.
 
-## Decided (owner, 2026-10-22)
+## The Sovereign
 
-- **The Sovereign** were the old ruling class of Sinnoh. Their story runs **in parallel with Team Galactic's**.
-- The Sovereign are **never seen by the player**. Behind the scenes they are **merging other Pokémon worlds into
-  Sinnoh**, toward a goal the player doesn't know (see *The end goal* below).
-- The game makes a **vague reference to the Sovereign early on**. The player then **discovers more about them
-  passively** as the Totem trials and the other regions' content open up.
-- The **Totem trials are tests run by the Sovereign**. The **Chronicles** (post-game) widen the world.
-- **The whole story comes together in the final battle** with the Sovereign trainer.
-- That trainer is **Sovereign Twich** (class "Sovereign", name "Twich"; renamed from Sovereign Dev Twich). His
-  dialogue refers to Twich being the game's developer.
-- **Twich is a descendant of the old ruling class, and the only surviving member of the Sovereign lineage.**
-- **The battle unlocks after the Elite Four rematch *and* after the Dialga and Palkia encounters at Spear Pillar.**
+- **Who they are:** the old ruling class of Sinnoh, who held its throne at Spear Pillar.
+- **What the player sees:** nothing directly. The Sovereign are never seen by the player, and their story runs in
+  parallel with Team Galactic's.
+- **What they've been doing:** working behind the scenes to merge other Pokémon worlds into Sinnoh.
+- **The last of the line:** Twich, a descendant of the old ruling class and the only surviving member of the
+  lineage. He is the final opponent: **Sovereign Twich** (class "Sovereign", name "Twich"). His dialogue nods to him
+  being the game's developer; the owner writes it.
 
-## The end goal (choose one, or mix)
+## The end goal: shield, leading into succession (owner: "3 leading into 1")
 
-Three directions, each giving a different ending to the final battle:
+1. **The shield.** The Sovereign foresaw that Team Galactic's leader would tear Sinnoh's space and time apart at
+   Spear Pillar. To hold the region together they began stitching other Pokémon worlds into it. The Ultra Wormholes,
+   the Pokémon from other regions, the regional forms and the Totems are those stitches.
+2. **The succession.** The Sovereign who began the stitching are gone. Twich, their only heir, has held the seams
+   alone, and they can't be held by one person forever. The Totem trials are how he has been looking for someone fit
+   to take over.
+3. **The ending.** At the throne at Spear Pillar, Twich tests the player. Beating him hands the role on: **the player
+   is granted the Sovereign title**, the name the game is called by.
 
-1. **Succession: "The Sovereign need an heir."**
-   - The Sovereign line is fading. They are pulling other worlds' Pokémon into Sinnoh to build the hardest possible
-     proving ground, and the Totem trials are its tests.
-   - The goal is to find someone fit to inherit the role. Twich is the last of the lineage, and beating him makes the
-     player the new Sovereign.
-   - *Ending:* a coronation. The player earns the title the game is named after.
-2. **Restoration: "One world, as it was."**
-   - Long ago, all Pokémon worlds were one, and the Sovereign kept it from the throne at Spear Pillar until it split
-     apart.
-   - They are reuniting the pieces, using Sinnoh as the anchor.
-   - *Mirror of Galactic:* Cyrus wants a new world with no spirit; the Sovereign want the old world with every
-     spirit in it.
-   - *Ending:* the player decides whether the world should be made whole, and Twich tests whether the player has the
-     strength to make that call.
-3. **Shield: "Holding the seams."**
-   - The Sovereign foresaw that Cyrus would tear Sinnoh's space and time at Spear Pillar.
-   - They are stitching other worlds into Sinnoh to hold it together: the Ultra Wormholes, Distortion World echoes and
-     strange wild Pokémon are the stitches.
-   - *Ending:* the stitches can't hold forever. Someone has to take over, which is the same coronation as option 1,
-     with a clearer reason.
-
-**Recommendation: 3 leading into 1.** It fits the owner's decision that Twich is the last of the line: the
-Sovereign who stitched the worlds together are gone, and Twich, their only heir, has been holding the seams alone.
-- It ties to Galactic directly: Cyrus is the crisis the Sovereign are bracing for.
+How it ties together:
+- **Team Galactic** is the crisis the Sovereign were bracing for, so the two stories run side by side and meet at
+  Spear Pillar.
 - It explains why every region's Pokémon is in Sinnoh.
-- It explains why the Totems are tests (they're looking for a successor).
-- It ends with the player earning the title "Sovereign" from Twich at the throne at Spear Pillar.
+- It explains why the Totems are tests.
+- It ends with the player earning the game's title.
 
-## Story beats (proposal)
+## Story beats
 
-How the player learns about the Sovereign, without ever meeting one before Twich.
+The player learns about the Sovereign passively, without ever meeting one before Twich.
 
-### Early: one vague reference
+### Early: two vague references (owner: both)
 - **Oreburgh Mining Museum** (first Gym town): a new exhibit, a stone fragment carved with a crown and the line
   *"The Sovereign keep the seams."* Nobody knows what it means.
-  - Alternative spots: Professor Rowan mentioning that Pokémon never seen in Sinnoh have started appearing, or the
-    Jubilife TV station.
+- **Professor Rowan:** a remark that Pokémon never recorded in Sinnoh have started turning up, and he can't explain
+  where they're coming from.
 
 ### Along the main story, alongside Galactic
-- **Each Totem trial** ends with something left behind by an unseen trial keeper: the same crown mark, plus one line
-  of a message that builds up across the 11 trials.
-  - The player never sees who sets the trials.
-  - The last trial (Togedemaru, Vista Lighthouse) completes the message.
-- **Celestic Town** (Galactic's attack on the ruins): the elder's mural or story mentions the rulers who sat at
-  Spear Pillar "before the Pokémon of the lakes were named".
-- **Canalave Library**: a new book on the Sovereign, mostly missing pages.
-- **Spear Pillar** (Galactic's climax): a moment's glimpse. Ruins on the summit show a throne that was never part of
-  Platinum's map. It goes unexplained, and the story moves on to Giratina.
+- **Totem trials:** each one ends with something left behind by an unseen trial keeper, the same crown mark plus one
+  line of a message that builds up across the trials. The last trial (Totem Togedemaru, Vista Lighthouse) completes
+  the message.
+- **Celestic Town** (Galactic's attack on the ruins): the elder's story mentions the rulers who sat at Spear Pillar.
+- **Canalave Library:** a new book on the Sovereign, mostly missing pages.
+- **Spear Pillar** (Galactic's climax): a brief glimpse of ruins on the summit showing a throne that was never part
+  of Platinum's map. It goes unexplained, and the story moves on to Giratina.
 
 ### After the Hall of Fame
+- **Dialga and Palkia** appear at Spear Pillar once the player has **entered the Hall of Fame** (owner). This replaces
+  Platinum's National Dex condition, since Sovereign gives the National Dex from the start (decision 21).
 - **The Chronicles** (Archivist): each chapter's legendaries arrive from another world. The Archivist works out that
   someone opened the way on purpose, and starts to suspect the Sovereign.
-- **Regional Forms Park**: its owner keeps a log of where each regional form "came through".
-- **Elite Four rematch**, then **Dialga and Palkia at Spear Pillar**. Once both are done, the throne room opens.
+- **Regional Forms Park:** its owner keeps a log of where each regional form "came through".
+- **Elite Four rematch.** Once that and Dialga and Palkia are both done, the throne room at Spear Pillar opens.
 
 ### The final battle: Sovereign Twich at the throne
-- Twich explains what the Sovereign were doing (the end goal above). Every hint from the early game, the trials and
-  the Chronicles pays off here.
-- The developer reference: Twich speaks as the last surviving Sovereign, but some lines wink at him being the game's maker, for
-  example: *"I've rebuilt this world more times than you've reset your game."* The owner writes the final text.
-- Afterwards: the ending of the chosen end goal (for example, the player is named Sovereign).
+- **Before the battle,** Twich refers to the Totem trials: the player has passed all of his trials, so they're the one
+  he has been waiting for. The owner writes the dialogue, along with what the Sovereign were doing; every hint from the
+  early game, the trials and the Chronicles pays off here.
+- **The battle:** the developer team, Lv. 100 doubles (`docs/DeveloperBattle.md`).
+- **After the battle:** the player is granted the **Sovereign title**.
+- **Cynthia arrives** to congratulate the player (owner):
+  - She is very close to Twich. Their exact relationship is hinted at but never stated, and kept PG.
+  - She is the reason Twich uses a Garchomp, her signature Pokémon.
 
 ## Engineering notes
 
-- **Unlock condition** needs two flags:
-  - the Elite Four rematch won (Sovereign's E4 format: `docs/EliteFourFormat.md`);
-  - both Dialga and Palkia encountered at Spear Pillar. That's caught or defeated, depending on how Platinum's
-    script sets its flags; check which flags it sets.
-- **National Dex from the start** (owner decision 21): Platinum gates the post-game Spear Pillar event on the
-  National Pokédex. That gate needs a new condition, probably the Hall of Fame.
+- **Dialga/Palkia trigger:** set by entering the Hall of Fame instead of by the National Pokédex. Find the flag or
+  variable Platinum's Spear Pillar post-game script checks.
+- **Twich's unlock:** the Elite Four rematch won (Sovereign's E4 format: `docs/EliteFourFormat.md`) and both Dialga
+  and Palkia encountered at Spear Pillar (caught or defeated, depending on how Platinum's script sets its flags).
+- **The Sovereign title:** decide where it shows. Options: on the Trainer Card, in the Hall of Fame record, or as how
+  NPCs address the player afterwards.
+- **Cynthia's appearance:** a scripted scene after the battle at Spear Pillar, using her existing overworld sprite.
 - **Totem trial messages:** one short text per trial, plus the crown mark (a small graphic or a symbol in the text).
-- **New text:** Oreburgh exhibit, Celestic elder lines, a Canalave book, the Archivist's lines, the Regional Forms
-  Park log, Twich's intro, defeat text and ending. The owner writes Twich's.
-- **The throne room at Spear Pillar:** a map change (new area or new state of the existing map).
+- **New text:** the Oreburgh exhibit, Rowan's remark, the Celestic elder's lines, a Canalave book, the Archivist's
+  lines, the Regional Forms Park log, Cynthia's lines after the battle. Twich's intro, defeat and ending text: the
+  owner.
+- **The throne room at Spear Pillar:** a map change (a new area or a new state of the existing map).
+- **Who builds what** (owner's plan split): the story content is E11 (Claude B). The developer battle itself is T2
+  (Claude A).
 
-## Open questions for the owner
+## Open
 
-1. Which end goal: 1, 2, 3, or 3 leading into 1?
-2. Where does the early reference go: Oreburgh Museum, Rowan, or somewhere else?
-3. Is the player told by name that the trials are Sovereign tests, or only through the crown mark and message?
-4. Should Cynthia know about the Sovereign (she's Celestic Town's historian's granddaughter)?
-5. After Twich, does anything change in the world (title, outfit, Twich available for rematches)?
+- **12 trials or 11?** The owner's example line says "all 12 of my totem trials". `data/totem_trials.yaml` has **11**
+  trials (11 Totem Pokémon, 12 Totem forms, because Mimikyu has Disguised and Busted). Either add a 12th trial (for
+  example Wishiwashi, whose Sun/Moon trial has no Totem form of its own), or the line says 11.
+- **Where the Sovereign title shows** (see the engineering notes).

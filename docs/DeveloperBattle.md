@@ -7,7 +7,10 @@ written for this fight. Roadmap item T2; the AI review for doubles is item 12b.
   Twich is the last surviving member of the Sovereign lineage, and his dialogue refers to him being the game's
   developer. The story behind the fight is in `docs/Story.md`.
 - **Location:** Spear Pillar, at the summit of Mt. Coronet: the Sovereign throne room (post-game).
-- **Unlocks** after the Elite Four rematch *and* the Dialga and Palkia encounters at Spear Pillar (owner).
+- **Unlocks** after the Elite Four rematch *and* the Dialga and Palkia encounters at Spear Pillar (owner). Dialga
+  and Palkia appear there once the player has entered the Hall of Fame.
+- **Afterwards:** the player is granted the Sovereign title, and Cynthia arrives to congratulate them
+  (`docs/Story.md`). Cynthia is the reason Twich uses a Garchomp.
 - **Level:** 100 for the whole team.
 - **Leads:** always Charizard (Mega Y) and Venusaur.
 - **Concept:** a triple-weather team built as three synergy pairs:
@@ -92,4 +95,4 @@ Taking control of the weather by switching weather setters in and out is central
 
 ## Still open
 
-- Trainer sprite (owner: coming soon), overworld sprite, intro/defeat text.
+- Trainer sprite (owner: coming soon), overworld sprite, intro/defeat text (owner writes it).
