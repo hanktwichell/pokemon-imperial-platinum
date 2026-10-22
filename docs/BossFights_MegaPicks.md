@@ -10,7 +10,7 @@ Not listed: tag-battle **partners** (Cheryl in Eterna Forest, Mira in Wayward Ca
 
 The owner filled in every row below. "None" overrides the "every big fight after Jupiter has a Mega" rule for that
 fight. **Lucas** (the rival when the player is a girl) uses **Dawn's teams exactly**, Mega Lopunny included (owner,
-2026-10-22). Teams go into `data/trainers_imperial.yaml` next.
+2026-10-22). **Pending (owner, 2026-10-22): the full teams with these Megas, and a revision of team compositions in general, wait until the engine features are built.** Until then `data/trainers_imperial.yaml` only has the teams written so far.
 
 | # | When | Location | Trainer | Current team | Megas already possible | Notes | Your pick |
 |---|---|---|---|---|---|---|---|
