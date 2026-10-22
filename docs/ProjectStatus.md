@@ -72,7 +72,7 @@ Made by the owner (2026-10-22):
     Archaludon (`DeveloperBattle.md`).
 
 Open:
-- The developer battle: trainer name/class, text, sprites, team level (suggested Lv. 100) and location (suggested: Mt. Coronet summit after the post-game).
+- The developer battle: Lv. 100 at Spear Pillar, leads Charizard-Y + Venusaur, custom weather-control AI (`DeveloperBattle.md`). Open: trainer name/class and the game title (shared theme), text, sprites (owner's sprite coming soon), Charizard's final moveset.
 - Front sprites and the part 2 shiny pack (owner is sourcing them).
 - Regional forms (Alolan/Galarian/Hisuian/Paldean): out of scope for now.
 - hg-engine and Smogon credit lists: Claude compiles them (owner, 2026-10-22).

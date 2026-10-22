@@ -3,6 +3,16 @@
 A hidden, Red-style **double battle** against the mod's developer (the owner), with a custom team and a custom AI
 written for this fight. Roadmap item T2; the AI review for doubles is item 12b.
 
+- **Trainer:** working name "Royal Dev Twich". The owner wants the game's name and the trainer class to share a theme,
+  so both are still open (see *Naming* below).
+- **Location:** Spear Pillar, at the summit of Mt. Coronet (post-game).
+- **Level:** 100 for the whole team.
+- **Leads:** always Charizard (Mega Y) and Venusaur.
+- **Concept:** a triple-weather team built as three synergy pairs:
+  - **Sun:** Charizard-Y + Venusaur (Drought powers Chlorophyll, Weather Ball and Heat Wave).
+  - **Sand:** Tyranitar + Garchomp.
+  - **Rain:** Kyogre + Archaludon (rain makes Electro Shot fire in one turn).
+
 ## Team (owner, 2026-10-22)
 
 | # | Pokémon | Item | Ability | Nature | EVs | IVs | Moves | Notes |
@@ -38,8 +48,41 @@ recorded but unused (Imperial has no Terastallization).
   permanent while the Primal is out.
 - **Archaludon's Electro Shot** needs rain to fire in one turn, so it pairs with Kyogre.
 
+## Custom AI (to-do)
+
+Taking control of the weather by switching weather setters in and out is central to this team. The fight's AI
+(T2, built on the doubles review in 12b) should:
+- lead Charizard + Venusaur and Mega Evolve Charizard on turn 1;
+- track the current weather and how many turns it has left (ability weather lasts 5 turns in Imperial), and switch
+  in the setter whose weather benefits it when the opponent's weather or a weather timeout would hurt it;
+- bring in and keep the synergy pairs together: sun (Charizard + Venusaur), sand (Tyranitar + Garchomp) and rain
+  (Kyogre + Archaludon);
+- use Protect to scout and to stall out the opponent's weather;
+- be aware of doubles: spread moves (Heat Wave, Rock Slide, Water Spout, Origin Pulse) and not hitting its partner
+  (Garchomp's Stomping Tantrum hits only the target, but Earthquake-style moves would hit the partner).
+
+## To-do
+
+- [ ] Owner may adjust Charizard's moveset.
+- [ ] Custom AI (above).
+- [ ] Trainer name, class and the game's name (see *Naming*).
+
+## Naming
+
+The owner wants the game title and Twich's trainer class to share a theme. Suggestions (title / class / full name):
+
+| Title | Class | In battle |
+|---|---|---|
+| Pokémon Imperial Platinum | Emperor | Emperor Twich |
+| Pokémon Sovereign Platinum | Sovereign | Sovereign Twich |
+| Pokémon Regal Platinum | Regent | Regent Twich |
+| Pokémon Monarch Platinum | Monarch | Monarch Twich |
+| Pokémon Dynasty Platinum | Dynast | Dynast Twich |
+| Pokémon Crown Platinum | Crowned King | Crowned King Twich |
+
+Trainer class names should stay short (about 12 characters) to fit the battle text.
+
 ## Still open
 
-- Trainer name, class, overworld and battle sprites, and the intro/defeat text.
-- Level for the team (suggestion: Lv. 100, as a post-game super-boss).
-- Location (suggestion: Mt. Coronet summit, unlocked after the post-game).
+- Trainer sprite (owner: coming soon), overworld sprite, intro/defeat text.
+- Trainer name and class, and the game's name (see *Naming*).

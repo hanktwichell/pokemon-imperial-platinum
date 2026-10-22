@@ -68,7 +68,7 @@ Estimates are in working sessions (about 5 hours each). Runtime checks use the t
 | 13 | T1 | **Team compositions** (deferred by the owner until the engine features are done): the 21 post-Jupiter boss teams with the owner's Mega picks (`BossFights_MegaPicks.md`; Lucas uses Dawn's teams), then revise every boss team with Gen IX moves/abilities | | 1–2 | teams validated by `gen_trainer_docs.py` |
 | 14 | E10 | **Renegade port.** Wild tables, trainers, items, NPCs/QoL, type and move changes, scripts per Renegade's docs | | 3–6 | Renegade docs satisfied |
 | 15 | E11 | **Imperial content.** Encounter plan, E4 format scripts, starter Interviewers, Mega vendors and field stones, post-game legendaries | | 3–5 | Imperial docs satisfied |
-| 16 | T2 | **Developer final battle** (owner request): Red-style hidden double battle, custom team and trainer, with a **custom AI** written for this fight. Team received (`DeveloperBattle.md`); waiting on trainer text, sprites and level | team in | 1–2 | battle playable; custom AI tested |
+| 16 | T2 | **Developer final battle** (owner request): Red-style hidden double battle, custom team and trainer, with a **custom AI** written for this fight. Team received; Lv. 100 at Spear Pillar; leads Charizard-Y + Venusaur; custom AI that switches weather setters to control the weather (`DeveloperBattle.md`). Waiting on trainer name/class, text and sprites | team in | 1–2 | battle playable; custom AI tested |
 | 17 | E12 | **Graphics.** Convert sprites, add fronts as sourced, real icons | waiting on art | 2–4 | `SpriteChecklist.xlsx` all green |
 | 18 | — | **Playtest pass** (automated with the test build, then the owner's playthrough) | | 1–2 | no blockers |
 
