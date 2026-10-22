@@ -5,29 +5,27 @@ For each new species this writes decomp/res/pokemon/<stem>/ the way Platinum's o
   data.json         stats, types, abilities, learnsets (Gen IX, same rules as gen_species_gen9.py), evolutions,
                     egg data, Pokédex data in six languages, Pal Park data
   sprite_data.json  copied from Unown (the placeholder sprite's species)
-  male_front/back   PLACEHOLDER sprites: Unown-? (real sprites are milestone E12)
+  male/female_front/back  PLACEHOLDER sprites: Unown-? (real sprites are milestone E12)
   icon.png          placeholder icon from assets/sprites/icons_placeholder (PokeAPI art, see CITATIONS.md)
   footprint.png     blank (Gen V+ Pokémon have no footprints; the Pokédex shows none)
-  cry.wav/cry.txt   the cry from PokeAPI's cry archive, resampled to Platinum's cry format
-and inserts the species into generated/species.txt (before SPECIES_EGG, so species ID = National Dex number) and
-into the sound archive (cry slot = species ID). Evolutions into a new species from one of Platinum's species are
+and inserts the species into generated/species.txt (before SPECIES_EGG, so species ID = National Dex number).
+The new species have no cry (owner, 2026-10-22): 532 cry banks overflowed the sound heap at boot, so cries are the
+project's final step and these species play silently (src/sound_playback.c). Evolutions into a new species from one of Platinum's species are
 added to the parent's data.json as well.
 
 Evolution methods come from data/evolution_changes.yaml when the species is listed there, otherwise from
 data/species.csv (the first alternative, regional-form variants ignored). Methods that need an item Sovereign
 doesn't have yet (milestone E7) are left out and listed in docs/NewSpecies.md, which this script writes.
 
-Running it again rewrites the generated files from scratch (the species list and sound archive are only extended
-once).
+Running it again rewrites the generated files from scratch (the species list is only extended once).
 
-Usage: python3 tools/engine/gen_new_species.py /path/to/pokeapi/data/v2/csv /path/to/PokeAPI/cries
+Usage: python3 tools/engine/gen_new_species.py /path/to/pokeapi/data/v2/csv
 """
 import csv
 import json
 import os
 import re
 import shutil
-import subprocess
 import sys
 import textwrap
 from collections import defaultdict
@@ -35,8 +33,6 @@ from collections import defaultdict
 import yaml
 
 sys.path.insert(0, os.path.dirname(__file__))
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "audio"))
-import cjson_format  # noqa: E402
 import gen_species_gen9 as gen9  # noqa: E402
 
 ROOT = gen9.ROOT
@@ -223,9 +219,9 @@ def replace_evolutions_block(path, entries):
 
 
 def main():
-    if len(sys.argv) < 3:
+    if len(sys.argv) < 2:
         sys.exit(__doc__)
-    api, cries = sys.argv[1], sys.argv[2]
+    api = sys.argv[1]
     ctx = gen9.load_context(api)
     chars = load_charmap()
     species_rows = {int(r["id"]): r for r in rd(api, "pokemon_species.csv")}
@@ -383,23 +379,28 @@ def main():
             f.write("\n")
 
         shutil.copyfile(os.path.join(unown, "sprite_data.json"), os.path.join(folder, "sprite_data.json"))
+        # Platinum keeps a female sprite for every species (a copy when there's no difference) and shows it for
+        # female Pokémon, so both are needed.
         for face in ("front", "back"):
-            shutil.copyfile(os.path.join(unown, "forms", "que", f"{face}.png"), os.path.join(folder, f"male_{face}.png"))
-            shutil.copyfile(os.path.join(unown, "forms", "que", f"{face}.png.key"),
-                            os.path.join(folder, f"male_{face}.png.key"))
+            for gender in ("male", "female"):
+                shutil.copyfile(os.path.join(unown, "forms", "que", f"{face}.png"),
+                                os.path.join(folder, f"{gender}_{face}.png"))
+                shutil.copyfile(os.path.join(unown, "forms", "que", f"{face}.png.key"),
+                                os.path.join(folder, f"{gender}_{face}.png.key"))
         for pal in ("normal.pal", "shiny.pal"):
             shutil.copyfile(os.path.join(unown, pal), os.path.join(folder, pal))
         shutil.copyfile(os.path.join(POKEMON, "lapras", "footprint.png"), os.path.join(folder, "footprint.png"))
         shutil.copyfile(os.path.join(ROOT, "assets", "sprites", "icons_placeholder", icon_files[dex]),
                         os.path.join(folder, "icon.png"))
-        shutil.copyfile(os.path.join(POKEMON, "garchomp", "cry.txt"), os.path.join(folder, "cry.txt"))
-        cry_src = os.path.join(cries, "cries", "pokemon", "latest", f"{dex}.ogg")
-        subprocess.run(["ffmpeg", "-loglevel", "error", "-y", "-i", cry_src, "-ac", "1", "-ar", "13379",
-                        "-sample_fmt", "s16", os.path.join(folder, "cry.wav")], check=True)
+        # No cry (owner, 2026-10-22): 532 cry banks overflowed the sound heap at boot. Cries are the final step.
+        for stale in ("cry.txt", "cry.wav"):
+            if os.path.exists(os.path.join(folder, stale)):
+                os.remove(os.path.join(folder, stale))
         with open(os.path.join(folder, "meson.build"), "w") as f:
             f.write("species_data_files += files('data.json', 'sprite_data.json')\n\n"
                     "poke_icon_files += files('icon.png')\n\n"
-                    "pokegra_files += files('male_back.png')\npokegra_files += files('male_front.png')\n\n"
+                    "pokegra_files += files('female_back.png')\npokegra_files += files('male_back.png')\n"
+                    "pokegra_files += files('female_front.png')\npokegra_files += files('male_front.png')\n\n"
                     "pokefoot_files += files('footprint.png')\n")
         report.append((dex, en_name, display, fam or "—", len(level), evo_note,
                        ", ".join(l for l, v in langs_used.items() if v != "own") or "—"))
@@ -423,24 +424,14 @@ def main():
         with open(os.path.join(DECOMP, "generated", "species.txt"), "w") as f:
             f.write("\n".join(species_txt) + "\n")
 
-    # Sound archive: cry bank and wave archive at index = species ID.
-    sound_path = os.path.join(DECOMP, "res", "sound", "pl_sound_data.json")
-    sd = json.loads(open(sound_path, encoding="utf-8").read())
-    for dex, const in zip(range(FIRST, LAST + 1), new_consts):
-        stem = const[8:].lower()
-        sd["bankInfo"][dex] = {"name": f"BANK_PV{dex}", "fileName": f"{stem}/cry.sbnk",
-                               "waves": [f"WAVE_ARC_PV{dex}", "", "", ""]}
-        sd["wavarcInfo"][dex] = {"name": f"WAVE_ARC_PV{dex}", "fileName": f"{stem}/cry.swar"}
-    with open(sound_path, "w", encoding="utf-8") as f:
-        f.write(cjson_format.dumps(sd))
-
     pending = [r for r in report if r[5].startswith("⏳")]
     L = ["# Sovereign Platinum — New species #494–1025", "",
          "> Generated by `tools/engine/gen_new_species.py` from PokeAPI and `data/`. Edit the generator, not this file.",
          "",
          "Stats, types, abilities, learnsets, egg data and Pokédex data are Gen IX (learnsets follow the same rules as "
-         "#1–493). **Sprites are placeholders (Unown-?) until milestone E12**; icons are PokeAPI placeholders; cries "
-         "come from PokeAPI's cry archive. Names over 10 characters are shortened (column *In game*).", "",
+         "#1–493). **Sprites are placeholders (Unown-?) until milestone E12**; icons are PokeAPI placeholders; new species "
+         "have no cry yet (they play silently; cries are the project's final step). Names over 10 characters are "
+         "shortened (column *In game*).", "",
          f"Evolutions waiting for an item from milestone E7: {len(pending)} (marked ⏳).", "",
          "| # | Species | In game | Learnset from | Level-up moves | Evolves by | Dex text not in own language |",
          "|---|---|---|---|---|---|---|"]

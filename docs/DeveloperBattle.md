@@ -12,13 +12,13 @@ written for this fight. Roadmap item T2; the AI review for doubles is item 12b.
   - **Sand:** Tyranitar + Garchomp.
   - **Rain:** Kyogre + Archaludon (rain makes Electro Shot fire in one turn).
 
-## Team (owner, 2026-10-22)
+## Team (owner, 2026-10-22; Tyranitar's Protect → Ice Punch the same day)
 
 | # | Pokémon | Item | Ability | Nature | EVs | IVs | Moves | Notes |
 |---|---|---|---|---|---|---|---|---|
 | 1 | Charizard ♂ | Charizardite Y | Blaze (Mega: Drought) | Modest | 252 SpA / 4 SpD / 252 Spe | 0 Atk | Weather Ball, Heat Wave, Ancient Power, Protect | Mega Evolves |
 | 2 | Venusaur ♀ | Focus Sash | Chlorophyll | Modest | 4 HP / 252 SpA / 252 Spe | 0 Atk | Sleep Powder, Leaf Storm, Sludge Bomb, Protect | |
-| 3 | Tyranitar ♂ | Assault Vest | Sand Stream | Adamant | 252 HP / 252 Atk / 4 SpD | — | Rock Slide, Crunch, Low Kick, Protect | |
+| 3 | Tyranitar ♂ | Assault Vest | Sand Stream | Adamant | 252 HP / 252 Atk / 4 SpD | — | Rock Slide, Crunch, Low Kick, Ice Punch | Ice Punch replaced Protect (owner, 2026-10-22); Assault Vest blocks status moves anyway |
 | 4 | Garchomp ♂ (shiny) | Life Orb | Rough Skin | Jolly | 4 HP / 252 Atk / 252 Spe | — | Dragon Claw, Stomping Tantrum, Fire Fang, Protect | |
 | 5 | Kyogre | Blue Orb | Drizzle (Primal: Primordial Sea) | Modest | 252 HP / 252 SpA / 4 SpD | 0 Atk | Water Spout, Origin Pulse, Ice Beam, Protect | Primal Reversion |
 | 6 | Archaludon ♂ (shiny) | Leftovers | Stamina | Calm | 48 HP / 156 Def / 172 SpA / 80 SpD / 52 Spe | 0 Atk | Electro Shot, Dragon Pulse, Flash Cannon, Protect | |
@@ -56,7 +56,7 @@ Taking control of the weather by switching weather setters in and out is central
   in the setter whose weather benefits it when the opponent's weather or a weather timeout would hurt it;
 - bring in and keep the synergy pairs together: sun (Charizard + Venusaur), sand (Tyranitar + Garchomp) and rain
   (Kyogre + Archaludon);
-- use Protect to scout and to stall out the opponent's weather;
+- use Protect to scout and to stall out the opponent's weather (every member but Tyranitar has it);
 - be aware of doubles: spread moves (Heat Wave, Rock Slide, Water Spout, Origin Pulse) and not hitting its partner
   (Garchomp's Stomping Tantrum hits only the target, but Earthquake-style moves would hit the partner).
 

@@ -39,6 +39,7 @@ void Sound_SetPokemonCryDuration(int param0, enum HeapID heapID);
 static void Sound_Impl_CryDurationTask(SysTask *param0, void *param1);
 void Sound_Impl_DestroyCryDurationTask(void);
 static BOOL Sound_Impl_IsShayminSkyForm(u16 species, u8 form);
+static BOOL Sound_Impl_HasCry(u16 waveID);
 void Sound_ClearPokemonCryParams(void);
 static BOOL Sound_Impl_PlayPokemonCryEcho(u16 species, s8 pitch, u8 form);
 static BOOL Sound_PlayPokemonCryReversedEcho(u16 param0, s8 param1, int param2, int param3, enum HeapID heapID);
@@ -341,6 +342,10 @@ BOOL Sound_PlayPokemonCry(u16 species, u8 form)
         }
     }
 
+    if (!Sound_Impl_HasCry(waveID)) {
+        return FALSE;
+    }
+
     if (waveID == chatot_cry_swar) {
         if (Sound_Impl_PlayChatotCry(*chatotCry, 0, SOUND_VOLUME_MAX, 0) == TRUE) {
             Sound_SetUsingDefaultChatotCry(FALSE);
@@ -429,6 +434,10 @@ BOOL Sound_PlayPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int pan, int
         if (species > MAX_SPECIES || species == SPECIES_NONE) {
             species = SPECIES_BULBASAUR;
         }
+    }
+
+    if (!Sound_Impl_HasCry(species)) {
+        return FALSE;
     }
 
     waveOutPan = WAVE_OUT_PAN_CENTER + (pan / 2);
@@ -718,6 +727,13 @@ void Sound_PlayDelayedPokemonCryEx(enum PokemonCryMod cryMod, u16 species, int p
     *paramVolume = volume;
     *paramHeapID = heapID;
     *paramDelay = delay;
+}
+
+// Sovereign: only Platinum's species (#1-493) and Shaymin-Sky have cries. The Gen V-IX species have none for now
+// (owner, 2026-10-22): adding 532 cry banks overflowed the sound heap at boot. Cries are revisited as the final step.
+static BOOL Sound_Impl_HasCry(u16 waveID)
+{
+    return waveID <= SPECIES_ARCEUS || waveID == shaymin_forms_sky_cry_swar;
 }
 
 static BOOL Sound_Impl_IsShayminSkyForm(u16 species, u8 form)

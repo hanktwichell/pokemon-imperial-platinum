@@ -1,7 +1,7 @@
 # Sovereign Platinum — development status
 
 _Last updated: 2026-10-22, during E6 step 2 (adding species #494–1025). Branch `claude/festive-bardeen-5h7beo`,
-based on main `f9f50b3d`. Nothing from this step is committed yet._
+based on main `f9f50b3d`. Work in progress, pushed to the branch but not merged._
 
 ## 1. What was just implemented
 
@@ -28,13 +28,22 @@ based on main `f9f50b3d`. Nothing from this step is committed yet._
   sectors.
   - The save now loads correctly on boot. It previously crashed with a 33rd sector.
 
-**Boot fixed (with one temporary step back):** the ROM with all 1025 species boots to the title, intro and Rowan
-(`tools/test/boot_smoke.py` passes).
-- The blank screen came from the 532 new cries. Each adds a bank and a wave archive to the sound archive, about
-  1,064 more entries, and their index tables are loaded into the fixed 750 KB sound heap at boot.
-- For now `pl_sound_data.json` is back to main's version. The new version is saved in the scratchpad and can be
-  regenerated with `gen_new_species.py`.
-- So the new species have no cries yet. Choosing how to fit the cries back in is waiting on the owner.
+**The ROM boots and plays with all 1025 species.**
+- `boot_smoke.py` passes.
+- In the test build, Archaludon's summary, stats and ability show correctly.
+- In-game save and continue work with the 32-sector save.
+
+**Cries (owner decision):** Platinum's sound archive stays unchanged. The 532 new species have no cries and play
+silently: `Sound_Impl_HasCry` in `src/sound_playback.c`. Cries are the project's last step, and removing all cries
+is the fallback if space ever runs out.
+- Measured: adding the cries grows the sound archive's boot-time index from 72,412 to 97,948 bytes (+25,536). The
+  sound heap has only 21,356 bytes free at boot and on the title screen, so they'd be about 4.2 KB short before
+  gameplay.
+
+**Placeholder sprites:** the new species use Unown-? until milestone E12. Both male and female copies are written,
+since Platinum shows the female sprite for female Pokémon.
+
+**Developer battle:** Tyranitar's Protect is now Ice Punch (owner).
 
 ## 2. Files modified (uncommitted)
 
@@ -46,7 +55,9 @@ based on main `f9f50b3d`. Nothing from this step is committed yet._
 - `decomp/res/pokemon/<532 new folders>/`: new species data.
 - Vanilla species `data.json` evolution edits: corsola, dunsparce, eevee, farfetchd, girafarig, linoone, meowth,
   mr_mime, primeape, qwilfish, sneasel, stantler, wooper.
-- `decomp/res/sound/pl_sound_data.json`: temporarily back to main's version (see above).
+- `decomp/src/sound_playback.c` and `decomp/src/sound.c`: new species have no cry (silent).
+- `decomp/res/pokemon/meson.build`: a cry is packed only when the species has `cry.wav`.
+- `docs/DeveloperBattle.md`: Tyranitar's moveset.
 - `decomp/src/script_manager.c` and `tools/test/build_test_rom.sh`: Archaludon in the test party.
 - `tools/engine/gen_species_gen9.py` (refactor) and `tools/engine/gen_new_species.py` (new).
 - `docs/NewSpecies.md` (new).
@@ -55,13 +66,11 @@ based on main `f9f50b3d`. Nothing from this step is committed yet._
 
 ## 3. Next 3 steps
 
-1. **Put the new cries back without overflowing the sound heap.** The approach is waiting on the owner. Options:
-   pack the new cries into a few shared banks and wave archives, enlarge the sound heap, or measure the headroom
-   first. Until then, playing a new species' cry must not touch a missing bank.
-2. **Finish E6 step 2.**
-   - Test Archaludon in battle and its summary and cry.
+1. **Finish E6 step 2.**
+   - Test Archaludon in battle.
    - Easy Chat species lists (`src/easy_chat_word_list.c`).
-   - Docs and citations (PokeAPI cries and icons).
+   - Docs and citations (PokeAPI icons).
    - Commit, PR, merge.
-3. **E7 items.** Add every held item. New held items go on sale at the Veilstone Department Store (owner request).
+2. **E7 items.** Add every held item. New held items go on sale at the Veilstone Department Store (owner request).
    Also add the 16 evolution items, Mega Stones, Charizardite Y, Blue Orb and Assault Vest.
+3. **E12 sprites** for the 532 new species (they're Unown-? placeholders now). Cries come last of all.
