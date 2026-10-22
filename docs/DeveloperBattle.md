@@ -12,7 +12,8 @@ written for this fight. Roadmap item T2; the AI review for doubles is item 12b.
   - **Sand:** Tyranitar + Garchomp.
   - **Rain:** Kyogre + Archaludon (rain makes Electro Shot fire in one turn).
 
-## Team (owner, 2026-10-22; later the same day Charizard's Ancient Power → Hurricane and Tyranitar's Protect → Ice Punch)
+## Team (owner, 2026-10-22; later the same day Charizard's Ancient Power → Hurricane, Tyranitar's Protect → Ice Punch and
+Archaludon's Dragon Pulse → Body Press)
 
 | # | Pokémon | Item | Ability | Nature | EVs | IVs | Moves | Notes |
 |---|---|---|---|---|---|---|---|---|
@@ -21,7 +22,7 @@ written for this fight. Roadmap item T2; the AI review for doubles is item 12b.
 | 3 | Tyranitar ♂ | Assault Vest | Sand Stream | Adamant | 252 HP / 252 Atk / 4 SpD | — | Rock Slide, Crunch, Low Kick, Ice Punch | Ice Punch replaced Protect (owner, 2026-10-22); Assault Vest blocks status moves anyway |
 | 4 | Garchomp ♂ (shiny) | Life Orb | Rough Skin | Jolly | 4 HP / 252 Atk / 252 Spe | — | Dragon Claw, Stomping Tantrum, Fire Fang, Protect | |
 | 5 | Kyogre | Blue Orb | Drizzle (Primal: Primordial Sea) | Modest | 252 HP / 252 SpA / 4 SpD | 0 Atk | Water Spout, Origin Pulse, Ice Beam, Protect | Primal Reversion |
-| 6 | Archaludon ♂ (shiny) | Leftovers | Stamina | Calm | 48 HP / 156 Def / 172 SpA / 80 SpD / 52 Spe | 0 Atk | Electro Shot, Dragon Pulse, Flash Cannon, Protect | |
+| 6 | Archaludon ♂ (shiny) | Leftovers | Stamina | Calm | 48 HP / 156 Def / 172 SpA / 80 SpD / 52 Spe | 0 Atk | Electro Shot, Body Press, Flash Cannon, Protect | Body Press replaced Dragon Pulse (owner, 2026-10-22) |
 
 Unlisted IVs are 31. Every EV spread is within 252 per stat / 510 total. The Tera Types in the owner's set are
 recorded but unused (Sovereign has no Terastallization).
@@ -37,6 +38,7 @@ recorded but unused (Sovereign has no Terastallization).
 | Stamina, Primordial Sea, Drought (on Mega Charizard Y) | E8 / item 11 | Stamina and Primordial Sea have no battle effect yet |
 | Electro Shot (charge turn, skipped in rain) and Stomping Tantrum (double power after a failed move) | item 11 | both are plain hits for now; Origin Pulse is exact |
 | Hurricane's weather accuracy (never misses in rain, 50% in sun) | item 11 | it hits and may confuse, with 70% accuracy in any weather, for now |
+| Body Press (damage from the user's Defense instead of Attack) | item 11 | a plain hit using Attack for now, which is weak on this 0-Attack-IV, Calm Archaludon |
 | Custom AI for this fight, and doubles awareness | T2 / 12b | |
 
 ## Interactions worth knowing (owner's call; nothing changed)
@@ -47,6 +49,8 @@ recorded but unused (Sovereign has no Terastallization).
   change the weather on switch-in. Ability weather lasts 5 turns in Sovereign (Champions rules); Primal weather is
   permanent while the Primal is out.
 - **Archaludon's Electro Shot** needs rain to fire in one turn, so it pairs with Kyogre.
+- **Archaludon's Body Press** deals damage from its Defense, which its 156 Defense EVs and Stamina (+1 Defense each time
+  it's hit) keep raising.
 - **Charizard's Hurricane** drops to 50% accuracy in its own sun (Drought), and never misses in Kyogre's rain.
 
 ## Custom AI (to-do)
