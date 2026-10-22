@@ -4,7 +4,7 @@
 # along the main story, all before the Elite Four. Never wild. Each Totem is fought once, with its stat-raising
 # Totem aura, and can be caught afterwards in its Totem form.
 #
-# STATUS: PROPOSAL, waiting for the owner's OK on locations and levels.
+# STATUS: locations and levels approved by the owner (2026-10-22). Helpers per trial still to be filled in.
 #
 # level: just below the level cap of the next required fight (data/level_caps.yaml), so a trial is tough but legal.
 # after: the last required fight before the trial opens. before: the fight whose cap the level sits under.
@@ -25,6 +25,16 @@ trials:
   - {totem: Kommo-o,           level: 57, location: Mt. Coronet (route to Spear Pillar), after: Cyrus and Saturn (Galactic HQ), before: Mars and Jupiter (Spear Pillar), aura: "+1 to every stat", why: "Jangmo-o lives at Mt. Coronet's summit"}
   - {totem: Togedemaru,        level: 60, location: Vista Lighthouse (Sunyshore City), after: Galactic Boss Cyrus (Distortion World), before: Leader Volkner, aura: "+1 Defense", why: "the Electric/Steel Totem in the Electric Gym city's lighthouse"}
 
+# Ally calling (owner: yes, 2026-10-22). Proposed mechanic, waiting for the owner's OK:
+#   - The trial is a double battle from the start: "Totem X called its ally!" The Totem (with its aura) and one helper
+#     face the player's first two Pokémon. A player with one Pokémon fights 1 vs 2.
+#   - When the helper faints, the Totem calls the next one into the empty slot, the way a trainer sends out a reserve.
+#     Up to 2 reserve helpers (3 in all); after that the Totem fights alone.
+#   - Poké Balls can be thrown only while the Totem is the last Pokémon left (Sun/Moon rule); it's caught in Totem form.
+#     Helpers are catchable too once they're the last one left.
+#   - Helpers are the species called in the original trial, a few levels below the Totem.
+#   - Engine work: a wild double battle with a reserve party for the wild side (new). Double battles and refilling a
+#     slot from a party already exist for trainers.
+
 open:
-  - "Ally calling: in Alola a Totem calls helpers. Gen IV has no SOS battles; a trial could instead be a double battle (the Totem plus one ally), or a single battle. Single until the owner decides."
   - "Wishiwashi had a Totem trial in Sun/Moon but has no Totem form of its own (its School Form is a normal form), so it isn't listed."
