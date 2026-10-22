@@ -2,36 +2,7 @@
 
 
     ScriptEntry InitNewGame
-    ScriptEntry ImperialTest_Unused // was the test setup (now C: ImperialTest_SetupNewGame); keeps the IDs below stable
-    ScriptEntry ImperialTest_WildBattle
-    ScriptEntry ImperialTest_TrainerBattle
     ScriptEntryEnd
-
-// Imperial test build only (meson -Dimperial_test=true, see tools/test/README.md). These entries are
-// unreachable in normal builds: only the IMPERIAL_TEST hooks in script_manager.c and field_control.c run them.
-ImperialTest_Unused:
-    End
-
-ImperialTest_WildBattle:
-    LockAll
-    StartWildBattle SPECIES_CHANSEY, 30
-    CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, ImperialTest_BlackOut
-    ReleaseAll
-    End
-
-ImperialTest_TrainerBattle:
-    LockAll
-    StartTrainerBattle TRAINER_RIVAL_ROUTE_209_TURTWIG
-    CheckWonBattle VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, ImperialTest_BlackOut
-    ReleaseAll
-    End
-
-ImperialTest_BlackOut:
-    BlackOutFromBattle
-    ReleaseAll
-    End
 
 InitNewGame:
     SetFlag FLAG_HIDE_TWINLEAF_TOWN_PLAYER_HOUSE_2F_RIVAL
