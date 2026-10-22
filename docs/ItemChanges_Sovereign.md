@@ -11,6 +11,7 @@ Renegade Platinum's item changes and item locations are unchanged unless listed 
 | Light Stone, Dark Stone | Legend Archivist, Canalave Library (post-game) | Summon Reshiram / Zekrom |
 | Prison Bottle | Legend Archivist (post-game) | Hoopa event |
 | Scroll of Darkness, Scroll of Waters | Maylene, Veilstone Gym (post-game) | Evolve Kubfu |
+| Infinite Repel | Not placed yet (QoL #3 says Professor Rowan's aide, after the Coal Badge) | Toggles a Repel that never runs out |
 
 ## Form items
 

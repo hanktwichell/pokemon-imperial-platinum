@@ -115,6 +115,11 @@ Made by the owner (2026-10-22):
     Catching Show layout is reused. Built with milestone FM, once regional forms exist.
     - **Galarian Articuno, Zapdos and Moltres** roam the **Galar zone** as rare encounters (low odds). That's the only
       place they can be caught (owner, 2026-10-22).
+23. **Post-Champion money** (owner, 2026-10-22, all four options):
+    - every shop sells at **half price** after the Hall of Fame;
+    - **2–3× prize money** from Elite Four rematches, Battleground (Gym Leader) rematches and the developer battle;
+    - a **daily valuables NPC** gives a Big Nugget or some Nuggets once a day after the Champion;
+    - items **sell for their full buy price** (not half) after the Champion.
 
 Open:
 - Regional Forms Park (decision 22): which zone holds which forms, encounter rates, and when it opens (Route 221

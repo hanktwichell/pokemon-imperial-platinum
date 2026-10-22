@@ -14,14 +14,21 @@ players and the verification that was run.
   - No map edit was needed.
 - **Shop prices show 5 digits**, so ₽10,000–₽30,000 items (Ability Shield, Clear Amulet and so on) no longer show
   "₽?000". Prices stay right-aligned, so Platinum's own prices don't move.
+- **Infinite Repel** (QoL #3): a key item, a custom entry in `items_sovereign.yaml` with the Max Repel icon. Using it
+  from the bag turns a never-ending Repel on or off (`FLAG_SOVEREIGN_INFINITE_REPEL`, formerly `FLAG_UNUSED_0x006D`).
+  `wild_encounters.c` treats it like Repel steps, so it blocks wild Pokémon weaker than the lead, just like a Repel.
+  - Tested on Route 202 with Garchomp (Lv. 50) leading: a Bidoof appeared within 60 steps with it off; no encounter
+    in 160 steps with it on.
+- **Test tools:** a SELECT+L+R stop on Route 202's grass, and `tools/test/find_tiles.py`, which prints a map's
+  grass/water/collision layout with world coordinates for warp stops.
 - **Item icons are centred like Platinum's.** The art sits in the top-left 24×24 of the 32×32 icon, centred on
   (11.5, 11.5), so it's centred in the bag's preview box. Six sprites larger than 24 px are scaled to fit.
 - Verified in the test build: the held-item shop list with prices, icons and descriptions (opened directly through
   a temporary hook); 5-digit prices; icons centred in the bag preview next to vanilla ones.
-- Verified in game, via the new SELECT+A test warp: the 2F clerk shows Vitamins / Held items / Gems, and each opens
+- Verified in game, via the new SELECT+L+R test warp: the 2F clerk shows Vitamins / Held items / Gems, and each opens
   the right stock. Lesson: `AddMenuEntryImm` stores the text ID in one byte, so menu texts with IDs over 255 (any new
   `menu_entries` text) need `AddMenuEntry`.
-- **Test build: SELECT+A warps** to the next place in `sSovereignTestWarps` (`src/script_manager.c`), looping. For
+- **Test build: SELECT+L+R warps** to the next place in `sSovereignTestWarps` (`src/script_manager.c`), looping. For
   now the only stop is Veilstone Store 2F at the clerk. Add stops there to test other map scripts.
 
 ## E7 step 1 — 245 new items (in progress)

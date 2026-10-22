@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/savedata/vars_flags.h"
 #include "constants/field/map_load.h"
 #include "constants/heap.h"
 #include "constants/items.h"
@@ -47,6 +48,7 @@
 #include "touch_pad.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
+#include "vars_flags.h"
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
 
@@ -2245,6 +2247,20 @@ static BOOL UseItemInBag(BagController *controller, u16 item)
         controller->selectedItemCount = 0;
     } else if (item == ITEM_MAX_REPEL || item == ITEM_SUPER_REPEL || item == ITEM_REPEL) {
         string = TryUseRepel(controller, item);
+    } else if (item == ITEM_INFINITE_REPEL) {
+        // Sovereign: the Infinite Repel toggles a Repel that never runs out (checked in wild_encounters.c).
+        VarsFlags *varsFlags = SaveData_GetVarsFlags(controller->bagCtx->saveData);
+
+        if (VarsFlags_CheckFlag(varsFlags, FLAG_SOVEREIGN_INFINITE_REPEL)) {
+            VarsFlags_ClearFlag(varsFlags, FLAG_SOVEREIGN_INFINITE_REPEL);
+            string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_SovereignInfiniteRepelOff);
+        } else {
+            VarsFlags_SetFlag(varsFlags, FLAG_SOVEREIGN_INFINITE_REPEL);
+            string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_SovereignInfiniteRepelOn);
+        }
+
+        controller->selectedItemCount = 0;
+        Sound_PlayEffect(SEQ_SE_DP_CARD2_sseq);
     } else {
         return FALSE;
     }

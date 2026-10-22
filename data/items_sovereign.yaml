@@ -114,6 +114,14 @@ key_items:
   - Zygarde Cube         # Zygarde's formes
   - Reveal Glass         # Therian Formes
 
+custom_items:          # Sovereign's own items (not in PokeAPI): every field is given here.
+  - name: Infinite Repel   # QoL #3 (owner-approved): a key item that toggles a permanent Repel on and off
+    plural: Infinite Repels
+    description: "A reusable repellent. Turn it on to keep weak wild Pokémon away for as long as you like; use it again to turn it off."
+    pocket: key
+    icon: {sprite: repel, palette: max_repel}   # Platinum's Max Repel icon (it reuses the Repel sprite)
+    use: bag_message       # used from the bag like a Repel (src/applications/bag/main.c: UseItemInBag)
+
 deferred:
   - "Roseli, Kee and Maranga Berries: Platinum's berry code assumes berries are one contiguous ID block (Cheri..Rowap),
      so new berries need their own engine step."

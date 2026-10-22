@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/savedata/vars_flags.h"
 #include "constants/battle.h"
 #include "constants/forms.h"
 #include "constants/heap.h"
@@ -258,7 +259,9 @@ BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
 
     InitEncounterFieldParams(fieldSystem, firstPartyMon, encounterData, &encounterFieldParams);
 
-    if (!SpecialEncounter_RepelStepsEmpty(SaveData_GetSpecialEncounters(fieldSystem->saveData))) {
+    // Sovereign: the Infinite Repel (a key item toggle) works like a Repel that never runs out.
+    if (!SpecialEncounter_RepelStepsEmpty(SaveData_GetSpecialEncounters(fieldSystem->saveData))
+        || VarsFlags_CheckFlag(SaveData_GetVarsFlags(fieldSystem->saveData), FLAG_SOVEREIGN_INFINITE_REPEL)) {
         Pokemon *firstLiveMon = Party_FindFirstEligibleBattler(party);
         encounterFieldParams.repelActive = TRUE;
         encounterFieldParams.firstBattlerLevel = Pokemon_GetValue(firstLiveMon, MON_DATA_LEVEL, NULL);
@@ -586,7 +589,9 @@ BOOL WildEncounters_TryMudEncounter(FieldSystem *fieldSystem, FieldBattleDTO **b
 
     InitEncounterFieldParams(fieldSystem, firstPartyMon, encounterData, &encounterFieldParams);
 
-    if (!SpecialEncounter_RepelStepsEmpty(SaveData_GetSpecialEncounters(fieldSystem->saveData))) {
+    // Sovereign: the Infinite Repel (a key item toggle) works like a Repel that never runs out.
+    if (!SpecialEncounter_RepelStepsEmpty(SaveData_GetSpecialEncounters(fieldSystem->saveData))
+        || VarsFlags_CheckFlag(SaveData_GetVarsFlags(fieldSystem->saveData), FLAG_SOVEREIGN_INFINITE_REPEL)) {
         Pokemon *v15 = Party_FindFirstEligibleBattler(party);
 
         encounterFieldParams.repelActive = TRUE;

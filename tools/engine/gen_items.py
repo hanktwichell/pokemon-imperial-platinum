@@ -313,6 +313,38 @@ def main():
     if missing:
         raise SystemExit(f"no description in PokeAPI (add to DESCRIPTIONS): {missing}")
 
+    # Sovereign's own items, appended after the PokeAPI ones.
+    for custom in spec.get("custom_items", []):
+        stem = stem_of(custom["name"])
+        uses = {"bag_message": "ITEM_USE_FUNC_BAG_MESSAGE", None: "ITEM_USE_FUNC_NONE"}
+        data = {
+            "name": custom["name"],
+            "plural": custom["plural"],
+            "article": "an" if custom["name"][0] in "AEIOU" else "a",
+            "description": wrap(custom["description"]),
+            "icon": {"sprite": custom["icon"]["sprite"] + "_NCGR", "palette": custom["icon"]["palette"] + "_NCLR"},
+            "gbaID": "GBA_ITEM_NONE",
+            "price": custom.get("price", 0),
+            "effectParam": 0,
+            "holdEffect": "HOLD_EFFECT_NONE",
+            "pluckEffect": "PLUCK_EFFECT_NONE",
+            "flingEffect": "FLING_EFFECT_NONE",
+            "flingPower": 0,
+            "naturalGiftPower": 0,
+            "naturalGiftType": None,
+            "preventToss": custom["pocket"] == "key",
+            "canRegister": False,
+            "fieldPocket": {"key": "POCKET_KEY_ITEMS", "items": "POCKET_ITEMS"}[custom["pocket"]],
+            "battlePocket": "BATTLE_POCKET_MASK_NONE",
+            "fieldUseFunc": uses[custom.get("use")],
+            "battleUseCategory": "BATTLE_USE_CATEGORY_NONE",
+            "itemUseParams": None,
+        }
+        with open(os.path.join(DATA_DIR, stem + ".json"), "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+            f.write("\n")
+        new_consts.append("ITEM_" + stem.upper())
+
     meson = open(ICON_MESON).read()
     meson = update_block(meson, "item_icon_pngs = files(", "\n)", [f"    '{s}.png',\n" for s in icons], "    ", "png")
     meson = update_block(meson, "item_icon_pals = files(", "\n)", [f"    '{s}.pal',\n" for s in icons], "    ", "pal")
@@ -322,9 +354,10 @@ def main():
     vanilla = order_lines[:order_lines.index("unused_710.NCLR") + 1]
     with open(ICON_ORDER, "w") as f:
         f.write("\n".join(vanilla + [f"{s}.{ext}" for s in icons for ext in ("NCGR", "NCLR")]) + "\n")
-    if new_consts[0] not in consts:
+    added = [c for c in new_consts if c not in consts]
+    if added:
         i = consts.index("MAX_ITEMS")
-        consts = consts[:i] + new_consts + consts[i:]
+        consts = consts[:i] + added + consts[i:]
         with open(ITEMS_TXT, "w") as f:
             f.write("\n".join(consts) + "\n")
     # Shop stock: the Veilstone Department Store sells the new held items and Gems (owner request), from the 2F

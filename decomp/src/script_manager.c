@@ -776,6 +776,7 @@ static void SovereignTest_SetupNewGame(FieldSystem *fieldSystem)
     Bag_TryAddItem(bag, ITEM_ADAMANT_MINT, 1, HEAP_ID_FIELD2);
     Bag_TryAddItem(bag, ITEM_ABILITY_CAPSULE, 2, HEAP_ID_FIELD2);
     Bag_TryAddItem(bag, ITEM_ABILITY_PATCH, 1, HEAP_ID_FIELD2);
+    Bag_TryAddItem(bag, ITEM_INFINITE_REPEL, 1, HEAP_ID_FIELD2);
     SpecialEncounter *speEnc = SaveData_GetSpecialEncounters(fieldSystem->saveData);
     *SpecialEncounter_GetRepelSteps(speEnc) = 3;
     SpecialEncounter_SetLastRepel(speEnc, ITEM_SUPER_REPEL);
@@ -819,7 +820,7 @@ void SovereignTest_OpenEasyChat(FieldSystem *fieldSystem)
     FieldSystem_CreateTask(fieldSystem, SovereignTest_EasyChatTask, NULL);
 }
 
-// Test build only: SELECT+A warps to the next place in this list (looping), to check map scripts without playing there.
+// Test build only: SELECT+L+R warps to the next place in this list (looping), to check map scripts without playing there.
 static const struct {
     u16 mapHeaderID;
     u16 x;
@@ -827,6 +828,7 @@ static const struct {
     u16 dir;
 } sSovereignTestWarps[] = {
     { MAP_HEADER_VEILSTONE_STORE_2F, 3, 6, FACE_LEFT }, // the vitamin / held item / Gem clerk
+    { MAP_HEADER_ROUTE_202, 163, 822, FACE_UP }, // tall grass out of the trainers' sight (tools/test/find_tiles.py)
 };
 
 static u8 sSovereignTestWarpIndex;
