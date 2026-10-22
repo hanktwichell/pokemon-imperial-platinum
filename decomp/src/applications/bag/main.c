@@ -35,6 +35,7 @@
 #include "render_text.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "scrcmd_shop.h"
 #include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
@@ -44,6 +45,7 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
+#include "system_flags.h"
 #include "text.h"
 #include "touch_pad.h"
 #include "touch_screen.h"
@@ -2637,7 +2639,12 @@ static int ProcessItemListInput_SellItems(BagController *controller)
             }
 
             controller->selectedItemCount = 1;
-            controller->soldItemPrice >>= 1;
+
+            // Sovereign (decision 23): after the Champion, items no shop sells go for their full price.
+            if (!SystemFlag_CheckGameCompleted(SaveData_GetVarsFlags(controller->bagCtx->saveData))
+                || Shop_IsItemSoldInMarts(controller->bagCtx->selectedItem)) {
+                controller->soldItemPrice >>= 1;
+            }
 
             if (Pocket_GetItemQuantity(controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].items, controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].listEntryCount - 3, controller->bagCtx->selectedItem, HEAP_ID_BAG) == 1) {
                 string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_ConfirmSellPrice);

@@ -147,6 +147,28 @@
         "Survival Area\n",
         "Staging Point"
       ]
+    },
+    {
+      "id": "SurvivalArea_Text_SovereignFillYourBag",
+      "en_US": [
+        "Hey, Champion! Is your big Bag full of\n",
+        "dreams? Here, fill it with something\f",
+        "you can sell, too!"
+      ]
+    },
+    {
+      "id": "SurvivalArea_Text_SovereignComeBackTomorrow",
+      "en_US": [
+        "Come back tomorrow. I’ll have more\n",
+        "for your Bag!"
+      ]
+    },
+    {
+      "id": "SurvivalArea_Text_SovereignBagIsFull",
+      "en_US": [
+        "Whoa, your Bag really is full!\n",
+        "Make some room and come back."
+      ]
     }
   ]
 }

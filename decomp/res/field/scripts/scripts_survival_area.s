@@ -33,7 +33,39 @@ SurvivalArea_RemoveWarpBattleground:
     End
 
 SurvivalArea_Youngster:
-    NPCMessage SurvivalArea_Text_BagFullOfItems
+    // Sovereign (decision 23): after the Champion he gives 3 Nuggets once a day.
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfUnset FLAG_GAME_COMPLETED, SurvivalArea_YoungsterBagFullOfDreams
+    GoToIfSet FLAG_DAILY_RECEIVED_SURVIVAL_AREA_NUGGETS, SurvivalArea_YoungsterComeBackTomorrow
+    Message SurvivalArea_Text_SovereignFillYourBag
+    SetVar VAR_0x8004, ITEM_NUGGET
+    SetVar VAR_0x8005, 3
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, SurvivalArea_YoungsterNoRoom
+    Common_GiveItemQuantity
+    SetFlag FLAG_DAILY_RECEIVED_SURVIVAL_AREA_NUGGETS
+    GoTo SurvivalArea_YoungsterComeBackTomorrow
+
+SurvivalArea_YoungsterBagFullOfDreams:
+    Message SurvivalArea_Text_BagFullOfItems
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+SurvivalArea_YoungsterComeBackTomorrow:
+    Message SurvivalArea_Text_SovereignComeBackTomorrow
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+SurvivalArea_YoungsterNoRoom:
+    Message SurvivalArea_Text_SovereignBagIsFull
+    WaitButton
+    CloseMessage
+    ReleaseAll
     End
 
 SurvivalArea_BattleGirl:

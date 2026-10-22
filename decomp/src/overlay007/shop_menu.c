@@ -51,6 +51,7 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
+#include "system_flags.h"
 #include "system_vars.h"
 #include "text.h"
 #include "trainer_info.h"
@@ -1325,15 +1326,24 @@ static void Shop_SetItemNameToIndex(ShopMenu *shopMenu, u16 itemId, u16 idx)
 
 static u32 Shop_GetItemPrice(ShopMenu *shopMenu, u16 itemId)
 {
+    u32 price;
+
     if (shopMenu->martType == MART_TYPE_NORMAL) {
-        return Item_LoadParam(itemId, ITEM_PARAM_PRICE, HEAP_ID_FIELD2);
+        price = Item_LoadParam(itemId, ITEM_PARAM_PRICE, HEAP_ID_FIELD2);
     } else if (shopMenu->martType == MART_TYPE_FRONTIER) {
         return Shop_GetItemBPPrice(shopMenu, itemId);
     } else if (shopMenu->martType == MART_TYPE_DECOR) {
-        return Good_GetMoneyPrice(itemId);
+        price = Good_GetMoneyPrice(itemId);
+    } else {
+        price = CapsuleMenu_GetSealPrice(itemId);
     }
 
-    return CapsuleMenu_GetSealPrice(itemId);
+    // Sovereign (decision 23): everything bought with money is half price after the Hall of Fame.
+    if (SystemFlag_CheckGameCompleted(shopMenu->varsFlags)) {
+        price /= 2;
+    }
+
+    return price;
 }
 
 static u16 Shop_GetItemBPPrice(ShopMenu *shopMenu, u16 itemId)
