@@ -77,14 +77,20 @@ Made by the owner (2026-10-22):
 14. The Pokédex is English-only: no foreign-language entries (2026-10-22).
 15. Zacian/Zamazenta's Crowned forms and Ogerpon's mask forms are in scope (held-item forms, E7 step 2). Wild Zacian
     and Zamazenta hold the Rusted Sword and Rusted Shield (2026-10-22).
-16. **Every Pokémon form is in the game, without exception** (owner, 2026-10-22; "imperative"). This covers regional
-    forms (Alolan, Galarian, Hisuian, Paldean), Megas and Primals, fusions (Kyurem, Necrozma, Calyrex), Zygarde's
-    formes, Crowned Zacian/Zamazenta, Ogerpon's masks, battle and item forms, and cosmetic forms (Vivillon,
-    Alcremie, Flabébé, Minior and the rest). PokeAPI counts 326 alternate Pokémon plus about 228 cosmetic forms.
-    Every earlier "out of scope" note about forms is void. Milestone FM in `EngineRoadmap.md`.
+16. **Every Pokémon form is in the game** (owner, 2026-10-22; "imperative"). This covers regional forms (Alolan,
+    Galarian, Hisuian, Paldean), Megas and Primals, fusions (Kyurem, Necrozma, Calyrex), Zygarde's formes, Crowned
+    Zacian/Zamazenta, Ogerpon's masks, battle and item forms, Totem forms, and cosmetic forms (Vivillon, Alcremie,
+    Flabébé, Minior and the rest). Every earlier "out of scope" note about forms is void. Milestone FM in
+    `EngineRoadmap.md`.
+    **The only exceptions** (owner, 2026-10-22):
+    - No Dynamax or Gigantamax: none of the 34 Gigantamax forms (decision 9 stands).
+    - No unplayable forms, i.e. forms a player can never use in battle: Eternamax Eternatus, Koraidon's four Builds
+      and Miraidon's four Modes.
+    This leaves 283 alternate Pokémon (99 of them Mega/Primal) plus about 228 cosmetic forms.
 
 Open:
 - The developer battle: Lv. 100 at Spear Pillar, leads Charizard-Y + Venusaur, custom weather-control AI (`DeveloperBattle.md`). Opponent: Sovereign Dev Twich. Open: text, sprites (owner's sprite coming soon), Charizard's final moveset.
 - Front sprites and the part 2 shiny pack (owner is sourcing them).
-- Forms: how Gigantamax and Totem forms appear, given decision 9 (no Dynamax). Every form is in scope (decision 16).
+- Forms (decision 16): how Totem forms are obtained. Terapagos-Stellar only exists through Terastallization, which
+  Sovereign doesn't have: keep it with another trigger, or count it as unplayable?
 - hg-engine and Smogon credit lists: Claude compiles them (owner, 2026-10-22).
