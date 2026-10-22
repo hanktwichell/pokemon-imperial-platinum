@@ -127,6 +127,15 @@ enum SummaryExtraWindowMemo {
     SUMMARY_MEMO_WINDOW_MAX,
 };
 
+// Imperial: SELECT on the SKILLS page cycles the six numbers between stats, IVs and EVs.
+enum SummarySkillsView {
+    SUMMARY_SKILLS_VIEW_STATS = 0,
+    SUMMARY_SKILLS_VIEW_IVS,
+    SUMMARY_SKILLS_VIEW_EVS,
+
+    SUMMARY_SKILLS_VIEW_MAX,
+};
+
 enum SummaryExtraWindowSkills {
     SUMMARY_WINDOW_HP = 0,
     SUMMARY_WINDOW_ATTACK,
@@ -374,6 +383,8 @@ typedef struct PokemonSummaryMonData {
     u16 speed;
     u8 ability;
     u8 nature;
+    u8 ivs[STAT_MAX]; // Imperial: shown on the SKILLS page with SELECT
+    u8 evs[STAT_MAX];
 
     u16 moves[LEARNED_MOVES_MAX];
     u8 curPP[LEARNED_MOVES_MAX];
@@ -455,6 +466,7 @@ typedef struct PokemonSummaryScreen {
     u8 ribbonRow;
     u8 ribbonMax;
     u8 ribbonID;
+    u8 skillsView; // Imperial: enum SummarySkillsView
 } PokemonSummaryScreen;
 
 BOOL PokemonSummaryScreen_ShowContestData(SaveData *saveData);

@@ -610,6 +610,13 @@ static int HandleInput_Main(PokemonSummaryScreen *summaryScreen)
         return SUMMARY_STATE_TRANSITION_OUT;
     }
 
+    if (JOY_NEW(PAD_BUTTON_SELECT) && summaryScreen->page == SUMMARY_PAGE_SKILLS) {
+        Sound_PlayEffect(SE_CONFIRM_sseq_3);
+        summaryScreen->skillsView = (summaryScreen->skillsView + 1) % SUMMARY_SKILLS_VIEW_MAX;
+        PokemonSummaryScreen_RedrawSkillsPage(summaryScreen);
+        return SUMMARY_STATE_HANDLE_INPUT;
+    }
+
     if (JOY_NEW(PAD_BUTTON_A)) {
         if (summaryScreen->data->mode == SUMMARY_MODE_FEED_POFFIN && summaryScreen->page == SUMMARY_MODE_SHOW_CONDITION_CHANGE) {
             Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
@@ -1106,6 +1113,11 @@ static void SetMonDataFromMon(PokemonSummaryScreen *summaryScreen, Pokemon *mon,
     monData->speed = Pokemon_GetValue(mon, MON_DATA_SPEED, NULL);
     monData->ability = Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL);
     monData->nature = Pokemon_GetNature(mon);
+
+    for (u8 stat = 0; stat < STAT_MAX; stat++) {
+        monData->ivs[stat] = Pokemon_GetValue(mon, MON_DATA_HP_IV + stat, NULL);
+        monData->evs[stat] = Pokemon_GetValue(mon, MON_DATA_HP_EV + stat, NULL);
+    }
 
     u16 i;
     u8 maxPP;

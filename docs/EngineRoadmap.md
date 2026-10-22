@@ -48,7 +48,7 @@ are incompatible, which the owner has accepted.
 |---|---|---|
 | E0 | **Import & build.** Decomp vendored, offline-friendly build, CI build | ✅ `make -C decomp` reproduced the official ROM hash |
 | E0b | **Fairy type + Gen VI+ type chart** | ✅ type charts match the official chart |
-| E1 | **Imperial identity.** Separate build target / ROM title, own save magic | ROM boots as "Imperial Platinum"; vanilla saves rejected cleanly |
+| E1 | **Imperial identity.** ROM title/banner, own save magic | ✅ banner "Pokémon Imperial Platinum"; vanilla saves load as empty |
 | E2 | **Abilities → Gen IX.** All ~310 abilities in the enum with names and descriptions; existing behaviour kept; new abilities registered as no-ops, tracked in a checklist | builds; ability names show in summary |
 | E3 | **Moves → Gen IX.** All ~919 moves with Gen IX data (type, power, accuracy, PP, priority, class, target, flags) generated from PokeAPI; new moves mapped to the closest existing battle effect and animation; per-move fidelity tracked | builds; every move usable in battle |
 | E4 | **Hidden Abilities.** Third ability slot in personal data plus a hidden-ability bit in Pokémon data | HA shown and working |
