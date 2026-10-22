@@ -9,7 +9,12 @@ the current state of development to `CLAUDE_STATUS.md` at the repo root. It must
 2. The exact files that were modified.
 3. The immediate next 3 logical steps or bugs to fix.
 
-Keep it current: replace stale content rather than appending forever.
+**Updated rule (owner, 2026-10-22): the file is shared by more than one Claude session.**
+- Update it as you work, not only at the end.
+- Never overwrite, rewrite or delete what another session wrote.
+- Add each update as a new entry appended at the bottom of the file, headed with the session's update ID.
+- The session working on branch `claude/sweet-wright-rk4wl1` uses **CB-0001, CB-0002, …** (four digits, leading
+  zeroes). Another session uses whatever ID prefix the owner gave it.
 
 ## All forms (owner rule, 2026-10-22)
 

@@ -138,3 +138,37 @@ running in a subagent at handoff. If it's lost, redo it before writing `gen_item
   and continue with `wait:600 A wait:200 START wait:200 A wait:300`.
 - `drive.py`'s `PLAYER_X/Z_ADDR` read (0,0) on current builds and need re-finding.
 - Easy Chat (test build): `SELECT+B`, then `A A` opens the POKéMON group.
+
+---
+
+## CB-0001 — 2026-10-22, about 3:05 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+From now on this file is append-only (owner rule, recorded in `CLAUDE.md`). Everything above this line was written
+by this session before the rule. This entry updates it without rewriting it.
+
+**Implemented since the text above:**
+- Found why the new items seemed not to reach the bag: **the test harness, not the game.**
+  - py-desmume keeps the battery in `~/.config/desmume/pokeplatinum.us.dsv` and loads it on every boot.
+  - So `drive.py ... -` (a "fresh" boot) and `tools/test/new_game.sh` CONTINUED the in-game save made earlier on the
+    E6 build, and the new-game test setup never ran.
+  - Checked: the new item data packs correctly (`pl_item_data.narc` has 691 members; Eviolite decodes as price 4000,
+    fling power 40, Items pocket). The ID map is right, and `SovereignTest_SetupNewGame` does call `Bag_TryAddItem`
+    with the new IDs.
+- `tools/test/drive.py` now boots with a blank battery when no state or battery is given, so a fresh boot is really
+  fresh.
+- Test build: the new-game bag gets six E7 items (Assault Vest, Heavy-Duty Boots, Unremark. Teacup, Charizardite X,
+  Metal Alloy, Mega Ring) for on-screen checks.
+
+**Files modified:**
+- `tools/test/drive.py` (blank battery on a fresh boot)
+- `decomp/src/script_manager.c` (E7 items in the test bag)
+- `CLAUDE.md` (append-only status rule)
+- `CLAUDE_STATUS.md` (this entry)
+
+**Next 3 steps:**
+1. Fix `tools/test/new_game.sh` for a truly blank battery. It now stalls at the intro's touch-screen Yes/No prompt
+   ("Please touch a button…"), because its fixed timings were partly lining up with the continue path. Then check
+   the six E7 items on screen: names in the bag list, descriptions, and key-item pocket.
+2. Real item icons, Mint/Ability Capsule/Patch use functions, and the 16 waiting evolutions (rerun
+   `gen_new_species.py`).
+3. Open the E7 PR once the items are verified on screen.
