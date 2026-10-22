@@ -402,3 +402,18 @@ by this session before the rule. This entry updates it without rewriting it.
    game.
 2. The Infinite Repel key item (QoL #3). Then open the E7 part 2 PR.
 3. E8 Mega Evolution (MEGA button, form switch, Primal Reversion), then the Pokédex (decision 21).
+
+---
+
+## CB-0009 — 2026-10-22, 3:26 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Updated the roadmap** (`docs/EngineRoadmap.md`) for the owner's progress/timeline request:
+- E7 is 🟡: mostly done, Infinite Repel left.
+- E9 is 🟡, in progress by Claude A.
+- New row **DX (Pokédex, decision 21)**.
+- Total remaining: **about 26–50 sessions, ≈3–6 weeks** with both sessions in parallel.
+
+**Files modified:** `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md` (this entry).
+
+**Next 3 steps:** unchanged from CB-0008 (test warp shortcut; Infinite Repel, then the E7 part 2 PR; E8 Mega
+Evolution).
