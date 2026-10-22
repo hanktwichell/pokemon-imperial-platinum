@@ -8,6 +8,10 @@ Decisions this plan follows (project owner, 2026-10-22):
 - Decomp route; Imperial has its **own save format**.
 - **Gen IX data everywhere:** current base stats, types, abilities **including Hidden Abilities**, learnsets and moves.
 - Every big fight after the Eterna Jupiter battle has a Mega (picks pending in `BossFights_MegaPicks.md`).
+- **Pokédex:** the Sinnoh (regional) Pokédex stays exactly as in Platinum; the National Pokédex holds all 1025 species.
+  Where a species can be caught doesn't depend on which dex it's in.
+- **Cries** for #494–1025: from PokeAPI's cry archive (https://github.com/PokeAPI/cries, `cries/pokemon/latest/<dex>.ogg`), converted to the DS format, credited in
+  `CITATIONS.md`.
 
 ## How the decomp stores data (relevant to us)
 
@@ -53,6 +57,8 @@ are incompatible, which the owner has accepted.
 | E7 | **Items.** Item table expansion: Mega Stones, evolution items, key items | items in bag |
 | E8 | **Mega Evolution / Primal Reversion.** Forms, battle flow, touch-screen toggle, AI, boss-critical abilities, animation | Mega usable vs. AI |
 | E9 | **Trainer format.** Per-mon nature/ability/IVs/EVs/item/form, 16-bit species; enter the boss and League teams | `TrainerPokemon_Imperial.md` playable |
+| T1 | **Team compositions (deferred by the owner until the engine features are done).** Enter the 21 post-Jupiter boss teams with the owner's Mega picks (`BossFights_MegaPicks.md`; Lucas uses Dawn's teams), then revise every boss team with Gen IX moves/abilities available | teams validated by `gen_trainer_docs.py` |
+| T2 | **Developer final battle** (owner request): Red-style hidden double battle against the mod's developer, custom team and trainer, after the post-game. Waiting on the owner's team, trainer text and sprites | battle playable |
 | E10 | **Renegade port.** Wild tables, trainers, items, NPCs/QoL, type and move changes, scripts per Renegade's docs | Renegade docs satisfied |
 | E11 | **Imperial content.** Encounter plan, E4 format scripts, starter Interviewers, Mega vendors and field stones, post-game legendaries | Imperial docs satisfied |
 | E13 | **Options additions:** level cap, infinite Rare Candy, party Exp. Share, music volume slider (owner request), in the normal OPTIONS list | ✅ menu verified in the emulator; in-battle EXP checks pending a test save with a Pokémon |
