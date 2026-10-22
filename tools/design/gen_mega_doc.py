@@ -139,7 +139,7 @@ def main():
         L.append(f"### {v['name']}")
         L.append(f"- **Location:** {v['location']}")
         L.append(f"- **Available:** {v['unlock']}")
-        L.append(f"- **Price:** ${v['price']:,} each, unlimited stock")
+        L.append(f"- **Price:** ${v['price']:,} each (half after the Hall of Fame, decision 24), unlimited stock")
         L.append(f"- **Sells:** {', '.join(v['stock'])}\n")
 
     L.append("## Other sources\n")

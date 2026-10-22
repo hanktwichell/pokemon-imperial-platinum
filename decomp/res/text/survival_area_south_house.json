@@ -19,6 +19,21 @@
         "Your opponent will think twice about\n",
         "poisoning or paralyzing your Pokémon."
       ]
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_SovereignMegaStoneCuratorLocked",
+      "en_US": [
+        "Only a Champion may see this\n",
+        "collection."
+      ]
+    },
+    {
+      "id": "SurvivalAreaSouthHouse_Text_SovereignMegaStoneCuratorWelcome",
+      "en_US": [
+        "Welcome, Champion. These stones\n",
+        "belong to legendary Pokémon.\f",
+        "They don’t come cheap."
+      ]
     }
   ]
 }

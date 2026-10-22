@@ -87,6 +87,22 @@
         "ought to juggle Boxes smartly, though.\f",
         "I shouldn’t be the one to say so."
       ]
+    },
+    {
+      "id": "HearthomeCityNorthwestHouse_Text_SovereignMegaStoneCollectorLocked",
+      "en_US": [
+        "I collect Mega Stones, the jewels that\n",
+        "let Pokémon Mega Evolve.\f",
+        "Come back with the Relic Badge, and\n",
+        "I may part with a few of them."
+      ]
+    },
+    {
+      "id": "HearthomeCityNorthwestHouse_Text_SovereignMegaStoneCollectorWelcome",
+      "en_US": [
+        "Ah, you have a Mega Ring!\n",
+        "Care to see my collection?"
+      ]
     }
   ]
 }

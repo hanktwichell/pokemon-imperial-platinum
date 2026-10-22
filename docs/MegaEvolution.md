@@ -181,27 +181,27 @@ Each replaces a low-value pickup (never a TM, evolution stone or held item). Scr
 ## Mega Stone vendors
 
 ### Mega Stone Collector (Hearthome)
-- **Location:** Hearthome City — house west of the Pokémon Center (new NPC)
+- **Location:** Hearthome City — Bebe's house, next to the Pokémon Center (new NPC)
 - **Available:** after the Relic Badge (Fantina)
-- **Price:** $10,000 each, unlimited stock
+- **Price:** $10,000 each (half after the Hall of Fame, decision 24), unlimited stock
 - **Sells:** Venusaurite, Charizardite X, Charizardite Y, Blastoisinite, Beedrillite, Pidgeotite, Ampharosite, Houndoominite, Manectite, Lucarionite, Medichamite, Cameruptite, Altarianite, Audinite, Slowbronite, Clefablite, Victreebelite, Meganiumite, Chesnaughtite, Pyroarite, Floettite, Chimechite, Staraptite, Golurkite, Meowsticite, Scraftinite, Excadrite, Glimmoranite, Raichunite X
 
 ### Mega Stone Trader (Pastoria)
-- **Location:** Pastoria City — house next to the Great Marsh gate (new NPC)
+- **Location:** Pastoria City — northeast house, near the Great Marsh gate (new NPC)
 - **Available:** after the Fen Badge (Wake)
-- **Price:** $10,000 each, unlimited stock
+- **Price:** $10,000 each (half after the Hall of Fame, decision 24), unlimited stock
 - **Sells:** Blazikenite, Sceptilite, Gengarite, Heracronite, Galladite, Feraligite, Emboarite, Delphoxite, Greninjite, Sharpedonite, Gyaradosite, Scizorite, Mawilite, Steelixite, Starminite, Barbaracite, Dragalgite, Scolipite, Eelektrossite, Chandelurite, Malamarite, Hawluchanite, Skarmorite, Crabominite, Golisopite, Scovillainite, Raichunite Y, Aerodactylite, Drampanite, Falinksite
 
 ### Mega Stone Sage (Snowpoint)
-- **Location:** Snowpoint City — same house as Renegade's evolution-item seller (second NPC)
+- **Location:** Snowpoint City — west house, which Renegade gives its evolution-item seller (new NPC)
 - **Available:** after the Icicle Badge (Candice)
-- **Price:** $10,000 each, unlimited stock
+- **Price:** $10,000 each (half after the Hall of Fame, decision 24), unlimited stock
 - **Sells:** Froslassite, Salamencite, Metagrossite, Dragoninite, Baxcalibrite, Tatsugirinite, Absolite Z, Lucarionite Z
 
 ### Mega Stone Curator (Survival Area)
-- **Location:** Survival Area — house left of the Pokémon Center (new NPC)
+- **Location:** Survival Area — south house, left of the Pokémon Center (new NPC)
 - **Available:** after becoming Champion
-- **Price:** $30,000 each, unlimited stock
+- **Price:** $30,000 each (half after the Hall of Fame, decision 24), unlimited stock
 - **Sells:** Mewtwonite X, Mewtwonite Y, Latiasite, Latiosite, Diancite, Zygardite, Darkranite, Magearnite, Zeraorite, Garchompite Z
 
 ## Other sources

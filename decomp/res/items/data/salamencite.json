@@ -11,7 +11,7 @@
     "palette": "salamencite_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
-  "price": 0,
+  "price": 10000,
   "effectParam": 0,
   "holdEffect": "HOLD_EFFECT_NONE",
   "pluckEffect": "PLUCK_EFFECT_NONE",

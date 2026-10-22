@@ -1020,3 +1020,91 @@ touches Mega Evolution as far as I can see.
    revert at battle end and on capture, the trainer AI Mega Evolving on its first turn.
 3. E8 step 3: the MEGA toggle on the move menu (an OBJ sprite button), Primal Reversion on switch-in, then the
    animation.
+
+---
+
+## CB-0014 — 2026-10-22, 5:28 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Merged:** PR #20 (E8: Mega Evolution and Primal Reversion). It contains CB-0013's form data, field stones and Mega
+Ring, plus the following, all verified in the test build:
+- **Mega Evolution in battle:**
+  - It happens after switches and items, before the first move, fastest first; the remaining moves are re-sorted.
+  - Stats, types and (when the engine has it) the ability change. A new ability activates at once (Drought).
+  - Once per trainer per battle. The player needs the Mega Ring; wild Pokémon never Mega Evolve; the AI Mega
+    Evolves at once.
+  - The party Pokémon keeps the form while switched out, and every Mega/Primal form reverts at battle end.
+  - New subscript `subscript_sovereign_mega_evolution`, plus its messages.
+- **Primal Reversion** on switch-in, before weather abilities. A new state in `BattleSystem_TriggerEffectOnSwitch`;
+  a caught Primal reverts too.
+- **MEGA EVOLUTION toggle:**
+  - A text label above the moves; touch it or press SELECT.
+  - The server decides when to offer it. The choice rides in byte 1 of the selected move and in the move slot's top
+    bit in recordings.
+  - The font sprite pool grows to 14.
+- Test build: Garchomp holds a Garchompite and the Mega flag is set.
+
+**CI note:** a PR #20 run hung for 45 min in "Install dependencies" (apt) before building. A from-scratch local build
+of the same commit passed, and the next run finished in 5 min. If a run sticks in apt again, it's the runner, not the
+code.
+
+**Also:** added **Nolan Herkomer** to `CITATIONS.md` → Sprites → "Artwork sourcing" (owner request).
+
+**Files modified (since CB-0013):**
+- C: `decomp/src/battle/battle_controller_player.c`, `battle_lib.c`, `battle_main.c`, `battle_system.c`,
+  `battle_subscreen.c`, `battle_display.c`, `battle_controller.c`; `decomp/src/pokemon.c`,
+  `decomp/src/field_battle_data_transfer.c`, `decomp/src/script_manager.c`.
+- Headers: `decomp/include/battle/battle_context.h`, `battle_lib.h`, `battle_system.h`, `battle_subscreen.h`,
+  `message_defs.h`; `decomp/include/struct_defs/battle_system.h`, `decomp/include/field_battle_data_transfer.h`,
+  `decomp/include/pokemon.h`.
+- Battle scripts: `decomp/res/battle/scripts/subscripts/subscript_sovereign_mega_evolution.s` and
+  `subscript_sovereign_primal_reversion.s` (new), `meson.build`, `sub_seq.order`,
+  `decomp/generated/battle_subscripts.txt`, `decomp/res/text/battle_strings.json`.
+- Docs: `tools/design/gen_mega_doc.py`, `docs/MegaEvolution.md`, `docs/EngineChangelog.md`, `CITATIONS.md`,
+  `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Finish E8:
+   - the Mega Evolution animation (`MegaEvolution.md` spec);
+   - the trainer AI review for Megas (doubles timing);
+   - the boss Mega abilities (Magic Bounce, Parental Bond, Strong Jaw, Tough Claws, Aura Guard).
+   Mega sprites wait for E12.
+2. The four Mega Stone vendors (Hearthome, Pastoria, Snowpoint, Survival Area). These are new NPCs, listed under
+   E11 too.
+3. The Pokédex milestone (decision 21): National Dex from Rowan's Pokédex, national numbers everywhere (the summary
+   still shows Sinnoh numbers, e.g. Garchomp "111").
+
+---
+
+## CB-0015 — 2026-10-22, 5:40 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: the four Mega Stone vendors** (`data/mega_stones.yaml`), verified in the test build:
+
+| Vendor | House | Opens after |
+|---|---|---|
+| Collector | Hearthome, Bebe's house | Relic Badge |
+| Trader | Pastoria, northeast house | Fen Badge |
+| Sage | Snowpoint, west house (Renegade's evolution-item seller will share it) | Icicle Badge |
+| Curator | Survival Area, south house | Champion |
+
+- Each new NPC explains which badge they need, then opens a specialty shop.
+- `gen_items.py` writes the stocks and prices: ₽10,000, or ₽30,000 at the Curator, which is ₽15,000 post-game.
+- `find_tiles.py` now handles indoor maps.
+
+**CI fix:** the ROM job hung in "Install dependencies" (apt) twice today, the second time on PR #21. The workflow now
+gives apt network timeouts and retries, and caps that step at 10 minutes.
+
+**Timeline (owner asked):** the roadmap total is now about 22–45 sessions, down from 26–50 at 3:26 pm. See
+`docs/EngineRoadmap.md`.
+
+**Files modified:** `tools/engine/gen_items.py`, `tools/test/find_tiles.py`, `tools/design/gen_mega_doc.py`,
+`data/mega_stones.yaml`, `decomp/include/data/sovereign_mart_items.h` (generated), `decomp/include/data/mart_items.h`,
+`decomp/generated/mart_specialties_id.txt`, `decomp/res/items/data/*.json` (77 Mega Stone prices),
+and for each of the four houses its `decomp/res/field/events`, `decomp/res/field/scripts` and `decomp/res/text`
+files. Also `decomp/src/script_manager.c` (test warps), `.github/workflows/build.yml`, `docs/EngineChangelog.md`,
+`docs/EngineRoadmap.md`, `docs/ItemChanges_Sovereign.md`, `docs/MegaEvolution.md` and `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Merge PR #21 when green.
+2. The Pokédex milestone (decision 21): National Dex from Rowan's Pokédex, national numbers everywhere.
+3. The Mega Evolution animation, then the Mega abilities the boss teams need (Magic Bounce, Parental Bond, Strong
+   Jaw, Tough Claws).

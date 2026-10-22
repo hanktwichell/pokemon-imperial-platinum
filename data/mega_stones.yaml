@@ -32,7 +32,7 @@ field:
 
 vendors:
   - name: Mega Stone Collector (Hearthome)
-    location: Hearthome City — house west of the Pokémon Center (new NPC)
+    location: Hearthome City — Bebe's house, next to the Pokémon Center (new NPC)
     unlock: after the Relic Badge (Fantina)
     price: 10000
     stock: [Venusaurite, Charizardite X, Charizardite Y, Blastoisinite, Beedrillite, Pidgeotite, Ampharosite,
@@ -40,7 +40,7 @@ vendors:
             Clefablite, Victreebelite, Meganiumite, Chesnaughtite, Pyroarite, Floettite, Chimechite, Staraptite,
             Golurkite, Meowsticite, Scraftinite, Excadrite, Glimmoranite, Raichunite X]
   - name: Mega Stone Trader (Pastoria)
-    location: Pastoria City — house next to the Great Marsh gate (new NPC)
+    location: Pastoria City — northeast house, near the Great Marsh gate (new NPC)
     unlock: after the Fen Badge (Wake)
     price: 10000
     stock: [Blazikenite, Sceptilite, Gengarite, Heracronite, Galladite, Feraligite, Emboarite, Delphoxite,
@@ -48,12 +48,12 @@ vendors:
             Dragalgite, Scolipite, Eelektrossite, Chandelurite, Malamarite, Hawluchanite, Skarmorite, Crabominite,
             Golisopite, Scovillainite, Raichunite Y, Aerodactylite, Drampanite, Falinksite]
   - name: Mega Stone Sage (Snowpoint)
-    location: Snowpoint City — same house as Renegade's evolution-item seller (second NPC)
+    location: Snowpoint City — west house, which Renegade gives its evolution-item seller (new NPC)
     unlock: after the Icicle Badge (Candice)
     price: 10000
     stock: [Froslassite, Salamencite, Metagrossite, Dragoninite, Baxcalibrite, Tatsugirinite, Absolite Z, Lucarionite Z]
   - name: Mega Stone Curator (Survival Area)
-    location: Survival Area — house left of the Pokémon Center (new NPC)
+    location: Survival Area — south house, left of the Pokémon Center (new NPC)
     unlock: after becoming Champion
     price: 30000
     stock: [Mewtwonite X, Mewtwonite Y, Latiasite, Latiosite, Diancite, Zygardite, Darkranite, Magearnite,

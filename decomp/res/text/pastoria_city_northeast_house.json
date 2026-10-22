@@ -107,6 +107,22 @@
     {
       "id": "PastoriaCityNortheastHouse_Text_PachirisuCry",
       "en_US": "PACHIRISU: Suuu pasuu!"
+    },
+    {
+      "id": "PastoriaCityNortheastHouse_Text_SovereignMegaStoneTraderLocked",
+      "en_US": [
+        "I trade in Mega Stones from regions\n",
+        "far away from Sinnoh.\f",
+        "Show me the Fen Badge, and we can\n",
+        "do business."
+      ]
+    },
+    {
+      "id": "PastoriaCityNortheastHouse_Text_SovereignMegaStoneTraderWelcome",
+      "en_US": [
+        "Mega Stones from all over the world!\n",
+        "Take a look."
+      ]
     }
   ]
 }

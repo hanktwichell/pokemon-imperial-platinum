@@ -243,7 +243,12 @@ const u16 *PokeMartSpecialties[] = {
     [MART_SPECIALTIES_ID_VEILSTONE_B1F] = VeilstoneDeptStoreStock_B1F_DOWN_LEFT,
     // Sovereign: Gen V-IX held items and Gems, from the 2F vitamin clerk's menu.
     [MART_SPECIALTIES_ID_VEILSTONE_2F_HELD_ITEMS] = VeilstoneDeptStoreStock_2F_HeldItems,
-    [MART_SPECIALTIES_ID_VEILSTONE_2F_GEMS] = VeilstoneDeptStoreStock_2F_Gems
+    [MART_SPECIALTIES_ID_VEILSTONE_2F_GEMS] = VeilstoneDeptStoreStock_2F_Gems,
+    // Sovereign: the four Mega Stone vendors (data/mega_stones.yaml, docs/MegaEvolution.md).
+    [MART_SPECIALTIES_ID_MEGA_STONES_HEARTHOME] = MegaStoneStock_Hearthome,
+    [MART_SPECIALTIES_ID_MEGA_STONES_PASTORIA] = MegaStoneStock_Pastoria,
+    [MART_SPECIALTIES_ID_MEGA_STONES_SNOWPOINT] = MegaStoneStock_Snowpoint,
+    [MART_SPECIALTIES_ID_MEGA_STONES_SURVIVAL_AREA] = MegaStoneStock_SurvivalArea
 };
 
 const u16 VeilstoneDeptStoreStock_4F_UP[] = {
