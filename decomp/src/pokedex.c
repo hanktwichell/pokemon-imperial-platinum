@@ -25,6 +25,8 @@ static const u16 sExcludedMonsNational[] = {
     SPECIES_SHAYMIN,
     SPECIES_ARCEUS
 };
+// Imperial: NUM_EXCLUDED_NATIONAL (pokedex.h) must match the list above.
+typedef char ExcludedMonsNationalCountCheck[(sizeof(sExcludedMonsNational) / sizeof(u16) == NUM_EXCLUDED_NATIONAL) ? 1 : -1];
 static const u16 sExcludedMonsLocal[] = {};
 
 int Pokedex_SaveSize(void)

@@ -46,6 +46,7 @@ enum {
     F_FOOTPRINT_SIZES,
     F_FOOTPRINT_TYPES,
     F_ICON_PALETTES,
+    F_ALPHABET_GROUPS,
 };
 
 enum {
@@ -151,6 +152,7 @@ static Driver driver = {
             [F_FOOTPRINT_SIZES]    = { .filename = "species_footprint_sizes.h",    .wrap = TEXT_FILE_WRAP_TEMPLATE },
             [F_FOOTPRINT_TYPES]    = { .filename = "species_footprint_types.h",    .wrap = TEXT_FILE_WRAP_TEMPLATE },
             [F_ICON_PALETTES]      = { .filename = "species_icon_palettes.h",      .wrap = TEXT_FILE_WRAP_TEMPLATE },
+            [F_ALPHABET_GROUPS]    = { .filename = "species_alphabet_groups.h",    .wrap = TEXT_FILE_WRAP_TEMPLATE },
             { 0 },
         },
 
@@ -734,7 +736,8 @@ static void EmitIconPalettes(dp_node root, const char *icon, const char *stem)
 
 #define THIN_SPACE         "\xE2\x80\x89"
 #define WIDE_NUM_PREFIX    "\xEF\xBC"
-#define WIDE_NUM_DIGIT0(i) (char)(0x90 + i / 100)
+#define WIDE_NUM_DIGITK(i) (char)(0x90 + i / 1000)
+#define WIDE_NUM_DIGIT0(i) (char)(0x90 + i / 100 % 10)
 #define WIDE_NUM_DIGIT1(i) (char)(0x90 + i / 10 % 10)
 #define WIDE_NUM_DIGIT2(i) (char)(0x90 + i % 10)
 
@@ -766,6 +769,14 @@ static void ProcLanguageText(dp_node locale, size_t species, const char *stem, s
     char *numbered = NULL;
     if (species == SPECIES_NONE) {
         numbered = String_Format("%s", name);
+    } else if (languages[lang].wideNumber && species >= 1000) {
+        // Imperial: four full-width digits from #1000 on.
+        numbered = String_Format(WIDE_NUM_PREFIX "%c" WIDE_NUM_PREFIX "%c" WIDE_NUM_PREFIX "%c" WIDE_NUM_PREFIX "%c  %s",
+                                 WIDE_NUM_DIGITK(species),
+                                 WIDE_NUM_DIGIT0(species),
+                                 WIDE_NUM_DIGIT1(species),
+                                 WIDE_NUM_DIGIT2(species),
+                                 name);
     } else if (languages[lang].wideNumber) {
         // Full-width digits: U+FF10 + d, encoded as EF BC (90 + d).
         numbered = String_Format(WIDE_NUM_PREFIX "%c" WIDE_NUM_PREFIX "%c" WIDE_NUM_PREFIX "%c  %s",
@@ -996,7 +1007,9 @@ static void PackDexData(int archive, const DexData *data)
         size_t start = i;
         while (i < NELEMS(list) && data[list[i]].name[0] <= *last) i++;
         Archive_Pack(archive, list + start, (i - start) * sizeof(*list));
+        TextFile_Printf(F_ALPHABET_GROUPS, "    %zu,\n", start);
     }
+    TextFile_Printf(F_ALPHABET_GROUPS, "    %zu,\n", i);
 
     // Files 27 through 44: species by type. The Pokédex search screen only has
     // the 17 original types, so Fairy (formerly ???) is left out for now.

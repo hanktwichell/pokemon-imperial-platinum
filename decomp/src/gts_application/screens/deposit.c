@@ -5,6 +5,8 @@
 #include <string.h>
 
 #include "constants/species.h"
+
+#include "res/pokemon/species_alphabet_groups.h"
 #include "generated/gender_ratios.h"
 #include "generated/species_data_params.h"
 
@@ -1059,18 +1061,8 @@ ListMenu *GTS_CreateCharpadMenu(GTSApplicationState *appState, StringList **stri
     return ListMenu_New(&template, appState->speciesMenuState->charpadScrollPos, appState->speciesMenuState->charpadCursorPos, HEAP_ID_62);
 }
 
-static u16 sAlphabeticalSpeciesCharpadIndices[] = {
-    0,
-    87, // ABC
-    136, // DEF
-    191, // GHI
-    235, // JKL
-    303, // MNO
-    360, // PQR
-    457, // STU
-    487, // VWX
-    493 // YZ
-};
+// Imperial: generated from the species list (was hard-coded for 493 species).
+#define sAlphabeticalSpeciesCharpadIndices sSpeciesAlphabetGroupStarts
 
 static int GTSDeposit_BuildSeenSpeciesList(StringList **stringList, MessageLoader *speciesMessageLoader, MessageLoader *gtsMessageLoader, u16 *species, u8 *unused1, int unused2, int charpad, Pokedex *pokedex)
 {

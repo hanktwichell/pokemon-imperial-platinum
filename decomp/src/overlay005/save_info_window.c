@@ -1,5 +1,7 @@
 #include "overlay005/save_info_window.h"
 
+#include "constants/species.h"
+
 #include <nitro.h>
 #include <string.h>
 
@@ -70,7 +72,10 @@ static void SaveInfoWindow_SetStrings(StringTemplate *strTemplate, const SaveInf
 
     int maxDigits, padding;
 
-    if (saveInfo->pokedexCount >= 100) {
+    if (saveInfo->pokedexCount >= 1000) { // Imperial: up to 1025 species
+        maxDigits = 4;
+        padding = PADDING_MODE_NONE;
+    } else if (saveInfo->pokedexCount >= 100) {
         maxDigits = 3;
         padding = PADDING_MODE_NONE;
     } else if (saveInfo->pokedexCount >= 10) {

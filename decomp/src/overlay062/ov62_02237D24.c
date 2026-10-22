@@ -1,5 +1,7 @@
 #include "overlay062/ov62_02237D24.h"
 
+#include "res/pokemon/species_alphabet_groups.h"
+
 #include <nitro.h>
 #include <string.h>
 
@@ -121,18 +123,8 @@ static void ov62_02239D0C(UnkStruct_0208C06C *param0);
 void ov62_02239D34(void *param0, const UnkStruct_ov62_0223CAA4 *param1);
 void ov62_02239D38(void *param0, const UnkStruct_ov62_0223CAA4 *param1);
 
-static u16 Unk_ov62_022497D4[] = {
-    0x0,
-    0x57,
-    0x88,
-    0xBF,
-    0xEB,
-    0x12F,
-    0x168,
-    0x1C9,
-    0x1E7,
-    0x1ED
-};
+// Imperial: generated from the species list (was hard-coded for 493 species).
+#define Unk_ov62_022497D4 sSpeciesAlphabetGroupStarts
 
 // clang-format off
 BOOL (*const Unk_ov62_02248D08[])(UnkStruct_0208C06C *) = {

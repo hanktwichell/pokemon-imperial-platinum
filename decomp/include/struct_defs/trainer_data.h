@@ -9,7 +9,9 @@
 
 #include "constants/moves.h"
 
-#define TRAINER_MON_FORM_SHIFT 10
+// Imperial: species in the low 11 bits (up to 2047; vanilla had 10, max 1023), form in the high 5 bits.
+#define TRAINER_MON_FORM_SHIFT   11
+#define TRAINER_MON_SPECIES_MASK ((1 << TRAINER_MON_FORM_SHIFT) - 1)
 
 #define MAX_TRAINER_ITEMS 4
 #define MAX_IV_SCALE      255

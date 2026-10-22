@@ -12,7 +12,7 @@
 #define DEX_SIZE_U32 ((int)((NATIONAL_DEX_COUNT - 1) / 32) + 1) // default 16
 
 #define MAGIC_NUMBER          0xBEEFCAFE
-#define NUM_EXCLUDED_NATIONAL ((int)(sizeof(sExcludedMonsNational) / sizeof(u16)))
+#define NUM_EXCLUDED_NATIONAL 11 // Imperial: a number so other files can use NATIONAL_DEX_GOAL; checked against sExcludedMonsNational in pokedex.c
 #define NUM_EXCLUDED_LOCAL    0 //((int)(sizeof(sExcludedMonsLocal) / sizeof(u16)))
 #define NATIONAL_DEX_GOAL     (NATIONAL_DEX_COUNT - NUM_EXCLUDED_NATIONAL)
 #define LOCAL_DEX_GOAL        (REGIONAL_DEX_COUNT - NUM_EXCLUDED_LOCAL)

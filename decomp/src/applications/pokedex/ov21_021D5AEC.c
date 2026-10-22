@@ -1,5 +1,7 @@
 #include "applications/pokedex/ov21_021D5AEC.h"
 
+#include "constants/species.h"
+
 #include <nitro.h>
 #include <string.h>
 
@@ -729,10 +731,10 @@ static void ov21_021D63DC(PokedexGraphicData *param0, enum HeapID heapID, int pa
     MessageLoader_GetString(pokedexMessageBank, pl_msg_pokedex_obtained, v0);
     Text_AddPrinterWithParamsAndColor(&param0->window, FONT_SYSTEM, v0, 128, 152, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
 
-    String_FormatInt(v0, param2, 3, 2, 1);
+    String_FormatInt(v0, param2, DEX_NUMBER_DIGITS(param2), 2, 1);
     Text_AddPrinterWithParamsAndColor(&param0->window, FONT_SYSTEM, v0, 48, 170, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
 
-    String_FormatInt(v0, param3, 3, 2, 1);
+    String_FormatInt(v0, param3, DEX_NUMBER_DIGITS(param3), 2, 1);
     Text_AddPrinterWithParamsAndColor(&param0->window, FONT_SYSTEM, v0, 180, 170, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
 
     String_Free(v0);
@@ -747,7 +749,7 @@ static void ov21_021D64B0(PokedexGraphicData *param0, enum HeapID heapID, int pa
 
     MessageLoader_GetString(pokedexMessageBank, pl_msg_pokedex_results, v0);
     Text_AddPrinterWithParamsAndColor(&param0->window, FONT_SYSTEM, v0, 8, 152, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
-    String_FormatInt(v0, param2, 3, 2, 1);
+    String_FormatInt(v0, param2, DEX_NUMBER_DIGITS(param2), 2, 1);
     Text_AddPrinterWithParamsAndColor(&param0->window, FONT_SYSTEM, v0, 48, 170, TEXT_SPEED_INSTANT, TEXT_COLOR(2, 1, 0), NULL);
     String_Free(v0);
     MessageLoader_Free(pokedexMessageBank);
@@ -1281,7 +1283,7 @@ static void ov21_021D6DF4(UnkStruct_ov21_021D71A8 *param0, PokedexGraphicData *p
 
     v1 = PokedexTextManager_NewWindow(param1->textMan, 15, 2);
 
-    String_FormatInt(v2, param4, 3, 2, 1);
+    String_FormatInt(v2, param4, DEX_NUMBER_DIGITS(param4), 2, 1);
     Text_AddPrinterWithParamsAndColor(v1, FONT_SUBSCREEN, v2, 22, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);
     MessageLoader_GetString(pokedexMessageBank, pl_msg_pokedex_noname, v2);
     Text_AddPrinterWithParamsAndColor(v1, FONT_SUBSCREEN, v2, 49, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(3, 2, 1), NULL);

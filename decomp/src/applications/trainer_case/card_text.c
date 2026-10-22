@@ -1,5 +1,7 @@
 #include "applications/trainer_case/card_text.h"
 
+#include "constants/species.h"
+
 #include <nitro.h>
 
 #include "constants/heap.h"
@@ -207,7 +209,7 @@ void TrainerCard_DrawFrontText(Window windows[], const TrainerCase *trainerCase)
     Text_AddPrinterWithParamsAndColor(&windows[TRAINER_CARD_WINDOW_MONEY], FONT_SYSTEM, string, xOffset, 0, TEXT_SPEED_INSTANT, TEXT_COLOR(1, 2, 0), NULL);
 
     if (trainerCase->pokedexObtained) {
-        StringTemplate_SetNumber(template, 5, trainerCase->seenPokemon, 3, PADDING_MODE_NONE, CHARSET_MODE_EN);
+        StringTemplate_SetNumber(template, 5, trainerCase->seenPokemon, DEX_NUMBER_DIGITS(trainerCase->seenPokemon), PADDING_MODE_NONE, CHARSET_MODE_EN);
         MessageLoader_GetString(messageLoader, TrainerCard_Text_Format_Number_1, fmtString);
         StringTemplate_Format(template, string, fmtString);
 

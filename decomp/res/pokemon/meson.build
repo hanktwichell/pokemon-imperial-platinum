@@ -205,6 +205,7 @@ species_data = custom_target('species_data',
         'species_footprint_types.h',
         'species_egg_moves.h',
         'species_icon_palettes.h',
+        'species_alphabet_groups.h',
         'species_name.json',
         'species_name_with_articles.json',
         'species_pokedex_entry_en.json',
@@ -246,8 +247,8 @@ species_data = custom_target('species_data',
 )
 
 species_data_outputs = species_data.to_list()
-h_headers += species_data_outputs.slice(9, 15)
-species_text_banks = species_data_outputs.slice(15, species_data_outputs.length())
+h_headers += species_data_outputs.slice(9, 16)
+species_text_banks = species_data_outputs.slice(16, species_data_outputs.length())
 
 pokedex_listings = custom_target('pokedex_listings',
     output: [

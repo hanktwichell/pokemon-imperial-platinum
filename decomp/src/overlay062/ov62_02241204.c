@@ -1,5 +1,7 @@
 #include "overlay062/ov62_02241204.h"
 
+#include "res/pokemon/species_alphabet_groups.h"
+
 #include <nitro.h>
 #include <string.h>
 
@@ -213,18 +215,8 @@ static BOOL ov62_0224536C(UnkStruct_0208C06C *param0);
 static BOOL ov62_022454D8(UnkStruct_0208C06C *param0);
 static void ov62_022469A0(UnkStruct_ov62_02241204 *param0, UnkStruct_0208C06C *param1);
 
-static u16 Unk_ov62_02249944[] = {
-    0x0,
-    0x57,
-    0x88,
-    0xBF,
-    0xEB,
-    0x12F,
-    0x168,
-    0x1C9,
-    0x1E7,
-    0x1ED
-};
+// Imperial: generated from the species list (was hard-coded for 493 species).
+#define Unk_ov62_02249944 sSpeciesAlphabetGroupStarts
 
 static const TouchScreenRect Unk_ov62_0224919C[] = {
     { 0x10, 0x30, 0x40, 0xC8 },
