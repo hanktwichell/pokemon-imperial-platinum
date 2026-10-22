@@ -4995,6 +4995,18 @@
     .byte \floor
     .endm
 
+    // Imperial: destVarID is set to the Repel item the player used last (ITEM_NONE if none)
+    .macro GetLastRepel destVarID
+    .short SCRCMD_GETLASTREPEL
+    .short \destVarID
+    .endm
+
+    // Imperial: starts the given Repel's effect (does not take the item from the bag)
+    .macro UseRepel item
+    .short SCRCMD_USEREPEL
+    .short \item
+    .endm
+
 
 
     .macro GoToIfLt varID, valueOrVarID, offset

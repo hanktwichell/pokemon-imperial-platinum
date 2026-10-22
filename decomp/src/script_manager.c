@@ -34,6 +34,7 @@
 #include "bag.h"
 #include "party.h"
 #include "pokemon.h"
+#include "special_encounter.h"
 #include "system_vars.h"
 #include "unk_02054884.h"
 #endif
@@ -735,6 +736,12 @@ static void ImperialTest_SetupNewGame(FieldSystem *fieldSystem)
     Bag_TryAddItem(bag, ITEM_RARE_CANDY, 3, HEAP_ID_FIELD2);
     Bag_TryAddItem(bag, ITEM_POTION, 10, HEAP_ID_FIELD2);
     Bag_TryAddItem(bag, ITEM_POKE_BALL, 10, HEAP_ID_FIELD2);
+
+    // A Super Repel that runs out after 3 steps, with 2 more in the bag (tests the "use another?" prompt).
+    Bag_TryAddItem(bag, ITEM_SUPER_REPEL, 2, HEAP_ID_FIELD2);
+    SpecialEncounter *speEnc = SaveData_GetSpecialEncounters(fieldSystem->saveData);
+    *SpecialEncounter_GetRepelSteps(speEnc) = 3;
+    SpecialEncounter_SetLastRepel(speEnc, ITEM_SUPER_REPEL);
 }
 #endif
 

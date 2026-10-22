@@ -3,6 +3,16 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## E14 (part) — Repel prompt
+
+- When a Repel, Super Repel or Max Repel wears off and the bag still has one of the same kind, the game asks
+  "Use another …?" (YES/NO). YES uses it straight away. Without one, the old "Repel's effect wore off..." message shows.
+- The Repel used last is saved (a spare 2 bytes at the end of the special-encounter save block); two new script
+  commands, `GetLastRepel` and `UseRepel`, drive the prompt in `CommonScript_RepelsEffectWoreOff`.
+
+Verified in the emulator (test build: a Super Repel that ends after 3 steps, 2 more in the bag): the prompt names
+the Super Repel, YES prints "A used the Super Repel." and the bag goes from 2 to 1.
+
 ## E2 / E4 — Gen IX abilities and Hidden Abilities
 
 - **All 314 abilities**, ability ID = official ability number (`tools/engine/gen_abilities.py`, from PokeAPI;

@@ -11,6 +11,7 @@
 #include "field_script_context.h"
 #include "inlines.h"
 #include "item.h"
+#include "special_encounter.h"
 #include "unk_0205DFC4.h"
 
 BOOL ScrCmd_AddItem(ScriptContext *ctx)
@@ -54,6 +55,24 @@ BOOL ScrCmd_CheckItem(ScriptContext *ctx)
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
     *destVar = Bag_CanRemoveItem(SaveData_GetBag(fieldSystem->saveData), item, count, HEAP_ID_FIELD2);
+    return FALSE;
+}
+
+BOOL ScrCmd_GetLastRepel(ScriptContext *ctx)
+{
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+
+    *destVar = SpecialEncounter_GetLastRepel(SaveData_GetSpecialEncounters(ctx->fieldSystem->saveData));
+    return FALSE;
+}
+
+BOOL ScrCmd_UseRepel(ScriptContext *ctx)
+{
+    SpecialEncounter *speEnc = SaveData_GetSpecialEncounters(ctx->fieldSystem->saveData);
+    u16 item = ScriptContext_GetVar(ctx);
+
+    *SpecialEncounter_GetRepelSteps(speEnc) = Item_LoadParam(item, ITEM_PARAM_EFFECT_PARAM, HEAP_ID_FIELD2);
+    SpecialEncounter_SetLastRepel(speEnc, item);
     return FALSE;
 }
 

@@ -873,6 +873,20 @@
         "It will be fixed if you enter the\n",
         "Hall of Fame again.\r"
       ]
+    },
+    {
+      "id": "CommonStrings_Text_RepelWoreOffUseAnother",
+      "en_US": [
+        "Repel’s effect wore off...\n",
+        "Use another {STRVAR_1 8, 1, 0}?"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_UsedAnotherRepel",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} used the\n",
+        "{STRVAR_1 8, 1, 0}."
+      ]
     }
   ]
 }
