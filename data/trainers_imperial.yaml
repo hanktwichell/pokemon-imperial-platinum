@@ -1,0 +1,390 @@
+# Imperial Platinum — boss trainer teams (source of truth).
+#
+# Rendered to docs/TrainerPokemon_Imperial.md and validated by
+#   python3 tools/design/gen_trainer_docs.py --pokeapi /path/to/pokeapi/data/v2/csv
+#
+# Only trainers that differ from Renegade Platinum v1.3.0 are listed. Every other trainer keeps
+# its Renegade team exactly (see RenegadePlatinumV130/Documentation/TrainerPokemon.txt).
+#
+# Conventions
+#   mega:    the Mega form this Pokémon becomes (it must hold the matching stone).
+#   ability: the ability before Mega Evolving. The Mega's ability comes from data/megas.csv.
+#   evs:     HP/Atk/Def/SpA/SpD/Spe. Vanilla Gen IV trainer data cannot store EVs or exact
+#            natures; see docs/TechnicalDesign.md ("Trainer data") for the engine change.
+#   ivs:     31 in every stat unless stated (Renegade's important trainers use max difficulty).
+#   format:  singles | doubles | multi (2v2 with an ally, e.g. Spear Pillar).
+#   Renegade's "(!)" abilities (abilities a species does not normally have) are kept as-is.
+
+story:
+  - trainer: Commander Jupiter
+    location: Team Galactic Eterna Building
+    note: First trainer in the game to Mega Evolve. Sableye moved to the last slot as her ace.
+    format: singles
+    team:
+      - {species: Golbat, level: 26, item: None, nature: Jolly, ability: Inner Focus, moves: [Wing Attack, Poison Fang, Bite, Confuse Ray], evs: 4/252/0/0/0/252}
+      - {species: Tangela, level: 26, item: Big Root, nature: Modest, ability: Chlorophyll, moves: [Giga Drain, Shock Wave, Leech Seed, Sleep Powder], evs: 252/0/0/252/4/0}
+      - {species: Skuntank, level: 26, item: Sitrus Berry, nature: Adamant, ability: Aftermath, moves: [Poison Jab, Night Slash, Toxic, Torment], evs: 252/252/0/0/4/0}
+      - {species: Sableye, level: 27, item: Sablenite, nature: Adamant, ability: Magic Guard, mega: Mega Sableye, moves: [Fake Out, Shadow Claw, Knock Off, Will-O-Wisp], evs: 252/252/4/0/0/0}
+
+  - trainer: Elite Four Aaron
+    location: Route 208 (Renegade's early Aaron battle)
+    note: Comes after Jupiter, so Aaron Mega Evolves here too (E4 members "henceforth" have Megas). Scizor promoted to ace.
+    format: singles
+    team:
+      - {species: Dustox, level: 31, item: Leftovers, nature: Calm, ability: Shield Dust, moves: [Bug Buzz, Toxic, Protect, Moonlight], evs: 252/0/0/4/252/0}
+      - {species: Beautifly, level: 31, item: Focus Sash, nature: Modest, ability: Swarm, moves: [Bug Buzz, Air Slash, Energy Ball, Psychic], evs: 4/0/0/252/0/252}
+      - {species: Venomoth, level: 31, item: Wise Glasses, nature: Timid, ability: Tinted Lens, moves: [Bug Buzz, Psychic, Sludge Bomb, Sleep Powder], evs: 4/0/0/252/0/252}
+      - {species: Drapion, level: 31, item: Scope Lens, nature: Jolly, ability: Sniper, moves: [Cross Poison, X-Scissor, Night Slash, Swords Dance], evs: 4/252/0/0/0/252}
+      - {species: Scizor, level: 32, item: Scizorite, nature: Adamant, ability: Technician, mega: Mega Scizor, moves: [Bullet Punch, X-Scissor, Iron Head, Swords Dance], evs: 248/252/0/0/8/0}
+
+  - trainer: Leader Fantina
+    location: Hearthome Gym
+    note: Beating Fantina unlocks Mega Evolution for the player (she gives the Mega Ring). Gengar promoted to ace.
+    format: singles
+    team:
+      - {species: Drifblim, level: 32, item: Starf Berry, nature: Modest, ability: Unburden, moves: [Shadow Ball, Air Slash, Baton Pass, Calm Mind], evs: 252/0/0/252/4/0}
+      - {species: Dusclops, level: 32, item: Leftovers, nature: Impish, ability: Pressure, moves: [Shadow Punch, Will-O-Wisp, Protect, Pain Split], evs: 252/0/252/0/4/0}
+      - {species: Banette, level: 32, item: Muscle Band, nature: Adamant, ability: Insomnia, moves: [Shadow Claw, Will-O-Wisp, Sucker Punch, Disable], evs: 252/252/0/0/4/0}
+      - {species: Spiritomb, level: 32, item: Zoom Lens, nature: Relaxed, ability: Pressure, moves: [Shadow Ball, Will-O-Wisp, Dark Pulse, Disable], evs: 252/0/4/0/252/0}
+      - {species: Mismagius, level: 32, item: Sitrus Berry, nature: Timid, ability: Levitate, moves: [Shadow Ball, Power Gem, Calm Mind, Dazzling Gleam], evs: 4/0/0/252/0/252}
+      - {species: Gengar, level: 33, item: Gengarite, nature: Timid, ability: Levitate, mega: Mega Gengar, moves: [Shadow Ball, Sludge Bomb, Focus Blast, Will-O-Wisp], evs: 4/0/0/252/0/252}
+
+  - trainer: Leader Maylene
+    location: Veilstone Gym
+    format: singles
+    team:
+      - {species: Medicham, level: 38, item: Sitrus Berry, nature: Jolly, ability: Pure Power, moves: [High Jump Kick, Zen Headbutt, Ice Punch, Fake Out], evs: 4/252/0/0/0/252}
+      - {species: Machamp, level: 38, item: Toxic Orb, nature: Adamant, ability: Guts, moves: [Close Combat, Payback, Thunder Punch, Protect], evs: 252/252/0/0/4/0}
+      - {species: Infernape, level: 38, item: Life Orb, nature: Hasty, ability: Iron Fist, moves: [Close Combat, Rock Slide, Fire Punch, Mach Punch], evs: 0/252/0/4/0/252}
+      - {species: Toxicroak, level: 38, item: Big Root, nature: Adamant, ability: Dry Skin, moves: [Drain Punch, Poison Jab, Ice Punch, Sucker Punch], evs: 252/252/0/0/4/0}
+      - {species: Gallade, level: 38, item: Light Clay, nature: Adamant, ability: Steadfast, moves: [Drain Punch, Zen Headbutt, Light Screen, Reflect], evs: 252/252/0/0/4/0}
+      - {species: Lucario, level: 39, item: Lucarionite Z, nature: Timid, ability: Adaptability, mega: Mega Lucario Z, moves: [Aura Sphere, Flash Cannon, Dark Pulse, Nasty Plot], evs: 4/0/0/252/0/252}
+
+  - trainer: Leader Wake
+    location: Pastoria Gym
+    note: Sharpedo promoted to ace. Mega Sharpedo loses Speed Boost, so Protect was dropped.
+    format: singles
+    team:
+      - {species: Quagsire, level: 43, item: Rindo Berry, nature: Adamant, ability: Water Absorb, moves: [Aqua Tail, Earthquake, Recover, Ice Punch], evs: 252/252/0/0/4/0}
+      - {species: Gyarados, level: 43, item: Wacan Berry, nature: Jolly, ability: Intimidate, moves: [Aqua Tail, Ice Fang, Crunch, Dragon Dance], evs: 4/252/0/0/0/252}
+      - {species: Poliwrath, level: 43, item: Sitrus Berry, nature: Careful, ability: Water Absorb, moves: [Waterfall, Drain Punch, Ice Punch, Hypnosis], evs: 252/4/0/0/252/0}
+      - {species: Ludicolo, level: 43, item: Life Orb, nature: Modest, ability: Swift Swim, moves: [Hydro Pump, Ice Beam, Energy Ball, Fake Out], evs: 4/0/0/252/0/252}
+      - {species: Floatzel, level: 43, item: Life Orb, nature: Jolly, ability: Swift Swim, moves: [Aqua Tail, Crunch, Ice Punch, Aqua Jet], evs: 4/252/0/0/0/252}
+      - {species: Sharpedo, level: 44, item: Sharpedonite, nature: Jolly, ability: Speed Boost, mega: Mega Sharpedo, moves: [Waterfall, Crunch, Ice Fang, Earthquake], evs: 4/252/0/0/0/252}
+
+  - trainer: Galactic Boss Cyrus
+    location: Celestic Town
+    note: Gyarados joins Cyrus's team from his first battle so he has a Mega every time he is fought.
+    format: singles
+    team:
+      - {species: Crobat, level: 45, item: Wise Glasses, nature: Timid, ability: Inner Focus, moves: [Sludge Bomb, Air Slash, Giga Drain, Hypnosis], evs: 4/0/0/252/0/252}
+      - {species: Honchkrow, level: 45, item: Scope Lens, nature: Adamant, ability: Super Luck, moves: [Brave Bird, Night Slash, Sucker Punch, Torment], evs: 252/252/0/0/4/0}
+      - {species: Magnezone, level: 45, item: Life Orb, nature: Modest, ability: Magnet Pull, moves: [Thunderbolt, Flash Cannon, Thunder Wave, Mirror Coat], evs: 252/0/0/252/4/0}
+      - {species: Weavile, level: 45, item: Expert Belt, nature: Jolly, ability: Technician, moves: [Feint Attack, Icicle Crash, Ice Shard, Swords Dance], evs: 4/252/0/0/0/252}
+      - {species: Gyarados, level: 46, item: Gyaradosite, nature: Jolly, ability: Intimidate, mega: Mega Gyarados, moves: [Waterfall, Crunch, Ice Fang, Dragon Dance], evs: 4/252/0/0/0/252}
+
+  - trainer: Commander Saturn
+    location: Lake Valor
+    note: Alakazam's first appearance on Saturn's team, so this is Saturn's first Mega. (His Route 212/Great Marsh-era battle without Alakazam is unchanged.)
+    format: singles
+    team:
+      - {species: Octillery, level: 52, item: Expert Belt, nature: Modest, ability: Suction Cups, moves: [Hydro Pump, Seed Bomb, Flamethrower, Flash Cannon], evs: 252/0/0/252/4/0}
+      - {species: Bronzong, level: 52, item: Bright Powder, nature: Relaxed, ability: Levitate, moves: [Iron Head, Zen Headbutt, Shadow Ball, Explosion], evs: 252/4/252/0/0/0}
+      - {species: Rhydon, level: 52, item: Muscle Band, nature: Adamant, ability: Rock Head, moves: [Stone Edge, Earthquake, Hammer Arm, Megahorn], evs: 252/252/0/0/4/0}
+      - {species: Toxicroak, level: 52, item: Life Orb, nature: Jolly, ability: Dry Skin, moves: [Gunk Shot, Cross Chop, Fake Out, Sucker Punch], evs: 4/252/0/0/0/252}
+      - {species: Alakazam, level: 53, item: Alakazite, nature: Timid, ability: Magic Guard, mega: Mega Alakazam, moves: [Psychic, Shadow Ball, Focus Blast, Calm Mind], evs: 4/0/0/252/0/252}
+
+  - trainer: Commander Mars
+    location: Lake Verity
+    note: Kangaskhan promoted to ace.
+    format: singles
+    team:
+      - {species: Crobat, level: 52, item: Bright Powder, nature: Jolly, ability: Inner Focus, moves: [Brave Bird, Hypnosis, Double Team, Giga Drain], evs: 4/252/0/0/0/252}
+      - {species: Yanmega, level: 52, item: Wise Glasses, nature: Timid, ability: Speed Boost, moves: [Bug Buzz, Air Slash, Psychic, Detect], evs: 4/0/0/252/0/252}
+      - {species: Bronzong, level: 52, item: Leftovers, nature: Relaxed, ability: Levitate, moves: [Stealth Rock, Gyro Ball, Payback, Explosion], evs: 252/4/252/0/0/0}
+      - {species: Purugly, level: 52, item: Sitrus Berry, nature: Jolly, ability: Thick Fat, moves: [Body Slam, Play Rough, Hypnosis, Fake Out], evs: 4/252/0/0/0/252}
+      - {species: Kangaskhan, level: 53, item: Kangaskhanite, nature: Adamant, ability: Scrappy, mega: Mega Kangaskhan, moves: [Double-Edge, Crunch, Sucker Punch, Fake Out], evs: 4/252/0/0/0/252}
+
+  - trainer: Galactic Boss Cyrus
+    location: Team Galactic HQ
+    note: Gyarados added as a sixth Pokémon and ace.
+    format: singles
+    team:
+      - {species: Crobat, level: 57, item: Choice Band, nature: Jolly, ability: Inner Focus, moves: [Brave Bird, U-turn, Cross Poison, Zen Headbutt], evs: 4/252/0/0/0/252}
+      - {species: Honchkrow, level: 57, item: Scope Lens, nature: Adamant, ability: Super Luck, moves: [Brave Bird, Night Slash, Thunder Wave, Heat Wave], evs: 252/252/0/0/4/0}
+      - {species: Houndoom, level: 57, item: Life Orb, nature: Timid, ability: Intimidate, moves: [Dark Pulse, Flamethrower, Sludge Bomb, Nasty Plot], evs: 4/0/0/252/0/252}
+      - {species: Magnezone, level: 57, item: Wise Glasses, nature: Modest, ability: Magnet Pull, moves: [Thunderbolt, Flash Cannon, Signal Beam, Mirror Coat], evs: 252/0/0/252/4/0}
+      - {species: Weavile, level: 57, item: Expert Belt, nature: Jolly, ability: Technician, moves: [Crunch, Icicle Crash, Aerial Ace, X-Scissor], evs: 4/252/0/0/0/252}
+      - {species: Gyarados, level: 58, item: Gyaradosite, nature: Adamant, ability: Intimidate, mega: Mega Gyarados, moves: [Waterfall, Crunch, Earthquake, Dragon Dance], evs: 4/252/0/0/0/252}
+
+  - trainer: Commander Saturn
+    location: Team Galactic HQ
+    note: Alakazam promoted to ace.
+    format: singles
+    team:
+      - {species: Bronzong, level: 56, item: Light Clay, nature: Relaxed, ability: Levitate, moves: [Zen Headbutt, Gyro Ball, Reflect, Light Screen], evs: 252/4/252/0/0/0}
+      - {species: Octillery, level: 56, item: Expert Belt, nature: Modest, ability: Suction Cups, moves: [Hydro Pump, Ice Beam, Fire Blast, Energy Ball], evs: 252/0/0/252/4/0}
+      - {species: Rhyperior, level: 56, item: Choice Band, nature: Adamant, ability: Solid Rock, moves: [Stone Edge, Earthquake, Megahorn, Ice Punch], evs: 252/252/0/0/4/0}
+      - {species: Magmortar, level: 56, item: Choice Specs, nature: Modest, ability: Flame Body, moves: [Fire Blast, Thunderbolt, Focus Blast, Psychic], evs: 4/0/0/252/0/252}
+      - {species: Toxicroak, level: 56, item: Focus Sash, nature: Jolly, ability: Dry Skin, moves: [Cross Chop, Gunk Shot, Ice Punch, Fake Out], evs: 4/252/0/0/0/252}
+      - {species: Alakazam, level: 57, item: Alakazite, nature: Timid, ability: Magic Guard, mega: Mega Alakazam, moves: [Psychic, Shadow Ball, Focus Blast, Dazzling Gleam], evs: 4/0/0/252/0/252}
+
+  - trainer: Leader Byron
+    location: Canalave Gym
+    note: Mega Aggron chosen over Mega Steelix. Mega Aggron becomes pure Steel (losing its 4x Fighting/Ground weaknesses) and gets Filter, which suits Byron's defensive style; Mega Steelix's Sand Force would need a sand setter Byron doesn't have. Aggron promoted to ace.
+    format: singles
+    team:
+      - {species: Bronzong, level: 52, item: Light Clay, nature: Impish, ability: Levitate, moves: [Gyro Ball, Stealth Rock, Reflect, Light Screen], evs: 252/4/252/0/0/0}
+      - {species: Magnezone, level: 52, item: Wise Glasses, nature: Modest, ability: Magnet Pull, moves: [Thunderbolt, Flash Cannon, Signal Beam, Thunder Wave], evs: 252/0/0/252/4/0}
+      - {species: Steelix, level: 52, item: Muscle Band, nature: Adamant, ability: Rock Head, moves: [Gyro Ball, Earthquake, Stone Edge, Explosion], evs: 252/252/0/0/4/0}
+      - {species: Forretress, level: 52, item: Sitrus Berry, nature: Impish, ability: Sturdy, moves: [Gyro Ball, Spikes, Toxic Spikes, Explosion], evs: 252/4/252/0/0/0}
+      - {species: Bastiodon, level: 52, item: Leftovers, nature: Sassy, ability: Soundproof, moves: [Iron Head, Toxic, Protect, Metal Burst], evs: 252/0/4/0/252/0}
+      - {species: Aggron, level: 53, item: Aggronite, nature: Adamant, ability: Rock Head, mega: Mega Aggron, moves: [Iron Head, Earthquake, Stone Edge, Rock Polish], evs: 252/252/0/0/4/0}
+
+  - trainer: Leader Candice
+    location: Snowpoint Gym
+    format: singles
+    team:
+      - {species: Abomasnow, level: 55, item: Expert Belt, nature: Brave, ability: Snow Warning, moves: [Wood Hammer, Earthquake, Blizzard, Ice Shard], evs: 252/252/0/4/0/0}
+      - {species: Weavile, level: 55, item: Focus Sash, nature: Jolly, ability: Technician, moves: [Crunch, Icicle Crash, Ice Shard, Swords Dance], evs: 4/252/0/0/0/252}
+      - {species: Glaceon, level: 55, item: Bright Powder, nature: Bold, ability: Snow Cloak, moves: [Blizzard, Shadow Ball, Earth Power, Wish], evs: 252/0/252/4/0/0}
+      - {species: Walrein, level: 55, item: Chople Berry, nature: Modest, ability: Thick Fat, moves: [Blizzard, Surf, Yawn, Aqua Ring], evs: 252/0/0/252/4/0}
+      - {species: Mamoswine, level: 55, item: Passho Berry, nature: Jolly, ability: Thick Fat, moves: [Earthquake, Icicle Crash, Stone Edge, Ice Shard], evs: 4/252/0/0/0/252}
+      - {species: Froslass, level: 56, item: Froslassite, nature: Timid, ability: Levitate, mega: Mega Froslass, moves: [Blizzard, Shadow Ball, Thunderbolt, Will-O-Wisp], evs: 4/0/0/252/0/252}
+
+  - trainer: Commander Mars
+    location: Spear Pillar
+    note: Multi battle (Mars + Jupiter vs. the player + Barry). Each commander may Mega Evolve once.
+    format: multi
+    team:
+      - {species: Crobat, level: 57, item: Life Orb, nature: Jolly, ability: Inner Focus, moves: [Brave Bird, Sludge Bomb, Confuse Ray, Taunt], evs: 4/252/0/0/0/252}
+      - {species: Yanmega, level: 57, item: Wise Glasses, nature: Timid, ability: Speed Boost, moves: [Bug Buzz, Hurricane, Shadow Ball, Detect], evs: 4/0/0/252/0/252}
+      - {species: Bronzong, level: 57, item: Leftovers, nature: Relaxed, ability: Levitate, moves: [Trick Room, Gyro Ball, Zen Headbutt, Earthquake], evs: 252/4/252/0/0/0}
+      - {species: Electivire, level: 57, item: Expert Belt, nature: Adamant, ability: Motor Drive, moves: [Thunder Punch, Ice Punch, Cross Chop, Fire Punch], evs: 4/252/0/0/0/252}
+      - {species: Purugly, level: 57, item: Sitrus Berry, nature: Jolly, ability: Thick Fat, moves: [Body Slam, Play Rough, Fake Out, Hypnosis], evs: 4/252/0/0/0/252}
+      - {species: Kangaskhan, level: 58, item: Kangaskhanite, nature: Adamant, ability: Scrappy, mega: Mega Kangaskhan, moves: [Double-Edge, Crunch, Hammer Arm, Fake Out], evs: 4/252/0/0/0/252}
+
+  - trainer: Commander Jupiter
+    location: Spear Pillar
+    note: Multi battle partner of Mars. Sableye promoted to ace.
+    format: multi
+    team:
+      - {species: Crobat, level: 57, item: Bright Powder, nature: Jolly, ability: Inner Focus, moves: [Brave Bird, Sludge Bomb, Taunt, Hypnosis], evs: 4/252/0/0/0/252}
+      - {species: Bronzong, level: 57, item: Leftovers, nature: Sassy, ability: Levitate, moves: [Psychic, Flash Cannon, Grass Knot, Hypnosis], evs: 252/0/0/4/252/0}
+      - {species: Tangrowth, level: 57, item: Big Root, nature: Modest, ability: Chlorophyll, moves: [Giga Drain, Leech Seed, Focus Blast, Sludge Bomb], evs: 252/0/0/252/4/0}
+      - {species: Gastrodon, level: 57, item: Wise Glasses, nature: Modest, ability: Sticky Hold, moves: [Muddy Water, Earth Power, Ice Beam, Recover], evs: 252/0/0/252/4/0}
+      - {species: Skuntank, level: 57, item: Sitrus Berry, nature: Adamant, ability: Aftermath, moves: [Gunk Shot, Crunch, Play Rough, Sucker Punch], evs: 252/252/0/0/4/0}
+      - {species: Sableye, level: 58, item: Sablenite, nature: Careful, ability: Magic Guard, mega: Mega Sableye, moves: [Fake Out, Will-O-Wisp, Knock Off, Shadow Claw], evs: 252/4/0/0/252/0}
+
+  - trainer: Galactic Boss Cyrus
+    location: Distortion World
+    note: Gyarados (already on this team in Renegade) is the Mega and moved to the ace slot.
+    format: singles
+    team:
+      - {species: Crobat, level: 59, item: Choice Band, nature: Jolly, ability: Inner Focus, moves: [Brave Bird, U-turn, Cross Poison, Zen Headbutt], evs: 4/252/0/0/0/252}
+      - {species: Honchkrow, level: 59, item: White Herb, nature: Adamant, ability: Super Luck, moves: [Brave Bird, Sucker Punch, Thunder Wave, Superpower], evs: 252/252/0/0/4/0}
+      - {species: Houndoom, level: 59, item: Life Orb, nature: Timid, ability: Intimidate, moves: [Dark Pulse, Flamethrower, Sludge Bomb, Nasty Plot], evs: 4/0/0/252/0/252}
+      - {species: Magnezone, level: 59, item: Wise Glasses, nature: Modest, ability: Magnet Pull, moves: [Thunderbolt, Flash Cannon, Signal Beam, Mirror Coat], evs: 252/0/0/252/4/0}
+      - {species: Weavile, level: 59, item: Focus Sash, nature: Jolly, ability: Technician, moves: [Feint Attack, Icicle Crash, Ice Shard, Swords Dance], evs: 4/252/0/0/0/252}
+      - {species: Gyarados, level: 60, item: Gyaradosite, nature: Jolly, ability: Intimidate, mega: Mega Gyarados, moves: [Waterfall, Crunch, Earthquake, Dragon Dance], evs: 4/252/0/0/0/252}
+
+  - trainer: Leader Volkner
+    location: Sunyshore Gym
+    note: Raichu promoted to ace. Mega Raichu Y's No Guard makes Thunder and Focus Blast never miss.
+    format: singles
+    team:
+      - {species: Jolteon, level: 61, item: Focus Sash, nature: Timid, ability: Volt Absorb, moves: [Thunderbolt, Shadow Ball, Grass Knot, Thunder Wave], evs: 4/0/0/252/0/252}
+      - {species: Rotom-Wash, level: 61, item: Sitrus Berry, nature: Modest, ability: Levitate, moves: [Thunderbolt, Hydro Pump, Shadow Ball, Thunder Wave], evs: 252/0/0/252/4/0}
+      - {species: Rotom-Heat, level: 61, item: White Herb, nature: Modest, ability: Levitate, moves: [Thunderbolt, Overheat, Shadow Ball, Will-O-Wisp], evs: 252/0/0/252/4/0}
+      - {species: Luxray, level: 61, item: Choice Band, nature: Adamant, ability: Intimidate, moves: [Wild Charge, Crunch, Ice Fang, Fire Fang], evs: 4/252/0/0/0/252}
+      - {species: Electivire, level: 61, item: Life Orb, nature: Jolly, ability: Motor Drive, moves: [Wild Charge, Close Combat, Ice Punch, Earthquake], evs: 4/252/0/0/0/252}
+      - {species: Raichu, level: 62, item: Raichunite Y, nature: Timid, ability: Static, mega: Mega Raichu Y, moves: [Thunder, Focus Blast, Grass Knot, Nasty Plot], evs: 4/0/0/252/0/252}
+
+  - trainer: Leader Volkner & Elite Four Flint
+    location: Fight Area (post-game double battle)
+    note: Both partners Mega Evolve. Flint's Flareon is replaced by Houndoom.
+    format: doubles
+    team:
+      - {species: Jolteon, level: 74, item: Focus Sash, nature: Timid, ability: Volt Absorb, moves: [Thunderbolt, Shadow Ball, Thunder Wave, Protect], evs: 4/0/0/252/0/252, owner: Volkner}
+      - {species: Electivire, level: 74, item: Life Orb, nature: Jolly, ability: Motor Drive, moves: [Wild Charge, Close Combat, Ice Punch, Protect], evs: 4/252/0/0/0/252, owner: Volkner}
+      - {species: Raichu, level: 75, item: Raichunite Y, nature: Timid, ability: Static, mega: Mega Raichu Y, moves: [Thunder, Focus Blast, Grass Knot, Protect], evs: 4/0/0/252/0/252, owner: Volkner}
+      - {species: Arcanine, level: 74, item: Sitrus Berry, nature: Adamant, ability: Intimidate, moves: [Flare Blitz, Extreme Speed, Wild Charge, Protect], evs: 4/252/0/0/0/252, owner: Flint}
+      - {species: Magmortar, level: 74, item: Life Orb, nature: Modest, ability: Flame Body, moves: [Heat Wave, Thunderbolt, Focus Blast, Protect], evs: 4/0/0/252/0/252, owner: Flint}
+      - {species: Houndoom, level: 75, item: Houndoominite, nature: Timid, ability: Intimidate, mega: Mega Houndoom, moves: [Heat Wave, Dark Pulse, Nasty Plot, Protect], evs: 4/0/0/252/0/252, owner: Flint}
+
+# Pokémon League. Renegade picked one of four random teams per member; Imperial uses one fixed,
+# optimised team per member per format. Round 1 = first challenge, Round 2 = rematches.
+league:
+  - trainer: Elite Four Aaron
+    round: 1
+    singles:
+      - {species: Yanmega, level: 71, item: Wise Glasses, nature: Timid, ability: Speed Boost, moves: [Bug Buzz, Air Slash, Giga Drain, Protect], evs: 4/0/0/252/0/252}
+      - {species: Vespiquen, level: 71, item: Leftovers, nature: Impish, ability: Intimidate, moves: [Attack Order, Defend Order, Heal Order, Toxic], evs: 252/4/252/0/0/0}
+      - {species: Heracross, level: 71, item: Choice Scarf, nature: Jolly, ability: Guts, moves: [Megahorn, Close Combat, Stone Edge, Night Slash], evs: 4/252/0/0/0/252}
+      - {species: Armaldo, level: 71, item: Choice Band, nature: Adamant, ability: Battle Armor, moves: [X-Scissor, Stone Edge, Earthquake, Aqua Tail], evs: 252/252/0/0/4/0}
+      - {species: Drapion, level: 71, item: Scope Lens, nature: Jolly, ability: Sniper, moves: [Cross Poison, Night Slash, X-Scissor, Earthquake], evs: 4/252/0/0/0/252}
+      - {species: Scizor, level: 72, item: Scizorite, nature: Adamant, ability: Technician, mega: Mega Scizor, moves: [Bullet Punch, Bug Bite, Superpower, Swords Dance], evs: 248/252/0/0/8/0}
+    doubles:
+      - {species: Vespiquen, level: 71, item: Sitrus Berry, nature: Impish, ability: Intimidate, moves: [Attack Order, Heal Order, Toxic, Protect], evs: 252/4/252/0/0/0}
+      - {species: Yanmega, level: 71, item: Wise Glasses, nature: Timid, ability: Speed Boost, moves: [Bug Buzz, Air Slash, Giga Drain, Protect], evs: 4/0/0/252/0/252}
+      - {species: Heracross, level: 71, item: Toxic Orb, nature: Jolly, ability: Guts, moves: [Megahorn, Close Combat, Rock Slide, Protect], evs: 4/252/0/0/0/252}
+      - {species: Armaldo, level: 71, item: Lum Berry, nature: Adamant, ability: Battle Armor, moves: [X-Scissor, Rock Slide, Aqua Tail, Protect], evs: 252/252/0/0/4/0}
+      - {species: Drapion, level: 71, item: Scope Lens, nature: Jolly, ability: Sniper, moves: [Cross Poison, Night Slash, Ice Fang, Protect], evs: 4/252/0/0/0/252}
+      - {species: Scizor, level: 72, item: Scizorite, nature: Adamant, ability: Technician, mega: Mega Scizor, moves: [Bullet Punch, Bug Bite, Swords Dance, Protect], evs: 248/252/0/0/8/0}
+
+  - trainer: Elite Four Bertha
+    round: 1
+    singles:
+      - {species: Claydol, level: 72, item: Light Clay, nature: Sassy, ability: Levitate, moves: [Earthquake, Psychic, Reflect, Light Screen], evs: 252/0/4/0/252/0}
+      - {species: Swampert, level: 72, item: Leftovers, nature: Adamant, ability: Torrent, moves: [Earthquake, Waterfall, Ice Punch, Stealth Rock], evs: 252/252/0/0/4/0}
+      - {species: Dugtrio, level: 72, item: Focus Sash, nature: Jolly, ability: Arena Trap, moves: [Earthquake, Stone Edge, Sucker Punch, Night Slash], evs: 4/252/0/0/0/252}
+      - {species: Mamoswine, level: 72, item: Life Orb, nature: Jolly, ability: Thick Fat, moves: [Earthquake, Icicle Crash, Ice Shard, Stone Edge], evs: 4/252/0/0/0/252}
+      - {species: Rhyperior, level: 72, item: Choice Band, nature: Adamant, ability: Solid Rock, moves: [Earthquake, Stone Edge, Megahorn, Ice Punch], evs: 252/252/0/0/4/0}
+      - {species: Tyranitar, level: 73, item: Tyranitarite, nature: Jolly, ability: Sand Stream, mega: Mega Tyranitar, moves: [Stone Edge, Crunch, Earthquake, Dragon Dance], evs: 4/252/0/0/0/252}
+    doubles:
+      - {species: Hippowdon, level: 72, item: Sitrus Berry, nature: Impish, ability: Sand Stream, moves: [Earthquake, Crunch, Slack Off, Yawn], evs: 252/4/252/0/0/0}
+      - {species: Gliscor, level: 72, item: Toxic Orb, nature: Jolly, ability: Poison Heal, moves: [Earthquake, Rock Slide, Swords Dance, Protect], evs: 4/252/0/0/0/252}
+      - {species: Claydol, level: 72, item: Light Clay, nature: Sassy, ability: Levitate, moves: [Earthquake, Psychic, Reflect, Light Screen], evs: 252/0/4/0/252/0}
+      - {species: Rhyperior, level: 72, item: Sitrus Berry, nature: Adamant, ability: Solid Rock, moves: [Rock Slide, Earthquake, Megahorn, Protect], evs: 252/252/0/0/4/0}
+      - {species: Mamoswine, level: 72, item: Life Orb, nature: Jolly, ability: Thick Fat, moves: [Icicle Crash, Earthquake, Ice Shard, Protect], evs: 4/252/0/0/0/252}
+      - {species: Tyranitar, level: 73, item: Tyranitarite, nature: Jolly, ability: Sand Stream, mega: Mega Tyranitar, moves: [Rock Slide, Crunch, Dragon Dance, Protect], evs: 4/252/0/0/0/252}
+
+  - trainer: Elite Four Flint
+    round: 1
+    singles:
+      - {species: Ninetales, level: 73, item: Heat Rock, nature: Timid, ability: Drought, moves: [Fire Blast, Solar Beam, Moonblast, Nasty Plot], evs: 4/0/0/252/0/252}
+      - {species: Flareon, level: 73, item: Choice Band, nature: Adamant, ability: Flash Fire, moves: [Flare Blitz, Superpower, Quick Attack, Wild Charge], evs: 252/252/0/0/4/0}
+      - {species: Rapidash, level: 73, item: Life Orb, nature: Jolly, ability: Flame Body, moves: [Flare Blitz, Wild Charge, Megahorn, Drill Run], evs: 4/252/0/0/0/252}
+      - {species: Infernape, level: 73, item: Expert Belt, nature: Hasty, ability: Iron Fist, moves: [Flare Blitz, Close Combat, Thunder Punch, Mach Punch], evs: 0/252/0/4/0/252}
+      - {species: Magmortar, level: 73, item: Life Orb, nature: Modest, ability: Flame Body, moves: [Fire Blast, Thunderbolt, Focus Blast, Solar Beam], evs: 4/0/0/252/0/252}
+      - {species: Houndoom, level: 74, item: Houndoominite, nature: Timid, ability: Intimidate, mega: Mega Houndoom, moves: [Fire Blast, Dark Pulse, Solar Beam, Nasty Plot], evs: 4/0/0/252/0/252}
+    doubles:
+      - {species: Ninetales, level: 73, item: Heat Rock, nature: Timid, ability: Drought, moves: [Heat Wave, Solar Beam, Moonblast, Protect], evs: 4/0/0/252/0/252}
+      - {species: Infernape, level: 73, item: Focus Sash, nature: Jolly, ability: Iron Fist, moves: [Fake Out, Flare Blitz, Close Combat, Mach Punch], evs: 4/252/0/0/0/252}
+      - {species: Arcanine, level: 73, item: Sitrus Berry, nature: Adamant, ability: Intimidate, moves: [Flare Blitz, Extreme Speed, Wild Charge, Protect], evs: 4/252/0/0/0/252}
+      - {species: Rapidash, level: 73, item: Life Orb, nature: Jolly, ability: Flame Body, moves: [Flare Blitz, Wild Charge, Megahorn, Protect], evs: 4/252/0/0/0/252}
+      - {species: Magmortar, level: 73, item: Life Orb, nature: Modest, ability: Flame Body, moves: [Heat Wave, Thunderbolt, Focus Blast, Protect], evs: 4/0/0/252/0/252}
+      - {species: Houndoom, level: 74, item: Houndoominite, nature: Timid, ability: Intimidate, mega: Mega Houndoom, moves: [Heat Wave, Dark Pulse, Nasty Plot, Protect], evs: 4/0/0/252/0/252}
+
+  - trainer: Elite Four Lucian
+    round: 1
+    singles:
+      - {species: Mr. Mime, level: 74, item: Light Clay, nature: Timid, ability: Filter, moves: [Psychic, Dazzling Gleam, Reflect, Light Screen], evs: 252/0/0/4/0/252}
+      - {species: Espeon, level: 74, item: Life Orb, nature: Timid, ability: Synchronize, moves: [Psychic, Dazzling Gleam, Shadow Ball, Calm Mind], evs: 4/0/0/252/0/252}
+      - {species: Bronzong, level: 74, item: Leftovers, nature: Relaxed, ability: Levitate, moves: [Gyro Ball, Earthquake, Stealth Rock, Hypnosis], evs: 252/4/252/0/0/0}
+      - {species: Alakazam, level: 74, item: Life Orb, nature: Timid, ability: Magic Guard, moves: [Psychic, Shadow Ball, Focus Blast, Energy Ball], evs: 4/0/0/252/0/252}
+      - {species: Gallade, level: 74, item: Scope Lens, nature: Jolly, ability: Steadfast, moves: [Psycho Cut, Close Combat, Leaf Blade, Night Slash], evs: 4/252/0/0/0/252}
+      - {species: Metagross, level: 75, item: Metagrossite, nature: Jolly, ability: Clear Body, mega: Mega Metagross, moves: [Meteor Mash, Zen Headbutt, Earthquake, Ice Punch], evs: 4/252/0/0/0/252}
+    doubles:
+      - {species: Mr. Mime, level: 74, item: Light Clay, nature: Timid, ability: Filter, moves: [Fake Out, Psychic, Reflect, Light Screen], evs: 252/0/0/4/0/252}
+      - {species: Espeon, level: 74, item: Life Orb, nature: Timid, ability: Synchronize, moves: [Psychic, Dazzling Gleam, Shadow Ball, Protect], evs: 4/0/0/252/0/252}
+      - {species: Bronzong, level: 74, item: Sitrus Berry, nature: Relaxed, ability: Levitate, moves: [Gyro Ball, Psychic, Hypnosis, Protect], evs: 252/4/252/0/0/0}
+      - {species: Alakazam, level: 74, item: Focus Sash, nature: Timid, ability: Magic Guard, moves: [Psychic, Shadow Ball, Focus Blast, Protect], evs: 4/0/0/252/0/252}
+      - {species: Gallade, level: 74, item: Lum Berry, nature: Jolly, ability: Steadfast, moves: [Psycho Cut, Close Combat, Leaf Blade, Protect], evs: 4/252/0/0/0/252}
+      - {species: Metagross, level: 75, item: Metagrossite, nature: Jolly, ability: Clear Body, mega: Mega Metagross, moves: [Meteor Mash, Zen Headbutt, Bullet Punch, Protect], evs: 4/252/0/0/0/252}
+
+  - trainer: Champion Cynthia
+    round: 1
+    note: Always a double battle on the first challenge. Singles set is used only by the "all singles" rematch option (see Round 2) — the Round 1 singles set is provided for completeness/testing.
+    doubles:
+      - {species: Togekiss, level: 77, item: Sitrus Berry, nature: Timid, ability: Serene Grace, moves: [Air Slash, Moonblast, Tailwind, Protect], evs: 252/0/0/4/0/252}
+      - {species: Spiritomb, level: 77, item: Leftovers, nature: Calm, ability: Pressure, moves: [Dark Pulse, Shadow Ball, Will-O-Wisp, Pain Split], evs: 252/0/4/0/252/0}
+      - {species: Roserade, level: 77, item: White Herb, nature: Timid, ability: Technician, moves: [Leaf Storm, Sludge Bomb, Sleep Powder, Protect], evs: 4/0/0/252/0/252}
+      - {species: Milotic, level: 77, item: Leftovers, nature: Bold, ability: Marvel Scale, moves: [Scald, Moonblast, Ice Beam, Recover], evs: 252/0/252/4/0/0}
+      - {species: Lucario, level: 77, item: Life Orb, nature: Jolly, ability: Adaptability, moves: [Close Combat, Meteor Mash, Extreme Speed, Protect], evs: 4/252/0/0/0/252}
+      - {species: Garchomp, level: 78, item: Garchompite Z, nature: Naive, ability: Rough Skin, mega: Mega Garchomp Z, moves: [Draco Meteor, Rock Slide, Fire Blast, Protect], evs: 0/128/0/128/0/252}
+    singles:
+      - {species: Spiritomb, level: 77, item: Leftovers, nature: Calm, ability: Pressure, moves: [Dark Pulse, Shadow Ball, Will-O-Wisp, Pain Split], evs: 252/0/4/0/252/0}
+      - {species: Roserade, level: 77, item: White Herb, nature: Timid, ability: Technician, moves: [Leaf Storm, Sludge Bomb, Dazzling Gleam, Sleep Powder], evs: 4/0/0/252/0/252}
+      - {species: Togekiss, level: 77, item: Leftovers, nature: Timid, ability: Serene Grace, moves: [Air Slash, Moonblast, Aura Sphere, Roost], evs: 4/0/0/252/0/252}
+      - {species: Lucario, level: 77, item: Life Orb, nature: Jolly, ability: Adaptability, moves: [High Jump Kick, Meteor Mash, Extreme Speed, Ice Punch], evs: 4/252/0/0/0/252}
+      - {species: Milotic, level: 77, item: Leftovers, nature: Bold, ability: Marvel Scale, moves: [Scald, Moonblast, Ice Beam, Recover], evs: 252/0/252/4/0/0}
+      - {species: Garchomp, level: 78, item: Garchompite Z, nature: Naive, ability: Rough Skin, mega: Mega Garchomp Z, moves: [Draco Meteor, Earthquake, Fire Blast, Stone Edge], evs: 0/128/0/128/0/252}
+
+  - trainer: Elite Four Aaron
+    round: 2
+    singles:
+      - {species: Yanmega, level: 83, item: Wise Glasses, nature: Timid, ability: Speed Boost, moves: [Bug Buzz, Air Slash, Giga Drain, Protect], evs: 4/0/0/252/0/252}
+      - {species: Heracross, level: 83, item: Toxic Orb, nature: Jolly, ability: Guts, moves: [Megahorn, Close Combat, Stone Edge, Protect], evs: 4/252/0/0/0/252}
+      - {species: Scyther, level: 83, item: Life Orb, nature: Jolly, ability: Technician, moves: [Bug Bite, Aerial Ace, Brick Break, Quick Attack], evs: 4/252/0/0/0/252}
+      - {species: Armaldo, level: 83, item: Passho Berry, nature: Adamant, ability: Battle Armor, moves: [X-Scissor, Stone Edge, Earthquake, Aqua Jet], evs: 252/252/0/0/4/0}
+      - {species: Drapion, level: 83, item: Scope Lens, nature: Jolly, ability: Sniper, moves: [Cross Poison, Night Slash, X-Scissor, Earthquake], evs: 4/252/0/0/0/252}
+      - {species: Scizor, level: 84, item: Scizorite, nature: Adamant, ability: Technician, mega: Mega Scizor, moves: [Bullet Punch, Bug Bite, Superpower, Swords Dance], evs: 248/252/0/0/8/0}
+    doubles:
+      - {species: Yanmega, level: 83, item: Wise Glasses, nature: Timid, ability: Speed Boost, moves: [Bug Buzz, Air Slash, Giga Drain, Protect], evs: 4/0/0/252/0/252}
+      - {species: Heracross, level: 83, item: Toxic Orb, nature: Jolly, ability: Guts, moves: [Megahorn, Close Combat, Rock Slide, Protect], evs: 4/252/0/0/0/252}
+      - {species: Scyther, level: 83, item: Focus Sash, nature: Jolly, ability: Technician, moves: [Bug Bite, Aerial Ace, Quick Attack, Protect], evs: 4/252/0/0/0/252}
+      - {species: Armaldo, level: 83, item: Lum Berry, nature: Adamant, ability: Battle Armor, moves: [X-Scissor, Rock Slide, Aqua Jet, Protect], evs: 252/252/0/0/4/0}
+      - {species: Drapion, level: 83, item: Scope Lens, nature: Jolly, ability: Sniper, moves: [Cross Poison, Night Slash, Ice Fang, Protect], evs: 4/252/0/0/0/252}
+      - {species: Scizor, level: 84, item: Scizorite, nature: Adamant, ability: Technician, mega: Mega Scizor, moves: [Bullet Punch, Bug Bite, Swords Dance, Protect], evs: 248/252/0/0/8/0}
+
+  - trainer: Elite Four Bertha
+    round: 2
+    singles:
+      - {species: Hippowdon, level: 84, item: Leftovers, nature: Impish, ability: Sand Stream, moves: [Earthquake, Stone Edge, Stealth Rock, Slack Off], evs: 252/4/252/0/0/0}
+      - {species: Swampert, level: 84, item: Rindo Berry, nature: Adamant, ability: Torrent, moves: [Earthquake, Waterfall, Avalanche, Stealth Rock], evs: 252/252/0/0/4/0}
+      - {species: Gliscor, level: 84, item: Toxic Orb, nature: Jolly, ability: Poison Heal, moves: [Earthquake, Stone Edge, Protect, Swords Dance], evs: 4/252/0/0/0/252}
+      - {species: Dugtrio, level: 84, item: Choice Band, nature: Jolly, ability: Arena Trap, moves: [Earthquake, Stone Edge, Night Slash, Aerial Ace], evs: 4/252/0/0/0/252}
+      - {species: Rhyperior, level: 84, item: Focus Sash, nature: Adamant, ability: Solid Rock, moves: [Earthquake, Rock Wrecker, Megahorn, Hammer Arm], evs: 252/252/0/0/4/0}
+      - {species: Tyranitar, level: 85, item: Tyranitarite, nature: Jolly, ability: Sand Stream, mega: Mega Tyranitar, moves: [Stone Edge, Crunch, Earthquake, Dragon Dance], evs: 4/252/0/0/0/252}
+    doubles:
+      - {species: Hippowdon, level: 84, item: Sitrus Berry, nature: Impish, ability: Sand Stream, moves: [Earthquake, Crunch, Slack Off, Yawn], evs: 252/4/252/0/0/0}
+      - {species: Gliscor, level: 84, item: Toxic Orb, nature: Jolly, ability: Poison Heal, moves: [Earthquake, Rock Slide, Swords Dance, Protect], evs: 4/252/0/0/0/252}
+      - {species: Swampert, level: 84, item: Rindo Berry, nature: Adamant, ability: Torrent, moves: [Waterfall, Rock Slide, Ice Punch, Protect], evs: 252/252/0/0/4/0}
+      - {species: Rhyperior, level: 84, item: Sitrus Berry, nature: Adamant, ability: Solid Rock, moves: [Rock Slide, Earthquake, Megahorn, Protect], evs: 252/252/0/0/4/0}
+      - {species: Dugtrio, level: 84, item: Focus Sash, nature: Jolly, ability: Arena Trap, moves: [Earthquake, Rock Slide, Sucker Punch, Protect], evs: 4/252/0/0/0/252}
+      - {species: Tyranitar, level: 85, item: Tyranitarite, nature: Jolly, ability: Sand Stream, mega: Mega Tyranitar, moves: [Rock Slide, Crunch, Dragon Dance, Protect], evs: 4/252/0/0/0/252}
+
+  - trainer: Elite Four Flint
+    round: 2
+    note: Moltres stays the final Pokémon; Houndoom is the Mega.
+    singles:
+      - {species: Ninetales, level: 85, item: Heat Rock, nature: Timid, ability: Drought, moves: [Fire Blast, Solar Beam, Moonblast, Nasty Plot], evs: 4/0/0/252/0/252}
+      - {species: Magmortar, level: 85, item: Expert Belt, nature: Modest, ability: Flame Body, moves: [Fire Blast, Thunderbolt, Focus Blast, Psychic], evs: 4/0/0/252/0/252}
+      - {species: Infernape, level: 85, item: Life Orb, nature: Jolly, ability: Iron Fist, moves: [Flare Blitz, Close Combat, Thunder Punch, Mach Punch], evs: 4/252/0/0/0/252}
+      - {species: Rapidash, level: 85, item: Life Orb, nature: Jolly, ability: Flame Body, moves: [Flare Blitz, Drill Run, Megahorn, Wild Charge], evs: 4/252/0/0/0/252}
+      - {species: Houndoom, level: 85, item: Houndoominite, nature: Timid, ability: Intimidate, mega: Mega Houndoom, moves: [Fire Blast, Dark Pulse, Solar Beam, Nasty Plot], evs: 4/0/0/252/0/252}
+      - {species: Moltres, level: 86, item: Choice Scarf, nature: Timid, ability: Pressure, moves: [Fire Blast, Hurricane, Solar Beam, U-turn], evs: 4/0/0/252/0/252}
+    doubles:
+      - {species: Ninetales, level: 85, item: Heat Rock, nature: Timid, ability: Drought, moves: [Heat Wave, Solar Beam, Moonblast, Protect], evs: 4/0/0/252/0/252}
+      - {species: Infernape, level: 85, item: Focus Sash, nature: Jolly, ability: Iron Fist, moves: [Fake Out, Flare Blitz, Close Combat, Mach Punch], evs: 4/252/0/0/0/252}
+      - {species: Magmortar, level: 85, item: Life Orb, nature: Modest, ability: Flame Body, moves: [Heat Wave, Thunderbolt, Focus Blast, Protect], evs: 4/0/0/252/0/252}
+      - {species: Rapidash, level: 85, item: Life Orb, nature: Jolly, ability: Flame Body, moves: [Flare Blitz, Wild Charge, Megahorn, Protect], evs: 4/252/0/0/0/252}
+      - {species: Houndoom, level: 85, item: Houndoominite, nature: Timid, ability: Intimidate, mega: Mega Houndoom, moves: [Heat Wave, Dark Pulse, Nasty Plot, Protect], evs: 4/0/0/252/0/252}
+      - {species: Moltres, level: 86, item: Sitrus Berry, nature: Timid, ability: Pressure, moves: [Heat Wave, Hurricane, Solar Beam, Protect], evs: 4/0/0/252/0/252}
+
+  - trainer: Elite Four Lucian
+    round: 2
+    note: Latios stays the final Pokémon (no Latiasite/Latiosite on trainers); Metagross is the Mega.
+    singles:
+      - {species: Mr. Mime, level: 86, item: Light Clay, nature: Timid, ability: Filter, moves: [Psychic, Dazzling Gleam, Reflect, Light Screen], evs: 252/0/0/4/0/252}
+      - {species: Espeon, level: 86, item: Salac Berry, nature: Timid, ability: Synchronize, moves: [Psychic, Aura Sphere, Calm Mind, Baton Pass], evs: 4/0/0/252/0/252}
+      - {species: Gallade, level: 86, item: Muscle Band, nature: Jolly, ability: Steadfast, moves: [Zen Headbutt, Close Combat, Ice Punch, Swords Dance], evs: 4/252/0/0/0/252}
+      - {species: Alakazam, level: 86, item: Life Orb, nature: Timid, ability: Magic Guard, moves: [Psychic, Aura Sphere, Shadow Ball, Grass Knot], evs: 4/0/0/252/0/252}
+      - {species: Metagross, level: 86, item: Metagrossite, nature: Jolly, ability: Clear Body, mega: Mega Metagross, moves: [Meteor Mash, Zen Headbutt, Earthquake, Ice Punch], evs: 4/252/0/0/0/252}
+      - {species: Latios, level: 87, item: Choice Specs, nature: Timid, ability: Levitate, moves: [Psychic, Draco Meteor, Ice Beam, Thunderbolt], evs: 4/0/0/252/0/252}
+    doubles:
+      - {species: Mr. Mime, level: 86, item: Light Clay, nature: Timid, ability: Filter, moves: [Fake Out, Psychic, Reflect, Light Screen], evs: 252/0/0/4/0/252}
+      - {species: Espeon, level: 86, item: Life Orb, nature: Timid, ability: Synchronize, moves: [Psychic, Dazzling Gleam, Shadow Ball, Protect], evs: 4/0/0/252/0/252}
+      - {species: Gallade, level: 86, item: Lum Berry, nature: Jolly, ability: Steadfast, moves: [Psycho Cut, Close Combat, Leaf Blade, Protect], evs: 4/252/0/0/0/252}
+      - {species: Alakazam, level: 86, item: Focus Sash, nature: Timid, ability: Magic Guard, moves: [Psychic, Shadow Ball, Focus Blast, Protect], evs: 4/0/0/252/0/252}
+      - {species: Metagross, level: 86, item: Metagrossite, nature: Jolly, ability: Clear Body, mega: Mega Metagross, moves: [Meteor Mash, Zen Headbutt, Bullet Punch, Protect], evs: 4/252/0/0/0/252}
+      - {species: Latios, level: 87, item: Life Orb, nature: Timid, ability: Levitate, moves: [Draco Meteor, Psychic, Ice Beam, Protect], evs: 4/0/0/252/0/252}
+
+  - trainer: Champion Cynthia
+    round: 2
+    note: Singles for the "all singles" rematch option; doubles for "all doubles" and for the 2+2 format. Rayquaza stays her final Pokémon; Garchomp is the Mega.
+    singles:
+      - {species: Spiritomb, level: 88, item: Leftovers, nature: Calm, ability: Pressure, moves: [Dark Pulse, Shadow Ball, Will-O-Wisp, Calm Mind], evs: 252/0/4/0/252/0}
+      - {species: Togekiss, level: 88, item: Leftovers, nature: Timid, ability: Serene Grace, moves: [Air Slash, Moonblast, Aura Sphere, Roost], evs: 4/0/0/252/0/252}
+      - {species: Lucario, level: 88, item: Life Orb, nature: Jolly, ability: Adaptability, moves: [Meteor Mash, High Jump Kick, Crunch, Extreme Speed], evs: 4/252/0/0/0/252}
+      - {species: Milotic, level: 88, item: Leftovers, nature: Bold, ability: Marvel Scale, moves: [Scald, Moonblast, Ice Beam, Recover], evs: 252/0/252/4/0/0}
+      - {species: Garchomp, level: 88, item: Garchompite Z, nature: Naive, ability: Rough Skin, mega: Mega Garchomp Z, moves: [Draco Meteor, Earthquake, Fire Blast, Stone Edge], evs: 0/128/0/128/0/252}
+      - {species: Rayquaza, level: 89, item: Focus Sash, nature: Jolly, ability: Air Lock, moves: [Outrage, Earthquake, Extreme Speed, Dragon Dance], evs: 4/252/0/0/0/252}
+    doubles:
+      - {species: Togekiss, level: 88, item: Sitrus Berry, nature: Timid, ability: Serene Grace, moves: [Air Slash, Moonblast, Tailwind, Protect], evs: 252/0/0/4/0/252}
+      - {species: Spiritomb, level: 88, item: Leftovers, nature: Calm, ability: Pressure, moves: [Dark Pulse, Shadow Ball, Will-O-Wisp, Pain Split], evs: 252/0/4/0/252/0}
+      - {species: Lucario, level: 88, item: Life Orb, nature: Jolly, ability: Adaptability, moves: [Close Combat, Meteor Mash, Extreme Speed, Protect], evs: 4/252/0/0/0/252}
+      - {species: Milotic, level: 88, item: Leftovers, nature: Bold, ability: Marvel Scale, moves: [Scald, Moonblast, Ice Beam, Recover], evs: 252/0/252/4/0/0}
+      - {species: Garchomp, level: 88, item: Garchompite Z, nature: Naive, ability: Rough Skin, mega: Mega Garchomp Z, moves: [Draco Meteor, Rock Slide, Fire Blast, Protect], evs: 0/128/0/128/0/252}
+      - {species: Rayquaza, level: 89, item: Life Orb, nature: Jolly, ability: Air Lock, moves: [Dragon Claw, Extreme Speed, Rock Slide, Protect], evs: 4/252/0/0/0/252}

@@ -1,0 +1,231 @@
+# Imperial Platinum — how every ADDED Legendary / Mythical / Ultra Beast / Paradox Pokémon is obtained.
+# Rendered to docs/PostgameLegendaries.md by tools/design/gen_legendary_doc.py, which checks that all
+# 90 added non-regular species are covered exactly once.
+#
+# Everything here requires FLAG_GAME_CLEAR (Champion). Quests are started by the new
+# "Legend Archivist" NPC in the Canalave Library (2F), who reads from a new tome per region once the
+# previous chapter is done — the player can also do encounters in any order once a chapter is open.
+# Static encounters can be re-fought after a loss/run (Renegade behaviour); all have normal shiny odds.
+# Levels follow Renegade's scale: box legendaries 70, other legendaries 60-68, Mythicals 50-60.
+
+hub:
+  npc: Legend Archivist (new), Canalave Library 2F
+  unlock: Become Champion
+  chapters: [Unova Chronicle, Kalos Chronicle, Alola Chronicle, Galar Chronicle, Paldea Chronicle]
+  note: Chapters open one after another (each needs the previous chapter's "key" legendary caught), so the post-game has a guided order.
+
+quests:
+  # ---------------------------------------------------------------- Unova Chronicle
+  - chapter: Unova Chronicle
+    name: The Victory Star
+    species: [Victini]
+    level: 55
+    location: Sunyshore City — Vista Lighthouse basement (new room)
+    steps: Read the Unova Chronicle with the Archivist. A sealed hatch appears in the lighthouse; Volkner opens it.
+  - chapter: Unova Chronicle
+    name: Swords of Justice
+    species: [Cobalion, Terrakion, Virizion]
+    level: 65
+    location: "Cobalion — Iron Island B2F (new dead end); Terrakion — Route 227 rock cave; Virizion — Eterna Forest (north clearing)"
+    steps: All three are static encounters as soon as the chapter opens.
+  - chapter: Unova Chronicle
+    name: The Young Sword
+    species: [Keldeo]
+    level: 55
+    location: Lake Valor (north shore)
+    steps: Visit with Cobalion, Terrakion and Virizion in the party.
+  - chapter: Unova Chronicle
+    name: Forces of Nature
+    species: [Tornadus, Thundurus, Landorus, Enamorus]
+    level: 65
+    location: "Tornadus and Thundurus roam Sinnoh (like Mesprit/Cresselia). Landorus — Route 228 shrine (new). Enamorus — Route 224, Flower Paradise gate"
+    steps: Roamers are released when the chapter opens. Bring both to the Route 228 shrine for Landorus; Enamorus appears after Landorus is caught.
+  - chapter: Unova Chronicle
+    name: Truth and Ideals (chapter key)
+    species: [Reshiram, Zekrom, Kyurem]
+    level: 70
+    location: "Reshiram — Fuego Ironworks (furnace room, new). Zekrom — Valley Windworks at night. Kyurem — Mt. Coronet Snow Area cave"
+    steps: The Archivist gives the Light Stone and Dark Stone. Using each at its location summons Reshiram/Zekrom. Kyurem appears once both are caught. (DNA Splicers / fused forms are out of scope for now.)
+  - chapter: Unova Chronicle
+    name: The Relic Song
+    species: [Meloetta]
+    level: 55
+    location: Hearthome City — Amity Square stage
+    steps: Talk to the composer in the Contest Hall with a Pokémon that knows Sing in the party.
+  - chapter: Unova Chronicle
+    name: Plasma's Leftovers
+    species: [Genesect]
+    level: 60
+    location: Veilstone City — Team Galactic HQ lab
+    steps: A Galactic scientist confesses to reviving a fossil and asks you to stop it. Battle then catch.
+
+  # ---------------------------------------------------------------- Kalos Chronicle
+  - chapter: Kalos Chronicle
+    name: Life and Destruction (chapter key)
+    species: [Xerneas, Yveltal]
+    level: 70
+    location: "Xerneas — Eterna Forest, behind the Old Chateau. Yveltal — Lost Tower roof (new floor)"
+    steps: Both are static once the chapter opens.
+  - chapter: Kalos Chronicle
+    name: Order
+    species: [Zygarde]
+    level: 70
+    location: Wayward Cave — new deep chamber
+    steps: Appears after Xerneas and Yveltal are caught. (Cells/Cores and Complete Forme are out of scope; Zygardite is sold post-game.)
+  - chapter: Kalos Chronicle
+    name: The Jewel
+    species: [Diancie]
+    level: 55
+    location: Oreburgh Mine B3F (new room)
+    steps: Bring a Carbink to the mine's back wall.
+  - chapter: Kalos Chronicle
+    name: Unbound Mischief
+    species: [Hoopa]
+    level: 55
+    location: Solaceon Ruins — innermost chamber
+    steps: The Archivist gives a Prison Bottle key item; use it in the ruins.
+  - chapter: Kalos Chronicle
+    name: Steam Engine
+    species: [Volcanion]
+    level: 60
+    location: Stark Mountain — hot-spring side room (new)
+    steps: Static encounter.
+
+  # ---------------------------------------------------------------- Alola Chronicle
+  - chapter: Alola Chronicle
+    name: The Island Guardians
+    species: [Tapu Koko, Tapu Lele, Tapu Bulu, Tapu Fini]
+    level: 65
+    location: "Koko — Route 222 beach shrine. Lele — Fullmoon Island grove. Bulu — Floaroma Meadow shrine. Fini — Route 226 sea shrine"
+    steps: Four new shrine objects; interacting starts the battle.
+  - chapter: Alola Chronicle
+    name: Nebby (chapter key)
+    species: [Cosmog, Cosmoem, Solgaleo, Lunala]
+    level: 5
+    location: Spear Pillar
+    steps: A Cosmog is found at Spear Pillar (gift, Lv. 5). It evolves into Cosmoem at Lv. 43; Cosmoem becomes Solgaleo with a Sun Stone or Lunala with a Moon Stone (see EvolutionChanges_Imperial.md). Return to Spear Pillar for a second Cosmog after the first evolves, so both Solgaleo and Lunala are obtainable.
+  - chapter: Alola Chronicle
+    name: The Blinding One
+    species: [Necrozma]
+    level: 70
+    location: Spear Pillar
+    steps: Appears after owning Solgaleo or Lunala.
+  - chapter: Alola Chronicle
+    name: Ultra Wormholes
+    species: [Nihilego, Buzzwole, Pheromosa, Xurkitree, Celesteela, Kartana, Guzzlord, Stakataka, Blacephalon]
+    level: 65
+    location: "Nihilego — Iron Island B3F. Buzzwole — Route 225. Pheromosa — Route 229. Xurkitree — Sunyshore City power plant. Celesteela — Mt. Coronet Summit. Kartana — Eterna Forest. Guzzlord — Turnback Cave. Stakataka — Route 227. Blacephalon — Stark Mountain (outside)"
+    steps: After Necrozma is caught, a glowing wormhole object appears at each location (static encounter).
+  - chapter: Alola Chronicle
+    name: The Poison Pin
+    species: [Poipole, Naganadel]
+    level: 40
+    location: Fight Area — Pokémon Center
+    steps: An Ultra Recon-style researcher gives Poipole (gift). Naganadel by levelling up knowing Dragon Pulse.
+  - chapter: Alola Chronicle
+    name: Type Experiments
+    species: ["Type: Null", Silvally]
+    level: 40
+    location: Veilstone City — Team Galactic HQ
+    steps: Gift from the same reformed scientist as Genesect. Silvally via high friendship.
+  - chapter: Alola Chronicle
+    name: The Artificial Pokémon
+    species: [Magearna]
+    level: 50
+    location: Sunyshore City — Volkner's workshop (new room in the Gym)
+    steps: Volkner restores a 500-year-old automaton after you defeat him in a rematch.
+  - chapter: Alola Chronicle
+    name: Shadows
+    species: [Marshadow]
+    level: 50
+    location: Old Chateau (after Renegade's Gengar and Rotom events)
+    steps: Static encounter in the dining room shadow.
+  - chapter: Alola Chronicle
+    name: Thunderclap
+    species: [Zeraora]
+    level: 50
+    location: Route 222 — tall grass at night
+    steps: Static encounter.
+  - chapter: Alola Chronicle
+    name: Hex Nut
+    species: [Meltan, Melmetal]
+    level: 40
+    location: Oreburgh Mine B2F
+    steps: The mine foreman gives a Meltan, and after you show it to him, a Melmetal (Lv. 50).
+
+  # ---------------------------------------------------------------- Galar Chronicle
+  - chapter: Galar Chronicle
+    name: The Hero Legends (chapter key)
+    species: [Zacian, Zamazenta]
+    level: 70
+    location: Route 210 North (in the fog)
+    steps: Walk through the fog with the chapter open; Zacian appears first, Zamazenta after it is caught. (Crowned forms are out of scope.)
+  - chapter: Galar Chronicle
+    name: Darkest Day
+    species: [Eternatus]
+    level: 70
+    location: Distortion World
+    steps: Appears after both heroes are caught.
+  - chapter: Galar Chronicle
+    name: Master Dojo
+    species: [Kubfu, Urshifu]
+    level: 10
+    location: Veilstone Gym
+    steps: Maylene gives a Kubfu (gift) and both Scrolls; using one evolves Kubfu into Urshifu (Single Strike or Rapid Strike).
+  - chapter: Galar Chronicle
+    name: The Jungle Guardian
+    species: [Zarude]
+    level: 60
+    location: Great Marsh — Area 6
+    steps: Static encounter.
+  - chapter: Galar Chronicle
+    name: New Regis
+    species: [Regieleki, Regidrago]
+    level: 65
+    location: "Regieleki — Valley Windworks (sealed room). Regidrago — Route 228 shrine"
+    steps: Need Regirock, Regice and Registeel in the party (all from Renegade's events).
+  - chapter: Galar Chronicle
+    name: King of Bountiful Harvests
+    species: [Calyrex, Glastrier, Spectrier]
+    level: 70
+    location: "Calyrex — Celestic Town shrine. Glastrier — Route 217 (blizzard). Spectrier — Lost Tower 5F"
+    steps: Calyrex first; then the steeds appear. (Fused Calyrex forms are out of scope.)
+
+  # ---------------------------------------------------------------- Paldea Chronicle
+  - chapter: Paldea Chronicle
+    name: Treasures of Ruin
+    species: [Wo-Chien, Chien-Pao, Ting-Lu, Chi-Yu]
+    level: 65
+    location: "Wo-Chien — Great Marsh shrine. Chien-Pao — Acuity Lakefront shrine. Ting-Lu — Route 214 shrine. Chi-Yu — Fuego Ironworks shrine"
+    steps: Pull the eight stakes hidden around Sinnoh (two per shrine area, hinted by the Archivist) to unseal each shrine.
+  - chapter: Paldea Chronicle
+    name: The Loyal Three
+    species: [Okidogi, Munkidori, Fezandipiti]
+    level: 65
+    location: "Okidogi — Route 225. Munkidori — Route 229. Fezandipiti — Route 224"
+    steps: Static encounters.
+  - chapter: Paldea Chronicle
+    name: The Masked Ogre
+    species: [Ogerpon]
+    level: 65
+    location: Route 211 (East), at the mountain shrine
+    steps: Static encounter. (Mask forms are out of scope; Teal Mask only.)
+  - chapter: Paldea Chronicle
+    name: The Poison Puppeteer
+    species: [Pecharunt]
+    level: 60
+    location: Route 224 — after the Loyal Three are caught
+    steps: Static encounter.
+  - chapter: Paldea Chronicle
+    name: Time Rifts (Paradox Pokémon)
+    species: [Great Tusk, Scream Tail, Brute Bonnet, Flutter Mane, Slither Wing, Sandy Shocks, Roaring Moon, Walking Wake, Gouging Fire, Raging Bolt,
+              Iron Treads, Iron Bundle, Iron Hands, Iron Jugulis, Iron Moth, Iron Thorns, Iron Valiant, Iron Leaves, Iron Boulder, Iron Crown]
+    level: 65
+    location: "Ancient (past) Paradox: Spear Pillar time rift after Dialga is caught. Future Paradox: Spear Pillar space rift after Palkia is caught."
+    steps: Each rift is a Poké Radar-style patch on a new Spear Pillar floor; one Paradox Pokémon per patch, rotating daily (Renegade's daily RNG), until all ten of that rift are caught.
+  - chapter: Paldea Chronicle
+    name: Area Zero (chapter key)
+    species: [Koraidon, Miraidon, Terapagos]
+    level: 70
+    location: Sendoff Spring — the crater (new map)
+    steps: Koraidon and Miraidon after all twenty Paradox Pokémon are registered; Terapagos after both are caught.

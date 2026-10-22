@@ -1,0 +1,100 @@
+form_id,form,base_species,dex,trigger_item,types,ability,bst,hp,atk,def,spa,spd,spe,base_types,base_bst,source_game,ability_in_gen4_engine
+10033,Mega Venusaur,Venusaur,3,Venusaurite,Grass/Poison,Thick Fat,625,80,100,123,122,120,80,Grass/Poison,525,XY,1
+10034,Mega Charizard X,Charizard,6,Charizardite X,Fire/Dragon,Tough Claws,634,78,130,111,130,85,100,Fire/Flying,534,XY,0
+10035,Mega Charizard Y,Charizard,6,Charizardite Y,Fire/Flying,Drought,634,78,104,78,159,115,100,Fire/Flying,534,XY,1
+10036,Mega Blastoise,Blastoise,9,Blastoisinite,Water,Mega Launcher,630,79,103,120,135,115,78,Water,530,XY,0
+10037,Mega Alakazam,Alakazam,65,Alakazite,Psychic,Trace,600,55,50,65,175,105,150,Psychic,500,XY,1
+10038,Mega Gengar,Gengar,94,Gengarite,Ghost/Poison,Shadow Tag,600,60,65,80,170,95,130,Ghost/Poison,500,XY,1
+10039,Mega Kangaskhan,Kangaskhan,115,Kangaskhanite,Normal,Parental Bond,590,105,125,100,60,100,100,Normal,490,XY,0
+10040,Mega Pinsir,Pinsir,127,Pinsirite,Bug/Flying,Aerilate,600,65,155,120,65,90,105,Bug,500,XY,0
+10041,Mega Gyarados,Gyarados,130,Gyaradosite,Water/Dark,Mold Breaker,640,95,155,109,70,130,81,Water/Flying,540,XY,1
+10042,Mega Aerodactyl,Aerodactyl,142,Aerodactylite,Rock/Flying,Tough Claws,615,80,135,85,70,95,150,Rock/Flying,515,XY,0
+10043,Mega Mewtwo X,Mewtwo,150,Mewtwonite X,Psychic/Fighting,Steadfast,780,106,190,100,154,100,130,Psychic,680,XY,1
+10044,Mega Mewtwo Y,Mewtwo,150,Mewtwonite Y,Psychic,Insomnia,780,106,150,70,194,120,140,Psychic,680,XY,1
+10045,Mega Ampharos,Ampharos,181,Ampharosite,Electric/Dragon,Mold Breaker,610,90,95,105,165,110,45,Electric,510,XY,1
+10046,Mega Scizor,Scizor,212,Scizorite,Bug/Steel,Technician,600,70,150,140,65,100,75,Bug/Steel,500,XY,1
+10047,Mega Heracross,Heracross,214,Heracronite,Bug/Fighting,Skill Link,600,80,185,115,40,105,75,Bug/Fighting,500,XY,1
+10048,Mega Houndoom,Houndoom,229,Houndoominite,Dark/Fire,Solar Power,600,75,90,90,140,90,115,Dark/Fire,500,XY,1
+10049,Mega Tyranitar,Tyranitar,248,Tyranitarite,Rock/Dark,Sand Stream,700,100,164,150,95,120,71,Rock/Dark,600,XY,1
+10050,Mega Blaziken,Blaziken,257,Blazikenite,Fire/Fighting,Speed Boost,630,80,160,80,130,80,100,Fire/Fighting,530,XY,1
+10051,Mega Gardevoir,Gardevoir,282,Gardevoirite,Psychic/Fairy,Pixilate,618,68,85,65,165,135,100,Psychic/Fairy,518,XY,0
+10052,Mega Mawile,Mawile,303,Mawilite,Steel/Fairy,Huge Power,480,50,105,125,55,95,50,Steel/Fairy,380,XY,1
+10053,Mega Aggron,Aggron,306,Aggronite,Steel,Filter,630,70,140,230,60,80,50,Steel/Rock,530,XY,1
+10054,Mega Medicham,Medicham,308,Medichamite,Fighting/Psychic,Pure Power,510,60,100,85,80,85,100,Fighting/Psychic,410,XY,1
+10055,Mega Manectric,Manectric,310,Manectite,Electric,Intimidate,575,70,75,80,135,80,135,Electric,475,XY,1
+10056,Mega Banette,Banette,354,Banettite,Ghost,Prankster,555,64,165,75,93,83,75,Ghost,455,XY,0
+10057,Mega Absol,Absol,359,Absolite,Dark,Magic Bounce,565,65,150,60,115,60,115,Dark,465,XY,0
+10058,Mega Garchomp,Garchomp,445,Garchompite,Dragon/Ground,Sand Force,700,108,170,115,120,95,92,Dragon/Ground,600,XY,0
+10059,Mega Lucario,Lucario,448,Lucarionite,Fighting/Steel,Adaptability,625,70,145,88,140,70,112,Fighting/Steel,525,XY,1
+10060,Mega Abomasnow,Abomasnow,460,Abomasite,Grass/Ice,Snow Warning,594,90,132,105,132,105,30,Grass/Ice,494,XY,1
+10062,Mega Latias,Latias,380,Latiasite,Dragon/Psychic,Levitate,700,80,100,120,140,150,110,Dragon/Psychic,600,ORAS,1
+10063,Mega Latios,Latios,381,Latiosite,Dragon/Psychic,Levitate,700,80,130,100,160,120,110,Dragon/Psychic,600,ORAS,1
+10064,Mega Swampert,Swampert,260,Swampertite,Water/Ground,Swift Swim,635,100,150,110,95,110,70,Water/Ground,535,ORAS,1
+10065,Mega Sceptile,Sceptile,254,Sceptilite,Grass/Dragon,Lightning Rod,630,70,110,75,145,85,145,Grass,530,ORAS,1
+10066,Mega Sableye,Sableye,302,Sablenite,Dark/Ghost,Magic Bounce,480,50,85,125,85,115,20,Dark/Ghost,380,ORAS,0
+10067,Mega Altaria,Altaria,334,Altarianite,Dragon/Fairy,Pixilate,590,75,110,110,110,105,80,Dragon/Flying,490,ORAS,0
+10068,Mega Gallade,Gallade,475,Galladite,Psychic/Fighting,Inner Focus,618,68,165,95,65,115,110,Psychic/Fighting,518,ORAS,1
+10069,Mega Audino,Audino,531,Audinite,Normal/Fairy,Healer,545,103,60,126,80,126,50,Normal,445,ORAS,0
+10070,Mega Sharpedo,Sharpedo,319,Sharpedonite,Water/Dark,Strong Jaw,560,70,140,70,110,65,105,Water/Dark,460,ORAS,0
+10071,Mega Slowbro,Slowbro,80,Slowbronite,Water/Psychic,Shell Armor,590,95,75,180,130,80,30,Water/Psychic,490,ORAS,1
+10072,Mega Steelix,Steelix,208,Steelixite,Steel/Ground,Sand Force,610,75,125,230,55,95,30,Steel/Ground,510,ORAS,0
+10073,Mega Pidgeot,Pidgeot,18,Pidgeotite,Normal/Flying,No Guard,579,83,80,80,135,80,121,Normal/Flying,479,ORAS,1
+10074,Mega Glalie,Glalie,362,Glalitite,Ice,Refrigerate,580,80,120,80,120,80,100,Ice,480,ORAS,0
+10075,Mega Diancie,Diancie,719,Diancite,Rock/Fairy,Magic Bounce,700,50,160,110,160,110,110,Rock/Fairy,600,ORAS,0
+10076,Mega Metagross,Metagross,376,Metagrossite,Steel/Psychic,Tough Claws,700,80,145,150,105,110,110,Steel/Psychic,600,ORAS,0
+10077,Primal Kyogre,Kyogre,382,Blue Orb,Water,Primordial Sea,770,100,150,90,180,160,90,Water,670,ORAS,0
+10078,Primal Groudon,Groudon,383,Red Orb,Ground/Fire,Desolate Land,770,100,180,160,150,90,90,Ground,670,ORAS,0
+10079,Mega Rayquaza,Rayquaza,384,Dragon Ascent (move; no stone),Dragon/Flying,Delta Stream,780,105,180,100,180,100,115,Dragon/Flying,680,ORAS,0
+10087,Mega Camerupt,Camerupt,323,Cameruptite,Fire/Ground,Sheer Force,560,70,120,100,145,105,20,Fire/Ground,460,ORAS,0
+10088,Mega Lopunny,Lopunny,428,Lopunnite,Normal/Fighting,Scrappy,580,65,136,94,54,96,135,Normal,480,ORAS,1
+10089,Mega Salamence,Salamence,373,Salamencite,Dragon/Flying,Aerilate,700,95,145,130,120,90,120,Dragon/Flying,600,ORAS,0
+10090,Mega Beedrill,Beedrill,15,Beedrillite,Bug/Poison,Adaptability,495,65,150,40,15,80,145,Bug/Poison,395,ORAS,1
+10278,Mega Clefable,Clefable,36,Clefablite,Fairy/Flying,Magic Bounce,583,95,80,93,135,110,70,Fairy,483,Legends: Z-A,0
+10279,Mega Victreebel,Victreebel,71,Victreebelite,Grass/Poison,Innards Out,590,80,125,85,135,95,70,Grass/Poison,490,Legends: Z-A,0
+10280,Mega Starmie,Starmie,121,Starminite,Water/Psychic,Huge Power,620,60,100,105,130,105,120,Water/Psychic,520,Legends: Z-A,1
+10281,Mega Dragonite,Dragonite,149,Dragoninite,Dragon/Flying,Multiscale,700,91,124,115,145,125,100,Dragon/Flying,600,Legends: Z-A,0
+10282,Mega Meganium,Meganium,154,Meganiumite,Grass/Fairy,Mega Sol,625,80,92,115,143,115,80,Grass,525,Legends: Z-A,0
+10283,Mega Feraligatr,Feraligatr,160,Feraligite,Water/Dragon,Dragonize,630,85,160,125,89,93,78,Water,530,Legends: Z-A,0
+10284,Mega Skarmory,Skarmory,227,Skarmorite,Steel/Flying,Stalwart,565,65,140,110,40,100,110,Steel/Flying,465,Legends: Z-A,0
+10285,Mega Froslass,Froslass,478,Froslassite,Ice/Ghost,Snow Warning,580,70,80,70,140,100,120,Ice/Ghost,480,Legends: Z-A,1
+10286,Mega Emboar,Emboar,500,Emboarite,Fire/Fighting,Mold Breaker,628,110,148,75,110,110,75,Fire/Fighting,528,Legends: Z-A,1
+10287,Mega Excadrill,Excadrill,530,Excadrite,Ground/Steel,Piercing Drill,608,110,165,100,65,65,103,Ground/Steel,508,Legends: Z-A,0
+10288,Mega Scolipede,Scolipede,545,Scolipite,Bug/Poison,Shell Armor,585,60,140,149,75,99,62,Bug/Poison,485,Legends: Z-A,1
+10289,Mega Scrafty,Scrafty,560,Scraftinite,Dark/Fighting,Intimidate,588,65,130,135,55,135,68,Dark/Fighting,488,Legends: Z-A,1
+10290,Mega Eelektross,Eelektross,604,Eelektrossite,Electric,Eelevate,615,85,145,80,135,90,80,Electric,515,Legends: Z-A,0
+10291,Mega Chandelure,Chandelure,609,Chandelurite,Ghost/Fire,Infiltrator,620,60,75,110,175,110,90,Ghost/Fire,520,Legends: Z-A,0
+10292,Mega Chesnaught,Chesnaught,652,Chesnaughtite,Grass/Fighting,Bulletproof,630,88,137,172,74,115,44,Grass/Fighting,530,Legends: Z-A,0
+10293,Mega Delphox,Delphox,655,Delphoxite,Fire/Psychic,Levitate,634,75,69,72,159,125,134,Fire/Psychic,534,Legends: Z-A,1
+10294,Mega Greninja,Greninja,658,Greninjite,Water/Dark,Protean,630,72,125,77,133,81,142,Water/Dark,530,Legends: Z-A,0
+10295,Mega Pyroar,Pyroar,668,Pyroarite,Fire/Normal,Fire Mane,607,86,88,92,129,86,126,Fire/Normal,507,Legends: Z-A,0
+10296,Mega Floette,Floette,670,Floettite,Fairy,Fairy Aura,651,74,85,87,155,148,102,Fairy,371,Legends: Z-A,0
+10297,Mega Malamar,Malamar,687,Malamarite,Dark/Psychic,Contrary,582,86,102,88,98,120,88,Dark/Psychic,482,Legends: Z-A,0
+10298,Mega Barbaracle,Barbaracle,689,Barbaracite,Rock/Fighting,Tough Claws,600,72,140,130,64,106,88,Rock/Water,500,Legends: Z-A,0
+10299,Mega Dragalge,Dragalge,691,Dragalgite,Poison/Dragon,Regenerator,594,65,85,105,132,163,44,Poison/Dragon,494,Legends: Z-A,0
+10300,Mega Hawlucha,Hawlucha,701,Hawluchanite,Fighting/Flying,No Guard,600,78,137,100,74,93,118,Fighting/Flying,500,Legends: Z-A,1
+10301,Mega Zygarde,Zygarde,718,Zygardite,Dragon/Ground,,778,216,70,91,216,85,100,Dragon/Ground,600,Legends: Z-A,
+10302,Mega Drampa,Drampa,780,Drampanite,Normal/Dragon,Berserk,585,78,85,110,160,116,36,Normal/Dragon,485,Legends: Z-A,0
+10303,Mega Falinks,Falinks,870,Falinksite,Fighting,Defiant,570,65,135,135,70,65,100,Fighting,470,Legends: Z-A,0
+10304,Mega Raichu X,Raichu,26,Raichunite X,Electric,Electric Surge,585,60,135,95,90,95,110,Electric,485,Legends: Z-A (Mega Dimension),0
+10305,Mega Raichu Y,Raichu,26,Raichunite Y,Electric,No Guard,585,60,100,55,160,80,130,Electric,485,Legends: Z-A (Mega Dimension),1
+10306,Mega Chimecho,Chimecho,358,Chimechite,Psychic/Steel,Levitate,555,75,50,110,135,120,65,Psychic,455,Legends: Z-A (Mega Dimension),1
+10307,Mega Absol Z,Absol,359,Absolite Z,Dark/Ghost,Sharpness,565,65,154,60,75,60,151,Dark,465,Legends: Z-A (Mega Dimension),0
+10308,Mega Staraptor,Staraptor,398,Staraptite,Fighting/Flying,Contrary,585,85,140,100,60,90,110,Normal/Flying,485,Legends: Z-A (Mega Dimension),0
+10309,Mega Garchomp Z,Garchomp,445,Garchompite Z,Dragon,Levitate,700,108,130,85,141,85,151,Dragon/Ground,600,Legends: Z-A (Mega Dimension),1
+10310,Mega Lucario Z,Lucario,448,Lucarionite Z,Fighting/Steel,Aura Guard,625,70,100,70,164,70,151,Fighting/Steel,525,Legends: Z-A (Mega Dimension),0
+10311,Mega Heatran,Heatran,485,Heatranite,Fire/Steel,,700,91,120,106,175,141,67,Fire/Steel,600,Legends: Z-A (Mega Dimension),
+10312,Mega Darkrai,Darkrai,491,Darkranite,Dark,,700,70,120,130,165,130,85,Dark,600,Legends: Z-A (Mega Dimension),
+10313,Mega Golurk,Golurk,623,Golurkite,Ground/Ghost,Unseen Fist,583,89,159,105,70,105,55,Ground/Ghost,483,Legends: Z-A (Mega Dimension),0
+10314,Mega Meowstic (Male),Meowstic,678,Meowsticite,Psychic,Trace,566,74,48,76,143,101,124,Psychic,466,Legends: Z-A (Mega Dimension),1
+10315,Mega Crabominable,Crabominable,740,Crabominite,Fighting/Ice,Iron Fist,578,97,157,122,62,107,33,Fighting/Ice,478,Legends: Z-A (Mega Dimension),1
+10316,Mega Golisopod,Golisopod,768,Golisopite,Bug/Steel,Tough Claws,630,75,150,175,70,120,40,Bug/Water,530,Legends: Z-A (Mega Dimension),0
+10317,Mega Magearna,Magearna,801,Magearnite,Steel/Fairy,,700,80,125,115,170,115,95,Steel/Fairy,600,Legends: Z-A (Mega Dimension),
+10318,Mega Magearna (Original Color),Magearna,801,Magearnite,Steel/Fairy,,700,80,125,115,170,115,95,Steel/Fairy,600,Legends: Z-A (Mega Dimension),
+10319,Mega Zeraora,Zeraora,807,Zeraorite,Electric,,700,88,157,75,147,80,153,Electric,600,Legends: Z-A (Mega Dimension),
+10320,Mega Scovillain,Scovillain,952,Scovillainite,Grass/Fire,Spicy Spray,586,65,138,85,138,85,75,Grass/Fire,486,Legends: Z-A (Mega Dimension),0
+10321,Mega Glimmora,Glimmora,970,Glimmoranite,Rock/Poison,Adaptability,625,83,90,105,150,96,101,Rock/Poison,525,Legends: Z-A (Mega Dimension),1
+10322,Mega Tatsugiri (Curly Form),Tatsugiri,978,Tatsugirinite,Dragon/Water,,575,68,65,90,135,125,92,Dragon/Water,475,Legends: Z-A (Mega Dimension),
+10323,Mega Tatsugiri (Droopy Form),Tatsugiri,978,Tatsugirinite,Dragon/Water,,575,68,65,90,135,125,92,Dragon/Water,475,Legends: Z-A (Mega Dimension),
+10324,Mega Tatsugiri (Stretchy Form),Tatsugiri,978,Tatsugirinite,Dragon/Water,,575,68,65,90,135,125,92,Dragon/Water,475,Legends: Z-A (Mega Dimension),
+10325,Mega Baxcalibur,Baxcalibur,998,Baxcalibrite,Dragon/Ice,Thermal Exchange,700,115,175,117,105,101,87,Dragon/Ice,600,Legends: Z-A (Mega Dimension),0
+10326,Mega Meowstic (Female),Meowstic,678,Meowsticite,Psychic,Trace,566,74,48,76,143,101,124,Psychic,466,Legends: Z-A (Mega Dimension),1

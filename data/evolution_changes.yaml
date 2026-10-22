@@ -1,0 +1,72 @@
+# Imperial Platinum — evolution methods for ADDED species that the Gen IV engine can't run as-is.
+# Rendered to docs/EvolutionChanges_Imperial.md by tools/design/gen_evolution_doc.py, which checks
+# that every species flagged gen4_engine_compatible=0 in data/species.csv is covered.
+#
+# Gen IV evolution methods available (Platinum): level, friendship (any/day/night), stone/item use,
+# held item (day/night), knows move, species in party, male/female level, Atk/Def comparison,
+# beauty, and three special locations (Mt. Coronet, Moss Rock, Ice Rock).
+# Precedents from Renegade Platinum: trade evolutions -> Level 36; trade-holding-item -> "use item".
+#
+# new_items: items that must be added to the item table. All are sold by Renegade's Snowpoint City
+# evolution-item seller ($10,000 each) unless "where" says otherwise.
+
+changes:
+  - {species: Gigalith,     from: Boldore,   method: Level 36, why: "Trade evolution (Renegade precedent)"}
+  - {species: Conkeldurr,   from: Gurdurr,   method: Level 36, why: "Trade evolution (Renegade precedent)"}
+  - {species: Trevenant,    from: Phantump,  method: Level 36, why: "Trade evolution (Renegade precedent)"}
+  - {species: Gourgeist,    from: Pumpkaboo, method: Level 36, why: "Trade evolution (Renegade precedent)"}
+  - {species: Escavalier,   from: Karrablast, method: Level up with Shelmet in the party, why: "Uses Gen IV's party-species method (as Mantyke/Remoraid)"}
+  - {species: Accelgor,     from: Shelmet,   method: Level up with Karrablast in the party, why: "Uses Gen IV's party-species method"}
+  - {species: Aromatisse,   from: Spritzee,  method: Use Sachet, new_items: [Sachet], why: "Trade-holding-item (Renegade precedent)"}
+  - {species: Slurpuff,     from: Swirlix,   method: Use Whipped Dream, new_items: [Whipped Dream], why: "Trade-holding-item (Renegade precedent)"}
+  - {species: Pangoro,      from: Pancham,   method: Level 32, why: "No 'Dark-type in party' method in Gen IV"}
+  - {species: Malamar,      from: Inkay,     method: Level 30, why: "Can't detect an upside-down console"}
+  - {species: Tyrantrum,    from: Tyrunt,    method: Level 39, why: "Gen IV can't combine plain levelling with time of day"}
+  - {species: Aurorus,      from: Amaura,    method: Level 39, why: "Gen IV can't combine plain levelling with time of day"}
+  - {species: Sylveon,      from: Eevee,     method: Level up knowing Charm, why: "Gen IV has 'knows move' but not 'knows a move of type'; Charm is Fairy-type in Renegade. Renegade's other Eeveelutions use stones, so this doesn't clash."}
+  - {species: Goodra,       from: Sliggoo,   method: Level 50, why: "No overworld-rain check in Gen IV"}
+  - {species: Gumshoos,     from: Yungoos,   method: Level 20, why: "Time of day dropped"}
+  - {species: Lurantis,     from: Fomantis,  method: Level 34, why: "Time of day dropped"}
+  - {species: Houndstone,   from: Greavard,  method: Level 30, why: "Time of day dropped"}
+  - {species: Lycanroc,     from: Rockruff,  method: "Level 25 (Midday Form by day, Midnight Form at night; Dusk Form needs a form-change hook — Midday until then)", why: "Form chosen by time of day needs a small engine hook"}
+  - {species: Toxtricity,   from: Toxel,     method: "Level 30 (Amped Form; Low Key Form by nature once a form hook exists)", why: "Nature-dependent form needs an engine hook"}
+  - {species: Obstagoon,    from: Linoone,   method: Level up holding a Razor Claw at night, why: "Galarian Linoone isn't in the game; uses Gen IV's held-item-at-night method"}
+  - {species: Perrserker,   from: Meowth,    method: Use Metal Coat, why: "Galarian Meowth isn't in the game; Meowth still becomes Persian at Lv. 28"}
+  - {species: Cursola,      from: Corsola,   method: Use Dusk Stone, why: "Galarian Corsola isn't in the game"}
+  - {species: Sirfetch’d,   from: Farfetch’d, method: Level 40, why: "Can't count critical hits; Galarian Farfetch'd isn't in the game. Renegade's Farfetch'd is already Fighting/Flying, which suits Sirfetch'd"}
+  - {species: Mr. Rime,     from: Mr. Mime,  method: Level 42, why: "Galarian Mr. Mime isn't in the game; Gen VIII level kept"}
+  - {species: Runerigus,    from: Yamask,    method: Use Dusk Stone, why: "Galarian Yamask isn't in the game; Yamask still becomes Cofagrigus at Lv. 34"}
+  - {species: Clodsire,     from: Wooper,    method: Use Dusk Stone, why: "Paldean Wooper isn't in the game; Wooper still becomes Quagsire at Lv. 20"}
+  - {species: Sneasler,     from: Sneasel,   method: Level up holding a Razor Claw by day, why: "Hisuian Sneasel isn't in the game; Weavile stays Razor Claw at night"}
+  - {species: Overqwil,     from: Qwilfish,  method: Level up knowing Pin Missile, why: "Barb Barrage isn't in the engine; Hisuian Qwilfish isn't in the game"}
+  - {species: Basculegion,  from: Basculin,  method: "Level 36 (male → Male Form, female → Female Form)", why: "Can't count recoil damage; White-Striped Basculin isn't in the game"}
+  - {species: Wyrdeer,      from: Stantler,  method: Level up knowing Zen Headbutt, why: "Psyshield Bash isn't in the engine"}
+  - {species: Kleavor,      from: Scyther,   method: Use Black Augurite, new_items: [Black Augurite], why: "Item kept; Scyther still becomes Scizor with a Metal Coat"}
+  - {species: Ursaluna,     from: Ursaring,  method: Use Peat Block, new_items: [Peat Block], why: "Full-moon condition dropped"}
+  - {species: Annihilape,   from: Primeape,  method: Level 50, why: "Rage Fist isn't in the engine"}
+  - {species: Farigiraf,    from: Girafarig, method: Level up knowing Psychic, why: "Twin Beam isn't in the engine"}
+  - {species: Dudunsparce,  from: Dunsparce, method: Level up knowing Drill Run, why: "Hyper Drill isn't in the engine; Drill Run was added by Renegade"}
+  - {species: Kingambit,    from: Bisharp,   method: Use Leader's Crest, new_items: [Leader's Crest], why: "Can't count defeated Bisharp"}
+  - {species: Gholdengo,    from: Gimmighoul, method: Level 40, why: "No coin collection mechanic"}
+  - {species: Pawmot,       from: Pawmo,     method: Level 40, why: "No Let's Go step counter"}
+  - {species: Brambleghast, from: Bramblin,  method: Level 40, why: "No Let's Go step counter"}
+  - {species: Rabsca,       from: Rellor,    method: Level 35, why: "No Let's Go step counter"}
+  - {species: Palafin,      from: Finizen,   method: Level 38, why: "Union Circle (multiplayer) requirement dropped"}
+  - {species: Maushold,     from: Tandemaus, method: Level 25, why: "In-battle level-up requirement dropped"}
+  - {species: Flapple,      from: Applin,    method: Use Tart Apple, new_items: [Tart Apple], why: "New item"}
+  - {species: Appletun,     from: Applin,    method: Use Sweet Apple, new_items: [Sweet Apple], why: "New item"}
+  - {species: Dipplin,      from: Applin,    method: Use Syrupy Apple, new_items: [Syrupy Apple], why: "New item"}
+  - {species: Hydrapple,    from: Dipplin,   method: Level up knowing Dragon Pulse, why: "Dragon Cheer isn't in the engine"}
+  - {species: Polteageist,  from: Sinistea,  method: Use Cracked Pot, new_items: [Cracked Pot], why: "New item (Chipped Pot form not needed: Antique/Phony forms are cosmetic)"}
+  - {species: Sinistcha,    from: Poltchageist, method: Use Unremarkable Teacup, new_items: [Unremarkable Teacup], why: "New item (Masterpiece form is cosmetic)"}
+  - {species: Alcremie,     from: Milcery,   method: Use Strawberry Sweet, new_items: [Strawberry Sweet], why: "Can't detect spinning; other sweets/forms are cosmetic and can come later"}
+  - {species: Armarouge,    from: Charcadet, method: Use Auspicious Armor, new_items: [Auspicious Armor], why: "New item"}
+  - {species: Ceruledge,    from: Charcadet, method: Use Malicious Armor, new_items: [Malicious Armor], why: "New item"}
+  - {species: Archaludon,   from: Duraludon, method: Use Metal Alloy, new_items: [Metal Alloy], why: "New item"}
+  - {species: Melmetal,     from: Meltan,    method: "Not an evolution — Melmetal is given by its own post-game event", why: "No Meltan Candy / GO link"}
+  - {species: Urshifu,      from: Kubfu,     method: "Use Scroll of Darkness (Single Strike) / Scroll of Waters (Rapid Strike)", new_items: [Scroll of Darkness, Scroll of Waters], where: "Kubfu's post-game event", why: "Tower challenge replaced by the scrolls"}
+
+# Legendary evolutions that need a decision even though PokeAPI lists them as plain levels.
+extra:
+  - {species: Solgaleo, from: Cosmoem, method: Use Sun Stone, why: "Sun/Moon split by version; Imperial has one version"}
+  - {species: Lunala,   from: Cosmoem, method: Use Moon Stone, why: "Sun/Moon split by version; Imperial has one version"}

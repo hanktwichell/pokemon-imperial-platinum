@@ -1,0 +1,1026 @@
+dex,name,generation,in_renegade,category,types,bst,hp,atk,def,spa,spd,spe,family_id,stage,is_final,is_baby,evolves_from,evolution_method,gen4_engine_compatible,abilities,capture_rate
+1,Bulbasaur,1,1,regular,Grass/Poison,318,45,49,49,65,65,45,1,1,0,0,,,,Overgrow; Chlorophyll (H),45
+2,Ivysaur,1,1,regular,Grass/Poison,405,60,62,63,80,80,60,1,2,0,0,Bulbasaur,Level 16,1,Overgrow; Chlorophyll (H),45
+3,Venusaur,1,1,regular,Grass/Poison,525,80,82,83,100,100,80,1,3,1,0,Ivysaur,Level 32,1,Overgrow; Chlorophyll (H),45
+4,Charmander,1,1,regular,Fire,309,39,52,43,60,50,65,2,1,0,0,,,,Blaze; Solar Power (H),45
+5,Charmeleon,1,1,regular,Fire,405,58,64,58,80,65,80,2,2,0,0,Charmander,Level 16,1,Blaze; Solar Power (H),45
+6,Charizard,1,1,regular,Fire/Flying,534,78,84,78,109,85,100,2,3,1,0,Charmeleon,Level 36,1,Blaze; Solar Power (H),45
+7,Squirtle,1,1,regular,Water,314,44,48,65,50,64,43,3,1,0,0,,,,Torrent; Rain Dish (H),45
+8,Wartortle,1,1,regular,Water,405,59,63,80,65,80,58,3,2,0,0,Squirtle,Level 16,1,Torrent; Rain Dish (H),45
+9,Blastoise,1,1,regular,Water,530,79,83,100,85,105,78,3,3,1,0,Wartortle,Level 36,1,Torrent; Rain Dish (H),45
+10,Caterpie,1,1,regular,Bug,195,45,30,35,20,20,45,4,1,0,0,,,,Shield Dust; Run Away (H),255
+11,Metapod,1,1,regular,Bug,205,50,20,55,25,25,30,4,2,0,0,Caterpie,Level 7,1,Shed Skin,120
+12,Butterfree,1,1,regular,Bug/Flying,395,60,45,50,90,80,70,4,3,1,0,Metapod,Level 10,1,Compound Eyes; Tinted Lens (H),45
+13,Weedle,1,1,regular,Bug/Poison,195,40,35,30,20,20,50,5,1,0,0,,,,Shield Dust; Run Away (H),255
+14,Kakuna,1,1,regular,Bug/Poison,205,45,25,50,25,25,35,5,2,0,0,Weedle,Level 7,1,Shed Skin,120
+15,Beedrill,1,1,regular,Bug/Poison,395,65,90,40,45,80,75,5,3,1,0,Kakuna,Level 10,1,Swarm; Sniper (H),45
+16,Pidgey,1,1,regular,Normal/Flying,251,40,45,40,35,35,56,6,1,0,0,,,,Keen Eye; Tangled Feet; Big Pecks (H),255
+17,Pidgeotto,1,1,regular,Normal/Flying,349,63,60,55,50,50,71,6,2,0,0,Pidgey,Level 18,1,Keen Eye; Tangled Feet; Big Pecks (H),120
+18,Pidgeot,1,1,regular,Normal/Flying,479,83,80,75,70,70,101,6,3,1,0,Pidgeotto,Level 36,1,Keen Eye; Tangled Feet; Big Pecks (H),45
+19,Rattata,1,1,regular,Normal,253,30,56,35,25,35,72,7,1,0,0,,,,Run Away; Guts; Hustle (H),255
+20,Raticate,1,1,regular,Normal,413,55,81,60,50,70,97,7,2,1,0,Rattata,Level 20 OR Level 20 at night from the rattata-alola form,1,Run Away; Guts; Hustle (H),127
+21,Spearow,1,1,regular,Normal/Flying,262,40,60,30,31,31,70,8,1,0,0,,,,Keen Eye; Sniper (H),255
+22,Fearow,1,1,regular,Normal/Flying,442,65,90,65,61,61,100,8,2,1,0,Spearow,Level 20,1,Keen Eye; Sniper (H),90
+23,Ekans,1,1,regular,Poison,288,35,60,44,40,54,55,9,1,0,0,,,,Intimidate; Shed Skin; Unnerve (H),255
+24,Arbok,1,1,regular,Poison,448,60,95,69,65,79,80,9,2,1,0,Ekans,Level 22,1,Intimidate; Shed Skin; Unnerve (H),90
+25,Pikachu,1,1,regular,Electric,320,35,55,40,50,50,90,10,2,0,0,Pichu,Level up with high friendship,1,Static; Lightning Rod (H),190
+26,Raichu,1,1,regular,Electric,485,60,90,55,90,80,110,10,3,1,0,Pikachu,Use Thunder Stone,1,Static; Lightning Rod (H),75
+27,Sandshrew,1,1,regular,Ground,300,50,75,85,20,30,40,11,1,0,0,,,,Sand Veil; Sand Rush (H),255
+28,Sandslash,1,1,regular,Ground,450,75,100,110,45,55,65,11,2,1,0,Sandshrew,Level 22 OR Use Ice Stone from the sandshrew-alola form,1,Sand Veil; Sand Rush (H),90
+29,Nidoran♀,1,1,regular,Poison,275,55,47,52,40,40,41,12,1,0,0,,,,Poison Point; Rivalry; Hustle (H),235
+30,Nidorina,1,1,regular,Poison,365,70,62,67,55,55,56,12,2,0,0,Nidoran♀,Level 16,1,Poison Point; Rivalry; Hustle (H),120
+31,Nidoqueen,1,1,regular,Poison/Ground,505,90,92,87,75,85,76,12,3,1,0,Nidorina,Use Moon Stone,1,Poison Point; Rivalry; Sheer Force (H),45
+32,Nidoran♂,1,1,regular,Poison,273,46,57,40,40,40,50,13,1,0,0,,,,Poison Point; Rivalry; Hustle (H),235
+33,Nidorino,1,1,regular,Poison,365,61,72,57,55,55,65,13,2,0,0,Nidoran♂,Level 16,1,Poison Point; Rivalry; Hustle (H),120
+34,Nidoking,1,1,regular,Poison/Ground,505,81,102,77,85,75,85,13,3,1,0,Nidorino,Use Moon Stone,1,Poison Point; Rivalry; Sheer Force (H),45
+35,Clefairy,1,1,regular,Fairy,323,70,45,48,60,65,35,14,2,0,0,Cleffa,Level up with high friendship,1,Cute Charm; Magic Guard; Friend Guard (H),150
+36,Clefable,1,1,regular,Fairy,483,95,70,73,95,90,60,14,3,1,0,Clefairy,Use Moon Stone,1,Cute Charm; Magic Guard; Unaware (H),25
+37,Vulpix,1,1,regular,Fire,299,38,41,40,50,65,65,15,1,0,0,,,,Flash Fire; Drought (H),190
+38,Ninetales,1,1,regular,Fire,505,73,76,75,81,100,100,15,2,1,0,Vulpix,Use Fire Stone OR Use Ice Stone from the vulpix-alola form,1,Flash Fire; Drought (H),75
+39,Jigglypuff,1,1,regular,Normal/Fairy,270,115,45,20,45,25,20,16,2,0,0,Igglybuff,Level up with high friendship,1,Cute Charm; Competitive; Friend Guard (H),170
+40,Wigglytuff,1,1,regular,Normal/Fairy,435,140,70,45,85,50,45,16,3,1,0,Jigglypuff,Use Moon Stone,1,Cute Charm; Competitive; Frisk (H),50
+41,Zubat,1,1,regular,Poison/Flying,245,40,45,35,30,40,55,17,1,0,0,,,,Inner Focus; Infiltrator (H),255
+42,Golbat,1,1,regular,Poison/Flying,455,75,80,70,65,75,90,17,2,0,0,Zubat,Level 22,1,Inner Focus; Infiltrator (H),90
+43,Oddish,1,1,regular,Grass/Poison,320,45,50,55,75,65,30,18,1,0,0,,,,Chlorophyll; Run Away (H),255
+44,Gloom,1,1,regular,Grass/Poison,395,60,65,70,85,75,40,18,2,0,0,Oddish,Level 21,1,Chlorophyll; Stench (H),120
+45,Vileplume,1,1,regular,Grass/Poison,490,75,80,85,110,90,50,18,3,1,0,Gloom,Use Leaf Stone,1,Chlorophyll; Effect Spore (H),45
+46,Paras,1,1,regular,Bug/Grass,285,35,70,55,45,55,25,19,1,0,0,,,,Effect Spore; Dry Skin; Damp (H),190
+47,Parasect,1,1,regular,Bug/Grass,405,60,95,80,60,80,30,19,2,1,0,Paras,Level 24,1,Effect Spore; Dry Skin; Damp (H),75
+48,Venonat,1,1,regular,Bug/Poison,305,60,55,50,40,55,45,20,1,0,0,,,,Compound Eyes; Tinted Lens; Run Away (H),190
+49,Venomoth,1,1,regular,Bug/Poison,450,70,65,60,90,75,90,20,2,1,0,Venonat,Level 31,1,Shield Dust; Tinted Lens; Wonder Skin (H),75
+50,Diglett,1,1,regular,Ground,265,10,55,25,35,45,95,21,1,0,0,,,,Sand Veil; Arena Trap; Sand Force (H),255
+51,Dugtrio,1,1,regular,Ground,425,35,100,50,50,70,120,21,2,1,0,Diglett,Level 26 OR Level 26 from the diglett-alola form,1,Sand Veil; Arena Trap; Sand Force (H),50
+52,Meowth,1,1,regular,Normal,290,40,45,35,40,40,90,22,1,0,0,,,,Pickup; Technician; Unnerve (H),255
+53,Persian,1,1,regular,Normal,440,65,70,60,65,65,115,22,2,1,0,Meowth,Level 28 OR Level up with high friendship from the meowth-alola form,1,Limber; Technician; Unnerve (H),90
+54,Psyduck,1,1,regular,Water,320,50,52,48,65,50,55,23,1,0,0,,,,Damp; Cloud Nine; Swift Swim (H),190
+55,Golduck,1,1,regular,Water,500,80,82,78,95,80,85,23,2,1,0,Psyduck,Level 33,1,Damp; Cloud Nine; Swift Swim (H),75
+56,Mankey,1,1,regular,Fighting,305,40,80,35,35,45,70,24,1,0,0,,,,Vital Spirit; Anger Point; Defiant (H),190
+57,Primeape,1,1,regular,Fighting,455,65,105,60,60,70,95,24,2,0,0,Mankey,Level 28,1,Vital Spirit; Anger Point; Defiant (H),75
+58,Growlithe,1,1,regular,Fire,350,55,70,45,70,50,60,25,1,0,0,,,,Intimidate; Flash Fire; Justified (H),190
+59,Arcanine,1,1,regular,Fire,555,90,110,80,100,80,95,25,2,1,0,Growlithe,Use Fire Stone OR Use Fire Stone from the growlithe-hisui form,1,Intimidate; Flash Fire; Justified (H),75
+60,Poliwag,1,1,regular,Water,300,40,50,40,40,40,90,26,1,0,0,,,,Water Absorb; Damp; Swift Swim (H),255
+61,Poliwhirl,1,1,regular,Water,385,65,65,65,50,50,90,26,2,0,0,Poliwag,Level 25,1,Water Absorb; Damp; Swift Swim (H),120
+62,Poliwrath,1,1,regular,Water/Fighting,510,90,95,95,70,90,70,26,3,1,0,Poliwhirl,Use Water Stone,1,Water Absorb; Damp; Swift Swim (H),45
+63,Abra,1,1,regular,Psychic,310,25,20,15,105,55,90,27,1,0,0,,,,Synchronize; Inner Focus; Magic Guard (H),200
+64,Kadabra,1,1,regular,Psychic,400,40,35,30,120,70,105,27,2,0,0,Abra,Level 16,1,Synchronize; Inner Focus; Magic Guard (H),100
+65,Alakazam,1,1,regular,Psychic,500,55,50,45,135,95,120,27,3,1,0,Kadabra,Trade,0,Synchronize; Inner Focus; Magic Guard (H),50
+66,Machop,1,1,regular,Fighting,305,70,80,50,35,35,35,28,1,0,0,,,,Guts; No Guard; Steadfast (H),180
+67,Machoke,1,1,regular,Fighting,405,80,100,70,50,60,45,28,2,0,0,Machop,Level 28,1,Guts; No Guard; Steadfast (H),90
+68,Machamp,1,1,regular,Fighting,505,90,130,80,65,85,55,28,3,1,0,Machoke,Trade,0,Guts; No Guard; Steadfast (H),45
+69,Bellsprout,1,1,regular,Grass/Poison,300,50,75,35,70,30,40,29,1,0,0,,,,Chlorophyll; Gluttony (H),255
+70,Weepinbell,1,1,regular,Grass/Poison,390,65,90,50,85,45,55,29,2,0,0,Bellsprout,Level 21,1,Chlorophyll; Gluttony (H),120
+71,Victreebel,1,1,regular,Grass/Poison,490,80,105,65,100,70,70,29,3,1,0,Weepinbell,Use Leaf Stone,1,Chlorophyll; Gluttony (H),45
+72,Tentacool,1,1,regular,Water/Poison,335,40,40,35,50,100,70,30,1,0,0,,,,Clear Body; Liquid Ooze; Rain Dish (H),190
+73,Tentacruel,1,1,regular,Water/Poison,515,80,70,65,80,120,100,30,2,1,0,Tentacool,Level 30,1,Clear Body; Liquid Ooze; Rain Dish (H),60
+74,Geodude,1,1,regular,Rock/Ground,300,40,80,100,30,30,20,31,1,0,0,,,,Rock Head; Sturdy; Sand Veil (H),255
+75,Graveler,1,1,regular,Rock/Ground,390,55,95,115,45,45,35,31,2,0,0,Geodude,Level 25 OR Level 25 from the geodude-alola form,1,Rock Head; Sturdy; Sand Veil (H),120
+76,Golem,1,1,regular,Rock/Ground,495,80,120,130,55,65,45,31,3,1,0,Graveler,Trade OR Trade from the graveler-alola form,0,Rock Head; Sturdy; Sand Veil (H),45
+77,Ponyta,1,1,regular,Fire,410,50,85,55,65,65,90,32,1,0,0,,,,Run Away; Flash Fire; Flame Body (H),190
+78,Rapidash,1,1,regular,Fire,500,65,100,70,80,80,105,32,2,1,0,Ponyta,Level 40 OR Level 40 from the ponyta-galar form,1,Run Away; Flash Fire; Flame Body (H),60
+79,Slowpoke,1,1,regular,Water/Psychic,315,90,65,65,40,40,15,33,1,0,0,,,,Oblivious; Own Tempo; Regenerator (H),190
+80,Slowbro,1,1,regular,Water/Psychic,490,95,75,110,100,80,30,33,2,1,0,Slowpoke,Level 37 OR Use Galarica Cuff from the slowpoke-galar form,1,Oblivious; Own Tempo; Regenerator (H),75
+81,Magnemite,1,1,regular,Electric/Steel,325,25,35,70,95,55,45,34,1,0,0,,,,Magnet Pull; Sturdy; Analytic (H),190
+82,Magneton,1,1,regular,Electric/Steel,465,50,60,95,120,70,70,34,2,0,0,Magnemite,Level 30,1,Magnet Pull; Sturdy; Analytic (H),60
+83,Farfetch’d,1,1,regular,Normal/Flying,377,52,90,55,58,62,60,35,1,0,0,,,,Keen Eye; Inner Focus; Defiant (H),45
+84,Doduo,1,1,regular,Normal/Flying,310,35,85,45,35,35,75,36,1,0,0,,,,Run Away; Early Bird; Tangled Feet (H),190
+85,Dodrio,1,1,regular,Normal/Flying,470,60,110,70,60,60,110,36,2,1,0,Doduo,Level 31,1,Run Away; Early Bird; Tangled Feet (H),45
+86,Seel,1,1,regular,Water,325,65,45,55,45,70,45,37,1,0,0,,,,Thick Fat; Hydration; Ice Body (H),190
+87,Dewgong,1,1,regular,Water/Ice,475,90,70,80,70,95,70,37,2,1,0,Seel,Level 34,1,Thick Fat; Hydration; Ice Body (H),75
+88,Grimer,1,1,regular,Poison,325,80,80,50,40,50,25,38,1,0,0,,,,Stench; Sticky Hold; Poison Touch (H),190
+89,Muk,1,1,regular,Poison,500,105,105,75,65,100,50,38,2,1,0,Grimer,Level 38 OR Level 38 from the grimer-alola form,1,Stench; Sticky Hold; Poison Touch (H),75
+90,Shellder,1,1,regular,Water,305,30,65,100,45,25,40,39,1,0,0,,,,Shell Armor; Skill Link; Overcoat (H),190
+91,Cloyster,1,1,regular,Water/Ice,525,50,95,180,85,45,70,39,2,1,0,Shellder,Use Water Stone,1,Shell Armor; Skill Link; Overcoat (H),60
+92,Gastly,1,1,regular,Ghost/Poison,310,30,35,30,100,35,80,40,1,0,0,,,,Levitate,190
+93,Haunter,1,1,regular,Ghost/Poison,405,45,50,45,115,55,95,40,2,0,0,Gastly,Level 25,1,Levitate,90
+94,Gengar,1,1,regular,Ghost/Poison,500,60,65,60,130,75,110,40,3,1,0,Haunter,Trade,0,Cursed Body,45
+95,Onix,1,1,regular,Rock/Ground,385,35,45,160,30,45,70,41,1,0,0,,,,Rock Head; Sturdy; Weak Armor (H),45
+96,Drowzee,1,1,regular,Psychic,328,60,48,45,43,90,42,42,1,0,0,,,,Insomnia; Forewarn; Inner Focus (H),190
+97,Hypno,1,1,regular,Psychic,483,85,73,70,73,115,67,42,2,1,0,Drowzee,Level 26,1,Insomnia; Forewarn; Inner Focus (H),75
+98,Krabby,1,1,regular,Water,325,30,105,90,25,25,50,43,1,0,0,,,,Hyper Cutter; Shell Armor; Sheer Force (H),225
+99,Kingler,1,1,regular,Water,475,55,130,115,50,50,75,43,2,1,0,Krabby,Level 28,1,Hyper Cutter; Shell Armor; Sheer Force (H),60
+100,Voltorb,1,1,regular,Electric,330,40,30,50,55,55,100,44,1,0,0,,,,Soundproof; Static; Aftermath (H),190
+101,Electrode,1,1,regular,Electric,490,60,50,70,80,80,150,44,2,1,0,Voltorb,Level 30 OR Use Leaf Stone from the voltorb-hisui form,1,Soundproof; Static; Aftermath (H),60
+102,Exeggcute,1,1,regular,Grass/Psychic,325,60,40,80,60,45,40,45,1,0,0,,,,Chlorophyll; Harvest (H),90
+103,Exeggutor,1,1,regular,Grass/Psychic,530,95,95,85,125,75,55,45,2,1,0,Exeggcute,Use Leaf Stone,1,Chlorophyll; Harvest (H),45
+104,Cubone,1,1,regular,Ground,320,50,50,95,40,50,35,46,1,0,0,,,,Rock Head; Lightning Rod; Battle Armor (H),190
+105,Marowak,1,1,regular,Ground,425,60,80,110,50,80,45,46,2,1,0,Cubone,Level 28 OR Level 28 at night,1,Rock Head; Lightning Rod; Battle Armor (H),75
+106,Hitmonlee,1,1,regular,Fighting,455,50,120,53,35,110,87,47,2,1,0,Tyrogue,Level 20 (Atk > Def),1,Limber; Reckless; Unburden (H),45
+107,Hitmonchan,1,1,regular,Fighting,455,50,105,79,35,110,76,47,2,1,0,Tyrogue,Level 20 (Atk < Def),1,Keen Eye; Iron Fist; Inner Focus (H),45
+108,Lickitung,1,1,regular,Normal,385,90,55,75,60,75,30,48,1,0,0,,,,Own Tempo; Oblivious; Cloud Nine (H),45
+109,Koffing,1,1,regular,Poison,340,40,65,95,60,45,35,49,1,0,0,,,,Levitate; Neutralizing Gas; Stench (H),190
+110,Weezing,1,1,regular,Poison,490,65,90,120,85,70,60,49,2,1,0,Koffing,Level 35,1,Levitate; Neutralizing Gas; Stench (H),60
+111,Rhyhorn,1,1,regular,Ground/Rock,345,80,85,95,30,30,25,50,1,0,0,,,,Lightning Rod; Rock Head; Reckless (H),120
+112,Rhydon,1,1,regular,Ground/Rock,485,105,130,120,45,45,40,50,2,0,0,Rhyhorn,Level 42,1,Lightning Rod; Rock Head; Reckless (H),60
+113,Chansey,1,1,regular,Normal,450,250,5,5,35,105,50,51,2,0,0,Happiny,Level up holding Oval Stone at day,1,Natural Cure; Serene Grace; Healer (H),30
+114,Tangela,1,1,regular,Grass,435,65,55,115,100,40,60,52,1,0,0,,,,Chlorophyll; Leaf Guard; Regenerator (H),45
+115,Kangaskhan,1,1,regular,Normal,490,105,95,80,40,80,90,53,1,1,0,,,,Early Bird; Scrappy; Inner Focus (H),45
+116,Horsea,1,1,regular,Water,295,30,40,70,70,25,60,54,1,0,0,,,,Swift Swim; Sniper; Damp (H),225
+117,Seadra,1,1,regular,Water,440,55,65,95,95,45,85,54,2,0,0,Horsea,Level 32,1,Poison Point; Sniper; Damp (H),75
+118,Goldeen,1,1,regular,Water,320,45,67,60,35,50,63,55,1,0,0,,,,Swift Swim; Water Veil; Lightning Rod (H),225
+119,Seaking,1,1,regular,Water,450,80,92,65,65,80,68,55,2,1,0,Goldeen,Level 33,1,Swift Swim; Water Veil; Lightning Rod (H),60
+120,Staryu,1,1,regular,Water,340,30,45,55,70,55,85,56,1,0,0,,,,Illuminate; Natural Cure; Analytic (H),225
+121,Starmie,1,1,regular,Water/Psychic,520,60,75,85,100,85,115,56,2,1,0,Staryu,Use Water Stone,1,Illuminate; Natural Cure; Analytic (H),60
+122,Mr. Mime,1,1,regular,Psychic/Fairy,460,40,45,65,100,120,90,57,2,0,0,Mime Jr.,Level up knowing Mimic,1,Soundproof; Filter; Technician (H),45
+123,Scyther,1,1,regular,Bug/Flying,500,70,110,80,55,80,105,58,1,0,0,,,,Swarm; Technician; Steadfast (H),45
+124,Jynx,1,1,regular,Ice/Psychic,455,65,50,35,115,95,95,59,2,1,0,Smoochum,Level 30,1,Oblivious; Forewarn; Dry Skin (H),45
+125,Electabuzz,1,1,regular,Electric,490,65,83,57,95,85,105,60,2,0,0,Elekid,Level 30,1,Static; Vital Spirit (H),45
+126,Magmar,1,1,regular,Fire,495,65,95,57,100,85,93,61,2,0,0,Magby,Level 30,1,Flame Body; Vital Spirit (H),45
+127,Pinsir,1,1,regular,Bug,500,65,125,100,55,70,85,62,1,1,0,,,,Hyper Cutter; Mold Breaker; Moxie (H),45
+128,Tauros,1,1,regular,Normal,490,75,100,95,40,70,110,63,1,1,0,,,,Intimidate; Anger Point; Sheer Force (H),45
+129,Magikarp,1,1,regular,Water,200,20,10,55,15,20,80,64,1,0,0,,,,Swift Swim; Rattled (H),255
+130,Gyarados,1,1,regular,Water/Flying,540,95,125,79,60,100,81,64,2,1,0,Magikarp,Level 20,1,Intimidate; Moxie (H),45
+131,Lapras,1,1,regular,Water/Ice,535,130,85,80,85,95,60,65,1,1,0,,,,Water Absorb; Shell Armor; Hydration (H),45
+132,Ditto,1,1,regular,Normal,288,48,48,48,48,48,48,66,1,1,0,,,,Limber; Imposter (H),35
+133,Eevee,1,1,regular,Normal,325,55,55,50,45,65,55,67,1,0,0,,,,Run Away; Adaptability; Anticipation (H),45
+134,Vaporeon,1,1,regular,Water,525,130,65,60,110,95,65,67,2,1,0,Eevee,Use Water Stone,1,Water Absorb; Hydration (H),45
+135,Jolteon,1,1,regular,Electric,525,65,65,60,110,95,130,67,2,1,0,Eevee,Use Thunder Stone,1,Volt Absorb; Quick Feet (H),45
+136,Flareon,1,1,regular,Fire,525,65,130,60,95,110,65,67,2,1,0,Eevee,Use Fire Stone,1,Flash Fire; Guts (H),45
+137,Porygon,1,1,regular,Normal,395,65,60,70,85,75,40,68,1,0,0,,,,Trace; Download; Analytic (H),45
+138,Omanyte,1,1,regular,Rock/Water,355,35,40,100,90,55,35,69,1,0,0,,,,Swift Swim; Shell Armor; Weak Armor (H),45
+139,Omastar,1,1,regular,Rock/Water,495,70,60,125,115,70,55,69,2,1,0,Omanyte,Level 40,1,Swift Swim; Shell Armor; Weak Armor (H),45
+140,Kabuto,1,1,regular,Rock/Water,355,30,80,90,55,45,55,70,1,0,0,,,,Swift Swim; Battle Armor; Weak Armor (H),45
+141,Kabutops,1,1,regular,Rock/Water,495,60,115,105,65,70,80,70,2,1,0,Kabuto,Level 40,1,Swift Swim; Battle Armor; Weak Armor (H),45
+142,Aerodactyl,1,1,regular,Rock/Flying,515,80,105,65,60,75,130,71,1,1,0,,,,Rock Head; Pressure; Unnerve (H),45
+143,Snorlax,1,1,regular,Normal,540,160,110,65,65,110,30,72,2,1,0,Munchlax,Level up with high friendship,1,Immunity; Thick Fat; Gluttony (H),25
+144,Articuno,1,1,legendary,Ice/Flying,580,90,85,100,95,125,85,73,1,1,0,,,,Pressure; Snow Cloak (H),3
+145,Zapdos,1,1,legendary,Electric/Flying,580,90,90,85,125,90,100,74,1,1,0,,,,Pressure; Static (H),3
+146,Moltres,1,1,legendary,Fire/Flying,580,90,100,90,125,85,90,75,1,1,0,,,,Pressure; Flame Body (H),3
+147,Dratini,1,1,regular,Dragon,300,41,64,45,50,50,50,76,1,0,0,,,,Shed Skin; Marvel Scale (H),45
+148,Dragonair,1,1,regular,Dragon,420,61,84,65,70,70,70,76,2,0,0,Dratini,Level 30,1,Shed Skin; Marvel Scale (H),45
+149,Dragonite,1,1,regular,Dragon/Flying,600,91,134,95,100,100,80,76,3,1,0,Dragonair,Level 55,1,Inner Focus; Multiscale (H),45
+150,Mewtwo,1,1,legendary,Psychic,680,106,110,90,154,90,130,77,1,1,0,,,,Pressure; Unnerve (H),3
+151,Mew,1,1,mythical,Psychic,600,100,100,100,100,100,100,78,1,1,0,,,,Synchronize,45
+152,Chikorita,2,1,regular,Grass,318,45,49,65,49,65,45,79,1,0,0,,,,Overgrow; Leaf Guard (H),45
+153,Bayleef,2,1,regular,Grass,405,60,62,80,63,80,60,79,2,0,0,Chikorita,Level 16,1,Overgrow; Leaf Guard (H),45
+154,Meganium,2,1,regular,Grass,525,80,82,100,83,100,80,79,3,1,0,Bayleef,Level 32,1,Overgrow; Leaf Guard (H),45
+155,Cyndaquil,2,1,regular,Fire,309,39,52,43,60,50,65,80,1,0,0,,,,Blaze; Flash Fire (H),45
+156,Quilava,2,1,regular,Fire,405,58,64,58,80,65,80,80,2,0,0,Cyndaquil,Level 14 OR Level 17,1,Blaze; Flash Fire (H),45
+157,Typhlosion,2,1,regular,Fire,534,78,84,78,109,85,100,80,3,1,0,Quilava,Level 36,1,Blaze; Flash Fire (H),45
+158,Totodile,2,1,regular,Water,314,50,65,64,44,48,43,81,1,0,0,,,,Torrent; Sheer Force (H),45
+159,Croconaw,2,1,regular,Water,405,65,80,80,59,63,58,81,2,0,0,Totodile,Level 18,1,Torrent; Sheer Force (H),45
+160,Feraligatr,2,1,regular,Water,530,85,105,100,79,83,78,81,3,1,0,Croconaw,Level 30,1,Torrent; Sheer Force (H),45
+161,Sentret,2,1,regular,Normal,215,35,46,34,35,45,20,82,1,0,0,,,,Run Away; Keen Eye; Frisk (H),255
+162,Furret,2,1,regular,Normal,415,85,76,64,45,55,90,82,2,1,0,Sentret,Level 15,1,Run Away; Keen Eye; Frisk (H),90
+163,Hoothoot,2,1,regular,Normal/Flying,262,60,30,30,36,56,50,83,1,0,0,,,,Insomnia; Keen Eye; Tinted Lens (H),255
+164,Noctowl,2,1,regular,Normal/Flying,452,100,50,50,86,96,70,83,2,1,0,Hoothoot,Level 20,1,Insomnia; Keen Eye; Tinted Lens (H),90
+165,Ledyba,2,1,regular,Bug/Flying,265,40,20,30,40,80,55,84,1,0,0,,,,Swarm; Early Bird; Rattled (H),255
+166,Ledian,2,1,regular,Bug/Flying,390,55,35,50,55,110,85,84,2,1,0,Ledyba,Level 18,1,Swarm; Early Bird; Iron Fist (H),90
+167,Spinarak,2,1,regular,Bug/Poison,250,40,60,40,40,40,30,85,1,0,0,,,,Swarm; Insomnia; Sniper (H),255
+168,Ariados,2,1,regular,Bug/Poison,400,70,90,70,60,70,40,85,2,1,0,Spinarak,Level 22,1,Swarm; Insomnia; Sniper (H),90
+169,Crobat,2,1,regular,Poison/Flying,535,85,90,80,70,80,130,17,3,1,0,Golbat,Level up with high friendship,1,Inner Focus; Infiltrator (H),90
+170,Chinchou,2,1,regular,Water/Electric,330,75,38,38,56,56,67,86,1,0,0,,,,Volt Absorb; Illuminate; Water Absorb (H),190
+171,Lanturn,2,1,regular,Water/Electric,460,125,58,58,76,76,67,86,2,1,0,Chinchou,Level 27,1,Volt Absorb; Illuminate; Water Absorb (H),75
+172,Pichu,2,1,regular,Electric,205,20,40,15,35,35,60,10,1,0,1,,,,Static; Lightning Rod (H),190
+173,Cleffa,2,1,regular,Fairy,218,50,25,28,45,55,15,14,1,0,1,,,,Cute Charm; Magic Guard; Friend Guard (H),150
+174,Igglybuff,2,1,regular,Normal/Fairy,210,90,30,15,40,20,15,16,1,0,1,,,,Cute Charm; Competitive; Friend Guard (H),170
+175,Togepi,2,1,regular,Fairy,245,35,20,65,40,65,20,87,1,0,1,,,,Hustle; Serene Grace; Super Luck (H),190
+176,Togetic,2,1,regular,Fairy/Flying,405,55,40,85,80,105,40,87,2,0,0,Togepi,Level up with high friendship,1,Hustle; Serene Grace; Super Luck (H),75
+177,Natu,2,1,regular,Psychic/Flying,320,40,50,45,70,45,70,88,1,0,0,,,,Synchronize; Early Bird; Magic Bounce (H),190
+178,Xatu,2,1,regular,Psychic/Flying,470,65,75,70,95,70,95,88,2,1,0,Natu,Level 25,1,Synchronize; Early Bird; Magic Bounce (H),75
+179,Mareep,2,1,regular,Electric,280,55,40,40,65,45,35,89,1,0,0,,,,Static; Plus (H),235
+180,Flaaffy,2,1,regular,Electric,365,70,55,55,80,60,45,89,2,0,0,Mareep,Level 15,1,Static; Plus (H),120
+181,Ampharos,2,1,regular,Electric,510,90,75,85,115,90,55,89,3,1,0,Flaaffy,Level 30,1,Static; Plus (H),45
+182,Bellossom,2,1,regular,Grass,490,75,80,95,90,100,50,18,3,1,0,Gloom,Use Sun Stone,1,Chlorophyll; Healer (H),45
+183,Marill,2,1,regular,Water/Fairy,250,70,20,50,20,50,40,90,2,0,0,Azurill,Level up with high friendship,1,Thick Fat; Huge Power; Sap Sipper (H),190
+184,Azumarill,2,1,regular,Water/Fairy,420,100,50,80,60,80,50,90,3,1,0,Marill,Level 18,1,Thick Fat; Huge Power; Sap Sipper (H),75
+185,Sudowoodo,2,1,regular,Rock,410,70,100,115,30,65,30,91,2,1,0,Bonsly,Level up knowing Mimic,1,Sturdy; Rock Head; Rattled (H),65
+186,Politoed,2,1,regular,Water,500,90,75,75,90,100,70,26,3,1,0,Poliwhirl,Trade holding King’s Rock,0,Water Absorb; Damp; Drizzle (H),45
+187,Hoppip,2,1,regular,Grass/Flying,250,35,35,40,35,55,50,92,1,0,0,,,,Chlorophyll; Leaf Guard; Infiltrator (H),255
+188,Skiploom,2,1,regular,Grass/Flying,340,55,45,50,45,65,80,92,2,0,0,Hoppip,Level 18,1,Chlorophyll; Leaf Guard; Infiltrator (H),120
+189,Jumpluff,2,1,regular,Grass/Flying,460,75,55,70,55,95,110,92,3,1,0,Skiploom,Level 27,1,Chlorophyll; Leaf Guard; Infiltrator (H),45
+190,Aipom,2,1,regular,Normal,360,55,70,55,40,55,85,93,1,0,0,,,,Run Away; Pickup; Skill Link (H),45
+191,Sunkern,2,1,regular,Grass,180,30,30,30,30,30,30,94,1,0,0,,,,Chlorophyll; Solar Power; Early Bird (H),235
+192,Sunflora,2,1,regular,Grass,425,75,75,55,105,85,30,94,2,1,0,Sunkern,Use Sun Stone,1,Chlorophyll; Solar Power; Early Bird (H),120
+193,Yanma,2,1,regular,Bug/Flying,390,65,65,45,75,45,95,95,1,0,0,,,,Speed Boost; Compound Eyes; Frisk (H),75
+194,Wooper,2,1,regular,Water/Ground,210,55,45,45,25,25,15,96,1,0,0,,,,Damp; Water Absorb; Unaware (H),255
+195,Quagsire,2,1,regular,Water/Ground,430,95,85,85,65,65,35,96,2,1,0,Wooper,Level 20,1,Damp; Water Absorb; Unaware (H),90
+196,Espeon,2,1,regular,Psychic,525,65,65,60,130,95,110,67,2,1,0,Eevee,Level up with high friendship at day,1,Synchronize; Magic Bounce (H),45
+197,Umbreon,2,1,regular,Dark,525,95,65,110,60,130,65,67,2,1,0,Eevee,Level up with high friendship at night,1,Synchronize; Inner Focus (H),45
+198,Murkrow,2,1,regular,Dark/Flying,405,60,85,42,85,42,91,97,1,0,0,,,,Insomnia; Super Luck; Prankster (H),30
+199,Slowking,2,1,regular,Water/Psychic,490,95,75,80,100,110,30,33,2,1,0,Slowpoke,Trade holding King’s Rock OR Use Galarica Wreath from the slowpoke-galar form,0,Oblivious; Own Tempo; Regenerator (H),70
+200,Misdreavus,2,1,regular,Ghost,435,60,60,60,85,85,85,98,1,0,0,,,,Levitate,45
+201,Unown,2,1,regular,Psychic,336,48,72,48,72,48,48,99,1,1,0,,,,Levitate,225
+202,Wobbuffet,2,1,regular,Psychic,405,190,33,58,33,58,33,100,2,1,0,Wynaut,Level 15,1,Shadow Tag; Telepathy (H),45
+203,Girafarig,2,1,regular,Normal/Psychic,455,70,80,65,90,65,85,101,1,0,0,,,,Inner Focus; Early Bird; Sap Sipper (H),60
+204,Pineco,2,1,regular,Bug,290,50,65,90,35,35,15,102,1,0,0,,,,Sturdy; Overcoat (H),190
+205,Forretress,2,1,regular,Bug/Steel,465,75,90,140,60,60,40,102,2,1,0,Pineco,Level 31,1,Sturdy; Overcoat (H),75
+206,Dunsparce,2,1,regular,Normal,415,100,70,70,65,65,45,103,1,0,0,,,,Serene Grace; Run Away; Rattled (H),190
+207,Gligar,2,1,regular,Ground/Flying,430,65,75,105,35,65,85,104,1,0,0,,,,Hyper Cutter; Sand Veil; Immunity (H),60
+208,Steelix,2,1,regular,Steel/Ground,510,75,85,200,55,65,30,41,2,1,0,Onix,Trade holding Metal Coat,0,Rock Head; Sturdy; Sheer Force (H),25
+209,Snubbull,2,1,regular,Fairy,300,60,80,50,40,40,30,105,1,0,0,,,,Intimidate; Run Away; Rattled (H),190
+210,Granbull,2,1,regular,Fairy,450,90,120,75,60,60,45,105,2,1,0,Snubbull,Level 23,1,Intimidate; Quick Feet; Rattled (H),75
+211,Qwilfish,2,1,regular,Water/Poison,440,65,95,85,55,55,85,106,1,0,0,,,,Poison Point; Swift Swim; Intimidate (H),45
+212,Scizor,2,1,regular,Bug/Steel,500,70,130,100,55,80,65,58,2,1,0,Scyther,Trade holding Metal Coat,0,Swarm; Technician; Light Metal (H),25
+213,Shuckle,2,1,regular,Bug/Rock,505,20,10,230,10,230,5,107,1,1,0,,,,Sturdy; Gluttony; Contrary (H),190
+214,Heracross,2,1,regular,Bug/Fighting,500,80,125,75,40,95,85,108,1,1,0,,,,Swarm; Guts; Moxie (H),45
+215,Sneasel,2,1,regular,Dark/Ice,430,55,95,55,35,75,115,109,1,0,0,,,,Inner Focus; Keen Eye; Pickpocket (H),60
+216,Teddiursa,2,1,regular,Normal,330,60,80,50,50,50,40,110,1,0,0,,,,Pickup; Quick Feet; Honey Gather (H),120
+217,Ursaring,2,1,regular,Normal,500,90,130,75,75,75,55,110,2,0,0,Teddiursa,Level 30,1,Guts; Quick Feet; Unnerve (H),60
+218,Slugma,2,1,regular,Fire,250,40,40,40,70,40,20,111,1,0,0,,,,Magma Armor; Flame Body; Weak Armor (H),190
+219,Magcargo,2,1,regular,Fire/Rock,430,60,50,120,90,80,30,111,2,1,0,Slugma,Level 38,1,Magma Armor; Flame Body; Weak Armor (H),75
+220,Swinub,2,1,regular,Ice/Ground,250,50,50,40,30,30,50,112,1,0,0,,,,Oblivious; Snow Cloak; Thick Fat (H),225
+221,Piloswine,2,1,regular,Ice/Ground,450,100,100,80,60,60,50,112,2,0,0,Swinub,Level 33,1,Oblivious; Snow Cloak; Thick Fat (H),75
+222,Corsola,2,1,regular,Water/Rock,410,65,55,95,65,95,35,113,1,0,0,,,,Hustle; Natural Cure; Regenerator (H),60
+223,Remoraid,2,1,regular,Water,300,35,65,35,65,35,65,114,1,0,0,,,,Hustle; Sniper; Moody (H),190
+224,Octillery,2,1,regular,Water,480,75,105,75,105,75,45,114,2,1,0,Remoraid,Level 25,1,Suction Cups; Sniper; Moody (H),75
+225,Delibird,2,1,regular,Ice/Flying,330,45,55,45,65,45,75,115,1,1,0,,,,Vital Spirit; Hustle; Insomnia (H),45
+226,Mantine,2,1,regular,Water/Flying,485,85,40,70,80,140,70,116,2,1,0,Mantyke,Level up with Remoraid in party,1,Swift Swim; Water Absorb; Water Veil (H),25
+227,Skarmory,2,1,regular,Steel/Flying,465,65,80,140,40,70,70,117,1,1,0,,,,Keen Eye; Sturdy; Weak Armor (H),25
+228,Houndour,2,1,regular,Dark/Fire,330,45,60,30,80,50,65,118,1,0,0,,,,Early Bird; Flash Fire; Unnerve (H),120
+229,Houndoom,2,1,regular,Dark/Fire,500,75,90,50,110,80,95,118,2,1,0,Houndour,Level 24,1,Early Bird; Flash Fire; Unnerve (H),45
+230,Kingdra,2,1,regular,Water/Dragon,540,75,95,95,95,95,85,54,3,1,0,Seadra,Trade holding Dragon Scale,0,Swift Swim; Sniper; Damp (H),45
+231,Phanpy,2,1,regular,Ground,330,90,60,60,40,40,40,119,1,0,0,,,,Pickup; Sand Veil (H),120
+232,Donphan,2,1,regular,Ground,500,90,120,120,60,60,50,119,2,1,0,Phanpy,Level 25,1,Sturdy; Sand Veil (H),60
+233,Porygon2,2,1,regular,Normal,515,85,80,90,105,95,60,68,2,0,0,Porygon,Trade holding Upgrade,0,Trace; Download; Analytic (H),45
+234,Stantler,2,1,regular,Normal,465,73,95,62,85,65,85,120,1,0,0,,,,Intimidate; Frisk; Sap Sipper (H),45
+235,Smeargle,2,1,regular,Normal,250,55,20,35,20,45,75,121,1,1,0,,,,Own Tempo; Technician; Moody (H),45
+236,Tyrogue,2,1,regular,Fighting,210,35,35,35,35,35,35,47,1,0,1,,,,Guts; Steadfast; Vital Spirit (H),75
+237,Hitmontop,2,1,regular,Fighting,455,50,95,95,35,110,70,47,2,1,0,Tyrogue,Level 20 (Atk = Def),1,Intimidate; Technician; Steadfast (H),45
+238,Smoochum,2,1,regular,Ice/Psychic,305,45,30,15,85,65,65,59,1,0,1,,,,Oblivious; Forewarn; Hydration (H),45
+239,Elekid,2,1,regular,Electric,360,45,63,37,65,55,95,60,1,0,1,,,,Static; Vital Spirit (H),45
+240,Magby,2,1,regular,Fire,365,45,75,37,70,55,83,61,1,0,1,,,,Flame Body; Vital Spirit (H),45
+241,Miltank,2,1,regular,Normal,490,95,80,105,40,70,100,122,1,1,0,,,,Thick Fat; Scrappy; Sap Sipper (H),45
+242,Blissey,2,1,regular,Normal,540,255,10,10,75,135,55,51,3,1,0,Chansey,Level up with high friendship,1,Natural Cure; Serene Grace; Healer (H),30
+243,Raikou,2,1,legendary,Electric,580,90,85,75,115,100,115,123,1,1,0,,,,Pressure; Inner Focus (H),3
+244,Entei,2,1,legendary,Fire,580,115,115,85,90,75,100,124,1,1,0,,,,Pressure; Inner Focus (H),3
+245,Suicune,2,1,legendary,Water,580,100,75,115,90,115,85,125,1,1,0,,,,Pressure; Inner Focus (H),3
+246,Larvitar,2,1,regular,Rock/Ground,300,50,64,50,45,50,41,126,1,0,0,,,,Guts; Sand Veil (H),45
+247,Pupitar,2,1,regular,Rock/Ground,410,70,84,70,65,70,51,126,2,0,0,Larvitar,Level 30,1,Shed Skin,45
+248,Tyranitar,2,1,regular,Rock/Dark,600,100,134,110,95,100,61,126,3,1,0,Pupitar,Level 55,1,Sand Stream; Unnerve (H),45
+249,Lugia,2,1,legendary,Psychic/Flying,680,106,90,130,90,154,110,127,1,1,0,,,,Pressure; Multiscale (H),3
+250,Ho-Oh,2,1,legendary,Fire/Flying,680,106,130,90,110,154,90,128,1,1,0,,,,Pressure; Regenerator (H),3
+251,Celebi,2,1,mythical,Psychic/Grass,600,100,100,100,100,100,100,129,1,1,0,,,,Natural Cure,45
+252,Treecko,3,1,regular,Grass,310,40,45,35,65,55,70,130,1,0,0,,,,Overgrow; Unburden (H),45
+253,Grovyle,3,1,regular,Grass,405,50,65,45,85,65,95,130,2,0,0,Treecko,Level 16,1,Overgrow; Unburden (H),45
+254,Sceptile,3,1,regular,Grass,530,70,85,65,105,85,120,130,3,1,0,Grovyle,Level 36,1,Overgrow; Unburden (H),45
+255,Torchic,3,1,regular,Fire,310,45,60,40,70,50,45,131,1,0,0,,,,Blaze; Speed Boost (H),45
+256,Combusken,3,1,regular,Fire/Fighting,405,60,85,60,85,60,55,131,2,0,0,Torchic,Level 16,1,Blaze; Speed Boost (H),45
+257,Blaziken,3,1,regular,Fire/Fighting,530,80,120,70,110,70,80,131,3,1,0,Combusken,Level 36,1,Blaze; Speed Boost (H),45
+258,Mudkip,3,1,regular,Water,310,50,70,50,50,50,40,132,1,0,0,,,,Torrent; Damp (H),45
+259,Marshtomp,3,1,regular,Water/Ground,405,70,85,70,60,70,50,132,2,0,0,Mudkip,Level 16,1,Torrent; Damp (H),45
+260,Swampert,3,1,regular,Water/Ground,535,100,110,90,85,90,60,132,3,1,0,Marshtomp,Level 36,1,Torrent; Damp (H),45
+261,Poochyena,3,1,regular,Dark,220,35,55,35,30,30,35,133,1,0,0,,,,Run Away; Quick Feet; Rattled (H),255
+262,Mightyena,3,1,regular,Dark,420,70,90,70,60,60,70,133,2,1,0,Poochyena,Level 18,1,Intimidate; Quick Feet; Moxie (H),127
+263,Zigzagoon,3,1,regular,Normal,240,38,30,41,30,41,60,134,1,0,0,,,,Pickup; Gluttony; Quick Feet (H),255
+264,Linoone,3,1,regular,Normal,420,78,70,61,50,61,100,134,2,0,0,Zigzagoon,Level 20 OR Level 20 from the zigzagoon-galar form,1,Pickup; Gluttony; Quick Feet (H),90
+265,Wurmple,3,1,regular,Bug,195,45,45,35,20,30,20,135,1,0,0,,,,Shield Dust; Run Away (H),255
+266,Silcoon,3,1,regular,Bug,205,50,35,55,25,25,15,135,2,0,0,Wurmple,Level 7,0,Shed Skin,120
+267,Beautifly,3,1,regular,Bug/Flying,395,60,70,50,100,50,65,135,3,1,0,Silcoon,Level 10,1,Swarm; Rivalry (H),45
+268,Cascoon,3,1,regular,Bug,205,50,35,55,25,25,15,135,2,0,0,Wurmple,Level 7,0,Shed Skin,120
+269,Dustox,3,1,regular,Bug/Poison,385,60,50,70,50,90,65,135,3,1,0,Cascoon,Level 10,1,Shield Dust; Compound Eyes (H),45
+270,Lotad,3,1,regular,Water/Grass,220,40,30,30,40,50,30,136,1,0,0,,,,Swift Swim; Rain Dish; Own Tempo (H),255
+271,Lombre,3,1,regular,Water/Grass,340,60,50,50,60,70,50,136,2,0,0,Lotad,Level 14,1,Swift Swim; Rain Dish; Own Tempo (H),120
+272,Ludicolo,3,1,regular,Water/Grass,480,80,70,70,90,100,70,136,3,1,0,Lombre,Use Water Stone,1,Swift Swim; Rain Dish; Own Tempo (H),45
+273,Seedot,3,1,regular,Grass,220,40,40,50,30,30,30,137,1,0,0,,,,Chlorophyll; Early Bird; Pickpocket (H),255
+274,Nuzleaf,3,1,regular,Grass/Dark,340,70,70,40,60,40,60,137,2,0,0,Seedot,Level 14,1,Chlorophyll; Early Bird; Pickpocket (H),120
+275,Shiftry,3,1,regular,Grass/Dark,480,90,100,60,90,60,80,137,3,1,0,Nuzleaf,Use Leaf Stone,1,Chlorophyll; Wind Rider; Pickpocket (H),45
+276,Taillow,3,1,regular,Normal/Flying,270,40,55,30,30,30,85,138,1,0,0,,,,Guts; Scrappy (H),200
+277,Swellow,3,1,regular,Normal/Flying,455,60,85,60,75,50,125,138,2,1,0,Taillow,Level 22,1,Guts; Scrappy (H),45
+278,Wingull,3,1,regular,Water/Flying,270,40,30,30,55,30,85,139,1,0,0,,,,Keen Eye; Hydration; Rain Dish (H),190
+279,Pelipper,3,1,regular,Water/Flying,440,60,50,100,95,70,65,139,2,1,0,Wingull,Level 25,1,Keen Eye; Drizzle; Rain Dish (H),45
+280,Ralts,3,1,regular,Psychic/Fairy,198,28,25,25,45,35,40,140,1,0,0,,,,Synchronize; Trace; Telepathy (H),235
+281,Kirlia,3,1,regular,Psychic/Fairy,278,38,35,35,65,55,50,140,2,0,0,Ralts,Level 20,1,Synchronize; Trace; Telepathy (H),120
+282,Gardevoir,3,1,regular,Psychic/Fairy,518,68,65,65,125,115,80,140,3,1,0,Kirlia,Level 30,1,Synchronize; Trace; Telepathy (H),45
+283,Surskit,3,1,regular,Bug/Water,269,40,30,32,50,52,65,141,1,0,0,,,,Swift Swim; Rain Dish (H),200
+284,Masquerain,3,1,regular,Bug/Flying,454,70,60,62,100,82,80,141,2,1,0,Surskit,Level 22,1,Intimidate; Unnerve (H),75
+285,Shroomish,3,1,regular,Grass,295,60,40,60,40,60,35,142,1,0,0,,,,Effect Spore; Poison Heal; Quick Feet (H),255
+286,Breloom,3,1,regular,Grass/Fighting,460,60,130,80,60,60,70,142,2,1,0,Shroomish,Level 23,1,Effect Spore; Poison Heal; Technician (H),90
+287,Slakoth,3,1,regular,Normal,280,60,60,60,35,35,30,143,1,0,0,,,,Truant,255
+288,Vigoroth,3,1,regular,Normal,440,80,80,80,55,55,90,143,2,0,0,Slakoth,Level 18,1,Vital Spirit,120
+289,Slaking,3,1,regular,Normal,670,150,160,100,95,65,100,143,3,1,0,Vigoroth,Level 36,1,Truant,45
+290,Nincada,3,1,regular,Bug/Ground,266,31,45,90,30,30,40,144,1,0,0,,,,Compound Eyes; Run Away (H),255
+291,Ninjask,3,1,regular,Bug/Flying,456,61,90,45,50,50,160,144,2,1,0,Nincada,Level 20,1,Speed Boost; Infiltrator (H),120
+292,Shedinja,3,1,regular,Bug/Ghost,236,1,90,45,30,30,40,144,2,1,0,Nincada,Shed,0,Wonder Guard,45
+293,Whismur,3,1,regular,Normal,240,64,51,23,51,23,28,145,1,0,0,,,,Soundproof; Rattled (H),190
+294,Loudred,3,1,regular,Normal,360,84,71,43,71,43,48,145,2,0,0,Whismur,Level 20,1,Soundproof; Scrappy (H),120
+295,Exploud,3,1,regular,Normal,490,104,91,63,91,73,68,145,3,1,0,Loudred,Level 40,1,Soundproof; Scrappy (H),45
+296,Makuhita,3,1,regular,Fighting,237,72,60,30,20,30,25,146,1,0,0,,,,Thick Fat; Guts; Sheer Force (H),180
+297,Hariyama,3,1,regular,Fighting,474,144,120,60,40,60,50,146,2,1,0,Makuhita,Level 24,1,Thick Fat; Guts; Sheer Force (H),200
+298,Azurill,3,1,regular,Normal/Fairy,190,50,20,40,20,40,20,90,1,0,1,,,,Thick Fat; Huge Power; Sap Sipper (H),150
+299,Nosepass,3,1,regular,Rock,375,30,45,135,45,90,30,147,1,0,0,,,,Sturdy; Magnet Pull; Sand Force (H),255
+300,Skitty,3,1,regular,Normal,260,50,45,45,35,35,50,148,1,0,0,,,,Cute Charm; Normalize; Wonder Skin (H),255
+301,Delcatty,3,1,regular,Normal,400,70,65,65,55,55,90,148,2,1,0,Skitty,Use Moon Stone,1,Cute Charm; Normalize; Wonder Skin (H),60
+302,Sableye,3,1,regular,Dark/Ghost,380,50,75,75,65,65,50,149,1,1,0,,,,Keen Eye; Stall; Prankster (H),45
+303,Mawile,3,1,regular,Steel/Fairy,380,50,85,85,55,55,50,150,1,1,0,,,,Hyper Cutter; Intimidate; Sheer Force (H),45
+304,Aron,3,1,regular,Steel/Rock,330,50,70,100,40,40,30,151,1,0,0,,,,Sturdy; Rock Head; Heavy Metal (H),180
+305,Lairon,3,1,regular,Steel/Rock,430,60,90,140,50,50,40,151,2,0,0,Aron,Level 32,1,Sturdy; Rock Head; Heavy Metal (H),90
+306,Aggron,3,1,regular,Steel/Rock,530,70,110,180,60,60,50,151,3,1,0,Lairon,Level 42,1,Sturdy; Rock Head; Heavy Metal (H),45
+307,Meditite,3,1,regular,Fighting/Psychic,280,30,40,55,40,55,60,152,1,0,0,,,,Pure Power; Telepathy (H),180
+308,Medicham,3,1,regular,Fighting/Psychic,410,60,60,75,60,75,80,152,2,1,0,Meditite,Level 37,1,Pure Power; Telepathy (H),90
+309,Electrike,3,1,regular,Electric,295,40,45,40,65,40,65,153,1,0,0,,,,Static; Lightning Rod; Minus (H),120
+310,Manectric,3,1,regular,Electric,475,70,75,60,105,60,105,153,2,1,0,Electrike,Level 26,1,Static; Lightning Rod; Minus (H),45
+311,Plusle,3,1,regular,Electric,405,60,50,40,85,75,95,154,1,1,0,,,,Plus; Lightning Rod (H),200
+312,Minun,3,1,regular,Electric,405,60,40,50,75,85,95,155,1,1,0,,,,Minus; Volt Absorb (H),200
+313,Volbeat,3,1,regular,Bug,430,65,73,75,47,85,85,156,1,1,0,,,,Illuminate; Swarm; Prankster (H),150
+314,Illumise,3,1,regular,Bug,430,65,47,75,73,85,85,157,1,1,0,,,,Oblivious; Tinted Lens; Prankster (H),150
+315,Roselia,3,1,regular,Grass/Poison,400,50,60,45,100,80,65,158,2,0,0,Budew,Level up with high friendship at day,1,Natural Cure; Poison Point; Leaf Guard (H),150
+316,Gulpin,3,1,regular,Poison,302,70,43,53,43,53,40,159,1,0,0,,,,Liquid Ooze; Sticky Hold; Gluttony (H),225
+317,Swalot,3,1,regular,Poison,467,100,73,83,73,83,55,159,2,1,0,Gulpin,Level 26,1,Liquid Ooze; Sticky Hold; Gluttony (H),75
+318,Carvanha,3,1,regular,Water/Dark,305,45,90,20,65,20,65,160,1,0,0,,,,Rough Skin; Speed Boost (H),225
+319,Sharpedo,3,1,regular,Water/Dark,460,70,120,40,95,40,95,160,2,1,0,Carvanha,Level 30,1,Rough Skin; Speed Boost (H),60
+320,Wailmer,3,1,regular,Water,400,130,70,35,70,35,60,161,1,0,0,,,,Water Veil; Oblivious; Pressure (H),125
+321,Wailord,3,1,regular,Water,500,170,90,45,90,45,60,161,2,1,0,Wailmer,Level 40,1,Water Veil; Oblivious; Pressure (H),60
+322,Numel,3,1,regular,Fire/Ground,305,60,60,40,65,45,35,162,1,0,0,,,,Oblivious; Simple; Own Tempo (H),255
+323,Camerupt,3,1,regular,Fire/Ground,460,70,100,70,105,75,40,162,2,1,0,Numel,Level 33,1,Magma Armor; Solid Rock; Anger Point (H),150
+324,Torkoal,3,1,regular,Fire,470,70,85,140,85,70,20,163,1,1,0,,,,White Smoke; Drought; Shell Armor (H),90
+325,Spoink,3,1,regular,Psychic,330,60,25,35,70,80,60,164,1,0,0,,,,Thick Fat; Own Tempo; Gluttony (H),255
+326,Grumpig,3,1,regular,Psychic,470,80,45,65,90,110,80,164,2,1,0,Spoink,Level 32,1,Thick Fat; Own Tempo; Gluttony (H),60
+327,Spinda,3,1,regular,Normal,360,60,60,60,60,60,60,165,1,1,0,,,,Own Tempo; Tangled Feet; Contrary (H),255
+328,Trapinch,3,1,regular,Ground,290,45,100,45,45,45,10,166,1,0,0,,,,Hyper Cutter; Arena Trap; Sheer Force (H),255
+329,Vibrava,3,1,regular,Ground/Dragon,340,50,70,50,50,50,70,166,2,0,0,Trapinch,Level 35,1,Levitate,120
+330,Flygon,3,1,regular,Ground/Dragon,520,80,100,80,80,80,100,166,3,1,0,Vibrava,Level 45,1,Levitate,45
+331,Cacnea,3,1,regular,Grass,335,50,85,40,85,40,35,167,1,0,0,,,,Sand Veil; Water Absorb (H),190
+332,Cacturne,3,1,regular,Grass/Dark,475,70,115,60,115,60,55,167,2,1,0,Cacnea,Level 32,1,Sand Veil; Water Absorb (H),60
+333,Swablu,3,1,regular,Normal/Flying,310,45,40,60,40,75,50,168,1,0,0,,,,Natural Cure; Cloud Nine (H),255
+334,Altaria,3,1,regular,Dragon/Flying,490,75,70,90,70,105,80,168,2,1,0,Swablu,Level 35,1,Natural Cure; Cloud Nine (H),45
+335,Zangoose,3,1,regular,Normal,458,73,115,60,60,60,90,169,1,1,0,,,,Immunity; Toxic Boost (H),90
+336,Seviper,3,1,regular,Poison,458,73,100,60,100,60,65,170,1,1,0,,,,Shed Skin; Infiltrator (H),90
+337,Lunatone,3,1,regular,Rock/Psychic,460,90,55,65,95,85,70,171,1,1,0,,,,Levitate,45
+338,Solrock,3,1,regular,Rock/Psychic,460,90,95,85,55,65,70,172,1,1,0,,,,Levitate,45
+339,Barboach,3,1,regular,Water/Ground,288,50,48,43,46,41,60,173,1,0,0,,,,Oblivious; Anticipation; Hydration (H),190
+340,Whiscash,3,1,regular,Water/Ground,468,110,78,73,76,71,60,173,2,1,0,Barboach,Level 30,1,Oblivious; Anticipation; Hydration (H),75
+341,Corphish,3,1,regular,Water,308,43,80,65,50,35,35,174,1,0,0,,,,Hyper Cutter; Shell Armor; Adaptability (H),205
+342,Crawdaunt,3,1,regular,Water/Dark,468,63,120,85,90,55,55,174,2,1,0,Corphish,Level 30,1,Hyper Cutter; Shell Armor; Adaptability (H),155
+343,Baltoy,3,1,regular,Ground/Psychic,300,40,40,55,40,70,55,175,1,0,0,,,,Levitate,255
+344,Claydol,3,1,regular,Ground/Psychic,500,60,70,105,70,120,75,175,2,1,0,Baltoy,Level 36,1,Levitate,90
+345,Lileep,3,1,regular,Rock/Grass,355,66,41,77,61,87,23,176,1,0,0,,,,Suction Cups; Storm Drain (H),45
+346,Cradily,3,1,regular,Rock/Grass,495,86,81,97,81,107,43,176,2,1,0,Lileep,Level 40,1,Suction Cups; Storm Drain (H),45
+347,Anorith,3,1,regular,Rock/Bug,355,45,95,50,40,50,75,177,1,0,0,,,,Battle Armor; Swift Swim (H),45
+348,Armaldo,3,1,regular,Rock/Bug,495,75,125,100,70,80,45,177,2,1,0,Anorith,Level 40,1,Battle Armor; Swift Swim (H),45
+349,Feebas,3,1,regular,Water,200,20,15,20,10,55,80,178,1,0,0,,,,Swift Swim; Oblivious; Adaptability (H),255
+350,Milotic,3,1,regular,Water,540,95,60,79,100,125,81,178,2,1,0,Feebas,Level up OR Trade holding Prism Scale,1,Marvel Scale; Competitive; Cute Charm (H),60
+351,Castform,3,1,regular,Normal,420,70,70,70,70,70,70,179,1,1,0,,,,Forecast,45
+352,Kecleon,3,1,regular,Normal,440,60,90,70,60,120,40,180,1,1,0,,,,Color Change; Protean (H),200
+353,Shuppet,3,1,regular,Ghost,295,44,75,35,63,33,45,181,1,0,0,,,,Insomnia; Frisk; Cursed Body (H),225
+354,Banette,3,1,regular,Ghost,455,64,115,65,83,63,65,181,2,1,0,Shuppet,Level 37,1,Insomnia; Frisk; Cursed Body (H),45
+355,Duskull,3,1,regular,Ghost,295,20,40,90,30,90,25,182,1,0,0,,,,Levitate; Frisk (H),190
+356,Dusclops,3,1,regular,Ghost,455,40,70,130,60,130,25,182,2,0,0,Duskull,Level 37,1,Pressure; Frisk (H),90
+357,Tropius,3,1,regular,Grass/Flying,460,99,68,83,72,87,51,183,1,1,0,,,,Chlorophyll; Solar Power; Harvest (H),200
+358,Chimecho,3,1,regular,Psychic,455,75,50,80,95,90,65,184,2,1,0,Chingling,Level up with high friendship at night,1,Levitate,45
+359,Absol,3,1,regular,Dark,465,65,130,60,75,60,75,185,1,1,0,,,,Pressure; Super Luck; Justified (H),30
+360,Wynaut,3,1,regular,Psychic,260,95,23,48,23,48,23,100,1,0,1,,,,Shadow Tag; Telepathy (H),125
+361,Snorunt,3,1,regular,Ice,300,50,50,50,50,50,50,186,1,0,0,,,,Inner Focus; Ice Body; Moody (H),190
+362,Glalie,3,1,regular,Ice,480,80,80,80,80,80,80,186,2,1,0,Snorunt,Level 42,1,Inner Focus; Ice Body; Moody (H),75
+363,Spheal,3,1,regular,Ice/Water,290,70,40,50,55,50,25,187,1,0,0,,,,Thick Fat; Ice Body; Oblivious (H),255
+364,Sealeo,3,1,regular,Ice/Water,410,90,60,70,75,70,45,187,2,0,0,Spheal,Level 32,1,Thick Fat; Ice Body; Oblivious (H),120
+365,Walrein,3,1,regular,Ice/Water,530,110,80,90,95,90,65,187,3,1,0,Sealeo,Level 44,1,Thick Fat; Ice Body; Oblivious (H),45
+366,Clamperl,3,1,regular,Water,345,35,64,85,74,55,32,188,1,0,0,,,,Shell Armor; Rattled (H),255
+367,Huntail,3,1,regular,Water,485,55,104,105,94,75,52,188,2,1,0,Clamperl,Trade holding Deep Sea Tooth,0,Swift Swim; Water Veil (H),60
+368,Gorebyss,3,1,regular,Water,485,55,84,105,114,75,52,188,2,1,0,Clamperl,Trade holding Deep Sea Scale,0,Swift Swim; Hydration (H),60
+369,Relicanth,3,1,regular,Water/Rock,485,100,90,130,45,65,55,189,1,1,0,,,,Swift Swim; Rock Head; Sturdy (H),25
+370,Luvdisc,3,1,regular,Water,330,43,30,55,40,65,97,190,1,1,0,,,,Swift Swim; Hydration (H),225
+371,Bagon,3,1,regular,Dragon,300,45,75,60,40,30,50,191,1,0,0,,,,Rock Head; Sheer Force (H),45
+372,Shelgon,3,1,regular,Dragon,420,65,95,100,60,50,50,191,2,0,0,Bagon,Level 30,1,Rock Head; Overcoat (H),45
+373,Salamence,3,1,regular,Dragon/Flying,600,95,135,80,110,80,100,191,3,1,0,Shelgon,Level 50,1,Intimidate; Moxie (H),45
+374,Beldum,3,1,regular,Steel/Psychic,300,40,55,80,35,60,30,192,1,0,0,,,,Clear Body; Light Metal (H),3
+375,Metang,3,1,regular,Steel/Psychic,420,60,75,100,55,80,50,192,2,0,0,Beldum,Level 20,1,Clear Body; Light Metal (H),3
+376,Metagross,3,1,regular,Steel/Psychic,600,80,135,130,95,90,70,192,3,1,0,Metang,Level 45,1,Clear Body; Light Metal (H),3
+377,Regirock,3,1,legendary,Rock,580,80,100,200,50,100,50,193,1,1,0,,,,Clear Body; Sturdy (H),3
+378,Regice,3,1,legendary,Ice,580,80,50,100,100,200,50,194,1,1,0,,,,Clear Body; Ice Body (H),3
+379,Registeel,3,1,legendary,Steel,580,80,75,150,75,150,50,195,1,1,0,,,,Clear Body; Light Metal (H),3
+380,Latias,3,1,legendary,Dragon/Psychic,600,80,80,90,110,130,110,196,1,1,0,,,,Levitate,3
+381,Latios,3,1,legendary,Dragon/Psychic,600,80,90,80,130,110,110,197,1,1,0,,,,Levitate,3
+382,Kyogre,3,1,legendary,Water,670,100,100,90,150,140,90,198,1,1,0,,,,Drizzle,3
+383,Groudon,3,1,legendary,Ground,670,100,150,140,100,90,90,199,1,1,0,,,,Drought,3
+384,Rayquaza,3,1,legendary,Dragon/Flying,680,105,150,90,150,90,95,200,1,1,0,,,,Air Lock,45
+385,Jirachi,3,1,mythical,Steel/Psychic,600,100,100,100,100,100,100,201,1,1,0,,,,Serene Grace,3
+386,Deoxys,3,1,mythical,Psychic,600,50,150,50,150,50,150,202,1,1,0,,,,Pressure,3
+387,Turtwig,4,1,regular,Grass,318,55,68,64,45,55,31,203,1,0,0,,,,Overgrow; Shell Armor (H),45
+388,Grotle,4,1,regular,Grass,405,75,89,85,55,65,36,203,2,0,0,Turtwig,Level 18,1,Overgrow; Shell Armor (H),45
+389,Torterra,4,1,regular,Grass/Ground,525,95,109,105,75,85,56,203,3,1,0,Grotle,Level 32,1,Overgrow; Shell Armor (H),45
+390,Chimchar,4,1,regular,Fire,309,44,58,44,58,44,61,204,1,0,0,,,,Blaze; Iron Fist (H),45
+391,Monferno,4,1,regular,Fire/Fighting,405,64,78,52,78,52,81,204,2,0,0,Chimchar,Level 14,1,Blaze; Iron Fist (H),45
+392,Infernape,4,1,regular,Fire/Fighting,534,76,104,71,104,71,108,204,3,1,0,Monferno,Level 36,1,Blaze; Iron Fist (H),45
+393,Piplup,4,1,regular,Water,314,53,51,53,61,56,40,205,1,0,0,,,,Torrent; Competitive (H),45
+394,Prinplup,4,1,regular,Water,405,64,66,68,81,76,50,205,2,0,0,Piplup,Level 16,1,Torrent; Competitive (H),45
+395,Empoleon,4,1,regular,Water/Steel,530,84,86,88,111,101,60,205,3,1,0,Prinplup,Level 36,1,Torrent; Competitive (H),45
+396,Starly,4,1,regular,Normal/Flying,245,40,55,30,30,30,60,206,1,0,0,,,,Keen Eye; Reckless (H),255
+397,Staravia,4,1,regular,Normal/Flying,340,55,75,50,40,40,80,206,2,0,0,Starly,Level 14,1,Intimidate; Reckless (H),120
+398,Staraptor,4,1,regular,Normal/Flying,485,85,120,70,50,60,100,206,3,1,0,Staravia,Level 34,1,Intimidate; Reckless (H),45
+399,Bidoof,4,1,regular,Normal,250,59,45,40,35,40,31,207,1,0,0,,,,Simple; Unaware; Moody (H),255
+400,Bibarel,4,1,regular,Normal/Water,410,79,85,60,55,60,71,207,2,1,0,Bidoof,Level 15,1,Simple; Unaware; Moody (H),127
+401,Kricketot,4,1,regular,Bug,194,37,25,41,25,41,25,208,1,0,0,,,,Shed Skin; Run Away (H),255
+402,Kricketune,4,1,regular,Bug,384,77,85,51,55,51,65,208,2,1,0,Kricketot,Level 10,1,Swarm; Technician (H),45
+403,Shinx,4,1,regular,Electric,263,45,65,34,40,34,45,209,1,0,0,,,,Rivalry; Intimidate; Guts (H),235
+404,Luxio,4,1,regular,Electric,363,60,85,49,60,49,60,209,2,0,0,Shinx,Level 15,1,Rivalry; Intimidate; Guts (H),120
+405,Luxray,4,1,regular,Electric,523,80,120,79,95,79,70,209,3,1,0,Luxio,Level 30,1,Rivalry; Intimidate; Guts (H),45
+406,Budew,4,1,regular,Grass/Poison,280,40,30,35,50,70,55,158,1,0,1,,,,Natural Cure; Poison Point; Leaf Guard (H),255
+407,Roserade,4,1,regular,Grass/Poison,515,60,70,65,125,105,90,158,3,1,0,Roselia,Use Shiny Stone,1,Natural Cure; Poison Point; Technician (H),75
+408,Cranidos,4,1,regular,Rock,350,67,125,40,30,30,58,211,1,0,0,,,,Mold Breaker; Sheer Force (H),45
+409,Rampardos,4,1,regular,Rock,495,97,165,60,65,50,58,211,2,1,0,Cranidos,Level 30,1,Mold Breaker; Sheer Force (H),45
+410,Shieldon,4,1,regular,Rock/Steel,350,30,42,118,42,88,30,212,1,0,0,,,,Sturdy; Soundproof (H),45
+411,Bastiodon,4,1,regular,Rock/Steel,495,60,52,168,47,138,30,212,2,1,0,Shieldon,Level 30,1,Sturdy; Soundproof (H),45
+412,Burmy,4,1,regular,Bug,224,40,29,45,29,45,36,213,1,0,0,,,,Shed Skin; Overcoat (H),120
+413,Wormadam,4,1,regular,Bug/Grass,424,60,59,85,79,105,36,213,2,1,0,Burmy,Level 20 (female),1,Anticipation; Overcoat (H),45
+414,Mothim,4,1,regular,Bug/Flying,424,70,94,50,94,50,66,213,2,1,0,Burmy,Level 20 (male),1,Swarm; Tinted Lens (H),45
+415,Combee,4,1,regular,Bug/Flying,244,30,30,42,30,42,70,214,1,0,0,,,,Honey Gather; Hustle (H),120
+416,Vespiquen,4,1,regular,Bug/Flying,474,70,80,102,80,102,40,214,2,1,0,Combee,Level 21 (female),1,Pressure; Unnerve (H),45
+417,Pachirisu,4,1,regular,Electric,405,60,45,70,45,90,95,215,1,1,0,,,,Run Away; Pickup; Volt Absorb (H),200
+418,Buizel,4,1,regular,Water,330,55,65,35,60,30,85,216,1,0,0,,,,Swift Swim; Water Veil (H),190
+419,Floatzel,4,1,regular,Water,495,85,105,55,85,50,115,216,2,1,0,Buizel,Level 26,1,Swift Swim; Water Veil (H),75
+420,Cherubi,4,1,regular,Grass,275,45,35,45,62,53,35,217,1,0,0,,,,Chlorophyll,190
+421,Cherrim,4,1,regular,Grass,450,70,60,70,87,78,85,217,2,1,0,Cherubi,Level 25,1,Flower Gift,75
+422,Shellos,4,1,regular,Water,325,76,48,48,57,62,34,218,1,0,0,,,,Sticky Hold; Storm Drain; Sand Force (H),190
+423,Gastrodon,4,1,regular,Water/Ground,475,111,83,68,92,82,39,218,2,1,0,Shellos,Level 30,1,Sticky Hold; Storm Drain; Sand Force (H),75
+424,Ambipom,4,1,regular,Normal,482,75,100,66,60,66,115,93,2,1,0,Aipom,Level up knowing Double Hit,1,Technician; Pickup; Skill Link (H),45
+425,Drifloon,4,1,regular,Ghost/Flying,348,90,50,34,60,44,70,219,1,0,0,,,,Aftermath; Unburden; Flare Boost (H),125
+426,Drifblim,4,1,regular,Ghost/Flying,498,150,80,44,90,54,80,219,2,1,0,Drifloon,Level 28,1,Aftermath; Unburden; Flare Boost (H),60
+427,Buneary,4,1,regular,Normal,350,55,66,44,44,56,85,220,1,0,0,,,,Run Away; Klutz; Limber (H),190
+428,Lopunny,4,1,regular,Normal,480,65,76,84,54,96,105,220,2,1,0,Buneary,Level up with high friendship,1,Cute Charm; Klutz; Limber (H),60
+429,Mismagius,4,1,regular,Ghost,495,60,60,60,105,105,105,98,2,1,0,Misdreavus,Use Dusk Stone,1,Levitate,45
+430,Honchkrow,4,1,regular,Dark/Flying,505,100,125,52,105,52,71,97,2,1,0,Murkrow,Use Dusk Stone,1,Insomnia; Super Luck; Moxie (H),30
+431,Glameow,4,1,regular,Normal,310,49,55,42,42,37,85,221,1,0,0,,,,Limber; Own Tempo; Keen Eye (H),190
+432,Purugly,4,1,regular,Normal,452,71,82,64,64,59,112,221,2,1,0,Glameow,Level 38,1,Thick Fat; Own Tempo; Defiant (H),75
+433,Chingling,4,1,regular,Psychic,285,45,30,50,65,50,45,184,1,0,1,,,,Levitate,120
+434,Stunky,4,1,regular,Poison/Dark,329,63,63,47,41,41,74,223,1,0,0,,,,Stench; Aftermath; Keen Eye (H),225
+435,Skuntank,4,1,regular,Poison/Dark,479,103,93,67,71,61,84,223,2,1,0,Stunky,Level 34,1,Stench; Aftermath; Keen Eye (H),60
+436,Bronzor,4,1,regular,Steel/Psychic,300,57,24,86,24,86,23,224,1,0,0,,,,Levitate; Heatproof; Heavy Metal (H),255
+437,Bronzong,4,1,regular,Steel/Psychic,500,67,89,116,79,116,33,224,2,1,0,Bronzor,Level 33,1,Levitate; Heatproof; Heavy Metal (H),90
+438,Bonsly,4,1,regular,Rock,290,50,80,95,10,45,10,91,1,0,1,,,,Sturdy; Rock Head; Rattled (H),255
+439,Mime Jr.,4,1,regular,Psychic/Fairy,310,20,25,45,70,90,60,57,1,0,1,,,,Soundproof; Filter; Technician (H),145
+440,Happiny,4,1,regular,Normal,220,100,5,5,15,65,30,51,1,0,1,,,,Natural Cure; Serene Grace; Friend Guard (H),130
+441,Chatot,4,1,regular,Normal/Flying,411,76,65,45,92,42,91,228,1,1,0,,,,Keen Eye; Tangled Feet; Big Pecks (H),30
+442,Spiritomb,4,1,regular,Ghost/Dark,485,50,92,108,92,108,35,229,1,1,0,,,,Pressure; Infiltrator (H),100
+443,Gible,4,1,regular,Dragon/Ground,300,58,70,45,40,45,42,230,1,0,0,,,,Sand Veil; Rough Skin (H),45
+444,Gabite,4,1,regular,Dragon/Ground,410,68,90,65,50,55,82,230,2,0,0,Gible,Level 24,1,Sand Veil; Rough Skin (H),45
+445,Garchomp,4,1,regular,Dragon/Ground,600,108,130,95,80,85,102,230,3,1,0,Gabite,Level 48,1,Sand Veil; Rough Skin (H),45
+446,Munchlax,4,1,regular,Normal,390,135,85,40,40,85,5,72,1,0,1,,,,Pickup; Thick Fat; Gluttony (H),50
+447,Riolu,4,1,regular,Fighting,285,40,70,40,35,40,60,232,1,0,1,,,,Steadfast; Inner Focus; Prankster (H),75
+448,Lucario,4,1,regular,Fighting/Steel,525,70,110,70,115,70,90,232,2,1,0,Riolu,Level up with high friendship at day,1,Steadfast; Inner Focus; Justified (H),45
+449,Hippopotas,4,1,regular,Ground,330,68,72,78,38,42,32,233,1,0,0,,,,Sand Stream; Sand Force (H),140
+450,Hippowdon,4,1,regular,Ground,525,108,112,118,68,72,47,233,2,1,0,Hippopotas,Level 34,1,Sand Stream; Sand Force (H),60
+451,Skorupi,4,1,regular,Poison/Bug,330,40,50,90,30,55,65,234,1,0,0,,,,Battle Armor; Sniper; Keen Eye (H),120
+452,Drapion,4,1,regular,Poison/Dark,500,70,90,110,60,75,95,234,2,1,0,Skorupi,Level 40,1,Battle Armor; Sniper; Keen Eye (H),45
+453,Croagunk,4,1,regular,Poison/Fighting,300,48,61,40,61,40,50,235,1,0,0,,,,Anticipation; Dry Skin; Poison Touch (H),140
+454,Toxicroak,4,1,regular,Poison/Fighting,490,83,106,65,86,65,85,235,2,1,0,Croagunk,Level 37,1,Anticipation; Dry Skin; Poison Touch (H),75
+455,Carnivine,4,1,regular,Grass,454,74,100,72,90,72,46,236,1,1,0,,,,Levitate,200
+456,Finneon,4,1,regular,Water,330,49,49,56,49,61,66,237,1,0,0,,,,Swift Swim; Storm Drain; Water Veil (H),190
+457,Lumineon,4,1,regular,Water,460,69,69,76,69,86,91,237,2,1,0,Finneon,Level 31,1,Swift Swim; Storm Drain; Water Veil (H),75
+458,Mantyke,4,1,regular,Water/Flying,345,45,20,50,60,120,50,116,1,0,1,,,,Swift Swim; Water Absorb; Water Veil (H),25
+459,Snover,4,1,regular,Grass/Ice,334,60,62,50,62,60,40,239,1,0,0,,,,Snow Warning; Soundproof (H),120
+460,Abomasnow,4,1,regular,Grass/Ice,494,90,92,75,92,85,60,239,2,1,0,Snover,Level 40,1,Snow Warning; Soundproof (H),60
+461,Weavile,4,1,regular,Dark/Ice,510,70,120,65,45,85,125,109,2,1,0,Sneasel,Level up holding Razor Claw at night,1,Pressure; Pickpocket (H),45
+462,Magnezone,4,1,regular,Electric/Steel,535,70,70,115,130,90,60,34,3,1,0,Magneton,Level up at Mt. Coronet OR Level up at Chargestone Cave OR Level up at Route 13 OR Level up at Blush Mountain OR Level up at Vast Poni Canyon OR Use Thunder Stone OR Level up at New Mauville,1,Magnet Pull; Sturdy; Analytic (H),30
+463,Lickilicky,4,1,regular,Normal,515,110,85,95,80,95,50,48,2,1,0,Lickitung,Level up knowing Rollout,1,Own Tempo; Oblivious; Cloud Nine (H),30
+464,Rhyperior,4,1,regular,Ground/Rock,535,115,140,130,55,55,40,50,3,1,0,Rhydon,Trade holding Protector,0,Lightning Rod; Solid Rock; Reckless (H),30
+465,Tangrowth,4,1,regular,Grass,535,100,100,125,110,50,50,52,2,1,0,Tangela,Level up knowing Ancient Power,1,Chlorophyll; Leaf Guard; Regenerator (H),30
+466,Electivire,4,1,regular,Electric,540,75,123,67,95,85,95,60,3,1,0,Electabuzz,Trade holding Electirizer,0,Motor Drive; Vital Spirit (H),30
+467,Magmortar,4,1,regular,Fire,540,75,95,67,125,95,83,61,3,1,0,Magmar,Trade holding Magmarizer,0,Flame Body; Vital Spirit (H),30
+468,Togekiss,4,1,regular,Fairy/Flying,545,85,50,95,120,115,80,87,3,1,0,Togetic,Use Shiny Stone,1,Hustle; Serene Grace; Super Luck (H),30
+469,Yanmega,4,1,regular,Bug/Flying,515,86,76,86,116,56,95,95,2,1,0,Yanma,Level up knowing Ancient Power,1,Speed Boost; Tinted Lens; Frisk (H),30
+470,Leafeon,4,1,regular,Grass,525,65,110,130,60,65,95,67,2,1,0,Eevee,Level up at Eterna Forest OR Level up at Pinwheel Forest OR Level up at Route 20 OR Use Leaf Stone OR Level up at Petalburg Woods OR Level up at Lush Jungle,1,Leaf Guard; Chlorophyll (H),45
+471,Glaceon,4,1,regular,Ice,525,65,60,110,130,95,65,67,2,1,0,Eevee,Level up at Route 217 OR Level up at Twist Mountain OR Level up at Frost Cavern OR Use Ice Stone OR Level up at Shoal Cave OR Level up at Mount Lanakila,1,Snow Cloak; Ice Body (H),45
+472,Gliscor,4,1,regular,Ground/Flying,510,75,95,125,45,75,95,104,2,1,0,Gligar,Level up holding Razor Fang at night,1,Hyper Cutter; Sand Veil; Poison Heal (H),30
+473,Mamoswine,4,1,regular,Ice/Ground,530,110,130,80,70,60,80,112,3,1,0,Piloswine,Level up knowing Ancient Power,1,Oblivious; Snow Cloak; Thick Fat (H),50
+474,Porygon-Z,4,1,regular,Normal,535,85,80,70,135,75,90,68,3,1,0,Porygon2,Trade holding Dubious Disc,0,Adaptability; Download; Analytic (H),30
+475,Gallade,4,1,regular,Psychic/Fighting,518,68,125,65,65,115,80,140,3,1,0,Kirlia,Use Dawn Stone (male),1,Steadfast; Sharpness; Justified (H),45
+476,Probopass,4,1,regular,Rock/Steel,525,60,55,145,75,150,40,147,2,1,0,Nosepass,Level up at Mt. Coronet OR Level up at Chargestone Cave OR Level up at Route 13 OR Level up at Blush Mountain OR Level up at Vast Poni Canyon OR Use Thunder Stone OR Level up at New Mauville,1,Sturdy; Magnet Pull; Sand Force (H),60
+477,Dusknoir,4,1,regular,Ghost,525,45,100,135,65,135,45,182,3,1,0,Dusclops,Trade holding Reaper Cloth,0,Pressure; Frisk (H),45
+478,Froslass,4,1,regular,Ice/Ghost,480,70,80,70,80,70,110,186,2,1,0,Snorunt,Use Dawn Stone (female),1,Snow Cloak; Cursed Body (H),75
+479,Rotom,4,1,regular,Electric/Ghost,440,50,50,77,95,77,91,240,1,1,0,,,,Levitate,45
+480,Uxie,4,1,legendary,Psychic,580,75,75,130,75,130,95,241,1,1,0,,,,Levitate,3
+481,Mesprit,4,1,legendary,Psychic,580,80,105,105,105,105,80,242,1,1,0,,,,Levitate,3
+482,Azelf,4,1,legendary,Psychic,580,75,125,70,125,70,115,243,1,1,0,,,,Levitate,3
+483,Dialga,4,1,legendary,Steel/Dragon,680,100,120,120,150,100,90,244,1,1,0,,,,Pressure; Telepathy (H),3
+484,Palkia,4,1,legendary,Water/Dragon,680,90,120,100,150,120,100,245,1,1,0,,,,Pressure; Telepathy (H),3
+485,Heatran,4,1,legendary,Fire/Steel,600,91,90,106,130,106,77,246,1,1,0,,,,Flash Fire; Flame Body (H),3
+486,Regigigas,4,1,legendary,Normal,670,110,160,110,80,110,100,247,1,1,0,,,,Slow Start,3
+487,Giratina,4,1,legendary,Ghost/Dragon,680,150,100,120,100,120,90,248,1,1,0,,,,Pressure; Telepathy (H),3
+488,Cresselia,4,1,legendary,Psychic,580,120,70,110,75,120,85,249,1,1,0,,,,Levitate,3
+489,Phione,4,1,mythical,Water,480,80,80,80,80,80,80,250,1,1,0,,,,Hydration,30
+490,Manaphy,4,1,mythical,Water,600,100,100,100,100,100,100,250,1,1,0,,,,Hydration,3
+491,Darkrai,4,1,mythical,Dark,600,70,90,90,135,90,125,252,1,1,0,,,,Bad Dreams,3
+492,Shaymin,4,1,mythical,Grass,600,100,100,100,100,100,100,253,1,1,0,,,,Natural Cure,45
+493,Arceus,4,1,mythical,Normal,720,120,120,120,120,120,120,254,1,1,0,,,,Multitype,3
+494,Victini,5,0,mythical,Psychic/Fire,600,100,100,100,100,100,100,255,1,1,0,,,,Victory Star,3
+495,Snivy,5,0,regular,Grass,308,45,45,55,45,55,63,256,1,0,0,,,,Overgrow; Contrary (H),45
+496,Servine,5,0,regular,Grass,413,60,60,75,60,75,83,256,2,0,0,Snivy,Level 17,1,Overgrow; Contrary (H),45
+497,Serperior,5,0,regular,Grass,528,75,75,95,75,95,113,256,3,1,0,Servine,Level 36,1,Overgrow; Contrary (H),45
+498,Tepig,5,0,regular,Fire,308,65,63,45,45,45,45,257,1,0,0,,,,Blaze; Thick Fat (H),45
+499,Pignite,5,0,regular,Fire/Fighting,418,90,93,55,70,55,55,257,2,0,0,Tepig,Level 17,1,Blaze; Thick Fat (H),45
+500,Emboar,5,0,regular,Fire/Fighting,528,110,123,65,100,65,65,257,3,1,0,Pignite,Level 36,1,Blaze; Reckless (H),45
+501,Oshawott,5,0,regular,Water,308,55,55,45,63,45,45,258,1,0,0,,,,Torrent; Shell Armor (H),45
+502,Dewott,5,0,regular,Water,413,75,75,60,83,60,60,258,2,0,0,Oshawott,Level 17,1,Torrent; Shell Armor (H),45
+503,Samurott,5,0,regular,Water,528,95,100,85,108,70,70,258,3,1,0,Dewott,Level 36,1,Torrent; Shell Armor (H),45
+504,Patrat,5,0,regular,Normal,255,45,55,39,35,39,42,259,1,0,0,,,,Run Away; Keen Eye; Analytic (H),255
+505,Watchog,5,0,regular,Normal,420,60,85,69,60,69,77,259,2,1,0,Patrat,Level 20,1,Illuminate; Keen Eye; Analytic (H),255
+506,Lillipup,5,0,regular,Normal,275,45,60,45,25,45,55,260,1,0,0,,,,Vital Spirit; Pickup; Run Away (H),255
+507,Herdier,5,0,regular,Normal,370,65,80,65,35,65,60,260,2,0,0,Lillipup,Level 16,1,Intimidate; Sand Rush; Scrappy (H),120
+508,Stoutland,5,0,regular,Normal,500,85,110,90,45,90,80,260,3,1,0,Herdier,Level 32,1,Intimidate; Sand Rush; Scrappy (H),45
+509,Purrloin,5,0,regular,Dark,281,41,50,37,50,37,66,261,1,0,0,,,,Limber; Unburden; Prankster (H),255
+510,Liepard,5,0,regular,Dark,446,64,88,50,88,50,106,261,2,1,0,Purrloin,Level 20,1,Limber; Unburden; Prankster (H),90
+511,Pansage,5,0,regular,Grass,316,50,53,48,53,48,64,262,1,0,0,,,,Gluttony; Overgrow (H),190
+512,Simisage,5,0,regular,Grass,498,75,98,63,98,63,101,262,2,1,0,Pansage,Use Leaf Stone,1,Gluttony; Overgrow (H),75
+513,Pansear,5,0,regular,Fire,316,50,53,48,53,48,64,263,1,0,0,,,,Gluttony; Blaze (H),190
+514,Simisear,5,0,regular,Fire,498,75,98,63,98,63,101,263,2,1,0,Pansear,Use Fire Stone,1,Gluttony; Blaze (H),75
+515,Panpour,5,0,regular,Water,316,50,53,48,53,48,64,264,1,0,0,,,,Gluttony; Torrent (H),190
+516,Simipour,5,0,regular,Water,498,75,98,63,98,63,101,264,2,1,0,Panpour,Use Water Stone,1,Gluttony; Torrent (H),75
+517,Munna,5,0,regular,Psychic,292,76,25,45,67,55,24,265,1,0,0,,,,Forewarn; Synchronize; Telepathy (H),190
+518,Musharna,5,0,regular,Psychic,487,116,55,85,107,95,29,265,2,1,0,Munna,Use Moon Stone,1,Forewarn; Synchronize; Telepathy (H),75
+519,Pidove,5,0,regular,Normal/Flying,264,50,55,50,36,30,43,266,1,0,0,,,,Big Pecks; Super Luck; Rivalry (H),255
+520,Tranquill,5,0,regular,Normal/Flying,358,62,77,62,50,42,65,266,2,0,0,Pidove,Level 21,1,Big Pecks; Super Luck; Rivalry (H),120
+521,Unfezant,5,0,regular,Normal/Flying,488,80,115,80,65,55,93,266,3,1,0,Tranquill,Level 32,1,Big Pecks; Super Luck; Rivalry (H),45
+522,Blitzle,5,0,regular,Electric,295,45,60,32,50,32,76,267,1,0,0,,,,Lightning Rod; Motor Drive; Sap Sipper (H),190
+523,Zebstrika,5,0,regular,Electric,497,75,100,63,80,63,116,267,2,1,0,Blitzle,Level 27,1,Lightning Rod; Motor Drive; Sap Sipper (H),75
+524,Roggenrola,5,0,regular,Rock,280,55,75,85,25,25,15,268,1,0,0,,,,Sturdy; Weak Armor; Sand Force (H),255
+525,Boldore,5,0,regular,Rock,390,70,105,105,50,40,20,268,2,0,0,Roggenrola,Level 25,1,Sturdy; Weak Armor; Sand Force (H),120
+526,Gigalith,5,0,regular,Rock,515,85,135,130,60,80,25,268,3,1,0,Boldore,Trade,0,Sturdy; Sand Stream; Sand Force (H),45
+527,Woobat,5,0,regular,Psychic/Flying,323,65,45,43,55,43,72,269,1,0,0,,,,Unaware; Klutz; Simple (H),190
+528,Swoobat,5,0,regular,Psychic/Flying,425,67,57,55,77,55,114,269,2,1,0,Woobat,Level up with high friendship,1,Unaware; Klutz; Simple (H),45
+529,Drilbur,5,0,regular,Ground,328,60,85,40,30,45,68,270,1,0,0,,,,Sand Rush; Sand Force; Mold Breaker (H),120
+530,Excadrill,5,0,regular,Ground/Steel,508,110,135,60,50,65,88,270,2,1,0,Drilbur,Level 31,1,Sand Rush; Sand Force; Mold Breaker (H),60
+531,Audino,5,0,regular,Normal,445,103,60,86,60,86,50,271,1,1,0,,,,Healer; Regenerator; Klutz (H),255
+532,Timburr,5,0,regular,Fighting,305,75,80,55,25,35,35,272,1,0,0,,,,Guts; Sheer Force; Iron Fist (H),180
+533,Gurdurr,5,0,regular,Fighting,405,85,105,85,40,50,40,272,2,0,0,Timburr,Level 25,1,Guts; Sheer Force; Iron Fist (H),90
+534,Conkeldurr,5,0,regular,Fighting,505,105,140,95,55,65,45,272,3,1,0,Gurdurr,Trade,0,Guts; Sheer Force; Iron Fist (H),45
+535,Tympole,5,0,regular,Water,294,50,50,40,50,40,64,273,1,0,0,,,,Swift Swim; Hydration; Water Absorb (H),255
+536,Palpitoad,5,0,regular,Water/Ground,384,75,65,55,65,55,69,273,2,0,0,Tympole,Level 25,1,Swift Swim; Hydration; Water Absorb (H),120
+537,Seismitoad,5,0,regular,Water/Ground,509,105,95,75,85,75,74,273,3,1,0,Palpitoad,Level 36,1,Swift Swim; Poison Touch; Water Absorb (H),45
+538,Throh,5,0,regular,Fighting,465,120,100,85,30,85,45,274,1,1,0,,,,Guts; Inner Focus; Mold Breaker (H),45
+539,Sawk,5,0,regular,Fighting,465,75,125,75,30,75,85,275,1,1,0,,,,Sturdy; Inner Focus; Mold Breaker (H),45
+540,Sewaddle,5,0,regular,Bug/Grass,310,45,53,70,40,60,42,276,1,0,0,,,,Swarm; Chlorophyll; Overcoat (H),255
+541,Swadloon,5,0,regular,Bug/Grass,380,55,63,90,50,80,42,276,2,0,0,Sewaddle,Level 20,1,Leaf Guard; Chlorophyll; Overcoat (H),120
+542,Leavanny,5,0,regular,Bug/Grass,500,75,103,80,70,80,92,276,3,1,0,Swadloon,Level up with high friendship,1,Swarm; Chlorophyll; Overcoat (H),45
+543,Venipede,5,0,regular,Bug/Poison,260,30,45,59,30,39,57,277,1,0,0,,,,Poison Point; Swarm; Speed Boost (H),255
+544,Whirlipede,5,0,regular,Bug/Poison,360,40,55,99,40,79,47,277,2,0,0,Venipede,Level 22,1,Poison Point; Swarm; Speed Boost (H),120
+545,Scolipede,5,0,regular,Bug/Poison,485,60,100,89,55,69,112,277,3,1,0,Whirlipede,Level 30,1,Poison Point; Swarm; Speed Boost (H),45
+546,Cottonee,5,0,regular,Grass/Fairy,280,40,27,60,37,50,66,278,1,0,0,,,,Prankster; Infiltrator; Chlorophyll (H),190
+547,Whimsicott,5,0,regular,Grass/Fairy,480,60,67,85,77,75,116,278,2,1,0,Cottonee,Use Sun Stone,1,Prankster; Infiltrator; Chlorophyll (H),75
+548,Petilil,5,0,regular,Grass,280,45,35,50,70,50,30,279,1,0,0,,,,Chlorophyll; Own Tempo; Leaf Guard (H),190
+549,Lilligant,5,0,regular,Grass,480,70,60,75,110,75,90,279,2,1,0,Petilil,Use Sun Stone,1,Chlorophyll; Own Tempo; Leaf Guard (H),75
+550,Basculin,5,0,regular,Water,460,70,92,65,80,55,98,280,1,0,0,,,,Reckless; Adaptability; Mold Breaker (H),25
+551,Sandile,5,0,regular,Ground/Dark,292,50,72,35,35,35,65,281,1,0,0,,,,Intimidate; Moxie; Anger Point (H),180
+552,Krokorok,5,0,regular,Ground/Dark,351,60,82,45,45,45,74,281,2,0,0,Sandile,Level 29,1,Intimidate; Moxie; Anger Point (H),90
+553,Krookodile,5,0,regular,Ground/Dark,519,95,117,80,65,70,92,281,3,1,0,Krokorok,Level 40,1,Intimidate; Moxie; Anger Point (H),45
+554,Darumaka,5,0,regular,Fire,315,70,90,45,15,45,50,282,1,0,0,,,,Hustle; Inner Focus (H),120
+555,Darmanitan,5,0,regular,Fire,480,105,140,55,30,55,95,282,2,1,0,Darumaka,Level 35 OR Use Ice Stone from the darumaka-galar form,1,Sheer Force; Zen Mode (H),60
+556,Maractus,5,0,regular,Grass,461,75,86,67,106,67,60,283,1,1,0,,,,Water Absorb; Chlorophyll; Storm Drain (H),255
+557,Dwebble,5,0,regular,Bug/Rock,325,50,65,85,35,35,55,284,1,0,0,,,,Sturdy; Shell Armor; Weak Armor (H),190
+558,Crustle,5,0,regular,Bug/Rock,485,70,105,125,65,75,45,284,2,1,0,Dwebble,Level 34,1,Sturdy; Shell Armor; Weak Armor (H),75
+559,Scraggy,5,0,regular,Dark/Fighting,348,50,75,70,35,70,48,285,1,0,0,,,,Shed Skin; Moxie; Intimidate (H),180
+560,Scrafty,5,0,regular,Dark/Fighting,488,65,90,115,45,115,58,285,2,1,0,Scraggy,Level 39,1,Shed Skin; Moxie; Intimidate (H),90
+561,Sigilyph,5,0,regular,Psychic/Flying,490,72,58,80,103,80,97,286,1,1,0,,,,Wonder Skin; Magic Guard; Tinted Lens (H),45
+562,Yamask,5,0,regular,Ghost,303,38,30,85,55,65,30,287,1,0,0,,,,Mummy,190
+563,Cofagrigus,5,0,regular,Ghost,483,58,50,145,95,105,30,287,2,1,0,Yamask,Level 34,1,Mummy,90
+564,Tirtouga,5,0,regular,Water/Rock,355,54,78,103,53,45,22,288,1,0,0,,,,Solid Rock; Sturdy; Swift Swim (H),45
+565,Carracosta,5,0,regular,Water/Rock,495,74,108,133,83,65,32,288,2,1,0,Tirtouga,Level 37,1,Solid Rock; Sturdy; Swift Swim (H),45
+566,Archen,5,0,regular,Rock/Flying,401,55,112,45,74,45,70,289,1,0,0,,,,Defeatist,45
+567,Archeops,5,0,regular,Rock/Flying,567,75,140,65,112,65,110,289,2,1,0,Archen,Level 37,1,Defeatist,45
+568,Trubbish,5,0,regular,Poison,329,50,50,62,40,62,65,290,1,0,0,,,,Stench; Sticky Hold; Aftermath (H),190
+569,Garbodor,5,0,regular,Poison,474,80,95,82,60,82,75,290,2,1,0,Trubbish,Level 36,1,Stench; Weak Armor; Aftermath (H),60
+570,Zorua,5,0,regular,Dark,330,40,65,40,80,40,65,291,1,0,0,,,,Illusion,75
+571,Zoroark,5,0,regular,Dark,510,60,105,60,120,60,105,291,2,1,0,Zorua,Level 30 OR Level 30 from the zorua-hisui form,1,Illusion,45
+572,Minccino,5,0,regular,Normal,300,55,50,40,40,40,75,292,1,0,0,,,,Cute Charm; Technician; Skill Link (H),255
+573,Cinccino,5,0,regular,Normal,470,75,95,60,65,60,115,292,2,1,0,Minccino,Use Shiny Stone,1,Cute Charm; Technician; Skill Link (H),60
+574,Gothita,5,0,regular,Psychic,290,45,30,50,55,65,45,293,1,0,0,,,,Frisk; Competitive; Shadow Tag (H),200
+575,Gothorita,5,0,regular,Psychic,390,60,45,70,75,85,55,293,2,0,0,Gothita,Level 32,1,Frisk; Competitive; Shadow Tag (H),100
+576,Gothitelle,5,0,regular,Psychic,490,70,55,95,95,110,65,293,3,1,0,Gothorita,Level 41,1,Frisk; Competitive; Shadow Tag (H),50
+577,Solosis,5,0,regular,Psychic,290,45,30,40,105,50,20,294,1,0,0,,,,Overcoat; Magic Guard; Regenerator (H),200
+578,Duosion,5,0,regular,Psychic,370,65,40,50,125,60,30,294,2,0,0,Solosis,Level 32,1,Overcoat; Magic Guard; Regenerator (H),100
+579,Reuniclus,5,0,regular,Psychic,490,110,65,75,125,85,30,294,3,1,0,Duosion,Level 41,1,Overcoat; Magic Guard; Regenerator (H),50
+580,Ducklett,5,0,regular,Water/Flying,305,62,44,50,44,50,55,295,1,0,0,,,,Keen Eye; Big Pecks; Hydration (H),190
+581,Swanna,5,0,regular,Water/Flying,473,75,87,63,87,63,98,295,2,1,0,Ducklett,Level 35,1,Keen Eye; Big Pecks; Hydration (H),45
+582,Vanillite,5,0,regular,Ice,305,36,50,50,65,60,44,296,1,0,0,,,,Ice Body; Snow Cloak; Weak Armor (H),255
+583,Vanillish,5,0,regular,Ice,395,51,65,65,80,75,59,296,2,0,0,Vanillite,Level 35,1,Ice Body; Snow Cloak; Weak Armor (H),120
+584,Vanilluxe,5,0,regular,Ice,535,71,95,85,110,95,79,296,3,1,0,Vanillish,Level 47,1,Ice Body; Snow Warning; Weak Armor (H),45
+585,Deerling,5,0,regular,Normal/Grass,335,60,60,50,40,50,75,297,1,0,0,,,,Chlorophyll; Sap Sipper; Serene Grace (H),190
+586,Sawsbuck,5,0,regular,Normal/Grass,475,80,100,70,60,70,95,297,2,1,0,Deerling,Level 34,1,Chlorophyll; Sap Sipper; Serene Grace (H),75
+587,Emolga,5,0,regular,Electric/Flying,428,55,75,60,75,60,103,298,1,1,0,,,,Static; Motor Drive (H),200
+588,Karrablast,5,0,regular,Bug,315,50,75,45,40,45,60,299,1,0,0,,,,Swarm; Shed Skin; No Guard (H),200
+589,Escavalier,5,0,regular,Bug/Steel,495,70,135,105,60,105,20,299,2,1,0,Karrablast,Trade for Shelmet,0,Swarm; Shell Armor; Overcoat (H),75
+590,Foongus,5,0,regular,Grass/Poison,294,69,55,45,55,55,15,300,1,0,0,,,,Effect Spore; Regenerator (H),190
+591,Amoonguss,5,0,regular,Grass/Poison,464,114,85,70,85,80,30,300,2,1,0,Foongus,Level 39,1,Effect Spore; Regenerator (H),75
+592,Frillish,5,0,regular,Water/Ghost,335,55,40,50,65,85,40,301,1,0,0,,,,Water Absorb; Cursed Body; Damp (H),190
+593,Jellicent,5,0,regular,Water/Ghost,480,100,60,70,85,105,60,301,2,1,0,Frillish,Level 40,1,Water Absorb; Cursed Body; Damp (H),60
+594,Alomomola,5,0,regular,Water,470,165,75,80,40,45,65,302,1,1,0,,,,Healer; Hydration; Regenerator (H),75
+595,Joltik,5,0,regular,Bug/Electric,319,50,47,50,57,50,65,303,1,0,0,,,,Compound Eyes; Unnerve; Swarm (H),190
+596,Galvantula,5,0,regular,Bug/Electric,472,70,77,60,97,60,108,303,2,1,0,Joltik,Level 36,1,Compound Eyes; Unnerve; Swarm (H),75
+597,Ferroseed,5,0,regular,Grass/Steel,305,44,50,91,24,86,10,304,1,0,0,,,,Iron Barbs,255
+598,Ferrothorn,5,0,regular,Grass/Steel,489,74,94,131,54,116,20,304,2,1,0,Ferroseed,Level 40,1,Iron Barbs; Anticipation (H),90
+599,Klink,5,0,regular,Steel,300,40,55,70,45,60,30,305,1,0,0,,,,Plus; Minus; Clear Body (H),130
+600,Klang,5,0,regular,Steel,440,60,80,95,70,85,50,305,2,0,0,Klink,Level 38,1,Plus; Minus; Clear Body (H),60
+601,Klinklang,5,0,regular,Steel,520,60,100,115,70,85,90,305,3,1,0,Klang,Level 49,1,Plus; Minus; Clear Body (H),30
+602,Tynamo,5,0,regular,Electric,275,35,55,40,45,40,60,306,1,0,0,,,,Levitate,190
+603,Eelektrik,5,0,regular,Electric,405,65,85,70,75,70,40,306,2,0,0,Tynamo,Level 39,1,Levitate,60
+604,Eelektross,5,0,regular,Electric,515,85,115,80,105,80,50,306,3,1,0,Eelektrik,Use Thunder Stone,1,Levitate,30
+605,Elgyem,5,0,regular,Psychic,335,55,55,55,85,55,30,307,1,0,0,,,,Telepathy; Synchronize; Analytic (H),255
+606,Beheeyem,5,0,regular,Psychic,485,75,75,75,125,95,40,307,2,1,0,Elgyem,Level 42,1,Telepathy; Synchronize; Analytic (H),90
+607,Litwick,5,0,regular,Ghost/Fire,275,50,30,55,65,55,20,308,1,0,0,,,,Flash Fire; Flame Body; Infiltrator (H),190
+608,Lampent,5,0,regular,Ghost/Fire,370,60,40,60,95,60,55,308,2,0,0,Litwick,Level 41,1,Flash Fire; Flame Body; Infiltrator (H),90
+609,Chandelure,5,0,regular,Ghost/Fire,520,60,55,90,145,90,80,308,3,1,0,Lampent,Use Dusk Stone,1,Flash Fire; Flame Body; Infiltrator (H),45
+610,Axew,5,0,regular,Dragon,320,46,87,60,30,40,57,309,1,0,0,,,,Rivalry; Mold Breaker; Unnerve (H),75
+611,Fraxure,5,0,regular,Dragon,410,66,117,70,40,50,67,309,2,0,0,Axew,Level 38,1,Rivalry; Mold Breaker; Unnerve (H),60
+612,Haxorus,5,0,regular,Dragon,540,76,147,90,60,70,97,309,3,1,0,Fraxure,Level 48,1,Rivalry; Mold Breaker; Unnerve (H),45
+613,Cubchoo,5,0,regular,Ice,305,55,70,40,60,40,40,310,1,0,0,,,,Snow Cloak; Slush Rush; Rattled (H),120
+614,Beartic,5,0,regular,Ice,505,95,130,80,70,80,50,310,2,1,0,Cubchoo,Level 37,1,Snow Cloak; Slush Rush; Swift Swim (H),60
+615,Cryogonal,5,0,regular,Ice,515,80,50,50,95,135,105,311,1,1,0,,,,Levitate,25
+616,Shelmet,5,0,regular,Bug,305,50,40,85,40,65,25,312,1,0,0,,,,Hydration; Shell Armor; Overcoat (H),200
+617,Accelgor,5,0,regular,Bug,495,80,70,40,100,60,145,312,2,1,0,Shelmet,Trade for Karrablast,0,Hydration; Sticky Hold; Unburden (H),75
+618,Stunfisk,5,0,regular,Ground/Electric,471,109,66,84,81,99,32,313,1,1,0,,,,Static; Limber; Sand Veil (H),75
+619,Mienfoo,5,0,regular,Fighting,350,45,85,50,55,50,65,314,1,0,0,,,,Inner Focus; Regenerator; Reckless (H),180
+620,Mienshao,5,0,regular,Fighting,510,65,125,60,95,60,105,314,2,1,0,Mienfoo,Level 50,1,Inner Focus; Regenerator; Reckless (H),45
+621,Druddigon,5,0,regular,Dragon,485,77,120,90,60,90,48,315,1,1,0,,,,Rough Skin; Sheer Force; Mold Breaker (H),45
+622,Golett,5,0,regular,Ground/Ghost,303,59,74,50,35,50,35,316,1,0,0,,,,Iron Fist; Klutz; No Guard (H),190
+623,Golurk,5,0,regular,Ground/Ghost,483,89,124,80,55,80,55,316,2,1,0,Golett,Level 43,1,Iron Fist; Klutz; No Guard (H),90
+624,Pawniard,5,0,regular,Dark/Steel,340,45,85,70,40,40,60,317,1,0,0,,,,Defiant; Inner Focus; Pressure (H),120
+625,Bisharp,5,0,regular,Dark/Steel,490,65,125,100,60,70,70,317,2,0,0,Pawniard,Level 52,1,Defiant; Inner Focus; Pressure (H),45
+626,Bouffalant,5,0,regular,Normal,490,95,110,95,40,95,55,318,1,1,0,,,,Reckless; Sap Sipper; Soundproof (H),45
+627,Rufflet,5,0,regular,Normal/Flying,350,70,83,50,37,50,60,319,1,0,0,,,,Keen Eye; Sheer Force; Hustle (H),190
+628,Braviary,5,0,regular,Normal/Flying,510,100,123,75,57,75,80,319,2,1,0,Rufflet,Level 54,1,Keen Eye; Sheer Force; Defiant (H),60
+629,Vullaby,5,0,regular,Dark/Flying,370,70,55,75,45,65,60,320,1,0,0,,,,Big Pecks; Overcoat; Weak Armor (H),190
+630,Mandibuzz,5,0,regular,Dark/Flying,510,110,65,105,55,95,80,320,2,1,0,Vullaby,Level 54,1,Big Pecks; Overcoat; Weak Armor (H),60
+631,Heatmor,5,0,regular,Fire,484,85,97,66,105,66,65,321,1,1,0,,,,Gluttony; Flash Fire; White Smoke (H),90
+632,Durant,5,0,regular,Bug/Steel,484,58,109,112,48,48,109,322,1,1,0,,,,Swarm; Hustle; Truant (H),90
+633,Deino,5,0,regular,Dark/Dragon,300,52,65,50,45,50,38,323,1,0,0,,,,Hustle,45
+634,Zweilous,5,0,regular,Dark/Dragon,420,72,85,70,65,70,58,323,2,0,0,Deino,Level 50,1,Hustle,45
+635,Hydreigon,5,0,regular,Dark/Dragon,600,92,105,90,125,90,98,323,3,1,0,Zweilous,Level 64,1,Levitate,45
+636,Larvesta,5,0,regular,Bug/Fire,360,55,85,55,50,55,60,324,1,0,0,,,,Flame Body; Swarm (H),45
+637,Volcarona,5,0,regular,Bug/Fire,550,85,60,65,135,105,100,324,2,1,0,Larvesta,Level 59,1,Flame Body; Swarm (H),15
+638,Cobalion,5,0,legendary,Steel/Fighting,580,91,90,129,90,72,108,325,1,1,0,,,,Justified,3
+639,Terrakion,5,0,legendary,Rock/Fighting,580,91,129,90,72,90,108,326,1,1,0,,,,Justified,3
+640,Virizion,5,0,legendary,Grass/Fighting,580,91,90,72,90,129,108,327,1,1,0,,,,Justified,3
+641,Tornadus,5,0,legendary,Flying,580,79,115,70,125,80,111,328,1,1,0,,,,Prankster; Defiant (H),3
+642,Thundurus,5,0,legendary,Electric/Flying,580,79,115,70,125,80,111,329,1,1,0,,,,Prankster; Defiant (H),3
+643,Reshiram,5,0,legendary,Dragon/Fire,680,100,120,100,150,120,90,330,1,1,0,,,,Turboblaze,3
+644,Zekrom,5,0,legendary,Dragon/Electric,680,100,150,120,120,100,90,331,1,1,0,,,,Teravolt,3
+645,Landorus,5,0,legendary,Ground/Flying,600,89,125,90,115,80,101,332,1,1,0,,,,Sand Force; Sheer Force (H),3
+646,Kyurem,5,0,legendary,Dragon/Ice,660,125,130,90,130,90,95,333,1,1,0,,,,Pressure,3
+647,Keldeo,5,0,mythical,Water/Fighting,580,91,72,90,129,90,108,334,1,1,0,,,,Justified,3
+648,Meloetta,5,0,mythical,Normal/Psychic,600,100,77,77,128,128,90,335,1,1,0,,,,Serene Grace,3
+649,Genesect,5,0,mythical,Bug/Steel,600,71,120,95,120,95,99,336,1,1,0,,,,Download,3
+650,Chespin,6,0,regular,Grass,313,56,61,65,48,45,38,337,1,0,0,,,,Overgrow; Bulletproof (H),45
+651,Quilladin,6,0,regular,Grass,405,61,78,95,56,58,57,337,2,0,0,Chespin,Level 16,1,Overgrow; Bulletproof (H),45
+652,Chesnaught,6,0,regular,Grass/Fighting,530,88,107,122,74,75,64,337,3,1,0,Quilladin,Level 36,1,Overgrow; Bulletproof (H),45
+653,Fennekin,6,0,regular,Fire,307,40,45,40,62,60,60,338,1,0,0,,,,Blaze; Magician (H),45
+654,Braixen,6,0,regular,Fire,409,59,59,58,90,70,73,338,2,0,0,Fennekin,Level 16,1,Blaze; Magician (H),45
+655,Delphox,6,0,regular,Fire/Psychic,534,75,69,72,114,100,104,338,3,1,0,Braixen,Level 36,1,Blaze; Magician (H),45
+656,Froakie,6,0,regular,Water,314,41,56,40,62,44,71,339,1,0,0,,,,Torrent; Protean (H),45
+657,Frogadier,6,0,regular,Water,405,54,63,52,83,56,97,339,2,0,0,Froakie,Level 16,1,Torrent; Protean (H),45
+658,Greninja,6,0,regular,Water/Dark,530,72,95,67,103,71,122,339,3,1,0,Frogadier,Level 36,1,Torrent; Protean (H),45
+659,Bunnelby,6,0,regular,Normal,237,38,36,38,32,36,57,340,1,0,0,,,,Pickup; Cheek Pouch; Huge Power (H),255
+660,Diggersby,6,0,regular,Normal/Ground,423,85,56,77,50,77,78,340,2,1,0,Bunnelby,Level 20,1,Pickup; Cheek Pouch; Huge Power (H),127
+661,Fletchling,6,0,regular,Normal/Flying,278,45,50,43,40,38,62,341,1,0,0,,,,Big Pecks; Gale Wings (H),255
+662,Fletchinder,6,0,regular,Fire/Flying,382,62,73,55,56,52,84,341,2,0,0,Fletchling,Level 17,1,Flame Body; Gale Wings (H),120
+663,Talonflame,6,0,regular,Fire/Flying,499,78,81,71,74,69,126,341,3,1,0,Fletchinder,Level 35,1,Flame Body; Gale Wings (H),45
+664,Scatterbug,6,0,regular,Bug,200,38,35,40,27,25,35,342,1,0,0,,,,Shield Dust; Compound Eyes; Friend Guard (H),255
+665,Spewpa,6,0,regular,Bug,213,45,22,60,27,30,29,342,2,0,0,Scatterbug,Level 9,1,Shed Skin; Friend Guard (H),120
+666,Vivillon,6,0,regular,Bug/Flying,411,80,52,50,90,50,89,342,3,1,0,Spewpa,Level 12,1,Shield Dust; Compound Eyes; Friend Guard (H),45
+667,Litleo,6,0,regular,Fire/Normal,369,62,50,58,73,54,72,343,1,0,0,,,,Rivalry; Unnerve; Moxie (H),220
+668,Pyroar,6,0,regular,Fire/Normal,507,86,68,72,109,66,106,343,2,1,0,Litleo,Level 35,1,Rivalry; Unnerve; Moxie (H),65
+669,Flabébé,6,0,regular,Fairy,303,44,38,39,61,79,42,344,1,0,0,,,,Flower Veil; Symbiosis (H),225
+670,Floette,6,0,regular,Fairy,371,54,45,47,75,98,52,344,2,0,0,Flabébé,Level 19,1,Flower Veil; Symbiosis (H),120
+671,Florges,6,0,regular,Fairy,552,78,65,68,112,154,75,344,3,1,0,Floette,Use Shiny Stone,1,Flower Veil; Symbiosis (H),45
+672,Skiddo,6,0,regular,Grass,350,66,65,48,62,57,52,345,1,0,0,,,,Sap Sipper; Grass Pelt (H),200
+673,Gogoat,6,0,regular,Grass,531,123,100,62,97,81,68,345,2,1,0,Skiddo,Level 32,1,Sap Sipper; Grass Pelt (H),45
+674,Pancham,6,0,regular,Fighting,348,67,82,62,46,48,43,346,1,0,0,,,,Iron Fist; Mold Breaker; Scrappy (H),220
+675,Pangoro,6,0,regular,Fighting/Dark,495,95,124,78,69,71,58,346,2,1,0,Pancham,Level 32 with a Dark-type in party,0,Iron Fist; Mold Breaker; Scrappy (H),65
+676,Furfrou,6,0,regular,Normal,472,75,80,60,65,90,102,347,1,1,0,,,,Fur Coat,160
+677,Espurr,6,0,regular,Psychic,355,62,48,54,63,60,68,348,1,0,0,,,,Keen Eye; Infiltrator; Own Tempo (H),190
+678,Meowstic,6,0,regular,Psychic,466,74,48,76,83,81,104,348,2,1,0,Espurr,Level 25 (male) OR Level 25 (female),1,Keen Eye; Infiltrator; Prankster (H),75
+679,Honedge,6,0,regular,Steel/Ghost,325,45,80,100,35,37,28,349,1,0,0,,,,No Guard,180
+680,Doublade,6,0,regular,Steel/Ghost,448,59,110,150,45,49,35,349,2,0,0,Honedge,Level 35,1,No Guard,90
+681,Aegislash,6,0,regular,Steel/Ghost,500,60,50,140,50,140,60,349,3,1,0,Doublade,Use Dusk Stone,1,Stance Change,45
+682,Spritzee,6,0,regular,Fairy,341,78,52,60,63,65,23,350,1,0,0,,,,Healer; Aroma Veil (H),200
+683,Aromatisse,6,0,regular,Fairy,462,101,72,72,99,89,29,350,2,1,0,Spritzee,Trade holding Sachet,0,Healer; Aroma Veil (H),140
+684,Swirlix,6,0,regular,Fairy,341,62,48,66,59,57,49,351,1,0,0,,,,Sweet Veil; Unburden (H),200
+685,Slurpuff,6,0,regular,Fairy,480,82,80,86,85,75,72,351,2,1,0,Swirlix,Trade holding Whipped Dream,0,Sweet Veil; Unburden (H),140
+686,Inkay,6,0,regular,Dark/Psychic,288,53,54,53,37,46,45,352,1,0,0,,,,Contrary; Suction Cups; Infiltrator (H),190
+687,Malamar,6,0,regular,Dark/Psychic,482,86,92,88,68,75,73,352,2,1,0,Inkay,Level 30 with the console upside down,0,Contrary; Suction Cups; Infiltrator (H),80
+688,Binacle,6,0,regular,Rock/Water,306,42,52,67,39,56,50,353,1,0,0,,,,Tough Claws; Sniper; Pickpocket (H),120
+689,Barbaracle,6,0,regular,Rock/Water,500,72,105,115,54,86,68,353,2,1,0,Binacle,Level 39,1,Tough Claws; Sniper; Pickpocket (H),45
+690,Skrelp,6,0,regular,Poison/Water,320,50,60,60,60,60,30,354,1,0,0,,,,Poison Point; Poison Touch; Adaptability (H),225
+691,Dragalge,6,0,regular,Poison/Dragon,494,65,75,90,97,123,44,354,2,1,0,Skrelp,Level 48,1,Poison Point; Poison Touch; Adaptability (H),55
+692,Clauncher,6,0,regular,Water,330,50,53,62,58,63,44,355,1,0,0,,,,Mega Launcher,225
+693,Clawitzer,6,0,regular,Water,500,71,73,88,120,89,59,355,2,1,0,Clauncher,Level 37,1,Mega Launcher,55
+694,Helioptile,6,0,regular,Electric/Normal,289,44,38,33,61,43,70,356,1,0,0,,,,Dry Skin; Sand Veil; Solar Power (H),190
+695,Heliolisk,6,0,regular,Electric/Normal,481,62,55,52,109,94,109,356,2,1,0,Helioptile,Use Sun Stone,1,Dry Skin; Sand Veil; Solar Power (H),75
+696,Tyrunt,6,0,regular,Rock/Dragon,362,58,89,77,45,45,48,357,1,0,0,,,,Strong Jaw; Sturdy (H),45
+697,Tyrantrum,6,0,regular,Rock/Dragon,521,82,121,119,69,59,71,357,2,1,0,Tyrunt,Level 39 at day,0,Strong Jaw; Rock Head (H),45
+698,Amaura,6,0,regular,Rock/Ice,362,77,59,50,67,63,46,358,1,0,0,,,,Refrigerate; Snow Warning (H),45
+699,Aurorus,6,0,regular,Rock/Ice,521,123,77,72,99,92,58,358,2,1,0,Amaura,Level 39 at night,0,Refrigerate; Snow Warning (H),45
+700,Sylveon,6,0,regular,Fairy,525,95,65,65,110,130,60,67,2,1,0,Eevee,Level up with high affection knowing a Fairy-type move OR Level up with high friendship knowing a Fairy-type move,0,Cute Charm; Pixilate (H),45
+701,Hawlucha,6,0,regular,Fighting/Flying,500,78,92,75,74,63,118,359,1,1,0,,,,Limber; Unburden; Mold Breaker (H),100
+702,Dedenne,6,0,regular,Electric/Fairy,431,67,58,57,81,67,101,360,1,1,0,,,,Cheek Pouch; Pickup; Plus (H),180
+703,Carbink,6,0,regular,Rock/Fairy,500,50,50,150,50,150,50,361,1,1,0,,,,Clear Body; Sturdy (H),60
+704,Goomy,6,0,regular,Dragon,300,45,50,35,55,75,40,362,1,0,0,,,,Sap Sipper; Hydration; Gooey (H),45
+705,Sliggoo,6,0,regular,Dragon,452,68,75,53,83,113,60,362,2,0,0,Goomy,Level 40,1,Sap Sipper; Hydration; Gooey (H),45
+706,Goodra,6,0,regular,Dragon,600,90,100,70,110,150,80,362,3,1,0,Sliggoo,Level 50 in rain OR Level 50 in rain from the sliggoo-hisui form,0,Sap Sipper; Hydration; Gooey (H),45
+707,Klefki,6,0,regular,Steel/Fairy,470,57,80,91,80,87,75,363,1,1,0,,,,Prankster; Magician (H),75
+708,Phantump,6,0,regular,Ghost/Grass,309,43,70,48,50,60,38,364,1,0,0,,,,Natural Cure; Frisk; Harvest (H),120
+709,Trevenant,6,0,regular,Ghost/Grass,474,85,110,76,65,82,56,364,2,1,0,Phantump,Trade,0,Natural Cure; Frisk; Harvest (H),60
+710,Pumpkaboo,6,0,regular,Ghost/Grass,335,49,66,70,44,55,51,365,1,0,0,,,,Pickup; Frisk; Insomnia (H),120
+711,Gourgeist,6,0,regular,Ghost/Grass,494,65,90,122,58,75,84,365,2,1,0,Pumpkaboo,Trade,0,Pickup; Frisk; Insomnia (H),60
+712,Bergmite,6,0,regular,Ice,304,55,69,85,32,35,28,366,1,0,0,,,,Own Tempo; Ice Body; Sturdy (H),190
+713,Avalugg,6,0,regular,Ice,514,95,117,184,44,46,28,366,2,1,0,Bergmite,Level 37,1,Own Tempo; Ice Body; Sturdy (H),55
+714,Noibat,6,0,regular,Flying/Dragon,245,40,30,35,45,40,55,367,1,0,0,,,,Frisk; Infiltrator; Telepathy (H),190
+715,Noivern,6,0,regular,Flying/Dragon,535,85,70,80,97,80,123,367,2,1,0,Noibat,Level 48,1,Frisk; Infiltrator; Telepathy (H),45
+716,Xerneas,6,0,legendary,Fairy,680,126,131,95,131,98,99,368,1,1,0,,,,Fairy Aura,45
+717,Yveltal,6,0,legendary,Dark/Flying,680,126,131,95,131,98,99,369,1,1,0,,,,Dark Aura,45
+718,Zygarde,6,0,legendary,Dragon/Ground,600,108,100,121,81,95,95,370,1,1,0,,,,Aura Break,3
+719,Diancie,6,0,mythical,Rock/Fairy,600,50,100,150,100,150,50,371,1,1,0,,,,Clear Body,3
+720,Hoopa,6,0,mythical,Psychic/Ghost,600,80,110,60,150,130,70,372,1,1,0,,,,Magician,3
+721,Volcanion,6,0,mythical,Fire/Water,600,80,110,120,130,90,70,373,1,1,0,,,,Water Absorb,3
+722,Rowlet,7,0,regular,Grass/Flying,320,68,55,55,50,50,42,374,1,0,0,,,,Overgrow; Long Reach (H),45
+723,Dartrix,7,0,regular,Grass/Flying,420,78,75,75,70,70,52,374,2,0,0,Rowlet,Level 17,1,Overgrow; Long Reach (H),45
+724,Decidueye,7,0,regular,Grass/Ghost,530,78,107,75,100,100,70,374,3,1,0,Dartrix,Level 34 OR Level 36,1,Overgrow; Long Reach (H),45
+725,Litten,7,0,regular,Fire,320,45,65,40,60,40,70,375,1,0,0,,,,Blaze; Intimidate (H),45
+726,Torracat,7,0,regular,Fire,420,65,85,50,80,50,90,375,2,0,0,Litten,Level 17,1,Blaze; Intimidate (H),45
+727,Incineroar,7,0,regular,Fire/Dark,530,95,115,90,80,90,60,375,3,1,0,Torracat,Level 34,1,Blaze; Intimidate (H),45
+728,Popplio,7,0,regular,Water,320,50,54,54,66,56,40,376,1,0,0,,,,Torrent; Liquid Voice (H),45
+729,Brionne,7,0,regular,Water,420,60,69,69,91,81,50,376,2,0,0,Popplio,Level 17,1,Torrent; Liquid Voice (H),45
+730,Primarina,7,0,regular,Water/Fairy,530,80,74,74,126,116,60,376,3,1,0,Brionne,Level 34,1,Torrent; Liquid Voice (H),45
+731,Pikipek,7,0,regular,Normal/Flying,265,35,75,30,30,30,65,377,1,0,0,,,,Keen Eye; Skill Link; Pickup (H),255
+732,Trumbeak,7,0,regular,Normal/Flying,355,55,85,50,40,50,75,377,2,0,0,Pikipek,Level 14,1,Keen Eye; Skill Link; Pickup (H),120
+733,Toucannon,7,0,regular,Normal/Flying,485,80,120,75,75,75,60,377,3,1,0,Trumbeak,Level 28,1,Keen Eye; Skill Link; Sheer Force (H),45
+734,Yungoos,7,0,regular,Normal,253,48,70,30,30,30,45,378,1,0,0,,,,Stakeout; Strong Jaw; Adaptability (H),255
+735,Gumshoos,7,0,regular,Normal,418,88,110,60,55,60,45,378,2,1,0,Yungoos,Level 20 at day,0,Stakeout; Strong Jaw; Adaptability (H),127
+736,Grubbin,7,0,regular,Bug,300,47,62,45,55,45,46,379,1,0,0,,,,Swarm,255
+737,Charjabug,7,0,regular,Bug/Electric,400,57,82,95,55,75,36,379,2,0,0,Grubbin,Level 20,1,Battery,120
+738,Vikavolt,7,0,regular,Bug/Electric,500,77,70,90,145,75,43,379,3,1,0,Charjabug,Level up at Vast Poni Canyon OR Level up at Blush Mountain OR Use Thunder Stone,1,Levitate,45
+739,Crabrawler,7,0,regular,Fighting,338,47,82,57,42,47,63,380,1,0,0,,,,Hyper Cutter; Iron Fist; Anger Point (H),225
+740,Crabominable,7,0,regular,Fighting/Ice,478,97,132,77,62,67,43,380,2,1,0,Crabrawler,Level up at Mount Lanakila OR Use Ice Stone,1,Hyper Cutter; Iron Fist; Anger Point (H),60
+741,Oricorio,7,0,regular,Fire/Flying,476,75,70,70,98,70,93,381,1,1,0,,,,Dancer,45
+742,Cutiefly,7,0,regular,Bug/Fairy,304,40,45,40,55,40,84,382,1,0,0,,,,Honey Gather; Shield Dust; Sweet Veil (H),190
+743,Ribombee,7,0,regular,Bug/Fairy,464,60,55,60,95,70,124,382,2,1,0,Cutiefly,Level 25,1,Honey Gather; Shield Dust; Sweet Veil (H),75
+744,Rockruff,7,0,regular,Rock,280,45,65,40,30,40,60,383,1,0,0,,,,Keen Eye; Vital Spirit; Steadfast (H),190
+745,Lycanroc,7,0,regular,Rock,487,75,115,65,55,65,112,383,2,1,0,Rockruff,Level 25 at day OR Level 25 at night OR Level 25 at dusk,0,Keen Eye; Sand Rush; Steadfast (H),90
+746,Wishiwashi,7,0,regular,Water,175,45,20,20,25,25,40,384,1,1,0,,,,Schooling,60
+747,Mareanie,7,0,regular,Poison/Water,305,50,53,62,43,52,45,385,1,0,0,,,,Merciless; Limber; Regenerator (H),190
+748,Toxapex,7,0,regular,Poison/Water,495,50,63,152,53,142,35,385,2,1,0,Mareanie,Level 38,1,Merciless; Limber; Regenerator (H),75
+749,Mudbray,7,0,regular,Ground,385,70,100,70,45,55,45,386,1,0,0,,,,Own Tempo; Stamina; Inner Focus (H),190
+750,Mudsdale,7,0,regular,Ground,500,100,125,100,55,85,35,386,2,1,0,Mudbray,Level 30,1,Own Tempo; Stamina; Inner Focus (H),60
+751,Dewpider,7,0,regular,Water/Bug,269,38,40,52,40,72,27,387,1,0,0,,,,Water Bubble; Water Absorb (H),200
+752,Araquanid,7,0,regular,Water/Bug,454,68,70,92,50,132,42,387,2,1,0,Dewpider,Level 22,1,Water Bubble; Water Absorb (H),100
+753,Fomantis,7,0,regular,Grass,250,40,55,35,50,35,35,388,1,0,0,,,,Leaf Guard; Contrary (H),190
+754,Lurantis,7,0,regular,Grass,480,70,105,90,80,90,45,388,2,1,0,Fomantis,Level 34 at day,0,Leaf Guard; Contrary (H),75
+755,Morelull,7,0,regular,Grass/Fairy,285,40,35,55,65,75,15,389,1,0,0,,,,Illuminate; Effect Spore; Rain Dish (H),190
+756,Shiinotic,7,0,regular,Grass/Fairy,405,60,45,80,90,100,30,389,2,1,0,Morelull,Level 24,1,Illuminate; Effect Spore; Rain Dish (H),75
+757,Salandit,7,0,regular,Poison/Fire,320,48,44,40,71,40,77,390,1,0,0,,,,Corrosion; Oblivious (H),120
+758,Salazzle,7,0,regular,Poison/Fire,480,68,64,60,111,60,117,390,2,1,0,Salandit,Level 33 (female),1,Corrosion; Oblivious (H),45
+759,Stufful,7,0,regular,Normal/Fighting,340,70,75,50,45,50,50,391,1,0,0,,,,Fluffy; Klutz; Cute Charm (H),140
+760,Bewear,7,0,regular,Normal/Fighting,500,120,125,80,55,60,60,391,2,1,0,Stufful,Level 27,1,Fluffy; Klutz; Unnerve (H),70
+761,Bounsweet,7,0,regular,Grass,210,42,30,38,30,38,32,392,1,0,0,,,,Leaf Guard; Oblivious; Sweet Veil (H),235
+762,Steenee,7,0,regular,Grass,290,52,40,48,40,48,62,392,2,0,0,Bounsweet,Level 18,1,Leaf Guard; Oblivious; Sweet Veil (H),120
+763,Tsareena,7,0,regular,Grass,510,72,120,98,50,98,72,392,3,1,0,Steenee,Level up knowing Stomp,1,Leaf Guard; Queenly Majesty; Sweet Veil (H),45
+764,Comfey,7,0,regular,Fairy,485,51,52,90,82,110,100,393,1,1,0,,,,Flower Veil; Triage; Natural Cure (H),60
+765,Oranguru,7,0,regular,Normal/Psychic,490,90,60,80,90,110,60,394,1,1,0,,,,Inner Focus; Telepathy; Symbiosis (H),45
+766,Passimian,7,0,regular,Fighting,490,100,120,90,40,60,80,395,1,1,0,,,,Receiver; Defiant (H),45
+767,Wimpod,7,0,regular,Bug/Water,230,25,35,40,20,30,80,396,1,0,0,,,,Wimp Out,90
+768,Golisopod,7,0,regular,Bug/Water,530,75,125,140,60,90,40,396,2,1,0,Wimpod,Level 30,1,Emergency Exit,45
+769,Sandygast,7,0,regular,Ghost/Ground,320,55,55,80,70,45,15,397,1,0,0,,,,Water Compaction; Sand Veil (H),140
+770,Palossand,7,0,regular,Ghost/Ground,480,85,75,110,100,75,35,397,2,1,0,Sandygast,Level 42,1,Water Compaction; Sand Veil (H),60
+771,Pyukumuku,7,0,regular,Water,410,55,60,130,30,130,5,398,1,1,0,,,,Innards Out; Unaware (H),60
+772,Type: Null,7,0,legendary,Normal,534,95,95,95,95,95,59,399,1,0,0,,,,Battle Armor,3
+773,Silvally,7,0,legendary,Normal,570,95,95,95,95,95,95,399,2,1,0,Type: Null,Level up with high friendship,1,RKS System,3
+774,Minior,7,0,regular,Rock/Flying,440,60,60,100,60,100,60,400,1,1,0,,,,Shields Down,30
+775,Komala,7,0,regular,Normal,480,65,115,65,75,95,65,401,1,1,0,,,,Comatose,45
+776,Turtonator,7,0,regular,Fire/Dragon,485,60,78,135,91,85,36,402,1,1,0,,,,Shell Armor,70
+777,Togedemaru,7,0,regular,Electric/Steel,435,65,98,63,40,73,96,403,1,1,0,,,,Iron Barbs; Lightning Rod; Sturdy (H),180
+778,Mimikyu,7,0,regular,Ghost/Fairy,476,55,90,80,50,105,96,404,1,1,0,,,,Disguise,45
+779,Bruxish,7,0,regular,Water/Psychic,475,68,105,70,70,70,92,405,1,1,0,,,,Dazzling; Strong Jaw; Wonder Skin (H),80
+780,Drampa,7,0,regular,Normal/Dragon,485,78,60,85,135,91,36,406,1,1,0,,,,Berserk; Sap Sipper; Cloud Nine (H),70
+781,Dhelmise,7,0,regular,Ghost/Grass,517,70,131,100,86,90,40,407,1,1,0,,,,Steelworker,25
+782,Jangmo-o,7,0,regular,Dragon,300,45,55,65,45,45,45,408,1,0,0,,,,Bulletproof; Soundproof; Overcoat (H),45
+783,Hakamo-o,7,0,regular,Dragon/Fighting,420,55,75,90,65,70,65,408,2,0,0,Jangmo-o,Level 35,1,Bulletproof; Soundproof; Overcoat (H),45
+784,Kommo-o,7,0,regular,Dragon/Fighting,600,75,110,125,100,105,85,408,3,1,0,Hakamo-o,Level 45,1,Bulletproof; Soundproof; Overcoat (H),45
+785,Tapu Koko,7,0,legendary,Electric/Fairy,570,70,115,85,95,75,130,409,1,1,0,,,,Electric Surge; Telepathy (H),3
+786,Tapu Lele,7,0,legendary,Psychic/Fairy,570,70,85,75,130,115,95,410,1,1,0,,,,Psychic Surge; Telepathy (H),3
+787,Tapu Bulu,7,0,legendary,Grass/Fairy,570,70,130,115,85,95,75,411,1,1,0,,,,Grassy Surge; Telepathy (H),3
+788,Tapu Fini,7,0,legendary,Water/Fairy,570,70,75,115,95,130,85,412,1,1,0,,,,Misty Surge; Telepathy (H),3
+789,Cosmog,7,0,legendary,Psychic,200,43,29,31,29,31,37,413,1,0,0,,,,Unaware,45
+790,Cosmoem,7,0,legendary,Psychic,400,43,29,131,29,131,37,413,2,0,0,Cosmog,Level 43,1,Sturdy,45
+791,Solgaleo,7,0,legendary,Psychic/Steel,680,137,137,107,113,89,97,413,3,1,0,Cosmoem,Level 53,1,Full Metal Body,45
+792,Lunala,7,0,legendary,Psychic/Ghost,680,137,113,89,137,107,97,413,3,1,0,Cosmoem,Level 53,1,Shadow Shield,45
+793,Nihilego,7,0,ultra_beast,Rock/Poison,570,109,53,47,127,131,103,414,1,1,0,,,,Beast Boost,45
+794,Buzzwole,7,0,ultra_beast,Bug/Fighting,570,107,139,139,53,53,79,415,1,1,0,,,,Beast Boost,45
+795,Pheromosa,7,0,ultra_beast,Bug/Fighting,570,71,137,37,137,37,151,416,1,1,0,,,,Beast Boost,45
+796,Xurkitree,7,0,ultra_beast,Electric,570,83,89,71,173,71,83,417,1,1,0,,,,Beast Boost,45
+797,Celesteela,7,0,ultra_beast,Steel/Flying,570,97,101,103,107,101,61,418,1,1,0,,,,Beast Boost,45
+798,Kartana,7,0,ultra_beast,Grass/Steel,570,59,181,131,59,31,109,419,1,1,0,,,,Beast Boost,45
+799,Guzzlord,7,0,ultra_beast,Dark/Dragon,570,223,101,53,97,53,43,420,1,1,0,,,,Beast Boost,45
+800,Necrozma,7,0,legendary,Psychic,600,97,107,101,127,89,79,421,1,1,0,,,,Prism Armor,255
+801,Magearna,7,0,mythical,Steel/Fairy,600,80,95,115,130,115,65,422,1,1,0,,,,Soul-Heart,3
+802,Marshadow,7,0,mythical,Fighting/Ghost,600,90,125,80,90,90,125,423,1,1,0,,,,Technician,3
+803,Poipole,7,0,ultra_beast,Poison,420,67,73,67,73,67,73,424,1,0,0,,,,Beast Boost,45
+804,Naganadel,7,0,ultra_beast,Poison/Dragon,540,73,73,73,127,73,121,424,2,1,0,Poipole,Level up knowing Dragon Pulse,1,Beast Boost,45
+805,Stakataka,7,0,ultra_beast,Rock/Steel,570,61,131,211,53,101,13,425,1,1,0,,,,Beast Boost,30
+806,Blacephalon,7,0,ultra_beast,Fire/Ghost,570,53,127,53,151,79,107,426,1,1,0,,,,Beast Boost,30
+807,Zeraora,7,0,mythical,Electric,600,88,112,75,102,80,143,427,1,1,0,,,,Volt Absorb,3
+808,Meltan,7,0,mythical,Steel,300,46,65,65,55,35,34,428,1,0,0,,,,Magnet Pull,3
+809,Melmetal,7,0,mythical,Steel,600,135,143,143,80,65,34,428,2,1,0,Meltan,Meltan candies,0,Iron Fist,3
+810,Grookey,8,0,regular,Grass,310,50,65,50,40,40,65,430,1,0,0,,,,Overgrow; Grassy Surge (H),45
+811,Thwackey,8,0,regular,Grass,420,70,85,70,55,60,80,430,2,0,0,Grookey,Level 16,1,Overgrow; Grassy Surge (H),45
+812,Rillaboom,8,0,regular,Grass,530,100,125,90,60,70,85,430,3,1,0,Thwackey,Level 35,1,Overgrow; Grassy Surge (H),45
+813,Scorbunny,8,0,regular,Fire,310,50,71,40,40,40,69,431,1,0,0,,,,Blaze; Libero (H),45
+814,Raboot,8,0,regular,Fire,420,65,86,60,55,60,94,431,2,0,0,Scorbunny,Level 16,1,Blaze; Libero (H),45
+815,Cinderace,8,0,regular,Fire,530,80,116,75,65,75,119,431,3,1,0,Raboot,Level 35,1,Blaze; Libero (H),45
+816,Sobble,8,0,regular,Water,310,50,40,40,70,40,70,432,1,0,0,,,,Torrent; Sniper (H),45
+817,Drizzile,8,0,regular,Water,420,65,60,55,95,55,90,432,2,0,0,Sobble,Level 16,1,Torrent; Sniper (H),45
+818,Inteleon,8,0,regular,Water,530,70,85,65,125,65,120,432,3,1,0,Drizzile,Level 35,1,Torrent; Sniper (H),45
+819,Skwovet,8,0,regular,Normal,275,70,55,55,35,35,25,433,1,0,0,,,,Cheek Pouch; Gluttony (H),255
+820,Greedent,8,0,regular,Normal,460,120,95,95,55,75,20,433,2,1,0,Skwovet,Level 24,1,Cheek Pouch; Gluttony (H),90
+821,Rookidee,8,0,regular,Flying,245,38,47,35,33,35,57,434,1,0,0,,,,Keen Eye; Unnerve; Big Pecks (H),255
+822,Corvisquire,8,0,regular,Flying,365,68,67,55,43,55,77,434,2,0,0,Rookidee,Level 18,1,Keen Eye; Unnerve; Big Pecks (H),120
+823,Corviknight,8,0,regular,Flying/Steel,495,98,87,105,53,85,67,434,3,1,0,Corvisquire,Level 38,1,Pressure; Unnerve; Mirror Armor (H),45
+824,Blipbug,8,0,regular,Bug,180,25,20,20,25,45,45,435,1,0,0,,,,Swarm; Compound Eyes; Telepathy (H),255
+825,Dottler,8,0,regular,Bug/Psychic,335,50,35,80,50,90,30,435,2,0,0,Blipbug,Level 10,1,Swarm; Compound Eyes; Telepathy (H),120
+826,Orbeetle,8,0,regular,Bug/Psychic,505,60,45,110,80,120,90,435,3,1,0,Dottler,Level 30,1,Swarm; Frisk; Telepathy (H),45
+827,Nickit,8,0,regular,Dark,245,40,28,28,47,52,50,436,1,0,0,,,,Run Away; Unburden; Stakeout (H),255
+828,Thievul,8,0,regular,Dark,455,70,58,58,87,92,90,436,2,1,0,Nickit,Level 18,1,Run Away; Unburden; Stakeout (H),127
+829,Gossifleur,8,0,regular,Grass,250,40,40,60,40,60,10,437,1,0,0,,,,Cotton Down; Regenerator; Effect Spore (H),190
+830,Eldegoss,8,0,regular,Grass,460,60,50,90,80,120,60,437,2,1,0,Gossifleur,Level 20,1,Cotton Down; Regenerator; Effect Spore (H),75
+831,Wooloo,8,0,regular,Normal,270,42,40,55,40,45,48,438,1,0,0,,,,Fluffy; Run Away; Bulletproof (H),255
+832,Dubwool,8,0,regular,Normal,490,72,80,100,60,90,88,438,2,1,0,Wooloo,Level 24,1,Fluffy; Steadfast; Bulletproof (H),127
+833,Chewtle,8,0,regular,Water,284,50,64,50,38,38,44,439,1,0,0,,,,Strong Jaw; Shell Armor; Swift Swim (H),255
+834,Drednaw,8,0,regular,Water/Rock,485,90,115,90,48,68,74,439,2,1,0,Chewtle,Level 22,1,Strong Jaw; Shell Armor; Swift Swim (H),75
+835,Yamper,8,0,regular,Electric,270,59,45,50,40,50,26,440,1,0,0,,,,Ball Fetch; Rattled (H),255
+836,Boltund,8,0,regular,Electric,490,69,90,60,90,60,121,440,2,1,0,Yamper,Level 25,1,Strong Jaw; Competitive (H),45
+837,Rolycoly,8,0,regular,Rock,240,30,40,50,40,50,30,441,1,0,0,,,,Steam Engine; Heatproof; Flash Fire (H),255
+838,Carkol,8,0,regular,Rock/Fire,410,80,60,90,60,70,50,441,2,0,0,Rolycoly,Level 18,1,Steam Engine; Flame Body; Flash Fire (H),120
+839,Coalossal,8,0,regular,Rock/Fire,510,110,80,120,80,90,30,441,3,1,0,Carkol,Level 34,1,Steam Engine; Flame Body; Flash Fire (H),45
+840,Applin,8,0,regular,Grass/Dragon,260,40,40,80,40,40,20,442,1,0,0,,,,Ripen; Gluttony; Bulletproof (H),255
+841,Flapple,8,0,regular,Grass/Dragon,485,70,110,80,95,60,70,442,2,1,0,Applin,Use Tart Apple,0,Ripen; Gluttony; Hustle (H),45
+842,Appletun,8,0,regular,Grass/Dragon,485,110,85,80,100,80,30,442,2,1,0,Applin,Use Sweet Apple,0,Ripen; Gluttony; Thick Fat (H),45
+843,Silicobra,8,0,regular,Ground,315,52,57,75,35,50,46,443,1,0,0,,,,Sand Spit; Shed Skin; Sand Veil (H),255
+844,Sandaconda,8,0,regular,Ground,510,72,107,125,65,70,71,443,2,1,0,Silicobra,Level 36,1,Sand Spit; Shed Skin; Sand Veil (H),120
+845,Cramorant,8,0,regular,Flying/Water,475,70,85,55,85,95,85,444,1,1,0,,,,Gulp Missile,45
+846,Arrokuda,8,0,regular,Water,280,41,63,40,40,30,66,445,1,0,0,,,,Swift Swim; Propeller Tail (H),255
+847,Barraskewda,8,0,regular,Water,490,61,123,60,60,50,136,445,2,1,0,Arrokuda,Level 26,1,Swift Swim; Propeller Tail (H),60
+848,Toxel,8,0,regular,Electric/Poison,242,40,38,35,54,35,40,446,1,0,1,,,,Rattled; Static; Klutz (H),75
+849,Toxtricity,8,0,regular,Electric/Poison,502,75,98,70,114,70,75,446,2,1,0,Toxel,Level 30,0,Punk Rock; Plus; Technician (H),45
+850,Sizzlipede,8,0,regular,Fire/Bug,305,50,65,45,50,50,45,447,1,0,0,,,,Flash Fire; White Smoke; Flame Body (H),190
+851,Centiskorch,8,0,regular,Fire/Bug,525,100,115,65,90,90,65,447,2,1,0,Sizzlipede,Level 28,1,Flash Fire; White Smoke; Flame Body (H),75
+852,Clobbopus,8,0,regular,Fighting,310,50,68,60,50,50,32,448,1,0,0,,,,Limber; Technician (H),180
+853,Grapploct,8,0,regular,Fighting,480,80,118,90,70,80,42,448,2,1,0,Clobbopus,Level up knowing Taunt,1,Limber; Technician (H),45
+854,Sinistea,8,0,regular,Ghost,308,40,45,45,74,54,50,449,1,0,0,,,,Weak Armor; Cursed Body (H),120
+855,Polteageist,8,0,regular,Ghost,508,60,65,65,134,114,70,449,2,1,0,Sinistea,Use Cracked Pot OR Use Chipped Pot,0,Weak Armor; Cursed Body (H),60
+856,Hatenna,8,0,regular,Psychic,265,42,30,45,56,53,39,450,1,0,0,,,,Healer; Anticipation; Magic Bounce (H),235
+857,Hattrem,8,0,regular,Psychic,370,57,40,65,86,73,49,450,2,0,0,Hatenna,Level 32,1,Healer; Anticipation; Magic Bounce (H),120
+858,Hatterene,8,0,regular,Psychic/Fairy,510,57,90,95,136,103,29,450,3,1,0,Hattrem,Level 42,1,Healer; Anticipation; Magic Bounce (H),45
+859,Impidimp,8,0,regular,Dark/Fairy,265,45,45,30,55,40,50,451,1,0,0,,,,Prankster; Frisk; Pickpocket (H),255
+860,Morgrem,8,0,regular,Dark/Fairy,370,65,60,45,75,55,70,451,2,0,0,Impidimp,Level 32,1,Prankster; Frisk; Pickpocket (H),120
+861,Grimmsnarl,8,0,regular,Dark/Fairy,510,95,120,65,95,75,60,451,3,1,0,Morgrem,Level 42,1,Prankster; Frisk; Pickpocket (H),45
+862,Obstagoon,8,0,regular,Dark/Normal,520,93,90,101,60,81,95,134,3,1,0,Linoone,Level 35 at night from the linoone-galar form,0,Reckless; Guts; Defiant (H),45
+863,Perrserker,8,0,regular,Steel,440,70,110,100,50,60,50,22,2,1,0,Meowth,Level 28 from the meowth-galar form,0,Battle Armor; Tough Claws; Steely Spirit (H),90
+864,Cursola,8,0,regular,Ghost,510,60,95,50,145,130,30,113,2,1,0,Corsola,Level 38 from the corsola-galar form,0,Weak Armor; Perish Body (H),30
+865,Sirfetch’d,8,0,regular,Fighting,507,62,135,95,68,82,65,35,2,1,0,Farfetch’d,Three critical hits from the farfetchd-galar form,0,Steadfast; Scrappy (H),45
+866,Mr. Rime,8,0,regular,Ice/Psychic,520,80,85,75,110,100,70,57,3,1,0,Mr. Mime,Level 42 from the mr-mime-galar form,0,Tangled Feet; Screen Cleaner; Ice Body (H),45
+867,Runerigus,8,0,regular,Ground/Ghost,483,58,95,145,50,105,30,287,2,1,0,Yamask,Take damage at Dusty Bowl from the yamask-galar form,0,Wandering Spirit,90
+868,Milcery,8,0,regular,Fairy,270,45,40,40,50,61,34,452,1,0,0,,,,Sweet Veil; Aroma Veil (H),200
+869,Alcremie,8,0,regular,Fairy,495,65,60,75,110,121,64,452,2,1,0,Milcery,Spin holding Strawberry Sweet at day OR Spin holding Strawberry Sweet at night OR Spin holding Strawberry Sweet at dusk OR Spin holding Berry Sweet at day OR Spin holding Berry Sweet at night OR Spin holding Berry Sweet at dusk OR Spin holding Love Sweet at day OR Spin holding Love Sweet at night OR Spin holding Love Sweet at dusk OR Spin holding Star Sweet at day OR Spin holding Star Sweet at night OR Spin holding Star Sweet at dusk OR Spin holding Clover Sweet at day OR Spin holding Clover Sweet at night OR Spin holding Clover Sweet at dusk OR Spin holding Flower Sweet at day OR Spin holding Flower Sweet at night OR Spin holding Flower Sweet at dusk OR Spin holding Ribbon Sweet at day OR Spin holding Ribbon Sweet at night OR Spin holding Ribbon Sweet at dusk,0,Sweet Veil; Aroma Veil (H),100
+870,Falinks,8,0,regular,Fighting,470,65,100,100,70,60,75,453,1,1,0,,,,Battle Armor; Defiant (H),45
+871,Pincurchin,8,0,regular,Electric,435,48,101,95,91,85,15,454,1,1,0,,,,Lightning Rod; Electric Surge (H),75
+872,Snom,8,0,regular,Ice/Bug,185,30,25,35,45,30,20,455,1,0,0,,,,Shield Dust; Ice Scales (H),190
+873,Frosmoth,8,0,regular,Ice/Bug,475,70,65,60,125,90,65,455,2,1,0,Snom,Level up with high friendship at night,1,Shield Dust; Ice Scales (H),75
+874,Stonjourner,8,0,regular,Rock,470,100,125,135,20,20,70,456,1,1,0,,,,Power Spot,60
+875,Eiscue,8,0,regular,Ice,470,75,80,110,65,90,50,457,1,1,0,,,,Ice Face,60
+876,Indeedee,8,0,regular,Psychic/Normal,475,60,65,55,105,95,95,458,1,1,0,,,,Inner Focus; Synchronize; Psychic Surge (H),30
+877,Morpeko,8,0,regular,Electric/Dark,436,58,95,58,70,58,97,459,1,1,0,,,,Hunger Switch,180
+878,Cufant,8,0,regular,Steel,330,72,80,49,40,49,40,460,1,0,0,,,,Sheer Force; Heavy Metal (H),190
+879,Copperajah,8,0,regular,Steel,500,122,130,69,80,69,30,460,2,1,0,Cufant,Level 34,1,Sheer Force; Heavy Metal (H),90
+880,Dracozolt,8,0,regular,Electric/Dragon,505,90,100,90,80,70,75,461,1,1,0,,,,Volt Absorb; Hustle; Sand Rush (H),45
+881,Arctozolt,8,0,regular,Electric/Ice,505,90,100,90,90,80,55,462,1,1,0,,,,Volt Absorb; Static; Slush Rush (H),45
+882,Dracovish,8,0,regular,Water/Dragon,505,90,90,100,70,80,75,463,1,1,0,,,,Water Absorb; Strong Jaw; Sand Rush (H),45
+883,Arctovish,8,0,regular,Water/Ice,505,90,90,100,80,90,55,464,1,1,0,,,,Water Absorb; Ice Body; Slush Rush (H),45
+884,Duraludon,8,0,regular,Steel/Dragon,535,70,95,115,120,50,85,465,1,0,0,,,,Light Metal; Heavy Metal; Stalwart (H),45
+885,Dreepy,8,0,regular,Dragon/Ghost,270,28,60,30,40,30,82,466,1,0,0,,,,Clear Body; Infiltrator; Cursed Body (H),45
+886,Drakloak,8,0,regular,Dragon/Ghost,410,68,80,50,60,50,102,466,2,0,0,Dreepy,Level 50,1,Clear Body; Infiltrator; Cursed Body (H),45
+887,Dragapult,8,0,regular,Dragon/Ghost,600,88,120,75,100,75,142,466,3,1,0,Drakloak,Level 60,1,Clear Body; Infiltrator; Cursed Body (H),45
+888,Zacian,8,0,legendary,Fairy,660,92,120,115,80,115,138,467,1,1,0,,,,Intrepid Sword,10
+889,Zamazenta,8,0,legendary,Fighting,660,92,120,115,80,115,138,468,1,1,0,,,,Dauntless Shield,10
+890,Eternatus,8,0,legendary,Poison/Dragon,690,140,85,95,145,95,130,469,1,1,0,,,,Pressure,255
+891,Kubfu,8,0,legendary,Fighting,385,60,90,60,53,50,72,470,1,0,0,,,,Inner Focus,3
+892,Urshifu,8,0,legendary,Fighting/Dark,550,100,130,100,63,60,97,470,2,1,0,Kubfu,Tower of darkness OR Tower of waters OR Use Scroll of Darkness OR Use Scroll of Waters,0,Unseen Fist,3
+893,Zarude,8,0,mythical,Dark/Grass,600,105,120,105,70,95,105,471,1,1,0,,,,Leaf Guard,3
+894,Regieleki,8,0,legendary,Electric,580,80,100,50,100,50,200,472,1,1,0,,,,Transistor,3
+895,Regidrago,8,0,legendary,Dragon,580,200,100,50,100,50,80,473,1,1,0,,,,Dragon’s Maw,3
+896,Glastrier,8,0,legendary,Ice,580,100,145,130,65,110,30,474,1,1,0,,,,Chilling Neigh,3
+897,Spectrier,8,0,legendary,Ghost,580,100,65,60,145,80,130,475,1,1,0,,,,Grim Neigh,3
+898,Calyrex,8,0,legendary,Psychic/Grass,500,100,80,80,80,80,80,476,1,1,0,,,,Unnerve,3
+899,Wyrdeer,8,0,regular,Normal/Psychic,525,103,105,72,105,75,65,120,2,1,0,Stantler,Agile style move after using Psyshield Bash,0,Intimidate; Frisk; Sap Sipper (H),135
+900,Kleavor,8,0,regular,Bug/Rock,500,70,135,95,45,70,85,58,2,1,0,Scyther,Use Black Augurite,0,Swarm; Sheer Force; Sharpness (H),115
+901,Ursaluna,8,0,regular,Ground/Normal,550,130,140,105,45,80,50,110,3,1,0,Ursaring,Use Peat Block at full-moon,0,Guts; Bulletproof; Unnerve (H),75
+902,Basculegion,8,0,regular,Water/Ghost,530,120,112,65,80,75,78,280,2,1,0,Basculin,Recoil damage (male) OR Recoil damage (female),0,Swift Swim; Adaptability; Mold Breaker (H),135
+903,Sneasler,8,0,regular,Fighting/Poison,510,80,130,60,40,80,120,109,2,1,0,Sneasel,Level up holding Razor Claw at day from the sneasel-hisui form,0,Pressure; Unburden; Poison Touch (H),135
+904,Overqwil,8,0,regular,Dark/Poison,510,85,115,95,65,65,85,106,2,1,0,Qwilfish,Strong style move after using Barb Barrage from the qwilfish-hisui form OR Level up knowing Barb Barrage from the qwilfish-hisui form OR Use move after using Barb Barrage from the qwilfish-hisui form,0,Poison Point; Swift Swim; Intimidate (H),135
+905,Enamorus,8,0,legendary,Fairy/Flying,580,74,115,70,135,80,106,477,1,1,0,,,,Cute Charm; Contrary (H),3
+906,Sprigatito,9,0,regular,Grass,310,40,61,54,45,45,65,478,1,0,0,,,,Overgrow; Protean (H),45
+907,Floragato,9,0,regular,Grass,410,61,80,63,60,63,83,478,2,0,0,Sprigatito,Level 16,1,Overgrow; Protean (H),45
+908,Meowscarada,9,0,regular,Grass/Dark,530,76,110,70,81,70,123,478,3,1,0,Floragato,Level 36,1,Overgrow; Protean (H),45
+909,Fuecoco,9,0,regular,Fire,310,67,45,59,63,40,36,479,1,0,0,,,,Blaze; Unaware (H),45
+910,Crocalor,9,0,regular,Fire,411,81,55,78,90,58,49,479,2,0,0,Fuecoco,Level 16,1,Blaze; Unaware (H),45
+911,Skeledirge,9,0,regular,Fire/Ghost,530,104,75,100,110,75,66,479,3,1,0,Crocalor,Level 36,1,Blaze; Unaware (H),45
+912,Quaxly,9,0,regular,Water,310,55,65,45,50,45,50,480,1,0,0,,,,Torrent; Moxie (H),45
+913,Quaxwell,9,0,regular,Water,410,70,85,65,65,60,65,480,2,0,0,Quaxly,Level 16,1,Torrent; Moxie (H),45
+914,Quaquaval,9,0,regular,Water/Fighting,530,85,120,80,85,75,85,480,3,1,0,Quaxwell,Level 36,1,Torrent; Moxie (H),45
+915,Lechonk,9,0,regular,Normal,254,54,45,40,35,45,35,481,1,0,0,,,,Aroma Veil; Gluttony; Thick Fat (H),255
+916,Oinkologne,9,0,regular,Normal,489,110,100,75,59,80,65,481,2,1,0,Lechonk,Level 18 (male) OR Level 18 (female),1,Lingering Aroma; Gluttony; Thick Fat (H),100
+917,Tarountula,9,0,regular,Bug,210,35,41,45,29,40,20,482,1,0,0,,,,Insomnia; Stakeout (H),255
+918,Spidops,9,0,regular,Bug,404,60,79,92,52,86,35,482,2,1,0,Tarountula,Level 15,1,Insomnia; Stakeout (H),120
+919,Nymble,9,0,regular,Bug,210,33,46,40,21,25,45,483,1,0,0,,,,Swarm; Tinted Lens (H),190
+920,Lokix,9,0,regular,Bug/Dark,450,71,102,78,52,55,92,483,2,1,0,Nymble,Level 24,1,Swarm; Tinted Lens (H),30
+921,Pawmi,9,0,regular,Electric,240,45,50,20,40,25,60,484,1,0,0,,,,Static; Natural Cure; Iron Fist (H),190
+922,Pawmo,9,0,regular,Electric/Fighting,350,60,75,40,50,40,85,484,2,0,0,Pawmi,Level 18,1,Volt Absorb; Natural Cure; Iron Fist (H),80
+923,Pawmot,9,0,regular,Electric/Fighting,490,70,115,70,70,60,105,484,3,1,0,Pawmo,Level up after walking 1000 steps (Let's Go),0,Volt Absorb; Natural Cure; Iron Fist (H),45
+924,Tandemaus,9,0,regular,Normal,305,50,50,45,40,45,75,485,1,0,0,,,,Run Away; Pickup; Own Tempo (H),150
+925,Maushold,9,0,regular,Normal,470,74,75,70,65,75,111,485,2,1,0,Tandemaus,In battle level up,0,Friend Guard; Cheek Pouch; Technician (H),75
+926,Fidough,9,0,regular,Fairy,312,37,55,70,30,55,65,486,1,0,0,,,,Own Tempo; Klutz (H),190
+927,Dachsbun,9,0,regular,Fairy,477,57,80,115,50,80,95,486,2,1,0,Fidough,Level 26,1,Well-Baked Body; Aroma Veil (H),90
+928,Smoliv,9,0,regular,Grass/Normal,260,41,35,45,58,51,30,487,1,0,0,,,,Early Bird; Harvest (H),255
+929,Dolliv,9,0,regular,Grass/Normal,354,52,53,60,78,78,33,487,2,0,0,Smoliv,Level 25,1,Early Bird; Harvest (H),120
+930,Arboliva,9,0,regular,Grass/Normal,510,78,69,90,125,109,39,487,3,1,0,Dolliv,Level 35,1,Seed Sower; Harvest (H),45
+931,Squawkabilly,9,0,regular,Normal/Flying,417,82,96,51,45,51,92,488,1,1,0,,,,Intimidate; Hustle; Guts (H),190
+932,Nacli,9,0,regular,Rock,280,55,55,75,35,35,25,489,1,0,0,,,,Purifying Salt; Sturdy; Clear Body (H),255
+933,Naclstack,9,0,regular,Rock,355,60,60,100,35,65,35,489,2,0,0,Nacli,Level 24,1,Purifying Salt; Sturdy; Clear Body (H),120
+934,Garganacl,9,0,regular,Rock,500,100,100,130,45,90,35,489,3,1,0,Naclstack,Level 38,1,Purifying Salt; Sturdy; Clear Body (H),45
+935,Charcadet,9,0,regular,Fire,255,40,50,40,50,40,35,490,1,0,0,,,,Flash Fire; Flame Body (H),90
+936,Armarouge,9,0,regular,Fire/Psychic,525,85,60,100,125,80,75,490,2,1,0,Charcadet,Use Auspicious Armor,0,Flash Fire; Weak Armor (H),25
+937,Ceruledge,9,0,regular,Fire/Ghost,525,75,125,80,60,100,85,490,2,1,0,Charcadet,Use Malicious Armor,0,Flash Fire; Weak Armor (H),25
+938,Tadbulb,9,0,regular,Electric,272,61,31,41,59,35,45,491,1,0,0,,,,Own Tempo; Static; Damp (H),190
+939,Bellibolt,9,0,regular,Electric,495,109,64,91,103,83,45,491,2,1,0,Tadbulb,Use Thunder Stone,1,Electromorphosis; Static; Damp (H),50
+940,Wattrel,9,0,regular,Electric/Flying,280,40,40,35,55,40,70,492,1,0,0,,,,Wind Power; Volt Absorb; Competitive (H),180
+941,Kilowattrel,9,0,regular,Electric/Flying,490,70,70,60,105,60,125,492,2,1,0,Wattrel,Level 25,1,Wind Power; Volt Absorb; Competitive (H),90
+942,Maschiff,9,0,regular,Dark,340,60,78,60,40,51,51,493,1,0,0,,,,Intimidate; Run Away; Stakeout (H),150
+943,Mabosstiff,9,0,regular,Dark,505,80,120,90,60,70,85,493,2,1,0,Maschiff,Level 30,1,Intimidate; Guard Dog; Stakeout (H),75
+944,Shroodle,9,0,regular,Poison/Normal,290,40,65,35,40,35,75,494,1,0,0,,,,Unburden; Pickpocket; Prankster (H),190
+945,Grafaiai,9,0,regular,Poison/Normal,485,63,95,65,80,72,110,494,2,1,0,Shroodle,Level 28,1,Unburden; Poison Touch; Prankster (H),90
+946,Bramblin,9,0,regular,Grass/Ghost,275,40,65,30,45,35,60,495,1,0,0,,,,Wind Rider; Infiltrator (H),190
+947,Brambleghast,9,0,regular,Grass/Ghost,480,55,115,70,80,70,90,495,2,1,0,Bramblin,Level up after walking 1000 steps (Let's Go),0,Wind Rider; Infiltrator (H),45
+948,Toedscool,9,0,regular,Ground/Grass,335,40,40,35,50,100,70,496,1,0,0,,,,Mycelium Might,190
+949,Toedscruel,9,0,regular,Ground/Grass,515,80,70,65,80,120,100,496,2,1,0,Toedscool,Level 30,1,Mycelium Might,90
+950,Klawf,9,0,regular,Rock,450,70,100,115,35,55,75,497,1,1,0,,,,Anger Shell; Shell Armor; Regenerator (H),120
+951,Capsakid,9,0,regular,Grass,304,50,62,40,62,40,50,498,1,0,0,,,,Chlorophyll; Insomnia; Klutz (H),190
+952,Scovillain,9,0,regular,Grass/Fire,486,65,108,65,108,65,75,498,2,1,0,Capsakid,Use Fire Stone,1,Chlorophyll; Insomnia; Moody (H),75
+953,Rellor,9,0,regular,Bug,270,41,50,60,31,58,30,499,1,0,0,,,,Compound Eyes; Shed Skin (H),190
+954,Rabsca,9,0,regular,Bug/Psychic,470,75,50,85,115,100,45,499,2,1,0,Rellor,Level up after walking 1000 steps (Let's Go),0,Synchronize; Telepathy (H),45
+955,Flittle,9,0,regular,Psychic,255,30,35,30,55,30,75,500,1,0,0,,,,Anticipation; Frisk; Speed Boost (H),120
+956,Espathra,9,0,regular,Psychic,481,95,60,60,101,60,105,500,2,1,0,Flittle,Level 35,1,Opportunist; Frisk; Speed Boost (H),60
+957,Tinkatink,9,0,regular,Fairy/Steel,297,50,45,45,35,64,58,501,1,0,0,,,,Mold Breaker; Own Tempo; Pickpocket (H),190
+958,Tinkatuff,9,0,regular,Fairy/Steel,380,65,55,55,45,82,78,501,2,0,0,Tinkatink,Level 24,1,Mold Breaker; Own Tempo; Pickpocket (H),90
+959,Tinkaton,9,0,regular,Fairy/Steel,506,85,75,77,70,105,94,501,3,1,0,Tinkatuff,Level 38,1,Mold Breaker; Own Tempo; Pickpocket (H),45
+960,Wiglett,9,0,regular,Water,245,10,55,25,35,25,95,502,1,0,0,,,,Gooey; Rattled; Sand Veil (H),255
+961,Wugtrio,9,0,regular,Water,425,35,100,50,50,70,120,502,2,1,0,Wiglett,Level 26,1,Gooey; Rattled; Sand Veil (H),50
+962,Bombirdier,9,0,regular,Flying/Dark,485,70,103,85,60,85,82,503,1,1,0,,,,Big Pecks; Keen Eye; Rocky Payload (H),25
+963,Finizen,9,0,regular,Water,315,70,45,40,45,40,75,504,1,0,0,,,,Water Veil,200
+964,Palafin,9,0,regular,Water,457,100,70,72,53,62,100,504,2,1,0,Finizen,Level 38 in a Union Circle (multiplayer),0,Zero to Hero,45
+965,Varoom,9,0,regular,Steel/Poison,300,45,70,63,30,45,47,505,1,0,0,,,,Overcoat; Slow Start (H),190
+966,Revavroom,9,0,regular,Steel/Poison,500,80,119,90,54,67,90,505,2,1,0,Varoom,Level 40,1,Overcoat; Filter (H),75
+967,Cyclizar,9,0,regular,Dragon/Normal,501,70,95,65,85,65,121,506,1,1,0,,,,Shed Skin; Regenerator (H),190
+968,Orthworm,9,0,regular,Steel,480,70,85,145,60,55,65,507,1,1,0,,,,Earth Eater; Sand Veil (H),25
+969,Glimmet,9,0,regular,Rock/Poison,350,48,35,42,105,60,60,508,1,0,0,,,,Toxic Debris; Corrosion (H),70
+970,Glimmora,9,0,regular,Rock/Poison,525,83,55,90,130,81,86,508,2,1,0,Glimmet,Level 35,1,Toxic Debris; Corrosion (H),25
+971,Greavard,9,0,regular,Ghost,290,50,61,60,30,55,34,509,1,0,0,,,,Pickup; Fluffy (H),120
+972,Houndstone,9,0,regular,Ghost,488,72,101,100,50,97,68,509,2,1,0,Greavard,Level 30 at night,0,Sand Rush; Fluffy (H),60
+973,Flamigo,9,0,regular,Flying/Fighting,500,82,115,74,75,64,90,510,1,1,0,,,,Scrappy; Tangled Feet; Costar (H),100
+974,Cetoddle,9,0,regular,Ice,334,108,68,45,30,40,43,511,1,0,0,,,,Thick Fat; Snow Cloak; Sheer Force (H),150
+975,Cetitan,9,0,regular,Ice,521,170,113,65,45,55,73,511,2,1,0,Cetoddle,Use Ice Stone,1,Thick Fat; Slush Rush; Sheer Force (H),50
+976,Veluza,9,0,regular,Water/Psychic,478,90,102,73,78,65,70,512,1,1,0,,,,Mold Breaker; Sharpness (H),100
+977,Dondozo,9,0,regular,Water,530,150,100,115,65,65,35,513,1,1,0,,,,Unaware; Oblivious; Water Veil (H),25
+978,Tatsugiri,9,0,regular,Dragon/Water,475,68,50,60,120,95,82,514,1,1,0,,,,Commander; Storm Drain (H),100
+979,Annihilape,9,0,regular,Fighting/Ghost,535,110,115,80,50,90,90,24,3,1,0,Primeape,Use move after using Rage Fist,0,Vital Spirit; Inner Focus; Defiant (H),45
+980,Clodsire,9,0,regular,Poison/Ground,430,130,75,60,45,100,20,96,2,1,0,Wooper,Level 20 from the wooper-paldea form,0,Poison Point; Water Absorb; Unaware (H),90
+981,Farigiraf,9,0,regular,Normal/Psychic,520,120,90,70,110,70,60,101,2,1,0,Girafarig,Level up knowing Twin Beam,0,Cud Chew; Armor Tail; Sap Sipper (H),45
+982,Dudunsparce,9,0,regular,Normal,520,125,100,80,85,75,55,103,2,1,0,Dunsparce,Level up knowing Hyper Drill,0,Serene Grace; Run Away; Rattled (H),45
+983,Kingambit,9,0,regular,Dark/Steel,550,100,135,120,60,85,50,317,3,1,0,Bisharp,Three defeated bisharp,0,Defiant; Supreme Overlord; Pressure (H),25
+984,Great Tusk,9,0,paradox,Ground/Fighting,570,115,131,131,53,53,87,515,1,1,0,,,,Protosynthesis,30
+985,Scream Tail,9,0,paradox,Fairy/Psychic,570,115,65,99,65,115,111,516,1,1,0,,,,Protosynthesis,50
+986,Brute Bonnet,9,0,paradox,Grass/Dark,570,111,127,99,79,99,55,517,1,1,0,,,,Protosynthesis,50
+987,Flutter Mane,9,0,paradox,Ghost/Fairy,570,55,55,55,135,135,135,518,1,1,0,,,,Protosynthesis,30
+988,Slither Wing,9,0,paradox,Bug/Fighting,570,85,135,79,85,105,81,519,1,1,0,,,,Protosynthesis,30
+989,Sandy Shocks,9,0,paradox,Electric/Ground,570,85,81,97,121,85,101,520,1,1,0,,,,Protosynthesis,30
+990,Iron Treads,9,0,paradox,Ground/Steel,570,90,112,120,72,70,106,521,1,1,0,,,,Quark Drive,30
+991,Iron Bundle,9,0,paradox,Ice/Water,570,56,80,114,124,60,136,522,1,1,0,,,,Quark Drive,50
+992,Iron Hands,9,0,paradox,Fighting/Electric,570,154,140,108,50,68,50,523,1,1,0,,,,Quark Drive,50
+993,Iron Jugulis,9,0,paradox,Dark/Flying,570,94,80,86,122,80,108,524,1,1,0,,,,Quark Drive,30
+994,Iron Moth,9,0,paradox,Fire/Poison,570,80,70,60,140,110,110,525,1,1,0,,,,Quark Drive,30
+995,Iron Thorns,9,0,paradox,Rock/Electric,570,100,134,110,70,84,72,526,1,1,0,,,,Quark Drive,30
+996,Frigibax,9,0,regular,Dragon/Ice,320,65,75,45,35,45,55,527,1,0,0,,,,Thermal Exchange; Ice Body (H),45
+997,Arctibax,9,0,regular,Dragon/Ice,423,90,95,66,45,65,62,527,2,0,0,Frigibax,Level 35,1,Thermal Exchange; Ice Body (H),25
+998,Baxcalibur,9,0,regular,Dragon/Ice,600,115,145,92,75,86,87,527,3,1,0,Arctibax,Level 54,1,Thermal Exchange; Ice Body (H),10
+999,Gimmighoul,9,0,regular,Ghost,300,45,30,70,75,70,10,528,1,0,0,,,,Rattled,45
+1000,Gholdengo,9,0,regular,Steel/Ghost,550,87,60,95,133,91,84,528,2,1,0,Gimmighoul,Gimmighoul coins,0,Good as Gold,45
+1001,Wo-Chien,9,0,legendary,Dark/Grass,570,85,85,100,95,135,70,529,1,1,0,,,,Tablets of Ruin,6
+1002,Chien-Pao,9,0,legendary,Dark/Ice,570,80,120,80,90,65,135,530,1,1,0,,,,Sword of Ruin,6
+1003,Ting-Lu,9,0,legendary,Dark/Ground,570,155,110,125,55,80,45,531,1,1,0,,,,Vessel of Ruin,6
+1004,Chi-Yu,9,0,legendary,Dark/Fire,570,55,80,80,135,120,100,532,1,1,0,,,,Beads of Ruin,6
+1005,Roaring Moon,9,0,paradox,Dragon/Dark,590,105,139,71,55,101,119,533,1,1,0,,,,Protosynthesis,10
+1006,Iron Valiant,9,0,paradox,Fairy/Fighting,590,74,130,90,120,60,116,534,1,1,0,,,,Quark Drive,10
+1007,Koraidon,9,0,legendary,Fighting/Dragon,670,100,135,115,85,100,135,535,1,1,0,,,,Orichalcum Pulse,3
+1008,Miraidon,9,0,legendary,Electric/Dragon,670,100,85,100,135,115,135,536,1,1,0,,,,Hadron Engine,3
+1009,Walking Wake,9,0,paradox,Water/Dragon,590,99,83,91,125,83,109,537,1,1,0,,,,Protosynthesis,5
+1010,Iron Leaves,9,0,paradox,Grass/Psychic,590,90,130,88,70,108,104,538,1,1,0,,,,Quark Drive,5
+1011,Dipplin,9,0,regular,Grass/Dragon,485,80,80,110,95,80,40,442,2,0,0,Applin,Use Syrupy Apple,0,Supersweet Syrup; Gluttony; Sticky Hold (H),45
+1012,Poltchageist,9,0,regular,Grass/Ghost,308,40,45,45,74,54,50,539,1,0,0,,,,Hospitality; Heatproof (H),120
+1013,Sinistcha,9,0,regular,Grass/Ghost,508,71,60,106,121,80,70,539,2,1,0,Poltchageist,Use Unremarkable Teacup OR Use Masterpiece Teacup,0,Hospitality; Heatproof (H),60
+1014,Okidogi,9,0,legendary,Poison/Fighting,555,88,128,115,58,86,80,540,1,1,0,,,,Toxic Chain; Guard Dog (H),3
+1015,Munkidori,9,0,legendary,Poison/Psychic,555,88,75,66,130,90,106,541,1,1,0,,,,Toxic Chain; Frisk (H),3
+1016,Fezandipiti,9,0,legendary,Poison/Fairy,555,88,91,82,70,125,99,542,1,1,0,,,,Toxic Chain; Technician (H),3
+1017,Ogerpon,9,0,legendary,Grass,550,80,120,84,60,96,110,543,1,1,0,,,,Defiant,5
+1018,Archaludon,9,0,regular,Steel/Dragon,600,90,105,130,125,65,85,465,2,1,0,Duraludon,Use Metal Alloy,0,Stamina; Sturdy; Stalwart (H),10
+1019,Hydrapple,9,0,regular,Grass/Dragon,540,106,80,110,120,80,44,442,3,1,0,Dipplin,Level up knowing Dragon Cheer,0,Supersweet Syrup; Regenerator; Sticky Hold (H),10
+1020,Gouging Fire,9,0,paradox,Fire/Dragon,590,105,115,121,65,93,91,544,1,1,0,,,,Protosynthesis,10
+1021,Raging Bolt,9,0,paradox,Electric/Dragon,590,125,73,91,137,89,75,545,1,1,0,,,,Protosynthesis,10
+1022,Iron Boulder,9,0,paradox,Rock/Psychic,590,90,120,80,68,108,124,547,1,1,0,,,,Quark Drive,10
+1023,Iron Crown,9,0,paradox,Steel/Psychic,590,90,72,100,122,108,98,546,1,1,0,,,,Quark Drive,10
+1024,Terapagos,9,0,legendary,Normal,450,90,65,85,65,85,60,548,1,1,0,,,,Tera Shift,255
+1025,Pecharunt,9,0,mythical,Poison/Ghost,600,88,88,160,88,88,88,549,1,1,0,,,,Poison Puppeteer,3
