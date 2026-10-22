@@ -221,6 +221,8 @@ static const struct {
     { "rotom/forms/frost",     "ICON_ROTOM_FROST",     .isGiratinaOrigin = false },
     { "rotom/forms/fan",       "ICON_ROTOM_FAN",       .isGiratinaOrigin = false },
     { "rotom/forms/mow",       "ICON_ROTOM_MOW",       .isGiratinaOrigin = false },
+    // Sovereign: Mega Evolutions and Primal Reversions (no icon of their own yet; written by tools/engine/gen_forms.py).
+#include "sovereign_forms.inc"
 };
 
 #define NATIONAL_DEX_MAX SPECIES_EGG // NOTE: This is distinct from NATIONAL_DEX_COUNT
@@ -906,7 +908,9 @@ static SpeciesData ProcSpecies(dp_node root, size_t i, const char *stem, const c
     switch (i) {
     case SPECIES_EGG:     EmitIconPalettes(root, "ICON_EGG", stem);         break;
     case SPECIES_BAD_EGG: EmitIconPalettes(root, "ICON_MANAPHY_EGG", stem); break;
-    default:              EmitIconPalettes(root, name, stem);               break;
+    default:
+        if (name != NULL) EmitIconPalettes(root, name, stem); // Sovereign: forms without an icon of their own have none
+        break;
     }
 
     if (IsBaseSpecies(i)) ProcText(root, i, stem, dexName);

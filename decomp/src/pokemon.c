@@ -53,6 +53,8 @@
 #include "unk_02017038.h"
 #include "unk_02092494.h"
 
+#include "data/sovereign_forms.h"
+
 #include "res/pokemon/regional_pokedex_size.h"
 #include "res/trainers/classes/trbgra.naix"
 
@@ -4999,6 +5001,14 @@ static int Pokemon_GetFormNarcIndex(int monSpecies, int monForm)
         }
         break;
     default:
+        // Sovereign: Mega Evolutions and Primal Reversions are packed after Platinum's forms.
+        if (monForm) {
+            for (int i = 0; i < SOVEREIGN_FORM_COUNT; i++) {
+                if (sSovereignForms[i].species == monSpecies && sSovereignForms[i].form == monForm) {
+                    return SOVEREIGN_FORM_PERSONAL_START + i;
+                }
+            }
+        }
         break;
     }
 

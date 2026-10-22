@@ -1,0 +1,146 @@
+{
+    "base_stats": {
+        "hp": 65,
+        "attack": 138,
+        "defense": 85,
+        "speed": 75,
+        "special_attack": 138,
+        "special_defense": 85
+    },
+    "types": [
+        "TYPE_GRASS",
+        "TYPE_FIRE"
+    ],
+    "catch_rate": 75,
+    "base_exp_reward": 170,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 2,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 50,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_GRASS",
+        "EGG_GROUP_GRASS"
+    ],
+    "abilities": [
+        "ABILITY_NONE",
+        "ABILITY_NONE",
+        "ABILITY_NONE"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
+    "icon_palette": 1,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_FLAMETHROWER"
+            ],
+            [
+                1,
+                "MOVE_SPICY_EXTRACT"
+            ],
+            [
+                1,
+                "MOVE_LEER"
+            ],
+            [
+                1,
+                "MOVE_FIRE_FANG"
+            ],
+            [
+                1,
+                "MOVE_LEAFAGE"
+            ],
+            [
+                4,
+                "MOVE_BITE"
+            ],
+            [
+                10,
+                "MOVE_GROWTH"
+            ],
+            [
+                13,
+                "MOVE_RAZOR_LEAF"
+            ],
+            [
+                17,
+                "MOVE_SUNNY_DAY"
+            ],
+            [
+                21,
+                "MOVE_BULLET_SEED"
+            ],
+            [
+                24,
+                "MOVE_HEADBUTT"
+            ],
+            [
+                28,
+                "MOVE_ZEN_HEADBUTT"
+            ],
+            [
+                33,
+                "MOVE_WORRY_SEED"
+            ],
+            [
+                38,
+                "MOVE_CRUNCH"
+            ],
+            [
+                44,
+                "MOVE_SEED_BOMB"
+            ],
+            [
+                48,
+                "MOVE_SOLAR_BEAM"
+            ],
+            [
+                48,
+                "MOVE_OVERHEAT"
+            ]
+        ],
+        "by_tm": [
+            "TM09",
+            "TM11",
+            "TM15",
+            "TM17",
+            "TM19",
+            "TM22",
+            "TM35",
+            "TM37",
+            "TM38",
+            "TM42",
+            "TM44",
+            "TM46",
+            "TM50",
+            "TM53",
+            "TM58",
+            "TM61",
+            "TM68",
+            "TM82",
+            "TM86",
+            "TM90"
+        ],
+        "by_tutor": [
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_SEED_BOMB"
+        ]
+    },
+    "evolutions": []
+}

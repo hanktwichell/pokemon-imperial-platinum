@@ -4,6 +4,22 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E8 — Mega Evolution and Primal Reversion (in progress)
+
+- **The 99 Mega and Primal forms exist as data** (step 1). `tools/engine/gen_forms.py` reads `data/megas.csv` and
+  writes each form's stats, types and ability, packed after Platinum's alternate forms (`TechnicalDesign.md` §4).
+  - 42 forms have their Mega ability, because the battle engine has it. The other 57 (an ability the engine lacks, or
+    none listed yet) keep the Pokémon's own ability, as `MegaEvolution.md` says.
+  - Sprites and icons are the base species' until E12.
+  - Verified: with the test Garchomp's form set to 1 (temporary hook), the summary showed Mega Garchomp's stats
+    (Attack 182 at Lv. 50).
+- **15 Mega Stones in the field** (`data/mega_stones.yaml`), placed by `tools/engine/place_mega_stones.py` in the item
+  balls they replace. Verified: the Route 203 ball gives the Alakazite.
+- **Fantina gives the Mega Ring** with the Relic Badge, after TM65, and sets `FLAG_SOVEREIGN_MEGA_UNLOCKED`
+  (formerly `FLAG_UNUSED_0x006F`). A player who already has the badge gets it by talking to her again. Verified by
+  beating Fantina with the test party.
+- Test build: SELECT+L+R stops at the Alakazite ball and in front of Fantina.
+
 ## E7 part 2 — shops and icon placement (in progress)
 
 - **Post-Champion money** (owner, decision 24). Every check is the Hall of Fame flag (`FLAG_GAME_COMPLETED`):
