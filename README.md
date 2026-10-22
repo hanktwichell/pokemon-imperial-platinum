@@ -130,6 +130,22 @@ make -C decomp rom    # builds decomp/build/pokeplatinum.us.nds
 The ROM is never committed or uploaded. To play the original Renegade Platinum for reference, apply Drayano's patch to
 your own Platinum dump: `tools/build/apply_renegade_patch.sh 4997 "Pokemon Platinum (US).nds"`.
 
+### Release patches
+
+Sovereign is released as `.xdelta` patches, like Renegade Platinum: one for each Pokémon Platinum (US) revision.
+Players apply the one for their revision to their own clean dump (xdelta3, Delta Patcher or an online patcher).
+
+```sh
+tools/build/make_release_patch.sh "Pokemon Platinum (US).nds"   # builds the ROM, writes build/release/*.xdelta
+```
+
+- Pass one or both clean dumps. Each is recognised by its SHA-1 and gets its own patch:
+  - Rev 1 ("4997"): `0862ec35…`, written as `SovereignPlatinum4997.xdelta`;
+  - Rev 0 ("3541"): `ce81046e…`, written as `SovereignPlatinum3541.xdelta`.
+- Both patches produce the same ROM. The script checks that each patch reproduces it exactly.
+- `--no-build` skips the build, and an optional first argument sets the output folder.
+- Needs `xdelta3`.
+
 ### Test build
 
 `tools/test/build_test_rom.sh` builds `decomp/build_test/pokeplatinum.us.nds`, a development-only ROM that is never

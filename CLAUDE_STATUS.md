@@ -962,3 +962,22 @@ writes Cynthia's teams in the E9 format, set `"gender": "female"` on her Garchom
 **Files modified:** `README.md`, `CLAUDE_STATUS.md`.
 
 **Next 3 steps:** merge PR #19 when green; 12b #8 (ally support moves); item 11.
+
+---
+
+## CA-0019 — 2026-10-22, 6:15 pm US Central (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** the release patch script (owner: the final output is an `.xdelta`).
+- `tools/build/make_release_patch.sh [--no-build] [OUT_DIR] CLEAN_ROM [CLEAN_ROM]` builds the ROM and writes
+  `SovereignPlatinum4997.xdelta` / `SovereignPlatinum3541.xdelta` (to `build/release/`, which is git-ignored).
+- It recognises each clean dump by its SHA-1, checks that each patch round-trips to the built ROM, and rejects
+  anything else.
+- Tested with a vanilla Rev 1 built from the repo's first decomp import (commit 11c34eff, retail SHA-1 `0862ec35…`):
+  - the 1.8 MB patch reproduces the ROM (SHA-1 `ca7f87b1…`);
+  - a bad ROM is rejected.
+  - Upstream pret can't be built in this sandbox (wrapdb.mesonbuild.com is blocked), so the import commit stood in.
+- Documented in the README (Release patches) and in the roadmap (row 19).
+
+**Files modified:** `tools/build/make_release_patch.sh` (new), `README.md`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:** merge PR #19 when green; 12b #8 (ally support moves); item 11.
