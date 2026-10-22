@@ -30,7 +30,8 @@ based on main `f9f50b3d`. Work in progress, pushed to the branch but not merged.
 
 **The ROM boots and plays with all 1025 species.**
 - `boot_smoke.py` passes.
-- In the test build, Archaludon's summary, stats and ability show correctly.
+- In the test build, Archaludon's summary, stats and ability show correctly. In a wild battle it switches in (placeholder
+  sprite, silent cry), attacks, and the battle ends normally.
 - In-game save and continue work with the 32-sector save.
 
 **Cries (owner decision):** Platinum's sound archive stays unchanged. The 532 new species have no cries and play
@@ -43,8 +44,11 @@ is the fallback if space ever runs out.
 **Placeholder sprites:** the new species use Unown-? until milestone E12. Both male and female copies are written,
 since Platinum shows the female sprite for female Pokémon.
 
-**Developer battle (owner):** Charizard-Y's Ancient Power is now Hurricane, Tyranitar's Protect is now Ice Punch, and
-Archaludon's Dragon Pulse is now Body Press.
+**Developer battle (owner):** the team has been revised.
+- Charizard-Y: Hurricane replaced Ancient Power.
+- Tyranitar: Ice Punch replaced Protect; Choice Band replaced Assault Vest.
+- Archaludon: a new set (♀, Modest, Assault Vest, 252 HP / 156 SpD / 100 Spe, with Electro Shot, Body Press,
+  Flash Cannon and Dragon Pulse).
 
 ## 2. Files modified (uncommitted)
 
@@ -68,7 +72,6 @@ Archaludon's Dragon Pulse is now Body Press.
 ## 3. Next 3 steps
 
 1. **Finish E6 step 2.**
-   - Test Archaludon in battle.
    - Easy Chat species lists (`src/easy_chat_word_list.c`).
    - Docs and citations (PokeAPI icons).
    - Commit, PR, merge.
