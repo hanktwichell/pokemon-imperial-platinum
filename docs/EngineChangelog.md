@@ -28,7 +28,10 @@ All 1025 species are in the game, with species ID = National Dex number (Egg is 
 - **Easy Chat:** `tools/engine/gen_easy_chat_species.py` adds the new species to the Easy Chat lists in display-name
   order: A–L to POKéMON, M–Z to POKéMON 2, and each one to its ABC-mode letter. As in Platinum, a species appears once
   it has been seen. The word buffers are sized from the text banks, so they grow on their own (2,670 words, well below
-  the 4,096 the word decoder allows). The lists add 2,128 bytes of read-only data to the static ARM9.
+  the 4,096 the word decoder allows).
+  - `easy_chat_word_list.c` moved from the static ARM9 into the `easy_chat` overlay (owner request), since only that
+    overlay uses it. The word lists load only while Easy Chat is open. This frees 9,504 bytes of RAM, which includes
+    the 2,128 bytes the new species added. Every overlay starts 9.5 KB lower and keeps the same layout.
 - **Test build:** Archaludon (#1018) replaces the Sharpness Gallade in the test party, and SELECT+B opens the Easy
   Chat word picker.
 
