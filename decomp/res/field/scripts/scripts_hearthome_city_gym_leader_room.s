@@ -95,6 +95,22 @@ HearthomeGym_FantinaTryGiveTM65:
     BufferTMHMMoveName 1, VAR_0x8004
     Message HearthomeGym_FantinaExplainTM65
     WaitButton
+    GoTo HearthomeGym_FantinaTryGiveMegaRing
+
+// Sovereign (docs/MegaEvolution.md): Fantina gives the Mega Ring with the Relic Badge, which unlocks Mega Evolution.
+HearthomeGym_FantinaTryGiveMegaRing:
+    GoToIfSet FLAG_SOVEREIGN_MEGA_UNLOCKED, HearthomeGym_FantinaEnd
+    Message HearthomeGym_Text_SovereignFantinaMegaRing
+    SetVar VAR_0x8004, ITEM_MEGA_RING
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, HearthomeGym_FantinaCannotGiveTM65
+    Common_GiveItemQuantity
+    SetFlag FLAG_SOVEREIGN_MEGA_UNLOCKED
+    Message HearthomeGym_Text_SovereignFantinaExplainMegaRing
+    WaitButton
+    GoTo HearthomeGym_FantinaEnd
+
+HearthomeGym_FantinaEnd:
     CloseMessage
     ReleaseAll
     End
@@ -107,6 +123,7 @@ HearthomeGym_FantinaCannotGiveTM65:
 
 HearthomeGym_FantinaAfterBadge:
     GoToIfUnset FLAG_RECEIVED_FANTINA_TM65, HearthomeGym_FantinaTryGiveTM65
+    GoToIfUnset FLAG_SOVEREIGN_MEGA_UNLOCKED, HearthomeGym_FantinaTryGiveMegaRing
     Message HearthomeGym_Text_FantinaAfterBadge
     WaitButton
     CloseMessage
