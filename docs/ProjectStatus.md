@@ -14,7 +14,7 @@ _Last updated: 2026-10-22_
 | Elite Four format | 2 singles + 2 doubles flow, rematch options, script design | `docs/EliteFourFormat.md` |
 | Evolutions | 54 added species given Gen IV-compatible methods; 16 new evolution items | `docs/EvolutionChanges_Imperial.md` |
 | Post-game legendaries | 90 species across five "Chronicle" chapters | `docs/PostgameLegendaries.md` |
-| Sprites | Owner's pack indexed: back sprites for 347/532 added species and 44/99 Megas, with credits; Mega Garchomp Z front logged | `docs/SpriteLog.md` |
+| Sprites | Two owner-supplied packs merged: fronts and backs for all 532 added species, partial shinies, 44/99 Mega backs; DS-readiness flagged per file | `docs/SpriteChecklist.xlsx`, `docs/SpriteLog.md` |
 | Citations | Every asset and dataset credited | `CITATIONS.md` |
 
 ## Blocked / not started
@@ -22,8 +22,9 @@ _Last updated: 2026-10-22_
 1. **No base ROM in the repository.** Renegade is distributed as xdelta patches that need a Pokémon Platinum (US) dump.
    ROMs can't be downloaded or provided here. A developer must supply their own (`tools/build/apply_renegade_patch.sh`).
 2. **Engine:** the decomp route is chosen; setup has started (see `TechnicalDesign.md`).
-3. **Front sprites:** the supplied pack has back sprites only. **0/532** added species and **1/99** Megas have fronts.
-   **185** added species and **55** Megas also lack backs. All are listed in `SpriteLog.md`.
+3. **Sprites** (`SpriteChecklist.xlsx`): all 532 added species now have a front and a back sprite. 196 have a shiny
+   front and 389 a shiny back. Box/party icons and most Mega sprites are still missing. About a third of the fronts
+   and backs are 96×96 and need cropping (most fit) or resizing for the DS.
 4. All engine work: species expansion, Mega battle mechanic and UI, new abilities, item table expansion, extended trainer
    data (EVs/natures), scripts and maps, encounter table entry, and play-testing.
 

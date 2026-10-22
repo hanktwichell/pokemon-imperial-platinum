@@ -20,6 +20,14 @@
 - **Starters from every region** via Pokémon Center Interviewers. *Imperial extends this to Gen V–IX; see `GiftPokemon_Imperial.md`.*
 - **Optional patches** (Speed Up, 1/4096 and 1/8192 shiny rates, Classic Version) should be rebuilt against the Imperial ROM.
 
+## Approved Imperial additions (requested by the project owner)
+
+| Feature | Behaviour |
+|---|---|
+| **Level cap** (Options → on/off, default off) | While on, party Pokémon stop gaining EXP once they reach the level of the **ace of the next big fight** (Gym Leader, Galactic Commander/Boss, Champion). During the Elite Four the cap is **Cynthia's ace level**. EXP isn't banked; Pokémon at the cap gain nothing, and EXP Share / Exp. Candy follow the same rule. The cap table is generated from `data/trainers_imperial.yaml` and Renegade's trainer data, keyed by story flags. |
+| **Infinite Rare Candy** (Options → on/off, only selectable while the level cap is on) | Rare Candies aren't used up, and can't raise a Pokémon past the current cap. Turning it on gives one Rare Candy if the bag has none. Turning the level cap off also turns this off. |
+| **Music volume** (Options → slider 0–100) | Sets background-music volume in steps of 5 (hold left/right to move quickly). Sound effects and cries are unaffected. Saved with the other options. |
+
 ## Proposed additions — awaiting the project owner's approval
 
 None of these will be implemented without approval. They are features seen in other ROM hacks (Pokémon Unbound,

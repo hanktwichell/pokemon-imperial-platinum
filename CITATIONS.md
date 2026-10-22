@@ -66,6 +66,24 @@ Contributors named in the pack (please thank and credit them):
 A few files in the pack aren't individually credited in its `Credits.txt` (e.g. Bounsweet line, Espurr, Falinks,
 Diancie, Mega Salamence, Mega Slowbro). They're marked in `data/sprite_index.csv`; we will add credits if we find them.
 
+### "Gen5-9 Sprites" part 1 (fronts, backs, some shinies for #494–1025)
+Location: `assets/sprites/packs/gen5_9_part1/` (`NNNN-Name/{front,back,shiny_front,shiny_back}.png`, kept as supplied).
+Compiled and supplied by the project owner from two sources (per the pack's README):
+
+- **hg-engine DS-style sprite set** ("GenIV_Style_Sprites_Gen5-9"), the 80×80 files: BluRosie and the hg-engine
+  contributors and sprite artists — https://github.com/BluRosie/hg-engine. Per-sprite artist credits are kept in the
+  hg-engine project; **we still need to copy the matching credit list into this file.**
+- **Smogon Sprite Project** (Gen 6/7/8 archives), the 96×96 files: the Smogon Sprite Project contributors —
+  https://www.smogon.com/forums/forums/smeargles-laptop.325/. **Per-sprite artist credits still needed.**
+
+The owner's README notes a part 2 (257 shiny sprites from the Smogon links) that hasn't been added yet.
+
+### Placeholder box/party icons for #494–1025
+Location: `assets/sprites/icons_placeholder/` (converted by `tools/sprites/make_placeholder_icons.py`; per-file source URL in
+`data/icon_placeholders.csv`). Source: **PokeAPI sprites** — https://github.com/PokeAPI/sprites (Gen VII USUM icons for
+#494–809, Sword/Shield icons for #810–898, Scarlet/Violet icons for #899–1025). The icon art is © Nintendo / Game Freak /
+The Pokémon Company; PokeAPI hosts it. **Placeholders only**, to be replaced by DS-style icons.
+
 ### Mega Garchomp Z (front + shiny front)
 `assets/sprites/reference/mega_garchomp_z_reference.png`, supplied by the project owner. **Original artist unknown —
 attribution needed before release.**
