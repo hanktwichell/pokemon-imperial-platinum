@@ -56,6 +56,14 @@
 #include "script_manager.h"
 #include "sound_playback.h"
 #include "start_menu.h"
+
+#ifdef IMPERIAL_TEST
+#include "generated/species.h"
+#include "generated/trainers.h"
+
+#include "encounter.h"
+#include "field_task.h"
+#endif
 #include "system.h"
 #include "system_flags.h"
 #include "system_vars.h"
@@ -170,6 +178,29 @@ void FieldInput_Update(FieldInput *input, FieldSystem *fieldSystem, u16 pressedK
 
     input->playerDir = PlayerAvatar_CalcFaceDirection(fieldSystem->playerAvatar, pressedKeys, heldKeys);
 }
+
+#ifdef IMPERIAL_TEST
+static int sImperialTestBattleResult;
+
+// Test build only (meson -Dimperial_test=true): a wild battle (Chansey Lv. 30) or, with env != NULL, a trainer battle.
+static BOOL ImperialTest_BattleTask(FieldTask *task)
+{
+    int *state = FieldTask_GetState(task);
+
+    if (*state == 0) {
+        if (FieldTask_GetEnv(task) != NULL) {
+            Encounter_NewVsTrainer(task, TRAINER_RIVAL_ROUTE_209_TURTWIG, TRAINER_NONE, TRAINER_NONE, HEAP_ID_FIELD2, &sImperialTestBattleResult);
+        } else {
+            Encounter_NewVsSpeciesAtLevel(task, SPECIES_CHANSEY, 30, &sImperialTestBattleResult, FALSE);
+        }
+
+        (*state)++;
+        return FALSE;
+    }
+
+    return TRUE;
+}
+#endif
 
 BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
 {
@@ -335,12 +366,12 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
     }
 
 #ifdef IMPERIAL_TEST
-    // Test build only: SELECT starts a wild battle, SELECT+R a trainer battle (scripts_init_new_game.s).
+    // Test build only: SELECT starts a wild battle, SELECT+R a trainer battle.
     if ((input->pressedKeys & PAD_BUTTON_SELECT) && input->menu == FALSE) {
         int moveState = PlayerAvatar_GetPlayerMoveState(fieldSystem->playerAvatar);
 
         if (moveState == PLAYER_MOVE_STATE_END || moveState == PLAYER_MOVE_STATE_NONE) {
-            ScriptManager_Set(fieldSystem, SCRIPT_ID(INIT_NEW_GAME, (input->heldKeys & PAD_BUTTON_R) ? 3 : 2), NULL);
+            FieldSystem_CreateTask(fieldSystem, ImperialTest_BattleTask, (input->heldKeys & PAD_BUTTON_R) ? (void *)1 : NULL);
             return TRUE;
         }
     }

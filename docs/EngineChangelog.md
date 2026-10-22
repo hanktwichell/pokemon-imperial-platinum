@@ -3,6 +3,16 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Test build (never shipped)
+
+- `meson -Dimperial_test=true` (`tools/test/build_test_rom.sh` → `decomp/build_test/`): a new game starts with a test
+  party (Garchomp 50, Turtwig 15, Starly 5) and items (3 Rare Candies, 10 Potions, 10 Poké Balls). In the overworld,
+  **SELECT** starts a wild battle (Chansey Lv. 30) and **SELECT+R** a trainer battle (Barry, Route 209). Normal builds
+  and CI don't define `IMPERIAL_TEST`, so none of this is in the real game.
+- Fixed while building it: the setup first allocated from a heap that doesn't exist yet at new-game start (the NULL
+  write corrupted ITCM code → crash); it now uses `HEAP_ID_FIELD2`. The first battle hook used the script engine and
+  landed on the wrong script; it now starts the battle from a small field task.
+
 ## E1 — Imperial identity and save format
 
 - **Own save signature** (`SECTOR_SIGNATURE` 0x20261022 instead of Platinum's 0x20060623). A Platinum or Renegade
@@ -44,8 +54,10 @@ Verified: builds. **Not yet tested in-game** (needs a party Pokémon; part of th
 Verified in the emulator (`tools/test/drive.py`) on a new save: the list scrolls and wraps in both directions with
 the right arrows; the toggles work; INF. CANDY stays locked while the level cap is OFF and turns off with it; the
 slider moves; YES saves and reopening shows the saved values; turning INF. CANDY on adds a Rare Candy to the Medicine
-pocket. Build passes. **Not yet tested in-game:** EXP stopping at the cap and party-wide EXP in an actual battle, and
-a Rare Candy not being used up (both need a party Pokémon; to be tested once the starter is obtained in a test save).
+pocket. Build passes. **In-battle check (test build, 2026-10-22):** with the cap at 16 and party Exp. Share on, one
+wild battle left Garchomp (fought, Lv. 50, above the cap) at Lv. 50, took Turtwig (didn't fight) from 15 to exactly 16,
+and Starly (didn't fight) from 5 to 10; a Rare Candy then raised Starly to 11 and was used up (Infinite Candy off), and
+on Turtwig at the cap it said "It won't have any effect".
 
 ## Fairy type and Gen VI+ type chart
 

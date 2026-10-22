@@ -17,10 +17,10 @@ and T2 only. See `EngineRoadmap.md` for the per-milestone breakdown.
 |---|---|---|
 | E0 | Decomp imported; build reproduces the retail ROM; CI builds every PR | ✅ done |
 | E0b | Fairy type + Gen VI+ type chart | ✅ done (checked against the official chart) |
-| E13 | Options: level cap, Infinite Rare Candy, party Exp. Share, music volume | ✅ done (PR #5). Menu verified in the emulator; in-battle EXP checks run with the test build |
+| E13 | Options: level cap, Infinite Rare Candy, party Exp. Share, music volume | ✅ done (PR #5); verified in battle with the test build |
 | E1 | Own save signature, ROM title/banner "Pokémon Imperial Platinum" | ✅ built and verified (PR #7, merging) |
 | E14 | Approved QoL | 🟡 1 of 9 built (IV/EV viewer, PR #7; in-game test pending). Next: Repel prompt, type-effectiveness indicator, HM-free field moves, Gen VI+ breeding. Mints, Infinite Repel and Ability Capsule wait for E7/E4 |
-| — | Test build (`tools/test/build_test_rom.sh`): test party at new game, SELECT = wild battle, SELECT+R = trainer battle | 🟡 built, first run in progress |
+| — | Test build (`tools/test/build_test_rom.sh`): test party at new game, SELECT = wild battle, SELECT+R = trainer battle | ✅ working |
 | E2–E5 | Gen IX data pass: abilities, moves, Hidden Abilities, stats/types/learnsets for #1–493 | ⏭ next |
 | E6 | Species expansion to 1025 (+ cries from PokeAPI's archive) | not started |
 | E7 | Items (Mega Stones, new held/evolution items) | not started |
@@ -59,7 +59,8 @@ Made by the owner (2026-10-22):
 5. QoL proposals 1–6, 8, 9 and 11 approved; #7 kept as a proposal; #10 dropped.
 6. The Sinnoh dex stays as in Platinum; the National Dex holds all 1025. Cries for new species come from PokeAPI's archive.
 7. Boss team compositions wait until the engine features are done (T1).
-8. A Red-style developer final battle will be added (T2).
+8. A Red-style developer final battle will be added (T2). It gets a custom AI; the trainer AI is also reviewed for double battles (12b).
+9. No Z-Moves, Max Moves, Dynamax or Gigantamax.
 
 Open:
 - The developer battle: team, trainer text, sprites, location (suggested: Mt. Coronet summit after the post-game).
