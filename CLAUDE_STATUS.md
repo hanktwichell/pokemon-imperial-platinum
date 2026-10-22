@@ -719,3 +719,18 @@ For E11 (Claude B): find the blocking NPCs for the Galactic gates, and build the
 2. 12b #3 (spread credit for hitting both foes).
 3. 12b #8 (ally support moves), then item 11.
 For E11 (Claude B): the crown items, merge and rename; the Victory Road check.
+
+---
+
+## CA-0014 — 2026-10-22, 5:02 pm US Central (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** no uncut gems on the Sovereign's crown (owner: they're royalty). The jewels are now all cut stones,
+paired by cut (this replaces CA-0013's raw/cut names):
+- Oval Emerald, Oval Sapphire and Oval Ruby (pieces 2, 4 and 5).
+- Pear Emerald, Pear Sapphire and Pear Ruby (pieces 7, 8 and 9).
+
+The gold pieces and the Crown Diamond are unchanged.
+
+**Files modified:** `docs/Story.md`, `data/item_sprites.csv`, `docs/SpriteChecklist.xlsx`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:** merge PR #19; 12b #3 (spread credit); 12b #8 (ally support moves).

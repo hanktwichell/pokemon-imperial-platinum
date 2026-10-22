@@ -112,20 +112,21 @@ such NPC exists, a new one is placed (E11 finds them).
 - **After each trial,** once the follow-up encounter where the Totem can be caught is over (**whether or not the
   player catches it**), the player finds a crown piece on the ground.
 - **The pieces** (owner: a mix of rubies, emeralds, sapphires and gold shards/fragments). The key-items pocket shows
-  no counts, so each piece has its own name. Rough stones come first and cut ones later, as the crown takes shape.
-  Names and order are a proposal; the owner can rename any of them:
+  no counts, so each piece has its own name. Every jewel is a finished, cut stone fit for royalty (owner: no uncut
+  gems on the Sovereign's crown); each kind comes twice, told apart by cut (oval and pear). Names and order are a
+  proposal; the owner can rename any of them:
 
   | # | Trial | Piece |
   |---|---|---|
   | 1 | Gumshoos (Route 205 South) | Gold Shard |
-  | 2 | Ribombee (Floaroma Meadow) | Raw Emerald |
+  | 2 | Ribombee (Floaroma Meadow) | Oval Emerald |
   | 3 | Vikavolt (Eterna Forest) | Gold Fragment |
-  | 4 | Mimikyu (Old Chateau) | Raw Sapphire |
-  | 5 | Alolan Marowak (Lost Tower) | Raw Ruby |
+  | 4 | Mimikyu (Old Chateau) | Oval Sapphire |
+  | 5 | Alolan Marowak (Lost Tower) | Oval Ruby |
   | 6 | Alolan Raticate (Galactic Warehouse) | Gold Sliver |
-  | 7 | Lurantis (Great Marsh) | Cut Emerald |
-  | 8 | Araquanid (Route 213) | Cut Sapphire |
-  | 9 | Salazzle (Fuego Ironworks) | Cut Ruby |
+  | 7 | Lurantis (Great Marsh) | Pear Emerald |
+  | 8 | Araquanid (Route 213) | Pear Sapphire |
+  | 9 | Salazzle (Fuego Ironworks) | Pear Ruby |
   | 10 | Kommo-o (Mt. Coronet) | Gold Flake |
   | 11 | Togedemaru (Vista Lighthouse) | **Crown Diamond** |
 
