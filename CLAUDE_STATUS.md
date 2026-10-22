@@ -1,7 +1,8 @@
 # Sovereign Platinum — development status
 
 _Last updated: 2026-10-22, during E6 step 2 (adding species #494–1025). Branch `claude/festive-bardeen-5h7beo`,
-based on main `f9f50b3d`. Work in progress, pushed to the branch but not merged._
+based on main `f9f50b3d`. Everything below is committed and pushed to the branch; no PR yet (E6 step 2 isn't
+finished)._
 
 ## 1. What was just implemented
 
@@ -50,7 +51,7 @@ since Platinum shows the female sprite for female Pokémon.
 - Archaludon: a new set (♀, Modest, Assault Vest, 252 HP / 156 SpD / 100 Spe, with Electro Shot, Body Press,
   Flash Cannon and Dragon Pulse).
 
-## 2. Files modified (uncommitted)
+## 2. Files modified on this branch (all committed)
 
 - `decomp/generated/species.txt`: 532 species added before `SPECIES_EGG`.
 - `decomp/include/pokedex.h`: `recordedLanguages` removed.
@@ -62,7 +63,7 @@ since Platinum shows the female sprite for female Pokémon.
   mr_mime, primeape, qwilfish, sneasel, stantler, wooper.
 - `decomp/src/sound_playback.c` and `decomp/src/sound.c`: new species have no cry (silent).
 - `decomp/res/pokemon/meson.build`: a cry is packed only when the species has `cry.wav`.
-- `docs/DeveloperBattle.md`: Tyranitar's moveset.
+- `docs/DeveloperBattle.md`: the owner's team revisions.
 - `decomp/src/script_manager.c` and `tools/test/build_test_rom.sh`: Archaludon in the test party.
 - `tools/engine/gen_species_gen9.py` (refactor) and `tools/engine/gen_new_species.py` (new).
 - `docs/NewSpecies.md` (new).
@@ -71,10 +72,28 @@ since Platinum shows the female sprite for female Pokémon.
 
 ## 3. Next 3 steps
 
-1. **Finish E6 step 2.**
-   - Easy Chat species lists (`src/easy_chat_word_list.c`).
-   - Docs and citations (PokeAPI icons).
-   - Commit, PR, merge.
-2. **E7 items.** Add every held item. New held items go on sale at the Veilstone Department Store (owner request).
-   Also add the 16 evolution items, Mega Stones, Charizardite Y, Blue Orb and Assault Vest.
-3. **E12 sprites** for the 532 new species (they're Unown-? placeholders now). Cries come last of all.
+1. **Easy Chat species lists** (`decomp/src/easy_chat_word_list.c`), the last code item of E6 step 2. Findings so far:
+   - A species' word ID is its species ID. Other words are offset by the text bank sizes (`MOVE_WORD` etc. in
+     `include/applications/easy_chat/defs.h`), so they shift automatically and the list entries can stay as they are.
+   - The Pokémon words are split into two groups by name: `sPokemonWords` runs Abomasnow–Luxray (235) and
+     `sPokemon2Words` runs Machamp–Zubat (258). Both are in display-name order, not constant-name order.
+   - The A–Z lists (`sAWords` … `sZWords`) hold all 493 species mixed in with other words.
+   - To do: write a small generator that inserts the 532 new species (A–L into group 1, M–Z into group 2, plus each
+     into its letter list) in display-name order. Then check that the buffers sized by word count (`wordsByGroup`,
+     `addedWordBits`) cope with 532 more words. Test in game with the Easy Chat screen (e.g. the Trainer Card or a
+     Pokémon Center interview).
+2. **Wrap up E6 step 2.**
+   - Docs: changelog, roadmap, ProjectStatus (decisions: English-only Pokédex, no new cries until last), the step 2
+     section of SpeciesExpansionPlan, and CITATIONS for the PokeAPI icons.
+   - Fix the "an Sovereign" grammar left by the rename (e.g. the `tools/test/boot_smoke.py` docstring).
+   - Open a PR from `claude/festive-bardeen-5h7beo` and merge it.
+3. **E7 items.** Add every held item. New held items go on sale at the Veilstone Department Store (owner request).
+   Also add the 16 evolution items, Mega Stones, Charizardite Y, Blue Orb and Assault Vest. After that, E12 sprites
+   for the 532 new species; cries come last of all.
+
+**Testing tips:**
+- Test ROM: `tools/test/build_test_rom.sh` → `decomp/build_test/pokeplatinum.us.nds`.
+- Intro inputs that work on the current build: `$S/arch/intro_full.txt`, where `$S` is
+  `/tmp/claude-0/-home-user-pokemon-imperial-platinum/320147ff-836b-5cb0-8a81-b2884a5e01ab/scratchpad`. Scratch
+  files may not survive the session.
+- An in-game save is slow in the emulator: wait about 1,500 frames before exporting it.
