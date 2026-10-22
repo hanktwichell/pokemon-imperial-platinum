@@ -1,0 +1,162 @@
+{
+    "base_stats": {
+        "hp": 65,
+        "attack": 150,
+        "defense": 40,
+        "speed": 145,
+        "special_attack": 15,
+        "special_defense": 80
+    },
+    "types": [
+        "TYPE_BUG",
+        "TYPE_POISON"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 159,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 2,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 1
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 15,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_BUG",
+        "EGG_GROUP_BUG"
+    ],
+    "abilities": [
+        "ABILITY_ADAPTABILITY",
+        "ABILITY_ADAPTABILITY",
+        "ABILITY_ADAPTABILITY"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
+    "icon_palette": 2,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_FURY_ATTACK"
+            ],
+            [
+                1,
+                "MOVE_BUG_BITE"
+            ],
+            [
+                1,
+                "MOVE_HARDEN"
+            ],
+            [
+                1,
+                "MOVE_POISON_STING"
+            ],
+            [
+                1,
+                "MOVE_STRING_SHOT"
+            ],
+            [
+                11,
+                "MOVE_FURY_CUTTER"
+            ],
+            [
+                14,
+                "MOVE_LASER_FOCUS"
+            ],
+            [
+                20,
+                "MOVE_FOCUS_ENERGY"
+            ],
+            [
+                23,
+                "MOVE_VENOSHOCK"
+            ],
+            [
+                26,
+                "MOVE_ASSURANCE"
+            ],
+            [
+                29,
+                "MOVE_TOXIC_SPIKES"
+            ],
+            [
+                32,
+                "MOVE_PIN_MISSILE"
+            ],
+            [
+                35,
+                "MOVE_POISON_JAB"
+            ],
+            [
+                38,
+                "MOVE_AGILITY"
+            ],
+            [
+                41,
+                "MOVE_ENDEAVOR"
+            ],
+            [
+                44,
+                "MOVE_FELL_STINGER"
+            ]
+        ],
+        "by_tm": [
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM17",
+            "TM19",
+            "TM21",
+            "TM22",
+            "TM27",
+            "TM31",
+            "TM32",
+            "TM36",
+            "TM40",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM51",
+            "TM54",
+            "TM58",
+            "TM62",
+            "TM66",
+            "TM68",
+            "TM70",
+            "TM75",
+            "TM78",
+            "TM81",
+            "TM82",
+            "TM83",
+            "TM84",
+            "TM87",
+            "TM89",
+            "TM90",
+            "HM01",
+            "HM05",
+            "HM06"
+        ],
+        "by_tutor": [
+            "MOVE_FURY_CUTTER",
+            "MOVE_OMINOUS_WIND",
+            "MOVE_SNORE",
+            "MOVE_AIR_CUTTER",
+            "MOVE_ENDEAVOR",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT"
+        ]
+    },
+    "evolutions": []
+}

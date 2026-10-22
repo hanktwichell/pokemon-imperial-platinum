@@ -1,0 +1,218 @@
+{
+    "base_stats": {
+        "hp": 70,
+        "attack": 145,
+        "defense": 88,
+        "speed": 112,
+        "special_attack": 140,
+        "special_defense": 70
+    },
+    "types": [
+        "TYPE_FIGHTING",
+        "TYPE_STEEL"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 204,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 1,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 1,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_12_5",
+    "hatch_cycles": 25,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_FIELD",
+        "EGG_GROUP_HUMAN_LIKE"
+    ],
+    "abilities": [
+        "ABILITY_ADAPTABILITY",
+        "ABILITY_ADAPTABILITY",
+        "ABILITY_ADAPTABILITY"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
+    "icon_palette": 2,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_AURA_SPHERE"
+            ],
+            [
+                1,
+                "MOVE_COPYCAT"
+            ],
+            [
+                1,
+                "MOVE_FEINT"
+            ],
+            [
+                1,
+                "MOVE_HELPING_HAND"
+            ],
+            [
+                1,
+                "MOVE_ROCK_SMASH"
+            ],
+            [
+                1,
+                "MOVE_METAL_CLAW"
+            ],
+            [
+                1,
+                "MOVE_VACUUM_WAVE"
+            ],
+            [
+                1,
+                "MOVE_DETECT"
+            ],
+            [
+                1,
+                "MOVE_REVERSAL"
+            ],
+            [
+                1,
+                "MOVE_SCREECH"
+            ],
+            [
+                1,
+                "MOVE_QUICK_ATTACK"
+            ],
+            [
+                1,
+                "MOVE_FINAL_GAMBIT"
+            ],
+            [
+                1,
+                "MOVE_LIFE_DEW"
+            ],
+            [
+                12,
+                "MOVE_COUNTER"
+            ],
+            [
+                16,
+                "MOVE_WORK_UP"
+            ],
+            [
+                20,
+                "MOVE_FORCE_PALM"
+            ],
+            [
+                24,
+                "MOVE_CALM_MIND"
+            ],
+            [
+                28,
+                "MOVE_METAL_SOUND"
+            ],
+            [
+                32,
+                "MOVE_QUICK_GUARD"
+            ],
+            [
+                36,
+                "MOVE_BONE_RUSH"
+            ],
+            [
+                40,
+                "MOVE_SWORDS_DANCE"
+            ],
+            [
+                44,
+                "MOVE_HEAL_PULSE"
+            ],
+            [
+                48,
+                "MOVE_METEOR_MASH"
+            ],
+            [
+                52,
+                "MOVE_DRAGON_PULSE"
+            ],
+            [
+                56,
+                "MOVE_EXTREME_SPEED"
+            ],
+            [
+                60,
+                "MOVE_CLOSE_COMBAT"
+            ]
+        ],
+        "by_tm": [
+            "TM01",
+            "TM03",
+            "TM04",
+            "TM05",
+            "TM06",
+            "TM08",
+            "TM10",
+            "TM11",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM23",
+            "TM26",
+            "TM27",
+            "TM28",
+            "TM29",
+            "TM30",
+            "TM31",
+            "TM32",
+            "TM39",
+            "TM40",
+            "TM42",
+            "TM43",
+            "TM44",
+            "TM45",
+            "TM52",
+            "TM56",
+            "TM58",
+            "TM59",
+            "TM60",
+            "TM65",
+            "TM66",
+            "TM68",
+            "TM71",
+            "TM75",
+            "TM77",
+            "TM78",
+            "TM79",
+            "TM80",
+            "TM82",
+            "TM83",
+            "TM84",
+            "TM87",
+            "TM90",
+            "TM91",
+            "HM04",
+            "HM06",
+            "HM08"
+        ],
+        "by_tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_FURY_CUTTER",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_ICE_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_VACUUM_WAVE",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_MAGNET_RISE",
+            "MOVE_SWIFT"
+        ]
+    },
+    "evolutions": []
+}

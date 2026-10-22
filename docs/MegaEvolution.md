@@ -9,7 +9,7 @@
   Fantina** (the next Gym) gives the player the **Mega Ring** key item along with the Relic Badge, which sets
   `FLAG_SOVEREIGN_MEGA_UNLOCKED`. Stones picked up earlier can be held, but the Mega option stays hidden until then.
 - **In battle.** When a Pokémon holding its Mega Stone is chosen to Fight, the move menu shows a **MEGA** toggle on the touch
-  screen (Gen VI style; owner-confirmed, 2026-10-22). Mega Evolution happens at the start of the turn, before any moves, and the Mega's Speed applies
+  screen (Gen VI style; owner-confirmed, 2026-10-22). Touch it or press SELECT; the move chosen next Mega Evolves the Pokémon. Mega Evolution happens at the start of the turn, before any moves, and the Mega's Speed applies
   from that turn (Gen VII+ rule). One Mega per trainer per battle. A Mega stays Mega until the battle ends or it faints, and
   reverts afterwards.
 - **Primal Reversion.** Kyogre holding the Blue Orb / Groudon holding the Red Orb revert automatically on switch-in, with no

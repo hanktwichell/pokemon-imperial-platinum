@@ -841,6 +841,8 @@ BOOL CanPokemonFormLearnTM(u16 monSpecies, int monForm, u8 tmID);
  * @param mon
  */
 void Pokemon_CalcAbility(Pokemon *mon);
+int Pokemon_SovereignBattleForm(u16 species, u16 heldItem, const u16 *moves, BOOL primal);
+BOOL Pokemon_IsSovereignBattleForm(u16 species, int form);
 
 void sub_020780C4(Pokemon *mon, u32 monPersonality);
 

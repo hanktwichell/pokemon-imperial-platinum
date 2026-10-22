@@ -294,12 +294,16 @@ __attribute__((aligned(4))) static const u8 palParkMenuButtonLayout[2][1] = {
     { 0x1 }
 };
 
+// Sovereign (E8): the move menu's MEGA EVOLUTION toggle, in the strip above the moves.
+#define MOVE_MENU_RESULT_SOVEREIGN_MEGA 0x10
+
 static const TouchScreenRect sMoveSelectMenuTouchRects[] = {
     { 0x98, 0xC0, 0x8, 0xF8 },
     { 0x18, 0x50, 0x0, 0x80 },
     { 0x18, 0x50, 0x80, 0xFF },
     { 0x58, 0x90, 0x0, 0x80 },
     { 0x58, 0x90, 0x80, 0xFF },
+    { 0x0, 0x16, 0x30, 0xD0 }, // Sovereign: MEGA EVOLUTION
     { 0xFF, 0x0, 0x0, 0x0 }
 };
 
@@ -308,7 +312,8 @@ static const int sMoveSelectButtonResults[NELEMS(sMoveSelectMenuTouchRects) - 1]
     0x1,
     0x2,
     0x3,
-    0x4
+    0x4,
+    MOVE_MENU_RESULT_SOVEREIGN_MEGA
 };
 
 __attribute__((aligned(4))) static const u8 sMoveSelectButtonSlots[NELEMS(sMoveSelectMenuTouchRects) - 1] = {
@@ -316,7 +321,8 @@ __attribute__((aligned(4))) static const u8 sMoveSelectButtonSlots[NELEMS(sMoveS
     0x8,
     0x9,
     0xA,
-    0xB
+    0xB,
+    0x4
 };
 
 __attribute__((aligned(4))) static const u8 sMoveMenuButtonLayout[3][2] = {
@@ -884,7 +890,7 @@ void *BattleSubscreen_New(NARC *unused1, NARC *unused2, BattleSystem *battleSys,
         GF_ASSERT(FALSE);
     }
 
-    btlSubscreen->fontOAMManager = sub_02012744(13, HEAP_ID_BATTLE);
+    btlSubscreen->fontOAMManager = sub_02012744(NELEMS(btlSubscreen->fontOAMEntry), HEAP_ID_BATTLE);
     btlSubscreen->pulseCursorTask = SysTask_Start(SysTask_PulseCursorHighlight, btlSubscreen, 1310);
 
     NNSG2dScreenData *screenData;
@@ -1558,6 +1564,30 @@ static void BattleSubscreen_DrawPalParkMenu(BattleSubscreen *btlSubscreen, int u
     sub_020129D0(btlSubscreen->fontOAMEntry[2].fontOAM, 0);
 }
 
+// Sovereign (E8): draw the MEGA EVOLUTION toggle above the moves, showing whether it's on (docs/MegaEvolution.md).
+static void BattleSubscreen_DrawSovereignMegaToggle(BattleSubscreen *btlSubscreen)
+{
+    FontOAMEntry *entry = &btlSubscreen->fontOAMEntry[NELEMS(btlSubscreen->fontOAMEntry) - 1];
+
+    if (entry->fontOAM) {
+        sub_02012870(entry->fontOAM);
+        CharTransfer_ClearRange(&entry->allocation);
+        entry->fontOAM = NULL;
+    }
+
+    MessageLoader *msgLoader = BattleSystem_GetMessageLoader(btlSubscreen->battleSys);
+    String *label = MessageLoader_GetNewString(msgLoader, btlSubscreen->sovereignMegaSelected ? BattleStrings_Text_SovereignMegaToggleOn : BattleStrings_Text_SovereignMegaToggleOff);
+    TextColor color = btlSubscreen->sovereignMegaSelected ? TEXT_COLOR(7, 8, 0) : TEXT_COLOR(1, 2, 0);
+
+    BattleSubscreen_NewFontOAM(btlSubscreen, entry, label, FONT_SYSTEM, color, 4, 20023, 128, 7, 1, NULL);
+    String_Free(label);
+}
+
+BOOL BattleSubscreen_SovereignMegaSelected(BattleSubscreen *btlSubscreen)
+{
+    return btlSubscreen->sovereignMegaSelected;
+}
+
 static void BattleSubscreen_DrawMoveSelectMenu(BattleSubscreen *btlSubscreen, int unused1, int unused2)
 {
     int i;
@@ -1587,6 +1617,11 @@ static void BattleSubscreen_DrawMoveSelectMenu(BattleSubscreen *btlSubscreen, in
     String *cancelMsg = MessageLoader_GetNewString(msgLoader, BattleStrings_Text_Cancel2);
     BattleSubscreen_NewFontOAM(btlSubscreen, &btlSubscreen->fontOAMEntry[4], cancelMsg, FONT_SUBSCREEN, TEXT_COLOR(10, 11, 12), 2, 20023, 128, 178, 1, NULL);
     String_Free(cancelMsg);
+
+    btlSubscreen->sovereignMegaSelected = FALSE;
+    if (moveData->canMegaEvolve) {
+        BattleSubscreen_DrawSovereignMegaToggle(btlSubscreen);
+    }
 
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
         if (moveData->moveIDs[i] != 0) {
@@ -1873,11 +1908,23 @@ static int BattleSubscreen_ProcessActionInput(BattleSubscreen *btlSubscreen, int
 
 static int BattleSubscreen_ProcessMoveInput(BattleSubscreen *btlSubscreen, int selectedMove, int unused)
 {
+    MoveSelectData *moveData = &btlSubscreen->activeMenuData.moveData;
+
+    // Sovereign (E8): touching MEGA EVOLUTION or pressing SELECT toggles it; the menu stays open.
+    if (selectedMove == MOVE_MENU_RESULT_SOVEREIGN_MEGA || (gSystem.pressedKeys & PAD_BUTTON_SELECT)) {
+        if (moveData->canMegaEvolve) {
+            btlSubscreen->sovereignMegaSelected ^= TRUE;
+            BattleSubscreen_DrawSovereignMegaToggle(btlSubscreen);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
+        }
+
+        return 0xffffffff;
+    }
+
     if (selectedMove == 0xffffffff) {
         return selectedMove;
     }
 
-    MoveSelectData *moveData = &btlSubscreen->activeMenuData.moveData;
     const s16 *keyFrames;
     const SubscreenTilemapRect *tilemapRect;
 

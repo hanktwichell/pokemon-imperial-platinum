@@ -981,3 +981,42 @@ writes Cynthia's teams in the E9 format, set `"gender": "female"` on her Garchom
 **Files modified:** `tools/build/make_release_patch.sh` (new), `README.md`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`.
 
 **Next 3 steps:** merge PR #19 when green; 12b #8 (ally support moves); item 11.
+
+---
+
+## CB-0013 — 2026-10-22, 4:47 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Merged:** PR #18 (E7 part 2: Veilstone held-item shop, Infinite Repel, post-Champion money). E7 is done; the
+branch was rebased onto main for E8.
+
+**Implemented (E8 so far, verified in the test build):**
+- **The 99 Mega/Primal forms as data:**
+  - `tools/engine/gen_forms.py` reads `data/megas.csv` and writes each form's `data.json`, the speciesproc form list
+    (`sovereign_forms.inc`) and `include/data/sovereign_forms.h` (species, form number, kind, trigger item or move).
+  - `Pokemon_GetFormNarcIndex` looks forms up there. Test Garchomp set to form 1 showed Mega Garchomp's stats.
+  - Sprites and icons stay the base species' until E12.
+  - The FM milestone (regional forms etc.) can reuse this generator and table.
+- **15 Mega Stones in the field** (`tools/engine/place_mega_stones.py`, from `data/mega_stones.yaml`). The Route 203
+  ball gives the Alakazite. This was listed under E11; the roadmap now says it's done with E8.
+- **Fantina gives the Mega Ring** after TM65 and sets `FLAG_SOVEREIGN_MEGA_UNLOCKED` (was `FLAG_UNUSED_0x006F`).
+- **Code map for the battle side**, in `docs/TechnicalDesign.md` §4: where to change form, revert, add the MEGA
+  button, carry the toggle, and trigger Primal Reversion.
+
+**Files modified:** `tools/engine/gen_forms.py` (new), `tools/engine/place_mega_stones.py` (new),
+`decomp/tools/dataproc/src/speciesproc.c`, `decomp/tools/dataproc/src/sovereign_forms.inc` (generated),
+`decomp/include/constants/sovereign_forms.h` (generated), `decomp/include/data/sovereign_forms.h` (generated),
+`decomp/include/constants/forms.h`, `decomp/src/pokemon.c`, `decomp/res/pokemon/<89 species>/forms/*/data.json` and
+`meson.build`, `decomp/res/field/scripts/scripts_visible_items.s`,
+`decomp/res/field/scripts/scripts_hearthome_city_gym_leader_room.s`, `decomp/res/text/hearthome_city_gym_leader_room.json`,
+`decomp/generated/vars_flags.txt`, `decomp/src/script_manager.c` (test warps), `docs/EngineChangelog.md`,
+`docs/EngineRoadmap.md`, `docs/TechnicalDesign.md`, `CLAUDE_STATUS.md`.
+
+**Heads-up for Claude A:** the owner says E11 story content was updated (Story.md on your branch). Nothing there
+touches Mega Evolution as far as I can see.
+
+**Next 3 steps:**
+1. Open the E8 part 1 PR and merge it when green.
+2. E8 step 2, the battle flow: Mega Evolve after switches and before moves, stats/types/ability, once per trainer,
+   revert at battle end and on capture, the trainer AI Mega Evolving on its first turn.
+3. E8 step 3: the MEGA toggle on the move menu (an OBJ sprite button), Primal Reversion on switch-in, then the
+   animation.

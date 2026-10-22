@@ -1212,6 +1212,10 @@ BOOL BattleSystem_PokemonIsOT(BattleSystem *battleSys, Pokemon *mon);
  * be loaded for execution, FALSE otherwise.
  */
 BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript);
+u8 BattleSystem_SovereignMegaTrainerBit(BattleSystem *battleSys, int battler);
+int BattleSystem_SovereignMegaForm(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
+void BattleSystem_SovereignChangeBattleForm(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int form);
+void BattleSystem_SovereignMegaEvolve(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int form);
 
 /**
  * @brief Initialize the party order buffer.

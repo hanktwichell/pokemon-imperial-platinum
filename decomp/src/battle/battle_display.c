@@ -774,6 +774,7 @@ typedef struct MoveSelectMenuData {
     u8 state;
     u8 unused;
     u16 invalidMoves;
+    u8 canMegaEvolve; // Sovereign (E8)
 } MoveSelectMenuData;
 
 void BattleDisplay_InitTaskShowMoveSelectMenu(BattleSystem *battleSys, BattlerData *battlerData, MoveSelectMenuMessage *message)
@@ -795,6 +796,7 @@ void BattleDisplay_InitTaskShowMoveSelectMenu(BattleSystem *battleSys, BattlerDa
     }
 
     moveSelectMenuData->invalidMoves = message->invalidMoves;
+    moveSelectMenuData->canMegaEvolve = message->canMegaEvolve;
 
     SysTask_Start(battlerData->taskFuncs.showMoveSelectMenu, moveSelectMenuData, 0);
 }
@@ -3537,6 +3539,7 @@ static void Task_PlayerShowMoveSelectMenu(SysTask *task, void *data)
         }
 
         moveSelectData.battlerType = moveSelectMenuData->battlerType;
+        moveSelectData.canMegaEvolve = moveSelectMenuData->canMegaEvolve;
 
         BattleSubscreen_SetupBackground(bgNarc, objNarc, btlSubscreen, 11, 0, &moveSelectData);
         NARC_dtor(bgNarc);
@@ -3559,6 +3562,12 @@ static void Task_PlayerShowMoveSelectMenu(SysTask *task, void *data)
                 Healthbox_Deactivate(moveSelectMenuData->healthbox);
                 BattlerData_StopIdleBounceAnim(battlerData);
             }
+        }
+
+        // Sovereign (E8): a move chosen with the MEGA EVOLUTION toggle on carries it in the second byte.
+        if (moveSelectMenuData->input >= 1 && moveSelectMenuData->input <= LEARNED_MOVES_MAX
+            && BattleSubscreen_SovereignMegaSelected(btlSubscreen)) {
+            moveSelectMenuData->input |= 1 << 8;
         }
 
         BattleController_EmitSelectedMove(moveSelectMenuData->battleSys, moveSelectMenuData->battler, moveSelectMenuData->input);
@@ -3638,6 +3647,10 @@ static void Task_RecordingShowMoveSelectMenu(SysTask *task, void *data)
         BattleDisplay_StopPlaybackAlt(moveSelectMenuData->battleSys);
     }
 
+    // Sovereign (E8): the top bit is a recorded Mega Evolution (BattleSystem_RecordCommand).
+    int megaEvolve = moveSlot & 0x80;
+    moveSlot &= 0x7F;
+
     if (!moveSlot || moveSlot > LEARNED_MOVES_MAX) {
         BattleDisplay_StopPlayback(moveSelectMenuData->battleSys);
     } else {
@@ -3648,7 +3661,7 @@ static void Task_RecordingShowMoveSelectMenu(SysTask *task, void *data)
         }
     }
 
-    BattleController_EmitSelectedMove(moveSelectMenuData->battleSys, moveSelectMenuData->battler, moveSlot);
+    BattleController_EmitSelectedMove(moveSelectMenuData->battleSys, moveSelectMenuData->battler, moveSlot | (megaEvolve ? 1 << 8 : 0));
     BattleController_EmitClearCommand(moveSelectMenuData->battleSys, moveSelectMenuData->battler, moveSelectMenuData->command);
 
     Heap_Free(data);
