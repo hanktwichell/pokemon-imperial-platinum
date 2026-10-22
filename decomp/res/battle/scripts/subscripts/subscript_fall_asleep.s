@@ -56,7 +56,13 @@ _118:
 _147:
     PlayBattleAnimation BTLSCR_SIDE_EFFECT_MON, BATTLE_ANIMATION_ASLEEP
     Wait 
-    Random 3, 2
+    // Imperial (Pokémon Champions rule): the counter is 2 (1/3) or 3 (2/3), so the Pokémon sleeps
+    // through 1 or 2 turns and always acts on the turn it wakes. Gen IV rolled 2-5 (1-4 turns).
+    Random 2, 2
+    CompareVarToValue OPCODE_NEQ, BTLVAR_CALC_TEMP, 4, _SleepCounterRolled
+    UpdateVar OPCODE_SET, BTLVAR_CALC_TEMP, 3
+
+_SleepCounterRolled:
     UpdateMonDataFromVar OPCODE_FLAG_ON, BTLSCR_SIDE_EFFECT_MON, BATTLEMON_STATUS, BTLVAR_CALC_TEMP
     CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_ABILITY, _170
     // {0} fell asleep!

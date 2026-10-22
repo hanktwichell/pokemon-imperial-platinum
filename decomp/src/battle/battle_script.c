@@ -1343,7 +1343,7 @@ static void BattleScript_CalcMoveDamage(BattleSystem *battleSys, BattleContext *
         battleCtx->attacker,
         battleCtx->defender,
         battleCtx->criticalMul);
-    battleCtx->damage *= battleCtx->criticalMul;
+    battleCtx->damage = BattleSystem_ApplyCriticalMul(battleCtx->damage, battleCtx->criticalMul);
 
     if (Battler_HeldItemEffect(battleCtx, battleCtx->attacker) == HOLD_EFFECT_HP_DRAIN_ON_ATK) {
         battleCtx->damage = battleCtx->damage * (100 + Battler_HeldItemPower(battleCtx, battleCtx->attacker, 0)) / 100;
@@ -2648,11 +2648,17 @@ static BOOL BtlCmd_SetMultiHit(BattleSystem *battleSys, BattleContext *battleCtx
             if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_SKILL_LINK) {
                 hits = 5;
             } else {
-                hits = BattleSystem_RandNext(battleSys) & 3;
-                if (hits < 2) { // 2 or 3 hits
-                    hits += 2;
-                } else { // 4 or 5 hits
-                    hits = (BattleSystem_RandNext(battleSys) & 3) + 2;
+                // Imperial: Gen V+ / Champions odds, 35% 2 hits, 35% 3, 15% 4, 15% 5
+                // (Gen IV: 37.5 / 37.5 / 12.5 / 12.5).
+                int roll = BattleSystem_RandNext(battleSys) % 100;
+                if (roll < 35) {
+                    hits = 2;
+                } else if (roll < 70) {
+                    hits = 3;
+                } else if (roll < 85) {
+                    hits = 4;
+                } else {
+                    hits = 5;
                 }
             }
         }
@@ -5116,11 +5122,12 @@ static BOOL BtlCmd_TryStealItem(BattleSystem *battleSys, BattleContext *battleCt
     return FALSE;
 }
 
+// Imperial: Gen VI+ / Champions, each consecutive use is 1/3 as likely (Gen IV: 1/2).
 static const u16 sProtectSuccessRate[] = {
     0xFFFF, // 100.0%
-    0x7FFF, // ~50.0%
-    0x3FFF, // ~25.0%
-    0x1FFF, // ~12.5%
+    0x5555, // ~33.3%
+    0x1C71, // ~11.1%
+    0x097B, // ~3.7%
 };
 
 /**
@@ -5593,12 +5600,8 @@ static BOOL BtlCmd_EndOfTurnWeatherEffect(BattleSystem *battleSys, BattleContext
                 if (battleCtx->battleMons[battler].curHP < battleCtx->battleMons[battler].maxHP) {
                     battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP, 16);
                 }
-            } else if (type1 != TYPE_ICE
-                && type2 != TYPE_ICE
-                && Battler_Ability(battleCtx, battler) != ABILITY_SNOW_CLOAK) {
-                battleCtx->msgMoveTemp = MOVE_HAIL;
-                battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1, 16);
             }
+            // Imperial: Snow (Gen IX / Pokémon Champions) replaces Hail, so it does no chip damage.
         }
 
         if (WEATHER_IS_RAIN) {
@@ -6201,7 +6204,7 @@ static BOOL BtlCmd_BeatUp(BattleSystem *battleSys, BattleContext *battleCtx)
     battleCtx->damage /= SpeciesData_GetFormValue(DEFENDING_MON.species, DEFENDING_MON.formNum, SPECIES_DATA_BASE_DEF);
     battleCtx->damage /= 50;
     battleCtx->damage += 2;
-    battleCtx->damage *= battleCtx->criticalMul;
+    battleCtx->damage = BattleSystem_ApplyCriticalMul(battleCtx->damage, battleCtx->criticalMul);
 
     if (battleCtx->turnFlags[battleCtx->attacker].helpingHand) {
         battleCtx->damage = battleCtx->damage * 15 / 10;

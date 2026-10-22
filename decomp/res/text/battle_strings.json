@@ -4875,23 +4875,23 @@
       "id": "BattleStrings_Text_PokemonsAbilityWhippedUpAHailstorm_Ally",
       "en_US": [
         "{STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\n",
-        "whipped up a hailstorm!"
+        "made it snow!"
       ]
     },
     {
       "id": "BattleStrings_Text_PokemonsAbilityWhippedUpAHailstorm_Wild",
       "en_US": [
         "The wild {STRVAR_1 1, 0, 0}’s\n",
-        "{STRVAR_1 5, 1, 0} whipped up\f",
-        "a hailstorm!"
+        "{STRVAR_1 5, 1, 0} made it\f",
+        "snow!"
       ]
     },
     {
       "id": "BattleStrings_Text_PokemonsAbilityWhippedUpAHailstorm_Foe",
       "en_US": [
         "The foe’s {STRVAR_1 1, 0, 0}’s\n",
-        "{STRVAR_1 5, 1, 0} whipped up\f",
-        "a hailstorm!"
+        "{STRVAR_1 5, 1, 0} made it\f",
+        "snow!"
       ]
     },
     {
@@ -5583,15 +5583,15 @@
     },
     {
       "id": "BattleStrings_Text_ItStartedToHail",
-      "en_US": "It started to hail!"
+      "en_US": "It started to snow!"
     },
     {
       "id": "BattleStrings_Text_HailContinuesToFall",
-      "en_US": "Hail continues to fall."
+      "en_US": "Snow continues to fall."
     },
     {
       "id": "BattleStrings_Text_TheHailStopped",
-      "en_US": "The hail stopped."
+      "en_US": "The snow stopped."
     },
     {
       "id": "BattleStrings_Text_TheFogIsDeep",
@@ -8487,6 +8487,27 @@
       "en_US": [
         "The Distortion World’s {STRVAR_1 1, 0, 0}\n",
         "appeared!\r"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonCanOnlyUseMoveOnItsFirstTurn_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} can use\n",
+        "{STRVAR_1 6, 1, 0} only on its first turn!\r"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonCanOnlyUseMoveOnItsFirstTurn_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} can use\n",
+        "{STRVAR_1 6, 1, 0} only on its first turn!\r"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_PokemonCanOnlyUseMoveOnItsFirstTurn_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} can use\n",
+        "{STRVAR_1 6, 1, 0} only on its first turn!\r"
       ]
     }
   ]

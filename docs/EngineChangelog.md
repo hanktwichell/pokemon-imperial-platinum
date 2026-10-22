@@ -3,6 +3,34 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## 10b (part 1) — Pokémon Champions battle rules
+
+Rules and sources: `docs/BattleMechanics.md`. IVs, EVs and levels are unchanged (owner decision).
+
+- **Status conditions:**
+  - Full paralysis 1/8 (was 1/4); paralysis halves Speed (was ×0.25); Electric types can't be paralysed.
+  - Sleep lasts 1 turn (1/3) or 2 turns (2/3) and the Pokémon acts on the turn it wakes (was 1–4 turns).
+  - Freeze thaws 1/4 of the time on each move attempt and always on the third (was 1/5, no limit).
+  - Burn deals 1/16 (was 1/8). Confusion self-hit chance is 33% (was 50%).
+- **Turn order is dynamic:** before each action, the Pokémon still waiting to move are re-sorted by their current
+  Speed and priority.
+- **Critical hits:** ×1.5 (Sniper ×2.25) instead of ×2 (×3). Odds by stage are 1/24, 1/8, 1/2 and always.
+- **Multi-hit moves:** 35/35/15/15% for 2/3/4/5 hits. **Protect** in a row: 1/3 the chance each time (was 1/2).
+- **Weather:** weather from Drizzle, Drought, Sand Stream and Snow Warning lasts 5 turns, or 8 with the matching rock
+  (it was permanent). These abilities do nothing if that weather is already up.
+- **Hail becomes Snow:** no chip damage, and Ice types get ×1.5 Defense; the messages say snow. Hail and Snowscape
+  both set it.
+- **Fake Out** can't be selected after the user's first turn on the field. Choosing it shows "X can use Fake Out only
+  on its first turn!".
+- **Champions move values** (`tools/engine/apply_champions_moves.py`): 23 power/accuracy changes, Iron Head 20% flinch,
+  Moonblast 10% Sp. Atk drop, Freeze-Dry no longer freezes, Snap Trap Steel, Growth Grass.
+- **Not adopted for now:** Champions' fixed PP scale with no PP Ups (Imperial keeps PP Ups, pending the owner's call),
+  and its item and move roster limits (they are roster rules, not battle rules).
+- **Verified:** both ROMs build; in the test build a wild battle runs several turns (new moves, damage, AI turns) with no errors. The odds-based rules are code changes checked by review, not by in-game sampling.
+- **Left for roadmap item 11:** ability and move behaviour changes. These are Healer, Run Away, Unseen Fist, Make It
+  Rain, Salt Cure, Rage Fist, the slicing/punching/sound flags, terrains, and the Gen V+ ability rules (Prankster vs
+  Dark, Intimidate immunities).
+
 ## E14 (part) — Repel prompt
 
 - When a Repel, Super Repel or Max Repel wears off and the bag still has one of the same kind, the game asks

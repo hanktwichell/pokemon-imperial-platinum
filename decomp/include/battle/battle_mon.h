@@ -94,7 +94,7 @@ typedef struct BattleMon {
     u32 friskAnnounced : 1;
     u32 moldBreakerAnnounced : 1;
     u32 pressureAnnounced : 1;
-    u32 padding0028_0B : 2;
+    u32 freezeTurns : 2; // Imperial: move attempts spent frozen (Pokémon Champions thaws on the third)
 
     u8 ppCur[LEARNED_MOVES_MAX];
     u8 ppUps[LEARNED_MOVES_MAX];

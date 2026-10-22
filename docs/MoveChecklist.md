@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 93 |
+| exact | 94 |
 | approximate | 76 |
-| placeholder | 211 |
+| placeholder | 210 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -430,7 +430,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 880 | Shed Tail | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 881 | ChillyReceptn | Ice | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 882 | Tidy Up | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
-| 883 | Snowscape | Ice | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 883 | Snowscape | Ice | `WEATHER_HAIL` | exact | set by `apply_champions_moves.py`: Hail now works as Snow (Gen IX), so Snowscape shares its effect and animation |
 | 884 | Pounce | Bug | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 885 | Trailblaze | Grass | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 886 | Chilling Water | Water | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |

@@ -12,7 +12,7 @@
     "pp": 15,
     "effect": {
         "type": "BATTLE_EFFECT_LOWER_SP_ATK_HIT",
-        "chance": 30
+        "chance": 10
     },
     "range": "RANGE_SINGLE_TARGET",
     "priority": 0,

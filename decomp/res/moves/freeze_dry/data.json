@@ -10,8 +10,8 @@
     "accuracy": 100,
     "pp": 20,
     "effect": {
-        "type": "BATTLE_EFFECT_FREEZE_HIT",
-        "chance": 10
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",
     "priority": 0,

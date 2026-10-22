@@ -1298,6 +1298,7 @@ int BattleSystem_CalcDamageVariance(BattleSystem *battleSys, BattleContext *batt
  * occurs and the attacker also has the ability Sniper
  */
 int BattleSystem_CalcCriticalMulti(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int criticalStage, u32 sideConditions);
+int BattleSystem_ApplyCriticalMul(int damage, int criticalMul);
 
 /**
  * @brief Check if a move can be copied by Mimic.
