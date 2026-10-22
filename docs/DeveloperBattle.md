@@ -11,7 +11,8 @@ written for this fight. Roadmap item T2; the AI review for doubles is item 12b.
   both are done) → after beating Cynthia the second time, she sends the player back to Spear Pillar, where Henry
   appears only if the player holds the crown made from the 11 Totem trials' pieces (the Sovereign Crown by then). Event order: `docs/Story.md`.
 - **Afterwards:** the player is granted the Sovereign title, and Cynthia arrives to congratulate them
-  (`docs/Story.md`). Cynthia is the reason Henry uses a Garchomp.
+  (`docs/Story.md`). Cynthia is the reason Henry uses a Garchomp. His Garchomp stays **male**, and Cynthia's is
+  female: the two are a pair (owner).
 - **Level:** 100 for the whole team.
 - **Leads:** always Charizard (Mega Y) and Venusaur.
 - **Concept:** a triple-weather team built as three synergy pairs:

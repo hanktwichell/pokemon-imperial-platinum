@@ -746,3 +746,16 @@ all of these fit.
 **Files modified:** `docs/Story.md`, `data/item_sprites.csv`, `docs/SpriteChecklist.xlsx`, `CLAUDE_STATUS.md`.
 
 **Next 3 steps:** merge PR #19; 12b #3 (spread credit); 12b #8 (ally support moves).
+
+---
+
+## CA-0016 — 2026-10-22, 5:18 pm US Central (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** lore detail (owner). Henry's Garchomp stays male and Cynthia's is female, so the two Garchomp are a
+pair, hinting at Henry and Cynthia. Cynthia's Garchomp is already female in Platinum, because a trainer's 50/50
+species takes the trainer's gender (`src/trainer_data.c`, genderMod 120 < Garchomp's threshold of 127). When T1
+writes Cynthia's teams in the E9 format, set `"gender": "female"` on her Garchomp explicitly.
+
+**Files modified:** `docs/Story.md`, `docs/DeveloperBattle.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:** merge PR #19; 12b #3 (spread credit); 12b #8 (ally support moves).

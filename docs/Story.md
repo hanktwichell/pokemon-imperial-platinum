@@ -79,6 +79,9 @@ Alongside these, after the first Hall of Fame:
 - **Cynthia arrives** to congratulate the player (owner):
   - She is very close to Henry. Their exact relationship is hinted at but never stated, and kept PG.
   - She is the reason Henry uses a Garchomp, her signature Pokémon.
+  - **The two Garchomp are a pair** (owner): Henry's is male, Cynthia's is female. A quiet hint at the two of
+    them. Cynthia's Garchomp is female in Platinum already (trainers' 50/50 species take the trainer's gender);
+    Sovereign's Cynthia teams set it explicitly (T1) so it can't change.
 
 ## Totem trials: gates and the crown (owner, 2026-10-22)
 
