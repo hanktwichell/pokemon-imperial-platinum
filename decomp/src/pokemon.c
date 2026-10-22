@@ -470,6 +470,8 @@ static void sub_02073E18(BoxPokemon *boxMon, int monSpecies, int monLevel, int m
         BoxPokemon_SetValue(boxMon, MON_DATA_SPDEF_IV, &v2);
     }
 
+    // Imperial: a new Pokémon never starts with its hidden ability; set MON_DATA_HAS_HIDDEN_ABILITY and call
+    // Pokemon_CalcAbility to give it one.
     v1 = SpeciesData_GetSpeciesValue(monSpecies, SPECIES_DATA_ABILITY_1);
     v2 = SpeciesData_GetSpeciesValue(monSpecies, SPECIES_DATA_ABILITY_2);
 
@@ -846,7 +848,11 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         break;
 
     case MON_DATA_ABILITY:
-        result = monDataBlockA->ability;
+        result = monDataBlockA->ability | (monDataBlockB->abilityHighBit << 8);
+        break;
+
+    case MON_DATA_HAS_HIDDEN_ABILITY:
+        result = monDataBlockB->hasHiddenAbility;
         break;
 
     case MON_DATA_MARKINGS:
@@ -1396,7 +1402,12 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         break;
 
     case MON_DATA_ABILITY:
-        monDataBlockA->ability = *u8Value;
+        monDataBlockA->ability = *u16Value & 0xFF;
+        monDataBlockB->abilityHighBit = (*u16Value >> 8) & 1;
+        break;
+
+    case MON_DATA_HAS_HIDDEN_ABILITY:
+        monDataBlockB->hasHiddenAbility = *u8Value;
         break;
 
     case MON_DATA_MARKINGS:
@@ -2235,6 +2246,9 @@ u32 SpeciesData_GetValue(SpeciesData *speciesData, enum SpeciesDataParam param)
         break;
     case SPECIES_DATA_ABILITY_2:
         result = speciesData->abilities[1];
+        break;
+    case SPECIES_DATA_ABILITY_HIDDEN:
+        result = speciesData->abilities[2];
         break;
     case SPECIES_DATA_SAFARI_FLEE_RATE:
         result = speciesData->safariFleeRate;
@@ -4751,8 +4765,11 @@ static void BoxPokemon_CalcAbility(BoxPokemon *boxMon)
     int monForm = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
     int monAbility1 = SpeciesData_GetFormValue(monSpecies, monForm, SPECIES_DATA_ABILITY_1);
     int monAbility2 = SpeciesData_GetFormValue(monSpecies, monForm, SPECIES_DATA_ABILITY_2);
+    int monHiddenAbility = SpeciesData_GetFormValue(monSpecies, monForm, SPECIES_DATA_ABILITY_HIDDEN);
 
-    if (monAbility2 != ABILITY_NONE) {
+    if (BoxPokemon_GetValue(boxMon, MON_DATA_HAS_HIDDEN_ABILITY, NULL) && monHiddenAbility != ABILITY_NONE) {
+        BoxPokemon_SetValue(boxMon, MON_DATA_ABILITY, &monHiddenAbility);
+    } else if (monAbility2 != ABILITY_NONE) {
         if (monPersonality & 1) {
             BoxPokemon_SetValue(boxMon, MON_DATA_ABILITY, &monAbility2);
         } else {

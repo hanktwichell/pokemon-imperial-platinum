@@ -25,7 +25,7 @@ typedef struct AIContext {
     u8 moveDamageRolls[LEARNED_MOVES_MAX];
 
     u16 battlerMoves[MAX_BATTLERS][LEARNED_MOVES_MAX];
-    u8 battlerAbilities[MAX_BATTLERS];
+    u16 battlerAbilities[MAX_BATTLERS]; // Imperial: u16
     u16 battlerHeldItems[MAX_BATTLERS];
 
     u16 trainerItems[MAX_OPPONENTS][MAX_TRAINER_ITEMS];

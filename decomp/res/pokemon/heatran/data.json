@@ -27,7 +27,7 @@
     "base_friendship": 100,
     "exp_rate": "EXP_RATE_SLOW",
     "egg_groups": [ "EGG_GROUP_UNDISCOVERED", "EGG_GROUP_UNDISCOVERED" ],
-    "abilities": [ "ABILITY_FLASH_FIRE", "ABILITY_NONE" ],
+    "abilities": [ "ABILITY_FLASH_FIRE", "ABILITY_NONE", "ABILITY_FLAME_BODY" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BROWN",
     "flip_sprite": false,

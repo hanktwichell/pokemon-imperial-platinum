@@ -27,7 +27,7 @@
     "base_friendship": 35,
     "exp_rate": "EXP_RATE_FAST",
     "egg_groups": [ "EGG_GROUP_AMORPHOUS", "EGG_GROUP_AMORPHOUS" ],
-    "abilities": [ "ABILITY_INSOMNIA", "ABILITY_FRISK" ],
+    "abilities": [ "ABILITY_INSOMNIA", "ABILITY_FRISK", "ABILITY_CURSED_BODY" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLACK",
     "flip_sprite": false,

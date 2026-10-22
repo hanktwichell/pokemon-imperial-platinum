@@ -27,7 +27,7 @@
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_MEDIUM_FAST",
     "egg_groups": [ "EGG_GROUP_FIELD", "EGG_GROUP_FIELD" ],
-    "abilities": [ "ABILITY_VITAL_SPIRIT", "ABILITY_ANGER_POINT" ],
+    "abilities": [ "ABILITY_VITAL_SPIRIT", "ABILITY_ANGER_POINT", "ABILITY_DEFIANT" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BROWN",
     "flip_sprite": false,

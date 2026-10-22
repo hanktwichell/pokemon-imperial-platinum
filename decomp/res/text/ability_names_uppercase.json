@@ -496,6 +496,770 @@
     {
       "id": "pl_msg_00000611_00123",
       "en_US": "BAD DREAMS"
+    },
+    {
+      "id": "pl_msg_00000611_00124",
+      "en_US": "PICKPOCKET"
+    },
+    {
+      "id": "pl_msg_00000611_00125",
+      "en_US": "SHEER FORCE"
+    },
+    {
+      "id": "pl_msg_00000611_00126",
+      "en_US": "CONTRARY"
+    },
+    {
+      "id": "pl_msg_00000611_00127",
+      "en_US": "UNNERVE"
+    },
+    {
+      "id": "pl_msg_00000611_00128",
+      "en_US": "DEFIANT"
+    },
+    {
+      "id": "pl_msg_00000611_00129",
+      "en_US": "DEFEATIST"
+    },
+    {
+      "id": "pl_msg_00000611_00130",
+      "en_US": "CURSED BODY"
+    },
+    {
+      "id": "pl_msg_00000611_00131",
+      "en_US": "HEALER"
+    },
+    {
+      "id": "pl_msg_00000611_00132",
+      "en_US": "FRIEND GUARD"
+    },
+    {
+      "id": "pl_msg_00000611_00133",
+      "en_US": "WEAK ARMOR"
+    },
+    {
+      "id": "pl_msg_00000611_00134",
+      "en_US": "HEAVY METAL"
+    },
+    {
+      "id": "pl_msg_00000611_00135",
+      "en_US": "LIGHT METAL"
+    },
+    {
+      "id": "pl_msg_00000611_00136",
+      "en_US": "MULTISCALE"
+    },
+    {
+      "id": "pl_msg_00000611_00137",
+      "en_US": "TOXIC BOOST"
+    },
+    {
+      "id": "pl_msg_00000611_00138",
+      "en_US": "FLARE BOOST"
+    },
+    {
+      "id": "pl_msg_00000611_00139",
+      "en_US": "HARVEST"
+    },
+    {
+      "id": "pl_msg_00000611_00140",
+      "en_US": "TELEPATHY"
+    },
+    {
+      "id": "pl_msg_00000611_00141",
+      "en_US": "MOODY"
+    },
+    {
+      "id": "pl_msg_00000611_00142",
+      "en_US": "OVERCOAT"
+    },
+    {
+      "id": "pl_msg_00000611_00143",
+      "en_US": "POISON TOUCH"
+    },
+    {
+      "id": "pl_msg_00000611_00144",
+      "en_US": "REGENERATOR"
+    },
+    {
+      "id": "pl_msg_00000611_00145",
+      "en_US": "BIG PECKS"
+    },
+    {
+      "id": "pl_msg_00000611_00146",
+      "en_US": "SAND RUSH"
+    },
+    {
+      "id": "pl_msg_00000611_00147",
+      "en_US": "WONDER SKIN"
+    },
+    {
+      "id": "pl_msg_00000611_00148",
+      "en_US": "ANALYTIC"
+    },
+    {
+      "id": "pl_msg_00000611_00149",
+      "en_US": "ILLUSION"
+    },
+    {
+      "id": "pl_msg_00000611_00150",
+      "en_US": "IMPOSTER"
+    },
+    {
+      "id": "pl_msg_00000611_00151",
+      "en_US": "INFILTRATOR"
+    },
+    {
+      "id": "pl_msg_00000611_00152",
+      "en_US": "MUMMY"
+    },
+    {
+      "id": "pl_msg_00000611_00153",
+      "en_US": "MOXIE"
+    },
+    {
+      "id": "pl_msg_00000611_00154",
+      "en_US": "JUSTIFIED"
+    },
+    {
+      "id": "pl_msg_00000611_00155",
+      "en_US": "RATTLED"
+    },
+    {
+      "id": "pl_msg_00000611_00156",
+      "en_US": "MAGIC BOUNCE"
+    },
+    {
+      "id": "pl_msg_00000611_00157",
+      "en_US": "SAP SIPPER"
+    },
+    {
+      "id": "pl_msg_00000611_00158",
+      "en_US": "PRANKSTER"
+    },
+    {
+      "id": "pl_msg_00000611_00159",
+      "en_US": "SAND FORCE"
+    },
+    {
+      "id": "pl_msg_00000611_00160",
+      "en_US": "IRON BARBS"
+    },
+    {
+      "id": "pl_msg_00000611_00161",
+      "en_US": "ZEN MODE"
+    },
+    {
+      "id": "pl_msg_00000611_00162",
+      "en_US": "VICTORY STAR"
+    },
+    {
+      "id": "pl_msg_00000611_00163",
+      "en_US": "TURBOBLAZE"
+    },
+    {
+      "id": "pl_msg_00000611_00164",
+      "en_US": "TERAVOLT"
+    },
+    {
+      "id": "pl_msg_00000611_00165",
+      "en_US": "AROMA VEIL"
+    },
+    {
+      "id": "pl_msg_00000611_00166",
+      "en_US": "FLOWER VEIL"
+    },
+    {
+      "id": "pl_msg_00000611_00167",
+      "en_US": "CHEEK POUCH"
+    },
+    {
+      "id": "pl_msg_00000611_00168",
+      "en_US": "PROTEAN"
+    },
+    {
+      "id": "pl_msg_00000611_00169",
+      "en_US": "FUR COAT"
+    },
+    {
+      "id": "pl_msg_00000611_00170",
+      "en_US": "MAGICIAN"
+    },
+    {
+      "id": "pl_msg_00000611_00171",
+      "en_US": "BULLETPROOF"
+    },
+    {
+      "id": "pl_msg_00000611_00172",
+      "en_US": "COMPETITIVE"
+    },
+    {
+      "id": "pl_msg_00000611_00173",
+      "en_US": "STRONG JAW"
+    },
+    {
+      "id": "pl_msg_00000611_00174",
+      "en_US": "REFRIGERATE"
+    },
+    {
+      "id": "pl_msg_00000611_00175",
+      "en_US": "SWEET VEIL"
+    },
+    {
+      "id": "pl_msg_00000611_00176",
+      "en_US": "STANCE CHANGE"
+    },
+    {
+      "id": "pl_msg_00000611_00177",
+      "en_US": "GALE WINGS"
+    },
+    {
+      "id": "pl_msg_00000611_00178",
+      "en_US": "MEGA LAUNCHER"
+    },
+    {
+      "id": "pl_msg_00000611_00179",
+      "en_US": "GRASS PELT"
+    },
+    {
+      "id": "pl_msg_00000611_00180",
+      "en_US": "SYMBIOSIS"
+    },
+    {
+      "id": "pl_msg_00000611_00181",
+      "en_US": "TOUGH CLAWS"
+    },
+    {
+      "id": "pl_msg_00000611_00182",
+      "en_US": "PIXILATE"
+    },
+    {
+      "id": "pl_msg_00000611_00183",
+      "en_US": "GOOEY"
+    },
+    {
+      "id": "pl_msg_00000611_00184",
+      "en_US": "AERILATE"
+    },
+    {
+      "id": "pl_msg_00000611_00185",
+      "en_US": "PARENTAL BOND"
+    },
+    {
+      "id": "pl_msg_00000611_00186",
+      "en_US": "DARK AURA"
+    },
+    {
+      "id": "pl_msg_00000611_00187",
+      "en_US": "FAIRY AURA"
+    },
+    {
+      "id": "pl_msg_00000611_00188",
+      "en_US": "AURA BREAK"
+    },
+    {
+      "id": "pl_msg_00000611_00189",
+      "en_US": "PRIMORDIAL SEA"
+    },
+    {
+      "id": "pl_msg_00000611_00190",
+      "en_US": "DESOLATE LAND"
+    },
+    {
+      "id": "pl_msg_00000611_00191",
+      "en_US": "DELTA STREAM"
+    },
+    {
+      "id": "pl_msg_00000611_00192",
+      "en_US": "STAMINA"
+    },
+    {
+      "id": "pl_msg_00000611_00193",
+      "en_US": "WIMP OUT"
+    },
+    {
+      "id": "pl_msg_00000611_00194",
+      "en_US": "EMERGENCY EXIT"
+    },
+    {
+      "id": "pl_msg_00000611_00195",
+      "en_US": "WATERCOMPACTION"
+    },
+    {
+      "id": "pl_msg_00000611_00196",
+      "en_US": "MERCILESS"
+    },
+    {
+      "id": "pl_msg_00000611_00197",
+      "en_US": "SHIELDS DOWN"
+    },
+    {
+      "id": "pl_msg_00000611_00198",
+      "en_US": "STAKEOUT"
+    },
+    {
+      "id": "pl_msg_00000611_00199",
+      "en_US": "WATER BUBBLE"
+    },
+    {
+      "id": "pl_msg_00000611_00200",
+      "en_US": "STEELWORKER"
+    },
+    {
+      "id": "pl_msg_00000611_00201",
+      "en_US": "BERSERK"
+    },
+    {
+      "id": "pl_msg_00000611_00202",
+      "en_US": "SLUSH RUSH"
+    },
+    {
+      "id": "pl_msg_00000611_00203",
+      "en_US": "LONG REACH"
+    },
+    {
+      "id": "pl_msg_00000611_00204",
+      "en_US": "LIQUID VOICE"
+    },
+    {
+      "id": "pl_msg_00000611_00205",
+      "en_US": "TRIAGE"
+    },
+    {
+      "id": "pl_msg_00000611_00206",
+      "en_US": "GALVANIZE"
+    },
+    {
+      "id": "pl_msg_00000611_00207",
+      "en_US": "SURGE SURFER"
+    },
+    {
+      "id": "pl_msg_00000611_00208",
+      "en_US": "SCHOOLING"
+    },
+    {
+      "id": "pl_msg_00000611_00209",
+      "en_US": "DISGUISE"
+    },
+    {
+      "id": "pl_msg_00000611_00210",
+      "en_US": "BATTLE BOND"
+    },
+    {
+      "id": "pl_msg_00000611_00211",
+      "en_US": "POWER CONSTRUCT"
+    },
+    {
+      "id": "pl_msg_00000611_00212",
+      "en_US": "CORROSION"
+    },
+    {
+      "id": "pl_msg_00000611_00213",
+      "en_US": "COMATOSE"
+    },
+    {
+      "id": "pl_msg_00000611_00214",
+      "en_US": "QUEENLY MAJESTY"
+    },
+    {
+      "id": "pl_msg_00000611_00215",
+      "en_US": "INNARDS OUT"
+    },
+    {
+      "id": "pl_msg_00000611_00216",
+      "en_US": "DANCER"
+    },
+    {
+      "id": "pl_msg_00000611_00217",
+      "en_US": "BATTERY"
+    },
+    {
+      "id": "pl_msg_00000611_00218",
+      "en_US": "FLUFFY"
+    },
+    {
+      "id": "pl_msg_00000611_00219",
+      "en_US": "DAZZLING"
+    },
+    {
+      "id": "pl_msg_00000611_00220",
+      "en_US": "SOUL-HEART"
+    },
+    {
+      "id": "pl_msg_00000611_00221",
+      "en_US": "TANGLING HAIR"
+    },
+    {
+      "id": "pl_msg_00000611_00222",
+      "en_US": "RECEIVER"
+    },
+    {
+      "id": "pl_msg_00000611_00223",
+      "en_US": "POWEROFALCHEMY"
+    },
+    {
+      "id": "pl_msg_00000611_00224",
+      "en_US": "BEAST BOOST"
+    },
+    {
+      "id": "pl_msg_00000611_00225",
+      "en_US": "RKS SYSTEM"
+    },
+    {
+      "id": "pl_msg_00000611_00226",
+      "en_US": "ELECTRIC SURGE"
+    },
+    {
+      "id": "pl_msg_00000611_00227",
+      "en_US": "PSYCHIC SURGE"
+    },
+    {
+      "id": "pl_msg_00000611_00228",
+      "en_US": "MISTY SURGE"
+    },
+    {
+      "id": "pl_msg_00000611_00229",
+      "en_US": "GRASSY SURGE"
+    },
+    {
+      "id": "pl_msg_00000611_00230",
+      "en_US": "FULL METAL BODY"
+    },
+    {
+      "id": "pl_msg_00000611_00231",
+      "en_US": "SHADOW SHIELD"
+    },
+    {
+      "id": "pl_msg_00000611_00232",
+      "en_US": "PRISM ARMOR"
+    },
+    {
+      "id": "pl_msg_00000611_00233",
+      "en_US": "NEUROFORCE"
+    },
+    {
+      "id": "pl_msg_00000611_00234",
+      "en_US": "INTREPID SWORD"
+    },
+    {
+      "id": "pl_msg_00000611_00235",
+      "en_US": "DAUNTLESSSHIELD"
+    },
+    {
+      "id": "pl_msg_00000611_00236",
+      "en_US": "LIBERO"
+    },
+    {
+      "id": "pl_msg_00000611_00237",
+      "en_US": "BALL FETCH"
+    },
+    {
+      "id": "pl_msg_00000611_00238",
+      "en_US": "COTTON DOWN"
+    },
+    {
+      "id": "pl_msg_00000611_00239",
+      "en_US": "PROPELLER TAIL"
+    },
+    {
+      "id": "pl_msg_00000611_00240",
+      "en_US": "MIRROR ARMOR"
+    },
+    {
+      "id": "pl_msg_00000611_00241",
+      "en_US": "GULP MISSILE"
+    },
+    {
+      "id": "pl_msg_00000611_00242",
+      "en_US": "STALWART"
+    },
+    {
+      "id": "pl_msg_00000611_00243",
+      "en_US": "STEAM ENGINE"
+    },
+    {
+      "id": "pl_msg_00000611_00244",
+      "en_US": "PUNK ROCK"
+    },
+    {
+      "id": "pl_msg_00000611_00245",
+      "en_US": "SAND SPIT"
+    },
+    {
+      "id": "pl_msg_00000611_00246",
+      "en_US": "ICE SCALES"
+    },
+    {
+      "id": "pl_msg_00000611_00247",
+      "en_US": "RIPEN"
+    },
+    {
+      "id": "pl_msg_00000611_00248",
+      "en_US": "ICE FACE"
+    },
+    {
+      "id": "pl_msg_00000611_00249",
+      "en_US": "POWER SPOT"
+    },
+    {
+      "id": "pl_msg_00000611_00250",
+      "en_US": "MIMICRY"
+    },
+    {
+      "id": "pl_msg_00000611_00251",
+      "en_US": "SCREEN CLEANER"
+    },
+    {
+      "id": "pl_msg_00000611_00252",
+      "en_US": "STEELY SPIRIT"
+    },
+    {
+      "id": "pl_msg_00000611_00253",
+      "en_US": "PERISH BODY"
+    },
+    {
+      "id": "pl_msg_00000611_00254",
+      "en_US": "WANDERINGSPIRIT"
+    },
+    {
+      "id": "pl_msg_00000611_00255",
+      "en_US": "GORILLA TACTICS"
+    },
+    {
+      "id": "pl_msg_00000611_00256",
+      "en_US": "NEUTRALIZINGGAS"
+    },
+    {
+      "id": "pl_msg_00000611_00257",
+      "en_US": "PASTEL VEIL"
+    },
+    {
+      "id": "pl_msg_00000611_00258",
+      "en_US": "HUNGER SWITCH"
+    },
+    {
+      "id": "pl_msg_00000611_00259",
+      "en_US": "QUICK DRAW"
+    },
+    {
+      "id": "pl_msg_00000611_00260",
+      "en_US": "UNSEEN FIST"
+    },
+    {
+      "id": "pl_msg_00000611_00261",
+      "en_US": "CURIOUSMEDICINE"
+    },
+    {
+      "id": "pl_msg_00000611_00262",
+      "en_US": "TRANSISTOR"
+    },
+    {
+      "id": "pl_msg_00000611_00263",
+      "en_US": "DRAGON’S MAW"
+    },
+    {
+      "id": "pl_msg_00000611_00264",
+      "en_US": "CHILLING NEIGH"
+    },
+    {
+      "id": "pl_msg_00000611_00265",
+      "en_US": "GRIM NEIGH"
+    },
+    {
+      "id": "pl_msg_00000611_00266",
+      "en_US": "AS ONE"
+    },
+    {
+      "id": "pl_msg_00000611_00267",
+      "en_US": "AS ONE"
+    },
+    {
+      "id": "pl_msg_00000611_00268",
+      "en_US": "LINGERING AROMA"
+    },
+    {
+      "id": "pl_msg_00000611_00269",
+      "en_US": "SEED SOWER"
+    },
+    {
+      "id": "pl_msg_00000611_00270",
+      "en_US": "THERMALEXCHANGE"
+    },
+    {
+      "id": "pl_msg_00000611_00271",
+      "en_US": "ANGER SHELL"
+    },
+    {
+      "id": "pl_msg_00000611_00272",
+      "en_US": "PURIFYING SALT"
+    },
+    {
+      "id": "pl_msg_00000611_00273",
+      "en_US": "WELL-BAKED BODY"
+    },
+    {
+      "id": "pl_msg_00000611_00274",
+      "en_US": "WIND RIDER"
+    },
+    {
+      "id": "pl_msg_00000611_00275",
+      "en_US": "GUARD DOG"
+    },
+    {
+      "id": "pl_msg_00000611_00276",
+      "en_US": "ROCKY PAYLOAD"
+    },
+    {
+      "id": "pl_msg_00000611_00277",
+      "en_US": "WIND POWER"
+    },
+    {
+      "id": "pl_msg_00000611_00278",
+      "en_US": "ZERO TO HERO"
+    },
+    {
+      "id": "pl_msg_00000611_00279",
+      "en_US": "COMMANDER"
+    },
+    {
+      "id": "pl_msg_00000611_00280",
+      "en_US": "ELECTROMORPHSIS"
+    },
+    {
+      "id": "pl_msg_00000611_00281",
+      "en_US": "PROTOSYNTHESIS"
+    },
+    {
+      "id": "pl_msg_00000611_00282",
+      "en_US": "QUARK DRIVE"
+    },
+    {
+      "id": "pl_msg_00000611_00283",
+      "en_US": "GOOD AS GOLD"
+    },
+    {
+      "id": "pl_msg_00000611_00284",
+      "en_US": "VESSEL OF RUIN"
+    },
+    {
+      "id": "pl_msg_00000611_00285",
+      "en_US": "SWORD OF RUIN"
+    },
+    {
+      "id": "pl_msg_00000611_00286",
+      "en_US": "TABLETS OF RUIN"
+    },
+    {
+      "id": "pl_msg_00000611_00287",
+      "en_US": "BEADS OF RUIN"
+    },
+    {
+      "id": "pl_msg_00000611_00288",
+      "en_US": "ORICHALCUMPULSE"
+    },
+    {
+      "id": "pl_msg_00000611_00289",
+      "en_US": "HADRON ENGINE"
+    },
+    {
+      "id": "pl_msg_00000611_00290",
+      "en_US": "OPPORTUNIST"
+    },
+    {
+      "id": "pl_msg_00000611_00291",
+      "en_US": "CUD CHEW"
+    },
+    {
+      "id": "pl_msg_00000611_00292",
+      "en_US": "SHARPNESS"
+    },
+    {
+      "id": "pl_msg_00000611_00293",
+      "en_US": "SUPREMEOVERLORD"
+    },
+    {
+      "id": "pl_msg_00000611_00294",
+      "en_US": "COSTAR"
+    },
+    {
+      "id": "pl_msg_00000611_00295",
+      "en_US": "TOXIC DEBRIS"
+    },
+    {
+      "id": "pl_msg_00000611_00296",
+      "en_US": "ARMOR TAIL"
+    },
+    {
+      "id": "pl_msg_00000611_00297",
+      "en_US": "EARTH EATER"
+    },
+    {
+      "id": "pl_msg_00000611_00298",
+      "en_US": "MYCELIUM MIGHT"
+    },
+    {
+      "id": "pl_msg_00000611_00299",
+      "en_US": "MIND’S EYE"
+    },
+    {
+      "id": "pl_msg_00000611_00300",
+      "en_US": "SUPERSWEETSYRUP"
+    },
+    {
+      "id": "pl_msg_00000611_00301",
+      "en_US": "HOSPITALITY"
+    },
+    {
+      "id": "pl_msg_00000611_00302",
+      "en_US": "TOXIC CHAIN"
+    },
+    {
+      "id": "pl_msg_00000611_00303",
+      "en_US": "EMBODY ASPECT"
+    },
+    {
+      "id": "pl_msg_00000611_00304",
+      "en_US": "TERA SHIFT"
+    },
+    {
+      "id": "pl_msg_00000611_00305",
+      "en_US": "TERA SHELL"
+    },
+    {
+      "id": "pl_msg_00000611_00306",
+      "en_US": "TERAFORM ZERO"
+    },
+    {
+      "id": "pl_msg_00000611_00307",
+      "en_US": "POISONPUPPETEER"
+    },
+    {
+      "id": "pl_msg_00000611_00308",
+      "en_US": "PIERCING DRILL"
+    },
+    {
+      "id": "pl_msg_00000611_00309",
+      "en_US": "DRAGONIZE"
+    },
+    {
+      "id": "pl_msg_00000611_00310",
+      "en_US": "MEGA SOL"
+    },
+    {
+      "id": "pl_msg_00000611_00311",
+      "en_US": "SPICY SPRAY"
+    },
+    {
+      "id": "pl_msg_00000611_00312",
+      "en_US": "EELEVATE"
+    },
+    {
+      "id": "pl_msg_00000611_00313",
+      "en_US": "FIRE MANE"
+    },
+    {
+      "id": "pl_msg_00000611_00314",
+      "en_US": "AURA GUARD"
     }
   ]
 }

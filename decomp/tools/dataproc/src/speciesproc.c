@@ -345,8 +345,9 @@ static SpeciesData ProcPersonal(dp_node root)
         },
 
         .abilities = {
-            dp_u8(dp_lookup_at(root, ".abilities[0]", L_ABILITY)),
-            dp_u8(dp_lookup_at(root, ".abilities[1]", L_ABILITY)),
+            dp_u16(dp_lookup_at(root, ".abilities[0]", L_ABILITY)),
+            dp_u16(dp_lookup_at(root, ".abilities[1]", L_ABILITY)),
+            dp_u16(dp_lookup_at(root, ".abilities[2]", L_ABILITY)),
         },
 
         .evYields = {

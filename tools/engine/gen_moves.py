@@ -101,9 +101,11 @@ def stem_of(ident):
 
 def clean_text(t):
     t = re.sub(r"\s+", " ", t).strip()
-    for a, b in (("“", "\""), ("”", "\""), ("—", "-"), ("–", "-"), ("…", "..."), ("‘", "’"), ("'", "’")):
+    # Platinum's charmap has curly quotes, … and × but no straight double quote.
+    for a, b in (("—", "-"), ("–", "-"), ("‘", "’"), ("'", "’")):
         t = t.replace(a, b)
-    return t
+    parts = t.split('"')
+    return "".join(p + ("“" if i % 2 == 0 else "”") if i < len(parts) - 1 else p for i, p in enumerate(parts))
 
 
 def wrap_description(texts, width=21, lines=5):

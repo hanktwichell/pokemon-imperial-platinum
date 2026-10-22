@@ -27,7 +27,7 @@
     "base_friendship": 70,
     "exp_rate": "EXP_RATE_ERRATIC",
     "egg_groups": [ "EGG_GROUP_WATER_3", "EGG_GROUP_WATER_3" ],
-    "abilities": [ "ABILITY_SUCTION_CUPS", "ABILITY_NONE" ],
+    "abilities": [ "ABILITY_SUCTION_CUPS", "ABILITY_NONE", "ABILITY_STORM_DRAIN" ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_PURPLE",
     "flip_sprite": false,

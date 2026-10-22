@@ -12,7 +12,7 @@ typedef struct UnkStruct_02078B40_t {
     u32 otID;
     u32 exp;
     u8 friendship;
-    u8 ability;
+    u16 ability; // Imperial: u16
     u8 hpEV;
     u8 atkEV;
     u8 defEV;
