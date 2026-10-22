@@ -38,10 +38,10 @@ evolution stones and held items are never replaced. Full table with map and scri
 
 | Shop | Where | Opens | Sells |
 |---|---|---|---|
-| Mega Stone Collector | Hearthome City | Relic Badge | 29 Mega Stones |
-| Mega Stone Trader | Pastoria City | Fen Badge | 30 Mega Stones |
-| Mega Stone Sage | Snowpoint City | Icicle Badge | 8 Mega Stones |
-| Mega Stone Curator | Survival Area | Champion | 10 legendary/signature Mega Stones |
+| Mega Stone Collector | Hearthome City, Bebe's house | Relic Badge | 29 Mega Stones |
+| Mega Stone Trader | Pastoria City, northeast house | Fen Badge | 30 Mega Stones |
+| Mega Stone Sage | Snowpoint City, west house | Icicle Badge | 8 Mega Stones |
+| Mega Stone Curator | Survival Area, south house | Champion | 10 legendary/signature Mega Stones (₽30,000) |
 | Evolution item seller *(Renegade)* | Snowpoint City | — | adds the 14 new evolution items sold in shops |
 | Veilstone Dept. Store, 2F vitamin clerk | Veilstone City | — | Menu: Vitamins / **Held items** (the 38 Gen V–IX held items) / **Gems** (all 18). Owner request. Booster Energy ₽10,000 (no official price) |
 

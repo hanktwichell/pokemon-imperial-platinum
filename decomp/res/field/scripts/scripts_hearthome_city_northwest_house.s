@@ -3,6 +3,7 @@
 
 
     ScriptEntry HearthomeCityNorthwestHouse_Bebe
+    ScriptEntry HearthomeCityNorthwestHouse_MegaStoneCollector
     ScriptEntryEnd
 
 HearthomeCityNorthwestHouse_Bebe:
@@ -92,6 +93,27 @@ HearthomeCityNorthwestHouse_NowThatsANationalDex:
     Message HearthomeCityNorthwestHouse_Text_NowThatsANationalDex
     WaitButton
     CloseMessage
+    ReleaseAll
+    End
+
+// Sovereign (docs/MegaEvolution.md): the Mega Stone Collector, one of the four Mega Stone vendors
+// (stock in data/mega_stones.yaml, written by tools/engine/gen_items.py).
+HearthomeCityNorthwestHouse_MegaStoneCollector:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfBadgeAcquired BADGE_ID_RELIC, HearthomeCityNorthwestHouse_MegaStoneCollectorShop
+    Message HearthomeCityNorthwestHouse_Text_SovereignMegaStoneCollectorLocked
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+HearthomeCityNorthwestHouse_MegaStoneCollectorShop:
+    Message HearthomeCityNorthwestHouse_Text_SovereignMegaStoneCollectorWelcome
+    WaitButton
+    CloseMessage
+    PokeMartSpecialties MART_SPECIALTIES_ID_MEGA_STONES_HEARTHOME
     ReleaseAll
     End
 

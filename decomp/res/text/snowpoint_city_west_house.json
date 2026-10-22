@@ -53,6 +53,22 @@
         "Thanks to Pokémon, we got to be\n",
         "friends, didn’t we?"
       ]
+    },
+    {
+      "id": "SnowpointCityWestHouse_Text_SovereignMegaStoneSageLocked",
+      "en_US": [
+        "The rarest Mega Stones sleep under\n",
+        "the snow.\f",
+        "Earn the Icicle Badge, and I will\n",
+        "share them with you."
+      ]
+    },
+    {
+      "id": "SnowpointCityWestHouse_Text_SovereignMegaStoneSageWelcome",
+      "en_US": [
+        "These stones were found deep in the\n",
+        "ice. Choose wisely."
+      ]
     }
   ]
 }

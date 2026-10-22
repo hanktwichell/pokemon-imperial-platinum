@@ -6,6 +6,7 @@
     ScriptEntry PastoriaCityNortheastHouse_AceTrainerM
     ScriptEntry PastoriaCityNortheastHouse_BattleGirl
     ScriptEntry PastoriaCityNortheastHouse_Pachirisu
+    ScriptEntry PastoriaCityNortheastHouse_MegaStoneTrader
     ScriptEntryEnd
 
 PastoriaCityNortheastHouse_AceTrainerM:
@@ -186,6 +187,27 @@ PastoriaCityNortheastHouse_BattleGirl:
 
 PastoriaCityNortheastHouse_Pachirisu:
     PokemonCryAndMessage SPECIES_PACHIRISU, PastoriaCityNortheastHouse_Text_PachirisuCry
+    End
+
+// Sovereign (docs/MegaEvolution.md): the Mega Stone Trader, one of the four Mega Stone vendors
+// (stock in data/mega_stones.yaml, written by tools/engine/gen_items.py).
+PastoriaCityNortheastHouse_MegaStoneTrader:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfBadgeAcquired BADGE_ID_FEN, PastoriaCityNortheastHouse_MegaStoneTraderShop
+    Message PastoriaCityNortheastHouse_Text_SovereignMegaStoneTraderLocked
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+PastoriaCityNortheastHouse_MegaStoneTraderShop:
+    Message PastoriaCityNortheastHouse_Text_SovereignMegaStoneTraderWelcome
+    WaitButton
+    CloseMessage
+    PokeMartSpecialties MART_SPECIALTIES_ID_MEGA_STONES_PASTORIA
+    ReleaseAll
     End
 
     .balign 4, 0

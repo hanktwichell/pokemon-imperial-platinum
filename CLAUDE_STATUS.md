@@ -868,3 +868,39 @@ code.
    E11 too.
 3. The Pokédex milestone (decision 21): National Dex from Rowan's Pokédex, national numbers everywhere (the summary
    still shows Sinnoh numbers, e.g. Garchomp "111").
+
+---
+
+## CB-0015 — 2026-10-22, 5:40 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: the four Mega Stone vendors** (`data/mega_stones.yaml`), verified in the test build:
+
+| Vendor | House | Opens after |
+|---|---|---|
+| Collector | Hearthome, Bebe's house | Relic Badge |
+| Trader | Pastoria, northeast house | Fen Badge |
+| Sage | Snowpoint, west house (Renegade's evolution-item seller will share it) | Icicle Badge |
+| Curator | Survival Area, south house | Champion |
+
+- Each new NPC explains which badge they need, then opens a specialty shop.
+- `gen_items.py` writes the stocks and prices: ₽10,000, or ₽30,000 at the Curator, which is ₽15,000 post-game.
+- `find_tiles.py` now handles indoor maps.
+
+**CI fix:** the ROM job hung in "Install dependencies" (apt) twice today, the second time on PR #21. The workflow now
+gives apt network timeouts and retries, and caps that step at 10 minutes.
+
+**Timeline (owner asked):** the roadmap total is now about 22–45 sessions, down from 26–50 at 3:26 pm. See
+`docs/EngineRoadmap.md`.
+
+**Files modified:** `tools/engine/gen_items.py`, `tools/test/find_tiles.py`, `tools/design/gen_mega_doc.py`,
+`data/mega_stones.yaml`, `decomp/include/data/sovereign_mart_items.h` (generated), `decomp/include/data/mart_items.h`,
+`decomp/generated/mart_specialties_id.txt`, `decomp/res/items/data/*.json` (77 Mega Stone prices),
+and for each of the four houses its `decomp/res/field/events`, `decomp/res/field/scripts` and `decomp/res/text`
+files. Also `decomp/src/script_manager.c` (test warps), `.github/workflows/build.yml`, `docs/EngineChangelog.md`,
+`docs/EngineRoadmap.md`, `docs/ItemChanges_Sovereign.md`, `docs/MegaEvolution.md` and `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Merge PR #21 when green.
+2. The Pokédex milestone (decision 21): National Dex from Rowan's Pokédex, national numbers everywhere.
+3. The Mega Evolution animation, then the Mega abilities the boss teams need (Magic Bounce, Parental Bond, Strong
+   Jaw, Tough Claws).

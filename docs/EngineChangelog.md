@@ -58,6 +58,17 @@ players and the verification that was run.
   - Verified (temporary Kyogre leading the test party): "KYOGRE's Primal Reversion! It reverted to its primal form!",
     then Drizzle's rain. After running from the battle, Kyogre was back to its normal stats.
 - Test build: Garchomp holds a Garchompite and the Mega flag is set at new game.
+- **The four Mega Stone vendors** (`data/mega_stones.yaml`):
+  - **Collector:** Bebe's house in Hearthome, after the Relic Badge.
+  - **Trader:** Pastoria's northeast house, after the Fen Badge.
+  - **Sage:** Snowpoint's west house, after the Icicle Badge.
+  - **Curator:** the Survival Area south house, after the Champion.
+  - Each is a new NPC who explains the badge they need until the player has it, then opens a specialty shop.
+  - `gen_items.py` writes their stocks and prices: ₽10,000, or ₽30,000 at the Curator (₽15,000 with the post-game
+    discount). Stones found only in the field stay at no price.
+  - `tools/test/find_tiles.py` now handles indoor maps and marks NPCs and doors. It picked the free tiles.
+  - Verified: the Collector refuses without the Relic Badge. With the Hall of Fame flag set (temporary hook), the
+    Curator opened her shop with Mewtwonite X at ₽15,000. New SELECT+L+R stops at both.
 
 ## E7 part 2 — shops and icon placement (in progress)
 

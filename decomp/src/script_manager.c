@@ -833,6 +833,8 @@ static const struct {
     { MAP_HEADER_SURVIVAL_AREA, 667, 339, FACE_UP }, // the Youngster who gives 3 Nuggets a day after the Champion
     { MAP_HEADER_ROUTE_203, 211, 751, FACE_UP }, // the item ball that holds the Alakazite (data/mega_stones.yaml)
     { MAP_HEADER_HEARTHOME_CITY_GYM_LEADER_ROOM, 4, 11, FACE_UP }, // Fantina, who gives the Mega Ring with the Relic Badge
+    { MAP_HEADER_HEARTHOME_CITY_NORTHWEST_HOUSE, 2, 5, FACE_UP }, // the Mega Stone Collector (Relic Badge)
+    { MAP_HEADER_SURVIVAL_AREA_SOUTH_HOUSE, 8, 5, FACE_UP }, // the Mega Stone Curator (after the Champion)
 };
 
 static u8 sSovereignTestWarpIndex;

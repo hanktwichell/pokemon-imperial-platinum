@@ -3,6 +3,7 @@
 
 
     ScriptEntry SurvivalAreaSouthHouse_BlackBelt
+    ScriptEntry SurvivalAreaSouthHouse_MegaStoneCurator
     ScriptEntryEnd
 
 SurvivalAreaSouthHouse_BlackBelt:
@@ -30,3 +31,25 @@ SurvivalAreaSouthHouse_BagIsFull:
     CloseMessage
     ReleaseAll
     End
+
+// Sovereign (docs/MegaEvolution.md): the Mega Stone Curator, one of the four Mega Stone vendors
+// (stock in data/mega_stones.yaml, written by tools/engine/gen_items.py).
+SurvivalAreaSouthHouse_MegaStoneCurator:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfSet FLAG_GAME_COMPLETED, SurvivalAreaSouthHouse_MegaStoneCuratorShop
+    Message SurvivalAreaSouthHouse_Text_SovereignMegaStoneCuratorLocked
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+SurvivalAreaSouthHouse_MegaStoneCuratorShop:
+    Message SurvivalAreaSouthHouse_Text_SovereignMegaStoneCuratorWelcome
+    WaitButton
+    CloseMessage
+    PokeMartSpecialties MART_SPECIALTIES_ID_MEGA_STONES_SURVIVAL_AREA
+    ReleaseAll
+    End
+

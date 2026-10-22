@@ -35,6 +35,12 @@ ICON_MESON = os.path.join(ICON_DIR, "meson.build")
 MART_HEADER = os.path.join(DECOMP, "include", "data", "sovereign_mart_items.h")
 # Prices for shop items that have none in PokeAPI (they aren't sold in the official games).
 PRICES = {"Booster Energy": 10000}
+# Mega Stone vendors (data/mega_stones.yaml "vendors"): their stones cost what the vendor charges (no official price).
+VENDORS = yaml.safe_load(open(os.path.join(ROOT, "data", "mega_stones.yaml"), encoding="utf-8"))["vendors"]
+VENDOR_PRICES = {stone: vendor["price"] for vendor in VENDORS for stone in vendor["stock"]}
+# Each vendor's stock array, in data/mega_stones.yaml order (MART_SPECIALTIES_ID_MEGA_STONES_* in mart_items.h).
+VENDOR_STOCKS = ["MegaStoneStock_Hearthome", "MegaStoneStock_Pastoria", "MegaStoneStock_Snowpoint",
+                 "MegaStoneStock_SurvivalArea"]
 ICON_SIZE = 32
 ICON_ART = 24      # Platinum draws item art in the top-left 24x24 of the 32x32 icon, centred on (11.5, 11.5)
 # PokeAPI sprite file names that don't follow the item name.
@@ -288,7 +294,7 @@ def main():
             "icon": ({"sprite": stem + "_NCGR", "palette": stem + "_NCLR"} if stem in icons
                      else {"sprite": "none_NCGR", "palette": "none_NCLR"}),
             "gbaID": "GBA_ITEM_NONE",
-            "price": PRICES.get(name, int(row.get("cost") or 0)),
+            "price": PRICES.get(name) or VENDOR_PRICES.get(name) or int(row.get("cost") or 0),
             "effectParam": 0,
             "holdEffect": "HOLD_EFFECT_NONE",
             "pluckEffect": "PLUCK_EFFECT_NONE",
@@ -370,6 +376,8 @@ def main():
                 "#ifndef POKEPLATINUM_DATA_SOVEREIGN_MART_ITEMS_H\n#define POKEPLATINUM_DATA_SOVEREIGN_MART_ITEMS_H\n\n"
                 + stock("VeilstoneDeptStoreStock_2F_HeldItems", spec["held_items"]) + "\n"
                 + stock("VeilstoneDeptStoreStock_2F_Gems", spec["gems"])
+                + "".join("\n// " + vendor["name"] + ": " + vendor["unlock"] + "\n" + stock(array, vendor["stock"])
+                          for array, vendor in zip(VENDOR_STOCKS, VENDORS, strict=True))
                 + "\n#endif // POKEPLATINUM_DATA_SOVEREIGN_MART_ITEMS_H\n")
     for n in spec["held_items"] + spec["gems"]:
         price = PRICES.get(n) or int(items.get(by_name.get(n), {}).get("cost") or 0)
