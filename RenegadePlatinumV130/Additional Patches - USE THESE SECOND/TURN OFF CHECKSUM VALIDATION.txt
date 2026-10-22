@@ -1,0 +1,5 @@
+You need to turn off "Checksum Validation" in Delta Patcher Lite to apply more than one of these additional patches to Renegade Platinum.
+
+Failure to do so many result in XD3_INVALID_INPUT errors.
+
+See the README for further information.
