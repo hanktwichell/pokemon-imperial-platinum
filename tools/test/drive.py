@@ -21,6 +21,7 @@ Requires py-desmume and Pillow; run with SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=d
 import os
 import struct
 import sys
+import tempfile
 
 from desmume.controls import Keys, keymask
 from desmume.emulator import DeSmuME
@@ -42,6 +43,12 @@ class Driver:
         self.emu = DeSmuME()
         self.emu.open(rom)
         self.emu.volume_set(0)
+        if not battery and not state:
+            # py-desmume keeps the battery in ~/.config/desmume/<rom>.dsv and loads it on every boot, so a "fresh"
+            # boot would CONTINUE the last in-game save. Boot with a blank 4 Mbit battery instead.
+            battery = os.path.join(tempfile.mkdtemp(), "blank.sav")
+            with open(battery, "wb") as f:
+                f.write(b"\xff" * (512 * 1024))
         if battery:
             self.emu.backup.import_file(battery)
             self.emu.reset()

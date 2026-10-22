@@ -132,7 +132,13 @@
             "MOVE_AFTER_YOU"
         ]
     },
-    "evolutions": [],
+    "evolutions": [
+        [
+            "EVO_USE_ITEM",
+            "ITEM_SACHET",
+            "SPECIES_AROMATISSE"
+        ]
+    ],
     "offspring": "SPECIES_SPRITZEE",
     "footprint": {
         "has": false,

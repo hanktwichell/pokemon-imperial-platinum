@@ -148,7 +148,13 @@
             "MOVE_IRON_DEFENSE"
         ]
     },
-    "evolutions": [],
+    "evolutions": [
+        [
+            "EVO_USE_ITEM",
+            "ITEM_LEADERS_CREST",
+            "SPECIES_KINGAMBIT"
+        ]
+    ],
     "offspring": "SPECIES_PAWNIARD",
     "footprint": {
         "has": false,

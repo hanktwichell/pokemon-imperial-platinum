@@ -137,7 +137,13 @@
             "MOVE_STICKY_WEB"
         ]
     },
-    "evolutions": [],
+    "evolutions": [
+        [
+            "EVO_USE_ITEM",
+            "ITEM_WHIPPED_DREAM",
+            "SPECIES_SLURPUFF"
+        ]
+    ],
     "offspring": "SPECIES_SWIRLIX",
     "footprint": {
         "has": false,

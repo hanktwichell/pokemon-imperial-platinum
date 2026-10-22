@@ -1,0 +1,30 @@
+{
+  "name": "Griseous Core",
+  "plural": "Griseous Cores",
+  "article": "a",
+  "description": [
+    "A large, glowing gem. When held by\n",
+    "Giratina, it changes into its Origin\n",
+    "Forme."
+  ],
+  "icon": {
+    "sprite": "griseous_core_NCGR",
+    "palette": "griseous_core_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 0,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseCategory": "BATTLE_USE_CATEGORY_NONE",
+  "itemUseParams": null
+}

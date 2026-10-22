@@ -35,9 +35,9 @@ Every Pokémon on the team is in a **Luxury Ball** (owner, 2026-10-22). Unlisted
 
 | Need | Milestone | Status |
 |---|---|---|
-| Per-mon nature, ability, EVs, IVs, held item, gender and shininess in trainer data | E9 | ✅ done. The team is already in this format as the test build's `TRAINER_SOVEREIGN_TEST` (SELECT+R) |
+| Per-mon nature, ability, EVs, IVs, held item, gender and shininess in trainer data | E9 | ✅ done. The team is already in this format, held items included, as the test build's `TRAINER_SOVEREIGN_TEST` (SELECT+R) |
 | Archaludon (#1018) | E6 step 2 | species being added now |
-| Charizardite Y, Blue Orb, Assault Vest | E7 | Life Orb, Focus Sash and Choice Band exist already |
+| Charizardite Y, Blue Orb, Assault Vest | E7 | ✅ the items exist and the test team holds them; Assault Vest has no battle effect yet (E7's hold effects) |
 | Mega Evolution (Charizard Y) and Primal Reversion (Kyogre) | E8 | |
 | Stamina, Primordial Sea, Drought (on Mega Charizard Y) | E8 / item 11 | Stamina and Primordial Sea have no battle effect yet |
 | Electro Shot (charge turn, skipped in rain) and Stomping Tantrum (double power after a failed move) | item 11 | both are plain hits for now; Origin Pulse is exact |

@@ -1,0 +1,30 @@
+{
+  "name": "Darkness Scroll",
+  "plural": "Darkness Scrolls",
+  "article": "a",
+  "description": [
+    "An old scroll on the art of the dark.\n",
+    "Kubfu that reads it evolves into Single\n",
+    "Strike Urshifu."
+  ],
+  "icon": {
+    "sprite": "scroll_of_darkness_NCGR",
+    "palette": "scroll_of_darkness_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 0,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": true,
+  "canRegister": false,
+  "fieldPocket": "POCKET_KEY_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_EVO_STONE",
+  "battleUseCategory": "BATTLE_USE_CATEGORY_NONE",
+  "itemUseParams": {}
+}

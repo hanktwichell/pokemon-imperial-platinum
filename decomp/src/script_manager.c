@@ -764,6 +764,16 @@ static void SovereignTest_SetupNewGame(FieldSystem *fieldSystem)
 
     // A Super Repel that runs out after 3 steps, with 2 more in the bag (tests the "use another?" prompt).
     Bag_TryAddItem(bag, ITEM_SUPER_REPEL, 2, HEAP_ID_FIELD2);
+    // E7 items (IDs above 467), including the longest names, to check them on screen.
+    Bag_TryAddItem(bag, ITEM_ASSAULT_VEST, 1, HEAP_ID_FIELD2);
+    Bag_TryAddItem(bag, ITEM_HEAVY_DUTY_BOOTS, 1, HEAP_ID_FIELD2);
+    Bag_TryAddItem(bag, ITEM_UNREMARKABLE_TEACUP, 1, HEAP_ID_FIELD2);
+    Bag_TryAddItem(bag, ITEM_CHARIZARDITE_X, 1, HEAP_ID_FIELD2);
+    Bag_TryAddItem(bag, ITEM_METAL_ALLOY, 1, HEAP_ID_FIELD2);
+    Bag_TryAddItem(bag, ITEM_MEGA_RING, 1, HEAP_ID_FIELD2);
+    Bag_TryAddItem(bag, ITEM_ADAMANT_MINT, 1, HEAP_ID_FIELD2);
+    Bag_TryAddItem(bag, ITEM_ABILITY_CAPSULE, 2, HEAP_ID_FIELD2);
+    Bag_TryAddItem(bag, ITEM_ABILITY_PATCH, 1, HEAP_ID_FIELD2);
     SpecialEncounter *speEnc = SaveData_GetSpecialEncounters(fieldSystem->saveData);
     *SpecialEncounter_GetRepelSteps(speEnc) = 3;
     SpecialEncounter_SetLastRepel(speEnc, ITEM_SUPER_REPEL);

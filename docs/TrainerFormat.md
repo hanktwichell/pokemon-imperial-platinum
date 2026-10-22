@@ -69,8 +69,8 @@ Example (from `sovereign_test.json`):
 ## Testing
 
 - The test build's SELECT+R starts a double battle against `TRAINER_SOVEREIGN_TEST` ("Ace Trainer Twich"): the
-  developer team (`docs/DeveloperBattle.md`) in this format, at Lv. 100. Charizardite Y, the Blue Orb and Assault Vest
-  come with E7; until then those three slots hold no item.
+  developer team (`docs/DeveloperBattle.md`) in this format, at Lv. 100, with every held item (Charizard and Kyogre
+  hold their Charizardite Y and Blue Orb; Mega Evolution and Primal Reversion come with E8).
 - `tools/test/check_trainer_party.py ROM XMAP SAVE [TRAINER_JSON]` starts that battle, decrypts every Pokémon the game
   builds for the opponent, and compares each one with the JSON, including all six stats recomputed from base stats,
   IVs, EVs and nature.

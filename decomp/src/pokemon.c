@@ -855,6 +855,14 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         result = monDataBlockB->hasHiddenAbility;
         break;
 
+    case MON_DATA_MINT_NATURE:
+        result = monDataBlockB->mintNature;
+        break;
+
+    case MON_DATA_ABILITY_SLOT_SWAPPED:
+        result = monDataBlockB->abilitySlotSwapped;
+        break;
+
     case MON_DATA_MARKINGS:
         result = monDataBlockA->markings;
         break;
@@ -1057,7 +1065,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         break;
 
     case MON_DATA_UNUSED_113:
-        result = monDataBlockB->unused1;
+        result = 0; // Sovereign: these bits now hold mintNature and abilitySlotSwapped
         break;
 
     case MON_DATA_UNUSED_114:
@@ -1410,6 +1418,14 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         monDataBlockB->hasHiddenAbility = *u8Value;
         break;
 
+    case MON_DATA_MINT_NATURE:
+        monDataBlockB->mintNature = *u8Value;
+        break;
+
+    case MON_DATA_ABILITY_SLOT_SWAPPED:
+        monDataBlockB->abilitySlotSwapped = *u8Value;
+        break;
+
     case MON_DATA_MARKINGS:
         monDataBlockA->markings = *u8Value;
         break;
@@ -1621,8 +1637,7 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         break;
 
     case MON_DATA_UNUSED_113:
-        monDataBlockB->unused1 = *u8Value;
-        break;
+        break; // Sovereign: these bits now hold mintNature and abilitySlotSwapped
 
     case MON_DATA_UNUSED_114:
         monDataBlockB->unused2 = *u16Value;
@@ -2415,8 +2430,15 @@ u8 BoxPokemon_GetNature(BoxPokemon *boxMon)
 {
     BOOL reencrypt = BoxPokemon_EnterDecryptionContext(boxMon);
     u32 monPersonality = BoxPokemon_GetValue(boxMon, MON_DATA_PERSONALITY, NULL);
+    // Sovereign: a Mint overrides the nature the personality value gives (stats and summary; breeding and flavors
+    // still use the personality's nature, as in Gen VIII).
+    u8 mintNature = BoxPokemon_GetValue(boxMon, MON_DATA_MINT_NATURE, NULL);
 
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
+
+    if (mintNature != 0) {
+        return mintNature - 1;
+    }
 
     return Pokemon_GetNatureOf(monPersonality);
 }
@@ -4772,7 +4794,8 @@ static void BoxPokemon_CalcAbility(BoxPokemon *boxMon)
     if (BoxPokemon_GetValue(boxMon, MON_DATA_HAS_HIDDEN_ABILITY, NULL) && monHiddenAbility != ABILITY_NONE) {
         BoxPokemon_SetValue(boxMon, MON_DATA_ABILITY, &monHiddenAbility);
     } else if (monAbility2 != ABILITY_NONE) {
-        if (monPersonality & 1) {
+        // Sovereign: an Ability Capsule swaps which of the two regular abilities the personality value picks.
+        if ((monPersonality & 1) ^ BoxPokemon_GetValue(boxMon, MON_DATA_ABILITY_SLOT_SWAPPED, NULL)) {
             BoxPokemon_SetValue(boxMon, MON_DATA_ABILITY, &monAbility2);
         } else {
             BoxPokemon_SetValue(boxMon, MON_DATA_ABILITY, &monAbility1);

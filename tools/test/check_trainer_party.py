@@ -9,7 +9,8 @@ shininess and ball, plus all six stats recomputed from base stats, IVs, EVs and 
 Usage: python3 tools/test/check_trainer_party.py ROM XMAP SAVE [TRAINER_JSON]
   ROM           decomp/build_test/pokeplatinum.us.nds
   XMAP          decomp/build_test/main.nef.xMAP (for the Party_AddPokemon address)
-  SAVE          a battery save standing in the overworld (see CLAUDE_STATUS.md: make one with drive.py's export:)
+  SAVE          an emulator save state in the overworld made with this ROM (*.dst, e.g. from tools/test/new_game.sh),
+                or a battery save (drive.py's export:), which works across rebuilds
   TRAINER_JSON  default decomp/res/trainers/data/sovereign_test.json
 Saves a screenshot, trainer_battle.png, in $OUT_DIR (default: the current directory). Exits 1 on any mismatch. Requires py-desmume; run with SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy when headless.
 """
@@ -108,7 +109,8 @@ def main():
     if addr is None:
         sys.exit("Party_AddPokemon not found in the map")
 
-    d = Driver(rom, battery=save)
+    from_state = save.endswith(".dst")
+    d = Driver(rom, state=save) if from_state else Driver(rom, battery=save)
     added, armed = [], [False]
 
     def on_add(_a, _s):
@@ -118,8 +120,9 @@ def main():
         return True
 
     d.emu.memory.register_exec(addr, on_add)
-    for a in "wait:600 A wait:200 START wait:200 A wait:400".split():
-        d.do(a)
+    if not from_state:  # a battery save boots to the title screen: continue the game
+        for a in "wait:600 A wait:200 START wait:200 A wait:400".split():
+            d.do(a)
     armed[0] = True
     d.do("SELECT+R")
     d.do("wait:600")

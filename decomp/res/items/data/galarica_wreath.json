@@ -1,0 +1,29 @@
+{
+  "name": "Galarica Wreath",
+  "plural": "Galarica Wreaths",
+  "article": "a",
+  "description": [
+    "A wreath made from woven-together\n",
+    "Galarica Twigs."
+  ],
+  "icon": {
+    "sprite": "galarica_wreath_NCGR",
+    "palette": "galarica_wreath_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 3000,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseCategory": "BATTLE_USE_CATEGORY_NONE",
+  "itemUseParams": null
+}

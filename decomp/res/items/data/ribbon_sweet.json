@@ -1,0 +1,29 @@
+{
+  "name": "Ribbon Sweet",
+  "plural": "Ribbon Sweets",
+  "article": "a",
+  "description": [
+    "A ribbon-shaped sweet. When a Milcery\n",
+    "holds this, it spins around happily."
+  ],
+  "icon": {
+    "sprite": "ribbon_sweet_NCGR",
+    "palette": "ribbon_sweet_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 500,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 10,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseCategory": "BATTLE_USE_CATEGORY_NONE",
+  "itemUseParams": null
+}

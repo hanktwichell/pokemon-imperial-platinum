@@ -24,6 +24,13 @@
 #include "unk_0206B9D8.h"
 #include "vars_flags.h"
 
+#ifdef SOVEREIGN_TEST
+#include "constants/charcode.h"
+
+#include "string_gf.h"
+#include "system.h"
+#endif
+
 #include "constdata/const_020EA10C.h"
 #include "constdata/const_020EA11C.h"
 
@@ -78,8 +85,35 @@ static BOOL GameStartRowanIntro_Main(ApplicationManager *appMan, int *state)
     return TRUE;
 }
 
+#ifdef SOVEREIGN_TEST
+// Test build only: NEW GAME skips Professor Rowan's intro (hold L to play it). The player is a boy named "A" and the
+// rival "Barry", as tools/test/new_game.sh used to enter by hand, so tests reach the bedroom without fragile inputs.
+static void SovereignTest_SkipRowanIntro(SaveData *saveData)
+{
+    static const charcode_t playerName[] = { CHAR_A, CHAR_EOS };
+    static const charcode_t rivalName[] = { CHAR_B, CHAR_a, CHAR_r, CHAR_r, CHAR_y, CHAR_EOS };
+    TrainerInfo *trainerInfo = SaveData_GetTrainerInfo(saveData);
+    String *rival = String_Init(TRAINER_NAME_LEN + 1, HEAP_ID_GAME_START);
+
+    TrainerInfo_SetName(trainerInfo, playerName);
+    TrainerInfo_SetGender(trainerInfo, GENDER_MALE);
+    String_CopyChars(rival, rivalName);
+    MiscSaveBlock_SetRivalName(SaveData_MiscSaveBlock(saveData), rival);
+    String_Free(rival);
+}
+#endif
+
 static int GameStartRowanIntro_Exit(ApplicationManager *appMan, int *state)
 {
+#ifdef SOVEREIGN_TEST
+    if (!JOY_HELD(PAD_BUTTON_L)) {
+        SovereignTest_SkipRowanIntro(((ApplicationArgs *)ApplicationManager_Args(appMan))->saveData);
+        Heap_Destroy(HEAP_ID_GAME_START);
+        EnqueueApplication(FS_OVERLAY_ID_NONE, &gGameStartNewSaveAppTemplate);
+        return TRUE;
+    }
+#endif
+
     Heap_Destroy(HEAP_ID_GAME_START);
     EnqueueApplication(FS_OVERLAY_ID_NONE, &gRowanIntroAppTemplate);
     return TRUE;

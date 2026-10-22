@@ -13,7 +13,7 @@
             "species": "SPECIES_CHARIZARD",
             "form": 0,
             "level": 100,
-            "item": "ITEM_NONE",
+            "item": "ITEM_CHARIZARDITE_Y",
             "moves": [
                 "MOVE_WEATHER_BALL",
                 "MOVE_HEAT_WAVE",
@@ -114,7 +114,7 @@
             "species": "SPECIES_KYOGRE",
             "form": 0,
             "level": 100,
-            "item": "ITEM_NONE",
+            "item": "ITEM_BLUE_ORB",
             "moves": [
                 "MOVE_WATER_SPOUT",
                 "MOVE_ORIGIN_PULSE",
@@ -139,7 +139,7 @@
             "species": "SPECIES_ARCHALUDON",
             "form": 0,
             "level": 100,
-            "item": "ITEM_NONE",
+            "item": "ITEM_ASSAULT_VEST",
             "moves": [
                 "MOVE_ELECTRO_SHOT",
                 "MOVE_BODY_PRESS",

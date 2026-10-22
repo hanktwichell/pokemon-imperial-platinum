@@ -1,0 +1,30 @@
+{
+  "name": "Normal Gem",
+  "plural": "Normal Gems",
+  "article": "a",
+  "description": [
+    "A gem with an ordinary essence. When\n",
+    "held, it strengthens the power of a\n",
+    "Normal-type move one time."
+  ],
+  "icon": {
+    "sprite": "normal_gem_NCGR",
+    "palette": "normal_gem_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 4000,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseCategory": "BATTLE_USE_CATEGORY_NONE",
+  "itemUseParams": null
+}
