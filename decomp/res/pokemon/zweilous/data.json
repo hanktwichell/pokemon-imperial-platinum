@@ -1,0 +1,227 @@
+{
+    "base_stats": {
+        "hp": 72,
+        "attack": 85,
+        "defense": 70,
+        "speed": 58,
+        "special_attack": 65,
+        "special_defense": 70
+    },
+    "types": [
+        "TYPE_DARK",
+        "TYPE_DRAGON"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 147,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 2,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 40,
+    "base_friendship": 35,
+    "exp_rate": "EXP_RATE_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_DRAGON",
+        "EGG_GROUP_DRAGON"
+    ],
+    "abilities": [
+        "ABILITY_HUSTLE",
+        "ABILITY_NONE",
+        "ABILITY_NONE"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
+    "icon_palette": 2,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_TACKLE"
+            ],
+            [
+                1,
+                "MOVE_BITE"
+            ],
+            [
+                1,
+                "MOVE_FOCUS_ENERGY"
+            ],
+            [
+                1,
+                "MOVE_DRAGON_BREATH"
+            ],
+            [
+                1,
+                "MOVE_DOUBLE_HIT"
+            ],
+            [
+                12,
+                "MOVE_ROAR"
+            ],
+            [
+                16,
+                "MOVE_ASSURANCE"
+            ],
+            [
+                20,
+                "MOVE_HEADBUTT"
+            ],
+            [
+                24,
+                "MOVE_WORK_UP"
+            ],
+            [
+                28,
+                "MOVE_SLAM"
+            ],
+            [
+                32,
+                "MOVE_CRUNCH"
+            ],
+            [
+                36,
+                "MOVE_SCARY_FACE"
+            ],
+            [
+                40,
+                "MOVE_DRAGON_PULSE"
+            ],
+            [
+                44,
+                "MOVE_BODY_SLAM"
+            ],
+            [
+                48,
+                "MOVE_HYPER_VOICE"
+            ],
+            [
+                54,
+                "MOVE_DRAGON_RUSH"
+            ],
+            [
+                60,
+                "MOVE_NASTY_PLOT"
+            ],
+            [
+                66,
+                "MOVE_OUTRAGE"
+            ]
+        ],
+        "by_tm": [
+            "TM05",
+            "TM11",
+            "TM12",
+            "TM17",
+            "TM18",
+            "TM42",
+            "TM44",
+            "TM46",
+            "TM58",
+            "TM59",
+            "TM73",
+            "TM77",
+            "TM79",
+            "TM82",
+            "TM90"
+        ],
+        "by_tutor": [
+            "MOVE_SPITE",
+            "MOVE_HELPING_HAND",
+            "MOVE_OUTRAGE",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_EARTH_POWER"
+        ]
+    },
+    "evolutions": [
+        [
+            "EVO_LEVEL",
+            64,
+            "SPECIES_HYDREIGON"
+        ]
+    ],
+    "offspring": "SPECIES_DEINO",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 55,
+        "weight_pounds": 110.2,
+        "body_shape": "SHAPE_QUADRUPED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 269,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 269,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 9,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 9,
+        "en": {
+            "name": "ZWEILOUS",
+            "category": "Hostile Pokémon",
+            "entry_text": [
+                "Their two heads will fight each\n",
+                "other over a single piece of food."
+            ]
+        },
+        "fr": {
+            "name": "DIAMAT",
+            "category": "Pokémon Violent",
+            "entry_text": [
+                "Ses deux têtes se disputent la même\n",
+                "proie."
+            ]
+        },
+        "de": {
+            "name": "DUODINO",
+            "category": "Grobheits-Pokémon",
+            "entry_text": [
+                "Sein Körper weist immer Narben auf,\n",
+                "selbst wenn es gar nicht gekämpft\n",
+                "hat."
+            ]
+        },
+        "it": {
+            "name": "ZWEILOUS",
+            "category": "Pokémon Irruenza",
+            "entry_text": [
+                "Le due teste si rubano il cibo a\n",
+                "vicenda."
+            ]
+        },
+        "es": {
+            "name": "ZWEILOUS",
+            "category": "Pokémon Violento",
+            "entry_text": [
+                "Las dos cabezas se disputan la\n",
+                "comida con brutalidad."
+            ]
+        },
+        "jp": {
+            "name": "ジヘッド",
+            "category": "らんぼうポケモン",
+            "entry_text": [
+                "１つの　エサを　２つの　あたまで\n",
+                "うばいあう。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

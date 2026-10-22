@@ -1,0 +1,232 @@
+{
+    "base_stats": {
+        "hp": 126,
+        "attack": 131,
+        "defense": 95,
+        "speed": 99,
+        "special_attack": 131,
+        "special_defense": 98
+    },
+    "types": [
+        "TYPE_FAIRY",
+        "TYPE_FAIRY"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 255,
+    "ev_yields": {
+        "hp": 3,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_NO_GENDER",
+    "hatch_cycles": 120,
+    "base_friendship": 0,
+    "exp_rate": "EXP_RATE_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_UNDISCOVERED",
+        "EGG_GROUP_UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_FAIRY_AURA",
+        "ABILITY_NONE",
+        "ABILITY_NONE"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_TACKLE"
+            ],
+            [
+                1,
+                "MOVE_GRAVITY"
+            ],
+            [
+                5,
+                "MOVE_LIGHT_SCREEN"
+            ],
+            [
+                10,
+                "MOVE_AURORA_BEAM"
+            ],
+            [
+                15,
+                "MOVE_NATURE_POWER"
+            ],
+            [
+                20,
+                "MOVE_NIGHT_SLASH"
+            ],
+            [
+                25,
+                "MOVE_AROMATHERAPY"
+            ],
+            [
+                30,
+                "MOVE_PSYCH_UP"
+            ],
+            [
+                35,
+                "MOVE_HORN_LEECH"
+            ],
+            [
+                40,
+                "MOVE_MISTY_TERRAIN"
+            ],
+            [
+                45,
+                "MOVE_INGRAIN"
+            ],
+            [
+                50,
+                "MOVE_TAKE_DOWN"
+            ],
+            [
+                55,
+                "MOVE_GEOMANCY"
+            ],
+            [
+                60,
+                "MOVE_MOONBLAST"
+            ],
+            [
+                65,
+                "MOVE_HEAL_PULSE"
+            ],
+            [
+                70,
+                "MOVE_MEGAHORN"
+            ],
+            [
+                75,
+                "MOVE_CLOSE_COMBAT"
+            ],
+            [
+                80,
+                "MOVE_OUTRAGE"
+            ],
+            [
+                85,
+                "MOVE_GIGA_IMPACT"
+            ]
+        ],
+        "by_tm": [
+            "TM04",
+            "TM07",
+            "TM11",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM18",
+            "TM24",
+            "TM25",
+            "TM29",
+            "TM33",
+            "TM42",
+            "TM44",
+            "TM52",
+            "TM58",
+            "TM68",
+            "TM73",
+            "TM77",
+            "TM80",
+            "TM82",
+            "TM86",
+            "TM90",
+            "TM91"
+        ],
+        "by_tutor": [
+            "MOVE_SNORE",
+            "MOVE_OUTRAGE",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_SWIFT"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_XERNEAS",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 118,
+        "weight_pounds": 474.0,
+        "body_shape": "SHAPE_QUADRUPED",
+        "trainer_scale_f": 512,
+        "pokemon_scale_f": 256,
+        "trainer_scale_m": 487,
+        "pokemon_scale_m": 256,
+        "trainer_pos_f": 23,
+        "pokemon_pos_f": 0,
+        "trainer_pos_m": 23,
+        "pokemon_pos_m": 0,
+        "en": {
+            "name": "XERNEAS",
+            "category": "Life Pokémon",
+            "entry_text": [
+                "When the horns on its head shine in\n",
+                "seven colors, it is said to be\n",
+                "sharing everlasting life."
+            ]
+        },
+        "fr": {
+            "name": "XERNEAS",
+            "category": "Pokémon Existence",
+            "entry_text": [
+                "On dit que ce Pokémon immortel peut\n",
+                "offrir ses forces vitales."
+            ]
+        },
+        "de": {
+            "name": "XERNEAS",
+            "category": "Lebens-Pokémon",
+            "entry_text": [
+                "Legenden nach kann dieses Pokémon\n",
+                "ewiges Leben spenden."
+            ]
+        },
+        "it": {
+            "name": "XERNEAS",
+            "category": "Pokémon Creazione",
+            "entry_text": [
+                "Si dice che possieda l’immortalità e\n",
+                "possa farne dono agli altri."
+            ]
+        },
+        "es": {
+            "name": "XERNEAS",
+            "category": "Pokémon Creación",
+            "entry_text": [
+                "Según las leyendas, puede compartir\n",
+                "el secreto de la vida eterna."
+            ]
+        },
+        "jp": {
+            "name": "ゼルネアス",
+            "category": "せいめいポケモン",
+            "entry_text": [
+                "えいえんの　いのちを\n",
+                "わけあたえると　いわれている。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

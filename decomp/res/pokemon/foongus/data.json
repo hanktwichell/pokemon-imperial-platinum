@@ -1,0 +1,220 @@
+{
+    "base_stats": {
+        "hp": 69,
+        "attack": 55,
+        "defense": 45,
+        "speed": 15,
+        "special_attack": 55,
+        "special_defense": 55
+    },
+    "types": [
+        "TYPE_GRASS",
+        "TYPE_POISON"
+    ],
+    "catch_rate": 190,
+    "base_exp_reward": 59,
+    "ev_yields": {
+        "hp": 1,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_BIG_MUSHROOM"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_GRASS",
+        "EGG_GROUP_GRASS"
+    ],
+    "abilities": [
+        "ABILITY_EFFECT_SPORE",
+        "ABILITY_NONE",
+        "ABILITY_REGENERATOR"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": false,
+    "icon_palette": 2,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_ABSORB"
+            ],
+            [
+                1,
+                "MOVE_ASTONISH"
+            ],
+            [
+                4,
+                "MOVE_GROWTH"
+            ],
+            [
+                8,
+                "MOVE_STUN_SPORE"
+            ],
+            [
+                12,
+                "MOVE_MEGA_DRAIN"
+            ],
+            [
+                16,
+                "MOVE_SYNTHESIS"
+            ],
+            [
+                20,
+                "MOVE_CLEAR_SMOG"
+            ],
+            [
+                24,
+                "MOVE_SWEET_SCENT"
+            ],
+            [
+                28,
+                "MOVE_GIGA_DRAIN"
+            ],
+            [
+                32,
+                "MOVE_INGRAIN"
+            ],
+            [
+                36,
+                "MOVE_TOXIC"
+            ],
+            [
+                40,
+                "MOVE_RAGE_POWDER"
+            ],
+            [
+                44,
+                "MOVE_SOLAR_BEAM"
+            ],
+            [
+                48,
+                "MOVE_SPORE"
+            ]
+        ],
+        "by_tm": [
+            "TM06",
+            "TM09",
+            "TM11",
+            "TM17",
+            "TM18",
+            "TM19",
+            "TM22",
+            "TM36",
+            "TM42",
+            "TM44",
+            "TM53",
+            "TM58",
+            "TM82",
+            "TM86",
+            "TM90"
+        ],
+        "by_tutor": [
+            "MOVE_ROLLOUT",
+            "MOVE_SYNTHESIS",
+            "MOVE_SEED_BOMB"
+        ],
+        "egg_moves": [
+            "MOVE_POISON_POWDER",
+            "MOVE_DEFENSE_CURL",
+            "MOVE_ROLLOUT",
+            "MOVE_WORRY_SEED"
+        ]
+    },
+    "evolutions": [
+        [
+            "EVO_LEVEL",
+            39,
+            "SPECIES_AMOONGUSS"
+        ]
+    ],
+    "offspring": "SPECIES_FOONGUS",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 8,
+        "weight_pounds": 2.2,
+        "body_shape": "SHAPE_HEAD_ARMS",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 530,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 530,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 32,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 32,
+        "en": {
+            "name": "FOONGUS",
+            "category": "Mushroom Pokémon",
+            "entry_text": [
+                "No one knows what the Poké Ball-like\n",
+                "pattern on Foongus means or why\n",
+                "Foongus has it."
+            ]
+        },
+        "fr": {
+            "name": "TROMPIGNON",
+            "category": "Pokémon Champignon",
+            "entry_text": [
+                "On ignore toujours l’origine ou la\n",
+                "signification de sa forte\n",
+                "ressemblance avec une Poké Ball."
+            ]
+        },
+        "de": {
+            "name": "TARNPIGNON",
+            "category": "Pilz-Pokémon",
+            "entry_text": [
+                "Die Sporen, die es aus seinen zwei\n",
+                "Gliedmaßen versprüht, sind sehr\n",
+                "giftig."
+            ]
+        },
+        "it": {
+            "name": "FOONGUS",
+            "category": "Pokémon Fungo",
+            "entry_text": [
+                "Attira a sé altri Pokémon con la sua\n",
+                "forma a Poké Ball e soffia su di\n",
+                "loro le sue spore velenose."
+            ]
+        },
+        "es": {
+            "name": "FOONGUS",
+            "category": "Pokémon Hongo",
+            "entry_text": [
+                "Todavía no se ha encontrado ninguna\n",
+                "explicación ni razón para su gran\n",
+                "parecido a las Poké Balls."
+            ]
+        },
+        "jp": {
+            "name": "タマゲタケ",
+            "category": "きのこポケモン",
+            "entry_text": [
+                "No one knows what the Poké Ball-like\n",
+                "pattern on Foongus means or why\n",
+                "Foongus has it."
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

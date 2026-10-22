@@ -1,0 +1,234 @@
+{
+    "base_stats": {
+        "hp": 110,
+        "attack": 123,
+        "defense": 65,
+        "speed": 65,
+        "special_attack": 100,
+        "special_defense": 65
+    },
+    "types": [
+        "TYPE_FIRE",
+        "TYPE_FIGHTING"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 238,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 3,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_12_5",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_FIELD",
+        "EGG_GROUP_FIELD"
+    ],
+    "abilities": [
+        "ABILITY_BLAZE",
+        "ABILITY_NONE",
+        "ABILITY_RECKLESS"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_TACKLE"
+            ],
+            [
+                1,
+                "MOVE_TAIL_WHIP"
+            ],
+            [
+                1,
+                "MOVE_EMBER"
+            ],
+            [
+                1,
+                "MOVE_ARM_THRUST"
+            ],
+            [
+                13,
+                "MOVE_DEFENSE_CURL"
+            ],
+            [
+                15,
+                "MOVE_FLAME_CHARGE"
+            ],
+            [
+                20,
+                "MOVE_SMOG"
+            ],
+            [
+                23,
+                "MOVE_ROLLOUT"
+            ],
+            [
+                28,
+                "MOVE_TAKE_DOWN"
+            ],
+            [
+                31,
+                "MOVE_HEAT_CRASH"
+            ],
+            [
+                38,
+                "MOVE_ASSURANCE"
+            ],
+            [
+                43,
+                "MOVE_FLAMETHROWER"
+            ],
+            [
+                50,
+                "MOVE_HEAD_SMASH"
+            ],
+            [
+                55,
+                "MOVE_ROAR"
+            ],
+            [
+                62,
+                "MOVE_FLARE_BLITZ"
+            ]
+        ],
+        "by_tm": [
+            "TM01",
+            "TM05",
+            "TM08",
+            "TM11",
+            "TM12",
+            "TM15",
+            "TM17",
+            "TM22",
+            "TM26",
+            "TM28",
+            "TM31",
+            "TM35",
+            "TM38",
+            "TM39",
+            "TM42",
+            "TM44",
+            "TM50",
+            "TM52",
+            "TM56",
+            "TM58",
+            "TM60",
+            "TM61",
+            "TM68",
+            "TM71",
+            "TM74",
+            "TM80",
+            "TM82",
+            "TM84",
+            "TM86",
+            "TM90"
+        ],
+        "by_tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ROLLOUT",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_SUPERPOWER",
+            "MOVE_IRON_HEAD",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_HEAT_WAVE",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SUCKER_PUNCH"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_TEPIG",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 63,
+        "weight_pounds": 330.7,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 298,
+        "pokemon_scale_f": 224,
+        "trainer_scale_m": 292,
+        "pokemon_scale_m": 224,
+        "trainer_pos_f": 7,
+        "pokemon_pos_f": 1,
+        "trainer_pos_m": 6,
+        "pokemon_pos_m": 1,
+        "en": {
+            "name": "EMBOAR",
+            "category": "Mega Fire P Pokémon",
+            "entry_text": [
+                "It has mastered fast and powerful\n",
+                "fighting moves. It grows a beard of\n",
+                "fire."
+            ]
+        },
+        "fr": {
+            "name": "ROITIFLAM",
+            "category": "Pokémon Grochon Feu",
+            "entry_text": [
+                "Il a une barbe enflammée. Il\n",
+                "maîtrise des techniques de combat au\n",
+                "corps à corps rapides et puissantes."
+            ]
+        },
+        "de": {
+            "name": "FLAMBIREX",
+            "category": "Feuerschwein",
+            "entry_text": [
+                "Es trägt einen Backenbart aus Feuer\n",
+                "und beherrscht Kampftechniken, die\n",
+                "ebenso wuchtig wie schnell sind."
+            ]
+        },
+        "it": {
+            "name": "EMBOAR",
+            "category": "Pokémon Suincendio",
+            "entry_text": [
+                "La sua barba è avvolta dalle fiamme.\n",
+                "Padroneggia mosse di lotta che\n",
+                "combinano potenza e rapidità."
+            ]
+        },
+        "es": {
+            "name": "EMBOAR",
+            "category": "Pokémon Cerdo Ígneo",
+            "entry_text": [
+                "Posee una tupida barba fogosa."
+            ]
+        },
+        "jp": {
+            "name": "EMBOAR",
+            "category": "おおひぶたポケモン",
+            "entry_text": [
+                "あごの　ほのおで　こぶしを\n",
+                "もやして　ほのおの　パンチを\n",
+                "くりだす。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

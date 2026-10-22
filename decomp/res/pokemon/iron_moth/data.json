@@ -1,0 +1,222 @@
+{
+    "base_stats": {
+        "hp": 80,
+        "attack": 70,
+        "defense": 60,
+        "speed": 110,
+        "special_attack": 140,
+        "special_defense": 110
+    },
+    "types": [
+        "TYPE_FIRE",
+        "TYPE_POISON"
+    ],
+    "catch_rate": 30,
+    "base_exp_reward": 255,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 3,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_NO_GENDER",
+    "hatch_cycles": 50,
+    "base_friendship": 0,
+    "exp_rate": "EXP_RATE_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_UNDISCOVERED",
+        "EGG_GROUP_UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_QUARK_DRIVE",
+        "ABILITY_NONE",
+        "ABILITY_NONE"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_GUST"
+            ],
+            [
+                1,
+                "MOVE_WHIRLWIND"
+            ],
+            [
+                1,
+                "MOVE_EMBER"
+            ],
+            [
+                1,
+                "MOVE_ACID_SPRAY"
+            ],
+            [
+                7,
+                "MOVE_STRUGGLE_BUG"
+            ],
+            [
+                14,
+                "MOVE_FIRE_SPIN"
+            ],
+            [
+                21,
+                "MOVE_TAKE_DOWN"
+            ],
+            [
+                28,
+                "MOVE_LUNGE"
+            ],
+            [
+                35,
+                "MOVE_SCREECH"
+            ],
+            [
+                42,
+                "MOVE_DISCHARGE"
+            ],
+            [
+                49,
+                "MOVE_SLUDGE_WAVE"
+            ],
+            [
+                56,
+                "MOVE_FIERY_DANCE"
+            ],
+            [
+                63,
+                "MOVE_METAL_SOUND"
+            ],
+            [
+                70,
+                "MOVE_MORNING_SUN"
+            ],
+            [
+                77,
+                "MOVE_HURRICANE"
+            ],
+            [
+                84,
+                "MOVE_BUG_BUZZ"
+            ],
+            [
+                91,
+                "MOVE_OVERHEAT"
+            ]
+        ],
+        "by_tm": [
+            "TM06",
+            "TM11",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM22",
+            "TM29",
+            "TM35",
+            "TM38",
+            "TM42",
+            "TM44",
+            "TM50",
+            "TM53",
+            "TM57",
+            "TM58",
+            "TM68",
+            "TM82",
+            "TM89",
+            "TM90",
+            "TM91"
+        ],
+        "by_tutor": [
+            "MOVE_HELPING_HAND",
+            "MOVE_HEAT_WAVE",
+            "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_ELECTRIC_TERRAIN"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_IRON_MOTH",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 47,
+        "weight_pounds": 79.4,
+        "body_shape": "SHAPE_MULTI_WINGED",
+        "trainer_scale_f": 256,
+        "pokemon_scale_f": 249,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 249,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 0,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 0,
+        "en": {
+            "name": "IRON MOTH",
+            "category": "Paradox Pokémon",
+            "entry_text": [
+                "No records exist of this species\n",
+                "being caught."
+            ]
+        },
+        "fr": {
+            "name": "IRON MOTH",
+            "category": "Paradoxe",
+            "entry_text": [
+                "No records exist of this species\n",
+                "being caught."
+            ]
+        },
+        "de": {
+            "name": "IRON MOTH",
+            "category": "Paradox",
+            "entry_text": [
+                "No records exist of this species\n",
+                "being caught."
+            ]
+        },
+        "it": {
+            "name": "IRON MOTH",
+            "category": "Paradox Pokémon",
+            "entry_text": [
+                "No records exist of this species\n",
+                "being caught."
+            ]
+        },
+        "es": {
+            "name": "IRON MOTH",
+            "category": "Paradox Pokémon",
+            "entry_text": [
+                "No records exist of this species\n",
+                "being caught."
+            ]
+        },
+        "jp": {
+            "name": "テツノドクガ",
+            "category": "パラドックスポケモン",
+            "entry_text": [
+                "No records exist of this species\n",
+                "being caught."
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

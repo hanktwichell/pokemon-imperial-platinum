@@ -72,14 +72,12 @@ def write_sections(path, d):
         f.write(text)
 
 
-def main():
-    if len(sys.argv) < 2:
-        sys.exit(__doc__)
-    api = sys.argv[1]
+def load_context(api):
+    """PokeAPI tables and decomp lists shared by the species generators (also used by gen_new_species.py)."""
+    ctx = {}
     move_consts = [l.strip() for l in open(os.path.join(DECOMP, "generated", "moves.txt")) if l.strip().startswith("MOVE_")]
-    move_ok = {i: c for i, c in enumerate(move_consts) if i and not c.startswith("MOVE_UNUSED_")}
-    species_consts = [l.strip() for l in open(os.path.join(DECOMP, "generated", "species.txt")) if l.strip().startswith("SPECIES_")]
-    poke = {r["identifier"]: r for r in rd(api, "pokemon.csv")}
+    ctx["move_ok"] = {i: c for i, c in enumerate(move_consts) if i and not c.startswith("MOVE_UNUSED_")}
+    ctx["poke"] = {r["identifier"]: r for r in rd(api, "pokemon.csv")}
     types = {r["id"]: "TYPE_" + r["identifier"].upper() for r in rd(api, "types.csv")}
     stats, ptypes = defaultdict(dict), defaultdict(dict)
     for r in rd(api, "pokemon_stats.csv"):
@@ -87,21 +85,60 @@ def main():
             stats[r["pokemon_id"]][STATS[r["stat_id"]]] = int(r["base_stat"])
     for r in rd(api, "pokemon_types.csv"):
         ptypes[r["pokemon_id"]][int(r["slot"])] = types[r["type_id"]]
+    ctx["stats"], ctx["ptypes"] = stats, ptypes
     learn = defaultdict(lambda: defaultdict(list))  # pokemon_id -> vg -> [(method, level, order, move)]
     for r in rd(api, "pokemon_moves.csv"):
         learn[r["pokemon_id"]][int(r["version_group_id"])].append(
             (r["pokemon_move_method_id"], int(r["level"] or 0), int(r["order"] or 0), int(r["move_id"])))
-    evolves_from = {r["id"]: r["evolves_from_species_id"] for r in rd(api, "pokemon_species.csv")}
+    ctx["learn"] = learn
+    ctx["evolves_from"] = {r["id"]: r["evolves_from_species_id"] for r in rd(api, "pokemon_species.csv")}
     ability_consts = [l.strip() for l in open(os.path.join(DECOMP, "generated", "abilities.txt")) if l.strip()]
     pabilities = defaultdict(dict)
     for r in rd(api, "pokemon_abilities.csv"):
         pabilities[r["pokemon_id"]][int(r["slot"])] = ability_consts[int(r["ability_id"])]
+    ctx["pabilities"] = pabilities
     tm_moves = {}
     for kind, n in (("TM", 92), ("HM", 8)):
         for i in range(1, n + 1):
             d = json.load(open(os.path.join(DECOMP, "res", "items", "data", f"{kind.lower()}{i:02d}.json")))
             tm_moves[f"{kind}{i:02d}"] = d["teachesMove"]
-    tutor_moves = [t["move"] for t in json.load(open(os.path.join(POKEMON, "move_tutors.json")))]
+    ctx["tm_moves"] = tm_moves
+    ctx["tutor_moves"] = [t["move"] for t in json.load(open(os.path.join(POKEMON, "move_tutors.json")))]
+    return ctx
+
+
+def build_learnset(ctx, pid, old_tm=(), old_tutor=(), want_eggs=True):
+    """Gen IX learnset for PokeAPI pokemon id `pid`. Returns (family name, level-up list, TMs, tutor moves, egg moves).
+    TM/tutor compatibility keeps whatever is in old_tm/old_tutor (Platinum's) and adds what the newest games allow."""
+    learn, move_ok = ctx["learn"], ctx["move_ok"]
+    fam_name, groups = next(((n, g) for n, g in FAMILIES if any(learn[pid][v] for v in g)), (None, []))
+    lv_group = next((v for v in groups if any(m == "1" for m, *_ in learn[pid][v])), None)
+    level, seen = [], set()
+    for m, lvl, order, mv in sorted((x for x in learn[pid].get(lv_group, []) if x[0] == "1"), key=lambda x: (x[1], x[2])):
+        if mv in move_ok and mv not in seen:
+            seen.add(mv)
+            level.append([max(1, lvl), move_ok[mv]])
+    level = level[:MAX_LEVEL_ENTRIES]
+    learnable = {move_ok[mv] for v in groups for (m, _, _, mv) in learn[pid][v] if mv in move_ok}
+    tms = sorted(set(old_tm) | {tm for tm, mv in ctx["tm_moves"].items() if mv in learnable},
+                 key=lambda x: (x[:2] == "HM", int(x[2:])))
+    tutor = [m for m in ctx["tutor_moves"] if m in set(old_tutor) or m in learnable]
+    eggs = []
+    if want_eggs:
+        for v in groups:
+            for m, _, _, mv in learn[pid][v]:
+                if m == "2" and mv in move_ok and move_ok[mv] not in eggs:
+                    eggs.append(move_ok[mv])
+    return fam_name, level, tms, tutor, eggs
+
+
+def main():
+    if len(sys.argv) < 2:
+        sys.exit(__doc__)
+    api = sys.argv[1]
+    ctx = load_context(api)
+    species_consts = [l.strip() for l in open(os.path.join(DECOMP, "generated", "species.txt")) if l.strip().startswith("SPECIES_")]
+    poke, stats, ptypes, pabilities, evolves_from = ctx["poke"], ctx["stats"], ctx["ptypes"], ctx["pabilities"], ctx["evolves_from"]
 
     targets = []
     for dex in range(1, 494):
@@ -124,35 +161,18 @@ def main():
         a = pabilities[pid]
         d["abilities"] = [a[1], a.get(2, "ABILITY_NONE"), a.get(3, "ABILITY_NONE")]
 
-        fam_name, groups = next(((n, g) for n, g in FAMILIES if any(learn[pid][v] for v in g)), (None, []))
-        sources[fam_name] += 1
-        lv_group = next((v for v in groups if any(m == "1" for m, *_ in learn[pid][v])), None)
-        level = []
-        seen = set()
-        for m, lvl, order, mv in sorted((x for x in learn[pid].get(lv_group, []) if x[0] == "1"), key=lambda x: (x[1], x[2])):
-            if mv in move_ok and mv not in seen:
-                seen.add(mv)
-                level.append([max(1, lvl), move_ok[mv]])
-        if len(level) > MAX_LEVEL_ENTRIES:
-            level = level[:MAX_LEVEL_ENTRIES]
-        max_entries = max(max_entries, len(level))
-        learnable = {move_ok[mv] for v in groups for (m, _, _, mv) in learn[pid][v] if mv in move_ok}
         ls = d["learnset"]
         old_level = [m for _, m in ls["by_level"]]
-        ls["by_level"] = level if level else ls["by_level"]
         old_tm = set(ls.get("by_tm", []))
-        ls["by_tm"] = sorted(old_tm | {tm for tm, mv in tm_moves.items() if mv in learnable},
-                             key=lambda x: (x[:2] == "HM", int(x[2:])))
-        old_tutor = set(ls.get("by_tutor", []))
-        ls["by_tutor"] = [m for m in tutor_moves if m in old_tutor or m in learnable]
-        if not form and not evolves_from.get(str(dex)):
-            eggs = []
-            for v in groups:
-                for m, _, _, mv in learn[pid][v]:
-                    if m == "2" and mv in move_ok and move_ok[mv] not in eggs:
-                        eggs.append(move_ok[mv])
-            if eggs:
-                ls["egg_moves"] = eggs
+        fam_name, level, tms, tutor, eggs = build_learnset(
+            ctx, pid, old_tm, ls.get("by_tutor", []), want_eggs=not form and not evolves_from.get(str(dex)))
+        sources[fam_name] += 1
+        max_entries = max(max_entries, len(level))
+        ls["by_level"] = level if level else ls["by_level"]
+        ls["by_tm"] = tms
+        ls["by_tutor"] = tutor
+        if eggs:
+            ls["egg_moves"] = eggs
         write_sections(path, d)
         name = folder + (f" ({form})" if form else "")
         changes = []

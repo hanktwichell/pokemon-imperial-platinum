@@ -1,0 +1,204 @@
+{
+    "base_stats": {
+        "hp": 48,
+        "attack": 101,
+        "defense": 95,
+        "speed": 15,
+        "special_attack": 91,
+        "special_defense": 85
+    },
+    "types": [
+        "TYPE_ELECTRIC",
+        "TYPE_ELECTRIC"
+    ],
+    "catch_rate": 75,
+    "base_exp_reward": 152,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 2,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 50,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_WATER_1",
+        "EGG_GROUP_AMORPHOUS"
+    ],
+    "abilities": [
+        "ABILITY_LIGHTNING_ROD",
+        "ABILITY_NONE",
+        "ABILITY_ELECTRIC_SURGE"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
+    "icon_palette": 1,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_PECK"
+            ],
+            [
+                1,
+                "MOVE_THUNDER_SHOCK"
+            ],
+            [
+                5,
+                "MOVE_WATER_GUN"
+            ],
+            [
+                10,
+                "MOVE_CHARGE"
+            ],
+            [
+                15,
+                "MOVE_FURY_ATTACK"
+            ],
+            [
+                20,
+                "MOVE_SPARK"
+            ],
+            [
+                25,
+                "MOVE_BUBBLE_BEAM"
+            ],
+            [
+                30,
+                "MOVE_RECOVER"
+            ],
+            [
+                35,
+                "MOVE_CURSE"
+            ],
+            [
+                40,
+                "MOVE_ELECTRIC_TERRAIN"
+            ],
+            [
+                45,
+                "MOVE_POISON_JAB"
+            ],
+            [
+                50,
+                "MOVE_ZING_ZAP"
+            ],
+            [
+                55,
+                "MOVE_ACUPRESSURE"
+            ],
+            [
+                60,
+                "MOVE_DISCHARGE"
+            ]
+        ],
+        "by_tm": [
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM24",
+            "TM25",
+            "TM42",
+            "TM44",
+            "TM57",
+            "TM58",
+            "TM68",
+            "TM73",
+            "TM82",
+            "TM84",
+            "TM90",
+            "HM03"
+        ],
+        "by_tutor": [
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_MEMENTO",
+            "MOVE_SUCKER_PUNCH"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_PINCURCHIN",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 12,
+        "weight_pounds": 2.2,
+        "body_shape": "SHAPE_TENTACLES",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 502,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 502,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 28,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 28,
+        "en": {
+            "name": "PINCURCHIN",
+            "category": "Sea Urchin Pokémon",
+            "entry_text": [
+                "It stores electricity in each spine."
+            ]
+        },
+        "fr": {
+            "name": "WATTAPIK",
+            "category": "Pokémon Oursin",
+            "entry_text": [
+                "Chacune de ses épines est chargée en\n",
+                "électricité."
+            ]
+        },
+        "de": {
+            "name": "BRITZIGEL",
+            "category": "Seeigel-Pokémon",
+            "entry_text": [
+                "In jedem einzelnen seiner Stacheln\n",
+                "speichert es Elektrizität."
+            ]
+        },
+        "it": {
+            "name": "PINCURCHIN",
+            "category": "Pokémon Echino",
+            "entry_text": [
+                "Ogni singolo aculeo è carico di\n",
+                "elettricità."
+            ]
+        },
+        "es": {
+            "name": "PINCURCHIN",
+            "category": "Sea Urchin Pokémon",
+            "entry_text": [
+                "Acumula electricidad en cada una de\n",
+                "sus púas."
+            ]
+        },
+        "jp": {
+            "name": "バチンウニ",
+            "category": "うにポケモン",
+            "entry_text": [
+                "トゲの　１ぽん　１ぽんに\n",
+                "でんきを　たくわえる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

@@ -1,0 +1,244 @@
+{
+    "base_stats": {
+        "hp": 92,
+        "attack": 105,
+        "defense": 90,
+        "speed": 98,
+        "special_attack": 125,
+        "special_defense": 90
+    },
+    "types": [
+        "TYPE_DARK",
+        "TYPE_DRAGON"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 255,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 3,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 40,
+    "base_friendship": 35,
+    "exp_rate": "EXP_RATE_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_DRAGON",
+        "EGG_GROUP_DRAGON"
+    ],
+    "abilities": [
+        "ABILITY_LEVITATE",
+        "ABILITY_NONE",
+        "ABILITY_NONE"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
+    "icon_palette": 2,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_TACKLE"
+            ],
+            [
+                1,
+                "MOVE_BITE"
+            ],
+            [
+                1,
+                "MOVE_DRAGON_BREATH"
+            ],
+            [
+                1,
+                "MOVE_FOCUS_ENERGY"
+            ],
+            [
+                1,
+                "MOVE_TRI_ATTACK"
+            ],
+            [
+                1,
+                "MOVE_DOUBLE_HIT"
+            ],
+            [
+                12,
+                "MOVE_ROAR"
+            ],
+            [
+                16,
+                "MOVE_ASSURANCE"
+            ],
+            [
+                20,
+                "MOVE_HEADBUTT"
+            ],
+            [
+                24,
+                "MOVE_WORK_UP"
+            ],
+            [
+                28,
+                "MOVE_SLAM"
+            ],
+            [
+                32,
+                "MOVE_CRUNCH"
+            ],
+            [
+                36,
+                "MOVE_SCARY_FACE"
+            ],
+            [
+                40,
+                "MOVE_DRAGON_PULSE"
+            ],
+            [
+                44,
+                "MOVE_BODY_SLAM"
+            ],
+            [
+                48,
+                "MOVE_HYPER_VOICE"
+            ],
+            [
+                54,
+                "MOVE_DRAGON_RUSH"
+            ],
+            [
+                60,
+                "MOVE_NASTY_PLOT"
+            ],
+            [
+                68,
+                "MOVE_OUTRAGE"
+            ],
+            [
+                76,
+                "MOVE_HYPER_BEAM"
+            ]
+        ],
+        "by_tm": [
+            "TM05",
+            "TM11",
+            "TM12",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM26",
+            "TM33",
+            "TM35",
+            "TM38",
+            "TM39",
+            "TM42",
+            "TM44",
+            "TM46",
+            "TM52",
+            "TM58",
+            "TM59",
+            "TM68",
+            "TM71",
+            "TM73",
+            "TM76",
+            "TM77",
+            "TM79",
+            "TM80",
+            "TM82",
+            "TM89",
+            "TM90",
+            "TM91",
+            "HM02",
+            "HM03"
+        ],
+        "by_tutor": [
+            "MOVE_SPITE",
+            "MOVE_HELPING_HAND",
+            "MOVE_OUTRAGE",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_EARTH_POWER",
+            "MOVE_HEAT_WAVE"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_DEINO",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 71,
+        "weight_pounds": 352.7,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 310,
+        "pokemon_scale_f": 256,
+        "trainer_scale_m": 303,
+        "pokemon_scale_m": 256,
+        "trainer_pos_f": 13,
+        "pokemon_pos_f": 2,
+        "trainer_pos_m": 12,
+        "pokemon_pos_m": 2,
+        "en": {
+            "name": "HYDREIGON",
+            "category": "Brutal Pokémon",
+            "entry_text": [
+                "The three heads take turns sinking\n",
+                "their teeth into the opponent."
+            ]
+        },
+        "fr": {
+            "name": "TRIOXHYDRE",
+            "category": "Pokémon Brutal",
+            "entry_text": [
+                "Chacune de ses trois têtes mord à\n",
+                "tour de rôle."
+            ]
+        },
+        "de": {
+            "name": "TRIKEPHALO",
+            "category": "Brutal-Pokémon",
+            "entry_text": [
+                "Im Kampf beißen die drei Köpfe\n",
+                "abwechselnd zu und lassen nicht ab,\n",
+                "bis ihr Opfer am Boden liegt."
+            ]
+        },
+        "it": {
+            "name": "HYDREIGON",
+            "category": "Pokémon Brutale",
+            "entry_text": [
+                "Azzanna tutto ciò che si muove."
+            ]
+        },
+        "es": {
+            "name": "HYDREIGON",
+            "category": "Pokémon Voraz",
+            "entry_text": [
+                "Ataca y devora todo lo que se mueve."
+            ]
+        },
+        "jp": {
+            "name": "サザンドラ",
+            "category": "きょうぼうポケモン",
+            "entry_text": [
+                "３つの　あたまで　かわるがわる\n",
+                "かみつく。あいてが　たおれるまで\n",
+                "こうげきの　てを　やすめない。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

@@ -1,0 +1,222 @@
+{
+    "base_stats": {
+        "hp": 55,
+        "attack": 55,
+        "defense": 55,
+        "speed": 30,
+        "special_attack": 85,
+        "special_defense": 55
+    },
+    "types": [
+        "TYPE_PSYCHIC",
+        "TYPE_PSYCHIC"
+    ],
+    "catch_rate": 255,
+    "base_exp_reward": 67,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 1,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_HUMAN_LIKE",
+        "EGG_GROUP_HUMAN_LIKE"
+    ],
+    "abilities": [
+        "ABILITY_TELEPATHY",
+        "ABILITY_SYNCHRONIZE",
+        "ABILITY_ANALYTIC"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_CONFUSION"
+            ],
+            [
+                1,
+                "MOVE_GROWL"
+            ],
+            [
+                6,
+                "MOVE_IMPRISON"
+            ],
+            [
+                12,
+                "MOVE_TELEPORT"
+            ],
+            [
+                18,
+                "MOVE_PSYBEAM"
+            ],
+            [
+                24,
+                "MOVE_POWER_SPLIT"
+            ],
+            [
+                24,
+                "MOVE_GUARD_SPLIT"
+            ],
+            [
+                30,
+                "MOVE_HEADBUTT"
+            ],
+            [
+                36,
+                "MOVE_ZEN_HEADBUTT"
+            ],
+            [
+                43,
+                "MOVE_RECOVER"
+            ],
+            [
+                48,
+                "MOVE_CALM_MIND"
+            ],
+            [
+                54,
+                "MOVE_WONDER_ROOM"
+            ],
+            [
+                60,
+                "MOVE_PSYCHIC"
+            ]
+        ],
+        "by_tm": [
+            "TM04",
+            "TM16",
+            "TM17",
+            "TM18",
+            "TM20",
+            "TM24",
+            "TM29",
+            "TM30",
+            "TM33",
+            "TM39",
+            "TM42",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM47",
+            "TM48",
+            "TM53",
+            "TM58",
+            "TM73",
+            "TM77",
+            "TM79",
+            "TM80",
+            "TM82",
+            "TM90",
+            "TM92"
+        ],
+        "by_tutor": [
+            "MOVE_SNORE",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_TRICK",
+            "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_DISABLE",
+            "MOVE_DESTINY_BOND",
+            "MOVE_PSYCH_UP",
+            "MOVE_ASTONISH"
+        ]
+    },
+    "evolutions": [
+        [
+            "EVO_LEVEL",
+            42,
+            "SPECIES_BEHEEYEM"
+        ]
+    ],
+    "offspring": "SPECIES_ELGYEM",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 20,
+        "weight_pounds": 19.8,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 395,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 395,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 24,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 24,
+        "en": {
+            "name": "ELGYEM",
+            "category": "Cerebral Pokémon",
+            "entry_text": [
+                "This Pokémon was discovered about 50\n",
+                "years ago."
+            ]
+        },
+        "fr": {
+            "name": "LEWSOR",
+            "category": "Pokémon Cerveau",
+            "entry_text": [
+                "Ce Pokémon a été découvert il y a\n",
+                "environ 50 ans."
+            ]
+        },
+        "de": {
+            "name": "PYGRAULON",
+            "category": "Grips-Pokémon",
+            "entry_text": [
+                "Ein Pokémon, das vor 50 Jahren\n",
+                "entdeckt wurde."
+            ]
+        },
+        "it": {
+            "name": "ELGYEM",
+            "category": "Pokémon Cervello",
+            "entry_text": [
+                "È stato scoperto circa 50 anni fa.\n",
+                "Il suo cervello molto sviluppato gli\n",
+                "permette di usare poteri psichici."
+            ]
+        },
+        "es": {
+            "name": "ELGYEM",
+            "category": "Pokémon Cerebro",
+            "entry_text": [
+                "Fue descubierto hace aproximadamente\n",
+                "50 años."
+            ]
+        },
+        "jp": {
+            "name": "ELGYEM",
+            "category": "ブレインポケモン",
+            "entry_text": [
+                "This Pokémon was discovered about 50\n",
+                "years ago."
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

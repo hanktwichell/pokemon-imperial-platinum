@@ -1,0 +1,241 @@
+{
+    "base_stats": {
+        "hp": 50,
+        "attack": 75,
+        "defense": 70,
+        "speed": 48,
+        "special_attack": 35,
+        "special_defense": 70
+    },
+    "types": [
+        "TYPE_DARK",
+        "TYPE_FIGHTING"
+    ],
+    "catch_rate": 180,
+    "base_exp_reward": 70,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 1,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_SHED_SHELL"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 15,
+    "base_friendship": 35,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_FIELD",
+        "EGG_GROUP_DRAGON"
+    ],
+    "abilities": [
+        "ABILITY_SHED_SKIN",
+        "ABILITY_MOXIE",
+        "ABILITY_INTIMIDATE"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_LEER"
+            ],
+            [
+                1,
+                "MOVE_LOW_KICK"
+            ],
+            [
+                4,
+                "MOVE_PAYBACK"
+            ],
+            [
+                8,
+                "MOVE_HEADBUTT"
+            ],
+            [
+                12,
+                "MOVE_SAND_ATTACK"
+            ],
+            [
+                16,
+                "MOVE_FACADE"
+            ],
+            [
+                20,
+                "MOVE_TORMENT"
+            ],
+            [
+                24,
+                "MOVE_BEAT_UP"
+            ],
+            [
+                28,
+                "MOVE_SCARY_FACE"
+            ],
+            [
+                32,
+                "MOVE_BRICK_BREAK"
+            ],
+            [
+                36,
+                "MOVE_SWAGGER"
+            ],
+            [
+                40,
+                "MOVE_CRUNCH"
+            ],
+            [
+                44,
+                "MOVE_HI_JUMP_KICK"
+            ],
+            [
+                48,
+                "MOVE_FOCUS_PUNCH"
+            ],
+            [
+                52,
+                "MOVE_HEAD_SMASH"
+            ]
+        ],
+        "by_tm": [
+            "TM01",
+            "TM02",
+            "TM05",
+            "TM08",
+            "TM11",
+            "TM12",
+            "TM17",
+            "TM18",
+            "TM28",
+            "TM31",
+            "TM36",
+            "TM39",
+            "TM41",
+            "TM42",
+            "TM44",
+            "TM46",
+            "TM52",
+            "TM56",
+            "TM58",
+            "TM59",
+            "TM60",
+            "TM66",
+            "TM71",
+            "TM79",
+            "TM80",
+            "TM82",
+            "TM84",
+            "TM86",
+            "TM87",
+            "TM90"
+        ],
+        "by_tutor": [
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_ICE_PUNCH",
+            "MOVE_IRON_HEAD",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_KNOCK_OFF",
+            "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_COUNTER",
+            "MOVE_DETECT",
+            "MOVE_FAKE_OUT",
+            "MOVE_QUICK_GUARD"
+        ]
+    },
+    "evolutions": [
+        [
+            "EVO_LEVEL",
+            39,
+            "SPECIES_SCRAFTY"
+        ]
+    ],
+    "offspring": "SPECIES_SCRAGGY",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 24,
+        "weight_pounds": 26.0,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 384,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 384,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 23,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 23,
+        "en": {
+            "name": "SCRAGGY",
+            "category": "Shedding Pokémon",
+            "entry_text": [
+                "It protects itself with its durable\n",
+                "skin."
+            ]
+        },
+        "fr": {
+            "name": "BAGGIGUANE",
+            "category": "Pokémon Mue",
+            "entry_text": [
+                "Il se protège grâce à sa peau\n",
+                "robuste."
+            ]
+        },
+        "de": {
+            "name": "ZURROKEX",
+            "category": "Hautwechsel-Pokémon",
+            "entry_text": [
+                "Es hat besonders robuste Haut, die\n",
+                "seinen Körper schützt."
+            ]
+        },
+        "it": {
+            "name": "SCRAGGY",
+            "category": "Pokémon Mutapelle",
+            "entry_text": [
+                "Il suo corpo è protetto da una pelle\n",
+                "robustissima."
+            ]
+        },
+        "es": {
+            "name": "SCRAGGY",
+            "category": "Pokémon Mudapiel",
+            "entry_text": [
+                "Su robusta piel le sirve de\n",
+                "protección."
+            ]
+        },
+        "jp": {
+            "name": "ズルッグ",
+            "category": "だっぴポケモン",
+            "entry_text": [
+                "じょうぶな　かわで　みを\n",
+                "まもる。かわが　のびきるとき\n",
+                "しんかを　むかえると　いわれる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

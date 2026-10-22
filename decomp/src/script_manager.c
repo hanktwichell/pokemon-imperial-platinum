@@ -719,17 +719,15 @@ static void SovereignTest_SetupNewGame(FieldSystem *fieldSystem)
     Pokemon_SetMoveSlot(garchomp, MOVE_PLAY_ROUGH, 2);
     Pokemon_SetMoveSlot(garchomp, MOVE_ELECTROWEB, 3);
 
-    // Gallade with its hidden ability (Justified: tests the hidden-ability flag) and one with Sharpness
-    // (ID 292: tests ability IDs above 255).
+    // Gallade with its hidden ability (Justified: tests the hidden-ability flag).
     Pokemon_GiveMonFromScript(HEAP_ID_FIELD2, fieldSystem->saveData, SPECIES_GALLADE, 30, ITEM_NONE, 0, 0);
     Pokemon *gallade = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), 3);
     u8 hasHiddenAbility = TRUE;
     Pokemon_SetValue(gallade, MON_DATA_HAS_HIDDEN_ABILITY, &hasHiddenAbility);
     Pokemon_CalcAbility(gallade);
 
-    Pokemon_GiveMonFromScript(HEAP_ID_FIELD2, fieldSystem->saveData, SPECIES_GALLADE, 30, ITEM_NONE, 0, 0);
-    u16 sharpness = ABILITY_SHARPNESS;
-    Pokemon_SetValue(Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), 4), MON_DATA_ABILITY, &sharpness);
+    // Archaludon (#1018): a species added in E6 (ID above 1000, Gen IX data, placeholder sprite, PokeAPI cry).
+    Pokemon_GiveMonFromScript(HEAP_ID_FIELD2, fieldSystem->saveData, SPECIES_ARCHALUDON, 50, ITEM_NONE, 0, 0);
 
     // Breeding test (SELECT+L, see SovereignTest_BreedAndHatch): the Hidden Ability Gallade holds a Destiny Knot and
     // sits in an Ultra Ball; a Ditto with Adamant nature (personality 3) holds an Everstone. Both have 31 in every IV.

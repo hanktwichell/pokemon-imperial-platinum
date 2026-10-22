@@ -1,0 +1,211 @@
+{
+    "base_stats": {
+        "hp": 65,
+        "attack": 100,
+        "defense": 100,
+        "speed": 75,
+        "special_attack": 70,
+        "special_defense": 60
+    },
+    "types": [
+        "TYPE_FIGHTING",
+        "TYPE_FIGHTING"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 165,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 2,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 1
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_NO_GENDER",
+    "hatch_cycles": 25,
+    "base_friendship": 50,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_FAIRY",
+        "EGG_GROUP_MINERAL"
+    ],
+    "abilities": [
+        "ABILITY_BATTLE_ARMOR",
+        "ABILITY_NONE",
+        "ABILITY_DEFIANT"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
+    "icon_palette": 1,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_TACKLE"
+            ],
+            [
+                1,
+                "MOVE_PROTECT"
+            ],
+            [
+                5,
+                "MOVE_ROCK_SMASH"
+            ],
+            [
+                10,
+                "MOVE_FOCUS_ENERGY"
+            ],
+            [
+                15,
+                "MOVE_HEADBUTT"
+            ],
+            [
+                20,
+                "MOVE_BULK_UP"
+            ],
+            [
+                25,
+                "MOVE_ENDURE"
+            ],
+            [
+                30,
+                "MOVE_REVERSAL"
+            ],
+            [
+                35,
+                "MOVE_FIRST_IMPRESSION"
+            ],
+            [
+                40,
+                "MOVE_NO_RETREAT"
+            ],
+            [
+                45,
+                "MOVE_IRON_DEFENSE"
+            ],
+            [
+                50,
+                "MOVE_CLOSE_COMBAT"
+            ],
+            [
+                55,
+                "MOVE_MEGAHORN"
+            ],
+            [
+                60,
+                "MOVE_COUNTER"
+            ]
+        ],
+        "by_tm": [
+            "TM08",
+            "TM11",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM31",
+            "TM39",
+            "TM42",
+            "TM44",
+            "TM52",
+            "TM54",
+            "TM58",
+            "TM68",
+            "TM75",
+            "TM77",
+            "TM80",
+            "TM82",
+            "TM84",
+            "TM90",
+            "HM06"
+        ],
+        "by_tutor": [
+            "MOVE_IRON_HEAD",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_KNOCK_OFF",
+            "MOVE_UPROAR"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_FALINKS",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 118,
+        "weight_pounds": 136.7,
+        "body_shape": "SHAPE_MULTI_BODY",
+        "trainer_scale_f": 512,
+        "pokemon_scale_f": 256,
+        "trainer_scale_m": 487,
+        "pokemon_scale_m": 256,
+        "trainer_pos_f": 23,
+        "pokemon_pos_f": 0,
+        "trainer_pos_m": 23,
+        "pokemon_pos_m": 0,
+        "en": {
+            "name": "FALINKS",
+            "category": "Formation Pokémon",
+            "entry_text": [
+                "The six of them work together as one\n",
+                "Pokémon."
+            ]
+        },
+        "fr": {
+            "name": "HEXADRON",
+            "category": "Pokémon Escadron",
+            "entry_text": [
+                "À six, ils représentent un Pokémon\n",
+                "unique."
+            ]
+        },
+        "de": {
+            "name": "LEGIOS",
+            "category": "Formations-Pokémon",
+            "entry_text": [
+                "Sie bilden zu sechst ein Pokémon."
+            ]
+        },
+        "it": {
+            "name": "FALINKS",
+            "category": "Formation Pokémon",
+            "entry_text": [
+                "The six of them work together as one\n",
+                "Pokémon."
+            ]
+        },
+        "es": {
+            "name": "FALINKS",
+            "category": "Pokémon Formación",
+            "entry_text": [
+                "Este Pokémon consta de cinco\n",
+                "subalternos y un líder, cuyas\n",
+                "órdenes obedecen sin rechistar."
+            ]
+        },
+        "jp": {
+            "name": "FALINKS",
+            "category": "じんけいポケモン",
+            "entry_text": [
+                "The six of them work together as one\n",
+                "Pokémon."
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

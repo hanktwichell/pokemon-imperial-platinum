@@ -1,0 +1,234 @@
+{
+    "base_stats": {
+        "hp": 74,
+        "attack": 108,
+        "defense": 133,
+        "speed": 32,
+        "special_attack": 83,
+        "special_defense": 65
+    },
+    "types": [
+        "TYPE_WATER",
+        "TYPE_ROCK"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 173,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 2,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_12_5",
+    "hatch_cycles": 30,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_WATER_1",
+        "EGG_GROUP_WATER_3"
+    ],
+    "abilities": [
+        "ABILITY_SOLID_ROCK",
+        "ABILITY_STURDY",
+        "ABILITY_SWIFT_SWIM"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
+    "icon_palette": 2,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_WATER_GUN"
+            ],
+            [
+                1,
+                "MOVE_WITHDRAW"
+            ],
+            [
+                1,
+                "MOVE_PROTECT"
+            ],
+            [
+                1,
+                "MOVE_AQUA_JET"
+            ],
+            [
+                9,
+                "MOVE_SMACK_DOWN"
+            ],
+            [
+                12,
+                "MOVE_ANCIENT_POWER"
+            ],
+            [
+                15,
+                "MOVE_BITE"
+            ],
+            [
+                18,
+                "MOVE_WIDE_GUARD"
+            ],
+            [
+                21,
+                "MOVE_BRINE"
+            ],
+            [
+                24,
+                "MOVE_ROCK_SLIDE"
+            ],
+            [
+                27,
+                "MOVE_CRUNCH"
+            ],
+            [
+                30,
+                "MOVE_CURSE"
+            ],
+            [
+                33,
+                "MOVE_IRON_DEFENSE"
+            ],
+            [
+                36,
+                "MOVE_AQUA_TAIL"
+            ],
+            [
+                41,
+                "MOVE_RAIN_DANCE"
+            ],
+            [
+                46,
+                "MOVE_HYDRO_PUMP"
+            ],
+            [
+                51,
+                "MOVE_SHELL_SMASH"
+            ]
+        ],
+        "by_tm": [
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM23",
+            "TM26",
+            "TM28",
+            "TM37",
+            "TM39",
+            "TM42",
+            "TM44",
+            "TM45",
+            "TM52",
+            "TM55",
+            "TM58",
+            "TM68",
+            "TM71",
+            "TM76",
+            "TM80",
+            "TM82",
+            "TM90",
+            "HM03",
+            "HM07"
+        ],
+        "by_tutor": [
+            "MOVE_DIVE",
+            "MOVE_ICY_WIND",
+            "MOVE_SUPERPOWER",
+            "MOVE_IRON_HEAD",
+            "MOVE_AQUA_TAIL",
+            "MOVE_SNORE",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_EARTH_POWER",
+            "MOVE_IRON_DEFENSE"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_TIRTOUGA",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 47,
+        "weight_pounds": 178.6,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 256,
+        "pokemon_scale_f": 249,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 249,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 0,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 0,
+        "en": {
+            "name": "CARRACOSTA",
+            "category": "Prototurtle Pokémon",
+            "entry_text": [
+                "This Pokémon emerges from the water\n",
+                "in search of prey despite the fact\n",
+                "that it moves more slowly on land."
+            ]
+        },
+        "fr": {
+            "name": "MÉGAPAGOS",
+            "category": "Pokémon Tortantique",
+            "entry_text": [
+                "Bien qu’il soit moins à l’aise sur\n",
+                "terre que dans l’eau, il s’aventure\n",
+                "sur le rivage pour se nourrir."
+            ]
+        },
+        "de": {
+            "name": "KARIPPAS",
+            "category": "Prototurtle Pokémon",
+            "entry_text": [
+                "Obwohl es sich außerhalb des Wassers\n",
+                "langsamer fortbewegt, kommt es an\n",
+                "Land, um nach Beute zu suchen."
+            ]
+        },
+        "it": {
+            "name": "CARRACOSTA",
+            "category": "Pokémon Ancestruga",
+            "entry_text": [
+                "Questo Pokémon è a suo agio sia in\n",
+                "mare che sulla terraferma."
+            ]
+        },
+        "es": {
+            "name": "CARRACOSTA",
+            "category": "Pokémon Pretortuga",
+            "entry_text": [
+                "Vive tanto en el mar como en la\n",
+                "superficie."
+            ]
+        },
+        "jp": {
+            "name": "CARRACOSTA",
+            "category": "こだいがめポケモン",
+            "entry_text": [
+                "みずのなかと　くらべて　うごきは\n",
+                "にぶいが　えものを　さがしもとめ\n",
+                "りくじょうでも　かつどうするぞ。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

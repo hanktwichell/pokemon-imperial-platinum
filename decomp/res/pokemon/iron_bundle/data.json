@@ -1,0 +1,209 @@
+{
+    "base_stats": {
+        "hp": 56,
+        "attack": 80,
+        "defense": 114,
+        "speed": 136,
+        "special_attack": 124,
+        "special_defense": 60
+    },
+    "types": [
+        "TYPE_ICE",
+        "TYPE_WATER"
+    ],
+    "catch_rate": 50,
+    "base_exp_reward": 255,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 3,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_NO_GENDER",
+    "hatch_cycles": 50,
+    "base_friendship": 0,
+    "exp_rate": "EXP_RATE_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_UNDISCOVERED",
+        "EGG_GROUP_UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_QUARK_DRIVE",
+        "ABILITY_NONE",
+        "ABILITY_NONE"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_PRESENT"
+            ],
+            [
+                7,
+                "MOVE_POWDER_SNOW"
+            ],
+            [
+                14,
+                "MOVE_WHIRLPOOL"
+            ],
+            [
+                21,
+                "MOVE_TAKE_DOWN"
+            ],
+            [
+                28,
+                "MOVE_DRILL_PECK"
+            ],
+            [
+                35,
+                "MOVE_HELPING_HAND"
+            ],
+            [
+                42,
+                "MOVE_FREEZE_DRY"
+            ],
+            [
+                49,
+                "MOVE_FLIP_TURN"
+            ],
+            [
+                56,
+                "MOVE_ICE_BEAM"
+            ],
+            [
+                63,
+                "MOVE_AGILITY"
+            ],
+            [
+                70,
+                "MOVE_SNOWSCAPE"
+            ],
+            [
+                77,
+                "MOVE_HYDRO_PUMP"
+            ],
+            [
+                84,
+                "MOVE_AURORA_VEIL"
+            ],
+            [
+                91,
+                "MOVE_BLIZZARD"
+            ]
+        ],
+        "by_tm": [
+            "TM03",
+            "TM12",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM42",
+            "TM44",
+            "TM46",
+            "TM56",
+            "TM58",
+            "TM68",
+            "TM72",
+            "TM82",
+            "TM89",
+            "TM90"
+        ],
+        "by_tutor": [
+            "MOVE_ICY_WIND",
+            "MOVE_ICE_PUNCH",
+            "MOVE_AIR_CUTTER",
+            "MOVE_HELPING_HAND",
+            "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_ELECTRIC_TERRAIN"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_IRON_BUNDLE",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 24,
+        "weight_pounds": 24.3,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 384,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 384,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 23,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 23,
+        "en": {
+            "name": "IRONBUNDLE",
+            "category": "Paradox Pokémon",
+            "entry_text": [
+                "It resembles a mysterious object\n",
+                "mentioned in an old book."
+            ]
+        },
+        "fr": {
+            "name": "IRONBUNDLE",
+            "category": "Paradoxe",
+            "entry_text": [
+                "It resembles a mysterious object\n",
+                "mentioned in an old book."
+            ]
+        },
+        "de": {
+            "name": "IRONBUNDLE",
+            "category": "Paradox",
+            "entry_text": [
+                "It resembles a mysterious object\n",
+                "mentioned in an old book."
+            ]
+        },
+        "it": {
+            "name": "IRONBUNDLE",
+            "category": "Paradox Pokémon",
+            "entry_text": [
+                "It resembles a mysterious object\n",
+                "mentioned in an old book."
+            ]
+        },
+        "es": {
+            "name": "FERROSACO",
+            "category": "Paradox Pokémon",
+            "entry_text": [
+                "It resembles a mysterious object\n",
+                "mentioned in an old book."
+            ]
+        },
+        "jp": {
+            "name": "テツノツツミ",
+            "category": "パラドックスポケモン",
+            "entry_text": [
+                "It resembles a mysterious object\n",
+                "mentioned in an old book."
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

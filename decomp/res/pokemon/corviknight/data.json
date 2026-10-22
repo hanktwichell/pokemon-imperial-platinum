@@ -1,0 +1,219 @@
+{
+    "base_stats": {
+        "hp": 98,
+        "attack": 87,
+        "defense": 105,
+        "speed": 67,
+        "special_attack": 53,
+        "special_defense": 85
+    },
+    "types": [
+        "TYPE_FLYING",
+        "TYPE_STEEL"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 248,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 3,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 15,
+    "base_friendship": 50,
+    "exp_rate": "EXP_RATE_MEDIUM_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_FLYING",
+        "EGG_GROUP_FLYING"
+    ],
+    "abilities": [
+        "ABILITY_PRESSURE",
+        "ABILITY_UNNERVE",
+        "ABILITY_MIRROR_ARMOR"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
+    "icon_palette": 2,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_STEEL_WING"
+            ],
+            [
+                1,
+                "MOVE_LEER"
+            ],
+            [
+                1,
+                "MOVE_PECK"
+            ],
+            [
+                1,
+                "MOVE_SCREECH"
+            ],
+            [
+                1,
+                "MOVE_METAL_SOUND"
+            ],
+            [
+                1,
+                "MOVE_IRON_DEFENSE"
+            ],
+            [
+                1,
+                "MOVE_HONE_CLAWS"
+            ],
+            [
+                1,
+                "MOVE_POWER_TRIP"
+            ],
+            [
+                12,
+                "MOVE_FURY_ATTACK"
+            ],
+            [
+                16,
+                "MOVE_PLUCK"
+            ],
+            [
+                22,
+                "MOVE_TAUNT"
+            ],
+            [
+                28,
+                "MOVE_SCARY_FACE"
+            ],
+            [
+                34,
+                "MOVE_DRILL_PECK"
+            ],
+            [
+                42,
+                "MOVE_SWAGGER"
+            ],
+            [
+                50,
+                "MOVE_BRAVE_BIRD"
+            ]
+        ],
+        "by_tm": [
+            "TM08",
+            "TM11",
+            "TM12",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM18",
+            "TM33",
+            "TM40",
+            "TM42",
+            "TM44",
+            "TM46",
+            "TM47",
+            "TM51",
+            "TM58",
+            "TM68",
+            "TM82",
+            "TM87",
+            "TM88",
+            "TM89",
+            "TM90",
+            "TM91",
+            "HM02",
+            "HM05",
+            "HM06"
+        ],
+        "by_tutor": [
+            "MOVE_IRON_HEAD",
+            "MOVE_SPITE",
+            "MOVE_AIR_CUTTER",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_SWIFT"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_ROOKIDEE",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 87,
+        "weight_pounds": 165.3,
+        "body_shape": "SHAPE_WINGED",
+        "trainer_scale_f": 351,
+        "pokemon_scale_f": 232,
+        "trainer_scale_m": 333,
+        "pokemon_scale_m": 232,
+        "trainer_pos_f": 15,
+        "pokemon_pos_f": 0,
+        "trainer_pos_m": 15,
+        "pokemon_pos_m": 0,
+        "en": {
+            "name": "CORVKNIGHT",
+            "category": "Raven Pokémon",
+            "entry_text": [
+                "This Pokémon reigns supreme in the\n",
+                "skies of the Galar region."
+            ]
+        },
+        "fr": {
+            "name": "CORVAILLUS",
+            "category": "Pokémon Corbeau",
+            "entry_text": [
+                "Il n’a aucun rival dans le ciel de\n",
+                "Galar."
+            ]
+        },
+        "de": {
+            "name": "KRARMOR",
+            "category": "Krähen-Pokémon",
+            "entry_text": [
+                "Niemand wagt es, ihm den Himmel über\n",
+                "Galar streitig zu machen."
+            ]
+        },
+        "it": {
+            "name": "CORVKNIGHT",
+            "category": "Pokémon Corvo",
+            "entry_text": [
+                "È dotato di eccellenti capacità di\n",
+                "volo e di grande intelligenza."
+            ]
+        },
+        "es": {
+            "name": "CORVKNIGHT",
+            "category": "Pokémon Cuervo",
+            "entry_text": [
+                "Debido a su excelente capacidad de\n",
+                "vuelo y a su gran inteligencia,\n",
+                "ejerce de taxi volador en Galar."
+            ]
+        },
+        "jp": {
+            "name": "CORVKNIGHT",
+            "category": "カラスポケモン",
+            "entry_text": [
+                "ガラルちほうの　そらでは\n",
+                "てきなし。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

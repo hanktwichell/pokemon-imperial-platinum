@@ -113,7 +113,9 @@
             "MOVE_FIRST_IMPRESSION"
         ]
     },
-    "evolutions": [  ],
+    "evolutions": [
+        [ "EVO_LEVEL", 40, "SPECIES_SIRFETCHD" ]
+    ],
     "offspring": "SPECIES_FARFETCHD",
     "footprint": {
         "has": true,

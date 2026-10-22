@@ -1,0 +1,227 @@
+{
+    "base_stats": {
+        "hp": 59,
+        "attack": 59,
+        "defense": 58,
+        "speed": 73,
+        "special_attack": 90,
+        "special_defense": 70
+    },
+    "types": [
+        "TYPE_FIRE",
+        "TYPE_FIRE"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 143,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 2,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_12_5",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_FIELD",
+        "EGG_GROUP_FIELD"
+    ],
+    "abilities": [
+        "ABILITY_BLAZE",
+        "ABILITY_NONE",
+        "ABILITY_MAGICIAN"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
+    "icon_palette": 1,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_SCRATCH"
+            ],
+            [
+                1,
+                "MOVE_TAIL_WHIP"
+            ],
+            [
+                1,
+                "MOVE_EMBER"
+            ],
+            [
+                11,
+                "MOVE_HOWL"
+            ],
+            [
+                14,
+                "MOVE_FLAME_CHARGE"
+            ],
+            [
+                18,
+                "MOVE_PSYBEAM"
+            ],
+            [
+                22,
+                "MOVE_FIRE_SPIN"
+            ],
+            [
+                28,
+                "MOVE_LIGHT_SCREEN"
+            ],
+            [
+                36,
+                "MOVE_PSYSHOCK"
+            ],
+            [
+                41,
+                "MOVE_FLAMETHROWER"
+            ],
+            [
+                45,
+                "MOVE_WILL_O_WISP"
+            ],
+            [
+                49,
+                "MOVE_PSYCHIC"
+            ],
+            [
+                52,
+                "MOVE_SUNNY_DAY"
+            ],
+            [
+                56,
+                "MOVE_MAGIC_ROOM"
+            ],
+            [
+                59,
+                "MOVE_FIRE_BLAST"
+            ]
+        ],
+        "by_tm": [
+            "TM04",
+            "TM11",
+            "TM16",
+            "TM17",
+            "TM18",
+            "TM22",
+            "TM29",
+            "TM35",
+            "TM38",
+            "TM42",
+            "TM44",
+            "TM46",
+            "TM48",
+            "TM50",
+            "TM58",
+            "TM61",
+            "TM82",
+            "TM86",
+            "TM90",
+            "TM92"
+        ],
+        "by_tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_HELPING_HAND",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_TRICK",
+            "MOVE_HEAT_WAVE",
+            "MOVE_SWIFT"
+        ]
+    },
+    "evolutions": [
+        [
+            "EVO_LEVEL",
+            36,
+            "SPECIES_DELPHOX"
+        ]
+    ],
+    "offspring": "SPECIES_FENNEKIN",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 39,
+        "weight_pounds": 32.0,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 287,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 287,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 17,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 17,
+        "en": {
+            "name": "BRAIXEN",
+            "category": "Fox Pokémon",
+            "entry_text": [
+                "When the twig is plucked from its\n",
+                "tail, friction sets the twig alight."
+            ]
+        },
+        "fr": {
+            "name": "ROUSSIL",
+            "category": "Pokémon Renard",
+            "entry_text": [
+                "Quand il saisit la branche plantée\n",
+                "dans sa queue, elle prend feu par\n",
+                "friction."
+            ]
+        },
+        "de": {
+            "name": "RUTENA",
+            "category": "Fuchs",
+            "entry_text": [
+                "Sein Zweig entzündet sich durch die\n",
+                "Reibung, die beim Herausziehen aus\n",
+                "seinem Schweif entsteht."
+            ]
+        },
+        "it": {
+            "name": "BRAIXEN",
+            "category": "Pokémon Volpe",
+            "entry_text": [
+                "Incendia il rametto che ha nella\n",
+                "coda semplicemente estraendolo,\n",
+                "grazie alla frizione del pelo."
+            ]
+        },
+        "es": {
+            "name": "BRAIXEN",
+            "category": "Pokémon Zorro",
+            "entry_text": [
+                "Al extraer la rama que tiene en la\n",
+                "cola, esta prende debido a la\n",
+                "fricción."
+            ]
+        },
+        "jp": {
+            "name": "BRAIXEN",
+            "category": "キツネポケモン",
+            "entry_text": [
+                "きのえだを　しっぽから\n",
+                "ひきぬくとき　まさつで\n",
+                "ちゃっか。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

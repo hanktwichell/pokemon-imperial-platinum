@@ -1,0 +1,224 @@
+{
+    "base_stats": {
+        "hp": 65,
+        "attack": 125,
+        "defense": 60,
+        "speed": 105,
+        "special_attack": 95,
+        "special_defense": 60
+    },
+    "types": [
+        "TYPE_FIGHTING",
+        "TYPE_FIGHTING"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 179,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 2,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 25,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_FIELD",
+        "EGG_GROUP_HUMAN_LIKE"
+    ],
+    "abilities": [
+        "ABILITY_INNER_FOCUS",
+        "ABILITY_REGENERATOR",
+        "ABILITY_RECKLESS"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
+    "icon_palette": 2,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_POUND"
+            ],
+            [
+                1,
+                "MOVE_REVERSAL"
+            ],
+            [
+                1,
+                "MOVE_DETECT"
+            ],
+            [
+                1,
+                "MOVE_FAKE_OUT"
+            ],
+            [
+                1,
+                "MOVE_QUICK_GUARD"
+            ],
+            [
+                15,
+                "MOVE_FURY_SWIPES"
+            ],
+            [
+                20,
+                "MOVE_WIDE_GUARD"
+            ],
+            [
+                25,
+                "MOVE_FORCE_PALM"
+            ],
+            [
+                30,
+                "MOVE_U_TURN"
+            ],
+            [
+                35,
+                "MOVE_DRAIN_PUNCH"
+            ],
+            [
+                40,
+                "MOVE_HONE_CLAWS"
+            ],
+            [
+                45,
+                "MOVE_AURA_SPHERE"
+            ],
+            [
+                53,
+                "MOVE_BOUNCE"
+            ],
+            [
+                59,
+                "MOVE_CALM_MIND"
+            ],
+            [
+                66,
+                "MOVE_HI_JUMP_KICK"
+            ]
+        ],
+        "by_tm": [
+            "TM01",
+            "TM04",
+            "TM08",
+            "TM11",
+            "TM12",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM28",
+            "TM31",
+            "TM39",
+            "TM40",
+            "TM42",
+            "TM44",
+            "TM52",
+            "TM56",
+            "TM58",
+            "TM60",
+            "TM68",
+            "TM71",
+            "TM75",
+            "TM77",
+            "TM82",
+            "TM84",
+            "TM86",
+            "TM89",
+            "TM90"
+        ],
+        "by_tutor": [
+            "MOVE_HELPING_HAND",
+            "MOVE_VACUUM_WAVE",
+            "MOVE_BOUNCE",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_MIENFOO",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 55,
+        "weight_pounds": 78.3,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 269,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 269,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 9,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 9,
+        "en": {
+            "name": "MIENSHAO",
+            "category": "Martial Art Pokémon",
+            "entry_text": [
+                "Delivered at blinding speeds, kicks\n",
+                "from this Pokémon can shatter\n",
+                "massive boulders into tiny pieces."
+            ]
+        },
+        "fr": {
+            "name": "SHAOFOUINE",
+            "category": "Pokémon Art Martial",
+            "entry_text": [
+                "Il combat à l’aide des longs poils\n",
+                "de ses pattes antérieures."
+            ]
+        },
+        "de": {
+            "name": "WIE-SHU",
+            "category": "Kampfkünste-Pokémon",
+            "entry_text": [
+                "Es überwältigt seine Gegner mit\n",
+                "einer Serie aus Angriffen."
+            ]
+        },
+        "it": {
+            "name": "MIENSHAO",
+            "category": "Pokémon Marziale",
+            "entry_text": [
+                "I suoi calci, talmente veloci da\n",
+                "risultare invisibili, sono in grado\n",
+                "di sbriciolare anche massi enormi."
+            ]
+        },
+        "es": {
+            "name": "MIENSHAO",
+            "category": "Martial Art Pokémon",
+            "entry_text": [
+                "Usa el pelaje de sus brazos a manera\n",
+                "de látigos. Sus ataques alcanzan\n",
+                "velocidades de vértigo."
+            ]
+        },
+        "jp": {
+            "name": "コジョンド",
+            "category": "ぶじゅつポケモン",
+            "entry_text": [
+                "しんの　きょうてきと　あうと\n",
+                "みがるに　なるため　りょうての\n",
+                "けを　かみちぎり　すててしまう。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

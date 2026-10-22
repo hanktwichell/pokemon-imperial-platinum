@@ -1,0 +1,188 @@
+{
+    "base_stats": {
+        "hp": 75,
+        "attack": 98,
+        "defense": 63,
+        "speed": 101,
+        "special_attack": 98,
+        "special_defense": 63
+    },
+    "types": [
+        "TYPE_GRASS",
+        "TYPE_GRASS"
+    ],
+    "catch_rate": 75,
+    "base_exp_reward": 174,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 2,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_ORAN_BERRY",
+        "rare": "ITEM_OCCA_BERRY"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_12_5",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_FIELD",
+        "EGG_GROUP_FIELD"
+    ],
+    "abilities": [
+        "ABILITY_GLUTTONY",
+        "ABILITY_NONE",
+        "ABILITY_OVERGROW"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
+    "icon_palette": 1,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_LEER"
+            ],
+            [
+                1,
+                "MOVE_LICK"
+            ],
+            [
+                1,
+                "MOVE_FURY_SWIPES"
+            ],
+            [
+                1,
+                "MOVE_SEED_BOMB"
+            ]
+        ],
+        "by_tm": [
+            "TM01",
+            "TM06",
+            "TM10",
+            "TM11",
+            "TM12",
+            "TM15",
+            "TM17",
+            "TM19",
+            "TM21",
+            "TM22",
+            "TM23",
+            "TM27",
+            "TM31",
+            "TM32",
+            "TM39",
+            "TM41",
+            "TM42",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM52",
+            "TM53",
+            "TM56",
+            "TM65",
+            "TM66",
+            "TM67",
+            "TM68",
+            "TM80",
+            "TM82",
+            "TM86",
+            "TM87",
+            "TM90"
+        ],
+        "by_tutor": [
+            "MOVE_SUPERPOWER",
+            "MOVE_GASTRO_ACID",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_SYNTHESIS",
+            "MOVE_GUNK_SHOT",
+            "MOVE_SEED_BOMB",
+            "MOVE_KNOCK_OFF",
+            "MOVE_UPROAR"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_PANSAGE",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 43,
+        "weight_pounds": 67.2,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 293,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 293,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 15,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 15,
+        "en": {
+            "name": "SIMISAGE",
+            "category": "Thorn Monke Pokémon",
+            "entry_text": [
+                "Ill tempered, it fights by swinging\n",
+                "its barbed tail around wildly."
+            ]
+        },
+        "fr": {
+            "name": "FEUILOUTAN",
+            "category": "Pokémon Singépine",
+            "entry_text": [
+                "Il a un tempérament violent et se\n",
+                "bat avec sa queue pleine d’épines."
+            ]
+        },
+        "de": {
+            "name": "VEGICHITA",
+            "category": "Stachelaffe",
+            "entry_text": [
+                "Ein hitziger Geselle, der im Kampf\n",
+                "seinen dornigen Schweif\n",
+                "umherschwingt."
+            ]
+        },
+        "it": {
+            "name": "SIMISAGE",
+            "category": "Pokémon Spinpanzé",
+            "entry_text": [
+                "Di carattere impetuoso, lotta\n",
+                "roteando la coda dotata di aculei."
+            ]
+        },
+        "es": {
+            "name": "SIMISAGE",
+            "category": "Pokémon Mono Pincho",
+            "entry_text": [
+                "Pokémon muy temperamental que lucha\n",
+                "con su cola revestida de púas."
+            ]
+        },
+        "jp": {
+            "name": "SIMISAGE",
+            "category": "とげざるポケモン",
+            "entry_text": [
+                "きしょうが　はげしく　トゲの\n",
+                "ついた　しっぽを　ふりまわして\n",
+                "たたかう。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

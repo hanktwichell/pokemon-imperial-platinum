@@ -114,11 +114,8 @@
         ]
     },
     "evolutions": [
-        [
-            "EVO_LEVEL",
-            28,
-            "SPECIES_PERSIAN"
-        ]
+        [ "EVO_LEVEL", 28, "SPECIES_PERSIAN" ],
+        [ "EVO_USE_ITEM", "ITEM_METAL_COAT", "SPECIES_PERRSERKER" ]
     ],
     "offspring": "SPECIES_MEOWTH",
     "footprint": {

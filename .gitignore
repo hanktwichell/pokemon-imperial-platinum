@@ -7,3 +7,5 @@
 .DS_Store
 __pycache__/
 *.pyc
+# Boot smoke-test screenshots
+/build/

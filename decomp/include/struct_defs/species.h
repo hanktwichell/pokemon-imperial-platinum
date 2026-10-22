@@ -5,7 +5,7 @@
 #define MAX_EGG_GROUPS 2
 #define MAX_TYPES      2
 
-#define MAX_EVOLUTIONS 7
+#define MAX_EVOLUTIONS 8 // Sovereign: 8 so Eevee can have Sylveon (Platinum: 7)
 
 #define MAX_LEARNSET_ENTRIES        48 // Sovereign: Gen IX learnsets (vanilla: 20)
 #define LEARNSET_NO_MOVE_TO_LEARN   0

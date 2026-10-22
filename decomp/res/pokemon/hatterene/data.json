@@ -1,0 +1,209 @@
+{
+    "base_stats": {
+        "hp": 57,
+        "attack": 90,
+        "defense": 95,
+        "speed": 29,
+        "special_attack": 136,
+        "special_defense": 103
+    },
+    "types": [
+        "TYPE_PSYCHIC",
+        "TYPE_FAIRY"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 255,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 3,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_ONLY",
+    "hatch_cycles": 20,
+    "base_friendship": 50,
+    "exp_rate": "EXP_RATE_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_FAIRY",
+        "EGG_GROUP_FAIRY"
+    ],
+    "abilities": [
+        "ABILITY_HEALER",
+        "ABILITY_ANTICIPATION",
+        "ABILITY_MAGIC_BOUNCE"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PINK",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_PSYCHO_CUT"
+            ],
+            [
+                1,
+                "MOVE_CONFUSION"
+            ],
+            [
+                1,
+                "MOVE_DISARMING_VOICE"
+            ],
+            [
+                1,
+                "MOVE_PLAY_NICE"
+            ],
+            [
+                1,
+                "MOVE_BRUTAL_SWING"
+            ],
+            [
+                1,
+                "MOVE_LIFE_DEW"
+            ],
+            [
+                15,
+                "MOVE_AROMATIC_MIST"
+            ],
+            [
+                20,
+                "MOVE_PSYBEAM"
+            ],
+            [
+                25,
+                "MOVE_HEAL_PULSE"
+            ],
+            [
+                30,
+                "MOVE_DAZZLING_GLEAM"
+            ],
+            [
+                37,
+                "MOVE_CALM_MIND"
+            ],
+            [
+                46,
+                "MOVE_PSYCHIC"
+            ],
+            [
+                55,
+                "MOVE_HEALING_WISH"
+            ],
+            [
+                64,
+                "MOVE_MAGIC_POWDER"
+            ]
+        ],
+        "by_tm": [
+            "TM04",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM19",
+            "TM29",
+            "TM30",
+            "TM33",
+            "TM42",
+            "TM44",
+            "TM48",
+            "TM58",
+            "TM65",
+            "TM68",
+            "TM73",
+            "TM75",
+            "TM77",
+            "TM79",
+            "TM82",
+            "TM90",
+            "TM92"
+        ],
+        "by_tutor": [
+            "MOVE_HELPING_HAND",
+            "MOVE_TRICK",
+            "MOVE_SWIFT"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_HATENNA",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 83,
+        "weight_pounds": 11.2,
+        "body_shape": "SHAPE_HEAD_BASE",
+        "trainer_scale_f": 350,
+        "pokemon_scale_f": 256,
+        "trainer_scale_m": 333,
+        "pokemon_scale_m": 256,
+        "trainer_pos_f": 15,
+        "pokemon_pos_f": 7,
+        "trainer_pos_m": 16,
+        "pokemon_pos_m": 7,
+        "en": {
+            "name": "HATTERENE",
+            "category": "Silent Pokémon",
+            "entry_text": [
+                "If you’re too loud around it, you\n",
+                "risk being torn apart by the claws\n",
+                "on its tentacle."
+            ]
+        },
+        "fr": {
+            "name": "SORCILENCE",
+            "category": "Pokémon Silencieux",
+            "entry_text": [
+                "If you’re too loud around it, you\n",
+                "risk being torn apart by the claws\n",
+                "on its tentacle."
+            ]
+        },
+        "de": {
+            "name": "SILEMBRIM",
+            "category": "Stille-Pokémon",
+            "entry_text": [
+                "Es wird auch „Hexe des Waldes“\n",
+                "genannt."
+            ]
+        },
+        "it": {
+            "name": "HATTERENE",
+            "category": "Pokémon Silenzio",
+            "entry_text": [
+                "È conosciuto anche come “maga del\n",
+                "bosco”."
+            ]
+        },
+        "es": {
+            "name": "HATTERENE",
+            "category": "Pokémon Silencio",
+            "entry_text": [
+                "Recibe el apodo de Hechicera del\n",
+                "Bosque."
+            ]
+        },
+        "jp": {
+            "name": "ブリムオン",
+            "category": "せいじゃくポケモン",
+            "entry_text": [
+                "べつめいは　もりの　まじょ。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

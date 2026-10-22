@@ -1,0 +1,234 @@
+{
+    "base_stats": {
+        "hp": 72,
+        "attack": 95,
+        "defense": 67,
+        "speed": 122,
+        "special_attack": 103,
+        "special_defense": 71
+    },
+    "types": [
+        "TYPE_WATER",
+        "TYPE_DARK"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 239,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 3,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_12_5",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_WATER_1",
+        "EGG_GROUP_WATER_1"
+    ],
+    "abilities": [
+        "ABILITY_TORRENT",
+        "ABILITY_NONE",
+        "ABILITY_PROTEAN"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_WATER_SHURIKEN"
+            ],
+            [
+                1,
+                "MOVE_NIGHT_SLASH"
+            ],
+            [
+                1,
+                "MOVE_ROLE_PLAY"
+            ],
+            [
+                1,
+                "MOVE_HAZE"
+            ],
+            [
+                1,
+                "MOVE_POUND"
+            ],
+            [
+                1,
+                "MOVE_WATER_GUN"
+            ],
+            [
+                1,
+                "MOVE_GROWL"
+            ],
+            [
+                1,
+                "MOVE_QUICK_ATTACK"
+            ],
+            [
+                10,
+                "MOVE_LICK"
+            ],
+            [
+                14,
+                "MOVE_WATER_PULSE"
+            ],
+            [
+                19,
+                "MOVE_SMOKE_SCREEN"
+            ],
+            [
+                23,
+                "MOVE_SHADOW_SNEAK"
+            ],
+            [
+                28,
+                "MOVE_SPIKES"
+            ],
+            [
+                33,
+                "MOVE_AERIAL_ACE"
+            ],
+            [
+                42,
+                "MOVE_SUBSTITUTE"
+            ],
+            [
+                49,
+                "MOVE_EXTRASENSORY"
+            ],
+            [
+                56,
+                "MOVE_DOUBLE_TEAM"
+            ],
+            [
+                68,
+                "MOVE_HYDRO_PUMP"
+            ]
+        ],
+        "by_tm": [
+            "TM03",
+            "TM12",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM28",
+            "TM31",
+            "TM32",
+            "TM39",
+            "TM40",
+            "TM42",
+            "TM44",
+            "TM46",
+            "TM54",
+            "TM56",
+            "TM58",
+            "TM68",
+            "TM75",
+            "TM79",
+            "TM80",
+            "TM82",
+            "TM86",
+            "TM89",
+            "TM90",
+            "HM03",
+            "HM07"
+        ],
+        "by_tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ICY_WIND",
+            "MOVE_ICE_PUNCH",
+            "MOVE_HELPING_HAND",
+            "MOVE_GUNK_SHOT",
+            "MOVE_SWIFT"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_FROAKIE",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 59,
+        "weight_pounds": 88.2,
+        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 242,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 242,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 6,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 6,
+        "en": {
+            "name": "GRENINJA",
+            "category": "Ninja Pokémon",
+            "entry_text": [
+                "It appears and vanishes with a\n",
+                "ninja’s grace."
+            ]
+        },
+        "fr": {
+            "name": "AMPHINOBI",
+            "category": "Pokémon Ninja",
+            "entry_text": [
+                "Il transforme des jets d’eau sous\n",
+                "pression en redoutables shuriken."
+            ]
+        },
+        "de": {
+            "name": "QUAJUTSU",
+            "category": "Ninja",
+            "entry_text": [
+                "Kaum hat man es erspäht,\n",
+                "verschwindet es auch schon wieder."
+            ]
+        },
+        "it": {
+            "name": "GRENINJA",
+            "category": "Pokémon Ninja",
+            "entry_text": [
+                "It appears and vanishes with a\n",
+                "ninja’s grace."
+            ]
+        },
+        "es": {
+            "name": "GRENINJA",
+            "category": "Pokémon Ninja",
+            "entry_text": [
+                "Aparece y desaparece de improvisto,\n",
+                "cual ninja."
+            ]
+        },
+        "jp": {
+            "name": "ゲッコウガ",
+            "category": "しのびポケモン",
+            "entry_text": [
+                "にんじゃのように\n",
+                "しんしゅつきぼつ。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

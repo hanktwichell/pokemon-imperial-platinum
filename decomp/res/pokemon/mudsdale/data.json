@@ -1,0 +1,208 @@
+{
+    "base_stats": {
+        "hp": 100,
+        "attack": 125,
+        "defense": 100,
+        "speed": 35,
+        "special_attack": 55,
+        "special_defense": 85
+    },
+    "types": [
+        "TYPE_GROUND",
+        "TYPE_GROUND"
+    ],
+    "catch_rate": 60,
+    "base_exp_reward": 175,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 2,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_LIGHT_CLAY"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_FIELD",
+        "EGG_GROUP_FIELD"
+    ],
+    "abilities": [
+        "ABILITY_OWN_TEMPO",
+        "ABILITY_STAMINA",
+        "ABILITY_INNER_FOCUS"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_DOUBLE_KICK"
+            ],
+            [
+                1,
+                "MOVE_MUD_SLAP"
+            ],
+            [
+                1,
+                "MOVE_ROCK_SMASH"
+            ],
+            [
+                1,
+                "MOVE_IRON_DEFENSE"
+            ],
+            [
+                12,
+                "MOVE_BULLDOZE"
+            ],
+            [
+                16,
+                "MOVE_STOMP"
+            ],
+            [
+                20,
+                "MOVE_STRENGTH"
+            ],
+            [
+                24,
+                "MOVE_COUNTER"
+            ],
+            [
+                28,
+                "MOVE_HIGH_HORSEPOWER"
+            ],
+            [
+                34,
+                "MOVE_HEAVY_SLAM"
+            ],
+            [
+                40,
+                "MOVE_EARTHQUAKE"
+            ],
+            [
+                46,
+                "MOVE_MEGA_KICK"
+            ],
+            [
+                52,
+                "MOVE_SUPERPOWER"
+            ]
+        ],
+        "by_tm": [
+            "TM05",
+            "TM11",
+            "TM15",
+            "TM17",
+            "TM26",
+            "TM37",
+            "TM39",
+            "TM42",
+            "TM44",
+            "TM52",
+            "TM58",
+            "TM68",
+            "TM71",
+            "TM76",
+            "TM80",
+            "TM82",
+            "TM90",
+            "HM04",
+            "HM06"
+        ],
+        "by_tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_SUPERPOWER",
+            "MOVE_IRON_HEAD",
+            "MOVE_ENDEAVOR",
+            "MOVE_EARTH_POWER",
+            "MOVE_IRON_DEFENSE"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_MUDBRAY",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 98,
+        "weight_pounds": 2028.3,
+        "body_shape": "SHAPE_QUADRUPED",
+        "trainer_scale_f": 338,
+        "pokemon_scale_f": 230,
+        "trainer_scale_m": 333,
+        "pokemon_scale_m": 230,
+        "trainer_pos_f": 16,
+        "pokemon_pos_f": 7,
+        "trainer_pos_m": 16,
+        "pokemon_pos_m": 7,
+        "en": {
+            "name": "MUDSDALE",
+            "category": "Draft Horse Pokémon",
+            "entry_text": [
+                "Mudsdale has so much stamina that it\n",
+                "could carry over 10 tons across the\n",
+                "Galar region without rest or sleep."
+            ]
+        },
+        "fr": {
+            "name": "BOURRINOS",
+            "category": "Draft Horse Pokémon",
+            "entry_text": [
+                "Il recouvre ses jambes d’une croûte\n",
+                "de boue, les rendant ainsi plus\n",
+                "dures que la pierre."
+            ]
+        },
+        "de": {
+            "name": "PAMPROSS",
+            "category": "Zugpferd-Pokémon",
+            "entry_text": [
+                "Durch Schlamm werden seine Beine\n",
+                "härter als Stein."
+            ]
+        },
+        "it": {
+            "name": "MUDSDALE",
+            "category": "Pokémon Fortequino",
+            "entry_text": [
+                "Il fango secco che ricopre le sue\n",
+                "zampe è più duro della pietra."
+            ]
+        },
+        "es": {
+            "name": "MUDSDALE",
+            "category": "Draft Horse Pokémon",
+            "entry_text": [
+                "Cuando el lodo que recubre sus patas\n",
+                "se seca, estas se vuelven más duras\n",
+                "que una roca."
+            ]
+        },
+        "jp": {
+            "name": "バンバドロ",
+            "category": "ばんばポケモン",
+            "entry_text": [
+                "なにごとにも　どうじず\n",
+                "ものしずか。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

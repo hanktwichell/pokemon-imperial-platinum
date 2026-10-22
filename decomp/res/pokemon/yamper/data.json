@@ -1,0 +1,206 @@
+{
+    "base_stats": {
+        "hp": 59,
+        "attack": 45,
+        "defense": 50,
+        "speed": 26,
+        "special_attack": 40,
+        "special_defense": 50
+    },
+    "types": [
+        "TYPE_ELECTRIC",
+        "TYPE_ELECTRIC"
+    ],
+    "catch_rate": 255,
+    "base_exp_reward": 54,
+    "ev_yields": {
+        "hp": 1,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 50,
+    "exp_rate": "EXP_RATE_FAST",
+    "egg_groups": [
+        "EGG_GROUP_FIELD",
+        "EGG_GROUP_FIELD"
+    ],
+    "abilities": [
+        "ABILITY_BALL_FETCH",
+        "ABILITY_NONE",
+        "ABILITY_RATTLED"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
+    "icon_palette": 1,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_TACKLE"
+            ],
+            [
+                1,
+                "MOVE_TAIL_WHIP"
+            ],
+            [
+                5,
+                "MOVE_NUZZLE"
+            ],
+            [
+                10,
+                "MOVE_BITE"
+            ],
+            [
+                15,
+                "MOVE_ROAR"
+            ],
+            [
+                20,
+                "MOVE_SPARK"
+            ],
+            [
+                26,
+                "MOVE_CHARM"
+            ],
+            [
+                30,
+                "MOVE_CRUNCH"
+            ],
+            [
+                35,
+                "MOVE_CHARGE"
+            ],
+            [
+                40,
+                "MOVE_WILD_CHARGE"
+            ],
+            [
+                45,
+                "MOVE_PLAY_ROUGH"
+            ]
+        ],
+        "by_tm": [
+            "TM05",
+            "TM17",
+            "TM24",
+            "TM25",
+            "TM28",
+            "TM42",
+            "TM44",
+            "TM45",
+            "TM58",
+            "TM73",
+            "TM82",
+            "TM90"
+        ],
+        "by_tutor": [
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_SAND_ATTACK",
+            "MOVE_DOUBLE_EDGE",
+            "MOVE_HOWL",
+            "MOVE_DISCHARGE",
+            "MOVE_FLAME_CHARGE"
+        ]
+    },
+    "evolutions": [
+        [
+            "EVO_LEVEL",
+            25,
+            "SPECIES_BOLTUND"
+        ]
+    ],
+    "offspring": "SPECIES_YAMPER",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 12,
+        "weight_pounds": 29.8,
+        "body_shape": "SHAPE_QUADRUPED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 502,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 502,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 28,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 28,
+        "en": {
+            "name": "YAMPER",
+            "category": "Puppy Pokémon",
+            "entry_text": [
+                "This gluttonous Pokémon only assists\n",
+                "people with their work because it\n",
+                "wants treats."
+            ]
+        },
+        "fr": {
+            "name": "VOLTOUTOU",
+            "category": "Pokémon Chiot",
+            "entry_text": [
+                "Ce glouton assiste les humains dans\n",
+                "leur travail en échange de\n",
+                "friandises."
+            ]
+        },
+        "de": {
+            "name": "VOLDI",
+            "category": "Welpen-Pokémon",
+            "entry_text": [
+                "Im Austausch gegen Leckerlis hilft\n",
+                "dieser kleine Vielfraß Menschen bei\n",
+                "der Arbeit."
+            ]
+        },
+        "it": {
+            "name": "YAMPER",
+            "category": "Pokémon Cagnolino",
+            "entry_text": [
+                "È un golosone e aiuta gli uomini in\n",
+                "cambio di ghiottonerie."
+            ]
+        },
+        "es": {
+            "name": "YAMPER",
+            "category": "Pokémon Perrito",
+            "entry_text": [
+                "Son muy glotones, por lo que ayudan\n",
+                "a la gente a cambio de comida. Echan\n",
+                "chispas al correr."
+            ]
+        },
+        "jp": {
+            "name": "ワンパチ",
+            "category": "こいぬポケモン",
+            "entry_text": [
+                "おやつに　つられて　ひとの\n",
+                "しごとを　てつだう\n",
+                "くいしんぼう。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

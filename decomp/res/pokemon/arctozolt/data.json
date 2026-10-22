@@ -1,0 +1,214 @@
+{
+    "base_stats": {
+        "hp": 90,
+        "attack": 100,
+        "defense": 90,
+        "speed": 55,
+        "special_attack": 90,
+        "special_defense": 80
+    },
+    "types": [
+        "TYPE_ELECTRIC",
+        "TYPE_ICE"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 177,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 2,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_NO_GENDER",
+    "hatch_cycles": 35,
+    "base_friendship": 50,
+    "exp_rate": "EXP_RATE_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_UNDISCOVERED",
+        "EGG_GROUP_UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_VOLT_ABSORB",
+        "ABILITY_STATIC",
+        "ABILITY_SLUSH_RUSH"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_POWDER_SNOW"
+            ],
+            [
+                1,
+                "MOVE_THUNDER_SHOCK"
+            ],
+            [
+                7,
+                "MOVE_CHARGE"
+            ],
+            [
+                14,
+                "MOVE_ECHOED_VOICE"
+            ],
+            [
+                21,
+                "MOVE_ANCIENT_POWER"
+            ],
+            [
+                28,
+                "MOVE_PLUCK"
+            ],
+            [
+                35,
+                "MOVE_AVALANCHE"
+            ],
+            [
+                42,
+                "MOVE_FREEZE_DRY"
+            ],
+            [
+                49,
+                "MOVE_SLAM"
+            ],
+            [
+                56,
+                "MOVE_DISCHARGE"
+            ],
+            [
+                63,
+                "MOVE_BOLT_BEAK"
+            ],
+            [
+                70,
+                "MOVE_ICICLE_CRASH"
+            ],
+            [
+                77,
+                "MOVE_BLIZZARD"
+            ]
+        ],
+        "by_tm": [
+            "TM07",
+            "TM12",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM23",
+            "TM24",
+            "TM25",
+            "TM39",
+            "TM42",
+            "TM44",
+            "TM58",
+            "TM66",
+            "TM68",
+            "TM71",
+            "TM72",
+            "TM73",
+            "TM80",
+            "TM82",
+            "TM88",
+            "TM90",
+            "HM03"
+        ],
+        "by_tutor": [
+            "MOVE_ICY_WIND",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_ANCIENT_POWER"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_ARCTOZOLT",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 91,
+        "weight_pounds": 330.7,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 358,
+        "pokemon_scale_f": 256,
+        "trainer_scale_m": 333,
+        "pokemon_scale_m": 256,
+        "trainer_pos_f": 15,
+        "pokemon_pos_f": 2,
+        "trainer_pos_m": 15,
+        "pokemon_pos_m": 2,
+        "en": {
+            "name": "ARCTOZOLT",
+            "category": "Fossil Pokémon",
+            "entry_text": [
+                "This Pokémon lived on prehistoric\n",
+                "seashores and was able to preserve\n",
+                "food with the ice on its body."
+            ]
+        },
+        "fr": {
+            "name": "GALVAGLA",
+            "category": "Pokémon Fossile",
+            "entry_text": [
+                "Quand la partie supérieure de son\n",
+                "corps, couverte de glace, frissonne,\n",
+                "il produit de l’électricité."
+            ]
+        },
+        "de": {
+            "name": "LECRYODON",
+            "category": "Fossil-Pokémon",
+            "entry_text": [
+                "In der Urzeit lebte es am Strand und\n",
+                "konnte mit seinem kalten Körper\n",
+                "Futter haltbar machen."
+            ]
+        },
+        "it": {
+            "name": "ARCTOZOLT",
+            "category": "Pokémon Fossile",
+            "entry_text": [
+                "La parte superiore del suo corpo è\n",
+                "ghiacciata e quando trema produce\n",
+                "elettricità."
+            ]
+        },
+        "es": {
+            "name": "ARCTOZOLT",
+            "category": "Pokémon Fósil",
+            "entry_text": [
+                "Antiguamente vivía en el mar y usaba\n",
+                "el hielo del cuerpo para conservar\n",
+                "los alimentos."
+            ]
+        },
+        "jp": {
+            "name": "パッチルドン",
+            "category": "かせきポケモン",
+            "entry_text": [
+                "こおりづけの　じょうはんしんが\n",
+                "ふるえると　でんきが\n",
+                "つくられる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

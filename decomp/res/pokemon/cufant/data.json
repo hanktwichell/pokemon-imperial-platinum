@@ -1,0 +1,221 @@
+{
+    "base_stats": {
+        "hp": 72,
+        "attack": 80,
+        "defense": 49,
+        "speed": 40,
+        "special_attack": 40,
+        "special_defense": 49
+    },
+    "types": [
+        "TYPE_STEEL",
+        "TYPE_STEEL"
+    ],
+    "catch_rate": 190,
+    "base_exp_reward": 66,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 1,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 25,
+    "base_friendship": 50,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_FIELD",
+        "EGG_GROUP_MINERAL"
+    ],
+    "abilities": [
+        "ABILITY_SHEER_FORCE",
+        "ABILITY_NONE",
+        "ABILITY_HEAVY_METAL"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
+    "icon_palette": 2,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_TACKLE"
+            ],
+            [
+                1,
+                "MOVE_GROWL"
+            ],
+            [
+                5,
+                "MOVE_ROLLOUT"
+            ],
+            [
+                10,
+                "MOVE_ROCK_SMASH"
+            ],
+            [
+                15,
+                "MOVE_BULLDOZE"
+            ],
+            [
+                20,
+                "MOVE_STOMP"
+            ],
+            [
+                25,
+                "MOVE_IRON_DEFENSE"
+            ],
+            [
+                30,
+                "MOVE_DIG"
+            ],
+            [
+                35,
+                "MOVE_STRENGTH"
+            ],
+            [
+                40,
+                "MOVE_IRON_HEAD"
+            ],
+            [
+                45,
+                "MOVE_PLAY_ROUGH"
+            ],
+            [
+                50,
+                "MOVE_HIGH_HORSEPOWER"
+            ],
+            [
+                55,
+                "MOVE_SUPERPOWER"
+            ]
+        ],
+        "by_tm": [
+            "TM17",
+            "TM26",
+            "TM28",
+            "TM31",
+            "TM37",
+            "TM39",
+            "TM42",
+            "TM44",
+            "TM56",
+            "TM58",
+            "TM71",
+            "TM76",
+            "TM80",
+            "TM82",
+            "TM87",
+            "TM90",
+            "TM91",
+            "HM04",
+            "HM06"
+        ],
+        "by_tutor": [
+            "MOVE_ROLLOUT",
+            "MOVE_SUPERPOWER",
+            "MOVE_IRON_HEAD",
+            "MOVE_ENDEAVOR",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_EARTH_POWER",
+            "MOVE_IRON_DEFENSE"
+        ],
+        "egg_moves": [
+            "MOVE_WHIRLWIND",
+            "MOVE_SLAM",
+            "MOVE_DOUBLE_EDGE",
+            "MOVE_FISSURE",
+            "MOVE_DEFENSE_CURL",
+            "MOVE_CURSE",
+            "MOVE_SWAGGER",
+            "MOVE_BELCH"
+        ]
+    },
+    "evolutions": [
+        [
+            "EVO_LEVEL",
+            34,
+            "SPECIES_COPPERAJAH"
+        ]
+    ],
+    "offspring": "SPECIES_CUFANT",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 47,
+        "weight_pounds": 220.5,
+        "body_shape": "SHAPE_QUADRUPED",
+        "trainer_scale_f": 256,
+        "pokemon_scale_f": 249,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 249,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 0,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 0,
+        "en": {
+            "name": "CUFANT",
+            "category": "Copperderm Pokémon",
+            "entry_text": [
+                "If a job requires serious strength,\n",
+                "this Pokémon will excel at it."
+            ]
+        },
+        "fr": {
+            "name": "CHARIBARI",
+            "category": "Pokémon Pachycuivre",
+            "entry_text": [
+                "Les travaux physiques, c’est son\n",
+                "affaire."
+            ]
+        },
+        "de": {
+            "name": "KUPFANTI",
+            "category": "Kupferfant-Pokémon",
+            "entry_text": [
+                "Harte Knochenarbeit kann man\n",
+                "problemlos ihm überlassen."
+            ]
+        },
+        "it": {
+            "name": "CUFANT",
+            "category": "Pokémon Bronzofante",
+            "entry_text": [
+                "I lavori pesanti sono il suo pane\n",
+                "quotidiano."
+            ]
+        },
+        "es": {
+            "name": "CUFANT",
+            "category": "Pokémon Broncefante",
+            "entry_text": [
+                "Realiza tareas que requieren de\n",
+                "esfuerzo físico, es su fuerte."
+            ]
+        },
+        "jp": {
+            "name": "ゾウドウ",
+            "category": "どうぞうポケモン",
+            "entry_text": [
+                "ちからしごとなら　おまかせ。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

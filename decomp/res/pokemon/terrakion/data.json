@@ -1,0 +1,218 @@
+{
+    "base_stats": {
+        "hp": 91,
+        "attack": 129,
+        "defense": 90,
+        "speed": 108,
+        "special_attack": 72,
+        "special_defense": 90
+    },
+    "types": [
+        "TYPE_ROCK",
+        "TYPE_FIGHTING"
+    ],
+    "catch_rate": 3,
+    "base_exp_reward": 255,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 3,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_NO_GENDER",
+    "hatch_cycles": 80,
+    "base_friendship": 35,
+    "exp_rate": "EXP_RATE_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_UNDISCOVERED",
+        "EGG_GROUP_UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_JUSTIFIED",
+        "ABILITY_NONE",
+        "ABILITY_NONE"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
+    "icon_palette": 2,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_LEER"
+            ],
+            [
+                1,
+                "MOVE_QUICK_ATTACK"
+            ],
+            [
+                1,
+                "MOVE_HELPING_HAND"
+            ],
+            [
+                1,
+                "MOVE_WORK_UP"
+            ],
+            [
+                7,
+                "MOVE_SMACK_DOWN"
+            ],
+            [
+                14,
+                "MOVE_QUICK_GUARD"
+            ],
+            [
+                21,
+                "MOVE_DOUBLE_KICK"
+            ],
+            [
+                28,
+                "MOVE_RETALIATE"
+            ],
+            [
+                35,
+                "MOVE_ROCK_SLIDE"
+            ],
+            [
+                42,
+                "MOVE_TAKE_DOWN"
+            ],
+            [
+                49,
+                "MOVE_SACRED_SWORD"
+            ],
+            [
+                56,
+                "MOVE_SWORDS_DANCE"
+            ],
+            [
+                63,
+                "MOVE_STONE_EDGE"
+            ],
+            [
+                70,
+                "MOVE_CLOSE_COMBAT"
+            ]
+        ],
+        "by_tm": [
+            "TM04",
+            "TM05",
+            "TM12",
+            "TM15",
+            "TM17",
+            "TM26",
+            "TM31",
+            "TM33",
+            "TM37",
+            "TM39",
+            "TM40",
+            "TM42",
+            "TM44",
+            "TM52",
+            "TM54",
+            "TM58",
+            "TM68",
+            "TM71",
+            "TM75",
+            "TM76",
+            "TM77",
+            "TM80",
+            "TM81",
+            "TM82",
+            "TM84",
+            "TM90"
+        ],
+        "by_tutor": [
+            "MOVE_IRON_HEAD",
+            "MOVE_HELPING_HAND",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_EARTH_POWER",
+            "MOVE_SWIFT"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_TERRAKION",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 75,
+        "weight_pounds": 573.2,
+        "body_shape": "SHAPE_QUADRUPED",
+        "trainer_scale_f": 342,
+        "pokemon_scale_f": 256,
+        "trainer_scale_m": 325,
+        "pokemon_scale_m": 256,
+        "trainer_pos_f": 16,
+        "pokemon_pos_f": 6,
+        "trainer_pos_m": 16,
+        "pokemon_pos_m": 6,
+        "en": {
+            "name": "TERRAKION",
+            "category": "Cavern Pokémon",
+            "entry_text": [
+                "In Unovan legend, Terrakion battled\n",
+                "against humans in an effort to\n",
+                "protect other Pokémon."
+            ]
+        },
+        "fr": {
+            "name": "TERRAKIUM",
+            "category": "Pokémon Grotte",
+            "entry_text": [
+                "Selon une légende d’Unys, Terrakium\n",
+                "se serait jadis dressé contre les\n",
+                "humains pour protéger les Pokémon."
+            ]
+        },
+        "de": {
+            "name": "TERRAKIUM",
+            "category": "Cavern Pokémon",
+            "entry_text": [
+                "Terrakium verfügt über\n",
+                "unvergleichliche Kräfte."
+            ]
+        },
+        "it": {
+            "name": "TERRAKION",
+            "category": "Pokémon Caverna",
+            "entry_text": [
+                "Possiede una forza straordinaria."
+            ]
+        },
+        "es": {
+            "name": "TERRAKION",
+            "category": "Pokémon Gruta",
+            "entry_text": [
+                "Las leyendas de Teselia narran la\n",
+                "lucha que libró contra los humanos\n",
+                "para proteger a los Pokémon."
+            ]
+        },
+        "jp": {
+            "name": "テラキオン",
+            "category": "がんくつポケモン",
+            "entry_text": [
+                "きょだいな　じょうへきを\n",
+                "いちげきで　とっぱするほどの\n",
+                "とっしんりょく。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

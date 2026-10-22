@@ -1,0 +1,222 @@
+{
+    "base_stats": {
+        "hp": 67,
+        "attack": 58,
+        "defense": 57,
+        "speed": 101,
+        "special_attack": 81,
+        "special_defense": 67
+    },
+    "types": [
+        "TYPE_ELECTRIC",
+        "TYPE_FAIRY"
+    ],
+    "catch_rate": 180,
+    "base_exp_reward": 151,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 2,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_FIELD",
+        "EGG_GROUP_FAIRY"
+    ],
+    "abilities": [
+        "ABILITY_CHEEK_POUCH",
+        "ABILITY_PICKUP",
+        "ABILITY_PLUS"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_TAIL_WHIP"
+            ],
+            [
+                1,
+                "MOVE_NUZZLE"
+            ],
+            [
+                5,
+                "MOVE_TACKLE"
+            ],
+            [
+                10,
+                "MOVE_CHARGE"
+            ],
+            [
+                15,
+                "MOVE_THUNDER_SHOCK"
+            ],
+            [
+                20,
+                "MOVE_CHARM"
+            ],
+            [
+                25,
+                "MOVE_PARABOLIC_CHARGE"
+            ],
+            [
+                30,
+                "MOVE_VOLT_SWITCH"
+            ],
+            [
+                35,
+                "MOVE_REST"
+            ],
+            [
+                35,
+                "MOVE_SNORE"
+            ],
+            [
+                40,
+                "MOVE_DISCHARGE"
+            ],
+            [
+                45,
+                "MOVE_PLAY_ROUGH"
+            ],
+            [
+                50,
+                "MOVE_SUPER_FANG"
+            ],
+            [
+                55,
+                "MOVE_ENTRAINMENT"
+            ],
+            [
+                60,
+                "MOVE_THUNDER"
+            ]
+        ],
+        "by_tm": [
+            "TM11",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM18",
+            "TM24",
+            "TM25",
+            "TM28",
+            "TM42",
+            "TM44",
+            "TM46",
+            "TM56",
+            "TM57",
+            "TM58",
+            "TM68",
+            "TM73",
+            "TM82",
+            "TM86",
+            "TM89",
+            "TM90"
+        ],
+        "by_tutor": [
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_SEED_BOMB",
+            "MOVE_MAGNET_RISE",
+            "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_COVET",
+            "MOVE_MAGNET_RISE",
+            "MOVE_TEARFUL_LOOK"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_DEDENNE",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 8,
+        "weight_pounds": 4.9,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 530,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 530,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 32,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 32,
+        "en": {
+            "name": "DEDENNE",
+            "category": "Antenna Pokémon",
+            "entry_text": [
+                "A Dedenne’s whiskers pick up\n",
+                "electrical waves other Dedenne send\n",
+                "out."
+            ]
+        },
+        "fr": {
+            "name": "DEDENNE",
+            "category": "Pokémon Antenne",
+            "entry_text": [
+                "Il capte les ondes émises par ses\n",
+                "congénères avec ses moustaches."
+            ]
+        },
+        "de": {
+            "name": "DEDENNE",
+            "category": "Antennen-Pokémon",
+            "entry_text": [
+                "Mit den Schnurrhaaren empfangen sie\n",
+                "elektrische Wellen von Artgenossen."
+            ]
+        },
+        "it": {
+            "name": "DEDENNE",
+            "category": "Pokémon Antenna",
+            "entry_text": [
+                "Usa i baffi per captare le onde\n",
+                "radio emesse dai suoi simili."
+            ]
+        },
+        "es": {
+            "name": "DEDENNE",
+            "category": "Pokémon Antenas",
+            "entry_text": [
+                "Se infiltra en los hogares para\n",
+                "robar energía de los enchufes."
+            ]
+        },
+        "jp": {
+            "name": "デデンネ",
+            "category": "アンテナポケモン",
+            "entry_text": [
+                "でんきを　うみだす　ちからが\n",
+                "よわいので　コンセントや　ほかの\n",
+                "でんきポケモンから　ぬすむのだ。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

@@ -1,0 +1,213 @@
+{
+    "base_stats": {
+        "hp": 70,
+        "attack": 85,
+        "defense": 70,
+        "speed": 80,
+        "special_attack": 55,
+        "special_defense": 60
+    },
+    "types": [
+        "TYPE_GRASS",
+        "TYPE_GRASS"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 147,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 2,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_12_5",
+    "hatch_cycles": 20,
+    "base_friendship": 50,
+    "exp_rate": "EXP_RATE_MEDIUM_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_FIELD",
+        "EGG_GROUP_GRASS"
+    ],
+    "abilities": [
+        "ABILITY_OVERGROW",
+        "ABILITY_NONE",
+        "ABILITY_GRASSY_SURGE"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
+    "icon_palette": 2,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_DOUBLE_HIT"
+            ],
+            [
+                1,
+                "MOVE_SCRATCH"
+            ],
+            [
+                1,
+                "MOVE_GROWL"
+            ],
+            [
+                1,
+                "MOVE_TAUNT"
+            ],
+            [
+                1,
+                "MOVE_BRANCH_POKE"
+            ],
+            [
+                12,
+                "MOVE_RAZOR_LEAF"
+            ],
+            [
+                19,
+                "MOVE_SCREECH"
+            ],
+            [
+                24,
+                "MOVE_KNOCK_OFF"
+            ],
+            [
+                30,
+                "MOVE_SLAM"
+            ],
+            [
+                36,
+                "MOVE_UPROAR"
+            ],
+            [
+                42,
+                "MOVE_WOOD_HAMMER"
+            ],
+            [
+                48,
+                "MOVE_ENDEAVOR"
+            ]
+        ],
+        "by_tm": [
+            "TM09",
+            "TM11",
+            "TM12",
+            "TM17",
+            "TM19",
+            "TM22",
+            "TM42",
+            "TM44",
+            "TM46",
+            "TM53",
+            "TM54",
+            "TM56",
+            "TM58",
+            "TM60",
+            "TM75",
+            "TM82",
+            "TM86",
+            "TM89",
+            "TM90",
+            "HM04"
+        ],
+        "by_tutor": [
+            "MOVE_ENDEAVOR",
+            "MOVE_SEED_BOMB",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ]
+    },
+    "evolutions": [
+        [
+            "EVO_LEVEL",
+            35,
+            "SPECIES_RILLABOOM"
+        ]
+    ],
+    "offspring": "SPECIES_GROOKEY",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 28,
+        "weight_pounds": 30.9,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 337,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 337,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 22,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 22,
+        "en": {
+            "name": "THWACKEY",
+            "category": "Beat Pokémon",
+            "entry_text": [
+                "The faster a Thwackey can beat out a\n",
+                "rhythm with its two sticks, the more\n",
+                "respect it wins from its peers."
+            ]
+        },
+        "fr": {
+            "name": "BADABOUIN",
+            "category": "Pokémon Percussions",
+            "entry_text": [
+                "Il est tellement concentré à battre\n",
+                "à un rythme effréné que même lorsque\n",
+                "son adversaire tombe K. O."
+            ]
+        },
+        "de": {
+            "name": "CHIMSTIX",
+            "category": "Beat-Pokémon",
+            "entry_text": [
+                "The faster a Thwackey can beat out a\n",
+                "rhythm with its two sticks, the more\n",
+                "respect it wins from its peers."
+            ]
+        },
+        "it": {
+            "name": "THWACKEY",
+            "category": "Pokémon Ritmo",
+            "entry_text": [
+                "The faster a Thwackey can beat out a\n",
+                "rhythm with its two sticks, the more\n",
+                "respect it wins from its peers."
+            ]
+        },
+        "es": {
+            "name": "THWACKEY",
+            "category": "Pokémon Ritmo",
+            "entry_text": [
+                "The faster a Thwackey can beat out a\n",
+                "rhythm with its two sticks, the more\n",
+                "respect it wins from its peers."
+            ]
+        },
+        "jp": {
+            "name": "THWACKEY",
+            "category": "Beat Pokémon",
+            "entry_text": [
+                "The faster a Thwackey can beat out a\n",
+                "rhythm with its two sticks, the more\n",
+                "respect it wins from its peers."
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

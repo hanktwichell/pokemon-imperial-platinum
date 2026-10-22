@@ -111,11 +111,8 @@
         ]
     },
     "evolutions": [
-        [
-            "EVO_LEVEL",
-            20,
-            "SPECIES_QUAGSIRE"
-        ]
+        [ "EVO_LEVEL", 20, "SPECIES_QUAGSIRE" ],
+        [ "EVO_USE_ITEM", "ITEM_DUSK_STONE", "SPECIES_CLODSIRE" ]
     ],
     "offspring": "SPECIES_WOOPER",
     "footprint": {

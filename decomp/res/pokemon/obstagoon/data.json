@@ -1,0 +1,250 @@
+{
+    "base_stats": {
+        "hp": 93,
+        "attack": 90,
+        "defense": 101,
+        "speed": 95,
+        "special_attack": 60,
+        "special_defense": 81
+    },
+    "types": [
+        "TYPE_DARK",
+        "TYPE_NORMAL"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 255,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 3,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 15,
+    "base_friendship": 50,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_FIELD",
+        "EGG_GROUP_FIELD"
+    ],
+    "abilities": [
+        "ABILITY_RECKLESS",
+        "ABILITY_GUTS",
+        "ABILITY_DEFIANT"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_OBSTRUCT"
+            ],
+            [
+                1,
+                "MOVE_CROSS_CHOP"
+            ],
+            [
+                1,
+                "MOVE_SUBMISSION"
+            ],
+            [
+                1,
+                "MOVE_NIGHT_SLASH"
+            ],
+            [
+                1,
+                "MOVE_SWITCHEROO"
+            ],
+            [
+                1,
+                "MOVE_PIN_MISSILE"
+            ],
+            [
+                1,
+                "MOVE_BABY_DOLL_EYES"
+            ],
+            [
+                1,
+                "MOVE_TACKLE"
+            ],
+            [
+                1,
+                "MOVE_LEER"
+            ],
+            [
+                1,
+                "MOVE_SAND_ATTACK"
+            ],
+            [
+                1,
+                "MOVE_LICK"
+            ],
+            [
+                9,
+                "MOVE_SNARL"
+            ],
+            [
+                12,
+                "MOVE_HEADBUTT"
+            ],
+            [
+                15,
+                "MOVE_HONE_CLAWS"
+            ],
+            [
+                18,
+                "MOVE_FURY_SWIPES"
+            ],
+            [
+                23,
+                "MOVE_REST"
+            ],
+            [
+                28,
+                "MOVE_TAKE_DOWN"
+            ],
+            [
+                35,
+                "MOVE_SCARY_FACE"
+            ],
+            [
+                42,
+                "MOVE_COUNTER"
+            ],
+            [
+                49,
+                "MOVE_TAUNT"
+            ],
+            [
+                56,
+                "MOVE_DOUBLE_EDGE"
+            ]
+        ],
+        "by_tm": [
+            "TM08",
+            "TM11",
+            "TM12",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM23",
+            "TM24",
+            "TM25",
+            "TM28",
+            "TM30",
+            "TM31",
+            "TM42",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM56",
+            "TM58",
+            "TM65",
+            "TM66",
+            "TM68",
+            "TM73",
+            "TM81",
+            "TM82",
+            "TM86",
+            "TM90",
+            "HM03"
+        ],
+        "by_tutor": [
+            "MOVE_ICY_WIND",
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_ICE_PUNCH",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_GUNK_SHOT",
+            "MOVE_SEED_BOMB",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_TRICK",
+            "MOVE_SWIFT"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_ZIGZAGOON",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 63,
+        "weight_pounds": 101.4,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 298,
+        "pokemon_scale_f": 224,
+        "trainer_scale_m": 292,
+        "pokemon_scale_m": 224,
+        "trainer_pos_f": 7,
+        "pokemon_pos_f": 1,
+        "trainer_pos_m": 6,
+        "pokemon_pos_m": 1,
+        "en": {
+            "name": "OBSTAGOON",
+            "category": "Blocking Pokémon",
+            "entry_text": [
+                "It evolved after experiencing\n",
+                "numerous fights."
+            ]
+        },
+        "fr": {
+            "name": "IXON",
+            "category": "Pokémon Barrage",
+            "entry_text": [
+                "Il possède une puissance vocale\n",
+                "remarquable."
+            ]
+        },
+        "de": {
+            "name": "BARRIKADAX",
+            "category": "Barrikaden-Pokémon",
+            "entry_text": [
+                "Durch das Austragen unzähliger\n",
+                "Kämpfe hat es sich entwickelt."
+            ]
+        },
+        "it": {
+            "name": "OBSTAGOON",
+            "category": "Pokémon Bloccaggio",
+            "entry_text": [
+                "Si è evoluto a forza di lottare."
+            ]
+        },
+        "es": {
+            "name": "OBSTAGOON",
+            "category": "Pokémon Bloqueador",
+            "entry_text": [
+                "Evoluciona tras haber librado\n",
+                "numerosas peleas."
+            ]
+        },
+        "jp": {
+            "name": "タチフサグマ",
+            "category": "ていしポケモン",
+            "entry_text": [
+                "ケンカを　くりかえし　しんか。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

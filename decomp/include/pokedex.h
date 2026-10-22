@@ -28,7 +28,6 @@ typedef struct Pokedex {
     u8 burmyFormsSeen;
     u8 wormadamFormsSeen;
     u8 unownFormsSeen[UNOWN_FORM_COUNT];
-    u8 recordedLanguages[MAX_SPECIES + 1];
     u8 canDetectForms;
     u8 canDetectLanguages;
     u8 pokedexObtained;

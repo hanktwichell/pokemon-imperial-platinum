@@ -1,0 +1,206 @@
+{
+    "base_stats": {
+        "hp": 40,
+        "attack": 45,
+        "defense": 40,
+        "speed": 84,
+        "special_attack": 55,
+        "special_defense": 40
+    },
+    "types": [
+        "TYPE_BUG",
+        "TYPE_FAIRY"
+    ],
+    "catch_rate": 190,
+    "base_exp_reward": 61,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 1,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_HONEY"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_BUG",
+        "EGG_GROUP_FAIRY"
+    ],
+    "abilities": [
+        "ABILITY_HONEY_GATHER",
+        "ABILITY_SHIELD_DUST",
+        "ABILITY_SWEET_VEIL"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
+    "icon_palette": 1,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_ABSORB"
+            ],
+            [
+                1,
+                "MOVE_FAIRY_WIND"
+            ],
+            [
+                6,
+                "MOVE_STUN_SPORE"
+            ],
+            [
+                12,
+                "MOVE_SWEET_SCENT"
+            ],
+            [
+                18,
+                "MOVE_DRAINING_KISS"
+            ],
+            [
+                24,
+                "MOVE_STRUGGLE_BUG"
+            ],
+            [
+                30,
+                "MOVE_COVET"
+            ],
+            [
+                36,
+                "MOVE_SWITCHEROO"
+            ],
+            [
+                42,
+                "MOVE_DAZZLING_GLEAM"
+            ],
+            [
+                48,
+                "MOVE_BUG_BUZZ"
+            ],
+            [
+                54,
+                "MOVE_QUIVER_DANCE"
+            ]
+        ],
+        "by_tm": [
+            "TM04",
+            "TM11",
+            "TM16",
+            "TM17",
+            "TM29",
+            "TM33",
+            "TM42",
+            "TM44",
+            "TM46",
+            "TM48",
+            "TM53",
+            "TM58",
+            "TM77",
+            "TM82",
+            "TM86",
+            "TM89",
+            "TM90"
+        ],
+        "by_tutor": [
+            "MOVE_HELPING_HAND",
+            "MOVE_TRICK",
+            "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_STICKY_WEB",
+            "MOVE_MOONBLAST",
+            "MOVE_AROMATIC_MIST"
+        ]
+    },
+    "evolutions": [
+        [
+            "EVO_LEVEL",
+            25,
+            "SPECIES_RIBOMBEE"
+        ]
+    ],
+    "offspring": "SPECIES_CUTIEFLY",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 4,
+        "weight_pounds": 0.4,
+        "body_shape": "SHAPE_INSECTOID",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 530,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 530,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 32,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 32,
+        "en": {
+            "name": "CUTIEFLY",
+            "category": "Bee Fly Pokémon",
+            "entry_text": [
+                "An opponent’s aura can tell Cutiefly\n",
+                "what that opponent’s next move will\n",
+                "be."
+            ]
+        },
+        "fr": {
+            "name": "BOMBYDOU",
+            "category": "Pokémon Bombyle",
+            "entry_text": [
+                "Il perçoit l’aura de son ennemi et\n",
+                "anticipe ses mouvements."
+            ]
+        },
+        "de": {
+            "name": "WOMMEL",
+            "category": "Bee Fly Pokémon",
+            "entry_text": [
+                "Es nimmt die Aura seiner Feinde wahr\n",
+                "und erahnt ihren nächsten Zug."
+            ]
+        },
+        "it": {
+            "name": "CUTIEFLY",
+            "category": "Pokémon Bombilide",
+            "entry_text": [
+                "Prevede la prossima mossa del nemico\n",
+                "percependone l’aura."
+            ]
+        },
+        "es": {
+            "name": "CUTIEFLY",
+            "category": "Pokémon Mosca Abeja",
+            "entry_text": [
+                "Le fascinan el néctar y el polen.\n",
+                "Suele revolotear alrededor de los\n",
+                "Gossifleur, atraído por su polen."
+            ]
+        },
+        "jp": {
+            "name": "CUTIEFLY",
+            "category": "ツリアブポケモン",
+            "entry_text": [
+                "An opponent’s aura can tell Cutiefly\n",
+                "what that opponent’s next move will\n",
+                "be."
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

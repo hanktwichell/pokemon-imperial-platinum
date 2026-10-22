@@ -1,0 +1,221 @@
+{
+    "base_stats": {
+        "hp": 65,
+        "attack": 55,
+        "defense": 55,
+        "speed": 78,
+        "special_attack": 45,
+        "special_defense": 82
+    },
+    "types": [
+        "TYPE_FAIRY",
+        "TYPE_STEEL"
+    ],
+    "catch_rate": 90,
+    "base_exp_reward": 133,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 2
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_ONLY",
+    "hatch_cycles": 20,
+    "base_friendship": 50,
+    "exp_rate": "EXP_RATE_MEDIUM_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_FAIRY",
+        "EGG_GROUP_FAIRY"
+    ],
+    "abilities": [
+        "ABILITY_MOLD_BREAKER",
+        "ABILITY_OWN_TEMPO",
+        "ABILITY_PICKPOCKET"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PINK",
+    "flip_sprite": false,
+    "icon_palette": 2,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_FAIRY_WIND"
+            ],
+            [
+                1,
+                "MOVE_ASTONISH"
+            ],
+            [
+                5,
+                "MOVE_BABY_DOLL_EYES"
+            ],
+            [
+                8,
+                "MOVE_METAL_CLAW"
+            ],
+            [
+                11,
+                "MOVE_COVET"
+            ],
+            [
+                14,
+                "MOVE_ROCK_SMASH"
+            ],
+            [
+                17,
+                "MOVE_DRAINING_KISS"
+            ],
+            [
+                21,
+                "MOVE_SWEET_KISS"
+            ],
+            [
+                24,
+                "MOVE_BRUTAL_SWING"
+            ],
+            [
+                27,
+                "MOVE_SLAM"
+            ],
+            [
+                31,
+                "MOVE_FLASH_CANNON"
+            ],
+            [
+                35,
+                "MOVE_PLAY_ROUGH"
+            ],
+            [
+                39,
+                "MOVE_FAKE_OUT"
+            ],
+            [
+                43,
+                "MOVE_FLATTER"
+            ],
+            [
+                47,
+                "MOVE_SKITTER_SMACK"
+            ],
+            [
+                52,
+                "MOVE_KNOCK_OFF"
+            ]
+        ],
+        "by_tm": [
+            "TM16",
+            "TM17",
+            "TM31",
+            "TM33",
+            "TM39",
+            "TM42",
+            "TM44",
+            "TM46",
+            "TM48",
+            "TM56",
+            "TM58",
+            "TM71",
+            "TM73",
+            "TM75",
+            "TM76",
+            "TM80",
+            "TM82",
+            "TM90",
+            "TM91",
+            "HM06"
+        ],
+        "by_tutor": [
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_KNOCK_OFF"
+        ]
+    },
+    "evolutions": [
+        [
+            "EVO_LEVEL",
+            38,
+            "SPECIES_TINKATON"
+        ]
+    ],
+    "offspring": "SPECIES_TINKATINK",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 28,
+        "weight_pounds": 130.3,
+        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 337,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 337,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 22,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 22,
+        "en": {
+            "name": "TINKATUFF",
+            "category": "Hammer Pokémon",
+            "entry_text": [
+                "These Pokémon make their homes in\n",
+                "piles of scrap metal."
+            ]
+        },
+        "fr": {
+            "name": "FORGELLA",
+            "category": "Marteau",
+            "entry_text": [
+                "These Pokémon make their homes in\n",
+                "piles of scrap metal."
+            ]
+        },
+        "de": {
+            "name": "TAFFORGITA",
+            "category": "Hammer",
+            "entry_text": [
+                "These Pokémon make their homes in\n",
+                "piles of scrap metal."
+            ]
+        },
+        "it": {
+            "name": "TINKATUFF",
+            "category": "Hammer Pokémon",
+            "entry_text": [
+                "These Pokémon make their homes in\n",
+                "piles of scrap metal."
+            ]
+        },
+        "es": {
+            "name": "TINKATUFF",
+            "category": "Hammer Pokémon",
+            "entry_text": [
+                "These Pokémon make their homes in\n",
+                "piles of scrap metal."
+            ]
+        },
+        "jp": {
+            "name": "ナカヌチャン",
+            "category": "Hammer Pokémon",
+            "entry_text": [
+                "These Pokémon make their homes in\n",
+                "piles of scrap metal."
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

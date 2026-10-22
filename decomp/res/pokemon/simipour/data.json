@@ -1,0 +1,190 @@
+{
+    "base_stats": {
+        "hp": 75,
+        "attack": 98,
+        "defense": 63,
+        "speed": 101,
+        "special_attack": 98,
+        "special_defense": 63
+    },
+    "types": [
+        "TYPE_WATER",
+        "TYPE_WATER"
+    ],
+    "catch_rate": 75,
+    "base_exp_reward": 174,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 2,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_ORAN_BERRY",
+        "rare": "ITEM_RINDO_BERRY"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_12_5",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_FIELD",
+        "EGG_GROUP_FIELD"
+    ],
+    "abilities": [
+        "ABILITY_GLUTTONY",
+        "ABILITY_NONE",
+        "ABILITY_TORRENT"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_LEER"
+            ],
+            [
+                1,
+                "MOVE_LICK"
+            ],
+            [
+                1,
+                "MOVE_FURY_SWIPES"
+            ],
+            [
+                1,
+                "MOVE_SCALD"
+            ]
+        ],
+        "by_tm": [
+            "TM01",
+            "TM03",
+            "TM06",
+            "TM07",
+            "TM10",
+            "TM12",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM21",
+            "TM23",
+            "TM27",
+            "TM31",
+            "TM32",
+            "TM39",
+            "TM41",
+            "TM42",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM52",
+            "TM56",
+            "TM65",
+            "TM66",
+            "TM67",
+            "TM68",
+            "TM80",
+            "TM82",
+            "TM86",
+            "TM87",
+            "TM90",
+            "HM03",
+            "HM07"
+        ],
+        "by_tutor": [
+            "MOVE_ICY_WIND",
+            "MOVE_SUPERPOWER",
+            "MOVE_ICE_PUNCH",
+            "MOVE_AQUA_TAIL",
+            "MOVE_GASTRO_ACID",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_GUNK_SHOT",
+            "MOVE_KNOCK_OFF",
+            "MOVE_UPROAR"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_PANPOUR",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 39,
+        "weight_pounds": 63.9,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 287,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 287,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 17,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 17,
+        "en": {
+            "name": "SIMIPOUR",
+            "category": "Geyser Pokémon",
+            "entry_text": [
+                "It prefers places with clean water."
+            ]
+        },
+        "fr": {
+            "name": "FLOTOUTAN",
+            "category": "Pokémon Drainage",
+            "entry_text": [
+                "Il aime les endroits où l’eau est\n",
+                "pure. Il se ravitaille en eau en\n",
+                "l’aspirant avec sa queue."
+            ]
+        },
+        "de": {
+            "name": "SODACHITA",
+            "category": "Drainage",
+            "entry_text": [
+                "Hält sich bevorzugt in reinen\n",
+                "Gewässern auf."
+            ]
+        },
+        "it": {
+            "name": "SIMIPOUR",
+            "category": "Pokémon Spruzzacqua",
+            "entry_text": [
+                "Predilige i luoghi dove l’acqua è\n",
+                "pura."
+            ]
+        },
+        "es": {
+            "name": "SIMIPOUR",
+            "category": "Pokémon Drenaje",
+            "entry_text": [
+                "Le encantan los lugares con agua\n",
+                "limpia."
+            ]
+        },
+        "jp": {
+            "name": "SIMIPOUR",
+            "category": "ほうすいポケモン",
+            "entry_text": [
+                "みずが　きれいな　ばしょを\n",
+                "このむ。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

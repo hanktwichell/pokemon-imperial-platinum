@@ -1,0 +1,221 @@
+{
+    "base_stats": {
+        "hp": 50,
+        "attack": 100,
+        "defense": 150,
+        "speed": 50,
+        "special_attack": 100,
+        "special_defense": 150
+    },
+    "types": [
+        "TYPE_ROCK",
+        "TYPE_FAIRY"
+    ],
+    "catch_rate": 3,
+    "base_exp_reward": 255,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 1,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 2
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_NO_GENDER",
+    "hatch_cycles": 25,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_UNDISCOVERED",
+        "EGG_GROUP_UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_CLEAR_BODY",
+        "ABILITY_NONE",
+        "ABILITY_NONE"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PINK",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_TACKLE"
+            ],
+            [
+                1,
+                "MOVE_HARDEN"
+            ],
+            [
+                1,
+                "MOVE_DIAMOND_STORM"
+            ],
+            [
+                7,
+                "MOVE_GUARD_SPLIT"
+            ],
+            [
+                14,
+                "MOVE_SMACK_DOWN"
+            ],
+            [
+                21,
+                "MOVE_FLAIL"
+            ],
+            [
+                28,
+                "MOVE_ANCIENT_POWER"
+            ],
+            [
+                35,
+                "MOVE_ROCK_POLISH"
+            ],
+            [
+                42,
+                "MOVE_LIGHT_SCREEN"
+            ],
+            [
+                49,
+                "MOVE_ROCK_SLIDE"
+            ],
+            [
+                56,
+                "MOVE_SKILL_SWAP"
+            ],
+            [
+                63,
+                "MOVE_POWER_GEM"
+            ],
+            [
+                70,
+                "MOVE_STEALTH_ROCK"
+            ],
+            [
+                77,
+                "MOVE_MOONBLAST"
+            ],
+            [
+                84,
+                "MOVE_STONE_EDGE"
+            ]
+        ],
+        "by_tm": [
+            "TM04",
+            "TM11",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM18",
+            "TM29",
+            "TM33",
+            "TM37",
+            "TM39",
+            "TM42",
+            "TM44",
+            "TM48",
+            "TM58",
+            "TM68",
+            "TM69",
+            "TM71",
+            "TM74",
+            "TM76",
+            "TM77",
+            "TM80",
+            "TM82",
+            "TM90",
+            "TM91",
+            "TM92"
+        ],
+        "by_tutor": [
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_ANCIENT_POWER",
+            "MOVE_EARTH_POWER",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_SWIFT"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_DIANCIE",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 28,
+        "weight_pounds": 19.4,
+        "body_shape": "SHAPE_HEAD_ARMS",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 337,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 337,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 22,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 22,
+        "en": {
+            "name": "DIANCIE",
+            "category": "Jewel Pokémon",
+            "entry_text": [
+                "It can instantly create many\n",
+                "diamonds by compressing the carbon\n",
+                "in the air between its hands."
+            ]
+        },
+        "fr": {
+            "name": "DIANCIE",
+            "category": "Pokémon Joyau",
+            "entry_text": [
+                "Ce Pokémon est une mutation\n",
+                "spontanée de Strassie."
+            ]
+        },
+        "de": {
+            "name": "DIANCIE",
+            "category": "Edelstein-Pokémon",
+            "entry_text": [
+                "Dieses Pokémon ist eine Mutation von\n",
+                "Rocara."
+            ]
+        },
+        "it": {
+            "name": "DIANCIE",
+            "category": "Pokémon Gemma",
+            "entry_text": [
+                "Questo Pokémon è una mutazione\n",
+                "inaspettata di Carbink."
+            ]
+        },
+        "es": {
+            "name": "DIANCIE",
+            "category": "Pokémon Joya",
+            "entry_text": [
+                "Es una transformación súbita de\n",
+                "Carbink."
+            ]
+        },
+        "jp": {
+            "name": "DIANCIE",
+            "category": "ほうせきポケモン",
+            "entry_text": [
+                "It can instantly create many\n",
+                "diamonds by compressing the carbon\n",
+                "in the air between its hands."
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}
