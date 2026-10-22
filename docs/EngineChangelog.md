@@ -4,6 +4,34 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## 12b (part 2) — doubles AI: spread moves get credit for hitting both foes
+
+- Each move is scored against one target at a time, so a spread move (Heat Wave, Rock Slide, Earthquake…) got no
+  credit for also hitting the other foe. New AI command `LoadOtherFoeDamagePercent` estimates that second hit, and
+  `TagStrategy_CheckOtherFoe` scores it: knocks it out +2, a quarter of its HP or more +1, and −2 if the other foe
+  absorbs the move's type (Flash Fire, Water Absorb…).
+- `LoadPartnerDamagePercent` and the new command share one estimate (`AI_SpreadDamagePercent`, `AI_MoveDealsDamage`).
+- Verified in the test build with `log_ai_partner_damage.py --other-foe` (`docs/AIReview.md`). The partner check
+  (#1) reads as before.
+
+## 12b (part 1) — doubles AI: moves that hit its own partner
+
+- In double battles, the AI now weighs every damaging move that also hits its partner (any move aimed at all
+  adjacent Pokémon) by how much of the partner's HP it would take.
+  - The estimate uses the game's damage calc, so type matchups, abilities and HP all count.
+  - Platinum checked only Earthquake, Magnitude, Discharge, Lava Plume and Surf, by name and by the partner's type.
+    Explosion and every Gen V+ ally-hitting move weren't checked at all.
+  - Scoring: partner unhurt (immune or absorbs) +2, knocked out −10, half or more −5, a quarter or more −3,
+    less −1.
+- New AI script command `LoadPartnerDamagePercent` (`src/battle/trainer_ai/trainer_ai.c`, `asm/macros/aicmd.inc`).
+  Platinum's five by-name handlers are removed from `script.s`, which also fixes their known bugs: Discharge next to
+  a Ground-type partner, Surf next to Rock types, and a lone Pokémon getting −3 for Earthquake.
+- Gen V+ immunities (Sap Sipper, Earth Eater, Telepathy…) are added to the check as item 11 gives those abilities
+  their effects.
+- Verified in the test build with `tools/test/log_ai_partner_damage.py`: Earthquake reads 0% next to a Flying
+  partner, Surf 0% next to Water Absorb, and super-effective, neutral and resisted hits scale as expected. A doubles
+  turn plays normally. The trainer checker and `boot_smoke.py` pass. Reference: `docs/AIReview.md`.
+
 ## E8 — Mega Evolution and Primal Reversion (in progress)
 
 - **The 99 Mega and Primal forms exist as data** (step 1). `tools/engine/gen_forms.py` reads `data/megas.csv` and
@@ -117,7 +145,7 @@ Poké Ball per Pokémon, as optional fields in the trainer JSON. Reference: `doc
 - **Packer checks** (`tools/dataproc/src/trainerproc.c`): IVs 0–31; EVs at most 255 per stat and 510 in total; gender
   `"male"`/`"female"`; ball item IDs below 256.
 - **Prize money** reads the new layout too (`BattleScript_CalcPrizeMoney`).
-- **Test trainer:** `TRAINER_SOVEREIGN_TEST` ("Ace Trainer Twich"), added at the end of the trainer list with the
+- **Test trainer:** `TRAINER_SOVEREIGN_TEST` ("Ace Trainer Henry"), added at the end of the trainer list with the
   unused flag after the last trainer flag. Its team is the developer team (`docs/DeveloperBattle.md`) at Lv. 100 in a
   double battle, every Pokémon in a Luxury Ball (owner), with every held item from the owner's sets (E7's Charizardite Y, Blue Orb and Assault Vest included; Mega Evolution and Primal Reversion come with E8). The test build's SELECT+R now battles
   it instead of the Route 209 rival.

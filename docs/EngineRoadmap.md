@@ -73,6 +73,7 @@ Estimates are in working sessions (about 5 hours each). Runtime checks use the t
 | 16 | T2 | **Developer final battle** (owner request): Red-style hidden double battle, custom team and trainer, with a **custom AI** written for this fight. Team received; Lv. 100 at Spear Pillar; leads Charizard-Y + Venusaur; custom AI that switches weather setters to control the weather (`DeveloperBattle.md`). Waiting on trainer name/class, text and sprites | team in | 1–2 | battle playable; custom AI tested |
 | 17 | E12 | **Graphics.** Convert sprites, add fronts as sourced, real icons | waiting on art | 2–4 | `SpriteChecklist.xlsx` all green |
 | 18 | — | **Playtest pass** (automated with the test build, then the owner's playthrough) | | 1–2 | no blockers |
+| 19 | — | **Release:** `.xdelta` patches for Platinum (US) Rev 1 ("4997") and Rev 0 ("3541") from `tools/build/make_release_patch.sh`, like Renegade's | script ✅ | — | each patch round-trips to the built ROM |
 
 **Total remaining (2026-10-22, evening): about 26–50 sessions.** That's ≈3–6 weeks with two Claude sessions working
 in parallel at one or two sessions a day each. It's higher than the earlier 25–40 because the all-forms rule (FM, 4–8),

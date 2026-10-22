@@ -114,6 +114,8 @@ ScriptCommand(AICMD_CHECKIFHIGHESTDAMAGEWITHPARTNER, AICmd_CheckIfHighestDamageW
 ScriptCommand(AICMD_IFBATTLERFAINTED,                AICmd_IfBattlerFainted)
 ScriptCommand(AICMD_IFBATTLERNOTFAINTED,             AICmd_IfBattlerNotFainted)
 ScriptCommand(AICMD_LOADABILITY,                     AICmd_LoadAbility)
+ScriptCommand(AICMD_LOADPARTNERDAMAGEPERCENT,         AICmd_LoadPartnerDamagePercent) // Sovereign (12b)
+ScriptCommand(AICMD_LOADOTHERFOEDAMAGEPERCENT,        AICmd_LoadOtherFoeDamagePercent) // Sovereign (12b)
 
 // clang-format on
 

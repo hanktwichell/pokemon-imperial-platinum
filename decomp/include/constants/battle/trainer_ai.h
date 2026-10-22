@@ -52,4 +52,12 @@
 #define CHECK_LOWER_THAN_TARGET  1
 #define CHECK_EQUAL_TO_TARGET    2
 
+// Sovereign (12b): LoadPartnerDamagePercent's result when the current move doesn't hit the attacker's partner.
+#define AI_PARTNER_NOT_HIT 255
+
+// Sovereign (12b): LoadOtherFoeDamagePercent's results when the current move doesn't hit a second foe, or the second
+// foe absorbs its type.
+#define AI_SPREAD_NOT_HIT  255
+#define AI_SPREAD_ABSORBED 254
+
 #endif

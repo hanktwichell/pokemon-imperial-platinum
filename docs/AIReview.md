@@ -32,9 +32,9 @@ opponent for checking these in game.
 
 | # | Area | What happens now | Why it matters | Fix | Status |
 |---|---|---|---|---|---|
-| 1 | Moves that also hit the partner | Only **Earthquake and Magnitude** are checked, by name. Surf, Discharge, Lava Plume, Explosion/Self-Destruct and the Gen V+ ones (Bulldoze, Sludge Wave, Boomburst, Petal Blizzard, Searing Shot, Parabolic Charge…) are scored as if the partner weren't there | the AI can knock out or badly hurt its own partner (e.g. Surf next to a Fire type) | decide by the move's range (`RANGE_ALL_ADJACENT`), not its name. Estimate the damage to the partner with the same damage formula, including immunities from type and ability (Levitate, Water Absorb/Storm Drain, Volt Absorb/Lightning Rod/Motor Drive, Flash Fire, Earth Eater, Telepathy…). Penalise by how much of the partner's HP it costs, heavily if it would knock the partner out, and reward a partner immunity | 🔧 |
-| 2 | Earthquake handler details | it doesn't check that the partner is alive, so a lone Pokémon gets −3 for Earthquake. Its "weak to Ground" list (Fire, Electric, Poison, Rock) misses Steel and ignores dual types and HP | wrong penalties in both directions | replaced by #1 | 🔧 |
-| 3 | Spread moves vs. two foes | each target is scored separately, so a spread move gets no credit for hitting both foes (its damage is already ×0.75 per foe) | single-target moves look better than they are against two foes | when both foes are alive and the spread move does real damage to both, add a small bonus | 🔧 |
+| 1 | Moves that also hit the partner | Platinum checked only five moves by name (Earthquake, Magnitude, Discharge, Lava Plume, Surf) and judged the partner by type alone. Explosion/Self-Destruct and every Gen V+ ally-hitting move (Bulldoze, Sludge Wave, Boomburst, Petal Blizzard, Searing Shot, Parabolic Charge…) were scored as if the partner weren't there | the AI could knock out or badly hurt its own partner | **done:** new AI command `LoadPartnerDamagePercent` (`trainer_ai.c`). Any damaging move aimed at every adjacent Pokémon is estimated against the partner with the same damage calc, at the highest roll. Immunities come from the type chart (Levitate, Magnet Rise, Wonder Guard) and from Volt Absorb, Motor Drive, Water Absorb, Dry Skin and Flash Fire. `TagStrategy_CheckSpecialScoring` then scores: partner unhurt +2, knocked out −10, ≥50% −5, ≥25% −3, less −1. The five by-name handlers are removed | ✅ |
+| 2 | Earthquake handler details | it doesn't check that the partner is alive, so a lone Pokémon gets −3 for Earthquake. Its "weak to Ground" list (Fire, Electric, Poison, Rock) misses Steel and ignores dual types and HP | wrong penalties in both directions | replaced by #1 (it checks that the partner is alive, and uses real damage, so Steel types, dual types and HP count) | ✅ |
+| 3 | Spread moves vs. two foes | each target is scored separately, so a spread move gets no credit for hitting both foes (its damage is already ×0.75 per foe) | single-target moves look better than they are against two foes | **done:** new AI command `LoadOtherFoeDamagePercent` estimates the spread move's hit on the other foe (same damage calc, highest roll). `TagStrategy_CheckOtherFoe` scores it: other foe knocked out +2, ≥25% +1, absorbs the type (heals or gets a boost) −2 | ✅ |
 | 4 | Gen V+ absorbing abilities | the basic immunity check knows Platinum's abilities only: Volt Absorb, Water Absorb, Flash Fire, Wonder Guard, Levitate, Dry Skin, Motor Drive | the AI attacks into Storm Drain, Lightning Rod, Sap Sipper, Earth Eater, Well-Baked Body and similar, which do nothing or boost the foe (these abilities' effects come with item 11) | add them to the immunity check as each ability's effect is built | 🔧 |
 | 5 | Redirection | single-target Electric and Water moves aimed at a foe whose partner has Lightning Rod or Storm Drain get redirected (Gen V+) | wasted moves in doubles | penalise them when the target's partner redirects that type | 🔧 (with #4) |
 | 6 | Moves that can't be selected | Champions rules make Fake Out selectable only on the first turn (`CHECK_INVALID_FIRST_TURN`) | if the AI still picks it later, it wastes a turn | checked: the AI drops every move the player couldn't select (`TrainerAI_Init` filters with `CHECK_INVALID_ALL`, which includes Sovereign's first-turn check), so it never picks Fake Out after the first turn | ➖ |
@@ -44,9 +44,28 @@ opponent for checking these in game.
 
 ## Order of work
 
-1. #1–#2 (partner safety), the largest real problem. (#6 checked: nothing to fix.)
-2. #3 (spread credit), then #4–#5 with item 11's ability effects.
+1. ✅ #1–#2 (partner safety). (#6 checked: nothing to fix.)
+2. ✅ #3 (spread credit). Then #4–#5 with item 11's ability effects.
 3. #8, then #7 (with T2) and #9 (with E8).
 
 Each fix gets a scenario in the test build. The developer team has Heat Wave and Rock Slide as spread moves, Water
 Spout and Origin Pulse with Kyogre, and Venusaur/Charizard sharing the field.
+
+## Verification (#1–#2)
+
+`tools/test/log_ai_partner_damage.py` logs the AI's partner estimate in game. Lead Garchomp (Lv. 100) knows
+Earthquake, Surf, Discharge and Lava Plume:
+
+| Partner | Earthquake | Surf | Discharge | Lava Plume |
+|---|---|---|---|---|
+| Charizard (Flying, Fire) | **0%** (immune) | 33% (×2) | 29% (×2) | 7% (resisted) |
+| Vaporeon (Water Absorb) | 30% | **0%** (absorbed) | 17% | 4% (resisted) |
+
+Moves that hit only the opponents (Heat Wave, Hurricane…) read as not hitting the partner.
+
+## Verification (#3)
+
+`log_ai_partner_damage.py --other-foe`: the developer team's Lv. 100 Mega Charizard against the test party.
+- **Heat Wave:** reads 100% (a knockout) on the other foe for either target.
+- **With a Flash Fire Heatran swapped in temporarily:** when Heat Wave targets Garchomp, the other foe (Heatran) reads "absorbs" (254); when it targets Heatran, Garchomp reads 100%.
+- **Single-target moves:** read as not hitting a second foe.

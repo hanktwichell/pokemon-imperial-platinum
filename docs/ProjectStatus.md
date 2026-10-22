@@ -49,7 +49,7 @@ and T2 only. See `EngineRoadmap.md` for the per-milestone breakdown.
 | Elite Four format | 2 singles + 2 doubles, rematch options | `docs/EliteFourFormat.md` |
 | Evolutions | Gen IV-compatible methods for added species; 16 new evolution items | `docs/EvolutionChanges_Sovereign.md` |
 | Post-game legendaries | 90 species in five chapters | `docs/PostgameLegendaries.md` |
-| Sprites | Fronts and backs for all 532 added species (owner packs); placeholder icons from PokeAPI | `docs/SpriteChecklist.xlsx` |
+| Sprites | Fronts and backs for all 532 added species (owner packs); placeholder icons from PokeAPI. Bag icons needed for 13 new items (the crown) | `docs/SpriteChecklist.xlsx` |
 | Cries | 493 in the game; 532 needed, all with a source in PokeAPI's cry archive | `docs/CryChecklist.xlsx` |
 | Citations | Every asset and dataset credited | `CITATIONS.md` |
 
@@ -91,8 +91,9 @@ Made by the owner (2026-10-22):
 17. The battle screen gets a **MEGA** button on the touch-screen move menu for Mega Evolution. Primal Reversion stays
     automatic on switch-in, as in ORAS and later, with no button (owner, 2026-10-22). Spec in `MegaEvolution.md`; built
     in E8.
-18. **Totem forms** (12 forms, 11 species) appear only as optional one-time Totem trials scattered along the main
-    story, all before the Elite Four, never in the wild. Each Totem has its stat-raising Totem aura and can be caught
+18. **Totem forms** (12 forms, 11 species) appear only as one-time Totem trials scattered along the main story, all
+    before the Elite Four, never in the wild. Team Galactic's encounters wait on the trials before them, so they
+    are no longer optional (decision 23). Each Totem has its stat-raising Totem aura and can be caught
     afterwards in its Totem form. Totems call allies: each trial is a double battle where the Totem calls up to 2
     reserve helpers into the empty slot, and balls can be thrown only once the Totem is alone (owner, 2026-10-22).
     Placements, levels and the mechanic: `data/totem_trials.yaml`.
@@ -118,15 +119,22 @@ Made by the owner (2026-10-22):
 23. **The story: the Sovereign** (owner, 2026-10-22; `docs/Story.md`). The Sovereign are Sinnoh's old ruling class.
     Unseen by the player, they merge other Pokémon worlds into Sinnoh, in a story that runs alongside Team
     Galactic's. One vague reference comes early, then the player learns more through the Totem trials (the
-    Sovereign's tests) and the Chronicles. Everything comes together in the final battle against **Sovereign Twich**
-    (renamed from Sovereign Dev Twich), the last surviving member of the lineage, whose dialogue nods to him being the
-    developer. That battle opens after the Elite Four rematch and the Dialga and Palkia encounters at Spear Pillar.
+    Sovereign's tests) and the Chronicles. Everything comes together in the final battle against **Sovereign Henry**
+    (first named Sovereign Dev Twich, then Sovereign Twich; renamed by the owner), the last surviving member of the
+    lineage, whose dialogue nods to him being the developer.
     End goal (owner): **shield leading into succession**. The Sovereign stitched other worlds into Sinnoh to hold it
-    together against Galactic; Twich, the last heir, has held the seams alone and uses the Totem trials to find a
-    successor. Beating him grants the player the **Sovereign title**, and **Cynthia** (very close to Twich; the
+    together against Galactic; Henry, the last heir, has held the seams alone and uses the Totem trials to find a
+    successor. Beating him grants the player the **Sovereign title**, and **Cynthia** (very close to Henry; the
     reason he uses Garchomp) arrives to congratulate them. Event order: first Hall of Fame → Dialga and Palkia at
     Spear Pillar (catchable) → Elite Four rematch, locked until both are done and then repeatable → after the second
     win against Cynthia, she sends the player to Spear Pillar for the Sovereign battle.
+    Gates and crown (owner): each Galactic encounter waits on the Totem trials placed before it (existing blocking
+    NPCs get the trial added to their unlock condition). Each trial, once its catch encounter is over (caught or
+    not), leaves a crown piece: a Gold Shard first, then jewels or gold shards, and the Crown Diamond 11th; all key
+    items, unsellable and untossable. The 11 merge into the **Crown**, which becomes the **Sovereign Crown** after the
+    rematch win over Cynthia. Victory Road waits on the last trial (Togedemaru). Henry appears at Spear Pillar only
+    with the complete crown. The Celestic Town elder meets the player at home after the first Hall of Fame and sends
+    them to Spear Pillar. After the Sovereign battle the Elite Four can still be rematched, with all-Lv. 100 teams.
 24. **Post-Champion money** (owner, 2026-10-22, all four options). Built in E7 part 2:
     - every shop that takes money sells at **half price** after the Hall of Fame (Battle Point shops are unchanged);
     - **3× prize money** from the Elite Four and Cynthia rematches, the Gym Leader rematches and the five Battleground
@@ -142,6 +150,6 @@ Open:
 - Regional Forms Park (decision 22): which zone holds which forms, encounter rates, and when it opens (Route 221
   needs Surf; with the National Dex from the start, Pal Park's old National Dex gate no longer applies).
 - Special evolutions (decision 20): owner discussion pending.
-- The developer battle: Lv. 100 at Spear Pillar, leads Charizard-Y + Venusaur, custom weather-control AI (`DeveloperBattle.md`). Opponent: Sovereign Twich (decision 23). Open: text, sprites (owner's sprite coming soon).
+- The developer battle: Lv. 100 at Spear Pillar, leads Charizard-Y + Venusaur, custom weather-control AI (`DeveloperBattle.md`). Opponent: Sovereign Henry (decision 23). Open: text, sprites (owner's sprite coming soon).
 - Front sprites and the part 2 shiny pack (owner is sourcing them).
 - hg-engine and Smogon credit lists: Claude compiles them (owner, 2026-10-22).

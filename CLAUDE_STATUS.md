@@ -780,6 +780,210 @@ cleanly.
 
 ---
 
+## CA-0010 — 2026-10-22, 4:22 pm US Central (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:**
+- **12b #1–#2, partner safety in doubles.**
+  - The new AI command `LoadPartnerDamagePercent` estimates how much of the partner's HP any move aimed at every
+    adjacent Pokémon would take, using the game's damage calc. Immunities come from the type chart and from
+    Platinum's absorbing abilities.
+  - `TagStrategy_CheckSpecialScoring` scores it: +2 unhurt, −10 KO, −5 for ≥50%, −3 for ≥25%, −1 otherwise.
+  - Platinum's by-name handlers for Earthquake, Magnitude, Discharge, Lava Plume and Surf are removed.
+- **Verified in game** with the new `tools/test/log_ai_partner_damage.py`: Earthquake reads 0% next to Charizard
+  and Surf 0% next to a Water Absorb Vaporeon, and the other hits scale as expected. A doubles turn plays, the trainer
+  checker passes, and `boot_smoke.py` passes.
+  - Bug found and fixed while testing: `TrainerAI_MoveType` returns Normal for ordinary moves (it only handles
+    variable-type ones), so the absorb check uses the move's own type.
+- **Story:** a Totem-trial prompts-and-gate proposal in `docs/Story.md` (owner request).
+  - Gate: the Sovereign battle needs all 11 trials; the main story stays ungated.
+  - Prompts: a Sovereign Seal progress item, Pokémon Center rumours, Town Map marks, and Cynthia pointing out unlit
+    gems.
+  - Waiting on the owner's answer.
+
+**Files modified:** `decomp/src/battle/trainer_ai/trainer_ai.c`, `decomp/src/battle/trainer_ai/script.s`,
+`decomp/asm/macros/aicmd.inc`, `decomp/include/data/scripts/aicmd.h`, `decomp/include/constants/battle/trainer_ai.h`,
+`tools/test/log_ai_partner_damage.py` (new), `docs/AIReview.md`, `docs/EngineChangelog.md`, `docs/Story.md`,
+`CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. PR and merge this.
+2. 12b #3: give spread moves credit for hitting both foes.
+3. 12b #8: check the Gen V+ ally-targeted support moves. Then item 11, boss-team effects first.
+
+---
+
+## CA-0011 — 2026-10-22, 4:23 pm US Central (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** the final opponent is renamed **Sovereign Henry** (owner; was Sovereign Twich, before that Sovereign
+Dev Twich). Class "Sovereign", name "Henry". Updated in `docs/Story.md`, `docs/DeveloperBattle.md` (naming
+history kept), `docs/ProjectStatus.md` (decision 23), `docs/TrainerFormat.md`, `docs/EngineChangelog.md`, and the
+test trainer's name in `decomp/res/trainers/data/sovereign_test.json`. Earlier CA entries in this file keep the old
+name, since the file is append-only.
+
+**Next 3 steps:** merge PR #19; 12b #3 (spread credit); 12b #8 (ally support moves).
+
+---
+
+## CA-0012 — 2026-10-22, 4:40 pm US Central (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** the owner's answers on Totem gates and the post-game, recorded (docs only; replaces CA-0010's
+proposal):
+- **Galactic gates.** Each Team Galactic encounter waits on the Totem trials placed before it. Existing blocking NPCs
+  get "trial done" added to their unlock condition. Table in `docs/Story.md`: Mars (Windworks) needs Gumshoos; Jupiter
+  (Eterna) needs Ribombee and Vikavolt; Cyrus (Celestic) needs Mimikyu, Marowak, Raticate, Lurantis and Araquanid; the
+  lakes need Salazzle; Spear Pillar needs Kommo-o. Togedemaru gates nothing and is always last. Decision 18 updated:
+  the trials are no longer optional.
+- **Crown.** After each trial's catch encounter (caught or not), the player finds a crown piece: Gold Shard first,
+  then jewels or gold shards, and Togedemaru's is the Crown Diamond. All are key items, so they can't be sold or
+  tossed. Henry appears at Spear Pillar only with all 11.
+- **The Celestic elder** meets the player at home after the first Hall of Fame and sends them to Spear Pillar.
+- **The Elite Four after the Sovereign battle:** rematches continue, all Lv. 100 (a third set of teams, T1).
+
+**Files modified:** `docs/Story.md`, `docs/ProjectStatus.md` (decisions 18 and 23), `docs/DeveloperBattle.md`,
+`data/totem_trials.yaml` (header comment), `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Merge PR #19, then PR this.
+2. 12b #3 (spread credit for hitting both foes).
+3. 12b #8 (ally support moves), then item 11.
+For E11 (Claude B): find the blocking NPCs for the Galactic gates, and build the crown items and the elder's scene.
+
+---
+
+## CA-0013 — 2026-10-22, 4:55 pm US Central (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** the owner's crown answers, recorded:
+- **The pieces** are a mix of rubies, emeralds, sapphires and gold. The key-items pocket shows no counts, so each
+  needs its own name. Proposed names, one per trial:
+  1. Gold Shard
+  2. Raw Emerald
+  3. Gold Fragment
+  4. Raw Sapphire
+  5. Raw Ruby
+  6. Gold Sliver
+  7. Cut Emerald
+  8. Cut Sapphire
+  9. Cut Ruby
+  10. Gold Flake
+  11. Crown Diamond
+- **The Crown:** the 11 pieces merge into the **Crown**, which becomes the **Sovereign Crown** after the rematch win
+  over Cynthia.
+- **Victory Road** waits on Togedemaru's trial, so every trial, and the whole crown, is done before the Elite Four.
+- **Sprite list:** the 13 items are on the owner's list. There's a new *Item Icons* sheet in
+  `docs/SpriteChecklist.xlsx`, generated from the new `data/item_sprites.csv`, plus a row on the Summary sheet.
+
+**Files modified:** `docs/Story.md`, `docs/ProjectStatus.md`, `docs/DeveloperBattle.md`, `data/item_sprites.csv`
+(new), `tools/sprites/gen_sprite_checklist.py`, `docs/SpriteChecklist.xlsx`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Merge PR #19.
+2. 12b #3 (spread credit for hitting both foes).
+3. 12b #8 (ally support moves), then item 11.
+For E11 (Claude B): the crown items, merge and rename; the Victory Road check.
+
+---
+
+## CA-0014 — 2026-10-22, 5:02 pm US Central (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** no uncut gems on the Sovereign's crown (owner: they're royalty). The jewels are now all cut stones,
+paired by cut (this replaces CA-0013's raw/cut names):
+- Oval Emerald, Oval Sapphire and Oval Ruby (pieces 2, 4 and 5).
+- Pear Emerald, Pear Sapphire and Pear Ruby (pieces 7, 8 and 9).
+
+The gold pieces and the Crown Diamond are unchanged.
+
+**Files modified:** `docs/Story.md`, `data/item_sprites.csv`, `docs/SpriteChecklist.xlsx`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:** merge PR #19; 12b #3 (spread credit); 12b #8 (ally support moves).
+
+---
+
+## CA-0015 — 2026-10-22, 5:10 pm US Central (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** the second cut is **rose**, not pear (owner). Crown pieces 7–9 are now Rose Emerald, Rose Sapphire
+and Rose Ruby (2, 4 and 5 stay Oval Emerald, Oval Sapphire and Oval Ruby). Item names have a 16-character limit, and
+all of these fit.
+
+**Files modified:** `docs/Story.md`, `data/item_sprites.csv`, `docs/SpriteChecklist.xlsx`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:** merge PR #19; 12b #3 (spread credit); 12b #8 (ally support moves).
+
+---
+
+## CA-0016 — 2026-10-22, 5:18 pm US Central (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** lore detail (owner). Henry's Garchomp stays male and Cynthia's is female, so the two Garchomp are a
+pair, hinting at Henry and Cynthia. Cynthia's Garchomp is already female in Platinum, because a trainer's 50/50
+species takes the trainer's gender (`src/trainer_data.c`, genderMod 120 < Garchomp's threshold of 127). When T1
+writes Cynthia's teams in the E9 format, set `"gender": "female"` on her Garchomp explicitly.
+
+**Files modified:** `docs/Story.md`, `docs/DeveloperBattle.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:** merge PR #19; 12b #3 (spread credit); 12b #8 (ally support moves).
+
+---
+
+## CA-0017 — 2026-10-22, 5:45 pm US Central (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:**
+- **Merged main into PR #19.** Main had Claude B's E7 part 2 and decision 24, and every conflict kept both sides.
+  #19 had a conflict, which is why its CI hadn't run.
+- **12b #3, spread credit.** New AI command `LoadOtherFoeDamagePercent` estimates a spread move's hit on the foe it
+  isn't scored against. `TagStrategy_CheckOtherFoe` in `script.s` scores that hit: +2 if it's a knockout, +1 if it
+  takes ≥25% of the foe's HP, −2 if the foe absorbs the type.
+  - It shares one damage estimate with `LoadPartnerDamagePercent` (`AI_SpreadDamagePercent`, `AI_MoveDealsDamage`).
+  - Verified in the test build: Heat Wave reads a KO on the other foe; with a Flash Fire Heatran (temporary test
+    party swap, reverted) it reads "absorbs"; single-target moves read "not hit".
+  - The partner check reads as before. ROM and test ROM build.
+
+**Files modified:** `decomp/src/battle/trainer_ai/trainer_ai.c`, `decomp/src/battle/trainer_ai/script.s`,
+`decomp/asm/macros/aicmd.inc`, `decomp/include/data/scripts/aicmd.h`, `decomp/include/constants/battle/trainer_ai.h`,
+`tools/test/log_ai_partner_damage.py` (`--other-foe`), `docs/AIReview.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Get PR #19 green and merge it. The full SHA is needed for `merge_pull_request`. Then reset the branch to main.
+2. 12b #8: check the Gen V+ ally-targeted support moves (target and score for each).
+3. Item 11 (exact effects, boss teams first). Then T1: Cynthia's teams in the E9 format, with her Garchomp
+   `"gender": "female"`, and a Lv. 100 Elite Four set for after the Sovereign battle.
+
+---
+
+## CA-0018 — 2026-10-22, 6:00 pm US Central (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** README rewritten for the current state (owner request):
+- a features table marking each feature built / in progress / planned, with links;
+- the cries note;
+- a full docs table, including Story, DeveloperBattle, BattleMechanics, AIReview, TrainerFormat and the checklists;
+- the updated data layout (items_sovereign, totem_trials, item_sprites, icon_placeholders);
+- `make -C decomp rom`;
+- a Test build section with the hotkeys and the headless test tools;
+- a note that CI checks the regenerated docs.
+
+**Files modified:** `README.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:** merge PR #19 when green; 12b #8 (ally support moves); item 11.
+
+---
+
+## CA-0019 — 2026-10-22, 6:15 pm US Central (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** the release patch script (owner: the final output is an `.xdelta`).
+- `tools/build/make_release_patch.sh [--no-build] [OUT_DIR] CLEAN_ROM [CLEAN_ROM]` builds the ROM and writes
+  `SovereignPlatinum4997.xdelta` / `SovereignPlatinum3541.xdelta` (to `build/release/`, which is git-ignored).
+- It recognises each clean dump by its SHA-1, checks that each patch round-trips to the built ROM, and rejects
+  anything else.
+- Tested with a vanilla Rev 1 built from the repo's first decomp import (commit 11c34eff, retail SHA-1 `0862ec35…`):
+  - the 1.8 MB patch reproduces the ROM (SHA-1 `ca7f87b1…`);
+  - a bad ROM is rejected.
+  - Upstream pret can't be built in this sandbox (wrapdb.mesonbuild.com is blocked), so the import commit stood in.
+- Documented in the README (Release patches) and in the roadmap (row 19).
+
+**Files modified:** `tools/build/make_release_patch.sh` (new), `README.md`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:** merge PR #19 when green; 12b #8 (ally support moves); item 11.
+
+---
+
 ## CB-0013 — 2026-10-22, 4:47 pm US Central (session on `claude/sweet-wright-rk4wl1`)
 
 **Merged:** PR #18 (E7 part 2: Veilstone held-item shop, Infinite Repel, post-Champion money). E7 is done; the
