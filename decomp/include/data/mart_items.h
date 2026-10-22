@@ -218,6 +218,8 @@ const u16 VeilstoneDeptStoreStock_B1F_DOWN_LEFT[] = {
     SHOP_ITEM_END
 };
 
+#include "data/sovereign_mart_items.h"
+
 const u16 *PokeMartSpecialties[] = {
     [MART_SPECIALTIES_ID_JUBILIFE] = JubilifeMartSpecialties,
     [MART_SPECIALTIES_ID_OREBURGH] = OreburghMartSpecialties,
@@ -238,7 +240,10 @@ const u16 *PokeMartSpecialties[] = {
     [MART_SPECIALTIES_ID_CANALAVE] = CanalaveMartSpecialties,
     [MART_SPECIALTIES_ID_SUNYSHORE] = SunyshoreMartSpecialties,
     [MART_SPECIALTIES_ID_POKEMON_LEAGUE] = PokemonLeagueMartSpecialties,
-    [MART_SPECIALTIES_ID_VEILSTONE_B1F] = VeilstoneDeptStoreStock_B1F_DOWN_LEFT
+    [MART_SPECIALTIES_ID_VEILSTONE_B1F] = VeilstoneDeptStoreStock_B1F_DOWN_LEFT,
+    // Sovereign: Gen V-IX held items and Gems, from the 2F vitamin clerk's menu.
+    [MART_SPECIALTIES_ID_VEILSTONE_2F_HELD_ITEMS] = VeilstoneDeptStoreStock_2F_HeldItems,
+    [MART_SPECIALTIES_ID_VEILSTONE_2F_GEMS] = VeilstoneDeptStoreStock_2F_Gems
 };
 
 const u16 VeilstoneDeptStoreStock_4F_UP[] = {

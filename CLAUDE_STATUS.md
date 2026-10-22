@@ -451,6 +451,62 @@ earlier commits were merged through PR #14.
 
 ---
 
+## CB-0008 — 2026-10-22, 3:26 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:**
+- **PR #15 (E7 part 1) merged.** The branch was reset to main `b103b8a6`.
+- **Veilstone Dept. Store sells the new held items and Gems** (owner request): a Vitamins / Held items / Gems menu
+  on the 2F vitamin clerk (`decomp/res/field/scripts/scripts_veilstone_store_2f.s`).
+  - The stock is generated into `decomp/include/data/sovereign_mart_items.h` and registered with two new shop IDs
+    (appended to `decomp/generated/mart_specialties_id.txt`).
+  - Booster Energy costs ₽10,000 (`PRICES` in `gen_items.py`).
+- **Shop price field is 5 digits** (`decomp/src/overlay007/shop_menu.c`): ₽10,000+ items used to show "₽?000".
+- **Icons are centred like Platinum's** (owner request): art in the top-left 24×24, centred on (11.5, 11.5), so it
+  sits centred in the bag preview box.
+- Owner note recorded: Galarian Articuno, Zapdos and Moltres are rare encounters only in the Regional Forms Park's
+  Galar zone (decision 22).
+- **Heads-up:** Claude A (branch `claude/festive-bardeen-5h7beo`, entries CA-####) is doing E9 (trainer format).
+  Their branch touches `CLAUDE_STATUS.md`, `EngineChangelog.md`, `EngineRoadmap.md`, `ProjectStatus.md`,
+  `field_control.c` and `build_test_rom.sh`, so expect small merge conflicts. Resolve them by keeping both sides.
+
+**Verified:**
+- The held-item shop list renders with prices, icons and descriptions.
+- 5-digit prices display.
+- Icons are centred in the bag preview.
+- `boot_smoke.py` passes.
+- **Not checked in game:** the 2F clerk menu (Veilstone isn't reachable in the test build yet).
+
+**Files modified:**
+- `tools/engine/gen_items.py`, `decomp/include/data/sovereign_mart_items.h` (new), `decomp/include/data/mart_items.h`
+- `decomp/generated/mart_specialties_id.txt`, `decomp/src/scrcmd_shop.c`, `decomp/src/overlay007/shop_menu.c`
+- `decomp/res/field/scripts/scripts_veilstone_store_2f.s`, `decomp/res/text/menu_entries.json`
+- `decomp/res/items/icons/*.png|.pal` (re-centred), `decomp/res/items/data/booster_energy.json`
+- `docs/EngineChangelog.md`, `docs/ItemChanges_Sovereign.md`, `docs/ProjectStatus.md`
+- `CLAUDE_STATUS.md` (this entry)
+
+**Next 3 steps:**
+1. A test-build warp shortcut (e.g. to the Veilstone Dept. Store) so map scripts like the 2F clerk can be checked in
+   game.
+2. The Infinite Repel key item (QoL #3). Then open the E7 part 2 PR.
+3. E8 Mega Evolution (MEGA button, form switch, Primal Reversion), then the Pokédex (decision 21).
+
+---
+
+## CB-0009 — 2026-10-22, 3:26 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Updated the roadmap** (`docs/EngineRoadmap.md`) for the owner's progress/timeline request:
+- E7 is 🟡: mostly done, Infinite Repel left.
+- E9 is 🟡, in progress by Claude A.
+- New row **DX (Pokédex, decision 21)**.
+- Total remaining: **about 26–50 sessions, ≈3–6 weeks** with both sessions in parallel.
+
+**Files modified:** `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md` (this entry).
+
+**Next 3 steps:** unchanged from CB-0008 (test warp shortcut; Infinite Repel, then the E7 part 2 PR; E8 Mega
+Evolution).
+
+---
+
 ## CA-0003 — 2026-10-22, 3:32 pm US Central (session on `claude/festive-bardeen-5h7beo`)
 
 **Implemented:** owner request, every Pokémon on the developer team is in a Luxury Ball.
@@ -466,6 +522,32 @@ earlier commits were merged through PR #14.
 1. Get CI green on PR #16 (E9) and merge it.
 2. Item 12b, the AI review for doubles, using `TRAINER_SOVEREIGN_TEST` as the opponent.
 3. After E7 merges: give the test team Charizardite Y, the Blue Orb and Assault Vest.
+
+---
+
+## CB-0010 — 2026-10-22, 3:34 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:**
+- **Test build: SELECT+A warps** to the next entry of `sSovereignTestWarps` (`decomp/src/script_manager.c`,
+  looping), using `FieldTask_StartMapChangeFly`.
+  - The first stop is Veilstone Store 2F, facing the vitamin clerk. Add entries (map header, local x/z, facing) to
+    test other map scripts, e.g. Celestic Town's northeast house for the Ogerpon masks later.
+- **Fixed the Veilstone 2F clerk menu,** which showed blank entries. `AddMenuEntryImm` stores the text ID in one
+  byte, and the new `menu_entries` texts are #280–282. The script now uses `AddMenuEntry` (16-bit).
+- Verified in game: the clerk's menu reads Vitamins / Held items / Gems, and each opens the right stock. The boot
+  smoke test passes.
+
+**Files modified:**
+- `decomp/src/script_manager.c`, `decomp/include/script_manager.h`, `decomp/src/overlay005/field_control.c`
+- `decomp/res/field/scripts/scripts_veilstone_store_2f.s`
+- `docs/EngineChangelog.md`, `tools/test/build_test_rom.sh`
+- `CLAUDE_STATUS.md` (this entry)
+
+**Next 3 steps:**
+1. The Infinite Repel key item (QoL #3: Professor Rowan's aide gives it after the Coal Badge; it toggles a
+   permanent repel).
+2. Open the E7 part 2 PR and merge it when green.
+3. E8 Mega Evolution.
 
 ---
 
@@ -528,6 +610,48 @@ battle's trainer text and sprite, batched answers to open questions, and the own
 2. Fix #1–#2: partner safety by move range (`RANGE_ALL_ADJACENT`), with the partner's damage estimated by the game's
    damage formula. This needs a new AI script command, or a C-side adjustment in `TrainerAI_MainDoubles`.
 3. Fix #3 (spread credit), then #4–#5 alongside item 11's ability effects.
+
+---
+
+## CB-0011 — 2026-10-22, 3:48 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:**
+- **The Infinite Repel works** (QoL #3).
+  - It's a key item: the first `custom_items` entry in `data/items_sovereign.yaml`, generated by `gen_items.py`
+    (ID 713).
+  - It toggles `FLAG_SOVEREIGN_INFINITE_REPEL` (renamed from `FLAG_UNUSED_0x006D` in
+    `decomp/generated/vars_flags.txt`) from `UseItemInBag` (`decomp/src/applications/bag/main.c`), with the new
+    messages `Bag_Text_SovereignInfiniteRepelOn/Off`.
+  - Both Repel checks in `decomp/src/overlay006/wild_encounters.c` honour it.
+  - Tested in game: off → a Bidoof within 60 steps; on → no encounter in 160 steps.
+- **Test warp moved to SELECT+L+R.** SELECT+A talked to the NPC you were facing.
+  - The warp list now also has a Route 202 grass stop.
+  - New `tools/test/find_tiles.py MAP_HEADER_X` prints a map's grass/water/collision with world coordinates.
+  - Tip: the test bag's 3-step Super Repel prompts "Use another?" after 3 steps; answer with DOWN, A (NO).
+- **Owner decision 23 recorded (post-Champion money):**
+  - half-price shops after the Hall of Fame;
+  - 2–3× post-game rematch and developer-battle prize money;
+  - a daily valuables NPC;
+  - full-price selling after the Champion.
+  - Not built yet.
+
+**Files modified:**
+- `data/items_sovereign.yaml`, `tools/engine/gen_items.py`, `decomp/generated/items.txt`,
+  `decomp/res/items/data/infinite_repel.json`
+- `decomp/generated/vars_flags.txt`, `decomp/src/overlay006/wild_encounters.c`
+- `decomp/src/applications/bag/main.c`, `decomp/res/text/bag.json`
+- `decomp/src/script_manager.c`, `decomp/include/script_manager.h`, `decomp/src/overlay005/field_control.c`
+- `tools/test/find_tiles.py` (new), `tools/test/build_test_rom.sh`
+- `docs/QualityOfLife.md`, `docs/ProjectStatus.md`, `docs/ItemChanges_Sovereign.md`, `docs/EngineChangelog.md`
+- `CLAUDE_STATUS.md` (this entry)
+
+**Next 3 steps:**
+1. Post-Champion money (decision 23):
+   - shop price ×½ and sell price ×2 when the game is completed (`decomp/src/overlay007/shop_menu.c`);
+   - payout multiplier for the E4/Battleground rematch trainers;
+   - a daily valuables NPC (needs a spot: ask the owner, or pick a Survival Area house NPC).
+2. Open the E7 part 2 PR (shop, icons, Infinite Repel, money) and merge it when green.
+3. E8 Mega Evolution.
 
 ---
 
@@ -616,3 +740,40 @@ whether the Elite Four can be rematched after the Sovereign battle.
 (Uncommitted on disk: the 12b partner-safety AI change, still being tested; not part of this commit.)
 
 **Next 3 steps:** merge PR #17; test and commit the 12b partner-safety change; then 12b #3.
+
+---
+
+## CB-0012 — 2026-10-22, 4:19 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: post-Champion money (owner, all four options), now decision 24.** Claude A's story decision took
+number 23 on main first, so the money decision is renumbered to 24 in `ProjectStatus.md` and in code comments. (The
+older CB-0011 entry above still calls it 23.) Every check uses the Hall of Fame flag:
+- money shops sell at half price (`Shop_GetItemPrice`); Battle Point shops are unchanged;
+- 3× prize money from the Elite Four/Cynthia rematches, the 8 Gym Leader rematches and the 5 Battleground trainers
+  (`Sovereign_PostgamePrizeMultiplier` in `battle_script.c`). The developer battle joins the list once its trainer
+  exists;
+- items no shop sells sell for their full price (`Shop_IsItemSoldInMarts` in `scrcmd_shop.c`). Shop stock still sells
+  for half: otherwise buying at half and selling at full would be free money;
+- the Survival Area Youngster gives 3 Nuggets once a day (`FLAG_DAILY_RECEIVED_SURVIVAL_AREA_NUGGETS`, the unused
+  daily flag 0x0AAF). Big Nugget isn't a Platinum item.
+
+Verified in the test build (Hall of Fame flag set by a temporary hook, since reverted): Roark paid ₽5040 (1680 × 3);
+Protein ₽4900; Nugget sold for ₽10,000, Super Repel for ₽250; the Youngster gave 3 Nuggets, then "come back
+tomorrow". Without the flag he says his usual line. Merged main (Claude A's E9, PR #16): conflicts in this file
+(entries now in time order), `EngineChangelog.md`, `EngineRoadmap.md`, `ProjectStatus.md` and
+`tools/test/build_test_rom.sh`, keeping both sides. Both ROMs build and pass the boot smoke test; docs regenerate
+cleanly.
+
+**Files modified:** `decomp/src/overlay007/shop_menu.c`, `decomp/src/battle/battle_script.c`,
+`decomp/src/scrcmd_shop.c`, `decomp/include/scrcmd_shop.h`, `decomp/src/applications/bag/main.c`,
+`decomp/generated/vars_flags.txt`, `decomp/res/field/scripts/scripts_survival_area.s`,
+`decomp/res/text/survival_area.json`, `decomp/src/script_manager.c` (test warp stop at the Youngster),
+`docs/ProjectStatus.md`, `docs/EngineChangelog.md`, `docs/ItemChanges_Sovereign.md`, `docs/EngineRoadmap.md`,
+`tools/test/build_test_rom.sh`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Open the E7 part 2 PR (Veilstone shop, centred icons, 5-digit prices, Infinite Repel, money, test warp) and merge
+   it when green.
+2. Where the Infinite Repel is given (QoL #3 names Rowan's aide after the Coal Badge, but no aide appears then):
+   owner's call.
+3. E8 Mega Evolution (MEGA button in the fight menu, Primal Reversion automatic), then the Pokédex (decision 21).

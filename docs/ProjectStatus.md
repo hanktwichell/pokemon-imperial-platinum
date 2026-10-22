@@ -113,6 +113,8 @@ Made by the owner (2026-10-22):
     Its grounds on Route 221 become the **Regional Forms Park**: Pal Park's four areas (field, forest, mountain, sea)
     become Alola, Galar, Hisui and Paldea zones where the 59 regional forms (decision 16) live as wild Pokémon. The
     Catching Show layout is reused. Built with milestone FM, once regional forms exist.
+    - **Galarian Articuno, Zapdos and Moltres** roam the **Galar zone** as rare encounters (low odds). That's the only
+      place they can be caught (owner, 2026-10-22).
 23. **The story: the Sovereign** (owner, 2026-10-22; `docs/Story.md`). The Sovereign are Sinnoh's old ruling class.
     Unseen by the player, they merge other Pokémon worlds into Sinnoh, in a story that runs alongside Team
     Galactic's. One vague reference comes early, then the player learns more through the Totem trials (the
@@ -125,6 +127,16 @@ Made by the owner (2026-10-22):
     reason he uses Garchomp) arrives to congratulate them. Event order: first Hall of Fame → Dialga and Palkia at
     Spear Pillar (catchable) → Elite Four rematch, locked until both are done and then repeatable → after the second
     win against Cynthia, she sends the player to Spear Pillar for the Sovereign battle.
+24. **Post-Champion money** (owner, 2026-10-22, all four options). Built in E7 part 2:
+    - every shop that takes money sells at **half price** after the Hall of Fame (Battle Point shops are unchanged);
+    - **3× prize money** from the Elite Four and Cynthia rematches, the Gym Leader rematches and the five Battleground
+      trainers (`Sovereign_PostgamePrizeMultiplier` in `battle_script.c`). The developer battle joins the list once
+      its trainer exists;
+    - a **daily valuables NPC**: the Youngster at the Survival Area gives **3 Nuggets** once a day after the Champion
+      (Big Nugget isn't an item in Platinum);
+    - items **sell for their full buy price** after the Champion, **except items a shop sells**, which still sell
+      for half. Without that rule, buying at the half price and selling at full price would make free money. So
+      Nuggets, Pearls, shards and found items sell at full price; shop stock sells for what you paid for it.
 
 Open:
 - Regional Forms Park (decision 22): which zone holds which forms, encounter rates, and when it opens (Route 221

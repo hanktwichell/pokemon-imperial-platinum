@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/savedata/vars_flags.h"
 #include "constants/field/map_load.h"
 #include "constants/heap.h"
 #include "constants/items.h"
@@ -34,6 +35,7 @@
 #include "render_text.h"
 #include "render_window.h"
 #include "save_player.h"
+#include "scrcmd_shop.h"
 #include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
@@ -43,10 +45,12 @@
 #include "string_list.h"
 #include "string_template.h"
 #include "system.h"
+#include "system_flags.h"
 #include "text.h"
 #include "touch_pad.h"
 #include "touch_screen.h"
 #include "trainer_info.h"
+#include "vars_flags.h"
 #include "unk_0208C098.h"
 #include "vram_transfer.h"
 
@@ -2245,6 +2249,20 @@ static BOOL UseItemInBag(BagController *controller, u16 item)
         controller->selectedItemCount = 0;
     } else if (item == ITEM_MAX_REPEL || item == ITEM_SUPER_REPEL || item == ITEM_REPEL) {
         string = TryUseRepel(controller, item);
+    } else if (item == ITEM_INFINITE_REPEL) {
+        // Sovereign: the Infinite Repel toggles a Repel that never runs out (checked in wild_encounters.c).
+        VarsFlags *varsFlags = SaveData_GetVarsFlags(controller->bagCtx->saveData);
+
+        if (VarsFlags_CheckFlag(varsFlags, FLAG_SOVEREIGN_INFINITE_REPEL)) {
+            VarsFlags_ClearFlag(varsFlags, FLAG_SOVEREIGN_INFINITE_REPEL);
+            string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_SovereignInfiniteRepelOff);
+        } else {
+            VarsFlags_SetFlag(varsFlags, FLAG_SOVEREIGN_INFINITE_REPEL);
+            string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_SovereignInfiniteRepelOn);
+        }
+
+        controller->selectedItemCount = 0;
+        Sound_PlayEffect(SEQ_SE_DP_CARD2_sseq);
     } else {
         return FALSE;
     }
@@ -2621,7 +2639,12 @@ static int ProcessItemListInput_SellItems(BagController *controller)
             }
 
             controller->selectedItemCount = 1;
-            controller->soldItemPrice >>= 1;
+
+            // Sovereign (decision 24): after the Champion, items no shop sells go for their full price.
+            if (!SystemFlag_CheckGameCompleted(SaveData_GetVarsFlags(controller->bagCtx->saveData))
+                || Shop_IsItemSoldInMarts(controller->bagCtx->selectedItem)) {
+                controller->soldItemPrice >>= 1;
+            }
 
             if (Pocket_GetItemQuantity(controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].items, controller->bagCtx->accessiblePockets[controller->bagCtx->currPocketIdx].listEntryCount - 3, controller->bagCtx->selectedItem, HEAP_ID_BAG) == 1) {
                 string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_ConfirmSellPrice);

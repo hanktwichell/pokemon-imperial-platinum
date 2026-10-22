@@ -82,7 +82,8 @@ BOOL ScrCmd_PokeMartSpecialties(ScriptContext *ctx)
     if ((martID == MART_SPECIALTIES_ID_VEILSTONE_1F_RIGHT) || (martID == MART_SPECIALTIES_ID_VEILSTONE_1F_LEFT)
         || (martID == MART_SPECIALTIES_ID_VEILSTONE_2F_UP) || (martID == MART_SPECIALTIES_ID_VEILSTONE_2F_MID)
         || (martID == MART_SPECIALTIES_ID_VEILSTONE_3F_UP) || (martID == MART_SPECIALTIES_ID_VEILSTONE_3F_DOWN)
-        || (martID == MART_SPECIALTIES_ID_VEILSTONE_B1F)) {
+        || (martID == MART_SPECIALTIES_ID_VEILSTONE_B1F)
+        || (martID == MART_SPECIALTIES_ID_VEILSTONE_2F_HELD_ITEMS) || (martID == MART_SPECIALTIES_ID_VEILSTONE_2F_GEMS)) {
         incBuyCount = TRUE;
     } else {
         incBuyCount = FALSE;
@@ -124,4 +125,26 @@ BOOL ScrCmd_ShowAccessoryShop(ScriptContext *ctx)
 {
     AccessoryShop_Init(ctx->fieldSystem->task);
     return TRUE;
+}
+
+// Sovereign (decision 24): TRUE if any Poké Mart or specialty shop sells the item. After the Champion, items no
+// shop sells (Nuggets, Pearls, shards, items found on the field) sell for their full price; shop items stay at half
+// (their discounted buy price), so buying and reselling can't make money.
+BOOL Shop_IsItemSoldInMarts(u16 item)
+{
+    for (u32 i = 0; i < NELEMS(PokeMartCommonItems); i++) {
+        if (PokeMartCommonItems[i].itemID == item) {
+            return TRUE;
+        }
+    }
+
+    for (u32 i = 0; i < NELEMS(PokeMartSpecialties); i++) {
+        for (const u16 *stock = PokeMartSpecialties[i]; *stock != SHOP_ITEM_END; stock++) {
+            if (*stock == item) {
+                return TRUE;
+            }
+        }
+    }
+
+    return FALSE;
 }

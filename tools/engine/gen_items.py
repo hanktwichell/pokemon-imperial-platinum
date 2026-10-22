@@ -32,8 +32,11 @@ DATA_DIR = os.path.join(DECOMP, "res", "items", "data")
 ICON_DIR = os.path.join(DECOMP, "res", "items", "icons")
 ICON_ORDER = os.path.join(DECOMP, "res", "items", "item_icon.order")
 ICON_MESON = os.path.join(ICON_DIR, "meson.build")
+MART_HEADER = os.path.join(DECOMP, "include", "data", "sovereign_mart_items.h")
+# Prices for shop items that have none in PokeAPI (they aren't sold in the official games).
+PRICES = {"Booster Energy": 10000}
 ICON_SIZE = 32
-ICON_ART = 24      # largest art size (Platinum icons fill about 24x24) when scaling down PokeAPI's big (64-160 px) item renders
+ICON_ART = 24      # Platinum draws item art in the top-left 24x24 of the 32x32 icon, centred on (11.5, 11.5)
 # PokeAPI sprite file names that don't follow the item name.
 SPRITE_NAMES = {"N-Solarizer": "n-solarizer--merge", "N-Lunarizer": "n-lunarizer--merge",
                 "Ultranecrozium Z": "ultranecrozium-z--bag"}
@@ -147,11 +150,12 @@ def make_icon(path):
     box = art.getbbox()
     if box:
         art = art.crop(box)
-    if max(art.size) > ICON_SIZE - 2:
+    if max(art.size) > ICON_ART:
         scale = ICON_ART / max(art.size)
         art = art.resize((max(1, round(art.width * scale)), max(1, round(art.height * scale))), Image.LANCZOS)
     canvas = Image.new("RGBA", (ICON_SIZE, ICON_SIZE), (0, 0, 0, 0))
-    canvas.paste(art, ((ICON_SIZE - art.width) // 2, (ICON_SIZE - art.height) // 2), art)
+    # Centre in the 24x24 area the game shows (bag preview box, shop), like Platinum's own icons.
+    canvas.paste(art, ((ICON_ART - art.width) // 2, (ICON_ART - art.height) // 2), art)
     opaque = [p[3] >= 128 for p in pixels(canvas)]
     rgb = Image.new("RGB", canvas.size)
     rgb.putdata([p[:3] if o else (0, 0, 0) for p, o in zip(pixels(canvas), opaque)])
@@ -284,7 +288,7 @@ def main():
             "icon": ({"sprite": stem + "_NCGR", "palette": stem + "_NCLR"} if stem in icons
                      else {"sprite": "none_NCGR", "palette": "none_NCLR"}),
             "gbaID": "GBA_ITEM_NONE",
-            "price": int(row.get("cost") or 0),
+            "price": PRICES.get(name, int(row.get("cost") or 0)),
             "effectParam": 0,
             "holdEffect": "HOLD_EFFECT_NONE",
             "pluckEffect": "PLUCK_EFFECT_NONE",
@@ -309,6 +313,38 @@ def main():
     if missing:
         raise SystemExit(f"no description in PokeAPI (add to DESCRIPTIONS): {missing}")
 
+    # Sovereign's own items, appended after the PokeAPI ones.
+    for custom in spec.get("custom_items", []):
+        stem = stem_of(custom["name"])
+        uses = {"bag_message": "ITEM_USE_FUNC_BAG_MESSAGE", None: "ITEM_USE_FUNC_NONE"}
+        data = {
+            "name": custom["name"],
+            "plural": custom["plural"],
+            "article": "an" if custom["name"][0] in "AEIOU" else "a",
+            "description": wrap(custom["description"]),
+            "icon": {"sprite": custom["icon"]["sprite"] + "_NCGR", "palette": custom["icon"]["palette"] + "_NCLR"},
+            "gbaID": "GBA_ITEM_NONE",
+            "price": custom.get("price", 0),
+            "effectParam": 0,
+            "holdEffect": "HOLD_EFFECT_NONE",
+            "pluckEffect": "PLUCK_EFFECT_NONE",
+            "flingEffect": "FLING_EFFECT_NONE",
+            "flingPower": 0,
+            "naturalGiftPower": 0,
+            "naturalGiftType": None,
+            "preventToss": custom["pocket"] == "key",
+            "canRegister": False,
+            "fieldPocket": {"key": "POCKET_KEY_ITEMS", "items": "POCKET_ITEMS"}[custom["pocket"]],
+            "battlePocket": "BATTLE_POCKET_MASK_NONE",
+            "fieldUseFunc": uses[custom.get("use")],
+            "battleUseCategory": "BATTLE_USE_CATEGORY_NONE",
+            "itemUseParams": None,
+        }
+        with open(os.path.join(DATA_DIR, stem + ".json"), "w", encoding="utf-8") as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+            f.write("\n")
+        new_consts.append("ITEM_" + stem.upper())
+
     meson = open(ICON_MESON).read()
     meson = update_block(meson, "item_icon_pngs = files(", "\n)", [f"    '{s}.png',\n" for s in icons], "    ", "png")
     meson = update_block(meson, "item_icon_pals = files(", "\n)", [f"    '{s}.pal',\n" for s in icons], "    ", "pal")
@@ -318,11 +354,28 @@ def main():
     vanilla = order_lines[:order_lines.index("unused_710.NCLR") + 1]
     with open(ICON_ORDER, "w") as f:
         f.write("\n".join(vanilla + [f"{s}.{ext}" for s in icons for ext in ("NCGR", "NCLR")]) + "\n")
-    if new_consts[0] not in consts:
+    added = [c for c in new_consts if c not in consts]
+    if added:
         i = consts.index("MAX_ITEMS")
-        consts = consts[:i] + new_consts + consts[i:]
+        consts = consts[:i] + added + consts[i:]
         with open(ITEMS_TXT, "w") as f:
             f.write("\n".join(consts) + "\n")
+    # Shop stock: the Veilstone Department Store sells the new held items and Gems (owner request), from the 2F
+    # vitamin clerk's menu (res/field/scripts/scripts_veilstone_store_2f.s).
+    def stock(name, entries):
+        lines = [f"static const u16 {name}[] = {{\n"] + [f"    ITEM_{stem_of(n).upper()},\n" for n in entries]
+        return "".join(lines) + "    SHOP_ITEM_END\n};\n"
+    with open(MART_HEADER, "w") as f:
+        f.write("// Generated by tools/engine/gen_items.py from data/items_sovereign.yaml. Do not edit.\n"
+                "#ifndef POKEPLATINUM_DATA_SOVEREIGN_MART_ITEMS_H\n#define POKEPLATINUM_DATA_SOVEREIGN_MART_ITEMS_H\n\n"
+                + stock("VeilstoneDeptStoreStock_2F_HeldItems", spec["held_items"]) + "\n"
+                + stock("VeilstoneDeptStoreStock_2F_Gems", spec["gems"])
+                + "\n#endif // POKEPLATINUM_DATA_SOVEREIGN_MART_ITEMS_H\n")
+    for n in spec["held_items"] + spec["gems"]:
+        price = PRICES.get(n) or int(items.get(by_name.get(n), {}).get("cost") or 0)
+        if price == 0:
+            raise SystemExit(f"{n} is sold at Veilstone but has no price: add it to PRICES")
+
     print(f"items written: {len(new_consts)} (last item ID {consts.index(new_consts[-1])}); icons: {len(icons)}")
 
 
