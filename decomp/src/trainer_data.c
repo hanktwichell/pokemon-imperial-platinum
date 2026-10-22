@@ -2,6 +2,9 @@
 
 #include "constants/battle.h"
 #include "constants/pokemon.h"
+#include "generated/abilities.h"
+#include "generated/gender_ratios.h"
+#include "generated/natures.h"
 #include "generated/trainer_message_types.h"
 
 #include "struct_defs/trainer.h"
@@ -21,6 +24,7 @@
 #include "string_gf.h"
 
 static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID heapID);
+static void TrainerData_InitSovereignMon(Pokemon *mon, const TrainerMonSovereign *trmon, u32 personality, enum HeapID heapID);
 
 void Trainer_Encounter(FieldBattleDTO *dto, const SaveData *saveData, enum HeapID heapID)
 {
@@ -186,7 +190,7 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
 
     // alloc enough space to support the maximum possible data size
     Party_InitWithCapacity(dto->parties[battler], MAX_PARTY_SIZE);
-    buf = Heap_Alloc(heapID, sizeof(TrainerMonWithMovesAndItem) * MAX_PARTY_SIZE);
+    buf = Heap_Alloc(heapID, TRAINER_PARTY_BUFFER_SIZE);
     mon = Pokemon_New(heapID);
 
     Trainer_LoadParty(dto->trainerIDs[battler], buf);
@@ -308,9 +312,141 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
 
         break;
     }
+
+    case TRDATATYPE_SOVEREIGN: {
+        TrainerMonSovereign *trmon = (TrainerMonSovereign *)buf;
+        for (i = 0; i < dto->trainer[battler].header.partySize; i++) {
+            // The same seeded personality value as Platinum's layouts; TrainerData_InitSovereignMon adjusts it.
+            rnd = trmon[i].ivScale + trmon[i].level + trmon[i].species + dto->trainerIDs[battler];
+            LCRNG_SetSeed(rnd);
+
+            for (j = 0; j < dto->trainer[battler].header.trainerType; j++) {
+                rnd = LCRNG_Next();
+            }
+
+            rnd = (rnd << 8) + genderMod;
+
+            TrainerData_InitSovereignMon(mon, &trmon[i], rnd, heapID);
+            Party_AddPokemon(dto->parties[battler], mon);
+        }
+
+        break;
+    }
     }
 
     Heap_Free(buf);
     Heap_Free(mon);
     LCRNG_SetSeed(oldSeed);
+}
+
+// Sovereign (milestone E9): change a personality value as little as possible so that it gives the requested
+// nature, gender and ability slot (abilitySlot: 0 or 1, or -1 for either). The low byte decides the gender and the
+// ability slot (bit 0); the rest is stepped until the value % NATURE_COUNT is the nature (each step adds 256, and
+// 256 % 25 = 6, which is coprime with 25, so 25 steps reach every nature).
+static u32 TrainerData_SovereignPersonality(u32 personality, u16 species, u8 nature, u8 gender, int abilitySlot)
+{
+    u32 genderRatio = SpeciesData_GetSpeciesValue(species, SPECIES_DATA_GENDER_RATIO);
+    BOOL fixedGender = genderRatio == GENDER_RATIO_MALE_ONLY || genderRatio == GENDER_RATIO_FEMALE_ONLY || genderRatio == GENDER_RATIO_NO_GENDER;
+    u32 low = personality & 0xFF;
+    u32 high = personality >> 8;
+    int i;
+
+    for (i = 0; i < 256; i++) {
+        u32 candidate = (low + i) & 0xFF;
+
+        if (gender != TRAINER_MON_GENDER_DEFAULT && !fixedGender) {
+            u8 candidateGender = genderRatio > candidate ? GENDER_FEMALE : GENDER_MALE;
+
+            if (candidateGender != gender) {
+                continue;
+            }
+        }
+
+        if (abilitySlot >= 0 && (candidate & 1) != (u32)abilitySlot) {
+            continue;
+        }
+
+        low = candidate;
+        break;
+    }
+
+    if (nature != TRAINER_MON_NATURE_DEFAULT) {
+        if (high > 0xFFFFFF - NATURE_COUNT) {
+            high -= NATURE_COUNT;
+        }
+
+        for (i = 0; i < NATURE_COUNT; i++) {
+            if (((high + i) << 8 | low) % NATURE_COUNT == nature) {
+                high += i;
+                break;
+            }
+        }
+    }
+
+    return high << 8 | low;
+}
+
+static void TrainerData_InitSovereignMon(Pokemon *mon, const TrainerMonSovereign *trmon, u32 personality, enum HeapID heapID)
+{
+    u32 ability1 = SpeciesData_GetFormValue(trmon->species, trmon->form, SPECIES_DATA_ABILITY_1);
+    u32 ability2 = SpeciesData_GetFormValue(trmon->species, trmon->form, SPECIES_DATA_ABILITY_2);
+    u32 hiddenAbility = SpeciesData_GetFormValue(trmon->species, trmon->form, SPECIES_DATA_ABILITY_HIDDEN);
+    int abilitySlot = -1;
+    u8 hasHiddenAbility = FALSE;
+    BOOL customAbility = FALSE;
+    u8 value;
+    int i;
+
+    // Pick the ability by its slot when the species has it, so form changes keep it; anything else is set as is.
+    if (trmon->ability != ABILITY_NONE) {
+        if (trmon->ability == ability1) {
+            abilitySlot = ability2 == ABILITY_NONE || ability2 == ability1 ? -1 : 0;
+        } else if (trmon->ability == ability2) {
+            abilitySlot = 1;
+        } else if (trmon->ability == hiddenAbility) {
+            hasHiddenAbility = TRUE;
+        } else {
+            customAbility = TRUE;
+        }
+    }
+
+    personality = TrainerData_SovereignPersonality(personality, trmon->species, trmon->nature, trmon->gender, abilitySlot);
+
+    if (trmon->flags & TRAINER_MON_FLAG_SHINY) {
+        // An OT ID whose two halves XOR to the personality's two halves always makes a shiny Pokémon.
+        Pokemon_InitWith(mon, trmon->species, trmon->level, 0, TRUE, personality, OTID_SET, ((personality >> 16) ^ (personality & 0xFFFF)) << 16);
+    } else {
+        Pokemon_InitWith(mon, trmon->species, trmon->level, 0, TRUE, personality, OTID_NOT_SHINY, 0);
+    }
+
+    Pokemon_SetValue(mon, MON_DATA_FORM, &trmon->form);
+    Pokemon_SetValue(mon, MON_DATA_HAS_HIDDEN_ABILITY, &hasHiddenAbility);
+    Pokemon_CalcAbility(mon);
+
+    if (customAbility) {
+        Pokemon_SetValue(mon, MON_DATA_ABILITY, &trmon->ability);
+    }
+
+    for (i = 0; i < TRAINER_MON_STAT_COUNT; i++) {
+        value = trmon->ivs[i];
+        Pokemon_SetValue(mon, MON_DATA_HP_IV + i, &value);
+        value = trmon->evs[i];
+        Pokemon_SetValue(mon, MON_DATA_HP_EV + i, &value);
+    }
+
+    Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &trmon->item);
+
+    if (trmon->flags & TRAINER_MON_FLAG_MOVES) {
+        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+            Pokemon_SetMoveSlot(mon, trmon->moves[i], i);
+        }
+    }
+
+    if (trmon->ball != ITEM_NONE) {
+        u8 ball = trmon->ball; // the Pokémon stores its ball in one byte; trainerproc checks it fits
+        Pokemon_SetValue(mon, MON_DATA_POKEBALL, &ball);
+    }
+
+    Pokemon_SetBallSeal(trmon->cbSeal, mon, heapID);
+    Pokemon_CalcStats(mon);
 }

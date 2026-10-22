@@ -3,8 +3,11 @@
 A hidden, Red-style **double battle** against the mod's developer (the owner), with a custom team and a custom AI
 written for this fight. Roadmap item T2; the AI review for doubles is item 12b.
 
-- **Trainer:** Sovereign Dev Twich (class "Sovereign Dev", name "Twich"); see *Naming*.
-- **Location:** Spear Pillar, at the summit of Mt. Coronet (post-game).
+- **Trainer:** Sovereign Twich (class "Sovereign", name "Twich"; renamed from Sovereign Dev Twich, owner 2026-10-22).
+  Twich is the last surviving member of the Sovereign lineage, and his dialogue refers to him being the game's
+  developer. The story behind the fight is in `docs/Story.md`.
+- **Location:** Spear Pillar, at the summit of Mt. Coronet: the Sovereign throne room (post-game).
+- **Unlocks** after the Elite Four rematch *and* the Dialga and Palkia encounters at Spear Pillar (owner).
 - **Level:** 100 for the whole team.
 - **Leads:** always Charizard (Mega Y) and Venusaur.
 - **Concept:** a triple-weather team built as three synergy pairs:
@@ -28,16 +31,16 @@ Changes from the first version:
 | 5 | Kyogre | Blue Orb | Drizzle (Primal: Primordial Sea) | Modest | 252 HP / 252 SpA / 4 SpD | 0 Atk | Water Spout, Origin Pulse, Ice Beam, Protect | Primal Reversion |
 | 6 | Archaludon ♀ (shiny) | Assault Vest | Stamina | Modest | 252 HP / 156 SpD / 100 Spe | 0 Atk | Electro Shot, Body Press, Flash Cannon, Dragon Pulse | |
 
-Unlisted IVs are 31. Every EV spread is within 252 per stat / 510 total. The owner's sets include Tera Types
+Every Pokémon on the team is in a **Luxury Ball** (owner, 2026-10-22). Unlisted IVs are 31. Every EV spread is within 252 per stat / 510 total. The owner's sets include Tera Types
 (Archaludon: Grass), but Sovereign has no Terastallization, so they're unused.
 
 ## What the engine needs before this fight works as written
 
 | Need | Milestone | Status |
 |---|---|---|
-| Per-mon nature, ability, EVs, IVs, held item, gender and shininess in trainer data | E9 | the trainer format will carry these |
+| Per-mon nature, ability, EVs, IVs, held item, gender and shininess in trainer data | E9 | ✅ done. The team is already in this format, held items included, as the test build's `TRAINER_SOVEREIGN_TEST` (SELECT+R) |
 | Archaludon (#1018) | E6 step 2 | species being added now |
-| Charizardite Y, Blue Orb, Assault Vest | E7 | Life Orb, Focus Sash and Choice Band exist already |
+| Charizardite Y, Blue Orb, Assault Vest | E7 | ✅ the items exist and the test team holds them; Assault Vest has no battle effect yet (E7's hold effects) |
 | Mega Evolution (Charizard Y) and Primal Reversion (Kyogre) | E8 | |
 | Stamina, Primordial Sea, Drought (on Mega Charizard Y) | E8 / item 11 | Stamina and Primordial Sea have no battle effect yet |
 | Electro Shot (charge turn, skipped in rain) and Stomping Tantrum (double power after a failed move) | item 11 | both are plain hits for now; Origin Pulse is exact |
@@ -77,14 +80,15 @@ Taking control of the weather by switching weather setters in and out is central
 - [ ] Custom AI (above).
 - [x] Trainer name, class and the game's name (see *Naming*).
 
-## Naming (decided 2026-10-22)
+## Naming (decided 2026-10-22; changed the same day)
 
 - **Game:** Pokémon **Sovereign** Platinum (was "Imperial Platinum"). The ROM header title is `SOVEREIGN PL`, which
   fills the header's 12 characters exactly.
-- **Trainer:** class **Sovereign Dev**, name **Twich**. In battle that reads "Sovereign Dev Twich", 19 characters, the
-  same length as Platinum's own "Galactic Boss Cyrus".
-  - The class is 13 characters, the same as Platinum's longest ("Galactic Boss").
+- **Trainer:** class **Sovereign**, name **Twich**. In battle that reads "Sovereign Twich", 15 characters (Platinum's
+  longest is "Galactic Boss Cyrus", 19).
   - The name fits an NPC trainer's 7-character limit.
+- The first version was "Sovereign Dev Twich". The owner dropped "Dev" from the name; the dialogue makes the
+  developer reference instead.
 
 ## Still open
 
