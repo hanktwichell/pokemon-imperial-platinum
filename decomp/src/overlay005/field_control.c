@@ -334,6 +334,18 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
         return TRUE;
     }
 
+#ifdef IMPERIAL_TEST
+    // Test build only: SELECT starts a wild battle, SELECT+R a trainer battle (scripts_init_new_game.s).
+    if ((input->pressedKeys & PAD_BUTTON_SELECT) && input->menu == FALSE) {
+        int moveState = PlayerAvatar_GetPlayerMoveState(fieldSystem->playerAvatar);
+
+        if (moveState == PLAYER_MOVE_STATE_END || moveState == PLAYER_MOVE_STATE_NONE) {
+            ScriptManager_Set(fieldSystem, SCRIPT_ID(INIT_NEW_GAME, (input->heldKeys & PAD_BUTTON_R) ? 3 : 2), NULL);
+            return TRUE;
+        }
+    }
+#endif
+
     return FALSE;
 }
 

@@ -78,6 +78,10 @@ if get_option('gdb_debugging')
     pokeplatinum_args += '-DGDB_DEBUGGING'
 endif
 
+if get_option('imperial_test')
+    pokeplatinum_args += '-DIMPERIAL_TEST'
+endif
+
 if get_option('logging_enabled')
     pokeplatinum_args += [
         '-DLOGGING_ENABLED',
