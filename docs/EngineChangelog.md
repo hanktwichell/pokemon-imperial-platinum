@@ -3,6 +3,36 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## E14 (part) — HM field moves without HM slaves, Gen VI+ breeding
+
+- **HM field moves:** once the bag has an HM, its field move works even if no party Pokémon knows it. Badge
+  requirements are unchanged.
+  - Cut, Rock Smash, Strength, Rock Climb, Surf and Waterfall work from their field prompts. The first non-Egg party
+    Pokémon does the move.
+  - Fly and Defog are added to every party Pokémon's menu.
+  - Code: `src/imperial_field_moves.c`, the script command `FindPartySlotForFieldMove`, and the Surf and Waterfall
+    checks in `field_control.c`.
+  - HM moves can be forgotten when learning a new move, on the summary screen and in battle
+    (`IMPERIAL_HMS_FORGETTABLE`). This builds but hasn't been tried in-game yet.
+- **Gen VI+ breeding** (`daycare.c`):
+  - An Everstone passes its holder's nature every time, from either parent.
+  - A Destiny Knot passes 5 IVs instead of 3. This also fixes Gen IV's bug that could pick the same stat twice.
+  - Egg moves come from either parent.
+  - The egg comes in the mother's Poké Ball, or the non-Ditto parent's when breeding with Ditto (Master and Cherish
+    Balls become a Poké Ball).
+  - A parent with its Hidden Ability passes it 60% of the time.
+  - The ball and Hidden Ability are kept when the egg hatches.
+- Test build:
+  - The bag now has HM02 and HM05, and there's a Ditto (Adamant, Everstone, 31 IVs). The Hidden Ability Gallade holds
+    a Destiny Knot, is in an Ultra Ball, and has 31 IVs.
+  - SELECT+L breeds the two and hatches the egg straight away.
+  - `drive.py` accepts key combos such as `SELECT+L`.
+
+Verified in the emulator:
+- Fly and Defog show in the menus of Garchomp and Turtwig, which don't know them.
+- The hatched Ralts has Adamant nature, an Ultra Ball, Telepathy (its Hidden Ability), and 31 in five IVs.
+- The hatch shortcut skips the normal hatch script, so the test Ralts shows no hatch place or date.
+
 ## 10b (part 1) — Pokémon Champions battle rules
 
 Rules and sources: `docs/BattleMechanics.md`. IVs, EVs and levels are unchanged (owner decision).

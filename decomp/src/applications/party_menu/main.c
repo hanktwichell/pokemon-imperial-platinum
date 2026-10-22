@@ -37,6 +37,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "height_weight_data.h"
+#include "imperial_field_moves.h"
 #include "imperial_options.h"
 #include "item.h"
 #include "item_use_pokemon.h"
@@ -1790,6 +1791,17 @@ static void sub_0207FFC8(PartyMenuApplication *application)
     Sprite_SetExplicitPalette2(application->sprites[PARTY_MENU_SPRITE_CURSOR_NORMAL], 1);
 }
 
+static BOOL MonKnowsMove(Pokemon *mon, u16 move)
+{
+    for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+        if (Pokemon_GetValue(mon, MON_DATA_MOVE1 + i, NULL) == move) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
 static u8 GetContextMenuEntriesForPartyMon(PartyMenuApplication *application, u8 *menuEntriesBuffer)
 {
     Pokemon *mon = Party_GetPokemonBySlotIndex(application->partyMenu->party, application->currPartySlot);
@@ -1812,6 +1824,20 @@ static u8 GetContextMenuEntriesForPartyMon(PartyMenuApplication *application, u8
 
                 if (fieldEffect != 0xff) {
                     menuEntriesBuffer[count] = fieldEffect;
+                    count++;
+                    PartyMenu_SetKnownFieldMove(application, move, fieldMoveIndex);
+                    fieldMoveIndex++;
+                }
+            }
+
+            // Imperial: HM field moves used from this menu (Fly, Defog) are offered when the bag has the HM, even if
+            // this Pokémon doesn't know the move. The menu holds at most 4 field moves.
+            static const u16 sMenuOnlyHMMoves[] = { MOVE_FLY, MOVE_DEFOG };
+            for (i = 0; i < NELEMS(sMenuOnlyHMMoves) && fieldMoveIndex < LEARNED_MOVES_MAX; i++) {
+                move = sMenuOnlyHMMoves[i];
+
+                if (MonKnowsMove(mon, move) == FALSE && Imperial_BagHasHMForMove(SaveData_Ptr(), move)) {
+                    menuEntriesBuffer[count] = GetFieldMoveIndex(move);
                     count++;
                     PartyMenu_SetKnownFieldMove(application, move, fieldMoveIndex);
                     fieldMoveIndex++;

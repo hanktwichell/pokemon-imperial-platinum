@@ -731,11 +731,34 @@ static void ImperialTest_SetupNewGame(FieldSystem *fieldSystem)
     u16 sharpness = ABILITY_SHARPNESS;
     Pokemon_SetValue(Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), 4), MON_DATA_ABILITY, &sharpness);
 
+    // Breeding test (SELECT+L, see ImperialTest_BreedAndHatch): the Hidden Ability Gallade holds a Destiny Knot and
+    // sits in an Ultra Ball; a Ditto with Adamant nature (personality 3) holds an Everstone. Both have 31 in every IV.
+    u16 item = ITEM_DESTINY_KNOT;
+    u8 ball = ITEM_ULTRA_BALL;
+    Pokemon_SetValue(gallade, MON_DATA_HELD_ITEM, &item);
+    Pokemon_SetValue(gallade, MON_DATA_POKEBALL, &ball);
+    for (int i = 0; i < STAT_MAX; i++) {
+        u8 iv = 31;
+        Pokemon_SetValue(gallade, MON_DATA_HP_IV + i, &iv);
+    }
+    Pokemon_CalcLevelAndStats(gallade);
+
+    Pokemon *ditto = Pokemon_New(HEAP_ID_FIELD2);
+    Pokemon_InitWith(ditto, SPECIES_DITTO, 30, 31, TRUE, 3, OTID_NOT_SET, 0);
+    item = ITEM_EVERSTONE;
+    Pokemon_SetValue(ditto, MON_DATA_HELD_ITEM, &item);
+    Party_AddPokemon(SaveData_GetParty(fieldSystem->saveData), ditto);
+    Heap_Free(ditto);
+
     // Show POKéMON in the start menu (normally unlocked by getting a starter).
     SystemVars_SetPlayerStarter(SaveData_GetVarsFlags(fieldSystem->saveData), SPECIES_TURTWIG);
     Bag_TryAddItem(bag, ITEM_RARE_CANDY, 3, HEAP_ID_FIELD2);
     Bag_TryAddItem(bag, ITEM_POTION, 10, HEAP_ID_FIELD2);
     Bag_TryAddItem(bag, ITEM_POKE_BALL, 10, HEAP_ID_FIELD2);
+
+    // HM02 (Fly) and HM05 (Defog): their field moves should show in every party Pokémon's menu.
+    Bag_TryAddItem(bag, ITEM_HM02, 1, HEAP_ID_FIELD2);
+    Bag_TryAddItem(bag, ITEM_HM05, 1, HEAP_ID_FIELD2);
 
     // A Super Repel that runs out after 3 steps, with 2 more in the bag (tests the "use another?" prompt).
     Bag_TryAddItem(bag, ITEM_SUPER_REPEL, 2, HEAP_ID_FIELD2);

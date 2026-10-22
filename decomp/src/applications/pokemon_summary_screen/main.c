@@ -25,6 +25,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "imperial_field_moves.h"
 #include "item.h"
 #include "message.h"
 #include "move_table.h"
@@ -818,7 +819,8 @@ static int HandleInput_SelectMove(PokemonSummaryScreen *summaryScreen)
     if (JOY_NEW(PAD_BUTTON_A)) {
         Sound_PlayEffect(SEQ_SE_DP_DECIDE_sseq);
 
-        if (summaryScreen->cursor != LEARNED_MOVES_MAX) {
+        // Imperial QoL: HM moves can be forgotten like any other move (HM field moves work from the bag's HMs).
+        if (summaryScreen->cursor != LEARNED_MOVES_MAX && IMPERIAL_HMS_FORGETTABLE == FALSE) {
             if (Item_IsHMMove(summaryScreen->monData.moves[summaryScreen->cursor]) == TRUE && summaryScreen->data->move != MOVE_NONE) {
                 Sprite_SetDrawFlag2(summaryScreen->sprites[SUMMARY_SPRITE_MOVE_CATEGORY_ICON], FALSE);
                 DrawEmptyHearts(summaryScreen);

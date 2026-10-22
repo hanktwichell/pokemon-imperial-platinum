@@ -13,6 +13,7 @@
 #include "field_script_context.h"
 #include "field_system.h"
 #include "heap.h"
+#include "imperial_field_moves.h"
 #include "inlines.h"
 #include "item.h"
 #include "map_header.h"
@@ -134,6 +135,16 @@ BOOL ScrCmd_CheckPartyMonHasMove(ScriptContext *ctx)
         *destVar = TRUE;
     }
 
+    return FALSE;
+}
+
+BOOL ScrCmd_FindPartySlotForFieldMove(ScriptContext *ctx)
+{
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    u16 move = ScriptContext_GetVar(ctx);
+    u8 slot = Imperial_FieldMovePartySlot(ctx->fieldSystem->saveData, move);
+
+    *destVar = slot == PARTY_SLOT_NONE ? MAX_PARTY_SIZE : slot;
     return FALSE;
 }
 

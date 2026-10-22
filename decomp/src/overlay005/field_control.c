@@ -39,6 +39,7 @@
 #include "field_map_change.h"
 #include "field_overworld_state.h"
 #include "game_records.h"
+#include "imperial_field_moves.h"
 #include "inlines.h"
 #include "item_use_functions.h"
 #include "location.h"
@@ -242,7 +243,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
             playerEvent |= PLAYER_EVENT_USED_STRENGTH;
         }
 
-        if (Party_HasMonWithMove(SaveData_GetParty(fieldSystem->saveData), MOVE_WATERFALL) != PARTY_SLOT_NONE) {
+        if (Imperial_FieldMovePartySlot(fieldSystem->saveData, MOVE_WATERFALL) != PARTY_SLOT_NONE) { // Imperial: HM in the bag is enough
             playerEvent |= PLAYER_EVENT_USED_WATERFALL;
         }
 
@@ -366,9 +367,14 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
     }
 
 #ifdef IMPERIAL_TEST
-    // Test build only: SELECT starts a wild battle, SELECT+R a trainer battle.
+    // Test build only: SELECT starts a wild battle, SELECT+R a trainer battle, SELECT+L breeds and hatches an egg.
     if ((input->pressedKeys & PAD_BUTTON_SELECT) && input->menu == FALSE) {
         int moveState = PlayerAvatar_GetPlayerMoveState(fieldSystem->playerAvatar);
+
+        if ((input->heldKeys & PAD_BUTTON_L) && (moveState == PLAYER_MOVE_STATE_END || moveState == PLAYER_MOVE_STATE_NONE)) {
+            ImperialTest_BreedAndHatch(fieldSystem);
+            return FALSE;
+        }
 
         if (moveState == PLAYER_MOVE_STATE_END || moveState == PLAYER_MOVE_STATE_NONE) {
             FieldSystem_CreateTask(fieldSystem, ImperialTest_BattleTask, (input->heldKeys & PAD_BUTTON_R) ? (void *)1 : NULL);
@@ -731,7 +737,7 @@ u16 Field_TileBehaviorToScript(FieldSystem *fieldSystem, u8 behavior)
         u32 distortionBehavior = PlayerAvatar_GetDistortionCurrTileBehaviour(fieldSystem->playerAvatar);
 
         if (PlayerAvatar_CanUseSurf(fieldSystem->playerAvatar, distortionBehavior, behavior) && TrainerInfo_HasBadge(info, 3)) {
-            if (Party_HasMonWithMove(SaveData_GetParty(fieldSystem->saveData), MOVE_SURF) != PARTY_SLOT_NONE) {
+            if (Imperial_FieldMovePartySlot(fieldSystem->saveData, MOVE_SURF) != PARTY_SLOT_NONE) { // Imperial: HM in the bag is enough
                 return SCRIPT_ID(FIELD_MOVES, 4);
             }
         }

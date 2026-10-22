@@ -299,45 +299,24 @@ static void Daycare_CopyDaycareMonToBoxMonArray(Daycare *daycare, BoxPokemon *bo
     boxMon[1] = Daycare_GetBoxMon(daycare, 1);
 }
 
+// Imperial: Gen VI+ rule. A parent holding an Everstone always passes its nature (either parent, not just the
+// mother or Ditto, and not 50%); if both hold one, either parent's. Gen IV: only the mother/Ditto, half the time.
 static int Daycare_GetParentToInheritNature(Daycare *daycare)
 {
-    int i;
-    int species[NUM_DAYCARE_MONS], slot = -1, dittoCount;
+    int i, slot = -1, holders = 0;
     BoxPokemon *boxMon[NUM_DAYCARE_MONS];
 
     Daycare_CopyDaycareMonToBoxMonArray(daycare, boxMon);
 
-    // search for female gender
     for (i = 0; i < NUM_DAYCARE_MONS; i++) {
-        if (BoxPokemon_GetGender(boxMon[i]) == GENDER_FEMALE) {
+        if (BoxPokemon_GetValue(boxMon[i], MON_DATA_HELD_ITEM, NULL) == ITEM_EVERSTONE) {
             slot = i;
+            holders++;
         }
     }
 
-    // search for ditto
-    for (dittoCount = 0, i = 0; i < NUM_DAYCARE_MONS; i++) {
-        if ((species[i] = BoxPokemon_GetValue(boxMon[i], MON_DATA_SPECIES, NULL)) == SPECIES_DITTO) {
-            dittoCount++;
-            slot = i;
-        }
-    }
-
-    // coin flip on ...two Dittos
-    if (dittoCount == NUM_DAYCARE_MONS) {
-        if (LCRNG_Next() >= (0xffff / 2)) {
-            slot = 0;
-        } else {
-            slot = 1;
-        }
-    }
-
-    // Don't inherit nature if not holding Everstone
-    if (BoxPokemon_GetValue(boxMon[slot], MON_DATA_HELD_ITEM, NULL) == ITEM_EVERSTONE) {
-        if (LCRNG_Next() >= (0xffff / 2)) {
-            return -1;
-        }
-    } else {
-        return -1;
+    if (holders == NUM_DAYCARE_MONS) {
+        slot = LCRNG_Next() % NUM_DAYCARE_MONS;
     }
 
     return slot;
@@ -395,22 +374,32 @@ static void RemoveIVIndexFromList(u8 *ivs, u8 selectedIV)
 
 static void Egg_InheritIVs(Pokemon *egg, Daycare *daycare)
 {
-    u8 selectedIVs[NUM_INHERITED_IVS], i, availableIVs[STAT_MAX], slots[NUM_INHERITED_IVS], value;
+    u8 selectedIVs[STAT_MAX], i, availableIVs[STAT_MAX], slots[STAT_MAX], value;
+    u8 numInherited = NUM_INHERITED_IVS;
+
+    // Imperial: Gen VI+ rule, a parent holding a Destiny Knot makes the egg inherit 5 of the parents' IVs (not 3).
+    for (i = 0; i < NUM_DAYCARE_MONS; i++) {
+        if (BoxPokemon_GetValue(Daycare_GetBoxMon(daycare, i), MON_DATA_HELD_ITEM, NULL) == ITEM_DESTINY_KNOT) {
+            numInherited = NUM_INHERITED_IVS_DESTINY_KNOT;
+        }
+    }
 
     for (i = 0; i < STAT_MAX; i++) {
         availableIVs[i] = i;
     }
 
-    for (i = 0; i < NUM_INHERITED_IVS; i++) {
-        selectedIVs[i] = availableIVs[LCRNG_Next() % (STAT_MAX - i)];
-        RemoveIVIndexFromList(availableIVs, i);
+    for (i = 0; i < numInherited; i++) {
+        // Bug fix: vanilla removed index i (not the one picked), so a stat could be picked twice.
+        u8 pick = LCRNG_Next() % (STAT_MAX - i);
+        selectedIVs[i] = availableIVs[pick];
+        RemoveIVIndexFromList(availableIVs, pick);
     }
 
-    for (i = 0; i < NUM_INHERITED_IVS; i++) {
+    for (i = 0; i < numInherited; i++) {
         slots[i] = LCRNG_Next() % NUM_DAYCARE_MONS;
     }
 
-    for (i = 0; i < NUM_INHERITED_IVS; i++) {
+    for (i = 0; i < numInherited; i++) {
         BoxPokemon *daycareBoxMon = Daycare_GetBoxMon(daycare, slots[i]);
 
         switch (selectedIVs[i]) {
@@ -502,6 +491,22 @@ static void Egg_BuildMoveset(Pokemon *egg, BoxPokemon *father, BoxPokemon *mothe
             }
         } else {
             break;
+        }
+    }
+
+    // Imperial: Gen VI+ rule, egg moves come from either parent (Gen IV: father only).
+    for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+        if (builder->motherMoves[i] == MOVE_NONE) {
+            break;
+        }
+
+        for (j = 0; j < eggMoveCount; j++) {
+            if (builder->motherMoves[i] == builder->eggSpeciesEggMoves[j]) {
+                if (Pokemon_AddMove(egg, builder->motherMoves[i]) == LEARNSET_ALL_SLOTS_FILLED) {
+                    Pokemon_ReplaceMove(egg, builder->motherMoves[i]);
+                }
+                break;
+            }
         }
     }
 
@@ -748,6 +753,28 @@ static void Egg_SetInitialData(Pokemon *mon, u16 species, Daycare *daycare, u32 
     String_Free(string);
 }
 
+// Imperial: Gen VII+ rules. The egg comes in the Poké Ball of its mother, or of the non-Ditto parent when breeding
+// with Ditto (never a Master or Cherish Ball), and has a 60% chance of the Hidden Ability if that parent has it.
+static void Egg_InheritBallAndHiddenAbility(Pokemon *egg, Daycare *daycare, const u8 parentSlots[])
+{
+    BoxPokemon *mother = Daycare_GetBoxMon(daycare, parentSlots[0]);
+    BoxPokemon *father = Daycare_GetBoxMon(daycare, parentSlots[1]);
+    BoxPokemon *source = BoxPokemon_GetValue(mother, MON_DATA_SPECIES, NULL) == SPECIES_DITTO ? father : mother;
+    u16 ball = BoxPokemon_GetValue(source, MON_DATA_POKEBALL, NULL);
+
+    if (ball == ITEM_MASTER_BALL || ball == ITEM_CHERISH_BALL) {
+        ball = ITEM_POKE_BALL;
+    }
+
+    Pokemon_SetValue(egg, MON_DATA_POKEBALL, &ball);
+
+    if (BoxPokemon_GetValue(source, MON_DATA_HAS_HIDDEN_ABILITY, NULL) && LCRNG_Next() % 100 < 60) {
+        u8 hasHiddenAbility = TRUE;
+        Pokemon_SetValue(egg, MON_DATA_HAS_HIDDEN_ABILITY, &hasHiddenAbility);
+        Pokemon_CalcAbility(egg);
+    }
+}
+
 void Daycare_GiveEggFromDaycare(Daycare *daycare, Party *party, TrainerInfo *trainerInfo)
 {
     u16 species;
@@ -765,6 +792,7 @@ void Daycare_GiveEggFromDaycare(Daycare *daycare, Party *party, TrainerInfo *tra
 
     Egg_InheritIVs(mon, daycare);
     Egg_BuildMoveset(mon, Daycare_GetBoxMon(daycare, parentSlots[1]), Daycare_GetBoxMon(daycare, parentSlots[0]));
+    Egg_InheritBallAndHiddenAbility(mon, daycare, parentSlots);
 
     UpdateMonStatusAndTrainerInfo(mon, trainerInfo, 3, SpecialMetLoc_GetId(1, 0), HEAP_ID_FIELD1);
 
@@ -1097,6 +1125,7 @@ static void Egg_CreateHatchedMonInternal(Pokemon *egg, enum HeapID heapID)
     u32 personality, otID;
     u8 ivs[STAT_MAX], pokerus;
     u8 i, language, metGame, marks, friendship, fatefulEncounter, form, gender;
+    u8 ball, hasHiddenAbility;
     String *string = String_Init(7 + 1, heapID);
     Pokemon *mon = Pokemon_New(heapID);
 
@@ -1124,6 +1153,8 @@ static void Egg_CreateHatchedMonInternal(Pokemon *egg, enum HeapID heapID)
     gender = Pokemon_GetValue(egg, MON_DATA_OT_GENDER, NULL);
     otID = Pokemon_GetValue(egg, MON_DATA_OT_ID, NULL);
     form = Pokemon_GetValue(egg, MON_DATA_FORM, NULL);
+    ball = Pokemon_GetValue(egg, MON_DATA_POKEBALL, NULL); // Imperial: inherited ball and Hidden Ability survive hatching
+    hasHiddenAbility = Pokemon_GetValue(egg, MON_DATA_HAS_HIDDEN_ABILITY, NULL);
 
     if (species == SPECIES_MANAPHY) {
         if (Pokemon_GetValue(egg, MON_DATA_EGG_LOCATION, NULL) == SpecialMetLoc_GetId(2, 1)) {
@@ -1157,6 +1188,9 @@ static void Egg_CreateHatchedMonInternal(Pokemon *egg, enum HeapID heapID)
     Pokemon_SetValue(mon, MON_DATA_OT_GENDER, &gender);
     Pokemon_SetValue(mon, MON_DATA_OT_ID, &otID);
     Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+    Pokemon_SetValue(mon, MON_DATA_POKEBALL, &ball);
+    Pokemon_SetValue(mon, MON_DATA_HAS_HIDDEN_ABILITY, &hasHiddenAbility);
+    Pokemon_CalcAbility(mon);
 
     u16 location = Pokemon_GetValue(egg, MON_DATA_EGG_LOCATION, NULL);
     u8 year = Pokemon_GetValue(egg, MON_DATA_EGG_YEAR, NULL);
@@ -1186,13 +1220,12 @@ static void Egg_CreateHatchedMonInternal(Pokemon *egg, enum HeapID heapID)
 void Egg_CreateHatchedMon(Pokemon *egg, enum HeapID heapID)
 {
     u8 isEgg, hasNickname;
-    u8 ball, metLevel;
+    u8 metLevel;
     u16 species;
     charcode_t nickname[MON_NAME_LEN + 1];
 
     isEgg = 70; // wtf?
     hasNickname = FALSE;
-    ball = ITEM_POKE_BALL;
     metLevel = 0;
 
     Egg_CreateHatchedMonInternal(egg, heapID);
@@ -1203,8 +1236,7 @@ void Egg_CreateHatchedMon(Pokemon *egg, enum HeapID heapID)
     MessageLoader_GetSpeciesName(species, HEAP_ID_SYSTEM, nickname);
     Pokemon_SetValue(egg, MON_DATA_NICKNAME, nickname);
     Pokemon_SetValue(egg, MON_DATA_HAS_NICKNAME, &hasNickname);
-    Pokemon_SetValue(egg, MON_DATA_POKEBALL, &ball);
-    Pokemon_SetValue(egg, MON_DATA_MET_LEVEL, &metLevel);
+    Pokemon_SetValue(egg, MON_DATA_MET_LEVEL, &metLevel); // Imperial: the egg's (inherited) ball is kept
     Pokemon_CalcLevelAndStats(egg);
 }
 
@@ -1212,3 +1244,24 @@ u32 BoxMon_GetPairDaycareCompatibilityLevel(BoxPokemon **boxMonPair)
 {
     return DaycareCompatibilityScoreToLevel(BoxMon_GetPairDaycareCompatibilityScore(boxMonPair));
 }
+
+#ifdef IMPERIAL_TEST
+// Test build only (SELECT+L in the overworld): breeds the test party's Ditto (slot 6) with the Gallade that has its
+// Hidden Ability (slot 4), then hatches the egg at once, to check Gen VI+ breeding (see ImperialTest_SetupNewGame).
+void ImperialTest_BreedAndHatch(FieldSystem *fieldSystem)
+{
+    SaveData *saveData = fieldSystem->saveData;
+    Party *party = SaveData_GetParty(saveData);
+    Daycare *daycare = SaveData_GetDaycare(saveData);
+
+    if (Daycare_CountMons(daycare) != 0 || Party_GetCurrentCount(party) < 6) {
+        return;
+    }
+
+    Daycare_MoveToEmptySlotFromParty(party, 5, daycare, saveData);
+    Daycare_MoveToEmptySlotFromParty(party, 3, daycare, saveData);
+    Daycare_SetInheritedNature(daycare);
+    Daycare_GiveEggFromDaycare(daycare, party, SaveData_GetTrainerInfo(saveData));
+    Egg_CreateHatchedMon(Party_GetPokemonBySlotIndex(party, Party_GetCurrentCount(party) - 1), HEAP_ID_FIELD2);
+}
+#endif
