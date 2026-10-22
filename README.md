@@ -32,6 +32,7 @@ whole ROM from source, so no base ROM is needed to develop. Milestones are in
 | [`docs/QualityOfLife.md`](docs/QualityOfLife.md) | Renegade QoL kept, and proposed additions awaiting approval |
 | [`docs/SpriteLog.md`](docs/SpriteLog.md) | Front/back/shiny sprite status for every added species and Mega |
 | [`docs/SpriteChecklist.xlsx`](docs/SpriteChecklist.xlsx) | Spreadsheet: which of the 5 sprites we have for all 1025 species (+ Megas) |
+| [`docs/CryChecklist.xlsx`](docs/CryChecklist.xlsx) | Spreadsheet: which cries we have / still need for all 1025 species (+ Megas), and where each source cry is |
 | [`CITATIONS.md`](CITATIONS.md) | Credits for every asset and dataset |
 | `RenegadePlatinumV130/` | Drayano's original patches and documentation (unchanged) |
 | `decomp/` | pret/pokeplatinum decompilation (git subtree) — the Imperial engine |
@@ -53,6 +54,7 @@ docs/                 Generated + hand-written documentation
 assets/sprites/       Sprite packs (unmodified) and owner-supplied art
 tools/design/         Generators and validators for the docs
 tools/sprites/        Sprite pack indexer
+tools/audio/          Cry checklist (PokeAPI cry archive)
 tools/build/          ROM build helpers (apply the Renegade base patch)
 tools/engine/         Generators for engine tables (level caps -> decomp/include/data/level_caps.h)
 tools/test/           Headless emulator tests and the drive.py scripted-input driver

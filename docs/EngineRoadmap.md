@@ -8,6 +8,10 @@ Decisions this plan follows (project owner, 2026-10-22):
 - Decomp route; Imperial has its **own save format**.
 - **Gen IX data everywhere:** current base stats, types, abilities **including Hidden Abilities**, learnsets and moves.
 - Every big fight after the Eterna Jupiter battle has a Mega (picks pending in `BossFights_MegaPicks.md`).
+- **Pokédex:** the Sinnoh (regional) Pokédex stays exactly as in Platinum; the National Pokédex holds all 1025 species.
+  Where a species can be caught doesn't depend on which dex it's in.
+- **Cries** for #494–1025: from PokeAPI's cry archive (https://github.com/PokeAPI/cries, `cries/pokemon/latest/<dex>.ogg`), converted to the DS format, credited in
+  `CITATIONS.md`.
 
 ## How the decomp stores data (relevant to us)
 

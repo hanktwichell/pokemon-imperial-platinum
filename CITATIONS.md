@@ -84,6 +84,14 @@ Location: `assets/sprites/icons_placeholder/` (converted by `tools/sprites/make_
 #494–809, Sword/Shield icons for #810–898, Scarlet/Violet icons for #899–1025). The icon art is © Nintendo / Game Freak /
 The Pokémon Company; PokeAPI hosts it. **Placeholders only**, to be replaced by DS-style icons.
 
+## Audio
+
+### Cries for #494–1025 (and form cries)
+Source: **PokeAPI cries** — https://github.com/PokeAPI/cries (commit `b3a9044bb839`), `cries/pokemon/latest/<id>.ogg` and
+`cries/pokemon/legacy/<id>.ogg`. The cry audio is © Nintendo / Game Freak / The Pokémon Company; PokeAPI hosts it.
+Converted copies for the DS will go in `assets/audio/cries/`. Tracked in `docs/CryChecklist.xlsx`
+(`tools/audio/gen_cry_checklist.py`).
+
 ### Mega Garchomp Z (front + shiny front)
 `assets/sprites/reference/mega_garchomp_z_reference.png`, supplied by the project owner. **Original artist unknown —
 attribution needed before release.**

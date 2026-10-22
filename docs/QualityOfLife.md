@@ -47,6 +47,5 @@
 | # | Feature | Seen in | Notes / cost |
 |---|---|---|---|
 | 7 | **PC access from the menu** (or a "Box Link" key item) | Unbound | Medium. |
-| 10 | **Exp. Candies** as rewards instead of some Rare Candies | Gen VIII+ | Small. |
 
-Not planned unless the project owner asks for them.
+#7 stays on this list but isn't planned yet (owner, 2026-10-22). #10 (Exp. Candies) was dropped.
