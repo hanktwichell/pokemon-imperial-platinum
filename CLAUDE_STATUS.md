@@ -507,3 +507,24 @@ battle's trainer text and sprite, batched answers to open questions, and the own
    choice, spread moves, partner awareness and Gen IX moves. Use `TRAINER_SOVEREIGN_TEST` to watch it.
 3. Start item 11, exact move and ability effects, boss teams first: list which moves and abilities the boss teams use
    that are still placeholders (`docs/MoveChecklist.md`).
+
+---
+
+## CA-0005 — 2026-10-22, 3:44 pm US Central (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** started 12b, the AI review for doubles. Findings and plan are in `docs/AIReview.md` (new).
+- The biggest problem: only Earthquake and Magnitude are checked, by name, for hitting the AI's own partner. Surf,
+  Discharge, Lava Plume, Explosion and the Gen V+ ally-hitting moves aren't.
+- The Earthquake handler penalises a lone Pokémon, and misses Steel types and the partner's HP.
+- Spread moves get no credit for hitting both foes.
+- Gen V+ absorbing and redirecting abilities are unknown to the AI.
+- Checked, no fix needed: the AI never picks Fake Out after the first turn under Champions rules (`CHECK_INVALID_ALL`
+  includes Sovereign's first-turn check).
+
+**Files modified:** `docs/AIReview.md` (new), `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Merge PR #16 once CI is green.
+2. Fix #1–#2: partner safety by move range (`RANGE_ALL_ADJACENT`), with the partner's damage estimated by the game's
+   damage formula. This needs a new AI script command, or a C-side adjustment in `TrainerAI_MainDoubles`.
+3. Fix #3 (spread credit), then #4–#5 alongside item 11's ability effects.
