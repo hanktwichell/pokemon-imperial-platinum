@@ -28,6 +28,7 @@ Details are in [`docs/ProjectStatus.md`](docs/ProjectStatus.md).
 | [`docs/ItemChanges_Imperial.md`](docs/ItemChanges_Imperial.md) | New items, replaced field items, new shops |
 | [`docs/QualityOfLife.md`](docs/QualityOfLife.md) | Renegade QoL kept, and proposed additions awaiting approval |
 | [`docs/SpriteLog.md`](docs/SpriteLog.md) | Front/back/shiny sprite status for every added species and Mega |
+| [`docs/SpriteChecklist.xlsx`](docs/SpriteChecklist.xlsx) | Spreadsheet: which of the 5 sprites we have for all 1025 species (+ Megas) |
 | [`CITATIONS.md`](CITATIONS.md) | Credits for every asset and dataset |
 | `RenegadePlatinumV130/` | Drayano's original patches and documentation (unchanged) |
 
