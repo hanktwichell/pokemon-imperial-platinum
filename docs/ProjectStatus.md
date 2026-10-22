@@ -88,6 +88,9 @@ Made by the owner (2026-10-22):
       and Miraidon's four Modes.
     - Terapagos-Stellar is shelved for now (it needs Terastallization, which Sovereign doesn't have).
     This leaves 282 alternate Pokémon (99 of them Mega/Primal) plus about 228 cosmetic forms.
+17. The battle screen gets a **MEGA** button on the touch-screen move menu for Mega Evolution. Primal Reversion stays
+    automatic on switch-in, as in ORAS and later, with no button (owner, 2026-10-22). Spec in `MegaEvolution.md`; built
+    in E8.
 
 Open:
 - The developer battle: Lv. 100 at Spear Pillar, leads Charizard-Y + Venusaur, custom weather-control AI (`DeveloperBattle.md`). Opponent: Sovereign Dev Twich. Open: text, sprites (owner's sprite coming soon), Charizard's final moveset.
