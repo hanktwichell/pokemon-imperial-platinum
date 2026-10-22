@@ -8,6 +8,7 @@ on:
 jobs:
   rom:
     runs-on: ubuntu-24.04
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
       - name: Install dependencies
@@ -26,6 +27,7 @@ jobs:
         # Imperial changes the ROM, so build without the retail checksum check.
         run: make -C decomp rom -j"$(nproc)"
       - name: Boot smoke test (headless DeSmuME)
+        timeout-minutes: 5
         env:
           SDL_VIDEODRIVER: dummy
           SDL_AUDIODRIVER: dummy
@@ -42,6 +44,7 @@ jobs:
 
   docs:
     runs-on: ubuntu-24.04
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
