@@ -49,7 +49,7 @@ and T2 only. See `EngineRoadmap.md` for the per-milestone breakdown.
 | Elite Four format | 2 singles + 2 doubles, rematch options | `docs/EliteFourFormat.md` |
 | Evolutions | Gen IV-compatible methods for added species; 16 new evolution items | `docs/EvolutionChanges_Sovereign.md` |
 | Post-game legendaries | 90 species in five chapters | `docs/PostgameLegendaries.md` |
-| Sprites | Fronts and backs for all 532 added species (owner packs); placeholder icons from PokeAPI | `docs/SpriteChecklist.xlsx` |
+| Sprites | Fronts and backs for all 532 added species (owner packs); placeholder icons from PokeAPI. Bag icons needed for 13 new items (the crown) | `docs/SpriteChecklist.xlsx` |
 | Cries | 493 in the game; 532 needed, all with a source in PokeAPI's cry archive | `docs/CryChecklist.xlsx` |
 | Citations | Every asset and dataset credited | `CITATIONS.md` |
 
@@ -129,7 +129,9 @@ Made by the owner (2026-10-22):
     Gates and crown (owner): each Galactic encounter waits on the Totem trials placed before it (existing blocking
     NPCs get the trial added to their unlock condition). Each trial, once its catch encounter is over (caught or
     not), leaves a crown piece: a Gold Shard first, then jewels or gold shards, and the Crown Diamond 11th; all key
-    items, unsellable and untossable. Henry appears at Spear Pillar only with the complete 11-piece crown. The
+    items, unsellable and untossable. The 11 merge into the **Crown**, which becomes the **Sovereign Crown** after the
+    rematch win over Cynthia. Victory Road waits on the last trial (Togedemaru). Henry appears at Spear Pillar only
+    with the complete crown. The
     Celestic Town elder meets the player at home after the first Hall of Fame and sends them to Spear Pillar. After
     the Sovereign battle the Elite Four can still be rematched, with all-Lv. 100 teams.
 

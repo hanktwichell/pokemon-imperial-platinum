@@ -100,23 +100,46 @@ such NPC exists, a new one is placed (E11 finds them).
 | Galactic Boss Cyrus (Celestic Town) | Mimikyu (Old Chateau), Alolan Marowak (Lost Tower), Alolan Raticate (Galactic Warehouse), Lurantis (Great Marsh), Araquanid (Route 213) |
 | Saturn and Mars (the lakes) | Salazzle (Fuego Ironworks) |
 | Mars and Jupiter (Spear Pillar) | Kommo-o (Mt. Coronet) |
-| — | Togedemaru (Vista Lighthouse): after the Distortion World, so it gates no Galactic encounter. It's always the last trial, so it gives the crown diamond |
+| Victory Road (owner) | Togedemaru (Vista Lighthouse): the last trial, after the Distortion World. The gate at Victory Road's entrance checks it as well as the eight badges |
 
 - The blocking NPC's line nudges the player toward the open trial (e.g. a huge Pokémon nearby that won't leave),
   so the gate doubles as the prompt.
-- This changes decision 18: the trials are no longer optional along the story (Togedemaru's can wait until the
-  post-game).
+- This changes decision 18: the trials are no longer optional. All 11 are done before the Elite Four, so the crown
+  is always complete by the first Hall of Fame.
 
 ### The crown (owner)
 
 - **After each trial,** once the follow-up encounter where the Totem can be caught is over (**whether or not the
   player catches it**), the player finds a crown piece on the ground.
-- **The pieces:** the first is a **Gold Shard**; later trials give jewels or more gold shards. The 11th piece, from
-  the last trial (Togedemaru), is the **Crown Diamond**.
+- **The pieces** (owner: a mix of rubies, emeralds, sapphires and gold shards/fragments). The key-items pocket shows
+  no counts, so each piece has its own name. Rough stones come first and cut ones later, as the crown takes shape.
+  Names and order are a proposal; the owner can rename any of them:
+
+  | # | Trial | Piece |
+  |---|---|---|
+  | 1 | Gumshoos (Route 205 South) | Gold Shard |
+  | 2 | Ribombee (Floaroma Meadow) | Raw Emerald |
+  | 3 | Vikavolt (Eterna Forest) | Gold Fragment |
+  | 4 | Mimikyu (Old Chateau) | Raw Sapphire |
+  | 5 | Alolan Marowak (Lost Tower) | Raw Ruby |
+  | 6 | Alolan Raticate (Galactic Warehouse) | Gold Sliver |
+  | 7 | Lurantis (Great Marsh) | Cut Emerald |
+  | 8 | Araquanid (Route 213) | Cut Sapphire |
+  | 9 | Salazzle (Fuego Ironworks) | Cut Ruby |
+  | 10 | Kommo-o (Mt. Coronet) | Gold Flake |
+  | 11 | Togedemaru (Vista Lighthouse) | **Crown Diamond** |
+
+  Each piece belongs to its trial, so the order a player finds them in can vary slightly where two trials share a
+  stretch of the story (e.g. Ribombee and Vikavolt). Gumshoos always comes first and Togedemaru always last.
 - **Can't be sold or thrown away:** all are key items.
 - **The realisation:** as the pieces add up, their descriptions start to hint that they fit together into a crown.
-- **The gate:** the **complete 11-piece crown is required for the Sovereign to appear at Spear Pillar.** Without it
-  the throne stays empty, even after Cynthia sends the player there.
+- **The Crown** (owner): when the 11th piece is found, the pieces merge into one key item, the **Crown**.
+- **The Sovereign Crown** (owner): after the player beats Cynthia in the Elite Four rematch, the Crown becomes the
+  **Sovereign Crown**.
+- **The gate:** the **complete crown is required for the Sovereign to appear at Spear Pillar.** With Victory Road
+  gated on the last trial, every player has it by then.
+- **Icons:** the 11 pieces, the Crown and the Sovereign Crown are on the owner's sprite list
+  (`docs/SpriteChecklist.xlsx`, sheet *Item Icons*, from `data/item_sprites.csv`).
 
 ## Engineering notes
 
@@ -125,8 +148,10 @@ such NPC exists, a new one is placed (E11 finds them).
 - **Celestic elder at home:** a scene in the player's house the first time they wake there after the Hall of Fame.
 - **Galactic gates:** each gating NPC's script checks the trial flags in the table above (one flag per trial, set
   when its catch encounter ends).
-- **Crown pieces:** 11 new key items (key items can't be sold or tossed). Open: whether they merge into one
-  "Sovereign Crown" item once all 11 are held.
+- **Crown pieces:** 13 new key items (key items can't be sold or tossed): the 11 pieces, the Crown and the
+  Sovereign Crown. Picking up the 11th piece removes the 11 and gives the Crown. Beating Cynthia in the rematch
+  swaps the Crown for the Sovereign Crown.
+- **Victory Road gate:** the existing check at Victory Road's entrance also needs Togedemaru's trial flag.
 - **Elite Four rematch lock:** the League's save-prompt NPC checks a "Dialga and Palkia both done" condition
   (caught or defeated) before letting the player through for a rematch.
 - **Henry's unlock:** the second win against Cynthia (the Elite Four rematch, Sovereign's E4 format:
@@ -146,10 +171,7 @@ such NPC exists, a new one is placed (E11 finds them).
 
 ## Open
 
-- Do the crown pieces merge into one "Sovereign Crown" item once all 11 are held?
-- The names of pieces 2–10 (jewels or more gold shards; owner: "might yield jewels or other gold shards").
-- Togedemaru's trial gates nothing in the main story. Should something (e.g. Volkner's Gym) wait on it, or is the
-  crown enough?
+- The crown piece names in the table above are a proposal: the owner can rename any of them.
 
 ## Settled after review
 
@@ -158,4 +180,7 @@ such NPC exists, a new one is placed (E11 finds them).
 - **Who directs the player to Spear Pillar after the first Hall of Fame:** the Celestic Town elder, at the
   player's home (owner).
 - **Elite Four after the Sovereign battle:** rematches continue, all at Lv. 100 (owner).
-- **Totem gates:** Galactic encounters wait on the trials before them; the full crown calls the Sovereign (owner).
+- **Totem gates:** Galactic encounters wait on the trials before them, and Victory Road waits on Togedemaru's; the
+  full crown calls the Sovereign (owner).
+- **The crown:** the pieces are a mix of rubies, emeralds, sapphires and gold; they merge into the Crown, which
+  becomes the Sovereign Crown after the Elite Four rematch's win over Cynthia (owner).

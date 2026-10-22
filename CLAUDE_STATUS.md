@@ -686,3 +686,36 @@ proposal):
 2. 12b #3 (spread credit for hitting both foes).
 3. 12b #8 (ally support moves), then item 11.
 For E11 (Claude B): find the blocking NPCs for the Galactic gates, and build the crown items and the elder's scene.
+
+---
+
+## CA-0013 — 2026-10-22, 4:55 pm US Central (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** the owner's crown answers, recorded:
+- **The pieces** are a mix of rubies, emeralds, sapphires and gold. The key-items pocket shows no counts, so each
+  needs its own name. Proposed names, one per trial:
+  1. Gold Shard
+  2. Raw Emerald
+  3. Gold Fragment
+  4. Raw Sapphire
+  5. Raw Ruby
+  6. Gold Sliver
+  7. Cut Emerald
+  8. Cut Sapphire
+  9. Cut Ruby
+  10. Gold Flake
+  11. Crown Diamond
+- **The Crown:** the 11 pieces merge into the **Crown**, which becomes the **Sovereign Crown** after the rematch win
+  over Cynthia.
+- **Victory Road** waits on Togedemaru's trial, so every trial, and the whole crown, is done before the Elite Four.
+- **Sprite list:** the 13 items are on the owner's list. There's a new *Item Icons* sheet in
+  `docs/SpriteChecklist.xlsx`, generated from the new `data/item_sprites.csv`, plus a row on the Summary sheet.
+
+**Files modified:** `docs/Story.md`, `docs/ProjectStatus.md`, `docs/DeveloperBattle.md`, `data/item_sprites.csv`
+(new), `tools/sprites/gen_sprite_checklist.py`, `docs/SpriteChecklist.xlsx`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Merge PR #19.
+2. 12b #3 (spread credit for hitting both foes).
+3. 12b #8 (ally support moves), then item 11.
+For E11 (Claude B): the crown items, merge and rename; the Victory Road check.

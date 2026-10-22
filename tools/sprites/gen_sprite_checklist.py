@@ -8,6 +8,7 @@ A check mark means we have the sprite; a highlighted empty cell means we still n
       - any "dex folder" pack: NNNN-Name/{front,back,shiny_front,shiny_back}.png
   * Box/party icons for added species: placeholders converted from PokeAPI icons
     (tools/sprites/make_placeholder_icons.py, data/icon_placeholders.csv).
+  * New items' bag icons: data/item_sprites.csv (have_icon = 1 once the icon is in).
 The Notes column says whether each sprite is DS-ready (80x80, <=15 colours), can be cropped
 losslessly to 80x80, or needs a resize/redraw.
 Re-run after adding sprites (and after re-running tools/sprites/import_sprite_pack.py).
@@ -197,7 +198,18 @@ def main():
     for col, w in zip("ABCDEFGH", [7, 32, 14, 14, 14, 14, 44, 60]):
         wm.column_dimensions[col].width = w
 
-    # ---- Sheet 3: summary (live formulas)
+    # ---- Sheet 3: bag icons for new items
+    items = list(csv.DictReader(open(os.path.join(ROOT, "data", "item_sprites.csv"), encoding="utf-8")))
+    wi = wb.create_sheet("Item Icons")
+    style_header(wi, ["Item", "Kind", "Where it comes from", "Bag icon", "Notes"])
+    wi.cell(row=1, column=4).comment = Comment("Bag icon: 32×32, 16 colours, as Platinum's item icons.", "Sovereign Platinum")
+    for i, it in enumerate(items, start=2):
+        write_row(wi, i, [it["item"], it["kind"], it["source"], CHECK if it["have_icon"] == "1" else "", it["notes"]], 4, 1)
+    ilast = len(items) + 1
+    for col, w in zip("ABCDE", [18, 16, 58, 12, 50]):
+        wi.column_dimensions[col].width = w
+
+    # ---- Sheet 4: summary (live formulas)
     su = wb.create_sheet("Summary", 0)
     su["A1"] = "Sovereign Platinum — Sprite Aggregation Summary"
     su["A1"].font = Font(name=FONT, bold=True, size=14)
@@ -238,6 +250,14 @@ def main():
             cell.border = BORDER
             if c > 1:
                 cell.alignment = Alignment(horizontal="center")
+    r = 6 + len(SPRITE_COLS)
+    irng = f"'Item Icons'!$D$2:$D${ilast}"
+    for c, v in enumerate(["New item bag icons", f'=COUNTIF({irng},"{CHECK}")', f'=ROWS({irng})-B{r}'], 1):
+        cell = su.cell(row=r, column=c, value=v)
+        cell.font = Font(name=FONT, bold=(c == 1))
+        cell.border = BORDER
+        if c > 1:
+            cell.alignment = Alignment(horizontal="center")
     su.column_dimensions["A"].width = 26
     for col in "BCDEFG":
         su.column_dimensions[col].width = 17

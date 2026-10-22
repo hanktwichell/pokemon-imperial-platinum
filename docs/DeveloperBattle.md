@@ -9,7 +9,7 @@ written for this fight. Roadmap item T2; the AI review for doubles is item 12b.
 - **Location:** Spear Pillar, at the summit of Mt. Coronet: the Sovereign throne room (post-game).
 - **Unlocks** (owner): first Hall of Fame → Dialga and Palkia at Spear Pillar → the Elite Four rematch (locked until
   both are done) → after beating Cynthia the second time, she sends the player back to Spear Pillar, where Henry
-  appears only if the player holds the complete 11-piece crown from the Totem trials. Event order: `docs/Story.md`.
+  appears only if the player holds the crown made from the 11 Totem trials' pieces (the Sovereign Crown by then). Event order: `docs/Story.md`.
 - **Afterwards:** the player is granted the Sovereign title, and Cynthia arrives to congratulate them
   (`docs/Story.md`). Cynthia is the reason Henry uses a Garchomp.
 - **Level:** 100 for the whole team.
