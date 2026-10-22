@@ -34,16 +34,21 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_SAND_ATTACK" ],
-            [ 7, "MOVE_BITE" ],
-            [ 13, "MOVE_YAWN" ],
-            [ 19, "MOVE_TAKE_DOWN" ],
-            [ 25, "MOVE_SAND_TOMB" ],
-            [ 31, "MOVE_CRUNCH" ],
-            [ 37, "MOVE_EARTHQUAKE" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 4, "MOVE_BITE" ],
+            [ 8, "MOVE_YAWN" ],
+            [ 12, "MOVE_SAND_TOMB" ],
+            [ 16, "MOVE_DIG" ],
+            [ 20, "MOVE_CRUNCH" ],
+            [ 24, "MOVE_SANDSTORM" ],
+            [ 28, "MOVE_TAKE_DOWN" ],
+            [ 32, "MOVE_ROAR" ],
+            [ 36, "MOVE_REST" ],
+            [ 40, "MOVE_EARTHQUAKE" ],
             [ 44, "MOVE_DOUBLE_EDGE" ],
-            [ 50, "MOVE_FISSURE" ]
+            [ 48, "MOVE_FISSURE" ],
+            [ 52, "MOVE_SLACK_OFF" ]
         ],
         "by_tm": [
             "TM03",
@@ -56,6 +61,7 @@
             "TM23",
             "TM26",
             "TM27",
+            "TM28",
             "TM32",
             "TM37",
             "TM39",
@@ -64,6 +70,7 @@
             "TM44",
             "TM45",
             "TM58",
+            "TM71",
             "TM76",
             "TM78",
             "TM80",
@@ -78,16 +85,15 @@
             "MOVE_MUD_SLAP",
             "MOVE_SUPERPOWER",
             "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
             "MOVE_EARTH_POWER"
         ],
         "egg_moves": [
-            "MOVE_STOCKPILE",
-            "MOVE_SWALLOW",
-            "MOVE_SPIT_UP",
+            "MOVE_WHIRLWIND",
             "MOVE_CURSE",
-            "MOVE_SLACK_OFF",
-            "MOVE_BODY_SLAM",
-            "MOVE_SAND_TOMB"
+            "MOVE_STOCKPILE",
+            "MOVE_SPIT_UP",
+            "MOVE_SWALLOW"
         ]
     },
     "evolutions": [

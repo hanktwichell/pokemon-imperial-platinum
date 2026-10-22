@@ -36,13 +36,15 @@
         "by_level": [
             [ 1, "MOVE_SCRATCH" ],
             [ 1, "MOVE_YAWN" ],
-            [ 7, "MOVE_ENCORE" ],
-            [ 13, "MOVE_SLACK_OFF" ],
-            [ 19, "MOVE_FAINT_ATTACK" ],
-            [ 25, "MOVE_AMNESIA" ],
-            [ 31, "MOVE_COVET" ],
-            [ 37, "MOVE_COUNTER" ],
-            [ 43, "MOVE_FLAIL" ]
+            [ 6, "MOVE_ENCORE" ],
+            [ 9, "MOVE_SLACK_OFF" ],
+            [ 14, "MOVE_HEADBUTT" ],
+            [ 17, "MOVE_AMNESIA" ],
+            [ 22, "MOVE_COVET" ],
+            [ 25, "MOVE_THROAT_CHOP" ],
+            [ 30, "MOVE_COUNTER" ],
+            [ 33, "MOVE_FLAIL" ],
+            [ 38, "MOVE_PLAY_ROUGH" ]
         ],
         "by_tm": [
             "TM01",
@@ -72,13 +74,17 @@
             "TM43",
             "TM44",
             "TM45",
+            "TM46",
+            "TM54",
             "TM56",
             "TM58",
             "TM65",
             "TM78",
             "TM80",
+            "TM81",
             "TM82",
             "TM83",
+            "TM84",
             "TM87",
             "TM90",
             "HM01",
@@ -93,19 +99,22 @@
             "MOVE_FIRE_PUNCH",
             "MOVE_ICE_PUNCH",
             "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_ZEN_HEADBUTT",
             "MOVE_GUNK_SHOT",
+            "MOVE_SEED_BOMB",
             "MOVE_SUCKER_PUNCH"
         ],
         "egg_moves": [
-            "MOVE_PURSUIT",
-            "MOVE_SLASH",
             "MOVE_BODY_SLAM",
+            "MOVE_SLASH",
             "MOVE_SNORE",
-            "MOVE_CRUSH_CLAW",
             "MOVE_CURSE",
-            "MOVE_SLEEP_TALK",
+            "MOVE_CRUSH_CLAW",
+            "MOVE_TICKLE",
             "MOVE_HAMMER_ARM",
-            "MOVE_NIGHT_SLASH"
+            "MOVE_NIGHT_SLASH",
+            "MOVE_AFTER_YOU"
         ]
     },
     "evolutions": [

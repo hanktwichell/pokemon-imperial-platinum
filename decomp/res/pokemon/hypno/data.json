@@ -34,25 +34,21 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_NIGHTMARE" ],
-            [ 1, "MOVE_SWITCHEROO" ],
             [ 1, "MOVE_POUND" ],
-            [ 1, "MOVE_HYPNOSIS" ],
             [ 1, "MOVE_DISABLE" ],
             [ 1, "MOVE_CONFUSION" ],
-            [ 7, "MOVE_DISABLE" ],
-            [ 9, "MOVE_CONFUSION" ],
-            [ 15, "MOVE_HEADBUTT" ],
-            [ 18, "MOVE_POISON_GAS" ],
-            [ 21, "MOVE_MEDITATE" ],
-            [ 28, "MOVE_PSYBEAM" ],
-            [ 33, "MOVE_PSYCH_UP" ],
-            [ 38, "MOVE_HEADBUTT" ],
-            [ 45, "MOVE_SWAGGER" ],
-            [ 50, "MOVE_PSYCHIC" ],
-            [ 55, "MOVE_NASTY_PLOT" ],
-            [ 64, "MOVE_ZEN_HEADBUTT" ],
-            [ 69, "MOVE_FUTURE_SIGHT" ]
+            [ 1, "MOVE_HYPNOSIS" ],
+            [ 1, "MOVE_SWITCHEROO" ],
+            [ 13, "MOVE_HEADBUTT" ],
+            [ 17, "MOVE_POISON_GAS" ],
+            [ 21, "MOVE_PSYBEAM" ],
+            [ 25, "MOVE_PSYCH_UP" ],
+            [ 32, "MOVE_ZEN_HEADBUTT" ],
+            [ 37, "MOVE_SWAGGER" ],
+            [ 42, "MOVE_PSYCHIC" ],
+            [ 47, "MOVE_NASTY_PLOT" ],
+            [ 51, "MOVE_PSYSHOCK" ],
+            [ 56, "MOVE_FUTURE_SIGHT" ]
         ],
         "by_tm": [
             "TM01",
@@ -103,9 +99,13 @@
             "MOVE_THUNDER_PUNCH",
             "MOVE_FIRE_PUNCH",
             "MOVE_ICE_PUNCH",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
             "MOVE_SIGNAL_BEAM",
             "MOVE_ZEN_HEADBUTT",
-            "MOVE_TRICK"
+            "MOVE_TRICK",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT"
         ]
     },
     "evolutions": [  ],

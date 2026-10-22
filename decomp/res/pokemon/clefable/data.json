@@ -4,10 +4,10 @@
         "attack": 70,
         "defense": 73,
         "speed": 60,
-        "special_attack": 85,
+        "special_attack": 95,
         "special_defense": 90
     },
-    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
+    "types": [ "TYPE_FAIRY", "TYPE_FAIRY" ],
     "catch_rate": 25,
     "base_exp_reward": 129,
     "ev_yields": {
@@ -34,10 +34,10 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_SING" ],
-            [ 1, "MOVE_DOUBLE_SLAP" ],
-            [ 1, "MOVE_MINIMIZE" ],
-            [ 1, "MOVE_METRONOME" ]
+            [ 1, "MOVE_METRONOME" ],
+            [ 1, "MOVE_METEOR_MASH" ],
+            [ 1, "MOVE_MOONBLAST" ],
+            [ 1, "MOVE_LIFE_DEW" ]
         ],
         "by_tm": [
             "TM01",
@@ -72,6 +72,8 @@
             "TM43",
             "TM44",
             "TM45",
+            "TM46",
+            "TM48",
             "TM49",
             "TM52",
             "TM56",
@@ -109,7 +111,9 @@
             "MOVE_LAST_RESORT",
             "MOVE_BOUNCE",
             "MOVE_TRICK",
-            "MOVE_KNOCK_OFF"
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
         ]
     },
     "evolutions": [  ],

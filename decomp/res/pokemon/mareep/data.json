@@ -35,20 +35,25 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 5, "MOVE_GROWL" ],
-            [ 10, "MOVE_THUNDER_SHOCK" ],
-            [ 14, "MOVE_THUNDER_WAVE" ],
-            [ 19, "MOVE_COTTON_SPORE" ],
-            [ 23, "MOVE_CHARGE" ],
-            [ 28, "MOVE_DISCHARGE" ],
-            [ 32, "MOVE_SIGNAL_BEAM" ],
-            [ 37, "MOVE_LIGHT_SCREEN" ],
-            [ 41, "MOVE_POWER_GEM" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 4, "MOVE_THUNDER_WAVE" ],
+            [ 8, "MOVE_THUNDER_SHOCK" ],
+            [ 11, "MOVE_COTTON_SPORE" ],
+            [ 15, "MOVE_CHARGE" ],
+            [ 18, "MOVE_TAKE_DOWN" ],
+            [ 22, "MOVE_ELECTRO_BALL" ],
+            [ 25, "MOVE_CONFUSE_RAY" ],
+            [ 29, "MOVE_POWER_GEM" ],
+            [ 32, "MOVE_DISCHARGE" ],
+            [ 36, "MOVE_COTTON_GUARD" ],
+            [ 39, "MOVE_DAZZLING_GLEAM" ],
+            [ 43, "MOVE_LIGHT_SCREEN" ],
             [ 46, "MOVE_THUNDER" ]
         ],
         "by_tm": [
             "TM06",
             "TM10",
+            "TM11",
             "TM16",
             "TM17",
             "TM18",
@@ -57,7 +62,9 @@
             "TM24",
             "TM25",
             "TM27",
+            "TM28",
             "TM32",
+            "TM33",
             "TM34",
             "TM42",
             "TM43",
@@ -75,20 +82,19 @@
         ],
         "by_tutor": [
             "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
             "MOVE_SIGNAL_BEAM",
             "MOVE_MAGNET_RISE",
             "MOVE_SWIFT"
         ],
         "egg_moves": [
-            "MOVE_TAKE_DOWN",
-            "MOVE_BODY_SLAM",
-            "MOVE_SAFEGUARD",
-            "MOVE_SCREECH",
-            "MOVE_REFLECT",
-            "MOVE_ODOR_SLEUTH",
-            "MOVE_CHARGE",
+            "MOVE_AGILITY",
             "MOVE_FLATTER",
-            "MOVE_SAND_ATTACK"
+            "MOVE_AFTER_YOU",
+            "MOVE_ELECTROWEB",
+            "MOVE_EERIE_IMPULSE",
+            "MOVE_ELECTRIC_TERRAIN"
         ]
     },
     "evolutions": [

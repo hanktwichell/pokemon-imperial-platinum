@@ -35,21 +35,24 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SCRATCH" ],
-            [ 6, "MOVE_STUN_SPORE" ],
             [ 6, "MOVE_POISON_POWDER" ],
-            [ 11, "MOVE_LEECH_LIFE" ],
-            [ 17, "MOVE_SPORE" ],
-            [ 22, "MOVE_SLASH" ],
-            [ 27, "MOVE_GROWTH" ],
-            [ 33, "MOVE_GIGA_DRAIN" ],
-            [ 38, "MOVE_AROMATHERAPY" ],
-            [ 43, "MOVE_X_SCISSOR" ]
+            [ 6, "MOVE_STUN_SPORE" ],
+            [ 11, "MOVE_ABSORB" ],
+            [ 17, "MOVE_FURY_CUTTER" ],
+            [ 22, "MOVE_SPORE" ],
+            [ 27, "MOVE_SLASH" ],
+            [ 33, "MOVE_GROWTH" ],
+            [ 38, "MOVE_GIGA_DRAIN" ],
+            [ 43, "MOVE_AROMATHERAPY" ],
+            [ 49, "MOVE_RAGE_POWDER" ],
+            [ 54, "MOVE_X_SCISSOR" ]
         ],
         "by_tm": [
             "TM06",
             "TM09",
             "TM10",
             "TM11",
+            "TM16",
             "TM17",
             "TM19",
             "TM21",
@@ -88,17 +91,19 @@
             "MOVE_KNOCK_OFF"
         ],
         "egg_moves": [
-            "MOVE_FALSE_SWIPE",
-            "MOVE_SCREECH",
-            "MOVE_COUNTER",
             "MOVE_PSYBEAM",
+            "MOVE_COUNTER",
+            "MOVE_LEECH_SEED",
+            "MOVE_AGILITY",
+            "MOVE_SCREECH",
             "MOVE_FLAIL",
             "MOVE_SWEET_SCENT",
-            "MOVE_LIGHT_SCREEN",
-            "MOVE_PURSUIT",
             "MOVE_METAL_CLAW",
+            "MOVE_CROSS_POISON",
             "MOVE_BUG_BITE",
-            "MOVE_CROSS_POISON"
+            "MOVE_WIDE_GUARD",
+            "MOVE_FELL_STINGER",
+            "MOVE_GRASSY_TERRAIN"
         ]
     },
     "evolutions": [

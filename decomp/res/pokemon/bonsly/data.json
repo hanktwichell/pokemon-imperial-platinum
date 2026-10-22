@@ -36,17 +36,17 @@
         "by_level": [
             [ 1, "MOVE_FAKE_TEARS" ],
             [ 1, "MOVE_COPYCAT" ],
-            [ 6, "MOVE_FLAIL" ],
-            [ 9, "MOVE_LOW_KICK" ],
-            [ 14, "MOVE_ROCK_THROW" ],
-            [ 17, "MOVE_MIMIC" ],
-            [ 22, "MOVE_BLOCK" ],
-            [ 25, "MOVE_FAINT_ATTACK" ],
-            [ 30, "MOVE_ROCK_TOMB" ],
-            [ 33, "MOVE_ROCK_SLIDE" ],
-            [ 38, "MOVE_SLAM" ],
-            [ 41, "MOVE_SUCKER_PUNCH" ],
-            [ 46, "MOVE_DOUBLE_EDGE" ]
+            [ 4, "MOVE_FLAIL" ],
+            [ 8, "MOVE_ROCK_THROW" ],
+            [ 12, "MOVE_BLOCK" ],
+            [ 16, "MOVE_MIMIC" ],
+            [ 20, "MOVE_ROCK_TOMB" ],
+            [ 24, "MOVE_TEARFUL_LOOK" ],
+            [ 28, "MOVE_SUCKER_PUNCH" ],
+            [ 32, "MOVE_ROCK_SLIDE" ],
+            [ 36, "MOVE_LOW_KICK" ],
+            [ 40, "MOVE_COUNTER" ],
+            [ 44, "MOVE_DOUBLE_EDGE" ]
         ],
         "by_tm": [
             "TM04",
@@ -55,6 +55,7 @@
             "TM11",
             "TM17",
             "TM21",
+            "TM26",
             "TM27",
             "TM28",
             "TM31",
@@ -69,16 +70,19 @@
             "TM58",
             "TM64",
             "TM69",
+            "TM71",
             "TM76",
             "TM77",
             "TM78",
             "TM80",
             "TM82",
             "TM83",
+            "TM86",
             "TM87",
             "TM90"
         ],
         "by_tutor": [
+            "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
@@ -87,12 +91,12 @@
             "MOVE_UPROAR"
         ],
         "egg_moves": [
-            "MOVE_SELFDESTRUCT",
             "MOVE_HEADBUTT",
             "MOVE_HARDEN",
             "MOVE_DEFENSE_CURL",
+            "MOVE_CURSE",
             "MOVE_ROLLOUT",
-            "MOVE_SAND_TOMB"
+            "MOVE_ROCK_POLISH"
         ]
     },
     "evolutions": [

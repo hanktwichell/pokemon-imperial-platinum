@@ -34,8 +34,9 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_GROWL" ],
-            [ 1, "MOVE_BIDE" ],
+            [ 6, "MOVE_STRUGGLE_BUG" ],
             [ 16, "MOVE_BUG_BITE" ]
         ],
         "by_tm": [  ],

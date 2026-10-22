@@ -34,20 +34,20 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_LICK" ],
             [ 1, "MOVE_POUND" ],
-            [ 5, "MOVE_LICK" ],
-            [ 8, "MOVE_SWEET_KISS" ],
-            [ 11, "MOVE_POWDER_SNOW" ],
-            [ 15, "MOVE_CONFUSION" ],
-            [ 18, "MOVE_SING" ],
-            [ 21, "MOVE_MEAN_LOOK" ],
-            [ 25, "MOVE_FAKE_TEARS" ],
-            [ 28, "MOVE_LUCKY_CHANT" ],
-            [ 31, "MOVE_AVALANCHE" ],
-            [ 35, "MOVE_PSYCHIC" ],
-            [ 38, "MOVE_COPYCAT" ],
-            [ 41, "MOVE_PERISH_SONG" ],
-            [ 45, "MOVE_BLIZZARD" ]
+            [ 4, "MOVE_POWDER_SNOW" ],
+            [ 8, "MOVE_COPYCAT" ],
+            [ 12, "MOVE_CONFUSION" ],
+            [ 16, "MOVE_COVET" ],
+            [ 20, "MOVE_SING" ],
+            [ 24, "MOVE_FAKE_TEARS" ],
+            [ 28, "MOVE_ICE_PUNCH" ],
+            [ 32, "MOVE_PSYCHIC" ],
+            [ 36, "MOVE_SWEET_KISS" ],
+            [ 40, "MOVE_MEAN_LOOK" ],
+            [ 44, "MOVE_PERISH_SONG" ],
+            [ 48, "MOVE_BLIZZARD" ]
         ],
         "by_tm": [
             "TM03",
@@ -100,12 +100,9 @@
             "MOVE_UPROAR"
         ],
         "egg_moves": [
-            "MOVE_MEDITATE",
-            "MOVE_PSYCH_UP",
             "MOVE_FAKE_OUT",
-            "MOVE_WISH",
-            "MOVE_ICE_PUNCH",
-            "MOVE_MIRACLE_EYE"
+            "MOVE_ROLE_PLAY",
+            "MOVE_WISH"
         ]
     },
     "evolutions": [

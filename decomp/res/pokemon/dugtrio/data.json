@@ -1,7 +1,7 @@
 {
     "base_stats": {
         "hp": 35,
-        "attack": 80,
+        "attack": 100,
         "defense": 50,
         "speed": 120,
         "special_attack": 50,
@@ -34,23 +34,22 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_NIGHT_SLASH" ],
-            [ 1, "MOVE_TRI_ATTACK" ],
+            [ 1, "MOVE_SAND_TOMB" ],
             [ 1, "MOVE_SCRATCH" ],
             [ 1, "MOVE_SAND_ATTACK" ],
             [ 1, "MOVE_GROWL" ],
-            [ 4, "MOVE_GROWL" ],
-            [ 7, "MOVE_ASTONISH" ],
-            [ 12, "MOVE_MAGNITUDE" ],
-            [ 15, "MOVE_MUD_SLAP" ],
-            [ 18, "MOVE_DIG" ],
-            [ 23, "MOVE_SUCKER_PUNCH" ],
-            [ 26, "MOVE_SAND_TOMB" ],
-            [ 28, "MOVE_EARTH_POWER" ],
-            [ 33, "MOVE_MUD_BOMB" ],
-            [ 40, "MOVE_SLASH" ],
-            [ 45, "MOVE_EARTHQUAKE" ],
-            [ 50, "MOVE_FISSURE" ]
+            [ 1, "MOVE_TRI_ATTACK" ],
+            [ 1, "MOVE_ASTONISH" ],
+            [ 1, "MOVE_NIGHT_SLASH" ],
+            [ 12, "MOVE_MUD_SLAP" ],
+            [ 16, "MOVE_BULLDOZE" ],
+            [ 20, "MOVE_SUCKER_PUNCH" ],
+            [ 24, "MOVE_SLASH" ],
+            [ 30, "MOVE_SANDSTORM" ],
+            [ 36, "MOVE_DIG" ],
+            [ 42, "MOVE_EARTH_POWER" ],
+            [ 48, "MOVE_EARTHQUAKE" ],
+            [ 54, "MOVE_FISSURE" ]
         ],
         "by_tm": [
             "TM06",
@@ -76,6 +75,7 @@
             "TM65",
             "TM68",
             "TM71",
+            "TM75",
             "TM76",
             "TM78",
             "TM80",
@@ -89,8 +89,10 @@
         "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
+            "MOVE_ENDEAVOR",
             "MOVE_EARTH_POWER",
-            "MOVE_SUCKER_PUNCH"
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_UPROAR"
         ]
     },
     "evolutions": [  ],

@@ -34,20 +34,19 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_ABSORB" ],
             [ 1, "MOVE_CROSS_POISON" ],
+            [ 1, "MOVE_POISON_POWDER" ],
             [ 1, "MOVE_SCRATCH" ],
             [ 1, "MOVE_STUN_SPORE" ],
-            [ 1, "MOVE_POISON_POWDER" ],
-            [ 1, "MOVE_LEECH_LIFE" ],
-            [ 6, "MOVE_STUN_SPORE" ],
-            [ 6, "MOVE_POISON_POWDER" ],
-            [ 11, "MOVE_LEECH_LIFE" ],
-            [ 17, "MOVE_SPORE" ],
-            [ 22, "MOVE_SLASH" ],
-            [ 30, "MOVE_GROWTH" ],
-            [ 39, "MOVE_GIGA_DRAIN" ],
-            [ 47, "MOVE_AROMATHERAPY" ],
-            [ 55, "MOVE_X_SCISSOR" ]
+            [ 17, "MOVE_FURY_CUTTER" ],
+            [ 22, "MOVE_SPORE" ],
+            [ 29, "MOVE_SLASH" ],
+            [ 37, "MOVE_GROWTH" ],
+            [ 44, "MOVE_GIGA_DRAIN" ],
+            [ 51, "MOVE_AROMATHERAPY" ],
+            [ 59, "MOVE_RAGE_POWDER" ],
+            [ 66, "MOVE_X_SCISSOR" ]
         ],
         "by_tm": [
             "TM06",
@@ -55,6 +54,7 @@
             "TM10",
             "TM11",
             "TM15",
+            "TM16",
             "TM17",
             "TM19",
             "TM21",

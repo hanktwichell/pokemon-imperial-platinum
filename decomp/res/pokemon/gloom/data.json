@@ -34,20 +34,20 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_ABSORB" ],
-            [ 1, "MOVE_SWEET_SCENT" ],
             [ 1, "MOVE_ACID" ],
-            [ 5, "MOVE_SWEET_SCENT" ],
-            [ 9, "MOVE_ACID" ],
-            [ 13, "MOVE_POISON_POWDER" ],
-            [ 15, "MOVE_STUN_SPORE" ],
-            [ 17, "MOVE_SLEEP_POWDER" ],
-            [ 23, "MOVE_MEGA_DRAIN" ],
-            [ 29, "MOVE_LUCKY_CHANT" ],
-            [ 35, "MOVE_NATURAL_GIFT" ],
-            [ 41, "MOVE_MOONLIGHT" ],
-            [ 47, "MOVE_GIGA_DRAIN" ],
-            [ 53, "MOVE_PETAL_DANCE" ]
+            [ 1, "MOVE_ABSORB" ],
+            [ 1, "MOVE_GROWTH" ],
+            [ 1, "MOVE_SWEET_SCENT" ],
+            [ 12, "MOVE_MEGA_DRAIN" ],
+            [ 14, "MOVE_POISON_POWDER" ],
+            [ 16, "MOVE_STUN_SPORE" ],
+            [ 18, "MOVE_SLEEP_POWDER" ],
+            [ 20, "MOVE_GIGA_DRAIN" ],
+            [ 26, "MOVE_TOXIC" ],
+            [ 32, "MOVE_MOONBLAST" ],
+            [ 38, "MOVE_GRASSY_TERRAIN" ],
+            [ 44, "MOVE_MOONLIGHT" ],
+            [ 50, "MOVE_PETAL_DANCE" ]
         ],
         "by_tm": [
             "TM06",
@@ -82,6 +82,7 @@
         "by_tutor": [
             "MOVE_GASTRO_ACID",
             "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
             "MOVE_SYNTHESIS",
             "MOVE_SEED_BOMB"
         ]

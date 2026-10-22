@@ -7,7 +7,7 @@
         "special_attack": 45,
         "special_defense": 35
     },
-    "types": [ "TYPE_PSYCHIC", "TYPE_PSYCHIC" ],
+    "types": [ "TYPE_PSYCHIC", "TYPE_FAIRY" ],
     "catch_rate": 235,
     "base_exp_reward": 70,
     "ev_yields": {
@@ -35,18 +35,20 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_DISARMING_VOICE" ],
+            [ 3, "MOVE_DOUBLE_TEAM" ],
             [ 6, "MOVE_CONFUSION" ],
-            [ 10, "MOVE_DOUBLE_TEAM" ],
-            [ 12, "MOVE_TELEPORT" ],
-            [ 17, "MOVE_LUCKY_CHANT" ],
-            [ 21, "MOVE_MAGICAL_LEAF" ],
-            [ 23, "MOVE_CALM_MIND" ],
-            [ 28, "MOVE_PSYCHIC" ],
-            [ 32, "MOVE_IMPRISON" ],
-            [ 34, "MOVE_FUTURE_SIGHT" ],
-            [ 39, "MOVE_CHARM" ],
-            [ 43, "MOVE_HYPNOSIS" ],
-            [ 45, "MOVE_DREAM_EATER" ]
+            [ 9, "MOVE_HYPNOSIS" ],
+            [ 12, "MOVE_DRAINING_KISS" ],
+            [ 15, "MOVE_TELEPORT" ],
+            [ 18, "MOVE_PSYBEAM" ],
+            [ 21, "MOVE_LIFE_DEW" ],
+            [ 24, "MOVE_CHARM" ],
+            [ 27, "MOVE_CALM_MIND" ],
+            [ 30, "MOVE_PSYCHIC" ],
+            [ 33, "MOVE_HEAL_PULSE" ],
+            [ 36, "MOVE_DREAM_EATER" ],
+            [ 39, "MOVE_FUTURE_SIGHT" ]
         ],
         "by_tm": [
             "TM04",
@@ -77,6 +79,7 @@
             "TM56",
             "TM57",
             "TM58",
+            "TM61",
             "TM67",
             "TM70",
             "TM73",
@@ -101,17 +104,18 @@
             "MOVE_SIGNAL_BEAM",
             "MOVE_ZEN_HEADBUTT",
             "MOVE_TRICK",
+            "MOVE_KNOCK_OFF",
             "MOVE_SWIFT"
         ],
         "egg_moves": [
             "MOVE_DISABLE",
-            "MOVE_WILL_O_WISP",
+            "MOVE_CONFUSE_RAY",
+            "MOVE_DESTINY_BOND",
             "MOVE_MEAN_LOOK",
             "MOVE_MEMENTO",
-            "MOVE_DESTINY_BOND",
-            "MOVE_GRUDGE",
+            "MOVE_KNOCK_OFF",
             "MOVE_SHADOW_SNEAK",
-            "MOVE_CONFUSE_RAY"
+            "MOVE_MYSTICAL_FIRE"
         ]
     },
     "evolutions": [

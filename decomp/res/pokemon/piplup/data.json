@@ -36,11 +36,11 @@
         "by_level": [
             [ 1, "MOVE_POUND" ],
             [ 4, "MOVE_GROWL" ],
-            [ 8, "MOVE_BUBBLE" ],
-            [ 11, "MOVE_WATER_SPORT" ],
+            [ 8, "MOVE_WATER_GUN" ],
+            [ 11, "MOVE_CHARM" ],
             [ 15, "MOVE_PECK" ],
             [ 18, "MOVE_BUBBLE_BEAM" ],
-            [ 22, "MOVE_BIDE" ],
+            [ 22, "MOVE_SWAGGER" ],
             [ 25, "MOVE_FURY_ATTACK" ],
             [ 29, "MOVE_BRINE" ],
             [ 32, "MOVE_WHIRLPOOL" ],
@@ -68,10 +68,12 @@
             "TM43",
             "TM44",
             "TM45",
+            "TM51",
             "TM55",
             "TM56",
             "TM58",
             "TM76",
+            "TM77",
             "TM78",
             "TM82",
             "TM83",
@@ -89,19 +91,18 @@
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_SNORE",
-            "MOVE_SIGNAL_BEAM"
+            "MOVE_HELPING_HAND",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_SWIFT"
         ],
         "egg_moves": [
-            "MOVE_DOUBLE_HIT",
             "MOVE_SUPERSONIC",
-            "MOVE_YAWN",
-            "MOVE_MUD_SPORT",
-            "MOVE_MUD_SLAP",
             "MOVE_SNORE",
-            "MOVE_FLAIL",
-            "MOVE_AGILITY",
+            "MOVE_YAWN",
+            "MOVE_FEATHER_DANCE",
+            "MOVE_ROOST",
             "MOVE_AQUA_RING",
-            "MOVE_HYDRO_PUMP"
+            "MOVE_POWER_TRIP"
         ]
     },
     "evolutions": [

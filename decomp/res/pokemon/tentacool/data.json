@@ -35,18 +35,19 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_POISON_STING" ],
-            [ 5, "MOVE_SUPERSONIC" ],
-            [ 8, "MOVE_CONSTRICT" ],
-            [ 12, "MOVE_ACID" ],
-            [ 15, "MOVE_TOXIC_SPIKES" ],
-            [ 19, "MOVE_BUBBLE_BEAM" ],
-            [ 22, "MOVE_WRAP" ],
-            [ 26, "MOVE_BARRIER" ],
-            [ 29, "MOVE_WATER_PULSE" ],
-            [ 33, "MOVE_POISON_JAB" ],
-            [ 36, "MOVE_SCREECH" ],
-            [ 40, "MOVE_HYDRO_PUMP" ],
-            [ 43, "MOVE_WRING_OUT" ]
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 4, "MOVE_ACID" ],
+            [ 8, "MOVE_WRAP" ],
+            [ 12, "MOVE_SUPERSONIC" ],
+            [ 16, "MOVE_WATER_PULSE" ],
+            [ 20, "MOVE_SCREECH" ],
+            [ 24, "MOVE_BUBBLE_BEAM" ],
+            [ 28, "MOVE_HEX" ],
+            [ 32, "MOVE_ACID_ARMOR" ],
+            [ 36, "MOVE_POISON_JAB" ],
+            [ 40, "MOVE_SURF" ],
+            [ 44, "MOVE_SLUDGE_WAVE" ],
+            [ 48, "MOVE_HYDRO_PUMP" ]
         ],
         "by_tm": [
             "TM03",
@@ -85,17 +86,20 @@
             "MOVE_DIVE",
             "MOVE_ICY_WIND",
             "MOVE_SNORE",
-            "MOVE_KNOCK_OFF"
+            "MOVE_GUNK_SHOT",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT"
         ],
         "egg_moves": [
             "MOVE_AURORA_BEAM",
-            "MOVE_MIRROR_COAT",
-            "MOVE_RAPID_SPIN",
-            "MOVE_HAZE",
-            "MOVE_SAFEGUARD",
             "MOVE_CONFUSE_RAY",
+            "MOVE_HAZE",
+            "MOVE_RAPID_SPIN",
+            "MOVE_MIRROR_COAT",
             "MOVE_KNOCK_OFF",
-            "MOVE_ACUPRESSURE"
+            "MOVE_TICKLE",
+            "MOVE_ACUPRESSURE",
+            "MOVE_AQUA_RING"
         ]
     },
     "evolutions": [

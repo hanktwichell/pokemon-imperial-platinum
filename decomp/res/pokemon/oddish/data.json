@@ -35,17 +35,19 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_ABSORB" ],
-            [ 5, "MOVE_SWEET_SCENT" ],
-            [ 9, "MOVE_ACID" ],
-            [ 13, "MOVE_POISON_POWDER" ],
-            [ 15, "MOVE_STUN_SPORE" ],
-            [ 17, "MOVE_SLEEP_POWDER" ],
-            [ 21, "MOVE_MEGA_DRAIN" ],
-            [ 25, "MOVE_LUCKY_CHANT" ],
-            [ 29, "MOVE_NATURAL_GIFT" ],
-            [ 33, "MOVE_MOONLIGHT" ],
-            [ 37, "MOVE_GIGA_DRAIN" ],
-            [ 41, "MOVE_PETAL_DANCE" ]
+            [ 1, "MOVE_GROWTH" ],
+            [ 4, "MOVE_ACID" ],
+            [ 8, "MOVE_SWEET_SCENT" ],
+            [ 12, "MOVE_MEGA_DRAIN" ],
+            [ 14, "MOVE_POISON_POWDER" ],
+            [ 16, "MOVE_STUN_SPORE" ],
+            [ 18, "MOVE_SLEEP_POWDER" ],
+            [ 20, "MOVE_GIGA_DRAIN" ],
+            [ 24, "MOVE_TOXIC" ],
+            [ 28, "MOVE_MOONBLAST" ],
+            [ 32, "MOVE_GRASSY_TERRAIN" ],
+            [ 36, "MOVE_MOONLIGHT" ],
+            [ 40, "MOVE_PETAL_DANCE" ]
         ],
         "by_tm": [
             "TM06",
@@ -78,17 +80,20 @@
         "by_tutor": [
             "MOVE_GASTRO_ACID",
             "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
             "MOVE_SYNTHESIS",
             "MOVE_SEED_BOMB"
         ],
         "egg_moves": [
-            "MOVE_SWORDS_DANCE",
+            "MOVE_LEECH_SEED",
             "MOVE_RAZOR_LEAF",
             "MOVE_FLAIL",
             "MOVE_SYNTHESIS",
-            "MOVE_CHARM",
             "MOVE_INGRAIN",
-            "MOVE_TICKLE"
+            "MOVE_TEETER_DANCE",
+            "MOVE_TICKLE",
+            "MOVE_AFTER_YOU",
+            "MOVE_STRENGTH_SAP"
         ]
     },
     "evolutions": [

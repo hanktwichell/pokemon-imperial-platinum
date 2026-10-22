@@ -7,7 +7,7 @@
         "special_attack": 20,
         "special_defense": 40
     },
-    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
+    "types": [ "TYPE_NORMAL", "TYPE_FAIRY" ],
     "catch_rate": 150,
     "base_exp_reward": 33,
     "ev_yields": {
@@ -34,12 +34,14 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_WATER_GUN" ],
             [ 1, "MOVE_SPLASH" ],
-            [ 2, "MOVE_CHARM" ],
-            [ 7, "MOVE_TAIL_WHIP" ],
-            [ 10, "MOVE_BUBBLE" ],
-            [ 15, "MOVE_SLAM" ],
-            [ 18, "MOVE_WATER_GUN" ]
+            [ 3, "MOVE_HELPING_HAND" ],
+            [ 6, "MOVE_BUBBLE_BEAM" ],
+            [ 9, "MOVE_CHARM" ],
+            [ 12, "MOVE_SLAM" ],
+            [ 15, "MOVE_BOUNCE" ]
         ],
         "by_tm": [
             "TM03",
@@ -48,6 +50,7 @@
             "TM10",
             "TM13",
             "TM14",
+            "TM16",
             "TM17",
             "TM18",
             "TM21",
@@ -73,17 +76,21 @@
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
+            "MOVE_BOUNCE",
             "MOVE_KNOCK_OFF",
             "MOVE_SWIFT",
             "MOVE_UPROAR"
         ],
         "egg_moves": [
-            "MOVE_ENCORE",
             "MOVE_SING",
-            "MOVE_REFRESH",
-            "MOVE_SLAM",
+            "MOVE_SUPERSONIC",
+            "MOVE_BELLY_DRUM",
+            "MOVE_PERISH_SONG",
+            "MOVE_PRESENT",
             "MOVE_TICKLE",
-            "MOVE_FAKE_TEARS"
+            "MOVE_COPYCAT",
+            "MOVE_AQUA_JET",
+            "MOVE_SOAK"
         ]
     },
     "evolutions": [

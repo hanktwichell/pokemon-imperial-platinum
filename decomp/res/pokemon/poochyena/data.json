@@ -35,19 +35,20 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 5, "MOVE_HOWL" ],
-            [ 9, "MOVE_SAND_ATTACK" ],
-            [ 13, "MOVE_BITE" ],
-            [ 17, "MOVE_ODOR_SLEUTH" ],
-            [ 21, "MOVE_ROAR" ],
-            [ 25, "MOVE_SWAGGER" ],
-            [ 29, "MOVE_ASSURANCE" ],
-            [ 33, "MOVE_SCARY_FACE" ],
-            [ 37, "MOVE_TAUNT" ],
-            [ 41, "MOVE_EMBARGO" ],
-            [ 45, "MOVE_TAKE_DOWN" ],
-            [ 49, "MOVE_SUCKER_PUNCH" ],
-            [ 53, "MOVE_CRUNCH" ]
+            [ 4, "MOVE_HOWL" ],
+            [ 7, "MOVE_SAND_ATTACK" ],
+            [ 10, "MOVE_BITE" ],
+            [ 13, "MOVE_LEER" ],
+            [ 16, "MOVE_ROAR" ],
+            [ 19, "MOVE_SWAGGER" ],
+            [ 22, "MOVE_ASSURANCE" ],
+            [ 25, "MOVE_SCARY_FACE" ],
+            [ 28, "MOVE_TAUNT" ],
+            [ 31, "MOVE_CRUNCH" ],
+            [ 34, "MOVE_YAWN" ],
+            [ 36, "MOVE_TAKE_DOWN" ],
+            [ 40, "MOVE_SUCKER_PUNCH" ],
+            [ 44, "MOVE_PLAY_ROUGH" ]
         ],
         "by_tm": [
             "TM05",
@@ -85,20 +86,15 @@
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
             "MOVE_SPITE",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
             "MOVE_SUCKER_PUNCH",
             "MOVE_UPROAR"
         ],
         "egg_moves": [
-            "MOVE_ASTONISH",
             "MOVE_POISON_FANG",
-            "MOVE_COVET",
-            "MOVE_LEER",
-            "MOVE_YAWN",
-            "MOVE_SUCKER_PUNCH",
-            "MOVE_ICE_FANG",
-            "MOVE_FIRE_FANG",
-            "MOVE_THUNDER_FANG",
-            "MOVE_ME_FIRST"
+            "MOVE_ASTONISH",
+            "MOVE_COVET"
         ]
     },
     "evolutions": [

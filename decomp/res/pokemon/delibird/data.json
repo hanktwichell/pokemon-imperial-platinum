@@ -34,7 +34,8 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_PRESENT" ]
+            [ 1, "MOVE_PRESENT" ],
+            [ 25, "MOVE_DRILL_PECK" ]
         ],
         "by_tm": [
             "TM01",
@@ -44,6 +45,7 @@
             "TM10",
             "TM13",
             "TM14",
+            "TM15",
             "TM17",
             "TM18",
             "TM21",
@@ -59,6 +61,7 @@
             "TM56",
             "TM58",
             "TM67",
+            "TM68",
             "TM72",
             "TM78",
             "TM82",
@@ -73,6 +76,10 @@
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
+            "MOVE_ICE_PUNCH",
+            "MOVE_AIR_CUTTER",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
             "MOVE_SIGNAL_BEAM",
             "MOVE_GUNK_SHOT",
             "MOVE_SEED_BOMB",
@@ -81,13 +88,16 @@
         ],
         "egg_moves": [
             "MOVE_AURORA_BEAM",
+            "MOVE_COUNTER",
             "MOVE_QUICK_ATTACK",
-            "MOVE_FUTURE_SIGHT",
             "MOVE_SPLASH",
+            "MOVE_DESTINY_BOND",
             "MOVE_RAPID_SPIN",
-            "MOVE_ICE_BALL",
+            "MOVE_FAKE_OUT",
+            "MOVE_MEMENTO",
             "MOVE_ICE_SHARD",
-            "MOVE_ICE_PUNCH"
+            "MOVE_FREEZE_DRY",
+            "MOVE_AURORA_VEIL"
         ]
     },
     "evolutions": [  ],

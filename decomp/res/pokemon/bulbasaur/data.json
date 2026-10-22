@@ -35,19 +35,20 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 3, "MOVE_GROWL" ],
-            [ 7, "MOVE_LEECH_SEED" ],
-            [ 9, "MOVE_VINE_WHIP" ],
-            [ 13, "MOVE_POISON_POWDER" ],
-            [ 13, "MOVE_SLEEP_POWDER" ],
-            [ 15, "MOVE_TAKE_DOWN" ],
-            [ 19, "MOVE_RAZOR_LEAF" ],
-            [ 21, "MOVE_SWEET_SCENT" ],
-            [ 25, "MOVE_GROWTH" ],
-            [ 27, "MOVE_DOUBLE_EDGE" ],
-            [ 31, "MOVE_WORRY_SEED" ],
-            [ 33, "MOVE_SYNTHESIS" ],
-            [ 37, "MOVE_SEED_BOMB" ]
+            [ 1, "MOVE_GROWL" ],
+            [ 3, "MOVE_VINE_WHIP" ],
+            [ 6, "MOVE_GROWTH" ],
+            [ 9, "MOVE_LEECH_SEED" ],
+            [ 12, "MOVE_RAZOR_LEAF" ],
+            [ 15, "MOVE_POISON_POWDER" ],
+            [ 15, "MOVE_SLEEP_POWDER" ],
+            [ 18, "MOVE_SEED_BOMB" ],
+            [ 21, "MOVE_TAKE_DOWN" ],
+            [ 24, "MOVE_SWEET_SCENT" ],
+            [ 27, "MOVE_SYNTHESIS" ],
+            [ 30, "MOVE_WORRY_SEED" ],
+            [ 33, "MOVE_POWER_WHIP" ],
+            [ 36, "MOVE_SOLAR_BEAM" ]
         ],
         "by_tm": [
             "TM06",
@@ -66,6 +67,7 @@
             "TM44",
             "TM45",
             "TM53",
+            "TM54",
             "TM58",
             "TM70",
             "TM75",
@@ -83,23 +85,16 @@
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
             "MOVE_SYNTHESIS",
             "MOVE_SEED_BOMB",
             "MOVE_KNOCK_OFF"
         ],
         "egg_moves": [
-            "MOVE_LIGHT_SCREEN",
-            "MOVE_SKULL_BASH",
-            "MOVE_SAFEGUARD",
-            "MOVE_CHARM",
             "MOVE_PETAL_DANCE",
-            "MOVE_MAGICAL_LEAF",
-            "MOVE_GRASS_WHISTLE",
+            "MOVE_TOXIC",
             "MOVE_CURSE",
-            "MOVE_INGRAIN",
-            "MOVE_NATURE_POWER",
-            "MOVE_AMNESIA",
-            "MOVE_LEAF_STORM"
+            "MOVE_INGRAIN"
         ]
     },
     "evolutions": [

@@ -35,18 +35,19 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_WATER_GUN" ],
             [ 4, "MOVE_WITHDRAW" ],
-            [ 8, "MOVE_SUPERSONIC" ],
-            [ 13, "MOVE_ICICLE_SPEAR" ],
-            [ 16, "MOVE_PROTECT" ],
-            [ 20, "MOVE_LEER" ],
-            [ 25, "MOVE_CLAMP" ],
-            [ 28, "MOVE_ICE_SHARD" ],
-            [ 32, "MOVE_AURORA_BEAM" ],
-            [ 37, "MOVE_WHIRLPOOL" ],
-            [ 40, "MOVE_IRON_DEFENSE" ],
-            [ 44, "MOVE_BRINE" ],
-            [ 49, "MOVE_ICE_BEAM" ]
+            [ 8, "MOVE_ICE_SHARD" ],
+            [ 12, "MOVE_LEER" ],
+            [ 16, "MOVE_WHIRLPOOL" ],
+            [ 20, "MOVE_SUPERSONIC" ],
+            [ 24, "MOVE_AURORA_BEAM" ],
+            [ 28, "MOVE_PROTECT" ],
+            [ 32, "MOVE_RAZOR_SHELL" ],
+            [ 36, "MOVE_IRON_DEFENSE" ],
+            [ 40, "MOVE_ICE_BEAM" ],
+            [ 44, "MOVE_SHELL_SMASH" ],
+            [ 48, "MOVE_HYDRO_PUMP" ]
         ],
         "by_tm": [
             "TM03",
@@ -68,28 +69,28 @@
             "TM58",
             "TM64",
             "TM66",
+            "TM72",
             "TM78",
             "TM82",
             "TM83",
             "TM87",
             "TM90",
-            "HM03"
+            "HM03",
+            "HM07"
         ],
         "by_tutor": [
             "MOVE_DIVE",
             "MOVE_ICY_WIND",
             "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
             "MOVE_IRON_DEFENSE",
             "MOVE_SWIFT"
         ],
         "egg_moves": [
             "MOVE_BUBBLE_BEAM",
-            "MOVE_TAKE_DOWN",
-            "MOVE_BARRIER",
-            "MOVE_RAPID_SPIN",
-            "MOVE_SCREECH",
-            "MOVE_ICICLE_SPEAR",
-            "MOVE_MUD_SHOT"
+            "MOVE_WATER_PULSE",
+            "MOVE_AQUA_RING",
+            "MOVE_LIFE_DEW"
         ]
     },
     "evolutions": [

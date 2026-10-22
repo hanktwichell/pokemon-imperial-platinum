@@ -35,11 +35,9 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_ABSORB" ],
-            [ 4, "MOVE_GROWTH" ],
-            [ 7, "MOVE_WATER_SPORT" ],
-            [ 10, "MOVE_STUN_SPORE" ],
-            [ 13, "MOVE_MEGA_DRAIN" ],
-            [ 16, "MOVE_WORRY_SEED" ]
+            [ 1, "MOVE_GROWTH" ],
+            [ 1, "MOVE_STUN_SPORE" ],
+            [ 1, "MOVE_WORRY_SEED" ]
         ],
         "by_tm": [
             "TM06",
@@ -81,15 +79,12 @@
             "MOVE_UPROAR"
         ],
         "egg_moves": [
-            "MOVE_SPIKES",
-            "MOVE_SYNTHESIS",
-            "MOVE_PIN_MISSILE",
-            "MOVE_COTTON_SPORE",
-            "MOVE_SLEEP_POWDER",
             "MOVE_RAZOR_LEAF",
-            "MOVE_MIND_READER",
-            "MOVE_LEAF_STORM",
-            "MOVE_EXTRASENSORY"
+            "MOVE_SLEEP_POWDER",
+            "MOVE_COTTON_SPORE",
+            "MOVE_SYNTHESIS",
+            "MOVE_EXTRASENSORY",
+            "MOVE_LIFE_DEW"
         ]
     },
     "evolutions": [

@@ -36,17 +36,17 @@
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_CONFUSION" ],
-            [ 7, "MOVE_HYPNOSIS" ],
+            [ 4, "MOVE_CONFUSE_RAY" ],
+            [ 8, "MOVE_PAYBACK" ],
             [ 12, "MOVE_IMPRISON" ],
-            [ 14, "MOVE_CONFUSE_RAY" ],
-            [ 19, "MOVE_EXTRASENSORY" ],
-            [ 26, "MOVE_IRON_DEFENSE" ],
-            [ 30, "MOVE_SAFEGUARD" ],
-            [ 35, "MOVE_GYRO_BALL" ],
-            [ 37, "MOVE_FUTURE_SIGHT" ],
-            [ 41, "MOVE_FAINT_ATTACK" ],
-            [ 49, "MOVE_PAYBACK" ],
-            [ 52, "MOVE_HEAL_BLOCK" ]
+            [ 16, "MOVE_GYRO_BALL" ],
+            [ 20, "MOVE_HYPNOSIS" ],
+            [ 24, "MOVE_SAFEGUARD" ],
+            [ 28, "MOVE_EXTRASENSORY" ],
+            [ 32, "MOVE_HEAVY_SLAM" ],
+            [ 36, "MOVE_IRON_DEFENSE" ],
+            [ 40, "MOVE_METAL_SOUND" ],
+            [ 44, "MOVE_FUTURE_SIGHT" ]
         ],
         "by_tm": [
             "TM04",
@@ -92,10 +92,18 @@
         ],
         "by_tutor": [
             "MOVE_ROLLOUT",
+            "MOVE_IRON_HEAD",
             "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
             "MOVE_ANCIENT_POWER",
             "MOVE_SIGNAL_BEAM",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_IRON_DEFENSE",
             "MOVE_TRICK"
+        ],
+        "egg_moves": [
+            "MOVE_RECYCLE",
+            "MOVE_GRAVITY"
         ]
     },
     "evolutions": [

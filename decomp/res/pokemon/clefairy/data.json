@@ -7,7 +7,7 @@
         "special_attack": 60,
         "special_defense": 65
     },
-    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
+    "types": [ "TYPE_FAIRY", "TYPE_FAIRY" ],
     "catch_rate": 150,
     "base_exp_reward": 68,
     "ev_yields": {
@@ -36,21 +36,25 @@
         "by_level": [
             [ 1, "MOVE_POUND" ],
             [ 1, "MOVE_GROWL" ],
-            [ 4, "MOVE_ENCORE" ],
-            [ 7, "MOVE_SING" ],
-            [ 10, "MOVE_DOUBLE_SLAP" ],
-            [ 13, "MOVE_DEFENSE_CURL" ],
-            [ 16, "MOVE_FOLLOW_ME" ],
-            [ 19, "MOVE_MINIMIZE" ],
-            [ 22, "MOVE_WAKE_UP_SLAP" ],
-            [ 25, "MOVE_COSMIC_POWER" ],
-            [ 28, "MOVE_LUCKY_CHANT" ],
-            [ 31, "MOVE_METRONOME" ],
-            [ 34, "MOVE_GRAVITY" ],
-            [ 37, "MOVE_MOONLIGHT" ],
-            [ 40, "MOVE_LIGHT_SCREEN" ],
-            [ 43, "MOVE_METEOR_MASH" ],
-            [ 46, "MOVE_HEALING_WISH" ]
+            [ 1, "MOVE_SING" ],
+            [ 1, "MOVE_DEFENSE_CURL" ],
+            [ 1, "MOVE_DISARMING_VOICE" ],
+            [ 1, "MOVE_SPLASH" ],
+            [ 1, "MOVE_SWEET_KISS" ],
+            [ 1, "MOVE_CHARM" ],
+            [ 1, "MOVE_COPYCAT" ],
+            [ 4, "MOVE_STORED_POWER" ],
+            [ 8, "MOVE_ENCORE" ],
+            [ 12, "MOVE_AFTER_YOU" ],
+            [ 16, "MOVE_LIFE_DEW" ],
+            [ 20, "MOVE_METRONOME" ],
+            [ 24, "MOVE_MOONLIGHT" ],
+            [ 28, "MOVE_GRAVITY" ],
+            [ 32, "MOVE_METEOR_MASH" ],
+            [ 36, "MOVE_FOLLOW_ME" ],
+            [ 40, "MOVE_COSMIC_POWER" ],
+            [ 44, "MOVE_MOONBLAST" ],
+            [ 48, "MOVE_HEALING_WISH" ]
         ],
         "by_tm": [
             "TM01",
@@ -84,6 +88,8 @@
             "TM43",
             "TM44",
             "TM45",
+            "TM46",
+            "TM48",
             "TM49",
             "TM56",
             "TM57",
@@ -119,7 +125,9 @@
             "MOVE_LAST_RESORT",
             "MOVE_BOUNCE",
             "MOVE_TRICK",
-            "MOVE_KNOCK_OFF"
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
         ]
     },
     "evolutions": [

@@ -35,7 +35,6 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SCRATCH" ],
-            [ 1, "MOVE_FORESIGHT" ],
             [ 4, "MOVE_DEFENSE_CURL" ],
             [ 7, "MOVE_QUICK_ATTACK" ],
             [ 13, "MOVE_FURY_SWIPES" ],
@@ -46,7 +45,7 @@
             [ 31, "MOVE_SUCKER_PUNCH" ],
             [ 36, "MOVE_AMNESIA" ],
             [ 39, "MOVE_BATON_PASS" ],
-            [ 42, "MOVE_ME_FIRST" ],
+            [ 42, "MOVE_DOUBLE_EDGE" ],
             [ 47, "MOVE_HYPER_VOICE" ]
         ],
         "by_tm": [
@@ -56,12 +55,14 @@
             "TM10",
             "TM11",
             "TM13",
+            "TM14",
             "TM17",
             "TM18",
             "TM21",
             "TM22",
             "TM23",
             "TM24",
+            "TM25",
             "TM27",
             "TM28",
             "TM30",
@@ -98,24 +99,22 @@
             "MOVE_AQUA_TAIL",
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_SEED_BOMB",
             "MOVE_LAST_RESORT",
+            "MOVE_TRICK",
             "MOVE_KNOCK_OFF",
             "MOVE_SUCKER_PUNCH",
             "MOVE_SWIFT",
             "MOVE_UPROAR"
         ],
         "egg_moves": [
-            "MOVE_DOUBLE_EDGE",
-            "MOVE_PURSUIT",
-            "MOVE_SLASH",
             "MOVE_FOCUS_ENERGY",
+            "MOVE_SLASH",
             "MOVE_REVERSAL",
-            "MOVE_SUBSTITUTE",
-            "MOVE_TRICK",
-            "MOVE_ASSIST",
             "MOVE_LAST_RESORT",
-            "MOVE_CHARM",
-            "MOVE_COVET"
+            "MOVE_BABY_DOLL_EYES",
+            "MOVE_TIDY_UP"
         ]
     },
     "evolutions": [

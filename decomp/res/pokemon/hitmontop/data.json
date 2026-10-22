@@ -34,20 +34,24 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_REVENGE" ],
-            [ 1, "MOVE_ROLLING_KICK" ],
-            [ 6, "MOVE_FOCUS_ENERGY" ],
-            [ 10, "MOVE_PURSUIT" ],
-            [ 15, "MOVE_QUICK_ATTACK" ],
-            [ 19, "MOVE_TRIPLE_KICK" ],
-            [ 24, "MOVE_RAPID_SPIN" ],
-            [ 28, "MOVE_COUNTER" ],
-            [ 33, "MOVE_FEINT" ],
-            [ 37, "MOVE_AGILITY" ],
-            [ 42, "MOVE_GYRO_BALL" ],
-            [ 46, "MOVE_DETECT" ],
-            [ 51, "MOVE_CLOSE_COMBAT" ],
-            [ 55, "MOVE_ENDEAVOR" ]
+            [ 1, "MOVE_TRIPLE_KICK" ],
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_FEINT" ],
+            [ 1, "MOVE_HELPING_HAND" ],
+            [ 1, "MOVE_FOCUS_ENERGY" ],
+            [ 1, "MOVE_FAKE_OUT" ],
+            [ 4, "MOVE_QUICK_ATTACK" ],
+            [ 8, "MOVE_GYRO_BALL" ],
+            [ 12, "MOVE_DETECT" ],
+            [ 16, "MOVE_RAPID_SPIN" ],
+            [ 21, "MOVE_WIDE_GUARD" ],
+            [ 21, "MOVE_QUICK_GUARD" ],
+            [ 24, "MOVE_SUCKER_PUNCH" ],
+            [ 28, "MOVE_AGILITY" ],
+            [ 32, "MOVE_DIG" ],
+            [ 36, "MOVE_CLOSE_COMBAT" ],
+            [ 40, "MOVE_COUNTER" ],
+            [ 44, "MOVE_ENDEAVOR" ]
         ],
         "by_tm": [
             "TM06",
@@ -69,7 +73,9 @@
             "TM44",
             "TM45",
             "TM46",
+            "TM52",
             "TM58",
+            "TM68",
             "TM71",
             "TM74",
             "TM78",
@@ -90,7 +96,8 @@
             "MOVE_VACUUM_WAVE",
             "MOVE_TWISTER",
             "MOVE_SUCKER_PUNCH",
-            "MOVE_SWIFT"
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
         ]
     },
     "evolutions": [  ],

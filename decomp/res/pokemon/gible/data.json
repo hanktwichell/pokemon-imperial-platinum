@@ -35,15 +35,17 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 3, "MOVE_SAND_ATTACK" ],
-            [ 7, "MOVE_DRAGON_RAGE" ],
-            [ 13, "MOVE_SANDSTORM" ],
-            [ 15, "MOVE_TAKE_DOWN" ],
-            [ 19, "MOVE_SAND_TOMB" ],
-            [ 25, "MOVE_SLASH" ],
-            [ 27, "MOVE_DRAGON_CLAW" ],
-            [ 31, "MOVE_DIG" ],
-            [ 37, "MOVE_DRAGON_RUSH" ]
+            [ 1, "MOVE_SAND_TOMB" ],
+            [ 6, "MOVE_SAND_ATTACK" ],
+            [ 12, "MOVE_DRAGON_BREATH" ],
+            [ 18, "MOVE_BULLDOZE" ],
+            [ 25, "MOVE_BITE" ],
+            [ 30, "MOVE_SLASH" ],
+            [ 36, "MOVE_DRAGON_CLAW" ],
+            [ 42, "MOVE_DIG" ],
+            [ 48, "MOVE_SANDSTORM" ],
+            [ 54, "MOVE_TAKE_DOWN" ],
+            [ 60, "MOVE_DRAGON_RUSH" ]
         ],
         "by_tm": [
             "TM02",
@@ -67,10 +69,12 @@
             "TM43",
             "TM44",
             "TM45",
+            "TM54",
             "TM58",
             "TM59",
             "TM65",
             "TM71",
+            "TM75",
             "TM76",
             "TM78",
             "TM80",
@@ -88,22 +92,17 @@
             "MOVE_FURY_CUTTER",
             "MOVE_IRON_HEAD",
             "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
             "MOVE_OUTRAGE",
             "MOVE_EARTH_POWER",
             "MOVE_TWISTER",
             "MOVE_SWIFT"
         ],
         "egg_moves": [
-            "MOVE_DRAGON_BREATH",
-            "MOVE_OUTRAGE",
-            "MOVE_TWISTER",
-            "MOVE_SCARY_FACE",
-            "MOVE_DOUBLE_EDGE",
             "MOVE_THRASH",
+            "MOVE_DOUBLE_EDGE",
             "MOVE_METAL_CLAW",
-            "MOVE_SAND_TOMB",
-            "MOVE_BODY_SLAM",
-            "MOVE_IRON_HEAD"
+            "MOVE_TWISTER"
         ]
     },
     "evolutions": [

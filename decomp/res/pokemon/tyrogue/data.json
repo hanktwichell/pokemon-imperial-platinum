@@ -35,9 +35,9 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 1, "MOVE_HELPING_HAND" ],
+            [ 1, "MOVE_FOCUS_ENERGY" ],
             [ 1, "MOVE_FAKE_OUT" ],
-            [ 1, "MOVE_FORESIGHT" ]
+            [ 1, "MOVE_HELPING_HAND" ]
         ],
         "by_tm": [
             "TM06",
@@ -75,12 +75,11 @@
             "MOVE_UPROAR"
         ],
         "egg_moves": [
-            "MOVE_RAPID_SPIN",
+            "MOVE_COUNTER",
             "MOVE_HI_JUMP_KICK",
             "MOVE_MACH_PUNCH",
-            "MOVE_MIND_READER",
-            "MOVE_HELPING_HAND",
-            "MOVE_COUNTER",
+            "MOVE_RAPID_SPIN",
+            "MOVE_FEINT",
             "MOVE_VACUUM_WAVE",
             "MOVE_BULLET_PUNCH"
         ]

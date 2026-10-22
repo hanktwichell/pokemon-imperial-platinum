@@ -35,13 +35,18 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 10, "MOVE_WATER_GUN" ],
             [ 10, "MOVE_EMBER" ],
             [ 10, "MOVE_POWDER_SNOW" ],
+            [ 10, "MOVE_WATER_GUN" ],
+            [ 15, "MOVE_HEADBUTT" ],
+            [ 20, "MOVE_HAIL" ],
             [ 20, "MOVE_RAIN_DANCE" ],
             [ 20, "MOVE_SUNNY_DAY" ],
-            [ 20, "MOVE_HAIL" ],
-            [ 30, "MOVE_WEATHER_BALL" ]
+            [ 25, "MOVE_WEATHER_BALL" ],
+            [ 35, "MOVE_BLIZZARD" ],
+            [ 35, "MOVE_FIRE_BLAST" ],
+            [ 35, "MOVE_HYDRO_PUMP" ],
+            [ 45, "MOVE_HURRICANE" ]
         ],
         "by_tm": [
             "TM03",
@@ -89,12 +94,14 @@
             "MOVE_SWIFT"
         ],
         "egg_moves": [
-            "MOVE_FUTURE_SIGHT",
-            "MOVE_PSYCH_UP",
-            "MOVE_LUCKY_CHANT",
             "MOVE_DISABLE",
             "MOVE_AMNESIA",
-            "MOVE_OMINOUS_WIND"
+            "MOVE_FUTURE_SIGHT",
+            "MOVE_COSMIC_POWER",
+            "MOVE_GUARD_SWAP",
+            "MOVE_CLEAR_SMOG",
+            "MOVE_HEX",
+            "MOVE_REFLECT_TYPE"
         ]
     },
     "evolutions": [  ],

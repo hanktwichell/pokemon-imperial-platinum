@@ -35,20 +35,21 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SPLASH" ],
-            [ 4, "MOVE_GROWL" ],
-            [ 7, "MOVE_WATER_GUN" ],
-            [ 11, "MOVE_ROLLOUT" ],
-            [ 14, "MOVE_WHIRLPOOL" ],
-            [ 17, "MOVE_ASTONISH" ],
-            [ 21, "MOVE_WATER_PULSE" ],
-            [ 24, "MOVE_MIST" ],
-            [ 27, "MOVE_REST" ],
-            [ 31, "MOVE_BRINE" ],
-            [ 34, "MOVE_WATER_SPOUT" ],
-            [ 37, "MOVE_AMNESIA" ],
-            [ 41, "MOVE_DIVE" ],
-            [ 44, "MOVE_BOUNCE" ],
-            [ 47, "MOVE_HYDRO_PUMP" ]
+            [ 3, "MOVE_GROWL" ],
+            [ 6, "MOVE_ASTONISH" ],
+            [ 12, "MOVE_WATER_GUN" ],
+            [ 15, "MOVE_MIST" ],
+            [ 18, "MOVE_WATER_PULSE" ],
+            [ 21, "MOVE_HEAVY_SLAM" ],
+            [ 24, "MOVE_BRINE" ],
+            [ 27, "MOVE_WHIRLPOOL" ],
+            [ 30, "MOVE_DIVE" ],
+            [ 33, "MOVE_BOUNCE" ],
+            [ 36, "MOVE_BODY_SLAM" ],
+            [ 39, "MOVE_REST" ],
+            [ 42, "MOVE_AMNESIA" ],
+            [ 45, "MOVE_HYDRO_PUMP" ],
+            [ 48, "MOVE_WATER_SPOUT" ]
         ],
         "by_tm": [
             "TM03",
@@ -87,19 +88,19 @@
             "MOVE_ICY_WIND",
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
+            "MOVE_ZEN_HEADBUTT",
             "MOVE_BOUNCE"
         ],
         "egg_moves": [
-            "MOVE_DOUBLE_EDGE",
             "MOVE_THRASH",
-            "MOVE_SWAGGER",
-            "MOVE_SNORE",
-            "MOVE_SLEEP_TALK",
-            "MOVE_CURSE",
+            "MOVE_DOUBLE_EDGE",
             "MOVE_FISSURE",
-            "MOVE_TICKLE",
             "MOVE_DEFENSE_CURL",
-            "MOVE_BODY_SLAM"
+            "MOVE_CURSE",
+            "MOVE_ROLLOUT",
+            "MOVE_TICKLE",
+            "MOVE_AQUA_RING",
+            "MOVE_SOAK"
         ]
     },
     "evolutions": [

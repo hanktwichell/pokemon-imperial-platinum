@@ -34,16 +34,17 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_ASTONISH" ],
             [ 1, "MOVE_POUND" ],
-            [ 5, "MOVE_UPROAR" ],
-            [ 11, "MOVE_ASTONISH" ],
-            [ 15, "MOVE_HOWL" ],
-            [ 21, "MOVE_SUPERSONIC" ],
-            [ 25, "MOVE_STOMP" ],
-            [ 31, "MOVE_SCREECH" ],
-            [ 35, "MOVE_ROAR" ],
-            [ 41, "MOVE_REST" ],
-            [ 41, "MOVE_SLEEP_TALK" ],
+            [ 5, "MOVE_ECHOED_VOICE" ],
+            [ 10, "MOVE_HOWL" ],
+            [ 15, "MOVE_REST" ],
+            [ 15, "MOVE_SLEEP_TALK" ],
+            [ 21, "MOVE_STOMP" ],
+            [ 25, "MOVE_ROAR" ],
+            [ 30, "MOVE_SUPERSONIC" ],
+            [ 35, "MOVE_UPROAR" ],
+            [ 40, "MOVE_SCREECH" ],
             [ 45, "MOVE_HYPER_VOICE" ]
         ],
         "by_tm": [
@@ -84,17 +85,19 @@
             "MOVE_FIRE_PUNCH",
             "MOVE_ICE_PUNCH",
             "MOVE_SNORE",
+            "MOVE_ENDEAVOR",
             "MOVE_ZEN_HEADBUTT",
             "MOVE_UPROAR"
         ],
         "egg_moves": [
+            "MOVE_WHIRLWIND",
             "MOVE_TAKE_DOWN",
-            "MOVE_SNORE",
-            "MOVE_SWAGGER",
-            "MOVE_EXTRASENSORY",
-            "MOVE_SMELLING_SALT",
             "MOVE_SMOKE_SCREEN",
-            "MOVE_ENDEAVOR"
+            "MOVE_ENDEAVOR",
+            "MOVE_EXTRASENSORY",
+            "MOVE_HAMMER_ARM",
+            "MOVE_CIRCLE_THROW",
+            "MOVE_DISARMING_VOICE"
         ]
     },
     "evolutions": [

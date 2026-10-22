@@ -36,19 +36,23 @@
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_LEER" ],
-            [ 4, "MOVE_SMOKE_SCREEN" ],
+            [ 6, "MOVE_SMOKE_SCREEN" ],
             [ 10, "MOVE_EMBER" ],
             [ 13, "MOVE_QUICK_ATTACK" ],
             [ 19, "MOVE_FLAME_WHEEL" ],
             [ 22, "MOVE_DEFENSE_CURL" ],
-            [ 28, "MOVE_SWIFT" ],
-            [ 31, "MOVE_LAVA_PLUME" ],
-            [ 37, "MOVE_FLAMETHROWER" ],
-            [ 40, "MOVE_ROLLOUT" ],
-            [ 46, "MOVE_DOUBLE_EDGE" ],
-            [ 49, "MOVE_ERUPTION" ]
+            [ 28, "MOVE_FLAME_CHARGE" ],
+            [ 31, "MOVE_SWIFT" ],
+            [ 37, "MOVE_LAVA_PLUME" ],
+            [ 40, "MOVE_FLAMETHROWER" ],
+            [ 46, "MOVE_INFERNO" ],
+            [ 49, "MOVE_ROLLOUT" ],
+            [ 55, "MOVE_DOUBLE_EDGE" ],
+            [ 58, "MOVE_OVERHEAT" ],
+            [ 64, "MOVE_ERUPTION" ]
         ],
         "by_tm": [
+            "TM05",
             "TM06",
             "TM10",
             "TM11",
@@ -77,22 +81,19 @@
         "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
+            "MOVE_IRON_HEAD",
             "MOVE_SNORE",
+            "MOVE_ZEN_HEADBUTT",
             "MOVE_HEAT_WAVE",
             "MOVE_SWIFT"
         ],
         "egg_moves": [
-            "MOVE_FURY_SWIPES",
-            "MOVE_QUICK_ATTACK",
-            "MOVE_REVERSAL",
-            "MOVE_THRASH",
-            "MOVE_FORESIGHT",
-            "MOVE_COVET",
-            "MOVE_HOWL",
-            "MOVE_CRUSH_CLAW",
-            "MOVE_DOUBLE_EDGE",
             "MOVE_DOUBLE_KICK",
-            "MOVE_FLARE_BLITZ"
+            "MOVE_CURSE",
+            "MOVE_REVERSAL",
+            "MOVE_EXTRASENSORY",
+            "MOVE_HOWL",
+            "MOVE_COVET"
         ]
     },
     "evolutions": [

@@ -45,8 +45,9 @@
             [ 29, "MOVE_SWEET_SCENT" ],
             [ 35, "MOVE_GASTRO_ACID" ],
             [ 39, "MOVE_RAZOR_LEAF" ],
-            [ 41, "MOVE_SLAM" ],
-            [ 47, "MOVE_WRING_OUT" ]
+            [ 41, "MOVE_POISON_JAB" ],
+            [ 47, "MOVE_SLAM" ],
+            [ 52, "MOVE_POWER_WHIP" ]
         ],
         "by_tm": [
             "TM06",
@@ -59,6 +60,7 @@
             "TM22",
             "TM27",
             "TM32",
+            "TM33",
             "TM36",
             "TM42",
             "TM43",
@@ -72,6 +74,7 @@
             "TM78",
             "TM82",
             "TM83",
+            "TM84",
             "TM86",
             "TM87",
             "TM90",
@@ -86,15 +89,13 @@
             "MOVE_SUCKER_PUNCH"
         ],
         "egg_moves": [
-            "MOVE_SWORDS_DANCE",
-            "MOVE_ENCORE",
-            "MOVE_REFLECT",
             "MOVE_SYNTHESIS",
-            "MOVE_LEECH_LIFE",
             "MOVE_INGRAIN",
-            "MOVE_MAGICAL_LEAF",
+            "MOVE_TICKLE",
             "MOVE_WORRY_SEED",
-            "MOVE_TICKLE"
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_CLEAR_SMOG",
+            "MOVE_STRENGTH_SAP"
         ]
     },
     "evolutions": [

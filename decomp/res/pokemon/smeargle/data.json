@@ -34,16 +34,7 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_SKETCH" ],
-            [ 11, "MOVE_SKETCH" ],
-            [ 21, "MOVE_SKETCH" ],
-            [ 31, "MOVE_SKETCH" ],
-            [ 41, "MOVE_SKETCH" ],
-            [ 51, "MOVE_SKETCH" ],
-            [ 61, "MOVE_SKETCH" ],
-            [ 71, "MOVE_SKETCH" ],
-            [ 81, "MOVE_SKETCH" ],
-            [ 91, "MOVE_SKETCH" ]
+            [ 1, "MOVE_SKETCH" ]
         ],
         "by_tm": [  ],
         "by_tutor": [  ]

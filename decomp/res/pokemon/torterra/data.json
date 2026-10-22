@@ -34,23 +34,21 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_WOOD_HAMMER" ],
+            [ 1, "MOVE_EARTHQUAKE" ],
             [ 1, "MOVE_TACKLE" ],
-            [ 1, "MOVE_WITHDRAW" ],
             [ 1, "MOVE_ABSORB" ],
             [ 1, "MOVE_RAZOR_LEAF" ],
-            [ 5, "MOVE_WITHDRAW" ],
-            [ 9, "MOVE_ABSORB" ],
-            [ 13, "MOVE_RAZOR_LEAF" ],
+            [ 1, "MOVE_WITHDRAW" ],
+            [ 1, "MOVE_WOOD_HAMMER" ],
             [ 17, "MOVE_CURSE" ],
             [ 22, "MOVE_BITE" ],
             [ 27, "MOVE_MEGA_DRAIN" ],
-            [ 32, "MOVE_EARTHQUAKE" ],
             [ 33, "MOVE_LEECH_SEED" ],
             [ 39, "MOVE_SYNTHESIS" ],
             [ 45, "MOVE_CRUNCH" ],
             [ 51, "MOVE_GIGA_DRAIN" ],
-            [ 57, "MOVE_LEAF_STORM" ]
+            [ 57, "MOVE_LEAF_STORM" ],
+            [ 63, "MOVE_HEADLONG_RUSH" ]
         ],
         "by_tm": [
             "TM05",
@@ -103,8 +101,10 @@
             "MOVE_SNORE",
             "MOVE_OUTRAGE",
             "MOVE_SYNTHESIS",
+            "MOVE_ZEN_HEADBUTT",
             "MOVE_EARTH_POWER",
-            "MOVE_SEED_BOMB"
+            "MOVE_SEED_BOMB",
+            "MOVE_IRON_DEFENSE"
         ]
     },
     "evolutions": [  ],

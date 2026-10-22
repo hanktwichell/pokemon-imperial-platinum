@@ -7,7 +7,7 @@
         "special_attack": 40,
         "special_defense": 65
     },
-    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
+    "types": [ "TYPE_FAIRY", "TYPE_FAIRY" ],
     "catch_rate": 190,
     "base_exp_reward": 74,
     "ev_yields": {
@@ -35,18 +35,20 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_GROWL" ],
-            [ 1, "MOVE_CHARM" ],
-            [ 6, "MOVE_METRONOME" ],
-            [ 10, "MOVE_SWEET_KISS" ],
-            [ 15, "MOVE_YAWN" ],
-            [ 19, "MOVE_ENCORE" ],
-            [ 24, "MOVE_FOLLOW_ME" ],
-            [ 28, "MOVE_WISH" ],
-            [ 33, "MOVE_ANCIENT_POWER" ],
-            [ 37, "MOVE_SAFEGUARD" ],
-            [ 42, "MOVE_BATON_PASS" ],
-            [ 46, "MOVE_DOUBLE_EDGE" ],
-            [ 51, "MOVE_LAST_RESORT" ]
+            [ 1, "MOVE_POUND" ],
+            [ 4, "MOVE_SWEET_KISS" ],
+            [ 8, "MOVE_LIFE_DEW" ],
+            [ 12, "MOVE_CHARM" ],
+            [ 16, "MOVE_ANCIENT_POWER" ],
+            [ 20, "MOVE_YAWN" ],
+            [ 24, "MOVE_METRONOME" ],
+            [ 28, "MOVE_AFTER_YOU" ],
+            [ 32, "MOVE_DOUBLE_EDGE" ],
+            [ 36, "MOVE_SAFEGUARD" ],
+            [ 40, "MOVE_FOLLOW_ME" ],
+            [ 44, "MOVE_BATON_PASS" ],
+            [ 48, "MOVE_LAST_RESORT" ],
+            [ 52, "MOVE_WISH" ]
         ],
         "by_tm": [
             "TM03",
@@ -67,6 +69,7 @@
             "TM34",
             "TM35",
             "TM38",
+            "TM40",
             "TM42",
             "TM43",
             "TM44",
@@ -89,6 +92,7 @@
             "MOVE_MUD_SLAP",
             "MOVE_ROLLOUT",
             "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
             "MOVE_ENDEAVOR",
             "MOVE_ANCIENT_POWER",
             "MOVE_SIGNAL_BEAM",
@@ -99,16 +103,12 @@
             "MOVE_UPROAR"
         ],
         "egg_moves": [
-            "MOVE_PRESENT",
-            "MOVE_MIRROR_MOVE",
             "MOVE_PECK",
-            "MOVE_FORESIGHT",
-            "MOVE_FUTURE_SIGHT",
-            "MOVE_SUBSTITUTE",
-            "MOVE_PSYCH_UP",
-            "MOVE_NASTY_PLOT",
-            "MOVE_PSYCHO_SHIFT",
-            "MOVE_LUCKY_CHANT"
+            "MOVE_PRESENT",
+            "MOVE_MORNING_SUN",
+            "MOVE_EXTRASENSORY",
+            "MOVE_AERIAL_ACE",
+            "MOVE_PSYCHO_SHIFT"
         ]
     },
     "evolutions": [

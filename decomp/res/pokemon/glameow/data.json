@@ -38,14 +38,16 @@
             [ 5, "MOVE_SCRATCH" ],
             [ 8, "MOVE_GROWL" ],
             [ 13, "MOVE_HYPNOSIS" ],
-            [ 17, "MOVE_FAINT_ATTACK" ],
+            [ 17, "MOVE_AERIAL_ACE" ],
             [ 20, "MOVE_FURY_SWIPES" ],
             [ 25, "MOVE_CHARM" ],
-            [ 29, "MOVE_ASSIST" ],
-            [ 32, "MOVE_CAPTIVATE" ],
+            [ 29, "MOVE_TAUNT" ],
+            [ 32, "MOVE_RETALIATE" ],
             [ 37, "MOVE_SLASH" ],
             [ 41, "MOVE_SUCKER_PUNCH" ],
-            [ 45, "MOVE_ATTRACT" ]
+            [ 44, "MOVE_ATTRACT" ],
+            [ 48, "MOVE_HONE_CLAWS" ],
+            [ 50, "MOVE_PLAY_ROUGH" ]
         ],
         "by_tm": [
             "TM03",
@@ -96,12 +98,14 @@
             "MOVE_SWIFT"
         ],
         "egg_moves": [
-            "MOVE_BITE",
-            "MOVE_TAIL_WHIP",
-            "MOVE_QUICK_ATTACK",
             "MOVE_SAND_ATTACK",
+            "MOVE_TAIL_WHIP",
+            "MOVE_BITE",
+            "MOVE_QUICK_ATTACK",
+            "MOVE_FLAIL",
             "MOVE_FAKE_TEARS",
-            "MOVE_ASSURANCE"
+            "MOVE_ASSURANCE",
+            "MOVE_LAST_RESORT"
         ]
     },
     "evolutions": [

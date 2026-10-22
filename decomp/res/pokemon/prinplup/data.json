@@ -34,21 +34,19 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_METAL_CLAW" ],
             [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_GROWL" ],
-            [ 4, "MOVE_GROWL" ],
-            [ 8, "MOVE_BUBBLE" ],
-            [ 11, "MOVE_WATER_SPORT" ],
+            [ 1, "MOVE_WATER_GUN" ],
             [ 15, "MOVE_PECK" ],
-            [ 16, "MOVE_METAL_CLAW" ],
             [ 19, "MOVE_BUBBLE_BEAM" ],
-            [ 24, "MOVE_BIDE" ],
+            [ 24, "MOVE_SWAGGER" ],
             [ 28, "MOVE_FURY_ATTACK" ],
             [ 33, "MOVE_BRINE" ],
             [ 37, "MOVE_WHIRLPOOL" ],
             [ 42, "MOVE_MIST" ],
             [ 46, "MOVE_DRILL_PECK" ],
-            [ 51, "MOVE_HYDRO_PUMP" ]
+            [ 50, "MOVE_HYDRO_PUMP" ]
         ],
         "by_tm": [
             "TM03",
@@ -70,11 +68,13 @@
             "TM43",
             "TM44",
             "TM45",
+            "TM51",
             "TM55",
             "TM56",
             "TM58",
             "TM65",
             "TM76",
+            "TM77",
             "TM78",
             "TM82",
             "TM83",
@@ -94,7 +94,9 @@
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_SNORE",
-            "MOVE_SIGNAL_BEAM"
+            "MOVE_HELPING_HAND",
+            "MOVE_SIGNAL_BEAM",
+            "MOVE_SWIFT"
         ]
     },
     "evolutions": [

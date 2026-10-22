@@ -7,7 +7,7 @@
         "special_attack": 40,
         "special_defense": 40
     },
-    "types": [ "TYPE_NORMAL", "TYPE_NORMAL" ],
+    "types": [ "TYPE_FAIRY", "TYPE_FAIRY" ],
     "catch_rate": 190,
     "base_exp_reward": 63,
     "ev_yields": {
@@ -34,19 +34,20 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_GROWL" ],
+            [ 1, "MOVE_SCARY_FACE" ],
+            [ 1, "MOVE_CHARM" ],
+            [ 1, "MOVE_THUNDER_FANG" ],
             [ 1, "MOVE_ICE_FANG" ],
             [ 1, "MOVE_FIRE_FANG" ],
-            [ 1, "MOVE_THUNDER_FANG" ],
-            [ 1, "MOVE_TACKLE" ],
-            [ 1, "MOVE_SCARY_FACE" ],
-            [ 1, "MOVE_TAIL_WHIP" ],
-            [ 1, "MOVE_CHARM" ],
             [ 7, "MOVE_BITE" ],
             [ 13, "MOVE_LICK" ],
             [ 19, "MOVE_HEADBUTT" ],
             [ 25, "MOVE_ROAR" ],
-            [ 31, "MOVE_RAGE" ],
-            [ 37, "MOVE_TAKE_DOWN" ],
+            [ 31, "MOVE_LAST_RESORT" ],
+            [ 37, "MOVE_PLAY_ROUGH" ],
             [ 43, "MOVE_PAYBACK" ],
             [ 49, "MOVE_CRUNCH" ]
         ],
@@ -101,21 +102,18 @@
             "MOVE_SUPERPOWER",
             "MOVE_ICE_PUNCH",
             "MOVE_SNORE",
-            "MOVE_LAST_RESORT"
+            "MOVE_SPITE",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_LAST_RESORT",
+            "MOVE_UPROAR"
         ],
         "egg_moves": [
-            "MOVE_METRONOME",
-            "MOVE_FAINT_ATTACK",
-            "MOVE_REFLECT",
-            "MOVE_PRESENT",
-            "MOVE_CRUNCH",
-            "MOVE_HEAL_BELL",
+            "MOVE_COUNTER",
+            "MOVE_MIMIC",
             "MOVE_SNORE",
-            "MOVE_SMELLING_SALT",
-            "MOVE_CLOSE_COMBAT",
-            "MOVE_ICE_FANG",
-            "MOVE_FIRE_FANG",
-            "MOVE_THUNDER_FANG"
+            "MOVE_PRESENT",
+            "MOVE_RETALIATE"
         ]
     },
     "evolutions": [

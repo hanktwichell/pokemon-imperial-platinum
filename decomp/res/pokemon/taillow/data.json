@@ -34,16 +34,19 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_PECK" ],
             [ 1, "MOVE_GROWL" ],
-            [ 4, "MOVE_FOCUS_ENERGY" ],
-            [ 8, "MOVE_QUICK_ATTACK" ],
+            [ 1, "MOVE_PECK" ],
+            [ 5, "MOVE_FOCUS_ENERGY" ],
+            [ 9, "MOVE_QUICK_ATTACK" ],
             [ 13, "MOVE_WING_ATTACK" ],
-            [ 19, "MOVE_DOUBLE_TEAM" ],
-            [ 26, "MOVE_ENDEAVOR" ],
-            [ 34, "MOVE_AERIAL_ACE" ],
-            [ 43, "MOVE_AGILITY" ],
-            [ 53, "MOVE_AIR_SLASH" ]
+            [ 17, "MOVE_DOUBLE_TEAM" ],
+            [ 21, "MOVE_AERIAL_ACE" ],
+            [ 25, "MOVE_QUICK_GUARD" ],
+            [ 29, "MOVE_AGILITY" ],
+            [ 33, "MOVE_AIR_SLASH" ],
+            [ 37, "MOVE_ENDEAVOR" ],
+            [ 41, "MOVE_BRAVE_BIRD" ],
+            [ 45, "MOVE_REVERSAL" ]
         ],
         "by_tm": [
             "TM06",
@@ -84,14 +87,12 @@
             "MOVE_SWIFT"
         ],
         "egg_moves": [
-            "MOVE_PURSUIT",
-            "MOVE_SUPERSONIC",
-            "MOVE_REFRESH",
-            "MOVE_MIRROR_MOVE",
-            "MOVE_RAGE",
-            "MOVE_SKY_ATTACK",
             "MOVE_WHIRLWIND",
-            "MOVE_BRAVE_BIRD"
+            "MOVE_SUPERSONIC",
+            "MOVE_SKY_ATTACK",
+            "MOVE_BRAVE_BIRD",
+            "MOVE_HURRICANE",
+            "MOVE_BOOMBURST"
         ]
     },
     "evolutions": [

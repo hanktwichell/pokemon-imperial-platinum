@@ -45,8 +45,9 @@
             [ 33, "MOVE_WING_ATTACK" ],
             [ 37, "MOVE_ROOST" ],
             [ 41, "MOVE_TAILWIND" ],
-            [ 45, "MOVE_MIRROR_MOVE" ],
-            [ 49, "MOVE_AIR_SLASH" ]
+            [ 45, "MOVE_AERIAL_ACE" ],
+            [ 49, "MOVE_AIR_SLASH" ],
+            [ 53, "MOVE_HURRICANE" ]
         ],
         "by_tm": [
             "TM06",
@@ -87,14 +88,10 @@
             "MOVE_UPROAR"
         ],
         "egg_moves": [
-            "MOVE_PURSUIT",
-            "MOVE_FAINT_ATTACK",
-            "MOVE_FORESIGHT",
-            "MOVE_STEEL_WING",
+            "MOVE_UPROAR",
             "MOVE_AIR_CUTTER",
             "MOVE_AIR_SLASH",
-            "MOVE_BRAVE_BIRD",
-            "MOVE_UPROAR"
+            "MOVE_BRAVE_BIRD"
         ]
     },
     "evolutions": [

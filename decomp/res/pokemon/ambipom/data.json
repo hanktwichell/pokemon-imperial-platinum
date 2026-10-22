@@ -35,11 +35,9 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_SCRATCH" ],
-            [ 1, "MOVE_TAIL_WHIP" ],
             [ 1, "MOVE_SAND_ATTACK" ],
+            [ 1, "MOVE_TAIL_WHIP" ],
             [ 1, "MOVE_ASTONISH" ],
-            [ 4, "MOVE_SAND_ATTACK" ],
-            [ 8, "MOVE_ASTONISH" ],
             [ 11, "MOVE_BATON_PASS" ],
             [ 15, "MOVE_TICKLE" ],
             [ 18, "MOVE_FURY_SWIPES" ],
@@ -105,6 +103,8 @@
             "MOVE_ICE_PUNCH",
             "MOVE_SNORE",
             "MOVE_SPITE",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
             "MOVE_GUNK_SHOT",
             "MOVE_SEED_BOMB",
             "MOVE_LAST_RESORT",

@@ -35,15 +35,21 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_WITHDRAW" ],
-            [ 1, "MOVE_CONSTRICT" ],
-            [ 1, "MOVE_BIDE" ],
-            [ 9, "MOVE_ENCORE" ],
-            [ 14, "MOVE_SAFEGUARD" ],
-            [ 22, "MOVE_WRAP" ],
-            [ 27, "MOVE_REST" ],
-            [ 35, "MOVE_GASTRO_ACID" ],
-            [ 40, "MOVE_BUG_BITE" ],
-            [ 48, "MOVE_POWER_TRICK" ]
+            [ 1, "MOVE_WRAP" ],
+            [ 5, "MOVE_ROLLOUT" ],
+            [ 10, "MOVE_STRUGGLE_BUG" ],
+            [ 15, "MOVE_ROCK_THROW" ],
+            [ 20, "MOVE_SAFEGUARD" ],
+            [ 25, "MOVE_REST" ],
+            [ 30, "MOVE_BUG_BITE" ],
+            [ 35, "MOVE_POWER_SPLIT" ],
+            [ 35, "MOVE_GUARD_SPLIT" ],
+            [ 40, "MOVE_ROCK_SLIDE" ],
+            [ 45, "MOVE_GASTRO_ACID" ],
+            [ 50, "MOVE_STICKY_WEB" ],
+            [ 55, "MOVE_POWER_TRICK" ],
+            [ 60, "MOVE_STONE_EDGE" ],
+            [ 65, "MOVE_SHELL_SMASH" ]
         ],
         "by_tm": [
             "TM06",
@@ -85,15 +91,20 @@
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
             "MOVE_ANCIENT_POWER",
-            "MOVE_EARTH_POWER"
+            "MOVE_EARTH_POWER",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_KNOCK_OFF"
         ],
         "egg_moves": [
+            "MOVE_ACID",
+            "MOVE_TOXIC",
+            "MOVE_DEFENSE_CURL",
             "MOVE_SWEET_SCENT",
             "MOVE_KNOCK_OFF",
-            "MOVE_HELPING_HAND",
+            "MOVE_COVET",
             "MOVE_ACUPRESSURE",
-            "MOVE_SAND_TOMB",
-            "MOVE_MUD_SLAP"
+            "MOVE_FINAL_GAMBIT",
+            "MOVE_INFESTATION"
         ]
     },
     "evolutions": [  ],

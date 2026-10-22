@@ -35,20 +35,19 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_VINE_WHIP" ],
-            [ 1, "MOVE_GROWTH" ],
             [ 1, "MOVE_WRAP" ],
-            [ 7, "MOVE_GROWTH" ],
-            [ 11, "MOVE_WRAP" ],
+            [ 1, "MOVE_GROWTH" ],
             [ 13, "MOVE_SLEEP_POWDER" ],
             [ 15, "MOVE_POISON_POWDER" ],
             [ 17, "MOVE_STUN_SPORE" ],
-            [ 23, "MOVE_ACID" ],
-            [ 27, "MOVE_KNOCK_OFF" ],
-            [ 29, "MOVE_SWEET_SCENT" ],
-            [ 35, "MOVE_GASTRO_ACID" ],
-            [ 39, "MOVE_RAZOR_LEAF" ],
-            [ 41, "MOVE_SLAM" ],
-            [ 47, "MOVE_WRING_OUT" ]
+            [ 24, "MOVE_ACID" ],
+            [ 29, "MOVE_KNOCK_OFF" ],
+            [ 32, "MOVE_SWEET_SCENT" ],
+            [ 39, "MOVE_GASTRO_ACID" ],
+            [ 44, "MOVE_RAZOR_LEAF" ],
+            [ 47, "MOVE_POISON_JAB" ],
+            [ 54, "MOVE_SLAM" ],
+            [ 58, "MOVE_POWER_WHIP" ]
         ],
         "by_tm": [
             "TM06",
@@ -61,6 +60,7 @@
             "TM22",
             "TM27",
             "TM32",
+            "TM33",
             "TM36",
             "TM42",
             "TM43",
@@ -74,6 +74,7 @@
             "TM78",
             "TM82",
             "TM83",
+            "TM84",
             "TM86",
             "TM87",
             "TM90",
@@ -85,7 +86,8 @@
             "MOVE_SYNTHESIS",
             "MOVE_SEED_BOMB",
             "MOVE_KNOCK_OFF",
-            "MOVE_SUCKER_PUNCH"
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_SWIFT"
         ]
     },
     "evolutions": [

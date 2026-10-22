@@ -34,7 +34,7 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_TAKE_DOWN" ]
+            [ 1, "MOVE_TACKLE" ]
         ],
         "by_tm": [  ],
         "by_tutor": [

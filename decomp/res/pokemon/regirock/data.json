@@ -34,19 +34,21 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_EXPLOSION" ],
-            [ 1, "MOVE_STOMP" ],
-            [ 9, "MOVE_ROCK_THROW" ],
-            [ 17, "MOVE_CURSE" ],
-            [ 25, "MOVE_SUPERPOWER" ],
-            [ 33, "MOVE_ANCIENT_POWER" ],
-            [ 41, "MOVE_IRON_DEFENSE" ],
-            [ 49, "MOVE_CHARGE_BEAM" ],
-            [ 57, "MOVE_LOCK_ON" ],
-            [ 65, "MOVE_ZAP_CANNON" ],
-            [ 73, "MOVE_STONE_EDGE" ],
-            [ 81, "MOVE_HAMMER_ARM" ],
-            [ 89, "MOVE_HYPER_BEAM" ]
+            [ 1, "MOVE_ROCK_THROW" ],
+            [ 1, "MOVE_CHARGE_BEAM" ],
+            [ 6, "MOVE_BULLDOZE" ],
+            [ 12, "MOVE_ANCIENT_POWER" ],
+            [ 18, "MOVE_STOMP" ],
+            [ 24, "MOVE_ROCK_SLIDE" ],
+            [ 30, "MOVE_CURSE" ],
+            [ 36, "MOVE_IRON_DEFENSE" ],
+            [ 42, "MOVE_HAMMER_ARM" ],
+            [ 48, "MOVE_STONE_EDGE" ],
+            [ 54, "MOVE_SUPERPOWER" ],
+            [ 60, "MOVE_LOCK_ON" ],
+            [ 66, "MOVE_ZAP_CANNON" ],
+            [ 72, "MOVE_HYPER_BEAM" ],
+            [ 78, "MOVE_EXPLOSION" ]
         ],
         "by_tm": [
             "TM01",
@@ -87,6 +89,7 @@
             "TM83",
             "TM87",
             "TM90",
+            "TM91",
             "HM04",
             "HM06",
             "HM08"
@@ -101,7 +104,8 @@
             "MOVE_IRON_HEAD",
             "MOVE_SNORE",
             "MOVE_ANCIENT_POWER",
-            "MOVE_EARTH_POWER"
+            "MOVE_EARTH_POWER",
+            "MOVE_IRON_DEFENSE"
         ]
     },
     "evolutions": [  ],

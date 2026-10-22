@@ -36,18 +36,19 @@
         "by_level": [
             [ 1, "MOVE_LEER" ],
             [ 1, "MOVE_PECK" ],
-            [ 6, "MOVE_SAND_ATTACK" ],
-            [ 9, "MOVE_SWIFT" ],
-            [ 12, "MOVE_AGILITY" ],
-            [ 17, "MOVE_FURY_ATTACK" ],
-            [ 20, "MOVE_FEINT" ],
-            [ 23, "MOVE_AIR_CUTTER" ],
-            [ 28, "MOVE_SPIKES" ],
-            [ 31, "MOVE_METAL_SOUND" ],
-            [ 34, "MOVE_STEEL_WING" ],
-            [ 39, "MOVE_AIR_SLASH" ],
-            [ 42, "MOVE_SLASH" ],
-            [ 45, "MOVE_NIGHT_SLASH" ]
+            [ 4, "MOVE_SAND_ATTACK" ],
+            [ 8, "MOVE_FURY_ATTACK" ],
+            [ 12, "MOVE_METAL_CLAW" ],
+            [ 16, "MOVE_AGILITY" ],
+            [ 20, "MOVE_WING_ATTACK" ],
+            [ 24, "MOVE_SLASH" ],
+            [ 28, "MOVE_STEEL_WING" ],
+            [ 32, "MOVE_PAYBACK" ],
+            [ 36, "MOVE_DRILL_PECK" ],
+            [ 40, "MOVE_METAL_SOUND" ],
+            [ 44, "MOVE_SPIKES" ],
+            [ 48, "MOVE_IRON_DEFENSE" ],
+            [ 52, "MOVE_BRAVE_BIRD" ]
         ],
         "by_tm": [
             "TM05",
@@ -55,6 +56,7 @@
             "TM10",
             "TM11",
             "TM12",
+            "TM15",
             "TM17",
             "TM21",
             "TM27",
@@ -72,6 +74,7 @@
             "TM51",
             "TM58",
             "TM66",
+            "TM68",
             "TM70",
             "TM75",
             "TM76",
@@ -94,6 +97,7 @@
             "MOVE_MUD_SLAP",
             "MOVE_FURY_CUTTER",
             "MOVE_ICY_WIND",
+            "MOVE_IRON_HEAD",
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
             "MOVE_AIR_CUTTER",
@@ -102,13 +106,13 @@
             "MOVE_SWIFT"
         ],
         "egg_moves": [
-            "MOVE_DRILL_PECK",
-            "MOVE_PURSUIT",
             "MOVE_WHIRLWIND",
             "MOVE_SKY_ATTACK",
             "MOVE_CURSE",
-            "MOVE_BRAVE_BIRD",
-            "MOVE_ASSURANCE"
+            "MOVE_AIR_CUTTER",
+            "MOVE_ROOST",
+            "MOVE_FEINT",
+            "MOVE_NIGHT_SLASH"
         ]
     },
     "evolutions": [  ],

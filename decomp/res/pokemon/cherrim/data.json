@@ -34,18 +34,20 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_SUNNY_DAY" ],
+            [ 1, "MOVE_FLOWER_SHIELD" ],
+            [ 1, "MOVE_MORNING_SUN" ],
             [ 1, "MOVE_TACKLE" ],
+            [ 1, "MOVE_LEAFAGE" ],
             [ 1, "MOVE_GROWTH" ],
-            [ 7, "MOVE_GROWTH" ],
-            [ 10, "MOVE_LEECH_SEED" ],
-            [ 13, "MOVE_HELPING_HAND" ],
-            [ 19, "MOVE_MAGICAL_LEAF" ],
-            [ 22, "MOVE_SUNNY_DAY" ],
-            [ 25, "MOVE_PETAL_DANCE" ],
-            [ 30, "MOVE_WORRY_SEED" ],
-            [ 35, "MOVE_TAKE_DOWN" ],
-            [ 43, "MOVE_SOLAR_BEAM" ],
-            [ 48, "MOVE_LUCKY_CHANT" ]
+            [ 15, "MOVE_HELPING_HAND" ],
+            [ 20, "MOVE_MAGICAL_LEAF" ],
+            [ 28, "MOVE_LEECH_SEED" ],
+            [ 34, "MOVE_TAKE_DOWN" ],
+            [ 41, "MOVE_PETAL_BLIZZARD" ],
+            [ 48, "MOVE_WORRY_SEED" ],
+            [ 55, "MOVE_SOLAR_BEAM" ],
+            [ 62, "MOVE_PETAL_DANCE" ]
         ],
         "by_tm": [
             "TM06",

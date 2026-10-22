@@ -35,19 +35,22 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 4, "MOVE_HARDEN" ],
-            [ 8, "MOVE_MUD_SLAP" ],
-            [ 11, "MOVE_HEADBUTT" ],
-            [ 15, "MOVE_METAL_CLAW" ],
-            [ 18, "MOVE_IRON_DEFENSE" ],
-            [ 22, "MOVE_ROAR" ],
-            [ 25, "MOVE_TAKE_DOWN" ],
-            [ 29, "MOVE_IRON_HEAD" ],
-            [ 32, "MOVE_PROTECT" ],
-            [ 36, "MOVE_METAL_SOUND" ],
-            [ 39, "MOVE_IRON_TAIL" ],
-            [ 43, "MOVE_DOUBLE_EDGE" ],
-            [ 46, "MOVE_METAL_BURST" ]
+            [ 1, "MOVE_HARDEN" ],
+            [ 4, "MOVE_METAL_CLAW" ],
+            [ 8, "MOVE_ROCK_TOMB" ],
+            [ 12, "MOVE_ROAR" ],
+            [ 16, "MOVE_HEADBUTT" ],
+            [ 20, "MOVE_PROTECT" ],
+            [ 24, "MOVE_ROCK_SLIDE" ],
+            [ 28, "MOVE_IRON_HEAD" ],
+            [ 33, "MOVE_METAL_SOUND" ],
+            [ 36, "MOVE_TAKE_DOWN" ],
+            [ 40, "MOVE_AUTOTOMIZE" ],
+            [ 44, "MOVE_IRON_TAIL" ],
+            [ 48, "MOVE_IRON_DEFENSE" ],
+            [ 52, "MOVE_HEAVY_SLAM" ],
+            [ 56, "MOVE_DOUBLE_EDGE" ],
+            [ 60, "MOVE_METAL_BURST" ]
         ],
         "by_tm": [
             "TM03",
@@ -101,14 +104,12 @@
             "MOVE_UPROAR"
         ],
         "egg_moves": [
-            "MOVE_ENDEAVOR",
-            "MOVE_BODY_SLAM",
             "MOVE_STOMP",
-            "MOVE_SMELLING_SALT",
             "MOVE_CURSE",
-            "MOVE_SCREECH",
-            "MOVE_IRON_HEAD",
-            "MOVE_DRAGON_RUSH"
+            "MOVE_MUD_SLAP",
+            "MOVE_ENDEAVOR",
+            "MOVE_DRAGON_RUSH",
+            "MOVE_HEAD_SMASH"
         ]
     },
     "evolutions": [

@@ -34,23 +34,25 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_THIEF" ],
-            [ 1, "MOVE_TAIL_WHIP" ],
             [ 1, "MOVE_ASTONISH" ],
             [ 1, "MOVE_LICK" ],
             [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_THIEF" ],
             [ 4, "MOVE_BIND" ],
-            [ 7, "MOVE_FAINT_ATTACK" ],
-            [ 10, "MOVE_FURY_SWIPES" ],
-            [ 14, "MOVE_FEINT" ],
+            [ 7, "MOVE_SHADOW_SNEAK" ],
+            [ 10, "MOVE_FEINT" ],
+            [ 13, "MOVE_FURY_SWIPES" ],
+            [ 16, "MOVE_DISABLE" ],
             [ 18, "MOVE_PSYBEAM" ],
-            [ 22, "MOVE_SHADOW_SNEAK" ],
-            [ 27, "MOVE_SLASH" ],
-            [ 32, "MOVE_SCREECH" ],
-            [ 37, "MOVE_SUBSTITUTE" ],
-            [ 43, "MOVE_SUCKER_PUNCH" ],
-            [ 49, "MOVE_SHADOW_CLAW" ],
-            [ 55, "MOVE_ANCIENT_POWER" ]
+            [ 21, "MOVE_ANCIENT_POWER" ],
+            [ 25, "MOVE_SLASH" ],
+            [ 30, "MOVE_DETECT" ],
+            [ 33, "MOVE_SHADOW_CLAW" ],
+            [ 38, "MOVE_SCREECH" ],
+            [ 42, "MOVE_SUBSTITUTE" ],
+            [ 46, "MOVE_SUCKER_PUNCH" ],
+            [ 50, "MOVE_FOUL_PLAY" ]
         ],
         "by_tm": [
             "TM01",
@@ -125,11 +127,12 @@
         ],
         "egg_moves": [
             "MOVE_DISABLE",
-            "MOVE_MAGIC_COAT",
-            "MOVE_TRICK",
+            "MOVE_RECOVER",
             "MOVE_FAKE_OUT",
-            "MOVE_NASTY_PLOT",
-            "MOVE_DIZZY_PUNCH"
+            "MOVE_TRICK",
+            "MOVE_MAGIC_COAT",
+            "MOVE_FOUL_PLAY",
+            "MOVE_POWER_UP_PUNCH"
         ]
     },
     "evolutions": [  ],

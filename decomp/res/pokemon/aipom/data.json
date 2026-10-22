@@ -101,6 +101,8 @@
             "MOVE_ICE_PUNCH",
             "MOVE_SNORE",
             "MOVE_SPITE",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
             "MOVE_GUNK_SHOT",
             "MOVE_SEED_BOMB",
             "MOVE_LAST_RESORT",
@@ -110,17 +112,15 @@
             "MOVE_UPROAR"
         ],
         "egg_moves": [
-            "MOVE_COUNTER",
-            "MOVE_SCREECH",
-            "MOVE_PURSUIT",
-            "MOVE_AGILITY",
-            "MOVE_SPITE",
             "MOVE_SLAM",
-            "MOVE_DOUBLE_SLAP",
+            "MOVE_COUNTER",
+            "MOVE_IRON_TAIL",
             "MOVE_BEAT_UP",
             "MOVE_FAKE_OUT",
+            "MOVE_BOUNCE",
             "MOVE_COVET",
-            "MOVE_BOUNCE"
+            "MOVE_SWITCHEROO",
+            "MOVE_QUICK_GUARD"
         ]
     },
     "evolutions": [

@@ -34,21 +34,22 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_COVET" ],
             [ 1, "MOVE_SCRATCH" ],
-            [ 1, "MOVE_LOW_KICK" ],
             [ 1, "MOVE_LEER" ],
             [ 1, "MOVE_FOCUS_ENERGY" ],
-            [ 9, "MOVE_FURY_SWIPES" ],
-            [ 13, "MOVE_KARATE_CHOP" ],
-            [ 17, "MOVE_SEISMIC_TOSS" ],
-            [ 21, "MOVE_SCREECH" ],
-            [ 25, "MOVE_ASSURANCE" ],
-            [ 33, "MOVE_SWAGGER" ],
-            [ 37, "MOVE_CROSS_CHOP" ],
-            [ 41, "MOVE_THRASH" ],
-            [ 45, "MOVE_PUNISHMENT" ],
-            [ 49, "MOVE_CLOSE_COMBAT" ]
+            [ 1, "MOVE_COVET" ],
+            [ 5, "MOVE_FURY_SWIPES" ],
+            [ 8, "MOVE_LOW_KICK" ],
+            [ 12, "MOVE_SEISMIC_TOSS" ],
+            [ 17, "MOVE_SWAGGER" ],
+            [ 22, "MOVE_CROSS_CHOP" ],
+            [ 26, "MOVE_ASSURANCE" ],
+            [ 29, "MOVE_THRASH" ],
+            [ 33, "MOVE_CLOSE_COMBAT" ],
+            [ 36, "MOVE_SCREECH" ],
+            [ 40, "MOVE_STOMPING_TANTRUM" ],
+            [ 44, "MOVE_OUTRAGE" ],
+            [ 48, "MOVE_FINAL_GAMBIT" ]
         ],
         "by_tm": [
             "TM01",
@@ -79,7 +80,10 @@
             "TM52",
             "TM56",
             "TM58",
+            "TM60",
+            "TM65",
             "TM66",
+            "TM71",
             "TM78",
             "TM80",
             "TM82",
@@ -108,15 +112,12 @@
             "MOVE_UPROAR"
         ],
         "egg_moves": [
-            "MOVE_ROCK_SLIDE",
-            "MOVE_FORESIGHT",
-            "MOVE_MEDITATE",
             "MOVE_COUNTER",
-            "MOVE_REVERSAL",
+            "MOVE_CURSE",
+            "MOVE_SPITE",
+            "MOVE_ENCORE",
             "MOVE_BEAT_UP",
-            "MOVE_REVENGE",
-            "MOVE_SMELLING_SALT",
-            "MOVE_CLOSE_COMBAT"
+            "MOVE_NIGHT_SLASH"
         ]
     },
     "evolutions": [

@@ -35,18 +35,18 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 3, "MOVE_GROWL" ],
-            [ 5, "MOVE_DEFENSE_CURL" ],
-            [ 8, "MOVE_STOMP" ],
-            [ 11, "MOVE_MILK_DRINK" ],
-            [ 15, "MOVE_BIDE" ],
-            [ 19, "MOVE_ROLLOUT" ],
-            [ 24, "MOVE_BODY_SLAM" ],
-            [ 29, "MOVE_ZEN_HEADBUTT" ],
-            [ 35, "MOVE_CAPTIVATE" ],
-            [ 41, "MOVE_GYRO_BALL" ],
-            [ 48, "MOVE_HEAL_BELL" ],
-            [ 55, "MOVE_WAKE_UP_SLAP" ]
+            [ 1, "MOVE_GROWL" ],
+            [ 5, "MOVE_ROLLOUT" ],
+            [ 10, "MOVE_DEFENSE_CURL" ],
+            [ 15, "MOVE_STOMP" ],
+            [ 20, "MOVE_HEAL_BELL" ],
+            [ 25, "MOVE_HEADBUTT" ],
+            [ 30, "MOVE_ZEN_HEADBUTT" ],
+            [ 35, "MOVE_MILK_DRINK" ],
+            [ 40, "MOVE_BODY_SLAM" ],
+            [ 45, "MOVE_PLAY_ROUGH" ],
+            [ 50, "MOVE_CHARM" ],
+            [ 55, "MOVE_HIGH_HORSEPOWER" ]
         ],
         "by_tm": [
             "TM01",
@@ -107,18 +107,13 @@
             "MOVE_ZEN_HEADBUTT"
         ],
         "egg_moves": [
-            "MOVE_PRESENT",
-            "MOVE_REVERSAL",
-            "MOVE_SEISMIC_TOSS",
-            "MOVE_ENDURE",
-            "MOVE_PSYCH_UP",
-            "MOVE_CURSE",
-            "MOVE_HELPING_HAND",
-            "MOVE_SLEEP_TALK",
-            "MOVE_DIZZY_PUNCH",
-            "MOVE_HAMMER_ARM",
             "MOVE_DOUBLE_EDGE",
-            "MOVE_PUNISHMENT"
+            "MOVE_SEISMIC_TOSS",
+            "MOVE_CURSE",
+            "MOVE_PRESENT",
+            "MOVE_FOCUS_PUNCH",
+            "MOVE_HAMMER_ARM",
+            "MOVE_BELCH"
         ]
     },
     "evolutions": [  ],

@@ -40,13 +40,14 @@
             [ 11, "MOVE_VINE_WHIP" ],
             [ 17, "MOVE_SWEET_SCENT" ],
             [ 21, "MOVE_INGRAIN" ],
-            [ 27, "MOVE_FAINT_ATTACK" ],
-            [ 31, "MOVE_STOCKPILE" ],
-            [ 31, "MOVE_SPIT_UP" ],
-            [ 31, "MOVE_SWALLOW" ],
-            [ 37, "MOVE_CRUNCH" ],
-            [ 41, "MOVE_WRING_OUT" ],
-            [ 47, "MOVE_POWER_WHIP" ]
+            [ 27, "MOVE_GRASS_KNOT" ],
+            [ 31, "MOVE_LEAF_TORNADO" ],
+            [ 37, "MOVE_SPIT_UP" ],
+            [ 37, "MOVE_STOCKPILE" ],
+            [ 37, "MOVE_SWALLOW" ],
+            [ 41, "MOVE_CRUNCH" ],
+            [ 47, "MOVE_SEED_BOMB" ],
+            [ 50, "MOVE_POWER_WHIP" ]
         ],
         "by_tm": [
             "TM06",
@@ -91,14 +92,16 @@
             "MOVE_KNOCK_OFF"
         ],
         "egg_moves": [
-            "MOVE_SLEEP_POWDER",
-            "MOVE_STUN_SPORE",
-            "MOVE_RAZOR_LEAF",
             "MOVE_SLAM",
+            "MOVE_LEECH_SEED",
+            "MOVE_RAZOR_LEAF",
+            "MOVE_STUN_SPORE",
+            "MOVE_SLEEP_POWDER",
             "MOVE_SYNTHESIS",
             "MOVE_MAGICAL_LEAF",
-            "MOVE_LEECH_SEED",
-            "MOVE_WORRY_SEED"
+            "MOVE_WORRY_SEED",
+            "MOVE_RAGE_POWDER",
+            "MOVE_ACID_SPRAY"
         ]
     },
     "evolutions": [  ],

@@ -36,15 +36,17 @@
         "by_level": [
             [ 1, "MOVE_PECK" ],
             [ 1, "MOVE_ASTONISH" ],
-            [ 5, "MOVE_PURSUIT" ],
+            [ 5, "MOVE_GUST" ],
             [ 11, "MOVE_HAZE" ],
             [ 15, "MOVE_WING_ATTACK" ],
             [ 21, "MOVE_NIGHT_SHADE" ],
             [ 25, "MOVE_ASSURANCE" ],
             [ 31, "MOVE_TAUNT" ],
-            [ 35, "MOVE_FAINT_ATTACK" ],
-            [ 41, "MOVE_MEAN_LOOK" ],
-            [ 45, "MOVE_SUCKER_PUNCH" ]
+            [ 35, "MOVE_MEAN_LOOK" ],
+            [ 40, "MOVE_FOUL_PLAY" ],
+            [ 50, "MOVE_SUCKER_PUNCH" ],
+            [ 55, "MOVE_TORMENT" ],
+            [ 60, "MOVE_QUASH" ]
         ],
         "by_tm": [
             "TM04",
@@ -52,6 +54,7 @@
             "TM10",
             "TM11",
             "TM12",
+            "TM15",
             "TM17",
             "TM18",
             "TM21",
@@ -72,6 +75,7 @@
             "TM58",
             "TM63",
             "TM66",
+            "TM68",
             "TM73",
             "TM77",
             "TM78",
@@ -81,6 +85,7 @@
             "TM85",
             "TM87",
             "TM88",
+            "TM89",
             "TM90",
             "HM02",
             "HM05"
@@ -100,15 +105,13 @@
         "egg_moves": [
             "MOVE_WHIRLWIND",
             "MOVE_DRILL_PECK",
-            "MOVE_MIRROR_MOVE",
-            "MOVE_WING_ATTACK",
-            "MOVE_SKY_ATTACK",
-            "MOVE_CONFUSE_RAY",
-            "MOVE_FEATHER_DANCE",
-            "MOVE_PERISH_SONG",
-            "MOVE_PSYCHO_SHIFT",
             "MOVE_SCREECH",
-            "MOVE_FAINT_ATTACK"
+            "MOVE_CONFUSE_RAY",
+            "MOVE_SKY_ATTACK",
+            "MOVE_PERISH_SONG",
+            "MOVE_FLATTER",
+            "MOVE_FEATHER_DANCE",
+            "MOVE_BRAVE_BIRD"
         ]
     },
     "evolutions": [

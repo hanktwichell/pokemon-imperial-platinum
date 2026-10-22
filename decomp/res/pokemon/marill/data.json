@@ -7,7 +7,7 @@
         "special_attack": 20,
         "special_defense": 50
     },
-    "types": [ "TYPE_WATER", "TYPE_WATER" ],
+    "types": [ "TYPE_WATER", "TYPE_FAIRY" ],
     "catch_rate": 190,
     "base_exp_reward": 58,
     "ev_yields": {
@@ -35,16 +35,22 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 2, "MOVE_DEFENSE_CURL" ],
-            [ 7, "MOVE_TAIL_WHIP" ],
-            [ 10, "MOVE_WATER_GUN" ],
-            [ 15, "MOVE_ROLLOUT" ],
-            [ 18, "MOVE_BUBBLE_BEAM" ],
-            [ 23, "MOVE_AQUA_RING" ],
-            [ 27, "MOVE_DOUBLE_EDGE" ],
-            [ 32, "MOVE_RAIN_DANCE" ],
-            [ 37, "MOVE_AQUA_TAIL" ],
-            [ 42, "MOVE_HYDRO_PUMP" ]
+            [ 1, "MOVE_HELPING_HAND" ],
+            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_WATER_GUN" ],
+            [ 1, "MOVE_ROLLOUT" ],
+            [ 1, "MOVE_DEFENSE_CURL" ],
+            [ 6, "MOVE_BUBBLE_BEAM" ],
+            [ 9, "MOVE_CHARM" ],
+            [ 12, "MOVE_SLAM" ],
+            [ 15, "MOVE_BOUNCE" ],
+            [ 19, "MOVE_AQUA_TAIL" ],
+            [ 21, "MOVE_PLAY_ROUGH" ],
+            [ 24, "MOVE_AQUA_RING" ],
+            [ 27, "MOVE_RAIN_DANCE" ],
+            [ 30, "MOVE_HYDRO_PUMP" ],
+            [ 33, "MOVE_DOUBLE_EDGE" ],
+            [ 36, "MOVE_SUPERPOWER" ]
         ],
         "by_tm": [
             "TM01",
@@ -54,6 +60,7 @@
             "TM10",
             "TM13",
             "TM14",
+            "TM16",
             "TM17",
             "TM18",
             "TM21",
@@ -89,6 +96,7 @@
             "MOVE_AQUA_TAIL",
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
+            "MOVE_BOUNCE",
             "MOVE_KNOCK_OFF",
             "MOVE_SWIFT"
         ],

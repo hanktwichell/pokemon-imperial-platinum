@@ -36,7 +36,7 @@
         "by_level": [
             [ 1, "MOVE_SPLASH" ],
             [ 15, "MOVE_TACKLE" ],
-            [ 30, "MOVE_FLAIL" ]
+            [ 25, "MOVE_FLAIL" ]
         ],
         "by_tm": [
             "TM03",
@@ -45,6 +45,7 @@
             "TM10",
             "TM13",
             "TM14",
+            "TM16",
             "TM17",
             "TM18",
             "TM21",
@@ -55,6 +56,7 @@
             "TM44",
             "TM45",
             "TM58",
+            "TM59",
             "TM78",
             "TM82",
             "TM83",
@@ -70,14 +72,12 @@
             "MOVE_SWIFT"
         ],
         "egg_moves": [
-            "MOVE_MIRROR_COAT",
-            "MOVE_DRAGON_BREATH",
-            "MOVE_MUD_SPORT",
-            "MOVE_HYPNOSIS",
-            "MOVE_LIGHT_SCREEN",
-            "MOVE_CONFUSE_RAY",
             "MOVE_MIST",
+            "MOVE_HYPNOSIS",
+            "MOVE_CONFUSE_RAY",
             "MOVE_HAZE",
+            "MOVE_DRAGON_BREATH",
+            "MOVE_MIRROR_COAT",
             "MOVE_TICKLE"
         ]
     },

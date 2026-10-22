@@ -34,21 +34,22 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_BITE" ],
-            [ 1, "MOVE_ROAR" ],
-            [ 6, "MOVE_EMBER" ],
-            [ 9, "MOVE_LEER" ],
-            [ 14, "MOVE_ODOR_SLEUTH" ],
-            [ 17, "MOVE_HELPING_HAND" ],
-            [ 20, "MOVE_FLAME_WHEEL" ],
-            [ 25, "MOVE_REVERSAL" ],
-            [ 28, "MOVE_FIRE_FANG" ],
-            [ 31, "MOVE_TAKE_DOWN" ],
-            [ 34, "MOVE_FLAMETHROWER" ],
-            [ 39, "MOVE_AGILITY" ],
-            [ 42, "MOVE_CRUNCH" ],
-            [ 45, "MOVE_HEAT_WAVE" ],
-            [ 48, "MOVE_FLARE_BLITZ" ]
+            [ 1, "MOVE_LEER" ],
+            [ 1, "MOVE_EMBER" ],
+            [ 4, "MOVE_HOWL" ],
+            [ 8, "MOVE_BITE" ],
+            [ 12, "MOVE_FLAME_WHEEL" ],
+            [ 16, "MOVE_HELPING_HAND" ],
+            [ 20, "MOVE_AGILITY" ],
+            [ 24, "MOVE_FIRE_FANG" ],
+            [ 28, "MOVE_RETALIATE" ],
+            [ 32, "MOVE_CRUNCH" ],
+            [ 36, "MOVE_TAKE_DOWN" ],
+            [ 40, "MOVE_FLAMETHROWER" ],
+            [ 44, "MOVE_ROAR" ],
+            [ 48, "MOVE_PLAY_ROUGH" ],
+            [ 52, "MOVE_REVERSAL" ],
+            [ 56, "MOVE_FLARE_BLITZ" ]
         ],
         "by_tm": [
             "TM05",
@@ -84,19 +85,17 @@
             "MOVE_MUD_SLAP",
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
+            "MOVE_OUTRAGE",
             "MOVE_HEAT_WAVE",
             "MOVE_SWIFT"
         ],
         "egg_moves": [
-            "MOVE_BODY_SLAM",
-            "MOVE_SAFEGUARD",
-            "MOVE_CRUNCH",
+            "MOVE_DOUBLE_KICK",
             "MOVE_THRASH",
-            "MOVE_FIRE_SPIN",
-            "MOVE_HOWL",
-            "MOVE_HEAT_WAVE",
             "MOVE_DOUBLE_EDGE",
-            "MOVE_FLARE_BLITZ"
+            "MOVE_MORNING_SUN",
+            "MOVE_COVET",
+            "MOVE_RAGING_FURY"
         ]
     },
     "evolutions": [

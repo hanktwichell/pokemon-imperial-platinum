@@ -34,25 +34,25 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_THUNDER_PUNCH" ],
-            [ 1, "MOVE_SMOG" ],
             [ 1, "MOVE_LEER" ],
             [ 1, "MOVE_EMBER" ],
             [ 1, "MOVE_SMOKE_SCREEN" ],
-            [ 7, "MOVE_EMBER" ],
-            [ 10, "MOVE_SMOKE_SCREEN" ],
-            [ 16, "MOVE_FAINT_ATTACK" ],
-            [ 19, "MOVE_FIRE_SPIN" ],
-            [ 25, "MOVE_CONFUSE_RAY" ],
+            [ 1, "MOVE_SMOG" ],
+            [ 12, "MOVE_CLEAR_SMOG" ],
+            [ 16, "MOVE_FLAME_WHEEL" ],
+            [ 20, "MOVE_CONFUSE_RAY" ],
+            [ 24, "MOVE_SCARY_FACE" ],
             [ 28, "MOVE_FIRE_PUNCH" ],
-            [ 37, "MOVE_LAVA_PLUME" ],
-            [ 43, "MOVE_FLAMETHROWER" ],
+            [ 34, "MOVE_LAVA_PLUME" ],
+            [ 40, "MOVE_LOW_KICK" ],
+            [ 46, "MOVE_FLAMETHROWER" ],
             [ 52, "MOVE_SUNNY_DAY" ],
             [ 58, "MOVE_FIRE_BLAST" ],
-            [ 67, "MOVE_HYPER_BEAM" ]
+            [ 64, "MOVE_HYPER_BEAM" ]
         ],
         "by_tm": [
             "TM01",
+            "TM05",
             "TM06",
             "TM10",
             "TM11",
@@ -87,6 +87,7 @@
             "TM80",
             "TM82",
             "TM83",
+            "TM84",
             "TM87",
             "TM90",
             "HM04",
@@ -99,7 +100,9 @@
             "MOVE_FIRE_PUNCH",
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
-            "MOVE_HEAT_WAVE"
+            "MOVE_HEAT_WAVE",
+            "MOVE_KNOCK_OFF",
+            "MOVE_UPROAR"
         ]
     },
     "evolutions": [  ],

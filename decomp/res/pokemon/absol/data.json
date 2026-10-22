@@ -34,24 +34,19 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_SCRATCH" ],
-            [ 1, "MOVE_FEINT" ],
-            [ 4, "MOVE_LEER" ],
-            [ 9, "MOVE_TAUNT" ],
-            [ 12, "MOVE_QUICK_ATTACK" ],
-            [ 17, "MOVE_RAZOR_WIND" ],
-            [ 20, "MOVE_PURSUIT" ],
-            [ 25, "MOVE_SWORDS_DANCE" ],
-            [ 28, "MOVE_BITE" ],
-            [ 33, "MOVE_DOUBLE_TEAM" ],
-            [ 36, "MOVE_SLASH" ],
-            [ 41, "MOVE_FUTURE_SIGHT" ],
-            [ 44, "MOVE_SUCKER_PUNCH" ],
-            [ 49, "MOVE_DETECT" ],
-            [ 52, "MOVE_NIGHT_SLASH" ],
-            [ 57, "MOVE_ME_FIRST" ],
-            [ 60, "MOVE_PSYCHO_CUT" ],
-            [ 65, "MOVE_PERISH_SONG" ]
+            [ 1, "MOVE_QUICK_ATTACK" ],
+            [ 1, "MOVE_LEER" ],
+            [ 5, "MOVE_DOUBLE_TEAM" ],
+            [ 10, "MOVE_KNOCK_OFF" ],
+            [ 15, "MOVE_DETECT" ],
+            [ 20, "MOVE_TAUNT" ],
+            [ 25, "MOVE_SLASH" ],
+            [ 30, "MOVE_NIGHT_SLASH" ],
+            [ 35, "MOVE_FOCUS_ENERGY" ],
+            [ 40, "MOVE_SUCKER_PUNCH" ],
+            [ 45, "MOVE_SWORDS_DANCE" ],
+            [ 50, "MOVE_FUTURE_SIGHT" ],
+            [ 55, "MOVE_PERISH_SONG" ]
         ],
         "by_tm": [
             "TM03",
@@ -125,18 +120,12 @@
             "MOVE_SWIFT"
         ],
         "egg_moves": [
-            "MOVE_BATON_PASS",
-            "MOVE_FAINT_ATTACK",
             "MOVE_DOUBLE_EDGE",
-            "MOVE_MAGIC_COAT",
+            "MOVE_BITE",
             "MOVE_CURSE",
-            "MOVE_SUBSTITUTE",
             "MOVE_MEAN_LOOK",
-            "MOVE_ZEN_HEADBUTT",
-            "MOVE_PUNISHMENT",
-            "MOVE_SUCKER_PUNCH",
-            "MOVE_ASSURANCE",
-            "MOVE_ME_FIRST"
+            "MOVE_MAGIC_COAT",
+            "MOVE_FEINT"
         ]
     },
     "evolutions": [  ],

@@ -3,7 +3,7 @@
         "hp": 83,
         "attack": 80,
         "defense": 75,
-        "speed": 91,
+        "speed": 101,
         "special_attack": 70,
         "special_defense": 70
     },
@@ -34,13 +34,11 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_TACKLE" ],
-            [ 1, "MOVE_SAND_ATTACK" ],
             [ 1, "MOVE_GUST" ],
+            [ 1, "MOVE_HURRICANE" ],
             [ 1, "MOVE_QUICK_ATTACK" ],
-            [ 5, "MOVE_SAND_ATTACK" ],
-            [ 9, "MOVE_GUST" ],
-            [ 13, "MOVE_QUICK_ATTACK" ],
+            [ 1, "MOVE_SAND_ATTACK" ],
+            [ 1, "MOVE_TACKLE" ],
             [ 17, "MOVE_WHIRLWIND" ],
             [ 22, "MOVE_TWISTER" ],
             [ 27, "MOVE_FEATHER_DANCE" ],
@@ -48,7 +46,7 @@
             [ 38, "MOVE_WING_ATTACK" ],
             [ 44, "MOVE_ROOST" ],
             [ 50, "MOVE_TAILWIND" ],
-            [ 56, "MOVE_MIRROR_MOVE" ],
+            [ 56, "MOVE_AERIAL_ACE" ],
             [ 62, "MOVE_AIR_SLASH" ]
         ],
         "by_tm": [

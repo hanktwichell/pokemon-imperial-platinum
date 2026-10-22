@@ -34,20 +34,26 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_CHARM" ],
+            [ 1, "MOVE_COPYCAT" ],
+            [ 1, "MOVE_COVET" ],
+            [ 1, "MOVE_DISARMING_VOICE" ],
+            [ 1, "MOVE_SWEET_KISS" ],
             [ 1, "MOVE_POUND" ],
-            [ 1, "MOVE_GROWL" ],
-            [ 5, "MOVE_TAIL_WHIP" ],
-            [ 9, "MOVE_REFRESH" ],
-            [ 12, "MOVE_SOFTBOILED" ],
-            [ 16, "MOVE_DOUBLE_SLAP" ],
-            [ 20, "MOVE_MINIMIZE" ],
-            [ 23, "MOVE_SING" ],
-            [ 27, "MOVE_FLING" ],
-            [ 31, "MOVE_DEFENSE_CURL" ],
-            [ 34, "MOVE_LIGHT_SCREEN" ],
-            [ 38, "MOVE_EGG_BOMB" ],
-            [ 42, "MOVE_HEALING_WISH" ],
-            [ 46, "MOVE_DOUBLE_EDGE" ]
+            [ 1, "MOVE_DEFENSE_CURL" ],
+            [ 4, "MOVE_TAIL_WHIP" ],
+            [ 8, "MOVE_ECHOED_VOICE" ],
+            [ 12, "MOVE_LIFE_DEW" ],
+            [ 16, "MOVE_SING" ],
+            [ 20, "MOVE_FLING" ],
+            [ 24, "MOVE_TAKE_DOWN" ],
+            [ 28, "MOVE_HEAL_PULSE" ],
+            [ 32, "MOVE_HELPING_HAND" ],
+            [ 36, "MOVE_LIGHT_SCREEN" ],
+            [ 40, "MOVE_DOUBLE_EDGE" ],
+            [ 44, "MOVE_SOFTBOILED" ],
+            [ 48, "MOVE_LAST_RESORT" ],
+            [ 52, "MOVE_HEALING_WISH" ]
         ],
         "by_tm": [
             "TM01",
@@ -84,6 +90,7 @@
             "TM43",
             "TM44",
             "TM45",
+            "TM46",
             "TM48",
             "TM49",
             "TM52",
@@ -121,7 +128,9 @@
             "MOVE_HELPING_HAND",
             "MOVE_ENDEAVOR",
             "MOVE_ZEN_HEADBUTT",
-            "MOVE_LAST_RESORT"
+            "MOVE_LAST_RESORT",
+            "MOVE_TRICK",
+            "MOVE_SWIFT"
         ]
     },
     "evolutions": [  ],

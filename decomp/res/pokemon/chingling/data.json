@@ -35,11 +35,13 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_WRAP" ],
-            [ 6, "MOVE_GROWL" ],
-            [ 9, "MOVE_ASTONISH" ],
-            [ 14, "MOVE_CONFUSION" ],
-            [ 17, "MOVE_UPROAR" ],
-            [ 22, "MOVE_LAST_RESORT" ]
+            [ 4, "MOVE_GROWL" ],
+            [ 7, "MOVE_ASTONISH" ],
+            [ 10, "MOVE_CONFUSION" ],
+            [ 13, "MOVE_YAWN" ],
+            [ 16, "MOVE_LAST_RESORT" ],
+            [ 19, "MOVE_ENTRAINMENT" ],
+            [ 32, "MOVE_UPROAR" ]
         ],
         "by_tm": [
             "TM04",
@@ -65,6 +67,7 @@
             "TM45",
             "TM48",
             "TM49",
+            "TM53",
             "TM57",
             "TM58",
             "TM67",
@@ -95,12 +98,13 @@
         ],
         "egg_moves": [
             "MOVE_DISABLE",
-            "MOVE_CURSE",
             "MOVE_HYPNOSIS",
-            "MOVE_DREAM_EATER",
+            "MOVE_RECOVER",
+            "MOVE_CURSE",
             "MOVE_WISH",
-            "MOVE_FUTURE_SIGHT",
-            "MOVE_RECOVER"
+            "MOVE_RECYCLE",
+            "MOVE_COSMIC_POWER",
+            "MOVE_ALLY_SWITCH"
         ]
     },
     "evolutions": [

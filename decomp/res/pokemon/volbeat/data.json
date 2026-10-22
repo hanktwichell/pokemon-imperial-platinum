@@ -2,10 +2,10 @@
     "base_stats": {
         "hp": 65,
         "attack": 73,
-        "defense": 55,
+        "defense": 75,
         "speed": 85,
         "special_attack": 47,
-        "special_defense": 75
+        "special_defense": 85
     },
     "types": [ "TYPE_BUG", "TYPE_BUG" ],
     "catch_rate": 150,
@@ -34,19 +34,20 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_FLASH" ],
             [ 1, "MOVE_TACKLE" ],
             [ 5, "MOVE_DOUBLE_TEAM" ],
-            [ 9, "MOVE_CONFUSE_RAY" ],
-            [ 13, "MOVE_MOONLIGHT" ],
-            [ 17, "MOVE_QUICK_ATTACK" ],
-            [ 21, "MOVE_TAIL_GLOW" ],
-            [ 25, "MOVE_SIGNAL_BEAM" ],
-            [ 29, "MOVE_PROTECT" ],
+            [ 8, "MOVE_CONFUSE_RAY" ],
+            [ 12, "MOVE_QUICK_ATTACK" ],
+            [ 15, "MOVE_STRUGGLE_BUG" ],
+            [ 19, "MOVE_MOONLIGHT" ],
+            [ 22, "MOVE_TAIL_GLOW" ],
+            [ 26, "MOVE_PROTECT" ],
+            [ 29, "MOVE_ZEN_HEADBUTT" ],
             [ 33, "MOVE_HELPING_HAND" ],
-            [ 37, "MOVE_ZEN_HEADBUTT" ],
-            [ 41, "MOVE_BUG_BUZZ" ],
-            [ 45, "MOVE_DOUBLE_EDGE" ]
+            [ 36, "MOVE_BUG_BUZZ" ],
+            [ 40, "MOVE_PLAY_ROUGH" ],
+            [ 43, "MOVE_DOUBLE_EDGE" ],
+            [ 47, "MOVE_INFESTATION" ]
         ],
         "by_tm": [
             "TM01",
@@ -54,6 +55,7 @@
             "TM06",
             "TM10",
             "TM11",
+            "TM12",
             "TM16",
             "TM17",
             "TM18",
@@ -96,16 +98,17 @@
             "MOVE_SNORE",
             "MOVE_AIR_CUTTER",
             "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
             "MOVE_SIGNAL_BEAM",
             "MOVE_ZEN_HEADBUTT",
+            "MOVE_TRICK",
             "MOVE_SWIFT"
         ],
         "egg_moves": [
-            "MOVE_BATON_PASS",
-            "MOVE_SILVER_WIND",
-            "MOVE_TRICK",
-            "MOVE_ENCORE",
-            "MOVE_BUG_BUZZ"
+            "MOVE_COUNTER",
+            "MOVE_SEISMIC_TOSS",
+            "MOVE_SWAGGER",
+            "MOVE_ROOST"
         ]
     },
     "evolutions": [  ],

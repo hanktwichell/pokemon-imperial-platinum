@@ -35,17 +35,17 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_POUND" ],
-            [ 1, "MOVE_TRANSFORM" ],
-            [ 10, "MOVE_MEGA_PUNCH" ],
-            [ 20, "MOVE_METRONOME" ],
-            [ 30, "MOVE_PSYCHIC" ],
-            [ 40, "MOVE_BARRIER" ],
-            [ 50, "MOVE_ANCIENT_POWER" ],
-            [ 60, "MOVE_AMNESIA" ],
-            [ 70, "MOVE_ME_FIRST" ],
-            [ 80, "MOVE_BATON_PASS" ],
-            [ 90, "MOVE_NASTY_PLOT" ],
-            [ 100, "MOVE_AURA_SPHERE" ]
+            [ 1, "MOVE_REFLECT_TYPE" ],
+            [ 10, "MOVE_AMNESIA" ],
+            [ 20, "MOVE_BATON_PASS" ],
+            [ 30, "MOVE_ANCIENT_POWER" ],
+            [ 40, "MOVE_LIFE_DEW" ],
+            [ 50, "MOVE_NASTY_PLOT" ],
+            [ 60, "MOVE_METRONOME" ],
+            [ 70, "MOVE_IMPRISON" ],
+            [ 80, "MOVE_TRANSFORM" ],
+            [ 90, "MOVE_AURA_SPHERE" ],
+            [ 100, "MOVE_PSYCHIC" ]
         ],
         "by_tm": [
             "TM01",

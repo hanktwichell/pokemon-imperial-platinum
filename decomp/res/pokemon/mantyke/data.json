@@ -35,18 +35,19 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 1, "MOVE_BUBBLE" ],
+            [ 1, "MOVE_WATER_GUN" ],
             [ 4, "MOVE_SUPERSONIC" ],
-            [ 10, "MOVE_BUBBLE_BEAM" ],
-            [ 13, "MOVE_HEADBUTT" ],
-            [ 19, "MOVE_AGILITY" ],
-            [ 22, "MOVE_WING_ATTACK" ],
-            [ 28, "MOVE_WATER_PULSE" ],
-            [ 31, "MOVE_TAKE_DOWN" ],
-            [ 37, "MOVE_CONFUSE_RAY" ],
+            [ 8, "MOVE_WING_ATTACK" ],
+            [ 12, "MOVE_WATER_PULSE" ],
+            [ 16, "MOVE_WIDE_GUARD" ],
+            [ 20, "MOVE_AGILITY" ],
+            [ 24, "MOVE_BUBBLE_BEAM" ],
+            [ 28, "MOVE_HEADBUTT" ],
+            [ 32, "MOVE_AIR_SLASH" ],
+            [ 36, "MOVE_AQUA_RING" ],
             [ 40, "MOVE_BOUNCE" ],
-            [ 46, "MOVE_AQUA_RING" ],
-            [ 49, "MOVE_HYDRO_PUMP" ]
+            [ 44, "MOVE_TAKE_DOWN" ],
+            [ 48, "MOVE_HYDRO_PUMP" ]
         ],
         "by_tm": [
             "TM03",
@@ -68,6 +69,7 @@
             "TM45",
             "TM58",
             "TM78",
+            "TM80",
             "TM82",
             "TM83",
             "TM87",
@@ -82,20 +84,18 @@
             "MOVE_SNORE",
             "MOVE_AIR_CUTTER",
             "MOVE_HELPING_HAND",
+            "MOVE_TWISTER",
             "MOVE_BOUNCE",
             "MOVE_SWIFT"
         ],
         "egg_moves": [
-            "MOVE_TWISTER",
-            "MOVE_HYDRO_PUMP",
-            "MOVE_HAZE",
             "MOVE_SLAM",
-            "MOVE_MUD_SPORT",
-            "MOVE_ROCK_SLIDE",
-            "MOVE_MIRROR_COAT",
-            "MOVE_WATER_SPORT",
+            "MOVE_CONFUSE_RAY",
+            "MOVE_HAZE",
             "MOVE_SPLASH",
-            "MOVE_SIGNAL_BEAM"
+            "MOVE_TWISTER",
+            "MOVE_MIRROR_COAT",
+            "MOVE_TAILWIND"
         ]
     },
     "evolutions": [

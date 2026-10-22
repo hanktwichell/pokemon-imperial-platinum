@@ -41,13 +41,16 @@
             [ 12, "MOVE_GLARE" ],
             [ 17, "MOVE_SCREECH" ],
             [ 20, "MOVE_ACID" ],
-            [ 25, "MOVE_STOCKPILE" ],
             [ 25, "MOVE_SWALLOW" ],
+            [ 25, "MOVE_STOCKPILE" ],
             [ 25, "MOVE_SPIT_UP" ],
-            [ 28, "MOVE_MUD_BOMB" ],
-            [ 33, "MOVE_GASTRO_ACID" ],
-            [ 36, "MOVE_HAZE" ],
-            [ 41, "MOVE_GUNK_SHOT" ]
+            [ 28, "MOVE_ACID_SPRAY" ],
+            [ 33, "MOVE_SLUDGE_BOMB" ],
+            [ 36, "MOVE_GASTRO_ACID" ],
+            [ 38, "MOVE_BELCH" ],
+            [ 41, "MOVE_HAZE" ],
+            [ 44, "MOVE_COIL" ],
+            [ 49, "MOVE_GUNK_SHOT" ]
         ],
         "by_tm": [
             "TM06",
@@ -84,22 +87,23 @@
             "HM04"
         ],
         "by_tutor": [
+            "MOVE_MUD_SLAP",
             "MOVE_AQUA_TAIL",
             "MOVE_GASTRO_ACID",
             "MOVE_SNORE",
             "MOVE_SPITE",
             "MOVE_GUNK_SHOT",
-            "MOVE_SEED_BOMB"
+            "MOVE_SEED_BOMB",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SUCKER_PUNCH"
         ],
         "egg_moves": [
-            "MOVE_PURSUIT",
-            "MOVE_SLAM",
             "MOVE_SPITE",
-            "MOVE_BEAT_UP",
-            "MOVE_POISON_FANG",
             "MOVE_SCARY_FACE",
+            "MOVE_POISON_FANG",
             "MOVE_POISON_TAIL",
-            "MOVE_DISABLE"
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_SWITCHEROO"
         ]
     },
     "evolutions": [

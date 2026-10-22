@@ -34,23 +34,24 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_GROWL" ],
-            [ 1, "MOVE_FORESIGHT" ],
-            [ 5, "MOVE_HYPNOSIS" ],
-            [ 9, "MOVE_PECK" ],
-            [ 13, "MOVE_UPROAR" ],
-            [ 17, "MOVE_REFLECT" ],
-            [ 21, "MOVE_CONFUSION" ],
-            [ 25, "MOVE_TAKE_DOWN" ],
-            [ 29, "MOVE_AIR_SLASH" ],
-            [ 33, "MOVE_ZEN_HEADBUTT" ],
-            [ 37, "MOVE_EXTRASENSORY" ],
-            [ 41, "MOVE_PSYCHO_SHIFT" ],
-            [ 45, "MOVE_ROOST" ],
-            [ 49, "MOVE_DREAM_EATER" ]
+            [ 1, "MOVE_PECK" ],
+            [ 3, "MOVE_TACKLE" ],
+            [ 6, "MOVE_ECHOED_VOICE" ],
+            [ 9, "MOVE_CONFUSION" ],
+            [ 12, "MOVE_REFLECT" ],
+            [ 15, "MOVE_DEFOG" ],
+            [ 18, "MOVE_AIR_SLASH" ],
+            [ 21, "MOVE_EXTRASENSORY" ],
+            [ 24, "MOVE_TAKE_DOWN" ],
+            [ 27, "MOVE_UPROAR" ],
+            [ 30, "MOVE_ROOST" ],
+            [ 33, "MOVE_MOONBLAST" ],
+            [ 36, "MOVE_HYPNOSIS" ],
+            [ 39, "MOVE_DREAM_EATER" ]
         ],
         "by_tm": [
+            "TM04",
             "TM06",
             "TM10",
             "TM11",
@@ -69,6 +70,7 @@
             "TM45",
             "TM46",
             "TM47",
+            "TM48",
             "TM51",
             "TM58",
             "TM62",
@@ -87,6 +89,7 @@
         "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_OMINOUS_WIND",
+            "MOVE_SPITE",
             "MOVE_AIR_CUTTER",
             "MOVE_ZEN_HEADBUTT",
             "MOVE_TWISTER",
@@ -95,15 +98,11 @@
             "MOVE_UPROAR"
         ],
         "egg_moves": [
-            "MOVE_MIRROR_MOVE",
-            "MOVE_SUPERSONIC",
-            "MOVE_FAINT_ATTACK",
             "MOVE_WING_ATTACK",
             "MOVE_WHIRLWIND",
-            "MOVE_SKY_ATTACK",
-            "MOVE_FEATHER_DANCE",
-            "MOVE_AGILITY",
-            "MOVE_NIGHT_SHADE"
+            "MOVE_SUPERSONIC",
+            "MOVE_NIGHT_SHADE",
+            "MOVE_FEATHER_DANCE"
         ]
     },
     "evolutions": [

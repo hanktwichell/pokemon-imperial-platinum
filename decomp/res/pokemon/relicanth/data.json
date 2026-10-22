@@ -36,17 +36,17 @@
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_HARDEN" ],
-            [ 8, "MOVE_WATER_GUN" ],
-            [ 15, "MOVE_ROCK_TOMB" ],
-            [ 22, "MOVE_YAWN" ],
-            [ 29, "MOVE_TAKE_DOWN" ],
-            [ 36, "MOVE_MUD_SPORT" ],
-            [ 43, "MOVE_ANCIENT_POWER" ],
+            [ 5, "MOVE_WATER_GUN" ],
+            [ 10, "MOVE_ANCIENT_POWER" ],
+            [ 15, "MOVE_YAWN" ],
+            [ 20, "MOVE_DIVE" ],
+            [ 25, "MOVE_TAKE_DOWN" ],
+            [ 30, "MOVE_AQUA_TAIL" ],
+            [ 35, "MOVE_REST" ],
+            [ 40, "MOVE_FLAIL" ],
+            [ 45, "MOVE_HYDRO_PUMP" ],
             [ 50, "MOVE_DOUBLE_EDGE" ],
-            [ 57, "MOVE_DIVE" ],
-            [ 64, "MOVE_REST" ],
-            [ 71, "MOVE_HYDRO_PUMP" ],
-            [ 78, "MOVE_HEAD_SMASH" ]
+            [ 55, "MOVE_HEAD_SMASH" ]
         ],
         "by_tm": [
             "TM03",
@@ -94,18 +94,13 @@
             "MOVE_AQUA_TAIL",
             "MOVE_SNORE",
             "MOVE_ANCIENT_POWER",
+            "MOVE_ZEN_HEADBUTT",
             "MOVE_EARTH_POWER",
+            "MOVE_IRON_DEFENSE",
             "MOVE_BOUNCE"
         ],
         "egg_moves": [
-            "MOVE_MAGNITUDE",
             "MOVE_SKULL_BASH",
-            "MOVE_WATER_SPORT",
-            "MOVE_AMNESIA",
-            "MOVE_SLEEP_TALK",
-            "MOVE_ROCK_SLIDE",
-            "MOVE_AQUA_TAIL",
-            "MOVE_SNORE",
             "MOVE_MUD_SLAP"
         ]
     },

@@ -35,18 +35,19 @@
     "learnset": {
         "by_level": [
             [ 1, "MOVE_TACKLE" ],
-            [ 3, "MOVE_TAIL_WHIP" ],
-            [ 5, "MOVE_RAGE" ],
-            [ 8, "MOVE_HORN_ATTACK" ],
-            [ 11, "MOVE_SCARY_FACE" ],
-            [ 15, "MOVE_PURSUIT" ],
-            [ 19, "MOVE_REST" ],
-            [ 24, "MOVE_PAYBACK" ],
-            [ 29, "MOVE_ZEN_HEADBUTT" ],
-            [ 35, "MOVE_TAKE_DOWN" ],
-            [ 41, "MOVE_SWAGGER" ],
-            [ 48, "MOVE_THRASH" ],
-            [ 55, "MOVE_GIGA_IMPACT" ]
+            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 5, "MOVE_WORK_UP" ],
+            [ 10, "MOVE_PAYBACK" ],
+            [ 15, "MOVE_ASSURANCE" ],
+            [ 20, "MOVE_HORN_ATTACK" ],
+            [ 25, "MOVE_SCARY_FACE" ],
+            [ 30, "MOVE_ZEN_HEADBUTT" ],
+            [ 35, "MOVE_RAGING_BULL" ],
+            [ 40, "MOVE_REST" ],
+            [ 45, "MOVE_SWAGGER" ],
+            [ 50, "MOVE_THRASH" ],
+            [ 55, "MOVE_DOUBLE_EDGE" ],
+            [ 60, "MOVE_GIGA_IMPACT" ]
         ],
         "by_tm": [
             "TM03",
@@ -65,6 +66,8 @@
             "TM25",
             "TM26",
             "TM27",
+            "TM28",
+            "TM30",
             "TM32",
             "TM34",
             "TM35",
@@ -75,6 +78,7 @@
             "TM43",
             "TM44",
             "TM45",
+            "TM46",
             "TM58",
             "TM66",
             "TM68",
@@ -100,6 +104,10 @@
             "MOVE_OUTRAGE",
             "MOVE_ZEN_HEADBUTT",
             "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_CURSE",
+            "MOVE_ENDEAVOR"
         ]
     },
     "evolutions": [  ],

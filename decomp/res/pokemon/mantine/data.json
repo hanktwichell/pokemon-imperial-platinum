@@ -1,6 +1,6 @@
 {
     "base_stats": {
-        "hp": 65,
+        "hp": 85,
         "attack": 40,
         "defense": 70,
         "speed": 70,
@@ -36,22 +36,21 @@
         "by_level": [
             [ 1, "MOVE_PSYBEAM" ],
             [ 1, "MOVE_BULLET_SEED" ],
-            [ 1, "MOVE_SIGNAL_BEAM" ],
+            [ 1, "MOVE_ROOST" ],
             [ 1, "MOVE_TACKLE" ],
-            [ 1, "MOVE_BUBBLE" ],
+            [ 1, "MOVE_WATER_GUN" ],
             [ 1, "MOVE_SUPERSONIC" ],
-            [ 1, "MOVE_BUBBLE_BEAM" ],
-            [ 4, "MOVE_SUPERSONIC" ],
-            [ 10, "MOVE_BUBBLE_BEAM" ],
-            [ 13, "MOVE_HEADBUTT" ],
-            [ 19, "MOVE_AGILITY" ],
-            [ 22, "MOVE_WING_ATTACK" ],
-            [ 28, "MOVE_WATER_PULSE" ],
-            [ 31, "MOVE_TAKE_DOWN" ],
-            [ 37, "MOVE_CONFUSE_RAY" ],
+            [ 1, "MOVE_WING_ATTACK" ],
+            [ 12, "MOVE_WATER_PULSE" ],
+            [ 16, "MOVE_WIDE_GUARD" ],
+            [ 20, "MOVE_AGILITY" ],
+            [ 24, "MOVE_BUBBLE_BEAM" ],
+            [ 28, "MOVE_HEADBUTT" ],
+            [ 32, "MOVE_AIR_SLASH" ],
+            [ 36, "MOVE_AQUA_RING" ],
             [ 40, "MOVE_BOUNCE" ],
-            [ 46, "MOVE_AQUA_RING" ],
-            [ 49, "MOVE_HYDRO_PUMP" ]
+            [ 44, "MOVE_TAKE_DOWN" ],
+            [ 48, "MOVE_HYDRO_PUMP" ]
         ],
         "by_tm": [
             "TM03",
@@ -74,6 +73,7 @@
             "TM43",
             "TM44",
             "TM45",
+            "TM51",
             "TM55",
             "TM58",
             "TM68",
@@ -98,6 +98,7 @@
             "MOVE_HELPING_HAND",
             "MOVE_SIGNAL_BEAM",
             "MOVE_GUNK_SHOT",
+            "MOVE_TWISTER",
             "MOVE_SEED_BOMB",
             "MOVE_BOUNCE",
             "MOVE_SWIFT"

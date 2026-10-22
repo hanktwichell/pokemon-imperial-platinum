@@ -39,11 +39,11 @@
             [ 4, "MOVE_QUICK_ATTACK" ],
             [ 7, "MOVE_FOCUS_ENERGY" ],
             [ 10, "MOVE_BITE" ],
-            [ 13, "MOVE_PURSUIT" ],
-            [ 16, "MOVE_HYPER_FANG" ],
-            [ 19, "MOVE_SUCKER_PUNCH" ],
+            [ 13, "MOVE_LASER_FOCUS" ],
+            [ 16, "MOVE_TAKE_DOWN" ],
+            [ 19, "MOVE_ASSURANCE" ],
             [ 22, "MOVE_CRUNCH" ],
-            [ 25, "MOVE_ASSURANCE" ],
+            [ 25, "MOVE_SUCKER_PUNCH" ],
             [ 28, "MOVE_SUPER_FANG" ],
             [ 31, "MOVE_DOUBLE_EDGE" ],
             [ 34, "MOVE_ENDEAVOR" ]
@@ -66,6 +66,7 @@
             "TM30",
             "TM32",
             "TM34",
+            "TM36",
             "TM42",
             "TM43",
             "TM44",
@@ -93,19 +94,20 @@
             "MOVE_ZEN_HEADBUTT",
             "MOVE_LAST_RESORT",
             "MOVE_SUCKER_PUNCH",
-            "MOVE_SWIFT"
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
         ],
         "egg_moves": [
-            "MOVE_SCREECH",
-            "MOVE_FLAME_WHEEL",
-            "MOVE_FURY_SWIPES",
             "MOVE_BITE",
             "MOVE_COUNTER",
+            "MOVE_SCREECH",
+            "MOVE_FURY_SWIPES",
+            "MOVE_FLAME_WHEEL",
             "MOVE_REVERSAL",
             "MOVE_UPROAR",
-            "MOVE_SWAGGER",
+            "MOVE_REVENGE",
             "MOVE_LAST_RESORT",
-            "MOVE_ME_FIRST"
+            "MOVE_FINAL_GAMBIT"
         ]
     },
     "evolutions": [

@@ -34,19 +34,22 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_QUIVER_DANCE" ],
+            [ 1, "MOVE_BUG_BITE" ],
+            [ 1, "MOVE_PROTECT" ],
+            [ 1, "MOVE_SUCKER_PUNCH" ],
             [ 1, "MOVE_TACKLE" ],
-            [ 10, "MOVE_PROTECT" ],
-            [ 15, "MOVE_BUG_BITE" ],
-            [ 20, "MOVE_HIDDEN_POWER" ],
+            [ 20, "MOVE_STRING_SHOT" ],
             [ 23, "MOVE_CONFUSION" ],
             [ 26, "MOVE_RAZOR_LEAF" ],
             [ 29, "MOVE_GROWTH" ],
             [ 32, "MOVE_PSYBEAM" ],
-            [ 35, "MOVE_CAPTIVATE" ],
+            [ 35, "MOVE_INFESTATION" ],
             [ 38, "MOVE_FLAIL" ],
             [ 41, "MOVE_ATTRACT" ],
             [ 44, "MOVE_PSYCHIC" ],
-            [ 47, "MOVE_LEAF_STORM" ]
+            [ 47, "MOVE_LEAF_STORM" ],
+            [ 50, "MOVE_BUG_BUZZ" ]
         ],
         "by_tm": [
             "TM06",
@@ -61,6 +64,7 @@
             "TM21",
             "TM22",
             "TM27",
+            "TM28",
             "TM29",
             "TM30",
             "TM32",

@@ -34,18 +34,18 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_TACKLE" ],
             [ 1, "MOVE_ABSORB" ],
-            [ 5, "MOVE_TACKLE" ],
-            [ 9, "MOVE_STUN_SPORE" ],
-            [ 13, "MOVE_LEECH_SEED" ],
-            [ 17, "MOVE_MEGA_DRAIN" ],
-            [ 21, "MOVE_HEADBUTT" ],
-            [ 25, "MOVE_POISON_POWDER" ],
-            [ 29, "MOVE_WORRY_SEED" ],
-            [ 33, "MOVE_GROWTH" ],
-            [ 37, "MOVE_GIGA_DRAIN" ],
-            [ 41, "MOVE_SEED_BOMB" ],
-            [ 45, "MOVE_SPORE" ]
+            [ 5, "MOVE_STUN_SPORE" ],
+            [ 8, "MOVE_LEECH_SEED" ],
+            [ 12, "MOVE_MEGA_DRAIN" ],
+            [ 15, "MOVE_HEADBUTT" ],
+            [ 19, "MOVE_POISON_POWDER" ],
+            [ 26, "MOVE_GIGA_DRAIN" ],
+            [ 29, "MOVE_GROWTH" ],
+            [ 33, "MOVE_TOXIC" ],
+            [ 36, "MOVE_SEED_BOMB" ],
+            [ 40, "MOVE_SPORE" ]
         ],
         "by_tm": [
             "TM06",
@@ -53,6 +53,7 @@
             "TM10",
             "TM11",
             "TM17",
+            "TM18",
             "TM19",
             "TM20",
             "TM21",
@@ -66,7 +67,9 @@
             "TM45",
             "TM49",
             "TM53",
+            "TM54",
             "TM58",
+            "TM60",
             "TM70",
             "TM75",
             "TM78",
@@ -80,17 +83,16 @@
             "MOVE_SNORE",
             "MOVE_HELPING_HAND",
             "MOVE_SYNTHESIS",
-            "MOVE_SEED_BOMB"
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_GUNK_SHOT",
+            "MOVE_SEED_BOMB",
+            "MOVE_SWIFT"
         ],
         "egg_moves": [
-            "MOVE_FAKE_TEARS",
-            "MOVE_SWAGGER",
             "MOVE_CHARM",
-            "MOVE_FALSE_SWIPE",
             "MOVE_HELPING_HAND",
-            "MOVE_WORRY_SEED",
-            "MOVE_WAKE_UP_SLAP",
-            "MOVE_SEED_BOMB"
+            "MOVE_FAKE_TEARS",
+            "MOVE_WORRY_SEED"
         ]
     },
     "evolutions": [

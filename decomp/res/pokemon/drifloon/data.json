@@ -34,19 +34,21 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_CONSTRICT" ],
             [ 1, "MOVE_MINIMIZE" ],
-            [ 6, "MOVE_ASTONISH" ],
-            [ 11, "MOVE_GUST" ],
-            [ 14, "MOVE_FOCUS_ENERGY" ],
-            [ 17, "MOVE_PAYBACK" ],
-            [ 22, "MOVE_STOCKPILE" ],
-            [ 27, "MOVE_SWALLOW" ],
-            [ 27, "MOVE_SPIT_UP" ],
-            [ 30, "MOVE_OMINOUS_WIND" ],
-            [ 33, "MOVE_BATON_PASS" ],
-            [ 38, "MOVE_SHADOW_BALL" ],
-            [ 43, "MOVE_EXPLOSION" ]
+            [ 1, "MOVE_ASTONISH" ],
+            [ 4, "MOVE_GUST" ],
+            [ 8, "MOVE_FOCUS_ENERGY" ],
+            [ 12, "MOVE_PAYBACK" ],
+            [ 16, "MOVE_HEX" ],
+            [ 20, "MOVE_SHADOW_BALL" ],
+            [ 24, "MOVE_STOCKPILE" ],
+            [ 24, "MOVE_SPIT_UP" ],
+            [ 24, "MOVE_SWALLOW" ],
+            [ 29, "MOVE_SELFDESTRUCT" ],
+            [ 32, "MOVE_DESTINY_BOND" ],
+            [ 36, "MOVE_BATON_PASS" ],
+            [ 40, "MOVE_TAILWIND" ],
+            [ 44, "MOVE_EXPLOSION" ]
         ],
         "by_tm": [
             "TM04",
@@ -63,6 +65,7 @@
             "TM30",
             "TM32",
             "TM34",
+            "TM40",
             "TM42",
             "TM43",
             "TM44",
@@ -87,7 +90,9 @@
             "TM85",
             "TM87",
             "TM90",
+            "TM92",
             "HM01",
+            "HM02",
             "HM05"
         ],
         "by_tutor": [
@@ -98,18 +103,19 @@
             "MOVE_SNORE",
             "MOVE_SPITE",
             "MOVE_AIR_CUTTER",
+            "MOVE_HELPING_HAND",
             "MOVE_TRICK",
             "MOVE_KNOCK_OFF",
             "MOVE_SUCKER_PUNCH",
             "MOVE_SWIFT"
         ],
         "egg_moves": [
-            "MOVE_MEMENTO",
-            "MOVE_BODY_SLAM",
-            "MOVE_DESTINY_BOND",
             "MOVE_DISABLE",
+            "MOVE_HYPNOSIS",
             "MOVE_HAZE",
-            "MOVE_HYPNOSIS"
+            "MOVE_MEMENTO",
+            "MOVE_DEFOG",
+            "MOVE_CLEAR_SMOG"
         ]
     },
     "evolutions": [

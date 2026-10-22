@@ -34,19 +34,20 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_CONSTRICT" ],
+            [ 1, "MOVE_BIND" ],
             [ 1, "MOVE_WITHDRAW" ],
-            [ 7, "MOVE_BITE" ],
-            [ 10, "MOVE_WATER_GUN" ],
-            [ 16, "MOVE_ROLLOUT" ],
-            [ 19, "MOVE_LEER" ],
+            [ 5, "MOVE_ROLLOUT" ],
+            [ 10, "MOVE_SAND_ATTACK" ],
+            [ 15, "MOVE_WATER_GUN" ],
+            [ 20, "MOVE_LEER" ],
             [ 25, "MOVE_MUD_SHOT" ],
-            [ 28, "MOVE_BRINE" ],
-            [ 34, "MOVE_PROTECT" ],
-            [ 37, "MOVE_ANCIENT_POWER" ],
-            [ 43, "MOVE_TICKLE" ],
-            [ 46, "MOVE_ROCK_BLAST" ],
-            [ 52, "MOVE_HYDRO_PUMP" ]
+            [ 30, "MOVE_ANCIENT_POWER" ],
+            [ 35, "MOVE_BRINE" ],
+            [ 41, "MOVE_PROTECT" ],
+            [ 45, "MOVE_ROCK_BLAST" ],
+            [ 50, "MOVE_SURF" ],
+            [ 55, "MOVE_SHELL_SMASH" ],
+            [ 60, "MOVE_HYDRO_PUMP" ]
         ],
         "by_tm": [
             "TM03",
@@ -93,16 +94,16 @@
             "MOVE_KNOCK_OFF"
         ],
         "egg_moves": [
+            "MOVE_SLAM",
+            "MOVE_BITE",
+            "MOVE_SUPERSONIC",
             "MOVE_BUBBLE_BEAM",
             "MOVE_AURORA_BEAM",
-            "MOVE_SLAM",
-            "MOVE_SUPERSONIC",
             "MOVE_HAZE",
-            "MOVE_ROCK_SLIDE",
-            "MOVE_SPIKES",
             "MOVE_KNOCK_OFF",
-            "MOVE_WRING_OUT",
-            "MOVE_TOXIC_SPIKES"
+            "MOVE_TICKLE",
+            "MOVE_WATER_PULSE",
+            "MOVE_REFLECT_TYPE"
         ]
     },
     "evolutions": [

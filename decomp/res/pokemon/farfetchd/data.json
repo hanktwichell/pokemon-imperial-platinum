@@ -1,7 +1,7 @@
 {
     "base_stats": {
         "hp": 52,
-        "attack": 65,
+        "attack": 90,
         "defense": 55,
         "speed": 60,
         "special_attack": 58,
@@ -34,22 +34,21 @@
     "icon_palette": 1,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_POISON_JAB" ],
             [ 1, "MOVE_PECK" ],
             [ 1, "MOVE_SAND_ATTACK" ],
-            [ 1, "MOVE_LEER" ],
-            [ 1, "MOVE_FURY_CUTTER" ],
-            [ 7, "MOVE_FURY_ATTACK" ],
-            [ 9, "MOVE_KNOCK_OFF" ],
-            [ 13, "MOVE_AERIAL_ACE" ],
-            [ 19, "MOVE_SLASH" ],
-            [ 21, "MOVE_AIR_CUTTER" ],
-            [ 25, "MOVE_SWORDS_DANCE" ],
-            [ 31, "MOVE_AGILITY" ],
-            [ 33, "MOVE_NIGHT_SLASH" ],
-            [ 37, "MOVE_AIR_SLASH" ],
-            [ 43, "MOVE_FEINT" ],
-            [ 45, "MOVE_FALSE_SWIPE" ]
+            [ 5, "MOVE_LEER" ],
+            [ 10, "MOVE_FURY_CUTTER" ],
+            [ 15, "MOVE_CUT" ],
+            [ 20, "MOVE_AERIAL_ACE" ],
+            [ 25, "MOVE_AIR_CUTTER" ],
+            [ 30, "MOVE_KNOCK_OFF" ],
+            [ 35, "MOVE_FALSE_SWIPE" ],
+            [ 40, "MOVE_SLASH" ],
+            [ 45, "MOVE_SWORDS_DANCE" ],
+            [ 50, "MOVE_AIR_SLASH" ],
+            [ 55, "MOVE_LEAF_BLADE" ],
+            [ 60, "MOVE_AGILITY" ],
+            [ 65, "MOVE_BRAVE_BIRD" ]
         ],
         "by_tm": [
             "TM06",
@@ -90,6 +89,7 @@
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
             "MOVE_AIR_CUTTER",
+            "MOVE_HELPING_HAND",
             "MOVE_TWISTER",
             "MOVE_LAST_RESORT",
             "MOVE_HEAT_WAVE",
@@ -98,17 +98,19 @@
             "MOVE_UPROAR"
         ],
         "egg_moves": [
-            "MOVE_STEEL_WING",
-            "MOVE_FORESIGHT",
-            "MOVE_MIRROR_MOVE",
             "MOVE_GUST",
             "MOVE_QUICK_ATTACK",
+            "MOVE_SKY_ATTACK",
+            "MOVE_CURSE",
             "MOVE_FLAIL",
             "MOVE_FEATHER_DANCE",
-            "MOVE_CURSE",
             "MOVE_COVET",
-            "MOVE_MUD_SLAP",
-            "MOVE_NIGHT_SLASH"
+            "MOVE_ROOST",
+            "MOVE_FEINT",
+            "MOVE_NIGHT_SLASH",
+            "MOVE_SIMPLE_BEAM",
+            "MOVE_FINAL_GAMBIT",
+            "MOVE_FIRST_IMPRESSION"
         ]
     },
     "evolutions": [  ],

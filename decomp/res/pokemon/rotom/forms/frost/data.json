@@ -7,7 +7,7 @@
         "special_attack": 105,
         "special_defense": 107
     },
-    "types": [ "TYPE_ELECTRIC", "TYPE_GHOST" ],
+    "types": [ "TYPE_ELECTRIC", "TYPE_ICE" ],
     "catch_rate": 45,
     "base_exp_reward": 132,
     "ev_yields": {
@@ -34,23 +34,25 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_TRICK" ],
+            [ 1, "MOVE_DOUBLE_TEAM" ],
             [ 1, "MOVE_ASTONISH" ],
-            [ 1, "MOVE_THUNDER_WAVE" ],
-            [ 1, "MOVE_THUNDER_SHOCK" ],
-            [ 1, "MOVE_CONFUSE_RAY" ],
-            [ 8, "MOVE_UPROAR" ],
-            [ 15, "MOVE_DOUBLE_TEAM" ],
-            [ 22, "MOVE_SHOCK_WAVE" ],
-            [ 29, "MOVE_OMINOUS_WIND" ],
-            [ 36, "MOVE_SUBSTITUTE" ],
-            [ 43, "MOVE_CHARGE" ],
-            [ 50, "MOVE_DISCHARGE" ]
+            [ 5, "MOVE_THUNDER_SHOCK" ],
+            [ 10, "MOVE_CONFUSE_RAY" ],
+            [ 15, "MOVE_CHARGE" ],
+            [ 20, "MOVE_ELECTRO_BALL" ],
+            [ 25, "MOVE_THUNDER_WAVE" ],
+            [ 30, "MOVE_SHOCK_WAVE" ],
+            [ 35, "MOVE_HEX" ],
+            [ 40, "MOVE_SUBSTITUTE" ],
+            [ 45, "MOVE_TRICK" ],
+            [ 50, "MOVE_DISCHARGE" ],
+            [ 55, "MOVE_UPROAR" ]
         ],
         "by_tm": [
             "TM06",
             "TM10",
             "TM11",
+            "TM14",
             "TM16",
             "TM17",
             "TM18",
@@ -85,6 +87,7 @@
             "MOVE_OMINOUS_WIND",
             "MOVE_SNORE",
             "MOVE_SPITE",
+            "MOVE_HELPING_HAND",
             "MOVE_SIGNAL_BEAM",
             "MOVE_TRICK",
             "MOVE_SUCKER_PUNCH",

@@ -34,19 +34,21 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_ROLLOUT" ],
             [ 1, "MOVE_DEFENSE_CURL" ],
-            [ 1, "MOVE_POWDER_SNOW" ],
-            [ 1, "MOVE_GROWL" ],
-            [ 1, "MOVE_WATER_GUN" ],
-            [ 7, "MOVE_ENCORE" ],
-            [ 13, "MOVE_ICE_BALL" ],
-            [ 19, "MOVE_BODY_SLAM" ],
-            [ 25, "MOVE_AURORA_BEAM" ],
-            [ 31, "MOVE_HAIL" ],
-            [ 37, "MOVE_REST" ],
-            [ 37, "MOVE_SNORE" ],
-            [ 43, "MOVE_BLIZZARD" ],
-            [ 49, "MOVE_SHEER_COLD" ]
+            [ 4, "MOVE_GROWL" ],
+            [ 8, "MOVE_WATER_GUN" ],
+            [ 12, "MOVE_POWDER_SNOW" ],
+            [ 16, "MOVE_REST" ],
+            [ 20, "MOVE_SNORE" ],
+            [ 24, "MOVE_BRINE" ],
+            [ 28, "MOVE_AURORA_BEAM" ],
+            [ 33, "MOVE_ENCORE" ],
+            [ 36, "MOVE_BODY_SLAM" ],
+            [ 40, "MOVE_SURF" ],
+            [ 44, "MOVE_BLIZZARD" ],
+            [ 48, "MOVE_HAIL" ],
+            [ 52, "MOVE_SHEER_COLD" ]
         ],
         "by_tm": [
             "TM03",
@@ -90,15 +92,15 @@
             "MOVE_SIGNAL_BEAM"
         ],
         "egg_moves": [
-            "MOVE_WATER_SPORT",
-            "MOVE_STOCKPILE",
-            "MOVE_SWALLOW",
-            "MOVE_SPIT_UP",
-            "MOVE_YAWN",
-            "MOVE_ROCK_SLIDE",
-            "MOVE_CURSE",
             "MOVE_FISSURE",
-            "MOVE_SIGNAL_BEAM"
+            "MOVE_CURSE",
+            "MOVE_BELLY_DRUM",
+            "MOVE_STOCKPILE",
+            "MOVE_SPIT_UP",
+            "MOVE_SWALLOW",
+            "MOVE_YAWN",
+            "MOVE_WATER_PULSE",
+            "MOVE_AQUA_RING"
         ]
     },
     "evolutions": [

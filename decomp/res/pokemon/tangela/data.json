@@ -34,23 +34,22 @@
     "icon_palette": 0,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_INGRAIN" ],
-            [ 1, "MOVE_CONSTRICT" ],
-            [ 5, "MOVE_SLEEP_POWDER" ],
-            [ 8, "MOVE_ABSORB" ],
-            [ 12, "MOVE_GROWTH" ],
-            [ 15, "MOVE_POISON_POWDER" ],
-            [ 19, "MOVE_VINE_WHIP" ],
-            [ 22, "MOVE_BIND" ],
-            [ 26, "MOVE_MEGA_DRAIN" ],
-            [ 29, "MOVE_STUN_SPORE" ],
-            [ 33, "MOVE_ANCIENT_POWER" ],
-            [ 36, "MOVE_KNOCK_OFF" ],
-            [ 40, "MOVE_NATURAL_GIFT" ],
-            [ 43, "MOVE_SLAM" ],
-            [ 47, "MOVE_TICKLE" ],
-            [ 50, "MOVE_WRING_OUT" ],
-            [ 54, "MOVE_POWER_WHIP" ]
+            [ 1, "MOVE_ABSORB" ],
+            [ 1, "MOVE_BIND" ],
+            [ 4, "MOVE_STUN_SPORE" ],
+            [ 8, "MOVE_GROWTH" ],
+            [ 12, "MOVE_MEGA_DRAIN" ],
+            [ 16, "MOVE_VINE_WHIP" ],
+            [ 20, "MOVE_POISON_POWDER" ],
+            [ 24, "MOVE_ANCIENT_POWER" ],
+            [ 28, "MOVE_KNOCK_OFF" ],
+            [ 32, "MOVE_GIGA_DRAIN" ],
+            [ 36, "MOVE_SLEEP_POWDER" ],
+            [ 40, "MOVE_SLAM" ],
+            [ 44, "MOVE_TICKLE" ],
+            [ 48, "MOVE_POWER_WHIP" ],
+            [ 52, "MOVE_INGRAIN" ],
+            [ 56, "MOVE_GRASSY_TERRAIN" ]
         ],
         "by_tm": [
             "TM06",
@@ -89,21 +88,19 @@
         ],
         "by_tutor": [
             "MOVE_SNORE",
+            "MOVE_ENDEAVOR",
             "MOVE_ANCIENT_POWER",
             "MOVE_SYNTHESIS",
             "MOVE_SEED_BOMB",
             "MOVE_KNOCK_OFF"
         ],
         "egg_moves": [
-            "MOVE_FLAIL",
-            "MOVE_CONFUSION",
-            "MOVE_MEGA_DRAIN",
-            "MOVE_REFLECT",
-            "MOVE_AMNESIA",
             "MOVE_LEECH_SEED",
+            "MOVE_CONFUSION",
+            "MOVE_FLAIL",
             "MOVE_NATURE_POWER",
             "MOVE_ENDEAVOR",
-            "MOVE_LEAF_STORM"
+            "MOVE_RAGE_POWDER"
         ]
     },
     "evolutions": [

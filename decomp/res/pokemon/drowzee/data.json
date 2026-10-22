@@ -36,19 +36,18 @@
         "by_level": [
             [ 1, "MOVE_POUND" ],
             [ 1, "MOVE_HYPNOSIS" ],
-            [ 7, "MOVE_DISABLE" ],
+            [ 5, "MOVE_DISABLE" ],
             [ 9, "MOVE_CONFUSION" ],
-            [ 15, "MOVE_HEADBUTT" ],
-            [ 18, "MOVE_POISON_GAS" ],
-            [ 21, "MOVE_MEDITATE" ],
-            [ 26, "MOVE_PSYBEAM" ],
-            [ 29, "MOVE_PSYCH_UP" ],
-            [ 32, "MOVE_HEADBUTT" ],
-            [ 37, "MOVE_SWAGGER" ],
-            [ 40, "MOVE_PSYCHIC" ],
-            [ 43, "MOVE_NASTY_PLOT" ],
-            [ 50, "MOVE_ZEN_HEADBUTT" ],
-            [ 53, "MOVE_FUTURE_SIGHT" ]
+            [ 13, "MOVE_HEADBUTT" ],
+            [ 17, "MOVE_POISON_GAS" ],
+            [ 21, "MOVE_PSYBEAM" ],
+            [ 25, "MOVE_PSYCH_UP" ],
+            [ 29, "MOVE_ZEN_HEADBUTT" ],
+            [ 33, "MOVE_SWAGGER" ],
+            [ 37, "MOVE_PSYCHIC" ],
+            [ 41, "MOVE_NASTY_PLOT" ],
+            [ 45, "MOVE_PSYSHOCK" ],
+            [ 49, "MOVE_FUTURE_SIGHT" ]
         ],
         "by_tm": [
             "TM01",
@@ -76,6 +75,7 @@
             "TM46",
             "TM48",
             "TM49",
+            "TM52",
             "TM56",
             "TM58",
             "TM60",
@@ -96,20 +96,23 @@
             "MOVE_THUNDER_PUNCH",
             "MOVE_FIRE_PUNCH",
             "MOVE_ICE_PUNCH",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
             "MOVE_SIGNAL_BEAM",
             "MOVE_ZEN_HEADBUTT",
-            "MOVE_TRICK"
+            "MOVE_TRICK",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT"
         ],
         "egg_moves": [
-            "MOVE_BARRIER",
-            "MOVE_ASSIST",
-            "MOVE_ROLE_PLAY",
             "MOVE_FIRE_PUNCH",
-            "MOVE_THUNDER_PUNCH",
             "MOVE_ICE_PUNCH",
-            "MOVE_NASTY_PLOT",
+            "MOVE_THUNDER_PUNCH",
             "MOVE_FLATTER",
-            "MOVE_PSYCHO_CUT"
+            "MOVE_ROLE_PLAY",
+            "MOVE_GUARD_SWAP",
+            "MOVE_PSYCHO_CUT",
+            "MOVE_POWER_SPLIT"
         ]
     },
     "evolutions": [

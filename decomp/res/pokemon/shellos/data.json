@@ -37,16 +37,17 @@
     ],
     "learnset": {
         "by_level": [
+            [ 1, "MOVE_WATER_GUN" ],
             [ 1, "MOVE_MUD_SLAP" ],
-            [ 2, "MOVE_MUD_SPORT" ],
-            [ 4, "MOVE_HARDEN" ],
-            [ 7, "MOVE_WATER_PULSE" ],
-            [ 11, "MOVE_MUD_BOMB" ],
-            [ 16, "MOVE_HIDDEN_POWER" ],
-            [ 22, "MOVE_RAIN_DANCE" ],
-            [ 29, "MOVE_BODY_SLAM" ],
-            [ 37, "MOVE_MUDDY_WATER" ],
-            [ 46, "MOVE_RECOVER" ]
+            [ 5, "MOVE_HARDEN" ],
+            [ 10, "MOVE_RECOVER" ],
+            [ 15, "MOVE_WATER_PULSE" ],
+            [ 20, "MOVE_ANCIENT_POWER" ],
+            [ 25, "MOVE_BODY_SLAM" ],
+            [ 31, "MOVE_MUDDY_WATER" ],
+            [ 35, "MOVE_EARTH_POWER" ],
+            [ 40, "MOVE_RAIN_DANCE" ],
+            [ 45, "MOVE_MEMENTO" ]
         ],
         "by_tm": [
             "TM03",
@@ -60,38 +61,46 @@
             "TM21",
             "TM27",
             "TM32",
+            "TM37",
+            "TM39",
             "TM42",
             "TM43",
             "TM44",
             "TM45",
             "TM55",
             "TM58",
+            "TM71",
+            "TM76",
             "TM78",
+            "TM80",
             "TM82",
             "TM83",
             "TM87",
             "TM90",
-            "HM03"
+            "HM03",
+            "HM07"
         ],
         "by_tutor": [
             "MOVE_DIVE",
             "MOVE_MUD_SLAP",
             "MOVE_ICY_WIND",
             "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
             "MOVE_ANCIENT_POWER",
             "MOVE_EARTH_POWER"
         ],
         "egg_moves": [
+            "MOVE_MIST",
             "MOVE_COUNTER",
+            "MOVE_SLUDGE",
+            "MOVE_ACID_ARMOR",
+            "MOVE_CURSE",
             "MOVE_MIRROR_COAT",
             "MOVE_STOCKPILE",
-            "MOVE_SWALLOW",
             "MOVE_SPIT_UP",
+            "MOVE_SWALLOW",
             "MOVE_YAWN",
-            "MOVE_MEMENTO",
-            "MOVE_CURSE",
-            "MOVE_AMNESIA",
-            "MOVE_FISSURE"
+            "MOVE_CLEAR_SMOG"
         ]
     },
     "evolutions": [

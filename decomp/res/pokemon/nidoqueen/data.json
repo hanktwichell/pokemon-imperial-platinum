@@ -1,7 +1,7 @@
 {
     "base_stats": {
         "hp": 90,
-        "attack": 82,
+        "attack": 92,
         "defense": 87,
         "speed": 76,
         "special_attack": 75,
@@ -34,13 +34,20 @@
     "icon_palette": 2,
     "learnset": {
         "by_level": [
-            [ 1, "MOVE_SCRATCH" ],
-            [ 1, "MOVE_TAIL_WHIP" ],
+            [ 1, "MOVE_SUPERPOWER" ],
+            [ 1, "MOVE_FURY_SWIPES" ],
+            [ 1, "MOVE_TOXIC_SPIKES" ],
             [ 1, "MOVE_DOUBLE_KICK" ],
+            [ 1, "MOVE_BITE" ],
+            [ 1, "MOVE_HELPING_HAND" ],
+            [ 1, "MOVE_TOXIC" ],
+            [ 1, "MOVE_FLATTER" ],
+            [ 1, "MOVE_CRUNCH" ],
+            [ 1, "MOVE_EARTH_POWER" ],
+            [ 1, "MOVE_GROWL" ],
             [ 1, "MOVE_POISON_STING" ],
-            [ 23, "MOVE_BODY_SLAM" ],
-            [ 43, "MOVE_EARTH_POWER" ],
-            [ 58, "MOVE_SUPERPOWER" ]
+            [ 1, "MOVE_SCRATCH" ],
+            [ 1, "MOVE_TAIL_WHIP" ]
         ],
         "by_tm": [
             "TM01",
