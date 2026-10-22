@@ -13,12 +13,19 @@ the same commit.**
 |---|---|---|
 | Pokémon Renegade Platinum v1.3.0 (patches + documentation in `RenegadePlatinumV130/`) | https://projectpokemon.org/home/forums/topic/52294-pok%C3%A9mon-renegade-platinum/ | **Drayano**. Used as the base with Drayano's permission (per the project owner). Renegade credits Mikelan98 for the accurate Pokédex encounter-location feature. |
 
+## Engine
+
+| What | Source | Credit / licence |
+|---|---|---|
+| Game engine source (`decomp/`, git subtree) | pret/pokeplatinum — https://github.com/pret/pokeplatinum | pret contributors. Imperial's engine is built on their decompilation. Pokémon Platinum © Nintendo / Game Freak / The Pokémon Company. |
+| Build overlays for rapidjson and yyjson (`decomp/subprojects/packagefiles/`) | Meson WrapDB — https://github.com/mesonbuild/wrapdb | WrapDB contributors, MIT. |
+
 ## Data
 
 | What | Source | Credit / licence |
 |---|---|---|
 | Species, stats, types, abilities, evolutions, learnsets, Mega Evolution data, item and Mega Stone names (`data/species.csv`, `data/megas.csv`, validation in `tools/design/*`) | PokeAPI — https://github.com/PokeAPI/pokeapi (`data/v2/csv`) | PokeAPI contributors, BSD-3-Clause. Pokémon data © Nintendo / Game Freak / The Pokémon Company. |
-| Vanilla Platinum field-item script names and hidden-item list (used to choose and validate Mega Stone placements) | pret/pokeplatinum decompilation — https://github.com/pret/pokeplatinum | pret contributors. Only names/locations were referenced; no code or assets were copied. |
+| Vanilla Platinum field-item script names and hidden-item list (used to choose and validate Mega Stone placements) | pret/pokeplatinum decompilation — https://github.com/pret/pokeplatinum | pret contributors. |
 
 ## Sprites
 
