@@ -5,13 +5,16 @@
 
 #include "constants/heap.h"
 #include "constants/narc.h"
+#include "generated/items.h"
 
+#include "bag.h"
 #include "bg_window.h"
 #include "font.h"
 #include "game_options.h"
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
+#include "imperial_options.h"
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
@@ -33,7 +36,7 @@
 #include "res/text/bank/options_menu.h"
 
 #define MENU_TITLE_BASE_TILE      10
-#define MENU_TITLE_WIDTH          12
+#define MENU_TITLE_WIDTH          30 // vanilla: 12; widened for the scroll arrows
 #define MENU_TITLE_HEIGHT         2
 #define ENTRIES_BASE_TILE         (MENU_TITLE_BASE_TILE + MENU_TITLE_WIDTH * MENU_TITLE_HEIGHT)
 #define ENTRIES_WIDTH             30
@@ -50,6 +53,7 @@
 
 #define SINGLE_ENTRY_HEIGHT 16
 #define FIRST_ENTRY_OFFSET  24
+#define VISIBLE_ENTRIES     7 // the list scrolls once the Imperial entries are added
 
 #define NUM_WINDOWS      3
 #define NUM_BG_TEMPLATES 5
@@ -63,6 +67,10 @@ enum OptionsMenuEntryID {
     ENTRY_BATTLE_STYLE,
     ENTRY_BUTTON_MODE,
     ENTRY_MESSAGE_BOX_FRAME,
+    ENTRY_LEVEL_CAP,
+    ENTRY_INFINITE_CANDY,
+    ENTRY_EXP_SHARE,
+    ENTRY_MUSIC,
     ENTRY_CLOSE,
 
     MAX_ENTRIES,
@@ -80,8 +88,8 @@ typedef struct OptionsMenuData {
     int subState;
     int dummy0C;
     u32 saveSelections : 2;
-    u32 cursor : 3;
-    u32 dummy10_5 : 16;
+    u32 cursor : 4;
+    u32 dummy10_5 : 15;
     u32 redrawMessageBox : 1;
     u32 dummy10_22 : 10;
     BgConfig *bgConfig;
@@ -109,12 +117,19 @@ typedef struct OptionsMenuData {
             OptionsMenuEntry battleStyle;
             OptionsMenuEntry buttonMode;
             OptionsMenuEntry messageBoxStyle;
+            OptionsMenuEntry levelCap; // ON/OFF entries: selected 0 = ON, 1 = OFF, like BATTLE SCENE
+            OptionsMenuEntry infiniteCandy;
+            OptionsMenuEntry expShare;
+            OptionsMenuEntry music; // selected = volume in steps of 5%
             OptionsMenuEntry close;
         };
     } entries;
 
     Menu *yesNoChoice;
     u32 textPrinter;
+    u8 scrollTop;
+    ImperialOptions imperialOptions;
+    ImperialOptions *saveImperialOptions;
     void *dummy2B0;
     void *dummy2B4;
     void *dummy2B8;
@@ -129,6 +144,8 @@ static void LoadBgTiles(OptionsMenuData *menuData);
 static void SetupWindows(OptionsMenuData *menuData);
 
 static void PrintTitleAndEntries(OptionsMenuData *param0);
+static void PrintVisibleEntries(OptionsMenuData *menuData);
+static void DrawScrollArrows(OptionsMenuData *menuData);
 static void PrintEntryChoices(OptionsMenuData *menuData, u16 entry);
 static void PrintEntryDescription(OptionsMenuData *menuData, u16 entry, BOOL scheduleVRAMCopy);
 static void PrintBankEntryAsDescription(OptionsMenuData *menuData, u16 entry, BOOL scheduleVRAMCopy);
@@ -164,6 +181,8 @@ BOOL OptionsMenu_Init(ApplicationManager *appMan, int *state)
     menuData->options.messageBoxStyle = Options_Frame(options);
     menuData->heapID = HEAP_ID_OPTIONS_MENU;
     menuData->saveOptions = options;
+    menuData->saveImperialOptions = SaveData_GetImperialOptions(SaveData_Ptr());
+    menuData->imperialOptions = *menuData->saveImperialOptions;
 
     RenderControlFlags_SetCanABSpeedUpPrint(FALSE);
 
@@ -181,7 +200,25 @@ BOOL OptionsMenu_Exit(ApplicationManager *appMan, int *state)
         menuData->options.soundMode = menuData->entries.soundMode.selected;
         menuData->options.buttonMode = menuData->entries.buttonMode.selected;
         menuData->options.messageBoxStyle = menuData->entries.messageBoxStyle.selected;
+
+        ImperialOptions *imperial = menuData->saveImperialOptions;
+        imperial->levelCap = menuData->entries.levelCap.selected == 0;
+        imperial->infiniteCandy = imperial->levelCap && menuData->entries.infiniteCandy.selected == 0;
+        imperial->partyExpShare = menuData->entries.expShare.selected == 0;
+        imperial->musicVolume = menuData->entries.music.selected;
+
+        // Turning Infinite Rare Candy on hands out one Rare Candy if the bag has none.
+        if (imperial->infiniteCandy && !menuData->imperialOptions.infiniteCandy) {
+            Bag *bag = SaveData_GetBag(SaveData_Ptr());
+
+            if (Bag_GetItemQuantity(bag, ITEM_RARE_CANDY, menuData->heapID) == 0) {
+                Bag_TryAddItem(bag, ITEM_RARE_CANDY, 1, menuData->heapID);
+            }
+        }
     }
+
+    // The volume is previewed while it's being changed; this applies the saved value (or restores the old one).
+    Sound_SetMusicVolumePercent(ImperialOptions_MusicVolumePercent(menuData->saveImperialOptions));
 
     Options_SetTextSpeed(menuData->saveOptions, menuData->options.textSpeed);
     Options_SetBattleScene(menuData->saveOptions, menuData->options.battleScene);
@@ -683,14 +720,16 @@ static const u8 sEntryLabels[MAX_ENTRIES] = {
     OptionsMenu_Text_BattleStyleLabel,
     OptionsMenu_Text_ButtonModeLabel,
     OptionsMenu_Text_MessageBoxStyleLabel,
+    OptionsMenu_Text_LevelCapLabel,
+    OptionsMenu_Text_InfiniteCandyLabel,
+    OptionsMenu_Text_ExpShareLabel,
+    OptionsMenu_Text_MusicLabel,
     OptionsMenu_Text_CloseLabel,
 };
 
 static void PrintTitleAndEntries(OptionsMenuData *menuData)
 {
-    u16 i; // Must forward-declare to match
     TextColor transparentBg = TEXT_COLOR(1, 2, 0);
-    TextColor whiteBg = TEXT_COLOR(1, 2, 15);
 
     String *string = String_Init(256, menuData->heapID);
     MessageLoader_GetString(menuData->msgLoader, OptionsMenu_Text_Title, string);
@@ -703,27 +742,67 @@ static void PrintTitleAndEntries(OptionsMenuData *menuData)
         transparentBg,
         NULL);
 
-    for (i = 0; i < MAX_ENTRIES; i++) {
+    PrintVisibleEntries(menuData);
+    DrawScrollArrows(menuData);
+
+    PrintEntryDescription(menuData, ENTRY_TEXT_SPEED, TRUE);
+    Window_CopyToVRAM(&menuData->windows.title);
+    Window_CopyToVRAM(&menuData->windows.entries);
+    String_Free(string);
+}
+
+static BOOL IsEntryVisible(OptionsMenuData *menuData, u16 entry)
+{
+    return entry >= menuData->scrollTop && entry < menuData->scrollTop + VISIBLE_ENTRIES;
+}
+
+static u16 EntryY(OptionsMenuData *menuData, u16 entry)
+{
+    return (entry - menuData->scrollTop) * SINGLE_ENTRY_HEIGHT;
+}
+
+static void PrintVisibleEntries(OptionsMenuData *menuData)
+{
+    String *string = String_Init(256, menuData->heapID);
+
+    Window_FillTilemap(&menuData->windows.entries, PIXEL_FILL(15));
+
+    for (u16 i = menuData->scrollTop; i < menuData->scrollTop + VISIBLE_ENTRIES; i++) {
         String_Clear(string);
         MessageLoader_GetString(menuData->msgLoader, sEntryLabels[i], string);
         Text_AddPrinterWithParamsAndColor(&menuData->windows.entries,
             FONT_SYSTEM,
             string,
             4,
-            16 * i,
+            EntryY(menuData, i),
             TEXT_SPEED_NO_TRANSFER,
-            whiteBg,
+            TEXT_COLOR(1, 2, 15),
             NULL);
-    }
-
-    for (i = 0; i < MAX_ENTRIES; i++) {
         PrintEntryChoices(menuData, i);
     }
 
-    PrintEntryDescription(menuData, ENTRY_TEXT_SPEED, TRUE);
-    Window_CopyToVRAM(&menuData->windows.title);
     Window_CopyToVRAM(&menuData->windows.entries);
     String_Free(string);
+}
+
+// Small triangles at the right end of the title bar while there are rows above / below the window.
+static void DrawScrollArrows(OptionsMenuData *menuData)
+{
+    u16 x = MENU_TITLE_WIDTH * 8 - 12;
+
+    Window_FillRectWithColor(&menuData->windows.title, PIXEL_FILL(0), x - 1, 0, 9, MENU_TITLE_HEIGHT * 8);
+
+    for (u16 row = 0; row < 4; row++) {
+        if (menuData->scrollTop > 0) {
+            Window_FillRectWithColor(&menuData->windows.title, PIXEL_FILL(1), x + 3 - row, 2 + row, row * 2 + 1, 1);
+        }
+
+        if (menuData->scrollTop + VISIBLE_ENTRIES < MAX_ENTRIES) {
+            Window_FillRectWithColor(&menuData->windows.title, PIXEL_FILL(1), x + row, 10 + row, 7 - row * 2, 1);
+        }
+    }
+
+    Window_CopyToVRAM(&menuData->windows.title);
 }
 
 static const int sNumChoicesPerEntry[MAX_ENTRIES] = {
@@ -733,6 +812,10 @@ static const int sNumChoicesPerEntry[MAX_ENTRIES] = {
     2,
     3,
     20,
+    2,
+    2,
+    2,
+    0, // MUSIC is drawn as a number and a bar
     0,
 };
 
@@ -743,6 +826,10 @@ static const u8 sFirstChoicePerEntry[MAX_ENTRIES] = {
     OptionsMenu_Text_BattleStyleShift,
     OptionsMenu_Text_ButtonModeNormal,
     OptionsMenu_Text_MessageBoxStyle_01,
+    OptionsMenu_Text_BattleSceneOn, // ON, OFF
+    OptionsMenu_Text_BattleSceneOn,
+    OptionsMenu_Text_BattleSceneOn,
+    NULL,
     NULL,
 };
 
@@ -762,9 +849,13 @@ static void LoadAllEntryChoices(OptionsMenuData *menuData)
     menuData->entries.soundMode.selected = menuData->options.soundMode;
     menuData->entries.buttonMode.selected = menuData->options.buttonMode;
     menuData->entries.messageBoxStyle.selected = menuData->options.messageBoxStyle;
+    menuData->entries.levelCap.selected = !menuData->imperialOptions.levelCap;
+    menuData->entries.infiniteCandy.selected = !menuData->imperialOptions.infiniteCandy;
+    menuData->entries.expShare.selected = !menuData->imperialOptions.partyExpShare;
+    menuData->entries.music.selected = menuData->imperialOptions.musicVolume;
 }
 
-static const s8 sEntryXOffsets[] = { 0, 0, 0, 0, 0, 0, 0 };
+static const s8 sEntryXOffsets[MAX_ENTRIES] = { 0 };
 
 static void PrintEntryChoices(OptionsMenuData *menuData, u16 entry)
 {
@@ -776,13 +867,37 @@ static void PrintEntryChoices(OptionsMenuData *menuData, u16 entry)
     darkGray = TEXT_COLOR(1, 2, 15);
     red = TEXT_COLOR(3, 4, 15);
 
-    Window_FillRectWithColor(&menuData->windows.entries, PIXEL_FILL(15), CHOICES_X + sEntryXOffsets[entry], entry * SINGLE_ENTRY_HEIGHT, CHOICES_WIDTH, SINGLE_ENTRY_HEIGHT);
+    if (!IsEntryVisible(menuData, entry)) {
+        return;
+    }
+
+    u16 y = EntryY(menuData, entry);
+
+    Window_FillRectWithColor(&menuData->windows.entries, PIXEL_FILL(15), CHOICES_X + sEntryXOffsets[entry], y, CHOICES_WIDTH, SINGLE_ENTRY_HEIGHT);
+
+    if (entry == ENTRY_MUSIC) {
+        u16 volume = menuData->entries.music.selected;
+        String *number = String_Init(8, menuData->heapID);
+
+        String_FormatInt(number, volume * 5, 3, PADDING_MODE_SPACES, CHARSET_MODE_EN);
+        Text_AddPrinterWithParamsAndColor(&menuData->windows.entries, FONT_SYSTEM, number, CHOICES_X, y, TEXT_SPEED_NO_TRANSFER, red, NULL);
+
+        // A 20-step bar after the number: filled steps in red, empty ones in gray.
+        for (u16 step = 0; step < IMPERIAL_MUSIC_VOLUME_STEPS; step++) {
+            Window_FillRectWithColor(&menuData->windows.entries, PIXEL_FILL(step < volume ? 3 : 2), CHOICES_X + 28 + step * 4, y + 4, 3, 8);
+        }
+
+        String_Free(number);
+        Window_CopyToVRAM(&menuData->windows.entries);
+        return;
+    }
+
     if (entry == ENTRY_MESSAGE_BOX_FRAME) {
         Text_AddPrinterWithParamsAndColor(&menuData->windows.entries,
             FONT_SYSTEM,
             menuData->entries.asArray[entry].choices[menuData->entries.asArray[entry].selected],
             48 + CHOICES_X,
-            entry * SINGLE_ENTRY_HEIGHT,
+            y,
             TEXT_SPEED_NO_TRANSFER,
             red,
             NULL);
@@ -802,7 +917,9 @@ static void PrintEntryChoices(OptionsMenuData *menuData, u16 entry)
 
     xOffset = 0;
     for (i = 0; i < menuData->entries.asArray[entry].numChoices; i++) {
-        if (i == menuData->entries.asArray[entry].selected) {
+        // INF. CANDY is only available while the level cap is on; it's grayed out otherwise.
+        if (i == menuData->entries.asArray[entry].selected
+            && (entry != ENTRY_INFINITE_CANDY || menuData->entries.levelCap.selected == 0)) {
             color = red;
         } else {
             color = darkGray;
@@ -819,7 +936,7 @@ static void PrintEntryChoices(OptionsMenuData *menuData, u16 entry)
                 FONT_SYSTEM,
                 menuData->entries.asArray[entry].choices[i],
                 xOffset + CHOICES_X,
-                entry * SINGLE_ENTRY_HEIGHT,
+                y,
                 textSpeed,
                 color,
                 NULL);
@@ -829,7 +946,7 @@ static void PrintEntryChoices(OptionsMenuData *menuData, u16 entry)
                 FONT_SYSTEM,
                 menuData->entries.asArray[entry].choices[i],
                 i * 48 + CHOICES_X + sEntryXOffsets[entry],
-                entry * SINGLE_ENTRY_HEIGHT,
+                y,
                 textSpeed,
                 color,
                 NULL);
@@ -883,11 +1000,50 @@ static BOOL IsTextPrinterDone(const OptionsMenuData *menuData)
     return Text_IsPrinterActive(menuData->textPrinter) == FALSE;
 }
 
+// Keeps the cursor row inside the window, scrolling the list when it moves past either edge.
+static void ScrollToCursor(OptionsMenuData *menuData)
+{
+    u8 scrollTop = menuData->scrollTop;
+
+    if (menuData->cursor < scrollTop) {
+        scrollTop = menuData->cursor;
+    } else if (menuData->cursor >= scrollTop + VISIBLE_ENTRIES) {
+        scrollTop = menuData->cursor - VISIBLE_ENTRIES + 1;
+    }
+
+    if (scrollTop != menuData->scrollTop) {
+        menuData->scrollTop = scrollTop;
+        PrintVisibleEntries(menuData);
+        DrawScrollArrows(menuData);
+    }
+
+    Bg_ScheduleScroll(menuData->bgConfig,
+        BG_LAYER_MAIN_0,
+        BG_OFFSET_UPDATE_SET_Y,
+        -((menuData->cursor - menuData->scrollTop) * SINGLE_ENTRY_HEIGHT + FIRST_ENTRY_OFFSET));
+}
+
 static void ProcessMainInput(OptionsMenuData *menuData)
 {
     OptionsMenuEntry *entry = &menuData->entries.asArray[menuData->cursor];
 
-    if (menuData->cursor != ENTRY_CLOSE) {
+    if (menuData->cursor == ENTRY_MUSIC) {
+        if (JOY_REPEAT(PAD_KEY_RIGHT) && entry->selected < IMPERIAL_MUSIC_VOLUME_STEPS) {
+            entry->selected++;
+        } else if (JOY_REPEAT(PAD_KEY_LEFT) && entry->selected > 0) {
+            entry->selected--;
+        } else {
+            entry = NULL;
+        }
+
+        if (entry != NULL) {
+            PrintEntryChoices(menuData, ENTRY_MUSIC);
+            Sound_SetMusicVolumePercent(entry->selected * 5); // preview
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
+        }
+    } else if (menuData->cursor == ENTRY_INFINITE_CANDY && menuData->entries.levelCap.selected != 0) {
+        // Locked while the level cap is off.
+    } else if (menuData->cursor != ENTRY_CLOSE) {
         if (JOY_NEW(PAD_KEY_RIGHT)) {
             entry->selected = (entry->selected + 1) % entry->numChoices;
             PrintEntryChoices(menuData, menuData->cursor);
@@ -897,23 +1053,26 @@ static void ProcessMainInput(OptionsMenuData *menuData)
             PrintEntryChoices(menuData, menuData->cursor);
             Sound_PlayEffect(SE_CONFIRM_sseq_3);
         }
+
+        // Turning the level cap off also turns Infinite Rare Candy off.
+        if (menuData->cursor == ENTRY_LEVEL_CAP && JOY_NEW(PAD_KEY_LEFT | PAD_KEY_RIGHT)) {
+            if (menuData->entries.levelCap.selected != 0) {
+                menuData->entries.infiniteCandy.selected = 1;
+            }
+
+            PrintEntryChoices(menuData, ENTRY_INFINITE_CANDY);
+        }
     }
 
     if (JOY_NEW(PAD_KEY_UP)) {
-        menuData->cursor = (menuData->cursor + 7 - 1) % 7;
-        Bg_ScheduleScroll(menuData->bgConfig,
-            BG_LAYER_MAIN_0,
-            BG_OFFSET_UPDATE_SET_Y,
-            -(menuData->cursor * SINGLE_ENTRY_HEIGHT + FIRST_ENTRY_OFFSET));
+        menuData->cursor = (menuData->cursor + MAX_ENTRIES - 1) % MAX_ENTRIES;
+        ScrollToCursor(menuData);
 
         PrintEntryDescription(menuData, menuData->cursor, TRUE);
         Sound_PlayEffect(SE_CONFIRM_sseq_3);
     } else if (JOY_NEW(PAD_KEY_DOWN)) {
-        menuData->cursor = (menuData->cursor + 1) % 7;
-        Bg_ScheduleScroll(menuData->bgConfig,
-            BG_LAYER_MAIN_0,
-            BG_OFFSET_UPDATE_SET_Y,
-            -(menuData->cursor * SINGLE_ENTRY_HEIGHT + FIRST_ENTRY_OFFSET));
+        menuData->cursor = (menuData->cursor + 1) % MAX_ENTRIES;
+        ScrollToCursor(menuData);
 
         PrintEntryDescription(menuData, menuData->cursor, TRUE);
         Sound_PlayEffect(SE_CONFIRM_sseq_3);
@@ -927,7 +1086,11 @@ static BOOL ChangesWereMade(OptionsMenuData *menuData)
         || menuData->options.battleStyle != menuData->entries.battleStyle.selected
         || menuData->options.soundMode != menuData->entries.soundMode.selected
         || menuData->options.buttonMode != menuData->entries.buttonMode.selected
-        || menuData->options.messageBoxStyle != menuData->entries.messageBoxStyle.selected;
+        || menuData->options.messageBoxStyle != menuData->entries.messageBoxStyle.selected
+        || menuData->imperialOptions.levelCap != (menuData->entries.levelCap.selected == 0)
+        || menuData->imperialOptions.infiniteCandy != (menuData->entries.levelCap.selected == 0 && menuData->entries.infiniteCandy.selected == 0)
+        || menuData->imperialOptions.partyExpShare != (menuData->entries.expShare.selected == 0)
+        || menuData->imperialOptions.musicVolume != menuData->entries.music.selected;
 }
 
 static const WindowTemplate sConfirmationWindowTemplate = {
@@ -961,6 +1124,10 @@ static const u8 sEntryDescriptions[MAX_ENTRIES] = {
     OptionsMenu_Text_BattleStyleDescription,
     OptionsMenu_Text_ButtonModeDescription,
     OptionsMenu_Text_MessageBoxStyleDescription,
+    OptionsMenu_Text_LevelCapDescription,
+    OptionsMenu_Text_InfiniteCandyDescription,
+    OptionsMenu_Text_ExpShareDescription,
+    OptionsMenu_Text_MusicDescription,
     OptionsMenu_Text_CloseDescription,
 };
 

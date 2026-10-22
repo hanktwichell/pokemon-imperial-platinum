@@ -5,6 +5,7 @@
 
 #include "coins.h"
 #include "game_options.h"
+#include "imperial_options.h"
 #include "play_time.h"
 #include "savedata.h"
 #include "trainer_info.h"
@@ -19,6 +20,7 @@ void Player_Init(PlayerSave *player)
     MI_CpuClearFast(player, sizeof(PlayerSave));
 
     Options_Init(&player->options);
+    ImperialOptions_Init(&player->imperialOptions);
     TrainerInfo_Init(&player->info);
     Coins_Init(&player->coins);
     PlayTime_Init(&player->playTime);

@@ -114,6 +114,8 @@ Static main
 	Object src/pokedex.c
 	Object src/savedata_misc.c
 	Object src/game_options.c
+	Object src/imperial_options.c
+	Object src/level_cap.c
 	Object src/berry_patches.c
 	Object src/persisted_map_features.c
 	Object src/pal_pad.c

@@ -48,11 +48,14 @@ data/                 Source-of-truth design data (CSV/YAML/JSON) — edit these
   evolution_changes.yaml     evolution method changes (hand-written)
   postgame_legendaries.yaml  legendary quests (hand-written)
   sprite_index.csv           every sprite file, its credit and DS-readiness (generated)
+  level_caps.yaml            level-cap steps for the LEVEL CAP option (hand-written, validated)
 docs/                 Generated + hand-written documentation
 assets/sprites/       Sprite packs (unmodified) and owner-supplied art
 tools/design/         Generators and validators for the docs
 tools/sprites/        Sprite pack indexer
 tools/build/          ROM build helpers (apply the Renegade base patch)
+tools/engine/         Generators for engine tables (level caps -> decomp/include/data/level_caps.h)
+tools/test/           Headless emulator tests and the drive.py scripted-input driver
 ```
 
 ## Regenerating the docs

@@ -1,0 +1,37 @@
+# Imperial Platinum — level caps (owner feature, Options → LEVEL CAP).
+#
+# While the option is on, party Pokémon can't gain EXP past the cap: the ace level of the first
+# fight in this list the player hasn't won yet. The list is the required story order of Platinum's
+# big fights, including rival Barry (owner request). A step lists `trainers` (all must be beaten,
+# e.g. a double boss) or `any` (beating one is enough — Barry's three starter variants).
+# Optional Renegade fights (Route 208 Aaron, Route 212 Saturn, Darach, Dawn/Lucas) are left
+# out; their aces are never higher than the next required boss. The Elite Four aren't listed: their
+# cap is the Champion's ace, as the owner asked.
+#
+# `level` is the ace's level in Imperial's teams. tools/engine/gen_level_caps.py checks it against
+# data/trainers_imperial.yaml where the fight is listed there (`check`), then writes
+# decomp/include/data/level_caps.h.
+
+caps:
+  - {label: Leader Roark,                 trainers: [TRAINER_LEADER_ROARK],                                  level: 16, source: "Renegade TrainerPokemon.txt (Cranidos Lv. 16)"}
+  - {label: Commander Mars (Valley Windworks), trainers: [TRAINER_COMMANDER_MARS_VALLEY_WINDWORKS],          level: 19, source: "Renegade (Purugly Lv. 19)"}
+  - {label: Leader Gardenia,              trainers: [TRAINER_LEADER_GARDENIA],                               level: 26, source: "Renegade (Roserade Lv. 26)"}
+  - {label: Commander Jupiter (Eterna),   trainers: [TRAINER_COMMANDER_JUPITER_TEAM_GALACTIC_ETERNA_BUILDING], level: 27, check: [Commander Jupiter, Team Galactic Eterna Building]}
+  - {label: Leader Fantina,               trainers: [TRAINER_LEADER_FANTINA],                                level: 33, check: [Leader Fantina, Hearthome Gym]}
+  - {label: Rival Barry (Route 209 gate), any: [TRAINER_RIVAL_ROUTE_209_TURTWIG, TRAINER_RIVAL_ROUTE_209_CHIMCHAR, TRAINER_RIVAL_ROUTE_209_PIPLUP], level: 33, check: [PKMN Trainer Barry, "Route 209 gate (after Fantina) — Turtwig"]}
+  - {label: Leader Maylene,               trainers: [TRAINER_LEADER_MAYLENE],                                level: 39, check: [Leader Maylene, Veilstone Gym]}
+  - {label: Rival Barry (Pastoria City), any: [TRAINER_RIVAL_PASTORIA_CITY_TURTWIG, TRAINER_RIVAL_PASTORIA_CITY_CHIMCHAR, TRAINER_RIVAL_PASTORIA_CITY_PIPLUP], level: 42, check: [PKMN Trainer Barry, "Pastoria City — Turtwig"]}
+  - {label: Leader Wake,                  trainers: [TRAINER_LEADER_WAKE],                                   level: 44, check: [Leader Wake, Pastoria Gym]}
+  - {label: Galactic Boss Cyrus (Celestic), trainers: [TRAINER_GALACTIC_BOSS_CYRUS_CELESTIC_TOWN_RUINS],    level: 46, check: [Galactic Boss Cyrus, Celestic Town]}
+  - {label: Rival Barry (Canalave City), any: [TRAINER_RIVAL_CANALAVE_CITY_TURTWIG, TRAINER_RIVAL_CANALAVE_CITY_CHIMCHAR, TRAINER_RIVAL_CANALAVE_CITY_PIPLUP], level: 49, check: [PKMN Trainer Barry, "Canalave City — Turtwig"]}
+  - {label: Leader Byron,                 trainers: [TRAINER_LEADER_BYRON],                                  level: 53, check: [Leader Byron, Canalave Gym]}
+  - {label: Saturn and Mars (lakes),      trainers: [TRAINER_COMMANDER_SATURN_VALOR_CAVERN, TRAINER_COMMANDER_MARS_LAKE_VERITY], level: 53, check: [Commander Saturn, Lake Valor]}
+  - {label: Leader Candice,               trainers: [TRAINER_LEADER_CANDICE],                                level: 56, check: [Leader Candice, Snowpoint Gym]}
+  - {label: Cyrus and Saturn (Galactic HQ), trainers: [TRAINER_GALACTIC_BOSS_CYRUS_GALACTIC_HQ, TRAINER_COMMANDER_SATURN_GALACTIC_HQ], level: 58, check: [Galactic Boss Cyrus, Team Galactic HQ]}
+  - {label: Mars and Jupiter (Spear Pillar), trainers: [TRAINER_COMMANDER_MARS_SPEAR_PILLAR, TRAINER_COMMANDER_JUPITER_SPEAR_PILLAR], level: 58, check: [Commander Mars, Spear Pillar]}
+  - {label: Galactic Boss Cyrus (Distortion World), trainers: [TRAINER_GALACTIC_BOSS_CYRUS_DISTORTION_WORLD], level: 60, check: [Galactic Boss Cyrus, Distortion World]}
+  - {label: Leader Volkner,               trainers: [TRAINER_LEADER_VOLKNER],                                level: 62, check: [Leader Volkner, Sunyshore Gym]}
+  - {label: Rival Barry (Pokémon League), any: [TRAINER_RIVAL_POKEMON_LEAGUE_TURTWIG, TRAINER_RIVAL_POKEMON_LEAGUE_CHIMCHAR, TRAINER_RIVAL_POKEMON_LEAGUE_PIPLUP], level: 71, check: [PKMN Trainer Barry, "Pokémon League (before the Elite Four) — Turtwig"]}
+  - {label: Elite Four + Champion Cynthia, trainers: [TRAINER_CHAMPION_CYNTHIA],                             level: 78, check: [Champion Cynthia, round 1]}
+  - {label: Champion rematch (post-game),  trainers: [TRAINER_CHAMPION_CYNTHIA_REMATCH],                     level: 89, check: [Champion Cynthia, round 2]}
+# After the Champion rematch is won the cap is lifted (Lv. 100).
