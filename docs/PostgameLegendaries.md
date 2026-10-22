@@ -208,7 +208,7 @@ Covers **90** species.
 - **Pokémon:** #1017 Ogerpon
 - **Level:** 65
 - **Location:** Route 211 (East), at the mountain shrine
-- **How:** Static encounter. Holding the Wellspring, Hearthflame or Cornerstone Mask changes Ogerpon's form (owner, 2026-10-22).
+- **How:** Static encounter; Ogerpon holds the Teal Mask. Show it to the Pokéfan (male) in Celestic Town's northeast house (map CelesticTownNortheastHouse, script CelesticTownNortheastHouse_PokefanM) with Ogerpon at the front of the party, and he gives the Wellspring, Hearthflame and Cornerstone Masks. Holding a mask changes Ogerpon's form (owner, 2026-10-22).
 
 ### The Poison Puppeteer
 - **Pokémon:** #1025 Pecharunt

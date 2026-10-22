@@ -209,7 +209,7 @@ quests:
     species: [Ogerpon]
     level: 65
     location: Route 211 (East), at the mountain shrine
-    steps: Static encounter. Holding the Wellspring, Hearthflame or Cornerstone Mask changes Ogerpon's form (owner, 2026-10-22).
+    steps: Static encounter; Ogerpon holds the Teal Mask. Show it to the Pokéfan (male) in Celestic Town's northeast house (map CelesticTownNortheastHouse, script CelesticTownNortheastHouse_PokefanM) with Ogerpon at the front of the party, and he gives the Wellspring, Hearthflame and Cornerstone Masks. Holding a mask changes Ogerpon's form (owner, 2026-10-22).
   - chapter: Paldea Chronicle
     name: The Poison Puppeteer
     species: [Pecharunt]

@@ -12,6 +12,15 @@ Renegade Platinum's item changes and item locations are unchanged unless listed 
 | Prison Bottle | Legend Archivist (post-game) | Hoopa event |
 | Scroll of Darkness, Scroll of Waters | Maylene, Veilstone Gym (post-game) | Evolve Kubfu |
 
+## Form items
+
+| Item | Where | Purpose |
+|---|---|---|
+| Rusted Sword | Held by the wild Zacian (post-game, Route 210 North) | Zacian's Crowned Sword form |
+| Rusted Shield | Held by the wild Zamazenta (post-game, Route 210 North) | Zamazenta's Crowned Shield form |
+| Teal Mask | Held by Ogerpon (post-game, Route 211 East shrine) | Ogerpon's Teal Mask form |
+| Wellspring Mask, Hearthflame Mask, Cornerstone Mask | The Pokéfan (male) in **Celestic Town's northeast house** (`CelesticTownNortheastHouse_PokefanM`). He gives all three if Ogerpon is at the front of the party | Ogerpon's mask forms |
+
 ## New held / evolution items
 
 - **95 Mega Stones and Primal orbs**: full list, field locations and vendors in `MegaEvolution.md`.
