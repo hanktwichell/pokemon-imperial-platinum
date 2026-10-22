@@ -86,3 +86,30 @@ This session:
   `wait:600 A wait:200 START wait:200 A wait:300`.
 - `drive.py`'s `PLAYER_X/Z_ADDR` read (0,0) on this build, so they need re-finding.
 - Easy Chat from the test build: `SELECT+B`, then `A A` opens the POKéMON group.
+
+---
+
+## CA-0001 — 2026-10-22, 3:02 pm US Central (session on `claude/festive-bardeen-5h7beo`)
+
+Second session, working alongside the CB-#### session (E6/E7 on `claude/sweet-wright-rk4wl1`). Entries from this
+session are numbered CA-#### and only ever appended here.
+
+**Reviewed the other session's work:** E6 step 2 is merged to main (PR #14), including Easy Chat; my own
+uncommitted Easy Chat lists were identical, so I discarded them. Owner decisions since then: every form is in the
+game (milestone FM), Totem trials, MEGA button, Terapagos-Stellar shelved. E7 (245 items, icons, test bag) is in
+progress on `claude/sweet-wright-rk4wl1`.
+
+**Picked: milestone E9, the trainer format** (`docs/EngineRoadmap.md` row 12): per-Pokémon nature, ability, IVs,
+EVs, held item, form, gender and shininess in trainer data, with 16-bit species. It doesn't touch E7's files
+(items, shops, evolutions); trainers only refer to item IDs. It unblocks T1 (boss teams) and T2 (the developer
+battle).
+
+**Files modified:** `CLAUDE_STATUS.md` (this entry). My branch was reset to main `5b427e88`, since all of its
+earlier commits were merged through PR #14.
+
+**Next 3 steps:**
+1. Survey the trainer pipeline: `include/struct_defs/trainer_data.h`, `src/trainer_data.c`,
+   `tools/dataproc/src/trainerproc.c` and the trainer source files.
+2. Design the Sovereign trainer-mon format (one layout carrying every field), keeping Platinum's trainers loading
+   the same.
+3. Build it, convert the existing trainers, and test a trainer battle in the test build (SELECT+R).
