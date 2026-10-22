@@ -10,3 +10,10 @@ the current state of development to `CLAUDE_STATUS.md` at the repo root. It must
 3. The immediate next 3 logical steps or bugs to fix.
 
 Keep it current: replace stale content rather than appending forever.
+
+## All forms (owner rule, 2026-10-22)
+
+Every Pokémon form must exist in the game, with no exceptions: regional, Mega/Primal, fusion, battle, item, Gigantamax,
+Totem and cosmetic forms. Never mark a form "out of scope". If a form seems impossible on the engine, find a way or
+ask the owner how it should work. Don't drop it. See decision 16 in `docs/ProjectStatus.md` and milestone FM in
+`docs/EngineRoadmap.md`.
