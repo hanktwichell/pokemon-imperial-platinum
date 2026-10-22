@@ -113,11 +113,18 @@ Made by the owner (2026-10-22):
     Its grounds on Route 221 become the **Regional Forms Park**: Pal Park's four areas (field, forest, mountain, sea)
     become Alola, Galar, Hisui and Paldea zones where the 59 regional forms (decision 16) live as wild Pokémon. The
     Catching Show layout is reused. Built with milestone FM, once regional forms exist.
+23. **The story: the Sovereign** (owner, 2026-10-22; `docs/Story.md`). The Sovereign are Sinnoh's old ruling class.
+    Unseen by the player, they merge other Pokémon worlds into Sinnoh, in a story that runs alongside Team
+    Galactic's. One vague reference comes early, then the player learns more through the Totem trials (the
+    Sovereign's tests) and the Chronicles. Everything comes together in the final battle against **Sovereign Twich**
+    (renamed from Sovereign Dev Twich), the last surviving member of the lineage, whose dialogue nods to him being the
+    developer. That battle opens after the Elite Four rematch and the Dialga and Palkia encounters at Spear Pillar.
+    The Sovereign's end goal is still to be chosen (options in `Story.md`).
 
 Open:
 - Regional Forms Park (decision 22): which zone holds which forms, encounter rates, and when it opens (Route 221
   needs Surf; with the National Dex from the start, Pal Park's old National Dex gate no longer applies).
 - Special evolutions (decision 20): owner discussion pending.
-- The developer battle: Lv. 100 at Spear Pillar, leads Charizard-Y + Venusaur, custom weather-control AI (`DeveloperBattle.md`). Opponent: Sovereign Dev Twich. Open: text, sprites (owner's sprite coming soon), Charizard's final moveset.
+- The developer battle: Lv. 100 at Spear Pillar, leads Charizard-Y + Venusaur, custom weather-control AI (`DeveloperBattle.md`). Opponent: Sovereign Twich (decision 23). Open: text, sprites (owner's sprite coming soon).
 - Front sprites and the part 2 shiny pack (owner is sourcing them).
 - hg-engine and Smogon credit lists: Claude compiles them (owner, 2026-10-22).

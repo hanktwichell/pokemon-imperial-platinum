@@ -528,3 +528,33 @@ battle's trainer text and sprite, batched answers to open questions, and the own
 2. Fix #1–#2: partner safety by move range (`RANGE_ALL_ADJACENT`), with the partner's damage estimated by the game's
    damage formula. This needs a new AI script command, or a C-side adjustment in `TrainerAI_MainDoubles`.
 3. Fix #3 (spread credit), then #4–#5 alongside item 11's ability effects.
+
+---
+
+## CA-0006 — 2026-10-22, 3:56 pm US Central (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented: the story's direction (owner), recorded in `docs/Story.md` (new) and decision 23 in `ProjectStatus.md`.**
+- **The Sovereign:** Sinnoh's old ruling class, never seen by the player.
+  - They merge other Pokémon worlds into Sinnoh, in a story that runs alongside Team Galactic's.
+  - One vague reference comes early. The player learns more through the Totem trials (the Sovereign's tests) and the
+    Chronicles.
+- **The final battle:** Sovereign Twich (renamed from Sovereign Dev Twich), the last surviving member of the lineage.
+  His dialogue nods to him being the developer.
+  - It opens after the Elite Four rematch and the Dialga and Palkia encounters at Spear Pillar, in a throne room at
+    Spear Pillar.
+- **Proposals in `Story.md` for the owner to choose from:**
+  - three end goals: succession, restoration, or shield. I recommend shield leading into succession;
+  - the story beats (Oreburgh Museum fragment, a message built across the 11 Totem trials, Celestic and Canalave lore,
+    a throne glimpse at Spear Pillar, the Archivist's suspicion);
+  - engineering notes (unlock flags; Platinum's National-Dex gate on the Spear Pillar post-game event needs a new
+    condition, given decision 21).
+
+**Files modified:** `docs/Story.md` (new), `docs/DeveloperBattle.md` (name, unlock, location, naming section),
+`docs/ProjectStatus.md` (decision 23 and the open item), `CLAUDE_STATUS.md`.
+
+**Coordination:** decision 23 may collide with a decision number the CB session adds; renumber at merge if so.
+
+**Next 3 steps:**
+1. Merge PR #16 once CI is green (no more pushes until then).
+2. Owner's picks on `Story.md`'s open questions: the end goal, the early reference, and whether Cynthia knows.
+3. Continue 12b: partner safety by move range (`docs/AIReview.md` #1–#2).

@@ -3,8 +3,11 @@
 A hidden, Red-style **double battle** against the mod's developer (the owner), with a custom team and a custom AI
 written for this fight. Roadmap item T2; the AI review for doubles is item 12b.
 
-- **Trainer:** Sovereign Dev Twich (class "Sovereign Dev", name "Twich"); see *Naming*.
-- **Location:** Spear Pillar, at the summit of Mt. Coronet (post-game).
+- **Trainer:** Sovereign Twich (class "Sovereign", name "Twich"; renamed from Sovereign Dev Twich, owner 2026-10-22).
+  Twich is the last surviving member of the Sovereign lineage, and his dialogue refers to him being the game's
+  developer. The story behind the fight is in `docs/Story.md`.
+- **Location:** Spear Pillar, at the summit of Mt. Coronet: the Sovereign throne room (post-game).
+- **Unlocks** after the Elite Four rematch *and* the Dialga and Palkia encounters at Spear Pillar (owner).
 - **Level:** 100 for the whole team.
 - **Leads:** always Charizard (Mega Y) and Venusaur.
 - **Concept:** a triple-weather team built as three synergy pairs:
@@ -77,14 +80,15 @@ Taking control of the weather by switching weather setters in and out is central
 - [ ] Custom AI (above).
 - [x] Trainer name, class and the game's name (see *Naming*).
 
-## Naming (decided 2026-10-22)
+## Naming (decided 2026-10-22; changed the same day)
 
 - **Game:** Pokémon **Sovereign** Platinum (was "Imperial Platinum"). The ROM header title is `SOVEREIGN PL`, which
   fills the header's 12 characters exactly.
-- **Trainer:** class **Sovereign Dev**, name **Twich**. In battle that reads "Sovereign Dev Twich", 19 characters, the
-  same length as Platinum's own "Galactic Boss Cyrus".
-  - The class is 13 characters, the same as Platinum's longest ("Galactic Boss").
+- **Trainer:** class **Sovereign**, name **Twich**. In battle that reads "Sovereign Twich", 15 characters (Platinum's
+  longest is "Galactic Boss Cyrus", 19).
   - The name fits an NPC trainer's 7-character limit.
+- The first version was "Sovereign Dev Twich". The owner dropped "Dev" from the name; the dialogue makes the
+  developer reference instead.
 
 ## Still open
 
