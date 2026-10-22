@@ -1,0 +1,48 @@
+name: build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  rom:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          sudo dpkg --add-architecture i386
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq bison flex g++ gcc-arm-none-eabi make ninja-build pkg-config wget python3 xz-utils nasm libc6:i386 libpng-dev
+      - name: Cache subprojects and toolchain
+        uses: actions/cache@v4
+        with:
+          path: |
+            decomp/subprojects/packagecache
+            decomp/tools/metroskrew
+          key: deps-${{ hashFiles('decomp/subprojects/*.wrap', 'decomp/Makefile') }}
+      - name: Build
+        # `make` also checks the ROM hash; drop to `make rom` once Imperial changes the ROM.
+        run: make -C decomp -j"$(nproc)"
+      # The ROM is never uploaded: it contains Nintendo's copyrighted code and assets.
+
+  docs:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install pyyaml pillow openpyxl
+      - name: Fetch PokeAPI data (pinned; see tools/POKEAPI_COMMIT)
+        run: |
+          git init -q /tmp/pokeapi
+          git -C /tmp/pokeapi remote add origin https://github.com/PokeAPI/pokeapi
+          git -C /tmp/pokeapi sparse-checkout set data/v2/csv
+          git -C /tmp/pokeapi fetch -q --depth 1 --filter=blob:none origin "$(cat tools/POKEAPI_COMMIT)"
+          git -C /tmp/pokeapi checkout -q FETCH_HEAD
+      - name: Regenerate and validate docs
+        run: tools/regenerate_docs.sh /tmp/pokeapi/data/v2/csv decomp
+      - name: Generated files are up to date
+        run: git diff --stat --exit-code -- data docs ':!docs/SpriteChecklist.xlsx'

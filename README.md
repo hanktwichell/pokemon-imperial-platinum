@@ -8,15 +8,16 @@ new legendary. Renegade's story and quality-of-life features stay as they are.
 
 ## Status
 
-**Design phase done; engine work not started.** Everything that can be decided without the ROM is designed, documented
-and machine-checked. Building the game needs (1) a base ROM supplied by a developer and (2) a decision on the engine route.
-Details are in [`docs/ProjectStatus.md`](docs/ProjectStatus.md).
+**Design phase done; engine work under way on the pret/pokeplatinum decompilation** (`decomp/`). The decomp builds the
+whole ROM from source, so no base ROM is needed to develop. Milestones are in
+[`docs/EngineRoadmap.md`](docs/EngineRoadmap.md), and status in [`docs/ProjectStatus.md`](docs/ProjectStatus.md).
 
 ## Documentation
 
 | Document | Contents |
 |---|---|
 | [`docs/ProjectStatus.md`](docs/ProjectStatus.md) | What's done, what's blocked, open decisions, roadmap |
+| [`docs/EngineRoadmap.md`](docs/EngineRoadmap.md) | Decomp milestones (E0–E12), species ID scheme, where data lives |
 | [`docs/TechnicalDesign.md`](docs/TechnicalDesign.md) | Engine work: species expansion, Mega mechanic, items, trainer data, sprites |
 | [`docs/WildPokemon_Imperial.md`](docs/WildPokemon_Imperial.md) | Every encounter table (slot-exact), new species marked ★ |
 | [`docs/TrainerPokemon_Imperial.md`](docs/TrainerPokemon_Imperial.md) | Boss teams with Megas; E4 and Cynthia singles + doubles sets |
@@ -32,6 +33,7 @@ Details are in [`docs/ProjectStatus.md`](docs/ProjectStatus.md).
 | [`docs/SpriteChecklist.xlsx`](docs/SpriteChecklist.xlsx) | Spreadsheet: which of the 5 sprites we have for all 1025 species (+ Megas) |
 | [`CITATIONS.md`](CITATIONS.md) | Credits for every asset and dataset |
 | `RenegadePlatinumV130/` | Drayano's original patches and documentation (unchanged) |
+| `decomp/` | pret/pokeplatinum decompilation (git subtree) — the Imperial engine |
 
 ## Repository layout
 
@@ -65,8 +67,20 @@ Every generator validates its input: every species is placed or has a documented
 catchable, trainer moves/abilities are legal, every Mega Stone has exactly one source, and Cynthia's singles teams never
 use Protect.
 
-## Building the base ROM
+## Building the ROM
+
+Imperial builds from source with the decomp. Install the dependencies listed in `decomp/INSTALL.md` (Linux/WSL:
+`bison flex g++ gcc-arm-none-eabi make ninja-build pkg-config wget python3 xz-utils nasm libc6:i386 libpng-dev`), then:
 
 ```sh
-tools/build/apply_renegade_patch.sh 4997 "Pokemon Platinum (US).nds" RenegadePlatinum.nds   # or 3541
+make -C decomp        # builds decomp/build/pokeplatinum.us.nds
+```
+
+The ROM is never committed or uploaded. To play the original Renegade Platinum for reference, apply Drayano's patch to
+your own Platinum dump: `tools/build/apply_renegade_patch.sh 4997 "Pokemon Platinum (US).nds"`.
+
+### Updating the decomp from upstream
+
+```sh
+git subtree pull --prefix=decomp https://github.com/pret/pokeplatinum main --squash
 ```
