@@ -36,8 +36,20 @@ players and the verification that was run.
     - The player's Garchomp Mega Evolved in a wild battle (a temporary always-Mega hook stood in for the button) and
       didn't again on turn 2.
     - After the battle, Garchomp was back to its normal stats with its Garchompite.
-  - Still to do: the MEGA button (until then the player can't choose Mega Evolution), the animation and the AI
-    review.
+  - Still to do: the animation and the AI review.
+- **The MEGA EVOLUTION toggle** (step 3; `battle_subscreen.c`, `battle_display.c`). When the active Pokémon can Mega
+  Evolve, the move menu shows "Mega Evolution: OFF (SELECT)" in the strip above the moves. Touching it or pressing
+  SELECT turns it "ON" (in red); the move chosen next Mega Evolves the Pokémon.
+  - The server says whether to offer it: it isn't offered when the trainer's other Pokémon chose it this turn, or once
+    the trainer has used it.
+  - The choice travels in the second byte of the selected move. Battle recordings store it in the move slot's top bit,
+    so replays Mega Evolve too.
+  - It's a text label (one more font sprite; the pool grows to 14). A drawn button can replace it with E12's graphics.
+  - Verified:
+    - Wild battle: the label shows and SELECT and touch both toggle it. Choosing a move with it on Mega Evolved
+      Garchomp, and the label was gone on turn 2.
+    - Doubles vs. the test trainer: Turtwig's menu has no label. Garchomp (toggle on) and the foe's Charizard both
+      Mega Evolved that turn, fastest first.
 - **Primal Reversion** (step 3): Kyogre holding the Blue Orb and Groudon holding the Red Orb revert as they enter
   battle. It runs as a new switch-in state (`SWITCH_IN_CHECK_STATE_SOVEREIGN_PRIMAL`), before weather abilities.
   - No button or Mega Ring is needed, and it doesn't use up the trainer's Mega Evolution.

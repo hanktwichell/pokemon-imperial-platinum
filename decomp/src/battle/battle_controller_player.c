@@ -4939,6 +4939,12 @@ static void BattleSystem_RecordCommand(BattleSystem *battleSys, BattleContext *b
             case BATTLE_CONTROL_FIGHT:
                 if (battleCtx->recordedCommandFlags[battler] & RECORDED_CMD_FLAG_TARGET) {
                     recordedAction = battleCtx->battlerActions[battler][2];
+
+                    // Sovereign (E8): the move slot's top bit records a Mega Evolution (Task_RecordingShowMoveSelectMenu).
+                    if (battleCtx->sovereignMegaPending & FlagIndex(battler)) {
+                        recordedAction |= 0x80;
+                    }
+
                     BattleSystem_Record(battleSys, battler, recordedAction);
                 }
 

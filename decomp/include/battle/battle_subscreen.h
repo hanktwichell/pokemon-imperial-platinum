@@ -122,6 +122,7 @@ typedef struct MoveSelectData {
     u8 currPP[4];
     u8 maxPP[4];
     u8 battlerType;
+    u8 canMegaEvolve; // Sovereign (E8): show the MEGA EVOLUTION toggle
 } MoveSelectData;
 
 typedef struct TargetMonData {
@@ -188,7 +189,7 @@ typedef struct BattleSubscreen {
     SysTask *speedUpPaletteTask;
     MoveDisplayData moveDisplayData[MAX_BATTLERS];
     UnkStruct_02012744 *fontOAMManager;
-    FontOAMEntry fontOAMEntry[13];
+    FontOAMEntry fontOAMEntry[14]; // Sovereign: one more, for the move menu's MEGA EVOLUTION toggle
     UnkStruct_02012B20 *unused_5B8;
     ManagedSprite *playerPartyBallSprites[MAX_PARTY_SIZE];
     ManagedSprite *opponentPartyBallSprites[MAX_PARTY_SIZE];
@@ -226,6 +227,7 @@ typedef struct BattleSubscreen {
         u8 phase;
         u8 delay;
     } catchTutorialState;
+    u8 sovereignMegaSelected; // Sovereign (E8): the move menu's MEGA EVOLUTION toggle is on
 } BattleSubscreen;
 
 typedef struct SlideInPanelState {
@@ -268,6 +270,7 @@ void BattleSubscreen_ShowBallSprites(BattleSubscreen *btlSubscreen);
 void BattleSubscreen_HideBallSprites(BattleSubscreen *btlSubscreen);
 int BattleSystem_MenuInput(BattleSubscreen *btlSubscreen);
 BOOL BattleSubscreen_IsReady(BattleSubscreen *btlSubscreen);
+BOOL BattleSubscreen_SovereignMegaSelected(BattleSubscreen *btlSubscreen);
 int GetTargetSelectLayout(int range, int battlerType);
 void BattleSubscreen_UpdateSlideWindow(BattleSubscreen *btlSubscreen);
 void BattleSubscreen_StartPanelSlide(BattleSubscreen *btlSubscreen, int slideSpeed, int targetOffset);
