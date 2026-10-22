@@ -56,6 +56,7 @@ are incompatible, which the owner has accepted.
 | E10 | **Renegade port.** Wild tables, trainers, items, NPCs/QoL, type and move changes, scripts per Renegade's docs | Renegade docs satisfied |
 | E11 | **Imperial content.** Encounter plan, E4 format scripts, starter Interviewers, Mega vendors and field stones, post-game legendaries | Imperial docs satisfied |
 | E13 | **Options additions:** level cap, infinite Rare Candy, music volume slider (owner request) | toggles work; cap table matches the boss data |
+| E14 | **Approved QoL:** Nature Mints, Repel prompt, Infinite Repel, party Exp. Share option, type-effectiveness indicator, IV/EV viewer, HM-free field moves, Gen VI+ breeding, Ability Capsule NPC | each feature tested |
 | E12 | **Graphics.** Convert the back-sprite pack, add fronts as sourced, real icons | `SpriteChecklist.xlsx` all green |
 
 Gen IX move and ability effects outnumber what can be done in one pass. They're implemented in priority order (boss
