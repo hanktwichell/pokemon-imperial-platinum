@@ -102,12 +102,15 @@ Made by the owner (2026-10-22):
     check) are to be discussed with the owner later. Until then the methods in `EvolutionChanges_Sovereign.md`
     stand.
 21. **After E7/E8, the next focus is the Pokédex** (owner, 2026-10-22): every new Pokémon is in the dex, and a dex
-    number never shows "???" (today the summary shows "???" for a species outside Sinnoh's regional dex before the
-    National Dex is obtained).
+    number never shows "???".
+    - The **National Dex is unlocked when Rowan gives the player the Pokédex**.
+    - Everything (summary, Pokédex, lists) refers to a Pokémon by its **National Dex number**.
+    - The **Sinnoh dex is cosmetic**: a view inside the Pokédex only. This replaces the "Sinnoh dex stays" part of
+      decision 6 for numbering.
+    - To check when building it: other things Platinum gates on the National Dex flag (some wild encounters, Pal
+      Park, Rowan's post-league upgrade event). Keep or move each one deliberately.
 
 Open:
-- Pokédex (decision 21): add the new species to the Sinnoh regional dex (decision 6 kept it as in Platinum), show
-  National Dex numbers from the start, or both?
 - Special evolutions (decision 20): owner discussion pending.
 - The developer battle: Lv. 100 at Spear Pillar, leads Charizard-Y + Venusaur, custom weather-control AI (`DeveloperBattle.md`). Opponent: Sovereign Dev Twich. Open: text, sprites (owner's sprite coming soon), Charizard's final moveset.
 - Front sprites and the part 2 shiny pack (owner is sourcing them).

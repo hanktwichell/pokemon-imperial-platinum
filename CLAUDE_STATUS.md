@@ -315,3 +315,31 @@ by this session before the rule. This entry updates it without rewriting it.
    - Mega Stone vendors: `MegaEvolution.md`.
    - Also the Infinite Repel key item.
 3. E8 Mega Evolution. Then the Pokédex work (decision 21).
+
+---
+
+## CB-0006 — 2026-10-22, 3:14 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Owner decision recorded (decision 21, `docs/ProjectStatus.md`), for the Pokédex work that follows E7/E8:**
+- The **National Dex unlocks when Rowan gives the Pokédex**.
+- Everything refers to Pokémon by **National Dex number**, so no "???".
+- The **Sinnoh dex is cosmetic**: a view inside the Pokédex only.
+- When building it, list everything Platinum gates on the National Dex flag (wild encounters, Pal Park, Rowan's
+  upgrade event) and decide each one.
+
+**Status:** PR #15 (E7 part 1) is open and waiting on CI; it gets merged when green. E7 shop research has started:
+- Shop stock is in `decomp/include/data/mart_items.h`; Veilstone's floors are `VeilstoneDeptStoreStock_*`.
+- `ScrCmd_PokeMartSpecialties` is in `decomp/src/scrcmd_shop.c`.
+- The Renegade sellers the docs name (Snowpoint evolution items, Route 208 berries/Mints) don't exist in the decomp
+  until the Renegade port (E10).
+
+**Files modified:** `docs/ProjectStatus.md`, `CLAUDE_STATUS.md` (this entry).
+
+**Next 3 steps:**
+1. Merge PR #15 when CI is green.
+2. E7 part 2:
+   - New held items on sale at the Veilstone Department Store (owner).
+   - The Infinite Repel key item.
+   - A decision on where Mints, Ability Capsules, evolution items and Mega Stones are sold before Renegade's NPCs
+     exist (E10).
+3. E8 Mega Evolution, then the Pokédex work (decision 21).
