@@ -20,6 +20,7 @@ Details are in [`docs/ProjectStatus.md`](docs/ProjectStatus.md).
 | [`docs/TechnicalDesign.md`](docs/TechnicalDesign.md) | Engine work: species expansion, Mega mechanic, items, trainer data, sprites |
 | [`docs/WildPokemon_Imperial.md`](docs/WildPokemon_Imperial.md) | Every encounter table (slot-exact), new species marked ★ |
 | [`docs/TrainerPokemon_Imperial.md`](docs/TrainerPokemon_Imperial.md) | Boss teams with Megas; E4 and Cynthia singles + doubles sets |
+| [`docs/BossFights_MegaPicks.md`](docs/BossFights_MegaPicks.md) | Big fights after Jupiter still needing a Mega pick |
 | [`docs/EliteFourFormat.md`](docs/EliteFourFormat.md) | The 2 singles + 2 doubles rule, rematch options, script design |
 | [`docs/MegaEvolution.md`](docs/MegaEvolution.md) | All 99 Mega/Primal forms, stone locations, vendors, animation spec |
 | [`docs/EvolutionChanges_Imperial.md`](docs/EvolutionChanges_Imperial.md) | New evolution methods for added species, new evolution items |

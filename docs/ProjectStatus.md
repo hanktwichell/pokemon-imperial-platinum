@@ -21,25 +21,26 @@ _Last updated: 2026-10-22_
 
 1. **No base ROM in the repository.** Renegade is distributed as xdelta patches that need a Pokémon Platinum (US) dump.
    ROMs can't be downloaded or provided here. A developer must supply their own (`tools/build/apply_renegade_patch.sh`).
-2. **Engine route not chosen** (binary hack vs. rebuilding on the pret/pokeplatinum decomp). See `TechnicalDesign.md`; we
-   recommend the decomp.
+2. **Engine:** the decomp route is chosen; setup has started (see `TechnicalDesign.md`).
 3. **Front sprites:** the supplied pack has back sprites only. **0/532** added species and **1/99** Megas have fronts.
    **185** added species and **55** Megas also lack backs. All are listed in `SpriteLog.md`.
 4. All engine work: species expansion, Mega battle mechanic and UI, new abilities, item table expansion, extended trainer
    data (EVs/natures), scripts and maps, encounter table entry, and play-testing.
 
-## Decisions needed from the project owner
+## Decisions
 
-1. **Engine route:** binary hack on the Renegade ROM, or rebuild on the decomp (recommended)?
-2. **Moves and abilities for added species:** remap them to the existing Gen IV + Renegade moves/abilities (cheap), or add
-   new Gen V–IX moves/abilities (each one is engine work)? Boss-critical Mega abilities (Magic Bounce, Parental Bond,
-   Strong Jaw, Tough Claws, Aura Guard) are planned either way.
-3. **QoL additions:** which of the proposals in `QualityOfLife.md` to approve.
-4. **Regional forms** (Alolan/Galarian/Hisuian/Paldean): out of scope for now; the sprite pack already has backs for many.
-   Add them later?
-5. **Early Aaron** (Route 208, Lv. 31–32): he comes after Jupiter, so he Mega Evolves Scizor under the "E4 members
-   henceforth" rule. Keep it, or hold his Mega until the League?
-6. **Save compatibility:** expanding the Pokédex means Renegade saves won't carry over. OK?
+Made (2026-10-22):
+1. **Engine route: rebuild on the pret/pokeplatinum decompilation.** Renegade's changes are re-implemented from its documentation.
+2. **Gen IX data everywhere:** current-generation moves, abilities (including Hidden Abilities), learnsets and base stats.
+3. **Early Aaron** (Route 208) keeps Mega Scizor. Every other big fight after the Eterna Jupiter battle also gets a Mega;
+   the list awaiting picks is in `BossFights_MegaPicks.md`.
+4. **Save format:** Imperial has its own save format (no Renegade save compatibility).
+
+Open:
+- Which Megas the fights in `BossFights_MegaPicks.md` use.
+- Which QoL proposals in `QualityOfLife.md` to approve.
+- Front sprites (the owner is sourcing them).
+- Regional forms (Alolan/Galarian/Hisuian/Paldean): out of scope for now.
 
 ## Roadmap
 
