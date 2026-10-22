@@ -1,0 +1,29 @@
+# Sovereign Platinum — Totem trials (owner, 2026-10-22: decision 18).
+#
+# The 11 Totem Pokémon (12 Totem forms; Mimikyu has Disguised and Busted) are optional one-time trials scattered
+# along the main story, all before the Elite Four. Never wild. Each Totem is fought once, with its stat-raising
+# Totem aura, and can be caught afterwards in its Totem form.
+#
+# STATUS: PROPOSAL, waiting for the owner's OK on locations and levels.
+#
+# level: just below the level cap of the next required fight (data/level_caps.yaml), so a trial is tough but legal.
+# after: the last required fight before the trial opens. before: the fight whose cap the level sits under.
+# aura: the stat boost the Totem gets at the start of the battle, as in its original trial (Sun/Moon or Ultra Sun/Ultra Moon).
+# why: why this place (a species' Sovereign wild location from data/encounters_sovereign.json, or a theme).
+
+trials:
+  - {totem: Gumshoos,          level: 18, location: Route 205 (South),         after: Leader Roark,             before: Commander Mars (Valley Windworks), aura: "+1 Defense",                           why: "Yungoos lives on Route 205 South"}
+  - {totem: Ribombee,          level: 22, location: Floaroma Meadow,           after: Commander Mars (Valley Windworks), before: Leader Gardenia,           aura: "+1 Speed",                             why: "Sinnoh's flower meadow"}
+  - {totem: Vikavolt,          level: 25, location: Eterna Forest,             after: Commander Mars (Valley Windworks), before: Leader Gardenia,           aura: "+1 Sp. Atk",                           why: "Grubbin lives in Eterna Forest"}
+  - {totem: Mimikyu,           level: 31, location: Old Chateau,               after: Commander Jupiter (Eterna), before: Leader Fantina,                  aura: "+1 to every stat",                     why: "a haunted house for the haunted-house Totem; both Disguised and Busted forms"}
+  - {totem: Marowak (Alolan),  level: 34, location: Lost Tower,                after: Leader Fantina,           before: Leader Maylene,                           aura: "+1 Defense",                           why: "the Fire/Ghost Marowak in Sinnoh's graveyard tower"}
+  - {totem: Raticate (Alolan), level: 37, location: Team Galactic Warehouse (Veilstone City), after: Leader Fantina, before: Leader Maylene,             aura: "+1 Defense",                           why: "a hoarding rat in Galactic's stolen-goods warehouse"}
+  - {totem: Lurantis,          level: 42, location: Great Marsh (Area 3/4),    after: Leader Maylene,           before: Leader Wake,                              aura: "+1 Attack",                            why: "Fomantis lives in Great Marsh Area 3/4"}
+  - {totem: Araquanid,         level: 45, location: Route 213 (Valor Lakefront beach), after: Leader Wake,       before: Galactic Boss Cyrus (Celestic),           aura: "+1 Sp. Def",                           why: "a water bug on the beach route"}
+  - {totem: Salazzle,          level: 48, location: Fuego Ironworks,           after: Galactic Boss Cyrus (Celestic), before: Rival Barry (Canalave City),       aura: "+1 Sp. Def",                           why: "the Fire/Poison Totem at Sinnoh's furnace (reached with Surf)"}
+  - {totem: Kommo-o,           level: 57, location: Mt. Coronet (route to Spear Pillar), after: Cyrus and Saturn (Galactic HQ), before: Mars and Jupiter (Spear Pillar), aura: "+1 to every stat", why: "Jangmo-o lives at Mt. Coronet's summit"}
+  - {totem: Togedemaru,        level: 60, location: Vista Lighthouse (Sunyshore City), after: Galactic Boss Cyrus (Distortion World), before: Leader Volkner, aura: "+1 Defense", why: "the Electric/Steel Totem in the Electric Gym city's lighthouse"}
+
+open:
+  - "Ally calling: in Alola a Totem calls helpers. Gen IV has no SOS battles; a trial could instead be a double battle (the Totem plus one ally), or a single battle. Single until the owner decides."
+  - "Wishiwashi had a Totem trial in Sun/Moon but has no Totem form of its own (its School Form is a normal form), so it isn't listed."
