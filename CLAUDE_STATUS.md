@@ -920,3 +920,28 @@ writes Cynthia's teams in the E9 format, set `"gender": "female"` on her Garchom
 **Files modified:** `docs/Story.md`, `docs/DeveloperBattle.md`, `CLAUDE_STATUS.md`.
 
 **Next 3 steps:** merge PR #19; 12b #3 (spread credit); 12b #8 (ally support moves).
+
+---
+
+## CA-0017 — 2026-10-22, 5:45 pm US Central (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:**
+- **Merged main into PR #19.** Main had Claude B's E7 part 2 and decision 24, and every conflict kept both sides.
+  #19 had a conflict, which is why its CI hadn't run.
+- **12b #3, spread credit.** New AI command `LoadOtherFoeDamagePercent` estimates a spread move's hit on the foe it
+  isn't scored against. `TagStrategy_CheckOtherFoe` in `script.s` scores that hit: +2 if it's a knockout, +1 if it
+  takes ≥25% of the foe's HP, −2 if the foe absorbs the type.
+  - It shares one damage estimate with `LoadPartnerDamagePercent` (`AI_SpreadDamagePercent`, `AI_MoveDealsDamage`).
+  - Verified in the test build: Heat Wave reads a KO on the other foe; with a Flash Fire Heatran (temporary test
+    party swap, reverted) it reads "absorbs"; single-target moves read "not hit".
+  - The partner check reads as before. ROM and test ROM build.
+
+**Files modified:** `decomp/src/battle/trainer_ai/trainer_ai.c`, `decomp/src/battle/trainer_ai/script.s`,
+`decomp/asm/macros/aicmd.inc`, `decomp/include/data/scripts/aicmd.h`, `decomp/include/constants/battle/trainer_ai.h`,
+`tools/test/log_ai_partner_damage.py` (`--other-foe`), `docs/AIReview.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Get PR #19 green and merge it. The full SHA is needed for `merge_pull_request`. Then reset the branch to main.
+2. 12b #8: check the Gen V+ ally-targeted support moves (target and score for each).
+3. Item 11 (exact effects, boss teams first). Then T1: Cynthia's teams in the E9 format, with her Garchomp
+   `"gender": "female"`, and a Lv. 100 Elite Four set for after the Sovereign battle.

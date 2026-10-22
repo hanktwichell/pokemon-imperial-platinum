@@ -635,6 +635,13 @@
     .long AICMD_LOADPARTNERDAMAGEPERCENT
     .endm
 
+    // Sovereign (12b): load how much of the other foe's current HP the current move would take when it also hits
+    // the foe it isn't scored against: a percentage (0 if immune, at most 100), AI_SPREAD_ABSORBED if the other foe
+    // absorbs the move's type, or AI_SPREAD_NOT_HIT if the move doesn't hit a second foe.
+    .macro LoadOtherFoeDamagePercent
+    .long AICMD_LOADOTHERFOEDAMAGEPERCENT
+    .endm
+
     .equ TABLE_END, 0xFFFFFFFF
 
     .macro TableEntry entry:req

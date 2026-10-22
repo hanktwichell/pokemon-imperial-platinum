@@ -178,6 +178,7 @@ static void AICmd_IfBattlerFainted(BattleSystem *battleSys, BattleContext *battl
 static void AICmd_IfBattlerNotFainted(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_LoadAbility(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_LoadPartnerDamagePercent(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_LoadOtherFoeDamagePercent(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static u8 TrainerAI_MainSingles(BattleSystem *battleSys, BattleContext *battleCtx);
 static u8 TrainerAI_MainDoubles(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -2681,29 +2682,9 @@ static BOOL AI_PartnerAbsorbsMoveType(BattleContext *battleCtx, int partner, int
     return FALSE;
 }
 
-/**
- * @brief Sovereign (12b): load how much of the attacker's partner's current HP the current move would take.
- *
- * Moves aimed at every adjacent Pokémon (Earthquake, Surf, Discharge, Explosion, Bulldoze...) also hit the user's
- * partner. This estimates that hit with the same damage calc the AI uses for its targets, at the highest roll.
- *
- * Loads 0 if the partner is unhurt (immune or absorbs it), otherwise the damage as a percentage of the partner's
- * current HP (at most 100), or AI_PARTNER_NOT_HIT if the move doesn't hit the partner at all: not a double battle,
- * no living partner, a move that doesn't hit every adjacent Pokémon, or a move that deals no direct damage.
- */
-static void AICmd_LoadPartnerDamagePercent(BattleSystem *battleSys, BattleContext *battleCtx)
+// Sovereign (12b): whether the current move deals direct damage the AI's damage calc can estimate.
+static BOOL AI_MoveDealsDamage(BattleContext *battleCtx)
 {
-    AIScript_Iter(battleCtx, 1);
-
-    int partner = AI_CONTEXT.attacker ^ 2;
-    AI_CONTEXT.calcTemp = AI_PARTNER_NOT_HIT;
-
-    if ((battleSys->battleType & BATTLE_TYPE_DOUBLES) == FALSE
-        || battleCtx->battleMons[partner].curHP == 0
-        || MOVE_DATA(AI_CONTEXT.move).range != RANGE_ALL_ADJACENT) {
-        return;
-    }
-
     int noCalcIdx;
     for (noCalcIdx = 0; sNoDamageCalcMoveEffects[noCalcIdx] != 0xFFFF; noCalcIdx++) {
         if (MOVE_DATA(AI_CONTEXT.move).effect == sNoDamageCalcMoveEffects[noCalcIdx]) {
@@ -2718,16 +2699,22 @@ static void AICmd_LoadPartnerDamagePercent(BattleSystem *battleSys, BattleContex
         }
     }
 
-    if (sAltPowerMoveEffects[altPowerIdx] == 0xFFFF
-        && (MOVE_DATA(AI_CONTEXT.move).power <= 1 || sNoDamageCalcMoveEffects[noCalcIdx] != 0xFFFF)) {
-        return;
-    }
+    return sAltPowerMoveEffects[altPowerIdx] != 0xFFFF
+        || (MOVE_DATA(AI_CONTEXT.move).power > 1 && sNoDamageCalcMoveEffects[noCalcIdx] == 0xFFFF);
+}
 
-    // The move's own type: TrainerAI_MoveType only covers variable-type moves, and none of those hit every adjacent
-    // Pokémon.
-    if (AI_PartnerAbsorbsMoveType(battleCtx, partner, MOVE_DATA(AI_CONTEXT.move).type)) {
-        AI_CONTEXT.calcTemp = 0;
-        return;
+/**
+ * @brief Sovereign (12b): estimate the current move's hit on a second Pokemon it also reaches (the attacker's partner
+ * or the other foe), with the same damage calc the AI uses for its target, at the highest roll.
+ *
+ * @return AI_SPREAD_ABSORBED if the Pokemon absorbs the move's type, otherwise the damage as a percentage of its
+ * current HP (0 if immune, at most 100)
+ */
+static u32 AI_SpreadDamagePercent(BattleSystem *battleSys, BattleContext *battleCtx, u8 battler)
+{
+    // The move's own type: TrainerAI_MoveType only covers variable-type moves, and none of those are spread moves.
+    if (AI_PartnerAbsorbsMoveType(battleCtx, battler, MOVE_DATA(AI_CONTEXT.move).type)) {
+        return AI_SPREAD_ABSORBED;
     }
 
     u8 ivs[STAT_MAX];
@@ -2735,9 +2722,9 @@ static void AICmd_LoadPartnerDamagePercent(BattleSystem *battleSys, BattleContex
         ivs[stat] = BattleMon_Get(battleCtx, AI_CONTEXT.attacker, BATTLEMON_HP_IV + stat, NULL);
     }
 
-    // TrainerAI_CalcDamage works on AI_CONTEXT.defender, so point it at the partner for this one estimate.
+    // TrainerAI_CalcDamage works on AI_CONTEXT.defender, so point it at this Pokemon for this one estimate.
     u8 defender = AI_CONTEXT.defender;
-    AI_CONTEXT.defender = partner;
+    AI_CONTEXT.defender = battler;
     u32 damage = TrainerAI_CalcDamage(battleSys,
         battleCtx,
         AI_CONTEXT.move,
@@ -2749,8 +2736,67 @@ static void AICmd_LoadPartnerDamagePercent(BattleSystem *battleSys, BattleContex
         100);
     AI_CONTEXT.defender = defender;
 
-    u32 percent = damage * 100 / battleCtx->battleMons[partner].curHP;
-    AI_CONTEXT.calcTemp = percent > 100 ? 100 : percent;
+    u32 percent = damage * 100 / battleCtx->battleMons[battler].curHP;
+    return percent > 100 ? 100 : percent;
+}
+
+/**
+ * @brief Sovereign (12b): load how much of the attacker's partner's current HP the current move would take.
+ *
+ * Moves aimed at every adjacent Pokemon (Earthquake, Surf, Discharge, Explosion, Bulldoze...) also hit the user's
+ * partner.
+ *
+ * Loads 0 if the partner is unhurt (immune or absorbs it), otherwise the damage as a percentage of the partner's
+ * current HP (at most 100), or AI_PARTNER_NOT_HIT if the move doesn't hit the partner at all: not a double battle,
+ * no living partner, a move that doesn't hit every adjacent Pokemon, or a move that deals no direct damage.
+ */
+static void AICmd_LoadPartnerDamagePercent(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    AIScript_Iter(battleCtx, 1);
+
+    int partner = AI_CONTEXT.attacker ^ 2;
+    AI_CONTEXT.calcTemp = AI_PARTNER_NOT_HIT;
+
+    if ((battleSys->battleType & BATTLE_TYPE_DOUBLES) == FALSE
+        || battleCtx->battleMons[partner].curHP == 0
+        || MOVE_DATA(AI_CONTEXT.move).range != RANGE_ALL_ADJACENT
+        || AI_MoveDealsDamage(battleCtx) == FALSE) {
+        return;
+    }
+
+    u32 percent = AI_SpreadDamagePercent(battleSys, battleCtx, partner);
+    AI_CONTEXT.calcTemp = percent == AI_SPREAD_ABSORBED ? 0 : percent;
+}
+
+/**
+ * @brief Sovereign (12b): load how much of the other foe's current HP the current move would take.
+ *
+ * In doubles the AI scores each move once per target, so a spread move (one aimed at both foes or at every adjacent
+ * Pokemon) is scored against one foe at a time and gets no credit for also hitting the other one. This loads that
+ * second hit so the script can add it.
+ *
+ * Loads AI_SPREAD_ABSORBED if the other foe absorbs the move's type (it heals or gets a boost), otherwise the damage
+ * as a percentage of its current HP (0 if immune, at most 100), or AI_SPREAD_NOT_HIT if the move doesn't hit a
+ * second foe: not a double battle, the target is the attacker's partner, no living second foe, a single-target
+ * move, or a move that deals no direct damage.
+ */
+static void AICmd_LoadOtherFoeDamagePercent(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    AIScript_Iter(battleCtx, 1);
+
+    int otherFoe = AI_CONTEXT.defender ^ 2;
+    u16 range = MOVE_DATA(AI_CONTEXT.move).range;
+    AI_CONTEXT.calcTemp = AI_SPREAD_NOT_HIT;
+
+    if ((battleSys->battleType & BATTLE_TYPE_DOUBLES) == FALSE
+        || AI_CONTEXT.defender == (AI_CONTEXT.attacker ^ 2)
+        || battleCtx->battleMons[otherFoe].curHP == 0
+        || (range != RANGE_ADJACENT_OPPONENTS && range != RANGE_ALL_ADJACENT)
+        || AI_MoveDealsDamage(battleCtx) == FALSE) {
+        return;
+    }
+
+    AI_CONTEXT.calcTemp = AI_SpreadDamagePercent(battleSys, battleCtx, otherFoe);
 }
 
 /**

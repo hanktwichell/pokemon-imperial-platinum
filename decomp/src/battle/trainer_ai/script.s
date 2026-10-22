@@ -6742,28 +6742,53 @@ TagStrategy_CheckSpecialScoring:
     // only those five moves, judged the partner by type alone (missing Steel and dual types, and its HP), and gave a
     // Pokemon without a partner -3 for Earthquake.
     LoadPartnerDamagePercent
-    IfLoadedEqualTo AI_PARTNER_NOT_HIT, TagStrategy_CheckSpecialScoringByMove
+    IfLoadedEqualTo AI_PARTNER_NOT_HIT, TagStrategy_CheckOtherFoe
     IfLoadedEqualTo 0, TagStrategy_PartnerUnhurt
     IfLoadedGreaterThan 99, TagStrategy_PartnerKnockedOut
     IfLoadedGreaterThan 49, TagStrategy_PartnerBadlyHurt
     IfLoadedGreaterThan 24, TagStrategy_PartnerHurt
     AddToMoveScore -1
-    GoTo TagStrategy_CheckSpecialScoringByMove
+    GoTo TagStrategy_CheckOtherFoe
 
 TagStrategy_PartnerUnhurt:
     AddToMoveScore 2
-    GoTo TagStrategy_CheckSpecialScoringByMove
+    GoTo TagStrategy_CheckOtherFoe
 
 TagStrategy_PartnerKnockedOut:
     AddToMoveScore -10
-    GoTo TagStrategy_CheckSpecialScoringByMove
+    GoTo TagStrategy_CheckOtherFoe
 
 TagStrategy_PartnerBadlyHurt:
     AddToMoveScore -5
-    GoTo TagStrategy_CheckSpecialScoringByMove
+    GoTo TagStrategy_CheckOtherFoe
 
 TagStrategy_PartnerHurt:
     AddToMoveScore -3
+
+TagStrategy_CheckOtherFoe:
+    // Sovereign (12b): each move is scored against one target at a time, so a spread move (aimed at both foes, or at
+    // every adjacent Pokemon) gets no credit for also hitting the other foe; its damage on the target already counts
+    // the doubles x0.75. Score that second hit:
+    //  - The other foe absorbs the move's type (heals or gets a boost), score -2
+    //  - It would knock the other foe out, score +2
+    //  - It would take at least a quarter of its HP, score +1
+    LoadOtherFoeDamagePercent
+    IfLoadedEqualTo AI_SPREAD_NOT_HIT, TagStrategy_CheckSpecialScoringByMove
+    IfLoadedEqualTo AI_SPREAD_ABSORBED, TagStrategy_OtherFoeAbsorbs
+    IfLoadedGreaterThan 99, TagStrategy_OtherFoeKnockedOut
+    IfLoadedGreaterThan 24, TagStrategy_OtherFoeHurt
+    GoTo TagStrategy_CheckSpecialScoringByMove
+
+TagStrategy_OtherFoeAbsorbs:
+    AddToMoveScore -2
+    GoTo TagStrategy_CheckSpecialScoringByMove
+
+TagStrategy_OtherFoeKnockedOut:
+    AddToMoveScore 2
+    GoTo TagStrategy_CheckSpecialScoringByMove
+
+TagStrategy_OtherFoeHurt:
+    AddToMoveScore 1
 
 TagStrategy_CheckSpecialScoringByMove:
     // Handle each of these moves with their own routine

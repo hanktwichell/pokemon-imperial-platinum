@@ -4,6 +4,16 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## 12b (part 2) — doubles AI: spread moves get credit for hitting both foes
+
+- Each move is scored against one target at a time, so a spread move (Heat Wave, Rock Slide, Earthquake…) got no
+  credit for also hitting the other foe. New AI command `LoadOtherFoeDamagePercent` estimates that second hit, and
+  `TagStrategy_CheckOtherFoe` scores it: knocks it out +2, a quarter of its HP or more +1, and −2 if the other foe
+  absorbs the move's type (Flash Fire, Water Absorb…).
+- `LoadPartnerDamagePercent` and the new command share one estimate (`AI_SpreadDamagePercent`, `AI_MoveDealsDamage`).
+- Verified in the test build with `log_ai_partner_damage.py --other-foe` (`docs/AIReview.md`). The partner check
+  (#1) reads as before.
+
 ## 12b (part 1) — doubles AI: moves that hit its own partner
 
 - In double battles, the AI now weighs every damaging move that also hits its partner (any move aimed at all
