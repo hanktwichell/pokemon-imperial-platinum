@@ -2987,7 +2987,8 @@ static s32 TrainerAI_CalcDamage(BattleSystem *battleSys, BattleContext *battleCt
         power = power * 40 / 63 + 30;
         type = (type * 15 / 63) + 1;
 
-        if (type >= TYPE_MYSTERY) {
+        // Hidden Power is never Fairy-type; skip over it.
+        if (type >= TYPE_FAIRY) {
             type++;
         }
         break;
@@ -3214,7 +3215,8 @@ static int TrainerAI_MoveType(BattleSystem *battleSys, BattleContext *battleCtx,
             | ((battleCtx->battleMons[battler].spDefenseIV & 1) << 5);
         result = (result * 15 / 63) + 1;
 
-        if (result >= TYPE_MYSTERY) {
+        // Hidden Power is never Fairy-type; skip over it.
+        if (result >= TYPE_FAIRY) {
             result++;
         }
         break;

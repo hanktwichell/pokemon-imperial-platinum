@@ -678,7 +678,6 @@ int PokedexGraphics_GetAnimIDfromType(int monType)
         animID = 11;
         break;
     case TYPE_GHOST:
-    case TYPE_MYSTERY:
         animID = 7;
         break;
     case TYPE_STEEL:
@@ -696,6 +695,7 @@ int PokedexGraphics_GetAnimIDfromType(int monType)
     case TYPE_ELECTRIC:
         animID = 4;
         break;
+    case TYPE_FAIRY:
     case TYPE_PSYCHIC:
         animID = 15;
         break;

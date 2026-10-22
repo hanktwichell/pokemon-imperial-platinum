@@ -2088,11 +2088,7 @@ static int TVSegment_LoadMessage_DiscoveringGroups(FieldSystem *fieldSystem, Str
 
     GF_ASSERT(validEntries == 0);
 
-    type = LCRNG_RandMod(NUM_POKEMON_TYPES - 1);
-
-    if (type >= TYPE_MYSTERY) {
-        type++;
-    }
+    type = LCRNG_RandMod(NUM_POKEMON_TYPES);
 
     StringTemplate_SetUnionGroupName(template, fieldSystem->saveData, entry, 0, 1);
     StringTemplate_SetUnionGroupName(template, fieldSystem->saveData, entry, 1, 0);

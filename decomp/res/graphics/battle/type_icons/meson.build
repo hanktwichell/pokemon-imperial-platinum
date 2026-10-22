@@ -24,7 +24,7 @@ battle_sprites += [
       'grass.png',
       'normal.png',
       'poison.png',
-      'mystery.png',
+      'fairy.png',
       'rock.png',
       'steel.png',
       'tough.png',
