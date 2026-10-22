@@ -1,10 +1,10 @@
-# Imperial Platinum — Evolution Changes (added species)
+# Sovereign Platinum — Evolution Changes (added species)
 
 > Generated from `data/evolution_changes.yaml` by `tools/design/gen_evolution_doc.py`.
 
-Renegade Platinum's own evolution changes (`RenegadePlatinumV130/Documentation/EvolutionChanges.txt`) are unchanged. This document covers only species added in Imperial Platinum whose official evolution method can't run on the Gen IV engine (trades, Gen V+ triggers, regional-form requirements, and so on). Every other added species evolves exactly as in its home game — see the `evolution_method` column of `data/species.csv`.
+Renegade Platinum's own evolution changes (`RenegadePlatinumV130/Documentation/EvolutionChanges.txt`) are unchanged. This document covers only species added in Sovereign Platinum whose official evolution method can't run on the Gen IV engine (trades, Gen V+ triggers, regional-form requirements, and so on). Every other added species evolves exactly as in its home game — see the `evolution_method` column of `data/species.csv`.
 
-| # | Species | Evolves from | Official method | Imperial method | Why |
+| # | Species | Evolves from | Official method | Sovereign method | Why |
 |---|---|---|---|---|---|
 | 526 | Gigalith | Boldore | Trade | **Level 36** | Trade evolution (Renegade precedent) |
 | 534 | Conkeldurr | Gurdurr | Trade | **Level 36** | Trade evolution (Renegade precedent) |
@@ -60,8 +60,8 @@ Renegade Platinum's own evolution changes (`RenegadePlatinumV130/Documentation/E
 | 1018 | Archaludon | Duraludon | Use Metal Alloy | **Use Metal Alloy** | New item |
 | 809 | Melmetal | Meltan | Meltan candies | **Not an evolution — Melmetal is given by its own post-game event** | No Meltan Candy / GO link |
 | 892 | Urshifu | Kubfu | Tower of darkness OR Tower of waters OR Use Scroll of Darkness OR Use Scroll of Waters | **Use Scroll of Darkness (Single Strike) / Scroll of Waters (Rapid Strike)** | Tower challenge replaced by the scrolls |
-| 791 | Solgaleo | Cosmoem | Level 53 | **Use Sun Stone** | Sun/Moon split by version; Imperial has one version |
-| 792 | Lunala | Cosmoem | Level 53 | **Use Moon Stone** | Sun/Moon split by version; Imperial has one version |
+| 791 | Solgaleo | Cosmoem | Level 53 | **Use Sun Stone** | Sun/Moon split by version; Sovereign has one version |
+| 792 | Lunala | Cosmoem | Level 53 | **Use Moon Stone** | Sun/Moon split by version; Sovereign has one version |
 
 ## New evolution items
 

@@ -146,7 +146,7 @@ BOOL ScrCmd_ShowBattleHallRecordMonSelectionMenu(ScriptContext *ctx)
         for (int i = 0; i < speciesListSize; i++) {
             u16 streak = BattleHallWinRecords_GetRecordForSpecies(fieldSystem->saveData, records, BattleFrontierStats_GetHallRecordStreakIndex(challengeType), speciesList[i]);
 
-            // Imperial: with 1025 species a letter group can hold more than the list's entries, so stop one short
+            // Sovereign: with 1025 species a letter group can hold more than the list's entries, so stop one short
             // (the last entry is Exit). Only species with a Battle Hall streak are listed, so this rarely matters.
             if (streak != 0 && selector->numOptions < MAX_LIST_ENTRIES - 1) {
                 BattleHallRecordSelector_AddOption(selector, speciesList[i], 0xff, speciesList[i]);

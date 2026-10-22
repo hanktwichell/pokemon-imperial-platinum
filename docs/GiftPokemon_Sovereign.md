@@ -1,4 +1,4 @@
-# Imperial Platinum — Gift Pokémon
+# Sovereign Platinum — Gift Pokémon
 
 Renegade Platinum's gifts are all unchanged (see `RenegadePlatinumV130/Documentation/SpecialEvents.txt`). That includes
 the Sinnoh starters, Twinleaf Eevee, the fossils, Porygon, Beldum, Lapras, the Jubilife School Egg, and the Kanto, Johto
@@ -6,7 +6,7 @@ and Hoenn starters from the Pokémon Center Interviewers.
 
 ## New: starters from the other regions
 
-Renegade gives each earlier region's starters through the **Interviewer** in a Pokémon Center. Imperial Platinum
+Renegade gives each earlier region's starters through the **Interviewer** in a Pokémon Center. Sovereign Platinum
 extends that pattern to Gen V–IX: same NPC, same quiz-and-battle event, same "talk again if your party fills up"
 behaviour. The starter lines are **not** wild encounters.
 

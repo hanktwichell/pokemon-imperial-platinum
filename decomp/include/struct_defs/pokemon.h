@@ -63,8 +63,8 @@ typedef struct PokemonDataBlockB {
     /* 0x18 */ u8 fatefulEncounter : 1;
                u8 gender : 2;
                u8 form : 5;
-    /* 0x19 */ u8 abilityHighBit : 1; //!< Imperial: bit 8 of the ability ID (Gen IX IDs go past 255); low byte is in block A.
-               u8 hasHiddenAbility : 1; //!< Imperial: uses its species' hidden ability (kept through evolution).
+    /* 0x19 */ u8 abilityHighBit : 1; //!< Sovereign: bit 8 of the ability ID (Gen IX IDs go past 255); low byte is in block A.
+               u8 hasHiddenAbility : 1; //!< Sovereign: uses its species' hidden ability (kept through evolution).
                u8 unused1 : 6; //!< HGSS used this byte for Shiny Leaves.
     /* 0x1A */ u16 unused2;
 

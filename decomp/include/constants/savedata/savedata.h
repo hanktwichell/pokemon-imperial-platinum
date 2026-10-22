@@ -36,7 +36,7 @@ enum SaveError {
 
 #define SECONDARY_FOOTER_SIZE 8
 
-// Imperial Platinum has its own save format, so it uses its own signature (vanilla: 0x20060623). A Platinum or
+// Sovereign Platinum has its own save format, so it uses its own signature (vanilla: 0x20060623). A Platinum or
 // Renegade Platinum save fails the check and loads as "no save data" instead of being misread.
 #define SECTOR_SIGNATURE 0x20261022
 

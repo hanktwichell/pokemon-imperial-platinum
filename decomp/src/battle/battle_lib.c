@@ -1257,7 +1257,7 @@ u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *batt
     if (battler1Ability == ABILITY_QUICK_FEET && (battleCtx->battleMons[battler1].status & MON_CONDITION_ANY)) {
         battler1Speed = battler1Speed * 15 / 10;
     } else if (battleCtx->battleMons[battler1].status & MON_CONDITION_PARALYSIS) {
-        battler1Speed /= 2; // Imperial: Gen VII+ / Champions (Gen IV: 1/4)
+        battler1Speed /= 2; // Sovereign: Gen VII+ / Champions (Gen IV: 1/4)
     }
 
     if (battler1Ability == ABILITY_SLOW_START
@@ -1323,7 +1323,7 @@ u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *batt
     if (battler2Ability == ABILITY_QUICK_FEET && (battleCtx->battleMons[battler2].status & MON_CONDITION_ANY)) {
         battler2Speed = battler2Speed * 15 / 10;
     } else if (battleCtx->battleMons[battler2].status & MON_CONDITION_PARALYSIS) {
-        battler2Speed /= 2; // Imperial: Gen VII+ / Champions (Gen IV: 1/4)
+        battler2Speed /= 2; // Sovereign: Gen VII+ / Champions (Gen IV: 1/4)
     }
 
     if (battler2Ability == ABILITY_SLOW_START
@@ -2304,7 +2304,7 @@ int BattleSystem_CheckInvalidMoves(BattleSystem *battleSys, BattleContext *battl
             invalidMoves |= FlagIndex(i);
         }
 
-        // Imperial (Pokémon Champions): first-turn-only moves can't even be selected after the user's first turn.
+        // Sovereign (Pokémon Champions): first-turn-only moves can't even be selected after the user's first turn.
         if (MOVE_DATA(battleCtx->battleMons[battler].moves[i]).effect == BATTLE_EFFECT_ALWAYS_FLINCH_FIRST_TURN_ONLY
             && battleCtx->battleMons[battler].moveEffectsData.fakeOutTurnNumber != battleCtx->totalTurns
             && (opMask & CHECK_INVALID_FIRST_TURN)) {
@@ -3769,7 +3769,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                     case ABILITY_DRIZZLE:
                         battleCtx->battleMons[battler].weatherAbilityAnnounced = TRUE;
 
-                        if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_RAINING) == FALSE) { // Imperial: fails in the same weather (Gen VI+)
+                        if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_RAINING) == FALSE) { // Sovereign: fails in the same weather (Gen VI+)
                             subscript = subscript_drizzle;
                             result = SWITCH_IN_CHECK_RESULT_BREAK;
                         }
@@ -3778,7 +3778,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                     case ABILITY_SAND_STREAM:
                         battleCtx->battleMons[battler].weatherAbilityAnnounced = TRUE;
 
-                        if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_SANDSTORM) == FALSE) { // Imperial: fails in the same weather (Gen VI+)
+                        if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_SANDSTORM) == FALSE) { // Sovereign: fails in the same weather (Gen VI+)
                             subscript = subscript_sand_stream;
                             result = SWITCH_IN_CHECK_RESULT_BREAK;
                         }
@@ -3787,7 +3787,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                     case ABILITY_DROUGHT:
                         battleCtx->battleMons[battler].weatherAbilityAnnounced = TRUE;
 
-                        if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_SUNNY) == FALSE) { // Imperial: fails in the same weather (Gen VI+)
+                        if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_SUNNY) == FALSE) { // Sovereign: fails in the same weather (Gen VI+)
                             subscript = subscript_drought;
                             result = SWITCH_IN_CHECK_RESULT_BREAK;
                         }
@@ -3796,7 +3796,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                     case ABILITY_SNOW_WARNING:
                         battleCtx->battleMons[battler].weatherAbilityAnnounced = TRUE;
 
-                        if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_HAILING) == FALSE) { // Imperial: fails in the same weather (Gen VI+)
+                        if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_HAILING) == FALSE) { // Sovereign: fails in the same weather (Gen VI+)
                             subscript = subscript_snow_warning;
                             result = SWITCH_IN_CHECK_RESULT_BREAK;
                         }
@@ -6951,7 +6951,7 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
             spDefenseStat = spDefenseStat * 15 / 10;
         }
 
-        // Imperial: Snow (Gen IX / Pokémon Champions) boosts Ice types' Defense by 50%.
+        // Sovereign: Snow (Gen IX / Pokémon Champions) boosts Ice types' Defense by 50%.
         if ((fieldConditions & FIELD_CONDITION_HAILING)
             && (defenderParams.type1 == TYPE_ICE || defenderParams.type2 == TYPE_ICE)) {
             defenseStat = defenseStat * 15 / 10;
@@ -7123,7 +7123,7 @@ int BattleSystem_CalcDamageVariance(BattleSystem *battleSys, BattleContext *batt
 }
 
 // each value here is implicitly 1 / N
-// Imperial: Gen VII+ / Pokémon Champions odds (Gen IV was 1/16, 1/8, 1/4, 1/3, 1/2).
+// Sovereign: Gen VII+ / Pokémon Champions odds (Gen IV was 1/16, 1/8, 1/4, 1/3, 1/2).
 static const u8 sCriticalStageRates[] = {
     24, // neutral
     8, // +1
@@ -7177,7 +7177,7 @@ int BattleSystem_CalcCriticalMulti(BattleSystem *battleSys, BattleContext *battl
 
 int BattleSystem_ApplyCriticalMul(int damage, int criticalMul)
 {
-    // Imperial: Gen VI+ / Pokémon Champions multipliers, x1.5 (x2.25 with Sniper) instead of Gen IV's x2 (x3).
+    // Sovereign: Gen VI+ / Pokémon Champions multipliers, x1.5 (x2.25 with Sniper) instead of Gen IV's x2 (x3).
     // criticalMul keeps Gen IV's values (1 = no crit, 2 = crit, 3 = Sniper crit) for the code that checks them.
     switch (criticalMul) {
     case 2:
@@ -7238,7 +7238,7 @@ BOOL Move_CanBeMetronomed(BattleSystem *battleSys, BattleContext *battleCtx, int
 {
     int i = 0;
 
-    // Imperial: empty move slots (the official numbers of Z-Moves and Max Moves, which aren't in the game) have 0 PP.
+    // Sovereign: empty move slots (the official numbers of Z-Moves and Max Moves, which aren't in the game) have 0 PP.
     if (MOVE_DATA(move).pp == 0) {
         return FALSE;
     }

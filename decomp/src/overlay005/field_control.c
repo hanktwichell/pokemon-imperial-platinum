@@ -39,7 +39,7 @@
 #include "field_map_change.h"
 #include "field_overworld_state.h"
 #include "game_records.h"
-#include "imperial_field_moves.h"
+#include "sovereign_field_moves.h"
 #include "inlines.h"
 #include "item_use_functions.h"
 #include "location.h"
@@ -58,7 +58,7 @@
 #include "sound_playback.h"
 #include "start_menu.h"
 
-#ifdef IMPERIAL_TEST
+#ifdef SOVEREIGN_TEST
 #include "generated/species.h"
 #include "generated/trainers.h"
 
@@ -180,19 +180,19 @@ void FieldInput_Update(FieldInput *input, FieldSystem *fieldSystem, u16 pressedK
     input->playerDir = PlayerAvatar_CalcFaceDirection(fieldSystem->playerAvatar, pressedKeys, heldKeys);
 }
 
-#ifdef IMPERIAL_TEST
-static int sImperialTestBattleResult;
+#ifdef SOVEREIGN_TEST
+static int sSovereignTestBattleResult;
 
-// Test build only (meson -Dimperial_test=true): a wild battle (Chansey Lv. 30) or, with env != NULL, a trainer battle.
-static BOOL ImperialTest_BattleTask(FieldTask *task)
+// Test build only (meson -Dsovereign_test=true): a wild battle (Chansey Lv. 30) or, with env != NULL, a trainer battle.
+static BOOL SovereignTest_BattleTask(FieldTask *task)
 {
     int *state = FieldTask_GetState(task);
 
     if (*state == 0) {
         if (FieldTask_GetEnv(task) != NULL) {
-            Encounter_NewVsTrainer(task, TRAINER_RIVAL_ROUTE_209_TURTWIG, TRAINER_NONE, TRAINER_NONE, HEAP_ID_FIELD2, &sImperialTestBattleResult);
+            Encounter_NewVsTrainer(task, TRAINER_RIVAL_ROUTE_209_TURTWIG, TRAINER_NONE, TRAINER_NONE, HEAP_ID_FIELD2, &sSovereignTestBattleResult);
         } else {
-            Encounter_NewVsSpeciesAtLevel(task, SPECIES_CHANSEY, 30, &sImperialTestBattleResult, FALSE);
+            Encounter_NewVsSpeciesAtLevel(task, SPECIES_CHANSEY, 30, &sSovereignTestBattleResult, FALSE);
         }
 
         (*state)++;
@@ -243,7 +243,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
             playerEvent |= PLAYER_EVENT_USED_STRENGTH;
         }
 
-        if (Imperial_FieldMovePartySlot(fieldSystem->saveData, MOVE_WATERFALL) != PARTY_SLOT_NONE) { // Imperial: HM in the bag is enough
+        if (Sovereign_FieldMovePartySlot(fieldSystem->saveData, MOVE_WATERFALL) != PARTY_SLOT_NONE) { // Sovereign: HM in the bag is enough
             playerEvent |= PLAYER_EVENT_USED_WATERFALL;
         }
 
@@ -366,18 +366,18 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
         return TRUE;
     }
 
-#ifdef IMPERIAL_TEST
+#ifdef SOVEREIGN_TEST
     // Test build only: SELECT starts a wild battle, SELECT+R a trainer battle, SELECT+L breeds and hatches an egg.
     if ((input->pressedKeys & PAD_BUTTON_SELECT) && input->menu == FALSE) {
         int moveState = PlayerAvatar_GetPlayerMoveState(fieldSystem->playerAvatar);
 
         if ((input->heldKeys & PAD_BUTTON_L) && (moveState == PLAYER_MOVE_STATE_END || moveState == PLAYER_MOVE_STATE_NONE)) {
-            ImperialTest_BreedAndHatch(fieldSystem);
+            SovereignTest_BreedAndHatch(fieldSystem);
             return FALSE;
         }
 
         if (moveState == PLAYER_MOVE_STATE_END || moveState == PLAYER_MOVE_STATE_NONE) {
-            FieldSystem_CreateTask(fieldSystem, ImperialTest_BattleTask, (input->heldKeys & PAD_BUTTON_R) ? (void *)1 : NULL);
+            FieldSystem_CreateTask(fieldSystem, SovereignTest_BattleTask, (input->heldKeys & PAD_BUTTON_R) ? (void *)1 : NULL);
             return TRUE;
         }
     }
@@ -737,7 +737,7 @@ u16 Field_TileBehaviorToScript(FieldSystem *fieldSystem, u8 behavior)
         u32 distortionBehavior = PlayerAvatar_GetDistortionCurrTileBehaviour(fieldSystem->playerAvatar);
 
         if (PlayerAvatar_CanUseSurf(fieldSystem->playerAvatar, distortionBehavior, behavior) && TrainerInfo_HasBadge(info, 3)) {
-            if (Imperial_FieldMovePartySlot(fieldSystem->saveData, MOVE_SURF) != PARTY_SLOT_NONE) { // Imperial: HM in the bag is enough
+            if (Sovereign_FieldMovePartySlot(fieldSystem->saveData, MOVE_SURF) != PARTY_SLOT_NONE) { // Sovereign: HM in the bag is enough
                 return SCRIPT_ID(FIELD_MOVES, 4);
             }
         }

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render docs/EvolutionChanges_Imperial.md from data/evolution_changes.yaml and data/species.csv.
+"""Render docs/EvolutionChanges_Sovereign.md from data/evolution_changes.yaml and data/species.csv.
 
 Fails if any added species flagged gen4_engine_compatible=0 has no entry.
 Usage: python3 tools/design/gen_evolution_doc.py
@@ -23,13 +23,13 @@ def main():
     missing = [n for n in need if n not in covered]
     unknown = [e["species"] for e in entries if e["species"] not in by]
 
-    L = ["# Imperial Platinum — Evolution Changes (added species)\n",
+    L = ["# Sovereign Platinum — Evolution Changes (added species)\n",
          "> Generated from `data/evolution_changes.yaml` by `tools/design/gen_evolution_doc.py`.\n",
          "Renegade Platinum's own evolution changes (`RenegadePlatinumV130/Documentation/EvolutionChanges.txt`) are unchanged. "
-         "This document covers only species added in Imperial Platinum whose official evolution method can't run on the "
+         "This document covers only species added in Sovereign Platinum whose official evolution method can't run on the "
          "Gen IV engine (trades, Gen V+ triggers, regional-form requirements, and so on). Every other added species evolves "
          "exactly as in its home game — see the `evolution_method` column of `data/species.csv`.\n",
-         "| # | Species | Evolves from | Official method | Imperial method | Why |",
+         "| # | Species | Evolves from | Official method | Sovereign method | Why |",
          "|---|---|---|---|---|---|"]
     items = {}
     for e in entries:
@@ -47,7 +47,7 @@ def main():
     for it, where in items.items():
         L.append(f"| {it} | {where} |")
     L.append("")
-    with open(os.path.join(ROOT, "docs", "EvolutionChanges_Imperial.md"), "w", encoding="utf-8") as f:
+    with open(os.path.join(ROOT, "docs", "EvolutionChanges_Sovereign.md"), "w", encoding="utf-8") as f:
         f.write("\n".join(L))
     for n in missing:
         print("MISSING", n)

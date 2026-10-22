@@ -1,4 +1,4 @@
-# Imperial Platinum — Item Changes
+# Sovereign Platinum — Item Changes
 
 Renegade Platinum's item changes and item locations are unchanged unless listed here
 (`RenegadePlatinumV130/Documentation/ItemChanges.txt`).
@@ -16,7 +16,7 @@ Renegade Platinum's item changes and item locations are unchanged unless listed 
 
 - **95 Mega Stones and Primal orbs**: full list, field locations and vendors in `MegaEvolution.md`.
 - **16 evolution items** (Tart/Sweet/Syrupy Apple, Cracked Pot, Unremarkable Teacup, Sachet, Whipped Dream, Strawberry
-  Sweet, Black Augurite, Peat Block, Leader's Crest, Auspicious/Malicious Armor, Metal Alloy, Scrolls): `EvolutionChanges_Imperial.md`.
+  Sweet, Black Augurite, Peat Block, Leader's Crest, Auspicious/Malicious Armor, Metal Alloy, Scrolls): `EvolutionChanges_Sovereign.md`.
 
 ## Field items replaced
 

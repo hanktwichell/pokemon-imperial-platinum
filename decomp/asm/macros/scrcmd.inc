@@ -4995,19 +4995,19 @@
     .byte \floor
     .endm
 
-    // Imperial: destVarID is set to the Repel item the player used last (ITEM_NONE if none)
+    // Sovereign: destVarID is set to the Repel item the player used last (ITEM_NONE if none)
     .macro GetLastRepel destVarID
     .short SCRCMD_GETLASTREPEL
     .short \destVarID
     .endm
 
-    // Imperial: starts the given Repel's effect (does not take the item from the bag)
+    // Sovereign: starts the given Repel's effect (does not take the item from the bag)
     .macro UseRepel item
     .short SCRCMD_USEREPEL
     .short \item
     .endm
 
-    // Imperial: like FindPartySlotWithMove, but if no Pokémon knows the move and the bag has its HM, the first
+    // Sovereign: like FindPartySlotWithMove, but if no Pokémon knows the move and the bag has its HM, the first
     // non-Egg party slot is used (HM field moves without HM slaves). MAX_PARTY_SIZE if neither.
     .macro FindPartySlotForFieldMove destVarID, move
     .short SCRCMD_FINDPARTYSLOTFORFIELDMOVE

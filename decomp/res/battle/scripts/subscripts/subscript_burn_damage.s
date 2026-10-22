@@ -4,7 +4,7 @@
 _000:
     CheckAbility CHECK_HAVE, BTLSCR_MSG_TEMP, ABILITY_MAGIC_GUARD, _041
     UpdateMonDataFromVar OPCODE_GET, BTLSCR_MSG_TEMP, BATTLEMON_MAX_HP, BTLVAR_HP_CALC_TEMP
-    // Imperial: Gen VII+ / Champions burn damage, 1/16 of max HP (Gen IV: 1/8).
+    // Sovereign: Gen VII+ / Champions burn damage, 1/16 of max HP (Gen IV: 1/8).
     DivideVarByValue BTLVAR_HP_CALC_TEMP, 16
     CheckAbility CHECK_NOT_HAVE, BTLSCR_MSG_TEMP, ABILITY_HEATPROOF, _020
     DivideVarByValue BTLVAR_HP_CALC_TEMP, 2

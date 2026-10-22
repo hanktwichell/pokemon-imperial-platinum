@@ -44,7 +44,7 @@
 #include "char_transfer.h"
 #include "dexmode_checker.h"
 #include "flags.h"
-#include "imperial_options.h"
+#include "sovereign_options.h"
 #include "level_cap.h"
 #include "heap.h"
 #include "item.h"
@@ -2218,8 +2218,8 @@ static BOOL BtlCmd_CalcExpGain(BattleSystem *battleSys, BattleContext *battleCtx
         u16 exp = SpeciesData_GetSpeciesValue(battleCtx->battleMons[battleCtx->faintedMon].species, SPECIES_DATA_BASE_EXP_REWARD);
         exp = (exp * battleCtx->battleMons[battleCtx->faintedMon].level) / 7;
 
-        if (ImperialOptions_PartyExpShareEnabled(SaveData_GetImperialOptions(SaveData_Ptr()))) {
-            // Imperial party Exp. Share (Gen VI+): participants get the full amount, everyone else half.
+        if (SovereignOptions_PartyExpShareEnabled(SaveData_GetSovereignOptions(SaveData_Ptr()))) {
+            // Sovereign party Exp. Share (Gen VI+): participants get the full amount, everyone else half.
             battleCtx->gainedExp = exp ? exp : 1;
             battleCtx->sharedExp = exp / 2 ? exp / 2 : 1;
         } else if (totalMonsWithExpShare) {
@@ -2648,7 +2648,7 @@ static BOOL BtlCmd_SetMultiHit(BattleSystem *battleSys, BattleContext *battleCtx
             if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_SKILL_LINK) {
                 hits = 5;
             } else {
-                // Imperial: Gen V+ / Champions odds, 35% 2 hits, 35% 3, 15% 4, 15% 5
+                // Sovereign: Gen V+ / Champions odds, 35% 2 hits, 35% 3, 15% 4, 15% 5
                 // (Gen IV: 37.5 / 37.5 / 12.5 / 12.5).
                 int roll = BattleSystem_RandNext(battleSys) % 100;
                 if (roll < 35) {
@@ -5122,7 +5122,7 @@ static BOOL BtlCmd_TryStealItem(BattleSystem *battleSys, BattleContext *battleCt
     return FALSE;
 }
 
-// Imperial: Gen VI+ / Champions, each consecutive use is 1/3 as likely (Gen IV: 1/2).
+// Sovereign: Gen VI+ / Champions, each consecutive use is 1/3 as likely (Gen IV: 1/2).
 static const u16 sProtectSuccessRate[] = {
     0xFFFF, // 100.0%
     0x5555, // ~33.3%
@@ -5601,7 +5601,7 @@ static BOOL BtlCmd_EndOfTurnWeatherEffect(BattleSystem *battleSys, BattleContext
                     battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP, 16);
                 }
             }
-            // Imperial: Snow (Gen IX / Pokémon Champions) replaces Hail, so it does no chip damage.
+            // Sovereign: Snow (Gen IX / Pokémon Champions) replaces Hail, so it does no chip damage.
         }
 
         if (WEATHER_IS_RAIN) {
@@ -9697,7 +9697,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
     expBattler = 0;
 
     // Figure out which mon we're working on
-    BOOL partyExpShare = ImperialOptions_PartyExpShareEnabled(SaveData_GetImperialOptions(SaveData_Ptr()));
+    BOOL partyExpShare = SovereignOptions_PartyExpShareEnabled(SaveData_GetSovereignOptions(SaveData_Ptr()));
     u8 levelCap = LevelCap_Get(SaveData_Ptr());
 
     for (slot = data->tmpData[GET_EXP_PARTY_SLOT]; slot < BattleSystem_GetPartyCount(data->battleSys, expBattler); slot++) {
@@ -9779,7 +9779,7 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
             u32 newExp = Pokemon_GetValue(mon, MON_DATA_EXPERIENCE, NULL);
             data->tmpData[GET_EXP_NEW_EXP] = newExp - Pokemon_GetCurrentLevelBaseExp(mon);
 
-            // Imperial level cap: no EXP beyond the cap level (EVs are still gained below).
+            // Sovereign level cap: no EXP beyond the cap level (EVs are still gained below).
             u32 capExp = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), levelCap);
             if (newExp >= capExp) {
                 totalExp = 0;

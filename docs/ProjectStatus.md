@@ -1,9 +1,9 @@
-# Imperial Platinum — Progress Report
+# Sovereign Platinum — Progress Report
 
 _Last updated: 2026-10-22_
 
 **Where we are:** the design phase is finished and engine work has started on the pret/pokeplatinum decompilation.
-The ROM builds in CI on every PR. Merged so far: Fairy type, the Options additions, the Imperial save format/identity,
+The ROM builds in CI on every PR. Merged so far: Fairy type, the Options additions, the Sovereign save format/identity,
 the test build and the whole Gen IX data pass (all 919 moves, all 314 abilities with Hidden Abilities, Gen IX stats,
 types and learnsets for #1–493). In progress: the remaining QoL features (E14; the Repel prompt is done) and the
 Pokémon Champions battle rules (10b; core rules built). Next: the species expansion (E6).
@@ -20,8 +20,8 @@ and T2 only. See `EngineRoadmap.md` for the per-milestone breakdown.
 | E0 | Decomp imported; build reproduces the retail ROM; CI builds every PR | ✅ done |
 | E0b | Fairy type + Gen VI+ type chart | ✅ done (checked against the official chart) |
 | E13 | Options: level cap, Infinite Rare Candy, party Exp. Share, music volume | ✅ done (PR #5); verified in battle with the test build |
-| E1 | Own save signature, ROM title/banner "Pokémon Imperial Platinum" | ✅ done (PR #7) |
-| E14 | Approved QoL | 🟡 4 of 9 done (IV/EV viewer, Repel prompt, HM-free field moves, Gen VI+ breeding; all tested in-game). The type-effectiveness indicator needs an owner decision on its design. Mints, Infinite Repel and Ability Capsule wait for E7/E4 |
+| E1 | Own save signature, ROM title/banner "Pokémon Sovereign Platinum" | ✅ done (PR #7) |
+| E14 | Approved QoL | 🟡 4 of 8 done (IV/EV viewer, Repel prompt, HM-free field moves, Gen VI+ breeding; all tested in-game). The type-effectiveness indicator is shelved by the owner. Mints, Infinite Repel and Ability Capsule wait for E7/E4 |
 | — | Test build (`tools/test/build_test_rom.sh`): test party at new game, SELECT = wild battle, SELECT+R = trainer battle | ✅ working |
 | E3 | All 919 moves, ID = official number; 93 new moves exact, 76 approximate, 211 placeholder (`MoveChecklist.md`) | ✅ done (PR #9); tested in battle |
 | E5 | Gen IX stats, types and learnsets for #1–493 and forms; 32-bit learnset entries | ✅ done (PR #9); tested in battle |
@@ -31,23 +31,23 @@ and T2 only. See `EngineRoadmap.md` for the per-milestone breakdown.
 | E7 | Items (Mega Stones, new held/evolution items) | not started |
 | E8 | Mega Evolution / Primal Reversion | not started |
 | E9 | Extended trainer data (natures, EVs, abilities, forms) | not started |
-| E10 / E11 | Renegade port; Imperial content (encounters, E4 format, gifts, post-game) | not started |
+| E10 / E11 | Renegade port; Sovereign content (encounters, E4 format, gifts, post-game) | not started |
 | E12 | Graphics (convert sprites, icons) | waiting on the owner's front sprites |
 | T1 | Boss team compositions with the owner's Mega picks; revise all boss teams | deferred by the owner until the engine features are done |
-| T2 | Developer final battle (Red-style double battle) | waiting on the owner's team, text and sprites |
+| T2 | Developer final battle (Red-style double battle) | team received (`DeveloperBattle.md`); waiting on trainer text, sprites and level |
 
 ## Design work (done)
 
 | Area | Result | Where |
 |---|---|---|
 | Species data | All 1025 species, 532 to add | `data/species.csv` |
-| Wild encounters | 389 added species catchable directly, 8 by evolving, 45 starter-line gifts; no Renegade species lost | `docs/WildPokemon_Imperial.md` |
-| Starters | Gen V–IX starters from Pokémon Center Interviewers | `docs/GiftPokemon_Imperial.md` |
+| Wild encounters | 389 added species catchable directly, 8 by evolving, 45 starter-line gifts; no Renegade species lost | `docs/WildPokemon_Sovereign.md` |
+| Starters | Gen V–IX starters from Pokémon Center Interviewers | `docs/GiftPokemon_Sovereign.md` |
 | Mega Evolution | 99 forms, field stones, vendors, Mega Ring from Fantina, animation spec | `docs/MegaEvolution.md` |
-| Boss Megas | Owner's picks for every big fight after Jupiter, including Barry (Mega Staraptor); Lucas uses Dawn's teams | `docs/BossFights_MegaPicks.md`, `docs/TrainerPokemon_Imperial.md` |
+| Boss Megas | Owner's picks for every big fight after Jupiter, including Barry (Mega Staraptor); Lucas uses Dawn's teams | `docs/BossFights_MegaPicks.md`, `docs/TrainerPokemon_Sovereign.md` |
 | Level caps | 21 steps from Roark to the Cynthia rematch | `data/level_caps.yaml` |
 | Elite Four format | 2 singles + 2 doubles, rematch options | `docs/EliteFourFormat.md` |
-| Evolutions | Gen IV-compatible methods for added species; 16 new evolution items | `docs/EvolutionChanges_Imperial.md` |
+| Evolutions | Gen IV-compatible methods for added species; 16 new evolution items | `docs/EvolutionChanges_Sovereign.md` |
 | Post-game legendaries | 90 species in five chapters | `docs/PostgameLegendaries.md` |
 | Sprites | Fronts and backs for all 532 added species (owner packs); placeholder icons from PokeAPI | `docs/SpriteChecklist.xlsx` |
 | Cries | 493 in the game; 532 needed, all with a source in PokeAPI's cry archive | `docs/CryChecklist.xlsx` |
@@ -56,7 +56,7 @@ and T2 only. See `EngineRoadmap.md` for the per-milestone breakdown.
 ## Decisions
 
 Made by the owner (2026-10-22):
-1. Rebuild on the pret/pokeplatinum decomp; Imperial has its own save format.
+1. Rebuild on the pret/pokeplatinum decomp; Sovereign has its own save format.
 2. Gen IX moves, abilities (with Hidden Abilities), learnsets and base stats everywhere.
 3. Every big fight after the Eterna Jupiter battle has a Mega, with these exceptions: Saturn on Route 212, Ace Trainer
    Gene, and the Battleground's Gardenia, Cheryl and Buck. Lucas uses Dawn's teams.
@@ -66,9 +66,15 @@ Made by the owner (2026-10-22):
 7. Boss team compositions wait until the engine features are done (T1).
 8. A Red-style developer final battle will be added (T2). It gets a custom AI; the trainer AI is also reviewed for double battles (12b).
 9. No Z-Moves, Max Moves, Dynamax or Gigantamax.
+10. Battles keep main-series PP and PP Ups instead of Champions' fixed PP (2026-10-22).
+11. The type-effectiveness indicator is shelved (2026-10-22).
+12. The developer battle team: Mega Charizard Y, Venusaur, Tyranitar, shiny Garchomp, Primal Kyogre and shiny
+    Archaludon (`DeveloperBattle.md`).
+13. The project is renamed **Pokémon Sovereign Platinum** (was Imperial Platinum). The developer battle is against
+    **Sovereign Dev Twich** (2026-10-22).
 
 Open:
-- The developer battle: team, trainer text, sprites, location (suggested: Mt. Coronet summit after the post-game).
+- The developer battle: Lv. 100 at Spear Pillar, leads Charizard-Y + Venusaur, custom weather-control AI (`DeveloperBattle.md`). Opponent: Sovereign Dev Twich. Open: text, sprites (owner's sprite coming soon), Charizard's final moveset.
 - Front sprites and the part 2 shiny pack (owner is sourcing them).
 - Regional forms (Alolan/Galarian/Hisuian/Paldean): out of scope for now.
 - hg-engine and Smogon credit lists: Claude compiles them (owner, 2026-10-22).

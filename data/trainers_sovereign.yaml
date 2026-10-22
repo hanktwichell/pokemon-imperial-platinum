@@ -1,6 +1,6 @@
-# Imperial Platinum — boss trainer teams (source of truth).
+# Sovereign Platinum — boss trainer teams (source of truth).
 #
-# Rendered to docs/TrainerPokemon_Imperial.md and validated by
+# Rendered to docs/TrainerPokemon_Sovereign.md and validated by
 #   python3 tools/design/gen_trainer_docs.py --pokeapi /path/to/pokeapi/data/v2/csv
 #
 # Only trainers that differ from Renegade Platinum v1.3.0 are listed. Every other trainer keeps
@@ -1180,7 +1180,7 @@ story:
       moves: [Hydro Pump, Flash Cannon, Grass Knot, Blizzard]
       evs: 252/0/0/252/4/0
 
-# Pokémon League. Renegade picked one of four random teams per member; Imperial uses one fixed,
+# Pokémon League. Renegade picked one of four random teams per member; Sovereign uses one fixed,
 # optimised team per member per format. Round 1 = first challenge, Round 2 = rematches.
 league:
   - trainer: Elite Four Aaron

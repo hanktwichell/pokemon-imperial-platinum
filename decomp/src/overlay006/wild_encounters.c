@@ -75,7 +75,7 @@ typedef struct WildEncounters_FieldParams {
     BOOL ignoreAbilityBlock; // skips the check for Intimidate/Keen Eye blocking low level encounters
     u8 firstBattlerLevel;
     u8 isFirstMonEgg;
-    u16 firstMonAbility; // Imperial: u16
+    u16 firstMonAbility; // Sovereign: u16
     u8 encounterRatesForms[2]; // from encounterData. Only used for Shellos/Gastrodon
     u8 unownTableID;
 } WildEncounters_FieldParams;

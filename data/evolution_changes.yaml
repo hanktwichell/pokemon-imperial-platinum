@@ -1,5 +1,5 @@
-# Imperial Platinum — evolution methods for ADDED species that the Gen IV engine can't run as-is.
-# Rendered to docs/EvolutionChanges_Imperial.md by tools/design/gen_evolution_doc.py, which checks
+# Sovereign Platinum — evolution methods for ADDED species that the Gen IV engine can't run as-is.
+# Rendered to docs/EvolutionChanges_Sovereign.md by tools/design/gen_evolution_doc.py, which checks
 # that every species flagged gen4_engine_compatible=0 in data/species.csv is covered.
 #
 # Gen IV evolution methods available (Platinum): level, friendship (any/day/night), stone/item use,
@@ -68,5 +68,5 @@ changes:
 
 # Legendary evolutions that need a decision even though PokeAPI lists them as plain levels.
 extra:
-  - {species: Solgaleo, from: Cosmoem, method: Use Sun Stone, why: "Sun/Moon split by version; Imperial has one version"}
-  - {species: Lunala,   from: Cosmoem, method: Use Moon Stone, why: "Sun/Moon split by version; Imperial has one version"}
+  - {species: Solgaleo, from: Cosmoem, method: Use Sun Stone, why: "Sun/Moon split by version; Sovereign has one version"}
+  - {species: Lunala,   from: Cosmoem, method: Use Moon Stone, why: "Sun/Moon split by version; Sovereign has one version"}

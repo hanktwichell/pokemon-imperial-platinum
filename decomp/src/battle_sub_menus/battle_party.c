@@ -22,7 +22,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
-#include "imperial_field_moves.h"
+#include "sovereign_field_moves.h"
 #include "item.h"
 #include "message.h"
 #include "move_table.h"
@@ -716,8 +716,8 @@ static u8 BattlePartyTask_ConfirmLearnMoveScreen(BattleParty *battleParty)
             BattlePartyButtons_PressButton(battleParty, BATTLE_CONFIRM_LEARN_MOVE_SCREEN_BUTTON_OFFSET + 1);
         }
 
-        // Imperial QoL: HM moves can be forgotten like any other move.
-        if (IMPERIAL_HMS_FORGETTABLE == FALSE && CheckSelectedMoveIsHM(battleParty) == TRUE) {
+        // Sovereign QoL: HM moves can be forgotten like any other move.
+        if (SOVEREIGN_HMS_FORGETTABLE == FALSE && CheckSelectedMoveIsHM(battleParty) == TRUE) {
             BattlePartyText_PrintHMMovesCantBeForgottenText(battleParty);
 
             if (battleParty->displayingContestStats == FALSE) {

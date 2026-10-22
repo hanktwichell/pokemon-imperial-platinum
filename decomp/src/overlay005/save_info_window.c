@@ -72,7 +72,7 @@ static void SaveInfoWindow_SetStrings(StringTemplate *strTemplate, const SaveInf
 
     int maxDigits, padding;
 
-    if (saveInfo->pokedexCount >= 1000) { // Imperial: up to 1025 species
+    if (saveInfo->pokedexCount >= 1000) { // Sovereign: up to 1025 species
         maxDigits = 4;
         padding = PADDING_MODE_NONE;
     } else if (saveInfo->pokedexCount >= 100) {

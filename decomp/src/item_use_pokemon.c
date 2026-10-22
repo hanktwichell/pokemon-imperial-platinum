@@ -171,7 +171,7 @@ u8 Pokemon_CheckItemEffects(Pokemon *mon, u16 itemId, u16 moveSlot, enum HeapID 
     }
 
     if (Item_Get(item, ITEM_PARAM_LEVEL_UP)) {
-        // Imperial: Rare Candies stop at the level cap (Lv. 100 when the cap is off).
+        // Sovereign: Rare Candies stop at the level cap (Lv. 100 when the cap is off).
         if (Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) < LevelCap_Get(SaveData_Ptr())) {
             Heap_Free(item);
             return TRUE;

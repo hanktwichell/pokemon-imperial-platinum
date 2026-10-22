@@ -70,7 +70,7 @@ typedef struct FrontierPokemon {
     };
     u8 language;
     u8 friendship;
-    u16 ability; // Imperial: u16
+    u16 ability; // Sovereign: u16
     u16 nickname[MON_NAME_LEN + 1];
 } FrontierPokemon;
 

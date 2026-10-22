@@ -215,7 +215,7 @@ static BOOL ov62_0224536C(UnkStruct_0208C06C *param0);
 static BOOL ov62_022454D8(UnkStruct_0208C06C *param0);
 static void ov62_022469A0(UnkStruct_ov62_02241204 *param0, UnkStruct_0208C06C *param1);
 
-// Imperial: generated from the species list (was hard-coded for 493 species).
+// Sovereign: generated from the species list (was hard-coded for 493 species).
 #define Unk_ov62_02249944 sSpeciesAlphabetGroupStarts
 
 static const TouchScreenRect Unk_ov62_0224919C[] = {

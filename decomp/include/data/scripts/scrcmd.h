@@ -845,7 +845,7 @@ ScriptCommand(SCRCMD_BUFFERTRAINERCLASSNAMEWITHARTICLE,                    ScrCm
 ScriptCommand(SCRCMD_BUFFERBALLSEALNAMEPLURAL,                             ScrCmd_BufferBallSealNamePlural)
 ScriptCommand(SCRCMD_CAPITALIZEFIRSTLETTER,                                ScrCmd_CapitalizeFirstLetter)
 ScriptCommand(SCRCMD_BUFFERFLOORNUMBER,                                    ScrCmd_BufferFloorNumber)
-// Imperial additions
+// Sovereign additions
 ScriptCommand(SCRCMD_GETLASTREPEL,                                         ScrCmd_GetLastRepel)
 ScriptCommand(SCRCMD_USEREPEL,                                             ScrCmd_UseRepel)
 ScriptCommand(SCRCMD_FINDPARTYSLOTFORFIELDMOVE,                            ScrCmd_FindPartySlotForFieldMove)

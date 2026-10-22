@@ -22,7 +22,7 @@ _033:
 
 _041:
     CompareMonDataToValue OPCODE_FLAG_SET, BTLSCR_SIDE_EFFECT_MON, BATTLEMON_STATUS, MON_CONDITION_PARALYSIS, _139
-    // Imperial (Gen VI+): Electric types can't be paralyzed.
+    // Sovereign (Gen VI+): Electric types can't be paralyzed.
     CompareMonDataToValue OPCODE_EQU, BTLSCR_SIDE_EFFECT_MON, BATTLEMON_TYPE_1, TYPE_ELECTRIC, _ElectricImmune
     CompareMonDataToValue OPCODE_EQU, BTLSCR_SIDE_EFFECT_MON, BATTLEMON_TYPE_2, TYPE_ELECTRIC, _ElectricImmune
     CompareMonDataToValue OPCODE_NEQ, BTLSCR_SIDE_EFFECT_MON, BATTLEMON_STATUS, MON_CONDITION_NONE, _123

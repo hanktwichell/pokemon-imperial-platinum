@@ -1,4 +1,4 @@
-# Imperial Platinum — Elite Four & Champion Battle Format
+# Sovereign Platinum — Elite Four & Champion Battle Format
 
 ## First challenge: two singles, two doubles
 
@@ -36,7 +36,7 @@ Aaron's pre-battle dialogue opens with a three-way menu:
 2. **All doubles.** All five battles are doubles.
 3. **Two and two.** The first-challenge rules above apply again (prompts at Aaron, Bertha and possibly Flint), and Cynthia is doubles.
 
-Rematches use the Round 2 teams in `TrainerPokemon_Imperial.md`, which have both a singles and a doubles version for
+Rematches use the Round 2 teams in `TrainerPokemon_Sovereign.md`, which have both a singles and a doubles version for
 every member, Cynthia included.
 
 ## Rules and edge cases
@@ -57,9 +57,9 @@ New save variables and flag (IDs to be assigned from unused slots):
 
 | Name | Meaning |
 |---|---|
-| `VAR_IMPERIAL_E4_MODE` | 0 = two-and-two (first challenge), 1 = all singles, 2 = all doubles |
-| `VAR_IMPERIAL_E4_FORMAT` | bit 0 Aaron, bit 1 Bertha, bit 2 Flint, bit 3 Lucian, bit 4 Cynthia (1 = doubles) |
-| `VAR_IMPERIAL_E4_STAGE` | how many prompts have been answered this run (0–3) |
+| `VAR_SOVEREIGN_E4_MODE` | 0 = two-and-two (first challenge), 1 = all singles, 2 = all doubles |
+| `VAR_SOVEREIGN_E4_FORMAT` | bit 0 Aaron, bit 1 Bertha, bit 2 Flint, bit 3 Lucian, bit 4 Cynthia (1 = doubles) |
+| `VAR_SOVEREIGN_E4_STAGE` | how many prompts have been answered this run (0–3) |
 | `FLAG_GAME_CLEAR` | existing vanilla flag: Champion beaten at least once |
 
 New trainer entries (each with the double-battle flag set where needed):
@@ -72,10 +72,10 @@ decomp when implementing):
 
 ```
 LeagueEntrance_OnEnter:                    ; existing script on entering Aaron's room
-    SetVar VAR_IMPERIAL_E4_FORMAT, 0
-    SetVar VAR_IMPERIAL_E4_STAGE, 0
+    SetVar VAR_SOVEREIGN_E4_FORMAT, 0
+    SetVar VAR_SOVEREIGN_E4_STAGE, 0
     GoToIfUnset FLAG_GAME_CLEAR, _first
-    SetVar VAR_IMPERIAL_E4_MODE, 0         ; reset; Aaron asks again
+    SetVar VAR_SOVEREIGN_E4_MODE, 0         ; reset; Aaron asks again
 _first:
     End
 
@@ -85,16 +85,16 @@ Aaron_PreBattle:
     ShowMenu3 "All singles", "All doubles", "Two and two" -> VAR_RESULT
     CallIfEq VAR_RESULT, 0, _set_all_singles     ; MODE=1, FORMAT=0b00000
     CallIfEq VAR_RESULT, 1, _set_all_doubles     ; MODE=2, FORMAT=0b11111
-    GoToIfNe VAR_IMPERIAL_E4_MODE, 0, _battle_aaron
+    GoToIfNe VAR_SOVEREIGN_E4_MODE, 0, _battle_aaron
 _ask_aaron:
     Call AskSinglesOrDoubles                     ; VAR_RESULT: 0 singles / 1 doubles
     SetFormatBit 0, VAR_RESULT
-    AddVar VAR_IMPERIAL_E4_STAGE, 1
+    AddVar VAR_SOVEREIGN_E4_STAGE, 1
 _battle_aaron:
     Call StartFormatBattle_Aaron                 ; picks R1/R2 x singles/doubles trainer ID from bit 0
 
 Bertha_PreBattle:
-    GoToIfNe VAR_IMPERIAL_E4_MODE, 0, _battle_bertha
+    GoToIfNe VAR_SOVEREIGN_E4_MODE, 0, _battle_bertha
     Call AskSinglesOrDoubles
     SetFormatBit 1, VAR_RESULT
     ; if bit0 == bit1: force Flint and Lucian to the opposite and announce it after the battle
@@ -103,7 +103,7 @@ _battle_bertha:
     Call StartFormatBattle_Bertha
 
 Flint_PreBattle:
-    GoToIfNe VAR_IMPERIAL_E4_MODE, 0, _battle_flint
+    GoToIfNe VAR_SOVEREIGN_E4_MODE, 0, _battle_flint
     GoToIf Bit0EqualsBit1, _battle_flint         ; already forced
     Call AskSinglesOrDoubles
     SetFormatBit 2, VAR_RESULT

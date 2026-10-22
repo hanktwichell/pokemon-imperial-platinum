@@ -2,14 +2,14 @@
 #define POKEPLATINUM_SAVE_PLAYER_H
 
 #include "game_options.h"
-#include "imperial_options.h"
+#include "sovereign_options.h"
 #include "play_time.h"
 #include "savedata.h"
 #include "trainer_info.h"
 
 typedef struct PlayerSave {
     Options options; // u16 bitfield
-    ImperialOptions imperialOptions; // u16 bitfield; was implicit padding in vanilla
+    SovereignOptions sovereignOptions; // u16 bitfield; was implicit padding in vanilla
     TrainerInfo info;
     u16 coins;
     PlayTime playTime;

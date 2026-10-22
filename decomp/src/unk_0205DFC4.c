@@ -126,7 +126,7 @@ u16 Pokedex_GetRatingMessageID_Local(u16 pokemonSeen, u16 reachedEternaCity)
     }
 }
 
-// Imperial: Oak's National Dex tiers scale with the dex goal (the numbers are Platinum's, for a goal of 482), so the
+// Sovereign: Oak's National Dex tiers scale with the dex goal (the numbers are Platinum's, for a goal of 482), so the
 // tiers are unchanged at 493 species and spread over the bigger dex at 1025.
 #define VANILLA_NATIONAL_DEX_GOAL  482
 #define NATIONAL_RATING_TIER(n)    (((n) + 1) * NATIONAL_DEX_GOAL / VANILLA_NATIONAL_DEX_GOAL - 1)

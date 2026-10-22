@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build Imperial Platinum's species and Mega Evolution reference tables.
+"""Build Sovereign Platinum's species and Mega Evolution reference tables.
 
 Source data: PokeAPI's CSV dump (https://github.com/PokeAPI/pokeapi, data/v2/csv,
 BSD-3-Clause). Pass the path to that csv directory as the first argument.
@@ -21,7 +21,7 @@ EN = "9"
 MAX_DEX = 1025
 RENEGADE_MAX = 493
 
-# Not flagged legendary/mythical by PokeAPI but treated as "special" (post-game) in Imperial.
+# Not flagged legendary/mythical by PokeAPI but treated as "special" (post-game) in Sovereign.
 ULTRA_BEASTS = set(range(793, 800)) | {803, 804, 805, 806}
 PARADOX = set(range(984, 996)) | {1005, 1006, 1009, 1010, 1020, 1021, 1022, 1023}
 

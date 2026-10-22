@@ -1443,7 +1443,7 @@ CommonScript_HatchEgg:
 CommonScript_RepelsEffectWoreOff:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
-    // Imperial: offer another Repel of the kind used last, if the bag has one.
+    // Sovereign: offer another Repel of the kind used last, if the bag has one.
     GetLastRepel VAR_0x8004
     GoToIfEq VAR_0x8004, ITEM_NONE, CommonScript_RepelsEffectWoreOff_NoneLeft
     CheckItem VAR_0x8004, 1, VAR_RESULT

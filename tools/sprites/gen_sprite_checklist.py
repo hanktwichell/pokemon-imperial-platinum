@@ -179,7 +179,7 @@ def main():
                 "Shiny back sprite", "Source", "Notes"]
     style_header(wm, mheaders)
     wm.cell(row=1, column=2).comment = Comment(
-        "Mega/Primal forms have no box/party column: the party and PC show the base form's icon.", "Imperial Platinum")
+        "Mega/Primal forms have no box/party column: the party and PC show the base form's icon.", "Sovereign Platinum")
     for i, m in enumerate(megas, start=2):
         back = files.get((m["form"], "back"))
         sback = files.get((m["form"], "back_shiny"))
@@ -199,7 +199,7 @@ def main():
 
     # ---- Sheet 3: summary (live formulas)
     su = wb.create_sheet("Summary", 0)
-    su["A1"] = "Imperial Platinum — Sprite Aggregation Summary"
+    su["A1"] = "Sovereign Platinum — Sprite Aggregation Summary"
     su["A1"].font = Font(name=FONT, bold=True, size=14)
     su["A2"] = "✓ = we have the sprite. Red-highlighted empty cell = still needed. Counts update as you add ✓ marks."
     su["A3"] = ("#1–493 are already in Renegade Platinum (we keep its sprites). Added species: DPPt Style Gen VI and "

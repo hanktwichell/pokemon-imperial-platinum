@@ -491,7 +491,7 @@ static void ProcLevelLearnset(dp_node root)
         };
     }
 
-    data.entries[count++] = (SpeciesLearnsetEntry){ .move = 0xFFFF, .level = 0xFFFF }; // terminator (Imperial: 32-bit entries)
+    data.entries[count++] = (SpeciesLearnsetEntry){ .move = 0xFFFF, .level = 0xFFFF }; // terminator (Sovereign: 32-bit entries)
 
     size_t size = count * sizeof(*data.entries);
     Archive_Pack(A_LEVEL_LEARNSETS, &data, size + (-size & 3));
@@ -517,8 +517,8 @@ static void ProcPalPark(dp_node root, size_t species)
 static double WeightRoundingOverride(size_t species)
 {
     // The Generation 3 games used an inaccurate factor to convert from the
-    // metric values stored in ROM to the imperial values displayed in the US
-    // release's Pokedex. The species listed below thus had incorrect imperial
+    // metric values stored in ROM to the sovereign values displayed in the US
+    // release's Pokedex. The species listed below thus had incorrect sovereign
     // weights, and these incorrect weights propagated into Generation 4. The
     // incorrect values were not corrected until Generation 8 (Sword & Shield).
     switch (species) {
@@ -535,20 +535,20 @@ static double WeightRoundingOverride(size_t species)
     }
 }
 
-// Read possible units, preferring metric over imperial.
-static dp_node ReadUnits(dp_node dex, const char *metric, const char *imperial, const char *what, bool *isMetric)
+// Read possible units, preferring metric over sovereign.
+static dp_node ReadUnits(dp_node dex, const char *metric, const char *sovereign, const char *what, bool *isMetric)
 {
     const dp_node m = dp_try(dex, metric);
-    const dp_node i = dp_try(dex, imperial);
+    const dp_node i = dp_try(dex, sovereign);
     *isMetric       = !dp_missing(m);
 
     if (*isMetric && !dp_missing(i)) {
         dp_warn(dex, "conflicting unit-systems given for species %s; metric units will be used", what);
         dp_note(m, "metric units defined here");
-        dp_note(i, "imperial units defined here");
+        dp_note(i, "sovereign units defined here");
     }
 
-    return *isMetric ? m : dp_at(dex, imperial);
+    return *isMetric ? m : dp_at(dex, sovereign);
 }
 
 static double ReadHeight(dp_node dex)
@@ -770,7 +770,7 @@ static void ProcLanguageText(dp_node locale, size_t species, const char *stem, s
     if (species == SPECIES_NONE) {
         numbered = String_Format("%s", name);
     } else if (languages[lang].wideNumber && species >= 1000) {
-        // Imperial: four full-width digits from #1000 on.
+        // Sovereign: four full-width digits from #1000 on.
         numbered = String_Format(WIDE_NUM_PREFIX "%c" WIDE_NUM_PREFIX "%c" WIDE_NUM_PREFIX "%c" WIDE_NUM_PREFIX "%c  %s",
                                  WIDE_NUM_DIGITK(species),
                                  WIDE_NUM_DIGIT0(species),

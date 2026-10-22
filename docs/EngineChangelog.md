@@ -1,8 +1,22 @@
-# Imperial Platinum — Engine Changelog
+# Sovereign Platinum — Engine Changelog
 
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+
+## Rename: Pokémon Sovereign Platinum
+
+- The project is renamed from "Imperial Platinum" to **Pokémon Sovereign Platinum** (owner, 2026-10-22).
+  - ROM header title: `SOVEREIGN PL`.
+  - DS menu banner: "Pokémon Sovereign Platinum".
+  - Code, docs, data and tools use "Sovereign" everywhere: file names such as `sovereign_options.c` and
+    `docs/*_Sovereign.md`, identifiers such as `SovereignOptions`, the test-build option
+    `meson -Dsovereign_test=true`, and code comments.
+- **Unchanged:**
+  - The save signature (`0x20261022`).
+  - Every game mechanic.
+  - The GitHub repository name (`pokemon-imperial-platinum`). The owner can rename the repository on GitHub, and
+    GitHub redirects the old URL.
 ## E6 step 1 — engine prep for 1025 species (still 493 species)
 
 Platinum assumed its 493 species in a dozen places. Each is now tied to the species list, so adding #494–1025
@@ -38,10 +52,10 @@ Platinum assumed its 493 species in a dozen places. Each is now tied to the spec
   - Cut, Rock Smash, Strength, Rock Climb, Surf and Waterfall work from their field prompts. The first non-Egg party
     Pokémon does the move.
   - Fly and Defog are added to every party Pokémon's menu.
-  - Code: `src/imperial_field_moves.c`, the script command `FindPartySlotForFieldMove`, and the Surf and Waterfall
+  - Code: `src/sovereign_field_moves.c`, the script command `FindPartySlotForFieldMove`, and the Surf and Waterfall
     checks in `field_control.c`.
   - HM moves can be forgotten when learning a new move, on the summary screen and in battle
-    (`IMPERIAL_HMS_FORGETTABLE`). This builds but hasn't been tried in-game yet.
+    (`SOVEREIGN_HMS_FORGETTABLE`). This builds but hasn't been tried in-game yet.
 - **Gen VI+ breeding** (`daycare.c`):
   - An Everstone passes its holder's nature every time, from either parent.
   - A Destiny Knot passes 5 IVs instead of 3. This also fixes Gen IV's bug that could pick the same stat twice.
@@ -82,7 +96,7 @@ Rules and sources: `docs/BattleMechanics.md`. IVs, EVs and levels are unchanged 
   on its first turn!".
 - **Champions move values** (`tools/engine/apply_champions_moves.py`): 23 power/accuracy changes, Iron Head 20% flinch,
   Moonblast 10% Sp. Atk drop, Freeze-Dry no longer freezes, Snap Trap Steel, Growth Grass.
-- **Not adopted for now:** Champions' fixed PP scale with no PP Ups (Imperial keeps PP Ups, pending the owner's call),
+- **Not adopted for now:** Champions' fixed PP scale with no PP Ups (Sovereign keeps PP Ups, pending the owner's call),
   and its item and move roster limits (they are roster rules, not battle rules).
 - **Verified:** both ROMs build; in the test build a wild battle runs several turns (new moves, damage, AI turns) with no errors. The odds-based rules are code changes checked by review, not by in-game sampling.
 - **Left for roadmap item 11:** ability and move behaviour changes. These are Healer, Run Away, Unseen Fist, Make It
@@ -141,20 +155,20 @@ new moves; effect fidelity for the approximate/placeholder moves is roadmap item
 
 ## Test build (never shipped)
 
-- `meson -Dimperial_test=true` (`tools/test/build_test_rom.sh` → `decomp/build_test/`): a new game starts with a test
+- `meson -Dsovereign_test=true` (`tools/test/build_test_rom.sh` → `decomp/build_test/`): a new game starts with a test
   party (Garchomp 50 with Gen IX moves, Turtwig 15, Starly 5, two Gallade 30 with Justified and Sharpness) and items (3 Rare Candies, 10 Potions, 10 Poké Balls). In the overworld,
   **SELECT** starts a wild battle (Chansey Lv. 30) and **SELECT+R** a trainer battle (Barry, Route 209). Normal builds
-  and CI don't define `IMPERIAL_TEST`, so none of this is in the real game.
+  and CI don't define `SOVEREIGN_TEST`, so none of this is in the real game.
 - Fixed while building it: the setup first allocated from a heap that doesn't exist yet at new-game start (the NULL
   write corrupted ITCM code → crash); it now uses `HEAP_ID_FIELD2`. The first battle hook used the script engine and
   landed on the wrong script; it now starts the battle from a small field task.
 
-## E1 — Imperial identity and save format
+## E1 — Sovereign identity and save format
 
 - **Own save signature** (`SECTOR_SIGNATURE` 0x20261022 instead of Platinum's 0x20060623). A Platinum or Renegade
   Platinum save fails the check and loads as "no save data" (the game goes straight to a new game) instead of being
-  misread by Imperial's different save layout.
-- **ROM header title** `IMPERIAL PL` and **DS menu banner** "Pokémon Imperial Platinum". The game code stays `CPUE`
+  misread by Sovereign's different save layout.
+- **ROM header title** `SOVEREIGN PL` and **DS menu banner** "Pokémon Sovereign Platinum". The game code stays `CPUE`
   so emulators, save tools and cheat databases still recognise the game and its save type.
 
 Verified: a save written by the previous build loads on that build (Continue → Route 201) and is treated as empty by
@@ -174,7 +188,7 @@ Verified in the emulator (test build, with the E2/E4 pass): SELECT cycles the SK
   default ON) and **MUSIC** (0–100 in steps of 5, shown as a number and a bar; hold left/right to move quickly, and the
   volume changes as you move it). The list now has 11 rows and scrolls, with arrows at the right of the title bar
   when there are rows above or below. The YES/NO confirmation covers the new settings too.
-- **Save data:** the settings live in `ImperialOptions` (`include/imperial_options.h`), a 16-bit field in the player
+- **Save data:** the settings live in `SovereignOptions` (`include/sovereign_options.h`), a 16-bit field in the player
   save block that used to be padding, so the save size is unchanged.
 - **Level cap** (`src/level_cap.c`, table `include/data/level_caps.h` generated from `data/level_caps.yaml` by
   `tools/engine/gen_level_caps.py`): the cap is the ace level of the first big fight not yet beaten, checked with the

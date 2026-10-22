@@ -470,7 +470,7 @@ static void sub_02073E18(BoxPokemon *boxMon, int monSpecies, int monLevel, int m
         BoxPokemon_SetValue(boxMon, MON_DATA_SPDEF_IV, &v2);
     }
 
-    // Imperial: a new Pokémon never starts with its hidden ability; set MON_DATA_HAS_HIDDEN_ABILITY and call
+    // Sovereign: a new Pokémon never starts with its hidden ability; set MON_DATA_HAS_HIDDEN_ABILITY and call
     // Pokemon_CalcAbility to give it one.
     v1 = SpeciesData_GetSpeciesValue(monSpecies, SPECIES_DATA_ABILITY_1);
     v2 = SpeciesData_GetSpeciesValue(monSpecies, SPECIES_DATA_ABILITY_2);
@@ -2837,8 +2837,8 @@ void BoxPokemon_BuildSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, BoxPo
         monForm = BoxPokemon_GetValue(mon, MON_DATA_FORM, NULL);
     }
 
-    // Imperial: the prebuilt Diamond/Pearl sprite archive only has #1-493 (and Egg at 494), so every other species
-    // (and Imperial's Egg, now after #1025) uses the Platinum sprites.
+    // Sovereign: the prebuilt Diamond/Pearl sprite archive only has #1-493 (and Egg at 494), so every other species
+    // (and Sovereign's Egg, now after #1025) uses the Platinum sprites.
     if (preferDP == TRUE && monSpeciesEgg <= SPECIES_ARCEUS) {
         BuildPokemonSpriteTemplateDP(spriteTemplate, monSpeciesEgg, monGender, face, monShininess, monForm, monPersonality);
     } else {
@@ -3197,7 +3197,7 @@ u8 BoxPokemon_SpriteYOffset(BoxPokemon *boxMon, u8 face, BOOL preferDP)
         form = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
     }
 
-    if (preferDP == TRUE && species <= SPECIES_ARCEUS) { // Imperial: see BoxPokemon_BuildSpriteTemplate
+    if (preferDP == TRUE && species <= SPECIES_ARCEUS) { // Sovereign: see BoxPokemon_BuildSpriteTemplate
         return LoadPokemonDPSpriteHeight(species, gender, face, form, personality);
     }
 
@@ -4947,7 +4947,7 @@ static void *BoxPokemon_GetDataBlock(BoxPokemon *boxMon, u32 personality, enum P
 
 static int Pokemon_GetFormNarcIndex(int monSpecies, int monForm)
 {
-    // Form data is packed after every species, in speciesproc's altFormsWithData order (Imperial: relative to
+    // Form data is packed after every species, in speciesproc's altFormsWithData order (Sovereign: relative to
     // SPECIES_BAD_EGG instead of literal indices, so it follows the species count).
     switch (monSpecies) {
     case SPECIES_DEOXYS:

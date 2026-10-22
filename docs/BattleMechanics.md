@@ -1,9 +1,9 @@
-# Imperial Platinum — Battle Mechanics (Pokémon Champions rules)
+# Sovereign Platinum — Battle Mechanics (Pokémon Champions rules)
 
-Owner decision (2026-10-22): battles follow **Pokémon Champions** in everything except the stat system. Imperial
+Owner decision (2026-10-22): battles follow **Pokémon Champions** in everything except the stat system. Sovereign
 keeps IVs (0–31) and EVs (max 252 per stat, 510 total), and levels work as in the main games.
 
-This page lists each rule: Gen IV's behaviour (what Platinum did), Champions' behaviour, and where Imperial stands.
+This page lists each rule: Gen IV's behaviour (what Platinum did), Champions' behaviour, and where Sovereign stands.
 Champions is built on Scarlet/Violet, so where Champions changes nothing the Gen IX rule applies.
 
 **Status column:** ✅ done (in the code) · 🟡 partial · ⏳ later (roadmap item named) · ➖ not adopted (reason given).
@@ -21,7 +21,7 @@ The full research notes, with confidence levels and URLs, are in the [research n
 
 ## Status conditions
 
-| Rule | Gen IV | Champions | Imperial |
+| Rule | Gen IV | Champions | Sovereign |
 |---|---|---|---|
 | Full paralysis | 1/4 | **1/8** | ✅ `battle_controller_player.c` |
 | Paralysis Speed drop | ×0.25 | ×0.5 | ✅ `battle_lib.c` (turn order) |
@@ -39,7 +39,7 @@ The full research notes, with confidence levels and URLs, are in the [research n
 
 ## Turn order
 
-| Rule | Gen IV | Champions | Imperial |
+| Rule | Gen IV | Champions | Sovereign |
 |---|---|---|---|
 | Dynamic speed | order fixed at the start of the turn | **re-sorted before each action** using current Speed (Gen VIII+) | ✅ `BattleControllerPlayer_BranchActions`. Quick Claw rolls stay fixed for the turn. |
 | Priority brackets | Gen IV values | Gen IX values (Protect +4, Fake Out +3, Extreme Speed +2) | ✅ from E3 |
@@ -48,7 +48,7 @@ The full research notes, with confidence levels and URLs, are in the [research n
 
 ## Damage
 
-| Rule | Gen IV | Champions | Imperial |
+| Rule | Gen IV | Champions | Sovereign |
 |---|---|---|---|
 | Critical hit multiplier | ×2 (Sniper ×3) | **×1.5** (Sniper ×2.25) | ✅ `BattleSystem_ApplyCriticalMul` |
 | Critical hit stages | 1/16, 1/8, 1/4, 1/3, 1/2 | **1/24, 1/8, 1/2, always** | ✅ `sCriticalStageRates` |
@@ -59,7 +59,7 @@ The full research notes, with confidence levels and URLs, are in the [research n
 
 ## Weather and terrain
 
-| Rule | Gen IV | Champions | Imperial |
+| Rule | Gen IV | Champions | Sovereign |
 |---|---|---|---|
 | Weather from an ability | permanent | **5 turns** (8 with the matching rock); fails if that weather is already up | ✅ the four ability subscripts, `battle_lib.c` |
 | Weather from a move | 5 turns (8 with rock) | same | ✅ |
@@ -70,7 +70,7 @@ The full research notes, with confidence levels and URLs, are in the [research n
 
 ## Moves
 
-| Rule | Gen IV / Gen IX | Champions | Imperial |
+| Rule | Gen IV / Gen IX | Champions | Sovereign |
 |---|---|---|---|
 | Fake Out (and First Impression) after the user's first turn | selectable, then fails | **can't be selected** | ✅ Fake Out: `CHECK_INVALID_FIRST_TURN` and the message "X can use Fake Out only on its first turn!". First Impression has the plain priority-hit placeholder effect for now (item 11). |
 | Power/accuracy changes (23 moves): Anchor Shot, Apple Acid, Grav Apple, Fire Lash, Spirit Shackle, Psyshield Bash 90 · Bolt Beak, Fishious Rend 80 · Bone Rush 30 · Slash 80 · Beak Blast 120 · Dragon Hammer, Revelation Dance 100 · Night Daze 90 · Snipe Shot, Trop Kick 85 · Infernal Parade 65 · Triple Dive 35 · Gear Grind 60/90% · Crabhammer 95% · Syrup Bomb 90% · Meteor Assault 170 · First Impression 100 · Make It Rain 95% | Gen IX values | Champions values | ✅ `tools/engine/apply_champions_moves.py` |
@@ -78,23 +78,23 @@ The full research notes, with confidence levels and URLs, are in the [research n
 | Types: Snap Trap Steel, Growth Grass | Grass, Normal | Steel, Grass | ✅ same script |
 | Make It Rain −2 Sp. Atk; Dire Claw 30%; Toxic Thread −2 Speed; Salt Cure 1/16 (1/8 vs Water/Steel); Rage Fist counter resets on switch; Unseen Fist ×0.25 through Protect | — | changed | ⏳ item 11 (these moves are placeholders/approximate now; they'll be built with the Champions numbers) |
 | Slicing/punch/sound flag changes (Crush Claw, Dragon Claw, Metal Claw, Shadow Claw, Dire Claw slicing; Double Shock punching; Howl, Dragon Cheer sound) | — | changed | ⏳ item 11, with Sharpness/Iron Fist |
-| Protect & co. at 8 PP, and every move's PP on Champions' fixed scale (5→8, 10→12, 15→16, 20+→20; no PP Ups) | Gen IX PP + PP Ups | fixed PP | ➖ **not adopted for now**: Imperial keeps main-series PP and PP Ups because they're part of the RPG's item economy. Owner to confirm. |
-| Moves removed from Champions (Pursuit, Return, Frustration, Hidden Power, Teleport, Hail, Snatch, Magic Coat…) | — | not available | ➖ kept in Imperial: Champions removes them from its roster, not as a battle rule. Hail now summons Snow. |
+| Protect & co. at 8 PP, and every move's PP on Champions' fixed scale (5→8, 10→12, 15→16, 20+→20; no PP Ups) | Gen IX PP + PP Ups | fixed PP | ➖ **not adopted** (owner, 2026-10-22): Sovereign keeps main-series PP and PP Ups ("a fun part of the game"). |
+| Moves removed from Champions (Pursuit, Return, Frustration, Hidden Power, Teleport, Hail, Snatch, Magic Coat…) | — | not available | ➖ kept in Sovereign: Champions removes them from its roster, not as a battle rule. Hail now summons Snow. |
 
 ## Abilities and items
 
-| Rule | Champions | Imperial |
+| Rule | Champions | Sovereign |
 |---|---|---|
 | Healer 50% (was 30%), Run Away ignores trapping, Emergency Exit/Wimp Out and Sheer Force tweaks | changed | ⏳ item 11, with the other ability effects |
 | Gen V–IX rules Champions inherits: Prankster fails on Dark types, Intimidate blocked by Inner Focus/Oblivious/Own Tempo/Scrappy, Ghost types escape trapping, Grass types immune to powder moves | Gen IX | ⏳ item 11 |
 | Eject Button after U-turn/Volt Switch: the attacker also switches | changed | ⏳ with E7 (items) |
-| Item pool (no Choice Band/Specs, Assault Vest, etc.) | regulation-dependent | ➖ not adopted: Champions limits items per regulation; Imperial is an RPG with Platinum's + Renegade's items |
+| Item pool (no Choice Band/Specs, Assault Vest, etc.) | regulation-dependent | ➖ not adopted: Champions limits items per regulation; Sovereign is an RPG with Platinum's + Renegade's items |
 | Mega Evolution only (no Tera, Z-Moves, Dynamax) | yes | ✅ matches the owner's decision (E8 adds Megas) |
 
 ## Stat system (not adopted)
 
 Champions has no IVs (every stat acts as IV 31), and replaces EVs with **Stat Points**: 66 in total, at most 32 per
-stat, so 32 SP = 252 EVs. Levels are fixed at 50. **Imperial keeps IVs, EVs (252/510) and normal levels** (owner,
+stat, so 32 SP = 252 EVs. Levels are fixed at 50. **Sovereign keeps IVs, EVs (252/510) and normal levels** (owner,
 2026-10-22).
 
 ## Not verifiable yet
@@ -106,7 +106,7 @@ These rules come only from Showdown's implementation, so their in-game behaviour
 - Salt Cure damage;
 - that burn, poison, confusion, infatuation and flinch are unchanged.
 
-Imperial follows Showdown's behaviour. Same-turn Mega Evolution order is decided in E8.
+Sovereign follows Showdown's behaviour. Same-turn Mega Evolution order is decided in E8.
 
 ## Research notes
 
@@ -128,4 +128,4 @@ Key URLs:
 
 **Why some sources say sleep lasts "2 turns" and others "3 turns".** Both describe the same rule. "Max 2" counts the
 turns the Pokémon can't act. "Max 3" counts up to the turn it is sure to wake. Showdown's counter is
-`sample([2, 3, 3])`, matching Imperial's 2-or-3 counter.
+`sample([2, 3, 3])`, matching Sovereign's 2-or-3 counter.

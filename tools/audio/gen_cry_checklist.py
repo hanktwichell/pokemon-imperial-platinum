@@ -127,7 +127,7 @@ def main():
                      "PokeAPI form cry", "Notes"], mrows, [24, 16, 11, 9, 14, 13, 70], check_cols={5})
 
     su = wb.create_sheet("Summary", 0)
-    su["A1"] = "Imperial Platinum — cry checklist"
+    su["A1"] = "Sovereign Platinum — cry checklist"
     su["A1"].font = Font(name=FONT, bold=True, size=14)
     notes = [
         "✓ = we have it. A highlighted empty cell = still needed.",

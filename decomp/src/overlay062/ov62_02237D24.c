@@ -123,7 +123,7 @@ static void ov62_02239D0C(UnkStruct_0208C06C *param0);
 void ov62_02239D34(void *param0, const UnkStruct_ov62_0223CAA4 *param1);
 void ov62_02239D38(void *param0, const UnkStruct_ov62_0223CAA4 *param1);
 
-// Imperial: generated from the species list (was hard-coded for 493 species).
+// Sovereign: generated from the species list (was hard-coded for 493 species).
 #define Unk_ov62_022497D4 sSpeciesAlphabetGroupStarts
 
 // clang-format off

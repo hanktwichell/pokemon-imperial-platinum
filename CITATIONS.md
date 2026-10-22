@@ -1,6 +1,6 @@
 # Citations & Credits
 
-Pokémon Imperial Platinum is a free, non-commercial fan project made for friends. It isn't affiliated with or endorsed
+Pokémon Sovereign Platinum is a free, non-commercial fan project made for friends. It isn't affiliated with or endorsed
 by Nintendo, Creatures, Game Freak or The Pokémon Company. Pokémon and all related names are trademarks of their
 respective owners. No ROM is distributed; players must supply their own legally dumped copy of Pokémon Platinum.
 
@@ -17,7 +17,7 @@ the same commit.**
 
 | What | Source | Credit / licence |
 |---|---|---|
-| Game engine source (`decomp/`, git subtree) | pret/pokeplatinum — https://github.com/pret/pokeplatinum | pret contributors. Imperial's engine is built on their decompilation. Pokémon Platinum © Nintendo / Game Freak / The Pokémon Company. |
+| Game engine source (`decomp/`, git subtree) | pret/pokeplatinum — https://github.com/pret/pokeplatinum | pret contributors. Sovereign's engine is built on their decompilation. Pokémon Platinum © Nintendo / Game Freak / The Pokémon Company. |
 | Build overlays for rapidjson and yyjson (`decomp/subprojects/packagefiles/`) | Meson WrapDB — https://github.com/mesonbuild/wrapdb | WrapDB contributors, MIT. |
 
 ## Data

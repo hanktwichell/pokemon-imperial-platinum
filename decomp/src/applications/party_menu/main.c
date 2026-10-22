@@ -37,8 +37,8 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "height_weight_data.h"
-#include "imperial_field_moves.h"
-#include "imperial_options.h"
+#include "sovereign_field_moves.h"
+#include "sovereign_options.h"
 #include "item.h"
 #include "item_use_pokemon.h"
 #include "journal.h"
@@ -1830,13 +1830,13 @@ static u8 GetContextMenuEntriesForPartyMon(PartyMenuApplication *application, u8
                 }
             }
 
-            // Imperial: HM field moves used from this menu (Fly, Defog) are offered when the bag has the HM, even if
+            // Sovereign: HM field moves used from this menu (Fly, Defog) are offered when the bag has the HM, even if
             // this Pokémon doesn't know the move. The menu holds at most 4 field moves.
             static const u16 sMenuOnlyHMMoves[] = { MOVE_FLY, MOVE_DEFOG };
             for (i = 0; i < NELEMS(sMenuOnlyHMMoves) && fieldMoveIndex < LEARNED_MOVES_MAX; i++) {
                 move = sMenuOnlyHMMoves[i];
 
-                if (MonKnowsMove(mon, move) == FALSE && Imperial_BagHasHMForMove(SaveData_Ptr(), move)) {
+                if (MonKnowsMove(mon, move) == FALSE && Sovereign_BagHasHMForMove(SaveData_Ptr(), move)) {
                     menuEntriesBuffer[count] = GetFieldMoveIndex(move);
                     count++;
                     PartyMenu_SetKnownFieldMove(application, move, fieldMoveIndex);
@@ -2725,9 +2725,9 @@ static int ApplyItemEffectOnPokemon(PartyMenuApplication *app)
     }
 
     if (Party_CheckItemEffectsOnMember(app->partyMenu->party, app->partyMenu->usedItemID, app->currPartySlot, 0, HEAP_ID_PARTY_MENU) == TRUE) {
-        // Imperial: with the level cap and Infinite Candy options on, Rare Candies aren't used up.
+        // Sovereign: with the level cap and Infinite Candy options on, Rare Candies aren't used up.
         if (app->partyMenu->usedItemID != ITEM_RARE_CANDY
-            || ImperialOptions_InfiniteCandyEnabled(SaveData_GetImperialOptions(SaveData_Ptr())) == FALSE) {
+            || SovereignOptions_InfiniteCandyEnabled(SaveData_GetSovereignOptions(SaveData_Ptr())) == FALSE) {
             Bag_TryRemoveItem(app->partyMenu->bag, app->partyMenu->usedItemID, 1, HEAP_ID_PARTY_MENU);
         }
 
