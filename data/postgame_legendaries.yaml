@@ -159,7 +159,7 @@ quests:
     species: [Zacian, Zamazenta]
     level: 70
     location: Route 210 North (in the fog)
-    steps: Walk through the fog with the chapter open; Zacian appears first, Zamazenta after it is caught. (Crowned forms are out of scope.)
+    steps: Walk through the fog with the chapter open; Zacian appears first, Zamazenta after it is caught. Zacian holds the Rusted Sword and Zamazenta the Rusted Shield (owner, 2026-10-22); holding them gives the Crowned forms (in scope, E7 step 2).
   - chapter: Galar Chronicle
     name: Darkest Day
     species: [Eternatus]
@@ -209,7 +209,7 @@ quests:
     species: [Ogerpon]
     level: 65
     location: Route 211 (East), at the mountain shrine
-    steps: Static encounter. (Mask forms are out of scope; Teal Mask only.)
+    steps: Static encounter. Holding the Wellspring, Hearthflame or Cornerstone Mask changes Ogerpon's form (in scope, E7 step 2; owner, 2026-10-22).
   - chapter: Paldea Chronicle
     name: The Poison Puppeteer
     species: [Pecharunt]

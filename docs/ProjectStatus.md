@@ -75,6 +75,8 @@ Made by the owner (2026-10-22):
 13. The project is renamed **Pokémon Sovereign Platinum** (was Imperial Platinum). The developer battle is against
     **Sovereign Dev Twich** (2026-10-22).
 14. The Pokédex is English-only: no foreign-language entries (2026-10-22).
+15. Zacian/Zamazenta's Crowned forms and Ogerpon's mask forms are in scope (held-item forms, E7 step 2). Wild Zacian
+    and Zamazenta hold the Rusted Sword and Rusted Shield (2026-10-22).
 
 Open:
 - The developer battle: Lv. 100 at Spear Pillar, leads Charizard-Y + Venusaur, custom weather-control AI (`DeveloperBattle.md`). Opponent: Sovereign Dev Twich. Open: text, sprites (owner's sprite coming soon), Charizard's final moveset.

@@ -158,7 +158,7 @@ Covers **90** species.
 - **Pokémon:** #888 Zacian, #889 Zamazenta
 - **Level:** 70
 - **Location:** Route 210 North (in the fog)
-- **How:** Walk through the fog with the chapter open; Zacian appears first, Zamazenta after it is caught. (Crowned forms are out of scope.)
+- **How:** Walk through the fog with the chapter open; Zacian appears first, Zamazenta after it is caught. Zacian holds the Rusted Sword and Zamazenta the Rusted Shield (owner, 2026-10-22); holding them gives the Crowned forms (in scope, E7 step 2).
 
 ### Darkest Day
 - **Pokémon:** #890 Eternatus
@@ -208,7 +208,7 @@ Covers **90** species.
 - **Pokémon:** #1017 Ogerpon
 - **Level:** 65
 - **Location:** Route 211 (East), at the mountain shrine
-- **How:** Static encounter. (Mask forms are out of scope; Teal Mask only.)
+- **How:** Static encounter. Holding the Wellspring, Hearthflame or Cornerstone Mask changes Ogerpon's form (in scope, E7 step 2; owner, 2026-10-22).
 
 ### The Poison Puppeteer
 - **Pokémon:** #1025 Pecharunt
