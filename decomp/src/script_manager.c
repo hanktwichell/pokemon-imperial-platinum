@@ -714,7 +714,7 @@ static void SovereignTest_SetupNewGame(FieldSystem *fieldSystem)
 {
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
 
-    Pokemon_GiveMonFromScript(HEAP_ID_FIELD2, fieldSystem->saveData, SPECIES_GARCHOMP, 50, ITEM_NONE, 0, 0);
+    Pokemon_GiveMonFromScript(HEAP_ID_FIELD2, fieldSystem->saveData, SPECIES_GARCHOMP, 50, ITEM_GARCHOMPITE, 0, 0); // E8: Mega Garchomp
     Pokemon_GiveMonFromScript(HEAP_ID_FIELD2, fieldSystem->saveData, SPECIES_TURTWIG, 15, ITEM_NONE, 0, 0);
     Pokemon_GiveMonFromScript(HEAP_ID_FIELD2, fieldSystem->saveData, SPECIES_STARLY, 5, ITEM_NONE, 0, 0);
 
@@ -773,6 +773,7 @@ static void SovereignTest_SetupNewGame(FieldSystem *fieldSystem)
     Bag_TryAddItem(bag, ITEM_CHARIZARDITE_X, 1, HEAP_ID_FIELD2);
     Bag_TryAddItem(bag, ITEM_METAL_ALLOY, 1, HEAP_ID_FIELD2);
     Bag_TryAddItem(bag, ITEM_MEGA_RING, 1, HEAP_ID_FIELD2);
+    VarsFlags_SetFlag(SaveData_GetVarsFlags(fieldSystem->saveData), FLAG_SOVEREIGN_MEGA_UNLOCKED); // as Fantina's gift does
     Bag_TryAddItem(bag, ITEM_ADAMANT_MINT, 1, HEAP_ID_FIELD2);
     Bag_TryAddItem(bag, ITEM_ABILITY_CAPSULE, 2, HEAP_ID_FIELD2);
     Bag_TryAddItem(bag, ITEM_ABILITY_PATCH, 1, HEAP_ID_FIELD2);

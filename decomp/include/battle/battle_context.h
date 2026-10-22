@@ -318,6 +318,12 @@ struct BattleContext {
 
     u32 battleProgressFlag : 1;
     u32 padding3154_01 : 31;
+
+    // Sovereign (E8): Mega Evolution. Battler masks use FlagIndex(battler).
+    u8 sovereignMegaPending; // battlers who chose to Mega Evolve before this turn's moves
+    u8 sovereignMegaUsed; // trainers who have Mega Evolved this battle (BattleSystem_SovereignMegaTrainerBit)
+    u8 sovereignMegaResort; // a Mega Evolved this turn: re-sort the remaining moves by the new Speed
+    u8 sovereignMegaSwitchInCheck; // a Mega Evolved: check switch-in abilities (Drought, Intimidate...) again
 };
 
 #endif // POKEPLATINUM_BATTLE_BATTLE_CONTEXT_H

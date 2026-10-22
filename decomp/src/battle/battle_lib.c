@@ -6485,6 +6485,88 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
     return result;
 }
 
+// Sovereign (E8): the bit in sovereignMegaUsed for the trainer who owns this battler. Each trainer may Mega Evolve once
+// per battle: in a multi or tag battle each battler is its own trainer's; otherwise a side's battlers share one.
+u8 BattleSystem_SovereignMegaTrainerBit(BattleSystem *battleSys, int battler)
+{
+    if (BattleSystem_GetBattleType(battleSys) & (BATTLE_TYPE_2vs2 | BATTLE_TYPE_TAG)) {
+        return FlagIndex(battler);
+    }
+
+    return FlagIndex(BattleSystem_GetBattlerSide(battleSys, battler));
+}
+
+// Sovereign (E8): the form this battler can Mega Evolve into right now, or 0 (docs/MegaEvolution.md).
+int BattleSystem_SovereignMegaForm(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
+{
+    BattleMon *mon = &battleCtx->battleMons[battler];
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
+    u8 side = BattleSystem_GetBattlerSide(battleSys, battler);
+
+    if ((battleType & BATTLE_TYPE_NO_MOVES)
+        || mon->curHP == 0
+        || mon->formNum != 0
+        || (mon->statusVolatile & VOLATILE_CONDITION_TRANSFORM)
+        || (battleCtx->sovereignMegaUsed & BattleSystem_SovereignMegaTrainerBit(battleSys, battler))) {
+        return 0;
+    }
+
+    // Wild Pokémon never Mega Evolve. The player needs the Mega Ring; AI partners and opposing trainers don't.
+    if (side != BATTLER_US) {
+        if ((battleType & BATTLE_TYPE_TRAINER) == FALSE) {
+            return 0;
+        }
+    } else if (BattlerData_GetBootState(BattleSystem_GetBattlerData(battleSys, battler)) != BATTLER_BOOT_STATE_AI
+        && BattleSystem_IsMegaUnlocked(battleSys) == FALSE) {
+        return 0;
+    }
+
+    return Pokemon_SovereignBattleForm(mon->species, mon->heldItem, mon->moves, FALSE);
+}
+
+// Sovereign (E8): change a battler into its Mega form: stats, types and, when the engine has it, the Mega's ability.
+// The party Pokémon takes the form too (it stays Mega if it switches out) and reverts when the battle ends
+// (BattleMain_CopyBattleSysToDTOAndFree).
+void BattleSystem_SovereignMegaEvolve(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int form)
+{
+    BattleMon *mon = &battleCtx->battleMons[battler];
+    Pokemon *tmp = Pokemon_New(HEAP_ID_BATTLE);
+
+    Pokemon_Copy(BattleSystem_GetPartyPokemon(battleSys, battler, battleCtx->selectedPartySlot[battler]), tmp);
+    Pokemon_SetValue(tmp, MON_DATA_FORM, &form);
+    Pokemon_CalcLevelAndStats(tmp);
+
+    mon->attack = Pokemon_GetValue(tmp, MON_DATA_ATK, NULL);
+    mon->defense = Pokemon_GetValue(tmp, MON_DATA_DEF, NULL);
+    mon->speed = Pokemon_GetValue(tmp, MON_DATA_SPEED, NULL);
+    mon->spAttack = Pokemon_GetValue(tmp, MON_DATA_SP_ATK, NULL);
+    mon->spDefense = Pokemon_GetValue(tmp, MON_DATA_SP_DEF, NULL);
+    mon->type1 = SpeciesData_GetFormValue(mon->species, form, SPECIES_DATA_TYPE_1);
+    mon->type2 = SpeciesData_GetFormValue(mon->species, form, SPECIES_DATA_TYPE_2);
+    mon->formNum = form;
+    Heap_Free(tmp);
+
+    // A Mega whose ability the engine lacks keeps its own (its form data lists none: tools/engine/gen_forms.py).
+    // A new ability takes effect at once, as if the Pokémon had just switched in (Mega Charizard Y's Drought).
+    u16 ability = SpeciesData_GetFormValue(mon->species, form, SPECIES_DATA_ABILITY_1);
+    if (ability != ABILITY_NONE && ability != mon->ability) {
+        mon->ability = ability;
+        mon->weatherAbilityAnnounced = FALSE;
+        mon->intimidateAnnounced = FALSE;
+        mon->traceAnnounced = FALSE;
+        mon->downloadAnnounced = FALSE;
+        mon->anticipationAnnounced = FALSE;
+        mon->forewarnAnnounced = FALSE;
+        mon->friskAnnounced = FALSE;
+        mon->moldBreakerAnnounced = FALSE;
+        mon->pressureAnnounced = FALSE;
+    }
+
+    battleCtx->sovereignMegaUsed |= BattleSystem_SovereignMegaTrainerBit(battleSys, battler);
+    battleCtx->battleStatusMask2 |= SYSCTL_RECALC_MON_STATS;
+    BattleController_EmitUpdatePartyMon(battleSys, battleCtx, battler);
+}
+
 void BattleSystem_InitPartyOrder(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     for (int i = 0; i < BattleSystem_GetMaxBattlers(battleSys); i++) {

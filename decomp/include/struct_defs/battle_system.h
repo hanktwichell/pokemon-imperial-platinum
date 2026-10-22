@@ -141,6 +141,7 @@ struct BattleSystem {
     u32 padding_2474_1 : 31;
     SysTask *playbackStopButton;
     u8 recordedChatter[MAX_BATTLERS];
+    BOOL megaUnlocked; // Sovereign (E8): the player may Mega Evolve (FieldBattleDTO.megaUnlocked)
 };
 
 #endif // POKEPLATINUM_STRUCT_BATTLE_SYSTEM_H

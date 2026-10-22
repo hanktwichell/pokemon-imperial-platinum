@@ -5015,6 +5015,55 @@ static int Pokemon_GetFormNarcIndex(int monSpecies, int monForm)
     return monSpecies;
 }
 
+// Sovereign (E8): the Mega or Primal form this species takes with the held item (Mega Rayquaza: with a move it knows
+// and no Mega Stone held), or 0 if none. primal picks Primal Reversion instead of Mega Evolution.
+int Pokemon_SovereignBattleForm(u16 species, u16 heldItem, const u16 *moves, BOOL primal)
+{
+    BOOL holdsMegaStone = FALSE;
+
+    for (int i = 0; i < SOVEREIGN_FORM_COUNT; i++) {
+        if (sSovereignForms[i].kind == SOVEREIGN_FORM_MEGA && sSovereignForms[i].trigger == heldItem) {
+            holdsMegaStone = TRUE;
+        }
+    }
+
+    for (int i = 0; i < SOVEREIGN_FORM_COUNT; i++) {
+        const SovereignForm *form = &sSovereignForms[i];
+
+        if (form->species != species) {
+            continue;
+        }
+
+        if (primal) {
+            if (form->kind == SOVEREIGN_FORM_PRIMAL && form->trigger == heldItem) {
+                return form->form;
+            }
+        } else if (form->kind == SOVEREIGN_FORM_MEGA && form->trigger == heldItem) {
+            return form->form;
+        } else if (form->kind == SOVEREIGN_FORM_MEGA_BY_MOVE && holdsMegaStone == FALSE) {
+            for (int j = 0; j < LEARNED_MOVES_MAX; j++) {
+                if (moves[j] == form->trigger) {
+                    return form->form;
+                }
+            }
+        }
+    }
+
+    return 0;
+}
+
+// Sovereign (E8): TRUE for a Mega or Primal form, which reverts to the base form when the battle ends.
+BOOL Pokemon_IsSovereignBattleForm(u16 species, int form)
+{
+    for (int i = 0; i < SOVEREIGN_FORM_COUNT; i++) {
+        if (sSovereignForms[i].species == species && sSovereignForms[i].form == form) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
 u32 FlagIndex(int num)
 {
     int i;

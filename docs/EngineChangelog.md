@@ -19,6 +19,26 @@ players and the verification that was run.
   (formerly `FLAG_UNUSED_0x006F`). A player who already has the badge gets it by talking to her again. Verified by
   beating Fantina with the test party.
 - Test build: SELECT+L+R stops at the Alakazite ball and in front of Fantina.
+- **Mega Evolution in battle** (step 2; `battle_controller_player.c`, `battle_lib.c`):
+  - It happens after switches and items and before the turn's first move, fastest first. The remaining moves are then
+    re-sorted, so the Mega's Speed counts that turn (Gen VII+).
+  - Stats, types and (when the engine has it) the ability change. A new ability takes effect at once, like a switch-in
+    (Mega Charizard Y's Drought sets the sun).
+  - Once per trainer per battle; in multi and tag battles each trainer gets one. The player needs the Mega Ring
+    (`FieldBattleDTO.megaUnlocked`). Wild Pokémon never Mega Evolve. Trainers' AI Mega Evolves as soon as it can.
+  - The party Pokémon stays Mega while switched out. Every Mega/Primal form reverts when the battle ends
+    (`BattleMain_CopyBattleSysToDTOAndFree`).
+  - Messages: "<Pokémon>'s <stone> is reacting to the Mega Ring!", then "<Pokémon> has Mega Evolved into Mega
+    <species>!". The new subscript is `subscript_sovereign_mega_evolution`; the sprite flashes with Platinum's
+    form-change mosaic.
+  - Verified in the test build:
+    - The test trainer's Charizard Mega Evolved on turn 1 and Drought set the sun.
+    - The player's Garchomp Mega Evolved in a wild battle (a temporary always-Mega hook stood in for the button) and
+      didn't again on turn 2.
+    - After the battle, Garchomp was back to its normal stats with its Garchompite.
+  - Still to do: the MEGA button (until then the player can't choose Mega Evolution), Primal Reversion, the
+    animation and the AI review.
+- Test build: Garchomp holds a Garchompite and the Mega flag is set at new game.
 
 ## E7 part 2 — shops and icon placement (in progress)
 
