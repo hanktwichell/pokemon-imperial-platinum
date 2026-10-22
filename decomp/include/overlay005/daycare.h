@@ -31,4 +31,8 @@ u32 Daycare_GetCompatibilityLevel(Daycare *daycare);
 void Egg_CreateHatchedMon(Pokemon *egg, enum HeapID heapID);
 u32 BoxMon_GetPairDaycareCompatibilityLevel(BoxPokemon **boxMonPair);
 
+#ifdef IMPERIAL_TEST
+void ImperialTest_BreedAndHatch(FieldSystem *fieldSystem);
+#endif
+
 #endif // POKEPLATINUM_DAYCARE_H

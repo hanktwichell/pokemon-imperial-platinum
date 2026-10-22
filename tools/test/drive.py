@@ -2,7 +2,8 @@
 """Drive the ROM headlessly from a save state with a list of actions, then save a state + screenshot.
 
 Actions (space-separated):
-  A B X Y L R START SELECT UP DOWN LEFT RIGHT   press the button (add *N to repeat, e.g. A*10)
+  A B X Y L R START SELECT UP DOWN LEFT RIGHT   press the button (add *N to repeat, e.g. A*10; join with + to press
+                                                together, e.g. SELECT+L)
   hold:KEY:FRAMES                               hold a button for FRAMES frames
   touch:X,Y                                     tap the touch screen (bottom-screen coordinates)
   wait:FRAMES                                   let the game run
@@ -52,9 +53,14 @@ class Driver:
             self.emu.cycle(with_joystick=False)
 
     def press(self, key, frames=6, after=20):
-        self.emu.input.keypad_add_key(keymask(KEYS[key]))
+        # Keys go down right to left, a frame apart, so in SELECT+L the L is already held when SELECT is pressed.
+        keys = key.split("+")
+        for k in reversed(keys):
+            self.emu.input.keypad_add_key(keymask(KEYS[k]))
+            self.run(1)
         self.run(frames)
-        self.emu.input.keypad_rm_key(keymask(KEYS[key]))
+        for k in keys:
+            self.emu.input.keypad_rm_key(keymask(KEYS[k]))
         self.run(after)
 
     def touch(self, x, y, frames=30, after=60):

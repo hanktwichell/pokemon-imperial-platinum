@@ -1,5 +1,7 @@
 #include "applications/pokedex/pokedex_main.h"
 
+#include "constants/species.h"
+
 #include <nitro.h>
 #include <nnsys.h>
 #include <string.h>
@@ -607,8 +609,8 @@ void PokedexMain_DisplayNameNumberText(Window *window, int dexNumber, int specie
     String *nameNumber;
 
     if (dexNumber > 0) {
-        numStr = String_Init(4, heapID);
-        String_FormatInt(numStr, dexNumber, 3, 2, 1);
+        numStr = String_Init(DEX_NUMBER_DIGITS(dexNumber) + 1, heapID);
+        String_FormatInt(numStr, dexNumber, DEX_NUMBER_DIGITS(dexNumber), 2, 1);
     } else {
         numStr = PokedexMain_GetMessage(pl_msg_pokedex_none, heapID);
     }

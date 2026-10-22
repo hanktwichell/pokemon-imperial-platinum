@@ -848,6 +848,7 @@ ScriptCommand(SCRCMD_BUFFERFLOORNUMBER,                                    ScrCm
 // Imperial additions
 ScriptCommand(SCRCMD_GETLASTREPEL,                                         ScrCmd_GetLastRepel)
 ScriptCommand(SCRCMD_USEREPEL,                                             ScrCmd_UseRepel)
+ScriptCommand(SCRCMD_FINDPARTYSLOTFORFIELDMOVE,                            ScrCmd_FindPartySlotForFieldMove)
 
 // clang-format on
 

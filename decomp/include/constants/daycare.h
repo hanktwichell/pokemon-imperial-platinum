@@ -15,6 +15,7 @@
 
 #define NUM_DAYCARE_MONS  2
 #define NUM_INHERITED_IVS 3
+#define NUM_INHERITED_IVS_DESTINY_KNOT 5 // Imperial (Gen VI+)
 #define EGG_GENDER_MALE   0x8000 // used to create a male egg from a female-only parent species (e.g. Nidoran)
 #define MAX_EGG_MOVES     16
 

@@ -2837,7 +2837,9 @@ void BoxPokemon_BuildSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, BoxPo
         monForm = BoxPokemon_GetValue(mon, MON_DATA_FORM, NULL);
     }
 
-    if (preferDP == TRUE) {
+    // Imperial: the prebuilt Diamond/Pearl sprite archive only has #1-493 (and Egg at 494), so every other species
+    // (and Imperial's Egg, now after #1025) uses the Platinum sprites.
+    if (preferDP == TRUE && monSpeciesEgg <= SPECIES_ARCEUS) {
         BuildPokemonSpriteTemplateDP(spriteTemplate, monSpeciesEgg, monGender, face, monShininess, monForm, monPersonality);
     } else {
         BuildPokemonSpriteTemplate(spriteTemplate, monSpeciesEgg, monGender, face, monShininess, monForm, monPersonality);
@@ -3195,7 +3197,7 @@ u8 BoxPokemon_SpriteYOffset(BoxPokemon *boxMon, u8 face, BOOL preferDP)
         form = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
     }
 
-    if (preferDP == TRUE) {
+    if (preferDP == TRUE && species <= SPECIES_ARCEUS) { // Imperial: see BoxPokemon_BuildSpriteTemplate
         return LoadPokemonDPSpriteHeight(species, gender, face, form, personality);
     }
 
@@ -4945,31 +4947,32 @@ static void *BoxPokemon_GetDataBlock(BoxPokemon *boxMon, u32 personality, enum P
 
 static int Pokemon_GetFormNarcIndex(int monSpecies, int monForm)
 {
-    // TODO enum values?
+    // Form data is packed after every species, in speciesproc's altFormsWithData order (Imperial: relative to
+    // SPECIES_BAD_EGG instead of literal indices, so it follows the species count).
     switch (monSpecies) {
     case SPECIES_DEOXYS:
         if (monForm && monForm <= DEOXYS_FORM_COUNT - 1) {
-            monSpecies = (496 - 1) + monForm;
+            monSpecies = (SPECIES_BAD_EGG + 1 - 1) + monForm;
         }
         break;
     case SPECIES_WORMADAM:
         if (monForm && monForm <= WORMADAM_FORM_COUNT - 1) {
-            monSpecies = (499 - 1) + monForm;
+            monSpecies = (SPECIES_BAD_EGG + 4 - 1) + monForm;
         }
         break;
     case SPECIES_GIRATINA:
         if (monForm && monForm <= GIRATINA_FORM_COUNT - 1) {
-            monSpecies = (501 - 1) + monForm;
+            monSpecies = (SPECIES_BAD_EGG + 6 - 1) + monForm;
         }
         break;
     case SPECIES_SHAYMIN:
         if (monForm && monForm <= SHAYMIN_FORM_COUNT - 1) {
-            monSpecies = (502 - 1) + monForm;
+            monSpecies = (SPECIES_BAD_EGG + 7 - 1) + monForm;
         }
         break;
     case SPECIES_ROTOM:
         if (monForm && monForm <= ROTOM_FORM_COUNT - 1) {
-            monSpecies = (503 - 1) + monForm;
+            monSpecies = (SPECIES_BAD_EGG + 8 - 1) + monForm;
         }
         break;
     default:

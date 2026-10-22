@@ -21,7 +21,7 @@ and T2 only. See `EngineRoadmap.md` for the per-milestone breakdown.
 | E0b | Fairy type + Gen VI+ type chart | ✅ done (checked against the official chart) |
 | E13 | Options: level cap, Infinite Rare Candy, party Exp. Share, music volume | ✅ done (PR #5); verified in battle with the test build |
 | E1 | Own save signature, ROM title/banner "Pokémon Imperial Platinum" | ✅ done (PR #7) |
-| E14 | Approved QoL | 🟡 2 of 9 done (IV/EV viewer, Repel prompt; both tested in-game). Next: type-effectiveness indicator, HM-free field moves, Gen VI+ breeding. Mints, Infinite Repel and Ability Capsule wait for E7/E4 |
+| E14 | Approved QoL | 🟡 4 of 9 done (IV/EV viewer, Repel prompt, HM-free field moves, Gen VI+ breeding; all tested in-game). The type-effectiveness indicator needs an owner decision on its design. Mints, Infinite Repel and Ability Capsule wait for E7/E4 |
 | — | Test build (`tools/test/build_test_rom.sh`): test party at new game, SELECT = wild battle, SELECT+R = trainer battle | ✅ working |
 | E3 | All 919 moves, ID = official number; 93 new moves exact, 76 approximate, 211 placeholder (`MoveChecklist.md`) | ✅ done (PR #9); tested in battle |
 | E5 | Gen IX stats, types and learnsets for #1–493 and forms; 32-bit learnset entries | ✅ done (PR #9); tested in battle |

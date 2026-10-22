@@ -126,57 +126,62 @@ u16 Pokedex_GetRatingMessageID_Local(u16 pokemonSeen, u16 reachedEternaCity)
     }
 }
 
+// Imperial: Oak's National Dex tiers scale with the dex goal (the numbers are Platinum's, for a goal of 482), so the
+// tiers are unchanged at 493 species and spread over the bigger dex at 1025.
+#define VANILLA_NATIONAL_DEX_GOAL  482
+#define NATIONAL_RATING_TIER(n)    (((n) + 1) * NATIONAL_DEX_GOAL / VANILLA_NATIONAL_DEX_GOAL - 1)
+
 u16 Pokedex_GetRatingMessageID_National(u16 pokemonCaught, u16 playerGender)
 {
-    if (pokemonCaught <= 39) {
+    if (pokemonCaught <= NATIONAL_RATING_TIER(39)) {
         return PokedexRatings_Text_OakPokemonCaughtUnder40;
     }
 
-    if (pokemonCaught <= 59) {
+    if (pokemonCaught <= NATIONAL_RATING_TIER(59)) {
         return PokedexRatings_Text_OakPokemonCaught40;
     }
 
-    if (pokemonCaught <= 89) {
+    if (pokemonCaught <= NATIONAL_RATING_TIER(89)) {
         return PokedexRatings_Text_OakPokemonCaught60;
     }
 
-    if (pokemonCaught <= 119) {
+    if (pokemonCaught <= NATIONAL_RATING_TIER(119)) {
         return PokedexRatings_Text_OakPokemonCaught90;
     }
 
-    if (pokemonCaught <= 149) {
+    if (pokemonCaught <= NATIONAL_RATING_TIER(149)) {
         return PokedexRatings_Text_OakPokemonCaught120;
     }
 
-    if (pokemonCaught <= 189) {
+    if (pokemonCaught <= NATIONAL_RATING_TIER(189)) {
         return PokedexRatings_Text_OakPokemonCaught150;
     }
 
-    if (pokemonCaught <= 229) {
+    if (pokemonCaught <= NATIONAL_RATING_TIER(229)) {
         return PokedexRatings_Text_OakPokemonCaught190;
     }
 
-    if (pokemonCaught <= 269) {
+    if (pokemonCaught <= NATIONAL_RATING_TIER(269)) {
         return PokedexRatings_Text_OakPokemonCaught230;
     }
 
-    if (pokemonCaught <= 309) {
+    if (pokemonCaught <= NATIONAL_RATING_TIER(309)) {
         return PokedexRatings_Text_OakPokemonCaught270;
     }
 
-    if (pokemonCaught <= 349) {
+    if (pokemonCaught <= NATIONAL_RATING_TIER(349)) {
         return PokedexRatings_Text_OakPokemonCaught310;
     }
 
-    if (pokemonCaught <= 379) {
+    if (pokemonCaught <= NATIONAL_RATING_TIER(379)) {
         return PokedexRatings_Text_OakPokemonCaught350;
     }
 
-    if (pokemonCaught <= 409) {
+    if (pokemonCaught <= NATIONAL_RATING_TIER(409)) {
         return PokedexRatings_Text_OakPokemonCaught380;
     }
 
-    if (pokemonCaught <= 429) {
+    if (pokemonCaught <= NATIONAL_RATING_TIER(429)) {
         if (playerGender) {
             return PokedexRatings_Text_OakPokemonCaught410_Female;
         } else {
@@ -184,23 +189,23 @@ u16 Pokedex_GetRatingMessageID_National(u16 pokemonCaught, u16 playerGender)
         }
     }
 
-    if (pokemonCaught <= 449) {
+    if (pokemonCaught <= NATIONAL_RATING_TIER(449)) {
         return PokedexRatings_Text_OakPokemonCaught430;
     }
 
-    if (pokemonCaught <= 459) {
+    if (pokemonCaught <= NATIONAL_RATING_TIER(459)) {
         return PokedexRatings_Text_OakPokemonCaught450;
     }
 
-    if (pokemonCaught <= 469) {
+    if (pokemonCaught <= NATIONAL_RATING_TIER(469)) {
         return PokedexRatings_Text_OakPokemonCaught460;
     }
 
-    if (pokemonCaught <= 475) {
+    if (pokemonCaught <= NATIONAL_RATING_TIER(475)) {
         return PokedexRatings_Text_OakPokemonCaught470;
     }
 
-    if (pokemonCaught <= 481) {
+    if (pokemonCaught <= NATIONAL_RATING_TIER(481)) {
         return PokedexRatings_Text_OakPokemonCaught476;
     }
 

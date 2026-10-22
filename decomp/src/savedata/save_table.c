@@ -112,12 +112,17 @@ MigratedPokemon *SaveData_GetPalParkTransfer(SaveData *saveData)
 
 const SaveTableEntry gExtraSaveTable[] = {
     { EXTRA_SAVE_TABLE_ENTRY_HALL_OF_FAME, SAVE_PAGE_MAX, (SaveEntrySizeFunc)HallOfFame_SaveSize, (SaveEntryInitFunc)HallOfFame_Init },
+    // Imperial: the Battle Hall records (3 streaks per species) get 2 sectors, enough for 1025+ species; the
+    // recordings after them move up one sector (the last ends at sector SAVE_PAGE_MAX + 12 = 44 of the 64 free).
     { EXTRA_SAVE_TABLE_ENTRY_FRONTIER, SAVE_PAGE_MAX + 3, (SaveEntrySizeFunc)BattleHallWinRecords_SaveSize, (SaveEntryInitFunc)BattleHallWinRecords_Init },
-    { EXTRA_SAVE_TABLE_ENTRY_MY_RECORDINGS, SAVE_PAGE_MAX + 4, (SaveEntrySizeFunc)BattleRecording_SaveSize, (SaveEntryInitFunc)BattleRecording_Init },
-    { EXTRA_SAVE_TABLE_ENTRY_DL_RECORDINGS_0, SAVE_PAGE_MAX + 6, (SaveEntrySizeFunc)BattleRecording_SaveSize, (SaveEntryInitFunc)BattleRecording_Init },
-    { EXTRA_SAVE_TABLE_ENTRY_DL_RECORDINGS_1, SAVE_PAGE_MAX + 8, (SaveEntrySizeFunc)BattleRecording_SaveSize, (SaveEntryInitFunc)BattleRecording_Init },
-    { EXTRA_SAVE_TABLE_ENTRY_DL_RECORDINGS_2, SAVE_PAGE_MAX + 10, (SaveEntrySizeFunc)BattleRecording_SaveSize, (SaveEntryInitFunc)BattleRecording_Init },
+    { EXTRA_SAVE_TABLE_ENTRY_MY_RECORDINGS, SAVE_PAGE_MAX + 5, (SaveEntrySizeFunc)BattleRecording_SaveSize, (SaveEntryInitFunc)BattleRecording_Init },
+    { EXTRA_SAVE_TABLE_ENTRY_DL_RECORDINGS_0, SAVE_PAGE_MAX + 7, (SaveEntrySizeFunc)BattleRecording_SaveSize, (SaveEntryInitFunc)BattleRecording_Init },
+    { EXTRA_SAVE_TABLE_ENTRY_DL_RECORDINGS_1, SAVE_PAGE_MAX + 9, (SaveEntrySizeFunc)BattleRecording_SaveSize, (SaveEntryInitFunc)BattleRecording_Init },
+    { EXTRA_SAVE_TABLE_ENTRY_DL_RECORDINGS_2, SAVE_PAGE_MAX + 11, (SaveEntrySizeFunc)BattleRecording_SaveSize, (SaveEntryInitFunc)BattleRecording_Init },
 };
+
+// Imperial: the Battle Hall records plus their footer must fit their 2 sectors.
+typedef char BattleHallWinRecordsSizeCheck[(sizeof(BattleHallWinRecords) + sizeof(SaveCheckFooter) <= 2 * SAVE_SECTOR_SIZE) ? 1 : -1];
 
 const int gExtraSaveTableSize = NELEMS(gExtraSaveTable);
 

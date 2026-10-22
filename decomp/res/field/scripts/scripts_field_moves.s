@@ -24,7 +24,7 @@ FieldMoves_CutTree:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
-    FindPartySlotWithMove VAR_RESULT, MOVE_CUT
+    FindPartySlotForFieldMove VAR_RESULT, MOVE_CUT
     GoToIfEq VAR_RESULT, MAX_PARTY_SIZE, FieldMoves_CantUseCut
     CheckBadgeAcquired BADGE_ID_FOREST, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, FieldMoves_CantUseCut
@@ -45,7 +45,7 @@ FieldMoves_CantUseCut:
     End
 
 FieldMoves_UseCutFromField:
-    FindPartySlotWithMove VAR_RESULT, MOVE_CUT
+    FindPartySlotForFieldMove VAR_RESULT, MOVE_CUT
     SetVar VAR_0x8004, VAR_RESULT
     BufferPartyMonNickname 0, VAR_RESULT
     Message FieldMoves_Text_PokemonUsedCut
@@ -128,7 +128,7 @@ FieldMoves_Rock:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
-    FindPartySlotWithMove VAR_RESULT, MOVE_ROCK_SMASH
+    FindPartySlotForFieldMove VAR_RESULT, MOVE_ROCK_SMASH
     SetVar VAR_0x8004, VAR_RESULT
     GoToIfEq VAR_RESULT, MAX_PARTY_SIZE, FieldMoves_CantUseRockSmash
     CheckBadgeAcquired BADGE_ID_COAL, VAR_RESULT
@@ -186,7 +186,7 @@ FieldMoves_Boulder:
     FacePlayer
     DoStrengthFunc FIELD_MOVE_FUNC_CHECK_ACTIVE, VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, FieldMoves_StrenghtAlreadyActive
-    FindPartySlotWithMove VAR_RESULT, MOVE_STRENGTH
+    FindPartySlotForFieldMove VAR_RESULT, MOVE_STRENGTH
     GoToIfEq VAR_RESULT, MAX_PARTY_SIZE, FieldMoves_CantUseStrength
     CheckBadgeAcquired BADGE_ID_MINE, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, FieldMoves_CantUseStrength
@@ -206,7 +206,7 @@ FieldMoves_CantUseStrength:
 
 FieldMoves_UseStrengthFromField:
     DoStrengthFunc FIELD_MOVE_FUNC_SET_ACTIVE
-    FindPartySlotWithMove VAR_RESULT, MOVE_STRENGTH
+    FindPartySlotForFieldMove VAR_RESULT, MOVE_STRENGTH
     SetVar VAR_0x8004, VAR_RESULT
     BufferPartyMonNickname 0, VAR_RESULT
     Message FieldMoves_Text_PokemonUsedStrength
@@ -246,7 +246,7 @@ FieldMoves_UseStrengthFromMenu:
 FieldMoves_RockyWall:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
-    FindPartySlotWithMove VAR_RESULT, MOVE_ROCK_CLIMB
+    FindPartySlotForFieldMove VAR_RESULT, MOVE_ROCK_CLIMB
     GoToIfEq VAR_RESULT, MAX_PARTY_SIZE, FieldMoves_CantUseRockClimb
     CheckBadgeAcquired BADGE_ID_ICICLE, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, FieldMoves_CantUseRockClimb
@@ -274,7 +274,7 @@ FieldMoves_NoRockClimbingWithPartner:
     End
 
 FieldMoves_UseRockClimbFromField:
-    FindPartySlotWithMove VAR_RESULT, MOVE_ROCK_CLIMB
+    FindPartySlotForFieldMove VAR_RESULT, MOVE_ROCK_CLIMB
     SetVar VAR_0x8004, VAR_RESULT
     BufferPartyMonNickname 0, VAR_RESULT
     Message FieldMoves_Text_PokemonUsedRockClimb
@@ -315,7 +315,7 @@ FieldMoves_CantUseSurf:
     GoTo FieldMoves_End2
 
 FieldMoves_UseSurfFromField:
-    FindPartySlotWithMove VAR_RESULT, MOVE_SURF
+    FindPartySlotForFieldMove VAR_RESULT, MOVE_SURF
     SetVar VAR_0x8004, VAR_RESULT
     BufferPartyMonNickname 0, VAR_RESULT
     Message FieldMoves_Text_PokemonUsedSurf
@@ -342,7 +342,7 @@ FieldMoves_UseSurfFromMenu:
 FieldMoves_Fog_Unused:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
-    FindPartySlotWithMove VAR_RESULT, MOVE_DEFOG
+    FindPartySlotForFieldMove VAR_RESULT, MOVE_DEFOG
     GoToIfEq VAR_RESULT, MAX_PARTY_SIZE, FieldMoves_CantUseDefog_Unused
     Message FieldMoves_Text_WouldYouLikeToUseDefog_Unused
     ShowYesNoMenu VAR_RESULT
@@ -359,7 +359,7 @@ FieldMoves_CantUseDefog_Unused:
     End
 
 FieldMoves_UseDefogFromField_Unused:
-    FindPartySlotWithMove VAR_RESULT, MOVE_DEFOG
+    FindPartySlotForFieldMove VAR_RESULT, MOVE_DEFOG
     SetVar VAR_0x8004, VAR_RESULT
     BufferPartyMonNickname 0, VAR_RESULT
     Message FieldMoves_Text_PokemonUsedDefog
@@ -417,7 +417,7 @@ FieldMoves_End3:
 FieldMoves_Waterfall:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
-    FindPartySlotWithMove VAR_RESULT, MOVE_WATERFALL
+    FindPartySlotForFieldMove VAR_RESULT, MOVE_WATERFALL
     GoToIfEq VAR_RESULT, MAX_PARTY_SIZE, FieldMoves_CantUseWaterfall
     CheckBadgeAcquired BADGE_ID_BEACON, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, FieldMoves_CantUseWaterfall
@@ -436,7 +436,7 @@ FieldMoves_CantUseWaterfall:
     End
 
 FieldMoves_UseWaterfallFromField:
-    FindPartySlotWithMove VAR_RESULT, MOVE_WATERFALL
+    FindPartySlotForFieldMove VAR_RESULT, MOVE_WATERFALL
     SetVar VAR_0x8004, VAR_RESULT
     BufferPartyMonNickname 0, VAR_RESULT
     Message FieldMoves_Text_PokemonUsedWaterfall

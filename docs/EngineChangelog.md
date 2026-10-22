@@ -3,6 +3,64 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## E6 step 1 — engine prep for 1025 species (still 493 species)
+
+Platinum assumed its 493 species in a dozen places. Each is now tied to the species list, so adding #494–1025
+(step 2) won't break them. At 493 species the game behaves the same. The plan is in `docs/SpeciesExpansionPlan.md`.
+
+- **Form data indices:** `Pokemon_GetFormNarcIndex` now counts from `SPECIES_BAD_EGG` instead of using literal
+  496–503.
+- **Trainer parties:** species uses 11 bits and form 5 (it was 10 and 6), so species up to 2047 fit.
+- **Cries:** the sound archive's cry slots equal the species number.
+  - Shaymin-Sky's cry moves from slot 494 to 1050.
+  - The BASIC/BGM/SE banks move from 700–770 to 1100–1170.
+  - Tools: `tools/audio/relayout_sound_banks.py`, plus `cjson_format.py`, which edits the archive's JSON without
+    reformatting it.
+- **Battle Hall records:** this save block gets 2 sectors (it holds 3 streaks per species), and the recordings move up
+  one sector. A compile-time check confirms the block fits.
+- **4-digit Pokédex numbers:**
+  - Dex numbers and counts show 4 digits from 1000 on (`DEX_NUMBER_DIGITS`). This covers the Pokédex, the summary
+    screen, the main menu, the save window, the Trainer Card and the numbered species names (including Japanese
+    full-width digits).
+- **Oak's National Dex ratings** scale with the dex size. The tiers are unchanged at 493.
+- **GTS and Global Terminal:** the "by name" letter groups come from a header that speciesproc generates
+  (`species_alphabet_groups.h`) instead of hard-coded numbers. The generated values match Platinum's.
+- **Contests and dress-up:** these use the Diamond/Pearl sprites only for #1–493, since that archive stops there.
+- **Smaller fixes:**
+  - The Wi-Fi party check uses `MAX_SPECIES` and `MAX_MOVES`.
+  - The Battle Hall record list can't overflow.
+  - `NUM_EXCLUDED_NATIONAL` is a checked constant, so other files can use the dex goal.
+
+## E14 (part) — HM field moves without HM slaves, Gen VI+ breeding
+
+- **HM field moves:** once the bag has an HM, its field move works even if no party Pokémon knows it. Badge
+  requirements are unchanged.
+  - Cut, Rock Smash, Strength, Rock Climb, Surf and Waterfall work from their field prompts. The first non-Egg party
+    Pokémon does the move.
+  - Fly and Defog are added to every party Pokémon's menu.
+  - Code: `src/imperial_field_moves.c`, the script command `FindPartySlotForFieldMove`, and the Surf and Waterfall
+    checks in `field_control.c`.
+  - HM moves can be forgotten when learning a new move, on the summary screen and in battle
+    (`IMPERIAL_HMS_FORGETTABLE`). This builds but hasn't been tried in-game yet.
+- **Gen VI+ breeding** (`daycare.c`):
+  - An Everstone passes its holder's nature every time, from either parent.
+  - A Destiny Knot passes 5 IVs instead of 3. This also fixes Gen IV's bug that could pick the same stat twice.
+  - Egg moves come from either parent.
+  - The egg comes in the mother's Poké Ball, or the non-Ditto parent's when breeding with Ditto (Master and Cherish
+    Balls become a Poké Ball).
+  - A parent with its Hidden Ability passes it 60% of the time.
+  - The ball and Hidden Ability are kept when the egg hatches.
+- Test build:
+  - The bag now has HM02 and HM05, and there's a Ditto (Adamant, Everstone, 31 IVs). The Hidden Ability Gallade holds
+    a Destiny Knot, is in an Ultra Ball, and has 31 IVs.
+  - SELECT+L breeds the two and hatches the egg straight away.
+  - `drive.py` accepts key combos such as `SELECT+L`.
+
+Verified in the emulator:
+- Fly and Defog show in the menus of Garchomp and Turtwig, which don't know them.
+- The hatched Ralts has Adamant nature, an Ultra Ball, Telepathy (its Hidden Ability), and 31 in five IVs.
+- The hatch shortcut skips the normal hatch script, so the test Ralts shows no hatch place or date.
+
 ## 10b (part 1) — Pokémon Champions battle rules
 
 Rules and sources: `docs/BattleMechanics.md`. IVs, EVs and levels are unchanged (owner decision).

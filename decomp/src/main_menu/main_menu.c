@@ -1,6 +1,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/species.h"
 #include "constants/communication/comm_available_connections.h"
 #include "constants/graphics.h"
 #include "constants/narc.h"
@@ -698,7 +699,10 @@ static void SetTemplateNumberCustomFormatting(StringTemplate *strTemplate, int n
     int maxDigits;
     enum PaddingMode paddingMode;
 
-    if (number >= 100) {
+    if (number >= 1000) { // Imperial: up to 1025 species
+        maxDigits = 4;
+        paddingMode = PADDING_MODE_NONE;
+    } else if (number >= 100) {
         maxDigits = 3;
         paddingMode = PADDING_MODE_NONE;
     } else if (number >= 10) {

@@ -200,8 +200,8 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
     case TRDATATYPE_BASE: {
         TrainerMonBase *trmon = (TrainerMonBase *)buf;
         for (i = 0; i < dto->trainer[battler].header.partySize; i++) {
-            u16 species = trmon[i].species & 0x3FF;
-            u8 form = (trmon[i].species & 0xFC00) >> TRAINER_MON_FORM_SHIFT;
+            u16 species = trmon[i].species & TRAINER_MON_SPECIES_MASK;
+            u8 form = trmon[i].species >> TRAINER_MON_FORM_SHIFT;
 
             rnd = trmon[i].ivScale + trmon[i].level + species + dto->trainerIDs[battler];
             LCRNG_SetSeed(rnd);
@@ -225,8 +225,8 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
     case TRDATATYPE_WITH_MOVES: {
         TrainerMonWithMoves *trmon = (TrainerMonWithMoves *)buf;
         for (i = 0; i < dto->trainer[battler].header.partySize; i++) {
-            u16 species = trmon[i].species & 0x3FF;
-            u8 form = (trmon[i].species & 0xFC00) >> TRAINER_MON_FORM_SHIFT;
+            u16 species = trmon[i].species & TRAINER_MON_SPECIES_MASK;
+            u8 form = trmon[i].species >> TRAINER_MON_FORM_SHIFT;
 
             rnd = trmon[i].ivScale + trmon[i].level + species + dto->trainerIDs[battler];
             LCRNG_SetSeed(rnd);
@@ -255,8 +255,8 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
     case TRDATATYPE_WITH_ITEM: {
         TrainerMonWithItem *trmon = (TrainerMonWithItem *)buf;
         for (i = 0; i < dto->trainer[battler].header.partySize; i++) {
-            u16 species = trmon[i].species & 0x3FF;
-            u8 form = (trmon[i].species & 0xFC00) >> TRAINER_MON_FORM_SHIFT;
+            u16 species = trmon[i].species & TRAINER_MON_SPECIES_MASK;
+            u8 form = trmon[i].species >> TRAINER_MON_FORM_SHIFT;
 
             rnd = trmon[i].ivScale + trmon[i].level + species + dto->trainerIDs[battler];
             LCRNG_SetSeed(rnd);
@@ -281,8 +281,8 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
     case TRDATATYPE_WITH_MOVES_AND_ITEM: {
         TrainerMonWithMovesAndItem *trmon = (TrainerMonWithMovesAndItem *)buf;
         for (i = 0; i < dto->trainer[battler].header.partySize; i++) {
-            u16 species = trmon[i].species & 0x3FF;
-            u8 form = (trmon[i].species & 0xFC00) >> TRAINER_MON_FORM_SHIFT;
+            u16 species = trmon[i].species & TRAINER_MON_SPECIES_MASK;
+            u8 form = trmon[i].species >> TRAINER_MON_FORM_SHIFT;
 
             rnd = trmon[i].ivScale + trmon[i].level + species + dto->trainerIDs[battler];
             LCRNG_SetSeed(rnd);

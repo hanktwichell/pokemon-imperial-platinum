@@ -5007,6 +5007,14 @@
     .short \item
     .endm
 
+    // Imperial: like FindPartySlotWithMove, but if no Pokémon knows the move and the bag has its HM, the first
+    // non-Egg party slot is used (HM field moves without HM slaves). MAX_PARTY_SIZE if neither.
+    .macro FindPartySlotForFieldMove destVarID, move
+    .short SCRCMD_FINDPARTYSLOTFORFIELDMOVE
+    .short \destVarID
+    .short \move
+    .endm
+
 
 
     .macro GoToIfLt varID, valueOrVarID, offset
