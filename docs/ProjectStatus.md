@@ -109,8 +109,14 @@ Made by the owner (2026-10-22):
       decision 6 for numbering.
     - To check when building it: other things Platinum gates on the National Dex flag (some wild encounters, Pal
       Park, Rowan's post-league upgrade event). Keep or move each one deliberately.
+22. **Pal Park is removed, along with the GBA "Migrate" option** (owner, 2026-10-22; it can't work in a ROM hack).
+    Its grounds on Route 221 become the **Regional Forms Park**: Pal Park's four areas (field, forest, mountain, sea)
+    become Alola, Galar, Hisui and Paldea zones where the 59 regional forms (decision 16) live as wild Pokémon. The
+    Catching Show layout is reused. Built with milestone FM, once regional forms exist.
 
 Open:
+- Regional Forms Park (decision 22): which zone holds which forms, encounter rates, and when it opens (Route 221
+  needs Surf; with the National Dex from the start, Pal Park's old National Dex gate no longer applies).
 - Special evolutions (decision 20): owner discussion pending.
 - The developer battle: Lv. 100 at Spear Pillar, leads Charizard-Y + Venusaur, custom weather-control AI (`DeveloperBattle.md`). Opponent: Sovereign Dev Twich. Open: text, sprites (owner's sprite coming soon), Charizard's final moveset.
 - Front sprites and the part 2 shiny pack (owner is sourcing them).

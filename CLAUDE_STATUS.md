@@ -343,3 +343,21 @@ by this session before the rule. This entry updates it without rewriting it.
    - A decision on where Mints, Ability Capsules, evolution items and Mega Stones are sold before Renegade's NPCs
      exist (E10).
 3. E8 Mega Evolution, then the Pokédex work (decision 21).
+
+---
+
+## CB-0007 — 2026-10-22, 3:15 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Owner decision recorded (decision 22, `docs/ProjectStatus.md`; also in the FM roadmap row):**
+- **Pal Park and the GBA "Migrate" option are removed.**
+- Route 221's grounds become the **Regional Forms Park**: four zones (Alola, Galar, Hisui, Paldea) on Pal Park's
+  field/forest/mountain/sea areas, where the 59 regional forms live as wild Pokémon. Built with milestone FM.
+- Open: which forms go in which zone, rates, and when it opens.
+
+**Files modified:** `docs/ProjectStatus.md`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md` (this entry).
+
+**Next 3 steps:** unchanged from CB-0006.
+1. Merge PR #15 when green.
+2. E7 part 2: a Veilstone Department Store 2F held-item clerk (38 held items + 18 Gems), the Infinite Repel, and
+   where the other new items are sold.
+3. E8 Mega Evolution, then the Pokédex (decision 21).
