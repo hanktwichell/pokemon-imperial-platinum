@@ -137,7 +137,13 @@
             "MOVE_NIGHT_SLASH"
         ]
     },
-    "evolutions": [],
+    "evolutions": [
+        [
+            "EVO_USE_ITEM",
+            "ITEM_METAL_ALLOY",
+            "SPECIES_ARCHALUDON"
+        ]
+    ],
     "offspring": "SPECIES_DURALUDON",
     "footprint": {
         "has": false,

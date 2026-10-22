@@ -23,7 +23,7 @@
     },
     "held_items": {
         "common": "ITEM_NONE",
-        "rare": "ITEM_NONE"
+        "rare": "ITEM_GRASSY_SEED"
     },
     "gender_ratio": "GENDER_RATIO_FEMALE_ONLY",
     "hatch_cycles": 20,

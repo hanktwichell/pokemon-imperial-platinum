@@ -239,3 +239,32 @@ by this session before the rule. This entry updates it without rewriting it.
    stones).
 3. Open the E7 PR. Then: shops (Veilstone Department Store held items, Snowpoint evolution items, Mega Stone vendors)
    and hold-item battle effects by priority.
+
+---
+
+## CB-0004 — 2026-10-22, 3:02 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:**
+- **The 16 evolutions that were waiting on E7 items are wired up.** I reran
+  `tools/engine/gen_new_species.py /tmp/pokeapi/data/v2/csv`: 0 pending. It also added Kleavor to Scyther and
+  Ursaluna to Ursaring (vanilla evolutions kept).
+  - Verified in game: with a temporary Duraludon in the test party, the Metal Alloy showed ABLE!, the evolution
+    played, it became Archaludon and the item was used up. The test party is back to normal.
+  - Kubfu only reaches Single Strike Urshifu until the forms milestone adds Rapid Strike (the Scroll of Waters).
+  - New species' wild held items now include new items where PokeAPI lists them (e.g. Absorb Bulb).
+- **Owner decisions recorded** (`docs/ProjectStatus.md`):
+  - **19:** trade evolutions keep **Renegade's system** (Level 36; trade-with-item → use the item). A Link Stone was
+    considered and dropped.
+  - **20:** **special evolutions** (Gholdengo, Malamar and others) will be discussed with the owner later.
+  - Both are noted in `data/evolution_changes.yaml`.
+
+**Files modified:**
+- `decomp/res/pokemon/*/data.json` (23 species) and `docs/NewSpecies.md`
+- `data/evolution_changes.yaml`, `docs/ProjectStatus.md`, `docs/EngineChangelog.md`
+- `CLAUDE_STATUS.md` (this entry)
+
+**Next 3 steps:**
+1. Mint and Ability Capsule/Patch field-use functions.
+2. Open the E7 PR (items, icons, evolutions, harness fixes) and merge it when CI is green (the owner allows this).
+3. Then: shops (Veilstone Department Store held items, Snowpoint evolution items, Mega Stone vendors) and hold-item
+   battle effects by priority. Held-item forms (Crowned, masks) start milestone FM.

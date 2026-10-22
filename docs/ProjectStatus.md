@@ -96,8 +96,14 @@ Made by the owner (2026-10-22):
     afterwards in its Totem form. Totems call allies: each trial is a double battle where the Totem calls up to 2
     reserve helpers into the empty slot, and balls can be thrown only once the Totem is alone (owner, 2026-10-22).
     Placements, levels and the mechanic: `data/totem_trials.yaml`.
+19. **Trade evolutions follow Renegade's system** (owner, 2026-10-22, after briefly considering a Link Stone): plain
+    trade evolutions evolve at Level 36, and trade-with-item evolutions by using the item like a stone.
+20. **Special evolutions** (Gholdengo's 999 coins, Malamar's upside-down console and other conditions Gen IV can't
+    check) are to be discussed with the owner later. Until then the methods in `EvolutionChanges_Sovereign.md`
+    stand.
 
 Open:
+- Special evolutions (decision 20): owner discussion pending.
 - The developer battle: Lv. 100 at Spear Pillar, leads Charizard-Y + Venusaur, custom weather-control AI (`DeveloperBattle.md`). Opponent: Sovereign Dev Twich. Open: text, sprites (owner's sprite coming soon), Charizard's final moveset.
 - Front sprites and the part 2 shiny pack (owner is sourcing them).
 - hg-engine and Smogon credit lists: Claude compiles them (owner, 2026-10-22).

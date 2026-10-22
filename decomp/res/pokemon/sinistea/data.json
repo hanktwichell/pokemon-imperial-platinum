@@ -114,7 +114,13 @@
             "MOVE_ALLY_SWITCH"
         ]
     },
-    "evolutions": [],
+    "evolutions": [
+        [
+            "EVO_USE_ITEM",
+            "ITEM_CRACKED_POT",
+            "SPECIES_POLTEAGEIST"
+        ]
+    ],
     "offspring": "SPECIES_SINISTEA",
     "footprint": {
         "has": false,

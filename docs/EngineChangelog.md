@@ -25,9 +25,15 @@ players and the verification that was run.
 - Icons: each new item has a bag icon converted from PokeAPI's item sprites (32×32, 4-bit, 15 colours plus
   transparent; big renders scaled to fit 24 px). They're listed in `res/items/icons/meson.build` and
   `item_icon.order` inside generator-owned blocks.
+- **The 16 waiting evolutions are wired up.** Rerunning `gen_new_species.py` resolved all of them; none wait any
+  more:
+  - Applin → Flapple/Appletun/Dipplin; Charcadet → Armarouge/Ceruledge; Duraludon → Archaludon; Kubfu → Urshifu
+    (Single Strike; Rapid Strike comes with the forms milestone); Scyther → Kleavor (Scizor kept); Ursaring →
+    Ursaluna; and the rest listed in `NewSpecies.md`.
+  - New species' wild held items now include the new items PokeAPI lists (e.g. Absorb Bulb).
 - Not done yet:
   - no hold effects;
-  - evolution items use the evolution-stone field use.
+  - Mint and Ability Capsule/Patch field use.
 - Test build:
   - NEW GAME skips Rowan's intro (hold L to play it). Player "A", rival "Barry".
   - The new-game bag has six of the new items.
@@ -38,6 +44,8 @@ players and the verification that was run.
   - The new items appear in the right pockets (Mega Ring in Key Items) with names, descriptions and their icons.
   - Heavy-Duty Boots can be given to Garchomp and shows on its summary screen.
   - Using an evolution item opens the party screen, with "UNABLE!" for Pokémon it doesn't evolve.
+  - Metal Alloy on Duraludon (temporary test party): ABLE!, then Duraludon evolved into Archaludon and the item was
+    used up.
 
 ## E6 step 2 — species #494–1025
 

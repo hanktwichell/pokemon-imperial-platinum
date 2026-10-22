@@ -4,7 +4,7 @@
 
 Stats, types, abilities, learnsets, egg data and Pokédex data are Gen IX (learnsets follow the same rules as #1–493). **Sprites are placeholders (Unown-?) until milestone E12**; icons are PokeAPI placeholders; new species have no cry yet (they play silently; cries are the project's final step). Names over 10 characters are shortened (column *In game*).
 
-Evolutions waiting for an item from milestone E7: 16 (marked ⏳).
+Evolutions waiting for an item from milestone E7: 0 (marked ⏳).
 
 | # | Species | In game | Learnset from | Level-up moves | Evolves by | Dex text not in own language |
 |---|---|---|---|---|---|---|
@@ -197,9 +197,9 @@ Evolutions waiting for an item from milestone E7: 16 (marked ⏳).
 | 680 | Doublade | DOUBLADE | Sword/Shield | 14 | EVO_LEVEL 35 | — |
 | 681 | Aegislash | AEGISLASH | Sword/Shield | 16 | EVO_USE_ITEM ITEM_DUSK_STONE | — |
 | 682 | Spritzee | SPRITZEE | Sword/Shield | 14 | — | — |
-| 683 | Aromatisse | AROMATISSE | Sword/Shield | 18 | ⏳ needs the Sachet item (E7) | en |
+| 683 | Aromatisse | AROMATISSE | Sword/Shield | 18 | EVO_USE_ITEM ITEM_SACHET | en |
 | 684 | Swirlix | SWIRLIX | Sword/Shield | 15 | — | — |
-| 685 | Slurpuff | SLURPUFF | Sword/Shield | 16 | ⏳ needs the Whipped Dream item (E7) | — |
+| 685 | Slurpuff | SLURPUFF | Sword/Shield | 16 | EVO_USE_ITEM ITEM_WHIPPED_DREAM | — |
 | 686 | Inkay | INKAY | Scarlet/Violet | 15 | — | — |
 | 687 | Malamar | MALAMAR | Scarlet/Violet | 16 | EVO_LEVEL 30 | — |
 | 688 | Binacle | BINACLE | Sword/Shield | 13 | — | — |
@@ -355,8 +355,8 @@ Evolutions waiting for an item from milestone E7: 16 (marked ⏳).
 | 838 | Carkol | CARKOL | Scarlet/Violet | 12 | EVO_LEVEL 18 | — |
 | 839 | Coalossal | COALOSSAL | Scarlet/Violet | 13 | EVO_LEVEL 34 | fr, de, it, es, jp |
 | 840 | Applin | APPLIN | Scarlet/Violet | 2 | — | — |
-| 841 | Flapple | FLAPPLE | Scarlet/Violet | 17 | ⏳ needs the Tart Apple item (E7) | — |
-| 842 | Appletun | APPLETUN | Scarlet/Violet | 17 | ⏳ needs the Sweet Apple item (E7) | — |
+| 841 | Flapple | FLAPPLE | Scarlet/Violet | 17 | EVO_USE_ITEM ITEM_TART_APPLE | — |
+| 842 | Appletun | APPLETUN | Scarlet/Violet | 17 | EVO_USE_ITEM ITEM_SWEET_APPLE | — |
 | 843 | Silicobra | SILICOBRA | Scarlet/Violet | 12 | — | — |
 | 844 | Sandaconda | SANDACONDA | Scarlet/Violet | 12 | EVO_LEVEL 36 | — |
 | 845 | Cramorant | CRAMORANT | Scarlet/Violet | 12 | — | fr, es, jp |
@@ -369,7 +369,7 @@ Evolutions waiting for an item from milestone E7: 16 (marked ⏳).
 | 852 | Clobbopus | CLOBBOPUS | Sword/Shield | 11 | — | — |
 | 853 | Grapploct | GRAPPLOCT | Sword/Shield | 14 | EVO_LEVEL_KNOW_MOVE MOVE_TAUNT | — |
 | 854 | Sinistea | SINISTEA | Scarlet/Violet | 11 | — | es, jp |
-| 855 | Polteageist | POLTEGEIST | Scarlet/Violet | 15 | ⏳ needs the Cracked Pot item (E7) | — |
+| 855 | Polteageist | POLTEGEIST | Scarlet/Violet | 15 | EVO_USE_ITEM ITEM_CRACKED_POT | — |
 | 856 | Hatenna | HATENNA | Scarlet/Violet | 11 | — | — |
 | 857 | Hattrem | HATTREM | Scarlet/Violet | 12 | EVO_LEVEL 32 | — |
 | 858 | Hatterene | HATTERENE | Scarlet/Violet | 14 | EVO_LEVEL 42 | fr |
@@ -383,7 +383,7 @@ Evolutions waiting for an item from milestone E7: 16 (marked ⏳).
 | 866 | Mr. Rime | MR. RIME | Sword/Shield | 30 | EVO_LEVEL 42 | — |
 | 867 | Runerigus | RUNERIGUS | Sword/Shield | 18 | EVO_USE_ITEM ITEM_DUSK_STONE | fr, de, es |
 | 868 | Milcery | MILCERY | Scarlet/Violet | 12 | — | jp |
-| 869 | Alcremie | ALCREMIE | Scarlet/Violet | 13 | ⏳ needs the Strawberry Sweet item (E7) | jp |
+| 869 | Alcremie | ALCREMIE | Scarlet/Violet | 13 | EVO_USE_ITEM ITEM_STRAWBERRY_SWEET | jp |
 | 870 | Falinks | FALINKS | Scarlet/Violet | 14 | — | it, jp |
 | 871 | Pincurchin | PINCURCHIN | Scarlet/Violet | 14 | — | — |
 | 872 | Snom | SNOM | Scarlet/Violet | 2 | — | — |
@@ -406,7 +406,7 @@ Evolutions waiting for an item from milestone E7: 16 (marked ⏳).
 | 889 | Zamazenta | ZAMAZENTA | Scarlet/Violet | 13 | — | — |
 | 890 | Eternatus | ETERNATUS | Scarlet/Violet | 15 | — | — |
 | 891 | Kubfu | KUBFU | Scarlet/Violet | 15 | — | — |
-| 892 | Urshifu | URSHIFU | Scarlet/Violet | 17 | ⏳ needs the Scroll of Darkness item (E7) | — |
+| 892 | Urshifu | URSHIFU | Scarlet/Violet | 17 | EVO_USE_ITEM ITEM_SCROLL_OF_DARKNESS | — |
 | 893 | Zarude | ZARUDE | Scarlet/Violet | 17 | — | de |
 | 894 | Regieleki | REGIELEKI | Scarlet/Violet | 15 | — | jp |
 | 895 | Regidrago | REGIDRAGO | Scarlet/Violet | 13 | — | jp |
@@ -414,8 +414,8 @@ Evolutions waiting for an item from milestone E7: 16 (marked ⏳).
 | 897 | Spectrier | SPECTRIER | Scarlet/Violet | 14 | — | — |
 | 898 | Calyrex | CALYREX | Scarlet/Violet | 16 | — | fr |
 | 899 | Wyrdeer | WYRDEER | Scarlet/Violet | 15 | EVO_LEVEL_KNOW_MOVE MOVE_ZEN_HEADBUTT | fr, de, it, es, jp |
-| 900 | Kleavor | KLEAVOR | Scarlet/Violet | 14 | ⏳ needs the Black Augurite item (E7) | fr, de, it, es, jp |
-| 901 | Ursaluna | URSALUNA | Scarlet/Violet | 18 | ⏳ needs the Peat Block item (E7) | en, fr, de, it, es, jp |
+| 900 | Kleavor | KLEAVOR | Scarlet/Violet | 14 | EVO_USE_ITEM ITEM_BLACK_AUGURITE | fr, de, it, es, jp |
+| 901 | Ursaluna | URSALUNA | Scarlet/Violet | 18 | EVO_USE_ITEM ITEM_PEAT_BLOCK | en, fr, de, it, es, jp |
 | 902 | Basculegion | BASCULEGON | Scarlet/Violet | 18 | EVO_LEVEL 36 | en, fr, de, it, es, jp |
 | 903 | Sneasler | SNEASLER | Scarlet/Violet | 15 | EVO_LEVEL_WITH_HELD_ITEM_DAY ITEM_RAZOR_CLAW | en, fr, de, it, es, jp |
 | 904 | Overqwil | OVERQWIL | Scarlet/Violet | 17 | EVO_LEVEL_KNOW_MOVE MOVE_PIN_MISSILE | fr, de, it, es, jp |
@@ -450,8 +450,8 @@ Evolutions waiting for an item from milestone E7: 16 (marked ⏳).
 | 933 | Naclstack | NACLSTACK | Scarlet/Violet | 15 | EVO_LEVEL 24 | fr, de, it, es, jp |
 | 934 | Garganacl | GARGANACL | Scarlet/Violet | 19 | EVO_LEVEL 38 | fr, de, it, es, jp |
 | 935 | Charcadet | CHARCADET | Scarlet/Violet | 10 | — | fr, de, it, es, jp |
-| 936 | Armarouge | ARMAROUGE | Scarlet/Violet | 18 | ⏳ needs the Auspicious Armor item (E7) | fr, de, it, es, jp |
-| 937 | Ceruledge | CERULEDGE | Scarlet/Violet | 16 | ⏳ needs the Malicious Armor item (E7) | fr, de, it, es, jp |
+| 936 | Armarouge | ARMAROUGE | Scarlet/Violet | 18 | EVO_USE_ITEM ITEM_AUSPICIOUS_ARMOR | fr, de, it, es, jp |
+| 937 | Ceruledge | CERULEDGE | Scarlet/Violet | 16 | EVO_USE_ITEM ITEM_MALICIOUS_ARMOR | fr, de, it, es, jp |
 | 938 | Tadbulb | TADBULB | Scarlet/Violet | 13 | — | fr, de, it, es, jp |
 | 939 | Bellibolt | BELLIBOLT | Scarlet/Violet | 14 | EVO_USE_ITEM ITEM_THUNDERSTONE | en, fr, de, it, es, jp |
 | 940 | Wattrel | WATTREL | Scarlet/Violet | 12 | — | fr, de, it, es, jp |
@@ -489,7 +489,7 @@ Evolutions waiting for an item from milestone E7: 16 (marked ⏳).
 | 972 | Houndstone | HOUNDSTONE | Scarlet/Violet | 16 | EVO_LEVEL 30 | fr, de, it, es, jp |
 | 973 | Flamigo | FLAMIGO | Scarlet/Violet | 15 | — | en, fr, de, it, es, jp |
 | 974 | Cetoddle | CETODDLE | Scarlet/Violet | 15 | — | fr, de, it, es, jp |
-| 975 | Cetitan | CETITAN | Scarlet/Violet | 15 | ⏳ needs the Ice Stone item (E7) | fr, de, it, es, jp |
+| 975 | Cetitan | CETITAN | Scarlet/Violet | 15 | EVO_USE_ITEM ITEM_ICE_STONE | fr, de, it, es, jp |
 | 976 | Veluza | VELUZA | Scarlet/Violet | 13 | — | fr, de, it, es, jp |
 | 977 | Dondozo | DONDOZO | Scarlet/Violet | 17 | — | fr, de, it, es, jp |
 | 978 | Tatsugiri | TATSUGIRI | Scarlet/Violet | 12 | — | fr, de, it, es, jp |
@@ -497,7 +497,7 @@ Evolutions waiting for an item from milestone E7: 16 (marked ⏳).
 | 980 | Clodsire | CLODSIRE | Scarlet/Violet | 13 | EVO_USE_ITEM ITEM_DUSK_STONE | fr, de, it, es, jp |
 | 981 | Farigiraf | FARIGIRAF | Scarlet/Violet | 16 | EVO_LEVEL_KNOW_MOVE MOVE_PSYCHIC | en, fr, de, it, es, jp |
 | 982 | Dudunsparce | DUDUNSPRCE | Scarlet/Violet | 17 | EVO_LEVEL_KNOW_MOVE MOVE_DRILL_RUN | fr, de, it, es, jp |
-| 983 | Kingambit | KINGAMBIT | Scarlet/Violet | 17 | ⏳ needs the Leader's Crest item (E7) | fr, de, it, es, jp |
+| 983 | Kingambit | KINGAMBIT | Scarlet/Violet | 17 | EVO_USE_ITEM ITEM_LEADERS_CREST | fr, de, it, es, jp |
 | 984 | Great Tusk | GREAT TUSK | Scarlet/Violet | 17 | — | fr, de, it, es, jp |
 | 985 | Scream Tail | SCREAMTAIL | Scarlet/Violet | 16 | — | fr, de, it, es, jp |
 | 986 | Brute Bonnet | BRUTEBONNT | Scarlet/Violet | 15 | — | fr, de, it, es, jp |
@@ -525,14 +525,14 @@ Evolutions waiting for an item from milestone E7: 16 (marked ⏳).
 | 1008 | Miraidon | MIRAIDON | Scarlet/Violet | 16 | — | fr, de, it, es, jp |
 | 1009 | Walking Wake | WALKNGWAKE | Scarlet/Violet | 15 | — | fr, de, it, es, jp |
 | 1010 | Iron Leaves | IRONLEAVES | Scarlet/Violet | 17 | — | en, fr, de, it, es, jp |
-| 1011 | Dipplin | DIPPLIN | Scarlet/Violet | 15 | ⏳ needs the Syrupy Apple item (E7) | fr, de, it, es, jp |
+| 1011 | Dipplin | DIPPLIN | Scarlet/Violet | 15 | EVO_USE_ITEM ITEM_SYRUPY_APPLE | fr, de, it, es, jp |
 | 1012 | Poltchageist | POLTCHAGST | Scarlet/Violet | 13 | — | en, fr, de, it, es, jp |
-| 1013 | Sinistcha | SINISTCHA | Scarlet/Violet | 14 | ⏳ needs the Unremarkable Teacup item (E7) | fr, de, it, es, jp |
+| 1013 | Sinistcha | SINISTCHA | Scarlet/Violet | 14 | EVO_USE_ITEM ITEM_UNREMARKABLE_TEACUP | fr, de, it, es, jp |
 | 1014 | Okidogi | OKIDOGI | Scarlet/Violet | 12 | — | fr, de, it, es, jp |
 | 1015 | Munkidori | MUNKIDORI | Scarlet/Violet | 13 | — | fr, de, it, es, jp |
 | 1016 | Fezandipiti | FEZANDIPTI | Scarlet/Violet | 14 | — | fr, de, it, es, jp |
 | 1017 | Ogerpon | OGERPON | Scarlet/Violet | 15 | — | fr, de, it, es, jp |
-| 1018 | Archaludon | ARCHALUDON | Scarlet/Violet | 14 | ⏳ needs the Metal Alloy item (E7) | fr, de, it, es, jp |
+| 1018 | Archaludon | ARCHALUDON | Scarlet/Violet | 14 | EVO_USE_ITEM ITEM_METAL_ALLOY | fr, de, it, es, jp |
 | 1019 | Hydrapple | HYDRAPPLE | Scarlet/Violet | 16 | EVO_LEVEL_KNOW_MOVE MOVE_DRAGON_PULSE | fr, de, it, es, jp |
 | 1020 | Gouging Fire | GOUGNGFIRE | Scarlet/Violet | 17 | — | fr, de, it, es, jp |
 | 1021 | Raging Bolt | RAGINGBOLT | Scarlet/Violet | 17 | — | fr, de, it, es, jp |
