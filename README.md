@@ -1,4 +1,4 @@
-# Pokémon Imperial Platinum
+# Pokémon Sovereign Platinum
 
 A ROM hack of Pokémon Platinum built on Drayano's **Pokémon Renegade Platinum**. It adds all
 **1025 Pokémon**, **Mega Evolution and Primal Reversion**, a **singles/doubles Elite Four**, and post-game quests for every
@@ -20,22 +20,22 @@ whole ROM from source, so no base ROM is needed to develop. Milestones are in
 | [`docs/EngineRoadmap.md`](docs/EngineRoadmap.md) | Decomp milestones (E0–E12), species ID scheme, where data lives |
 | [`docs/EngineChangelog.md`](docs/EngineChangelog.md) | Every engine change made so far, and how it was verified |
 | [`docs/TechnicalDesign.md`](docs/TechnicalDesign.md) | Engine work: species expansion, Mega mechanic, items, trainer data, sprites |
-| [`docs/WildPokemon_Imperial.md`](docs/WildPokemon_Imperial.md) | Every encounter table (slot-exact), new species marked ★ |
-| [`docs/TrainerPokemon_Imperial.md`](docs/TrainerPokemon_Imperial.md) | Boss teams with Megas; E4 and Cynthia singles + doubles sets |
+| [`docs/WildPokemon_Sovereign.md`](docs/WildPokemon_Sovereign.md) | Every encounter table (slot-exact), new species marked ★ |
+| [`docs/TrainerPokemon_Sovereign.md`](docs/TrainerPokemon_Sovereign.md) | Boss teams with Megas; E4 and Cynthia singles + doubles sets |
 | [`docs/BossFights_MegaPicks.md`](docs/BossFights_MegaPicks.md) | Big fights after Jupiter still needing a Mega pick |
 | [`docs/EliteFourFormat.md`](docs/EliteFourFormat.md) | The 2 singles + 2 doubles rule, rematch options, script design |
 | [`docs/MegaEvolution.md`](docs/MegaEvolution.md) | All 99 Mega/Primal forms, stone locations, vendors, animation spec |
-| [`docs/EvolutionChanges_Imperial.md`](docs/EvolutionChanges_Imperial.md) | New evolution methods for added species, new evolution items |
-| [`docs/GiftPokemon_Imperial.md`](docs/GiftPokemon_Imperial.md) | Gen V–IX starters from Pokémon Center Interviewers |
+| [`docs/EvolutionChanges_Sovereign.md`](docs/EvolutionChanges_Sovereign.md) | New evolution methods for added species, new evolution items |
+| [`docs/GiftPokemon_Sovereign.md`](docs/GiftPokemon_Sovereign.md) | Gen V–IX starters from Pokémon Center Interviewers |
 | [`docs/PostgameLegendaries.md`](docs/PostgameLegendaries.md) | Quests for all 90 added Legendary/Mythical/UB/Paradox Pokémon |
-| [`docs/ItemChanges_Imperial.md`](docs/ItemChanges_Imperial.md) | New items, replaced field items, new shops |
+| [`docs/ItemChanges_Sovereign.md`](docs/ItemChanges_Sovereign.md) | New items, replaced field items, new shops |
 | [`docs/QualityOfLife.md`](docs/QualityOfLife.md) | Renegade QoL kept, and proposed additions awaiting approval |
 | [`docs/SpriteLog.md`](docs/SpriteLog.md) | Front/back/shiny sprite status for every added species and Mega |
 | [`docs/SpriteChecklist.xlsx`](docs/SpriteChecklist.xlsx) | Spreadsheet: which of the 5 sprites we have for all 1025 species (+ Megas) |
 | [`docs/CryChecklist.xlsx`](docs/CryChecklist.xlsx) | Spreadsheet: which cries we have / still need for all 1025 species (+ Megas), and where each source cry is |
 | [`CITATIONS.md`](CITATIONS.md) | Credits for every asset and dataset |
 | `RenegadePlatinumV130/` | Drayano's original patches and documentation (unchanged) |
-| `decomp/` | pret/pokeplatinum decompilation (git subtree) — the Imperial engine |
+| `decomp/` | pret/pokeplatinum decompilation (git subtree) — the Sovereign engine |
 
 ## Repository layout
 
@@ -43,8 +43,8 @@ whole ROM from source, so no base ROM is needed to develop. Milestones are in
 data/                 Source-of-truth design data (CSV/YAML/JSON) — edit these, then regenerate docs
   species.csv           all 1025 species (generated from PokeAPI)
   megas.csv             all 99 Mega / Primal forms (generated from PokeAPI)
-  encounters_imperial.json   slot-exact wild tables (generated)
-  trainers_imperial.yaml     boss / League teams (hand-written)
+  encounters_sovereign.json   slot-exact wild tables (generated)
+  trainers_sovereign.yaml     boss / League teams (hand-written)
   mega_stones.yaml           Mega Stone sources (hand-written)
   evolution_changes.yaml     evolution method changes (hand-written)
   postgame_legendaries.yaml  legendary quests (hand-written)
@@ -75,7 +75,7 @@ use Protect.
 
 ## Building the ROM
 
-Imperial builds from source with the decomp. Install the dependencies listed in `decomp/INSTALL.md` (Linux/WSL:
+Sovereign builds from source with the decomp. Install the dependencies listed in `decomp/INSTALL.md` (Linux/WSL:
 `bison flex g++ gcc-arm-none-eabi make ninja-build pkg-config wget python3 xz-utils nasm libc6:i386 libpng-dev`), then:
 
 ```sh

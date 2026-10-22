@@ -14,7 +14,7 @@
 #include "graphics.h"
 #include "gx_layers.h"
 #include "heap.h"
-#include "imperial_options.h"
+#include "sovereign_options.h"
 #include "menu.h"
 #include "message.h"
 #include "narc.h"
@@ -53,7 +53,7 @@
 
 #define SINGLE_ENTRY_HEIGHT 16
 #define FIRST_ENTRY_OFFSET  24
-#define VISIBLE_ENTRIES     7 // the list scrolls once the Imperial entries are added
+#define VISIBLE_ENTRIES     7 // the list scrolls once the Sovereign entries are added
 
 #define NUM_WINDOWS      3
 #define NUM_BG_TEMPLATES 5
@@ -128,8 +128,8 @@ typedef struct OptionsMenuData {
     Menu *yesNoChoice;
     u32 textPrinter;
     u8 scrollTop;
-    ImperialOptions imperialOptions;
-    ImperialOptions *saveImperialOptions;
+    SovereignOptions sovereignOptions;
+    SovereignOptions *saveSovereignOptions;
     void *dummy2B0;
     void *dummy2B4;
     void *dummy2B8;
@@ -181,8 +181,8 @@ BOOL OptionsMenu_Init(ApplicationManager *appMan, int *state)
     menuData->options.messageBoxStyle = Options_Frame(options);
     menuData->heapID = HEAP_ID_OPTIONS_MENU;
     menuData->saveOptions = options;
-    menuData->saveImperialOptions = SaveData_GetImperialOptions(SaveData_Ptr());
-    menuData->imperialOptions = *menuData->saveImperialOptions;
+    menuData->saveSovereignOptions = SaveData_GetSovereignOptions(SaveData_Ptr());
+    menuData->sovereignOptions = *menuData->saveSovereignOptions;
 
     RenderControlFlags_SetCanABSpeedUpPrint(FALSE);
 
@@ -201,14 +201,14 @@ BOOL OptionsMenu_Exit(ApplicationManager *appMan, int *state)
         menuData->options.buttonMode = menuData->entries.buttonMode.selected;
         menuData->options.messageBoxStyle = menuData->entries.messageBoxStyle.selected;
 
-        ImperialOptions *imperial = menuData->saveImperialOptions;
-        imperial->levelCap = menuData->entries.levelCap.selected == 0;
-        imperial->infiniteCandy = imperial->levelCap && menuData->entries.infiniteCandy.selected == 0;
-        imperial->partyExpShare = menuData->entries.expShare.selected == 0;
-        imperial->musicVolume = menuData->entries.music.selected;
+        SovereignOptions *sovereign = menuData->saveSovereignOptions;
+        sovereign->levelCap = menuData->entries.levelCap.selected == 0;
+        sovereign->infiniteCandy = sovereign->levelCap && menuData->entries.infiniteCandy.selected == 0;
+        sovereign->partyExpShare = menuData->entries.expShare.selected == 0;
+        sovereign->musicVolume = menuData->entries.music.selected;
 
         // Turning Infinite Rare Candy on hands out one Rare Candy if the bag has none.
-        if (imperial->infiniteCandy && !menuData->imperialOptions.infiniteCandy) {
+        if (sovereign->infiniteCandy && !menuData->sovereignOptions.infiniteCandy) {
             Bag *bag = SaveData_GetBag(SaveData_Ptr());
 
             if (Bag_GetItemQuantity(bag, ITEM_RARE_CANDY, menuData->heapID) == 0) {
@@ -218,7 +218,7 @@ BOOL OptionsMenu_Exit(ApplicationManager *appMan, int *state)
     }
 
     // The volume is previewed while it's being changed; this applies the saved value (or restores the old one).
-    Sound_SetMusicVolumePercent(ImperialOptions_MusicVolumePercent(menuData->saveImperialOptions));
+    Sound_SetMusicVolumePercent(SovereignOptions_MusicVolumePercent(menuData->saveSovereignOptions));
 
     Options_SetTextSpeed(menuData->saveOptions, menuData->options.textSpeed);
     Options_SetBattleScene(menuData->saveOptions, menuData->options.battleScene);
@@ -849,10 +849,10 @@ static void LoadAllEntryChoices(OptionsMenuData *menuData)
     menuData->entries.soundMode.selected = menuData->options.soundMode;
     menuData->entries.buttonMode.selected = menuData->options.buttonMode;
     menuData->entries.messageBoxStyle.selected = menuData->options.messageBoxStyle;
-    menuData->entries.levelCap.selected = !menuData->imperialOptions.levelCap;
-    menuData->entries.infiniteCandy.selected = !menuData->imperialOptions.infiniteCandy;
-    menuData->entries.expShare.selected = !menuData->imperialOptions.partyExpShare;
-    menuData->entries.music.selected = menuData->imperialOptions.musicVolume;
+    menuData->entries.levelCap.selected = !menuData->sovereignOptions.levelCap;
+    menuData->entries.infiniteCandy.selected = !menuData->sovereignOptions.infiniteCandy;
+    menuData->entries.expShare.selected = !menuData->sovereignOptions.partyExpShare;
+    menuData->entries.music.selected = menuData->sovereignOptions.musicVolume;
 }
 
 static const s8 sEntryXOffsets[MAX_ENTRIES] = { 0 };
@@ -883,7 +883,7 @@ static void PrintEntryChoices(OptionsMenuData *menuData, u16 entry)
         Text_AddPrinterWithParamsAndColor(&menuData->windows.entries, FONT_SYSTEM, number, CHOICES_X, y, TEXT_SPEED_NO_TRANSFER, red, NULL);
 
         // A 20-step bar after the number: filled steps in red, empty ones in gray.
-        for (u16 step = 0; step < IMPERIAL_MUSIC_VOLUME_STEPS; step++) {
+        for (u16 step = 0; step < SOVEREIGN_MUSIC_VOLUME_STEPS; step++) {
             Window_FillRectWithColor(&menuData->windows.entries, PIXEL_FILL(step < volume ? 3 : 2), CHOICES_X + 28 + step * 4, y + 4, 3, 8);
         }
 
@@ -1028,7 +1028,7 @@ static void ProcessMainInput(OptionsMenuData *menuData)
     OptionsMenuEntry *entry = &menuData->entries.asArray[menuData->cursor];
 
     if (menuData->cursor == ENTRY_MUSIC) {
-        if (JOY_REPEAT(PAD_KEY_RIGHT) && entry->selected < IMPERIAL_MUSIC_VOLUME_STEPS) {
+        if (JOY_REPEAT(PAD_KEY_RIGHT) && entry->selected < SOVEREIGN_MUSIC_VOLUME_STEPS) {
             entry->selected++;
         } else if (JOY_REPEAT(PAD_KEY_LEFT) && entry->selected > 0) {
             entry->selected--;
@@ -1087,10 +1087,10 @@ static BOOL ChangesWereMade(OptionsMenuData *menuData)
         || menuData->options.soundMode != menuData->entries.soundMode.selected
         || menuData->options.buttonMode != menuData->entries.buttonMode.selected
         || menuData->options.messageBoxStyle != menuData->entries.messageBoxStyle.selected
-        || menuData->imperialOptions.levelCap != (menuData->entries.levelCap.selected == 0)
-        || menuData->imperialOptions.infiniteCandy != (menuData->entries.levelCap.selected == 0 && menuData->entries.infiniteCandy.selected == 0)
-        || menuData->imperialOptions.partyExpShare != (menuData->entries.expShare.selected == 0)
-        || menuData->imperialOptions.musicVolume != menuData->entries.music.selected;
+        || menuData->sovereignOptions.levelCap != (menuData->entries.levelCap.selected == 0)
+        || menuData->sovereignOptions.infiniteCandy != (menuData->entries.levelCap.selected == 0 && menuData->entries.infiniteCandy.selected == 0)
+        || menuData->sovereignOptions.partyExpShare != (menuData->entries.expShare.selected == 0)
+        || menuData->sovereignOptions.musicVolume != menuData->entries.music.selected;
 }
 
 static const WindowTemplate sConfirmationWindowTemplate = {

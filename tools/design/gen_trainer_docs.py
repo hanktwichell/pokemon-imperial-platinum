@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Render data/trainers_imperial.yaml to docs/TrainerPokemon_Imperial.md and validate it.
+"""Render data/trainers_sovereign.yaml to docs/TrainerPokemon_Sovereign.md and validate it.
 
 Validation (needs --pokeapi, the PokeAPI data/v2/csv directory):
-  * every move exists in Imperial Platinum's move table: Gen IV moves (id <= 467) minus the
+  * every move exists in Sovereign Platinum's move table: Gen IV moves (id <= 467) minus the
     moves Renegade Platinum removed, plus the moves Renegade added;
   * every move is learnable by the species in at least one official game (level-up, TM,
     tutor or egg). ROM learnsets can be edited, so this is a sanity check, not a hard rule;
@@ -129,7 +129,7 @@ def validate(data, megas, pokeapi):
             if engine_moves:
                 for mv in mon["moves"]:
                     if mv not in engine_moves:
-                        errors.append(f"{tag}: move '{mv}' does not exist in the Imperial engine")
+                        errors.append(f"{tag}: move '{mv}' does not exist in the Sovereign engine")
                     elif mv not in learnable(sp) and mv not in RENEGADE_ADDED and (sp, mv) not in rg_moves:
                         warnings.append(f"{tag}: '{mv}' not learnable in any official game (needs a learnset edit)")
                 if mon["ability"] not in abil(sp) and (sp, mon["ability"]) not in RENEGADE_ABILITIES | rg_abilities:
@@ -142,8 +142,8 @@ def validate(data, megas, pokeapi):
 
 def render(data, megas):
     mega = {m["form"]: m for m in megas}
-    L = ["# Imperial Platinum — Trainer Pokémon (bosses)\n",
-         "> Generated from `data/trainers_imperial.yaml` by `tools/design/gen_trainer_docs.py`. Edit the YAML, not this file.\n",
+    L = ["# Sovereign Platinum — Trainer Pokémon (bosses)\n",
+         "> Generated from `data/trainers_sovereign.yaml` by `tools/design/gen_trainer_docs.py`. Edit the YAML, not this file.\n",
          "## General changes\n",
          "- Every trainer not listed here keeps its Renegade Platinum v1.3.0 team (`RenegadePlatinumV130/Documentation/TrainerPokemon.txt`).",
          "- No opponent Mega Evolves before **Commander Jupiter** in the Team Galactic Eterna Building. From then on every Gym Leader, "
@@ -152,7 +152,7 @@ def render(data, megas):
          "- A trainer can Mega Evolve at most one Pokémon per battle. In multi/tag battles each opposing trainer may Mega Evolve once.",
          "- EVs, exact natures and 31 IVs need the trainer-data engine extension described in `TechnicalDesign.md`. Until that exists, natures/EVs are design intent only.",
          "- Mega abilities that do not exist in the Gen IV engine are flagged **⚙** — see `MegaEvolution.md` for the fallback each uses until the ability is implemented.",
-         "- Renegade Platinum used one of four random teams for each Elite Four member and Cynthia in Round 1. Imperial uses one fixed, "
+         "- Renegade Platinum used one of four random teams for each Elite Four member and Cynthia in Round 1. Sovereign uses one fixed, "
          "optimised team per format (picked from Renegade's four and re-tuned), so the singles/doubles choice is meaningful.\n"]
     def table(team):
         out = ["| Pokémon | Lv. | Item | Nature | Ability | Moves | EVs (HP/Atk/Def/SpA/SpD/Spe) |", "|---|---|---|---|---|---|---|"]
@@ -189,14 +189,14 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--pokeapi", help="PokeAPI data/v2/csv directory (enables move/ability validation)")
     args = ap.parse_args()
-    data = yaml.safe_load(open(os.path.join(ROOT, "data", "trainers_imperial.yaml"), encoding="utf-8"))
+    data = yaml.safe_load(open(os.path.join(ROOT, "data", "trainers_sovereign.yaml"), encoding="utf-8"))
     megas = list(csv.DictReader(open(os.path.join(ROOT, "data", "megas.csv"), encoding="utf-8")))
     errors, warnings = validate(data, megas, args.pokeapi)
     for w in warnings:
         print("WARN ", w)
     for e in errors:
         print("ERROR", e)
-    with open(os.path.join(ROOT, "docs", "TrainerPokemon_Imperial.md"), "w", encoding="utf-8") as f:
+    with open(os.path.join(ROOT, "docs", "TrainerPokemon_Sovereign.md"), "w", encoding="utf-8") as f:
         f.write(render(data, megas))
     print(f"{len(errors)} errors, {len(warnings)} warnings")
     sys.exit(1 if errors else 0)

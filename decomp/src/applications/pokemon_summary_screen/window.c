@@ -1216,7 +1216,7 @@ static const u16 sSkillsViewTitles[SUMMARY_SKILLS_VIEW_MAX] = {
     PokemonSummary_Text_PageTitleEvs,
 };
 
-// Imperial: redraws the SKILLS page after SELECT switches between stats, IVs and EVs.
+// Sovereign: redraws the SKILLS page after SELECT switches between stats, IVs and EVs.
 void PokemonSummaryScreen_RedrawSkillsPage(PokemonSummaryScreen *summaryScreen)
 {
     Window_FillTilemap(&summaryScreen->staticWindows[SUMMARY_WINDOW_LABEL_SKILLS], 0);

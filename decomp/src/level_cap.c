@@ -7,7 +7,7 @@
 #include "data/level_caps.h"
 #include "generated/vars_flags.h"
 
-#include "imperial_options.h"
+#include "sovereign_options.h"
 #include "savedata.h"
 #include "vars_flags.h"
 
@@ -52,7 +52,7 @@ u8 LevelCap_ForProgress(SaveData *saveData)
 
 u8 LevelCap_Get(SaveData *saveData)
 {
-    if (saveData == NULL || !ImperialOptions_LevelCapEnabled(SaveData_GetImperialOptions(saveData))) {
+    if (saveData == NULL || !SovereignOptions_LevelCapEnabled(SaveData_GetSovereignOptions(saveData))) {
         return MAX_POKEMON_LEVEL;
     }
 

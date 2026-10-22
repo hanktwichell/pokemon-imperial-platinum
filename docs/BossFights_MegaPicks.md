@@ -1,16 +1,16 @@
-# Imperial Platinum — Boss Fight Mega Picks
+# Sovereign Platinum — Boss Fight Mega Picks
 
-Every significant opponent fought **after the Eterna Galactic Building Jupiter battle** that doesn't have a Mega yet. Per the project owner, all of these will get one. **The "Your pick" column holds the owner's choices** (or reply in chat) and it will go into `data/trainers_imperial.yaml`.
+Every significant opponent fought **after the Eterna Galactic Building Jupiter battle** that doesn't have a Mega yet. Per the project owner, all of these will get one. **The "Your pick" column holds the owner's choices** (or reply in chat) and it will go into `data/trainers_sovereign.yaml`.
 
 Teams are Renegade Platinum v1.3.0's (`TrainerPokemon.txt`); levels shown after each Pokémon. "Megas already possible" lists Megas that exist for a Pokémon already on the team. You can also pick a Mega for a Pokémon not on the team; it would replace one team member.
 
-Not listed: tag-battle **partners** (Cheryl in Eterna Forest, Mira in Wayward Cave, Riley on Iron Island, Marley in Victory Road, Buck at Stark Mountain, Barry at Spear Pillar) fight alongside you. They're listed under Battleground, where they are opponents. Gym Leaders, Galactic bosses, the Elite Four and Cynthia already have Megas from your list (`TrainerPokemon_Imperial.md`).
+Not listed: tag-battle **partners** (Cheryl in Eterna Forest, Mira in Wayward Cave, Riley on Iron Island, Marley in Victory Road, Buck at Stark Mountain, Barry at Spear Pillar) fight alongside you. They're listed under Battleground, where they are opponents. Gym Leaders, Galactic bosses, the Elite Four and Cynthia already have Megas from your list (`TrainerPokemon_Sovereign.md`).
 
 ## Owner's picks (2026-10-22)
 
 The owner filled in every row below. "None" overrides the "every big fight after Jupiter has a Mega" rule for that
 fight. **Lucas** (the rival when the player is a girl) uses **Dawn's teams exactly**, Mega Lopunny included (owner,
-2026-10-22). **Pending (owner, 2026-10-22): the full teams with these Megas, and a revision of team compositions in general, wait until the engine features are built.** Until then `data/trainers_imperial.yaml` only has the teams written so far.
+2026-10-22). **Pending (owner, 2026-10-22): the full teams with these Megas, and a revision of team compositions in general, wait until the engine features are built.** Until then `data/trainers_sovereign.yaml` only has the teams written so far.
 
 | # | When | Location | Trainer | Current team | Megas already possible | Notes | Your pick |
 |---|---|---|---|---|---|---|---|

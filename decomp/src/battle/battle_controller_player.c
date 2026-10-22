@@ -887,7 +887,7 @@ static void BattleControllerPlayer_BranchActions(BattleSystem *battleSys, Battle
 
     BattleSystem_SortMonSpeedOrder(battleSys, battleCtx);
 
-    // Imperial: dynamic speed (Gen VIII+ / Pokémon Champions). Before each action, the battlers still waiting to
+    // Sovereign: dynamic speed (Gen VIII+ / Pokémon Champions). Before each action, the battlers still waiting to
     // use a move are re-sorted by their current Speed and priority, so a Speed change earlier in the turn (Icy Wind,
     // paralysis, Tailwind...) affects who moves next. Gen IV fixed the order at the start of the turn.
     if (battleCtx->turnOrderCounter > 0 && battleCtx->turnOrderCounter < maxBattlers - 1
@@ -2500,7 +2500,7 @@ static BOOL BattleControllerPlayer_CheckStatusDisruption(BattleSystem *battleSys
 
         case CHECK_STATUS_STATE_FREEZE:
             if (ATTACKING_MON.status & MON_CONDITION_FREEZE) {
-                // Imperial: Pokémon Champions thaw rule. 1/4 chance on each move attempt (Gen IV-IX: 1/5, no limit),
+                // Sovereign: Pokémon Champions thaw rule. 1/4 chance on each move attempt (Gen IV-IX: 1/5, no limit),
                 // and a sure thaw on the third attempt, so a Pokémon loses at most two turns to freeze.
                 if (ATTACKING_MON.freezeTurns < 2 && BattleSystem_RandNext(battleSys) % 4 != 0) {
                     ATTACKING_MON.freezeTurns++;
@@ -2648,7 +2648,7 @@ static BOOL BattleControllerPlayer_CheckStatusDisruption(BattleSystem *battleSys
                 ATTACKING_MON.statusVolatile -= (1 << VOLATILE_CONDITION_CONFUSION_SHIFT);
 
                 if (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_CONFUSION) {
-                    // Imperial: Gen VII+ / Champions self-hit chance, 33% (Gen IV: 50%).
+                    // Sovereign: Gen VII+ / Champions self-hit chance, 33% (Gen IV: 50%).
                     if (BattleSystem_RandNext(battleSys) % 100 >= 33) {
                         LOAD_SUBSEQ(subscript_confused);
                         battleCtx->commandNext = battleCtx->command;
@@ -2683,7 +2683,7 @@ static BOOL BattleControllerPlayer_CheckStatusDisruption(BattleSystem *battleSys
         case CHECK_STATUS_STATE_PARALYSIS:
             if ((ATTACKING_MON.status & MON_CONDITION_PARALYSIS)
                 && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_MAGIC_GUARD) {
-                // Imperial: Pokémon Champions full-paralysis chance, 1/8 (Gen IV-IX: 1/4).
+                // Sovereign: Pokémon Champions full-paralysis chance, 1/8 (Gen IV-IX: 1/4).
                 if (BattleSystem_RandNext(battleSys) % 8 == 0) {
                     battleCtx->moveFailFlags[battleCtx->attacker].paralyzed = TRUE;
 

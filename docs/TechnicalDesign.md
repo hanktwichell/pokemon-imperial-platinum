@@ -1,6 +1,6 @@
-# Imperial Platinum — Technical Design
+# Sovereign Platinum — Technical Design
 
-This document covers the engine work needed to turn Renegade Platinum v1.3.0 into Imperial Platinum. The design data
+This document covers the engine work needed to turn Renegade Platinum v1.3.0 into Sovereign Platinum. The design data
 (encounters, trainers, Megas, evolutions, legendaries) is engine-independent and lives in `data/` and `docs/`.
 
 ## Starting point
@@ -13,7 +13,7 @@ This document covers the engine work needed to turn Renegade Platinum v1.3.0 int
   Randomizer can't read it, per its FAQ), edited scripts, trainer data, learnsets and engine patches (Fairy type, move
   replacements, abilities).
 
-## Two ways to build Imperial
+## Two ways to build Sovereign
 
 | | **A. Binary hack on the Renegade ROM** | **B. Rebuild on the pret/pokeplatinum decompilation** |
 |---|---|---|
@@ -44,7 +44,7 @@ implemented.
 - Pal Park, Poké Radar, honey trees and swarm tables only need data once species exist.
 
 ### 2. Moves and abilities
-- Imperial's move list = Gen IV moves + Renegade's 11 replacements. **Added species need learnsets built from that move
+- Sovereign's move list = Gen IV moves + Renegade's 11 replacements. **Added species need learnsets built from that move
   list** unless new moves are added. Decision needed: (a) remap learnsets to existing moves (cheap; a generator can do
   it), or (b) add selected Gen V–IX moves (each needs a battle effect and animation).
 - Most added species' abilities are Gen V+. Same decision: map to Gen IV abilities, or implement new abilities. Mega
@@ -61,7 +61,7 @@ implemented.
 - Battle: a per-battler "mega pending" bit set from the move-select UI; at the start of the turn (before moves), swap
   the battler's form → recalculate stats/type/ability → play the animation → print text. Platinum already changes form
   mid-battle (Castform, Cherrim, Giratina, Shaymin), so the form-change plumbing exists.
-- UI: a MEGA toggle on the touch-screen fight menu, shown only when `FLAG_IMPERIAL_MEGA_UNLOCKED` is set, the Pokémon
+- UI: a MEGA toggle on the touch-screen fight menu, shown only when `FLAG_SOVEREIGN_MEGA_UNLOCKED` is set, the Pokémon
   holds its stone, and the trainer hasn't Mega Evolved yet this battle.
 - AI: trainers Mega Evolve on the first turn possible.
 - Forms: 99 new form entries (stats, types, abilities, sprites). Revert on battle end/faint.
@@ -69,7 +69,7 @@ implemented.
 
 ### 5. Trainer data
 - Vanilla Gen IV trainer Pokémon can't specify EVs, natures directly (nature comes from the PID seeded by trainer
-  data), or abilities. **The EV spreads and natures in `TrainerPokemon_Imperial.md` need an extended trainer-Pokémon
+  data), or abilities. **The EV spreads and natures in `TrainerPokemon_Sovereign.md` need an extended trainer-Pokémon
   format** (as hg-engine does for HGSS: per-mon nature, ability, IVs, EVs, ball, shiny).
 - New trainer IDs: 19 for the League (see `EliteFourFormat.md`) plus edited story bosses.
 
@@ -77,7 +77,7 @@ implemented.
 - Elite Four format prompts (`EliteFourFormat.md`), the Mega Ring gift after Fantina, four Mega Stone vendors, five new
   starter Interviewers, the Legend Archivist and ~35 post-game events, some of them in new rooms/maps (Sendoff Spring
   crater, Spear Pillar rifts, Oreburgh Mine B3F, …).
-- Wild encounter tables per `WildPokemon_Imperial.md` / `data/encounters_imperial.json` (slot-exact, 12 grass + 5×4 water).
+- Wild encounter tables per `WildPokemon_Sovereign.md` / `data/encounters_sovereign.json` (slot-exact, 12 grass + 5×4 water).
 
 ### 7. Graphics
 - Gen IV battle sprites: 80×80 per frame, two frames per sheet (160×80), 4bpp, **one 16-colour palette shared by the

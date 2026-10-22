@@ -26,7 +26,7 @@
 #include "trainer_data.h"
 #include "vars_flags.h"
 
-#ifdef IMPERIAL_TEST
+#ifdef SOVEREIGN_TEST
 #include "generated/abilities.h"
 #include "generated/items.h"
 #include "generated/species.h"
@@ -701,10 +701,10 @@ HiddenItemTilePosition *FieldSystem_GetNearbyHiddenItems(FieldSystem *fieldSyste
     return hiddenItems;
 }
 
-#ifdef IMPERIAL_TEST
+#ifdef SOVEREIGN_TEST
 // Test build only: a party and items to test with (see tools/test/build_test_rom.sh). Uses HEAP_ID_FIELD2:
 // it exists this early (InitFieldSystem creates it), unlike HEAP_ID_FIELD1.
-static void ImperialTest_SetupNewGame(FieldSystem *fieldSystem)
+static void SovereignTest_SetupNewGame(FieldSystem *fieldSystem)
 {
     Bag *bag = SaveData_GetBag(fieldSystem->saveData);
 
@@ -731,7 +731,7 @@ static void ImperialTest_SetupNewGame(FieldSystem *fieldSystem)
     u16 sharpness = ABILITY_SHARPNESS;
     Pokemon_SetValue(Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), 4), MON_DATA_ABILITY, &sharpness);
 
-    // Breeding test (SELECT+L, see ImperialTest_BreedAndHatch): the Hidden Ability Gallade holds a Destiny Knot and
+    // Breeding test (SELECT+L, see SovereignTest_BreedAndHatch): the Hidden Ability Gallade holds a Destiny Knot and
     // sits in an Ultra Ball; a Ditto with Adamant nature (personality 3) holds an Everstone. Both have 31 in every IV.
     u16 item = ITEM_DESTINY_KNOT;
     u8 ball = ITEM_ULTRA_BALL;
@@ -771,8 +771,8 @@ static void ImperialTest_SetupNewGame(FieldSystem *fieldSystem)
 void FieldSystem_InitNewGameState(FieldSystem *fieldSystem)
 {
     FieldSystem_RunScript(fieldSystem, SCRIPT_ID(INIT_NEW_GAME, 0));
-#ifdef IMPERIAL_TEST
-    ImperialTest_SetupNewGame(fieldSystem);
+#ifdef SOVEREIGN_TEST
+    SovereignTest_SetupNewGame(fieldSystem);
 #endif
 }
 

@@ -59,7 +59,7 @@ typedef struct SpecialEncounter {
     u8 repelSteps;
     u8 radarCharge;
     u8 fluteFactor;
-    u16 lastRepel; // Imperial: the Repel item used last, offered again when its effect wears off
+    u16 lastRepel; // Sovereign: the Repel item used last, offered again when its effect wears off
 } SpecialEncounter;
 
 #endif // POKEPLATINUM_STRUCT_SPECIAL_ENCOUNTER_H

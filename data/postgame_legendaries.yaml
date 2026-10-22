@@ -1,4 +1,4 @@
-# Imperial Platinum — how every ADDED Legendary / Mythical / Ultra Beast / Paradox Pokémon is obtained.
+# Sovereign Platinum — how every ADDED Legendary / Mythical / Ultra Beast / Paradox Pokémon is obtained.
 # Rendered to docs/PostgameLegendaries.md by tools/design/gen_legendary_doc.py, which checks that all
 # 90 added non-regular species are covered exactly once.
 #
@@ -103,7 +103,7 @@ quests:
     species: [Cosmog, Cosmoem, Solgaleo, Lunala]
     level: 5
     location: Spear Pillar
-    steps: A Cosmog is found at Spear Pillar (gift, Lv. 5). It evolves into Cosmoem at Lv. 43; Cosmoem becomes Solgaleo with a Sun Stone or Lunala with a Moon Stone (see EvolutionChanges_Imperial.md). Return to Spear Pillar for a second Cosmog after the first evolves, so both Solgaleo and Lunala are obtainable.
+    steps: A Cosmog is found at Spear Pillar (gift, Lv. 5). It evolves into Cosmoem at Lv. 43; Cosmoem becomes Solgaleo with a Sun Stone or Lunala with a Moon Stone (see EvolutionChanges_Sovereign.md). Return to Spear Pillar for a second Cosmog after the first evolves, so both Solgaleo and Lunala are obtainable.
   - chapter: Alola Chronicle
     name: The Blinding One
     species: [Necrozma]

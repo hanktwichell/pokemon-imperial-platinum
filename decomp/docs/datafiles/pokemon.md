@@ -104,7 +104,7 @@ The parameter type depends on the method:
 
 #### The `pokedex_data` Object
 
-Height and weight may be specified in either metric or imperial units, but not
+Height and weight may be specified in either metric or sovereign units, but not
 both.
 
 | Field              | Type                    | Description                                              |

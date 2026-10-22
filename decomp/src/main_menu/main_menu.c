@@ -699,7 +699,7 @@ static void SetTemplateNumberCustomFormatting(StringTemplate *strTemplate, int n
     int maxDigits;
     enum PaddingMode paddingMode;
 
-    if (number >= 1000) { // Imperial: up to 1025 species
+    if (number >= 1000) { // Sovereign: up to 1025 species
         maxDigits = 4;
         paddingMode = PADDING_MODE_NONE;
     } else if (number >= 100) {

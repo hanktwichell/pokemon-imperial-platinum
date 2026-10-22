@@ -5,11 +5,11 @@ import math
 import pathlib
 import sys
 
-assert len(sys.argv) >= 2, "missing required argument: 'metric' or 'imperial'"
+assert len(sys.argv) >= 2, "missing required argument: 'metric' or 'sovereign'"
 
 units = sys.argv[1]
-assert units == "metric" or units == "imperial", (
-    "unit system must be one of 'metric' or 'imperial'"
+assert units == "metric" or units == "sovereign", (
+    "unit system must be one of 'metric' or 'sovereign'"
 )
 
 

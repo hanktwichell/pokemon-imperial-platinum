@@ -1,4 +1,4 @@
-# Imperial Platinum — where every Mega Stone / Primal orb comes from.
+# Sovereign Platinum — where every Mega Stone / Primal orb comes from.
 # Rendered into docs/MegaEvolution.md by tools/design/gen_mega_doc.py, which also checks that
 # every trigger item in data/megas.csv has exactly one source.
 #
@@ -11,7 +11,7 @@
 key_item:
   name: Mega Ring
   source: Leader Fantina, Hearthome Gym — given together with the Relic Badge.
-  unlocks: Mega Evolution in battle (flag FLAG_IMPERIAL_MEGA_UNLOCKED).
+  unlocks: Mega Evolution in battle (flag FLAG_SOVEREIGN_MEGA_UNLOCKED).
 
 field:
   - {stone: Alakazite,     replaces: Poké Ball,     location: Route 203,                script: VisibleItems_Route203_PokeBall,        why: Abra lives on Route 203}

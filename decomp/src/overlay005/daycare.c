@@ -299,7 +299,7 @@ static void Daycare_CopyDaycareMonToBoxMonArray(Daycare *daycare, BoxPokemon *bo
     boxMon[1] = Daycare_GetBoxMon(daycare, 1);
 }
 
-// Imperial: Gen VI+ rule. A parent holding an Everstone always passes its nature (either parent, not just the
+// Sovereign: Gen VI+ rule. A parent holding an Everstone always passes its nature (either parent, not just the
 // mother or Ditto, and not 50%); if both hold one, either parent's. Gen IV: only the mother/Ditto, half the time.
 static int Daycare_GetParentToInheritNature(Daycare *daycare)
 {
@@ -377,7 +377,7 @@ static void Egg_InheritIVs(Pokemon *egg, Daycare *daycare)
     u8 selectedIVs[STAT_MAX], i, availableIVs[STAT_MAX], slots[STAT_MAX], value;
     u8 numInherited = NUM_INHERITED_IVS;
 
-    // Imperial: Gen VI+ rule, a parent holding a Destiny Knot makes the egg inherit 5 of the parents' IVs (not 3).
+    // Sovereign: Gen VI+ rule, a parent holding a Destiny Knot makes the egg inherit 5 of the parents' IVs (not 3).
     for (i = 0; i < NUM_DAYCARE_MONS; i++) {
         if (BoxPokemon_GetValue(Daycare_GetBoxMon(daycare, i), MON_DATA_HELD_ITEM, NULL) == ITEM_DESTINY_KNOT) {
             numInherited = NUM_INHERITED_IVS_DESTINY_KNOT;
@@ -494,7 +494,7 @@ static void Egg_BuildMoveset(Pokemon *egg, BoxPokemon *father, BoxPokemon *mothe
         }
     }
 
-    // Imperial: Gen VI+ rule, egg moves come from either parent (Gen IV: father only).
+    // Sovereign: Gen VI+ rule, egg moves come from either parent (Gen IV: father only).
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
         if (builder->motherMoves[i] == MOVE_NONE) {
             break;
@@ -753,7 +753,7 @@ static void Egg_SetInitialData(Pokemon *mon, u16 species, Daycare *daycare, u32 
     String_Free(string);
 }
 
-// Imperial: Gen VII+ rules. The egg comes in the Poké Ball of its mother, or of the non-Ditto parent when breeding
+// Sovereign: Gen VII+ rules. The egg comes in the Poké Ball of its mother, or of the non-Ditto parent when breeding
 // with Ditto (never a Master or Cherish Ball), and has a 60% chance of the Hidden Ability if that parent has it.
 static void Egg_InheritBallAndHiddenAbility(Pokemon *egg, Daycare *daycare, const u8 parentSlots[])
 {
@@ -1153,7 +1153,7 @@ static void Egg_CreateHatchedMonInternal(Pokemon *egg, enum HeapID heapID)
     gender = Pokemon_GetValue(egg, MON_DATA_OT_GENDER, NULL);
     otID = Pokemon_GetValue(egg, MON_DATA_OT_ID, NULL);
     form = Pokemon_GetValue(egg, MON_DATA_FORM, NULL);
-    ball = Pokemon_GetValue(egg, MON_DATA_POKEBALL, NULL); // Imperial: inherited ball and Hidden Ability survive hatching
+    ball = Pokemon_GetValue(egg, MON_DATA_POKEBALL, NULL); // Sovereign: inherited ball and Hidden Ability survive hatching
     hasHiddenAbility = Pokemon_GetValue(egg, MON_DATA_HAS_HIDDEN_ABILITY, NULL);
 
     if (species == SPECIES_MANAPHY) {
@@ -1236,7 +1236,7 @@ void Egg_CreateHatchedMon(Pokemon *egg, enum HeapID heapID)
     MessageLoader_GetSpeciesName(species, HEAP_ID_SYSTEM, nickname);
     Pokemon_SetValue(egg, MON_DATA_NICKNAME, nickname);
     Pokemon_SetValue(egg, MON_DATA_HAS_NICKNAME, &hasNickname);
-    Pokemon_SetValue(egg, MON_DATA_MET_LEVEL, &metLevel); // Imperial: the egg's (inherited) ball is kept
+    Pokemon_SetValue(egg, MON_DATA_MET_LEVEL, &metLevel); // Sovereign: the egg's (inherited) ball is kept
     Pokemon_CalcLevelAndStats(egg);
 }
 
@@ -1245,10 +1245,10 @@ u32 BoxMon_GetPairDaycareCompatibilityLevel(BoxPokemon **boxMonPair)
     return DaycareCompatibilityScoreToLevel(BoxMon_GetPairDaycareCompatibilityScore(boxMonPair));
 }
 
-#ifdef IMPERIAL_TEST
+#ifdef SOVEREIGN_TEST
 // Test build only (SELECT+L in the overworld): breeds the test party's Ditto (slot 6) with the Gallade that has its
-// Hidden Ability (slot 4), then hatches the egg at once, to check Gen VI+ breeding (see ImperialTest_SetupNewGame).
-void ImperialTest_BreedAndHatch(FieldSystem *fieldSystem)
+// Hidden Ability (slot 4), then hatches the egg at once, to check Gen VI+ breeding (see SovereignTest_SetupNewGame).
+void SovereignTest_BreedAndHatch(FieldSystem *fieldSystem)
 {
     SaveData *saveData = fieldSystem->saveData;
     Party *party = SaveData_GetParty(saveData);

@@ -1,4 +1,4 @@
-# Imperial Platinum — level caps (owner feature, Options → LEVEL CAP).
+# Sovereign Platinum — level caps (owner feature, Options → LEVEL CAP).
 #
 # While the option is on, party Pokémon can't gain EXP past the cap: the ace level of the first
 # fight in this list the player hasn't won yet. The list is the required story order of Platinum's
@@ -8,8 +8,8 @@
 # out; their aces are never higher than the next required boss. The Elite Four aren't listed: their
 # cap is the Champion's ace, as the owner asked.
 #
-# `level` is the ace's level in Imperial's teams. tools/engine/gen_level_caps.py checks it against
-# data/trainers_imperial.yaml where the fight is listed there (`check`), then writes
+# `level` is the ace's level in Sovereign's teams. tools/engine/gen_level_caps.py checks it against
+# data/trainers_sovereign.yaml where the fight is listed there (`check`), then writes
 # decomp/include/data/level_caps.h.
 
 caps:

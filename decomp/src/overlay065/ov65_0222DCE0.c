@@ -3699,7 +3699,7 @@ static BOOL ov65_02231978(UnkStruct_0207E060 *param0)
     int v0;
 
     for (v0 = 0; v0 < 6; v0++) {
-        // Imperial: limits follow the species and move counts (vanilla: literal 495 and 467).
+        // Sovereign: limits follow the species and move counts (vanilla: literal 495 and 467).
         if (SPECIES_BAD_EGG == param0->unk_00[v0]) {
             return 0;
         }

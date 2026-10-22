@@ -9,7 +9,7 @@ _000:
     Wait 
     WaitButtonABTime 30
     UpdateVar OPCODE_FLAG_OFF, BTLVAR_FIELD_CONDITIONS, FIELD_CONDITION_WEATHER
-    // Imperial: Gen VI+ / Champions, weather from an ability lasts 5 turns (8 with its rock), not forever.
+    // Sovereign: Gen VI+ / Champions, weather from an ability lasts 5 turns (8 with its rock), not forever.
     UpdateVar OPCODE_FLAG_ON, BTLVAR_FIELD_CONDITIONS, FIELD_CONDITION_SUNNY_TEMP
     UpdateVar OPCODE_SET, BTLVAR_WEATHER_TURNS, 5
     CheckItemHoldEffect CHECK_NOT_HAVE, BTLSCR_MSG_TEMP, HOLD_EFFECT_EXTEND_SUN, _WeatherTurnsSet

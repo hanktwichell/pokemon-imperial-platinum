@@ -1358,7 +1358,7 @@ static void Sound_Impl_PauseOrStopFieldBGM(void)
     }
 }
 
-// Imperial music volume (Options -> MUSIC). The game still sets player volumes itself (fades,
+// Sovereign music volume (Options -> MUSIC). The game still sets player volumes itself (fades,
 // scripts, voice chat); for the two music players we remember the requested volume and apply the
 // player's setting on top of it.
 #define MAX_PLAYER_VOLUME 127

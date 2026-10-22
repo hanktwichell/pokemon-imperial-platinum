@@ -81,7 +81,7 @@ typedef struct BattleMon {
     u8 formNum : 5;
     u8 isShiny : 1;
     u8 padding0026_06 : 2;
-    u16 ability; // Imperial: u16 (Gen IX ability IDs go past 255)
+    u16 ability; // Sovereign: u16 (Gen IX ability IDs go past 255)
 
     u32 weatherAbilityAnnounced : 1;
     u32 intimidateAnnounced : 1;
@@ -94,7 +94,7 @@ typedef struct BattleMon {
     u32 friskAnnounced : 1;
     u32 moldBreakerAnnounced : 1;
     u32 pressureAnnounced : 1;
-    u32 freezeTurns : 2; // Imperial: move attempts spent frozen (Pokémon Champions thaws on the third)
+    u32 freezeTurns : 2; // Sovereign: move attempts spent frozen (Pokémon Champions thaws on the third)
 
     u8 ppCur[LEARNED_MOVES_MAX];
     u8 ppUps[LEARNED_MOVES_MAX];

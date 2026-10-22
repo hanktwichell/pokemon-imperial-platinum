@@ -24,7 +24,7 @@ jobs:
             decomp/tools/metroskrew
           key: deps-${{ hashFiles('decomp/subprojects/*.wrap', 'decomp/Makefile') }}
       - name: Build
-        # Imperial changes the ROM, so build without the retail checksum check.
+        # Sovereign changes the ROM, so build without the retail checksum check.
         run: make -C decomp rom -j"$(nproc)"
       - name: Boot smoke test (headless DeSmuME)
         timeout-minutes: 5

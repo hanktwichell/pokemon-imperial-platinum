@@ -2,7 +2,7 @@
 """Generate decomp/include/data/level_caps.h from data/level_caps.yaml.
 
 Checks every `check` entry against the ace (highest level) of the matching team in
-data/trainers_imperial.yaml, that levels never decrease, and that every trainer constant
+data/trainers_sovereign.yaml, that levels never decrease, and that every trainer constant
 exists in decomp/generated/trainers.txt.
 
 Usage: python3 tools/engine/gen_level_caps.py
@@ -16,7 +16,7 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 
 def ace_levels():
-    data = yaml.safe_load(open(os.path.join(ROOT, "data", "trainers_imperial.yaml"), encoding="utf-8"))
+    data = yaml.safe_load(open(os.path.join(ROOT, "data", "trainers_sovereign.yaml"), encoding="utf-8"))
     aces = {}
     for t in data["story"]:
         aces[(t["trainer"], t.get("location", ""))] = max(m["level"] for m in t["team"])
@@ -41,9 +41,9 @@ def main():
         if "check" in c:
             want = aces.get(tuple(c["check"]))
             if want is None:
-                errors.append(f"{c['label']}: no team {c['check']} in trainers_imperial.yaml")
+                errors.append(f"{c['label']}: no team {c['check']} in trainers_sovereign.yaml")
             elif want != c["level"]:
-                errors.append(f"{c['label']}: level {c['level']} but the ace in trainers_imperial.yaml is Lv. {want}")
+                errors.append(f"{c['label']}: level {c['level']} but the ace in trainers_sovereign.yaml is Lv. {want}")
         if c["level"] < prev:
             errors.append(f"{c['label']}: cap goes down ({prev} -> {c['level']})")
         prev = c["level"]

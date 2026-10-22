@@ -1,4 +1,4 @@
-#include "imperial_field_moves.h"
+#include "sovereign_field_moves.h"
 
 #include <nitro.h>
 
@@ -26,7 +26,7 @@ static const struct {
     { MOVE_ROCK_CLIMB, ITEM_HM08 },
 };
 
-BOOL Imperial_BagHasHMForMove(SaveData *saveData, u16 move)
+BOOL Sovereign_BagHasHMForMove(SaveData *saveData, u16 move)
 {
     for (int i = 0; i < NELEMS(sHMs); i++) {
         if (sHMs[i].move == move) {
@@ -37,12 +37,12 @@ BOOL Imperial_BagHasHMForMove(SaveData *saveData, u16 move)
     return FALSE;
 }
 
-u8 Imperial_FieldMovePartySlot(SaveData *saveData, u16 move)
+u8 Sovereign_FieldMovePartySlot(SaveData *saveData, u16 move)
 {
     Party *party = SaveData_GetParty(saveData);
     u8 slot = Party_HasMonWithMove(party, move);
 
-    if (slot != PARTY_SLOT_NONE || Imperial_BagHasHMForMove(saveData, move) == FALSE) {
+    if (slot != PARTY_SLOT_NONE || Sovereign_BagHasHMForMove(saveData, move) == FALSE) {
         return slot;
     }
 

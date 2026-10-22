@@ -202,7 +202,7 @@ u32 Sound_GetNumberOfPlayedCrySamples(int unused, const SNDWaveData *data, int p
 u32 Sound_GetTicksForHandle(enum SoundHandleType handleType);
 void Sound_WaveData_AccumulateAmplitudes(const SNDWaveData *data, u8 *amplitudes, int numAmplitudes, int pitch);
 void Sound_ConfigureBGMChannelsAndReverb(enum SoundChannelConfig config);
-void Sound_SetMusicVolumePercent(u8 percent); // Imperial Options -> MUSIC (0-100)
+void Sound_SetMusicVolumePercent(u8 percent); // Sovereign Options -> MUSIC (0-100)
 void Sound_SetPlayerVolume(int playerID, int volume);
 void Sound_Set2PokemonCriesAllowed(BOOL allowed);
 void sub_02005464(BOOL param0);

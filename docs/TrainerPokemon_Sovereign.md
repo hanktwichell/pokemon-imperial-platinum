@@ -1,6 +1,6 @@
-# Imperial Platinum — Trainer Pokémon (bosses)
+# Sovereign Platinum — Trainer Pokémon (bosses)
 
-> Generated from `data/trainers_imperial.yaml` by `tools/design/gen_trainer_docs.py`. Edit the YAML, not this file.
+> Generated from `data/trainers_sovereign.yaml` by `tools/design/gen_trainer_docs.py`. Edit the YAML, not this file.
 
 ## General changes
 
@@ -10,7 +10,7 @@
 - A trainer can Mega Evolve at most one Pokémon per battle. In multi/tag battles each opposing trainer may Mega Evolve once.
 - EVs, exact natures and 31 IVs need the trainer-data engine extension described in `TechnicalDesign.md`. Until that exists, natures/EVs are design intent only.
 - Mega abilities that do not exist in the Gen IV engine are flagged **⚙** — see `MegaEvolution.md` for the fallback each uses until the ability is implemented.
-- Renegade Platinum used one of four random teams for each Elite Four member and Cynthia in Round 1. Imperial uses one fixed, optimised team per format (picked from Renegade's four and re-tuned), so the singles/doubles choice is meaningful.
+- Renegade Platinum used one of four random teams for each Elite Four member and Cynthia in Round 1. Sovereign uses one fixed, optimised team per format (picked from Renegade's four and re-tuned), so the singles/doubles choice is meaningful.
 
 ## Story battles
 

@@ -2,7 +2,7 @@
 """Move the non-species sound banks and wave archives out of the way of species #494-1025 (milestone E6).
 
 A cry's bank and wave archive ID equal the species ID, so in Platinum's sound archive slots 1-493 are cries, 494 is
-Shaymin-Sky's cry and 700-770 are the BASIC/BGM/SE banks. Imperial needs slots 1-1025 for cries, so this moves:
+Shaymin-Sky's cry and 700-770 are the BASIC/BGM/SE banks. Sovereign needs slots 1-1025 for cries, so this moves:
   * Shaymin-Sky's cry  494      -> 1050 (still above every species ID; code finds it by its generated symbol)
   * BASIC/BGM/SE banks 700-770  -> 1100-1170
 The code refers to all of these by the symbols generated from the archive (pl_sound_data.naix), so nothing else

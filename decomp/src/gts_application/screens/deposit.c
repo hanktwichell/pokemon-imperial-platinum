@@ -1061,7 +1061,7 @@ ListMenu *GTS_CreateCharpadMenu(GTSApplicationState *appState, StringList **stri
     return ListMenu_New(&template, appState->speciesMenuState->charpadScrollPos, appState->speciesMenuState->charpadCursorPos, HEAP_ID_62);
 }
 
-// Imperial: generated from the species list (was hard-coded for 493 species).
+// Sovereign: generated from the species list (was hard-coded for 493 species).
 #define sAlphabeticalSpeciesCharpadIndices sSpeciesAlphabetGroupStarts
 
 static int GTSDeposit_BuildSeenSpeciesList(StringList **stringList, MessageLoader *speciesMessageLoader, MessageLoader *gtsMessageLoader, u16 *species, u8 *unused1, int unused2, int charpad, Pokedex *pokedex)

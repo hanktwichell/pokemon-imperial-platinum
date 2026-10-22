@@ -1,4 +1,4 @@
-# Imperial Platinum — Quality of Life
+# Sovereign Platinum — Quality of Life
 
 ## Kept from Renegade Platinum (all unchanged)
 
@@ -7,7 +7,7 @@
 - **Move Tutors:** all tutors are gathered in the Route 212 (South) house and teach for free.
 - **Move Deleter** moved next to the Oreburgh Pokémon Center.
 - **Hidden Power teller** in the Jubilife Trainers' School (and Veilstone).
-- **Evolution item seller** in Snowpoint City ($10,000 each). *Imperial adds the new evolution items to her stock.*
+- **Evolution item seller** in Snowpoint City ($10,000 each). *Sovereign adds the new evolution items to her stock.*
 - **Rare Berry seller** on Route 208.
 - **Item Fanatic** in Floaroma (Light Ball, Stick, Thick Club, Lucky Punch, powders, Deep Sea items).
 - **Training NPCs** in the Solaceon Day Care (EXP trainers by badge tier, EV trainers, EV-reducing berry bundle).
@@ -16,21 +16,21 @@
 - **Honey Trees** produce an encounter immediately.
 - **Cheaper Poké Balls** (Poké $50, Great $150, Ultra $300).
 - **Super Rod** available in Snowpoint City.
-- **Pokédex area data** is accurate. *Imperial must regenerate this for the new encounter tables.*
-- **Starters from every region** via Pokémon Center Interviewers. *Imperial extends this to Gen V–IX; see `GiftPokemon_Imperial.md`.*
-- **Optional patches** (Speed Up, 1/4096 and 1/8192 shiny rates, Classic Version) should be rebuilt against the Imperial ROM.
+- **Pokédex area data** is accurate. *Sovereign must regenerate this for the new encounter tables.*
+- **Starters from every region** via Pokémon Center Interviewers. *Sovereign extends this to Gen V–IX; see `GiftPokemon_Sovereign.md`.*
+- **Optional patches** (Speed Up, 1/4096 and 1/8192 shiny rates, Classic Version) should be rebuilt against the Sovereign ROM.
 
-## Approved Imperial additions (requested by the project owner)
+## Approved Sovereign additions (requested by the project owner)
 
 | Feature | Behaviour |
 |---|---|
-| **Level cap** (Options → LEVEL CAP on/off, default off) ✅ | While on, party Pokémon stop gaining EXP once they reach the level of the **ace of the next big fight** (Gym Leader, Galactic Commander/Boss, Champion). During the Elite Four the cap is **Cynthia's ace level**. EXP isn't banked; Pokémon at the cap gain nothing (EVs still count), and Exp. Share follows the same rule. The cap table is `data/level_caps.yaml` (checked against `data/trainers_imperial.yaml` by `tools/engine/gen_level_caps.py`), keyed by the trainers' defeated flags. Barry's fights count as big fights. |
+| **Level cap** (Options → LEVEL CAP on/off, default off) ✅ | While on, party Pokémon stop gaining EXP once they reach the level of the **ace of the next big fight** (Gym Leader, Galactic Commander/Boss, Champion). During the Elite Four the cap is **Cynthia's ace level**. EXP isn't banked; Pokémon at the cap gain nothing (EVs still count), and Exp. Share follows the same rule. The cap table is `data/level_caps.yaml` (checked against `data/trainers_sovereign.yaml` by `tools/engine/gen_level_caps.py`), keyed by the trainers' defeated flags. Barry's fights count as big fights. |
 | **Infinite Rare Candy** (Options → INF. CANDY on/off, only selectable while the level cap is on) ✅ | Rare Candies aren't used up, and can't raise a Pokémon past the current cap. Turning it on gives one Rare Candy if the bag has none. Turning the level cap off also turns this off. |
 | **Music volume** (Options → MUSIC slider 0–100) ✅ | Sets background-music volume in steps of 5 (hold left/right to move quickly; the volume changes as you move it). Sound effects and cries are unaffected. Saved with the other options. |
 
 ## Approved QoL from the proposal list (owner, 2026-10-22: items 1, 2, 3, 4, 5, 6, 8, 9, 11)
 
-| # | Feature | Imperial design | Depends on |
+| # | Feature | Sovereign design | Depends on |
 |---|---|---|---|
 | 1 | **Nature Mints** | One Mint per nature (21 stat-changing natures + Serious Mint), sold by Renegade's Route 208 berry seller ($10,000). A minted Pokémon keeps its real nature (for Synchronize, PID) but uses the Mint's stat changes; the summary screen shows the Mint nature. Stored in a spare byte of the Pokémon data. | item table (E7) |
 | 2 | **Repel prompt** | When a Repel/Super Repel/Max Repel runs out and the bag still has one of the same kind: "Use another?" (Yes/No). | ✅ done (E14) |

@@ -1,4 +1,4 @@
-# Imperial Platinum — Post-game Legendaries, Mythicals, Ultra Beasts & Paradox Pokémon
+# Sovereign Platinum — Post-game Legendaries, Mythicals, Ultra Beasts & Paradox Pokémon
 
 > Generated from `data/postgame_legendaries.yaml` by `tools/design/gen_legendary_doc.py`.
 
@@ -102,7 +102,7 @@ Covers **90** species.
 - **Pokémon:** #789 Cosmog, #790 Cosmoem, #791 Solgaleo, #792 Lunala
 - **Level:** 5
 - **Location:** Spear Pillar
-- **How:** A Cosmog is found at Spear Pillar (gift, Lv. 5). It evolves into Cosmoem at Lv. 43; Cosmoem becomes Solgaleo with a Sun Stone or Lunala with a Moon Stone (see EvolutionChanges_Imperial.md). Return to Spear Pillar for a second Cosmog after the first evolves, so both Solgaleo and Lunala are obtainable.
+- **How:** A Cosmog is found at Spear Pillar (gift, Lv. 5). It evolves into Cosmoem at Lv. 43; Cosmoem becomes Solgaleo with a Sun Stone or Lunala with a Moon Stone (see EvolutionChanges_Sovereign.md). Return to Spear Pillar for a second Cosmog after the first evolves, so both Solgaleo and Lunala are obtainable.
 
 ### The Blinding One
 - **Pokémon:** #800 Necrozma

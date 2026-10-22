@@ -25,7 +25,7 @@ def main():
     errors += [f"not an added special species: {n}" for n in seen if n not in need]
 
     hub = data["hub"]
-    L = ["# Imperial Platinum — Post-game Legendaries, Mythicals, Ultra Beasts & Paradox Pokémon\n",
+    L = ["# Sovereign Platinum — Post-game Legendaries, Mythicals, Ultra Beasts & Paradox Pokémon\n",
          "> Generated from `data/postgame_legendaries.yaml` by `tools/design/gen_legendary_doc.py`.\n",
          "Renegade Platinum's own legendary events (Gen I–IV) are unchanged; see `RenegadePlatinumV130/Documentation/SpecialEvents.txt`.\n",
          "## How it works\n",
