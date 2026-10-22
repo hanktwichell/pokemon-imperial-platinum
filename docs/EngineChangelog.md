@@ -4,6 +4,43 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E6 step 2 — species #494–1025
+
+All 1025 species are in the game, with species ID = National Dex number (Egg is 1026, Bad Egg 1027).
+
+- **Species data:** `tools/engine/gen_new_species.py` writes the 532 Gen V–IX species from PokeAPI into
+  `res/pokemon/<species>/`: stats, types, abilities with Hidden Abilities, learnsets (same rules as #1–493), egg
+  data, evolutions, Pokédex text, Pal Park data, footprints (blank, as in Gen V+) and placeholder icons. It also
+  writes `docs/NewSpecies.md`.
+  - Names over 10 characters are shortened Gen V-style (e.g. CORVKNIGHT); the list is in the generator.
+  - 16 evolutions wait for items from E7 and are marked ⏳ in `docs/NewSpecies.md`.
+  - Evolutions from Platinum's species into new ones are added to the parents (e.g. Eevee → Sylveon).
+    `MAX_EVOLUTIONS` is 8 so Eevee fits.
+  - `gen_species_gen9.py` shares its learnset builder with the new generator. Its output is unchanged.
+- **Placeholder sprites:** Unown-? until E12, for both genders (Platinum shows the female sprite for female
+  Pokémon).
+- **No cries yet (owner decision):** Platinum's sound archive is unchanged and the new species play silently
+  (`Sound_Impl_HasCry`). Packing 532 more cries needs about 25.5 KB more sound heap at boot than the 21.4 KB that is
+  free. Cries are the project's last step.
+- **English-only Pokédex (owner decision):** the per-species foreign-language table is removed from the save, which
+  keeps the save inside Platinum's 32 sectors (33 crashed on boot). The Route 226 foreign-entry upgrade shows no
+  language tabs.
+- **Easy Chat:** `tools/engine/gen_easy_chat_species.py` adds the new species to the Easy Chat lists in display-name
+  order: A–L to POKéMON, M–Z to POKéMON 2, and each one to its ABC-mode letter. As in Platinum, a species appears once
+  it has been seen. The word buffers are sized from the text banks, so they grow on their own (2,670 words, well below
+  the 4,096 the word decoder allows). The lists add 2,128 bytes of read-only data to the static ARM9.
+- **Test build:** Archaludon (#1018) replaces the Sharpness Gallade in the test party, and SELECT+B opens the Easy
+  Chat word picker.
+
+Verified with the test build:
+- The ROM boots (`boot_smoke.py`), and in-game save and continue work.
+- Archaludon's summary, stats and ability show correctly. In a wild battle it switches in, attacks, and the battle
+  ends normally.
+- Easy Chat (SELECT+B): POKéMON lists the seen species in order (ARCHALUDON, GALLADE, GARCHOMP). ABC mode's A
+  list reads ANTICIPATION, ARCHALUDON, ARENA TRAP, ATTACK, AUNT, so the other words still decode correctly with
+  the shifted word IDs. Choosing ARCHALUDON and confirming returns to the field, and a wild battle afterwards
+  works.
+
 ## Rename: Pokémon Sovereign Platinum
 
 - The project is renamed from "Imperial Platinum" to **Pokémon Sovereign Platinum** (owner, 2026-10-22).
@@ -17,6 +54,7 @@ players and the verification that was run.
   - Every game mechanic.
   - The GitHub repository name (`pokemon-imperial-platinum`). The owner can rename the repository on GitHub, and
     GitHub redirects the old URL.
+
 ## E6 step 1 — engine prep for 1025 species (still 493 species)
 
 Platinum assumed its 493 species in a dozen places. Each is now tied to the species list, so adding #494–1025

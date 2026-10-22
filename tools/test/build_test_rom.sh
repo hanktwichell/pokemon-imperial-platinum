@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Build the Sovereign *test* ROM (never ship it) into decomp/build_test/pokeplatinum.us.nds.
 # The test build adds: a test party and items at new game (Garchomp 50 with Gen IX moves, Turtwig 15, Starly 5, Gallade 30 with Justified [hidden ability], Archaludon 50 [#1018, an E6 species], 3 Rare Candies, a Super Repel that ends after 3 steps + 2 in the bag, HM02 and HM05, a Ditto for the SELECT+L breeding test),
-# SELECT in the overworld = wild battle (Chansey 30), SELECT+R = trainer battle (src/overlay005/field_control.c).
+# SELECT in the overworld = wild battle (Chansey 30), SELECT+R = trainer battle, SELECT+B = Easy Chat word picker (src/overlay005/field_control.c).
 set -euo pipefail
 cd "$(dirname "$0")/../../decomp"
 make BUILD=build_test configure >/dev/null

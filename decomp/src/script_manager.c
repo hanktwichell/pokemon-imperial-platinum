@@ -32,10 +32,14 @@
 #include "generated/species.h"
 
 #include "bag.h"
+#include "easy_chat_words.h"
+#include "field_task.h"
+#include "field_transition.h"
 #include "party.h"
 #include "pokemon.h"
 #include "special_encounter.h"
 #include "system_vars.h"
+#include "unk_0203D1B8.h"
 #include "unk_02054884.h"
 #endif
 
@@ -726,7 +730,7 @@ static void SovereignTest_SetupNewGame(FieldSystem *fieldSystem)
     Pokemon_SetValue(gallade, MON_DATA_HAS_HIDDEN_ABILITY, &hasHiddenAbility);
     Pokemon_CalcAbility(gallade);
 
-    // Archaludon (#1018): a species added in E6 (ID above 1000, Gen IX data, placeholder sprite, PokeAPI cry).
+    // Archaludon (#1018): a species added in E6 (ID above 1000, Gen IX data, placeholder sprite, no cry yet).
     Pokemon_GiveMonFromScript(HEAP_ID_FIELD2, fieldSystem->saveData, SPECIES_ARCHALUDON, 50, ITEM_NONE, 0, 0);
 
     // Breeding test (SELECT+L, see SovereignTest_BreedAndHatch): the Hidden Ability Gallade holds a Destiny Knot and
@@ -763,6 +767,44 @@ static void SovereignTest_SetupNewGame(FieldSystem *fieldSystem)
     SpecialEncounter *speEnc = SaveData_GetSpecialEncounters(fieldSystem->saveData);
     *SpecialEncounter_GetRepelSteps(speEnc) = 3;
     SpecialEncounter_SetLastRepel(speEnc, ITEM_SUPER_REPEL);
+}
+#endif
+
+#ifdef SOVEREIGN_TEST
+static u16 sSovereignTestEasyChatResult;
+static u16 sSovereignTestEasyChatWord;
+
+// Test build only: the Easy Chat word picker (one word), opened from the field with SELECT+B. This lives in the
+// static ARM9 rather than with the field input code because overlay5 is unloaded while Easy Chat runs.
+static BOOL SovereignTest_EasyChatTask(FieldTask *task)
+{
+    int *state = FieldTask_GetState(task);
+
+    switch ((*state)++) {
+    case 0:
+        FieldTransition_FadeOut(task);
+        return FALSE;
+    case 1:
+        FieldTransition_FinishMap(task);
+        return FALSE;
+    case 2:
+        sSovereignTestEasyChatWord = WORD_NONE;
+        sub_0203D80C(task, &sSovereignTestEasyChatResult, &sSovereignTestEasyChatWord, NULL);
+        return FALSE;
+    case 3:
+        FieldTransition_StartMap(task);
+        return FALSE;
+    case 4:
+        FieldTransition_FadeIn(task);
+        return FALSE;
+    }
+
+    return TRUE;
+}
+
+void SovereignTest_OpenEasyChat(FieldSystem *fieldSystem)
+{
+    FieldSystem_CreateTask(fieldSystem, SovereignTest_EasyChatTask, NULL);
 }
 #endif
 

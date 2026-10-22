@@ -29,14 +29,21 @@ mythical, so `sExcludedMonsNational` stays Platinum's list (Gen I–IV event myt
 | GTS / Global Terminal by-name index | `gts_application/screens/deposit.c:1062`, `overlay062/ov62_02237D24.c:124`, `ov62_02241204.c:216` | split points into the alphabetical list are hard-coded | compute them |
 | Battle Hall record selector | `overlay005/ov5_021F6454.c:64` | `MAX_LIST_ENTRIES 120`, `u8 numOptions` | raise it / widen the type |
 
-## Step 2: the 532 species
+## Step 2: the 532 species — ✅ done
 
-- **Folder per species:** each needs a `res/pokemon/<name>/` folder with `data.json` (stats, types, abilities, learnsets,
-  evolutions, egg moves, Pokédex data in all six languages, Pal Park data), `sprite_data.json`, `meson.build`,
-  sprites, `icon.png`, `footprint.png` and a cry. Generated from PokeAPI with a new tool.
-- **Placeholders:** placeholder sprites are used until E12. Cries come from PokeAPI's archive (`docs/CryChecklist.xlsx`).
-- **Easy Chat:** the alphabetical species lists in `src/easy_chat_word_list.c` are written by hand. Easy Chat word IDs
-  shift by +532, which is fine for Sovereign's own save format.
+See the E6 step 2 entry in `EngineChangelog.md` and the per-species table in `NewSpecies.md`.
+
+- **Folder per species:** `tools/engine/gen_new_species.py` writes each `res/pokemon/<name>/` folder from PokeAPI:
+  `data.json` (stats, types, abilities, learnsets, evolutions, egg data, Pokédex data, Pal Park data),
+  `sprite_data.json`, `meson.build`, sprites, `icon.png` and `footprint.png`.
+- **Placeholders:** Unown-? sprites until E12; PokeAPI icons.
+- **Cries:** none yet (owner decision). 532 more cries overflow the sound heap at boot; they're the project's last
+  step, and new species play silently until then.
+- **Pokédex save:** the per-species language table is removed (English-only Pokédex, owner decision), so the save
+  stays within 32 sectors.
+- **Easy Chat:** `tools/engine/gen_easy_chat_species.py` inserts the new species into the hand-written lists in
+  `src/easy_chat_word_list.c` in display-name order. Easy Chat word IDs after the species shift by +532, which is
+  fine for Sovereign's own save format.
 - **Already scales:** the Sinnoh dex stays as it is (`sinnoh_pokedex.json`), and the National Dex list scales on its
   own.
 

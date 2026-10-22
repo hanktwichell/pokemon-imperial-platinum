@@ -1,99 +1,88 @@
 # Sovereign Platinum — development status
 
-_Last updated: 2026-10-22, during E6 step 2 (adding species #494–1025). Branch `claude/festive-bardeen-5h7beo`,
-based on main `f9f50b3d`. Everything below is committed and pushed to the branch; no PR yet (E6 step 2 isn't
-finished)._
+_Last updated: 2026-10-22. **E6 step 2 (species #494–1025) is finished.** Branch `claude/sweet-wright-rk4wl1`
+continues `claude/festive-bardeen-5h7beo` (all of its commits are included), based on main `f9f50b3d`. Everything
+below is committed and pushed. No PR yet._
 
 ## 1. What was just implemented
 
-**Merged to main already** (PRs #10–#13):
-- E2/E4 Gen IX abilities.
-- Repel prompt.
-- Champions battle rules (core).
-- HM-free field moves and forgettable HMs.
-- Breeding (Destiny Knot, Everstone, ball and Hidden Ability inheritance).
-- E6 step 1 engine prep for 1025 species.
-- Rename to Pokémon Sovereign Platinum; developer battle doc.
+**E6 step 2 is complete: all 1025 species are in the game.**
 
-**Done in the working tree (uncommitted):**
-- **New-species generator** `tools/engine/gen_new_species.py`. It writes all 532 species (#494–1025) from PokeAPI:
-  stats, types, abilities, learnsets, Pokédex text, evolutions, placeholder sprites and icons, footprints, and real
-  cries. It also adds them to `generated/species.txt` and the sound archive, and writes `docs/NewSpecies.md`.
-  - 16 evolutions wait on items that arrive with E7.
-- **`gen_species_gen9.py`** refactored into `load_context()` and `build_learnset()`. The output is byte-identical to
-  before.
-- **`MAX_EVOLUTIONS` is now 8**, so Eevee can evolve into Sylveon.
-- **The test build's party** now includes Archaludon (#1018) in place of the Sharpness Gallade.
-- **The Pokédex is English-only** (owner decision, this session). The per-species foreign-language table is removed,
-  and the Route 226 foreign-entry upgrade shows no language tabs. This brings the save back inside Platinum's 32
-  sectors.
-  - The save now loads correctly on boot. It previously crashed with a 33rd sector.
+Earlier on this branch (previous session):
+- The species generator (`tools/engine/gen_new_species.py`) adds the 532 new species.
+- The Pokédex is English-only, so the save fits in 32 sectors.
+- `MAX_EVOLUTIONS` is 8.
+- Placeholder Unown-? sprites for both genders.
+- New species have no cry (owner decision; cries come last).
+- Archaludon is in the test party.
 
-**The ROM boots and plays with all 1025 species.**
-- `boot_smoke.py` passes.
-- In the test build, Archaludon's summary, stats and ability show correctly. In a wild battle it switches in (placeholder
-  sprite, silent cry), attacks, and the battle ends normally.
-- In-game save and continue work with the 32-sector save.
+This session:
+- **Easy Chat species words.** The new generator `tools/engine/gen_easy_chat_species.py` adds the 532 species to
+  `decomp/src/easy_chat_word_list.c`:
+  - A–L go to the POKéMON group and M–Z to POKéMON 2, and each one also goes into its ABC-mode letter list.
+  - Every list is in display-name order, using the shortened in-game names. ’ sorts before the letters, as in
+    Platinum (I’VE ARRIVED comes before ICE), and É sorts as E.
+  - Platinum's own entries are never moved. The generator checked that Platinum's lists already follow this sort
+    order.
+  - Running it again changes nothing, and `--check` exits 1 if the file is out of date.
+  - The word buffers size themselves from the text banks: 2,670 words, well under the decoder's 4,096 cap. The
+    lists add 2,128 bytes of read-only data to the static ARM9.
+- **Test build: SELECT+B opens the Easy Chat word picker.**
+  - The task lives in `src/script_manager.c` (static ARM9). It can't go in `field_control.c`: overlay5 is unloaded
+    while Easy Chat runs, and an overlay5 task crashed with a black screen when Easy Chat closed.
+  - **Lesson for future test hooks:** any field task that opens an app must live outside overlay5.
+- **Verified in the emulator (test build):**
+  - Easy Chat's POKéMON group shows ARCHALUDON, GALLADE, GARCHOMP.
+  - ABC mode's A list reads ANTICIPATION, ARCHALUDON, ARENA TRAP, ATTACK, AUNT, so the shifted word IDs decode
+    correctly.
+  - Confirming and cancelling both return to the field.
+  - A wild battle afterwards works.
+  - `boot_smoke.py` passes.
+- **Step 2 wrap-up docs:**
+  - EngineChangelog: new "E6 step 2" entry.
+  - EngineRoadmap: E6 marked ✅.
+  - ProjectStatus: E6 done, plus decisions 6 (cries last) and 14 (English-only Pokédex).
+  - SpeciesExpansionPlan: step 2 marked done.
+  - CITATIONS: Pokédex text, and the PokeAPI icons now in the ROM.
+  - Fixed "an Sovereign" in the `boot_smoke.py` docstring.
 
-**Cries (owner decision):** Platinum's sound archive stays unchanged. The 532 new species have no cries and play
-silently: `Sound_Impl_HasCry` in `src/sound_playback.c`. Cries are the project's last step, and removing all cries
-is the fallback if space ever runs out.
-- Measured: adding the cries grows the sound archive's boot-time index from 72,412 to 97,948 bytes (+25,536). The
-  sound heap has only 21,356 bytes free at boot and on the title screen, so they'd be about 4.2 KB short before
-  gameplay.
+## 2. Files modified this session
 
-**Placeholder sprites:** the new species use Unown-? until milestone E12. Both male and female copies are written,
-since Platinum shows the female sprite for female Pokémon.
-
-**Developer battle (owner):** the team has been revised.
-- Charizard-Y: Hurricane replaced Ancient Power.
-- Tyranitar: Ice Punch replaced Protect; Choice Band replaced Assault Vest.
-- Archaludon: a new set (♀, Modest, Assault Vest, 252 HP / 156 SpD / 100 Spe, with Electro Shot, Body Press,
-  Flash Cannon and Dragon Pulse).
-
-## 2. Files modified on this branch (all committed)
-
-- `decomp/generated/species.txt`: 532 species added before `SPECIES_EGG`.
-- `decomp/include/pokedex.h`: `recordedLanguages` removed.
-- `decomp/src/pokedex.c`: language tracking removed; `Pokedex_IsLanguageObtained` and `Pokedex_CanDetectLanguages`
-  now return FALSE.
-- `decomp/include/struct_defs/species.h`: `MAX_EVOLUTIONS` changed to 8.
-- `decomp/res/pokemon/<532 new folders>/`: new species data.
-- Vanilla species `data.json` evolution edits: corsola, dunsparce, eevee, farfetchd, girafarig, linoone, meowth,
-  mr_mime, primeape, qwilfish, sneasel, stantler, wooper.
-- `decomp/src/sound_playback.c` and `decomp/src/sound.c`: new species have no cry (silent).
-- `decomp/res/pokemon/meson.build`: a cry is packed only when the species has `cry.wav`.
-- `docs/DeveloperBattle.md`: the owner's team revisions.
-- `decomp/src/script_manager.c` and `tools/test/build_test_rom.sh`: Archaludon in the test party.
-- `tools/engine/gen_species_gen9.py` (refactor) and `tools/engine/gen_new_species.py` (new).
-- `docs/NewSpecies.md` (new).
-- `CLAUDE.md` (new): the status-file rule.
-- `CLAUDE_STATUS.md` (this file).
+- `decomp/src/easy_chat_word_list.c`: generated insertions of the 532 species.
+- `tools/engine/gen_easy_chat_species.py`: new.
+- `decomp/src/script_manager.c` and `decomp/include/script_manager.h`: `SovereignTest_OpenEasyChat` (test build
+  only), plus a stale comment fixed (Archaludon has no cry).
+- `decomp/src/overlay005/field_control.c`: the SELECT+B hook (test build only).
+- `tools/test/build_test_rom.sh`: header comment lists SELECT+B.
+- `tools/test/boot_smoke.py`: docstring grammar.
+- `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `docs/ProjectStatus.md`, `docs/SpeciesExpansionPlan.md`,
+  `CITATIONS.md`.
+- `CLAUDE_STATUS.md`: this file.
 
 ## 3. Next 3 steps
 
-1. **Easy Chat species lists** (`decomp/src/easy_chat_word_list.c`), the last code item of E6 step 2. Findings so far:
-   - A species' word ID is its species ID. Other words are offset by the text bank sizes (`MOVE_WORD` etc. in
-     `include/applications/easy_chat/defs.h`), so they shift automatically and the list entries can stay as they are.
-   - The Pokémon words are split into two groups by name: `sPokemonWords` runs Abomasnow–Luxray (235) and
-     `sPokemon2Words` runs Machamp–Zubat (258). Both are in display-name order, not constant-name order.
-   - The A–Z lists (`sAWords` … `sZWords`) hold all 493 species mixed in with other words.
-   - To do: write a small generator that inserts the 532 new species (A–L into group 1, M–Z into group 2, plus each
-     into its letter list) in display-name order. Then check that the buffers sized by word count (`wordsByGroup`,
-     `addedWordBits`) cope with 532 more words. Test in game with the Easy Chat screen (e.g. the Trainer Card or a
-     Pokémon Center interview).
-2. **Wrap up E6 step 2.**
-   - Docs: changelog, roadmap, ProjectStatus (decisions: English-only Pokédex, no new cries until last), the step 2
-     section of SpeciesExpansionPlan, and CITATIONS for the PokeAPI icons.
-   - Fix the "an Sovereign" grammar left by the rename (e.g. the `tools/test/boot_smoke.py` docstring).
-   - Open a PR from `claude/festive-bardeen-5h7beo` and merge it.
-3. **E7 items.** Add every held item. New held items go on sale at the Veilstone Department Store (owner request).
-   Also add the 16 evolution items, Mega Stones, Charizardite Y, Blue Orb and Assault Vest. After that, E12 sprites
-   for the 532 new species; cries come last of all.
+1. **Open a PR for E6 and merge it** (from `claude/sweet-wright-rk4wl1`; it includes the festive-bardeen commits).
+   CI builds the normal (non-test) ROM. This session built and tested only the test ROM.
+2. **E7 items.**
+   - Add every held item. New held items go on sale at the Veilstone Department Store (owner request).
+   - Also add the 16 evolution items that the ⏳ evolutions in `docs/NewSpecies.md` wait on, Mega Stones,
+     Charizardite Y, the Blue Orb and Assault Vest.
+   - Then rerun `gen_new_species.py` so those evolutions are written.
+3. **Possible follow-ups (ask the owner):**
+   - Gen V+ moves and abilities are in the text banks but not in the Easy Chat lists (moves unlock after the game is
+     beaten). `gen_easy_chat_species.py` could be extended the same way.
+   - If RAM gets tight, the Easy Chat word list (vanilla ~5 KB including the new 2 KB) could move from the static
+     ARM9 into the `easy_chat` overlay; only that overlay uses it. Check the mail app first, which opens Easy Chat
+     from its own overlay.
+   - After that: E12 sprites for the 532 new species. Cries come last of all.
 
 **Testing tips:**
-- Test ROM: `tools/test/build_test_rom.sh` → `decomp/build_test/pokeplatinum.us.nds`.
-- Intro inputs that work on the current build: `$S/arch/intro_full.txt`, where `$S` is
-  `/tmp/claude-0/-home-user-pokemon-imperial-platinum/320147ff-836b-5cb0-8a81-b2884a5e01ab/scratchpad`. Scratch
-  files may not survive the session.
-- An in-game save is slow in the emulator: wait about 1,500 frames before exporting it.
+- Test ROM: `tools/test/build_test_rom.sh` → `decomp/build_test/pokeplatinum.us.nds`. A cold build takes about 40
+  minutes on 4 cores; install the apt packages from `decomp/INSTALL.md`, then
+  `pip install py-desmume pillow pyyaml`.
+- `tools/test/new_game.sh` reached the bedroom on this build, but intro timing changes with every build (one run
+  stalled on a Yes/No prompt). More reliable: make an in-game save once (menu → SAVE → YES, YES, wait about 1,800
+  frames, then `export:`), then boot later builds with `sav:FILE` and continue with
+  `wait:600 A wait:200 START wait:200 A wait:300`.
+- `drive.py`'s `PLAYER_X/Z_ADDR` read (0,0) on this build, so they need re-finding.
+- Easy Chat from the test build: `SELECT+B`, then `A A` opens the POKéMON group.

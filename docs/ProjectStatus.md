@@ -5,8 +5,8 @@ _Last updated: 2026-10-22_
 **Where we are:** the design phase is finished and engine work has started on the pret/pokeplatinum decompilation.
 The ROM builds in CI on every PR. Merged so far: Fairy type, the Options additions, the Sovereign save format/identity,
 the test build and the whole Gen IX data pass (all 919 moves, all 314 abilities with Hidden Abilities, Gen IX stats,
-types and learnsets for #1–493). In progress: the remaining QoL features (E14; the Repel prompt is done) and the
-Pokémon Champions battle rules (10b; core rules built). Next: the species expansion (E6).
+types and learnsets for #1–493). All 1025 species are in the game (E6). In progress: the remaining QoL features (E14) and the Pokémon Champions
+battle rules (10b; core rules built). Next: items (E7).
 
 **Estimate to a first playable version:** about 25–40 more working sessions, roughly 3–6 weeks at one or two sessions
 a day. The two biggest uncertainties are fitting 1025 species into the DS engine (E6) and how exactly the Gen IX move
@@ -27,7 +27,7 @@ and T2 only. See `EngineRoadmap.md` for the per-milestone breakdown.
 | E5 | Gen IX stats, types and learnsets for #1–493 and forms; 32-bit learnset entries | ✅ done (PR #9); tested in battle |
 | E2/E4 | All 314 abilities, ID = official number (191 new, no battle effect yet: `AbilityChecklist.md`); Hidden Ability slot and flag | ✅ done; tested on the summary screen |
 | 10b | Battle mechanics → Pokémon Champions (IVs/EVs unchanged); rules in `BattleMechanics.md` | 🟡 core rules built (status, dynamic speed, crits, weather, Snow, Fake Out, move values); ability/move behaviour with item 11 |
-| E6 | Species expansion to 1025 (+ cries from PokeAPI's archive) | not started |
+| E6 | Species expansion to 1025 | ✅ done: all 532 Gen V–IX species (`NewSpecies.md`) with placeholder sprites, Easy Chat words, English-only Pokédex; tested in battle and on the summary screen. No cries for the new species yet (last step). 16 evolutions wait on E7 items |
 | E7 | Items (Mega Stones, new held/evolution items) | not started |
 | E8 | Mega Evolution / Primal Reversion | not started |
 | E9 | Extended trainer data (natures, EVs, abilities, forms) | not started |
@@ -63,6 +63,8 @@ Made by the owner (2026-10-22):
 4. Options: level cap, Infinite Rare Candy (needs the cap), party Exp. Share, music volume, all in the normal OPTIONS list.
 5. QoL proposals 1–6, 8, 9 and 11 approved; #7 kept as a proposal; #10 dropped.
 6. The Sinnoh dex stays as in Platinum; the National Dex holds all 1025. Cries for new species come from PokeAPI's archive.
+   They are added last of all; until then the new species are silent, and dropping every cry is the fallback if
+   space runs out (2026-10-22).
 7. Boss team compositions wait until the engine features are done (T1).
 8. A Red-style developer final battle will be added (T2). It gets a custom AI; the trainer AI is also reviewed for double battles (12b).
 9. No Z-Moves, Max Moves, Dynamax or Gigantamax.
@@ -72,6 +74,7 @@ Made by the owner (2026-10-22):
     Archaludon (`DeveloperBattle.md`).
 13. The project is renamed **Pokémon Sovereign Platinum** (was Imperial Platinum). The developer battle is against
     **Sovereign Dev Twich** (2026-10-22).
+14. The Pokédex is English-only: no foreign-language entries (2026-10-22).
 
 Open:
 - The developer battle: Lv. 100 at Spear Pillar, leads Charizard-Y + Venusaur, custom weather-control AI (`DeveloperBattle.md`). Opponent: Sovereign Dev Twich. Open: text, sprites (owner's sprite coming soon), Charizard's final moveset.
