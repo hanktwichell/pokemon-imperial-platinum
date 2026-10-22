@@ -212,6 +212,974 @@ story:
       - {species: Magmortar, level: 74, item: Life Orb, nature: Modest, ability: Flame Body, moves: [Heat Wave, Thunderbolt, Focus Blast, Protect], evs: 4/0/0/252/0/252, owner: Flint}
       - {species: Houndoom, level: 75, item: Houndoominite, nature: Timid, ability: Intimidate, mega: Mega Houndoom, moves: [Heat Wave, Dark Pulse, Nasty Plot, Protect], evs: 4/0/0/252/0/252, owner: Flint}
 
+  # ---- Rival Barry (owner request): key fight from his first battle after Jupiter; Mega Staraptor.
+  - trainer: PKMN Trainer Barry
+    location: Route 209 gate (after Fantina) — Turtwig
+    note: 'Barry''s starter: Turtwig line. Staravia evolves into Staraptor for this fight so it can Mega Evolve.'
+    format: singles
+    team:
+    - species: Heracross
+      level: 32
+      item: Coba Berry
+      nature: Adamant
+      ability: Guts
+      moves: [Bug Bite, Brick Break, Aerial Ace, Knock Off]
+      evs: 4/252/0/0/0/252
+    - species: Snorlax
+      level: 32
+      item: Leftovers
+      nature: Adamant
+      ability: Thick Fat
+      moves: [Body Slam, Yawn, Amnesia, Rock Slide]
+      evs: 252/252/0/0/4/0
+    - species: Staraptor
+      level: 33
+      item: Staraptite
+      nature: Jolly
+      ability: Reckless
+      mega: Mega Staraptor
+      moves: [Close Combat, Aerial Ace, Quick Attack, U-turn]
+      evs: 4/252/0/0/0/252
+    - species: Grotle
+      level: 33
+      item: Sitrus Berry
+      nature: Adamant
+      ability: Overgrow
+      moves: [Seed Bomb, Crunch, Leech Seed, Protect]
+      evs: 252/252/0/0/4/0
+  - trainer: PKMN Trainer Barry
+    location: Route 209 gate (after Fantina) — Chimchar
+    note: 'Barry''s starter: Chimchar line. Staravia evolves into Staraptor for this fight so it can Mega Evolve.'
+    format: singles
+    team:
+    - species: Heracross
+      level: 32
+      item: Coba Berry
+      nature: Adamant
+      ability: Guts
+      moves: [Bug Bite, Brick Break, Aerial Ace, Knock Off]
+      evs: 4/252/0/0/0/252
+    - species: Snorlax
+      level: 32
+      item: Leftovers
+      nature: Adamant
+      ability: Thick Fat
+      moves: [Body Slam, Yawn, Amnesia, Rock Slide]
+      evs: 252/252/0/0/4/0
+    - species: Staraptor
+      level: 33
+      item: Staraptite
+      nature: Jolly
+      ability: Reckless
+      mega: Mega Staraptor
+      moves: [Close Combat, Aerial Ace, Quick Attack, U-turn]
+      evs: 4/252/0/0/0/252
+    - species: Monferno
+      level: 33
+      item: Sitrus Berry
+      nature: Hasty
+      ability: Iron Fist
+      moves: [Flamethrower, Low Kick, Grass Knot, Fake Out]
+      evs: 0/252/0/4/0/252
+  - trainer: PKMN Trainer Barry
+    location: Route 209 gate (after Fantina) — Piplup
+    note: 'Barry''s starter: Piplup line. Staravia evolves into Staraptor for this fight so it can Mega Evolve.'
+    format: singles
+    team:
+    - species: Heracross
+      level: 32
+      item: Coba Berry
+      nature: Adamant
+      ability: Guts
+      moves: [Bug Bite, Brick Break, Aerial Ace, Knock Off]
+      evs: 4/252/0/0/0/252
+    - species: Snorlax
+      level: 32
+      item: Leftovers
+      nature: Adamant
+      ability: Thick Fat
+      moves: [Body Slam, Yawn, Amnesia, Rock Slide]
+      evs: 252/252/0/0/4/0
+    - species: Staraptor
+      level: 33
+      item: Staraptite
+      nature: Jolly
+      ability: Reckless
+      mega: Mega Staraptor
+      moves: [Close Combat, Aerial Ace, Quick Attack, U-turn]
+      evs: 4/252/0/0/0/252
+    - species: Prinplup
+      level: 33
+      item: Sitrus Berry
+      nature: Modest
+      ability: Torrent
+      moves: [Scald, Icy Wind, Grass Knot, Aerial Ace]
+      evs: 252/0/0/252/4/0
+  - trainer: PKMN Trainer Barry
+    location: Pastoria City — Turtwig
+    note: 'Barry''s starter: Turtwig line.'
+    format: singles
+    team:
+    - species: Staraptor
+      level: 41
+      item: Staraptite
+      nature: Jolly
+      ability: Reckless
+      mega: Mega Staraptor
+      moves: [Close Combat, Brave Bird, Double-Edge, Roost]
+      evs: 4/252/0/0/0/252
+    - species: Heracross
+      level: 41
+      item: Coba Berry
+      nature: Adamant
+      ability: Guts
+      moves: [Megahorn, Brick Break, Bullet Seed, Night Slash]
+      evs: 4/252/0/0/0/252
+    - species: Snorlax
+      level: 41
+      item: Leftovers
+      nature: Adamant
+      ability: Thick Fat
+      moves: [Body Slam, Crunch, Rest, Sleep Talk]
+      evs: 252/252/0/0/4/0
+    - species: Azumarill
+      level: 41
+      item: Life Orb
+      nature: Adamant
+      ability: Huge Power
+      moves: [Aqua Tail, Play Rough, Body Slam, Aqua Jet]
+      evs: 252/252/0/0/4/0
+    - species: Arcanine
+      level: 41
+      item: Expert Belt
+      nature: Hasty
+      ability: Intimidate
+      moves: [Heat Wave, Thunder Fang, Outrage, Crunch]
+      evs: 4/252/0/0/0/252
+    - species: Torterra
+      level: 42
+      item: Sitrus Berry
+      nature: Adamant
+      ability: Overgrow
+      moves: [Seed Bomb, Earthquake, Crunch, Iron Head]
+      evs: 252/252/0/0/4/0
+  - trainer: PKMN Trainer Barry
+    location: Pastoria City — Chimchar
+    note: 'Barry''s starter: Chimchar line.'
+    format: singles
+    team:
+    - species: Staraptor
+      level: 41
+      item: Staraptite
+      nature: Jolly
+      ability: Reckless
+      mega: Mega Staraptor
+      moves: [Close Combat, Brave Bird, Double-Edge, Roost]
+      evs: 4/252/0/0/0/252
+    - species: Heracross
+      level: 41
+      item: Coba Berry
+      nature: Adamant
+      ability: Guts
+      moves: [Megahorn, Brick Break, Bullet Seed, Night Slash]
+      evs: 4/252/0/0/0/252
+    - species: Snorlax
+      level: 41
+      item: Leftovers
+      nature: Adamant
+      ability: Thick Fat
+      moves: [Body Slam, Crunch, Rest, Sleep Talk]
+      evs: 252/252/0/0/4/0
+    - species: Azumarill
+      level: 41
+      item: Life Orb
+      nature: Adamant
+      ability: Huge Power
+      moves: [Aqua Tail, Play Rough, Body Slam, Aqua Jet]
+      evs: 252/252/0/0/4/0
+    - species: Breloom
+      level: 41
+      item: Focus Sash
+      nature: Jolly
+      ability: Technician
+      moves: [Bullet Seed, Force Palm, Spore, Rock Tomb]
+      evs: 4/252/0/0/0/252
+    - species: Infernape
+      level: 42
+      item: Sitrus Berry
+      nature: Naive
+      ability: Iron Fist
+      moves: [Flamethrower, Close Combat, Fake Out, Thunder Punch]
+      evs: 0/252/0/4/0/252
+  - trainer: PKMN Trainer Barry
+    location: Pastoria City — Piplup
+    note: 'Barry''s starter: Piplup line.'
+    format: singles
+    team:
+    - species: Staraptor
+      level: 41
+      item: Staraptite
+      nature: Jolly
+      ability: Reckless
+      mega: Mega Staraptor
+      moves: [Close Combat, Brave Bird, Double-Edge, Roost]
+      evs: 4/252/0/0/0/252
+    - species: Heracross
+      level: 41
+      item: Coba Berry
+      nature: Adamant
+      ability: Guts
+      moves: [Megahorn, Brick Break, Bullet Seed, Night Slash]
+      evs: 4/252/0/0/0/252
+    - species: Snorlax
+      level: 41
+      item: Leftovers
+      nature: Adamant
+      ability: Thick Fat
+      moves: [Body Slam, Crunch, Rest, Sleep Talk]
+      evs: 252/252/0/0/4/0
+    - species: Breloom
+      level: 41
+      item: Focus Sash
+      nature: Jolly
+      ability: Technician
+      moves: [Bullet Seed, Force Palm, Spore, Rock Tomb]
+      evs: 4/252/0/0/0/252
+    - species: Arcanine
+      level: 41
+      item: Expert Belt
+      nature: Hasty
+      ability: Intimidate
+      moves: [Heat Wave, Thunder Fang, Outrage, Crunch]
+      evs: 4/252/0/0/0/252
+    - species: Empoleon
+      level: 42
+      item: Sitrus Berry
+      nature: Modest
+      ability: Torrent
+      moves: [Scald, Flash Cannon, Agility, Swagger]
+      evs: 252/0/0/252/4/0
+  - trainer: PKMN Trainer Barry
+    location: Canalave City — Turtwig
+    note: 'Barry''s starter: Turtwig line.'
+    format: singles
+    team:
+    - species: Staraptor
+      level: 48
+      item: Staraptite
+      nature: Jolly
+      ability: Reckless
+      mega: Mega Staraptor
+      moves: [Close Combat, Brave Bird, Double-Edge, U-turn]
+      evs: 4/252/0/0/0/252
+    - species: Heracross
+      level: 48
+      item: Muscle Band
+      nature: Adamant
+      ability: Guts
+      moves: [Megahorn, Close Combat, Rock Slide, Night Slash]
+      evs: 4/252/0/0/0/252
+    - species: Snorlax
+      level: 48
+      item: Leftovers
+      nature: Adamant
+      ability: Thick Fat
+      moves: [Curse, Body Slam, Crunch, Slack Off]
+      evs: 252/252/0/0/4/0
+    - species: Azumarill
+      level: 48
+      item: Life Orb
+      nature: Adamant
+      ability: Huge Power
+      moves: [Aqua Tail, Play Rough, Ice Punch, Aqua Jet]
+      evs: 252/252/0/0/4/0
+    - species: Arcanine
+      level: 48
+      item: Expert Belt
+      nature: Adamant
+      ability: Intimidate
+      moves: [Flare Blitz, Extreme Speed, Crunch, Close Combat]
+      evs: 4/252/0/0/0/252
+    - species: Torterra
+      level: 49
+      item: Sitrus Berry
+      nature: Adamant
+      ability: Overgrow
+      moves: [Wood Hammer, Earthquake, Crunch, Iron Head]
+      evs: 252/252/0/0/4/0
+  - trainer: PKMN Trainer Barry
+    location: Canalave City — Chimchar
+    note: 'Barry''s starter: Chimchar line.'
+    format: singles
+    team:
+    - species: Staraptor
+      level: 48
+      item: Staraptite
+      nature: Jolly
+      ability: Reckless
+      mega: Mega Staraptor
+      moves: [Close Combat, Brave Bird, Double-Edge, U-turn]
+      evs: 4/252/0/0/0/252
+    - species: Heracross
+      level: 48
+      item: Muscle Band
+      nature: Adamant
+      ability: Guts
+      moves: [Megahorn, Close Combat, Rock Slide, Night Slash]
+      evs: 4/252/0/0/0/252
+    - species: Snorlax
+      level: 48
+      item: Leftovers
+      nature: Adamant
+      ability: Thick Fat
+      moves: [Curse, Body Slam, Crunch, Slack Off]
+      evs: 252/252/0/0/4/0
+    - species: Azumarill
+      level: 48
+      item: Life Orb
+      nature: Adamant
+      ability: Huge Power
+      moves: [Aqua Tail, Play Rough, Ice Punch, Aqua Jet]
+      evs: 252/252/0/0/4/0
+    - species: Breloom
+      level: 48
+      item: Focus Sash
+      nature: Jolly
+      ability: Technician
+      moves: [Bullet Seed, Force Palm, Spore, Stone Edge]
+      evs: 4/252/0/0/0/252
+    - species: Infernape
+      level: 49
+      item: Sitrus Berry
+      nature: Naive
+      ability: Iron Fist
+      moves: [Fire Blast, Close Combat, Fake Out, Thunder Punch]
+      evs: 0/252/0/4/0/252
+  - trainer: PKMN Trainer Barry
+    location: Canalave City — Piplup
+    note: 'Barry''s starter: Piplup line.'
+    format: singles
+    team:
+    - species: Staraptor
+      level: 48
+      item: Staraptite
+      nature: Jolly
+      ability: Reckless
+      mega: Mega Staraptor
+      moves: [Close Combat, Brave Bird, Double-Edge, U-turn]
+      evs: 4/252/0/0/0/252
+    - species: Heracross
+      level: 48
+      item: Muscle Band
+      nature: Adamant
+      ability: Guts
+      moves: [Megahorn, Close Combat, Rock Slide, Night Slash]
+      evs: 4/252/0/0/0/252
+    - species: Snorlax
+      level: 48
+      item: Leftovers
+      nature: Adamant
+      ability: Thick Fat
+      moves: [Curse, Body Slam, Crunch, Slack Off]
+      evs: 252/252/0/0/4/0
+    - species: Breloom
+      level: 48
+      item: Focus Sash
+      nature: Jolly
+      ability: Technician
+      moves: [Bullet Seed, Force Palm, Spore, Stone Edge]
+      evs: 4/252/0/0/0/252
+    - species: Arcanine
+      level: 48
+      item: Expert Belt
+      nature: Adamant
+      ability: Intimidate
+      moves: [Flare Blitz, Extreme Speed, Crunch, Close Combat]
+      evs: 4/252/0/0/0/252
+    - species: Empoleon
+      level: 49
+      item: Sitrus Berry
+      nature: Modest
+      ability: Torrent
+      moves: [Surf, Flash Cannon, Grass Knot, Agility]
+      evs: 252/0/0/252/4/0
+  - trainer: PKMN Trainer Barry
+    location: Spear Pillar (tag-battle partner) — Turtwig
+    note: 'Barry''s starter: Turtwig line. Barry fights alongside the player here; he can Mega Evolve as an ally.'
+    format: multi
+    team:
+    - species: Staraptor
+      level: 58
+      item: Staraptite
+      nature: Jolly
+      ability: Intimidate
+      mega: Mega Staraptor
+      moves: [Close Combat, Brave Bird, Double-Edge, U-turn]
+      evs: 4/252/0/0/0/252
+    - species: Heracross
+      level: 58
+      item: Toxic Orb
+      nature: Adamant
+      ability: Guts
+      moves: [Megahorn, Close Combat, Stone Edge, Protect]
+      evs: 4/252/0/0/0/252
+    - species: Snorlax
+      level: 58
+      item: Leftovers
+      nature: Adamant
+      ability: Thick Fat
+      moves: [Body Slam, Earthquake, Curse, Slack Off]
+      evs: 252/252/0/0/4/0
+    - species: Azumarill
+      level: 58
+      item: Life Orb
+      nature: Adamant
+      ability: Huge Power
+      moves: [Aqua Tail, Play Rough, Ice Punch, Aqua Jet]
+      evs: 252/252/0/0/4/0
+    - species: Arcanine
+      level: 58
+      item: Life Orb
+      nature: Adamant
+      ability: Intimidate
+      moves: [Flare Blitz, Close Combat, Wild Charge, Crunch]
+      evs: 4/252/0/0/0/252
+    - species: Torterra
+      level: 59
+      item: Sitrus Berry
+      nature: Adamant
+      ability: Overgrow
+      moves: [Wood Hammer, Earthquake, Stone Edge, Crunch]
+      evs: 252/252/0/0/4/0
+  - trainer: PKMN Trainer Barry
+    location: Spear Pillar (tag-battle partner) — Chimchar
+    note: 'Barry''s starter: Chimchar line. Barry fights alongside the player here; he can Mega Evolve as an ally.'
+    format: multi
+    team:
+    - species: Staraptor
+      level: 58
+      item: Staraptite
+      nature: Jolly
+      ability: Intimidate
+      mega: Mega Staraptor
+      moves: [Close Combat, Brave Bird, Double-Edge, U-turn]
+      evs: 4/252/0/0/0/252
+    - species: Heracross
+      level: 58
+      item: Toxic Orb
+      nature: Adamant
+      ability: Guts
+      moves: [Megahorn, Close Combat, Stone Edge, Protect]
+      evs: 4/252/0/0/0/252
+    - species: Snorlax
+      level: 58
+      item: Leftovers
+      nature: Adamant
+      ability: Thick Fat
+      moves: [Body Slam, Earthquake, Curse, Slack Off]
+      evs: 252/252/0/0/4/0
+    - species: Azumarill
+      level: 58
+      item: Life Orb
+      nature: Adamant
+      ability: Huge Power
+      moves: [Aqua Tail, Play Rough, Ice Punch, Aqua Jet]
+      evs: 252/252/0/0/4/0
+    - species: Breloom
+      level: 58
+      item: Life Orb
+      nature: Jolly
+      ability: Technician
+      moves: [Bullet Seed, Force Palm, Stone Edge, Spore]
+      evs: 4/252/0/0/0/252
+    - species: Infernape
+      level: 59
+      item: Sitrus Berry
+      nature: Naive
+      ability: Iron Fist
+      moves: [Flare Blitz, Close Combat, Stone Edge, Grass Knot]
+      evs: 0/252/0/4/0/252
+  - trainer: PKMN Trainer Barry
+    location: Spear Pillar (tag-battle partner) — Piplup
+    note: 'Barry''s starter: Piplup line. Barry fights alongside the player here; he can Mega Evolve as an ally.'
+    format: multi
+    team:
+    - species: Staraptor
+      level: 58
+      item: Staraptite
+      nature: Jolly
+      ability: Intimidate
+      mega: Mega Staraptor
+      moves: [Close Combat, Brave Bird, Double-Edge, U-turn]
+      evs: 4/252/0/0/0/252
+    - species: Heracross
+      level: 58
+      item: Toxic Orb
+      nature: Adamant
+      ability: Guts
+      moves: [Megahorn, Close Combat, Stone Edge, Protect]
+      evs: 4/252/0/0/0/252
+    - species: Snorlax
+      level: 58
+      item: Leftovers
+      nature: Adamant
+      ability: Thick Fat
+      moves: [Body Slam, Earthquake, Curse, Slack Off]
+      evs: 252/252/0/0/4/0
+    - species: Breloom
+      level: 58
+      item: Life Orb
+      nature: Jolly
+      ability: Technician
+      moves: [Bullet Seed, Force Palm, Stone Edge, Spore]
+      evs: 4/252/0/0/0/252
+    - species: Arcanine
+      level: 58
+      item: Life Orb
+      nature: Adamant
+      ability: Intimidate
+      moves: [Flare Blitz, Close Combat, Wild Charge, Crunch]
+      evs: 4/252/0/0/0/252
+    - species: Empoleon
+      level: 59
+      item: Sitrus Berry
+      nature: Modest
+      ability: Torrent
+      moves: [Hydro Pump, Flash Cannon, Grass Knot, Blizzard]
+      evs: 252/0/0/252/4/0
+  - trainer: PKMN Trainer Barry
+    location: Pokémon League (before the Elite Four) — Turtwig
+    note: 'Barry''s starter: Turtwig line.'
+    format: singles
+    team:
+    - species: Staraptor
+      level: 70
+      item: Staraptite
+      nature: Jolly
+      ability: Intimidate
+      mega: Mega Staraptor
+      moves: [Close Combat, Brave Bird, Double-Edge, U-turn]
+      evs: 4/252/0/0/0/252
+    - species: Heracross
+      level: 70
+      item: Toxic Orb
+      nature: Adamant
+      ability: Guts
+      moves: [Megahorn, Close Combat, Stone Edge, Protect]
+      evs: 4/252/0/0/0/252
+    - species: Snorlax
+      level: 70
+      item: Leftovers
+      nature: Adamant
+      ability: Thick Fat
+      moves: [Body Slam, Earthquake, Curse, Slack Off]
+      evs: 252/252/0/0/4/0
+    - species: Azumarill
+      level: 70
+      item: Life Orb
+      nature: Adamant
+      ability: Huge Power
+      moves: [Aqua Tail, Play Rough, Ice Punch, Aqua Jet]
+      evs: 252/252/0/0/4/0
+    - species: Arcanine
+      level: 70
+      item: Life Orb
+      nature: Adamant
+      ability: Intimidate
+      moves: [Flare Blitz, Close Combat, Wild Charge, Crunch]
+      evs: 4/252/0/0/0/252
+    - species: Torterra
+      level: 71
+      item: Sitrus Berry
+      nature: Adamant
+      ability: Overgrow
+      moves: [Wood Hammer, Earthquake, Stone Edge, Crunch]
+      evs: 252/252/0/0/4/0
+  - trainer: PKMN Trainer Barry
+    location: Pokémon League (before the Elite Four) — Chimchar
+    note: 'Barry''s starter: Chimchar line.'
+    format: singles
+    team:
+    - species: Staraptor
+      level: 70
+      item: Staraptite
+      nature: Jolly
+      ability: Intimidate
+      mega: Mega Staraptor
+      moves: [Close Combat, Brave Bird, Double-Edge, U-turn]
+      evs: 4/252/0/0/0/252
+    - species: Heracross
+      level: 70
+      item: Toxic Orb
+      nature: Adamant
+      ability: Guts
+      moves: [Megahorn, Close Combat, Stone Edge, Protect]
+      evs: 4/252/0/0/0/252
+    - species: Snorlax
+      level: 70
+      item: Leftovers
+      nature: Adamant
+      ability: Thick Fat
+      moves: [Body Slam, Earthquake, Curse, Slack Off]
+      evs: 252/252/0/0/4/0
+    - species: Azumarill
+      level: 70
+      item: Life Orb
+      nature: Adamant
+      ability: Huge Power
+      moves: [Aqua Tail, Play Rough, Ice Punch, Aqua Jet]
+      evs: 252/252/0/0/4/0
+    - species: Breloom
+      level: 70
+      item: Life Orb
+      nature: Jolly
+      ability: Technician
+      moves: [Bullet Seed, Force Palm, Stone Edge, Spore]
+      evs: 4/252/0/0/0/252
+    - species: Infernape
+      level: 71
+      item: Sitrus Berry
+      nature: Naive
+      ability: Iron Fist
+      moves: [Flare Blitz, Close Combat, Stone Edge, Grass Knot]
+      evs: 0/252/0/4/0/252
+  - trainer: PKMN Trainer Barry
+    location: Pokémon League (before the Elite Four) — Piplup
+    note: 'Barry''s starter: Piplup line.'
+    format: singles
+    team:
+    - species: Staraptor
+      level: 70
+      item: Staraptite
+      nature: Jolly
+      ability: Intimidate
+      mega: Mega Staraptor
+      moves: [Close Combat, Brave Bird, Double-Edge, U-turn]
+      evs: 4/252/0/0/0/252
+    - species: Heracross
+      level: 70
+      item: Toxic Orb
+      nature: Adamant
+      ability: Guts
+      moves: [Megahorn, Close Combat, Stone Edge, Protect]
+      evs: 4/252/0/0/0/252
+    - species: Snorlax
+      level: 70
+      item: Leftovers
+      nature: Adamant
+      ability: Thick Fat
+      moves: [Body Slam, Earthquake, Curse, Slack Off]
+      evs: 252/252/0/0/4/0
+    - species: Breloom
+      level: 70
+      item: Life Orb
+      nature: Jolly
+      ability: Technician
+      moves: [Bullet Seed, Force Palm, Stone Edge, Spore]
+      evs: 4/252/0/0/0/252
+    - species: Arcanine
+      level: 70
+      item: Life Orb
+      nature: Adamant
+      ability: Intimidate
+      moves: [Flare Blitz, Close Combat, Wild Charge, Crunch]
+      evs: 4/252/0/0/0/252
+    - species: Empoleon
+      level: 71
+      item: Sitrus Berry
+      nature: Modest
+      ability: Torrent
+      moves: [Hydro Pump, Flash Cannon, Grass Knot, Blizzard]
+      evs: 252/0/0/252/4/0
+  - trainer: PKMN Trainer Barry
+    location: Fight Area (post-game) — Turtwig
+    note: 'Barry''s starter: Turtwig line.'
+    format: singles
+    team:
+    - species: Staraptor
+      level: 74
+      item: Staraptite
+      nature: Jolly
+      ability: Intimidate
+      mega: Mega Staraptor
+      moves: [Close Combat, Brave Bird, Double-Edge, U-turn]
+      evs: 4/252/0/0/0/252
+    - species: Heracross
+      level: 74
+      item: Toxic Orb
+      nature: Adamant
+      ability: Guts
+      moves: [Megahorn, Close Combat, Stone Edge, Protect]
+      evs: 4/252/0/0/0/252
+    - species: Snorlax
+      level: 74
+      item: Leftovers
+      nature: Adamant
+      ability: Thick Fat
+      moves: [Body Slam, Earthquake, Curse, Slack Off]
+      evs: 252/252/0/0/4/0
+    - species: Azumarill
+      level: 74
+      item: Life Orb
+      nature: Adamant
+      ability: Huge Power
+      moves: [Aqua Tail, Play Rough, Ice Punch, Aqua Jet]
+      evs: 252/252/0/0/4/0
+    - species: Arcanine
+      level: 74
+      item: Life Orb
+      nature: Adamant
+      ability: Intimidate
+      moves: [Flare Blitz, Close Combat, Wild Charge, Crunch]
+      evs: 4/252/0/0/0/252
+    - species: Torterra
+      level: 75
+      item: Sitrus Berry
+      nature: Adamant
+      ability: Overgrow
+      moves: [Wood Hammer, Earthquake, Stone Edge, Crunch]
+      evs: 252/252/0/0/4/0
+  - trainer: PKMN Trainer Barry
+    location: Fight Area (post-game) — Chimchar
+    note: 'Barry''s starter: Chimchar line.'
+    format: singles
+    team:
+    - species: Staraptor
+      level: 74
+      item: Staraptite
+      nature: Jolly
+      ability: Intimidate
+      mega: Mega Staraptor
+      moves: [Close Combat, Brave Bird, Double-Edge, U-turn]
+      evs: 4/252/0/0/0/252
+    - species: Heracross
+      level: 74
+      item: Toxic Orb
+      nature: Adamant
+      ability: Guts
+      moves: [Megahorn, Close Combat, Stone Edge, Protect]
+      evs: 4/252/0/0/0/252
+    - species: Snorlax
+      level: 74
+      item: Leftovers
+      nature: Adamant
+      ability: Thick Fat
+      moves: [Body Slam, Earthquake, Curse, Slack Off]
+      evs: 252/252/0/0/4/0
+    - species: Azumarill
+      level: 74
+      item: Life Orb
+      nature: Adamant
+      ability: Huge Power
+      moves: [Aqua Tail, Play Rough, Ice Punch, Aqua Jet]
+      evs: 252/252/0/0/4/0
+    - species: Breloom
+      level: 74
+      item: Life Orb
+      nature: Jolly
+      ability: Technician
+      moves: [Bullet Seed, Force Palm, Stone Edge, Spore]
+      evs: 4/252/0/0/0/252
+    - species: Infernape
+      level: 75
+      item: Sitrus Berry
+      nature: Naive
+      ability: Iron Fist
+      moves: [Flare Blitz, Close Combat, Stone Edge, Grass Knot]
+      evs: 0/252/0/4/0/252
+  - trainer: PKMN Trainer Barry
+    location: Fight Area (post-game) — Piplup
+    note: 'Barry''s starter: Piplup line.'
+    format: singles
+    team:
+    - species: Staraptor
+      level: 74
+      item: Staraptite
+      nature: Jolly
+      ability: Intimidate
+      mega: Mega Staraptor
+      moves: [Close Combat, Brave Bird, Double-Edge, U-turn]
+      evs: 4/252/0/0/0/252
+    - species: Heracross
+      level: 74
+      item: Toxic Orb
+      nature: Adamant
+      ability: Guts
+      moves: [Megahorn, Close Combat, Stone Edge, Protect]
+      evs: 4/252/0/0/0/252
+    - species: Snorlax
+      level: 74
+      item: Leftovers
+      nature: Adamant
+      ability: Thick Fat
+      moves: [Body Slam, Earthquake, Curse, Slack Off]
+      evs: 252/252/0/0/4/0
+    - species: Breloom
+      level: 74
+      item: Life Orb
+      nature: Jolly
+      ability: Technician
+      moves: [Bullet Seed, Force Palm, Stone Edge, Spore]
+      evs: 4/252/0/0/0/252
+    - species: Arcanine
+      level: 74
+      item: Life Orb
+      nature: Adamant
+      ability: Intimidate
+      moves: [Flare Blitz, Close Combat, Wild Charge, Crunch]
+      evs: 4/252/0/0/0/252
+    - species: Empoleon
+      level: 75
+      item: Sitrus Berry
+      nature: Modest
+      ability: Torrent
+      moves: [Hydro Pump, Flash Cannon, Grass Knot, Blizzard]
+      evs: 252/0/0/252/4/0
+  - trainer: PKMN Trainer Barry
+    location: Battleground (post-game) — Turtwig
+    note: 'Barry''s starter: Turtwig line.'
+    format: singles
+    team:
+    - species: Staraptor
+      level: 84
+      item: Staraptite
+      nature: Jolly
+      ability: Intimidate
+      mega: Mega Staraptor
+      moves: [Close Combat, Brave Bird, Double-Edge, U-turn]
+      evs: 4/252/0/0/0/252
+    - species: Heracross
+      level: 84
+      item: Toxic Orb
+      nature: Adamant
+      ability: Guts
+      moves: [Megahorn, Close Combat, Stone Edge, Protect]
+      evs: 4/252/0/0/0/252
+    - species: Snorlax
+      level: 84
+      item: Leftovers
+      nature: Adamant
+      ability: Thick Fat
+      moves: [Body Slam, Earthquake, Curse, Slack Off]
+      evs: 252/252/0/0/4/0
+    - species: Azumarill
+      level: 84
+      item: Life Orb
+      nature: Adamant
+      ability: Huge Power
+      moves: [Aqua Tail, Play Rough, Ice Punch, Aqua Jet]
+      evs: 252/252/0/0/4/0
+    - species: Arcanine
+      level: 84
+      item: Life Orb
+      nature: Adamant
+      ability: Intimidate
+      moves: [Flare Blitz, Close Combat, Wild Charge, Crunch]
+      evs: 4/252/0/0/0/252
+    - species: Torterra
+      level: 85
+      item: Sitrus Berry
+      nature: Adamant
+      ability: Overgrow
+      moves: [Wood Hammer, Earthquake, Stone Edge, Crunch]
+      evs: 252/252/0/0/4/0
+  - trainer: PKMN Trainer Barry
+    location: Battleground (post-game) — Chimchar
+    note: 'Barry''s starter: Chimchar line.'
+    format: singles
+    team:
+    - species: Staraptor
+      level: 84
+      item: Staraptite
+      nature: Jolly
+      ability: Intimidate
+      mega: Mega Staraptor
+      moves: [Close Combat, Brave Bird, Double-Edge, U-turn]
+      evs: 4/252/0/0/0/252
+    - species: Heracross
+      level: 84
+      item: Toxic Orb
+      nature: Adamant
+      ability: Guts
+      moves: [Megahorn, Close Combat, Stone Edge, Protect]
+      evs: 4/252/0/0/0/252
+    - species: Snorlax
+      level: 84
+      item: Leftovers
+      nature: Adamant
+      ability: Thick Fat
+      moves: [Body Slam, Earthquake, Curse, Slack Off]
+      evs: 252/252/0/0/4/0
+    - species: Azumarill
+      level: 84
+      item: Life Orb
+      nature: Adamant
+      ability: Huge Power
+      moves: [Aqua Tail, Play Rough, Ice Punch, Aqua Jet]
+      evs: 252/252/0/0/4/0
+    - species: Breloom
+      level: 84
+      item: Life Orb
+      nature: Jolly
+      ability: Technician
+      moves: [Bullet Seed, Force Palm, Stone Edge, Spore]
+      evs: 4/252/0/0/0/252
+    - species: Infernape
+      level: 85
+      item: Sitrus Berry
+      nature: Naive
+      ability: Iron Fist
+      moves: [Flare Blitz, Close Combat, Stone Edge, Grass Knot]
+      evs: 0/252/0/4/0/252
+  - trainer: PKMN Trainer Barry
+    location: Battleground (post-game) — Piplup
+    note: 'Barry''s starter: Piplup line.'
+    format: singles
+    team:
+    - species: Staraptor
+      level: 84
+      item: Staraptite
+      nature: Jolly
+      ability: Intimidate
+      mega: Mega Staraptor
+      moves: [Close Combat, Brave Bird, Double-Edge, U-turn]
+      evs: 4/252/0/0/0/252
+    - species: Heracross
+      level: 84
+      item: Toxic Orb
+      nature: Adamant
+      ability: Guts
+      moves: [Megahorn, Close Combat, Stone Edge, Protect]
+      evs: 4/252/0/0/0/252
+    - species: Snorlax
+      level: 84
+      item: Leftovers
+      nature: Adamant
+      ability: Thick Fat
+      moves: [Body Slam, Earthquake, Curse, Slack Off]
+      evs: 252/252/0/0/4/0
+    - species: Breloom
+      level: 84
+      item: Life Orb
+      nature: Jolly
+      ability: Technician
+      moves: [Bullet Seed, Force Palm, Stone Edge, Spore]
+      evs: 4/252/0/0/0/252
+    - species: Arcanine
+      level: 84
+      item: Life Orb
+      nature: Adamant
+      ability: Intimidate
+      moves: [Flare Blitz, Close Combat, Wild Charge, Crunch]
+      evs: 4/252/0/0/0/252
+    - species: Empoleon
+      level: 85
+      item: Sitrus Berry
+      nature: Modest
+      ability: Torrent
+      moves: [Hydro Pump, Flash Cannon, Grass Knot, Blizzard]
+      evs: 252/0/0/252/4/0
+
 # Pokémon League. Renegade picked one of four random teams per member; Imperial uses one fixed,
 # optimised team per member per format. Round 1 = first challenge, Round 2 = rematches.
 league:

@@ -1358,9 +1358,38 @@ static void Sound_Impl_PauseOrStopFieldBGM(void)
     }
 }
 
+// Imperial music volume (Options -> MUSIC). The game still sets player volumes itself (fades,
+// scripts, voice chat); for the two music players we remember the requested volume and apply the
+// player's setting on top of it.
+#define MAX_PLAYER_VOLUME 127
+
+static u8 sMusicVolumePercent = 100;
+static u8 sRequestedFieldVolume = MAX_PLAYER_VOLUME;
+static u8 sRequestedBGMVolume = MAX_PLAYER_VOLUME;
+
+static int ScaleMusicVolume(int volume)
+{
+    return volume * sMusicVolumePercent / 100;
+}
+
 void Sound_SetPlayerVolume(int playerID, int volume)
 {
+    if (playerID == PLAYER_FIELD) {
+        sRequestedFieldVolume = volume;
+        volume = ScaleMusicVolume(volume);
+    } else if (playerID == PLAYER_BGM) {
+        sRequestedBGMVolume = volume;
+        volume = ScaleMusicVolume(volume);
+    }
+
     NNS_SndPlayerSetPlayerVolume(playerID, volume);
+}
+
+void Sound_SetMusicVolumePercent(u8 percent)
+{
+    sMusicVolumePercent = percent > 100 ? 100 : percent;
+    NNS_SndPlayerSetPlayerVolume(PLAYER_FIELD, ScaleMusicVolume(sRequestedFieldVolume));
+    NNS_SndPlayerSetPlayerVolume(PLAYER_BGM, ScaleMusicVolume(sRequestedBGMVolume));
 }
 
 void Sound_Set2PokemonCriesAllowed(BOOL allowed)

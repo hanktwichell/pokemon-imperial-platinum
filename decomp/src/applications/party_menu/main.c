@@ -37,6 +37,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "height_weight_data.h"
+#include "imperial_options.h"
 #include "item.h"
 #include "item_use_pokemon.h"
 #include "journal.h"
@@ -48,6 +49,7 @@
 #include "party.h"
 #include "pokemon.h"
 #include "render_window.h"
+#include "savedata.h"
 #include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
@@ -2697,7 +2699,11 @@ static int ApplyItemEffectOnPokemon(PartyMenuApplication *app)
     }
 
     if (Party_CheckItemEffectsOnMember(app->partyMenu->party, app->partyMenu->usedItemID, app->currPartySlot, 0, HEAP_ID_PARTY_MENU) == TRUE) {
-        Bag_TryRemoveItem(app->partyMenu->bag, app->partyMenu->usedItemID, 1, HEAP_ID_PARTY_MENU);
+        // Imperial: with the level cap and Infinite Candy options on, Rare Candies aren't used up.
+        if (app->partyMenu->usedItemID != ITEM_RARE_CANDY
+            || ImperialOptions_InfiniteCandyEnabled(SaveData_GetImperialOptions(SaveData_Ptr())) == FALSE) {
+            Bag_TryRemoveItem(app->partyMenu->bag, app->partyMenu->usedItemID, 1, HEAP_ID_PARTY_MENU);
+        }
 
         if (Item_Get(itemData, ITEM_PARAM_EVOLVE) != FALSE) {
             Pokemon *mon = Party_GetPokemonBySlotIndex(app->partyMenu->party, app->currPartySlot);

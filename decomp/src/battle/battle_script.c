@@ -44,6 +44,8 @@
 #include "char_transfer.h"
 #include "dexmode_checker.h"
 #include "flags.h"
+#include "imperial_options.h"
+#include "level_cap.h"
 #include "heap.h"
 #include "item.h"
 #include "message.h"
@@ -2216,7 +2218,11 @@ static BOOL BtlCmd_CalcExpGain(BattleSystem *battleSys, BattleContext *battleCtx
         u16 exp = SpeciesData_GetSpeciesValue(battleCtx->battleMons[battleCtx->faintedMon].species, SPECIES_DATA_BASE_EXP_REWARD);
         exp = (exp * battleCtx->battleMons[battleCtx->faintedMon].level) / 7;
 
-        if (totalMonsWithExpShare) {
+        if (ImperialOptions_PartyExpShareEnabled(SaveData_GetImperialOptions(SaveData_Ptr()))) {
+            // Imperial party Exp. Share (Gen VI+): participants get the full amount, everyone else half.
+            battleCtx->gainedExp = exp ? exp : 1;
+            battleCtx->sharedExp = exp / 2 ? exp / 2 : 1;
+        } else if (totalMonsWithExpShare) {
             battleCtx->gainedExp = (exp / 2) / totalMonsGainingExp;
 
             if (battleCtx->gainedExp == 0) {
@@ -9687,12 +9693,22 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
     expBattler = 0;
 
     // Figure out which mon we're working on
+    BOOL partyExpShare = ImperialOptions_PartyExpShareEnabled(SaveData_GetImperialOptions(SaveData_Ptr()));
+    u8 levelCap = LevelCap_Get(SaveData_Ptr());
+
     for (slot = data->tmpData[GET_EXP_PARTY_SLOT]; slot < BattleSystem_GetPartyCount(data->battleSys, expBattler); slot++) {
         mon = BattleSystem_GetPartyPokemon(data->battleSys, expBattler, slot);
         item = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
         itemEffect = Item_LoadParam(item, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_BATTLE);
 
         if (itemEffect == HOLD_EFFECT_EXP_SHARE || (data->battleCtx->sideGetExpMask[battler] & FlagIndex(slot))) {
+            break;
+        }
+
+        if (partyExpShare
+            && Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL)
+            && Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE
+            && Pokemon_GetValue(mon, MON_DATA_HP, NULL)) {
             break;
         }
     }
@@ -9724,11 +9740,17 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
         msg.id = BattleStrings_Text_PokemonGainedExpPoints; // "{0} gained {1} Exp. Points!"
 
         if (Pokemon_GetValue(mon, MON_DATA_HP, NULL) && Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL) != MAX_POKEMON_LEVEL) {
-            if (data->battleCtx->sideGetExpMask[battler] & FlagIndex(slot)) {
+            BOOL participated = (data->battleCtx->sideGetExpMask[battler] & FlagIndex(slot)) != 0;
+
+            if (participated) {
                 totalExp = data->battleCtx->gainedExp;
             }
 
-            if (itemEffect == HOLD_EFFECT_EXP_SHARE) {
+            if (partyExpShare) {
+                if (!participated) {
+                    totalExp = data->battleCtx->sharedExp;
+                }
+            } else if (itemEffect == HOLD_EFFECT_EXP_SHARE) {
                 totalExp += data->battleCtx->sharedExp;
             }
 
@@ -9752,6 +9774,15 @@ static void BattleScript_GetExpTask(SysTask *task, void *inData)
 
             u32 newExp = Pokemon_GetValue(mon, MON_DATA_EXPERIENCE, NULL);
             data->tmpData[GET_EXP_NEW_EXP] = newExp - Pokemon_GetCurrentLevelBaseExp(mon);
+
+            // Imperial level cap: no EXP beyond the cap level (EVs are still gained below).
+            u32 capExp = Pokemon_GetSpeciesBaseExpAt(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), levelCap);
+            if (newExp >= capExp) {
+                totalExp = 0;
+            } else if (newExp + totalExp > capExp) {
+                totalExp = capExp - newExp;
+            }
+
             newExp += totalExp;
 
             if (slot == data->battleCtx->selectedPartySlot[expBattler]) {

@@ -14,6 +14,7 @@
 #include "font.h"
 #include "game_overlay.h"
 #include "game_start.h"
+#include "imperial_options.h"
 #include "main.h"
 #include "math_util.h"
 #include "overlay_manager.h"
@@ -22,6 +23,7 @@
 #include "save_player.h"
 #include "savedata.h"
 #include "screen_fade.h"
+#include "sound.h"
 #include "sound_system.h"
 #include "sys_task_manager.h"
 #include "system.h"
@@ -82,6 +84,7 @@ void NitroMain(void)
     sApplication.args.saveData = SaveData_Init();
 
     SoundSystem_Init(SaveData_GetChatotCry(sApplication.args.saveData), SaveData_GetOptions(sApplication.args.saveData));
+    Sound_SetMusicVolumePercent(ImperialOptions_MusicVolumePercent(SaveData_GetImperialOptions(sApplication.args.saveData)));
     Timer_Start();
 
     if (sub_02038FFC(HEAP_ID_APPLICATION) == DWC_INIT_RESULT_DESTROY_OTHER_SETTING) {

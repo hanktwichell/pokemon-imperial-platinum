@@ -1,0 +1,93 @@
+#!/usr/bin/env python3
+"""Drive the ROM headlessly from a save state with a list of actions, then save a state + screenshot.
+
+Actions (space-separated):
+  A B X Y L R START SELECT UP DOWN LEFT RIGHT   press the button (add *N to repeat, e.g. A*10)
+  hold:KEY:FRAMES                               hold a button for FRAMES frames
+  touch:X,Y                                     tap the touch screen (bottom-screen coordinates)
+  wait:FRAMES                                   let the game run
+  shot:NAME                                     save a screenshot (both screens) as NAME.png
+  export:PATH                                   write the battery save (in-game SAVE) to PATH
+
+Usage:
+  python3 tools/test/drive.py ROM STATE_IN|-|sav:FILE STATE_OUT OUT_DIR action...
+STATE_IN is an emulator save state, "-" for a fresh boot, or sav:FILE to boot fresh with a battery save
+(use this after rebuilding: save states hold the old code in RAM, battery saves don't).
+Requires py-desmume and Pillow; run with SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy when headless.
+"""
+import os
+import sys
+
+from desmume.controls import Keys, keymask
+from desmume.emulator import DeSmuME
+
+KEYS = {"A": Keys.KEY_A, "B": Keys.KEY_B, "X": Keys.KEY_X, "Y": Keys.KEY_Y, "L": Keys.KEY_L, "R": Keys.KEY_R,
+        "START": Keys.KEY_START, "SELECT": Keys.KEY_SELECT, "UP": Keys.KEY_UP, "DOWN": Keys.KEY_DOWN,
+        "LEFT": Keys.KEY_LEFT, "RIGHT": Keys.KEY_RIGHT}
+
+
+class Driver:
+    def __init__(self, rom, state=None, battery=None):
+        self.emu = DeSmuME()
+        self.emu.open(rom)
+        self.emu.volume_set(0)
+        if battery:
+            self.emu.backup.import_file(battery)
+            self.emu.reset()
+        if state:
+            self.emu.savestate.load_file(state)
+
+    def run(self, frames):
+        for _ in range(frames):
+            self.emu.cycle(with_joystick=False)
+
+    def press(self, key, frames=6, after=20):
+        self.emu.input.keypad_add_key(keymask(KEYS[key]))
+        self.run(frames)
+        self.emu.input.keypad_rm_key(keymask(KEYS[key]))
+        self.run(after)
+
+    def touch(self, x, y, frames=30, after=60):
+        self.emu.input.touch_set_pos(x, y)
+        self.run(frames)
+        self.emu.input.touch_release()
+        self.run(after)
+
+    def screenshot(self):
+        # display_buffer_as_rgbx() is really BGRX; the library's own screenshot has the right channel order.
+        return self.emu.screenshot()
+
+    def do(self, action, out_dir="."):
+        if action.startswith("touch:"):
+            x, y = action[6:].split(",")
+            self.touch(int(x), int(y))
+        elif action.startswith("wait:"):
+            self.run(int(action[5:]))
+        elif action.startswith("hold:"):
+            _, key, frames = action.split(":")
+            self.press(key, int(frames))
+        elif action.startswith("export:"):
+            self.emu.backup.export_file(action[7:])
+        elif action.startswith("shot:"):
+            self.screenshot().save(os.path.join(out_dir, action[5:] + ".png"))
+        else:
+            key, _, n = action.partition("*")
+            for _ in range(int(n or 1)):
+                self.press(key)
+
+
+def main():
+    rom, state_in, state_out, out_dir = sys.argv[1:5]
+    os.makedirs(out_dir, exist_ok=True)
+    if state_in.startswith("sav:"):
+        d = Driver(rom, battery=state_in[4:])
+    else:
+        d = Driver(rom, None if state_in == "-" else state_in)
+    for a in sys.argv[5:]:
+        d.do(a, out_dir)
+    d.emu.savestate.save_file(state_out)
+    d.screenshot().save(os.path.join(out_dir, "last.png"))
+
+
+if __name__ == "__main__":
+    main()

@@ -11,14 +11,12 @@ import os
 import sys
 
 from desmume.controls import Keys, keymask
-from desmume.emulator import DeSmuME, SCREEN_HEIGHT, SCREEN_WIDTH
-from PIL import Image
+from desmume.emulator import DeSmuME
 
 
 def screens(emu):
-    buf = emu.display_buffer_as_rgbx()
-    img = Image.frombuffer("RGBX", (SCREEN_WIDTH, SCREEN_HEIGHT * 2), buf, "raw", "RGBX", 0, 1).convert("RGB")
-    return img
+    # display_buffer_as_rgbx() is really BGRX; the library's own screenshot has the right channel order.
+    return emu.screenshot()
 
 
 def run(emu, frames, press=None):

@@ -212,6 +212,252 @@ _Format: doubles_ · Both partners Mega Evolve. Flint's Flareon is replaced by H
 | Magmortar _(Flint)_ | 74 | Life Orb | Modest | Flame Body | Heat Wave, Thunderbolt, Focus Blast, Protect | 4/0/0/252/0/252 |
 | Houndoom → **Mega Houndoom** (Dark/Fire) _(Flint)_ | 75 | Houndoominite | Timid | Intimidate → **Solar Power** | Heat Wave, Dark Pulse, Nasty Plot, Protect | 4/0/0/252/0/252 |
 
+### PKMN Trainer Barry — Route 209 gate (after Fantina) — Turtwig
+_Format: singles_ · Barry's starter: Turtwig line. Staravia evolves into Staraptor for this fight so it can Mega Evolve.
+
+| Pokémon | Lv. | Item | Nature | Ability | Moves | EVs (HP/Atk/Def/SpA/SpD/Spe) |
+|---|---|---|---|---|---|---|
+| Heracross | 32 | Coba Berry | Adamant | Guts | Bug Bite, Brick Break, Aerial Ace, Knock Off | 4/252/0/0/0/252 |
+| Snorlax | 32 | Leftovers | Adamant | Thick Fat | Body Slam, Yawn, Amnesia, Rock Slide | 252/252/0/0/4/0 |
+| Staraptor → **Mega Staraptor** (Fighting/Flying) | 33 | Staraptite | Jolly | Reckless → **Contrary** ⚙ | Close Combat, Aerial Ace, Quick Attack, U-turn | 4/252/0/0/0/252 |
+| Grotle | 33 | Sitrus Berry | Adamant | Overgrow | Seed Bomb, Crunch, Leech Seed, Protect | 252/252/0/0/4/0 |
+
+### PKMN Trainer Barry — Route 209 gate (after Fantina) — Chimchar
+_Format: singles_ · Barry's starter: Chimchar line. Staravia evolves into Staraptor for this fight so it can Mega Evolve.
+
+| Pokémon | Lv. | Item | Nature | Ability | Moves | EVs (HP/Atk/Def/SpA/SpD/Spe) |
+|---|---|---|---|---|---|---|
+| Heracross | 32 | Coba Berry | Adamant | Guts | Bug Bite, Brick Break, Aerial Ace, Knock Off | 4/252/0/0/0/252 |
+| Snorlax | 32 | Leftovers | Adamant | Thick Fat | Body Slam, Yawn, Amnesia, Rock Slide | 252/252/0/0/4/0 |
+| Staraptor → **Mega Staraptor** (Fighting/Flying) | 33 | Staraptite | Jolly | Reckless → **Contrary** ⚙ | Close Combat, Aerial Ace, Quick Attack, U-turn | 4/252/0/0/0/252 |
+| Monferno | 33 | Sitrus Berry | Hasty | Iron Fist | Flamethrower, Low Kick, Grass Knot, Fake Out | 0/252/0/4/0/252 |
+
+### PKMN Trainer Barry — Route 209 gate (after Fantina) — Piplup
+_Format: singles_ · Barry's starter: Piplup line. Staravia evolves into Staraptor for this fight so it can Mega Evolve.
+
+| Pokémon | Lv. | Item | Nature | Ability | Moves | EVs (HP/Atk/Def/SpA/SpD/Spe) |
+|---|---|---|---|---|---|---|
+| Heracross | 32 | Coba Berry | Adamant | Guts | Bug Bite, Brick Break, Aerial Ace, Knock Off | 4/252/0/0/0/252 |
+| Snorlax | 32 | Leftovers | Adamant | Thick Fat | Body Slam, Yawn, Amnesia, Rock Slide | 252/252/0/0/4/0 |
+| Staraptor → **Mega Staraptor** (Fighting/Flying) | 33 | Staraptite | Jolly | Reckless → **Contrary** ⚙ | Close Combat, Aerial Ace, Quick Attack, U-turn | 4/252/0/0/0/252 |
+| Prinplup | 33 | Sitrus Berry | Modest | Torrent | Scald, Icy Wind, Grass Knot, Aerial Ace | 252/0/0/252/4/0 |
+
+### PKMN Trainer Barry — Pastoria City — Turtwig
+_Format: singles_ · Barry's starter: Turtwig line.
+
+| Pokémon | Lv. | Item | Nature | Ability | Moves | EVs (HP/Atk/Def/SpA/SpD/Spe) |
+|---|---|---|---|---|---|---|
+| Staraptor → **Mega Staraptor** (Fighting/Flying) | 41 | Staraptite | Jolly | Reckless → **Contrary** ⚙ | Close Combat, Brave Bird, Double-Edge, Roost | 4/252/0/0/0/252 |
+| Heracross | 41 | Coba Berry | Adamant | Guts | Megahorn, Brick Break, Bullet Seed, Night Slash | 4/252/0/0/0/252 |
+| Snorlax | 41 | Leftovers | Adamant | Thick Fat | Body Slam, Crunch, Rest, Sleep Talk | 252/252/0/0/4/0 |
+| Azumarill | 41 | Life Orb | Adamant | Huge Power | Aqua Tail, Play Rough, Body Slam, Aqua Jet | 252/252/0/0/4/0 |
+| Arcanine | 41 | Expert Belt | Hasty | Intimidate | Heat Wave, Thunder Fang, Outrage, Crunch | 4/252/0/0/0/252 |
+| Torterra | 42 | Sitrus Berry | Adamant | Overgrow | Seed Bomb, Earthquake, Crunch, Iron Head | 252/252/0/0/4/0 |
+
+### PKMN Trainer Barry — Pastoria City — Chimchar
+_Format: singles_ · Barry's starter: Chimchar line.
+
+| Pokémon | Lv. | Item | Nature | Ability | Moves | EVs (HP/Atk/Def/SpA/SpD/Spe) |
+|---|---|---|---|---|---|---|
+| Staraptor → **Mega Staraptor** (Fighting/Flying) | 41 | Staraptite | Jolly | Reckless → **Contrary** ⚙ | Close Combat, Brave Bird, Double-Edge, Roost | 4/252/0/0/0/252 |
+| Heracross | 41 | Coba Berry | Adamant | Guts | Megahorn, Brick Break, Bullet Seed, Night Slash | 4/252/0/0/0/252 |
+| Snorlax | 41 | Leftovers | Adamant | Thick Fat | Body Slam, Crunch, Rest, Sleep Talk | 252/252/0/0/4/0 |
+| Azumarill | 41 | Life Orb | Adamant | Huge Power | Aqua Tail, Play Rough, Body Slam, Aqua Jet | 252/252/0/0/4/0 |
+| Breloom | 41 | Focus Sash | Jolly | Technician | Bullet Seed, Force Palm, Spore, Rock Tomb | 4/252/0/0/0/252 |
+| Infernape | 42 | Sitrus Berry | Naive | Iron Fist | Flamethrower, Close Combat, Fake Out, Thunder Punch | 0/252/0/4/0/252 |
+
+### PKMN Trainer Barry — Pastoria City — Piplup
+_Format: singles_ · Barry's starter: Piplup line.
+
+| Pokémon | Lv. | Item | Nature | Ability | Moves | EVs (HP/Atk/Def/SpA/SpD/Spe) |
+|---|---|---|---|---|---|---|
+| Staraptor → **Mega Staraptor** (Fighting/Flying) | 41 | Staraptite | Jolly | Reckless → **Contrary** ⚙ | Close Combat, Brave Bird, Double-Edge, Roost | 4/252/0/0/0/252 |
+| Heracross | 41 | Coba Berry | Adamant | Guts | Megahorn, Brick Break, Bullet Seed, Night Slash | 4/252/0/0/0/252 |
+| Snorlax | 41 | Leftovers | Adamant | Thick Fat | Body Slam, Crunch, Rest, Sleep Talk | 252/252/0/0/4/0 |
+| Breloom | 41 | Focus Sash | Jolly | Technician | Bullet Seed, Force Palm, Spore, Rock Tomb | 4/252/0/0/0/252 |
+| Arcanine | 41 | Expert Belt | Hasty | Intimidate | Heat Wave, Thunder Fang, Outrage, Crunch | 4/252/0/0/0/252 |
+| Empoleon | 42 | Sitrus Berry | Modest | Torrent | Scald, Flash Cannon, Agility, Swagger | 252/0/0/252/4/0 |
+
+### PKMN Trainer Barry — Canalave City — Turtwig
+_Format: singles_ · Barry's starter: Turtwig line.
+
+| Pokémon | Lv. | Item | Nature | Ability | Moves | EVs (HP/Atk/Def/SpA/SpD/Spe) |
+|---|---|---|---|---|---|---|
+| Staraptor → **Mega Staraptor** (Fighting/Flying) | 48 | Staraptite | Jolly | Reckless → **Contrary** ⚙ | Close Combat, Brave Bird, Double-Edge, U-turn | 4/252/0/0/0/252 |
+| Heracross | 48 | Muscle Band | Adamant | Guts | Megahorn, Close Combat, Rock Slide, Night Slash | 4/252/0/0/0/252 |
+| Snorlax | 48 | Leftovers | Adamant | Thick Fat | Curse, Body Slam, Crunch, Slack Off | 252/252/0/0/4/0 |
+| Azumarill | 48 | Life Orb | Adamant | Huge Power | Aqua Tail, Play Rough, Ice Punch, Aqua Jet | 252/252/0/0/4/0 |
+| Arcanine | 48 | Expert Belt | Adamant | Intimidate | Flare Blitz, Extreme Speed, Crunch, Close Combat | 4/252/0/0/0/252 |
+| Torterra | 49 | Sitrus Berry | Adamant | Overgrow | Wood Hammer, Earthquake, Crunch, Iron Head | 252/252/0/0/4/0 |
+
+### PKMN Trainer Barry — Canalave City — Chimchar
+_Format: singles_ · Barry's starter: Chimchar line.
+
+| Pokémon | Lv. | Item | Nature | Ability | Moves | EVs (HP/Atk/Def/SpA/SpD/Spe) |
+|---|---|---|---|---|---|---|
+| Staraptor → **Mega Staraptor** (Fighting/Flying) | 48 | Staraptite | Jolly | Reckless → **Contrary** ⚙ | Close Combat, Brave Bird, Double-Edge, U-turn | 4/252/0/0/0/252 |
+| Heracross | 48 | Muscle Band | Adamant | Guts | Megahorn, Close Combat, Rock Slide, Night Slash | 4/252/0/0/0/252 |
+| Snorlax | 48 | Leftovers | Adamant | Thick Fat | Curse, Body Slam, Crunch, Slack Off | 252/252/0/0/4/0 |
+| Azumarill | 48 | Life Orb | Adamant | Huge Power | Aqua Tail, Play Rough, Ice Punch, Aqua Jet | 252/252/0/0/4/0 |
+| Breloom | 48 | Focus Sash | Jolly | Technician | Bullet Seed, Force Palm, Spore, Stone Edge | 4/252/0/0/0/252 |
+| Infernape | 49 | Sitrus Berry | Naive | Iron Fist | Fire Blast, Close Combat, Fake Out, Thunder Punch | 0/252/0/4/0/252 |
+
+### PKMN Trainer Barry — Canalave City — Piplup
+_Format: singles_ · Barry's starter: Piplup line.
+
+| Pokémon | Lv. | Item | Nature | Ability | Moves | EVs (HP/Atk/Def/SpA/SpD/Spe) |
+|---|---|---|---|---|---|---|
+| Staraptor → **Mega Staraptor** (Fighting/Flying) | 48 | Staraptite | Jolly | Reckless → **Contrary** ⚙ | Close Combat, Brave Bird, Double-Edge, U-turn | 4/252/0/0/0/252 |
+| Heracross | 48 | Muscle Band | Adamant | Guts | Megahorn, Close Combat, Rock Slide, Night Slash | 4/252/0/0/0/252 |
+| Snorlax | 48 | Leftovers | Adamant | Thick Fat | Curse, Body Slam, Crunch, Slack Off | 252/252/0/0/4/0 |
+| Breloom | 48 | Focus Sash | Jolly | Technician | Bullet Seed, Force Palm, Spore, Stone Edge | 4/252/0/0/0/252 |
+| Arcanine | 48 | Expert Belt | Adamant | Intimidate | Flare Blitz, Extreme Speed, Crunch, Close Combat | 4/252/0/0/0/252 |
+| Empoleon | 49 | Sitrus Berry | Modest | Torrent | Surf, Flash Cannon, Grass Knot, Agility | 252/0/0/252/4/0 |
+
+### PKMN Trainer Barry — Spear Pillar (tag-battle partner) — Turtwig
+_Format: multi_ · Barry's starter: Turtwig line. Barry fights alongside the player here; he can Mega Evolve as an ally.
+
+| Pokémon | Lv. | Item | Nature | Ability | Moves | EVs (HP/Atk/Def/SpA/SpD/Spe) |
+|---|---|---|---|---|---|---|
+| Staraptor → **Mega Staraptor** (Fighting/Flying) | 58 | Staraptite | Jolly | Intimidate → **Contrary** ⚙ | Close Combat, Brave Bird, Double-Edge, U-turn | 4/252/0/0/0/252 |
+| Heracross | 58 | Toxic Orb | Adamant | Guts | Megahorn, Close Combat, Stone Edge, Protect | 4/252/0/0/0/252 |
+| Snorlax | 58 | Leftovers | Adamant | Thick Fat | Body Slam, Earthquake, Curse, Slack Off | 252/252/0/0/4/0 |
+| Azumarill | 58 | Life Orb | Adamant | Huge Power | Aqua Tail, Play Rough, Ice Punch, Aqua Jet | 252/252/0/0/4/0 |
+| Arcanine | 58 | Life Orb | Adamant | Intimidate | Flare Blitz, Close Combat, Wild Charge, Crunch | 4/252/0/0/0/252 |
+| Torterra | 59 | Sitrus Berry | Adamant | Overgrow | Wood Hammer, Earthquake, Stone Edge, Crunch | 252/252/0/0/4/0 |
+
+### PKMN Trainer Barry — Spear Pillar (tag-battle partner) — Chimchar
+_Format: multi_ · Barry's starter: Chimchar line. Barry fights alongside the player here; he can Mega Evolve as an ally.
+
+| Pokémon | Lv. | Item | Nature | Ability | Moves | EVs (HP/Atk/Def/SpA/SpD/Spe) |
+|---|---|---|---|---|---|---|
+| Staraptor → **Mega Staraptor** (Fighting/Flying) | 58 | Staraptite | Jolly | Intimidate → **Contrary** ⚙ | Close Combat, Brave Bird, Double-Edge, U-turn | 4/252/0/0/0/252 |
+| Heracross | 58 | Toxic Orb | Adamant | Guts | Megahorn, Close Combat, Stone Edge, Protect | 4/252/0/0/0/252 |
+| Snorlax | 58 | Leftovers | Adamant | Thick Fat | Body Slam, Earthquake, Curse, Slack Off | 252/252/0/0/4/0 |
+| Azumarill | 58 | Life Orb | Adamant | Huge Power | Aqua Tail, Play Rough, Ice Punch, Aqua Jet | 252/252/0/0/4/0 |
+| Breloom | 58 | Life Orb | Jolly | Technician | Bullet Seed, Force Palm, Stone Edge, Spore | 4/252/0/0/0/252 |
+| Infernape | 59 | Sitrus Berry | Naive | Iron Fist | Flare Blitz, Close Combat, Stone Edge, Grass Knot | 0/252/0/4/0/252 |
+
+### PKMN Trainer Barry — Spear Pillar (tag-battle partner) — Piplup
+_Format: multi_ · Barry's starter: Piplup line. Barry fights alongside the player here; he can Mega Evolve as an ally.
+
+| Pokémon | Lv. | Item | Nature | Ability | Moves | EVs (HP/Atk/Def/SpA/SpD/Spe) |
+|---|---|---|---|---|---|---|
+| Staraptor → **Mega Staraptor** (Fighting/Flying) | 58 | Staraptite | Jolly | Intimidate → **Contrary** ⚙ | Close Combat, Brave Bird, Double-Edge, U-turn | 4/252/0/0/0/252 |
+| Heracross | 58 | Toxic Orb | Adamant | Guts | Megahorn, Close Combat, Stone Edge, Protect | 4/252/0/0/0/252 |
+| Snorlax | 58 | Leftovers | Adamant | Thick Fat | Body Slam, Earthquake, Curse, Slack Off | 252/252/0/0/4/0 |
+| Breloom | 58 | Life Orb | Jolly | Technician | Bullet Seed, Force Palm, Stone Edge, Spore | 4/252/0/0/0/252 |
+| Arcanine | 58 | Life Orb | Adamant | Intimidate | Flare Blitz, Close Combat, Wild Charge, Crunch | 4/252/0/0/0/252 |
+| Empoleon | 59 | Sitrus Berry | Modest | Torrent | Hydro Pump, Flash Cannon, Grass Knot, Blizzard | 252/0/0/252/4/0 |
+
+### PKMN Trainer Barry — Pokémon League (before the Elite Four) — Turtwig
+_Format: singles_ · Barry's starter: Turtwig line.
+
+| Pokémon | Lv. | Item | Nature | Ability | Moves | EVs (HP/Atk/Def/SpA/SpD/Spe) |
+|---|---|---|---|---|---|---|
+| Staraptor → **Mega Staraptor** (Fighting/Flying) | 70 | Staraptite | Jolly | Intimidate → **Contrary** ⚙ | Close Combat, Brave Bird, Double-Edge, U-turn | 4/252/0/0/0/252 |
+| Heracross | 70 | Toxic Orb | Adamant | Guts | Megahorn, Close Combat, Stone Edge, Protect | 4/252/0/0/0/252 |
+| Snorlax | 70 | Leftovers | Adamant | Thick Fat | Body Slam, Earthquake, Curse, Slack Off | 252/252/0/0/4/0 |
+| Azumarill | 70 | Life Orb | Adamant | Huge Power | Aqua Tail, Play Rough, Ice Punch, Aqua Jet | 252/252/0/0/4/0 |
+| Arcanine | 70 | Life Orb | Adamant | Intimidate | Flare Blitz, Close Combat, Wild Charge, Crunch | 4/252/0/0/0/252 |
+| Torterra | 71 | Sitrus Berry | Adamant | Overgrow | Wood Hammer, Earthquake, Stone Edge, Crunch | 252/252/0/0/4/0 |
+
+### PKMN Trainer Barry — Pokémon League (before the Elite Four) — Chimchar
+_Format: singles_ · Barry's starter: Chimchar line.
+
+| Pokémon | Lv. | Item | Nature | Ability | Moves | EVs (HP/Atk/Def/SpA/SpD/Spe) |
+|---|---|---|---|---|---|---|
+| Staraptor → **Mega Staraptor** (Fighting/Flying) | 70 | Staraptite | Jolly | Intimidate → **Contrary** ⚙ | Close Combat, Brave Bird, Double-Edge, U-turn | 4/252/0/0/0/252 |
+| Heracross | 70 | Toxic Orb | Adamant | Guts | Megahorn, Close Combat, Stone Edge, Protect | 4/252/0/0/0/252 |
+| Snorlax | 70 | Leftovers | Adamant | Thick Fat | Body Slam, Earthquake, Curse, Slack Off | 252/252/0/0/4/0 |
+| Azumarill | 70 | Life Orb | Adamant | Huge Power | Aqua Tail, Play Rough, Ice Punch, Aqua Jet | 252/252/0/0/4/0 |
+| Breloom | 70 | Life Orb | Jolly | Technician | Bullet Seed, Force Palm, Stone Edge, Spore | 4/252/0/0/0/252 |
+| Infernape | 71 | Sitrus Berry | Naive | Iron Fist | Flare Blitz, Close Combat, Stone Edge, Grass Knot | 0/252/0/4/0/252 |
+
+### PKMN Trainer Barry — Pokémon League (before the Elite Four) — Piplup
+_Format: singles_ · Barry's starter: Piplup line.
+
+| Pokémon | Lv. | Item | Nature | Ability | Moves | EVs (HP/Atk/Def/SpA/SpD/Spe) |
+|---|---|---|---|---|---|---|
+| Staraptor → **Mega Staraptor** (Fighting/Flying) | 70 | Staraptite | Jolly | Intimidate → **Contrary** ⚙ | Close Combat, Brave Bird, Double-Edge, U-turn | 4/252/0/0/0/252 |
+| Heracross | 70 | Toxic Orb | Adamant | Guts | Megahorn, Close Combat, Stone Edge, Protect | 4/252/0/0/0/252 |
+| Snorlax | 70 | Leftovers | Adamant | Thick Fat | Body Slam, Earthquake, Curse, Slack Off | 252/252/0/0/4/0 |
+| Breloom | 70 | Life Orb | Jolly | Technician | Bullet Seed, Force Palm, Stone Edge, Spore | 4/252/0/0/0/252 |
+| Arcanine | 70 | Life Orb | Adamant | Intimidate | Flare Blitz, Close Combat, Wild Charge, Crunch | 4/252/0/0/0/252 |
+| Empoleon | 71 | Sitrus Berry | Modest | Torrent | Hydro Pump, Flash Cannon, Grass Knot, Blizzard | 252/0/0/252/4/0 |
+
+### PKMN Trainer Barry — Fight Area (post-game) — Turtwig
+_Format: singles_ · Barry's starter: Turtwig line.
+
+| Pokémon | Lv. | Item | Nature | Ability | Moves | EVs (HP/Atk/Def/SpA/SpD/Spe) |
+|---|---|---|---|---|---|---|
+| Staraptor → **Mega Staraptor** (Fighting/Flying) | 74 | Staraptite | Jolly | Intimidate → **Contrary** ⚙ | Close Combat, Brave Bird, Double-Edge, U-turn | 4/252/0/0/0/252 |
+| Heracross | 74 | Toxic Orb | Adamant | Guts | Megahorn, Close Combat, Stone Edge, Protect | 4/252/0/0/0/252 |
+| Snorlax | 74 | Leftovers | Adamant | Thick Fat | Body Slam, Earthquake, Curse, Slack Off | 252/252/0/0/4/0 |
+| Azumarill | 74 | Life Orb | Adamant | Huge Power | Aqua Tail, Play Rough, Ice Punch, Aqua Jet | 252/252/0/0/4/0 |
+| Arcanine | 74 | Life Orb | Adamant | Intimidate | Flare Blitz, Close Combat, Wild Charge, Crunch | 4/252/0/0/0/252 |
+| Torterra | 75 | Sitrus Berry | Adamant | Overgrow | Wood Hammer, Earthquake, Stone Edge, Crunch | 252/252/0/0/4/0 |
+
+### PKMN Trainer Barry — Fight Area (post-game) — Chimchar
+_Format: singles_ · Barry's starter: Chimchar line.
+
+| Pokémon | Lv. | Item | Nature | Ability | Moves | EVs (HP/Atk/Def/SpA/SpD/Spe) |
+|---|---|---|---|---|---|---|
+| Staraptor → **Mega Staraptor** (Fighting/Flying) | 74 | Staraptite | Jolly | Intimidate → **Contrary** ⚙ | Close Combat, Brave Bird, Double-Edge, U-turn | 4/252/0/0/0/252 |
+| Heracross | 74 | Toxic Orb | Adamant | Guts | Megahorn, Close Combat, Stone Edge, Protect | 4/252/0/0/0/252 |
+| Snorlax | 74 | Leftovers | Adamant | Thick Fat | Body Slam, Earthquake, Curse, Slack Off | 252/252/0/0/4/0 |
+| Azumarill | 74 | Life Orb | Adamant | Huge Power | Aqua Tail, Play Rough, Ice Punch, Aqua Jet | 252/252/0/0/4/0 |
+| Breloom | 74 | Life Orb | Jolly | Technician | Bullet Seed, Force Palm, Stone Edge, Spore | 4/252/0/0/0/252 |
+| Infernape | 75 | Sitrus Berry | Naive | Iron Fist | Flare Blitz, Close Combat, Stone Edge, Grass Knot | 0/252/0/4/0/252 |
+
+### PKMN Trainer Barry — Fight Area (post-game) — Piplup
+_Format: singles_ · Barry's starter: Piplup line.
+
+| Pokémon | Lv. | Item | Nature | Ability | Moves | EVs (HP/Atk/Def/SpA/SpD/Spe) |
+|---|---|---|---|---|---|---|
+| Staraptor → **Mega Staraptor** (Fighting/Flying) | 74 | Staraptite | Jolly | Intimidate → **Contrary** ⚙ | Close Combat, Brave Bird, Double-Edge, U-turn | 4/252/0/0/0/252 |
+| Heracross | 74 | Toxic Orb | Adamant | Guts | Megahorn, Close Combat, Stone Edge, Protect | 4/252/0/0/0/252 |
+| Snorlax | 74 | Leftovers | Adamant | Thick Fat | Body Slam, Earthquake, Curse, Slack Off | 252/252/0/0/4/0 |
+| Breloom | 74 | Life Orb | Jolly | Technician | Bullet Seed, Force Palm, Stone Edge, Spore | 4/252/0/0/0/252 |
+| Arcanine | 74 | Life Orb | Adamant | Intimidate | Flare Blitz, Close Combat, Wild Charge, Crunch | 4/252/0/0/0/252 |
+| Empoleon | 75 | Sitrus Berry | Modest | Torrent | Hydro Pump, Flash Cannon, Grass Knot, Blizzard | 252/0/0/252/4/0 |
+
+### PKMN Trainer Barry — Battleground (post-game) — Turtwig
+_Format: singles_ · Barry's starter: Turtwig line.
+
+| Pokémon | Lv. | Item | Nature | Ability | Moves | EVs (HP/Atk/Def/SpA/SpD/Spe) |
+|---|---|---|---|---|---|---|
+| Staraptor → **Mega Staraptor** (Fighting/Flying) | 84 | Staraptite | Jolly | Intimidate → **Contrary** ⚙ | Close Combat, Brave Bird, Double-Edge, U-turn | 4/252/0/0/0/252 |
+| Heracross | 84 | Toxic Orb | Adamant | Guts | Megahorn, Close Combat, Stone Edge, Protect | 4/252/0/0/0/252 |
+| Snorlax | 84 | Leftovers | Adamant | Thick Fat | Body Slam, Earthquake, Curse, Slack Off | 252/252/0/0/4/0 |
+| Azumarill | 84 | Life Orb | Adamant | Huge Power | Aqua Tail, Play Rough, Ice Punch, Aqua Jet | 252/252/0/0/4/0 |
+| Arcanine | 84 | Life Orb | Adamant | Intimidate | Flare Blitz, Close Combat, Wild Charge, Crunch | 4/252/0/0/0/252 |
+| Torterra | 85 | Sitrus Berry | Adamant | Overgrow | Wood Hammer, Earthquake, Stone Edge, Crunch | 252/252/0/0/4/0 |
+
+### PKMN Trainer Barry — Battleground (post-game) — Chimchar
+_Format: singles_ · Barry's starter: Chimchar line.
+
+| Pokémon | Lv. | Item | Nature | Ability | Moves | EVs (HP/Atk/Def/SpA/SpD/Spe) |
+|---|---|---|---|---|---|---|
+| Staraptor → **Mega Staraptor** (Fighting/Flying) | 84 | Staraptite | Jolly | Intimidate → **Contrary** ⚙ | Close Combat, Brave Bird, Double-Edge, U-turn | 4/252/0/0/0/252 |
+| Heracross | 84 | Toxic Orb | Adamant | Guts | Megahorn, Close Combat, Stone Edge, Protect | 4/252/0/0/0/252 |
+| Snorlax | 84 | Leftovers | Adamant | Thick Fat | Body Slam, Earthquake, Curse, Slack Off | 252/252/0/0/4/0 |
+| Azumarill | 84 | Life Orb | Adamant | Huge Power | Aqua Tail, Play Rough, Ice Punch, Aqua Jet | 252/252/0/0/4/0 |
+| Breloom | 84 | Life Orb | Jolly | Technician | Bullet Seed, Force Palm, Stone Edge, Spore | 4/252/0/0/0/252 |
+| Infernape | 85 | Sitrus Berry | Naive | Iron Fist | Flare Blitz, Close Combat, Stone Edge, Grass Knot | 0/252/0/4/0/252 |
+
+### PKMN Trainer Barry — Battleground (post-game) — Piplup
+_Format: singles_ · Barry's starter: Piplup line.
+
+| Pokémon | Lv. | Item | Nature | Ability | Moves | EVs (HP/Atk/Def/SpA/SpD/Spe) |
+|---|---|---|---|---|---|---|
+| Staraptor → **Mega Staraptor** (Fighting/Flying) | 84 | Staraptite | Jolly | Intimidate → **Contrary** ⚙ | Close Combat, Brave Bird, Double-Edge, U-turn | 4/252/0/0/0/252 |
+| Heracross | 84 | Toxic Orb | Adamant | Guts | Megahorn, Close Combat, Stone Edge, Protect | 4/252/0/0/0/252 |
+| Snorlax | 84 | Leftovers | Adamant | Thick Fat | Body Slam, Earthquake, Curse, Slack Off | 252/252/0/0/4/0 |
+| Breloom | 84 | Life Orb | Jolly | Technician | Bullet Seed, Force Palm, Stone Edge, Spore | 4/252/0/0/0/252 |
+| Arcanine | 84 | Life Orb | Adamant | Intimidate | Flare Blitz, Close Combat, Wild Charge, Crunch | 4/252/0/0/0/252 |
+| Empoleon | 85 | Sitrus Berry | Modest | Torrent | Hydro Pump, Flash Cannon, Grass Knot, Blizzard | 252/0/0/252/4/0 |
+
 ## Pokémon League
 
 See `EliteFourFormat.md` for how singles/doubles are chosen.

@@ -224,6 +224,50 @@
     {
       "id": "OptionsMenu_Text_CloseDescription",
       "en_US": "Return to the game."
+    },
+    {
+      "id": "OptionsMenu_Text_LevelCapLabel",
+      "en_US": "LEVEL CAP"
+    },
+    {
+      "id": "OptionsMenu_Text_LevelCapDescription",
+      "en_US": [
+        "Party Pokémon stop gaining EXP at\n",
+        "the level of the next big fight’s ace."
+      ]
+    },
+    {
+      "id": "OptionsMenu_Text_InfiniteCandyLabel",
+      "en_US": "INF. CANDY"
+    },
+    {
+      "id": "OptionsMenu_Text_InfiniteCandyDescription",
+      "en_US": [
+        "Rare Candies aren’t used up.\n",
+        "Needs LEVEL CAP to be ON."
+      ]
+    },
+    {
+      "id": "OptionsMenu_Text_ExpShareLabel",
+      "en_US": "EXP. SHARE"
+    },
+    {
+      "id": "OptionsMenu_Text_ExpShareDescription",
+      "en_US": [
+        "Pokémon that didn’t battle still\n",
+        "get half of the EXP."
+      ]
+    },
+    {
+      "id": "OptionsMenu_Text_MusicLabel",
+      "en_US": "MUSIC"
+    },
+    {
+      "id": "OptionsMenu_Text_MusicDescription",
+      "en_US": [
+        "Set the music volume.\n",
+        "Hold left or right to change it fast."
+      ]
     }
   ]
 }
