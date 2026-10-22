@@ -7,8 +7,8 @@
     "needed light, from Solgaleo."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "n_solarizer_NCGR",
+    "palette": "n_solarizer_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 0,

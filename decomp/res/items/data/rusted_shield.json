@@ -8,8 +8,8 @@
     "times. But it’s grown rusty and worn."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "rusted_shield_NCGR",
+    "palette": "rusted_shield_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 0,

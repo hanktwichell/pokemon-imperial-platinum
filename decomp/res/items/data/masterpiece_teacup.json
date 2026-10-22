@@ -8,8 +8,8 @@
     "genuine piece."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "masterpiece_teacup_NCGR",
+    "palette": "masterpiece_teacup_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 9500,

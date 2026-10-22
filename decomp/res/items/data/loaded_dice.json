@@ -8,8 +8,8 @@
     "many times."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "loaded_dice_NCGR",
+    "palette": "loaded_dice_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 20000,

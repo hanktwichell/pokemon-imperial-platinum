@@ -8,8 +8,8 @@
     "Mask form."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "wellspring_mask_NCGR",
+    "palette": "wellspring_mask_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 0,

@@ -8,8 +8,8 @@
     "Grass-type move one time."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "grass_gem_NCGR",
+    "palette": "grass_gem_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 200,

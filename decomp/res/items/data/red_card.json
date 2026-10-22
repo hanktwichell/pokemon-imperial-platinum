@@ -8,8 +8,8 @@
     "attacker is removed from battle."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "red_card_NCGR",
+    "palette": "red_card_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 4000,

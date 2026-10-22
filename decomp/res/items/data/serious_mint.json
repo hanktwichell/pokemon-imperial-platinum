@@ -7,8 +7,8 @@
     "its stats will grow at an equal rate."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "serious_mint_NCGR",
+    "palette": "serious_mint_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 20,

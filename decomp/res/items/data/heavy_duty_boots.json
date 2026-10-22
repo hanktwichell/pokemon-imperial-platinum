@@ -7,8 +7,8 @@
     "traps set on the battlefield."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "heavy_duty_boots_NCGR",
+    "palette": "heavy_duty_boots_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 4000,

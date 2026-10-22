@@ -8,8 +8,8 @@
     "prevents the use of status moves."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "assault_vest_NCGR",
+    "palette": "assault_vest_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 1000,

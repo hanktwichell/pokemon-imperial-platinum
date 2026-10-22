@@ -8,8 +8,8 @@
     "caused by the holder’s move or Ability."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "terrain_extender_NCGR",
+    "palette": "terrain_extender_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 4000,

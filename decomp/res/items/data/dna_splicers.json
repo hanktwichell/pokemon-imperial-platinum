@@ -8,8 +8,8 @@
     "fused."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "dna_splicers_NCGR",
+    "palette": "dna_splicers_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 0,

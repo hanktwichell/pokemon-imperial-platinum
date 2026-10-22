@@ -7,8 +7,8 @@
     "Galarica Twigs."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "galarica_wreath_NCGR",
+    "palette": "galarica_wreath_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 3000,

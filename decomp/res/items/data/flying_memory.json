@@ -7,8 +7,8 @@
     "data."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "flying_memory_NCGR",
+    "palette": "flying_memory_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 1000,

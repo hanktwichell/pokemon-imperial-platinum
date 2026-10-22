@@ -8,8 +8,8 @@
     "effects of moves."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "covert_cloak_NCGR",
+    "palette": "covert_cloak_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 20000,

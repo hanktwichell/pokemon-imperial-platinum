@@ -8,8 +8,8 @@
     "be waiting for the emergence of a hero."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "light_stone_NCGR",
+    "palette": "light_stone_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 0,

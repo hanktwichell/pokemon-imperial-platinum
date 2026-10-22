@@ -8,8 +8,8 @@
     "will grow more slowly."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "quiet_mint_NCGR",
+    "palette": "quiet_mint_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 20,

@@ -8,8 +8,8 @@
     "Forme."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "griseous_core_NCGR",
+    "palette": "griseous_core_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 0,

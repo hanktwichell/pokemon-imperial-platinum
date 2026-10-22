@@ -8,8 +8,8 @@
     "Pokémon to its original shape."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "reveal_glass_NCGR",
+    "palette": "reveal_glass_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 0,

@@ -8,8 +8,8 @@
     "Fairy-type move one time."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "fairy_gem_NCGR",
+    "palette": "fairy_gem_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 200,

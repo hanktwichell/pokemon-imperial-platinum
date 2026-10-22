@@ -8,8 +8,8 @@
     "Sp. Def will grow more slowly."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "lax_mint_NCGR",
+    "palette": "lax_mint_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 20,

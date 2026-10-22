@@ -8,8 +8,8 @@
     "Attack will grow more slowly."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "modest_mint_NCGR",
+    "palette": "modest_mint_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 20,

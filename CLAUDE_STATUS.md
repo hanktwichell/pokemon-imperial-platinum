@@ -206,3 +206,36 @@ by this session before the rule. This entry updates it without rewriting it.
    `tools/engine/gen_new_species.py` now that the items exist, and test one (e.g. Duraludon + Metal Alloy).
 3. Open the E7 PR (items, harness fixes), then shops: Veilstone Department Store held items, Snowpoint evolution
    items, Mega Stone vendors.
+
+---
+
+## CB-0003 — 2026-10-22, 2:58 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:**
+- **Bag icons for all 245 new items.** `tools/engine/gen_items.py /path/to/pokeapi/csv /path/to/PokeAPI/sprites`
+  converts PokeAPI's `sprites/items/<item>.png` to Platinum's icon format.
+  - Format: 32×32, **4-bit** PNG, index 0 transparent, 15 colours, big renders scaled to 24 px. The `.pal` is
+    JASC with CRLF line endings.
+  - Each icon is listed in generator-owned marker blocks in `decomp/res/items/icons/meson.build` (one block per
+    list) and appended to `decomp/res/items/item_icon.order` after `unused_710.NCLR`.
+  - Three sprite names differ from the item names: N-Solarizer, N-Lunarizer, Ultranecrozium Z (`SPRITE_NAMES`).
+  - Lesson: an 8-bit indexed PNG gets packed as garbage tiles. Save with `bits=4`.
+- Verified in the test build: all six test-bag items show their icons in the bag, and the boot smoke test passes.
+- CITATIONS: new "Item icons" section (PokeAPI sprites commit `97a7832`).
+
+**Files modified:**
+- `tools/engine/gen_items.py`
+- `decomp/res/items/icons/*.png|.pal` (245 new pairs)
+- `decomp/res/items/icons/meson.build`, `decomp/res/items/item_icon.order`
+- `decomp/res/items/data/*.json` (icon fields)
+- `CITATIONS.md`, `docs/EngineChangelog.md`
+- `CLAUDE_STATUS.md` (this entry)
+
+**Next 3 steps:**
+1. Wire up the 16 waiting evolutions: rerun `tools/engine/gen_new_species.py /path/to/pokeapi/csv` now that the
+   items exist (check that it maps item names to the new `ITEM_*` constants). Test one, e.g. give the test party a
+   Duraludon and use the Metal Alloy.
+2. Mint and Ability Capsule/Patch field-use functions (new `ITEM_USE_FUNC_*`, party-menu flow like the evolution
+   stones).
+3. Open the E7 PR. Then: shops (Veilstone Department Store held items, Snowpoint evolution items, Mega Stone vendors)
+   and hold-item battle effects by priority.

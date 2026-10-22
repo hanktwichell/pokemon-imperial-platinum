@@ -8,8 +8,8 @@
     "a Pokémon when held."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "float_stone_NCGR",
+    "palette": "float_stone_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 4000,

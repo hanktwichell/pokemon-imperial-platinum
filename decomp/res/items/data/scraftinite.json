@@ -8,8 +8,8 @@
     "in battle."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "scraftinite_NCGR",
+    "palette": "scraftinite_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 0,

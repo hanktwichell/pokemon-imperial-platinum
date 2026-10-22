@@ -8,8 +8,8 @@
     "Ice-type move one time."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "ice_gem_NCGR",
+    "palette": "ice_gem_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 200,

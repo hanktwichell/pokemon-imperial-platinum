@@ -7,8 +7,8 @@
     "misses with a move because of accuracy."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "blunder_policy_NCGR",
+    "palette": "blunder_policy_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 4000,

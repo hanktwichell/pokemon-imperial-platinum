@@ -8,8 +8,8 @@
     "Def will grow more slowly."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "naive_mint_NCGR",
+    "palette": "naive_mint_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 20,

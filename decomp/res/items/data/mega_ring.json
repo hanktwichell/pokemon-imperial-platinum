@@ -8,8 +8,8 @@
     "Stones to Mega Evolve in battle."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "mega_ring_NCGR",
+    "palette": "mega_ring_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 0,

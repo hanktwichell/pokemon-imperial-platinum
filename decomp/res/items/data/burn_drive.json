@@ -8,8 +8,8 @@
     "so it becomes Fire type."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "burn_drive_NCGR",
+    "palette": "burn_drive_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 0,

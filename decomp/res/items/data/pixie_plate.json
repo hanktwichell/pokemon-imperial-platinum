@@ -8,8 +8,8 @@
     "Fairy-type moves."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "pixie_plate_NCGR",
+    "palette": "pixie_plate_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 1000,

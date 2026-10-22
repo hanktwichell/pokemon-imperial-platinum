@@ -8,8 +8,8 @@
     "species of Pokémon."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "yellow_nectar_NCGR",
+    "palette": "yellow_nectar_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 300,

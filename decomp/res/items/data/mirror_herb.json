@@ -8,8 +8,8 @@
     "opponent gets."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "mirror_herb_NCGR",
+    "palette": "mirror_herb_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 30000,

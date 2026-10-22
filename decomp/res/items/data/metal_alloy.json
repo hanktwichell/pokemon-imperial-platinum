@@ -8,8 +8,8 @@
     "evolve."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "metal_alloy_NCGR",
+    "palette": "metal_alloy_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 0,

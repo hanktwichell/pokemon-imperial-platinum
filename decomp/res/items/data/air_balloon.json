@@ -7,8 +7,8 @@
     "holder will float in the air until hit."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "air_balloon_NCGR",
+    "palette": "air_balloon_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 4000,

@@ -8,8 +8,8 @@
     "so it becomes Water type."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "douse_drive_NCGR",
+    "palette": "douse_drive_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 0,

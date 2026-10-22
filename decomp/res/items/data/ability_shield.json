@@ -8,8 +8,8 @@
     "being changed or nullified."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "ability_shield_NCGR",
+    "palette": "ability_shield_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 20000,

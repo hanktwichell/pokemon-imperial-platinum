@@ -8,8 +8,8 @@
     "form."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "ultranecrozium_z_NCGR",
+    "palette": "ultranecrozium_z_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 0,

@@ -8,8 +8,8 @@
     "unmistakable snowflake pattern."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "ice_stone_NCGR",
+    "palette": "ice_stone_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 3000,

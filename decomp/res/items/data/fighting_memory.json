@@ -7,8 +7,8 @@
     "Fighting-type data."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "fighting_memory_NCGR",
+    "palette": "fighting_memory_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 1000,

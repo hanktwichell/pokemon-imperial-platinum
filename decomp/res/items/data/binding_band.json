@@ -8,8 +8,8 @@
     "binding moves used by the holder."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "binding_band_NCGR",
+    "palette": "binding_band_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 4000,

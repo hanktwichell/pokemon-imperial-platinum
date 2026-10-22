@@ -8,8 +8,8 @@
     "it raises both Defense and Sp. Def."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "eviolite_NCGR",
+    "palette": "eviolite_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 4000,

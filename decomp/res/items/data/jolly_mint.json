@@ -8,8 +8,8 @@
     "Atk will grow more slowly."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "jolly_mint_NCGR",
+    "palette": "jolly_mint_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 20,

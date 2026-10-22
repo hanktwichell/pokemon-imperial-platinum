@@ -8,8 +8,8 @@
     "be switched out of battle."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "eject_pack_NCGR",
+    "palette": "eject_pack_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 4000,

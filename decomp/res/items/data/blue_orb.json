@@ -8,8 +8,8 @@
     "deep connection with the Hoenn region."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "blue_orb_NCGR",
+    "palette": "blue_orb_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 0,

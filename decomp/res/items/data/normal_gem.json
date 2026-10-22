@@ -8,8 +8,8 @@
     "Normal-type move one time."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "normal_gem_NCGR",
+    "palette": "normal_gem_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 4000,

@@ -8,8 +8,8 @@
     "Abilities when it is used."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "ability_capsule_NCGR",
+    "palette": "ability_capsule_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 10000,

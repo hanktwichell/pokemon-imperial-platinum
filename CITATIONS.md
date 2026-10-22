@@ -87,6 +87,12 @@ Location: `assets/sprites/icons_placeholder/` (converted by `tools/sprites/make_
 The Pokémon Company; PokeAPI hosts it. In the ROM as `decomp/res/pokemon/<species>/icon.png` (written by
 `tools/engine/gen_new_species.py`). **Placeholders only**, to be replaced by DS-style icons.
 
+### Item icons for the 245 new items (#468–712)
+Location: `decomp/res/items/icons/<item>.png` + `.pal`, converted by `tools/engine/gen_items.py` (reduced to 15 colours
+plus transparent, at most 24×24 px). Source: **PokeAPI sprites**, https://github.com/PokeAPI/sprites (commit
+`97a7832`), `sprites/items/<item>.png`. The item art is © Nintendo / Game Freak / The Pokémon Company; PokeAPI hosts
+it. **Placeholders**, to be replaced by DS-style icons where the owner wants.
+
 ## Audio
 
 ### Cries for #494–1025 (and form cries)

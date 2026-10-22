@@ -8,8 +8,8 @@
     "exceptionally tart."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "tart_apple_NCGR",
+    "palette": "tart_apple_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 2200,

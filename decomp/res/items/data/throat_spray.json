@@ -7,8 +7,8 @@
     "sound-based move."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "throat_spray_NCGR",
+    "palette": "throat_spray_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 4000,

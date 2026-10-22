@@ -7,8 +7,8 @@
     "Stones."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "gardevoirite_NCGR",
+    "palette": "gardevoirite_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 0,

@@ -8,8 +8,8 @@
     "Drive ability once."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "booster_energy_NCGR",
+    "palette": "booster_energy_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 0,

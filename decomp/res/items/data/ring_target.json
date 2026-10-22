@@ -8,8 +8,8 @@
     "on a Pokémon holding it."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "ring_target_NCGR",
+    "palette": "ring_target_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 4000,

@@ -7,8 +7,8 @@
     "Stones."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "mewtwonite_x_NCGR",
+    "palette": "mewtwonite_x_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 0,

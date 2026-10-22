@@ -8,8 +8,8 @@
     "so it becomes Electric type."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "shock_drive_NCGR",
+    "palette": "shock_drive_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 0,

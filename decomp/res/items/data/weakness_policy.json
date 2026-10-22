@@ -8,8 +8,8 @@
     "holder is hit with a move it’s weak to."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "weakness_policy_NCGR",
+    "palette": "weakness_policy_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 1000,

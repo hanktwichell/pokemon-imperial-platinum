@@ -7,8 +7,8 @@
     "flowering shrubs on Royal Avenue."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "pink_nectar_NCGR",
+    "palette": "pink_nectar_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 300,

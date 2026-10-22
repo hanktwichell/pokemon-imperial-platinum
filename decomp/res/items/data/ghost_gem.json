@@ -8,8 +8,8 @@
     "Ghost-type move one time."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "ghost_gem_NCGR",
+    "palette": "ghost_gem_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 200,

@@ -7,8 +7,8 @@
     "holds this, it spins around happily."
   ],
   "icon": {
-    "sprite": "none_NCGR",
-    "palette": "none_NCLR"
+    "sprite": "ribbon_sweet_NCGR",
+    "palette": "ribbon_sweet_NCLR"
   },
   "gbaID": "GBA_ITEM_NONE",
   "price": 500,
