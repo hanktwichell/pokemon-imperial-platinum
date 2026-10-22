@@ -1,0 +1,26 @@
+{
+    "name": "Oblivion Wing",
+    "description": [
+        "The user absorbs its\n",
+        "target’s HP."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_FLYING",
+    "power": 80,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_RECOVER_HALF_DAMAGE_DEALT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

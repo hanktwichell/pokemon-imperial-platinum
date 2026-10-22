@@ -1,0 +1,27 @@
+{
+    "name": "Techno Blast",
+    "description": [
+        "The user fires a beam\n",
+        "of light at its\n",
+        "target."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_NORMAL",
+    "power": 120,
+    "accuracy": 100,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_JUDGEMENT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

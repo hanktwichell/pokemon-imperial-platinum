@@ -17,7 +17,7 @@
         "chance": 100
     },
     "range": "RANGE_SINGLE_TARGET",
-    "priority": 1,
+    "priority": 3,
     "flags": [
         "MOVE_FLAG_MAKES_CONTACT",
         "MOVE_FLAG_CAN_PROTECT",

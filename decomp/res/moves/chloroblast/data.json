@@ -1,0 +1,28 @@
+{
+    "name": "Chloroblast",
+    "description": [
+        "The user launches its\n",
+        "amassed chlorophyll\n",
+        "to inflict damage on\n",
+        "the target. This also\n",
+        "damages the user."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_GRASS",
+    "power": 150,
+    "accuracy": 95,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

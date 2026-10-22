@@ -1,0 +1,26 @@
+{
+    "name": "Baneful Bunker",
+    "description": [
+        "In addition to\n",
+        "protecting the user\n",
+        "from attacks, this\n",
+        "move also poisons any\n",
+        "attacker that makes."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_POISON",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_PROTECT",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 4,
+    "flags": [],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

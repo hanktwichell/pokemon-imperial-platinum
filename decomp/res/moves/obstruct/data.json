@@ -1,0 +1,25 @@
+{
+    "name": "Obstruct",
+    "description": [
+        "This move enables the\n",
+        "user to protect\n",
+        "itself from all\n",
+        "attacks."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_DARK",
+    "power": 0,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_PROTECT",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 4,
+    "flags": [],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

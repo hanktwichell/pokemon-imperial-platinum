@@ -1,0 +1,27 @@
+{
+    "name": "Hard Press",
+    "description": [
+        "The target is crushed\n",
+        "with an arm, a claw,\n",
+        "or the like to\n",
+        "inflict damage."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_STEEL",
+    "power": 0,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

@@ -7205,6 +7205,11 @@ BOOL Move_CanBeMetronomed(BattleSystem *battleSys, BattleContext *battleCtx, int
 {
     int i = 0;
 
+    // Imperial: empty move slots (the official numbers of Z-Moves and Max Moves, which aren't in the game) have 0 PP.
+    if (MOVE_DATA(move).pp == 0) {
+        return FALSE;
+    }
+
     if (Move_FailsInHighGravity(battleSys, battleCtx, battler, move) == TRUE
         || Move_HealBlocked(battleSys, battleCtx, battler, move) == TRUE) {
         return FALSE;

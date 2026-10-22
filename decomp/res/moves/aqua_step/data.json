@@ -1,0 +1,29 @@
+{
+    "name": "Aqua Step",
+    "description": [
+        "The user toys with\n",
+        "the target and\n",
+        "attacks it using\n",
+        "light and fluid dance\n",
+        "steps."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_WATER",
+    "power": 80,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_SHADOWS"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

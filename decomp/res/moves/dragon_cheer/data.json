@@ -1,0 +1,28 @@
+{
+    "name": "Dragon Cheer",
+    "description": [
+        "The user raises its\n",
+        "allies’ morale with a\n",
+        "draconic cry so that\n",
+        "their future attacks\n",
+        "have a heightened."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_DRAGON",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 15,
+    "effect": {
+        "type": "BATTLE_EFFECT_DO_NOTHING",
+        "chance": 0
+    },
+    "range": "RANGE_USER_SIDE",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

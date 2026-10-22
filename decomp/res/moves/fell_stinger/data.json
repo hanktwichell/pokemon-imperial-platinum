@@ -1,0 +1,31 @@
+{
+    "name": "Fell Stinger",
+    "description": [
+        "When the user knocks\n",
+        "out a target with\n",
+        "this move, the user’s\n",
+        "Attack stat is\n",
+        "boosted drastically."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_BUG",
+    "power": 50,
+    "accuracy": 100,
+    "pp": 25,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

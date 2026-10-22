@@ -1,0 +1,29 @@
+{
+    "name": "Shore Up",
+    "description": [
+        "The user restores its\n",
+        "own HP by up to half\n",
+        "its max HP. It\n",
+        "regains more HP in a\n",
+        "sandstorm."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_GROUND",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_RESTORE_HALF_HP",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_SNATCH",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

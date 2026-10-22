@@ -1,0 +1,28 @@
+{
+    "name": "Wildbolt Storm",
+    "description": [
+        "The user summons a\n",
+        "thunderous tempest\n",
+        "and savagely attacks\n",
+        "with lightning and\n",
+        "wind."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_ELECTRIC",
+    "power": 100,
+    "accuracy": 80,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_ADJACENT_OPPONENTS",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

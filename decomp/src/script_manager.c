@@ -31,6 +31,8 @@
 #include "generated/species.h"
 
 #include "bag.h"
+#include "party.h"
+#include "pokemon.h"
 #include "unk_02054884.h"
 #endif
 
@@ -706,6 +708,13 @@ static void ImperialTest_SetupNewGame(FieldSystem *fieldSystem)
     Pokemon_GiveMonFromScript(HEAP_ID_FIELD2, fieldSystem->saveData, SPECIES_GARCHOMP, 50, ITEM_NONE, 0, 0);
     Pokemon_GiveMonFromScript(HEAP_ID_FIELD2, fieldSystem->saveData, SPECIES_TURTWIG, 15, ITEM_NONE, 0, 0);
     Pokemon_GiveMonFromScript(HEAP_ID_FIELD2, fieldSystem->saveData, SPECIES_STARLY, 5, ITEM_NONE, 0, 0);
+
+    // Gen IX moves to try in battle (long names, new effects).
+    Pokemon *garchomp = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), 0);
+    Pokemon_SetMoveSlot(garchomp, MOVE_PRECIPICE_BLADES, 0);
+    Pokemon_SetMoveSlot(garchomp, MOVE_DAZZLING_GLEAM, 1);
+    Pokemon_SetMoveSlot(garchomp, MOVE_PLAY_ROUGH, 2);
+    Pokemon_SetMoveSlot(garchomp, MOVE_ELECTROWEB, 3);
     Bag_TryAddItem(bag, ITEM_RARE_CANDY, 3, HEAP_ID_FIELD2);
     Bag_TryAddItem(bag, ITEM_POTION, 10, HEAP_ID_FIELD2);
     Bag_TryAddItem(bag, ITEM_POKE_BALL, 10, HEAP_ID_FIELD2);

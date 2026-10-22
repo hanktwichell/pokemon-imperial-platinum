@@ -1,0 +1,31 @@
+{
+    "name": "Drill Run",
+    "description": [
+        "The user crashes into\n",
+        "the target while\n",
+        "rotating its body\n",
+        "like a drill."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_GROUND",
+    "power": 80,
+    "accuracy": 95,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIGH_CRITICAL",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

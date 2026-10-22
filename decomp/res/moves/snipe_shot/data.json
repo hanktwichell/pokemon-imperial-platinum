@@ -1,0 +1,31 @@
+{
+    "name": "Snipe Shot",
+    "description": [
+        "The user ignores the\n",
+        "effects of opposing\n",
+        "Pokémon’s moves and\n",
+        "Abilities that draw\n",
+        "in moves, allowing."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_WATER",
+    "power": 80,
+    "accuracy": 100,
+    "pp": 15,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIGH_CRITICAL",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_SHADOWS"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

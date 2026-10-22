@@ -1,0 +1,29 @@
+{
+    "name": "Freeze Shock",
+    "description": [
+        "On the second turn,\n",
+        "the user hits the\n",
+        "target with\n",
+        "electrically charged\n",
+        "ice."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_ICE",
+    "power": 140,
+    "accuracy": 90,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_PARALYZE_HIT",
+        "chance": 30
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

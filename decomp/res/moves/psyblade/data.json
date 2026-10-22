@@ -1,0 +1,26 @@
+{
+    "name": "Psyblade",
+    "description": [
+        "The user rends the\n",
+        "target with an\n",
+        "ethereal blade."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_PSYCHIC",
+    "power": 80,
+    "accuracy": 100,
+    "pp": 15,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

@@ -1,0 +1,30 @@
+{
+    "name": "Spirit Break",
+    "description": [
+        "The user attacks the\n",
+        "target with so much\n",
+        "force that it could\n",
+        "break the target’s\n",
+        "spirit."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_FAIRY",
+    "power": 75,
+    "accuracy": 100,
+    "pp": 15,
+    "effect": {
+        "type": "BATTLE_EFFECT_LOWER_SP_ATK_HIT",
+        "chance": 100
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

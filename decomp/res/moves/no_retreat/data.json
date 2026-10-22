@@ -1,0 +1,29 @@
+{
+    "name": "No Retreat",
+    "description": [
+        "This move boosts all\n",
+        "the user’s stats but\n",
+        "prevents the user\n",
+        "from switching out or\n",
+        "fleeing."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_FIGHTING",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_SP_ATK_SP_DEF_UP",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_SNATCH",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

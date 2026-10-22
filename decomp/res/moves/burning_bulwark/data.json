@@ -1,0 +1,26 @@
+{
+    "name": "Burning Bulwark",
+    "description": [
+        "The user’s intensely\n",
+        "hot fur protects it\n",
+        "from attacks and also\n",
+        "burns any attacker\n",
+        "that makes direct."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_FIRE",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_PROTECT",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 4,
+    "flags": [],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

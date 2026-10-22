@@ -1,0 +1,28 @@
+{
+    "name": "Upper Hand",
+    "description": [
+        "The user reacts to\n",
+        "the target’s movement\n",
+        "and strikes with the\n",
+        "heel of its palm,\n",
+        "making the target."
+    ],
+    "class": "CLASS_PHYSICAL",
+    "type": "TYPE_FIGHTING",
+    "power": 65,
+    "accuracy": 100,
+    "pp": 15,
+    "effect": {
+        "type": "BATTLE_EFFECT_PRIORITY_1",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 3,
+    "flags": [
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

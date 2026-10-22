@@ -1,0 +1,27 @@
+{
+    "name": "Rage Powder",
+    "description": [
+        "The user scatters a\n",
+        "cloud of irritating\n",
+        "powder to draw\n",
+        "attention to itself."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_BUG",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 20,
+    "effect": {
+        "type": "BATTLE_EFFECT_MAKE_GLOBAL_TARGET",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 2,
+    "flags": [
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

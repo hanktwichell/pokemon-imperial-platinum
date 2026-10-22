@@ -1,0 +1,28 @@
+{
+    "name": "Tidy Up",
+    "description": [
+        "The user tidies up\n",
+        "and removes the\n",
+        "effects of Spikes,\n",
+        "Stealth Rock, Sticky\n",
+        "Web, Toxic Spikes."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_NORMAL",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_DO_NOTHING",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

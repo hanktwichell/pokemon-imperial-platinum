@@ -1,0 +1,28 @@
+{
+    "name": "Wide Guard",
+    "description": [
+        "The user and its\n",
+        "allies are protected\n",
+        "from wide-ranging\n",
+        "attacks for one turn."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_ROCK",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_DO_NOTHING",
+        "chance": 0
+    },
+    "range": "RANGE_USER_SIDE",
+    "priority": 3,
+    "flags": [
+        "MOVE_FLAG_CAN_SNATCH",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

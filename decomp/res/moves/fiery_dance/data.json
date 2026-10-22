@@ -1,0 +1,28 @@
+{
+    "name": "Fiery Dance",
+    "description": [
+        "Cloaked in flames,\n",
+        "the user attacks the\n",
+        "target by dancing and\n",
+        "flapping its wings."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_FIRE",
+    "power": 80,
+    "accuracy": 100,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_RAISE_SP_ATK_HIT",
+        "chance": 50
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

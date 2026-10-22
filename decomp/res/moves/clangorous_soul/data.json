@@ -1,0 +1,27 @@
+{
+    "name": "Clangorous Soul",
+    "description": [
+        "The user boosts all\n",
+        "its stats by using\n",
+        "some of its own HP."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_DRAGON",
+    "power": 0,
+    "accuracy": 100,
+    "pp": 5,
+    "effect": {
+        "type": "BATTLE_EFFECT_SP_ATK_SP_DEF_UP",
+        "chance": 0
+    },
+    "range": "RANGE_USER",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_CAN_SNATCH",
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

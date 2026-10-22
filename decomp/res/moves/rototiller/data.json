@@ -1,0 +1,25 @@
+{
+    "name": "Rototiller",
+    "description": [
+        "This move can’t be\n",
+        "used."
+    ],
+    "class": "CLASS_STATUS",
+    "type": "TYPE_GROUND",
+    "power": 0,
+    "accuracy": 0,
+    "pp": 10,
+    "effect": {
+        "type": "BATTLE_EFFECT_ATK_UP_2",
+        "chance": 0
+    },
+    "range": "RANGE_ALL",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_HIDES_HP_GAUGES"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}

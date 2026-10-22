@@ -1,0 +1,27 @@
+{
+    "name": "Hydro Steam",
+    "description": [
+        "The user blasts the\n",
+        "target with boiling-\n",
+        "hot water."
+    ],
+    "class": "CLASS_SPECIAL",
+    "type": "TYPE_WATER",
+    "power": 80,
+    "accuracy": 100,
+    "pp": 15,
+    "effect": {
+        "type": "BATTLE_EFFECT_HIT",
+        "chance": 0
+    },
+    "range": "RANGE_SINGLE_TARGET",
+    "priority": 0,
+    "flags": [
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_SHADOWS"
+    ],
+    "contest": {
+        "effect": "CONTEST_EFFECT_BASIC",
+        "type": "CONTEST_TYPE_COOL"
+    }
+}
