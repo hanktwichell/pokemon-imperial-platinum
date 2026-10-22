@@ -417,3 +417,29 @@ by this session before the rule. This entry updates it without rewriting it.
 
 **Next 3 steps:** unchanged from CB-0008 (test warp shortcut; Infinite Repel, then the E7 part 2 PR; E8 Mega
 Evolution).
+
+---
+
+## CB-0010 — 2026-10-22, 3:34 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:**
+- **Test build: SELECT+A warps** to the next entry of `sSovereignTestWarps` (`decomp/src/script_manager.c`,
+  looping), using `FieldTask_StartMapChangeFly`.
+  - The first stop is Veilstone Store 2F, facing the vitamin clerk. Add entries (map header, local x/z, facing) to
+    test other map scripts, e.g. Celestic Town's northeast house for the Ogerpon masks later.
+- **Fixed the Veilstone 2F clerk menu,** which showed blank entries. `AddMenuEntryImm` stores the text ID in one
+  byte, and the new `menu_entries` texts are #280–282. The script now uses `AddMenuEntry` (16-bit).
+- Verified in game: the clerk's menu reads Vitamins / Held items / Gems, and each opens the right stock. The boot
+  smoke test passes.
+
+**Files modified:**
+- `decomp/src/script_manager.c`, `decomp/include/script_manager.h`, `decomp/src/overlay005/field_control.c`
+- `decomp/res/field/scripts/scripts_veilstone_store_2f.s`
+- `docs/EngineChangelog.md`, `tools/test/build_test_rom.sh`
+- `CLAUDE_STATUS.md` (this entry)
+
+**Next 3 steps:**
+1. The Infinite Repel key item (QoL #3: Professor Rowan's aide gives it after the Coal Badge; it toggles a
+   permanent repel).
+2. Open the E7 part 2 PR and merge it when green.
+3. E8 Mega Evolution.

@@ -18,8 +18,11 @@ players and the verification that was run.
   (11.5, 11.5), so it's centred in the bag's preview box. Six sprites larger than 24 px are scaled to fit.
 - Verified in the test build: the held-item shop list with prices, icons and descriptions (opened directly through
   a temporary hook); 5-digit prices; icons centred in the bag preview next to vanilla ones.
-- **Not checked in game:** the 2F clerk's menu itself, since the test build can't reach Veilstone yet. The script
-  builds.
+- Verified in game, via the new SELECT+A test warp: the 2F clerk shows Vitamins / Held items / Gems, and each opens
+  the right stock. Lesson: `AddMenuEntryImm` stores the text ID in one byte, so menu texts with IDs over 255 (any new
+  `menu_entries` text) need `AddMenuEntry`.
+- **Test build: SELECT+A warps** to the next place in `sSovereignTestWarps` (`src/script_manager.c`), looping. For
+  now the only stop is Veilstone Store 2F at the clerk. Add stops there to test other map scripts.
 
 ## E7 step 1 — 245 new items (in progress)
 

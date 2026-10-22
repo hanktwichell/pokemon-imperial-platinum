@@ -134,9 +134,9 @@ VeilstoneStore2F_MiddleVendor:
     Common_VendorGreeting
     // Sovereign: this clerk also sells the Gen V-IX held items and Gems (data/sovereign_mart_items.h).
     InitGlobalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm MenuEntries_Text_SovereignVitamins, 0
-    AddMenuEntryImm MenuEntries_Text_SovereignHeldItems, 1
-    AddMenuEntryImm MenuEntries_Text_SovereignGems, 2
+    AddMenuEntry MenuEntries_Text_SovereignVitamins, 0  // IDs over 255: AddMenuEntryImm only takes a byte
+    AddMenuEntry MenuEntries_Text_SovereignHeldItems, 1
+    AddMenuEntry MenuEntries_Text_SovereignGems, 2
     ShowMenu
     GoToIfEq VAR_RESULT, 0, VeilstoneStore2F_MiddleVendorVitamins
     GoToIfEq VAR_RESULT, 1, VeilstoneStore2F_MiddleVendorHeldItems

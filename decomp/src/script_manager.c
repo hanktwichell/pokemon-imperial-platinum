@@ -29,10 +29,12 @@
 #ifdef SOVEREIGN_TEST
 #include "generated/abilities.h"
 #include "generated/items.h"
+#include "generated/map_headers.h"
 #include "generated/species.h"
 
 #include "bag.h"
 #include "easy_chat_words.h"
+#include "field_map_change.h"
 #include "field_task.h"
 #include "field_transition.h"
 #include "party.h"
@@ -815,6 +817,25 @@ static BOOL SovereignTest_EasyChatTask(FieldTask *task)
 void SovereignTest_OpenEasyChat(FieldSystem *fieldSystem)
 {
     FieldSystem_CreateTask(fieldSystem, SovereignTest_EasyChatTask, NULL);
+}
+
+// Test build only: SELECT+A warps to the next place in this list (looping), to check map scripts without playing there.
+static const struct {
+    u16 mapHeaderID;
+    u16 x;
+    u16 z;
+    u16 dir;
+} sSovereignTestWarps[] = {
+    { MAP_HEADER_VEILSTONE_STORE_2F, 3, 6, FACE_LEFT }, // the vitamin / held item / Gem clerk
+};
+
+static u8 sSovereignTestWarpIndex;
+
+void SovereignTest_WarpNext(FieldSystem *fieldSystem)
+{
+    u8 i = sSovereignTestWarpIndex++ % NELEMS(sSovereignTestWarps);
+
+    FieldTask_StartMapChangeFly(fieldSystem, sSovereignTestWarps[i].mapHeaderID, -1, sSovereignTestWarps[i].x, sSovereignTestWarps[i].z, sSovereignTestWarps[i].dir);
 }
 #endif
 
