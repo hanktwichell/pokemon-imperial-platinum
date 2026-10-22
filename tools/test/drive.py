@@ -8,6 +8,8 @@ Actions (space-separated):
   wait:FRAMES                                   let the game run
   shot:NAME                                     save a screenshot (both screens) as NAME.png
   export:PATH                                   write the battery save (in-game SAVE) to PATH
+  pos                                           print the player's map tile as "pos X Z"
+  step:DIR[,DIR...]                             walk one tile per entry (UP/DOWN/LEFT/RIGHT), printing pos after each
 
 Usage:
   python3 tools/test/drive.py ROM STATE_IN|-|sav:FILE STATE_OUT OUT_DIR action...
@@ -16,6 +18,7 @@ STATE_IN is an emulator save state, "-" for a fresh boot, or sav:FILE to boot fr
 Requires py-desmume and Pillow; run with SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy when headless.
 """
 import os
+import struct
 import sys
 
 from desmume.controls import Keys, keymask
@@ -24,6 +27,13 @@ from desmume.emulator import DeSmuME
 KEYS = {"A": Keys.KEY_A, "B": Keys.KEY_B, "X": Keys.KEY_X, "Y": Keys.KEY_Y, "L": Keys.KEY_L, "R": Keys.KEY_R,
         "START": Keys.KEY_START, "SELECT": Keys.KEY_SELECT, "UP": Keys.KEY_UP, "DOWN": Keys.KEY_DOWN,
         "LEFT": Keys.KEY_LEFT, "RIGHT": Keys.KEY_RIGHT}
+
+
+# Player tile coordinates (u16 x, then u16 z 8 bytes later), found by RAM search on this build; they stay put
+# across map changes. If they ever read wrong after a code change, re-find them by searching RAM for a known
+# position (e.g. a map's arrival warp) before and after a one-tile step.
+PLAYER_X_ADDR = 0x021C6026
+PLAYER_Z_ADDR = 0x021C602E
 
 
 class Driver:
@@ -53,6 +63,12 @@ class Driver:
         self.emu.input.touch_release()
         self.run(after)
 
+    def pos(self):
+        mem = self.emu.memory.unsigned
+        x = struct.unpack("<H", bytes(mem[PLAYER_X_ADDR:PLAYER_X_ADDR + 2]))[0]
+        z = struct.unpack("<H", bytes(mem[PLAYER_Z_ADDR:PLAYER_Z_ADDR + 2]))[0]
+        return x, z
+
     def screenshot(self):
         # display_buffer_as_rgbx() is really BGRX; the library's own screenshot has the right channel order.
         return self.emu.screenshot()
@@ -66,6 +82,12 @@ class Driver:
         elif action.startswith("hold:"):
             _, key, frames = action.split(":")
             self.press(key, int(frames))
+        elif action == "pos":
+            print("pos %d %d" % self.pos(), flush=True)
+        elif action.startswith("step:"):
+            for key in action[5:].split(","):
+                self.press(key, frames=16, after=6)
+                print(key, "pos %d %d" % self.pos(), flush=True)
         elif action.startswith("export:"):
             self.emu.backup.export_file(action[7:])
         elif action.startswith("shot:"):
