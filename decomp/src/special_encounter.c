@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "generated/items.h"
+
 #include "struct_defs/radar_chain_records.h"
 #include "struct_defs/special_encounter.h"
 
@@ -42,6 +44,7 @@ void SpecialEncounter_Init(SpecialEncounter *specialEncounter)
     specialEncounter->repelSteps = 0;
     specialEncounter->radarCharge = 0;
     specialEncounter->fluteFactor = FLUTE_FACTOR_NONE;
+    specialEncounter->lastRepel = ITEM_NONE;
 }
 
 void SpecialEncounter_SetMixedRecordDailies(SpecialEncounter *speEnc, const u32 mixedRecord)
@@ -245,6 +248,16 @@ u8 *SpecialEncounter_GetRadarCharge(SpecialEncounter *speEnc)
 u8 *SpecialEncounter_GetRepelSteps(SpecialEncounter *speEnc)
 {
     return &(speEnc->repelSteps);
+}
+
+void SpecialEncounter_SetLastRepel(SpecialEncounter *speEnc, u16 item)
+{
+    speEnc->lastRepel = item;
+}
+
+u16 SpecialEncounter_GetLastRepel(SpecialEncounter *speEnc)
+{
+    return speEnc->lastRepel;
 }
 
 BOOL SpecialEncounter_RepelStepsEmpty(SpecialEncounter *speEnc)

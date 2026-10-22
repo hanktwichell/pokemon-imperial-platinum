@@ -1257,7 +1257,7 @@ u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *batt
     if (battler1Ability == ABILITY_QUICK_FEET && (battleCtx->battleMons[battler1].status & MON_CONDITION_ANY)) {
         battler1Speed = battler1Speed * 15 / 10;
     } else if (battleCtx->battleMons[battler1].status & MON_CONDITION_PARALYSIS) {
-        battler1Speed /= 4;
+        battler1Speed /= 2; // Imperial: Gen VII+ / Champions (Gen IV: 1/4)
     }
 
     if (battler1Ability == ABILITY_SLOW_START
@@ -1323,7 +1323,7 @@ u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *batt
     if (battler2Ability == ABILITY_QUICK_FEET && (battleCtx->battleMons[battler2].status & MON_CONDITION_ANY)) {
         battler2Speed = battler2Speed * 15 / 10;
     } else if (battleCtx->battleMons[battler2].status & MON_CONDITION_PARALYSIS) {
-        battler2Speed /= 4;
+        battler2Speed /= 2; // Imperial: Gen VII+ / Champions (Gen IV: 1/4)
     }
 
     if (battler2Ability == ABILITY_SLOW_START
@@ -2304,6 +2304,13 @@ int BattleSystem_CheckInvalidMoves(BattleSystem *battleSys, BattleContext *battl
             invalidMoves |= FlagIndex(i);
         }
 
+        // Imperial (Pokémon Champions): first-turn-only moves can't even be selected after the user's first turn.
+        if (MOVE_DATA(battleCtx->battleMons[battler].moves[i]).effect == BATTLE_EFFECT_ALWAYS_FLINCH_FIRST_TURN_ONLY
+            && battleCtx->battleMons[battler].moveEffectsData.fakeOutTurnNumber != battleCtx->totalTurns
+            && (opMask & CHECK_INVALID_FIRST_TURN)) {
+            invalidMoves |= FlagIndex(i);
+        }
+
         if ((itemEffect == HOLD_EFFECT_CHOICE_ATK || itemEffect == HOLD_EFFECT_CHOICE_SPEED || itemEffect == HOLD_EFFECT_CHOICE_SPATK)
             && (opMask & CHECK_INVALID_CHOICE_ITEM)) {
             if (Battler_SlotForMove(&battleCtx->battleMons[battler], battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove) == LEARNED_MOVES_MAX) {
@@ -2363,6 +2370,12 @@ BOOL BattleSystem_CanUseMove(BattleSystem *battleSys, BattleContext *battleCtx, 
         msgOut->id = BattleStrings_Text_TheItemAllowsTheUseOfOnlyMove; // "The {0} allows the use of only {1}!"
         msgOut->params[0] = battleCtx->battleMons[battler].heldItem;
         msgOut->params[1] = battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove;
+        result = FALSE;
+    } else if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_FIRST_TURN) & FlagIndex(moveSlot)) {
+        msgOut->tags = TAG_NICKNAME_MOVE;
+        msgOut->id = BattleStrings_Text_PokemonCanOnlyUseMoveOnItsFirstTurn_Ally; // "{0} can use {1} only on its first turn!"
+        msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, battler);
+        msgOut->params[1] = battleCtx->battleMons[battler].moves[moveSlot];
         result = FALSE;
     } else if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_NO_PP) & FlagIndex(moveSlot)) {
         msgOut->tags = TAG_NONE;
@@ -3756,7 +3769,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                     case ABILITY_DRIZZLE:
                         battleCtx->battleMons[battler].weatherAbilityAnnounced = TRUE;
 
-                        if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_RAINING_PERM) == FALSE) {
+                        if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_RAINING) == FALSE) { // Imperial: fails in the same weather (Gen VI+)
                             subscript = subscript_drizzle;
                             result = SWITCH_IN_CHECK_RESULT_BREAK;
                         }
@@ -3765,7 +3778,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                     case ABILITY_SAND_STREAM:
                         battleCtx->battleMons[battler].weatherAbilityAnnounced = TRUE;
 
-                        if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_SANDSTORM_PERM) == FALSE) {
+                        if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_SANDSTORM) == FALSE) { // Imperial: fails in the same weather (Gen VI+)
                             subscript = subscript_sand_stream;
                             result = SWITCH_IN_CHECK_RESULT_BREAK;
                         }
@@ -3774,7 +3787,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                     case ABILITY_DROUGHT:
                         battleCtx->battleMons[battler].weatherAbilityAnnounced = TRUE;
 
-                        if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_SUNNY_PERM) == FALSE) {
+                        if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_SUNNY) == FALSE) { // Imperial: fails in the same weather (Gen VI+)
                             subscript = subscript_drought;
                             result = SWITCH_IN_CHECK_RESULT_BREAK;
                         }
@@ -3783,7 +3796,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                     case ABILITY_SNOW_WARNING:
                         battleCtx->battleMons[battler].weatherAbilityAnnounced = TRUE;
 
-                        if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_HAILING_PERM) == FALSE) {
+                        if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_HAILING) == FALSE) { // Imperial: fails in the same weather (Gen VI+)
                             subscript = subscript_snow_warning;
                             result = SWITCH_IN_CHECK_RESULT_BREAK;
                         }
@@ -6938,6 +6951,12 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
             spDefenseStat = spDefenseStat * 15 / 10;
         }
 
+        // Imperial: Snow (Gen IX / Pokémon Champions) boosts Ice types' Defense by 50%.
+        if ((fieldConditions & FIELD_CONDITION_HAILING)
+            && (defenderParams.type1 == TYPE_ICE || defenderParams.type2 == TYPE_ICE)) {
+            defenseStat = defenseStat * 15 / 10;
+        }
+
         if ((fieldConditions & FIELD_CONDITION_SUNNY)
             && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_OUR_SIDE, attacker, ABILITY_FLOWER_GIFT)) {
             attackStat = attackStat * 15 / 10;
@@ -7104,12 +7123,12 @@ int BattleSystem_CalcDamageVariance(BattleSystem *battleSys, BattleContext *batt
 }
 
 // each value here is implicitly 1 / N
+// Imperial: Gen VII+ / Pokémon Champions odds (Gen IV was 1/16, 1/8, 1/4, 1/3, 1/2).
 static const u8 sCriticalStageRates[] = {
-    16, // neutral
+    24, // neutral
     8, // +1
-    4, // +2
-    3, // +3
-    2, // +4
+    2, // +2
+    1, // +3 and above
 };
 
 int BattleSystem_CalcCriticalMulti(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int criticalStage, u32 sideConditions)
@@ -7137,8 +7156,8 @@ int BattleSystem_CalcCriticalMulti(BattleSystem *battleSys, BattleContext *battl
         + (2 * (itemEffect == HOLD_EFFECT_CHANSEY_CRITRATE_UP && attackerSpecies == SPECIES_CHANSEY))
         + (2 * (itemEffect == HOLD_EFFECT_FARFETCHD_CRITRATE_UP && attackerSpecies == SPECIES_FARFETCHD));
 
-    if (effectiveCritStage > 4) {
-        effectiveCritStage = 4;
+    if (effectiveCritStage > NELEMS(sCriticalStageRates) - 1) {
+        effectiveCritStage = NELEMS(sCriticalStageRates) - 1;
     }
 
     if (BattleSystem_RandNext(battleSys) % sCriticalStageRates[effectiveCritStage] == 0
@@ -7154,6 +7173,20 @@ int BattleSystem_CalcCriticalMulti(BattleSystem *battleSys, BattleContext *battl
     }
 
     return criticalMul;
+}
+
+int BattleSystem_ApplyCriticalMul(int damage, int criticalMul)
+{
+    // Imperial: Gen VI+ / Pokémon Champions multipliers, x1.5 (x2.25 with Sniper) instead of Gen IV's x2 (x3).
+    // criticalMul keeps Gen IV's values (1 = no crit, 2 = crit, 3 = Sniper crit) for the code that checks them.
+    switch (criticalMul) {
+    case 2:
+        return damage * 3 / 2;
+    case 3:
+        return damage * 9 / 4;
+    default:
+        return damage;
+    }
 }
 
 #define FORBIDDEN_BY_MIMIC_DELIM     0xFFFE

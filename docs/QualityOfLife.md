@@ -33,11 +33,11 @@
 | # | Feature | Imperial design | Depends on |
 |---|---|---|---|
 | 1 | **Nature Mints** | One Mint per nature (21 stat-changing natures + Serious Mint), sold by Renegade's Route 208 berry seller ($10,000). A minted Pokémon keeps its real nature (for Synchronize, PID) but uses the Mint's stat changes; the summary screen shows the Mint nature. Stored in a spare byte of the Pokémon data. | item table (E7) |
-| 2 | **Repel prompt** | When a Repel/Super Repel/Max Repel runs out and the bag still has one of the same kind: "Use another?" (Yes/No). | — |
+| 2 | **Repel prompt** | When a Repel/Super Repel/Max Repel runs out and the bag still has one of the same kind: "Use another?" (Yes/No). | ✅ done (E14) |
 | 3 | **Infinite Repel** | Key item ("Repel Lure"-style toggle) given by Professor Rowan's aide after the Coal Badge. Using it toggles a permanent repel on/off; while on, a bag icon shows its state. | item table (E7) |
 | 4 | **Party-wide Exp. Share** | Options: **EXP. SHARE ON/OFF** (default ON, like Gen VI+). When on, every non-fainted party member that didn't battle gets 50% of the EXP (participants get 100%). Respects the level cap. The old held Exp. Share keeps working when the option is OFF. | ✅ done (E13) |
 | 5 | **Type-effectiveness indicator** | On the move-select touch screen, each move shows "Super effective / Not very effective / No effect" against the targeted foe (only for species the player has registered as seen). | — |
-| 6 | **IV/EV viewer** | Summary screen stats page: press **SELECT** to cycle Stats → IVs → EVs. | built (E14); in-game test pending |
+| 6 | **IV/EV viewer** | Summary screen stats page: press **SELECT** to cycle Stats → IVs → EVs. | ✅ done (E14) |
 | 8 | **HMs as key items / no HM slaves** | Once the right badge and HM are obtained, field moves (Cut, Rock Smash, Strength, Surf, Defog, Rock Climb, Waterfall, Fly) work from the field prompt without any party Pokémon knowing them. HMs can be forgotten freely. | — |
 | 9 | **Gen VI+ breeding** | Destiny Knot passes 5 of the parents' 10 IVs; Everstone passes nature 100%; Egg moves pass from either parent; Poké Ball inheritance from the mother. | — |
 | 11 | **Ability Capsule NPC** | NPC in the Battle Tower lobby (Fight Area) swaps a Pokémon between its two standard abilities for 50 BP (or $20,000). The Hidden Ability needs the Ability Patch (later). | hidden abilities (E4) |

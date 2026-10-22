@@ -48,6 +48,8 @@ void Roamer_SetData(Roamer *roamer, const u8 dataType, const u32 data);
 u8 *SpecialEncounter_GetRadarCharge(SpecialEncounter *speEnc);
 u8 *SpecialEncounter_GetRepelSteps(SpecialEncounter *speEnc);
 BOOL SpecialEncounter_RepelStepsEmpty(SpecialEncounter *speEnc);
+void SpecialEncounter_SetLastRepel(SpecialEncounter *speEnc, u16 item);
+u16 SpecialEncounter_GetLastRepel(SpecialEncounter *speEnc);
 void SpecialEncounter_SetFluteFactor(SpecialEncounter *speEnc, const u8 flute);
 u8 SpecialEncounter_GetFluteFactor(SpecialEncounter *speEnc);
 void SpecialEncounter_GetTrophyGardenMons(SaveData *saveData, u16 *slot1, u16 *slot2);

@@ -1443,8 +1443,27 @@ CommonScript_HatchEgg:
 CommonScript_RepelsEffectWoreOff:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
+    // Imperial: offer another Repel of the kind used last, if the bag has one.
+    GetLastRepel VAR_0x8004
+    GoToIfEq VAR_0x8004, ITEM_NONE, CommonScript_RepelsEffectWoreOff_NoneLeft
+    CheckItem VAR_0x8004, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, CommonScript_RepelsEffectWoreOff_NoneLeft
+    BufferPlayerName 0
+    BufferItemName 1, VAR_0x8004
+    Message CommonStrings_Text_RepelWoreOffUseAnother
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, CommonScript_RepelsEffectWoreOff_End
+    RemoveItem VAR_0x8004, 1, VAR_RESULT
+    UseRepel VAR_0x8004
+    PlaySE SEQ_SE_DP_CARD2_sseq
+    Message CommonStrings_Text_UsedAnotherRepel
+    WaitABPress
+    GoTo CommonScript_RepelsEffectWoreOff_End
+
+CommonScript_RepelsEffectWoreOff_NoneLeft:
     Message CommonStrings_Text_RepelsEffectWoreOff
     WaitABPress
+CommonScript_RepelsEffectWoreOff_End:
     CloseMessage
     ReleaseAll
     End

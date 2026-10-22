@@ -9,7 +9,7 @@
     ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_BUG",
-    "power": 90,
+    "power": 100,
     "accuracy": 100,
     "pp": 10,
     "effect": {

@@ -5,8 +5,8 @@ _Last updated: 2026-10-22_
 **Where we are:** the design phase is finished and engine work has started on the pret/pokeplatinum decompilation.
 The ROM builds in CI on every PR. Merged so far: Fairy type, the Options additions, the Imperial save format/identity,
 the test build and the whole Gen IX data pass (all 919 moves, all 314 abilities with Hidden Abilities, Gen IX stats,
-types and learnsets for #1–493). Next: the remaining QoL features (E14), then the species expansion (E6) and the
-Pokémon Champions battle rules (10b).
+types and learnsets for #1–493). In progress: the remaining QoL features (E14; the Repel prompt is done) and the
+Pokémon Champions battle rules (10b; core rules built). Next: the species expansion (E6).
 
 **Estimate to a first playable version:** about 25–40 more working sessions, roughly 3–6 weeks at one or two sessions
 a day. The two biggest uncertainties are fitting 1025 species into the DS engine (E6) and how exactly the Gen IX move
@@ -21,12 +21,12 @@ and T2 only. See `EngineRoadmap.md` for the per-milestone breakdown.
 | E0b | Fairy type + Gen VI+ type chart | ✅ done (checked against the official chart) |
 | E13 | Options: level cap, Infinite Rare Candy, party Exp. Share, music volume | ✅ done (PR #5); verified in battle with the test build |
 | E1 | Own save signature, ROM title/banner "Pokémon Imperial Platinum" | ✅ done (PR #7) |
-| E14 | Approved QoL | 🟡 1 of 9 done (IV/EV viewer, tested in-game). Next: Repel prompt, type-effectiveness indicator, HM-free field moves, Gen VI+ breeding. Mints, Infinite Repel and Ability Capsule wait for E7/E4 |
+| E14 | Approved QoL | 🟡 2 of 9 done (IV/EV viewer, Repel prompt; both tested in-game). Next: type-effectiveness indicator, HM-free field moves, Gen VI+ breeding. Mints, Infinite Repel and Ability Capsule wait for E7/E4 |
 | — | Test build (`tools/test/build_test_rom.sh`): test party at new game, SELECT = wild battle, SELECT+R = trainer battle | ✅ working |
 | E3 | All 919 moves, ID = official number; 93 new moves exact, 76 approximate, 211 placeholder (`MoveChecklist.md`) | ✅ done (PR #9); tested in battle |
 | E5 | Gen IX stats, types and learnsets for #1–493 and forms; 32-bit learnset entries | ✅ done (PR #9); tested in battle |
 | E2/E4 | All 314 abilities, ID = official number (191 new, no battle effect yet: `AbilityChecklist.md`); Hidden Ability slot and flag | ✅ done; tested on the summary screen |
-| 10b | Battle mechanics → Pokémon Champions (IVs/EVs unchanged) | ⏭ research next |
+| 10b | Battle mechanics → Pokémon Champions (IVs/EVs unchanged); rules in `BattleMechanics.md` | 🟡 core rules built (status, dynamic speed, crits, weather, Snow, Fake Out, move values); ability/move behaviour with item 11 |
 | E6 | Species expansion to 1025 (+ cries from PokeAPI's archive) | not started |
 | E7 | Items (Mega Stones, new held/evolution items) | not started |
 | E8 | Mega Evolution / Primal Reversion | not started |

@@ -14,7 +14,7 @@
     "pp": 15,
     "effect": {
         "type": "BATTLE_EFFECT_FLINCH_HIT",
-        "chance": 30
+        "chance": 20
     },
     "range": "RANGE_SINGLE_TARGET",
     "priority": 0,

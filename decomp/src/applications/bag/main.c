@@ -2263,6 +2263,7 @@ static String *TryUseRepel(BagController *controller, u16 item)
 
     u32 stepCount = Item_LoadParam(item, ITEM_PARAM_EFFECT_PARAM, HEAP_ID_BAG);
     SetRepelSteps(controller, stepCount);
+    SpecialEncounter_SetLastRepel(GetSpecialEncounter(controller), item);
     controller->selectedItemCount = 1;
     Sound_PlayEffect(SEQ_SE_DP_CARD2_sseq);
 

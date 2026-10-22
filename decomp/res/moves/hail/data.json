@@ -2,10 +2,10 @@
     "name": "Hail",
     "description": [
         "The user summons a\n",
-        "hailstorm lasting five\n",
-        "turns. It damages all\n",
-        "Pokémon except the\n",
-        "Ice type."
+        "snowstorm lasting\n",
+        "five turns. This\n",
+        "boosts the Defense\n",
+        "stats of Ice types."
     ],
     "class": "CLASS_STATUS",
     "type": "TYPE_ICE",

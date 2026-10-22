@@ -8,7 +8,7 @@
     ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_GRASS",
-    "power": 70,
+    "power": 85,
     "accuracy": 100,
     "pp": 15,
     "effect": {
