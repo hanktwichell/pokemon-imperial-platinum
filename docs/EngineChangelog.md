@@ -22,6 +22,46 @@ players and the verification that was run.
   partner, Surf 0% next to Water Absorb, and super-effective, neutral and resisted hits scale as expected. A doubles
   turn plays normally. The trainer checker and `boot_smoke.py` pass. Reference: `docs/AIReview.md`.
 
+## E7 part 2 — shops and icon placement (in progress)
+
+- **Post-Champion money** (owner, decision 24). Every check is the Hall of Fame flag (`FLAG_GAME_COMPLETED`):
+  - **Half price in every money shop** (`Shop_GetItemPrice`, `overlay007/shop_menu.c`): Poké Marts, specialty
+    counters, decorations and Seals. Battle Point shops are unchanged.
+  - **3× prize money** from post-game rematches: the Elite Four and Cynthia rematches, the eight Gym Leader rematches
+    and the five Battleground trainers (`Sovereign_PostgamePrizeMultiplier`, `battle/battle_script.c`).
+  - **Full sell price** for items no shop sells (`Shop_IsItemSoldInMarts`, `scrcmd_shop.c`, scanning every Poké Mart
+    and specialty stock). Shop items still sell for half, so buying at half price and reselling can't make money.
+  - **Survival Area Youngster** gives 3 Nuggets once a day (`FLAG_DAILY_RECEIVED_SURVIVAL_AREA_NUGGETS`, formerly
+    the unused daily flag `0x0AAF`). Before the Champion he says his usual line.
+  - Verified in the test build with the Hall of Fame flag set by a temporary hook: Roark paid ₽5040 (₽1680 × 3)
+    while on the rematch list for the test; Protein cost ₽4900 at Veilstone; a Nugget sold for ₽10,000 and a Super
+    Repel for ₽250; the Youngster gave 3 Nuggets, then said to come back tomorrow. New SELECT+L+R stop at the
+    Youngster.
+- **Veilstone Department Store sells the new held items** (owner request). The 2F vitamin clerk now shows a menu:
+  Vitamins / Held items / Gems.
+  - The stock lists are written by `gen_items.py` into `include/data/sovereign_mart_items.h`, as
+    `MART_SPECIALTIES_ID_VEILSTONE_2F_HELD_ITEMS` and `_GEMS`.
+  - Both count toward the store's regular-customer counter, like the other floors.
+  - No map edit was needed.
+- **Shop prices show 5 digits**, so ₽10,000–₽30,000 items (Ability Shield, Clear Amulet and so on) no longer show
+  "₽?000". Prices stay right-aligned, so Platinum's own prices don't move.
+- **Infinite Repel** (QoL #3): a key item, a custom entry in `items_sovereign.yaml` with the Max Repel icon. Using it
+  from the bag turns a never-ending Repel on or off (`FLAG_SOVEREIGN_INFINITE_REPEL`, formerly `FLAG_UNUSED_0x006D`).
+  `wild_encounters.c` treats it like Repel steps, so it blocks wild Pokémon weaker than the lead, just like a Repel.
+  - Tested on Route 202 with Garchomp (Lv. 50) leading: a Bidoof appeared within 60 steps with it off; no encounter
+    in 160 steps with it on.
+- **Test tools:** a SELECT+L+R stop on Route 202's grass, and `tools/test/find_tiles.py`, which prints a map's
+  grass/water/collision layout with world coordinates for warp stops.
+- **Item icons are centred like Platinum's.** The art sits in the top-left 24×24 of the 32×32 icon, centred on
+  (11.5, 11.5), so it's centred in the bag's preview box. Six sprites larger than 24 px are scaled to fit.
+- Verified in the test build: the held-item shop list with prices, icons and descriptions (opened directly through
+  a temporary hook); 5-digit prices; icons centred in the bag preview next to vanilla ones.
+- Verified in game, via the new SELECT+L+R test warp: the 2F clerk shows Vitamins / Held items / Gems, and each opens
+  the right stock. Lesson: `AddMenuEntryImm` stores the text ID in one byte, so menu texts with IDs over 255 (any new
+  `menu_entries` text) need `AddMenuEntry`.
+- **Test build: SELECT+L+R warps** to the next place in `sSovereignTestWarps` (`src/script_manager.c`), looping. For
+  now the stops are the Veilstone Store 2F clerk, Route 202's grass and the Survival Area Youngster. Add stops there
+  to test other map scripts.
 
 ## E9 — Sovereign trainer format
 

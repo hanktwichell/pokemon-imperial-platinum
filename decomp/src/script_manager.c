@@ -29,10 +29,12 @@
 #ifdef SOVEREIGN_TEST
 #include "generated/abilities.h"
 #include "generated/items.h"
+#include "generated/map_headers.h"
 #include "generated/species.h"
 
 #include "bag.h"
 #include "easy_chat_words.h"
+#include "field_map_change.h"
 #include "field_task.h"
 #include "field_transition.h"
 #include "party.h"
@@ -774,6 +776,7 @@ static void SovereignTest_SetupNewGame(FieldSystem *fieldSystem)
     Bag_TryAddItem(bag, ITEM_ADAMANT_MINT, 1, HEAP_ID_FIELD2);
     Bag_TryAddItem(bag, ITEM_ABILITY_CAPSULE, 2, HEAP_ID_FIELD2);
     Bag_TryAddItem(bag, ITEM_ABILITY_PATCH, 1, HEAP_ID_FIELD2);
+    Bag_TryAddItem(bag, ITEM_INFINITE_REPEL, 1, HEAP_ID_FIELD2);
     SpecialEncounter *speEnc = SaveData_GetSpecialEncounters(fieldSystem->saveData);
     *SpecialEncounter_GetRepelSteps(speEnc) = 3;
     SpecialEncounter_SetLastRepel(speEnc, ITEM_SUPER_REPEL);
@@ -815,6 +818,27 @@ static BOOL SovereignTest_EasyChatTask(FieldTask *task)
 void SovereignTest_OpenEasyChat(FieldSystem *fieldSystem)
 {
     FieldSystem_CreateTask(fieldSystem, SovereignTest_EasyChatTask, NULL);
+}
+
+// Test build only: SELECT+L+R warps to the next place in this list (looping), to check map scripts without playing there.
+static const struct {
+    u16 mapHeaderID;
+    u16 x;
+    u16 z;
+    u16 dir;
+} sSovereignTestWarps[] = {
+    { MAP_HEADER_VEILSTONE_STORE_2F, 3, 6, FACE_LEFT }, // the vitamin / held item / Gem clerk
+    { MAP_HEADER_ROUTE_202, 163, 822, FACE_UP }, // tall grass out of the trainers' sight (tools/test/find_tiles.py)
+    { MAP_HEADER_SURVIVAL_AREA, 667, 339, FACE_UP }, // the Youngster who gives 3 Nuggets a day after the Champion
+};
+
+static u8 sSovereignTestWarpIndex;
+
+void SovereignTest_WarpNext(FieldSystem *fieldSystem)
+{
+    u8 i = sSovereignTestWarpIndex++ % NELEMS(sSovereignTestWarps);
+
+    FieldTask_StartMapChangeFly(fieldSystem, sSovereignTestWarps[i].mapHeaderID, -1, sSovereignTestWarps[i].x, sSovereignTestWarps[i].z, sSovereignTestWarps[i].dir);
 }
 #endif
 

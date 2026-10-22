@@ -11,6 +11,7 @@ Renegade Platinum's item changes and item locations are unchanged unless listed 
 | Light Stone, Dark Stone | Legend Archivist, Canalave Library (post-game) | Summon Reshiram / Zekrom |
 | Prison Bottle | Legend Archivist (post-game) | Hoopa event |
 | Scroll of Darkness, Scroll of Waters | Maylene, Veilstone Gym (post-game) | Evolve Kubfu |
+| Infinite Repel | Not placed yet (QoL #3 says Professor Rowan's aide, after the Coal Badge) | Toggles a Repel that never runs out |
 
 ## Form items
 
@@ -42,3 +43,14 @@ evolution stones and held items are never replaced. Full table with map and scri
 | Mega Stone Sage | Snowpoint City | Icicle Badge | 8 Mega Stones |
 | Mega Stone Curator | Survival Area | Champion | 10 legendary/signature Mega Stones |
 | Evolution item seller *(Renegade)* | Snowpoint City | — | adds the 14 new evolution items sold in shops |
+| Veilstone Dept. Store, 2F vitamin clerk | Veilstone City | — | Menu: Vitamins / **Held items** (the 38 Gen V–IX held items) / **Gems** (all 18). Owner request. Booster Energy ₽10,000 (no official price) |
+
+## After the Champion
+
+Owner decision 24 (`ProjectStatus.md`):
+
+- Every shop that takes money sells at **half price**. Battle Point shops are unchanged.
+- Items **no shop sells** (Nuggets, Pearls, shards, found items) **sell for their full price**. Items a shop sells
+  still sell for half, so they can't be bought and resold for a profit.
+- The **Youngster at the Survival Area** gives **3 Nuggets** once a day.
+- Post-game rematches (Elite Four, Cynthia, Gym Leaders, Battleground trainers) pay **3× prize money**.

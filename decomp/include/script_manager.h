@@ -205,6 +205,7 @@ void FieldSystem_RunScript(FieldSystem *fieldSystem, u16 scriptID);
 BOOL FieldSystem_RunInitScript(FieldSystem *fieldSystem, u8 param1);
 #ifdef SOVEREIGN_TEST
 void SovereignTest_OpenEasyChat(FieldSystem *fieldSystem);
+void SovereignTest_WarpNext(FieldSystem *fieldSystem);
 #endif
 
 #endif // POKEPLATINUM_SCRIPT_MANAGER_H

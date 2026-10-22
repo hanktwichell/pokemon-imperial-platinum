@@ -128,7 +128,39 @@ VeilstoneStore2F_TopVendor:
     End
 
 VeilstoneStore2F_MiddleVendor:
-    PokeMartSpecialtiesWithGreeting MART_SPECIALTIES_ID_VEILSTONE_2F_MID
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    Common_VendorGreeting
+    // Sovereign: this clerk also sells the Gen V-IX held items and Gems (data/sovereign_mart_items.h).
+    InitGlobalTextMenu 1, 1, 0, VAR_RESULT
+    AddMenuEntry MenuEntries_Text_SovereignVitamins, 0  // IDs over 255: AddMenuEntryImm only takes a byte
+    AddMenuEntry MenuEntries_Text_SovereignHeldItems, 1
+    AddMenuEntry MenuEntries_Text_SovereignGems, 2
+    ShowMenu
+    GoToIfEq VAR_RESULT, 0, VeilstoneStore2F_MiddleVendorVitamins
+    GoToIfEq VAR_RESULT, 1, VeilstoneStore2F_MiddleVendorHeldItems
+    GoToIfEq VAR_RESULT, 2, VeilstoneStore2F_MiddleVendorGems
+    CloseMessage
+    ReleaseAll
+    End
+
+VeilstoneStore2F_MiddleVendorVitamins:
+    CloseMessageWithoutErasing
+    PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_2F_MID
+    ReleaseAll
+    End
+
+VeilstoneStore2F_MiddleVendorHeldItems:
+    CloseMessageWithoutErasing
+    PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_2F_HELD_ITEMS
+    ReleaseAll
+    End
+
+VeilstoneStore2F_MiddleVendorGems:
+    CloseMessageWithoutErasing
+    PokeMartSpecialties MART_SPECIALTIES_ID_VEILSTONE_2F_GEMS
+    ReleaseAll
     End
 
 VeilstoneStore2F_Directory:

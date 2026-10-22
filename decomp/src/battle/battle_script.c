@@ -15,6 +15,7 @@
 #include "generated/abilities.h"
 #include "generated/game_records.h"
 #include "generated/genders.h"
+#include "generated/trainers.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_defs/battle_system.h"
@@ -3710,6 +3711,39 @@ static u32 BattleScript_CalcPrizeMoney(BattleSystem *battleSys, BattleContext *b
     return prize;
 }
 
+// Sovereign (owner, decision 24): post-game rematches pay 3x prize money.
+static u32 Sovereign_PostgamePrizeMultiplier(u16 trainerID)
+{
+    static const u16 sPostgameTrainers[] = {
+        TRAINER_ELITE_FOUR_AARON_REMATCH,
+        TRAINER_ELITE_FOUR_BERTHA_REMATCH,
+        TRAINER_ELITE_FOUR_FLINT_REMATCH,
+        TRAINER_ELITE_FOUR_LUCIAN_REMATCH,
+        TRAINER_CHAMPION_CYNTHIA_REMATCH,
+        TRAINER_LEADER_ROARK_REMATCH,
+        TRAINER_LEADER_GARDENIA_REMATCH,
+        TRAINER_LEADER_MAYLENE_REMATCH,
+        TRAINER_LEADER_WAKE_REMATCH,
+        TRAINER_LEADER_FANTINA_REMATCH,
+        TRAINER_LEADER_BYRON_REMATCH,
+        TRAINER_LEADER_CANDICE_REMATCH,
+        TRAINER_LEADER_VOLKNER_REMATCH,
+        TRAINER_RILEY_BATTLEGROUND,
+        TRAINER_BUCK_BATTLEGROUND,
+        TRAINER_MARLEY_BATTLEGROUND,
+        TRAINER_MIRA_BATTLEGROUND,
+        TRAINER_CHERYL_BATTLEGROUND,
+    };
+
+    for (u32 i = 0; i < NELEMS(sPostgameTrainers); i++) {
+        if (sPostgameTrainers[i] == trainerID) {
+            return 3;
+        }
+    }
+
+    return 1;
+}
+
 /**
  * @brief Payout the prize money for the battle (or deduct a penalty for losing).
  *
@@ -3726,10 +3760,12 @@ static BOOL BtlCmd_PayPrizeMoney(BattleSystem *battleSys, BattleContext *battleC
 
     u32 money;
     if (battleSys->resultMask == BATTLE_RESULT_WIN) {
-        money = BattleScript_CalcPrizeMoney(battleSys, battleCtx, BATTLER_ENEMY_1);
+        money = BattleScript_CalcPrizeMoney(battleSys, battleCtx, BATTLER_ENEMY_1)
+            * Sovereign_PostgamePrizeMultiplier(battleSys->trainerIDs[BATTLER_ENEMY_1]);
 
         if ((battleSys->battleType & BATTLE_TYPE_TAG) || battleSys->battleType == BATTLE_TYPE_TRAINER_WITH_AI_PARTNER) {
-            money += BattleScript_CalcPrizeMoney(battleSys, battleCtx, BATTLER_ENEMY_2);
+            money += BattleScript_CalcPrizeMoney(battleSys, battleCtx, BATTLER_ENEMY_2)
+                * Sovereign_PostgamePrizeMultiplier(battleSys->trainerIDs[BATTLER_ENEMY_2]);
         }
 
         TrainerInfo_GiveMoney(BattleSystem_GetTrainerInfo(battleSys, BATTLER_US), money);
