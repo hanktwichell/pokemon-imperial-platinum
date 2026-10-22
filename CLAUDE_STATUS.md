@@ -660,3 +660,29 @@ test trainer's name in `decomp/res/trainers/data/sovereign_test.json`. Earlier C
 name, since the file is append-only.
 
 **Next 3 steps:** merge PR #19; 12b #3 (spread credit); 12b #8 (ally support moves).
+
+---
+
+## CA-0012 — 2026-10-22, 4:40 pm US Central (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** the owner's answers on Totem gates and the post-game, recorded (docs only; replaces CA-0010's
+proposal):
+- **Galactic gates.** Each Team Galactic encounter waits on the Totem trials placed before it. Existing blocking NPCs
+  get "trial done" added to their unlock condition. Table in `docs/Story.md`: Mars (Windworks) needs Gumshoos; Jupiter
+  (Eterna) needs Ribombee and Vikavolt; Cyrus (Celestic) needs Mimikyu, Marowak, Raticate, Lurantis and Araquanid; the
+  lakes need Salazzle; Spear Pillar needs Kommo-o. Togedemaru gates nothing and is always last. Decision 18 updated:
+  the trials are no longer optional.
+- **Crown.** After each trial's catch encounter (caught or not), the player finds a crown piece: Gold Shard first,
+  then jewels or gold shards, and Togedemaru's is the Crown Diamond. All are key items, so they can't be sold or
+  tossed. Henry appears at Spear Pillar only with all 11.
+- **The Celestic elder** meets the player at home after the first Hall of Fame and sends them to Spear Pillar.
+- **The Elite Four after the Sovereign battle:** rematches continue, all Lv. 100 (a third set of teams, T1).
+
+**Files modified:** `docs/Story.md`, `docs/ProjectStatus.md` (decisions 18 and 23), `docs/DeveloperBattle.md`,
+`data/totem_trials.yaml` (header comment), `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Merge PR #19, then PR this.
+2. 12b #3 (spread credit for hitting both foes).
+3. 12b #8 (ally support moves), then item 11.
+For E11 (Claude B): find the blocking NPCs for the Galactic gates, and build the crown items and the elder's scene.

@@ -91,8 +91,9 @@ Made by the owner (2026-10-22):
 17. The battle screen gets a **MEGA** button on the touch-screen move menu for Mega Evolution. Primal Reversion stays
     automatic on switch-in, as in ORAS and later, with no button (owner, 2026-10-22). Spec in `MegaEvolution.md`; built
     in E8.
-18. **Totem forms** (12 forms, 11 species) appear only as optional one-time Totem trials scattered along the main
-    story, all before the Elite Four, never in the wild. Each Totem has its stat-raising Totem aura and can be caught
+18. **Totem forms** (12 forms, 11 species) appear only as one-time Totem trials scattered along the main story, all
+    before the Elite Four, never in the wild. Team Galactic's encounters wait on the trials before them, so they
+    are no longer optional (decision 23). Each Totem has its stat-raising Totem aura and can be caught
     afterwards in its Totem form. Totems call allies: each trial is a double battle where the Totem calls up to 2
     reserve helpers into the empty slot, and balls can be thrown only once the Totem is alone (owner, 2026-10-22).
     Placements, levels and the mechanic: `data/totem_trials.yaml`.
@@ -125,6 +126,12 @@ Made by the owner (2026-10-22):
     reason he uses Garchomp) arrives to congratulate them. Event order: first Hall of Fame → Dialga and Palkia at
     Spear Pillar (catchable) → Elite Four rematch, locked until both are done and then repeatable → after the second
     win against Cynthia, she sends the player to Spear Pillar for the Sovereign battle.
+    Gates and crown (owner): each Galactic encounter waits on the Totem trials placed before it (existing blocking
+    NPCs get the trial added to their unlock condition). Each trial, once its catch encounter is over (caught or
+    not), leaves a crown piece: a Gold Shard first, then jewels or gold shards, and the Crown Diamond 11th; all key
+    items, unsellable and untossable. Henry appears at Spear Pillar only with the complete 11-piece crown. The
+    Celestic Town elder meets the player at home after the first Hall of Fame and sends them to Spear Pillar. After
+    the Sovereign battle the Elite Four can still be rematched, with all-Lv. 100 teams.
 
 Open:
 - Regional Forms Park (decision 22): which zone holds which forms, encounter rates, and when it opens (Route 221

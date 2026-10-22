@@ -42,9 +42,9 @@ The player learns about the Sovereign passively, without ever meeting one before
   where they're coming from.
 
 ### Along the main story, alongside Galactic
-- **Totem trials:** each one ends with something left behind by an unseen trial keeper, the same crown mark plus one
-  line of a message that builds up across the trials. The last trial (Totem Togedemaru, Vista Lighthouse) completes
-  the message.
+- **Totem trials:** each one leaves a crown piece behind (see *The crown*). The Galactic encounters wait on them,
+  and the pieces slowly reveal a crown. The last trial (Totem Togedemaru, Vista Lighthouse) gives the Crown Diamond
+  that completes it.
 - **Celestic Town** (Galactic's attack on the ruins): the elder's story mentions the rulers who sat at Spear Pillar.
 - **Canalave Library:** a new book on the Sovereign, mostly missing pages.
 - **Spear Pillar** (Galactic's climax): a brief glimpse of ruins on the summit showing a throne that was never part
@@ -53,13 +53,16 @@ The player learns about the Sovereign passively, without ever meeting one before
 ### After the Hall of Fame: event order (owner)
 
 1. **First time as Champion** (first Hall of Fame entry). The player is directed to **Spear Pillar** to resolve a
-   disturbance involving Dialga and Palkia. Both can be **caught** there. Who directs the player is open (see *Open*).
+   disturbance involving Dialga and Palkia. Both can be **caught** there. The **Celestic Town elder** meets the
+   player at home (where they wake after the Hall of Fame) and sends them to Spear Pillar (owner).
 2. **The Elite Four rematch stays locked until both the Dialga and Palkia encounters are completed.** The NPC at the
    Pokémon League who prompts you to save before the Elite Four blocks the rematch until then.
 3. **Elite Four rematch.** Once it's open, the player may rematch the Elite Four any number of times, from completing
    Dialga and Palkia up to the Sovereign battle.
 4. **After beating Cynthia the second time,** Cynthia directs the player back to Spear Pillar to resolve the mystery
-   that has been unfolding all game. That opens the throne room and the battle with Sovereign Henry.
+   that has been unfolding all game. With the complete crown (all 11 trials), Sovereign Henry appears at the throne.
+5. **After the Sovereign battle,** the Elite Four can still be rematched, and from then on **every Elite Four member
+   and Cynthia has a Lv. 100 team** (owner).
 
 Alongside these, after the first Hall of Fame:
 - **The Chronicles** (Archivist): each chapter's legendaries arrive from another world. The Archivist works out that
@@ -77,48 +80,64 @@ Alongside these, after the first Hall of Fame:
   - She is very close to Henry. Their exact relationship is hinted at but never stated, and kept PG.
   - She is the reason Henry uses a Garchomp, her signature Pokémon.
 
-## Totem trials: prompts and gates (proposal, 2026-10-22)
+## Totem trials: gates and the crown (owner, 2026-10-22)
 
-Owner: the game needs prompts that push the player to complete the Totem trials, and maybe events gated behind them.
-Henry's pre-battle line ("all 11 of my trials") already implies one gate, so this is the proposal:
+The Totem trials are part of the story's path: Team Galactic's encounters wait on them, and the crown they leave
+behind is what calls the Sovereign to Spear Pillar.
 
-**The gate**
-- **The Sovereign battle needs all 11 trials.** After the second win against Cynthia, she still sends the player to
-  Spear Pillar, but the throne room stays sealed until every trial is passed.
-  - The seal shows the crown mark, with one light per trial passed.
-- **Nothing in the main story is gated.** Decision 18 keeps the trials optional along the way, so a player who skips
-  some can come back for them after the Hall of Fame. The trials stay open after the Elite Four.
-- Possible second gate (owner's call): the last Chronicle chapter, or a Sovereign-themed reward, only after all 11.
+### Galactic encounters wait on the trials (owner)
 
-**The prompts**
-- **A progress item** (key item, e.g. *Sovereign Seal*): received at the first trial passed. It shows the crown with
-  one gem lit per trial, and its description names the next unfinished trial's region ("A faint light points
-  toward Eterna…").
-- **Rumours as the story goes on:** once a trial is open and unfinished, a Pokémon Center NPC in the nearby towns
-  mentions "a huge Pokémon that won't leave" the trial's area.
-- **The Town Map** marks open, unfinished trials (if the Town Map can show it cheaply; otherwise the rumours are
-  enough).
-- **After the Hall of Fame:** if trials remain, Cynthia (at the throne-room seal, or in her scene after the second
-  win) points out the unlit gems.
+Each Team Galactic encounter stays out of reach until the trials placed before it (`data/totem_trials.yaml`, in the
+fight order of `data/level_caps.yaml`) are completed. The gate uses NPCs who already block the way in Platinum: where
+one stands somewhere useful, "the trial is done" is added to what moves them (owner: "There are a few NPCs who block
+the map already; if they're placed in opportune areas, add the totem trial to the criteria to unlock them"). Where no
+such NPC exists, a new one is placed (E11 finds them).
 
-**Open questions**
-1. Is gating only the Sovereign battle the right amount, or should something earlier wait on trials too?
-2. The progress item: a key item, a mark on the Trainer Card, or both?
+| Galactic encounter | Trials needed first |
+|---|---|
+| Commander Mars (Valley Windworks) | Gumshoos (Route 205 South) |
+| Commander Jupiter (Eterna Building) | Ribombee (Floaroma Meadow), Vikavolt (Eterna Forest) |
+| Galactic Boss Cyrus (Celestic Town) | Mimikyu (Old Chateau), Alolan Marowak (Lost Tower), Alolan Raticate (Galactic Warehouse), Lurantis (Great Marsh), Araquanid (Route 213) |
+| Saturn and Mars (the lakes) | Salazzle (Fuego Ironworks) |
+| Mars and Jupiter (Spear Pillar) | Kommo-o (Mt. Coronet) |
+| — | Togedemaru (Vista Lighthouse): after the Distortion World, so it gates no Galactic encounter. It's always the last trial, so it gives the crown diamond |
+
+- The blocking NPC's line nudges the player toward the open trial (e.g. a huge Pokémon nearby that won't leave),
+  so the gate doubles as the prompt.
+- This changes decision 18: the trials are no longer optional along the story (Togedemaru's can wait until the
+  post-game).
+
+### The crown (owner)
+
+- **After each trial,** once the follow-up encounter where the Totem can be caught is over (**whether or not the
+  player catches it**), the player finds a crown piece on the ground.
+- **The pieces:** the first is a **Gold Shard**; later trials give jewels or more gold shards. The 11th piece, from
+  the last trial (Togedemaru), is the **Crown Diamond**.
+- **Can't be sold or thrown away:** all are key items.
+- **The realisation:** as the pieces add up, their descriptions start to hint that they fit together into a crown.
+- **The gate:** the **complete 11-piece crown is required for the Sovereign to appear at Spear Pillar.** Without it
+  the throne stays empty, even after Cynthia sends the player there.
 
 ## Engineering notes
 
 - **Dialga/Palkia trigger:** the first Hall of Fame entry, instead of the National Pokédex. Find the flag or variable
   Platinum's Spear Pillar post-game script checks, plus a scene or message directing the player there.
+- **Celestic elder at home:** a scene in the player's house the first time they wake there after the Hall of Fame.
+- **Galactic gates:** each gating NPC's script checks the trial flags in the table above (one flag per trial, set
+  when its catch encounter ends).
+- **Crown pieces:** 11 new key items (key items can't be sold or tossed). Open: whether they merge into one
+  "Sovereign Crown" item once all 11 are held.
 - **Elite Four rematch lock:** the League's save-prompt NPC checks a "Dialga and Palkia both done" condition
   (caught or defeated) before letting the player through for a rematch.
 - **Henry's unlock:** the second win against Cynthia (the Elite Four rematch, Sovereign's E4 format:
-  `docs/EliteFourFormat.md`) sets the flag that opens the throne room, and Cynthia's scene sends the player there.
-  Elite Four rematches stay repeatable afterwards (unlimited until the Sovereign battle).
+  `docs/EliteFourFormat.md`) sets the flag, and Cynthia's scene sends the player there. Henry appears only if the
+  player also holds all 11 crown pieces. Elite Four rematches stay repeatable throughout.
+- **Elite Four after the Sovereign:** a third set of teams for the Elite Four and Cynthia, all Lv. 100, used once
+  Henry is beaten (T1, with the boss team compositions).
 - **The Sovereign title** shows in three places (owner): the Trainer Card, the Hall of Fame record, and NPC lines
   after the battle (a flag the relevant scripts check).
 - **Cynthia's appearance:** a scripted scene after the battle at Spear Pillar, using her existing overworld sprite.
-- **Totem trial messages:** one short text per trial, plus the crown mark (a small graphic or a symbol in the text).
-- **New text:** the Oreburgh exhibit, Rowan's remark, the Celestic elder's lines, a Canalave book, the Archivist's
+- **New text:** the crown pieces' descriptions, the gating NPCs' lines, the Celestic elder at home, the Oreburgh exhibit, Rowan's remark, the Celestic elder's lines, a Canalave book, the Archivist's
   lines, the Regional Forms Park log, Cynthia's lines after the battle. Henry's intro, defeat and ending text: the
   owner.
 - **The throne room at Spear Pillar:** a map change (a new area or a new state of the existing map).
@@ -127,12 +146,16 @@ Henry's pre-battle line ("all 11 of my trials") already implies one gate, so thi
 
 ## Open
 
-- **Who directs the player to Spear Pillar after the first Hall of Fame?** Options: Cynthia at the Hall of Fame,
-  Professor Rowan by phone/visit, or the Celestic Town elder.
-- **After the Sovereign battle,** can the Elite Four still be rematched? (The owner's rule covers the time up to
-  the Sovereign battle.)
+- Do the crown pieces merge into one "Sovereign Crown" item once all 11 are held?
+- The names of pieces 2–10 (jewels or more gold shards; owner: "might yield jewels or other gold shards").
+- Togedemaru's trial gates nothing in the main story. Should something (e.g. Volkner's Gym) wait on it, or is the
+  crown enough?
 
 ## Settled after review
 
 - **11 trials** (owner): Henry's line refers to 11 Totem trials, the number in `data/totem_trials.yaml`.
 - **The title** shows on the Trainer Card, in the Hall of Fame record and in NPC lines (owner).
+- **Who directs the player to Spear Pillar after the first Hall of Fame:** the Celestic Town elder, at the
+  player's home (owner).
+- **Elite Four after the Sovereign battle:** rematches continue, all at Lv. 100 (owner).
+- **Totem gates:** Galactic encounters wait on the trials before them; the full crown calls the Sovereign (owner).
