@@ -77,6 +77,34 @@ Alongside these, after the first Hall of Fame:
   - She is very close to Twich. Their exact relationship is hinted at but never stated, and kept PG.
   - She is the reason Twich uses a Garchomp, her signature Pokémon.
 
+## Totem trials: prompts and gates (proposal, 2026-10-22)
+
+Owner: the game needs prompts that push the player to complete the Totem trials, and maybe events gated behind them.
+Twich's pre-battle line ("all 11 of my trials") already implies one gate, so this is the proposal:
+
+**The gate**
+- **The Sovereign battle needs all 11 trials.** After the second win against Cynthia, she still sends the player to
+  Spear Pillar, but the throne room stays sealed until every trial is passed.
+  - The seal shows the crown mark, with one light per trial passed.
+- **Nothing in the main story is gated.** Decision 18 keeps the trials optional along the way, so a player who skips
+  some can come back for them after the Hall of Fame. The trials stay open after the Elite Four.
+- Possible second gate (owner's call): the last Chronicle chapter, or a Sovereign-themed reward, only after all 11.
+
+**The prompts**
+- **A progress item** (key item, e.g. *Sovereign Seal*): received at the first trial passed. It shows the crown with
+  one gem lit per trial, and its description names the next unfinished trial's region ("A faint light points
+  toward Eterna…").
+- **Rumours as the story goes on:** once a trial is open and unfinished, a Pokémon Center NPC in the nearby towns
+  mentions "a huge Pokémon that won't leave" the trial's area.
+- **The Town Map** marks open, unfinished trials (if the Town Map can show it cheaply; otherwise the rumours are
+  enough).
+- **After the Hall of Fame:** if trials remain, Cynthia (at the throne-room seal, or in her scene after the second
+  win) points out the unlit gems.
+
+**Open questions**
+1. Is gating only the Sovereign battle the right amount, or should something earlier wait on trials too?
+2. The progress item: a key item, a mark on the Trainer Card, or both?
+
 ## Engineering notes
 
 - **Dialga/Palkia trigger:** the first Hall of Fame entry, instead of the National Pokédex. Find the flag or variable
