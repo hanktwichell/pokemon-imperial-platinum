@@ -40,7 +40,7 @@ Poké Ball per Pokémon, as optional fields in the trainer JSON. Reference: `doc
 - **Packer checks** (`tools/dataproc/src/trainerproc.c`): IVs 0–31; EVs at most 255 per stat and 510 in total; gender
   `"male"`/`"female"`; ball item IDs below 256.
 - **Prize money** reads the new layout too (`BattleScript_CalcPrizeMoney`).
-- **Test trainer:** `TRAINER_SOVEREIGN_TEST` ("Ace Trainer Twich"), added at the end of the trainer list with the
+- **Test trainer:** `TRAINER_SOVEREIGN_TEST` ("Ace Trainer Henry"), added at the end of the trainer list with the
   unused flag after the last trainer flag. Its team is the developer team (`docs/DeveloperBattle.md`) at Lv. 100 in a
   double battle, every Pokémon in a Luxury Ball (owner), with every held item from the owner's sets (E7's Charizardite Y, Blue Orb and Assault Vest included; Mega Evolution and Primal Reversion come with E8). The test build's SELECT+R now battles
   it instead of the Route 209 rival.

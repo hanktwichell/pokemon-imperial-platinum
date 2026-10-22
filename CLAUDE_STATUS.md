@@ -648,3 +648,15 @@ whether the Elite Four can be rematched after the Sovereign battle.
 1. PR and merge this.
 2. 12b #3: give spread moves credit for hitting both foes.
 3. 12b #8: check the Gen V+ ally-targeted support moves. Then item 11, boss-team effects first.
+
+---
+
+## CA-0011 — 2026-10-22, 4:23 pm US Central (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** the final opponent is renamed **Sovereign Henry** (owner; was Sovereign Twich, before that Sovereign
+Dev Twich). Class "Sovereign", name "Henry". Updated in `docs/Story.md`, `docs/DeveloperBattle.md` (naming
+history kept), `docs/ProjectStatus.md` (decision 23), `docs/TrainerFormat.md`, `docs/EngineChangelog.md`, and the
+test trainer's name in `decomp/res/trainers/data/sovereign_test.json`. Earlier CA entries in this file keep the old
+name, since the file is append-only.
+
+**Next 3 steps:** merge PR #19; 12b #3 (spread credit); 12b #8 (ally support moves).

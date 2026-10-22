@@ -68,7 +68,7 @@ Example (from `sovereign_test.json`):
 
 ## Testing
 
-- The test build's SELECT+R starts a double battle against `TRAINER_SOVEREIGN_TEST` ("Ace Trainer Twich"): the
+- The test build's SELECT+R starts a double battle against `TRAINER_SOVEREIGN_TEST` ("Ace Trainer Henry"): the
   developer team (`docs/DeveloperBattle.md`) in this format, at Lv. 100, with every held item (Charizard and Kyogre
   hold their Charizardite Y and Blue Orb; Mega Evolution and Primal Reversion come with E8).
 - `tools/test/check_trainer_party.py ROM XMAP SAVE [TRAINER_JSON]` starts that battle, decrypts every Pokémon the game

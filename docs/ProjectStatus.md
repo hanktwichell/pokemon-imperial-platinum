@@ -116,12 +116,12 @@ Made by the owner (2026-10-22):
 23. **The story: the Sovereign** (owner, 2026-10-22; `docs/Story.md`). The Sovereign are Sinnoh's old ruling class.
     Unseen by the player, they merge other Pokémon worlds into Sinnoh, in a story that runs alongside Team
     Galactic's. One vague reference comes early, then the player learns more through the Totem trials (the
-    Sovereign's tests) and the Chronicles. Everything comes together in the final battle against **Sovereign Twich**
-    (renamed from Sovereign Dev Twich), the last surviving member of the lineage, whose dialogue nods to him being the
-    developer. That battle opens after the Elite Four rematch and the Dialga and Palkia encounters at Spear Pillar.
+    Sovereign's tests) and the Chronicles. Everything comes together in the final battle against **Sovereign Henry**
+    (first named Sovereign Dev Twich, then Sovereign Twich; renamed by the owner), the last surviving member of the
+    lineage, whose dialogue nods to him being the developer.
     End goal (owner): **shield leading into succession**. The Sovereign stitched other worlds into Sinnoh to hold it
-    together against Galactic; Twich, the last heir, has held the seams alone and uses the Totem trials to find a
-    successor. Beating him grants the player the **Sovereign title**, and **Cynthia** (very close to Twich; the
+    together against Galactic; Henry, the last heir, has held the seams alone and uses the Totem trials to find a
+    successor. Beating him grants the player the **Sovereign title**, and **Cynthia** (very close to Henry; the
     reason he uses Garchomp) arrives to congratulate them. Event order: first Hall of Fame → Dialga and Palkia at
     Spear Pillar (catchable) → Elite Four rematch, locked until both are done and then repeatable → after the second
     win against Cynthia, she sends the player to Spear Pillar for the Sovereign battle.
@@ -130,6 +130,6 @@ Open:
 - Regional Forms Park (decision 22): which zone holds which forms, encounter rates, and when it opens (Route 221
   needs Surf; with the National Dex from the start, Pal Park's old National Dex gate no longer applies).
 - Special evolutions (decision 20): owner discussion pending.
-- The developer battle: Lv. 100 at Spear Pillar, leads Charizard-Y + Venusaur, custom weather-control AI (`DeveloperBattle.md`). Opponent: Sovereign Twich (decision 23). Open: text, sprites (owner's sprite coming soon).
+- The developer battle: Lv. 100 at Spear Pillar, leads Charizard-Y + Venusaur, custom weather-control AI (`DeveloperBattle.md`). Opponent: Sovereign Henry (decision 23). Open: text, sprites (owner's sprite coming soon).
 - Front sprites and the part 2 shiny pack (owner is sourcing them).
 - hg-engine and Smogon credit lists: Claude compiles them (owner, 2026-10-22).

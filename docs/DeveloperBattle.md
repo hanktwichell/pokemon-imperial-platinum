@@ -3,15 +3,15 @@
 A hidden, Red-style **double battle** against the mod's developer (the owner), with a custom team and a custom AI
 written for this fight. Roadmap item T2; the AI review for doubles is item 12b.
 
-- **Trainer:** Sovereign Twich (class "Sovereign", name "Twich"; renamed from Sovereign Dev Twich, owner 2026-10-22).
-  Twich is the last surviving member of the Sovereign lineage, and his dialogue refers to him being the game's
+- **Trainer:** Sovereign Henry (class "Sovereign", name "Henry"; owner 2026-10-22, see *Naming*).
+  Henry is the last surviving member of the Sovereign lineage, and his dialogue refers to him being the game's
   developer. The story behind the fight is in `docs/Story.md`.
 - **Location:** Spear Pillar, at the summit of Mt. Coronet: the Sovereign throne room (post-game).
 - **Unlocks** (owner): first Hall of Fame → Dialga and Palkia at Spear Pillar → the Elite Four rematch (locked until
   both are done) → after beating Cynthia the second time, she sends the player back to Spear Pillar. Event order:
   `docs/Story.md`.
 - **Afterwards:** the player is granted the Sovereign title, and Cynthia arrives to congratulate them
-  (`docs/Story.md`). Cynthia is the reason Twich uses a Garchomp.
+  (`docs/Story.md`). Cynthia is the reason Henry uses a Garchomp.
 - **Level:** 100 for the whole team.
 - **Leads:** always Charizard (Mega Y) and Venusaur.
 - **Concept:** a triple-weather team built as three synergy pairs:
@@ -88,10 +88,11 @@ Taking control of the weather by switching weather setters in and out is central
 
 - **Game:** Pokémon **Sovereign** Platinum (was "Imperial Platinum"). The ROM header title is `SOVEREIGN PL`, which
   fills the header's 12 characters exactly.
-- **Trainer:** class **Sovereign**, name **Twich**. In battle that reads "Sovereign Twich", 15 characters (Platinum's
+- **Trainer:** class **Sovereign**, name **Henry**. In battle that reads "Sovereign Henry", 15 characters (Platinum's
   longest is "Galactic Boss Cyrus", 19).
   - The name fits an NPC trainer's 7-character limit.
-- The first version was "Sovereign Dev Twich". The owner dropped "Dev" from the name; the dialogue makes the
+- Earlier names: "Sovereign Dev Twich", then "Sovereign Twich", then **Sovereign Henry** (owner, 2026-10-22). The
+  owner dropped "Dev" from the name; the dialogue makes the
   developer reference instead.
 
 ## Still open
