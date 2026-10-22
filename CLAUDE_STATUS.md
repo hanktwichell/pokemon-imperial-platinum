@@ -361,3 +361,44 @@ by this session before the rule. This entry updates it without rewriting it.
 2. E7 part 2: a Veilstone Department Store 2F held-item clerk (38 held items + 18 Gems), the Infinite Repel, and
    where the other new items are sold.
 3. E8 Mega Evolution, then the Pokédex (decision 21).
+
+---
+
+## CB-0008 — 2026-10-22, 3:26 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:**
+- **PR #15 (E7 part 1) merged.** The branch was reset to main `b103b8a6`.
+- **Veilstone Dept. Store sells the new held items and Gems** (owner request): a Vitamins / Held items / Gems menu
+  on the 2F vitamin clerk (`decomp/res/field/scripts/scripts_veilstone_store_2f.s`).
+  - The stock is generated into `decomp/include/data/sovereign_mart_items.h` and registered with two new shop IDs
+    (appended to `decomp/generated/mart_specialties_id.txt`).
+  - Booster Energy costs ₽10,000 (`PRICES` in `gen_items.py`).
+- **Shop price field is 5 digits** (`decomp/src/overlay007/shop_menu.c`): ₽10,000+ items used to show "₽?000".
+- **Icons are centred like Platinum's** (owner request): art in the top-left 24×24, centred on (11.5, 11.5), so it
+  sits centred in the bag preview box.
+- Owner note recorded: Galarian Articuno, Zapdos and Moltres are rare encounters only in the Regional Forms Park's
+  Galar zone (decision 22).
+- **Heads-up:** Claude A (branch `claude/festive-bardeen-5h7beo`, entries CA-####) is doing E9 (trainer format).
+  Their branch touches `CLAUDE_STATUS.md`, `EngineChangelog.md`, `EngineRoadmap.md`, `ProjectStatus.md`,
+  `field_control.c` and `build_test_rom.sh`, so expect small merge conflicts. Resolve them by keeping both sides.
+
+**Verified:**
+- The held-item shop list renders with prices, icons and descriptions.
+- 5-digit prices display.
+- Icons are centred in the bag preview.
+- `boot_smoke.py` passes.
+- **Not checked in game:** the 2F clerk menu (Veilstone isn't reachable in the test build yet).
+
+**Files modified:**
+- `tools/engine/gen_items.py`, `decomp/include/data/sovereign_mart_items.h` (new), `decomp/include/data/mart_items.h`
+- `decomp/generated/mart_specialties_id.txt`, `decomp/src/scrcmd_shop.c`, `decomp/src/overlay007/shop_menu.c`
+- `decomp/res/field/scripts/scripts_veilstone_store_2f.s`, `decomp/res/text/menu_entries.json`
+- `decomp/res/items/icons/*.png|.pal` (re-centred), `decomp/res/items/data/booster_energy.json`
+- `docs/EngineChangelog.md`, `docs/ItemChanges_Sovereign.md`, `docs/ProjectStatus.md`
+- `CLAUDE_STATUS.md` (this entry)
+
+**Next 3 steps:**
+1. A test-build warp shortcut (e.g. to the Veilstone Dept. Store) so map scripts like the 2F clerk can be checked in
+   game.
+2. The Infinite Repel key item (QoL #3). Then open the E7 part 2 PR.
+3. E8 Mega Evolution (MEGA button, form switch, Primal Reversion), then the Pokédex (decision 21).

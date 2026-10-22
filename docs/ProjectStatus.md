@@ -113,6 +113,8 @@ Made by the owner (2026-10-22):
     Its grounds on Route 221 become the **Regional Forms Park**: Pal Park's four areas (field, forest, mountain, sea)
     become Alola, Galar, Hisui and Paldea zones where the 59 regional forms (decision 16) live as wild Pokémon. The
     Catching Show layout is reused. Built with milestone FM, once regional forms exist.
+    - **Galarian Articuno, Zapdos and Moltres** roam the **Galar zone** as rare encounters (low odds). That's the only
+      place they can be caught (owner, 2026-10-22).
 
 Open:
 - Regional Forms Park (decision 22): which zone holds which forms, encounter rates, and when it opens (Route 221

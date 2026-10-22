@@ -42,3 +42,4 @@ evolution stones and held items are never replaced. Full table with map and scri
 | Mega Stone Sage | Snowpoint City | Icicle Badge | 8 Mega Stones |
 | Mega Stone Curator | Survival Area | Champion | 10 legendary/signature Mega Stones |
 | Evolution item seller *(Renegade)* | Snowpoint City | — | adds the 14 new evolution items sold in shops |
+| Veilstone Dept. Store, 2F vitamin clerk | Veilstone City | — | Menu: Vitamins / **Held items** (the 38 Gen V–IX held items) / **Gems** (all 18). Owner request. Booster Energy ₽10,000 (no official price) |

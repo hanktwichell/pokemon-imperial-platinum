@@ -1144,6 +1144,18 @@
     {
       "id": "MenuEntries_Text_StarPieces_10",
       "en_US": "10"
+    },
+    {
+      "id": "MenuEntries_Text_SovereignVitamins",
+      "en_US": "Vitamins"
+    },
+    {
+      "id": "MenuEntries_Text_SovereignHeldItems",
+      "en_US": "Held items"
+    },
+    {
+      "id": "MenuEntries_Text_SovereignGems",
+      "en_US": "Gems"
     }
   ]
 }

@@ -4,6 +4,23 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E7 part 2 — shops and icon placement (in progress)
+
+- **Veilstone Department Store sells the new held items** (owner request). The 2F vitamin clerk now shows a menu:
+  Vitamins / Held items / Gems.
+  - The stock lists are written by `gen_items.py` into `include/data/sovereign_mart_items.h`, as
+    `MART_SPECIALTIES_ID_VEILSTONE_2F_HELD_ITEMS` and `_GEMS`.
+  - Both count toward the store's regular-customer counter, like the other floors.
+  - No map edit was needed.
+- **Shop prices show 5 digits**, so ₽10,000–₽30,000 items (Ability Shield, Clear Amulet and so on) no longer show
+  "₽?000". Prices stay right-aligned, so Platinum's own prices don't move.
+- **Item icons are centred like Platinum's.** The art sits in the top-left 24×24 of the 32×32 icon, centred on
+  (11.5, 11.5), so it's centred in the bag's preview box. Six sprites larger than 24 px are scaled to fit.
+- Verified in the test build: the held-item shop list with prices, icons and descriptions (opened directly through
+  a temporary hook); 5-digit prices; icons centred in the bag preview next to vanilla ones.
+- **Not checked in game:** the 2F clerk's menu itself, since the test build can't reach Veilstone yet. The script
+  builds.
+
 ## E7 step 1 — 245 new items (in progress)
 
 - **245 items added** after Platinum's last (#468–712), from `data/items_sovereign.yaml` by

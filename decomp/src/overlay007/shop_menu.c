@@ -783,7 +783,8 @@ static void Shop_MenuPrintCallback(ListMenu *menu, u32 index, u8 yOffset)
             fmtString = MessageLoader_GetNewString(shopMenu->msgLoader, pl_msg_00000543_00009);
         }
 
-        StringTemplate_SetNumber(shopMenu->strTemplate, 0, price, 4, PADDING_MODE_SPACES, CHARSET_MODE_EN);
+        // Sovereign: 5 digits, for the Gen IX held items that cost ₽10,000 or more (right-aligned, so no shift).
+        StringTemplate_SetNumber(shopMenu->strTemplate, 0, price, 5, PADDING_MODE_SPACES, CHARSET_MODE_EN);
         StringTemplate_Format(shopMenu->strTemplate, string, fmtString);
 
         strWidth = Font_CalcStringWidth(FONT_SYSTEM, string, 0);
