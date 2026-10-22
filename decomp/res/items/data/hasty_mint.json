@@ -22,9 +22,9 @@
   "naturalGiftType": null,
   "preventToss": false,
   "canRegister": false,
-  "fieldPocket": "POCKET_ITEMS",
+  "fieldPocket": "POCKET_MEDICINE",
   "battlePocket": "BATTLE_POCKET_MASK_NONE",
-  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_HEALING",
   "battleUseCategory": "BATTLE_USE_CATEGORY_NONE",
   "itemUseParams": null
 }

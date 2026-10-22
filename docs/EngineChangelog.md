@@ -31,9 +31,17 @@ players and the verification that was run.
     (Single Strike; Rapid Strike comes with the forms milestone); Scyther → Kleavor (Scizor kept); Ursaring →
     Ursaluna; and the rest listed in `NewSpecies.md`.
   - New species' wild held items now include the new items PokeAPI lists (e.g. Absorb Bulb).
-- Not done yet:
-  - no hold effects;
-  - Mint and Ability Capsule/Patch field use.
+- **Mints, Ability Capsule and Ability Patch work** (Medicine pocket; used from the bag on a party Pokémon):
+  - A Mint sets the nature used for stats and shown on the summary. It's stored in 5 spare bits of the Pokémon data
+    (`mintNature`). Breeding, Synchronize and flavour likes keep the personality value's nature, as in Gen VIII.
+  - The Ability Capsule swaps between the two regular abilities. A spare bit (`abilitySlotSwapped`) keeps the swap
+    through evolution. It has no effect on a Pokémon with its Hidden Ability or with only one regular ability.
+  - The Ability Patch switches between the regular and Hidden Ability (Scarlet/Violet rules).
+  - Messages: "X's stats may have changed due to the Adamant Mint!" and "X's Ability changed to Y!".
+  - Code: `PartyMenu_TryUseSovereignTrainingItem` (`src/applications/party_menu/main.c`), the `BoxPokemon_GetNature`
+    and `BoxPokemon_CalcAbility` overrides (`src/pokemon.c`), and `MON_DATA_MINT_NATURE` /
+    `MON_DATA_ABILITY_SLOT_SWAPPED`.
+- Not done yet: hold effects.
 - Test build:
   - NEW GAME skips Rowan's intro (hold L to play it). Player "A", rival "Barry".
   - The new-game bag has six of the new items.
@@ -46,6 +54,9 @@ players and the verification that was run.
   - Using an evolution item opens the party screen, with "UNABLE!" for Pokémon it doesn't evolve.
   - Metal Alloy on Duraludon (temporary test party): ABLE!, then Duraludon evolved into Archaludon and the item was
     used up.
+  - Adamant Mint on Garchomp: the message, then "Adamant nature." with Attack raised and Sp. Atk lowered on the stats
+    page. Ability Patch on Garchomp: Sand Veil → Rough Skin. Ability Capsule on Archaludon: Sturdy → Stamina. Ability
+    Capsule on Garchomp (Hidden Ability): "It won't have any effect."
 
 ## E6 step 2 — species #494–1025
 

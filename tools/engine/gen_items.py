@@ -205,6 +205,7 @@ def item_lists(spec):
     groups = {
         "key": list(flat(spec["key_items"])) + ["Scroll of Darkness", "Scroll of Waters"],
         "evolution": [n for n in flat(spec["evolution_items"]) if not n.startswith("Scroll")] + ["Strawberry Sweet"],
+        "training": list(flat(spec["training"])),
     }
     order = []
     for k in ("held_items", "gems", "form_items", "evolution_items", "training", "key_items"):
@@ -272,6 +273,9 @@ def main():
             desc = ["?"]
         is_key = name in groups["key"]
         evo = name in groups["evolution"] or name.startswith("Scroll")
+        # Mints and the Ability Capsule/Patch open the party menu like medicine; the party menu applies them
+        # (PartyMenu_TryUseSovereignTrainingItem in src/applications/party_menu/main.c).
+        training = name in groups["training"]
         data = {
             "name": display,
             "plural": PLURALS.get(name, display if display.endswith("s") else display + "s"),
@@ -290,9 +294,10 @@ def main():
             "naturalGiftType": None,
             "preventToss": is_key,
             "canRegister": False,
-            "fieldPocket": "POCKET_KEY_ITEMS" if is_key else "POCKET_ITEMS",
+            "fieldPocket": "POCKET_KEY_ITEMS" if is_key else "POCKET_MEDICINE" if training else "POCKET_ITEMS",
             "battlePocket": "BATTLE_POCKET_MASK_NONE",
-            "fieldUseFunc": "ITEM_USE_FUNC_EVO_STONE" if evo else "ITEM_USE_FUNC_NONE",
+            "fieldUseFunc": ("ITEM_USE_FUNC_EVO_STONE" if evo else "ITEM_USE_FUNC_HEALING" if training
+                             else "ITEM_USE_FUNC_NONE"),
             "battleUseCategory": "BATTLE_USE_CATEGORY_NONE",
             "itemUseParams": {} if evo else None,
         }

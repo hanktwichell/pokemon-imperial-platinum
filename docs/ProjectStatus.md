@@ -21,7 +21,7 @@ and T2 only. See `EngineRoadmap.md` for the per-milestone breakdown.
 | E0b | Fairy type + Gen VI+ type chart | ✅ done (checked against the official chart) |
 | E13 | Options: level cap, Infinite Rare Candy, party Exp. Share, music volume | ✅ done (PR #5); verified in battle with the test build |
 | E1 | Own save signature, ROM title/banner "Pokémon Sovereign Platinum" | ✅ done (PR #7) |
-| E14 | Approved QoL | 🟡 4 of 8 done (IV/EV viewer, Repel prompt, HM-free field moves, Gen VI+ breeding; all tested in-game). The type-effectiveness indicator is shelved by the owner. Mints, Infinite Repel and Ability Capsule wait for E7/E4 |
+| E14 | Approved QoL | 🟡 4 of 8 done (IV/EV viewer, Repel prompt, HM-free field moves, Gen VI+ breeding; all tested in-game). The type-effectiveness indicator is shelved by the owner. Mints and the Ability Capsule/Patch work as items (E7); their sales and the Infinite Repel come next |
 | — | Test build (`tools/test/build_test_rom.sh`): test party at new game, SELECT = wild battle, SELECT+R = trainer battle | ✅ working |
 | E3 | All 919 moves, ID = official number; 93 new moves exact, 76 approximate, 211 placeholder (`MoveChecklist.md`) | ✅ done (PR #9); tested in battle |
 | E5 | Gen IX stats, types and learnsets for #1–493 and forms; 32-bit learnset entries | ✅ done (PR #9); tested in battle |
@@ -101,8 +101,13 @@ Made by the owner (2026-10-22):
 20. **Special evolutions** (Gholdengo's 999 coins, Malamar's upside-down console and other conditions Gen IV can't
     check) are to be discussed with the owner later. Until then the methods in `EvolutionChanges_Sovereign.md`
     stand.
+21. **After E7/E8, the next focus is the Pokédex** (owner, 2026-10-22): every new Pokémon is in the dex, and a dex
+    number never shows "???" (today the summary shows "???" for a species outside Sinnoh's regional dex before the
+    National Dex is obtained).
 
 Open:
+- Pokédex (decision 21): add the new species to the Sinnoh regional dex (decision 6 kept it as in Platinum), show
+  National Dex numbers from the start, or both?
 - Special evolutions (decision 20): owner discussion pending.
 - The developer battle: Lv. 100 at Spear Pillar, leads Charizard-Y + Venusaur, custom weather-control AI (`DeveloperBattle.md`). Opponent: Sovereign Dev Twich. Open: text, sprites (owner's sprite coming soon), Charizard's final moveset.
 - Front sprites and the part 2 shiny pack (owner is sourcing them).

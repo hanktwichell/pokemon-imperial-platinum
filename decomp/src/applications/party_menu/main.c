@@ -10,6 +10,7 @@
 #include "constants/pokemon.h"
 #include "constants/string.h"
 #include "generated/items.h"
+#include "generated/natures.h"
 #include "generated/moves.h"
 #include "generated/pokemon_contest_types.h"
 
@@ -2700,6 +2701,108 @@ static u8 HandleSpecialInput(PartyMenuApplication *application)
     return menuInput;
 }
 
+// Sovereign: Mints set the nature used for stats, the Ability Capsule swaps a Pokémon's two regular abilities, and the
+// Ability Patch switches between its regular and Hidden Ability (Scarlet/Violet rules). FALSE for any other item.
+static BOOL PartyMenu_TryUseSovereignTrainingItem(PartyMenuApplication *app)
+{
+    static const u16 sMintNatures[][2] = {
+        { ITEM_LONELY_MINT, NATURE_LONELY },
+        { ITEM_ADAMANT_MINT, NATURE_ADAMANT },
+        { ITEM_NAUGHTY_MINT, NATURE_NAUGHTY },
+        { ITEM_BRAVE_MINT, NATURE_BRAVE },
+        { ITEM_BOLD_MINT, NATURE_BOLD },
+        { ITEM_IMPISH_MINT, NATURE_IMPISH },
+        { ITEM_LAX_MINT, NATURE_LAX },
+        { ITEM_RELAXED_MINT, NATURE_RELAXED },
+        { ITEM_MODEST_MINT, NATURE_MODEST },
+        { ITEM_MILD_MINT, NATURE_MILD },
+        { ITEM_RASH_MINT, NATURE_RASH },
+        { ITEM_QUIET_MINT, NATURE_QUIET },
+        { ITEM_CALM_MINT, NATURE_CALM },
+        { ITEM_GENTLE_MINT, NATURE_GENTLE },
+        { ITEM_CAREFUL_MINT, NATURE_CAREFUL },
+        { ITEM_SASSY_MINT, NATURE_SASSY },
+        { ITEM_TIMID_MINT, NATURE_TIMID },
+        { ITEM_HASTY_MINT, NATURE_HASTY },
+        { ITEM_JOLLY_MINT, NATURE_JOLLY },
+        { ITEM_NAIVE_MINT, NATURE_NAIVE },
+        { ITEM_SERIOUS_MINT, NATURE_SERIOUS },
+    };
+    u16 item = app->partyMenu->usedItemID;
+    Pokemon *mon = Party_GetPokemonBySlotIndex(app->partyMenu->party, app->currPartySlot);
+    BOOL isEgg = Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
+    u32 textID = PartyMenu_Text_ItWontHaveAnyEffect;
+    u32 i;
+
+    for (i = 0; i < NELEMS(sMintNatures); i++) {
+        if (sMintNatures[i][0] == item) {
+            break;
+        }
+    }
+
+    if (i < NELEMS(sMintNatures)) {
+        if (!isEgg && Pokemon_GetNature(mon) != sMintNatures[i][1]) {
+            u8 mintNature = sMintNatures[i][1] + 1;
+
+            Pokemon_SetValue(mon, MON_DATA_MINT_NATURE, &mintNature);
+            Pokemon_CalcStats(mon);
+            textID = PartyMenu_Text_SovereignMintUsed;
+        }
+    } else if (item == ITEM_ABILITY_CAPSULE || item == ITEM_ABILITY_PATCH) {
+        int species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+        int form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+        int ability1 = SpeciesData_GetFormValue(species, form, SPECIES_DATA_ABILITY_1);
+        int ability2 = SpeciesData_GetFormValue(species, form, SPECIES_DATA_ABILITY_2);
+        int hiddenAbility = SpeciesData_GetFormValue(species, form, SPECIES_DATA_ABILITY_HIDDEN);
+        u8 hasHiddenAbility = Pokemon_GetValue(mon, MON_DATA_HAS_HIDDEN_ABILITY, NULL);
+        int oldAbility = Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL);
+
+        if (isEgg) {
+            // no effect
+        } else if (item == ITEM_ABILITY_CAPSULE) {
+            if (!hasHiddenAbility && ability2 != ABILITY_NONE && ability1 != ability2) {
+                u8 swapped = !Pokemon_GetValue(mon, MON_DATA_ABILITY_SLOT_SWAPPED, NULL);
+
+                Pokemon_SetValue(mon, MON_DATA_ABILITY_SLOT_SWAPPED, &swapped);
+                Pokemon_CalcAbility(mon);
+            }
+        } else if (hiddenAbility != ABILITY_NONE) {
+            hasHiddenAbility = !hasHiddenAbility;
+            Pokemon_SetValue(mon, MON_DATA_HAS_HIDDEN_ABILITY, &hasHiddenAbility);
+            Pokemon_CalcAbility(mon);
+        }
+
+        if (Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL) != oldAbility) {
+            textID = PartyMenu_Text_SovereignAbilityChanged;
+        }
+    } else {
+        return FALSE;
+    }
+
+    if (textID == PartyMenu_Text_ItWontHaveAnyEffect) {
+        PartyMenu_PrintLongMessage(app, PartyMenu_Text_ItWontHaveAnyEffect, TRUE);
+    } else {
+        String *format = MessageLoader_GetNewString(app->messageLoader, textID);
+
+        Bag_TryRemoveItem(app->partyMenu->bag, item, 1, HEAP_ID_PARTY_MENU);
+        StringTemplate_SetNickname(app->template, 0, Pokemon_GetBoxPokemon(mon));
+
+        if (textID == PartyMenu_Text_SovereignMintUsed) {
+            StringTemplate_SetItemName(app->template, 1, item);
+        } else {
+            StringTemplate_SetAbilityName(app->template, 1, Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL));
+        }
+
+        StringTemplate_Format(app->template, app->tmpString, format);
+        String_Free(format);
+        PartyMenu_PrintLongMessage(app, PRINT_MESSAGE_PRELOADED, TRUE);
+    }
+
+    app->currPartySlot = PARTY_MENU_SLOT_CANCEL;
+    app->callback = PartyMenuCB_PrintThenWaitABPress;
+    return TRUE;
+}
+
 static int ApplyItemEffectOnPokemon(PartyMenuApplication *app)
 {
     ItemData *itemData = Item_Load(app->partyMenu->usedItemID, 0, HEAP_ID_PARTY_MENU);
@@ -2710,6 +2813,11 @@ static int ApplyItemEffectOnPokemon(PartyMenuApplication *app)
         Heap_Free(itemData);
         PartyMenu_SetupFormChangeAnim(app);
         return PARTY_MENU_STATE_WAIT_FORM_CHANGE;
+    }
+
+    if (PartyMenu_TryUseSovereignTrainingItem(app) == TRUE) {
+        Heap_Free(itemData);
+        return PARTY_MENU_STATE_EXEC_CALLBACK;
     }
 
     if (Item_Get(itemData, ITEM_PARAM_PP_UP) != FALSE || Item_Get(itemData, ITEM_PARAM_PP_MAX) != FALSE) {

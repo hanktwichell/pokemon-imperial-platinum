@@ -268,3 +268,50 @@ by this session before the rule. This entry updates it without rewriting it.
 2. Open the E7 PR (items, icons, evolutions, harness fixes) and merge it when CI is green (the owner allows this).
 3. Then: shops (Veilstone Department Store held items, Snowpoint evolution items, Mega Stone vendors) and hold-item
    battle effects by priority. Held-item forms (Crowned, masks) start milestone FM.
+
+---
+
+## CB-0005 — 2026-10-22, 3:13 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:**
+- **Mints, Ability Capsule and Ability Patch work** (QoL #1 and #11, item side). They're in the Medicine pocket with
+  `ITEM_USE_FUNC_HEALING` (opens the party menu). The party menu applies them in
+  `PartyMenu_TryUseSovereignTrainingItem` (`decomp/src/applications/party_menu/main.c`).
+  - Data: the 6 spare bits at block B 0x19 now hold `mintNature` (5 bits, nature+1) and `abilitySlotSwapped`
+    (1 bit). Accessors: `MON_DATA_MINT_NATURE` and `MON_DATA_ABILITY_SLOT_SWAPPED`, appended to
+    `decomp/generated/pokemon_data_params.txt`. `MON_DATA_UNUSED_113` now reads 0 and ignores writes.
+  - `BoxPokemon_GetNature` returns the Mint nature (stats, summary). Breeding, Synchronize and flavours keep the
+    personality's nature.
+  - `BoxPokemon_CalcAbility` XORs the personality's slot bit with `abilitySlotSwapped`, so the Capsule survives
+    evolution.
+  - The Patch toggles the Hidden Ability flag (Scarlet/Violet rules). The Capsule does nothing with a Hidden Ability
+    or a single regular ability.
+  - New party-menu texts: `PartyMenu_Text_SovereignMintUsed` and `PartyMenu_Text_SovereignAbilityChanged`.
+- Verified in game (test build; the test bag now also has an Adamant Mint, 2 Ability Capsules and an Ability Patch):
+  - Mint on Garchomp → "Adamant nature." with the right stat colours.
+  - Patch on Garchomp → Rough Skin.
+  - Capsule on Archaludon → Stamina.
+  - Capsule on Garchomp with its Hidden Ability → "It won't have any effect."
+  - The boot smoke test passes.
+- **Owner, decision 21:** after E7/E8, the next focus is the **Pokédex**. Every new Pokémon goes in the dex, and a
+  dex number never shows "???". Open question in `ProjectStatus.md`: expand the Sinnoh regional dex, show
+  National numbers from the start, or both.
+
+**Files modified:**
+- `decomp/include/struct_defs/pokemon.h`, `decomp/src/pokemon.c`, `decomp/generated/pokemon_data_params.txt`
+- `decomp/src/applications/party_menu/main.c`, `decomp/res/text/party_menu.json`
+- `decomp/src/script_manager.c` (test bag)
+- `tools/engine/gen_items.py` and the regenerated `decomp/res/items/data/*mint*.json` / `ability_*.json`
+- `docs/EngineChangelog.md`, `docs/QualityOfLife.md`, `docs/EngineRoadmap.md`, `docs/ProjectStatus.md`
+- `CLAUDE_STATUS.md` (this entry)
+
+**Next 3 steps:**
+1. Open the E7 PR (items, icons, evolutions, Mints/Capsule/Patch, harness fixes) and merge it when CI is green.
+2. E7 shops:
+   - Veilstone Department Store: new held items (owner).
+   - Snowpoint: evolution items.
+   - Route 208: Mints.
+   - Battle Tower: Ability Capsule.
+   - Mega Stone vendors: `MegaEvolution.md`.
+   - Also the Infinite Repel key item.
+3. E8 Mega Evolution. Then the Pokédex work (decision 21).

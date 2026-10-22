@@ -771,6 +771,9 @@ static void SovereignTest_SetupNewGame(FieldSystem *fieldSystem)
     Bag_TryAddItem(bag, ITEM_CHARIZARDITE_X, 1, HEAP_ID_FIELD2);
     Bag_TryAddItem(bag, ITEM_METAL_ALLOY, 1, HEAP_ID_FIELD2);
     Bag_TryAddItem(bag, ITEM_MEGA_RING, 1, HEAP_ID_FIELD2);
+    Bag_TryAddItem(bag, ITEM_ADAMANT_MINT, 1, HEAP_ID_FIELD2);
+    Bag_TryAddItem(bag, ITEM_ABILITY_CAPSULE, 2, HEAP_ID_FIELD2);
+    Bag_TryAddItem(bag, ITEM_ABILITY_PATCH, 1, HEAP_ID_FIELD2);
     SpecialEncounter *speEnc = SaveData_GetSpecialEncounters(fieldSystem->saveData);
     *SpecialEncounter_GetRepelSteps(speEnc) = 3;
     SpecialEncounter_SetLastRepel(speEnc, ITEM_SUPER_REPEL);

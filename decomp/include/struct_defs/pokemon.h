@@ -65,7 +65,8 @@ typedef struct PokemonDataBlockB {
                u8 form : 5;
     /* 0x19 */ u8 abilityHighBit : 1; //!< Sovereign: bit 8 of the ability ID (Gen IX IDs go past 255); low byte is in block A.
                u8 hasHiddenAbility : 1; //!< Sovereign: uses its species' hidden ability (kept through evolution).
-               u8 unused1 : 6; //!< HGSS used this byte for Shiny Leaves.
+               u8 mintNature : 5; //!< Sovereign: nature set by a Mint, plus 1 (0 = none). Used for stats instead of the PID's.
+               u8 abilitySlotSwapped : 1; //!< Sovereign: Ability Capsule used, so the other regular ability slot applies.
     /* 0x1A */ u16 unused2;
 
     /* 0x1C */ u16 EggLocation_PtHGSS;
