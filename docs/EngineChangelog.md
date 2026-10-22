@@ -18,11 +18,25 @@ players and the verification that was run.
   - 92 Mega Stones.
 - Names, prices and descriptions come from PokeAPI. 26 Gen IX descriptions are written in the generator. Three names
   over 16 characters are shortened.
+- Descriptions wrap by pixel width, measured with the message font (`res/fonts/font_message.json`). The box fits
+  214 pixels: Platinum's widest line. A wrap by character count overflowed it.
+- New names reach 94 pixels (Platinum's widest is 72). They fit the bag list, the "was given" message and the summary
+  screen's Item field. Shop lists are checked when the shops are added.
 - First pass:
   - placeholder icon;
   - no hold effects yet;
   - evolution items use the evolution-stone field use.
-- Verified with the test build: builds, boots, a save continues, the bag opens, a wild battle works.
+- Test build:
+  - NEW GAME skips Rowan's intro (hold L to play it). Player "A", rival "Barry".
+  - The new-game bag has six of the new items.
+  - `drive.py` boots with a blank battery: py-desmume reloads `~/.config/desmume/<rom>.dsv`, so "fresh" boots were
+    continuing an old save.
+  - `new_game.sh` reaches the bedroom from a blank battery.
+- Verified with the test build:
+  - The new items appear in the right pockets (Mega Ring in Key Items) with names, descriptions and the placeholder
+    icon.
+  - Heavy-Duty Boots can be given to Garchomp and shows on its summary screen.
+  - Using an evolution item opens the party screen, with "UNABLE!" for Pokémon it doesn't evolve.
 
 ## E6 step 2 — species #494–1025
 

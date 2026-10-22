@@ -3,9 +3,8 @@
   "plural": "Ground Memorys",
   "article": "a",
   "description": [
-    "A memory disc that contains Ground-type\n",
-    "data. It changes the type of the holder\n",
-    "if held by a certain species of Pokémon."
+    "A memory disc that contains\n",
+    "Ground-type data."
   ],
   "icon": {
     "sprite": "none_NCGR",

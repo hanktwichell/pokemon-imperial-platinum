@@ -172,3 +172,37 @@ by this session before the rule. This entry updates it without rewriting it.
 2. Real item icons, Mint/Ability Capsule/Patch use functions, and the 16 waiting evolutions (rerun
    `gen_new_species.py`).
 3. Open the E7 PR once the items are verified on screen.
+
+---
+
+## CB-0002 — 2026-10-22, about 3:40 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:**
+- **The E7 items are verified in game.** On a truly new game, the six test items appear in the right pockets (Mega
+  Ring in Key Items) with names, descriptions and the placeholder "?" icon.
+  - Heavy-Duty Boots can be given to Garchomp and shows in full on the summary screen.
+  - Using an evolution item opens "Use on which Pokémon?" with UNABLE! for non-evolvers.
+- **Descriptions wrap by pixel width.** `gen_items.py` now measures text with the message font's glyph widths
+  (`decomp/res/fonts/font_message.json` + `decomp/tools/msgenc/charmap.txt`) and wraps to 214 pixels, Platinum's
+  widest line. The old 40-character wrap overflowed the box ("…effects of trap|s").
+  - Names: Platinum's widest is 72 pixels, the new ones reach 94. They fit everywhere checked so far; shop lists are
+    still unchecked.
+- **Test build skips Professor Rowan's intro** at NEW GAME (`decomp/src/game_start.c`; hold L to play the intro).
+  The player is "A" (boy) and the rival "Barry".
+  - `tools/test/new_game.sh` now reaches the bedroom from a blank battery in a few seconds. The old version relied on
+    fragile intro timings.
+
+**Files modified:**
+- `decomp/src/game_start.c` (intro skip, test build only)
+- `tools/engine/gen_items.py` (pixel wrap) and the regenerated `decomp/res/items/data/*.json`
+- `tools/test/new_game.sh`, `tools/test/build_test_rom.sh`
+- `docs/EngineChangelog.md`
+- `CLAUDE_STATUS.md` (this entry)
+
+**Next 3 steps:**
+1. Real item icons. Convert PokeAPI's item sprites to Platinum's 24×24, 16-colour format, add them to
+   `res/items/icons/` and `item_icon.order` (the generator writes these), and credit them in CITATIONS.
+2. Mint and Ability Capsule/Patch field-use functions. Then wire up the 16 waiting evolutions by rerunning
+   `tools/engine/gen_new_species.py` now that the items exist, and test one (e.g. Duraludon + Metal Alloy).
+3. Open the E7 PR (items, harness fixes), then shops: Veilstone Department Store held items, Snowpoint evolution
+   items, Mega Stone vendors.

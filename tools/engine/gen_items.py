@@ -19,7 +19,6 @@ import json
 import os
 import re
 import sys
-import textwrap
 
 import yaml
 
@@ -29,7 +28,7 @@ ITEMS_TXT = os.path.join(DECOMP, "generated", "items.txt")
 DATA_DIR = os.path.join(DECOMP, "res", "items", "data")
 
 NAME_LEN = 16       # the bag's name buffer holds 18 characters; what fits on screen is checked in game
-DESC_WIDTH = 40     # Platinum's longest description line
+DESC_PX = 214       # pixel width of Platinum's widest description line (the box cuts off a 219-pixel line)
 DESC_LINES = 3
 # Names over NAME_LEN characters, shortened (the owner can change these).
 SHORT_NAMES = {
@@ -80,6 +79,39 @@ def stem_of(name):
     return re.sub(r"[^a-z0-9]+", "_", s).strip("_")
 
 
+def load_font():
+    """Glyph widths (pixels) of Platinum's message font, keyed by character."""
+    widths = json.load(open(os.path.join(DECOMP, "res", "fonts", "font_message.json")))["glyphWidths"]
+    chars = {}
+    for line in open(os.path.join(DECOMP, "tools", "msgenc", "charmap.txt"), encoding="utf-8"):
+        code, _, char = line.rstrip("\n").partition("=")
+        if len(char) == 1 and char not in chars:
+            try:
+                chars[char] = widths[int(code, 16) - 1]
+            except (ValueError, IndexError):
+                pass
+    return chars
+
+
+FONT = load_font()
+
+
+def px(text):
+    return sum(FONT[c] for c in text)
+
+
+def wrap_px(text, width):
+    lines, line = [], ""
+    for word in text.split(" "):
+        candidate = word if not line else line + " " + word
+        if px(candidate) <= width:
+            line = candidate
+        else:
+            lines.append(line)
+            line = word
+    return lines + [line]
+
+
 def wrap(text):
     # Platinum's character map has ’ but no ASCII apostrophe.
     text = " ".join(text.replace("\u00ad", "").replace("'", "’").split())
@@ -87,10 +119,10 @@ def wrap(text):
         part = text[:cut]
         if cut < len(text) and not part.endswith("."):
             continue
-        lines = textwrap.wrap(part, DESC_WIDTH)
+        lines = wrap_px(part, DESC_PX)
         if len(lines) <= DESC_LINES:
             return [l + "\n" for l in lines[:-1]] + [lines[-1]]
-    return [text[:DESC_WIDTH]]
+    raise SystemExit(f"description doesn't fit in {DESC_LINES} lines: {text}")
 
 
 def item_lists(spec):

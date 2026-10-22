@@ -4,8 +4,7 @@
   "article": "a",
   "description": [
     "A memory disc that contains Flying-type\n",
-    "data. It changes the type of the holder\n",
-    "if held by a certain species of Pokémon."
+    "data."
   ],
   "icon": {
     "sprite": "none_NCGR",

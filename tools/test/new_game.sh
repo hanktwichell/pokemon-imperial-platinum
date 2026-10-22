@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Start a new game headlessly and play the intro up to the player's bedroom (player "A" (boy), rival "Barry").
+# Start a new game headlessly up to the player's bedroom (player "A" (boy), rival "Barry"). Needs the test build,
+# which skips Professor Rowan's intro (src/game_start.c); drive.py boots with a blank battery.
 # Writes an emulator save state at the bedroom. Save states only work with the ROM they were made with, so
 # rerun this after every rebuild.
 #
@@ -14,19 +15,9 @@ export SDL_VIDEODRIVER="${SDL_VIDEODRIVER:-dummy}" SDL_AUDIODRIVER="${SDL_AUDIOD
 rep() { local n=$1; shift; for _ in $(seq "$n"); do echo -n "$* "; done; }
 
 acts=(
-  wait:600 'A*30' 'START*20' wait:120                            # title -> Rowan
-  $(rep 10 A wait:40)                                            # Rowan's speech -> info menu
-  DOWN DOWN A wait:60 $(rep 11 A wait:40)                        # NO INFO NEEDED
-  wait:180 touch:128,97 wait:240 $(rep 7 A wait:40)              # touch the Poke Ball
-  $(rep 17 A wait:60)                                            # -> boy or girl
-  wait:60 touch:120,80 wait:150 A wait:100 A wait:100            # boy
-  A wait:200 A A wait:30 START wait:30 A wait:200                # name "A"
-  wait:60 touch:120,80 wait:150 $(rep 3 A wait:100) A wait:100 A wait:150
-  A wait:100 A wait:100
-  wait:120 DOWN wait:20 A wait:200                               # rival name menu
-  DOWN wait:20 A wait:150 touch:120,80 wait:150                  # Barry
-  A wait:150 touch:120,80 wait:200
-  A wait:150 A wait:200 $(rep 40 A wait:60)                      # -> bedroom
+  wait:600 A wait:200 A wait:200                                 # title -> main menu (a blank battery has no CONTINUE)
+  A wait:400                                                     # NEW GAME: the test build skips Rowan's intro
+  $(rep 12 A wait:60) wait:120                                   # the TV program in the bedroom -> free to move
   shot:bedroom
 )
 python3 -W ignore tools/test/drive.py "$rom" - "$out" "$dir" "${acts[@]}" >/dev/null 2>&1

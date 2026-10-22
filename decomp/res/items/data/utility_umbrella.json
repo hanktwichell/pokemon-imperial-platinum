@@ -3,9 +3,7 @@
   "plural": "Utility Umbrellas",
   "article": "an",
   "description": [
-    "An item to be held by a Pokémon. This\n",
-    "sturdy umbrella protects the holder from\n",
-    "the effects of rain and harsh sunlight."
+    "An item to be held by a Pokémon."
   ],
   "icon": {
     "sprite": "none_NCGR",
