@@ -1,0 +1,209 @@
+{
+    "base_stats": {
+        "hp": 64,
+        "attack": 88,
+        "defense": 50,
+        "speed": 106,
+        "special_attack": 88,
+        "special_defense": 50
+    },
+    "types": [
+        "TYPE_DARK",
+        "TYPE_DARK"
+    ],
+    "catch_rate": 90,
+    "base_exp_reward": 156,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 2,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_FIELD",
+        "EGG_GROUP_FIELD"
+    ],
+    "abilities": [
+        "ABILITY_LIMBER",
+        "ABILITY_UNBURDEN",
+        "ABILITY_PRANKSTER"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_SCRATCH"
+            ],
+            [
+                1,
+                "MOVE_GROWL"
+            ],
+            [
+                1,
+                "MOVE_SAND_ATTACK"
+            ],
+            [
+                1,
+                "MOVE_FAKE_OUT"
+            ],
+            [
+                12,
+                "MOVE_FURY_SWIPES"
+            ],
+            [
+                16,
+                "MOVE_TORMENT"
+            ],
+            [
+                23,
+                "MOVE_ASSURANCE"
+            ],
+            [
+                28,
+                "MOVE_HONE_CLAWS"
+            ],
+            [
+                34,
+                "MOVE_SUCKER_PUNCH"
+            ],
+            [
+                40,
+                "MOVE_NASTY_PLOT"
+            ],
+            [
+                46,
+                "MOVE_NIGHT_SLASH"
+            ],
+            [
+                52,
+                "MOVE_PLAY_ROUGH"
+            ]
+        ],
+        "by_tm": [
+            "TM11",
+            "TM12",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM23",
+            "TM30",
+            "TM41",
+            "TM42",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM58",
+            "TM65",
+            "TM66",
+            "TM68",
+            "TM73",
+            "TM79",
+            "TM82",
+            "TM86",
+            "TM89",
+            "TM90"
+        ],
+        "by_tutor": [
+            "MOVE_SNORE",
+            "MOVE_GUNK_SHOT",
+            "MOVE_SEED_BOMB",
+            "MOVE_TRICK",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_SWIFT"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_PURRLOIN",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 43,
+        "weight_pounds": 82.7,
+        "body_shape": "SHAPE_QUADRUPED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 293,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 293,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 15,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 15,
+        "en": {
+            "name": "LIEPARD",
+            "category": "Cruel Pokémon",
+            "entry_text": [
+                "This stealthy Pokémon sneaks up\n",
+                "behind prey without making any sound\n",
+                "at all."
+            ]
+        },
+        "fr": {
+            "name": "LÉOPARDUS",
+            "category": "Pokémon Implacable",
+            "entry_text": [
+                "Sans un bruit, il approche ses\n",
+                "victimes par-derrière pour les\n",
+                "frapper."
+            ]
+        },
+        "de": {
+            "name": "KLEOPARDA",
+            "category": "Cruel Pokémon",
+            "entry_text": [
+                "Dieses Pokémon schleicht sich völlig\n",
+                "geräuschlos von hinten an seine\n",
+                "Beute heran."
+            ]
+        },
+        "it": {
+            "name": "LIEPARD",
+            "category": "Cruel Pokémon",
+            "entry_text": [
+                "Si avvicina di soppiatto alla preda,\n",
+                "attaccandola alle spalle\n",
+                "all’improvviso."
+            ]
+        },
+        "es": {
+            "name": "LIEPARD",
+            "category": "Pokémon Calculador",
+            "entry_text": [
+                "Libra disputas territoriales con los\n",
+                "Thievul. Se acerca a sus rivales por\n",
+                "la espalda sin hacer el menor ruido."
+            ]
+        },
+        "jp": {
+            "name": "レパルダス",
+            "category": "れいこくポケモン",
+            "entry_text": [
+                "フォクスライと　なわばりを\n",
+                "めぐり　あらそう。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

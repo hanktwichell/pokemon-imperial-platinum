@@ -1,0 +1,222 @@
+{
+    "base_stats": {
+        "hp": 38,
+        "attack": 36,
+        "defense": 38,
+        "speed": 57,
+        "special_attack": 32,
+        "special_defense": 36
+    },
+    "types": [
+        "TYPE_NORMAL",
+        "TYPE_NORMAL"
+    ],
+    "catch_rate": 255,
+    "base_exp_reward": 47,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 1,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 15,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_FIELD",
+        "EGG_GROUP_FIELD"
+    ],
+    "abilities": [
+        "ABILITY_PICKUP",
+        "ABILITY_CHEEK_POUCH",
+        "ABILITY_HUGE_POWER"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_MUD_SLAP"
+            ],
+            [
+                1,
+                "MOVE_LEER"
+            ],
+            [
+                3,
+                "MOVE_TACKLE"
+            ],
+            [
+                6,
+                "MOVE_LASER_FOCUS"
+            ],
+            [
+                9,
+                "MOVE_QUICK_ATTACK"
+            ],
+            [
+                12,
+                "MOVE_MUD_SHOT"
+            ],
+            [
+                15,
+                "MOVE_FLAIL"
+            ],
+            [
+                18,
+                "MOVE_DOUBLE_KICK"
+            ],
+            [
+                21,
+                "MOVE_BULLDOZE"
+            ],
+            [
+                24,
+                "MOVE_DIG"
+            ],
+            [
+                27,
+                "MOVE_BOUNCE"
+            ],
+            [
+                30,
+                "MOVE_TAKE_DOWN"
+            ],
+            [
+                33,
+                "MOVE_SWORDS_DANCE"
+            ],
+            [
+                36,
+                "MOVE_EARTHQUAKE"
+            ],
+            [
+                39,
+                "MOVE_SUPER_FANG"
+            ]
+        ],
+        "by_tm": [
+            "TM08",
+            "TM17",
+            "TM23",
+            "TM26",
+            "TM28",
+            "TM31",
+            "TM36",
+            "TM37",
+            "TM39",
+            "TM42",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM56",
+            "TM58",
+            "TM66",
+            "TM71",
+            "TM75",
+            "TM80",
+            "TM82",
+            "TM86",
+            "TM89",
+            "TM90",
+            "HM03"
+        ],
+        "by_tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_ROLLOUT",
+            "MOVE_IRON_HEAD",
+            "MOVE_SNORE",
+            "MOVE_BOUNCE"
+        ],
+        "egg_moves": [
+            "MOVE_DEFENSE_CURL",
+            "MOVE_ROLLOUT"
+        ]
+    },
+    "evolutions": [
+        [
+            "EVO_LEVEL",
+            20,
+            "SPECIES_DIGGERSBY"
+        ]
+    ],
+    "offspring": "SPECIES_BUNNELBY",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 16,
+        "weight_pounds": 11.0,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 524,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 524,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 27,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 27,
+        "en": {
+            "name": "BUNNELBY",
+            "category": "Digging Pokémon",
+            "entry_text": [
+                "It’s very sensitive to danger."
+            ]
+        },
+        "fr": {
+            "name": "SAPEREAU",
+            "category": "Pokémon Fouisseur",
+            "entry_text": [
+                "Il est sensible au danger."
+            ]
+        },
+        "de": {
+            "name": "SCOPPEL",
+            "category": "Baugräber-Pokémon",
+            "entry_text": [
+                "Es ist permanent in\n",
+                "Alarmbereitschaft."
+            ]
+        },
+        "it": {
+            "name": "BUNNELBY",
+            "category": "Pokémon Scavabuche",
+            "entry_text": [
+                "È sempre all’erta contro i pericoli."
+            ]
+        },
+        "es": {
+            "name": "BUNNELBY",
+            "category": "Pokémon Excavador",
+            "entry_text": [
+                "Está en alerta permanente."
+            ]
+        },
+        "jp": {
+            "name": "BUNNELBY",
+            "category": "あなほりポケモン",
+            "entry_text": [
+                "シャベルのような　みみを　もつ。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

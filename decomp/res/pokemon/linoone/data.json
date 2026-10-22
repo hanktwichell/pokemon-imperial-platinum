@@ -109,7 +109,9 @@
             "MOVE_SWIFT"
         ]
     },
-    "evolutions": [  ],
+    "evolutions": [
+        [ "EVO_LEVEL_WITH_HELD_ITEM_NIGHT", "ITEM_RAZOR_CLAW", "SPECIES_OBSTAGOON" ]
+    ],
     "offspring": "SPECIES_ZIGZAGOON",
     "footprint": {
         "has": true,

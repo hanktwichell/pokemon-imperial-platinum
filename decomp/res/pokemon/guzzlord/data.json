@@ -1,0 +1,230 @@
+{
+    "base_stats": {
+        "hp": 223,
+        "attack": 101,
+        "defense": 53,
+        "speed": 43,
+        "special_attack": 97,
+        "special_defense": 53
+    },
+    "types": [
+        "TYPE_DARK",
+        "TYPE_DRAGON"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 255,
+    "ev_yields": {
+        "hp": 3,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_NO_GENDER",
+    "hatch_cycles": 120,
+    "base_friendship": 0,
+    "exp_rate": "EXP_RATE_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_UNDISCOVERED",
+        "EGG_GROUP_UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_BEAST_BOOST",
+        "ABILITY_NONE",
+        "ABILITY_NONE"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLACK",
+    "flip_sprite": false,
+    "icon_palette": 1,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_BITE"
+            ],
+            [
+                1,
+                "MOVE_DRAGON_TAIL"
+            ],
+            [
+                5,
+                "MOVE_SWALLOW"
+            ],
+            [
+                5,
+                "MOVE_STOCKPILE"
+            ],
+            [
+                10,
+                "MOVE_KNOCK_OFF"
+            ],
+            [
+                15,
+                "MOVE_STOMP"
+            ],
+            [
+                20,
+                "MOVE_STOMPING_TANTRUM"
+            ],
+            [
+                25,
+                "MOVE_WIDE_GUARD"
+            ],
+            [
+                30,
+                "MOVE_CRUNCH"
+            ],
+            [
+                35,
+                "MOVE_BODY_SLAM"
+            ],
+            [
+                40,
+                "MOVE_GASTRO_ACID"
+            ],
+            [
+                45,
+                "MOVE_HAMMER_ARM"
+            ],
+            [
+                50,
+                "MOVE_HEAVY_SLAM"
+            ],
+            [
+                55,
+                "MOVE_DRAGON_RUSH"
+            ],
+            [
+                60,
+                "MOVE_BELCH"
+            ],
+            [
+                65,
+                "MOVE_THRASH"
+            ],
+            [
+                70,
+                "MOVE_GIGA_IMPACT"
+            ]
+        ],
+        "by_tm": [
+            "TM02",
+            "TM15",
+            "TM17",
+            "TM23",
+            "TM26",
+            "TM31",
+            "TM35",
+            "TM36",
+            "TM38",
+            "TM39",
+            "TM42",
+            "TM44",
+            "TM46",
+            "TM56",
+            "TM58",
+            "TM59",
+            "TM60",
+            "TM65",
+            "TM66",
+            "TM68",
+            "TM71",
+            "TM74",
+            "TM79",
+            "TM80",
+            "TM82",
+            "TM84",
+            "TM90"
+        ],
+        "by_tutor": [
+            "MOVE_IRON_HEAD",
+            "MOVE_GASTRO_ACID",
+            "MOVE_SNORE",
+            "MOVE_OUTRAGE",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_HEAT_WAVE",
+            "MOVE_KNOCK_OFF"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_GUZZLORD",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 217,
+        "weight_pounds": 1957.7,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 683,
+        "pokemon_scale_f": 256,
+        "trainer_scale_m": 655,
+        "pokemon_scale_m": 256,
+        "trainer_pos_f": 26,
+        "pokemon_pos_f": 2,
+        "trainer_pos_m": 26,
+        "pokemon_pos_m": 2,
+        "en": {
+            "name": "GUZZLORD",
+            "category": "Junkivore Pokémon",
+            "entry_text": [
+                "An unknown life-form called a UB."
+            ]
+        },
+        "fr": {
+            "name": "GUZZLORD",
+            "category": "Pokémon Bizarrovore",
+            "entry_text": [
+                "L’une des dangereuses Ultra-\n",
+                "Chimères."
+            ]
+        },
+        "de": {
+            "name": "GUZZLORD",
+            "category": "Junkivore Pokémon",
+            "entry_text": [
+                "Eine unbekannte Lebensform, die zu\n",
+                "den Ultrabestien gehört."
+            ]
+        },
+        "it": {
+            "name": "GUZZLORD",
+            "category": "Pokémon Divoratutto",
+            "entry_text": [
+                "Una misteriosa forma di vita nota\n",
+                "come Ultracreatura."
+            ]
+        },
+        "es": {
+            "name": "GUZZLORD",
+            "category": "Pokémon Tragaldabas",
+            "entry_text": [
+                "Uno de los extraños Ultraentes.\n",
+                "Siempre está comiendo algo, como\n",
+                "poseído de un hambre insaciable."
+            ]
+        },
+        "jp": {
+            "name": "アクジキング",
+            "category": "あくじきポケモン",
+            "entry_text": [
+                "ＵＢと　よばれる　みちの\n",
+                "せいめい。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

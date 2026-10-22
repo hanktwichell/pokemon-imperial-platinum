@@ -1,0 +1,252 @@
+{
+    "base_stats": {
+        "hp": 75,
+        "attack": 98,
+        "defense": 70,
+        "speed": 75,
+        "special_attack": 114,
+        "special_defense": 70
+    },
+    "types": [
+        "TYPE_ELECTRIC",
+        "TYPE_POISON"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 176,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 2,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 25,
+    "base_friendship": 50,
+    "exp_rate": "EXP_RATE_MEDIUM_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_HUMAN_LIKE",
+        "EGG_GROUP_HUMAN_LIKE"
+    ],
+    "abilities": [
+        "ABILITY_PUNK_ROCK",
+        "ABILITY_PLUS",
+        "ABILITY_TECHNICIAN"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
+    "icon_palette": 2,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_SPARK"
+            ],
+            [
+                1,
+                "MOVE_LEER"
+            ],
+            [
+                1,
+                "MOVE_GROWL"
+            ],
+            [
+                1,
+                "MOVE_ACID"
+            ],
+            [
+                1,
+                "MOVE_THUNDER_SHOCK"
+            ],
+            [
+                1,
+                "MOVE_NUZZLE"
+            ],
+            [
+                1,
+                "MOVE_NOBLE_ROAR"
+            ],
+            [
+                1,
+                "MOVE_FLAIL"
+            ],
+            [
+                1,
+                "MOVE_BELCH"
+            ],
+            [
+                1,
+                "MOVE_TEARFUL_LOOK"
+            ],
+            [
+                1,
+                "MOVE_ACID_SPRAY"
+            ],
+            [
+                4,
+                "MOVE_CHARGE"
+            ],
+            [
+                8,
+                "MOVE_SHOCK_WAVE"
+            ],
+            [
+                12,
+                "MOVE_SCARY_FACE"
+            ],
+            [
+                16,
+                "MOVE_TAUNT"
+            ],
+            [
+                24,
+                "MOVE_SCREECH"
+            ],
+            [
+                28,
+                "MOVE_SWAGGER"
+            ],
+            [
+                32,
+                "MOVE_TOXIC"
+            ],
+            [
+                36,
+                "MOVE_DISCHARGE"
+            ],
+            [
+                40,
+                "MOVE_POISON_JAB"
+            ],
+            [
+                44,
+                "MOVE_OVERDRIVE"
+            ],
+            [
+                48,
+                "MOVE_BOOMBURST"
+            ],
+            [
+                52,
+                "MOVE_SHIFT_GEAR"
+            ]
+        ],
+        "by_tm": [
+            "TM06",
+            "TM11",
+            "TM12",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM24",
+            "TM25",
+            "TM31",
+            "TM34",
+            "TM36",
+            "TM42",
+            "TM44",
+            "TM46",
+            "TM56",
+            "TM57",
+            "TM58",
+            "TM60",
+            "TM68",
+            "TM73",
+            "TM82",
+            "TM84",
+            "TM87",
+            "TM90"
+        ],
+        "by_tutor": [
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_GUNK_SHOT",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_TOXEL",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 63,
+        "weight_pounds": 88.2,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 298,
+        "pokemon_scale_f": 224,
+        "trainer_scale_m": 292,
+        "pokemon_scale_m": 224,
+        "trainer_pos_f": 7,
+        "pokemon_pos_f": 1,
+        "trainer_pos_m": 6,
+        "pokemon_pos_m": 1,
+        "en": {
+            "name": "TOXTRICITY",
+            "category": "Punk Pokémon",
+            "entry_text": [
+                "This short-tempered and aggressive\n",
+                "Pokémon chugs stagnant water to\n",
+                "absorb any toxins it might contain."
+            ]
+        },
+        "fr": {
+            "name": "SALARSEN",
+            "category": "Pokémon Punk",
+            "entry_text": [
+                "This short-tempered and aggressive\n",
+                "Pokémon chugs stagnant water to\n",
+                "absorb any toxins it might contain."
+            ]
+        },
+        "de": {
+            "name": "RIFFEX",
+            "category": "Punk-Pokémon",
+            "entry_text": [
+                "This short-tempered and aggressive\n",
+                "Pokémon chugs stagnant water to\n",
+                "absorb any toxins it might contain."
+            ]
+        },
+        "it": {
+            "name": "TOXTRICITY",
+            "category": "Pokémon Punk",
+            "entry_text": [
+                "È litigioso e irascibile."
+            ]
+        },
+        "es": {
+            "name": "TOXTRICITY",
+            "category": "Pokémon Punki",
+            "entry_text": [
+                "Posee un carácter belicoso e\n",
+                "irascible."
+            ]
+        },
+        "jp": {
+            "name": "TOXTRICITY",
+            "category": "パンクポケモン",
+            "entry_text": [
+                "ケンカごしで　きが　みじかい。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

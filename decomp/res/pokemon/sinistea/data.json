@@ -1,0 +1,196 @@
+{
+    "base_stats": {
+        "hp": 40,
+        "attack": 45,
+        "defense": 45,
+        "speed": 50,
+        "special_attack": 74,
+        "special_defense": 54
+    },
+    "types": [
+        "TYPE_GHOST",
+        "TYPE_GHOST"
+    ],
+    "catch_rate": 120,
+    "base_exp_reward": 62,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 1,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_NO_GENDER",
+    "hatch_cycles": 20,
+    "base_friendship": 50,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_MINERAL",
+        "EGG_GROUP_AMORPHOUS"
+    ],
+    "abilities": [
+        "ABILITY_WEAK_ARMOR",
+        "ABILITY_NONE",
+        "ABILITY_CURSED_BODY"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_WITHDRAW"
+            ],
+            [
+                1,
+                "MOVE_ASTONISH"
+            ],
+            [
+                6,
+                "MOVE_AROMATIC_MIST"
+            ],
+            [
+                12,
+                "MOVE_MEGA_DRAIN"
+            ],
+            [
+                24,
+                "MOVE_SUCKER_PUNCH"
+            ],
+            [
+                30,
+                "MOVE_SWEET_SCENT"
+            ],
+            [
+                36,
+                "MOVE_GIGA_DRAIN"
+            ],
+            [
+                42,
+                "MOVE_NASTY_PLOT"
+            ],
+            [
+                48,
+                "MOVE_SHADOW_BALL"
+            ],
+            [
+                54,
+                "MOVE_MEMENTO"
+            ],
+            [
+                60,
+                "MOVE_SHELL_SMASH"
+            ]
+        ],
+        "by_tm": [
+            "TM04",
+            "TM17",
+            "TM19",
+            "TM29",
+            "TM30",
+            "TM42",
+            "TM44",
+            "TM48",
+            "TM58",
+            "TM61",
+            "TM79",
+            "TM82",
+            "TM90",
+            "TM92"
+        ],
+        "by_tutor": [
+            "MOVE_SPITE",
+            "MOVE_TRICK",
+            "MOVE_SUCKER_PUNCH"
+        ],
+        "egg_moves": [
+            "MOVE_ALLY_SWITCH"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_SINISTEA",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 4,
+        "weight_pounds": 0.4,
+        "body_shape": "SHAPE_HEAD",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 530,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 530,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 32,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 32,
+        "en": {
+            "name": "SINISTEA",
+            "category": "Black Tea Pokémon",
+            "entry_text": [
+                "The teacup in which this Pokémon\n",
+                "makes its home is a famous piece of\n",
+                "antique tableware."
+            ]
+        },
+        "fr": {
+            "name": "THÉFFROI",
+            "category": "Pokémon Thé Noir",
+            "entry_text": [
+                "Il élit domicile dans des tasses de\n",
+                "thé anciennes de grand renom."
+            ]
+        },
+        "de": {
+            "name": "FATALITEE",
+            "category": "Schwarztee-Pokémon",
+            "entry_text": [
+                "Die Teetasse, die es bewohnt, ist\n",
+                "eine berühmte Antiquität."
+            ]
+        },
+        "it": {
+            "name": "SINISTEA",
+            "category": "Pokémon Tè",
+            "entry_text": [
+                "La tazza da tè in cui vive è un vero\n",
+                "pezzo di antiquariato di cui\n",
+                "circolano molte copie contraffatte."
+            ]
+        },
+        "es": {
+            "name": "SINISTEA",
+            "category": "Pokémon Té",
+            "entry_text": [
+                "The teacup in which this Pokémon\n",
+                "makes its home is a famous piece of\n",
+                "antique tableware."
+            ]
+        },
+        "jp": {
+            "name": "ヤバチャ",
+            "category": "こうちゃポケモン",
+            "entry_text": [
+                "The teacup in which this Pokémon\n",
+                "makes its home is a famous piece of\n",
+                "antique tableware."
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

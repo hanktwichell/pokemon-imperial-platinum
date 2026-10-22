@@ -1,0 +1,237 @@
+{
+    "base_stats": {
+        "hp": 80,
+        "attack": 110,
+        "defense": 120,
+        "speed": 70,
+        "special_attack": 130,
+        "special_defense": 90
+    },
+    "types": [
+        "TYPE_FIRE",
+        "TYPE_WATER"
+    ],
+    "catch_rate": 3,
+    "base_exp_reward": 255,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 3,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_NO_GENDER",
+    "hatch_cycles": 120,
+    "base_friendship": 100,
+    "exp_rate": "EXP_RATE_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_UNDISCOVERED",
+        "EGG_GROUP_UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_WATER_ABSORB",
+        "ABILITY_NONE",
+        "ABILITY_NONE"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_STEAM_ERUPTION"
+            ],
+            [
+                1,
+                "MOVE_WATER_GUN"
+            ],
+            [
+                1,
+                "MOVE_FIRE_SPIN"
+            ],
+            [
+                6,
+                "MOVE_LEER"
+            ],
+            [
+                12,
+                "MOVE_WEATHER_BALL"
+            ],
+            [
+                18,
+                "MOVE_FLAME_CHARGE"
+            ],
+            [
+                24,
+                "MOVE_WATER_PULSE"
+            ],
+            [
+                30,
+                "MOVE_SCARY_FACE"
+            ],
+            [
+                36,
+                "MOVE_INCINERATE"
+            ],
+            [
+                42,
+                "MOVE_STOMP"
+            ],
+            [
+                48,
+                "MOVE_SCALD"
+            ],
+            [
+                54,
+                "MOVE_TAKE_DOWN"
+            ],
+            [
+                60,
+                "MOVE_MIST"
+            ],
+            [
+                60,
+                "MOVE_HAZE"
+            ],
+            [
+                66,
+                "MOVE_HYDRO_PUMP"
+            ],
+            [
+                78,
+                "MOVE_FLARE_BLITZ"
+            ],
+            [
+                84,
+                "MOVE_OVERHEAT"
+            ],
+            [
+                90,
+                "MOVE_EXPLOSION"
+            ]
+        ],
+        "by_tm": [
+            "TM03",
+            "TM05",
+            "TM11",
+            "TM12",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM22",
+            "TM26",
+            "TM28",
+            "TM31",
+            "TM35",
+            "TM36",
+            "TM37",
+            "TM38",
+            "TM39",
+            "TM42",
+            "TM44",
+            "TM50",
+            "TM52",
+            "TM56",
+            "TM58",
+            "TM61",
+            "TM64",
+            "TM68",
+            "TM71",
+            "TM74",
+            "TM80",
+            "TM82",
+            "TM90",
+            "TM91"
+        ],
+        "by_tutor": [
+            "MOVE_EARTH_POWER",
+            "MOVE_HEAT_WAVE"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_VOLCANION",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 67,
+        "weight_pounds": 429.9,
+        "body_shape": "SHAPE_QUADRUPED",
+        "trainer_scale_f": 277,
+        "pokemon_scale_f": 248,
+        "trainer_scale_m": 261,
+        "pokemon_scale_m": 248,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 0,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 0,
+        "en": {
+            "name": "VOLCANION",
+            "category": "Steam Pokémon",
+            "entry_text": [
+                "It expels its internal steam from\n",
+                "the arms on its back. It has enough\n",
+                "power to blow away a mountain."
+            ]
+        },
+        "fr": {
+            "name": "VOLCANION",
+            "category": "Pokémon Vapeur",
+            "entry_text": [
+                "Il évacue la vapeur qui s’accumule à\n",
+                "l’intérieur de son corps par les\n",
+                "bras situés sur son dos."
+            ]
+        },
+        "de": {
+            "name": "VOLCANION",
+            "category": "Dampf-Pokémon",
+            "entry_text": [
+                "Über die Arme auf seinem Rücken\n",
+                "stößt es Wasserdampf aus."
+            ]
+        },
+        "it": {
+            "name": "VOLCANION",
+            "category": "Pokémon Vapore",
+            "entry_text": [
+                "Emette il vapore generato nel suo\n",
+                "corpo dalle braccia congiunte ad\n",
+                "anello sul dorso."
+            ]
+        },
+        "es": {
+            "name": "VOLCANION",
+            "category": "Pokémon Vapor",
+            "entry_text": [
+                "Expulsa vapor de agua por los brazos\n",
+                "que tiene en la espalda."
+            ]
+        },
+        "jp": {
+            "name": "ボルケニオン",
+            "category": "Steam Pokémon",
+            "entry_text": [
+                "すいじょうきを　ふきだして\n",
+                "じぶんの　すがたを　のうむで\n",
+                "かくす。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

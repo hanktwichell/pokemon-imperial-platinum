@@ -1,0 +1,120 @@
+# Sovereign Platinum — items added after Platinum's last item (ITEM_SECRET_KEY, #467). Milestone E7.
+#
+# DRAFT (2026-10-22): the list is settled from the owner's decisions; the engine work hasn't started yet.
+# Names are PokeAPI's English names. A generator (to be written: tools/engine/gen_items.py) will take price,
+# descriptions and fling data from PokeAPI's item CSVs (pinned commit: tools/POKEAPI_COMMIT), and the Mega Stones from
+# data/megas.csv (several Legends Z-A stones aren't in PokeAPI yet, so they get Sovereign descriptions).
+#
+# Owner decisions behind this list (docs/ProjectStatus.md): every held item (E7 request); every form in the game
+# (decision 16), so every form-changing item is here; the Rusted Sword/Shield and Ogerpon's masks (decision 15);
+# new held items sold at the Veilstone Department Store; Mints and Ability Capsule (QoL, waiting on E7).
+
+held_items:            # Gen V–IX held items. Battle effects come later in priority order (E2b/E3b-style checklist).
+  - Eviolite
+  - Float Stone
+  - Rocky Helmet
+  - Air Balloon
+  - Red Card
+  - Ring Target
+  - Binding Band
+  - Absorb Bulb
+  - Cell Battery
+  - Eject Button
+  - Weakness Policy
+  - Assault Vest
+  - Luminous Moss
+  - Snowball
+  - Safety Goggles
+  - Adrenaline Orb
+  - Terrain Extender
+  - Protective Pads
+  - Electric Seed
+  - Psychic Seed
+  - Misty Seed
+  - Grassy Seed
+  - Throat Spray
+  - Eject Pack
+  - Heavy-Duty Boots
+  - Blunder Policy
+  - Room Service
+  - Utility Umbrella
+  - Booster Energy
+  - Ability Shield
+  - Clear Amulet
+  - Mirror Herb
+  - Punching Glove
+  - Covert Cloak
+  - Loaded Dice
+  - Fairy Feather
+  - Pixie Plate
+  - Pass Orb             # Gen V item with no effect outside Wi-Fi; kept so the held-item list is complete
+gems: [Normal Gem, Fire Gem, Water Gem, Electric Gem, Grass Gem, Ice Gem, Fighting Gem, Poison Gem, Ground Gem,
+       Flying Gem, Psychic Gem, Bug Gem, Rock Gem, Ghost Gem, Dragon Gem, Dark Gem, Steel Gem, Fairy Gem]
+
+form_items:            # Held or used to change form (decision 16). Platinum already has Griseous Orb and Gracidea.
+  memories: [Fighting Memory, Flying Memory, Poison Memory, Ground Memory, Rock Memory, Bug Memory, Ghost Memory,
+             Steel Memory, Fire Memory, Water Memory, Grass Memory, Electric Memory, Psychic Memory, Ice Memory,
+             Dragon Memory, Dark Memory, Fairy Memory]           # Silvally
+  drives: [Douse Drive, Shock Drive, Burn Drive, Chill Drive]  # Genesect
+  nectars: [Red Nectar, Yellow Nectar, Pink Nectar, Purple Nectar]  # Oricorio
+  sweets: [Strawberry Sweet, Love Sweet, Berry Sweet, Clover Sweet, Flower Sweet, Star Sweet, Ribbon Sweet]  # Alcremie
+  other:
+    - Rusted Sword        # held by the wild Zacian (decision 15)
+    - Rusted Shield       # held by the wild Zamazenta
+    - Teal Mask           # held by Ogerpon
+    - Wellspring Mask     # these three: Celestic Town northeast house Pokéfan, with Ogerpon leading the party
+    - Hearthflame Mask
+    - Cornerstone Mask
+    - Adamant Crystal     # Origin Dialga
+    - Lustrous Globe      # Origin Palkia
+    - Griseous Core       # Origin Giratina (Platinum's Griseous Orb stays too)
+    - Ultranecrozium Z    # Ultra Necrozma (Ultra Burst only; Z-Moves stay out, decision 9)
+    - Blue Orb            # Primal Kyogre
+    - Red Orb             # Primal Groudon
+    - Chipped Pot         # Polteageist's Antique Form (Cracked Pot is under evolution items)
+    - Masterpiece Teacup  # Sinistcha's Masterpiece Form
+    - Galarica Cuff       # Galarian Slowpoke → Galarian Slowbro
+    - Galarica Wreath     # Galarian Slowpoke → Galarian Slowking
+
+evolution_items:       # The 16 the waiting evolutions need (docs/NewSpecies.md ⏳), less Strawberry Sweet (above)
+  - Sachet
+  - Whipped Dream
+  - Tart Apple
+  - Sweet Apple
+  - Syrupy Apple
+  - Cracked Pot
+  - Unremarkable Teacup
+  - Black Augurite
+  - Peat Block
+  - Auspicious Armor
+  - Malicious Armor
+  - Ice Stone
+  - Leader’s Crest
+  - Metal Alloy
+  - Scroll of Darkness    # key item: Kubfu → Urshifu (Single Strike)
+  - Scroll of Waters      # key item: Kubfu → Urshifu (Rapid Strike)
+
+mega_stones: from data/megas.csv (every trigger_item except Blue Orb, Red Orb and Mega Rayquaza's move)
+
+training:
+  mints: [Lonely Mint, Adamant Mint, Naughty Mint, Brave Mint, Bold Mint, Impish Mint, Lax Mint, Relaxed Mint,
+          Modest Mint, Mild Mint, Rash Mint, Quiet Mint, Calm Mint, Gentle Mint, Careful Mint, Sassy Mint, Timid Mint,
+          Hasty Mint, Jolly Mint, Naive Mint, Serious Mint]
+  other: [Ability Capsule, Ability Patch]
+
+key_items:
+  - Mega Ring            # Fantina, with the Relic Badge
+  - Light Stone          # Legend Archivist, post-game
+  - Dark Stone
+  - Prison Bottle        # Hoopa (and Hoopa Unbound, decision 16)
+  - DNA Splicers         # Kyurem fusions
+  - N-Solarizer          # Necrozma fusions
+  - N-Lunarizer
+  - Reins of Unity       # Calyrex fusions
+  - Zygarde Cube         # Zygarde's formes
+  - Reveal Glass         # Therian Formes
+
+deferred:
+  - "Roseli, Kee and Maranga Berries: Platinum's berry code assumes berries are one contiguous ID block (Cheri..Rowap),
+     so new berries need their own engine step."
+  - "Where each new item is found or sold (beyond what the docs already place) is decided with the shops step."

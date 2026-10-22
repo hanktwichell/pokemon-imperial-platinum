@@ -1,0 +1,232 @@
+{
+    "base_stats": {
+        "hp": 80,
+        "attack": 95,
+        "defense": 115,
+        "speed": 65,
+        "special_attack": 130,
+        "special_defense": 115
+    },
+    "types": [
+        "TYPE_STEEL",
+        "TYPE_FAIRY"
+    ],
+    "catch_rate": 3,
+    "base_exp_reward": 255,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 3,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_NO_GENDER",
+    "hatch_cycles": 120,
+    "base_friendship": 0,
+    "exp_rate": "EXP_RATE_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_UNDISCOVERED",
+        "EGG_GROUP_UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_SOUL_HEART",
+        "ABILITY_NONE",
+        "ABILITY_NONE"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
+    "icon_palette": 2,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_GYRO_BALL"
+            ],
+            [
+                1,
+                "MOVE_HELPING_HAND"
+            ],
+            [
+                6,
+                "MOVE_DEFENSE_CURL"
+            ],
+            [
+                12,
+                "MOVE_ROLLOUT"
+            ],
+            [
+                18,
+                "MOVE_IRON_DEFENSE"
+            ],
+            [
+                24,
+                "MOVE_MAGNETIC_FLUX"
+            ],
+            [
+                30,
+                "MOVE_PSYBEAM"
+            ],
+            [
+                36,
+                "MOVE_AURORA_BEAM"
+            ],
+            [
+                42,
+                "MOVE_LOCK_ON"
+            ],
+            [
+                48,
+                "MOVE_SHIFT_GEAR"
+            ],
+            [
+                54,
+                "MOVE_TRICK"
+            ],
+            [
+                60,
+                "MOVE_IRON_HEAD"
+            ],
+            [
+                66,
+                "MOVE_AURA_SPHERE"
+            ],
+            [
+                72,
+                "MOVE_FLASH_CANNON"
+            ],
+            [
+                78,
+                "MOVE_PAIN_SPLIT"
+            ],
+            [
+                84,
+                "MOVE_ZAP_CANNON"
+            ],
+            [
+                90,
+                "MOVE_FLEUR_CANNON"
+            ]
+        ],
+        "by_tm": [
+            "TM04",
+            "TM11",
+            "TM13",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM22",
+            "TM24",
+            "TM29",
+            "TM30",
+            "TM31",
+            "TM33",
+            "TM42",
+            "TM44",
+            "TM48",
+            "TM52",
+            "TM53",
+            "TM54",
+            "TM57",
+            "TM58",
+            "TM68",
+            "TM73",
+            "TM74",
+            "TM82",
+            "TM86",
+            "TM90",
+            "TM91",
+            "TM92"
+        ],
+        "by_tutor": [
+            "MOVE_ROLLOUT",
+            "MOVE_IRON_HEAD",
+            "MOVE_HELPING_HAND",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_TRICK",
+            "MOVE_SWIFT"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_MAGEARNA",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 39,
+        "weight_pounds": 177.5,
+        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 287,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 287,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 17,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 17,
+        "en": {
+            "name": "MAGEARNA",
+            "category": "Artificial Pokémon",
+            "entry_text": [
+                "Built roughly 500 years ago by a\n",
+                "scientist, the part called the Soul-\n",
+                "Heart is the actual life-form."
+            ]
+        },
+        "fr": {
+            "name": "MAGEARNA",
+            "category": "Pokémon Artificiel",
+            "entry_text": [
+                "Il a été créé par un scientifique il\n",
+                "y a environ 500 ans de cela."
+            ]
+        },
+        "de": {
+            "name": "MAGEARNA",
+            "category": "Fabrikats-Pokémon",
+            "entry_text": [
+                "Es wurde vor ungefähr 500 Jahren von\n",
+                "einem Wissenschaftler erschaffen."
+            ]
+        },
+        "it": {
+            "name": "MAGEARNA",
+            "category": "Pokémon Artificiale",
+            "entry_text": [
+                "Fu costruito circa 500 anni fa da\n",
+                "uno scienziato."
+            ]
+        },
+        "es": {
+            "name": "MAGEARNA",
+            "category": "Pokémon Artificial",
+            "entry_text": [
+                "Pokémon artificial creado por\n",
+                "científicos hace unos 500 años."
+            ]
+        },
+        "jp": {
+            "name": "マギアナ",
+            "category": "じんぞうポケモン",
+            "entry_text": [
+                "いしきを　どうちょうさせて\n",
+                "あいての　きもちを　りかい。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

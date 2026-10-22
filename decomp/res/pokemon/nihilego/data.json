@@ -1,0 +1,221 @@
+{
+    "base_stats": {
+        "hp": 109,
+        "attack": 53,
+        "defense": 47,
+        "speed": 103,
+        "special_attack": 127,
+        "special_defense": 131
+    },
+    "types": [
+        "TYPE_ROCK",
+        "TYPE_POISON"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 255,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 3
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_NO_GENDER",
+    "hatch_cycles": 120,
+    "base_friendship": 0,
+    "exp_rate": "EXP_RATE_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_UNDISCOVERED",
+        "EGG_GROUP_UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_BEAST_BOOST",
+        "ABILITY_NONE",
+        "ABILITY_NONE"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_WRAP"
+            ],
+            [
+                1,
+                "MOVE_POUND"
+            ],
+            [
+                5,
+                "MOVE_ACID"
+            ],
+            [
+                10,
+                "MOVE_TICKLE"
+            ],
+            [
+                15,
+                "MOVE_ACID_SPRAY"
+            ],
+            [
+                20,
+                "MOVE_CLEAR_SMOG"
+            ],
+            [
+                25,
+                "MOVE_POWER_SPLIT"
+            ],
+            [
+                25,
+                "MOVE_GUARD_SPLIT"
+            ],
+            [
+                30,
+                "MOVE_VENOSHOCK"
+            ],
+            [
+                35,
+                "MOVE_HEADBUTT"
+            ],
+            [
+                40,
+                "MOVE_TOXIC_SPIKES"
+            ],
+            [
+                45,
+                "MOVE_VENOM_DRENCH"
+            ],
+            [
+                50,
+                "MOVE_POWER_GEM"
+            ],
+            [
+                55,
+                "MOVE_STEALTH_ROCK"
+            ],
+            [
+                60,
+                "MOVE_MIRROR_COAT"
+            ],
+            [
+                65,
+                "MOVE_WONDER_ROOM"
+            ],
+            [
+                70,
+                "MOVE_HEAD_SMASH"
+            ]
+        ],
+        "by_tm": [
+            "TM16",
+            "TM17",
+            "TM20",
+            "TM24",
+            "TM25",
+            "TM29",
+            "TM36",
+            "TM37",
+            "TM39",
+            "TM42",
+            "TM44",
+            "TM58",
+            "TM73",
+            "TM76",
+            "TM80",
+            "TM82",
+            "TM84",
+            "TM86",
+            "TM90",
+            "TM92"
+        ],
+        "by_tutor": [
+            "MOVE_IRON_HEAD",
+            "MOVE_SNORE",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_GUNK_SHOT"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_NIHILEGO",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 47,
+        "weight_pounds": 122.4,
+        "body_shape": "SHAPE_TENTACLES",
+        "trainer_scale_f": 256,
+        "pokemon_scale_f": 249,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 249,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 0,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 0,
+        "en": {
+            "name": "NIHILEGO",
+            "category": "Parasite Pokémon",
+            "entry_text": [
+                "It appeared in this world from an\n",
+                "Ultra Wormhole."
+            ]
+        },
+        "fr": {
+            "name": "ZÉROÏD",
+            "category": "Pokémon Parasite",
+            "entry_text": [
+                "Il est venu dans ce monde à travers\n",
+                "une Ultra-Brèche."
+            ]
+        },
+        "de": {
+            "name": "ANEGO",
+            "category": "Parasiten-Pokémon",
+            "entry_text": [
+                "Anego kam durch eine Ultrapforte in\n",
+                "diese Welt."
+            ]
+        },
+        "it": {
+            "name": "NIHILEGO",
+            "category": "Pokémon Parassita",
+            "entry_text": [
+                "È arrivato in questo mondo\n",
+                "attraverso un Ultravarco."
+            ]
+        },
+        "es": {
+            "name": "NIHILEGO",
+            "category": "Pokémon Parásito",
+            "entry_text": [
+                "Llegó a este mundo a través de un\n",
+                "Ultraumbral. Es un parásito que se\n",
+                "aprovecha de Pokémon y personas."
+            ]
+        },
+        "jp": {
+            "name": "ウツロイド",
+            "category": "きせいポケモン",
+            "entry_text": [
+                "ＵＢと　よばれる　べつせかいの\n",
+                "せいめいたい。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

@@ -1124,7 +1124,8 @@ const SNDWaveData *Sound_LoadPokedexDataForSpecies(int species)
     u16 waveArcID = species;
 
     if (waveArcID != chatot_cry_swar) {
-        if (species > MAX_SPECIES || species == SPECIES_NONE) {
+        // Sovereign: species without a cry (#494+, see Sound_Impl_HasCry) show Bulbasaur's waveform; nothing plays.
+        if (species > SPECIES_ARCEUS || species == SPECIES_NONE) {
             waveArcID = bulbasaur_cry_swar;
         }
     }
@@ -1140,7 +1141,8 @@ static const SNDWaveData *Sound_Impl_GetWaveDataForSpecies(int species)
 
     u16 waveArcID = species;
     if (waveArcID != chatot_cry_swar) {
-        if (species > MAX_SPECIES || species == SPECIES_NONE) {
+        // Sovereign: species without a cry (#494+, see Sound_Impl_HasCry) show Bulbasaur's waveform; nothing plays.
+        if (species > SPECIES_ARCEUS || species == SPECIES_NONE) {
             waveArcID = bulbasaur_cry_swar;
         }
     }

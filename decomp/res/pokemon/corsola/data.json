@@ -111,7 +111,9 @@
             "MOVE_HEAD_SMASH"
         ]
     },
-    "evolutions": [  ],
+    "evolutions": [
+        [ "EVO_USE_ITEM", "ITEM_DUSK_STONE", "SPECIES_CURSOLA" ]
+    ],
     "offspring": "SPECIES_CORSOLA",
     "footprint": {
         "has": true,

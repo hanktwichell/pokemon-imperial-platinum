@@ -1,0 +1,149 @@
+{
+    "base_stats": {
+        "hp": 43,
+        "attack": 29,
+        "defense": 131,
+        "speed": 37,
+        "special_attack": 29,
+        "special_defense": 131
+    },
+    "types": [
+        "TYPE_PSYCHIC",
+        "TYPE_PSYCHIC"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 140,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 1,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 1
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_NO_GENDER",
+    "hatch_cycles": 120,
+    "base_friendship": 0,
+    "exp_rate": "EXP_RATE_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_UNDISCOVERED",
+        "EGG_GROUP_UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_STURDY",
+        "ABILITY_NONE",
+        "ABILITY_NONE"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
+    "icon_palette": 1,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_COSMIC_POWER"
+            ],
+            [
+                1,
+                "MOVE_TELEPORT"
+            ]
+        ],
+        "by_tm": [],
+        "by_tutor": []
+    },
+    "evolutions": [
+        [
+            "EVO_USE_ITEM",
+            "ITEM_SUN_STONE",
+            "SPECIES_SOLGALEO"
+        ],
+        [
+            "EVO_USE_ITEM",
+            "ITEM_MOON_STONE",
+            "SPECIES_LUNALA"
+        ]
+    ],
+    "offspring": "SPECIES_COSMOG",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 4,
+        "weight_pounds": 2204.4,
+        "body_shape": "SHAPE_HEAD",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 530,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 530,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 32,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 32,
+        "en": {
+            "name": "COSMOEM",
+            "category": "Protostar Pokémon",
+            "entry_text": [
+                "The absorption of starlight fuels\n",
+                "this Pokémon’s growth."
+            ]
+        },
+        "fr": {
+            "name": "COSMOVUM",
+            "category": "Protostar Pokémon",
+            "entry_text": [
+                "La carapace qui le recouvre est plus\n",
+                "dure que tout ce qui est connu par\n",
+                "l’Homme."
+            ]
+        },
+        "de": {
+            "name": "COSMOVUM",
+            "category": "Urgestirns-Pokémon",
+            "entry_text": [
+                "Es wird von einer Schale umhüllt,\n",
+                "deren Härte Menschen vor ein Rätsel\n",
+                "stellt."
+            ]
+        },
+        "it": {
+            "name": "COSMOEM",
+            "category": "Pokémon Protostella",
+            "entry_text": [
+                "Il suo esoscheletro è più duro di\n",
+                "qualunque cosa che gli esseri umani\n",
+                "conoscano."
+            ]
+        },
+        "es": {
+            "name": "COSMOEM",
+            "category": "Protostar Pokémon",
+            "entry_text": [
+                "Está recubierto de un caparazón de\n",
+                "una dureza que escapa al\n",
+                "entendimiento humano."
+            ]
+        },
+        "jp": {
+            "name": "コスモウム",
+            "category": "げんしせいポケモン",
+            "entry_text": [
+                "じんちを　こえた　かたさの\n",
+                "カラに　つつまれている。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

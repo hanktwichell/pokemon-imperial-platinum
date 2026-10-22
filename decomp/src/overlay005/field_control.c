@@ -367,9 +367,15 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
     }
 
 #ifdef SOVEREIGN_TEST
-    // Test build only: SELECT starts a wild battle, SELECT+R a trainer battle, SELECT+L breeds and hatches an egg.
+    // Test build only: SELECT starts a wild battle, SELECT+R a trainer battle, SELECT+L breeds and hatches an egg,
+    // SELECT+B opens Easy Chat.
     if ((input->pressedKeys & PAD_BUTTON_SELECT) && input->menu == FALSE) {
         int moveState = PlayerAvatar_GetPlayerMoveState(fieldSystem->playerAvatar);
+
+        if ((input->heldKeys & PAD_BUTTON_B) && (moveState == PLAYER_MOVE_STATE_END || moveState == PLAYER_MOVE_STATE_NONE)) {
+            SovereignTest_OpenEasyChat(fieldSystem);
+            return TRUE;
+        }
 
         if ((input->heldKeys & PAD_BUTTON_L) && (moveState == PLAYER_MOVE_STATE_END || moveState == PLAYER_MOVE_STATE_NONE)) {
             SovereignTest_BreedAndHatch(fieldSystem);

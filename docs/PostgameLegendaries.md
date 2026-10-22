@@ -44,7 +44,7 @@ Covers **90** species.
 - **Pokémon:** #643 Reshiram, #644 Zekrom, #646 Kyurem
 - **Level:** 70
 - **Location:** Reshiram — Fuego Ironworks (furnace room, new). Zekrom — Valley Windworks at night. Kyurem — Mt. Coronet Snow Area cave
-- **How:** The Archivist gives the Light Stone and Dark Stone. Using each at its location summons Reshiram/Zekrom. Kyurem appears once both are caught. (DNA Splicers / fused forms are out of scope for now.)
+- **How:** The Archivist gives the Light Stone and Dark Stone. Using each at its location summons Reshiram/Zekrom. Kyurem appears once both are caught. The DNA Splicers and Kyurem's fused forms are in the game (all forms are in scope, owner 2026-10-22).
 
 ### The Relic Song
 - **Pokémon:** #648 Meloetta
@@ -70,7 +70,7 @@ Covers **90** species.
 - **Pokémon:** #718 Zygarde
 - **Level:** 70
 - **Location:** Wayward Cave — new deep chamber
-- **How:** Appears after Xerneas and Yveltal are caught. (Cells/Cores and Complete Forme are out of scope; Zygardite is sold post-game.)
+- **How:** Appears after Xerneas and Yveltal are caught. Zygardite is sold post-game. Zygarde's 10%, 50% and Complete Formes are in the game (all forms are in scope, owner 2026-10-22).
 
 ### The Jewel
 - **Pokémon:** #719 Diancie
@@ -158,7 +158,7 @@ Covers **90** species.
 - **Pokémon:** #888 Zacian, #889 Zamazenta
 - **Level:** 70
 - **Location:** Route 210 North (in the fog)
-- **How:** Walk through the fog with the chapter open; Zacian appears first, Zamazenta after it is caught. (Crowned forms are out of scope.)
+- **How:** Walk through the fog with the chapter open; Zacian appears first, Zamazenta after it is caught. Zacian holds the Rusted Sword and Zamazenta the Rusted Shield (owner, 2026-10-22); holding them gives the Crowned forms.
 
 ### Darkest Day
 - **Pokémon:** #890 Eternatus
@@ -188,7 +188,7 @@ Covers **90** species.
 - **Pokémon:** #898 Calyrex, #896 Glastrier, #897 Spectrier
 - **Level:** 70
 - **Location:** Calyrex — Celestic Town shrine. Glastrier — Route 217 (blizzard). Spectrier — Lost Tower 5F
-- **How:** Calyrex first; then the steeds appear. (Fused Calyrex forms are out of scope.)
+- **How:** Calyrex first; then the steeds appear. Calyrex's fused forms (Ice Rider, Shadow Rider) are in the game (all forms are in scope, owner 2026-10-22).
 
 ## Paldea Chronicle
 
@@ -208,7 +208,7 @@ Covers **90** species.
 - **Pokémon:** #1017 Ogerpon
 - **Level:** 65
 - **Location:** Route 211 (East), at the mountain shrine
-- **How:** Static encounter. (Mask forms are out of scope; Teal Mask only.)
+- **How:** Static encounter; Ogerpon holds the Teal Mask. Show it to the Pokéfan (male) in Celestic Town's northeast house (map CelesticTownNortheastHouse, script CelesticTownNortheastHouse_PokefanM) with Ogerpon at the front of the party, and he gives the Wellspring, Hearthflame and Cornerstone Masks. Holding a mask changes Ogerpon's form (owner, 2026-10-22).
 
 ### The Poison Puppeteer
 - **Pokémon:** #1025 Pecharunt

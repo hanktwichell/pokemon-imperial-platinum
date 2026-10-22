@@ -136,7 +136,9 @@
             "MOVE_TEETER_DANCE"
         ]
     },
-    "evolutions": [  ],
+    "evolutions": [
+        [ "EVO_LEVEL", 42, "SPECIES_MR_RIME" ]
+    ],
     "offspring": "SPECIES_MIME_JR",
     "footprint": {
         "has": true,

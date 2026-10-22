@@ -118,7 +118,9 @@
             "MOVE_PSYSHIELD_BASH"
         ]
     },
-    "evolutions": [  ],
+    "evolutions": [
+        [ "EVO_LEVEL_KNOW_MOVE", "MOVE_ZEN_HEADBUTT", "SPECIES_WYRDEER" ]
+    ],
     "offspring": "SPECIES_STANTLER",
     "footprint": {
         "has": true,

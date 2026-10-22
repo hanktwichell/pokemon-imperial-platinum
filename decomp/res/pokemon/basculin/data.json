@@ -1,0 +1,220 @@
+{
+    "base_stats": {
+        "hp": 70,
+        "attack": 92,
+        "defense": 65,
+        "speed": 98,
+        "special_attack": 80,
+        "special_defense": 55
+    },
+    "types": [
+        "TYPE_WATER",
+        "TYPE_WATER"
+    ],
+    "catch_rate": 25,
+    "base_exp_reward": 161,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 2,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 40,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_WATER_2",
+        "EGG_GROUP_WATER_2"
+    ],
+    "abilities": [
+        "ABILITY_RECKLESS",
+        "ABILITY_ADAPTABILITY",
+        "ABILITY_MOLD_BREAKER"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
+    "icon_palette": 1,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_TAIL_WHIP"
+            ],
+            [
+                1,
+                "MOVE_WATER_GUN"
+            ],
+            [
+                4,
+                "MOVE_TACKLE"
+            ],
+            [
+                8,
+                "MOVE_FLAIL"
+            ],
+            [
+                12,
+                "MOVE_AQUA_JET"
+            ],
+            [
+                16,
+                "MOVE_BITE"
+            ],
+            [
+                20,
+                "MOVE_SCARY_FACE"
+            ],
+            [
+                24,
+                "MOVE_HEADBUTT"
+            ],
+            [
+                28,
+                "MOVE_SOAK"
+            ],
+            [
+                32,
+                "MOVE_CRUNCH"
+            ],
+            [
+                36,
+                "MOVE_TAKE_DOWN"
+            ],
+            [
+                40,
+                "MOVE_FINAL_GAMBIT"
+            ],
+            [
+                44,
+                "MOVE_WAVE_CRASH"
+            ],
+            [
+                48,
+                "MOVE_THRASH"
+            ],
+            [
+                52,
+                "MOVE_DOUBLE_EDGE"
+            ],
+            [
+                56,
+                "MOVE_HEAD_SMASH"
+            ]
+        ],
+        "by_tm": [
+            "TM03",
+            "TM12",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM42",
+            "TM44",
+            "TM58",
+            "TM68",
+            "TM82",
+            "TM90",
+            "HM03",
+            "HM07"
+        ],
+        "by_tutor": [
+            "MOVE_ICY_WIND",
+            "MOVE_ENDEAVOR",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_BUBBLE_BEAM",
+            "MOVE_ENDEAVOR"
+        ]
+    },
+    "evolutions": [
+        [
+            "EVO_LEVEL",
+            36,
+            "SPECIES_BASCULEGION"
+        ]
+    ],
+    "offspring": "SPECIES_BASCULIN",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 39,
+        "weight_pounds": 39.7,
+        "body_shape": "SHAPE_FINS",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 287,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 287,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 17,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 17,
+        "en": {
+            "name": "BASCULIN",
+            "category": "Hostile Pokémon",
+            "entry_text": [
+                "In the past, it often appeared on\n",
+                "the dinner table."
+            ]
+        },
+        "fr": {
+            "name": "BARGANTUA",
+            "category": "Pokémon Violent",
+            "entry_text": [
+                "On l’utilisait autrefois en cuisine."
+            ]
+        },
+        "de": {
+            "name": "BARSCHUFT",
+            "category": "Grobheits-Pokémon",
+            "entry_text": [
+                "Früher standen sie oft auf dem\n",
+                "Speiseplan."
+            ]
+        },
+        "it": {
+            "name": "BASCULIN",
+            "category": "Pokémon Irruenza",
+            "entry_text": [
+                "È popolare tra i pescatori per le\n",
+                "sue lotte audaci."
+            ]
+        },
+        "es": {
+            "name": "BASCULIN",
+            "category": "Pokémon Violento",
+            "entry_text": [
+                "Un alimento básico de la dieta de\n",
+                "antaño."
+            ]
+        },
+        "jp": {
+            "name": "バスラオ",
+            "category": "らんぼうポケモン",
+            "entry_text": [
+                "むかしは　しょくたくに\n",
+                "のぼった。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

@@ -45,7 +45,7 @@ quests:
     species: [Reshiram, Zekrom, Kyurem]
     level: 70
     location: "Reshiram — Fuego Ironworks (furnace room, new). Zekrom — Valley Windworks at night. Kyurem — Mt. Coronet Snow Area cave"
-    steps: The Archivist gives the Light Stone and Dark Stone. Using each at its location summons Reshiram/Zekrom. Kyurem appears once both are caught. (DNA Splicers / fused forms are out of scope for now.)
+    steps: The Archivist gives the Light Stone and Dark Stone. Using each at its location summons Reshiram/Zekrom. Kyurem appears once both are caught. The DNA Splicers and Kyurem's fused forms are in the game (all forms are in scope, owner 2026-10-22).
   - chapter: Unova Chronicle
     name: The Relic Song
     species: [Meloetta]
@@ -71,7 +71,7 @@ quests:
     species: [Zygarde]
     level: 70
     location: Wayward Cave — new deep chamber
-    steps: Appears after Xerneas and Yveltal are caught. (Cells/Cores and Complete Forme are out of scope; Zygardite is sold post-game.)
+    steps: Appears after Xerneas and Yveltal are caught. Zygardite is sold post-game. Zygarde's 10%, 50% and Complete Formes are in the game (all forms are in scope, owner 2026-10-22).
   - chapter: Kalos Chronicle
     name: The Jewel
     species: [Diancie]
@@ -159,7 +159,7 @@ quests:
     species: [Zacian, Zamazenta]
     level: 70
     location: Route 210 North (in the fog)
-    steps: Walk through the fog with the chapter open; Zacian appears first, Zamazenta after it is caught. (Crowned forms are out of scope.)
+    steps: Walk through the fog with the chapter open; Zacian appears first, Zamazenta after it is caught. Zacian holds the Rusted Sword and Zamazenta the Rusted Shield (owner, 2026-10-22); holding them gives the Crowned forms.
   - chapter: Galar Chronicle
     name: Darkest Day
     species: [Eternatus]
@@ -189,7 +189,7 @@ quests:
     species: [Calyrex, Glastrier, Spectrier]
     level: 70
     location: "Calyrex — Celestic Town shrine. Glastrier — Route 217 (blizzard). Spectrier — Lost Tower 5F"
-    steps: Calyrex first; then the steeds appear. (Fused Calyrex forms are out of scope.)
+    steps: Calyrex first; then the steeds appear. Calyrex's fused forms (Ice Rider, Shadow Rider) are in the game (all forms are in scope, owner 2026-10-22).
 
   # ---------------------------------------------------------------- Paldea Chronicle
   - chapter: Paldea Chronicle
@@ -209,7 +209,7 @@ quests:
     species: [Ogerpon]
     level: 65
     location: Route 211 (East), at the mountain shrine
-    steps: Static encounter. (Mask forms are out of scope; Teal Mask only.)
+    steps: Static encounter; Ogerpon holds the Teal Mask. Show it to the Pokéfan (male) in Celestic Town's northeast house (map CelesticTownNortheastHouse, script CelesticTownNortheastHouse_PokefanM) with Ogerpon at the front of the party, and he gives the Wellspring, Hearthflame and Cornerstone Masks. Holding a mask changes Ogerpon's form (owner, 2026-10-22).
   - chapter: Paldea Chronicle
     name: The Poison Puppeteer
     species: [Pecharunt]

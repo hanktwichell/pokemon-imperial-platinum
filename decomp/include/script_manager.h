@@ -203,5 +203,8 @@ HiddenItemTilePosition *FieldSystem_GetNearbyHiddenItems(FieldSystem *fieldSyste
 void FieldSystem_InitNewGameState(FieldSystem *fieldSystem);
 void FieldSystem_RunScript(FieldSystem *fieldSystem, u16 scriptID);
 BOOL FieldSystem_RunInitScript(FieldSystem *fieldSystem, u8 param1);
+#ifdef SOVEREIGN_TEST
+void SovereignTest_OpenEasyChat(FieldSystem *fieldSystem);
+#endif
 
 #endif // POKEPLATINUM_SCRIPT_MANAGER_H

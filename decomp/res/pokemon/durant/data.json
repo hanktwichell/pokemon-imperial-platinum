@@ -1,0 +1,224 @@
+{
+    "base_stats": {
+        "hp": 58,
+        "attack": 109,
+        "defense": 112,
+        "speed": 109,
+        "special_attack": 48,
+        "special_defense": 48
+    },
+    "types": [
+        "TYPE_BUG",
+        "TYPE_STEEL"
+    ],
+    "catch_rate": 90,
+    "base_exp_reward": 169,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 2,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_BUG",
+        "EGG_GROUP_BUG"
+    ],
+    "abilities": [
+        "ABILITY_SWARM",
+        "ABILITY_HUSTLE",
+        "ABILITY_TRUANT"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_FURY_CUTTER"
+            ],
+            [
+                1,
+                "MOVE_SAND_ATTACK"
+            ],
+            [
+                4,
+                "MOVE_VICE_GRIP"
+            ],
+            [
+                8,
+                "MOVE_METAL_CLAW"
+            ],
+            [
+                12,
+                "MOVE_BEAT_UP"
+            ],
+            [
+                16,
+                "MOVE_BUG_BITE"
+            ],
+            [
+                20,
+                "MOVE_BITE"
+            ],
+            [
+                24,
+                "MOVE_AGILITY"
+            ],
+            [
+                28,
+                "MOVE_DIG"
+            ],
+            [
+                32,
+                "MOVE_X_SCISSOR"
+            ],
+            [
+                36,
+                "MOVE_CRUNCH"
+            ],
+            [
+                40,
+                "MOVE_METAL_SOUND"
+            ],
+            [
+                44,
+                "MOVE_IRON_HEAD"
+            ],
+            [
+                48,
+                "MOVE_ENTRAINMENT"
+            ],
+            [
+                52,
+                "MOVE_IRON_DEFENSE"
+            ],
+            [
+                56,
+                "MOVE_GUILLOTINE"
+            ]
+        ],
+        "by_tm": [
+            "TM17",
+            "TM28",
+            "TM37",
+            "TM39",
+            "TM42",
+            "TM44",
+            "TM45",
+            "TM53",
+            "TM58",
+            "TM65",
+            "TM68",
+            "TM71",
+            "TM73",
+            "TM80",
+            "TM81",
+            "TM82",
+            "TM90",
+            "TM91"
+        ],
+        "by_tutor": [
+            "MOVE_FURY_CUTTER",
+            "MOVE_SUPERPOWER",
+            "MOVE_IRON_HEAD",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_IRON_DEFENSE"
+        ],
+        "egg_moves": [
+            "MOVE_FLAIL",
+            "MOVE_METAL_BURST",
+            "MOVE_STRUGGLE_BUG",
+            "MOVE_INFESTATION",
+            "MOVE_FIRST_IMPRESSION"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_DURANT",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 12,
+        "weight_pounds": 72.8,
+        "body_shape": "SHAPE_INSECTOID",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 502,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 502,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 28,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 28,
+        "en": {
+            "name": "DURANT",
+            "category": "Iron Ant Pokémon",
+            "entry_text": [
+                "With their large mandibles, these\n",
+                "Pokémon can crunch their way through\n",
+                "rock."
+            ]
+        },
+        "fr": {
+            "name": "FERMITE",
+            "category": "Pokémon Fourmi Dure",
+            "entry_text": [
+                "Sa grande mâchoire réduit même les\n",
+                "rochers en miettes."
+            ]
+        },
+        "de": {
+            "name": "FERMICULA",
+            "category": "Iron Ant Pokémon",
+            "entry_text": [
+                "Ihre mächtigen Kiefer können Felsen\n",
+                "zerbeißen."
+            ]
+        },
+        "it": {
+            "name": "DURANT",
+            "category": "Pokémon Ferformica",
+            "entry_text": [
+                "Le grandi mandibole possono\n",
+                "frantumare anche la roccia."
+            ]
+        },
+        "es": {
+            "name": "DURANT",
+            "category": "Pokémon Hormigacero",
+            "entry_text": [
+                "Con sus grandes mandíbulas puede\n",
+                "destrozar incluso rocas."
+            ]
+        },
+        "jp": {
+            "name": "アイアント",
+            "category": "てつアリポケモン",
+            "entry_text": [
+                "おおきなアゴは　がんせきをも\n",
+                "かみ　くだく。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

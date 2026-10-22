@@ -1,0 +1,233 @@
+{
+    "base_stats": {
+        "hp": 74,
+        "attack": 48,
+        "defense": 76,
+        "speed": 104,
+        "special_attack": 83,
+        "special_defense": 81
+    },
+    "types": [
+        "TYPE_PSYCHIC",
+        "TYPE_PSYCHIC"
+    ],
+    "catch_rate": 75,
+    "base_exp_reward": 163,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 2,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_FIELD",
+        "EGG_GROUP_FIELD"
+    ],
+    "abilities": [
+        "ABILITY_KEEN_EYE",
+        "ABILITY_INFILTRATOR",
+        "ABILITY_PRANKSTER"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_MEAN_LOOK"
+            ],
+            [
+                1,
+                "MOVE_DISARMING_VOICE"
+            ],
+            [
+                1,
+                "MOVE_FAKE_OUT"
+            ],
+            [
+                1,
+                "MOVE_SCRATCH"
+            ],
+            [
+                1,
+                "MOVE_LEER"
+            ],
+            [
+                9,
+                "MOVE_CONFUSION"
+            ],
+            [
+                12,
+                "MOVE_HELPING_HAND"
+            ],
+            [
+                15,
+                "MOVE_CHARM"
+            ],
+            [
+                18,
+                "MOVE_COVET"
+            ],
+            [
+                21,
+                "MOVE_PSYBEAM"
+            ],
+            [
+                24,
+                "MOVE_SUCKER_PUNCH"
+            ],
+            [
+                29,
+                "MOVE_ROLE_PLAY"
+            ],
+            [
+                34,
+                "MOVE_LIGHT_SCREEN"
+            ],
+            [
+                34,
+                "MOVE_REFLECT"
+            ],
+            [
+                39,
+                "MOVE_PSYSHOCK"
+            ],
+            [
+                44,
+                "MOVE_IMPRISON"
+            ],
+            [
+                49,
+                "MOVE_QUICK_GUARD"
+            ],
+            [
+                54,
+                "MOVE_PSYCHIC"
+            ],
+            [
+                59,
+                "MOVE_MISTY_TERRAIN"
+            ]
+        ],
+        "by_tm": [
+            "TM04",
+            "TM11",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM18",
+            "TM24",
+            "TM28",
+            "TM29",
+            "TM30",
+            "TM33",
+            "TM42",
+            "TM44",
+            "TM48",
+            "TM53",
+            "TM57",
+            "TM58",
+            "TM68",
+            "TM73",
+            "TM77",
+            "TM79",
+            "TM82",
+            "TM90",
+            "TM92"
+        ],
+        "by_tutor": [
+            "MOVE_HELPING_HAND",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_TRICK",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_SWIFT"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_ESPURR",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 24,
+        "weight_pounds": 18.7,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 384,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 384,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 23,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 23,
+        "en": {
+            "name": "MEOWSTIC",
+            "category": "Constraint Pokémon",
+            "entry_text": [
+                "The defensive instinct of the males\n",
+                "is strong."
+            ]
+        },
+        "fr": {
+            "name": "MISTIGRIX",
+            "category": "Constraint Pokémon",
+            "entry_text": [
+                "Le mâle a un instinct de défense\n",
+                "très développé."
+            ]
+        },
+        "de": {
+            "name": "PSIAUGON",
+            "category": "Fassungs-Pokémon",
+            "entry_text": [
+                "Männliche Psiaugon haben einen\n",
+                "ausgeprägten Beschützerinstinkt."
+            ]
+        },
+        "it": {
+            "name": "MEOWSTIC",
+            "category": "Pokémon Temperanza",
+            "entry_text": [
+                "Il maschio ha un forte istinto\n",
+                "protettivo."
+            ]
+        },
+        "es": {
+            "name": "MEOWSTIC",
+            "category": "Pokémon Autocontrol",
+            "entry_text": [
+                "The defensive instinct of the males\n",
+                "is strong."
+            ]
+        },
+        "jp": {
+            "name": "ニャオニクス",
+            "category": "よくせいポケモン",
+            "entry_text": [
+                "The defensive instinct of the males\n",
+                "is strong."
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

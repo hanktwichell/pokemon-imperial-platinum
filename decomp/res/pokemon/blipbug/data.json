@@ -1,0 +1,140 @@
+{
+    "base_stats": {
+        "hp": 25,
+        "attack": 20,
+        "defense": 20,
+        "speed": 45,
+        "special_attack": 25,
+        "special_defense": 45
+    },
+    "types": [
+        "TYPE_BUG",
+        "TYPE_BUG"
+    ],
+    "catch_rate": 255,
+    "base_exp_reward": 36,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 1
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 15,
+    "base_friendship": 50,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_BUG",
+        "EGG_GROUP_BUG"
+    ],
+    "abilities": [
+        "ABILITY_SWARM",
+        "ABILITY_COMPOUND_EYES",
+        "ABILITY_TELEPATHY"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
+    "icon_palette": 2,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_STRUGGLE_BUG"
+            ]
+        ],
+        "by_tm": [],
+        "by_tutor": [],
+        "egg_moves": [
+            "MOVE_SUPERSONIC",
+            "MOVE_RECOVER",
+            "MOVE_STICKY_WEB",
+            "MOVE_INFESTATION"
+        ]
+    },
+    "evolutions": [
+        [
+            "EVO_LEVEL",
+            10,
+            "SPECIES_DOTTLER"
+        ]
+    ],
+    "offspring": "SPECIES_BLIPBUG",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 16,
+        "weight_pounds": 17.6,
+        "body_shape": "SHAPE_INSECTOID",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 524,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 524,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 27,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 27,
+        "en": {
+            "name": "BLIPBUG",
+            "category": "Larva Pokémon",
+            "entry_text": [
+                "Often found in gardens, this Pokémon\n",
+                "has hairs on its body that it uses\n",
+                "to assess its surroundings."
+            ]
+        },
+        "fr": {
+            "name": "LARVADAR",
+            "category": "Pokémon Larve",
+            "entry_text": [
+                "On le voit souvent dans les champs."
+            ]
+        },
+        "de": {
+            "name": "SENSECT",
+            "category": "Larven-Pokémon",
+            "entry_text": [
+                "Dieses Pokémon trifft man oft auf\n",
+                "Feldern an."
+            ]
+        },
+        "it": {
+            "name": "BLIPBUG",
+            "category": "Pokémon Coleolarva",
+            "entry_text": [
+                "Si incontra spesso nei campi."
+            ]
+        },
+        "es": {
+            "name": "BLIPBUG",
+            "category": "Pokémon Pupa",
+            "entry_text": [
+                "Es habitual verlo en el campo."
+            ]
+        },
+        "jp": {
+            "name": "サッチムシ",
+            "category": "ようちゅうポケモン",
+            "entry_text": [
+                "はたけで　よくみかける\n",
+                "ポケモン。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

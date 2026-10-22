@@ -1,0 +1,218 @@
+{
+    "base_stats": {
+        "hp": 75,
+        "attack": 75,
+        "defense": 75,
+        "speed": 40,
+        "special_attack": 125,
+        "special_defense": 95
+    },
+    "types": [
+        "TYPE_PSYCHIC",
+        "TYPE_PSYCHIC"
+    ],
+    "catch_rate": 90,
+    "base_exp_reward": 170,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 2,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_HUMAN_LIKE",
+        "EGG_GROUP_HUMAN_LIKE"
+    ],
+    "abilities": [
+        "ABILITY_TELEPATHY",
+        "ABILITY_SYNCHRONIZE",
+        "ABILITY_ANALYTIC"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
+    "icon_palette": 2,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_PSYCHIC_TERRAIN"
+            ],
+            [
+                1,
+                "MOVE_CONFUSION"
+            ],
+            [
+                1,
+                "MOVE_GROWL"
+            ],
+            [
+                1,
+                "MOVE_IMPRISON"
+            ],
+            [
+                1,
+                "MOVE_TELEPORT"
+            ],
+            [
+                18,
+                "MOVE_PSYBEAM"
+            ],
+            [
+                24,
+                "MOVE_POWER_SPLIT"
+            ],
+            [
+                24,
+                "MOVE_GUARD_SPLIT"
+            ],
+            [
+                30,
+                "MOVE_HEADBUTT"
+            ],
+            [
+                36,
+                "MOVE_ZEN_HEADBUTT"
+            ],
+            [
+                45,
+                "MOVE_RECOVER"
+            ],
+            [
+                52,
+                "MOVE_CALM_MIND"
+            ],
+            [
+                60,
+                "MOVE_WONDER_ROOM"
+            ],
+            [
+                68,
+                "MOVE_PSYCHIC"
+            ]
+        ],
+        "by_tm": [
+            "TM04",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM18",
+            "TM20",
+            "TM24",
+            "TM29",
+            "TM30",
+            "TM33",
+            "TM39",
+            "TM42",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM47",
+            "TM48",
+            "TM53",
+            "TM58",
+            "TM68",
+            "TM73",
+            "TM79",
+            "TM80",
+            "TM82",
+            "TM90",
+            "TM91",
+            "TM92"
+        ],
+        "by_tutor": [
+            "MOVE_SNORE",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_TRICK",
+            "MOVE_UPROAR"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_ELGYEM",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 39,
+        "weight_pounds": 76.1,
+        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 287,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 287,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 17,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 17,
+        "en": {
+            "name": "BEHEEYEM",
+            "category": "Cerebral Pokémon",
+            "entry_text": [
+                "Sometimes found drifting above wheat\n",
+                "fields, this Pokémon can control the\n",
+                "memories of its opponents."
+            ]
+        },
+        "fr": {
+            "name": "NEITRAM",
+            "category": "Pokémon Cerveau",
+            "entry_text": [
+                "Il peut manipuler les souvenirs de\n",
+                "son adversaire à loisir."
+            ]
+        },
+        "de": {
+            "name": "MEGALON",
+            "category": "Grips-Pokémon",
+            "entry_text": [
+                "Es kann die Gedanken anderer\n",
+                "manipulieren."
+            ]
+        },
+        "it": {
+            "name": "BEHEEYEM",
+            "category": "Pokémon Cervello",
+            "entry_text": [
+                "Può manipolare la memoria\n",
+                "dell’avversario. A volte lo si vede\n",
+                "vagare sopra i campi di grano."
+            ]
+        },
+        "es": {
+            "name": "BEHEEYEM",
+            "category": "Pokémon Cerebro",
+            "entry_text": [
+                "Es capaz de manipular los recuerdos\n",
+                "del rival. Se lo avista en ocasiones\n",
+                "vagando por campos de trigo."
+            ]
+        },
+        "jp": {
+            "name": "BEHEEYEM",
+            "category": "ブレインポケモン",
+            "entry_text": [
+                "あいての　きおくを\n",
+                "そうさできる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

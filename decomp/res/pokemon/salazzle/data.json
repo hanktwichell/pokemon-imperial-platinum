@@ -1,0 +1,243 @@
+{
+    "base_stats": {
+        "hp": 68,
+        "attack": 64,
+        "defense": 60,
+        "speed": 117,
+        "special_attack": 111,
+        "special_defense": 60
+    },
+    "types": [
+        "TYPE_POISON",
+        "TYPE_FIRE"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 168,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 2,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_SMOKE_BALL"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_ONLY",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_MONSTER",
+        "EGG_GROUP_DRAGON"
+    ],
+    "abilities": [
+        "ABILITY_CORROSION",
+        "ABILITY_NONE",
+        "ABILITY_OBLIVIOUS"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLACK",
+    "flip_sprite": false,
+    "icon_palette": 1,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_FIRE_LASH"
+            ],
+            [
+                1,
+                "MOVE_ENDEAVOR"
+            ],
+            [
+                1,
+                "MOVE_KNOCK_OFF"
+            ],
+            [
+                1,
+                "MOVE_TORMENT"
+            ],
+            [
+                1,
+                "MOVE_SWAGGER"
+            ],
+            [
+                1,
+                "MOVE_POISON_GAS"
+            ],
+            [
+                1,
+                "MOVE_ENCORE"
+            ],
+            [
+                1,
+                "MOVE_EMBER"
+            ],
+            [
+                1,
+                "MOVE_DISABLE"
+            ],
+            [
+                1,
+                "MOVE_SCRATCH"
+            ],
+            [
+                1,
+                "MOVE_SMOG"
+            ],
+            [
+                1,
+                "MOVE_POUND"
+            ],
+            [
+                15,
+                "MOVE_POISON_FANG"
+            ],
+            [
+                20,
+                "MOVE_SWEET_SCENT"
+            ],
+            [
+                25,
+                "MOVE_NASTY_PLOT"
+            ],
+            [
+                30,
+                "MOVE_INCINERATE"
+            ],
+            [
+                37,
+                "MOVE_VENOSHOCK"
+            ],
+            [
+                44,
+                "MOVE_DRAGON_PULSE"
+            ],
+            [
+                51,
+                "MOVE_FLAMETHROWER"
+            ],
+            [
+                58,
+                "MOVE_TOXIC"
+            ]
+        ],
+        "by_tm": [
+            "TM02",
+            "TM06",
+            "TM11",
+            "TM12",
+            "TM15",
+            "TM17",
+            "TM35",
+            "TM36",
+            "TM38",
+            "TM41",
+            "TM42",
+            "TM44",
+            "TM46",
+            "TM50",
+            "TM56",
+            "TM58",
+            "TM59",
+            "TM61",
+            "TM65",
+            "TM68",
+            "TM73",
+            "TM82",
+            "TM84",
+            "TM87",
+            "TM90"
+        ],
+        "by_tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_GUNK_SHOT",
+            "MOVE_HEAT_WAVE",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_SALANDIT",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 47,
+        "weight_pounds": 48.9,
+        "body_shape": "SHAPE_QUADRUPED",
+        "trainer_scale_f": 256,
+        "pokemon_scale_f": 249,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 249,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 0,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 0,
+        "en": {
+            "name": "SALAZZLE",
+            "category": "Toxic Lizar Pokémon",
+            "entry_text": [
+                "The winner of competitions between\n",
+                "Salazzle is decided by which one has\n",
+                "the most male Salandit with it."
+            ]
+        },
+        "fr": {
+            "name": "MALAMANDRE",
+            "category": "Pokémon Toxilézard",
+            "entry_text": [
+                "Il n’existe que des spécimens\n",
+                "femelles."
+            ]
+        },
+        "de": {
+            "name": "AMFIRA",
+            "category": "Giftechsen-Pokémon",
+            "entry_text": [
+                "Es existieren nur weibliche\n",
+                "Exemplare."
+            ]
+        },
+        "it": {
+            "name": "SALAZZLE",
+            "category": "Toxic Lizar Pokémon",
+            "entry_text": [
+                "Esistono solo esemplari femmina.\n",
+                "Produce un gas ricco di feromoni con\n",
+                "cui ammalia i Salandit maschi."
+            ]
+        },
+        "es": {
+            "name": "SALAZZLE",
+            "category": "Pokémon Lagartoxina",
+            "entry_text": [
+                "Solo hay hembras. Gracias a sus\n",
+                "feromonas, atrae a los Salandit\n",
+                "macho y los somete a su voluntad."
+            ]
+        },
+        "jp": {
+            "name": "SALAZZLE",
+            "category": "どくトカゲポケモン",
+            "entry_text": [
+                "どくガスには　おおくの\n",
+                "フェロモンが　ふくまれている。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

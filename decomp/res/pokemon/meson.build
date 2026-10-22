@@ -104,7 +104,8 @@ form_sprites_order = form_registry[2]
 # 3. Walk species subdirectories; `species_dirnames` is the authority.
 foreach species : species_dirnames
     subdir(species)
-    if species not in ['none', 'egg', 'bad_egg']
+    # Sovereign: only species with a cry (#1-493) have cry.wav; the Gen V-IX species have none for now.
+    if species not in ['none', 'egg', 'bad_egg'] and fs.exists(species / 'cry.wav')
         cry_banks += files(species / 'cry.txt')
         cry_waves += files(species / 'cry.wav')
     endif

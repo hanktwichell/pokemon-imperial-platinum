@@ -1,0 +1,226 @@
+{
+    "base_stats": {
+        "hp": 55,
+        "attack": 90,
+        "defense": 80,
+        "speed": 96,
+        "special_attack": 50,
+        "special_defense": 105
+    },
+    "types": [
+        "TYPE_GHOST",
+        "TYPE_FAIRY"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 167,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 2
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_CHESTO_BERRY"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_AMORPHOUS",
+        "EGG_GROUP_AMORPHOUS"
+    ],
+    "abilities": [
+        "ABILITY_DISGUISE",
+        "ABILITY_NONE",
+        "ABILITY_NONE"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
+    "icon_palette": 2,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_SCRATCH"
+            ],
+            [
+                1,
+                "MOVE_SPLASH"
+            ],
+            [
+                1,
+                "MOVE_ASTONISH"
+            ],
+            [
+                1,
+                "MOVE_COPYCAT"
+            ],
+            [
+                1,
+                "MOVE_WOOD_HAMMER"
+            ],
+            [
+                6,
+                "MOVE_SHADOW_SNEAK"
+            ],
+            [
+                12,
+                "MOVE_DOUBLE_TEAM"
+            ],
+            [
+                18,
+                "MOVE_BABY_DOLL_EYES"
+            ],
+            [
+                24,
+                "MOVE_MIMIC"
+            ],
+            [
+                30,
+                "MOVE_HONE_CLAWS"
+            ],
+            [
+                36,
+                "MOVE_SLASH"
+            ],
+            [
+                42,
+                "MOVE_SHADOW_CLAW"
+            ],
+            [
+                48,
+                "MOVE_CHARM"
+            ],
+            [
+                54,
+                "MOVE_PLAY_ROUGH"
+            ],
+            [
+                60,
+                "MOVE_PAIN_SPLIT"
+            ]
+        ],
+        "by_tm": [
+            "TM08",
+            "TM11",
+            "TM12",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM18",
+            "TM19",
+            "TM24",
+            "TM25",
+            "TM29",
+            "TM30",
+            "TM32",
+            "TM42",
+            "TM44",
+            "TM46",
+            "TM56",
+            "TM58",
+            "TM60",
+            "TM61",
+            "TM65",
+            "TM68",
+            "TM73",
+            "TM75",
+            "TM77",
+            "TM79",
+            "TM81",
+            "TM82",
+            "TM90",
+            "TM92"
+        ],
+        "by_tutor": [
+            "MOVE_SPITE",
+            "MOVE_TRICK"
+        ],
+        "egg_moves": [
+            "MOVE_CURSE",
+            "MOVE_DESTINY_BOND"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_MIMIKYU",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 8,
+        "weight_pounds": 1.5,
+        "body_shape": "SHAPE_SERPENTINE",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 530,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 530,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 32,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 32,
+        "en": {
+            "name": "MIMIKYU",
+            "category": "Disguise Pokémon",
+            "entry_text": [
+                "There was a scientist who peeked\n",
+                "under Mimikyu’s old rag in the name\n",
+                "of research."
+            ]
+        },
+        "fr": {
+            "name": "MIMIQUI",
+            "category": "Pokémon Fantômasque",
+            "entry_text": [
+                "Une bourrasque a un jour permis à un\n",
+                "Dresseur de voir sous le déguisement\n",
+                "de Mimiqui."
+            ]
+        },
+        "de": {
+            "name": "MIMIGMA",
+            "category": "Kostümspuk-Pokémon",
+            "entry_text": [
+                "Es verbirgt sich unter einem Lumpen,\n",
+                "der wie ein Pikachu aussieht, damit\n",
+                "niemand Angst vor ihm bekommt."
+            ]
+        },
+        "it": {
+            "name": "MIMIKYU",
+            "category": "Pokémon Fantasmanto",
+            "entry_text": [
+                "È un Pokémon tranquillo che soffre\n",
+                "di solitudine."
+            ]
+        },
+        "es": {
+            "name": "MIMIKYU",
+            "category": "Pokémon Disfraz",
+            "entry_text": [
+                "Es de carácter tranquilo y propenso\n",
+                "a sentirse solo."
+            ]
+        },
+        "jp": {
+            "name": "ミミッキュ",
+            "category": "ばけのかわポケモン",
+            "entry_text": [
+                "しょうたいふめい。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

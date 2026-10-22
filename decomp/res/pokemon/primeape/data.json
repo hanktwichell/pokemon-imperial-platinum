@@ -116,7 +116,9 @@
             "MOVE_UPROAR"
         ]
     },
-    "evolutions": [  ],
+    "evolutions": [
+        [ "EVO_LEVEL", 50, "SPECIES_ANNIHILAPE" ]
+    ],
     "offspring": "SPECIES_MANKEY",
     "footprint": {
         "has": true,

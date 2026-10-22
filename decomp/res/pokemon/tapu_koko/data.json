@@ -1,0 +1,225 @@
+{
+    "base_stats": {
+        "hp": 70,
+        "attack": 115,
+        "defense": 85,
+        "speed": 130,
+        "special_attack": 95,
+        "special_defense": 75
+    },
+    "types": [
+        "TYPE_ELECTRIC",
+        "TYPE_FAIRY"
+    ],
+    "catch_rate": 3,
+    "base_exp_reward": 255,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 3,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_NO_GENDER",
+    "hatch_cycles": 15,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_UNDISCOVERED",
+        "EGG_GROUP_UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_ELECTRIC_SURGE",
+        "ABILITY_NONE",
+        "ABILITY_TELEPATHY"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_QUICK_ATTACK"
+            ],
+            [
+                1,
+                "MOVE_THUNDER_SHOCK"
+            ],
+            [
+                5,
+                "MOVE_WITHDRAW"
+            ],
+            [
+                10,
+                "MOVE_FAIRY_WIND"
+            ],
+            [
+                15,
+                "MOVE_FALSE_SWIPE"
+            ],
+            [
+                20,
+                "MOVE_SPARK"
+            ],
+            [
+                25,
+                "MOVE_SHOCK_WAVE"
+            ],
+            [
+                30,
+                "MOVE_CHARGE"
+            ],
+            [
+                35,
+                "MOVE_AGILITY"
+            ],
+            [
+                40,
+                "MOVE_SCREECH"
+            ],
+            [
+                45,
+                "MOVE_DISCHARGE"
+            ],
+            [
+                50,
+                "MOVE_MEAN_LOOK"
+            ],
+            [
+                55,
+                "MOVE_NATURES_MADNESS"
+            ],
+            [
+                60,
+                "MOVE_WILD_CHARGE"
+            ],
+            [
+                65,
+                "MOVE_BRAVE_BIRD"
+            ],
+            [
+                70,
+                "MOVE_POWER_SWAP"
+            ],
+            [
+                75,
+                "MOVE_ELECTRIC_TERRAIN"
+            ]
+        ],
+        "by_tm": [
+            "TM04",
+            "TM12",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM18",
+            "TM20",
+            "TM24",
+            "TM25",
+            "TM33",
+            "TM34",
+            "TM42",
+            "TM44",
+            "TM46",
+            "TM47",
+            "TM54",
+            "TM58",
+            "TM68",
+            "TM73",
+            "TM82",
+            "TM86",
+            "TM89",
+            "TM90",
+            "HM02"
+        ],
+        "by_tutor": [
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_IRON_HEAD",
+            "MOVE_SNORE",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_SWIFT"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_TAPU_KOKO",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 71,
+        "weight_pounds": 45.2,
+        "body_shape": "SHAPE_HEAD_ARMS",
+        "trainer_scale_f": 310,
+        "pokemon_scale_f": 256,
+        "trainer_scale_m": 303,
+        "pokemon_scale_m": 256,
+        "trainer_pos_f": 13,
+        "pokemon_pos_f": 2,
+        "trainer_pos_m": 12,
+        "pokemon_pos_m": 2,
+        "en": {
+            "name": "TAPU KOKO",
+            "category": "Land Spirit Pokémon",
+            "entry_text": [
+                "It confuses its enemies by flying\n",
+                "too quickly for the eye to follow."
+            ]
+        },
+        "fr": {
+            "name": "TOKORICO",
+            "category": "Pokémon Tutélaire",
+            "entry_text": [
+                "Il est le gardien de Mele-Mele et le\n",
+                "maître de la foudre."
+            ]
+        },
+        "de": {
+            "name": "KAPU-RIKI",
+            "category": "Land Spirit Pokémon",
+            "entry_text": [
+                "Der Schutzpatron Mele-Meles gebietet\n",
+                "über Blitz und Donner."
+            ]
+        },
+        "it": {
+            "name": "TAPU KOKO",
+            "category": "Pokémon Nume Locale",
+            "entry_text": [
+                "Protettore di Mele Mele, è in grado\n",
+                "di controllare i fulmini."
+            ]
+        },
+        "es": {
+            "name": "TAPU KOKO",
+            "category": "Pokémon Dios Nativo",
+            "entry_text": [
+                "El espíritu guardián de Melemele,\n",
+                "capaz de blandir el rayo."
+            ]
+        },
+        "jp": {
+            "name": "カプ・コケコ",
+            "category": "とちがみポケモン",
+            "entry_text": [
+                "かみなりを　あやつる　メレメレの\n",
+                "まもりがみ。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

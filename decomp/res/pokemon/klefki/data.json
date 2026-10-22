@@ -1,0 +1,213 @@
+{
+    "base_stats": {
+        "hp": 57,
+        "attack": 80,
+        "defense": 91,
+        "speed": 75,
+        "special_attack": 80,
+        "special_defense": 87
+    },
+    "types": [
+        "TYPE_STEEL",
+        "TYPE_FAIRY"
+    ],
+    "catch_rate": 75,
+    "base_exp_reward": 165,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 1,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_FAST",
+    "egg_groups": [
+        "EGG_GROUP_MINERAL",
+        "EGG_GROUP_MINERAL"
+    ],
+    "abilities": [
+        "ABILITY_PRANKSTER",
+        "ABILITY_NONE",
+        "ABILITY_MAGICIAN"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
+    "icon_palette": 2,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_ASTONISH"
+            ],
+            [
+                4,
+                "MOVE_TACKLE"
+            ],
+            [
+                8,
+                "MOVE_FAIRY_WIND"
+            ],
+            [
+                12,
+                "MOVE_TORMENT"
+            ],
+            [
+                16,
+                "MOVE_FAIRY_LOCK"
+            ],
+            [
+                20,
+                "MOVE_METAL_SOUND"
+            ],
+            [
+                24,
+                "MOVE_DRAINING_KISS"
+            ],
+            [
+                28,
+                "MOVE_RECYCLE"
+            ],
+            [
+                32,
+                "MOVE_IMPRISON"
+            ],
+            [
+                36,
+                "MOVE_FLASH_CANNON"
+            ],
+            [
+                40,
+                "MOVE_PLAY_ROUGH"
+            ],
+            [
+                44,
+                "MOVE_MAGIC_ROOM"
+            ],
+            [
+                48,
+                "MOVE_FOUL_PLAY"
+            ],
+            [
+                52,
+                "MOVE_LAST_RESORT"
+            ]
+        ],
+        "by_tm": [
+            "TM04",
+            "TM11",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM18",
+            "TM29",
+            "TM33",
+            "TM37",
+            "TM41",
+            "TM42",
+            "TM44",
+            "TM46",
+            "TM58",
+            "TM67",
+            "TM68",
+            "TM73",
+            "TM77",
+            "TM82",
+            "TM90",
+            "TM91",
+            "TM92"
+        ],
+        "by_tutor": [
+            "MOVE_IRON_DEFENSE",
+            "MOVE_MAGNET_RISE",
+            "MOVE_LAST_RESORT",
+            "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_MAGNET_RISE",
+            "MOVE_SWITCHEROO"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_KLEFKI",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 8,
+        "weight_pounds": 6.6,
+        "body_shape": "SHAPE_HEAD",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 530,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 530,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 32,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 32,
+        "en": {
+            "name": "KLEFKI",
+            "category": "Key Ring Pokémon",
+            "entry_text": [
+                "Klefki sucks in metal ions with the\n",
+                "horn topping its head."
+            ]
+        },
+        "fr": {
+            "name": "TROUSSELIN",
+            "category": "Pokémon Trousseau",
+            "entry_text": [
+                "Il absorbe les ions métalliques avec\n",
+                "l’appendice sur sa tête."
+            ]
+        },
+        "de": {
+            "name": "CLAVION",
+            "category": "Schlüssel-Pokémon",
+            "entry_text": [
+                "Mit dem Fortsatz an seinem Kopf\n",
+                "saugt Clavion Metall-Ionen ein."
+            ]
+        },
+        "it": {
+            "name": "KLEFKI",
+            "category": "Pokémon Portachiavi",
+            "entry_text": [
+                "Assorbe gli ioni metallici con la\n",
+                "sporgenza sulla testa."
+            ]
+        },
+        "es": {
+            "name": "KLEFKI",
+            "category": "Pokémon Llavero",
+            "entry_text": [
+                "Un Pokémon coleccionista de llaves."
+            ]
+        },
+        "jp": {
+            "name": "クレッフィ",
+            "category": "かぎたばポケモン",
+            "entry_text": [
+                "あたまのさきで　きんぞくイオンを\n",
+                "すいとる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

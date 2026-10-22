@@ -575,18 +575,6 @@ static void UpdateForm(Pokedex *pokedexData, u16 species, Pokemon *mon)
     }
 }
 
-static void UpdateLanguage(Pokedex *pokedexData, u16 species, u32 language)
-{
-    int bitIndex = species;
-    int languageIndex = PokedexLanguage_LanguageToIndex(language);
-
-    if (languageIndex == NUM_LANGUAGES) {
-        return;
-    }
-
-    pokedexData->recordedLanguages[bitIndex] |= 1 << languageIndex;
-}
-
 static u32 GetDisplayGender(const Pokedex *pokedexData, u16 species, int displaySecondary)
 {
     u32 defaultGender, secondaryGender;
@@ -1029,7 +1017,6 @@ void Pokedex_Encounter(Pokedex *pokedexData, Pokemon *mon)
 void Pokedex_Capture(Pokedex *pokedexData, Pokemon *mon)
 {
     u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
-    u32 language = Pokemon_GetValue(mon, MON_DATA_LANGUAGE, NULL);
     u32 personality = Pokemon_GetValue(mon, MON_DATA_PERSONALITY, NULL);
     u32 gender = Pokemon_GetGender(mon);
 
@@ -1051,7 +1038,6 @@ void Pokedex_Capture(Pokedex *pokedexData, Pokemon *mon)
     }
 
     UpdateForm(pokedexData, species, mon);
-    UpdateLanguage(pokedexData, species, language);
 
     Write_CaughtSpecies(pokedexData, species);
     Write_SeenSpecies(pokedexData, species);
@@ -1081,18 +1067,11 @@ void Pokedex_TurnOnFormDetection(Pokedex *pokedexData)
     pokedexData->canDetectForms = TRUE;
 }
 
+// Sovereign is English-only: the Pokédex keeps no foreign-language entries (owner, 2026-10-22). Dropping the
+// per-species language flags (1 byte per species) is what lets the 1025-species Pokédex fit Platinum's save.
 BOOL Pokedex_IsLanguageObtained(const Pokedex *pokedexData, u16 species, u32 languageIndex)
 {
-    int bitIndex;
-
-    GF_ASSERT(languageIndex < 8);
-
-    CheckPokedexIntegrity(pokedexData);
-
-    bitIndex = species;
-    languageIndex = PokedexLanguage_LanguageToIndex(languageIndex);
-
-    return pokedexData->recordedLanguages[bitIndex] & (1 << languageIndex);
+    return FALSE;
 }
 
 void Pokedex_TurnOnLanguageDetection(Pokedex *pokedexData)
@@ -1102,7 +1081,8 @@ void Pokedex_TurnOnLanguageDetection(Pokedex *pokedexData)
 
 BOOL Pokedex_CanDetectLanguages(const Pokedex *pokedexData)
 {
-    return pokedexData->canDetectLanguages;
+    // Sovereign: English-only, so the foreign-entry upgrade (Route 226) never shows language tabs.
+    return FALSE;
 }
 
 BOOL Pokedex_IsObtained(const Pokedex *pokedex)

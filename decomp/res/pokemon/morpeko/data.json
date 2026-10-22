@@ -1,0 +1,221 @@
+{
+    "base_stats": {
+        "hp": 58,
+        "attack": 95,
+        "defense": 58,
+        "speed": 97,
+        "special_attack": 70,
+        "special_defense": 58
+    },
+    "types": [
+        "TYPE_ELECTRIC",
+        "TYPE_DARK"
+    ],
+    "catch_rate": 180,
+    "base_exp_reward": 153,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 2,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 10,
+    "base_friendship": 50,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_FIELD",
+        "EGG_GROUP_FAIRY"
+    ],
+    "abilities": [
+        "ABILITY_HUNGER_SWITCH",
+        "ABILITY_NONE",
+        "ABILITY_NONE"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
+    "icon_palette": 1,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_TAIL_WHIP"
+            ],
+            [
+                1,
+                "MOVE_THUNDER_SHOCK"
+            ],
+            [
+                5,
+                "MOVE_LEER"
+            ],
+            [
+                10,
+                "MOVE_POWER_TRIP"
+            ],
+            [
+                15,
+                "MOVE_QUICK_ATTACK"
+            ],
+            [
+                20,
+                "MOVE_FLATTER"
+            ],
+            [
+                25,
+                "MOVE_BITE"
+            ],
+            [
+                30,
+                "MOVE_SPARK"
+            ],
+            [
+                35,
+                "MOVE_TORMENT"
+            ],
+            [
+                40,
+                "MOVE_AGILITY"
+            ],
+            [
+                45,
+                "MOVE_BULLET_SEED"
+            ],
+            [
+                50,
+                "MOVE_CRUNCH"
+            ],
+            [
+                55,
+                "MOVE_AURA_WHEEL"
+            ],
+            [
+                60,
+                "MOVE_THRASH"
+            ]
+        ],
+        "by_tm": [
+            "TM09",
+            "TM12",
+            "TM17",
+            "TM24",
+            "TM25",
+            "TM31",
+            "TM41",
+            "TM42",
+            "TM44",
+            "TM46",
+            "TM56",
+            "TM57",
+            "TM58",
+            "TM73",
+            "TM79",
+            "TM82",
+            "TM87",
+            "TM90"
+        ],
+        "by_tutor": [
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_SPITE",
+            "MOVE_ENDEAVOR",
+            "MOVE_OUTRAGE",
+            "MOVE_SEED_BOMB",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_SUPER_FANG",
+            "MOVE_SWAGGER",
+            "MOVE_RAPID_SPIN",
+            "MOVE_FAKE_OUT",
+            "MOVE_CHARGE",
+            "MOVE_TICKLE",
+            "MOVE_QUASH",
+            "MOVE_PARTING_SHOT"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_MORPEKO",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 12,
+        "weight_pounds": 6.6,
+        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 502,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 502,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 28,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 28,
+        "en": {
+            "name": "MORPEKO",
+            "category": "Two-Sided Pokémon",
+            "entry_text": [
+                "It carries electrically roasted\n",
+                "seeds with it as if they’re precious\n",
+                "treasures."
+            ]
+        },
+        "fr": {
+            "name": "MORPEKO",
+            "category": "Pokémon Volt Face",
+            "entry_text": [
+                "Il a beau manger, il a tout le temps\n",
+                "faim. Il a toujours des graines\n",
+                "grillées à l’électricité sur lui."
+            ]
+        },
+        "de": {
+            "name": "MORPEKO",
+            "category": "Alter Ego-Pokémon",
+            "entry_text": [
+                "Egal, wie viel es auch frisst, es\n",
+                "wird sofort wieder hungrig."
+            ]
+        },
+        "it": {
+            "name": "MORPEKO",
+            "category": "Two-Sided Pokémon",
+            "entry_text": [
+                "Indipendentemente da quanto mangia,\n",
+                "è sempre affamato."
+            ]
+        },
+        "es": {
+            "name": "MORPEKO",
+            "category": "Pokémon Dos Caras",
+            "entry_text": [
+                "Siempre tiene apetito, sin importar\n",
+                "lo mucho que coma."
+            ]
+        },
+        "jp": {
+            "name": "モルペコ",
+            "category": "にめんポケモン",
+            "entry_text": [
+                "いつも　おなかを　すかせている。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

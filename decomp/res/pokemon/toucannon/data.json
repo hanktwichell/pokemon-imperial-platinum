@@ -1,0 +1,220 @@
+{
+    "base_stats": {
+        "hp": 80,
+        "attack": 120,
+        "defense": 75,
+        "speed": 60,
+        "special_attack": 75,
+        "special_defense": 75
+    },
+    "types": [
+        "TYPE_NORMAL",
+        "TYPE_FLYING"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 218,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 3,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_RAWST_BERRY"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 15,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_FLYING",
+        "EGG_GROUP_FLYING"
+    ],
+    "abilities": [
+        "ABILITY_KEEN_EYE",
+        "ABILITY_SKILL_LINK",
+        "ABILITY_SHEER_FORCE"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLACK",
+    "flip_sprite": false,
+    "icon_palette": 2,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_BEAK_BLAST"
+            ],
+            [
+                1,
+                "MOVE_GROWL"
+            ],
+            [
+                1,
+                "MOVE_PECK"
+            ],
+            [
+                1,
+                "MOVE_ROCK_SMASH"
+            ],
+            [
+                1,
+                "MOVE_ROCK_BLAST"
+            ],
+            [
+                1,
+                "MOVE_ECHOED_VOICE"
+            ],
+            [
+                13,
+                "MOVE_SUPERSONIC"
+            ],
+            [
+                16,
+                "MOVE_PLUCK"
+            ],
+            [
+                21,
+                "MOVE_ROOST"
+            ],
+            [
+                24,
+                "MOVE_FURY_ATTACK"
+            ],
+            [
+                30,
+                "MOVE_SCREECH"
+            ],
+            [
+                34,
+                "MOVE_DRILL_PECK"
+            ],
+            [
+                40,
+                "MOVE_BULLET_SEED"
+            ],
+            [
+                44,
+                "MOVE_FEATHER_DANCE"
+            ],
+            [
+                50,
+                "MOVE_HYPER_VOICE"
+            ]
+        ],
+        "by_tm": [
+            "TM09",
+            "TM11",
+            "TM15",
+            "TM17",
+            "TM31",
+            "TM40",
+            "TM42",
+            "TM44",
+            "TM46",
+            "TM50",
+            "TM51",
+            "TM58",
+            "TM68",
+            "TM75",
+            "TM77",
+            "TM82",
+            "TM88",
+            "TM89",
+            "TM90",
+            "TM91",
+            "HM02",
+            "HM06"
+        ],
+        "by_tutor": [
+            "MOVE_AIR_CUTTER",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_GUNK_SHOT",
+            "MOVE_SEED_BOMB",
+            "MOVE_HEAT_WAVE",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_PIKIPEK",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 43,
+        "weight_pounds": 57.3,
+        "body_shape": "SHAPE_WINGED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 293,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 293,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 15,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 15,
+        "en": {
+            "name": "TOUCANNON",
+            "category": "Cannon Pokémon",
+            "entry_text": [
+                "They smack beaks with others of\n",
+                "their kind to communicate."
+            ]
+        },
+        "fr": {
+            "name": "BAZOUCAN",
+            "category": "Pokémon Canon",
+            "entry_text": [
+                "Les couples de Bazoucan sont réputés\n",
+                "pour leur harmonie."
+            ]
+        },
+        "de": {
+            "name": "TUKANON",
+            "category": "Kanone",
+            "entry_text": [
+                "Tukanon-Pärchen sind für ihr\n",
+                "harmonisches Zusammenleben bekannt."
+            ]
+        },
+        "it": {
+            "name": "TOUCANNON",
+            "category": "Pokémon Cannone",
+            "entry_text": [
+                "Le coppie di Toucannon sono famose\n",
+                "per la loro perfetta armonia."
+            ]
+        },
+        "es": {
+            "name": "TOUCANNON",
+            "category": "Pokémon Cañón",
+            "entry_text": [
+                "Las parejas de Toucannon son famosas\n",
+                "por la armonía que reina entre\n",
+                "ellas."
+            ]
+        },
+        "jp": {
+            "name": "ドデカバシ",
+            "category": "おおづつポケモン",
+            "entry_text": [
+                "つがいが　なかむつまじいことで\n",
+                "しられる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

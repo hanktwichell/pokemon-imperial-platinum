@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Headless boot smoke test for an Sovereign Platinum ROM (uses py-desmume).
+"""Headless boot smoke test for a Sovereign Platinum ROM (uses py-desmume).
 
 Boots the ROM, presses through the opening into Professor Rowan's new-game intro, and saves
 screenshots. Fails if the screens stay blank (a crash or hang during boot).

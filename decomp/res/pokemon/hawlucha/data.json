@@ -1,0 +1,244 @@
+{
+    "base_stats": {
+        "hp": 78,
+        "attack": 92,
+        "defense": 75,
+        "speed": 118,
+        "special_attack": 74,
+        "special_defense": 63
+    },
+    "types": [
+        "TYPE_FIGHTING",
+        "TYPE_FLYING"
+    ],
+    "catch_rate": 100,
+    "base_exp_reward": 175,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 2,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_KINGS_ROCK"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_FLYING",
+        "EGG_GROUP_HUMAN_LIKE"
+    ],
+    "abilities": [
+        "ABILITY_LIMBER",
+        "ABILITY_UNBURDEN",
+        "ABILITY_MOLD_BREAKER"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_TACKLE"
+            ],
+            [
+                1,
+                "MOVE_HONE_CLAWS"
+            ],
+            [
+                4,
+                "MOVE_WING_ATTACK"
+            ],
+            [
+                8,
+                "MOVE_DETECT"
+            ],
+            [
+                12,
+                "MOVE_AERIAL_ACE"
+            ],
+            [
+                16,
+                "MOVE_ENCORE"
+            ],
+            [
+                20,
+                "MOVE_FEATHER_DANCE"
+            ],
+            [
+                24,
+                "MOVE_BRICK_BREAK"
+            ],
+            [
+                28,
+                "MOVE_BOUNCE"
+            ],
+            [
+                32,
+                "MOVE_TAUNT"
+            ],
+            [
+                36,
+                "MOVE_ROOST"
+            ],
+            [
+                40,
+                "MOVE_SWORDS_DANCE"
+            ],
+            [
+                44,
+                "MOVE_FLYING_PRESS"
+            ],
+            [
+                48,
+                "MOVE_HI_JUMP_KICK"
+            ],
+            [
+                52,
+                "MOVE_ENDEAVOR"
+            ],
+            [
+                56,
+                "MOVE_SKY_ATTACK"
+            ]
+        ],
+        "by_tm": [
+            "TM01",
+            "TM08",
+            "TM11",
+            "TM12",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM28",
+            "TM31",
+            "TM39",
+            "TM40",
+            "TM42",
+            "TM44",
+            "TM46",
+            "TM51",
+            "TM52",
+            "TM54",
+            "TM56",
+            "TM58",
+            "TM60",
+            "TM68",
+            "TM71",
+            "TM75",
+            "TM80",
+            "TM81",
+            "TM82",
+            "TM84",
+            "TM86",
+            "TM89",
+            "TM90",
+            "HM02",
+            "HM05"
+        ],
+        "by_tutor": [
+            "MOVE_THUNDER_PUNCH",
+            "MOVE_FIRE_PUNCH",
+            "MOVE_IRON_HEAD",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_BOUNCE",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_MEAN_LOOK",
+            "MOVE_CROSS_CHOP",
+            "MOVE_FEINT",
+            "MOVE_DEFOG",
+            "MOVE_ENTRAINMENT",
+            "MOVE_QUICK_GUARD"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_HAWLUCHA",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 31,
+        "weight_pounds": 47.4,
+        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 395,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 395,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 21,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 21,
+        "en": {
+            "name": "HAWLUCHA",
+            "category": "Wrestling Pokémon",
+            "entry_text": [
+                "It always strikes a pose before\n",
+                "going for its finishing move."
+            ]
+        },
+        "fr": {
+            "name": "BRUTALIBRÉ",
+            "category": "Pokémon Catcheur",
+            "entry_text": [
+                "Il prend toujours la pose avant de\n",
+                "donner le coup de grâce à son\n",
+                "adversaire."
+            ]
+        },
+        "de": {
+            "name": "RESLADERO",
+            "category": "Wrestling-Pokémon",
+            "entry_text": [
+                "Bevor es seinem Gegner mit einer\n",
+                "Spezialtechnik ein Ende setzt,\n",
+                "posiert es stets."
+            ]
+        },
+        "it": {
+            "name": "HAWLUCHA",
+            "category": "Pokémon Lottalibera",
+            "entry_text": [
+                "Assume sempre una posa speciale\n",
+                "prima di sferrare il colpo finale."
+            ]
+        },
+        "es": {
+            "name": "HAWLUCHA",
+            "category": "Pokémon Lucha Libre",
+            "entry_text": [
+                "Con sus ágiles saltos y su juego de\n",
+                "piernas, permanece siempre en el\n",
+                "punto ciego del rival."
+            ]
+        },
+        "jp": {
+            "name": "ルチャブル",
+            "category": "レスリングポケモン",
+            "entry_text": [
+                "かろやかな　ジャンプで　あいての\n",
+                "しかくに　まわりつつ　たたかう。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

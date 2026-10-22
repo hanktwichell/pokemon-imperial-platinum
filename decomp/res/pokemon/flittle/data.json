@@ -1,0 +1,205 @@
+{
+    "base_stats": {
+        "hp": 30,
+        "attack": 35,
+        "defense": 30,
+        "speed": 75,
+        "special_attack": 55,
+        "special_defense": 30
+    },
+    "types": [
+        "TYPE_PSYCHIC",
+        "TYPE_PSYCHIC"
+    ],
+    "catch_rate": 120,
+    "base_exp_reward": 51,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 1,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 50,
+    "exp_rate": "EXP_RATE_MEDIUM_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_FLYING",
+        "EGG_GROUP_FLYING"
+    ],
+    "abilities": [
+        "ABILITY_ANTICIPATION",
+        "ABILITY_FRISK",
+        "ABILITY_SPEED_BOOST"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
+    "icon_palette": 1,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_GROWL"
+            ],
+            [
+                1,
+                "MOVE_PECK"
+            ],
+            [
+                5,
+                "MOVE_CONFUSION"
+            ],
+            [
+                8,
+                "MOVE_BABY_DOLL_EYES"
+            ],
+            [
+                11,
+                "MOVE_DISARMING_VOICE"
+            ],
+            [
+                15,
+                "MOVE_QUICK_ATTACK"
+            ],
+            [
+                19,
+                "MOVE_PSYBEAM"
+            ],
+            [
+                24,
+                "MOVE_PLUCK"
+            ],
+            [
+                29,
+                "MOVE_AGILITY"
+            ],
+            [
+                34,
+                "MOVE_UPROAR"
+            ]
+        ],
+        "by_tm": [
+            "TM04",
+            "TM11",
+            "TM16",
+            "TM17",
+            "TM18",
+            "TM29",
+            "TM33",
+            "TM37",
+            "TM42",
+            "TM44",
+            "TM46",
+            "TM48",
+            "TM51",
+            "TM58",
+            "TM82",
+            "TM88",
+            "TM89",
+            "TM90",
+            "TM92"
+        ],
+        "by_tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_HELPING_HAND",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_SEED_BOMB",
+            "MOVE_TRICK",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_HYPNOSIS",
+            "MOVE_ROOST",
+            "MOVE_ALLY_SWITCH"
+        ]
+    },
+    "evolutions": [
+        [
+            "EVO_LEVEL",
+            35,
+            "SPECIES_ESPATHRA"
+        ]
+    ],
+    "offspring": "SPECIES_FLITTLE",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 8,
+        "weight_pounds": 3.3,
+        "body_shape": "SHAPE_HEAD_LEGS",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 530,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 530,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 32,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 32,
+        "en": {
+            "name": "FLITTLE",
+            "category": "Frill Pokémon",
+            "entry_text": [
+                "It spends its time running around\n",
+                "wastelands."
+            ]
+        },
+        "fr": {
+            "name": "FLOTILLON",
+            "category": "Froufrou",
+            "entry_text": [
+                "It spends its time running around\n",
+                "wastelands."
+            ]
+        },
+        "de": {
+            "name": "FLATTUTU",
+            "category": "Rüschen",
+            "entry_text": [
+                "It spends its time running around\n",
+                "wastelands."
+            ]
+        },
+        "it": {
+            "name": "FLITTLE",
+            "category": "Frill Pokémon",
+            "entry_text": [
+                "It spends its time running around\n",
+                "wastelands."
+            ]
+        },
+        "es": {
+            "name": "FLITTLE",
+            "category": "Frill Pokémon",
+            "entry_text": [
+                "It spends its time running around\n",
+                "wastelands."
+            ]
+        },
+        "jp": {
+            "name": "ヒラヒナ",
+            "category": "フリルポケモン",
+            "entry_text": [
+                "It spends its time running around\n",
+                "wastelands."
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

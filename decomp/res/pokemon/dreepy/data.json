@@ -1,0 +1,167 @@
+{
+    "base_stats": {
+        "hp": 28,
+        "attack": 60,
+        "defense": 30,
+        "speed": 82,
+        "special_attack": 40,
+        "special_defense": 30
+    },
+    "types": [
+        "TYPE_DRAGON",
+        "TYPE_GHOST"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 54,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 1,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 40,
+    "base_friendship": 50,
+    "exp_rate": "EXP_RATE_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_AMORPHOUS",
+        "EGG_GROUP_DRAGON"
+    ],
+    "abilities": [
+        "ABILITY_CLEAR_BODY",
+        "ABILITY_INFILTRATOR",
+        "ABILITY_CURSED_BODY"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_BITE"
+            ],
+            [
+                1,
+                "MOVE_QUICK_ATTACK"
+            ],
+            [
+                1,
+                "MOVE_ASTONISH"
+            ],
+            [
+                1,
+                "MOVE_INFESTATION"
+            ]
+        ],
+        "by_tm": [
+            "TM17",
+            "TM32",
+            "TM42",
+            "TM44",
+            "TM58",
+            "TM73",
+            "TM82",
+            "TM90"
+        ],
+        "by_tutor": [
+            "MOVE_HELPING_HAND",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_DISABLE",
+            "MOVE_DOUBLE_TEAM",
+            "MOVE_CONFUSE_RAY",
+            "MOVE_CURSE",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_DRAGON_TAIL"
+        ]
+    },
+    "evolutions": [
+        [
+            "EVO_LEVEL",
+            50,
+            "SPECIES_DRAKLOAK"
+        ]
+    ],
+    "offspring": "SPECIES_DREEPY",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 20,
+        "weight_pounds": 4.4,
+        "body_shape": "SHAPE_SERPENTINE",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 395,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 395,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 24,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 24,
+        "en": {
+            "name": "DREEPY",
+            "category": "Lingering Pokémon",
+            "entry_text": [
+                "If this weak Pokémon is by itself, a\n",
+                "mere child could defeat it."
+            ]
+        },
+        "fr": {
+            "name": "FANTYRM",
+            "category": "Pokémon Âme Errante",
+            "entry_text": [
+                "If this weak Pokémon is by itself, a\n",
+                "mere child could defeat it."
+            ]
+        },
+        "de": {
+            "name": "GROLLDRA",
+            "category": "Missgunst-Pokémon",
+            "entry_text": [
+                "In der Urzeit lebte es im Meer."
+            ]
+        },
+        "it": {
+            "name": "DREEPY",
+            "category": "Lingering Pokémon",
+            "entry_text": [
+                "Abitava i mari in tempi antichi."
+            ]
+        },
+        "es": {
+            "name": "DREEPY",
+            "category": "Pokémon Resentido",
+            "entry_text": [
+                "Habitaba los mares en tiempos\n",
+                "inmemoriales."
+            ]
+        },
+        "jp": {
+            "name": "ドラメシヤ",
+            "category": "うらめしポケモン",
+            "entry_text": [
+                "If this weak Pokémon is by itself, a\n",
+                "mere child could defeat it."
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

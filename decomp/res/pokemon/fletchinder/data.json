@@ -1,0 +1,216 @@
+{
+    "base_stats": {
+        "hp": 62,
+        "attack": 73,
+        "defense": 55,
+        "speed": 84,
+        "special_attack": 56,
+        "special_defense": 52
+    },
+    "types": [
+        "TYPE_FIRE",
+        "TYPE_FLYING"
+    ],
+    "catch_rate": 120,
+    "base_exp_reward": 134,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 2,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 15,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_FLYING",
+        "EGG_GROUP_FLYING"
+    ],
+    "abilities": [
+        "ABILITY_FLAME_BODY",
+        "ABILITY_NONE",
+        "ABILITY_GALE_WINGS"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_RED",
+    "flip_sprite": false,
+    "icon_palette": 2,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_FLAME_CHARGE"
+            ],
+            [
+                1,
+                "MOVE_GROWL"
+            ],
+            [
+                1,
+                "MOVE_EMBER"
+            ],
+            [
+                1,
+                "MOVE_PECK"
+            ],
+            [
+                1,
+                "MOVE_QUICK_ATTACK"
+            ],
+            [
+                1,
+                "MOVE_FEINT"
+            ],
+            [
+                15,
+                "MOVE_FLAIL"
+            ],
+            [
+                22,
+                "MOVE_ACROBATICS"
+            ],
+            [
+                29,
+                "MOVE_AGILITY"
+            ],
+            [
+                36,
+                "MOVE_AERIAL_ACE"
+            ],
+            [
+                43,
+                "MOVE_TAILWIND"
+            ],
+            [
+                50,
+                "MOVE_STEEL_WING"
+            ],
+            [
+                57,
+                "MOVE_ROOST"
+            ],
+            [
+                64,
+                "MOVE_FLY"
+            ]
+        ],
+        "by_tm": [
+            "TM11",
+            "TM12",
+            "TM17",
+            "TM18",
+            "TM35",
+            "TM38",
+            "TM40",
+            "TM42",
+            "TM44",
+            "TM46",
+            "TM47",
+            "TM50",
+            "TM51",
+            "TM58",
+            "TM61",
+            "TM75",
+            "TM82",
+            "TM89",
+            "TM90",
+            "HM02"
+        ],
+        "by_tutor": [
+            "MOVE_AIR_CUTTER",
+            "MOVE_HEAT_WAVE",
+            "MOVE_SWIFT"
+        ]
+    },
+    "evolutions": [
+        [
+            "EVO_LEVEL",
+            35,
+            "SPECIES_TALONFLAME"
+        ]
+    ],
+    "offspring": "SPECIES_FLETCHLING",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 28,
+        "weight_pounds": 35.3,
+        "body_shape": "SHAPE_WINGED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 337,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 337,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 22,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 22,
+        "en": {
+            "name": "FLETCHINDR",
+            "category": "Ember Pokémon",
+            "entry_text": [
+                "Fletchinder are exceedingly\n",
+                "territorial and aggressive."
+            ]
+        },
+        "fr": {
+            "name": "BRAISILLON",
+            "category": "Pokémon Braise",
+            "entry_text": [
+                "De nature belliqueuse, il dispose\n",
+                "d’un fort instinct territorial."
+            ]
+        },
+        "de": {
+            "name": "DARTIGNIS",
+            "category": "Funkenregen-Pokémon",
+            "entry_text": [
+                "Dieses kriegerische Pokémon hat ein\n",
+                "stark ausgeprägtes Revierverhalten."
+            ]
+        },
+        "it": {
+            "name": "FLETCHINDR",
+            "category": "Pokémon Sfavillante",
+            "entry_text": [
+                "È molto territoriale e aggressivo.\n",
+                "Si contende il territorio di caccia\n",
+                "con gli altri Fletchinder."
+            ]
+        },
+        "es": {
+            "name": "FLETCHINDR",
+            "category": "Pokémon Lumbre",
+            "entry_text": [
+                "Defienden su territorio con suma\n",
+                "agresividad. Se pelean entre sí por\n",
+                "el control de las áreas de caza."
+            ]
+        },
+        "jp": {
+            "name": "ヒノヤコマ",
+            "category": "ひのこポケモン",
+            "entry_text": [
+                "なわばりいしきが　とても　つよく\n",
+                "こうせんてき。えさばを　めぐり\n",
+                "ヒノヤコマどうしで　あらそう。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

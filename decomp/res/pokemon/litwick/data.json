@@ -1,0 +1,230 @@
+{
+    "base_stats": {
+        "hp": 50,
+        "attack": 30,
+        "defense": 55,
+        "speed": 20,
+        "special_attack": 65,
+        "special_defense": 55
+    },
+    "types": [
+        "TYPE_GHOST",
+        "TYPE_FIRE"
+    ],
+    "catch_rate": 190,
+    "base_exp_reward": 55,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 1,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_AMORPHOUS",
+        "EGG_GROUP_AMORPHOUS"
+    ],
+    "abilities": [
+        "ABILITY_FLASH_FIRE",
+        "ABILITY_FLAME_BODY",
+        "ABILITY_INFILTRATOR"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": false,
+    "icon_palette": 2,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_SMOG"
+            ],
+            [
+                1,
+                "MOVE_ASTONISH"
+            ],
+            [
+                4,
+                "MOVE_EMBER"
+            ],
+            [
+                8,
+                "MOVE_MINIMIZE"
+            ],
+            [
+                12,
+                "MOVE_CONFUSE_RAY"
+            ],
+            [
+                16,
+                "MOVE_HEX"
+            ],
+            [
+                20,
+                "MOVE_WILL_O_WISP"
+            ],
+            [
+                24,
+                "MOVE_FIRE_SPIN"
+            ],
+            [
+                28,
+                "MOVE_NIGHT_SHADE"
+            ],
+            [
+                32,
+                "MOVE_CURSE"
+            ],
+            [
+                36,
+                "MOVE_SHADOW_BALL"
+            ],
+            [
+                40,
+                "MOVE_INFERNO"
+            ],
+            [
+                44,
+                "MOVE_IMPRISON"
+            ],
+            [
+                48,
+                "MOVE_PAIN_SPLIT"
+            ],
+            [
+                52,
+                "MOVE_OVERHEAT"
+            ],
+            [
+                56,
+                "MOVE_MEMENTO"
+            ]
+        ],
+        "by_tm": [
+            "TM04",
+            "TM11",
+            "TM12",
+            "TM17",
+            "TM22",
+            "TM29",
+            "TM30",
+            "TM35",
+            "TM38",
+            "TM42",
+            "TM44",
+            "TM46",
+            "TM50",
+            "TM53",
+            "TM58",
+            "TM61",
+            "TM77",
+            "TM79",
+            "TM82",
+            "TM90",
+            "TM92"
+        ],
+        "by_tutor": [
+            "MOVE_SPITE",
+            "MOVE_TRICK",
+            "MOVE_HEAT_WAVE"
+        ],
+        "egg_moves": [
+            "MOVE_HAZE",
+            "MOVE_ACID_ARMOR",
+            "MOVE_POWER_SPLIT",
+            "MOVE_CLEAR_SMOG"
+        ]
+    },
+    "evolutions": [
+        [
+            "EVO_LEVEL",
+            41,
+            "SPECIES_LAMPENT"
+        ]
+    ],
+    "offspring": "SPECIES_LITWICK",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 12,
+        "weight_pounds": 6.8,
+        "body_shape": "SHAPE_HEAD_BASE",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 502,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 502,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 28,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 28,
+        "en": {
+            "name": "LITWICK",
+            "category": "Candle Pokémon",
+            "entry_text": [
+                "The younger the life this Pokémon\n",
+                "absorbs, the brighter and eerier the\n",
+                "flame on its head burns."
+            ]
+        },
+        "fr": {
+            "name": "FUNÉCIRE",
+            "category": "Pokémon Chandelle",
+            "entry_text": [
+                "Son corps est tiède, réchauffé par\n",
+                "sa flamme."
+            ]
+        },
+        "de": {
+            "name": "LICHTEL",
+            "category": "Kerzen-Pokémon",
+            "entry_text": [
+                "Seine Flamme wärmt seinen Körper\n",
+                "leicht."
+            ]
+        },
+        "it": {
+            "name": "LITWICK",
+            "category": "Pokémon Candela",
+            "entry_text": [
+                "La sua fiamma gli riscalda il corpo\n",
+                "rendendolo leggermente tiepido."
+            ]
+        },
+        "es": {
+            "name": "LITWICK",
+            "category": "Pokémon Vela",
+            "entry_text": [
+                "El calor de la llama hace que su\n",
+                "cuerpo esté algo tibio."
+            ]
+        },
+        "jp": {
+            "name": "ヒトモシ",
+            "category": "ろうそくポケモン",
+            "entry_text": [
+                "すいとる　いのちが　わかければ\n",
+                "わかいほど　あたまの　ほのおは\n",
+                "おおきく　あやしく　もえあがる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

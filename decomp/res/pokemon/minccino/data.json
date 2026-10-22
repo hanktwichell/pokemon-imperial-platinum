@@ -1,0 +1,225 @@
+{
+    "base_stats": {
+        "hp": 55,
+        "attack": 50,
+        "defense": 40,
+        "speed": 75,
+        "special_attack": 40,
+        "special_defense": 40
+    },
+    "types": [
+        "TYPE_NORMAL",
+        "TYPE_NORMAL"
+    ],
+    "catch_rate": 255,
+    "base_exp_reward": 60,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 1,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_CHESTO_BERRY",
+        "rare": "ITEM_CHESTO_BERRY"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_75",
+    "hatch_cycles": 15,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_FAST",
+    "egg_groups": [
+        "EGG_GROUP_FIELD",
+        "EGG_GROUP_FIELD"
+    ],
+    "abilities": [
+        "ABILITY_CUTE_CHARM",
+        "ABILITY_TECHNICIAN",
+        "ABILITY_SKILL_LINK"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_POUND"
+            ],
+            [
+                1,
+                "MOVE_BABY_DOLL_EYES"
+            ],
+            [
+                4,
+                "MOVE_HELPING_HAND"
+            ],
+            [
+                8,
+                "MOVE_ECHOED_VOICE"
+            ],
+            [
+                12,
+                "MOVE_SING"
+            ],
+            [
+                16,
+                "MOVE_CHARM"
+            ],
+            [
+                20,
+                "MOVE_SWIFT"
+            ],
+            [
+                24,
+                "MOVE_ENCORE"
+            ],
+            [
+                28,
+                "MOVE_AFTER_YOU"
+            ],
+            [
+                32,
+                "MOVE_TAIL_SLAP"
+            ],
+            [
+                36,
+                "MOVE_TICKLE"
+            ],
+            [
+                40,
+                "MOVE_SLAM"
+            ],
+            [
+                44,
+                "MOVE_HYPER_VOICE"
+            ],
+            [
+                48,
+                "MOVE_LAST_RESORT"
+            ]
+        ],
+        "by_tm": [
+            "TM04",
+            "TM09",
+            "TM11",
+            "TM17",
+            "TM18",
+            "TM24",
+            "TM28",
+            "TM42",
+            "TM44",
+            "TM46",
+            "TM56",
+            "TM58",
+            "TM73",
+            "TM82",
+            "TM86",
+            "TM89",
+            "TM90"
+        ],
+        "by_tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_AQUA_TAIL",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_GUNK_SHOT",
+            "MOVE_SEED_BOMB",
+            "MOVE_LAST_RESORT",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_TAIL_WHIP",
+            "MOVE_FLAIL",
+            "MOVE_KNOCK_OFF",
+            "MOVE_AQUA_TAIL",
+            "MOVE_TIDY_UP"
+        ]
+    },
+    "evolutions": [
+        [
+            "EVO_USE_ITEM",
+            "ITEM_SHINY_STONE",
+            "SPECIES_CINCCINO"
+        ]
+    ],
+    "offspring": "SPECIES_MINCCINO",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 16,
+        "weight_pounds": 12.8,
+        "body_shape": "SHAPE_QUADRUPED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 524,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 524,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 27,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 27,
+        "en": {
+            "name": "MINCCINO",
+            "category": "Chinchilla Pokémon",
+            "entry_text": [
+                "They pet each other with their tails\n",
+                "as a form of greeting."
+            ]
+        },
+        "fr": {
+            "name": "CHINCHIDOU",
+            "category": "Pokémon Chinchilla",
+            "entry_text": [
+                "Les Chinchidou se saluent en se\n",
+                "frottant la queue."
+            ]
+        },
+        "de": {
+            "name": "PICOCHILLA",
+            "category": "Chinchilla-Pokémon",
+            "entry_text": [
+                "Sie begrüßen sich, indem sie sich\n",
+                "gegenseitig mit ihren Schweifen\n",
+                "streicheln."
+            ]
+        },
+        "it": {
+            "name": "MINCCINO",
+            "category": "Pokémon Cincillà",
+            "entry_text": [
+                "Si salutano strofinando le proprie\n",
+                "code tra loro."
+            ]
+        },
+        "es": {
+            "name": "MINCCINO",
+            "category": "Pokémon Chinchilla",
+            "entry_text": [
+                "Se saludan entre sí frotándose la\n",
+                "cola. Cuanto más voluminosa es, más\n",
+                "orgullosos se muestran."
+            ]
+        },
+        "jp": {
+            "name": "MINCCINO",
+            "category": "チンチラポケモン",
+            "entry_text": [
+                "しっぽで　なであって　あいさつ。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

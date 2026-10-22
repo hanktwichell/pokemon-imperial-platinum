@@ -1,0 +1,221 @@
+{
+    "base_stats": {
+        "hp": 50,
+        "attack": 61,
+        "defense": 60,
+        "speed": 34,
+        "special_attack": 30,
+        "special_defense": 55
+    },
+    "types": [
+        "TYPE_GHOST",
+        "TYPE_GHOST"
+    ],
+    "catch_rate": 120,
+    "base_exp_reward": 58,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 1,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 50,
+    "exp_rate": "EXP_RATE_MEDIUM_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_FIELD",
+        "EGG_GROUP_FIELD"
+    ],
+    "abilities": [
+        "ABILITY_PICKUP",
+        "ABILITY_NONE",
+        "ABILITY_FLUFFY"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_TACKLE"
+            ],
+            [
+                1,
+                "MOVE_GROWL"
+            ],
+            [
+                3,
+                "MOVE_LICK"
+            ],
+            [
+                6,
+                "MOVE_TAIL_WHIP"
+            ],
+            [
+                6,
+                "MOVE_BITE"
+            ],
+            [
+                9,
+                "MOVE_ROAR"
+            ],
+            [
+                12,
+                "MOVE_HEADBUTT"
+            ],
+            [
+                16,
+                "MOVE_DIG"
+            ],
+            [
+                24,
+                "MOVE_REST"
+            ],
+            [
+                28,
+                "MOVE_CRUNCH"
+            ],
+            [
+                32,
+                "MOVE_PLAY_ROUGH"
+            ],
+            [
+                37,
+                "MOVE_HELPING_HAND"
+            ],
+            [
+                41,
+                "MOVE_PHANTOM_FORCE"
+            ],
+            [
+                46,
+                "MOVE_CHARM"
+            ],
+            [
+                52,
+                "MOVE_DOUBLE_EDGE"
+            ]
+        ],
+        "by_tm": [
+            "TM05",
+            "TM11",
+            "TM17",
+            "TM18",
+            "TM28",
+            "TM30",
+            "TM37",
+            "TM42",
+            "TM44",
+            "TM46",
+            "TM58",
+            "TM82",
+            "TM90"
+        ],
+        "by_tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_TRICK",
+            "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_DISABLE",
+            "MOVE_DESTINY_BOND",
+            "MOVE_MEMENTO",
+            "MOVE_YAWN",
+            "MOVE_HOWL",
+            "MOVE_SHADOW_SNEAK",
+            "MOVE_ALLY_SWITCH"
+        ]
+    },
+    "evolutions": [
+        [
+            "EVO_LEVEL",
+            30,
+            "SPECIES_HOUNDSTONE"
+        ]
+    ],
+    "offspring": "SPECIES_GREAVARD",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 24,
+        "weight_pounds": 77.2,
+        "body_shape": "SHAPE_QUADRUPED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 384,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 384,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 23,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 23,
+        "en": {
+            "name": "GREAVARD",
+            "category": "Ghost Dog Pokémon",
+            "entry_text": [
+                "This friendly Pokémon doesn’t like\n",
+                "being alone."
+            ]
+        },
+        "fr": {
+            "name": "TOUTOMBE",
+            "category": "Fantôchien",
+            "entry_text": [
+                "This friendly Pokémon doesn’t like\n",
+                "being alone."
+            ]
+        },
+        "de": {
+            "name": "GRUFF",
+            "category": "Geisterhund",
+            "entry_text": [
+                "This friendly Pokémon doesn’t like\n",
+                "being alone."
+            ]
+        },
+        "it": {
+            "name": "GREAVARD",
+            "category": "Ghost Dog Pokémon",
+            "entry_text": [
+                "This friendly Pokémon doesn’t like\n",
+                "being alone."
+            ]
+        },
+        "es": {
+            "name": "GREAVARD",
+            "category": "Ghost Dog Pokémon",
+            "entry_text": [
+                "This friendly Pokémon doesn’t like\n",
+                "being alone."
+            ]
+        },
+        "jp": {
+            "name": "ボチ",
+            "category": "おばけいぬポケモン",
+            "entry_text": [
+                "This friendly Pokémon doesn’t like\n",
+                "being alone."
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

@@ -1,0 +1,207 @@
+{
+    "base_stats": {
+        "hp": 52,
+        "attack": 57,
+        "defense": 75,
+        "speed": 46,
+        "special_attack": 35,
+        "special_defense": 50
+    },
+    "types": [
+        "TYPE_GROUND",
+        "TYPE_GROUND"
+    ],
+    "catch_rate": 255,
+    "base_exp_reward": 63,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 1,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 50,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_FIELD",
+        "EGG_GROUP_DRAGON"
+    ],
+    "abilities": [
+        "ABILITY_SAND_SPIT",
+        "ABILITY_SHED_SKIN",
+        "ABILITY_SAND_VEIL"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
+    "icon_palette": 1,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_SAND_ATTACK"
+            ],
+            [
+                1,
+                "MOVE_WRAP"
+            ],
+            [
+                5,
+                "MOVE_MINIMIZE"
+            ],
+            [
+                10,
+                "MOVE_BRUTAL_SWING"
+            ],
+            [
+                15,
+                "MOVE_BULLDOZE"
+            ],
+            [
+                20,
+                "MOVE_HEADBUTT"
+            ],
+            [
+                25,
+                "MOVE_GLARE"
+            ],
+            [
+                30,
+                "MOVE_DIG"
+            ],
+            [
+                35,
+                "MOVE_SANDSTORM"
+            ],
+            [
+                40,
+                "MOVE_SLAM"
+            ],
+            [
+                45,
+                "MOVE_COIL"
+            ],
+            [
+                50,
+                "MOVE_SAND_TOMB"
+            ]
+        ],
+        "by_tm": [
+            "TM17",
+            "TM26",
+            "TM28",
+            "TM37",
+            "TM39",
+            "TM42",
+            "TM44",
+            "TM58",
+            "TM71",
+            "TM76",
+            "TM80",
+            "TM82",
+            "TM90"
+        ],
+        "by_tutor": [
+            "MOVE_MUD_SLAP",
+            "MOVE_EARTH_POWER",
+            "MOVE_LAST_RESORT"
+        ],
+        "egg_moves": [
+            "MOVE_MUD_SLAP",
+            "MOVE_POISON_TAIL",
+            "MOVE_LAST_RESORT",
+            "MOVE_DRAGON_RUSH",
+            "MOVE_BELCH"
+        ]
+    },
+    "evolutions": [
+        [
+            "EVO_LEVEL",
+            36,
+            "SPECIES_SANDACONDA"
+        ]
+    ],
+    "offspring": "SPECIES_SILICOBRA",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 87,
+        "weight_pounds": 16.8,
+        "body_shape": "SHAPE_SERPENTINE",
+        "trainer_scale_f": 351,
+        "pokemon_scale_f": 232,
+        "trainer_scale_m": 333,
+        "pokemon_scale_m": 232,
+        "trainer_pos_f": 15,
+        "pokemon_pos_f": 0,
+        "trainer_pos_m": 15,
+        "pokemon_pos_m": 0,
+        "en": {
+            "name": "SILICOBRA",
+            "category": "Sand Snake Pokémon",
+            "entry_text": [
+                "It spews sand from its nostrils.\n",
+                "While the enemy is blinded, it\n",
+                "burrows into the ground to hide."
+            ]
+        },
+        "fr": {
+            "name": "DUNAJA",
+            "category": "Pokémon Serpensable",
+            "entry_text": [
+                "Il amasse le sable qu’il avale en\n",
+                "creusant dans la poche de son cou."
+            ]
+        },
+        "de": {
+            "name": "SALANGA",
+            "category": "Sand Snake Pokémon",
+            "entry_text": [
+                "Aus seinen Nasenlöchern verschießt\n",
+                "es Sand."
+            ]
+        },
+        "it": {
+            "name": "SILICOBRA",
+            "category": "Pokémon Sabbiaserpe",
+            "entry_text": [
+                "Conserva nella sacca del collo la\n",
+                "sabbia che ingoia scavando buche.\n",
+                "Può accumularne ben 8 kg."
+            ]
+        },
+        "es": {
+            "name": "SILICOBRA",
+            "category": "Pokémon Serp. Arena",
+            "entry_text": [
+                "Expulsa arena por los orificios\n",
+                "nasales."
+            ]
+        },
+        "jp": {
+            "name": "スナヘビ",
+            "category": "すなへびポケモン",
+            "entry_text": [
+                "はなの　あなから　すなを\n",
+                "ふんしゃ。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

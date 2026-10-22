@@ -1,0 +1,220 @@
+{
+    "base_stats": {
+        "hp": 70,
+        "attack": 95,
+        "defense": 115,
+        "speed": 85,
+        "special_attack": 120,
+        "special_defense": 50
+    },
+    "types": [
+        "TYPE_STEEL",
+        "TYPE_DRAGON"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 187,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 2,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 30,
+    "base_friendship": 50,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_MINERAL",
+        "EGG_GROUP_DRAGON"
+    ],
+    "abilities": [
+        "ABILITY_LIGHT_METAL",
+        "ABILITY_HEAVY_METAL",
+        "ABILITY_STALWART"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": false,
+    "icon_palette": 2,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_LEER"
+            ],
+            [
+                1,
+                "MOVE_METAL_CLAW"
+            ],
+            [
+                6,
+                "MOVE_ROCK_SMASH"
+            ],
+            [
+                12,
+                "MOVE_HONE_CLAWS"
+            ],
+            [
+                18,
+                "MOVE_METAL_SOUND"
+            ],
+            [
+                24,
+                "MOVE_BREAKING_SWIPE"
+            ],
+            [
+                30,
+                "MOVE_DRAGON_TAIL"
+            ],
+            [
+                36,
+                "MOVE_IRON_DEFENSE"
+            ],
+            [
+                42,
+                "MOVE_FOCUS_ENERGY"
+            ],
+            [
+                48,
+                "MOVE_DRAGON_CLAW"
+            ],
+            [
+                54,
+                "MOVE_FLASH_CANNON"
+            ],
+            [
+                60,
+                "MOVE_METAL_BURST"
+            ],
+            [
+                66,
+                "MOVE_HYPER_BEAM"
+            ]
+        ],
+        "by_tm": [
+            "TM02",
+            "TM05",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM22",
+            "TM24",
+            "TM25",
+            "TM31",
+            "TM33",
+            "TM39",
+            "TM42",
+            "TM44",
+            "TM58",
+            "TM59",
+            "TM68",
+            "TM71",
+            "TM73",
+            "TM74",
+            "TM75",
+            "TM76",
+            "TM79",
+            "TM80",
+            "TM82",
+            "TM90",
+            "TM91",
+            "HM06"
+        ],
+        "by_tutor": [
+            "MOVE_IRON_HEAD",
+            "MOVE_OUTRAGE",
+            "MOVE_IRON_DEFENSE"
+        ],
+        "egg_moves": [
+            "MOVE_SLASH",
+            "MOVE_MIRROR_COAT",
+            "MOVE_NIGHT_SLASH"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_DURALUDON",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 71,
+        "weight_pounds": 88.2,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 310,
+        "pokemon_scale_f": 256,
+        "trainer_scale_m": 303,
+        "pokemon_scale_m": 256,
+        "trainer_pos_f": 13,
+        "pokemon_pos_f": 2,
+        "trainer_pos_m": 12,
+        "pokemon_pos_m": 2,
+        "en": {
+            "name": "DURALUDON",
+            "category": "Alloy Pokémon",
+            "entry_text": [
+                "The special metal that composes its\n",
+                "body is very light, so this Pokémon\n",
+                "has considerable agility."
+            ]
+        },
+        "fr": {
+            "name": "DURALUGON",
+            "category": "Pokémon Alliage",
+            "entry_text": [
+                "Son corps, composé d’un métal\n",
+                "spécial, est léger et lui offre une\n",
+                "excellente mobilité."
+            ]
+        },
+        "de": {
+            "name": "DURALUDON",
+            "category": "Legierungs-Pokémon",
+            "entry_text": [
+                "Es ist sehr beweglich, weil sein\n",
+                "Körper aus einem speziellen,\n",
+                "leichten Metall besteht."
+            ]
+        },
+        "it": {
+            "name": "DURALUDON",
+            "category": "Pokémon Metallolega",
+            "entry_text": [
+                "Il suo corpo fatto di un metallo\n",
+                "speciale è leggero e gli conferisce\n",
+                "un’andatura impeccabile."
+            ]
+        },
+        "es": {
+            "name": "DURALUDON",
+            "category": "Pokémon Aleación",
+            "entry_text": [
+                "Hace gala de una agilidad\n",
+                "extraordinaria, ya que su cuerpo\n",
+                "está compuesto de un metal especial."
+            ]
+        },
+        "jp": {
+            "name": "ジュラルドン",
+            "category": "ごうきんポケモン",
+            "entry_text": [
+                "とくしゅな　きんぞくの　からだは\n",
+                "かるく　みのこなしは　ばつぐん。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

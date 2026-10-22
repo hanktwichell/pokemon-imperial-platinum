@@ -1,0 +1,227 @@
+{
+    "base_stats": {
+        "hp": 100,
+        "attack": 120,
+        "defense": 90,
+        "speed": 80,
+        "special_attack": 40,
+        "special_defense": 60
+    },
+    "types": [
+        "TYPE_FIGHTING",
+        "TYPE_FIGHTING"
+    ],
+    "catch_rate": 45,
+    "base_exp_reward": 172,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 2,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_FIELD",
+        "EGG_GROUP_FIELD"
+    ],
+    "abilities": [
+        "ABILITY_RECEIVER",
+        "ABILITY_NONE",
+        "ABILITY_DEFIANT"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": false,
+    "icon_palette": 1,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_TACKLE"
+            ],
+            [
+                1,
+                "MOVE_LEER"
+            ],
+            [
+                5,
+                "MOVE_ROCK_SMASH"
+            ],
+            [
+                10,
+                "MOVE_FOCUS_ENERGY"
+            ],
+            [
+                15,
+                "MOVE_BEAT_UP"
+            ],
+            [
+                20,
+                "MOVE_SCARY_FACE"
+            ],
+            [
+                25,
+                "MOVE_TAKE_DOWN"
+            ],
+            [
+                30,
+                "MOVE_FLING"
+            ],
+            [
+                35,
+                "MOVE_BULK_UP"
+            ],
+            [
+                40,
+                "MOVE_THRASH"
+            ],
+            [
+                45,
+                "MOVE_DOUBLE_EDGE"
+            ],
+            [
+                50,
+                "MOVE_CLOSE_COMBAT"
+            ],
+            [
+                55,
+                "MOVE_REVERSAL"
+            ],
+            [
+                60,
+                "MOVE_GIGA_IMPACT"
+            ]
+        ],
+        "by_tm": [
+            "TM01",
+            "TM08",
+            "TM11",
+            "TM12",
+            "TM15",
+            "TM17",
+            "TM18",
+            "TM26",
+            "TM30",
+            "TM31",
+            "TM39",
+            "TM42",
+            "TM44",
+            "TM46",
+            "TM52",
+            "TM53",
+            "TM56",
+            "TM58",
+            "TM60",
+            "TM68",
+            "TM74",
+            "TM80",
+            "TM82",
+            "TM86",
+            "TM89",
+            "TM90",
+            "HM06"
+        ],
+        "by_tutor": [
+            "MOVE_IRON_HEAD",
+            "MOVE_VACUUM_WAVE",
+            "MOVE_GUNK_SHOT",
+            "MOVE_SEED_BOMB",
+            "MOVE_KNOCK_OFF",
+            "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_COUNTER",
+            "MOVE_SEISMIC_TOSS",
+            "MOVE_QUICK_ATTACK",
+            "MOVE_KNOCK_OFF",
+            "MOVE_FEINT",
+            "MOVE_QUICK_GUARD"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_PASSIMIAN",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 79,
+        "weight_pounds": 182.5,
+        "body_shape": "SHAPE_BIPEDAL_TAILED",
+        "trainer_scale_f": 308,
+        "pokemon_scale_f": 241,
+        "trainer_scale_m": 298,
+        "pokemon_scale_m": 241,
+        "trainer_pos_f": 9,
+        "pokemon_pos_f": 1,
+        "trainer_pos_m": 8,
+        "pokemon_pos_m": 1,
+        "en": {
+            "name": "PASSIMIAN",
+            "category": "Teamwork Pokémon",
+            "entry_text": [
+                "Passimian live in groups of about\n",
+                "20, with each member performing an\n",
+                "assigned role."
+            ]
+        },
+        "fr": {
+            "name": "QUARTERMAC",
+            "category": "Pokémon Coopération",
+            "entry_text": [
+                "Ils obéissent à leur chef au doigt\n",
+                "et à l’œil, et travaillent en équipe\n",
+                "pour dénicher leurs Baies favorites."
+            ]
+        },
+        "de": {
+            "name": "QUARTERMAK",
+            "category": "Teamwork-Pokémon",
+            "entry_text": [
+                "Sie bilden Gruppen von 20\n",
+                "Exemplaren."
+            ]
+        },
+        "it": {
+            "name": "PASSIMIAN",
+            "category": "Teamwork Pokémon",
+            "entry_text": [
+                "Vivono in gruppi di circa 20\n",
+                "individui."
+            ]
+        },
+        "es": {
+            "name": "PASSIMIAN",
+            "category": "Pokémon Cooperación",
+            "entry_text": [
+                "Viven en grupos de unos veinte\n",
+                "ejemplares."
+            ]
+        },
+        "jp": {
+            "name": "ナゲツケサル",
+            "category": "れんけいポケモン",
+            "entry_text": [
+                "きのみは　ぶきで　あり\n",
+                "しゅしょく。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

@@ -1,0 +1,230 @@
+{
+    "base_stats": {
+        "hp": 78,
+        "attack": 60,
+        "defense": 85,
+        "speed": 36,
+        "special_attack": 135,
+        "special_defense": 91
+    },
+    "types": [
+        "TYPE_NORMAL",
+        "TYPE_DRAGON"
+    ],
+    "catch_rate": 70,
+    "base_exp_reward": 170,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 2,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_PERSIM_BERRY"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_MONSTER",
+        "EGG_GROUP_DRAGON"
+    ],
+    "abilities": [
+        "ABILITY_BERSERK",
+        "ABILITY_SAP_SIPPER",
+        "ABILITY_CLOUD_NINE"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_PLAY_NICE"
+            ],
+            [
+                1,
+                "MOVE_ECHOED_VOICE"
+            ],
+            [
+                5,
+                "MOVE_TWISTER"
+            ],
+            [
+                10,
+                "MOVE_PROTECT"
+            ],
+            [
+                15,
+                "MOVE_GLARE"
+            ],
+            [
+                20,
+                "MOVE_SAFEGUARD"
+            ],
+            [
+                25,
+                "MOVE_DRAGON_BREATH"
+            ],
+            [
+                30,
+                "MOVE_EXTRASENSORY"
+            ],
+            [
+                35,
+                "MOVE_DRAGON_PULSE"
+            ],
+            [
+                40,
+                "MOVE_LIGHT_SCREEN"
+            ],
+            [
+                45,
+                "MOVE_FLY"
+            ],
+            [
+                50,
+                "MOVE_HYPER_VOICE"
+            ],
+            [
+                55,
+                "MOVE_OUTRAGE"
+            ]
+        ],
+        "by_tm": [
+            "TM02",
+            "TM04",
+            "TM11",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM18",
+            "TM20",
+            "TM22",
+            "TM24",
+            "TM25",
+            "TM26",
+            "TM30",
+            "TM35",
+            "TM38",
+            "TM42",
+            "TM44",
+            "TM45",
+            "TM47",
+            "TM52",
+            "TM53",
+            "TM56",
+            "TM58",
+            "TM59",
+            "TM65",
+            "TM68",
+            "TM73",
+            "TM80",
+            "TM82",
+            "TM86",
+            "TM90",
+            "HM02",
+            "HM03"
+        ],
+        "by_tutor": [
+            "MOVE_ICY_WIND",
+            "MOVE_SUPERPOWER",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_OUTRAGE",
+            "MOVE_TWISTER",
+            "MOVE_HEAT_WAVE",
+            "MOVE_SWIFT",
+            "MOVE_UPROAR"
+        ],
+        "egg_moves": [
+            "MOVE_MIST",
+            "MOVE_TICKLE",
+            "MOVE_DRAGON_RUSH"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_DRAMPA",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 118,
+        "weight_pounds": 407.9,
+        "body_shape": "SHAPE_SERPENTINE",
+        "trainer_scale_f": 512,
+        "pokemon_scale_f": 256,
+        "trainer_scale_m": 487,
+        "pokemon_scale_m": 256,
+        "trainer_pos_f": 23,
+        "pokemon_pos_f": 0,
+        "trainer_pos_m": 23,
+        "pokemon_pos_m": 0,
+        "en": {
+            "name": "DRAMPA",
+            "category": "Placid Pokémon",
+            "entry_text": [
+                "Drampa is a kind and friendly\n",
+                "Pokémon-up until it’s angered."
+            ]
+        },
+        "fr": {
+            "name": "DRAÏEUL",
+            "category": "Pokémon Nonchalant",
+            "entry_text": [
+                "Il vit dans les montagnes culminant\n",
+                "à plus de 3 000 m d’altitude."
+            ]
+        },
+        "de": {
+            "name": "SEN-LONG",
+            "category": "Placid Pokémon",
+            "entry_text": [
+                "Ein zutrauliches und gutmütiges\n",
+                "Pokémon."
+            ]
+        },
+        "it": {
+            "name": "DRAMPA",
+            "category": "Pokémon Tuttacalma",
+            "entry_text": [
+                "È socievole e di indole gentile ma\n",
+                "quando si arrabbia provoca venti\n",
+                "dalla terribile forza distruttiva."
+            ]
+        },
+        "es": {
+            "name": "DRAMPA",
+            "category": "Pokémon Sosiego",
+            "entry_text": [
+                "Habita en montañas de más de 3000 m\n",
+                "de altura."
+            ]
+        },
+        "jp": {
+            "name": "DRAMPA",
+            "category": "ゆうゆうポケモン",
+            "entry_text": [
+                "まちに　あらわれ　こどもと\n",
+                "あそぶ。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

@@ -124,7 +124,9 @@
             "MOVE_AQUA_TAIL"
         ]
     },
-    "evolutions": [  ],
+    "evolutions": [
+        [ "EVO_LEVEL_KNOW_MOVE", "MOVE_DRILL_RUN", "SPECIES_DUDUNSPARCE" ]
+    ],
     "offspring": "SPECIES_DUNSPARCE",
     "footprint": {
         "has": false,

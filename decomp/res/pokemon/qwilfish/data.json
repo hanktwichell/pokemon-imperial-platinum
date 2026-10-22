@@ -114,7 +114,9 @@
             "MOVE_BARB_BARRAGE"
         ]
     },
-    "evolutions": [  ],
+    "evolutions": [
+        [ "EVO_LEVEL_KNOW_MOVE", "MOVE_PIN_MISSILE", "SPECIES_OVERQWIL" ]
+    ],
     "offspring": "SPECIES_QWILFISH",
     "footprint": {
         "has": false,

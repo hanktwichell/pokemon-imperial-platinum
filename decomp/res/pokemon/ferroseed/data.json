@@ -1,0 +1,216 @@
+{
+    "base_stats": {
+        "hp": 44,
+        "attack": 50,
+        "defense": 91,
+        "speed": 10,
+        "special_attack": 24,
+        "special_defense": 86
+    },
+    "types": [
+        "TYPE_GRASS",
+        "TYPE_STEEL"
+    ],
+    "catch_rate": 255,
+    "base_exp_reward": 61,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 1,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_STICKY_BARB"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_GRASS",
+        "EGG_GROUP_MINERAL"
+    ],
+    "abilities": [
+        "ABILITY_IRON_BARBS",
+        "ABILITY_NONE",
+        "ABILITY_NONE"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
+    "icon_palette": 1,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_TACKLE"
+            ],
+            [
+                1,
+                "MOVE_HARDEN"
+            ],
+            [
+                5,
+                "MOVE_METAL_CLAW"
+            ],
+            [
+                10,
+                "MOVE_PIN_MISSILE"
+            ],
+            [
+                15,
+                "MOVE_INGRAIN"
+            ],
+            [
+                20,
+                "MOVE_FLASH_CANNON"
+            ],
+            [
+                25,
+                "MOVE_IRON_HEAD"
+            ],
+            [
+                30,
+                "MOVE_SELFDESTRUCT"
+            ],
+            [
+                35,
+                "MOVE_IRON_DEFENSE"
+            ],
+            [
+                41,
+                "MOVE_CURSE"
+            ],
+            [
+                45,
+                "MOVE_GYRO_BALL"
+            ],
+            [
+                50,
+                "MOVE_EXPLOSION"
+            ]
+        ],
+        "by_tm": [
+            "TM06",
+            "TM09",
+            "TM11",
+            "TM17",
+            "TM19",
+            "TM22",
+            "TM24",
+            "TM42",
+            "TM44",
+            "TM45",
+            "TM53",
+            "TM58",
+            "TM64",
+            "TM66",
+            "TM73",
+            "TM74",
+            "TM76",
+            "TM82",
+            "TM84",
+            "TM90",
+            "TM91"
+        ],
+        "by_tutor": [
+            "MOVE_IRON_HEAD",
+            "MOVE_SNORE",
+            "MOVE_SEED_BOMB",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_KNOCK_OFF"
+        ],
+        "egg_moves": [
+            "MOVE_LEECH_SEED",
+            "MOVE_TOXIC",
+            "MOVE_KNOCK_OFF",
+            "MOVE_GRAVITY",
+            "MOVE_ACID_SPRAY"
+        ]
+    },
+    "evolutions": [
+        [
+            "EVO_LEVEL",
+            40,
+            "SPECIES_FERROTHORN"
+        ]
+    ],
+    "offspring": "SPECIES_FERROSEED",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 24,
+        "weight_pounds": 41.4,
+        "body_shape": "SHAPE_HEAD",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 384,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 384,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 23,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 23,
+        "en": {
+            "name": "FERROSEED",
+            "category": "Thorn Seed Pokémon",
+            "entry_text": [
+                "Mossy caves are their preferred\n",
+                "dwellings."
+            ]
+        },
+        "fr": {
+            "name": "GRINDUR",
+            "category": "Thorn Seed Pokémon",
+            "entry_text": [
+                "Il aime les grottes pleines de\n",
+                "mousse."
+            ]
+        },
+        "de": {
+            "name": "KASTADUR",
+            "category": "Dornfrucht-Pokémon",
+            "entry_text": [
+                "Es fühlt sich in moosbewachsenen\n",
+                "Höhlen wohl."
+            ]
+        },
+        "it": {
+            "name": "FERROSEED",
+            "category": "Pokémon Spinaseme",
+            "entry_text": [
+                "Predilige le grotte in cui cresce il\n",
+                "muschio, i cui enzimi aiutano i suoi\n",
+                "aculei a crescere grandi e forti."
+            ]
+        },
+        "es": {
+            "name": "FERROSEED",
+            "category": "Thorn Seed Pokémon",
+            "entry_text": [
+                "Absorbe los componentes ferruginosos\n",
+                "de las rocas al colgarse del techo\n",
+                "de las cuevas."
+            ]
+        },
+        "jp": {
+            "name": "FERROSEED",
+            "category": "とげのみポケモン",
+            "entry_text": [
+                "こけむした　どうくつを　このむ。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

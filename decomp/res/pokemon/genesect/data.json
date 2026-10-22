@@ -1,0 +1,224 @@
+{
+    "base_stats": {
+        "hp": 71,
+        "attack": 120,
+        "defense": 95,
+        "speed": 99,
+        "special_attack": 120,
+        "special_defense": 95
+    },
+    "types": [
+        "TYPE_BUG",
+        "TYPE_STEEL"
+    ],
+    "catch_rate": 3,
+    "base_exp_reward": 255,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 1,
+        "defense": 0,
+        "speed": 1,
+        "special_attack": 1,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_NO_GENDER",
+    "hatch_cycles": 120,
+    "base_friendship": 0,
+    "exp_rate": "EXP_RATE_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_UNDISCOVERED",
+        "EGG_GROUP_UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_DOWNLOAD",
+        "ABILITY_NONE",
+        "ABILITY_NONE"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
+    "icon_palette": 2,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_FURY_CUTTER"
+            ],
+            [
+                1,
+                "MOVE_QUICK_ATTACK"
+            ],
+            [
+                7,
+                "MOVE_SCREECH"
+            ],
+            [
+                14,
+                "MOVE_METAL_CLAW"
+            ],
+            [
+                21,
+                "MOVE_FELL_STINGER"
+            ],
+            [
+                28,
+                "MOVE_FLAME_CHARGE"
+            ],
+            [
+                35,
+                "MOVE_METAL_SOUND"
+            ],
+            [
+                42,
+                "MOVE_X_SCISSOR"
+            ],
+            [
+                49,
+                "MOVE_MAGNET_RISE"
+            ],
+            [
+                56,
+                "MOVE_BUG_BUZZ"
+            ],
+            [
+                63,
+                "MOVE_SIMPLE_BEAM"
+            ],
+            [
+                70,
+                "MOVE_ZAP_CANNON"
+            ],
+            [
+                77,
+                "MOVE_LOCK_ON"
+            ],
+            [
+                84,
+                "MOVE_TECHNO_BLAST"
+            ],
+            [
+                91,
+                "MOVE_SELFDESTRUCT"
+            ]
+        ],
+        "by_tm": [
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM19",
+            "TM22",
+            "TM24",
+            "TM25",
+            "TM29",
+            "TM33",
+            "TM35",
+            "TM42",
+            "TM44",
+            "TM53",
+            "TM58",
+            "TM65",
+            "TM68",
+            "TM73",
+            "TM79",
+            "TM81",
+            "TM82",
+            "TM89",
+            "TM90",
+            "TM91",
+            "HM02"
+        ],
+        "by_tutor": [
+            "MOVE_FURY_CUTTER",
+            "MOVE_IRON_HEAD",
+            "MOVE_SNORE",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_GUNK_SHOT",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_MAGNET_RISE",
+            "MOVE_SWIFT"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_GENESECT",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 59,
+        "weight_pounds": 181.9,
+        "body_shape": "SHAPE_BIPEDAL_TAILLESS",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 242,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 242,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 6,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 6,
+        "en": {
+            "name": "GENESECT",
+            "category": "Paleozoic Pokémon",
+            "entry_text": [
+                "This Pokémon existed 300 million\n",
+                "years ago. Team Plasma altered it\n",
+                "and attached a cannon to its back."
+            ]
+        },
+        "fr": {
+            "name": "GENESECT",
+            "category": "Pokémon Paléozoïque",
+            "entry_text": [
+                "Un Pokémon existant depuis 300\n",
+                "millions d’années, et modifié par la\n",
+                "Team Plasma."
+            ]
+        },
+        "de": {
+            "name": "GENESECT",
+            "category": "Paleozoic Pokémon",
+            "entry_text": [
+                "Es lebte vor 300 Millionen Jahren."
+            ]
+        },
+        "it": {
+            "name": "GENESECT",
+            "category": "Pokémon Paleozoico",
+            "entry_text": [
+                "Esiste da più di 300 milioni di\n",
+                "anni."
+            ]
+        },
+        "es": {
+            "name": "GENESECT",
+            "category": "Pokémon Paleozoico",
+            "entry_text": [
+                "Pokémon de tipo Bicho de la\n",
+                "antigüedad, modificado por el Equipo\n",
+                "Plasma."
+            ]
+        },
+        "jp": {
+            "name": "ゲノセクト",
+            "category": "こせいだいポケモン",
+            "entry_text": [
+                "３おくねんまえに　いた\n",
+                "ポケモン。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

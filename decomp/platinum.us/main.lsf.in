@@ -352,7 +352,6 @@ Static main
 	Object src/poffin_berry_selection_context.c
 	Object src/unk_020996D0.c
 	Object src/move_reminder_data.c
-	Object src/easy_chat_word_list.c
 	Object src/poketch_memory.c
 	Object src/unk_02099DFC.c
 	Object src/unk_0209A2C4.c
@@ -773,6 +772,7 @@ Overlay easy_chat
 	Object src/applications/easy_chat/ov20_021D4728.c
 	Object src/applications/easy_chat/ov20_021D4E38.c
 	Object src/applications/easy_chat/abc_mode.c
+	Object src/easy_chat_word_list.c
 }
 
 Overlay pokedex

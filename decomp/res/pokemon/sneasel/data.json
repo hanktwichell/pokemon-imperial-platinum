@@ -122,11 +122,8 @@
         ]
     },
     "evolutions": [
-        [
-            "EVO_LEVEL_WITH_HELD_ITEM_NIGHT",
-            "ITEM_RAZOR_CLAW",
-            "SPECIES_WEAVILE"
-        ]
+        [ "EVO_LEVEL_WITH_HELD_ITEM_NIGHT", "ITEM_RAZOR_CLAW", "SPECIES_WEAVILE" ],
+        [ "EVO_LEVEL_WITH_HELD_ITEM_DAY", "ITEM_RAZOR_CLAW", "SPECIES_SNEASLER" ]
     ],
     "offspring": "SPECIES_SNEASEL",
     "footprint": {

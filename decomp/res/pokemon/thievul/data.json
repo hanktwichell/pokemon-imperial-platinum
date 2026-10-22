@@ -1,0 +1,206 @@
+{
+    "base_stats": {
+        "hp": 70,
+        "attack": 58,
+        "defense": 58,
+        "speed": 90,
+        "special_attack": 87,
+        "special_defense": 92
+    },
+    "types": [
+        "TYPE_DARK",
+        "TYPE_DARK"
+    ],
+    "catch_rate": 127,
+    "base_exp_reward": 159,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 2
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 15,
+    "base_friendship": 50,
+    "exp_rate": "EXP_RATE_FAST",
+    "egg_groups": [
+        "EGG_GROUP_FIELD",
+        "EGG_GROUP_FIELD"
+    ],
+    "abilities": [
+        "ABILITY_RUN_AWAY",
+        "ABILITY_UNBURDEN",
+        "ABILITY_STAKEOUT"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BROWN",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_THIEF"
+            ],
+            [
+                1,
+                "MOVE_QUICK_ATTACK"
+            ],
+            [
+                1,
+                "MOVE_TAIL_WHIP"
+            ],
+            [
+                1,
+                "MOVE_BEAT_UP"
+            ],
+            [
+                1,
+                "MOVE_HONE_CLAWS"
+            ],
+            [
+                12,
+                "MOVE_SNARL"
+            ],
+            [
+                16,
+                "MOVE_ASSURANCE"
+            ],
+            [
+                22,
+                "MOVE_NASTY_PLOT"
+            ],
+            [
+                28,
+                "MOVE_SUCKER_PUNCH"
+            ],
+            [
+                34,
+                "MOVE_NIGHT_SLASH"
+            ],
+            [
+                40,
+                "MOVE_TAIL_SLAP"
+            ],
+            [
+                46,
+                "MOVE_FOUL_PLAY"
+            ],
+            [
+                52,
+                "MOVE_PARTING_SHOT"
+            ]
+        ],
+        "by_tm": [
+            "TM12",
+            "TM15",
+            "TM17",
+            "TM28",
+            "TM29",
+            "TM30",
+            "TM42",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM58",
+            "TM65",
+            "TM68",
+            "TM79",
+            "TM82",
+            "TM86",
+            "TM89",
+            "TM90"
+        ],
+        "by_tutor": [
+            "MOVE_SNORE",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_SWIFT"
+        ]
+    },
+    "evolutions": [],
+    "offspring": "SPECIES_NICKIT",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 47,
+        "weight_pounds": 43.9,
+        "body_shape": "SHAPE_QUADRUPED",
+        "trainer_scale_f": 256,
+        "pokemon_scale_f": 249,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 249,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 0,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 0,
+        "en": {
+            "name": "THIEVUL",
+            "category": "Fox Pokémon",
+            "entry_text": [
+                "With a lithe body and sharp claws,\n",
+                "it goes around stealing food and\n",
+                "eggs. Boltund is its natural enemy."
+            ]
+        },
+        "fr": {
+            "name": "ROUBLENARD",
+            "category": "Pokémon Renard",
+            "entry_text": [
+                "Grâce à son corps leste et ses\n",
+                "griffes acérées, il va et vient en\n",
+                "dérobant Œufs et nourriture."
+            ]
+        },
+        "de": {
+            "name": "GAUNUX",
+            "category": "Fuchs-Pokémon",
+            "entry_text": [
+                "Es markiert heimlich die Beute, auf\n",
+                "die es ein Auge geworfen hat."
+            ]
+        },
+        "it": {
+            "name": "THIEVUL",
+            "category": "Pokémon Volpe",
+            "entry_text": [
+                "Se ne va in giro rubando Uova e cibo\n",
+                "grazie al suo corpo agile e alle\n",
+                "unghie affilate."
+            ]
+        },
+        "es": {
+            "name": "THIEVUL",
+            "category": "Pokémon Zorro",
+            "entry_text": [
+                "Un Pokémon ágil y de afiladas garras\n",
+                "que se alimenta de huevos y comida\n",
+                "robados."
+            ]
+        },
+        "jp": {
+            "name": "フォクスライ",
+            "category": "きつねポケモン",
+            "entry_text": [
+                "みがるな　からだと　するどい\n",
+                "ツメで　エサや　タマゴを\n",
+                "ぬすんで　まわる。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

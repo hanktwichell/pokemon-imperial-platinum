@@ -97,23 +97,12 @@
     "evolutions": [
         [ "EVO_LEVEL_MOSS_ROCK", "SPECIES_LEAFEON" ],
         [ "EVO_LEVEL_ICE_ROCK", "SPECIES_GLACEON" ],
-        [
-            "EVO_USE_ITEM",
-            "ITEM_THUNDERSTONE",
-            "SPECIES_JOLTEON"
-        ],
-        [
-            "EVO_USE_ITEM",
-            "ITEM_WATER_STONE",
-            "SPECIES_VAPOREON"
-        ],
-        [
-            "EVO_USE_ITEM",
-            "ITEM_FIRE_STONE",
-            "SPECIES_FLAREON"
-        ],
+        [ "EVO_USE_ITEM", "ITEM_THUNDERSTONE", "SPECIES_JOLTEON" ],
+        [ "EVO_USE_ITEM", "ITEM_WATER_STONE", "SPECIES_VAPOREON" ],
+        [ "EVO_USE_ITEM", "ITEM_FIRE_STONE", "SPECIES_FLAREON" ],
         [ "EVO_LEVEL_HAPPINESS_DAY", "SPECIES_ESPEON" ],
-        [ "EVO_LEVEL_HAPPINESS_NIGHT", "SPECIES_UMBREON" ]
+        [ "EVO_LEVEL_HAPPINESS_NIGHT", "SPECIES_UMBREON" ],
+        [ "EVO_LEVEL_KNOW_MOVE", "MOVE_CHARM", "SPECIES_SYLVEON" ]
     ],
     "offspring": "SPECIES_EEVEE",
     "footprint": {

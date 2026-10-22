@@ -1,0 +1,199 @@
+{
+    "base_stats": {
+        "hp": 68,
+        "attack": 67,
+        "defense": 55,
+        "speed": 77,
+        "special_attack": 43,
+        "special_defense": 55
+    },
+    "types": [
+        "TYPE_FLYING",
+        "TYPE_FLYING"
+    ],
+    "catch_rate": 120,
+    "base_exp_reward": 128,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 2,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 15,
+    "base_friendship": 50,
+    "exp_rate": "EXP_RATE_MEDIUM_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_FLYING",
+        "EGG_GROUP_FLYING"
+    ],
+    "abilities": [
+        "ABILITY_KEEN_EYE",
+        "ABILITY_UNNERVE",
+        "ABILITY_BIG_PECKS"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
+    "icon_palette": 2,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_LEER"
+            ],
+            [
+                1,
+                "MOVE_PECK"
+            ],
+            [
+                1,
+                "MOVE_HONE_CLAWS"
+            ],
+            [
+                1,
+                "MOVE_POWER_TRIP"
+            ],
+            [
+                12,
+                "MOVE_FURY_ATTACK"
+            ],
+            [
+                16,
+                "MOVE_PLUCK"
+            ],
+            [
+                22,
+                "MOVE_TAUNT"
+            ],
+            [
+                28,
+                "MOVE_SCARY_FACE"
+            ],
+            [
+                34,
+                "MOVE_DRILL_PECK"
+            ],
+            [
+                40,
+                "MOVE_SWAGGER"
+            ],
+            [
+                46,
+                "MOVE_BRAVE_BIRD"
+            ]
+        ],
+        "by_tm": [
+            "TM11",
+            "TM12",
+            "TM17",
+            "TM40",
+            "TM42",
+            "TM44",
+            "TM46",
+            "TM58",
+            "TM82",
+            "TM87",
+            "TM88",
+            "TM89",
+            "TM90",
+            "HM02"
+        ],
+        "by_tutor": [
+            "MOVE_SPITE",
+            "MOVE_AIR_CUTTER",
+            "MOVE_SWIFT"
+        ]
+    },
+    "evolutions": [
+        [
+            "EVO_LEVEL",
+            38,
+            "SPECIES_CORVIKNIGHT"
+        ]
+    ],
+    "offspring": "SPECIES_ROOKIDEE",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 31,
+        "weight_pounds": 35.3,
+        "body_shape": "SHAPE_WINGED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 395,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 395,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 21,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 21,
+        "en": {
+            "name": "CORVSQUIRE",
+            "category": "Raven Pokémon",
+            "entry_text": [
+                "The lessons of many harsh battles\n",
+                "have taught it how to accurately\n",
+                "judge an opponent’s strength."
+            ]
+        },
+        "fr": {
+            "name": "BLEUSEILLE",
+            "category": "Pokémon Corbeau",
+            "entry_text": [
+                "The lessons of many harsh battles\n",
+                "have taught it how to accurately\n",
+                "judge an opponent’s strength."
+            ]
+        },
+        "de": {
+            "name": "KRANOVIZ",
+            "category": "Krähen-Pokémon",
+            "entry_text": [
+                "Es weiß Objekte geschickt\n",
+                "einzusetzen."
+            ]
+        },
+        "it": {
+            "name": "CORVSQUIRE",
+            "category": "Pokémon Corvo",
+            "entry_text": [
+                "Avendo affrontato lotte molto ardue,\n",
+                "ha imparato a valutare con\n",
+                "precisione la forza del nemico."
+            ]
+        },
+        "es": {
+            "name": "CORVSQUIRE",
+            "category": "Pokémon Cuervo",
+            "entry_text": [
+                "Su inteligencia le permite servirse\n",
+                "de objetos."
+            ]
+        },
+        "jp": {
+            "name": "アオガラス",
+            "category": "カラスポケモン",
+            "entry_text": [
+                "The lessons of many harsh battles\n",
+                "have taught it how to accurately\n",
+                "judge an opponent’s strength."
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}

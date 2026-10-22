@@ -1,0 +1,221 @@
+{
+    "base_stats": {
+        "hp": 41,
+        "attack": 50,
+        "defense": 37,
+        "speed": 66,
+        "special_attack": 50,
+        "special_defense": 37
+    },
+    "types": [
+        "TYPE_DARK",
+        "TYPE_DARK"
+    ],
+    "catch_rate": 255,
+    "base_exp_reward": 56,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 1,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_FIELD",
+        "EGG_GROUP_FIELD"
+    ],
+    "abilities": [
+        "ABILITY_LIMBER",
+        "ABILITY_UNBURDEN",
+        "ABILITY_PRANKSTER"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
+    "icon_palette": 2,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_SCRATCH"
+            ],
+            [
+                1,
+                "MOVE_GROWL"
+            ],
+            [
+                4,
+                "MOVE_SAND_ATTACK"
+            ],
+            [
+                5,
+                "MOVE_FAKE_OUT"
+            ],
+            [
+                12,
+                "MOVE_FURY_SWIPES"
+            ],
+            [
+                16,
+                "MOVE_TORMENT"
+            ],
+            [
+                21,
+                "MOVE_ASSURANCE"
+            ],
+            [
+                24,
+                "MOVE_HONE_CLAWS"
+            ],
+            [
+                28,
+                "MOVE_SUCKER_PUNCH"
+            ],
+            [
+                32,
+                "MOVE_NASTY_PLOT"
+            ],
+            [
+                36,
+                "MOVE_NIGHT_SLASH"
+            ],
+            [
+                40,
+                "MOVE_PLAY_ROUGH"
+            ]
+        ],
+        "by_tm": [
+            "TM11",
+            "TM12",
+            "TM17",
+            "TM18",
+            "TM23",
+            "TM30",
+            "TM32",
+            "TM41",
+            "TM42",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM58",
+            "TM65",
+            "TM66",
+            "TM73",
+            "TM79",
+            "TM82",
+            "TM86",
+            "TM89",
+            "TM90"
+        ],
+        "by_tutor": [
+            "MOVE_SNORE",
+            "MOVE_GUNK_SHOT",
+            "MOVE_SEED_BOMB",
+            "MOVE_TRICK",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_SWIFT"
+        ],
+        "egg_moves": [
+            "MOVE_QUICK_ATTACK",
+            "MOVE_DOUBLE_TEAM",
+            "MOVE_SLASH",
+            "MOVE_YAWN",
+            "MOVE_COVET",
+            "MOVE_COPYCAT"
+        ]
+    },
+    "evolutions": [
+        [
+            "EVO_LEVEL",
+            20,
+            "SPECIES_LIEPARD"
+        ]
+    ],
+    "offspring": "SPECIES_PURRLOIN",
+    "footprint": {
+        "has": false,
+        "size": "FOOTPRINT_SMALL",
+        "type": "FOOTPRINT_TYPE_NONE"
+    },
+    "pokedex_data": {
+        "height_inches": 16,
+        "weight_pounds": 22.3,
+        "body_shape": "SHAPE_QUADRUPED",
+        "trainer_scale_f": 272,
+        "pokemon_scale_f": 524,
+        "trainer_scale_m": 256,
+        "pokemon_scale_m": 524,
+        "trainer_pos_f": 8,
+        "pokemon_pos_f": 27,
+        "trainer_pos_m": 9,
+        "pokemon_pos_m": 27,
+        "en": {
+            "name": "PURRLOIN",
+            "category": "Devious Pokémon",
+            "entry_text": [
+                "It steals things from people just to\n",
+                "amuse itself with their frustration."
+            ]
+        },
+        "fr": {
+            "name": "CHACRIPAN",
+            "category": "Pokémon Scélérat",
+            "entry_text": [
+                "Il vole les biens des personnes rien\n",
+                "que pour voir leur visage désemparé.\n",
+                "Son plus grand rival est Goupilou."
+            ]
+        },
+        "de": {
+            "name": "FELILOU",
+            "category": "Schelm-Pokémon",
+            "entry_text": [
+                "Es bestiehlt liebend gerne Leute, um\n",
+                "sich an ihrer Frustration zu\n",
+                "erfreuen."
+            ]
+        },
+        "it": {
+            "name": "PURRLOIN",
+            "category": "Pokémon Furbizia",
+            "entry_text": [
+                "Ruba le cose alle persone per\n",
+                "vederle in difficoltà. Nickit è il\n",
+                "suo rivale."
+            ]
+        },
+        "es": {
+            "name": "PURRLOIN",
+            "category": "Pokémon Malicioso",
+            "entry_text": [
+                "Sustrae las pertenencias de las\n",
+                "personas solo para verlas pasar\n",
+                "apuros."
+            ]
+        },
+        "jp": {
+            "name": "チョロネコ",
+            "category": "しょうわるポケモン",
+            "entry_text": [
+                "こまった　すがたを　みるために\n",
+                "ひとの　ものを　ぬすみだす。"
+            ]
+        }
+    },
+    "catching_show": {
+        "pal_park_land_area": "PAL_PARK_AREA_LAND_NONE",
+        "pal_park_water_area": "PAL_PARK_AREA_WATER_NONE",
+        "catching_points": 0,
+        "rarity": 0,
+        "unused": 0
+    }
+}
