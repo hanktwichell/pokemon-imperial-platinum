@@ -79,7 +79,7 @@ Made by the owner (2026-10-22):
     and Zamazenta hold the Rusted Sword and Rusted Shield (2026-10-22).
 16. **Every Pokémon form is in the game** (owner, 2026-10-22; "imperative"). This covers regional forms (Alolan,
     Galarian, Hisuian, Paldean), Megas and Primals, fusions (Kyurem, Necrozma, Calyrex), Zygarde's formes, Crowned
-    Zacian/Zamazenta, Ogerpon's masks, battle and item forms, and cosmetic forms (Vivillon, Alcremie,
+    Zacian/Zamazenta, Ogerpon's masks, battle and item forms, Totem forms, and cosmetic forms (Vivillon, Alcremie,
     Flabébé, Minior and the rest). Every earlier "out of scope" note about forms is void. Milestone FM in
     `EngineRoadmap.md`.
     **The only exceptions** (owner, 2026-10-22):
@@ -87,13 +87,15 @@ Made by the owner (2026-10-22):
     - No unplayable forms, i.e. forms a player can never use in battle: Eternamax Eternatus, Koraidon's four Builds
       and Miraidon's four Modes.
     - Terapagos-Stellar is shelved for now (it needs Terastallization, which Sovereign doesn't have).
-    - No Totem forms (the 12 oversized Alola trial bosses).
-    This leaves 270 alternate Pokémon (99 of them Mega/Primal) plus about 228 cosmetic forms.
+    This leaves 282 alternate Pokémon (99 of them Mega/Primal) plus about 228 cosmetic forms.
 17. The battle screen gets a **MEGA** button on the touch-screen move menu for Mega Evolution. Primal Reversion stays
     automatic on switch-in, as in ORAS and later, with no button (owner, 2026-10-22). Spec in `MegaEvolution.md`; built
     in E8.
+18. **Totem forms** (12 entries, 11 species) appear only as boss battles in a boss arena, never in the wild. Each
+    Totem has its stat-raising Totem aura and can be caught afterwards in its Totem form (owner, 2026-10-22).
 
 Open:
+- Totem boss arena (decision 18): where it is, when it opens, and the level/aura of each Totem.
 - The developer battle: Lv. 100 at Spear Pillar, leads Charizard-Y + Venusaur, custom weather-control AI (`DeveloperBattle.md`). Opponent: Sovereign Dev Twich. Open: text, sprites (owner's sprite coming soon), Charizard's final moveset.
 - Front sprites and the part 2 shiny pack (owner is sourcing them).
 - hg-engine and Smogon credit lists: Claude compiles them (owner, 2026-10-22).
