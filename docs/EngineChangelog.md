@@ -4,6 +4,35 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## DX — the Pokédex (decision 21)
+
+- **Rowan's Pokédex is the National Dex.** The Sandgem lab script sets the National Dex flag right after giving the
+  Pokédex, so it opens in National mode with all 1025 species. The Sinnoh dex is the Pokédex's SWITCH view.
+- **Post-game gates still wait for the Hall of Fame.** Platinum used the National Dex flag as its "post-game"
+  check. The scripts' check (`ScrCmd_GetSetNationalDexEnabled`) now answers "has the player entered the Hall of
+  Fame". So Spear Pillar's, Snowpoint Temple's and Stark Mountain's events, Oak's PC (Rowan's until then) and the
+  other post-game gates stay post-game.
+  - The Trophy Garden and Great Marsh extra Pokémon (`wild_encounters.c`, `great_marsh_binoculars.c`) follow the Hall
+    of Fame too.
+  - Pal Park is removed (decision 22), so its National Dex gate needs nothing.
+  - Rowan's event for a complete Sinnoh dex (Oak's visit and the Poké Radar) used to run only while the National Dex
+    was off. It now has its own flag, `FLAG_SOVEREIGN_SHOWED_ROWAN_SINNOH_DEX` (formerly `FLAG_UNUSED_0x0094`), so it
+    still runs once, whenever the player shows Rowan all 210 Sinnoh Pokémon, before or after the Hall of Fame. Its
+    dialogue still says Oak adds the National Mode and that Pal Park is open; it needs rewriting for Sovereign (the
+    Regional Forms Park, decision 22).
+  - In Platinum these gates waited for the National Dex, which needed all 210 Sinnoh Pokémon seen as well as the
+    Hall of Fame. Now the Hall of Fame alone opens them.
+- **National numbers everywhere.** The summary screen and the PC box preview always show the National Dex number.
+  The box preview's number window is one tile wider for four digits ("No.1018").
+- Test build: a new game gets the Pokédex with the National Dex.
+- Verified in the test build:
+  - The Pokédex opens in National mode (Turtwig #387) with a SWITCH button.
+  - The summary shows Garchomp 445 and Archaludon 1018.
+  - Rowan's PC, not Oak's, shows before the Hall of Fame.
+  - Rowan's Sinnoh dex event (with a test hook seeing all 210 Sinnoh Pokémon): Oak arrives, the Poké Radar is given,
+    and talking to Rowan again gives "The world is immense...".
+  - The box preview shows No.445 and No.1018.
+
 ## 12b (part 2) — doubles AI: spread moves get credit for hitting both foes
 
 - Each move is scored against one target at a time, so a spread move (Heat Wave, Rock Slide, Earthquake…) got no
@@ -65,19 +94,24 @@ players and the verification that was run.
       didn't again on turn 2.
     - After the battle, Garchomp was back to its normal stats with its Garchompite.
   - Still to do: the animation and the AI review.
-- **The MEGA EVOLUTION toggle** (step 3; `battle_subscreen.c`, `battle_display.c`). When the active Pokémon can Mega
-  Evolve, the move menu shows "Mega Evolution: OFF (SELECT)" in the strip above the moves. Touching it or pressing
-  SELECT turns it "ON" (in red); the move chosen next Mega Evolves the Pokémon.
+- **The MEGA button** (step 3; `battle_subscreen.c`, `battle_display.c`). When the active Pokémon can Mega Evolve, the
+  move menu shows a MEGA button above the moves, with the held Mega Stone's item icon in its socket (Mega Rayquaza shows
+  the Mega Ring). Off, it's grey; on, it turns pink, violet and blue with white lettering, and its outline pulses
+  purple and gold. The move chosen next Mega Evolves the Pokémon.
+  - Turn it on or off by touching it, by pressing UP from the top row of moves and then A (DOWN goes back), or by
+    pressing SELECT.
   - The server says whether to offer it: it isn't offered when the trainer's other Pokémon chose it this turn, or once
     the trainer has used it.
   - The choice travels in the second byte of the selected move. Battle recordings store it in the move slot's top bit,
     so replays Mega Evolve too.
-  - It's a text label (one more font sprite; the pool grows to 14). A drawn button can replace it with E12's graphics.
+  - The button is an OBJ sprite in `pl_batt_obj` (`res/graphics/battle/interface/mega_button.png`, drawn by
+    `tools/sprites/make_mega_button.py`): three frames, with the pulse animated in `mega_button_anim.json`. The icon is
+    a second sprite. Both load when the move menu opens and are freed with the menu's other sprites.
   - Verified:
-    - Wild battle: the label shows and SELECT and touch both toggle it. Choosing a move with it on Mega Evolved
-      Garchomp, and the label was gone on turn 2.
-    - Doubles vs. the test trainer: Turtwig's menu has no label. Garchomp (toggle on) and the foe's Charizard both
-      Mega Evolved that turn, fastest first.
+    - Wild battle: the button shows Garchompite. Touch, SELECT, and UP then A all toggle it. Choosing a move with it on
+      Mega Evolved Garchomp, and on turn 2 the button was gone.
+    - Doubles vs. the test trainer: Turtwig's menu has no button. Garchomp (toggle on) and the foe's Charizard both
+      Mega Evolved that turn, fastest first. (This was checked with the earlier text toggle, which worked the same way.)
 - **Primal Reversion** (step 3): Kyogre holding the Blue Orb and Groudon holding the Red Orb revert as they enter
   battle. It runs as a new switch-in state (`SWITCH_IN_CHECK_STATE_SOVEREIGN_PRIMAL`), before weather abilities.
   - No button or Mega Ring is needed, and it doesn't use up the trainer's Mega Evolution.

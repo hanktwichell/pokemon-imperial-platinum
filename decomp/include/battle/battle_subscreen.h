@@ -122,7 +122,8 @@ typedef struct MoveSelectData {
     u8 currPP[4];
     u8 maxPP[4];
     u8 battlerType;
-    u8 canMegaEvolve; // Sovereign (E8): show the MEGA EVOLUTION toggle
+    u8 canMegaEvolve; // Sovereign (E8): show the MEGA button
+    u16 megaIcon; // Sovereign (E8): the item drawn on the MEGA button (the held Mega Stone)
 } MoveSelectData;
 
 typedef struct TargetMonData {
@@ -189,7 +190,7 @@ typedef struct BattleSubscreen {
     SysTask *speedUpPaletteTask;
     MoveDisplayData moveDisplayData[MAX_BATTLERS];
     UnkStruct_02012744 *fontOAMManager;
-    FontOAMEntry fontOAMEntry[14]; // Sovereign: one more, for the move menu's MEGA EVOLUTION toggle
+    FontOAMEntry fontOAMEntry[13];
     UnkStruct_02012B20 *unused_5B8;
     ManagedSprite *playerPartyBallSprites[MAX_PARTY_SIZE];
     ManagedSprite *opponentPartyBallSprites[MAX_PARTY_SIZE];
@@ -227,7 +228,12 @@ typedef struct BattleSubscreen {
         u8 phase;
         u8 delay;
     } catchTutorialState;
-    u8 sovereignMegaSelected; // Sovereign (E8): the move menu's MEGA EVOLUTION toggle is on
+    // Sovereign (E8): the move menu's MEGA button (a sprite with the held Mega Stone's icon on it).
+    ManagedSprite *sovereignMegaButton;
+    ManagedSprite *sovereignMegaIcon;
+    SysTask *sovereignMegaAnimTask;
+    u8 sovereignMegaSelected; // the button is on: the move chosen next Mega Evolves the Pokémon
+    u8 sovereignMegaCursor; // the D-pad cursor is on the button
 } BattleSubscreen;
 
 typedef struct SlideInPanelState {

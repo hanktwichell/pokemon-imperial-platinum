@@ -50,8 +50,9 @@ SandgemTownLab_IncreaseExitedDistortionWorldState:
     Return
 
 SandgemTownLab_ProfRowanReactToPokedex:
-    GetNationalDexEnabled VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, SandgemTownLab_ManyMorePokemon
+    // Sovereign (decision 21): the National Dex comes with the Pokédex, so the event for a complete Sinnoh dex
+    // (Oak's visit and the Poké Radar) has its own flag.
+    GoToIfSet FLAG_SOVEREIGN_SHOWED_ROWAN_SINNOH_DEX, SandgemTownLab_ManyMorePokemon
     GoToIfUnset FLAG_FIRST_ARRIVAL_ETERNA_CITY, SandgemTownLab_CheckShouldRatePokedex
     CheckLocalDexCompleted VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, SandgemTownLab_ShowCompleteLocalDex
@@ -537,6 +538,7 @@ SandgemTownLab_EnableNationalDex:
     Message SandgemTownLab_Text_LetMeUpgradeYourPokedex
     CallIfSet FLAG_GAME_COMPLETED, SandgemTownLab_GameCompletedReturn
     CallIfGe VAR_FIGHT_AREA_STATE, 2, SandgemTownLab_HideFightAreaBlockade
+    SetFlag FLAG_SOVEREIGN_SHOWED_ROWAN_SINNOH_DEX
     SetNationalDexEnabled
     BufferPlayerName 0
     PlayFanfare SEQ_FANFA4_sseq

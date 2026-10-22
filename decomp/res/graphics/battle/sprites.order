@@ -341,3 +341,7 @@ ball_throws/mud.NCGR.lz
 interface/top_stock.NCGR.lz
 interface/top_stock_cell.NCER.lz
 interface/top_stock_anim.NANR.lz
+interface/mega_button.NCLR
+interface/mega_button.NCGR.lz
+interface/mega_button_cell.NCER.lz
+interface/mega_button_anim.NANR.lz

@@ -152,7 +152,8 @@ typedef struct MoveSelectMenuMessage {
     u16 moves[LEARNED_MOVES_MAX];
     u8 ppCur[LEARNED_MOVES_MAX];
     u8 ppMax[LEARNED_MOVES_MAX];
-    u8 canMegaEvolve; // Sovereign (E8): show the MEGA EVOLUTION toggle
+    u8 canMegaEvolve; // Sovereign (E8): show the MEGA button
+    u16 megaIcon; // Sovereign (E8): the item drawn on the MEGA button
 } MoveSelectMenuMessage;
 
 typedef struct TargetSelectMenuMessage {
