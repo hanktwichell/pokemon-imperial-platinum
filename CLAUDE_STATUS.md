@@ -945,3 +945,20 @@ writes Cynthia's teams in the E9 format, set `"gender": "female"` on her Garchom
 2. 12b #8: check the Gen V+ ally-targeted support moves (target and score for each).
 3. Item 11 (exact effects, boss teams first). Then T1: Cynthia's teams in the E9 format, with her Garchomp
    `"gender": "female"`, and a Lv. 100 Elite Four set for after the Sovereign battle.
+
+---
+
+## CA-0018 — 2026-10-22, 6:00 pm US Central (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** README rewritten for the current state (owner request):
+- a features table marking each feature built / in progress / planned, with links;
+- the cries note;
+- a full docs table, including Story, DeveloperBattle, BattleMechanics, AIReview, TrainerFormat and the checklists;
+- the updated data layout (items_sovereign, totem_trials, item_sprites, icon_placeholders);
+- `make -C decomp rom`;
+- a Test build section with the hotkeys and the headless test tools;
+- a note that CI checks the regenerated docs.
+
+**Files modified:** `README.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:** merge PR #19 when green; 12b #8 (ally support moves); item 11.
