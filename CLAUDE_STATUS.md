@@ -2192,3 +2192,52 @@ Galactic gates, CB-0029 to CB-0031) is merged, after one more merge of main (Cla
    (`Story.md`: Celestic elder at home, Spear Pillar trigger, rematch lock).
 3. **Key Items pocket room:** Platinum's 40 key items plus Sovereign's 26 against the pocket's slots; check before
    more key items land.
+
+---
+
+## CB-0033 — 2026-10-23, 5:50 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** the first three steps of the post-game story (decision 23, `Story.md`). PR #43 (1 vs 2 Totem
+trials, CB-0032) is merged.
+- **The Celestic elder at home.** The first time the player comes downstairs after the first Hall of Fame, she
+  waits with Mom.
+  - She sends the player to the Spear Pillar, tells them about the Adamant and Lustrous Orbs, and leaves.
+  - She sets Platinum's own `FLAG_UNLOCKED_DIALGA_PALKIA_SPEAR_PILLAR`, which Platinum sets in her Celestic house.
+  - Note: Platinum's trigger was never the National Pokédex.
+- **The Elite Four rematch lock.** Platinum has no save-prompt NPC, so the north Pokémon Center's door guard is the
+  gate.
+  - After the first Hall of Fame he stays at the door until Dialga and Palkia are both done (caught, or the battle
+    won or fled).
+  - The first pass is kept in `FLAG_SOVEREIGN_REMATCH_UNLOCKED`, since Platinum resets the legendaries' state vars at
+    each Hall of Fame.
+- **The Sovereign Crown.** The first rematch win over Cynthia swaps the Crown for the Sovereign Crown, and she sends
+  the player to the Spear Pillar (`FLAG_SOVEREIGN_CALLED_TO_SPEAR_PILLAR`). Later wins get a reminder until
+  `FLAG_SOVEREIGN_DEFEATED_HENRY`, a flag for the future Sovereign battle to set.
+- **Research:** an Explore agent mapped Platinum's post-game flags and scripts.
+- **Key Items pocket (checked):** at most 46 key items at once after the Hall of Fame (66, minus the 8 Platinum takes
+  back, minus the 11 pieces that become one Crown), well under the 50 slots. Nothing to change.
+- **Verified** (test build with a temporary post-game patch, test warps and a poked warp index):
+  - the elder's scene;
+  - Mt. Coronet 6F leading to the Dialga map;
+  - the guard locked, then open with both done;
+  - the Crown swap and Cynthia's lines through to the Hall of Fame hallway.
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+
+**Files modified:**
+- Scripts: `scripts_twinleaf_town_player_house_1f.s`, `scripts_pokemon_league_north_pokecenter_1f.s`,
+  `scripts_pokemon_league_champion_room.s` (`decomp/res/field/scripts/`)
+- Events: `events_twinleaf_town_player_house_1f.json` (the elder)
+- Texts: `twinleaf_town_player_house_1f`, `pokemon_league_north_pokecenter_1f`, `pokemon_league_champion_room`
+  (`decomp/res/text/`)
+- `decomp/generated/vars_flags.txt`: flags 0x1C4, 0x1C6, 0x1CE and 0x1CF
+- Docs: `docs/Story.md`, `docs/TechnicalDesign.md`, `docs/EngineChangelog.md`, `docs/ProjectStatus.md`,
+  `docs/EngineRoadmap.md`, `docs/EliteFourFormat.md` (`FLAG_GAME_CLEAR` is really `FLAG_GAME_COMPLETED`),
+  `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR once CI is green.
+2. **Henry at the throne:** the throne room at the Spear Pillar (a new map state). He appears with
+   `FLAG_SOVEREIGN_CALLED_TO_SPEAR_PILLAR` and the Sovereign Crown. Then the developer battle (T2, Claude A), the owner's
+   text, the Sovereign title, and Cynthia's scene after the battle.
+3. **The Chronicles and the Regional Forms Park log** (`Story.md`, "Alongside these"), or the Celestic elder's
+   story line about the rulers who sat at the Spear Pillar (the Celestic beat of the main story).

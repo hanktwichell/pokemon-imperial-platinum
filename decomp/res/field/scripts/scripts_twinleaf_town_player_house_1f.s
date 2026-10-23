@@ -14,12 +14,20 @@
     ScriptEntry TwinleafTownPlayerHouse1F_KitchenSink
     ScriptEntry TwinleafTownPlayerHouse1F_KitchenCounter
     ScriptEntry TwinleafTownPlayerHouse1F_OnFrame_Postgame
+    ScriptEntry TwinleafTownPlayerHouse1F_SovereignElder
     ScriptEntryEnd
 
 TwinleafTownPlayerHouse1F_OnTransition:
     CallIfEq VAR_PLAYER_HOUSE_STATE, 3, TwinleafTownPlayerHouse1F_SetMomPositionForCutsceneAfterRivalBattle
     CallIfSet FLAG_RECEIVED_PARCEL, TwinleafTownPlayerHouse1F_HideRivalsMom
+    @ Sovereign (Story.md): the Celestic elder waits downstairs the first time the player wakes after the Hall of Fame.
+    SetFlag FLAG_SOVEREIGN_HIDE_HOME_ELDER
+    CallIfEq VAR_PLAYER_HOUSE_POSTGAME_STATE, 1, TwinleafTownPlayerHouse1F_SovereignShowElder
     End
+
+TwinleafTownPlayerHouse1F_SovereignShowElder:
+    ClearFlag FLAG_SOVEREIGN_HIDE_HOME_ELDER
+    Return
 
 TwinleafTownPlayerHouse1F_SetMomPositionForCutsceneAfterRivalBattle:
     SetObjectEventPos LOCALID_PLAYER_HOUSE_MOM, 2, 4
@@ -83,6 +91,7 @@ TwinleafTownPlayerHouse1F_DoMomPostgameSequence:
     ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse1F_Movement_PlayerFaceMomPostgame
     ApplyMovement LOCALID_PLAYER_HOUSE_MOM, TwinleafTownPlayerHouse1F_Movement_MomNoticePlayer
     WaitMovement
+    CallIfUnset FLAG_SOVEREIGN_HIDE_HOME_ELDER, TwinleafTownPlayerHouse1F_SovereignElderVisit
     BufferPlayerName 0
     BufferRivalName 1
     GetNationalDexEnabled VAR_RESULT
@@ -93,6 +102,44 @@ TwinleafTownPlayerHouse1F_DoMomPostgameSequence:
 TwinleafTownPlayerHouse1F_PostgameRelease:
     ReleaseAll
     End
+
+@ Sovereign (Story.md): the elder sends the new Champion to the Spear Pillar, where DIALGA and PALKIA now answer the
+@ Orbs (MtCoronet6F_TrySetWarpSpearPillarDialgaPalkia), then leaves. Platinum did this in her Celestic Town house.
+TwinleafTownPlayerHouse1F_SovereignElderVisit:
+    BufferPlayerName 0
+    Message TwinleafTownPlayerHouse1F_Text_SovereignYouHaveAVisitor
+    WaitButton
+    CloseMessage
+    ApplyMovement LOCALID_SOVEREIGN_ELDER, TwinleafTownPlayerHouse1F_Movement_SovereignElderApproach
+    WaitMovement
+    Message TwinleafTownPlayerHouse1F_Text_SovereignElderSpearPillar
+    SetFlag FLAG_UNLOCKED_DIALGA_PALKIA_SPEAR_PILLAR
+    Message TwinleafTownPlayerHouse1F_Text_SovereignElderGoodbye
+    WaitButton
+    CloseMessage
+    ApplyMovement LOCALID_SOVEREIGN_ELDER, TwinleafTownPlayerHouse1F_Movement_SovereignElderLeave
+    WaitMovement
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
+    RemoveObject LOCALID_SOVEREIGN_ELDER
+    ApplyMovement LOCALID_PLAYER, TwinleafTownPlayerHouse1F_Movement_PlayerFaceMomPostgame
+    WaitMovement
+    Return
+
+TwinleafTownPlayerHouse1F_SovereignElder:
+    NPCMessage TwinleafTownPlayerHouse1F_Text_SovereignElderGoodbye
+    End
+
+    .balign 4, 0
+TwinleafTownPlayerHouse1F_Movement_SovereignElderApproach:
+    WalkNormalNorth 2
+    EndMovement
+
+    .balign 4, 0
+TwinleafTownPlayerHouse1F_Movement_SovereignElderLeave:
+    WalkNormalSouth 3
+    WalkNormalWest 2
+    WalkNormalSouth
+    EndMovement
 
 TwinleafTownPlayerHouse1F_RivalCameLookingForYou:
     SetFlag FLAG_TALKED_TO_MOM_ABOUT_RIVAL_SNOWPOINT_CITY

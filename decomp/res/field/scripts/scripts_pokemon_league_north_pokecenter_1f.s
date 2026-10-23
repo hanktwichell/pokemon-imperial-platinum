@@ -27,7 +27,10 @@ PokemonLeagueNorthPokecenter1F_OnTransition:
     ClearFlag FLAG_DEFEATED_BERTHA
     ClearFlag FLAG_DEFEATED_FLINT
     ClearFlag FLAG_DEFEATED_LUCIAN
+    Call PokemonLeagueNorthPokecenter1F_SovereignCheckRematchLocked
+    GoToIfEq VAR_RESULT, TRUE, PokemonLeagueNorthPokecenter1F_SovereignDoorGuardStays
     GoToIfSet FLAG_POKEMON_LEAGUE_DOOR_GUARD_MOVED_AWAY, PokemonLeagueNorthPokecenter1F_SetPositionDoorGuardAwayFromDoor
+PokemonLeagueNorthPokecenter1F_SovereignDoorGuardStays:
     End
 
 PokemonLeagueNorthPokecenter1F_SetPositionDoorGuardAwayFromDoor:
@@ -38,6 +41,8 @@ PokemonLeagueNorthPokecenter1F_DoorGuard:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
+    Call PokemonLeagueNorthPokecenter1F_SovereignCheckRematchLocked
+    GoToIfEq VAR_RESULT, TRUE, PokemonLeagueNorthPokecenter1F_SovereignRematchLocked
     GoToIfSet FLAG_POKEMON_LEAGUE_DOOR_GUARD_MOVED_AWAY, PokemonLeagueNorthPokecenter1F_DoorGuardAfterMovingAway
     Message PokemonLeagueNorthPokecenter1F_Text_ExamineGymBadges
     CloseMessage
@@ -67,6 +72,32 @@ PokemonLeagueNorthPokecenter1F_DoorGuardMoveAwayEastWest:
 PokemonLeagueNorthPokecenter1F_DoorGuardMovedAway:
     SetFlag FLAG_POKEMON_LEAGUE_DOOR_GUARD_MOVED_AWAY
     Message PokemonLeagueNorthPokecenter1F_Text_CollectedAllGymBadges
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+@ Sovereign (Story.md): after the first Hall of Fame, the Elite Four rematch waits until the DIALGA and PALKIA
+@ encounters at the Spear Pillar are both done (caught, or the battle won or fled). Their state vars reset at each Hall
+@ of Fame while uncaught, so the first pass is kept in FLAG_SOVEREIGN_REMATCH_UNLOCKED. VAR_RESULT: TRUE while locked.
+PokemonLeagueNorthPokecenter1F_SovereignCheckRematchLocked:
+    SetVar VAR_RESULT, FALSE
+    GoToIfUnset FLAG_GAME_COMPLETED, PokemonLeagueNorthPokecenter1F_SovereignCheckRematchLockedEnd
+    GoToIfSet FLAG_SOVEREIGN_REMATCH_UNLOCKED, PokemonLeagueNorthPokecenter1F_SovereignCheckRematchLockedEnd
+    SetVar VAR_RESULT, TRUE
+    GoToIfSet FLAG_CAUGHT_DIALGA, PokemonLeagueNorthPokecenter1F_SovereignCheckPalkia
+    GoToIfLt VAR_SPEAR_PILLAR_DIALGA_STATE, 1, PokemonLeagueNorthPokecenter1F_SovereignCheckRematchLockedEnd
+PokemonLeagueNorthPokecenter1F_SovereignCheckPalkia:
+    GoToIfSet FLAG_CAUGHT_PALKIA, PokemonLeagueNorthPokecenter1F_SovereignRematchUnlocked
+    GoToIfLt VAR_SPEAR_PILLAR_PALKIA_STATE, 1, PokemonLeagueNorthPokecenter1F_SovereignCheckRematchLockedEnd
+PokemonLeagueNorthPokecenter1F_SovereignRematchUnlocked:
+    SetFlag FLAG_SOVEREIGN_REMATCH_UNLOCKED
+    SetVar VAR_RESULT, FALSE
+PokemonLeagueNorthPokecenter1F_SovereignCheckRematchLockedEnd:
+    Return
+
+PokemonLeagueNorthPokecenter1F_SovereignRematchLocked:
+    Message PokemonLeagueNorthPokecenter1F_Text_SovereignSpearPillarFirst
     WaitButton
     CloseMessage
     ReleaseAll

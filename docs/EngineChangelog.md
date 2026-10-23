@@ -4,6 +4,39 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E11 — After the Hall of Fame: the elder at home, the rematch lock and the Sovereign Crown (decision 23)
+
+The first three steps of the post-game story (`docs/Story.md`, "After the Hall of Fame: event order"):
+- **The Celestic elder at home.** The first time the player comes downstairs after the first Hall of Fame, the
+  elder is in the living room with Mom: "You have a visitor. She came all the way from Celestic Town to see you."
+  - She walks up, says Mt. Coronet has been restless since the battle at the Spear Pillar, and reads the shrine's
+    book: the bearers of the Adamant Orb and the Lustrous Orb summon DIALGA and PALKIA there.
+  - She says both Orbs rest inside Mt. Coronet, then leaves through the door. Mom's Platinum line about the rival
+    follows.
+  - This replaces her Celestic house as the place that opens the Spear Pillar's Dialga and Palkia; her house still
+    does it too.
+- **The Elite Four rematch waits on Dialga and Palkia.** Platinum has no NPC who asks you to save, so the north
+  Pokémon Center's door guard is the gate. After the first Hall of Fame he stays at the door until both encounters
+  are done (caught, or the battle won or fled): "I'm sorry, but the Elite Four aren't taking challengers right now. Mt.
+  Coronet has been shaking ever since your Hall of Fame entry. They say DIALGA and PALKIA are stirring at the Spear
+  Pillar. Please see to them first." Once both are done it stays open for good, even after the Hall of Fame brings an
+  uncaught one back.
+- **The Sovereign Crown.** After the first rematch win over Cynthia, the Crown becomes the Sovereign Crown:
+  - "Cynthia: ...Hm? There's a light coming from your Bag." "The Crown is shining brightly!" Then the player
+    obtains the Sovereign Crown.
+  - Cynthia: "A crown made from the pieces those huge Pokémon left behind... My grandmother tells old stories of the
+    ancient rulers of the Spear Pillar. I think someone has been waiting for you there all along. After the Hall of
+    Fame, please go to the Spear Pillar."
+  - Later wins get a short reminder until the Sovereign is beaten. Henry's appearance at the throne comes later.
+- **Verified** (test build, with a temporary new-game patch for the post-game state: the game completed, the house
+  states after the first Hall of Fame, the Crown and both Orbs; Cynthia's battle skipped, and test warps):
+  - The elder's whole scene, every line inside the box, and Mom's line after it.
+  - Mt. Coronet 6F then leads to the Spear Pillar's Dialga map (its blue rift).
+  - With Dialga and Palkia not done, the guard blocks the door with his line. With both done, he stands aside and
+    the elevator to Aaron opens.
+  - The rematch win: the Crown swap, Cynthia's lines, then the lift and the hallway to the Hall of Fame as before.
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+
 ## FM — 1 vs 2: a lone Pokémon takes on a Totem trial (decision 18)
 
 A player with only one Pokémon that can battle now fights a Totem trial 1 vs 2. Before, the trial refused with "Its

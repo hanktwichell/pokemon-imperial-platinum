@@ -409,6 +409,44 @@
         "But you’re all right, aren’t you?\n",
         "After all, you’re never alone."
       ]
+    },
+    {
+      "id": "TwinleafTownPlayerHouse1F_Text_SovereignYouHaveAVisitor",
+      "en_US": [
+        "Mom: {STRVAR_1 3, 0, 0}! You’re finally up!\n",
+        "You have a visitor.\r",
+        "She came all the way from\n",
+        "Celestic Town to see you."
+      ]
+    },
+    {
+      "id": "TwinleafTownPlayerHouse1F_Text_SovereignElderSpearPillar",
+      "en_US": [
+        "Well, hello! You look good.\n",
+        "And a Champion now, too!\r",
+        "Forgive me for calling on you at home.\n",
+        "I had to come and tell you myself.\r",
+        "Since your battle at the Spear Pillar,\n",
+        "Mt. Coronet has been restless again.\r",
+        "An old book in our shrine says this:\r",
+        "“The bearer of the shining Adamant Orb\n",
+        "summons DIALGA to the Spear Pillar.\r",
+        "“The bearer of the shining Lustrous\n",
+        "Orb summons PALKIA to the Spear Pillar.\r",
+        "“The Pokémon of time and space will\n",
+        "answer the call.”\r",
+        "Both Orbs are said to rest somewhere\n",
+        "inside Mt. Coronet.\r",
+        "Find them and go to the Spear Pillar.\n",
+        "DIALGA and PALKIA will answer you.\r"
+      ]
+    },
+    {
+      "id": "TwinleafTownPlayerHouse1F_Text_SovereignElderGoodbye",
+      "en_US": [
+        "Now, I’ll be on my way.\n",
+        "Do come and visit Celestic Town."
+      ]
     }
   ]
 }
