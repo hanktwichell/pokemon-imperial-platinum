@@ -1588,8 +1588,8 @@ static const SpriteTemplate sSovereignMegaButtonTemplate = {
     0x0,
 };
 
-// The item icon's art is the top-left 24x24 of its 32x32 cell, centred on (11.5, 11.5): this puts it on the socket
-// (one pixel right of the exact centre, which looked off centre on screen).
+// The item icon's art is the top-left 24x24 of its 32x32 cell, centred on (11.5, 11.5): this centres it on the
+// button's socket at (13.5, 11.5).
 static const SpriteTemplate sSovereignMegaIconTemplate = {
     SOVEREIGN_MEGA_BUTTON_X - 32 + 13 + 5,
     SOVEREIGN_MEGA_BUTTON_Y + 4,

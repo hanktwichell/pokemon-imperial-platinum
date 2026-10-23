@@ -1179,3 +1179,20 @@ the button's socket. Verified on screen, off and on. The release ROM builds and 
 1. Merge PR #22 when green.
 2. The Mega Evolution animation.
 3. The Mega abilities the boss teams need.
+
+---
+
+## CB-0018 — 2026-10-22, 7:08 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented (owner asked):** the MEGA button's socket is one pixel smaller on the left. Its centre moved from
+(13, 11.5) to (13.5, 11.5) and its radius from 9.5 to 9, so it rings the Mega Stone evenly: one pixel of socket on
+every side of the 14x14 stone. This also removes the one-pixel bumps at the top and bottom of the circle. Verified on
+screen, off and on. The release ROM builds and passes boot smoke.
+
+**Files modified:** `tools/sprites/make_mega_button.py`, `decomp/res/graphics/battle/interface/mega_button.png`
+(regenerated), `decomp/src/battle/battle_subscreen.c` (comment only), `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Merge PR #22 when green.
+2. The Mega Evolution animation.
+3. The Mega abilities the boss teams need.

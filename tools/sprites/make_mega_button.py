@@ -5,8 +5,8 @@ Three 64x32 frames stacked vertically (the art uses the top 24 rows), one 16-col
   frame 0  off: a grey pill with a dark socket and grey lettering
   frame 1  on:  a pink-violet-blue pill with a glowing socket and white lettering
   frame 2  on, pulse: the same with a gold outline (mega_button_anim.json alternates frames 1 and 2)
-The held Mega Stone's own item icon is drawn over the socket as a second sprite (battle_subscreen.c), so the
-socket is centred on the icon art's centre: (13, 12) here.
+The held Mega Stone's own item icon is drawn over the socket as a second sprite (battle_subscreen.c). The socket is
+centred on the stone, at (13.5, 11.5) here, and leaves a one-pixel ring around a 14x14 stone.
 
 Usage: python3 tools/sprites/make_mega_button.py
 """
@@ -46,7 +46,7 @@ GLYPHS = {
 
 W, H, ART_H = 64, 32, 24
 PILL_X0, PILL_X1, PILL_Y0, PILL_Y1 = 2, 61, 1, 22  # inclusive
-SOCKET_CX, SOCKET_CY, SOCKET_R = 13, 11.5, 9.5
+SOCKET_CX, SOCKET_CY, SOCKET_R = 13.5, 11.5, 9
 
 
 def in_pill(x, y):
