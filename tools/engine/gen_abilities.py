@@ -114,6 +114,9 @@ MANUAL_DESCRIPTIONS = {
 # Implemented beyond Platinum's 123 (updated as abilities get battle code).
 # Newer abilities whose battle effect is built (item 11): ability number -> what the Battle effect column says.
 IMPLEMENTED = {
+    130: "yes: 30% chance to disable the move that hit it, for 4 turns",  # Cursed Body
+    141: "yes: each turn, one stat +2 and another −1 (no accuracy/evasion, as in Gen VIII+)",  # Moody
+    143: "yes: its contact moves have a 30% chance to poison",  # Poison Touch
     127: "partly: foes can't eat Berries that heal, cure or trigger on a hit (damage-halving Berries not yet)",  # Unnerve
     128: "partly: Attack +2 when a foe's move lowers its stats (Intimidate not yet)",  # Defiant
     172: "partly: Sp. Atk +2 when a foe's move lowers its stats (Intimidate not yet)",  # Competitive

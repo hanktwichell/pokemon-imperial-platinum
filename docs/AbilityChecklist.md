@@ -12,7 +12,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 127 | Unnerve | Gen 5 | partly: foes can't eat Berries that heal, cure or trigger on a hit (damage-halving Berries not yet) |
 | 128 | Defiant | Gen 5 | partly: Attack +2 when a foe's move lowers its stats (Intimidate not yet) |
 | 129 | Defeatist | Gen 5 | not yet (no battle effect) |
-| 130 | Cursed Body | Gen 5 | not yet (no battle effect) |
+| 130 | Cursed Body | Gen 5 | yes: 30% chance to disable the move that hit it, for 4 turns |
 | 131 | Healer | Gen 5 | not yet (no battle effect) |
 | 132 | Friend Guard | Gen 5 | yes: the partner takes 25% less damage |
 | 133 | Weak Armor | Gen 5 | yes: Defense −1 and Speed +2 when hit by a physical move |
@@ -23,9 +23,9 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 138 | Flare Boost | Gen 5 | not yet (no battle effect) |
 | 139 | Harvest | Gen 5 | not yet (no battle effect) |
 | 140 | Telepathy | Gen 5 | yes: avoids its partner's damaging moves |
-| 141 | Moody | Gen 5 | not yet (no battle effect) |
+| 141 | Moody | Gen 5 | yes: each turn, one stat +2 and another −1 (no accuracy/evasion, as in Gen VIII+) |
 | 142 | Overcoat | Gen 5 | partly: no sandstorm damage (powder-move immunity not yet) |
-| 143 | Poison Touch | Gen 5 | not yet (no battle effect) |
+| 143 | Poison Touch | Gen 5 | yes: its contact moves have a 30% chance to poison |
 | 144 | Regenerator | Gen 5 | yes: restores 1/3 of max HP on switching out |
 | 145 | Big Pecks | Gen 5 | yes: Defense can't be lowered by others |
 | 146 | Sand Rush | Gen 5 | yes: Speed ×2 in a sandstorm; no sandstorm damage |

@@ -3640,6 +3640,62 @@ BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem *battleSys, BattleContext *
         }
         break;
 
+    // Sovereign (item 11): Moody raises a random stat 2 stages and lowers a different one 1 stage (Attack, Defense,
+    // Speed, Sp. Atk and Sp. Def, as in Gen VIII+).
+    case ABILITY_MOODY:
+        if (battleCtx->battleMons[battler].curHP) {
+            int up = -1, down = -1, count = 0, pick, stat;
+
+            for (stat = BATTLE_STAT_ATTACK; stat <= BATTLE_STAT_SP_DEFENSE; stat++) {
+                if (battleCtx->battleMons[battler].statBoosts[stat] < MAX_STAT_STAGE) {
+                    count++;
+                }
+            }
+
+            if (count) {
+                pick = BattleSystem_RandNext(battleSys) % count;
+                for (stat = BATTLE_STAT_ATTACK; stat <= BATTLE_STAT_SP_DEFENSE; stat++) {
+                    if (battleCtx->battleMons[battler].statBoosts[stat] < MAX_STAT_STAGE && pick-- == 0) {
+                        up = stat;
+                        break;
+                    }
+                }
+            }
+
+            count = 0;
+            for (stat = BATTLE_STAT_ATTACK; stat <= BATTLE_STAT_SP_DEFENSE; stat++) {
+                if (stat != up && battleCtx->battleMons[battler].statBoosts[stat] > 0) {
+                    count++;
+                }
+            }
+
+            if (count) {
+                pick = BattleSystem_RandNext(battleSys) % count;
+                for (stat = BATTLE_STAT_ATTACK; stat <= BATTLE_STAT_SP_DEFENSE; stat++) {
+                    if (stat != up && battleCtx->battleMons[battler].statBoosts[stat] > 0 && pick-- == 0) {
+                        down = stat;
+                        break;
+                    }
+                }
+            }
+
+            if (up >= 0 && down >= 0) {
+                battleCtx->sideEffectParam = MOVE_SUBSCRIPT_PTR_ATTACK_UP_2_STAGES + (up - BATTLE_STAT_ATTACK);
+                battleCtx->calcTemp = MOVE_SUBSCRIPT_PTR_ATTACK_DOWN_1_STAGE + (down - BATTLE_STAT_ATTACK);
+                battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
+                battleCtx->sideEffectMon = battler;
+                subscript = subscript_sovereign_moody;
+                result = TRUE;
+            } else if (up >= 0) {
+                battleCtx->sideEffectParam = MOVE_SUBSCRIPT_PTR_ATTACK_UP_2_STAGES + (up - BATTLE_STAT_ATTACK);
+                battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
+                battleCtx->sideEffectMon = battler;
+                subscript = subscript_update_stat_stage;
+                result = TRUE;
+            }
+        }
+        break;
+
     case ABILITY_SHED_SKIN:
         if ((battleCtx->battleMons[battler].status & MON_CONDITION_ANY)
             && battleCtx->battleMons[battler].curHP
@@ -4312,6 +4368,24 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
         return result;
     }
 
+    // Sovereign (item 11): Poison Touch (the attacker's ability) has a 30% chance to poison a Pokemon it hits with a
+    // contact move. subscript_poison checks the target's immunities.
+    if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_POISON_TOUCH
+        && DEFENDING_MON.curHP
+        && DEFENDING_MON.status == MON_CONDITION_NONE
+        && battleCtx->attacker != battleCtx->defender
+        && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+        && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+        && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+        && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)
+        && BattleSystem_RandNext(battleSys) % 10 < 3) {
+        battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
+        battleCtx->sideEffectMon = battleCtx->defender;
+        battleCtx->msgBattlerTemp = battleCtx->attacker;
+        *subscript = subscript_poison;
+        return TRUE;
+    }
+
     switch (Battler_Ability(battleCtx, battleCtx->defender)) {
     case ABILITY_STATIC:
         if (ATTACKING_MON.curHP
@@ -4413,6 +4487,24 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
             && DEFENDING_MON.statBoosts[BATTLE_STAT_DEFENSE] < MAX_STAT_STAGE) {
             *subscript = subscript_sovereign_stamina;
+            result = TRUE;
+        }
+        break;
+
+    // Sovereign (item 11): Cursed Body has a 30% chance to disable the move that hit it (for 4 turns).
+    case ABILITY_CURSED_BODY:
+        if (ATTACKING_MON.curHP
+            && battleCtx->attacker != battleCtx->defender
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+            && ATTACKING_MON.moveEffectsData.disabledMove == MOVE_NONE
+            && battleCtx->moveCur != MOVE_STRUGGLE
+            && Battler_SlotForMove(&ATTACKING_MON, battleCtx->moveCur) != LEARNED_MOVES_MAX
+            && BattleSystem_RandNext(battleSys) % 10 < 3) {
+            ATTACKING_MON.moveEffectsData.disabledMove = battleCtx->moveCur;
+            ATTACKING_MON.moveEffectsData.disabledTurns = 4;
+            battleCtx->msgMoveTemp = battleCtx->moveCur;
+            *subscript = subscript_sovereign_cursed_body;
             result = TRUE;
         }
         break;
