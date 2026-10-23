@@ -2524,6 +2524,7 @@ enum CheckStatusState {
     CHECK_STATUS_STATE_IMPRISON,
     CHECK_STATUS_STATE_GRAVITY,
     CHECK_STATUS_STATE_HEAL_BLOCK,
+    CHECK_STATUS_STATE_SOVEREIGN_THROAT_CHOP,
     CHECK_STATUS_STATE_CONFUSION,
     CHECK_STATUS_STATE_PARALYSIS,
     CHECK_STATUS_STATE_ATTRACT,
@@ -2748,6 +2749,20 @@ static BOOL BattleControllerPlayer_CheckStatusDisruption(BattleSystem *battleSys
                 battleCtx->moveFailFlags[battleCtx->attacker].healBlocked = TRUE;
 
                 LOAD_SUBSEQ(subscript_move_is_heal_blocked);
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+                battleCtx->commandNext = BATTLE_CONTROL_UPDATE_MOVE_BUFFERS;
+
+                result = CHECK_STATUS_DISRUPT_MOVE;
+            }
+
+            battleCtx->statusCheckState++;
+            break;
+
+        case CHECK_STATUS_STATE_SOVEREIGN_THROAT_CHOP:
+            // Sovereign (item 11): Throat Chop stops sound moves chosen before it hit.
+            if (battleCtx->sovereignThroatChop[battleCtx->attacker] && Move_IsSound(battleCtx->moveCur)) {
+                battleCtx->msgMoveTemp = MOVE_THROAT_CHOP;
+                LOAD_SUBSEQ(subscript_sovereign_move_blocked);
                 battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
                 battleCtx->commandNext = BATTLE_CONTROL_UPDATE_MOVE_BUFFERS;
 
@@ -3153,6 +3168,44 @@ static int BattleControllerPlayer_CheckMoveHitAccuracy(BattleSystem *battleSys, 
  * @param move      The attacker's move
  * @return Always 0.
  */
+// Sovereign (item 11): where a battler that hasn't moved yet stands in the rest of this turn's action order, or -1.
+static int Sovereign_TurnOrderIndex(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
+{
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
+
+    for (int i = battleCtx->turnOrderCounter + 1; i < maxBattlers; i++) {
+        if (battleCtx->battlerActionOrder[i] == battler) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+// Sovereign (item 11): After You moves the target up to act next; Quash moves it to act last.
+static void Sovereign_ReorderTurn(BattleSystem *battleSys, BattleContext *battleCtx, int battler, BOOL toLast)
+{
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
+    int pos = Sovereign_TurnOrderIndex(battleSys, battleCtx, battler);
+    int i;
+
+    if (pos < 0) {
+        return;
+    }
+
+    if (toLast) {
+        for (i = pos; i < maxBattlers - 1; i++) {
+            battleCtx->battlerActionOrder[i] = battleCtx->battlerActionOrder[i + 1];
+        }
+        battleCtx->battlerActionOrder[maxBattlers - 1] = battler;
+    } else {
+        for (i = pos; i > battleCtx->turnOrderCounter + 1; i--) {
+            battleCtx->battlerActionOrder[i] = battleCtx->battlerActionOrder[i - 1];
+        }
+        battleCtx->battlerActionOrder[battleCtx->turnOrderCounter + 1] = battler;
+    }
+}
+
 static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move)
 {
     if (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) {
@@ -3210,6 +3263,26 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
         && Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_BULLETPROOF) == TRUE
         && Move_IsBallOrBomb(move)) {
         battleCtx->moveStatusFlags |= MOVE_STATUS_INEFFECTIVE;
+    }
+
+    // Sovereign (item 11): Wide Guard blocks spread moves aimed at its side, Quick Guard foes' priority moves.
+    if (attacker != defender
+        && (((battleCtx->sovereignSideGuards[BattleSystem_GetBattlerSide(battleSys, defender)] & 1)
+                && (MOVE_DATA(move).range == RANGE_ADJACENT_OPPONENTS || MOVE_DATA(move).range == RANGE_ALL_ADJACENT))
+            || ((battleCtx->sovereignSideGuards[BattleSystem_GetBattlerSide(battleSys, defender)] & 2)
+                && BattleSystem_GetBattlerSide(battleSys, attacker) != BattleSystem_GetBattlerSide(battleSys, defender)
+                && Sovereign_MovePriority(battleCtx, attacker, move) > 0))) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_PROTECTED;
+    }
+
+    // Sovereign (item 11): After You and Quash fail against a target that has already moved this turn.
+    if ((move == MOVE_AFTER_YOU || move == MOVE_QUASH) && Sovereign_TurnOrderIndex(battleSys, battleCtx, defender) < 0) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_FAILED;
+    }
+
+    // Sovereign (item 11): Poltergeist fails against a target holding no item.
+    if (move == MOVE_POLTERGEIST && battleCtx->battleMons[defender].heldItem == ITEM_NONE) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_FAILED;
     }
 
     // Sovereign (item 11): Psychic Terrain protects grounded Pokemon from foes' priority moves; Steel Roller fails without
@@ -3570,7 +3643,8 @@ static void BattleControllerPlayer_UpdateHP(BattleSystem *battleSys, BattleConte
 
         battleCtx->lastHitByBattler[battleCtx->defender] = battleCtx->attacker;
 
-        if ((DEFENDING_MON.statusVolatile & VOLATILE_CONDITION_SUBSTITUTE) && battleCtx->damage < 0) {
+        if ((DEFENDING_MON.statusVolatile & VOLATILE_CONDITION_SUBSTITUTE) && battleCtx->damage < 0
+            && Sovereign_BypassesSubstitute(battleCtx, battleCtx->attacker, battleCtx->defender, battleCtx->moveCur) == FALSE) { // Sovereign (item 11)
             if (DEFENDING_MON.moveEffectsData.substituteHP + battleCtx->damage <= 0) {
                 ATTACKER_SELF_TURN_FLAGS.shellBellDamageDealt += DEFENDING_MON.moveEffectsData.substituteHP * -1;
                 DEFENDING_MON.statusVolatile &= ~VOLATILE_CONDITION_SUBSTITUTE;
@@ -4099,6 +4173,7 @@ static void BattleControllerPlayer_FaintAfterSelfdestruct(BattleSystem *battleSy
 {
     if (battleCtx->battleStatusMask & SYSCTL_MON_SELFDESTRUCTED) {
         battleCtx->faintedMon = LowestBit((battleCtx->battleStatusMask & SYSCTL_MON_SELFDESTRUCTED) >> SYSCTL_MON_SELFDESTRUCTED_SHIFT);
+        battleCtx->sovereignSideFaintTurn[battleCtx->faintedMon & 1] = battleCtx->totalTurns + 1; // Sovereign (item 11): Retaliate
         battleCtx->battleStatusMask &= ~SYSCTL_MON_SELFDESTRUCTED;
 
         LOAD_SUBSEQ(subscript_after_selfdestruct);
@@ -4161,6 +4236,13 @@ static void BattleControllerPlayer_UpdateMoveBuffers(BattleSystem *battleSys, Ba
         battleCtx->sovereignLastMoveFailed[battleCtx->attacker] = (battleCtx->battleStatusMask2 & SYSCTL_MOVE_SUCCEEDED) == FALSE;
         if (battleCtx->moveTemp == MOVE_ROUND) {
             battleCtx->turnFlags[battleCtx->attacker].sovereignUsedRound = TRUE;
+        }
+
+        // After You and Quash reorder the rest of the turn.
+        if ((battleCtx->moveTemp == MOVE_AFTER_YOU || battleCtx->moveTemp == MOVE_QUASH)
+            && (battleCtx->battleStatusMask2 & SYSCTL_MOVE_SUCCEEDED)
+            && battleCtx->defender != BATTLER_NONE) {
+            Sovereign_ReorderTurn(battleSys, battleCtx, battleCtx->defender, battleCtx->moveTemp == MOVE_QUASH);
         }
 
         // Steel Roller and Ice Spinner flatten the terrain (no message yet).
@@ -4653,6 +4735,7 @@ static BOOL BattleControllerPlayer_AnyFainted(BattleContext *battleCtx, int next
 
         battleCtx->battleStatusMask &= (battlerBit ^ 0xFFFFFFFF);
         battleCtx->faintedMon = LowestBit(battlerBit >> SYSCTL_MON_FAINTED_SHIFT);
+        battleCtx->sovereignSideFaintTurn[battleCtx->faintedMon & 1] = battleCtx->totalTurns + 1; // Sovereign (item 11): Retaliate
 
         if (onlyFaint == TRUE) {
             LOAD_SUBSEQ(subscript_faint_mon);

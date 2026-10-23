@@ -334,6 +334,11 @@ struct BattleContext {
     u8 sovereignDefiantPending;
     u8 sovereignLastMoveFailed[MAX_BATTLERS]; // Sovereign (item 11): Stomping Tantrum and Temper Flare
     u32 sovereignTerrainTemp; // Sovereign (item 11): BTLVAR_SOVEREIGN_TERRAIN_EFFECT_MON
+    int sovereignLaserFocus[MAX_BATTLERS]; // Sovereign (item 11): turns of Laser Focus left (its moves always crit)
+    int sovereignThroatChop[MAX_BATTLERS]; // Sovereign (item 11): turns it can't use sound moves (Throat Chop)
+    int sovereignSmackedDown[MAX_BATTLERS]; // Sovereign (item 11): grounded by Smack Down
+    int sovereignSideGuards[2]; // Sovereign (item 11): this turn's Wide Guard (1) and Quick Guard (2) for each side
+    int sovereignSideFaintTurn[2]; // Sovereign (item 11): totalTurns + 1 when a Pokemon on the side last fainted (Retaliate)
 };
 
 #endif // POKEPLATINUM_BATTLE_BATTLE_CONTEXT_H

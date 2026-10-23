@@ -11,7 +11,7 @@
     "accuracy": 100,
     "pp": 15,
     "effect": {
-        "type": "BATTLE_EFFECT_DO_NOTHING",
+        "type": "BATTLE_EFFECT_SOVEREIGN_QUASH",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

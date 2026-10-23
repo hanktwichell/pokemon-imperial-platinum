@@ -84,6 +84,9 @@ E = lambda name: "BATTLE_EFFECT_" + name
 # Battle effects Sovereign adds for a move's exact Gen IX behaviour (item 11), after Platinum's 277: identifier ->
 # (effect, chance, note). These win over the PokeAPI mapping below.
 SOVEREIGN_EFFECTS = {
+    "clangorous-soul": ("SOVEREIGN_CLANGOROUS_SOUL", 0, "Sovereign effect: user Attack +1, user Defense +1, user Sp. Atk +1, user Sp. Def +1, user Speed +1"),
+    "no-retreat": ("SOVEREIGN_NO_RETREAT", 0, "Sovereign effect: user Attack +1, user Defense +1, user Sp. Atk +1, user Sp. Def +1, user Speed +1"),
+    "venom-drench": ("SOVEREIGN_VENOM_DRENCH", 0, "Sovereign effect: target Attack -1, target Sp. Atk -1, target Speed -1"),
     "hex": ("HIT", 0, "Sovereign effect: target has a status condition: power doubles"),
     "venoshock": ("HIT", 0, "Sovereign effect: target is poisoned: power doubles"),
     "acrobatics": ("HIT", 0, "Sovereign effect: user holds no item: power doubles"),
@@ -112,7 +115,7 @@ SOVEREIGN_EFFECTS = {
 }
 # Moves whose script.s (battle message) and anim.s (two-part charge/attack animation) are written by hand; the
 # generator leaves both files alone.
-HANDWRITTEN_SCRIPTS = {"electro_shot"}
+HANDWRITTEN_SCRIPTS = {"electro_shot", "meteor_beam"}
 
 # Status stat-drop effects -> the damaging "lower X on hit" effect, for damaging moves PokeAPI files under the former.
 STATUS_TO_HIT = {E("ATK_DOWN"): "LOWER_ATTACK_HIT", E("DEF_DOWN"): "LOWER_DEFENSE_HIT", E("SPEED_DOWN"): "LOWER_SPEED_HIT",

@@ -8800,6 +8800,174 @@
         "The foe’s {STRVAR_1 1, 0, 0} was healed\n",
         "by the Grassy Terrain!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignConcentratedIntensely_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}\n",
+        "concentrated intensely!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignConcentratedIntensely_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}\n",
+        "concentrated intensely!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignConcentratedIntensely_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}\n",
+        "concentrated intensely!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTransformedIntoWaterType_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} transformed\n",
+        "into the Water type!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTransformedIntoWaterType_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} transformed\n",
+        "into the Water type!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTransformedIntoWaterType_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} transformed\n",
+        "into the Water type!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFellStraightDown_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} fell\n",
+        "straight down!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFellStraightDown_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} fell\n",
+        "straight down!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFellStraightDown_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} fell\n",
+        "straight down!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignWideGuardProtectedTeam_Ally",
+      "en_US": [
+        "Wide Guard protected\n",
+        "your team!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignWideGuardProtectedTeam_Wild",
+      "en_US": [
+        "Wide Guard protected\n",
+        "the wild team!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignWideGuardProtectedTeam_Foe",
+      "en_US": [
+        "Wide Guard protected\n",
+        "the opposing team!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignQuickGuardProtectedTeam_Ally",
+      "en_US": [
+        "Quick Guard protected\n",
+        "your team!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignQuickGuardProtectedTeam_Wild",
+      "en_US": [
+        "Quick Guard protected\n",
+        "the wild team!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignQuickGuardProtectedTeam_Foe",
+      "en_US": [
+        "Quick Guard protected\n",
+        "the opposing team!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignOverflowingWithSpacePower_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is overflowing\n",
+        "with space power!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignOverflowingWithSpacePower_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} is overflowing\n",
+        "with space power!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignOverflowingWithSpacePower_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} is overflowing\n",
+        "with space power!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTookTheKindOffer_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} took\n",
+        "the kind offer!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTookTheKindOffer_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} took\n",
+        "the kind offer!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTookTheKindOffer_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} took\n",
+        "the kind offer!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignMoveWasPostponed_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s move\n",
+        "was postponed!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignMoveWasPostponed_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}’s move\n",
+        "was postponed!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignMoveWasPostponed_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}’s move\n",
+        "was postponed!"
+      ]
     }
   ]
 }

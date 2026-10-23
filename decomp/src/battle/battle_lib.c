@@ -2163,6 +2163,9 @@ void BattleSystem_UpdateAfterSwitch(BattleSystem *battleSys, BattleContext *batt
     battleCtx->moveHitType[battler] = MOVE_NONE;
     battleCtx->movePrevByBattler[battler] = MOVE_NONE;
     battleCtx->sovereignLastMoveFailed[battler] = FALSE;
+    battleCtx->sovereignLaserFocus[battler] = 0;
+    battleCtx->sovereignThroatChop[battler] = 0;
+    battleCtx->sovereignSmackedDown[battler] = 0;
     battleCtx->moveCopied[battler] = MOVE_NONE;
     battleCtx->moveCopiedHit[battler][0] = MOVE_NONE;
     battleCtx->moveCopiedHit[battler][1] = MOVE_NONE;
@@ -2242,6 +2245,9 @@ void BattleSystem_CleanupFaintedMon(BattleSystem *battleSys, BattleContext *batt
     battleCtx->moveHitType[battler] = MOVE_NONE;
     battleCtx->movePrevByBattler[battler] = MOVE_NONE;
     battleCtx->sovereignLastMoveFailed[battler] = FALSE;
+    battleCtx->sovereignLaserFocus[battler] = 0;
+    battleCtx->sovereignThroatChop[battler] = 0;
+    battleCtx->sovereignSmackedDown[battler] = 0;
     battleCtx->moveCopied[battler] = MOVE_NONE;
     battleCtx->moveCopiedHit[battler][0] = MOVE_NONE;
     battleCtx->moveCopiedHit[battler][1] = MOVE_NONE;
@@ -2270,6 +2276,17 @@ void BattleSystem_CleanupFaintedMon(BattleSystem *battleSys, BattleContext *batt
 void BattleSystem_SetupNextTurn(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     for (int i = 0; i < MAX_BATTLERS; i++) {
+        // Sovereign (item 11): Wide Guard and Quick Guard last one turn; Laser Focus and Throat Chop wear off.
+        if (i < 2) {
+            battleCtx->sovereignSideGuards[i] = 0;
+        }
+        if (battleCtx->sovereignLaserFocus[i]) {
+            battleCtx->sovereignLaserFocus[i]--;
+        }
+        if (battleCtx->sovereignThroatChop[i]) {
+            battleCtx->sovereignThroatChop[i]--;
+        }
+
         MI_CpuClearFast(&battleCtx->turnFlags[i], sizeof(struct TurnFlags));
         MI_CpuClearFast(&battleCtx->moveFailFlags[i], sizeof(struct MoveFailFlags));
 
@@ -2347,6 +2364,12 @@ int BattleSystem_CheckInvalidMoves(BattleSystem *battleSys, BattleContext *battl
         }
 
         // Sovereign (Pokémon Champions): first-turn-only moves can't even be selected after the user's first turn.
+        if (battleCtx->sovereignThroatChop[battler]
+            && Move_IsSound(battleCtx->battleMons[battler].moves[i])
+            && (opMask & CHECK_INVALID_THROAT_CHOP)) {
+            invalidMoves |= FlagIndex(i);
+        }
+
         if (MOVE_DATA(battleCtx->battleMons[battler].moves[i]).effect == BATTLE_EFFECT_ALWAYS_FLINCH_FIRST_TURN_ONLY
             && battleCtx->battleMons[battler].moveEffectsData.fakeOutTurnNumber != battleCtx->totalTurns
             && (opMask & CHECK_INVALID_FIRST_TURN)) {
@@ -2412,6 +2435,13 @@ BOOL BattleSystem_CanUseMove(BattleSystem *battleSys, BattleContext *battleCtx, 
         msgOut->id = BattleStrings_Text_TheItemAllowsTheUseOfOnlyMove; // "The {0} allows the use of only {1}!"
         msgOut->params[0] = battleCtx->battleMons[battler].heldItem;
         msgOut->params[1] = battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove;
+        result = FALSE;
+    } else if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_THROAT_CHOP) & FlagIndex(moveSlot)) {
+        msgOut->tags = TAG_NICKNAME_MOVE_MOVE;
+        msgOut->id = BattleStrings_Text_PokemonCantUseMoveBecauseOfMove_Ally; // "{0} can't use {2} because of {1}!"
+        msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, battler);
+        msgOut->params[1] = MOVE_THROAT_CHOP;
+        msgOut->params[2] = battleCtx->battleMons[battler].moves[moveSlot];
         result = FALSE;
     } else if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_FIRST_TURN) & FlagIndex(moveSlot)) {
         msgOut->tags = TAG_NICKNAME_MOVE;
@@ -2622,6 +2652,16 @@ static BOOL BasicTypeMulApplies(BattleContext *battleCtx, int attacker, int defe
     return result;
 }
 
+// Sovereign (item 11): a type chart entry's multiplier for this move. Freeze-Dry is super effective against Water.
+static u8 Sovereign_ChartMul(int move, int chartEntry)
+{
+    if (move == MOVE_FREEZE_DRY && sTypeMatchupMultipliers[chartEntry][1] == TYPE_WATER) {
+        return TYPE_MULTI_SUPER_EFF;
+    }
+
+    return sTypeMatchupMultipliers[chartEntry][2];
+}
+
 int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCtx, int move, int inType, int attacker, int defender, int damage, u32 *moveStatusMask)
 {
     int chartEntry;
@@ -2683,9 +2723,9 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
             if (sTypeMatchupMultipliers[chartEntry][0] == moveType) {
                 if (sTypeMatchupMultipliers[chartEntry][1] == BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_1, NULL)
                     && BasicTypeMulApplies(battleCtx, attacker, defender, chartEntry) == TRUE) {
-                    damage = ApplyTypeMultiplier(battleCtx, attacker, sTypeMatchupMultipliers[chartEntry][2], damage, movePower, moveStatusMask);
+                    damage = ApplyTypeMultiplier(battleCtx, attacker, Sovereign_ChartMul(move, chartEntry), damage, movePower, moveStatusMask);
 
-                    if (sTypeMatchupMultipliers[chartEntry][2] == TYPE_MULTI_SUPER_EFF) {
+                    if (Sovereign_ChartMul(move, chartEntry) == TYPE_MULTI_SUPER_EFF) {
                         totalMul *= 2;
                     }
                 }
@@ -2693,9 +2733,9 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
                 if (sTypeMatchupMultipliers[chartEntry][1] == BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_2, NULL)
                     && BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_1, NULL) != BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_2, NULL)
                     && BasicTypeMulApplies(battleCtx, attacker, defender, chartEntry) == TRUE) {
-                    damage = ApplyTypeMultiplier(battleCtx, attacker, sTypeMatchupMultipliers[chartEntry][2], damage, movePower, moveStatusMask);
+                    damage = ApplyTypeMultiplier(battleCtx, attacker, Sovereign_ChartMul(move, chartEntry), damage, movePower, moveStatusMask);
 
-                    if (sTypeMatchupMultipliers[chartEntry][2] == TYPE_MULTI_SUPER_EFF) {
+                    if (Sovereign_ChartMul(move, chartEntry) == TYPE_MULTI_SUPER_EFF) {
                         totalMul *= 2;
                     }
                 }
@@ -2776,13 +2816,13 @@ void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inTy
             if (sTypeMatchupMultipliers[chartEntry][0] == moveType) {
                 if (sTypeMatchupMultipliers[chartEntry][1] == defenderType1
                     && NoImmunityOverrides(battleCtx, defenderItemEffect, chartEntry) == TRUE) {
-                    UpateMoveStatusForTypeMul(sTypeMatchupMultipliers[chartEntry][2], moveStatusMask);
+                    UpateMoveStatusForTypeMul(Sovereign_ChartMul(move, chartEntry), moveStatusMask);
                 }
 
                 if (sTypeMatchupMultipliers[chartEntry][1] == defenderType2
                     && defenderType1 != defenderType2
                     && NoImmunityOverrides(battleCtx, defenderItemEffect, chartEntry) == TRUE) {
-                    UpateMoveStatusForTypeMul(sTypeMatchupMultipliers[chartEntry][2], moveStatusMask);
+                    UpateMoveStatusForTypeMul(Sovereign_ChartMul(move, chartEntry), moveStatusMask);
                 }
             }
 
@@ -3582,6 +3622,12 @@ BOOL Move_IsSound(int move)
     return FALSE;
 }
 
+// Sovereign (item 11): sound moves (Gen VI+) and Infiltrator get past a Substitute.
+BOOL Sovereign_BypassesSubstitute(BattleContext *battleCtx, int attacker, int defender, int move)
+{
+    return attacker != defender && (Move_IsSound(move) || Battler_Ability(battleCtx, attacker) == ABILITY_INFILTRATOR);
+}
+
 // Sovereign (item 11): a move's type after its user's ability. Normalize makes every move Normal-type (as in Gen IV);
 // Pixilate, Refrigerate, Aerilate, Galvanize and Dragonize turn Normal-type moves into their type; Liquid Voice makes
 // sound moves Water-type.
@@ -3829,6 +3875,7 @@ enum SwitchInCheckState {
     SWITCH_IN_CHECK_STATE_INTIMIDATE,
     SWITCH_IN_CHECK_STATE_SOVEREIGN_STAT_DROP_REACTION,
     SWITCH_IN_CHECK_STATE_SOVEREIGN_BOOSTER_ENERGY,
+    SWITCH_IN_CHECK_STATE_SOVEREIGN_TERRAIN_SEED,
     SWITCH_IN_CHECK_STATE_DOWNLOAD,
     SWITCH_IN_CHECK_STATE_ANTICIPATION,
     SWITCH_IN_CHECK_STATE_FOREWARN,
@@ -4099,6 +4146,41 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                     battleCtx->battleMons[battler].sovereignBoosterEnergy = TRUE;
                     battleCtx->msgBattlerTemp = battler;
                     subscript = subscript_sovereign_booster_energy;
+                    result = TRUE;
+                    break;
+                }
+            }
+
+            if (i == maxBattlers) {
+                battleCtx->switchInCheckState++;
+            }
+            break;
+
+        case SWITCH_IN_CHECK_STATE_SOVEREIGN_TERRAIN_SEED:
+            // Sovereign (item 11): the Electric and Grassy Seeds raise Defense, the Misty and Psychic Seeds Sp. Def, in
+            // their terrain. Checked after every move too, so a terrain set mid-turn triggers them.
+            for (i = 0; i < maxBattlers; i++) {
+                u16 item;
+                u32 terrain;
+                int stat;
+
+                battler = battleCtx->monSpeedOrder[i];
+                item = battleCtx->battleMons[battler].heldItem;
+                terrain = battleCtx->fieldConditionsMask & FIELD_CONDITION_TERRAIN;
+                stat = (item == ITEM_ELECTRIC_SEED || item == ITEM_GRASSY_SEED) ? BATTLE_STAT_DEFENSE : BATTLE_STAT_SP_DEFENSE;
+
+                if (battleCtx->battleMons[battler].curHP
+                    && ((item == ITEM_ELECTRIC_SEED && (terrain & FIELD_CONDITION_TERRAIN_ELECTRIC))
+                        || (item == ITEM_GRASSY_SEED && (terrain & FIELD_CONDITION_TERRAIN_GRASSY))
+                        || (item == ITEM_MISTY_SEED && (terrain & FIELD_CONDITION_TERRAIN_MISTY))
+                        || (item == ITEM_PSYCHIC_SEED && (terrain & FIELD_CONDITION_TERRAIN_PSYCHIC)))
+                    && battleCtx->battleMons[battler].statBoosts[stat] < MAX_STAT_STAGE) {
+                    battleCtx->msgBattlerTemp = battler;
+                    battleCtx->msgItemTemp = item;
+                    battleCtx->sideEffectParam = MOVE_SUBSCRIPT_PTR_ATTACK_UP_1_STAGE + (stat - BATTLE_STAT_ATTACK);
+                    battleCtx->sideEffectType = SIDE_EFFECT_TYPE_HELD_ITEM;
+                    battleCtx->sideEffectMon = battler;
+                    subscript = subscript_sovereign_terrain_seed;
                     result = TRUE;
                     break;
                 }
@@ -5959,6 +6041,7 @@ static inline BOOL BattlerIsGrounded(BattleContext *battleCtx, int battler)
                && battleCtx->battleMons[battler].moveEffectsData.magnetRiseTurns == 0
                && MON_IS_NOT_TYPE(battler, TYPE_FLYING))
         || Battler_HeldItemEffect(battleCtx, battler) == HOLD_EFFECT_SPEED_DOWN_GROUNDED
+        || battleCtx->sovereignSmackedDown[battler] // Sovereign (item 11)
         || (battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY);
 }
 
@@ -7410,6 +7493,12 @@ int Sovereign_MovePower(BattleSystem *battleSys, BattleContext *battleCtx, int m
 
     case MOVE_TERRAIN_PULSE: // double from a grounded user in a terrain (its type follows the terrain)
         if (Sovereign_TerrainUnder(battleCtx, attacker)) {
+            power *= 2;
+        }
+        break;
+
+    case MOVE_RETALIATE: // double if a Pokemon on the user's side fainted last turn
+        if (battleCtx->sovereignSideFaintTurn[BattleSystem_GetBattlerSide(battleSys, attacker)] == battleCtx->totalTurns) {
             power *= 2;
         }
         break;

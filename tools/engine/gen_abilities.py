@@ -187,7 +187,7 @@ IMPLEMENTED = {
     134: "yes: weight doubled (Low Kick, Grass Knot)",  # Heavy Metal
     135: "yes: weight halved (Low Kick, Grass Knot)",  # Light Metal
     140: "yes: avoids its partner's damaging moves",  # Telepathy
-    151: "partly: ignores Reflect and Light Screen (Substitute, Safeguard and Mist not yet)",  # Infiltrator
+    151: "partly: ignores Reflect, Light Screen and Substitute (Safeguard and Mist not yet)",  # Infiltrator
     171: "yes: immune to ball and bomb moves",  # Bulletproof
     218: "yes: contact damage halved, Fire damage doubled",  # Fluffy
     133: "yes: Defense −1 and Speed +2 when hit by a physical move",  # Weak Armor

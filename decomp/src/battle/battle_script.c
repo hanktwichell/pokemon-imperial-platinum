@@ -2163,6 +2163,7 @@ static BOOL BtlCmd_CalcCrit(BattleSystem *battleSys, BattleContext *battleCtx)
             battleCtx->attacker,
             battleCtx->defender,
             battleCtx->criticalBoosts + Move_SovereignCritStage(battleCtx->moveCur)
+                + 3 * (battleCtx->sovereignLaserFocus[battleCtx->attacker] > 0) // Sovereign (item 11): Laser Focus
                 + 3 * (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_MERCILESS
                     && (battleCtx->battleMons[battleCtx->defender].status & MON_CONDITION_ANY_POISON)), // Sovereign (item 11)
             BattleContext_Get(battleSys, battleCtx, BATTLECTX_SIDE_CONDITIONS_MASK, battleCtx->defender));
@@ -2963,7 +2964,8 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
                 } else if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, ABILITY_SHIELD_DUST) == TRUE
                     && battleCtx->sideEffectType == SIDE_EFFECT_TYPE_INDIRECT) {
                     result = 1;
-                } else if (battleCtx->battleMons[battleCtx->sideEffectMon].statusVolatile & VOLATILE_CONDITION_SUBSTITUTE) {
+                } else if ((battleCtx->battleMons[battleCtx->sideEffectMon].statusVolatile & VOLATILE_CONDITION_SUBSTITUTE)
+                    && Sovereign_BypassesSubstitute(battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, battleCtx->moveCur) == FALSE) { // Sovereign (item 11)
                     result = 2;
                 }
             } else if (mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] == MIN_STAT_STAGE) {
@@ -9306,8 +9308,9 @@ static BOOL BtlCmd_CheckSubstitute(BattleSystem *battleSys, BattleContext *battl
     int jumpSubActive = BattleScript_Read(battleCtx);
 
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
-    if ((battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_SUBSTITUTE)
-        || (battleCtx->selfTurnFlags[battler].statusFlags & SELF_TURN_FLAG_SUBSTITUTE_HIT)) {
+    if (((battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_SUBSTITUTE)
+            || (battleCtx->selfTurnFlags[battler].statusFlags & SELF_TURN_FLAG_SUBSTITUTE_HIT))
+        && Sovereign_BypassesSubstitute(battleCtx, battleCtx->attacker, battler, battleCtx->moveCur) == FALSE) { // Sovereign (item 11)
         BattleScript_Iter(battleCtx, jumpSubActive);
     }
 
@@ -9683,6 +9686,14 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         return &battleCtx->sideConditionsMask[BattleSystem_GetBattlerSide(battleSys, battleCtx->defender)];
     case BTLVAR_SIDE_CONDITIONS_EFFECT_MON:
         return &battleCtx->sideConditionsMask[BattleSystem_GetBattlerSide(battleSys, battleCtx->sideEffectMon)];
+    case BTLVAR_SOVEREIGN_SMACKED_DOWN_SIDE_EFFECT_MON: // Sovereign (item 11)
+        return &battleCtx->sovereignSmackedDown[battleCtx->sideEffectMon];
+    case BTLVAR_SOVEREIGN_SIDE_GUARDS_ATTACKER: // Sovereign (item 11)
+        return &battleCtx->sovereignSideGuards[BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker)];
+    case BTLVAR_SOVEREIGN_LASER_FOCUS_SIDE_EFFECT_MON: // Sovereign (item 11)
+        return &battleCtx->sovereignLaserFocus[battleCtx->sideEffectMon];
+    case BTLVAR_SOVEREIGN_THROAT_CHOP_SIDE_EFFECT_MON: // Sovereign (item 11)
+        return &battleCtx->sovereignThroatChop[battleCtx->sideEffectMon];
     case BTLVAR_SOVEREIGN_TERRAIN_EFFECT_MON: // Sovereign (item 11): read-only, the terrain under the side-effect target
         battleCtx->sovereignTerrainTemp = Sovereign_TerrainUnder(battleCtx, battleCtx->sideEffectMon);
         return &battleCtx->sovereignTerrainTemp;

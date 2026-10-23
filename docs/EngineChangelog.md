@@ -90,6 +90,59 @@ Five of the 11 Totems now stand on the map (`docs/TotemTrials.md`, "On the map")
   - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
 - **Not done yet:** Alolan Raticate, Lurantis, Araquanid, Salazzle, Kommo-o and Togedemaru.
 
+## Item 11 (part 14) — Psychic Noise and Steel Beam
+
+- **Psychic Noise:** after the hit, the target can't heal for two turns (Heal Block's message).
+- **Steel Beam:** after the hit, the user loses half its max HP, rounded up (Magic Guard prevents it). "Approximate":
+  in Gen IX the HP is lost even when the move misses.
+- **Freeze-Dry:** super effective against Water (a per-move override of the type chart, `Sovereign_ChartMul`, used by
+  the damage and effectiveness paths), and its 10% freeze chance is back.
+- **Sound moves and Infiltrator get past Substitute** (Gen VI+): damage hits the Pokémon, and status and stat effects
+  aren't blocked. Confide is now exact.
+- Move checklist: exact 231, approximate 42, placeholder 107.
+
+**Verified in the test build:** Garchomp fainted after its second Steel Beam (half its max HP each time). Psychic Noise,
+Freeze-Dry and the Substitute bypass aren't tested in game yet.
+
+## Item 11 (part 12) — Wide Guard, Quick Guard, Dragon Tail, Smack Down, Soak, Retaliate, Poltergeist
+
+- **Wide Guard / Quick Guard:** protect the user's side this turn from spread moves / foes' priority moves (new side
+  flags `sovereignSideGuards`, "Wide Guard protected your team!").
+- **Dragon Tail, Circle Throw:** drag the target out after the hit (end a wild battle), quietly doing nothing when it
+  can't (Suction Cups, Ingrain, no Pokémon to switch in).
+- **Smack Down:** grounds the target until it switches out ("{0} fell straight down!" if it was airborne); grounded
+  Pokémon feel terrains and Ground moves.
+- **Soak:** the target becomes pure Water-type ("{0} transformed into the Water type!").
+- **Retaliate:** double power if a Pokémon on the user's side fainted last turn (new `sovereignSideFaintTurn`).
+- **Poltergeist:** fails against a target with no item (the item message isn't shown yet).
+- `gen_stat_moves.py` adds Venom Drench (Attack, Sp. Atk and Speed −1, fails unless the target is poisoned), No Retreat
+  and Clangorous Soul (all stats +1; the trapping and HP cost aren't reproduced yet, so they stay "approximate"). Shelter
+  uses Iron Defense's effect. These four aren't tested in game yet.
+- **Fix: Heal Pulse and Floral Healing healed the user** (they used Recover's effect). They now heal the target by 1/2;
+  Heal Pulse heals 3/4 with Mega Launcher, Floral Healing 2/3 in Grassy Terrain. **Life Dew** heals the user and its ally
+  by 1/4.
+- **Meteor Beam:** uses Electro Shot's effect without the rain shortcut: the charge turn raises Sp. Atk ("{0} is
+  overflowing with space power!", two-part animation), it attacks next turn, and a Power Herb skips the charge.
+- **After You / Quash:** the target acts right after the user / last this turn ("{0} took the kind offer!", "{0}'s move
+  was postponed!"); they fail against a target that has already moved.
+- Move checklist: exact 228, approximate 43, placeholder 109.
+
+**Verified in the test build:** Venusaur's Wide Guard stopped Garchomp's Hyper Voice on both foes for two turns
+(Archaludon stayed at full HP). Garchomp's Heal Pulse restored the foe it targeted (Venusaur back to 302/302 between
+Turtwig's Tackles). Meteor Beam charged (Sp. Atk +1) and hit next turn for 32, the +1 value. Venusaur's Quash on Turtwig printed
+"TURTWIG's move was postponed!" (Turtwig already moved last, so the order didn't visibly change).
+
+## Item 11 (part 11) — Laser Focus and Throat Chop
+
+- **Laser Focus:** the user's moves always crit this turn and the next ("{0} concentrated intensely!").
+- **Throat Chop:** the target can't use sound moves this turn and the next. They're greyed out at selection with
+  Heal Block's "{0} can't use {2} because of {1}!" message, and a sound move chosen before the hit fails with it.
+- New per-battler counters `sovereignLaserFocus` / `sovereignThroatChop`, which wear off at the start of each turn, and
+  the subscript pointers `MOVE_SUBSCRIPT_PTR_SOVEREIGN_LASER_FOCUS` / `_THROAT_CHOP`.
+- Move checklist: exact 213, approximate 46, placeholder 121.
+
+**Verified in the test build:** after Venusaur's Throat Chop hit Garchomp, Garchomp's Hyper Voice didn't go off.
+
 ## Item 11 (part 10) — Terrains
 
 Electric, Grassy, Misty and Psychic Terrain, as in Gen IX: 5 turns (8 with a Terrain Extender), set by the four moves or
@@ -108,11 +161,14 @@ by Electric/Grassy/Misty/Psychic Surge and Hadron Engine on entry, with start an
   Drought, Attack ×1.33 in it).
 - Implementation: one bit per terrain plus a 4-bit turn count in `fieldConditionsMask` (bits 19–26), a read-only script
   variable `BTLVAR_SOVEREIGN_TERRAIN_EFFECT_MON` for the status subscripts, and `Sovereign_TerrainUnder`.
-- Not yet: the terrain Seeds, Mimicry, and the background tint.
+- Terrain Seeds: the Electric and Grassy Seeds raise Defense, the Misty and Psychic Seeds Sp. Def, when their terrain
+  is up (checked after every move, so a terrain set mid-turn triggers them).
+- Not yet: Mimicry and the background tint.
 - Move checklist: exact 211, approximate 47, placeholder 122.
 
 **Verified in the test build:** with an Electric Surge Archaludon on the field, Garchomp's Thunder Fang dealt 26
-pre-variance (the ×1.3 value; 21 without) and Venusaur's Sleep Powder put neither Garchomp nor Turtwig to sleep.
+pre-variance (the ×1.3 value; 21 without) and Venusaur's Sleep Powder put neither Garchomp nor Turtwig to sleep; a
+Venusaur holding an Electric Seed ended at Defense +1 with the Seed used up.
 
 ## Item 11 (part 9) — Booster Energy and moves that read the turn
 
