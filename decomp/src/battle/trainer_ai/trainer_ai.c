@@ -963,7 +963,8 @@ static void AICmd_LoadTypeFrom(BattleSystem *battleSys, BattleContext *battleCtx
         break;
 
     case LOAD_MOVE_TYPE:
-        AI_CONTEXT.calcTemp = MOVE_DATA(AI_CONTEXT.move).type;
+        // Sovereign (item 11): the type after Normalize, the -ate abilities and Liquid Voice.
+        AI_CONTEXT.calcTemp = Sovereign_AbilityMoveType(Battler_Ability(battleCtx, AI_CONTEXT.attacker), AI_CONTEXT.move, MOVE_DATA(AI_CONTEXT.move).type);
         break;
 
     case LOAD_ATTACKER_PARTNER_TYPE_1:
@@ -2818,7 +2819,7 @@ static void AICmd_LoadTargetPartnerRedirects(BattleSystem *battleSys, BattleCont
     AIScript_Iter(battleCtx, 1);
 
     int targetPartner = AI_CONTEXT.defender ^ 2;
-    int moveType = MOVE_DATA(AI_CONTEXT.move).type;
+    int moveType = Sovereign_AbilityMoveType(Battler_Ability(battleCtx, AI_CONTEXT.attacker), AI_CONTEXT.move, MOVE_DATA(AI_CONTEXT.move).type);
     int ability;
     AI_CONTEXT.calcTemp = FALSE;
 

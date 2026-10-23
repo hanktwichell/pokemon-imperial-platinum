@@ -4,6 +4,23 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (part 7) — 44 more abilities
+
+| Kind | Abilities |
+|---|---|
+| Attacker power | Tough Claws, Mega Launcher, Sharpness, Punk Rock, Transistor, Dragon's Maw, Rocky Payload, Steelworker, Water Bubble, Toxic Boost, Flare Boost, Gorilla Tactics (no move lock yet), Defeatist, Analytic, Steely Spirit, Neuroforce |
+| Move type | Pixilate, Refrigerate, Aerilate, Galvanize, Dragonize (Normal moves change type, ×1.2), Liquid Voice; Normalize and all of these go through one helper, `Sovereign_AbilityMoveType`, used by the type chart, absorbing abilities, Color Change and the AI |
+| Damage taken | Multiscale, Shadow Shield, Fur Coat, Ice Scales, Punk Rock, Purifying Salt, Water Bubble, Prism Armor |
+| Field | Sword/Tablets/Vessel/Beads of Ruin, Dark Aura, Fairy Aura, Aura Break, Protosynthesis (sun only; Booster Energy not yet) |
+| Priority | Gale Wings, Triage (through the new `Sovereign_MovePriority`, with Prankster); Queenly Majesty, Dazzling and Armor Tail block foes' priority moves |
+| Other | Full Metal Body (as Clear Body), Merciless (always crits a poisoned target), Wonder Skin |
+
+The sound-move list (Soundproof) gains the Gen V+ sound moves.
+
+**Verified in the test build:** Tough Claws Flame Charge dealt 407, the value for power 65 (313 without); Pixilate
+Extreme Speed into a Multiscale Venusaur dealt 16 pre-variance (power 80 × 1.2 ÷ 2; 13 without Pixilate) and was
+resisted (Fairy vs Poison).
+
 ## Item 11 (part 6) — Gen IX move data and 74 more exact moves
 
 - **Fix: moves #827–919 had no flags.** PokeAPI has no flags for the Legends: Arceus and Scarlet/Violet moves, so

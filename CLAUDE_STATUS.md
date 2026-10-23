@@ -1837,3 +1837,23 @@ where the regional forms live.
    Final Gambit, Round, Echoed Voice, Belch, Flame Burst, Synchronoise.
 2. AI scoring for the new effects (290–294) and for always-crit moves (they lost the `HIGH_CRITICAL` score).
 3. More abilities: Analytic, Protosynthesis/Quark Drive, Magic Bounce, Protean/Libero, Overcoat, Intimidate triggers.
+
+## CA-0030 — 2026-10-23 (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented (item 11 part 7):** 44 abilities (damage modifiers, -ate type changes, Ruin abilities, Auras,
+Protosynthesis in sun, Gale Wings, Triage, Queenly Majesty/Dazzling/Armor Tail, Full Metal Body, Merciless, Wonder
+Skin). New helpers `Sovereign_AbilityMoveType` (replaces the nine Normalize checks) and `Sovereign_MovePriority`.
+Verified Tough Claws, Pixilate (type and ×1.2) and Multiscale in game. Ability checklist: 83 newer abilities implemented.
+
+**Files modified:** `decomp/src/battle/battle_lib.c`, `battle_script.c`, `battle_controller_player.c`,
+`trainer_ai/trainer_ai.c`, `decomp/include/battle/battle_lib.h`, `tools/engine/gen_abilities.py`,
+`docs/AbilityChecklist.md`, `docs/EngineChangelog.md`.
+
+**Next 3 steps:**
+1. Booster Energy (Protosynthesis/Quark Drive), Intimidate triggers (Defiant, Competitive, Rattled, Guard Dog), Mirror
+   Armor, Long Reach, Stakeout.
+2. AI scoring for the new move effects (290–294) and always-crit moves.
+3. Remaining Gen V moves (Smack Down, Incinerate, Clear Smog, Dragon Tail, Retaliate, Fell Stinger, Final Gambit).
+
+Test note: the bedroom save state holds main ARM9 code, so remake it with `tools/test/new_game.sh` whenever non-battle
+code (e.g. `script_manager.c`) changes; set test abilities with a `u16` value.

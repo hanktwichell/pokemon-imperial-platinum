@@ -2940,13 +2940,8 @@ static BOOL BattleControllerPlayer_LoadQuickClawCheck(BattleSystem *battleSys, B
 
 static inline int CalcMoveType(BattleContext *battleCtx, int attacker, int move)
 {
-    if (Battler_Ability(battleCtx, attacker) == ABILITY_NORMALIZE) {
-        return TYPE_NORMAL;
-    } else if (battleCtx->moveType) {
-        return battleCtx->moveType;
-    }
-
-    return MOVE_DATA(move).type;
+    // Sovereign (item 11): Normalize, the -ate abilities and Liquid Voice.
+    return Sovereign_AbilityMoveType(Battler_Ability(battleCtx, attacker), move, battleCtx->moveType ? battleCtx->moveType : MOVE_DATA(move).type);
 }
 
 /**
@@ -3020,6 +3015,12 @@ static int BattleControllerPlayer_CheckMoveHitAccuracy(BattleSystem *battleSys, 
     // These moves shouldn't use this formula
     if (battleCtx->battleStatusMask & SYSCTL_NONSTANDARD_ACC_CHECK) {
         return 0;
+    }
+
+    // Sovereign (item 11): Wonder Skin makes status moves aimed at the holder at most 50% accurate.
+    if (moveClass == CLASS_STATUS && hitRate > 50 && attacker != defender
+        && Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_WONDER_SKIN) == TRUE) {
+        hitRate = 50;
     }
 
     // Sovereign (item 11): Hurricane shares Thunder's weather accuracy.
@@ -3167,6 +3168,23 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
         && Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_BULLETPROOF) == TRUE
         && Move_IsBallOrBomb(move)) {
         battleCtx->moveStatusFlags |= MOVE_STATUS_INEFFECTIVE;
+    }
+
+    // Sovereign (item 11): Queenly Majesty, Dazzling and Armor Tail block foes' priority moves aimed at their side.
+    if (attacker != defender
+        && BattleSystem_GetBattlerSide(battleSys, attacker) != BattleSystem_GetBattlerSide(battleSys, defender)
+        && Sovereign_MovePriority(battleCtx, attacker, move) > 0) {
+        int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
+        for (int i = 0; i < maxBattlers; i++) {
+            if (BattleSystem_GetBattlerSide(battleSys, i) == BattleSystem_GetBattlerSide(battleSys, defender)
+                && battleCtx->battleMons[i].curHP
+                && (Battler_IgnorableAbility(battleCtx, attacker, i, ABILITY_QUEENLY_MAJESTY) == TRUE
+                    || Battler_IgnorableAbility(battleCtx, attacker, i, ABILITY_DAZZLING) == TRUE
+                    || Battler_IgnorableAbility(battleCtx, attacker, i, ABILITY_ARMOR_TAIL) == TRUE)) {
+                battleCtx->moveStatusFlags |= MOVE_STATUS_INEFFECTIVE;
+                break;
+            }
+        }
     }
 
     // Sovereign (item 11): since Gen VII, a status move boosted by Prankster doesn't affect a Dark-type foe it targets.
@@ -3753,13 +3771,8 @@ static void BattleControllerPlayer_LeftoverState29(BattleSystem *battleSys, Batt
 
 static inline int CalcCurrentMoveType(BattleContext *battleCtx)
 {
-    if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_NORMALIZE) {
-        return TYPE_NORMAL;
-    } else if (battleCtx->moveType) {
-        return battleCtx->moveType;
-    }
-
-    return CURRENT_MOVE_DATA.type;
+    // Sovereign (item 11): Normalize, the -ate abilities and Liquid Voice.
+    return Sovereign_AbilityMoveType(Battler_Ability(battleCtx, battleCtx->attacker), battleCtx->moveCur, battleCtx->moveType ? battleCtx->moveType : CURRENT_MOVE_DATA.type);
 }
 
 enum AfterMoveEffectState {

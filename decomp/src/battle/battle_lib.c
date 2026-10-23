@@ -1242,6 +1242,14 @@ u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *batt
         }
     }
 
+    // Sovereign (item 11): Protosynthesis raises Speed by 50% when Speed is the boosted stat.
+    if (Sovereign_ProtosynthesisStat(battleSys, battleCtx, battler1) == BATTLE_STAT_SPEED) {
+        battler1Speed = battler1Speed * 15 / 10;
+    }
+    if (Sovereign_ProtosynthesisStat(battleSys, battleCtx, battler2) == BATTLE_STAT_SPEED) {
+        battler2Speed = battler2Speed * 15 / 10;
+    }
+
     for (i = 0; i < NELEMS(sSpeedHalvingItemEffects); i++) {
         // The speed-halving effect of these items are not ignored by any negation effect
         if (BattleSystem_GetItemData(battleCtx, battleCtx->battleMons[battler1].heldItem, ITEM_PARAM_HOLD_EFFECT) == sSpeedHalvingItemEffects[i]) {
@@ -1399,17 +1407,9 @@ u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *batt
             }
         }
 
-        battler1Priority = MOVE_DATA(battler1Move).priority;
-        battler2Priority = MOVE_DATA(battler2Move).priority;
-
-        // Sovereign (item 11): Prankster gives status moves +1 priority.
-        if (battler1Ability == ABILITY_PRANKSTER && MOVE_DATA(battler1Move).class == CLASS_STATUS) {
-            battler1Priority++;
-        }
-
-        if (battler2Ability == ABILITY_PRANKSTER && MOVE_DATA(battler2Move).class == CLASS_STATUS) {
-            battler2Priority++;
-        }
+        // Sovereign (item 11): priority with Prankster, Gale Wings and Triage.
+        battler1Priority = Sovereign_MovePriority(battleCtx, battler1, battler1Move);
+        battler2Priority = Sovereign_MovePriority(battleCtx, battler2, battler2Move);
     }
 
     if (battler1Priority == battler2Priority) {
@@ -1770,6 +1770,7 @@ void BattleSystem_CheckRedirectionAbilities(BattleSystem *battleSys, BattleConte
     if (moveType == TYPE_NORMAL) {
         moveType = MOVE_DATA(move).type;
     }
+    moveType = Sovereign_AbilityMoveType(Battler_Ability(battleCtx, attacker), move, moveType); // Sovereign (item 11)
 
     int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
     if (moveType == TYPE_ELECTRIC
@@ -2624,13 +2625,7 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
     defenderItemEffect = Battler_HeldItemEffect(battleCtx, defender);
     defenderItemPower = Battler_HeldItemPower(battleCtx, defender, ITEM_POWER_CHECK_ALL);
 
-    if (Battler_Ability(battleCtx, attacker) == ABILITY_NORMALIZE) {
-        moveType = TYPE_NORMAL;
-    } else if (inType) {
-        moveType = inType;
-    } else {
-        moveType = MOVE_DATA(move).type;
-    }
+    moveType = Sovereign_AbilityMoveType(Battler_Ability(battleCtx, attacker), move, inType ? inType : MOVE_DATA(move).type); // Sovereign (item 11)
 
     movePower = MOVE_DATA(move).power;
 
@@ -2701,8 +2696,14 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
         && (battleCtx->battleStatusMask & SYSCTL_IGNORE_IMMUNITIES) == FALSE) {
         if ((*moveStatusMask & MOVE_STATUS_SUPER_EFFECTIVE) && movePower) {
             if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_FILTER) == TRUE
-                || Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_SOLID_ROCK) == TRUE) {
+                || Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_SOLID_ROCK) == TRUE
+                || Battler_Ability(battleCtx, defender) == ABILITY_PRISM_ARMOR) { // Sovereign (item 11)
                 damage = BattleSystem_Divide(damage * 3, 4);
+            }
+
+            // Sovereign (item 11): Neuroforce powers up super-effective moves by 25%.
+            if (Battler_Ability(battleCtx, attacker) == ABILITY_NEUROFORCE) {
+                damage = damage * 5 / 4;
             }
 
             if (attackerItemEffect == HOLD_EFFECT_POWER_UP_SE) {
@@ -2732,13 +2733,7 @@ void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inTy
         return;
     }
 
-    if (attackerAbility == ABILITY_NORMALIZE) {
-        moveType = TYPE_NORMAL;
-    } else if (inType) {
-        moveType = inType;
-    } else {
-        moveType = MOVE_DATA(move).type;
-    }
+    moveType = Sovereign_AbilityMoveType(attackerAbility, move, inType ? inType : MOVE_DATA(move).type); // Sovereign (item 11)
 
     if (attackerAbility != ABILITY_MOLD_BREAKER
         && defenderAbility == ABILITY_LEVITATE
@@ -3536,19 +3531,73 @@ static u16 sSoundMoves[] = {
     MOVE_HYPER_VOICE,
     MOVE_BUG_BUZZ,
     MOVE_CHATTER,
+    // Sovereign (item 11): Gen V+ sound moves.
+    MOVE_ROUND,
+    MOVE_ECHOED_VOICE,
+    MOVE_RELIC_SONG,
+    MOVE_SNARL,
+    MOVE_NOBLE_ROAR,
+    MOVE_DISARMING_VOICE,
+    MOVE_PARTING_SHOT,
+    MOVE_BOOMBURST,
+    MOVE_CONFIDE,
+    MOVE_SPARKLING_ARIA,
+    MOVE_CLANGING_SCALES,
+    MOVE_CLANGOROUS_SOUL,
+    MOVE_OVERDRIVE,
+    MOVE_EERIE_SPELL,
+    MOVE_TORCH_SONG,
+    MOVE_ALLURING_VOICE,
+    MOVE_PSYCHIC_NOISE,
 };
+
+// Sovereign (item 11): sound moves (Soundproof, Punk Rock).
+BOOL Move_IsSound(int move)
+{
+    for (int i = 0; i < NELEMS(sSoundMoves); i++) {
+        if (sSoundMoves[i] == move) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
+// Sovereign (item 11): a move's type after its user's ability. Normalize makes every move Normal-type (as in Gen IV);
+// Pixilate, Refrigerate, Aerilate, Galvanize and Dragonize turn Normal-type moves into their type; Liquid Voice makes
+// sound moves Water-type.
+int Sovereign_AbilityMoveType(int ability, int move, int type)
+{
+    if (move == MOVE_STRUGGLE) {
+        return type;
+    }
+
+    switch (ability) {
+    case ABILITY_NORMALIZE:
+        return TYPE_NORMAL;
+    case ABILITY_PIXILATE:
+        return type == TYPE_NORMAL ? TYPE_FAIRY : type;
+    case ABILITY_REFRIGERATE:
+        return type == TYPE_NORMAL ? TYPE_ICE : type;
+    case ABILITY_AERILATE:
+        return type == TYPE_NORMAL ? TYPE_FLYING : type;
+    case ABILITY_GALVANIZE:
+        return type == TYPE_NORMAL ? TYPE_ELECTRIC : type;
+    case ABILITY_DRAGONIZE:
+        return type == TYPE_NORMAL ? TYPE_DRAGON : type;
+    case ABILITY_LIQUID_VOICE:
+        return Move_IsSound(move) ? TYPE_WATER : type;
+    }
+
+    return type;
+}
+
 
 int BattleSystem_TriggerImmunityAbility(BattleContext *battleCtx, int attacker, int defender)
 {
     int subscript = NULL, moveType;
 
-    if (Battler_Ability(battleCtx, attacker) == ABILITY_NORMALIZE) {
-        moveType = TYPE_NORMAL;
-    } else if (battleCtx->moveType) {
-        moveType = battleCtx->moveType;
-    } else {
-        moveType = CURRENT_MOVE_DATA.type;
-    }
+    moveType = Sovereign_AbilityMoveType(Battler_Ability(battleCtx, attacker), battleCtx->moveCur, battleCtx->moveType ? battleCtx->moveType : CURRENT_MOVE_DATA.type); // Sovereign (item 11)
 
     if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_VOLT_ABSORB) == TRUE
         && moveType == TYPE_ELECTRIC
@@ -4408,13 +4457,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
     case ABILITY_COLOR_CHANGE:
         u8 moveType;
 
-        if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_NORMALIZE) {
-            moveType = TYPE_NORMAL;
-        } else if (battleCtx->moveType) {
-            moveType = battleCtx->moveType;
-        } else {
-            moveType = CURRENT_MOVE_DATA.type;
-        }
+        moveType = Sovereign_AbilityMoveType(Battler_Ability(battleCtx, battleCtx->attacker), battleCtx->moveCur, battleCtx->moveType ? battleCtx->moveType : CURRENT_MOVE_DATA.type); // Sovereign (item 11)
 
         if (DEFENDING_MON.curHP
             && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
@@ -7006,6 +7049,40 @@ BOOL Move_IsBallOrBomb(int move)
     return FALSE;
 }
 
+// Sovereign (item 11): healing moves, given +3 priority by Triage.
+static const u16 sHealingMoves[] = {
+    MOVE_ABSORB, MOVE_MEGA_DRAIN, MOVE_GIGA_DRAIN, MOVE_DRAIN_PUNCH, MOVE_DRAINING_KISS, MOVE_HORN_LEECH,
+    MOVE_LEECH_LIFE, MOVE_OBLIVION_WING, MOVE_PARABOLIC_CHARGE, MOVE_DREAM_EATER, MOVE_BITTER_BLADE,
+    MOVE_MATCHA_GOTCHA, MOVE_RECOVER, MOVE_ROOST, MOVE_REST, MOVE_SLACK_OFF, MOVE_SOFTBOILED, MOVE_MILK_DRINK,
+    MOVE_MOONLIGHT, MOVE_MORNING_SUN, MOVE_SYNTHESIS, MOVE_HEAL_ORDER, MOVE_WISH, MOVE_SWALLOW, MOVE_HEAL_PULSE,
+    MOVE_FLORAL_HEALING, MOVE_SHORE_UP, MOVE_STRENGTH_SAP, MOVE_LIFE_DEW, MOVE_JUNGLE_HEALING, MOVE_LUNAR_BLESSING,
+    MOVE_HEALING_WISH, MOVE_LUNAR_DANCE, MOVE_PURIFY,
+};
+
+// Sovereign (item 11): a move's priority for this battler, with Prankster (status moves +1), Gale Wings (Flying moves
+// +1 at full HP) and Triage (healing moves +3).
+int Sovereign_MovePriority(BattleContext *battleCtx, int battler, int move)
+{
+    int priority = MOVE_DATA(move).priority;
+    int ability = Battler_Ability(battleCtx, battler);
+
+    if (ability == ABILITY_PRANKSTER && MOVE_DATA(move).class == CLASS_STATUS) {
+        priority++;
+    } else if (ability == ABILITY_GALE_WINGS && MOVE_DATA(move).type == TYPE_FLYING
+        && battleCtx->battleMons[battler].curHP == battleCtx->battleMons[battler].maxHP) {
+        priority++;
+    } else if (ability == ABILITY_TRIAGE) {
+        for (int i = 0; i < NELEMS(sHealingMoves); i++) {
+            if (sHealingMoves[i] == move) {
+                priority += 3;
+                break;
+            }
+        }
+    }
+
+    return priority;
+}
+
 // Sovereign (item 11): Sheer Force applies to damaging moves with a chance of a secondary effect (the "chance" in the
 // move data), except charge moves that use it for their own boost.
 BOOL Move_SheerForceApplies(BattleContext *battleCtx, int attacker, int move)
@@ -7136,6 +7213,97 @@ int Sovereign_MovePower(BattleSystem *battleSys, BattleContext *battleCtx, int m
     return power;
 }
 
+// Sovereign (item 11): pulse moves, boosted by Mega Launcher.
+static const u16 sPulseMoves[] = {
+    MOVE_AURA_SPHERE,
+    MOVE_DARK_PULSE,
+    MOVE_DRAGON_PULSE,
+    MOVE_WATER_PULSE,
+    MOVE_ORIGIN_PULSE,
+    MOVE_TERRAIN_PULSE,
+};
+
+// Sovereign (item 11): slicing moves, boosted by Sharpness.
+static const u16 sSlicingMoves[] = {
+    MOVE_AERIAL_ACE,
+    MOVE_AIR_CUTTER,
+    MOVE_AIR_SLASH,
+    MOVE_AQUA_CUTTER,
+    MOVE_BEHEMOTH_BLADE,
+    MOVE_BITTER_BLADE,
+    MOVE_CEASELESS_EDGE,
+    MOVE_CROSS_POISON,
+    MOVE_CUT,
+    MOVE_FURY_CUTTER,
+    MOVE_KOWTOW_CLEAVE,
+    MOVE_LEAF_BLADE,
+    MOVE_MIGHTY_CLEAVE,
+    MOVE_NIGHT_SLASH,
+    MOVE_POPULATION_BOMB,
+    MOVE_PSYBLADE,
+    MOVE_PSYCHO_CUT,
+    MOVE_RAZOR_LEAF,
+    MOVE_RAZOR_SHELL,
+    MOVE_SACRED_SWORD,
+    MOVE_SECRET_SWORD,
+    MOVE_SLASH,
+    MOVE_SOLAR_BLADE,
+    MOVE_STONE_AXE,
+    MOVE_TACHYON_CUTTER,
+    MOVE_X_SCISSOR,
+};
+
+static BOOL Sovereign_MoveInList(const u16 *list, int count, int move)
+{
+    for (int i = 0; i < count; i++) {
+        if (list[i] == move) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
+// Sovereign (item 11): TRUE if a battler other than `except` is on the field with this ability (Ruin abilities, Auras).
+static BOOL Sovereign_FieldHasAbility(BattleSystem *battleSys, BattleContext *battleCtx, int ability, int except)
+{
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
+
+    for (int i = 0; i < maxBattlers; i++) {
+        if (i != except && battleCtx->battleMons[i].curHP && Battler_Ability(battleCtx, i) == ability) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
+// Sovereign (item 11): Protosynthesis in harsh sunlight boosts the holder's highest stat. Returns its BATTLE_STAT_*,
+// or -1 if inactive. Booster Energy isn't reproduced yet.
+int Sovereign_ProtosynthesisStat(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
+{
+    BattleMon *mon = &battleCtx->battleMons[battler];
+
+    if (Battler_Ability(battleCtx, battler) != ABILITY_PROTOSYNTHESIS
+        || (battleCtx->fieldConditionsMask & FIELD_CONDITION_SUNNY) == FALSE
+        || BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALL_BATTLERS, 0, ABILITY_CLOUD_NINE)
+        || BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALL_BATTLERS, 0, ABILITY_AIR_LOCK)) {
+        return -1;
+    }
+
+    u16 stats[5] = { mon->attack, mon->defense, mon->spAttack, mon->spDefense, mon->speed };
+    u8 statIDs[5] = { BATTLE_STAT_ATTACK, BATTLE_STAT_DEFENSE, BATTLE_STAT_SP_ATTACK, BATTLE_STAT_SP_DEFENSE, BATTLE_STAT_SPEED };
+    int best = 0;
+
+    for (int i = 1; i < 5; i++) {
+        if (stats[i] > stats[best]) {
+            best = i;
+        }
+    }
+
+    return statIDs[best];
+}
+
 // Sovereign (item 11): biting moves, boosted by Strong Jaw.
 static const u16 sBitingMoves[] = {
     MOVE_BITE,
@@ -7247,12 +7415,14 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
 
     movePower = Sovereign_MovePower(battleSys, battleCtx, move, attacker, defender, movePower);
 
-    if (attackerParams.ability == ABILITY_NORMALIZE) {
-        moveType = TYPE_NORMAL;
-    } else if (inType == TYPE_NORMAL) {
-        moveType = MOVE_DATA(move).type;
-    } else {
-        moveType = inType & 0x3F;
+    // Sovereign (item 11): Normalize, the -ate abilities (1.2x, as since Gen VII) and Liquid Voice.
+    moveType = Sovereign_AbilityMoveType(attackerParams.ability, move, inType == TYPE_NORMAL ? MOVE_DATA(move).type : (inType & 0x3F));
+    if (attackerParams.ability != ABILITY_NORMALIZE
+        && attackerParams.ability != ABILITY_LIQUID_VOICE
+        && MOVE_DATA(move).type == TYPE_NORMAL
+        && moveType == Sovereign_AbilityMoveType(attackerParams.ability, move, TYPE_NORMAL)
+        && moveType != TYPE_NORMAL) {
+        movePower = movePower * 12 / 10;
     }
 
     GF_ASSERT(battleCtx->powerMul >= 10);
@@ -7533,6 +7703,160 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         if (sBitingMoves[i] == move && attackerParams.ability == ABILITY_STRONG_JAW) {
             movePower = movePower * 15 / 10;
             break;
+        }
+    }
+
+    // Sovereign (item 11): Gen V+ damage-modifying abilities (Gen IX values).
+    switch (attackerParams.ability) {
+    case ABILITY_TOUGH_CLAWS:
+        if (MOVE_DATA(move).flags & MOVE_FLAG_MAKES_CONTACT) {
+            movePower = movePower * 13 / 10;
+        }
+        break;
+    case ABILITY_MEGA_LAUNCHER:
+        if (Sovereign_MoveInList(sPulseMoves, NELEMS(sPulseMoves), move)) {
+            movePower = movePower * 15 / 10;
+        }
+        break;
+    case ABILITY_SHARPNESS:
+        if (Sovereign_MoveInList(sSlicingMoves, NELEMS(sSlicingMoves), move)) {
+            movePower = movePower * 15 / 10;
+        }
+        break;
+    case ABILITY_PUNK_ROCK:
+        if (Move_IsSound(move)) {
+            movePower = movePower * 13 / 10;
+        }
+        break;
+    case ABILITY_TRANSISTOR:
+        if (moveType == TYPE_ELECTRIC) {
+            attackStat = attackStat * 13 / 10;
+            spAttackStat = spAttackStat * 13 / 10;
+        }
+        break;
+    case ABILITY_DRAGONS_MAW:
+        if (moveType == TYPE_DRAGON) {
+            attackStat = attackStat * 15 / 10;
+            spAttackStat = spAttackStat * 15 / 10;
+        }
+        break;
+    case ABILITY_ROCKY_PAYLOAD:
+        if (moveType == TYPE_ROCK) {
+            attackStat = attackStat * 15 / 10;
+            spAttackStat = spAttackStat * 15 / 10;
+        }
+        break;
+    case ABILITY_STEELWORKER:
+        if (moveType == TYPE_STEEL) {
+            attackStat = attackStat * 15 / 10;
+            spAttackStat = spAttackStat * 15 / 10;
+        }
+        break;
+    case ABILITY_WATER_BUBBLE:
+        if (moveType == TYPE_WATER) {
+            attackStat *= 2;
+            spAttackStat *= 2;
+        }
+        break;
+    case ABILITY_TOXIC_BOOST:
+        if (attackerParams.statusMask & MON_CONDITION_ANY_POISON) {
+            attackStat = attackStat * 15 / 10;
+        }
+        break;
+    case ABILITY_FLARE_BOOST:
+        if (attackerParams.statusMask & MON_CONDITION_BURN) {
+            spAttackStat = spAttackStat * 15 / 10;
+        }
+        break;
+    case ABILITY_GORILLA_TACTICS:
+        attackStat = attackStat * 15 / 10;
+        break;
+    case ABILITY_DEFEATIST:
+        if (attackerParams.curHP <= attackerParams.maxHP / 2) {
+            attackStat /= 2;
+            spAttackStat /= 2;
+        }
+        break;
+    case ABILITY_ANALYTIC: {
+        // 1.3x when every other Pokemon on the field has already moved this turn.
+        int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
+        for (i = 0; i < maxBattlers; i++) {
+            if (i != attacker && battleCtx->battleMons[i].curHP && Battler_MovedThisTurn(battleCtx, i) == FALSE) {
+                break;
+            }
+        }
+        if (i == maxBattlers) {
+            movePower = movePower * 13 / 10;
+        }
+        break;
+    }
+    }
+
+    // Steely Spirit boosts the Steel moves of the holder and its ally.
+    if (moveType == TYPE_STEEL
+        && (attackerParams.ability == ABILITY_STEELY_SPIRIT
+            || ((battleType & BATTLE_TYPE_DOUBLES) && battleCtx->battleMons[attacker ^ 2].curHP
+                && Battler_Ability(battleCtx, attacker ^ 2) == ABILITY_STEELY_SPIRIT))) {
+        movePower = movePower * 15 / 10;
+    }
+
+    i = Sovereign_ProtosynthesisStat(battleSys, battleCtx, attacker);
+    if (i == BATTLE_STAT_ATTACK) {
+        attackStat = attackStat * 13 / 10;
+    } else if (i == BATTLE_STAT_SP_ATTACK) {
+        spAttackStat = spAttackStat * 13 / 10;
+    }
+    i = Sovereign_ProtosynthesisStat(battleSys, battleCtx, defender);
+    if (i == BATTLE_STAT_DEFENSE) {
+        defenseStat = defenseStat * 13 / 10;
+    } else if (i == BATTLE_STAT_SP_DEFENSE) {
+        spDefenseStat = spDefenseStat * 13 / 10;
+    }
+
+    // Abilities on the target.
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_MULTISCALE) == TRUE
+        || defenderParams.ability == ABILITY_SHADOW_SHIELD) {
+        if (defenderParams.curHP == defenderParams.maxHP) {
+            movePower /= 2;
+        }
+    }
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_FUR_COAT) == TRUE) {
+        defenseStat *= 2;
+    }
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_ICE_SCALES) == TRUE && moveClass == CLASS_SPECIAL) {
+        movePower /= 2;
+    }
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_PUNK_ROCK) == TRUE && Move_IsSound(move)) {
+        movePower /= 2;
+    }
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_PURIFYING_SALT) == TRUE && moveType == TYPE_GHOST) {
+        movePower /= 2;
+    }
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_WATER_BUBBLE) == TRUE && moveType == TYPE_FIRE) {
+        movePower /= 2;
+    }
+
+    // The Ruin abilities lower the stat of every other Pokemon on the field by 25%.
+    if (attackerParams.ability != ABILITY_TABLETS_OF_RUIN && Sovereign_FieldHasAbility(battleSys, battleCtx, ABILITY_TABLETS_OF_RUIN, attacker)) {
+        attackStat = attackStat * 3 / 4;
+    }
+    if (attackerParams.ability != ABILITY_VESSEL_OF_RUIN && Sovereign_FieldHasAbility(battleSys, battleCtx, ABILITY_VESSEL_OF_RUIN, attacker)) {
+        spAttackStat = spAttackStat * 3 / 4;
+    }
+    if (defenderParams.ability != ABILITY_SWORD_OF_RUIN && Sovereign_FieldHasAbility(battleSys, battleCtx, ABILITY_SWORD_OF_RUIN, defender)) {
+        defenseStat = defenseStat * 3 / 4;
+    }
+    if (defenderParams.ability != ABILITY_BEADS_OF_RUIN && Sovereign_FieldHasAbility(battleSys, battleCtx, ABILITY_BEADS_OF_RUIN, defender)) {
+        spDefenseStat = spDefenseStat * 3 / 4;
+    }
+
+    // Dark Aura and Fairy Aura power up Dark and Fairy moves by a third; Aura Break turns that into a 25% cut.
+    if ((moveType == TYPE_DARK && Sovereign_FieldHasAbility(battleSys, battleCtx, ABILITY_DARK_AURA, -1))
+        || (moveType == TYPE_FAIRY && Sovereign_FieldHasAbility(battleSys, battleCtx, ABILITY_FAIRY_AURA, -1))) {
+        if (Sovereign_FieldHasAbility(battleSys, battleCtx, ABILITY_AURA_BREAK, -1)) {
+            movePower = movePower * 3 / 4;
+        } else {
+            movePower = movePower * 4 / 3;
         }
     }
 
