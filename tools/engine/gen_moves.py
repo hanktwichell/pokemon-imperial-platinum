@@ -82,6 +82,16 @@ E = lambda name: "BATTLE_EFFECT_" + name
 # Battle effects Sovereign adds for a move's exact Gen IX behaviour (item 11), after Platinum's 277: identifier ->
 # (effect, chance, note). These win over the PokeAPI mapping below.
 SOVEREIGN_EFFECTS = {
+    "tearful-look": ("SOVEREIGN_TEARFUL_LOOK", 0, "Sovereign effect: target Attack -1, target Sp. Atk -1"),
+    "noble-roar": ("SOVEREIGN_NOBLE_ROAR", 0, "Sovereign effect: target Attack -1, target Sp. Atk -1"),
+    "victory-dance": ("SOVEREIGN_VICTORY_DANCE", 0, "Sovereign effect: user Attack +1, user Defense +1, user Speed +1"),
+    "shift-gear": ("SOVEREIGN_SHIFT_GEAR", 0, "Sovereign effect: user Attack +1, user Speed +2"),
+    "cotton-guard": ("SOVEREIGN_COTTON_GUARD", 0, "Sovereign effect: user Defense +3"),
+    "shell-smash": ("SOVEREIGN_SHELL_SMASH", 0, "Sovereign effect: user Defense -1, user Sp. Def -1, user Attack +2, user Sp. Atk +2, user Speed +2"),
+    "quiver-dance": ("SOVEREIGN_QUIVER_DANCE", 0, "Sovereign effect: user Sp. Atk +1, user Sp. Def +1, user Speed +1"),
+    "coil": ("SOVEREIGN_COIL", 0, "Sovereign effect: user Attack +1, user Defense +1, user accuracy +1"),
+    "work-up": ("SOVEREIGN_WORK_UP", 0, "Sovereign effect: user Attack +1, user Sp. Atk +1"),
+    "hone-claws": ("SOVEREIGN_HONE_CLAWS", 0, "Sovereign effect: user Attack +1, user accuracy +1"),
     "electro-shot": ("ELECTRO_SHOT", 100, "Sovereign effect: charge turn raises Sp. Atk; no charge turn in rain"),
     "body-press": ("BODY_PRESS", 0, "Sovereign effect: damage uses the user's Defense and Defense stage"),
     "hurricane": ("HURRICANE", 30, "Sovereign effect: Thunder's weather accuracy and hits Pokémon in the air, 30% confusion"),

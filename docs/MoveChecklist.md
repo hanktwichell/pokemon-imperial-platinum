@@ -6,16 +6,16 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 97 |
-| approximate | 75 |
-| placeholder | 208 |
+| exact | 107 |
+| approximate | 67 |
+| placeholder | 206 |
 | removed | 72 |
 
 ## New moves (#468–919)
 
 | # | Move | Type | Effect used | Fidelity | Note |
 |---|---|---|---|---|---|
-| 468 | Hone Claws | Dark | `ATK_UP_2` | approximate | raises [('acc', 1), ('atk', 1)] in the original |
+| 468 | Hone Claws | Dark | `SOVEREIGN_HONE_CLAWS` | exact | Sovereign effect: user Attack +1, user accuracy +1 |
 | 469 | Wide Guard | Rock | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 470 | Guard Split | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 471 | Power Split | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
@@ -30,13 +30,13 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 480 | Storm Throw | Fighting | `HIGH_CRITICAL` | approximate | has its own mechanic in Gen IX; closest effect |
 | 481 | Flame Burst | Fire | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 482 | Sludge Wave | Poison | `POISON_HIT` | exact |  |
-| 483 | Quiver Dance | Bug | `SP_ATK_SP_DEF_UP` | approximate | raises [('spa', 1), ('spd', 1), ('spe', 1)] in the original |
+| 483 | Quiver Dance | Bug | `SOVEREIGN_QUIVER_DANCE` | exact | Sovereign effect: user Sp. Atk +1, user Sp. Def +1, user Speed +1 |
 | 484 | Heavy Slam | Steel | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 485 | Synchronoise | Psychic | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 486 | Electro Ball | Electric | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 487 | Soak | Water | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 488 | Flame Charge | Fire | `HIT` | approximate | user's stats change by [('spe', 1)] in the original |
-| 489 | Coil | Poison | `ATK_DEF_UP` | approximate | raises [('acc', 1), ('atk', 1), ('def', 1)] in the original |
+| 489 | Coil | Poison | `SOVEREIGN_COIL` | exact | Sovereign effect: user Attack +1, user Defense +1, user accuracy +1 |
 | 490 | Low Sweep | Fighting | `LOWER_SPEED_HIT` | exact |  |
 | 491 | Acid Spray | Poison | `LOWER_SP_DEF_2_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
 | 492 | Foul Play | Dark | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
@@ -51,11 +51,11 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 501 | Quick Guard | Fighting | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 502 | Ally Switch | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 503 | Scald | Water | `BURN_HIT` | exact |  |
-| 504 | Shell Smash | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 504 | Shell Smash | Normal | `SOVEREIGN_SHELL_SMASH` | exact | Sovereign effect: user Defense -1, user Sp. Def -1, user Attack +2, user Sp. Atk +2, user Speed +2 |
 | 505 | Heal Pulse | Psychic | `RESTORE_HALF_HP` | approximate | has its own mechanic in Gen IX; closest effect |
 | 506 | Hex | Ghost | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 507 | Sky Drop | Flying | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
-| 508 | Shift Gear | Steel | `ATK_SPD_UP` | approximate | raises [('atk', 1), ('spe', 2)] in the original |
+| 508 | Shift Gear | Steel | `SOVEREIGN_SHIFT_GEAR` | exact | Sovereign effect: user Attack +1, user Speed +2 |
 | 509 | Circle Throw | Fighting | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 510 | Incinerate | Fire | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 511 | Quash | Dark | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
@@ -73,7 +73,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 523 | Bulldoze | Ground | `LOWER_SPEED_HIT` | exact |  |
 | 524 | Frost Breath | Ice | `HIGH_CRITICAL` | approximate | has its own mechanic in Gen IX; closest effect |
 | 525 | Dragon Tail | Dragon | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
-| 526 | Work Up | Normal | `ATK_UP_2` | approximate | raises [('atk', 1), ('spa', 1)] in the original |
+| 526 | Work Up | Normal | `SOVEREIGN_WORK_UP` | exact | Sovereign effect: user Attack +1, user Sp. Atk +1 |
 | 527 | Electroweb | Electric | `LOWER_SPEED_HIT` | exact |  |
 | 528 | Wild Charge | Electric | `RECOIL_QUARTER` | exact |  |
 | 529 | Drill Run | Ground | `HIGH_CRITICAL` | exact |  |
@@ -85,7 +85,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 535 | Heat Crash | Fire | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 536 | Leaf Tornado | Grass | `LOWER_ACCURACY_HIT` | exact |  |
 | 537 | Steamroller | Bug | `FLINCH_MINIMIZE_DOUBLE_HIT` | exact |  |
-| 538 | Cotton Guard | Grass | `DEF_UP_2` | approximate | [('def', 3)] in the original |
+| 538 | Cotton Guard | Grass | `SOVEREIGN_COTTON_GUARD` | exact | Sovereign effect: user Defense +3 |
 | 539 | Night Daze | Dark | `LOWER_ACCURACY_HIT` | exact |  |
 | 540 | Psystrike | Psychic | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 541 | Tail Slap | Normal | `MULTI_HIT` | exact |  |
@@ -115,7 +115,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 565 | Fell Stinger | Bug | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 566 | Phantom Force | Ghost | `SHADOW_FORCE` | exact |  |
 | 567 | Trick-or-Treat | Ghost | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
-| 568 | Noble Roar | Normal | `ATK_DEF_DOWN` | approximate | stat changes [('atk', -1), ('spa', -1)] in the original |
+| 568 | Noble Roar | Normal | `SOVEREIGN_NOBLE_ROAR` | exact | Sovereign effect: target Attack -1, target Sp. Atk -1 |
 | 569 | Ion Deluge | Electric | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 570 | ParabolcCharge | Electric | `RECOVER_HALF_DAMAGE_DEALT` | approximate | has its own mechanic in Gen IX; closest effect |
 | 571 | Forest’s Curse | Grass | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
@@ -262,7 +262,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 712 | Spectral Thief | Ghost | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 713 | Sunsteel Strike | Steel | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 714 | Moongeist Beam | Ghost | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
-| 715 | Tearful Look | Normal | `ATK_DEF_DOWN` | approximate | stat changes [('atk', -1), ('spa', -1)] in the original |
+| 715 | Tearful Look | Normal | `SOVEREIGN_TEARFUL_LOOK` | exact | Sovereign effect: target Attack -1, target Sp. Atk -1 |
 | 716 | Zing Zap | Electric | `FLINCH_HIT` | exact |  |
 | 717 | Nature’sMadness | Fairy | `HALVE_HP` | exact |  |
 | 718 | Multi-Attack | Normal | `JUDGEMENT` | exact |  |
@@ -384,7 +384,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 834 | Wave Crash | Water | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 835 | Chloroblast | Grass | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 836 | Mountain Gale | Ice | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 837 | Victory Dance | Fighting | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 837 | Victory Dance | Fighting | `SOVEREIGN_VICTORY_DANCE` | exact | Sovereign effect: user Attack +1, user Defense +1, user Speed +1 |
 | 838 | Headlong Rush | Ground | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 839 | Barb Barrage | Poison | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 840 | Esper Wing | Psychic | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |

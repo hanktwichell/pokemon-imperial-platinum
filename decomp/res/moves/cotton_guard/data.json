@@ -13,7 +13,7 @@
     "accuracy": 0,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_DEF_UP_2",
+        "type": "BATTLE_EFFECT_SOVEREIGN_COTTON_GUARD",
         "chance": 0
     },
     "range": "RANGE_USER",
