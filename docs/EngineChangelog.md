@@ -4,6 +4,48 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## FM — Totem forms and the Totem trial battle (decision 18)
+
+The 12 Totem forms exist, and the battle the trials will use works. The trials aren't on the map yet. The places,
+levels, auras and helpers are in `docs/TotemTrials.md` (generated from `data/totem_trials.yaml`).
+- **The forms** (`gen_forms.py`, new kind `SOVEREIGN_FORM_TOTEM`):
+  - Totem Gumshoos, Ribombee, Vikavolt, Araquanid, Lurantis, Salazzle, Togedemaru, Kommo-o, Alolan Raticate, Alolan
+    Marowak, and Mimikyu's Totem Disguised and Busted.
+  - Mimikyu's Busted Form is data only for now, like Zen Darmanitan, so the Totem forms keep their official numbers.
+  - A Totem learns what its usual form learns, the Alolan one for Raticate and Marowak. PokeAPI only has the Totems'
+    old Ultra Sun/Ultra Moon learnsets.
+  - Totem Alolan Raticate's Eggs hatch into Alolan Rattata. Totems don't evolve. Sprites are the base form's until
+    E12.
+- **The trial battle** (`Encounter_SovereignNewTotemTrial`, script command `SovereignStartTotemTrial`):
+  - It's a wild double battle: the Totem and its first helper are out from the start.
+  - Opening lines: "Totem GUMSHOOS appeared! It called its ally, YUNGOOS!", then "Go! X and Y!".
+  - **The aura.** The aura raises the Totem's stats once, at the start: "Totem X's aura flared to life!", then
+    "Totem X's Defense rose!", or "Totem X's stats rose!" when it raises several.
+  - **Helpers.** When a helper faints, the Totem calls the next one into the empty slot ("Totem X called its ally,
+    Y!"), up to 3 helpers in all.
+  - **After the Totem faints.** It calls no more helpers, and the trial is won once the field is clear, even with
+    helpers left.
+  - **Catching.** Poké Balls can be thrown only at a Pokémon alone on its side ("It's impossible to aim when there are
+    two Pokémon!"). The Totem is caught in its Totem form.
+  - **No escape.** RUN says "There's no running from a Totem!". Roar, Whirlwind and Teleport fail, and the Poké Doll
+    and Fluffy Tail can't be used.
+  - **AI.** The Totem and its helpers choose moves with the trainer AI (basic, attack evaluation and expert).
+  - The aura's stages travel in the battle status mask (`BATTLE_STATUS_TOTEM_AURA`).
+- **The auras, checked.** They were written from memory. Against Serebii's trial pages, Lurantis, Alolan Marowak and
+  Araquanid raise Speed, and Vikavolt and Ribombee every stat. Stages Serebii doesn't give are marked "check".
+- **Helpers** are proposed from each trial's original allies, 2 levels below the Totem.
+- **Test build:** SELECT+B+R starts the next trial.
+- **Verified in the test build** with Totem Gumshoos (Lv. 18) against Garchomp and Turtwig:
+  - The opening, the aura (RAM: form 1, Defense +1) and RUN refused.
+  - A ball refused with two foes out.
+  - The three Yungoos called in one after another, then the lone Totem caught.
+  - The Totem knocked out first: no more calls, and the lone Yungoos catchable.
+  - Precipice Blades knocking out both at once: an immediate win with helpers left.
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+- **Not done yet:** a trial against a player with only one able Pokémon (the owner's 1-vs-2 rule). Platinum can't start
+  a double battle with one, so the trial scripts will need two until the engine can.
+
+
 ## FM — The Regional Forms Park (decision 22)
 
 Pal Park's grounds on Route 221 are now the Regional Forms Park, where the regional forms live as wild Pokémon.

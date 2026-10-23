@@ -5015,6 +5015,12 @@
     .short \move
     .endm
 
+    // Sovereign (decision 18): a Totem trial's battle (TOTEM_TRIAL_* from constants/sovereign_totem_trials.h)
+    .macro SovereignStartTotemTrial trial
+    .short SCRCMD_SOVEREIGNSTARTTOTEMTRIAL
+    .short \trial
+    .endm
+
 
 
     .macro GoToIfLt varID, valueOrVarID, offset

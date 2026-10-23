@@ -97,6 +97,9 @@ Made by the owner (2026-10-22):
     afterwards in its Totem form. Totems call allies: each trial is a double battle where the Totem calls up to 2
     reserve helpers into the empty slot, and balls can be thrown only once the Totem is alone (owner, 2026-10-22).
     Placements, levels and the mechanic: `data/totem_trials.yaml`.
+    - Built (CB-0027): the Totem forms and the trial battle (`docs/TotemTrials.md`). Still to do: the trials on the
+      map, and 1 vs 2 for a player with one able Pokémon (Platinum can't start a double battle with one).
+    - The auras were checked against Serebii; the helpers are a proposal from each trial's original allies.
 19. **Trade evolutions follow Renegade's system** (owner, 2026-10-22, after briefly considering a Link Stone): plain
     trade evolutions evolve at Level 36, and trade-with-item evolutions by using the item like a stone.
 20. **Special evolutions** (Gholdengo's 999 coins, Malamar's upside-down console and other conditions Gen IV can't

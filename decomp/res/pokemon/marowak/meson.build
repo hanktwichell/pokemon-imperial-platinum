@@ -11,4 +11,5 @@ pokefoot_files += files('footprint.png')
 
 # Sovereign forms (tools/engine/gen_forms.py): start
 species_data_files += files('forms/alola/data.json')
+species_data_files += files('forms/totem/data.json')
 # Sovereign forms: end
