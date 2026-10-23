@@ -120,6 +120,10 @@ implemented.
   - Load particles with `LoadParticleSystem` while sprites are held faded. `LoadParticleResource` draws unfaded
     battler copies while it loads.
   - In a single battle, `BATTLE_ANIM_BATTLER_PLAYER_2` / `ENEMY_2` fall back to player 1, so don't fade by slot.
+- **HP-bar symbol.** `HealthBox_SovereignDrawMegaIcon` (`healthbox.c`) draws part `HEALTHBOX_PART_SOVEREIGN_MEGA` in
+  the caught-icon slot (`sCaughtIconVRAMTransfer`), over the tile it saves first. It's called whenever the name is
+  drawn. The battle-script command `SovereignRefreshHealthBox` (after `End` in `btlcmd.h`) sends
+  `BattleController_EmitRefreshHPGauge`.
 
 ### 5. Trainer data
 - Vanilla Gen IV trainer Pokémon can't specify EVs, natures directly (nature comes from the PID seeded by trainer

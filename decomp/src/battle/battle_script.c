@@ -154,6 +154,7 @@ static BOOL BtlCmd_ResetAllStatChanges(BattleSystem *battleSys, BattleContext *b
 static BOOL BtlCmd_LockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_UnlockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_SetHealthBoxStatusIcon(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_SovereignRefreshHealthBox(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PrintTrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PayPrizeMoney(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PlayBattleAnimation(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -3619,6 +3620,18 @@ static BOOL BtlCmd_UnlockMoveChoice(BattleSystem *battleSys, BattleContext *batt
  * @param battleCtx
  * @return BOOL
  */
+// Sovereign (E8): redraw a battler's HP bar, so a new Mega or Primal form shows the Mega symbol (healthbox.c).
+static BOOL BtlCmd_SovereignRefreshHealthBox(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+
+    BattleController_EmitRefreshHPGauge(battleSys, battleCtx, battler);
+
+    return FALSE;
+}
+
 static BOOL BtlCmd_SetHealthBoxStatusIcon(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);

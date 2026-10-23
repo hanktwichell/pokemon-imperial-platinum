@@ -139,7 +139,23 @@ players and the verification that was run.
     unfaded copies of the battlers while it loads, which flashed them back for 6 frames.
   - The form-change mosaic is gone from both subscripts. With Battle Scene off, the sprite simply swaps.
   - The anim takes about 6 seconds, from the darkening to the "has Mega Evolved" message.
-  - Still to do from the spec: the Mega symbol over the sprite, and a Mega icon on the HP bar.
+  - Still to do from the spec: the Mega symbol over the sprite.
+- **The Mega symbol on the HP bar** (step 5; `healthbox.c`). A Mega or Primal shows a small rainbow Mega symbol at
+  the left end of its HP bar's strip, from the moment its new form fades in until it leaves the field. It returns
+  when the Pokémon comes back.
+  - The symbol is an 8×8 tile appended to `healthbox_parts.png`, drawn by `tools/sprites/make_mega_button.py`.
+  - It goes where Platinum puts the caught-species Poké Ball. Only wild Pokémon show that ball, and they never Mega
+    Evolve, so the two never collide.
+  - The HP bar reads the form from the party Pokémon, which stays Mega for the whole battle.
+  - The symbol's color 0 shows the strip under it. The tile it covers is saved, and put back when a Pokémon that
+    isn't Mega takes the slot.
+  - The Mega and Primal subscripts redraw the HP bar after the reveal with a new script command,
+    `SovereignRefreshHealthBox`. It's appended after `End`, so no existing command ID changes, and it sends the
+    existing HP-gauge refresh.
+  - Verified in the test build:
+    - The symbol shows on Garchomp's bar in singles.
+    - In doubles it shows on Garchomp's and the foe's Charizard's bars, and not on Turtwig's or Venusaur's.
+    - Switching Turtwig in leaves a clean bar, and switching Garchomp back shows the symbol again.
 
   Verified frame by frame in the test build (no flicker):
   - Garchomp in a wild battle.

@@ -1306,3 +1306,48 @@ by frame in the test build:
 1. Owner's answers on Oak's visit (CA-0021), then build it.
 2. Item 11: exact effects, boss teams first, adding #8's partner scoring per move as it's built.
 3. 12b #4–#5 (Gen V+ absorbing abilities and redirection) along with item 11.
+
+---
+
+## CB-0020 — 2026-10-22, 8:35 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Merged:** PR #24 (the Mega Evolution / Primal Reversion animation and the sprite credits, CB-0019). I merged main
+into it first: CA-0021 and CA-0022 are kept, in time order.
+
+**Implemented: the Mega symbol on the HP bar** (E8 step 5). A Mega or Primal shows a small rainbow Mega symbol at the
+left end of its HP bar's strip, from the reveal until it leaves the field.
+- It's an 8×8 tile at the end of `healthbox_parts.png`, drawn by `tools/sprites/make_mega_button.py`.
+- It sits where Platinum shows the caught-species Poké Ball (that ball only appears on wild Pokémon, which never Mega
+  Evolve).
+- The tile under it is kept and put back when a Pokémon that isn't Mega takes the slot.
+- The subscripts redraw the HP bar with a new script command, `SovereignRefreshHealthBox`, appended after `End`.
+- Verified in the test build:
+  - Singles: Garchomp's bar shows it.
+  - Doubles: Garchomp's and the foe's Charizard's bars show it; Turtwig's and Venusaur's don't.
+  - Switching Turtwig in leaves a clean bar, and switching Garchomp back shows it again.
+  - The release ROM builds without warnings and passes boot smoke.
+
+**For Claude A:**
+- The boss Mega abilities (Magic Bounce, Parental Bond, Strong Jaw, Tough Claws, Aura Guard) are yours, with item 11
+  (CA-0022). I won't start them.
+- Your Oak scene (CA-0021) can use the flag DX added, `FLAG_SOVEREIGN_SHOWED_ROWAN_SINNOH_DEX` (CB-0016). Rowan's
+  event already runs on it.
+
+**Files modified:**
+- Code:
+  - `decomp/src/battle/healthbox.c`, `decomp/include/battle/healthbox.h`
+  - `decomp/src/battle/battle_script.c`, `decomp/include/data/scripts/btlcmd.h`, `decomp/asm/macros/btlcmd.inc`
+  - `decomp/res/battle/scripts/subscripts/subscript_sovereign_mega_evolution.s`,
+    `subscript_sovereign_primal_reversion.s`
+- Art: `decomp/res/graphics/battle/healthbox/healthbox_parts.png`, via `tools/sprites/make_mega_button.py`
+- Docs:
+  - `docs/EngineChangelog.md`, `docs/TechnicalDesign.md`, `docs/EngineRoadmap.md`, `docs/MegaEvolution.md` (via
+    `tools/design/gen_mega_doc.py`)
+  - `CITATIONS.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR when green.
+2. The last part of the animation spec: the Mega symbol flashing over the sprite at the reveal (an animation sprite
+   with `SPRITE_FUNC_OFFSET_AND_ANIMATE`).
+3. Then a milestone nobody holds: FM's held-item forms (Crowned Zacian/Zamazenta, Ogerpon's masks), which the roadmap
+   puts right after E7's items. I'll check with the roadmap first.

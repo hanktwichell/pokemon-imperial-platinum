@@ -158,6 +158,7 @@ enum HealthBoxPart {
     HEALTHBOX_PART_LEVEL_MALE_BOTTOM_1,
     HEALTHBOX_PART_LEVEL_GENDERLESS_BOTTOM_0,
     HEALTHBOX_PART_LEVEL_GENDERLESS_BOTTOM_1,
+    HEALTHBOX_PART_SOVEREIGN_MEGA, // Sovereign (E8): drawn by tools/sprites/make_mega_button.py
 };
 
 static s32 HealthBox_DrawGauge(HealthBox *healthbox, enum HealthBoxGaugeType gaugeType);
@@ -172,6 +173,7 @@ static void HealthBox_DrawLevelNumber(HealthBox *healthbox);
 static void HealthBox_DrawCurrentHP(HealthBox *healthbox, u32 hp);
 static void HealthBox_DrawMaxHP(HealthBox *healthbox);
 static void HealthBox_DrawCaughtIcon(HealthBox *healthbox);
+static void HealthBox_SovereignDrawMegaIcon(HealthBox *healthbox);
 static void HealthBox_DrawStatusIcon(HealthBox *healthbox, enum HealthBoxPart part);
 static void HealthBox_DrawBallCount(HealthBox *healthbox, u32 flags);
 static void HealthBox_DrawBallsLeftMessage(HealthBox *healthbox, u32 flags);
@@ -700,6 +702,10 @@ void HealthBox_DrawInfo(HealthBox *healthbox, u32 hp, u32 flags)
         HealthBox_DrawCaughtIcon(healthbox);
     }
 
+    if (flags & HEALTHBOX_INFO_NAME) {
+        HealthBox_SovereignDrawMegaIcon(healthbox);
+    }
+
     if (flags & HEALTHBOX_INFO_STATUS) {
         switch (healthbox->status) {
         default:
@@ -799,6 +805,7 @@ void Healthbox_CreateMainSprite(HealthBox *healthbox)
 
     HealthBox_LoadResources(spriteSystem, spriteManager, narc, paletteData, healthbox->type);
     healthbox->mainSprite = HealthBox_DrawSprite(spriteSystem, spriteManager, healthbox->type);
+    healthbox->sovereignMegaDrawn = FALSE;
 
     HealthBox_LoadMainPalette(spriteSystem, spriteManager, narc, paletteData, healthbox->type);
 
@@ -1284,6 +1291,49 @@ static void HealthBox_DrawCaughtIcon(HealthBox *healthbox)
     imgProxy = Sprite_GetImageProxy(healthbox->mainSprite->sprite);
 
     MI_CpuCopy16(tileNum, (void *)((u32)objCharPtr + sCaughtIconVRAMTransfer[healthbox->type].pos + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), sCaughtIconVRAMTransfer[healthbox->type].size);
+}
+
+// Sovereign (E8): a Mega or Primal shows the Mega symbol on its HP bar, in the caught-species icon's place (a wild
+// Pokemon never Mega Evolves, and only wild Pokemon show that icon). The party Pokemon keeps its Mega form for the
+// whole battle, so the HP bar reads it from there. The symbol's color 0 shows the tile it covers, which is kept to put
+// back when a Pokemon that isn't Mega takes the slot.
+static void HealthBox_SovereignDrawMegaIcon(HealthBox *healthbox)
+{
+    if (healthbox->type == HEALTHBOX_TYPE_SAFARI_ZONE || healthbox->type == HEALTHBOX_TYPE_PAL_PARK) {
+        return;
+    }
+
+    Pokemon *mon = BattleSystem_GetPartyPokemon(healthbox->battleSys, healthbox->battler, healthbox->selectedPartySlot);
+    BOOL mega = Pokemon_IsSovereignBattleForm(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), Pokemon_GetValue(mon, MON_DATA_FORM, NULL));
+
+    if (mega == FALSE && healthbox->sovereignMegaDrawn == FALSE) {
+        return;
+    }
+
+    NNSG2dImageProxy *imgProxy = Sprite_GetImageProxy(healthbox->mainSprite->sprite);
+    u8 *slot = (u8 *)((u32)G2_GetOBJCharPtr() + sCaughtIconVRAMTransfer[healthbox->type].pos + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]);
+
+    if (mega == FALSE) {
+        MI_CpuCopy16(healthbox->sovereignMegaSlotBackup, slot, TILE_SIZE_4BPP);
+        healthbox->sovereignMegaDrawn = FALSE;
+        return;
+    }
+
+    if (healthbox->sovereignMegaDrawn == FALSE) {
+        MI_CpuCopy16(slot, healthbox->sovereignMegaSlotBackup, TILE_SIZE_4BPP);
+        healthbox->sovereignMegaDrawn = TRUE;
+    }
+
+    const u8 *icon = GetHealthBoxPartsTile(HEALTHBOX_PART_SOVEREIGN_MEGA);
+    u8 tile[TILE_SIZE_4BPP];
+
+    for (int i = 0; i < TILE_SIZE_4BPP; i++) {
+        u8 lo = (icon[i] & 0xF) ? (icon[i] & 0xF) : (healthbox->sovereignMegaSlotBackup[i] & 0xF);
+        u8 hi = (icon[i] & 0xF0) ? (icon[i] & 0xF0) : (healthbox->sovereignMegaSlotBackup[i] & 0xF0);
+        tile[i] = hi | lo;
+    }
+
+    MI_CpuCopy16(tile, slot, TILE_SIZE_4BPP);
 }
 
 static void HealthBox_DrawStatusIcon(HealthBox *healthbox, enum HealthBoxPart part)
