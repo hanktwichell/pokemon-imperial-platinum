@@ -16,9 +16,9 @@ hub:
   built: >-
     The Archivist (CB-0035) stands in Canalave Library 2F from the first Hall of Fame; his first talk opens the Unova
     Chronicle (VAR_SOVEREIGN_CHRONICLE). Later talks name where each Swords of Justice member not caught yet stands,
-    then point to Keldeo (CB-0036). Static encounters share CommonScript_SovereignLegendaryEncounter: each stays on the
-    map until the Pokédex has it as caught, and vanishes after it's knocked out until the next visit (as in vanilla
-    legendary battles, the player can't run).
+    then point to Keldeo (CB-0036), then give hints for Meloetta and Genesect (CB-0037). Static encounters share
+    CommonScript_SovereignLegendaryEncounter: each stays on the map until the Pokédex has it as caught, and vanishes
+    after it's knocked out until the next visit (as in vanilla legendary battles, the player can't run).
 
 quests:
   # ---------------------------------------------------------------- Unova Chronicle
@@ -64,14 +64,24 @@ quests:
     name: The Relic Song
     species: [Meloetta]
     level: 55
-    location: Hearthome City — Amity Square stage
+    location: Hearthome City — Contest Hall stage
     steps: Talk to the composer in the Contest Hall with a Pokémon that knows Sing in the party.
+    built: >-
+      Meloetta (CB-0037): the composer (a new NPC in the Contest Hall lobby, (8, 7)) lets a party Pokémon that knows
+      Sing sing the Relic Song (FLAG_SOVEREIGN_MELOETTA_SONG). Meloetta then stands on the Contest Hall's stage (28, 5)
+      until it's caught. The stage replaces Amity Square, which has no stage the player can reach and only lets in
+      players leading certain Pokémon. It comes in its Aria Forme; the Pirouette Forme comes with the battle forms
+      (FM).
   - chapter: Unova Chronicle
     name: Plasma's Leftovers
     species: [Genesect]
     level: 60
     location: Veilstone City — Team Galactic HQ lab
     steps: A Galactic scientist confesses to reviving a fossil and asks you to stop it. Battle then catch.
+    built: >-
+      Genesect (CB-0037): the lab's male scientist confesses once the Unova Chronicle is open
+      (FLAG_SOVEREIGN_GENESECT_FREED). Genesect then stands in the lab's back room (34, 5), by the Control Room door,
+      until it's caught. Its Drive forms come with the forms milestone (FM).
 
   # ---------------------------------------------------------------- Kalos Chronicle
   - chapter: Kalos Chronicle

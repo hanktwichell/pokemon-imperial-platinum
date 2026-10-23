@@ -2376,3 +2376,58 @@ CB-0034) is merged.
    - Zekrom at the Valley Windworks at night;
    - Kyurem in Mt. Coronet's snow cave once both are caught.
    - Reshiram's "furnace room (new)" at Fuego Ironworks needs map work or another spot; ask the owner which.
+
+## CB-0037 — 2026-10-23, 7:39 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** Meloetta and Genesect (the Chronicles, `docs/PostgameLegendaries.md`). PR #48 (Terrakion, Cobalion
+and Keldeo, CB-0036) is merged; its first CI run died in apt-get and the one re-run passed.
+- **Meloetta** (Lv. 55, the Relic Song):
+  - A new composer (`LOCALID_SOVEREIGN_COMPOSER`, a Gentleman) stands in the Contest Hall lobby at (8, 7).
+  - With the Chronicle open and a party Pokémon that knows Sing (`FindPartySlotWithMove`), he asks if it will sing the
+    Relic Song. On yes, its cry plays and `FLAG_SOVEREIGN_MELOETTA_SONG` (the former `FLAG_UNUSED_0x02CD`) is set.
+  - Meloetta then stands on the Contest Hall's stage (28, 5) until it's caught.
+  - **Moved from Amity Square** (the yaml said its stage). Amity Square has no stage the player can reach (its raised
+    sandy area is walled in), and only lets in players leading certain Pokémon.
+  - It comes in its Aria Forme; the Pirouette Forme waits for the battle forms (FM).
+- **Genesect** (Lv. 60):
+  - With the Chronicle open, the Galactic HQ lab's male scientist confesses that the lab revived and remade a fossil
+    Pokémon. That sets `FLAG_SOVEREIGN_GENESECT_FREED` (the former `FLAG_UNUSED_0x02CE`), and `AddObject` shows
+    Genesect in the back room (34, 5), by the Control Room door.
+  - It stays there until it's caught.
+  - Its Drive forms wait for FM.
+- **The Archivist:** after the swords and Keldeo, he gives a hint for each of Meloetta and Genesect while it isn't
+  caught. Keldeo's two lines now end with a page break, since more can follow.
+- **Sprites:** `OBJ_EVENT_GFX_LEGENDARY_MELOETTA` and `_GENESECT` (`sovlegend05`, `sovlegend06`), from
+  `make_legendary_overworld.py`. The other four sprites come out byte for byte the same. `CITATIONS.md` lists ids 648
+  and 649.
+- **Verified** (test build with a temporary patch: game completed, Chronicle open, Master Balls, party at level 100,
+  Starly taught Sing at one warp, the scientist kept in place, test warps; all removed before committing):
+  - the Archivist's new hints, and his talk without them once both were caught;
+  - the composer without Sing, then the question with Sing, answering no and then yes;
+  - Meloetta hidden before the song, shown after, caught, and the stage empty afterwards;
+  - Genesect hidden before the confession, shown after, caught, and the room empty afterwards;
+  - the scientist's and the composer's lines once their Pokémon is caught.
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+
+**Files modified:**
+- Scripts: `scripts_contest_hall_lobby.s`, `scripts_contest_hall_stage_no_contest.s`,
+  `scripts_init_contest_hall_stage_no_contest.s`, `scripts_galactic_hq_laboratory.s`,
+  `scripts_init_galactic_hq_laboratory.s`, `scripts_canalave_library_2f.s`
+- Events: `events_contest_hall_lobby.json`, `events_contest_hall_stage_no_contest.json`,
+  `events_galactic_hq_laboratory.json`
+- Texts: `contest_hall_lobby`, `galactic_hq_laboratory`, `canalave_library_2f`
+- `decomp/generated/vars_flags.txt`, `decomp/generated/object_events_gfx.txt`
+- Sprites: `decomp/src/overlay005/object_event_gfx_data.c`, `decomp/res/graphics/field_sprites/` (`field_sprites.order`,
+  `meson.build`, `pokemon/legendary_{meloetta,genesect}.png`), `tools/sprites/make_legendary_overworld.py`
+- Data and docs: `data/postgame_legendaries.yaml`, `docs/PostgameLegendaries.md`, `docs/TechnicalDesign.md`,
+  `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `CITATIONS.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR once CI is green.
+2. **Truth and Ideals** (the Unova chapter key):
+   - the Light and Dark Stones from the Archivist;
+   - Zekrom at the Valley Windworks at night;
+   - Kyurem in Mt. Coronet's snow cave once both are caught.
+   - Reshiram's "furnace room (new)" at Fuego Ironworks needs map work or another spot; ask the owner which.
+3. **Forces of Nature:** Tornadus and Thundurus roaming (like Mesprit), Landorus at a Route 228 shrine (new: map work
+   or another spot), Enamorus at the Route 224 Flower Paradise gate. Victini's lighthouse basement is new too.

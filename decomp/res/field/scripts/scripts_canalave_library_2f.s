@@ -166,7 +166,8 @@ CanalaveLibrary2F_Movement_PlayerMoveAside:
 
 @ Sovereign (the Chronicles, docs/PostgameLegendaries.md): the Legend Archivist, here from the first Hall of Fame. His
 @ first talk opens the Unova Chronicle (VAR_SOVEREIGN_CHRONICLE 1). After that he tells where each sword not caught yet
-@ stands; once all three are caught, he sends the player to Lake Valor for Keldeo.
+@ stands; once all three are caught, he sends the player to Lake Valor for Keldeo. Then a hint for Meloetta and
+@ Genesect while they aren't caught.
 CanalaveLibrary2F_SovereignArchivist:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
@@ -186,13 +187,22 @@ CanalaveLibrary2F_SovereignArchivistUnova:
     SovereignCheckSpeciesCaught SPECIES_KELDEO, VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, CanalaveLibrary2F_SovereignArchivistKeldeoCaught
     Message CanalaveLibrary2F_Text_SovereignArchivistKeldeo
-    GoTo CanalaveLibrary2F_SovereignArchivistEnd
+    GoTo CanalaveLibrary2F_SovereignArchivistOthers
+
+CanalaveLibrary2F_SovereignArchivistKeldeoCaught:
+    Message CanalaveLibrary2F_Text_SovereignArchivistKeldeoCaught
+    GoTo CanalaveLibrary2F_SovereignArchivistOthers
 
 CanalaveLibrary2F_SovereignArchivistSwords:
     Message CanalaveLibrary2F_Text_SovereignArchivistSwords
     CallIfEq VAR_0x8004, FALSE, CanalaveLibrary2F_SovereignArchivistCobalion
     CallIfEq VAR_0x8005, FALSE, CanalaveLibrary2F_SovereignArchivistTerrakion
     CallIfEq VAR_0x8006, FALSE, CanalaveLibrary2F_SovereignArchivistVirizion
+CanalaveLibrary2F_SovereignArchivistOthers:
+    SovereignCheckSpeciesCaught SPECIES_MELOETTA, VAR_0x8004
+    SovereignCheckSpeciesCaught SPECIES_GENESECT, VAR_0x8005
+    CallIfEq VAR_0x8004, FALSE, CanalaveLibrary2F_SovereignArchivistMeloetta
+    CallIfEq VAR_0x8005, FALSE, CanalaveLibrary2F_SovereignArchivistGenesect
     Message CanalaveLibrary2F_Text_SovereignArchivistKeepReading
     GoTo CanalaveLibrary2F_SovereignArchivistEnd
 
@@ -208,8 +218,14 @@ CanalaveLibrary2F_SovereignArchivistVirizion:
     Message CanalaveLibrary2F_Text_SovereignArchivistVirizion
     Return
 
-CanalaveLibrary2F_SovereignArchivistKeldeoCaught:
-    Message CanalaveLibrary2F_Text_SovereignArchivistKeldeoCaught
+CanalaveLibrary2F_SovereignArchivistMeloetta:
+    Message CanalaveLibrary2F_Text_SovereignArchivistMeloetta
+    Return
+
+CanalaveLibrary2F_SovereignArchivistGenesect:
+    Message CanalaveLibrary2F_Text_SovereignArchivistGenesect
+    Return
+
 CanalaveLibrary2F_SovereignArchivistEnd:
     WaitButton
     CloseMessage

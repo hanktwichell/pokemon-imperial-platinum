@@ -4,6 +4,40 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E11 — The Chronicles: Meloetta and Genesect
+
+Two more Unova Chronicle legendaries (`docs/PostgameLegendaries.md`), each started by an NPC:
+- **Meloetta** (Lv. 55), the Relic Song. A new composer stands in the Contest Hall lobby.
+  - Before the Chronicle opens: "I write the music for the Contests. Lately an old melody keeps running through my
+    head."
+  - After: "The Unova Chronicle? Then you've read of the Relic Song!... I've written the melody down, but it needs a
+    voice that can Sing."
+  - With a party Pokémon that knows Sing: "Oh! Your STARLY knows Sing! Will it sing the Relic Song?" On yes, its cry
+    plays, then "...Did you hear that? Something sang back, from the stage!"
+  - Meloetta then stands on the Contest Hall's stage until it's caught.
+  - The design placed it at Amity Square's stage. Amity Square has no stage the player can reach, and only lets in
+    players leading certain Pokémon, so it moved to the Contest Hall's stage.
+  - It comes in its Aria Forme.
+- **Genesect** (Lv. 60). Once the Chronicle is open, the male scientist in the Galactic HQ lab confesses: "Before our
+  team fell apart, we found a fossil from a faraway land. We brought it back to life in one of these tanks, and we
+  changed it... Last night it broke out of its tank. It's in the back room now."
+  - Genesect stands in the lab's back room, by the Control Room door, until it's caught.
+  - The scientist thanks the player afterwards.
+- **The Archivist** adds a hint for each of the two while they aren't caught:
+  - "The Chronicle also tells of MELOETTA, a Pokémon of song. A composer at Hearthome's Contest Hall may know its
+    melody."
+  - "And of GENESECT, an ancient Pokémon that people brought back and changed. They say Team Galactic tried that too,
+    in their Veilstone lab."
+- New overworld sprites for both, made by `tools/sprites/make_legendary_overworld.py`.
+- **Verified** (test build; a temporary patch set the game completed, opened the Chronicle, added Master Balls,
+  raised the party to level 100, taught Starly Sing at one warp, kept the scientist in place and added test warps):
+  - the Archivist's hints, and later his talk without them once both were caught;
+  - the composer without Sing, then the question with Sing, answering no and then yes;
+  - Meloetta hidden before the song and shown after, caught, and the stage empty afterwards;
+  - Genesect hidden before the confession and shown after it, caught, and the room empty afterwards;
+  - the scientist's and the composer's lines once their Pokémon is caught.
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+
 ## E11 — The Chronicles: Terrakion, Cobalion and Keldeo
 
 The rest of the Swords of Justice, and the young sword (`docs/PostgameLegendaries.md`):

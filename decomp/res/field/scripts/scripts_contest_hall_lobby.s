@@ -14,6 +14,7 @@
     ScriptEntry ContestHallLobby_SchoolKidF
     ScriptEntry ContestHallLobby_RichBoy
     ScriptEntry ContestHallLobby_Fantina
+    ScriptEntry ContestHallLobby_SovereignComposer
     ScriptEntryEnd
 
 ContestHallLobby_OnFrame_FirstEntry:
@@ -501,3 +502,54 @@ ContestHallLobby_Movement_FantinaSpinEast:
     FaceSouth 4
     FaceWest 4
     EndMovement
+
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): the composer. Once the Unova Chronicle is open, a party
+@ Pokémon that knows Sing can sing the Relic Song for him, and Meloetta answers from the stage
+@ (FLAG_SOVEREIGN_MELOETTA_SONG).
+ContestHallLobby_SovereignComposer:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfLt VAR_SOVEREIGN_CHRONICLE, 1, ContestHallLobby_SovereignComposerIdle
+    SovereignCheckSpeciesCaught SPECIES_MELOETTA, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, ContestHallLobby_SovereignComposerMeloettaCaught
+    GoToIfSet FLAG_SOVEREIGN_MELOETTA_SONG, ContestHallLobby_SovereignComposerGoToStage
+    Message ContestHallLobby_Text_SovereignComposerRelicSong
+    FindPartySlotWithMove VAR_0x8004, MOVE_SING
+    GoToIfEq VAR_0x8004, MAX_PARTY_SIZE, ContestHallLobby_SovereignComposerNeedSing
+    BufferPartyMonNickname 0, VAR_0x8004
+    Message ContestHallLobby_Text_SovereignComposerAskSing
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, ContestHallLobby_SovereignComposerDeclined
+    GetPartyMonSpecies VAR_0x8004, VAR_0x8005
+    BufferPartyMonNickname 0, VAR_0x8004
+    PlayCry VAR_0x8005
+    Message ContestHallLobby_Text_SovereignComposerSang
+    WaitCry
+    SetFlag FLAG_SOVEREIGN_MELOETTA_SONG
+    Message ContestHallLobby_Text_SovereignComposerAnswered
+    GoTo ContestHallLobby_SovereignComposerEnd
+
+ContestHallLobby_SovereignComposerIdle:
+    Message ContestHallLobby_Text_SovereignComposerIdle
+    GoTo ContestHallLobby_SovereignComposerEnd
+
+ContestHallLobby_SovereignComposerNeedSing:
+    Message ContestHallLobby_Text_SovereignComposerNeedSing
+    GoTo ContestHallLobby_SovereignComposerEnd
+
+ContestHallLobby_SovereignComposerDeclined:
+    Message ContestHallLobby_Text_SovereignComposerDeclined
+    GoTo ContestHallLobby_SovereignComposerEnd
+
+ContestHallLobby_SovereignComposerGoToStage:
+    Message ContestHallLobby_Text_SovereignComposerGoToStage
+    GoTo ContestHallLobby_SovereignComposerEnd
+
+ContestHallLobby_SovereignComposerMeloettaCaught:
+    Message ContestHallLobby_Text_SovereignComposerMeloettaCaught
+ContestHallLobby_SovereignComposerEnd:
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
