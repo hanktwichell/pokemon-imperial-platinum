@@ -551,6 +551,9 @@ BOOL Move_SheerForceApplies(BattleContext *battleCtx, int attacker, int move);
 // Sovereign (item 11): whether the move is a ball or bomb move (blocked by Bulletproof).
 BOOL Move_IsBallOrBomb(int move);
 
+// Sovereign (item 11): whether a standing foe with Unnerve stops this battler from eating its Berry.
+BOOL Battler_UnnerveBlocksBerry(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
+
 /**
  * @brief Access a particular entry in the type-matchup table.
  *

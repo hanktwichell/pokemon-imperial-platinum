@@ -114,6 +114,7 @@ MANUAL_DESCRIPTIONS = {
 # Implemented beyond Platinum's 123 (updated as abilities get battle code).
 # Newer abilities whose battle effect is built (item 11): ability number -> what the Battle effect column says.
 IMPLEMENTED = {
+    127: "partly: foes can't eat Berries that heal, cure or trigger on a hit (damage-halving Berries not yet)",  # Unnerve
     128: "partly: Attack +2 when a foe's move lowers its stats (Intimidate not yet)",  # Defiant
     172: "partly: Sp. Atk +2 when a foe's move lowers its stats (Intimidate not yet)",  # Competitive
     160: "yes: contact costs the attacker 1/8 of its max HP (as Rough Skin)",  # Iron Barbs

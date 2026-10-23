@@ -4751,12 +4751,36 @@ BOOL BattleSystem_SynchronizeStatus(BattleSystem *battleSys, BattleContext *batt
     return FALSE;
 }
 
+// Sovereign (item 11): a standing foe with Unnerve (or As One) stops this battler from eating its Berry.
+BOOL Battler_UnnerveBlocksBerry(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
+{
+    if (Item_IsBerry(battleCtx->battleMons[battler].heldItem) == FALSE) {
+        return FALSE;
+    }
+
+    for (int i = 0; i < BattleSystem_GetMaxBattlers(battleSys); i++) {
+        int ability = Battler_Ability(battleCtx, i);
+
+        if (battleCtx->battleMons[i].curHP
+            && BattleSystem_GetBattlerSide(battleSys, i) != BattleSystem_GetBattlerSide(battleSys, battler)
+            && (ability == ABILITY_UNNERVE || ability == ABILITY_AS_ONE_GLASTRIER || ability == ABILITY_AS_ONE_SPECTRIER)) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
 BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
     BOOL result = FALSE;
     int subscript;
     int itemEffect = Battler_HeldItemEffect(battleCtx, battler);
     int itemPower = Battler_HeldItemPower(battleCtx, battler, ITEM_POWER_CHECK_ALL);
+
+    if (Battler_UnnerveBlocksBerry(battleSys, battleCtx, battler)) { // Sovereign (item 11)
+        return FALSE;
+    }
 
     if (battleCtx->battleMons[battler].curHP) {
         switch (itemEffect) {
@@ -5147,6 +5171,10 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
     BOOL result = FALSE;
     int itemEffect = Battler_HeldItemEffect(battleCtx, battler);
     int itemPower = Battler_HeldItemPower(battleCtx, battler, ITEM_POWER_CHECK_ALL);
+
+    if (Battler_UnnerveBlocksBerry(battleSys, battleCtx, battler)) { // Sovereign (item 11)
+        return FALSE;
+    }
 
     if (battleCtx->battleMons[battler].curHP) {
         switch (itemEffect) {
@@ -5554,6 +5582,10 @@ BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *b
     }
 
     if (Battler_SubstituteWasHit(battleCtx, battleCtx->defender) == TRUE) {
+        return result;
+    }
+
+    if (Battler_UnnerveBlocksBerry(battleSys, battleCtx, battleCtx->defender)) { // Sovereign (item 11)
         return result;
     }
 

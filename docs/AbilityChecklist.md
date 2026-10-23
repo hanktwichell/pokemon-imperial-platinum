@@ -9,7 +9,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 124 | Pickpocket | Gen 5 | not yet (no battle effect) |
 | 125 | Sheer Force | Gen 5 | yes: moves with a chance effect ×1.3, without the effect (or Life Orb recoil) |
 | 126 | Contrary | Gen 5 | yes: stat rises and drops are reversed |
-| 127 | Unnerve | Gen 5 | not yet (no battle effect) |
+| 127 | Unnerve | Gen 5 | partly: foes can't eat Berries that heal, cure or trigger on a hit (damage-halving Berries not yet) |
 | 128 | Defiant | Gen 5 | partly: Attack +2 when a foe's move lowers its stats (Intimidate not yet) |
 | 129 | Defeatist | Gen 5 | not yet (no battle effect) |
 | 130 | Cursed Body | Gen 5 | not yet (no battle effect) |
