@@ -74,7 +74,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 189 | Primordial Sea | Gen 6 | not yet (no battle effect) |
 | 190 | Desolate Land | Gen 6 | not yet (no battle effect) |
 | 191 | Delta Stream | Gen 6 | not yet (no battle effect) |
-| 192 | Stamina | Gen 7 | not yet (no battle effect) |
+| 192 | Stamina | Gen 7 | yes: Defense +1 stage each time a damaging move hits (`BattleSystem_TriggerAbilityOnHit`) |
 | 193 | Wimp Out | Gen 7 | not yet (no battle effect) |
 | 194 | Emergency Exit | Gen 7 | not yet (no battle effect) |
 | 195 | WaterCompaction | Gen 7 | not yet (no battle effect) |

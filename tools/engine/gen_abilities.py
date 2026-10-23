@@ -112,7 +112,10 @@ MANUAL_DESCRIPTIONS = {
     314: 'Takes half damage from contact moves.',
 }
 # Implemented beyond Platinum's 123 (updated as abilities get battle code).
-IMPLEMENTED = {}
+# Newer abilities whose battle effect is built (item 11): ability number -> what the Battle effect column says.
+IMPLEMENTED = {
+    192: "yes: Defense +1 stage each time a damaging move hits (`BattleSystem_TriggerAbilityOnHit`)",  # Stamina
+}
 
 
 def rd(api, name):
