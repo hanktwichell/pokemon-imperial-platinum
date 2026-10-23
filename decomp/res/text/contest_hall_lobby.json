@@ -231,6 +231,77 @@
         "It’s a photo frame for a Pokémon\n",
         "portrait."
       ]
+    },
+    {
+      "id": "ContestHallLobby_Text_SovereignComposerIdle",
+      "en_US": [
+        "I write the music for the Contests.\r",
+        "Lately an old melody keeps running\n",
+        "through my head. Where’s it from?"
+      ]
+    },
+    {
+      "id": "ContestHallLobby_Text_SovereignComposerRelicSong",
+      "en_US": [
+        "The Unova Chronicle? Then you’ve\n",
+        "read of the Relic Song!\r",
+        "It’s an old song from Unova. Legend\n",
+        "says a Pokémon of song sang it.\r",
+        "I’ve written the melody down, but it\n",
+        "needs a voice that can Sing.\r"
+      ]
+    },
+    {
+      "id": "ContestHallLobby_Text_SovereignComposerNeedSing",
+      "en_US": [
+        "If one of your Pokémon knew Sing,\n",
+        "it could carry the melody.\r",
+        "Come back with one, won’t you?"
+      ]
+    },
+    {
+      "id": "ContestHallLobby_Text_SovereignComposerAskSing",
+      "en_US": [
+        "Oh! Your {STRVAR_1 1, 0, 0} knows Sing!\n",
+        "Will it sing the Relic Song?"
+      ]
+    },
+    {
+      "id": "ContestHallLobby_Text_SovereignComposerDeclined",
+      "en_US": [
+        "Oh... Come back if you change\n",
+        "your mind."
+      ]
+    },
+    {
+      "id": "ContestHallLobby_Text_SovereignComposerSang",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} sang the Relic Song!\r"
+      ]
+    },
+    {
+      "id": "ContestHallLobby_Text_SovereignComposerAnswered",
+      "en_US": [
+        "...Did you hear that?\r",
+        "Something sang back, from the stage!\n",
+        "Go and see!"
+      ]
+    },
+    {
+      "id": "ContestHallLobby_Text_SovereignComposerGoToStage",
+      "en_US": [
+        "Something answered the Relic Song\n",
+        "from the stage. Go and see!"
+      ]
+    },
+    {
+      "id": "ContestHallLobby_Text_SovereignComposerMeloettaCaught",
+      "en_US": [
+        "So the Relic Song belonged to\n",
+        "MELOETTA...\r",
+        "Now I can finish my composition.\n",
+        "Thank you!"
+      ]
     }
   ]
 }

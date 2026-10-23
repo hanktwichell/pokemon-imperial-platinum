@@ -219,6 +219,8 @@ field_sprites_textures_single_frame = [
     { 'file': 'pokemon/legendary_terrakion.png', 'basename': 'sovlegend02'},
     { 'file': 'pokemon/legendary_cobalion.png', 'basename': 'sovlegend03'},
     { 'file': 'pokemon/legendary_keldeo.png', 'basename': 'sovlegend04'},
+    { 'file': 'pokemon/legendary_meloetta.png', 'basename': 'sovlegend05'},
+    { 'file': 'pokemon/legendary_genesect.png', 'basename': 'sovlegend06'},
 ]
 
 field_sprites_textures_single_frame_pl_suffix = [
