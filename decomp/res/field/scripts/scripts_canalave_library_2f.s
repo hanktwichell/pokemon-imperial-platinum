@@ -165,7 +165,8 @@ CanalaveLibrary2F_Movement_PlayerMoveAside:
     EndMovement
 
 @ Sovereign (the Chronicles, docs/PostgameLegendaries.md): the Legend Archivist, here from the first Hall of Fame. His
-@ first talk opens the Unova Chronicle (VAR_SOVEREIGN_CHRONICLE 1).
+@ first talk opens the Unova Chronicle (VAR_SOVEREIGN_CHRONICLE 1). After that he tells where each sword not caught yet
+@ stands; once all three are caught, he sends the player to Lake Valor for Keldeo.
 CanalaveLibrary2F_SovereignArchivist:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
@@ -176,13 +177,39 @@ CanalaveLibrary2F_SovereignArchivist:
     GoTo CanalaveLibrary2F_SovereignArchivistEnd
 
 CanalaveLibrary2F_SovereignArchivistUnova:
-    SovereignCheckSpeciesCaught SPECIES_VIRIZION, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, CanalaveLibrary2F_SovereignArchivistVirizionCaught
-    Message CanalaveLibrary2F_Text_SovereignArchivistVirizion
+    SovereignCheckSpeciesCaught SPECIES_COBALION, VAR_0x8004
+    SovereignCheckSpeciesCaught SPECIES_TERRAKION, VAR_0x8005
+    SovereignCheckSpeciesCaught SPECIES_VIRIZION, VAR_0x8006
+    GoToIfEq VAR_0x8004, FALSE, CanalaveLibrary2F_SovereignArchivistSwords
+    GoToIfEq VAR_0x8005, FALSE, CanalaveLibrary2F_SovereignArchivistSwords
+    GoToIfEq VAR_0x8006, FALSE, CanalaveLibrary2F_SovereignArchivistSwords
+    SovereignCheckSpeciesCaught SPECIES_KELDEO, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, CanalaveLibrary2F_SovereignArchivistKeldeoCaught
+    Message CanalaveLibrary2F_Text_SovereignArchivistKeldeo
     GoTo CanalaveLibrary2F_SovereignArchivistEnd
 
-CanalaveLibrary2F_SovereignArchivistVirizionCaught:
-    Message CanalaveLibrary2F_Text_SovereignArchivistVirizionCaught
+CanalaveLibrary2F_SovereignArchivistSwords:
+    Message CanalaveLibrary2F_Text_SovereignArchivistSwords
+    CallIfEq VAR_0x8004, FALSE, CanalaveLibrary2F_SovereignArchivistCobalion
+    CallIfEq VAR_0x8005, FALSE, CanalaveLibrary2F_SovereignArchivistTerrakion
+    CallIfEq VAR_0x8006, FALSE, CanalaveLibrary2F_SovereignArchivistVirizion
+    Message CanalaveLibrary2F_Text_SovereignArchivistKeepReading
+    GoTo CanalaveLibrary2F_SovereignArchivistEnd
+
+CanalaveLibrary2F_SovereignArchivistCobalion:
+    Message CanalaveLibrary2F_Text_SovereignArchivistCobalion
+    Return
+
+CanalaveLibrary2F_SovereignArchivistTerrakion:
+    Message CanalaveLibrary2F_Text_SovereignArchivistTerrakion
+    Return
+
+CanalaveLibrary2F_SovereignArchivistVirizion:
+    Message CanalaveLibrary2F_Text_SovereignArchivistVirizion
+    Return
+
+CanalaveLibrary2F_SovereignArchivistKeldeoCaught:
+    Message CanalaveLibrary2F_Text_SovereignArchivistKeldeoCaught
 CanalaveLibrary2F_SovereignArchivistEnd:
     WaitButton
     CloseMessage

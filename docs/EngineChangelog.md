@@ -105,6 +105,38 @@ others aren't tested in game yet.
 **Verified in the test build:** Turtwig's Intrepid Sword message on entry; Garchomp's Protean made it Fire/Fire before
 Heat Wave; Heat Wave raised Venusaur's Speed 6 stages through Steam Engine; Charizard's Magic Bounce sent Turtwig's
 Growl back and Turtwig's Attack fell. The others in this part aren't tested in game yet.
+## E11 — The Chronicles: Terrakion, Cobalion and Keldeo
+
+The rest of the Swords of Justice, and the young sword (`docs/PostgameLegendaries.md`):
+- **Terrakion** (Lv. 65) stands in the rock pocket at the north end of Route 227, once the Unova Chronicle is open.
+- **Cobalion** (Lv. 65) stands in the top pocket of Iron Island B2F's right room, the side cave reached from B1F.
+- **Keldeo** (Lv. 55) waits in the clearing on Lake Valor's north-west shore, but only while Cobalion, Terrakion and
+  Virizion are all in the party. It comes in its Ordinary Form.
+- All four work like Virizion: "{species} cried out!", the battle, and after a win "{species} vanished... It might
+  show itself here again." until it's caught. The player can't run from these battles, as in vanilla's legendary
+  battles ("Can't escape!"). The entry below said a run makes Virizion vanish; that was wrong and is corrected.
+- **The Archivist's later talks** now list where each sword not caught yet stands:
+  - "The Chronicle names all three swords: COBALION, TERRAKION and VIRIZION. They never stray far from each other,
+    and now all three are here in Sinnoh. Here's where they've been seen:"
+  - "COBALION: deep inside Iron Island, in a side cave two floors down."
+  - "TERRAKION: in a hollow among the rocks at the north end of Route 227."
+  - "VIRIZION: in the north of Eterna Forest, by the Old Chateau."
+  - With all three caught: "The Chronicle tells of a fourth one, a young Pokémon named KELDEO... They say it comes to
+    the water when the three swords are near. Lake Valor, perhaps? Go there with COBALION, TERRAKION and VIRIZION."
+  - With Keldeo caught: "KELDEO too! All four swords of Unova, here in Sinnoh... There's more in this Chronicle."
+- Iron Island B2F's right room had no scripts of its own. It now has its own script archives, added at the end of the
+  archive list so no other map's scripts move.
+- Fixed a comment in the common scripts: the Totem trial's description had ended up above the legendary encounter.
+- **Verified** (test build; a temporary patch set the game completed, opened the Chronicle, added Master Balls,
+  raised the party to level 100 and added test warps):
+  - The Archivist's list with no sword caught, then without Terrakion once it was caught.
+  - Terrakion and Cobalion on the map; a Master Ball catch of each, and the maps empty afterwards.
+  - Cobalion knocked out: the vanished line, the room empty, Cobalion back on the next visit. A run attempt gets
+    "Can't escape!".
+  - Lake Valor without the three swords in the party: no Keldeo. With them: Keldeo there, then caught.
+  - The Archivist's Keldeo hint and his line once Keldeo is caught.
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+
 ## E11 — The Chronicles begin: the Legend Archivist and Virizion
 
 The first part of the post-game legendaries (`docs/PostgameLegendaries.md`):
@@ -115,8 +147,8 @@ The first part of the post-game legendaries (`docs/PostgameLegendaries.md`):
 - **Virizion** (Lv. 65) stands at the top of Eterna Forest's north corridor, past the Cut trees, once the Chronicle
   is open.
   - Talking to it: "VIRIZION cried out!", then the battle.
-  - After a win or a run: "VIRIZION vanished... It might show itself here again." It is back on the next visit,
-    until it's caught.
+  - After a win: "VIRIZION vanished... It might show itself here again." It is back on the next visit, until it's
+    caught. (The player can't run from it: see the entry above.)
 - **For the rest of the Chronicles:** a shared encounter script, a script command that checks the Pokédex for a
   caught species (so no flag is needed per Pokémon), and overworld sprites made from PokeAPI's front sprites by
   `tools/sprites/make_legendary_overworld.py`. Cobalion, Terrakion and Keldeo are drawn already.
@@ -124,7 +156,7 @@ The first part of the post-game legendaries (`docs/PostgameLegendaries.md`):
 - `docs/PostgameLegendaries.md` now shows what is built.
 - **Verified** (test build; a temporary patch set the game completed and added Master Balls, with test warps):
   - Virizion hidden before the Chronicle opens, the Archivist's lines, then Virizion in the forest.
-  - A run (the vanished line, gone, and back on the next visit), and a Master Ball catch.
+  - The vanished line (gone, and back on the next visit), and a Master Ball catch.
   - After the catch, the Archivist's new line and the forest empty.
   - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
 

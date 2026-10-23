@@ -15,8 +15,10 @@ hub:
   note: Chapters open one after another (each needs the previous chapter's "key" legendary caught), so the post-game has a guided order.
   built: >-
     The Archivist (CB-0035) stands in Canalave Library 2F from the first Hall of Fame; his first talk opens the Unova
-    Chronicle (VAR_SOVEREIGN_CHRONICLE). Static encounters share CommonScript_SovereignLegendaryEncounter: each stays on
-    the map until the Pokédex has it as caught, and vanishes after a win or a run until the next visit.
+    Chronicle (VAR_SOVEREIGN_CHRONICLE). Later talks name where each Swords of Justice member not caught yet stands,
+    then point to Keldeo (CB-0036). Static encounters share CommonScript_SovereignLegendaryEncounter: each stays on the
+    map until the Pokédex has it as caught, and vanishes after it's knocked out until the next visit (as in vanilla
+    legendary battles, the player can't run).
 
 quests:
   # ---------------------------------------------------------------- Unova Chronicle
@@ -30,15 +32,22 @@ quests:
     name: Swords of Justice
     species: [Cobalion, Terrakion, Virizion]
     level: 65
-    location: "Cobalion — Iron Island B2F (new dead end); Terrakion — Route 227 rock cave; Virizion — Eterna Forest (north clearing)"
+    location: "Cobalion — Iron Island B2F (side cave); Terrakion — Route 227 (rock pocket); Virizion — Eterna Forest (north corridor)"
     steps: All three are static encounters as soon as the chapter opens.
-    built: "Virizion (CB-0035): at the top of Eterna Forest's north corridor (80, 10), past the Cut trees. Cobalion and Terrakion: not yet."
+    built: >-
+      Virizion (CB-0035): at the top of Eterna Forest's north corridor (80, 10), past the Cut trees. Terrakion
+      (CB-0036): in the rock pocket at the north end of Route 227 (759, 258). Cobalion (CB-0036): in the top pocket of
+      Iron Island B2F's right room (17, 1), the side cave reached from B1F; an existing dead end in place of a new one.
   - chapter: Unova Chronicle
     name: The Young Sword
     species: [Keldeo]
     level: 55
-    location: Lake Valor (north shore)
+    location: Lake Valor (north-west clearing)
     steps: Visit with Cobalion, Terrakion and Virizion in the party.
+    built: >-
+      Keldeo (CB-0036): in the clearing at Lake Valor's north-west shore (36, 14), there while Cobalion, Terrakion and
+      Virizion are all in the party, until it's caught. It comes in its Ordinary Form; the Resolute Form comes with the
+      battle forms (FM).
   - chapter: Unova Chronicle
     name: Forces of Nature
     species: [Tornadus, Thundurus, Landorus, Enamorus]
