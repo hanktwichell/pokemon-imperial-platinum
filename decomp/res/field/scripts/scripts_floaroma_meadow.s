@@ -1,6 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/floaroma_meadow.h"
 #include "res/field/events/events_floaroma_meadow.h"
+#include "constants/sovereign_totem_trials.h"
 
 
     ScriptEntry FloaromaMeadow_OnTransition
@@ -10,10 +11,34 @@
     ScriptEntry FloaromaMeadow_PokefanM
     ScriptEntry FloaromaMeadow_Dummy6
     ScriptEntry FloaromaMeadow_ItemWorksKey
+    ScriptEntry FloaromaMeadow_TotemRibombee
+    ScriptEntry FloaromaMeadow_OnLoad
     ScriptEntryEnd
 
 FloaromaMeadow_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_FLOAROMA_MEADOW
+    @ Sovereign: Totem Ribombee's trial opens once Mars is beaten at the Valley Windworks.
+    CallIfSet FLAG_SOVEREIGN_TOTEM_TRIAL_RIBOMBEE, FloaromaMeadow_HideTotemRibombee
+    CallIfLt VAR_VALLEY_WINDWORKS_STATE, 2, FloaromaMeadow_HideTotemRibombee
+    End
+
+FloaromaMeadow_HideTotemRibombee:
+    SetFlag FLAG_MAP_LOCAL_HIDE_TOTEM
+    Return
+
+FloaromaMeadow_OnLoad:
+    GoToIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, FloaromaMeadow_RemoveTotemRibombee
+    End
+
+FloaromaMeadow_RemoveTotemRibombee:
+    RemoveObject LOCALID_TOTEM_RIBOMBEE
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
+    End
+
+@ Sovereign (decision 18): the Totem Ribombee trial.
+FloaromaMeadow_TotemRibombee:
+    SetVar VAR_0x8004, TOTEM_TRIAL_RIBOMBEE
+    Common_SovereignTotemTrial
     End
 
 FloaromaMeadow_CoordEvent_Grunts:

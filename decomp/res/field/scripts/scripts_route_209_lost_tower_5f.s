@@ -1,10 +1,41 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_209_lost_tower_5f.h"
+#include "res/field/events/events_route_209_lost_tower_5f.h"
+#include "constants/sovereign_totem_trials.h"
 
 
     ScriptEntry Route209LostTower5F_OldWoman1
     ScriptEntry Route209LostTower5F_OldWoman2
+    ScriptEntry Route209LostTower5F_OnTransition
+    ScriptEntry Route209LostTower5F_TotemMarowak
+    ScriptEntry Route209LostTower5F_OnLoad
     ScriptEntryEnd
+
+@ Sovereign: Totem Alolan Marowak's trial opens once Fantina is beaten (the Relic Badge).
+Route209LostTower5F_OnTransition:
+    CallIfSet FLAG_SOVEREIGN_TOTEM_TRIAL_MAROWAK, Route209LostTower5F_HideTotemMarowak
+    CheckBadgeAcquired BADGE_ID_RELIC, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, Route209LostTower5F_HideTotemMarowak
+    End
+
+Route209LostTower5F_HideTotemMarowak:
+    SetFlag FLAG_MAP_LOCAL_HIDE_TOTEM
+    Return
+
+Route209LostTower5F_OnLoad:
+    GoToIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, Route209LostTower5F_RemoveTotemMarowak
+    End
+
+Route209LostTower5F_RemoveTotemMarowak:
+    RemoveObject LOCALID_TOTEM_MAROWAK
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
+    End
+
+@ Sovereign (decision 18): the Totem Alolan Marowak trial.
+Route209LostTower5F_TotemMarowak:
+    SetVar VAR_0x8004, TOTEM_TRIAL_MAROWAK
+    Common_SovereignTotemTrial
+    End
 
 Route209LostTower5F_OldWoman1:
     PlaySE SE_CONFIRM_sseq_3

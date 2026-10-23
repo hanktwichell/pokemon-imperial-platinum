@@ -17,6 +17,8 @@ Talking to it starts the trial (`CommonScript_SovereignTotemTrial` in `scripts_c
 - **Win or catch.** The trial is done (its `FLAG_SOVEREIGN_TOTEM_TRIAL_*` flag, which also hides the Totem), and the
   Totem leaves its crown piece on the ground (`docs/Story.md`, *The crown*). The 11th piece merges them into the Crown.
 - **Lose.** The player blacks out and the Totem is back next time.
+- **When it appears.** A Totem whose place opens before its trial does (the "After" column) stays hidden until that
+  fight is won: the map's OnTransition script hides it with `FLAG_MAP_LOCAL_HIDE_TOTEM`.
 
 The places, levels and auras are approved by the owner; the helpers are a proposal. The auras' stages marked "check"
 come from a second guide where Serebii gives none.
@@ -24,10 +26,10 @@ come from a second guide where Serebii gives none.
 | # | Totem | Level | Place | After | Aura | Helpers | On the map |
 |---|---|---|---|---|---|---|---|
 | 1 | Totem Gumshoos | 18 | Route 205 (South) | Leader Roark | +1 Defense | Yungoos, Yungoos, Yungoos (Lv. 16) | the flower bed by the river, x 197 z 656 (reachable before Mars; the north bank is past the Galactic grunts) |
-| 2 | Totem Ribombee | 22 | Floaroma Meadow | Commander Mars (Valley Windworks) | every stat (stages: check, +1 or +2) | Wingull, Chansey, Cutiefly (Lv. 20) | not yet |
-| 3 | Totem Vikavolt | 25 | Eterna Forest | Commander Mars (Valley Windworks) | +1 to every stat (stages: check) | Charjabug, Charjabug, Charjabug (Lv. 23) | not yet |
-| 4 | Totem Disguised Mimikyu | 31 | Old Chateau | Commander Jupiter (Eterna) | +1 to every stat | Haunter, Gengar, Banette (Lv. 29) | not yet |
-| 5 | Totem Alolan Marowak | 34 | Lost Tower | Leader Fantina | +2 Speed (stages: check) | Salazzle, Salandit, Salandit (Lv. 32) | not yet |
+| 2 | Totem Ribombee | 22 | Floaroma Meadow | Commander Mars (Valley Windworks) | every stat (stages: check, +1 or +2) | Wingull, Chansey, Cutiefly (Lv. 20) | the flowers past the entrance, x 18 z 43; shown once Mars is beaten (the meadow opens earlier) |
+| 3 | Totem Vikavolt | 25 | Eterna Forest | Commander Mars (Valley Windworks) | +1 to every stat (stages: check) | Charjabug, Charjabug, Charjabug (Lv. 23) | a clearing west of the path, x 22 z 68 (the forest opens after Mars) |
+| 4 | Totem Disguised Mimikyu | 31 | Old Chateau | Commander Jupiter (Eterna) | +1 to every stat | Haunter, Gengar, Banette (Lv. 29) | the dining area, x 26 z 10; shown once Jupiter has left the Eterna Building (Cut opens the chateau earlier) |
+| 5 | Totem Alolan Marowak | 34 | Lost Tower | Leader Fantina | +2 Speed (stages: check) | Salazzle, Salandit, Salandit (Lv. 32) | 5F, left of the stairs, x 3 z 4; shown with the Relic Badge (the tower opens earlier) |
 | 6 | Totem Alolan Raticate | 37 | Team Galactic Warehouse (Veilstone City) | Leader Fantina | +1 Defense | Alolan Rattata, Alolan Rattata, Alolan Rattata (Lv. 35) | not yet |
 | 7 | Totem Lurantis | 42 | Great Marsh (Area 3/4) | Leader Maylene | +2 Speed (stages: check) | Trumbeak, Castform, Comfey (Lv. 40) | not yet |
 | 8 | Totem Araquanid | 45 | Route 213 (Valor Lakefront beach) | Leader Wake | +1 Speed (stages: check, another guide says +2) | Dewpider, Masquerain, Dewpider (Lv. 43) | not yet |

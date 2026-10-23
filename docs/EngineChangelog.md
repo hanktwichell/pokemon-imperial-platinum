@@ -4,6 +4,28 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## FM — Totems Ribombee, Vikavolt, Mimikyu and Alolan Marowak on the map (decision 18)
+
+Five of the 11 Totems now stand on the map (`docs/TotemTrials.md`, "On the map").
+- **Totem Ribombee**, Floaroma Meadow: in the flowers just past the entrance (x 18, z 43).
+- **Totem Vikavolt**, Eterna Forest: in a clearing west of the path (x 22, z 68).
+- **Totem Mimikyu** (Disguised), the Old Chateau: in the dining area (x 26, z 10).
+- **Totem Alolan Marowak**, Lost Tower 5F: left of the stairs (x 3, z 4), in the tower's fog.
+- **Each trial opens after its "After" fight.** The meadow, the chateau and the tower can be reached earlier, so
+  those Totems stay hidden until then: Ribombee until Mars is beaten at the Valley Windworks, Mimikyu until Jupiter has
+  left the Eterna Building, Marowak until the Relic Badge. Eterna Forest itself opens after Mars, so Vikavolt needs no
+  check.
+  - How: the map's OnTransition script sets `FLAG_MAP_LOCAL_HIDE_TOTEM` (the unused map-local flag 0x3E), the
+    Totem's hidden flag, while the trial is done or not yet open. Map-local flags are cleared on every map change.
+- **Test build:** SELECT+L+R's stops 10 to 13 are in front of Ribombee, Vikavolt, Mimikyu and Marowak.
+- **Verified in the test build:**
+  - In a new game, Ribombee, Mimikyu and Marowak are hidden and Vikavolt stands in the forest.
+  - In temporary builds with the fight before each one won: Ribombee shows, and its trial runs through to "A found an
+    Oval Emerald!" with the Totem gone afterwards. Mimikyu and Marowak show, and their trials open (Mimikyu with
+    Haunter, Marowak with Salazzle).
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+- **Not done yet:** Alolan Raticate, Lurantis, Araquanid, Salazzle, Kommo-o and Togedemaru.
+
 ## FM — The first Totem trial on the map, and the crown pieces (decisions 18 and 23)
 
 Totem Gumshoos stands on Route 205 South, and every trial now leaves its crown piece. The other 10 Totems use the same

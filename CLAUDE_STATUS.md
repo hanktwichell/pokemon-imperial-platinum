@@ -1877,3 +1877,43 @@ and trial battle) is merged.
 2. **The other 10 Totems on the map.** For each, an object on ground the player can reach at that point in the story,
    an OnLoad that removes it, and the two-line script. Then the Galactic gates (`Story.md`).
 3. **1 vs 2 Totem trials** for a player with one able Pokémon. Then the battle forms with item 11's abilities.
+
+---
+
+## CB-0029 — 2026-10-23, 2:11 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** four more Totems on the map (decision 18). PR #36 (Totem Gumshoos and the crown pieces) is merged.
+- **Totem Ribombee**, Floaroma Meadow (x 18, z 43), in the flowers just past the entrance.
+- **Totem Vikavolt**, Eterna Forest (x 22, z 68), in a clearing west of the path.
+- **Totem Mimikyu**, the Old Chateau dining area (x 26, z 10).
+- **Totem Alolan Marowak**, Lost Tower 5F (x 3, z 4), left of the stairs.
+- **Each trial opens after its "After" fight.** The meadow, the chateau and the tower can be reached earlier, so those
+  Totems stay hidden until it's won: Ribombee until Mars (`VAR_VALLEY_WINDWORKS_STATE` ≥ 2), Mimikyu until Jupiter
+  (`FLAG_TEAM_GALACTIC_LEFT_ETERNA_BUILDING`), Marowak until the Relic Badge.
+  - Their hidden flag is `FLAG_MAP_LOCAL_HIDE_TOTEM` (the unused map-local 0x3E), which the map's OnTransition sets
+    while the trial is done or not yet open.
+  - Gumshoos and Vikavolt keep the trial flag as their hidden flag, since their places open with the trial.
+- **Test build:** SELECT+L+R's stops 10 to 13 are in front of Ribombee, Vikavolt, Mimikyu and Marowak.
+- **Verified:**
+  - A new game: Ribombee, Mimikyu and Marowak hidden, Vikavolt shown and its talk works.
+  - Temporary builds with the earlier fights won: Ribombee's trial run through to the Oval Emerald, the Totem gone after.
+    Mimikyu's and Marowak's trials open (Haunter and Salazzle helpers).
+  - The release ROM builds without warnings and passes boot smoke; docs regenerate clean.
+
+**Files modified:**
+- `data/totem_trials.yaml` (`map:` for the four), `tools/engine/gen_totem_trials.py`, `docs/TotemTrials.md`
+- `decomp/generated/vars_flags.txt` (`FLAG_MAP_LOCAL_HIDE_TOTEM`), `decomp/src/script_manager.c` (test warps)
+- Events, scripts and init scripts of `floaroma_meadow`, `eterna_forest`, `old_chateau_dining_area` and
+  `route_209_lost_tower_5f` (`decomp/res/field/events/`, `decomp/res/field/scripts/`)
+- `docs/EngineChangelog.md`, `docs/TechnicalDesign.md` §4b, `docs/EngineRoadmap.md`, `docs/ProjectStatus.md`,
+  `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR when green.
+2. **The last 6 Totems:**
+   - Alolan Raticate (Galactic Warehouse; check when the warehouse opens and closes);
+   - Lurantis (Great Marsh: the Safari Game's ball rules may clash with a trial);
+   - Araquanid (Route 213 beach), Salazzle (Fuego Ironworks, needs Surf);
+   - Kommo-o (Mt. Coronet to Spear Pillar);
+   - Togedemaru (Vista Lighthouse).
+3. **The Galactic gates** (`Story.md`), then 1 vs 2 trials for a player with one able Pokémon.

@@ -229,6 +229,10 @@ implemented.
     - The common script hides the Totem by setting `FLAG_MAP_LOCAL_REMOVE_OBJECT` around the battle: map objects
       survive a battle, so the map's OnLoad script removes the Totem when the field comes back, as Platinum does for
       Regigigas. Removing it sets its hidden flag; a loss clears it again (`SovereignClearFlagFromVar`).
+    - A Totem whose place opens before its trial uses `FLAG_MAP_LOCAL_HIDE_TOTEM` (map-local 0x3E) as its hidden flag
+      instead: the map's OnTransition sets it while the trial is done or not yet open (Floaroma Meadow, the Old
+      Chateau dining area, Lost Tower 5F). Map-local flags are cleared on every map change, so this check runs
+      again on each visit.
     - The piece is `ITEM_GOLD_SHARD + trial`: the 11 piece constants are consecutive in trial order. The merge into
       `ITEM_CROWN` checks and removes `ITEM_GOLD_SHARD`..`ITEM_CROWN_DIAMOND` in a loop.
 ### 5. Trainer data
