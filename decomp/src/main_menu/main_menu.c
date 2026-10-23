@@ -387,17 +387,9 @@ static void DetectGBAGame(MainMenuAppData *appData)
 
     SetGBACartridgeVersion(gbaVersion);
 
-    if (Pokedex_IsNationalDexObtained(appData->pokedex) == FALSE) {
-        return;
-    }
-
-    if (GBACart_GetLanguage() != gGameLanguage) {
-        return;
-    }
-
-    appData->agbGameType = GBACart_GetAGBGameType() + 1;
-
-    MainMenuUtil_UnsetGBACartIRQFunc();
+    // Sovereign (decision 22): no "Migrate from..." option. Pal Park and GBA migration are removed, and Pal Park's
+    // transfer storage holds the fusion partners (src/sovereign_form_items.c). The GBA game still counts for
+    // dual-slot encounters (SetGBACartridgeVersion above).
 }
 
 /*

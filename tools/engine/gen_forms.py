@@ -44,11 +44,15 @@ VANILLA_FORMS_WITH_DATA = 12  # Deoxys x3, Wormadam x2, Giratina, Shaymin, Rotom
 
 KIND_MEGA, KIND_PRIMAL, KIND_MEGA_BY_MOVE = "SOVEREIGN_FORM_MEGA", "SOVEREIGN_FORM_PRIMAL", "SOVEREIGN_FORM_MEGA_BY_MOVE"
 KIND_HELD_ITEM, KIND_BATTLE_ITEM = "SOVEREIGN_FORM_HELD_ITEM", "SOVEREIGN_FORM_BATTLE_ITEM"
+KIND_KEY_ITEM, KIND_FUSION = "SOVEREIGN_FORM_KEY_ITEM", "SOVEREIGN_FORM_FUSION"
 MEGA_BY_MOVE = {"Dragon Ascent (move; no stone)": "MOVE_DRAGON_ASCENT"}  # Mega Rayquaza
 
 # Milestone FM forms built so far: PokeAPI identifier (data/forms.csv) -> (kind, the item that gives the form).
 #   SOVEREIGN_FORM_HELD_ITEM    the form follows the held item, out of battle too (Ogerpon's masks, Origin Dialga/Palkia)
 #   SOVEREIGN_FORM_BATTLE_ITEM  the Pokemon takes the form in battle while holding the item (Crowned Zacian/Zamazenta)
+#   SOVEREIGN_FORM_KEY_ITEM     using the key item on the Pokemon switches it in and out of the form (Reveal Glass)
+#   SOVEREIGN_FORM_FUSION       the fusion item fuses the Pokemon with this partner species (src/sovereign_form_items.c)
+# A species' forms are numbered in this order, after its Megas, as in the official games (Kyurem: 1 White, 2 Black).
 FM_FORMS = {
     "zacian-crowned": (KIND_BATTLE_ITEM, "ITEM_RUSTED_SWORD"),
     "zamazenta-crowned": (KIND_BATTLE_ITEM, "ITEM_RUSTED_SHIELD"),
@@ -57,7 +61,21 @@ FM_FORMS = {
     "ogerpon-cornerstone-mask": (KIND_HELD_ITEM, "ITEM_CORNERSTONE_MASK"),
     "dialga-origin": (KIND_HELD_ITEM, "ITEM_ADAMANT_CRYSTAL"),
     "palkia-origin": (KIND_HELD_ITEM, "ITEM_LUSTROUS_GLOBE"),
+    "tornadus-therian": (KIND_KEY_ITEM, "ITEM_REVEAL_GLASS"),
+    "thundurus-therian": (KIND_KEY_ITEM, "ITEM_REVEAL_GLASS"),
+    "landorus-therian": (KIND_KEY_ITEM, "ITEM_REVEAL_GLASS"),
+    "enamorus-therian": (KIND_KEY_ITEM, "ITEM_REVEAL_GLASS"),
+    "hoopa-unbound": (KIND_KEY_ITEM, "ITEM_PRISON_BOTTLE"),
+    "kyurem-white": (KIND_FUSION, "SPECIES_RESHIRAM"),
+    "kyurem-black": (KIND_FUSION, "SPECIES_ZEKROM"),
+    "necrozma-dusk": (KIND_FUSION, "SPECIES_SOLGALEO"),
+    "necrozma-dawn": (KIND_FUSION, "SPECIES_LUNALA"),
+    "calyrex-ice": (KIND_FUSION, "SPECIES_GLASTRIER"),
+    "calyrex-shadow": (KIND_FUSION, "SPECIES_SPECTRIER"),
 }
+
+# PokeAPI names both of Calyrex's fused abilities "As One"; the decomp has one per form.
+ABILITY_OVERRIDES = {"calyrex-ice": ["ABILITY_AS_ONE_GLASTRIER"], "calyrex-shadow": ["ABILITY_AS_ONE_SPECTRIER"]}
 
 
 def form_dir(form, species):
@@ -111,7 +129,8 @@ def load_rows():
         species = row["base_species"]
         stem = stem_of(species)
         numbers[stem] = numbers.get(stem, 0) + 1
-        abilities = ["ABILITY_" + stem_of(a.replace(" (H)", "")).upper() for a in row["abilities"].split("; ")]
+        abilities = ABILITY_OVERRIDES.get(ident) or [
+            "ABILITY_" + stem_of(a.replace(" (H)", "")).upper() for a in row["abilities"].split("; ")]
         hidden = [a for a in row["abilities"].split("; ") if a.endswith(" (H)")]
         normal = abilities[:len(abilities) - len(hidden)]
         form = {
@@ -121,7 +140,8 @@ def load_rows():
             "types": [type_const(t) for t in row["types"].split("/")],
             "stats": {k: int(row[k]) for k in ("hp", "atk", "def", "spa", "spd", "spe")},
         }
-        for const, table_name in [(form["species"], "species"), (trigger, "items")] + [(a, "abilities") for a in abilities]:
+        trigger_table = "species" if kind == KIND_FUSION else "items"
+        for const, table_name in [(form["species"], "species"), (trigger, trigger_table)] + [(a, "abilities") for a in abilities]:
             if const not in symbols[table_name]:
                 sys.exit(f"{row['form']}: {const} isn't in generated/{table_name}.txt")
         forms.append(form)
@@ -193,6 +213,8 @@ enum SovereignFormKind {{
     {KIND_MEGA_BY_MOVE}, // Mega Rayquaza: knows the move instead of holding a stone
     {KIND_HELD_ITEM}, // the form follows the held item, out of battle too (Ogerpon's masks)
     {KIND_BATTLE_ITEM}, // the form while holding the item in battle (Crowned Zacian)
+    {KIND_KEY_ITEM}, // a key item used on the Pokemon switches the form (Reveal Glass)
+    {KIND_FUSION}, // fused with the partner species in the trigger field (DNA Splicers)
 }};
 
 #endif // POKEPLATINUM_CONSTANTS_SOVEREIGN_FORMS_H
@@ -212,7 +234,7 @@ typedef struct SovereignForm {{
     u16 species;
     u8 form;
     u8 kind; // enum SovereignFormKind
-    u16 trigger; // the item it holds, or the move it knows (SOVEREIGN_FORM_MEGA_BY_MOVE)
+    u16 trigger; // the item it holds or is used on it, the move it knows (MEGA_BY_MOVE), or its partner species (FUSION)
 }} SovereignForm;
 
 // In packing order: entry i's data is personal index SOVEREIGN_FORM_PERSONAL_START + i.

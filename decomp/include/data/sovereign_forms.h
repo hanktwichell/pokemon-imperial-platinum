@@ -11,7 +11,7 @@ typedef struct SovereignForm {
     u16 species;
     u8 form;
     u8 kind; // enum SovereignFormKind
-    u16 trigger; // the item it holds, or the move it knows (SOVEREIGN_FORM_MEGA_BY_MOVE)
+    u16 trigger; // the item it holds or is used on it, the move it knows (MEGA_BY_MOVE), or its partner species (FUSION)
 } SovereignForm;
 
 // In packing order: entry i's data is personal index SOVEREIGN_FORM_PERSONAL_START + i.
@@ -122,6 +122,17 @@ static const SovereignForm sSovereignForms[SOVEREIGN_FORM_COUNT] = {
     { SPECIES_OGERPON, 3, SOVEREIGN_FORM_HELD_ITEM, ITEM_CORNERSTONE_MASK }, // Cornerstone Mask Ogerpon
     { SPECIES_DIALGA, 1, SOVEREIGN_FORM_HELD_ITEM, ITEM_ADAMANT_CRYSTAL }, // Origin Dialga
     { SPECIES_PALKIA, 1, SOVEREIGN_FORM_HELD_ITEM, ITEM_LUSTROUS_GLOBE }, // Origin Palkia
+    { SPECIES_TORNADUS, 1, SOVEREIGN_FORM_KEY_ITEM, ITEM_REVEAL_GLASS }, // Therian Tornadus
+    { SPECIES_THUNDURUS, 1, SOVEREIGN_FORM_KEY_ITEM, ITEM_REVEAL_GLASS }, // Therian Thundurus
+    { SPECIES_LANDORUS, 1, SOVEREIGN_FORM_KEY_ITEM, ITEM_REVEAL_GLASS }, // Therian Landorus
+    { SPECIES_ENAMORUS, 1, SOVEREIGN_FORM_KEY_ITEM, ITEM_REVEAL_GLASS }, // Therian Enamorus
+    { SPECIES_HOOPA, 1, SOVEREIGN_FORM_KEY_ITEM, ITEM_PRISON_BOTTLE }, // Hoopa Unbound
+    { SPECIES_KYUREM, 1, SOVEREIGN_FORM_FUSION, SPECIES_RESHIRAM }, // White Kyurem
+    { SPECIES_KYUREM, 2, SOVEREIGN_FORM_FUSION, SPECIES_ZEKROM }, // Black Kyurem
+    { SPECIES_NECROZMA, 1, SOVEREIGN_FORM_FUSION, SPECIES_SOLGALEO }, // Dusk Necrozma
+    { SPECIES_NECROZMA, 2, SOVEREIGN_FORM_FUSION, SPECIES_LUNALA }, // Dawn Necrozma
+    { SPECIES_CALYREX, 1, SOVEREIGN_FORM_FUSION, SPECIES_GLASTRIER }, // Ice Calyrex
+    { SPECIES_CALYREX, 2, SOVEREIGN_FORM_FUSION, SPECIES_SPECTRIER }, // Shadow Calyrex
 };
 
 #endif // POKEPLATINUM_DATA_SOVEREIGN_FORMS_H

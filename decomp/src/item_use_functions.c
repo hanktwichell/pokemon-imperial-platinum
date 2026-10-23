@@ -96,6 +96,7 @@ static void UseEscapeRopeFromMenu(ItemMenuUseContext *usageContext, const ItemUs
 static void UseAzureFluteFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext);
 static void UseVsRecorderFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext);
 static void UseGracideaFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext);
+static void UseSovereignFormItemFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext);
 static BOOL UseBicycleInField(ItemFieldUseContext *usageContext);
 static BOOL UseJournalInField(ItemFieldUseContext *usageContext);
 static BOOL UseOldRodInField(ItemFieldUseContext *usageContext);
@@ -163,6 +164,7 @@ static const ItemUseFuncDat sItemUseFuncs[] = {
     [ITEM_USE_FUNC_AZURE_FLUTE]  = { UseAzureFluteFromMenu,  UseAzureFluteInField,  CanUseAzureFlute  },
     [ITEM_USE_FUNC_VS_RECORDER]  = { UseVsRecorderFromMenu,  UseVsRecorderInField,  NULL              },
     [ITEM_USE_FUNC_GRACIDEA]     = { UseGracideaFromMenu,    UseGracideaInField,    NULL              },
+    [ITEM_USE_FUNC_SOVEREIGN_FORM] = { UseSovereignFormItemFromMenu, NULL,          NULL              },
 };
 // clang-format on
 
@@ -1036,6 +1038,17 @@ static BOOL UseGracideaInField(ItemFieldUseContext *usageContext)
 static void *OpenPartyMenuForGracidea(void *fieldSystem)
 {
     return FieldSystem_OpenPartyMenu_SelectForItemUsage(fieldSystem, HEAP_ID_FIELD2, ITEM_GRACIDEA);
+}
+
+// Sovereign (FM): the form-change key items (Reveal Glass, DNA Splicers...) open the party menu like the Gracidea, and
+// the party menu applies them (src/sovereign_form_items.c).
+static void UseSovereignFormItemFromMenu(ItemMenuUseContext *usageContext, const ItemUseContext *additionalContext)
+{
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(usageContext->fieldTask);
+    StartMenu *menu = FieldTask_GetEnv(usageContext->fieldTask);
+    menu->taskData = FieldSystem_OpenPartyMenu_SelectForItemUsage(fieldSystem, HEAP_ID_FIELD2, usageContext->item);
+
+    StartMenu_SetCallback(menu, StartMenu_ExitPartyMenu);
 }
 
 BOOL sub_02069238(FieldSystem *fieldSystem)

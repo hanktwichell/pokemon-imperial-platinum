@@ -847,8 +847,12 @@ BOOL Pokemon_IsSovereignMegaForm(u16 species, int form);
 BOOL Pokemon_SovereignHasHeldItemForms(u16 species);
 int Pokemon_SovereignHeldItemForm(u16 species, u16 heldItem);
 BOOL Pokemon_SovereignItemIsLocked(u16 species, u16 item);
+int Pokemon_SovereignKeyItemForm(u16 species, u16 item);
+int Pokemon_SovereignFusionForm(u16 species, u16 partner);
+u16 Pokemon_SovereignFusionPartner(u16 species, int form);
 void Pokemon_SovereignSetBattleItemForm(Pokemon *mon);
 void Pokemon_SovereignRevertBattleForm(Pokemon *mon);
+void Pokemon_SovereignReplaceMove(Pokemon *mon, u16 from, u16 to);
 
 void sub_020780C4(Pokemon *mon, u32 monPersonality);
 

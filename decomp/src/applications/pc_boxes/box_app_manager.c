@@ -2146,6 +2146,14 @@ static BOOL BoxAppMan_CheckReleaseMonValid(BoxApplicationManager *boxAppMan, int
         return FALSE;
     }
 
+    // Sovereign (FM): a fused Pokemon's partner is held by the fusion item and would be lost with it.
+    u16 species = BoxApp_GetPreviewedMonValue(&boxAppMan->boxApp, MON_DATA_SPECIES, NULL);
+
+    if (Pokemon_SovereignFusionPartner(species, BoxApp_GetPreviewedMonValue(&boxAppMan->boxApp, MON_DATA_FORM, NULL)) != SPECIES_NONE) {
+        *destBoxMessageID = BoxText_SovereignSeparateFirst;
+        return FALSE;
+    }
+
     if (BoxApp_GetPreviewMonSource(&boxAppMan->boxApp) == PREVIEW_MON_UNDER_CURSOR) {
         if (BoxApp_GetCursorLocation(&boxAppMan->boxApp) == CURSOR_IN_PARTY) {
             if (BoxAppMan_OnLastAliveMon(boxAppMan)) {

@@ -116,6 +116,7 @@ Static main
 	Object src/game_options.c
 	Object src/sovereign_field_moves.c
 	Object src/sovereign_options.c
+	Object src/sovereign_form_items.c
 	Object src/level_cap.c
 	Object src/berry_patches.c
 	Object src/persisted_map_features.c

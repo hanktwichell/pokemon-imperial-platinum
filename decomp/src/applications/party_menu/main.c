@@ -39,6 +39,7 @@
 #include "heap.h"
 #include "height_weight_data.h"
 #include "sovereign_field_moves.h"
+#include "sovereign_form_items.h"
 #include "sovereign_options.h"
 #include "item.h"
 #include "item_use_pokemon.h"
@@ -458,6 +459,13 @@ static BOOL PartyMenu_Main(ApplicationManager *appMan, int *state)
     case PARTY_MENU_STATE_WAIT_FORM_CHANGE:
         if (PartyMenuFormChange_ChangeForm(partyMenu) == TRUE) {
             PartyMenu_TeardownFormChangeAnim(partyMenu);
+
+            // Sovereign (FM): a partner that fused leaves the party once the animation is over.
+            if (partyMenu->sovereignFusedPartnerSlot != 0) {
+                Party_RemovePokemonBySlotIndex(partyMenu->partyMenu->party, partyMenu->sovereignFusedPartnerSlot - 1);
+                partyMenu->sovereignFusedPartnerSlot = 0;
+            }
+
             *state = PARTY_MENU_STATE_WAIT_AB_PRESS_BEFORE_FADE;
         } else {
             *state = PARTY_MENU_STATE_WAIT_FORM_CHANGE;
@@ -2803,8 +2811,32 @@ static BOOL PartyMenu_TryUseSovereignTrainingItem(PartyMenuApplication *app)
     return TRUE;
 }
 
+// Sovereign (FM): a form-change key item (src/sovereign_form_items.c). A change plays the Gracidea's form-change
+// animation on the Pokemon that changed; a partner that fused leaves the party after it.
+static int PartyMenu_UseSovereignFormItem(PartyMenuApplication *app)
+{
+    int changedSlot, fusedPartnerSlot;
+    int result = SovereignFormItem_Use(SaveData_Ptr(), app->partyMenu->party, app->currPartySlot, app->partyMenu->usedItemID, &changedSlot, &fusedPartnerSlot);
+
+    if (result == SOVEREIGN_FORM_ITEM_CHANGED) {
+        app->currPartySlot = changedSlot;
+        app->sovereignFusedPartnerSlot = fusedPartnerSlot + 1;
+        PartyMenu_SetupFormChangeAnim(app);
+        return PARTY_MENU_STATE_WAIT_FORM_CHANGE;
+    }
+
+    PartyMenu_PrintLongMessage(app, result == SOVEREIGN_FORM_ITEM_NO_ROOM ? PartyMenu_Text_SovereignNoRoomToSeparate : PartyMenu_Text_ItWontHaveAnyEffect, TRUE);
+    app->currPartySlot = PARTY_MENU_SLOT_CANCEL;
+    app->callback = PartyMenuCB_PrintThenWaitABPress;
+    return PARTY_MENU_STATE_EXEC_CALLBACK;
+}
+
 static int ApplyItemEffectOnPokemon(PartyMenuApplication *app)
 {
+    if (SovereignFormItem_IsFormItem(app->partyMenu->usedItemID)) {
+        return PartyMenu_UseSovereignFormItem(app);
+    }
+
     ItemData *itemData = Item_Load(app->partyMenu->usedItemID, 0, HEAP_ID_PARTY_MENU);
 
     if (app->partyMenu->usedItemID == ITEM_GRACIDEA
