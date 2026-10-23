@@ -11,7 +11,7 @@ Renegade Platinum's own legendary events (Gen I–IV) are unchanged; see `Renega
 - Chapters open one after another (each needs the previous chapter's "key" legendary caught), so the post-game has a guided order.
 - Static encounters can be retried after fainting or fleeing, and have the normal shiny odds (Renegade behaviour).
 - New maps or rooms are marked _(new)_ and need map work in DSPRE.
-- **Built:** The Archivist (CB-0035) stands in Canalave Library 2F from the first Hall of Fame; his first talk opens the Unova Chronicle (VAR_SOVEREIGN_CHRONICLE). Later talks name where each Swords of Justice member not caught yet stands, then point to Keldeo (CB-0036). Static encounters share CommonScript_SovereignLegendaryEncounter: each stays on the map until the Pokédex has it as caught, and vanishes after it's knocked out until the next visit (as in vanilla legendary battles, the player can't run).
+- **Built:** The Archivist (CB-0035) stands in Canalave Library 2F from the first Hall of Fame; his first talk opens the Unova Chronicle (VAR_SOVEREIGN_CHRONICLE). Later talks name where each Swords of Justice member not caught yet stands, then point to Keldeo (CB-0036), then give hints for Meloetta and Genesect (CB-0037). Static encounters share CommonScript_SovereignLegendaryEncounter: each stays on the map until the Pokédex has it as caught, and vanishes after it's knocked out until the next visit (as in vanilla legendary battles, the player can't run).
 
 Covers **90** species.
 
@@ -52,14 +52,16 @@ Covers **90** species.
 ### The Relic Song
 - **Pokémon:** #648 Meloetta
 - **Level:** 55
-- **Location:** Hearthome City — Amity Square stage
+- **Location:** Hearthome City — Contest Hall stage
 - **How:** Talk to the composer in the Contest Hall with a Pokémon that knows Sing in the party.
+- **Built:** Meloetta (CB-0037): the composer (a new NPC in the Contest Hall lobby, (8, 7)) lets a party Pokémon that knows Sing sing the Relic Song (FLAG_SOVEREIGN_MELOETTA_SONG). Meloetta then stands on the Contest Hall's stage (28, 5) until it's caught. The stage replaces Amity Square, which has no stage the player can reach and only lets in players leading certain Pokémon. It comes in its Aria Forme; the Pirouette Forme comes with the battle forms (FM).
 
 ### Plasma's Leftovers
 - **Pokémon:** #649 Genesect
 - **Level:** 60
 - **Location:** Veilstone City — Team Galactic HQ lab
 - **How:** A Galactic scientist confesses to reviving a fossil and asks you to stop it. Battle then catch.
+- **Built:** Genesect (CB-0037): the lab's male scientist confesses once the Unova Chronicle is open (FLAG_SOVEREIGN_GENESECT_FREED). Genesect then stands in the lab's back room (34, 5), by the Control Room door, until it's caught. Its Drive forms come with the forms milestone (FM).
 
 ## Kalos Chronicle
 

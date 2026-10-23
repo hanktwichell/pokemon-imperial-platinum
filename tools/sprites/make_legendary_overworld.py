@@ -20,6 +20,8 @@ LEGENDARIES = {
     "terrakion": 639,
     "cobalion": 638,
     "keldeo": 647,
+    "meloetta": 648,
+    "genesect": 649,
 }
 
 

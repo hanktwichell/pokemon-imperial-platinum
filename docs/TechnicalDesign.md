@@ -265,6 +265,11 @@ implemented.
       until it's caught. A loss blacks out. `StartLegendaryBattle` doesn't let the player run, as in vanilla.
     - Placed so far: Virizion (Eterna Forest), Terrakion (Route 227), Cobalion (Iron Island B2F right room) and Keldeo
       (Lake Valor). Keldeo's OnTransition also needs `CheckPartyHasSpecies` to find all three swords in the party.
+    - **Quest-triggered ones** show only once a global flag is set:
+      - Meloetta (Contest Hall stage) waits for `FLAG_SOVEREIGN_MELOETTA_SONG`. The composer in the lobby sets it when
+        `FindPartySlotWithMove` finds a party Pokémon with Sing and the player agrees.
+      - Genesect (Galactic HQ lab, back room) waits for `FLAG_SOVEREIGN_GENESECT_FREED`. The lab's male scientist sets
+        it in his confession, then `AddObject` shows Genesect right away.
     - Iron Island B2F's right room had `scripts_empty`. It now has its own `scripts_iron_island_b2f_right_room` and
       `scripts_init_iron_island_b2f_right_room`, appended at the end of `scripts.order` so no other archive moves.
 - **Galactic gates** (decision 23, `docs/Story.md`). Each Galactic encounter checks the `FLAG_SOVEREIGN_TOTEM_TRIAL_*`

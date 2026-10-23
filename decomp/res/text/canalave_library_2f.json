@@ -245,16 +245,32 @@
         "They say it comes to the water when\n",
         "the three swords are near.\r",
         "Lake Valor, perhaps? Go there with\n",
-        "COBALION, TERRAKION and VIRIZION."
+        "COBALION, TERRAKION and VIRIZION.\r"
       ]
     },
     {
       "id": "CanalaveLibrary2F_Text_SovereignArchivistKeldeoCaught",
       "en_US": [
         "KELDEO too! All four swords of Unova,\n",
-        "here in Sinnoh...\r",
-        "There’s more in this Chronicle.\n",
-        "I’ll keep reading."
+        "here in Sinnoh...\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistMeloetta",
+      "en_US": [
+        "The Chronicle also tells of MELOETTA,\n",
+        "a Pokémon of song.\r",
+        "A composer at Hearthome’s Contest\n",
+        "Hall may know its melody.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistGenesect",
+      "en_US": [
+        "And of GENESECT, an ancient Pokémon\n",
+        "that people brought back and changed.\r",
+        "They say Team Galactic tried that\n",
+        "too, in their Veilstone lab.\r"
       ]
     }
   ]

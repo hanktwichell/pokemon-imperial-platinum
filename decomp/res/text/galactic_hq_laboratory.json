@@ -25,6 +25,37 @@
         "There is something suspended in\n",
         "a green fluid..."
       ]
+    },
+    {
+      "id": "GalacticHQLaboratory_Text_SovereignScientistConfess",
+      "en_US": [
+        "You’re the Champion, aren’t you?\n",
+        "Please, I need your help!\r",
+        "Before our team fell apart, we found\n",
+        "a fossil from a faraway land.\r",
+        "We brought it back to life in one of\n",
+        "these tanks, and we changed it.\r",
+        "We gave it armor and a cannon on\n",
+        "its back...\r",
+        "Last night it broke out of its tank.\n",
+        "It’s in the back room now.\r",
+        "Please, stop it before it gets out!"
+      ]
+    },
+    {
+      "id": "GalacticHQLaboratory_Text_SovereignScientistStopIt",
+      "en_US": [
+        "It’s in the back room...\n",
+        "Please, stop it before it gets out!"
+      ]
+    },
+    {
+      "id": "GalacticHQLaboratory_Text_SovereignScientistGenesectCaught",
+      "en_US": [
+        "You caught it... Thank you.\r",
+        "It was never ours to change.\n",
+        "I won’t forget that."
+      ]
     }
   ]
 }
