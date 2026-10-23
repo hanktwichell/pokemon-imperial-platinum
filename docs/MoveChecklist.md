@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 94 |
-| approximate | 76 |
-| placeholder | 210 |
+| exact | 97 |
+| approximate | 75 |
+| placeholder | 208 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -89,7 +89,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 539 | Night Daze | Dark | `LOWER_ACCURACY_HIT` | exact |  |
 | 540 | Psystrike | Psychic | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 541 | Tail Slap | Normal | `MULTI_HIT` | exact |  |
-| 542 | Hurricane | Flying | `CONFUSE_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
+| 542 | Hurricane | Flying | `HURRICANE` | exact | Sovereign effect: Thunder's weather accuracy and hits Pokémon in the air, 30% confusion |
 | 543 | Head Charge | Normal | `RECOIL_QUARTER` | exact |  |
 | 544 | Gear Grind | Steel | `HIT_TWICE` | exact |  |
 | 545 | Searing Shot | Fire | `BURN_HIT` | exact |  |
@@ -323,7 +323,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 773 | (max-overgrowth) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
 | 774 | (max-steelspike) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
 | 775 | Clangorous Soul | Dragon | `SP_ATK_SP_DEF_UP` | approximate | raises [('atk', 1), ('def', 1), ('spa', 1), ('spd', 1), ('spe', 1)] in the original |
-| 776 | Body Press | Fighting | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 776 | Body Press | Fighting | `BODY_PRESS` | exact | Sovereign effect: damage uses the user's Defense and Defense stage |
 | 777 | Decorate | Fairy | `ATK_UP_2` | approximate | raises [('atk', 2), ('spa', 2)] in the original |
 | 778 | Drum Beating | Grass | `LOWER_SPEED_HIT` | exact |  |
 | 779 | Snap Trap | Grass | `BIND_HIT` | exact |  |
@@ -452,7 +452,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 902 | Matcha Gotcha | Grass | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 903 | Syrup Bomb | Grass | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 904 | Ivy Cudgel | Grass | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 905 | Electro Shot | Electric | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 905 | Electro Shot | Electric | `ELECTRO_SHOT` | exact | Sovereign effect: charge turn raises Sp. Atk; no charge turn in rain |
 | 906 | Tera Starstorm | Normal | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 907 | Fickle Beam | Dragon | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 908 | Burning Bulwark | Fire | `PROTECT` | approximate | protects like Protect; the contact penalty is missing |
