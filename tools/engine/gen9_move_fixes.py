@@ -191,6 +191,8 @@ MOVES = {
     "quash": ("SOVEREIGN_QUASH", 0, "the target moves last this turn"),
     "psychic_noise": ("SOVEREIGN_PSYCHIC_NOISE", 100, "the target can't heal for two turns"),
     "steel_beam": ("SOVEREIGN_HALF_HP_COST_HIT", 0, "the user loses half its max HP (only when it hits, so far)", "approximate"),
+    "freeze_dry": ("FREEZE_HIT", 10, "super effective against Water; 10% freeze"),
+    "confide": (None, None, "target Sp. Atk -1; as a sound move it gets past Substitute"),
 }
 
 

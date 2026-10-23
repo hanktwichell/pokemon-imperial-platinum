@@ -33,7 +33,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 148 | Analytic | Gen 5 | yes: moves ×1.3 when it moves last |
 | 149 | Illusion | Gen 5 | not yet (no battle effect) |
 | 150 | Imposter | Gen 5 | not yet (no battle effect) |
-| 151 | Infiltrator | Gen 5 | partly: ignores Reflect and Light Screen (Substitute, Safeguard and Mist not yet) |
+| 151 | Infiltrator | Gen 5 | partly: ignores Reflect, Light Screen and Substitute (Safeguard and Mist not yet) |
 | 152 | Mummy | Gen 5 | not yet (no battle effect) |
 | 153 | Moxie | Gen 5 | yes: Attack +1 for each foe its move knocks out |
 | 154 | Justified | Gen 5 | yes: Attack +1 when hit by a Dark move |

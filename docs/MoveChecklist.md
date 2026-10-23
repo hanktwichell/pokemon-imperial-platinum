@@ -6,8 +6,8 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 229 |
-| approximate | 44 |
+| exact | 231 |
+| approximate | 42 |
 | placeholder | 107 |
 | removed | 72 |
 
@@ -120,7 +120,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 570 | ParabolcCharge | Electric | `RECOVER_HALF_DAMAGE_DEALT` | approximate | has its own mechanic in Gen IX; closest effect |
 | 571 | Forest’s Curse | Grass | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 572 | Petal Blizzard | Grass | `HIT` | exact | Sovereign effect: hits all adjacent Pokémon |
-| 573 | Freeze-Dry | Ice | `FREEZE_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
+| 573 | Freeze-Dry | Ice | `FREEZE_HIT` | exact | Sovereign effect: super effective against Water; 10% freeze |
 | 574 | Disarming Voice | Fairy | `HIT` | exact | Sovereign effect: never misses, hits both foes |
 | 575 | Parting Shot | Dark | `ATK_DEF_DOWN` | approximate | stat changes [('atk', -1), ('spa', -1)] in the original |
 | 576 | Topsy-Turvy | Dark | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
@@ -137,7 +137,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 587 | Fairy Lock | Fairy | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 588 | King’s Shield | Steel | `PROTECT` | approximate | protects like Protect; the contact penalty is missing |
 | 589 | Play Nice | Normal | `ATK_DOWN` | exact | Sovereign effect: never misses, ignores Protect, target Attack -1 |
-| 590 | Confide | Normal | `SP_ATK_DOWN` | approximate | has its own mechanic in Gen IX; closest effect |
+| 590 | Confide | Normal | `SP_ATK_DOWN` | exact | Sovereign effect: target Sp. Atk -1; as a sound move it gets past Substitute |
 | 591 | Diamond Storm | Rock | `SOVEREIGN_RAISE_DEF_2_HIT` | exact | Sovereign effect: user Defense +2 (50%) |
 | 592 | Steam Eruption | Water | `BURN_HIT` | exact |  |
 | 593 | Hyperspace Hole | Psychic | `HIT` | exact | Sovereign effect: never misses, ignores Protect |
