@@ -13,7 +13,7 @@
     "accuracy": 0,
     "pp": 15,
     "effect": {
-        "type": "BATTLE_EFFECT_HIT",
+        "type": "BATTLE_EFFECT_SOVEREIGN_CLEAR_SMOG",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

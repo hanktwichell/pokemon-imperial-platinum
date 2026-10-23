@@ -344,4 +344,11 @@ subscript_files = files(
     'subscript_sovereign_psychic_noise.s',
     'subscript_sovereign_half_hp_cost.s',
     'subscript_sovereign_trap_target.s',
+    'subscript_sovereign_simple_beam.s',
+    'subscript_sovereign_entrainment.s',
+    'subscript_sovereign_guard_split.s',
+    'subscript_sovereign_power_split.s',
+    'subscript_sovereign_speed_swap.s',
+    'subscript_sovereign_clear_smog.s',
+    'subscript_sovereign_incinerate.s',
 )

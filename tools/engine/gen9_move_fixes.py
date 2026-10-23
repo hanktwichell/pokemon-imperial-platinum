@@ -197,6 +197,13 @@ MOVES = {
     "spirit_shackle": ("SOVEREIGN_TRAP_HIT", 100, "the target can't escape while the user is in battle"),
     "anchor_shot": ("SOVEREIGN_TRAP_HIT", 100, "the target can't escape while the user is in battle"),
     "revelation_dance": (None, None, "takes the user's primary type"),
+    "simple_beam": ("SOVEREIGN_SIMPLE_BEAM", 0, "the target's ability becomes Simple"),
+    "entrainment": ("SOVEREIGN_ENTRAINMENT", 0, "the target's ability becomes the user's"),
+    "guard_split": ("SOVEREIGN_GUARD_SPLIT", 0, "the user and target average their Defense and Sp. Def"),
+    "power_split": ("SOVEREIGN_POWER_SPLIT", 0, "the user and target average their Attack and Sp. Atk"),
+    "speed_swap": ("SOVEREIGN_SPEED_SWAP", 0, "the user and target swap their Speed stats"),
+    "clear_smog": ("SOVEREIGN_CLEAR_SMOG", 0, "resets the target's stat stages"),
+    "incinerate": ("SOVEREIGN_INCINERATE", 0, "burns up the target's Berry"),
 }
 
 

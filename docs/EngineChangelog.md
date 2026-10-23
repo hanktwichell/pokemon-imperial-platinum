@@ -4,6 +4,21 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (part 15) — trapping hits, ability moves, stat swaps, Clear Smog, Incinerate
+
+- **Spirit Shackle, Anchor Shot:** after the hit the target can't escape while the user is in battle (as Mean Look).
+- **Revelation Dance** takes the user's primary type; **Psyshield Bash** raises the user's Defense by 1.
+- **Simple Beam / Entrainment:** the target's ability becomes Simple / the user's (Worry Seed's rules, plus Gen IX's list
+  of abilities Entrainment can't pass on).
+- **Guard Split / Power Split / Speed Swap:** the user and target average their Defense and Sp. Def / Attack and Sp. Atk,
+  or swap Speed.
+- **Clear Smog:** after the hit the target's stat stages are reset. **Incinerate:** after the hit the target's Berry
+  is burnt up (new read-only script variable `BTLVAR_SOVEREIGN_SIDE_EFFECT_MON_HOLDS_BERRY`).
+- Move checklist: exact 242, approximate 42, placeholder 96.
+
+**Verified in the test build:** Venusaur, using Swords Dance each turn, ended at Attack stage 0 because Garchomp's
+Clear Smog hit it each turn. The other moves in this part aren't tested in game yet.
+
 ## Item 11 (part 14) — Psychic Noise and Steel Beam
 
 - **Psychic Noise:** after the hit, the target can't heal for two turns (Heal Block's message).
@@ -13,9 +28,7 @@ players and the verification that was run.
   the damage and effectiveness paths), and its 10% freeze chance is back.
 - **Sound moves and Infiltrator get past Substitute** (Gen VI+): damage hits the Pokémon, and status and stat effects
   aren't blocked. Confide is now exact.
-- **Spirit Shackle, Anchor Shot:** after the hit the target can't escape while the user is in battle (as Mean Look).
-- **Revelation Dance** takes the user's primary type; **Psyshield Bash** raises the user's Defense by 1.
-- Move checklist: exact 235, approximate 42, placeholder 103.
+- Move checklist: exact 231, approximate 42, placeholder 107.
 
 **Verified in the test build:** Garchomp fainted after its second Steel Beam (half its max HP each time). Psychic Noise,
 Freeze-Dry and the Substitute bypass aren't tested in game yet.
