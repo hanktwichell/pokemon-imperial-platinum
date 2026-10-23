@@ -84,6 +84,7 @@
     ScriptEntry CommonScript_SetLookerBGM @ 0x807
     ScriptEntry CommonScript_FadeToDefaultMusic @ 0x808
     ScriptEntry CommonScript_GriseousOrbCouldNotBeRemoved @ 0x809
+    ScriptEntry CommonScript_SovereignTotemTrial @ 0x80A
     ScriptEntryEnd
 
 CommonScript_Dummy2010:
@@ -1712,5 +1713,101 @@ CommonScript_GriseousOrbCouldNotBeRemoved:
     ReleaseAll
     ReturnCommonScript
     End
+
+@ Sovereign (decision 18): a Totem trial, called by the Totem's script (Common_SovereignTotemTrial) with the trial's
+@ TOTEM_TRIAL_* number in VAR_0x8004. The map's OnLoad script removes the Totem while FLAG_MAP_LOCAL_REMOVE_OBJECT is
+@ set, as the field comes back after the battle; removing it sets its hidden flag, the trial's
+@ FLAG_SOVEREIGN_TOTEM_TRIAL_* flag. Win (or catch) and the trial is done: the Totem leaves its crown piece
+@ (ITEM_GOLD_SHARD + trial) behind, and the 11th piece merges them all into the Crown (decision 23, docs/Story.md).
+@ Lose and the flag is cleared, so the Totem is back next time.
+CommonScript_SovereignTotemTrial:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    WaitSE SE_CONFIRM_sseq_3
+    SetVar VAR_0x8009, VAR_0x8004
+    SovereignGetTotemTrialSpecies VAR_0x8009, VAR_0x800A
+    SetVar VAR_0x800B, FLAG_SOVEREIGN_TOTEM_TRIAL_GUMSHOOS
+    AddVar VAR_0x800B, VAR_0x8009
+    BufferSpeciesNameFromVar 0, VAR_0x800A, 0, 0
+    PlayCry VAR_0x800A
+    Message CommonStrings_Text_SovereignTotemGlares
+    WaitCry
+    @ Until a lone Pokémon can fight a Totem's double battle 1 vs 2, the trial needs two.
+    CheckHasTwoAliveMons VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, CommonScript_SovereignTotemNeedTwoPokemon
+    CloseMessage
+    SetFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
+    SovereignStartTotemTrial VAR_0x8009
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, CommonScript_SovereignTotemLost
+    SetFlagFromVar VAR_0x800B
+    CheckDidNotCapture VAR_RESULT
+    CallIfEq VAR_RESULT, TRUE, CommonScript_SovereignTotemDisappeared
+    Message CommonStrings_Text_SovereignTotemSomethingGlints
+    SetVar VAR_0x8004, ITEM_GOLD_SHARD
+    AddVar VAR_0x8004, VAR_0x8009
+    Call CommonScript_SovereignFindCrownPiece
+    Call CommonScript_SovereignTryMergeCrown
+    CloseMessage
+    ReleaseAll
+    ReturnCommonScript
+    End
+
+CommonScript_SovereignTotemNeedTwoPokemon:
+    Message CommonStrings_Text_SovereignTotemNeedTwoPokemon
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    ReturnCommonScript
+    End
+
+CommonScript_SovereignTotemLost:
+    SovereignClearFlagFromVar VAR_0x800B
+    BlackOutFromBattle
+    ReleaseAll
+    ReturnCommonScript
+    End
+
+CommonScript_SovereignTotemDisappeared:
+    BufferSpeciesNameFromVar 0, VAR_0x800A, 0, 0
+    Message CommonStrings_Text_SovereignTotemDisappeared
+    WaitButton
+    Return
+
+@ VAR_0x8004: the piece. Found on the ground, like an item ball's item.
+CommonScript_SovereignFindCrownPiece:
+    Call CommonScript_GetBagPocketForItem
+    AddItem VAR_0x8004, 1, VAR_RESULT
+    BufferPlayerName 0
+    BufferItemNameWithArticle 1, VAR_0x8004
+    Message CommonStrings_Text_SovereignPlayerFoundItem
+    WaitFanfare
+    BufferItemName 1, VAR_0x8004
+    GetItemPocket VAR_0x8004, VAR_RESULT
+    BufferPocketName 2, VAR_RESULT
+    Message CommonStrings_Text_PutItemInPocket
+    WaitButton
+    Return
+
+@ With all 11 pieces (ITEM_GOLD_SHARD to ITEM_CROWN_DIAMOND) in the bag, they become the Crown.
+CommonScript_SovereignTryMergeCrown:
+    SetVar VAR_0x8006, ITEM_GOLD_SHARD
+CommonScript_SovereignCheckCrownPiece:
+    CheckItem VAR_0x8006, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, CommonScript_SovereignTryMergeCrownEnd
+    AddVar VAR_0x8006, 1
+    GoToIfLe VAR_0x8006, ITEM_CROWN_DIAMOND, CommonScript_SovereignCheckCrownPiece
+    Message CommonStrings_Text_SovereignCrownPiecesGlow
+    SetVar VAR_0x8006, ITEM_GOLD_SHARD
+CommonScript_SovereignRemoveCrownPiece:
+    RemoveItem VAR_0x8006, 1, VAR_RESULT
+    AddVar VAR_0x8006, 1
+    GoToIfLe VAR_0x8006, ITEM_CROWN_DIAMOND, CommonScript_SovereignRemoveCrownPiece
+    SetVar VAR_0x8004, ITEM_CROWN
+    SetVar VAR_0x8005, 1
+    Call CommonScript_InternalAddItemQuantityNoLineFeed
+CommonScript_SovereignTryMergeCrownEnd:
+    Return
 
     .balign 4, 0

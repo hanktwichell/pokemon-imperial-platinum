@@ -600,6 +600,12 @@ void Encounter_SovereignNewTotemTrial(FieldTask *task, int trial, int *resultMas
     StartEncounter(task, dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), resultMaskPtr);
 }
 
+// Sovereign: the species of a trial's Totem, for its script (CommonScript_SovereignTotemTrial).
+u16 Encounter_SovereignTotemTrialSpecies(int trial)
+{
+    return sSovereignTotemTrials[trial].totem.species;
+}
+
 void Encounter_NewFatefulVsSpeciesAtLevel(FieldTask *taskMan, u16 species, u8 level, int *resultMaskPtr, BOOL isLegendary)
 {
     FieldBattleDTO *dto;

@@ -220,6 +220,17 @@ implemented.
     `BattleSystem_SovereignApplyTotemAura` raises the stages and buffers the message for
     `subscript_sovereign_totem_aura`.
   - **No escape.** RUN, `BtlCmd_TryWhirlwind`, `BtlCmd_TryTeleport` and the bag's escape items check the flag.
+  - **On the map.**
+    - The Totem is an object with `OBJ_EVENT_GFX_TOTEM_<SPECIES>`: a single 64x64 frame on `BILLBOARD_MODEL_GENERIC_64x64`
+      (Regigigas's setup). The textures are appended at the end of `field_sprites.order` so no existing NARC index
+      moves.
+    - Its hidden flag is the trial's `FLAG_SOVEREIGN_TOTEM_TRIAL_*` (0x167–0x171, in trial order). Its script sets
+      `VAR_0x8004` to the trial and calls `Common_SovereignTotemTrial` (common script 0x80A).
+    - The common script hides the Totem by setting `FLAG_MAP_LOCAL_REMOVE_OBJECT` around the battle: map objects
+      survive a battle, so the map's OnLoad script removes the Totem when the field comes back, as Platinum does for
+      Regigigas. Removing it sets its hidden flag; a loss clears it again (`SovereignClearFlagFromVar`).
+    - The piece is `ITEM_GOLD_SHARD + trial`: the 11 piece constants are consecutive in trial order. The merge into
+      `ITEM_CROWN` checks and removes `ITEM_GOLD_SHARD`..`ITEM_CROWN_DIAMOND` in a loop.
 ### 5. Trainer data
 - Vanilla Gen IV trainer Pokémon can't specify EVs, natures directly (nature comes from the PID seeded by trainer
   data), or abilities. **The EV spreads and natures in `TrainerPokemon_Sovereign.md` need an extended trainer-Pokémon

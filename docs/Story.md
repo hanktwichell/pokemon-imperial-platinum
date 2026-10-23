@@ -143,7 +143,8 @@ such NPC exists, a new one is placed (E11 finds them).
 - **The gate:** the **complete crown is required for the Sovereign to appear at Spear Pillar.** With Victory Road
   gated on the last trial, every player has it by then.
 - **Icons:** the 11 pieces, the Crown and the Sovereign Crown are on the owner's sprite list
-  (`docs/SpriteChecklist.xlsx`, sheet *Item Icons*, from `data/item_sprites.csv`).
+  (`docs/SpriteChecklist.xlsx`, sheet *Item Icons*, from `data/item_sprites.csv`). Until they arrive, the game uses
+  placeholders drawn by `tools/sprites/make_crown_icons.py`.
 
 ## Oak's visit to Rowan's lab (redo, draft for the owner)
 
@@ -213,7 +214,8 @@ Owner's call:
   when its catch encounter ends).
 - **Crown pieces:** 13 new key items (key items can't be sold or tossed): the 11 pieces, the Crown and the
   Sovereign Crown. Picking up the 11th piece removes the 11 and gives the Crown. Beating Cynthia in the rematch
-  swaps the Crown for the Sovereign Crown.
+  swaps the Crown for the Sovereign Crown. Built (CB-0028): the 13 items, each trial's piece, and the merge into the
+  Crown (`CommonScript_SovereignTotemTrial`). The swap for the Sovereign Crown comes with the rematch.
 - **Victory Road gate:** the existing check at Victory Road's entrance also needs Togedemaru's trial flag.
 - **Elite Four rematch lock:** the League's save-prompt NPC checks a "Dialga and Palkia both done" condition
   (caught or defeated) before letting the player through for a rematch.

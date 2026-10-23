@@ -121,6 +121,75 @@ custom_items:          # Sovereign's own items (not in PokeAPI): every field is 
     pocket: key
     icon: {sprite: repel, palette: max_repel}   # Platinum's Max Repel icon (it reuses the Repel sprite)
     use: bag_message       # used from the bag like a Repel (src/applications/bag/main.c: UseItemInBag)
+  # The crown (decision 23, docs/Story.md): each Totem trial leaves one piece, in trial order. The descriptions hint
+  # more and more that the pieces fit together. Finding the 11th merges them into the Crown, which becomes the
+  # Sovereign Crown after the Elite Four rematch's win over Cynthia. Icons: tools/sprites/make_crown_icons.py
+  # (placeholders until the owner's arrive). Names are a proposal (Story.md "Open").
+  - name: Gold Shard
+    plural: Gold Shards
+    description: "A jagged shard of old gold, left where a huge Pokémon stood. It looks like a piece of something larger."
+    pocket: key
+    icon: drawn
+  - name: Oval Emerald
+    plural: Oval Emeralds
+    description: "A green jewel cut into a flawless oval. Its back is shaped to sit in a setting of some kind."
+    pocket: key
+    icon: drawn
+  - name: Gold Fragment
+    plural: Gold Fragments
+    description: "A curved fragment of old gold. One of its broken edges fits the Gold Shard perfectly."
+    pocket: key
+    icon: drawn
+  - name: Oval Sapphire
+    plural: Oval Sapphires
+    description: "A deep-blue jewel cut into an oval, the same size and cut as the Oval Emerald."
+    pocket: key
+    icon: drawn
+  - name: Oval Ruby
+    plural: Oval Rubies
+    description: "A red jewel cut into an oval. Laid beside the emerald and the sapphire, the three make a row."
+    pocket: key
+    icon: drawn
+  - name: Gold Sliver
+    plural: Gold Slivers
+    description: "A thin sliver of gold. Joined to the other gold pieces, it bends them into part of a ring."
+    pocket: key
+    icon: drawn
+  - name: Rose Emerald
+    plural: Rose Emeralds
+    description: "A green jewel cut into a dome of tiny facets: the rose cut of old crown jewels."
+    pocket: key
+    icon: drawn
+  - name: Rose Sapphire
+    plural: Rose Sapphires
+    description: "A blue jewel in the rose cut of old crown jewels. The gold ring has a setting just its size."
+    pocket: key
+    icon: drawn
+  - name: Rose Ruby
+    plural: Rose Rubies
+    description: "A red jewel in the rose cut. Laid out on the gold ring, the jewels make the shape of a crown."
+    pocket: key
+    icon: drawn
+  - name: Gold Flake
+    plural: Gold Flakes
+    description: "A flake of gold that closes the ring into a crown. Only the setting at its front is still empty."
+    pocket: key
+    icon: drawn
+  - name: Crown Diamond
+    plural: Crown Diamonds
+    description: "A great brilliant-cut diamond, the centrepiece of a crown."
+    pocket: key
+    icon: drawn
+  - name: Crown
+    plural: Crowns
+    description: "A gold crown set with emeralds, sapphires, rubies and a great diamond. The Totems left it piece by piece."
+    pocket: key
+    icon: drawn
+  - name: Sovereign Crown
+    plural: Sovereign Crowns
+    description: "The crown of the Sovereign, who once ruled from Spear Pillar. It seems to be calling its wearer there."
+    pocket: key
+    icon: drawn
 
 deferred:
   - "Roseli, Kee and Maranga Berries: Platinum's berry code assumes berries are one contiguous ID block (Cheri..Rowap),

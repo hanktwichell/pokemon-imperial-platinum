@@ -15,7 +15,27 @@ import struct
 import sys
 
 DECOMP = os.path.join(os.path.dirname(__file__), "..", "..", "decomp")
-TALL_GRASS, WATER = 0x02, 0x10  # Gen IV tile behaviours (MB_TALL_GRASS, MB_DEEP_WATER)
+TALL_GRASS = 0x02  # TILE_BEHAVIOR_TALL_GRASS
+
+
+def surfable_behaviors():
+    """The tile behaviours the engine treats as water to Surf on (sTileBehaviorFlags in src/map_tile_behavior.c):
+    rivers, the sea, waterfalls... Rivers and lakes both count, whatever their behaviour number."""
+    header = open(os.path.join(DECOMP, "include/constants/field/map_tile_behaviors.h"), encoding="utf-8").read()
+    body = re.sub(r"//.*", "", re.search(r"enum TileBehavior \{(.*?)\};", header, re.S).group(1))
+    values, n = {}, 0
+    for entry in body.split(","):
+        name, _, value = (part.strip() for part in entry.partition("="))
+        if not name:
+            continue
+        n = int(value, 0) if value else n
+        values[name] = n
+        n += 1
+    flags = open(os.path.join(DECOMP, "src/map_tile_behavior.c"), encoding="utf-8").read()
+    return {values[m.group(1)] for m in re.finditer(r"\[(TILE_BEHAVIOR_\w+)\]\s*=\s*TILE_BEHAVIOR_FLAG_SURFABLE", flags)}
+
+
+WATER = surfable_behaviors()
 
 
 def load_events(header):
@@ -48,7 +68,7 @@ def print_chunk(header, map_id, x0, z0, objects, warps):
             p = perm[z * 32 + x]
             pos = (x0 + x, z0 + z)
             tiles.append("o" if pos in objects else "W" if pos in warps else "#" if p & 0x8000
-                         else "G" if p & 0xFF == TALL_GRASS else "~" if p & 0xFF == WATER else ".")
+                         else "G" if p & 0xFF == TALL_GRASS else "~" if p & 0xFF in WATER else ".")
         print(f"{z0 + z:4d} " + "".join(tiles))
 
 

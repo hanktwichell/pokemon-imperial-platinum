@@ -330,12 +330,18 @@ def main():
     for custom in spec.get("custom_items", []):
         stem = stem_of(custom["name"])
         uses = {"bag_message": "ITEM_USE_FUNC_BAG_MESSAGE", None: "ITEM_USE_FUNC_NONE"}
+        icon = custom["icon"]
+        if icon == "drawn":  # our own icon, drawn by a tool in tools/sprites (e.g. make_crown_icons.py)
+            if not os.path.exists(os.path.join(ICON_DIR, stem + ".png")):
+                raise SystemExit(f"{custom['name']}: no icon at res/items/icons/{stem}.png (draw it first)")
+            icon = {"sprite": stem, "palette": stem}
+            icons.append(stem)
         data = {
             "name": custom["name"],
             "plural": custom["plural"],
             "article": "an" if custom["name"][0] in "AEIOU" else "a",
             "description": wrap(custom["description"]),
-            "icon": {"sprite": custom["icon"]["sprite"] + "_NCGR", "palette": custom["icon"]["palette"] + "_NCLR"},
+            "icon": {"sprite": icon["sprite"] + "_NCGR", "palette": icon["palette"] + "_NCLR"},
             "gbaID": "GBA_ITEM_NONE",
             "price": custom.get("price", 0),
             "effectParam": 0,
