@@ -4,6 +4,39 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (part 17) — primal weathers, Megas get their implemented abilities, more abilities
+
+- **Primordial Sea / Desolate Land / Delta Stream:** heavy rain, extremely harsh sunlight or strong winds while the
+  holder is in battle.
+  - Damaging Fire moves fizzle out in heavy rain; Water moves evaporate in the harsh sunlight, each with its own message.
+  - Strong winds: no move is super effective against the Flying type.
+  - While one is up, weather moves fail and Drizzle, Drought, Sand Stream, Snow Warning and Sand Spit do nothing. A new
+    primal weather replaces another.
+  - It ends with a message once no Pokémon with the ability is left (new switch-in state). New field conditions
+    `FIELD_CONDITION_SOVEREIGN_PRIMAL` (bit 27) and `_STRONG_WINDS` (bit 28).
+- **Megas and Primals get their own ability when the engine has it**: `gen_forms.py` now asks
+  `gen_abilities.IMPLEMENTED` instead of "is it a Gen IV ability". 37 Mega and Primal forms changed. Examples: Primal
+  Kyogre and Groudon, Mega Rayquaza, Mega Absol (Magic Bounce), Mega Charizard X and Mega Metagross (Tough Claws),
+  Mega Gardevoir and Mega Altaria (Pixilate), Mega Garchomp (Sand Force).
+  - `gen_mega_doc.py` marks only the abilities still missing. Left: Parental Bond, Aura Guard, Berserk, Eelevate, Fire
+    Mane, Healer, Innards Out, Mega Sol, Piercing Drill, Spicy Spray.
+- **Long Reach**, **Protective Pads**, **Punching Glove:**
+  - The holder's moves don't count as contact for the target's abilities and items (new `Sovereign_MakesContact`).
+  - Punching Glove does this for punching moves only, and also powers them up by 10%.
+- **Battery / Power Spot:** the ally's special moves / all its moves ×1.3.
+- **Stalwart / Propeller Tail** (and the move Snipe Shot): ignore Follow Me, Lightning Rod and Storm Drain.
+- **Screen Cleaner:** removes Reflect, Light Screen and Aurora Veil from both sides on entry.
+- **Sand Spit:** getting hit whips up a sandstorm.
+- **Corrosion:** its poisoning moves work on Poison and Steel types.
+- **Stakeout:** double power against a target that switched in this turn.
+- Ability checklist: 120 newer abilities implemented.
+
+**Verified in the test build:**
+- A foe Kyogre holding the Blue Orb reverted to its primal form, then "A heavy rain began to fall!".
+- With Primordial Sea, Garchomp's Heat Wave gave "The Fire-type attack fizzled out in the heavy rain!" and dealt no
+  damage.
+- The other abilities in this part aren't tested in game yet.
+
 ## Item 11 (part 16) — abilities: Mold Breaker family, Protean, Magic Bounce and more
 
 - **Turboblaze, Teravolt:** work as Mold Breaker (new `Sovereign_IsMoldBreaker`, used everywhere Mold Breaker was

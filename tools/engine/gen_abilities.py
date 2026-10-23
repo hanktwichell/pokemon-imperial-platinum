@@ -222,6 +222,18 @@ IMPLEMENTED = {
     293: "yes: 10% more power per fainted party member (up to 5)",
     298: "partly: its status moves ignore abilities (moving last not yet)",
     299: "yes: hits Ghost types with Normal and Fighting moves, ignores evasion, accuracy can't be lowered",
+    198: "yes: double power against a target that switched in this turn",
+    203: "yes: its moves make no contact",
+    212: "yes: can poison Steel and Poison types",
+    217: "yes: its ally's special moves ×1.3",
+    239: "yes: ignores moves and abilities that draw in attacks",
+    242: "yes: ignores moves and abilities that draw in attacks",
+    245: "yes: getting hit whips up a sandstorm",
+    249: "yes: its ally's moves ×1.3",
+    251: "yes: removes Reflect, Light Screen and Aurora Veil on entry",
+    189: "yes: heavy rain while it's in battle; Fire moves fizzle, other weather can't start",
+    190: "yes: extremely harsh sun while it's in battle; Water moves evaporate, other weather can't start",
+    191: "yes: strong winds while it's in battle; no move is super effective on Flying types",
 }
 
 

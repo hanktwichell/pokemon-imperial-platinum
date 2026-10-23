@@ -34,9 +34,9 @@
         "EGG_GROUP_MINERAL"
     ],
     "abilities": [
-        "ABILITY_NONE",
-        "ABILITY_NONE",
-        "ABILITY_NONE"
+        "ABILITY_THERMAL_EXCHANGE",
+        "ABILITY_THERMAL_EXCHANGE",
+        "ABILITY_THERMAL_EXCHANGE"
     ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_GRAY",

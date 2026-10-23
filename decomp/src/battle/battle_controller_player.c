@@ -3570,6 +3570,25 @@ static void BattleControllerPlayer_BeforeMove(BattleSystem *battleSys, BattleCon
         battleCtx->beforeMoveCheckState = BEFORE_MOVE_START;
     }
 
+    // Sovereign (item 11): damaging Fire moves fizzle out in heavy rain, Water moves evaporate in extremely harsh
+    // sunlight.
+    if ((battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+        && (battleCtx->fieldConditionsMask & FIELD_CONDITION_SOVEREIGN_PRIMAL)
+        && NO_CLOUD_NINE
+        && CURRENT_MOVE_DATA.class != CLASS_STATUS) {
+        int moveType = CalcMoveType(battleCtx, battleCtx->attacker, battleCtx->moveCur);
+
+        if (((battleCtx->fieldConditionsMask & FIELD_CONDITION_RAINING) && moveType == TYPE_FIRE)
+            || ((battleCtx->fieldConditionsMask & FIELD_CONDITION_SUNNY) && moveType == TYPE_WATER)) {
+            battleCtx->msgTemp = (battleCtx->fieldConditionsMask & FIELD_CONDITION_SUNNY) ? 1 : 0;
+            battleCtx->moveStatusFlags |= MOVE_STATUS_NO_MORE_WORK;
+            LOAD_SUBSEQ(subscript_sovereign_primal_fizzle);
+            battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+            battleCtx->commandNext = BATTLE_CONTROL_MOVE_FAILED;
+            return;
+        }
+    }
+
     if (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) {
         battleCtx->command = BATTLE_CONTROL_MOVE_FAILED;
     } else {

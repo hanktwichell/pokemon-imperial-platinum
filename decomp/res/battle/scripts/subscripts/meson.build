@@ -357,4 +357,7 @@ subscript_files = files(
     'subscript_sovereign_steam_engine.s',
     'subscript_sovereign_protean.s',
     'subscript_sovereign_magic_bounce.s',
+    'subscript_sovereign_primal_weather_start.s',
+    'subscript_sovereign_primal_weather_end.s',
+    'subscript_sovereign_primal_fizzle.s',
 )

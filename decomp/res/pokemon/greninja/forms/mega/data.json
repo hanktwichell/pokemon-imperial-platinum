@@ -34,9 +34,9 @@
         "EGG_GROUP_WATER_1"
     ],
     "abilities": [
-        "ABILITY_NONE",
-        "ABILITY_NONE",
-        "ABILITY_NONE"
+        "ABILITY_PROTEAN",
+        "ABILITY_PROTEAN",
+        "ABILITY_PROTEAN"
     ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLUE",

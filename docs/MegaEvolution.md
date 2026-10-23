@@ -50,8 +50,8 @@ played by the Mega and Primal battle subscripts (`TechnicalDesign.md` §4).
 Many Mega abilities don't exist in Platinum's battle engine. Until one is implemented, the Mega **keeps its pre-Mega
 ability** (marked ⚙ below). Implementation priority — abilities used by boss trainers first:
 
-1. **Magic Bounce**, **Parental Bond**, **Strong Jaw**, **Tough Claws**, **Aura Guard** (boss trainers)
-2. Aerilate, Berserk, Bulletproof, Contrary, Defiant, Delta Stream, Desolate Land, Dragonize, Eelevate, Electric Surge, Fairy Aura, Fire Mane, Healer, Infiltrator, Innards Out, Mega Launcher, Mega Sol, Multiscale, Piercing Drill, Pixilate, Prankster, Primordial Sea, Protean, Refrigerate, Regenerator, Sand Force, Sharpness, Sheer Force, Spicy Spray, Stalwart, Thermal Exchange, Unseen Fist
+1. **Parental Bond**, **Aura Guard** (boss trainers)
+2. Berserk, Eelevate, Fire Mane, Healer, Innards Out, Mega Sol, Piercing Drill, Spicy Spray
 
 PokeAPI has no ability listed for: Mega Zygarde, Mega Heatran, Mega Darkrai, Mega Magearna, Mega Magearna (Original Color), Mega Zeraora, Mega Tatsugiri (Curly Form), Mega Tatsugiri (Droopy Form), Mega Tatsugiri (Stretchy Form). These need checking against official Legends: Z-A data before implementation.
 
@@ -62,15 +62,15 @@ PokeAPI has no ability listed for: Mega Zygarde, Mega Heatran, Mega Darkrai, Meg
 | Form | Stone | Types | Ability | BST | HP/Atk/Def/SpA/SpD/Spe | Where to get the stone |
 |---|---|---|---|---|---|---|
 | Mega Venusaur | Venusaurite | Grass/Poison | Thick Fat | 625 | 80/100/123/122/120/80 | Mega Stone Collector (Hearthome) — $10,000 |
-| Mega Charizard X | Charizardite X | Fire/Dragon | Tough Claws ⚙ | 634 | 78/130/111/130/85/100 | Mega Stone Collector (Hearthome) — $10,000 |
+| Mega Charizard X | Charizardite X | Fire/Dragon | Tough Claws | 634 | 78/130/111/130/85/100 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Charizard Y | Charizardite Y | Fire/Flying | Drought | 634 | 78/104/78/159/115/100 | Mega Stone Collector (Hearthome) — $10,000 |
-| Mega Blastoise | Blastoisinite | Water | Mega Launcher ⚙ | 630 | 79/103/120/135/115/78 | Mega Stone Collector (Hearthome) — $10,000 |
+| Mega Blastoise | Blastoisinite | Water | Mega Launcher | 630 | 79/103/120/135/115/78 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Alakazam | Alakazite | Psychic | Trace | 600 | 55/50/65/175/105/150 | Field item — Route 203 (replaces Poké Ball) |
 | Mega Gengar | Gengarite | Ghost/Poison | Shadow Tag | 600 | 60/65/80/170/95/130 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Kangaskhan | Kangaskhanite | Normal | Parental Bond ⚙ | 590 | 105/125/100/60/100/100 | Field item — Great Marsh (Area 3) (replaces Great Ball) |
-| Mega Pinsir | Pinsirite | Bug/Flying | Aerilate ⚙ | 600 | 65/155/120/65/90/105 | Field item — Route 210 (South) (replaces Hyper Potion) |
+| Mega Pinsir | Pinsirite | Bug/Flying | Aerilate | 600 | 65/155/120/65/90/105 | Field item — Route 210 (South) (replaces Hyper Potion) |
 | Mega Gyarados | Gyaradosite | Water/Dark | Mold Breaker | 640 | 95/155/109/70/130/81 | Mega Stone Trader (Pastoria) — $10,000 |
-| Mega Aerodactyl | Aerodactylite | Rock/Flying | Tough Claws ⚙ | 615 | 80/135/85/70/95/150 | Mega Stone Trader (Pastoria) — $10,000 |
+| Mega Aerodactyl | Aerodactylite | Rock/Flying | Tough Claws | 615 | 80/135/85/70/95/150 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Mewtwo X | Mewtwonite X | Psychic/Fighting | Steadfast | 780 | 106/190/100/154/100/130 | Mega Stone Curator (Survival Area) — $30,000 |
 | Mega Mewtwo Y | Mewtwonite Y | Psychic | Insomnia | 780 | 106/150/70/194/120/140 | Mega Stone Curator (Survival Area) — $30,000 |
 | Mega Ampharos | Ampharosite | Electric/Dragon | Mold Breaker | 610 | 90/95/105/165/110/45 | Mega Stone Collector (Hearthome) — $10,000 |
@@ -79,77 +79,77 @@ PokeAPI has no ability listed for: Mega Zygarde, Mega Heatran, Mega Darkrai, Meg
 | Mega Houndoom | Houndoominite | Dark/Fire | Solar Power | 600 | 75/90/90/140/90/115 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Tyranitar | Tyranitarite | Rock/Dark | Sand Stream | 700 | 100/164/150/95/120/71 | Field item — Route 207 (replaces Super Potion) |
 | Mega Blaziken | Blazikenite | Fire/Fighting | Speed Boost | 630 | 80/160/80/130/80/100 | Mega Stone Trader (Pastoria) — $10,000 |
-| Mega Gardevoir | Gardevoirite | Psychic/Fairy | Pixilate ⚙ | 618 | 68/85/65/165/135/100 | Field item — Route 208 (replaces Great Ball) |
+| Mega Gardevoir | Gardevoirite | Psychic/Fairy | Pixilate | 618 | 68/85/65/165/135/100 | Field item — Route 208 (replaces Great Ball) |
 | Mega Mawile | Mawilite | Steel/Fairy | Huge Power | 480 | 50/105/125/55/95/50 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Aggron | Aggronite | Steel | Filter | 630 | 70/140/230/60/80/50 | Field item — Oreburgh Mine B2F (replaces Potion) |
 | Mega Medicham | Medichamite | Fighting/Psychic | Pure Power | 510 | 60/100/85/80/85/100 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Manectric | Manectite | Electric | Intimidate | 575 | 70/75/80/135/80/135 | Mega Stone Collector (Hearthome) — $10,000 |
-| Mega Banette | Banettite | Ghost | Prankster ⚙ | 555 | 64/165/75/93/83/75 | Field item — Route 209 (replaces Hyper Potion) |
-| Mega Absol | Absolite | Dark | Magic Bounce ⚙ | 565 | 65/150/60/115/60/115 | Field item — Route 215 (replaces Hyper Potion) |
-| Mega Garchomp | Garchompite | Dragon/Ground | Sand Force ⚙ | 700 | 108/170/115/120/95/92 | Field item — Victory Road 1F (replaces Max Repel) |
+| Mega Banette | Banettite | Ghost | Prankster | 555 | 64/165/75/93/83/75 | Field item — Route 209 (replaces Hyper Potion) |
+| Mega Absol | Absolite | Dark | Magic Bounce | 565 | 65/150/60/115/60/115 | Field item — Route 215 (replaces Hyper Potion) |
+| Mega Garchomp | Garchompite | Dragon/Ground | Sand Force | 700 | 108/170/115/120/95/92 | Field item — Victory Road 1F (replaces Max Repel) |
 | Mega Lucario | Lucarionite | Fighting/Steel | Adaptability | 625 | 70/145/88/140/70/112 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Abomasnow | Abomasite | Grass/Ice | Snow Warning | 594 | 90/132/105/132/105/30 | Field item — Route 216 (replaces Full Heal) |
 | Mega Latias | Latiasite | Dragon/Psychic | Levitate | 700 | 80/100/120/140/150/110 | Mega Stone Curator (Survival Area) — $30,000 |
 | Mega Latios | Latiosite | Dragon/Psychic | Levitate | 700 | 80/130/100/160/120/110 | Mega Stone Curator (Survival Area) — $30,000 |
 | Mega Swampert | Swampertite | Water/Ground | Swift Swim | 635 | 100/150/110/95/110/70 | Field item — Route 212 (South) (replaces Hyper Potion) |
 | Mega Sceptile | Sceptilite | Grass/Dragon | Lightning Rod | 630 | 70/110/75/145/85/145 | Mega Stone Trader (Pastoria) — $10,000 |
-| Mega Sableye | Sablenite | Dark/Ghost | Magic Bounce ⚙ | 480 | 50/85/125/85/115/20 | Field item — Wayward Cave 1F (replaces Escape Rope) |
-| Mega Altaria | Altarianite | Dragon/Fairy | Pixilate ⚙ | 590 | 75/110/110/110/105/80 | Mega Stone Collector (Hearthome) — $10,000 |
+| Mega Sableye | Sablenite | Dark/Ghost | Magic Bounce | 480 | 50/85/125/85/115/20 | Field item — Wayward Cave 1F (replaces Escape Rope) |
+| Mega Altaria | Altarianite | Dragon/Fairy | Pixilate | 590 | 75/110/110/110/105/80 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Gallade | Galladite | Psychic/Fighting | Inner Focus | 618 | 68/165/95/65/115/110 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Audino | Audinite | Normal/Fairy | Healer ⚙ | 545 | 103/60/126/80/126/50 | Mega Stone Collector (Hearthome) — $10,000 |
-| Mega Sharpedo | Sharpedonite | Water/Dark | Strong Jaw ⚙ | 560 | 70/140/70/110/65/105 | Mega Stone Trader (Pastoria) — $10,000 |
+| Mega Sharpedo | Sharpedonite | Water/Dark | Strong Jaw | 560 | 70/140/70/110/65/105 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Slowbro | Slowbronite | Water/Psychic | Shell Armor | 590 | 95/75/180/130/80/30 | Mega Stone Collector (Hearthome) — $10,000 |
-| Mega Steelix | Steelixite | Steel/Ground | Sand Force ⚙ | 610 | 75/125/230/55/95/30 | Mega Stone Trader (Pastoria) — $10,000 |
+| Mega Steelix | Steelixite | Steel/Ground | Sand Force | 610 | 75/125/230/55/95/30 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Pidgeot | Pidgeotite | Normal/Flying | No Guard | 579 | 83/80/80/135/80/121 | Mega Stone Collector (Hearthome) — $10,000 |
-| Mega Glalie | Glalitite | Ice | Refrigerate ⚙ | 580 | 80/120/80/120/80/100 | Field item — Snowpoint Temple B4F (replaces Full Heal) |
-| Mega Diancie | Diancite | Rock/Fairy | Magic Bounce ⚙ | 700 | 50/160/110/160/110/110 | Mega Stone Curator (Survival Area) — $30,000 |
-| Mega Metagross | Metagrossite | Steel/Psychic | Tough Claws ⚙ | 700 | 80/145/150/105/110/110 | Mega Stone Sage (Snowpoint) — $10,000 |
-| Primal Kyogre | Blue Orb | Water | Primordial Sea ⚙ | 770 | 100/150/90/180/160/90 | Given by the Kyogre shrine event once Kyogre is caught (Renegade's Kyogre event). |
-| Primal Groudon | Red Orb | Ground/Fire | Desolate Land ⚙ | 770 | 100/180/160/150/90/90 | Given by the Groudon shrine event once Groudon is caught (Renegade's Groudon event; see SpecialEvents.txt). |
-| Mega Rayquaza | Dragon Ascent (move; no stone) | Dragon/Flying | Delta Stream ⚙ | 780 | 105/180/100/180/100/115 | Move tutor in the Route 212 tutor house teaches Dragon Ascent to Rayquaza after it is caught. Mega Rayquaza needs Dragon Ascent and no held stone. |
-| Mega Camerupt | Cameruptite | Fire/Ground | Sheer Force ⚙ | 560 | 70/120/100/145/105/20 | Mega Stone Collector (Hearthome) — $10,000 |
+| Mega Glalie | Glalitite | Ice | Refrigerate | 580 | 80/120/80/120/80/100 | Field item — Snowpoint Temple B4F (replaces Full Heal) |
+| Mega Diancie | Diancite | Rock/Fairy | Magic Bounce | 700 | 50/160/110/160/110/110 | Mega Stone Curator (Survival Area) — $30,000 |
+| Mega Metagross | Metagrossite | Steel/Psychic | Tough Claws | 700 | 80/145/150/105/110/110 | Mega Stone Sage (Snowpoint) — $10,000 |
+| Primal Kyogre | Blue Orb | Water | Primordial Sea | 770 | 100/150/90/180/160/90 | Given by the Kyogre shrine event once Kyogre is caught (Renegade's Kyogre event). |
+| Primal Groudon | Red Orb | Ground/Fire | Desolate Land | 770 | 100/180/160/150/90/90 | Given by the Groudon shrine event once Groudon is caught (Renegade's Groudon event; see SpecialEvents.txt). |
+| Mega Rayquaza | Dragon Ascent (move; no stone) | Dragon/Flying | Delta Stream | 780 | 105/180/100/180/100/115 | Move tutor in the Route 212 tutor house teaches Dragon Ascent to Rayquaza after it is caught. Mega Rayquaza needs Dragon Ascent and no held stone. |
+| Mega Camerupt | Cameruptite | Fire/Ground | Sheer Force | 560 | 70/120/100/145/105/20 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Lopunny | Lopunnite | Normal/Fighting | Scrappy | 580 | 65/136/94/54/96/135 | Field item — Eterna Forest (replaces Potion) |
-| Mega Salamence | Salamencite | Dragon/Flying | Aerilate ⚙ | 700 | 95/145/130/120/90/120 | Mega Stone Sage (Snowpoint) — $10,000 |
+| Mega Salamence | Salamencite | Dragon/Flying | Aerilate | 700 | 95/145/130/120/90/120 | Mega Stone Sage (Snowpoint) — $10,000 |
 | Mega Beedrill | Beedrillite | Bug/Poison | Adaptability | 495 | 65/150/40/15/80/145 | Mega Stone Collector (Hearthome) — $10,000 |
-| Mega Clefable † | Clefablite | Fairy/Flying | Magic Bounce ⚙ | 583 | 95/80/93/135/110/70 | Mega Stone Collector (Hearthome) — $10,000 |
+| Mega Clefable † | Clefablite | Fairy/Flying | Magic Bounce | 583 | 95/80/93/135/110/70 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Victreebel † | Victreebelite | Grass/Poison | Innards Out ⚙ | 590 | 80/125/85/135/95/70 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Starmie † | Starminite | Water/Psychic | Huge Power | 620 | 60/100/105/130/105/120 | Mega Stone Trader (Pastoria) — $10,000 |
-| Mega Dragonite † | Dragoninite | Dragon/Flying | Multiscale ⚙ | 700 | 91/124/115/145/125/100 | Mega Stone Sage (Snowpoint) — $10,000 |
+| Mega Dragonite † | Dragoninite | Dragon/Flying | Multiscale | 700 | 91/124/115/145/125/100 | Mega Stone Sage (Snowpoint) — $10,000 |
 | Mega Meganium † | Meganiumite | Grass/Fairy | Mega Sol ⚙ | 625 | 80/92/115/143/115/80 | Mega Stone Collector (Hearthome) — $10,000 |
-| Mega Feraligatr † | Feraligite | Water/Dragon | Dragonize ⚙ | 630 | 85/160/125/89/93/78 | Mega Stone Trader (Pastoria) — $10,000 |
-| Mega Skarmory † | Skarmorite | Steel/Flying | Stalwart ⚙ | 565 | 65/140/110/40/100/110 | Mega Stone Trader (Pastoria) — $10,000 |
+| Mega Feraligatr † | Feraligite | Water/Dragon | Dragonize | 630 | 85/160/125/89/93/78 | Mega Stone Trader (Pastoria) — $10,000 |
+| Mega Skarmory † | Skarmorite | Steel/Flying | Stalwart | 565 | 65/140/110/40/100/110 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Froslass † | Froslassite | Ice/Ghost | Snow Warning | 580 | 70/80/70/140/100/120 | Mega Stone Sage (Snowpoint) — $10,000 |
 | Mega Emboar † | Emboarite | Fire/Fighting | Mold Breaker | 628 | 110/148/75/110/110/75 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Excadrill † | Excadrite | Ground/Steel | Piercing Drill ⚙ | 608 | 110/165/100/65/65/103 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Scolipede † | Scolipite | Bug/Poison | Shell Armor | 585 | 60/140/149/75/99/62 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Scrafty † | Scraftinite | Dark/Fighting | Intimidate | 588 | 65/130/135/55/135/68 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Eelektross † | Eelektrossite | Electric | Eelevate ⚙ | 615 | 85/145/80/135/90/80 | Mega Stone Trader (Pastoria) — $10,000 |
-| Mega Chandelure † | Chandelurite | Ghost/Fire | Infiltrator ⚙ | 620 | 60/75/110/175/110/90 | Mega Stone Trader (Pastoria) — $10,000 |
-| Mega Chesnaught † | Chesnaughtite | Grass/Fighting | Bulletproof ⚙ | 630 | 88/137/172/74/115/44 | Mega Stone Collector (Hearthome) — $10,000 |
+| Mega Chandelure † | Chandelurite | Ghost/Fire | Infiltrator | 620 | 60/75/110/175/110/90 | Mega Stone Trader (Pastoria) — $10,000 |
+| Mega Chesnaught † | Chesnaughtite | Grass/Fighting | Bulletproof | 630 | 88/137/172/74/115/44 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Delphox † | Delphoxite | Fire/Psychic | Levitate | 634 | 75/69/72/159/125/134 | Mega Stone Trader (Pastoria) — $10,000 |
-| Mega Greninja † | Greninjite | Water/Dark | Protean ⚙ | 630 | 72/125/77/133/81/142 | Mega Stone Trader (Pastoria) — $10,000 |
+| Mega Greninja † | Greninjite | Water/Dark | Protean | 630 | 72/125/77/133/81/142 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Pyroar † | Pyroarite | Fire/Normal | Fire Mane ⚙ | 607 | 86/88/92/129/86/126 | Mega Stone Collector (Hearthome) — $10,000 |
-| Mega Floette † | Floettite | Fairy | Fairy Aura ⚙ | 651 | 74/85/87/155/148/102 | Mega Stone Collector (Hearthome) — $10,000 |
-| Mega Malamar † | Malamarite | Dark/Psychic | Contrary ⚙ | 582 | 86/102/88/98/120/88 | Mega Stone Trader (Pastoria) — $10,000 |
-| Mega Barbaracle † | Barbaracite | Rock/Fighting | Tough Claws ⚙ | 600 | 72/140/130/64/106/88 | Mega Stone Trader (Pastoria) — $10,000 |
-| Mega Dragalge † | Dragalgite | Poison/Dragon | Regenerator ⚙ | 594 | 65/85/105/132/163/44 | Mega Stone Trader (Pastoria) — $10,000 |
+| Mega Floette † | Floettite | Fairy | Fairy Aura | 651 | 74/85/87/155/148/102 | Mega Stone Collector (Hearthome) — $10,000 |
+| Mega Malamar † | Malamarite | Dark/Psychic | Contrary | 582 | 86/102/88/98/120/88 | Mega Stone Trader (Pastoria) — $10,000 |
+| Mega Barbaracle † | Barbaracite | Rock/Fighting | Tough Claws | 600 | 72/140/130/64/106/88 | Mega Stone Trader (Pastoria) — $10,000 |
+| Mega Dragalge † | Dragalgite | Poison/Dragon | Regenerator | 594 | 65/85/105/132/163/44 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Hawlucha † | Hawluchanite | Fighting/Flying | No Guard | 600 | 78/137/100/74/93/118 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Zygarde † | Zygardite | Dragon/Ground | TBD | 778 | 216/70/91/216/85/100 | Mega Stone Curator (Survival Area) — $30,000 |
 | Mega Drampa † | Drampanite | Normal/Dragon | Berserk ⚙ | 585 | 78/85/110/160/116/36 | Mega Stone Trader (Pastoria) — $10,000 |
-| Mega Falinks † | Falinksite | Fighting | Defiant ⚙ | 570 | 65/135/135/70/65/100 | Mega Stone Trader (Pastoria) — $10,000 |
-| Mega Raichu X † | Raichunite X | Electric | Electric Surge ⚙ | 585 | 60/135/95/90/95/110 | Mega Stone Collector (Hearthome) — $10,000 |
+| Mega Falinks † | Falinksite | Fighting | Defiant | 570 | 65/135/135/70/65/100 | Mega Stone Trader (Pastoria) — $10,000 |
+| Mega Raichu X † | Raichunite X | Electric | Electric Surge | 585 | 60/135/95/90/95/110 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Raichu Y † | Raichunite Y | Electric | No Guard | 585 | 60/100/55/160/80/130 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Chimecho † | Chimechite | Psychic/Steel | Levitate | 555 | 75/50/110/135/120/65 | Mega Stone Collector (Hearthome) — $10,000 |
-| Mega Absol Z † | Absolite Z | Dark/Ghost | Sharpness ⚙ | 565 | 65/154/60/75/60/151 | Mega Stone Sage (Snowpoint) — $10,000 |
-| Mega Staraptor † | Staraptite | Fighting/Flying | Contrary ⚙ | 585 | 85/140/100/60/90/110 | Mega Stone Collector (Hearthome) — $10,000 |
+| Mega Absol Z † | Absolite Z | Dark/Ghost | Sharpness | 565 | 65/154/60/75/60/151 | Mega Stone Sage (Snowpoint) — $10,000 |
+| Mega Staraptor † | Staraptite | Fighting/Flying | Contrary | 585 | 85/140/100/60/90/110 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Garchomp Z † | Garchompite Z | Dragon | Levitate | 700 | 108/130/85/141/85/151 | Mega Stone Curator (Survival Area) — $30,000 |
 | Mega Lucario Z † | Lucarionite Z | Fighting/Steel | Aura Guard ⚙ | 625 | 70/100/70/164/70/151 | Mega Stone Sage (Snowpoint) — $10,000 |
 | Mega Heatran † | Heatranite | Fire/Steel | TBD | 700 | 91/120/106/175/141/67 | Field item — Stark Mountain (Room 1) (replaces Full Heal) |
 | Mega Darkrai † | Darkranite | Dark | TBD | 700 | 70/120/130/165/130/85 | Mega Stone Curator (Survival Area) — $30,000 |
-| Mega Golurk † | Golurkite | Ground/Ghost | Unseen Fist ⚙ | 583 | 89/159/105/70/105/55 | Mega Stone Collector (Hearthome) — $10,000 |
+| Mega Golurk † | Golurkite | Ground/Ghost | Unseen Fist | 583 | 89/159/105/70/105/55 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Meowstic (Male) † | Meowsticite | Psychic | Trace | 566 | 74/48/76/143/101/124 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Crabominable † | Crabominite | Fighting/Ice | Iron Fist | 578 | 97/157/122/62/107/33 | Mega Stone Trader (Pastoria) — $10,000 |
-| Mega Golisopod † | Golisopite | Bug/Steel | Tough Claws ⚙ | 630 | 75/150/175/70/120/40 | Mega Stone Trader (Pastoria) — $10,000 |
+| Mega Golisopod † | Golisopite | Bug/Steel | Tough Claws | 630 | 75/150/175/70/120/40 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Magearna † | Magearnite | Steel/Fairy | TBD | 700 | 80/125/115/170/115/95 | Mega Stone Curator (Survival Area) — $30,000 |
 | Mega Magearna (Original Color) † | Magearnite | Steel/Fairy | TBD | 700 | 80/125/115/170/115/95 | Mega Stone Curator (Survival Area) — $30,000 |
 | Mega Zeraora † | Zeraorite | Electric | TBD | 700 | 88/157/75/147/80/153 | Mega Stone Curator (Survival Area) — $30,000 |
@@ -158,7 +158,7 @@ PokeAPI has no ability listed for: Mega Zygarde, Mega Heatran, Mega Darkrai, Meg
 | Mega Tatsugiri (Curly Form) † | Tatsugirinite | Dragon/Water | TBD | 575 | 68/65/90/135/125/92 | Mega Stone Sage (Snowpoint) — $10,000 |
 | Mega Tatsugiri (Droopy Form) † | Tatsugirinite | Dragon/Water | TBD | 575 | 68/65/90/135/125/92 | Mega Stone Sage (Snowpoint) — $10,000 |
 | Mega Tatsugiri (Stretchy Form) † | Tatsugirinite | Dragon/Water | TBD | 575 | 68/65/90/135/125/92 | Mega Stone Sage (Snowpoint) — $10,000 |
-| Mega Baxcalibur † | Baxcalibrite | Dragon/Ice | Thermal Exchange ⚙ | 700 | 115/175/117/105/101/87 | Mega Stone Sage (Snowpoint) — $10,000 |
+| Mega Baxcalibur † | Baxcalibrite | Dragon/Ice | Thermal Exchange | 700 | 115/175/117/105/101/87 | Mega Stone Sage (Snowpoint) — $10,000 |
 | Mega Meowstic (Female) † | Meowsticite | Psychic | Trace | 566 | 74/48/76/143/101/124 | Mega Stone Collector (Hearthome) — $10,000 |
 
 ## Mega Stones hidden in the field

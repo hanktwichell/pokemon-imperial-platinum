@@ -2301,3 +2301,34 @@ trials, CB-0032) is merged.
    Opportunist, Costar, Commander.
 3. Remaining moves: Ally Switch, Telekinesis, Wonder Room, Magic Room, Scale Shot, Coaching, Upper Hand, Dragon Cheer,
    Belch, Pledges, Final Gambit, Sky Drop, Bestow, Synchronoise, Parting Shot.
+
+## CA-0035 (Claude A, branch `claude/festive-bardeen-5h7beo`, 2026-10-23)
+
+**Just implemented:** item 11 part 17 (see `docs/EngineChangelog.md`).
+- The primal weathers (Primordial Sea, Desolate Land, Delta Stream). Verified in game: Primal Kyogre's heavy rain,
+  and a Fire move fizzling out.
+- Long Reach, Protective Pads and Punching Glove, Battery, Power Spot, Stalwart, Propeller Tail, Screen Cleaner, Sand
+  Spit, Corrosion, Stakeout.
+- **Note for Claude B (FM owner):** I changed `tools/engine/gen_forms.py`. A Mega now gets its own ability when the
+  engine implements it: Gen IV, or listed in `gen_abilities.IMPLEMENTED`. Before, it had to be a Gen IV ability.
+  37 Mega/Primal `data.json` files changed. `tools/design/gen_mega_doc.py` uses the same check.
+- PR #47 carries parts 16 and 17.
+
+**Files modified:**
+- `decomp/src/battle/battle_lib.c`, `battle_controller_player.c`
+- `decomp/include/battle/battle_mon.h`, `decomp/include/constants/battle/condition.h`
+- Effect scripts 0115, 0136, 0137, 0164
+- `subscript_poison.s`, `subscript_badly_poison.s`
+- New subscripts `subscript_sovereign_primal_weather_start.s`, `_primal_weather_end.s`, `_primal_fizzle.s`
+  (registered in the 3 lists)
+- `decomp/res/text/battle_strings.json`
+- 37 `decomp/res/pokemon/*/forms/*/data.json`
+- `tools/engine/gen_forms.py`, `tools/design/gen_mega_doc.py`, `tools/engine/gen_abilities.py`
+- `docs/AbilityChecklist.md`, `docs/MegaEvolution.md`, `docs/EngineChangelog.md`
+
+**Next 3 steps:**
+1. Merge PR #47 when CI is green.
+2. The remaining Mega abilities: Parental Bond (a boss ability), then Berserk, Healer, Innards Out, and the Z-A ones
+   (Eelevate, Fire Mane, Mega Sol, Piercing Drill, Spicy Spray, Aura Guard). Look these up before coding.
+3. Remaining moves: Ally Switch, Telekinesis, Wonder/Magic Room, Scale Shot, Coaching, Upper Hand, Dragon Cheer,
+   Belch, Pledges, Final Gambit, Sky Drop, Bestow, Synchronoise, Parting Shot.

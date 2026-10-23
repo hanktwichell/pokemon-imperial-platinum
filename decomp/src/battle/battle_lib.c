@@ -65,6 +65,7 @@ static int ChooseTraceTarget(BattleSystem *battleSys, BattleContext *battleCtx, 
 static BOOL MoveCannotTriggerAnticipation(BattleContext *battleCtx, int move);
 static int CalcMoveType(BattleSystem *battleSys, BattleContext *battleCtx, int item, int move);
 static BOOL Sovereign_ProtosynthesisHasSun(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL Sovereign_MakesContact(BattleContext *battleCtx, int attacker, int move);
 
 static const Fraction sStatStageBoosts[];
 
@@ -114,6 +115,7 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
     battleCtx->battleMons[battler].pressureAnnounced = FALSE;
     battleCtx->battleMons[battler].sovereignBoosterEnergy = FALSE;
     battleCtx->battleMons[battler].sovereignProteanUsed = FALSE;
+    battleCtx->battleMons[battler].sovereignEntryAnnounced = FALSE;
     battleCtx->battleMons[battler].type1 = Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
     battleCtx->battleMons[battler].type2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
     battleCtx->battleMons[battler].gender = Pokemon_GetGender(mon);
@@ -1752,7 +1754,10 @@ int BattleSystem_Defender(BattleSystem *battleSys, BattleContext *battleCtx, int
         int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
 
         if (battleCtx->sideConditions[enemySide].followMe
-            && battleCtx->battleMons[battleCtx->sideConditions[enemySide].followMeUser].curHP) {
+            && battleCtx->battleMons[battleCtx->sideConditions[enemySide].followMeUser].curHP
+            && Battler_Ability(battleCtx, attacker) != ABILITY_STALWART // Sovereign (item 11): these ignore Follow Me
+            && Battler_Ability(battleCtx, attacker) != ABILITY_PROPELLER_TAIL
+            && move != MOVE_SNIPE_SHOT) {
             // If Follow Me is active and the user is still alive, re-point all targets toward them
             defender = battleCtx->sideConditions[enemySide].followMeUser;
         } else if (battleCtx->battleMons[target].curHP) {
@@ -1775,7 +1780,10 @@ void BattleSystem_CheckRedirectionAbilities(BattleSystem *battleSys, BattleConte
 
     if (battleCtx->defender == BATTLER_NONE
         || Battler_Ability(battleCtx, attacker) == ABILITY_NORMALIZE
-        || Sovereign_IsMoldBreaker(battleCtx, attacker)) {
+        || Sovereign_IsMoldBreaker(battleCtx, attacker)
+        || Battler_Ability(battleCtx, attacker) == ABILITY_STALWART // Sovereign (item 11)
+        || Battler_Ability(battleCtx, attacker) == ABILITY_PROPELLER_TAIL
+        || move == MOVE_SNIPE_SHOT) {
         return;
     }
 
@@ -2653,11 +2661,18 @@ static BOOL BasicTypeMulApplies(BattleContext *battleCtx, int attacker, int defe
     return result;
 }
 
-// Sovereign (item 11): a type chart entry's multiplier for this move. Freeze-Dry is super effective against Water.
-static u8 Sovereign_ChartMul(int move, int chartEntry)
+// Sovereign (item 11): a type chart entry's multiplier for this move. Freeze-Dry is super effective against Water;
+// in Delta Stream's strong winds, nothing is super effective against the Flying type.
+static u8 Sovereign_ChartMul(BattleContext *battleCtx, int move, int chartEntry)
 {
     if (move == MOVE_FREEZE_DRY && sTypeMatchupMultipliers[chartEntry][1] == TYPE_WATER) {
         return TYPE_MULTI_SUPER_EFF;
+    }
+
+    if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_SOVEREIGN_STRONG_WINDS)
+        && sTypeMatchupMultipliers[chartEntry][1] == TYPE_FLYING
+        && sTypeMatchupMultipliers[chartEntry][2] == TYPE_MULTI_SUPER_EFF) {
+        return 10; // neutral
     }
 
     return sTypeMatchupMultipliers[chartEntry][2];
@@ -2725,9 +2740,9 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
             if (sTypeMatchupMultipliers[chartEntry][0] == moveType) {
                 if (sTypeMatchupMultipliers[chartEntry][1] == BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_1, NULL)
                     && BasicTypeMulApplies(battleCtx, attacker, defender, chartEntry) == TRUE) {
-                    damage = ApplyTypeMultiplier(battleCtx, attacker, Sovereign_ChartMul(move, chartEntry), damage, movePower, moveStatusMask);
+                    damage = ApplyTypeMultiplier(battleCtx, attacker, Sovereign_ChartMul(battleCtx, move, chartEntry), damage, movePower, moveStatusMask);
 
-                    if (Sovereign_ChartMul(move, chartEntry) == TYPE_MULTI_SUPER_EFF) {
+                    if (Sovereign_ChartMul(battleCtx, move, chartEntry) == TYPE_MULTI_SUPER_EFF) {
                         totalMul *= 2;
                     }
                 }
@@ -2735,9 +2750,9 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
                 if (sTypeMatchupMultipliers[chartEntry][1] == BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_2, NULL)
                     && BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_1, NULL) != BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_2, NULL)
                     && BasicTypeMulApplies(battleCtx, attacker, defender, chartEntry) == TRUE) {
-                    damage = ApplyTypeMultiplier(battleCtx, attacker, Sovereign_ChartMul(move, chartEntry), damage, movePower, moveStatusMask);
+                    damage = ApplyTypeMultiplier(battleCtx, attacker, Sovereign_ChartMul(battleCtx, move, chartEntry), damage, movePower, moveStatusMask);
 
-                    if (Sovereign_ChartMul(move, chartEntry) == TYPE_MULTI_SUPER_EFF) {
+                    if (Sovereign_ChartMul(battleCtx, move, chartEntry) == TYPE_MULTI_SUPER_EFF) {
                         totalMul *= 2;
                     }
                 }
@@ -2818,13 +2833,13 @@ void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inTy
             if (sTypeMatchupMultipliers[chartEntry][0] == moveType) {
                 if (sTypeMatchupMultipliers[chartEntry][1] == defenderType1
                     && NoImmunityOverrides(battleCtx, defenderItemEffect, chartEntry) == TRUE) {
-                    UpateMoveStatusForTypeMul(Sovereign_ChartMul(move, chartEntry), moveStatusMask);
+                    UpateMoveStatusForTypeMul(Sovereign_ChartMul(battleCtx, move, chartEntry), moveStatusMask);
                 }
 
                 if (sTypeMatchupMultipliers[chartEntry][1] == defenderType2
                     && defenderType1 != defenderType2
                     && NoImmunityOverrides(battleCtx, defenderItemEffect, chartEntry) == TRUE) {
-                    UpateMoveStatusForTypeMul(Sovereign_ChartMul(move, chartEntry), moveStatusMask);
+                    UpateMoveStatusForTypeMul(Sovereign_ChartMul(battleCtx, move, chartEntry), moveStatusMask);
                 }
             }
 
@@ -3888,6 +3903,7 @@ enum SwitchInCheckState {
     SWITCH_IN_CHECK_STATE_SOVEREIGN_PRIMAL, // Sovereign (E8)
     SWITCH_IN_CHECK_STATE_SOVEREIGN_TOTEM_AURA, // Sovereign (decision 18)
     SWITCH_IN_CHECK_STATE_TRACE,
+    SWITCH_IN_CHECK_STATE_SOVEREIGN_PRIMAL_WEATHER_END,
     SWITCH_IN_CHECK_STATE_WEATHER_ABILITIES,
     SWITCH_IN_CHECK_STATE_INTIMIDATE,
     SWITCH_IN_CHECK_STATE_SOVEREIGN_STAT_DROP_REACTION,
@@ -4049,6 +4065,30 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
             }
             break;
 
+        case SWITCH_IN_CHECK_STATE_SOVEREIGN_PRIMAL_WEATHER_END:
+            // Sovereign (item 11): a primal weather ends once no Pokemon with its ability is left in battle.
+            battleCtx->switchInCheckState++;
+
+            if (battleCtx->fieldConditionsMask & FIELD_CONDITION_SOVEREIGN_PRIMAL) {
+                int ability = (battleCtx->fieldConditionsMask & FIELD_CONDITION_RAINING) ? ABILITY_PRIMORDIAL_SEA
+                    : (battleCtx->fieldConditionsMask & FIELD_CONDITION_SUNNY)           ? ABILITY_DESOLATE_LAND
+                                                                                         : ABILITY_DELTA_STREAM;
+
+                for (i = 0; i < maxBattlers; i++) {
+                    if (battleCtx->battleMons[i].curHP && Battler_Ability(battleCtx, i) == ability) {
+                        break;
+                    }
+                }
+
+                if (i == maxBattlers) {
+                    battleCtx->msgTemp = ability - ABILITY_PRIMORDIAL_SEA; // 0 rain, 1 sun, 2 winds
+                    battleCtx->fieldConditionsMask &= ~(FIELD_CONDITION_WEATHER | FIELD_CONDITION_SOVEREIGN_PRIMAL | FIELD_CONDITION_SOVEREIGN_STRONG_WINDS);
+                    subscript = subscript_sovereign_primal_weather_end;
+                    result = SWITCH_IN_CHECK_RESULT_BREAK;
+                }
+            }
+            break;
+
         case SWITCH_IN_CHECK_STATE_WEATHER_ABILITIES:
             for (i = 0; i < maxBattlers; i++) {
                 battler = battleCtx->monSpeedOrder[i];
@@ -4059,7 +4099,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                     case ABILITY_DRIZZLE:
                         battleCtx->battleMons[battler].weatherAbilityAnnounced = TRUE;
 
-                        if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_RAINING) == FALSE) { // Sovereign: fails in the same weather (Gen VI+)
+                        if ((battleCtx->fieldConditionsMask & (FIELD_CONDITION_RAINING | FIELD_CONDITION_SOVEREIGN_PRIMAL)) == FALSE) { // Sovereign: fails in the same weather (Gen VI+) or a primal one
                             subscript = subscript_drizzle;
                             result = SWITCH_IN_CHECK_RESULT_BREAK;
                         }
@@ -4068,7 +4108,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                     case ABILITY_SAND_STREAM:
                         battleCtx->battleMons[battler].weatherAbilityAnnounced = TRUE;
 
-                        if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_SANDSTORM) == FALSE) { // Sovereign: fails in the same weather (Gen VI+)
+                        if ((battleCtx->fieldConditionsMask & (FIELD_CONDITION_SANDSTORM | FIELD_CONDITION_SOVEREIGN_PRIMAL)) == FALSE) { // Sovereign: fails in the same weather (Gen VI+) or a primal one
                             subscript = subscript_sand_stream;
                             result = SWITCH_IN_CHECK_RESULT_BREAK;
                         }
@@ -4100,16 +4140,36 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                     case ABILITY_DROUGHT:
                         battleCtx->battleMons[battler].weatherAbilityAnnounced = TRUE;
 
-                        if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_SUNNY) == FALSE) { // Sovereign: fails in the same weather (Gen VI+)
+                        if ((battleCtx->fieldConditionsMask & (FIELD_CONDITION_SUNNY | FIELD_CONDITION_SOVEREIGN_PRIMAL)) == FALSE) { // Sovereign: fails in the same weather (Gen VI+) or a primal one
                             subscript = subscript_drought;
                             result = SWITCH_IN_CHECK_RESULT_BREAK;
                         }
                         break;
 
+                    case ABILITY_PRIMORDIAL_SEA: // Sovereign (item 11): the primal weathers last while their Pokemon is in battle
+                    case ABILITY_DESOLATE_LAND:
+                    case ABILITY_DELTA_STREAM: {
+                        int ability = Battler_Ability(battleCtx, battler);
+                        u32 weather = (ability == ABILITY_PRIMORDIAL_SEA) ? FIELD_CONDITION_RAINING_PERM
+                            : (ability == ABILITY_DESOLATE_LAND)          ? FIELD_CONDITION_SUNNY_PERM
+                                                                          : FIELD_CONDITION_SOVEREIGN_STRONG_WINDS;
+                        battleCtx->battleMons[battler].weatherAbilityAnnounced = TRUE;
+
+                        if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_SOVEREIGN_PRIMAL) == FALSE
+                            || (battleCtx->fieldConditionsMask & weather) == FALSE) {
+                            battleCtx->fieldConditionsMask &= ~(FIELD_CONDITION_WEATHER | FIELD_CONDITION_SOVEREIGN_STRONG_WINDS);
+                            battleCtx->fieldConditionsMask |= FIELD_CONDITION_SOVEREIGN_PRIMAL | weather;
+                            battleCtx->fieldConditions.weatherTurns = 0;
+                            subscript = subscript_sovereign_primal_weather_start;
+                            result = SWITCH_IN_CHECK_RESULT_BREAK;
+                        }
+                        break;
+                    }
+
                     case ABILITY_SNOW_WARNING:
                         battleCtx->battleMons[battler].weatherAbilityAnnounced = TRUE;
 
-                        if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_HAILING) == FALSE) { // Sovereign: fails in the same weather (Gen VI+)
+                        if ((battleCtx->fieldConditionsMask & (FIELD_CONDITION_HAILING | FIELD_CONDITION_SOVEREIGN_PRIMAL)) == FALSE) { // Sovereign: fails in the same weather (Gen VI+) or a primal one
                             subscript = subscript_snow_warning;
                             result = SWITCH_IN_CHECK_RESULT_BREAK;
                         }
@@ -4278,7 +4338,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
 
         case SWITCH_IN_CHECK_STATE_SOVEREIGN_ENTRY_BOOSTS:
             // Sovereign (item 11): Intrepid Sword raises Attack and Dauntless Shield Defense by 1 stage, the first time
-            // the holder enters the battle.
+            // the holder enters the battle; Screen Cleaner clears the screens.
             for (i = 0; i < maxBattlers; i++) {
                 int ability;
 
@@ -4293,6 +4353,25 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                     battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
                     battleCtx->sideEffectMon = battler;
                     subscript = subscript_update_stat_stage;
+                    result = SWITCH_IN_CHECK_RESULT_BREAK;
+                    break;
+                }
+
+                // Screen Cleaner removes Reflect, Light Screen and Aurora Veil from both sides on entry.
+                if (battleCtx->battleMons[battler].curHP
+                    && ability == ABILITY_SCREEN_CLEANER
+                    && battleCtx->battleMons[battler].sovereignEntryAnnounced == FALSE) {
+                    battleCtx->battleMons[battler].sovereignEntryAnnounced = TRUE;
+
+                    for (int side = 0; side < 2; side++) {
+                        battleCtx->sideConditionsMask[side] &= ~(SIDE_CONDITION_REFLECT | SIDE_CONDITION_LIGHT_SCREEN | SIDE_CONDITION_SOVEREIGN_AURORA_VEIL);
+                        battleCtx->sovereignAuroraVeilTurns[side] = 0;
+                        battleCtx->sideConditions[side].reflectTurns = 0;
+                        battleCtx->sideConditions[side].lightScreenTurns = 0;
+                    }
+
+                    battleCtx->msgBattlerTemp = battler;
+                    subscript = subscript_mold_breaker; // "{0} has {1}!"
                     result = SWITCH_IN_CHECK_RESULT_BREAK;
                     break;
                 }
@@ -4666,7 +4745,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
         && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
         && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
         && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
-        && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)
+        && Sovereign_MakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)
         && BattleSystem_RandNext(battleSys) % 10 < 3) {
         battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
         battleCtx->sideEffectMon = battleCtx->defender;
@@ -4683,7 +4762,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
-            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)
+            && Sovereign_MakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)
             && BattleSystem_RandNext(battleSys) % 10 < 3) {
             battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
             battleCtx->sideEffectMon = battleCtx->attacker;
@@ -4783,6 +4862,18 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
         }
         break;
 
+    // Sovereign (item 11): Sand Spit whips up a sandstorm when a damaging move hits the holder.
+    case ABILITY_SAND_SPIT:
+        if ((battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+            && (battleCtx->fieldConditionsMask & (FIELD_CONDITION_SANDSTORM | FIELD_CONDITION_SOVEREIGN_PRIMAL)) == FALSE) {
+            battleCtx->msgBattlerTemp = battleCtx->defender;
+            *subscript = subscript_sand_stream;
+            result = TRUE;
+        }
+        break;
+
     // Sovereign (item 11): Stamina raises Defense 1 stage whenever a damaging move hits (contact or not), as long as
     // the holder is still standing.
     case ABILITY_STAMINA:
@@ -4821,7 +4912,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
             && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
-            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)
+            && Sovereign_MakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)
             && ATTACKING_MON.statBoosts[BATTLE_STAT_SPEED] > 0) {
             *subscript = subscript_sovereign_gooey;
             result = TRUE;
@@ -4836,7 +4927,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
-            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)) {
+            && Sovereign_MakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
             battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * -1, 8);
             battleCtx->msgBattlerTemp = battleCtx->attacker;
 
@@ -4852,7 +4943,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
-            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)
+            && Sovereign_MakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)
             && BattleSystem_RandNext(battleSys) % 10 < 3) {
             switch (BattleSystem_RandNext(battleSys) % 3) {
             case 0:
@@ -4882,7 +4973,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
-            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)
+            && Sovereign_MakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)
             && BattleSystem_RandNext(battleSys) % 10 < 3) {
             battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
             battleCtx->sideEffectMon = battleCtx->attacker;
@@ -4900,7 +4991,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
-            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)
+            && Sovereign_MakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)
             && BattleSystem_RandNext(battleSys) % 10 < 3) {
             battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
             battleCtx->sideEffectMon = battleCtx->attacker;
@@ -4918,7 +5009,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
-            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)
+            && Sovereign_MakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)
             && DEFENDING_MON.curHP
             && BattleSystem_RandNext(battleSys) % 10 < 3) {
             battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
@@ -4937,7 +5028,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
             && ATTACKING_MON.curHP
             && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
-            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)) {
+            && Sovereign_MakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
             battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * -1, 4);
             battleCtx->msgBattlerTemp = battleCtx->attacker;
 
@@ -5998,7 +6089,7 @@ BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *b
             && battleCtx->moveCur != MOVE_KNOCK_OFF
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
-            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)) {
+            && Sovereign_MakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
             *subscript = subscript_transfer_sticky_barb;
             result = TRUE;
         }
@@ -7332,6 +7423,27 @@ static const u16 sPunchingMoves[] = {
     MOVE_PLASMA_FISTS,
 };
 
+// Sovereign (item 11): whether a move counts as making contact for the target's contact abilities and items. Long
+// Reach and Protective Pads remove contact; Punching Glove removes it from punching moves.
+static BOOL Sovereign_MakesContact(BattleContext *battleCtx, int attacker, int move)
+{
+    if ((MOVE_DATA(move).flags & MOVE_FLAG_MAKES_CONTACT) == FALSE
+        || Battler_Ability(battleCtx, attacker) == ABILITY_LONG_REACH
+        || battleCtx->battleMons[attacker].heldItem == ITEM_PROTECTIVE_PADS) {
+        return FALSE;
+    }
+
+    if (battleCtx->battleMons[attacker].heldItem == ITEM_PUNCHING_GLOVE) {
+        for (int i = 0; i < NELEMS(sPunchingMoves); i++) {
+            if (sPunchingMoves[i] == move) {
+                return FALSE;
+            }
+        }
+    }
+
+    return TRUE;
+}
+
 // Sovereign (item 11): ball and bomb moves, which Bulletproof blocks.
 static const u16 sBallAndBombMoves[] = {
     MOVE_ACID_SPRAY, MOVE_AURA_SPHERE, MOVE_BARRAGE, MOVE_BEAK_BLAST, MOVE_BULLET_SEED, MOVE_EGG_BOMB,
@@ -8107,13 +8219,21 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         }
     }
 
+    // Sovereign (item 11): Punching Glove powers up punching moves by 10%.
+    for (i = 0; i < NELEMS(sPunchingMoves); i++) {
+        if (sPunchingMoves[i] == move && battleCtx->battleMons[attacker].heldItem == ITEM_PUNCHING_GLOVE) {
+            movePower = movePower * 11 / 10;
+            break;
+        }
+    }
+
     if (Move_SheerForceApplies(battleCtx, attacker, move)) {
         movePower = movePower * 13 / 10;
     }
 
     // Sovereign (item 11): Fluffy halves damage from contact moves and doubles damage from Fire moves.
     if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_FLUFFY) == TRUE) {
-        if (MOVE_DATA(move).flags & MOVE_FLAG_MAKES_CONTACT) {
+        if (Sovereign_MakesContact(battleCtx, attacker, move)) {
             movePower /= 2;
         }
 
@@ -8200,6 +8320,12 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
             spAttackStat /= 2;
         }
         break;
+    case ABILITY_STAKEOUT:
+        // Double power against a target that switched in this turn.
+        if (battleCtx->battleMons[defender].moveEffectsData.fakeOutTurnNumber == battleCtx->totalTurns + 1) {
+            movePower *= 2;
+        }
+        break;
     case ABILITY_SUPREME_OVERLORD: {
         // 10% more power for each fainted party member, up to 5.
         Party *party = BattleSystem_GetParty(battleSys, attacker);
@@ -8235,6 +8361,17 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         }
         break;
     }
+    }
+
+    // Sovereign (item 11): Battery powers up its ally's special moves, Power Spot all its ally's moves, by 30%.
+    if ((battleType & BATTLE_TYPE_DOUBLES) && battleCtx->battleMons[attacker ^ 2].curHP) {
+        if (Battler_Ability(battleCtx, attacker ^ 2) == ABILITY_BATTERY && MOVE_DATA(move).class == CLASS_SPECIAL) {
+            movePower = movePower * 13 / 10;
+        }
+
+        if (Battler_Ability(battleCtx, attacker ^ 2) == ABILITY_POWER_SPOT) {
+            movePower = movePower * 13 / 10;
+        }
     }
 
     // Steely Spirit boosts the Steel moves of the holder and its ally.
@@ -8838,7 +8975,7 @@ BOOL BattleSystem_TriggerHeldItemOnPivotMove(BattleSystem *battleSys, BattleCont
         && ATTACKING_MON.heldItem == ITEM_NONE
         && (battleCtx->sideConditions[attackingSide].knockedOffItemsMask & FlagIndex(battleCtx->selectedPartySlot[battleCtx->attacker])) == FALSE
         && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
-        && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)) {
+        && Sovereign_MakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
         *subscript = subscript_transfer_sticky_barb;
         result = TRUE;
     }

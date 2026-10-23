@@ -9145,6 +9145,64 @@
         "{STRVAR_1 6, 1, 0} was bounced back by\f",
         "Magic Bounce!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignHeavyRainStart",
+      "en_US": [
+        "A heavy rain began to fall!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignHarshSunStart",
+      "en_US": [
+        "The sunlight turned extremely harsh!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignStrongWindsStart",
+      "en_US": [
+        "Mysterious strong winds are protecting\n",
+        "Flying-type Pokémon!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignHeavyRainEnd",
+      "en_US": [
+        "The heavy rain has lifted!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignHarshSunEnd",
+      "en_US": [
+        "The extremely harsh sunlight faded!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignStrongWindsEnd",
+      "en_US": [
+        "The mysterious strong winds\n",
+        "have dissipated!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFizzledInHeavyRain",
+      "en_US": [
+        "The Fire-type attack fizzled out\n",
+        "in the heavy rain!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignEvaporatedInHarshSun",
+      "en_US": [
+        "The Water-type attack evaporated in\n",
+        "the extremely harsh sunlight!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignWeatherNotChanged",
+      "en_US": [
+        "The weather didn’t change!"
+      ]
     }
   ]
 }

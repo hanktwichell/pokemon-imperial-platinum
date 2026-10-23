@@ -2,6 +2,8 @@
 
 
 _000:
+    // Sovereign (item 11): no weather move works while a primal weather is up.
+    CompareVarToValue OPCODE_FLAG_SET, BTLVAR_FIELD_CONDITIONS, FIELD_CONDITION_SOVEREIGN_PRIMAL, _036
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_FIELD_CONDITIONS, FIELD_CONDITION_SANDSTORM, _036
     // A sandstorm brewed!
     BufferMessage BattleStrings_Text_ASandstormBrewed, TAG_NONE

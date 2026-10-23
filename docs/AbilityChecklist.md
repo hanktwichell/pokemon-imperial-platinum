@@ -71,21 +71,21 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 186 | Dark Aura | Gen 6 | yes: Dark moves on the field ×1.33 |
 | 187 | Fairy Aura | Gen 6 | yes: Fairy moves on the field ×1.33 |
 | 188 | Aura Break | Gen 6 | yes: reverses the Auras (×0.75) |
-| 189 | Primordial Sea | Gen 6 | not yet (no battle effect) |
-| 190 | Desolate Land | Gen 6 | not yet (no battle effect) |
-| 191 | Delta Stream | Gen 6 | not yet (no battle effect) |
+| 189 | Primordial Sea | Gen 6 | yes: heavy rain while it's in battle; Fire moves fizzle, other weather can't start |
+| 190 | Desolate Land | Gen 6 | yes: extremely harsh sun while it's in battle; Water moves evaporate, other weather can't start |
+| 191 | Delta Stream | Gen 6 | yes: strong winds while it's in battle; no move is super effective on Flying types |
 | 192 | Stamina | Gen 7 | yes: Defense +1 stage each time a damaging move hits (`BattleSystem_TriggerAbilityOnHit`) |
 | 193 | Wimp Out | Gen 7 | not yet (no battle effect) |
 | 194 | Emergency Exit | Gen 7 | not yet (no battle effect) |
 | 195 | WaterCompaction | Gen 7 | yes: Defense +2 when hit by a Water move |
 | 196 | Merciless | Gen 7 | yes: always a critical hit on a poisoned target |
 | 197 | Shields Down | Gen 7 | not yet (no battle effect) |
-| 198 | Stakeout | Gen 7 | not yet (no battle effect) |
+| 198 | Stakeout | Gen 7 | yes: double power against a target that switched in this turn |
 | 199 | Water Bubble | Gen 7 | partly: its Water moves ×2, Fire damage taken halved (burn immunity not yet) |
 | 200 | Steelworker | Gen 7 | yes: Steel moves ×1.5 |
 | 201 | Berserk | Gen 7 | not yet (no battle effect) |
 | 202 | Slush Rush | Gen 7 | yes: Speed ×2 in snow |
-| 203 | Long Reach | Gen 7 | not yet (no battle effect) |
+| 203 | Long Reach | Gen 7 | yes: its moves make no contact |
 | 204 | Liquid Voice | Gen 7 | yes: sound moves become Water-type |
 | 205 | Triage | Gen 7 | yes: healing moves +3 priority |
 | 206 | Galvanize | Gen 7 | yes: Normal moves become Electric-type, ×1.2 |
@@ -94,12 +94,12 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 209 | Disguise | Gen 7 | not yet (no battle effect) |
 | 210 | Battle Bond | Gen 7 | not yet (no battle effect) |
 | 211 | Power Construct | Gen 7 | not yet (no battle effect) |
-| 212 | Corrosion | Gen 7 | not yet (no battle effect) |
+| 212 | Corrosion | Gen 7 | yes: can poison Steel and Poison types |
 | 213 | Comatose | Gen 7 | not yet (no battle effect) |
 | 214 | Queenly Majesty | Gen 7 | yes: foes' priority moves can't hit its side |
 | 215 | Innards Out | Gen 7 | not yet (no battle effect) |
 | 216 | Dancer | Gen 7 | not yet (no battle effect) |
-| 217 | Battery | Gen 7 | not yet (no battle effect) |
+| 217 | Battery | Gen 7 | yes: its ally's special moves ×1.3 |
 | 218 | Fluffy | Gen 7 | yes: contact damage halved, Fire damage doubled |
 | 219 | Dazzling | Gen 7 | yes: foes' priority moves can't hit its side |
 | 220 | Soul-Heart | Gen 7 | not yet (no battle effect) |
@@ -121,19 +121,19 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 236 | Libero | Gen 8 | yes: becomes its move's type, once per switch-in |
 | 237 | Ball Fetch | Gen 8 | not yet (no battle effect) |
 | 238 | Cotton Down | Gen 8 | not yet (no battle effect) |
-| 239 | Propeller Tail | Gen 8 | not yet (no battle effect) |
+| 239 | Propeller Tail | Gen 8 | yes: ignores moves and abilities that draw in attacks |
 | 240 | Mirror Armor | Gen 8 | not yet (no battle effect) |
 | 241 | Gulp Missile | Gen 8 | not yet (no battle effect) |
-| 242 | Stalwart | Gen 8 | not yet (no battle effect) |
+| 242 | Stalwart | Gen 8 | yes: ignores moves and abilities that draw in attacks |
 | 243 | Steam Engine | Gen 8 | yes: Fire or Water hits raise Speed 6 stages |
 | 244 | Punk Rock | Gen 8 | yes: its sound moves ×1.3, sound damage taken halved |
-| 245 | Sand Spit | Gen 8 | not yet (no battle effect) |
+| 245 | Sand Spit | Gen 8 | yes: getting hit whips up a sandstorm |
 | 246 | Ice Scales | Gen 8 | yes: special damage halved |
 | 247 | Ripen | Gen 8 | not yet (no battle effect) |
 | 248 | Ice Face | Gen 8 | not yet (no battle effect) |
-| 249 | Power Spot | Gen 8 | not yet (no battle effect) |
+| 249 | Power Spot | Gen 8 | yes: its ally's moves ×1.3 |
 | 250 | Mimicry | Gen 8 | not yet (no battle effect) |
-| 251 | Screen Cleaner | Gen 8 | not yet (no battle effect) |
+| 251 | Screen Cleaner | Gen 8 | yes: removes Reflect, Light Screen and Aurora Veil on entry |
 | 252 | Steely Spirit | Gen 8 | yes: Steel moves of the holder and its ally ×1.5 |
 | 253 | Perish Body | Gen 8 | not yet (no battle effect) |
 | 254 | WanderingSpirit | Gen 8 | not yet (no battle effect) |
