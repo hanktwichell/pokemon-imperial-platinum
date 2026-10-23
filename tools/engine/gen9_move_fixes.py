@@ -186,6 +186,7 @@ MOVES = {
     "heal_pulse": ("SOVEREIGN_HEAL_TARGET", 0, "heals the target by 1/2 (3/4 with Mega Launcher)"),
     "floral_healing": ("SOVEREIGN_HEAL_TARGET", 0, "heals the target by 1/2 (2/3 in Grassy Terrain)"),
     "life_dew": ("SOVEREIGN_LIFE_DEW", 0, "heals the user and its ally by 1/4"),
+    "meteor_beam": ("ELECTRO_SHOT", 100, "charge turn raises Sp. Atk 1 stage, attacks next turn (Power Herb skips it)"),
 }
 
 

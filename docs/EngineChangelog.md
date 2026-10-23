@@ -21,11 +21,13 @@ players and the verification that was run.
 - **Fix: Heal Pulse and Floral Healing healed the user** (they used Recover's effect). They now heal the target by 1/2;
   Heal Pulse heals 3/4 with Mega Launcher, Floral Healing 2/3 in Grassy Terrain. **Life Dew** heals the user and its ally
   by 1/4.
-- Move checklist: exact 225, approximate 43, placeholder 112.
+- **Meteor Beam:** uses Electro Shot's effect without the rain shortcut: the charge turn raises Sp. Atk ("{0} is
+  overflowing with space power!", two-part animation), it attacks next turn, and a Power Herb skips the charge.
+- Move checklist: exact 226, approximate 43, placeholder 111.
 
 **Verified in the test build:** Venusaur's Wide Guard stopped Garchomp's Hyper Voice on both foes for two turns
 (Archaludon stayed at full HP). Garchomp's Heal Pulse restored the foe it targeted (Venusaur back to 302/302 between
-Turtwig's Tackles).
+Turtwig's Tackles). Meteor Beam charged (Sp. Atk +1) and hit next turn for 32, the +1 value.
 
 ## Item 11 (part 11) — Laser Focus and Throat Chop
 

@@ -115,7 +115,7 @@ SOVEREIGN_EFFECTS = {
 }
 # Moves whose script.s (battle message) and anim.s (two-part charge/attack animation) are written by hand; the
 # generator leaves both files alone.
-HANDWRITTEN_SCRIPTS = {"electro_shot"}
+HANDWRITTEN_SCRIPTS = {"electro_shot", "meteor_beam"}
 
 # Status stat-drop effects -> the damaging "lower X on hit" effect, for damaging moves PokeAPI files under the former.
 STATUS_TO_HIT = {E("ATK_DOWN"): "LOWER_ATTACK_HIT", E("DEF_DOWN"): "LOWER_DEFENSE_HIT", E("SPEED_DOWN"): "LOWER_SPEED_HIT",

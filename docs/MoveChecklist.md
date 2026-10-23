@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 225 |
+| exact | 226 |
 | approximate | 43 |
-| placeholder | 112 |
+| placeholder | 111 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -347,7 +347,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 797 | Expanding Force | Psychic | `HIT` | approximate | Sovereign effect: 1.5x in Psychic Terrain (doesn't spread to both foes yet) |
 | 798 | Steel Roller | Steel | `HIT` | approximate | Sovereign effect: fails without a terrain, then removes it (no message yet) |
 | 799 | Scale Shot | Dragon | `MULTI_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
-| 800 | Meteor Beam | Rock | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 800 | Meteor Beam | Rock | `ELECTRO_SHOT` | exact | Sovereign effect: charge turn raises Sp. Atk 1 stage, attacks next turn (Power Herb skips it) |
 | 801 | Shell Side Arm | Poison | `POISON_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
 | 802 | Misty Explosion | Fairy | `HALVE_DEFENSE` | approximate | Sovereign effect: user faints; 1.5x in Misty Terrain (uses Explosion's effect) |
 | 803 | Grassy Glide | Grass | `HIT` | exact | Sovereign effect: +1 priority in Grassy Terrain |

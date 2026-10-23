@@ -8905,6 +8905,27 @@
         "Quick Guard protected\n",
         "the opposing team!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignOverflowingWithSpacePower_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is overflowing\n",
+        "with space power!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignOverflowingWithSpacePower_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} is overflowing\n",
+        "with space power!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignOverflowingWithSpacePower_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} is overflowing\n",
+        "with space power!"
+      ]
     }
   ]
 }
