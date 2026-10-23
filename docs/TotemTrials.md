@@ -11,19 +11,26 @@ Four. Each is a wild double battle:
   form.
 - **No escape.** The player can't run, and Roar, Whirlwind, Teleport and the Poké Doll fail.
 
+On the map the Totem stands as a huge Pokémon (its 64x64 overworld sprite, `tools/sprites/make_totem_overworld.py`).
+Talking to it starts the trial (`CommonScript_SovereignTotemTrial` in `scripts_common.s`):
+- **Two Pokémon.** Until a lone Pokémon can fight a double battle 1 vs 2, the trial needs two that can battle.
+- **Win or catch.** The trial is done (its `FLAG_SOVEREIGN_TOTEM_TRIAL_*` flag, which also hides the Totem), and the
+  Totem leaves its crown piece on the ground (`docs/Story.md`, *The crown*). The 11th piece merges them into the Crown.
+- **Lose.** The player blacks out and the Totem is back next time.
+
 The places, levels and auras are approved by the owner; the helpers are a proposal. The auras' stages marked "check"
 come from a second guide where Serebii gives none.
 
-| # | Totem | Level | Place | After | Aura | Helpers |
-|---|---|---|---|---|---|---|
-| 1 | Totem Gumshoos | 18 | Route 205 (South) | Leader Roark | +1 Defense | Yungoos, Yungoos, Yungoos (Lv. 16) |
-| 2 | Totem Ribombee | 22 | Floaroma Meadow | Commander Mars (Valley Windworks) | every stat (stages: check, +1 or +2) | Wingull, Chansey, Cutiefly (Lv. 20) |
-| 3 | Totem Vikavolt | 25 | Eterna Forest | Commander Mars (Valley Windworks) | +1 to every stat (stages: check) | Charjabug, Charjabug, Charjabug (Lv. 23) |
-| 4 | Totem Disguised Mimikyu | 31 | Old Chateau | Commander Jupiter (Eterna) | +1 to every stat | Haunter, Gengar, Banette (Lv. 29) |
-| 5 | Totem Alolan Marowak | 34 | Lost Tower | Leader Fantina | +2 Speed (stages: check) | Salazzle, Salandit, Salandit (Lv. 32) |
-| 6 | Totem Alolan Raticate | 37 | Team Galactic Warehouse (Veilstone City) | Leader Fantina | +1 Defense | Alolan Rattata, Alolan Rattata, Alolan Rattata (Lv. 35) |
-| 7 | Totem Lurantis | 42 | Great Marsh (Area 3/4) | Leader Maylene | +2 Speed (stages: check) | Trumbeak, Castform, Comfey (Lv. 40) |
-| 8 | Totem Araquanid | 45 | Route 213 (Valor Lakefront beach) | Leader Wake | +1 Speed (stages: check, another guide says +2) | Dewpider, Masquerain, Dewpider (Lv. 43) |
-| 9 | Totem Salazzle | 48 | Fuego Ironworks | Galactic Boss Cyrus (Celestic) | +1 Sp. Def (stages: check) | Salandit, Salandit, Salandit (Lv. 46) |
-| 10 | Totem Kommo-o | 57 | Mt. Coronet (route to Spear Pillar) | Cyrus and Saturn (Galactic HQ) | +1 to every stat | Hakamo-o, Scizor, Noivern (Lv. 55) |
-| 11 | Totem Togedemaru | 60 | Vista Lighthouse (Sunyshore City) | Galactic Boss Cyrus (Distortion World) | +1 Defense (stages: check) | Skarmory, Dedenne, Togedemaru (Lv. 58) |
+| # | Totem | Level | Place | After | Aura | Helpers | On the map |
+|---|---|---|---|---|---|---|---|
+| 1 | Totem Gumshoos | 18 | Route 205 (South) | Leader Roark | +1 Defense | Yungoos, Yungoos, Yungoos (Lv. 16) | the flower bed by the river, x 197 z 656 (reachable before Mars; the north bank is past the Galactic grunts) |
+| 2 | Totem Ribombee | 22 | Floaroma Meadow | Commander Mars (Valley Windworks) | every stat (stages: check, +1 or +2) | Wingull, Chansey, Cutiefly (Lv. 20) | not yet |
+| 3 | Totem Vikavolt | 25 | Eterna Forest | Commander Mars (Valley Windworks) | +1 to every stat (stages: check) | Charjabug, Charjabug, Charjabug (Lv. 23) | not yet |
+| 4 | Totem Disguised Mimikyu | 31 | Old Chateau | Commander Jupiter (Eterna) | +1 to every stat | Haunter, Gengar, Banette (Lv. 29) | not yet |
+| 5 | Totem Alolan Marowak | 34 | Lost Tower | Leader Fantina | +2 Speed (stages: check) | Salazzle, Salandit, Salandit (Lv. 32) | not yet |
+| 6 | Totem Alolan Raticate | 37 | Team Galactic Warehouse (Veilstone City) | Leader Fantina | +1 Defense | Alolan Rattata, Alolan Rattata, Alolan Rattata (Lv. 35) | not yet |
+| 7 | Totem Lurantis | 42 | Great Marsh (Area 3/4) | Leader Maylene | +2 Speed (stages: check) | Trumbeak, Castform, Comfey (Lv. 40) | not yet |
+| 8 | Totem Araquanid | 45 | Route 213 (Valor Lakefront beach) | Leader Wake | +1 Speed (stages: check, another guide says +2) | Dewpider, Masquerain, Dewpider (Lv. 43) | not yet |
+| 9 | Totem Salazzle | 48 | Fuego Ironworks | Galactic Boss Cyrus (Celestic) | +1 Sp. Def (stages: check) | Salandit, Salandit, Salandit (Lv. 46) | not yet |
+| 10 | Totem Kommo-o | 57 | Mt. Coronet (route to Spear Pillar) | Cyrus and Saturn (Galactic HQ) | +1 to every stat | Hakamo-o, Scizor, Noivern (Lv. 55) | not yet |
+| 11 | Totem Togedemaru | 60 | Vista Lighthouse (Sunyshore City) | Galactic Boss Cyrus (Distortion World) | +1 Defense (stages: check) | Skarmory, Dedenne, Togedemaru (Lv. 58) | not yet |

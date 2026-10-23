@@ -1,6 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_205_south.h"
 #include "res/field/events/events_route_205_south.h"
+#include "constants/sovereign_totem_trials.h"
 
 
     ScriptEntry Route205South_OnTransition
@@ -13,9 +14,26 @@
     ScriptEntry Route205South_ArrowSignpostFloaromaTown
     ScriptEntry Route205South_ArrowSignpostEternaForest
     ScriptEntry Route205South_TrainerTipsSignpost
+    ScriptEntry Route205South_TotemGumshoos
+    ScriptEntry Route205South_OnLoad
     ScriptEntryEnd
 
 Route205South_OnTransition:
+    End
+
+Route205South_OnLoad:
+    GoToIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, Route205South_RemoveTotemGumshoos
+    End
+
+Route205South_RemoveTotemGumshoos:
+    RemoveObject LOCALID_TOTEM_GUMSHOOS
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
+    End
+
+@ Sovereign (decision 18): the first Totem trial.
+Route205South_TotemGumshoos:
+    SetVar VAR_0x8004, TOTEM_TRIAL_GUMSHOOS
+    Common_SovereignTotemTrial
     End
 
 Route205South_Grunts:

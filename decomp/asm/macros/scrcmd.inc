@@ -5021,6 +5021,19 @@
     .short \trial
     .endm
 
+    // Sovereign: the species of a Totem trial's Totem
+    .macro SovereignGetTotemTrialSpecies trial, destVarID
+    .short SCRCMD_SOVEREIGNGETTOTEMTRIALSPECIES
+    .short \trial
+    .short \destVarID
+    .endm
+
+    // Sovereign: ClearFlag for the flag held in a variable, like SetFlagFromVar
+    .macro SovereignClearFlagFromVar varID
+    .short SCRCMD_SOVEREIGNCLEARFLAGFROMVAR
+    .short \varID
+    .endm
+
 
 
     .macro GoToIfLt varID, valueOrVarID, offset
@@ -5274,6 +5287,12 @@
 
     .macro Common_CheckBagPocketForItem
     CallCommonScript 0x7D1
+    .endm
+
+    // Sovereign (decision 18): a Totem trial, from the Totem's script (VAR_0x8004: the TOTEM_TRIAL_* number).
+    // The map's OnLoad script removes the Totem when FLAG_MAP_LOCAL_REMOVE_OBJECT is set (after the battle).
+    .macro Common_SovereignTotemTrial
+    CallCommonScript 0x80A
     .endm
 
     .macro Common_CallPokecenterNurse nurseLocalID

@@ -1,0 +1,30 @@
+{
+  "name": "Gold Flake",
+  "plural": "Gold Flakes",
+  "article": "a",
+  "description": [
+    "A flake of gold that closes the ring\n",
+    "into a crown. Only the setting at its\n",
+    "front is still empty."
+  ],
+  "icon": {
+    "sprite": "gold_flake_NCGR",
+    "palette": "gold_flake_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 0,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": true,
+  "canRegister": false,
+  "fieldPocket": "POCKET_KEY_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseCategory": "BATTLE_USE_CATEGORY_NONE",
+  "itemUseParams": null
+}

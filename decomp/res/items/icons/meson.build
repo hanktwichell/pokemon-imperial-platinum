@@ -540,6 +540,19 @@ item_icon_pngs = files(
     'glimmoranite.png',
     'tatsugirinite.png',
     'baxcalibrite.png',
+    'gold_shard.png',
+    'oval_emerald.png',
+    'gold_fragment.png',
+    'oval_sapphire.png',
+    'oval_ruby.png',
+    'gold_sliver.png',
+    'rose_emerald.png',
+    'rose_sapphire.png',
+    'rose_ruby.png',
+    'gold_flake.png',
+    'crown_diamond.png',
+    'crown.png',
+    'sovereign_crown.png',
     # end of Sovereign items (png)
 )
 
@@ -1141,6 +1154,19 @@ item_icon_pals = files(
     'glimmoranite.pal',
     'tatsugirinite.pal',
     'baxcalibrite.pal',
+    'gold_shard.pal',
+    'oval_emerald.pal',
+    'gold_fragment.pal',
+    'oval_sapphire.pal',
+    'oval_ruby.pal',
+    'gold_sliver.pal',
+    'rose_emerald.pal',
+    'rose_sapphire.pal',
+    'rose_ruby.pal',
+    'gold_flake.pal',
+    'crown_diamond.pal',
+    'crown.pal',
+    'sovereign_crown.pal',
     # end of Sovereign items (pal)
 )
 

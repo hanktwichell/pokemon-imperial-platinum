@@ -202,6 +202,18 @@ field_sprites_textures_single_frame = [
     { 'file': 'objects/ice_rock.png', 'basename': 'freezes'},
     { 'file': 'objects/bollard.png', 'basename': 'pole'},
     { 'file': 'pokemon/regigigas.png', 'basename': 'sppoke12'},
+    # Sovereign: the Totems at the Totem trials (tools/sprites/make_totem_overworld.py)
+    { 'file': 'pokemon/totem_gumshoos.png', 'basename': 'sovtotem01'},
+    { 'file': 'pokemon/totem_ribombee.png', 'basename': 'sovtotem02'},
+    { 'file': 'pokemon/totem_vikavolt.png', 'basename': 'sovtotem03'},
+    { 'file': 'pokemon/totem_mimikyu.png', 'basename': 'sovtotem04'},
+    { 'file': 'pokemon/totem_marowak.png', 'basename': 'sovtotem05'},
+    { 'file': 'pokemon/totem_raticate.png', 'basename': 'sovtotem06'},
+    { 'file': 'pokemon/totem_lurantis.png', 'basename': 'sovtotem07'},
+    { 'file': 'pokemon/totem_araquanid.png', 'basename': 'sovtotem08'},
+    { 'file': 'pokemon/totem_salazzle.png', 'basename': 'sovtotem09'},
+    { 'file': 'pokemon/totem_kommo_o.png', 'basename': 'sovtotem10'},
+    { 'file': 'pokemon/totem_togedemaru.png', 'basename': 'sovtotem11'},
 ]
 
 field_sprites_textures_single_frame_pl_suffix = [
