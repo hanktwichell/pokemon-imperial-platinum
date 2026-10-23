@@ -1,0 +1,175 @@
+{
+    "base_stats": {
+        "hp": 95,
+        "attack": 100,
+        "defense": 95,
+        "speed": 30,
+        "special_attack": 100,
+        "special_defense": 70
+    },
+    "types": [
+        "TYPE_POISON",
+        "TYPE_PSYCHIC"
+    ],
+    "catch_rate": 75,
+    "base_exp_reward": 164,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 2,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_MONSTER",
+        "EGG_GROUP_WATER_1"
+    ],
+    "abilities": [
+        "ABILITY_QUICK_DRAW",
+        "ABILITY_OWN_TEMPO",
+        "ABILITY_REGENERATOR"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PINK",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_SHELL_SIDE_ARM"
+            ],
+            [
+                1,
+                "MOVE_TACKLE"
+            ],
+            [
+                1,
+                "MOVE_GROWL"
+            ],
+            [
+                1,
+                "MOVE_ACID"
+            ],
+            [
+                1,
+                "MOVE_WITHDRAW"
+            ],
+            [
+                1,
+                "MOVE_CURSE"
+            ],
+            [
+                9,
+                "MOVE_YAWN"
+            ],
+            [
+                12,
+                "MOVE_CONFUSION"
+            ],
+            [
+                15,
+                "MOVE_DISABLE"
+            ],
+            [
+                18,
+                "MOVE_WATER_PULSE"
+            ],
+            [
+                21,
+                "MOVE_HEADBUTT"
+            ],
+            [
+                24,
+                "MOVE_ZEN_HEADBUTT"
+            ],
+            [
+                27,
+                "MOVE_AMNESIA"
+            ],
+            [
+                30,
+                "MOVE_SURF"
+            ],
+            [
+                33,
+                "MOVE_SLACK_OFF"
+            ],
+            [
+                36,
+                "MOVE_PSYCHIC"
+            ],
+            [
+                39,
+                "MOVE_PSYCH_UP"
+            ],
+            [
+                42,
+                "MOVE_RAIN_DANCE"
+            ],
+            [
+                45,
+                "MOVE_HEAL_PULSE"
+            ]
+        ],
+        "by_tm": [
+            "TM03",
+            "TM04",
+            "TM06",
+            "TM11",
+            "TM13",
+            "TM14",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM18",
+            "TM26",
+            "TM28",
+            "TM29",
+            "TM30",
+            "TM31",
+            "TM35",
+            "TM36",
+            "TM37",
+            "TM38",
+            "TM42",
+            "TM44",
+            "TM48",
+            "TM52",
+            "TM56",
+            "TM58",
+            "TM60",
+            "TM68",
+            "TM72",
+            "TM73",
+            "TM77",
+            "TM82",
+            "TM84",
+            "TM86",
+            "TM90",
+            "TM92",
+            "HM03",
+            "HM07"
+        ],
+        "by_tutor": [
+            "MOVE_ICY_WIND",
+            "MOVE_ICE_PUNCH",
+            "MOVE_HELPING_HAND",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_GUNK_SHOT",
+            "MOVE_IRON_DEFENSE",
+            "MOVE_TRICK",
+            "MOVE_SWIFT"
+        ]
+    },
+    "evolutions": []
+}

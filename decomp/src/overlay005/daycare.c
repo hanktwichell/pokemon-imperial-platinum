@@ -788,6 +788,14 @@ void Daycare_GiveEggFromDaycare(Daycare *daycare, Party *party, TrainerInfo *tra
     BoxPokemon *boxMon = Daycare_GetBoxMon(daycare, parentSlots[0]);
     u8 form = BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL);
 
+    // Sovereign (FM): a regional parent (the mother, or the one that isn't Ditto) passes on its region's form.
+    BoxPokemon *formParent = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL) == SPECIES_DITTO ? Daycare_GetBoxMon(daycare, parentSlots[1]) : boxMon;
+    int babyForm = Pokemon_SovereignBabyForm(BoxPokemon_GetValue(formParent, MON_DATA_SPECIES, NULL), BoxPokemon_GetValue(formParent, MON_DATA_FORM, NULL), species);
+
+    if (babyForm >= 0) {
+        form = babyForm;
+    }
+
     Egg_SetInitialData(mon, species, daycare, monOTID, form);
 
     Egg_InheritIVs(mon, daycare);

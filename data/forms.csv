@@ -47,7 +47,7 @@ form_id,identifier,form,base_species,dex,category,types,abilities,bst,hp,atk,def
 10096,pikachu-sinnoh-cap,Sinnoh Cap Pikachu,Pikachu,25,other,Electric,Static; Lightning Rod (H),320,35,55,40,50,50,90,Electric,1
 10097,pikachu-unova-cap,Unova Cap Pikachu,Pikachu,25,other,Electric,Static; Lightning Rod (H),320,35,55,40,50,50,90,Electric,1
 10098,pikachu-kalos-cap,Kalos Cap Pikachu,Pikachu,25,other,Electric,Static; Lightning Rod (H),320,35,55,40,50,50,90,Electric,1
-10099,pikachu-alola-cap,Alola Cap Pikachu,Pikachu,25,regional,Electric,Static; Lightning Rod (H),320,35,55,40,50,50,90,Electric,1
+10099,pikachu-alola-cap,Alola Cap Pikachu,Pikachu,25,other,Electric,Static; Lightning Rod (H),320,35,55,40,50,50,90,Electric,1
 10100,raichu-alola,Alolan Raichu,Raichu,26,regional,Electric/Psychic,Surge Surfer,485,60,85,50,95,85,110,Electric,0
 10101,sandshrew-alola,Alolan Sandshrew,Sandshrew,27,regional,Ice/Steel,Snow Cloak; Slush Rush (H),300,50,75,90,10,35,40,Ground,0
 10102,sandslash-alola,Alolan Sandslash,Sandslash,28,regional,Ice/Steel,Snow Cloak; Slush Rush (H),450,75,100,120,25,65,65,Ground,0
@@ -126,7 +126,7 @@ form_id,identifier,form,base_species,dex,category,types,abilities,bst,hp,atk,def
 10175,linoone-galar,Galarian Linoone,Linoone,264,regional,Dark/Normal,Pickup; Gluttony; Quick Feet (H),420,78,70,61,50,61,100,Normal,1
 10176,darumaka-galar,Galarian Darumaka,Darumaka,554,regional,Ice,Hustle; Inner Focus (H),315,70,90,45,15,45,50,Fire,1
 10177,darmanitan-galar-standard,Standard Galarian Darmanitan,Darmanitan,555,regional,Ice,Gorilla Tactics; Zen Mode (H),480,105,140,55,30,55,95,Fire,0
-10178,darmanitan-galar-zen,Zen Galarian Darmanitan,Darmanitan,555,regional,Ice/Fire,Gorilla Tactics; Zen Mode (H),540,105,160,55,30,55,135,Fire,0
+10178,darmanitan-galar-zen,Zen Galarian Darmanitan,Darmanitan,555,battle,Ice/Fire,Gorilla Tactics; Zen Mode (H),540,105,160,55,30,55,135,Fire,0
 10179,yamask-galar,Galarian Yamask,Yamask,562,regional,Ground/Ghost,Wandering Spirit,303,38,55,85,30,65,30,Ghost,0
 10180,stunfisk-galar,Galarian Stunfisk,Stunfisk,618,regional,Ground/Steel,Mimicry,471,109,81,99,66,84,32,Ground/Electric,0
 10181,zygarde-10,10% Zygarde,Zygarde,718,other,Dragon/Ground,Aura Break,486,54,100,71,61,85,115,Dragon/Ground,0
@@ -195,7 +195,7 @@ form_id,identifier,form,base_species,dex,category,types,abilities,bst,hp,atk,def
 10244,decidueye-hisui,Hisuian Decidueye,Decidueye,724,regional,Grass/Fighting,Overgrow; Scrappy (H),530,88,112,80,95,95,60,Grass/Ghost,1
 10245,dialga-origin,Origin Dialga,Dialga,483,item,Steel/Dragon,Pressure; Telepathy (H),680,100,100,120,150,120,90,Steel/Dragon,0
 10246,palkia-origin,Origin Palkia,Palkia,484,item,Water/Dragon,Pressure; Telepathy (H),680,90,100,100,150,120,120,Water/Dragon,0
-10247,basculin-white-striped,White-Striped Basculin,Basculin,550,other,Water,Rattled; Adaptability; Mold Breaker (H),460,70,92,65,80,55,98,Water,0
+10247,basculin-white-striped,White-Striped Basculin,Basculin,550,regional,Water,Rattled; Adaptability; Mold Breaker (H),460,70,92,65,80,55,98,Water,0
 10248,basculegion-female,Female Basculegion,Basculegion,902,other,Water/Ghost,Swift Swim; Adaptability; Mold Breaker (H),530,120,92,65,100,75,78,Water/Ghost,1
 10249,enamorus-therian,Therian Enamorus,Enamorus,905,other,Fairy/Flying,Overcoat,580,74,115,110,135,100,46,Fairy/Flying,0
 10250,tauros-paldea-combat-breed,Paldean Tauros (Combat Breed),Tauros,128,regional,Fighting,Intimidate; Anger Point; Cud Chew (H),490,75,110,105,30,70,100,Normal,0

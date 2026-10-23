@@ -5,7 +5,7 @@
 #include "constants/species.h"
 
 // Sovereign's forms are packed after Platinum's 12 alternate forms, in include/data/sovereign_forms.h order.
-#define SOVEREIGN_FORM_COUNT          117
+#define SOVEREIGN_FORM_COUNT          178
 #define SOVEREIGN_FORM_PERSONAL_START (SPECIES_BAD_EGG + 12 + 1)
 
 enum SovereignFormKind {
@@ -16,6 +16,8 @@ enum SovereignFormKind {
     SOVEREIGN_FORM_BATTLE_ITEM, // the form while holding the item in battle (Crowned Zacian)
     SOVEREIGN_FORM_KEY_ITEM, // a key item used on the Pokemon switches the form (Reveal Glass)
     SOVEREIGN_FORM_FUSION, // fused with the partner species in the trigger field (DNA Splicers)
+    SOVEREIGN_FORM_REGIONAL, // a form for good: regional forms, Basculin's stripes
+    SOVEREIGN_FORM_BATTLE, // the form its ability (the trigger) gives it in battle (Zen Mode)
 };
 
 #endif // POKEPLATINUM_CONSTANTS_SOVEREIGN_FORMS_H

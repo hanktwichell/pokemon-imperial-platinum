@@ -1540,3 +1540,59 @@ conflict kept both entries.
    how form numbers are assigned so that adding a Mega later can't shift a saved form number. Also place the new key
    items (Reveal Glass, DNA Splicers, N-Solarizer/Lunarizer, Reins of Unity) and the Origin items; that's the
    owner's call.
+
+---
+
+## CB-0024 — 2026-10-22, 10:32 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Merged:** PR #29 (FM part 2, CB-0023). Its first CI run hung in apt before any build step; I cancelled it and the
+one re-run passed.
+
+**Implemented: FM part 3, the regional forms.**
+- **The forms:** all 57 regional forms, plus Blue/White-Striped Basculin. Each has its own stats, types, abilities
+  and Gen IV learnset from PokeAPI, using its PokeAPI id. Zen Mode Darmanitan's data is in too, so Galarian
+  Darmanitan keeps its official number (2).
+- **Official form numbers:** a species' saved forms come before its Megas (Alolan Raichu = 1; Mega Raichu X/Y = 2/3).
+  Adding a Mega can't shift a saved form now.
+- **Evolutions:**
+  - A regional form evolves into its region's form, or the base form of a regional-only species (Galarian Meowth →
+    Perrserker).
+  - 11 forms have their own methods, mostly official (Alolan Vulpix: Ice Stone; Galarian Slowpoke: Galarica Cuff or
+    Wreath).
+  - Data: `data/evolution_changes.yaml` `regional_forms` and `regional_parents`, rendered in
+    `EvolutionChanges_Sovereign.md`.
+- **Eggs:** they hatch in the regional parent's form (the mother, or the parent that isn't Ditto). Perrserker and
+  the other regional-only species give their regional form.
+- **The other FM forms** (Therian, fusions and so on) now have their own learnsets.
+- **Verified in the test build:**
+  - Alolan Vulpix learned Ice Beam at Lv. 32.
+  - Ice Stone evolutions: Alolan Ninetales (Ice/Fairy) and Galarian Darmanitan (Ice, Gorilla Tactics).
+  - Galarian Meowth reached Lv. 28 and became Perrserker.
+  - Perrserker and Ditto bred a Galarian Meowth.
+  - The release ROM passes boot smoke, and the docs regenerate with no diff.
+
+**Note for Claude A:** after main's item 11 merge, `trainer_ai_script.o` can be assembled before
+`generated/move_battle_effects.h` is regenerated, which gives a link error (`BATTLE_EFFECT_ELECTRO_SHOT` undefined).
+It's an incremental-build race; removing the object fixes it. Clean CI builds pass.
+
+**Files modified:**
+- Tools and data:
+  - `tools/engine/gen_forms.py` (now takes the PokeAPI path), `tools/design/build_species_data.py` (categories),
+    `tools/design/gen_evolution_doc.py`
+  - `data/forms.csv`, `data/evolution_changes.yaml`
+- Generated:
+  - `decomp/res/pokemon/*/forms/*/data.json` (61 new, the earlier 18 with learnsets) and the species' `meson.build`
+  - `decomp/include/constants/sovereign_forms.h`, `decomp/include/data/sovereign_forms.h`,
+    `decomp/tools/dataproc/src/sovereign_forms.inc`
+- Engine: `decomp/src/pokemon.c`, `decomp/include/pokemon.h`, `decomp/src/evolution.c`,
+  `decomp/src/overlay005/daycare.c`
+- Docs: `docs/EngineChangelog.md`, `docs/TechnicalDesign.md` §4b, `docs/EngineRoadmap.md`,
+  `docs/EvolutionChanges_Sovereign.md`, `docs/ProjectStatus.md` (decision 22 note), `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR when green.
+2. **The Regional Forms Park** (decision 22): wild encounter slots with a form, Pal Park's four areas as the Alola,
+   Galar, Hisui and Paldea zones, and the Route 221 text. Open questions for the owner: zone contents, rates, when it
+   opens.
+3. **Totem forms and the Totem trials** (`data/totem_trials.yaml`): Totem Raticate and Marowak need these regional
+   forms. Then the battle forms, with item 11's abilities.

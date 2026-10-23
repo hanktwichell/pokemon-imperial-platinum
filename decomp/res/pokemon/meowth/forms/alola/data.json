@@ -1,0 +1,140 @@
+{
+    "base_stats": {
+        "hp": 40,
+        "attack": 35,
+        "defense": 35,
+        "speed": 90,
+        "special_attack": 50,
+        "special_defense": 40
+    },
+    "types": [
+        "TYPE_DARK",
+        "TYPE_DARK"
+    ],
+    "catch_rate": 255,
+    "base_exp_reward": 69,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 1,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_FIELD",
+        "EGG_GROUP_FIELD"
+    ],
+    "abilities": [
+        "ABILITY_PICKUP",
+        "ABILITY_TECHNICIAN",
+        "ABILITY_RATTLED"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
+    "icon_palette": 1,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_GROWL"
+            ],
+            [
+                1,
+                "MOVE_FAKE_OUT"
+            ],
+            [
+                4,
+                "MOVE_FEINT"
+            ],
+            [
+                8,
+                "MOVE_SCRATCH"
+            ],
+            [
+                12,
+                "MOVE_PAY_DAY"
+            ],
+            [
+                16,
+                "MOVE_BITE"
+            ],
+            [
+                20,
+                "MOVE_TAUNT"
+            ],
+            [
+                24,
+                "MOVE_ASSURANCE"
+            ],
+            [
+                29,
+                "MOVE_FURY_SWIPES"
+            ],
+            [
+                32,
+                "MOVE_SCREECH"
+            ],
+            [
+                36,
+                "MOVE_NIGHT_SLASH"
+            ],
+            [
+                40,
+                "MOVE_NASTY_PLOT"
+            ],
+            [
+                44,
+                "MOVE_PLAY_ROUGH"
+            ]
+        ],
+        "by_tm": [
+            "TM11",
+            "TM12",
+            "TM17",
+            "TM18",
+            "TM24",
+            "TM25",
+            "TM28",
+            "TM30",
+            "TM40",
+            "TM42",
+            "TM44",
+            "TM46",
+            "TM58",
+            "TM65",
+            "TM73",
+            "TM77",
+            "TM79",
+            "TM82",
+            "TM89",
+            "TM90"
+        ],
+        "by_tutor": [
+            "MOVE_ICY_WIND",
+            "MOVE_SPITE",
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_GUNK_SHOT",
+            "MOVE_SEED_BOMB",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT"
+        ]
+    },
+    "evolutions": [
+        [
+            "EVO_LEVEL",
+            28,
+            "SPECIES_PERSIAN"
+        ]
+    ]
+}

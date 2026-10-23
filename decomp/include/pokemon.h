@@ -850,6 +850,8 @@ BOOL Pokemon_SovereignItemIsLocked(u16 species, u16 item);
 int Pokemon_SovereignKeyItemForm(u16 species, u16 item);
 int Pokemon_SovereignFusionForm(u16 species, u16 partner);
 u16 Pokemon_SovereignFusionPartner(u16 species, int form);
+void Pokemon_SovereignSetEvolvedSpecies(Pokemon *mon, u16 targetSpecies);
+int Pokemon_SovereignBabyForm(u16 species, int form, u16 eggSpecies);
 void Pokemon_SovereignSetBattleItemForm(Pokemon *mon);
 void Pokemon_SovereignRevertBattleForm(Pokemon *mon);
 void Pokemon_SovereignReplaceMove(Pokemon *mon, u16 from, u16 to);

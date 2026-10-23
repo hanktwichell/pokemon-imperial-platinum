@@ -46,11 +46,31 @@
         "by_level": [
             [
                 1,
-                "MOVE_POUND"
+                "MOVE_ASTRAL_BARRAGE"
             ],
             [
                 1,
-                "MOVE_MEGA_DRAIN"
+                "MOVE_HEX"
+            ],
+            [
+                1,
+                "MOVE_NASTY_PLOT"
+            ],
+            [
+                1,
+                "MOVE_SHADOW_BALL"
+            ],
+            [
+                1,
+                "MOVE_HAZE"
+            ],
+            [
+                1,
+                "MOVE_CONFUSE_RAY"
+            ],
+            [
+                1,
+                "MOVE_CONFUSION"
             ],
             [
                 1,
@@ -58,7 +78,47 @@
             ],
             [
                 1,
-                "MOVE_CONFUSION"
+                "MOVE_MEGA_DRAIN"
+            ],
+            [
+                1,
+                "MOVE_AGILITY"
+            ],
+            [
+                1,
+                "MOVE_STOMP"
+            ],
+            [
+                1,
+                "MOVE_DOUBLE_KICK"
+            ],
+            [
+                1,
+                "MOVE_DISABLE"
+            ],
+            [
+                1,
+                "MOVE_TACKLE"
+            ],
+            [
+                1,
+                "MOVE_TAKE_DOWN"
+            ],
+            [
+                1,
+                "MOVE_THRASH"
+            ],
+            [
+                1,
+                "MOVE_POUND"
+            ],
+            [
+                1,
+                "MOVE_DOUBLE_EDGE"
+            ],
+            [
+                1,
+                "MOVE_TAIL_WHIP"
             ],
             [
                 8,
@@ -113,20 +173,23 @@
             "TM04",
             "TM09",
             "TM11",
+            "TM12",
             "TM15",
             "TM16",
             "TM17",
             "TM19",
             "TM22",
             "TM29",
+            "TM30",
             "TM33",
             "TM42",
             "TM44",
             "TM48",
             "TM53",
             "TM58",
+            "TM61",
             "TM68",
-            "TM77",
+            "TM79",
             "TM82",
             "TM86",
             "TM90",
