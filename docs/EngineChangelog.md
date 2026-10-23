@@ -15,7 +15,10 @@ players and the verification that was run.
 - **Soak:** the target becomes pure Water-type ("{0} transformed into the Water type!").
 - **Retaliate:** double power if a Pokémon on the user's side fainted last turn (new `sovereignSideFaintTurn`).
 - **Poltergeist:** fails against a target with no item (the item message isn't shown yet).
-- Move checklist: exact 220, approximate 47, placeholder 113.
+- `gen_stat_moves.py` adds Venom Drench (Attack, Sp. Atk and Speed −1, fails unless the target is poisoned), No Retreat
+  and Clangorous Soul (all stats +1; the trapping and HP cost aren't reproduced yet, so they stay "approximate"). Shelter
+  uses Iron Defense's effect. These four aren't tested in game yet.
+- Move checklist: exact 222, approximate 46, placeholder 112.
 
 **Verified in the test build:** Venusaur's Wide Guard stopped Garchomp's Hyper Voice on both foes for two turns
 (Archaludon stayed at full HP).

@@ -84,6 +84,9 @@ E = lambda name: "BATTLE_EFFECT_" + name
 # Battle effects Sovereign adds for a move's exact Gen IX behaviour (item 11), after Platinum's 277: identifier ->
 # (effect, chance, note). These win over the PokeAPI mapping below.
 SOVEREIGN_EFFECTS = {
+    "clangorous-soul": ("SOVEREIGN_CLANGOROUS_SOUL", 0, "Sovereign effect: user Attack +1, user Defense +1, user Sp. Atk +1, user Sp. Def +1, user Speed +1"),
+    "no-retreat": ("SOVEREIGN_NO_RETREAT", 0, "Sovereign effect: user Attack +1, user Defense +1, user Sp. Atk +1, user Sp. Def +1, user Speed +1"),
+    "venom-drench": ("SOVEREIGN_VENOM_DRENCH", 0, "Sovereign effect: target Attack -1, target Sp. Atk -1, target Speed -1"),
     "hex": ("HIT", 0, "Sovereign effect: target has a status condition: power doubles"),
     "venoshock": ("HIT", 0, "Sovereign effect: target is poisoned: power doubles"),
     "acrobatics": ("HIT", 0, "Sovereign effect: user holds no item: power doubles"),

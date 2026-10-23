@@ -334,4 +334,7 @@ subscript_files = files(
     'subscript_sovereign_smack_down.s',
     'subscript_sovereign_wide_guard.s',
     'subscript_sovereign_quick_guard.s',
+    'subscript_sovereign_stats_venom_drench.s',
+    'subscript_sovereign_stats_no_retreat.s',
+    'subscript_sovereign_stats_clangorous_soul.s',
 )

@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 220 |
-| approximate | 47 |
-| placeholder | 113 |
+| exact | 222 |
+| approximate | 46 |
+| placeholder | 112 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -146,7 +146,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 596 | Spiky Shield | Grass | `PROTECT` | approximate | protects like Protect; the contact penalty is missing |
 | 597 | Aromatic Mist | Fairy | `SP_DEF_UP` | approximate | has its own mechanic in Gen IX; closest effect |
 | 598 | Eerie Impulse | Electric | `SP_ATK_DOWN_2` | exact |  |
-| 599 | Venom Drench | Poison | `ATK_DEF_DOWN` | approximate | stat changes [('atk', -1), ('spa', -1), ('spe', -1)] in the original |
+| 599 | Venom Drench | Poison | `SOVEREIGN_VENOM_DRENCH` | exact | Sovereign effect: target Attack -1, target Sp. Atk -1, target Speed -1 |
 | 600 | Powder | Bug | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 601 | Geomancy | Fairy | `SP_ATK_SP_DEF_UP` | approximate | raises [('spa', 2), ('spd', 2), ('spe', 2)] in the original |
 | 602 | Magnetic Flux | Electric | `DEF_SPD_UP` | approximate | has its own mechanic in Gen IX; closest effect |
@@ -295,7 +295,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 745 | Snipe Shot | Water | `HIGH_CRITICAL` | approximate | has its own mechanic in Gen IX; closest effect |
 | 746 | Jaw Lock | Dark | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 747 | Stuff Cheeks | Normal | `DEF_UP_2` | approximate | has its own mechanic in Gen IX; closest effect |
-| 748 | No Retreat | Fighting | `SP_ATK_SP_DEF_UP` | approximate | raises [('atk', 1), ('def', 1), ('spa', 1), ('spd', 1), ('spe', 1)] in the original |
+| 748 | No Retreat | Fighting | `SOVEREIGN_NO_RETREAT` | approximate | Sovereign effect: all stats +1 (the user isn't trapped yet) |
 | 749 | Tar Shot | Rock | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 750 | Magic Powder | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 751 | Dragon Darts | Dragon | `HIT_TWICE` | approximate | has its own mechanic in Gen IX; closest effect |
@@ -322,7 +322,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 772 | (max-darkness) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
 | 773 | (max-overgrowth) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
 | 774 | (max-steelspike) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
-| 775 | Clangorous Soul | Dragon | `SP_ATK_SP_DEF_UP` | approximate | raises [('atk', 1), ('def', 1), ('spa', 1), ('spd', 1), ('spe', 1)] in the original |
+| 775 | Clangorous Soul | Dragon | `SOVEREIGN_CLANGOROUS_SOUL` | approximate | Sovereign effect: all stats +1 (doesn't cost 1/3 of the user's HP yet) |
 | 776 | Body Press | Fighting | `BODY_PRESS` | exact | Sovereign effect: damage uses the user's Defense and Defense stage |
 | 777 | Decorate | Fairy | `ATK_UP_2` | approximate | raises [('atk', 2), ('spa', 2)] in the original |
 | 778 | Drum Beating | Grass | `LOWER_SPEED_HIT` | exact |  |
@@ -389,7 +389,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 839 | Barb Barrage | Poison | `POISON_HIT` | exact | Sovereign effect: 50% poison; power doubles if the target is poisoned |
 | 840 | Esper Wing | Psychic | `SOVEREIGN_RAISE_SPEED_HIT` | exact | Sovereign effect: user Speed +1 (100%); high critical-hit ratio |
 | 841 | Bitter Malice | Ghost | `LOWER_ATTACK_HIT` | exact | Sovereign effect: target Attack -1 (100%) |
-| 842 | Shelter | Steel | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 842 | Shelter | Steel | `DEF_UP_2` | exact | Sovereign effect: user Defense +2 |
 | 843 | Triple Arrows | Fighting | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 844 | Infernal Parade | Ghost | `BURN_HIT` | exact | Sovereign effect: 30% burn; power doubles if the target has a status condition |
 | 845 | Ceaseless Edge | Dark | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |

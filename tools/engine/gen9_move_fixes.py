@@ -179,6 +179,10 @@ MOVES = {
     "quick_guard": ("SOVEREIGN_QUICK_GUARD", 0, "protects the user's side from foes' priority moves this turn"),
     "poltergeist": (None, None, "fails against a target holding no item (no item message yet)", "approximate"),
     "retaliate": (None, None, "power doubles if a Pokémon on the user's side fainted last turn"),
+    # Stat moves from tools/engine/gen_stat_moves.py whose extra rule isn't reproduced yet.
+    "no_retreat": (None, None, "all stats +1 (the user isn't trapped yet)", "approximate"),
+    "clangorous_soul": (None, None, "all stats +1 (doesn't cost 1/3 of the user's HP yet)", "approximate"),
+    "shelter": ("DEF_UP_2", 0, "user Defense +2"),
 }
 
 
