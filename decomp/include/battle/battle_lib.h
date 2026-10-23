@@ -562,6 +562,7 @@ BOOL Sovereign_IsGrounded(BattleContext *battleCtx, int battler);
 u32 Sovereign_TerrainUnder(BattleContext *battleCtx, int battler);
 int Sovereign_TerrainPulseType(BattleContext *battleCtx, int battler);
 BOOL Sovereign_BypassesSubstitute(BattleContext *battleCtx, int attacker, int defender, int move);
+int Sovereign_EchoedVoiceCount(BattleContext *battleCtx);
 BOOL Move_IsSound(int move);
 int Sovereign_ProtosynthesisStat(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 int Move_SovereignCritStage(int move);

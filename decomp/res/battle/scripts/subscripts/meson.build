@@ -353,4 +353,5 @@ subscript_files = files(
     'subscript_sovereign_incinerate.s',
     'subscript_sovereign_aurora_veil.s',
     'subscript_sovereign_sticky_web.s',
+    'subscript_sovereign_fell_stinger.s',
 )

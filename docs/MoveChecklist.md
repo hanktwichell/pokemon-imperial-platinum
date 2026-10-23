@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 244 |
+| exact | 246 |
 | approximate | 42 |
-| placeholder | 94 |
+| placeholder | 92 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -44,7 +44,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 494 | Entrainment | Normal | `SOVEREIGN_ENTRAINMENT` | exact | Sovereign effect: the target's ability becomes the user's |
 | 495 | After You | Normal | `SOVEREIGN_AFTER_YOU` | exact | Sovereign effect: the target moves right after the user |
 | 496 | Round | Normal | `HIT` | approximate | Sovereign effect: power doubles after its ally's Round this turn (the ally doesn't move up in turn order) |
-| 497 | Echoed Voice | Normal | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 497 | Echoed Voice | Normal | `HIT` | exact | Sovereign effect: 40 more power for each consecutive turn it's used, up to 200 |
 | 498 | Chip Away | Normal | `HIT` | exact | Sovereign effect: ignores the target's stat changes |
 | 499 | Clear Smog | Poison | `SOVEREIGN_CLEAR_SMOG` | exact | Sovereign effect: resets the target's stat stages |
 | 500 | Stored Power | Psychic | `HIT` | exact | Sovereign effect: power 20 + 20 per positive stat stage on the user |
@@ -112,7 +112,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 562 | Belch | Poison | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 563 | Rototiller | Ground | `ATK_UP_2` | approximate | raises [('atk', 1), ('spa', 1)] in the original |
 | 564 | Sticky Web | Bug | `SOVEREIGN_STICKY_WEB` | exact | Sovereign effect: grounded foes switching in lose 1 Speed stage (Rapid Spin clears it) |
-| 565 | Fell Stinger | Bug | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 565 | Fell Stinger | Bug | `HIT` | exact | Sovereign effect: user Attack +3 if it knocks out the target |
 | 566 | Phantom Force | Ghost | `SHADOW_FORCE` | exact |  |
 | 567 | Trick-or-Treat | Ghost | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 568 | Noble Roar | Normal | `SOVEREIGN_NOBLE_ROAR` | exact | Sovereign effect: target Attack -1, target Sp. Atk -1 |
