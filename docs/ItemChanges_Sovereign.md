@@ -8,7 +8,7 @@ Renegade Platinum's item changes and item locations are unchanged unless listed 
 | Item | Where | Purpose |
 |---|---|---|
 | Mega Ring | Leader Fantina, Hearthome Gym (with the Relic Badge) | Enables Mega Evolution |
-| Light Stone, Dark Stone | Legend Archivist, Canalave Library (post-game) | Summon Reshiram / Zekrom |
+| Light Stone, Dark Stone | Legend Archivist, Canalave Library (post-game, with the Unova Chronicle) | Carried, they wake Reshiram (Fuego Ironworks) and Zekrom (Valley Windworks, at night) |
 | Prison Bottle | Legend Archivist (post-game) | Hoopa event; used on Hoopa from the bag, switches it between Hoopa Confined and Hoopa Unbound |
 | Scroll of Darkness, Scroll of Waters | Maylene, Veilstone Gym (post-game) | Evolve Kubfu |
 | Infinite Repel | Not placed yet (QoL #3 says Professor Rowan's aide, after the Coal Badge) | Toggles a Repel that never runs out |
@@ -23,7 +23,7 @@ Renegade Platinum's item changes and item locations are unchanged unless listed 
 | Wellspring Mask, Hearthflame Mask, Cornerstone Mask | The Pokéfan (male) in **Celestic Town's northeast house** (`CelesticTownNortheastHouse_PokefanM`). He gives all three if Ogerpon is at the front of the party | Ogerpon's mask forms |
 | Adamant Crystal, Lustrous Globe, Griseous Core | Not placed yet | Held: Origin Dialga, Palkia, Giratina |
 | Reveal Glass (key item) | Not placed yet | Used on Tornadus, Thundurus, Landorus or Enamorus from the bag: Incarnate ↔ Therian Forme |
-| DNA Splicers (key item) | Not placed yet | Used from the bag on Kyurem or on Reshiram/Zekrom: fuses them (White/Black Kyurem); used on the fused Kyurem: separates them |
+| DNA Splicers (key item) | Legend Archivist, Canalave Library, once Kyurem is caught | Used from the bag on Kyurem or on Reshiram/Zekrom: fuses them (White/Black Kyurem); used on the fused Kyurem: separates them |
 | N-Solarizer, N-Lunarizer (key items) | Not placed yet | The same for Necrozma and Solgaleo (Dusk Mane) or Lunala (Dawn Wings) |
 | Reins of Unity (key item) | Not placed yet | The same for Calyrex and Glastrier (Ice Rider) or Spectrier (Shadow Rider) |
 

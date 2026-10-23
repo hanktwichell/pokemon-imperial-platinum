@@ -270,6 +270,15 @@ implemented.
         `FindPartySlotWithMove` finds a party Pokémon with Sing and the player agrees.
       - Genesect (Galactic HQ lab, back room) waits for `FLAG_SOVEREIGN_GENESECT_FREED`. The lab's male scientist sets
         it in his confession, then `AddObject` shows Genesect right away.
+    - **Truth and Ideals.** The Archivist gives `ITEM_LIGHT_STONE` and `ITEM_DARK_STONE` (`Common_GiveItemQuantity`)
+      while the player has neither the Light Stone nor Reshiram. The OnTransitions then check:
+      - Reshiram (Fuego Ironworks building): `CheckItem ITEM_LIGHT_STONE`.
+      - Zekrom (Valley Windworks outside): `CheckItem ITEM_DARK_STONE`, and `GetTimeOfDay` at `TIMEOFDAY_NIGHT` or
+        later (8 pm to 4 am). The check runs on entering the map only.
+      - Kyurem (`MT_CORONET_ICEBERG_RUINS`, which gets its own script archives like Iron Island B2F's right room): both
+        dragons caught. Vanilla's north room swaps this doorway to the Regice chamber when the party has a
+        fateful-encounter Regigigas, so Kyurem waits until the player comes without one.
+      - The Archivist gives `ITEM_DNA_SPLICERS` once Kyurem is caught (`CheckItem` keeps it to one).
     - Iron Island B2F's right room had `scripts_empty`. It now has its own `scripts_iron_island_b2f_right_room` and
       `scripts_init_iron_island_b2f_right_room`, appended at the end of `scripts.order` so no other archive moves.
 - **Galactic gates** (decision 23, `docs/Story.md`). Each Galactic encounter checks the `FLAG_SOVEREIGN_TOTEM_TRIAL_*`

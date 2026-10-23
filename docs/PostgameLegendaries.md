@@ -11,7 +11,7 @@ Renegade Platinum's own legendary events (Gen I–IV) are unchanged; see `Renega
 - Chapters open one after another (each needs the previous chapter's "key" legendary caught), so the post-game has a guided order.
 - Static encounters can be retried after fainting or fleeing, and have the normal shiny odds (Renegade behaviour).
 - New maps or rooms are marked _(new)_ and need map work in DSPRE.
-- **Built:** The Archivist (CB-0035) stands in Canalave Library 2F from the first Hall of Fame; his first talk opens the Unova Chronicle (VAR_SOVEREIGN_CHRONICLE). Later talks name where each Swords of Justice member not caught yet stands, then point to Keldeo (CB-0036), then give hints for Meloetta and Genesect (CB-0037). Static encounters share CommonScript_SovereignLegendaryEncounter: each stays on the map until the Pokédex has it as caught, and vanishes after it's knocked out until the next visit (as in vanilla legendary battles, the player can't run).
+- **Built:** The Archivist (CB-0035) stands in Canalave Library 2F from the first Hall of Fame; his first talk opens the Unova Chronicle (VAR_SOVEREIGN_CHRONICLE). Later talks name where each Swords of Justice member not caught yet stands, then point to Keldeo (CB-0036), then give the Light and Dark Stones and the dragon hints (CB-0038) and hints for Meloetta and Genesect (CB-0037). Static encounters share CommonScript_SovereignLegendaryEncounter: each stays on the map until the Pokédex has it as caught, and vanishes after it's knocked out until the next visit (as in vanilla legendary battles, the player can't run).
 
 Covers **90** species.
 
@@ -46,8 +46,9 @@ Covers **90** species.
 ### Truth and Ideals (chapter key)
 - **Pokémon:** #643 Reshiram, #644 Zekrom, #646 Kyurem
 - **Level:** 70
-- **Location:** Reshiram — Fuego Ironworks (furnace room, new). Zekrom — Valley Windworks at night. Kyurem — Mt. Coronet Snow Area cave
+- **Location:** Reshiram — Fuego Ironworks (by the furnaces). Zekrom — Valley Windworks at night. Kyurem — Mt. Coronet's ice chamber
 - **How:** The Archivist gives the Light Stone and Dark Stone. Using each at its location summons Reshiram/Zekrom. Kyurem appears once both are caught. The DNA Splicers and Kyurem's fused forms are in the game (all forms are in scope, owner 2026-10-22).
+- **Built:** Truth and Ideals (CB-0038). The Archivist gives the Light and Dark Stones on the first talk that reaches this part. Reshiram stands in Fuego Ironworks (49, 5) while the player carries the Light Stone. Zekrom stands on Valley Windworks' windmill island (236, 650) at night (8 pm to 4 am) while the player carries the Dark Stone. Kyurem sleeps in Mt. Coronet's ice chamber (7, 5), the room off the north room by Route 216, once both are caught. The Archivist then gives the DNA Splicers. The furnaces are the Ironworks' own, in place of a new room. All three are level 70.
 
 ### The Relic Song
 - **Pokémon:** #648 Meloetta

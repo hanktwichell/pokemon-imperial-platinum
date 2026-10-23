@@ -1130,6 +1130,8 @@ scr_seq_files = files(
     'scripts_route_230.s',
     'scripts_iron_island_b2f_right_room.s',
     'scripts_init_iron_island_b2f_right_room.s',
+    'scripts_mt_coronet_iceberg_ruins.s',
+    'scripts_init_mt_coronet_iceberg_ruins.s',
 )
 
 scr_seq_narc = custom_target('scr_seq.narc',

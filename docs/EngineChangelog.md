@@ -4,6 +4,32 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E11 — The Chronicles: Truth and Ideals (Reshiram, Zekrom and Kyurem)
+
+The Unova Chronicle's key chapter (`docs/PostgameLegendaries.md`):
+- **The Archivist** now goes on: "The Chronicle ends with two dragons, RESHIRAM and ZEKROM. They say each one sleeps
+  in a stone until a hero wakes it. These two stones came with the Chronicle. Please, take them."
+  - He gives the **Light Stone** and the **Dark Stone**, then a hint for each dragon not caught yet:
+    - "RESHIRAM: the LIGHT STONE is warm, like a fire. Try Fuego Ironworks."
+    - "ZEKROM: the DARK STONE crackles. Try the Valley Windworks, at night."
+  - With both caught: "The Chronicle tells of a third dragon, KYUREM, left empty when they split. It sleeps in the
+    ice. Try the icy chamber in Mt. Coronet by Route 216."
+  - With Kyurem caught, he gives the **DNA Splicers**: "The Chronicle says it can join with RESHIRAM or ZEKROM."
+- **Reshiram** (Lv. 70) stands by the furnaces of Fuego Ironworks while the player carries the Light Stone: "The
+  LIGHT STONE is glowing with heat!" The design asked for a new furnace room; the Ironworks' own works instead.
+- **Zekrom** (Lv. 70) stands on Valley Windworks' windmill island at night (8 pm to 4 am) while the player carries
+  the Dark Stone: "The DARK STONE is crackling with electricity!" Getting there needs Surf.
+- **Kyurem** (Lv. 70) sleeps in Mt. Coronet's ice chamber (off the room by Route 216) once Reshiram and Zekrom are both
+  caught. The chamber had no scripts of its own and now has its own script archives.
+- New overworld sprites for all three.
+- **Verified** (test build; a temporary patch set the game completed, opened the Chronicle, added Master Balls,
+  raised the party to level 100, forced night from one warp on and added test warps):
+  - the Archivist's stones, the two hints, the Kyurem hint and the DNA Splicers;
+  - Reshiram shown with the Light Stone, its line, caught, and gone afterwards;
+  - Zekrom hidden in the daytime and shown at night, its line, caught, and gone afterwards;
+  - Kyurem hidden while Zekrom wasn't caught, shown once both were, caught, and gone afterwards.
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+
 ## Item 11 (part 21) — Final Gambit, Synchronoise, Upper Hand
 
 - **Final Gambit:** deals damage equal to the user's HP. If it hits, the user faints, through a new on-hit side
