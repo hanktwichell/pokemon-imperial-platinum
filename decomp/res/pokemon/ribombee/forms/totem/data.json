@@ -1,0 +1,125 @@
+{
+    "base_stats": {
+        "hp": 60,
+        "attack": 55,
+        "defense": 60,
+        "speed": 124,
+        "special_attack": 95,
+        "special_defense": 70
+    },
+    "types": [
+        "TYPE_BUG",
+        "TYPE_FAIRY"
+    ],
+    "catch_rate": 75,
+    "base_exp_reward": 162,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 2,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_BUG",
+        "EGG_GROUP_FAIRY"
+    ],
+    "abilities": [
+        "ABILITY_HONEY_GATHER",
+        "ABILITY_SHIELD_DUST",
+        "ABILITY_SWEET_VEIL"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_YELLOW",
+    "flip_sprite": false,
+    "icon_palette": 1,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_POLLEN_PUFF"
+            ],
+            [
+                1,
+                "MOVE_ABSORB"
+            ],
+            [
+                1,
+                "MOVE_STUN_SPORE"
+            ],
+            [
+                1,
+                "MOVE_SWEET_SCENT"
+            ],
+            [
+                1,
+                "MOVE_FAIRY_WIND"
+            ],
+            [
+                18,
+                "MOVE_DRAINING_KISS"
+            ],
+            [
+                24,
+                "MOVE_STRUGGLE_BUG"
+            ],
+            [
+                32,
+                "MOVE_COVET"
+            ],
+            [
+                40,
+                "MOVE_SWITCHEROO"
+            ],
+            [
+                48,
+                "MOVE_DAZZLING_GLEAM"
+            ],
+            [
+                56,
+                "MOVE_BUG_BUZZ"
+            ],
+            [
+                64,
+                "MOVE_QUIVER_DANCE"
+            ]
+        ],
+        "by_tm": [
+            "TM04",
+            "TM11",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM22",
+            "TM29",
+            "TM33",
+            "TM42",
+            "TM44",
+            "TM46",
+            "TM48",
+            "TM53",
+            "TM58",
+            "TM68",
+            "TM77",
+            "TM82",
+            "TM86",
+            "TM89",
+            "TM90"
+        ],
+        "by_tutor": [
+            "MOVE_HELPING_HAND",
+            "MOVE_TRICK",
+            "MOVE_SWIFT"
+        ]
+    },
+    "evolutions": []
+}

@@ -849,6 +849,7 @@ ScriptCommand(SCRCMD_BUFFERFLOORNUMBER,                                    ScrCm
 ScriptCommand(SCRCMD_GETLASTREPEL,                                         ScrCmd_GetLastRepel)
 ScriptCommand(SCRCMD_USEREPEL,                                             ScrCmd_UseRepel)
 ScriptCommand(SCRCMD_FINDPARTYSLOTFORFIELDMOVE,                            ScrCmd_FindPartySlotForFieldMove)
+ScriptCommand(SCRCMD_SOVEREIGNSTARTTOTEMTRIAL,                             ScrCmd_SovereignStartTotemTrial)
 
 // clang-format on
 

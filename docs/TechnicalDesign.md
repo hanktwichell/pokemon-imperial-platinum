@@ -200,6 +200,26 @@ implemented.
     and the lobby's init script sends 3 to the exit frame script, which sets it back to 0.
   - The Catching Show's own code (`catching_show.c`, Park Balls, `SystemFlag_CheckInPalPark`) is untouched and never
     runs.
+- **Totem trials** (decision 18, `docs/TotemTrials.md`).
+  - **Data.** `data/totem_trials.yaml` → `tools/engine/gen_totem_trials.py` → `include/data/sovereign_totem_trials.h`
+    (Totem, aura stages, 3 helpers) and `include/constants/sovereign_totem_trials.h` (`TOTEM_TRIAL_*`).
+  - **Start.** `SovereignStartTotemTrial` → `Encounter_SovereignNewTotemTrial` (`encounter.c`).
+    - It builds a plain `BATTLE_TYPE_DOUBLES` wild battle: the Totem, then the helpers, in `parties[1]` through
+      `CreateWildMon_SovereignScriptedForm`.
+    - The status mask carries `BATTLE_STATUS_SOVEREIGN_TOTEM` and the aura in bits 16-30
+      (`BATTLE_STATUS_TOTEM_AURA`).
+    - The trainer slots 1 and 3 get an AI mask; `Task_TrainerShowMoveSelectMenu` uses the trainer AI for the flag.
+  - **Battle.**
+    - Both enemy battlers draw from `parties[1]`, so `ReplaceFainted` sends in the next helper with the existing
+      shared-party code.
+    - `BattleSystem_SovereignTotemFainted` (wild party slot 0 at 0 HP) stops further calls in `ReplaceFainted`, and
+      makes `CheckBattleOver` a win once both enemy battlers are down.
+    - `LoadSendOutMessage` prints the "called its ally" line.
+    - The ball rule reuses the AI-partner check in `BattleController_EmitShowBagMenu`.
+  - **Aura.** `SWITCH_IN_CHECK_STATE_SOVEREIGN_TOTEM_AURA` runs once (`sovereignTotemAuraDone`).
+    `BattleSystem_SovereignApplyTotemAura` raises the stages and buffers the message for
+    `subscript_sovereign_totem_aura`.
+  - **No escape.** RUN, `BtlCmd_TryWhirlwind`, `BtlCmd_TryTeleport` and the bag's escape items check the flag.
 ### 5. Trainer data
 - Vanilla Gen IV trainer Pokémon can't specify EVs, natures directly (nature comes from the PID seeded by trainer
   data), or abilities. **The EV spreads and natures in `TrainerPokemon_Sovereign.md` need an extended trainer-Pokémon

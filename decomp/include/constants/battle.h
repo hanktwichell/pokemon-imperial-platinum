@@ -118,6 +118,15 @@
 #define BATTLE_STATUS_GIRATINA     (1 << 6)
 #define BATTLE_STATUS_DISTORTION   (1 << 7)
 
+// Sovereign (decision 18): a Totem trial, a wild double battle (data/totem_trials.yaml, src/encounter.c). The Totem is
+// the first Pokemon of the wild party and the others are its helpers. Bits 16-30 hold the stat stages its aura raises,
+// 3 bits per stat from Attack (Attack, Defense, Speed, Sp. Atk, Sp. Def: BATTLE_STAT_ATTACK + i).
+#define BATTLE_STATUS_SOVEREIGN_TOTEM           (1 << 8)
+#define BATTLE_STATUS_TOTEM_AURA_SHIFT          16
+#define BATTLE_STATUS_TOTEM_AURA(i, stages)     ((stages) << (BATTLE_STATUS_TOTEM_AURA_SHIFT + 3 * (i)))
+#define BATTLE_STATUS_TOTEM_AURA_STAGES(mask, i) (((mask) >> (BATTLE_STATUS_TOTEM_AURA_SHIFT + 3 * (i))) & 7)
+#define TOTEM_AURA_STATS                        5
+
 #define CHECK_INVALID_NO_MOVE     (1 << 0)
 #define CHECK_INVALID_NO_PP       (1 << 1)
 #define CHECK_INVALID_DISABLED    (1 << 2)

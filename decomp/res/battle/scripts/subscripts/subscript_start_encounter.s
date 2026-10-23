@@ -15,6 +15,7 @@ _000:
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_BATTLE_SYS_STATUS, BATTLE_STATUS_LEGENDARY, _067
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_BATTLE_SYS_STATUS, BATTLE_STATUS_FIRST_BATTLE, _055
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_BATTLE_SYS_STATUS, BATTLE_STATUS_HONEY_TREE, _061
+    CompareVarToValue OPCODE_FLAG_SET, BTLVAR_BATTLE_SYS_STATUS, BATTLE_STATUS_SOVEREIGN_TOTEM, _sovereign_totem
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_BATTLE_TYPE, BATTLE_TYPE_DOUBLES, _079
     // A wild {0} appeared!
     PrintGlobalMessage BattleStrings_Text_AWildPokemonAppeared, TAG_NICKNAME, BTLSCR_ENEMY
@@ -40,6 +41,11 @@ _073:
     PrintGlobalMessage BattleStrings_Text_TheDistortionWorldsPokemonAppeared, TAG_NICKNAME, BTLSCR_ENEMY
     GoTo _084
 
+_sovereign_totem:
+    // Sovereign (decision 18): Totem {0} appeared! It called its ally, {1}!
+    PrintGlobalMessage BattleStrings_Text_SovereignTotemAppeared, TAG_NICKNAME_NICKNAME, BTLSCR_ENEMY_SLOT_1, BTLSCR_ENEMY_SLOT_2
+    GoTo _084
+
 _079:
     // A wild {0} and {1} appeared!
     PrintGlobalMessage BattleStrings_Text_AWildPokemonAndPokemonAppeared, TAG_NICKNAME_NICKNAME, BTLSCR_ENEMY_SLOT_1, BTLSCR_ENEMY_SLOT_2
@@ -48,6 +54,7 @@ _084:
     Wait 
     WaitButtonABTime 30
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_BATTLE_TYPE, BATTLE_TYPE_2vs2, _098
+    CompareVarToValue OPCODE_FLAG_SET, BTLVAR_BATTLE_SYS_STATUS, BATTLE_STATUS_SOVEREIGN_TOTEM, _098 // Go! {0} and {1}!
     // Go! {0}!
     PrintMessage BattleStrings_Text_GoPokemon, TAG_NICKNAME, BTLSCR_PLAYER
     GoTo _100

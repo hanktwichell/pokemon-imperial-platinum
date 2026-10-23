@@ -8614,6 +8614,55 @@
         "The foe’s {STRVAR_1 1, 0, 0} absorbed\n",
         "electricity!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTotemAppeared",
+      "en_US": [
+        "Totem {STRVAR_1 1, 0, 0} appeared!\n",
+        "It called its ally, {STRVAR_1 1, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTotemCalledAlly",
+      "en_US": [
+        "Totem {STRVAR_1 1, 0, 0} called\n",
+        "its ally, {STRVAR_1 1, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTotemAura",
+      "en_US": [
+        "Totem {STRVAR_1 1, 0, 0}’s aura\n",
+        "flared to life!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTotemStatRose",
+      "en_US": [
+        "Totem {STRVAR_1 1, 0, 0}’s\n",
+        "{STRVAR_1 13, 1, 0} rose!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTotemStatSharplyRose",
+      "en_US": [
+        "Totem {STRVAR_1 1, 0, 0}’s\n",
+        "{STRVAR_1 13, 1, 0} sharply rose!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTotemStatsRose",
+      "en_US": [
+        "Totem {STRVAR_1 1, 0, 0}’s\n",
+        "stats rose!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTotemNoRunning",
+      "en_US": [
+        "There’s no running from\n",
+        "a Totem!\r"
+      ]
     }
   ]
 }

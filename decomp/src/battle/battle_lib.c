@@ -3804,6 +3804,7 @@ enum SwitchInCheckState {
 
     SWITCH_IN_CHECK_STATE_FIELD_WEATHER = SWITCH_IN_CHECK_STATE_START,
     SWITCH_IN_CHECK_STATE_SOVEREIGN_PRIMAL, // Sovereign (E8)
+    SWITCH_IN_CHECK_STATE_SOVEREIGN_TOTEM_AURA, // Sovereign (decision 18)
     SWITCH_IN_CHECK_STATE_TRACE,
     SWITCH_IN_CHECK_STATE_WEATHER_ABILITIES,
     SWITCH_IN_CHECK_STATE_INTIMIDATE,
@@ -3914,6 +3915,25 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
             if (i == maxBattlers) {
                 battleCtx->switchInCheckState++;
             }
+            break;
+
+        case SWITCH_IN_CHECK_STATE_SOVEREIGN_TOTEM_AURA:
+            // Sovereign (decision 18): once, at the start of a Totem trial, the Totem's aura raises its stats. The Totem
+            // leads the wild party, so it starts in the first enemy slot.
+            if (battleCtx->sovereignTotemAuraDone == FALSE
+                && (BattleSystem_GetBattleStatusMask(battleSys) & BATTLE_STATUS_SOVEREIGN_TOTEM)) {
+                battleCtx->sovereignTotemAuraDone = TRUE;
+
+                if (battleCtx->battleMons[BATTLER_ENEMY_1].curHP
+                    && BattleSystem_SovereignApplyTotemAura(battleSys, battleCtx, BATTLER_ENEMY_1)) {
+                    battleCtx->msgBattlerTemp = BATTLER_ENEMY_1;
+                    subscript = subscript_sovereign_totem_aura;
+                    result = SWITCH_IN_CHECK_RESULT_BREAK;
+                    break;
+                }
+            }
+
+            battleCtx->switchInCheckState++;
             break;
 
         case SWITCH_IN_CHECK_STATE_TRACE:
@@ -9192,4 +9212,54 @@ int Move_CalcVariableType(BattleSystem *battleSys, BattleContext *battleCtx, Pok
     }
 
     return type;
+}
+
+// Sovereign (decision 18): raises the Totem's stats by its trial's aura (BATTLE_STATUS_TOTEM_AURA) and buffers the
+// message for subscript_sovereign_totem_aura. FALSE if the aura raises nothing.
+BOOL BattleSystem_SovereignApplyTotemAura(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
+{
+    u32 statusMask = BattleSystem_GetBattleStatusMask(battleSys);
+    int count = 0, lastStat = 0, maxStages = 0;
+
+    for (int i = 0; i < TOTEM_AURA_STATS; i++) {
+        int stages = BATTLE_STATUS_TOTEM_AURA_STAGES(statusMask, i);
+        s8 *boost = &battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_ATTACK + i];
+
+        if (stages == 0) {
+            continue;
+        }
+
+        *boost = (*boost + stages > MAX_STAT_STAGE) ? MAX_STAT_STAGE : *boost + stages;
+        count++;
+        lastStat = i;
+        maxStages = stages > maxStages ? stages : maxStages;
+    }
+
+    if (count == 0) {
+        return FALSE;
+    }
+
+    if (count == 1) {
+        battleCtx->msgBuffer.id = maxStages >= 2 ? BattleStrings_Text_SovereignTotemStatSharplyRose : BattleStrings_Text_SovereignTotemStatRose;
+        battleCtx->msgBuffer.tags = TAG_NICKNAME_STAT | TAG_GLOBAL_MESSAGE;
+        battleCtx->msgBuffer.params[1] = BATTLE_STAT_ATTACK + lastStat;
+    } else {
+        battleCtx->msgBuffer.id = BattleStrings_Text_SovereignTotemStatsRose;
+        battleCtx->msgBuffer.tags = TAG_NICKNAME | TAG_GLOBAL_MESSAGE;
+    }
+
+    battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battler);
+    return TRUE;
+}
+
+// Sovereign (decision 18): TRUE in a Totem trial once the Totem (the first Pokemon of the wild party) has fainted. It
+// calls no more helpers then (battle_controller_player.c).
+BOOL BattleSystem_SovereignTotemFainted(BattleSystem *battleSys)
+{
+    if ((BattleSystem_GetBattleStatusMask(battleSys) & BATTLE_STATUS_SOVEREIGN_TOTEM) == FALSE) {
+        return FALSE;
+    }
+
+    Pokemon *totem = Party_GetPokemonBySlotIndex(BattleSystem_GetParty(battleSys, BATTLER_ENEMY_1), 0);
+    return Pokemon_GetValue(totem, MON_DATA_HP, NULL) == 0;
 }

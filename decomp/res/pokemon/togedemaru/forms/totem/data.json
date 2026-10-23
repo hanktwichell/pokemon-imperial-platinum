@@ -1,0 +1,138 @@
+{
+    "base_stats": {
+        "hp": 65,
+        "attack": 98,
+        "defense": 63,
+        "speed": 96,
+        "special_attack": 40,
+        "special_defense": 73
+    },
+    "types": [
+        "TYPE_ELECTRIC",
+        "TYPE_STEEL"
+    ],
+    "catch_rate": 180,
+    "base_exp_reward": 152,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 2,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 10,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_FIELD",
+        "EGG_GROUP_FAIRY"
+    ],
+    "abilities": [
+        "ABILITY_IRON_BARBS",
+        "ABILITY_LIGHTNING_ROD",
+        "ABILITY_STURDY"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GRAY",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_NUZZLE"
+            ],
+            [
+                1,
+                "MOVE_TACKLE"
+            ],
+            [
+                5,
+                "MOVE_DEFENSE_CURL"
+            ],
+            [
+                10,
+                "MOVE_CHARGE"
+            ],
+            [
+                15,
+                "MOVE_THUNDER_SHOCK"
+            ],
+            [
+                20,
+                "MOVE_FELL_STINGER"
+            ],
+            [
+                25,
+                "MOVE_SPARK"
+            ],
+            [
+                30,
+                "MOVE_PIN_MISSILE"
+            ],
+            [
+                35,
+                "MOVE_MAGNET_RISE"
+            ],
+            [
+                40,
+                "MOVE_ZING_ZAP"
+            ],
+            [
+                45,
+                "MOVE_DISCHARGE"
+            ],
+            [
+                50,
+                "MOVE_ELECTRIC_TERRAIN"
+            ],
+            [
+                55,
+                "MOVE_WILD_CHARGE"
+            ],
+            [
+                60,
+                "MOVE_SPIKY_SHIELD"
+            ]
+        ],
+        "by_tm": [
+            "TM15",
+            "TM17",
+            "TM23",
+            "TM24",
+            "TM25",
+            "TM33",
+            "TM42",
+            "TM44",
+            "TM45",
+            "TM46",
+            "TM56",
+            "TM58",
+            "TM66",
+            "TM68",
+            "TM73",
+            "TM74",
+            "TM82",
+            "TM84",
+            "TM86",
+            "TM89",
+            "TM90"
+        ],
+        "by_tutor": [
+            "MOVE_IRON_HEAD",
+            "MOVE_SNORE",
+            "MOVE_HELPING_HAND",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_MAGNET_RISE",
+            "MOVE_BOUNCE",
+            "MOVE_SWIFT"
+        ]
+    },
+    "evolutions": []
+}

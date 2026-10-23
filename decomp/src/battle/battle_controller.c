@@ -880,7 +880,9 @@ void BattleController_EmitShowBagMenu(BattleSystem *battleSys, BattleContext *ba
         message.embargoTurns[i] = battleCtx->battleMons[i].moveEffectsData.embargoTurns;
     }
 
-    if (BattleSystem_GetBattleType(battleSys) == BATTLE_TYPE_AI_PARTNER) {
+    // Sovereign (decision 18): a Totem trial is a wild double too; balls can be thrown only at a Pokemon left alone.
+    if (BattleSystem_GetBattleType(battleSys) == BATTLE_TYPE_AI_PARTNER
+        || (BattleSystem_GetBattleStatusMask(battleSys) & BATTLE_STATUS_SOVEREIGN_TOTEM)) {
         if ((battleCtx->battlersSwitchingMask & FlagIndex(1)) == 0 && (battleCtx->battlersSwitchingMask & FlagIndex(3)) == 0) {
             message.hasTwoOpponents = TRUE;
             message.semiInvulnerable = FALSE;

@@ -54,6 +54,7 @@ KIND_MEGA, KIND_PRIMAL, KIND_MEGA_BY_MOVE = "SOVEREIGN_FORM_MEGA", "SOVEREIGN_FO
 KIND_HELD_ITEM, KIND_BATTLE_ITEM = "SOVEREIGN_FORM_HELD_ITEM", "SOVEREIGN_FORM_BATTLE_ITEM"
 KIND_KEY_ITEM, KIND_FUSION = "SOVEREIGN_FORM_KEY_ITEM", "SOVEREIGN_FORM_FUSION"
 KIND_REGIONAL, KIND_BATTLE = "SOVEREIGN_FORM_REGIONAL", "SOVEREIGN_FORM_BATTLE"
+KIND_TOTEM = "SOVEREIGN_FORM_TOTEM"
 MEGA_BY_MOVE = {"Dragon Ascent (move; no stone)": "MOVE_DRAGON_ASCENT"}  # Mega Rayquaza
 
 # Milestone FM forms built so far: PokeAPI identifier (data/forms.csv) -> (kind, the item that gives the form).
@@ -65,6 +66,8 @@ MEGA_BY_MOVE = {"Dragon Ascent (move; no stone)": "MOVE_DRAGON_ASCENT"}  # Mega 
 #                               into its region's form and passes to its Eggs (REGIONAL_EVOLUTIONS, baby forms below)
 #   SOVEREIGN_FORM_BATTLE       a form its ability gives it in battle (Zen Mode); the trigger is the ability. Data only so
 #                               far, which keeps the official numbers of the forms after it (Galarian Darmanitan: 2)
+#   SOVEREIGN_FORM_TOTEM        a Totem Pokemon's form (decision 18), caught after its trial (data/totem_trials.yaml)
+#                               and kept for good. It doesn't evolve
 # A species' forms are numbered in this order, after its Megas, as in the official games (Kyurem: 1 White, 2 Black).
 FM_FORMS = {
     "zacian-crowned": (KIND_BATTLE_ITEM, "ITEM_RUSTED_SWORD"),
@@ -114,7 +117,19 @@ FM_FORMS = {
     "decidueye-hisui": (KIND_REGIONAL, "0"),
     "tauros-paldea-combat-breed": (KIND_REGIONAL, "0"), "tauros-paldea-blaze-breed": (KIND_REGIONAL, "0"),
     "tauros-paldea-aqua-breed": (KIND_REGIONAL, "0"), "wooper-paldea": (KIND_REGIONAL, "0"),
+    # The Totem forms (decision 18). Mimikyu's Busted Form is data only for now, like Zen Darmanitan, so the Totem
+    # forms keep their official numbers (Totem Disguised: 2, Totem Busted: 3).
+    "raticate-totem-alola": (KIND_TOTEM, "0"), "marowak-totem": (KIND_TOTEM, "0"),
+    "gumshoos-totem": (KIND_TOTEM, "0"), "vikavolt-totem": (KIND_TOTEM, "0"), "ribombee-totem": (KIND_TOTEM, "0"),
+    "araquanid-totem": (KIND_TOTEM, "0"), "lurantis-totem": (KIND_TOTEM, "0"), "salazzle-totem": (KIND_TOTEM, "0"),
+    "togedemaru-totem": (KIND_TOTEM, "0"), "mimikyu-busted": (KIND_BATTLE, "ABILITY_DISGUISE"),
+    "mimikyu-totem-disguised": (KIND_TOTEM, "0"), "mimikyu-totem-busted": (KIND_TOTEM, "0"),
+    "kommo-o-totem": (KIND_TOTEM, "0"),
 }
+
+# A Totem form learns what its usual form learns (PokeAPI only has the Totems' old Ultra Sun/Ultra Moon learnsets):
+# its regional form's, or else the species' own (the base data.json).
+TOTEM_USUAL_FORMS = {"raticate-totem-alola": "raticate-alola", "marowak-totem": "marowak-alola"}
 
 # Regional evolutions and Egg forms: data/evolution_changes.yaml (regional_forms, regional_parents).
 _EVOLUTION_CHANGES = yaml.safe_load(open(os.path.join(ROOT, "data", "evolution_changes.yaml"), encoding="utf-8"))
@@ -192,7 +207,12 @@ def load_rows():
             "stats": {k: int(row[k]) for k in ("hp", "atk", "def", "spa", "spd", "spe")},
             "ident": ident, "pid": row["form_id"],
         }
-        trigger_table = {KIND_FUSION: "species", KIND_BATTLE: "abilities", KIND_REGIONAL: None}.get(kind, "items")
+        if kind == KIND_TOTEM:
+            usual = TOTEM_USUAL_FORMS.get(ident)
+            form["pid"] = fm_rows[usual]["form_id"] if usual else None
+            form["region"] = region_of(usual) if usual else None
+        trigger_table = {KIND_FUSION: "species", KIND_BATTLE: "abilities", KIND_REGIONAL: None, KIND_TOTEM: None}.get(
+            kind, "items")
         checks = [(form["species"], "species")] + ([(trigger, trigger_table)] if trigger_table else [])
         for const, table_name in checks + [(a, "abilities") for a in abilities]:
             if const not in symbols[table_name]:
@@ -218,7 +238,7 @@ def form_data(form, ctx):
     if isinstance(data["icon_palette"], list):  # a species with icon forms: use its base form's palette
         data["icon_palette"] = next(index for name, index in data["icon_palette"] if name == "base")
     data["learnset"] = {k: v for k, v in data["learnset"].items() if k != "egg_moves"}
-    if "pid" in form:
+    if form.get("pid"):
         # An FM form's own Gen IX learnset (a Mega keeps its base species', since PokeAPI's Mega learnsets are old).
         _, level, tms, tutor, _ = gen9.build_learnset(ctx, form["pid"], want_eggs=False)
         if level:
@@ -256,6 +276,10 @@ def regional_tables(forms):
     for parent, ident in REGIONAL_PARENTS.items():
         f = next(x for x in regional if x["ident"] == ident)
         babies.append(("SPECIES_" + parent.upper(), 0, f["species"], f["number"]))
+    for f in forms:  # a regional Totem's Eggs hatch into its region's form (Totem Alolan Raticate: Alolan Rattata)
+        if f["kind"] == KIND_TOTEM and f.get("region"):
+            baby = json.load(open(os.path.join(POKEMON, f["stem"], "data.json"), encoding="utf-8"))["offspring"]
+            babies.append((f["species"], f["number"], baby, form_of(baby, f["region"])))
     return evolutions, babies
 
 
@@ -315,6 +339,7 @@ enum SovereignFormKind {{
     {KIND_FUSION}, // fused with the partner species in the trigger field (DNA Splicers)
     {KIND_REGIONAL}, // a form for good: regional forms, Basculin's stripes
     {KIND_BATTLE}, // the form its ability (the trigger) gives it in battle (Zen Mode)
+    {KIND_TOTEM}, // a Totem Pokemon's form, caught after its trial
 }};
 
 #endif // POKEPLATINUM_CONSTANTS_SOVEREIGN_FORMS_H

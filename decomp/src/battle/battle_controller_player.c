@@ -44,6 +44,7 @@
 #include "trainer_info.h"
 
 #include "res/battle/scripts/sub_seq.naix"
+#include "res/text/bank/battle_strings.h"
 
 enum BattleControllerState {
     STATE_PROCESSING = 0,
@@ -615,6 +616,14 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
                 // "Would you like to forfeit the match and quit now?"
                 BattleController_EmitShowYesNoMenu(battleSys, battleCtx, i, 955, 0, NULL, NULL);
                 battleCtx->curCommandState[i] = COMMAND_SELECTION_RUN_SELECT;
+            } else if (BattleSystem_GetBattleStatusMask(battleSys) & BATTLE_STATUS_SOVEREIGN_TOTEM) {
+                // Sovereign (decision 18): "There's no running from a Totem!"
+                msg.tags = TAG_NONE;
+                msg.id = BattleStrings_Text_SovereignTotemNoRunning;
+                BattleController_EmitSetAlertMessage(battleSys, i, msg);
+
+                battleCtx->curCommandState[i] = COMMAND_SELECTION_ALERT_MESSAGE_WAIT;
+                battleCtx->nextCommandState[i] = COMMAND_SELECTION_INIT;
             } else if ((battleType & BATTLE_TYPE_TRAINER) && (battleType & BATTLE_TYPE_LINK) == FALSE) {
                 if (BattleSystem_GetBattleStatusMask(battleSys) & BATTLE_STATUS_RECORDING) {
                     BattleSystem_SetStopRecording(battleSys, 1);
@@ -4261,6 +4270,11 @@ static BOOL BattleControllerPlayer_ReplaceFainted(BattleSystem *battleSys, Battl
                     }
                 }
 
+                // Sovereign (decision 18): a fainted Totem calls no more helpers.
+                if (BattleSystem_GetBattlerSide(battleSys, i) && BattleSystem_SovereignTotemFainted(battleSys)) {
+                    totalHP = 0;
+                }
+
                 if (totalHP == 0) {
                     battleCtx->battlersSwitchingMask |= FlagIndex(i); // TODO: rename this field
                     battleCtx->selectedPartySlot[i] = 6;
@@ -4415,6 +4429,14 @@ static BOOL BattleControllerPlayer_CheckBattleOver(BattleSystem *battleSys, Batt
                 }
             }
         }
+    }
+
+    // Sovereign (decision 18): once the Totem has fainted it calls no more helpers, so its trial is won when no wild
+    // Pokemon is left standing on the field, even with helpers still in the wild party.
+    if (BattleSystem_SovereignTotemFainted(battleSys)
+        && battleCtx->battleMons[BATTLER_ENEMY_1].curHP == 0
+        && battleCtx->battleMons[BATTLER_ENEMY_2].curHP == 0) {
+        battleResult |= BATTLE_RESULT_WIN;
     }
 
     // Have to keep this ugly double-chain in order to match. Simplified: we win a trainer/frontier battle and it's not

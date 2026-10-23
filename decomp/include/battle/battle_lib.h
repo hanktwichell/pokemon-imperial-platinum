@@ -1233,6 +1233,8 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
 u8 BattleSystem_SovereignMegaTrainerBit(BattleSystem *battleSys, int battler);
 int BattleSystem_SovereignMegaForm(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 void BattleSystem_SovereignChangeBattleForm(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int form);
+BOOL BattleSystem_SovereignApplyTotemAura(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
+BOOL BattleSystem_SovereignTotemFainted(BattleSystem *battleSys);
 void BattleSystem_SovereignMegaEvolve(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int form);
 
 /**

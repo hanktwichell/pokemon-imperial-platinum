@@ -5378,7 +5378,9 @@ static BOOL BtlCmd_TryWhirlwind(BattleSystem *battleSys, BattleContext *battleCt
             // We failed the random Whirlwind check.
             BattleScript_Iter(battleCtx, jumpOnFail);
         }
-    } else if (BattleSystem_CanWhirlwind(battleSys, battleCtx) == FALSE) {
+    } else if ((BattleSystem_GetBattleStatusMask(battleSys) & BATTLE_STATUS_SOVEREIGN_TOTEM)
+        || BattleSystem_CanWhirlwind(battleSys, battleCtx) == FALSE) {
+        // Sovereign (decision 18): nothing is blown away from a Totem trial.
         BattleScript_Iter(battleCtx, jumpOnFail);
     }
 
@@ -6212,7 +6214,8 @@ static BOOL BtlCmd_TryTeleport(BattleSystem *battleSys, BattleContext *battleCtx
     BattleScript_Iter(battleCtx, 1);
     int jumpIfTrapped = BattleScript_Read(battleCtx);
 
-    if (Battler_IsTrappedMsg(battleSys, battleCtx, battleCtx->attacker, NULL)) {
+    if (Battler_IsTrappedMsg(battleSys, battleCtx, battleCtx->attacker, NULL)
+        || (BattleSystem_GetBattleStatusMask(battleSys) & BATTLE_STATUS_SOVEREIGN_TOTEM)) { // Sovereign: no fleeing a Totem
         BattleScript_Iter(battleCtx, jumpIfTrapped);
     }
 

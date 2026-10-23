@@ -1309,6 +1309,18 @@ void CreateWildMon_HoneyTree(FieldSystem *fieldSystem, FieldBattleDTO *battlePar
     return;
 }
 
+// Sovereign (decision 18): a scripted wild Pokemon in a form (a Totem trial's Totem and helpers), added to the wild party.
+void CreateWildMon_SovereignScriptedForm(FieldSystem *fieldSystem, u16 species, u8 form, u8 level, FieldBattleDTO *battleParams)
+{
+    Party *playerParty = SaveData_GetParty(fieldSystem->saveData);
+    Pokemon *firstPartyMon = Party_GetPokemonBySlotIndex(playerParty, 0);
+
+    WildEncounters_FieldParams encounterFieldParams;
+    InitEncounterFieldParams(fieldSystem, firstPartyMon, NULL, &encounterFieldParams);
+
+    CreateWildMon(WILD_SLOT(species, form), level, 1, &encounterFieldParams, firstPartyMon, battleParams);
+}
+
 void CreateWildMon_Scripted(FieldSystem *fieldSystem, u16 species, u8 level, FieldBattleDTO *battleParams)
 {
     Party *playerParty = SaveData_GetParty(fieldSystem->saveData);
