@@ -1243,3 +1243,24 @@ screen, off and on. The release ROM builds and passes boot smoke.
 1. Merge PR #22 when green.
 2. The Mega Evolution animation.
 3. The Mega abilities the boss teams need.
+
+---
+
+## CA-0022 — 2026-10-23 (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** 12b #8 checked; no code change needed now. `docs/AIReview.md` has a new *#8* section:
+- **How the AI scores partner-aimed moves:** −30 for any damaging move unless the partner absorbs it, and −30 for
+  any status move Platinum doesn't name. A partner target needs a score of 100 or more to be used, so the AI never
+  attacks or wrongly buffs its partner.
+- **What the Gen V+ ally moves do now:** E3 maps them to Gen IV effects that act on the user, e.g. Heal Pulse acts
+  like Recover and Decorate like Swords Dance, so none can hurt the AI's side.
+- **Item 11:** each move gets partner scoring as it gets its exact effect, per the table (Pollen Puff and Heal Pulse
+  heal a hurt partner, Instruct, After You, and so on).
+- Also merged main (CB-0016 to CB-0018).
+
+**Files modified:** `docs/AIReview.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Owner's answers on Oak's visit (CA-0021), then build it.
+2. Item 11: exact effects, boss teams first, adding #8's partner scoring per move as it's built.
+3. 12b #4–#5 (Gen V+ absorbing abilities and redirection) along with item 11.
