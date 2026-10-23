@@ -1395,6 +1395,12 @@ static BOOL BtlCmd_CalcDamage(BattleSystem *battleSys, BattleContext *battleCtx)
 
     BattleScript_CalcMoveDamage(battleSys, battleCtx);
     battleCtx->damage = BattleSystem_CalcDamageVariance(battleSys, battleCtx, battleCtx->damage);
+
+    // Sovereign (item 11): Parental Bond's second hit does 1/4 damage.
+    if (battleCtx->sovereignParentalBond && battleCtx->multiHitCounter == 1 && battleCtx->damage > 1) {
+        battleCtx->damage /= 4;
+    }
+
     battleCtx->damage *= -1;
 
     return FALSE;

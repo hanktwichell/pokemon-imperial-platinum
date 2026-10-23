@@ -67,7 +67,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 182 | Pixilate | Gen 6 | yes: Normal moves become Fairy-type, ×1.2 |
 | 183 | Gooey | Gen 6 | yes: a contact move lowers the attacker's Speed 1 stage |
 | 184 | Aerilate | Gen 6 | yes: Normal moves become Flying-type, ×1.2 |
-| 185 | Parental Bond | Gen 6 | not yet (no battle effect) |
+| 185 | Parental Bond | Gen 6 | yes: single-target damaging moves hit twice, the second hit at 1/4 damage |
 | 186 | Dark Aura | Gen 6 | yes: Dark moves on the field ×1.33 |
 | 187 | Fairy Aura | Gen 6 | yes: Fairy moves on the field ×1.33 |
 | 188 | Aura Break | Gen 6 | yes: reverses the Auras (×0.75) |
@@ -83,7 +83,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 198 | Stakeout | Gen 7 | yes: double power against a target that switched in this turn |
 | 199 | Water Bubble | Gen 7 | partly: its Water moves ×2, Fire damage taken halved (burn immunity not yet) |
 | 200 | Steelworker | Gen 7 | yes: Steel moves ×1.5 |
-| 201 | Berserk | Gen 7 | not yet (no battle effect) |
+| 201 | Berserk | Gen 7 | yes: Sp. Atk +1 when a hit drops it to half HP or less |
 | 202 | Slush Rush | Gen 7 | yes: Speed ×2 in snow |
 | 203 | Long Reach | Gen 7 | yes: its moves make no contact |
 | 204 | Liquid Voice | Gen 7 | yes: sound moves become Water-type |
@@ -97,7 +97,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 212 | Corrosion | Gen 7 | yes: can poison Steel and Poison types |
 | 213 | Comatose | Gen 7 | not yet (no battle effect) |
 | 214 | Queenly Majesty | Gen 7 | yes: foes' priority moves can't hit its side |
-| 215 | Innards Out | Gen 7 | not yet (no battle effect) |
+| 215 | Innards Out | Gen 7 | yes: when knocked out by a hit, the attacker loses the HP it had left |
 | 216 | Dancer | Gen 7 | not yet (no battle effect) |
 | 217 | Battery | Gen 7 | yes: its ally's special moves ×1.3 |
 | 218 | Fluffy | Gen 7 | yes: contact damage halved, Fire damage doubled |
@@ -153,7 +153,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 268 | Lingering Aroma | Gen 9 | not yet (no battle effect) |
 | 269 | Seed Sower | Gen 9 | yes: getting hit sets Grassy Terrain |
 | 270 | ThermalExchange | Gen 9 | partly: Attack +1 when hit by a Fire move (burn immunity not yet) |
-| 271 | Anger Shell | Gen 9 | not yet (no battle effect) |
+| 271 | Anger Shell | Gen 9 | yes: Attack, Sp. Atk, Speed +1 and Defense, Sp. Def -1 when a hit drops it to half HP or less |
 | 272 | Purifying Salt | Gen 9 | partly: Ghost damage halved (status immunity not yet) |
 | 273 | Well-Baked Body | Gen 9 | yes: absorbs Fire moves, Defense +2 (`BattleSystem_TriggerImmunityAbility`) |
 | 274 | Wind Rider | Gen 9 | not yet (no battle effect) |

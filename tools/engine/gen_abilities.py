@@ -234,6 +234,10 @@ IMPLEMENTED = {
     189: "yes: heavy rain while it's in battle; Fire moves fizzle, other weather can't start",
     190: "yes: extremely harsh sun while it's in battle; Water moves evaporate, other weather can't start",
     191: "yes: strong winds while it's in battle; no move is super effective on Flying types",
+    185: "yes: single-target damaging moves hit twice, the second hit at 1/4 damage",
+    201: "yes: Sp. Atk +1 when a hit drops it to half HP or less",
+    271: "yes: Attack, Sp. Atk, Speed +1 and Defense, Sp. Def -1 when a hit drops it to half HP or less",
+    215: "yes: when knocked out by a hit, the attacker loses the HP it had left",
 }
 
 

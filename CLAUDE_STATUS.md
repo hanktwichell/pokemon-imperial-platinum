@@ -2379,3 +2379,27 @@ CB-0034) is merged.
    (Eelevate, Fire Mane, Mega Sol, Piercing Drill, Spicy Spray, Aura Guard). Look these up before coding.
 3. Remaining moves: Ally Switch, Telekinesis, Wonder/Magic Room, Scale Shot, Coaching, Upper Hand, Dragon Cheer,
    Belch, Pledges, Final Gambit, Sky Drop, Bestow, Synchronoise, Parting Shot.
+
+## CA-0036 (Claude A, branch `claude/festive-bardeen-5h7beo`, 2026-10-23)
+
+**Just implemented:** item 11 part 18 (see `docs/EngineChangelog.md`).
+- **Parental Bond:** verified in game (40 then 9 damage, "Hit 2 time(s)!").
+- **Berserk:** verified in game (Sp. Atk +1 after dropping below half HP).
+- **Anger Shell, Innards Out:** implemented, not tested in game yet.
+- Mega Kangaskhan, Mega Drampa and Mega Victreebel now get these abilities.
+- Mega abilities still missing: Aura Guard, Eelevate, Fire Mane, Healer, Mega Sol, Piercing Drill, Spicy Spray.
+- Ability checklist: 124 newer abilities implemented.
+
+**Files modified:**
+- `decomp/src/battle/battle_controller_player.c`, `battle_lib.c`, `battle_script.c`
+- `decomp/include/battle/battle_context.h`
+- New `subscript_sovereign_anger_shell.s`, registered in the 3 subscript lists
+- `decomp/res/pokemon/{kangaskhan,drampa,victreebel}/forms/mega/data.json`
+- `tools/engine/gen_abilities.py`, `docs/AbilityChecklist.md`, `docs/MegaEvolution.md`, `docs/EngineChangelog.md`
+
+**Next 3 steps:**
+1. Merge PR #47 (parts 16 to 18) when CI is green.
+2. Look up the Legends: Z-A Mega abilities (Aura Guard, Eelevate, Fire Mane, Mega Sol, Piercing Drill, Spicy Spray),
+   then implement them and Healer.
+3. Remaining moves: Ally Switch, Telekinesis, Wonder/Magic Room, Scale Shot, Coaching, Upper Hand, Dragon Cheer,
+   Belch, Pledges, Final Gambit, Sky Drop, Bestow, Synchronoise, Parting Shot.

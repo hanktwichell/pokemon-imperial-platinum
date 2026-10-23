@@ -4,6 +4,27 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (part 18) — Parental Bond, Berserk, Anger Shell, Innards Out
+
+- **Parental Bond:** single-target damaging moves hit twice ("Hit 2 time(s)!") through the multi-hit loop. The
+  second hit does 1/4 damage.
+  - Not for status, spread, multi-hit, charging, fixed-damage or self-KO moves, Fling, Uproar, recharge moves, Final
+    Gambit or Sky Drop.
+  - Mega Kangaskhan now gets it, Mega Drampa gets Berserk and Mega Victreebel Innards Out (`gen_forms.py`).
+- **Berserk / Anger Shell:** when a hit drops the holder from above half HP to half or less:
+  - Berserk raises Sp. Atk by 1;
+  - Anger Shell raises Attack, Sp. Atk and Speed and lowers Defense and Sp. Def by 1.
+- **Innards Out:** when a hit knocks the holder out, the attacker loses as much HP as the holder had left.
+- New `BattleContext` fields `sovereignParentalBond` and `sovereignHPBeforeHit[4]` (each battler's HP before the last
+  hit it took).
+- Ability checklist: 124 newer abilities implemented.
+
+**Verified in the test build:**
+- With Parental Bond, Garchomp's Dragon Claw hit Venusaur twice, for 40 then 9 damage (both crits; the second is a
+  quarter), then "Hit 2 time(s)!".
+- A Lv. 40 Berserk Venusaur hit from 126 to 35 HP rose to Sp. Atk +1.
+- Anger Shell and Innards Out aren't tested in game yet.
+
 ## Item 11 (part 17) — primal weathers, Megas get their implemented abilities, more abilities
 
 - **Primordial Sea / Desolate Land / Delta Stream:** heavy rain, extremely harsh sunlight or strong winds while the

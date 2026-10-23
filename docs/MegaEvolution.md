@@ -50,8 +50,8 @@ played by the Mega and Primal battle subscripts (`TechnicalDesign.md` §4).
 Many Mega abilities don't exist in Platinum's battle engine. Until one is implemented, the Mega **keeps its pre-Mega
 ability** (marked ⚙ below). Implementation priority — abilities used by boss trainers first:
 
-1. **Parental Bond**, **Aura Guard** (boss trainers)
-2. Berserk, Eelevate, Fire Mane, Healer, Innards Out, Mega Sol, Piercing Drill, Spicy Spray
+1. **Aura Guard** (boss trainers)
+2. Eelevate, Fire Mane, Healer, Mega Sol, Piercing Drill, Spicy Spray
 
 PokeAPI has no ability listed for: Mega Zygarde, Mega Heatran, Mega Darkrai, Mega Magearna, Mega Magearna (Original Color), Mega Zeraora, Mega Tatsugiri (Curly Form), Mega Tatsugiri (Droopy Form), Mega Tatsugiri (Stretchy Form). These need checking against official Legends: Z-A data before implementation.
 
@@ -67,7 +67,7 @@ PokeAPI has no ability listed for: Mega Zygarde, Mega Heatran, Mega Darkrai, Meg
 | Mega Blastoise | Blastoisinite | Water | Mega Launcher | 630 | 79/103/120/135/115/78 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Alakazam | Alakazite | Psychic | Trace | 600 | 55/50/65/175/105/150 | Field item — Route 203 (replaces Poké Ball) |
 | Mega Gengar | Gengarite | Ghost/Poison | Shadow Tag | 600 | 60/65/80/170/95/130 | Mega Stone Trader (Pastoria) — $10,000 |
-| Mega Kangaskhan | Kangaskhanite | Normal | Parental Bond ⚙ | 590 | 105/125/100/60/100/100 | Field item — Great Marsh (Area 3) (replaces Great Ball) |
+| Mega Kangaskhan | Kangaskhanite | Normal | Parental Bond | 590 | 105/125/100/60/100/100 | Field item — Great Marsh (Area 3) (replaces Great Ball) |
 | Mega Pinsir | Pinsirite | Bug/Flying | Aerilate | 600 | 65/155/120/65/90/105 | Field item — Route 210 (South) (replaces Hyper Potion) |
 | Mega Gyarados | Gyaradosite | Water/Dark | Mold Breaker | 640 | 95/155/109/70/130/81 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Aerodactyl | Aerodactylite | Rock/Flying | Tough Claws | 615 | 80/135/85/70/95/150 | Mega Stone Trader (Pastoria) — $10,000 |
@@ -112,7 +112,7 @@ PokeAPI has no ability listed for: Mega Zygarde, Mega Heatran, Mega Darkrai, Meg
 | Mega Salamence | Salamencite | Dragon/Flying | Aerilate | 700 | 95/145/130/120/90/120 | Mega Stone Sage (Snowpoint) — $10,000 |
 | Mega Beedrill | Beedrillite | Bug/Poison | Adaptability | 495 | 65/150/40/15/80/145 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Clefable † | Clefablite | Fairy/Flying | Magic Bounce | 583 | 95/80/93/135/110/70 | Mega Stone Collector (Hearthome) — $10,000 |
-| Mega Victreebel † | Victreebelite | Grass/Poison | Innards Out ⚙ | 590 | 80/125/85/135/95/70 | Mega Stone Collector (Hearthome) — $10,000 |
+| Mega Victreebel † | Victreebelite | Grass/Poison | Innards Out | 590 | 80/125/85/135/95/70 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Starmie † | Starminite | Water/Psychic | Huge Power | 620 | 60/100/105/130/105/120 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Dragonite † | Dragoninite | Dragon/Flying | Multiscale | 700 | 91/124/115/145/125/100 | Mega Stone Sage (Snowpoint) — $10,000 |
 | Mega Meganium † | Meganiumite | Grass/Fairy | Mega Sol ⚙ | 625 | 80/92/115/143/115/80 | Mega Stone Collector (Hearthome) — $10,000 |
@@ -135,7 +135,7 @@ PokeAPI has no ability listed for: Mega Zygarde, Mega Heatran, Mega Darkrai, Meg
 | Mega Dragalge † | Dragalgite | Poison/Dragon | Regenerator | 594 | 65/85/105/132/163/44 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Hawlucha † | Hawluchanite | Fighting/Flying | No Guard | 600 | 78/137/100/74/93/118 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Zygarde † | Zygardite | Dragon/Ground | TBD | 778 | 216/70/91/216/85/100 | Mega Stone Curator (Survival Area) — $30,000 |
-| Mega Drampa † | Drampanite | Normal/Dragon | Berserk ⚙ | 585 | 78/85/110/160/116/36 | Mega Stone Trader (Pastoria) — $10,000 |
+| Mega Drampa † | Drampanite | Normal/Dragon | Berserk | 585 | 78/85/110/160/116/36 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Falinks † | Falinksite | Fighting | Defiant | 570 | 65/135/135/70/65/100 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Raichu X † | Raichunite X | Electric | Electric Surge | 585 | 60/135/95/90/95/110 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Raichu Y † | Raichunite Y | Electric | No Guard | 585 | 60/100/55/160/80/130 | Mega Stone Trader (Pastoria) — $10,000 |

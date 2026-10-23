@@ -2039,6 +2039,7 @@ void BattleContext_Init(BattleContext *battleCtx)
     battleCtx->sideEffectMon = BATTLER_NONE;
     battleCtx->multiHitCounter = 0;
     battleCtx->multiHitNumHits = 0;
+    battleCtx->sovereignParentalBond = FALSE;
     battleCtx->battlerCounter = 0;
     battleCtx->multiHitLoop = 0;
     battleCtx->afterMoveMessageType = 0;
@@ -4876,6 +4877,49 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
 
     // Sovereign (item 11): Stamina raises Defense 1 stage whenever a damaging move hits (contact or not), as long as
     // the holder is still standing.
+    // Sovereign (item 11): Berserk raises Sp. Atk, Anger Shell changes five stats, when a hit drops the holder from above
+    // half its HP to half or less.
+    case ABILITY_BERSERK:
+    case ABILITY_ANGER_SHELL:
+        if (DEFENDING_MON.curHP
+            && DEFENDING_MON.curHP <= DEFENDING_MON.maxHP / 2
+            && battleCtx->sovereignHPBeforeHit[battleCtx->defender] > DEFENDING_MON.maxHP / 2
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)) {
+            battleCtx->sovereignHPBeforeHit[battleCtx->defender] = DEFENDING_MON.curHP; // once per hit
+            battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
+            battleCtx->sideEffectMon = battleCtx->defender;
+
+            if (Battler_Ability(battleCtx, battleCtx->defender) == ABILITY_BERSERK) {
+                if (DEFENDING_MON.statBoosts[BATTLE_STAT_SP_ATTACK] < MAX_STAT_STAGE) {
+                    battleCtx->sideEffectParam = MOVE_SUBSCRIPT_PTR_SP_ATTACK_UP_1_STAGE;
+                    *subscript = subscript_update_stat_stage;
+                    result = TRUE;
+                }
+            } else {
+                *subscript = subscript_sovereign_anger_shell;
+                result = TRUE;
+            }
+        }
+        break;
+
+    // Sovereign (item 11): Innards Out. When the holder is knocked out by a hit, the attacker loses as much HP as the
+    // holder had left.
+    case ABILITY_INNARDS_OUT:
+        if (battleCtx->defender == battleCtx->faintedMon
+            && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_MAGIC_GUARD
+            && ATTACKING_MON.curHP
+            && battleCtx->sovereignHPBeforeHit[battleCtx->defender]
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE) {
+            battleCtx->hpCalcTemp = -battleCtx->sovereignHPBeforeHit[battleCtx->defender];
+            battleCtx->sovereignHPBeforeHit[battleCtx->defender] = 0;
+            battleCtx->msgBattlerTemp = battleCtx->attacker;
+            *subscript = subscript_aftermath; // "{2} was hurt by {0}'s {1}!"
+            result = TRUE;
+        }
+        break;
+
     case ABILITY_STAMINA:
         if (DEFENDING_MON.curHP
             && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE

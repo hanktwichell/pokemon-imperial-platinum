@@ -3594,6 +3594,30 @@ static void BattleControllerPlayer_BeforeMove(BattleSystem *battleSys, BattleCon
     } else {
         battleCtx->battleStatusMask2 |= SYSCTL_MOVE_SUCCEEDED;
 
+        // Sovereign (item 11): Parental Bond makes a single-target damaging move hit twice, the second hit at 1/4
+        // power (BtlCmd_CalcDamage). Multi-hit, charging, self-KO and fixed-damage moves are left alone.
+        if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_PARENTAL_BOND
+            && battleCtx->multiHitNumHits == 0
+            && CURRENT_MOVE_DATA.class != CLASS_STATUS
+            && CURRENT_MOVE_DATA.power > 1
+            && CURRENT_MOVE_DATA.range == RANGE_SINGLE_TARGET
+            && Move_IsMultiTurn(battleCtx, battleCtx->moveCur) == FALSE
+            && CURRENT_MOVE_DATA.effect != BATTLE_EFFECT_MULTI_HIT
+            && CURRENT_MOVE_DATA.effect != BATTLE_EFFECT_HIT_TWICE
+            && CURRENT_MOVE_DATA.effect != BATTLE_EFFECT_POISON_MULTI_HIT
+            && CURRENT_MOVE_DATA.effect != BATTLE_EFFECT_HIT_THREE_TIMES
+            && CURRENT_MOVE_DATA.effect != BATTLE_EFFECT_HALVE_DEFENSE
+            && CURRENT_MOVE_DATA.effect != BATTLE_EFFECT_UPROAR
+            && CURRENT_MOVE_DATA.effect != BATTLE_EFFECT_FLING
+            && CURRENT_MOVE_DATA.effect != BATTLE_EFFECT_RECHARGE_AFTER
+            && battleCtx->moveCur != MOVE_FINAL_GAMBIT
+            && battleCtx->moveCur != MOVE_SKY_DROP) {
+            battleCtx->sovereignParentalBond = TRUE;
+            battleCtx->multiHitCounter = 2;
+            battleCtx->multiHitNumHits = 2;
+            battleCtx->multiHitAccuracyCheck = SYSCTL_MULTI_HIT_MOVE;
+        }
+
         BattleSystem_LoadScript(battleCtx, NARC_INDEX_BATTLE__SKILL__WAZA_SEQ, battleCtx->moveCur);
         battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
         battleCtx->commandNext = BATTLE_CONTROL_TRY_MOVE;
@@ -3809,6 +3833,7 @@ static void BattleControllerPlayer_UpdateHP(BattleSystem *battleSys, BattleConte
             }
         }
 
+        battleCtx->sovereignHPBeforeHit[battleCtx->defender] = DEFENDING_MON.curHP; // Sovereign (item 11)
         battleCtx->storedDamage[battleCtx->defender] += battleCtx->damage;
 
         if (battleCtx->battleMons[battleCtx->defender].timesDamaged < 0xFF) {
