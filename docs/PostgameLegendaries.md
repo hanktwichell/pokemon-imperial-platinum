@@ -11,6 +11,7 @@ Renegade Platinum's own legendary events (Gen I–IV) are unchanged; see `Renega
 - Chapters open one after another (each needs the previous chapter's "key" legendary caught), so the post-game has a guided order.
 - Static encounters can be retried after fainting or fleeing, and have the normal shiny odds (Renegade behaviour).
 - New maps or rooms are marked _(new)_ and need map work in DSPRE.
+- **Built:** The Archivist (CB-0035) stands in Canalave Library 2F from the first Hall of Fame; his first talk opens the Unova Chronicle (VAR_SOVEREIGN_CHRONICLE). Static encounters share CommonScript_SovereignLegendaryEncounter: each stays on the map until the Pokédex has it as caught, and vanishes after a win or a run until the next visit.
 
 Covers **90** species.
 
@@ -27,6 +28,7 @@ Covers **90** species.
 - **Level:** 65
 - **Location:** Cobalion — Iron Island B2F (new dead end); Terrakion — Route 227 rock cave; Virizion — Eterna Forest (north clearing)
 - **How:** All three are static encounters as soon as the chapter opens.
+- **Built:** Virizion (CB-0035): at the top of Eterna Forest's north corridor (80, 10), past the Cut trees. Cobalion and Terrakion: not yet.
 
 ### The Young Sword
 - **Pokémon:** #647 Keldeo

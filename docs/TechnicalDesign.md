@@ -248,6 +248,20 @@ implemented.
       `EndSafariGame` hangs between a lost battle and the blackout, since the field isn't loaded then.
     - The piece is `ITEM_GOLD_SHARD + trial`: the 11 piece constants are consecutive in trial order. The merge into
       `ITEM_CROWN` checks and removes `ITEM_GOLD_SHARD`..`ITEM_CROWN_DIAMOND` in a loop.
+- **The Chronicles** (post-game legendaries, `docs/PostgameLegendaries.md` from `data/postgame_legendaries.yaml`).
+  - **The Archivist.** `LOCALID_SOVEREIGN_ARCHIVIST` in Canalave Library 2F, hidden by OnTransition
+    (`FLAG_MAP_LOCAL_HIDE_SOVEREIGN_NPC`) until `FLAG_GAME_COMPLETED`. His first talk sets `VAR_SOVEREIGN_CHRONICLE` to 1
+    (the Unova Chronicle open); later chapters will raise it.
+  - **A static legendary** is an object with `OBJ_EVENT_GFX_LEGENDARY_<SPECIES>`, a 64x64 billboard like the Totems'.
+    - Its hidden flag is `FLAG_MAP_LOCAL_HIDE_LEGENDARY`. The map's OnTransition sets it, then clears it once the
+      chapter is open and `SovereignCheckSpeciesCaught` says the Pokédex doesn't have the species as caught. No
+      persistent flag per Pokémon is needed.
+    - Its script sets `VAR_0x8004` (species) and `VAR_0x8005` (level) and calls `Common_SovereignLegendaryEncounter`
+      (common script 0x80B).
+    - The common script sets the global `FLAG_SOVEREIGN_REMOVE_LEGENDARY` around `StartLegendaryBattle`. The map's
+      OnLoad removes the object while it's set, since objects survive a battle.
+    - After a win or a run: "{species} vanished... It might show itself here again." The object comes back on the next
+      visit until it's caught. A loss blacks out.
 - **Galactic gates** (decision 23, `docs/Story.md`). Each Galactic encounter checks the `FLAG_SOVEREIGN_TOTEM_TRIAL_*`
   flags of the trials before it, at a blocker the player already meets:
   - the Windworks door grunt and the Celestic ruins grunt (`GoToIfUnset` before their battle);

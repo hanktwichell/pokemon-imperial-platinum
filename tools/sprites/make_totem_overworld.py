@@ -48,7 +48,8 @@ def load(sprites_dir, pokeapi_id):
         return Image.open(io.BytesIO(response.read()))
 
 
-def overworld(src):
+def overworld(src, aura=True):
+    """One 64x64 frame. With aura, a one-pixel orange outline (palette index 1); without, 15 art colours."""
     art = src.convert("RGBA")
     art = art.crop(art.getbbox())
     scale = min(1.0, FIT / art.width, FIT / art.height)
@@ -61,25 +62,27 @@ def overworld(src):
     canvas.paste(art, ((SIZE - art.width) // 2, SIZE - 1 - art.height), art)
 
     opaque = canvas.getchannel("A")
-    aura = opaque.filter(ImageFilter.MaxFilter(3))
+    outline = opaque.filter(ImageFilter.MaxFilter(3)) if aura else None
+    art_colours = ART_COLOURS if aura else ART_COLOURS + 1
+    first = 2 if aura else 1
     rgb = Image.new("RGB", (SIZE, SIZE), TRANSPARENT)
     rgb.paste(canvas.convert("RGB"), (0, 0), opaque)
-    quantized = rgb.quantize(colors=ART_COLOURS + 1, method=Image.MEDIANCUT, dither=Image.NONE)
-    # Move the art's colours up to 2.., leaving 0 transparent and 1 the aura.
-    pal = quantized.getpalette()[:3 * (ART_COLOURS + 1)]
+    quantized = rgb.quantize(colors=art_colours + 1, method=Image.MEDIANCUT, dither=Image.NONE)
+    # Move the art's colours up past index 0 (transparent) and, with an aura, 1 (the aura).
+    pal = quantized.getpalette()[:3 * (art_colours + 1)]
     colours = [tuple(pal[i:i + 3]) for i in range(0, len(pal), 3)]
     out = Image.new("P", (SIZE, SIZE), 0)
-    palette = list(TRANSPARENT) + list(AURA)
+    palette = list(TRANSPARENT) + (list(AURA) if aura else [])
     remap, used = {}, []
     for y in range(SIZE):
         for x in range(SIZE):
             if opaque.getpixel((x, y)):
                 c = quantized.getpixel((x, y))
                 if c not in remap:
-                    remap[c] = 2 + len(used)
+                    remap[c] = first + len(used)
                     used.append(colours[c])
                 out.putpixel((x, y), remap[c])
-            elif aura.getpixel((x, y)):
+            elif aura and outline.getpixel((x, y)):
                 out.putpixel((x, y), 1)
     for c in used:
         palette += list(c)

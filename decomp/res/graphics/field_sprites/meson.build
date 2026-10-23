@@ -214,6 +214,11 @@ field_sprites_textures_single_frame = [
     { 'file': 'pokemon/totem_salazzle.png', 'basename': 'sovtotem09'},
     { 'file': 'pokemon/totem_kommo_o.png', 'basename': 'sovtotem10'},
     { 'file': 'pokemon/totem_togedemaru.png', 'basename': 'sovtotem11'},
+    # Sovereign: the post-game legendaries at their static encounters (tools/sprites/make_legendary_overworld.py)
+    { 'file': 'pokemon/legendary_virizion.png', 'basename': 'sovlegend01'},
+    { 'file': 'pokemon/legendary_terrakion.png', 'basename': 'sovlegend02'},
+    { 'file': 'pokemon/legendary_cobalion.png', 'basename': 'sovlegend03'},
+    { 'file': 'pokemon/legendary_keldeo.png', 'basename': 'sovlegend04'},
 ]
 
 field_sprites_textures_single_frame_pl_suffix = [

@@ -923,6 +923,19 @@
         "The gold, the jewels and the diamond\n",
         "fit together perfectly...\r"
       ]
+    },
+    {
+      "id": "CommonStrings_Text_SovereignLegendaryCry",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} cried out!"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_SovereignLegendaryVanished",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} vanished...\n",
+        "It might show itself here again."
+      ]
     }
   ]
 }
