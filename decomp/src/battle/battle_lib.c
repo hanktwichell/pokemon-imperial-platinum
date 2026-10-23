@@ -3088,6 +3088,13 @@ BOOL BattleSystem_CanStealItem(BattleSystem *battleSys, BattleContext *battleCtx
     return result;
 }
 
+// Sovereign (FM): the battler holds an item that changes its form (a Mega Stone, Orb, Rusted Sword, mask...), so it
+// can't be knocked off, stolen, swapped or flung (Pokemon_SovereignItemIsLocked).
+BOOL Battler_SovereignHeldItemLocked(BattleContext *battleCtx, int battler)
+{
+    return Pokemon_SovereignItemIsLocked(battleCtx->battleMons[battler].species, battleCtx->battleMons[battler].heldItem);
+}
+
 BOOL BattleSystem_NotHoldingMail(BattleContext *battleCtx, int battler)
 {
     return Item_IsMail(battleCtx->battleMons[battler].heldItem) == FALSE;
@@ -5923,7 +5930,7 @@ BOOL BattleSystem_FlingItem(BattleSystem *battleSys, BattleContext *battleCtx, i
     battleCtx->flingScript = 0;
     battleCtx->sideEffectType = SIDE_EFFECT_TYPE_NONE;
 
-    if (battleCtx->movePower == 0) {
+    if (battleCtx->movePower == 0 || Battler_SovereignHeldItemLocked(battleCtx, battler)) {
         return FALSE;
     }
 
@@ -6313,14 +6320,9 @@ void BattleSystem_SetPokemonCatchData(BattleSystem *battleSys, BattleContext *ba
 
     Pokemon_SetCatchData(mon, trInfo, ball, mapHeader, terrain, HEAP_ID_BATTLE);
 
-    // Sovereign (E8): a caught Primal goes straight to the party or PC, so it reverts here, not at the battle's end.
-    int form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
-    if (form && Pokemon_IsSovereignBattleForm(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), form)) {
-        form = 0;
-        Pokemon_SetValue(mon, MON_DATA_FORM, &form);
-        Pokemon_CalcAbility(mon);
-        Pokemon_CalcLevelAndStats(mon);
-    }
+    // Sovereign (E8, FM): a caught Primal or Crowned Pokemon goes straight to the party or PC, so it reverts here, not
+    // at the battle's end.
+    Pokemon_SovereignRevertBattleForm(mon);
 }
 
 u8 BattleContext_IOBufferVal(BattleContext *battleCtx, int battler)
@@ -6486,7 +6488,8 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
             && battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum == GIRATINA_FORM_ORIGIN
             && ((battleCtx->battleMons[battleCtx->msgBattlerTemp].statusVolatile & VOLATILE_CONDITION_TRANSFORM)
                 || ((BattleSystem_GetBattleStatusMask(battleSys) & BATTLE_STATUS_DISTORTION) == FALSE
-                    && battleCtx->battleMons[battleCtx->msgBattlerTemp].heldItem != ITEM_GRISEOUS_ORB))) {
+                    && battleCtx->battleMons[battleCtx->msgBattlerTemp].heldItem != ITEM_GRISEOUS_ORB
+                    && battleCtx->battleMons[battleCtx->msgBattlerTemp].heldItem != ITEM_GRISEOUS_CORE))) {
             if (battleCtx->battleMons[battleCtx->msgBattlerTemp].statusVolatile & VOLATILE_CONDITION_TRANSFORM) {
                 Pokemon *mon = Pokemon_New(HEAP_ID_BATTLE);
 

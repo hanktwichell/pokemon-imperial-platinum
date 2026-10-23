@@ -4341,7 +4341,14 @@ static BOOL BoxPokemonHasCuredPokerus(BoxPokemon *boxMon)
 
 void Pokemon_SetArceusForm(Pokemon *mon)
 {
+    int form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+
     BoxPokemon_SetArceusForm(&mon->box);
+
+    // Sovereign (FM): a held-item form (Origin Dialga) can have its own stats.
+    if (Pokemon_GetValue(mon, MON_DATA_FORM, NULL) != form) {
+        Pokemon_CalcLevelAndStats(mon);
+    }
 }
 
 void BoxPokemon_SetArceusForm(BoxPokemon *boxMon)
@@ -4353,6 +4360,17 @@ void BoxPokemon_SetArceusForm(BoxPokemon *boxMon)
     if (monSpecies == SPECIES_ARCEUS && monAbility == ABILITY_MULTITYPE) {
         int monForm = Pokemon_GetArceusTypeOf(Item_LoadParam(monHeldItem, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_SYSTEM));
         BoxPokemon_SetValue(boxMon, MON_DATA_FORM, &monForm);
+    }
+
+    // Sovereign (FM): Ogerpon's masks and Origin Dialga/Palkia follow the held item, wherever the item changes (every
+    // caller of this function: the party menu, the PC, trades).
+    if (Pokemon_SovereignHasHeldItemForms(monSpecies)) {
+        int form = Pokemon_SovereignHeldItemForm(monSpecies, monHeldItem);
+
+        if (form != BoxPokemon_GetValue(boxMon, MON_DATA_FORM, NULL)) {
+            BoxPokemon_SetValue(boxMon, MON_DATA_FORM, &form);
+            BoxPokemon_CalcAbility(boxMon);
+        }
     }
 }
 
@@ -4434,7 +4452,8 @@ int BoxPokemon_SetGiratinaForm(BoxPokemon *boxMon)
     int item = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
 
     if (species == SPECIES_GIRATINA) {
-        int form = (item == ITEM_GRISEOUS_ORB) ? GIRATINA_FORM_ORIGIN : GIRATINA_FORM_ALTERED;
+        // Sovereign (FM): the Griseous Core (Scarlet and Violet) works like the Griseous Orb.
+        int form = (item == ITEM_GRISEOUS_ORB || item == ITEM_GRISEOUS_CORE) ? GIRATINA_FORM_ORIGIN : GIRATINA_FORM_ALTERED;
 
         BoxPokemon_SetValue(boxMon, MON_DATA_FORM, &form);
         BoxPokemon_CalcAbility(boxMon);
@@ -5052,16 +5071,151 @@ int Pokemon_SovereignBattleForm(u16 species, u16 heldItem, const u16 *moves, BOO
     return 0;
 }
 
-// Sovereign (E8): TRUE for a Mega or Primal form, which reverts to the base form when the battle ends.
-BOOL Pokemon_IsSovereignBattleForm(u16 species, int form)
+static const SovereignForm *Pokemon_FindSovereignForm(u16 species, int form)
 {
     for (int i = 0; i < SOVEREIGN_FORM_COUNT; i++) {
         if (sSovereignForms[i].species == species && sSovereignForms[i].form == form) {
+            return &sSovereignForms[i];
+        }
+    }
+
+    return NULL;
+}
+
+// Sovereign (E8, FM): TRUE for a form that only lasts for the battle and reverts to the base form when it ends: Mega,
+// Primal, Crowned.
+BOOL Pokemon_IsSovereignBattleForm(u16 species, int form)
+{
+    const SovereignForm *entry = Pokemon_FindSovereignForm(species, form);
+
+    return entry != NULL && entry->kind != SOVEREIGN_FORM_HELD_ITEM;
+}
+
+// Sovereign (E8): TRUE for a Mega or Primal form (the HP bar shows the Mega symbol).
+BOOL Pokemon_IsSovereignMegaForm(u16 species, int form)
+{
+    const SovereignForm *entry = Pokemon_FindSovereignForm(species, form);
+
+    return entry != NULL && (entry->kind == SOVEREIGN_FORM_MEGA || entry->kind == SOVEREIGN_FORM_PRIMAL || entry->kind == SOVEREIGN_FORM_MEGA_BY_MOVE);
+}
+
+BOOL Pokemon_SovereignHasHeldItemForms(u16 species)
+{
+    for (int i = 0; i < SOVEREIGN_FORM_COUNT; i++) {
+        if (sSovereignForms[i].species == species && sSovereignForms[i].kind == SOVEREIGN_FORM_HELD_ITEM) {
             return TRUE;
         }
     }
 
     return FALSE;
+}
+
+// Sovereign (FM): the form a species with held-item forms takes while holding heldItem (0, its base form, if none).
+int Pokemon_SovereignHeldItemForm(u16 species, u16 heldItem)
+{
+    for (int i = 0; i < SOVEREIGN_FORM_COUNT; i++) {
+        if (sSovereignForms[i].species == species && sSovereignForms[i].kind == SOVEREIGN_FORM_HELD_ITEM && sSovereignForms[i].trigger == heldItem) {
+            return sSovereignForms[i].form;
+        }
+    }
+
+    return 0;
+}
+
+// Sovereign (FM): a held item that changes its holder's form can't be taken from it (Knock Off, Thief, Trick...): a
+// Mega Stone on its species, Kyogre's and Groudon's Orbs, Zacian's Rusted Sword, Ogerpon's masks. The Teal Mask
+// counts too: it's Ogerpon's base form's mask.
+BOOL Pokemon_SovereignItemIsLocked(u16 species, u16 item)
+{
+    if (item == ITEM_NONE) {
+        return FALSE;
+    }
+
+    if (species == SPECIES_OGERPON && item == ITEM_TEAL_MASK) {
+        return TRUE;
+    }
+
+    if (species == SPECIES_GIRATINA && item == ITEM_GRISEOUS_CORE) {
+        return TRUE;
+    }
+
+    for (int i = 0; i < SOVEREIGN_FORM_COUNT; i++) {
+        if (sSovereignForms[i].species == species && sSovereignForms[i].kind != SOVEREIGN_FORM_MEGA_BY_MOVE && sSovereignForms[i].trigger == item) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
+// Replaces a known move with another (Crowned Zacian's Iron Head becomes Behemoth Blade). The PP used carries over, so
+// a move used twice is down 2 PP either way, and the swap back doesn't cost PP.
+static void Pokemon_SovereignReplaceMove(Pokemon *mon, u16 from, u16 to)
+{
+    for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+        if (Pokemon_GetValue(mon, MON_DATA_MOVE1 + i, NULL) == from) {
+            u8 ppUps = Pokemon_GetValue(mon, MON_DATA_MOVE1_PP_UPS + i, NULL);
+            int used = MoveTable_CalcMaxPP(from, ppUps) - Pokemon_GetValue(mon, MON_DATA_MOVE1_PP + i, NULL);
+            int pp = MoveTable_CalcMaxPP(to, ppUps) - used;
+            u8 newPP = pp < 0 ? 0 : pp;
+
+            Pokemon_SetValue(mon, MON_DATA_MOVE1 + i, &to);
+            Pokemon_SetValue(mon, MON_DATA_MOVE1_PP + i, &newPP);
+        }
+    }
+}
+
+static u16 Pokemon_SovereignCrownedMove(u16 species)
+{
+    return species == SPECIES_ZACIAN ? MOVE_BEHEMOTH_BLADE : species == SPECIES_ZAMAZENTA ? MOVE_BEHEMOTH_BASH : MOVE_NONE;
+}
+
+// Sovereign (FM): at the start of a battle, a Pokemon holding the item of a battle-item form takes it (Zacian holding
+// the Rusted Sword is Crowned, and its Iron Head becomes Behemoth Blade). Pokemon_SovereignRevertBattleForm undoes it.
+void Pokemon_SovereignSetBattleItemForm(Pokemon *mon)
+{
+    u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    u16 heldItem = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
+
+    if (Pokemon_GetValue(mon, MON_DATA_FORM, NULL) != 0 || Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)) {
+        return;
+    }
+
+    for (int i = 0; i < SOVEREIGN_FORM_COUNT; i++) {
+        const SovereignForm *entry = &sSovereignForms[i];
+
+        if (entry->species == species && entry->kind == SOVEREIGN_FORM_BATTLE_ITEM && entry->trigger == heldItem) {
+            int form = entry->form;
+
+            Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+            Pokemon_SovereignReplaceMove(mon, MOVE_IRON_HEAD, Pokemon_SovereignCrownedMove(species));
+            Pokemon_CalcAbility(mon);
+            Pokemon_CalcLevelAndStats(mon);
+            return;
+        }
+    }
+}
+
+// Sovereign (E8, FM): a Mega, Primal or Crowned form reverts to the base form when the battle ends (or when it's
+// caught).
+void Pokemon_SovereignRevertBattleForm(Pokemon *mon)
+{
+    u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    int form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+
+    if (form == 0 || Pokemon_IsSovereignBattleForm(species, form) == FALSE) {
+        return;
+    }
+
+    form = 0;
+    Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+
+    if (Pokemon_SovereignCrownedMove(species) != MOVE_NONE) {
+        Pokemon_SovereignReplaceMove(mon, Pokemon_SovereignCrownedMove(species), MOVE_IRON_HEAD);
+    }
+
+    Pokemon_CalcAbility(mon);
+    Pokemon_CalcLevelAndStats(mon);
 }
 
 u32 FlagIndex(int num)

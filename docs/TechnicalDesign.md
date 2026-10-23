@@ -128,6 +128,28 @@ implemented.
   drawn. The battle-script command `SovereignRefreshHealthBox` (after `End` in `btlcmd.h`) sends
   `BattleController_EmitRefreshHPGauge`.
 
+### 4b. All other forms (milestone FM, decision 16)
+- **Data.** `data/forms.csv` (`build_species_data.py`) lists every alternate form with its own data, with a category.
+  `gen_forms.py` packs the ones built so far (`FM_FORMS`) after the Megas in `sSovereignForms`.
+  - An FM form keeps its real abilities, unlike a Mega.
+  - Its form number is saved, so numbers must not shift once saves matter. Numbers count a species' Megas first,
+    then its `FM_FORMS` entries.
+- **Held-item forms** (`SOVEREIGN_FORM_HELD_ITEM`: Ogerpon's masks, Origin Dialga/Palkia).
+  - `BoxPokemon_SetArceusForm` (`pokemon.c`) sets the form from the held item. Every place that changes a held item
+    outside battle already calls it for Arceus: the party menu's give and take, and the PC's give.
+  - `Pokemon_SetArceusForm` recalculates stats when the form changes.
+- **Battle-item forms** (`SOVEREIGN_FORM_BATTLE_ITEM`: Crowned Zacian/Zamazenta).
+  - `BattleSys_New` (`battle_main.c`) calls `Pokemon_SovereignSetBattleItemForm` on every party before the battle
+    copies them. It swaps Iron Head for the Behemoth move, keeping the PP used.
+  - `Pokemon_SovereignRevertBattleForm` undoes it, and undoes Megas and Primals. It runs at the end of the battle
+    and in `BattleSystem_SetPokemonCatchData`.
+- **Item locks.** `Pokemon_SovereignItemIsLocked(species, item)` is TRUE for any form trigger on its own species
+  except Mega Rayquaza's move, and also for the Teal Mask on Ogerpon and the Griseous Core on Giratina.
+  `Battler_SovereignHeldItemLocked` (`battle_lib.c`) applies it in battle:
+  - `BtlCmd_TryStealItem` (Thief and Covet) and `BtlCmd_TrySwapItems` (Trick and Switcheroo) fail.
+  - `BtlCmd_TryKnockOff` leaves the item.
+  - `BattleSystem_FlingItem` fails.
+
 ### 5. Trainer data
 - Vanilla Gen IV trainer Pokémon can't specify EVs, natures directly (nature comes from the PID seeded by trainer
   data), or abilities. **The EV spreads and natures in `TrainerPokemon_Sovereign.md` need an extended trainer-Pokémon

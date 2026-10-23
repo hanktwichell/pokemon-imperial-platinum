@@ -1428,3 +1428,57 @@ Mega timing with 12b.
 2. FM's held-item forms (Crowned Zacian/Zamazenta, Ogerpon's masks), which the roadmap puts right after E7's items.
    Check that nobody holds it first.
 3. The Route 208 Mint sale (E14).
+
+---
+
+## CB-0022 — 2026-10-22, 9:25 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Merged:** PR #26 (the Mega/α/Ω symbol flash, CB-0021). E8 is done.
+
+**Implemented: FM part 1, the held-item forms and the form-item locks.**
+- **Seven new forms**, each with its own stats, types and abilities:
+  - Crowned Zacian and Crowned Zamazenta.
+  - Ogerpon's Wellspring, Hearthflame and Cornerstone Masks.
+  - Origin Dialga and Origin Palkia.
+
+  Sprites and icons are the base form's until E12. Effects of abilities the engine lacks wait for item 11.
+- **Ogerpon's masks and the Origin items** set the form whenever the held item changes (party menu, PC), and
+  recalculate stats and ability. The Griseous Core now works like the Griseous Orb.
+- **Zacian and Zamazenta** become Crowned at the start of a battle while holding their item. Iron Head becomes
+  Behemoth Blade or Behemoth Bash, keeping the PP used. They revert at the end of the battle, or when caught, like
+  Megas.
+- **Locks:** Knock Off, Thief, Covet, Trick, Switcheroo and Fling can't take a form item from the Pokémon it works
+  for. That covers Mega Stones, the Orbs, the Rusted Sword and Shield, the masks (the Teal Mask too), the Adamant
+  Crystal, the Lustrous Globe and the Griseous Core.
+- **`data/forms.csv`** (new): all 227 other alternate forms, each with its FM category (vanilla, item, battle,
+  fusion, regional, Totem, other, excluded).
+- **Verified in the test build** (temporary test parties, not committed):
+  - Behemoth Blade in battle. After the battle Zacian is Fairy-type with Intrepid Sword, and Iron Head shows 14/15.
+  - The Wellspring Mask makes Ogerpon Grass/Water with Water Absorb.
+  - Origin Dialga's and Palkia's summary stats.
+  - Knock Off left Mega Charizard Y's stone, and Zacian's Trick failed.
+- The release ROM builds without warnings and passes boot smoke, and the docs regenerate with no diff.
+
+**Not mine:** Ogerpon's mask damage boost, Embody Aspect, Intrepid Sword/Dauntless Shield's effects are item 11
+(Claude A).
+
+**Files modified:**
+- Data and tools: `tools/design/build_species_data.py`, `data/forms.csv` (new), `tools/engine/gen_forms.py`
+- Generated forms:
+  - `decomp/res/pokemon/{zacian,zamazenta,ogerpon,dialga,palkia}/meson.build` and their `forms/*/data.json` (new)
+  - `decomp/tools/dataproc/src/sovereign_forms.inc`, `decomp/include/constants/sovereign_forms.h`,
+    `decomp/include/data/sovereign_forms.h`
+- Engine:
+  - `decomp/src/pokemon.c`, `decomp/include/pokemon.h`
+  - `decomp/src/battle/battle_lib.c`, `decomp/include/battle/battle_lib.h`
+  - `decomp/src/battle/battle_script.c`, `decomp/src/battle/battle_main.c`, `decomp/src/battle/healthbox.c`
+- Docs: `docs/EngineChangelog.md`, `docs/TechnicalDesign.md` (§4b, new), `docs/EngineRoadmap.md` (row 10c),
+  `README.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR when green.
+2. FM fusions: Kyurem Black/White (DNA Splicers), Necrozma Dusk Mane/Dawn Wings (N-Solarizer/N-Lunarizer), and Calyrex
+   Ice/Shadow Rider (Reins of Unity). These are items used from the bag, so they need a fusion slot on the Pokémon.
+3. FM battle forms that need no new ability effect, then the regional forms' data (wild placement waits for the Regional
+   Forms Park). Before saves matter, fix how form numbers are assigned so that adding a Mega later can't shift a saved
+   form number.
