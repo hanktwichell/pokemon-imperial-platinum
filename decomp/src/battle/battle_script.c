@@ -2179,6 +2179,7 @@ static BOOL BtlCmd_CalcCrit(BattleSystem *battleSys, BattleContext *battleCtx)
             battleCtx->defender,
             battleCtx->criticalBoosts + Move_SovereignCritStage(battleCtx->moveCur)
                 + 3 * (battleCtx->sovereignLaserFocus[battleCtx->attacker] > 0) // Sovereign (item 11): Laser Focus
+                + battleCtx->sovereignDragonCheer[battleCtx->attacker] // Sovereign (item 11): Dragon Cheer
                 + 3 * (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_MERCILESS
                     && (battleCtx->battleMons[battleCtx->defender].status & MON_CONDITION_ANY_POISON)), // Sovereign (item 11)
             BattleContext_Get(battleSys, battleCtx, BATTLECTX_SIDE_CONDITIONS_MASK, battleCtx->defender));
@@ -9115,6 +9116,12 @@ static BOOL BtlCmd_RemoveItem(BattleSystem *battleSys, BattleContext *battleCtx)
 
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
     battleCtx->recycleItem[battler] = battleCtx->battleMons[battler].heldItem;
+
+    // Sovereign (item 11): remember a Berry it used up, for Belch.
+    if (Item_IsBerry(battleCtx->battleMons[battler].heldItem)) {
+        battleCtx->sovereignAteBerry[battler] |= FlagIndex(battleCtx->selectedPartySlot[battler]);
+    }
+
     battleCtx->battleMons[battler].heldItem = ITEM_NONE;
 
     BattleMon_CopyToParty(battleSys, battleCtx, battler);
@@ -9728,6 +9735,8 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         return &battleCtx->sovereignSmackedDown[battleCtx->sideEffectMon];
     case BTLVAR_SOVEREIGN_SIDE_GUARDS_ATTACKER: // Sovereign (item 11)
         return &battleCtx->sovereignSideGuards[BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker)];
+    case BTLVAR_SOVEREIGN_DRAGON_CHEER_SIDE_EFFECT_MON: // Sovereign (item 11)
+        return &battleCtx->sovereignDragonCheer[battleCtx->sideEffectMon];
     case BTLVAR_SOVEREIGN_LASER_FOCUS_SIDE_EFFECT_MON: // Sovereign (item 11)
         return &battleCtx->sovereignLaserFocus[battleCtx->sideEffectMon];
     case BTLVAR_SOVEREIGN_THROAT_CHOP_SIDE_EFFECT_MON: // Sovereign (item 11)

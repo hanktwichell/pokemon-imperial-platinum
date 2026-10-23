@@ -12,7 +12,7 @@
     "accuracy": 100,
     "pp": 20,
     "effect": {
-        "type": "BATTLE_EFFECT_ATK_DEF_DOWN",
+        "type": "BATTLE_EFFECT_SOVEREIGN_PARTING_SHOT",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

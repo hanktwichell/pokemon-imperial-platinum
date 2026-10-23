@@ -367,4 +367,9 @@ subscript_files = files(
     'subscript_sovereign_perish_body.s',
     'subscript_sovereign_toxic_debris.s',
     'subscript_sovereign_final_gambit.s',
+    'subscript_sovereign_coaching.s',
+    'subscript_sovereign_dragon_cheer.s',
+    'subscript_sovereign_scale_shot.s',
+    'subscript_sovereign_parting_shot.s',
+    'subscript_sovereign_bestow.s',
 )
