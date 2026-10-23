@@ -4,6 +4,22 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (part 9) — Booster Energy and moves that read the turn
+
+- **Booster Energy:** a Protosynthesis (outside sun) or Quark Drive Pokémon uses it on switch-in ("{0} used its
+  Booster Energy!", a new battle string), and its highest stat stays boosted until it switches out.
+- New per-turn flags (stats raised, stats lowered, used Round) and a per-battler "last move failed":
+  - Stomping Tantrum and Temper Flare double after a failed move; Lash Out doubles after the user's stats fell this
+    turn; Round doubles after its ally's Round (the ally doesn't move up in turn order yet).
+  - Burning Jealousy and Alluring Voice burn / confuse only a target whose stats rose this turn.
+- Draining Kiss and Oblivion Wing drain 3/4 of the damage.
+- Sacred Sword, Chip Away and Darkest Lariat are now marked exact (their engine rule landed in part 6).
+- Move checklist: exact 203, approximate 43, placeholder 134.
+
+**Verified in the test build:** a Protosynthesis Archaludon and a Quark Drive Venusaur both used up their Booster
+Energy at the start of the battle; Turtwig's Round after Garchomp's dealt the power-120 value (3; 2 with Tackle's
+control run at power 60).
+
 ## Item 11 (part 8) — Intimidate reactions and AI scores
 
 - Intimidate now triggers Defiant (Attack +2), Competitive (Sp. Atk +2) and Rattled (Speed +1), through a new switch-in
@@ -14,12 +30,8 @@ players and the verification that was run.
 - AI: Clanging Scales, Hyperspace Fury and Spin Out score like Close Combat, Make It Rain like Overheat, and Storm Throw,
   Frost Breath, Wicked Blow and Flower Trick like high-critical moves.
 
-- **Booster Energy:** a Protosynthesis (outside sun) or Quark Drive Pokémon uses it on switch-in ("{0} used its
-  Booster Energy!", new battle string), and its highest stat stays boosted until it switches out.
-
 **Verified in the test build:** an Intimidate Garchomp left a Defiant Archaludon at Attack +1 (−1 then +2) and a Guard
-Dog Venusaur at Attack +1; a Protosynthesis Archaludon and a Quark Drive Venusaur both used up their Booster Energy
-at the start of the battle.
+Dog Venusaur at Attack +1.
 
 ## Item 11 (part 7) — 44 more abilities
 

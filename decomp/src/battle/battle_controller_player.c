@@ -4111,6 +4111,12 @@ static void BattleControllerPlayer_UpdateMoveBuffers(BattleSystem *battleSys, Ba
         } else {
             battleCtx->movePrevByBattler[battleCtx->attacker] = MOVE_NONE;
         }
+
+        // Sovereign (item 11): Stomping Tantrum and Temper Flare remember a failed move; Round tells its partner's.
+        battleCtx->sovereignLastMoveFailed[battleCtx->attacker] = (battleCtx->battleStatusMask2 & SYSCTL_MOVE_SUCCEEDED) == FALSE;
+        if (battleCtx->moveTemp == MOVE_ROUND) {
+            battleCtx->turnFlags[battleCtx->attacker].sovereignUsedRound = TRUE;
+        }
     }
 
     if (battleCtx->battleStatusMask2 & SYSCTL_ATTACK_MESSAGE_SHOWN) {

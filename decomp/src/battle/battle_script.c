@@ -2898,6 +2898,7 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
             }
 
             mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] += stageChange;
+            battleCtx->turnFlags[battleCtx->sideEffectMon].sovereignStatsRaised = TRUE; // Sovereign (item 11)
 
             if (mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] > MAX_STAT_STAGE) {
                 mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] = MAX_STAT_STAGE;
@@ -3006,6 +3007,7 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
         }
 
         mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] += stageChange;
+        battleCtx->turnFlags[battleCtx->sideEffectMon].sovereignStatsLowered = TRUE; // Sovereign (item 11)
 
         if (mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] < MIN_STAT_STAGE) {
             mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] = MIN_STAT_STAGE;

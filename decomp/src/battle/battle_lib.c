@@ -1537,6 +1537,13 @@ BOOL BattleSystem_TriggerSecondaryEffect(BattleSystem *battleSys, BattleContext 
     BOOL result = FALSE;
     u16 effectChance;
 
+    // Sovereign (item 11): Burning Jealousy burns, and Alluring Voice confuses, only a target whose stats rose this turn.
+    if ((battleCtx->moveCur == MOVE_BURNING_JEALOUSY || battleCtx->moveCur == MOVE_ALLURING_VOICE)
+        && battleCtx->turnFlags[battleCtx->defender].sovereignStatsRaised == FALSE) {
+        battleCtx->sideEffectIndirectFlags = 0;
+        return FALSE;
+    }
+
     // Sovereign (item 11): Sheer Force removes the chance effects (the last two cases below) of the moves it powers up.
     if (battleCtx->sideEffectIndirectFlags
         && (battleCtx->sideEffectIndirectFlags & (MOVE_SIDE_EFFECT_ON_HIT | MOVE_SIDE_EFFECT_CHECK_SUBSTITUTE | MOVE_SIDE_EFFECT_CHECK_HP_AND_SUBSTITUTE | MOVE_SIDE_EFFECT_CHECK_HP)) == FALSE
@@ -2147,6 +2154,7 @@ void BattleSystem_UpdateAfterSwitch(BattleSystem *battleSys, BattleContext *batt
     battleCtx->moveHitBattler[battler] = BATTLER_NONE;
     battleCtx->moveHitType[battler] = MOVE_NONE;
     battleCtx->movePrevByBattler[battler] = MOVE_NONE;
+    battleCtx->sovereignLastMoveFailed[battler] = FALSE;
     battleCtx->moveCopied[battler] = MOVE_NONE;
     battleCtx->moveCopiedHit[battler][0] = MOVE_NONE;
     battleCtx->moveCopiedHit[battler][1] = MOVE_NONE;
@@ -2225,6 +2233,7 @@ void BattleSystem_CleanupFaintedMon(BattleSystem *battleSys, BattleContext *batt
     battleCtx->moveHitBattler[battler] = BATTLER_NONE;
     battleCtx->moveHitType[battler] = MOVE_NONE;
     battleCtx->movePrevByBattler[battler] = MOVE_NONE;
+    battleCtx->sovereignLastMoveFailed[battler] = FALSE;
     battleCtx->moveCopied[battler] = MOVE_NONE;
     battleCtx->moveCopiedHit[battler][0] = MOVE_NONE;
     battleCtx->moveCopiedHit[battler][1] = MOVE_NONE;
@@ -7299,6 +7308,26 @@ int Sovereign_MovePower(BattleSystem *battleSys, BattleContext *battleCtx, int m
 
     case MOVE_FICKLE_BEAM: // 30% chance of double power
         if (BattleSystem_RandNext(battleSys) % 10 < 3) {
+            power *= 2;
+        }
+        break;
+
+    case MOVE_STOMPING_TANTRUM: // double if the user's last move failed
+    case MOVE_TEMPER_FLARE:
+        if (battleCtx->sovereignLastMoveFailed[attacker]) {
+            power *= 2;
+        }
+        break;
+
+    case MOVE_LASH_OUT: // double if the user's stats were lowered this turn
+        if (battleCtx->turnFlags[attacker].sovereignStatsLowered) {
+            power *= 2;
+        }
+        break;
+
+    case MOVE_ROUND: // double if the user's ally used Round earlier this turn
+        if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES)
+            && battleCtx->turnFlags[attacker ^ 2].sovereignUsedRound) {
             power *= 2;
         }
         break;

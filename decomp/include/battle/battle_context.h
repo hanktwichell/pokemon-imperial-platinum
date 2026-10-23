@@ -64,7 +64,10 @@ typedef struct TurnFlags {
     u32 roosting : 1;
     u32 fleeing : 2;
     u32 enduring : 1;
-    u32 padding00_0A : 22;
+    u32 sovereignStatsRaised : 1; // Sovereign (item 11): a stat rose this turn (Burning Jealousy, Alluring Voice)
+    u32 sovereignStatsLowered : 1; // Sovereign (item 11): a stat fell this turn (Lash Out)
+    u32 sovereignUsedRound : 1; // Sovereign (item 11): used Round this turn (its partner's Round doubles)
+    u32 padding00_0A : 19;
 
     int physicalDamageTakenFrom[MAX_BATTLERS];
     int physicalDamageLastAttacker;
@@ -329,6 +332,7 @@ struct BattleContext {
     // Sovereign (item 11): battlers whose Defiant or Competitive was triggered by a foe's move lowering their stats;
     // the boost is applied after the move (BattleControllerPlayer_TriggerAfterMoveHitEffects).
     u8 sovereignDefiantPending;
+    u8 sovereignLastMoveFailed[MAX_BATTLERS]; // Sovereign (item 11): Stomping Tantrum and Temper Flare
 };
 
 #endif // POKEPLATINUM_BATTLE_BATTLE_CONTEXT_H
