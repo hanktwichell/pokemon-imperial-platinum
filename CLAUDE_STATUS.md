@@ -1108,3 +1108,29 @@ files. Also `decomp/src/script_manager.c` (test warps), `.github/workflows/build
 2. The Pokédex milestone (decision 21): National Dex from Rowan's Pokédex, national numbers everywhere.
 3. The Mega Evolution animation, then the Mega abilities the boss teams need (Magic Bounce, Parental Bond, Strong
    Jaw, Tough Claws).
+
+---
+
+## CA-0021 — 2026-10-23 (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** a draft redo of Oak's visit to Rowan's lab (owner request), in `docs/Story.md` (*Oak's visit…*).
+- **Why it breaks:** Platinum plays it only while the National Dex is off (`SandgemTownLab_ProfRowanReactToPokedex`,
+  `GetNationalDexEnabled`). With the National Dex from the start (decision 21) it would never play, and its Fight
+  Area unlock would be lost with it.
+- **The draft:** Oak doesn't upgrade the Pokédex; instead he comes because Pokémon from every region are turning up,
+  and he points the player to the Regional Forms Park on Route 221.
+- **Also drafted:** new Route 221 NPC and sign text, and a note on the other lines that mention the National Dex or
+  Pal Park.
+- **Waiting on the owner:**
+  1. the trigger;
+  2. when the park opens;
+  3. whether Oak gives an item.
+
+**Files modified:** `docs/Story.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Build the Oak scene once the owner signs off. The text goes in `res/text/sandgem_town_pokemon_research_lab.json`
+   and `route_221.json`, and the script check becomes a new flag. Coordinate with Claude B's DX, which turns on the
+   National Dex.
+2. 12b #8 (CA-0020's plan).
+3. Item 11.
