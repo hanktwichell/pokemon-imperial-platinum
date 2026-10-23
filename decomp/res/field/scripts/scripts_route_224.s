@@ -13,9 +13,11 @@
     ScriptEntry Route224_Marley
     ScriptEntry Route224_OnLoad
     ScriptEntry Route224_LegendaryEnamorus
+    ScriptEntry Route224_LegendaryPecharunt
     ScriptEntryEnd
 
 Route224_OnTransition:
+    Call Route224_SovereignSetPecharuntVisibility
     Call Route224_SovereignSetEnamorusVisibility
     CallIfEq VAR_SHAYMIN_EVENT_STATE, 1, Route224_IncreaseVars
     GoToIfSet FLAG_WROTE_ON_ROUTE_224_TABLET, Route224_DontHideProfOak
@@ -54,6 +56,7 @@ Route224_SovereignSetEnamorusVisibilityEnd:
     Return
 
 Route224_OnLoad:
+    CallIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, Route224_RemoveLegendaryPecharunt
     GoToIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, Route224_RemoveLegendaryEnamorus
     End
 
@@ -532,3 +535,33 @@ Route224_Movement_MarleyNoticeShaymin:
     FaceEast
     EmoteExclamationMark
     EndMovement
+
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Pecharunt, the Loyal Three's master, appears once all three
+@ are caught, until it is caught.
+Route224_SovereignSetPecharuntVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_3
+    GoToIfLt VAR_SOVEREIGN_CHRONICLE, 5, Route224_SovereignSetPecharuntVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_OKIDOGI, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, Route224_SovereignSetPecharuntVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_MUNKIDORI, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, Route224_SovereignSetPecharuntVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_FEZANDIPITI, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, Route224_SovereignSetPecharuntVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_PECHARUNT, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, Route224_SovereignSetPecharuntVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_3
+Route224_SovereignSetPecharuntVisibilityEnd:
+    Return
+
+Route224_RemoveLegendaryPecharunt:
+    GoToIfNe VAR_SOVEREIGN_LEGENDARY_SPECIES, SPECIES_PECHARUNT, Route224_RemoveLegendaryPecharuntEnd
+    RemoveObject LOCALID_LEGENDARY_PECHARUNT
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+Route224_RemoveLegendaryPecharuntEnd:
+    Return
+
+Route224_LegendaryPecharunt:
+    SetVar VAR_0x8004, SPECIES_PECHARUNT
+    SetVar VAR_0x8005, 60
+    Common_SovereignLegendaryEncounter
+    End

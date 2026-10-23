@@ -58,6 +58,7 @@
 #include "vars_flags.h"
 
 #include "data/regional_forms_park.h"
+#include "data/sovereign_rare_wild.h"
 
 typedef struct RadarEncounterData {
     int shakeType;
@@ -275,6 +276,47 @@ static void RegionalFormsPark_FillEncounterTable(FieldSystem *fieldSystem, Encou
     }
 }
 
+// Sovereign (decision 28): the Paradox Pokemon and the Ultra Beasts are rare wild encounters
+// (data/sovereign_rare_wild.yaml). One roll per encounter picks one of the map's entries whose gate is met, by its
+// rate, and fills every slot with it, so the usual slot rules (Repel, Intimidate, Hustle...) still apply.
+static void SovereignRareWild_TryFillEncounterTable(FieldSystem *fieldSystem, EncounterSlot *encounterTable, int numSlots, u8 terrain)
+{
+    u16 chronicle = *VarsFlags_GetVarAddress(SaveData_GetVarsFlags(fieldSystem->saveData), VAR_SOVEREIGN_CHRONICLE);
+    const Pokedex *pokedex = SaveData_GetPokedex(fieldSystem->saveData);
+    int roll = -1;
+
+    for (int i = 0; i < NELEMS(sSovereignRareWild); i++) {
+        const SovereignRareWildEntry *entry = &sSovereignRareWild[i];
+
+        if (entry->mapHeaderID != fieldSystem->location->mapHeaderID || entry->terrain != terrain || chronicle < entry->minChronicle) {
+            continue;
+        }
+
+        if (entry->caughtSpecies != SPECIES_NONE && !Pokedex_HasCaughtSpecies(pokedex, entry->caughtSpecies)) {
+            continue;
+        }
+
+        if (roll < 0) {
+            roll = LCRNG_RandMod(100);
+        }
+
+        if (roll >= entry->rate) {
+            roll -= entry->rate;
+            continue;
+        }
+
+        u8 level = entry->minLevel + LCRNG_RandMod(entry->maxLevel - entry->minLevel + 1);
+
+        for (int slot = 0; slot < numSlots; slot++) {
+            encounterTable[slot].species = WILD_SLOT(entry->species, 0);
+            encounterTable[slot].maxLevel = level;
+            encounterTable[slot].minLevel = level;
+        }
+
+        return;
+    }
+}
+
 BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
 {
     FieldBattleDTO *battleParams;
@@ -392,6 +434,10 @@ BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
         WildEncounters_ReplaceDualSlotEncounters(encounterData, nationalDexObtained, &encounterTable[8].species, &encounterTable[9].species);
         RegionalFormsPark_FillEncounterTable(fieldSystem, encounterTable, MAX_GRASS_ENCOUNTERS, FALSE);
 
+        if (!withPartner && !radarData.isRadarEncounter && !safariGameActive) {
+            SovereignRareWild_TryFillEncounterTable(fieldSystem, encounterTable, MAX_GRASS_ENCOUNTERS, SOVEREIGN_RARE_WILD_LAND);
+        }
+
         if (!withPartner) {
             WildEncounters_ReplaceGreatMarshDailyEncounters(fieldSystem, safariGameActive, nationalDexObtained, encounterTable);
 
@@ -409,6 +455,10 @@ BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
         }
 
         RegionalFormsPark_FillEncounterTable(fieldSystem, encounterTable, MAX_WATER_ENCOUNTERS, TRUE);
+
+        if (!withPartner && !safariGameActive) {
+            SovereignRareWild_TryFillEncounterTable(fieldSystem, encounterTable, MAX_WATER_ENCOUNTERS, SOVEREIGN_RARE_WILD_SURF);
+        }
 
         encounterSuccess = TryGenerateSurfEncounter(fieldSystem, firstPartyMon, battleParams, encounterTable, &encounterFieldParams);
     } else {
@@ -585,6 +635,10 @@ BOOL WildEncounters_TrySweetScentEncounter(FieldSystem *fieldSystem, FieldTask *
         WildEncounters_ReplaceDualSlotEncounters(encounterData, nationalDexObtained, &encounterTable[8].species, &encounterTable[9].species);
         RegionalFormsPark_FillEncounterTable(fieldSystem, encounterTable, MAX_GRASS_ENCOUNTERS, FALSE);
 
+        if (!withPartner && !radarData.isRadarEncounter && !safariGameActive) {
+            SovereignRareWild_TryFillEncounterTable(fieldSystem, encounterTable, MAX_GRASS_ENCOUNTERS, SOVEREIGN_RARE_WILD_LAND);
+        }
+
         if (!withPartner) {
             WildEncounters_ReplaceGreatMarshDailyEncounters(fieldSystem, safariGameActive, nationalDexObtained, encounterTable);
 
@@ -602,6 +656,10 @@ BOOL WildEncounters_TrySweetScentEncounter(FieldSystem *fieldSystem, FieldTask *
         }
 
         RegionalFormsPark_FillEncounterTable(fieldSystem, encounterTable, MAX_WATER_ENCOUNTERS, TRUE);
+
+        if (!withPartner && !safariGameActive) {
+            SovereignRareWild_TryFillEncounterTable(fieldSystem, encounterTable, MAX_WATER_ENCOUNTERS, SOVEREIGN_RARE_WILD_SURF);
+        }
 
         encounterSuccess = TryGenerateSurfEncounter(fieldSystem, firstPartyMon, battleParams, encounterTable, &encounterFieldParams);
     } else {
@@ -720,6 +778,10 @@ BOOL WildEncounters_TryMudEncounter(FieldSystem *fieldSystem, FieldBattleDTO **b
         WildEncounters_ReplaceTrophyGardenEncounters(fieldSystem, nationalDexObtained, &encounterTable[6].species, &encounterTable[7].species);
         WildEncounters_ReplaceDualSlotEncounters(encounterData, nationalDexObtained, &encounterTable[8].species, &encounterTable[9].species);
         RegionalFormsPark_FillEncounterTable(fieldSystem, encounterTable, MAX_GRASS_ENCOUNTERS, FALSE);
+
+        if (!withPartner && !radarData.isRadarEncounter && !safariGameActive) {
+            SovereignRareWild_TryFillEncounterTable(fieldSystem, encounterTable, MAX_GRASS_ENCOUNTERS, SOVEREIGN_RARE_WILD_LAND);
+        }
 
         if (!withPartner) {
             WildEncounters_ReplaceGreatMarshDailyEncounters(fieldSystem, safariGameActive, nationalDexObtained, encounterTable);

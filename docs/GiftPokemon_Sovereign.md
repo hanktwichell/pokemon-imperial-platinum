@@ -27,7 +27,8 @@ Notes
 - The Eterna, Hearthome and Veilstone Pokémon Centers also hold Renegade's save-fixing NPC; the Interviewer stands on the
   opposite side of the counter.
 
-## New: post-game gifts
+## No legendary gifts
 
-Listed in full in `PostgameLegendaries.md`: Cosmog (Spear Pillar), Type: Null (Galactic HQ), Poipole (Fight Area),
-Meltan and Melmetal (Oreburgh Mine), Kubfu (Veilstone Gym).
+Legendaries, Mythicals and Ultra Beasts are never gifts: the player battles and catches every one (owner, 2026-10-23).
+The post-game ones the plan once listed as gifts (Cosmog, Type: Null, Poipole, Magearna, Meltan and Melmetal, Kubfu)
+are battles at the same places; see `PostgameLegendaries.md` and `LegendaryTriggers.md`.

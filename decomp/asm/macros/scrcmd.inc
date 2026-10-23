@@ -5305,8 +5305,8 @@
     CallCommonScript 0x80B
     .endm
 
-    // Sovereign (the Chronicles): a gift Pokémon (VAR_0x8004 species, VAR_0x8005 level); VAR_RESULT is TRUE if given.
-    .macro Common_SovereignGiftPokemon
+    // Sovereign (the Chronicles): a stake sealing a Ruinous shrine (VAR_0x8004 its flag, VAR_0x8005 its local ID).
+    .macro Common_SovereignStake
     CallCommonScript 0x80C
     .endm
 

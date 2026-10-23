@@ -162,8 +162,29 @@ Made by the owner (2026-10-22):
     - items **sell for their full buy price** after the Champion, **except items a shop sells**, which still sell
       for half. Without that rule, buying at the half price and selling at full price would make free money. So
       Nuggets, Pearls, shards and found items sell at full price; shop stock sells for what you paid for it.
+25. **Post-game legendaries use existing spots** (owner, 2026-10-23). A legendary the plan put in a new room or floor
+    stands in a fitting existing room or dead end nearby, and its `built` note in `data/postgame_legendaries.yaml`
+    says "Changed from the plan".
+26. **Legendaries are battled and caught, never given** (owner, 2026-10-23). This covers every Legendary, Mythical and
+    Ultra Beast. People in the story can still lead to the battle or hand over key items, but the Pokémon itself is
+    a battle. What makes each one appear is in `docs/LegendaryTriggers.md`.
+27. **Spear Pillar is kept for Dialga, Palkia and the final story** (owner, 2026-10-23). No Chronicle encounter stands
+    there. Cosmog (both battles) moves to Mt. Coronet's top snowfield, and Necrozma to Wayward Cave 1F's dark back
+    chamber.
+28. **Static encounters are for legendaries, and not every legendary needs one** (owner, 2026-10-23):
+    - **Paradox Pokémon are rare wild encounters,** each on one or two themed maps (ancient ones in wild, rugged
+      places, future ones in industrial ones), at 2% of the wild encounters there, from when the Paldea Chronicle
+      opens. They can be met again after a catch.
+    - **Ultra Beasts are rare wild encounters too,** on the maps they stood on, once Necrozma is caught. Poipole
+      becomes wild on a route near the Fight Area.
+    - **Roamers:** Okidogi, Munkidori, Fezandipiti, Glastrier, Spectrier and Zeraora roam Sinnoh instead of standing
+      in one place. The other legendaries stay static (roamers can't hold items, so Zacian, Zamazenta and Ogerpon
+      can't roam).
 
 Open:
+- **Overworld sprites and sizing for the legendaries** (owner, 2026-10-23: "we will need to work on" it). Today each
+  is a 64x64 placeholder shrunk from its PokeAPI front sprite (`tools/sprites/make_legendary_overworld.py`), so tiny
+  and huge Pokémon look the same size and the big ones cover the player and nearby tiles.
 - Regional Forms Park (decision 22): which zone holds which forms, the odds and levels (proposal in
   `docs/RegionalFormsPark.md`), and when it opens (now after the Hall of Fame; `Story.md` suggests Oak's visit).
 - Special evolutions (decision 20): owner discussion pending.

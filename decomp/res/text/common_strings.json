@@ -938,24 +938,17 @@
       ]
     },
     {
-      "id": "CommonStrings_Text_SovereignPlayerReceivedPokemon",
+      "id": "CommonStrings_Text_SovereignStake",
       "en_US": [
-        "{STRVAR_1 3, 0, 0} received\n",
-        "{STRVAR_1 1, 1, 0}!"
+        "A strange stake is driven deep into\n",
+        "the ground. Pull it out?"
       ]
     },
     {
-      "id": "CommonStrings_Text_SovereignAskNicknameGift",
+      "id": "CommonStrings_Text_SovereignStakePulled",
       "en_US": [
-        "Give a nickname to the {STRVAR_1 1, 1, 0}\n",
-        "you received?"
-      ]
-    },
-    {
-      "id": "CommonStrings_Text_SovereignGiftPartyFull",
-      "en_US": [
-        "Your party is full. Make some room,\n",
-        "then come back."
+        "{STRVAR_1 3, 0, 0} pulled out the stake!\n",
+        "Something nearby seems to stir..."
       ]
     }
   ]

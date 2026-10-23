@@ -2938,3 +2938,93 @@ rom job timed out in apt-get before building). Then Victini and the whole Kalos 
    - Poipole (Fight Area), Type: Null (the Galactic HQ scientist), Magearna (Volkner, at an existing spot), Meltan
      (Oreburgh Mine): gifts.
    - Marshadow (Old Chateau) and Zeraora (Route 222 at night): static encounters.
+
+## CB-0043 — 2026-10-23, 2:25 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Status: work in progress (WIP commits c0f351e8, e22fed35, e5ae0dab on the branch; no PR yet).** The owner asked to
+"get everything into the game before worrying about placements", so every remaining Chronicle legendary is now in,
+at quick provisional spots. Then the owner changed direction (2026-10-23, afternoon): see "Owner direction" below.
+
+**What was implemented:**
+- **No legendary gifts** (owner, 2026-10-23: legendaries are battled and caught). Cosmog is two battles now
+  (`FLAG_SOVEREIGN_CAUGHT_COSMOG` / `_2`); the gift script is gone and common script 0x80C is now the stake script.
+  `Common_SovereignLegendaryEncounter` returns `VAR_RESULT` (TRUE on a catch).
+- **The nine Ultra Beasts** (Lv. 65, after Necrozma), the rest of Alola (Poipole, Type: Null, Magearna, Marshadow,
+  Zeraora at night, Meltan then Melmetal), **Galar** (Zacian and Zamazenta holding the Rusted Sword/Shield, Eternatus,
+  Kubfu, Zarude, Regieleki, Regidrago, Calyrex, Glastrier, Spectrier) and **Paldea** (the Ruinous four behind two
+  stakes each, the Loyal Three, Pecharunt, Ogerpon holding the Teal Mask, a Pokéfan in Celestic who gives the other
+  three masks to a player leading with Ogerpon, two Paradox rifts at Spear Pillar, Koraidon/Miraidon/Terapagos at
+  Sendoff Spring). The Archivist has chapters and topics for all of them.
+- Held items for static legendaries: `VAR_SOVEREIGN_LEGENDARY_HELD_ITEM`, read once in `Encounter_NewVsSpeciesAtLevel`
+  (`decomp/src/encounter.c`).
+- 82 overworld legendary sprites in all (`tools/sprites/make_legendary_overworld.py`).
+- **Verified in the emulator:** every Ultra Beast; Cosmog ×2; Poipole, Type: Null, Magearna, Marshadow; Meltan and
+  Melmetal (Mine B2F); Kubfu, Zarude, Regieleki, Regidrago, Calyrex, Glastrier, Spectrier and the Archivist's Galar
+  topics (Reins of Unity, both scrolls); the Paldea topics; Okidogi, Munkidori, Fezandipiti, Pecharunt, Ogerpon, both
+  rifts, Koraidon, Miraidon, Terapagos, Guzzlord at its new spot.
+- **Bugs found and fixed (retest running):** the stakes were invisible (a bollard has only a down-facing frame; they
+  faced up); Zacian and Zamazenta stood at y 0 on Route 210 North's raised ledge (interaction needs the object's height
+  to match, `sub_0203C9B0`), now y 8; the Pokéfan passed a literal party slot to `GetPartyMonSpecies`, which reads a
+  var. The Ruinous four's first test failed only because the test warped while a message was open.
+
+**Owner direction (2026-10-23, afternoon), to implement next:**
+1. Keep Spear Pillar for Dialga/Palkia and the final story only: Cosmog, Necrozma and the rifts move off it.
+2. The Paradox Pokémon become wild encounters across the region at low odds, not static encounters.
+3. Static encounters are for legendaries, and not every legendary needs one: some can roam.
+4. Still noted for later: overworld sprites and sizing; a note on what triggers each legendary
+   (`docs/LegendaryTriggers.md`; the first audit run was cut off by the usage limit).
+
+**Files modified so far:** scripts and events for every map named above (`decomp/res/field/scripts/`,
+`decomp/res/field/events/`), `scripts_common.s`, `scripts_canalave_library_2f.s`, `decomp/src/encounter.c`,
+`decomp/generated/vars_flags.txt`, `decomp/generated/object_events_gfx.txt`,
+`decomp/src/overlay005/object_event_gfx_data.c`, `decomp/res/graphics/field_sprites/`, the text banks,
+`data/postgame_legendaries.yaml`, `docs/PostgameLegendaries.md`, `docs/ItemChanges_Sovereign.md`,
+`docs/TechnicalDesign.md`, `docs/ProjectStatus.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Agree the new homes for Cosmog and Necrozma, the Paradox wild plan and which legendaries roam, with the owner.
+2. Build it: remove the Spear Pillar encounters, add the rare Paradox roll to the wild encounter code, add the
+   roamers, update the Archivist and the docs.
+3. Finish the retest, write `docs/LegendaryTriggers.md`, then open and merge the PR.
+
+## CB-0044 — 2026-10-23, 4:14 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Status: the owner's encounter redesign is built and tested; PR open (see below).** Follows CB-0043.
+
+**What was implemented** (owner, 2026-10-23, decisions 27 and 28 in `docs/ProjectStatus.md`):
+- **Spear Pillar is kept for Dialga, Palkia and the story.** Its Chronicle objects are gone (the file is back to its
+  pre-Chronicles state). Cosmog (both battles) is on Mt. Coronet's top snowfield, (35, 21); Necrozma is in Wayward
+  Cave 1F's dark back chamber, (70, 9).
+- **Rare wild encounters:** the twenty Paradox Pokémon (from the Paldea Chronicle's opening) and the nine Ultra
+  Beasts with Poipole (once Necrozma is caught), 2% of the wild encounters on their maps, repeatable.
+  `data/sovereign_rare_wild.yaml` → `tools/engine/gen_rare_wild.py` → `decomp/include/data/sovereign_rare_wild.h`
+  and `docs/RareWildEncounters.md`; the roll is `SovereignRareWild_TryFillEncounterTable` in
+  `decomp/src/overlay006/wild_encounters.c` (grass, surf, Sweet Scent, mud; not radar, partner or Safari).
+- **Roamers:** Zeraora (vanilla's unused Darkrai slot), Okidogi, Munkidori, Fezandipiti, Glastrier and Spectrier (five
+  new roaming slots, about 104 bytes more save). The Archivist releases them on the first reading of their topic
+  (the steeds once Calyrex is caught), and again after a Hall of Fame reset.
+- **Fixes:** Meloetta moved off the walled-in Contest Hall stage to (29, 8); the roamer after-battle code now needs a
+  roamer battle (a wild Galarian bird could wipe a roaming Kanto one); the Archivist's texts for all of it.
+- **Verified in the emulator:** Cosmog ×2, Necrozma, Meloetta, an empty Spear Pillar; Great Tusk, Buzzwole and Iron
+  Jugulis as wild battles (forced roll); Zeraora, Okidogi and Glastrier met as roamers and caught; every new Archivist
+  line. Release build without warnings, boot smoke, docs regenerate clean. **Not tested:** a knocked-out roamer's
+  message and Hall of Fame re-release, surfing rare encounters, the real 2% odds.
+
+**Files modified:** `decomp/src/overlay006/wild_encounters.c`, `roamer_after_battle.c`, `decomp/src/roaming_pokemon.c`,
+`decomp/src/system_vars.c`, `decomp/generated/roaming_slots.txt`, `decomp/generated/vars_flags.txt`,
+`decomp/include/data/sovereign_rare_wild.h` (new, generated), scripts/events for Spear Pillar, Mt. Coronet outside
+north, Wayward Cave 1F, the Contest Hall stage, Routes 217, 222, 224, 225, 227, 229, Iron Island B3F, Sunyshore,
+Turnback Cave entrance, Stark Mountain outside, the Fight Area, Eterna Forest, Lost Tower 5F, the Hall of Fame and
+the Canalave Library 2F (with its text), `data/sovereign_rare_wild.yaml` (new), `tools/engine/gen_rare_wild.py`
+(new), `tools/regenerate_docs.sh`, `tools/design/gen_encounters.py`, `data/postgame_legendaries.yaml`,
+`docs/PostgameLegendaries.md`, `docs/RareWildEncounters.md` (new), `docs/WildPokemon_Sovereign.md`,
+`docs/TechnicalDesign.md`, `docs/ProjectStatus.md`, `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`,
+`CITATIONS.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Add `docs/LegendaryTriggers.md` (the trigger audit workflow is re-running for it), then merge the PR once CI is
+   green.
+2. The owner's open items: overworld sprites and sizing for the legendaries; real placements for the provisional
+   spots; whether Koraidon and Miraidon should wait for the ten Paradox of their own era instead of all twenty.
+3. Port Renegade's special events (E10) and check their spots against the Chronicles' (the trigger note lists the
+   clashes).

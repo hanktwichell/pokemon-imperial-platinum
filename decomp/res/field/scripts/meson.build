@@ -1136,6 +1136,8 @@ scr_seq_files = files(
     'scripts_init_route_228_rock_peak_ruins.s',
     'scripts_wayward_cave_b1f.s',
     'scripts_init_wayward_cave_b1f.s',
+    'scripts_mt_coronet_outside_north.s',
+    'scripts_init_mt_coronet_outside_north.s',
 )
 
 scr_seq_narc = custom_target('scr_seq.narc',

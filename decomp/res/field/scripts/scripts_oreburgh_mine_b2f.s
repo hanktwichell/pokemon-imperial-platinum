@@ -11,11 +11,15 @@
     ScriptEntry OreburghMineB2F_OnTransition
     ScriptEntry OreburghMineB2F_OnLoad
     ScriptEntry OreburghMineB2F_LegendaryDiancie
+    ScriptEntry OreburghMineB2F_LegendaryMeltan
+    ScriptEntry OreburghMineB2F_LegendaryMelmetal
     ScriptEntryEnd
 
 @ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Diancie shines in the nook by the mine's west wall once the
 @ Kalos Chronicle is open (VAR_SOVEREIGN_CHRONICLE 2) and a Carbink is in the party, until it's caught.
 OreburghMineB2F_OnTransition:
+    Call OreburghMineB2F_SovereignSetMelmetalVisibility
+    Call OreburghMineB2F_SovereignSetMeltanVisibility
     SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
     GoToIfLt VAR_SOVEREIGN_CHRONICLE, 2, OreburghMineB2F_OnTransitionEnd
     SovereignCheckSpeciesCaught SPECIES_DIANCIE, VAR_RESULT
@@ -27,6 +31,8 @@ OreburghMineB2F_OnTransitionEnd:
     End
 
 OreburghMineB2F_OnLoad:
+    CallIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, OreburghMineB2F_RemoveLegendaryMelmetal
+    CallIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, OreburghMineB2F_RemoveLegendaryMeltan
     GoToIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, OreburghMineB2F_RemoveLegendaryDiancie
     End
 
@@ -134,4 +140,53 @@ OreburghMineB2F_Machop2:
 
 OreburghMineB2F_Worker:
     NPCMessage OreburghMineB2F_Text_IMetMachopOnRoute207
+    End
+
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Meltan waits among the ore once the Alola Chronicle is
+@ open, until it is caught.
+OreburghMineB2F_SovereignSetMeltanVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_2
+    GoToIfLt VAR_SOVEREIGN_CHRONICLE, 3, OreburghMineB2F_SovereignSetMeltanVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_MELTAN, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, OreburghMineB2F_SovereignSetMeltanVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_2
+OreburghMineB2F_SovereignSetMeltanVisibilityEnd:
+    Return
+
+OreburghMineB2F_RemoveLegendaryMeltan:
+    GoToIfNe VAR_SOVEREIGN_LEGENDARY_SPECIES, SPECIES_MELTAN, OreburghMineB2F_RemoveLegendaryMeltanEnd
+    RemoveObject LOCALID_LEGENDARY_MELTAN
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+OreburghMineB2F_RemoveLegendaryMeltanEnd:
+    Return
+
+OreburghMineB2F_LegendaryMeltan:
+    SetVar VAR_0x8004, SPECIES_MELTAN
+    SetVar VAR_0x8005, 40
+    Common_SovereignLegendaryEncounter
+    End
+
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Melmetal appears once Meltan is caught, until it is caught.
+OreburghMineB2F_SovereignSetMelmetalVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_3
+    GoToIfLt VAR_SOVEREIGN_CHRONICLE, 3, OreburghMineB2F_SovereignSetMelmetalVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_MELTAN, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, OreburghMineB2F_SovereignSetMelmetalVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_MELMETAL, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, OreburghMineB2F_SovereignSetMelmetalVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_3
+OreburghMineB2F_SovereignSetMelmetalVisibilityEnd:
+    Return
+
+OreburghMineB2F_RemoveLegendaryMelmetal:
+    GoToIfNe VAR_SOVEREIGN_LEGENDARY_SPECIES, SPECIES_MELMETAL, OreburghMineB2F_RemoveLegendaryMelmetalEnd
+    RemoveObject LOCALID_LEGENDARY_MELMETAL
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+OreburghMineB2F_RemoveLegendaryMelmetalEnd:
+    Return
+
+OreburghMineB2F_LegendaryMelmetal:
+    SetVar VAR_0x8004, SPECIES_MELMETAL
+    SetVar VAR_0x8005, 50
+    Common_SovereignLegendaryEncounter
     End

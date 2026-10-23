@@ -4,6 +4,53 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E11 — The Chronicles: every legendary in, rare wild encounters and new roamers
+
+Every Chronicle legendary left in the plan is now in the game (`docs/PostgameLegendaries.md`), and the owner's
+encounter rules of 2026-10-23 are built (decisions 26 to 28, `ProjectStatus.md`):
+- **No gifts.** Cosmog and the other planned gifts are battles; the gift script is gone.
+- **Spear Pillar is kept for Dialga, Palkia and the story.** Cosmog (both battles) floats on Mt. Coronet's top
+  snowfield, and Necrozma waits in Wayward Cave 1F's dark back chamber.
+- **Rare wild encounters.** The twenty Paradox Pokémon (from the Paldea Chronicle's opening) and the nine Ultra Beasts
+  with Poipole (once Necrozma is caught) are wild, at 2% of the wild encounters on their maps, and can be met again:
+  Great Tusk on Route 207, Walking Wake surfing on Route 213, Iron Moth at Fuego Ironworks, Buzzwole on Route 225,
+  Guzzlord in Turnback Cave's pillar rooms and so on (`docs/RareWildEncounters.md`). The roll runs in grass, surf,
+  Sweet Scent and mud encounters, but not in Poké Radar patches, with a partner or in the Safari Game.
+- **Roamers.** Zeraora, Okidogi, Munkidori, Fezandipiti, Glastrier and Spectrier roam Sinnoh. The Legend Archivist
+  releases them (the other Alola legends, the Loyal Three, and the steeds once Calyrex is caught) and again after a
+  Hall of Fame if one was knocked out. Five new roaming slots, plus vanilla's unused Darkrai slot.
+- **The rest of Alola:** Type: Null, Magearna, Marshadow, Meltan then Melmetal (Oreburgh Mine B2F).
+- **Galar:** Zacian holding the Rusted Sword and Zamazenta holding the Rusted Shield (Route 210 North's ledge; they
+  turn Crowned in battle), Eternatus, Kubfu (the Archivist then gives both Scrolls), Zarude, Regieleki, Regidrago and
+  Calyrex (then the Reins of Unity).
+- **Paldea:** the Treasures of Ruin, each behind two stakes to pull out; Ogerpon holding the Teal Mask, and a
+  Pokéfan in Celestic Town who gives the other three masks to a player leading with it; Pecharunt once the Loyal
+  Three are caught; Koraidon and Miraidon at Sendoff Spring once all twenty Paradox Pokémon are caught, then
+  Terapagos.
+- The Archivist has a chapter and topics for each, with a hint for every legendary not caught yet.
+- **Fixed:**
+  - Meloetta stood on the Contest Hall stage, which the player can't walk onto; it's in front of the stage now.
+  - A vanilla roamer bug: after any wild battle, a Pokémon of a roaming species counted as the roamer, so knocking
+    out or catching a wild Galarian Articuno in the Regional Forms Park would have wiped a roaming Articuno. Only a
+    roamer battle counts now.
+- Found while testing and fixed: the stakes were invisible (a bollard has only a down frame), Zacian stood on stairs
+  the player couldn't face it from, and the Celestic Pokéfan never saw the Ogerpon in the lead.
+- **Verified** in the emulator (test builds that set the game completed, opened the Chronicles and marked the key
+  legendaries caught):
+  - Every static legendary seen, battled at its level, caught and gone afterwards: the Ultra Beasts as they stood
+    before decision 28, the rest of Alola, Galar (Zacian and Zamazenta on the ledge, Eternatus once both are caught),
+    the Treasures of Ruin after both stakes, the Loyal Three as they stood, Pecharunt, Ogerpon, Koraidon, Miraidon,
+    Terapagos, Cosmog twice on the summit, Necrozma in Wayward Cave and Meloetta before the stage.
+  - The three masks from the Celestic Pokéfan with Ogerpon leading. Spear Pillar with no Chronicle object.
+  - Rare wild: Great Tusk on Route 207, Buzzwole on Route 225 and Iron Jugulis on Route 222, each at its level (the
+    test build forced the roll to hit).
+  - Roamers: the Archivist's three releases; Zeraora, Okidogi and Glastrier met and caught on Route 201 (the test
+    build kept every roamer there); the hints afterwards list only the ones still roaming.
+  - Every Archivist topic of the four new chapters, the Paradox hints and the Ultra Beast hints.
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+- **Not tested:** a knocked-out roamer's message and its release after the next Hall of Fame (the same code path as
+  Tornadus's), a rare wild Pokémon while surfing, and the real 2% odds.
+
 ## E11 — The Chronicles: the Alola Chronicle opens (the Tapus, Cosmog and Necrozma)
 
 The first part of the Alola Chronicle (`docs/PostgameLegendaries.md`), in existing spots (owner, 2026-10-23):

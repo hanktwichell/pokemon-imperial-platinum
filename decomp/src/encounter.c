@@ -3,6 +3,7 @@
 #include <nitro.h>
 
 #include "constants/battle.h"
+#include "constants/savedata/vars_flags.h"
 #include "constants/heap.h"
 #include "constants/pokemon.h"
 #include "generated/ai_flags.h"
@@ -559,6 +560,16 @@ void Encounter_NewVsSpeciesAtLevel(FieldTask *task, u16 species, u8 level, int *
     FieldBattleDTO_Init(dto, fieldSystem);
 
     CreateWildMon_Scripted(fieldSystem, species, level, dto);
+
+    // Sovereign (the Chronicles): a static legendary holding an item (Zacian's Rusted Sword, Zamazenta's Rusted
+    // Shield). The map script sets VAR_SOVEREIGN_LEGENDARY_HELD_ITEM just before the battle; it's used once.
+    u16 *heldItem = VarsFlags_GetVarAddress(SaveData_GetVarsFlags(fieldSystem->saveData), VAR_SOVEREIGN_LEGENDARY_HELD_ITEM);
+
+    if (*heldItem != ITEM_NONE) {
+        u32 item = *heldItem;
+        Pokemon_SetValue(Party_GetPokemonBySlotIndex(dto->parties[BATTLER_ENEMY_1], 0), MON_DATA_HELD_ITEM, &item);
+        *heldItem = ITEM_NONE;
+    }
 
     if (isLegendary) {
         dto->battleStatusMask |= BATTLE_STATUS_LEGENDARY;

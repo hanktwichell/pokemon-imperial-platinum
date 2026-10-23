@@ -434,7 +434,8 @@ def write_markdown(plan, placed, unplaced, rows):
              "may change at Morning/Day/Night.")
     L.append("- Surf and each rod use the Gen IV slot rates 60/30/5/4/1.")
     L.append("- Poké Radar and Honey Tree encounters are unchanged from Renegade Platinum.")
-    L.append("- Legendary, Mythical, Ultra Beast and Paradox Pokémon are not wild encounters; see `PostgameLegendaries.md`.")
+    L.append("- Legendary and Mythical Pokémon are not in these tables; see `PostgameLegendaries.md`. The Paradox Pokémon and the "
+             "Ultra Beasts are rare post-game encounters added on top of them (decision 28); see `RareWildEncounters.md`.")
     L.append("- Gen V–IX starters are Pokémon Center gifts, not wild encounters; see `GiftPokemon_Sovereign.md`.")
     L.append("- This is a **design draft**: the placements come from a type/habitat/level heuristic and should be playtested and hand-tuned.\n")
     L.append(f"Added regular species placed directly in the wild: **{len(placed)}**. "

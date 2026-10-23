@@ -9,6 +9,7 @@
     ScriptEntry GalacticHQLaboratory_OnTransition
     ScriptEntry GalacticHQLaboratory_OnLoad
     ScriptEntry GalacticHQLaboratory_LegendaryGenesect
+    ScriptEntry GalacticHQLaboratory_LegendaryTypeNull
     ScriptEntryEnd
 
 GalacticHQLaboratory_ScientistM:
@@ -53,6 +54,7 @@ GalacticHQLaboratory_Machine:
     End
 
 GalacticHQLaboratory_OnTransition:
+    Call GalacticHQLaboratory_SovereignSetTypeNullVisibility
     SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
     GoToIfUnset FLAG_SOVEREIGN_GENESECT_FREED, GalacticHQLaboratory_OnTransitionEnd
     SovereignCheckSpeciesCaught SPECIES_GENESECT, VAR_RESULT
@@ -62,6 +64,7 @@ GalacticHQLaboratory_OnTransitionEnd:
     End
 
 GalacticHQLaboratory_OnLoad:
+    CallIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, GalacticHQLaboratory_RemoveLegendaryTypeNull
     GoToIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, GalacticHQLaboratory_RemoveLegendaryGenesect
     End
 
@@ -77,3 +80,29 @@ GalacticHQLaboratory_LegendaryGenesect:
     End
 
     .balign 4, 0
+
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Type: Null, the scientist's second experiment, waits in the
+@ lab once Genesect is caught, until it is caught.
+GalacticHQLaboratory_SovereignSetTypeNullVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_2
+    GoToIfLt VAR_SOVEREIGN_CHRONICLE, 3, GalacticHQLaboratory_SovereignSetTypeNullVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_GENESECT, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, GalacticHQLaboratory_SovereignSetTypeNullVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_TYPE_NULL, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, GalacticHQLaboratory_SovereignSetTypeNullVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_2
+GalacticHQLaboratory_SovereignSetTypeNullVisibilityEnd:
+    Return
+
+GalacticHQLaboratory_RemoveLegendaryTypeNull:
+    GoToIfNe VAR_SOVEREIGN_LEGENDARY_SPECIES, SPECIES_TYPE_NULL, GalacticHQLaboratory_RemoveLegendaryTypeNullEnd
+    RemoveObject LOCALID_LEGENDARY_TYPE_NULL
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+GalacticHQLaboratory_RemoveLegendaryTypeNullEnd:
+    Return
+
+GalacticHQLaboratory_LegendaryTypeNull:
+    SetVar VAR_0x8004, SPECIES_TYPE_NULL
+    SetVar VAR_0x8005, 40
+    Common_SovereignLegendaryEncounter
+    End

@@ -672,7 +672,7 @@
         "The Chronicle tells of COSMOG, a\n",
         "little Pokémon from beyond the sky.\r",
         "It appears where the sky is thin...\n",
-        "Spear Pillar, perhaps?\r"
+        "the top of Mt. Coronet, perhaps?\r"
       ]
     },
     {
@@ -687,17 +687,17 @@
     {
       "id": "CanalaveLibrary2F_Text_SovereignArchivistCosmogAgain",
       "en_US": [
-        "Another COSMOG may wait at Spear\n",
-        "Pillar now, for the other form!\r"
+        "Another COSMOG may wait atop\n",
+        "Mt. Coronet now, for the other form!\r"
       ]
     },
     {
       "id": "CanalaveLibrary2F_Text_SovereignArchivistNecrozma",
       "en_US": [
-        "And the Chronicle warns of NECROZMA,\n",
-        "who steals the light.\r",
-        "It follows the sun and the moon to\n",
-        "Spear Pillar...\r"
+        "And the Chronicle warns of\n",
+        "NECROZMA, who steals the light.\r",
+        "It hides where the light is gone:\n",
+        "the dark back room of Wayward Cave.\r"
       ]
     },
     {
@@ -714,6 +714,689 @@
         "can join with SOLGALEO or LUNALA.\r",
         "These two came with the Chronicle:\n",
         "the N-SOLARIZER and N-LUNARIZER.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignMenuUltra",
+      "en_US": [
+        "Ultra Beasts"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistUltraLocked",
+      "en_US": [
+        "The Chronicle tells of Ultra Beasts\n",
+        "from beyond holes in the sky.\r",
+        "They say NECROZMA opens the way.\n",
+        "Find it first!\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistUltra",
+      "en_US": [
+        "Since you caught NECROZMA, Ultra\n",
+        "Beasts have been seen in Sinnoh!\r",
+        "They’re rare in the wild, so\n",
+        "keep looking. Here’s where:\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistNihilego",
+      "en_US": [
+        "NIHILEGO: on the lowest floor of\n",
+        "Iron Island.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistBuzzwole",
+      "en_US": [
+        "BUZZWOLE: in the grass of Route 225.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistPheromosa",
+      "en_US": [
+        "PHEROMOSA: in the grass of Route 229.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistXurkitree",
+      "en_US": [
+        "XURKITREE: along the\n",
+        "power lines of Route 222.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistCelesteela",
+      "en_US": [
+        "CELESTEELA: high on the snowy\n",
+        "slopes of Mt. Coronet.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistKartana",
+      "en_US": [
+        "KARTANA: in Eterna Forest.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistGuzzlord",
+      "en_US": [
+        "GUZZLORD: in the rooms\n",
+        "of Turnback Cave.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistStakataka",
+      "en_US": [
+        "STAKATAKA: on Route 227.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistBlacephalon",
+      "en_US": [
+        "BLACEPHALON: outside Stark Mountain.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistUltraDone",
+      "en_US": [
+        "All nine Ultra Beasts... Your\n",
+        "record of them is complete!\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignMenuAlolaOthers",
+      "en_US": [
+        "Other legends"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistPoipole",
+      "en_US": [
+        "POIPOLE: it came through a\n",
+        "wormhole after NECROZMA.\r",
+        "Look in the grass of Route 230,\n",
+        "east of the Fight Area.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistTypeNull",
+      "en_US": [
+        "TYPE: NULL: the scientist’s other\n",
+        "experiment, once GENESECT is caught.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistMagearna",
+      "en_US": [
+        "MAGEARNA: an old automaton in\n",
+        "Volkner’s room at the Sunyshore Gym.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistMarshadow",
+      "en_US": [
+        "MARSHADOW: in the shadows of the\n",
+        "Old Chateau’s dining room.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistZeraora",
+      "en_US": [
+        "ZERAORA: it runs all over\n",
+        "Sinnoh like lightning.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistMeltan",
+      "en_US": [
+        "MELTAN: somewhere in\n",
+        "Oreburgh Mine.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistMelmetal",
+      "en_US": [
+        "MELMETAL: it comes to Oreburgh Mine\n",
+        "once you catch MELTAN.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistAlolaOthersDone",
+      "en_US": [
+        "All the other legends of Alola...\n",
+        "You found every one!\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistGalarOpens",
+      "en_US": [
+        "SOLGALEO or LUNALA, here in Sinnoh!\n",
+        "The Alola Chronicle’s key legend.\r",
+        "And look! A fourth tome has opened:\n",
+        "the Galar Chronicle!\r",
+        "Galar is a land of knights. Its\n",
+        "legends tell of a sword and a shield.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignMenuGalar",
+      "en_US": [
+        "Galar Chronicle"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistGalarWhichLegend",
+      "en_US": [
+        "Which legend of the Galar Chronicle\n",
+        "shall I read to you?"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistGalarKeepReading",
+      "en_US": [
+        "I’ll keep reading the Galar Chronicle."
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignMenuHeroes",
+      "en_US": [
+        "The Hero Legends"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignMenuKing",
+      "en_US": [
+        "King of Harvests"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistZacian",
+      "en_US": [
+        "The Chronicle tells of two heroes,\n",
+        "a sword and a shield.\r",
+        "ZACIAN, the sword, waits in the fog\n",
+        "of Route 210, north of Solaceon.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistZamazenta",
+      "en_US": [
+        "ZAMAZENTA, the shield, has come to\n",
+        "the fog of Route 210 now.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistEternatus",
+      "en_US": [
+        "Both heroes! The Chronicle warns of\n",
+        "ETERNATUS, who brought the darkness.\r",
+        "It waits in the deepest room of\n",
+        "Turnback Cave.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistHeroesDone",
+      "en_US": [
+        "ZACIAN, ZAMAZENTA and ETERNATUS...\n",
+        "The heroes’ legend is yours!\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistCalyrex",
+      "en_US": [
+        "CALYREX, the King of Bountiful\n",
+        "Harvests, waits in Celestic Town.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistReins",
+      "en_US": [
+        "CALYREX! The Chronicle says it rode\n",
+        "two steeds. These REINS OF UNITY\r",
+        "came with the Chronicle. They join\n",
+        "the king and a steed.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistGlastrier",
+      "en_US": [
+        "GLASTRIER: it runs\n",
+        "free all over Sinnoh.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistSpectrier",
+      "en_US": [
+        "SPECTRIER: it runs\n",
+        "free all over Sinnoh.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistKingDone",
+      "en_US": [
+        "CALYREX and both its steeds...\n",
+        "You found them all!\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistKubfu",
+      "en_US": [
+        "KUBFU: training in the\n",
+        "Veilstone Gym.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistScrolls",
+      "en_US": [
+        "KUBFU! The Chronicle says it grows\n",
+        "by studying a scroll.\r",
+        "These two SCROLLS came with the\n",
+        "Chronicle. Show KUBFU one!\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistZarude",
+      "en_US": [
+        "ZARUDE: in the marshy grass south\n",
+        "of Route 212.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistNewRegis",
+      "en_US": [
+        "Two more REGI sleep in Sinnoh. They\n",
+        "wake for REGIROCK, REGICE and\r",
+        "REGISTEEL, all in your party.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistRegieleki",
+      "en_US": [
+        "REGIELEKI: inside the Valley\n",
+        "Windworks.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistRegidrago",
+      "en_US": [
+        "REGIDRAGO: in the ruins on\n",
+        "Route 228.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistGalarOthersDone",
+      "en_US": [
+        "KUBFU, ZARUDE and the two REGI...\n",
+        "You found them all!\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistPaldeaOpens",
+      "en_US": [
+        "ZACIAN and ZAMAZENTA, the heroes of\n",
+        "the Galar Chronicle, both caught!\r",
+        "And look! The last tome has opened:\n",
+        "the Paldea Chronicle!\r",
+        "Paldea is a land of treasures, and\n",
+        "of a great crater deep in the earth.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignMenuPaldea",
+      "en_US": [
+        "Paldea Chronicle"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistPaldeaWhichLegend",
+      "en_US": [
+        "Which legend of the Paldea Chronicle\n",
+        "shall I read to you?"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistPaldeaKeepReading",
+      "en_US": [
+        "I’ll keep reading the Paldea\n",
+        "Chronicle."
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignMenuRuin",
+      "en_US": [
+        "Treasures of Ruin"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignMenuLoyal",
+      "en_US": [
+        "The Loyal Three"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignMenuOgre",
+      "en_US": [
+        "The Masked Ogre"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignMenuRifts",
+      "en_US": [
+        "Paradox Pokémon"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignMenuAreaZero",
+      "en_US": [
+        "Area Zero"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistRuin",
+      "en_US": [
+        "Four Treasures of Ruin are sealed in\n",
+        "Sinnoh, each by two stakes.\r",
+        "Pull out both stakes near a shrine,\n",
+        "and its treasure wakes:\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistWoChien",
+      "en_US": [
+        "WO-CHIEN: on the north part of\n",
+        "Route 212.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistChienPao",
+      "en_US": [
+        "CHIEN-PAO: by Lake Acuity, on the\n",
+        "lakefront.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistTingLu",
+      "en_US": [
+        "TING-LU: on Route 214.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistChiYu",
+      "en_US": [
+        "CHI-YU: outside Fuego Ironworks.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistRuinDone",
+      "en_US": [
+        "All four Treasures of Ruin...\n",
+        "You found them all!\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistOkidogi",
+      "en_US": [
+        "OKIDOGI: one of the Loyal\n",
+        "Three, roaming all over Sinnoh.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistMunkidori",
+      "en_US": [
+        "MUNKIDORI: one of the Loyal\n",
+        "Three, roaming all over Sinnoh.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistFezandipiti",
+      "en_US": [
+        "FEZANDIPITI: one of the Loyal\n",
+        "Three, roaming all over Sinnoh.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistPecharunt",
+      "en_US": [
+        "All three! Their master, PECHARUNT,\n",
+        "has come to Route 224.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistLoyalDone",
+      "en_US": [
+        "The Loyal Three and PECHARUNT...\n",
+        "You found them all!\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistOgerpon",
+      "en_US": [
+        "OGERPON, the masked ogre, waits by\n",
+        "the path on Route 211, east side.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistOgerponMasks",
+      "en_US": [
+        "A man in Celestic Town kept masks\n",
+        "for OGERPON. Show it to him!\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistOgreDone",
+      "en_US": [
+        "OGERPON and all its masks...\n",
+        "The ogre’s legend is yours!\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistRifts",
+      "en_US": [
+        "Paradox Pokémon from the past and the\n",
+        "future have come to Sinnoh’s wilds!\r",
+        "They’re rare, so keep looking.\n",
+        "Here’s where they’ve been seen:\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistRiftsDone",
+      "en_US": [
+        "All twenty Paradox Pokémon...\n",
+        "Your record of them is complete!\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistAreaZeroLocked",
+      "en_US": [
+        "The Chronicle’s last pages speak of\n",
+        "a crater, Area Zero.\r",
+        "Catch all twenty Paradox Pokémon,\n",
+        "and its masters may come.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistKoraidon",
+      "en_US": [
+        "KORAIDON and MIRAIDON have come to\n",
+        "Sendoff Spring!\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistTerapagos",
+      "en_US": [
+        "Both of them! And now TERAPAGOS,\n",
+        "the crater’s heart, is at Sendoff\r",
+        "Spring too.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistAreaZeroDone",
+      "en_US": [
+        "KORAIDON, MIRAIDON and TERAPAGOS...\n",
+        "Every legend of the Chronicles!\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistZeraoraRelease",
+      "en_US": [
+        "The Chronicle also tells of\n",
+        "ZERAORA, who moves like lightning.\r",
+        "It never stays in one place.\n",
+        "Look for it all over Sinnoh!\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistMarkingMap",
+      "en_US": [
+        "A Pokétch’s Marking Map can show\n",
+        "you where roaming Pokémon are.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistSteedsRelease",
+      "en_US": [
+        "With their king caught, GLASTRIER\n",
+        "and SPECTRIER have bolted!\r",
+        "They run all over Sinnoh now.\n",
+        "Catch one and join it to the king!\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistLoyalRelease",
+      "en_US": [
+        "The Chronicle tells of the Loyal\n",
+        "Three, who serve a cruel master.\r",
+        "They’re loose in Sinnoh now, and\n",
+        "they never stay in one place!\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistGreatTusk",
+      "en_US": [
+        "GREAT TUSK: in the grass of Route 207.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistScreamTail",
+      "en_US": [
+        "SCREAM TAIL: in the Trophy Garden.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistBruteBonnet",
+      "en_US": [
+        "BRUTE BONNET: in the\n",
+        "marsh of Route 212.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistFlutterMane",
+      "en_US": [
+        "FLUTTER MANE: in the Lost Tower.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistSlitherWing",
+      "en_US": [
+        "SLITHER WING: outside Stark Mountain.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistSandyShocks",
+      "en_US": [
+        "SANDY SHOCKS: in the\n",
+        "sandstorm of Route 228.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistRoaringMoon",
+      "en_US": [
+        "ROARING MOON: in the fog of Route 210.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistWalkingWake",
+      "en_US": [
+        "WALKING WAKE: on the\n",
+        "water of Route 213.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistGougingFire",
+      "en_US": [
+        "GOUGING FIRE: on the\n",
+        "east side of Route 211.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistRagingBolt",
+      "en_US": [
+        "RAGING BOLT: in the\n",
+        "grass of Route 208.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistIronTreads",
+      "en_US": [
+        "IRON TREADS: deep in Oreburgh Mine.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistIronBundle",
+      "en_US": [
+        "IRON BUNDLE: in the snow of Route 217.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistIronHands",
+      "en_US": [
+        "IRON HANDS: at the Valley Windworks.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistIronJugulis",
+      "en_US": [
+        "IRON JUGULIS: along the\n",
+        "power lines of Route 222.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistIronMoth",
+      "en_US": [
+        "IRON MOTH: outside Fuego Ironworks.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistIronThorns",
+      "en_US": [
+        "IRON THORNS: under the Cycling Road.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistIronValiant",
+      "en_US": [
+        "IRON VALIANT: on Route 212,\n",
+        "north of Hearthome.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistIronLeaves",
+      "en_US": [
+        "IRON LEAVES: in Eterna Forest.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistIronBoulder",
+      "en_US": [
+        "IRON BOULDER: on Route 227.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistIronCrown",
+      "en_US": [
+        "IRON CROWN: deep in Iron Island.\r"
       ]
     }
   ]

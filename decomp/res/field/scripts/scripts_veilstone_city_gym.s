@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/field/events/events_veilstone_city_gym.h"
 #include "res/text/bank/veilstone_city_gym.h"
 
 
@@ -9,9 +10,12 @@
     ScriptEntry VeilstoneGym_LeftPoster
     ScriptEntry VeilstoneGym_RightPoster
     ScriptEntry VeilstoneGym_MiddlePoster
+    ScriptEntry VeilstoneGym_SovereignOnLoad
+    ScriptEntry VeilstoneGym_LegendaryKubfu
     ScriptEntryEnd
 
 VeilstoneGym_Init:
+    Call VeilstoneGym_SovereignSetKubfuVisibility
     InitPersistedMapFeaturesForVeilstoneGym
     End
 
@@ -134,3 +138,31 @@ VeilstoneGym_MiddlePoster:
     End
 
     .balign 4, 0
+
+VeilstoneGym_SovereignOnLoad:
+    CallIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, VeilstoneGym_RemoveLegendaryKubfu
+    End
+
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Kubfu trains in the gym once the Galar Chronicle is open,
+@ until it is caught.
+VeilstoneGym_SovereignSetKubfuVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+    GoToIfLt VAR_SOVEREIGN_CHRONICLE, 4, VeilstoneGym_SovereignSetKubfuVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_KUBFU, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, VeilstoneGym_SovereignSetKubfuVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+VeilstoneGym_SovereignSetKubfuVisibilityEnd:
+    Return
+
+VeilstoneGym_RemoveLegendaryKubfu:
+    GoToIfNe VAR_SOVEREIGN_LEGENDARY_SPECIES, SPECIES_KUBFU, VeilstoneGym_RemoveLegendaryKubfuEnd
+    RemoveObject LOCALID_LEGENDARY_KUBFU
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+VeilstoneGym_RemoveLegendaryKubfuEnd:
+    Return
+
+VeilstoneGym_LegendaryKubfu:
+    SetVar VAR_0x8004, SPECIES_KUBFU
+    SetVar VAR_0x8005, 10
+    Common_SovereignLegendaryEncounter
+    End

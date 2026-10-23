@@ -11,9 +11,12 @@
     ScriptEntry ValleyWindworksBuilding_Twin
     ScriptEntry ValleyWindworksBuilding_PCWest
     ScriptEntry ValleyWindworksBuilding_PCEast
+    ScriptEntry ValleyWindworksBuilding_SovereignOnLoad
+    ScriptEntry ValleyWindworksBuilding_LegendaryRegieleki
     ScriptEntryEnd
 
 ValleyWindworksBuilding_OnTransition:
+    Call ValleyWindworksBuilding_SovereignSetRegielekiVisibility
     SetFlag FLAG_FIRST_ARRIVAL_VALLEY_WINDWORKS
     GoToIfGe VAR_VALLEY_WINDWORKS_STATE, 2, ValleyWindworksBuilding_SetGirlAndPapaPositions
     End
@@ -343,3 +346,37 @@ ValleyWindworksBuilding_PCEnd:
     End
 
     .balign 4, 0
+
+ValleyWindworksBuilding_SovereignOnLoad:
+    CallIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, ValleyWindworksBuilding_RemoveLegendaryRegieleki
+    End
+
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Regieleki appears in the windworks while Regirock, Regice
+@ and Registeel are in the party, once the Galar Chronicle is open, until it is caught.
+ValleyWindworksBuilding_SovereignSetRegielekiVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+    GoToIfLt VAR_SOVEREIGN_CHRONICLE, 4, ValleyWindworksBuilding_SovereignSetRegielekiVisibilityEnd
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_REGIROCK
+    GoToIfEq VAR_RESULT, FALSE, ValleyWindworksBuilding_SovereignSetRegielekiVisibilityEnd
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_REGICE
+    GoToIfEq VAR_RESULT, FALSE, ValleyWindworksBuilding_SovereignSetRegielekiVisibilityEnd
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_REGISTEEL
+    GoToIfEq VAR_RESULT, FALSE, ValleyWindworksBuilding_SovereignSetRegielekiVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_REGIELEKI, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, ValleyWindworksBuilding_SovereignSetRegielekiVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+ValleyWindworksBuilding_SovereignSetRegielekiVisibilityEnd:
+    Return
+
+ValleyWindworksBuilding_RemoveLegendaryRegieleki:
+    GoToIfNe VAR_SOVEREIGN_LEGENDARY_SPECIES, SPECIES_REGIELEKI, ValleyWindworksBuilding_RemoveLegendaryRegielekiEnd
+    RemoveObject LOCALID_LEGENDARY_REGIELEKI
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+ValleyWindworksBuilding_RemoveLegendaryRegielekiEnd:
+    Return
+
+ValleyWindworksBuilding_LegendaryRegieleki:
+    SetVar VAR_0x8004, SPECIES_REGIELEKI
+    SetVar VAR_0x8005, 65
+    Common_SovereignLegendaryEncounter
+    End

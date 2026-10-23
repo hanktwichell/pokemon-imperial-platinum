@@ -544,6 +544,31 @@ void SystemVars_SetRoamingSpeciesState(VarsFlags *varsFlags, u16 species, u16 st
     case SPECIES_THUNDURUS:
         TrySetVarToValue(varsFlags, VAR_ROAMING_THUNDURUS_STATE, state);
         break;
+
+    // Sovereign (decision 28): the Chronicle roamers.
+    case SPECIES_ZERAORA:
+        TrySetVarToValue(varsFlags, VAR_ROAMING_ZERAORA_STATE, state);
+        break;
+
+    case SPECIES_OKIDOGI:
+        TrySetVarToValue(varsFlags, VAR_ROAMING_OKIDOGI_STATE, state);
+        break;
+
+    case SPECIES_MUNKIDORI:
+        TrySetVarToValue(varsFlags, VAR_ROAMING_MUNKIDORI_STATE, state);
+        break;
+
+    case SPECIES_FEZANDIPITI:
+        TrySetVarToValue(varsFlags, VAR_ROAMING_FEZANDIPITI_STATE, state);
+        break;
+
+    case SPECIES_GLASTRIER:
+        TrySetVarToValue(varsFlags, VAR_ROAMING_GLASTRIER_STATE, state);
+        break;
+
+    case SPECIES_SPECTRIER:
+        TrySetVarToValue(varsFlags, VAR_ROAMING_SPECTRIER_STATE, state);
+        break;
     }
 }
 

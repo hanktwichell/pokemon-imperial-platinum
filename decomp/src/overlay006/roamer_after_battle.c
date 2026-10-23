@@ -33,7 +33,9 @@ void RoamerAfterBattle_UpdateRoamers(FieldSystem *fieldSystem, FieldBattleDTO *b
     Pokemon *enemyMon = Party_GetPokemonBySlotIndex(enemyParty, 0);
     specialEncounter = SaveData_GetSpecialEncounters(fieldSystem->saveData);
     wildSpecies = Pokemon_GetValue(enemyMon, MON_DATA_SPECIES, NULL);
-    roamer = GetBattledRoamer(specialEncounter, wildSpecies);
+    // Sovereign: only a roamer battle is with a roamer. A wild Pokemon of a roamer's species (the Regional Forms Park's
+    // Galarian Articuno while Articuno roams) used to wipe the roamer when knocked out or caught.
+    roamer = (battleParams->battleType & BATTLE_TYPE_ROAMER) ? GetBattledRoamer(specialEncounter, wildSpecies) : NULL;
 
     if (roamer != NULL) {
         roamerHP = (u16)(Pokemon_GetValue(enemyMon, MON_DATA_HP, NULL));

@@ -13,13 +13,10 @@
     ScriptEntry SpearPillar_Grunts
     ScriptEntry SpearPillar_Jupiter
     ScriptEntry SpearPillar_Mars
-    ScriptEntry SpearPillar_SovereignCosmog
-    ScriptEntry SpearPillar_LegendaryNecrozma
     ScriptEntryEnd
 
 SpearPillar_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_SPEAR_PILLAR
-    Call SpearPillar_SovereignSetSkyVisibility
     Call SpearPillar_TryHideRival
     Call SpearPillar_TryEnableHallOfOrigin
     GetPlayerGender VAR_MAP_LOCAL_0x00
@@ -62,63 +59,6 @@ SpearPillar_HideRival:
     Return
 
 SpearPillar_OnLoad:
-    GoToIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, SpearPillar_RemoveLegendaryNecrozma
-    End
-
-@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): once the Alola Chronicle is open (VAR_SOVEREIGN_CHRONICLE
-@ 3), a Cosmog waits in the middle of the plaza as a gift. A second one comes once the player has Solgaleo or Lunala,
-@ so both can be raised. Necrozma then stands north of it until it's caught.
-SpearPillar_SovereignSetSkyVisibility:
-    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
-    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_2
-    GoToIfLt VAR_SOVEREIGN_CHRONICLE, 3, SpearPillar_SovereignSetSkyVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_SOLGALEO, VAR_MAP_LOCAL_0x01
-    CallIfEq VAR_MAP_LOCAL_0x01, FALSE, SpearPillar_SovereignCheckLunala
-    GoToIfUnset FLAG_SOVEREIGN_RECEIVED_COSMOG, SpearPillar_SovereignShowCosmog
-    GoToIfSet FLAG_SOVEREIGN_RECEIVED_COSMOG_2, SpearPillar_SovereignTryShowNecrozma
-    GoToIfEq VAR_MAP_LOCAL_0x01, FALSE, SpearPillar_SovereignTryShowNecrozma
-SpearPillar_SovereignShowCosmog:
-    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
-SpearPillar_SovereignTryShowNecrozma:
-    GoToIfEq VAR_MAP_LOCAL_0x01, FALSE, SpearPillar_SovereignSetSkyVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_NECROZMA, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, SpearPillar_SovereignSetSkyVisibilityEnd
-    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_2
-SpearPillar_SovereignSetSkyVisibilityEnd:
-    Return
-
-SpearPillar_SovereignCheckLunala:
-    SovereignCheckSpeciesCaught SPECIES_LUNALA, VAR_MAP_LOCAL_0x01
-    Return
-
-SpearPillar_SovereignCosmog:
-    PlaySE SE_CONFIRM_sseq_3
-    LockAll
-    Message SpearPillar_Text_SovereignCosmog
-    SetVar VAR_0x8004, SPECIES_COSMOG
-    SetVar VAR_0x8005, 5
-    Common_SovereignGiftPokemon
-    GoToIfEq VAR_RESULT, FALSE, SpearPillar_SovereignCosmogEnd
-    CallIfSet FLAG_SOVEREIGN_RECEIVED_COSMOG, SpearPillar_SovereignSetReceivedCosmog2
-    SetFlag FLAG_SOVEREIGN_RECEIVED_COSMOG
-    RemoveObject LOCALID_LEGENDARY_COSMOG
-SpearPillar_SovereignCosmogEnd:
-    ReleaseAll
-    End
-
-SpearPillar_SovereignSetReceivedCosmog2:
-    SetFlag FLAG_SOVEREIGN_RECEIVED_COSMOG_2
-    Return
-
-SpearPillar_RemoveLegendaryNecrozma:
-    RemoveObject LOCALID_LEGENDARY_NECROZMA
-    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
-    End
-
-SpearPillar_LegendaryNecrozma:
-    SetVar VAR_0x8004, SPECIES_NECROZMA
-    SetVar VAR_0x8005, 70
-    Common_SovereignLegendaryEncounter
     End
 
 SpearPillar_SetMessageVar:
