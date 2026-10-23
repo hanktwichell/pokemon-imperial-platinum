@@ -324,6 +324,10 @@ struct BattleContext {
     u8 sovereignMegaUsed; // trainers who have Mega Evolved this battle (BattleSystem_SovereignMegaTrainerBit)
     u8 sovereignMegaResort; // a Mega Evolved this turn: re-sort the remaining moves by the new Speed
     u8 sovereignMegaSwitchInCheck; // a Mega Evolved: check switch-in abilities (Drought, Intimidate...) again
+
+    // Sovereign (item 11): battlers whose Defiant or Competitive was triggered by a foe's move lowering their stats;
+    // the boost is applied after the move (BattleControllerPlayer_TriggerAfterMoveHitEffects).
+    u8 sovereignDefiantPending;
 };
 
 #endif // POKEPLATINUM_BATTLE_BATTLE_CONTEXT_H

@@ -10,7 +10,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 125 | Sheer Force | Gen 5 | yes: moves with a chance effect ×1.3, without the effect (or Life Orb recoil) |
 | 126 | Contrary | Gen 5 | yes: stat rises and drops are reversed |
 | 127 | Unnerve | Gen 5 | not yet (no battle effect) |
-| 128 | Defiant | Gen 5 | not yet (no battle effect) |
+| 128 | Defiant | Gen 5 | partly: Attack +2 when a foe's move lowers its stats (Intimidate not yet) |
 | 129 | Defeatist | Gen 5 | not yet (no battle effect) |
 | 130 | Cursed Body | Gen 5 | not yet (no battle effect) |
 | 131 | Healer | Gen 5 | not yet (no battle effect) |
@@ -54,7 +54,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 169 | Fur Coat | Gen 6 | not yet (no battle effect) |
 | 170 | Magician | Gen 6 | not yet (no battle effect) |
 | 171 | Bulletproof | Gen 6 | yes: immune to ball and bomb moves |
-| 172 | Competitive | Gen 6 | not yet (no battle effect) |
+| 172 | Competitive | Gen 6 | partly: Sp. Atk +2 when a foe's move lowers its stats (Intimidate not yet) |
 | 173 | Strong Jaw | Gen 6 | yes: biting moves ×1.5 |
 | 174 | Refrigerate | Gen 6 | not yet (no battle effect) |
 | 175 | Sweet Veil | Gen 6 | not yet (no battle effect) |

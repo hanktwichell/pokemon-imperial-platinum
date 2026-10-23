@@ -2992,6 +2992,14 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
         if (mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] < MIN_STAT_STAGE) {
             mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] = MIN_STAT_STAGE;
         }
+
+        // Sovereign (item 11): a foe's move lowered a stat: Defiant and Competitive respond after the move.
+        if (battleCtx->sideEffectType != SIDE_EFFECT_TYPE_ABILITY
+            && BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker) != BattleSystem_GetBattlerSide(battleSys, battleCtx->sideEffectMon)
+            && (Battler_Ability(battleCtx, battleCtx->sideEffectMon) == ABILITY_DEFIANT
+                || Battler_Ability(battleCtx, battleCtx->sideEffectMon) == ABILITY_COMPETITIVE)) {
+            battleCtx->sovereignDefiantPending |= FlagIndex(battleCtx->sideEffectMon);
+        }
     }
 
     return FALSE;

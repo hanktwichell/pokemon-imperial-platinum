@@ -4833,6 +4833,7 @@ enum AfterMoveHitState {
     AFTER_MOVE_HIT_STATE_SHELL_BELL,
     AFTER_MOVE_HIT_STATE_LIFE_ORB,
     AFTER_MOVE_HIT_STATE_KNOCKOUT_ABILITY, // Sovereign (item 11)
+    AFTER_MOVE_HIT_STATE_DEFIANT, // Sovereign (item 11)
 
     AFTER_MOVE_HIT_STATE_END
 };
@@ -4963,6 +4964,38 @@ static BOOL BattleControllerPlayer_TriggerAfterMoveHitEffects(BattleSystem *batt
                     }
                     break; // stay in this state to look for another knocked-out foe
                 }
+            }
+
+            battleCtx->afterMoveHitCheckState++;
+            break;
+        }
+
+        case AFTER_MOVE_HIT_STATE_DEFIANT: {
+            // Sovereign (item 11): Defiant (Attack +2) and Competitive (Sp. Atk +2) after a foe's move lowered a stat.
+            int battler;
+
+            for (battler = 0; battler < maxBattlers; battler++) {
+                if (battleCtx->sovereignDefiantPending & FlagIndex(battler)) {
+                    break;
+                }
+            }
+
+            if (battler < maxBattlers) {
+                int stat = Battler_Ability(battleCtx, battler) == ABILITY_DEFIANT ? BATTLE_STAT_ATTACK : BATTLE_STAT_SP_ATTACK;
+                battleCtx->sovereignDefiantPending &= ~FlagIndex(battler);
+
+                if (battleCtx->battleMons[battler].curHP && battleCtx->battleMons[battler].statBoosts[stat] < 12) {
+                    battleCtx->sideEffectParam = MOVE_SUBSCRIPT_PTR_ATTACK_UP_2_STAGES + (stat - BATTLE_STAT_ATTACK);
+                    battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
+                    battleCtx->sideEffectMon = battler;
+
+                    LOAD_SUBSEQ(subscript_update_stat_stage);
+                    battleCtx->commandNext = battleCtx->command;
+                    battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+                    machineState = STATE_BREAK_OUT;
+                }
+                break; // stay in this state for any other pending battler
             }
 
             battleCtx->afterMoveHitCheckState++;
