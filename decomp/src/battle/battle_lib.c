@@ -64,6 +64,7 @@ static void BattleAI_ClearKnownItem(BattleContext *battleCtx, u8 battler);
 static int ChooseTraceTarget(BattleSystem *battleSys, BattleContext *battleCtx, int defender1, int defender2);
 static BOOL MoveCannotTriggerAnticipation(BattleContext *battleCtx, int move);
 static int CalcMoveType(BattleSystem *battleSys, BattleContext *battleCtx, int item, int move);
+static BOOL Sovereign_ProtosynthesisHasSun(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static const Fraction sStatStageBoosts[];
 
@@ -111,6 +112,7 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
     battleCtx->battleMons[battler].friskAnnounced = FALSE;
     battleCtx->battleMons[battler].moldBreakerAnnounced = FALSE;
     battleCtx->battleMons[battler].pressureAnnounced = FALSE;
+    battleCtx->battleMons[battler].sovereignBoosterEnergy = FALSE;
     battleCtx->battleMons[battler].type1 = Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
     battleCtx->battleMons[battler].type2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
     battleCtx->battleMons[battler].gender = Pokemon_GetGender(mon);
@@ -3809,6 +3811,7 @@ enum SwitchInCheckState {
     SWITCH_IN_CHECK_STATE_WEATHER_ABILITIES,
     SWITCH_IN_CHECK_STATE_INTIMIDATE,
     SWITCH_IN_CHECK_STATE_SOVEREIGN_STAT_DROP_REACTION,
+    SWITCH_IN_CHECK_STATE_SOVEREIGN_BOOSTER_ENERGY,
     SWITCH_IN_CHECK_STATE_DOWNLOAD,
     SWITCH_IN_CHECK_STATE_ANTICIPATION,
     SWITCH_IN_CHECK_STATE_FOREWARN,
@@ -4030,6 +4033,31 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                     battleCtx->battleMons[battler].intimidateAnnounced = TRUE;
                     battleCtx->msgBattlerTemp = battler;
                     subscript = subscript_intimidate;
+                    result = TRUE;
+                    break;
+                }
+            }
+
+            if (i == maxBattlers) {
+                battleCtx->switchInCheckState++;
+            }
+            break;
+
+        case SWITCH_IN_CHECK_STATE_SOVEREIGN_BOOSTER_ENERGY:
+            // Sovereign (item 11): a Protosynthesis or Quark Drive Pokemon uses its Booster Energy when its ability
+            // isn't already active.
+            for (i = 0; i < maxBattlers; i++) {
+                battler = battleCtx->monSpeedOrder[i];
+
+                if (battleCtx->battleMons[battler].curHP
+                    && battleCtx->battleMons[battler].sovereignBoosterEnergy == FALSE
+                    && battleCtx->battleMons[battler].heldItem == ITEM_BOOSTER_ENERGY
+                    && (Battler_Ability(battleCtx, battler) == ABILITY_QUARK_DRIVE
+                        || (Battler_Ability(battleCtx, battler) == ABILITY_PROTOSYNTHESIS
+                            && Sovereign_ProtosynthesisHasSun(battleSys, battleCtx) == FALSE))) {
+                    battleCtx->battleMons[battler].sovereignBoosterEnergy = TRUE;
+                    battleCtx->msgBattlerTemp = battler;
+                    subscript = subscript_sovereign_booster_energy;
                     result = TRUE;
                     break;
                 }
@@ -7350,16 +7378,24 @@ static BOOL Sovereign_FieldHasAbility(BattleSystem *battleSys, BattleContext *ba
     return FALSE;
 }
 
-// Sovereign (item 11): Protosynthesis in harsh sunlight boosts the holder's highest stat. Returns its BATTLE_STAT_*,
-// or -1 if inactive. Booster Energy isn't reproduced yet.
+// Sovereign (item 11): TRUE while Protosynthesis has harsh sunlight.
+static BOOL Sovereign_ProtosynthesisHasSun(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    return (battleCtx->fieldConditionsMask & FIELD_CONDITION_SUNNY)
+        && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALL_BATTLERS, 0, ABILITY_CLOUD_NINE) == 0
+        && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALL_BATTLERS, 0, ABILITY_AIR_LOCK) == 0;
+}
+
+// Sovereign (item 11): Protosynthesis (in harsh sunlight) and Quark Drive (Electric Terrain, which Sovereign doesn't
+// have) boost the holder's highest stat, as does a Booster Energy it used. Returns that BATTLE_STAT_*, or -1 if inactive.
 int Sovereign_ProtosynthesisStat(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
     BattleMon *mon = &battleCtx->battleMons[battler];
+    int ability = Battler_Ability(battleCtx, battler);
 
-    if (Battler_Ability(battleCtx, battler) != ABILITY_PROTOSYNTHESIS
-        || (battleCtx->fieldConditionsMask & FIELD_CONDITION_SUNNY) == FALSE
-        || BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALL_BATTLERS, 0, ABILITY_CLOUD_NINE)
-        || BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALL_BATTLERS, 0, ABILITY_AIR_LOCK)) {
+    if ((ability != ABILITY_PROTOSYNTHESIS && ability != ABILITY_QUARK_DRIVE)
+        || (mon->sovereignBoosterEnergy == FALSE
+            && (ability != ABILITY_PROTOSYNTHESIS || Sovereign_ProtosynthesisHasSun(battleSys, battleCtx) == FALSE))) {
         return -1;
     }
 

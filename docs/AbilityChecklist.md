@@ -163,8 +163,8 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 278 | Zero to Hero | Gen 9 | not yet (no battle effect) |
 | 279 | Commander | Gen 9 | not yet (no battle effect) |
 | 280 | Electromorphsis | Gen 9 | not yet (no battle effect) |
-| 281 | Protosynthesis | Gen 9 | partly: in harsh sunlight, its highest stat ×1.3 (Speed ×1.5); Booster Energy not yet |
-| 282 | Quark Drive | Gen 9 | not yet (no battle effect) |
+| 281 | Protosynthesis | Gen 9 | yes: in harsh sunlight or after using a Booster Energy, its highest stat ×1.3 (Speed ×1.5) |
+| 282 | Quark Drive | Gen 9 | partly: after using a Booster Energy, its highest stat ×1.3 (Speed ×1.5) (no Electric Terrain yet) |
 | 283 | Good as Gold | Gen 9 | not yet (no battle effect) |
 | 284 | Vessel of Ruin | Gen 9 | yes: Sp. Atk of every other Pokémon ×0.75 |
 | 285 | Sword of Ruin | Gen 9 | yes: Defense of every other Pokémon ×0.75 |

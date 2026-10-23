@@ -114,6 +114,7 @@ MANUAL_DESCRIPTIONS = {
 # Implemented beyond Platinum's 123 (updated as abilities get battle code).
 # Newer abilities whose battle effect is built (item 11): ability number -> what the Battle effect column says.
 IMPLEMENTED = {
+    282: "partly: after using a Booster Energy, its highest stat ×1.3 (Speed ×1.5) (no Electric Terrain yet)",
     275: "partly: Intimidate raises its Attack instead (immunity to Roar and Whirlwind not yet)",
     181: "yes: contact moves ×1.3",
     178: "yes: pulse moves ×1.5",
@@ -130,7 +131,7 @@ IMPLEMENTED = {
     129: "yes: Attack and Sp. Atk halved at half HP or less",
     148: "yes: moves ×1.3 when it moves last",
     252: "yes: Steel moves of the holder and its ally ×1.5",
-    281: "partly: in harsh sunlight, its highest stat ×1.3 (Speed ×1.5); Booster Energy not yet",
+    281: "yes: in harsh sunlight or after using a Booster Energy, its highest stat ×1.3 (Speed ×1.5)",
     136: "yes: damage halved at full HP",
     231: "yes: damage halved at full HP (not ignored by Mold Breaker)",
     169: "yes: Defense doubled",

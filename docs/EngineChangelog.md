@@ -14,8 +14,12 @@ players and the verification that was run.
 - AI: Clanging Scales, Hyperspace Fury and Spin Out score like Close Combat, Make It Rain like Overheat, and Storm Throw,
   Frost Breath, Wicked Blow and Flower Trick like high-critical moves.
 
+- **Booster Energy:** a Protosynthesis (outside sun) or Quark Drive Pokémon uses it on switch-in ("{0} used its
+  Booster Energy!", new battle string), and its highest stat stays boosted until it switches out.
+
 **Verified in the test build:** an Intimidate Garchomp left a Defiant Archaludon at Attack +1 (−1 then +2) and a Guard
-Dog Venusaur at Attack +1.
+Dog Venusaur at Attack +1; a Protosynthesis Archaludon and a Quark Drive Venusaur both used up their Booster Energy
+at the start of the battle.
 
 ## Item 11 (part 7) — 44 more abilities
 
