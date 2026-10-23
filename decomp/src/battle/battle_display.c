@@ -3597,7 +3597,7 @@ static void Task_TrainerShowMoveSelectMenu(SysTask *task, void *data)
     BattleContext *battleCtx = BattleSystem_GetBattleContext(moveSelectMenuData->battleSys);
 
     if ((battleType & (BATTLE_TYPE_TRAINER | BATTLE_TYPE_ROAMER))
-        || (BattleSystem_GetBattleStatusMask(moveSelectMenuData->battleSys) & BATTLE_STATUS_FIRST_BATTLE)
+        || (BattleSystem_GetBattleStatusMask(moveSelectMenuData->battleSys) & (BATTLE_STATUS_FIRST_BATTLE | BATTLE_STATUS_SOVEREIGN_TOTEM))
         || BattleSystem_GetBattlerSide(moveSelectMenuData->battleSys, moveSelectMenuData->battler) == BATTLER_US) {
         action = TrainerAI_Main(moveSelectMenuData->battleSys, moveSelectMenuData->battler);
 
@@ -5957,7 +5957,13 @@ static void LoadRecallMessage(BattleSystem *battleSys, BattlerData *battlerData,
 
 static void LoadSendOutMessage(BattleSystem *battleSys, BattlerData *battlerData, SendOutMsgMessage *message, BattleMessage *battleMsg)
 {
-    if (battlerData->battlerType & BATTLER_THEM) {
+    if ((battlerData->battlerType & BATTLER_THEM) && (BattleSystem_GetBattleStatusMask(battleSys) & BATTLE_STATUS_SOVEREIGN_TOTEM)) {
+        // Sovereign (decision 18): "Totem {0} called its ally, {1}!" The Totem is the partner, from wild party slot 0.
+        battleMsg->id = BattleStrings_Text_SovereignTotemCalledAlly;
+        battleMsg->tags = TAG_NICKNAME_NICKNAME | TAG_GLOBAL_MESSAGE;
+        battleMsg->params[0] = BattleSystem_GetPartner(battleSys, battlerData->battler);
+        battleMsg->params[1] = battlerData->battler | (message->partySlot << 8);
+    } else if (battlerData->battlerType & BATTLER_THEM) {
         if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_LINK) == FALSE) {
             battleMsg->id = BattleStrings_Text_TrSentOutPokemon;
             battleMsg->tags = TAG_TRCLASS_TRNAME_NICKNAME;

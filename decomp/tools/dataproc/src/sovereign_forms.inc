@@ -177,3 +177,16 @@
     { "tauros/forms/paldea_blaze_breed", NULL, .isGiratinaOrigin = false }, // Paldean Tauros (Blaze Breed)
     { "tauros/forms/paldea_aqua_breed", NULL, .isGiratinaOrigin = false }, // Paldean Tauros (Aqua Breed)
     { "wooper/forms/paldea", NULL, .isGiratinaOrigin = false }, // Paldean Wooper
+    { "raticate/forms/totem_alola", NULL, .isGiratinaOrigin = false }, // Totem Alolan Raticate
+    { "marowak/forms/totem", NULL, .isGiratinaOrigin = false }, // Totem Alolan Marowak
+    { "gumshoos/forms/totem", NULL, .isGiratinaOrigin = false }, // Totem Gumshoos
+    { "vikavolt/forms/totem", NULL, .isGiratinaOrigin = false }, // Totem Vikavolt
+    { "ribombee/forms/totem", NULL, .isGiratinaOrigin = false }, // Totem Ribombee
+    { "araquanid/forms/totem", NULL, .isGiratinaOrigin = false }, // Totem Araquanid
+    { "lurantis/forms/totem", NULL, .isGiratinaOrigin = false }, // Totem Lurantis
+    { "salazzle/forms/totem", NULL, .isGiratinaOrigin = false }, // Totem Salazzle
+    { "togedemaru/forms/totem", NULL, .isGiratinaOrigin = false }, // Totem Togedemaru
+    { "mimikyu/forms/busted", NULL, .isGiratinaOrigin = false }, // Busted Mimikyu
+    { "mimikyu/forms/totem_disguised", NULL, .isGiratinaOrigin = false }, // Totem Disguised Mimikyu
+    { "mimikyu/forms/totem_busted", NULL, .isGiratinaOrigin = false }, // Totem Busted Mimikyu
+    { "kommo_o/forms/o_totem", NULL, .isGiratinaOrigin = false }, // Totem Kommo-o

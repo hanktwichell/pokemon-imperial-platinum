@@ -3,6 +3,7 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/sovereign_totem_trials.h"
 #include "constants/field/dynamic_map_features.h"
 #include "constants/field_poison.h"
 #include "constants/player_avatar.h"
@@ -182,15 +183,18 @@ void FieldInput_Update(FieldInput *input, FieldSystem *fieldSystem, u16 pressedK
 
 #ifdef SOVEREIGN_TEST
 static int sSovereignTestBattleResult;
+static u8 sSovereignTestTotemTrial;
 
-// Test build only (meson -Dsovereign_test=true): a wild battle (Chansey Lv. 30) or, with env != NULL, a trainer battle
-// (TRAINER_SOVEREIGN_TEST).
+// Test build only (meson -Dsovereign_test=true): a wild battle (Chansey Lv. 30); with env 1 a trainer battle
+// (TRAINER_SOVEREIGN_TEST); with env 2 the next Totem trial (data/totem_trials.yaml, in order).
 static BOOL SovereignTest_BattleTask(FieldTask *task)
 {
     int *state = FieldTask_GetState(task);
 
     if (*state == 0) {
-        if (FieldTask_GetEnv(task) != NULL) {
+        if (FieldTask_GetEnv(task) == (void *)2) {
+            Encounter_SovereignNewTotemTrial(task, sSovereignTestTotemTrial++ % SOVEREIGN_TOTEM_TRIAL_COUNT, &sSovereignTestBattleResult);
+        } else if (FieldTask_GetEnv(task) != NULL) {
             // TRAINER_SOVEREIGN_TEST: a double battle against the developer team in the Sovereign trainer format (E9).
             Encounter_NewVsTrainer(task, TRAINER_SOVEREIGN_TEST, TRAINER_NONE, TRAINER_NONE, HEAP_ID_FIELD2, &sSovereignTestBattleResult);
         } else {
@@ -369,10 +373,16 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
     }
 
 #ifdef SOVEREIGN_TEST
-    // Test build only: SELECT starts a wild battle, SELECT+R a trainer battle, SELECT+L breeds and hatches an egg,
-    // SELECT+B opens Easy Chat, SELECT+L+R warps to the next test location (script_manager.c).
+    // Test build only: SELECT starts a wild battle, SELECT+R a trainer battle, SELECT+B+R the next Totem trial,
+    // SELECT+L breeds and hatches an egg, SELECT+B opens Easy Chat, SELECT+L+R warps to the next test location
+    // (script_manager.c).
     if ((input->pressedKeys & PAD_BUTTON_SELECT) && input->menu == FALSE) {
         int moveState = PlayerAvatar_GetPlayerMoveState(fieldSystem->playerAvatar);
+
+        if ((input->heldKeys & PAD_BUTTON_B) && (input->heldKeys & PAD_BUTTON_R) && (moveState == PLAYER_MOVE_STATE_END || moveState == PLAYER_MOVE_STATE_NONE)) {
+            FieldSystem_CreateTask(fieldSystem, SovereignTest_BattleTask, (void *)2);
+            return TRUE;
+        }
 
         if ((input->heldKeys & PAD_BUTTON_B) && (moveState == PLAYER_MOVE_STATE_END || moveState == PLAYER_MOVE_STATE_NONE)) {
             SovereignTest_OpenEasyChat(fieldSystem);

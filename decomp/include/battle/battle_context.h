@@ -324,6 +324,7 @@ struct BattleContext {
     u8 sovereignMegaUsed; // trainers who have Mega Evolved this battle (BattleSystem_SovereignMegaTrainerBit)
     u8 sovereignMegaResort; // a Mega Evolved this turn: re-sort the remaining moves by the new Speed
     u8 sovereignMegaSwitchInCheck; // a Mega Evolved: check switch-in abilities (Drought, Intimidate...) again
+    u8 sovereignTotemAuraDone; // Sovereign (decision 18): the Totem's aura has flared at the start of its trial
 };
 
 #endif // POKEPLATINUM_BATTLE_BATTLE_CONTEXT_H

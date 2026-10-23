@@ -194,6 +194,19 @@ static const SovereignForm sSovereignForms[SOVEREIGN_FORM_COUNT] = {
     { SPECIES_TAUROS, 2, SOVEREIGN_FORM_REGIONAL, 0 }, // Paldean Tauros (Blaze Breed)
     { SPECIES_TAUROS, 3, SOVEREIGN_FORM_REGIONAL, 0 }, // Paldean Tauros (Aqua Breed)
     { SPECIES_WOOPER, 1, SOVEREIGN_FORM_REGIONAL, 0 }, // Paldean Wooper
+    { SPECIES_RATICATE, 2, SOVEREIGN_FORM_TOTEM, 0 }, // Totem Alolan Raticate
+    { SPECIES_MAROWAK, 2, SOVEREIGN_FORM_TOTEM, 0 }, // Totem Alolan Marowak
+    { SPECIES_GUMSHOOS, 1, SOVEREIGN_FORM_TOTEM, 0 }, // Totem Gumshoos
+    { SPECIES_VIKAVOLT, 1, SOVEREIGN_FORM_TOTEM, 0 }, // Totem Vikavolt
+    { SPECIES_RIBOMBEE, 1, SOVEREIGN_FORM_TOTEM, 0 }, // Totem Ribombee
+    { SPECIES_ARAQUANID, 1, SOVEREIGN_FORM_TOTEM, 0 }, // Totem Araquanid
+    { SPECIES_LURANTIS, 1, SOVEREIGN_FORM_TOTEM, 0 }, // Totem Lurantis
+    { SPECIES_SALAZZLE, 1, SOVEREIGN_FORM_TOTEM, 0 }, // Totem Salazzle
+    { SPECIES_TOGEDEMARU, 1, SOVEREIGN_FORM_TOTEM, 0 }, // Totem Togedemaru
+    { SPECIES_MIMIKYU, 1, SOVEREIGN_FORM_BATTLE, ABILITY_DISGUISE }, // Busted Mimikyu
+    { SPECIES_MIMIKYU, 2, SOVEREIGN_FORM_TOTEM, 0 }, // Totem Disguised Mimikyu
+    { SPECIES_MIMIKYU, 3, SOVEREIGN_FORM_TOTEM, 0 }, // Totem Busted Mimikyu
+    { SPECIES_KOMMO_O, 1, SOVEREIGN_FORM_TOTEM, 0 }, // Totem Kommo-o
 };
 
 // A regional form that evolves into its region's form of the target species (any other evolves into form 0).
@@ -301,6 +314,8 @@ static const SovereignBabyForm sSovereignBabyForms[] = {
     { SPECIES_OVERQWIL, 0, 1, SPECIES_QWILFISH },
     { SPECIES_CLODSIRE, 0, 1, SPECIES_WOOPER },
     { SPECIES_BASCULEGION, 0, 2, SPECIES_BASCULIN },
+    { SPECIES_RATICATE, 2, 1, SPECIES_RATTATA },
+    { SPECIES_MAROWAK, 2, 0, SPECIES_CUBONE },
 };
 
 #endif // POKEPLATINUM_DATA_SOVEREIGN_FORMS_H

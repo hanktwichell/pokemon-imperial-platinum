@@ -5,6 +5,7 @@
 #include "constants/battle.h"
 #include "constants/heap.h"
 #include "constants/pokemon.h"
+#include "generated/ai_flags.h"
 #include "generated/game_records.h"
 #include "generated/map_headers.h"
 #include "generated/trainer_score_events.h"
@@ -49,6 +50,8 @@
 #include "unk_0203D1B8.h"
 #include "unk_020528D0.h"
 #include "vars_flags.h"
+
+#include "data/sovereign_totem_trials.h"
 
 typedef struct Encounter {
     int *resultMaskPtr;
@@ -560,6 +563,38 @@ void Encounter_NewVsSpeciesAtLevel(FieldTask *task, u16 species, u8 level, int *
     if (isLegendary) {
         dto->battleStatusMask |= BATTLE_STATUS_LEGENDARY;
     }
+
+    GameRecords_IncrementRecordValue(SaveData_GetGameRecords(fieldSystem->saveData), RECORD_WILD_BATTLES_FOUGHT);
+    StartEncounter(task, dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), resultMaskPtr);
+}
+
+// Sovereign (decision 18): a Totem trial (data/totem_trials.yaml). A wild double battle: the Totem and its first helper
+// are on the field from the start, and the Totem calls the other two helpers into an empty slot while it stands
+// (battle_controller_player.c). The Totem's aura is in the battle status mask (BATTLE_STATUS_TOTEM_AURA).
+void Encounter_SovereignNewTotemTrial(FieldTask *task, int trial, int *resultMaskPtr)
+{
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    const SovereignTotemTrial *data = &sSovereignTotemTrials[trial];
+    RadarChain_Clear(fieldSystem->chain);
+
+    FieldBattleDTO *dto = FieldBattleDTO_New(HEAP_ID_FIELD2, BATTLE_TYPE_DOUBLES);
+    FieldBattleDTO_Init(dto, fieldSystem);
+
+    CreateWildMon_SovereignScriptedForm(fieldSystem, data->totem.species, data->totem.form, data->totem.level, dto);
+
+    for (int i = 0; i < SOVEREIGN_TOTEM_HELPER_COUNT; i++) {
+        CreateWildMon_SovereignScriptedForm(fieldSystem, data->helpers[i].species, data->helpers[i].form, data->helpers[i].level, dto);
+    }
+
+    dto->battleStatusMask |= BATTLE_STATUS_SOVEREIGN_TOTEM;
+
+    for (int i = 0; i < TOTEM_AURA_STATS; i++) {
+        dto->battleStatusMask |= BATTLE_STATUS_TOTEM_AURA(i, data->aura[i]);
+    }
+
+    // The Totem and its helpers choose their moves like a trainer's Pokemon (battle_display.c).
+    dto->trainer[BATTLER_ENEMY_1].header.aiMask = AI_FLAG_BASIC | AI_FLAG_EVAL_ATTACK | AI_FLAG_EXPERT;
+    dto->trainer[BATTLER_ENEMY_2].header.aiMask = AI_FLAG_BASIC | AI_FLAG_EVAL_ATTACK | AI_FLAG_EXPERT;
 
     GameRecords_IncrementRecordValue(SaveData_GetGameRecords(fieldSystem->saveData), RECORD_WILD_BATTLES_FOUGHT);
     StartEncounter(task, dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), resultMaskPtr);

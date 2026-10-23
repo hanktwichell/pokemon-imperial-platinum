@@ -440,6 +440,7 @@ static BOOL ScrCmd_LoadPokedexRating(ScriptContext *ctx);
 static BOOL ScrCmd_StartWildBattle(ScriptContext *ctx);
 static BOOL ScrCmd_StartLegendaryBattle(ScriptContext *ctx);
 static BOOL ScrCmd_StartFatefulEncounter(ScriptContext *ctx);
+static BOOL ScrCmd_SovereignStartTotemTrial(ScriptContext *ctx);
 static BOOL ScrCmd_StartFirstBattle(ScriptContext *ctx);
 static BOOL ScrCmd_StartCatchingTutorial(ScriptContext *ctx);
 static BOOL ScrCmd_SlatherHoneyTree(ScriptContext *ctx);
@@ -4032,6 +4033,17 @@ static BOOL ScrCmd_StartFatefulEncounter(ScriptContext *ctx)
     u8 level = (u8)ScriptContext_GetVar(ctx);
 
     Encounter_NewFatefulVsSpeciesAtLevel(ctx->task, species, level, battleResultMaskPtr, TRUE);
+    return TRUE;
+}
+
+// Sovereign (decision 18): starts a Totem trial, by its number in data/totem_trials.yaml (TOTEM_TRIAL_*). The result is
+// in the battle result mask, as after StartLegendaryBattle.
+static BOOL ScrCmd_SovereignStartTotemTrial(ScriptContext *ctx)
+{
+    int *battleResultMaskPtr = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_BATTLE_RESULT);
+    u16 trial = ScriptContext_GetVar(ctx);
+
+    Encounter_SovereignNewTotemTrial(ctx->task, trial, battleResultMaskPtr);
     return TRUE;
 }
 

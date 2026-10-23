@@ -1760,3 +1760,60 @@ where the regional forms live.
    base forms.
 3. **Battle forms** with item 11's abilities (Zen Mode, Schooling, Disguise, Power Construct…), and the Route 208
    Mint sale.
+
+---
+
+## CB-0027 — 2026-10-23, 1:03 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** the Totem forms and the Totem trial battle (decision 18). The trials aren't placed on the map yet.
+- **The 12 Totem forms** (`SOVEREIGN_FORM_TOTEM`), plus Mimikyu's Busted Form as data so the numbers stay official.
+  - Totems learn their usual form's moves.
+  - Totem Alolan Raticate's Eggs hatch into Alolan Rattata.
+- **The trial battle** (`SovereignStartTotemTrial`): a wild double.
+  - The aura raises the Totem's stats at the start.
+  - The Totem calls up to 3 helpers in turn; once it has fainted it calls no more, and the trial is won when the
+    field is clear.
+  - Balls only at a lone Pokémon; the Totem is caught in Totem form.
+  - No running, Roar, Whirlwind, Teleport or Poké Doll.
+  - The trainer AI picks the moves.
+- **Data.** `data/totem_trials.yaml`:
+  - auras checked against Serebii (5 were wrong);
+  - helpers proposed from the original allies;
+  - machine-readable `boost` and `helpers` fields.
+  - `gen_totem_trials.py` writes the tables and `docs/TotemTrials.md`.
+- **Test build:** SELECT+B+R starts the next trial.
+- **Verified:**
+  - Totem Gumshoos: the opening, the aura (RAM: form 1, Def +1), RUN refused, a ball refused with two foes out.
+  - The three helpers called, the lone Totem caught.
+  - The Totem knocked out first: no more calls, the lone helper catchable.
+  - Both knocked out at once: an immediate win.
+  - The release ROM builds without warnings and passes boot smoke; docs regenerate clean.
+- **Noticed, not mine:** Work Up says "Attack sharply rose" because it uses ATK_UP_2 until its own effect exists
+  (`MoveChecklist.md` lists it as approximate; Claude A's item 11).
+
+**Files modified:**
+- `tools/engine/gen_forms.py`, `tools/engine/gen_totem_trials.py` (new), `tools/regenerate_docs.sh`,
+  `data/totem_trials.yaml`
+- The generated forms: `decomp/include/constants/sovereign_forms.h`, `decomp/include/data/sovereign_forms.h`,
+  `decomp/tools/dataproc/src/sovereign_forms.inc`, and 11 species' `meson.build` and `forms/*/data.json`
+- `decomp/include/constants/sovereign_totem_trials.h` and `decomp/include/data/sovereign_totem_trials.h` (new)
+- `decomp/include/constants/battle.h`, `decomp/include/battle/battle_context.h`, `decomp/include/battle/battle_lib.h`,
+  `decomp/include/encounter.h`, `decomp/include/overlay006/wild_encounters.h`
+- `decomp/src/encounter.c`, `decomp/src/overlay006/wild_encounters.c`, `decomp/src/scrcmd.c`,
+  `decomp/include/data/scripts/scrcmd.h`, `decomp/asm/macros/scrcmd.inc`, `decomp/src/overlay005/field_control.c`
+- `decomp/src/battle/battle_lib.c`, `battle_controller.c`, `battle_controller_player.c`, `battle_display.c`,
+  `battle_script.c`; `decomp/src/battle_sub_menus/battle_bag.c`
+- `decomp/res/battle/scripts/subscripts/subscript_sovereign_totem_aura.s` (new), `subscript_start_encounter.s`,
+  `meson.build`, `sub_seq.order`; `decomp/generated/battle_subscripts.txt`; `decomp/res/text/battle_strings.json`
+- `docs/TotemTrials.md` (new), `docs/EngineChangelog.md`, `docs/TechnicalDesign.md` §4b, `docs/EngineRoadmap.md`,
+  `docs/ProjectStatus.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR when green.
+2. **The trials on the map:**
+   - a huge Totem overworld object at each place;
+   - the script with `SovereignStartTotemTrial`, which needs two able Pokémon until 1 vs 2 exists;
+   - a flag per trial and the crown pieces (`data/item_sprites.csv`);
+   - the Galactic gates (`Story.md`).
+3. **1 vs 2 Totem trials** for a player with one able Pokémon (an empty player slot from the start). Then the battle
+   forms with item 11's abilities (Disguise for Mimikyu's Busted Form).

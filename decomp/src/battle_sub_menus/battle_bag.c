@@ -430,7 +430,8 @@ static u8 TryUseItem(BattleBag *battleBag)
             UseBagItem(context->battleSys, context->selectedBattleBagItem, battleBag->currentBattlePocket, context->heapID);
             return TASK_STATE_EXIT;
         } else if (itemBattleUse == 3) {
-            if (!(BattleSystem_GetBattleType(context->battleSys) & BATTLE_TYPE_TRAINER)) {
+            if (!(BattleSystem_GetBattleType(context->battleSys) & BATTLE_TYPE_TRAINER)
+                && !(BattleSystem_GetBattleStatusMask(context->battleSys) & BATTLE_STATUS_SOVEREIGN_TOTEM)) { // Sovereign
                 UseBagItem(context->battleSys, context->selectedBattleBagItem, battleBag->currentBattlePocket, context->heapID);
                 return TASK_STATE_EXIT;
             } else {
