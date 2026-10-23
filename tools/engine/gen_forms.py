@@ -21,7 +21,8 @@ exists in battle, so its number never is. Numbering the Megas last means adding 
 FM forms: an item form keeps its own abilities (they're what the form has for good), whether or not the battle engine
 has their effects yet (item 11 adds them).
 
-Abilities: a Mega gets its own ability only when the battle engine has it (megas.csv ability_in_gen4_engine = 1).
+Abilities: a Mega gets its own ability only when the battle engine has it (a Gen IV ability, or a newer one in
+gen_abilities.IMPLEMENTED).
 Otherwise its data lists no ability and the battle keeps the Pokémon's own ability (docs/MegaEvolution.md).
 
 Sprites and icons: none yet. Platinum's sprite and icon code ignores the form of these species, so a Mega shows
@@ -44,6 +45,15 @@ import yaml
 sys.path.insert(0, os.path.dirname(__file__))
 from gen_items import DECOMP, ROOT, stem_of  # noqa: E402
 import gen_species_gen9 as gen9  # noqa: E402
+from gen_abilities import IMPLEMENTED as IMPLEMENTED_ABILITIES, LAST_VANILLA as LAST_VANILLA_ABILITY  # noqa: E402
+
+ABILITY_IDS = {c: i for i, c in enumerate(open(os.path.join(DECOMP, "generated", "abilities.txt"), encoding="utf-8").read().split())}
+
+
+def engine_has_ability(const):
+    """True for Platinum's own abilities and the newer ones the battle engine implements (gen_abilities.IMPLEMENTED)."""
+    i = ABILITY_IDS.get(const)
+    return i is not None and (i <= LAST_VANILLA_ABILITY or i in IMPLEMENTED_ABILITIES)
 
 POKEMON = os.path.join(DECOMP, "res", "pokemon")
 MESON_START = "# Sovereign forms (tools/engine/gen_forms.py): start"
@@ -175,7 +185,7 @@ def load_rows():
             kind = KIND_PRIMAL if row["form"].startswith("Primal ") else KIND_MEGA
             trigger_const, table = "ITEM_" + stem_of(trigger).upper(), "items"
         ability = None
-        if row["ability"] and row["ability_in_gen4_engine"] == "1":
+        if row["ability"] and engine_has_ability("ABILITY_" + stem_of(row["ability"]).upper()):
             ability = "ABILITY_" + stem_of(row["ability"]).upper()
         form = {
             "name": row["form"], "stem": stem, "species": "SPECIES_" + stem.upper(), "number": numbers[stem],

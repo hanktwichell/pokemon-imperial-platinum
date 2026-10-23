@@ -2827,7 +2827,7 @@ static void AICmd_LoadTargetPartnerRedirects(BattleSystem *battleSys, BattleCont
         || targetPartner == AI_CONTEXT.attacker
         || battleCtx->battleMons[targetPartner].curHP == 0
         || MOVE_DATA(AI_CONTEXT.move).range != RANGE_SINGLE_TARGET
-        || Battler_Ability(battleCtx, AI_CONTEXT.attacker) == ABILITY_MOLD_BREAKER) {
+        || Sovereign_IsMoldBreaker(battleCtx, AI_CONTEXT.attacker)) {
         return;
     }
 

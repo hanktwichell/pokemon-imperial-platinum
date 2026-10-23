@@ -642,7 +642,7 @@ static void BtlIOCmd_RefreshPartyStatus(BattleSystem *battleSys, BattlerData *ba
     for (i = 0; i < partyCount; i++) {
         mon = BattleSystem_GetPartyPokemon(battleSys, battlerData->battler, i);
 
-        if (message->ability == ABILITY_MOLD_BREAKER) {
+        if (message->ability == ABILITY_MOLD_BREAKER || message->ability == ABILITY_TURBOBLAZE || message->ability == ABILITY_TERAVOLT) {
             ability = ABILITY_NONE;
         } else {
             ability = Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL);

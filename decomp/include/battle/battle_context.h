@@ -342,6 +342,10 @@ struct BattleContext {
     int sovereignAuroraVeilTurns[2]; // Sovereign (item 11)
     int sovereignEchoedVoiceTurn; // Sovereign (item 11): totalTurns + 1 of the last Echoed Voice (0 = none yet)
     int sovereignEchoedVoiceCount; // Sovereign (item 11): consecutive turns of Echoed Voice, up to 5
+    u8 sovereignOncePerBattle[MAX_BATTLERS]; // Sovereign (item 11): party slots whose Intrepid Sword or Dauntless Shield has triggered
+    u8 sovereignParentalBond; // Sovereign (item 11): the current move hits a second time through Parental Bond
+    u8 sovereignPiercingDrill; // Sovereign (item 11): the current hit goes through protection with Piercing Drill
+    int sovereignHPBeforeHit[MAX_BATTLERS]; // Sovereign (item 11): each battler's HP before the last hit it took (Berserk, Innards Out)
 };
 
 #endif // POKEPLATINUM_BATTLE_BATTLE_CONTEXT_H

@@ -34,9 +34,9 @@
         "EGG_GROUP_AMORPHOUS"
     ],
     "abilities": [
-        "ABILITY_NONE",
-        "ABILITY_NONE",
-        "ABILITY_NONE"
+        "ABILITY_INFILTRATOR",
+        "ABILITY_INFILTRATOR",
+        "ABILITY_INFILTRATOR"
     ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_BLACK",
