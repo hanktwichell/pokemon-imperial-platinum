@@ -35,6 +35,21 @@ encounter rules of 2026-10-23 are built (decisions 26 to 28, `ProjectStatus.md`)
     roamer battle counts now.
 - Found while testing and fixed: the stakes were invisible (a bollard has only a down frame), Zacian stood on stairs
   the player couldn't face it from, and the Celestic Pokéfan never saw the Ogerpon in the lead.
+- **Verified** in the emulator (test builds that set the game completed, opened the Chronicles and marked the key
+  legendaries caught):
+  - Every static legendary seen, battled at its level, caught and gone afterwards: the Ultra Beasts as they stood
+    before decision 28, the rest of Alola, Galar (Zacian and Zamazenta on the ledge, Eternatus once both are caught),
+    the Treasures of Ruin after both stakes, the Loyal Three as they stood, Pecharunt, Ogerpon, Koraidon, Miraidon,
+    Terapagos, Cosmog twice on the summit, Necrozma in Wayward Cave and Meloetta before the stage.
+  - The three masks from the Celestic Pokéfan with Ogerpon leading. Spear Pillar with no Chronicle object.
+  - Rare wild: Great Tusk on Route 207, Buzzwole on Route 225 and Iron Jugulis on Route 222, each at its level (the
+    test build forced the roll to hit).
+  - Roamers: the Archivist's three releases; Zeraora, Okidogi and Glastrier met and caught on Route 201 (the test
+    build kept every roamer there); the hints afterwards list only the ones still roaming.
+  - Every Archivist topic of the four new chapters, the Paradox hints and the Ultra Beast hints.
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+- **Not tested:** a knocked-out roamer's message and its release after the next Hall of Fame (the same code path as
+  Tornadus's), a rare wild Pokémon while surfing, and the real 2% odds.
 
 ## E11 — The Chronicles: the Alola Chronicle opens (the Tapus, Cosmog and Necrozma)
 
