@@ -2682,3 +2682,39 @@ and Genesect, CB-0037) is merged.
 1. Merge PR #52 (parts 22 and 23), then the PR for part 24.
 2. More moves: the Pledges, Ally Switch, Telekinesis, Wonder/Magic Room.
 3. Abilities: Mirror Armor, Cotton Down, Wind Rider/Wind Power, Purifying Salt's status immunity.
+
+## CA-0043 (Claude A, branch `claude/festive-bardeen-5h7beo`, 2026-10-23)
+
+**Just implemented:** item 11 part 25.
+- **Wonder Room:** verified in game.
+- **Magic Room:** not tested in game yet.
+- Move checklist: exact 256, approximate 39, placeholder 85.
+
+**Files modified:**
+- `decomp/src/battle/battle_lib.c`, `battle_controller_player.c`, `battle_script.c`
+- `decomp/include/battle/battle_context.h`
+- New effects 0330 and 0331, `subscript_sovereign_room_end.s`, `battle_strings.json`
+- The effect, subscript and script-variable lists
+- `tools/engine/gen9_move_fixes.py`, `docs/MoveChecklist.md`, `docs/EngineChangelog.md`
+
+**Next 3 steps:**
+1. Merge PR #52 (parts 22 to 24), then open the PR for part 25.
+2. More moves: the Pledges, Ally Switch, Telekinesis.
+3. Abilities: Mirror Armor, Cotton Down, Wind Rider/Wind Power, Purifying Salt's status immunity.
+
+## CA-0044 (Claude A, branch `claude/festive-bardeen-5h7beo`, 2026-10-23)
+
+**Just implemented:** item 11 part 26, Telekinesis (verified in game).
+- Move checklist: exact 257, approximate 39, placeholder 84.
+
+**Files modified:**
+- `decomp/src/battle/battle_lib.c`, `battle_controller_player.c`, `battle_script.c`
+- `decomp/include/battle/battle_context.h`
+- New effect 0332 and subscripts `subscript_sovereign_telekinesis.s`, `_telekinesis_end.s`
+- `battle_strings.json`, the effect, pointer, subscript and script-variable lists
+- `tools/engine/gen9_move_fixes.py`, `docs/MoveChecklist.md`, `docs/EngineChangelog.md`
+
+**Next 3 steps:**
+1. Merge PR #54 (part 25), then the PR for part 26.
+2. More moves: the Pledges, Ally Switch.
+3. Abilities: Mirror Armor, Cotton Down, Wind Rider/Wind Power, Purifying Salt's status immunity.
