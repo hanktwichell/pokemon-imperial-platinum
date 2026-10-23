@@ -1226,13 +1226,18 @@ u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *batt
     battler2Speed = battleCtx->battleMons[battler2].speed * sStatStageBoosts[battler2SpeedStage].numerator / sStatStageBoosts[battler2SpeedStage].denominator;
 
     if (NO_CLOUD_NINE) {
+        // Sovereign (item 11): Sand Rush and Slush Rush double Speed in sandstorm and snow.
         if ((battler1Ability == ABILITY_SWIFT_SWIM && WEATHER_IS_RAIN)
-            || (battler1Ability == ABILITY_CHLOROPHYLL && WEATHER_IS_SUN)) {
+            || (battler1Ability == ABILITY_CHLOROPHYLL && WEATHER_IS_SUN)
+            || (battler1Ability == ABILITY_SAND_RUSH && WEATHER_IS_SAND)
+            || (battler1Ability == ABILITY_SLUSH_RUSH && WEATHER_IS_HAIL)) {
             battler1Speed *= 2;
         }
 
         if ((battler2Ability == ABILITY_SWIFT_SWIM && WEATHER_IS_RAIN)
-            || (battler2Ability == ABILITY_CHLOROPHYLL && WEATHER_IS_SUN)) {
+            || (battler2Ability == ABILITY_CHLOROPHYLL && WEATHER_IS_SUN)
+            || (battler2Ability == ABILITY_SAND_RUSH && WEATHER_IS_SAND)
+            || (battler2Ability == ABILITY_SLUSH_RUSH && WEATHER_IS_HAIL)) {
             battler2Speed *= 2;
         }
     }
@@ -1396,6 +1401,15 @@ u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *batt
 
         battler1Priority = MOVE_DATA(battler1Move).priority;
         battler2Priority = MOVE_DATA(battler2Move).priority;
+
+        // Sovereign (item 11): Prankster gives status moves +1 priority.
+        if (battler1Ability == ABILITY_PRANKSTER && MOVE_DATA(battler1Move).class == CLASS_STATUS) {
+            battler1Priority++;
+        }
+
+        if (battler2Ability == ABILITY_PRANKSTER && MOVE_DATA(battler2Move).class == CLASS_STATUS) {
+            battler2Priority++;
+        }
     }
 
     if (battler1Priority == battler2Priority) {
@@ -1520,6 +1534,14 @@ BOOL BattleSystem_TriggerSecondaryEffect(BattleSystem *battleSys, BattleContext 
 {
     BOOL result = FALSE;
     u16 effectChance;
+
+    // Sovereign (item 11): Sheer Force removes the chance effects (the last two cases below) of the moves it powers up.
+    if (battleCtx->sideEffectIndirectFlags
+        && (battleCtx->sideEffectIndirectFlags & (MOVE_SIDE_EFFECT_ON_HIT | MOVE_SIDE_EFFECT_CHECK_SUBSTITUTE | MOVE_SIDE_EFFECT_CHECK_HP_AND_SUBSTITUTE | MOVE_SIDE_EFFECT_CHECK_HP)) == FALSE
+        && Move_SheerForceApplies(battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
+        battleCtx->sideEffectIndirectFlags = 0;
+        return FALSE;
+    }
 
     if (battleCtx->sideEffectIndirectFlags & MOVE_SIDE_EFFECT_ON_HIT) {
         SetupSideEffect(battleCtx, effect, SIDE_EFFECT_TYPE_INDIRECT);
@@ -3574,6 +3596,29 @@ int BattleSystem_TriggerImmunityAbility(BattleContext *battleCtx, int attacker, 
         subscript = subscript_ability_restores_hp;
     }
 
+    // Sovereign (item 11): the Gen V+ absorbing abilities. Storm Drain and Lightning Rod already draw single-target
+    // moves of their type in Platinum; since Gen V the holder also absorbs them. None trigger on the user's own move
+    // or on the first turn of a two-turn move.
+    if (attacker != defender && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE) {
+        if ((Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_STORM_DRAIN) == TRUE && moveType == TYPE_WATER)
+            || (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_LIGHTNING_ROD) == TRUE && moveType == TYPE_ELECTRIC)) {
+            subscript = subscript_sovereign_absorb_and_sp_atk_up_1_stage;
+        }
+
+        if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_SAP_SIPPER) == TRUE && moveType == TYPE_GRASS) {
+            subscript = subscript_sovereign_absorb_and_atk_up_1_stage;
+        }
+
+        if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_WELL_BAKED_BODY) == TRUE && moveType == TYPE_FIRE) {
+            subscript = subscript_sovereign_absorb_and_def_up_2_stages;
+        }
+
+        if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_EARTH_EATER) == TRUE && moveType == TYPE_GROUND) {
+            battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[defender].maxHP, 4);
+            subscript = subscript_ability_restores_hp;
+        }
+    }
+
     return subscript;
 }
 
@@ -4310,6 +4355,54 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             result = TRUE;
         }
         break;
+
+    // Sovereign (item 11): abilities that raise (or, for Weak Armor, change) the holder's stats when a damaging move
+    // hits it, as long as it is still standing. They use subscript_update_stat_stage with the ability as the source.
+    case ABILITY_JUSTIFIED:
+    case ABILITY_RATTLED:
+    case ABILITY_WATER_COMPACTION:
+    case ABILITY_THERMAL_EXCHANGE:
+    case ABILITY_WEAK_ARMOR: {
+        int hitType = battleCtx->moveType ? battleCtx->moveType : CURRENT_MOVE_DATA.type;
+        int ability = Battler_Ability(battleCtx, battleCtx->defender);
+        int param = 0;
+
+        if (DEFENDING_MON.curHP == 0
+            || (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS)
+            || (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN)
+            || (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken) == FALSE) {
+            break;
+        }
+
+        if (ability == ABILITY_JUSTIFIED && hitType == TYPE_DARK
+            && DEFENDING_MON.statBoosts[BATTLE_STAT_ATTACK] < MAX_STAT_STAGE) {
+            param = MOVE_SUBSCRIPT_PTR_ATTACK_UP_1_STAGE;
+        } else if (ability == ABILITY_RATTLED && (hitType == TYPE_BUG || hitType == TYPE_GHOST || hitType == TYPE_DARK)
+            && DEFENDING_MON.statBoosts[BATTLE_STAT_SPEED] < MAX_STAT_STAGE) {
+            param = MOVE_SUBSCRIPT_PTR_SPEED_UP_1_STAGE;
+        } else if (ability == ABILITY_WATER_COMPACTION && hitType == TYPE_WATER
+            && DEFENDING_MON.statBoosts[BATTLE_STAT_DEFENSE] < MAX_STAT_STAGE) {
+            param = MOVE_SUBSCRIPT_PTR_DEFENSE_UP_2_STAGES;
+        } else if (ability == ABILITY_THERMAL_EXCHANGE && hitType == TYPE_FIRE
+            && DEFENDING_MON.statBoosts[BATTLE_STAT_ATTACK] < MAX_STAT_STAGE) {
+            param = MOVE_SUBSCRIPT_PTR_ATTACK_UP_1_STAGE;
+        } else if (ability == ABILITY_WEAK_ARMOR && CURRENT_MOVE_DATA.class == CLASS_PHYSICAL) {
+            battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
+            battleCtx->sideEffectMon = battleCtx->defender;
+            *subscript = subscript_sovereign_weak_armor;
+            result = TRUE;
+            break;
+        }
+
+        if (param) {
+            battleCtx->sideEffectParam = param;
+            battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
+            battleCtx->sideEffectMon = battleCtx->defender;
+            *subscript = subscript_update_stat_stage;
+            result = TRUE;
+        }
+        break;
+    }
 
     // Sovereign (item 11): Stamina raises Defense 1 stage whenever a damaging move hits (contact or not), as long as
     // the holder is still standing.
@@ -6741,7 +6834,62 @@ static const u16 sPunchingMoves[] = {
     MOVE_SHADOW_PUNCH,
     MOVE_DRAIN_PUNCH,
     MOVE_BULLET_PUNCH,
-    MOVE_SKY_UPPERCUT
+    MOVE_SKY_UPPERCUT,
+    // Sovereign (item 11): Gen V+ punching moves
+    MOVE_POWER_UP_PUNCH,
+    MOVE_DOUBLE_IRON_BASH,
+    MOVE_ICE_HAMMER,
+    MOVE_SURGING_STRIKES,
+    MOVE_WICKED_BLOW,
+    MOVE_JET_PUNCH,
+    MOVE_RAGE_FIST,
+    MOVE_HEADLONG_RUSH,
+    MOVE_PLASMA_FISTS,
+};
+
+// Sovereign (item 11): ball and bomb moves, which Bulletproof blocks.
+static const u16 sBallAndBombMoves[] = {
+    MOVE_ACID_SPRAY, MOVE_AURA_SPHERE, MOVE_BARRAGE, MOVE_BEAK_BLAST, MOVE_BULLET_SEED, MOVE_EGG_BOMB,
+    MOVE_ELECTRO_BALL, MOVE_ENERGY_BALL, MOVE_FOCUS_BLAST, MOVE_GYRO_BALL, MOVE_ICE_BALL, MOVE_MAGNET_BOMB,
+    MOVE_MIST_BALL, MOVE_MUD_BOMB, MOVE_OCTAZOOKA, MOVE_POLLEN_PUFF, MOVE_PYRO_BALL, MOVE_ROCK_BLAST,
+    MOVE_ROCK_WRECKER, MOVE_SEARING_SHOT, MOVE_SEED_BOMB, MOVE_SHADOW_BALL, MOVE_SLUDGE_BOMB, MOVE_WEATHER_BALL,
+    MOVE_ZAP_CANNON, MOVE_SYRUP_BOMB,
+};
+
+BOOL Move_IsBallOrBomb(int move)
+{
+    for (int i = 0; i < NELEMS(sBallAndBombMoves); i++) {
+        if (sBallAndBombMoves[i] == move) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
+// Sovereign (item 11): Sheer Force applies to damaging moves with a chance of a secondary effect (the "chance" in the
+// move data), except charge moves that use it for their own boost.
+BOOL Move_SheerForceApplies(BattleContext *battleCtx, int attacker, int move)
+{
+    return Battler_Ability(battleCtx, attacker) == ABILITY_SHEER_FORCE
+        && MOVE_DATA(move).class != CLASS_STATUS
+        && MOVE_DATA(move).effectChance > 0
+        && MOVE_DATA(move).effect != BATTLE_EFFECT_CHARGE_TURN_DEF_UP
+        && MOVE_DATA(move).effect != BATTLE_EFFECT_ELECTRO_SHOT;
+}
+
+// Sovereign (item 11): biting moves, boosted by Strong Jaw.
+static const u16 sBitingMoves[] = {
+    MOVE_BITE,
+    MOVE_CRUNCH,
+    MOVE_FIRE_FANG,
+    MOVE_ICE_FANG,
+    MOVE_THUNDER_FANG,
+    MOVE_POISON_FANG,
+    MOVE_HYPER_FANG,
+    MOVE_PSYCHIC_FANGS,
+    MOVE_JAW_LOCK,
+    MOVE_FISHIOUS_REND,
 };
 
 typedef struct DamageCalcParams {
@@ -7088,6 +7236,28 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         }
     }
 
+    if (Move_SheerForceApplies(battleCtx, attacker, move)) {
+        movePower = movePower * 13 / 10;
+    }
+
+    // Sovereign (item 11): Fluffy halves damage from contact moves and doubles damage from Fire moves.
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_FLUFFY) == TRUE) {
+        if (MOVE_DATA(move).flags & MOVE_FLAG_MAKES_CONTACT) {
+            movePower /= 2;
+        }
+
+        if (moveType == TYPE_FIRE) {
+            movePower *= 2;
+        }
+    }
+
+    for (i = 0; i < NELEMS(sBitingMoves); i++) {
+        if (sBitingMoves[i] == move && attackerParams.ability == ABILITY_STRONG_JAW) {
+            movePower = movePower * 15 / 10;
+            break;
+        }
+    }
+
     if (NO_CLOUD_NINE) {
         if ((fieldConditions & FIELD_CONDITION_SUNNY) && attackerParams.ability == ABILITY_SOLAR_POWER) {
             spAttackStat = spAttackStat * 15 / 10;
@@ -7096,6 +7266,13 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         if ((fieldConditions & FIELD_CONDITION_SANDSTORM)
             && (defenderParams.type1 == TYPE_ROCK || defenderParams.type2 == TYPE_ROCK)) {
             spDefenseStat = spDefenseStat * 15 / 10;
+        }
+
+        // Sovereign (item 11): Sand Force powers up Rock, Ground and Steel moves by 30% in a sandstorm.
+        if ((fieldConditions & FIELD_CONDITION_SANDSTORM)
+            && attackerParams.ability == ABILITY_SAND_FORCE
+            && (moveType == TYPE_ROCK || moveType == TYPE_GROUND || moveType == TYPE_STEEL)) {
+            movePower = movePower * 13 / 10;
         }
 
         // Sovereign: Snow (Gen IX / Pokémon Champions) boosts Ice types' Defense by 50%.
@@ -7157,6 +7334,7 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
 
         if ((sideConditions & SIDE_CONDITION_REFLECT) != FALSE
             && criticalMul == 1
+            && attackerParams.ability != ABILITY_INFILTRATOR // Sovereign (item 11)
             && MOVE_DATA(move).effect != BATTLE_EFFECT_REMOVE_SCREENS) {
             if ((battleType & BATTLE_TYPE_DOUBLES)
                 && BattleSystem_CountAliveBattlers(battleSys, battleCtx, TRUE, defender) == 2) {
@@ -7198,6 +7376,7 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
 
         if ((sideConditions & SIDE_CONDITION_LIGHT_SCREEN) != FALSE
             && criticalMul == 1
+            && attackerParams.ability != ABILITY_INFILTRATOR // Sovereign (item 11)
             && MOVE_DATA(move).effect != BATTLE_EFFECT_REMOVE_SCREENS) {
             if ((battleType & BATTLE_TYPE_DOUBLES)
                 && BattleSystem_CountAliveBattlers(battleSys, battleCtx, TRUE, defender) == 2) {
@@ -7216,6 +7395,13 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
     if ((battleType & BATTLE_TYPE_DOUBLES)
         && MOVE_DATA(move).range == RANGE_ALL_ADJACENT
         && BattleSystem_CountAliveBattlers(battleSys, battleCtx, FALSE, defender) >= 2) {
+        damage = damage * 3 / 4;
+    }
+
+    // Sovereign (item 11): Friend Guard on the defender's partner cuts the damage it takes by 25%.
+    if ((battleType & BATTLE_TYPE_DOUBLES)
+        && battleCtx->battleMons[defender ^ 2].curHP
+        && Battler_Ability(battleCtx, defender ^ 2) == ABILITY_FRIEND_GUARD) {
         damage = damage * 3 / 4;
     }
 

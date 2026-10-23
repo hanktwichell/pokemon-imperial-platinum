@@ -1485,6 +1485,63 @@ Mega timing with 12b.
 
 ---
 
+## CA-0024 — 2026-10-23 (session on `claude/festive-bardeen-5h7beo`)
+
+**Correction to CA-0023:** the developer team's Archaludon is **not** invisible in battle. It uses the placeholder
+front sprite every new species has until E12 converts the real art: a small question-mark shape, the little blue
+(gold when shiny) squiggle beside its partner in the battle screenshots. Nothing to fix beyond E12.
+
+PR #28 (item 11 part 1) is merged; the branch is reset to main.
+
+**Files modified:** `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Item 11 continued: Gen V+ absorbing and redirecting abilities (Storm Drain, Lightning Rod's absorb, Sap Sipper,
+   Earth Eater, Well-Baked Body…), with the AI's immunity check (12b #4–#5).
+2. The owner's answers on Oak's visit (CA-0021).
+3. T1 boss teams when the owner is ready.
+
+---
+
+## CA-0025 — 2026-10-23 (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** item 11 part 2 and 12b #4–#5.
+- **Absorbing abilities:**
+
+  | Ability | Absorbs | Effect |
+  |---|---|---|
+  | Sap Sipper | Grass | Attack +1 |
+  | Storm Drain | Water | Sp. Atk +1 |
+  | Lightning Rod | Electric | Sp. Atk +1 |
+  | Well-Baked Body | Fire | Defense +2 |
+  | Earth Eater | Ground | heals 1/4 |
+
+- **The AI knows them:**
+  - its immunity check, its Thunder Wave check and the doubles estimates;
+  - Platinum's Dry Skin check bug fixed;
+  - it avoids single-target Electric and Water moves that a target's partner would redirect (Lightning Rod, Storm
+    Drain).
+- **Verified in game:** each ability against a spread move, plus the redirection check.
+- **12b status:** #1–#6 and #8 are done. Left: #7 (weather, with T2) and #9 (Mega timing, with E8).
+
+**Files modified:**
+- `decomp/src/battle/battle_lib.c`.
+- `decomp/src/battle/trainer_ai/{trainer_ai.c,script.s}`.
+- `decomp/include/data/scripts/aicmd.h` and `decomp/asm/macros/aicmd.inc`.
+- `decomp/res/battle/scripts/subscripts/subscript_sovereign_absorb_and_{sp_atk_up_1_stage,atk_up_1_stage,def_up_2_stages}.s`
+  (new), plus the subscripts' `meson.build` and `sub_seq.order`.
+- `decomp/generated/battle_subscripts.txt`.
+- `tools/engine/gen_abilities.py`.
+- `docs/AbilityChecklist.md`, `docs/AIReview.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. PR and merge this.
+2. Item 11 continued, by impact: common Gen V+ abilities and moves wild Pokémon and trainers use (Intimidate-like,
+   Sheer Force, Technician-style boosts…), starting from the checklists.
+3. The owner's answers on Oak's visit (CA-0021); T1 when the owner is ready.
+
+---
+
 ## CB-0023 — 2026-10-22, 10:05 pm US Central (session on `claude/sweet-wright-rk4wl1`)
 
 **Merged:** PR #27 (FM part 1, CB-0022). Main was also merged in (Claude A's item 11 part 1, PR #28). The changelog
@@ -1596,3 +1653,33 @@ It's an incremental-build race; removing the object fixes it. Clean CI builds pa
    opens.
 3. **Totem forms and the Totem trials** (`data/totem_trials.yaml`): Totem Raticate and Marowak need these regional
    forms. Then the battle forms, with item 11's abilities.
+
+---
+
+## CA-0026 — 2026-10-23 (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** item 11 part 3, 22 more Gen V+ abilities, chosen by how many species have them:
+- Sand Rush, Slush Rush, Sand Force, Overcoat (sand), Strong Jaw (+ Iron Fist's new punches), Big Pecks.
+- Prankster, Regenerator.
+- Justified, Rattled, Water Compaction, Thermal Exchange, Weak Armor.
+- Sheer Force, Contrary, Telepathy, Bulletproof, Fluffy, Friend Guard, Infiltrator (screens), Heavy/Light Metal.
+- Checklist and `gen_abilities.py` `IMPLEMENTED` updated. In-game results are in the changelog.
+- Merged main (FM part 3).
+
+**Files modified:**
+- `decomp/src/battle/battle_lib.c`, `battle_script.c` and `battle_controller_player.c`.
+- `decomp/include/battle/battle_lib.h`.
+- `decomp/res/battle/scripts/subscripts/subscript_sovereign_weak_armor.s` (new), plus the subscripts' `meson.build`
+  and `sub_seq.order`.
+- `decomp/generated/battle_subscripts.txt`.
+- `tools/engine/gen_abilities.py`.
+- `docs/AbilityChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Merge PR #30, which now carries this.
+2. Next ability batch:
+   - Moxie and Beast Boost (on a knockout);
+   - Defiant and Competitive (when a stat is lowered);
+   - Unnerve, Analytic, Cursed Body, Poison Touch, Gooey/Tangling Hair;
+   - Healer, Harvest, Moody, Cheek Pouch.
+3. The common Gen V+ move effects (placeholders first, by how many species learn them).

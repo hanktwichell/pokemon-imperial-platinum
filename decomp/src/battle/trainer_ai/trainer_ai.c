@@ -180,6 +180,7 @@ static void AICmd_IfBattlerNotFainted(BattleSystem *battleSys, BattleContext *ba
 static void AICmd_LoadAbility(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_LoadPartnerDamagePercent(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_LoadOtherFoeDamagePercent(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_LoadTargetPartnerRedirects(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static u8 TrainerAI_MainSingles(BattleSystem *battleSys, BattleContext *battleCtx);
 static u8 TrainerAI_MainDoubles(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -2664,20 +2665,23 @@ static void AICmd_LoadAbility(BattleSystem *battleSys, BattleContext *battleCtx)
     AI_CONTEXT.calcTemp = Battler_Ability(battleCtx, battler);
 }
 
-// Sovereign (12b): partner abilities that stop the partner from being hurt by a move of this type. Only abilities
-// whose effect the battle engine already has; Levitate is handled by the type chart. Gen V+ immunities (Sap Sipper,
-// Storm Drain's and Lightning Rod's absorption, Earth Eater, Telepathy...) belong here once item 11 builds them.
+// Sovereign (12b): abilities that stop a Pokemon from being hurt by a move of this type. Only abilities whose effect
+// the battle engine has; Levitate is handled by the type chart. Add each Gen V+ immunity as item 11 builds it.
 static BOOL AI_PartnerAbsorbsMoveType(BattleContext *battleCtx, int partner, int moveType)
 {
     int ability = Battler_Ability(battleCtx, partner);
 
     switch (moveType) {
     case TYPE_ELECTRIC:
-        return ability == ABILITY_VOLT_ABSORB || ability == ABILITY_MOTOR_DRIVE;
+        return ability == ABILITY_VOLT_ABSORB || ability == ABILITY_MOTOR_DRIVE || ability == ABILITY_LIGHTNING_ROD;
     case TYPE_WATER:
-        return ability == ABILITY_WATER_ABSORB || ability == ABILITY_DRY_SKIN;
+        return ability == ABILITY_WATER_ABSORB || ability == ABILITY_DRY_SKIN || ability == ABILITY_STORM_DRAIN;
     case TYPE_FIRE:
-        return ability == ABILITY_FLASH_FIRE;
+        return ability == ABILITY_FLASH_FIRE || ability == ABILITY_WELL_BAKED_BODY;
+    case TYPE_GRASS:
+        return ability == ABILITY_SAP_SIPPER;
+    case TYPE_GROUND:
+        return ability == ABILITY_EARTH_EATER;
     }
 
     return FALSE;
@@ -2798,6 +2802,39 @@ static void AICmd_LoadOtherFoeDamagePercent(BattleSystem *battleSys, BattleConte
     }
 
     AI_CONTEXT.calcTemp = AI_SpreadDamagePercent(battleSys, battleCtx, otherFoe);
+}
+
+/**
+ * @brief Sovereign (12b #5): load whether the target's partner would draw the current move away and absorb it.
+ *
+ * Lightning Rod and Storm Drain pull single-target Electric and Water moves aimed at their partner (Platinum), and
+ * since Gen V also absorb them (item 11). Mold Breaker ignores both.
+ *
+ * Loads TRUE if it's a double battle, the move hits a single target, it is Electric or Water, the target's partner is
+ * standing with the matching ability and the attacker doesn't have Mold Breaker; otherwise FALSE.
+ */
+static void AICmd_LoadTargetPartnerRedirects(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    AIScript_Iter(battleCtx, 1);
+
+    int targetPartner = AI_CONTEXT.defender ^ 2;
+    int moveType = MOVE_DATA(AI_CONTEXT.move).type;
+    int ability;
+    AI_CONTEXT.calcTemp = FALSE;
+
+    if ((battleSys->battleType & BATTLE_TYPE_DOUBLES) == FALSE
+        || targetPartner == AI_CONTEXT.attacker
+        || battleCtx->battleMons[targetPartner].curHP == 0
+        || MOVE_DATA(AI_CONTEXT.move).range != RANGE_SINGLE_TARGET
+        || Battler_Ability(battleCtx, AI_CONTEXT.attacker) == ABILITY_MOLD_BREAKER) {
+        return;
+    }
+
+    ability = Battler_Ability(battleCtx, targetPartner);
+    if ((moveType == TYPE_ELECTRIC && ability == ABILITY_LIGHTNING_ROD)
+        || (moveType == TYPE_WATER && ability == ABILITY_STORM_DRAIN)) {
+        AI_CONTEXT.calcTemp = TRUE;
+    }
 }
 
 /**

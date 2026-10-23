@@ -3149,6 +3149,33 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
         battleCtx->moveStatusFlags |= MOVE_STATUS_SEMI_INVULNERABLE;
     }
 
+    // Sovereign (item 11): Telepathy avoids its partner's damaging moves; Bulletproof blocks ball and bomb moves.
+    if (attacker != defender
+        && MOVE_DATA(move).class != CLASS_STATUS
+        && BattleSystem_GetBattlerSide(battleSys, attacker) == BattleSystem_GetBattlerSide(battleSys, defender)
+        && Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_TELEPATHY) == TRUE) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_INEFFECTIVE;
+    }
+
+    if (attacker != defender
+        && Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_BULLETPROOF) == TRUE
+        && Move_IsBallOrBomb(move)) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_INEFFECTIVE;
+    }
+
+    // Sovereign (item 11): since Gen VII, a status move boosted by Prankster doesn't affect a Dark-type foe it targets.
+    if (Battler_Ability(battleCtx, attacker) == ABILITY_PRANKSTER
+        && MOVE_DATA(move).class == CLASS_STATUS
+        && attacker != defender
+        && BattleSystem_GetBattlerSide(battleSys, attacker) != BattleSystem_GetBattlerSide(battleSys, defender)
+        && (MOVE_DATA(move).range == RANGE_SINGLE_TARGET
+            || MOVE_DATA(move).range == RANGE_ADJACENT_OPPONENTS
+            || MOVE_DATA(move).range == RANGE_ALL_ADJACENT)
+        && (BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_1, NULL) == TYPE_DARK
+            || BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_2, NULL) == TYPE_DARK)) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_INEFFECTIVE;
+    }
+
     return 0;
 }
 
@@ -4867,6 +4894,7 @@ static BOOL BattleControllerPlayer_TriggerAfterMoveHitEffects(BattleSystem *batt
         case AFTER_MOVE_HIT_STATE_LIFE_ORB:
             if (itemEffect == HOLD_EFFECT_HP_DRAIN_ON_ATK
                 && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_MAGIC_GUARD
+                && Move_SheerForceApplies(battleCtx, battleCtx->attacker, battleCtx->moveCur) == FALSE // Sovereign (item 11)
                 && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
                 && (battleCtx->battleStatusMask & SYSCTL_MOVE_HIT)
                 && CURRENT_MOVE_DATA.class != CLASS_STATUS

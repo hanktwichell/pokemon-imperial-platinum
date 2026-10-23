@@ -2852,6 +2852,12 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
         battleCtx->scriptTemp = BATTLE_ANIMATION_STAT_BOOST;
     }
 
+    // Sovereign (item 11): Contrary turns stat rises into drops and drops into rises.
+    if (Battler_Ability(battleCtx, battleCtx->sideEffectMon) == ABILITY_CONTRARY) {
+        stageChange = -stageChange;
+        battleCtx->scriptTemp = stageChange > 0 ? BATTLE_ANIMATION_STAT_BOOST : BATTLE_ANIMATION_STAT_DROP;
+    }
+
     if (stageChange > 0) {
         if (mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] == MAX_STAT_STAGE) {
             battleCtx->battleStatusMask |= SYSCTL_FAIL_STAT_STAGE_CHANGE;
@@ -2907,7 +2913,8 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
 
                     result = 1;
                 } else if (AbilityBlocksSpecificStatReduction(battleCtx, statOffset, ABILITY_KEEN_EYE, BATTLE_STAT_ACCURACY)
-                    || AbilityBlocksSpecificStatReduction(battleCtx, statOffset, ABILITY_HYPER_CUTTER, BATTLE_STAT_ATTACK)) {
+                    || AbilityBlocksSpecificStatReduction(battleCtx, statOffset, ABILITY_HYPER_CUTTER, BATTLE_STAT_ATTACK)
+                    || AbilityBlocksSpecificStatReduction(battleCtx, statOffset, ABILITY_BIG_PECKS, BATTLE_STAT_DEFENSE)) { // Sovereign (item 11)
                     if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY) {
                         SetupNicknameAbilityNicknameAbilityMsg(battleCtx, BattleStrings_Text_PokemonsAbilitySuppressedPokemonsAbility_AllyAlly); // "{0}'s {1} suppressed {2}'s {3}!"
                     } else {
@@ -5630,6 +5637,9 @@ static BOOL BtlCmd_EndOfTurnWeatherEffect(BattleSystem *battleSys, BattleContext
             && type1 != TYPE_GROUND && type2 != TYPE_GROUND
             && battleCtx->battleMons[battler].curHP
             && Battler_Ability(battleCtx, battler) != ABILITY_SAND_VEIL
+            && Battler_Ability(battleCtx, battler) != ABILITY_SAND_FORCE // Sovereign (item 11)
+            && Battler_Ability(battleCtx, battler) != ABILITY_SAND_RUSH
+            && Battler_Ability(battleCtx, battler) != ABILITY_OVERCOAT
             && (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_NO_WEATHER_DAMAGE) == FALSE) {
             battleCtx->msgMoveTemp = MOVE_SANDSTORM;
             battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1, 16);
@@ -6865,6 +6875,13 @@ static BOOL BtlCmd_CalcWeightBasedPower(BattleSystem *battleSys, BattleContext *
 
     int i = 0;
     int monWeight = DEFENDING_MON.weight;
+
+    // Sovereign (item 11): Heavy Metal doubles the holder's weight and Light Metal halves it.
+    if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->defender, ABILITY_HEAVY_METAL) == TRUE) {
+        monWeight *= 2;
+    } else if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->defender, ABILITY_LIGHT_METAL) == TRUE) {
+        monWeight /= 2;
+    }
 
     for (; sWeightToPower[i][0] != 0xFFFF; i++) {
         if (sWeightToPower[i][0] >= monWeight) {
@@ -9198,6 +9215,25 @@ static BOOL BtlCmd_TryRestoreStatusOnSwitch(BattleSystem *battleSys, BattleConte
     int jumpNoStatusRestore = BattleScript_Read(battleCtx);
 
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+
+    // Sovereign (item 11): Regenerator restores 1/3 of max HP when the holder switches out (a real switch only: the
+    // battle-end and capture scripts pass the player's slots).
+    if (inBattler != BTLSCR_PLAYER && inBattler != BTLSCR_PLAYER_SLOT_1 && inBattler != BTLSCR_PLAYER_SLOT_2
+        && battleCtx->battleMons[battler].ability == ABILITY_REGENERATOR
+        && battleCtx->battleMons[battler].curHP
+        && battleCtx->battleMons[battler].curHP < battleCtx->battleMons[battler].maxHP) {
+        int hp = battleCtx->battleMons[battler].curHP + battleCtx->battleMons[battler].maxHP / 3;
+        if (hp > battleCtx->battleMons[battler].maxHP) {
+            hp = battleCtx->battleMons[battler].maxHP;
+        }
+
+        battleCtx->battleMons[battler].curHP = hp;
+        if (battleCtx->selectedPartySlot[battler] != 6) {
+            Pokemon *regenMon = BattleSystem_GetPartyPokemon(battleSys, battler, battleCtx->selectedPartySlot[battler]);
+            Pokemon_SetValue(regenMon, MON_DATA_HP, &hp);
+        }
+    }
+
     if (battleCtx->battleMons[battler].curHP && battleCtx->selectedPartySlot[battler] != 6) {
         Pokemon *mon = BattleSystem_GetPartyPokemon(battleSys, battler, battleCtx->selectedPartySlot[battler]);
         int ability = Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL);

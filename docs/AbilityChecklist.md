@@ -7,41 +7,41 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | # | Ability | Introduced | Battle effect |
 |---|---|---|---|
 | 124 | Pickpocket | Gen 5 | not yet (no battle effect) |
-| 125 | Sheer Force | Gen 5 | not yet (no battle effect) |
-| 126 | Contrary | Gen 5 | not yet (no battle effect) |
+| 125 | Sheer Force | Gen 5 | yes: moves with a chance effect ×1.3, without the effect (or Life Orb recoil) |
+| 126 | Contrary | Gen 5 | yes: stat rises and drops are reversed |
 | 127 | Unnerve | Gen 5 | not yet (no battle effect) |
 | 128 | Defiant | Gen 5 | not yet (no battle effect) |
 | 129 | Defeatist | Gen 5 | not yet (no battle effect) |
 | 130 | Cursed Body | Gen 5 | not yet (no battle effect) |
 | 131 | Healer | Gen 5 | not yet (no battle effect) |
-| 132 | Friend Guard | Gen 5 | not yet (no battle effect) |
-| 133 | Weak Armor | Gen 5 | not yet (no battle effect) |
-| 134 | Heavy Metal | Gen 5 | not yet (no battle effect) |
-| 135 | Light Metal | Gen 5 | not yet (no battle effect) |
+| 132 | Friend Guard | Gen 5 | yes: the partner takes 25% less damage |
+| 133 | Weak Armor | Gen 5 | yes: Defense −1 and Speed +2 when hit by a physical move |
+| 134 | Heavy Metal | Gen 5 | yes: weight doubled (Low Kick, Grass Knot) |
+| 135 | Light Metal | Gen 5 | yes: weight halved (Low Kick, Grass Knot) |
 | 136 | Multiscale | Gen 5 | not yet (no battle effect) |
 | 137 | Toxic Boost | Gen 5 | not yet (no battle effect) |
 | 138 | Flare Boost | Gen 5 | not yet (no battle effect) |
 | 139 | Harvest | Gen 5 | not yet (no battle effect) |
-| 140 | Telepathy | Gen 5 | not yet (no battle effect) |
+| 140 | Telepathy | Gen 5 | yes: avoids its partner's damaging moves |
 | 141 | Moody | Gen 5 | not yet (no battle effect) |
-| 142 | Overcoat | Gen 5 | not yet (no battle effect) |
+| 142 | Overcoat | Gen 5 | partly: no sandstorm damage (powder-move immunity not yet) |
 | 143 | Poison Touch | Gen 5 | not yet (no battle effect) |
-| 144 | Regenerator | Gen 5 | not yet (no battle effect) |
-| 145 | Big Pecks | Gen 5 | not yet (no battle effect) |
-| 146 | Sand Rush | Gen 5 | not yet (no battle effect) |
+| 144 | Regenerator | Gen 5 | yes: restores 1/3 of max HP on switching out |
+| 145 | Big Pecks | Gen 5 | yes: Defense can't be lowered by others |
+| 146 | Sand Rush | Gen 5 | yes: Speed ×2 in a sandstorm; no sandstorm damage |
 | 147 | Wonder Skin | Gen 5 | not yet (no battle effect) |
 | 148 | Analytic | Gen 5 | not yet (no battle effect) |
 | 149 | Illusion | Gen 5 | not yet (no battle effect) |
 | 150 | Imposter | Gen 5 | not yet (no battle effect) |
-| 151 | Infiltrator | Gen 5 | not yet (no battle effect) |
+| 151 | Infiltrator | Gen 5 | partly: ignores Reflect and Light Screen (Substitute, Safeguard and Mist not yet) |
 | 152 | Mummy | Gen 5 | not yet (no battle effect) |
 | 153 | Moxie | Gen 5 | not yet (no battle effect) |
-| 154 | Justified | Gen 5 | not yet (no battle effect) |
-| 155 | Rattled | Gen 5 | not yet (no battle effect) |
+| 154 | Justified | Gen 5 | yes: Attack +1 when hit by a Dark move |
+| 155 | Rattled | Gen 5 | partly: Speed +1 when hit by a Bug, Ghost or Dark move (the Intimidate trigger not yet) |
 | 156 | Magic Bounce | Gen 5 | not yet (no battle effect) |
-| 157 | Sap Sipper | Gen 5 | not yet (no battle effect) |
-| 158 | Prankster | Gen 5 | not yet (no battle effect) |
-| 159 | Sand Force | Gen 5 | not yet (no battle effect) |
+| 157 | Sap Sipper | Gen 5 | yes: absorbs Grass moves, Attack +1 (`BattleSystem_TriggerImmunityAbility`) |
+| 158 | Prankster | Gen 5 | yes: status moves +1 priority; they don't affect Dark-type foes |
+| 159 | Sand Force | Gen 5 | yes: Rock/Ground/Steel moves ×1.3 in a sandstorm; no sandstorm damage |
 | 160 | Iron Barbs | Gen 5 | not yet (no battle effect) |
 | 161 | Zen Mode | Gen 5 | not yet (no battle effect) |
 | 162 | Victory Star | Gen 5 | not yet (no battle effect) |
@@ -53,9 +53,9 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 168 | Protean | Gen 6 | not yet (no battle effect) |
 | 169 | Fur Coat | Gen 6 | not yet (no battle effect) |
 | 170 | Magician | Gen 6 | not yet (no battle effect) |
-| 171 | Bulletproof | Gen 6 | not yet (no battle effect) |
+| 171 | Bulletproof | Gen 6 | yes: immune to ball and bomb moves |
 | 172 | Competitive | Gen 6 | not yet (no battle effect) |
-| 173 | Strong Jaw | Gen 6 | not yet (no battle effect) |
+| 173 | Strong Jaw | Gen 6 | yes: biting moves ×1.5 |
 | 174 | Refrigerate | Gen 6 | not yet (no battle effect) |
 | 175 | Sweet Veil | Gen 6 | not yet (no battle effect) |
 | 176 | Stance Change | Gen 6 | not yet (no battle effect) |
@@ -77,14 +77,14 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 192 | Stamina | Gen 7 | yes: Defense +1 stage each time a damaging move hits (`BattleSystem_TriggerAbilityOnHit`) |
 | 193 | Wimp Out | Gen 7 | not yet (no battle effect) |
 | 194 | Emergency Exit | Gen 7 | not yet (no battle effect) |
-| 195 | WaterCompaction | Gen 7 | not yet (no battle effect) |
+| 195 | WaterCompaction | Gen 7 | yes: Defense +2 when hit by a Water move |
 | 196 | Merciless | Gen 7 | not yet (no battle effect) |
 | 197 | Shields Down | Gen 7 | not yet (no battle effect) |
 | 198 | Stakeout | Gen 7 | not yet (no battle effect) |
 | 199 | Water Bubble | Gen 7 | not yet (no battle effect) |
 | 200 | Steelworker | Gen 7 | not yet (no battle effect) |
 | 201 | Berserk | Gen 7 | not yet (no battle effect) |
-| 202 | Slush Rush | Gen 7 | not yet (no battle effect) |
+| 202 | Slush Rush | Gen 7 | yes: Speed ×2 in snow |
 | 203 | Long Reach | Gen 7 | not yet (no battle effect) |
 | 204 | Liquid Voice | Gen 7 | not yet (no battle effect) |
 | 205 | Triage | Gen 7 | not yet (no battle effect) |
@@ -100,7 +100,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 215 | Innards Out | Gen 7 | not yet (no battle effect) |
 | 216 | Dancer | Gen 7 | not yet (no battle effect) |
 | 217 | Battery | Gen 7 | not yet (no battle effect) |
-| 218 | Fluffy | Gen 7 | not yet (no battle effect) |
+| 218 | Fluffy | Gen 7 | yes: contact damage halved, Fire damage doubled |
 | 219 | Dazzling | Gen 7 | not yet (no battle effect) |
 | 220 | Soul-Heart | Gen 7 | not yet (no battle effect) |
 | 221 | Tangling Hair | Gen 7 | not yet (no battle effect) |
@@ -152,10 +152,10 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 267 | As One | Gen 8 | not yet (no battle effect) |
 | 268 | Lingering Aroma | Gen 9 | not yet (no battle effect) |
 | 269 | Seed Sower | Gen 9 | not yet (no battle effect) |
-| 270 | ThermalExchange | Gen 9 | not yet (no battle effect) |
+| 270 | ThermalExchange | Gen 9 | partly: Attack +1 when hit by a Fire move (burn immunity not yet) |
 | 271 | Anger Shell | Gen 9 | not yet (no battle effect) |
 | 272 | Purifying Salt | Gen 9 | not yet (no battle effect) |
-| 273 | Well-Baked Body | Gen 9 | not yet (no battle effect) |
+| 273 | Well-Baked Body | Gen 9 | yes: absorbs Fire moves, Defense +2 (`BattleSystem_TriggerImmunityAbility`) |
 | 274 | Wind Rider | Gen 9 | not yet (no battle effect) |
 | 275 | Guard Dog | Gen 9 | not yet (no battle effect) |
 | 276 | Rocky Payload | Gen 9 | not yet (no battle effect) |
@@ -179,7 +179,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 294 | Costar | Gen 9 | not yet (no battle effect) |
 | 295 | Toxic Debris | Gen 9 | not yet (no battle effect) |
 | 296 | Armor Tail | Gen 9 | not yet (no battle effect) |
-| 297 | Earth Eater | Gen 9 | not yet (no battle effect) |
+| 297 | Earth Eater | Gen 9 | yes: absorbs Ground moves, restores 1/4 of max HP (`BattleSystem_TriggerImmunityAbility`) |
 | 298 | Mycelium Might | Gen 9 | not yet (no battle effect) |
 | 299 | Mind’s Eye | Gen 9 | not yet (no battle effect) |
 | 300 | SupersweetSyrup | Gen 9 | not yet (no battle effect) |

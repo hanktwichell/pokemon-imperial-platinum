@@ -4,6 +4,72 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (part 3) — 22 common Gen V+ abilities
+
+Ranked by how many species can have each ability:
+
+| Ability | Effect |
+|---|---|
+| Sand Rush, Slush Rush | Speed ×2 in sandstorm / snow (Sand Rush, Sand Force and Overcoat: no sandstorm damage) |
+| Sand Force | Rock, Ground and Steel moves ×1.3 in a sandstorm |
+| Strong Jaw | biting moves ×1.5 (Iron Fist also gains the Gen V+ punching moves) |
+| Sheer Force | moves with a chance effect ×1.3, and the effect and Life Orb recoil are skipped |
+| Fluffy | contact damage ½, Fire ×2 |
+| Friend Guard | the partner takes 25% less damage |
+| Infiltrator | ignores Reflect and Light Screen |
+| Heavy Metal, Light Metal | weight ×2 / ×½ for Low Kick and Grass Knot |
+| Big Pecks | Defense can't be lowered |
+| Contrary | stat changes reversed |
+| Prankster | status moves +1 priority; they don't affect Dark-type foes |
+| Telepathy | avoids its partner's attacks |
+| Bulletproof | immune to ball and bomb moves |
+| Regenerator | 1/3 of max HP restored on switching out (not at the end of a battle) |
+| Justified, Rattled, Water Compaction, Thermal Exchange, Weak Armor | stat changes when hit by the matching moves |
+
+**Verified in the test build** (Garchomp's first move and the foes' abilities swapped for each test):
+- Snarl vs Justified/Rattled: Attack +1 and Speed +1.
+- Precipice Blades vs Weak Armor: Defense −1 and Speed +2.
+- Surf vs Water Compaction: Defense +2.
+- Crunch with Strong Jaw: 28, the exact formula value.
+- Precipice Blades with Sand Force in sand: 25 and 29, both exact.
+- Sheer Force Snarl: no Sp. Atk drops.
+- Contrary: Snarl gives Sp. Atk +1.
+
+Not tested in game: Prankster, Regenerator, Telepathy, Bulletproof, Infiltrator, Heavy/Light Metal, Friend Guard,
+Fluffy, Slush Rush, Big Pecks.
+
+## Item 11 (part 2) and 12b #4–#5 — absorbing abilities and redirection
+
+- **Gen V+ absorbing abilities** (`BattleSystem_TriggerImmunityAbility`):
+
+  | Ability | Absorbs | Effect |
+  |---|---|---|
+  | Sap Sipper | Grass | Attack +1 |
+  | Storm Drain | Water | Sp. Atk +1 |
+  | Lightning Rod | Electric | Sp. Atk +1 |
+  | Well-Baked Body | Fire | Defense +2 |
+  | Earth Eater | Ground | restores 1/4 of max HP |
+
+  - Storm Drain and Lightning Rod already drew single-target moves in Platinum; now they also absorb them, as since
+    Gen V.
+  - Three new subscripts modelled on Motor Drive's.
+- **AI:**
+  - The basic immunity check, the Thunder Wave check and the doubles partner/other-foe estimates know these
+    abilities.
+  - Platinum's immunity check tested Levitate twice where it meant Dry Skin; fixed.
+  - New command `LoadTargetPartnerRedirects`: a single-target Electric or Water move aimed at a foe whose partner has
+    Lightning Rod or Storm Drain scores −10, unless the attacker has Mold Breaker.
+- **Verified in the test build:**
+  - Garchomp's spread moves against the developer team's Archaludon (ability set for each test). Archaludon took no
+    damage and got the right boost; its partner took normal damage:
+    - Razor Leaf vs Sap Sipper: Attack +1;
+    - Surf vs Storm Drain: Sp. Atk +1;
+    - Heat Wave vs Well-Baked Body: Defense +2;
+    - Discharge vs Lightning Rod: Sp. Atk +1;
+    - Precipice Blades vs Earth Eater: no HP lost.
+  - With Lightning Rod on Garchomp, the AI's check read "redirected" only for Electro Shot aimed at Garchomp's
+    partner.
+
 ## FM (part 3) — the regional forms
 
 - **All 57 regional forms exist**, plus Blue- and White-Striped Basculin.
