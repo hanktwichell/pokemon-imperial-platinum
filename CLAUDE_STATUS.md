@@ -2322,3 +2322,57 @@ CB-0034) is merged.
    party). The Archivist's lines grow with them.
 3. **Truth and Ideals** (the Unova chapter key: the Light and Dark Stones, Zekrom at night, Kyurem), then Meloetta,
    Genesect and the roamers. The rooms marked _(new)_ need map work or another spot; ask the owner which.
+
+## CB-0036 — 2026-10-23, 7:07 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** the rest of the Swords of Justice and Keldeo (the Chronicles, `docs/PostgameLegendaries.md`). PR #46
+(the Archivist and Virizion, CB-0035) is merged.
+- **Terrakion** (Lv. 65): the rock pocket at the north end of Route 227, (759, 258).
+- **Cobalion** (Lv. 65): the top pocket of Iron Island B2F's right room, (17, 1). That's the side cave reached from B1F.
+  It's an existing dead end, in place of the planned new one.
+  - The room used `scripts_empty`. It now has `scripts_iron_island_b2f_right_room` and
+    `scripts_init_iron_island_b2f_right_room`, appended at the end of `scripts.order` and `meson.build`.
+- **Keldeo** (Lv. 55): the clearing on Lake Valor's north-west shore, (36, 14).
+  - It's there only while Cobalion, Terrakion and Virizion are all in the party (`CheckPartyHasSpecies` in the
+    OnTransition).
+  - It comes in its Ordinary Form; the Resolute Form waits for the battle forms (FM).
+- **The Archivist's later talks:**
+  - a short intro, then one hint per sword not caught yet (the Pokédex check, one message each);
+  - with all three caught, Keldeo at Lake Valor;
+  - with Keldeo caught, a last line.
+- **Correction:**
+  - `StartLegendaryBattle` doesn't let the player run ("Can't escape!", as in vanilla).
+  - So the "vanished" line follows a knock-out, not a run.
+  - CB-0035's docs said "a win or a run". The changelog, TechnicalDesign and the yaml now say a win.
+- **Fixed:** the Totem trial's comment block in `scripts_common.s` had ended up above the legendary encounter script.
+- **Verified** (test build with a temporary patch: game completed, Chronicle open, Master Balls, party at level 100,
+  test warps; the patch was removed before committing):
+  - the Archivist's list with none caught, and again after Terrakion;
+  - Terrakion and Cobalion on the map, each caught, and gone afterwards;
+  - Cobalion knocked out: vanished, then back on the next visit;
+  - Lake Valor: no Keldeo without the swords, Keldeo with them, then caught;
+  - the Keldeo hint and the final line.
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+
+**Files modified:**
+- Scripts: `scripts_route_227.s`, `scripts_init_route_227.s`, `scripts_lake_valor.s`, `scripts_init_lake_valor.s`,
+  `scripts_iron_island_b2f_right_room.s` (new), `scripts_init_iron_island_b2f_right_room.s` (new),
+  `scripts_canalave_library_2f.s`, `scripts_common.s` (comment only), `res/field/scripts/scripts.order`,
+  `res/field/scripts/meson.build`
+- Events: `events_route_227.json`, `events_iron_island_b2f_right_room.json`, `events_lake_valor.json`
+- `decomp/include/data/map_headers.h` (Iron Island B2F right room's script archives)
+- Texts: `canalave_library_2f`
+- Data and docs: `data/postgame_legendaries.yaml`, `docs/PostgameLegendaries.md`, `docs/TechnicalDesign.md`,
+  `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR once CI is green.
+2. **Meloetta and Genesect,** both on existing maps:
+   - Meloetta: the Contest Hall composer with a Pokémon that knows Sing, then Amity Square's stage.
+   - Genesect: the Galactic HQ lab scientist.
+   - Meloetta's Pirouette Forme and Genesect's Drives belong to FM.
+3. **Truth and Ideals** (the Unova chapter key):
+   - the Light and Dark Stones from the Archivist;
+   - Zekrom at the Valley Windworks at night;
+   - Kyurem in Mt. Coronet's snow cave once both are caught.
+   - Reshiram's "furnace room (new)" at Fuego Ironworks needs map work or another spot; ask the owner which.

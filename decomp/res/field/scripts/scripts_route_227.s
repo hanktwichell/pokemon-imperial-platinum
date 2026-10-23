@@ -7,7 +7,36 @@
     ScriptEntry Route227_ArrowSignpostStarkMountain
     ScriptEntry Route227_CoordEvent_Buck
     ScriptEntry Route227_Buck
+    ScriptEntry Route227_OnTransition
+    ScriptEntry Route227_OnLoad
+    ScriptEntry Route227_LegendaryTerrakion
     ScriptEntryEnd
+
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Terrakion stands in the rock pocket at the north end once
+@ the Unova Chronicle is open, until it's caught.
+Route227_OnTransition:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+    GoToIfLt VAR_SOVEREIGN_CHRONICLE, 1, Route227_OnTransitionEnd
+    SovereignCheckSpeciesCaught SPECIES_TERRAKION, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, Route227_OnTransitionEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+Route227_OnTransitionEnd:
+    End
+
+Route227_OnLoad:
+    GoToIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, Route227_RemoveLegendaryTerrakion
+    End
+
+Route227_RemoveLegendaryTerrakion:
+    RemoveObject LOCALID_LEGENDARY_TERRAKION
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+    End
+
+Route227_LegendaryTerrakion:
+    SetVar VAR_0x8004, SPECIES_TERRAKION
+    SetVar VAR_0x8005, 65
+    Common_SovereignLegendaryEncounter
+    End
 
 Route227_CoordEvent_WakeRival:
     LockAll
