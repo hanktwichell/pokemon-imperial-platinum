@@ -443,6 +443,7 @@ static BOOL ScrCmd_StartFatefulEncounter(ScriptContext *ctx);
 static BOOL ScrCmd_SovereignStartTotemTrial(ScriptContext *ctx);
 static BOOL ScrCmd_SovereignGetTotemTrialSpecies(ScriptContext *ctx);
 static BOOL ScrCmd_SovereignClearFlagFromVar(ScriptContext *ctx);
+static BOOL ScrCmd_SovereignCheckSpeciesCaught(ScriptContext *ctx);
 static BOOL ScrCmd_StartFirstBattle(ScriptContext *ctx);
 static BOOL ScrCmd_StartCatchingTutorial(ScriptContext *ctx);
 static BOOL ScrCmd_SlatherHoneyTree(ScriptContext *ctx);
@@ -4065,6 +4066,17 @@ static BOOL ScrCmd_SovereignClearFlagFromVar(ScriptContext *ctx)
     u16 flagID = *ScriptContext_GetVarPointer(ctx);
 
     FieldSystem_ClearFlag(ctx->fieldSystem, flagID);
+    return FALSE;
+}
+
+// Sovereign (the Chronicles, docs/PostgameLegendaries.md): whether the Pokédex has the species as caught. A static
+// legendary stays on the map until then, so it can be fought again after a loss or a run.
+static BOOL ScrCmd_SovereignCheckSpeciesCaught(ScriptContext *ctx)
+{
+    u16 species = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+
+    *destVar = Pokedex_HasCaughtSpecies(SaveData_GetPokedex(ctx->fieldSystem->saveData), species);
     return FALSE;
 }
 

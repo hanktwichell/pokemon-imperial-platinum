@@ -2275,3 +2275,50 @@ trials, CB-0032) is merged.
    owner's text.
 3. **The Chronicles and the Regional Forms Park log** (`Story.md`, after the first Hall of Fame): check whether the
    Archivist and the Park owner exist yet, and write their lines.
+
+---
+
+## CB-0035 — 2026-10-23, 6:31 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** the Chronicles begin (post-game legendaries, `docs/PostgameLegendaries.md`). PR #45 (the story beats,
+CB-0034) is merged.
+- **The Legend Archivist** (Canalave Library 2F, (16, 5)):
+  - He appears after the first Hall of Fame.
+  - His first talk opens the Unova Chronicle (`VAR_SOVEREIGN_CHRONICLE` = 1, the former `VAR_UNUSED_0x4031`).
+  - Later talks give the hint again, then a line once Virizion is caught.
+- **Virizion** (Lv. 65) stands at the top of Eterna Forest's north corridor (80, 10), past the Cut trees, once the
+  chapter is open.
+- **Reusable pieces for the rest:**
+  - `Common_SovereignLegendaryEncounter` (common script 0x80B), with `FLAG_SOVEREIGN_REMOVE_LEGENDARY` (0x1D0) for the
+    OnLoad removal.
+  - `SovereignCheckSpeciesCaught`, a new script command that reads the Pokédex, so no flag is needed per legendary.
+  - `FLAG_MAP_LOCAL_HIDE_LEGENDARY` (0x1E) and `FLAG_MAP_LOCAL_HIDE_SOVEREIGN_NPC` (0x1D) as OnTransition-computed
+    hidden flags.
+  - `tools/sprites/make_legendary_overworld.py`. Cobalion, Terrakion and Keldeo are drawn and registered already.
+- **Verified** (test build with a temporary patch: the game completed, Master Balls, test warps):
+  - hidden before, the Archivist's lines, and Virizion shown after;
+  - a run (vanished, then back on the next visit);
+  - a catch (gone for good, and the Archivist's new line).
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+
+**Files modified:**
+- Engine: `decomp/src/scrcmd.c`, `decomp/include/data/scripts/scrcmd.h`, `decomp/asm/macros/scrcmd.inc`,
+  `decomp/src/overlay005/object_event_gfx_data.c`
+- Scripts and events: `scripts_common.s`, `scripts_eterna_forest.s`, `scripts_canalave_library_2f.s`,
+  `events_eterna_forest.json`, `events_canalave_library_2f.json`
+- Texts: `common_strings`, `canalave_library_2f`
+- `decomp/generated/vars_flags.txt`, `decomp/generated/object_events_gfx.txt`
+- Sprites: `decomp/res/graphics/field_sprites/` (`field_sprites.order`, `meson.build`, and
+  `pokemon/legendary_{virizion,terrakion,cobalion,keldeo}.png`)
+- Tools: `tools/sprites/make_legendary_overworld.py` (new), `tools/sprites/make_totem_overworld.py` (an `aura` switch;
+  the Totems come out the same), `tools/design/gen_legendary_doc.py` (a "Built" line)
+- Data and docs: `data/postgame_legendaries.yaml`, `docs/PostgameLegendaries.md`, `docs/TechnicalDesign.md`,
+  `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `CITATIONS.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR once CI is green.
+2. **The rest of the Swords of Justice and Keldeo:** Terrakion (a Route 227 rock pocket), Cobalion (an existing Iron
+   Island B2F dead end, in place of the planned new one), Keldeo (Lake Valor's north shore, with the three in the
+   party). The Archivist's lines grow with them.
+3. **Truth and Ideals** (the Unova chapter key: the Light and Dark Stones, Zekrom at night, Kyurem), then Meloetta,
+   Genesect and the roamers. The rooms marked _(new)_ need map work or another spot; ask the owner which.

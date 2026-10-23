@@ -852,6 +852,7 @@ ScriptCommand(SCRCMD_FINDPARTYSLOTFORFIELDMOVE,                            ScrCm
 ScriptCommand(SCRCMD_SOVEREIGNSTARTTOTEMTRIAL,                             ScrCmd_SovereignStartTotemTrial)
 ScriptCommand(SCRCMD_SOVEREIGNGETTOTEMTRIALSPECIES,                       ScrCmd_SovereignGetTotemTrialSpecies)
 ScriptCommand(SCRCMD_SOVEREIGNCLEARFLAGFROMVAR,                           ScrCmd_SovereignClearFlagFromVar)
+ScriptCommand(SCRCMD_SOVEREIGNCHECKSPECIESCAUGHT,                         ScrCmd_SovereignCheckSpeciesCaught)
 
 // clang-format on
 

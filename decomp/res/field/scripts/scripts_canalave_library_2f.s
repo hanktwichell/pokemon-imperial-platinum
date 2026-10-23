@@ -9,12 +9,18 @@
     ScriptEntry CanalaveLibrary2F_BgSign
     ScriptEntry CanalaveLibrary2F_OnTransition
     ScriptEntry CanalaveLibrary2F_OnFrame_Hiker
+    ScriptEntry CanalaveLibrary2F_SovereignArchivist
     ScriptEntryEnd
 
 CanalaveLibrary2F_OnTransition:
     SetFlag FLAG_HIDE_CANALAVE_LIBRARY_2F_HIKER
     CallIfEq VAR_ARCEUS_EVENT_STATE, 2, CanalaveLibrary2F_ShowHiker
+    CallIfUnset FLAG_GAME_COMPLETED, CanalaveLibrary2F_SovereignHideArchivist
     End
+
+CanalaveLibrary2F_SovereignHideArchivist:
+    SetFlag FLAG_MAP_LOCAL_HIDE_SOVEREIGN_NPC
+    Return
 
 CanalaveLibrary2F_ShowHiker:
     ClearFlag FLAG_HIDE_CANALAVE_LIBRARY_2F_HIKER
@@ -157,3 +163,28 @@ CanalaveLibrary2F_Movement_PlayerMoveAside:
     WalkNormalSouth
     WalkOnSpotNormalNorth
     EndMovement
+
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): the Legend Archivist, here from the first Hall of Fame. His
+@ first talk opens the Unova Chronicle (VAR_SOVEREIGN_CHRONICLE 1).
+CanalaveLibrary2F_SovereignArchivist:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfGe VAR_SOVEREIGN_CHRONICLE, 1, CanalaveLibrary2F_SovereignArchivistUnova
+    SetVar VAR_SOVEREIGN_CHRONICLE, 1
+    Message CanalaveLibrary2F_Text_SovereignArchivistIntro
+    GoTo CanalaveLibrary2F_SovereignArchivistEnd
+
+CanalaveLibrary2F_SovereignArchivistUnova:
+    SovereignCheckSpeciesCaught SPECIES_VIRIZION, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, CanalaveLibrary2F_SovereignArchivistVirizionCaught
+    Message CanalaveLibrary2F_Text_SovereignArchivistVirizion
+    GoTo CanalaveLibrary2F_SovereignArchivistEnd
+
+CanalaveLibrary2F_SovereignArchivistVirizionCaught:
+    Message CanalaveLibrary2F_Text_SovereignArchivistVirizionCaught
+CanalaveLibrary2F_SovereignArchivistEnd:
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
