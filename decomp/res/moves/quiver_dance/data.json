@@ -11,7 +11,7 @@
     "accuracy": 0,
     "pp": 20,
     "effect": {
-        "type": "BATTLE_EFFECT_SP_ATK_SP_DEF_UP",
+        "type": "BATTLE_EFFECT_SOVEREIGN_QUIVER_DANCE",
         "chance": 0
     },
     "range": "RANGE_USER",

@@ -114,6 +114,65 @@ MANUAL_DESCRIPTIONS = {
 # Implemented beyond Platinum's 123 (updated as abilities get battle code).
 # Newer abilities whose battle effect is built (item 11): ability number -> what the Battle effect column says.
 IMPLEMENTED = {
+    282: "partly: after using a Booster Energy, its highest stat ×1.3 (Speed ×1.5) (no Electric Terrain yet)",
+    275: "partly: Intimidate raises its Attack instead (immunity to Roar and Whirlwind not yet)",
+    181: "yes: contact moves ×1.3",
+    178: "yes: pulse moves ×1.5",
+    292: "yes: slicing moves ×1.5",
+    244: "yes: its sound moves ×1.3, sound damage taken halved",
+    262: "yes: Electric moves ×1.3",
+    263: "yes: Dragon moves ×1.5",
+    276: "yes: Rock moves ×1.5",
+    200: "yes: Steel moves ×1.5",
+    199: "partly: its Water moves ×2, Fire damage taken halved (burn immunity not yet)",
+    137: "yes: Attack ×1.5 while poisoned",
+    138: "yes: Sp. Atk ×1.5 while burned",
+    255: "partly: Attack ×1.5 (the move lock not yet)",
+    129: "yes: Attack and Sp. Atk halved at half HP or less",
+    148: "yes: moves ×1.3 when it moves last",
+    252: "yes: Steel moves of the holder and its ally ×1.5",
+    281: "yes: in harsh sunlight or after using a Booster Energy, its highest stat ×1.3 (Speed ×1.5)",
+    136: "yes: damage halved at full HP",
+    231: "yes: damage halved at full HP (not ignored by Mold Breaker)",
+    169: "yes: Defense doubled",
+    246: "yes: special damage halved",
+    272: "partly: Ghost damage halved (status immunity not yet)",
+    284: "yes: Sp. Atk of every other Pokémon ×0.75",
+    285: "yes: Defense of every other Pokémon ×0.75",
+    286: "yes: Attack of every other Pokémon ×0.75",
+    287: "yes: Sp. Def of every other Pokémon ×0.75",
+    186: "yes: Dark moves on the field ×1.33",
+    187: "yes: Fairy moves on the field ×1.33",
+    188: "yes: reverses the Auras (×0.75)",
+    232: "yes: super-effective damage ×0.75 (not ignored by Mold Breaker)",
+    233: "yes: super-effective moves ×1.25",
+    177: "yes: Flying moves +1 priority at full HP",
+    205: "yes: healing moves +3 priority",
+    214: "yes: foes' priority moves can't hit its side",
+    219: "yes: foes' priority moves can't hit its side",
+    296: "yes: foes' priority moves can't hit its side",
+    230: "yes: other Pokémon can't lower its stats (as Clear Body, not ignored by Mold Breaker)",
+    196: "yes: always a critical hit on a poisoned target",
+    147: "yes: status moves aimed at it are at most 50% accurate",
+    182: "yes: Normal moves become Fairy-type, ×1.2",
+    174: "yes: Normal moves become Ice-type, ×1.2",
+    184: "yes: Normal moves become Flying-type, ×1.2",
+    206: "yes: Normal moves become Electric-type, ×1.2",
+    309: "yes: Normal moves become Dragon-type, ×1.2",
+    204: "yes: sound moves become Water-type",
+    130: "yes: 30% chance to disable the move that hit it, for 4 turns",  # Cursed Body
+    141: "yes: each turn, one stat +2 and another −1 (no accuracy/evasion, as in Gen VIII+)",  # Moody
+    143: "yes: its contact moves have a 30% chance to poison",  # Poison Touch
+    127: "partly: foes can't eat Berries that heal, cure or trigger on a hit (damage-halving Berries not yet)",  # Unnerve
+    128: "yes: Attack +2 when a foe's move or Intimidate lowers its stats",  # Defiant
+    172: "yes: Sp. Atk +2 when a foe's move or Intimidate lowers its stats",  # Competitive
+    160: "yes: contact costs the attacker 1/8 of its max HP (as Rough Skin)",  # Iron Barbs
+    183: "yes: a contact move lowers the attacker's Speed 1 stage",  # Gooey
+    221: "yes: a contact move lowers the attacker's Speed 1 stage",  # Tangling Hair
+    153: "yes: Attack +1 for each foe its move knocks out",  # Moxie
+    224: "yes: its highest stat +1 for each foe its move knocks out",  # Beast Boost
+    264: "yes: Attack +1 for each foe its move knocks out",  # Chilling Neigh
+    265: "yes: Sp. Atk +1 for each foe its move knocks out",  # Grim Neigh
     125: "yes: moves with a chance effect ×1.3, without the effect (or Life Orb recoil)",  # Sheer Force
     126: "yes: stat rises and drops are reversed",  # Contrary
     132: "yes: the partner takes 25% less damage",  # Friend Guard
@@ -129,7 +188,7 @@ IMPLEMENTED = {
     145: "yes: Defense can't be lowered by others",  # Big Pecks
     146: "yes: Speed ×2 in a sandstorm; no sandstorm damage",  # Sand Rush
     154: "yes: Attack +1 when hit by a Dark move",  # Justified
-    155: "partly: Speed +1 when hit by a Bug, Ghost or Dark move (the Intimidate trigger not yet)",  # Rattled
+    155: "yes: Speed +1 when hit by a Bug, Ghost or Dark move, or when Intimidated",  # Rattled
     158: "yes: status moves +1 priority; they don't affect Dark-type foes",  # Prankster
     159: "yes: Rock/Ground/Steel moves ×1.3 in a sandstorm; no sandstorm damage",  # Sand Force
     173: "yes: biting moves ×1.5",  # Strong Jaw

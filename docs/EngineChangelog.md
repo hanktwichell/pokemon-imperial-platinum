@@ -26,6 +26,105 @@ Five of the 11 Totems now stand on the map (`docs/TotemTrials.md`, "On the map")
   - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
 - **Not done yet:** Alolan Raticate, Lurantis, Araquanid, Salazzle, Kommo-o and Togedemaru.
 
+## Item 11 (part 8) — Intimidate reactions and AI scores
+
+- Intimidate now triggers Defiant (Attack +2), Competitive (Sp. Atk +2) and Rattled (Speed +1), through a new switch-in
+  step (`SWITCH_IN_CHECK_STATE_SOVEREIGN_STAT_DROP_REACTION`) that shares `Sovereign_SetupStatDropReaction` with the
+  after-move Defiant step.
+- Guard Dog: Intimidate raises its Attack instead. Inner Focus, Oblivious, Own Tempo and Scrappy block Intimidate (Gen
+  VIII+), with Clear Body's "suppressed" message.
+- AI: Clanging Scales, Hyperspace Fury and Spin Out score like Close Combat, Make It Rain like Overheat, and Storm Throw,
+  Frost Breath, Wicked Blow and Flower Trick like high-critical moves.
+
+- **Booster Energy:** a Protosynthesis (outside sun) or Quark Drive Pokémon uses it on switch-in ("{0} used its
+  Booster Energy!", new battle string), and its highest stat stays boosted until it switches out.
+
+**Verified in the test build:** an Intimidate Garchomp left a Defiant Archaludon at Attack +1 (−1 then +2) and a Guard
+Dog Venusaur at Attack +1; a Protosynthesis Archaludon and a Quark Drive Venusaur both used up their Booster Energy
+at the start of the battle.
+
+## Item 11 (part 7) — 44 more abilities
+
+| Kind | Abilities |
+|---|---|
+| Attacker power | Tough Claws, Mega Launcher, Sharpness, Punk Rock, Transistor, Dragon's Maw, Rocky Payload, Steelworker, Water Bubble, Toxic Boost, Flare Boost, Gorilla Tactics (no move lock yet), Defeatist, Analytic, Steely Spirit, Neuroforce |
+| Move type | Pixilate, Refrigerate, Aerilate, Galvanize, Dragonize (Normal moves change type, ×1.2), Liquid Voice; Normalize and all of these go through one helper, `Sovereign_AbilityMoveType`, used by the type chart, absorbing abilities, Color Change and the AI |
+| Damage taken | Multiscale, Shadow Shield, Fur Coat, Ice Scales, Punk Rock, Purifying Salt, Water Bubble, Prism Armor |
+| Field | Sword/Tablets/Vessel/Beads of Ruin, Dark Aura, Fairy Aura, Aura Break, Protosynthesis (sun only; Booster Energy not yet) |
+| Priority | Gale Wings, Triage (through the new `Sovereign_MovePriority`, with Prankster); Queenly Majesty, Dazzling and Armor Tail block foes' priority moves |
+| Other | Full Metal Body (as Clear Body), Merciless (always crits a poisoned target), Wonder Skin |
+
+The sound-move list (Soundproof) gains the Gen V+ sound moves.
+
+**Verified in the test build:** Tough Claws Flame Charge dealt 407, the value for power 65 (313 without); Pixilate
+Extreme Speed into a Multiscale Venusaur dealt 16 pre-variance (power 80 × 1.2 ÷ 2; 13 without Pixilate) and was
+resisted (Fairy vs Poison).
+
+## Item 11 (part 6) — Gen IX move data and 74 more exact moves
+
+- **Fix: moves #827–919 had no flags.** PokeAPI has no flags for the Legends: Arceus and Scarlet/Violet moves, so
+  Protect didn't block them and none made contact (Rough Skin, Iron Barbs, Gooey...). `tools/engine/gen9_move_fixes.py`
+  now sets contact / Protect / Mirror Move / Magic Coat / Snatch for each, from a hand-written Gen IX table.
+- **Secondary effects for Gen VIII–IX moves**, which PokeAPI also lacks: Mountain Gale (flinch), Bitter Malice,
+  Chilling Water, Pounce, Springtide Storm, Lumina Crash (stat drops), Wave Crash (recoil), Headlong Rush and Armor
+  Cannon (as Close Combat), Bitter Blade (drain), Aqua Cutter (high crit), Twin Beam and Tachyon Cutter (two hits),
+  Ruination (halves HP), Comeuppance (as Metal Burst), Malignant Chain (bad poison), the four Torques, Raging Fury
+  (rampage), Torch Song and Mystical Power (Sp. Atk +1).
+- **New effects, damage then a stat change on the user:** Flame Charge, Trailblaze, Aqua Step, Esper Wing (Speed +1),
+  Diamond Storm (Defense +2, 50%), Clanging Scales and Hyperspace Fury (Defense −1), Make It Rain (Sp. Atk −1), Spin
+  Out (Speed −2).
+- **Engine rules:** Storm Throw, Frost Breath, Wicked Blow, Surging Strikes and Flower Trick always crit; Esper Wing
+  has a raised crit ratio; Sacred Sword, Chip Away and Darkest Lariat ignore the target's Defense and evasion stages;
+  Infernal Parade and Barb Barrage double like Hex and Venoshock; Fishious Rend and Bolt Beak double if the target
+  hasn't moved; Hard Press scales with the target's HP; Fickle Beam has a 30% chance of double power; Grav Apple is
+  1.5x under Gravity; Hydro Steam is boosted in sun; Bleakwind, Wildbolt and Sandsear Storm never miss in rain.
+- 27 moves were already Gen IX-accurate and only mislabelled in the checklist (Lunge, Nuzzle, Acid Spray, Power-Up
+  Punch, Jet Punch...). Move checklist: exact 193, approximate 45, placeholder 142.
+
+**Verified in the test build:** Spin Out left Garchomp at Speed −2; Flame Charge left Archaludon at Speed +1; Storm
+Throw dealt 111, the critical value (74 x 1.5).
+
+## Item 11 (part 5) — stat moves and battle-dependent power
+
+**10 stat-changing status moves** are exact, each with its own subscript written by `tools/engine/gen_stat_moves.py`:
+Hone Claws, Work Up, Coil, Quiver Dance, Shell Smash, Cotton Guard, Shift Gear, Victory Dance, Noble Roar, Tearful Look.
+
+**12 damaging moves** now follow Gen IX (`Sovereign_MovePower` and the stat swaps in `BattleSystem_CalcMoveDamage`):
+
+| Move | Effect |
+|---|---|
+| Hex, Venoshock | power doubles if the target has a status / is poisoned |
+| Acrobatics | power doubles if the user holds no item |
+| Electro Ball | 40–150 power from the Speed ratio |
+| Heavy Slam, Heat Crash | 40–120 power from the weight ratio (Heavy/Light Metal count) |
+| Stored Power, Power Trip | 20 + 20 per positive stat stage |
+| Psyshock, Psystrike, Secret Sword | special damage against the target's Defense |
+| Foul Play | uses the target's Attack and Attack stage |
+
+**Verified in the test build:**
+- Shell Smash: Defense and Sp. Def −1; Attack, Sp. Atk and Speed +2. Noble Roar: target Attack and Sp. Atk −1.
+- Archaludon's Heavy Slam on Garchomp dealt 59, the exact value for power 40 (weight ratio under 2).
+- Venusaur's Foul Play read Garchomp's Attack (148), not its own.
+
+## Item 11 (part 4) — 13 more abilities
+
+| Ability | Effect |
+|---|---|
+| Moxie, Chilling Neigh, Grim Neigh, Beast Boost | a stat +1 for each foe the holder's move knocks out (new after-hit step) |
+| Defiant, Competitive | Attack/Sp. Atk +2 after a foe's move lowers a stat (Intimidate not yet) |
+| Gooey, Tangling Hair | contact lowers the attacker's Speed |
+| Iron Barbs | as Rough Skin |
+| Unnerve | foes can't eat Berries (the damage-halving Berries not yet) |
+| Cursed Body | 30% chance to disable the move that hit it |
+| Poison Touch | 30% chance to poison on contact |
+| Moody | +2 to one stat and −1 to another each turn |
+
+**Verified in the test build:**
+- Moxie: Eruption knocking out both foes gives Attack +2.
+- Gooey: contact leaves the attacker at Speed −1.
+- Defiant and Competitive: after Snarl, Attack +2 and Sp. Atk +1 (−1 then +2).
+- Moody: Attack +2, Defense −1.
+
 ## FM — The first Totem trial on the map, and the crown pieces (decisions 18 and 23)
 
 Totem Gumshoos stands on Route 205 South, and every trial now leaves its crown piece. The other 10 Totems use the same

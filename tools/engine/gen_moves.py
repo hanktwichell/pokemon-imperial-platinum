@@ -17,6 +17,8 @@ move's behaviour is reproduced.
   slots (0 PP, no name) so the IDs keep matching the official numbers.
 
 Usage: python3 tools/engine/gen_moves.py /path/to/pokeapi/data/v2/csv
+
+Then run tools/engine/gen9_move_fixes.py: it restores the hand-written Gen IX flags and effects that PokeAPI lacks.
 Then run tools/engine/apply_champions_moves.py, which applies Pokémon Champions' changes on top (and turns Snowscape
 into the Snow effect; its checklist row is edited by hand to match).
 """
@@ -82,6 +84,28 @@ E = lambda name: "BATTLE_EFFECT_" + name
 # Battle effects Sovereign adds for a move's exact Gen IX behaviour (item 11), after Platinum's 277: identifier ->
 # (effect, chance, note). These win over the PokeAPI mapping below.
 SOVEREIGN_EFFECTS = {
+    "hex": ("HIT", 0, "Sovereign effect: target has a status condition: power doubles"),
+    "venoshock": ("HIT", 0, "Sovereign effect: target is poisoned: power doubles"),
+    "acrobatics": ("HIT", 0, "Sovereign effect: user holds no item: power doubles"),
+    "electro-ball": ("HIT", 0, "Sovereign effect: power from the user/target Speed ratio (40-150)"),
+    "heavy-slam": ("HIT", 0, "Sovereign effect: power from the user/target weight ratio (40-120)"),
+    "heat-crash": ("HIT", 0, "Sovereign effect: power from the user/target weight ratio (40-120)"),
+    "stored-power": ("HIT", 0, "Sovereign effect: power 20 + 20 per positive stat stage on the user"),
+    "power-trip": ("HIT", 0, "Sovereign effect: power 20 + 20 per positive stat stage on the user"),
+    "psyshock": ("HIT", 0, "Sovereign effect: special damage against the target's Defense"),
+    "psystrike": ("HIT", 0, "Sovereign effect: special damage against the target's Defense"),
+    "secret-sword": ("HIT", 0, "Sovereign effect: special damage against the target's Defense"),
+    "foul-play": ("HIT", 0, "Sovereign effect: damage uses the target's Attack and Attack stage"),
+    "tearful-look": ("SOVEREIGN_TEARFUL_LOOK", 0, "Sovereign effect: target Attack -1, target Sp. Atk -1"),
+    "noble-roar": ("SOVEREIGN_NOBLE_ROAR", 0, "Sovereign effect: target Attack -1, target Sp. Atk -1"),
+    "victory-dance": ("SOVEREIGN_VICTORY_DANCE", 0, "Sovereign effect: user Attack +1, user Defense +1, user Speed +1"),
+    "shift-gear": ("SOVEREIGN_SHIFT_GEAR", 0, "Sovereign effect: user Attack +1, user Speed +2"),
+    "cotton-guard": ("SOVEREIGN_COTTON_GUARD", 0, "Sovereign effect: user Defense +3"),
+    "shell-smash": ("SOVEREIGN_SHELL_SMASH", 0, "Sovereign effect: user Defense -1, user Sp. Def -1, user Attack +2, user Sp. Atk +2, user Speed +2"),
+    "quiver-dance": ("SOVEREIGN_QUIVER_DANCE", 0, "Sovereign effect: user Sp. Atk +1, user Sp. Def +1, user Speed +1"),
+    "coil": ("SOVEREIGN_COIL", 0, "Sovereign effect: user Attack +1, user Defense +1, user accuracy +1"),
+    "work-up": ("SOVEREIGN_WORK_UP", 0, "Sovereign effect: user Attack +1, user Sp. Atk +1"),
+    "hone-claws": ("SOVEREIGN_HONE_CLAWS", 0, "Sovereign effect: user Attack +1, user accuracy +1"),
     "electro-shot": ("ELECTRO_SHOT", 100, "Sovereign effect: charge turn raises Sp. Atk; no charge turn in rain"),
     "body-press": ("BODY_PRESS", 0, "Sovereign effect: damage uses the user's Defense and Defense stage"),
     "hurricane": ("HURRICANE", 30, "Sovereign effect: Thunder's weather accuracy and hits Pokémon in the air, 30% confusion"),

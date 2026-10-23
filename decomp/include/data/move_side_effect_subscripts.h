@@ -149,5 +149,15 @@ static const int sSideEffectSubscripts[] = {
     [MOVE_SUBSCRIPT_PTR_CHATTER]                          = subscript_chatter,
     [MOVE_SUBSCRIPT_PTR_LUNAR_DANCE]                      = subscript_lunar_dance,
     [MOVE_SUBSCRIPT_PTR_GIVE_TARGET_OWN_STATUS]           = subscript_give_target_own_status,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_HONE_CLAWS] = subscript_sovereign_stats_hone_claws,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_WORK_UP] = subscript_sovereign_stats_work_up,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_COIL] = subscript_sovereign_stats_coil,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_QUIVER_DANCE] = subscript_sovereign_stats_quiver_dance,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_SHELL_SMASH] = subscript_sovereign_stats_shell_smash,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_COTTON_GUARD] = subscript_sovereign_stats_cotton_guard,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_SHIFT_GEAR] = subscript_sovereign_stats_shift_gear,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_VICTORY_DANCE] = subscript_sovereign_stats_victory_dance,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_NOBLE_ROAR] = subscript_sovereign_stats_noble_roar,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_TEARFUL_LOOK] = subscript_sovereign_stats_tearful_look,
 };
 // clang-format on

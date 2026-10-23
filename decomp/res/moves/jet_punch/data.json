@@ -18,6 +18,9 @@
     "range": "RANGE_SINGLE_TARGET",
     "priority": 1,
     "flags": [
+        "MOVE_FLAG_MAKES_CONTACT",
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
         "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
         "MOVE_FLAG_HIDES_SHADOWS"
     ],
