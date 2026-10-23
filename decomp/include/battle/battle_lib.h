@@ -551,6 +551,18 @@ BOOL Move_SheerForceApplies(BattleContext *battleCtx, int attacker, int move);
 // Sovereign (item 11): whether the move is a ball or bomb move (blocked by Bulletproof).
 BOOL Move_IsBallOrBomb(int move);
 
+// Sovereign (item 11): whether a standing foe with Unnerve stops this battler from eating its Berry.
+BOOL Battler_UnnerveBlocksBerry(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
+
+// Sovereign (item 11): the power of Gen V+ moves whose power depends on the battle (Hex, Electro Ball, Heavy Slam...).
+int Sovereign_MovePriority(BattleContext *battleCtx, int battler, int move);
+int Sovereign_AbilityMoveType(int ability, int move, int type);
+BOOL Sovereign_SetupStatDropReaction(BattleContext *battleCtx, int battler);
+BOOL Move_IsSound(int move);
+int Sovereign_ProtosynthesisStat(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
+int Move_SovereignCritStage(int move);
+int Sovereign_MovePower(BattleSystem *battleSys, BattleContext *battleCtx, int move, int attacker, int defender, int power);
+
 /**
  * @brief Access a particular entry in the type-matchup table.
  *

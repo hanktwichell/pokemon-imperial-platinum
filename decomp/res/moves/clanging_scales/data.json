@@ -13,8 +13,8 @@
     "accuracy": 100,
     "pp": 5,
     "effect": {
-        "type": "BATTLE_EFFECT_LOWER_OWN_ATK_AND_DEF",
-        "chance": 0
+        "type": "BATTLE_EFFECT_SOVEREIGN_LOWER_OWN_DEF_HIT",
+        "chance": 100
     },
     "range": "RANGE_ADJACENT_OPPONENTS",
     "priority": 0,

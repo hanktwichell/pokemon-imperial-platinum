@@ -13,7 +13,7 @@
     "accuracy": 0,
     "pp": 20,
     "effect": {
-        "type": "BATTLE_EFFECT_ATK_DEF_UP",
+        "type": "BATTLE_EFFECT_SOVEREIGN_COIL",
         "chance": 0
     },
     "range": "RANGE_USER",

@@ -12,8 +12,8 @@
     "accuracy": 95,
     "pp": 5,
     "effect": {
-        "type": "BATTLE_EFFECT_HIT",
-        "chance": 0
+        "type": "BATTLE_EFFECT_SOVEREIGN_RAISE_DEF_2_HIT",
+        "chance": 50
     },
     "range": "RANGE_ADJACENT_OPPONENTS",
     "priority": 0,

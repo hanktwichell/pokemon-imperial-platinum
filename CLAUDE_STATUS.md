@@ -1877,3 +1877,118 @@ and trial battle) is merged.
 2. **The other 10 Totems on the map.** For each, an object on ground the player can reach at that point in the story,
    an OnLoad that removes it, and the two-line script. Then the Galactic gates (`Story.md`).
 3. **1 vs 2 Totem trials** for a player with one able Pokémon. Then the battle forms with item 11's abilities.
+
+## CA-0027 — 2026-10-23 (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:**
+- PR #30 merged (item 11 parts 2–3).
+- Item 11 part 4, 13 more abilities:
+  - Moxie, Chilling Neigh, Grim Neigh, Beast Boost;
+  - Defiant, Competitive;
+  - Gooey, Tangling Hair, Iron Barbs;
+  - Unnerve, Cursed Body, Poison Touch, Moody.
+- Verified in game: Moxie, Gooey, Defiant/Competitive, Moody (details in the changelog).
+- The owner asked me to keep coding until told otherwise.
+
+**Files modified:**
+- `decomp/src/battle/{battle_lib.c,battle_script.c,battle_controller_player.c}`.
+- `decomp/include/battle/{battle_lib.h,battle_context.h}`.
+- `decomp/res/battle/scripts/subscripts/subscript_sovereign_{gooey,cursed_body,moody}.s` (new), plus the subscripts'
+  `meson.build` and `sub_seq.order`.
+- `decomp/generated/battle_subscripts.txt`.
+- `tools/engine/gen_abilities.py`.
+- `docs/AbilityChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. PR and merge this.
+2. Common Gen V+ move effects. They're placeholders now; start with the moves the most species learn.
+3. More abilities: Analytic, Protosynthesis/Quark Drive, Healer, Harvest, Cheek Pouch, Magic Bounce, Protean/Libero,
+   Intimidate triggers (Defiant, Rattled).
+
+## CA-0028 — 2026-10-23 (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented (item 11 part 5):**
+- 10 stat-changing status moves exact, through the new generator `tools/engine/gen_stat_moves.py` (Hone Claws, Work Up,
+  Coil, Quiver Dance, Shell Smash, Cotton Guard, Shift Gear, Victory Dance, Noble Roar, Tearful Look).
+- 12 damaging moves exact: Hex, Venoshock, Acrobatics, Electro Ball, Heavy Slam, Heat Crash, Stored Power, Power Trip
+  (`Sovereign_MovePower`), Psyshock, Psystrike, Secret Sword (hit Defense), Foul Play (target's Attack).
+- Verified in game: Shell Smash, Noble Roar, Heavy Slam (59 = exact), Foul Play (uses target Attack 148).
+- Move checklist: exact 119, approximate 67, placeholder 194.
+- PR #32 (part 4) had a conflict with main; main merged into the branch, and PR #32 now carries parts 4 and 5.
+
+**Files modified:** `decomp/src/battle/battle_lib.c`, `decomp/include/battle/battle_lib.h`,
+`tools/engine/gen_stat_moves.py` (new), `tools/engine/gen_moves.py`, `docs/MoveChecklist.md`,
+`docs/EngineChangelog.md`, battle subscripts/effects and their `meson.build`/`sub_seq.order`/`generated/*` lists, the
+10 moves' `data.json`, `include/data/move_side_effect_subscripts.h`.
+
+**Next 3 steps:**
+1. More item 11 moves: Smack Down, Incinerate, Clear Smog, Dragon Tail, Flame Charge, Retaliate, Fell Stinger, Final
+   Gambit, Acid Spray, Soak, Wide/Quick Guard.
+2. More abilities: Analytic, Protosynthesis/Quark Drive, Magic Bounce, Protean/Libero, Overcoat powder immunity,
+   Intimidate triggering Defiant/Competitive/Rattled.
+3. Oak/Rowan National Dex scene once the owner answers the three questions in `docs/Story.md`.
+
+## CA-0029 — 2026-10-23 (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented (item 11 part 6):**
+- Bug fix: moves #827–919 had no flags (no Protect, no contact) because PokeAPI has none for them. New tool
+  `tools/engine/gen9_move_fixes.py` holds a hand-written Gen IX flag table and patches them; run it after
+  `gen_moves.py`.
+- Same tool: secondary effects for Gen VIII–IX moves, 5 new "damage then user stat change" effects (indices 290–294),
+  and 27 checklist relabels of moves that were already Gen IX-accurate.
+- Engine: always-crit moves, Esper Wing crit ratio, stat-ignoring Sacred Sword/Chip Away/Darkest Lariat, power rules for
+  Infernal Parade, Barb Barrage, Fishious Rend, Bolt Beak, Hard Press, Fickle Beam, Grav Apple, Hydro Steam in sun, and
+  the three storms never miss in rain.
+- Verified: Spin Out (Speed −2), Flame Charge (Speed +1), Storm Throw (always crits, 111 = 74 × 1.5).
+- Move checklist: exact 193, approximate 45, placeholder 142.
+- Test note: the bedroom save state must be remade with `tools/test/new_game.sh` after main's map changes.
+
+**Files modified:** `tools/engine/gen9_move_fixes.py` (new), `tools/engine/gen_moves.py`,
+`decomp/src/battle/battle_lib.c`, `decomp/src/battle/battle_script.c`, `decomp/src/battle/battle_controller_player.c`,
+`decomp/include/battle/battle_lib.h`, `decomp/generated/move_battle_effects.txt`,
+`decomp/res/battle/scripts/effects/meson.build` and `effect_script_0290.s`–`0294.s`, 97 moves' `data.json`,
+`docs/MoveChecklist.md`, `docs/EngineChangelog.md`.
+
+**Next 3 steps:**
+1. Remaining Gen V moves: Smack Down, Incinerate, Clear Smog, Dragon Tail/Circle Throw, Retaliate, Fell Stinger,
+   Final Gambit, Round, Echoed Voice, Belch, Flame Burst, Synchronoise.
+2. AI scoring for the new effects (290–294) and for always-crit moves (they lost the `HIGH_CRITICAL` score).
+3. More abilities: Analytic, Protosynthesis/Quark Drive, Magic Bounce, Protean/Libero, Overcoat, Intimidate triggers.
+
+## CA-0030 — 2026-10-23 (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented (item 11 part 7):** 44 abilities (damage modifiers, -ate type changes, Ruin abilities, Auras,
+Protosynthesis in sun, Gale Wings, Triage, Queenly Majesty/Dazzling/Armor Tail, Full Metal Body, Merciless, Wonder
+Skin). New helpers `Sovereign_AbilityMoveType` (replaces the nine Normalize checks) and `Sovereign_MovePriority`.
+Verified Tough Claws, Pixilate (type and ×1.2) and Multiscale in game. Ability checklist: 83 newer abilities implemented.
+
+**Files modified:** `decomp/src/battle/battle_lib.c`, `battle_script.c`, `battle_controller_player.c`,
+`trainer_ai/trainer_ai.c`, `decomp/include/battle/battle_lib.h`, `tools/engine/gen_abilities.py`,
+`docs/AbilityChecklist.md`, `docs/EngineChangelog.md`.
+
+**Next 3 steps:**
+1. Booster Energy (Protosynthesis/Quark Drive), Intimidate triggers (Defiant, Competitive, Rattled, Guard Dog), Mirror
+   Armor, Long Reach, Stakeout.
+2. AI scoring for the new move effects (290–294) and always-crit moves.
+3. Remaining Gen V moves (Smack Down, Incinerate, Clear Smog, Dragon Tail, Retaliate, Fell Stinger, Final Gambit).
+
+Test note: the bedroom save state holds main ARM9 code, so remake it with `tools/test/new_game.sh` whenever non-battle
+code (e.g. `script_manager.c`) changes; set test abilities with a `u16` value.
+
+## CA-0031 — 2026-10-23 (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented (item 11 part 8):** Intimidate triggers Defiant/Competitive/Rattled (new switch-in step), Guard Dog, the
+Gen VIII+ Intimidate blockers (Inner Focus, Oblivious, Own Tempo, Scrappy); AI scores for the new self-lowering
+effects and always-crit moves. Verified Defiant and Guard Dog against Intimidate in game.
+
+**Files modified:** `decomp/src/battle/battle_script.c`, `battle_lib.c`, `battle_controller_player.c`,
+`trainer_ai/script.s`, `decomp/include/battle/battle_lib.h`, `tools/engine/gen_abilities.py`,
+`docs/AbilityChecklist.md`, `docs/EngineChangelog.md`.
+
+**Next 3 steps:**
+1. Merge PR #32 once CI is green (keep main's subscripts first in the three lists on any conflict).
+2. Booster Energy (Protosynthesis/Quark Drive), Mirror Armor, Long Reach, Stakeout, Supreme Overlord.
+3. Remaining Gen V moves (Smack Down, Incinerate, Clear Smog, Dragon Tail, Retaliate, Fell Stinger, Final Gambit).
+
+Test note: the hook script only captures the battle context on a damage calculation, so give one battler a damaging
+move; single-target moves in doubles need extra A presses (`/tmp/claude-0/hur/bp2.py`).

@@ -2949,13 +2949,8 @@ static BOOL BattleControllerPlayer_LoadQuickClawCheck(BattleSystem *battleSys, B
 
 static inline int CalcMoveType(BattleContext *battleCtx, int attacker, int move)
 {
-    if (Battler_Ability(battleCtx, attacker) == ABILITY_NORMALIZE) {
-        return TYPE_NORMAL;
-    } else if (battleCtx->moveType) {
-        return battleCtx->moveType;
-    }
-
-    return MOVE_DATA(move).type;
+    // Sovereign (item 11): Normalize, the -ate abilities and Liquid Voice.
+    return Sovereign_AbilityMoveType(Battler_Ability(battleCtx, attacker), move, battleCtx->moveType ? battleCtx->moveType : MOVE_DATA(move).type);
 }
 
 /**
@@ -3003,6 +2998,10 @@ static int BattleControllerPlayer_CheckMoveHitAccuracy(BattleSystem *battleSys, 
     if (MON_IS_IDENTIFIED(defender) && evaStages < 0) {
         evaStages = 0;
     }
+    // Sovereign (item 11): Sacred Sword, Chip Away and Darkest Lariat ignore the target's evasion stage.
+    if (move == MOVE_SACRED_SWORD || move == MOVE_CHIP_AWAY || move == MOVE_DARKEST_LARIAT) {
+        evaStages = 0;
+    }
 
     s8 sumStages = 6 + evaStages + accStages;
     if (sumStages < 0) {
@@ -3025,6 +3024,12 @@ static int BattleControllerPlayer_CheckMoveHitAccuracy(BattleSystem *battleSys, 
     // These moves shouldn't use this formula
     if (battleCtx->battleStatusMask & SYSCTL_NONSTANDARD_ACC_CHECK) {
         return 0;
+    }
+
+    // Sovereign (item 11): Wonder Skin makes status moves aimed at the holder at most 50% accurate.
+    if (moveClass == CLASS_STATUS && hitRate > 50 && attacker != defender
+        && Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_WONDER_SKIN) == TRUE) {
+        hitRate = 50;
     }
 
     // Sovereign (item 11): Hurricane shares Thunder's weather accuracy.
@@ -3139,8 +3144,10 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
     }
 
     if (NO_CLOUD_NINE) {
+        // Sovereign (item 11): the Forces of Nature's storms never miss in rain either.
         if (WEATHER_IS_RAIN
-            && (MOVE_DATA(move).effect == BATTLE_EFFECT_THUNDER || MOVE_DATA(move).effect == BATTLE_EFFECT_HURRICANE)) {
+            && (MOVE_DATA(move).effect == BATTLE_EFFECT_THUNDER || MOVE_DATA(move).effect == BATTLE_EFFECT_HURRICANE
+                || move == MOVE_BLEAKWIND_STORM || move == MOVE_WILDBOLT_STORM || move == MOVE_SANDSEAR_STORM)) {
             battleCtx->moveStatusFlags &= ~MOVE_STATUS_MISSED;
         }
 
@@ -3170,6 +3177,23 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
         && Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_BULLETPROOF) == TRUE
         && Move_IsBallOrBomb(move)) {
         battleCtx->moveStatusFlags |= MOVE_STATUS_INEFFECTIVE;
+    }
+
+    // Sovereign (item 11): Queenly Majesty, Dazzling and Armor Tail block foes' priority moves aimed at their side.
+    if (attacker != defender
+        && BattleSystem_GetBattlerSide(battleSys, attacker) != BattleSystem_GetBattlerSide(battleSys, defender)
+        && Sovereign_MovePriority(battleCtx, attacker, move) > 0) {
+        int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
+        for (int i = 0; i < maxBattlers; i++) {
+            if (BattleSystem_GetBattlerSide(battleSys, i) == BattleSystem_GetBattlerSide(battleSys, defender)
+                && battleCtx->battleMons[i].curHP
+                && (Battler_IgnorableAbility(battleCtx, attacker, i, ABILITY_QUEENLY_MAJESTY) == TRUE
+                    || Battler_IgnorableAbility(battleCtx, attacker, i, ABILITY_DAZZLING) == TRUE
+                    || Battler_IgnorableAbility(battleCtx, attacker, i, ABILITY_ARMOR_TAIL) == TRUE)) {
+                battleCtx->moveStatusFlags |= MOVE_STATUS_INEFFECTIVE;
+                break;
+            }
+        }
     }
 
     // Sovereign (item 11): since Gen VII, a status move boosted by Prankster doesn't affect a Dark-type foe it targets.
@@ -3756,13 +3780,8 @@ static void BattleControllerPlayer_LeftoverState29(BattleSystem *battleSys, Batt
 
 static inline int CalcCurrentMoveType(BattleContext *battleCtx)
 {
-    if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_NORMALIZE) {
-        return TYPE_NORMAL;
-    } else if (battleCtx->moveType) {
-        return battleCtx->moveType;
-    }
-
-    return CURRENT_MOVE_DATA.type;
+    // Sovereign (item 11): Normalize, the -ate abilities and Liquid Voice.
+    return Sovereign_AbilityMoveType(Battler_Ability(battleCtx, battleCtx->attacker), battleCtx->moveCur, battleCtx->moveType ? battleCtx->moveType : CURRENT_MOVE_DATA.type);
 }
 
 enum AfterMoveEffectState {
@@ -4854,6 +4873,8 @@ enum AfterMoveHitState {
     AFTER_MOVE_HIT_STATE_RAGE = AFTER_MOVE_HIT_START,
     AFTER_MOVE_HIT_STATE_SHELL_BELL,
     AFTER_MOVE_HIT_STATE_LIFE_ORB,
+    AFTER_MOVE_HIT_STATE_KNOCKOUT_ABILITY, // Sovereign (item 11)
+    AFTER_MOVE_HIT_STATE_DEFIANT, // Sovereign (item 11)
 
     AFTER_MOVE_HIT_STATE_END
 };
@@ -4933,6 +4954,90 @@ static BOOL BattleControllerPlayer_TriggerAfterMoveHitEffects(BattleSystem *batt
 
             battleCtx->afterMoveHitCheckState++;
             break;
+
+        case AFTER_MOVE_HIT_STATE_KNOCKOUT_ABILITY: {
+            // Sovereign (item 11): Moxie, Chilling Neigh, Grim Neigh and Beast Boost raise a stat for each foe the move
+            // knocked out. afterMoveHitCheckTemp marks the foes already counted.
+            int ability = Battler_Ability(battleCtx, battleCtx->attacker);
+            int foe, stat = -1;
+
+            if ((ability == ABILITY_MOXIE || ability == ABILITY_CHILLING_NEIGH || ability == ABILITY_GRIM_NEIGH || ability == ABILITY_BEAST_BOOST)
+                && ATTACKING_MON.curHP) {
+                for (foe = 0; foe < maxBattlers; foe++) {
+                    if ((battleCtx->afterMoveHitCheckTemp & FlagIndex(foe)) == FALSE
+                        && BattleSystem_GetBattlerSide(battleSys, foe) != BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker)
+                        && battleCtx->battleMons[foe].curHP == 0
+                        && ((battleCtx->selfTurnFlags[foe].physicalDamageTaken && battleCtx->selfTurnFlags[foe].physicalDamageLastAttacker == battleCtx->attacker)
+                            || (battleCtx->selfTurnFlags[foe].specialDamageTaken && battleCtx->selfTurnFlags[foe].specialDamageLastAttacker == battleCtx->attacker))) {
+                        battleCtx->afterMoveHitCheckTemp |= FlagIndex(foe);
+                        break;
+                    }
+                }
+
+                if (foe < maxBattlers) {
+                    if (ability == ABILITY_MOXIE || ability == ABILITY_CHILLING_NEIGH) {
+                        stat = BATTLE_STAT_ATTACK;
+                    } else if (ability == ABILITY_GRIM_NEIGH) {
+                        stat = BATTLE_STAT_SP_ATTACK;
+                    } else {
+                        // Beast Boost: the highest of Attack, Defense, Sp. Atk, Sp. Def and Speed (ties go to the first).
+                        u16 stats[5] = { ATTACKING_MON.attack, ATTACKING_MON.defense, ATTACKING_MON.spAttack, ATTACKING_MON.spDefense, ATTACKING_MON.speed };
+                        u8 statIDs[5] = { BATTLE_STAT_ATTACK, BATTLE_STAT_DEFENSE, BATTLE_STAT_SP_ATTACK, BATTLE_STAT_SP_DEFENSE, BATTLE_STAT_SPEED };
+                        int best = 0;
+                        for (int i = 1; i < 5; i++) {
+                            if (stats[i] > stats[best]) {
+                                best = i;
+                            }
+                        }
+                        stat = statIDs[best];
+                    }
+
+                    if (ATTACKING_MON.statBoosts[stat] < 12) { // MAX_STAT_STAGE
+                        battleCtx->sideEffectParam = MOVE_SUBSCRIPT_PTR_ATTACK_UP_1_STAGE + (stat - BATTLE_STAT_ATTACK);
+                        battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
+                        battleCtx->sideEffectMon = battleCtx->attacker;
+
+                        LOAD_SUBSEQ(subscript_update_stat_stage);
+                        battleCtx->commandNext = battleCtx->command;
+                        battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+                        machineState = STATE_BREAK_OUT;
+                    }
+                    break; // stay in this state to look for another knocked-out foe
+                }
+            }
+
+            battleCtx->afterMoveHitCheckState++;
+            break;
+        }
+
+        case AFTER_MOVE_HIT_STATE_DEFIANT: {
+            // Sovereign (item 11): Defiant (Attack +2) and Competitive (Sp. Atk +2) after a foe's move lowered a stat, and
+            // Defiant, Competitive or Rattled after an Intimidate mid-turn.
+            int battler;
+
+            for (battler = 0; battler < maxBattlers; battler++) {
+                if (battleCtx->sovereignDefiantPending & FlagIndex(battler)) {
+                    break;
+                }
+            }
+
+            if (battler < maxBattlers) {
+                battleCtx->sovereignDefiantPending &= ~FlagIndex(battler);
+
+                if (Sovereign_SetupStatDropReaction(battleCtx, battler)) {
+                    LOAD_SUBSEQ(subscript_update_stat_stage);
+                    battleCtx->commandNext = battleCtx->command;
+                    battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+                    machineState = STATE_BREAK_OUT;
+                }
+                break; // stay in this state for any other pending battler
+            }
+
+            battleCtx->afterMoveHitCheckState++;
+            break;
+        }
 
         case AFTER_MOVE_HIT_STATE_END:
             battleCtx->afterMoveHitCheckState = 0;

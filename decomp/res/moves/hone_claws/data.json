@@ -12,7 +12,7 @@
     "accuracy": 0,
     "pp": 15,
     "effect": {
-        "type": "BATTLE_EFFECT_ATK_UP_2",
+        "type": "BATTLE_EFFECT_SOVEREIGN_HONE_CLAWS",
         "chance": 0
     },
     "range": "RANGE_USER",

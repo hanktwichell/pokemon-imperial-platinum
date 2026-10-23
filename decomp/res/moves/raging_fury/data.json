@@ -13,12 +13,14 @@
     "accuracy": 100,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_HIT",
+        "type": "BATTLE_EFFECT_CONTINUE_AND_CONFUSE_SELF",
         "chance": 0
     },
     "range": "RANGE_RANDOM_OPPONENT",
     "priority": 0,
     "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
         "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
     ],
     "contest": {

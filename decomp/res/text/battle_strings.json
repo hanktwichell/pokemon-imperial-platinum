@@ -8663,6 +8663,27 @@
         "There’s no running from\n",
         "a Totem!\r"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignUsedItsItem_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used\n",
+        "its {STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignUsedItsItem_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} used\n",
+        "its {STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignUsedItsItem_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} used\n",
+        "its {STRVAR_1 8, 1, 0}!"
+      ]
     }
   ]
 }

@@ -12,12 +12,14 @@
     "accuracy": 85,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_HIT",
-        "chance": 0
+        "type": "BATTLE_EFFECT_FLINCH_HIT",
+        "chance": 30
     },
     "range": "RANGE_SINGLE_TARGET",
     "priority": 0,
     "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
         "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
     ],
     "contest": {

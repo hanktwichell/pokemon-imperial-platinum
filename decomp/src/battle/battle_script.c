@@ -1327,13 +1327,7 @@ static BOOL BtlCmd_Wait(BattleSystem *battleSys, BattleContext *battleCtx)
 static void BattleScript_CalcMoveDamage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int moveType;
-    if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_NORMALIZE) {
-        moveType = TYPE_NORMAL;
-    } else if (battleCtx->moveType) {
-        moveType = battleCtx->moveType;
-    } else {
-        moveType = CURRENT_MOVE_DATA.type;
-    }
+    moveType = Sovereign_AbilityMoveType(Battler_Ability(battleCtx, battleCtx->attacker), battleCtx->moveCur, battleCtx->moveType ? battleCtx->moveType : CURRENT_MOVE_DATA.type); // Sovereign (item 11)
 
     battleCtx->damage = BattleSystem_CalcMoveDamage(battleSys,
         battleCtx,
@@ -2163,7 +2157,9 @@ static BOOL BtlCmd_CalcCrit(BattleSystem *battleSys, BattleContext *battleCtx)
             battleCtx,
             battleCtx->attacker,
             battleCtx->defender,
-            battleCtx->criticalBoosts,
+            battleCtx->criticalBoosts + Move_SovereignCritStage(battleCtx->moveCur)
+                + 3 * (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_MERCILESS
+                    && (battleCtx->battleMons[battleCtx->defender].status & MON_CONDITION_ANY_POISON)), // Sovereign (item 11)
             BattleContext_Get(battleSys, battleCtx, BATTLECTX_SIDE_CONDITIONS_MASK, battleCtx->defender));
     }
 
@@ -2815,6 +2811,16 @@ static inline void SetupNicknameAbilityNicknameAbilityMsg(BattleContext *battleC
  * @param battleCtx
  * @return FALSE
  */
+// Sovereign (item 11): TRUE while Intimidate is lowering a foe's Attack (subscript_intimidate sets the attacker to the
+// Intimidate holder).
+static BOOL Sovereign_IsIntimidateDrop(BattleContext *battleCtx)
+{
+    return battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY
+        && battleCtx->sideEffectParam == MOVE_SUBSCRIPT_PTR_ATTACK_DOWN_1_STAGE
+        && battleCtx->attacker != battleCtx->sideEffectMon
+        && Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_INTIMIDATE;
+}
+
 static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int jumpNoChange;
@@ -2856,6 +2862,12 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
     if (Battler_Ability(battleCtx, battleCtx->sideEffectMon) == ABILITY_CONTRARY) {
         stageChange = -stageChange;
         battleCtx->scriptTemp = stageChange > 0 ? BATTLE_ANIMATION_STAT_BOOST : BATTLE_ANIMATION_STAT_DROP;
+    }
+
+    // Sovereign (item 11): Guard Dog turns Intimidate's Attack drop into a rise.
+    if (Sovereign_IsIntimidateDrop(battleCtx) && Battler_Ability(battleCtx, battleCtx->sideEffectMon) == ABILITY_GUARD_DOG) {
+        stageChange = 1;
+        battleCtx->scriptTemp = BATTLE_ANIMATION_STAT_BOOST;
     }
 
     if (stageChange > 0) {
@@ -2901,7 +2913,13 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
 
                     result = 1;
                 } else if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, ABILITY_CLEAR_BODY) == TRUE
-                    || Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, ABILITY_WHITE_SMOKE) == TRUE) {
+                    || Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, ABILITY_WHITE_SMOKE) == TRUE
+                    || Battler_Ability(battleCtx, battleCtx->sideEffectMon) == ABILITY_FULL_METAL_BODY // Sovereign (item 11)
+                    || (Sovereign_IsIntimidateDrop(battleCtx) // Sovereign (item 11): Gen VIII+ Intimidate blockers
+                        && (Battler_Ability(battleCtx, battleCtx->sideEffectMon) == ABILITY_INNER_FOCUS
+                            || Battler_Ability(battleCtx, battleCtx->sideEffectMon) == ABILITY_OBLIVIOUS
+                            || Battler_Ability(battleCtx, battleCtx->sideEffectMon) == ABILITY_OWN_TEMPO
+                            || Battler_Ability(battleCtx, battleCtx->sideEffectMon) == ABILITY_SCRAPPY))) {
                     if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY) {
                         SetupNicknameAbilityNicknameAbilityMsg(battleCtx, BattleStrings_Text_PokemonsAbilitySuppressedPokemonsAbility_AllyAlly); // "{0}'s {1} suppressed {2}'s {3}!"
                     } else {
@@ -2991,6 +3009,16 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
 
         if (mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] < MIN_STAT_STAGE) {
             mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] = MIN_STAT_STAGE;
+        }
+
+        // Sovereign (item 11): a foe's move or Intimidate lowered a stat: Defiant and Competitive respond after the
+        // move (or the switch-in), and Rattled to Intimidate.
+        if ((battleCtx->sideEffectType != SIDE_EFFECT_TYPE_ABILITY || Sovereign_IsIntimidateDrop(battleCtx))
+            && BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker) != BattleSystem_GetBattlerSide(battleSys, battleCtx->sideEffectMon)
+            && (Battler_Ability(battleCtx, battleCtx->sideEffectMon) == ABILITY_DEFIANT
+                || Battler_Ability(battleCtx, battleCtx->sideEffectMon) == ABILITY_COMPETITIVE
+                || (Battler_Ability(battleCtx, battleCtx->sideEffectMon) == ABILITY_RATTLED && Sovereign_IsIntimidateDrop(battleCtx)))) {
+            battleCtx->sovereignDefiantPending |= FlagIndex(battleCtx->sideEffectMon);
         }
     }
 
