@@ -2738,3 +2738,50 @@ CB-0038) is merged, after two merges of main (CA-0034 to CA-0039) that kept both
    or ask the owner about map work. Then the Kalos Chronicle can open.
 3. **The Archivist's talk is long:** on a fresh post-game save it runs about 45 pages (swords, stones, dragons, Forces
    of Nature, Meloetta, Genesect). Consider one chapter part per talk, or a short "who's left" list.
+
+## CB-0040 — 2026-10-23, 9:13 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** a menu for the Legend Archivist (`scripts_canalave_library_2f.s`). PR #53 (Forces of Nature,
+CB-0039) needed another merge of main (CA-0040 to CA-0042, both sides kept).
+- His talk had grown to about 45 pages on a fresh post-game save. After the first talk, he now asks which legend to
+  read from:
+  - Swords of Justice
+  - Truth and Ideals
+  - Forces of Nature
+  - Other legends
+  - That's all
+- Each topic gives only its part: hints for what isn't caught, and its key items or the roamer release.
+- The menu comes back after each topic ("Anything else from the Chronicle?"). A finished topic says so.
+- **Verified** (test build: game completed, Chronicle open): each topic, the menu coming back, the stones given once
+  only, and "That's all". The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+- **Looked into, not built:** I checked the 53 `MAP_HEADER_UNKNOWN_*` headers (15 distinct maps) as possible "new
+  rooms". They are voids, test maps (a checkerboard), fragments and foggy or white rooms. None is a believable
+  lighthouse basement or cave chamber.
+
+**Files modified:**
+- `decomp/res/field/scripts/scripts_canalave_library_2f.s`, `decomp/res/text/canalave_library_2f.json`
+- `data/postgame_legendaries.yaml`, `docs/PostgameLegendaries.md`, `docs/TechnicalDesign.md`,
+  `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`
+
+**Question for the owner:** several legendaries are planned for **new** rooms or floors:
+- Victini: Vista Lighthouse basement.
+- Yveltal: Lost Tower roof.
+- Zygarde: Wayward Cave deep chamber.
+- Diancie: Oreburgh Mine B3F.
+- Volcanion: Stark Mountain hot spring.
+
+So far I put each "(new)" one in an existing spot nearby:
+- Cobalion: an Iron Island side cave.
+- Meloetta: the Contest Hall stage.
+- Reshiram: the Fuego Ironworks.
+- Landorus: Route 228's ruins chamber.
+
+New maps are possible but take map, matrix and event work per room. **Should I keep using existing spots, or build
+new rooms for these?**
+
+**Next 3 steps:**
+1. Merge PR #53, then this one.
+2. **The Kalos Chronicle** opens once Kyurem (the Unova key) is caught: VAR_SOVEREIGN_CHRONICLE 2 and a chapter choice
+   in the Archivist's menu. Then Xerneas (Eterna Forest, behind the Old Chateau) and Hoopa (Solaceon Ruins, with the
+   Prison Bottle), which use existing maps.
+3. Victini, Yveltal, Zygarde, Diancie and Volcanion, once the owner answers the question above.

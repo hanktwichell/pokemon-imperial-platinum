@@ -368,6 +368,70 @@
         "They say it waits by the Flower\n",
         "Paradise gate on Route 224.\r"
       ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistWhichLegend",
+      "en_US": [
+        "Which legend of the Unova Chronicle\n",
+        "shall I read to you?"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistAnythingElse",
+      "en_US": [
+        "Anything else from the Chronicle?"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignMenuSwords",
+      "en_US": [
+        "Swords of Justice"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignMenuDragons",
+      "en_US": [
+        "Truth and Ideals"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignMenuForces",
+      "en_US": [
+        "Forces of Nature"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignMenuOthers",
+      "en_US": [
+        "Other legends"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignMenuDone",
+      "en_US": [
+        "That’s all"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistDragonsDone",
+      "en_US": [
+        "RESHIRAM, ZEKROM and KYUREM...\n",
+        "You found all three dragons!\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistForcesDone",
+      "en_US": [
+        "You’ve met all four of the Forces\n",
+        "of Nature!\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistOthersDone",
+      "en_US": [
+        "You found MELOETTA and GENESECT\n",
+        "too!\r"
+      ]
     }
   ]
 }

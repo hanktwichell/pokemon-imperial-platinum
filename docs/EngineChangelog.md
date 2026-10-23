@@ -4,6 +4,24 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E11 — The Chronicles: the Archivist's menu
+
+The Legend Archivist's talk had grown to about 45 pages on a fresh post-game save. After his first talk, he now asks
+"Which legend of the Unova Chronicle shall I read to you?" with a menu:
+- **Swords of Justice:** where each sword not caught yet stands, then Keldeo.
+- **Truth and Ideals:** the Light and Dark Stones the first time, a hint per dragon, then Kyurem and the DNA Splicers.
+- **Forces of Nature:** the release of Tornadus and Thundurus the first time, then their hint, the Reveal Glass,
+  Landorus and Enamorus.
+- **Other legends:** Meloetta and Genesect.
+- **That's all:** "I'll keep reading the Unova Chronicle."
+
+After each topic he asks "Anything else from the Chronicle?" and the menu comes back. A topic that's finished says so,
+for example "RESHIRAM, ZEKROM and KYUREM... You found all three dragons!". The key items and the release come from
+their topic, so a player gets them by asking.
+- **Verified** (test build; a temporary patch set the game completed and opened the Chronicle): each topic from the
+  menu, the menu coming back after each, the stones given once only (Truth and Ideals asked twice), and "That's all".
+  The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+
 ## E11 — The Chronicles: Forces of Nature (Tornadus, Thundurus, Landorus and Enamorus)
 
 The Unova Chronicle's Forces of Nature (`docs/PostgameLegendaries.md`):

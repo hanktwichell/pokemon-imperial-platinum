@@ -251,8 +251,9 @@ implemented.
 - **The Chronicles** (post-game legendaries, `docs/PostgameLegendaries.md` from `data/postgame_legendaries.yaml`).
   - **The Archivist.** `LOCALID_SOVEREIGN_ARCHIVIST` in Canalave Library 2F, hidden by OnTransition
     (`FLAG_MAP_LOCAL_HIDE_SOVEREIGN_NPC`) until `FLAG_GAME_COMPLETED`. His first talk sets `VAR_SOVEREIGN_CHRONICLE` to 1
-    (the Unova Chronicle open); later chapters will raise it. Later talks check the Pokédex for each sword and chain
-    one hint message per sword not caught yet; with all three caught, he points to Keldeo at Lake Valor.
+    (the Unova Chronicle open); later chapters will raise it. Later talks show a menu (`InitLocalTextMenu`, one entry
+    per part of the Chronicle, then "That's all") that comes back after each topic. Each topic checks the Pokédex and
+    gives only what's left: for the swords, one hint message per sword not caught yet, then Keldeo at Lake Valor.
   - **A static legendary** is an object with `OBJ_EVENT_GFX_LEGENDARY_<SPECIES>`, a 64x64 billboard like the Totems'.
     - Its hidden flag is `FLAG_MAP_LOCAL_HIDE_LEGENDARY`. The map's OnTransition sets it, then clears it once the
       chapter is open and `SovereignCheckSpeciesCaught` says the Pokédex doesn't have the species as caught. No
