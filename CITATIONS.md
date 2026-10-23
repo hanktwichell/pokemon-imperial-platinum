@@ -124,7 +124,7 @@ sprites are drawn.
 ### Post-game legendaries on the map
 The legendaries standing at their static encounters (`decomp/res/graphics/field_sprites/pokemon/legendary_<species>.png`),
 made by `tools/sprites/make_legendary_overworld.py` the same way, without the aura (15 colours). Source: **PokeAPI
-sprites**, https://github.com/PokeAPI/sprites, `sprites/pokemon/<id>.png` (ids 494, 638–640, 643–649, 716–721 and 905). The art
+sprites**, https://github.com/PokeAPI/sprites, `sprites/pokemon/<id>.png` (ids 494, 638–640, 643–649, 716–721, 785–789, 800 and 905). The art
 is © Nintendo / Game Freak / The Pokémon Company; PokeAPI hosts it. **Placeholders**, until DS-style overworld sprites
 are drawn.
 

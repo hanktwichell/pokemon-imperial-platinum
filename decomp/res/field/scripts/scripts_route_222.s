@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_222.h"
+#include "res/field/events/events_route_222.h"
 
 
     ScriptEntry Route222_Fisherman
@@ -10,12 +11,41 @@
     ScriptEntry Route222_SignboardPokemonSizeContest
     ScriptEntry Route222_PolicemanThomas
     ScriptEntry Route222_OnTransition
+    ScriptEntry Route222_OnLoad
+    ScriptEntry Route222_LegendaryTapuKoko
     ScriptEntryEnd
 
 Route222_OnTransition:
+    Call Route222_SovereignSetTapuKokoVisibility
     GetTimeOfDay VAR_MAP_LOCAL_0x00
     GoToIfInRange VAR_MAP_LOCAL_0x00, TIMEOFDAY_MORNING, TIMEOFDAY_TWILIGHT, Route222_SetPolicemanThomasNoBattle
     GoToIfInRange VAR_MAP_LOCAL_0x00, TIMEOFDAY_NIGHT, TIMEOFDAY_LATE_NIGHT, Route222_SetPolicemanThomasBattle
+    End
+
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Tapu Koko stands on the beach at the route's east end once
+@ the Alola Chronicle is open (VAR_SOVEREIGN_CHRONICLE 3), until it's caught.
+Route222_SovereignSetTapuKokoVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+    GoToIfLt VAR_SOVEREIGN_CHRONICLE, 3, Route222_SovereignSetTapuKokoVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_TAPU_KOKO, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, Route222_SovereignSetTapuKokoVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+Route222_SovereignSetTapuKokoVisibilityEnd:
+    Return
+
+Route222_OnLoad:
+    GoToIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, Route222_RemoveLegendaryTapuKoko
+    End
+
+Route222_RemoveLegendaryTapuKoko:
+    RemoveObject LOCALID_LEGENDARY_TAPU_KOKO
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+    End
+
+Route222_LegendaryTapuKoko:
+    SetVar VAR_0x8004, SPECIES_TAPU_KOKO
+    SetVar VAR_0x8005, 65
+    Common_SovereignLegendaryEncounter
     End
 
 Route222_SetPolicemanThomasNoBattle:

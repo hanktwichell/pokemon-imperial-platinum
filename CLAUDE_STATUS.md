@@ -2882,3 +2882,59 @@ rom job timed out in apt-get before building). Then Victini and the whole Kalos 
    Spear Pillar.
 3. **Forms that the Chronicles now need** (FM battle forms): Zygarde's 10% and Complete Formes (Power Construct),
    Meloetta's Pirouette Forme and Keldeo's Resolute Form.
+
+## CB-0042 — 2026-10-23, 11:20 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** PR #55 (Victini and the Kalos Chronicle, CB-0041) merged. Then the first part of the Alola Chronicle:
+- **The Alola Chronicle** (`VAR_SOVEREIGN_CHRONICLE` 3): a talk to the Archivist with Xerneas and Yveltal caught opens
+  it. "Alola Chronicle" joins his first menu. Its own menu so far has Island Guardians, and Sun and Moon.
+- **The Tapus** (Lv. 65), each in an existing spot:
+  - Koko: Route 222's beach (808, 795).
+  - Lele: Fullmoon Island's grove (13, 12).
+  - Bulu: Floaroma Meadow (24, 36).
+  - Fini: a Route 226 islet (716, 345), reached by Surf.
+- **Cosmog**, a gift at Spear Pillar (31, 25), Lv. 5:
+  - `FLAG_SOVEREIGN_RECEIVED_COSMOG` (0x2D0) for the first.
+  - `FLAG_SOVEREIGN_RECEIVED_COSMOG_2` (0x2D1) for the second, once Solgaleo or Lunala is caught.
+- **Necrozma** (Lv. 70) at Spear Pillar (31, 20), once Solgaleo or Lunala is caught. After it's caught, the Archivist
+  gives the N-Solarizer and N-Lunarizer.
+- **`Common_SovereignGiftPokemon`** (common script 0x80C), for the Chronicle gifts still to come (Poipole, Type: Null,
+  Magearna, Meltan): a party check, the fanfare, the gift and the nickname prompt. `VAR_RESULT` comes back TRUE once
+  it's given.
+- Six new overworld sprites (`sovlegend19` to `sovlegend24`).
+- **Verified** in four test runs: the Tapus hidden before the opening; the opening and every Alola topic message; all
+  four Tapus and Necrozma caught and gone; both Cosmog gifts and none after; "party full"; the N-Solarizer and
+  N-Lunarizer given once. The release ROM builds without warnings and passes boot smoke.
+- **Fixed during testing:**
+  - Cosmog first stood on (31, 28), Cyrus's tile. He's hidden in a real post-game, but it's safer apart.
+  - Koko first stood below Route 222's stairs and couldn't be talked to from them.
+  - The test harness's menu check sampled a pixel that falls on text in narrower menus.
+- **Not tested:** the "Raise your COSMOG well" hint (Cosmog received, no Solgaleo or Lunala yet). The test patch marked
+  Solgaleo caught from the start.
+
+**Files modified:**
+- Scripts: `decomp/res/field/scripts/scripts_canalave_library_2f.s`, `scripts_route_222.s` and its init,
+  `scripts_route_226.s` and its init, `scripts_floaroma_meadow.s`, `scripts_fullmoon_island_forest.s` and its init,
+  `scripts_spear_pillar.s`, `scripts_common.s`; `decomp/asm/macros/scrcmd.inc`
+- Events: `decomp/res/field/events/events_{route_222,route_226,floaroma_meadow,fullmoon_island_forest,
+  spear_pillar}.json`
+- `decomp/generated/vars_flags.txt` (the two Cosmog flags)
+- Texts: `decomp/res/text/canalave_library_2f.json`, `common_strings.json`, `spear_pillar.json`
+- Sprites: `decomp/generated/object_events_gfx.txt`, `decomp/src/overlay005/object_event_gfx_data.c`,
+  `decomp/res/graphics/field_sprites/` (`field_sprites.order`, `meson.build`, six new `pokemon/legendary_*.png`),
+  `tools/sprites/make_legendary_overworld.py`
+- Data and docs: `data/postgame_legendaries.yaml`, `docs/PostgameLegendaries.md`, `docs/ItemChanges_Sovereign.md`,
+  `docs/TechnicalDesign.md`, `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `CITATIONS.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR once CI is green.
+2. **Ultra Wormholes:** the nine Ultra Beasts, after Necrozma is caught, at the planned spots:
+   - Nihilego: Iron Island B3F.
+   - Buzzwole: Route 225. Pheromosa: Route 229.
+   - Xurkitree: the Sunyshore power plant (an existing spot).
+   - Celesteela: Mt. Coronet's summit. Kartana: Eterna Forest (a third legendary there).
+   - Guzzlord: Turnback Cave. Stakataka: Route 227. Blacephalon: outside Stark Mountain.
+3. **The other Alola legends,** using `Common_SovereignGiftPokemon`:
+   - Poipole (Fight Area), Type: Null (the Galactic HQ scientist), Magearna (Volkner, at an existing spot), Meltan
+     (Oreburgh Mine): gifts.
+   - Marshadow (Old Chateau) and Zeraora (Route 222 at night): static encounters.
