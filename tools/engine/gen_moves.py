@@ -79,6 +79,12 @@ STAT_BOOST_ANIM = {"atk": "swords_dance", "def": "iron_defense", "spa": "nasty_p
 
 E = lambda name: "BATTLE_EFFECT_" + name
 
+# Battle effects Sovereign adds for a move's exact Gen IX behaviour (item 11), after Platinum's 277: identifier ->
+# (effect, chance, note). These win over the PokeAPI mapping below.
+SOVEREIGN_EFFECTS = {
+    "hurricane": ("HURRICANE", 30, "Sovereign effect: Thunder's weather accuracy and hits Pokémon in the air, 30% confusion"),
+}
+
 # Status stat-drop effects -> the damaging "lower X on hit" effect, for damaging moves PokeAPI files under the former.
 STATUS_TO_HIT = {E("ATK_DOWN"): "LOWER_ATTACK_HIT", E("DEF_DOWN"): "LOWER_DEFENSE_HIT", E("SPEED_DOWN"): "LOWER_SPEED_HIT",
                  E("SP_ATK_DOWN"): "LOWER_SP_ATK_HIT", E("SP_DEF_DOWN"): "LOWER_SP_DEF_HIT",
@@ -355,6 +361,9 @@ def main():
                     # PokeAPI gives this move its own effect, so something beyond the mapped effect is missing.
                     fid = "placeholder" if eff == E("HIT") else "approximate"
                     note = note or "has its own mechanic in Gen IX; " + ("plain hit" if eff == E("HIT") else "closest effect")
+            if r["identifier"] in SOVEREIGN_EFFECTS:
+                own, own_chance, own_note = SOVEREIGN_EFFECTS[r["identifier"]]
+                eff, chance, fid, note = E(own), own_chance, "exact", own_note
             rng = RANGES[targets[r["target_id"]]]
             fl = []
             f = flags[mid]

@@ -6,8 +6,8 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 94 |
-| approximate | 76 |
+| exact | 95 |
+| approximate | 75 |
 | placeholder | 210 |
 | removed | 72 |
 
@@ -89,7 +89,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 539 | Night Daze | Dark | `LOWER_ACCURACY_HIT` | exact |  |
 | 540 | Psystrike | Psychic | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 541 | Tail Slap | Normal | `MULTI_HIT` | exact |  |
-| 542 | Hurricane | Flying | `CONFUSE_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
+| 542 | Hurricane | Flying | `HURRICANE` | exact | Sovereign effect: Thunder's weather accuracy and hits Pokémon in the air, 30% confusion |
 | 543 | Head Charge | Normal | `RECOIL_QUARTER` | exact |  |
 | 544 | Gear Grind | Steel | `HIT_TWICE` | exact |  |
 | 545 | Searing Shot | Fire | `BURN_HIT` | exact |  |

@@ -1715,8 +1715,10 @@ Expert_Main:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CHARGE_TURN_DEF_UP, Expert_ChargeTurnNoInvuln
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN, Expert_ChargeTurnNoInvuln
 
-    // BUG: Thunder is not properly scored. This is supposed to check for BATTLE_EFFECT_THUNDER.
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN, Expert_Thunder
+    // Sovereign (item 11): Platinum checked BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN here (already handled above), so
+    // Thunder was never scored for the weather. Thunder and Hurricane share the weather accuracy rules.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_THUNDER, Expert_Thunder
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HURRICANE, Expert_Thunder
 
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FLY, Expert_ChargeTurnWithInvuln
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_UNUSED_157, Expert_Recovery
