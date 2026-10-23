@@ -366,4 +366,5 @@ subscript_files = files(
     'subscript_sovereign_wandering_spirit.s',
     'subscript_sovereign_perish_body.s',
     'subscript_sovereign_toxic_debris.s',
+    'subscript_sovereign_final_gambit.s',
 )

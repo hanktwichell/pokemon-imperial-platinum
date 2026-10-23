@@ -208,6 +208,9 @@ MOVES = {
     "sticky_web": ("SOVEREIGN_STICKY_WEB", 0, "grounded foes switching in lose 1 Speed stage (Rapid Spin clears it)"),
     "echoed_voice": (None, None, "40 more power for each consecutive turn it's used, up to 200"),
     "fell_stinger": (None, None, "user Attack +3 if it knocks out the target"),
+    "synchronoise": (None, None, "only affects targets that share a type with the user"),
+    "upper_hand": ("FLINCH_HIT", 100, "fails unless the target is about to use a damaging priority move; makes it flinch"),
+    "final_gambit": ("SOVEREIGN_FINAL_GAMBIT", 0, "damage equal to the user's HP; the user faints if it hits"),
 }
 
 
