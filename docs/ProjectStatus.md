@@ -150,6 +150,8 @@ Made by the owner (2026-10-22):
     rematch win over Cynthia. Victory Road waits on the last trial (Togedemaru). Henry appears at Spear Pillar only
     with the complete crown. The Celestic Town elder meets the player at home after the first Hall of Fame and sends
     them to Spear Pillar. After the Sovereign battle the Elite Four can still be rematched, with all-Lv. 100 teams.
+    - Built (CB-0033): the elder at home, the rematch lock (the League door guard), and the Crown swap with
+      Cynthia's call to Spear Pillar. Still to do: Henry at the throne, the title, and the Lv. 100 teams.
 24. **Post-Champion money** (owner, 2026-10-22, all four options). Built in E7 part 2:
     - every shop that takes money sells at **half price** after the Hall of Fame (Battle Point shops are unchanged);
     - **3× prize money** from the Elite Four and Cynthia rematches, the Gym Leader rematches and the five Battleground

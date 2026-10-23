@@ -61,7 +61,7 @@ New save variables and flag (IDs to be assigned from unused slots):
 | `VAR_SOVEREIGN_E4_MODE` | 0 = two-and-two (first challenge), 1 = all singles, 2 = all doubles |
 | `VAR_SOVEREIGN_E4_FORMAT` | bit 0 Aaron, bit 1 Bertha, bit 2 Flint, bit 3 Lucian, bit 4 Cynthia (1 = doubles) |
 | `VAR_SOVEREIGN_E4_STAGE` | how many prompts have been answered this run (0–3) |
-| `FLAG_GAME_CLEAR` | existing vanilla flag: Champion beaten at least once |
+| `FLAG_GAME_COMPLETED` | existing vanilla flag: Champion beaten at least once |
 
 New trainer entries (each with the double-battle flag set where needed):
 
@@ -75,14 +75,14 @@ decomp when implementing):
 LeagueEntrance_OnEnter:                    ; existing script on entering Aaron's room
     SetVar VAR_SOVEREIGN_E4_FORMAT, 0
     SetVar VAR_SOVEREIGN_E4_STAGE, 0
-    GoToIfUnset FLAG_GAME_CLEAR, _first
+    GoToIfUnset FLAG_GAME_COMPLETED, _first
     SetVar VAR_SOVEREIGN_E4_MODE, 0         ; reset; Aaron asks again
 _first:
     End
 
 Aaron_PreBattle:
     Message Aaron_Intro
-    GoToIfUnset FLAG_GAME_CLEAR, _ask_aaron
+    GoToIfUnset FLAG_GAME_COMPLETED, _ask_aaron
     ShowMenu3 "All singles", "All doubles", "Two and two" -> VAR_RESULT
     CallIfEq VAR_RESULT, 0, _set_all_singles     ; MODE=1, FORMAT=0b00000
     CallIfEq VAR_RESULT, 1, _set_all_doubles     ; MODE=2, FORMAT=0b11111

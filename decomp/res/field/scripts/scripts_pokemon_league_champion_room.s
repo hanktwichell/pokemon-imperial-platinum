@@ -27,6 +27,7 @@ PokemonLeagueChampionRoom_OnFrame_EnterRoom:
     SetFlag FLAG_DEFEATED_CYNTHIA
     CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueChampionRoom_CreateJournalEventDefeatedCynthia
     CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueChampionRoom_CreateJournalEventDefeatedRematchCynthia
+    CallIfSet FLAG_GAME_COMPLETED, PokemonLeagueChampionRoom_SovereignRematchWin
     Message PokemonLeagueChampionRoom_Text_ComeWithMe
     CloseMessage
     ApplyMovement LOCALID_CYNTHIA, PokemonLeagueChampionRoom_Movement_CynthiaWalkAwayFromElevator
@@ -50,6 +51,31 @@ PokemonLeagueChampionRoom_OnFrame_EnterRoom:
     WaitFadeScreen
     ReleaseAll
     End
+
+@ Sovereign (Story.md): the first rematch win turns the Crown into the Sovereign Crown, and Cynthia sends the player
+@ to the Spear Pillar (FLAG_SOVEREIGN_CALLED_TO_SPEAR_PILLAR). She reminds them on later wins until the Sovereign is
+@ beaten. FLAG_GAME_COMPLETED is set by the first Hall of Fame, so it is still unset during the first win.
+PokemonLeagueChampionRoom_SovereignRematchWin:
+    GoToIfSet FLAG_SOVEREIGN_DEFEATED_HENRY, PokemonLeagueChampionRoom_SovereignRematchWinEnd
+    GoToIfSet FLAG_SOVEREIGN_CALLED_TO_SPEAR_PILLAR, PokemonLeagueChampionRoom_SovereignSpearPillarReminder
+    CheckItem ITEM_CROWN, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, PokemonLeagueChampionRoom_SovereignRematchWinEnd
+    Message PokemonLeagueChampionRoom_Text_SovereignSomethingIsGlowing
+    Message PokemonLeagueChampionRoom_Text_SovereignCrownIsShining
+    WaitButton
+    CloseMessage
+    RemoveItem ITEM_CROWN, 1, VAR_RESULT
+    SetVar VAR_0x8004, ITEM_SOVEREIGN_CROWN
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantityNoLineFeed
+    SetFlag FLAG_SOVEREIGN_CALLED_TO_SPEAR_PILLAR
+    Message PokemonLeagueChampionRoom_Text_SovereignGoToSpearPillar
+    Return
+
+PokemonLeagueChampionRoom_SovereignSpearPillarReminder:
+    Message PokemonLeagueChampionRoom_Text_SovereignSpearPillarReminder
+PokemonLeagueChampionRoom_SovereignRematchWinEnd:
+    Return
 
 PokemonLeagueChampionRoom_CynthiaIntro:
     Message PokemonLeagueChampionRoom_Text_CynthiaIntro

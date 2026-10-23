@@ -66,6 +66,39 @@
         "the Pokémon League Champion!\r",
         "There won’t be any letup from me!\r"
       ]
+    },
+    {
+      "id": "PokemonLeagueChampionRoom_Text_SovereignSomethingIsGlowing",
+      "en_US": [
+        "Cynthia: ...Hm? There’s a light\n",
+        "coming from your Bag.\r"
+      ]
+    },
+    {
+      "id": "PokemonLeagueChampionRoom_Text_SovereignCrownIsShining",
+      "en_US": [
+        "The Crown is shining brightly!"
+      ]
+    },
+    {
+      "id": "PokemonLeagueChampionRoom_Text_SovereignGoToSpearPillar",
+      "en_US": [
+        "Cynthia: A crown made from the pieces\n",
+        "those huge Pokémon left behind...\r",
+        "My grandmother tells old stories of\n",
+        "the ancient rulers of the Spear Pillar.\r",
+        "I think someone has been waiting for\n",
+        "you there all along.\r",
+        "After the Hall of Fame, please go to\n",
+        "the Spear Pillar.\r"
+      ]
+    },
+    {
+      "id": "PokemonLeagueChampionRoom_Text_SovereignSpearPillarReminder",
+      "en_US": [
+        "Cynthia: Someone is still waiting for\n",
+        "you at the Spear Pillar.\r"
+      ]
     }
   ]
 }
