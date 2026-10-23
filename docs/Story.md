@@ -37,16 +37,19 @@ The player learns about the Sovereign passively, without ever meeting one before
 
 ### Early: two vague references (owner: both)
 - **Oreburgh Mining Museum** (first Gym town): a new exhibit, a stone fragment carved with a crown and the line
-  *"The Sovereign keep the seams."* Nobody knows what it means.
+  *"The Sovereign keep the seams."* Nobody knows what it means. Built (CB-0034): under the window at the top right
+  (18, 3), drawn with Mt. Coronet's cave-painting shards.
 - **Professor Rowan:** a remark that Pokémon never recorded in Sinnoh have started turning up, and he can't explain
-  where they're coming from.
+  where they're coming from. Built (CB-0034): right after he gives the Pokédex.
 
 ### Along the main story, alongside Galactic
 - **Totem trials:** each one leaves a crown piece behind (see *The crown*). The Galactic encounters wait on them,
   and the pieces slowly reveal a crown. The last trial (Totem Togedemaru, Vista Lighthouse) gives the Crown Diamond
   that completes it.
 - **Celestic Town** (Galactic's attack on the ruins): the elder's story mentions the rulers who sat at Spear Pillar.
-- **Canalave Library:** a new book on the Sovereign, mostly missing pages.
+  Built (CB-0034): two lines in her speech after Cyrus leaves, before she gives HM03.
+- **Canalave Library:** a new book on the Sovereign, mostly missing pages. Built (CB-0034): "The Sovereign", on the
+  3F myth shelf at (12, 3), beside "Sinnoh Region's Mythology".
 - **Spear Pillar** (Galactic's climax): a brief glimpse of ruins on the summit showing a throne that was never part
   of Platinum's map. It goes unexplained, and the story moves on to Giratina.
 

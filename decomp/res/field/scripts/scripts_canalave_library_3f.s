@@ -16,6 +16,7 @@
     ScriptEntry CanalaveLibrary3F_HorrificMyth
     ScriptEntry CanalaveLibrary3F_SinnohFolkStories
     ScriptEntry CanalaveLibrary3F_BgSign
+    ScriptEntry CanalaveLibrary3F_SovereignBook
     ScriptEntryEnd
 
 CanalaveLibrary3F_OnTransition:
@@ -365,6 +366,27 @@ CanalaveLibrary3F_Youngster:
 
 CanalaveLibrary3F_ImFeelingWobbly:
     Message CanalaveLibrary3F_Text_ImFeelingWobbly
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+@ Sovereign (Story.md): a book on the Sovereign, mostly missing pages.
+CanalaveLibrary3F_SovereignBook:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    Message CanalaveLibrary3F_Text_SovereignAskRead
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, CanalaveLibrary3F_ReadSovereignBook
+    BufferPlayerName 0
+    Message CanalaveLibrary3F_Text_SovereignPutBack
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+CanalaveLibrary3F_ReadSovereignBook:
+    Message CanalaveLibrary3F_Text_SovereignBook
     WaitButton
     CloseMessage
     ReleaseAll

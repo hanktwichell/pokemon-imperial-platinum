@@ -19,6 +19,7 @@
     ScriptEntry MiningMuseum_PokemonBreederF
     ScriptEntry MiningMuseum_Collector
     ScriptEntry MiningMuseum_ExpertM
+    ScriptEntry MiningMuseum_SovereignStoneFragment
     ScriptEntryEnd
 
 MiningMuseum_AceTrainerF:
@@ -334,3 +335,8 @@ MiningMuseum_ExpertM:
     End
 
     .balign 4, 0
+
+@ Sovereign (Story.md): the first vague reference to the Sovereign, a new exhibit.
+MiningMuseum_SovereignStoneFragment:
+    EventMessage MiningMuseum_Text_SovereignStoneFragment
+    End

@@ -4,6 +4,27 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E11 — The Sovereign along the main story: the museum, Rowan, the Celestic elder and the library (decision 23)
+
+The early and mid-game references to the Sovereign (`docs/Story.md`, "Story beats"). The player learns about them
+passively:
+- **Oreburgh Mining Museum:** a new exhibit under the window, a stone fragment (Mt. Coronet's cave-painting shards).
+  "A stone fragment found deep inside the Oreburgh Mine. A crown is carved into it, and words are cut beneath the
+  crown: “The Sovereign keep the seams.” The card says no one knows what the words mean."
+- **Professor Rowan,** right after he gives the Pokédex: "One more thing. Of late, Pokémon never recorded in Sinnoh
+  have been turning up here. I can't explain where they're coming from. Not yet, at any rate. Your Pokédex will
+  record them too. Every last one of them."
+- **The Celestic elder,** after Cyrus leaves the ruins: "Long ago, they say, rulers sat at the Spear Pillar and
+  watched over it all. Who they were, and where they went, not even this old town remembers."
+- **Canalave Library 3F:** a new book, "The Sovereign", on the myth shelf. "Most of the pages have been torn out.
+  “...sat upon the Spear Pillar...” “...and the Sovereign kept the seams of Sinnoh, that it would not...” “...when
+  the last of the line grew old, the crown was to pass to...” The rest of the book is missing." It takes one tile of
+  the "Sinnoh Region's Mythology" shelf, which keeps the other.
+- **Still to do:** the Spear Pillar throne glimpse, which needs a map change and comes with the throne room.
+- **Verified** (test build, with temporary test warps): the exhibit and the book read in full, with every line inside
+  the box. Rowan's and the elder's lines are checked against the box width; their scenes are vanilla and come later
+  in a new game. The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+
 ## E11 — After the Hall of Fame: the elder at home, the rematch lock and the Sovereign Crown (decision 23)
 
 The first three steps of the post-game story (`docs/Story.md`, "After the Hall of Fame: event order"):
