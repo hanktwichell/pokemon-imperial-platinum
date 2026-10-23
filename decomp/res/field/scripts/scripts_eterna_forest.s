@@ -17,11 +17,23 @@
     ScriptEntry EternaForest_OnFrame_CherylOldChateauCutscene
     ScriptEntry EternaForest_TotemVikavolt
     ScriptEntry EternaForest_OnLoad
+    ScriptEntry EternaForest_LegendaryVirizion
     ScriptEntryEnd
 
 EternaForest_OnTransition:
+    Call EternaForest_SovereignSetVirizionVisibility
     GoToIfUnset FLAG_TRAVELED_WITH_CHERYL, EternaForest_ResetFollowerCherylState
     End
+
+@ Sovereign (the Chronicles): Virizion stands here once the Unova Chronicle is open, until it's caught.
+EternaForest_SovereignSetVirizionVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+    GoToIfLt VAR_SOVEREIGN_CHRONICLE, 1, EternaForest_SovereignSetVirizionVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_VIRIZION, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, EternaForest_SovereignSetVirizionVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+EternaForest_SovereignSetVirizionVisibilityEnd:
+    Return
 
 EternaForest_ResetFollowerCherylState:
     SetVar VAR_ETERNA_FOREST_FOLLOWER_CHERYL_STATE, 0
@@ -29,11 +41,23 @@ EternaForest_ResetFollowerCherylState:
 
 EternaForest_OnLoad:
     GoToIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, EternaForest_RemoveTotemVikavolt
+    GoToIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, EternaForest_RemoveLegendaryVirizion
+    End
+
+EternaForest_RemoveLegendaryVirizion:
+    RemoveObject LOCALID_LEGENDARY_VIRIZION
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
     End
 
 EternaForest_RemoveTotemVikavolt:
     RemoveObject LOCALID_TOTEM_VIKAVOLT
     ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
+    End
+
+EternaForest_LegendaryVirizion:
+    SetVar VAR_0x8004, SPECIES_VIRIZION
+    SetVar VAR_0x8005, 65
+    Common_SovereignLegendaryEncounter
     End
 
 @ Sovereign (decision 18): the Totem Vikavolt trial. The forest opens after Mars, as the trial does.

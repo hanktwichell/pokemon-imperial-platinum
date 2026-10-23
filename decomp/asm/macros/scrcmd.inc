@@ -5034,6 +5034,12 @@
     .short \varID
     .endm
 
+    .macro SovereignCheckSpeciesCaught species, destVar
+    .short SCRCMD_SOVEREIGNCHECKSPECIESCAUGHT
+    .short \species
+    .short \destVar
+    .endm
+
 
 
     .macro GoToIfLt varID, valueOrVarID, offset
@@ -5293,6 +5299,10 @@
     // The map's OnLoad script removes the Totem when FLAG_MAP_LOCAL_REMOVE_OBJECT is set (after the battle).
     .macro Common_SovereignTotemTrial
     CallCommonScript 0x80A
+    .endm
+
+    .macro Common_SovereignLegendaryEncounter
+    CallCommonScript 0x80B
     .endm
 
     .macro Common_CallPokecenterNurse nurseLocalID

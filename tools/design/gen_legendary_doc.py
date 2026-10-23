@@ -33,8 +33,11 @@ def main():
          f"- Quests are given by the **{hub['npc']}**. Chapters: {', '.join(hub['chapters'])}.",
          f"- {hub['note']}",
          "- Static encounters can be retried after fainting or fleeing, and have the normal shiny odds (Renegade behaviour).",
-         "- New maps or rooms are marked _(new)_ and need map work in DSPRE.\n",
-         f"Covers **{len(seen)}** species.\n"]
+         "- New maps or rooms are marked _(new)_ and need map work in DSPRE.",
+         ""]
+    if hub.get("built"):
+        L[-1:] = [f"- **Built:** {hub['built']}", ""]
+    L.append(f"Covers **{len(seen)}** species.\n")
     chapter = None
     for q in data["quests"]:
         if q["chapter"] != chapter:
@@ -45,7 +48,10 @@ def main():
         L.append(f"- **Pokémon:** {nums}")
         L.append(f"- **Level:** {q['level']}")
         L.append(f"- **Location:** {q['location']}")
-        L.append(f"- **How:** {q['steps']}\n")
+        L.append(f"- **How:** {q['steps']}")
+        if q.get("built"):
+            L.append(f"- **Built:** {q['built']}")
+        L.append("")
     with open(os.path.join(ROOT, "docs", "PostgameLegendaries.md"), "w", encoding="utf-8") as f:
         f.write("\n".join(L))
     for e in errors:

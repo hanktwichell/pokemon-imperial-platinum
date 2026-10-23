@@ -61,6 +61,29 @@ players and the verification that was run.
 **Verified in the test build:** Turtwig's Intrepid Sword message on entry; Garchomp's Protean made it Fire/Fire before
 Heat Wave; Heat Wave raised Venusaur's Speed 6 stages through Steam Engine; Charizard's Magic Bounce sent Turtwig's
 Growl back and Turtwig's Attack fell. The others in this part aren't tested in game yet.
+## E11 — The Chronicles begin: the Legend Archivist and Virizion
+
+The first part of the post-game legendaries (`docs/PostgameLegendaries.md`):
+- **The Legend Archivist** stands in Canalave Library 2F from the first Hall of Fame. His first talk opens the Unova
+  Chronicle: "Since your Hall of Fame entry, people have reported Pokémon never before recorded in Sinnoh... Its
+  legends tell of three Pokémon who stood together like swords. And now one of them, VIRIZION, has been seen in
+  northern Eterna Forest." Later talks give the hint again, then "You found VIRIZION!..." once it's caught.
+- **Virizion** (Lv. 65) stands at the top of Eterna Forest's north corridor, past the Cut trees, once the Chronicle
+  is open.
+  - Talking to it: "VIRIZION cried out!", then the battle.
+  - After a win or a run: "VIRIZION vanished... It might show itself here again." It is back on the next visit,
+    until it's caught.
+- **For the rest of the Chronicles:** a shared encounter script, a script command that checks the Pokédex for a
+  caught species (so no flag is needed per Pokémon), and overworld sprites made from PokeAPI's front sprites by
+  `tools/sprites/make_legendary_overworld.py`. Cobalion, Terrakion and Keldeo are drawn already.
+  `make_totem_overworld.py` gained an `aura` switch; the Totem sprites come out byte for byte the same.
+- `docs/PostgameLegendaries.md` now shows what is built.
+- **Verified** (test build; a temporary patch set the game completed and added Master Balls, with test warps):
+  - Virizion hidden before the Chronicle opens, the Archivist's lines, then Virizion in the forest.
+  - A run (the vanished line, gone, and back on the next visit), and a Master Ball catch.
+  - After the catch, the Archivist's new line and the forest empty.
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+
 ## E11 — The Sovereign along the main story: the museum, Rowan, the Celestic elder and the library (decision 23)
 
 The early and mid-game references to the Sovereign (`docs/Story.md`, "Story beats"). The player learns about them

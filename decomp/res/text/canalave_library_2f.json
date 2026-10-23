@@ -175,6 +175,45 @@
         "{STRVAR_1 3, 0, 0} returned the book to its\n",
         "place."
       ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistIntro",
+      "en_US": [
+        "Ah, you must be the new Champion!\r",
+        "I’m the Legend Archivist. I look after\n",
+        "this library’s oldest records.\r",
+        "Since your Hall of Fame entry, people\n",
+        "have reported Pokémon never before\n",
+        "recorded in Sinnoh.\r",
+        "I found them in this tome, the Unova\n",
+        "Chronicle. Unova is a faraway land.\r",
+        "Its legends tell of three Pokémon\n",
+        "who stood together like swords.\r",
+        "And now one of them, VIRIZION, has\n",
+        "been seen in northern Eterna Forest.\r",
+        "How could a Pokémon of Unova come\n",
+        "here? I can’t make sense of it.\r",
+        "Would you look into it for me?\n",
+        "I’ll keep reading the Chronicle."
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistVirizion",
+      "en_US": [
+        "VIRIZION was seen in the north of\n",
+        "Eterna Forest, by the Old Chateau.\r",
+        "I’ll keep reading the Unova Chronicle."
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistVirizionCaught",
+      "en_US": [
+        "You found VIRIZION!\r",
+        "The Chronicle says the three swords\n",
+        "never stray far from one another.\r",
+        "If VIRIZION came, the others can’t be\n",
+        "far behind..."
+      ]
     }
   ]
 }

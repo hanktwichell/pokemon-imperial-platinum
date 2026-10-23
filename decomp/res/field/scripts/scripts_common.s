@@ -85,6 +85,7 @@
     ScriptEntry CommonScript_FadeToDefaultMusic @ 0x808
     ScriptEntry CommonScript_GriseousOrbCouldNotBeRemoved @ 0x809
     ScriptEntry CommonScript_SovereignTotemTrial @ 0x80A
+    ScriptEntry CommonScript_SovereignLegendaryEncounter @ 0x80B
     ScriptEntryEnd
 
 CommonScript_Dummy2010:
@@ -1720,6 +1721,45 @@ CommonScript_GriseousOrbCouldNotBeRemoved:
 @ FLAG_SOVEREIGN_TOTEM_TRIAL_* flag. Win (or catch) and the trial is done: the Totem leaves its crown piece
 @ (ITEM_GOLD_SHARD + trial) behind, and the 11th piece merges them all into the Crown (decision 23, docs/Story.md).
 @ Lose and the flag is cleared, so the Totem is back next time.
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): a static legendary. VAR_0x8004 = species, VAR_0x8005 =
+@ level. FLAG_SOVEREIGN_REMOVE_LEGENDARY asks the map's OnLoad script to remove the Pokémon when the field comes back
+@ (map objects survive a battle). Not caught, it vanishes until the next visit: the map's OnTransition shows it again
+@ until the Pokédex has it as caught.
+CommonScript_SovereignLegendaryEncounter:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    WaitSE SE_CONFIRM_sseq_3
+    SetVar VAR_0x8009, VAR_0x8004
+    SetVar VAR_0x800A, VAR_0x8005
+    BufferSpeciesNameFromVar 0, VAR_0x8009, 0, 0
+    PlayCry VAR_0x8009
+    Message CommonStrings_Text_SovereignLegendaryCry
+    WaitCry
+    CloseMessage
+    SetFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+    StartLegendaryBattle VAR_0x8009, VAR_0x800A
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, CommonScript_SovereignLegendaryLost
+    CheckDidNotCapture VAR_RESULT
+    CallIfEq VAR_RESULT, TRUE, CommonScript_SovereignLegendaryVanished
+    ReleaseAll
+    ReturnCommonScript
+    End
+
+CommonScript_SovereignLegendaryVanished:
+    BufferSpeciesNameFromVar 0, VAR_0x8009, 0, 0
+    Message CommonStrings_Text_SovereignLegendaryVanished
+    WaitButton
+    CloseMessage
+    Return
+
+CommonScript_SovereignLegendaryLost:
+    BlackOutFromBattle
+    ReleaseAll
+    ReturnCommonScript
+    End
+
 CommonScript_SovereignTotemTrial:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
