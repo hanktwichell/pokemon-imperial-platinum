@@ -114,6 +114,7 @@ MANUAL_DESCRIPTIONS = {
 # Implemented beyond Platinum's 123 (updated as abilities get battle code).
 # Newer abilities whose battle effect is built (item 11): ability number -> what the Battle effect column says.
 IMPLEMENTED = {
+    275: "partly: Intimidate raises its Attack instead (immunity to Roar and Whirlwind not yet)",
     181: "yes: contact moves ×1.3",
     178: "yes: pulse moves ×1.5",
     292: "yes: slicing moves ×1.5",
@@ -162,8 +163,8 @@ IMPLEMENTED = {
     141: "yes: each turn, one stat +2 and another −1 (no accuracy/evasion, as in Gen VIII+)",  # Moody
     143: "yes: its contact moves have a 30% chance to poison",  # Poison Touch
     127: "partly: foes can't eat Berries that heal, cure or trigger on a hit (damage-halving Berries not yet)",  # Unnerve
-    128: "partly: Attack +2 when a foe's move lowers its stats (Intimidate not yet)",  # Defiant
-    172: "partly: Sp. Atk +2 when a foe's move lowers its stats (Intimidate not yet)",  # Competitive
+    128: "yes: Attack +2 when a foe's move or Intimidate lowers its stats",  # Defiant
+    172: "yes: Sp. Atk +2 when a foe's move or Intimidate lowers its stats",  # Competitive
     160: "yes: contact costs the attacker 1/8 of its max HP (as Rough Skin)",  # Iron Barbs
     183: "yes: a contact move lowers the attacker's Speed 1 stage",  # Gooey
     221: "yes: a contact move lowers the attacker's Speed 1 stage",  # Tangling Hair
@@ -186,7 +187,7 @@ IMPLEMENTED = {
     145: "yes: Defense can't be lowered by others",  # Big Pecks
     146: "yes: Speed ×2 in a sandstorm; no sandstorm damage",  # Sand Rush
     154: "yes: Attack +1 when hit by a Dark move",  # Justified
-    155: "partly: Speed +1 when hit by a Bug, Ghost or Dark move (the Intimidate trigger not yet)",  # Rattled
+    155: "yes: Speed +1 when hit by a Bug, Ghost or Dark move, or when Intimidated",  # Rattled
     158: "yes: status moves +1 priority; they don't affect Dark-type foes",  # Prankster
     159: "yes: Rock/Ground/Steel moves ×1.3 in a sandstorm; no sandstorm damage",  # Sand Force
     173: "yes: biting moves ×1.5",  # Strong Jaw

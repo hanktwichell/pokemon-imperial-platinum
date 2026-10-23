@@ -1785,6 +1785,14 @@ Expert_Main:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_METAL_BURST, Expert_MetalBurst
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SWITCH_HIT, Expert_UTurn
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DEF_SPD_DOWN_HIT, Expert_CloseCombat
+    // Sovereign (item 11): self-lowering hits score like Close Combat and Overheat; always-crit moves like high-crit ones.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_LOWER_OWN_DEF_HIT, Expert_CloseCombat
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_LOWER_OWN_SPEED_2_HIT, Expert_CloseCombat
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_LOWER_OWN_SP_ATK_HIT, Expert_Overheat
+    IfMoveEqualTo MOVE_STORM_THROW, Expert_HighCritical
+    IfMoveEqualTo MOVE_FROST_BREATH, Expert_HighCritical
+    IfMoveEqualTo MOVE_WICKED_BLOW, Expert_HighCritical
+    IfMoveEqualTo MOVE_FLOWER_TRICK, Expert_HighCritical
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DOUBLE_POWER_IF_MOVING_SECOND, Expert_Payback
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_DOUBLE_POWER_IF_TARGET_HIT, Expert_Assurance
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_PREVENT_ITEM_USE, Expert_Embargo

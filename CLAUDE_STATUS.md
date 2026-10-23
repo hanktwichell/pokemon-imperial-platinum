@@ -1913,3 +1913,21 @@ Verified Tough Claws, Pixilate (type and ×1.2) and Multiscale in game. Ability 
 
 Test note: the bedroom save state holds main ARM9 code, so remake it with `tools/test/new_game.sh` whenever non-battle
 code (e.g. `script_manager.c`) changes; set test abilities with a `u16` value.
+
+## CA-0031 — 2026-10-23 (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented (item 11 part 8):** Intimidate triggers Defiant/Competitive/Rattled (new switch-in step), Guard Dog, the
+Gen VIII+ Intimidate blockers (Inner Focus, Oblivious, Own Tempo, Scrappy); AI scores for the new self-lowering
+effects and always-crit moves. Verified Defiant and Guard Dog against Intimidate in game.
+
+**Files modified:** `decomp/src/battle/battle_script.c`, `battle_lib.c`, `battle_controller_player.c`,
+`trainer_ai/script.s`, `decomp/include/battle/battle_lib.h`, `tools/engine/gen_abilities.py`,
+`docs/AbilityChecklist.md`, `docs/EngineChangelog.md`.
+
+**Next 3 steps:**
+1. Merge PR #32 once CI is green (keep main's subscripts first in the three lists on any conflict).
+2. Booster Energy (Protosynthesis/Quark Drive), Mirror Armor, Long Reach, Stakeout, Supreme Overlord.
+3. Remaining Gen V moves (Smack Down, Incinerate, Clear Smog, Dragon Tail, Retaliate, Fell Stinger, Final Gambit).
+
+Test note: the hook script only captures the battle context on a damage calculation, so give one battler a damaging
+move; single-target moves in doubles need extra A presses (`/tmp/claude-0/hur/bp2.py`).

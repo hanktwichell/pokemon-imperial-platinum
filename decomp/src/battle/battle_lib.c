@@ -3808,6 +3808,7 @@ enum SwitchInCheckState {
     SWITCH_IN_CHECK_STATE_TRACE,
     SWITCH_IN_CHECK_STATE_WEATHER_ABILITIES,
     SWITCH_IN_CHECK_STATE_INTIMIDATE,
+    SWITCH_IN_CHECK_STATE_SOVEREIGN_STAT_DROP_REACTION,
     SWITCH_IN_CHECK_STATE_DOWNLOAD,
     SWITCH_IN_CHECK_STATE_ANTICIPATION,
     SWITCH_IN_CHECK_STATE_FOREWARN,
@@ -4031,6 +4032,27 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                     subscript = subscript_intimidate;
                     result = TRUE;
                     break;
+                }
+            }
+
+            if (i == maxBattlers) {
+                battleCtx->switchInCheckState++;
+            }
+            break;
+
+        case SWITCH_IN_CHECK_STATE_SOVEREIGN_STAT_DROP_REACTION:
+            // Sovereign (item 11): Defiant, Competitive and Rattled answer Intimidate.
+            for (i = 0; i < maxBattlers; i++) {
+                battler = battleCtx->monSpeedOrder[i];
+
+                if (battleCtx->sovereignDefiantPending & FlagIndex(battler)) {
+                    battleCtx->sovereignDefiantPending &= ~FlagIndex(battler);
+
+                    if (Sovereign_SetupStatDropReaction(battleCtx, battler)) {
+                        subscript = subscript_update_stat_stage;
+                        result = TRUE;
+                        break;
+                    }
                 }
             }
 
@@ -7101,6 +7123,36 @@ int Sovereign_MovePriority(BattleContext *battleCtx, int battler, int move)
     }
 
     return priority;
+}
+
+// Sovereign (item 11): Defiant (Attack +2), Competitive (Sp. Atk +2) and Rattled (Speed +1) after a stat drop. Sets the
+// side effect for subscript_update_stat_stage; FALSE if there's nothing to raise.
+BOOL Sovereign_SetupStatDropReaction(BattleContext *battleCtx, int battler)
+{
+    int ability = Battler_Ability(battleCtx, battler);
+    int stat, param;
+
+    if (ability == ABILITY_DEFIANT) {
+        stat = BATTLE_STAT_ATTACK;
+        param = MOVE_SUBSCRIPT_PTR_ATTACK_UP_2_STAGES;
+    } else if (ability == ABILITY_COMPETITIVE) {
+        stat = BATTLE_STAT_SP_ATTACK;
+        param = MOVE_SUBSCRIPT_PTR_SP_ATTACK_UP_2_STAGES;
+    } else if (ability == ABILITY_RATTLED) {
+        stat = BATTLE_STAT_SPEED;
+        param = MOVE_SUBSCRIPT_PTR_SPEED_UP_1_STAGE;
+    } else {
+        return FALSE;
+    }
+
+    if (battleCtx->battleMons[battler].curHP == 0 || battleCtx->battleMons[battler].statBoosts[stat] >= MAX_STAT_STAGE) {
+        return FALSE;
+    }
+
+    battleCtx->sideEffectParam = param;
+    battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
+    battleCtx->sideEffectMon = battler;
+    return TRUE;
 }
 
 // Sovereign (item 11): Sheer Force applies to damaging moves with a chance of a secondary effect (the "chance" in the

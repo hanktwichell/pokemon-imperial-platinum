@@ -10,7 +10,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 125 | Sheer Force | Gen 5 | yes: moves with a chance effect ×1.3, without the effect (or Life Orb recoil) |
 | 126 | Contrary | Gen 5 | yes: stat rises and drops are reversed |
 | 127 | Unnerve | Gen 5 | partly: foes can't eat Berries that heal, cure or trigger on a hit (damage-halving Berries not yet) |
-| 128 | Defiant | Gen 5 | partly: Attack +2 when a foe's move lowers its stats (Intimidate not yet) |
+| 128 | Defiant | Gen 5 | yes: Attack +2 when a foe's move or Intimidate lowers its stats |
 | 129 | Defeatist | Gen 5 | yes: Attack and Sp. Atk halved at half HP or less |
 | 130 | Cursed Body | Gen 5 | yes: 30% chance to disable the move that hit it, for 4 turns |
 | 131 | Healer | Gen 5 | not yet (no battle effect) |
@@ -37,7 +37,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 152 | Mummy | Gen 5 | not yet (no battle effect) |
 | 153 | Moxie | Gen 5 | yes: Attack +1 for each foe its move knocks out |
 | 154 | Justified | Gen 5 | yes: Attack +1 when hit by a Dark move |
-| 155 | Rattled | Gen 5 | partly: Speed +1 when hit by a Bug, Ghost or Dark move (the Intimidate trigger not yet) |
+| 155 | Rattled | Gen 5 | yes: Speed +1 when hit by a Bug, Ghost or Dark move, or when Intimidated |
 | 156 | Magic Bounce | Gen 5 | not yet (no battle effect) |
 | 157 | Sap Sipper | Gen 5 | yes: absorbs Grass moves, Attack +1 (`BattleSystem_TriggerImmunityAbility`) |
 | 158 | Prankster | Gen 5 | yes: status moves +1 priority; they don't affect Dark-type foes |
@@ -54,7 +54,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 169 | Fur Coat | Gen 6 | yes: Defense doubled |
 | 170 | Magician | Gen 6 | not yet (no battle effect) |
 | 171 | Bulletproof | Gen 6 | yes: immune to ball and bomb moves |
-| 172 | Competitive | Gen 6 | partly: Sp. Atk +2 when a foe's move lowers its stats (Intimidate not yet) |
+| 172 | Competitive | Gen 6 | yes: Sp. Atk +2 when a foe's move or Intimidate lowers its stats |
 | 173 | Strong Jaw | Gen 6 | yes: biting moves ×1.5 |
 | 174 | Refrigerate | Gen 6 | yes: Normal moves become Ice-type, ×1.2 |
 | 175 | Sweet Veil | Gen 6 | not yet (no battle effect) |
@@ -157,7 +157,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 272 | Purifying Salt | Gen 9 | partly: Ghost damage halved (status immunity not yet) |
 | 273 | Well-Baked Body | Gen 9 | yes: absorbs Fire moves, Defense +2 (`BattleSystem_TriggerImmunityAbility`) |
 | 274 | Wind Rider | Gen 9 | not yet (no battle effect) |
-| 275 | Guard Dog | Gen 9 | not yet (no battle effect) |
+| 275 | Guard Dog | Gen 9 | partly: Intimidate raises its Attack instead (immunity to Roar and Whirlwind not yet) |
 | 276 | Rocky Payload | Gen 9 | yes: Rock moves ×1.5 |
 | 277 | Wind Power | Gen 9 | not yet (no battle effect) |
 | 278 | Zero to Hero | Gen 9 | not yet (no battle effect) |

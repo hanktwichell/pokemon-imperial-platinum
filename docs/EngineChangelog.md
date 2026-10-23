@@ -4,6 +4,19 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (part 8) — Intimidate reactions and AI scores
+
+- Intimidate now triggers Defiant (Attack +2), Competitive (Sp. Atk +2) and Rattled (Speed +1), through a new switch-in
+  step (`SWITCH_IN_CHECK_STATE_SOVEREIGN_STAT_DROP_REACTION`) that shares `Sovereign_SetupStatDropReaction` with the
+  after-move Defiant step.
+- Guard Dog: Intimidate raises its Attack instead. Inner Focus, Oblivious, Own Tempo and Scrappy block Intimidate (Gen
+  VIII+), with Clear Body's "suppressed" message.
+- AI: Clanging Scales, Hyperspace Fury and Spin Out score like Close Combat, Make It Rain like Overheat, and Storm Throw,
+  Frost Breath, Wicked Blow and Flower Trick like high-critical moves.
+
+**Verified in the test build:** an Intimidate Garchomp left a Defiant Archaludon at Attack +1 (−1 then +2) and a Guard
+Dog Venusaur at Attack +1.
+
 ## Item 11 (part 7) — 44 more abilities
 
 | Kind | Abilities |

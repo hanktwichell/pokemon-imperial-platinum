@@ -5012,7 +5012,8 @@ static BOOL BattleControllerPlayer_TriggerAfterMoveHitEffects(BattleSystem *batt
         }
 
         case AFTER_MOVE_HIT_STATE_DEFIANT: {
-            // Sovereign (item 11): Defiant (Attack +2) and Competitive (Sp. Atk +2) after a foe's move lowered a stat.
+            // Sovereign (item 11): Defiant (Attack +2) and Competitive (Sp. Atk +2) after a foe's move lowered a stat, and
+            // Defiant, Competitive or Rattled after an Intimidate mid-turn.
             int battler;
 
             for (battler = 0; battler < maxBattlers; battler++) {
@@ -5022,14 +5023,9 @@ static BOOL BattleControllerPlayer_TriggerAfterMoveHitEffects(BattleSystem *batt
             }
 
             if (battler < maxBattlers) {
-                int stat = Battler_Ability(battleCtx, battler) == ABILITY_DEFIANT ? BATTLE_STAT_ATTACK : BATTLE_STAT_SP_ATTACK;
                 battleCtx->sovereignDefiantPending &= ~FlagIndex(battler);
 
-                if (battleCtx->battleMons[battler].curHP && battleCtx->battleMons[battler].statBoosts[stat] < 12) {
-                    battleCtx->sideEffectParam = MOVE_SUBSCRIPT_PTR_ATTACK_UP_2_STAGES + (stat - BATTLE_STAT_ATTACK);
-                    battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
-                    battleCtx->sideEffectMon = battler;
-
+                if (Sovereign_SetupStatDropReaction(battleCtx, battler)) {
                     LOAD_SUBSEQ(subscript_update_stat_stage);
                     battleCtx->commandNext = battleCtx->command;
                     battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
