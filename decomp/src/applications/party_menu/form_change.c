@@ -78,8 +78,13 @@ BOOL PartyMenuFormChange_ChangeForm(PartyMenuApplication *app)
             formChanger->narcIdx = shaymin_spa;
             break;
         case SPECIES_ROTOM:
-        default:
             GF_ASSERT(FALSE);
+            break;
+        default:
+            // Sovereign (FM): a form-change key item already changed the form (src/sovereign_form_items.c). It
+            // plays Giratina's effect.
+            formChanger->framesBeforeFormChange = 65;
+            formChanger->narcIdx = giratina_spa;
             break;
         }
 
@@ -189,6 +194,7 @@ static void LoadParticleResources(PartyMenuFormChange *formChanger)
 
     switch (formChanger->species) {
     case SPECIES_GIRATINA:
+    default: // Sovereign (FM): the form-change key items
         ParticleSystem_CreateEmitterWithCallback(formChanger->ps, 0, EmitterCallback, formChanger);
         ParticleSystem_CreateEmitterWithCallback(formChanger->ps, 1, EmitterCallback, formChanger);
         ParticleSystem_CreateEmitterWithCallback(formChanger->ps, 2, EmitterCallback, formChanger);

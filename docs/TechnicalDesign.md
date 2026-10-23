@@ -149,6 +149,20 @@ implemented.
   - `BtlCmd_TryStealItem` (Thief and Covet) and `BtlCmd_TrySwapItems` (Trick and Switcheroo) fail.
   - `BtlCmd_TryKnockOff` leaves the item.
   - `BattleSystem_FlingItem` fails.
+- **Key-item forms** (`SOVEREIGN_FORM_KEY_ITEM`: Therian Formes, Hoopa Unbound) and **fusions**
+  (`SOVEREIGN_FORM_FUSION`: Kyurem, Necrozma, Calyrex; the form's `trigger` is the partner species).
+  - The key items have `ITEM_USE_FUNC_SOVEREIGN_FORM` (`item_use_functions.c`), which opens the party menu with the
+    item like the Gracidea.
+  - `ApplyItemEffectOnPokemon` (`party_menu/main.c`) hands them to `SovereignFormItem_Use`
+    (`src/sovereign_form_items.c`), then plays the Gracidea's form-change animation on the slot that changed
+    (`form_change.c` gives Sovereign species Giratina's effect).
+  - A fused partner is removed from the party only after the animation, so the slots on screen don't shift during
+    it. The party menu then closes back to the bag.
+  - **Partner storage:** each fusion item keeps its partner in `MigratedPokemon.mons[item]`, Pal Park's transfer
+    storage. Pal Park and migration are removed (decision 22), and Pal Park needs all six slots filled to open. The
+    main menu's Migrate option is gone, so nothing else writes there.
+  - The form's moves are a table in `sovereign_form_items.c`.
+  - `BoxAppMan_CheckReleaseMonValid` (`pc_boxes/box_app_manager.c`) refuses to release a fused Pokémon.
 
 ### 5. Trainer data
 - Vanilla Gen IV trainer Pokémon can't specify EVs, natures directly (nature comes from the PID seeded by trainer

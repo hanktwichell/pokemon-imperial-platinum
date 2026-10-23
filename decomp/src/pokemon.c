@@ -5088,7 +5088,7 @@ BOOL Pokemon_IsSovereignBattleForm(u16 species, int form)
 {
     const SovereignForm *entry = Pokemon_FindSovereignForm(species, form);
 
-    return entry != NULL && entry->kind != SOVEREIGN_FORM_HELD_ITEM;
+    return entry != NULL && (Pokemon_IsSovereignMegaForm(species, form) || entry->kind == SOVEREIGN_FORM_BATTLE_ITEM);
 }
 
 // Sovereign (E8): TRUE for a Mega or Primal form (the HP bar shows the Mega symbol).
@@ -5140,7 +5140,11 @@ BOOL Pokemon_SovereignItemIsLocked(u16 species, u16 item)
     }
 
     for (int i = 0; i < SOVEREIGN_FORM_COUNT; i++) {
-        if (sSovereignForms[i].species == species && sSovereignForms[i].kind != SOVEREIGN_FORM_MEGA_BY_MOVE && sSovereignForms[i].trigger == item) {
+        const SovereignForm *entry = &sSovereignForms[i];
+        BOOL heldTrigger = entry->kind == SOVEREIGN_FORM_MEGA || entry->kind == SOVEREIGN_FORM_PRIMAL
+            || entry->kind == SOVEREIGN_FORM_HELD_ITEM || entry->kind == SOVEREIGN_FORM_BATTLE_ITEM;
+
+        if (entry->species == species && heldTrigger && entry->trigger == item) {
             return TRUE;
         }
     }
@@ -5148,9 +5152,41 @@ BOOL Pokemon_SovereignItemIsLocked(u16 species, u16 item)
     return FALSE;
 }
 
+// Sovereign (FM): the form a key item used on the species gives it (the Reveal Glass on Landorus: Therian), or 0.
+int Pokemon_SovereignKeyItemForm(u16 species, u16 item)
+{
+    for (int i = 0; i < SOVEREIGN_FORM_COUNT; i++) {
+        if (sSovereignForms[i].species == species && sSovereignForms[i].kind == SOVEREIGN_FORM_KEY_ITEM && sSovereignForms[i].trigger == item) {
+            return sSovereignForms[i].form;
+        }
+    }
+
+    return 0;
+}
+
+// Sovereign (FM): the form of the species fused with the partner species (Kyurem and Reshiram: White Kyurem), or 0.
+int Pokemon_SovereignFusionForm(u16 species, u16 partner)
+{
+    for (int i = 0; i < SOVEREIGN_FORM_COUNT; i++) {
+        if (sSovereignForms[i].species == species && sSovereignForms[i].kind == SOVEREIGN_FORM_FUSION && sSovereignForms[i].trigger == partner) {
+            return sSovereignForms[i].form;
+        }
+    }
+
+    return 0;
+}
+
+// Sovereign (FM): the partner species fused into this form, or SPECIES_NONE.
+u16 Pokemon_SovereignFusionPartner(u16 species, int form)
+{
+    const SovereignForm *entry = Pokemon_FindSovereignForm(species, form);
+
+    return entry != NULL && entry->kind == SOVEREIGN_FORM_FUSION ? entry->trigger : SPECIES_NONE;
+}
+
 // Replaces a known move with another (Crowned Zacian's Iron Head becomes Behemoth Blade). The PP used carries over, so
 // a move used twice is down 2 PP either way, and the swap back doesn't cost PP.
-static void Pokemon_SovereignReplaceMove(Pokemon *mon, u16 from, u16 to)
+void Pokemon_SovereignReplaceMove(Pokemon *mon, u16 from, u16 to)
 {
     for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
         if (Pokemon_GetValue(mon, MON_DATA_MOVE1 + i, NULL) == from) {

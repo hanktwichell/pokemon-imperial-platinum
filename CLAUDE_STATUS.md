@@ -1482,3 +1482,61 @@ Mega timing with 12b.
 3. FM battle forms that need no new ability effect, then the regional forms' data (wild placement waits for the Regional
    Forms Park). Before saves matter, fix how form numbers are assigned so that adding a Mega later can't shift a saved
    form number.
+
+---
+
+## CB-0023 — 2026-10-22, 10:05 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Merged:** PR #27 (FM part 1, CB-0022). Main was also merged in (Claude A's item 11 part 1, PR #28). The changelog
+conflict kept both entries.
+
+**Implemented: FM part 2, form-change key items and fusions (11 forms).**
+- **The forms:**
+  - The Therian Formes of Tornadus, Thundurus, Landorus and Enamorus (Reveal Glass).
+  - Hoopa Unbound (Prison Bottle).
+  - White/Black Kyurem (DNA Splicers), Dusk Mane/Dawn Wings Necrozma (N-Solarizer, N-Lunarizer), and Ice/Shadow
+    Rider Calyrex (Reins of Unity).
+- **How they're used:** from the bag, then pick the Pokémon. The party menu's form-change animation plays.
+  - A fusion works on the base Pokémon or on its partner. The item holds the partner, which leaves the party.
+  - Using the item again separates them; it needs a free party slot.
+  - Moves change as in the official games: Kyurem's Glaciate and Scary Face, Hoopa's Hyperspace Hole/Fury, and
+    Necrozma's and Calyrex's signature moves.
+- **Fused Pokémon can't be released.** The partners live in Pal Park's transfer storage (decision 22), so the save
+  layout is unchanged.
+- **The main menu's Migrate option is removed** (decision 22).
+- **Fix (E6):** all 532 new species' party/box icons showed as noise (8bpp PNGs). They're now 4-bit, and
+  `make_placeholder_icons.py` writes them that way.
+- **Verified in the test build** (temporary party, not committed): fusing and separating Black Kyurem (moves and
+  stats), the Therian Landorus, Hoopa Unbound, the no-effect message, the PC release block and the icons. The release
+  ROM builds and passes boot smoke, and the docs regenerate with no diff.
+
+**Files modified:**
+- Items: `tools/engine/gen_items.py`, `decomp/res/items/data/{reveal_glass,prison_bottle,dna_splicers,n_solarizer,
+  n_lunarizer,reins_of_unity}.json`, `decomp/include/constants/items.h`, `decomp/src/item_use_functions.c`
+- Forms:
+  - `tools/engine/gen_forms.py`
+  - `decomp/include/constants/sovereign_forms.h`, `decomp/include/data/sovereign_forms.h`,
+    `decomp/tools/dataproc/src/sovereign_forms.inc`
+  - `decomp/res/pokemon/{tornadus,thundurus,landorus,enamorus,hoopa,kyurem,necrozma,calyrex}/meson.build` and their
+    `forms/*/data.json` (new)
+- Engine:
+  - `decomp/src/sovereign_form_items.c` and `decomp/include/sovereign_form_items.h` (new), `decomp/src/meson.build`,
+    `decomp/platinum.us/main.lsf.in`
+  - `decomp/src/pokemon.c`, `decomp/include/pokemon.h`
+  - `decomp/src/applications/party_menu/main.c`, `form_change.c`, `decomp/include/applications/party_menu/defs.h`
+  - `decomp/src/applications/pc_boxes/box_app_manager.c`, `decomp/src/main_menu/main_menu.c`
+  - `decomp/res/text/party_menu.json`, `decomp/res/text/box_messages.json`
+- Icons: `decomp/res/pokemon/*/icon.png` and `assets/sprites/icons_placeholder/*.png` (532 each),
+  `tools/sprites/make_placeholder_icons.py`
+- Docs: `docs/EngineChangelog.md`, `docs/TechnicalDesign.md` §4b, `docs/EngineRoadmap.md` (row 10c),
+  `docs/ItemChanges_Sovereign.md`, `docs/ProjectStatus.md` (decision 22), `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR when green.
+2. FM battle forms: Zygarde (Zygarde Cube, 10%/50%, Complete via Power Construct), Darmanitan Zen, Meloetta
+   Pirouette, Aegislash, Wishiwashi, Minior, Mimikyu, Cramorant, Eiscue, Morpeko, Palafin and Ultra Necrozma. Many need
+   their ability's effect, which is item 11 (Claude A). Agree who builds the form switch.
+3. The regional forms' data (59 forms; wild placement waits for the Regional Forms Park). Before saves matter, fix
+   how form numbers are assigned so that adding a Mega later can't shift a saved form number. Also place the new key
+   items (Reveal Glass, DNA Splicers, N-Solarizer/Lunarizer, Reins of Unity) and the Origin items; that's the
+   owner's call.

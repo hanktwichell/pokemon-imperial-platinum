@@ -115,6 +115,8 @@ Made by the owner (2026-10-22):
     Its grounds on Route 221 become the **Regional Forms Park**: Pal Park's four areas (field, forest, mountain, sea)
     become Alola, Galar, Hisui and Paldea zones where the 59 regional forms (decision 16) live as wild Pokémon. The
     Catching Show layout is reused. Built with milestone FM, once regional forms exist.
+    - The main menu's "Migrate from…" option is removed (FM part 2). Pal Park's transfer storage now holds the
+      fusion partners (`EngineChangelog.md`).
     - **Galarian Articuno, Zapdos and Moltres** roam the **Galar zone** as rare encounters (low odds). That's the only
       place they can be caught (owner, 2026-10-22).
 23. **The story: the Sovereign** (owner, 2026-10-22; `docs/Story.md`). The Sovereign are Sinnoh's old ruling class.

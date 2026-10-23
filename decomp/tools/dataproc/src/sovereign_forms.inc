@@ -105,3 +105,14 @@
     { "ogerpon/forms/cornerstone_mask", NULL, .isGiratinaOrigin = false }, // Cornerstone Mask Ogerpon
     { "dialga/forms/origin", NULL, .isGiratinaOrigin = false }, // Origin Dialga
     { "palkia/forms/origin", NULL, .isGiratinaOrigin = false }, // Origin Palkia
+    { "tornadus/forms/therian", NULL, .isGiratinaOrigin = false }, // Therian Tornadus
+    { "thundurus/forms/therian", NULL, .isGiratinaOrigin = false }, // Therian Thundurus
+    { "landorus/forms/therian", NULL, .isGiratinaOrigin = false }, // Therian Landorus
+    { "enamorus/forms/therian", NULL, .isGiratinaOrigin = false }, // Therian Enamorus
+    { "hoopa/forms/unbound", NULL, .isGiratinaOrigin = false }, // Hoopa Unbound
+    { "kyurem/forms/white", NULL, .isGiratinaOrigin = false }, // White Kyurem
+    { "kyurem/forms/black", NULL, .isGiratinaOrigin = false }, // Black Kyurem
+    { "necrozma/forms/dusk", NULL, .isGiratinaOrigin = false }, // Dusk Necrozma
+    { "necrozma/forms/dawn", NULL, .isGiratinaOrigin = false }, // Dawn Necrozma
+    { "calyrex/forms/ice", NULL, .isGiratinaOrigin = false }, // Ice Calyrex
+    { "calyrex/forms/shadow", NULL, .isGiratinaOrigin = false }, // Shadow Calyrex
