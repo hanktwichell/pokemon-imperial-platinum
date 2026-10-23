@@ -554,6 +554,9 @@ BOOL Move_IsBallOrBomb(int move);
 // Sovereign (item 11): whether a standing foe with Unnerve stops this battler from eating its Berry.
 BOOL Battler_UnnerveBlocksBerry(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 
+// Sovereign (item 11): the power of Gen V+ moves whose power depends on the battle (Hex, Electro Ball, Heavy Slam...).
+int Sovereign_MovePower(BattleSystem *battleSys, BattleContext *battleCtx, int move, int attacker, int defender, int power);
+
 /**
  * @brief Access a particular entry in the type-matchup table.
  *

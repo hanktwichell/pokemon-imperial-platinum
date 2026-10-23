@@ -7017,6 +7017,79 @@ BOOL Move_SheerForceApplies(BattleContext *battleCtx, int attacker, int move)
         && MOVE_DATA(move).effect != BATTLE_EFFECT_ELECTRO_SHOT;
 }
 
+// Sovereign (item 11): a battler's Speed with its stat stage applied.
+static u32 Sovereign_StagedSpeed(BattleContext *battleCtx, int battler)
+{
+    int stage = battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_SPEED];
+    return battleCtx->battleMons[battler].speed * sStatStageBoosts[stage].numerator / sStatStageBoosts[stage].denominator;
+}
+
+// Sovereign (item 11): a battler's weight, with Heavy Metal and Light Metal.
+static u32 Sovereign_Weight(BattleContext *battleCtx, int attacker, int battler)
+{
+    u32 weight = battleCtx->battleMons[battler].weight;
+
+    if (Battler_IgnorableAbility(battleCtx, attacker, battler, ABILITY_HEAVY_METAL) == TRUE) {
+        weight *= 2;
+    } else if (Battler_IgnorableAbility(battleCtx, attacker, battler, ABILITY_LIGHT_METAL) == TRUE) {
+        weight /= 2;
+    }
+
+    return weight ? weight : 1;
+}
+
+// Sovereign (item 11): the power of Gen V+ moves whose power depends on the battle (the move keeps the plain hit
+// effect; BattleSystem_CalcMoveDamage asks here). Returns the power unchanged for every other move.
+int Sovereign_MovePower(BattleSystem *battleSys, BattleContext *battleCtx, int move, int attacker, int defender, int power)
+{
+    u32 ratio;
+    int i, boosts;
+
+    switch (move) {
+    case MOVE_HEX: // double against a Pokemon with a status condition
+        if (battleCtx->battleMons[defender].status & MON_CONDITION_ANY) {
+            power *= 2;
+        }
+        break;
+
+    case MOVE_VENOSHOCK: // double against a poisoned Pokemon
+        if (battleCtx->battleMons[defender].status & MON_CONDITION_ANY_POISON) {
+            power *= 2;
+        }
+        break;
+
+    case MOVE_ACROBATICS: // double when the user holds no item
+        if (battleCtx->battleMons[attacker].heldItem == ITEM_NONE) {
+            power *= 2;
+        }
+        break;
+
+    case MOVE_ELECTRO_BALL: // the faster the user is than the target, the stronger
+        ratio = Sovereign_StagedSpeed(battleCtx, attacker) / (Sovereign_StagedSpeed(battleCtx, defender) ? Sovereign_StagedSpeed(battleCtx, defender) : 1);
+        power = ratio >= 4 ? 150 : ratio >= 3 ? 120 : ratio >= 2 ? 80 : ratio >= 1 ? 60 : 40;
+        break;
+
+    case MOVE_HEAVY_SLAM: // the heavier the user is than the target, the stronger
+    case MOVE_HEAT_CRASH:
+        ratio = Sovereign_Weight(battleCtx, attacker, attacker) / Sovereign_Weight(battleCtx, attacker, defender);
+        power = ratio >= 5 ? 120 : ratio >= 4 ? 100 : ratio >= 3 ? 80 : ratio >= 2 ? 60 : 40;
+        break;
+
+    case MOVE_STORED_POWER: // 20 more power for each stage the user's stats are raised
+    case MOVE_POWER_TRIP:
+        boosts = 0;
+        for (i = BATTLE_STAT_ATTACK; i < BATTLE_STAT_MAX; i++) {
+            if (battleCtx->battleMons[attacker].statBoosts[i] > 6) {
+                boosts += battleCtx->battleMons[attacker].statBoosts[i] - 6;
+            }
+        }
+        power = 20 + 20 * boosts;
+        break;
+    }
+
+    return power;
+}
+
 // Sovereign (item 11): biting moves, boosted by Strong Jaw.
 static const u16 sBitingMoves[] = {
     MOVE_BITE,
@@ -7125,6 +7198,8 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
     } else {
         movePower = inPower;
     }
+
+    movePower = Sovereign_MovePower(battleSys, battleCtx, move, attacker, defender, movePower);
 
     if (attackerParams.ability == ABILITY_NORMALIZE) {
         moveType = TYPE_NORMAL;
@@ -7302,6 +7377,18 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
     if (MOVE_DATA(move).effect == BATTLE_EFFECT_BODY_PRESS) {
         attackStat = BattleMon_Get(battleCtx, attacker, BATTLEMON_DEFENSE, NULL);
         attackStage = BattleMon_Get(battleCtx, attacker, BATTLEMON_DEFENSE_STAGE, NULL) - DEFAULT_STAT_STAGE;
+    }
+
+    // Sovereign (item 11): Foul Play uses the target's Attack and Attack stage.
+    if (move == MOVE_FOUL_PLAY) {
+        attackStat = BattleMon_Get(battleCtx, defender, BATTLEMON_ATTACK, NULL);
+        attackStage = BattleMon_Get(battleCtx, defender, BATTLEMON_ATTACK_STAGE, NULL) - DEFAULT_STAT_STAGE;
+    }
+
+    // Sovereign (item 11): Psyshock, Psystrike and Secret Sword are special moves that hit the target's Defense.
+    if (move == MOVE_PSYSHOCK || move == MOVE_PSYSTRIKE || move == MOVE_SECRET_SWORD) {
+        spDefenseStat = defenseStat;
+        spDefenseStage = defenseStage;
     }
 
     if (attackerParams.ability == ABILITY_SIMPLE) {

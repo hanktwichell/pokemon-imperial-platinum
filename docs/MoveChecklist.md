@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 107 |
+| exact | 119 |
 | approximate | 67 |
-| placeholder | 206 |
+| placeholder | 194 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -20,8 +20,8 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 470 | Guard Split | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 471 | Power Split | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 472 | Wonder Room | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
-| 473 | Psyshock | Psychic | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
-| 474 | Venoshock | Poison | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 473 | Psyshock | Psychic | `HIT` | exact | Sovereign effect: special damage against the target's Defense |
+| 474 | Venoshock | Poison | `HIT` | exact | Sovereign effect: target is poisoned: power doubles |
 | 475 | Autotomize | Steel | `SPEED_UP_2` | approximate | has its own mechanic in Gen IX; closest effect |
 | 476 | Rage Powder | Bug | `MAKE_GLOBAL_TARGET` | exact |  |
 | 477 | Telekinesis | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
@@ -31,15 +31,15 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 481 | Flame Burst | Fire | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 482 | Sludge Wave | Poison | `POISON_HIT` | exact |  |
 | 483 | Quiver Dance | Bug | `SOVEREIGN_QUIVER_DANCE` | exact | Sovereign effect: user Sp. Atk +1, user Sp. Def +1, user Speed +1 |
-| 484 | Heavy Slam | Steel | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 484 | Heavy Slam | Steel | `HIT` | exact | Sovereign effect: power from the user/target weight ratio (40-120) |
 | 485 | Synchronoise | Psychic | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
-| 486 | Electro Ball | Electric | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 486 | Electro Ball | Electric | `HIT` | exact | Sovereign effect: power from the user/target Speed ratio (40-150) |
 | 487 | Soak | Water | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 488 | Flame Charge | Fire | `HIT` | approximate | user's stats change by [('spe', 1)] in the original |
 | 489 | Coil | Poison | `SOVEREIGN_COIL` | exact | Sovereign effect: user Attack +1, user Defense +1, user accuracy +1 |
 | 490 | Low Sweep | Fighting | `LOWER_SPEED_HIT` | exact |  |
 | 491 | Acid Spray | Poison | `LOWER_SP_DEF_2_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
-| 492 | Foul Play | Dark | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 492 | Foul Play | Dark | `HIT` | exact | Sovereign effect: damage uses the target's Attack and Attack stage |
 | 493 | Simple Beam | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 494 | Entrainment | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 495 | After You | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
@@ -47,19 +47,19 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 497 | Echoed Voice | Normal | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 498 | Chip Away | Normal | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 499 | Clear Smog | Poison | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
-| 500 | Stored Power | Psychic | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 500 | Stored Power | Psychic | `HIT` | exact | Sovereign effect: power 20 + 20 per positive stat stage on the user |
 | 501 | Quick Guard | Fighting | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 502 | Ally Switch | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 503 | Scald | Water | `BURN_HIT` | exact |  |
 | 504 | Shell Smash | Normal | `SOVEREIGN_SHELL_SMASH` | exact | Sovereign effect: user Defense -1, user Sp. Def -1, user Attack +2, user Sp. Atk +2, user Speed +2 |
 | 505 | Heal Pulse | Psychic | `RESTORE_HALF_HP` | approximate | has its own mechanic in Gen IX; closest effect |
-| 506 | Hex | Ghost | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 506 | Hex | Ghost | `HIT` | exact | Sovereign effect: target has a status condition: power doubles |
 | 507 | Sky Drop | Flying | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 508 | Shift Gear | Steel | `SOVEREIGN_SHIFT_GEAR` | exact | Sovereign effect: user Attack +1, user Speed +2 |
 | 509 | Circle Throw | Fighting | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 510 | Incinerate | Fire | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 511 | Quash | Dark | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
-| 512 | Acrobatics | Flying | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 512 | Acrobatics | Flying | `HIT` | exact | Sovereign effect: user holds no item: power doubles |
 | 513 | Reflect Type | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 514 | Retaliate | Normal | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 515 | Final Gambit | Fighting | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
@@ -82,12 +82,12 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 532 | Horn Leech | Grass | `RECOVER_HALF_DAMAGE_DEALT` | exact |  |
 | 533 | Sacred Sword | Fighting | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 534 | Razor Shell | Water | `LOWER_DEFENSE_HIT` | exact |  |
-| 535 | Heat Crash | Fire | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 535 | Heat Crash | Fire | `HIT` | exact | Sovereign effect: power from the user/target weight ratio (40-120) |
 | 536 | Leaf Tornado | Grass | `LOWER_ACCURACY_HIT` | exact |  |
 | 537 | Steamroller | Bug | `FLINCH_MINIMIZE_DOUBLE_HIT` | exact |  |
 | 538 | Cotton Guard | Grass | `SOVEREIGN_COTTON_GUARD` | exact | Sovereign effect: user Defense +3 |
 | 539 | Night Daze | Dark | `LOWER_ACCURACY_HIT` | exact |  |
-| 540 | Psystrike | Psychic | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 540 | Psystrike | Psychic | `HIT` | exact | Sovereign effect: special damage against the target's Defense |
 | 541 | Tail Slap | Normal | `MULTI_HIT` | exact |  |
 | 542 | Hurricane | Flying | `HURRICANE` | exact | Sovereign effect: Thunder's weather accuracy and hits Pokémon in the air, 30% confusion |
 | 543 | Head Charge | Normal | `RECOIL_QUARTER` | exact |  |
@@ -95,7 +95,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 545 | Searing Shot | Fire | `BURN_HIT` | exact |  |
 | 546 | Techno Blast | Normal | `JUDGEMENT` | exact |  |
 | 547 | Relic Song | Normal | `HIT` | approximate | secondary ailment 2 not reproduced |
-| 548 | Secret Sword | Fighting | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 548 | Secret Sword | Fighting | `HIT` | exact | Sovereign effect: special damage against the target's Defense |
 | 549 | Glaciate | Ice | `LOWER_SPEED_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
 | 550 | Bolt Strike | Electric | `PARALYZE_HIT` | exact |  |
 | 551 | Blue Flare | Fire | `BURN_HIT` | exact |  |
@@ -228,7 +228,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 678 | Psychic Terrain | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 679 | Lunge | Bug | `LOWER_ATTACK_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
 | 680 | Fire Lash | Fire | `LOWER_DEFENSE_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
-| 681 | Power Trip | Dark | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 681 | Power Trip | Dark | `HIT` | exact | Sovereign effect: power 20 + 20 per positive stat stage on the user |
 | 682 | Burn Up | Fire | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 683 | Speed Swap | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 684 | Smart Strike | Steel | `BYPASS_ACCURACY` | exact |  |
