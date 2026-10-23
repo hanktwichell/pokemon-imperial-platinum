@@ -1482,3 +1482,21 @@ Mega timing with 12b.
 3. FM battle forms that need no new ability effect, then the regional forms' data (wild placement waits for the Regional
    Forms Park). Before saves matter, fix how form numbers are assigned so that adding a Mega later can't shift a saved
    form number.
+
+---
+
+## CA-0024 — 2026-10-23 (session on `claude/festive-bardeen-5h7beo`)
+
+**Correction to CA-0023:** the developer team's Archaludon is **not** invisible in battle. It uses the placeholder
+front sprite every new species has until E12 converts the real art: a small question-mark shape, the little blue
+(gold when shiny) squiggle beside its partner in the battle screenshots. Nothing to fix beyond E12.
+
+PR #28 (item 11 part 1) is merged; the branch is reset to main.
+
+**Files modified:** `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Item 11 continued: Gen V+ absorbing and redirecting abilities (Storm Drain, Lightning Rod's absorb, Sap Sipper,
+   Earth Eater, Well-Baked Body…), with the AI's immunity check (12b #4–#5).
+2. The owner's answers on Oak's visit (CA-0021).
+3. T1 boss teams when the owner is ready.
