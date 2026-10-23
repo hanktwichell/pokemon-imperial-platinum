@@ -1,0 +1,228 @@
+form_id,identifier,form,base_species,dex,category,types,abilities,bst,hp,atk,def,spa,spd,spe,base_types,ability_in_gen4_engine
+10001,deoxys-attack,Attack Deoxys,Deoxys,386,vanilla,Psychic,Pressure,600,50,180,20,180,20,150,Psychic,1
+10002,deoxys-defense,Defense Deoxys,Deoxys,386,vanilla,Psychic,Pressure,600,50,70,160,70,160,90,Psychic,1
+10003,deoxys-speed,Speed Deoxys,Deoxys,386,vanilla,Psychic,Pressure,600,50,95,90,95,90,180,Psychic,1
+10004,wormadam-sandy,Sandy Wormadam,Wormadam,413,vanilla,Bug/Ground,Anticipation; Overcoat (H),424,60,79,105,59,85,36,Bug/Grass,0
+10005,wormadam-trash,Trash Wormadam,Wormadam,413,vanilla,Bug/Steel,Anticipation; Overcoat (H),424,60,69,95,69,95,36,Bug/Grass,0
+10006,shaymin-sky,Sky Shaymin,Shaymin,492,vanilla,Grass/Flying,Serene Grace,600,100,103,75,120,75,127,Grass,1
+10007,giratina-origin,Origin Giratina,Giratina,487,vanilla,Ghost/Dragon,Levitate,680,150,120,100,120,100,90,Ghost/Dragon,1
+10008,rotom-heat,Heat Rotom,Rotom,479,vanilla,Electric/Fire,Levitate,520,50,65,107,105,107,86,Electric/Ghost,1
+10009,rotom-wash,Wash Rotom,Rotom,479,vanilla,Electric/Water,Levitate,520,50,65,107,105,107,86,Electric/Ghost,1
+10010,rotom-frost,Frost Rotom,Rotom,479,vanilla,Electric/Ice,Levitate,520,50,65,107,105,107,86,Electric/Ghost,1
+10011,rotom-fan,Fan Rotom,Rotom,479,vanilla,Electric/Flying,Levitate,520,50,65,107,105,107,86,Electric/Ghost,1
+10012,rotom-mow,Mow Rotom,Rotom,479,vanilla,Electric/Grass,Levitate,520,50,65,107,105,107,86,Electric/Ghost,1
+10013,castform-sunny,Sunny Castform,Castform,351,vanilla,Fire,Forecast,420,70,70,70,70,70,70,Normal,1
+10014,castform-rainy,Rainy Castform,Castform,351,vanilla,Water,Forecast,420,70,70,70,70,70,70,Normal,1
+10015,castform-snowy,Snowy Castform,Castform,351,vanilla,Ice,Forecast,420,70,70,70,70,70,70,Normal,1
+10016,basculin-blue-striped,Blue-Striped Basculin,Basculin,550,other,Water,Rock Head; Adaptability; Mold Breaker (H),460,70,92,65,80,55,98,Water,1
+10017,darmanitan-zen,Zen Darmanitan,Darmanitan,555,battle,Fire/Psychic,Sheer Force; Zen Mode (H),540,105,30,105,140,105,55,Fire,0
+10018,meloetta-pirouette,Pirouette Meloetta,Meloetta,648,battle,Normal/Fighting,Serene Grace,600,100,128,90,77,77,128,Normal/Psychic,1
+10019,tornadus-therian,Therian Tornadus,Tornadus,641,other,Flying,Regenerator,580,79,100,80,110,90,121,Flying,0
+10020,thundurus-therian,Therian Thundurus,Thundurus,642,other,Electric/Flying,Volt Absorb,580,79,105,70,145,80,101,Electric/Flying,1
+10021,landorus-therian,Therian Landorus,Landorus,645,other,Ground/Flying,Intimidate,600,89,145,90,105,80,91,Ground/Flying,1
+10022,kyurem-black,Black Kyurem,Kyurem,646,fusion,Dragon/Ice,Teravolt,700,125,170,100,120,90,95,Dragon/Ice,0
+10023,kyurem-white,White Kyurem,Kyurem,646,fusion,Dragon/Ice,Turboblaze,700,125,120,90,170,100,95,Dragon/Ice,0
+10024,keldeo-resolute,Resolute Keldeo,Keldeo,647,other,Water/Fighting,Justified,580,91,72,90,129,90,108,Water/Fighting,0
+10025,meowstic-female,Female Meowstic,Meowstic,678,other,Psychic,Keen Eye; Infiltrator; Competitive (H),466,74,48,76,83,81,104,Psychic,0
+10026,aegislash-blade,Blade Aegislash,Aegislash,681,battle,Steel/Ghost,Stance Change,500,60,140,50,140,50,60,Steel/Ghost,0
+10027,pumpkaboo-small,Small Pumpkaboo,Pumpkaboo,710,other,Ghost/Grass,Pickup; Frisk; Insomnia (H),335,44,66,70,44,55,56,Ghost/Grass,1
+10028,pumpkaboo-large,Large Pumpkaboo,Pumpkaboo,710,other,Ghost/Grass,Pickup; Frisk; Insomnia (H),335,54,66,70,44,55,46,Ghost/Grass,1
+10029,pumpkaboo-super,Super Pumpkaboo,Pumpkaboo,710,other,Ghost/Grass,Pickup; Frisk; Insomnia (H),335,59,66,70,44,55,41,Ghost/Grass,1
+10030,gourgeist-small,Small Gourgeist,Gourgeist,711,other,Ghost/Grass,Pickup; Frisk; Insomnia (H),494,55,85,122,58,75,99,Ghost/Grass,1
+10031,gourgeist-large,Large Gourgeist,Gourgeist,711,other,Ghost/Grass,Pickup; Frisk; Insomnia (H),494,75,95,122,58,75,69,Ghost/Grass,1
+10032,gourgeist-super,Super Gourgeist,Gourgeist,711,other,Ghost/Grass,Pickup; Frisk; Insomnia (H),494,85,100,122,58,75,54,Ghost/Grass,1
+10061,floette-eternal,Eternal Floette,Floette,670,other,Fairy,Flower Veil; Symbiosis (H),551,74,65,67,125,128,92,Fairy,0
+10080,pikachu-rock-star,Pikachu Rock Star,Pikachu,25,other,Electric,Static; Lightning Rod (H),320,35,55,40,50,50,90,Electric,1
+10081,pikachu-belle,Pikachu Belle,Pikachu,25,other,Electric,Static; Lightning Rod (H),320,35,55,40,50,50,90,Electric,1
+10082,pikachu-pop-star,Pikachu Pop Star,Pikachu,25,other,Electric,Static; Lightning Rod (H),320,35,55,40,50,50,90,Electric,1
+10083,pikachu-phd,Pikachu Ph.D.,Pikachu,25,other,Electric,Static; Lightning Rod (H),320,35,55,40,50,50,90,Electric,1
+10084,pikachu-libre,Pikachu Libre,Pikachu,25,other,Electric,Static; Lightning Rod (H),320,35,55,40,50,50,90,Electric,1
+10085,pikachu-cosplay,Cosplay Pikachu,Pikachu,25,other,Electric,Static; Lightning Rod (H),320,35,55,40,50,50,90,Electric,1
+10086,hoopa-unbound,Hoopa Unbound,Hoopa,720,other,Psychic/Dark,Magician,680,80,160,60,170,130,80,Psychic/Ghost,0
+10091,rattata-alola,Alolan Rattata,Rattata,19,regional,Dark/Normal,Gluttony; Hustle; Thick Fat (H),253,30,56,35,25,35,72,Normal,1
+10092,raticate-alola,Alolan Raticate,Raticate,20,regional,Dark/Normal,Gluttony; Hustle; Thick Fat (H),413,75,71,70,40,80,77,Normal,1
+10093,raticate-totem-alola,Totem Alolan Raticate,Raticate,20,totem,Dark/Normal,Gluttony; Hustle; Thick Fat (H),413,75,71,70,40,80,77,Normal,1
+10094,pikachu-original-cap,Original Cap Pikachu,Pikachu,25,other,Electric,Static; Lightning Rod (H),320,35,55,40,50,50,90,Electric,1
+10095,pikachu-hoenn-cap,Hoenn Cap Pikachu,Pikachu,25,other,Electric,Static; Lightning Rod (H),320,35,55,40,50,50,90,Electric,1
+10096,pikachu-sinnoh-cap,Sinnoh Cap Pikachu,Pikachu,25,other,Electric,Static; Lightning Rod (H),320,35,55,40,50,50,90,Electric,1
+10097,pikachu-unova-cap,Unova Cap Pikachu,Pikachu,25,other,Electric,Static; Lightning Rod (H),320,35,55,40,50,50,90,Electric,1
+10098,pikachu-kalos-cap,Kalos Cap Pikachu,Pikachu,25,other,Electric,Static; Lightning Rod (H),320,35,55,40,50,50,90,Electric,1
+10099,pikachu-alola-cap,Alola Cap Pikachu,Pikachu,25,regional,Electric,Static; Lightning Rod (H),320,35,55,40,50,50,90,Electric,1
+10100,raichu-alola,Alolan Raichu,Raichu,26,regional,Electric/Psychic,Surge Surfer,485,60,85,50,95,85,110,Electric,0
+10101,sandshrew-alola,Alolan Sandshrew,Sandshrew,27,regional,Ice/Steel,Snow Cloak; Slush Rush (H),300,50,75,90,10,35,40,Ground,0
+10102,sandslash-alola,Alolan Sandslash,Sandslash,28,regional,Ice/Steel,Snow Cloak; Slush Rush (H),450,75,100,120,25,65,65,Ground,0
+10103,vulpix-alola,Alolan Vulpix,Vulpix,37,regional,Ice,Snow Cloak; Snow Warning (H),299,38,41,40,50,65,65,Fire,1
+10104,ninetales-alola,Alolan Ninetales,Ninetales,38,regional,Ice/Fairy,Snow Cloak; Snow Warning (H),505,73,67,75,81,100,109,Fire,1
+10105,diglett-alola,Alolan Diglett,Diglett,50,regional,Ground/Steel,Sand Veil; Tangling Hair; Sand Force (H),265,10,55,30,35,45,90,Ground,0
+10106,dugtrio-alola,Alolan Dugtrio,Dugtrio,51,regional,Ground/Steel,Sand Veil; Tangling Hair; Sand Force (H),425,35,100,60,50,70,110,Ground,0
+10107,meowth-alola,Alolan Meowth,Meowth,52,regional,Dark,Pickup; Technician; Rattled (H),290,40,35,35,50,40,90,Normal,0
+10108,persian-alola,Alolan Persian,Persian,53,regional,Dark,Fur Coat; Technician; Rattled (H),440,65,60,60,75,65,115,Normal,0
+10109,geodude-alola,Alolan Geodude,Geodude,74,regional,Rock/Electric,Magnet Pull; Sturdy; Galvanize (H),300,40,80,100,30,30,20,Rock/Ground,0
+10110,graveler-alola,Alolan Graveler,Graveler,75,regional,Rock/Electric,Magnet Pull; Sturdy; Galvanize (H),390,55,95,115,45,45,35,Rock/Ground,0
+10111,golem-alola,Alolan Golem,Golem,76,regional,Rock/Electric,Magnet Pull; Sturdy; Galvanize (H),495,80,120,130,55,65,45,Rock/Ground,0
+10112,grimer-alola,Alolan Grimer,Grimer,88,regional,Poison/Dark,Poison Touch; Gluttony; Power of Alchemy (H),325,80,80,50,40,50,25,Poison,0
+10113,muk-alola,Alolan Muk,Muk,89,regional,Poison/Dark,Poison Touch; Gluttony; Power of Alchemy (H),500,105,105,75,65,100,50,Poison,0
+10114,exeggutor-alola,Alolan Exeggutor,Exeggutor,103,regional,Grass/Dragon,Frisk; Harvest (H),530,95,105,85,125,75,45,Grass/Psychic,0
+10115,marowak-alola,Alolan Marowak,Marowak,105,regional,Fire/Ghost,Cursed Body; Lightning Rod; Rock Head (H),425,60,80,110,50,80,45,Ground,0
+10116,greninja-battle-bond,Battle Bond Greninja,Greninja,658,other,Water/Dark,Battle Bond,530,72,95,67,103,71,122,Water/Dark,0
+10117,greninja-ash,Ash’s Greninja,Greninja,658,battle,Water/Dark,Battle Bond,640,72,145,67,153,71,132,Water/Dark,0
+10118,zygarde-10-power-construct,10% Zygarde,Zygarde,718,other,Dragon/Ground,Power Construct,486,54,100,71,61,85,115,Dragon/Ground,0
+10119,zygarde-50-power-construct,50% Zygarde,Zygarde,718,other,Dragon/Ground,Power Construct,600,108,100,121,81,95,95,Dragon/Ground,0
+10120,zygarde-complete,Complete Zygarde,Zygarde,718,battle,Dragon/Ground,Power Construct,708,216,100,121,91,95,85,Dragon/Ground,0
+10121,gumshoos-totem,Totem Gumshoos,Gumshoos,735,totem,Normal,Stakeout; Strong Jaw; Adaptability (H),418,88,110,60,55,60,45,Normal,0
+10122,vikavolt-totem,Totem Vikavolt,Vikavolt,738,totem,Bug/Electric,Levitate,500,77,70,90,145,75,43,Bug/Electric,1
+10123,oricorio-pom-pom,Pom-pom Oricorio,Oricorio,741,other,Electric/Flying,Dancer,476,75,70,70,98,70,93,Fire/Flying,0
+10124,oricorio-pau,Pa’u Oricorio,Oricorio,741,other,Psychic/Flying,Dancer,476,75,70,70,98,70,93,Fire/Flying,0
+10125,oricorio-sensu,Sensu Oricorio,Oricorio,741,other,Ghost/Flying,Dancer,476,75,70,70,98,70,93,Fire/Flying,0
+10126,lycanroc-midnight,Midnight Lycanroc,Lycanroc,745,other,Rock,Keen Eye; Vital Spirit; No Guard (H),487,85,115,75,55,75,82,Rock,1
+10127,wishiwashi-school,School Wishiwashi,Wishiwashi,746,battle,Water,Schooling,620,45,140,130,140,135,30,Water,0
+10128,lurantis-totem,Totem Lurantis,Lurantis,754,totem,Grass,Leaf Guard; Contrary (H),480,70,105,90,80,90,45,Grass,0
+10129,salazzle-totem,Totem Salazzle,Salazzle,758,totem,Poison/Fire,Corrosion; Oblivious (H),480,68,64,60,111,60,117,Poison/Fire,0
+10130,minior-orange-meteor,Orange Meteor Minior,Minior,774,other,Rock/Flying,Shields Down,440,60,60,100,60,100,60,Rock/Flying,0
+10131,minior-yellow-meteor,Yellow Meteor Minior,Minior,774,other,Rock/Flying,Shields Down,440,60,60,100,60,100,60,Rock/Flying,0
+10132,minior-green-meteor,Green Meteor Minior,Minior,774,other,Rock/Flying,Shields Down,440,60,60,100,60,100,60,Rock/Flying,0
+10133,minior-blue-meteor,Blue Meteor Minior,Minior,774,other,Rock/Flying,Shields Down,440,60,60,100,60,100,60,Rock/Flying,0
+10134,minior-indigo-meteor,Indigo Meteor Minior,Minior,774,other,Rock/Flying,Shields Down,440,60,60,100,60,100,60,Rock/Flying,0
+10135,minior-violet-meteor,Violet Meteor Minior,Minior,774,other,Rock/Flying,Shields Down,440,60,60,100,60,100,60,Rock/Flying,0
+10136,minior-red,Red Core Minior,Minior,774,battle,Rock/Flying,Shields Down,500,60,100,60,100,60,120,Rock/Flying,0
+10137,minior-orange,Orange Core Minior,Minior,774,battle,Rock/Flying,Shields Down,500,60,100,60,100,60,120,Rock/Flying,0
+10138,minior-yellow,Yellow Core Minior,Minior,774,battle,Rock/Flying,Shields Down,500,60,100,60,100,60,120,Rock/Flying,0
+10139,minior-green,Green Core Minior,Minior,774,battle,Rock/Flying,Shields Down,500,60,100,60,100,60,120,Rock/Flying,0
+10140,minior-blue,Blue Core Minior,Minior,774,battle,Rock/Flying,Shields Down,500,60,100,60,100,60,120,Rock/Flying,0
+10141,minior-indigo,Indigo Core Minior,Minior,774,battle,Rock/Flying,Shields Down,500,60,100,60,100,60,120,Rock/Flying,0
+10142,minior-violet,Violet Core Minior,Minior,774,battle,Rock/Flying,Shields Down,500,60,100,60,100,60,120,Rock/Flying,0
+10143,mimikyu-busted,Busted Mimikyu,Mimikyu,778,battle,Ghost/Fairy,Disguise,476,55,90,80,50,105,96,Ghost/Fairy,0
+10144,mimikyu-totem-disguised,Totem Disguised Mimikyu,Mimikyu,778,totem,Ghost/Fairy,Disguise,476,55,90,80,50,105,96,Ghost/Fairy,0
+10145,mimikyu-totem-busted,Totem Busted Mimikyu,Mimikyu,778,totem,Ghost/Fairy,Disguise,476,55,90,80,50,105,96,Ghost/Fairy,0
+10146,kommo-o-totem,Totem Kommo-o,Kommo-o,784,totem,Dragon/Fighting,Bulletproof; Soundproof; Overcoat (H),600,75,110,125,100,105,85,Dragon/Fighting,0
+10147,magearna-original,Original Magearna,Magearna,801,other,Steel/Fairy,Soul-Heart,600,80,95,115,130,115,65,Steel/Fairy,0
+10148,pikachu-partner-cap,Partner Cap Pikachu,Pikachu,25,other,Electric,Static; Lightning Rod (H),320,35,55,40,50,50,90,Electric,1
+10149,marowak-totem,Totem Alolan Marowak,Marowak,105,totem,Fire/Ghost,Cursed Body; Lightning Rod; Rock Head (H),425,60,80,110,50,80,45,Ground,0
+10150,ribombee-totem,Totem Ribombee,Ribombee,743,totem,Bug/Fairy,Honey Gather; Shield Dust; Sweet Veil (H),464,60,55,60,95,70,124,Bug/Fairy,0
+10151,rockruff-own-tempo,Own Tempo Rockruff,Rockruff,744,other,Rock,Own Tempo,280,45,65,40,30,40,60,Rock,1
+10152,lycanroc-dusk,Dusk Lycanroc,Lycanroc,745,other,Rock,Tough Claws,487,75,117,65,55,65,110,Rock,0
+10153,araquanid-totem,Totem Araquanid,Araquanid,752,totem,Water/Bug,Water Bubble; Water Absorb (H),454,68,70,92,50,132,42,Water/Bug,0
+10154,togedemaru-totem,Totem Togedemaru,Togedemaru,777,totem,Electric/Steel,Iron Barbs; Lightning Rod; Sturdy (H),435,65,98,63,40,73,96,Electric/Steel,0
+10155,necrozma-dusk,Dusk Necrozma,Necrozma,800,fusion,Psychic/Steel,Prism Armor,680,97,157,127,113,109,77,Psychic,0
+10156,necrozma-dawn,Dawn Necrozma,Necrozma,800,fusion,Psychic/Ghost,Prism Armor,680,97,113,109,157,127,77,Psychic,0
+10157,necrozma-ultra,Ultra Necrozma,Necrozma,800,battle,Psychic/Dragon,Neuroforce,754,97,167,97,167,97,129,Psychic,0
+10158,pikachu-starter,Partner Pikachu,Pikachu,25,other,Electric,Static; Lightning Rod (H),430,45,80,50,75,60,120,Electric,1
+10159,eevee-starter,Partner Eevee,Eevee,133,other,Normal,Run Away; Adaptability; Anticipation (H),435,65,75,70,65,85,75,Normal,1
+10160,pikachu-world-cap,World Cap Pikachu,Pikachu,25,other,Electric,Static; Lightning Rod (H),320,35,55,40,50,50,90,Electric,1
+10161,meowth-galar,Galarian Meowth,Meowth,52,regional,Steel,Pickup; Tough Claws; Unnerve (H),290,50,65,55,40,40,40,Normal,0
+10162,ponyta-galar,Galarian Ponyta,Ponyta,77,regional,Psychic,Run Away; Pastel Veil; Anticipation (H),410,50,85,55,65,65,90,Fire,0
+10163,rapidash-galar,Galarian Rapidash,Rapidash,78,regional,Psychic/Fairy,Run Away; Pastel Veil; Anticipation (H),500,65,100,70,80,80,105,Fire,0
+10164,slowpoke-galar,Galarian Slowpoke,Slowpoke,79,regional,Psychic,Gluttony; Own Tempo; Regenerator (H),315,90,65,65,40,40,15,Water/Psychic,0
+10165,slowbro-galar,Galarian Slowbro,Slowbro,80,regional,Poison/Psychic,Quick Draw; Own Tempo; Regenerator (H),490,95,100,95,100,70,30,Water/Psychic,0
+10166,farfetchd-galar,Galarian Farfetch’d,Farfetch’d,83,regional,Fighting,Steadfast; Scrappy (H),377,52,95,55,58,62,55,Normal/Flying,1
+10167,weezing-galar,Galarian Weezing,Weezing,110,regional,Poison/Fairy,Levitate; Neutralizing Gas; Misty Surge (H),490,65,90,120,85,70,60,Poison,0
+10168,mr-mime-galar,Galarian Mr. Mime,Mr. Mime,122,regional,Ice/Psychic,Vital Spirit; Screen Cleaner; Ice Body (H),460,50,65,65,90,90,100,Psychic/Fairy,0
+10169,articuno-galar,Galarian Articuno,Articuno,144,regional,Psychic/Flying,Competitive,580,90,85,85,125,100,95,Ice/Flying,0
+10170,zapdos-galar,Galarian Zapdos,Zapdos,145,regional,Fighting/Flying,Defiant,580,90,125,90,85,90,100,Electric/Flying,0
+10171,moltres-galar,Galarian Moltres,Moltres,146,regional,Dark/Flying,Berserk,580,90,85,90,100,125,90,Fire/Flying,0
+10172,slowking-galar,Galarian Slowking,Slowking,199,regional,Poison/Psychic,Curious Medicine; Own Tempo; Regenerator (H),490,95,65,80,110,110,30,Water/Psychic,0
+10173,corsola-galar,Galarian Corsola,Corsola,222,regional,Ghost,Weak Armor; Cursed Body (H),410,60,55,100,65,100,30,Water/Rock,0
+10174,zigzagoon-galar,Galarian Zigzagoon,Zigzagoon,263,regional,Dark/Normal,Pickup; Gluttony; Quick Feet (H),240,38,30,41,30,41,60,Normal,1
+10175,linoone-galar,Galarian Linoone,Linoone,264,regional,Dark/Normal,Pickup; Gluttony; Quick Feet (H),420,78,70,61,50,61,100,Normal,1
+10176,darumaka-galar,Galarian Darumaka,Darumaka,554,regional,Ice,Hustle; Inner Focus (H),315,70,90,45,15,45,50,Fire,1
+10177,darmanitan-galar-standard,Standard Galarian Darmanitan,Darmanitan,555,regional,Ice,Gorilla Tactics; Zen Mode (H),480,105,140,55,30,55,95,Fire,0
+10178,darmanitan-galar-zen,Zen Galarian Darmanitan,Darmanitan,555,regional,Ice/Fire,Gorilla Tactics; Zen Mode (H),540,105,160,55,30,55,135,Fire,0
+10179,yamask-galar,Galarian Yamask,Yamask,562,regional,Ground/Ghost,Wandering Spirit,303,38,55,85,30,65,30,Ghost,0
+10180,stunfisk-galar,Galarian Stunfisk,Stunfisk,618,regional,Ground/Steel,Mimicry,471,109,81,99,66,84,32,Ground/Electric,0
+10181,zygarde-10,10% Zygarde,Zygarde,718,other,Dragon/Ground,Aura Break,486,54,100,71,61,85,115,Dragon/Ground,0
+10182,cramorant-gulping,Gulping Cramorant,Cramorant,845,battle,Flying/Water,Gulp Missile,475,70,85,55,85,95,85,Flying/Water,0
+10183,cramorant-gorging,Gorging Cramorant,Cramorant,845,battle,Flying/Water,Gulp Missile,475,70,85,55,85,95,85,Flying/Water,0
+10184,toxtricity-low-key,Low Key Toxtricity,Toxtricity,849,other,Electric/Poison,Punk Rock; Minus; Technician (H),502,75,98,70,114,70,75,Electric/Poison,0
+10185,eiscue-noice,Noice Eiscue,Eiscue,875,battle,Ice,Ice Face,470,75,80,70,65,50,130,Ice,0
+10186,indeedee-female,Female Indeedee,Indeedee,876,other,Psychic/Normal,Own Tempo; Synchronize; Psychic Surge (H),475,70,55,65,95,105,85,Psychic/Normal,0
+10187,morpeko-hangry,Hangry Morpeko,Morpeko,877,battle,Electric/Dark,Hunger Switch,436,58,95,58,70,58,97,Electric/Dark,0
+10188,zacian-crowned,Crowned Zacian,Zacian,888,item,Fairy/Steel,Intrepid Sword,700,92,150,115,80,115,148,Fairy,0
+10189,zamazenta-crowned,Crowned Zamazenta,Zamazenta,889,item,Fighting/Steel,Dauntless Shield,700,92,120,140,80,140,128,Fighting,0
+10190,eternatus-eternamax,Eternamax Eternatus,Eternatus,890,excluded,Poison/Dragon,Pressure,1125,255,115,250,125,250,130,Poison/Dragon,1
+10191,urshifu-rapid-strike,Rapid Strike Urshifu,Urshifu,892,other,Fighting/Water,Unseen Fist,550,100,130,100,63,60,97,Fighting/Dark,0
+10192,zarude-dada,Dada Zarude,Zarude,893,other,Dark/Grass,Leaf Guard,600,105,120,105,70,95,105,Dark/Grass,1
+10193,calyrex-ice,Ice Calyrex,Calyrex,898,fusion,Psychic/Ice,As One,680,100,165,150,85,130,50,Psychic/Grass,0
+10194,calyrex-shadow,Shadow Calyrex,Calyrex,898,fusion,Psychic/Ghost,As One,680,100,85,80,165,100,150,Psychic/Grass,0
+10195,venusaur-gmax,Gigantamax Venusaur,Venusaur,3,excluded,Grass/Poison,Overgrow; Chlorophyll (H),525,80,82,83,100,100,80,Grass/Poison,1
+10196,charizard-gmax,Gigantamax Charizard,Charizard,6,excluded,Fire/Flying,Blaze; Solar Power (H),534,78,84,78,109,85,100,Fire/Flying,1
+10197,blastoise-gmax,Gigantamax Blastoise,Blastoise,9,excluded,Water,Torrent; Rain Dish (H),530,79,83,100,85,105,78,Water,1
+10198,butterfree-gmax,Gigantamax Butterfree,Butterfree,12,excluded,Bug/Flying,Compound Eyes; Tinted Lens (H),395,60,45,50,90,80,70,Bug/Flying,1
+10199,pikachu-gmax,Gigantamax Pikachu,Pikachu,25,excluded,Electric,Static; Lightning Rod (H),320,35,55,40,50,50,90,Electric,1
+10200,meowth-gmax,Gigantamax Meowth,Meowth,52,excluded,Normal,Pickup; Technician; Unnerve (H),290,40,45,35,40,40,90,Normal,0
+10201,machamp-gmax,Gigantamax Machamp,Machamp,68,excluded,Fighting,Guts; No Guard; Steadfast (H),505,90,130,80,65,85,55,Fighting,1
+10202,gengar-gmax,Gigantamax Gengar,Gengar,94,excluded,Ghost/Poison,Cursed Body,500,60,65,60,130,75,110,Ghost/Poison,0
+10203,kingler-gmax,Gigantamax Kingler,Kingler,99,excluded,Water,Hyper Cutter; Shell Armor; Sheer Force (H),475,55,130,115,50,50,75,Water,0
+10204,lapras-gmax,Gigantamax Lapras,Lapras,131,excluded,Water/Ice,Water Absorb; Shell Armor; Hydration (H),535,130,85,80,85,95,60,Water/Ice,1
+10205,eevee-gmax,Gigantamax Eevee,Eevee,133,excluded,Normal,Run Away; Adaptability; Anticipation (H),325,55,55,50,45,65,55,Normal,1
+10206,snorlax-gmax,Gigantamax Snorlax,Snorlax,143,excluded,Normal,Immunity; Thick Fat; Gluttony (H),540,160,110,65,65,110,30,Normal,1
+10207,garbodor-gmax,Gigantamax Garbodor,Garbodor,569,excluded,Poison,Stench; Weak Armor; Aftermath (H),474,80,95,82,60,82,75,Poison,0
+10208,melmetal-gmax,Gigantamax Melmetal,Melmetal,809,excluded,Steel,Iron Fist,600,135,143,143,80,65,34,Steel,1
+10209,rillaboom-gmax,Gigantamax Rillaboom,Rillaboom,812,excluded,Grass,Overgrow; Grassy Surge (H),530,100,125,90,60,70,85,Grass,0
+10210,cinderace-gmax,Gigantamax Cinderace,Cinderace,815,excluded,Fire,Blaze; Libero (H),530,80,116,75,65,75,119,Fire,0
+10211,inteleon-gmax,Gigantamax Inteleon,Inteleon,818,excluded,Water,Torrent; Sniper (H),530,70,85,65,125,65,120,Water,1
+10212,corviknight-gmax,Gigantamax Corviknight,Corviknight,823,excluded,Flying/Steel,Pressure; Unnerve; Mirror Armor (H),495,98,87,105,53,85,67,Flying/Steel,0
+10213,orbeetle-gmax,Gigantamax Orbeetle,Orbeetle,826,excluded,Bug/Psychic,Swarm; Frisk; Telepathy (H),505,60,45,110,80,120,90,Bug/Psychic,0
+10214,drednaw-gmax,Gigantamax Drednaw,Drednaw,834,excluded,Water/Rock,Strong Jaw; Shell Armor; Swift Swim (H),485,90,115,90,48,68,74,Water/Rock,0
+10215,coalossal-gmax,Gigantamax Coalossal,Coalossal,839,excluded,Rock/Fire,Steam Engine; Flame Body; Flash Fire (H),510,110,80,120,80,90,30,Rock/Fire,0
+10216,flapple-gmax,Gigantamax Flapple,Flapple,841,excluded,Grass/Dragon,Ripen; Gluttony; Hustle (H),485,70,110,80,95,60,70,Grass/Dragon,0
+10217,appletun-gmax,Gigantamax Appletun,Appletun,842,excluded,Grass/Dragon,Ripen; Gluttony; Thick Fat (H),485,110,85,80,100,80,30,Grass/Dragon,0
+10218,sandaconda-gmax,Gigantamax Sandaconda,Sandaconda,844,excluded,Ground,Sand Spit; Shed Skin; Sand Veil (H),510,72,107,125,65,70,71,Ground,0
+10219,toxtricity-amped-gmax,Gigantamax Amped Toxtricity,Toxtricity,849,excluded,Electric/Poison,Punk Rock; Plus; Technician (H),502,75,98,70,114,70,75,Electric/Poison,0
+10220,centiskorch-gmax,Gigantamax Centiskorch,Centiskorch,851,excluded,Fire/Bug,Flash Fire; White Smoke; Flame Body (H),525,100,115,65,90,90,65,Fire/Bug,1
+10221,hatterene-gmax,Gigantamax Hatterene,Hatterene,858,excluded,Psychic/Fairy,Healer; Anticipation; Magic Bounce (H),510,57,90,95,136,103,29,Psychic/Fairy,0
+10222,grimmsnarl-gmax,Gigantamax Grimmsnarl,Grimmsnarl,861,excluded,Dark/Fairy,Prankster; Frisk; Pickpocket (H),510,95,120,65,95,75,60,Dark/Fairy,0
+10223,alcremie-gmax,Gigantamax Alcremie,Alcremie,869,excluded,Fairy,Sweet Veil; Aroma Veil (H),495,65,60,75,110,121,64,Fairy,0
+10224,copperajah-gmax,Gigantamax Copperajah,Copperajah,879,excluded,Steel,Sheer Force; Heavy Metal (H),500,122,130,69,80,69,30,Steel,0
+10225,duraludon-gmax,Gigantamax Duraludon,Duraludon,884,excluded,Steel/Dragon,Light Metal; Heavy Metal; Stalwart (H),535,70,95,115,120,50,85,Steel/Dragon,0
+10226,urshifu-single-strike-gmax,Gigantamax Single Strike Urshifu,Urshifu,892,excluded,Fighting/Dark,Unseen Fist,550,100,130,100,63,60,97,Fighting/Dark,0
+10227,urshifu-rapid-strike-gmax,Gigantamax Rapid Strike Urshifu,Urshifu,892,excluded,Fighting/Water,Unseen Fist,550,100,130,100,63,60,97,Fighting/Dark,0
+10228,toxtricity-low-key-gmax,Gigantamax Low Key Toxtricity,Toxtricity,849,excluded,Electric/Poison,Punk Rock; Minus; Technician (H),502,75,98,70,114,70,75,Electric/Poison,0
+10229,growlithe-hisui,Hisuian Growlithe,Growlithe,58,regional,Fire/Rock,Intimidate; Flash Fire; Rock Head (H),350,60,75,45,65,50,55,Fire,1
+10230,arcanine-hisui,Hisuian Arcanine,Arcanine,59,regional,Fire/Rock,Intimidate; Flash Fire; Rock Head (H),555,95,115,80,95,80,90,Fire,1
+10231,voltorb-hisui,Hisuian Voltorb,Voltorb,100,regional,Electric/Grass,Soundproof; Static; Aftermath (H),330,40,30,50,55,55,100,Electric,1
+10232,electrode-hisui,Hisuian Electrode,Electrode,101,regional,Electric/Grass,Soundproof; Static; Aftermath (H),490,60,50,70,80,80,150,Electric,1
+10233,typhlosion-hisui,Hisuian Typhlosion,Typhlosion,157,regional,Fire/Ghost,Blaze; Frisk (H),534,73,84,78,119,85,95,Fire,1
+10234,qwilfish-hisui,Hisuian Qwilfish,Qwilfish,211,regional,Dark/Poison,Poison Point; Swift Swim; Intimidate (H),440,65,95,85,55,55,85,Water/Poison,1
+10235,sneasel-hisui,Hisuian Sneasel,Sneasel,215,regional,Fighting/Poison,Inner Focus; Keen Eye; Pickpocket (H),430,55,95,55,35,75,115,Dark/Ice,0
+10236,samurott-hisui,Hisuian Samurott,Samurott,503,regional,Water/Dark,Torrent; Sharpness (H),528,90,108,80,100,65,85,Water,0
+10237,lilligant-hisui,Hisuian Lilligant,Lilligant,549,regional,Grass/Fighting,Chlorophyll; Hustle; Leaf Guard (H),480,70,105,75,50,75,105,Grass,1
+10238,zorua-hisui,Hisuian Zorua,Zorua,570,regional,Normal/Ghost,Illusion,330,35,60,40,85,40,70,Dark,0
+10239,zoroark-hisui,Hisuian Zoroark,Zoroark,571,regional,Normal/Ghost,Illusion,510,55,100,60,125,60,110,Dark,0
+10240,braviary-hisui,Hisuian Braviary,Braviary,628,regional,Psychic/Flying,Keen Eye; Sheer Force; Tinted Lens (H),510,110,83,70,112,70,65,Normal/Flying,0
+10241,sliggoo-hisui,Hisuian Sliggoo,Sliggoo,705,regional,Steel/Dragon,Sap Sipper; Shell Armor; Gooey (H),452,58,75,83,83,113,40,Dragon,0
+10242,goodra-hisui,Hisuian Goodra,Goodra,706,regional,Steel/Dragon,Sap Sipper; Shell Armor; Gooey (H),600,80,100,100,110,150,60,Dragon,0
+10243,avalugg-hisui,Hisuian Avalugg,Avalugg,713,regional,Ice/Rock,Strong Jaw; Ice Body; Sturdy (H),514,95,127,184,34,36,38,Ice,0
+10244,decidueye-hisui,Hisuian Decidueye,Decidueye,724,regional,Grass/Fighting,Overgrow; Scrappy (H),530,88,112,80,95,95,60,Grass/Ghost,1
+10245,dialga-origin,Origin Dialga,Dialga,483,item,Steel/Dragon,Pressure; Telepathy (H),680,100,100,120,150,120,90,Steel/Dragon,0
+10246,palkia-origin,Origin Palkia,Palkia,484,item,Water/Dragon,Pressure; Telepathy (H),680,90,100,100,150,120,120,Water/Dragon,0
+10247,basculin-white-striped,White-Striped Basculin,Basculin,550,other,Water,Rattled; Adaptability; Mold Breaker (H),460,70,92,65,80,55,98,Water,0
+10248,basculegion-female,Female Basculegion,Basculegion,902,other,Water/Ghost,Swift Swim; Adaptability; Mold Breaker (H),530,120,92,65,100,75,78,Water/Ghost,1
+10249,enamorus-therian,Therian Enamorus,Enamorus,905,other,Fairy/Flying,Overcoat,580,74,115,110,135,100,46,Fairy/Flying,0
+10250,tauros-paldea-combat-breed,Paldean Tauros (Combat Breed),Tauros,128,regional,Fighting,Intimidate; Anger Point; Cud Chew (H),490,75,110,105,30,70,100,Normal,0
+10251,tauros-paldea-blaze-breed,Paldean Tauros (Blaze Breed),Tauros,128,regional,Fighting/Fire,Intimidate; Anger Point; Cud Chew (H),490,75,110,105,30,70,100,Normal,0
+10252,tauros-paldea-aqua-breed,Paldean Tauros (Aqua Breed),Tauros,128,regional,Fighting/Water,Intimidate; Anger Point; Cud Chew (H),490,75,110,105,30,70,100,Normal,0
+10253,wooper-paldea,Paldean Wooper,Wooper,194,regional,Poison/Ground,Poison Point; Water Absorb; Unaware (H),210,55,45,45,25,25,15,Water/Ground,1
+10254,oinkologne-female,Female Oinkologne,Oinkologne,916,other,Normal,Aroma Veil; Gluttony; Thick Fat (H),489,115,90,70,59,90,65,Normal,0
+10255,dudunsparce-three-segment,Three-Segment Form Dudunsparce,Dudunsparce,982,other,Normal,Serene Grace; Run Away; Rattled (H),520,125,100,80,85,75,55,Normal,0
+10256,palafin-hero,Hero Form Palafin,Palafin,964,battle,Water,Zero to Hero,650,100,160,97,106,87,100,Water,0
+10257,maushold-family-of-three,Maushold (Family of Three),Maushold,925,other,Normal,Friend Guard; Cheek Pouch; Technician (H),470,74,75,70,65,75,111,Normal,0
+10258,tatsugiri-droopy,Droopy Form Tatsugiri,Tatsugiri,978,other,Dragon/Water,Commander; Storm Drain (H),475,68,50,60,120,95,82,Dragon/Water,0
+10259,tatsugiri-stretchy,Stretchy Form Tatsugiri,Tatsugiri,978,other,Dragon/Water,Commander; Storm Drain (H),475,68,50,60,120,95,82,Dragon/Water,0
+10260,squawkabilly-blue-plumage,Blue Plumage Squawkabilly,Squawkabilly,931,other,Normal/Flying,Intimidate; Hustle; Guts (H),417,82,96,51,45,51,92,Normal/Flying,1
+10261,squawkabilly-yellow-plumage,Yellow Plumage Squawkabilly,Squawkabilly,931,other,Normal/Flying,Intimidate; Hustle; Sheer Force (H),417,82,96,51,45,51,92,Normal/Flying,0
+10262,squawkabilly-white-plumage,White Plumage Squawkabilly,Squawkabilly,931,other,Normal/Flying,Intimidate; Hustle; Sheer Force (H),417,82,96,51,45,51,92,Normal/Flying,0
+10263,gimmighoul-roaming,Roaming Form Gimmighoul,Gimmighoul,999,other,Ghost,Run Away,300,45,30,25,75,45,80,Ghost,1
+10264,koraidon-limited-build,Koraidon (koraidon-limited-build),Koraidon,1007,excluded,Fighting/Dragon,Orichalcum Pulse,670,100,135,115,85,100,135,Fighting/Dragon,0
+10265,koraidon-sprinting-build,Koraidon (koraidon-sprinting-build),Koraidon,1007,excluded,Fighting/Dragon,Orichalcum Pulse,670,100,135,115,85,100,135,Fighting/Dragon,0
+10266,koraidon-swimming-build,Koraidon (koraidon-swimming-build),Koraidon,1007,excluded,Fighting/Dragon,Orichalcum Pulse,670,100,135,115,85,100,135,Fighting/Dragon,0
+10267,koraidon-gliding-build,Koraidon (koraidon-gliding-build),Koraidon,1007,excluded,Fighting/Dragon,Orichalcum Pulse,670,100,135,115,85,100,135,Fighting/Dragon,0
+10268,miraidon-low-power-mode,Miraidon (miraidon-low-power-mode),Miraidon,1008,excluded,Electric/Dragon,Hadron Engine,670,100,85,100,135,115,135,Electric/Dragon,0
+10269,miraidon-drive-mode,Miraidon (miraidon-drive-mode),Miraidon,1008,excluded,Electric/Dragon,Hadron Engine,670,100,85,100,135,115,135,Electric/Dragon,0
+10270,miraidon-aquatic-mode,Miraidon (miraidon-aquatic-mode),Miraidon,1008,excluded,Electric/Dragon,Hadron Engine,670,100,85,100,135,115,135,Electric/Dragon,0
+10271,miraidon-glide-mode,Miraidon (miraidon-glide-mode),Miraidon,1008,excluded,Electric/Dragon,Hadron Engine,670,100,85,100,135,115,135,Electric/Dragon,0
+10272,ursaluna-bloodmoon,Bloodmoon Ursaluna,Ursaluna,901,other,Ground/Normal,Mind’s Eye,555,113,70,120,135,65,52,Ground/Normal,0
+10273,ogerpon-wellspring-mask,Wellspring Mask Ogerpon,Ogerpon,1017,item,Grass/Water,Water Absorb,550,80,120,84,60,96,110,Grass,1
+10274,ogerpon-hearthflame-mask,Hearthflame Mask Ogerpon,Ogerpon,1017,item,Grass/Fire,Mold Breaker,550,80,120,84,60,96,110,Grass,1
+10275,ogerpon-cornerstone-mask,Cornerstone Mask Ogerpon,Ogerpon,1017,item,Grass/Rock,Sturdy,550,80,120,84,60,96,110,Grass,1
+10276,terapagos-terastal,Terastal Form Terapagos,Terapagos,1024,battle,Normal,Tera Shell,600,95,95,110,105,110,85,Normal,0
+10277,terapagos-stellar,Stellar Form Terapagos,Terapagos,1024,excluded,Normal,Teraform Zero,700,160,105,110,130,110,85,Normal,0

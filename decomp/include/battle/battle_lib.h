@@ -620,6 +620,7 @@ BOOL BattleSystem_CanStealItem(BattleSystem *battleSys, BattleContext *battleCtx
  * @param battler
  * @return TRUE if the battler is *not* holding Mail, FALSE if so.
  */
+BOOL Battler_SovereignHeldItemLocked(BattleContext *battleCtx, int battler);
 BOOL BattleSystem_NotHoldingMail(BattleContext *battleCtx, int battler);
 
 /**
