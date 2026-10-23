@@ -35,7 +35,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 150 | Imposter | Gen 5 | not yet (no battle effect) |
 | 151 | Infiltrator | Gen 5 | partly: ignores Reflect and Light Screen (Substitute, Safeguard and Mist not yet) |
 | 152 | Mummy | Gen 5 | not yet (no battle effect) |
-| 153 | Moxie | Gen 5 | not yet (no battle effect) |
+| 153 | Moxie | Gen 5 | yes: Attack +1 for each foe its move knocks out |
 | 154 | Justified | Gen 5 | yes: Attack +1 when hit by a Dark move |
 | 155 | Rattled | Gen 5 | partly: Speed +1 when hit by a Bug, Ghost or Dark move (the Intimidate trigger not yet) |
 | 156 | Magic Bounce | Gen 5 | not yet (no battle effect) |
@@ -106,7 +106,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 221 | Tangling Hair | Gen 7 | not yet (no battle effect) |
 | 222 | Receiver | Gen 7 | not yet (no battle effect) |
 | 223 | PowerOfAlchemy | Gen 7 | not yet (no battle effect) |
-| 224 | Beast Boost | Gen 7 | not yet (no battle effect) |
+| 224 | Beast Boost | Gen 7 | yes: its highest stat +1 for each foe its move knocks out |
 | 225 | RKS System | Gen 7 | not yet (no battle effect) |
 | 226 | Electric Surge | Gen 7 | not yet (no battle effect) |
 | 227 | Psychic Surge | Gen 7 | not yet (no battle effect) |
@@ -146,8 +146,8 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 261 | CuriousMedicine | Gen 8 | not yet (no battle effect) |
 | 262 | Transistor | Gen 8 | not yet (no battle effect) |
 | 263 | Dragon’s Maw | Gen 8 | not yet (no battle effect) |
-| 264 | Chilling Neigh | Gen 8 | not yet (no battle effect) |
-| 265 | Grim Neigh | Gen 8 | not yet (no battle effect) |
+| 264 | Chilling Neigh | Gen 8 | yes: Attack +1 for each foe its move knocks out |
+| 265 | Grim Neigh | Gen 8 | yes: Sp. Atk +1 for each foe its move knocks out |
 | 266 | As One | Gen 8 | not yet (no battle effect) |
 | 267 | As One | Gen 8 | not yet (no battle effect) |
 | 268 | Lingering Aroma | Gen 9 | not yet (no battle effect) |

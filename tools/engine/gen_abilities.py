@@ -114,6 +114,10 @@ MANUAL_DESCRIPTIONS = {
 # Implemented beyond Platinum's 123 (updated as abilities get battle code).
 # Newer abilities whose battle effect is built (item 11): ability number -> what the Battle effect column says.
 IMPLEMENTED = {
+    153: "yes: Attack +1 for each foe its move knocks out",  # Moxie
+    224: "yes: its highest stat +1 for each foe its move knocks out",  # Beast Boost
+    264: "yes: Attack +1 for each foe its move knocks out",  # Chilling Neigh
+    265: "yes: Sp. Atk +1 for each foe its move knocks out",  # Grim Neigh
     125: "yes: moves with a chance effect ×1.3, without the effect (or Life Orb recoil)",  # Sheer Force
     126: "yes: stat rises and drops are reversed",  # Contrary
     132: "yes: the partner takes 25% less damage",  # Friend Guard

@@ -4832,6 +4832,7 @@ enum AfterMoveHitState {
     AFTER_MOVE_HIT_STATE_RAGE = AFTER_MOVE_HIT_START,
     AFTER_MOVE_HIT_STATE_SHELL_BELL,
     AFTER_MOVE_HIT_STATE_LIFE_ORB,
+    AFTER_MOVE_HIT_STATE_KNOCKOUT_ABILITY, // Sovereign (item 11)
 
     AFTER_MOVE_HIT_STATE_END
 };
@@ -4911,6 +4912,62 @@ static BOOL BattleControllerPlayer_TriggerAfterMoveHitEffects(BattleSystem *batt
 
             battleCtx->afterMoveHitCheckState++;
             break;
+
+        case AFTER_MOVE_HIT_STATE_KNOCKOUT_ABILITY: {
+            // Sovereign (item 11): Moxie, Chilling Neigh, Grim Neigh and Beast Boost raise a stat for each foe the move
+            // knocked out. afterMoveHitCheckTemp marks the foes already counted.
+            int ability = Battler_Ability(battleCtx, battleCtx->attacker);
+            int foe, stat = -1;
+
+            if ((ability == ABILITY_MOXIE || ability == ABILITY_CHILLING_NEIGH || ability == ABILITY_GRIM_NEIGH || ability == ABILITY_BEAST_BOOST)
+                && ATTACKING_MON.curHP) {
+                for (foe = 0; foe < maxBattlers; foe++) {
+                    if ((battleCtx->afterMoveHitCheckTemp & FlagIndex(foe)) == FALSE
+                        && BattleSystem_GetBattlerSide(battleSys, foe) != BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker)
+                        && battleCtx->battleMons[foe].curHP == 0
+                        && ((battleCtx->selfTurnFlags[foe].physicalDamageTaken && battleCtx->selfTurnFlags[foe].physicalDamageLastAttacker == battleCtx->attacker)
+                            || (battleCtx->selfTurnFlags[foe].specialDamageTaken && battleCtx->selfTurnFlags[foe].specialDamageLastAttacker == battleCtx->attacker))) {
+                        battleCtx->afterMoveHitCheckTemp |= FlagIndex(foe);
+                        break;
+                    }
+                }
+
+                if (foe < maxBattlers) {
+                    if (ability == ABILITY_MOXIE || ability == ABILITY_CHILLING_NEIGH) {
+                        stat = BATTLE_STAT_ATTACK;
+                    } else if (ability == ABILITY_GRIM_NEIGH) {
+                        stat = BATTLE_STAT_SP_ATTACK;
+                    } else {
+                        // Beast Boost: the highest of Attack, Defense, Sp. Atk, Sp. Def and Speed (ties go to the first).
+                        u16 stats[5] = { ATTACKING_MON.attack, ATTACKING_MON.defense, ATTACKING_MON.spAttack, ATTACKING_MON.spDefense, ATTACKING_MON.speed };
+                        u8 statIDs[5] = { BATTLE_STAT_ATTACK, BATTLE_STAT_DEFENSE, BATTLE_STAT_SP_ATTACK, BATTLE_STAT_SP_DEFENSE, BATTLE_STAT_SPEED };
+                        int best = 0;
+                        for (int i = 1; i < 5; i++) {
+                            if (stats[i] > stats[best]) {
+                                best = i;
+                            }
+                        }
+                        stat = statIDs[best];
+                    }
+
+                    if (ATTACKING_MON.statBoosts[stat] < 12) { // MAX_STAT_STAGE
+                        battleCtx->sideEffectParam = MOVE_SUBSCRIPT_PTR_ATTACK_UP_1_STAGE + (stat - BATTLE_STAT_ATTACK);
+                        battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
+                        battleCtx->sideEffectMon = battleCtx->attacker;
+
+                        LOAD_SUBSEQ(subscript_update_stat_stage);
+                        battleCtx->commandNext = battleCtx->command;
+                        battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+                        machineState = STATE_BREAK_OUT;
+                    }
+                    break; // stay in this state to look for another knocked-out foe
+                }
+            }
+
+            battleCtx->afterMoveHitCheckState++;
+            break;
+        }
 
         case AFTER_MOVE_HIT_STATE_END:
             battleCtx->afterMoveHitCheckState = 0;
