@@ -122,9 +122,9 @@ https://github.com/PokeAPI/sprites, `sprites/pokemon/<id>.png` (ids 10093, 10121
 sprites are drawn.
 
 ### Post-game legendaries on the map
-The legendaries standing at their static encounters (`decomp/res/graphics/field_sprites/pokemon/legendary_<species>.png`),
+The legendaries standing at their static encounters (`decomp/res/graphics/field_sprites/pokemon/legendary_<species>.png`; the Paradox, Ultra Beast and roamer ones are unused since decision 28),
 made by `tools/sprites/make_legendary_overworld.py` the same way, without the aura (15 colours). Source: **PokeAPI
-sprites**, https://github.com/PokeAPI/sprites, `sprites/pokemon/<id>.png` (ids 494, 638–640, 643–649, 716–721, 785–800, 805, 806 and 905). The art
+sprites**, https://github.com/PokeAPI/sprites, `sprites/pokemon/<id>.png` (ids 494, 638–640, 643–649, 716–721, 772, 785–789, 793–803, 805–809, 888–891, 893–898, 905, 984–995, 1001–1010, 1014–1017 and 1020–1025). The art
 is © Nintendo / Game Freak / The Pokémon Company; PokeAPI hosts it. **Placeholders**, until DS-style overworld sprites
 are drawn.
 
