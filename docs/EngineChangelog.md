@@ -139,7 +139,13 @@ players and the verification that was run.
     unfaded copies of the battlers while it loads, which flashed them back for 6 frames.
   - The form-change mosaic is gone from both subscripts. With Battle Scene off, the sprite simply swaps.
   - The anim takes about 6 seconds, from the darkening to the "has Mega Evolved" message.
-  - Still to do from the spec: the Mega symbol over the sprite.
+  - The symbol flash (step 6): as the new form fades in, a 32×32 symbol flashes over it and blinks out. It's the Mega
+    Evolution symbol for a Mega, Kyogre's α or Groudon's Ω for a Primal.
+    - The symbols are original art by `tools/sprites/make_mega_symbols.py`, as animation sprites
+      (`res/graphics/battle/moves/sovereign_*_symbol.*`) shown with `SPRITE_FUNC_OFFSET_AND_ANIMATE`.
+    - The Primals now have their own reveals, `sovereign_primal_alpha_revealed` and `sovereign_primal_omega_revealed`
+      (formerly `dummy43/44`).
+    - Verified: Garchomp (wild), the foe's Charizard (doubles) and Kyogre (temporary lead).
 - **The Mega symbol on the HP bar** (step 5; `healthbox.c`). A Mega or Primal shows a small rainbow Mega symbol at
   the left end of its HP bar's strip, from the moment its new form fades in until it leaves the field. It returns
   when the Pokémon comes back.

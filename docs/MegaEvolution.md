@@ -37,12 +37,12 @@ from Platinum's own particle effects; any new assets will be original or credite
    stone's colours.
 4. ✅ A ring of light forms around the Pokémon. It pulses three times (pink, cyan, gold) while it shakes.
 5. ✅ It turns white, and the Mega sprite is swapped in while it's white.
-6. ✅ Streaks of light burst out and the Mega form fades in from white with sparkles. The Mega's cry plays (the base
-   cry until custom cries exist). Still to do: the Mega Evolution symbol over the sprite.
+6. ✅ Streaks of light burst out and the Mega form fades in from white with sparkles, while the Mega Evolution symbol
+   flashes over it. The Mega's cry plays (the base cry until custom cries exist).
 7. ✅ Text: *"<Pokémon> has Mega Evolved into Mega <Pokémon>!"*, and a Mega symbol appears on its HP bar.
 
-Primal Reversion uses the same structure, with blue pulses for Kyogre (α) and red ones for Groudon (Ω). Still to do: the
-α and Ω symbols. With Battle Scene off, the sprite simply swaps. The scripts are the `sovereign_*` common animations,
+Primal Reversion uses the same structure, with blue pulses and the α symbol for Kyogre, and red pulses and the Ω symbol for
+Groudon. With Battle Scene off, the sprite simply swaps. The scripts are the `sovereign_*` common animations,
 played by the Mega and Primal battle subscripts (`TechnicalDesign.md` §4).
 
 ## Abilities

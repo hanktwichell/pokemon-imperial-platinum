@@ -14,7 +14,7 @@ _000:
 
 _sprite:
     // The animation (with Battle Scene on) leaves the Pokemon white, after pulsing in blues for Kyogre or reds for
-    // Groudon; the sprite is swapped while it's white, and sovereign_mega_evolved.s fades the new form in.
+    // Groudon; the sprite is swapped while it's white, and sovereign_primal_*_revealed.s fades the new form in.
     CompareMonDataToValue OPCODE_EQU, BTLSCR_MSG_TEMP, BATTLEMON_SPECIES, SPECIES_GROUDON, _omega
     PlayBattleAnimation BTLSCR_MSG_TEMP, BATTLE_ANIMATION_SOVEREIGN_PRIMAL_ALPHA
     GoTo _swap
@@ -26,7 +26,14 @@ _swap:
     Wait 
     ChangeForm BTLSCR_MSG_TEMP
     Wait 
-    PlayBattleAnimation BTLSCR_MSG_TEMP, BATTLE_ANIMATION_SOVEREIGN_MEGA_EVOLVED
+    CompareMonDataToValue OPCODE_EQU, BTLSCR_MSG_TEMP, BATTLEMON_SPECIES, SPECIES_GROUDON, _omegaRevealed
+    PlayBattleAnimation BTLSCR_MSG_TEMP, BATTLE_ANIMATION_SOVEREIGN_PRIMAL_ALPHA_REVEALED
+    GoTo _revealed
+
+_omegaRevealed:
+    PlayBattleAnimation BTLSCR_MSG_TEMP, BATTLE_ANIMATION_SOVEREIGN_PRIMAL_OMEGA_REVEALED
+
+_revealed:
     Wait 
     SovereignRefreshHealthBox BTLSCR_MSG_TEMP
     Wait 
