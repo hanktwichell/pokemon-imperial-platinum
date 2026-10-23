@@ -307,4 +307,5 @@ subscript_files = files(
     'subscript_sovereign_absorb_and_atk_up_1_stage.s',
     'subscript_sovereign_absorb_and_def_up_2_stages.s',
     'subscript_sovereign_weak_armor.s',
+    'subscript_sovereign_gooey.s',
 )

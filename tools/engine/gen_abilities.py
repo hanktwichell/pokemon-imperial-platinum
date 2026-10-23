@@ -114,6 +114,9 @@ MANUAL_DESCRIPTIONS = {
 # Implemented beyond Platinum's 123 (updated as abilities get battle code).
 # Newer abilities whose battle effect is built (item 11): ability number -> what the Battle effect column says.
 IMPLEMENTED = {
+    160: "yes: contact costs the attacker 1/8 of its max HP (as Rough Skin)",  # Iron Barbs
+    183: "yes: a contact move lowers the attacker's Speed 1 stage",  # Gooey
+    221: "yes: a contact move lowers the attacker's Speed 1 stage",  # Tangling Hair
     153: "yes: Attack +1 for each foe its move knocks out",  # Moxie
     224: "yes: its highest stat +1 for each foe its move knocks out",  # Beast Boost
     264: "yes: Attack +1 for each foe its move knocks out",  # Chilling Neigh

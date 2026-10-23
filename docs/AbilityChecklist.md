@@ -42,7 +42,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 157 | Sap Sipper | Gen 5 | yes: absorbs Grass moves, Attack +1 (`BattleSystem_TriggerImmunityAbility`) |
 | 158 | Prankster | Gen 5 | yes: status moves +1 priority; they don't affect Dark-type foes |
 | 159 | Sand Force | Gen 5 | yes: Rock/Ground/Steel moves ×1.3 in a sandstorm; no sandstorm damage |
-| 160 | Iron Barbs | Gen 5 | not yet (no battle effect) |
+| 160 | Iron Barbs | Gen 5 | yes: contact costs the attacker 1/8 of its max HP (as Rough Skin) |
 | 161 | Zen Mode | Gen 5 | not yet (no battle effect) |
 | 162 | Victory Star | Gen 5 | not yet (no battle effect) |
 | 163 | Turboblaze | Gen 5 | not yet (no battle effect) |
@@ -65,7 +65,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 180 | Symbiosis | Gen 6 | not yet (no battle effect) |
 | 181 | Tough Claws | Gen 6 | not yet (no battle effect) |
 | 182 | Pixilate | Gen 6 | not yet (no battle effect) |
-| 183 | Gooey | Gen 6 | not yet (no battle effect) |
+| 183 | Gooey | Gen 6 | yes: a contact move lowers the attacker's Speed 1 stage |
 | 184 | Aerilate | Gen 6 | not yet (no battle effect) |
 | 185 | Parental Bond | Gen 6 | not yet (no battle effect) |
 | 186 | Dark Aura | Gen 6 | not yet (no battle effect) |
@@ -103,7 +103,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 218 | Fluffy | Gen 7 | yes: contact damage halved, Fire damage doubled |
 | 219 | Dazzling | Gen 7 | not yet (no battle effect) |
 | 220 | Soul-Heart | Gen 7 | not yet (no battle effect) |
-| 221 | Tangling Hair | Gen 7 | not yet (no battle effect) |
+| 221 | Tangling Hair | Gen 7 | yes: a contact move lowers the attacker's Speed 1 stage |
 | 222 | Receiver | Gen 7 | not yet (no battle effect) |
 | 223 | PowerOfAlchemy | Gen 7 | not yet (no battle effect) |
 | 224 | Beast Boost | Gen 7 | yes: its highest stat +1 for each foe its move knocks out |

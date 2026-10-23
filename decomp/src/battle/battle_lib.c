@@ -4417,6 +4417,21 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
         }
         break;
 
+    // Sovereign (item 11): Gooey and Tangling Hair lower the Speed of a Pokemon that makes contact.
+    case ABILITY_GOOEY:
+    case ABILITY_TANGLING_HAIR:
+        if (ATTACKING_MON.curHP
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+            && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_MAKES_CONTACT)
+            && ATTACKING_MON.statBoosts[BATTLE_STAT_SPEED] > 0) {
+            *subscript = subscript_sovereign_gooey;
+            result = TRUE;
+        }
+        break;
+
+    case ABILITY_IRON_BARBS: // Sovereign (item 11): same as Rough Skin
     case ABILITY_ROUGH_SKIN:
         if (ATTACKING_MON.curHP
             && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_MAGIC_GUARD
