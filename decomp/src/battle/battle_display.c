@@ -775,6 +775,7 @@ typedef struct MoveSelectMenuData {
     u8 unused;
     u16 invalidMoves;
     u8 canMegaEvolve; // Sovereign (E8)
+    u16 megaIcon;
 } MoveSelectMenuData;
 
 void BattleDisplay_InitTaskShowMoveSelectMenu(BattleSystem *battleSys, BattlerData *battlerData, MoveSelectMenuMessage *message)
@@ -797,6 +798,7 @@ void BattleDisplay_InitTaskShowMoveSelectMenu(BattleSystem *battleSys, BattlerDa
 
     moveSelectMenuData->invalidMoves = message->invalidMoves;
     moveSelectMenuData->canMegaEvolve = message->canMegaEvolve;
+    moveSelectMenuData->megaIcon = message->megaIcon;
 
     SysTask_Start(battlerData->taskFuncs.showMoveSelectMenu, moveSelectMenuData, 0);
 }
@@ -3540,6 +3542,7 @@ static void Task_PlayerShowMoveSelectMenu(SysTask *task, void *data)
 
         moveSelectData.battlerType = moveSelectMenuData->battlerType;
         moveSelectData.canMegaEvolve = moveSelectMenuData->canMegaEvolve;
+        moveSelectData.megaIcon = moveSelectMenuData->megaIcon;
 
         BattleSubscreen_SetupBackground(bgNarc, objNarc, btlSubscreen, 11, 0, &moveSelectData);
         NARC_dtor(bgNarc);

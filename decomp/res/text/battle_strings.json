@@ -8593,14 +8593,6 @@
         "The foe’s {STRVAR_1 1, 0, 0} reverted\n",
         "to its primal form!"
       ]
-    },
-    {
-      "id": "BattleStrings_Text_SovereignMegaToggleOff",
-      "en_US": "Mega Evolution: OFF (SELECT)"
-    },
-    {
-      "id": "BattleStrings_Text_SovereignMegaToggleOn",
-      "en_US": "Mega Evolution: ON"
     }
   ]
 }

@@ -3,6 +3,7 @@
 #include <nitro.h>
 
 #include "constants/moves.h"
+#include "constants/narc.h"
 #include "generated/genders.h"
 #include "generated/moves.h"
 #include "generated/pokemon_types.h"
@@ -26,6 +27,7 @@
 #include "font.h"
 #include "graphics.h"
 #include "heap.h"
+#include "item.h"
 #include "math_util.h"
 #include "message.h"
 #include "message_util.h"
@@ -50,6 +52,7 @@
 #include "unk_02012744.h"
 #include "unk_0208C098.h"
 
+#include "res/graphics/battle/sprites.naix"
 #include "res/text/bank/battle_strings.h"
 
 static void *BattleSubscreen_Alloc(void);
@@ -294,8 +297,13 @@ __attribute__((aligned(4))) static const u8 palParkMenuButtonLayout[2][1] = {
     { 0x1 }
 };
 
-// Sovereign (E8): the move menu's MEGA EVOLUTION toggle, in the strip above the moves.
+// Sovereign (E8): the move menu's MEGA button, in the strip above the moves (docs/MegaEvolution.md).
 #define MOVE_MENU_RESULT_SOVEREIGN_MEGA 0x10
+#define MOVE_MENU_RECT_SOVEREIGN_MEGA   5
+#define SOVEREIGN_MEGA_BUTTON_X         128
+#define SOVEREIGN_MEGA_BUTTON_Y         12
+#define SOVEREIGN_MEGA_BUTTON_RES_ID    20040 // char, palette, cell and animation of the button
+#define SOVEREIGN_MEGA_ICON_RES_ID      20041 // ... and of the held Mega Stone's item icon
 
 static const TouchScreenRect sMoveSelectMenuTouchRects[] = {
     { 0x98, 0xC0, 0x8, 0xF8 },
@@ -303,7 +311,7 @@ static const TouchScreenRect sMoveSelectMenuTouchRects[] = {
     { 0x18, 0x50, 0x80, 0xFF },
     { 0x58, 0x90, 0x0, 0x80 },
     { 0x58, 0x90, 0x80, 0xFF },
-    { 0x0, 0x16, 0x30, 0xD0 }, // Sovereign: MEGA EVOLUTION
+    { 0x0, 0x18, 0x60, 0xA0 }, // Sovereign: the MEGA button
     { 0xFF, 0x0, 0x0, 0x0 }
 };
 
@@ -1564,23 +1572,95 @@ static void BattleSubscreen_DrawPalParkMenu(BattleSubscreen *btlSubscreen, int u
     sub_020129D0(btlSubscreen->fontOAMEntry[2].fontOAM, 0);
 }
 
-// Sovereign (E8): draw the MEGA EVOLUTION toggle above the moves, showing whether it's on (docs/MegaEvolution.md).
-static void BattleSubscreen_DrawSovereignMegaToggle(BattleSubscreen *btlSubscreen)
-{
-    FontOAMEntry *entry = &btlSubscreen->fontOAMEntry[NELEMS(btlSubscreen->fontOAMEntry) - 1];
+// Sovereign (E8): the MEGA button above the moves: a pill-shaped sprite (res/graphics/battle/interface/mega_button.png,
+// tools/sprites/make_mega_button.py) with the held Mega Stone's item icon on its socket. Animation 0 is off; 1 is on and
+// pulses (mega_button_anim.json).
+static const SpriteTemplate sSovereignMegaButtonTemplate = {
+    SOVEREIGN_MEGA_BUTTON_X,
+    SOVEREIGN_MEGA_BUTTON_Y,
+    0x0,
+    0x0,
+    0x65,
+    0x0,
+    NNS_G2D_VRAM_TYPE_2DSUB,
+    { SOVEREIGN_MEGA_BUTTON_RES_ID, SOVEREIGN_MEGA_BUTTON_RES_ID, SOVEREIGN_MEGA_BUTTON_RES_ID, SOVEREIGN_MEGA_BUTTON_RES_ID, 0xFFFFFFFF, 0xFFFFFFFF },
+    0x1,
+    0x0,
+};
 
-    if (entry->fontOAM) {
-        sub_02012870(entry->fontOAM);
-        CharTransfer_ClearRange(&entry->allocation);
-        entry->fontOAM = NULL;
+// The item icon's art is the top-left 24x24 of its 32x32 cell, centred on (11.5, 11.5): this centres it on the
+// button's socket at (13.5, 11.5).
+static const SpriteTemplate sSovereignMegaIconTemplate = {
+    SOVEREIGN_MEGA_BUTTON_X - 32 + 13 + 5,
+    SOVEREIGN_MEGA_BUTTON_Y + 4,
+    0x0,
+    0x0,
+    0x64,
+    0x0,
+    NNS_G2D_VRAM_TYPE_2DSUB,
+    { SOVEREIGN_MEGA_ICON_RES_ID, SOVEREIGN_MEGA_ICON_RES_ID, SOVEREIGN_MEGA_ICON_RES_ID, SOVEREIGN_MEGA_ICON_RES_ID, 0xFFFFFFFF, 0xFFFFFFFF },
+    0x1,
+    0x0,
+};
+
+static void SysTask_TickSovereignMegaButton(SysTask *task, void *subscreen)
+{
+    BattleSubscreen *btlSubscreen = subscreen;
+    ManagedSprite_TickFrame(btlSubscreen->sovereignMegaButton);
+}
+
+static void BattleSubscreen_DrawSovereignMegaButton(BattleSubscreen *btlSubscreen, u16 megaIcon)
+{
+    SpriteSystem *spriteSys = BattleSystem_GetSpriteSystem(btlSubscreen->battleSys);
+    SpriteManager *spriteMan = BattleSystem_GetSpriteManager(btlSubscreen->battleSys);
+    PaletteData *paletteData = BattleSystem_GetPaletteData(btlSubscreen->battleSys);
+
+    SpriteSystem_LoadCharResObj(spriteSys, spriteMan, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, interface_mega_button_NCGR_lz, TRUE, NNS_G2D_VRAM_TYPE_2DSUB, SOVEREIGN_MEGA_BUTTON_RES_ID);
+    SpriteSystem_LoadPaletteBuffer(paletteData, PLTTBUF_SUB_OBJ, spriteSys, spriteMan, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, interface_mega_button_NCLR, FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, SOVEREIGN_MEGA_BUTTON_RES_ID);
+    SpriteSystem_LoadCellResObj(spriteSys, spriteMan, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, interface_mega_button_cell_NCER_lz, TRUE, SOVEREIGN_MEGA_BUTTON_RES_ID);
+    SpriteSystem_LoadAnimResObj(spriteSys, spriteMan, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, interface_mega_button_anim_NANR_lz, TRUE, SOVEREIGN_MEGA_BUTTON_RES_ID);
+
+    SpriteSystem_LoadCharResObj(spriteSys, spriteMan, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(megaIcon, ITEM_FILE_TYPE_ICON), FALSE, NNS_G2D_VRAM_TYPE_2DSUB, SOVEREIGN_MEGA_ICON_RES_ID);
+    SpriteSystem_LoadPaletteBuffer(paletteData, PLTTBUF_SUB_OBJ, spriteSys, spriteMan, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_FileID(megaIcon, ITEM_FILE_TYPE_PALETTE), FALSE, 1, NNS_G2D_VRAM_TYPE_2DSUB, SOVEREIGN_MEGA_ICON_RES_ID);
+    SpriteSystem_LoadCellResObj(spriteSys, spriteMan, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_IconNCERFile(), FALSE, SOVEREIGN_MEGA_ICON_RES_ID);
+    SpriteSystem_LoadAnimResObj(spriteSys, spriteMan, NARC_INDEX_ITEMTOOL__ITEMDATA__ITEM_ICON, Item_IconNANRFile(), FALSE, SOVEREIGN_MEGA_ICON_RES_ID);
+
+    btlSubscreen->sovereignMegaButton = SpriteSystem_NewSprite(spriteSys, spriteMan, &sSovereignMegaButtonTemplate);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(btlSubscreen->sovereignMegaButton, sSovereignMegaButtonTemplate.x, sSovereignMegaButtonTemplate.y, (192 + 80) << FX32_SHIFT);
+    btlSubscreen->sovereignMegaIcon = SpriteSystem_NewSprite(spriteSys, spriteMan, &sSovereignMegaIconTemplate);
+    ManagedSprite_SetPositionXYWithSubscreenOffset(btlSubscreen->sovereignMegaIcon, sSovereignMegaIconTemplate.x, sSovereignMegaIconTemplate.y, (192 + 80) << FX32_SHIFT);
+
+    btlSubscreen->sovereignMegaAnimTask = SysTask_Start(SysTask_TickSovereignMegaButton, btlSubscreen, 1100);
+}
+
+static void BattleSubscreen_FreeSovereignMegaButton(BattleSubscreen *btlSubscreen)
+{
+    SpriteManager *spriteMan = BattleSystem_GetSpriteManager(btlSubscreen->battleSys);
+
+    if (btlSubscreen->sovereignMegaButton == NULL) {
+        return;
     }
 
-    MessageLoader *msgLoader = BattleSystem_GetMessageLoader(btlSubscreen->battleSys);
-    String *label = MessageLoader_GetNewString(msgLoader, btlSubscreen->sovereignMegaSelected ? BattleStrings_Text_SovereignMegaToggleOn : BattleStrings_Text_SovereignMegaToggleOff);
-    TextColor color = btlSubscreen->sovereignMegaSelected ? TEXT_COLOR(7, 8, 0) : TEXT_COLOR(1, 2, 0);
+    SysTask_Done(btlSubscreen->sovereignMegaAnimTask);
+    Sprite_DeleteAndFreeResources(btlSubscreen->sovereignMegaButton);
+    Sprite_DeleteAndFreeResources(btlSubscreen->sovereignMegaIcon);
+    btlSubscreen->sovereignMegaAnimTask = NULL;
+    btlSubscreen->sovereignMegaButton = NULL;
+    btlSubscreen->sovereignMegaIcon = NULL;
 
-    BattleSubscreen_NewFontOAM(btlSubscreen, entry, label, FONT_SYSTEM, color, 4, 20023, 128, 7, 1, NULL);
-    String_Free(label);
+    for (int id = SOVEREIGN_MEGA_BUTTON_RES_ID; id <= SOVEREIGN_MEGA_ICON_RES_ID; id++) {
+        SpriteManager_UnloadCharObjById(spriteMan, id);
+        SpriteManager_UnloadPlttObjById(spriteMan, id);
+        SpriteManager_UnloadCellObjById(spriteMan, id);
+        SpriteManager_UnloadAnimObjById(spriteMan, id);
+    }
+}
+
+static void BattleSubscreen_ToggleSovereignMega(BattleSubscreen *btlSubscreen)
+{
+    btlSubscreen->sovereignMegaSelected ^= TRUE;
+    ManagedSprite_SetAnim(btlSubscreen->sovereignMegaButton, btlSubscreen->sovereignMegaSelected);
+    Sound_PlayEffect(SE_CONFIRM_sseq_3);
 }
 
 BOOL BattleSubscreen_SovereignMegaSelected(BattleSubscreen *btlSubscreen)
@@ -1619,8 +1699,9 @@ static void BattleSubscreen_DrawMoveSelectMenu(BattleSubscreen *btlSubscreen, in
     String_Free(cancelMsg);
 
     btlSubscreen->sovereignMegaSelected = FALSE;
+    btlSubscreen->sovereignMegaCursor = FALSE;
     if (moveData->canMegaEvolve) {
-        BattleSubscreen_DrawSovereignMegaToggle(btlSubscreen);
+        BattleSubscreen_DrawSovereignMegaButton(btlSubscreen, moveData->megaIcon);
     }
 
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
@@ -1910,12 +1991,10 @@ static int BattleSubscreen_ProcessMoveInput(BattleSubscreen *btlSubscreen, int s
 {
     MoveSelectData *moveData = &btlSubscreen->activeMenuData.moveData;
 
-    // Sovereign (E8): touching MEGA EVOLUTION or pressing SELECT toggles it; the menu stays open.
+    // Sovereign (E8): touching the MEGA button, pressing A on it or pressing SELECT toggles it; the menu stays open.
     if (selectedMove == MOVE_MENU_RESULT_SOVEREIGN_MEGA || (gSystem.pressedKeys & PAD_BUTTON_SELECT)) {
         if (moveData->canMegaEvolve) {
-            btlSubscreen->sovereignMegaSelected ^= TRUE;
-            BattleSubscreen_DrawSovereignMegaToggle(btlSubscreen);
-            Sound_PlayEffect(SE_CONFIRM_sseq_3);
+            BattleSubscreen_ToggleSovereignMega(btlSubscreen);
         }
 
         return 0xffffffff;
@@ -2604,6 +2683,7 @@ static void BattleSubscreen_Cleanup(BattleSubscreen *btlSubscreen, BOOL freeSpri
 
 static void BattleSubscreen_FreeAllSprites(BattleSubscreen *btlSubscreen)
 {
+    BattleSubscreen_FreeSovereignMegaButton(btlSubscreen);
     FreeMoveTypeIcons(btlSubscreen);
     FreeCategoryIcons(btlSubscreen);
     BattleSubscreen_FreeFontOAMs(btlSubscreen);
@@ -3381,6 +3461,34 @@ static int BattleSystem_Cursor_Moves(BattleSubscreen *btlSubscreen, BOOL cursorH
 
         BattleSystem_DrawCursor(btlSubscreen->cursorRenderer, battleMenuConfig->touchScreenRects[buttonIndex].rect.left + 8, battleMenuConfig->touchScreenRects[buttonIndex].rect.right - 8, battleMenuConfig->touchScreenRects[buttonIndex].rect.top + 8, battleMenuConfig->touchScreenRects[buttonIndex].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
         return 0xffffffff;
+    }
+
+    // Sovereign (E8): UP from the top row of moves selects the MEGA button; DOWN goes back, A toggles it.
+    if (moveData->canMegaEvolve) {
+        const TouchScreenRect *megaRect = &battleMenuConfig->touchScreenRects[MOVE_MENU_RECT_SOVEREIGN_MEGA];
+
+        if (btlSubscreen->sovereignMegaCursor) {
+            if (gSystem.pressedKeys & PAD_BUTTON_A) {
+                return MOVE_MENU_RECT_SOVEREIGN_MEGA;
+            }
+
+            if (gSystem.pressedKeys & PAD_KEY_DOWN) {
+                btlSubscreen->sovereignMegaCursor = FALSE;
+                buttonIndex = sMoveMenuButtonLayout[cursor->y][cursor->x];
+                BattleSystem_DrawCursor(btlSubscreen->cursorRenderer, battleMenuConfig->touchScreenRects[buttonIndex].rect.left + 8, battleMenuConfig->touchScreenRects[buttonIndex].rect.right - 8, battleMenuConfig->touchScreenRects[buttonIndex].rect.top + 8, battleMenuConfig->touchScreenRects[buttonIndex].rect.bottom - 8, (192 + 80) << FX32_SHIFT);
+                Sound_PlayEffect(SE_CONFIRM_sseq_3);
+                return 0xffffffff;
+            }
+
+            if ((gSystem.pressedKeys & PAD_BUTTON_B) == FALSE) {
+                return 0xffffffff;
+            }
+        } else if (cursor->y == 0 && (gSystem.pressedKeys & PAD_KEY_UP)) {
+            btlSubscreen->sovereignMegaCursor = TRUE;
+            BattleSystem_DrawCursor(btlSubscreen->cursorRenderer, megaRect->rect.left + 8, megaRect->rect.right - 8, megaRect->rect.top + 8, megaRect->rect.bottom - 8, (192 + 80) << FX32_SHIFT);
+            Sound_PlayEffect(SE_CONFIRM_sseq_3);
+            return 0xffffffff;
+        }
     }
 
     MI_CpuCopy8(sMoveMenuButtonLayout, buttonLayout, 3 * 2);

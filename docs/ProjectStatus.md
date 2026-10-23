@@ -108,8 +108,9 @@ Made by the owner (2026-10-22):
     - Everything (summary, Pokédex, lists) refers to a Pokémon by its **National Dex number**.
     - The **Sinnoh dex is cosmetic**: a view inside the Pokédex only. This replaces the "Sinnoh dex stays" part of
       decision 6 for numbering.
-    - To check when building it: other things Platinum gates on the National Dex flag (some wild encounters, Pal
-      Park, Rowan's post-league upgrade event). Keep or move each one deliberately.
+    - The other things Platinum gated on the National Dex flag (some wild encounters, Pal Park, the post-game
+      story) now open at the Hall of Fame. Rowan's event for a complete Sinnoh dex (Oak, the Poké Radar) has its own
+      flag. Its dialogue still needs rewriting (built with DX, `EngineChangelog.md`).
 22. **Pal Park is removed, along with the GBA "Migrate" option** (owner, 2026-10-22; it can't work in a ROM hack).
     Its grounds on Route 221 become the **Regional Forms Park**: Pal Park's four areas (field, forest, mountain, sea)
     become Alola, Galar, Hisui and Paldea zones where the 59 regional forms (decision 16) live as wild Pokémon. The

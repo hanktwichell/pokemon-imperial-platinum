@@ -53,4 +53,27 @@ battle_sprites += [
     ),
     preserve_path_from: base_directory,
   ),
+
+  # Sovereign (E8): the move menu's MEGA EVOLUTION button (tools/sprites/make_mega_button.py).
+  nclr_gen.process(
+    files('mega_button.png'),
+    preserve_path_from: base_directory,
+    extra_args: [ '-nopad', '-invertsize', '-pcmp', '-bitdepth', '4' ],
+  ),
+
+  ncgr_lz_gen.process(
+    files('mega_button.png'),
+    preserve_path_from: base_directory,
+    extra_args: [ '-bitdepth', '4', '-clobbersize' ],
+  ),
+
+  ncer_lz_gen.process(
+    files('mega_button_cell.json'),
+    preserve_path_from: base_directory,
+  ),
+
+  nanr_lz_gen.process(
+    files('mega_button_anim.json'),
+    preserve_path_from: base_directory,
+  ),
 ]

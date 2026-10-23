@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/species.h"
+
 #include "applications/pc_boxes/box_app_manager.h"
 #include "applications/pc_boxes/box_application.h"
 #include "applications/pc_boxes/ov19_021D61B0.h"
@@ -170,9 +172,9 @@ void ov19_021DAADC(UnkStruct_ov19_021DA9E0 *param0)
 {
     static const WindowTemplate v0[] = {
         { 2, 0, 1, 10, 2, 1, 288 },
-        { 2, 5, 3, 5, 1, 1, 308 },
-        { 2, 0, 16, 10, 3, 3, 313 },
-        { 2, 1, 21, 12, 4, 1, 343 }
+        { 2, 4, 3, 6, 1, 1, 308 }, // Sovereign: one tile wider, to the left, for 4-digit dex numbers (No.1018)
+        { 2, 0, 16, 10, 3, 3, 314 },
+        { 2, 1, 21, 12, 4, 1, 344 }
     };
 
     if (param0->unk_00 == 0) {
@@ -533,7 +535,8 @@ static void ov19_021DB0E4(UnkStruct_ov19_021DA9E0 *param0)
         Text_AddPrinterWithParamsAndColor(&param0->unk_04[3], FONT_SYSTEM, preview->heldItemName, 0, 0, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(9, 6, 0), NULL);
 
         if (preview->dexNum) {
-            FontSpecialChars_DrawPartyScreenText(param0->unk_18, 2, preview->dexNum, 3, 2, &(param0->unk_04[1]), 0, 0);
+            // Sovereign: 3-digit numbers keep Platinum's position; 4-digit ones use the extra tile on the left.
+            FontSpecialChars_DrawPartyScreenText(param0->unk_18, 2, preview->dexNum, DEX_NUMBER_DIGITS(preview->dexNum), 2, &(param0->unk_04[1]), 8 * (4 - DEX_NUMBER_DIGITS(preview->dexNum)), 0);
         }
 
         FontSpecialChars_DrawPartyScreenText(param0->unk_1C, 1, preview->level, 3, 1, &(param0->unk_04[2]), 0, 16);

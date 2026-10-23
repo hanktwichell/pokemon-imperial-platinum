@@ -6,6 +6,8 @@
 #include "constants/pokemon.h"
 #include "constants/species.h"
 #include "generated/genders.h"
+#include "generated/items.h"
+#include "generated/species.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_defs/battle_system.h"
@@ -772,8 +774,10 @@ void BattleController_EmitShowMoveSelectMenu(BattleSystem *battleSys, BattleCont
 
     message.invalidMoves = BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_ALL);
 
-    // Sovereign (E8): offer Mega Evolution unless this trainer's other Pokémon already chose it this turn.
+    // Sovereign (E8): offer Mega Evolution unless this trainer's other Pokémon already chose it this turn. The button
+    // shows the held Mega Stone (Mega Rayquaza holds none: the Mega Ring instead).
     message.canMegaEvolve = BattleSystem_SovereignMegaForm(battleSys, battleCtx, battler) != 0;
+    message.megaIcon = battleCtx->battleMons[battler].species == SPECIES_RAYQUAZA ? ITEM_MEGA_RING : battleCtx->battleMons[battler].heldItem;
     for (int i = 0; i < BattleSystem_GetMaxBattlers(battleSys); i++) {
         if (i != battler && (battleCtx->sovereignMegaPending & FlagIndex(i))
             && BattleSystem_SovereignMegaTrainerBit(battleSys, i) == BattleSystem_SovereignMegaTrainerBit(battleSys, battler)) {

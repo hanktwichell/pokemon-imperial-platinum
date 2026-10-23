@@ -101,8 +101,9 @@ implemented.
   spare bits for "Mega this turn".
 - **MEGA button.** The move menu is config 11 in `battle_subscreen.c`:
   - `sMoveSelectMenuTouchRects`, results `{0xFF, 1, 2, 3, 4}`; 5 is RUN.
-  - `pl_batt_bg` is prebuilt, but `pl_batt_obj` is built from source, so the button is an OBJ sprite. The font OAM
-    pool is full.
+  - `pl_batt_bg` is prebuilt, but `pl_batt_obj` is built from source, so the button is an OBJ sprite there
+    (`interface/mega_button.*`, resource ID 20040), with the held stone's item icon as a second sprite (20041). Its
+    touch rect is index 5 (result `0x10`); the D-pad reaches it with UP from the top row of moves.
   - Carry the toggle in bits 8–15 of the selected-move int (`ioBuffer[i][1]`) and latch it in `MOVE_SELECT`, since
     target selection clears the buffer.
   - "Can Mega" travels server → client through `MoveSelectMenuMessage` → `MoveSelectMenuData` → `MoveSelectData`.

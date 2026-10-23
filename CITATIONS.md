@@ -98,6 +98,10 @@ plus transparent, at most 24×24 px). Source: **PokeAPI sprites**, https://githu
 `97a7832`), `sprites/items/<item>.png`. The item art is © Nintendo / Game Freak / The Pokémon Company; PokeAPI hosts
 it. **Placeholders**, to be replaced by DS-style icons where the owner wants.
 
+### Battle MEGA button
+`decomp/res/graphics/battle/interface/mega_button.png` is original art, drawn pixel by pixel by
+`tools/sprites/make_mega_button.py` (no source image). The Mega Stone shown on it in battle is the item icon above.
+
 ## Audio
 
 ### Cries for #494–1025 (and form cries)

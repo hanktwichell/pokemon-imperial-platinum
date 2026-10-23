@@ -332,7 +332,8 @@ BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
             encounterTable[i].minLevel = encounterData->grassEncounters.encounters[i].level;
         }
 
-        BOOL nationalDexObtained = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(FieldSystem_GetSaveData(fieldSystem)));
+        // Sovereign (decision 21): Trophy Garden and Great Marsh extras stay post-game (they followed the National Dex).
+        BOOL nationalDexObtained = SystemFlag_CheckGameCompleted(SaveData_GetVarsFlags(FieldSystem_GetSaveData(fieldSystem)));
 
         WildEncounters_ReplaceTimedEncounters(encounterData, &encounterTable[2].species, &encounterTable[3].species);
         WildEncounters_ReplaceSwarmEncounters(fieldSystem, encounterData, &encounterTable[0].species, &encounterTable[1].species);
@@ -519,7 +520,8 @@ BOOL WildEncounters_TrySweetScentEncounter(FieldSystem *fieldSystem, FieldTask *
             encounterTable[i].minLevel = encounterData->grassEncounters.encounters[i].level;
         }
 
-        BOOL nationalDexObtained = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(FieldSystem_GetSaveData(fieldSystem)));
+        // Sovereign (decision 21): Trophy Garden and Great Marsh extras stay post-game (they followed the National Dex).
+        BOOL nationalDexObtained = SystemFlag_CheckGameCompleted(SaveData_GetVarsFlags(FieldSystem_GetSaveData(fieldSystem)));
 
         WildEncounters_ReplaceTimedEncounters(encounterData, &encounterTable[2].species, &encounterTable[3].species);
         WildEncounters_ReplaceSwarmEncounters(fieldSystem, encounterData, &encounterTable[0].species, &encounterTable[1].species);
@@ -651,7 +653,8 @@ BOOL WildEncounters_TryMudEncounter(FieldSystem *fieldSystem, FieldBattleDTO **b
             encounterTable[i].minLevel = encounterData->grassEncounters.encounters[i].level;
         }
 
-        BOOL nationalDexObtained = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(FieldSystem_GetSaveData(fieldSystem)));
+        // Sovereign (decision 21): Trophy Garden and Great Marsh extras stay post-game (they followed the National Dex).
+        BOOL nationalDexObtained = SystemFlag_CheckGameCompleted(SaveData_GetVarsFlags(FieldSystem_GetSaveData(fieldSystem)));
 
         WildEncounters_ReplaceTimedEncounters(encounterData, &encounterTable[2].species, &encounterTable[3].species);
         WildEncounters_ReplaceSwarmEncounters(fieldSystem, encounterData, &encounterTable[0].species, &encounterTable[1].species);
