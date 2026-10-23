@@ -441,6 +441,8 @@ static BOOL ScrCmd_StartWildBattle(ScriptContext *ctx);
 static BOOL ScrCmd_StartLegendaryBattle(ScriptContext *ctx);
 static BOOL ScrCmd_StartFatefulEncounter(ScriptContext *ctx);
 static BOOL ScrCmd_SovereignStartTotemTrial(ScriptContext *ctx);
+static BOOL ScrCmd_SovereignGetTotemTrialSpecies(ScriptContext *ctx);
+static BOOL ScrCmd_SovereignClearFlagFromVar(ScriptContext *ctx);
 static BOOL ScrCmd_StartFirstBattle(ScriptContext *ctx);
 static BOOL ScrCmd_StartCatchingTutorial(ScriptContext *ctx);
 static BOOL ScrCmd_SlatherHoneyTree(ScriptContext *ctx);
@@ -4045,6 +4047,25 @@ static BOOL ScrCmd_SovereignStartTotemTrial(ScriptContext *ctx)
 
     Encounter_SovereignNewTotemTrial(ctx->task, trial, battleResultMaskPtr);
     return TRUE;
+}
+
+// Sovereign: the species of a Totem trial's Totem (CommonScript_SovereignTotemTrial).
+static BOOL ScrCmd_SovereignGetTotemTrialSpecies(ScriptContext *ctx)
+{
+    u16 trial = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+
+    *destVar = Encounter_SovereignTotemTrialSpecies(trial);
+    return FALSE;
+}
+
+// Sovereign: ClearFlag for a flag held in a variable, like SetFlagFromVar.
+static BOOL ScrCmd_SovereignClearFlagFromVar(ScriptContext *ctx)
+{
+    u16 flagID = *ScriptContext_GetVarPointer(ctx);
+
+    FieldSystem_ClearFlag(ctx->fieldSystem, flagID);
+    return FALSE;
 }
 
 static BOOL ScrCmd_StartFirstBattle(ScriptContext *ctx)

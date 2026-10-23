@@ -850,6 +850,8 @@ ScriptCommand(SCRCMD_GETLASTREPEL,                                         ScrCm
 ScriptCommand(SCRCMD_USEREPEL,                                             ScrCmd_UseRepel)
 ScriptCommand(SCRCMD_FINDPARTYSLOTFORFIELDMOVE,                            ScrCmd_FindPartySlotForFieldMove)
 ScriptCommand(SCRCMD_SOVEREIGNSTARTTOTEMTRIAL,                             ScrCmd_SovereignStartTotemTrial)
+ScriptCommand(SCRCMD_SOVEREIGNGETTOTEMTRIALSPECIES,                       ScrCmd_SovereignGetTotemTrialSpecies)
+ScriptCommand(SCRCMD_SOVEREIGNCLEARFLAGFROMVAR,                           ScrCmd_SovereignClearFlagFromVar)
 
 // clang-format on
 

@@ -113,6 +113,19 @@ These are original art, drawn pixel by pixel with no source image:
 - The Mega, α and Ω symbols that flash in the animation (`decomp/res/graphics/battle/moves/sovereign_*_symbol.png`), by
   `tools/sprites/make_mega_symbols.py`.
 
+### Totems on the map
+The huge Totems standing at the Totem trials (`decomp/res/graphics/field_sprites/pokemon/totem_<species>.png`), made by
+`tools/sprites/make_totem_overworld.py` from each Totem form's front sprite. Source: **PokeAPI sprites**,
+https://github.com/PokeAPI/sprites, `sprites/pokemon/<id>.png` (ids 10093, 10121, 10122, 10128, 10129, 10144, 10146,
+10149, 10150, 10153, 10154). The art is © Nintendo / Game Freak / The Pokémon Company; PokeAPI hosts it. Scaled to fit
+64×64, reduced to 14 colours and outlined in orange for the Totem aura. **Placeholders**, until DS-style overworld
+sprites are drawn.
+
+### Crown piece icons
+The bag icons of the 11 crown pieces, the Crown and the Sovereign Crown (`decomp/res/items/icons/`), by
+`tools/sprites/make_crown_icons.py`. Original art, drawn pixel by pixel with no source image. **Placeholders** until the
+owner's icons arrive (`data/item_sprites.csv`).
+
 ## Audio
 
 ### Cries for #494–1025 (and form cries)

@@ -887,6 +887,50 @@
         "{STRVAR_1 3, 0, 0} used the\n",
         "{STRVAR_1 8, 1, 0}."
       ]
+    },
+    {
+      "id": "CommonStrings_Text_SovereignTotemGlares",
+      "en_US": [
+        "A huge {STRVAR_1 1, 0, 0} glares at you!\n",
+        "A strange aura surrounds it..."
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_SovereignTotemNeedTwoPokemon",
+      "en_US": [
+        "Its aura is overwhelming!\r",
+        "You’ll need two Pokémon that can\n",
+        "battle to stand against it."
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_SovereignTotemDisappeared",
+      "en_US": [
+        "Totem {STRVAR_1 1, 0, 0} disappeared\n",
+        "from view..."
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_SovereignTotemSomethingGlints",
+      "en_US": [
+        "Something is glinting on the ground\n",
+        "where the Totem stood..."
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_SovereignPlayerFoundItem",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} found\n",
+        "{STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_SovereignCrownPiecesGlow",
+      "en_US": [
+        "The crown pieces began to glow!\r",
+        "The gold, the jewels and the diamond\n",
+        "fit together perfectly...\r"
+      ]
     }
   ]
 }

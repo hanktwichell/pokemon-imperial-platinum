@@ -13,6 +13,7 @@ void Encounter_NewVsHoneyTree(FieldTask *task, int *resultMaskPtr);
 void Encounter_NewVsSpeciesAtLevel(FieldTask *task, u16 species, u8 level, int *resultMaskPtr, BOOL isLegendary);
 void Encounter_NewFatefulVsSpeciesAtLevel(FieldTask *taskMan, u16 species, u8 level, int *resultMaskPtr, BOOL isLegendary);
 void Encounter_SovereignNewTotemTrial(FieldTask *task, int trial, int *resultMaskPtr);
+u16 Encounter_SovereignTotemTrialSpecies(int trial);
 void Encounter_NewVsPalParkTransfer(FieldSystem *fieldSystem, FieldBattleDTO *dto);
 void Encounter_NewVsFirstBattle(FieldTask *task, int trainerID, enum HeapID heapID, int *resultMaskPtr);
 void Encounter_NewCatchingTutorial(FieldTask *task);

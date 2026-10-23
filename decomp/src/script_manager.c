@@ -843,6 +843,7 @@ static const struct {
     { MAP_HEADER_HEARTHOME_CITY_NORTHWEST_HOUSE, 2, 5, FACE_UP }, // the Mega Stone Collector (Relic Badge)
     { MAP_HEADER_SURVIVAL_AREA_SOUTH_HOUSE, 8, 5, FACE_UP }, // the Mega Stone Curator (after the Champion)
     { MAP_HEADER_ROUTE_221, 306, 910, FACE_UP }, // outside the Regional Forms Park (a warp inside leaves NPCs untalkable)
+    { MAP_HEADER_ROUTE_205_SOUTH, 197, 660, FACE_UP }, // 3 steps south of Totem Gumshoos (its trial)
 };
 
 static u8 sSovereignTestWarpIndex;

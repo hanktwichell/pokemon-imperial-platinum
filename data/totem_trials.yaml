@@ -18,9 +18,10 @@
 # helpers: PROPOSAL (Claude B, 2026-10-23): the first is on the field from the start, the other two are the reserves the
 #          Totem calls in. Taken from the allies, with a stage the trial's level allows. They're 2 levels below the Totem. The helpers here will be chosen from these.
 # why: why this place (a species' Sovereign wild location from data/encounters_sovereign.json, or a theme).
+# map: where the Totem stands, once it's on the map (its object in res/field/events, CB-0028).
 
 trials:
-  - {totem: Gumshoos,          level: 18, location: Route 205 (South),         after: Leader Roark,             before: Commander Mars (Valley Windworks), aura: "+1 Defense", allies: "Yungoos", boost: def+1, helpers: [Yungoos, Yungoos, Yungoos],                           why: "Yungoos lives on Route 205 South"}
+  - {totem: Gumshoos,          level: 18, location: Route 205 (South),         after: Leader Roark,             before: Commander Mars (Valley Windworks), aura: "+1 Defense", allies: "Yungoos", boost: def+1, helpers: [Yungoos, Yungoos, Yungoos],                           why: "Yungoos lives on Route 205 South", map: "the flower bed by the river, x 197 z 656 (reachable before Mars; the north bank is past the Galactic grunts)"}
   - {totem: Ribombee,          level: 22, location: Floaroma Meadow,           after: Commander Mars (Valley Windworks), before: Leader Gardenia,           aura: "every stat (stages: check, +1 or +2)", allies: "Pelipper, Blissey", boost: all+1, helpers: [Wingull, Chansey, Cutiefly],                             why: "Sinnoh's flower meadow"}
   - {totem: Vikavolt,          level: 25, location: Eterna Forest,             after: Commander Mars (Valley Windworks), before: Leader Gardenia,           aura: "+1 to every stat (stages: check)", allies: "Charjabug", boost: all+1, helpers: [Charjabug, Charjabug, Charjabug],                           why: "Grubbin lives in Eterna Forest"}
   - {totem: Mimikyu,           level: 31, location: Old Chateau,               after: Commander Jupiter (Eterna), before: Leader Fantina,                  aura: "+1 to every stat", allies: "SM: Haunter, Gengar; USUM: Banette, Jellicent", boost: all+1, helpers: [Haunter, Gengar, Banette],                     why: "a haunted house for the haunted-house Totem; both Disguised and Busted forms"}

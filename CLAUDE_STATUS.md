@@ -1817,6 +1817,67 @@ where the regional forms live.
    - the Galactic gates (`Story.md`).
 3. **1 vs 2 Totem trials** for a player with one able Pokémon (an empty player slot from the start). Then the battle
    forms with item 11's abilities (Disguise for Mimikyu's Busted Form).
+
+---
+
+## CB-0028 — 2026-10-23, 1:44 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** the first Totem trial on the map, and the crown pieces (decisions 18 and 23). PR #35 (the Totem forms
+and trial battle) is merged.
+- **Totems on the map.** All 11 Totems have a huge 64x64 overworld sprite (Regigigas's setup), made from their Totem
+  form's sprite with an orange aura outline (`tools/sprites/make_totem_overworld.py`, `OBJ_EVENT_GFX_TOTEM_*`).
+- **Totem Gumshoos** stands on Route 205 South in the flower bed by the river (x 197, z 656). The north bank, where
+  the Yungoos grass is, is past the Galactic grunts, so the Totem stands on the near side.
+- **One trial script for all 11** (`CommonScript_SovereignTotemTrial`, `Common_SovereignTotemTrial`): the map script
+  only sets `VAR_0x8004` to the trial.
+  - Talking to the Totem plays its cry, then "A huge GUMSHOOS glares at you!", then the battle.
+  - It needs two Pokémon that can battle until 1 vs 2 exists.
+  - **Win or catch:** the trial flag is set, and the Totem leaves its crown piece ("Something is glinting on the
+    ground...", "A found a Gold Shard!").
+  - **Lose:** a blackout, and the Totem is back next time.
+  - The map's OnLoad removes the Totem as the field comes back after the battle, like Regigigas.
+- **Flags:** `FLAG_SOVEREIGN_TOTEM_TRIAL_*` (the unused 0x167–0x171), in trial order. Each is also its Totem's hidden
+  flag, for the Galactic gates to check.
+- **New script commands:** `SovereignGetTotemTrialSpecies` and `SovereignClearFlagFromVar`.
+- **The crown:** 13 new key items (11 pieces, the Crown, the Sovereign Crown) in `data/items_sovereign.yaml`.
+  - Their descriptions hint more and more that the pieces fit together.
+  - With all 11 held, they merge into the Crown.
+  - The icons are placeholders drawn by `tools/sprites/make_crown_icons.py`; `gen_items.py` takes `icon: drawn`.
+- **Test build:** SELECT+L+R's 9th stop is 3 steps south of Totem Gumshoos.
+- **`tools/test/find_tiles.py`** now marks every water tile the engine lets you Surf on. It used to know only the
+  river behaviour and showed Route 205 South's sea-type river as walkable.
+- **Verified:**
+  - The talk, the battle and the win; "disappeared from view"; the Gold Shard in the Key Items pocket with its icon
+    and description.
+  - The Totem stays gone after leaving and coming back.
+  - The merge, in a temporary build that started with the other 10 pieces: the Crown obtained, all 11 pieces gone.
+  - The loss branch, in a temporary build that sent every result there: a blackout home, and the Totem back.
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+- **Watch:** the Key Items pocket holds 50 (`KEY_ITEM_POCKET_SIZE`). Platinum has 40 key items (several only held for a
+  while) and Sovereign adds 26. Up to 10 pieces are held before the merge, so a full late-game bag could get close.
+  If it does, raise the pocket size (a save-layout change).
+
+**Files modified:**
+- `data/items_sovereign.yaml`, `data/totem_trials.yaml`, `data/item_sprites.csv`
+- `tools/engine/gen_items.py`, `tools/engine/gen_totem_trials.py`, `tools/test/find_tiles.py`;
+  `tools/sprites/make_totem_overworld.py` and `tools/sprites/make_crown_icons.py` (new)
+- `decomp/res/graphics/field_sprites/pokemon/totem_*.png` (11, new), `field_sprites/meson.build`,
+  `field_sprites.order`; `decomp/generated/object_events_gfx.txt`, `decomp/src/overlay005/object_event_gfx_data.c`
+- The items: `decomp/res/items/data/*.json` (13 new), `decomp/res/items/icons/*.png/.pal` (13 new) and their
+  `meson.build`, `item_icon.order`; `decomp/generated/items.txt`
+- `decomp/generated/vars_flags.txt`, `decomp/src/encounter.c`, `decomp/include/encounter.h`, `decomp/src/scrcmd.c`,
+  `decomp/include/data/scripts/scrcmd.h`, `decomp/asm/macros/scrcmd.inc`, `decomp/src/script_manager.c` (test warp)
+- `decomp/res/field/scripts/scripts_common.s`, `scripts_route_205_south.s`, `scripts_init_route_205_south.s`;
+  `decomp/res/field/events/events_route_205_south.json`; `decomp/res/text/common_strings.json`
+- `docs/TotemTrials.md`, `docs/EngineChangelog.md`, `docs/TechnicalDesign.md` §4b, `docs/EngineRoadmap.md`,
+  `docs/ProjectStatus.md`, `docs/Story.md`, `CITATIONS.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR when green.
+2. **The other 10 Totems on the map.** For each, an object on ground the player can reach at that point in the story,
+   an OnLoad that removes it, and the two-line script. Then the Galactic gates (`Story.md`).
+3. **1 vs 2 Totem trials** for a player with one able Pokémon. Then the battle forms with item 11's abilities.
+
 ## CA-0027 — 2026-10-23 (session on `claude/festive-bardeen-5h7beo`)
 
 **Implemented:**

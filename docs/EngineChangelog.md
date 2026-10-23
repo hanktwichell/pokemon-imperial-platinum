@@ -102,6 +102,49 @@ Hone Claws, Work Up, Coil, Quiver Dance, Shell Smash, Cotton Guard, Shift Gear, 
 - Gooey: contact leaves the attacker at Speed −1.
 - Defiant and Competitive: after Snarl, Attack +2 and Sp. Atk +1 (−1 then +2).
 - Moody: Attack +2, Defense −1.
+
+## FM — The first Totem trial on the map, and the crown pieces (decisions 18 and 23)
+
+Totem Gumshoos stands on Route 205 South, and every trial now leaves its crown piece. The other 10 Totems use the same
+script and sprites; they're placed next.
+- **The Totems on the map.** Each Totem is a huge 64x64 overworld sprite (like Platinum's Regigigas), made from its
+  Totem form's sprite with an orange aura outline (`tools/sprites/make_totem_overworld.py`, new
+  `OBJ_EVENT_GFX_TOTEM_*`). All 11 are in the ROM.
+- **Totem Gumshoos** stands in the flower bed by the river on Route 205 South (x 197, z 656), next to the road to
+  Valley Windworks. The north bank, where Yungoos live, is past the Galactic grunts, so the trial waits on the near
+  side.
+- **The trial** (`CommonScript_SovereignTotemTrial`, one common script for all 11):
+  - Talking to the Totem: its cry, then "A huge GUMSHOOS glares at you! A strange aura surrounds it...", then the
+    battle.
+  - With fewer than two Pokémon that can battle: "Its aura is overwhelming! You'll need two Pokémon that can battle to
+    stand against it." (until 1 vs 2 exists).
+  - **Win or catch:** "Totem GUMSHOOS disappeared from view..." (unless caught), "Something is glinting on the ground
+    where the Totem stood...", then "A found a Gold Shard!" and "A put the Gold Shard in the KEY ITEMS Pocket."
+  - **Lose:** the player blacks out, and the Totem is back next time.
+  - The map's OnLoad script removes the Totem as the field comes back after the battle, as Platinum does for
+    Regigigas.
+  - One flag per trial (`FLAG_SOVEREIGN_TOTEM_TRIAL_*`, the unused flags 0x167–0x171) marks it done and hides the Totem.
+  - New script commands: `SovereignGetTotemTrialSpecies` and `SovereignClearFlagFromVar`.
+- **The crown pieces** (decision 23, `docs/Story.md`): 13 new key items in `data/items_sovereign.yaml`. They are the 11
+  pieces (Gold Shard, Oval Emerald, Gold Fragment, Oval Sapphire, Oval Ruby, Gold Sliver, Rose Emerald, Rose Sapphire,
+  Rose Ruby, Gold Flake, Crown Diamond), the Crown and the Sovereign Crown.
+  - Their descriptions hint more and more that the pieces fit together.
+  - With all 11 in the bag, "The crown pieces began to glow! The gold, the jewels and the diamond fit together
+    perfectly...": the pieces are removed and the player obtains the Crown.
+  - The icons are placeholders drawn by `tools/sprites/make_crown_icons.py`, until the owner's arrive.
+  - `gen_items.py` takes `icon: drawn` for an item whose icon a tool draws.
+- **Test build:** SELECT+L+R's 9th stop is 3 steps south of Totem Gumshoos.
+- **`tools/test/find_tiles.py`** marks every water tile the engine lets you Surf on (`~`). It used to know only
+  the river behaviour, so Route 205 South's river showed as walkable.
+- **Verified in the test build** (Garchomp and Turtwig):
+  - The talk, the battle (two helpers called), the win, "disappeared from view", and the Gold Shard with its icon and
+    description in the Key Items pocket.
+  - The Totem stays gone after leaving and coming back.
+  - The merge, in a temporary build that started with the other 10 pieces: the Crown obtained, all 11 pieces removed.
+  - The loss branch, in a temporary build that sent every result there: blacked out home, and the Totem was back.
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+- **Not done yet:** the other 10 Totems on the map, and the Galactic gates (`docs/Story.md`).
+
 ## FM — Totem forms and the Totem trial battle (decision 18)
 
 The 12 Totem forms exist, and the battle the trials will use works. The trials aren't on the map yet. The places,
