@@ -2176,6 +2176,7 @@ void BattleSystem_UpdateAfterSwitch(BattleSystem *battleSys, BattleContext *batt
     battleCtx->sovereignLastMoveFailed[battler] = FALSE;
     battleCtx->sovereignLaserFocus[battler] = 0;
     battleCtx->sovereignDragonCheer[battler] = 0;
+    battleCtx->sovereignTelekinesis[battler] = 0;
     battleCtx->sovereignThroatChop[battler] = 0;
     battleCtx->sovereignSmackedDown[battler] = 0;
     battleCtx->moveCopied[battler] = MOVE_NONE;
@@ -2259,6 +2260,7 @@ void BattleSystem_CleanupFaintedMon(BattleSystem *battleSys, BattleContext *batt
     battleCtx->sovereignLastMoveFailed[battler] = FALSE;
     battleCtx->sovereignLaserFocus[battler] = 0;
     battleCtx->sovereignDragonCheer[battler] = 0;
+    battleCtx->sovereignTelekinesis[battler] = 0;
     battleCtx->sovereignThroatChop[battler] = 0;
     battleCtx->sovereignSmackedDown[battler] = 0;
     battleCtx->moveCopied[battler] = MOVE_NONE;
@@ -2721,7 +2723,7 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
         && moveType == TYPE_GROUND
         && defenderItemEffect != HOLD_EFFECT_SPEED_DOWN_GROUNDED) {
         *moveStatusMask |= MOVE_STATUS_LEVITATED;
-    } else if (battleCtx->battleMons[defender].moveEffectsData.magnetRiseTurns
+    } else if ((battleCtx->battleMons[defender].moveEffectsData.magnetRiseTurns || battleCtx->sovereignTelekinesis[defender]) // Sovereign (item 11)
         && (battleCtx->battleMons[defender].moveEffectsMask & MOVE_EFFECT_INGRAIN) == FALSE
         && moveType == TYPE_GROUND
         && defenderItemEffect != HOLD_EFFECT_SPEED_DOWN_GROUNDED) {
@@ -3360,6 +3362,7 @@ BOOL Battler_IsTrappedMsg(BattleSystem *battleSys, BattleContext *battleCtx, int
             if (Battler_Ability(battleCtx, battler) != ABILITY_LEVITATE
                 && Battler_Ability(battleCtx, battler) != ABILITY_EELEVATE // Sovereign (item 11)
                 && battleCtx->battleMons[battler].moveEffectsData.magnetRiseTurns == 0
+                && battleCtx->sovereignTelekinesis[battler] == 0 // Sovereign (item 11)
                 && MON_IS_NOT_TYPE(battler, TYPE_FLYING)) {
                 if (msgOut == NULL) {
                     return TRUE;
@@ -6382,6 +6385,7 @@ static inline BOOL BattlerIsGrounded(BattleContext *battleCtx, int battler)
     return (Battler_Ability(battleCtx, battler) != ABILITY_LEVITATE
                && Battler_Ability(battleCtx, battler) != ABILITY_EELEVATE // Sovereign (item 11)
                && battleCtx->battleMons[battler].moveEffectsData.magnetRiseTurns == 0
+               && battleCtx->sovereignTelekinesis[battler] == 0 // Sovereign (item 11)
                && MON_IS_NOT_TYPE(battler, TYPE_FLYING))
         || Battler_HeldItemEffect(battleCtx, battler) == HOLD_EFFECT_SPEED_DOWN_GROUNDED
         || battleCtx->sovereignSmackedDown[battler] // Sovereign (item 11)

@@ -1450,6 +1450,7 @@ enum MonCondCheckState {
     MON_COND_CHECK_STATE_CHARGE,
     MON_COND_CHECK_STATE_TAUNT,
     MON_COND_CHECK_STATE_MAGNET_RISE,
+    MON_COND_CHECK_STATE_SOVEREIGN_TELEKINESIS,
     MON_COND_CHECK_STATE_HEAL_BLOCK,
     MON_COND_CHECK_STATE_EMBARGO,
     MON_COND_CHECK_STATE_YAWN,
@@ -1840,6 +1841,17 @@ static void BattleControllerPlayer_CheckMonConditions(BattleSystem *battleSys, B
                 battleCtx->msgBattlerTemp = battler;
 
                 PrepareSubroutineSequence(battleCtx, subscript_magnet_rise_end);
+                state = STATE_BREAK_OUT;
+            }
+
+            battleCtx->monConditionCheckState++;
+            break;
+
+        case MON_COND_CHECK_STATE_SOVEREIGN_TELEKINESIS: // Sovereign (item 11)
+            if (battleCtx->sovereignTelekinesis[battler] && --battleCtx->sovereignTelekinesis[battler] == 0) {
+                battleCtx->msgBattlerTemp = battler;
+
+                PrepareSubroutineSequence(battleCtx, subscript_sovereign_telekinesis_end);
                 state = STATE_BREAK_OUT;
             }
 
@@ -3297,6 +3309,7 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
 
     if ((battleCtx->battleStatusMask & SYSCTL_NONSTANDARD_ACC_CHECK) == FALSE
         && (MON_IS_LOCKED_ONTO(attacker, defender)
+            || (battleCtx->sovereignTelekinesis[defender] && MOVE_DATA(move).effect != BATTLE_EFFECT_ONE_HIT_KO) // Sovereign (item 11)
             || Battler_Ability(battleCtx, attacker) == ABILITY_NO_GUARD
             || Battler_Ability(battleCtx, defender) == ABILITY_NO_GUARD)) {
         battleCtx->moveStatusFlags &= ~MOVE_STATUS_MISSED;

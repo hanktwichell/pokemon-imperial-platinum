@@ -4,6 +4,19 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (part 26) — Telekinesis
+
+- **Telekinesis:** for 3 turns the target is lifted: Ground moves miss it, it isn't grounded (terrains, Arena Trap,
+  Spikes), and moves other than one-hit KOs always hit it.
+  - Fails under Gravity, or on a target that is rooted, smacked down or already lifted.
+  - Counts down at the end of each turn ("{0} was freed from the telekinesis!").
+  - New field `sovereignTelekinesis[4]`, a script variable, effect 332 and two subscripts.
+  - The Ground miss reuses Magnet Rise's message ("...evades Ground moves with electromagnetism").
+- Move checklist: exact 257, approximate 39, placeholder 84.
+
+**Verified in the test build:** Garchomp's Telekinesis gave "The foe's VENUSAUR was hurled into the air!". Turtwig's
+Mud-Slap then missed it.
+
 ## Item 11 (part 25) — Magic Room, Wonder Room
 
 - **Magic Room:** for 5 turns no held item has any effect (`Battler_HeldItem` returns nothing). Using it again ends it.

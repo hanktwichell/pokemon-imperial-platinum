@@ -218,6 +218,7 @@ MOVES = {
     "belch": (None, None, "fails unless the user has eaten a Berry this battle (Bug Bite and Pluck don't count yet)", "approximate"),
     "magic_room": ("SOVEREIGN_MAGIC_ROOM", 0, "held items have no effect for 5 turns; using it again ends it"),
     "wonder_room": ("SOVEREIGN_WONDER_ROOM", 0, "Defense and Sp. Def are swapped for 5 turns; using it again ends it"),
+    "telekinesis": ("SOVEREIGN_TELEKINESIS", 0, "for 3 turns the target is immune to Ground moves and other moves always hit it"),
     "parting_shot": ("SOVEREIGN_PARTING_SHOT", 0, "target Attack and Sp. Atk -1, then the user switches out (stays if no stat fell)"),
 }
 

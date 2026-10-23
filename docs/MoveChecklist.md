@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 256 |
+| exact | 257 |
 | approximate | 39 |
-| placeholder | 85 |
+| placeholder | 84 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -24,7 +24,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 474 | Venoshock | Poison | `HIT` | exact | Sovereign effect: target is poisoned: power doubles |
 | 475 | Autotomize | Steel | `SPEED_UP_2` | approximate | has its own mechanic in Gen IX; closest effect |
 | 476 | Rage Powder | Bug | `MAKE_GLOBAL_TARGET` | exact |  |
-| 477 | Telekinesis | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 477 | Telekinesis | Psychic | `SOVEREIGN_TELEKINESIS` | exact | Sovereign effect: for 3 turns the target is immune to Ground moves and other moves always hit it |
 | 478 | Magic Room | Psychic | `SOVEREIGN_MAGIC_ROOM` | exact | Sovereign effect: held items have no effect for 5 turns; using it again ends it |
 | 479 | Smack Down | Rock | `SOVEREIGN_SMACK_DOWN` | exact | Sovereign effect: grounds the target until it switches out |
 | 480 | Storm Throw | Fighting | `HIT` | exact | Sovereign effect: always a critical hit |

@@ -9287,6 +9287,48 @@
         "Wonder Room wore off, and Defense and\n",
         "Sp. Def stats returned to normal!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignHurledIntoTheAir_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} was hurled\n",
+        "into the air!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignHurledIntoTheAir_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}\n",
+        "was hurled into the air!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignHurledIntoTheAir_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}\n",
+        "was hurled into the air!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFreedFromTelekinesis_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} was freed\n",
+        "from the telekinesis!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFreedFromTelekinesis_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} was freed\n",
+        "from the telekinesis!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFreedFromTelekinesis_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} was freed\n",
+        "from the telekinesis!"
+      ]
     }
   ]
 }

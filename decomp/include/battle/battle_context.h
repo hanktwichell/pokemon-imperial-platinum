@@ -350,6 +350,7 @@ struct BattleContext {
     u8 sovereignAteBerry[MAX_BATTLERS]; // Sovereign (item 11): party slots that have eaten a Berry this battle (Belch)
     int sovereignMagicRoomTurns; // Sovereign (item 11): turns of Magic Room left (held items have no effect)
     int sovereignWonderRoomTurns; // Sovereign (item 11): turns of Wonder Room left (Defense and Sp. Def swapped)
+    int sovereignTelekinesis[MAX_BATTLERS]; // Sovereign (item 11): turns of Telekinesis left on each battler
 };
 
 #endif // POKEPLATINUM_BATTLE_BATTLE_CONTEXT_H
