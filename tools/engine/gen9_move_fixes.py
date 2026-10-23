@@ -190,6 +190,7 @@ MOVES = {
     "after_you": ("SOVEREIGN_AFTER_YOU", 0, "the target moves right after the user"),
     "quash": ("SOVEREIGN_QUASH", 0, "the target moves last this turn"),
     "psychic_noise": ("SOVEREIGN_PSYCHIC_NOISE", 100, "the target can't heal for two turns"),
+    "steel_beam": ("SOVEREIGN_HALF_HP_COST_HIT", 0, "the user loses half its max HP (only when it hits, so far)", "approximate"),
 }
 
 

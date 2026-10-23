@@ -4,6 +4,16 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (part 14) — Psychic Noise and Steel Beam
+
+- **Psychic Noise:** after the hit, the target can't heal for two turns (Heal Block's message).
+- **Steel Beam:** after the hit, the user loses half its max HP, rounded up (Magic Guard prevents it). "Approximate":
+  in Gen IX the HP is lost even when the move misses.
+- Move checklist: exact 229, approximate 44, placeholder 107.
+
+**Verified in the test build:** Garchomp fainted after its second Steel Beam (half its max HP each time). Psychic Noise
+isn't tested in game yet.
+
 ## Item 11 (part 12) — Wide Guard, Quick Guard, Dragon Tail, Smack Down, Soak, Retaliate, Poltergeist
 
 - **Wide Guard / Quick Guard:** protect the user's side this turn from spread moves / foes' priority moves (new side

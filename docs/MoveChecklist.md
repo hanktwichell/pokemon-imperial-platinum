@@ -7,8 +7,8 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | | Count |
 |---|---|
 | exact | 229 |
-| approximate | 43 |
-| placeholder | 108 |
+| approximate | 44 |
+| placeholder | 107 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -343,7 +343,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 793 | False Surrender | Dark | `BYPASS_ACCURACY` | exact |  |
 | 794 | Meteor Assault | Fighting | `RECHARGE_AFTER` | exact |  |
 | 795 | Eternabeam | Dragon | `RECHARGE_AFTER` | exact |  |
-| 796 | Steel Beam | Steel | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 796 | Steel Beam | Steel | `SOVEREIGN_HALF_HP_COST_HIT` | approximate | Sovereign effect: the user loses half its max HP (only when it hits, so far) |
 | 797 | Expanding Force | Psychic | `HIT` | approximate | Sovereign effect: 1.5x in Psychic Terrain (doesn't spread to both foes yet) |
 | 798 | Steel Roller | Steel | `HIT` | approximate | Sovereign effect: fails without a terrain, then removes it (no message yet) |
 | 799 | Scale Shot | Dragon | `MULTI_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
