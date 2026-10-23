@@ -13,7 +13,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 128 | Defiant | Gen 5 | yes: Attack +2 when a foe's move or Intimidate lowers its stats |
 | 129 | Defeatist | Gen 5 | yes: Attack and Sp. Atk halved at half HP or less |
 | 130 | Cursed Body | Gen 5 | yes: 30% chance to disable the move that hit it, for 4 turns |
-| 131 | Healer | Gen 5 | not yet (no battle effect) |
+| 131 | Healer | Gen 5 | yes: 30% chance each turn to cure its ally's status |
 | 132 | Friend Guard | Gen 5 | yes: the partner takes 25% less damage |
 | 133 | Weak Armor | Gen 5 | yes: Defense −1 and Speed +2 when hit by a physical move |
 | 134 | Heavy Metal | Gen 5 | yes: weight doubled (Low Kick, Grass Knot) |
@@ -34,23 +34,23 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 149 | Illusion | Gen 5 | not yet (no battle effect) |
 | 150 | Imposter | Gen 5 | not yet (no battle effect) |
 | 151 | Infiltrator | Gen 5 | partly: ignores Reflect, Light Screen and Substitute (Safeguard and Mist not yet) |
-| 152 | Mummy | Gen 5 | not yet (no battle effect) |
+| 152 | Mummy | Gen 5 | yes: an attacker that makes contact gets Mummy |
 | 153 | Moxie | Gen 5 | yes: Attack +1 for each foe its move knocks out |
 | 154 | Justified | Gen 5 | yes: Attack +1 when hit by a Dark move |
 | 155 | Rattled | Gen 5 | yes: Speed +1 when hit by a Bug, Ghost or Dark move, or when Intimidated |
-| 156 | Magic Bounce | Gen 5 | not yet (no battle effect) |
+| 156 | Magic Bounce | Gen 5 | yes: reflects status moves aimed at it |
 | 157 | Sap Sipper | Gen 5 | yes: absorbs Grass moves, Attack +1 (`BattleSystem_TriggerImmunityAbility`) |
 | 158 | Prankster | Gen 5 | yes: status moves +1 priority; they don't affect Dark-type foes |
 | 159 | Sand Force | Gen 5 | yes: Rock/Ground/Steel moves ×1.3 in a sandstorm; no sandstorm damage |
 | 160 | Iron Barbs | Gen 5 | yes: contact costs the attacker 1/8 of its max HP (as Rough Skin) |
 | 161 | Zen Mode | Gen 5 | not yet (no battle effect) |
-| 162 | Victory Star | Gen 5 | not yet (no battle effect) |
-| 163 | Turboblaze | Gen 5 | not yet (no battle effect) |
-| 164 | Teravolt | Gen 5 | not yet (no battle effect) |
+| 162 | Victory Star | Gen 5 | yes: accuracy ×1.1 for it and its ally |
+| 163 | Turboblaze | Gen 5 | yes: ignores the target's ability, like Mold Breaker |
+| 164 | Teravolt | Gen 5 | yes: ignores the target's ability, like Mold Breaker |
 | 165 | Aroma Veil | Gen 6 | not yet (no battle effect) |
 | 166 | Flower Veil | Gen 6 | not yet (no battle effect) |
 | 167 | Cheek Pouch | Gen 6 | not yet (no battle effect) |
-| 168 | Protean | Gen 6 | not yet (no battle effect) |
+| 168 | Protean | Gen 6 | yes: becomes its move's type, once per switch-in |
 | 169 | Fur Coat | Gen 6 | yes: Defense doubled |
 | 170 | Magician | Gen 6 | not yet (no battle effect) |
 | 171 | Bulletproof | Gen 6 | yes: immune to ball and bomb moves |
@@ -67,25 +67,25 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 182 | Pixilate | Gen 6 | yes: Normal moves become Fairy-type, ×1.2 |
 | 183 | Gooey | Gen 6 | yes: a contact move lowers the attacker's Speed 1 stage |
 | 184 | Aerilate | Gen 6 | yes: Normal moves become Flying-type, ×1.2 |
-| 185 | Parental Bond | Gen 6 | not yet (no battle effect) |
+| 185 | Parental Bond | Gen 6 | yes: single-target damaging moves hit twice, the second hit at 1/4 damage |
 | 186 | Dark Aura | Gen 6 | yes: Dark moves on the field ×1.33 |
 | 187 | Fairy Aura | Gen 6 | yes: Fairy moves on the field ×1.33 |
 | 188 | Aura Break | Gen 6 | yes: reverses the Auras (×0.75) |
-| 189 | Primordial Sea | Gen 6 | not yet (no battle effect) |
-| 190 | Desolate Land | Gen 6 | not yet (no battle effect) |
-| 191 | Delta Stream | Gen 6 | not yet (no battle effect) |
+| 189 | Primordial Sea | Gen 6 | yes: heavy rain while it's in battle; Fire moves fizzle, other weather can't start |
+| 190 | Desolate Land | Gen 6 | yes: extremely harsh sun while it's in battle; Water moves evaporate, other weather can't start |
+| 191 | Delta Stream | Gen 6 | yes: strong winds while it's in battle; no move is super effective on Flying types |
 | 192 | Stamina | Gen 7 | yes: Defense +1 stage each time a damaging move hits (`BattleSystem_TriggerAbilityOnHit`) |
 | 193 | Wimp Out | Gen 7 | not yet (no battle effect) |
 | 194 | Emergency Exit | Gen 7 | not yet (no battle effect) |
 | 195 | WaterCompaction | Gen 7 | yes: Defense +2 when hit by a Water move |
 | 196 | Merciless | Gen 7 | yes: always a critical hit on a poisoned target |
 | 197 | Shields Down | Gen 7 | not yet (no battle effect) |
-| 198 | Stakeout | Gen 7 | not yet (no battle effect) |
+| 198 | Stakeout | Gen 7 | yes: double power against a target that switched in this turn |
 | 199 | Water Bubble | Gen 7 | partly: its Water moves ×2, Fire damage taken halved (burn immunity not yet) |
 | 200 | Steelworker | Gen 7 | yes: Steel moves ×1.5 |
-| 201 | Berserk | Gen 7 | not yet (no battle effect) |
+| 201 | Berserk | Gen 7 | yes: Sp. Atk +1 when a hit drops it to half HP or less |
 | 202 | Slush Rush | Gen 7 | yes: Speed ×2 in snow |
-| 203 | Long Reach | Gen 7 | not yet (no battle effect) |
+| 203 | Long Reach | Gen 7 | yes: its moves make no contact |
 | 204 | Liquid Voice | Gen 7 | yes: sound moves become Water-type |
 | 205 | Triage | Gen 7 | yes: healing moves +3 priority |
 | 206 | Galvanize | Gen 7 | yes: Normal moves become Electric-type, ×1.2 |
@@ -94,12 +94,12 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 209 | Disguise | Gen 7 | not yet (no battle effect) |
 | 210 | Battle Bond | Gen 7 | not yet (no battle effect) |
 | 211 | Power Construct | Gen 7 | not yet (no battle effect) |
-| 212 | Corrosion | Gen 7 | not yet (no battle effect) |
+| 212 | Corrosion | Gen 7 | yes: can poison Steel and Poison types |
 | 213 | Comatose | Gen 7 | not yet (no battle effect) |
 | 214 | Queenly Majesty | Gen 7 | yes: foes' priority moves can't hit its side |
-| 215 | Innards Out | Gen 7 | not yet (no battle effect) |
+| 215 | Innards Out | Gen 7 | yes: when knocked out by a hit, the attacker loses the HP it had left |
 | 216 | Dancer | Gen 7 | not yet (no battle effect) |
-| 217 | Battery | Gen 7 | not yet (no battle effect) |
+| 217 | Battery | Gen 7 | yes: its ally's special moves ×1.3 |
 | 218 | Fluffy | Gen 7 | yes: contact damage halved, Fire damage doubled |
 | 219 | Dazzling | Gen 7 | yes: foes' priority moves can't hit its side |
 | 220 | Soul-Heart | Gen 7 | not yet (no battle effect) |
@@ -116,33 +116,33 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 231 | Shadow Shield | Gen 7 | yes: damage halved at full HP (not ignored by Mold Breaker) |
 | 232 | Prism Armor | Gen 7 | yes: super-effective damage ×0.75 (not ignored by Mold Breaker) |
 | 233 | Neuroforce | Gen 7 | yes: super-effective moves ×1.25 |
-| 234 | Intrepid Sword | Gen 8 | not yet (no battle effect) |
-| 235 | DauntlessShield | Gen 8 | not yet (no battle effect) |
-| 236 | Libero | Gen 8 | not yet (no battle effect) |
+| 234 | Intrepid Sword | Gen 8 | yes: Attack +1 the first time it enters battle |
+| 235 | DauntlessShield | Gen 8 | yes: Defense +1 the first time it enters battle |
+| 236 | Libero | Gen 8 | yes: becomes its move's type, once per switch-in |
 | 237 | Ball Fetch | Gen 8 | not yet (no battle effect) |
 | 238 | Cotton Down | Gen 8 | not yet (no battle effect) |
-| 239 | Propeller Tail | Gen 8 | not yet (no battle effect) |
+| 239 | Propeller Tail | Gen 8 | yes: ignores moves and abilities that draw in attacks |
 | 240 | Mirror Armor | Gen 8 | not yet (no battle effect) |
 | 241 | Gulp Missile | Gen 8 | not yet (no battle effect) |
-| 242 | Stalwart | Gen 8 | not yet (no battle effect) |
-| 243 | Steam Engine | Gen 8 | not yet (no battle effect) |
+| 242 | Stalwart | Gen 8 | yes: ignores moves and abilities that draw in attacks |
+| 243 | Steam Engine | Gen 8 | yes: Fire or Water hits raise Speed 6 stages |
 | 244 | Punk Rock | Gen 8 | yes: its sound moves ×1.3, sound damage taken halved |
-| 245 | Sand Spit | Gen 8 | not yet (no battle effect) |
+| 245 | Sand Spit | Gen 8 | yes: getting hit whips up a sandstorm |
 | 246 | Ice Scales | Gen 8 | yes: special damage halved |
 | 247 | Ripen | Gen 8 | not yet (no battle effect) |
 | 248 | Ice Face | Gen 8 | not yet (no battle effect) |
-| 249 | Power Spot | Gen 8 | not yet (no battle effect) |
+| 249 | Power Spot | Gen 8 | yes: its ally's moves ×1.3 |
 | 250 | Mimicry | Gen 8 | not yet (no battle effect) |
-| 251 | Screen Cleaner | Gen 8 | not yet (no battle effect) |
+| 251 | Screen Cleaner | Gen 8 | yes: removes Reflect, Light Screen and Aurora Veil on entry |
 | 252 | Steely Spirit | Gen 8 | yes: Steel moves of the holder and its ally ×1.5 |
-| 253 | Perish Body | Gen 8 | not yet (no battle effect) |
-| 254 | WanderingSpirit | Gen 8 | not yet (no battle effect) |
+| 253 | Perish Body | Gen 8 | yes: contact gives it and the attacker a Perish Song count of 3 |
+| 254 | WanderingSpirit | Gen 8 | yes: swaps abilities with an attacker that makes contact |
 | 255 | Gorilla Tactics | Gen 8 | partly: Attack ×1.5 (the move lock not yet) |
 | 256 | NeutralizingGas | Gen 8 | not yet (no battle effect) |
 | 257 | Pastel Veil | Gen 8 | not yet (no battle effect) |
 | 258 | Hunger Switch | Gen 8 | not yet (no battle effect) |
 | 259 | Quick Draw | Gen 8 | not yet (no battle effect) |
-| 260 | Unseen Fist | Gen 8 | not yet (no battle effect) |
+| 260 | Unseen Fist | Gen 8 | yes: contact moves go through protection |
 | 261 | CuriousMedicine | Gen 8 | not yet (no battle effect) |
 | 262 | Transistor | Gen 8 | yes: Electric moves ×1.3 |
 | 263 | Dragon’s Maw | Gen 8 | yes: Dragon moves ×1.5 |
@@ -150,10 +150,10 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 265 | Grim Neigh | Gen 8 | yes: Sp. Atk +1 for each foe its move knocks out |
 | 266 | As One | Gen 8 | not yet (no battle effect) |
 | 267 | As One | Gen 8 | not yet (no battle effect) |
-| 268 | Lingering Aroma | Gen 9 | not yet (no battle effect) |
-| 269 | Seed Sower | Gen 9 | not yet (no battle effect) |
+| 268 | Lingering Aroma | Gen 9 | yes: an attacker that makes contact gets Lingering Aroma |
+| 269 | Seed Sower | Gen 9 | yes: getting hit sets Grassy Terrain |
 | 270 | ThermalExchange | Gen 9 | partly: Attack +1 when hit by a Fire move (burn immunity not yet) |
-| 271 | Anger Shell | Gen 9 | not yet (no battle effect) |
+| 271 | Anger Shell | Gen 9 | yes: Attack, Sp. Atk, Speed +1 and Defense, Sp. Def -1 when a hit drops it to half HP or less |
 | 272 | Purifying Salt | Gen 9 | partly: Ghost damage halved (status immunity not yet) |
 | 273 | Well-Baked Body | Gen 9 | yes: absorbs Fire moves, Defense +2 (`BattleSystem_TriggerImmunityAbility`) |
 | 274 | Wind Rider | Gen 9 | not yet (no battle effect) |
@@ -165,7 +165,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 280 | Electromorphsis | Gen 9 | not yet (no battle effect) |
 | 281 | Protosynthesis | Gen 9 | yes: in harsh sunlight or after using a Booster Energy, its highest stat ×1.3 (Speed ×1.5) |
 | 282 | Quark Drive | Gen 9 | yes: in Electric Terrain or after using a Booster Energy, its highest stat ×1.3 (Speed ×1.5) |
-| 283 | Good as Gold | Gen 9 | not yet (no battle effect) |
+| 283 | Good as Gold | Gen 9 | yes: immune to other Pokémon's status moves |
 | 284 | Vessel of Ruin | Gen 9 | yes: Sp. Atk of every other Pokémon ×0.75 |
 | 285 | Sword of Ruin | Gen 9 | yes: Defense of every other Pokémon ×0.75 |
 | 286 | Tablets of Ruin | Gen 9 | yes: Attack of every other Pokémon ×0.75 |
@@ -175,13 +175,13 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 290 | Opportunist | Gen 9 | not yet (no battle effect) |
 | 291 | Cud Chew | Gen 9 | not yet (no battle effect) |
 | 292 | Sharpness | Gen 9 | yes: slicing moves ×1.5 |
-| 293 | SupremeOverlord | Gen 9 | not yet (no battle effect) |
+| 293 | SupremeOverlord | Gen 9 | yes: 10% more power per fainted party member (up to 5) |
 | 294 | Costar | Gen 9 | not yet (no battle effect) |
-| 295 | Toxic Debris | Gen 9 | not yet (no battle effect) |
+| 295 | Toxic Debris | Gen 9 | yes: physical hits scatter Toxic Spikes on the attacker's side |
 | 296 | Armor Tail | Gen 9 | yes: foes' priority moves can't hit its side |
 | 297 | Earth Eater | Gen 9 | yes: absorbs Ground moves, restores 1/4 of max HP (`BattleSystem_TriggerImmunityAbility`) |
-| 298 | Mycelium Might | Gen 9 | not yet (no battle effect) |
-| 299 | Mind’s Eye | Gen 9 | not yet (no battle effect) |
+| 298 | Mycelium Might | Gen 9 | partly: its status moves ignore abilities (moving last not yet) |
+| 299 | Mind’s Eye | Gen 9 | yes: hits Ghost types with Normal and Fighting moves, ignores evasion, accuracy can't be lowered |
 | 300 | SupersweetSyrup | Gen 9 | not yet (no battle effect) |
 | 301 | Hospitality | Gen 9 | not yet (no battle effect) |
 | 302 | Toxic Chain | Gen 9 | not yet (no battle effect) |
@@ -190,10 +190,10 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 305 | Tera Shell | Gen 9 | not yet (no battle effect) |
 | 306 | Teraform Zero | Gen 9 | not yet (no battle effect) |
 | 307 | PoisonPuppeteer | Gen 9 | not yet (no battle effect) |
-| 308 | Piercing Drill | Gen 9 | not yet (no battle effect) |
+| 308 | Piercing Drill | Gen 9 | yes: contact moves go through protection at 1/4 damage |
 | 309 | Dragonize | Gen 9 | yes: Normal moves become Dragon-type, ×1.2 |
-| 310 | Mega Sol | Gen 9 | not yet (no battle effect) |
-| 311 | Spicy Spray | Gen 9 | not yet (no battle effect) |
-| 312 | Eelevate | Gen 9 | not yet (no battle effect) |
-| 313 | Fire Mane | Gen 9 | not yet (no battle effect) |
-| 314 | Aura Guard | Gen 9 | not yet (no battle effect) |
+| 310 | Mega Sol | Gen 9 | partly: its moves work as in harsh sunlight (damage, Solar Beam without charging; Weather Ball, Growth, Synthesis not yet) |
+| 311 | Spicy Spray | Gen 9 | yes: burns the attacker whenever a damaging move hits it |
+| 312 | Eelevate | Gen 9 | yes: Levitate, and a knockout raises its highest stat (from one source; check against official data) |
+| 313 | Fire Mane | Gen 9 | yes: Fire moves ×1.5 |
+| 314 | Aura Guard | Gen 9 | yes: contact damage taken halved |

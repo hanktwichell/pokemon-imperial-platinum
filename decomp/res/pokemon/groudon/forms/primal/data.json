@@ -34,9 +34,9 @@
         "EGG_GROUP_UNDISCOVERED"
     ],
     "abilities": [
-        "ABILITY_NONE",
-        "ABILITY_NONE",
-        "ABILITY_NONE"
+        "ABILITY_DESOLATE_LAND",
+        "ABILITY_DESOLATE_LAND",
+        "ABILITY_DESOLATE_LAND"
     ],
     "safari_flee_rate": 0,
     "body_color": "MON_COLOR_RED",

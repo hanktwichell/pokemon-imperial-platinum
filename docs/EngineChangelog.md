@@ -30,6 +30,121 @@ The Unova Chronicle's key chapter (`docs/PostgameLegendaries.md`):
   - Kyurem hidden while Zekrom wasn't caught, shown once both were, caught, and gone afterwards.
   - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
 
+## Item 11 (part 20) — contact abilities: Mummy, Lingering Aroma, Wandering Spirit, Perish Body, Toxic Debris
+
+- **Mummy / Lingering Aroma:** an attacker that makes contact gets the holder's ability ("{0} acquired Mummy!").
+- **Wandering Spirit:** swaps abilities with an attacker that makes contact, if the holder is still standing.
+- These three can't overwrite or take the form and signature abilities (new `Sovereign_AbilityIsFixed`: Multitype,
+  Stance Change, Schooling, Disguise, Zen Mode and others).
+- **Perish Body:** contact gives the holder and the attacker a Perish Song count of 3 ("Both Pokémon will faint in
+  three turns!").
+- **Toxic Debris:** a physical hit scatters a layer of Toxic Spikes on the attacker's side (up to 2).
+- Ability checklist: 136 newer abilities implemented.
+
+**Verified in the test build:** Garchomp's Dragon Claw on a Mummy Venusaur gave "GARCHOMP acquired Mummy!", and
+Garchomp's ability became Mummy. The other four aren't tested in game yet.
+
+## Item 11 (part 19) — the last Mega abilities and Healer
+
+Every Mega and Primal now gets its own ability. The six from Pokémon Champions were checked on Bulbapedia, Serebii,
+Wikidex and Rotom Labs.
+- **Piercing Drill** (Mega Excadrill): contact moves go through Protect and the guard moves at 1/4 damage (applied
+  when the hit's HP change is set).
+- **Spicy Spray** (Mega Scovillain): any damaging move that hits the holder burns the attacker, even if the hit
+  knocks the holder out.
+- **Fire Mane** (Mega Pyroar): Fire moves ×1.5.
+- **Aura Guard** (Mega Lucario Z): contact damage taken halved.
+- **Mega Sol** (Mega Meganium): its moves work as in harsh sunlight: Fire ×1.5, Water ×0.5, and Solar Beam needs no
+  charge turn. Weather Ball, Growth and Synthesis are not done yet.
+- **Eelevate** (Mega Eelektross): Levitate (Ground immunity, hazards, Gravity, Smack Down, Magnet Rise), and a
+  knockout raises its highest stat like Beast Boost. Only one source describes this ability; recheck against
+  official data.
+- **Healer** (Mega Audino): 30% chance at the end of each turn to cure its ally's status, with a new message
+  "{2} was cured by {0}'s Healer!".
+- `gen_mega_doc.py` now says when every Mega ability is implemented. Ability checklist: 131 newer abilities.
+
+**Verified in the test build:** Venusaur (Spicy Spray) used Protect. Garchomp's Piercing Drill Dragon Claw went
+through for 10 damage (a quarter of the 40 crit), then "The foe's VENUSAUR's Spicy Spray burned GARCHOMP!". The
+others aren't tested in game yet.
+
+## Item 11 (part 18) — Parental Bond, Berserk, Anger Shell, Innards Out
+
+- **Parental Bond:** single-target damaging moves hit twice ("Hit 2 time(s)!") through the multi-hit loop. The
+  second hit does 1/4 damage.
+  - Not for status, spread, multi-hit, charging, fixed-damage or self-KO moves, Fling, Uproar, recharge moves, Final
+    Gambit or Sky Drop.
+  - Mega Kangaskhan now gets it, Mega Drampa gets Berserk and Mega Victreebel Innards Out (`gen_forms.py`).
+- **Berserk / Anger Shell:** when a hit drops the holder from above half HP to half or less:
+  - Berserk raises Sp. Atk by 1;
+  - Anger Shell raises Attack, Sp. Atk and Speed and lowers Defense and Sp. Def by 1.
+- **Innards Out:** when a hit knocks the holder out, the attacker loses as much HP as the holder had left.
+- New `BattleContext` fields `sovereignParentalBond` and `sovereignHPBeforeHit[4]` (each battler's HP before the last
+  hit it took).
+- Ability checklist: 124 newer abilities implemented.
+
+**Verified in the test build:**
+- With Parental Bond, Garchomp's Dragon Claw hit Venusaur twice, for 40 then 9 damage (both crits; the second is a
+  quarter), then "Hit 2 time(s)!".
+- A Lv. 40 Berserk Venusaur hit from 126 to 35 HP rose to Sp. Atk +1.
+- Anger Shell and Innards Out aren't tested in game yet.
+
+## Item 11 (part 17) — primal weathers, Megas get their implemented abilities, more abilities
+
+- **Primordial Sea / Desolate Land / Delta Stream:** heavy rain, extremely harsh sunlight or strong winds while the
+  holder is in battle.
+  - Damaging Fire moves fizzle out in heavy rain; Water moves evaporate in the harsh sunlight, each with its own message.
+  - Strong winds: no move is super effective against the Flying type.
+  - While one is up, weather moves fail and Drizzle, Drought, Sand Stream, Snow Warning and Sand Spit do nothing. A new
+    primal weather replaces another.
+  - It ends with a message once no Pokémon with the ability is left (new switch-in state). New field conditions
+    `FIELD_CONDITION_SOVEREIGN_PRIMAL` (bit 27) and `_STRONG_WINDS` (bit 28).
+- **Megas and Primals get their own ability when the engine has it**: `gen_forms.py` now asks
+  `gen_abilities.IMPLEMENTED` instead of "is it a Gen IV ability". 37 Mega and Primal forms changed. Examples: Primal
+  Kyogre and Groudon, Mega Rayquaza, Mega Absol (Magic Bounce), Mega Charizard X and Mega Metagross (Tough Claws),
+  Mega Gardevoir and Mega Altaria (Pixilate), Mega Garchomp (Sand Force).
+  - `gen_mega_doc.py` marks only the abilities still missing. Left: Parental Bond, Aura Guard, Berserk, Eelevate, Fire
+    Mane, Healer, Innards Out, Mega Sol, Piercing Drill, Spicy Spray.
+- **Long Reach**, **Protective Pads**, **Punching Glove:**
+  - The holder's moves don't count as contact for the target's abilities and items (new `Sovereign_MakesContact`).
+  - Punching Glove does this for punching moves only, and also powers them up by 10%.
+- **Battery / Power Spot:** the ally's special moves / all its moves ×1.3.
+- **Stalwart / Propeller Tail** (and the move Snipe Shot): ignore Follow Me, Lightning Rod and Storm Drain.
+- **Screen Cleaner:** removes Reflect, Light Screen and Aurora Veil from both sides on entry.
+- **Sand Spit:** getting hit whips up a sandstorm.
+- **Corrosion:** its poisoning moves work on Poison and Steel types.
+- **Stakeout:** double power against a target that switched in this turn.
+- Ability checklist: 120 newer abilities implemented.
+
+**Verified in the test build:**
+- A foe Kyogre holding the Blue Orb reverted to its primal form, then "A heavy rain began to fall!".
+- With Primordial Sea, Garchomp's Heat Wave gave "The Fire-type attack fizzled out in the heavy rain!" and dealt no
+  damage.
+- The other abilities in this part aren't tested in game yet.
+
+## Item 11 (part 16) — abilities: Mold Breaker family, Protean, Magic Bounce and more
+
+- **Turboblaze, Teravolt:** work as Mold Breaker (new `Sovereign_IsMoldBreaker`, used everywhere Mold Breaker was
+  checked, the AI included), and announce themselves on entry. **Mycelium Might:** the holder's status moves ignore
+  abilities (moving last in its priority bracket is not done yet).
+- **Victory Star:** accuracy ×1.1 for the holder and its ally. **Mind's Eye:** Normal and Fighting moves hit Ghost
+  types, the target's raised evasion is ignored, and the holder's accuracy can't be lowered.
+- **Supreme Overlord:** 10% more power for each fainted party member, up to 5.
+- **Steam Engine:** a Fire or Water hit raises the holder's Speed 6 stages. **Seed Sower:** getting hit sets Grassy
+  Terrain.
+- **Unseen Fist:** contact moves go through Protect and the guard moves. **Good as Gold:** immune to other Pokémon's
+  status moves aimed at it.
+- **Protean, Libero:** before its move, the user becomes the move's type ("made it the Fire type!"), once per
+  switch-in (new try-move state).
+- **Intrepid Sword, Dauntless Shield:** Attack / Defense +1 the first time the holder enters the battle (Gen IX's once
+  per battle, kept per party slot).
+- **Magic Bounce:** reflects status moves aimed at the holder, like Magic Coat, every turn; a reflected move isn't
+  reflected again. New message "...was bounced back by Magic Bounce!".
+- **Fix:** Transform copied only the low byte of the (now 16-bit) ability.
+- Ability checklist: 108 newer abilities implemented (was 93).
+
+**Verified in the test build:** Turtwig's Intrepid Sword message on entry; Garchomp's Protean made it Fire/Fire before
+Heat Wave; Heat Wave raised Venusaur's Speed 6 stages through Steam Engine; Charizard's Magic Bounce sent Turtwig's
+Growl back and Turtwig's Attack fell. The others in this part aren't tested in game yet.
 ## E11 — The Chronicles: Meloetta and Genesect
 
 Two more Unova Chronicle legendaries (`docs/PostgameLegendaries.md`), each started by an NPC:

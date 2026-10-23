@@ -15,6 +15,14 @@ from collections import Counter
 import yaml
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+sys.path.insert(0, os.path.join(ROOT, "tools", "engine"))
+from gen_forms import engine_has_ability  # noqa: E402
+from gen_items import stem_of  # noqa: E402
+
+
+def lacks_ability(m):
+    """True when the battle engine doesn't have this Mega's ability yet, so it keeps its own (gen_forms.py)."""
+    return bool(m["ability"]) and not engine_has_ability("ABILITY_" + stem_of(m["ability"]).upper())
 
 # Mega abilities that do not exist in the Gen IV engine, ordered by implementation priority:
 # abilities used by boss trainers first.
@@ -109,9 +117,16 @@ def main():
                 errors.append(f"{f['stone']}: script {f['script']} not found in pokeplatinum")
 
     L = [INTRO]
-    non_gen4 = sorted({m["ability"] for m in megas if m["ability_in_gen4_engine"] == "0" and m["ability"]})
-    L.append("1. " + ", ".join(f"**{a}**" for a in BOSS_ABILITIES) + " (boss trainers)")
-    L.append("2. " + ", ".join(a for a in non_gen4 if a not in BOSS_ABILITIES) + "\n")
+    non_gen4 = sorted({m["ability"] for m in megas if lacks_ability(m)})
+    boss = [a for a in BOSS_ABILITIES if a in non_gen4]
+    rest = [a for a in non_gen4 if a not in BOSS_ABILITIES]
+    if boss:
+        L.append("1. " + ", ".join(f"**{a}**" for a in boss) + " (boss trainers)")
+    if rest:
+        L.append(("2. " if boss else "1. ") + ", ".join(rest))
+    if not non_gen4:
+        L.append("**All of them are implemented now**: every Mega and Primal gets its own ability.")
+    L.append("")
     blanks = [m["form"] for m in megas if not m["ability"]]
     if blanks:
         L.append("PokeAPI has no ability listed for: " + ", ".join(blanks) + ". These need checking against official "
@@ -124,7 +139,7 @@ def main():
     L.append("|---|---|---|---|---|---|---|")
     for m in megas:
         dag = " †" if "Z-A" in m["source_game"] else ""
-        ab = (m["ability"] or "TBD") + (" ⚙" if m["ability_in_gen4_engine"] == "0" else "")
+        ab = (m["ability"] or "TBD") + (" ⚙" if lacks_ability(m) else "")
         stats = "/".join(m[k] for k in ("hp", "atk", "def", "spa", "spd", "spe"))
         L.append(f"| {m['form']}{dag} | {m['trigger_item']} | {m['types']} | {ab} | {m['bst']} | {stats} | "
                  f"{sources.get(m['trigger_item'], '**MISSING**')} |")

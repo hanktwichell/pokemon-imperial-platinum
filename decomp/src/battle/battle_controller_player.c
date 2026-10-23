@@ -3078,6 +3078,10 @@ static int BattleControllerPlayer_CheckMoveHitAccuracy(BattleSystem *battleSys, 
     if (MON_IS_IDENTIFIED(defender) && evaStages < 0) {
         evaStages = 0;
     }
+    // Sovereign (item 11): Mind's Eye ignores the target's raised evasion.
+    if (Battler_Ability(battleCtx, attacker) == ABILITY_MINDS_EYE && evaStages < 0) {
+        evaStages = 0;
+    }
     // Sovereign (item 11): Sacred Sword, Chip Away and Darkest Lariat ignore the target's evasion stage.
     if (move == MOVE_SACRED_SWORD || move == MOVE_CHIP_AWAY || move == MOVE_DARKEST_LARIAT) {
         evaStages = 0;
@@ -3141,6 +3145,11 @@ static int BattleControllerPlayer_CheckMoveHitAccuracy(BattleSystem *battleSys, 
 
     if (Battler_Ability(battleCtx, attacker) == ABILITY_HUSTLE && moveClass == CLASS_PHYSICAL) {
         hitRate = hitRate * 80 / 100;
+    }
+
+    // Sovereign (item 11): Victory Star raises the accuracy of the holder and its ally by 10% each.
+    for (int victoryStars = BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_OUR_SIDE, attacker, ABILITY_VICTORY_STAR); victoryStars > 0; victoryStars--) {
+        hitRate = hitRate * 110 / 100;
     }
 
     if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_TANGLED_FEET) == TRUE
@@ -3244,7 +3253,21 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
         return 0;
     }
 
+    // Sovereign (item 11): Unseen Fist's contact moves go through protection.
+    BOOL unseenFist = Battler_Ability(battleCtx, attacker) == ABILITY_UNSEEN_FIST && (MOVE_DATA(move).flags & MOVE_FLAG_MAKES_CONTACT);
+
+    // Sovereign (item 11): Piercing Drill's contact moves also go through it, at 1/4 damage.
+    battleCtx->sovereignPiercingDrill = FALSE;
+    if (Battler_Ability(battleCtx, attacker) == ABILITY_PIERCING_DRILL && (MOVE_DATA(move).flags & MOVE_FLAG_MAKES_CONTACT)) {
+        if (battleCtx->turnFlags[defender].protecting
+            || (battleCtx->sovereignSideGuards[BattleSystem_GetBattlerSide(battleSys, defender)] & 3)) {
+            battleCtx->sovereignPiercingDrill = TRUE;
+        }
+        unseenFist = TRUE;
+    }
+
     if (battleCtx->turnFlags[defender].protecting
+        && unseenFist == FALSE
         && (MOVE_DATA(move).flags & MOVE_FLAG_CAN_PROTECT)
         && (move != MOVE_CURSE || Move_IsGhostCurse(battleCtx, move, attacker) == TRUE) // Ghost-Curse can be Protected
         && (Move_IsMultiTurn(battleCtx, move) == FALSE || (battleCtx->battleStatusMask & SYSCTL_LAST_OF_MULTI_TURN))) {
@@ -3299,12 +3322,24 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
 
     // Sovereign (item 11): Wide Guard blocks spread moves aimed at its side, Quick Guard foes' priority moves.
     if (attacker != defender
+        && unseenFist == FALSE
         && (((battleCtx->sovereignSideGuards[BattleSystem_GetBattlerSide(battleSys, defender)] & 1)
                 && (MOVE_DATA(move).range == RANGE_ADJACENT_OPPONENTS || MOVE_DATA(move).range == RANGE_ALL_ADJACENT))
             || ((battleCtx->sovereignSideGuards[BattleSystem_GetBattlerSide(battleSys, defender)] & 2)
                 && BattleSystem_GetBattlerSide(battleSys, attacker) != BattleSystem_GetBattlerSide(battleSys, defender)
                 && Sovereign_MovePriority(battleCtx, attacker, move) > 0))) {
         battleCtx->moveStatusFlags |= MOVE_STATUS_PROTECTED;
+    }
+
+    // Sovereign (item 11): Good as Gold makes the holder immune to other Pokemon's status moves aimed at it.
+    if (attacker != defender
+        && MOVE_DATA(move).class == CLASS_STATUS
+        && (MOVE_DATA(move).range == RANGE_SINGLE_TARGET
+            || MOVE_DATA(move).range == RANGE_ADJACENT_OPPONENTS
+            || MOVE_DATA(move).range == RANGE_ALL_ADJACENT
+            || MOVE_DATA(move).range == RANGE_ALLY)
+        && Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_GOOD_AS_GOLD) == TRUE) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_INEFFECTIVE;
     }
 
     // Sovereign (item 11): After You and Quash fail against a target that has already moved this turn.
@@ -3400,6 +3435,26 @@ static BOOL BattleControllerPlayer_MoveStolen(BattleSystem *battleSys, BattleCon
         battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
 
         BattleSystem_DecPPForPressure(battleCtx, battleCtx->defender, battleCtx->attacker);
+        return TRUE;
+    }
+
+    // Sovereign (item 11): Magic Bounce reflects status moves like Magic Coat, every turn. A move it has already
+    // reflected is not reflected again.
+    if ((battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+        && (battleCtx->battleStatusMask & SYSCTL_REUSE_LAST_MOVE) == FALSE
+        && battleCtx->attacker != battleCtx->defender
+        && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_CAN_MAGIC_COAT)
+        && DEFENDING_MON.curHP
+        && Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->defender, ABILITY_MAGIC_BOUNCE) == TRUE) {
+        battleCtx->moveProtect[battleCtx->attacker] = FALSE;
+        battleCtx->movePrevByBattler[battleCtx->attacker] = battleCtx->moveTemp;
+        battleCtx->movePrev = battleCtx->moveTemp;
+
+        battleCtx->battleStatusMask |= SYSCTL_REUSE_LAST_MOVE;
+
+        LOAD_SUBSEQ(subscript_sovereign_magic_bounce);
+        battleCtx->commandNext = battleCtx->command;
+        battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
         return TRUE;
     }
 
@@ -3525,10 +3580,53 @@ static void BattleControllerPlayer_BeforeMove(BattleSystem *battleSys, BattleCon
         battleCtx->beforeMoveCheckState = BEFORE_MOVE_START;
     }
 
+    // Sovereign (item 11): damaging Fire moves fizzle out in heavy rain, Water moves evaporate in extremely harsh
+    // sunlight.
+    if ((battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+        && (battleCtx->fieldConditionsMask & FIELD_CONDITION_SOVEREIGN_PRIMAL)
+        && NO_CLOUD_NINE
+        && CURRENT_MOVE_DATA.class != CLASS_STATUS) {
+        int moveType = CalcMoveType(battleCtx, battleCtx->attacker, battleCtx->moveCur);
+
+        if (((battleCtx->fieldConditionsMask & FIELD_CONDITION_RAINING) && moveType == TYPE_FIRE)
+            || ((battleCtx->fieldConditionsMask & FIELD_CONDITION_SUNNY) && moveType == TYPE_WATER)) {
+            battleCtx->msgTemp = (battleCtx->fieldConditionsMask & FIELD_CONDITION_SUNNY) ? 1 : 0;
+            battleCtx->moveStatusFlags |= MOVE_STATUS_NO_MORE_WORK;
+            LOAD_SUBSEQ(subscript_sovereign_primal_fizzle);
+            battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+            battleCtx->commandNext = BATTLE_CONTROL_MOVE_FAILED;
+            return;
+        }
+    }
+
     if (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) {
         battleCtx->command = BATTLE_CONTROL_MOVE_FAILED;
     } else {
         battleCtx->battleStatusMask2 |= SYSCTL_MOVE_SUCCEEDED;
+
+        // Sovereign (item 11): Parental Bond makes a single-target damaging move hit twice, the second hit at 1/4
+        // power (BtlCmd_CalcDamage). Multi-hit, charging, self-KO and fixed-damage moves are left alone.
+        if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_PARENTAL_BOND
+            && battleCtx->multiHitNumHits == 0
+            && CURRENT_MOVE_DATA.class != CLASS_STATUS
+            && CURRENT_MOVE_DATA.power > 1
+            && CURRENT_MOVE_DATA.range == RANGE_SINGLE_TARGET
+            && Move_IsMultiTurn(battleCtx, battleCtx->moveCur) == FALSE
+            && CURRENT_MOVE_DATA.effect != BATTLE_EFFECT_MULTI_HIT
+            && CURRENT_MOVE_DATA.effect != BATTLE_EFFECT_HIT_TWICE
+            && CURRENT_MOVE_DATA.effect != BATTLE_EFFECT_POISON_MULTI_HIT
+            && CURRENT_MOVE_DATA.effect != BATTLE_EFFECT_HIT_THREE_TIMES
+            && CURRENT_MOVE_DATA.effect != BATTLE_EFFECT_HALVE_DEFENSE
+            && CURRENT_MOVE_DATA.effect != BATTLE_EFFECT_UPROAR
+            && CURRENT_MOVE_DATA.effect != BATTLE_EFFECT_FLING
+            && CURRENT_MOVE_DATA.effect != BATTLE_EFFECT_RECHARGE_AFTER
+            && battleCtx->moveCur != MOVE_FINAL_GAMBIT
+            && battleCtx->moveCur != MOVE_SKY_DROP) {
+            battleCtx->sovereignParentalBond = TRUE;
+            battleCtx->multiHitCounter = 2;
+            battleCtx->multiHitNumHits = 2;
+            battleCtx->multiHitAccuracyCheck = SYSCTL_MULTI_HIT_MOVE;
+        }
 
         BattleSystem_LoadScript(battleCtx, NARC_INDEX_BATTLE__SKILL__WAZA_SEQ, battleCtx->moveCur);
         battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
@@ -3545,6 +3643,7 @@ enum TryMoveState {
 
     TRY_MOVE_STATE_CHECK_VALID_TARGET = TRY_MOVE_START,
     TRY_MOVE_STATE_TRIGGER_REDIRECTION_ABILITIES,
+    TRY_MOVE_STATE_SOVEREIGN_PROTEAN, // Sovereign (item 11)
     TRY_MOVE_STATE_CHECK_MOVE_HITS,
     TRY_MOVE_STATE_CHECK_MOVE_HIT_OVERRIDES,
     TRY_MOVE_STATE_CHECK_TYPE_CHART,
@@ -3569,6 +3668,26 @@ static void BattleControllerPlayer_TryMove(BattleSystem *battleSys, BattleContex
         if (BattleSystem_TriggerRedirectionAbilities(battleSys, battleCtx) == TRUE) {
             return;
         }
+
+    case TRY_MOVE_STATE_SOVEREIGN_PROTEAN: {
+        // Sovereign (item 11): Protean and Libero change the user's type to its move's, once per switch-in.
+        battleCtx->tryMoveCheckState++;
+
+        int ability = Battler_Ability(battleCtx, battleCtx->attacker);
+        int moveType = CalcMoveType(battleCtx, battleCtx->attacker, battleCtx->moveCur);
+
+        if ((ability == ABILITY_PROTEAN || ability == ABILITY_LIBERO)
+            && ATTACKING_MON.sovereignProteanUsed == FALSE
+            && battleCtx->moveCur != MOVE_STRUGGLE
+            && (ATTACKING_MON.type1 != moveType || ATTACKING_MON.type2 != moveType)) {
+            ATTACKING_MON.sovereignProteanUsed = TRUE;
+            battleCtx->msgTemp = moveType;
+            LOAD_SUBSEQ(subscript_sovereign_protean);
+            battleCtx->commandNext = battleCtx->command;
+            battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+            return;
+        }
+    }
 
     case TRY_MOVE_STATE_CHECK_MOVE_HITS:
         if ((battleCtx->multiHitCheckFlags & SYSCTL_SKIP_ACCURACY_CHECK) == FALSE
@@ -3669,6 +3788,11 @@ static void BattleControllerPlayer_UpdateHP(BattleSystem *battleSys, BattleConte
 
         GF_ASSERT(battleCtx->damage < 0);
 
+        // Sovereign (item 11): a contact move that goes through protection with Piercing Drill does 1/4 damage.
+        if (battleCtx->sovereignPiercingDrill && battleCtx->damage < -1) {
+            battleCtx->damage /= 4;
+        }
+
         if (BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker) == BattleSystem_GetBattlerSide(battleSys, battleCtx->defender)) {
             BattleController_EmitIncrementRecord(battleSys, battleCtx->attacker, 0, RECORD_ATTACKED_ALLY);
         }
@@ -3724,6 +3848,7 @@ static void BattleControllerPlayer_UpdateHP(BattleSystem *battleSys, BattleConte
             }
         }
 
+        battleCtx->sovereignHPBeforeHit[battleCtx->defender] = DEFENDING_MON.curHP; // Sovereign (item 11)
         battleCtx->storedDamage[battleCtx->defender] += battleCtx->damage;
 
         if (battleCtx->battleMons[battleCtx->defender].timesDamaged < 0xFF) {
@@ -5141,6 +5266,7 @@ static BOOL BattleControllerPlayer_TriggerAfterMoveHitEffects(BattleSystem *batt
             BOOL fellStinger = battleCtx->moveCur == MOVE_FELL_STINGER; // Sovereign (item 11): Attack +3 on a knockout
 
             if ((ability == ABILITY_MOXIE || ability == ABILITY_CHILLING_NEIGH || ability == ABILITY_GRIM_NEIGH || ability == ABILITY_BEAST_BOOST
+                    || ability == ABILITY_EELEVATE
                     || fellStinger)
                 && ATTACKING_MON.curHP) {
                 for (foe = 0; foe < maxBattlers; foe++) {

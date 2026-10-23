@@ -34,9 +34,9 @@
         "EGG_GROUP_MONSTER"
     ],
     "abilities": [
-        "ABILITY_NONE",
-        "ABILITY_NONE",
-        "ABILITY_NONE"
+        "ABILITY_PARENTAL_BOND",
+        "ABILITY_PARENTAL_BOND",
+        "ABILITY_PARENTAL_BOND"
     ],
     "safari_flee_rate": 150,
     "body_color": "MON_COLOR_BROWN",
