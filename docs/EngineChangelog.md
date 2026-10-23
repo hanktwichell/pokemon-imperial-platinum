@@ -15,10 +15,22 @@ players and the verification that was run.
 - **Soak:** the target becomes pure Water-type ("{0} transformed into the Water type!").
 - **Retaliate:** double power if a Pokémon on the user's side fainted last turn (new `sovereignSideFaintTurn`).
 - **Poltergeist:** fails against a target with no item (the item message isn't shown yet).
-- Move checklist: exact 220, approximate 47, placeholder 113.
+- `gen_stat_moves.py` adds Venom Drench (Attack, Sp. Atk and Speed −1, fails unless the target is poisoned), No Retreat
+  and Clangorous Soul (all stats +1; the trapping and HP cost aren't reproduced yet, so they stay "approximate"). Shelter
+  uses Iron Defense's effect. These four aren't tested in game yet.
+- **Fix: Heal Pulse and Floral Healing healed the user** (they used Recover's effect). They now heal the target by 1/2;
+  Heal Pulse heals 3/4 with Mega Launcher, Floral Healing 2/3 in Grassy Terrain. **Life Dew** heals the user and its ally
+  by 1/4.
+- **Meteor Beam:** uses Electro Shot's effect without the rain shortcut: the charge turn raises Sp. Atk ("{0} is
+  overflowing with space power!", two-part animation), it attacks next turn, and a Power Herb skips the charge.
+- **After You / Quash:** the target acts right after the user / last this turn ("{0} took the kind offer!", "{0}'s move
+  was postponed!"); they fail against a target that has already moved.
+- Move checklist: exact 228, approximate 43, placeholder 109.
 
 **Verified in the test build:** Venusaur's Wide Guard stopped Garchomp's Hyper Voice on both foes for two turns
-(Archaludon stayed at full HP).
+(Archaludon stayed at full HP). Garchomp's Heal Pulse restored the foe it targeted (Venusaur back to 302/302 between
+Turtwig's Tackles). Meteor Beam charged (Sp. Atk +1) and hit next turn for 32, the +1 value. Venusaur's Quash on Turtwig printed
+"TURTWIG's move was postponed!" (Turtwig already moved last, so the order didn't visibly change).
 
 ## Item 11 (part 11) — Laser Focus and Throat Chop
 

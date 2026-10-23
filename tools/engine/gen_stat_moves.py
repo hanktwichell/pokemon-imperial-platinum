@@ -35,7 +35,11 @@ STAT_MOVES = {
     "victory_dance": ("user", [("ATTACK", 1), ("DEFENSE", 1), ("SPEED", 1)]),
     "noble_roar": ("target", [("ATTACK", -1), ("SP_ATTACK", -1)]),
     "tearful_look": ("target", [("ATTACK", -1), ("SP_ATTACK", -1)]),
+    "venom_drench": ("target", [("ATTACK", -1), ("SP_ATTACK", -1), ("SPEED", -1)], "poisoned"),
+    "no_retreat": ("user", [("ATTACK", 1), ("DEFENSE", 1), ("SP_ATTACK", 1), ("SP_DEFENSE", 1), ("SPEED", 1)]),
+    "clangorous_soul": ("user", [("ATTACK", 1), ("DEFENSE", 1), ("SP_ATTACK", 1), ("SP_DEFENSE", 1), ("SPEED", 1)]),
 }
+# An optional third element: "poisoned" = fails unless the target is poisoned (Venom Drench).
 
 STAGE_FIELD = {s: f"BATTLEMON_{s}_STAGE" for s in ("ATTACK", "DEFENSE", "SPEED", "SP_ATTACK", "SP_DEFENSE", "ACCURACY", "EVASION")}
 STAT_NAME = {"ATTACK": "Attack", "DEFENSE": "Defense", "SPEED": "Speed", "SP_ATTACK": "Sp. Atk", "SP_DEFENSE": "Sp. Def",
@@ -57,7 +61,7 @@ def steps(changes):
             yield stat, stages
 
 
-def subscript_text(stem, target, changes):
+def subscript_text(stem, target, changes, opts=()):
     name = stem.replace("_", " ").title()
     calls = "".join(f"    UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_PARAM, {ptr(s, n)}\n    Call BATTLE_SUBSCRIPT_UPDATE_STAT_STAGE\n"
                     for s, n in steps(changes))
@@ -92,7 +96,10 @@ _no_change:
     End
 '''
     lowered = [s for s, n in changes if n < 0]
-    checks = "".join(f"    CompareMonDataToValue OPCODE_NEQ, BTLSCR_SIDE_EFFECT_MON, {STAGE_FIELD[s]}, 0, _change\n" for s in lowered[:-1])
+    checks = ""
+    if "poisoned" in opts:
+        checks += "    CompareMonDataToValue OPCODE_FLAG_NOT, BTLSCR_SIDE_EFFECT_MON, BATTLEMON_STATUS, MON_CONDITION_ANY_POISON, _failed\n"
+    checks += "".join(f"    CompareMonDataToValue OPCODE_NEQ, BTLSCR_SIDE_EFFECT_MON, {STAGE_FIELD[s]}, 0, _change\n" for s in lowered[:-1])
     checks += f"    CompareMonDataToValue OPCODE_EQU, BTLSCR_SIDE_EFFECT_MON, {STAGE_FIELD[lowered[-1]]}, 0, _no_change\n"
     first, rest = calls.split("    Call BATTLE_SUBSCRIPT_UPDATE_STAT_STAGE\n", 1)
     return f'''#include "macros/btlcmd.inc"
@@ -147,14 +154,14 @@ def main():
     checklist = os.path.join(ROOT, "docs", "MoveChecklist.md")
     gen_moves = os.path.join(ROOT, "tools", "engine", "gen_moves.py")
 
-    for stem, (target, changes) in STAT_MOVES.items():
+    for stem, (target, changes, *opts) in STAT_MOVES.items():
         sub = f"subscript_sovereign_stats_{stem}"
         p = f"MOVE_SUBSCRIPT_PTR_SOVEREIGN_{stem.upper()}"
         eff = f"BATTLE_EFFECT_SOVEREIGN_{stem.upper()}"
 
         # Subscript and its three registrations.
         with open(os.path.join(subdir, sub + ".s"), "w") as f:
-            f.write(subscript_text(stem, target, changes))
+            f.write(subscript_text(stem, target, changes, opts))
         meson = os.path.join(subdir, "meson.build")
         s = open(meson).read()
         if f"'{sub}.s'" not in s:

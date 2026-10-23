@@ -3168,6 +3168,44 @@ static int BattleControllerPlayer_CheckMoveHitAccuracy(BattleSystem *battleSys, 
  * @param move      The attacker's move
  * @return Always 0.
  */
+// Sovereign (item 11): where a battler that hasn't moved yet stands in the rest of this turn's action order, or -1.
+static int Sovereign_TurnOrderIndex(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
+{
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
+
+    for (int i = battleCtx->turnOrderCounter + 1; i < maxBattlers; i++) {
+        if (battleCtx->battlerActionOrder[i] == battler) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+// Sovereign (item 11): After You moves the target up to act next; Quash moves it to act last.
+static void Sovereign_ReorderTurn(BattleSystem *battleSys, BattleContext *battleCtx, int battler, BOOL toLast)
+{
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
+    int pos = Sovereign_TurnOrderIndex(battleSys, battleCtx, battler);
+    int i;
+
+    if (pos < 0) {
+        return;
+    }
+
+    if (toLast) {
+        for (i = pos; i < maxBattlers - 1; i++) {
+            battleCtx->battlerActionOrder[i] = battleCtx->battlerActionOrder[i + 1];
+        }
+        battleCtx->battlerActionOrder[maxBattlers - 1] = battler;
+    } else {
+        for (i = pos; i > battleCtx->turnOrderCounter + 1; i--) {
+            battleCtx->battlerActionOrder[i] = battleCtx->battlerActionOrder[i - 1];
+        }
+        battleCtx->battlerActionOrder[battleCtx->turnOrderCounter + 1] = battler;
+    }
+}
+
 static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move)
 {
     if (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) {
@@ -3235,6 +3273,11 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
                 && BattleSystem_GetBattlerSide(battleSys, attacker) != BattleSystem_GetBattlerSide(battleSys, defender)
                 && Sovereign_MovePriority(battleCtx, attacker, move) > 0))) {
         battleCtx->moveStatusFlags |= MOVE_STATUS_PROTECTED;
+    }
+
+    // Sovereign (item 11): After You and Quash fail against a target that has already moved this turn.
+    if ((move == MOVE_AFTER_YOU || move == MOVE_QUASH) && Sovereign_TurnOrderIndex(battleSys, battleCtx, defender) < 0) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_FAILED;
     }
 
     // Sovereign (item 11): Poltergeist fails against a target holding no item.
@@ -4192,6 +4235,13 @@ static void BattleControllerPlayer_UpdateMoveBuffers(BattleSystem *battleSys, Ba
         battleCtx->sovereignLastMoveFailed[battleCtx->attacker] = (battleCtx->battleStatusMask2 & SYSCTL_MOVE_SUCCEEDED) == FALSE;
         if (battleCtx->moveTemp == MOVE_ROUND) {
             battleCtx->turnFlags[battleCtx->attacker].sovereignUsedRound = TRUE;
+        }
+
+        // After You and Quash reorder the rest of the turn.
+        if ((battleCtx->moveTemp == MOVE_AFTER_YOU || battleCtx->moveTemp == MOVE_QUASH)
+            && (battleCtx->battleStatusMask2 & SYSCTL_MOVE_SUCCEEDED)
+            && battleCtx->defender != BATTLER_NONE) {
+            Sovereign_ReorderTurn(battleSys, battleCtx, battleCtx->defender, battleCtx->moveTemp == MOVE_QUASH);
         }
 
         // Steel Roller and Ice Spinner flatten the terrain (no message yet).

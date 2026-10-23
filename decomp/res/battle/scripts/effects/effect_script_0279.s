@@ -1,10 +1,13 @@
 #include "macros/btlcmd.inc"
 
 // Sovereign (item 11): Electro Shot. Like Skull Bash (BATTLE_EFFECT_CHARGE_TURN_DEF_UP), but the charge turn raises
-// Sp. Atk 1 stage, and in rain (or with a Power Herb) it raises Sp. Atk and attacks in the same turn.
+// Sp. Atk 1 stage, and in rain (or with a Power Herb) it raises Sp. Atk and attacks in the same turn. Meteor Beam uses
+// it too, without the rain shortcut.
 
 _000:
     CompareMonDataToValue OPCODE_FLAG_SET, BTLSCR_ATTACKER, BATTLEMON_VOLATILE_STATUS, VOLATILE_CONDITION_MOVE_LOCKED, _attack
+    // Meteor Beam shares this effect but has no rain shortcut.
+    CompareVarToValue OPCODE_EQU, BTLVAR_CURRENT_MOVE, MOVE_METEOR_BEAM, _check_herb
     CheckIgnoreWeather _check_herb
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_FIELD_CONDITIONS, FIELD_CONDITION_RAINING, _rain
 
