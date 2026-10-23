@@ -182,7 +182,7 @@ Covers **90** species.
 - **Level:** 70
 - **Location:** Route 210 North (in the fog)
 - **How:** Walk through the fog with the chapter open; Zacian appears first, Zamazenta after it is caught. Zacian holds the Rusted Sword and Zamazenta the Rusted Shield (owner, 2026-10-22); holding them gives the Crowned forms.
-- **Built:** The Galar Chronicle (CB-0043) opens when the player talks to the Archivist with Solgaleo or Lunala caught (VAR_SOVEREIGN_CHRONICLE 4). Zacian (538, 526) holding the Rusted Sword, then Zamazenta (540, 528) holding the Rusted Shield once Zacian is caught, on Route 210 North, level 70 (VAR_SOVEREIGN_LEGENDARY_HELD_ITEM sets the wild Pokémon's item). **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
+- **Built:** The Galar Chronicle (CB-0043) opens when the player talks to the Archivist with Solgaleo or Lunala caught (VAR_SOVEREIGN_CHRONICLE 4). Zacian (542, 528) holding the Rusted Sword, then Zamazenta (540, 528) holding the Rusted Shield once Zacian is caught, on Route 210 North, level 70 (VAR_SOVEREIGN_LEGENDARY_HELD_ITEM sets the wild Pokémon's item). **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
 
 ### Darkest Day
 - **Pokémon:** #890 Eternatus
