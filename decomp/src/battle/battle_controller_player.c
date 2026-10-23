@@ -3149,6 +3149,19 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
         battleCtx->moveStatusFlags |= MOVE_STATUS_SEMI_INVULNERABLE;
     }
 
+    // Sovereign (item 11): since Gen VII, a status move boosted by Prankster doesn't affect a Dark-type foe it targets.
+    if (Battler_Ability(battleCtx, attacker) == ABILITY_PRANKSTER
+        && MOVE_DATA(move).class == CLASS_STATUS
+        && attacker != defender
+        && BattleSystem_GetBattlerSide(battleSys, attacker) != BattleSystem_GetBattlerSide(battleSys, defender)
+        && (MOVE_DATA(move).range == RANGE_SINGLE_TARGET
+            || MOVE_DATA(move).range == RANGE_ADJACENT_OPPONENTS
+            || MOVE_DATA(move).range == RANGE_ALL_ADJACENT)
+        && (BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_1, NULL) == TYPE_DARK
+            || BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_2, NULL) == TYPE_DARK)) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_INEFFECTIVE;
+    }
+
     return 0;
 }
 
