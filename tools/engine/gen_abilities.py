@@ -245,6 +245,11 @@ IMPLEMENTED = {
     313: "yes: Fire moves ×1.5",
     314: "yes: contact damage taken halved",
     131: "yes: 30% chance each turn to cure its ally's status",
+    152: "yes: an attacker that makes contact gets Mummy",
+    268: "yes: an attacker that makes contact gets Lingering Aroma",
+    254: "yes: swaps abilities with an attacker that makes contact",
+    253: "yes: contact gives it and the attacker a Perish Song count of 3",
+    295: "yes: physical hits scatter Toxic Spikes on the attacker's side",
 }
 
 

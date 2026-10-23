@@ -4,6 +4,20 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (part 20) — contact abilities: Mummy, Lingering Aroma, Wandering Spirit, Perish Body, Toxic Debris
+
+- **Mummy / Lingering Aroma:** an attacker that makes contact gets the holder's ability ("{0} acquired Mummy!").
+- **Wandering Spirit:** swaps abilities with an attacker that makes contact, if the holder is still standing.
+- These three can't overwrite or take the form and signature abilities (new `Sovereign_AbilityIsFixed`: Multitype,
+  Stance Change, Schooling, Disguise, Zen Mode and others).
+- **Perish Body:** contact gives the holder and the attacker a Perish Song count of 3 ("Both Pokémon will faint in
+  three turns!").
+- **Toxic Debris:** a physical hit scatters a layer of Toxic Spikes on the attacker's side (up to 2).
+- Ability checklist: 136 newer abilities implemented.
+
+**Verified in the test build:** Garchomp's Dragon Claw on a Mummy Venusaur gave "GARCHOMP acquired Mummy!", and
+Garchomp's ability became Mummy. The other four aren't tested in game yet.
+
 ## Item 11 (part 19) — the last Mega abilities and Healer
 
 Every Mega and Primal now gets its own ability. The six from Pokémon Champions were checked on Bulbapedia, Serebii,

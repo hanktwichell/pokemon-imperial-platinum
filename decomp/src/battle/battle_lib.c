@@ -4741,6 +4741,34 @@ int BattleSystem_RandomOpponent(BattleSystem *battleSys, BattleContext *battleCt
     return chosen;
 }
 
+// Sovereign (item 11): abilities Mummy, Lingering Aroma and Wandering Spirit can't overwrite or take (the form and
+// signature abilities).
+static BOOL Sovereign_AbilityIsFixed(int ability)
+{
+    switch (ability) {
+    case ABILITY_MULTITYPE:
+    case ABILITY_STANCE_CHANGE:
+    case ABILITY_SCHOOLING:
+    case ABILITY_COMATOSE:
+    case ABILITY_SHIELDS_DOWN:
+    case ABILITY_DISGUISE:
+    case ABILITY_RKS_SYSTEM:
+    case ABILITY_BATTLE_BOND:
+    case ABILITY_POWER_CONSTRUCT:
+    case ABILITY_ICE_FACE:
+    case ABILITY_GULP_MISSILE:
+    case ABILITY_ZERO_TO_HERO:
+    case ABILITY_COMMANDER:
+    case ABILITY_TERA_SHIFT:
+    case ABILITY_ZEN_MODE:
+    case ABILITY_MUMMY:
+    case ABILITY_LINGERING_AROMA:
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
 BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript)
 {
     BOOL result = FALSE;
@@ -4996,6 +5024,75 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             result = TRUE;
         }
         break;
+
+    // Sovereign (item 11): Mummy and Lingering Aroma pass themselves to an attacker that makes contact; Wandering
+    // Spirit swaps abilities with it.
+    case ABILITY_MUMMY:
+    case ABILITY_LINGERING_AROMA:
+    case ABILITY_WANDERING_SPIRIT:
+        if (ATTACKING_MON.curHP
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+            && Sovereign_MakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)
+            && ATTACKING_MON.ability != DEFENDING_MON.ability
+            && Sovereign_AbilityIsFixed(ATTACKING_MON.ability) == FALSE) {
+            if (DEFENDING_MON.ability == ABILITY_WANDERING_SPIRIT) {
+                if (DEFENDING_MON.curHP == 0) {
+                    break;
+                }
+
+                DEFENDING_MON.ability = ATTACKING_MON.ability;
+                ATTACKING_MON.ability = ABILITY_WANDERING_SPIRIT;
+                *subscript = subscript_sovereign_wandering_spirit;
+            } else {
+                ATTACKING_MON.ability = DEFENDING_MON.ability;
+                *subscript = subscript_sovereign_ability_acquired;
+            }
+
+            result = TRUE;
+        }
+        break;
+
+    // Sovereign (item 11): Perish Body gives the holder and an attacker that makes contact a Perish Song count of 3.
+    case ABILITY_PERISH_BODY:
+        if (ATTACKING_MON.curHP
+            && DEFENDING_MON.curHP
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+            && Sovereign_MakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)
+            && (ATTACKING_MON.moveEffectsMask & MOVE_EFFECT_PERISH_SONG) == FALSE) {
+            ATTACKING_MON.moveEffectsMask |= MOVE_EFFECT_PERISH_SONG;
+            ATTACKING_MON.moveEffectsData.perishSongTurns = 3;
+
+            if ((DEFENDING_MON.moveEffectsMask & MOVE_EFFECT_PERISH_SONG) == FALSE) {
+                DEFENDING_MON.moveEffectsMask |= MOVE_EFFECT_PERISH_SONG;
+                DEFENDING_MON.moveEffectsData.perishSongTurns = 3;
+            }
+
+            *subscript = subscript_sovereign_perish_body;
+            result = TRUE;
+        }
+        break;
+
+    // Sovereign (item 11): Toxic Debris scatters Toxic Spikes on the attacker's side when a physical move hits the
+    // holder (up to 2 layers).
+    case ABILITY_TOXIC_DEBRIS: {
+        int side = BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker);
+
+        if ((battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+            && DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken
+            && side != BattleSystem_GetBattlerSide(battleSys, battleCtx->defender)
+            && battleCtx->sideConditions[side].toxicSpikesLayers < 2) {
+            battleCtx->sideConditionsMask[side] |= SIDE_CONDITION_TOXIC_SPIKES;
+            battleCtx->sideConditions[side].toxicSpikesLayers++;
+            *subscript = subscript_sovereign_toxic_debris;
+            result = TRUE;
+        }
+        break;
+    }
 
     case ABILITY_EFFECT_SPORE:
         if (ATTACKING_MON.curHP

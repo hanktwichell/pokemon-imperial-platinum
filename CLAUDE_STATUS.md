@@ -2482,3 +2482,24 @@ CB-0034) is merged.
    Belch, Pledges, Final Gambit, Sky Drop, Bestow, Synchronoise, Parting Shot.
 3. More abilities: Mirror Armor, Cotton Down, Wind Rider/Wind Power, Mummy/Lingering Aroma/Wandering Spirit,
    Perish Body, Toxic Debris, Purifying Salt's status immunity.
+
+## CA-0038 (Claude A, branch `claude/festive-bardeen-5h7beo`, 2026-10-23)
+
+**Just implemented:** item 11 part 20, the contact abilities (see `docs/EngineChangelog.md`).
+- Mummy: verified in game.
+- Lingering Aroma, Wandering Spirit, Perish Body, Toxic Debris: not tested in game yet.
+- Ability checklist: 136 newer abilities implemented.
+
+**Files modified:**
+- `decomp/src/battle/battle_lib.c` (new `Sovereign_AbilityIsFixed`, on-hit cases)
+- New subscripts `subscript_sovereign_ability_acquired.s`, `_wandering_spirit.s`, `_perish_body.s`, `_toxic_debris.s`
+  (registered in the 3 lists)
+- `decomp/res/text/battle_strings.json`
+- `tools/engine/gen_abilities.py`, `docs/AbilityChecklist.md`, `docs/EngineChangelog.md`
+
+**Next 3 steps:**
+1. Merge PR #47 (parts 16 to 20) when CI is green.
+2. Remaining moves: Ally Switch, Telekinesis, Wonder/Magic Room, Scale Shot, Coaching, Upper Hand, Dragon Cheer,
+   Belch, Pledges, Final Gambit, Sky Drop, Bestow, Synchronoise, Parting Shot.
+3. More abilities: Mirror Armor, Cotton Down, Wind Rider/Wind Power, Purifying Salt's status immunity, Opportunist,
+   Costar.

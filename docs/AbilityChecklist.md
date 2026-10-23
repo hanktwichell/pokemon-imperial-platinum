@@ -34,7 +34,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 149 | Illusion | Gen 5 | not yet (no battle effect) |
 | 150 | Imposter | Gen 5 | not yet (no battle effect) |
 | 151 | Infiltrator | Gen 5 | partly: ignores Reflect, Light Screen and Substitute (Safeguard and Mist not yet) |
-| 152 | Mummy | Gen 5 | not yet (no battle effect) |
+| 152 | Mummy | Gen 5 | yes: an attacker that makes contact gets Mummy |
 | 153 | Moxie | Gen 5 | yes: Attack +1 for each foe its move knocks out |
 | 154 | Justified | Gen 5 | yes: Attack +1 when hit by a Dark move |
 | 155 | Rattled | Gen 5 | yes: Speed +1 when hit by a Bug, Ghost or Dark move, or when Intimidated |
@@ -135,8 +135,8 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 250 | Mimicry | Gen 8 | not yet (no battle effect) |
 | 251 | Screen Cleaner | Gen 8 | yes: removes Reflect, Light Screen and Aurora Veil on entry |
 | 252 | Steely Spirit | Gen 8 | yes: Steel moves of the holder and its ally ×1.5 |
-| 253 | Perish Body | Gen 8 | not yet (no battle effect) |
-| 254 | WanderingSpirit | Gen 8 | not yet (no battle effect) |
+| 253 | Perish Body | Gen 8 | yes: contact gives it and the attacker a Perish Song count of 3 |
+| 254 | WanderingSpirit | Gen 8 | yes: swaps abilities with an attacker that makes contact |
 | 255 | Gorilla Tactics | Gen 8 | partly: Attack ×1.5 (the move lock not yet) |
 | 256 | NeutralizingGas | Gen 8 | not yet (no battle effect) |
 | 257 | Pastel Veil | Gen 8 | not yet (no battle effect) |
@@ -150,7 +150,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 265 | Grim Neigh | Gen 8 | yes: Sp. Atk +1 for each foe its move knocks out |
 | 266 | As One | Gen 8 | not yet (no battle effect) |
 | 267 | As One | Gen 8 | not yet (no battle effect) |
-| 268 | Lingering Aroma | Gen 9 | not yet (no battle effect) |
+| 268 | Lingering Aroma | Gen 9 | yes: an attacker that makes contact gets Lingering Aroma |
 | 269 | Seed Sower | Gen 9 | yes: getting hit sets Grassy Terrain |
 | 270 | ThermalExchange | Gen 9 | partly: Attack +1 when hit by a Fire move (burn immunity not yet) |
 | 271 | Anger Shell | Gen 9 | yes: Attack, Sp. Atk, Speed +1 and Defense, Sp. Def -1 when a hit drops it to half HP or less |
@@ -177,7 +177,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 292 | Sharpness | Gen 9 | yes: slicing moves ×1.5 |
 | 293 | SupremeOverlord | Gen 9 | yes: 10% more power per fainted party member (up to 5) |
 | 294 | Costar | Gen 9 | not yet (no battle effect) |
-| 295 | Toxic Debris | Gen 9 | not yet (no battle effect) |
+| 295 | Toxic Debris | Gen 9 | yes: physical hits scatter Toxic Spikes on the attacker's side |
 | 296 | Armor Tail | Gen 9 | yes: foes' priority moves can't hit its side |
 | 297 | Earth Eater | Gen 9 | yes: absorbs Ground moves, restores 1/4 of max HP (`BattleSystem_TriggerImmunityAbility`) |
 | 298 | Mycelium Might | Gen 9 | partly: its status moves ignore abilities (moving last not yet) |
