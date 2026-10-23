@@ -57,7 +57,7 @@ Covers **90** species.
 - **Level:** 55
 - **Location:** Hearthome City — Contest Hall stage
 - **How:** Talk to the composer in the Contest Hall with a Pokémon that knows Sing in the party.
-- **Built:** Meloetta (CB-0037): the composer (a new NPC in the Contest Hall lobby, (8, 7)) lets a party Pokémon that knows Sing sing the Relic Song (FLAG_SOVEREIGN_MELOETTA_SONG). Meloetta then stands on the Contest Hall's stage (28, 5) until it's caught. The stage replaces Amity Square, which has no stage the player can reach and only lets in players leading certain Pokémon. It comes in its Aria Forme; the Pirouette Forme comes with the battle forms (FM).
+- **Built:** Meloetta (CB-0037): the composer (a new NPC in the Contest Hall lobby, (8, 7)) lets a party Pokémon that knows Sing sing the Relic Song (FLAG_SOVEREIGN_MELOETTA_SONG). Meloetta then stands just in front of the Contest Hall's stage (29, 8) until it's caught (CB-0043 moved it off the stage itself, (28, 5), which the player can't walk onto). The stage replaces Amity Square, which has no stage the player can reach and only lets in players leading certain Pokémon. It comes in its Aria Forme; the Pirouette Forme comes with the battle forms (FM).
 
 ### Plasma's Leftovers
 - **Pokémon:** #649 Genesect
@@ -115,30 +115,30 @@ Covers **90** species.
 ### Nebby (chapter key)
 - **Pokémon:** #789 Cosmog, #790 Cosmoem, #791 Solgaleo, #792 Lunala
 - **Level:** 5
-- **Location:** Spear Pillar
-- **How:** A Cosmog waits at Spear Pillar (Lv. 5) to be battled and caught. It evolves into Cosmoem at Lv. 43; Cosmoem becomes Solgaleo with a Sun Stone or Lunala with a Moon Stone (see EvolutionChanges_Sovereign.md). Return to Spear Pillar for a second Cosmog after the first evolves, so both Solgaleo and Lunala are obtainable.
-- **Built:** Cosmog (CB-0042, a battle since CB-0043): floating in Spear Pillar's plaza (31, 25) once the Alola Chronicle is open, at level 5, until it's caught (FLAG_SOVEREIGN_CAUGHT_COSMOG). Once the Pokédex has Solgaleo or Lunala as caught, a second one waits there until it's caught too (FLAG_SOVEREIGN_CAUGHT_COSMOG_2). Like every static legendary, one that's knocked out comes back on the next visit. **Changed from the plan** (owner, 2026-10-23: legendaries are battled and caught, never given): CB-0042 made Cosmog a gift.
+- **Location:** Mt. Coronet — the top snowfield
+- **How:** A Cosmog waits on Mt. Coronet's top snowfield (Lv. 5) to be battled and caught. It evolves into Cosmoem at Lv. 43; Cosmoem becomes Solgaleo with a Sun Stone or Lunala with a Moon Stone (see EvolutionChanges_Sovereign.md). Return there for a second Cosmog after the first evolves, so both Solgaleo and Lunala are obtainable.
+- **Built:** Cosmog (CB-0042, a battle since CB-0043): floating in Mt. Coronet's top snowfield (Mt. Coronet outside north, (35, 21), the highest walkable spot) once the Alola Chronicle is open, at level 5, until it's caught (FLAG_SOVEREIGN_CAUGHT_COSMOG). Once the Pokédex has Solgaleo or Lunala as caught, a second one waits there until it's caught too (FLAG_SOVEREIGN_CAUGHT_COSMOG_2). Like every static legendary, one that's knocked out comes back on the next visit. **Changed from the plan** (owner, 2026-10-23): legendaries are battled and caught, never given (CB-0042 made Cosmog a gift), and Spear Pillar is kept for Dialga, Palkia and the story (decision 27), so Cosmog left its plaza.
 
 ### The Blinding One
 - **Pokémon:** #800 Necrozma
 - **Level:** 70
-- **Location:** Spear Pillar
+- **Location:** Wayward Cave 1F — the dark back chamber
 - **How:** Appears after owning Solgaleo or Lunala.
-- **Built:** Necrozma (CB-0042), level 70: in Spear Pillar's plaza (31, 20), north of Cosmog's spot, once the Pokédex has Solgaleo or Lunala as caught, until it's caught. The Archivist then gives the N-Solarizer and N-Lunarizer, which fuse it with Solgaleo (Dusk Mane) or Lunala (Dawn Wings) from the bag (FM part 2).
+- **Built:** Necrozma (CB-0042), level 70: in Wayward Cave 1F's dark north-east chamber, where Mira was lost (70, 9), once the Alola Chronicle is open and the Pokédex has Solgaleo or Lunala as caught, until it's caught. Wayward Cave is the only cave that needs Flash: a place whose light was stolen. The Archivist then gives the N-Solarizer and N-Lunarizer, which fuse it with Solgaleo (Dusk Mane) or Lunala (Dawn Wings) from the bag (FM part 2). **Changed from the plan** (owner, 2026-10-23, decision 27): Spear Pillar is kept for Dialga, Palkia and the story.
 
 ### Ultra Wormholes
 - **Pokémon:** #793 Nihilego, #794 Buzzwole, #795 Pheromosa, #796 Xurkitree, #797 Celesteela, #798 Kartana, #799 Guzzlord, #805 Stakataka, #806 Blacephalon
 - **Level:** 65
-- **Location:** Nihilego — Iron Island B3F. Buzzwole — Route 225. Pheromosa — Route 229. Xurkitree — Sunyshore City power plant. Celesteela — Mt. Coronet Summit. Kartana — Eterna Forest. Guzzlord — Turnback Cave. Stakataka — Route 227. Blacephalon — Stark Mountain (outside)
-- **How:** After Necrozma is caught, a glowing wormhole object appears at each location (static encounter).
-- **Built:** The Ultra Beasts (CB-0043), all level 65, each a static encounter from the moment Necrozma is caught until it's caught: Nihilego in Iron Island B3F's east pocket (15, 4); Buzzwole beside the item at Route 225's north end (633, 330); Pheromosa in the Route 229 pocket by the Reaper Cloth (813, 426); Xurkitree at the end of Sunyshore City's walkway by the Thunderstone (882, 778); Celesteela on Mt. Coronet's highest snowfield (Mt. Coronet outside north, (51, 3)); Kartana by Eterna Forest's east passage (87, 51); Guzzlord by Turnback Cave's entrance (8, 15); Stakataka in the hollow south of Route 227's grass (747, 273); Blacephalon in the hollow east of Stark Mountain's entrance (760, 234). The Archivist's Ultra Beasts topic hints at each one not caught yet. **Changed from the plan** (owner, 2026-10-23: existing spots): each Ultra Beast stands there itself, with no wormhole object, and Xurkitree uses Sunyshore's walkway in place of a power plant.
+- **Location:** Nihilego — Iron Island B3F. Buzzwole — Route 225. Pheromosa — Route 229. Xurkitree — Route 222. Celesteela — Mt. Coronet (outside north). Kartana — Eterna Forest. Guzzlord — Turnback Cave. Stakataka — Route 227. Blacephalon — Stark Mountain (outside)
+- **How:** After Necrozma is caught, each Ultra Beast is a rare wild encounter (2%) on its map.
+- **Built:** The Ultra Beasts (CB-0043), all level 65, are rare wild encounters once Necrozma is caught (data/sovereign_rare_wild.yaml, docs/RareWildEncounters.md): 2% of the wild encounters on Iron Island B3F (Nihilego), Route 225 (Buzzwole), Route 229 (Pheromosa), Route 222 (Xurkitree), Mt. Coronet outside north (Celesteela), Eterna Forest (Kartana), Turnback Cave's seventeen pillar rooms with encounters (Guzzlord), Route 227 (Stakataka) and Stark Mountain outside (Blacephalon). They can be met again after a catch. The Archivist's Ultra Beasts topic hints at each one not caught yet. **Changed from the plan** (owner, 2026-10-23, decision 28): static encounters are for legendaries, so the Ultra Beasts are wild, with no wormhole object; Xurkitree is on Route 222's power lines (Sunyshore has no wild grass).
 
 ### The Poison Pin
 - **Pokémon:** #803 Poipole, #804 Naganadel
 - **Level:** 40
-- **Location:** Fight Area — Pokémon Center
-- **How:** An Ultra Recon-style researcher tells of a Poipole that came through a wormhole; it then waits nearby to be battled and caught. Naganadel by levelling up knowing Dragon Pulse. **Changed from the plan** (owner, 2026-10-23: legendaries are battled and caught, never given); the plan had a gift.
-- **Built:** Poipole (CB-0043), level 40: in the Fight Area (650, 435) once the Alola Chronicle is open and Necrozma is caught, until it's caught. A battle, not a gift. **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
+- **Location:** Route 230 (east of the Fight Area)
+- **How:** A rare wild encounter (2%) on Route 230 once Necrozma is caught. Naganadel by levelling up knowing Dragon Pulse. **Changed from the plan** (owner, 2026-10-23: legendaries are battled and caught, never given; decision 28: Ultra Beasts are wild); the plan had a gift.
+- **Built:** Poipole (CB-0043), level 40: a rare wild encounter, 2% of Route 230's grass encounters, once Necrozma is caught (data/sovereign_rare_wild.yaml).
 
 ### Type Experiments
 - **Pokémon:** #772 Type: Null, #773 Silvally
@@ -164,9 +164,9 @@ Covers **90** species.
 ### Thunderclap
 - **Pokémon:** #807 Zeraora
 - **Level:** 50
-- **Location:** Route 222 — tall grass at night
-- **How:** Static encounter.
-- **Built:** Zeraora (CB-0043), level 50: on Route 222 (774, 783) at night (8 pm to 4 am, checked on entering the map) once the Alola Chronicle is open, until it's caught. **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
+- **Location:** Roams Sinnoh
+- **How:** A roamer, released by the Legend Archivist.
+- **Built:** Zeraora (CB-0043), level 50: a roamer (vanilla's unused Darkrai slot, ROAMING_SLOT_ZERAORA), released the first time the Archivist reads the other Alola legends (FLAG_SOVEREIGN_RELEASED_ZERAORA). Knocked out, it's released again after the next Hall of Fame (VAR_ROAMING_ZERAORA_STATE). **Changed from the plan** (owner, 2026-10-23, decision 28): some legendaries roam instead of standing in one place.
 
 ### Hex Nut
 - **Pokémon:** #808 Meltan, #809 Melmetal
@@ -215,9 +215,9 @@ Covers **90** species.
 ### King of Bountiful Harvests
 - **Pokémon:** #898 Calyrex, #896 Glastrier, #897 Spectrier
 - **Level:** 70
-- **Location:** Calyrex — Celestic Town shrine. Glastrier — Route 217 (blizzard). Spectrier — Lost Tower 5F
-- **How:** Calyrex first; then the steeds appear. Calyrex's fused forms (Ice Rider, Shadow Rider) are in the game (all forms are in scope, owner 2026-10-22).
-- **Built:** Calyrex in Celestic Town (461, 527), then Glastrier on Route 217 (305, 319) and Spectrier on Lost Tower 5F (5, 10) once Calyrex is caught (CB-0043), level 70. The Archivist gives the Reins of Unity once Calyrex is caught. **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
+- **Location:** Calyrex — Celestic Town shrine. Glastrier and Spectrier — roam Sinnoh
+- **How:** Calyrex first; then the steeds roam. Calyrex's fused forms (Ice Rider, Shadow Rider) are in the game (all forms are in scope, owner 2026-10-22).
+- **Built:** Calyrex in Celestic Town (461, 527), level 70. Once it's caught the Archivist gives the Reins of Unity and the steeds bolt: Glastrier and Spectrier, level 70, roam Sinnoh (ROAMING_SLOT_GLASTRIER and _SPECTRIER, FLAG_SOVEREIGN_RELEASED_STEEDS); one knocked out is released again after the next Hall of Fame. **Changed from the plan** (owner, 2026-10-23, decision 28): the steeds roam.
 
 ## Paldea Chronicle
 
@@ -231,9 +231,9 @@ Covers **90** species.
 ### The Loyal Three
 - **Pokémon:** #1014 Okidogi, #1015 Munkidori, #1016 Fezandipiti
 - **Level:** 65
-- **Location:** Okidogi — Route 225. Munkidori — Route 229. Fezandipiti — Route 224
-- **How:** Static encounters.
-- **Built:** Okidogi on Route 225 (625, 370), Munkidori on Route 229 (806, 428) and Fezandipiti on Route 224 (896, 527) (CB-0043), level 65, once the Paldea Chronicle is open, until caught. **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
+- **Location:** Roam Sinnoh
+- **How:** Roamers, released by the Legend Archivist.
+- **Built:** Okidogi, Munkidori and Fezandipiti (CB-0043), level 65: roamers (ROAMING_SLOT_OKIDOGI, _MUNKIDORI and _FEZANDIPITI), released the first time the Archivist reads the Loyal Three once the Paldea Chronicle is open (FLAG_SOVEREIGN_RELEASED_LOYAL_THREE). One knocked out is released again after the next Hall of Fame. **Changed from the plan** (owner, 2026-10-23, decision 28): they roam, as they roam Kitakami in the story.
 
 ### The Masked Ogre
 - **Pokémon:** #1017 Ogerpon
@@ -252,9 +252,9 @@ Covers **90** species.
 ### Time Rifts (Paradox Pokémon)
 - **Pokémon:** #984 Great Tusk, #985 Scream Tail, #986 Brute Bonnet, #987 Flutter Mane, #988 Slither Wing, #989 Sandy Shocks, #1005 Roaring Moon, #1009 Walking Wake, #1020 Gouging Fire, #1021 Raging Bolt, #990 Iron Treads, #991 Iron Bundle, #992 Iron Hands, #993 Iron Jugulis, #994 Iron Moth, #995 Iron Thorns, #1006 Iron Valiant, #1010 Iron Leaves, #1022 Iron Boulder, #1023 Iron Crown
 - **Level:** 65
-- **Location:** Ancient (past) Paradox: Spear Pillar time rift after Dialga is caught. Future Paradox: Spear Pillar space rift after Palkia is caught.
-- **How:** Each rift is a Poké Radar-style patch on a new Spear Pillar floor; one Paradox Pokémon per patch, rotating daily (Renegade's daily RNG), until all ten of that rift are caught.
-- **Built:** Two rifts on Spear Pillar's plaza (CB-0043), level 65, once the Paldea Chronicle is open: the ancient one (27, 30) after Dialga is caught, the future one (35, 30) after Palkia is caught. Each shows and battles the first of its ten not caught yet (VAR_OBJ_GFX_ID_1 and _2 for its sprite) and closes when all ten are caught. **Changed from the plan** (owner, 2026-10-23: existing spots, everything in first): Spear Pillar itself in place of a new floor, and a fixed order in place of a daily rotation.
+- **Location:** Rare wild encounters across Sinnoh: ancient ones in wild, rugged places, future ones in industrial ones (docs/RareWildEncounters.md)
+- **How:** Each Paradox Pokémon is a rare wild encounter (2%) on its themed map once the Paldea Chronicle is open.
+- **Built:** The twenty Paradox Pokémon (CB-0043), level 65 (68 for the stronger ones), are rare wild encounters from the Paldea Chronicle's opening (data/sovereign_rare_wild.yaml, tools/engine/gen_rare_wild.py, a roll in decomp/src/overlay006/wild_encounters.c): 2% of the wild encounters on one or two maps each, such as Great Tusk on Route 207, Walking Wake surfing on Route 213 and Iron Moth at Fuego Ironworks. They can be met again after a catch. The Archivist's Paradox Pokémon topic hints at each one not caught yet. **Changed from the plan** (owner, 2026-10-23, decisions 27 and 28): no rifts and no Spear Pillar floor; static encounters are for legendaries.
 
 ### Area Zero (chapter key)
 - **Pokémon:** #1007 Koraidon, #1008 Miraidon, #1024 Terapagos

@@ -274,17 +274,23 @@ implemented.
       caught. Diancie (Oreburgh Mine B2F) checks `CheckPartyHasSpecies` for a Carbink. Hoopa (Solaceon Ruins Room 7)
       checks `CheckItem ITEM_PRISON_BOTTLE`, which the Archivist gives while the player doesn't have it.
     - **Alola** (var 3, from a talk with Xerneas and Yveltal caught): the four Tapus need the var only.
-      - Spear Pillar shows a Cosmog (a Lv. 5 battle) while `FLAG_SOVEREIGN_CAUGHT_COSMOG` is unset. It shows again
-        while `_COSMOG_2` is unset and the Pokédex has Solgaleo or Lunala as caught (`VAR_MAP_LOCAL_0x01` holds that
-        check in the OnTransition). The Pokédex can't tell the two apart, so a catch sets the flag. Cosmog and Necrozma
-        note their species in `VAR_MAP_LOCAL_0x02` for the removal after a battle.
-      - Necrozma (`FLAG_MAP_LOCAL_HIDE_LEGENDARY_2`) needs the same check.
-    - **Ultra Beasts** (Necrozma caught): nine statics that check `SovereignCheckSpeciesCaught SPECIES_NECROZMA` only.
-      - Kartana is Eterna Forest's third legendary: `FLAG_MAP_LOCAL_HIDE_LEGENDARY_3` (map-local 0x1B, unused in
-        vanilla), and the same `VAR_MAP_LOCAL_0x00` note as Virizion and Xerneas.
-      - Stakataka shares Route 227 with Terrakion (`FLAG_MAP_LOCAL_HIDE_LEGENDARY_2`, `VAR_MAP_LOCAL_0x00`).
-      - Iron Island B3F's OnLoad also places its Iron Ruins warp, so Nihilego's removal there is a `CallIfSet`.
-      - Mt. Coronet outside north had `scripts_empty` and gets its own archives, like the ice chamber's.
+      - Mt. Coronet's top snowfield (`MT_CORONET_OUTSIDE_NORTH`, which had `scripts_empty` and gets its own archives,
+        like the ice chamber's) shows a Cosmog (a Lv. 5 battle) while `FLAG_SOVEREIGN_CAUGHT_COSMOG` is unset. It
+        shows again while `_COSMOG_2` is unset and the Pokédex has Solgaleo or Lunala as caught. The Pokédex can't
+        tell the two apart, so a catch sets the flag.
+      - Necrozma (Wayward Cave 1F's dark back chamber, a new OnLoad entry there) needs the same Solgaleo-or-Lunala
+        check. Spear Pillar has no Chronicle encounter (decision 27): it's kept for Dialga, Palkia and the story.
+    - **Rare wild encounters** (decision 28): the Paradox Pokémon (from var 5) and the Ultra Beasts with Poipole
+      (once Necrozma is caught) aren't statics. `data/sovereign_rare_wild.yaml` lists each one's maps, terrain, rate
+      and level; `tools/engine/gen_rare_wild.py` checks it (every map must have wild encounters of that terrain, and a
+      map's rates add up to 100 or less) and writes `include/data/sovereign_rare_wild.h` and
+      `docs/RareWildEncounters.md`.
+      - `SovereignRareWild_TryFillEncounterTable` (`src/overlay006/wild_encounters.c`) runs after the swarm, Trophy
+        Garden, dual-slot and Regional Forms Park changes, in the grass, surf, Sweet Scent and mud paths. One roll per
+        encounter walks the map's entries whose gate is met (`VAR_SOVEREIGN_CHRONICLE` and a caught species) and
+        fills all the slots with the one it lands on, so Repel, abilities and shiny odds work as usual.
+      - No roll in a Poké Radar patch, with a partner or in the Safari Game. Fishing and roamers are unchanged
+        (roamers are still checked first).
     - **Galar** (var 4, from a talk with Solgaleo or Lunala caught) and **Paldea** (var 5, Zacian and Zamazenta
       caught) finish the Chronicles. Every legendary added from CB-0043 on uses one generic pattern:
       - The common script stores the battled species in `VAR_SOVEREIGN_LEGENDARY_SPECIES` (a save var). Each map's
@@ -298,11 +304,13 @@ implemented.
       - **Stakes** (the Treasures of Ruin): `Common_SovereignStake` (common script 0x80C) asks to pull one out, sets
         its `FLAG_SOVEREIGN_PULLED_STAKE_*` and removes it. The map script then reruns the shrine's visibility check
         and `AddObject`s the legendary when both stakes are out.
-      - **Time Rifts:** two Spear Pillar objects with `OBJ_EVENT_GFX_VAR_1` and `_2`. The OnTransition picks the first
-        Paradox Pokémon of each set not caught yet and sets `VAR_OBJ_GFX_ID_1`/`_2` to its sprite and
-        `VAR_MAP_LOCAL_0x03`/`_0x04` to its species, which the talk script battles.
-      - Ogerpon's other masks: `CelesticTownNortheastHouse_PokefanM` checks `GetPartyMonSpecies 0` once
-        (`FLAG_SOVEREIGN_RECEIVED_OGERPON_MASKS`).
+      - Ogerpon's other masks: `CelesticTownNortheastHouse_PokefanM` checks the species in party slot 0 once
+        (`FLAG_SOVEREIGN_RECEIVED_OGERPON_MASKS`). `GetPartyMonSpecies` reads the slot from a var, so the script sets
+        `VAR_0x8004` to 0 first.
+      - Objects must stand on a flat tile the player can face at the same height: talking checks that the two
+        heights match exactly (`sub_0203C9B0`). An object on stairs or a slope can't be talked to (Zacian's first spot).
+      - A one-frame object such as `OBJ_EVENT_GFX_BOLLARD` (the stakes) must face down, as vanilla's do; facing up
+        draws nothing.
       - The Archivist gives the Reins of Unity (Calyrex caught) and both Scrolls (Kubfu caught).
     - **No gifts** (owner, 2026-10-23): every legendary is a battle. `Common_SovereignLegendaryEncounter` returns
       `VAR_RESULT` TRUE after a catch (FALSE after a knock-out or a loss), for encounters that need a flag of their own.
@@ -313,7 +321,7 @@ implemented.
       through a battle (only a map change clears them), while the special vars (`VAR_0x8009`, which the common script
       keeps the species in) can't be read from OnLoad on the way back: a first try with them always removed Virizion.
     - **Quest-triggered ones** show only once a global flag is set:
-      - Meloetta (Contest Hall stage) waits for `FLAG_SOVEREIGN_MELOETTA_SONG`. The composer in the lobby sets it when
+      - Meloetta (in front of the Contest Hall stage) waits for `FLAG_SOVEREIGN_MELOETTA_SONG`. The composer in the lobby sets it when
         `FindPartySlotWithMove` finds a party Pokémon with Sing and the player agrees.
       - Genesect (Galactic HQ lab, back room) waits for `FLAG_SOVEREIGN_GENESECT_FREED`. The lab's male scientist sets
         it in his confession, then `AddObject` shows Genesect right away.
@@ -335,6 +343,15 @@ implemented.
         again, as Professor Oak does for the legendary birds.
       - Landorus (`ROUTE_228_ROCK_PEAK_RUINS`, own script archives like the ice chamber's) checks `CheckPartyHasSpecies`
         for both. Enamorus (Route 224) waits for Landorus caught.
+    - **More roamers** (decision 28): Zeraora takes vanilla's unused Darkrai slot (`ROAMING_SLOT_ZERAORA`), and
+      `ROAMING_SLOT_OKIDOGI`, `_MUNKIDORI`, `_FEZANDIPITI`, `_GLASTRIER` and `_SPECTRIER` make 13 slots. The five new
+      `Roamer` records and route bytes add 104 bytes to save block 0 (about 0xCF4C of 0xD000).
+      - States `VAR_ROAMING_<SPECIES>_STATE` (former `VAR_UNUSED_*`), reset by the Hall of Fame like Tornadus's.
+      - The Archivist releases them the first time he reads their topic (`FLAG_SOVEREIGN_RELEASED_ZERAORA`, `_LOYAL_THREE`;
+        `_STEEDS` once Calyrex is caught) and again after a Hall of Fame reset.
+      - `RoamerAfterBattle_UpdateRoamers` now needs `BATTLE_TYPE_ROAMER`: vanilla matched the battled Pokémon to a
+        roamer by species alone, so a wild Galarian Articuno in the Regional Forms Park knocked out or caught would
+        have wiped a roaming Articuno.
     - Iron Island B2F's right room had `scripts_empty`. It now has its own `scripts_iron_island_b2f_right_room` and
       `scripts_init_iron_island_b2f_right_room`, appended at the end of `scripts.order` so no other archive moves.
 - **Galactic gates** (decision 23, `docs/Story.md`). Each Galactic encounter checks the `FLAG_SOVEREIGN_TOTEM_TRIAL_*`
@@ -372,7 +389,7 @@ implemented.
 ### 6. Scripts and maps
 - Elite Four format prompts (`EliteFourFormat.md`), the Mega Ring gift after Fantina, four Mega Stone vendors, five new
   starter Interviewers, the Legend Archivist and ~35 post-game events, some of them in new rooms/maps (Sendoff Spring
-  crater, Spear Pillar rifts, Oreburgh Mine B3F, …).
+  crater, Oreburgh Mine B3F, …).
 - Wild encounter tables per `WildPokemon_Sovereign.md` / `data/encounters_sovereign.json` (slot-exact, 12 grass + 5×4 water).
 
 ### 7. Graphics
