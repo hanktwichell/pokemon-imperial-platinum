@@ -13,7 +13,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 128 | Defiant | Gen 5 | yes: Attack +2 when a foe's move or Intimidate lowers its stats |
 | 129 | Defeatist | Gen 5 | yes: Attack and Sp. Atk halved at half HP or less |
 | 130 | Cursed Body | Gen 5 | yes: 30% chance to disable the move that hit it, for 4 turns |
-| 131 | Healer | Gen 5 | not yet (no battle effect) |
+| 131 | Healer | Gen 5 | yes: 30% chance each turn to cure its ally's status |
 | 132 | Friend Guard | Gen 5 | yes: the partner takes 25% less damage |
 | 133 | Weak Armor | Gen 5 | yes: Defense −1 and Speed +2 when hit by a physical move |
 | 134 | Heavy Metal | Gen 5 | yes: weight doubled (Low Kick, Grass Knot) |
@@ -190,10 +190,10 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 305 | Tera Shell | Gen 9 | not yet (no battle effect) |
 | 306 | Teraform Zero | Gen 9 | not yet (no battle effect) |
 | 307 | PoisonPuppeteer | Gen 9 | not yet (no battle effect) |
-| 308 | Piercing Drill | Gen 9 | not yet (no battle effect) |
+| 308 | Piercing Drill | Gen 9 | yes: contact moves go through protection at 1/4 damage |
 | 309 | Dragonize | Gen 9 | yes: Normal moves become Dragon-type, ×1.2 |
-| 310 | Mega Sol | Gen 9 | not yet (no battle effect) |
-| 311 | Spicy Spray | Gen 9 | not yet (no battle effect) |
-| 312 | Eelevate | Gen 9 | not yet (no battle effect) |
-| 313 | Fire Mane | Gen 9 | not yet (no battle effect) |
-| 314 | Aura Guard | Gen 9 | not yet (no battle effect) |
+| 310 | Mega Sol | Gen 9 | partly: its moves work as in harsh sunlight (damage, Solar Beam without charging; Weather Ball, Growth, Synthesis not yet) |
+| 311 | Spicy Spray | Gen 9 | yes: burns the attacker whenever a damaging move hits it |
+| 312 | Eelevate | Gen 9 | yes: Levitate, and a knockout raises its highest stat (from one source; check against official data) |
+| 313 | Fire Mane | Gen 9 | yes: Fire moves ×1.5 |
+| 314 | Aura Guard | Gen 9 | yes: contact damage taken halved |

@@ -3256,6 +3256,16 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
     // Sovereign (item 11): Unseen Fist's contact moves go through protection.
     BOOL unseenFist = Battler_Ability(battleCtx, attacker) == ABILITY_UNSEEN_FIST && (MOVE_DATA(move).flags & MOVE_FLAG_MAKES_CONTACT);
 
+    // Sovereign (item 11): Piercing Drill's contact moves also go through it, at 1/4 damage.
+    battleCtx->sovereignPiercingDrill = FALSE;
+    if (Battler_Ability(battleCtx, attacker) == ABILITY_PIERCING_DRILL && (MOVE_DATA(move).flags & MOVE_FLAG_MAKES_CONTACT)) {
+        if (battleCtx->turnFlags[defender].protecting
+            || (battleCtx->sovereignSideGuards[BattleSystem_GetBattlerSide(battleSys, defender)] & 3)) {
+            battleCtx->sovereignPiercingDrill = TRUE;
+        }
+        unseenFist = TRUE;
+    }
+
     if (battleCtx->turnFlags[defender].protecting
         && unseenFist == FALSE
         && (MOVE_DATA(move).flags & MOVE_FLAG_CAN_PROTECT)
@@ -3777,6 +3787,11 @@ static void BattleControllerPlayer_UpdateHP(BattleSystem *battleSys, BattleConte
         int itemPower = Battler_HeldItemPower(battleCtx, battleCtx->defender, 0);
 
         GF_ASSERT(battleCtx->damage < 0);
+
+        // Sovereign (item 11): a contact move that goes through protection with Piercing Drill does 1/4 damage.
+        if (battleCtx->sovereignPiercingDrill && battleCtx->damage < -1) {
+            battleCtx->damage /= 4;
+        }
 
         if (BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker) == BattleSystem_GetBattlerSide(battleSys, battleCtx->defender)) {
             BattleController_EmitIncrementRecord(battleSys, battleCtx->attacker, 0, RECORD_ATTACKED_ALLY);
@@ -5251,6 +5266,7 @@ static BOOL BattleControllerPlayer_TriggerAfterMoveHitEffects(BattleSystem *batt
             BOOL fellStinger = battleCtx->moveCur == MOVE_FELL_STINGER; // Sovereign (item 11): Attack +3 on a knockout
 
             if ((ability == ABILITY_MOXIE || ability == ABILITY_CHILLING_NEIGH || ability == ABILITY_GRIM_NEIGH || ability == ABILITY_BEAST_BOOST
+                    || ability == ABILITY_EELEVATE
                     || fellStinger)
                 && ATTACKING_MON.curHP) {
                 for (foe = 0; foe < maxBattlers; foe++) {

@@ -118,8 +118,15 @@ def main():
 
     L = [INTRO]
     non_gen4 = sorted({m["ability"] for m in megas if lacks_ability(m)})
-    L.append("1. " + ", ".join(f"**{a}**" for a in BOSS_ABILITIES if a in non_gen4) + " (boss trainers)")
-    L.append("2. " + ", ".join(a for a in non_gen4 if a not in BOSS_ABILITIES) + "\n")
+    boss = [a for a in BOSS_ABILITIES if a in non_gen4]
+    rest = [a for a in non_gen4 if a not in BOSS_ABILITIES]
+    if boss:
+        L.append("1. " + ", ".join(f"**{a}**" for a in boss) + " (boss trainers)")
+    if rest:
+        L.append(("2. " if boss else "1. ") + ", ".join(rest))
+    if not non_gen4:
+        L.append("**All of them are implemented now**: every Mega and Primal gets its own ability.")
+    L.append("")
     blanks = [m["form"] for m in megas if not m["ability"]]
     if blanks:
         L.append("PokeAPI has no ability listed for: " + ", ".join(blanks) + ". These need checking against official "

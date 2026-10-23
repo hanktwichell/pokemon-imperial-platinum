@@ -361,4 +361,5 @@ subscript_files = files(
     'subscript_sovereign_primal_weather_end.s',
     'subscript_sovereign_primal_fizzle.s',
     'subscript_sovereign_anger_shell.s',
+    'subscript_sovereign_healer.s',
 )

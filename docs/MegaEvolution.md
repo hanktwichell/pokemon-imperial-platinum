@@ -50,8 +50,7 @@ played by the Mega and Primal battle subscripts (`TechnicalDesign.md` §4).
 Many Mega abilities don't exist in Platinum's battle engine. Until one is implemented, the Mega **keeps its pre-Mega
 ability** (marked ⚙ below). Implementation priority — abilities used by boss trainers first:
 
-1. **Aura Guard** (boss trainers)
-2. Eelevate, Fire Mane, Healer, Mega Sol, Piercing Drill, Spicy Spray
+**All of them are implemented now**: every Mega and Primal gets its own ability.
 
 PokeAPI has no ability listed for: Mega Zygarde, Mega Heatran, Mega Darkrai, Mega Magearna, Mega Magearna (Original Color), Mega Zeraora, Mega Tatsugiri (Curly Form), Mega Tatsugiri (Droopy Form), Mega Tatsugiri (Stretchy Form). These need checking against official Legends: Z-A data before implementation.
 
@@ -96,7 +95,7 @@ PokeAPI has no ability listed for: Mega Zygarde, Mega Heatran, Mega Darkrai, Meg
 | Mega Sableye | Sablenite | Dark/Ghost | Magic Bounce | 480 | 50/85/125/85/115/20 | Field item — Wayward Cave 1F (replaces Escape Rope) |
 | Mega Altaria | Altarianite | Dragon/Fairy | Pixilate | 590 | 75/110/110/110/105/80 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Gallade | Galladite | Psychic/Fighting | Inner Focus | 618 | 68/165/95/65/115/110 | Mega Stone Trader (Pastoria) — $10,000 |
-| Mega Audino | Audinite | Normal/Fairy | Healer ⚙ | 545 | 103/60/126/80/126/50 | Mega Stone Collector (Hearthome) — $10,000 |
+| Mega Audino | Audinite | Normal/Fairy | Healer | 545 | 103/60/126/80/126/50 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Sharpedo | Sharpedonite | Water/Dark | Strong Jaw | 560 | 70/140/70/110/65/105 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Slowbro | Slowbronite | Water/Psychic | Shell Armor | 590 | 95/75/180/130/80/30 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Steelix | Steelixite | Steel/Ground | Sand Force | 610 | 75/125/230/55/95/30 | Mega Stone Trader (Pastoria) — $10,000 |
@@ -115,20 +114,20 @@ PokeAPI has no ability listed for: Mega Zygarde, Mega Heatran, Mega Darkrai, Meg
 | Mega Victreebel † | Victreebelite | Grass/Poison | Innards Out | 590 | 80/125/85/135/95/70 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Starmie † | Starminite | Water/Psychic | Huge Power | 620 | 60/100/105/130/105/120 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Dragonite † | Dragoninite | Dragon/Flying | Multiscale | 700 | 91/124/115/145/125/100 | Mega Stone Sage (Snowpoint) — $10,000 |
-| Mega Meganium † | Meganiumite | Grass/Fairy | Mega Sol ⚙ | 625 | 80/92/115/143/115/80 | Mega Stone Collector (Hearthome) — $10,000 |
+| Mega Meganium † | Meganiumite | Grass/Fairy | Mega Sol | 625 | 80/92/115/143/115/80 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Feraligatr † | Feraligite | Water/Dragon | Dragonize | 630 | 85/160/125/89/93/78 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Skarmory † | Skarmorite | Steel/Flying | Stalwart | 565 | 65/140/110/40/100/110 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Froslass † | Froslassite | Ice/Ghost | Snow Warning | 580 | 70/80/70/140/100/120 | Mega Stone Sage (Snowpoint) — $10,000 |
 | Mega Emboar † | Emboarite | Fire/Fighting | Mold Breaker | 628 | 110/148/75/110/110/75 | Mega Stone Trader (Pastoria) — $10,000 |
-| Mega Excadrill † | Excadrite | Ground/Steel | Piercing Drill ⚙ | 608 | 110/165/100/65/65/103 | Mega Stone Collector (Hearthome) — $10,000 |
+| Mega Excadrill † | Excadrite | Ground/Steel | Piercing Drill | 608 | 110/165/100/65/65/103 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Scolipede † | Scolipite | Bug/Poison | Shell Armor | 585 | 60/140/149/75/99/62 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Scrafty † | Scraftinite | Dark/Fighting | Intimidate | 588 | 65/130/135/55/135/68 | Mega Stone Collector (Hearthome) — $10,000 |
-| Mega Eelektross † | Eelektrossite | Electric | Eelevate ⚙ | 615 | 85/145/80/135/90/80 | Mega Stone Trader (Pastoria) — $10,000 |
+| Mega Eelektross † | Eelektrossite | Electric | Eelevate | 615 | 85/145/80/135/90/80 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Chandelure † | Chandelurite | Ghost/Fire | Infiltrator | 620 | 60/75/110/175/110/90 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Chesnaught † | Chesnaughtite | Grass/Fighting | Bulletproof | 630 | 88/137/172/74/115/44 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Delphox † | Delphoxite | Fire/Psychic | Levitate | 634 | 75/69/72/159/125/134 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Greninja † | Greninjite | Water/Dark | Protean | 630 | 72/125/77/133/81/142 | Mega Stone Trader (Pastoria) — $10,000 |
-| Mega Pyroar † | Pyroarite | Fire/Normal | Fire Mane ⚙ | 607 | 86/88/92/129/86/126 | Mega Stone Collector (Hearthome) — $10,000 |
+| Mega Pyroar † | Pyroarite | Fire/Normal | Fire Mane | 607 | 86/88/92/129/86/126 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Floette † | Floettite | Fairy | Fairy Aura | 651 | 74/85/87/155/148/102 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Malamar † | Malamarite | Dark/Psychic | Contrary | 582 | 86/102/88/98/120/88 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Barbaracle † | Barbaracite | Rock/Fighting | Tough Claws | 600 | 72/140/130/64/106/88 | Mega Stone Trader (Pastoria) — $10,000 |
@@ -143,7 +142,7 @@ PokeAPI has no ability listed for: Mega Zygarde, Mega Heatran, Mega Darkrai, Meg
 | Mega Absol Z † | Absolite Z | Dark/Ghost | Sharpness | 565 | 65/154/60/75/60/151 | Mega Stone Sage (Snowpoint) — $10,000 |
 | Mega Staraptor † | Staraptite | Fighting/Flying | Contrary | 585 | 85/140/100/60/90/110 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Garchomp Z † | Garchompite Z | Dragon | Levitate | 700 | 108/130/85/141/85/151 | Mega Stone Curator (Survival Area) — $30,000 |
-| Mega Lucario Z † | Lucarionite Z | Fighting/Steel | Aura Guard ⚙ | 625 | 70/100/70/164/70/151 | Mega Stone Sage (Snowpoint) — $10,000 |
+| Mega Lucario Z † | Lucarionite Z | Fighting/Steel | Aura Guard | 625 | 70/100/70/164/70/151 | Mega Stone Sage (Snowpoint) — $10,000 |
 | Mega Heatran † | Heatranite | Fire/Steel | TBD | 700 | 91/120/106/175/141/67 | Field item — Stark Mountain (Room 1) (replaces Full Heal) |
 | Mega Darkrai † | Darkranite | Dark | TBD | 700 | 70/120/130/165/130/85 | Mega Stone Curator (Survival Area) — $30,000 |
 | Mega Golurk † | Golurkite | Ground/Ghost | Unseen Fist | 583 | 89/159/105/70/105/55 | Mega Stone Collector (Hearthome) — $10,000 |
@@ -153,7 +152,7 @@ PokeAPI has no ability listed for: Mega Zygarde, Mega Heatran, Mega Darkrai, Meg
 | Mega Magearna † | Magearnite | Steel/Fairy | TBD | 700 | 80/125/115/170/115/95 | Mega Stone Curator (Survival Area) — $30,000 |
 | Mega Magearna (Original Color) † | Magearnite | Steel/Fairy | TBD | 700 | 80/125/115/170/115/95 | Mega Stone Curator (Survival Area) — $30,000 |
 | Mega Zeraora † | Zeraorite | Electric | TBD | 700 | 88/157/75/147/80/153 | Mega Stone Curator (Survival Area) — $30,000 |
-| Mega Scovillain † | Scovillainite | Grass/Fire | Spicy Spray ⚙ | 586 | 65/138/85/138/85/75 | Mega Stone Trader (Pastoria) — $10,000 |
+| Mega Scovillain † | Scovillainite | Grass/Fire | Spicy Spray | 586 | 65/138/85/138/85/75 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Glimmora † | Glimmoranite | Rock/Poison | Adaptability | 625 | 83/90/105/150/96/101 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Tatsugiri (Curly Form) † | Tatsugirinite | Dragon/Water | TBD | 575 | 68/65/90/135/125/92 | Mega Stone Sage (Snowpoint) — $10,000 |
 | Mega Tatsugiri (Droopy Form) † | Tatsugirinite | Dragon/Water | TBD | 575 | 68/65/90/135/125/92 | Mega Stone Sage (Snowpoint) — $10,000 |

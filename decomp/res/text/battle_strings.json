@@ -9203,6 +9203,56 @@
       "en_US": [
         "The weather didn’t change!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignPokemonWasCuredByPokemonsAbility_AllyAlly",
+      "en_US": [
+        "{STRVAR_1 1, 2, 0} was cured by\n",
+        "{STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignPokemonWasCuredByPokemonsAbility_WildAlly",
+      "en_US": [
+        "The wild {STRVAR_1 1, 2, 0} was cured by\n",
+        "{STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignPokemonWasCuredByPokemonsAbility_FoeAlly",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 2, 0} was cured by\n",
+        "{STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignPokemonWasCuredByPokemonsAbility_AllyWild",
+      "en_US": [
+        "{STRVAR_1 1, 2, 0} was cured by the wild\n",
+        "{STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignPokemonWasCuredByPokemonsAbility_WildWild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 2, 0} was cured by the\n",
+        "wild {STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignPokemonWasCuredByPokemonsAbility_AllyFoe",
+      "en_US": [
+        "{STRVAR_1 1, 2, 0} was cured by the foe’s\n",
+        "{STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignPokemonWasCuredByPokemonsAbility_FoeFoe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 2, 0} was cured by\n",
+        "the foe’s {STRVAR_1 1, 0, 0}’s\f",
+        "{STRVAR_1 5, 1, 0}!"
+      ]
     }
   ]
 }

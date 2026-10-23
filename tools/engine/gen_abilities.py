@@ -238,6 +238,13 @@ IMPLEMENTED = {
     201: "yes: Sp. Atk +1 when a hit drops it to half HP or less",
     271: "yes: Attack, Sp. Atk, Speed +1 and Defense, Sp. Def -1 when a hit drops it to half HP or less",
     215: "yes: when knocked out by a hit, the attacker loses the HP it had left",
+    308: "yes: contact moves go through protection at 1/4 damage",
+    310: "partly: its moves work as in harsh sunlight (damage, Solar Beam without charging; Weather Ball, Growth, Synthesis not yet)",
+    311: "yes: burns the attacker whenever a damaging move hits it",
+    312: "yes: Levitate, and a knockout raises its highest stat (from one source; check against official data)",
+    313: "yes: Fire moves ×1.5",
+    314: "yes: contact damage taken halved",
+    131: "yes: 30% chance each turn to cure its ally's status",
 }
 
 

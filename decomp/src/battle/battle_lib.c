@@ -2040,6 +2040,7 @@ void BattleContext_Init(BattleContext *battleCtx)
     battleCtx->multiHitCounter = 0;
     battleCtx->multiHitNumHits = 0;
     battleCtx->sovereignParentalBond = FALSE;
+    battleCtx->sovereignPiercingDrill = FALSE;
     battleCtx->battlerCounter = 0;
     battleCtx->multiHitLoop = 0;
     battleCtx->afterMoveMessageType = 0;
@@ -2713,7 +2714,8 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
         }
     }
 
-    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_LEVITATE) == TRUE
+    if ((Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_LEVITATE) == TRUE
+            || Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_EELEVATE) == TRUE) // Sovereign (item 11)
         && moveType == TYPE_GROUND
         && defenderItemEffect != HOLD_EFFECT_SPEED_DOWN_GROUNDED) {
         *moveStatusMask |= MOVE_STATUS_LEVITATED;
@@ -2813,7 +2815,7 @@ void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inTy
     moveType = Sovereign_AbilityMoveType(attackerAbility, move, inType ? inType : MOVE_DATA(move).type); // Sovereign (item 11)
 
     if (attackerAbility != ABILITY_MOLD_BREAKER && attackerAbility != ABILITY_TURBOBLAZE && attackerAbility != ABILITY_TERAVOLT
-        && defenderAbility == ABILITY_LEVITATE
+        && (defenderAbility == ABILITY_LEVITATE || defenderAbility == ABILITY_EELEVATE) // Sovereign (item 11)
         && moveType == TYPE_GROUND
         && (battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) == FALSE
         && defenderItemEffect != HOLD_EFFECT_SPEED_DOWN_GROUNDED) {
@@ -3218,12 +3220,12 @@ u16 Battler_Ability(BattleContext *battleCtx, int battler)
     }
 
     if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY)
-        && battleCtx->battleMons[battler].ability == ABILITY_LEVITATE) {
+        && (battleCtx->battleMons[battler].ability == ABILITY_LEVITATE || battleCtx->battleMons[battler].ability == ABILITY_EELEVATE)) {
         return ABILITY_NONE;
     }
 
     if ((battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_INGRAIN)
-        && battleCtx->battleMons[battler].ability == ABILITY_LEVITATE) {
+        && (battleCtx->battleMons[battler].ability == ABILITY_LEVITATE || battleCtx->battleMons[battler].ability == ABILITY_EELEVATE)) {
         return ABILITY_NONE;
     }
 
@@ -3354,6 +3356,7 @@ BOOL Battler_IsTrappedMsg(BattleSystem *battleSys, BattleContext *battleCtx, int
     if ((tmp = BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_THEIR_SIDE, battler, ABILITY_ARENA_TRAP))) {
         if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) == FALSE && itemEffect != HOLD_EFFECT_SPEED_DOWN_GROUNDED) {
             if (Battler_Ability(battleCtx, battler) != ABILITY_LEVITATE
+                && Battler_Ability(battleCtx, battler) != ABILITY_EELEVATE // Sovereign (item 11)
                 && battleCtx->battleMons[battler].moveEffectsData.magnetRiseTurns == 0
                 && MON_IS_NOT_TYPE(battler, TYPE_FLYING)) {
                 if (msgOut == NULL) {
@@ -3840,6 +3843,20 @@ BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem *battleSys, BattleContext *
                 subscript = subscript_update_stat_stage;
                 result = TRUE;
             }
+        }
+        break;
+
+    // Sovereign (item 11): Healer has a 30% chance each turn to cure its ally's status condition.
+    case ABILITY_HEALER:
+        if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES)
+            && battleCtx->battleMons[battler].curHP
+            && battleCtx->battleMons[battler ^ 2].curHP
+            && (battleCtx->battleMons[battler ^ 2].status & MON_CONDITION_ANY)
+            && BattleSystem_RandNext(battleSys) % 10 < 3) {
+            battleCtx->msgBattlerTemp = battler ^ 2;
+            battleCtx->sideEffectMon = battler;
+            subscript = subscript_sovereign_healer;
+            result = TRUE;
         }
         break;
 
@@ -5046,6 +5063,23 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
         }
         break;
 
+    // Sovereign (item 11): Spicy Spray burns the attacker whenever a damaging move hits the holder, contact or not, even
+    // if the hit knocks the holder out.
+    case ABILITY_SPICY_SPRAY:
+        if (ATTACKING_MON.curHP
+            && ATTACKING_MON.status == MON_CONDITION_NONE
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)) {
+            battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
+            battleCtx->sideEffectMon = battleCtx->attacker;
+            battleCtx->msgBattlerTemp = battleCtx->defender;
+
+            *subscript = subscript_burn;
+            result = TRUE;
+        }
+        break;
+
     case ABILITY_CUTE_CHARM:
         if (ATTACKING_MON.curHP
             && (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_ATTRACT) == FALSE
@@ -6242,6 +6276,7 @@ s32 Battler_ItemFlingPower(BattleContext *battleCtx, int battler)
 static inline BOOL BattlerIsGrounded(BattleContext *battleCtx, int battler)
 {
     return (Battler_Ability(battleCtx, battler) != ABILITY_LEVITATE
+               && Battler_Ability(battleCtx, battler) != ABILITY_EELEVATE // Sovereign (item 11)
                && battleCtx->battleMons[battler].moveEffectsData.magnetRiseTurns == 0
                && MON_IS_NOT_TYPE(battler, TYPE_FLYING))
         || Battler_HeldItemEffect(battleCtx, battler) == HOLD_EFFECT_SPEED_DOWN_GROUNDED
@@ -8286,6 +8321,12 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         }
     }
 
+    // Sovereign (item 11): Aura Guard halves damage from contact moves.
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_AURA_GUARD) == TRUE
+        && Sovereign_MakesContact(battleCtx, attacker, move)) {
+        movePower /= 2;
+    }
+
     for (i = 0; i < NELEMS(sBitingMoves); i++) {
         if (sBitingMoves[i] == move && attackerParams.ability == ABILITY_STRONG_JAW) {
             movePower = movePower * 15 / 10;
@@ -8323,6 +8364,12 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         break;
     case ABILITY_DRAGONS_MAW:
         if (moveType == TYPE_DRAGON) {
+            attackStat = attackStat * 15 / 10;
+            spAttackStat = spAttackStat * 15 / 10;
+        }
+        break;
+    case ABILITY_FIRE_MANE:
+        if (moveType == TYPE_FIRE) {
             attackStat = attackStat * 15 / 10;
             spAttackStat = spAttackStat * 15 / 10;
         }
@@ -8657,6 +8704,11 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         && battleCtx->battleMons[defender ^ 2].curHP
         && Battler_Ability(battleCtx, defender ^ 2) == ABILITY_FRIEND_GUARD) {
         damage = damage * 3 / 4;
+    }
+
+    // Sovereign (item 11): Mega Sol's moves work as if the sunlight were harsh, whatever the weather.
+    if (attackerParams.ability == ABILITY_MEGA_SOL) {
+        fieldConditions = (fieldConditions & ~FIELD_CONDITION_WEATHER) | FIELD_CONDITION_SUNNY_TEMP;
     }
 
     if (NO_CLOUD_NINE) {

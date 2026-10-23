@@ -4,6 +4,29 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (part 19) — the last Mega abilities and Healer
+
+Every Mega and Primal now gets its own ability. The six from Pokémon Champions were checked on Bulbapedia, Serebii,
+Wikidex and Rotom Labs.
+- **Piercing Drill** (Mega Excadrill): contact moves go through Protect and the guard moves at 1/4 damage (applied
+  when the hit's HP change is set).
+- **Spicy Spray** (Mega Scovillain): any damaging move that hits the holder burns the attacker, even if the hit
+  knocks the holder out.
+- **Fire Mane** (Mega Pyroar): Fire moves ×1.5.
+- **Aura Guard** (Mega Lucario Z): contact damage taken halved.
+- **Mega Sol** (Mega Meganium): its moves work as in harsh sunlight: Fire ×1.5, Water ×0.5, and Solar Beam needs no
+  charge turn. Weather Ball, Growth and Synthesis are not done yet.
+- **Eelevate** (Mega Eelektross): Levitate (Ground immunity, hazards, Gravity, Smack Down, Magnet Rise), and a
+  knockout raises its highest stat like Beast Boost. Only one source describes this ability; recheck against
+  official data.
+- **Healer** (Mega Audino): 30% chance at the end of each turn to cure its ally's status, with a new message
+  "{2} was cured by {0}'s Healer!".
+- `gen_mega_doc.py` now says when every Mega ability is implemented. Ability checklist: 131 newer abilities.
+
+**Verified in the test build:** Venusaur (Spicy Spray) used Protect. Garchomp's Piercing Drill Dragon Claw went
+through for 10 damage (a quarter of the 40 crit), then "The foe's VENUSAUR's Spicy Spray burned GARCHOMP!". The
+others aren't tested in game yet.
+
 ## Item 11 (part 18) — Parental Bond, Berserk, Anger Shell, Innards Out
 
 - **Parental Bond:** single-target damaging moves hit twice ("Hit 2 time(s)!") through the multi-hit loop. The

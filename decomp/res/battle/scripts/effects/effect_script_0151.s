@@ -2,6 +2,8 @@
 
 
 _000:
+    // Sovereign (item 11): Mega Sol needs no charge turn either.
+    CheckAbility CHECK_HAVE, BTLSCR_ATTACKER, ABILITY_MEGA_SOL, _028
     CheckIgnoreWeather _006
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_FIELD_CONDITIONS, FIELD_CONDITION_SUNNY, _028
 

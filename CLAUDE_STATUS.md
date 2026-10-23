@@ -2403,3 +2403,28 @@ CB-0034) is merged.
    then implement them and Healer.
 3. Remaining moves: Ally Switch, Telekinesis, Wonder/Magic Room, Scale Shot, Coaching, Upper Hand, Dragon Cheer,
    Belch, Pledges, Final Gambit, Sky Drop, Bestow, Synchronoise, Parting Shot.
+
+## CA-0037 (Claude A, branch `claude/festive-bardeen-5h7beo`, 2026-10-23)
+
+**Just implemented:** item 11 part 19. Every Mega and Primal now has its own ability in battle.
+- Piercing Drill and Spicy Spray, verified in game.
+- Fire Mane, Aura Guard, Mega Sol (partly), Eelevate and Healer, not tested in game.
+- Eelevate rests on one source (Rotom Labs); recheck it.
+
+**Files modified:**
+- `decomp/src/battle/battle_lib.c`, `battle_controller_player.c`
+- `decomp/include/battle/battle_context.h`
+- `effect_script_0151.s` (Solar Beam), `effect_script_0252.s`
+- `subscript_gravity_start.s`, `subscript_sovereign_smack_down.s`, `subscript_hazards_check.s`
+- New `subscript_sovereign_healer.s`, registered in the 3 lists
+- `battle_strings.json` (7 Healer message variants)
+- 7 Mega `data.json` files
+- `tools/engine/gen_abilities.py`, `tools/design/gen_mega_doc.py`
+- `docs/AbilityChecklist.md`, `docs/MegaEvolution.md`, `docs/EngineChangelog.md`
+
+**Next 3 steps:**
+1. Merge PR #47 (parts 16 to 19) when CI is green.
+2. Remaining moves: Ally Switch, Telekinesis, Wonder/Magic Room, Scale Shot, Coaching, Upper Hand, Dragon Cheer,
+   Belch, Pledges, Final Gambit, Sky Drop, Bestow, Synchronoise, Parting Shot.
+3. More abilities: Mirror Armor, Cotton Down, Wind Rider/Wind Power, Mummy/Lingering Aroma/Wandering Spirit,
+   Perish Body, Toxic Debris, Purifying Salt's status immunity.
