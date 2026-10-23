@@ -1165,3 +1165,17 @@ files. Also `decomp/src/script_manager.c` (test warps), `.github/workflows/build
 
 Also open: the dialogue of Rowan's Sinnoh dex event (Oak "adds the National Mode", "Pal Park is open") needs
 Sovereign wording. It's story text, so it's for the owner or the story work (E11).
+
+---
+
+## CB-0017 — 2026-10-22, 7:02 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented (owner asked):** the Mega Stone icon on the MEGA button moved one pixel right, so it sits centred in
+the button's socket. Verified on screen, off and on. The release ROM builds and passes boot smoke.
+
+**Files modified:** `decomp/src/battle/battle_subscreen.c` (`sSovereignMegaIconTemplate`), `CLAUDE_STATUS.md`.
+
+**Next 3 steps:** as in CB-0016:
+1. Merge PR #22 when green.
+2. The Mega Evolution animation.
+3. The Mega abilities the boss teams need.
