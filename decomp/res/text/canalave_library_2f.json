@@ -316,6 +316,122 @@
         "These DNA SPLICERS came with the\n",
         "Chronicle. They join and split them.\r"
       ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistForcesRelease",
+      "en_US": [
+        "The Chronicle also tells of TORNADUS\n",
+        "and THUNDURUS, who ride the clouds.\r",
+        "Have you felt the wild winds and the\n",
+        "storms lately? They must be here!\r",
+        "They never stay in one place. Look\n",
+        "for them all over Sinnoh.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistRoamers",
+      "en_US": [
+        "TORNADUS and THUNDURUS roam all\n",
+        "over Sinnoh.\r",
+        "A Pokétch’s Marking Map can show\n",
+        "you where they are.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistRoamerGone",
+      "en_US": [
+        "If one was knocked out, it may come\n",
+        "back after your next Hall of Fame.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistRevealGlass",
+      "en_US": [
+        "You caught TORNADUS and THUNDURUS!\r",
+        "The Chronicle says this REVEAL GLASS\n",
+        "shows their true forms.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistLandorus",
+      "en_US": [
+        "LANDORUS, lord of the land, once\n",
+        "stopped the two of them.\r",
+        "Take TORNADUS and THUNDURUS to the\n",
+        "ruins on Route 228, and see!\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistEnamorus",
+      "en_US": [
+        "And ENAMORUS, who brings the spring...\r",
+        "They say it waits by the Flower\n",
+        "Paradise gate on Route 224.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistWhichLegend",
+      "en_US": [
+        "Which legend of the Unova Chronicle\n",
+        "shall I read to you?"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistAnythingElse",
+      "en_US": [
+        "Anything else from the Chronicle?"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignMenuSwords",
+      "en_US": [
+        "Swords of Justice"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignMenuDragons",
+      "en_US": [
+        "Truth and Ideals"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignMenuForces",
+      "en_US": [
+        "Forces of Nature"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignMenuOthers",
+      "en_US": [
+        "Other legends"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignMenuDone",
+      "en_US": [
+        "That’s all"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistDragonsDone",
+      "en_US": [
+        "RESHIRAM, ZEKROM and KYUREM...\n",
+        "You found all three dragons!\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistForcesDone",
+      "en_US": [
+        "You’ve met all four of the Forces\n",
+        "of Nature!\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistOthersDone",
+      "en_US": [
+        "You found MELOETTA and GENESECT\n",
+        "too!\r"
+      ]
     }
   ]
 }

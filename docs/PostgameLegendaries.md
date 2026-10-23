@@ -11,7 +11,7 @@ Renegade Platinum's own legendary events (Gen I–IV) are unchanged; see `Renega
 - Chapters open one after another (each needs the previous chapter's "key" legendary caught), so the post-game has a guided order.
 - Static encounters can be retried after fainting or fleeing, and have the normal shiny odds (Renegade behaviour).
 - New maps or rooms are marked _(new)_ and need map work in DSPRE.
-- **Built:** The Archivist (CB-0035) stands in Canalave Library 2F from the first Hall of Fame; his first talk opens the Unova Chronicle (VAR_SOVEREIGN_CHRONICLE). Later talks name where each Swords of Justice member not caught yet stands, then point to Keldeo (CB-0036), then give the Light and Dark Stones and the dragon hints (CB-0038) and hints for Meloetta and Genesect (CB-0037). Static encounters share CommonScript_SovereignLegendaryEncounter: each stays on the map until the Pokédex has it as caught, and vanishes after it's knocked out until the next visit (as in vanilla legendary battles, the player can't run).
+- **Built:** The Archivist (CB-0035) stands in Canalave Library 2F from the first Hall of Fame; his first talk opens the Unova Chronicle (VAR_SOVEREIGN_CHRONICLE). Later talks offer a menu of its legends (CB-0040): Swords of Justice (the swords, then Keldeo, CB-0036), Truth and Ideals (the Light and Dark Stones, the dragons, then the DNA Splicers, CB-0038), Forces of Nature (the roamers' release, then the Reveal Glass, Landorus and Enamorus, CB-0039) and Other legends (Meloetta and Genesect, CB-0037). Static encounters share CommonScript_SovereignLegendaryEncounter: each stays on the map until the Pokédex has it as caught, and vanishes after it's knocked out until the next visit (as in vanilla legendary battles, the player can't run).
 
 Covers **90** species.
 
@@ -40,8 +40,9 @@ Covers **90** species.
 ### Forces of Nature
 - **Pokémon:** #641 Tornadus, #642 Thundurus, #645 Landorus, #905 Enamorus
 - **Level:** 65
-- **Location:** Tornadus and Thundurus roam Sinnoh (like Mesprit/Cresselia). Landorus — Route 228 shrine (new). Enamorus — Route 224, Flower Paradise gate
+- **Location:** Tornadus and Thundurus roam Sinnoh (like Mesprit/Cresselia). Landorus — Route 228's ruins. Enamorus — Route 224, Flower Paradise gate
 - **How:** Roamers are released when the chapter opens. Bring both to the Route 228 shrine for Landorus; Enamorus appears after Landorus is caught.
+- **Built:** Forces of Nature (CB-0039). The Archivist releases Tornadus and Thundurus as roamers (two new roaming slots, FLAG_SOVEREIGN_RELEASED_FORCES_OF_NATURE). One that's knocked out comes back after the next Hall of Fame, when the Archivist releases it again. With both caught, he gives the Reveal Glass. Landorus appears in Route 228's ruins (the Rock Peak Ruins chamber, (7, 5)) while both are in the party; that chamber stands in for a new shrine. Enamorus then waits by the Route 224 tablet (914, 494). All four are level 65.
 
 ### Truth and Ideals (chapter key)
 - **Pokémon:** #643 Reshiram, #644 Zekrom, #646 Kyurem

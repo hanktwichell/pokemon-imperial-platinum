@@ -22,7 +22,7 @@ Renegade Platinum's item changes and item locations are unchanged unless listed 
 | Teal Mask | Held by Ogerpon (post-game, Route 211 East shrine) | Ogerpon's Teal Mask form |
 | Wellspring Mask, Hearthflame Mask, Cornerstone Mask | The Pokéfan (male) in **Celestic Town's northeast house** (`CelesticTownNortheastHouse_PokefanM`). He gives all three if Ogerpon is at the front of the party | Ogerpon's mask forms |
 | Adamant Crystal, Lustrous Globe, Griseous Core | Not placed yet | Held: Origin Dialga, Palkia, Giratina |
-| Reveal Glass (key item) | Not placed yet | Used on Tornadus, Thundurus, Landorus or Enamorus from the bag: Incarnate ↔ Therian Forme |
+| Reveal Glass (key item) | Legend Archivist, Canalave Library, once Tornadus and Thundurus are caught | Used on Tornadus, Thundurus, Landorus or Enamorus from the bag: Incarnate ↔ Therian Forme |
 | DNA Splicers (key item) | Legend Archivist, Canalave Library, once Kyurem is caught | Used from the bag on Kyurem or on Reshiram/Zekrom: fuses them (White/Black Kyurem); used on the fused Kyurem: separates them |
 | N-Solarizer, N-Lunarizer (key items) | Not placed yet | The same for Necrozma and Solgaleo (Dusk Mane) or Lunala (Dawn Wings) |
 | Reins of Unity (key item) | Not placed yet | The same for Calyrex and Glastrier (Ice Rider) or Spectrier (Shadow Rider) |

@@ -2718,3 +2718,106 @@ and Genesect, CB-0037) is merged.
 1. Merge PR #54 (part 25), then the PR for part 26.
 2. More moves: the Pledges, Ally Switch.
 3. Abilities: Mirror Armor, Cotton Down, Wind Rider/Wind Power, Purifying Salt's status immunity.
+
+
+## CB-0039 — 2026-10-23, 8:55 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** the Forces of Nature (the Chronicles, `docs/PostgameLegendaries.md`). PR #51 (Truth and Ideals,
+CB-0038) is merged, after two merges of main (CA-0034 to CA-0039) that kept both sides.
+- **Tornadus and Thundurus** (Lv. 65) are roamers.
+  - New `ROAMING_SLOT_TORNADUS` and `ROAMING_SLOT_THUNDURUS` (`generated/roaming_slots.txt`, `roaming_pokemon.c`).
+  - State vars `VAR_ROAMING_TORNADUS_STATE` and `VAR_ROAMING_THUNDURUS_STATE` (the former `VAR_UNUSED_0x406C`/`6D`),
+    set by `SystemVars_SetRoamingSpeciesState`.
+  - The Hall of Fame resets a knocked-out one, like the other roamers.
+  - **The save grows by 42 bytes.** I measured block 0 at 0xCEE4 of 0xD000 in the test build, so it still fits the
+    32 sectors (284 bytes left in block 0).
+- **The Archivist** (after the dragons):
+  - releases both on the first pass (`FLAG_SOVEREIGN_RELEASED_FORCES_OF_NATURE`, the former `FLAG_UNUSED_0x02CF`);
+  - re-releases one that was reset;
+  - hints at them, with a line for a knocked-out one;
+  - with both caught, gives the Reveal Glass (now placed, `docs/ItemChanges_Sovereign.md`), then the Landorus and
+    Enamorus hints.
+- **Landorus** (Lv. 65): `ROUTE_228_ROCK_PEAK_RUINS` (7, 5), Route 228's ruins chamber, while Tornadus and Thundurus
+  are both in the party.
+  - It had `scripts_empty`; it gets its own archives like the ice chamber.
+  - It stands in for the planned new shrine.
+  - With a fateful Regigigas in the party, vanilla's doorway leads to the Regirock chamber instead.
+- **Enamorus** (Lv. 65): Route 224 (914, 494), by the tablet, once Landorus is caught.
+- **Sprites:** Landorus and Enamorus (`sovlegend10`, `11`).
+- **Verified** (test build with a temporary patch: game completed, Chronicle open, Master Balls, party at level 100,
+  every grass encounter a roamer one while any is active, both Forces in the party at one warp, test warps; all
+  removed before committing):
+  - the release, the two roamers met and caught;
+  - the Reveal Glass and the hints;
+  - Landorus and Enamorus hidden until their conditions, then caught and gone.
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+- **Not tested:** a knocked-out roamer coming back after the Hall of Fame (vanilla's mechanism, the same as the
+  birds'), and the Pokétch Marking Map showing the new roamers (its code loops over all roaming slots).
+
+**Files modified:**
+- Engine: `decomp/generated/roaming_slots.txt`, `decomp/src/roaming_pokemon.c`, `decomp/src/system_vars.c`,
+  `decomp/generated/vars_flags.txt`, `decomp/include/data/map_headers.h`
+- Scripts: `scripts_canalave_library_2f.s`, `scripts_pokemon_league_hall_of_fame.s`, `scripts_route_224.s`,
+  `scripts_init_route_224.s`, `scripts_route_228_rock_peak_ruins.s` (new), `scripts_init_route_228_rock_peak_ruins.s`
+  (new), `res/field/scripts/scripts.order`, `res/field/scripts/meson.build`
+- Events: `events_route_224.json`, `events_route_228_rock_peak_ruins.json`
+- Texts: `canalave_library_2f`
+- Sprites: `decomp/generated/object_events_gfx.txt`, `decomp/src/overlay005/object_event_gfx_data.c`,
+  `decomp/res/graphics/field_sprites/` (`field_sprites.order`, `meson.build`,
+  `pokemon/legendary_{landorus,enamorus}.png`), `tools/sprites/make_legendary_overworld.py`
+- Data and docs: `data/postgame_legendaries.yaml`, `docs/PostgameLegendaries.md`, `docs/ItemChanges_Sovereign.md`,
+  `docs/TechnicalDesign.md`, `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `CITATIONS.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR once CI is green.
+2. **Victini** finishes the Unova Chronicle. Its "Vista Lighthouse basement" is a new room: use an existing spot,
+   or ask the owner about map work. Then the Kalos Chronicle can open.
+3. **The Archivist's talk is long:** on a fresh post-game save it runs about 45 pages (swords, stones, dragons, Forces
+   of Nature, Meloetta, Genesect). Consider one chapter part per talk, or a short "who's left" list.
+
+## CB-0040 — 2026-10-23, 9:13 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** a menu for the Legend Archivist (`scripts_canalave_library_2f.s`). PR #53 (Forces of Nature,
+CB-0039) needed another merge of main (CA-0040 to CA-0042, both sides kept).
+- His talk had grown to about 45 pages on a fresh post-game save. After the first talk, he now asks which legend to
+  read from:
+  - Swords of Justice
+  - Truth and Ideals
+  - Forces of Nature
+  - Other legends
+  - That's all
+- Each topic gives only its part: hints for what isn't caught, and its key items or the roamer release.
+- The menu comes back after each topic ("Anything else from the Chronicle?"). A finished topic says so.
+- **Verified** (test build: game completed, Chronicle open): each topic, the menu coming back, the stones given once
+  only, and "That's all". The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+- **Looked into, not built:** I checked the 53 `MAP_HEADER_UNKNOWN_*` headers (15 distinct maps) as possible "new
+  rooms". They are voids, test maps (a checkerboard), fragments and foggy or white rooms. None is a believable
+  lighthouse basement or cave chamber.
+
+**Files modified:**
+- `decomp/res/field/scripts/scripts_canalave_library_2f.s`, `decomp/res/text/canalave_library_2f.json`
+- `data/postgame_legendaries.yaml`, `docs/PostgameLegendaries.md`, `docs/TechnicalDesign.md`,
+  `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`
+
+**Question for the owner:** several legendaries are planned for **new** rooms or floors:
+- Victini: Vista Lighthouse basement.
+- Yveltal: Lost Tower roof.
+- Zygarde: Wayward Cave deep chamber.
+- Diancie: Oreburgh Mine B3F.
+- Volcanion: Stark Mountain hot spring.
+
+So far I put each "(new)" one in an existing spot nearby:
+- Cobalion: an Iron Island side cave.
+- Meloetta: the Contest Hall stage.
+- Reshiram: the Fuego Ironworks.
+- Landorus: Route 228's ruins chamber.
+
+New maps are possible but take map, matrix and event work per room. **Should I keep using existing spots, or build
+new rooms for these?**
+
+**Next 3 steps:**
+1. Merge PR #53, then this one.
+2. **The Kalos Chronicle** opens once Kyurem (the Unova key) is caught: VAR_SOVEREIGN_CHRONICLE 2 and a chapter choice
+   in the Archivist's menu. Then Xerneas (Eterna Forest, behind the Old Chateau) and Hoopa (Solaceon Ruins, with the
+   Prison Bottle), which use existing maps.
+3. Victini, Yveltal, Zygarde, Diancie and Volcanion, once the owner answers the question above.

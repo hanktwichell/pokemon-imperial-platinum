@@ -276,6 +276,15 @@ void RoamingPokemon_ActivateSlot(SaveData *saveData, const u8 slot)
         species = SPECIES_ARTICUNO;
         level = 60;
         break;
+    // Sovereign (the Chronicles, docs/PostgameLegendaries.md): the Forces of Nature, released by the Legend Archivist.
+    case ROAMING_SLOT_TORNADUS:
+        species = SPECIES_TORNADUS;
+        level = 65;
+        break;
+    case ROAMING_SLOT_THUNDURUS:
+        species = SPECIES_THUNDURUS;
+        level = 65;
+        break;
     default:
         GF_ASSERT(FALSE);
         return;

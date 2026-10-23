@@ -165,9 +165,10 @@ CanalaveLibrary2F_Movement_PlayerMoveAside:
     EndMovement
 
 @ Sovereign (the Chronicles, docs/PostgameLegendaries.md): the Legend Archivist, here from the first Hall of Fame. His
-@ first talk opens the Unova Chronicle (VAR_SOVEREIGN_CHRONICLE 1). After that he tells where each sword not caught yet
-@ stands; once all three are caught, he sends the player to Lake Valor for Keldeo. Then Truth and Ideals (below), and a
-@ hint for Meloetta and Genesect while they aren't caught.
+@ first talk opens the Unova Chronicle (VAR_SOVEREIGN_CHRONICLE 1). After that he offers a menu of the Chronicle's
+@ legends, and each topic gives what's left of it: hints, and the key items (the Light and Dark Stones, the DNA
+@ Splicers, the Reveal Glass) or the release of the Forces of Nature roamers. The menu comes back until the player
+@ is done.
 CanalaveLibrary2F_SovereignArchivist:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
@@ -178,6 +179,29 @@ CanalaveLibrary2F_SovereignArchivist:
     GoTo CanalaveLibrary2F_SovereignArchivistEnd
 
 CanalaveLibrary2F_SovereignArchivistUnova:
+    Message CanalaveLibrary2F_Text_SovereignArchivistWhichLegend
+CanalaveLibrary2F_SovereignArchivistMenu:
+    InitLocalTextMenu 31, 3, 0, VAR_RESULT
+    SetMenuXOriginToRight
+    AddMenuEntryImm CanalaveLibrary2F_Text_SovereignMenuSwords, 0
+    AddMenuEntryImm CanalaveLibrary2F_Text_SovereignMenuDragons, 1
+    AddMenuEntryImm CanalaveLibrary2F_Text_SovereignMenuForces, 2
+    AddMenuEntryImm CanalaveLibrary2F_Text_SovereignMenuOthers, 3
+    AddMenuEntryImm CanalaveLibrary2F_Text_SovereignMenuDone, 4
+    ShowMenu
+    GoToIfEq VAR_RESULT, 0, CanalaveLibrary2F_SovereignArchivistSwordsTopic
+    GoToIfEq VAR_RESULT, 1, CanalaveLibrary2F_SovereignArchivistDragons
+    GoToIfEq VAR_RESULT, 2, CanalaveLibrary2F_SovereignArchivistForces
+    GoToIfEq VAR_RESULT, 3, CanalaveLibrary2F_SovereignArchivistOthers
+    Message CanalaveLibrary2F_Text_SovereignArchivistKeepReading
+    GoTo CanalaveLibrary2F_SovereignArchivistEnd
+
+CanalaveLibrary2F_SovereignArchivistAskMore:
+    Message CanalaveLibrary2F_Text_SovereignArchivistAnythingElse
+    GoTo CanalaveLibrary2F_SovereignArchivistMenu
+
+@ The Swords of Justice: where each sword not caught yet stands, then Keldeo.
+CanalaveLibrary2F_SovereignArchivistSwordsTopic:
     SovereignCheckSpeciesCaught SPECIES_COBALION, VAR_0x8004
     SovereignCheckSpeciesCaught SPECIES_TERRAKION, VAR_0x8005
     SovereignCheckSpeciesCaught SPECIES_VIRIZION, VAR_0x8006
@@ -187,17 +211,19 @@ CanalaveLibrary2F_SovereignArchivistUnova:
     SovereignCheckSpeciesCaught SPECIES_KELDEO, VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, CanalaveLibrary2F_SovereignArchivistKeldeoCaught
     Message CanalaveLibrary2F_Text_SovereignArchivistKeldeo
-    GoTo CanalaveLibrary2F_SovereignArchivistDragons
+    GoTo CanalaveLibrary2F_SovereignArchivistAskMore
 
 CanalaveLibrary2F_SovereignArchivistKeldeoCaught:
     Message CanalaveLibrary2F_Text_SovereignArchivistKeldeoCaught
-    GoTo CanalaveLibrary2F_SovereignArchivistDragons
+    GoTo CanalaveLibrary2F_SovereignArchivistAskMore
 
 CanalaveLibrary2F_SovereignArchivistSwords:
     Message CanalaveLibrary2F_Text_SovereignArchivistSwords
     CallIfEq VAR_0x8004, FALSE, CanalaveLibrary2F_SovereignArchivistCobalion
     CallIfEq VAR_0x8005, FALSE, CanalaveLibrary2F_SovereignArchivistTerrakion
     CallIfEq VAR_0x8006, FALSE, CanalaveLibrary2F_SovereignArchivistVirizion
+    GoTo CanalaveLibrary2F_SovereignArchivistAskMore
+
 @ Truth and Ideals: the Light and Dark Stones on the first pass, a hint for each dragon not caught yet, then Kyurem,
 @ then the DNA Splicers once Kyurem is caught.
 CanalaveLibrary2F_SovereignArchivistDragons:
@@ -217,27 +243,98 @@ CanalaveLibrary2F_SovereignArchivistDragonHints:
     SovereignCheckSpeciesCaught SPECIES_ZEKROM, VAR_0x8007
     CallIfEq VAR_0x8006, FALSE, CanalaveLibrary2F_SovereignArchivistReshiram
     CallIfEq VAR_0x8007, FALSE, CanalaveLibrary2F_SovereignArchivistZekrom
-    GoToIfEq VAR_0x8006, FALSE, CanalaveLibrary2F_SovereignArchivistOthers
-    GoToIfEq VAR_0x8007, FALSE, CanalaveLibrary2F_SovereignArchivistOthers
+    GoToIfEq VAR_0x8006, FALSE, CanalaveLibrary2F_SovereignArchivistAskMore
+    GoToIfEq VAR_0x8007, FALSE, CanalaveLibrary2F_SovereignArchivistAskMore
     SovereignCheckSpeciesCaught SPECIES_KYUREM, VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, CanalaveLibrary2F_SovereignArchivistKyuremCaught
     Message CanalaveLibrary2F_Text_SovereignArchivistKyurem
-    GoTo CanalaveLibrary2F_SovereignArchivistOthers
+    GoTo CanalaveLibrary2F_SovereignArchivistAskMore
 
 CanalaveLibrary2F_SovereignArchivistKyuremCaught:
     CheckItem ITEM_DNA_SPLICERS, 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, CanalaveLibrary2F_SovereignArchivistOthers
+    GoToIfEq VAR_RESULT, TRUE, CanalaveLibrary2F_SovereignArchivistDragonsDone
     Message CanalaveLibrary2F_Text_SovereignArchivistDNASplicers
     SetVar VAR_0x8004, ITEM_DNA_SPLICERS
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
+    GoTo CanalaveLibrary2F_SovereignArchivistAskMore
+
+CanalaveLibrary2F_SovereignArchivistDragonsDone:
+    Message CanalaveLibrary2F_Text_SovereignArchivistDragonsDone
+    GoTo CanalaveLibrary2F_SovereignArchivistAskMore
+
+@ Forces of Nature: the first pass releases Tornadus and Thundurus as roamers (FLAG_SOVEREIGN_RELEASED_FORCES_OF_NATURE).
+@ One knocked out is released again after the next Hall of Fame resets its state, as Professor Oak does for the
+@ legendary birds. Once both are caught: the Reveal Glass, then Landorus, then Enamorus.
+CanalaveLibrary2F_SovereignArchivistForces:
+    GoToIfSet FLAG_SOVEREIGN_RELEASED_FORCES_OF_NATURE, CanalaveLibrary2F_SovereignArchivistForcesReleased
+    Message CanalaveLibrary2F_Text_SovereignArchivistForcesRelease
+    SetFlag FLAG_SOVEREIGN_RELEASED_FORCES_OF_NATURE
+    ActivateRoamingPokemon ROAMING_SLOT_TORNADUS
+    ActivateRoamingPokemon ROAMING_SLOT_THUNDURUS
+    GoTo CanalaveLibrary2F_SovereignArchivistAskMore
+
+CanalaveLibrary2F_SovereignArchivistForcesReleased:
+    CallIfEq VAR_ROAMING_TORNADUS_STATE, ROAMER_STATE_RESET, CanalaveLibrary2F_SovereignArchivistReleaseTornadus
+    CallIfEq VAR_ROAMING_THUNDURUS_STATE, ROAMER_STATE_RESET, CanalaveLibrary2F_SovereignArchivistReleaseThundurus
+    SovereignCheckSpeciesCaught SPECIES_TORNADUS, VAR_0x8004
+    SovereignCheckSpeciesCaught SPECIES_THUNDURUS, VAR_0x8005
+    GoToIfEq VAR_0x8004, FALSE, CanalaveLibrary2F_SovereignArchivistRoamers
+    GoToIfEq VAR_0x8005, FALSE, CanalaveLibrary2F_SovereignArchivistRoamers
+    CheckItem ITEM_REVEAL_GLASS, 1, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistRevealGlass
+    SovereignCheckSpeciesCaught SPECIES_LANDORUS, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistLandorus
+    SovereignCheckSpeciesCaught SPECIES_ENAMORUS, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, CanalaveLibrary2F_SovereignArchivistForcesDone
+    Message CanalaveLibrary2F_Text_SovereignArchivistEnamorus
+    GoTo CanalaveLibrary2F_SovereignArchivistAskMore
+
+CanalaveLibrary2F_SovereignArchivistForcesDone:
+    Message CanalaveLibrary2F_Text_SovereignArchivistForcesDone
+    GoTo CanalaveLibrary2F_SovereignArchivistAskMore
+
+CanalaveLibrary2F_SovereignArchivistLandorus:
+    Message CanalaveLibrary2F_Text_SovereignArchivistLandorus
+    GoTo CanalaveLibrary2F_SovereignArchivistAskMore
+
+CanalaveLibrary2F_SovereignArchivistRoamers:
+    Message CanalaveLibrary2F_Text_SovereignArchivistRoamers
+    GoToIfEq VAR_ROAMING_TORNADUS_STATE, ROAMER_STATE_DEFEATED, CanalaveLibrary2F_SovereignArchivistRoamerGone
+    GoToIfEq VAR_ROAMING_THUNDURUS_STATE, ROAMER_STATE_DEFEATED, CanalaveLibrary2F_SovereignArchivistRoamerGone
+    GoTo CanalaveLibrary2F_SovereignArchivistAskMore
+
+CanalaveLibrary2F_SovereignArchivistRoamerGone:
+    Message CanalaveLibrary2F_Text_SovereignArchivistRoamerGone
+    GoTo CanalaveLibrary2F_SovereignArchivistAskMore
+
+CanalaveLibrary2F_SovereignArchivistReleaseTornadus:
+    SetVar VAR_ROAMING_TORNADUS_STATE, ROAMER_STATE_ROAMING
+    ActivateRoamingPokemon ROAMING_SLOT_TORNADUS
+    Return
+
+CanalaveLibrary2F_SovereignArchivistReleaseThundurus:
+    SetVar VAR_ROAMING_THUNDURUS_STATE, ROAMER_STATE_ROAMING
+    ActivateRoamingPokemon ROAMING_SLOT_THUNDURUS
+    Return
+
+CanalaveLibrary2F_SovereignArchivistRevealGlass:
+    Message CanalaveLibrary2F_Text_SovereignArchivistRevealGlass
+    SetVar VAR_0x8004, ITEM_REVEAL_GLASS
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    Return
+
+@ The other Unova legends: Meloetta and Genesect.
 CanalaveLibrary2F_SovereignArchivistOthers:
     SovereignCheckSpeciesCaught SPECIES_MELOETTA, VAR_0x8004
     SovereignCheckSpeciesCaught SPECIES_GENESECT, VAR_0x8005
     CallIfEq VAR_0x8004, FALSE, CanalaveLibrary2F_SovereignArchivistMeloetta
     CallIfEq VAR_0x8005, FALSE, CanalaveLibrary2F_SovereignArchivistGenesect
-    Message CanalaveLibrary2F_Text_SovereignArchivistKeepReading
-    GoTo CanalaveLibrary2F_SovereignArchivistEnd
+    GoToIfEq VAR_0x8004, FALSE, CanalaveLibrary2F_SovereignArchivistAskMore
+    GoToIfEq VAR_0x8005, FALSE, CanalaveLibrary2F_SovereignArchivistAskMore
+    Message CanalaveLibrary2F_Text_SovereignArchivistOthersDone
+    GoTo CanalaveLibrary2F_SovereignArchivistAskMore
 
 CanalaveLibrary2F_SovereignArchivistCobalion:
     Message CanalaveLibrary2F_Text_SovereignArchivistCobalion

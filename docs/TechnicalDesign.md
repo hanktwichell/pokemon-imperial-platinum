@@ -251,8 +251,9 @@ implemented.
 - **The Chronicles** (post-game legendaries, `docs/PostgameLegendaries.md` from `data/postgame_legendaries.yaml`).
   - **The Archivist.** `LOCALID_SOVEREIGN_ARCHIVIST` in Canalave Library 2F, hidden by OnTransition
     (`FLAG_MAP_LOCAL_HIDE_SOVEREIGN_NPC`) until `FLAG_GAME_COMPLETED`. His first talk sets `VAR_SOVEREIGN_CHRONICLE` to 1
-    (the Unova Chronicle open); later chapters will raise it. Later talks check the Pokédex for each sword and chain
-    one hint message per sword not caught yet; with all three caught, he points to Keldeo at Lake Valor.
+    (the Unova Chronicle open); later chapters will raise it. Later talks show a menu (`InitLocalTextMenu`, one entry
+    per part of the Chronicle, then "That's all") that comes back after each topic. Each topic checks the Pokédex and
+    gives only what's left: for the swords, one hint message per sword not caught yet, then Keldeo at Lake Valor.
   - **A static legendary** is an object with `OBJ_EVENT_GFX_LEGENDARY_<SPECIES>`, a 64x64 billboard like the Totems'.
     - Its hidden flag is `FLAG_MAP_LOCAL_HIDE_LEGENDARY`. The map's OnTransition sets it, then clears it once the
       chapter is open and `SovereignCheckSpeciesCaught` says the Pokédex doesn't have the species as caught. No
@@ -279,6 +280,15 @@ implemented.
         dragons caught. Vanilla's north room swaps this doorway to the Regice chamber when the party has a
         fateful-encounter Regigigas, so Kyurem waits until the player comes without one.
       - The Archivist gives `ITEM_DNA_SPLICERS` once Kyurem is caught (`CheckItem` keeps it to one).
+    - **Forces of Nature.** `ROAMING_SLOT_TORNADUS` and `ROAMING_SLOT_THUNDURUS` (`generated/roaming_slots.txt`) make 8
+      roaming slots. Each `Roamer` is in the special-encounter save block, so the save grows by 42 bytes. Save block 0
+      is now 0xCEE4 of its 13 sectors (0xD000), measured in the test build; the save still fits Platinum's 32 sectors.
+      - Their states are `VAR_ROAMING_TORNADUS_STATE` and `VAR_ROAMING_THUNDURUS_STATE`
+        (`SystemVars_SetRoamingSpeciesState`).
+      - The Hall of Fame resets a knocked-out one (`ROAMER_STATE_DEFEATED` to `_RESET`), and the Archivist releases it
+        again, as Professor Oak does for the legendary birds.
+      - Landorus (`ROUTE_228_ROCK_PEAK_RUINS`, own script archives like the ice chamber's) checks `CheckPartyHasSpecies`
+        for both. Enamorus (Route 224) waits for Landorus caught.
     - Iron Island B2F's right room had `scripts_empty`. It now has its own `scripts_iron_island_b2f_right_room` and
       `scripts_init_iron_island_b2f_right_room`, appended at the end of `scripts.order` so no other archive moves.
 - **Galactic gates** (decision 23, `docs/Story.md`). Each Galactic encounter checks the `FLAG_SOVEREIGN_TOTEM_TRIAL_*`

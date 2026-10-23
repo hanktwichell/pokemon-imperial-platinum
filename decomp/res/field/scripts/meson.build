@@ -1132,6 +1132,8 @@ scr_seq_files = files(
     'scripts_init_iron_island_b2f_right_room.s',
     'scripts_mt_coronet_iceberg_ruins.s',
     'scripts_init_mt_coronet_iceberg_ruins.s',
+    'scripts_route_228_rock_peak_ruins.s',
+    'scripts_init_route_228_rock_peak_ruins.s',
 )
 
 scr_seq_narc = custom_target('scr_seq.narc',

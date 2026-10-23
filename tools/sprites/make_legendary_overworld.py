@@ -25,6 +25,8 @@ LEGENDARIES = {
     "reshiram": 643,
     "zekrom": 644,
     "kyurem": 646,
+    "landorus": 645,
+    "enamorus": 905,
 }
 
 
