@@ -49,6 +49,8 @@ _118:
     CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_ABILITY, _147
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_MISSED|MOVE_STATUS_SEMI_INVULNERABLE, _237
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_SIDE_CONDITIONS_EFFECT_MON, SIDE_CONDITION_SAFEGUARD, _319
+    CompareVarToValue OPCODE_FLAG_SET, BTLVAR_SOVEREIGN_TERRAIN_EFFECT_MON, FIELD_CONDITION_TERRAIN_MISTY, _sovereign_misty_1
+    CompareVarToValue OPCODE_FLAG_SET, BTLVAR_SOVEREIGN_TERRAIN_EFFECT_MON, FIELD_CONDITION_TERRAIN_ELECTRIC, _sovereign_electric_1
     CompareVarToValue OPCODE_NEQ, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_DIRECT, _147
     PlayMoveAnimation BTLSCR_ATTACKER
     Wait 
@@ -156,3 +158,17 @@ _330:
 
 _337:
     End 
+
+_sovereign_misty_1:
+    CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_INDIRECT, _337
+    WaitButtonABTime 30
+    // Sovereign (item 11): {0} surrounds itself with ...
+    PrintMessage BattleStrings_Text_SovereignProtectedByMistyTerrain_Ally, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
+    GoTo _330
+
+_sovereign_electric_1:
+    CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_INDIRECT, _337
+    WaitButtonABTime 30
+    // Sovereign (item 11): {0} surrounds itself with ...
+    PrintMessage BattleStrings_Text_SovereignProtectedByElectricTerrain_Ally, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
+    GoTo _330

@@ -322,4 +322,7 @@ subscript_files = files(
     'subscript_sovereign_stats_noble_roar.s',
     'subscript_sovereign_stats_tearful_look.s',
     'subscript_sovereign_booster_energy.s',
+    'subscript_sovereign_terrain_end.s',
+    'subscript_sovereign_grassy_terrain_heal.s',
+    'subscript_sovereign_terrain_start.s',
 )

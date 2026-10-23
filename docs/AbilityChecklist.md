@@ -61,7 +61,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 176 | Stance Change | Gen 6 | not yet (no battle effect) |
 | 177 | Gale Wings | Gen 6 | yes: Flying moves +1 priority at full HP |
 | 178 | Mega Launcher | Gen 6 | yes: pulse moves ×1.5 |
-| 179 | Grass Pelt | Gen 6 | not yet (no battle effect) |
+| 179 | Grass Pelt | Gen 6 | yes: Defense ×1.5 in Grassy Terrain |
 | 180 | Symbiosis | Gen 6 | not yet (no battle effect) |
 | 181 | Tough Claws | Gen 6 | yes: contact moves ×1.3 |
 | 182 | Pixilate | Gen 6 | yes: Normal moves become Fairy-type, ×1.2 |
@@ -89,7 +89,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 204 | Liquid Voice | Gen 7 | yes: sound moves become Water-type |
 | 205 | Triage | Gen 7 | yes: healing moves +3 priority |
 | 206 | Galvanize | Gen 7 | yes: Normal moves become Electric-type, ×1.2 |
-| 207 | Surge Surfer | Gen 7 | not yet (no battle effect) |
+| 207 | Surge Surfer | Gen 7 | yes: Speed doubled in Electric Terrain |
 | 208 | Schooling | Gen 7 | not yet (no battle effect) |
 | 209 | Disguise | Gen 7 | not yet (no battle effect) |
 | 210 | Battle Bond | Gen 7 | not yet (no battle effect) |
@@ -108,10 +108,10 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 223 | PowerOfAlchemy | Gen 7 | not yet (no battle effect) |
 | 224 | Beast Boost | Gen 7 | yes: its highest stat +1 for each foe its move knocks out |
 | 225 | RKS System | Gen 7 | not yet (no battle effect) |
-| 226 | Electric Surge | Gen 7 | not yet (no battle effect) |
-| 227 | Psychic Surge | Gen 7 | not yet (no battle effect) |
-| 228 | Misty Surge | Gen 7 | not yet (no battle effect) |
-| 229 | Grassy Surge | Gen 7 | not yet (no battle effect) |
+| 226 | Electric Surge | Gen 7 | yes: sets Electric Terrain on entry |
+| 227 | Psychic Surge | Gen 7 | yes: sets Psychic Terrain on entry |
+| 228 | Misty Surge | Gen 7 | yes: sets Misty Terrain on entry |
+| 229 | Grassy Surge | Gen 7 | yes: sets Grassy Terrain on entry |
 | 230 | Full Metal Body | Gen 7 | yes: other Pokémon can't lower its stats (as Clear Body, not ignored by Mold Breaker) |
 | 231 | Shadow Shield | Gen 7 | yes: damage halved at full HP (not ignored by Mold Breaker) |
 | 232 | Prism Armor | Gen 7 | yes: super-effective damage ×0.75 (not ignored by Mold Breaker) |
@@ -164,14 +164,14 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 279 | Commander | Gen 9 | not yet (no battle effect) |
 | 280 | Electromorphsis | Gen 9 | not yet (no battle effect) |
 | 281 | Protosynthesis | Gen 9 | yes: in harsh sunlight or after using a Booster Energy, its highest stat ×1.3 (Speed ×1.5) |
-| 282 | Quark Drive | Gen 9 | partly: after using a Booster Energy, its highest stat ×1.3 (Speed ×1.5) (no Electric Terrain yet) |
+| 282 | Quark Drive | Gen 9 | yes: in Electric Terrain or after using a Booster Energy, its highest stat ×1.3 (Speed ×1.5) |
 | 283 | Good as Gold | Gen 9 | not yet (no battle effect) |
 | 284 | Vessel of Ruin | Gen 9 | yes: Sp. Atk of every other Pokémon ×0.75 |
 | 285 | Sword of Ruin | Gen 9 | yes: Defense of every other Pokémon ×0.75 |
 | 286 | Tablets of Ruin | Gen 9 | yes: Attack of every other Pokémon ×0.75 |
 | 287 | Beads of Ruin | Gen 9 | yes: Sp. Def of every other Pokémon ×0.75 |
-| 288 | OrichalcumPulse | Gen 9 | not yet (no battle effect) |
-| 289 | Hadron Engine | Gen 9 | not yet (no battle effect) |
+| 288 | OrichalcumPulse | Gen 9 | yes: sets harsh sunlight on entry; Attack ×1.33 in it |
+| 289 | Hadron Engine | Gen 9 | yes: sets Electric Terrain on entry; Sp. Atk ×1.33 in it |
 | 290 | Opportunist | Gen 9 | not yet (no battle effect) |
 | 291 | Cud Chew | Gen 9 | not yet (no battle effect) |
 | 292 | Sharpness | Gen 9 | yes: slicing moves ×1.5 |

@@ -333,6 +333,7 @@ struct BattleContext {
     // the boost is applied after the move (BattleControllerPlayer_TriggerAfterMoveHitEffects).
     u8 sovereignDefiantPending;
     u8 sovereignLastMoveFailed[MAX_BATTLERS]; // Sovereign (item 11): Stomping Tantrum and Temper Flare
+    u32 sovereignTerrainTemp; // Sovereign (item 11): BTLVAR_SOVEREIGN_TERRAIN_EFFECT_MON
 };
 
 #endif // POKEPLATINUM_BATTLE_BATTLE_CONTEXT_H

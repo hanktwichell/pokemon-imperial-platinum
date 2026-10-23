@@ -1992,3 +1992,21 @@ effects and always-crit moves. Verified Defiant and Guard Dog against Intimidate
 
 Test note: the hook script only captures the battle context on a damage calculation, so give one battler a damaging
 move; single-target moves in doubles need extra A presses (`/tmp/claude-0/hur/bp2.py`).
+
+## CA-0032 — 2026-10-23 (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** PR #32 (item 11 parts 4–8 and Booster Energy) merged. On PR #38: part 9 (Stomping Tantrum, Temper
+Flare, Lash Out, Round, Burning Jealousy, Alluring Voice, 3/4 drains) and part 10, terrains (all four, Surge abilities,
+Hadron Engine, Orichalcum Pulse, Quark Drive, Surge Surfer, Grass Pelt, terrain moves). Verified Round and Electric
+Terrain in game. Move checklist: exact 211, approximate 47, placeholder 122; abilities: 93 newer implemented.
+
+**Files modified:** `decomp/include/constants/battle/condition.h`, `decomp/include/battle/battle_context.h`,
+`battle_lib.h`, `decomp/src/battle/battle_lib.c`, `battle_script.c`, `battle_controller_player.c`, 8 status subscripts,
+new subscripts `subscript_sovereign_terrain_{start,end}.s` and `subscript_sovereign_grassy_terrain_heal.s`, effect
+scripts 0295–0298, `decomp/generated/{move_battle_effects,battle_subscripts,battle_script_vars}.txt`,
+`decomp/res/text/battle_strings.json`, `tools/engine/gen9_move_fixes.py`, `tools/engine/gen_abilities.py`, docs.
+
+**Next 3 steps:**
+1. Merge PR #38 when green.
+2. Terrain Seeds and the terrain-removal message; Mimicry; Laser Focus, Throat Chop, Smack Down, Retaliate, Dragon Tail.
+3. Ally Switch, After You, Wide/Quick Guard, Telekinesis (doubles-relevant status moves, AIReview #8).

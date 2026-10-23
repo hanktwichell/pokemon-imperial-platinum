@@ -18,6 +18,8 @@ _021:
 _036:
     CompareMonDataToValue OPCODE_NEQ, BTLSCR_SIDE_EFFECT_MON, BATTLEMON_STATUS, MON_CONDITION_NONE, _077
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_SIDE_CONDITIONS_EFFECT_MON, SIDE_CONDITION_SAFEGUARD, _083
+    CompareVarToValue OPCODE_FLAG_SET, BTLVAR_SOVEREIGN_TERRAIN_EFFECT_MON, FIELD_CONDITION_TERRAIN_MISTY, _sovereign_misty_1
+    CompareVarToValue OPCODE_FLAG_SET, BTLVAR_SOVEREIGN_TERRAIN_EFFECT_MON, FIELD_CONDITION_TERRAIN_ELECTRIC, _sovereign_electric_1
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_MISSED|MOVE_STATUS_SEMI_INVULNERABLE, _077
     TryYawn _077
     PlayMoveAnimation BTLSCR_ATTACKER
@@ -53,3 +55,15 @@ _089:
 
 _096:
     End 
+
+_sovereign_misty_1:
+    WaitButtonABTime 30
+    // Sovereign (item 11): {0} surrounds itself with ...
+    PrintMessage BattleStrings_Text_SovereignProtectedByMistyTerrain_Ally, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
+    GoTo _089
+
+_sovereign_electric_1:
+    WaitButtonABTime 30
+    // Sovereign (item 11): {0} surrounds itself with ...
+    PrintMessage BattleStrings_Text_SovereignProtectedByElectricTerrain_Ally, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
+    GoTo _089

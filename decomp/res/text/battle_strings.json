@@ -8684,6 +8684,122 @@
         "The foe’s {STRVAR_1 1, 0, 0} used\n",
         "its {STRVAR_1 8, 1, 0}!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignProtectedByMistyTerrain_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} surrounds itself\n",
+        "with a protective mist!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignProtectedByMistyTerrain_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} surrounds itself\n",
+        "with a protective mist!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignProtectedByMistyTerrain_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} surrounds itself\n",
+        "with a protective mist!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignProtectedByElectricTerrain_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} surrounds itself\n",
+        "with electrified terrain!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignProtectedByElectricTerrain_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} surrounds itself\n",
+        "with electrified terrain!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignProtectedByElectricTerrain_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} surrounds itself\n",
+        "with electrified terrain!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignElectricTerrainStart",
+      "en_US": [
+        "An electric current ran across\n",
+        "the battlefield!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignGrassyTerrainStart",
+      "en_US": [
+        "Grass grew to cover\n",
+        "the battlefield!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignMistyTerrainStart",
+      "en_US": [
+        "Mist swirled around\n",
+        "the battlefield!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignPsychicTerrainStart",
+      "en_US": "The battlefield got weird!"
+    },
+    {
+      "id": "BattleStrings_Text_SovereignElectricTerrainEnd",
+      "en_US": [
+        "The electricity disappeared\n",
+        "from the battlefield."
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignGrassyTerrainEnd",
+      "en_US": [
+        "The grass disappeared\n",
+        "from the battlefield."
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignMistyTerrainEnd",
+      "en_US": [
+        "The mist disappeared\n",
+        "from the battlefield."
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignPsychicTerrainEnd",
+      "en_US": [
+        "The weirdness disappeared\n",
+        "from the battlefield."
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignHealedByGrassyTerrain_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} was healed\n",
+        "by the Grassy Terrain!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignHealedByGrassyTerrain_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} was healed\n",
+        "by the Grassy Terrain!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignHealedByGrassyTerrain_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} was healed\n",
+        "by the Grassy Terrain!"
+      ]
     }
   ]
 }

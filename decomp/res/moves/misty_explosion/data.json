@@ -12,7 +12,7 @@
     "accuracy": 100,
     "pp": 5,
     "effect": {
-        "type": "BATTLE_EFFECT_HIT",
+        "type": "BATTLE_EFFECT_HALVE_DEFENSE",
         "chance": 0
     },
     "range": "RANGE_ALL_ADJACENT",

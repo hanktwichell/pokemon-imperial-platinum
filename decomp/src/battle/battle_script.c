@@ -1327,6 +1327,11 @@ static BOOL BtlCmd_Wait(BattleSystem *battleSys, BattleContext *battleCtx)
 static void BattleScript_CalcMoveDamage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int moveType;
+
+    // Sovereign (item 11): Terrain Pulse takes the terrain's type (read by the type chart after this, too).
+    if (battleCtx->moveCur == MOVE_TERRAIN_PULSE) {
+        battleCtx->moveType = Sovereign_TerrainPulseType(battleCtx, battleCtx->attacker);
+    }
     moveType = Sovereign_AbilityMoveType(Battler_Ability(battleCtx, battleCtx->attacker), battleCtx->moveCur, battleCtx->moveType ? battleCtx->moveType : CURRENT_MOVE_DATA.type); // Sovereign (item 11)
 
     battleCtx->damage = BattleSystem_CalcMoveDamage(battleSys,
@@ -9678,6 +9683,9 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         return &battleCtx->sideConditionsMask[BattleSystem_GetBattlerSide(battleSys, battleCtx->defender)];
     case BTLVAR_SIDE_CONDITIONS_EFFECT_MON:
         return &battleCtx->sideConditionsMask[BattleSystem_GetBattlerSide(battleSys, battleCtx->sideEffectMon)];
+    case BTLVAR_SOVEREIGN_TERRAIN_EFFECT_MON: // Sovereign (item 11): read-only, the terrain under the side-effect target
+        battleCtx->sovereignTerrainTemp = Sovereign_TerrainUnder(battleCtx, battleCtx->sideEffectMon);
+        return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_DAMAGE:
         return &battleCtx->damage;
     case BTLVAR_ATTACKER:
