@@ -1108,3 +1108,91 @@ files. Also `decomp/src/script_manager.c` (test warps), `.github/workflows/build
 2. The Pokédex milestone (decision 21): National Dex from Rowan's Pokédex, national numbers everywhere.
 3. The Mega Evolution animation, then the Mega abilities the boss teams need (Magic Bounce, Parental Bond, Strong
    Jaw, Tough Claws).
+
+---
+
+## CB-0016 — 2026-10-22, 6:45 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented and verified in the test build:**
+
+- **The Pokédex milestone (decision 21).**
+  - Rowan's Pokédex is the National Dex from the start. Sandgem's lab script sets the National Dex flag right after
+    giving the Pokédex.
+  - The game's National Dex check (`ScrCmd_GetSetNationalDexEnabled`) now asks whether the player has entered the
+    Hall of Fame. So the post-game events that check it (Oak's PC, the Trophy Garden and Great Marsh extras, ...)
+    still wait for the Champion.
+  - Rowan's event for a complete Sinnoh dex (Oak's visit, the Poké Radar) only ran while the National Dex was off,
+    so it would have been lost post-game. It now has its own flag (`FLAG_SOVEREIGN_SHOWED_ROWAN_SINNOH_DEX`, formerly
+    `FLAG_UNUSED_0x0094`). It was verified with a temporary hook that saw all 210 Sinnoh Pokémon. Its dialogue
+    (National Mode, Pal Park) still needs rewriting.
+  - The summary screen and the PC box preview show national numbers, with four digits from #1000 ("No.1018").
+- **The MEGA button, redrawn (owner asked).** It's a pill-shaped sprite above the moves with the held Mega Stone's
+  item icon in a socket (the Mega Ring for Mega Rayquaza). Off, it's grey. On, it turns pink, violet and blue with
+  white lettering, and its outline pulses purple and gold.
+  - Turn it on or off by touching it, by pressing UP from the top row of moves and then A, or by pressing SELECT.
+  - The button art is original, drawn by `tools/sprites/make_mega_button.py`.
+  - Verified:
+    - The button shows Garchompite, and all three inputs toggle it.
+    - Choosing a move with it on Mega Evolves Garchomp, and on turn 2 the button is gone.
+    - The release ROM builds and passes boot smoke.
+
+**Files modified:**
+- DX:
+  - `decomp/src/scrcmd.c`, `decomp/generated/vars_flags.txt`
+  - `decomp/res/field/scripts/scripts_sandgem_town_pokemon_research_lab.s`
+  - `decomp/src/overlay006/wild_encounters.c`
+  - `decomp/src/overlay006/great_marsh_binoculars.c`
+  - `decomp/src/applications/pokemon_summary_screen/window.c`
+  - `decomp/src/applications/pc_boxes/box_app_manager.c`
+  - `decomp/src/applications/pc_boxes/ov19_021DA92C.c`
+  - `decomp/src/script_manager.c` (the test build gets the Pokédex)
+- The button:
+  - `tools/sprites/make_mega_button.py` (new)
+  - `decomp/res/graphics/battle/interface/mega_button.png`, `mega_button_cell.json`, `mega_button_anim.json` (new)
+  - `decomp/res/graphics/battle/interface/meson.build`, `decomp/res/graphics/battle/sprites.order`
+  - `decomp/include/battle/battle_subscreen.h`, `decomp/include/battle/message_defs.h`
+  - `decomp/src/battle/battle_subscreen.c`, `battle_display.c`, `battle_controller.c`
+  - `decomp/res/text/battle_strings.json` (the old toggle's text is removed)
+- Docs:
+  - `docs/EngineChangelog.md`, `docs/TechnicalDesign.md`, `docs/EngineRoadmap.md`, `docs/ProjectStatus.md`,
+    `docs/MegaEvolution.md` (via `tools/design/gen_mega_doc.py`)
+  - `CITATIONS.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR when green.
+2. The Mega Evolution animation (`docs/MegaEvolution.md` spec).
+3. The Mega abilities the boss teams need: Magic Bounce, Parental Bond, Strong Jaw, Tough Claws, Aura Guard.
+
+Also open: the dialogue of Rowan's Sinnoh dex event (Oak "adds the National Mode", "Pal Park is open") needs
+Sovereign wording. It's story text, so it's for the owner or the story work (E11).
+
+---
+
+## CB-0017 — 2026-10-22, 7:02 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented (owner asked):** the Mega Stone icon on the MEGA button moved one pixel right, so it sits centred in
+the button's socket. Verified on screen, off and on. The release ROM builds and passes boot smoke.
+
+**Files modified:** `decomp/src/battle/battle_subscreen.c` (`sSovereignMegaIconTemplate`), `CLAUDE_STATUS.md`.
+
+**Next 3 steps:** as in CB-0016:
+1. Merge PR #22 when green.
+2. The Mega Evolution animation.
+3. The Mega abilities the boss teams need.
+
+---
+
+## CB-0018 — 2026-10-22, 7:08 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented (owner asked):** the MEGA button's socket is one pixel smaller on the left. Its centre moved from
+(13, 11.5) to (13.5, 11.5) and its radius from 9.5 to 9, so it rings the Mega Stone evenly: one pixel of socket on
+every side of the 14x14 stone. This also removes the one-pixel bumps at the top and bottom of the circle. Verified on
+screen, off and on. The release ROM builds and passes boot smoke.
+
+**Files modified:** `tools/sprites/make_mega_button.py`, `decomp/res/graphics/battle/interface/mega_button.png`
+(regenerated), `decomp/src/battle/battle_subscreen.c` (comment only), `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Merge PR #22 when green.
+2. The Mega Evolution animation.
+3. The Mega abilities the boss teams need.

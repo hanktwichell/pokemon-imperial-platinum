@@ -5474,7 +5474,9 @@ static BOOL ScrCmd_GetSetNationalDexEnabled(ScriptContext *ctx)
         Pokedex_ObtainNationalDex(SaveData_GetPokedex(ctx->fieldSystem->saveData));
         TrainerInfo_GiveNationalDex(SaveData_GetTrainerInfo(ctx->fieldSystem->saveData));
     } else if (getOrSet == 2) { // Get
-        *destVar = Pokedex_IsNationalDexObtained(SaveData_GetPokedex(ctx->fieldSystem->saveData));
+        // Sovereign (decision 21): the National Dex comes with the Pokédex, so the scripts' National Dex checks
+        // (post-game events, Oak's PC, Snowpoint Temple, Stark Mountain...) mean "has entered the Hall of Fame".
+        *destVar = SystemFlag_CheckGameCompleted(SaveData_GetVarsFlags(ctx->fieldSystem->saveData));
     } else {
         GF_ASSERT(FALSE);
     }
