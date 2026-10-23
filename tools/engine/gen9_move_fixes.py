@@ -183,6 +183,9 @@ MOVES = {
     "no_retreat": (None, None, "all stats +1 (the user isn't trapped yet)", "approximate"),
     "clangorous_soul": (None, None, "all stats +1 (doesn't cost 1/3 of the user's HP yet)", "approximate"),
     "shelter": ("DEF_UP_2", 0, "user Defense +2"),
+    "heal_pulse": ("SOVEREIGN_HEAL_TARGET", 0, "heals the target by 1/2 (3/4 with Mega Launcher)"),
+    "floral_healing": ("SOVEREIGN_HEAL_TARGET", 0, "heals the target by 1/2 (2/3 in Grassy Terrain)"),
+    "life_dew": ("SOVEREIGN_LIFE_DEW", 0, "heals the user and its ally by 1/4"),
 }
 
 

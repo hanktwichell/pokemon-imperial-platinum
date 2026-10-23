@@ -169,5 +169,7 @@ static const int sSideEffectSubscripts[] = {
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_VENOM_DRENCH] = subscript_sovereign_stats_venom_drench,
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_NO_RETREAT] = subscript_sovereign_stats_no_retreat,
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_CLANGOROUS_SOUL] = subscript_sovereign_stats_clangorous_soul,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_HEAL_TARGET] = subscript_sovereign_heal_target,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_LIFE_DEW] = subscript_sovereign_life_dew,
 };
 // clang-format on

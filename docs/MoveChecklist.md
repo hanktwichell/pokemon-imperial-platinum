@@ -6,8 +6,8 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 222 |
-| approximate | 46 |
+| exact | 225 |
+| approximate | 43 |
 | placeholder | 112 |
 | removed | 72 |
 
@@ -52,7 +52,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 502 | Ally Switch | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 503 | Scald | Water | `BURN_HIT` | exact |  |
 | 504 | Shell Smash | Normal | `SOVEREIGN_SHELL_SMASH` | exact | Sovereign effect: user Defense -1, user Sp. Def -1, user Attack +2, user Sp. Atk +2, user Speed +2 |
-| 505 | Heal Pulse | Psychic | `RESTORE_HALF_HP` | approximate | has its own mechanic in Gen IX; closest effect |
+| 505 | Heal Pulse | Psychic | `SOVEREIGN_HEAL_TARGET` | exact | Sovereign effect: heals the target by 1/2 (3/4 with Mega Launcher) |
 | 506 | Hex | Ghost | `HIT` | exact | Sovereign effect: target has a status condition: power doubles |
 | 507 | Sky Drop | Flying | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 508 | Shift Gear | Steel | `SOVEREIGN_SHIFT_GEAR` | exact | Sovereign effect: user Attack +1, user Speed +2 |
@@ -213,7 +213,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 663 | Darkest Lariat | Dark | `HIT` | exact | Sovereign effect: ignores the target's stat changes |
 | 664 | Sparkling Aria | Water | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 665 | Ice Hammer | Ice | `SPEED_DOWN_HIT` | exact |  |
-| 666 | Floral Healing | Fairy | `RESTORE_HALF_HP` | approximate | has its own mechanic in Gen IX; closest effect |
+| 666 | Floral Healing | Fairy | `SOVEREIGN_HEAL_TARGET` | exact | Sovereign effect: heals the target by 1/2 (2/3 in Grassy Terrain) |
 | 667 | High Horsepower | Ground | `HIT` | exact |  |
 | 668 | Strength Sap | Grass | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 669 | Solar Blade | Grass | `SKIP_CHARGE_TURN_IN_SUN` | exact |  |
@@ -338,7 +338,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 788 | Grav Apple | Grass | `LOWER_DEFENSE_HIT` | exact | Sovereign effect: target Defense -1 (100%); 1.5x power under Gravity |
 | 789 | Spirit Break | Fairy | `LOWER_SP_ATK_HIT` | exact |  |
 | 790 | Strange Steam | Fairy | `CONFUSE_HIT` | exact |  |
-| 791 | Life Dew | Water | `RESTORE_HALF_HP` | approximate | heals 50% instead of 25% |
+| 791 | Life Dew | Water | `SOVEREIGN_LIFE_DEW` | exact | Sovereign effect: heals the user and its ally by 1/4 |
 | 792 | Obstruct | Dark | `PROTECT` | approximate | protects like Protect; the contact penalty is missing |
 | 793 | False Surrender | Dark | `BYPASS_ACCURACY` | exact |  |
 | 794 | Meteor Assault | Fighting | `RECHARGE_AFTER` | exact |  |

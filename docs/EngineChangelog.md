@@ -18,10 +18,14 @@ players and the verification that was run.
 - `gen_stat_moves.py` adds Venom Drench (Attack, Sp. Atk and Speed −1, fails unless the target is poisoned), No Retreat
   and Clangorous Soul (all stats +1; the trapping and HP cost aren't reproduced yet, so they stay "approximate"). Shelter
   uses Iron Defense's effect. These four aren't tested in game yet.
-- Move checklist: exact 222, approximate 46, placeholder 112.
+- **Fix: Heal Pulse and Floral Healing healed the user** (they used Recover's effect). They now heal the target by 1/2;
+  Heal Pulse heals 3/4 with Mega Launcher, Floral Healing 2/3 in Grassy Terrain. **Life Dew** heals the user and its ally
+  by 1/4.
+- Move checklist: exact 225, approximate 43, placeholder 112.
 
 **Verified in the test build:** Venusaur's Wide Guard stopped Garchomp's Hyper Voice on both foes for two turns
-(Archaludon stayed at full HP).
+(Archaludon stayed at full HP). Garchomp's Heal Pulse restored the foe it targeted (Venusaur back to 302/302 between
+Turtwig's Tackles).
 
 ## Item 11 (part 11) — Laser Focus and Throat Chop
 
