@@ -2163,7 +2163,7 @@ static BOOL BtlCmd_CalcCrit(BattleSystem *battleSys, BattleContext *battleCtx)
             battleCtx,
             battleCtx->attacker,
             battleCtx->defender,
-            battleCtx->criticalBoosts,
+            battleCtx->criticalBoosts + Move_SovereignCritStage(battleCtx->moveCur),
             BattleContext_Get(battleSys, battleCtx, BATTLECTX_SIDE_CONDITIONS_MASK, battleCtx->defender));
     }
 

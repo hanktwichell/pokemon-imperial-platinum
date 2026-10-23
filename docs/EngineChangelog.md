@@ -4,6 +4,30 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (part 6) — Gen IX move data and 74 more exact moves
+
+- **Fix: moves #827–919 had no flags.** PokeAPI has no flags for the Legends: Arceus and Scarlet/Violet moves, so
+  Protect didn't block them and none made contact (Rough Skin, Iron Barbs, Gooey...). `tools/engine/gen9_move_fixes.py`
+  now sets contact / Protect / Mirror Move / Magic Coat / Snatch for each, from a hand-written Gen IX table.
+- **Secondary effects for Gen VIII–IX moves**, which PokeAPI also lacks: Mountain Gale (flinch), Bitter Malice,
+  Chilling Water, Pounce, Springtide Storm, Lumina Crash (stat drops), Wave Crash (recoil), Headlong Rush and Armor
+  Cannon (as Close Combat), Bitter Blade (drain), Aqua Cutter (high crit), Twin Beam and Tachyon Cutter (two hits),
+  Ruination (halves HP), Comeuppance (as Metal Burst), Malignant Chain (bad poison), the four Torques, Raging Fury
+  (rampage), Torch Song and Mystical Power (Sp. Atk +1).
+- **New effects, damage then a stat change on the user:** Flame Charge, Trailblaze, Aqua Step, Esper Wing (Speed +1),
+  Diamond Storm (Defense +2, 50%), Clanging Scales and Hyperspace Fury (Defense −1), Make It Rain (Sp. Atk −1), Spin
+  Out (Speed −2).
+- **Engine rules:** Storm Throw, Frost Breath, Wicked Blow, Surging Strikes and Flower Trick always crit; Esper Wing
+  has a raised crit ratio; Sacred Sword, Chip Away and Darkest Lariat ignore the target's Defense and evasion stages;
+  Infernal Parade and Barb Barrage double like Hex and Venoshock; Fishious Rend and Bolt Beak double if the target
+  hasn't moved; Hard Press scales with the target's HP; Fickle Beam has a 30% chance of double power; Grav Apple is
+  1.5x under Gravity; Hydro Steam is boosted in sun; Bleakwind, Wildbolt and Sandsear Storm never miss in rain.
+- 27 moves were already Gen IX-accurate and only mislabelled in the checklist (Lunge, Nuzzle, Acid Spray, Power-Up
+  Punch, Jet Punch...). Move checklist: exact 193, approximate 45, placeholder 142.
+
+**Verified in the test build:** Spin Out left Garchomp at Speed −2; Flame Charge left Archaludon at Speed +1; Storm
+Throw dealt 111, the critical value (74 x 1.5).
+
 ## Item 11 (part 5) — stat moves and battle-dependent power
 
 **10 stat-changing status moves** are exact, each with its own subscript written by `tools/engine/gen_stat_moves.py`:

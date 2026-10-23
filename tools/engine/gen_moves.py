@@ -17,6 +17,8 @@ move's behaviour is reproduced.
   slots (0 PP, no name) so the IDs keep matching the official numbers.
 
 Usage: python3 tools/engine/gen_moves.py /path/to/pokeapi/data/v2/csv
+
+Then run tools/engine/gen9_move_fixes.py: it restores the hand-written Gen IX flags and effects that PokeAPI lacks.
 Then run tools/engine/apply_champions_moves.py, which applies Pokémon Champions' changes on top (and turns Snowscape
 into the Snow effect; its checklist row is edited by hand to match).
 """

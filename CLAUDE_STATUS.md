@@ -1797,7 +1797,7 @@ where the regional forms live.
   (`Sovereign_MovePower`), Psyshock, Psystrike, Secret Sword (hit Defense), Foul Play (target's Attack).
 - Verified in game: Shell Smash, Noble Roar, Heavy Slam (59 = exact), Foul Play (uses target Attack 148).
 - Move checklist: exact 119, approximate 67, placeholder 194.
-- PR #32 (part 4) had a conflict with main; main merged into the branch, a new PR carries parts 4 and 5.
+- PR #32 (part 4) had a conflict with main; main merged into the branch, and PR #32 now carries parts 4 and 5.
 
 **Files modified:** `decomp/src/battle/battle_lib.c`, `decomp/include/battle/battle_lib.h`,
 `tools/engine/gen_stat_moves.py` (new), `tools/engine/gen_moves.py`, `docs/MoveChecklist.md`,
@@ -1810,3 +1810,30 @@ where the regional forms live.
 2. More abilities: Analytic, Protosynthesis/Quark Drive, Magic Bounce, Protean/Libero, Overcoat powder immunity,
    Intimidate triggering Defiant/Competitive/Rattled.
 3. Oak/Rowan National Dex scene once the owner answers the three questions in `docs/Story.md`.
+
+## CA-0029 — 2026-10-23 (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented (item 11 part 6):**
+- Bug fix: moves #827–919 had no flags (no Protect, no contact) because PokeAPI has none for them. New tool
+  `tools/engine/gen9_move_fixes.py` holds a hand-written Gen IX flag table and patches them; run it after
+  `gen_moves.py`.
+- Same tool: secondary effects for Gen VIII–IX moves, 5 new "damage then user stat change" effects (indices 290–294),
+  and 27 checklist relabels of moves that were already Gen IX-accurate.
+- Engine: always-crit moves, Esper Wing crit ratio, stat-ignoring Sacred Sword/Chip Away/Darkest Lariat, power rules for
+  Infernal Parade, Barb Barrage, Fishious Rend, Bolt Beak, Hard Press, Fickle Beam, Grav Apple, Hydro Steam in sun, and
+  the three storms never miss in rain.
+- Verified: Spin Out (Speed −2), Flame Charge (Speed +1), Storm Throw (always crits, 111 = 74 × 1.5).
+- Move checklist: exact 193, approximate 45, placeholder 142.
+- Test note: the bedroom save state must be remade with `tools/test/new_game.sh` after main's map changes.
+
+**Files modified:** `tools/engine/gen9_move_fixes.py` (new), `tools/engine/gen_moves.py`,
+`decomp/src/battle/battle_lib.c`, `decomp/src/battle/battle_script.c`, `decomp/src/battle/battle_controller_player.c`,
+`decomp/include/battle/battle_lib.h`, `decomp/generated/move_battle_effects.txt`,
+`decomp/res/battle/scripts/effects/meson.build` and `effect_script_0290.s`–`0294.s`, 97 moves' `data.json`,
+`docs/MoveChecklist.md`, `docs/EngineChangelog.md`.
+
+**Next 3 steps:**
+1. Remaining Gen V moves: Smack Down, Incinerate, Clear Smog, Dragon Tail/Circle Throw, Retaliate, Fell Stinger,
+   Final Gambit, Round, Echoed Voice, Belch, Flame Burst, Synchronoise.
+2. AI scoring for the new effects (290–294) and for always-crit moves (they lost the `HIGH_CRITICAL` score).
+3. More abilities: Analytic, Protosynthesis/Quark Drive, Magic Bounce, Protean/Libero, Overcoat, Intimidate triggers.

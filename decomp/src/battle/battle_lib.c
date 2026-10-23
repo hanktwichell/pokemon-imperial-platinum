@@ -7017,6 +7017,24 @@ BOOL Move_SheerForceApplies(BattleContext *battleCtx, int attacker, int move)
         && MOVE_DATA(move).effect != BATTLE_EFFECT_ELECTRO_SHOT;
 }
 
+// Sovereign (item 11): moves that always land a critical hit, and moves with a raised critical-hit ratio that keep
+// another battle effect. Read by BtlCmd_CalcCrit.
+int Move_SovereignCritStage(int move)
+{
+    switch (move) {
+    case MOVE_STORM_THROW:
+    case MOVE_FROST_BREATH:
+    case MOVE_WICKED_BLOW:
+    case MOVE_SURGING_STRIKES:
+    case MOVE_FLOWER_TRICK:
+        return 3;
+    case MOVE_ESPER_WING:
+        return 1;
+    }
+
+    return 0;
+}
+
 // Sovereign (item 11): a battler's Speed with its stat stage applied.
 static u32 Sovereign_StagedSpeed(BattleContext *battleCtx, int battler)
 {
@@ -7047,12 +7065,14 @@ int Sovereign_MovePower(BattleSystem *battleSys, BattleContext *battleCtx, int m
 
     switch (move) {
     case MOVE_HEX: // double against a Pokemon with a status condition
+    case MOVE_INFERNAL_PARADE:
         if (battleCtx->battleMons[defender].status & MON_CONDITION_ANY) {
             power *= 2;
         }
         break;
 
     case MOVE_VENOSHOCK: // double against a poisoned Pokemon
+    case MOVE_BARB_BARRAGE:
         if (battleCtx->battleMons[defender].status & MON_CONDITION_ANY_POISON) {
             power *= 2;
         }
@@ -7084,6 +7104,32 @@ int Sovereign_MovePower(BattleSystem *battleSys, BattleContext *battleCtx, int m
             }
         }
         power = 20 + 20 * boosts;
+        break;
+
+    case MOVE_FISHIOUS_REND: // double if the target hasn't moved yet this turn
+    case MOVE_BOLT_BEAK:
+        if (Battler_MovedThisTurn(battleCtx, defender) == FALSE) {
+            power *= 2;
+        }
+        break;
+
+    case MOVE_HARD_PRESS: // up to 100 power, by the target's remaining HP
+        power = 100 * battleCtx->battleMons[defender].curHP / battleCtx->battleMons[defender].maxHP;
+        if (power < 1) {
+            power = 1;
+        }
+        break;
+
+    case MOVE_FICKLE_BEAM: // 30% chance of double power
+        if (BattleSystem_RandNext(battleSys) % 10 < 3) {
+            power *= 2;
+        }
+        break;
+
+    case MOVE_GRAV_APPLE: // 1.5x under Gravity
+        if (battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) {
+            power = power * 15 / 10;
+        }
         break;
     }
 
@@ -7391,6 +7437,12 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         spDefenseStage = defenseStage;
     }
 
+    // Sovereign (item 11): Sacred Sword, Chip Away and Darkest Lariat ignore the target's defensive stat stages.
+    if (move == MOVE_SACRED_SWORD || move == MOVE_CHIP_AWAY || move == MOVE_DARKEST_LARIAT) {
+        defenseStage = 0;
+        spDefenseStage = 0;
+    }
+
     if (attackerParams.ability == ABILITY_SIMPLE) {
         attackStage *= 2;
         if (attackStage < MIN_STAT_STAGE - DEFAULT_STAT_STAGE) {
@@ -7653,7 +7705,12 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
                 damage = damage * 15 / 10;
                 break;
             case TYPE_WATER:
-                damage /= 2;
+                // Sovereign (item 11): Hydro Steam is boosted, not weakened, in harsh sunlight.
+                if (move == MOVE_HYDRO_STEAM) {
+                    damage = damage * 15 / 10;
+                } else {
+                    damage /= 2;
+                }
                 break;
             }
         }

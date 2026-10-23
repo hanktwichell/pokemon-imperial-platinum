@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 119 |
-| approximate | 67 |
-| placeholder | 194 |
+| exact | 193 |
+| approximate | 45 |
+| placeholder | 142 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -27,7 +27,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 477 | Telekinesis | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 478 | Magic Room | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 479 | Smack Down | Rock | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
-| 480 | Storm Throw | Fighting | `HIGH_CRITICAL` | approximate | has its own mechanic in Gen IX; closest effect |
+| 480 | Storm Throw | Fighting | `HIT` | exact | Sovereign effect: always a critical hit |
 | 481 | Flame Burst | Fire | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 482 | Sludge Wave | Poison | `POISON_HIT` | exact |  |
 | 483 | Quiver Dance | Bug | `SOVEREIGN_QUIVER_DANCE` | exact | Sovereign effect: user Sp. Atk +1, user Sp. Def +1, user Speed +1 |
@@ -35,10 +35,10 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 485 | Synchronoise | Psychic | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 486 | Electro Ball | Electric | `HIT` | exact | Sovereign effect: power from the user/target Speed ratio (40-150) |
 | 487 | Soak | Water | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
-| 488 | Flame Charge | Fire | `HIT` | approximate | user's stats change by [('spe', 1)] in the original |
+| 488 | Flame Charge | Fire | `SOVEREIGN_RAISE_SPEED_HIT` | exact | Sovereign effect: user Speed +1 (100%) |
 | 489 | Coil | Poison | `SOVEREIGN_COIL` | exact | Sovereign effect: user Attack +1, user Defense +1, user accuracy +1 |
 | 490 | Low Sweep | Fighting | `LOWER_SPEED_HIT` | exact |  |
-| 491 | Acid Spray | Poison | `LOWER_SP_DEF_2_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
+| 491 | Acid Spray | Poison | `LOWER_SP_DEF_2_HIT` | exact | Sovereign effect: target Sp. Def -2 (100%) |
 | 492 | Foul Play | Dark | `HIT` | exact | Sovereign effect: damage uses the target's Attack and Attack stage |
 | 493 | Simple Beam | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 494 | Entrainment | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
@@ -71,7 +71,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 521 | Volt Switch | Electric | `SWITCH_HIT` | exact |  |
 | 522 | Struggle Bug | Bug | `LOWER_SP_ATK_HIT` | exact |  |
 | 523 | Bulldoze | Ground | `LOWER_SPEED_HIT` | exact |  |
-| 524 | Frost Breath | Ice | `HIGH_CRITICAL` | approximate | has its own mechanic in Gen IX; closest effect |
+| 524 | Frost Breath | Ice | `HIT` | exact | Sovereign effect: always a critical hit |
 | 525 | Dragon Tail | Dragon | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 526 | Work Up | Normal | `SOVEREIGN_WORK_UP` | exact | Sovereign effect: user Attack +1, user Sp. Atk +1 |
 | 527 | Electroweb | Electric | `LOWER_SPEED_HIT` | exact |  |
@@ -96,7 +96,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 546 | Techno Blast | Normal | `JUDGEMENT` | exact |  |
 | 547 | Relic Song | Normal | `HIT` | approximate | secondary ailment 2 not reproduced |
 | 548 | Secret Sword | Fighting | `HIT` | exact | Sovereign effect: special damage against the target's Defense |
-| 549 | Glaciate | Ice | `LOWER_SPEED_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
+| 549 | Glaciate | Ice | `LOWER_SPEED_HIT` | exact | Sovereign effect: foes' Speed -1 (100%) |
 | 550 | Bolt Strike | Electric | `PARALYZE_HIT` | exact |  |
 | 551 | Blue Flare | Fire | `BURN_HIT` | exact |  |
 | 552 | Fiery Dance | Fire | `RAISE_SP_ATK_HIT` | exact |  |
@@ -119,9 +119,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 569 | Ion Deluge | Electric | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 570 | ParabolcCharge | Electric | `RECOVER_HALF_DAMAGE_DEALT` | approximate | has its own mechanic in Gen IX; closest effect |
 | 571 | Forest’s Curse | Grass | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
-| 572 | Petal Blizzard | Grass | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 572 | Petal Blizzard | Grass | `HIT` | exact | Sovereign effect: hits all adjacent Pokémon |
 | 573 | Freeze-Dry | Ice | `FREEZE_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
-| 574 | Disarming Voice | Fairy | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 574 | Disarming Voice | Fairy | `HIT` | exact | Sovereign effect: never misses, hits both foes |
 | 575 | Parting Shot | Dark | `ATK_DEF_DOWN` | approximate | stat changes [('atk', -1), ('spa', -1)] in the original |
 | 576 | Topsy-Turvy | Dark | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 577 | Draining Kiss | Fairy | `RECOVER_HALF_DAMAGE_DEALT` | approximate | drains 50% instead of 75% |
@@ -133,14 +133,14 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 583 | Play Rough | Fairy | `LOWER_ATTACK_HIT` | exact |  |
 | 584 | Fairy Wind | Fairy | `HIT` | exact |  |
 | 585 | Moonblast | Fairy | `LOWER_SP_ATK_HIT` | exact |  |
-| 586 | Boomburst | Normal | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 586 | Boomburst | Normal | `HIT` | exact | Sovereign effect: hits all adjacent Pokémon |
 | 587 | Fairy Lock | Fairy | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 588 | King’s Shield | Steel | `PROTECT` | approximate | protects like Protect; the contact penalty is missing |
-| 589 | Play Nice | Normal | `ATK_DOWN` | approximate | has its own mechanic in Gen IX; closest effect |
+| 589 | Play Nice | Normal | `ATK_DOWN` | exact | Sovereign effect: never misses, ignores Protect, target Attack -1 |
 | 590 | Confide | Normal | `SP_ATK_DOWN` | approximate | has its own mechanic in Gen IX; closest effect |
-| 591 | Diamond Storm | Rock | `HIT` | approximate | user's stats change by [('def', 2)] in the original |
+| 591 | Diamond Storm | Rock | `SOVEREIGN_RAISE_DEF_2_HIT` | exact | Sovereign effect: user Defense +2 (50%) |
 | 592 | Steam Eruption | Water | `BURN_HIT` | exact |  |
-| 593 | Hyperspace Hole | Psychic | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 593 | Hyperspace Hole | Psychic | `HIT` | exact | Sovereign effect: never misses, ignores Protect |
 | 594 | Water Shuriken | Water | `MULTI_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
 | 595 | Mystical Fire | Fire | `LOWER_SP_ATK_HIT` | exact |  |
 | 596 | Spiky Shield | Grass | `PROTECT` | approximate | protects like Protect; the contact penalty is missing |
@@ -155,11 +155,11 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 605 | Dazzling Gleam | Fairy | `HIT` | exact |  |
 | 606 | Celebrate | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 607 | Hold Hands | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
-| 608 | Baby-Doll Eyes | Fairy | `ATK_DOWN` | approximate | has its own mechanic in Gen IX; closest effect |
-| 609 | Nuzzle | Electric | `PARALYZE_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
+| 608 | Baby-Doll Eyes | Fairy | `ATK_DOWN` | exact | Sovereign effect: +1 priority, target Attack -1 |
+| 609 | Nuzzle | Electric | `PARALYZE_HIT` | exact | Sovereign effect: paralyzes (100%) |
 | 610 | Hold Back | Normal | `LEAVE_WITH_1_HP` | exact |  |
 | 611 | Infestation | Bug | `BIND_HIT` | exact |  |
-| 612 | Power-Up Punch | Fighting | `RAISE_ATTACK_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
+| 612 | Power-Up Punch | Fighting | `RAISE_ATTACK_HIT` | exact | Sovereign effect: user Attack +1 (100%) |
 | 613 | Oblivion Wing | Flying | `RECOVER_HALF_DAMAGE_DEALT` | approximate | drains 50% instead of 75% |
 | 614 | Thousand Arrows | Ground | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 615 | Thousand Waves | Ground | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
@@ -168,7 +168,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 618 | Origin Pulse | Water | `HIT` | exact |  |
 | 619 | PrecipiceBlade | Ground | `HIT` | exact |  |
 | 620 | Dragon Ascent | Flying | `DEF_SPD_DOWN_HIT` | exact |  |
-| 621 | Hyperspace Fury | Dark | `LOWER_OWN_ATK_AND_DEF` | approximate | user's stats change by [('def', -1)] in the original |
+| 621 | Hyperspace Fury | Dark | `SOVEREIGN_LOWER_OWN_DEF_HIT` | exact | Sovereign effect: user Defense -1, ignores Protect |
 | 622 | (breakneck-blitz--physical) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
 | 623 | (breakneck-blitz--special) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
 | 624 | (all-out-pummeling--physical) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
@@ -226,8 +226,8 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 676 | Pollen Puff | Bug | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 677 | Anchor Shot | Steel | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 678 | Psychic Terrain | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
-| 679 | Lunge | Bug | `LOWER_ATTACK_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
-| 680 | Fire Lash | Fire | `LOWER_DEFENSE_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
+| 679 | Lunge | Bug | `LOWER_ATTACK_HIT` | exact | Sovereign effect: target Attack -1 (100%) |
+| 680 | Fire Lash | Fire | `LOWER_DEFENSE_HIT` | exact | Sovereign effect: target Defense -1 (100%) |
 | 681 | Power Trip | Dark | `HIT` | exact | Sovereign effect: power 20 + 20 per positive stat stage on the user |
 | 682 | Burn Up | Fire | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 683 | Speed Swap | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
@@ -235,12 +235,12 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 685 | Purify | Poison | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 686 | RevelatnDance | Normal | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 687 | Core Enforcer | Dragon | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
-| 688 | Trop Kick | Grass | `LOWER_ATTACK_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
+| 688 | Trop Kick | Grass | `LOWER_ATTACK_HIT` | exact | Sovereign effect: target Attack -1 (100%) |
 | 689 | Instruct | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 690 | Beak Blast | Flying | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
-| 691 | Clanging Scales | Dragon | `LOWER_OWN_ATK_AND_DEF` | approximate | user's stats change by [('def', -1)] in the original |
+| 691 | Clanging Scales | Dragon | `SOVEREIGN_LOWER_OWN_DEF_HIT` | exact | Sovereign effect: user Defense -1 |
 | 692 | Dragon Hammer | Dragon | `HIT` | exact |  |
-| 693 | Brutal Swing | Dark | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 693 | Brutal Swing | Dark | `HIT` | exact | Sovereign effect: hits all adjacent Pokémon |
 | 694 | Aurora Veil | Ice | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 695 | (sinister-arrow-raid) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
 | 696 | (malicious-moonsault) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
@@ -291,7 +291,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 741 | Veevee Volley | Normal | `HIT` | exact |  |
 | 742 | DoubleIronBash | Steel | `HIT_TWICE` | exact |  |
 | 743 | (max-guard) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
-| 744 | Dynamax Cannon | Dragon | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 744 | Dynamax Cannon | Dragon | `HIT` | exact | Sovereign effect: plain hit (no Dynamax in Sovereign) |
 | 745 | Snipe Shot | Water | `HIGH_CRITICAL` | approximate | has its own mechanic in Gen IX; closest effect |
 | 746 | Jaw Lock | Dark | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 747 | Stuff Cheeks | Normal | `DEF_UP_2` | approximate | has its own mechanic in Gen IX; closest effect |
@@ -301,8 +301,8 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 751 | Dragon Darts | Dragon | `HIT_TWICE` | approximate | has its own mechanic in Gen IX; closest effect |
 | 752 | Teatime | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 753 | Octolock | Fighting | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
-| 754 | Bolt Beak | Electric | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
-| 755 | Fishious Rend | Water | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 754 | Bolt Beak | Electric | `HIT` | exact | Sovereign effect: power doubles if the target hasn't moved yet |
+| 755 | Fishious Rend | Water | `HIT` | exact | Sovereign effect: power doubles if the target hasn't moved yet |
 | 756 | Court Change | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 757 | (max-flare) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
 | 758 | (max-flutterby) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
@@ -328,14 +328,14 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 778 | Drum Beating | Grass | `LOWER_SPEED_HIT` | exact |  |
 | 779 | Snap Trap | Grass | `BIND_HIT` | exact |  |
 | 780 | Pyro Ball | Fire | `BURN_HIT` | exact |  |
-| 781 | Behemoth Blade | Steel | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
-| 782 | Behemoth Bash | Steel | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 781 | Behemoth Blade | Steel | `HIT` | exact | Sovereign effect: plain hit (no Dynamax in Sovereign) |
+| 782 | Behemoth Bash | Steel | `HIT` | exact | Sovereign effect: plain hit (no Dynamax in Sovereign) |
 | 783 | Aura Wheel | Electric | `HIT` | approximate | user's stats change by [('spe', 1)] in the original |
-| 784 | Breaking Swipe | Dragon | `LOWER_ATTACK_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
+| 784 | Breaking Swipe | Dragon | `LOWER_ATTACK_HIT` | exact | Sovereign effect: foes' Attack -1 (100%) |
 | 785 | Branch Poke | Grass | `HIT` | exact |  |
 | 786 | Overdrive | Electric | `HIT` | exact |  |
-| 787 | Apple Acid | Grass | `LOWER_SP_DEF_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
-| 788 | Grav Apple | Grass | `LOWER_DEFENSE_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
+| 787 | Apple Acid | Grass | `LOWER_SP_DEF_HIT` | exact | Sovereign effect: target Sp. Def -1 (100%) |
+| 788 | Grav Apple | Grass | `LOWER_DEFENSE_HIT` | exact | Sovereign effect: target Defense -1 (100%); 1.5x power under Gravity |
 | 789 | Spirit Break | Fairy | `LOWER_SP_ATK_HIT` | exact |  |
 | 790 | Strange Steam | Fairy | `CONFUSE_HIT` | exact |  |
 | 791 | Life Dew | Water | `RESTORE_HALF_HP` | approximate | heals 50% instead of 25% |
@@ -353,7 +353,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 803 | Grassy Glide | Grass | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 804 | Rising Voltage | Electric | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 805 | Terrain Pulse | Normal | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
-| 806 | Skitter Smack | Bug | `LOWER_SP_ATK_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
+| 806 | Skitter Smack | Bug | `LOWER_SP_ATK_HIT` | exact | Sovereign effect: target Sp. Atk -1 (100%) |
 | 807 | BurnJealousy | Fire | `BURN_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
 | 808 | Lash Out | Dark | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 809 | Poltergeist | Ghost | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
@@ -364,13 +364,13 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 814 | Dual Wingbeat | Flying | `HIT_TWICE` | exact |  |
 | 815 | Scorching Sands | Ground | `BURN_HIT` | exact |  |
 | 816 | Jungle Healing | Grass | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
-| 817 | Wicked Blow | Dark | `HIGH_CRITICAL` | approximate | has its own mechanic in Gen IX; closest effect |
+| 817 | Wicked Blow | Dark | `HIT` | exact | Sovereign effect: always a critical hit |
 | 818 | Surging Strikes | Water | `MULTI_HIT` | approximate | hits 3-3 times in the original |
 | 819 | Thunder Cage | Electric | `BIND_HIT` | exact |  |
 | 820 | Dragon Energy | Dragon | `DECREASE_POWER_WITH_LESS_USER_HP` | exact |  |
 | 821 | Freezing Glare | Psychic | `BLIZZARD` | exact |  |
 | 822 | Fiery Wrath | Dark | `FLINCH_HIT` | exact |  |
-| 823 | Thunderous Kick | Fighting | `LOWER_DEFENSE_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
+| 823 | Thunderous Kick | Fighting | `LOWER_DEFENSE_HIT` | exact | Sovereign effect: target Defense -1 (100%) |
 | 824 | Glacial Lance | Ice | `HIT` | exact |  |
 | 825 | Astral Barrage | Ghost | `HIT` | exact |  |
 | 826 | Eerie Spell | Psychic | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
@@ -378,35 +378,35 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 828 | Psyshield Bash | Psychic | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 829 | Power Shift | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 830 | Stone Axe | Rock | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 831 | SpringtideStrm | Fairy | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 832 | Mystical Power | Psychic | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 833 | Raging Fury | Fire | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 834 | Wave Crash | Water | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 831 | SpringtideStrm | Fairy | `LOWER_ATTACK_HIT` | exact | Sovereign effect: foes' Attack -1 (30%) |
+| 832 | Mystical Power | Psychic | `RAISE_SP_ATK_HIT` | exact | Sovereign effect: user Sp. Atk +1 (100%) |
+| 833 | Raging Fury | Fire | `CONTINUE_AND_CONFUSE_SELF` | exact | Sovereign effect: rampages 2-3 turns, then confuses the user |
+| 834 | Wave Crash | Water | `RECOIL_THIRD` | exact | Sovereign effect: 1/3 recoil |
 | 835 | Chloroblast | Grass | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 836 | Mountain Gale | Ice | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 836 | Mountain Gale | Ice | `FLINCH_HIT` | exact | Sovereign effect: 30% flinch |
 | 837 | Victory Dance | Fighting | `SOVEREIGN_VICTORY_DANCE` | exact | Sovereign effect: user Attack +1, user Defense +1, user Speed +1 |
-| 838 | Headlong Rush | Ground | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 839 | Barb Barrage | Poison | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 840 | Esper Wing | Psychic | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 841 | Bitter Malice | Ghost | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 838 | Headlong Rush | Ground | `DEF_SPD_DOWN_HIT` | exact | Sovereign effect: user Defense and Sp. Def -1 |
+| 839 | Barb Barrage | Poison | `POISON_HIT` | exact | Sovereign effect: 50% poison; power doubles if the target is poisoned |
+| 840 | Esper Wing | Psychic | `SOVEREIGN_RAISE_SPEED_HIT` | exact | Sovereign effect: user Speed +1 (100%); high critical-hit ratio |
+| 841 | Bitter Malice | Ghost | `LOWER_ATTACK_HIT` | exact | Sovereign effect: target Attack -1 (100%) |
 | 842 | Shelter | Steel | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 843 | Triple Arrows | Fighting | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 844 | Infernal Parade | Ghost | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 844 | Infernal Parade | Ghost | `BURN_HIT` | exact | Sovereign effect: 30% burn; power doubles if the target has a status condition |
 | 845 | Ceaseless Edge | Dark | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 846 | Bleakwind Storm | Flying | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 847 | Wildbolt Storm | Electric | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 848 | Sandsear Storm | Ground | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 846 | Bleakwind Storm | Flying | `LOWER_SPEED_HIT` | exact | Sovereign effect: foes' Speed -1 (30%); never misses in rain |
+| 847 | Wildbolt Storm | Electric | `PARALYZE_HIT` | exact | Sovereign effect: 20% paralysis; never misses in rain |
+| 848 | Sandsear Storm | Ground | `BURN_HIT` | exact | Sovereign effect: 20% burn; never misses in rain |
 | 849 | Lunar Blessing | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 850 | Take Heart | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
-| 851 | Tera Blast | Normal | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 851 | Tera Blast | Normal | `HIT` | exact | Sovereign effect: plain hit (no Terastallization in Sovereign) |
 | 852 | Silk Trap | Bug | `PROTECT` | approximate | protects like Protect; the contact penalty is missing |
 | 853 | Axe Kick | Fighting | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 854 | Last Respects | Ghost | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 855 | Lumina Crash | Psychic | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 855 | Lumina Crash | Psychic | `LOWER_SP_DEF_2_HIT` | exact | Sovereign effect: target Sp. Def -2 (100%) |
 | 856 | Order Up | Dragon | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 857 | Jet Punch | Water | `PRIORITY_1` | approximate | extra effect not reproduced |
+| 857 | Jet Punch | Water | `PRIORITY_1` | exact | Sovereign effect: +1 priority punch |
 | 858 | Spicy Extract | Grass | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
-| 859 | Spin Out | Steel | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 859 | Spin Out | Steel | `SOVEREIGN_LOWER_OWN_SPEED_2_HIT` | exact | Sovereign effect: user Speed -2 |
 | 860 | Population Bomb | Normal | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 861 | Ice Spinner | Ice | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 862 | Glaive Rush | Dragon | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
@@ -416,57 +416,57 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 866 | Mortal Spin | Poison | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 867 | Doodle | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 868 | Fillet Away | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
-| 869 | Kowtow Cleave | Dark | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 870 | Flower Trick | Grass | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 871 | Torch Song | Fire | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 872 | Aqua Step | Water | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 869 | Kowtow Cleave | Dark | `HIT` | exact | Sovereign effect: never misses |
+| 870 | Flower Trick | Grass | `HIT` | exact | Sovereign effect: always a critical hit, never misses |
+| 871 | Torch Song | Fire | `RAISE_SP_ATK_HIT` | exact | Sovereign effect: user Sp. Atk +1 (100%) |
+| 872 | Aqua Step | Water | `SOVEREIGN_RAISE_SPEED_HIT` | exact | Sovereign effect: user Speed +1 (100%) |
 | 873 | Raging Bull | Normal | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 874 | Make It Rain | Steel | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 874 | Make It Rain | Steel | `SOVEREIGN_LOWER_OWN_SP_ATK_HIT` | exact | Sovereign effect: user Sp. Atk -1 |
 | 875 | Psyblade | Psychic | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 876 | Hydro Steam | Water | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 877 | Ruination | Dark | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 876 | Hydro Steam | Water | `HIT` | exact | Sovereign effect: boosted, not weakened, in harsh sunlight |
+| 877 | Ruination | Dark | `HALVE_HP` | exact | Sovereign effect: halves the target's HP |
 | 878 | CollisionCours | Fighting | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 879 | Electro Drift | Electric | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 880 | Shed Tail | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 881 | ChillyReceptn | Ice | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 882 | Tidy Up | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 883 | Snowscape | Ice | `WEATHER_HAIL` | exact | set by `apply_champions_moves.py`: Hail now works as Snow (Gen IX), so Snowscape shares its effect and animation |
-| 884 | Pounce | Bug | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 885 | Trailblaze | Grass | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 886 | Chilling Water | Water | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 887 | Hyper Drill | Normal | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 888 | Twin Beam | Psychic | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 884 | Pounce | Bug | `LOWER_SPEED_HIT` | exact | Sovereign effect: target Speed -1 (100%) |
+| 885 | Trailblaze | Grass | `SOVEREIGN_RAISE_SPEED_HIT` | exact | Sovereign effect: user Speed +1 (100%) |
+| 886 | Chilling Water | Water | `LOWER_ATTACK_HIT` | exact | Sovereign effect: target Attack -1 (100%) |
+| 887 | Hyper Drill | Normal | `HIT` | exact | Sovereign effect: ignores Protect |
+| 888 | Twin Beam | Psychic | `HIT_TWICE` | exact | Sovereign effect: hits twice |
 | 889 | Rage Fist | Ghost | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 890 | Armor Cannon | Fire | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 891 | Bitter Blade | Fire | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 890 | Armor Cannon | Fire | `DEF_SPD_DOWN_HIT` | exact | Sovereign effect: user Defense and Sp. Def -1 |
+| 891 | Bitter Blade | Fire | `RECOVER_HALF_DAMAGE_DEALT` | exact | Sovereign effect: drains half the damage dealt |
 | 892 | Double Shock | Electric | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 893 | Gigaton Hammer | Steel | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 894 | Comeuppance | Dark | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 895 | Aqua Cutter | Water | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 896 | Blazing Torque | Fire | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 894 | Comeuppance | Dark | `METAL_BURST` | exact | Sovereign effect: returns 1.5x the damage taken |
+| 895 | Aqua Cutter | Water | `HIGH_CRITICAL` | exact | Sovereign effect: high critical-hit ratio |
+| 896 | Blazing Torque | Fire | `BURN_HIT` | exact | Sovereign effect: 30% burn |
 | 897 | Wicked Torque | Dark | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 898 | Noxious Torque | Poison | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 899 | Combat Torque | Fighting | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 900 | Magical Torque | Fairy | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 898 | Noxious Torque | Poison | `POISON_HIT` | exact | Sovereign effect: 30% poison |
+| 899 | Combat Torque | Fighting | `PARALYZE_HIT` | exact | Sovereign effect: 30% paralysis |
+| 900 | Magical Torque | Fairy | `CONFUSE_HIT` | exact | Sovereign effect: 30% confusion |
 | 901 | Blood Moon | Normal | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 902 | Matcha Gotcha | Grass | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 903 | Syrup Bomb | Grass | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 904 | Ivy Cudgel | Grass | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 905 | Electro Shot | Electric | `ELECTRO_SHOT` | exact | Sovereign effect: charge turn raises Sp. Atk; no charge turn in rain |
-| 906 | Tera Starstorm | Normal | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 907 | Fickle Beam | Dragon | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 906 | Tera Starstorm | Normal | `HIT` | exact | Sovereign effect: plain hit (no Terastallization in Sovereign) |
+| 907 | Fickle Beam | Dragon | `HIT` | exact | Sovereign effect: 30% chance of double power |
 | 908 | Burning Bulwark | Fire | `PROTECT` | approximate | protects like Protect; the contact penalty is missing |
 | 909 | Thunderclap | Electric | `PRIORITY_1` | approximate | extra effect not reproduced |
-| 910 | Mighty Cleave | Rock | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 911 | Tachyon Cutter | Steel | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 912 | Hard Press | Steel | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 910 | Mighty Cleave | Rock | `HIT` | exact | Sovereign effect: ignores Protect |
+| 911 | Tachyon Cutter | Steel | `HIT_TWICE` | exact | Sovereign effect: hits twice, never misses |
+| 912 | Hard Press | Steel | `HIT` | exact | Sovereign effect: power 1-100 from the target's remaining HP |
 | 913 | Dragon Cheer | Dragon | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 914 | Alluring Voice | Fairy | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 915 | Temper Flare | Fire | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 916 | Supercell Slam | Electric | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 917 | Psychic Noise | Psychic | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 918 | Upper Hand | Fighting | `PRIORITY_1` | approximate | extra effect not reproduced |
-| 919 | Malignant Chain | Poison | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 919 | Malignant Chain | Poison | `BADLY_POISON_HIT` | exact | Sovereign effect: badly poisons (50%) |
 
 ## Platinum's moves updated to Gen IX numbers
 

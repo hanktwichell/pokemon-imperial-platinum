@@ -2994,6 +2994,10 @@ static int BattleControllerPlayer_CheckMoveHitAccuracy(BattleSystem *battleSys, 
     if (MON_IS_IDENTIFIED(defender) && evaStages < 0) {
         evaStages = 0;
     }
+    // Sovereign (item 11): Sacred Sword, Chip Away and Darkest Lariat ignore the target's evasion stage.
+    if (move == MOVE_SACRED_SWORD || move == MOVE_CHIP_AWAY || move == MOVE_DARKEST_LARIAT) {
+        evaStages = 0;
+    }
 
     s8 sumStages = 6 + evaStages + accStages;
     if (sumStages < 0) {
@@ -3130,8 +3134,10 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
     }
 
     if (NO_CLOUD_NINE) {
+        // Sovereign (item 11): the Forces of Nature's storms never miss in rain either.
         if (WEATHER_IS_RAIN
-            && (MOVE_DATA(move).effect == BATTLE_EFFECT_THUNDER || MOVE_DATA(move).effect == BATTLE_EFFECT_HURRICANE)) {
+            && (MOVE_DATA(move).effect == BATTLE_EFFECT_THUNDER || MOVE_DATA(move).effect == BATTLE_EFFECT_HURRICANE
+                || move == MOVE_BLEAKWIND_STORM || move == MOVE_WILDBOLT_STORM || move == MOVE_SANDSEAR_STORM)) {
             battleCtx->moveStatusFlags &= ~MOVE_STATUS_MISSED;
         }
 
