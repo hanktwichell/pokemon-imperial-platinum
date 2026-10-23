@@ -2821,3 +2821,64 @@ new rooms for these?**
    in the Archivist's menu. Then Xerneas (Eterna Forest, behind the Old Chateau) and Hoopa (Solaceon Ruins, with the
    Prison Bottle), which use existing maps.
 3. Victini, Yveltal, Zygarde, Diancie and Volcanion, once the owner answers the question above.
+
+## CB-0041 — 2026-10-23, 10:27 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Owner's answer to the CB-0040 question (2026-10-23): "Existing spots."** Legendaries planned for new rooms go in
+fitting existing rooms or dead ends nearby, and the docs say so ("Changed from the plan" in each `built` note).
+
+**Implemented:** PR #53 (Forces of Nature and the Archivist's menu, CB-0039 and CB-0040) merged after one re-run (its
+rom job timed out in apt-get before building). Then Victini and the whole Kalos Chronicle:
+- **Victini** (Lv. 55): Vista Lighthouse's top floor, west side (2, 7), from the Unova Chronicle's opening. It's in
+  the Archivist's Unova "Other legends" topic.
+- **The Kalos Chronicle** (`VAR_SOVEREIGN_CHRONICLE` 2): a talk to the Archivist with Kyurem caught opens it. From
+  then on he first asks which Chronicle to read from (Unova, Kalos, That's all). Kalos has its own topic menu:
+  - **Life and Destruction**, the chapter key:
+    - Xerneas (Lv. 70) beside the Old Chateau (70, 14).
+    - Yveltal (Lv. 70) on Lost Tower 5F (13, 14).
+    - Zygarde (Lv. 70) in a Wayward Cave B1F alcove (21, 4), once both are caught.
+  - **Other legends:**
+    - The Prison Bottle, given while the player doesn't have it.
+    - Diancie (Lv. 55): Oreburgh Mine B2F (2, 22), with a Carbink in the party.
+    - Hoopa (Lv. 55): Solaceon Ruins Room 7 (5, 4), while the player carries the bottle.
+    - Volcanion (Lv. 60): Stark Mountain room 1 (34, 24), at the end of its east tunnel.
+- Seven new overworld sprites (`sovlegend12` to `sovlegend18`). Wayward Cave B1F gets its own script archives.
+- **Two legendaries on one map** (Eterna Forest: Virizion and Xerneas):
+  - Xerneas uses `FLAG_MAP_LOCAL_HIDE_LEGENDARY_2` (map-local 0x1C, unused).
+  - Each one's talk script stores its species in `VAR_MAP_LOCAL_0x00`, so the OnLoad removal after a battle removes
+    the right one. A first try with `VAR_0x8009` failed, because special vars can't be read from OnLoad after a battle.
+- **Verified** in two test runs. A temporary patch set the game completed, opened the Unova Chronicle, marked Kyurem
+  caught, added a Carbink and Master Balls, raised the party to level 100 and added warps. Checked:
+  - Xerneas, Hoopa and Zygarde hidden before their conditions held.
+  - The Kalos opening, the chapter menu, the Kalos topics, the Victini hint and "That's all".
+  - All seven seen, caught and gone afterwards.
+  - The Zygarde hint, then "You found all three!".
+  - Xerneas and Virizion each knocked out and each vanishing alone.
+  - The release ROM builds without warnings and passes boot smoke.
+- **Not tested:** Diancie hidden without a Carbink (the same `CheckPartyHasSpecies` check as Keldeo's and Landorus').
+  Stark Mountain's first-visit Galactic scene with Volcanion visible: the player enters 14 tiles away, so it shouldn't
+  show in the scene.
+
+**Files modified:**
+- Scripts: `decomp/res/field/scripts/scripts_canalave_library_2f.s`, `scripts_vista_lighthouse.s`,
+  `scripts_eterna_forest.s`, `scripts_route_209_lost_tower_5f.s`, `scripts_solaceon_ruins_room_7.s` and its init,
+  `scripts_oreburgh_mine_b2f.s` and its init, `scripts_stark_mountain_room_1.s` and its init,
+  `scripts_wayward_cave_b1f.s` and `scripts_init_wayward_cave_b1f.s` (new), `scripts.order`, `meson.build`
+- Events: `decomp/res/field/events/events_{vista_lighthouse,eterna_forest,route_209_lost_tower_5f,
+  solaceon_ruins_room_7,oreburgh_mine_b2f,stark_mountain_room_1,wayward_cave_b1f}.json`
+- `decomp/include/data/map_headers.h` (Wayward Cave B1F), `decomp/generated/vars_flags.txt`
+  (`FLAG_MAP_LOCAL_HIDE_LEGENDARY_2`)
+- Texts: `decomp/res/text/canalave_library_2f.json`
+- Sprites: `decomp/generated/object_events_gfx.txt`, `decomp/src/overlay005/object_event_gfx_data.c`,
+  `decomp/res/graphics/field_sprites/` (`field_sprites.order`, `meson.build`, seven new
+  `pokemon/legendary_*.png`), `tools/sprites/make_legendary_overworld.py`
+- Data and docs: `data/postgame_legendaries.yaml`, `docs/PostgameLegendaries.md`, `docs/ItemChanges_Sovereign.md`,
+  `docs/TechnicalDesign.md`, `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `CITATIONS.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR once CI is green.
+2. **The Alola Chronicle** (var 3, opened by Xerneas and Yveltal, the Kalos key). Start with the four Tapus at existing
+   shrine-like spots (Route 222 beach, Fullmoon Island, Floaroma Meadow, Route 226 sea), then the Cosmog gift at
+   Spear Pillar.
+3. **Forms that the Chronicles now need** (FM battle forms): Zygarde's 10% and Complete Formes (Power Construct),
+   Meloetta's Pirouette Forme and Keldeo's Resolute Form.

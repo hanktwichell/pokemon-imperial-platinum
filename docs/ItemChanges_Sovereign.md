@@ -9,7 +9,7 @@ Renegade Platinum's item changes and item locations are unchanged unless listed 
 |---|---|---|
 | Mega Ring | Leader Fantina, Hearthome Gym (with the Relic Badge) | Enables Mega Evolution |
 | Light Stone, Dark Stone | Legend Archivist, Canalave Library (post-game, with the Unova Chronicle) | Carried, they wake Reshiram (Fuego Ironworks) and Zekrom (Valley Windworks, at night) |
-| Prison Bottle | Legend Archivist (post-game) | Hoopa event; used on Hoopa from the bag, switches it between Hoopa Confined and Hoopa Unbound |
+| Prison Bottle | Legend Archivist, Canalave Library, in the Kalos Chronicle (Other legends) | Hoopa event (Hoopa appears in the Solaceon Ruins while the player carries it); used on Hoopa from the bag, switches it between Hoopa Confined and Hoopa Unbound |
 | Scroll of Darkness, Scroll of Waters | Maylene, Veilstone Gym (post-game) | Evolve Kubfu |
 | Infinite Repel | Not placed yet (QoL #3 says Professor Rowan's aide, after the Coal Badge) | Toggles a Repel that never runs out |
 

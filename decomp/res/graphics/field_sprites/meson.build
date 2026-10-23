@@ -226,6 +226,13 @@ field_sprites_textures_single_frame = [
     { 'file': 'pokemon/legendary_kyurem.png', 'basename': 'sovlegend09'},
     { 'file': 'pokemon/legendary_landorus.png', 'basename': 'sovlegend10'},
     { 'file': 'pokemon/legendary_enamorus.png', 'basename': 'sovlegend11'},
+    { 'file': 'pokemon/legendary_victini.png', 'basename': 'sovlegend12'},
+    { 'file': 'pokemon/legendary_xerneas.png', 'basename': 'sovlegend13'},
+    { 'file': 'pokemon/legendary_yveltal.png', 'basename': 'sovlegend14'},
+    { 'file': 'pokemon/legendary_zygarde.png', 'basename': 'sovlegend15'},
+    { 'file': 'pokemon/legendary_diancie.png', 'basename': 'sovlegend16'},
+    { 'file': 'pokemon/legendary_hoopa.png', 'basename': 'sovlegend17'},
+    { 'file': 'pokemon/legendary_volcanion.png', 'basename': 'sovlegend18'},
 ]
 
 field_sprites_textures_single_frame_pl_suffix = [

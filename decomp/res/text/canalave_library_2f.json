@@ -429,8 +429,154 @@
     {
       "id": "CanalaveLibrary2F_Text_SovereignArchivistOthersDone",
       "en_US": [
-        "You found MELOETTA and GENESECT\n",
-        "too!\r"
+        "You found VICTINI, MELOETTA and\n",
+        "GENESECT too!\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistVictini",
+      "en_US": [
+        "And of VICTINI, who brings victory\n",
+        "to those it likes.\r",
+        "It loves a view of the sea. Try the\n",
+        "top of Sunyshore’s Vista Lighthouse.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistKalosOpens",
+      "en_US": [
+        "You caught KYUREM! That was the last\n",
+        "legend of the Unova Chronicle.\r",
+        "And look what was tucked behind it:\n",
+        "a second tome, the Kalos Chronicle!\r",
+        "Its legends begin with XERNEAS, who\n",
+        "gives life, and YVELTAL, who takes it.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistWhichChronicle",
+      "en_US": [
+        "Which Chronicle shall I read from?"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignMenuUnova",
+      "en_US": [
+        "Unova Chronicle"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignMenuKalos",
+      "en_US": [
+        "Kalos Chronicle"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistKeepReadingChronicles",
+      "en_US": [
+        "I’ll keep reading the Chronicles."
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistKalosWhichLegend",
+      "en_US": [
+        "Which legend of the Kalos Chronicle\n",
+        "shall I read to you?"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignMenuLife",
+      "en_US": [
+        "Life and Destruction"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistKalosKeepReading",
+      "en_US": [
+        "I’ll keep reading the Kalos Chronicle."
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistLife",
+      "en_US": [
+        "XERNEAS and YVELTAL keep life in\n",
+        "balance, the Chronicle says.\r",
+        "Where one rests, the land blooms.\n",
+        "Where the other rests, it withers.\r",
+        "Here’s where they’ve been seen:\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistXerneas",
+      "en_US": [
+        "XERNEAS: in Eterna Forest, in the\n",
+        "green nook beside the Old Chateau.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistYveltal",
+      "en_US": [
+        "YVELTAL: on the top floor of the\n",
+        "Lost Tower, on Route 209.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistZygarde",
+      "en_US": [
+        "XERNEAS and YVELTAL, both here!\r",
+        "The Chronicle tells of a third one,\n",
+        "ZYGARDE, who keeps them in order.\r",
+        "It watches from deep below. Try the\n",
+        "lowest floor of Wayward Cave.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistLifeDone",
+      "en_US": [
+        "XERNEAS, YVELTAL and ZYGARDE...\n",
+        "You found all three!\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistDiancie",
+      "en_US": [
+        "The Chronicle also tells of DIANCIE,\n",
+        "a jewel born among CARBINK.\r",
+        "A CARBINK might lead you to it,\n",
+        "deep in Oreburgh Mine.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistPrisonBottle",
+      "en_US": [
+        "And of HOOPA, a prankster that was\n",
+        "sealed away in a bottle.\r",
+        "This PRISON BOTTLE came with the\n",
+        "Chronicle. Please, take it.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistHoopa",
+      "en_US": [
+        "HOOPA: they say it plays in the\n",
+        "deepest room of the Solaceon Ruins.\r",
+        "Take the PRISON BOTTLE there!\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistVolcanion",
+      "en_US": [
+        "And of VOLCANION, who lives in heat\n",
+        "and steam.\r",
+        "Try the end of the long tunnel in\n",
+        "Stark Mountain’s first cave.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistKalosOthersDone",
+      "en_US": [
+        "You found DIANCIE, HOOPA and\n",
+        "VOLCANION too!\r"
       ]
     }
   ]

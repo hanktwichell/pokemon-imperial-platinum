@@ -18,10 +18,12 @@
     ScriptEntry EternaForest_TotemVikavolt
     ScriptEntry EternaForest_OnLoad
     ScriptEntry EternaForest_LegendaryVirizion
+    ScriptEntry EternaForest_LegendaryXerneas
     ScriptEntryEnd
 
 EternaForest_OnTransition:
     Call EternaForest_SovereignSetVirizionVisibility
+    Call EternaForest_SovereignSetXerneasVisibility
     GoToIfUnset FLAG_TRAVELED_WITH_CHERYL, EternaForest_ResetFollowerCherylState
     End
 
@@ -35,17 +37,36 @@ EternaForest_SovereignSetVirizionVisibility:
 EternaForest_SovereignSetVirizionVisibilityEnd:
     Return
 
+@ Sovereign (the Chronicles): Xerneas stands in the nook beside the Old Chateau once the Kalos Chronicle is open
+@ (VAR_SOVEREIGN_CHRONICLE 2), until it's caught. It has a hidden flag of its own, as Virizion shares the map.
+EternaForest_SovereignSetXerneasVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_2
+    GoToIfLt VAR_SOVEREIGN_CHRONICLE, 2, EternaForest_SovereignSetXerneasVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_XERNEAS, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, EternaForest_SovereignSetXerneasVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_2
+EternaForest_SovereignSetXerneasVisibilityEnd:
+    Return
+
 EternaForest_ResetFollowerCherylState:
     SetVar VAR_ETERNA_FOREST_FOLLOWER_CHERYL_STATE, 0
     End
 
 EternaForest_OnLoad:
     GoToIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, EternaForest_RemoveTotemVikavolt
-    GoToIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, EternaForest_RemoveLegendaryVirizion
+    GoToIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, EternaForest_RemoveLegendary
     End
 
-EternaForest_RemoveLegendaryVirizion:
+@ Virizion and Xerneas share the map, so each one's script notes itself in VAR_MAP_LOCAL_0x00: map-local vars last
+@ through a battle (they're cleared on map changes), and the special vars aren't readable from OnLoad then.
+EternaForest_RemoveLegendary:
+    GoToIfEq VAR_MAP_LOCAL_0x00, SPECIES_XERNEAS, EternaForest_RemoveLegendaryXerneas
     RemoveObject LOCALID_LEGENDARY_VIRIZION
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+    End
+
+EternaForest_RemoveLegendaryXerneas:
+    RemoveObject LOCALID_LEGENDARY_XERNEAS
     ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
     End
 
@@ -55,8 +76,16 @@ EternaForest_RemoveTotemVikavolt:
     End
 
 EternaForest_LegendaryVirizion:
+    SetVar VAR_MAP_LOCAL_0x00, SPECIES_VIRIZION
     SetVar VAR_0x8004, SPECIES_VIRIZION
     SetVar VAR_0x8005, 65
+    Common_SovereignLegendaryEncounter
+    End
+
+EternaForest_LegendaryXerneas:
+    SetVar VAR_MAP_LOCAL_0x00, SPECIES_XERNEAS
+    SetVar VAR_0x8004, SPECIES_XERNEAS
+    SetVar VAR_0x8005, 70
     Common_SovereignLegendaryEncounter
     End
 

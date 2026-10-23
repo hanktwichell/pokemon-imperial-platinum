@@ -11,16 +11,41 @@
     ScriptEntry VistaLighthouse_OnTransition
     ScriptEntry VistaLighthouse_TotemTogedemaru
     ScriptEntry VistaLighthouse_OnLoad
+    ScriptEntry VistaLighthouse_LegendaryVictini
     ScriptEntryEnd
 
 @ Sovereign: Totem Togedemaru's trial, the last, opens once Cyrus is beaten in the Distortion World.
 VistaLighthouse_OnTransition:
     CallIfSet FLAG_SOVEREIGN_TOTEM_TRIAL_TOGEDEMARU, VistaLighthouse_HideTotemTogedemaru
     CallIfLt VAR_DISTORTION_WORLD_PROGRESS, DIST_WORLD_PROGRESS_WON_CYRUS_BATTLE, VistaLighthouse_HideTotemTogedemaru
+    Call VistaLighthouse_SovereignSetVictiniVisibility
     End
+
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Victini sits on the lighthouse's west side once the Unova
+@ Chronicle is open, until it's caught.
+VistaLighthouse_SovereignSetVictiniVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+    GoToIfLt VAR_SOVEREIGN_CHRONICLE, 1, VistaLighthouse_SovereignSetVictiniVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_VICTINI, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, VistaLighthouse_SovereignSetVictiniVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+VistaLighthouse_SovereignSetVictiniVisibilityEnd:
+    Return
 
 VistaLighthouse_OnLoad:
     CallIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, VistaLighthouse_RemoveTotemTogedemaru
+    GoToIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, VistaLighthouse_RemoveLegendaryVictini
+    End
+
+VistaLighthouse_RemoveLegendaryVictini:
+    RemoveObject LOCALID_LEGENDARY_VICTINI
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+    End
+
+VistaLighthouse_LegendaryVictini:
+    SetVar VAR_0x8004, SPECIES_VICTINI
+    SetVar VAR_0x8005, 55
+    Common_SovereignLegendaryEncounter
     End
 
 VistaLighthouse_HideTotemTogedemaru:

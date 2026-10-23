@@ -11,7 +11,7 @@ Renegade Platinum's own legendary events (Gen I–IV) are unchanged; see `Renega
 - Chapters open one after another (each needs the previous chapter's "key" legendary caught), so the post-game has a guided order.
 - Static encounters can be retried after fainting or fleeing, and have the normal shiny odds (Renegade behaviour).
 - New maps or rooms are marked _(new)_ and need map work in DSPRE.
-- **Built:** The Archivist (CB-0035) stands in Canalave Library 2F from the first Hall of Fame; his first talk opens the Unova Chronicle (VAR_SOVEREIGN_CHRONICLE). Later talks offer a menu of its legends (CB-0040): Swords of Justice (the swords, then Keldeo, CB-0036), Truth and Ideals (the Light and Dark Stones, the dragons, then the DNA Splicers, CB-0038), Forces of Nature (the roamers' release, then the Reveal Glass, Landorus and Enamorus, CB-0039) and Other legends (Meloetta and Genesect, CB-0037). Static encounters share CommonScript_SovereignLegendaryEncounter: each stays on the map until the Pokédex has it as caught, and vanishes after it's knocked out until the next visit (as in vanilla legendary battles, the player can't run).
+- **Built:** The Archivist (CB-0035) stands in Canalave Library 2F from the first Hall of Fame; his first talk opens the Unova Chronicle (VAR_SOVEREIGN_CHRONICLE). Later talks offer a menu of its legends (CB-0040): Swords of Justice (the swords, then Keldeo, CB-0036), Truth and Ideals (the Light and Dark Stones, the dragons, then the DNA Splicers, CB-0038), Forces of Nature (the roamers' release, then the Reveal Glass, Landorus and Enamorus, CB-0039) and Other legends (Meloetta, Genesect and Victini, CB-0037 and CB-0041). Once Kyurem is caught he opens the Kalos Chronicle (CB-0041) and first asks which Chronicle to read from; Kalos has Life and Destruction (Xerneas and Yveltal, then Zygarde) and Other legends (the Prison Bottle, Diancie, Hoopa and Volcanion). Static encounters share CommonScript_SovereignLegendaryEncounter: each stays on the map until the Pokédex has it as caught, and vanishes after it's knocked out until the next visit (as in vanilla legendary battles, the player can't run).
 
 Covers **90** species.
 
@@ -20,8 +20,9 @@ Covers **90** species.
 ### The Victory Star
 - **Pokémon:** #494 Victini
 - **Level:** 55
-- **Location:** Sunyshore City — Vista Lighthouse basement (new room)
+- **Location:** Sunyshore City — Vista Lighthouse (top floor)
 - **How:** Read the Unova Chronicle with the Archivist. A sealed hatch appears in the lighthouse; Volkner opens it.
+- **Built:** Victini (CB-0041): on the west side of the lighthouse's top floor (2, 7), the Totem Togedemaru's floor, from the moment the Unova Chronicle opens until it's caught. **Changed from the plan** (owner, 2026-10-23: existing spots rather than new rooms): the lighthouse has no basement, so there's no hatch and Volkner doesn't take part; the Archivist's Other legends topic points to the top floor.
 
 ### Swords of Justice
 - **Pokémon:** #638 Cobalion, #639 Terrakion, #640 Virizion
@@ -70,32 +71,37 @@ Covers **90** species.
 ### Life and Destruction (chapter key)
 - **Pokémon:** #716 Xerneas, #717 Yveltal
 - **Level:** 70
-- **Location:** Xerneas — Eterna Forest, behind the Old Chateau. Yveltal — Lost Tower roof (new floor)
+- **Location:** Xerneas — Eterna Forest, beside the Old Chateau. Yveltal — Lost Tower 5F (top floor)
 - **How:** Both are static once the chapter opens.
+- **Built:** The Kalos Chronicle (CB-0041) opens when the player talks to the Archivist with Kyurem caught (VAR_SOVEREIGN_CHRONICLE 2). Xerneas stands in the nook west of the Old Chateau's door (70, 14); Yveltal at the end of the Lost Tower top floor's east corridor (13, 14). Both are level 70. **Changed from the plan** (owner, 2026-10-23: existing spots rather than new rooms): Yveltal uses the existing top floor in place of a new roof.
 
 ### Order
 - **Pokémon:** #718 Zygarde
 - **Level:** 70
-- **Location:** Wayward Cave — new deep chamber
+- **Location:** Wayward Cave — B1F (lowest floor)
 - **How:** Appears after Xerneas and Yveltal are caught. Zygardite is sold post-game. Zygarde's 10%, 50% and Complete Formes are in the game (all forms are in scope, owner 2026-10-22).
+- **Built:** Zygarde (CB-0041), level 70, in its 50% Forme: in the alcove at the north of Wayward Cave B1F (21, 4) once Xerneas and Yveltal are both caught, until it's caught. **Changed from the plan** (owner, 2026-10-23): an existing alcove in place of a new chamber. The 10% and Complete Formes come with the forms milestone (FM).
 
 ### The Jewel
 - **Pokémon:** #719 Diancie
 - **Level:** 55
-- **Location:** Oreburgh Mine B3F (new room)
+- **Location:** Oreburgh Mine B2F (west nook)
 - **How:** Bring a Carbink to the mine's back wall.
+- **Built:** Diancie (CB-0041), level 55: in the nook by Oreburgh Mine B2F's west wall (2, 22) while the Kalos Chronicle is open and a Carbink (wild outside Stark Mountain) is in the party, until it's caught. **Changed from the plan** (owner, 2026-10-23): the mine's lowest floor, B2F, in place of a new B3F room.
 
 ### Unbound Mischief
 - **Pokémon:** #720 Hoopa
 - **Level:** 55
 - **Location:** Solaceon Ruins — innermost chamber
 - **How:** The Archivist gives a Prison Bottle key item; use it in the ruins.
+- **Built:** Hoopa (CB-0041), level 55: the Archivist's Kalos Other legends topic gives the Prison Bottle. Hoopa then plays in the ruins' innermost room, Room 7 (5, 4), while the player carries the bottle, until it's caught. Carrying the bottle replaces using it there. It comes Confined; the bottle switches it to Unbound from the bag (FM part 2).
 
 ### Steam Engine
 - **Pokémon:** #721 Volcanion
 - **Level:** 60
-- **Location:** Stark Mountain — hot-spring side room (new)
+- **Location:** Stark Mountain — the first cave's east tunnel
 - **How:** Static encounter.
+- **Built:** Volcanion (CB-0041), level 60: at the end of the long east tunnel in Stark Mountain's first cave room (34, 24), by the PP Up, once the Kalos Chronicle is open, until it's caught. **Changed from the plan** (owner, 2026-10-23): an existing dead end in place of a new hot-spring room.
 
 ## Alola Chronicle
 

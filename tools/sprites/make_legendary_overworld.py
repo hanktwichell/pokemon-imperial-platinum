@@ -27,6 +27,13 @@ LEGENDARIES = {
     "kyurem": 646,
     "landorus": 645,
     "enamorus": 905,
+    "victini": 494,
+    "xerneas": 716,
+    "yveltal": 717,
+    "zygarde": 718,
+    "diancie": 719,
+    "hoopa": 720,
+    "volcanion": 721,
 }
 
 
