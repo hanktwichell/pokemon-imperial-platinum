@@ -1653,3 +1653,33 @@ It's an incremental-build race; removing the object fixes it. Clean CI builds pa
    opens.
 3. **Totem forms and the Totem trials** (`data/totem_trials.yaml`): Totem Raticate and Marowak need these regional
    forms. Then the battle forms, with item 11's abilities.
+
+---
+
+## CA-0026 — 2026-10-23 (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** item 11 part 3, 22 more Gen V+ abilities, chosen by how many species have them:
+- Sand Rush, Slush Rush, Sand Force, Overcoat (sand), Strong Jaw (+ Iron Fist's new punches), Big Pecks.
+- Prankster, Regenerator.
+- Justified, Rattled, Water Compaction, Thermal Exchange, Weak Armor.
+- Sheer Force, Contrary, Telepathy, Bulletproof, Fluffy, Friend Guard, Infiltrator (screens), Heavy/Light Metal.
+- Checklist and `gen_abilities.py` `IMPLEMENTED` updated. In-game results are in the changelog.
+- Merged main (FM part 3).
+
+**Files modified:**
+- `decomp/src/battle/battle_lib.c`, `battle_script.c` and `battle_controller_player.c`.
+- `decomp/include/battle/battle_lib.h`.
+- `decomp/res/battle/scripts/subscripts/subscript_sovereign_weak_armor.s` (new), plus the subscripts' `meson.build`
+  and `sub_seq.order`.
+- `decomp/generated/battle_subscripts.txt`.
+- `tools/engine/gen_abilities.py`.
+- `docs/AbilityChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Merge PR #30, which now carries this.
+2. Next ability batch:
+   - Moxie and Beast Boost (on a knockout);
+   - Defiant and Competitive (when a stat is lowered);
+   - Unnerve, Analytic, Cursed Body, Poison Touch, Gooey/Tangling Hair;
+   - Healer, Harvest, Moody, Cheek Pouch.
+3. The common Gen V+ move effects (placeholders first, by how many species learn them).
