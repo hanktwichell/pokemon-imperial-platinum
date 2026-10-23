@@ -1535,6 +1535,14 @@ BOOL BattleSystem_TriggerSecondaryEffect(BattleSystem *battleSys, BattleContext 
     BOOL result = FALSE;
     u16 effectChance;
 
+    // Sovereign (item 11): Sheer Force removes the chance effects (the last two cases below) of the moves it powers up.
+    if (battleCtx->sideEffectIndirectFlags
+        && (battleCtx->sideEffectIndirectFlags & (MOVE_SIDE_EFFECT_ON_HIT | MOVE_SIDE_EFFECT_CHECK_SUBSTITUTE | MOVE_SIDE_EFFECT_CHECK_HP_AND_SUBSTITUTE | MOVE_SIDE_EFFECT_CHECK_HP)) == FALSE
+        && Move_SheerForceApplies(battleCtx, battleCtx->attacker, battleCtx->moveCur)) {
+        battleCtx->sideEffectIndirectFlags = 0;
+        return FALSE;
+    }
+
     if (battleCtx->sideEffectIndirectFlags & MOVE_SIDE_EFFECT_ON_HIT) {
         SetupSideEffect(battleCtx, effect, SIDE_EFFECT_TYPE_INDIRECT);
 
@@ -6839,6 +6847,37 @@ static const u16 sPunchingMoves[] = {
     MOVE_PLASMA_FISTS,
 };
 
+// Sovereign (item 11): ball and bomb moves, which Bulletproof blocks.
+static const u16 sBallAndBombMoves[] = {
+    MOVE_ACID_SPRAY, MOVE_AURA_SPHERE, MOVE_BARRAGE, MOVE_BEAK_BLAST, MOVE_BULLET_SEED, MOVE_EGG_BOMB,
+    MOVE_ELECTRO_BALL, MOVE_ENERGY_BALL, MOVE_FOCUS_BLAST, MOVE_GYRO_BALL, MOVE_ICE_BALL, MOVE_MAGNET_BOMB,
+    MOVE_MIST_BALL, MOVE_MUD_BOMB, MOVE_OCTAZOOKA, MOVE_POLLEN_PUFF, MOVE_PYRO_BALL, MOVE_ROCK_BLAST,
+    MOVE_ROCK_WRECKER, MOVE_SEARING_SHOT, MOVE_SEED_BOMB, MOVE_SHADOW_BALL, MOVE_SLUDGE_BOMB, MOVE_WEATHER_BALL,
+    MOVE_ZAP_CANNON, MOVE_SYRUP_BOMB,
+};
+
+BOOL Move_IsBallOrBomb(int move)
+{
+    for (int i = 0; i < NELEMS(sBallAndBombMoves); i++) {
+        if (sBallAndBombMoves[i] == move) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
+// Sovereign (item 11): Sheer Force applies to damaging moves with a chance of a secondary effect (the "chance" in the
+// move data), except charge moves that use it for their own boost.
+BOOL Move_SheerForceApplies(BattleContext *battleCtx, int attacker, int move)
+{
+    return Battler_Ability(battleCtx, attacker) == ABILITY_SHEER_FORCE
+        && MOVE_DATA(move).class != CLASS_STATUS
+        && MOVE_DATA(move).effectChance > 0
+        && MOVE_DATA(move).effect != BATTLE_EFFECT_CHARGE_TURN_DEF_UP
+        && MOVE_DATA(move).effect != BATTLE_EFFECT_ELECTRO_SHOT;
+}
+
 // Sovereign (item 11): biting moves, boosted by Strong Jaw.
 static const u16 sBitingMoves[] = {
     MOVE_BITE,
@@ -7197,6 +7236,21 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         }
     }
 
+    if (Move_SheerForceApplies(battleCtx, attacker, move)) {
+        movePower = movePower * 13 / 10;
+    }
+
+    // Sovereign (item 11): Fluffy halves damage from contact moves and doubles damage from Fire moves.
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_FLUFFY) == TRUE) {
+        if (MOVE_DATA(move).flags & MOVE_FLAG_MAKES_CONTACT) {
+            movePower /= 2;
+        }
+
+        if (moveType == TYPE_FIRE) {
+            movePower *= 2;
+        }
+    }
+
     for (i = 0; i < NELEMS(sBitingMoves); i++) {
         if (sBitingMoves[i] == move && attackerParams.ability == ABILITY_STRONG_JAW) {
             movePower = movePower * 15 / 10;
@@ -7280,6 +7334,7 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
 
         if ((sideConditions & SIDE_CONDITION_REFLECT) != FALSE
             && criticalMul == 1
+            && attackerParams.ability != ABILITY_INFILTRATOR // Sovereign (item 11)
             && MOVE_DATA(move).effect != BATTLE_EFFECT_REMOVE_SCREENS) {
             if ((battleType & BATTLE_TYPE_DOUBLES)
                 && BattleSystem_CountAliveBattlers(battleSys, battleCtx, TRUE, defender) == 2) {
@@ -7321,6 +7376,7 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
 
         if ((sideConditions & SIDE_CONDITION_LIGHT_SCREEN) != FALSE
             && criticalMul == 1
+            && attackerParams.ability != ABILITY_INFILTRATOR // Sovereign (item 11)
             && MOVE_DATA(move).effect != BATTLE_EFFECT_REMOVE_SCREENS) {
             if ((battleType & BATTLE_TYPE_DOUBLES)
                 && BattleSystem_CountAliveBattlers(battleSys, battleCtx, TRUE, defender) == 2) {
@@ -7339,6 +7395,13 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
     if ((battleType & BATTLE_TYPE_DOUBLES)
         && MOVE_DATA(move).range == RANGE_ALL_ADJACENT
         && BattleSystem_CountAliveBattlers(battleSys, battleCtx, FALSE, defender) >= 2) {
+        damage = damage * 3 / 4;
+    }
+
+    // Sovereign (item 11): Friend Guard on the defender's partner cuts the damage it takes by 25%.
+    if ((battleType & BATTLE_TYPE_DOUBLES)
+        && battleCtx->battleMons[defender ^ 2].curHP
+        && Battler_Ability(battleCtx, defender ^ 2) == ABILITY_FRIEND_GUARD) {
         damage = damage * 3 / 4;
     }
 

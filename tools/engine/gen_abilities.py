@@ -114,6 +114,15 @@ MANUAL_DESCRIPTIONS = {
 # Implemented beyond Platinum's 123 (updated as abilities get battle code).
 # Newer abilities whose battle effect is built (item 11): ability number -> what the Battle effect column says.
 IMPLEMENTED = {
+    125: "yes: moves with a chance effect ×1.3, without the effect (or Life Orb recoil)",  # Sheer Force
+    126: "yes: stat rises and drops are reversed",  # Contrary
+    132: "yes: the partner takes 25% less damage",  # Friend Guard
+    134: "yes: weight doubled (Low Kick, Grass Knot)",  # Heavy Metal
+    135: "yes: weight halved (Low Kick, Grass Knot)",  # Light Metal
+    140: "yes: avoids its partner's damaging moves",  # Telepathy
+    151: "partly: ignores Reflect and Light Screen (Substitute, Safeguard and Mist not yet)",  # Infiltrator
+    171: "yes: immune to ball and bomb moves",  # Bulletproof
+    218: "yes: contact damage halved, Fire damage doubled",  # Fluffy
     133: "yes: Defense −1 and Speed +2 when hit by a physical move",  # Weak Armor
     142: "partly: no sandstorm damage (powder-move immunity not yet)",  # Overcoat
     144: "yes: restores 1/3 of max HP on switching out",  # Regenerator

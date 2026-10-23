@@ -2852,6 +2852,12 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
         battleCtx->scriptTemp = BATTLE_ANIMATION_STAT_BOOST;
     }
 
+    // Sovereign (item 11): Contrary turns stat rises into drops and drops into rises.
+    if (Battler_Ability(battleCtx, battleCtx->sideEffectMon) == ABILITY_CONTRARY) {
+        stageChange = -stageChange;
+        battleCtx->scriptTemp = stageChange > 0 ? BATTLE_ANIMATION_STAT_BOOST : BATTLE_ANIMATION_STAT_DROP;
+    }
+
     if (stageChange > 0) {
         if (mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] == MAX_STAT_STAGE) {
             battleCtx->battleStatusMask |= SYSCTL_FAIL_STAT_STAGE_CHANGE;
@@ -6869,6 +6875,13 @@ static BOOL BtlCmd_CalcWeightBasedPower(BattleSystem *battleSys, BattleContext *
 
     int i = 0;
     int monWeight = DEFENDING_MON.weight;
+
+    // Sovereign (item 11): Heavy Metal doubles the holder's weight and Light Metal halves it.
+    if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->defender, ABILITY_HEAVY_METAL) == TRUE) {
+        monWeight *= 2;
+    } else if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->defender, ABILITY_LIGHT_METAL) == TRUE) {
+        monWeight /= 2;
+    }
 
     for (; sWeightToPower[i][0] != 0xFFFF; i++) {
         if (sWeightToPower[i][0] >= monWeight) {

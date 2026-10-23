@@ -545,6 +545,12 @@ int BattleSystem_CountAbility(BattleSystem *battleSys, BattleContext *battleCtx,
  */
 BOOL Move_IsMultiTurn(BattleContext *battleCtx, int move);
 
+// Sovereign (item 11): whether Sheer Force powers up this move for this attacker (and removes its chance effects).
+BOOL Move_SheerForceApplies(BattleContext *battleCtx, int attacker, int move);
+
+// Sovereign (item 11): whether the move is a ball or bomb move (blocked by Bulletproof).
+BOOL Move_IsBallOrBomb(int move);
+
 /**
  * @brief Access a particular entry in the type-matchup table.
  *
