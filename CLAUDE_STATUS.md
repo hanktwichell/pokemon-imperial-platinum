@@ -1683,3 +1683,32 @@ It's an incremental-build race; removing the object fixes it. Clean CI builds pa
    - Unnerve, Analytic, Cursed Body, Poison Touch, Gooey/Tangling Hair;
    - Healer, Harvest, Moody, Cheek Pouch.
 3. The common Gen V+ move effects (placeholders first, by how many species learn them).
+
+---
+
+## CA-0027 — 2026-10-23 (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:**
+- PR #30 merged (item 11 parts 2–3).
+- Item 11 part 4, 13 more abilities:
+  - Moxie, Chilling Neigh, Grim Neigh, Beast Boost;
+  - Defiant, Competitive;
+  - Gooey, Tangling Hair, Iron Barbs;
+  - Unnerve, Cursed Body, Poison Touch, Moody.
+- Verified in game: Moxie, Gooey, Defiant/Competitive, Moody (details in the changelog).
+- The owner asked me to keep coding until told otherwise.
+
+**Files modified:**
+- `decomp/src/battle/{battle_lib.c,battle_script.c,battle_controller_player.c}`.
+- `decomp/include/battle/{battle_lib.h,battle_context.h}`.
+- `decomp/res/battle/scripts/subscripts/subscript_sovereign_{gooey,cursed_body,moody}.s` (new), plus the subscripts'
+  `meson.build` and `sub_seq.order`.
+- `decomp/generated/battle_subscripts.txt`.
+- `tools/engine/gen_abilities.py`.
+- `docs/AbilityChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. PR and merge this.
+2. Common Gen V+ move effects. They're placeholders now; start with the moves the most species learn.
+3. More abilities: Analytic, Protosynthesis/Quark Drive, Healer, Harvest, Cheek Pouch, Magic Bounce, Protean/Libero,
+   Intimidate triggers (Defiant, Rattled).

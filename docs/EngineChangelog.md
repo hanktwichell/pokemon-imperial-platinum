@@ -4,6 +4,25 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (part 4) — 13 more abilities
+
+| Ability | Effect |
+|---|---|
+| Moxie, Chilling Neigh, Grim Neigh, Beast Boost | a stat +1 for each foe the holder's move knocks out (new after-hit step) |
+| Defiant, Competitive | Attack/Sp. Atk +2 after a foe's move lowers a stat (Intimidate not yet) |
+| Gooey, Tangling Hair | contact lowers the attacker's Speed |
+| Iron Barbs | as Rough Skin |
+| Unnerve | foes can't eat Berries (the damage-halving Berries not yet) |
+| Cursed Body | 30% chance to disable the move that hit it |
+| Poison Touch | 30% chance to poison on contact |
+| Moody | +2 to one stat and −1 to another each turn |
+
+**Verified in the test build:**
+- Moxie: Eruption knocking out both foes gives Attack +2.
+- Gooey: contact leaves the attacker at Speed −1.
+- Defiant and Competitive: after Snarl, Attack +2 and Sp. Atk +1 (−1 then +2).
+- Moody: Attack +2, Defense −1.
+
 ## Item 11 (part 3) — 22 common Gen V+ abilities
 
 Ranked by how many species can have each ability:
