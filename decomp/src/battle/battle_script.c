@@ -460,7 +460,9 @@ static BOOL BtlCmd_PokemonSlideIn(BattleSystem *battleSys, BattleContext *battle
         for (i = 0; i < maxBattlers; i++) {
             battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
-            if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
+            // Sovereign (decision 18): not a battler that starts empty (BattleControllerPlayer_InitBattleMons).
+            if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE
+                && (battleCtx->battlersSwitchingMask & FlagIndex(i)) == FALSE) {
                 BattleController_EmitShowEncounter(battleSys, i);
                 BattleSystem_DexFlagSeen(battleSys, i);
             }
@@ -1200,7 +1202,9 @@ static BOOL BtlCmd_HealthBoxSlideInDelay(BattleSystem *battleSys, BattleContext 
         for (i = 0; i < maxBattlers; i++) {
             battlerData = BattleSystem_GetBattlerData(battleSys, i);
 
-            if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE) {
+            // Sovereign (decision 18): not a battler that starts empty (BattleControllerPlayer_InitBattleMons).
+            if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) == FALSE
+                && (battleCtx->battlersSwitchingMask & FlagIndex(i)) == FALSE) {
                 BattleController_EmitSlideHealthBoxIn(battleSys, battleCtx, i, wait);
                 wait += 4;
             }
