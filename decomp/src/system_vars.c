@@ -535,6 +535,15 @@ void SystemVars_SetRoamingSpeciesState(VarsFlags *varsFlags, u16 species, u16 st
     case SPECIES_ARTICUNO:
         SetRoamingArticunoState(varsFlags, state);
         break;
+
+    // Sovereign (the Chronicles): the Forces of Nature.
+    case SPECIES_TORNADUS:
+        TrySetVarToValue(varsFlags, VAR_ROAMING_TORNADUS_STATE, state);
+        break;
+
+    case SPECIES_THUNDURUS:
+        TrySetVarToValue(varsFlags, VAR_ROAMING_THUNDURUS_STATE, state);
+        break;
     }
 }
 

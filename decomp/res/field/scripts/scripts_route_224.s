@@ -11,9 +11,12 @@
     ScriptEntry Route224_ProfOak
     ScriptEntry Route224_CoordEvent_Marley
     ScriptEntry Route224_Marley
+    ScriptEntry Route224_OnLoad
+    ScriptEntry Route224_LegendaryEnamorus
     ScriptEntryEnd
 
 Route224_OnTransition:
+    Call Route224_SovereignSetEnamorusVisibility
     CallIfEq VAR_SHAYMIN_EVENT_STATE, 1, Route224_IncreaseVars
     GoToIfSet FLAG_WROTE_ON_ROUTE_224_TABLET, Route224_DontHideProfOak
     CheckGameCompleted VAR_MAP_LOCAL_0x00
@@ -37,6 +40,33 @@ Route224_OnResumeEnd:
 Route224_SetProfOakDirNorth:
     ScrCmd_18C LOCALID_PROF_OAK, DIR_NORTH
     Return
+
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Enamorus waits by the tablet, the Flower Paradise gate, once
+@ Landorus is caught, until it's caught too.
+Route224_SovereignSetEnamorusVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+    SovereignCheckSpeciesCaught SPECIES_LANDORUS, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, Route224_SovereignSetEnamorusVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_ENAMORUS, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, Route224_SovereignSetEnamorusVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+Route224_SovereignSetEnamorusVisibilityEnd:
+    Return
+
+Route224_OnLoad:
+    GoToIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, Route224_RemoveLegendaryEnamorus
+    End
+
+Route224_RemoveLegendaryEnamorus:
+    RemoveObject LOCALID_LEGENDARY_ENAMORUS
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+    End
+
+Route224_LegendaryEnamorus:
+    SetVar VAR_0x8004, SPECIES_ENAMORUS
+    SetVar VAR_0x8005, 65
+    Common_SovereignLegendaryEncounter
+    End
 
 Route224_Unused:
     SetFlag FLAG_HIDE_ROUTE_224_MARLEY

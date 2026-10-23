@@ -4,6 +4,34 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E11 — The Chronicles: Forces of Nature (Tornadus, Thundurus, Landorus and Enamorus)
+
+The Unova Chronicle's Forces of Nature (`docs/PostgameLegendaries.md`):
+- **Tornadus and Thundurus** (Lv. 65) roam Sinnoh, like Mesprit and the legendary birds.
+  - The Archivist releases them: "The Chronicle also tells of TORNADUS and THUNDURUS, who ride the clouds. Have you
+    felt the wild winds and the storms lately? They must be here! They never stay in one place."
+  - Later talks: "TORNADUS and THUNDURUS roam all over Sinnoh. A Pokétch's Marking Map can show you where they are."
+  - One that's knocked out comes back after the next Hall of Fame: "If one was knocked out, it may come back after
+    your next Hall of Fame." The Archivist then releases it again.
+- With both caught, he gives the **Reveal Glass** ("this REVEAL GLASS shows their true forms"), which was not
+  obtainable anywhere before. Then: "Take TORNADUS and THUNDURUS to the ruins on Route 228, and see!"
+- **Landorus** (Lv. 65) appears in Route 228's ruins (the Rock Peak Ruins chamber) while both are in the party.
+  - The design asked for a new shrine; the existing chamber stands in.
+  - The chamber had no scripts of its own and now has its own script archives.
+- **Enamorus** (Lv. 65) then waits by the tablet at the north end of Route 224, the Flower Paradise gate.
+- **Save:** two more roaming slots. The special-encounter save block grows by 42 bytes, and the save still fits its
+  32 sectors (block 0 is 0xCEE4 of 0xD000 bytes, measured in the test build).
+- New overworld sprites for Landorus and Enamorus.
+- **Verified** (test build; a temporary patch set the game completed, opened the Chronicle, added Master Balls,
+  raised the party to level 100, made every grass encounter a roamer one while any is active, put Tornadus and
+  Thundurus in the party at one warp, and added test warps):
+  - the Archivist releasing them, then the Reveal Glass and the Landorus hint once both were caught;
+  - Thundurus and Tornadus met on Route 202 and caught with a Master Ball;
+  - Landorus hidden without the two in the party, shown with them, caught, and gone afterwards;
+  - Enamorus hidden before Landorus was caught, shown after, caught, and gone afterwards;
+  - the Archivist with all four caught: no Forces of Nature lines.
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+
 ## E11 — The Chronicles: Truth and Ideals (Reshiram, Zekrom and Kyurem)
 
 The Unova Chronicle's key chapter (`docs/PostgameLegendaries.md`):

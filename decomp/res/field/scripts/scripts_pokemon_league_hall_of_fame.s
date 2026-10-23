@@ -135,6 +135,8 @@ PokemonLeagueHallOfFame_SetHallOfFameVictoryFlagsAndVars:
     CallIfEq VAR_ROAMING_MOLTRES_STATE, ROAMER_STATE_DEFEATED, PokemonLeagueHallOfFame_ResetRoamingMoltres
     CallIfEq VAR_ROAMING_ZAPDOS_STATE, ROAMER_STATE_DEFEATED, PokemonLeagueHallOfFame_ResetRoamingZapdos
     CallIfEq VAR_ROAMING_ARTICUNO_STATE, ROAMER_STATE_DEFEATED, PokemonLeagueHallOfFame_ResetRoamingArticuno
+    CallIfEq VAR_ROAMING_TORNADUS_STATE, ROAMER_STATE_DEFEATED, PokemonLeagueHallOfFame_ResetRoamingTornadus
+    CallIfEq VAR_ROAMING_THUNDURUS_STATE, ROAMER_STATE_DEFEATED, PokemonLeagueHallOfFame_ResetRoamingThundurus
     CallIfEq VAR_PLAYER_HOUSE_POSTGAME_STATE, 0, PokemonLeagueHallOfFame_IncreasePlayerHousePostgameState
     ClearFlag FLAG_HIDE_SANDGEM_TOWN_COUNTERPART
     CallIfUnset FLAG_TALKED_TO_VEILSTONE_STORE_B1F_PROF_ROWAN, PokemonLeagueHallOfFame_ShowVeilstoneStoreB1FProfRowan
@@ -201,6 +203,15 @@ PokemonLeagueHallOfFame_ResetRoamingZapdos:
 
 PokemonLeagueHallOfFame_ResetRoamingArticuno:
     SetVar VAR_ROAMING_ARTICUNO_STATE, ROAMER_STATE_RESET
+    Return
+
+@ Sovereign (the Chronicles): the Legend Archivist releases a knocked-out Tornadus or Thundurus again after this.
+PokemonLeagueHallOfFame_ResetRoamingTornadus:
+    SetVar VAR_ROAMING_TORNADUS_STATE, ROAMER_STATE_RESET
+    Return
+
+PokemonLeagueHallOfFame_ResetRoamingThundurus:
+    SetVar VAR_ROAMING_THUNDURUS_STATE, ROAMER_STATE_RESET
     Return
 
 PokemonLeagueHallOfFame_ShowVeilstoneStoreB1FProfRowan:
