@@ -98,7 +98,8 @@ static const BattleAnimScriptFunc sBattleAnimScriptFuncs[] = {
     BattleAnimScriptFunc_StatChangeUp,
     BattleAnimScriptFunc_StatChangeDown,
     BattleAnimScriptFunc_StatChangeHeal,
-    BattleAnimScriptFunc_StatChangeMetal
+    BattleAnimScriptFunc_StatChangeMetal,
+    BattleAnimScriptFunc_SovereignFadeSprites // Sovereign (E8)
 };
 
 static const BattleAnimScriptSpriteFunc sBattleAnimSpriteFuncs[] = {

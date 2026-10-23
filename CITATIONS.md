@@ -36,6 +36,11 @@ Finding and gathering the sprite artwork used in Sovereign Platinum:
 
 - **Nolan Herkomer**
 
+### Shiny sprites
+Creating and modifying many of the shiny sprites:
+
+- **Nolan Herkomer**
+
 ### "DPPt Style Gen VI and Beyond" sprite pack (back sprites, normal + shiny)
 Location: `assets/sprites/packs/dppt_gen6_and_beyond/` (Pokémon Essentials v19+ layout, kept unmodified).
 Supplied by the project owner. The pack's own `Credits.txt` is kept verbatim next to the sprites. Per-file artist
@@ -111,8 +116,9 @@ Converted copies for the DS will go in `assets/audio/cries/`. Tracked in `docs/C
 (`tools/audio/gen_cry_checklist.py`).
 
 ### Mega Garchomp Z (front + shiny front)
-`assets/sprites/reference/mega_garchomp_z_reference.png`, supplied by the project owner. **Original artist unknown —
-attribution needed before release.**
+`assets/sprites/reference/mega_garchomp_z_reference.png`, supplied by the project owner. Source: "Custom Sprite | Mega
+Garchomp Z" by **thesonicgameryt** on DeviantArt —
+https://www.deviantart.com/thesonicgameryt/art/Custom-Sprite-%7C-Mega-Garchomp-Z-1275121452
 
 ## Design inspiration (no assets copied)
 
