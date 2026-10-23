@@ -454,7 +454,7 @@
             "movement_range_z": 0,
             "x": 538,
             "z": 526,
-            "y": 0
+            "y": 8
         },
         {
             "id": "LOCALID_LEGENDARY_ZAMAZENTA",
@@ -469,7 +469,7 @@
             "movement_range_z": 0,
             "x": 540,
             "z": 528,
-            "y": 0
+            "y": 8
         }
     ],
     "warp_events": [

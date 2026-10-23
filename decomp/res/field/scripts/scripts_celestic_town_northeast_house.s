@@ -10,7 +10,8 @@
 @ Hearthflame and Cornerstone Masks once (FLAG_SOVEREIGN_RECEIVED_OGERPON_MASKS).
 CelesticTownNortheastHouse_PokefanM:
     GoToIfSet FLAG_SOVEREIGN_RECEIVED_OGERPON_MASKS, CelesticTownNortheastHouse_PokefanMPlain
-    GetPartyMonSpecies 0, VAR_RESULT
+    SetVar VAR_0x8004, 0
+    GetPartyMonSpecies VAR_0x8004, VAR_RESULT
     GoToIfNe VAR_RESULT, SPECIES_OGERPON, CelesticTownNortheastHouse_PokefanMPlain
     PlaySE SE_CONFIRM_sseq_3
     LockAll

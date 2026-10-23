@@ -285,6 +285,25 @@ implemented.
       - Stakataka shares Route 227 with Terrakion (`FLAG_MAP_LOCAL_HIDE_LEGENDARY_2`, `VAR_MAP_LOCAL_0x00`).
       - Iron Island B3F's OnLoad also places its Iron Ruins warp, so Nihilego's removal there is a `CallIfSet`.
       - Mt. Coronet outside north had `scripts_empty` and gets its own archives, like the ice chamber's.
+    - **Galar** (var 4, from a talk with Solgaleo or Lunala caught) and **Paldea** (var 5, Zacian and Zamazenta
+      caught) finish the Chronicles. Every legendary added from CB-0043 on uses one generic pattern:
+      - The common script stores the battled species in `VAR_SOVEREIGN_LEGENDARY_SPECIES` (a save var). Each map's
+        OnLoad starts with `CallIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, <Map>_RemoveLegendary<Species>`, which removes
+        the object only when that var names its species. Any number of legendaries can then share a map, next to
+        the older `VAR_MAP_LOCAL_0x00` notes.
+      - Hidden flags `FLAG_MAP_LOCAL_HIDE_LEGENDARY` to `_5` (map-local 0x1E, 0x1C, 0x1B, 0x1A, 0x19).
+      - **Held items:** a script sets `VAR_SOVEREIGN_LEGENDARY_HELD_ITEM` before the battle, and
+        `Encounter_NewVsSpeciesAtLevel` (`encounter.c`) gives the item to the wild Pokémon and clears the var: Zacian's
+        Rusted Sword, Zamazenta's Rusted Shield, Ogerpon's Teal Mask.
+      - **Stakes** (the Treasures of Ruin): `Common_SovereignStake` (common script 0x80C) asks to pull one out, sets
+        its `FLAG_SOVEREIGN_PULLED_STAKE_*` and removes it. The map script then reruns the shrine's visibility check
+        and `AddObject`s the legendary when both stakes are out.
+      - **Time Rifts:** two Spear Pillar objects with `OBJ_EVENT_GFX_VAR_1` and `_2`. The OnTransition picks the first
+        Paradox Pokémon of each set not caught yet and sets `VAR_OBJ_GFX_ID_1`/`_2` to its sprite and
+        `VAR_MAP_LOCAL_0x03`/`_0x04` to its species, which the talk script battles.
+      - Ogerpon's other masks: `CelesticTownNortheastHouse_PokefanM` checks `GetPartyMonSpecies 0` once
+        (`FLAG_SOVEREIGN_RECEIVED_OGERPON_MASKS`).
+      - The Archivist gives the Reins of Unity (Calyrex caught) and both Scrolls (Kubfu caught).
     - **No gifts** (owner, 2026-10-23): every legendary is a battle. `Common_SovereignLegendaryEncounter` returns
       `VAR_RESULT` TRUE after a catch (FALSE after a knock-out or a loss), for encounters that need a flag of their own.
       CB-0042's gift script (common script 0x80C) is gone.

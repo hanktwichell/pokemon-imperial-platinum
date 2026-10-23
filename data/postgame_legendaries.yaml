@@ -207,8 +207,8 @@ quests:
       caught: Nihilego in Iron Island B3F's east pocket (15, 4); Buzzwole beside the item at Route 225's north end
       (633, 330); Pheromosa in the Route 229 pocket by the Reaper Cloth (813, 426); Xurkitree at the end of Sunyshore
       City's walkway by the Thunderstone (882, 778); Celesteela on Mt. Coronet's highest snowfield (Mt. Coronet
-      outside north, (51, 3)); Kartana by Eterna Forest's east passage (87, 51); Guzzlord in Turnback Cave's first
-      room (11, 7); Stakataka in the hollow south of Route 227's grass (747, 273); Blacephalon in the hollow east of
+      outside north, (51, 3)); Kartana by Eterna Forest's east passage (87, 51); Guzzlord by Turnback Cave's entrance
+      (8, 15); Stakataka in the hollow south of Route 227's grass (747, 273); Blacephalon in the hollow east of
       Stark Mountain's entrance (760, 234). The Archivist's Ultra Beasts topic hints at each one not caught yet.
       **Changed from the plan** (owner, 2026-10-23: existing spots): each Ultra Beast stands there itself, with no
       wormhole object, and Xurkitree uses Sunyshore's walkway in place of a power plant.
@@ -218,36 +218,59 @@ quests:
     level: 40
     location: Fight Area — Pokémon Center
     steps: "An Ultra Recon-style researcher tells of a Poipole that came through a wormhole; it then waits nearby to be battled and caught. Naganadel by levelling up knowing Dragon Pulse. **Changed from the plan** (owner, 2026-10-23: legendaries are battled and caught, never given); the plan had a gift."
+    built: >-
+      Poipole (CB-0043), level 40: in the Fight Area (650, 435) once the Alola Chronicle is open and Necrozma is
+      caught, until it's caught. A battle, not a gift. **Provisional spot** (owner, 2026-10-23: everything in the game
+      first, placements later).
   - chapter: Alola Chronicle
     name: Type Experiments
     species: ["Type: Null", Silvally]
     level: 40
     location: Veilstone City — Team Galactic HQ
     steps: "The same reformed scientist as Genesect confesses to a second experiment; Type: Null then waits in the lab to be battled and caught. Silvally via high friendship. **Changed from the plan** (owner, 2026-10-23: legendaries are battled and caught, never given); the plan had a gift."
+    built: >-
+      Type: Null (CB-0043), level 40: in the Galactic HQ lab (24, 10) once Genesect is caught, until it's caught. A
+      battle, not a gift. **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
   - chapter: Alola Chronicle
     name: The Artificial Pokémon
     species: [Magearna]
     level: 50
     location: Sunyshore City — Volkner's workshop (new room in the Gym)
     steps: "Volkner restores a 500-year-old automaton after you defeat him in a rematch; Magearna wakes and must be battled and caught. **Changed from the plan** (owner, 2026-10-23: legendaries are battled and caught, never given); the plan had Volkner hand it over."
+    built: >-
+      Magearna (CB-0043), level 50: in Volkner's room at the Sunyshore Gym (11, 13) once the Alola Chronicle is open,
+      until it's caught. The Volkner rematch and restoring scene aren't built yet. **Provisional spot** (owner,
+      2026-10-23: everything in the game first, placements later).
   - chapter: Alola Chronicle
     name: Shadows
     species: [Marshadow]
     level: 50
     location: Old Chateau (after Renegade's Gengar and Rotom events)
     steps: Static encounter in the dining room shadow.
+    built: >-
+      Marshadow (CB-0043), level 50: in the Old Chateau's dining area (21, 9) once the Alola Chronicle is open, until
+      it's caught. Renegade's Gengar and Rotom events aren't ported yet (E10), so they aren't a condition.
+      **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
   - chapter: Alola Chronicle
     name: Thunderclap
     species: [Zeraora]
     level: 50
     location: Route 222 — tall grass at night
     steps: Static encounter.
+    built: >-
+      Zeraora (CB-0043), level 50: on Route 222 (774, 783) at night (8 pm to 4 am, checked on entering the map) once
+      the Alola Chronicle is open, until it's caught. **Provisional spot** (owner, 2026-10-23: everything in the game
+      first, placements later).
   - chapter: Alola Chronicle
     name: Hex Nut
     species: [Meltan, Melmetal]
     level: 40
     location: Oreburgh Mine B2F
     steps: "A Meltan (Lv. 40) is battled and caught in the mine; show it to the foreman and a Melmetal (Lv. 50) appears to battle. **Changed from the plan** (owner, 2026-10-23: legendaries are battled and caught, never given); the plan had the foreman give both."
+    built: >-
+      Meltan (CB-0043), level 40, then Melmetal, level 50, once Meltan is caught: both on Oreburgh Mine B2F's west
+      side, (5, 20) and (5, 24), until caught. Battles, not gifts; the foreman isn't involved yet. **Provisional spot** (owner,
+      2026-10-23: everything in the game first, placements later).
 
   # ---------------------------------------------------------------- Galar Chronicle
   - chapter: Galar Chronicle
@@ -256,36 +279,61 @@ quests:
     level: 70
     location: Route 210 North (in the fog)
     steps: Walk through the fog with the chapter open; Zacian appears first, Zamazenta after it is caught. Zacian holds the Rusted Sword and Zamazenta the Rusted Shield (owner, 2026-10-22); holding them gives the Crowned forms.
+    built: >-
+      The Galar Chronicle (CB-0043) opens when the player talks to the Archivist with Solgaleo or Lunala caught
+      (VAR_SOVEREIGN_CHRONICLE 4). Zacian (538, 526) holding the Rusted Sword, then Zamazenta (540, 528) holding the
+      Rusted Shield once Zacian is caught, on Route 210 North, level 70 (VAR_SOVEREIGN_LEGENDARY_HELD_ITEM sets the
+      wild Pokémon's item). **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
   - chapter: Galar Chronicle
     name: Darkest Day
     species: [Eternatus]
     level: 70
     location: Distortion World
     steps: Appears after both heroes are caught.
+    built: >-
+      Eternatus (CB-0043), level 70: in Turnback Cave's Giratina room (8, 13) once Zacian and Zamazenta are both
+      caught, until it's caught. **Provisional spot** (owner, 2026-10-23: everything in the game first, placements
+      later): the Distortion World needed more than a quick placement.
   - chapter: Galar Chronicle
     name: Master Dojo
     species: [Kubfu, Urshifu]
     level: 10
     location: Veilstone Gym
     steps: "A Kubfu trains in the Veilstone Gym; battle and catch it, then Maylene gives both Scrolls; using one evolves Kubfu into Urshifu (Single Strike or Rapid Strike). **Changed from the plan** (owner, 2026-10-23: legendaries are battled and caught, never given); the plan had Maylene give Kubfu."
+    built: >-
+      Kubfu (CB-0043), level 10: in the Veilstone Gym (13, 17) once the Galar Chronicle is open, until it's caught.
+      The Archivist then gives the Scroll of Darkness and the Scroll of Waters. A battle, not a gift; the Archivist
+      stands in for Maylene. **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
   - chapter: Galar Chronicle
     name: The Jungle Guardian
     species: [Zarude]
     level: 60
     location: Great Marsh — Area 6
     steps: Static encounter.
+    built: >-
+      Zarude (CB-0043), level 60: on Route 212 South (516, 850) once the Galar Chronicle is open, until it's caught.
+      **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later): the Great Marsh's
+      Safari rules make a battle there harder.
   - chapter: Galar Chronicle
     name: New Regis
     species: [Regieleki, Regidrago]
     level: 65
     location: "Regieleki — Valley Windworks (sealed room). Regidrago — Route 228 shrine"
     steps: Need Regirock, Regice and Registeel in the party (all from Renegade's events).
+    built: >-
+      Regieleki in the Valley Windworks building (8, 9) and Regidrago in Route 228's ruins (5, 6) (CB-0043), level 65,
+      while Regirock, Regice and Registeel are all in the party, once the Galar Chronicle is open, until caught.
+      **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
   - chapter: Galar Chronicle
     name: King of Bountiful Harvests
     species: [Calyrex, Glastrier, Spectrier]
     level: 70
     location: "Calyrex — Celestic Town shrine. Glastrier — Route 217 (blizzard). Spectrier — Lost Tower 5F"
     steps: Calyrex first; then the steeds appear. Calyrex's fused forms (Ice Rider, Shadow Rider) are in the game (all forms are in scope, owner 2026-10-22).
+    built: >-
+      Calyrex in Celestic Town (461, 527), then Glastrier on Route 217 (305, 319) and Spectrier on Lost Tower 5F (5,
+      10) once Calyrex is caught (CB-0043), level 70. The Archivist gives the Reins of Unity once Calyrex is caught.
+      **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
 
   # ---------------------------------------------------------------- Paldea Chronicle
   - chapter: Paldea Chronicle
@@ -294,24 +342,43 @@ quests:
     level: 65
     location: "Wo-Chien — Great Marsh shrine. Chien-Pao — Acuity Lakefront shrine. Ting-Lu — Route 214 shrine. Chi-Yu — Fuego Ironworks shrine"
     steps: Pull the eight stakes hidden around Sinnoh (two per shrine area, hinted by the Archivist) to unseal each shrine.
+    built: >-
+      The Paldea Chronicle (CB-0043) opens when the player talks to the Archivist with Zacian and Zamazenta caught
+      (VAR_SOVEREIGN_CHRONICLE 5). Each Ruinous shrine has two stakes on its own map (FLAG_SOVEREIGN_PULLED_STAKE_1 to
+      _8, a common script asks to pull each); with both out the legendary appears at once: Wo-Chien on Route 212 North
+      (464, 788), Chien-Pao at Acuity Lakefront (325, 240), Ting-Lu on Route 214 (722, 695), Chi-Yu outside Fuego
+      Ironworks (180, 593), all level 65. **Provisional spot** (owner, 2026-10-23: everything in the game first,
+      placements later): the stakes stand next to their shrine for now.
   - chapter: Paldea Chronicle
     name: The Loyal Three
     species: [Okidogi, Munkidori, Fezandipiti]
     level: 65
     location: "Okidogi — Route 225. Munkidori — Route 229. Fezandipiti — Route 224"
     steps: Static encounters.
+    built: >-
+      Okidogi on Route 225 (625, 370), Munkidori on Route 229 (806, 428) and Fezandipiti on Route 224 (896, 527)
+      (CB-0043), level 65, once the Paldea Chronicle is open, until caught. **Provisional spot** (owner, 2026-10-23:
+      everything in the game first, placements later).
   - chapter: Paldea Chronicle
     name: The Masked Ogre
     species: [Ogerpon]
     level: 65
     location: Route 211 (East), at the mountain shrine
     steps: Static encounter; Ogerpon holds the Teal Mask. Show it to the Pokéfan (male) in Celestic Town's northeast house (map CelesticTownNortheastHouse, script CelesticTownNortheastHouse_PokefanM) with Ogerpon at the front of the party, and he gives the Wellspring, Hearthflame and Cornerstone Masks. Holding a mask changes Ogerpon's form (owner, 2026-10-22).
+    built: >-
+      Ogerpon (CB-0043), level 65, holding the Teal Mask: on Route 211 East (435, 531) once the Paldea Chronicle is
+      open, until it's caught. The Pokéfan in Celestic Town's northeast house then gives the Wellspring, Hearthflame
+      and Cornerstone Masks once, with Ogerpon at the front of the party (FLAG_SOVEREIGN_RECEIVED_OGERPON_MASKS).
+      **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
   - chapter: Paldea Chronicle
     name: The Poison Puppeteer
     species: [Pecharunt]
     level: 60
     location: Route 224 — after the Loyal Three are caught
     steps: Static encounter.
+    built: >-
+      Pecharunt (CB-0043), level 60: on Route 224 (898, 526) once the Loyal Three are all caught, until it's caught.
+      **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
   - chapter: Paldea Chronicle
     name: Time Rifts (Paradox Pokémon)
     species: [Great Tusk, Scream Tail, Brute Bonnet, Flutter Mane, Slither Wing, Sandy Shocks, Roaring Moon, Walking Wake, Gouging Fire, Raging Bolt,
@@ -319,9 +386,19 @@ quests:
     level: 65
     location: "Ancient (past) Paradox: Spear Pillar time rift after Dialga is caught. Future Paradox: Spear Pillar space rift after Palkia is caught."
     steps: Each rift is a Poké Radar-style patch on a new Spear Pillar floor; one Paradox Pokémon per patch, rotating daily (Renegade's daily RNG), until all ten of that rift are caught.
+    built: >-
+      Two rifts on Spear Pillar's plaza (CB-0043), level 65, once the Paldea Chronicle is open: the ancient one (27,
+      30) after Dialga is caught, the future one (35, 30) after Palkia is caught. Each shows and battles the first of
+      its ten not caught yet (VAR_OBJ_GFX_ID_1 and _2 for its sprite) and closes when all ten are caught. **Changed
+      from the plan** (owner, 2026-10-23: existing spots, everything in first): Spear Pillar itself in place of a new
+      floor, and a fixed order in place of a daily rotation.
   - chapter: Paldea Chronicle
     name: Area Zero (chapter key)
     species: [Koraidon, Miraidon, Terapagos]
     level: 70
     location: Sendoff Spring — the crater (new map)
     steps: Koraidon and Miraidon after all twenty Paradox Pokémon are registered; Terapagos after both are caught.
+    built: >-
+      Koraidon (29, 36) and Miraidon (27, 37) at Sendoff Spring once all twenty Paradox Pokémon are caught, then
+      Terapagos (30, 34) once both are caught (CB-0043), level 70. **Provisional spot** (owner, 2026-10-23: everything
+      in the game first, placements later): Sendoff Spring stands in for a new crater map.

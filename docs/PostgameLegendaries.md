@@ -131,43 +131,49 @@ Covers **90** species.
 - **Level:** 65
 - **Location:** Nihilego — Iron Island B3F. Buzzwole — Route 225. Pheromosa — Route 229. Xurkitree — Sunyshore City power plant. Celesteela — Mt. Coronet Summit. Kartana — Eterna Forest. Guzzlord — Turnback Cave. Stakataka — Route 227. Blacephalon — Stark Mountain (outside)
 - **How:** After Necrozma is caught, a glowing wormhole object appears at each location (static encounter).
-- **Built:** The Ultra Beasts (CB-0043), all level 65, each a static encounter from the moment Necrozma is caught until it's caught: Nihilego in Iron Island B3F's east pocket (15, 4); Buzzwole beside the item at Route 225's north end (633, 330); Pheromosa in the Route 229 pocket by the Reaper Cloth (813, 426); Xurkitree at the end of Sunyshore City's walkway by the Thunderstone (882, 778); Celesteela on Mt. Coronet's highest snowfield (Mt. Coronet outside north, (51, 3)); Kartana by Eterna Forest's east passage (87, 51); Guzzlord in Turnback Cave's first room (11, 7); Stakataka in the hollow south of Route 227's grass (747, 273); Blacephalon in the hollow east of Stark Mountain's entrance (760, 234). The Archivist's Ultra Beasts topic hints at each one not caught yet. **Changed from the plan** (owner, 2026-10-23: existing spots): each Ultra Beast stands there itself, with no wormhole object, and Xurkitree uses Sunyshore's walkway in place of a power plant.
+- **Built:** The Ultra Beasts (CB-0043), all level 65, each a static encounter from the moment Necrozma is caught until it's caught: Nihilego in Iron Island B3F's east pocket (15, 4); Buzzwole beside the item at Route 225's north end (633, 330); Pheromosa in the Route 229 pocket by the Reaper Cloth (813, 426); Xurkitree at the end of Sunyshore City's walkway by the Thunderstone (882, 778); Celesteela on Mt. Coronet's highest snowfield (Mt. Coronet outside north, (51, 3)); Kartana by Eterna Forest's east passage (87, 51); Guzzlord by Turnback Cave's entrance (8, 15); Stakataka in the hollow south of Route 227's grass (747, 273); Blacephalon in the hollow east of Stark Mountain's entrance (760, 234). The Archivist's Ultra Beasts topic hints at each one not caught yet. **Changed from the plan** (owner, 2026-10-23: existing spots): each Ultra Beast stands there itself, with no wormhole object, and Xurkitree uses Sunyshore's walkway in place of a power plant.
 
 ### The Poison Pin
 - **Pokémon:** #803 Poipole, #804 Naganadel
 - **Level:** 40
 - **Location:** Fight Area — Pokémon Center
 - **How:** An Ultra Recon-style researcher tells of a Poipole that came through a wormhole; it then waits nearby to be battled and caught. Naganadel by levelling up knowing Dragon Pulse. **Changed from the plan** (owner, 2026-10-23: legendaries are battled and caught, never given); the plan had a gift.
+- **Built:** Poipole (CB-0043), level 40: in the Fight Area (650, 435) once the Alola Chronicle is open and Necrozma is caught, until it's caught. A battle, not a gift. **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
 
 ### Type Experiments
 - **Pokémon:** #772 Type: Null, #773 Silvally
 - **Level:** 40
 - **Location:** Veilstone City — Team Galactic HQ
 - **How:** The same reformed scientist as Genesect confesses to a second experiment; Type: Null then waits in the lab to be battled and caught. Silvally via high friendship. **Changed from the plan** (owner, 2026-10-23: legendaries are battled and caught, never given); the plan had a gift.
+- **Built:** Type: Null (CB-0043), level 40: in the Galactic HQ lab (24, 10) once Genesect is caught, until it's caught. A battle, not a gift. **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
 
 ### The Artificial Pokémon
 - **Pokémon:** #801 Magearna
 - **Level:** 50
 - **Location:** Sunyshore City — Volkner's workshop (new room in the Gym)
 - **How:** Volkner restores a 500-year-old automaton after you defeat him in a rematch; Magearna wakes and must be battled and caught. **Changed from the plan** (owner, 2026-10-23: legendaries are battled and caught, never given); the plan had Volkner hand it over.
+- **Built:** Magearna (CB-0043), level 50: in Volkner's room at the Sunyshore Gym (11, 13) once the Alola Chronicle is open, until it's caught. The Volkner rematch and restoring scene aren't built yet. **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
 
 ### Shadows
 - **Pokémon:** #802 Marshadow
 - **Level:** 50
 - **Location:** Old Chateau (after Renegade's Gengar and Rotom events)
 - **How:** Static encounter in the dining room shadow.
+- **Built:** Marshadow (CB-0043), level 50: in the Old Chateau's dining area (21, 9) once the Alola Chronicle is open, until it's caught. Renegade's Gengar and Rotom events aren't ported yet (E10), so they aren't a condition. **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
 
 ### Thunderclap
 - **Pokémon:** #807 Zeraora
 - **Level:** 50
 - **Location:** Route 222 — tall grass at night
 - **How:** Static encounter.
+- **Built:** Zeraora (CB-0043), level 50: on Route 222 (774, 783) at night (8 pm to 4 am, checked on entering the map) once the Alola Chronicle is open, until it's caught. **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
 
 ### Hex Nut
 - **Pokémon:** #808 Meltan, #809 Melmetal
 - **Level:** 40
 - **Location:** Oreburgh Mine B2F
 - **How:** A Meltan (Lv. 40) is battled and caught in the mine; show it to the foreman and a Melmetal (Lv. 50) appears to battle. **Changed from the plan** (owner, 2026-10-23: legendaries are battled and caught, never given); the plan had the foreman give both.
+- **Built:** Meltan (CB-0043), level 40, then Melmetal, level 50, once Meltan is caught: both on Oreburgh Mine B2F's west side, (5, 20) and (5, 24), until caught. Battles, not gifts; the foreman isn't involved yet. **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
 
 ## Galar Chronicle
 
@@ -176,36 +182,42 @@ Covers **90** species.
 - **Level:** 70
 - **Location:** Route 210 North (in the fog)
 - **How:** Walk through the fog with the chapter open; Zacian appears first, Zamazenta after it is caught. Zacian holds the Rusted Sword and Zamazenta the Rusted Shield (owner, 2026-10-22); holding them gives the Crowned forms.
+- **Built:** The Galar Chronicle (CB-0043) opens when the player talks to the Archivist with Solgaleo or Lunala caught (VAR_SOVEREIGN_CHRONICLE 4). Zacian (538, 526) holding the Rusted Sword, then Zamazenta (540, 528) holding the Rusted Shield once Zacian is caught, on Route 210 North, level 70 (VAR_SOVEREIGN_LEGENDARY_HELD_ITEM sets the wild Pokémon's item). **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
 
 ### Darkest Day
 - **Pokémon:** #890 Eternatus
 - **Level:** 70
 - **Location:** Distortion World
 - **How:** Appears after both heroes are caught.
+- **Built:** Eternatus (CB-0043), level 70: in Turnback Cave's Giratina room (8, 13) once Zacian and Zamazenta are both caught, until it's caught. **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later): the Distortion World needed more than a quick placement.
 
 ### Master Dojo
 - **Pokémon:** #891 Kubfu, #892 Urshifu
 - **Level:** 10
 - **Location:** Veilstone Gym
 - **How:** A Kubfu trains in the Veilstone Gym; battle and catch it, then Maylene gives both Scrolls; using one evolves Kubfu into Urshifu (Single Strike or Rapid Strike). **Changed from the plan** (owner, 2026-10-23: legendaries are battled and caught, never given); the plan had Maylene give Kubfu.
+- **Built:** Kubfu (CB-0043), level 10: in the Veilstone Gym (13, 17) once the Galar Chronicle is open, until it's caught. The Archivist then gives the Scroll of Darkness and the Scroll of Waters. A battle, not a gift; the Archivist stands in for Maylene. **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
 
 ### The Jungle Guardian
 - **Pokémon:** #893 Zarude
 - **Level:** 60
 - **Location:** Great Marsh — Area 6
 - **How:** Static encounter.
+- **Built:** Zarude (CB-0043), level 60: on Route 212 South (516, 850) once the Galar Chronicle is open, until it's caught. **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later): the Great Marsh's Safari rules make a battle there harder.
 
 ### New Regis
 - **Pokémon:** #894 Regieleki, #895 Regidrago
 - **Level:** 65
 - **Location:** Regieleki — Valley Windworks (sealed room). Regidrago — Route 228 shrine
 - **How:** Need Regirock, Regice and Registeel in the party (all from Renegade's events).
+- **Built:** Regieleki in the Valley Windworks building (8, 9) and Regidrago in Route 228's ruins (5, 6) (CB-0043), level 65, while Regirock, Regice and Registeel are all in the party, once the Galar Chronicle is open, until caught. **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
 
 ### King of Bountiful Harvests
 - **Pokémon:** #898 Calyrex, #896 Glastrier, #897 Spectrier
 - **Level:** 70
 - **Location:** Calyrex — Celestic Town shrine. Glastrier — Route 217 (blizzard). Spectrier — Lost Tower 5F
 - **How:** Calyrex first; then the steeds appear. Calyrex's fused forms (Ice Rider, Shadow Rider) are in the game (all forms are in scope, owner 2026-10-22).
+- **Built:** Calyrex in Celestic Town (461, 527), then Glastrier on Route 217 (305, 319) and Spectrier on Lost Tower 5F (5, 10) once Calyrex is caught (CB-0043), level 70. The Archivist gives the Reins of Unity once Calyrex is caught. **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
 
 ## Paldea Chronicle
 
@@ -214,33 +226,39 @@ Covers **90** species.
 - **Level:** 65
 - **Location:** Wo-Chien — Great Marsh shrine. Chien-Pao — Acuity Lakefront shrine. Ting-Lu — Route 214 shrine. Chi-Yu — Fuego Ironworks shrine
 - **How:** Pull the eight stakes hidden around Sinnoh (two per shrine area, hinted by the Archivist) to unseal each shrine.
+- **Built:** The Paldea Chronicle (CB-0043) opens when the player talks to the Archivist with Zacian and Zamazenta caught (VAR_SOVEREIGN_CHRONICLE 5). Each Ruinous shrine has two stakes on its own map (FLAG_SOVEREIGN_PULLED_STAKE_1 to _8, a common script asks to pull each); with both out the legendary appears at once: Wo-Chien on Route 212 North (464, 788), Chien-Pao at Acuity Lakefront (325, 240), Ting-Lu on Route 214 (722, 695), Chi-Yu outside Fuego Ironworks (180, 593), all level 65. **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later): the stakes stand next to their shrine for now.
 
 ### The Loyal Three
 - **Pokémon:** #1014 Okidogi, #1015 Munkidori, #1016 Fezandipiti
 - **Level:** 65
 - **Location:** Okidogi — Route 225. Munkidori — Route 229. Fezandipiti — Route 224
 - **How:** Static encounters.
+- **Built:** Okidogi on Route 225 (625, 370), Munkidori on Route 229 (806, 428) and Fezandipiti on Route 224 (896, 527) (CB-0043), level 65, once the Paldea Chronicle is open, until caught. **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
 
 ### The Masked Ogre
 - **Pokémon:** #1017 Ogerpon
 - **Level:** 65
 - **Location:** Route 211 (East), at the mountain shrine
 - **How:** Static encounter; Ogerpon holds the Teal Mask. Show it to the Pokéfan (male) in Celestic Town's northeast house (map CelesticTownNortheastHouse, script CelesticTownNortheastHouse_PokefanM) with Ogerpon at the front of the party, and he gives the Wellspring, Hearthflame and Cornerstone Masks. Holding a mask changes Ogerpon's form (owner, 2026-10-22).
+- **Built:** Ogerpon (CB-0043), level 65, holding the Teal Mask: on Route 211 East (435, 531) once the Paldea Chronicle is open, until it's caught. The Pokéfan in Celestic Town's northeast house then gives the Wellspring, Hearthflame and Cornerstone Masks once, with Ogerpon at the front of the party (FLAG_SOVEREIGN_RECEIVED_OGERPON_MASKS). **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
 
 ### The Poison Puppeteer
 - **Pokémon:** #1025 Pecharunt
 - **Level:** 60
 - **Location:** Route 224 — after the Loyal Three are caught
 - **How:** Static encounter.
+- **Built:** Pecharunt (CB-0043), level 60: on Route 224 (898, 526) once the Loyal Three are all caught, until it's caught. **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
 
 ### Time Rifts (Paradox Pokémon)
 - **Pokémon:** #984 Great Tusk, #985 Scream Tail, #986 Brute Bonnet, #987 Flutter Mane, #988 Slither Wing, #989 Sandy Shocks, #1005 Roaring Moon, #1009 Walking Wake, #1020 Gouging Fire, #1021 Raging Bolt, #990 Iron Treads, #991 Iron Bundle, #992 Iron Hands, #993 Iron Jugulis, #994 Iron Moth, #995 Iron Thorns, #1006 Iron Valiant, #1010 Iron Leaves, #1022 Iron Boulder, #1023 Iron Crown
 - **Level:** 65
 - **Location:** Ancient (past) Paradox: Spear Pillar time rift after Dialga is caught. Future Paradox: Spear Pillar space rift after Palkia is caught.
 - **How:** Each rift is a Poké Radar-style patch on a new Spear Pillar floor; one Paradox Pokémon per patch, rotating daily (Renegade's daily RNG), until all ten of that rift are caught.
+- **Built:** Two rifts on Spear Pillar's plaza (CB-0043), level 65, once the Paldea Chronicle is open: the ancient one (27, 30) after Dialga is caught, the future one (35, 30) after Palkia is caught. Each shows and battles the first of its ten not caught yet (VAR_OBJ_GFX_ID_1 and _2 for its sprite) and closes when all ten are caught. **Changed from the plan** (owner, 2026-10-23: existing spots, everything in first): Spear Pillar itself in place of a new floor, and a fixed order in place of a daily rotation.
 
 ### Area Zero (chapter key)
 - **Pokémon:** #1007 Koraidon, #1008 Miraidon, #1024 Terapagos
 - **Level:** 70
 - **Location:** Sendoff Spring — the crater (new map)
 - **How:** Koraidon and Miraidon after all twenty Paradox Pokémon are registered; Terapagos after both are caught.
+- **Built:** Koraidon (29, 36) and Miraidon (27, 37) at Sendoff Spring once all twenty Paradox Pokémon are caught, then Terapagos (30, 34) once both are caught (CB-0043), level 70. **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later): Sendoff Spring stands in for a new crater map.

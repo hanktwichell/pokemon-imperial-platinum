@@ -10,7 +10,7 @@ Renegade Platinum's item changes and item locations are unchanged unless listed 
 | Mega Ring | Leader Fantina, Hearthome Gym (with the Relic Badge) | Enables Mega Evolution |
 | Light Stone, Dark Stone | Legend Archivist, Canalave Library (post-game, with the Unova Chronicle) | Carried, they wake Reshiram (Fuego Ironworks) and Zekrom (Valley Windworks, at night) |
 | Prison Bottle | Legend Archivist, Canalave Library, in the Kalos Chronicle (Other legends) | Hoopa event (Hoopa appears in the Solaceon Ruins while the player carries it); used on Hoopa from the bag, switches it between Hoopa Confined and Hoopa Unbound |
-| Scroll of Darkness, Scroll of Waters | Maylene, Veilstone Gym (post-game) | Evolve Kubfu |
+| Scroll of Darkness, Scroll of Waters | Legend Archivist, Canalave Library, once Kubfu is caught (the plan had Maylene) | Evolve Kubfu |
 | Infinite Repel | Not placed yet (QoL #3 says Professor Rowan's aide, after the Coal Badge) | Toggles a Repel that never runs out |
 
 ## Form items
@@ -19,13 +19,13 @@ Renegade Platinum's item changes and item locations are unchanged unless listed 
 |---|---|---|
 | Rusted Sword | Held by the wild Zacian (post-game, Route 210 North) | Zacian's Crowned Sword form |
 | Rusted Shield | Held by the wild Zamazenta (post-game, Route 210 North) | Zamazenta's Crowned Shield form |
-| Teal Mask | Held by Ogerpon (post-game, Route 211 East shrine) | Ogerpon's Teal Mask form |
+| Teal Mask | Held by the wild Ogerpon (post-game, Route 211 East) | Ogerpon's Teal Mask form |
 | Wellspring Mask, Hearthflame Mask, Cornerstone Mask | The Pokéfan (male) in **Celestic Town's northeast house** (`CelesticTownNortheastHouse_PokefanM`). He gives all three if Ogerpon is at the front of the party | Ogerpon's mask forms |
 | Adamant Crystal, Lustrous Globe, Griseous Core | Not placed yet | Held: Origin Dialga, Palkia, Giratina |
 | Reveal Glass (key item) | Legend Archivist, Canalave Library, once Tornadus and Thundurus are caught | Used on Tornadus, Thundurus, Landorus or Enamorus from the bag: Incarnate ↔ Therian Forme |
 | DNA Splicers (key item) | Legend Archivist, Canalave Library, once Kyurem is caught | Used from the bag on Kyurem or on Reshiram/Zekrom: fuses them (White/Black Kyurem); used on the fused Kyurem: separates them |
 | N-Solarizer, N-Lunarizer (key items) | Legend Archivist, Canalave Library, once Necrozma is caught | The same for Necrozma and Solgaleo (Dusk Mane) or Lunala (Dawn Wings) |
-| Reins of Unity (key item) | Not placed yet | The same for Calyrex and Glastrier (Ice Rider) or Spectrier (Shadow Rider) |
+| Reins of Unity (key item) | Legend Archivist, Canalave Library, once Calyrex is caught | The same for Calyrex and Glastrier (Ice Rider) or Spectrier (Shadow Rider) |
 
 ## New held / evolution items
 
