@@ -339,6 +339,7 @@ struct BattleContext {
     int sovereignSmackedDown[MAX_BATTLERS]; // Sovereign (item 11): grounded by Smack Down
     int sovereignSideGuards[2]; // Sovereign (item 11): this turn's Wide Guard (1) and Quick Guard (2) for each side
     int sovereignSideFaintTurn[2]; // Sovereign (item 11): totalTurns + 1 when a Pokemon on the side last fainted (Retaliate)
+    int sovereignAuroraVeilTurns[2]; // Sovereign (item 11)
 };
 
 #endif // POKEPLATINUM_BATTLE_BATTLE_CONTEXT_H

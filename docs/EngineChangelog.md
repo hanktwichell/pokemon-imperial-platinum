@@ -14,10 +14,15 @@ players and the verification that was run.
   or swap Speed.
 - **Clear Smog:** after the hit the target's stat stages are reset. **Incinerate:** after the hit the target's Berry
   is burnt up (new read-only script variable `BTLVAR_SOVEREIGN_SIDE_EFFECT_MON_HOLDS_BERRY`).
-- Move checklist: exact 242, approximate 42, placeholder 96.
+- **Aurora Veil:** only in snow; halves physical and special damage to the user's side for 5 turns (8 with Light Clay),
+  without stacking with Reflect and Light Screen; Brick Break breaks it (new side condition and turn counter).
+- **Sticky Web:** grounded Pokémon switching in on the foes' side lose 1 Speed stage (Magic Guard doesn't stop it;
+  Clear Body does); Rapid Spin clears it.
+- Move checklist: exact 244, approximate 42, placeholder 94.
 
 **Verified in the test build:** Venusaur, using Swords Dance each turn, ended at Attack stage 0 because Garchomp's
-Clear Smog hit it each turn. The other moves in this part aren't tested in game yet.
+Clear Smog hit it each turn. After Archaludon's Snowscape, Venusaur's Aurora Veil cut Garchomp's Tackle from 14 to 10
+(the doubles screen value). The other moves in this part (and Sticky Web) aren't tested in game yet.
 
 ## Item 11 (part 14) — Psychic Noise and Steel Beam
 

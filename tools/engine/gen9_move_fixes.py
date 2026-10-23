@@ -204,6 +204,8 @@ MOVES = {
     "speed_swap": ("SOVEREIGN_SPEED_SWAP", 0, "the user and target swap their Speed stats"),
     "clear_smog": ("SOVEREIGN_CLEAR_SMOG", 0, "resets the target's stat stages"),
     "incinerate": ("SOVEREIGN_INCINERATE", 0, "burns up the target's Berry"),
+    "aurora_veil": ("SOVEREIGN_AURORA_VEIL", 0, "in snow: halves damage to the user's side for 5 turns (8 with Light Clay)"),
+    "sticky_web": ("SOVEREIGN_STICKY_WEB", 0, "grounded foes switching in lose 1 Speed stage (Rapid Spin clears it)"),
 }
 
 

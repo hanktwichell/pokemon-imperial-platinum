@@ -2,6 +2,18 @@
 
 
 _000:
+    // Sovereign (item 11): Sticky Web (Magic Guard doesn't stop it).
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_STICKY_WEB_SWITCHED_MON, 0, _sovereign_no_web
+    // {0} was caught in a sticky web!
+    PrintMessage BattleStrings_Text_SovereignCaughtInStickyWeb_Ally, TAG_NICKNAME, BTLSCR_SWITCHED_MON
+    Wait 
+    WaitButtonABTime 30
+    UpdateVarFromVar OPCODE_SET, BTLVAR_SIDE_EFFECT_MON, BTLVAR_SWITCHED_MON
+    UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_PARAM, MOVE_SUBSCRIPT_PTR_SPEED_DOWN_1_STAGE
+    UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_INDIRECT
+    Call BATTLE_SUBSCRIPT_UPDATE_STAT_STAGE
+
+_sovereign_no_web:
     CheckAbility CHECK_HAVE, BTLSCR_SWITCHED_MON, ABILITY_MAGIC_GUARD, _105
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_FIELD_CONDITIONS, FIELD_CONDITION_GRAVITY, _037
     CheckItemHoldEffect CHECK_HAVE, BTLSCR_SWITCHED_MON, HOLD_EFFECT_SPEED_DOWN_GROUNDED, _037

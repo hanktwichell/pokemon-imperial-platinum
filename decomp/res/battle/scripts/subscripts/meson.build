@@ -351,4 +351,6 @@ subscript_files = files(
     'subscript_sovereign_speed_swap.s',
     'subscript_sovereign_clear_smog.s',
     'subscript_sovereign_incinerate.s',
+    'subscript_sovereign_aurora_veil.s',
+    'subscript_sovereign_sticky_web.s',
 )

@@ -183,5 +183,7 @@ static const int sSideEffectSubscripts[] = {
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_SPEED_SWAP] = subscript_sovereign_speed_swap,
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_CLEAR_SMOG] = subscript_sovereign_clear_smog,
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_INCINERATE] = subscript_sovereign_incinerate,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_AURORA_VEIL] = subscript_sovereign_aurora_veil,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_STICKY_WEB] = subscript_sovereign_sticky_web,
 };
 // clang-format on

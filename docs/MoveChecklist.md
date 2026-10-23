@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 242 |
+| exact | 244 |
 | approximate | 42 |
-| placeholder | 96 |
+| placeholder | 94 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -111,7 +111,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 561 | Mat Block | Fighting | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 562 | Belch | Poison | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 563 | Rototiller | Ground | `ATK_UP_2` | approximate | raises [('atk', 1), ('spa', 1)] in the original |
-| 564 | Sticky Web | Bug | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 564 | Sticky Web | Bug | `SOVEREIGN_STICKY_WEB` | exact | Sovereign effect: grounded foes switching in lose 1 Speed stage (Rapid Spin clears it) |
 | 565 | Fell Stinger | Bug | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 566 | Phantom Force | Ghost | `SHADOW_FORCE` | exact |  |
 | 567 | Trick-or-Treat | Ghost | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
@@ -241,7 +241,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 691 | Clanging Scales | Dragon | `SOVEREIGN_LOWER_OWN_DEF_HIT` | exact | Sovereign effect: user Defense -1 |
 | 692 | Dragon Hammer | Dragon | `HIT` | exact |  |
 | 693 | Brutal Swing | Dark | `HIT` | exact | Sovereign effect: hits all adjacent Pokémon |
-| 694 | Aurora Veil | Ice | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 694 | Aurora Veil | Ice | `SOVEREIGN_AURORA_VEIL` | exact | Sovereign effect: in snow: halves damage to the user's side for 5 turns (8 with Light Clay) |
 | 695 | (sinister-arrow-raid) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
 | 696 | (malicious-moonsault) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
 | 697 | (oceanic-operetta) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |

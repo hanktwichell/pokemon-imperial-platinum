@@ -8289,7 +8289,7 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
             damage /= 2;
         }
 
-        if ((sideConditions & SIDE_CONDITION_REFLECT) != FALSE
+        if ((sideConditions & (SIDE_CONDITION_REFLECT | SIDE_CONDITION_SOVEREIGN_AURORA_VEIL)) != FALSE // Sovereign (item 11): Aurora Veil
             && criticalMul == 1
             && attackerParams.ability != ABILITY_INFILTRATOR // Sovereign (item 11)
             && MOVE_DATA(move).effect != BATTLE_EFFECT_REMOVE_SCREENS) {
@@ -8331,7 +8331,7 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         damage /= stageDivisor;
         damage /= 50;
 
-        if ((sideConditions & SIDE_CONDITION_LIGHT_SCREEN) != FALSE
+        if ((sideConditions & (SIDE_CONDITION_LIGHT_SCREEN | SIDE_CONDITION_SOVEREIGN_AURORA_VEIL)) != FALSE // Sovereign (item 11): Aurora Veil
             && criticalMul == 1
             && attackerParams.ability != ABILITY_INFILTRATOR // Sovereign (item 11)
             && MOVE_DATA(move).effect != BATTLE_EFFECT_REMOVE_SCREENS) {

@@ -9073,6 +9073,55 @@
         "The foe’s {STRVAR_1 1, 0, 0}’s {STRVAR_1 8, 1, 0}\n",
         "was burnt up!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAuroraVeilYourTeam",
+      "en_US": [
+        "Aurora Veil made your team\n",
+        "stronger against attacks!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAuroraVeilEnemyTeam",
+      "en_US": [
+        "Aurora Veil made the enemy team\n",
+        "stronger against attacks!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignStickyWebYourTeam",
+      "en_US": [
+        "A sticky web spread out around\n",
+        "your team’s feet!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignStickyWebEnemyTeam",
+      "en_US": [
+        "A sticky web spread out around\n",
+        "the enemy team’s feet!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCaughtInStickyWeb_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} was caught\n",
+        "in a sticky web!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCaughtInStickyWeb_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} was caught\n",
+        "in a sticky web!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCaughtInStickyWeb_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} was caught\n",
+        "in a sticky web!"
+      ]
     }
   ]
 }
