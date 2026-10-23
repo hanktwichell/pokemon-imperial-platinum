@@ -4,6 +4,41 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E11 — The Chronicles: Victini and the Kalos Chronicle
+
+The rest of the Unova Chronicle and all of the Kalos Chronicle (`docs/PostgameLegendaries.md`). The owner chose
+existing spots over new rooms (2026-10-23), so each legendary planned for a new room stands in a fitting existing one:
+- **Victini** (Lv. 55) sits on the west side of Vista Lighthouse's top floor once the Unova Chronicle is open. The
+  Archivist's Other legends topic now hints at it: "It loves a view of the sea. Try the top of Sunyshore's Vista
+  Lighthouse." The lighthouse has no basement, so there's no hatch for Volkner to open.
+- **The Kalos Chronicle** opens when the player talks to the Archivist with Kyurem caught: "You caught KYUREM! That was
+  the last legend of the Unova Chronicle. And look what was tucked behind it: a second tome, the Kalos Chronicle!"
+  He then asks "Which Chronicle shall I read from?" (Unova Chronicle, Kalos Chronicle, That's all), and each Chronicle
+  has its own menu.
+- **Life and Destruction**, the Kalos key (Lv. 70):
+  - Xerneas in the green nook beside the Old Chateau in Eterna Forest.
+  - Yveltal at the end of the Lost Tower top floor's east corridor.
+  - Zygarde (50% Forme) in an alcove of Wayward Cave B1F once both are caught.
+- **Other legends:**
+  - The Archivist gives the **Prison Bottle**, not obtainable anywhere before.
+  - Hoopa (Lv. 55) then plays in the Solaceon Ruins' innermost room while the player carries the bottle.
+  - Diancie (Lv. 55) appears by Oreburgh Mine B2F's west wall to a player with a Carbink in the party. Carbink is wild
+    outside Stark Mountain.
+  - Volcanion (Lv. 60) stands at the end of the long east tunnel in Stark Mountain's first cave.
+- New overworld sprites for all seven. Wayward Cave B1F gets its own script archives (it had `scripts_empty`).
+  Xerneas shares Eterna Forest with Virizion, so it has its own hidden flag. Each one's script also notes itself so a
+  knock-out removes the right one.
+- **Verified** (test build; a temporary patch set the game completed, opened the Unova Chronicle, marked Kyurem caught,
+  put a Carbink in the party and raised the party to level 100):
+  - Xerneas, Hoopa and Zygarde hidden before their conditions held.
+  - The Kalos opening, the chapter menu, both Kalos topics (the Prison Bottle given), Unova's Other legends with the
+    Victini hint, and "That's all" in each menu.
+  - All seven seen, caught with a Master Ball and gone afterwards.
+  - The Zygarde hint once Xerneas and Yveltal were caught, then "You found all three!".
+  - Xerneas and Virizion each knocked out and each vanishing alone. A first version took the battled species from a
+    special var, which OnLoad can't read after a battle, and always removed Virizion; a map-local var fixed it.
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+
 ## E11 — The Chronicles: the Archivist's menu
 
 The Legend Archivist's talk had grown to about 45 pages on a fresh post-game save. After his first talk, he now asks

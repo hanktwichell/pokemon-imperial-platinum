@@ -5,11 +5,40 @@
 
     ScriptEntry StarkMountainOutside_OnTransition
     ScriptEntry StarkMountainOutside_OnFrame_TeamGalactic
+    ScriptEntry StarkMountainRoom1_OnLoad
+    ScriptEntry StarkMountainRoom1_LegendaryVolcanion
     ScriptEntryEnd
 
 StarkMountainOutside_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_STARK_MOUNTAIN_INTERIOR
     SetFlag FLAG_HIDE_ROUTE_227_BUCK
+    Call StarkMountainRoom1_SovereignSetVolcanionVisibility
+    End
+
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Volcanion stands at the end of this cave's long east
+@ tunnel once the Kalos Chronicle is open (VAR_SOVEREIGN_CHRONICLE 2), until it's caught.
+StarkMountainRoom1_SovereignSetVolcanionVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+    GoToIfLt VAR_SOVEREIGN_CHRONICLE, 2, StarkMountainRoom1_SovereignSetVolcanionVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_VOLCANION, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, StarkMountainRoom1_SovereignSetVolcanionVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+StarkMountainRoom1_SovereignSetVolcanionVisibilityEnd:
+    Return
+
+StarkMountainRoom1_OnLoad:
+    GoToIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, StarkMountainRoom1_RemoveLegendaryVolcanion
+    End
+
+StarkMountainRoom1_RemoveLegendaryVolcanion:
+    RemoveObject LOCALID_LEGENDARY_VOLCANION
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+    End
+
+StarkMountainRoom1_LegendaryVolcanion:
+    SetVar VAR_0x8004, SPECIES_VOLCANION
+    SetVar VAR_0x8005, 60
+    Common_SovereignLegendaryEncounter
     End
 
 StarkMountainOutside_OnFrame_TeamGalactic:

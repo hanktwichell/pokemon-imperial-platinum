@@ -167,15 +167,35 @@ CanalaveLibrary2F_Movement_PlayerMoveAside:
 @ Sovereign (the Chronicles, docs/PostgameLegendaries.md): the Legend Archivist, here from the first Hall of Fame. His
 @ first talk opens the Unova Chronicle (VAR_SOVEREIGN_CHRONICLE 1). After that he offers a menu of the Chronicle's
 @ legends, and each topic gives what's left of it: hints, and the key items (the Light and Dark Stones, the DNA
-@ Splicers, the Reveal Glass) or the release of the Forces of Nature roamers. The menu comes back until the player
-@ is done.
+@ Splicers, the Reveal Glass, the Prison Bottle) or the release of the Forces of Nature roamers. The menu comes back
+@ until the player is done. Once Kyurem, the Unova Chronicle's key, is caught, he opens the Kalos Chronicle
+@ (VAR_SOVEREIGN_CHRONICLE 2) and first asks which Chronicle to read from.
 CanalaveLibrary2F_SovereignArchivist:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
-    GoToIfGe VAR_SOVEREIGN_CHRONICLE, 1, CanalaveLibrary2F_SovereignArchivistUnova
+    GoToIfGe VAR_SOVEREIGN_CHRONICLE, 1, CanalaveLibrary2F_SovereignArchivistRead
     SetVar VAR_SOVEREIGN_CHRONICLE, 1
     Message CanalaveLibrary2F_Text_SovereignArchivistIntro
+    GoTo CanalaveLibrary2F_SovereignArchivistEnd
+
+CanalaveLibrary2F_SovereignArchivistRead:
+    GoToIfGe VAR_SOVEREIGN_CHRONICLE, 2, CanalaveLibrary2F_SovereignArchivistChapters
+    SovereignCheckSpeciesCaught SPECIES_KYUREM, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistUnova
+    SetVar VAR_SOVEREIGN_CHRONICLE, 2
+    Message CanalaveLibrary2F_Text_SovereignArchivistKalosOpens
+CanalaveLibrary2F_SovereignArchivistChapters:
+    Message CanalaveLibrary2F_Text_SovereignArchivistWhichChronicle
+    InitLocalTextMenu 31, 3, 0, VAR_RESULT
+    SetMenuXOriginToRight
+    AddMenuEntryImm CanalaveLibrary2F_Text_SovereignMenuUnova, 0
+    AddMenuEntryImm CanalaveLibrary2F_Text_SovereignMenuKalos, 1
+    AddMenuEntryImm CanalaveLibrary2F_Text_SovereignMenuDone, 2
+    ShowMenu
+    GoToIfEq VAR_RESULT, 0, CanalaveLibrary2F_SovereignArchivistUnova
+    GoToIfEq VAR_RESULT, 1, CanalaveLibrary2F_SovereignArchivistKalos
+    Message CanalaveLibrary2F_Text_SovereignArchivistKeepReadingChronicles
     GoTo CanalaveLibrary2F_SovereignArchivistEnd
 
 CanalaveLibrary2F_SovereignArchivistUnova:
@@ -325,16 +345,82 @@ CanalaveLibrary2F_SovereignArchivistRevealGlass:
     Common_GiveItemQuantity
     Return
 
-@ The other Unova legends: Meloetta and Genesect.
+@ The other Unova legends: Meloetta, Genesect and Victini.
 CanalaveLibrary2F_SovereignArchivistOthers:
     SovereignCheckSpeciesCaught SPECIES_MELOETTA, VAR_0x8004
     SovereignCheckSpeciesCaught SPECIES_GENESECT, VAR_0x8005
+    SovereignCheckSpeciesCaught SPECIES_VICTINI, VAR_0x8006
     CallIfEq VAR_0x8004, FALSE, CanalaveLibrary2F_SovereignArchivistMeloetta
     CallIfEq VAR_0x8005, FALSE, CanalaveLibrary2F_SovereignArchivistGenesect
+    CallIfEq VAR_0x8006, FALSE, CanalaveLibrary2F_SovereignArchivistVictini
     GoToIfEq VAR_0x8004, FALSE, CanalaveLibrary2F_SovereignArchivistAskMore
     GoToIfEq VAR_0x8005, FALSE, CanalaveLibrary2F_SovereignArchivistAskMore
+    GoToIfEq VAR_0x8006, FALSE, CanalaveLibrary2F_SovereignArchivistAskMore
     Message CanalaveLibrary2F_Text_SovereignArchivistOthersDone
     GoTo CanalaveLibrary2F_SovereignArchivistAskMore
+
+@ The Kalos Chronicle: a menu of its legends, as for Unova's.
+CanalaveLibrary2F_SovereignArchivistKalos:
+    Message CanalaveLibrary2F_Text_SovereignArchivistKalosWhichLegend
+CanalaveLibrary2F_SovereignArchivistKalosMenu:
+    InitLocalTextMenu 31, 3, 0, VAR_RESULT
+    SetMenuXOriginToRight
+    AddMenuEntryImm CanalaveLibrary2F_Text_SovereignMenuLife, 0
+    AddMenuEntryImm CanalaveLibrary2F_Text_SovereignMenuOthers, 1
+    AddMenuEntryImm CanalaveLibrary2F_Text_SovereignMenuDone, 2
+    ShowMenu
+    GoToIfEq VAR_RESULT, 0, CanalaveLibrary2F_SovereignArchivistLife
+    GoToIfEq VAR_RESULT, 1, CanalaveLibrary2F_SovereignArchivistKalosOthers
+    Message CanalaveLibrary2F_Text_SovereignArchivistKalosKeepReading
+    GoTo CanalaveLibrary2F_SovereignArchivistEnd
+
+CanalaveLibrary2F_SovereignArchivistKalosAskMore:
+    Message CanalaveLibrary2F_Text_SovereignArchivistAnythingElse
+    GoTo CanalaveLibrary2F_SovereignArchivistKalosMenu
+
+@ Life and Destruction, the Kalos Chronicle's key: a hint for Xerneas and Yveltal while either is left, then Zygarde.
+CanalaveLibrary2F_SovereignArchivistLife:
+    SovereignCheckSpeciesCaught SPECIES_XERNEAS, VAR_0x8004
+    SovereignCheckSpeciesCaught SPECIES_YVELTAL, VAR_0x8005
+    GoToIfEq VAR_0x8004, FALSE, CanalaveLibrary2F_SovereignArchivistLifeHints
+    GoToIfEq VAR_0x8005, FALSE, CanalaveLibrary2F_SovereignArchivistLifeHints
+    SovereignCheckSpeciesCaught SPECIES_ZYGARDE, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, CanalaveLibrary2F_SovereignArchivistLifeDone
+    Message CanalaveLibrary2F_Text_SovereignArchivistZygarde
+    GoTo CanalaveLibrary2F_SovereignArchivistKalosAskMore
+
+CanalaveLibrary2F_SovereignArchivistLifeDone:
+    Message CanalaveLibrary2F_Text_SovereignArchivistLifeDone
+    GoTo CanalaveLibrary2F_SovereignArchivistKalosAskMore
+
+CanalaveLibrary2F_SovereignArchivistLifeHints:
+    Message CanalaveLibrary2F_Text_SovereignArchivistLife
+    CallIfEq VAR_0x8004, FALSE, CanalaveLibrary2F_SovereignArchivistXerneas
+    CallIfEq VAR_0x8005, FALSE, CanalaveLibrary2F_SovereignArchivistYveltal
+    GoTo CanalaveLibrary2F_SovereignArchivistKalosAskMore
+
+@ The other Kalos legends: Diancie, Hoopa (the Prison Bottle first, while the player doesn't have it) and Volcanion.
+CanalaveLibrary2F_SovereignArchivistKalosOthers:
+    CheckItem ITEM_PRISON_BOTTLE, 1, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistPrisonBottle
+    SovereignCheckSpeciesCaught SPECIES_DIANCIE, VAR_0x8006
+    SovereignCheckSpeciesCaught SPECIES_HOOPA, VAR_0x8007
+    SovereignCheckSpeciesCaught SPECIES_VOLCANION, VAR_0x8008
+    CallIfEq VAR_0x8006, FALSE, CanalaveLibrary2F_SovereignArchivistDiancie
+    CallIfEq VAR_0x8007, FALSE, CanalaveLibrary2F_SovereignArchivistHoopa
+    CallIfEq VAR_0x8008, FALSE, CanalaveLibrary2F_SovereignArchivistVolcanion
+    GoToIfEq VAR_0x8006, FALSE, CanalaveLibrary2F_SovereignArchivistKalosAskMore
+    GoToIfEq VAR_0x8007, FALSE, CanalaveLibrary2F_SovereignArchivistKalosAskMore
+    GoToIfEq VAR_0x8008, FALSE, CanalaveLibrary2F_SovereignArchivistKalosAskMore
+    Message CanalaveLibrary2F_Text_SovereignArchivistKalosOthersDone
+    GoTo CanalaveLibrary2F_SovereignArchivistKalosAskMore
+
+CanalaveLibrary2F_SovereignArchivistPrisonBottle:
+    Message CanalaveLibrary2F_Text_SovereignArchivistPrisonBottle
+    SetVar VAR_0x8004, ITEM_PRISON_BOTTLE
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    Return
 
 CanalaveLibrary2F_SovereignArchivistCobalion:
     Message CanalaveLibrary2F_Text_SovereignArchivistCobalion
@@ -362,6 +448,30 @@ CanalaveLibrary2F_SovereignArchivistMeloetta:
 
 CanalaveLibrary2F_SovereignArchivistGenesect:
     Message CanalaveLibrary2F_Text_SovereignArchivistGenesect
+    Return
+
+CanalaveLibrary2F_SovereignArchivistVictini:
+    Message CanalaveLibrary2F_Text_SovereignArchivistVictini
+    Return
+
+CanalaveLibrary2F_SovereignArchivistXerneas:
+    Message CanalaveLibrary2F_Text_SovereignArchivistXerneas
+    Return
+
+CanalaveLibrary2F_SovereignArchivistYveltal:
+    Message CanalaveLibrary2F_Text_SovereignArchivistYveltal
+    Return
+
+CanalaveLibrary2F_SovereignArchivistDiancie:
+    Message CanalaveLibrary2F_Text_SovereignArchivistDiancie
+    Return
+
+CanalaveLibrary2F_SovereignArchivistHoopa:
+    Message CanalaveLibrary2F_Text_SovereignArchivistHoopa
+    Return
+
+CanalaveLibrary2F_SovereignArchivistVolcanion:
+    Message CanalaveLibrary2F_Text_SovereignArchivistVolcanion
     Return
 
 CanalaveLibrary2F_SovereignArchivistEnd:

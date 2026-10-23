@@ -251,9 +251,11 @@ implemented.
 - **The Chronicles** (post-game legendaries, `docs/PostgameLegendaries.md` from `data/postgame_legendaries.yaml`).
   - **The Archivist.** `LOCALID_SOVEREIGN_ARCHIVIST` in Canalave Library 2F, hidden by OnTransition
     (`FLAG_MAP_LOCAL_HIDE_SOVEREIGN_NPC`) until `FLAG_GAME_COMPLETED`. His first talk sets `VAR_SOVEREIGN_CHRONICLE` to 1
-    (the Unova Chronicle open); later chapters will raise it. Later talks show a menu (`InitLocalTextMenu`, one entry
-    per part of the Chronicle, then "That's all") that comes back after each topic. Each topic checks the Pokédex and
-    gives only what's left: for the swords, one hint message per sword not caught yet, then Keldeo at Lake Valor.
+    (the Unova Chronicle open). Later talks show a menu (`InitLocalTextMenu`, one entry per part of the Chronicle, then
+    "That's all") that comes back after each topic. Each topic checks the Pokédex and gives only what's left: for the
+    swords, one hint message per sword not caught yet, then Keldeo at Lake Valor.
+    - A talk with Kyurem caught (the Unova key) raises the var to 2, the Kalos Chronicle. From then on a first menu asks
+      which Chronicle to read from, and each Chronicle has its own topic menu and "Anything else" loop.
   - **A static legendary** is an object with `OBJ_EVENT_GFX_LEGENDARY_<SPECIES>`, a 64x64 billboard like the Totems'.
     - Its hidden flag is `FLAG_MAP_LOCAL_HIDE_LEGENDARY`. The map's OnTransition sets it, then clears it once the
       chapter is open and `SovereignCheckSpeciesCaught` says the Pokédex doesn't have the species as caught. No
@@ -266,6 +268,16 @@ implemented.
       until it's caught. A loss blacks out. `StartLegendaryBattle` doesn't let the player run, as in vanilla.
     - Placed so far: Virizion (Eterna Forest), Terrakion (Route 227), Cobalion (Iron Island B2F right room) and Keldeo
       (Lake Valor). Keldeo's OnTransition also needs `CheckPartyHasSpecies` to find all three swords in the party.
+      Victini (Vista Lighthouse) needs the var at 1 only.
+    - **Kalos** (var 2): Xerneas (Eterna Forest), Yveltal (Lost Tower 5F) and Volcanion (Stark Mountain room 1) need the
+      var only. Zygarde (`WAYWARD_CAVE_B1F`, own script archives like the ice chamber's) waits for Xerneas and Yveltal
+      caught. Diancie (Oreburgh Mine B2F) checks `CheckPartyHasSpecies` for a Carbink. Hoopa (Solaceon Ruins Room 7)
+      checks `CheckItem ITEM_PRISON_BOTTLE`, which the Archivist gives while the player doesn't have it.
+    - **Two legendaries on one map** (Eterna Forest: Virizion and Xerneas). Xerneas hides with
+      `FLAG_MAP_LOCAL_HIDE_LEGENDARY_2` (map-local 0x1C, unused in vanilla). The OnLoad removal after a battle has to
+      know which one was fought: each talk script stores its species in `VAR_MAP_LOCAL_0x00` first. Map-local vars last
+      through a battle (only a map change clears them), while the special vars (`VAR_0x8009`, which the common script
+      keeps the species in) can't be read from OnLoad on the way back: a first try with them always removed Virizion.
     - **Quest-triggered ones** show only once a global flag is set:
       - Meloetta (Contest Hall stage) waits for `FLAG_SOVEREIGN_MELOETTA_SONG`. The composer in the lobby sets it when
         `FindPartySlotWithMove` finds a party Pokémon with Sing and the player agrees.

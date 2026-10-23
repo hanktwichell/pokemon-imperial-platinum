@@ -8,7 +8,38 @@
     ScriptEntry OreburghMineB2F_Machop3
     ScriptEntry OreburghMineB2F_Machop2
     ScriptEntry OreburghMineB2F_Worker
+    ScriptEntry OreburghMineB2F_OnTransition
+    ScriptEntry OreburghMineB2F_OnLoad
+    ScriptEntry OreburghMineB2F_LegendaryDiancie
     ScriptEntryEnd
+
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Diancie shines in the nook by the mine's west wall once the
+@ Kalos Chronicle is open (VAR_SOVEREIGN_CHRONICLE 2) and a Carbink is in the party, until it's caught.
+OreburghMineB2F_OnTransition:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+    GoToIfLt VAR_SOVEREIGN_CHRONICLE, 2, OreburghMineB2F_OnTransitionEnd
+    SovereignCheckSpeciesCaught SPECIES_DIANCIE, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, OreburghMineB2F_OnTransitionEnd
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_CARBINK
+    GoToIfEq VAR_RESULT, FALSE, OreburghMineB2F_OnTransitionEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+OreburghMineB2F_OnTransitionEnd:
+    End
+
+OreburghMineB2F_OnLoad:
+    GoToIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, OreburghMineB2F_RemoveLegendaryDiancie
+    End
+
+OreburghMineB2F_RemoveLegendaryDiancie:
+    RemoveObject LOCALID_LEGENDARY_DIANCIE
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+    End
+
+OreburghMineB2F_LegendaryDiancie:
+    SetVar VAR_0x8004, SPECIES_DIANCIE
+    SetVar VAR_0x8005, 55
+    Common_SovereignLegendaryEncounter
+    End
 
 OreburghMineB2F_Roark:
     PlaySE SE_CONFIRM_sseq_3
