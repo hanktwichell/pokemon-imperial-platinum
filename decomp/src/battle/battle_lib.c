@@ -113,6 +113,7 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
     battleCtx->battleMons[battler].moldBreakerAnnounced = FALSE;
     battleCtx->battleMons[battler].pressureAnnounced = FALSE;
     battleCtx->battleMons[battler].sovereignBoosterEnergy = FALSE;
+    battleCtx->battleMons[battler].sovereignProteanUsed = FALSE;
     battleCtx->battleMons[battler].type1 = Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
     battleCtx->battleMons[battler].type2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
     battleCtx->battleMons[battler].gender = Pokemon_GetGender(mon);
@@ -1774,7 +1775,7 @@ void BattleSystem_CheckRedirectionAbilities(BattleSystem *battleSys, BattleConte
 
     if (battleCtx->defender == BATTLER_NONE
         || Battler_Ability(battleCtx, attacker) == ABILITY_NORMALIZE
-        || Battler_Ability(battleCtx, attacker) == ABILITY_MOLD_BREAKER) {
+        || Sovereign_IsMoldBreaker(battleCtx, attacker)) {
         return;
     }
 
@@ -2712,7 +2713,8 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
             if (sTypeMatchupMultipliers[chartEntry][0] == 0xFE) {
                 // The Ghost-type immunities are listed separately and ignored as a batch
                 if ((battleCtx->battleMons[defender].statusVolatile & VOLATILE_CONDITION_FORESIGHT)
-                    || Battler_Ability(battleCtx, attacker) == ABILITY_SCRAPPY) {
+                    || Battler_Ability(battleCtx, attacker) == ABILITY_SCRAPPY
+                    || Battler_Ability(battleCtx, attacker) == ABILITY_MINDS_EYE) {
                     break;
                 } else {
                     chartEntry++;
@@ -2794,7 +2796,7 @@ void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inTy
 
     moveType = Sovereign_AbilityMoveType(attackerAbility, move, inType ? inType : MOVE_DATA(move).type); // Sovereign (item 11)
 
-    if (attackerAbility != ABILITY_MOLD_BREAKER
+    if (attackerAbility != ABILITY_MOLD_BREAKER && attackerAbility != ABILITY_TURBOBLAZE && attackerAbility != ABILITY_TERAVOLT
         && defenderAbility == ABILITY_LEVITATE
         && moveType == TYPE_GROUND
         && (battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) == FALSE
@@ -2805,7 +2807,7 @@ void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inTy
 
         while (sTypeMatchupMultipliers[chartEntry][0] != 0xFF) {
             if (sTypeMatchupMultipliers[chartEntry][0] == 0xFE) {
-                if (attackerAbility == ABILITY_SCRAPPY) {
+                if (attackerAbility == ABILITY_SCRAPPY || attackerAbility == ABILITY_MINDS_EYE) {
                     break;
                 } else {
                     chartEntry++;
@@ -2830,7 +2832,7 @@ void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inTy
         }
     }
 
-    if (attackerAbility != ABILITY_MOLD_BREAKER
+    if (attackerAbility != ABILITY_MOLD_BREAKER && attackerAbility != ABILITY_TURBOBLAZE && attackerAbility != ABILITY_TERAVOLT
         && defenderAbility == ABILITY_WONDER_GUARD
         && MoveIsOnDamagingTurn(battleCtx, move)
         && ((*moveStatusMask & MOVE_STATUS_SUPER_EFFECTIVE) == FALSE
@@ -3212,11 +3214,26 @@ u16 Battler_Ability(BattleContext *battleCtx, int battler)
     return battleCtx->battleMons[battler].ability;
 }
 
+// Sovereign (item 11): Mold Breaker, Turboblaze and Teravolt ignore the target's ability; Mycelium Might does too, for
+// the user's status moves.
+BOOL Sovereign_IsMoldBreaker(BattleContext *battleCtx, int battler)
+{
+    int ability = Battler_Ability(battleCtx, battler);
+
+    if (ability == ABILITY_MOLD_BREAKER || ability == ABILITY_TURBOBLAZE || ability == ABILITY_TERAVOLT) {
+        return TRUE;
+    }
+
+    return ability == ABILITY_MYCELIUM_MIGHT
+        && battleCtx->attacker == battler
+        && MOVE_DATA(battleCtx->moveCur).class == CLASS_STATUS;
+}
+
 BOOL Battler_IgnorableAbility(BattleContext *battleCtx, int attacker, int defender, int ability)
 {
     BOOL result = FALSE;
 
-    if (Battler_Ability(battleCtx, attacker) != ABILITY_MOLD_BREAKER) {
+    if (Sovereign_IsMoldBreaker(battleCtx, attacker) == FALSE) {
         if (Battler_Ability(battleCtx, defender) == ability) {
             result = TRUE;
         }
@@ -3877,6 +3894,7 @@ enum SwitchInCheckState {
     SWITCH_IN_CHECK_STATE_SOVEREIGN_BOOSTER_ENERGY,
     SWITCH_IN_CHECK_STATE_SOVEREIGN_TERRAIN_SEED,
     SWITCH_IN_CHECK_STATE_DOWNLOAD,
+    SWITCH_IN_CHECK_STATE_SOVEREIGN_ENTRY_BOOSTS,
     SWITCH_IN_CHECK_STATE_ANTICIPATION,
     SWITCH_IN_CHECK_STATE_FOREWARN,
     SWITCH_IN_CHECK_STATE_FRISK,
@@ -4258,6 +4276,33 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
             }
             break;
 
+        case SWITCH_IN_CHECK_STATE_SOVEREIGN_ENTRY_BOOSTS:
+            // Sovereign (item 11): Intrepid Sword raises Attack and Dauntless Shield Defense by 1 stage, the first time
+            // the holder enters the battle.
+            for (i = 0; i < maxBattlers; i++) {
+                int ability;
+
+                battler = battleCtx->monSpeedOrder[i];
+                ability = Battler_Ability(battleCtx, battler);
+
+                if (battleCtx->battleMons[battler].curHP
+                    && (ability == ABILITY_INTREPID_SWORD || ability == ABILITY_DAUNTLESS_SHIELD)
+                    && (battleCtx->sovereignOncePerBattle[battler] & FlagIndex(battleCtx->selectedPartySlot[battler])) == FALSE) {
+                    battleCtx->sovereignOncePerBattle[battler] |= FlagIndex(battleCtx->selectedPartySlot[battler]);
+                    battleCtx->sideEffectParam = ability == ABILITY_INTREPID_SWORD ? MOVE_SUBSCRIPT_PTR_ATTACK_UP_1_STAGE : MOVE_SUBSCRIPT_PTR_DEFENSE_UP_1_STAGE;
+                    battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
+                    battleCtx->sideEffectMon = battler;
+                    subscript = subscript_update_stat_stage;
+                    result = SWITCH_IN_CHECK_RESULT_BREAK;
+                    break;
+                }
+            }
+
+            if (i == maxBattlers) {
+                battleCtx->switchInCheckState++;
+            }
+            break;
+
         case SWITCH_IN_CHECK_STATE_ANTICIPATION:
             for (i = 0; i < maxBattlers; i++) {
                 battler = battleCtx->monSpeedOrder[i];
@@ -4478,7 +4523,9 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
 
                 if (battleCtx->battleMons[battler].moldBreakerAnnounced == FALSE
                     && battleCtx->battleMons[battler].curHP
-                    && Battler_Ability(battleCtx, battler) == ABILITY_MOLD_BREAKER) {
+                    && (Battler_Ability(battleCtx, battler) == ABILITY_MOLD_BREAKER
+                        || Battler_Ability(battleCtx, battler) == ABILITY_TURBOBLAZE
+                        || Battler_Ability(battleCtx, battler) == ABILITY_TERAVOLT)) {
                     battleCtx->battleMons[battler].moldBreakerAnnounced = TRUE;
                     battleCtx->msgBattlerTemp = battler;
                     subscript = subscript_mold_breaker;
@@ -4672,6 +4719,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
     case ABILITY_RATTLED:
     case ABILITY_WATER_COMPACTION:
     case ABILITY_THERMAL_EXCHANGE:
+    case ABILITY_STEAM_ENGINE:
     case ABILITY_WEAK_ARMOR: {
         int hitType = battleCtx->moveType ? battleCtx->moveType : CURRENT_MOVE_DATA.type;
         int ability = Battler_Ability(battleCtx, battleCtx->defender);
@@ -4696,6 +4744,13 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
         } else if (ability == ABILITY_THERMAL_EXCHANGE && hitType == TYPE_FIRE
             && DEFENDING_MON.statBoosts[BATTLE_STAT_ATTACK] < MAX_STAT_STAGE) {
             param = MOVE_SUBSCRIPT_PTR_ATTACK_UP_1_STAGE;
+        } else if (ability == ABILITY_STEAM_ENGINE && (hitType == TYPE_FIRE || hitType == TYPE_WATER)
+            && DEFENDING_MON.statBoosts[BATTLE_STAT_SPEED] < MAX_STAT_STAGE) {
+            battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
+            battleCtx->sideEffectMon = battleCtx->defender;
+            *subscript = subscript_sovereign_steam_engine;
+            result = TRUE;
+            break;
         } else if (ability == ABILITY_WEAK_ARMOR && CURRENT_MOVE_DATA.class == CLASS_PHYSICAL) {
             battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
             battleCtx->sideEffectMon = battleCtx->defender;
@@ -4713,6 +4768,20 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
         }
         break;
     }
+
+    // Sovereign (item 11): Seed Sower sets Grassy Terrain when a damaging move hits the holder.
+    case ABILITY_SEED_SOWER:
+        if ((battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+            && (battleCtx->fieldConditionsMask & FIELD_CONDITION_TERRAIN_GRASSY) == FALSE) {
+            battleCtx->fieldConditionsMask &= ~(FIELD_CONDITION_TERRAIN | FIELD_CONDITION_TERRAIN_TURNS);
+            battleCtx->fieldConditionsMask |= FIELD_CONDITION_TERRAIN_GRASSY
+                | (DEFENDING_MON.heldItem == ITEM_TERRAIN_EXTENDER ? FIELD_CONDITION_TERRAIN_8_TURNS : FIELD_CONDITION_TERRAIN_5_TURNS);
+            *subscript = subscript_sovereign_terrain_start;
+            result = TRUE;
+        }
+        break;
 
     // Sovereign (item 11): Stamina raises Defense 1 stage whenever a damaging move hits (contact or not), as long as
     // the holder is still standing.
@@ -8131,6 +8200,28 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
             spAttackStat /= 2;
         }
         break;
+    case ABILITY_SUPREME_OVERLORD: {
+        // 10% more power for each fainted party member, up to 5.
+        Party *party = BattleSystem_GetParty(battleSys, attacker);
+        int fainted = 0;
+
+        for (i = 0; i < Party_GetCurrentCount(party); i++) {
+            Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
+
+            if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) != SPECIES_NONE
+                && Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE
+                && Pokemon_GetValue(mon, MON_DATA_HP, NULL) == 0) {
+                fainted++;
+            }
+        }
+
+        if (fainted > 5) {
+            fainted = 5;
+        }
+
+        movePower = movePower * (10 + fainted) / 10;
+        break;
+    }
     case ABILITY_ANALYTIC: {
         // 1.3x when every other Pokemon on the field has already moved this turn.
         int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
@@ -8269,7 +8360,7 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         }
 
         if ((fieldConditions & FIELD_CONDITION_SUNNY)
-            && Battler_Ability(battleCtx, attacker) != ABILITY_MOLD_BREAKER
+            && Sovereign_IsMoldBreaker(battleCtx, attacker) == FALSE
             && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_OUR_SIDE, defender, ABILITY_FLOWER_GIFT)) {
             spDefenseStat = spDefenseStat * 15 / 10;
         }

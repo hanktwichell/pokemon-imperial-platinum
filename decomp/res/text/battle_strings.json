@@ -9122,6 +9122,29 @@
         "The foe’s {STRVAR_1 1, 0, 0} was caught\n",
         "in a sticky web!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignBouncedBackByMagicBounce_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s {STRVAR_1 6, 1, 0}\n",
+        "was bounced back by Magic Bounce!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignBouncedBackByMagicBounce_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}’s\n",
+        "{STRVAR_1 6, 1, 0} was bounced back by\f",
+        "Magic Bounce!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignBouncedBackByMagicBounce_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}’s\n",
+        "{STRVAR_1 6, 1, 0} was bounced back by\f",
+        "Magic Bounce!"
+      ]
     }
   ]
 }

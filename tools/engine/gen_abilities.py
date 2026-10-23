@@ -207,6 +207,21 @@ IMPLEMENTED = {
     192: "yes: Defense +1 stage each time a damaging move hits (`BattleSystem_TriggerAbilityOnHit`)",  # Stamina
     273: "yes: absorbs Fire moves, Defense +2 (`BattleSystem_TriggerImmunityAbility`)",  # Well-Baked Body
     297: "yes: absorbs Ground moves, restores 1/4 of max HP (`BattleSystem_TriggerImmunityAbility`)",  # Earth Eater
+    156: "yes: reflects status moves aimed at it",
+    162: "yes: accuracy ×1.1 for it and its ally",
+    163: "yes: ignores the target's ability, like Mold Breaker",
+    164: "yes: ignores the target's ability, like Mold Breaker",
+    168: "yes: becomes its move's type, once per switch-in",
+    234: "yes: Attack +1 the first time it enters battle",
+    235: "yes: Defense +1 the first time it enters battle",
+    236: "yes: becomes its move's type, once per switch-in",
+    243: "yes: Fire or Water hits raise Speed 6 stages",
+    260: "yes: contact moves go through protection",
+    269: "yes: getting hit sets Grassy Terrain",
+    283: "yes: immune to other Pokémon's status moves",
+    293: "yes: 10% more power per fainted party member (up to 5)",
+    298: "partly: its status moves ignore abilities (moving last not yet)",
+    299: "yes: hits Ghost types with Normal and Fighting moves, ignores evasion, accuracy can't be lowered",
 }
 
 

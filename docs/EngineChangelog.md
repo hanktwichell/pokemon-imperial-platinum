@@ -4,6 +4,30 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (part 16) — abilities: Mold Breaker family, Protean, Magic Bounce and more
+
+- **Turboblaze, Teravolt:** work as Mold Breaker (new `Sovereign_IsMoldBreaker`, used everywhere Mold Breaker was
+  checked, the AI included), and announce themselves on entry. **Mycelium Might:** the holder's status moves ignore
+  abilities (moving last in its priority bracket is not done yet).
+- **Victory Star:** accuracy ×1.1 for the holder and its ally. **Mind's Eye:** Normal and Fighting moves hit Ghost
+  types, the target's raised evasion is ignored, and the holder's accuracy can't be lowered.
+- **Supreme Overlord:** 10% more power for each fainted party member, up to 5.
+- **Steam Engine:** a Fire or Water hit raises the holder's Speed 6 stages. **Seed Sower:** getting hit sets Grassy
+  Terrain.
+- **Unseen Fist:** contact moves go through Protect and the guard moves. **Good as Gold:** immune to other Pokémon's
+  status moves aimed at it.
+- **Protean, Libero:** before its move, the user becomes the move's type ("made it the Fire type!"), once per
+  switch-in (new try-move state).
+- **Intrepid Sword, Dauntless Shield:** Attack / Defense +1 the first time the holder enters the battle (Gen IX's once
+  per battle, kept per party slot).
+- **Magic Bounce:** reflects status moves aimed at the holder, like Magic Coat, every turn; a reflected move isn't
+  reflected again. New message "...was bounced back by Magic Bounce!".
+- **Fix:** Transform copied only the low byte of the (now 16-bit) ability.
+- Ability checklist: 108 newer abilities implemented (was 93).
+
+**Verified in the test build:** Turtwig's Intrepid Sword message on entry; Garchomp's Protean made it Fire/Fire before
+Heat Wave; Heat Wave raised Venusaur's Speed 6 stages through Steam Engine; Charizard's Magic Bounce sent Turtwig's
+Growl back and Turtwig's Attack fell. The others in this part aren't tested in game yet.
 ## E11 — The Sovereign along the main story: the museum, Rowan, the Celestic elder and the library (decision 23)
 
 The early and mid-game references to the Sovereign (`docs/Story.md`, "Story beats"). The player learns about them

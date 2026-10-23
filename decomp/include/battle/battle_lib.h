@@ -686,6 +686,7 @@ u16 Battler_Ability(BattleContext *battleCtx, int battler);
  * @return TRUE if the defender has the given ability and it is not ignored;
  * FALSE if the ability is ignored, or if the defender does not have it.
  */
+BOOL Sovereign_IsMoldBreaker(BattleContext *battleCtx, int battler);
 BOOL Battler_IgnorableAbility(BattleContext *battleCtx, int attacker, int defender, int ability);
 
 /**

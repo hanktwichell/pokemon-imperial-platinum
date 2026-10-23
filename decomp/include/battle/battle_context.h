@@ -342,6 +342,7 @@ struct BattleContext {
     int sovereignAuroraVeilTurns[2]; // Sovereign (item 11)
     int sovereignEchoedVoiceTurn; // Sovereign (item 11): totalTurns + 1 of the last Echoed Voice (0 = none yet)
     int sovereignEchoedVoiceCount; // Sovereign (item 11): consecutive turns of Echoed Voice, up to 5
+    u8 sovereignOncePerBattle[MAX_BATTLERS]; // Sovereign (item 11): party slots whose Intrepid Sword or Dauntless Shield has triggered
 };
 
 #endif // POKEPLATINUM_BATTLE_BATTLE_CONTEXT_H

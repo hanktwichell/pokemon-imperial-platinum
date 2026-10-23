@@ -38,19 +38,19 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 153 | Moxie | Gen 5 | yes: Attack +1 for each foe its move knocks out |
 | 154 | Justified | Gen 5 | yes: Attack +1 when hit by a Dark move |
 | 155 | Rattled | Gen 5 | yes: Speed +1 when hit by a Bug, Ghost or Dark move, or when Intimidated |
-| 156 | Magic Bounce | Gen 5 | not yet (no battle effect) |
+| 156 | Magic Bounce | Gen 5 | yes: reflects status moves aimed at it |
 | 157 | Sap Sipper | Gen 5 | yes: absorbs Grass moves, Attack +1 (`BattleSystem_TriggerImmunityAbility`) |
 | 158 | Prankster | Gen 5 | yes: status moves +1 priority; they don't affect Dark-type foes |
 | 159 | Sand Force | Gen 5 | yes: Rock/Ground/Steel moves ×1.3 in a sandstorm; no sandstorm damage |
 | 160 | Iron Barbs | Gen 5 | yes: contact costs the attacker 1/8 of its max HP (as Rough Skin) |
 | 161 | Zen Mode | Gen 5 | not yet (no battle effect) |
-| 162 | Victory Star | Gen 5 | not yet (no battle effect) |
-| 163 | Turboblaze | Gen 5 | not yet (no battle effect) |
-| 164 | Teravolt | Gen 5 | not yet (no battle effect) |
+| 162 | Victory Star | Gen 5 | yes: accuracy ×1.1 for it and its ally |
+| 163 | Turboblaze | Gen 5 | yes: ignores the target's ability, like Mold Breaker |
+| 164 | Teravolt | Gen 5 | yes: ignores the target's ability, like Mold Breaker |
 | 165 | Aroma Veil | Gen 6 | not yet (no battle effect) |
 | 166 | Flower Veil | Gen 6 | not yet (no battle effect) |
 | 167 | Cheek Pouch | Gen 6 | not yet (no battle effect) |
-| 168 | Protean | Gen 6 | not yet (no battle effect) |
+| 168 | Protean | Gen 6 | yes: becomes its move's type, once per switch-in |
 | 169 | Fur Coat | Gen 6 | yes: Defense doubled |
 | 170 | Magician | Gen 6 | not yet (no battle effect) |
 | 171 | Bulletproof | Gen 6 | yes: immune to ball and bomb moves |
@@ -116,16 +116,16 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 231 | Shadow Shield | Gen 7 | yes: damage halved at full HP (not ignored by Mold Breaker) |
 | 232 | Prism Armor | Gen 7 | yes: super-effective damage ×0.75 (not ignored by Mold Breaker) |
 | 233 | Neuroforce | Gen 7 | yes: super-effective moves ×1.25 |
-| 234 | Intrepid Sword | Gen 8 | not yet (no battle effect) |
-| 235 | DauntlessShield | Gen 8 | not yet (no battle effect) |
-| 236 | Libero | Gen 8 | not yet (no battle effect) |
+| 234 | Intrepid Sword | Gen 8 | yes: Attack +1 the first time it enters battle |
+| 235 | DauntlessShield | Gen 8 | yes: Defense +1 the first time it enters battle |
+| 236 | Libero | Gen 8 | yes: becomes its move's type, once per switch-in |
 | 237 | Ball Fetch | Gen 8 | not yet (no battle effect) |
 | 238 | Cotton Down | Gen 8 | not yet (no battle effect) |
 | 239 | Propeller Tail | Gen 8 | not yet (no battle effect) |
 | 240 | Mirror Armor | Gen 8 | not yet (no battle effect) |
 | 241 | Gulp Missile | Gen 8 | not yet (no battle effect) |
 | 242 | Stalwart | Gen 8 | not yet (no battle effect) |
-| 243 | Steam Engine | Gen 8 | not yet (no battle effect) |
+| 243 | Steam Engine | Gen 8 | yes: Fire or Water hits raise Speed 6 stages |
 | 244 | Punk Rock | Gen 8 | yes: its sound moves ×1.3, sound damage taken halved |
 | 245 | Sand Spit | Gen 8 | not yet (no battle effect) |
 | 246 | Ice Scales | Gen 8 | yes: special damage halved |
@@ -142,7 +142,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 257 | Pastel Veil | Gen 8 | not yet (no battle effect) |
 | 258 | Hunger Switch | Gen 8 | not yet (no battle effect) |
 | 259 | Quick Draw | Gen 8 | not yet (no battle effect) |
-| 260 | Unseen Fist | Gen 8 | not yet (no battle effect) |
+| 260 | Unseen Fist | Gen 8 | yes: contact moves go through protection |
 | 261 | CuriousMedicine | Gen 8 | not yet (no battle effect) |
 | 262 | Transistor | Gen 8 | yes: Electric moves ×1.3 |
 | 263 | Dragon’s Maw | Gen 8 | yes: Dragon moves ×1.5 |
@@ -151,7 +151,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 266 | As One | Gen 8 | not yet (no battle effect) |
 | 267 | As One | Gen 8 | not yet (no battle effect) |
 | 268 | Lingering Aroma | Gen 9 | not yet (no battle effect) |
-| 269 | Seed Sower | Gen 9 | not yet (no battle effect) |
+| 269 | Seed Sower | Gen 9 | yes: getting hit sets Grassy Terrain |
 | 270 | ThermalExchange | Gen 9 | partly: Attack +1 when hit by a Fire move (burn immunity not yet) |
 | 271 | Anger Shell | Gen 9 | not yet (no battle effect) |
 | 272 | Purifying Salt | Gen 9 | partly: Ghost damage halved (status immunity not yet) |
@@ -165,7 +165,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 280 | Electromorphsis | Gen 9 | not yet (no battle effect) |
 | 281 | Protosynthesis | Gen 9 | yes: in harsh sunlight or after using a Booster Energy, its highest stat ×1.3 (Speed ×1.5) |
 | 282 | Quark Drive | Gen 9 | yes: in Electric Terrain or after using a Booster Energy, its highest stat ×1.3 (Speed ×1.5) |
-| 283 | Good as Gold | Gen 9 | not yet (no battle effect) |
+| 283 | Good as Gold | Gen 9 | yes: immune to other Pokémon's status moves |
 | 284 | Vessel of Ruin | Gen 9 | yes: Sp. Atk of every other Pokémon ×0.75 |
 | 285 | Sword of Ruin | Gen 9 | yes: Defense of every other Pokémon ×0.75 |
 | 286 | Tablets of Ruin | Gen 9 | yes: Attack of every other Pokémon ×0.75 |
@@ -175,13 +175,13 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 290 | Opportunist | Gen 9 | not yet (no battle effect) |
 | 291 | Cud Chew | Gen 9 | not yet (no battle effect) |
 | 292 | Sharpness | Gen 9 | yes: slicing moves ×1.5 |
-| 293 | SupremeOverlord | Gen 9 | not yet (no battle effect) |
+| 293 | SupremeOverlord | Gen 9 | yes: 10% more power per fainted party member (up to 5) |
 | 294 | Costar | Gen 9 | not yet (no battle effect) |
 | 295 | Toxic Debris | Gen 9 | not yet (no battle effect) |
 | 296 | Armor Tail | Gen 9 | yes: foes' priority moves can't hit its side |
 | 297 | Earth Eater | Gen 9 | yes: absorbs Ground moves, restores 1/4 of max HP (`BattleSystem_TriggerImmunityAbility`) |
-| 298 | Mycelium Might | Gen 9 | not yet (no battle effect) |
-| 299 | Mind’s Eye | Gen 9 | not yet (no battle effect) |
+| 298 | Mycelium Might | Gen 9 | partly: its status moves ignore abilities (moving last not yet) |
+| 299 | Mind’s Eye | Gen 9 | yes: hits Ghost types with Normal and Fighting moves, ignores evasion, accuracy can't be lowered |
 | 300 | SupersweetSyrup | Gen 9 | not yet (no battle effect) |
 | 301 | Hospitality | Gen 9 | not yet (no battle effect) |
 | 302 | Toxic Chain | Gen 9 | not yet (no battle effect) |

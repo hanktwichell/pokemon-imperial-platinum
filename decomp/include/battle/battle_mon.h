@@ -96,6 +96,7 @@ typedef struct BattleMon {
     u32 pressureAnnounced : 1;
     u32 freezeTurns : 2; // Sovereign: move attempts spent frozen (Pokémon Champions thaws on the third)
     u32 sovereignBoosterEnergy : 1; // Sovereign (item 11): Booster Energy powers its Protosynthesis or Quark Drive
+    u32 sovereignProteanUsed : 1; // Sovereign (item 11): Protean or Libero has changed its type since it switched in
 
     u8 ppCur[LEARNED_MOVES_MAX];
     u8 ppUps[LEARNED_MOVES_MAX];

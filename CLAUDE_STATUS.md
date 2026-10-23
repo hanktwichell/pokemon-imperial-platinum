@@ -2275,3 +2275,29 @@ trials, CB-0032) is merged.
    owner's text.
 3. **The Chronicles and the Regional Forms Park log** (`Story.md`, after the first Hall of Fame): check whether the
    Archivist and the Park owner exist yet, and write their lines.
+## CA-0034 (Claude A, branch `claude/festive-bardeen-5h7beo`, 2026-10-23)
+
+**Just implemented:** item 11 part 16, a batch of abilities (see `docs/EngineChangelog.md`, part 16).
+- Turboblaze, Teravolt and Mycelium Might (status moves) ignore abilities like Mold Breaker.
+- Victory Star, Mind's Eye, Supreme Overlord, Steam Engine, Seed Sower, Unseen Fist, Good as Gold.
+- Protean and Libero (once per switch-in), Intrepid Sword and Dauntless Shield (once per battle), Magic Bounce.
+- Fix: Transform copies the whole 16-bit ability.
+- Main merged into PR #42 (only `EngineChangelog.md` conflicted; both sides kept).
+- Verified in game: Intrepid Sword, Protean, Steam Engine, Magic Bounce. Ability checklist: 108 newer implemented.
+
+**Files modified:**
+- `decomp/src/battle/battle_lib.c`, `battle_controller_player.c`, `battle_script.c`, `battle_io_command.c`,
+  `trainer_ai/trainer_ai.c`
+- `decomp/include/battle/battle_lib.h`, `battle_context.h` (`sovereignOncePerBattle`), `battle_mon.h`
+  (`sovereignProteanUsed`)
+- New subscripts `subscript_sovereign_steam_engine.s`, `_protean.s`, `_magic_bounce.s`, registered in `meson.build`,
+  `sub_seq.order` and `generated/battle_subscripts.txt`
+- `decomp/res/text/battle_strings.json` (Magic Bounce message)
+- `tools/engine/gen_abilities.py`, `docs/AbilityChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge PR #42 when CI is green; open the next PR for part 16.
+2. More abilities: Mycelium Might's move order, Sharpness-style lists (Wind Rider, Wind Power), Purifying Salt,
+   Opportunist, Costar, Commander.
+3. Remaining moves: Ally Switch, Telekinesis, Wonder Room, Magic Room, Scale Shot, Coaching, Upper Hand, Dragon Cheer,
+   Belch, Pledges, Final Gambit, Sky Drop, Bestow, Synchronoise, Parting Shot.
