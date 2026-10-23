@@ -1,14 +1,50 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/fuego_ironworks_building.h"
 #include "res/text/bank/menu_entries.h"
+#include "res/field/events/events_fuego_ironworks_building.h"
 
 
     ScriptEntry FuegoIronworksBuilding_OnTransition
     ScriptEntry FuegoIronworksBuilding_MrFuego
+    ScriptEntry FuegoIronworksBuilding_OnLoad
+    ScriptEntry FuegoIronworksBuilding_LegendaryReshiram
     ScriptEntryEnd
 
 FuegoIronworksBuilding_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_FUEGO_IRONWORKS
+    Call FuegoIronworksBuilding_SovereignSetReshiramVisibility
+    End
+
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Reshiram stands by the furnaces while the player carries
+@ the Light Stone (the Legend Archivist gives it), until it's caught.
+FuegoIronworksBuilding_SovereignSetReshiramVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+    CheckItem ITEM_LIGHT_STONE, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, FuegoIronworksBuilding_SovereignSetReshiramVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_RESHIRAM, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, FuegoIronworksBuilding_SovereignSetReshiramVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+FuegoIronworksBuilding_SovereignSetReshiramVisibilityEnd:
+    Return
+
+FuegoIronworksBuilding_OnLoad:
+    GoToIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, FuegoIronworksBuilding_RemoveLegendaryReshiram
+    End
+
+FuegoIronworksBuilding_RemoveLegendaryReshiram:
+    RemoveObject LOCALID_LEGENDARY_RESHIRAM
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+    End
+
+FuegoIronworksBuilding_LegendaryReshiram:
+    LockAll
+    Message FuegoIronworksBuilding_Text_SovereignLightStoneGlows
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    SetVar VAR_0x8004, SPECIES_RESHIRAM
+    SetVar VAR_0x8005, 70
+    Common_SovereignLegendaryEncounter
     End
 
 FuegoIronworksBuilding_MrFuego:

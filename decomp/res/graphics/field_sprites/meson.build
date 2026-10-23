@@ -221,6 +221,9 @@ field_sprites_textures_single_frame = [
     { 'file': 'pokemon/legendary_keldeo.png', 'basename': 'sovlegend04'},
     { 'file': 'pokemon/legendary_meloetta.png', 'basename': 'sovlegend05'},
     { 'file': 'pokemon/legendary_genesect.png', 'basename': 'sovlegend06'},
+    { 'file': 'pokemon/legendary_reshiram.png', 'basename': 'sovlegend07'},
+    { 'file': 'pokemon/legendary_zekrom.png', 'basename': 'sovlegend08'},
+    { 'file': 'pokemon/legendary_kyurem.png', 'basename': 'sovlegend09'},
 ]
 
 field_sprites_textures_single_frame_pl_suffix = [
