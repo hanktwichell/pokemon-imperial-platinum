@@ -548,6 +548,32 @@
         "books on the myths and legends of\f",
         "the Sinnoh region."
       ]
+    },
+    {
+      "id": "CanalaveLibrary3F_Text_SovereignAskRead",
+      "en_US": [
+        "This old book is titled “The\n",
+        "Sovereign.” Want to read it?"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary3F_Text_SovereignPutBack",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} put the book back."
+      ]
+    },
+    {
+      "id": "CanalaveLibrary3F_Text_SovereignBook",
+      "en_US": [
+        "“The Sovereign”\r",
+        "Most of the pages have been torn out.\r",
+        "“...sat upon the Spear Pillar...”\r",
+        "“...and the Sovereign kept the seams\n",
+        "of Sinnoh, that it would not...”\r",
+        "“...when the last of the line grew\n",
+        "old, the crown was to pass to...”\r",
+        "The rest of the book is missing."
+      ]
     }
   ]
 }

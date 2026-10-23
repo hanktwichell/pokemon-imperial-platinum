@@ -616,6 +616,18 @@
         "I believed that you would make it, and\n",
         "here you are!"
       ]
+    },
+    {
+      "id": "SandgemTownLab_Text_SovereignPokemonNeverRecorded",
+      "en_US": [
+        "Rowan: One more thing.\r",
+        "Of late, Pokémon never recorded in\n",
+        "Sinnoh have been turning up here.\r",
+        "I can’t explain where they’re coming\n",
+        "from. Not yet, at any rate.\r",
+        "Your Pokédex will record them too.\n",
+        "Every last one of them.\r"
+      ]
     }
   ]
 }

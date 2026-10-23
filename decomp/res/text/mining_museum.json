@@ -222,6 +222,18 @@
         "The everyday items and tools of\n",
         "past mine workers are displayed."
       ]
+    },
+    {
+      "id": "MiningMuseum_Text_SovereignStoneFragment",
+      "en_US": [
+        "A stone fragment found deep inside\n",
+        "the Oreburgh Mine.\r",
+        "A crown is carved into it, and words\n",
+        "are cut beneath the crown:\r",
+        "“The Sovereign keep the seams.”\r",
+        "The card says no one knows what\n",
+        "the words mean."
+      ]
     }
   ]
 }

@@ -256,6 +256,7 @@ SandgemTownLab_ObtainPokedex:
     WaitFanfare
     BufferPlayerName 0
     Message SandgemTownLab_Text_MeetEveryKindOfPokemon
+    Message SandgemTownLab_Text_SovereignPokemonNeverRecorded // Sovereign (Story.md): the second early reference
     CloseMessage
     ApplyMovement LOCALID_COUNTERPART, SandgemTownLab_Movement_CounterpartWalkOnSpotWest3
     WaitMovement

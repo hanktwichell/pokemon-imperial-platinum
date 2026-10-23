@@ -25,12 +25,12 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
-            "script": 6,
+            "script": 13,
             "type": 0,
             "x": 12,
             "z": 3,
             "y": 0,
-            "player_facing_dir": "BG_EVENT_DIR_ALL"
+            "player_facing_dir": "BG_EVENT_DIR_NORTH"
         },
         {
             "script": 7,

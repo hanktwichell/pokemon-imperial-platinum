@@ -2241,3 +2241,37 @@ trials, CB-0032) is merged.
    text, the Sovereign title, and Cynthia's scene after the battle.
 3. **The Chronicles and the Regional Forms Park log** (`Story.md`, "Alongside these"), or the Celestic elder's
    story line about the rulers who sat at the Spear Pillar (the Celestic beat of the main story).
+
+---
+
+## CB-0034 — 2026-10-23, 6:04 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** the Sovereign's story beats along the main story (decision 23, `Story.md` "Story beats"). PR #44
+(the post-game elder, rematch lock and Sovereign Crown, CB-0033) is merged.
+- **Oreburgh Mining Museum:** a new exhibit, a stone fragment carved with a crown: "The Sovereign keep the seams."
+  - It is an object at (18, 3) under the window, drawn with Mt. Coronet 2F's cave-painting shards.
+  - The alcove there is a dead end, so it blocks no path.
+- **Professor Rowan:** a new remark right after he gives the Pokédex: Pokémon never recorded in Sinnoh are turning
+  up, and he can't explain it yet.
+- **The Celestic elder:** two lines inside her speech after Cyrus leaves, about rulers who once sat at the Spear
+  Pillar. Text only.
+- **Canalave Library 3F:** a new book, "The Sovereign", with most pages torn out. It hints at the Spear Pillar, the
+  seams and the crown passing on. It takes the shelf tile (12, 3) from "Sinnoh Region's Mythology", which keeps (11, 3).
+- **Verified** (test build with temporary warps): the exhibit and the book read in full. Rowan's and the elder's
+  lines are checked against the box width. The release ROM builds without warnings and passes boot smoke; the docs
+  regenerate clean.
+
+**Files modified:**
+- Scripts: `scripts_mining_museum.s`, `scripts_canalave_library_3f.s`,
+  `scripts_sandgem_town_pokemon_research_lab.s`
+- Events: `events_mining_museum.json`, `events_canalave_library_3f.json`
+- Texts: `mining_museum`, `canalave_library_3f`, `sandgem_town_pokemon_research_lab`, `celestic_town_cave`
+- Docs: `docs/Story.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR once CI is green.
+2. **The throne room at the Spear Pillar** (a new map state): the glimpse during Galactic's climax, then Henry's
+   appearance with `FLAG_SOVEREIGN_CALLED_TO_SPEAR_PILLAR` and the Sovereign Crown. This needs map editing and the
+   owner's text.
+3. **The Chronicles and the Regional Forms Park log** (`Story.md`, after the first Hall of Fame): check whether the
+   Archivist and the Park owner exist yet, and write their lines.

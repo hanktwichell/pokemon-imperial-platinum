@@ -377,6 +377,21 @@
             "x": 16,
             "z": 15,
             "y": 0
+        },
+        {
+            "id": "LOCALID_SOVEREIGN_STONE_FRAGMENT",
+            "graphics_id": "OBJ_EVENT_GFX_CAVE_PAINTING_SHARDS_LEFT",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": 17,
+            "initial_dir": 1,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 18,
+            "z": 3,
+            "y": 0
         }
     ],
     "warp_events": [
