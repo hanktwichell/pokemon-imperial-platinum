@@ -1351,3 +1351,44 @@ left end of its HP bar's strip, from the reveal until it leaves the field.
    with `SPRITE_FUNC_OFFSET_AND_ANIMATE`).
 3. Then a milestone nobody holds: FM's held-item forms (Crowned Zacian/Zamazenta, Ogerpon's masks), which the roadmap
    puts right after E7's items. I'll check with the roadmap first.
+
+---
+
+## CB-0021 — 2026-10-22, 8:52 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Merged:** PR #25 (the HP-bar Mega symbol, CB-0020).
+
+**Implemented: the symbol flash** (the last step of the E8 animation spec). As the new form fades in, a 32×32 symbol
+flashes over it and blinks out:
+- the Mega Evolution symbol (a rainbow ring around an S-swirl) for a Mega;
+- Kyogre's α (blues) and Groudon's Ω (reds) for a Primal.
+
+How it's built:
+- The art is original, by `tools/sprites/make_mega_symbols.py`. Each symbol is an animation sprite
+  (`res/graphics/battle/moves/sovereign_*_symbol.*`, added to the four `anim_*.order` files) shown with
+  `SPRITE_FUNC_OFFSET_AND_ANIMATE`.
+- The Primals get their own reveals, `sovereign_primal_alpha_revealed` and `sovereign_primal_omega_revealed` (formerly
+  `dummy43/44`). The Primal subscript picks one by species.
+- Verified frame by frame: Garchomp (wild), the foe's Charizard (doubles test battle) and Kyogre (temporary lead). The
+  release ROM builds without warnings and passes boot smoke.
+
+**E8 is done** (roadmap row 10 ✅). Mega sprites come with E12, the missing Mega abilities with item 11 (Claude A), and
+Mega timing with 12b.
+
+**Files modified:**
+- Art: `tools/sprites/make_mega_symbols.py` (new), `decomp/res/graphics/battle/moves/sovereign_{mega,alpha,omega}_symbol.png`
+  plus `_cell.json` and `_anim.json` (new), `decomp/res/graphics/battle/moves/meson.build`, `anim_ncgr/nclr/ncer/nanr.order`
+- Animations: `decomp/res/battle/scripts/common_anims/sovereign_mega_evolved.s`,
+  `sovereign_primal_alpha_revealed.s` and `sovereign_primal_omega_revealed.s` (formerly `dummy43/44.s`),
+  `sovereign_primal_alpha.s`, `sovereign_primal_omega.s` (comments), `meson.build`, `anim_subscripts.order`,
+  `decomp/generated/battle_sub_animations.txt`, `decomp/res/battle/scripts/subscripts/subscript_sovereign_primal_reversion.s`
+- Docs:
+  - `docs/EngineChangelog.md`, `docs/TechnicalDesign.md`, `docs/EngineRoadmap.md`, `docs/MegaEvolution.md` (via
+    `tools/design/gen_mega_doc.py`)
+  - `CITATIONS.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR when green.
+2. FM's held-item forms (Crowned Zacian/Zamazenta, Ogerpon's masks), which the roadmap puts right after E7's items.
+   Check that nobody holds it first.
+3. The Route 208 Mint sale (E14).

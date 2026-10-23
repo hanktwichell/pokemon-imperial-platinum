@@ -103,11 +103,13 @@ plus transparent, at most 24×24 px). Source: **PokeAPI sprites**, https://githu
 `97a7832`), `sprites/items/<item>.png`. The item art is © Nintendo / Game Freak / The Pokémon Company; PokeAPI hosts
 it. **Placeholders**, to be replaced by DS-style icons where the owner wants.
 
-### Battle MEGA button and HP-bar Mega symbol
-`decomp/res/graphics/battle/interface/mega_button.png` and the Mega symbol tile at the end of
-`decomp/res/graphics/battle/healthbox/healthbox_parts.png` are original art, drawn pixel by pixel by
-`tools/sprites/make_mega_button.py` (no source image). The Mega Stone shown on the button in battle is the item icon
-above.
+### Battle MEGA button and Mega symbols
+These are original art, drawn pixel by pixel with no source image:
+- `decomp/res/graphics/battle/interface/mega_button.png`, and the Mega symbol tile at the end of
+  `decomp/res/graphics/battle/healthbox/healthbox_parts.png`, by `tools/sprites/make_mega_button.py`. The Mega Stone shown
+  on the button in battle is the item icon above.
+- The Mega, α and Ω symbols that flash in the animation (`decomp/res/graphics/battle/moves/sovereign_*_symbol.png`), by
+  `tools/sprites/make_mega_symbols.py`.
 
 ## Audio
 
