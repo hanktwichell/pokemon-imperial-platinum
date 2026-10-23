@@ -175,5 +175,6 @@ static const int sSideEffectSubscripts[] = {
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_QUASH] = subscript_sovereign_quash,
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_PSYCHIC_NOISE] = subscript_sovereign_psychic_noise,
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_HALF_HP_COST] = subscript_sovereign_half_hp_cost,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_TRAP_TARGET] = subscript_sovereign_trap_target,
 };
 // clang-format on

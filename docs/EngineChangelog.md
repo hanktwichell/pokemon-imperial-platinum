@@ -13,7 +13,9 @@ players and the verification that was run.
   the damage and effectiveness paths), and its 10% freeze chance is back.
 - **Sound moves and Infiltrator get past Substitute** (Gen VI+): damage hits the Pokémon, and status and stat effects
   aren't blocked. Confide is now exact.
-- Move checklist: exact 231, approximate 42, placeholder 107.
+- **Spirit Shackle, Anchor Shot:** after the hit the target can't escape while the user is in battle (as Mean Look).
+- **Revelation Dance** takes the user's primary type; **Psyshield Bash** raises the user's Defense by 1.
+- Move checklist: exact 235, approximate 42, placeholder 103.
 
 **Verified in the test build:** Garchomp fainted after its second Steel Beam (half its max HP each time). Psychic Noise,
 Freeze-Dry and the Substitute bypass aren't tested in game yet.

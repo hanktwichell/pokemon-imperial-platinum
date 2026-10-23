@@ -1332,6 +1332,11 @@ static void BattleScript_CalcMoveDamage(BattleSystem *battleSys, BattleContext *
     if (battleCtx->moveCur == MOVE_TERRAIN_PULSE) {
         battleCtx->moveType = Sovereign_TerrainPulseType(battleCtx, battleCtx->attacker);
     }
+
+    // Sovereign (item 11): Revelation Dance takes the user's primary type.
+    if (battleCtx->moveCur == MOVE_REVELATION_DANCE) {
+        battleCtx->moveType = ATTACKING_MON.type1;
+    }
     moveType = Sovereign_AbilityMoveType(Battler_Ability(battleCtx, battleCtx->attacker), battleCtx->moveCur, battleCtx->moveType ? battleCtx->moveType : CURRENT_MOVE_DATA.type); // Sovereign (item 11)
 
     battleCtx->damage = BattleSystem_CalcMoveDamage(battleSys,

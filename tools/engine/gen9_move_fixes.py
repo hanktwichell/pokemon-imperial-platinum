@@ -193,6 +193,10 @@ MOVES = {
     "steel_beam": ("SOVEREIGN_HALF_HP_COST_HIT", 0, "the user loses half its max HP (only when it hits, so far)", "approximate"),
     "freeze_dry": ("FREEZE_HIT", 10, "super effective against Water; 10% freeze"),
     "confide": (None, None, "target Sp. Atk -1; as a sound move it gets past Substitute"),
+    "psyshield_bash": ("RAISE_DEF_HIT", 100, "user Defense +1 (100%)"),
+    "spirit_shackle": ("SOVEREIGN_TRAP_HIT", 100, "the target can't escape while the user is in battle"),
+    "anchor_shot": ("SOVEREIGN_TRAP_HIT", 100, "the target can't escape while the user is in battle"),
+    "revelation_dance": (None, None, "takes the user's primary type"),
 }
 
 

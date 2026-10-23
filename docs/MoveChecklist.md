@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 231 |
+| exact | 235 |
 | approximate | 42 |
-| placeholder | 107 |
+| placeholder | 103 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -209,7 +209,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 659 | Shore Up | Ground | `RESTORE_HALF_HP` | approximate | has its own mechanic in Gen IX; closest effect |
 | 660 | FirstImpressn | Bug | `PRIORITY_1` | approximate | has its own mechanic in Gen IX; closest effect |
 | 661 | Baneful Bunker | Poison | `PROTECT` | approximate | protects like Protect; the contact penalty is missing |
-| 662 | Spirit Shackle | Ghost | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 662 | Spirit Shackle | Ghost | `SOVEREIGN_TRAP_HIT` | exact | Sovereign effect: the target can't escape while the user is in battle |
 | 663 | Darkest Lariat | Dark | `HIT` | exact | Sovereign effect: ignores the target's stat changes |
 | 664 | Sparkling Aria | Water | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 665 | Ice Hammer | Ice | `SPEED_DOWN_HIT` | exact |  |
@@ -224,7 +224,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 674 | Gear Up | Steel | `ATK_UP_2` | approximate | raises [('atk', 1), ('spa', 1)] in the original |
 | 675 | Throat Chop | Dark | `SOVEREIGN_THROAT_CHOP` | exact | Sovereign effect: the target can't use sound moves for two turns |
 | 676 | Pollen Puff | Bug | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
-| 677 | Anchor Shot | Steel | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 677 | Anchor Shot | Steel | `SOVEREIGN_TRAP_HIT` | exact | Sovereign effect: the target can't escape while the user is in battle |
 | 678 | Psychic Terrain | Psychic | `SOVEREIGN_PSYCHIC_TERRAIN` | exact | Sovereign effect: Psychic Terrain: grounded Psychic moves x1.3, blocks priority moves |
 | 679 | Lunge | Bug | `LOWER_ATTACK_HIT` | exact | Sovereign effect: target Attack -1 (100%) |
 | 680 | Fire Lash | Fire | `LOWER_DEFENSE_HIT` | exact | Sovereign effect: target Defense -1 (100%) |
@@ -233,7 +233,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 683 | Speed Swap | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 684 | Smart Strike | Steel | `BYPASS_ACCURACY` | exact |  |
 | 685 | Purify | Poison | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
-| 686 | RevelatnDance | Normal | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 686 | RevelatnDance | Normal | `HIT` | exact | Sovereign effect: takes the user's primary type |
 | 687 | Core Enforcer | Dragon | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 688 | Trop Kick | Grass | `LOWER_ATTACK_HIT` | exact | Sovereign effect: target Attack -1 (100%) |
 | 689 | Instruct | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
@@ -375,7 +375,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 825 | Astral Barrage | Ghost | `HIT` | exact |  |
 | 826 | Eerie Spell | Psychic | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 827 | Dire Claw | Poison | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 828 | Psyshield Bash | Psychic | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 828 | Psyshield Bash | Psychic | `RAISE_DEF_HIT` | exact | Sovereign effect: user Defense +1 (100%) |
 | 829 | Power Shift | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 830 | Stone Axe | Rock | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 831 | SpringtideStrm | Fairy | `LOWER_ATTACK_HIT` | exact | Sovereign effect: foes' Attack -1 (30%) |
