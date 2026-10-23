@@ -4,6 +4,21 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (part 25) — Magic Room, Wonder Room
+
+- **Magic Room:** for 5 turns no held item has any effect (`Battler_HeldItem` returns nothing). Using it again ends it.
+- **Wonder Room:** for 5 turns the target's Defense and Sp. Def stats are swapped in the damage calc; stages stay
+  put. Using it again ends it.
+- Both count down at the end of each turn, with their own end messages (new field-condition state, new fields
+  `sovereignMagicRoomTurns` and `sovereignWonderRoomTurns`, script variables, effects 330 and 331).
+- Some newer items read the held item directly (Booster Energy, the terrain seeds, Punching Glove, Protective Pads),
+  so Magic Room doesn't stop them yet.
+- Move checklist: exact 256, approximate 39, placeholder 85.
+
+**Verified in the test build:** the foe Venusaur's Wonder Room gave its message. Garchomp's physical Dragon Claw then
+went against Venusaur's Sp. Def (236 instead of 202): 22 damage before the random factor, down from 29. Magic Room
+isn't tested in game yet.
+
 ## Item 11 (part 24) — Bestow, Belch
 
 - **Bestow:** gives the user's held item to a target holding none ("{0} obtained one {1}.").

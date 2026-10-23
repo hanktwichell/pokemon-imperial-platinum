@@ -1026,6 +1026,7 @@ enum FieldCondCheckState {
     FIELD_COND_CHECK_STATE_DEEP_FOG,
     FIELD_COND_CHECK_STATE_GRAVITY,
     FIELD_COND_CHECK_STATE_SOVEREIGN_TERRAIN,
+    FIELD_COND_CHECK_STATE_SOVEREIGN_ROOMS,
 
     FIELD_COND_CHECK_END
 };
@@ -1385,6 +1386,24 @@ static void BattleControllerPlayer_CheckFieldConditions(BattleSystem *battleSys,
                     PrepareSubroutineSequence(battleCtx, subscript_sovereign_terrain_end);
                     state = STATE_BREAK_OUT;
                 }
+            }
+
+            battleCtx->fieldConditionCheckState++;
+            break;
+
+        case FIELD_COND_CHECK_STATE_SOVEREIGN_ROOMS:
+            // Sovereign (item 11): count Magic Room and Wonder Room down, one end message per pass.
+            if (battleCtx->sovereignMagicRoomTurns && --battleCtx->sovereignMagicRoomTurns == 0) {
+                battleCtx->msgTemp = 0;
+                PrepareSubroutineSequence(battleCtx, subscript_sovereign_room_end);
+                state = STATE_BREAK_OUT;
+                break; // Wonder Room is checked on the next pass
+            }
+
+            if (battleCtx->sovereignWonderRoomTurns && --battleCtx->sovereignWonderRoomTurns == 0) {
+                battleCtx->msgTemp = 1;
+                PrepareSubroutineSequence(battleCtx, subscript_sovereign_room_end);
+                state = STATE_BREAK_OUT;
             }
 
             battleCtx->fieldConditionCheckState++;

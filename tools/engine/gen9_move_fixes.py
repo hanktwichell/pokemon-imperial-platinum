@@ -216,6 +216,8 @@ MOVES = {
     "dragon_cheer": ("SOVEREIGN_DRAGON_CHEER", 0, "the user's ally gets +1 crit stage, +2 if Dragon type (fails without one)"),
     "bestow": ("SOVEREIGN_BESTOW", 0, "gives the user's held item to a target holding none"),
     "belch": (None, None, "fails unless the user has eaten a Berry this battle (Bug Bite and Pluck don't count yet)", "approximate"),
+    "magic_room": ("SOVEREIGN_MAGIC_ROOM", 0, "held items have no effect for 5 turns; using it again ends it"),
+    "wonder_room": ("SOVEREIGN_WONDER_ROOM", 0, "Defense and Sp. Def are swapped for 5 turns; using it again ends it"),
     "parting_shot": ("SOVEREIGN_PARTING_SHOT", 0, "target Attack and Sp. Atk -1, then the user switches out (stays if no stat fell)"),
 }
 

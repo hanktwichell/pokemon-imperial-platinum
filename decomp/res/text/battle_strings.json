@@ -9259,6 +9259,34 @@
       "en_US": [
         "Both Pokémon will faint in three turns!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignMagicRoomStart",
+      "en_US": [
+        "It created a bizarre area in which\n",
+        "Pokémon’s held items lose their effects!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignMagicRoomEnd",
+      "en_US": [
+        "Magic Room wore off, and held items’\n",
+        "effects returned to normal!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignWonderRoomStart",
+      "en_US": [
+        "It created a bizarre area in which\n",
+        "Defense and Sp. Def stats are swapped!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignWonderRoomEnd",
+      "en_US": [
+        "Wonder Room wore off, and Defense and\n",
+        "Sp. Def stats returned to normal!"
+      ]
     }
   ]
 }

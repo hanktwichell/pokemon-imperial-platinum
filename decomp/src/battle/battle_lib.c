@@ -6226,6 +6226,11 @@ u16 Battler_HeldItem(BattleContext *battleCtx, int battler)
         return ITEM_NONE;
     }
 
+    // Sovereign (item 11): no held item has any effect in Magic Room.
+    if (battleCtx->sovereignMagicRoomTurns) {
+        return ITEM_NONE;
+    }
+
     if (battleCtx->battleMons[battler].moveEffectsData.embargoTurns) {
         return ITEM_NONE;
     }
@@ -8090,6 +8095,14 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
     defenseStage = BattleMon_Get(battleCtx, defender, BATTLEMON_DEFENSE_STAGE, NULL) - DEFAULT_STAT_STAGE;
     spAttackStage = BattleMon_Get(battleCtx, attacker, BATTLEMON_SP_ATTACK_STAGE, NULL) - DEFAULT_STAT_STAGE;
     spDefenseStage = BattleMon_Get(battleCtx, defender, BATTLEMON_SP_DEFENSE_STAGE, NULL) - DEFAULT_STAT_STAGE;
+
+    // Sovereign (item 11): Wonder Room swaps the target's Defense and Sp. Def stats (not their stages).
+    if (battleCtx->sovereignWonderRoomTurns) {
+        u16 swap = defenseStat;
+        defenseStat = spDefenseStat;
+        spDefenseStat = swap;
+    }
+
     attackerLevel = BattleMon_Get(battleCtx, attacker, BATTLEMON_LEVEL, NULL);
 
     attackerParams.species = BattleMon_Get(battleCtx, attacker, BATTLEMON_SPECIES, NULL);
