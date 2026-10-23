@@ -22,11 +22,14 @@ by Electric/Grassy/Misty/Psychic Surge and Hadron Engine on entry, with start an
   Drought, Attack ×1.33 in it).
 - Implementation: one bit per terrain plus a 4-bit turn count in `fieldConditionsMask` (bits 19–26), a read-only script
   variable `BTLVAR_SOVEREIGN_TERRAIN_EFFECT_MON` for the status subscripts, and `Sovereign_TerrainUnder`.
-- Not yet: the terrain Seeds, Mimicry, and the background tint.
+- Terrain Seeds: the Electric and Grassy Seeds raise Defense, the Misty and Psychic Seeds Sp. Def, when their terrain
+  is up (checked after every move, so a terrain set mid-turn triggers them).
+- Not yet: Mimicry and the background tint.
 - Move checklist: exact 211, approximate 47, placeholder 122.
 
 **Verified in the test build:** with an Electric Surge Archaludon on the field, Garchomp's Thunder Fang dealt 26
-pre-variance (the ×1.3 value; 21 without) and Venusaur's Sleep Powder put neither Garchomp nor Turtwig to sleep.
+pre-variance (the ×1.3 value; 21 without) and Venusaur's Sleep Powder put neither Garchomp nor Turtwig to sleep; a
+Venusaur holding an Electric Seed ended at Defense +1 with the Seed used up.
 
 ## Item 11 (part 9) — Booster Energy and moves that read the turn
 

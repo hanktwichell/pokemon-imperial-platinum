@@ -2008,5 +2008,5 @@ scripts 0295–0298, `decomp/generated/{move_battle_effects,battle_subscripts,ba
 
 **Next 3 steps:**
 1. Merge PR #38 when green.
-2. Terrain Seeds and the terrain-removal message; Mimicry; Laser Focus, Throat Chop, Smack Down, Retaliate, Dragon Tail.
+2. The terrain-removal message (Steel Roller, Ice Spinner); Mimicry; Laser Focus, Throat Chop, Smack Down, Retaliate, Dragon Tail.
 3. Ally Switch, After You, Wide/Quick Guard, Telekinesis (doubles-relevant status moves, AIReview #8).

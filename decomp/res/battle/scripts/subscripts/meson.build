@@ -325,4 +325,5 @@ subscript_files = files(
     'subscript_sovereign_terrain_end.s',
     'subscript_sovereign_grassy_terrain_heal.s',
     'subscript_sovereign_terrain_start.s',
+    'subscript_sovereign_terrain_seed.s',
 )

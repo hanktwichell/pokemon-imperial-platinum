@@ -3829,6 +3829,7 @@ enum SwitchInCheckState {
     SWITCH_IN_CHECK_STATE_INTIMIDATE,
     SWITCH_IN_CHECK_STATE_SOVEREIGN_STAT_DROP_REACTION,
     SWITCH_IN_CHECK_STATE_SOVEREIGN_BOOSTER_ENERGY,
+    SWITCH_IN_CHECK_STATE_SOVEREIGN_TERRAIN_SEED,
     SWITCH_IN_CHECK_STATE_DOWNLOAD,
     SWITCH_IN_CHECK_STATE_ANTICIPATION,
     SWITCH_IN_CHECK_STATE_FOREWARN,
@@ -4099,6 +4100,41 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                     battleCtx->battleMons[battler].sovereignBoosterEnergy = TRUE;
                     battleCtx->msgBattlerTemp = battler;
                     subscript = subscript_sovereign_booster_energy;
+                    result = TRUE;
+                    break;
+                }
+            }
+
+            if (i == maxBattlers) {
+                battleCtx->switchInCheckState++;
+            }
+            break;
+
+        case SWITCH_IN_CHECK_STATE_SOVEREIGN_TERRAIN_SEED:
+            // Sovereign (item 11): the Electric and Grassy Seeds raise Defense, the Misty and Psychic Seeds Sp. Def, in
+            // their terrain. Checked after every move too, so a terrain set mid-turn triggers them.
+            for (i = 0; i < maxBattlers; i++) {
+                u16 item;
+                u32 terrain;
+                int stat;
+
+                battler = battleCtx->monSpeedOrder[i];
+                item = battleCtx->battleMons[battler].heldItem;
+                terrain = battleCtx->fieldConditionsMask & FIELD_CONDITION_TERRAIN;
+                stat = (item == ITEM_ELECTRIC_SEED || item == ITEM_GRASSY_SEED) ? BATTLE_STAT_DEFENSE : BATTLE_STAT_SP_DEFENSE;
+
+                if (battleCtx->battleMons[battler].curHP
+                    && ((item == ITEM_ELECTRIC_SEED && (terrain & FIELD_CONDITION_TERRAIN_ELECTRIC))
+                        || (item == ITEM_GRASSY_SEED && (terrain & FIELD_CONDITION_TERRAIN_GRASSY))
+                        || (item == ITEM_MISTY_SEED && (terrain & FIELD_CONDITION_TERRAIN_MISTY))
+                        || (item == ITEM_PSYCHIC_SEED && (terrain & FIELD_CONDITION_TERRAIN_PSYCHIC)))
+                    && battleCtx->battleMons[battler].statBoosts[stat] < MAX_STAT_STAGE) {
+                    battleCtx->msgBattlerTemp = battler;
+                    battleCtx->msgItemTemp = item;
+                    battleCtx->sideEffectParam = MOVE_SUBSCRIPT_PTR_ATTACK_UP_1_STAGE + (stat - BATTLE_STAT_ATTACK);
+                    battleCtx->sideEffectType = SIDE_EFFECT_TYPE_HELD_ITEM;
+                    battleCtx->sideEffectMon = battler;
+                    subscript = subscript_sovereign_terrain_seed;
                     result = TRUE;
                     break;
                 }
