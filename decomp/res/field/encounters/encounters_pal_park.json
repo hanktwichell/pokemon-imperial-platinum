@@ -1,0 +1,213 @@
+{
+    "land_rate": 25,
+    "land_encounters": [
+        {
+            "level": 50,
+            "species": "SPECIES_RATTATA"
+        },
+        {
+            "level": 50,
+            "species": "SPECIES_MEOWTH"
+        },
+        {
+            "level": 50,
+            "species": "SPECIES_VULPIX"
+        },
+        {
+            "level": 50,
+            "species": "SPECIES_SANDSHREW"
+        },
+        {
+            "level": 50,
+            "species": "SPECIES_DIGLETT"
+        },
+        {
+            "level": 50,
+            "species": "SPECIES_GEODUDE"
+        },
+        {
+            "level": 50,
+            "species": "SPECIES_PONYTA"
+        },
+        {
+            "level": 50,
+            "species": "SPECIES_ZIGZAGOON"
+        },
+        {
+            "level": 50,
+            "species": "SPECIES_DARUMAKA"
+        },
+        {
+            "level": 50,
+            "species": "SPECIES_GROWLITHE"
+        },
+        {
+            "level": 50,
+            "species": "SPECIES_VOLTORB"
+        },
+        {
+            "level": 50,
+            "species": "SPECIES_ZORUA"
+        }
+    ],
+    "swarms": [
+        "SPECIES_RATTATA",
+        "SPECIES_MEOWTH"
+    ],
+    "day": [
+        "SPECIES_RATTATA",
+        "SPECIES_MEOWTH"
+    ],
+    "night": [
+        "SPECIES_RATTATA",
+        "SPECIES_MEOWTH"
+    ],
+    "radar": [
+        "SPECIES_VULPIX",
+        "SPECIES_SANDSHREW",
+        "SPECIES_GROWLITHE",
+        "SPECIES_ZORUA"
+    ],
+    "rate_form0": 0,
+    "rate_form1": 0,
+    "rate_form2": 0,
+    "rate_form3": 0,
+    "rate_form4": 0,
+    "unown_table": 0,
+    "ruby": [
+        "SPECIES_RATTATA",
+        "SPECIES_MEOWTH"
+    ],
+    "sapphire": [
+        "SPECIES_RATTATA",
+        "SPECIES_MEOWTH"
+    ],
+    "emerald": [
+        "SPECIES_RATTATA",
+        "SPECIES_MEOWTH"
+    ],
+    "firered": [
+        "SPECIES_RATTATA",
+        "SPECIES_MEOWTH"
+    ],
+    "leafgreen": [
+        "SPECIES_RATTATA",
+        "SPECIES_MEOWTH"
+    ],
+    "surf_rate": 15,
+    "surf_encounters": [
+        {
+            "level_max": 54,
+            "level_min": 50,
+            "species": "SPECIES_WOOPER"
+        },
+        {
+            "level_max": 54,
+            "level_min": 50,
+            "species": "SPECIES_QWILFISH"
+        },
+        {
+            "level_max": 54,
+            "level_min": 50,
+            "species": "SPECIES_BASCULIN"
+        },
+        {
+            "level_max": 54,
+            "level_min": 50,
+            "species": "SPECIES_SLOWPOKE"
+        },
+        {
+            "level_max": 54,
+            "level_min": 50,
+            "species": "SPECIES_CORSOLA"
+        }
+    ],
+    "old_rod_rate": 25,
+    "old_rod_encounters": [
+        {
+            "level_max": 54,
+            "level_min": 50,
+            "species": "SPECIES_WOOPER"
+        },
+        {
+            "level_max": 54,
+            "level_min": 50,
+            "species": "SPECIES_QWILFISH"
+        },
+        {
+            "level_max": 54,
+            "level_min": 50,
+            "species": "SPECIES_BASCULIN"
+        },
+        {
+            "level_max": 54,
+            "level_min": 50,
+            "species": "SPECIES_SLOWPOKE"
+        },
+        {
+            "level_max": 54,
+            "level_min": 50,
+            "species": "SPECIES_CORSOLA"
+        }
+    ],
+    "good_rod_rate": 50,
+    "good_rod_encounters": [
+        {
+            "level_max": 54,
+            "level_min": 50,
+            "species": "SPECIES_WOOPER"
+        },
+        {
+            "level_max": 54,
+            "level_min": 50,
+            "species": "SPECIES_QWILFISH"
+        },
+        {
+            "level_max": 54,
+            "level_min": 50,
+            "species": "SPECIES_BASCULIN"
+        },
+        {
+            "level_max": 54,
+            "level_min": 50,
+            "species": "SPECIES_SLOWPOKE"
+        },
+        {
+            "level_max": 54,
+            "level_min": 50,
+            "species": "SPECIES_CORSOLA"
+        }
+    ],
+    "super_rod_rate": 75,
+    "super_rod_encounters": [
+        {
+            "level_max": 54,
+            "level_min": 50,
+            "species": "SPECIES_WOOPER"
+        },
+        {
+            "level_max": 54,
+            "level_min": 50,
+            "species": "SPECIES_QWILFISH"
+        },
+        {
+            "level_max": 54,
+            "level_min": 50,
+            "species": "SPECIES_BASCULIN"
+        },
+        {
+            "level_max": 54,
+            "level_min": 50,
+            "species": "SPECIES_SLOWPOKE"
+        },
+        {
+            "level_max": 54,
+            "level_min": 50,
+            "species": "SPECIES_CORSOLA"
+        }
+    ],
+    "map_category": {
+        "map_type": "field",
+        "map_number": 36
+    }
+}

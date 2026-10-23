@@ -2,6 +2,11 @@
 #define POKEPLATIUM_CONSTANTS_WILD_ENCOUNTERS_H
 
 #define MAX_GRASS_ENCOUNTERS     12
+
+// Sovereign (FM): an encounter slot's species can carry a form in its upper 16 bits (the Regional Forms Park).
+#define WILD_SLOT(species, form)    ((species) | ((form) << 16))
+#define WILD_SLOT_SPECIES(slot)     ((slot) & 0xFFFF)
+#define WILD_SLOT_FORM(slot)        ((slot) >> 16)
 #define MAX_SWARM_ENCOUNTERS     2
 #define MAX_TIMED_ENCOUNTERS     2
 #define MAX_RADAR_ENCOUNTERS     4

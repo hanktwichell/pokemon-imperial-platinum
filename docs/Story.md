@@ -186,6 +186,14 @@ sets that flag too.
 - "We're getting Pal Park ready. I wonder what you can do there?" → **"We're getting the park ready. Some very odd
   Pokémon have been wandering in…"**
 - Sign: "Pal Park / A Place for New Beginnings" → **"Regional Forms Park / Where Far-Off Forms Gather"**
+- These three are in the game (CB-0026), with the park's lobby: Oak's first-visit lines ("This is it! The Regional
+  Forms Park! … They gather here, in forms from Alola, Galar, Hisui and Paldea.") and the worker's welcome.
+- **Lobby visitors** (drafts, CB-0026). Their Catching Show lines now talk about the park:
+  - the girl wants to see a white Vulpix, and her dad says she makes him bring her to the park;
+  - the boy loves seeing Pokémon from far-off regions;
+  - a Trainer says the evolved ones are rare and the Galarian birds rarer;
+  - another says each region keeps to its own corner;
+  - two ladies' "Pal Park" and "Catching Show" lines now say "this park" and "the Pokémon in the park".
 
 **Other lines:** Dawn/Lucas, Bebe (Hearthome) and the woman in the counterpart's house mention the National Pokédex
 as something newly earned. They still read fine with the National Dex from the start, but they'd appear from early

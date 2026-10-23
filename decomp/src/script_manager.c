@@ -842,6 +842,7 @@ static const struct {
     { MAP_HEADER_HEARTHOME_CITY_GYM_LEADER_ROOM, 4, 11, FACE_UP }, // Fantina, who gives the Mega Ring with the Relic Badge
     { MAP_HEADER_HEARTHOME_CITY_NORTHWEST_HOUSE, 2, 5, FACE_UP }, // the Mega Stone Collector (Relic Badge)
     { MAP_HEADER_SURVIVAL_AREA_SOUTH_HOUSE, 8, 5, FACE_UP }, // the Mega Stone Curator (after the Champion)
+    { MAP_HEADER_ROUTE_221, 306, 910, FACE_UP }, // outside the Regional Forms Park (a warp inside leaves NPCs untalkable)
 };
 
 static u8 sSovereignTestWarpIndex;
