@@ -41,6 +41,16 @@
             "length": 1,
             "var": "VAR_PAL_PARK_STATE",
             "value": 1
+        },
+        {
+            "script": 7,
+            "x": 22,
+            "z": 48,
+            "y": 0,
+            "width": 6,
+            "length": 1,
+            "var": "VAR_PAL_PARK_STATE",
+            "value": 3
         }
     ]
 }

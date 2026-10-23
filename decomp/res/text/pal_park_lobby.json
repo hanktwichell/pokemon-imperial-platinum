@@ -5,26 +5,25 @@
       "id": "PalParkLobby_Text_Oak_ThisIsPalPark_PlayerMale",
       "en_US": [
         "Oak: Ah, {STRVAR_1 3, 0, 0}!\n",
-        "This is it! This is Pal Park!\r"
+        "This is it! The Regional Forms Park!\r"
       ]
     },
     {
       "id": "PalParkLobby_Text_Oak_ThisIsPalPark_PlayerFemale",
       "en_US": [
         "Oak: Ah, {STRVAR_1 3, 0, 0}!\n",
-        "This is it! This is Pal Park!\r"
+        "This is it! The Regional Forms Park!\r"
       ]
     },
     {
       "id": "PalParkLobby_Text_Oak_PokemonFromAroundTheCountry",
       "en_US": [
-        "Pokémon from around the country\n",
-        "can be brought here.\r",
-        "In other words, Pokémon from\n",
-        "places like Kanto and Hoenn.\r",
-        "This place also happens to be where\n",
-        "you compete to see how quickly you\f",
-        "can catch those Pokémon!\r"
+        "Pokémon from every region have been\n",
+        "turning up in Sinnoh.\r",
+        "And some of them look like no\n",
+        "Pokémon I know!\r",
+        "They gather here, in forms from\n",
+        "Alola, Galar, Hisui and Paldea.\r"
       ]
     },
     {
@@ -49,7 +48,7 @@
     {
       "id": "PalParkLobby_Text_PalParkIsScintillating",
       "en_US": [
-        "Pal Park is so scintillating!\r",
+        "This park is so scintillating!\r",
         "Trainers and Pokémon are so full of\n",
         "intensity here!\r"
       ]
@@ -147,10 +146,10 @@
     {
       "id": "PalParkLobby_Text_AreYouTakingChallenge",
       "en_US": [
-        "Pal Park is so scintillating!\r",
+        "This park is so scintillating!\r",
         "Trainers and Pokémon are so full of\n",
         "intensity here!\r",
-        "Are you taking the challenge, too?"
+        "Are you here to catch some, too?"
       ]
     },
     {
@@ -454,9 +453,9 @@
     {
       "id": "PalParkLobby_Text_CameToSeeCatchingShow",
       "en_US": [
-        "I came to see {STRVAR_1 3, 0, 0}’s Catching\n",
-        "Show with Daddy.\r",
-        "I hope it starts soon..."
+        "Daddy says the Pokémon here came\n",
+        "from faraway regions.\r",
+        "I want to see a white Vulpix!"
       ]
     },
     {
@@ -481,25 +480,25 @@
         "{STRVAR_1 3, 0, 0}, my daughter is a big\n",
         "fan of yours.\r",
         "A day doesn’t go by without her\n",
-        "demanding we come see Catching Shows."
+        "demanding we come to the park."
       ]
     },
     {
       "id": "PalParkLobby_Text_RareAndExoticPokemon",
       "en_US": [
-        "People come here not only to see\n",
-        "the Catching Show.\r",
-        "We get to see rare and exotic\n",
-        "Pokémon on top of the catches.\r",
+        "People come here to see Pokémon\n",
+        "from far-off regions.\r",
+        "Some look nothing like the ones\n",
+        "we know in Sinnoh!\r",
         "The excitement gets me all jacked up!"
       ]
     },
     {
       "id": "PalParkLobby_Text_CurrentRecordHolder",
       "en_US": [
-        "The current record holder is\n",
-        "{STRVAR_1 3, 1, 0} with {STRVAR_1 53, 2, 0} points.\f",
-        "Can you top that?"
+        "Each region’s Pokémon keep to\n",
+        "their own corner of the park.\r",
+        "Have you visited all four?"
       ]
     },
     {
@@ -554,20 +553,20 @@
     {
       "id": "PalParkLobby_Text_RarePokemonTakeLonger",
       "en_US": [
-        "I’ve heard Trainers complain that\n",
-        "rare Pokémon take longer to appear.\r",
-        "Is it easier to start with common\n",
-        "Pokémon?"
+        "I’ve heard Trainers say the\n",
+        "evolved Pokémon here are rare.\r",
+        "And the birds from Galar?\n",
+        "Hardly anyone has seen them!"
       ]
     },
     {
       "id": "PalParkLobby_Text_ClashTrainerAndPokemon",
       "en_US": [
-        "The Catching Show...\r",
-        "It’s a head-on clash of will and\n",
-        "wits between Trainer and Pokémon.\r",
+        "The Pokémon in the park...\r",
+        "They look like ones we know, but\n",
+        "they’re different in every way!\r",
         "I especially look forward to seeing\n",
-        "Pokémon from Kanto and Hoenn.\r",
+        "the ones from Alola and Galar.\r",
         "But it tugs at my heartstrings to\n",
         "know they’re so far away from home."
       ]
@@ -630,7 +629,7 @@
     {
       "id": "PalParkLobby_Text_CatchingShowsAndContests",
       "en_US": [
-        "Not only are there Catching Shows,\n",
+        "Not only is there this park,\n",
         "there are also Pokémon Contests...\r",
         "It’s so dreamy...\n",
         "Sinnoh sets my heart aflutter."
@@ -643,6 +642,34 @@
     {
       "id": "PalParkLobby_Text_Dummy74",
       "garbage": 52
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignWelcome",
+      "en_US": [
+        "Welcome to the Regional Forms Park!\r",
+        "Pokémon in forms from far-off\n",
+        "regions have been gathering here.\r",
+        "Nobody knows how they got here,\n",
+        "but they seem to like it!\r",
+        "Would you like to go in?"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignZones",
+      "en_US": [
+        "Each region’s forms keep to their\n",
+        "own part of the park.\r",
+        "Alola’s are in the field, Galar’s\n",
+        "in the forest, Hisui’s on the\f",
+        "mountain and Paldea’s out at sea.\r",
+        "Bring your own Poké Balls. Enjoy!\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignComeAgain",
+      "en_US": [
+        "Please come again!"
+      ]
     }
   ]
 }

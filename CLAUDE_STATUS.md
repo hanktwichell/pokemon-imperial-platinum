@@ -1686,6 +1686,81 @@ It's an incremental-build race; removing the object fixes it. Clean CI builds pa
 
 ---
 
+## CB-0025 — 2026-10-22, 11:52 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** the Mega symbol moved next to the name, Insurgence-style (owner's request, with a reference picture).
+- Before, it was an 8×8 ring at the left end of the HP bar's strip. The owner read it as a second status condition.
+- It's now a 16×16 stone sprite on the name's row, over the box's border: right of the level on the foe's boxes, left
+  of the name on the player's.
+- A Mega shows a rainbow stone with the white Mega swirl, Primal Kyogre a blue α stone, Primal Groudon a red Ω stone.
+- It slides and bobs with its box and hides when the box hides. It uses the HP bar's palette, and the healthboxes
+  share one set of resources (ID 20042).
+- The 8×8 tile is gone; `healthbox_parts.png` is back to Platinum's.
+- Checked the status scripts on the owner's note ("only one status at a time"). Every status script checks for an
+  existing status first, so nothing could stack; the old symbol only looked like a status tag.
+- Checked Sirfetch'd: the in-game name is "SIRFETCH’D", with the same apostrophe as Platinum's FARFETCH’D, and every doc
+  has it. `SIRFETCHD` is only in identifiers.
+- Verified: wild singles, doubles (Garchomp and the foe's Charizard yes, Turtwig and Venusaur no), switching out and
+  back in, Primal Kyogre and Groudon as temporary leads. The release ROM builds without warnings, passes boot smoke,
+  and the docs regenerate clean.
+
+**Files modified:**
+- `decomp/src/battle/healthbox.c`, `decomp/include/battle/healthbox.h`
+- `decomp/res/graphics/battle/healthbox/sovereign_mega_icon.png`, `_cell.json` and `_anim.json` (new),
+  `healthbox_parts.png` (restored), `meson.build`; `decomp/res/graphics/battle/sprites.order`
+- `tools/sprites/make_mega_icon.py` (new), `tools/sprites/make_mega_button.py`, `tools/design/gen_mega_doc.py`
+- `docs/EngineChangelog.md`, `docs/TechnicalDesign.md` §4, `docs/MegaEvolution.md`, `docs/EngineRoadmap.md`,
+  `CITATIONS.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR when green.
+2. **The Regional Forms Park** (decision 22, local branch `rfp-wip`): test the worker, the zone encounters and the
+   exit; remove the temporary warp. Then its docs and PR.
+3. **Totem forms and the Totem trials** (`data/totem_trials.yaml`), then the battle forms with item 11's abilities.
+
+---
+
+## CB-0026 — 2026-10-23, 12:21 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** the Regional Forms Park (decision 22, milestone FM). Pal Park's grounds are a free-roaming wild area
+where the regional forms live.
+- **Visiting.** The lobby worker lets the player in; there's no Catching Show.
+  - Inside, the worker by the gate names the zones and offers to see the player out. Stepping into the gate asks
+    the same.
+  - `VAR_PAL_PARK_STATE` 3 marks a visit.
+- **Encounters.** Pal Park has an encounter table now; each quadrant is one region's zone.
+  - An encounter picks one form by weight, at a level in its range (`data/regional_forms_park.yaml` →
+    `gen_regional_forms_park.py` → the header and `docs/RegionalFormsPark.md`).
+  - Encounter slots can carry a form (`WILD_SLOT`).
+- **Opening.** The park opens after the Hall of Fame, through Route 221's National Dex check (decision 21).
+- **Text.** Oak's first-visit lines, the worker's, Route 221's and the lobby visitors' lines are about the park (drafts
+  in `Story.md`).
+- **Test warp.** A new one goes to Route 221 outside the lobby. Fly-warping inside the lobby leaves NPCs untalkable:
+  the player ends up at a different height from them.
+- **Verified:**
+  - The whole visit in the test build: Oak, the welcome, walking in, a Lv58 Raichu in the field (RAM: form 1,
+    Electric/Psychic, Surge Surfer), and both exits.
+  - Not tested: the sea (no Surf in the test party) and the other three zones.
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+
+**Files modified:**
+- `data/regional_forms_park.yaml` (new), `tools/engine/gen_regional_forms_park.py` (new), `tools/regenerate_docs.sh`
+- `decomp/include/data/regional_forms_park.h` (new), `decomp/include/constants/wild_encounters.h`,
+  `decomp/src/overlay006/wild_encounters.c`, `decomp/include/data/map_headers.h`, `decomp/src/script_manager.c`
+- `decomp/res/field/encounters/encounters_pal_park.json` (new), `encounters.order`, `meson.build`
+- `decomp/res/field/scripts/scripts_pal_park.s`, `scripts_pal_park_lobby.s`, `scripts_init_pal_park_lobby.s`;
+  `decomp/res/field/events/events_pal_park.json`
+- `decomp/res/text/pal_park.json`, `pal_park_lobby.json`, `route_221.json`
+- `docs/RegionalFormsPark.md` (new), `docs/EngineChangelog.md`, `docs/TechnicalDesign.md` §4b,
+  `docs/EngineRoadmap.md`, `docs/ProjectStatus.md`, `docs/Story.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR when green. The owner decides the zones' contents, odds and levels, and when the park opens.
+2. **Totem forms and the Totem trials** (`data/totem_trials.yaml`). Totem Raticate and Marowak now have their regional
+   base forms.
+3. **Battle forms** with item 11's abilities (Zen Mode, Schooling, Disguise, Power Construct…), and the Route 208
+   Mint sale.
+
 ## CA-0027 — 2026-10-23 (session on `claude/festive-bardeen-5h7beo`)
 
 **Implemented:**

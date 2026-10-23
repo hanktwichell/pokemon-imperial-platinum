@@ -123,10 +123,16 @@ implemented.
   - Load particles with `LoadParticleSystem` while sprites are held faded. `LoadParticleResource` draws unfaded
     battler copies while it loads.
   - In a single battle, `BATTLE_ANIM_BATTLER_PLAYER_2` / `ENEMY_2` fall back to player 1, so don't fade by slot.
-- **HP-bar symbol.** `HealthBox_SovereignDrawMegaIcon` (`healthbox.c`) draws part `HEALTHBOX_PART_SOVEREIGN_MEGA` in
-  the caught-icon slot (`sCaughtIconVRAMTransfer`), over the tile it saves first. It's called whenever the name is
-  drawn. The battle-script command `SovereignRefreshHealthBox` (after `End` in `btlcmd.h`) sends
-  `BattleController_EmitRefreshHPGauge`.
+- **Mega symbol by the name.** Each healthbox has a third sprite, `sovereignMegaIcon` (`healthbox.c`).
+  - Resources: char, cell and anim ID 20042, shared by all the healthboxes; palette `HEALTHBOX_MAIN_PALETTE_RESID`.
+  - Animation 0 is the Mega symbol, 1 is α and 2 is Ω.
+  - `HealthBox_SovereignPlaceMegaIcon` keeps it at `sSovereignMegaIconOffset` from the box. It's called on create,
+    in `HealthBox_OffsetPositionXY` (slide and bob) and in the scroll task.
+  - `HealthBox_Enable` and `Healthbox_SetExplicitPriority` apply to it too.
+  - `HealthBox_SovereignDrawMegaIcon` runs whenever the name is drawn. It reads the party Pokémon's form and shows
+    the symbol only while the box is drawn.
+  - The battle-script command `SovereignRefreshHealthBox` (after `End` in `btlcmd.h`) sends
+    `BattleController_EmitRefreshHPGauge`, which redraws the name after the reveal.
 
 ### 4b. All other forms (milestone FM, decision 16)
 - **Data.** `data/forms.csv` (`build_species_data.py`) lists every alternate form with its own data, with a category.
@@ -159,8 +165,8 @@ implemented.
   - A fused partner is removed from the party only after the animation, so the slots on screen don't shift during
     it. The party menu then closes back to the bag.
   - **Partner storage:** each fusion item keeps its partner in `MigratedPokemon.mons[item]`, Pal Park's transfer
-    storage. Pal Park and migration are removed (decision 22), and Pal Park needs all six slots filled to open. The
-    main menu's Migrate option is gone, so nothing else writes there.
+    storage. Pal Park and migration are removed (decision 22): the Catching Show never starts (the Regional Forms
+    Park replaced it) and the main menu's Migrate option is gone, so nothing else writes there.
   - The form's moves are a table in `sovereign_form_items.c`.
   - `BoxAppMan_CheckReleaseMonValid` (`pc_boxes/box_app_manager.c`) refuses to release a fused Pokémon.
 - **Regional forms** (`SOVEREIGN_FORM_REGIONAL`), plus `SOVEREIGN_FORM_BATTLE` (Zen Mode, data only).
@@ -181,6 +187,19 @@ implemented.
   - **Numbering.** A species' FM forms come first, in `FM_FORMS` order, and its Megas follow. FM numbers are saved
     and follow the official games; Mega numbers only exist in battle.
 
+- **Regional Forms Park** (decision 22, `docs/RegionalFormsPark.md`).
+  - **Encounter slots with a form.** `EncounterSlot.species` is an `int`. `WILD_SLOT(species, form)` puts the form in
+    its upper 16 bits (`constants/wild_encounters.h`). `CreateWildMon` and `CreateWildMonShinyWithGenderOrNature`
+    (`overlay006/wild_encounters.c`) take the species from the low bits, then `ApplySlotForm` sets the form and
+    recalculates the ability and stats.
+  - **Zones.** `RegionalFormsPark_FillEncounterTable` runs after the table is built, for grass, Surf, fishing, Sweet
+    Scent and mud, on `MAP_HEADER_PAL_PARK` only. It picks the zone by quadrant (x and z below or above 32, as
+    `catching_show.c`'s `GetEncounterArea`), one entry by weight and a level in its range, and fills every slot.
+  - **Visits.** `VAR_PAL_PARK_STATE` 3 means a park visit; 1 and 2 are still the Catching Show's. The lobby worker
+    sets it, the park's init script skips the countdown (it runs on 0), the gate's coord event for 3 asks to leave,
+    and the lobby's init script sends 3 to the exit frame script, which sets it back to 0.
+  - The Catching Show's own code (`catching_show.c`, Park Balls, `SystemFlag_CheckInPalPark`) is untouched and never
+    runs.
 ### 5. Trainer data
 - Vanilla Gen IV trainer Pokémon can't specify EVs, natures directly (nature comes from the PID seeded by trainer
   data), or abilities. **The EV spreads and natures in `TrainerPokemon_Sovereign.md` need an extended trainer-Pokémon

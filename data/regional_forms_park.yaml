@@ -1,0 +1,87 @@
+# Sovereign Platinum — the Regional Forms Park (decision 22): Pal Park's grounds at the end of Route 221, where the
+# regional forms (decision 16) live as wild Pokémon. Generated into decomp/include/data/regional_forms_park.h by
+# tools/engine/gen_regional_forms_park.py.
+#
+# PROPOSAL (2026-10-22, Claude B): which zone holds which forms, the weights and the levels are the owner's call
+# (docs/ProjectStatus.md, "Open"). This first version puts each region's forms in its own zone, keeps the evolved
+# forms rarer than their pre-evolutions, and gives the Galarian birds low odds, as decision 22 asks.
+#
+# zones: one per quadrant of the Pal Park map (src/catching_show.c GetEncounterArea), in quadrant order: north-west,
+#   north-east, south-west, south-east. Decision 22 makes Pal Park's field, forest, mountain and sea the Alola, Galar,
+#   Hisui and Paldea zones. The forest and field have no water and the sea has no tall grass, so their forms all live
+#   in the terrain they have (Galar's water forms in the forest's grass, Paldea's forms at sea).
+# Each entry: [form (data/forms.csv identifier), weight, min level, max level]. An encounter picks one entry by weight.
+# Levels: post-game, around the level cap after the Champion (data/level_caps.yaml).
+
+zones:
+  - name: Galar    # forest, north-west
+    grass:
+      - [meowth-galar,               12, 50, 54]
+      - [ponyta-galar,               12, 50, 54]
+      - [zigzagoon-galar,            12, 50, 54]
+      - [farfetchd-galar,            10, 50, 54]
+      - [darumaka-galar,             10, 50, 54]
+      - [yamask-galar,               10, 50, 54]
+      - [mr-mime-galar,               8, 50, 54]
+      - [linoone-galar,               6, 55, 58]
+      - [rapidash-galar,              4, 56, 60]
+      - [weezing-galar,               4, 56, 60]
+      - [darmanitan-galar-standard,   3, 56, 60]
+      - [articuno-galar,              1, 60, 60]
+      - [zapdos-galar,                1, 60, 60]
+      - [moltres-galar,               1, 60, 60]
+      - [slowpoke-galar,              6, 50, 54]
+      - [corsola-galar,               5, 50, 54]
+      - [stunfisk-galar,              3, 50, 54]
+      - [slowbro-galar,               2, 56, 60]
+      - [slowking-galar,              2, 56, 60]
+    water: []
+  - name: Hisui    # mountain and its lake, north-east
+    grass:
+      - [growlithe-hisui,   12, 50, 54]
+      - [voltorb-hisui,     12, 50, 54]
+      - [sneasel-hisui,     10, 50, 54]
+      - [zorua-hisui,       10, 50, 54]
+      - [sliggoo-hisui,      8, 50, 54]
+      - [lilligant-hisui,    5, 55, 58]
+      - [braviary-hisui,     5, 55, 58]
+      - [avalugg-hisui,      5, 55, 58]
+      - [arcanine-hisui,     3, 56, 60]
+      - [electrode-hisui,    3, 56, 60]
+      - [zoroark-hisui,      3, 56, 60]
+      - [goodra-hisui,       2, 58, 60]
+      - [typhlosion-hisui,   1, 58, 60]
+      - [samurott-hisui,     1, 58, 60]
+      - [decidueye-hisui,    1, 58, 60]
+    water:
+      - [qwilfish-hisui,          40, 50, 54]
+      - [basculin-white-striped,  35, 50, 54]
+      - [basculin-blue-striped,   25, 50, 54]
+  - name: Alola    # field, south-west, where the player arrives
+    grass:
+      - [rattata-alola,    12, 50, 54]
+      - [meowth-alola,     12, 50, 54]
+      - [sandshrew-alola,  10, 50, 54]
+      - [vulpix-alola,     10, 50, 54]
+      - [diglett-alola,    10, 50, 54]
+      - [geodude-alola,    10, 50, 54]
+      - [grimer-alola,      8, 50, 54]
+      - [raticate-alola,    5, 55, 58]
+      - [persian-alola,     5, 55, 58]
+      - [graveler-alola,    5, 55, 58]
+      - [sandslash-alola,   3, 56, 60]
+      - [ninetales-alola,   3, 56, 60]
+      - [dugtrio-alola,     3, 56, 60]
+      - [muk-alola,         3, 56, 60]
+      - [golem-alola,       2, 58, 60]
+      - [raichu-alola,      2, 58, 60]
+      - [exeggutor-alola,   2, 58, 60]
+      - [marowak-alola,     2, 58, 60]
+    water: []
+  - name: Paldea    # sea, south-east
+    grass: []
+    water:
+      - [wooper-paldea,               40, 50, 54]
+      - [tauros-paldea-aqua-breed,    30, 54, 58]
+      - [tauros-paldea-combat-breed,  20, 52, 56]
+      - [tauros-paldea-blaze-breed,   10, 54, 58]

@@ -4,6 +4,28 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (part 5) — stat moves and battle-dependent power
+
+**10 stat-changing status moves** are exact, each with its own subscript written by `tools/engine/gen_stat_moves.py`:
+Hone Claws, Work Up, Coil, Quiver Dance, Shell Smash, Cotton Guard, Shift Gear, Victory Dance, Noble Roar, Tearful Look.
+
+**12 damaging moves** now follow Gen IX (`Sovereign_MovePower` and the stat swaps in `BattleSystem_CalcMoveDamage`):
+
+| Move | Effect |
+|---|---|
+| Hex, Venoshock | power doubles if the target has a status / is poisoned |
+| Acrobatics | power doubles if the user holds no item |
+| Electro Ball | 40–150 power from the Speed ratio |
+| Heavy Slam, Heat Crash | 40–120 power from the weight ratio (Heavy/Light Metal count) |
+| Stored Power, Power Trip | 20 + 20 per positive stat stage |
+| Psyshock, Psystrike, Secret Sword | special damage against the target's Defense |
+| Foul Play | uses the target's Attack and Attack stage |
+
+**Verified in the test build:**
+- Shell Smash: Defense and Sp. Def −1; Attack, Sp. Atk and Speed +2. Noble Roar: target Attack and Sp. Atk −1.
+- Archaludon's Heavy Slam on Garchomp dealt 59, the exact value for power 40 (weight ratio under 2).
+- Venusaur's Foul Play read Garchomp's Attack (148), not its own.
+
 ## Item 11 (part 4) — 13 more abilities
 
 | Ability | Effect |
@@ -22,6 +44,70 @@ players and the verification that was run.
 - Gooey: contact leaves the attacker at Speed −1.
 - Defiant and Competitive: after Snarl, Attack +2 and Sp. Atk +1 (−1 then +2).
 - Moody: Attack +2, Defense −1.
+
+## FM — The Regional Forms Park (decision 22)
+
+Pal Park's grounds on Route 221 are now the Regional Forms Park, where the regional forms live as wild Pokémon.
+Contents, odds and levels are in `docs/RegionalFormsPark.md` (a proposal for the owner).
+- **Visiting.** The lobby worker welcomes the player and lets them in. There's no Catching Show, no Park Balls and no
+  timer: the park is a normal wild area where the player catches with their own balls.
+  - Inside, the worker by the gate names each region's zone and offers to see the player out. Stepping into the gate
+    asks the same. Either way the player is back in the lobby.
+  - `VAR_PAL_PARK_STATE` 3 marks a visit. The Catching Show's start, gate and tally scripts don't run for it, and the
+    lobby's exit script walks the player out as after a show.
+- **Encounters.** Pal Park now has an encounter table, `encounters_pal_park`, so grass, Surf and fishing work as on
+  any route (step rates, Repel, abilities, Sweet Scent).
+  - Each quadrant is one region's zone, as in the Catching Show's areas: Galar in the forest (north-west), Hisui on the
+    mountain and its lake (north-east), Alola in the field (south-west), Paldea at sea (south-east).
+  - An encounter picks one form from its zone by weight, at a random level in its range, and fills every slot with
+    it, so the slot rules still apply.
+  - New `data/regional_forms_park.yaml` → `tools/engine/gen_regional_forms_park.py` →
+    `include/data/regional_forms_park.h` and `docs/RegionalFormsPark.md`.
+  - An encounter slot's species can now carry a form in its upper 16 bits (`WILD_SLOT` in
+    `constants/wild_encounters.h`). The wild Pokémon is created with that form, with its stats and ability.
+  - The Poké Radar can't chain in the park, which has no radar Pokémon of its own.
+- **The map.** It plays the Catching Show's music (the Great Marsh's) from the start (in Platinum the map is silent until the show begins), and running is
+  allowed.
+- **Text.**
+  - Professor Oak's first-visit lines in the lobby now introduce the park.
+  - The lobby worker has a new welcome and explains the zones.
+  - Route 221's workers and sign follow `docs/Story.md`.
+- **Opening.** The park opens after the Hall of Fame. Route 221's workers still check the National Dex flag, which
+  means the Hall of Fame since DX.
+- **Verified in the test build** (new test warp to Route 221 outside the lobby):
+  - Oak's first-visit event and the worker's welcome and zones text.
+  - Walking in: no countdown, the normal start menu, the worker by the gate.
+  - The field gave Lv51 Geodude and Lv58 Raichu. RAM showed the Raichu as form 1, Electric/Psychic, with Surge
+    Surfer, so it's Alolan Raichu.
+  - The gate: No steps the player back, Yes returns to the lobby, where the player walks out and the worker steps
+    back. The worker inside: zones text, then Yes leaves the same way.
+  - Not tested in game: Surf and fishing at sea (the test party has no Surf), and the other three zones. They use the
+    same code with another table.
+
+
+## E8 — The Mega symbol moves next to the name
+
+The Mega symbol is now a 16×16 stone next to the Pokémon's name, as in Pokémon Insurgence. Before, it was an 8×8
+ring at the left end of the HP bar's strip, where it looked like a status condition.
+- **The art.** A Mega shows a rainbow stone split by the white swirl of the Mega Evolution symbol. Primal Kyogre shows
+  a blue stone with α, and Primal Groudon a red stone with Ω.
+- **The position.** It sits on the name's row, over the box's border:
+  - on the foe's boxes, right after the level;
+  - on the player's boxes, just left of the name, where nothing else is drawn.
+- **How it's drawn.** It's a sprite of its own, one per healthbox (`healthbox.c`). It moves with its box when the box
+  slides in or out and when it bobs, and it hides when the box does.
+  - The art is `res/graphics/battle/healthbox/sovereign_mega_icon.png` (new
+    `tools/sprites/make_mega_icon.py`), in the HP bar's own palette.
+  - The healthboxes share one set of resources.
+  - The 8×8 tile is gone, and `healthbox_parts.png` is back to Platinum's.
+- **Verified in the test build:**
+  - Garchomp in a wild battle.
+  - Doubles: Garchomp and the foe's Charizard show it; Turtwig and Venusaur don't. Both boxes and their symbols hide
+    during the Drought animation.
+  - Switching Turtwig in shows a clean box, and switching Garchomp back brings the symbol back.
+  - Primal Kyogre (α) and Primal Groudon (Ω), each as a temporary lead.
+  - The release ROM builds with no warnings.
+
 
 ## Item 11 (part 3) — 22 common Gen V+ abilities
 

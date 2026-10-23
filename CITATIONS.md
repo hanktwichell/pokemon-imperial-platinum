@@ -105,9 +105,11 @@ it. **Placeholders**, to be replaced by DS-style icons where the owner wants.
 
 ### Battle MEGA button and Mega symbols
 These are original art, drawn pixel by pixel with no source image:
-- `decomp/res/graphics/battle/interface/mega_button.png`, and the Mega symbol tile at the end of
-  `decomp/res/graphics/battle/healthbox/healthbox_parts.png`, by `tools/sprites/make_mega_button.py`. The Mega Stone shown
+- `decomp/res/graphics/battle/interface/mega_button.png`, by `tools/sprites/make_mega_button.py`. The Mega Stone shown
   on the button in battle is the item icon above.
+- The Mega, α and Ω stones shown by a Mega's or Primal's name
+  (`decomp/res/graphics/battle/healthbox/sovereign_mega_icon.png`), by `tools/sprites/make_mega_icon.py`. Their place
+  next to the name follows Pokémon Insurgence's battle screen; the art is not taken from it.
 - The Mega, α and Ω symbols that flash in the animation (`decomp/res/graphics/battle/moves/sovereign_*_symbol.png`), by
   `tools/sprites/make_mega_symbols.py`.
 

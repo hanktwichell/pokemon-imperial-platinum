@@ -47,113 +47,22 @@ PalParkLobby_Worker:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
-    GetPlayerGender VAR_RESULT
-    GoToIfEq VAR_RESULT, GENDER_MALE, PalParkLobby_Worker_PlayerMale
-    GoTo PalParkLobby_Worker_PlayerFemale
-
-PalParkLobby_Worker_PlayerMale:
-    GoToIfSet FLAG_TALKED_TO_PAL_PARK_LOBBY_RECEPTIONIST, PalParkLobby_Worker_Greeting_PlayerMale
-    SetFlag FLAG_TALKED_TO_PAL_PARK_LOBBY_RECEPTIONIST
-    BufferPlayerName 0
-    Message PalParkLobby_Text_WelcomeToPalPark_PlayerMale
+    // Sovereign (decision 22): the Regional Forms Park replaces Pal Park. There's no Catching Show: the park is a
+    // free-roaming wild area (data/regional_forms_park.yaml), and VAR_PAL_PARK_STATE 3 marks a visit.
+    Message PalParkLobby_Text_SovereignWelcome
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, PalParkLobby_Manual_FirstTime
-    GoToIfEq VAR_RESULT, MENU_NO, PalParkLobby_Worker_DontParticipate
-    End
+    GoToIfEq VAR_RESULT, MENU_NO, PalParkLobby_Worker_SovereignComeAgain
+    Message PalParkLobby_Text_SovereignZones
+    CloseMessage
+    SetVar VAR_PAL_PARK_STATE, 3
+    GoTo PalParkLobby_WalkInAndWarp
 
-PalParkLobby_Worker_PlayerFemale:
-    GoToIfSet FLAG_TALKED_TO_PAL_PARK_LOBBY_RECEPTIONIST, PalParkLobby_Worker_Greeting_PlayerFemale
-    SetFlag FLAG_TALKED_TO_PAL_PARK_LOBBY_RECEPTIONIST
-    BufferPlayerName 0
-    Message PalParkLobby_Text_WelcomeToPalPark_PlayerFemale
-    ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, PalParkLobby_Manual_FirstTime
-    GoToIfEq VAR_RESULT, MENU_NO, PalParkLobby_Worker_DontParticipate
-    End
-
-PalParkLobby_Manual_FirstTime:
-    Message PalParkLobby_Text_LetMeExplainPalPark
-    GoTo PalParkLobby_OpenManualMenu
-
-PalParkLobby_Manual_BasicRules:
-    Message PalParkLobby_Text_Manual_BasicRules
-    GoTo PalParkLobby_OpenManualMenu
-
-PalParkLobby_Manual_CatchingShow:
-    Message PalParkLobby_Text_Manual_CatchingShow
-    GoTo PalParkLobby_OpenManualMenu
-
-PalParkLobby_Manual_StockingPokemon:
-    Message PalParkLobby_Text_Manual_StockingPokemon
-    GoTo PalParkLobby_OpenManualMenu
-
-PalParkLobby_OpenManualMenu:
-    InitGlobalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm MenuEntries_Text_PalPark_BasicRules, 0
-    AddMenuEntryImm MenuEntries_Text_PalPark_CatchingShow, 1
-    AddMenuEntryImm MenuEntries_Text_PalPark_StockingPokemon, 2
-    AddMenuEntryImm MenuEntries_Text_PalPark_Understood, 4
-    ShowMenu
-    GoToIfEq VAR_RESULT, 0, PalParkLobby_Manual_BasicRules
-    GoToIfEq VAR_RESULT, 1, PalParkLobby_Manual_CatchingShow
-    GoToIfEq VAR_RESULT, 2, PalParkLobby_Manual_StockingPokemon
-    GoTo PalParkLobby_Worker_AskParticipateFromManual
-
-PalParkLobby_Worker_AskParticipateFromManual:
-    Message PalParkLobby_Text_TakePartInCatchingShow
-    ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, PalParkLobby_Worker_DontParticipate
-PalParkLobby_Worker_CheckIfCanParticipate:
-    SetVar VAR_RESULT, 0
-    GetPCBoxesFreeSlotCount VAR_RESULT
-    GoToIfLt VAR_RESULT, CATCHING_SHOW_MONS, PalParkLobby_Worker_PCBoxesFilled
-    SetVar VAR_RESULT, 0
-    GoToIfNotEnoughMonForCatchingShow PalParkLobby_Worker_NotEnoughPokemonMigrated
-    GetPlayerGender VAR_RESULT
-    GoToIfEq VAR_RESULT, GENDER_MALE, PalParkLobby_Worker_GiveParkBalls_PlayerMale
-    GoTo PalParkLobby_Worker_GiveParkBalls_PlayerFemale
-
-PalParkLobby_Worker_DontParticipate:
-    Message PalParkLobby_Text_AwwThatsTooBad
+PalParkLobby_Worker_SovereignComeAgain:
+    Message PalParkLobby_Text_SovereignComeAgain
     WaitButton
     CloseMessage
     ReleaseAll
     End
-
-PalParkLobby_Worker_Greeting_PlayerMale:
-    BufferPlayerName 0
-    Message PalParkLobby_Text_Greeting_PlayerMale
-    GoTo PalParkLobby_Worker_OpenCatchingShowMenu
-
-PalParkLobby_Worker_Greeting_PlayerFemale:
-    BufferPlayerName 0
-    Message PalParkLobby_Text_Greeting_PlayerFemale
-    GoTo PalParkLobby_Worker_OpenCatchingShowMenu
-
-PalParkLobby_Worker_OpenCatchingShowMenu:
-    InitGlobalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm MenuEntries_Text_PalPark_Enter, 0
-    AddMenuEntryImm MenuEntries_Text_PalPark_Info, 1
-    AddMenuEntryImm MenuEntries_Text_PalPark_Exit, 2
-    ShowMenu
-    GoToIfEq VAR_RESULT, 0, PalParkLobby_Worker_CheckIfCanParticipate
-    GoToIfEq VAR_RESULT, 1, PalParkLobby_Manual
-    GoToIfEq VAR_RESULT, 2, PalParkLobby_Worker_DontParticipate
-    GoTo PalParkLobby_Worker_DontParticipate
-
-PalParkLobby_Worker_GiveParkBalls_PlayerMale:
-    Call PalParkLobby_BufferRecord
-    BufferPlayerName 0
-    Message PalParkLobby_Text_HereParkBalls_PlayerMale
-    CloseMessage
-    GoTo PalParkLobby_WalkInAndWarp
-
-PalParkLobby_Worker_GiveParkBalls_PlayerFemale:
-    Call PalParkLobby_BufferRecord
-    BufferPlayerName 0
-    Message PalParkLobby_Text_HereParkBalls_PlayerFemale
-    CloseMessage
-    GoTo PalParkLobby_WalkInAndWarp
 
 PalParkLobby_WalkInAndWarp:
     ApplyMovement LOCALID_WORKER, PalParkLobby_Movement_WorkerMoveAside
@@ -166,24 +75,6 @@ PalParkLobby_WalkInAndWarp:
     Warp MAP_HEADER_PAL_PARK, 24, 47, DIR_NORTH
     FadeScreenIn
     WaitFadeScreen
-    ReleaseAll
-    End
-
-PalParkLobby_Worker_NotEnoughPokemonMigrated:
-    Message PalParkLobby_Text_NotEnoughPokemonMigrated
-    WaitButton
-    CloseMessage
-    ReleaseAll
-    End
-
-PalParkLobby_Manual:
-    Message PalParkLobby_Text_IllReadManual
-    GoTo PalParkLobby_OpenManualMenu
-
-PalParkLobby_Worker_PCBoxesFilled:
-    Message PalParkLobby_Text_PCBoxesFilled
-    WaitButton
-    CloseMessage
     ReleaseAll
     End
 
@@ -298,27 +189,8 @@ PalParkLobby_Daughter:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
-    BufferPlayerName 0
-    GoToIfEq VAR_RESULT, 2, PalParkLobby_Daughter_IHopeYouDoBetter
-    GoToIfEq VAR_RESULT, 1, PalParkLobby_Daughter_YourCatchingShowWasFantastic
-    GoTo PalParkLobby_Daughter_CameToSeeCatchingShow
-
-PalParkLobby_Daughter_CameToSeeCatchingShow:
+    // Sovereign (decision 22): no Catching Show, so no comments on the player's show.
     Message PalParkLobby_Text_CameToSeeCatchingShow
-    WaitButton
-    CloseMessage
-    ReleaseAll
-    End
-
-PalParkLobby_Daughter_YourCatchingShowWasFantastic:
-    Message PalParkLobby_Text_YourCatchingShowWasFantastic
-    WaitButton
-    CloseMessage
-    ReleaseAll
-    End
-
-PalParkLobby_Daughter_IHopeYouDoBetter:
-    Message PalParkLobby_Text_IHopeYouDoBetter
     WaitButton
     CloseMessage
     ReleaseAll
@@ -338,7 +210,6 @@ PalParkLobby_ComplaintsLady:
     End
 
 PalParkLobby_RecordGuy:
-    Call PalParkLobby_BufferRecord
     NPCMessage PalParkLobby_Text_CurrentRecordHolder
     End
 

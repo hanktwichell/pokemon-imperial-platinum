@@ -121,6 +121,8 @@ Made by the owner (2026-10-22):
       above included Pikachu's Alola cap, a cosmetic cap, and Galarian Zen Darmanitan, a battle form.
     - **Galarian Articuno, Zapdos and Moltres** roam the **Galar zone** as rare encounters (low odds). That's the only
       place they can be caught (owner, 2026-10-22).
+    - The park is built (FM, CB-0026), with a proposed zone list in `docs/RegionalFormsPark.md`. It opens after the
+      Hall of Fame (Route 221's National Dex check, decision 21).
 23. **The story: the Sovereign** (owner, 2026-10-22; `docs/Story.md`). The Sovereign are Sinnoh's old ruling class.
     Unseen by the player, they merge other Pokémon worlds into Sinnoh, in a story that runs alongside Team
     Galactic's. One vague reference comes early, then the player learns more through the Totem trials (the
@@ -152,8 +154,8 @@ Made by the owner (2026-10-22):
       Nuggets, Pearls, shards and found items sell at full price; shop stock sells for what you paid for it.
 
 Open:
-- Regional Forms Park (decision 22): which zone holds which forms, encounter rates, and when it opens (Route 221
-  needs Surf; with the National Dex from the start, Pal Park's old National Dex gate no longer applies).
+- Regional Forms Park (decision 22): which zone holds which forms, the odds and levels (proposal in
+  `docs/RegionalFormsPark.md`), and when it opens (now after the Hall of Fame; `Story.md` suggests Oak's visit).
 - Special evolutions (decision 20): owner discussion pending.
 - The developer battle: Lv. 100 at Spear Pillar, leads Charizard-Y + Venusaur, custom weather-control AI (`DeveloperBattle.md`). Opponent: Sovereign Henry (decision 23). Open: text, sprites (owner's sprite coming soon).
 - Front sprites and the part 2 shiny pack (owner is sourcing them).

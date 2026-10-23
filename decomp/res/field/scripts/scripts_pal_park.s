@@ -9,6 +9,7 @@
     ScriptEntry PalPark_RetireFromMenu
     ScriptEntry PalPark_CoordEvent_RetireFromGate
     ScriptEntry PalPark_Worker
+    ScriptEntry PalPark_CoordEvent_LeaveRegionalFormsPark
     ScriptEntryEnd
 
 PalPark_OnTransition:
@@ -105,6 +106,7 @@ PalPark_Worker:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
+    GoToIfEq VAR_PAL_PARK_STATE, 3, PalPark_Worker_RegionalFormsPark
     Call PalPark_AskPlayerRetireFromCatchingShow
     CloseMessage
     GoToIfEq VAR_RESULT, FALSE, PalPark_WorkerWalkOnSpotWest
@@ -112,6 +114,38 @@ PalPark_Worker:
     ReleaseAll
     Call PalPark_ClearFlagAndWarpOut
     End
+
+// Sovereign (decision 22): in the Regional Forms Park, the worker tells the player where each region's forms are and
+// can see them out. Leaving this way skips the Catching Show's end (ClearInCatchingShowFlag), as the show never began.
+PalPark_Worker_RegionalFormsPark:
+    Message PalPark_Text_SovereignWorker
+    ShowYesNoMenu VAR_RESULT
+    CloseMessage
+    GoToIfEq VAR_RESULT, MENU_NO, PalPark_WorkerWalkOnSpotWest
+    ReleaseAll
+    Call PalPark_WarpOutOfRegionalFormsPark
+    End
+
+// Sovereign (decision 22): stepping into the gate asks before leaving, like the Catching Show's gate event.
+PalPark_CoordEvent_LeaveRegionalFormsPark:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    Message PalPark_Text_SovereignLeave
+    ShowYesNoMenu VAR_RESULT
+    CloseMessage
+    GoToIfEq VAR_RESULT, MENU_NO, PalPark_PlayerWalkNorth
+    ReleaseAll
+    Call PalPark_WarpOutOfRegionalFormsPark
+    End
+
+// The lobby's frame script for VAR_PAL_PARK_STATE 3 walks the player out and sets it back to 0.
+PalPark_WarpOutOfRegionalFormsPark:
+    FadeScreenOut
+    WaitFadeScreen
+    Warp MAP_HEADER_PAL_PARK_LOBBY, 7, 7, DIR_SOUTH
+    FadeScreenIn
+    WaitFadeScreen
+    Return
 
 PalPark_WorkerWalkOnSpotWest:
     ApplyMovement LOCALID_WORKER, PalPark_Movement_WorkerWalkOnSpotWest
