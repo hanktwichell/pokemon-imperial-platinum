@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 95 |
+| exact | 96 |
 | approximate | 75 |
-| placeholder | 210 |
+| placeholder | 209 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -323,7 +323,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 773 | (max-overgrowth) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
 | 774 | (max-steelspike) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
 | 775 | Clangorous Soul | Dragon | `SP_ATK_SP_DEF_UP` | approximate | raises [('atk', 1), ('def', 1), ('spa', 1), ('spd', 1), ('spe', 1)] in the original |
-| 776 | Body Press | Fighting | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 776 | Body Press | Fighting | `BODY_PRESS` | exact | Sovereign effect: damage uses the user's Defense and Defense stage |
 | 777 | Decorate | Fairy | `ATK_UP_2` | approximate | raises [('atk', 2), ('spa', 2)] in the original |
 | 778 | Drum Beating | Grass | `LOWER_SPEED_HIT` | exact |  |
 | 779 | Snap Trap | Grass | `BIND_HIT` | exact |  |

@@ -6993,6 +6993,13 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         movePower = movePower * 125 / 100;
     }
 
+    // Sovereign (item 11): Body Press uses the user's Defense and Defense stage in place of its Attack. Effects that
+    // raise Attack (Choice Band, Huge Power, Hustle, Guts...) don't apply, as in Gen IX.
+    if (MOVE_DATA(move).effect == BATTLE_EFFECT_BODY_PRESS) {
+        attackStat = BattleMon_Get(battleCtx, attacker, BATTLEMON_DEFENSE, NULL);
+        attackStage = BattleMon_Get(battleCtx, attacker, BATTLEMON_DEFENSE_STAGE, NULL) - DEFAULT_STAT_STAGE;
+    }
+
     if (attackerParams.ability == ABILITY_SIMPLE) {
         attackStage *= 2;
         if (attackStage < MIN_STAT_STAGE - DEFAULT_STAT_STAGE) {
