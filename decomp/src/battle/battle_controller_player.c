@@ -3357,6 +3357,16 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
         battleCtx->moveStatusFlags |= MOVE_STATUS_INEFFECTIVE;
     }
 
+    // Sovereign (item 11): Bestow can't give away an item that sets the user's form (a Mega Stone, an Orb...).
+    if (move == MOVE_BESTOW && Battler_SovereignHeldItemLocked(battleCtx, attacker)) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_FAILED;
+    }
+
+    // Sovereign (item 11): Belch fails unless the user has eaten a Berry this battle.
+    if (move == MOVE_BELCH && (battleCtx->sovereignAteBerry[attacker] & FlagIndex(battleCtx->selectedPartySlot[attacker])) == FALSE) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_FAILED;
+    }
+
     // Sovereign (item 11): Upper Hand fails unless the target is about to use a priority move this turn.
     if (move == MOVE_UPPER_HAND
         && (battleCtx->battlerActions[defender][BATTLE_ACTION_PICK_COMMAND] == BATTLE_CONTROL_MOVE_END

@@ -4,6 +4,20 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (part 24) — Bestow, Belch
+
+- **Bestow:** gives the user's held item to a target holding none ("{0} obtained one {1}.").
+  - Fails if the user holds nothing, the target holds an item, or the item sets the user's form (Mega Stones, Orbs...,
+    `Battler_SovereignHeldItemLocked`).
+  - New effect `SOVEREIGN_BESTOW` (329).
+- **Belch:** fails unless the user has eaten a Berry this battle. A Berry used up through `RemoveItem` is recorded
+  per party slot (new field `sovereignAteBerry`). In the games Belch can't be selected at all; here it fails.
+  Berries eaten through Bug Bite or Pluck don't count yet.
+- Move checklist: exact 254, approximate 39, placeholder 87.
+
+**Verified in the test build:** the foe Charizard's Bestow gave Turtwig its Leftovers ("TURTWIG obtained one
+Leftovers."). The foe Venusaur's Belch, with no Berry eaten, gave "But it failed!".
+
 ## Item 11 (part 23) — Parting Shot
 
 - **Parting Shot:** lowers the target's Attack and Sp. Atk by 1 stage, then the user switches out as after U-turn.

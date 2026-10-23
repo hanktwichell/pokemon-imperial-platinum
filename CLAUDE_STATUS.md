@@ -2612,3 +2612,19 @@ and Keldeo, CB-0036) is merged; its first CI run died in apt-get and the one re-
 1. Merge PR #52 when CI is green.
 2. More moves: Belch, Bestow, the Pledges, Ally Switch, Telekinesis, Wonder/Magic Room.
 3. Abilities: Mirror Armor, Cotton Down, Wind Rider/Wind Power, Purifying Salt's status immunity.
+
+## CA-0042 (Claude A, branch `claude/festive-bardeen-5h7beo`, 2026-10-23)
+
+**Just implemented:** item 11 part 24: Bestow and Belch, both verified in game.
+
+**Files modified:**
+- `decomp/src/battle/battle_controller_player.c`, `battle_script.c` (`RemoveItem` records eaten Berries)
+- `decomp/include/battle/battle_context.h` (`sovereignAteBerry`)
+- New `effect_script_0329.s` and `subscript_sovereign_bestow.s`, registered in the lists
+- `res/moves/{bestow,belch}/data.json`
+- `tools/engine/gen9_move_fixes.py`, `docs/MoveChecklist.md`, `docs/EngineChangelog.md`
+
+**Next 3 steps:**
+1. Merge PR #52 (parts 22 and 23), then the PR for part 24.
+2. More moves: the Pledges, Ally Switch, Telekinesis, Wonder/Magic Room.
+3. Abilities: Mirror Armor, Cotton Down, Wind Rider/Wind Power, Purifying Salt's status immunity.

@@ -347,6 +347,7 @@ struct BattleContext {
     u8 sovereignPiercingDrill; // Sovereign (item 11): the current hit goes through protection with Piercing Drill
     int sovereignHPBeforeHit[MAX_BATTLERS]; // Sovereign (item 11): each battler's HP before the last hit it took (Berserk, Innards Out)
     int sovereignDragonCheer[MAX_BATTLERS]; // Sovereign (item 11): Dragon Cheer's crit stages (1, or 2 for a Dragon type)
+    u8 sovereignAteBerry[MAX_BATTLERS]; // Sovereign (item 11): party slots that have eaten a Berry this battle (Belch)
 };
 
 #endif // POKEPLATINUM_BATTLE_BATTLE_CONTEXT_H

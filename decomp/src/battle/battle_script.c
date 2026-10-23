@@ -9116,6 +9116,12 @@ static BOOL BtlCmd_RemoveItem(BattleSystem *battleSys, BattleContext *battleCtx)
 
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
     battleCtx->recycleItem[battler] = battleCtx->battleMons[battler].heldItem;
+
+    // Sovereign (item 11): remember a Berry it used up, for Belch.
+    if (Item_IsBerry(battleCtx->battleMons[battler].heldItem)) {
+        battleCtx->sovereignAteBerry[battler] |= FlagIndex(battleCtx->selectedPartySlot[battler]);
+    }
+
     battleCtx->battleMons[battler].heldItem = ITEM_NONE;
 
     BattleMon_CopyToParty(battleSys, battleCtx, battler);

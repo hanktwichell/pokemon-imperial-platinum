@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 253 |
-| approximate | 38 |
-| placeholder | 89 |
+| exact | 254 |
+| approximate | 39 |
+| placeholder | 87 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -63,7 +63,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 513 | Reflect Type | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 514 | Retaliate | Normal | `HIT` | exact | Sovereign effect: power doubles if a Pokémon on the user's side fainted last turn |
 | 515 | Final Gambit | Fighting | `SOVEREIGN_FINAL_GAMBIT` | exact | Sovereign effect: damage equal to the user's HP; the user faints if it hits |
-| 516 | Bestow | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 516 | Bestow | Normal | `SOVEREIGN_BESTOW` | exact | Sovereign effect: gives the user's held item to a target holding none |
 | 517 | Inferno | Fire | `BURN_HIT` | exact |  |
 | 518 | Water Pledge | Water | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 519 | Fire Pledge | Fire | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
@@ -109,7 +109,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 559 | Fusion Bolt | Electric | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 560 | Flying Press | Fighting | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 561 | Mat Block | Fighting | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
-| 562 | Belch | Poison | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 562 | Belch | Poison | `HIT` | approximate | Sovereign effect: fails unless the user has eaten a Berry this battle (Bug Bite and Pluck don't count yet) |
 | 563 | Rototiller | Ground | `ATK_UP_2` | approximate | raises [('atk', 1), ('spa', 1)] in the original |
 | 564 | Sticky Web | Bug | `SOVEREIGN_STICKY_WEB` | exact | Sovereign effect: grounded foes switching in lose 1 Speed stage (Rapid Spin clears it) |
 | 565 | Fell Stinger | Bug | `HIT` | exact | Sovereign effect: user Attack +3 if it knocks out the target |

@@ -371,4 +371,5 @@ subscript_files = files(
     'subscript_sovereign_dragon_cheer.s',
     'subscript_sovereign_scale_shot.s',
     'subscript_sovereign_parting_shot.s',
+    'subscript_sovereign_bestow.s',
 )
