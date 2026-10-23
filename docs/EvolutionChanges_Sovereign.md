@@ -25,16 +25,16 @@ Renegade Platinum's own evolution changes (`RenegadePlatinumV130/Documentation/E
 | 972 | Houndstone | Greavard | Level 30 at night | **Level 30** | Time of day dropped |
 | 745 | Lycanroc | Rockruff | Level 25 at day OR Level 25 at night OR Level 25 at dusk | **Level 25 (Midday Form by day, Midnight Form at night; Dusk Form needs a form-change hook — Midday until then)** | Form chosen by time of day needs a small engine hook |
 | 849 | Toxtricity | Toxel | Level 30 | **Level 30 (Amped Form; Low Key Form by nature once a form hook exists)** | Nature-dependent form needs an engine hook |
-| 862 | Obstagoon | Linoone | Level 35 at night from the linoone-galar form | **Level up holding a Razor Claw at night** | Galarian Linoone isn't in the game; uses Gen IV's held-item-at-night method |
-| 863 | Perrserker | Meowth | Level 28 from the meowth-galar form | **Use Metal Coat** | Galarian Meowth isn't in the game; Meowth still becomes Persian at Lv. 28 |
-| 864 | Cursola | Corsola | Level 38 from the corsola-galar form | **Use Dusk Stone** | Galarian Corsola isn't in the game |
-| 865 | Sirfetch’d | Farfetch’d | Three critical hits from the farfetchd-galar form | **Level 40** | Can't count critical hits; Galarian Farfetch'd isn't in the game. Renegade's Farfetch'd is already Fighting/Flying, which suits Sirfetch'd |
-| 866 | Mr. Rime | Mr. Mime | Level 42 from the mr-mime-galar form | **Level 42** | Galarian Mr. Mime isn't in the game; Gen VIII level kept |
-| 867 | Runerigus | Yamask | Take damage at Dusty Bowl from the yamask-galar form | **Use Dusk Stone** | Galarian Yamask isn't in the game; Yamask still becomes Cofagrigus at Lv. 34 |
-| 980 | Clodsire | Wooper | Level 20 from the wooper-paldea form | **Use Dusk Stone** | Paldean Wooper isn't in the game; Wooper still becomes Quagsire at Lv. 20 |
-| 903 | Sneasler | Sneasel | Level up holding Razor Claw at day from the sneasel-hisui form | **Level up holding a Razor Claw by day** | Hisuian Sneasel isn't in the game; Weavile stays Razor Claw at night |
-| 904 | Overqwil | Qwilfish | Strong style move after using Barb Barrage from the qwilfish-hisui form OR Level up knowing Barb Barrage from the qwilfish-hisui form OR Use move after using Barb Barrage from the qwilfish-hisui form | **Level up knowing Pin Missile** | Barb Barrage isn't in the engine; Hisuian Qwilfish isn't in the game |
-| 902 | Basculegion | Basculin | Recoil damage (male) OR Recoil damage (female) | **Level 36 (male → Male Form, female → Female Form)** | Can't count recoil damage; White-Striped Basculin isn't in the game |
+| 862 | Obstagoon | Linoone | Level 35 at night from the linoone-galar form | **Level up holding a Razor Claw at night** | The base form's route, set before Galarian Linoone was in the game (Galarian Linoone: see regional_forms); uses Gen IV's held-item-at-night method |
+| 863 | Perrserker | Meowth | Level 28 from the meowth-galar form | **Use Metal Coat** | The base form's route, set before Galarian Meowth was in the game (Galarian Meowth: see regional_forms); Meowth still becomes Persian at Lv. 28 |
+| 864 | Cursola | Corsola | Level 38 from the corsola-galar form | **Use Dusk Stone** | The base form's route, set before Galarian Corsola was in the game (Galarian Corsola: see regional_forms) |
+| 865 | Sirfetch’d | Farfetch’d | Three critical hits from the farfetchd-galar form | **Level 40** | Can't count critical hits; the base form's route, set before Galarian Farfetch'd was in the game (Galarian Farfetch'd: see regional_forms). Renegade's Farfetch'd is already Fighting/Flying, which suits Sirfetch'd |
+| 866 | Mr. Rime | Mr. Mime | Level 42 from the mr-mime-galar form | **Level 42** | The base form's route, set before Galarian Mr. Mime was in the game (Galarian Mr. Mime: see regional_forms); Gen VIII level kept |
+| 867 | Runerigus | Yamask | Take damage at Dusty Bowl from the yamask-galar form | **Use Dusk Stone** | The base form's route, set before Galarian Yamask was in the game (Galarian Yamask: see regional_forms); Yamask still becomes Cofagrigus at Lv. 34 |
+| 980 | Clodsire | Wooper | Level 20 from the wooper-paldea form | **Use Dusk Stone** | The base form's route, set before Paldean Wooper was in the game (Paldean Wooper: see regional_forms); Wooper still becomes Quagsire at Lv. 20 |
+| 903 | Sneasler | Sneasel | Level up holding Razor Claw at day from the sneasel-hisui form | **Level up holding a Razor Claw by day** | The base form's route, set before Hisuian Sneasel was in the game (Hisuian Sneasel: see regional_forms); Weavile stays Razor Claw at night |
+| 904 | Overqwil | Qwilfish | Strong style move after using Barb Barrage from the qwilfish-hisui form OR Level up knowing Barb Barrage from the qwilfish-hisui form OR Use move after using Barb Barrage from the qwilfish-hisui form | **Level up knowing Pin Missile** | Barb Barrage isn't in the engine; the base form's route, set before Hisuian Qwilfish was in the game (Hisuian Qwilfish: see regional_forms) |
+| 902 | Basculegion | Basculin | Recoil damage (male) OR Recoil damage (female) | **Level 36 (male → Male Form, female → Female Form)** | Can't count recoil damage; the base form's route, set before White-Striped Basculin was in the game (White-Striped Basculin: see regional_forms) |
 | 899 | Wyrdeer | Stantler | Agile style move after using Psyshield Bash | **Level up knowing Zen Headbutt** | Psyshield Bash isn't in the engine |
 | 900 | Kleavor | Scyther | Use Black Augurite | **Use Black Augurite** | Item kept; Scyther still becomes Scizor with a Metal Coat |
 | 901 | Ursaluna | Ursaring | Use Peat Block at full-moon | **Use Peat Block** | Full-moon condition dropped |
@@ -85,3 +85,23 @@ These must be added to the item table (alongside the Mega Stones). All have a "U
 | Metal Alloy | Snowpoint City evolution-item seller ($10,000) |
 | Scroll of Darkness | Kubfu's post-game event |
 | Scroll of Waters | Kubfu's post-game event |
+
+## Regional forms
+
+A regional form evolves like its base species and keeps its region (Alolan Rattata → Alolan Raticate, Galarian Darumaka → Galarian Darmanitan). These evolve differently (`regional_forms`; `tools/engine/gen_forms.py` builds them into the forms' data):
+
+| Form | Sovereign method | Why |
+|---|---|---|
+| Alolan Vulpix | **Use Ice Stone** | Official |
+| Alolan Sandshrew | **Use Ice Stone** | Official |
+| Alolan Meowth | **Level 28 (Alolan Persian)** | Renegade's level for Meowth (official: friendship); no Perrserker |
+| Galarian Meowth | **Level 28 (Perrserker)** | Official |
+| Galarian Slowpoke | **Use Galarica Cuff / Galarica Wreath** | Official |
+| Galarian Corsola | **Level 38 (Cursola)** | Official |
+| Galarian Darumaka | **Use Ice Stone** | Official |
+| Galarian Yamask | **Level 34 (Runerigus)** | Can't count HP lost; Yamask's own level, so it never becomes Cofagrigus |
+| Hisuian Voltorb | **Use Leaf Stone** | Official |
+| Hisuian Sneasel | **Level up holding a Razor Claw by day (Sneasler)** | Official |
+| Paldean Wooper | **Level 20 (Clodsire)** | Official |
+
+An Egg hatches into its parent's regional form (the mother's, or the parent that isn't Ditto), or the base form when the baby has no form of that region. These species hatch from Eggs in their regional form, as in the official games: Perrserker → Galarian Meowth, Sirfetch’d → Galarian Farfetch’d, Cursola → Galarian Corsola, Obstagoon → Galarian Zigzagoon, Runerigus → Galarian Yamask, Sneasler → Hisuian Sneasel, Overqwil → Hisuian Qwilfish, Clodsire → Paldean Wooper, Basculegion → White-Striped Basculin.

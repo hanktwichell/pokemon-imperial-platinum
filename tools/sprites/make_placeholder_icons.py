@@ -97,10 +97,12 @@ def main():
         sheet.paste(f1, (0, 0))
         sheet.paste(f1, (0, FRAME - 1))  # frame 2: one pixel higher
         flat = [c for col in palettes[best] for c in col]
-        sheet.putpalette(flat + [0] * (768 - len(flat)))
+        sheet.putpalette(flat + [0] * (48 - len(flat)))
         name = species[dex]
         fn = f"{dex:04d}-{name}.png"
-        sheet.save(os.path.join(outdir, fn), transparency=0)
+        # 4-bit with a 16-colour palette, like Platinum's icons: a 256-colour PNG converts to an 8bpp NCGR, which shows
+        # as garbage in 4bpp icon sprites and overflows the party menu's icon slot when reloaded.
+        sheet.save(os.path.join(outdir, fn), bits=4)
         rows.append({"dex": dex, "species": name, "file": f"assets/sprites/icons_placeholder/{fn}", "icon_palette": best,
                      "source": label, "source_url": f"https://github.com/PokeAPI/sprites/blob/master/sprites/pokemon/versions/{sub}/{dex}.png"})
     with open(os.path.join(ROOT, "data/icon_placeholders.csv"), "w", newline="", encoding="utf-8") as f:

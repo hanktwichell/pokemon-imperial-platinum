@@ -393,6 +393,7 @@ struct PartyMenuApplication {
     HeightWeightData *heightWeight;
     PartyMenuFormChange *formChanger;
     G3DPipelineBuffers *formChange3DPipeline;
+    u8 sovereignFusedPartnerSlot; // Sovereign (FM): party slot + 1 of a partner that fused, removed after the animation
 };
 
 #endif // POKEPLATINUM_PARTY_MENU_DEFS_H

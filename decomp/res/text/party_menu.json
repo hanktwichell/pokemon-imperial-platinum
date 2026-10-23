@@ -1020,6 +1020,13 @@
         "{STRVAR_1 1, 0, 0}’s Ability changed\n",
         "to {STRVAR_1 5, 1, 0}!"
       ]
+    },
+    {
+      "id": "PartyMenu_Text_SovereignNoRoomToSeparate",
+      "en_US": [
+        "There’s no room in your party, so\n",
+        "they can’t be separated."
+      ]
     }
   ]
 }

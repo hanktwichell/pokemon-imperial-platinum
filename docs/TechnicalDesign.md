@@ -149,6 +149,37 @@ implemented.
   - `BtlCmd_TryStealItem` (Thief and Covet) and `BtlCmd_TrySwapItems` (Trick and Switcheroo) fail.
   - `BtlCmd_TryKnockOff` leaves the item.
   - `BattleSystem_FlingItem` fails.
+- **Key-item forms** (`SOVEREIGN_FORM_KEY_ITEM`: Therian Formes, Hoopa Unbound) and **fusions**
+  (`SOVEREIGN_FORM_FUSION`: Kyurem, Necrozma, Calyrex; the form's `trigger` is the partner species).
+  - The key items have `ITEM_USE_FUNC_SOVEREIGN_FORM` (`item_use_functions.c`), which opens the party menu with the
+    item like the Gracidea.
+  - `ApplyItemEffectOnPokemon` (`party_menu/main.c`) hands them to `SovereignFormItem_Use`
+    (`src/sovereign_form_items.c`), then plays the Gracidea's form-change animation on the slot that changed
+    (`form_change.c` gives Sovereign species Giratina's effect).
+  - A fused partner is removed from the party only after the animation, so the slots on screen don't shift during
+    it. The party menu then closes back to the bag.
+  - **Partner storage:** each fusion item keeps its partner in `MigratedPokemon.mons[item]`, Pal Park's transfer
+    storage. Pal Park and migration are removed (decision 22), and Pal Park needs all six slots filled to open. The
+    main menu's Migrate option is gone, so nothing else writes there.
+  - The form's moves are a table in `sovereign_form_items.c`.
+  - `BoxAppMan_CheckReleaseMonValid` (`pc_boxes/box_app_manager.c`) refuses to release a fused Pokémon.
+- **Regional forms** (`SOVEREIGN_FORM_REGIONAL`), plus `SOVEREIGN_FORM_BATTLE` (Zen Mode, data only).
+  - **What's form-aware:**
+    - Already, through `Pokemon_GetFormNarcIndex`: stats, types, abilities, TM bits and level-up learnsets (so the
+      move reminder and Eggs too).
+    - Base species only: egg moves, tutor moves and the baby lookup.
+    - `gen_forms.py` builds an FM form's learnset with `gen_species_gen9.build_learnset` from its PokeAPI id.
+  - **Evolutions.** `evo.narc` has a member for every form, but Platinum only reads the species'.
+    `Pokemon_GetEvolutionTargetSpecies` now reads a regional form's own member, which holds the base species'
+    evolutions or `regional_forms` (`data/evolution_changes.yaml`).
+  - **The evolved form.** `Pokemon_SovereignSetEvolvedSpecies` (called by `evolution.c` for the evolution and its
+    preview sprite) sets the target's form from `sSovereignFormEvolutions`: the target's form of the same region,
+    else 0. Other forms are kept, as before.
+  - **Eggs.** `Daycare_GiveEggFromDaycare` asks `Pokemon_SovereignBabyForm` for the form of the non-Ditto parent
+    (`sSovereignBabyForms`: the baby's form of the parent's region, or 0, and `regional_parents`). Parents with no
+    rule keep Platinum's raw form copy.
+  - **Numbering.** A species' FM forms come first, in `FM_FORMS` order, and its Megas follow. FM numbers are saved
+    and follow the official games; Mega numbers only exist in battle.
 
 ### 5. Trainer data
 - Vanilla Gen IV trainer Pokémon can't specify EVs, natures directly (nature comes from the PID seeded by trainer

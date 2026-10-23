@@ -289,6 +289,7 @@ static void Pokemon_DecryptData(void *data, u32 bytes, u32 seed);
 static u16 Pokemon_GetDataChecksum(void *data, u32 bytes);
 static void *BoxPokemon_GetDataBlock(BoxPokemon *boxMon, u32 personality, enum PokemonDataBlockID dataBlockID);
 static int Pokemon_GetFormNarcIndex(int monSpecies, int monForm);
+static BOOL Pokemon_IsSovereignRegionalForm(u16 species, int form);
 static inline int Pokemon_Face(int clientType);
 
 void Pokemon_Init(Pokemon *mon)
@@ -3592,7 +3593,15 @@ u16 Pokemon_GetEvolutionTargetSpecies(Party *party, Pokemon *mon, u8 evoClass, u
     }
 
     SpeciesEvolution *speciesEvolutions = Heap_Alloc(HEAP_ID_SYSTEM, sizeof(SpeciesEvolution) * MAX_EVOLUTIONS);
-    LoadSpeciesEvolutions(monSpecies, speciesEvolutions);
+
+    // Sovereign (FM): a regional form has its own evolutions (Galarian Meowth: Perrserker), packed at its form's index.
+    int monForm = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+
+    if (Pokemon_IsSovereignRegionalForm(monSpecies, monForm)) {
+        LoadSpeciesEvolutions(Pokemon_GetFormNarcIndex(monSpecies, monForm), speciesEvolutions);
+    } else {
+        LoadSpeciesEvolutions(monSpecies, speciesEvolutions);
+    }
 
     switch (evoClass) {
     case EVO_CLASS_BY_LEVEL: {
@@ -5083,12 +5092,64 @@ static const SovereignForm *Pokemon_FindSovereignForm(u16 species, int form)
 }
 
 // Sovereign (E8, FM): TRUE for a form that only lasts for the battle and reverts to the base form when it ends: Mega,
-// Primal, Crowned.
+// Primal, Crowned, Zen Mode.
 BOOL Pokemon_IsSovereignBattleForm(u16 species, int form)
 {
     const SovereignForm *entry = Pokemon_FindSovereignForm(species, form);
 
-    return entry != NULL && entry->kind != SOVEREIGN_FORM_HELD_ITEM;
+    return entry != NULL
+        && (Pokemon_IsSovereignMegaForm(species, form) || entry->kind == SOVEREIGN_FORM_BATTLE_ITEM || entry->kind == SOVEREIGN_FORM_BATTLE);
+}
+
+static BOOL Pokemon_IsSovereignRegionalForm(u16 species, int form)
+{
+    const SovereignForm *entry = Pokemon_FindSovereignForm(species, form);
+
+    return entry != NULL && entry->kind == SOVEREIGN_FORM_REGIONAL;
+}
+
+// Sovereign (FM): evolves mon into targetSpecies. A regional form evolves into the target's form of the same region
+// (Galarian Darumaka: Galarian Darmanitan), or its base form if it has none (Galarian Meowth: Perrserker). Any other
+// form is kept, as in Platinum (Burmy's cloak becomes Wormadam's).
+void Pokemon_SovereignSetEvolvedSpecies(Pokemon *mon, u16 targetSpecies)
+{
+    u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    int form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+
+    if (Pokemon_IsSovereignRegionalForm(species, form)) {
+        int targetForm = 0;
+
+        for (int i = 0; i < NELEMS(sSovereignFormEvolutions); i++) {
+            if (sSovereignFormEvolutions[i].species == species && sSovereignFormEvolutions[i].form == form
+                && sSovereignFormEvolutions[i].targetSpecies == targetSpecies) {
+                targetForm = sSovereignFormEvolutions[i].targetForm;
+            }
+        }
+
+        Pokemon_SetValue(mon, MON_DATA_FORM, &targetForm);
+    }
+
+    Pokemon_SetValue(mon, MON_DATA_SPECIES, &targetSpecies);
+}
+
+// Sovereign (FM): the form of an Egg of eggSpecies from a parent of this species and form: its regional form
+// (Alolan Ninetales: Alolan Vulpix; Perrserker: Galarian Meowth), or 0. -1 if the parent has no regional rule, so the
+// Egg takes the parent's form as in Platinum.
+int Pokemon_SovereignBabyForm(u16 species, int form, u16 eggSpecies)
+{
+    for (int i = 0; i < NELEMS(sSovereignBabyForms); i++) {
+        const SovereignBabyForm *entry = &sSovereignBabyForms[i];
+
+        if (entry->species == species && entry->form == form) {
+            if (eggSpecies == entry->babySpecies) {
+                return entry->babyForm;
+            }
+
+            return eggSpecies == species ? form : 0; // an incense changed the Egg (or didn't make a baby)
+        }
+    }
+
+    return -1;
 }
 
 // Sovereign (E8): TRUE for a Mega or Primal form (the HP bar shows the Mega symbol).
@@ -5140,7 +5201,11 @@ BOOL Pokemon_SovereignItemIsLocked(u16 species, u16 item)
     }
 
     for (int i = 0; i < SOVEREIGN_FORM_COUNT; i++) {
-        if (sSovereignForms[i].species == species && sSovereignForms[i].kind != SOVEREIGN_FORM_MEGA_BY_MOVE && sSovereignForms[i].trigger == item) {
+        const SovereignForm *entry = &sSovereignForms[i];
+        BOOL heldTrigger = entry->kind == SOVEREIGN_FORM_MEGA || entry->kind == SOVEREIGN_FORM_PRIMAL
+            || entry->kind == SOVEREIGN_FORM_HELD_ITEM || entry->kind == SOVEREIGN_FORM_BATTLE_ITEM;
+
+        if (entry->species == species && heldTrigger && entry->trigger == item) {
             return TRUE;
         }
     }
@@ -5148,9 +5213,41 @@ BOOL Pokemon_SovereignItemIsLocked(u16 species, u16 item)
     return FALSE;
 }
 
+// Sovereign (FM): the form a key item used on the species gives it (the Reveal Glass on Landorus: Therian), or 0.
+int Pokemon_SovereignKeyItemForm(u16 species, u16 item)
+{
+    for (int i = 0; i < SOVEREIGN_FORM_COUNT; i++) {
+        if (sSovereignForms[i].species == species && sSovereignForms[i].kind == SOVEREIGN_FORM_KEY_ITEM && sSovereignForms[i].trigger == item) {
+            return sSovereignForms[i].form;
+        }
+    }
+
+    return 0;
+}
+
+// Sovereign (FM): the form of the species fused with the partner species (Kyurem and Reshiram: White Kyurem), or 0.
+int Pokemon_SovereignFusionForm(u16 species, u16 partner)
+{
+    for (int i = 0; i < SOVEREIGN_FORM_COUNT; i++) {
+        if (sSovereignForms[i].species == species && sSovereignForms[i].kind == SOVEREIGN_FORM_FUSION && sSovereignForms[i].trigger == partner) {
+            return sSovereignForms[i].form;
+        }
+    }
+
+    return 0;
+}
+
+// Sovereign (FM): the partner species fused into this form, or SPECIES_NONE.
+u16 Pokemon_SovereignFusionPartner(u16 species, int form)
+{
+    const SovereignForm *entry = Pokemon_FindSovereignForm(species, form);
+
+    return entry != NULL && entry->kind == SOVEREIGN_FORM_FUSION ? entry->trigger : SPECIES_NONE;
+}
+
 // Replaces a known move with another (Crowned Zacian's Iron Head becomes Behemoth Blade). The PP used carries over, so
 // a move used twice is down 2 PP either way, and the swap back doesn't cost PP.
-static void Pokemon_SovereignReplaceMove(Pokemon *mon, u16 from, u16 to)
+void Pokemon_SovereignReplaceMove(Pokemon *mon, u16 from, u16 to)
 {
     for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
         if (Pokemon_GetValue(mon, MON_DATA_MOVE1 + i, NULL) == from) {

@@ -36,6 +36,94 @@ players and the verification that was run.
   - With Lightning Rod on Garchomp, the AI's check read "redirected" only for Electro Shot aimed at Garchomp's
     partner.
 
+## FM (part 3) — the regional forms
+
+- **All 57 regional forms exist**, plus Blue- and White-Striped Basculin.
+  - Alolan, Galarian, Hisuian and Paldean, each with its own stats, types and abilities.
+  - Each has its own Gen IX learnset from PokeAPI: level-up moves and TMs (Alolan Vulpix learns Ice Beam at Lv.
+    32).
+  - Sprites and icons are the base form's until E12. Where they live in the wild is the Regional Forms Park's job
+    (decision 22), so for now nothing in the game gives one.
+- **Form numbers follow the official games** (Alolan Raichu 1, Galarian Meowth 2, Galarian Darmanitan 2, the
+  Paldean Tauros 1–3).
+  - A species' saved forms now come before its Megas. So Mega Raichu X and Y are forms 2 and 3, and adding a Mega
+    can never change a saved form number.
+  - Zen Mode Darmanitan (Unova and Galar) is in the form data too, waiting for Zen Mode itself.
+- **Regional forms evolve into their region's form.**
+  - Alolan Rattata becomes Alolan Raticate, and Galarian Darumaka becomes Galarian Darmanitan.
+  - Where the regional form leads to its own species, it evolves into that species' base form (Galarian Meowth →
+    Perrserker).
+  - Some regional forms evolve by their own method: official where Platinum has the method, otherwise Sovereign's
+    method for the base species. They're listed in `EvolutionChanges_Sovereign.md` (Alolan Vulpix uses an Ice Stone,
+    Galarian Meowth reaches Perrserker at Lv. 28, Galarian Slowpoke uses the Galarica Cuff or Wreath…).
+  - Every other form keeps its number when it evolves, as in Platinum (Burmy → Wormadam).
+- **Eggs hatch in the parent's regional form.** The form comes from the mother, or from the parent that isn't Ditto
+  (Platinum took Ditto's form). A baby with no form of that region hatches in its base form (Alolan Raichu → Pichu).
+  Perrserker, Sirfetch'd, Cursola, Obstagoon, Runerigus, Sneasler, Overqwil, Clodsire and Basculegion hatch in their
+  regional form (Perrserker → Galarian Meowth).
+- **The other FM forms get their own learnsets as well:** the Therian Formes, Hoopa Unbound, the fusions, Crowned
+  Zacian/Zamazenta, Ogerpon's masks and the Origin forms. Megas keep their base species' learnsets.
+- **`data/forms.csv` categories:**
+  - Pikachu's Alola cap is a cap (other), not a regional form.
+  - Galarian Zen Darmanitan is a battle form.
+  - White-Striped Basculin is regional (Hisui).
+- `tools/engine/gen_forms.py` now needs the PokeAPI path. It reads the regional evolutions and Egg rules from
+  `data/evolution_changes.yaml`.
+- Verified in the test build (a temporary test party):
+  - **Learnset:** a Rare Candy taught Alolan Vulpix Ice Beam at Lv. 32.
+  - **Ice Stone evolutions:** the party menu marked Alolan Vulpix and Galarian Darumaka "ABLE!" and both Galarian
+    Meowth "UNABLE!".
+    - Vulpix became Alolan Ninetales (Ice/Fairy, Snow Cloak).
+    - Darumaka became Galarian Darmanitan (Ice, Gorilla Tactics).
+  - **Level evolution:** Galarian Meowth reached Lv. 28 and became Perrserker (Steel, Battle Armor).
+  - **Eggs:** Perrserker and Ditto bred a Galarian Meowth (Steel, Tough Claws, Growl and Fake Out).
+  - The release ROM builds and passes `boot_smoke.py`, and the docs regenerate with no diff.
+
+## FM (part 2) — form-change key items and fusions
+
+- **Eleven more forms**, each with its own stats, types and abilities:
+  - **Therian Formes** of Tornadus, Thundurus, Landorus and Enamorus.
+  - **Hoopa Unbound**.
+  - **White and Black Kyurem**, **Dusk Mane and Dawn Wings Necrozma**, and **Ice Rider and Shadow Rider Calyrex**.
+
+  Form numbers follow the official games (Kyurem: 1 White, 2 Black). Sprites and icons are the base form's until
+  E12.
+- **The key items are used from the bag** (USE, then choose the Pokémon), like the Gracidea. Each change plays the
+  party menu's form-change animation and prints "… changed Forme!".
+  - **The Reveal Glass and the Prison Bottle** switch the form on and off.
+  - **The DNA Splicers, N-Solarizer, N-Lunarizer and Reins of Unity** fuse two party Pokémon. They work when used on
+    Kyurem, Necrozma or Calyrex, or on the partner. With both of Kyurem's partners in the party, using the item on
+    the partner chooses it. The item holds the partner, which leaves the party.
+  - **Using the item on the fused Pokémon separates them.** The partner rejoins the party, unless the party is full
+    ("There's no room in your party, so they can't be separated."). An item holds one partner at a time.
+  - Otherwise: "It won't have any effect."
+- **Moves change with the form**, as in the official games:
+  - **Kyurem:** Glaciate becomes Ice Burn (White) or Freeze Shock (Black), and Scary Face becomes Fusion Flare or
+    Fusion Bolt. The PP used carries over.
+  - **Hoopa Unbound:** Hyperspace Hole becomes Hyperspace Fury.
+  - **Necrozma and Calyrex:** they learn Sunsteel Strike, Moongeist Beam, Glacial Lance or Astral Barrage when they
+    fuse, if they have a free move slot, and forget it when they separate. If it was their only move, it becomes
+    Confusion.
+- **A fused Pokémon can't be released** in the PC ("Separate the fusion first."), since its partner would be lost.
+- **No "Migrate from…" main-menu option** (decision 22). The partners are kept in Pal Park's transfer storage, so the
+  save layout is unchanged. Pal Park only opens with six transferred Pokémon, and the four fusion items can't fill
+  that. A GBA game in the DS's second slot still counts for dual-slot encounters.
+- **Fix: the 532 new species' party and box icons were garbage** (E6). Their PNGs had 256-colour palettes, so they
+  built as 8bpp graphics that the 4bpp icon sprites showed as noise. Reloading one, as the form-change animation does,
+  also overwrote the next party slot's icon. The PNGs are now 4-bit with 16 colours, like Platinum's, and
+  `tools/sprites/make_placeholder_icons.py` writes them that way. The art and the colour indices are unchanged.
+- Verified in the test build (a temporary test party with the key items):
+  - **Fusion:** the DNA Splicers used on Zekrom made Kyurem Black Kyurem (Teravolt; Freeze Shock 5/5, Fusion Bolt
+    5/5), and Zekrom left the party.
+  - **Separation:** used on Black Kyurem, they brought Zekrom back into slot 6, with Glaciate and Scary Face at
+    10/10.
+  - **Reveal Glass:** Landorus became Therian (Intimidate; Attack 152 at Lv. 50).
+  - **Prison Bottle:** Hoopa became Unbound (Psychic/Dark, Magician, Hyperspace Fury).
+  - **Reins of Unity:** used on a Calyrex with no partner in the party, they print "It won't have any effect."
+  - **PC:** releasing the fused Kyurem printed "Separate the fusion first."
+  - **Icons:** every party icon now draws correctly.
+  - The release ROM builds and passes `boot_smoke.py`, and the docs regenerate with no diff.
+
 ## Item 11 (part 1) — exact effects for the developer team and boss teams
 
 The boss teams (`data/trainers_sovereign.yaml`) and the developer team use only four moves and abilities that weren't

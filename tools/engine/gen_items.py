@@ -11,7 +11,8 @@ With PokeAPI's sprite repository it also writes each item's bag icon (decomp/res
 and res/items/item_icon.order. Items without a sprite keep the placeholder "none" icon.
 
 So far every new item has no hold effect (HOLD_EFFECT_NONE) and, apart from evolution items
-(ITEM_USE_FUNC_EVO_STONE), no field use. Battle effects, Mint/Ability Capsule use functions and shops come later.
+(ITEM_USE_FUNC_EVO_STONE), Mints and Capsules (ITEM_USE_FUNC_HEALING) and the form-change key items
+(ITEM_USE_FUNC_SOVEREIGN_FORM), no field use. Battle effects come later.
 
 Running it again rewrites the generated files; the item list in items.txt is only extended once.
 
@@ -30,6 +31,9 @@ DECOMP = os.path.join(ROOT, "decomp")
 ITEMS_TXT = os.path.join(DECOMP, "generated", "items.txt")
 DATA_DIR = os.path.join(DECOMP, "res", "items", "data")
 ICON_DIR = os.path.join(DECOMP, "res", "items", "icons")
+
+# Key items used on a Pokemon to change its form (milestone FM): Therian Formes, Hoopa Unbound and the fusions.
+FORM_KEY_ITEMS = {"Reveal Glass", "Prison Bottle", "DNA Splicers", "N-Solarizer", "N-Lunarizer", "Reins of Unity"}
 ICON_ORDER = os.path.join(DECOMP, "res", "items", "item_icon.order")
 ICON_MESON = os.path.join(ICON_DIR, "meson.build")
 MART_HEADER = os.path.join(DECOMP, "include", "data", "sovereign_mart_items.h")
@@ -286,6 +290,9 @@ def main():
         # Mints and the Ability Capsule/Patch open the party menu like medicine; the party menu applies them
         # (PartyMenu_TryUseSovereignTrainingItem in src/applications/party_menu/main.c).
         training = name in groups["training"]
+        # Form-change key items open the party menu like the Gracidea; the party menu applies them
+        # (PartyMenu_TryUseSovereignFormItem, src/sovereign_form_items.c).
+        form_item = name in FORM_KEY_ITEMS
         data = {
             "name": display,
             "plural": PLURALS.get(name, display if display.endswith("s") else display + "s"),
@@ -307,7 +314,7 @@ def main():
             "fieldPocket": "POCKET_KEY_ITEMS" if is_key else "POCKET_MEDICINE" if training else "POCKET_ITEMS",
             "battlePocket": "BATTLE_POCKET_MASK_NONE",
             "fieldUseFunc": ("ITEM_USE_FUNC_EVO_STONE" if evo else "ITEM_USE_FUNC_HEALING" if training
-                             else "ITEM_USE_FUNC_NONE"),
+                             else "ITEM_USE_FUNC_SOVEREIGN_FORM" if form_item else "ITEM_USE_FUNC_NONE"),
             "battleUseCategory": "BATTLE_USE_CATEGORY_NONE",
             "itemUseParams": {} if evo else None,
         }

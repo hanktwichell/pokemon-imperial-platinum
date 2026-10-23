@@ -298,7 +298,7 @@ FORM_CATEGORIES = {
     "battle": ["darmanitan-zen", "meloetta-pirouette", "aegislash-blade", "greninja-ash", "zygarde-complete",
                "wishiwashi-school", "minior-red", "minior-orange", "minior-yellow", "minior-green", "minior-blue",
                "minior-indigo", "minior-violet", "mimikyu-busted", "cramorant-", "eiscue-noice", "morpeko-hangry",
-               "necrozma-ultra", "palafin-hero", "terapagos-terastal"],
+               "necrozma-ultra", "palafin-hero", "terapagos-terastal", "darmanitan-galar-zen"],
     "fusion": ["kyurem-black", "kyurem-white", "necrozma-dusk", "necrozma-dawn", "calyrex-ice", "calyrex-shadow"],
 }
 
@@ -313,6 +313,10 @@ def form_category(ident):
             if category == "battle" and ident.endswith("-meteor"):
                 break
             return category
+    if ident == "basculin-white-striped":  # Hisui's Basculin, though PokeAPI doesn't name it so
+        return "regional"
+    if ident.startswith("pikachu-"):  # Pikachu's caps and costumes (pikachu-alola-cap is a cap, not a regional form)
+        return "other"
     if any(t in ident for t in ("alola", "galar", "hisui", "paldea")):
         return "regional"
     return "other"
