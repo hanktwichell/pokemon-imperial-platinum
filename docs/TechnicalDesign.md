@@ -216,6 +216,16 @@ implemented.
       makes `CheckBattleOver` a win once both enemy battlers are down.
     - `LoadSendOutMessage` prints the "called its ally" line.
     - The ball rule reuses the AI-partner check in `BattleController_EmitShowBagMenu`.
+  - **1 vs 2.** With one Pokémon able to battle, the player's second slot starts empty, in the state Platinum leaves a
+    doubles slot in after a faint with no replacement: party slot 6, its bit in `battlersSwitchingMask`, 0 HP.
+    - `battle_main.c` gives slot 2 party slot 6 when no second able Pokémon is found (plain doubles, so a scripted
+      trainer double battle works the same way). `BattleSystem_InitPartyOrder` and `BattleMain_InitTerrains` skip
+      it.
+    - `BattleControllerPlayer_InitBattleMons` sets the mask bit and, through
+      `BattleDisplay_SovereignSetAbsentBattler`, points its sprite at its own inactive slot in the sprite manager
+      (what `PokemonSprite_Delete` leaves after a faint), so animations never meet a NULL sprite.
+    - The intro skips it: `PokemonSlideIn` and `HealthBoxSlideInDelay` check the mask, the trainer's throw has no
+      second ball (`Task_ThrowTrainerBall`), and `LoadLeadMonMessage` prints "Go! {0}!".
   - **Aura.** `SWITCH_IN_CHECK_STATE_SOVEREIGN_TOTEM_AURA` runs once (`sovereignTotemAuraDone`).
     `BattleSystem_SovereignApplyTotemAura` raises the stages and buffers the message for
     `subscript_sovereign_totem_aura`.

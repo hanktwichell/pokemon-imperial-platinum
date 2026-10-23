@@ -896,14 +896,6 @@
       ]
     },
     {
-      "id": "CommonStrings_Text_SovereignTotemNeedTwoPokemon",
-      "en_US": [
-        "Its aura is overwhelming!\r",
-        "You’ll need two Pokémon that can\n",
-        "battle to stand against it."
-      ]
-    },
-    {
       "id": "CommonStrings_Text_SovereignTotemDisappeared",
       "en_US": [
         "Totem {STRVAR_1 1, 0, 0} disappeared\n",

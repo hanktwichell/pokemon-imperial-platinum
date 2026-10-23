@@ -7136,6 +7136,11 @@ void BattleSystem_InitPartyOrder(BattleSystem *battleSys, BattleContext *battleC
             battleCtx->partyOrder[i][j] = j;
         }
 
+        // Sovereign (decision 18): a battler that starts empty (party slot 6, battle_main.c) has no Pokémon to move.
+        if (battleCtx->selectedPartySlot[i] == MAX_PARTY_SIZE) {
+            continue;
+        }
+
         BattleSystem_SwitchSlots(battleSys, battleCtx, i, battleCtx->selectedPartySlot[i]);
     }
 }

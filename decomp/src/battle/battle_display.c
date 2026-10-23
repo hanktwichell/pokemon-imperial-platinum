@@ -2908,9 +2908,12 @@ static void Task_ThrowTrainerBall(SysTask *task, void *data)
                 if (battleType & BATTLE_TYPE_DOUBLES && (battleType & BATTLE_TYPE_2vs2) == 0) {
                     BattlerData *battlerData = BattleSystem_GetBattlerData(trainerThrowBallData->battleSys, BattleSystem_GetPartner(trainerThrowBallData->battleSys, trainerThrowBallData->battler));
 
-                    ov12_02237E0C(battlerData->ballRotation, 1);
-                    ov12_0223786C(battlerData->ballRotation, 0);
-                    ov12_02237E4C(battlerData->ballRotation, 12);
+                    // Sovereign (decision 18): no second ball when the partner's slot starts empty (battle_main.c).
+                    if (battlerData->ballRotation) {
+                        ov12_02237E0C(battlerData->ballRotation, 1);
+                        ov12_0223786C(battlerData->ballRotation, 0);
+                        ov12_02237E4C(battlerData->ballRotation, 12);
+                    }
                 }
             } else if (x >= (256 + 40)) {
                 SpriteManager *spriteMan = BattleSystem_GetSpriteManager(trainerThrowBallData->battleSys);
@@ -2948,10 +2951,13 @@ static void Task_ThrowTrainerBall(SysTask *task, void *data)
                     if (battleType & BATTLE_TYPE_DOUBLES && (battleType & BATTLE_TYPE_2vs2) == 0) {
                         BattlerData *battlerData = BattleSystem_GetBattlerData(trainerThrowBallData->battleSys, BattleSystem_GetPartner(trainerThrowBallData->battleSys, trainerThrowBallData->battler));
 
-                        ov12_02237E18(battlerData->ballRotation, x + v5[trainerThrowBallData->backSpriteIdx][animFrame][0], y + v5[trainerThrowBallData->backSpriteIdx][animFrame][1]);
-                        ov12_02237E0C(battlerData->ballRotation, 1);
-                        ov12_0223786C(battlerData->ballRotation, 0);
-                        ov12_02237E30(battlerData->ballRotation, 1);
+                        // Sovereign (decision 18): no second ball when the partner's slot starts empty (battle_main.c).
+                        if (battlerData->ballRotation) {
+                            ov12_02237E18(battlerData->ballRotation, x + v5[trainerThrowBallData->backSpriteIdx][animFrame][0], y + v5[trainerThrowBallData->backSpriteIdx][animFrame][1]);
+                            ov12_02237E0C(battlerData->ballRotation, 1);
+                            ov12_0223786C(battlerData->ballRotation, 0);
+                            ov12_02237E30(battlerData->ballRotation, 1);
+                        }
                     }
                 }
             }
@@ -5858,6 +5864,14 @@ PokemonSprite *BattlerData_GetPokemonSprite(BattlerData *battlerData)
     }
 }
 
+// Sovereign (decision 18): a battler absent from the start (BattleControllerPlayer_InitBattleMons) gets what a fainted
+// battler leaves behind: its own slot in the sprite manager, inactive (PokemonSprite_Delete only clears the flag).
+void BattleDisplay_SovereignSetAbsentBattler(BattleSystem *battleSys, int battler)
+{
+    BattlerData *battlerData = BattleSystem_GetBattlerData(battleSys, battler);
+    battlerData->monSprite = &BattleSystem_GetPokemonSpriteManager(battleSys)->sprites[battler];
+}
+
 HealthBox *BattlerData_GetHealthBox(BattlerData *battlerData)
 {
     return &battlerData->healthbox;
@@ -6176,12 +6190,13 @@ static void LoadLeadMonMessage(BattleSystem *battleSys, BattlerData *battlerData
                 battleMsg->params[1] = battler1;
                 battleMsg->params[2] = battler1 | (message->partySlot[battler1] << 8);
                 battleMsg->params[3] = battler2 | (message->partySlot[battler2] << 8);
-            } else if (battleType & BATTLE_TYPE_DOUBLES) {
+            } else if ((battleType & BATTLE_TYPE_DOUBLES) && message->partySlot[battler2] != MAX_PARTY_SIZE) {
                 battleMsg->id = BattleStrings_Text_GoPokemon1AndPokemon2;
                 battleMsg->tags = TAG_NICKNAME_NICKNAME;
                 battleMsg->params[0] = battler1 | (message->partySlot[battler1] << 8);
                 battleMsg->params[1] = battler2 | (message->partySlot[battler2] << 8);
             } else {
+                // Sovereign (decision 18): also a double battle whose second slot starts empty (battle_main.c).
                 battleMsg->id = BattleStrings_Text_GoPokemon;
                 battleMsg->tags = TAG_NICKNAME;
                 battleMsg->params[0] = battler1 | (message->partySlot[battler1] << 8);

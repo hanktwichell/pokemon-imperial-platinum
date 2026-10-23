@@ -102,8 +102,8 @@ Made by the owner (2026-10-22):
       Gumshoos stands on Route 205 South.
     - Built (CB-0029): Ribombee, Vikavolt, Mimikyu and Alolan Marowak on the map, each shown once its trial opens.
     - Built (CB-0030): the last six on the map. All 11 trials are playable.
-    - Still to do: the Galactic gates (`Story.md`), and 1 vs 2 for a player with one able Pokémon (Platinum can't
-      start a double battle with one).
+    - Built (CB-0031): the Galactic gates (`Story.md`).
+    - Built (CB-0032): 1 vs 2 for a player with one able Pokémon. The second slot starts empty.
     - The auras were checked against Serebii; the helpers are a proposal from each trial's original allies.
 19. **Trade evolutions follow Renegade's system** (owner, 2026-10-22, after briefly considering a Link Stone): plain
     trade evolutions evolve at Level 36, and trade-with-item evolutions by using the item like a stone.

@@ -225,6 +225,14 @@ static void BattleControllerPlayer_InitBattleMons(BattleSystem *battleSys, Battl
 {
     int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
     for (int i = 0; i < maxBattlers; i++) {
+        // Sovereign (decision 18): a battler with no Pokémon to send out (battle_main.c) starts as one that fainted
+        // with none left to replace it: no HP, party slot 6, in the switching mask and with an inactive sprite.
+        if (battleCtx->selectedPartySlot[i] == MAX_PARTY_SIZE) {
+            battleCtx->battlersSwitchingMask |= FlagIndex(i);
+            BattleDisplay_SovereignSetAbsentBattler(battleSys, i);
+            continue;
+        }
+
         BattleSystem_InitBattleMon(battleSys, battleCtx, i, battleCtx->selectedPartySlot[i]);
     }
 

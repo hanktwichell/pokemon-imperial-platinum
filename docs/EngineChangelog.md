@@ -4,6 +4,30 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## FM — 1 vs 2: a lone Pokémon takes on a Totem trial (decision 18)
+
+A player with only one Pokémon that can battle now fights a Totem trial 1 vs 2. Before, the trial refused with "Its
+aura is overwhelming! You'll need two Pokémon that can battle to stand against it." That message is gone.
+- **The battle.** "Go! GARCHOMP!" sends out the one Pokémon. The second slot stays empty all battle, as if its
+  Pokémon had fainted with none left to replace it: no sprite, no HP bar, greyed out on the target screen, and the
+  turn asks only "What will GARCHOMP do?".
+- **The engine.** The empty slot takes the state Platinum already uses for a doubles slot whose Pokémon fainted with
+  no replacement, so every later check works unchanged (`TechnicalDesign.md`, Totem trials, "1 vs 2"). The intro, the
+  trainer's ball throw and the "Go!" line skip it.
+- **Trainer double battles** get it too: the same code runs for any plain double battle. That is what the Elite Four's
+  "doubles with one healthy Pokémon" rule needs (`EliteFourFormat.md`). Platinum's own double-battle trainers still
+  check for two Pokémon first, as before.
+- **Verified** (test build, with the other five party members at 0 HP for the test):
+  - Totem Gumshoos from SELECT+B+R: "Go! GARCHOMP!", a helper called after Yungoos fainted, Mega toggle shown, a win.
+  - The target screen greys out the empty slot. The party menu shows GARCHOMP alone able to battle, and choosing a
+    fainted one says it has no energy left. The bag opens.
+  - Spread moves (Electroweb) and single-target moves on either foe.
+  - Totem Gumshoos on Route 205 South, from the map: a 1 vs 2 win with the Totem gone afterwards, and (GARCHOMP at
+    1 HP) a loss: "A is out of usable Pokémon!", the blackout, and Mom's welcome home.
+  - The test trainer's double battle: "Go! GARCHOMP!", the foe's Mega Charizard Y and Venusaur both acted, GARCHOMP
+    fainted, and the battle ended.
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+
 ## E11 — The Galactic gates wait on the Totem trials (decision 23)
 
 Each Team Galactic encounter now waits on the Totem trials placed before it (`docs/Story.md`, the table under

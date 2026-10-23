@@ -137,6 +137,7 @@ void BattlerData_SetTaskFuncs(BattleSystem *battleSys, BattlerData *battlerData)
 u8 BattlerData_GetBattlerType(BattlerData *battlerData);
 u8 BattlerData_GetBootState(BattlerData *battlerData);
 PokemonSprite *BattlerData_GetPokemonSprite(BattlerData *battlerData);
+void BattleDisplay_SovereignSetAbsentBattler(BattleSystem *battleSys, int battler);
 HealthBox *BattlerData_GetHealthBox(BattlerData *battlerData);
 SavedCursorPosition *BattlerData_GetSavedCursorPosition(BattlerData *battlerData);
 void BattlerData_ClearSavedCursorPosition(BattlerData *battlerData);
