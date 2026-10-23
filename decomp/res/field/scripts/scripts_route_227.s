@@ -10,7 +10,6 @@
     ScriptEntry Route227_OnTransition
     ScriptEntry Route227_OnLoad
     ScriptEntry Route227_LegendaryTerrakion
-    ScriptEntry Route227_LegendaryStakataka
     ScriptEntryEnd
 
 @ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Terrakion stands in the rock pocket at the north end once
@@ -22,35 +21,10 @@ Route227_OnTransition:
     GoToIfEq VAR_RESULT, TRUE, Route227_OnTransitionEnd
     ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
 Route227_OnTransitionEnd:
-    Call Route227_SovereignSetStakatakaVisibility
     End
-
-@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): an Ultra Beast (Stakataka) stands in the hollow south of the
-@ grass once Necrozma is caught, until it's caught. It shares the route with Terrakion, so it has a hidden flag of its
-@ own, and each one's script notes its species in VAR_MAP_LOCAL_0x00 for the removal after a battle (as in Eterna
-@ Forest).
-Route227_SovereignSetStakatakaVisibility:
-    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_2
-    SovereignCheckSpeciesCaught SPECIES_NECROZMA, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, Route227_SovereignSetStakatakaVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_STAKATAKA, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, Route227_SovereignSetStakatakaVisibilityEnd
-    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_2
-Route227_SovereignSetStakatakaVisibilityEnd:
-    Return
 
 Route227_OnLoad:
-    GoToIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, Route227_RemoveLegendary
-    End
-
-Route227_RemoveLegendary:
-    GoToIfEq VAR_MAP_LOCAL_0x00, SPECIES_STAKATAKA, Route227_RemoveLegendaryStakataka
-    GoTo Route227_RemoveLegendaryTerrakion
-    End
-
-Route227_RemoveLegendaryStakataka:
-    RemoveObject LOCALID_LEGENDARY_STAKATAKA
-    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+    GoToIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, Route227_RemoveLegendaryTerrakion
     End
 
 Route227_RemoveLegendaryTerrakion:
@@ -59,15 +33,7 @@ Route227_RemoveLegendaryTerrakion:
     End
 
 Route227_LegendaryTerrakion:
-    SetVar VAR_MAP_LOCAL_0x00, SPECIES_TERRAKION
     SetVar VAR_0x8004, SPECIES_TERRAKION
-    SetVar VAR_0x8005, 65
-    Common_SovereignLegendaryEncounter
-    End
-
-Route227_LegendaryStakataka:
-    SetVar VAR_MAP_LOCAL_0x00, SPECIES_STAKATAKA
-    SetVar VAR_0x8004, SPECIES_STAKATAKA
     SetVar VAR_0x8005, 65
     Common_SovereignLegendaryEncounter
     End

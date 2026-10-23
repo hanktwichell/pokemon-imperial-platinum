@@ -137,6 +137,12 @@ PokemonLeagueHallOfFame_SetHallOfFameVictoryFlagsAndVars:
     CallIfEq VAR_ROAMING_ARTICUNO_STATE, ROAMER_STATE_DEFEATED, PokemonLeagueHallOfFame_ResetRoamingArticuno
     CallIfEq VAR_ROAMING_TORNADUS_STATE, ROAMER_STATE_DEFEATED, PokemonLeagueHallOfFame_ResetRoamingTornadus
     CallIfEq VAR_ROAMING_THUNDURUS_STATE, ROAMER_STATE_DEFEATED, PokemonLeagueHallOfFame_ResetRoamingThundurus
+    CallIfEq VAR_ROAMING_ZERAORA_STATE, ROAMER_STATE_DEFEATED, PokemonLeagueHallOfFame_ResetRoamingZeraora
+    CallIfEq VAR_ROAMING_OKIDOGI_STATE, ROAMER_STATE_DEFEATED, PokemonLeagueHallOfFame_ResetRoamingOkidogi
+    CallIfEq VAR_ROAMING_MUNKIDORI_STATE, ROAMER_STATE_DEFEATED, PokemonLeagueHallOfFame_ResetRoamingMunkidori
+    CallIfEq VAR_ROAMING_FEZANDIPITI_STATE, ROAMER_STATE_DEFEATED, PokemonLeagueHallOfFame_ResetRoamingFezandipiti
+    CallIfEq VAR_ROAMING_GLASTRIER_STATE, ROAMER_STATE_DEFEATED, PokemonLeagueHallOfFame_ResetRoamingGlastrier
+    CallIfEq VAR_ROAMING_SPECTRIER_STATE, ROAMER_STATE_DEFEATED, PokemonLeagueHallOfFame_ResetRoamingSpectrier
     CallIfEq VAR_PLAYER_HOUSE_POSTGAME_STATE, 0, PokemonLeagueHallOfFame_IncreasePlayerHousePostgameState
     ClearFlag FLAG_HIDE_SANDGEM_TOWN_COUNTERPART
     CallIfUnset FLAG_TALKED_TO_VEILSTONE_STORE_B1F_PROF_ROWAN, PokemonLeagueHallOfFame_ShowVeilstoneStoreB1FProfRowan
@@ -212,6 +218,31 @@ PokemonLeagueHallOfFame_ResetRoamingTornadus:
 
 PokemonLeagueHallOfFame_ResetRoamingThundurus:
     SetVar VAR_ROAMING_THUNDURUS_STATE, ROAMER_STATE_RESET
+    Return
+
+@ Sovereign (decision 28): the Chronicle roamers, released again by the Legend Archivist after this.
+PokemonLeagueHallOfFame_ResetRoamingZeraora:
+    SetVar VAR_ROAMING_ZERAORA_STATE, ROAMER_STATE_RESET
+    Return
+
+PokemonLeagueHallOfFame_ResetRoamingOkidogi:
+    SetVar VAR_ROAMING_OKIDOGI_STATE, ROAMER_STATE_RESET
+    Return
+
+PokemonLeagueHallOfFame_ResetRoamingMunkidori:
+    SetVar VAR_ROAMING_MUNKIDORI_STATE, ROAMER_STATE_RESET
+    Return
+
+PokemonLeagueHallOfFame_ResetRoamingFezandipiti:
+    SetVar VAR_ROAMING_FEZANDIPITI_STATE, ROAMER_STATE_RESET
+    Return
+
+PokemonLeagueHallOfFame_ResetRoamingGlastrier:
+    SetVar VAR_ROAMING_GLASTRIER_STATE, ROAMER_STATE_RESET
+    Return
+
+PokemonLeagueHallOfFame_ResetRoamingSpectrier:
+    SetVar VAR_ROAMING_SPECTRIER_STATE, ROAMER_STATE_RESET
     Return
 
 PokemonLeagueHallOfFame_ShowVeilstoneStoreB1FProfRowan:

@@ -13,11 +13,9 @@
     ScriptEntry Route222_OnTransition
     ScriptEntry Route222_OnLoad
     ScriptEntry Route222_LegendaryTapuKoko
-    ScriptEntry Route222_LegendaryZeraora
     ScriptEntryEnd
 
 Route222_OnTransition:
-    Call Route222_SovereignSetZeraoraVisibility
     Call Route222_SovereignSetTapuKokoVisibility
     GetTimeOfDay VAR_MAP_LOCAL_0x00
     GoToIfInRange VAR_MAP_LOCAL_0x00, TIMEOFDAY_MORNING, TIMEOFDAY_TWILIGHT, Route222_SetPolicemanThomasNoBattle
@@ -36,7 +34,6 @@ Route222_SovereignSetTapuKokoVisibilityEnd:
     Return
 
 Route222_OnLoad:
-    CallIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, Route222_RemoveLegendaryZeraora
     GoToIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, Route222_RemoveLegendaryTapuKoko
     End
 
@@ -112,29 +109,3 @@ Route222_PolicemanThomas:
     End
 
     .balign 4, 0
-
-@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Zeraora prowls here at night (8 pm to 4 am) once the Alola
-@ Chronicle is open, until it is caught. The check runs on entering the map.
-Route222_SovereignSetZeraoraVisibility:
-    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_2
-    GoToIfLt VAR_SOVEREIGN_CHRONICLE, 3, Route222_SovereignSetZeraoraVisibilityEnd
-    GetTimeOfDay VAR_RESULT
-    GoToIfLt VAR_RESULT, TIMEOFDAY_NIGHT, Route222_SovereignSetZeraoraVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_ZERAORA, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, Route222_SovereignSetZeraoraVisibilityEnd
-    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_2
-Route222_SovereignSetZeraoraVisibilityEnd:
-    Return
-
-Route222_RemoveLegendaryZeraora:
-    GoToIfNe VAR_SOVEREIGN_LEGENDARY_SPECIES, SPECIES_ZERAORA, Route222_RemoveLegendaryZeraoraEnd
-    RemoveObject LOCALID_LEGENDARY_ZERAORA
-    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
-Route222_RemoveLegendaryZeraoraEnd:
-    Return
-
-Route222_LegendaryZeraora:
-    SetVar VAR_0x8004, SPECIES_ZERAORA
-    SetVar VAR_0x8005, 50
-    Common_SovereignLegendaryEncounter
-    End

@@ -7,9 +7,6 @@
     ScriptEntry Route217_ArrowSignpostLakeAcuity
     ScriptEntry Route217_SnowpointNPCF
     ScriptEntry Route217_CoordEvent_Maylene
-    ScriptEntry Route217_SovereignOnTransition
-    ScriptEntry Route217_SovereignOnLoad
-    ScriptEntry Route217_LegendaryGlastrier
     ScriptEntryEnd
 
 Route217_IceRock:
@@ -119,37 +116,3 @@ Route217_Movement_MayleneLeaveX303:
     WalkNormalEast 3
     WalkNormalNorth 9
     EndMovement
-
-Route217_SovereignOnTransition:
-    Call Route217_SovereignSetGlastrierVisibility
-    End
-
-Route217_SovereignOnLoad:
-    CallIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, Route217_RemoveLegendaryGlastrier
-    End
-
-@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Glastrier runs through the blizzard once Calyrex is caught,
-@ until it is caught.
-Route217_SovereignSetGlastrierVisibility:
-    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
-    GoToIfLt VAR_SOVEREIGN_CHRONICLE, 4, Route217_SovereignSetGlastrierVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_CALYREX, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, Route217_SovereignSetGlastrierVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_GLASTRIER, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, Route217_SovereignSetGlastrierVisibilityEnd
-    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
-Route217_SovereignSetGlastrierVisibilityEnd:
-    Return
-
-Route217_RemoveLegendaryGlastrier:
-    GoToIfNe VAR_SOVEREIGN_LEGENDARY_SPECIES, SPECIES_GLASTRIER, Route217_RemoveLegendaryGlastrierEnd
-    RemoveObject LOCALID_LEGENDARY_GLASTRIER
-    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
-Route217_RemoveLegendaryGlastrierEnd:
-    Return
-
-Route217_LegendaryGlastrier:
-    SetVar VAR_0x8004, SPECIES_GLASTRIER
-    SetVar VAR_0x8005, 70
-    Common_SovereignLegendaryEncounter
-    End

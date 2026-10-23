@@ -19,13 +19,11 @@
     ScriptEntry EternaForest_OnLoad
     ScriptEntry EternaForest_LegendaryVirizion
     ScriptEntry EternaForest_LegendaryXerneas
-    ScriptEntry EternaForest_LegendaryKartana
     ScriptEntryEnd
 
 EternaForest_OnTransition:
     Call EternaForest_SovereignSetVirizionVisibility
     Call EternaForest_SovereignSetXerneasVisibility
-    Call EternaForest_SovereignSetKartanaVisibility
     GoToIfUnset FLAG_TRAVELED_WITH_CHERYL, EternaForest_ResetFollowerCherylState
     End
 
@@ -50,18 +48,6 @@ EternaForest_SovereignSetXerneasVisibility:
 EternaForest_SovereignSetXerneasVisibilityEnd:
     Return
 
-@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): an Ultra Beast (Kartana) stands by the east passage once
-@ Necrozma is caught, until it's caught.
-EternaForest_SovereignSetKartanaVisibility:
-    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_3
-    SovereignCheckSpeciesCaught SPECIES_NECROZMA, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, EternaForest_SovereignSetKartanaVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_KARTANA, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, EternaForest_SovereignSetKartanaVisibilityEnd
-    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_3
-EternaForest_SovereignSetKartanaVisibilityEnd:
-    Return
-
 EternaForest_ResetFollowerCherylState:
     SetVar VAR_ETERNA_FOREST_FOLLOWER_CHERYL_STATE, 0
     End
@@ -71,22 +57,16 @@ EternaForest_OnLoad:
     GoToIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, EternaForest_RemoveLegendary
     End
 
-@ Virizion, Xerneas and Kartana share the map, so each one's script notes itself in VAR_MAP_LOCAL_0x00: map-local
-@ vars last through a battle (they're cleared on map changes), and the special vars aren't readable from OnLoad then.
+@ Virizion and Xerneas share the map, so each one's script notes itself in VAR_MAP_LOCAL_0x00: map-local vars last
+@ through a battle (they're cleared on map changes), and the special vars aren't readable from OnLoad then.
 EternaForest_RemoveLegendary:
     GoToIfEq VAR_MAP_LOCAL_0x00, SPECIES_XERNEAS, EternaForest_RemoveLegendaryXerneas
-    GoToIfEq VAR_MAP_LOCAL_0x00, SPECIES_KARTANA, EternaForest_RemoveLegendaryKartana
     RemoveObject LOCALID_LEGENDARY_VIRIZION
     ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
     End
 
 EternaForest_RemoveLegendaryXerneas:
     RemoveObject LOCALID_LEGENDARY_XERNEAS
-    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
-    End
-
-EternaForest_RemoveLegendaryKartana:
-    RemoveObject LOCALID_LEGENDARY_KARTANA
     ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
     End
 
@@ -98,13 +78,6 @@ EternaForest_RemoveTotemVikavolt:
 EternaForest_LegendaryVirizion:
     SetVar VAR_MAP_LOCAL_0x00, SPECIES_VIRIZION
     SetVar VAR_0x8004, SPECIES_VIRIZION
-    SetVar VAR_0x8005, 65
-    Common_SovereignLegendaryEncounter
-    End
-
-EternaForest_LegendaryKartana:
-    SetVar VAR_MAP_LOCAL_0x00, SPECIES_KARTANA
-    SetVar VAR_0x8004, SPECIES_KARTANA
     SetVar VAR_0x8005, 65
     Common_SovereignLegendaryEncounter
     End

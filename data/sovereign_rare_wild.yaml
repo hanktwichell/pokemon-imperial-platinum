@@ -1,0 +1,94 @@
+# Sovereign rare wild encounters (decision 28, owner 2026-10-23): the Paradox Pokémon and the Ultra Beasts aren't
+# static encounters. Each is a rare wild Pokémon on the maps below, once its gate is met.
+#
+# Rendered by tools/engine/gen_rare_wild.py into decomp/include/data/sovereign_rare_wild.h (read by
+# decomp/src/overlay006/wild_encounters.c) and docs/RareWildEncounters.md.
+#
+# - rate: the percent of a map's wild encounters (of that terrain) that are this Pokémon. Several entries on one map
+#   share a single roll, so their rates add up.
+# - terrain: land (tall grass and cave floors) or surf.
+# - level: one level, or [min, max].
+# - hint: what the Legend Archivist says about where it's seen (also the doc's "Where" column).
+# Rolls are skipped in Poké Radar patches, with a partner and in the Safari Game. They can be met again after a catch.
+
+gates:
+  paldea:
+    text: the Paldea Chronicle is open
+    chronicle: 5   # VAR_SOVEREIGN_CHRONICLE
+  ultra:
+    text: Necrozma is caught
+    caught: NECROZMA
+
+encounters:
+  # ---------------------------------------------------------------- Paradox Pokémon: the past (wild, rugged places)
+  - {species: GREAT_TUSK, gate: paldea, rate: 2, terrain: land, level: 65, maps: [ROUTE_207],
+     hint: "in the grass of Route 207"}
+  - {species: SCREAM_TAIL, gate: paldea, rate: 2, terrain: land, level: 65, maps: [TROPHY_GARDEN],
+     hint: "in the Trophy Garden"}
+  - {species: BRUTE_BONNET, gate: paldea, rate: 2, terrain: land, level: 65, maps: [ROUTE_212_SOUTH],
+     hint: "in the marsh of Route 212"}
+  - {species: FLUTTER_MANE, gate: paldea, rate: 2, terrain: land, level: 65,
+     maps: [ROUTE_209_LOST_TOWER_1F, ROUTE_209_LOST_TOWER_2F, ROUTE_209_LOST_TOWER_3F, ROUTE_209_LOST_TOWER_4F,
+            ROUTE_209_LOST_TOWER_5F],
+     hint: "in the Lost Tower"}
+  - {species: SLITHER_WING, gate: paldea, rate: 2, terrain: land, level: 65, maps: [STARK_MOUNTAIN_OUTSIDE],
+     hint: "outside Stark Mountain"}
+  - {species: SANDY_SHOCKS, gate: paldea, rate: 2, terrain: land, level: 65, maps: [ROUTE_228],
+     hint: "in the sandstorm of Route 228"}
+  - {species: ROARING_MOON, gate: paldea, rate: 2, terrain: land, level: 68, maps: [ROUTE_210_NORTH],
+     hint: "in the fog of Route 210"}
+  - {species: WALKING_WAKE, gate: paldea, rate: 2, terrain: surf, level: 68, maps: [ROUTE_213],
+     hint: "on the water of Route 213"}
+  - {species: GOUGING_FIRE, gate: paldea, rate: 2, terrain: land, level: 68, maps: [ROUTE_211_EAST],
+     hint: "on the east side of Route 211"}
+  - {species: RAGING_BOLT, gate: paldea, rate: 2, terrain: land, level: 68, maps: [ROUTE_208],
+     hint: "in the grass of Route 208"}
+  # ---------------------------------------------------------------- Paradox Pokémon: the future (industry and tech)
+  - {species: IRON_TREADS, gate: paldea, rate: 2, terrain: land, level: 65, maps: [OREBURGH_MINE_B1F, OREBURGH_MINE_B2F],
+     hint: "deep in Oreburgh Mine"}
+  - {species: IRON_BUNDLE, gate: paldea, rate: 2, terrain: land, level: 65, maps: [ROUTE_217],
+     hint: "in the snow of Route 217"}
+  - {species: IRON_HANDS, gate: paldea, rate: 2, terrain: land, level: 65, maps: [VALLEY_WINDWORKS_OUTSIDE],
+     hint: "at the Valley Windworks"}
+  - {species: IRON_JUGULIS, gate: paldea, rate: 2, terrain: land, level: 65, maps: [ROUTE_222],
+     hint: "along the power lines of Route 222"}
+  - {species: IRON_MOTH, gate: paldea, rate: 2, terrain: land, level: 65, maps: [FUEGO_IRONWORKS_OUTSIDE],
+     hint: "outside Fuego Ironworks"}
+  - {species: IRON_THORNS, gate: paldea, rate: 2, terrain: land, level: 65, maps: [ROUTE_206],
+     hint: "under the Cycling Road"}
+  - {species: IRON_VALIANT, gate: paldea, rate: 2, terrain: land, level: 68, maps: [ROUTE_212_NORTH],
+     hint: "on Route 212, north of Hearthome"}
+  - {species: IRON_LEAVES, gate: paldea, rate: 2, terrain: land, level: 68, maps: [ETERNA_FOREST],
+     hint: "in Eterna Forest"}
+  - {species: IRON_BOULDER, gate: paldea, rate: 2, terrain: land, level: 68, maps: [ROUTE_227],
+     hint: "on Route 227"}
+  - {species: IRON_CROWN, gate: paldea, rate: 2, terrain: land, level: 68,
+     maps: [IRON_ISLAND_B2F_RIGHT_ROOM, IRON_ISLAND_B2F_LEFT_ROOM],
+     hint: "deep in Iron Island"}
+  # ---------------------------------------------------------------- Ultra Beasts (the maps they stood on)
+  - {species: NIHILEGO, gate: ultra, rate: 2, terrain: land, level: 65, maps: [IRON_ISLAND_B3F],
+     hint: "on the lowest floor of Iron Island"}
+  - {species: BUZZWOLE, gate: ultra, rate: 2, terrain: land, level: 65, maps: [ROUTE_225],
+     hint: "in the grass of Route 225"}
+  - {species: PHEROMOSA, gate: ultra, rate: 2, terrain: land, level: 65, maps: [ROUTE_229],
+     hint: "in the grass of Route 229"}
+  - {species: XURKITREE, gate: ultra, rate: 2, terrain: land, level: 65, maps: [ROUTE_222],
+     hint: "along the power lines of Route 222"}
+  - {species: CELESTEELA, gate: ultra, rate: 2, terrain: land, level: 65, maps: [MT_CORONET_OUTSIDE_NORTH],
+     hint: "high on the snowy slopes of Mt. Coronet"}
+  - {species: KARTANA, gate: ultra, rate: 2, terrain: land, level: 65, maps: [ETERNA_FOREST],
+     hint: "in Eterna Forest"}
+  - {species: GUZZLORD, gate: ultra, rate: 2, terrain: land, level: 65,
+     maps: [TURNBACK_CAVE_PILLAR_1_ROOM_1, TURNBACK_CAVE_PILLAR_1_ROOM_2, TURNBACK_CAVE_PILLAR_1_ROOM_3,
+            TURNBACK_CAVE_PILLAR_1_ROOM_4, TURNBACK_CAVE_PILLAR_1_ROOM_5, TURNBACK_CAVE_PILLAR_1_ROOM_6,
+            TURNBACK_CAVE_PILLAR_2_ROOM_1, TURNBACK_CAVE_PILLAR_2_ROOM_2, TURNBACK_CAVE_PILLAR_2_ROOM_3,
+            TURNBACK_CAVE_PILLAR_2_ROOM_4, TURNBACK_CAVE_PILLAR_2_ROOM_5, TURNBACK_CAVE_PILLAR_2_ROOM_6,
+            TURNBACK_CAVE_PILLAR_3_ROOM_1, TURNBACK_CAVE_PILLAR_3_ROOM_2, TURNBACK_CAVE_PILLAR_3_ROOM_3,
+            TURNBACK_CAVE_PILLAR_3_ROOM_4, TURNBACK_CAVE_PILLAR_3_ROOM_5],
+     hint: "in the rooms of Turnback Cave"}
+  - {species: STAKATAKA, gate: ultra, rate: 2, terrain: land, level: 65, maps: [ROUTE_227],
+     hint: "on Route 227"}
+  - {species: BLACEPHALON, gate: ultra, rate: 2, terrain: land, level: 65, maps: [STARK_MOUNTAIN_OUTSIDE],
+     hint: "outside Stark Mountain"}
+  - {species: POIPOLE, gate: ultra, rate: 2, terrain: land, level: 40, maps: [ROUTE_230],
+     hint: "in the grass of Route 230, east of the Fight Area"}

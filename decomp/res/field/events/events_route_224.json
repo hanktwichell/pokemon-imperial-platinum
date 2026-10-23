@@ -436,27 +436,12 @@
             "y": 0
         },
         {
-            "id": "LOCALID_LEGENDARY_FEZANDIPITI",
-            "graphics_id": "OBJ_EVENT_GFX_LEGENDARY_FEZANDIPITI",
-            "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_LEGENDARY_2",
-            "script": 9,
-            "initial_dir": 1,
-            "data": [],
-            "movement_range_x": 0,
-            "movement_range_z": 0,
-            "x": 896,
-            "z": 527,
-            "y": 0
-        },
-        {
             "id": "LOCALID_LEGENDARY_PECHARUNT",
             "graphics_id": "OBJ_EVENT_GFX_LEGENDARY_PECHARUNT",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_LEGENDARY_3",
-            "script": 10,
+            "script": 9,
             "initial_dir": 1,
             "data": [],
             "movement_range_x": 0,

@@ -672,7 +672,7 @@
         "The Chronicle tells of COSMOG, a\n",
         "little Pokémon from beyond the sky.\r",
         "It appears where the sky is thin...\n",
-        "Spear Pillar, perhaps?\r"
+        "the top of Mt. Coronet, perhaps?\r"
       ]
     },
     {
@@ -687,17 +687,17 @@
     {
       "id": "CanalaveLibrary2F_Text_SovereignArchivistCosmogAgain",
       "en_US": [
-        "Another COSMOG may wait at Spear\n",
-        "Pillar now, for the other form!\r"
+        "Another COSMOG may wait atop\n",
+        "Mt. Coronet now, for the other form!\r"
       ]
     },
     {
       "id": "CanalaveLibrary2F_Text_SovereignArchivistNecrozma",
       "en_US": [
-        "And the Chronicle warns of NECROZMA,\n",
-        "who steals the light.\r",
-        "It follows the sun and the moon to\n",
-        "Spear Pillar...\r"
+        "And the Chronicle warns of\n",
+        "NECROZMA, who steals the light.\r",
+        "It hides where the light is gone:\n",
+        "the dark back room of Wayward Cave.\r"
       ]
     },
     {
@@ -736,7 +736,8 @@
       "en_US": [
         "Since you caught NECROZMA, Ultra\n",
         "Beasts have been seen in Sinnoh!\r",
-        "Here’s where:\r"
+        "They’re rare in the wild, so\n",
+        "keep looking. Here’s where:\r"
       ]
     },
     {
@@ -749,22 +750,20 @@
     {
       "id": "CanalaveLibrary2F_Text_SovereignArchivistBuzzwole",
       "en_US": [
-        "BUZZWOLE: at the north end of\n",
-        "Route 225.\r"
+        "BUZZWOLE: in the grass of Route 225.\r"
       ]
     },
     {
       "id": "CanalaveLibrary2F_Text_SovereignArchivistPheromosa",
       "en_US": [
-        "PHEROMOSA: in a quiet corner of\n",
-        "Route 229.\r"
+        "PHEROMOSA: in the grass of Route 229.\r"
       ]
     },
     {
       "id": "CanalaveLibrary2F_Text_SovereignArchivistXurkitree",
       "en_US": [
-        "XURKITREE: by the walkways of\n",
-        "Sunyshore City.\r"
+        "XURKITREE: along the\n",
+        "power lines of Route 222.\r"
       ]
     },
     {
@@ -777,36 +776,33 @@
     {
       "id": "CanalaveLibrary2F_Text_SovereignArchivistKartana",
       "en_US": [
-        "KARTANA: in the east of\n",
-        "Eterna Forest.\r"
+        "KARTANA: in Eterna Forest.\r"
       ]
     },
     {
       "id": "CanalaveLibrary2F_Text_SovereignArchivistGuzzlord",
       "en_US": [
-        "GUZZLORD: in the first room of\n",
-        "Turnback Cave.\r"
+        "GUZZLORD: in the rooms\n",
+        "of Turnback Cave.\r"
       ]
     },
     {
       "id": "CanalaveLibrary2F_Text_SovereignArchivistStakataka",
       "en_US": [
-        "STAKATAKA: in a hollow on\n",
-        "Route 227.\r"
+        "STAKATAKA: on Route 227.\r"
       ]
     },
     {
       "id": "CanalaveLibrary2F_Text_SovereignArchivistBlacephalon",
       "en_US": [
-        "BLACEPHALON: outside Stark Mountain,\n",
-        "near the entrance.\r"
+        "BLACEPHALON: outside Stark Mountain.\r"
       ]
     },
     {
       "id": "CanalaveLibrary2F_Text_SovereignArchivistUltraDone",
       "en_US": [
-        "All nine Ultra Beasts... The holes\n",
-        "in the sky have closed.\r"
+        "All nine Ultra Beasts... Your\n",
+        "record of them is complete!\r"
       ]
     },
     {
@@ -818,8 +814,10 @@
     {
       "id": "CanalaveLibrary2F_Text_SovereignArchivistPoipole",
       "en_US": [
-        "POIPOLE: it came through a wormhole\n",
-        "after NECROZMA. Try the Fight Area.\r"
+        "POIPOLE: it came through a\n",
+        "wormhole after NECROZMA.\r",
+        "Look in the grass of Route 230,\n",
+        "east of the Fight Area.\r"
       ]
     },
     {
@@ -846,8 +844,8 @@
     {
       "id": "CanalaveLibrary2F_Text_SovereignArchivistZeraora",
       "en_US": [
-        "ZERAORA: on Route 222, but only\n",
-        "at night.\r"
+        "ZERAORA: it runs all over\n",
+        "Sinnoh like lightning.\r"
       ]
     },
     {
@@ -964,15 +962,15 @@
     {
       "id": "CanalaveLibrary2F_Text_SovereignArchivistGlastrier",
       "en_US": [
-        "GLASTRIER: in the blizzard on\n",
-        "Route 217.\r"
+        "GLASTRIER: it runs\n",
+        "free all over Sinnoh.\r"
       ]
     },
     {
       "id": "CanalaveLibrary2F_Text_SovereignArchivistSpectrier",
       "en_US": [
-        "SPECTRIER: on the top floor of the\n",
-        "Lost Tower.\r"
+        "SPECTRIER: it runs\n",
+        "free all over Sinnoh.\r"
       ]
     },
     {
@@ -1086,7 +1084,7 @@
     {
       "id": "CanalaveLibrary2F_Text_SovereignMenuRifts",
       "en_US": [
-        "Time Rifts"
+        "Paradox Pokémon"
       ]
     },
     {
@@ -1140,22 +1138,22 @@
     {
       "id": "CanalaveLibrary2F_Text_SovereignArchivistOkidogi",
       "en_US": [
-        "OKIDOGI: one of the Loyal Three,\n",
-        "on Route 225.\r"
+        "OKIDOGI: one of the Loyal\n",
+        "Three, roaming all over Sinnoh.\r"
       ]
     },
     {
       "id": "CanalaveLibrary2F_Text_SovereignArchivistMunkidori",
       "en_US": [
-        "MUNKIDORI: one of the Loyal Three,\n",
-        "on Route 229.\r"
+        "MUNKIDORI: one of the Loyal\n",
+        "Three, roaming all over Sinnoh.\r"
       ]
     },
     {
       "id": "CanalaveLibrary2F_Text_SovereignArchivistFezandipiti",
       "en_US": [
-        "FEZANDIPITI: one of the Loyal Three,\n",
-        "on Route 224.\r"
+        "FEZANDIPITI: one of the Loyal\n",
+        "Three, roaming all over Sinnoh.\r"
       ]
     },
     {
@@ -1194,28 +1192,19 @@
       ]
     },
     {
-      "id": "CanalaveLibrary2F_Text_SovereignArchivistRiftsLocked",
-      "en_US": [
-        "The Chronicle tells of rifts in time\n",
-        "and space at Spear Pillar.\r",
-        "They open for those who caught\n",
-        "DIALGA and PALKIA.\r"
-      ]
-    },
-    {
       "id": "CanalaveLibrary2F_Text_SovereignArchivistRifts",
       "en_US": [
-        "Paradox Pokémon come through the\n",
-        "rifts at Spear Pillar, one by one.\r",
-        "Twenty in all: ten from the past,\n",
-        "ten from the future.\r"
+        "Paradox Pokémon from the past and the\n",
+        "future have come to Sinnoh’s wilds!\r",
+        "They’re rare, so keep looking.\n",
+        "Here’s where they’ve been seen:\r"
       ]
     },
     {
       "id": "CanalaveLibrary2F_Text_SovereignArchivistRiftsDone",
       "en_US": [
         "All twenty Paradox Pokémon...\n",
-        "The rifts have closed.\r"
+        "Your record of them is complete!\r"
       ]
     },
     {
@@ -1247,6 +1236,167 @@
       "en_US": [
         "KORAIDON, MIRAIDON and TERAPAGOS...\n",
         "Every legend of the Chronicles!\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistZeraoraRelease",
+      "en_US": [
+        "The Chronicle also tells of\n",
+        "ZERAORA, who moves like lightning.\r",
+        "It never stays in one place.\n",
+        "Look for it all over Sinnoh!\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistMarkingMap",
+      "en_US": [
+        "A Pokétch’s Marking Map can show\n",
+        "you where roaming Pokémon are.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistSteedsRelease",
+      "en_US": [
+        "With their king caught, GLASTRIER\n",
+        "and SPECTRIER have bolted!\r",
+        "They run all over Sinnoh now.\n",
+        "Catch one and join it to the king!\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistLoyalRelease",
+      "en_US": [
+        "The Chronicle tells of the Loyal\n",
+        "Three, who serve a cruel master.\r",
+        "They’re loose in Sinnoh now, and\n",
+        "they never stay in one place!\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistGreatTusk",
+      "en_US": [
+        "GREAT TUSK: in the grass of Route 207.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistScreamTail",
+      "en_US": [
+        "SCREAM TAIL: in the Trophy Garden.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistBruteBonnet",
+      "en_US": [
+        "BRUTE BONNET: in the\n",
+        "marsh of Route 212.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistFlutterMane",
+      "en_US": [
+        "FLUTTER MANE: in the Lost Tower.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistSlitherWing",
+      "en_US": [
+        "SLITHER WING: outside Stark Mountain.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistSandyShocks",
+      "en_US": [
+        "SANDY SHOCKS: in the\n",
+        "sandstorm of Route 228.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistRoaringMoon",
+      "en_US": [
+        "ROARING MOON: in the fog of Route 210.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistWalkingWake",
+      "en_US": [
+        "WALKING WAKE: on the\n",
+        "water of Route 213.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistGougingFire",
+      "en_US": [
+        "GOUGING FIRE: on the\n",
+        "east side of Route 211.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistRagingBolt",
+      "en_US": [
+        "RAGING BOLT: in the\n",
+        "grass of Route 208.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistIronTreads",
+      "en_US": [
+        "IRON TREADS: deep in Oreburgh Mine.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistIronBundle",
+      "en_US": [
+        "IRON BUNDLE: in the snow of Route 217.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistIronHands",
+      "en_US": [
+        "IRON HANDS: at the Valley Windworks.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistIronJugulis",
+      "en_US": [
+        "IRON JUGULIS: along the\n",
+        "power lines of Route 222.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistIronMoth",
+      "en_US": [
+        "IRON MOTH: outside Fuego Ironworks.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistIronThorns",
+      "en_US": [
+        "IRON THORNS: under the Cycling Road.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistIronValiant",
+      "en_US": [
+        "IRON VALIANT: on Route 212,\n",
+        "north of Hearthome.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistIronLeaves",
+      "en_US": [
+        "IRON LEAVES: in Eterna Forest.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistIronBoulder",
+      "en_US": [
+        "IRON BOULDER: on Route 227.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistIronCrown",
+      "en_US": [
+        "IRON CROWN: deep in Iron Island.\r"
       ]
     }
   ]

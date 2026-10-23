@@ -260,9 +260,10 @@ void RoamingPokemon_ActivateSlot(SaveData *saveData, const u8 slot)
         species = SPECIES_CRESSELIA;
         level = 50;
         break;
-    case ROAMING_SLOT_DARKRAI:
-        species = SPECIES_DARKRAI;
-        level = 40;
+    // Sovereign (decision 28): vanilla's unused Darkrai slot holds Zeraora, released by the Legend Archivist.
+    case ROAMING_SLOT_ZERAORA:
+        species = SPECIES_ZERAORA;
+        level = 50;
         break;
     case ROAMING_SLOT_MOLTRES:
         species = SPECIES_MOLTRES;
@@ -284,6 +285,27 @@ void RoamingPokemon_ActivateSlot(SaveData *saveData, const u8 slot)
     case ROAMING_SLOT_THUNDURUS:
         species = SPECIES_THUNDURUS;
         level = 65;
+        break;
+    // Sovereign (decision 28): the Loyal Three and Calyrex's steeds roam too.
+    case ROAMING_SLOT_OKIDOGI:
+        species = SPECIES_OKIDOGI;
+        level = 65;
+        break;
+    case ROAMING_SLOT_MUNKIDORI:
+        species = SPECIES_MUNKIDORI;
+        level = 65;
+        break;
+    case ROAMING_SLOT_FEZANDIPITI:
+        species = SPECIES_FEZANDIPITI;
+        level = 65;
+        break;
+    case ROAMING_SLOT_GLASTRIER:
+        species = SPECIES_GLASTRIER;
+        level = 70;
+        break;
+    case ROAMING_SLOT_SPECTRIER:
+        species = SPECIES_SPECTRIER;
+        level = 70;
         break;
     default:
         GF_ASSERT(FALSE);

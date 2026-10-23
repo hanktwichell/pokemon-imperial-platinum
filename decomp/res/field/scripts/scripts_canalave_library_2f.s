@@ -588,8 +588,11 @@ CanalaveLibrary2F_SovereignArchivistCountUltra:
     AddVar VAR_0x8008, 1
     Return
 
-@ The other Alola legends: a hint for each one not caught yet.
+@ The other Alola legends: a hint for each one not caught yet. The first reading releases Zeraora as a roamer
+@ (FLAG_SOVEREIGN_RELEASED_ZERAORA, decision 28); knocked out, it's released again after the next Hall of Fame.
 CanalaveLibrary2F_SovereignArchivistAlolaOthers:
+    CallIfUnset FLAG_SOVEREIGN_RELEASED_ZERAORA, CanalaveLibrary2F_SovereignArchivistFirstReleaseZeraora
+    CallIfEq VAR_ROAMING_ZERAORA_STATE, ROAMER_STATE_RESET, CanalaveLibrary2F_SovereignArchivistReleaseZeraora
     SetVar VAR_0x8008, 0
     SovereignCheckSpeciesCaught SPECIES_POIPOLE, VAR_RESULT
     CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
@@ -676,6 +679,9 @@ CanalaveLibrary2F_SovereignArchivistKing:
     GoToIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistKingCalyrex
     CheckItem ITEM_REINS_OF_UNITY, 1, VAR_RESULT
     CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistGiveReins
+    CallIfUnset FLAG_SOVEREIGN_RELEASED_STEEDS, CanalaveLibrary2F_SovereignArchivistFirstReleaseSteeds
+    CallIfEq VAR_ROAMING_GLASTRIER_STATE, ROAMER_STATE_RESET, CanalaveLibrary2F_SovereignArchivistReleaseGlastrier
+    CallIfEq VAR_ROAMING_SPECTRIER_STATE, ROAMER_STATE_RESET, CanalaveLibrary2F_SovereignArchivistReleaseSpectrier
     SetVar VAR_0x8008, 0
     SovereignCheckSpeciesCaught SPECIES_GLASTRIER, VAR_RESULT
     CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
@@ -766,6 +772,20 @@ CanalaveLibrary2F_SovereignArchivistMarshadow:
 
 CanalaveLibrary2F_SovereignArchivistZeraora:
     Message CanalaveLibrary2F_Text_SovereignArchivistZeraora
+    CallIfEq VAR_ROAMING_ZERAORA_STATE, ROAMER_STATE_DEFEATED, CanalaveLibrary2F_SovereignArchivistRoamerGoneMessage
+    Return
+
+CanalaveLibrary2F_SovereignArchivistFirstReleaseZeraora:
+    Message CanalaveLibrary2F_Text_SovereignArchivistZeraoraRelease
+    Message CanalaveLibrary2F_Text_SovereignArchivistMarkingMap
+    SetFlag FLAG_SOVEREIGN_RELEASED_ZERAORA
+CanalaveLibrary2F_SovereignArchivistReleaseZeraora:
+    SetVar VAR_ROAMING_ZERAORA_STATE, ROAMER_STATE_ROAMING
+    ActivateRoamingPokemon ROAMING_SLOT_ZERAORA
+    Return
+
+CanalaveLibrary2F_SovereignArchivistRoamerGoneMessage:
+    Message CanalaveLibrary2F_Text_SovereignArchivistRoamerGone
     Return
 
 CanalaveLibrary2F_SovereignArchivistMeltan:
@@ -794,10 +814,29 @@ CanalaveLibrary2F_SovereignArchivistCalyrex:
 
 CanalaveLibrary2F_SovereignArchivistGlastrier:
     Message CanalaveLibrary2F_Text_SovereignArchivistGlastrier
+    CallIfEq VAR_ROAMING_GLASTRIER_STATE, ROAMER_STATE_DEFEATED, CanalaveLibrary2F_SovereignArchivistRoamerGoneMessage
     Return
 
 CanalaveLibrary2F_SovereignArchivistSpectrier:
     Message CanalaveLibrary2F_Text_SovereignArchivistSpectrier
+    CallIfEq VAR_ROAMING_SPECTRIER_STATE, ROAMER_STATE_DEFEATED, CanalaveLibrary2F_SovereignArchivistRoamerGoneMessage
+    Return
+
+@ Decision 28: with Calyrex caught, Glastrier and Spectrier roam (FLAG_SOVEREIGN_RELEASED_STEEDS). One knocked out is
+@ released again after the next Hall of Fame.
+CanalaveLibrary2F_SovereignArchivistFirstReleaseSteeds:
+    Message CanalaveLibrary2F_Text_SovereignArchivistSteedsRelease
+    Message CanalaveLibrary2F_Text_SovereignArchivistMarkingMap
+    SetFlag FLAG_SOVEREIGN_RELEASED_STEEDS
+    Call CanalaveLibrary2F_SovereignArchivistReleaseGlastrier
+CanalaveLibrary2F_SovereignArchivistReleaseSpectrier:
+    SetVar VAR_ROAMING_SPECTRIER_STATE, ROAMER_STATE_ROAMING
+    ActivateRoamingPokemon ROAMING_SLOT_SPECTRIER
+    Return
+
+CanalaveLibrary2F_SovereignArchivistReleaseGlastrier:
+    SetVar VAR_ROAMING_GLASTRIER_STATE, ROAMER_STATE_ROAMING
+    ActivateRoamingPokemon ROAMING_SLOT_GLASTRIER
     Return
 
 CanalaveLibrary2F_SovereignArchivistKubfu:
@@ -874,12 +913,17 @@ CanalaveLibrary2F_SovereignArchivistRuinDone:
 
 @ The Loyal Three, then Pecharunt.
 CanalaveLibrary2F_SovereignArchivistLoyal:
+    CallIfUnset FLAG_SOVEREIGN_RELEASED_LOYAL_THREE, CanalaveLibrary2F_SovereignArchivistFirstReleaseLoyal
+    CallIfEq VAR_ROAMING_OKIDOGI_STATE, ROAMER_STATE_RESET, CanalaveLibrary2F_SovereignArchivistReleaseOkidogi
+    CallIfEq VAR_ROAMING_MUNKIDORI_STATE, ROAMER_STATE_RESET, CanalaveLibrary2F_SovereignArchivistReleaseMunkidori
+    CallIfEq VAR_ROAMING_FEZANDIPITI_STATE, ROAMER_STATE_RESET, CanalaveLibrary2F_SovereignArchivistReleaseFezandipiti
     SovereignCheckSpeciesCaught SPECIES_OKIDOGI, VAR_0x8004
     SovereignCheckSpeciesCaught SPECIES_MUNKIDORI, VAR_0x8005
     SovereignCheckSpeciesCaught SPECIES_FEZANDIPITI, VAR_0x8006
     CallIfEq VAR_0x8004, FALSE, CanalaveLibrary2F_SovereignArchivistOkidogi
     CallIfEq VAR_0x8005, FALSE, CanalaveLibrary2F_SovereignArchivistMunkidori
     CallIfEq VAR_0x8006, FALSE, CanalaveLibrary2F_SovereignArchivistFezandipiti
+    Call CanalaveLibrary2F_SovereignArchivistLoyalGone
     GoToIfEq VAR_0x8004, FALSE, CanalaveLibrary2F_SovereignArchivistPaldeaAskMore
     GoToIfEq VAR_0x8005, FALSE, CanalaveLibrary2F_SovereignArchivistPaldeaAskMore
     GoToIfEq VAR_0x8006, FALSE, CanalaveLibrary2F_SovereignArchivistPaldeaAskMore
@@ -908,12 +952,9 @@ CanalaveLibrary2F_SovereignArchivistOgreMasks:
     Message CanalaveLibrary2F_Text_SovereignArchivistOgerponMasks
     GoTo CanalaveLibrary2F_SovereignArchivistPaldeaAskMore
 
-@ The Time Rifts: they open with Dialga and Palkia caught; done once all twenty Paradox Pokémon are.
+@ Paradox Pokémon (decision 28): rare wild encounters from the Paldea Chronicle's opening
+@ (data/sovereign_rare_wild.yaml); a hint for each one not caught yet.
 CanalaveLibrary2F_SovereignArchivistRifts:
-    SovereignCheckSpeciesCaught SPECIES_DIALGA, VAR_0x8004
-    SovereignCheckSpeciesCaught SPECIES_PALKIA, VAR_0x8005
-    GoToIfEq VAR_0x8004, FALSE, CanalaveLibrary2F_SovereignArchivistRiftsLocked
-    GoToIfEq VAR_0x8005, FALSE, CanalaveLibrary2F_SovereignArchivistRiftsLocked
     SetVar VAR_0x8008, 0
     SovereignCheckSpeciesCaught SPECIES_GREAT_TUSK, VAR_RESULT
     CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
@@ -957,15 +998,131 @@ CanalaveLibrary2F_SovereignArchivistRifts:
     CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
     GoToIfEq VAR_0x8008, 0, CanalaveLibrary2F_SovereignArchivistRiftsDone
     Message CanalaveLibrary2F_Text_SovereignArchivistRifts
-    GoTo CanalaveLibrary2F_SovereignArchivistPaldeaAskMore
-
-CanalaveLibrary2F_SovereignArchivistRiftsLocked:
-    Message CanalaveLibrary2F_Text_SovereignArchivistRiftsLocked
+    SovereignCheckSpeciesCaught SPECIES_GREAT_TUSK, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistGreatTusk
+    SovereignCheckSpeciesCaught SPECIES_SCREAM_TAIL, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistScreamTail
+    SovereignCheckSpeciesCaught SPECIES_BRUTE_BONNET, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistBruteBonnet
+    SovereignCheckSpeciesCaught SPECIES_FLUTTER_MANE, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistFlutterMane
+    SovereignCheckSpeciesCaught SPECIES_SLITHER_WING, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistSlitherWing
+    SovereignCheckSpeciesCaught SPECIES_SANDY_SHOCKS, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistSandyShocks
+    SovereignCheckSpeciesCaught SPECIES_ROARING_MOON, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistRoaringMoon
+    SovereignCheckSpeciesCaught SPECIES_WALKING_WAKE, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistWalkingWake
+    SovereignCheckSpeciesCaught SPECIES_GOUGING_FIRE, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistGougingFire
+    SovereignCheckSpeciesCaught SPECIES_RAGING_BOLT, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistRagingBolt
+    SovereignCheckSpeciesCaught SPECIES_IRON_TREADS, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistIronTreads
+    SovereignCheckSpeciesCaught SPECIES_IRON_BUNDLE, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistIronBundle
+    SovereignCheckSpeciesCaught SPECIES_IRON_HANDS, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistIronHands
+    SovereignCheckSpeciesCaught SPECIES_IRON_JUGULIS, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistIronJugulis
+    SovereignCheckSpeciesCaught SPECIES_IRON_MOTH, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistIronMoth
+    SovereignCheckSpeciesCaught SPECIES_IRON_THORNS, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistIronThorns
+    SovereignCheckSpeciesCaught SPECIES_IRON_VALIANT, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistIronValiant
+    SovereignCheckSpeciesCaught SPECIES_IRON_LEAVES, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistIronLeaves
+    SovereignCheckSpeciesCaught SPECIES_IRON_BOULDER, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistIronBoulder
+    SovereignCheckSpeciesCaught SPECIES_IRON_CROWN, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistIronCrown
     GoTo CanalaveLibrary2F_SovereignArchivistPaldeaAskMore
 
 CanalaveLibrary2F_SovereignArchivistRiftsDone:
     Message CanalaveLibrary2F_Text_SovereignArchivistRiftsDone
     GoTo CanalaveLibrary2F_SovereignArchivistPaldeaAskMore
+
+CanalaveLibrary2F_SovereignArchivistGreatTusk:
+    Message CanalaveLibrary2F_Text_SovereignArchivistGreatTusk
+    Return
+
+CanalaveLibrary2F_SovereignArchivistScreamTail:
+    Message CanalaveLibrary2F_Text_SovereignArchivistScreamTail
+    Return
+
+CanalaveLibrary2F_SovereignArchivistBruteBonnet:
+    Message CanalaveLibrary2F_Text_SovereignArchivistBruteBonnet
+    Return
+
+CanalaveLibrary2F_SovereignArchivistFlutterMane:
+    Message CanalaveLibrary2F_Text_SovereignArchivistFlutterMane
+    Return
+
+CanalaveLibrary2F_SovereignArchivistSlitherWing:
+    Message CanalaveLibrary2F_Text_SovereignArchivistSlitherWing
+    Return
+
+CanalaveLibrary2F_SovereignArchivistSandyShocks:
+    Message CanalaveLibrary2F_Text_SovereignArchivistSandyShocks
+    Return
+
+CanalaveLibrary2F_SovereignArchivistRoaringMoon:
+    Message CanalaveLibrary2F_Text_SovereignArchivistRoaringMoon
+    Return
+
+CanalaveLibrary2F_SovereignArchivistWalkingWake:
+    Message CanalaveLibrary2F_Text_SovereignArchivistWalkingWake
+    Return
+
+CanalaveLibrary2F_SovereignArchivistGougingFire:
+    Message CanalaveLibrary2F_Text_SovereignArchivistGougingFire
+    Return
+
+CanalaveLibrary2F_SovereignArchivistRagingBolt:
+    Message CanalaveLibrary2F_Text_SovereignArchivistRagingBolt
+    Return
+
+CanalaveLibrary2F_SovereignArchivistIronTreads:
+    Message CanalaveLibrary2F_Text_SovereignArchivistIronTreads
+    Return
+
+CanalaveLibrary2F_SovereignArchivistIronBundle:
+    Message CanalaveLibrary2F_Text_SovereignArchivistIronBundle
+    Return
+
+CanalaveLibrary2F_SovereignArchivistIronHands:
+    Message CanalaveLibrary2F_Text_SovereignArchivistIronHands
+    Return
+
+CanalaveLibrary2F_SovereignArchivistIronJugulis:
+    Message CanalaveLibrary2F_Text_SovereignArchivistIronJugulis
+    Return
+
+CanalaveLibrary2F_SovereignArchivistIronMoth:
+    Message CanalaveLibrary2F_Text_SovereignArchivistIronMoth
+    Return
+
+CanalaveLibrary2F_SovereignArchivistIronThorns:
+    Message CanalaveLibrary2F_Text_SovereignArchivistIronThorns
+    Return
+
+CanalaveLibrary2F_SovereignArchivistIronValiant:
+    Message CanalaveLibrary2F_Text_SovereignArchivistIronValiant
+    Return
+
+CanalaveLibrary2F_SovereignArchivistIronLeaves:
+    Message CanalaveLibrary2F_Text_SovereignArchivistIronLeaves
+    Return
+
+CanalaveLibrary2F_SovereignArchivistIronBoulder:
+    Message CanalaveLibrary2F_Text_SovereignArchivistIronBoulder
+    Return
+
+CanalaveLibrary2F_SovereignArchivistIronCrown:
+    Message CanalaveLibrary2F_Text_SovereignArchivistIronCrown
+    Return
 
 @ Area Zero, the Paldea Chronicle's end: Koraidon and Miraidon once all twenty Paradox Pokémon are caught, then
 @ Terapagos.
@@ -1059,6 +1216,35 @@ CanalaveLibrary2F_SovereignArchivistMunkidori:
 
 CanalaveLibrary2F_SovereignArchivistFezandipiti:
     Message CanalaveLibrary2F_Text_SovereignArchivistFezandipiti
+    Return
+
+@ Decision 28: the Loyal Three roam (FLAG_SOVEREIGN_RELEASED_LOYAL_THREE). One knocked out is released again after the
+@ next Hall of Fame.
+CanalaveLibrary2F_SovereignArchivistFirstReleaseLoyal:
+    Message CanalaveLibrary2F_Text_SovereignArchivistLoyalRelease
+    Message CanalaveLibrary2F_Text_SovereignArchivistMarkingMap
+    SetFlag FLAG_SOVEREIGN_RELEASED_LOYAL_THREE
+    Call CanalaveLibrary2F_SovereignArchivistReleaseOkidogi
+    Call CanalaveLibrary2F_SovereignArchivistReleaseMunkidori
+CanalaveLibrary2F_SovereignArchivistReleaseFezandipiti:
+    SetVar VAR_ROAMING_FEZANDIPITI_STATE, ROAMER_STATE_ROAMING
+    ActivateRoamingPokemon ROAMING_SLOT_FEZANDIPITI
+    Return
+
+CanalaveLibrary2F_SovereignArchivistReleaseOkidogi:
+    SetVar VAR_ROAMING_OKIDOGI_STATE, ROAMER_STATE_ROAMING
+    ActivateRoamingPokemon ROAMING_SLOT_OKIDOGI
+    Return
+
+CanalaveLibrary2F_SovereignArchivistReleaseMunkidori:
+    SetVar VAR_ROAMING_MUNKIDORI_STATE, ROAMER_STATE_ROAMING
+    ActivateRoamingPokemon ROAMING_SLOT_MUNKIDORI
+    Return
+
+CanalaveLibrary2F_SovereignArchivistLoyalGone:
+    GoToIfEq VAR_ROAMING_OKIDOGI_STATE, ROAMER_STATE_DEFEATED, CanalaveLibrary2F_SovereignArchivistRoamerGoneMessage
+    GoToIfEq VAR_ROAMING_MUNKIDORI_STATE, ROAMER_STATE_DEFEATED, CanalaveLibrary2F_SovereignArchivistRoamerGoneMessage
+    GoToIfEq VAR_ROAMING_FEZANDIPITI_STATE, ROAMER_STATE_DEFEATED, CanalaveLibrary2F_SovereignArchivistRoamerGoneMessage
     Return
 
 CanalaveLibrary2F_SovereignArchivistSolarizers:

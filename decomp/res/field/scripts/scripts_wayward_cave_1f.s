@@ -7,9 +7,12 @@
     ScriptEntry WaywardCave1F_Mira
     ScriptEntry WaywardCave1F_Dummy3
     ScriptEntry WaywardCave1F_CoordEvent_Exit
+    ScriptEntry WaywardCave1F_OnLoad
+    ScriptEntry WaywardCave1F_LegendaryNecrozma
     ScriptEntryEnd
 
 WaywardCave1F_OnTransition:
+    Call WaywardCave1F_SovereignSetNecrozmaVisibility
     SetFlag FLAG_FIRST_ARRIVAL_WAYWARD_CAVE
     GoToIfUnset FLAG_TRAVELED_WITH_MIRA, WaywardCave1F_ResetFollowerMiraState
     End
@@ -184,3 +187,35 @@ WaywardCave1F_Movement_MiraWalkSouthLeave:
     WalkNormalSouth
     WalkOnSpotNormalSouth
     EndMovement
+
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Necrozma, who steals the light, waits in the dark back
+@ chamber where Mira was lost (the only Dark Flash cave), once the Alola Chronicle is open (VAR_SOVEREIGN_CHRONICLE 3)
+@ and the player has Solgaleo or Lunala, until it's caught.
+WaywardCave1F_SovereignSetNecrozmaVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+    GoToIfLt VAR_SOVEREIGN_CHRONICLE, 3, WaywardCave1F_SovereignSetNecrozmaVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_NECROZMA, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, WaywardCave1F_SovereignSetNecrozmaVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_SOLGALEO, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, WaywardCave1F_SovereignShowNecrozma
+    SovereignCheckSpeciesCaught SPECIES_LUNALA, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, WaywardCave1F_SovereignSetNecrozmaVisibilityEnd
+WaywardCave1F_SovereignShowNecrozma:
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+WaywardCave1F_SovereignSetNecrozmaVisibilityEnd:
+    Return
+
+WaywardCave1F_OnLoad:
+    GoToIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, WaywardCave1F_RemoveLegendaryNecrozma
+    End
+
+WaywardCave1F_RemoveLegendaryNecrozma:
+    RemoveObject LOCALID_LEGENDARY_NECROZMA
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+    End
+
+WaywardCave1F_LegendaryNecrozma:
+    SetVar VAR_0x8004, SPECIES_NECROZMA
+    SetVar VAR_0x8005, 70
+    Common_SovereignLegendaryEncounter
+    End

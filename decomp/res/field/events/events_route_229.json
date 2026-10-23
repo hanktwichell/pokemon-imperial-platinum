@@ -315,36 +315,6 @@
             "x": 805,
             "z": 451,
             "y": 0
-        },
-        {
-            "id": "LOCALID_LEGENDARY_PHEROMOSA",
-            "graphics_id": "OBJ_EVENT_GFX_LEGENDARY_PHEROMOSA",
-            "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_LEGENDARY",
-            "script": 5,
-            "initial_dir": 1,
-            "data": [],
-            "movement_range_x": 0,
-            "movement_range_z": 0,
-            "x": 813,
-            "z": 426,
-            "y": 0
-        },
-        {
-            "id": "LOCALID_LEGENDARY_MUNKIDORI",
-            "graphics_id": "OBJ_EVENT_GFX_LEGENDARY_MUNKIDORI",
-            "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_LEGENDARY_2",
-            "script": 6,
-            "initial_dir": 1,
-            "data": [],
-            "movement_range_x": 0,
-            "movement_range_z": 0,
-            "x": 806,
-            "z": 428,
-            "y": 0
         }
     ],
     "warp_events": [],

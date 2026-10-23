@@ -12,7 +12,7 @@
     ScriptEntry ContestHallStageNoContest_LegendaryMeloetta
     ScriptEntryEnd
 
-@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Meloetta stands on the stage once a Pokémon has sung the
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Meloetta stands before the stage once a Pokémon has sung the
 @ Relic Song for the composer in the lobby (FLAG_SOVEREIGN_MELOETTA_SONG), until it's caught.
 ContestHallStageNoContest_OnTransition:
     SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
