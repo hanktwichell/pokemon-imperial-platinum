@@ -1550,7 +1550,7 @@ one re-run passed.
 
 **Implemented: FM part 3, the regional forms.**
 - **The forms:** all 57 regional forms, plus Blue/White-Striped Basculin. Each has its own stats, types, abilities
-  and Gen IV learnset from PokeAPI, using its PokeAPI id. Zen Mode Darmanitan's data is in too, so Galarian
+  and Gen IX learnset from PokeAPI, using its PokeAPI id. Zen Mode Darmanitan's data is in too, so Galarian
   Darmanitan keeps its official number (2).
 - **Official form numbers:** a species' saved forms come before its Megas (Alolan Raichu = 1; Mega Raichu X/Y = 2/3).
   Adding a Mega can't shift a saved form now.
