@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 246 |
-| approximate | 42 |
-| placeholder | 92 |
+| exact | 249 |
+| approximate | 41 |
+| placeholder | 90 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -32,7 +32,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 482 | Sludge Wave | Poison | `POISON_HIT` | exact |  |
 | 483 | Quiver Dance | Bug | `SOVEREIGN_QUIVER_DANCE` | exact | Sovereign effect: user Sp. Atk +1, user Sp. Def +1, user Speed +1 |
 | 484 | Heavy Slam | Steel | `HIT` | exact | Sovereign effect: power from the user/target weight ratio (40-120) |
-| 485 | Synchronoise | Psychic | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 485 | Synchronoise | Psychic | `HIT` | exact | Sovereign effect: only affects targets that share a type with the user |
 | 486 | Electro Ball | Electric | `HIT` | exact | Sovereign effect: power from the user/target Speed ratio (40-150) |
 | 487 | Soak | Water | `SOVEREIGN_SOAK` | exact | Sovereign effect: the target becomes pure Water-type |
 | 488 | Flame Charge | Fire | `SOVEREIGN_RAISE_SPEED_HIT` | exact | Sovereign effect: user Speed +1 (100%) |
@@ -62,7 +62,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 512 | Acrobatics | Flying | `HIT` | exact | Sovereign effect: user holds no item: power doubles |
 | 513 | Reflect Type | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 514 | Retaliate | Normal | `HIT` | exact | Sovereign effect: power doubles if a Pokémon on the user's side fainted last turn |
-| 515 | Final Gambit | Fighting | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 515 | Final Gambit | Fighting | `SOVEREIGN_FINAL_GAMBIT` | exact | Sovereign effect: damage equal to the user's HP; the user faints if it hits |
 | 516 | Bestow | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 517 | Inferno | Fire | `BURN_HIT` | exact |  |
 | 518 | Water Pledge | Water | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
@@ -465,7 +465,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 915 | Temper Flare | Fire | `HIT` | exact | Sovereign effect: power doubles if the user's last move failed |
 | 916 | Supercell Slam | Electric | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 917 | Psychic Noise | Psychic | `SOVEREIGN_PSYCHIC_NOISE` | exact | Sovereign effect: the target can't heal for two turns |
-| 918 | Upper Hand | Fighting | `PRIORITY_1` | approximate | extra effect not reproduced |
+| 918 | Upper Hand | Fighting | `FLINCH_HIT` | exact | Sovereign effect: fails unless the target is about to use a damaging priority move; makes it flinch |
 | 919 | Malignant Chain | Poison | `BADLY_POISON_HIT` | exact | Sovereign effect: badly poisons (50%) |
 
 ## Platinum's moves updated to Gen IX numbers

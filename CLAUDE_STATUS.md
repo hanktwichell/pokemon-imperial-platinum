@@ -2559,6 +2559,27 @@ and Keldeo, CB-0036) is merged; its first CI run died in apt-get and the one re-
 3. More abilities: Mirror Armor, Cotton Down, Wind Rider/Wind Power, Purifying Salt's status immunity, Opportunist,
    Costar.
 
+## CA-0039 (Claude A, branch `claude/festive-bardeen-5h7beo`, 2026-10-23)
+
+**Just implemented:** item 11 part 21.
+- **Final Gambit:** verified in game.
+- **Synchronoise, Upper Hand:** not tested in game yet.
+- Move checklist: exact 249, approximate 41, placeholder 90.
+
+**Files modified:**
+- `decomp/src/battle/battle_controller_player.c`
+- New effect `effect_script_0325.s` (`SOVEREIGN_FINAL_GAMBIT`) and `subscript_sovereign_final_gambit.s`, registered
+  in the effect, pointer and subscript lists
+- `decomp/include/data/move_side_effect_subscripts.h`
+- `res/moves/{final_gambit,upper_hand}/data.json`
+- `tools/engine/gen9_move_fixes.py`, `docs/MoveChecklist.md`, `docs/EngineChangelog.md`
+
+**Next 3 steps:**
+1. Merge PR #47 when CI is green, then open the PR for part 21 onward.
+2. More moves: Scale Shot, Coaching, Dragon Cheer, Parting Shot, Belch, Bestow, the Pledges, Ally Switch,
+   Telekinesis, Wonder/Magic Room.
+3. Abilities: Mirror Armor, Cotton Down, Wind Rider/Wind Power, Purifying Salt's status immunity.
+
 
 ## CB-0038 — 2026-10-23, 8:18 am US Central (session on `claude/sweet-wright-rk4wl1`)
 
