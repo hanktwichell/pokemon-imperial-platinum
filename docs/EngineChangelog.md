@@ -4,6 +4,19 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (part 21) — Final Gambit, Synchronoise, Upper Hand
+
+- **Final Gambit:** deals damage equal to the user's HP. If it hits, the user faints, through a new on-hit side
+  effect, so a miss or a Ghost-type target leaves it standing. New effect `SOVEREIGN_FINAL_GAMBIT` (325) and
+  subscript.
+- **Synchronoise:** has no effect on targets that share no type with the user.
+- **Upper Hand:** fails unless the target is about to use a damaging priority move; otherwise it hits and makes the
+  target flinch (`FLINCH_HIT`, 100%).
+- Move checklist: exact 249, approximate 41, placeholder 90.
+
+**Verified in the test build:** Garchomp's Final Gambit took 171 HP off Venusaur (Garchomp's HP), then "GARCHOMP
+fainted!". Synchronoise and Upper Hand aren't tested in game yet.
+
 ## Item 11 (part 20) — contact abilities: Mummy, Lingering Aroma, Wandering Spirit, Perish Body, Toxic Debris
 
 - **Mummy / Lingering Aroma:** an attacker that makes contact gets the holder's ability ("{0} acquired Mummy!").

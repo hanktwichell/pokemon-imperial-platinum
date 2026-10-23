@@ -3347,6 +3347,24 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
         battleCtx->moveStatusFlags |= MOVE_STATUS_FAILED;
     }
 
+    // Sovereign (item 11): Synchronoise only affects targets that share a type with the user.
+    if (move == MOVE_SYNCHRONOISE
+        && attacker != defender
+        && BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_1, NULL) != BattleMon_Get(battleCtx, attacker, BATTLEMON_TYPE_1, NULL)
+        && BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_1, NULL) != BattleMon_Get(battleCtx, attacker, BATTLEMON_TYPE_2, NULL)
+        && BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_2, NULL) != BattleMon_Get(battleCtx, attacker, BATTLEMON_TYPE_1, NULL)
+        && BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_2, NULL) != BattleMon_Get(battleCtx, attacker, BATTLEMON_TYPE_2, NULL)) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_INEFFECTIVE;
+    }
+
+    // Sovereign (item 11): Upper Hand fails unless the target is about to use a priority move this turn.
+    if (move == MOVE_UPPER_HAND
+        && (battleCtx->battlerActions[defender][BATTLE_ACTION_PICK_COMMAND] == BATTLE_CONTROL_MOVE_END
+            || Sovereign_MovePriority(battleCtx, defender, Battler_SelectedMove(battleCtx, defender)) <= 0
+            || MOVE_DATA(Battler_SelectedMove(battleCtx, defender)).class == CLASS_STATUS)) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_FAILED;
+    }
+
     // Sovereign (item 11): Poltergeist fails against a target holding no item.
     if (move == MOVE_POLTERGEIST && battleCtx->battleMons[defender].heldItem == ITEM_NONE) {
         battleCtx->moveStatusFlags |= MOVE_STATUS_FAILED;
