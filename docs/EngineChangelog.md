@@ -4,6 +4,34 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (part 1) — exact effects for the developer team and boss teams
+
+The boss teams (`data/trainers_sovereign.yaml`) and the developer team use only four moves and abilities that weren't
+exact yet. All four now are:
+
+- **Hurricane** (new effect `BATTLE_EFFECT_HURRICANE`): Thunder's rules (never misses in rain, 50% accuracy in harsh
+  sunlight, hits a Pokémon using Fly or Bounce) with a 30% confusion chance.
+- **Body Press** (`BATTLE_EFFECT_BODY_PRESS`): damage uses the user's Defense and Defense stage instead of its Attack.
+  Effects that raise Attack (Choice Band, Huge Power, Hustle, Guts) don't apply, as in Gen IX (`battle_lib.c`).
+- **Electro Shot** (`BATTLE_EFFECT_ELECTRO_SHOT`): the charge turn raises Sp. Atk 1 stage ("…absorbed electricity!"),
+  and the move hits the next turn. In rain, or with a Power Herb, it raises Sp. Atk and hits at once. It has its own
+  two-part animation (Charge's, then Thunderbolt's).
+- **Stamina**: Defense +1 stage each time a damaging move hits the holder (`BattleSystem_TriggerAbilityOnHit`).
+- **AI:** Platinum's weather scoring for Thunder never ran: it checked Solar Beam's effect by mistake. It now scores
+  Thunder and Hurricane up in rain and down in sun. Electro Shot is scored like Platinum's other charge moves.
+- **Generators:** `gen_moves.py` gains `SOVEREIGN_EFFECTS` (moves with their own new effect) and
+  `HANDWRITTEN_SCRIPTS` (moves whose battle script and animation are hand-written), so regenerating keeps them.
+  `gen_abilities.py` gains `IMPLEMENTED`.
+- **Lesson:** a new subscript must be added in three places, in the same order: the meson file list,
+  `generated/battle_subscripts.txt` and `sub_seq.order`. A file missing from the order file is packed alphabetically
+  after the listed ones, so the `BATTLE_SUBSCRIPT_*` constants point at the wrong script.
+- **Verified in the test build** (the developer team rearranged for each test, hooks on the damage calc):
+  - Hurricane runs its new script.
+  - Archaludon's Body Press dealt 191, the exact Defense-based value; Attack would give 125.
+  - Stamina showed "The foe's ARCHALUDON's Stamina raised its Defense!" and +1 Defense.
+  - Electro Shot charged with Sp. Atk +1 then hit for 549. In rain it boosted and hit at once (543).
+  - `check_trainer_party.py` and `boot_smoke.py` pass.
+
 ## DX — the Pokédex (decision 21)
 
 - **Rowan's Pokédex is the National Dex.** The Sandgem lab script sets the National Dex flag right after giving the

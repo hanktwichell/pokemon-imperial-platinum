@@ -1264,3 +1264,39 @@ screen, off and on. The release ROM builds and passes boot smoke.
 1. Owner's answers on Oak's visit (CA-0021), then build it.
 2. Item 11: exact effects, boss teams first, adding #8's partner scoring per move as it's built.
 3. 12b #4–#5 (Gen V+ absorbing abilities and redirection) along with item 11.
+
+---
+
+## CA-0023 — 2026-10-23 (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** item 11 part 1. Every move and ability the boss teams and the developer team use is now exact:
+- **Hurricane:** new effect; Thunder's weather accuracy, hits Pokémon in the air, 30% confusion.
+- **Body Press:** damage uses the user's Defense.
+- **Electro Shot:** charge turn with Sp. Atk +1; no charge turn in rain or with a Power Herb.
+- **Stamina:** Defense +1 each time a damaging move hits.
+- **AI fixes:** Platinum's Thunder weather scoring now runs, for Thunder and Hurricane; Electro Shot is scored as a
+  charge move.
+- **Verified in game** with damage-calc hooks (numbers in `docs/EngineChangelog.md`). Trainer check and boot smoke
+  pass.
+
+**Found, not fixed:** the developer team's **Archaludon is invisible in battle**. Its front sprite (female, shiny)
+doesn't draw from the send-out on, though its HP bar shows. This is a sprite/data issue (E12/E6 area). Flagged for
+the owner / Claude B.
+
+**Files modified:**
+- `decomp/generated/move_battle_effects.txt` (3 effects).
+- `decomp/generated/battle_subscripts.txt`.
+- `decomp/res/battle/scripts/effects/effect_script_0277–0279.s` (new) and `meson.build`.
+- `decomp/res/battle/scripts/subscripts/subscript_sovereign_{stamina,power_herb_electro_shot,electro_shot_rain}.s`
+  (new), `meson.build` and `sub_seq.order`.
+- `decomp/res/moves/{hurricane,body_press,electro_shot}/`.
+- `decomp/res/text/battle_strings.json`.
+- `decomp/src/battle/battle_lib.c`, `battle_controller_player.c`, `trainer_ai/script.s` and `trainer_ai/trainer_ai.c`.
+- `tools/engine/gen_moves.py` and `gen_abilities.py`.
+- `docs/MoveChecklist.md`, `docs/AbilityChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. PR and merge this.
+2. Item 11 continued: the moves and abilities T1's new boss teams will use (Megas and Gen V+ species), and 12b #4–#5
+   (Gen V+ absorbing abilities and redirection) with them.
+3. The owner's answers on Oak's visit (CA-0021).
