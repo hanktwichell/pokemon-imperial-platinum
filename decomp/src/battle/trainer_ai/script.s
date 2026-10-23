@@ -1713,6 +1713,7 @@ Expert_Main:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_COPY_STAT_CHANGES, Expert_PsychUp
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_MIRROR_COAT, Expert_MirrorCoat
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_CHARGE_TURN_DEF_UP, Expert_ChargeTurnNoInvuln
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_ELECTRO_SHOT, Expert_ChargeTurnNoInvuln // Sovereign (item 11)
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN, Expert_ChargeTurnNoInvuln
 
     // Sovereign (item 11): Platinum checked BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN here (already handled above), so

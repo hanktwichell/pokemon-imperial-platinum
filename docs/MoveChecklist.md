@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 96 |
+| exact | 97 |
 | approximate | 75 |
-| placeholder | 209 |
+| placeholder | 208 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -452,7 +452,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 902 | Matcha Gotcha | Grass | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 903 | Syrup Bomb | Grass | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 904 | Ivy Cudgel | Grass | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 905 | Electro Shot | Electric | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 905 | Electro Shot | Electric | `ELECTRO_SHOT` | exact | Sovereign effect: charge turn raises Sp. Atk; no charge turn in rain |
 | 906 | Tera Starstorm | Normal | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 907 | Fickle Beam | Dragon | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 908 | Burning Bulwark | Fire | `PROTECT` | approximate | protects like Protect; the contact penalty is missing |

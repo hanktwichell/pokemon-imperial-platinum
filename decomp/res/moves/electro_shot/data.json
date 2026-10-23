@@ -2,9 +2,9 @@
     "name": "Electro Shot",
     "description": [
         "The user gathers\n",
-        "electricity on the\n",
-        "first turn, boosting\n",
-        "its Sp."
+        "electricity, raising\n",
+        "its Sp. Atk, then\n",
+        "attacks next turn."
     ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_ELECTRIC",
@@ -12,12 +12,14 @@
     "accuracy": 100,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_HIT",
-        "chance": 0
+        "type": "BATTLE_EFFECT_ELECTRO_SHOT",
+        "chance": 100
     },
     "range": "RANGE_SINGLE_TARGET",
     "priority": 0,
     "flags": [
+        "MOVE_FLAG_CAN_MIRROR_MOVE",
+        "MOVE_FLAG_CAN_PROTECT",
         "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
     ],
     "contest": {

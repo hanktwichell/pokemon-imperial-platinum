@@ -82,9 +82,13 @@ E = lambda name: "BATTLE_EFFECT_" + name
 # Battle effects Sovereign adds for a move's exact Gen IX behaviour (item 11), after Platinum's 277: identifier ->
 # (effect, chance, note). These win over the PokeAPI mapping below.
 SOVEREIGN_EFFECTS = {
+    "electro-shot": ("ELECTRO_SHOT", 100, "Sovereign effect: charge turn raises Sp. Atk; no charge turn in rain"),
     "body-press": ("BODY_PRESS", 0, "Sovereign effect: damage uses the user's Defense and Defense stage"),
     "hurricane": ("HURRICANE", 30, "Sovereign effect: Thunder's weather accuracy and hits Pokémon in the air, 30% confusion"),
 }
+# Moves whose script.s (battle message) and anim.s (two-part charge/attack animation) are written by hand; the
+# generator leaves both files alone.
+HANDWRITTEN_SCRIPTS = {"electro_shot"}
 
 # Status stat-drop effects -> the damaging "lower X on hit" effect, for damaging moves PokeAPI files under the former.
 STATUS_TO_HIT = {E("ATK_DOWN"): "LOWER_ATTACK_HIT", E("DEF_DOWN"): "LOWER_DEFENSE_HIT", E("SPEED_DOWN"): "LOWER_SPEED_HIT",
@@ -410,8 +414,9 @@ def main():
         with open(os.path.join(d, "data.json"), "w", encoding="utf-8") as f:
             json.dump(data, f, indent=4, ensure_ascii=False)
             f.write("\n")
-        shutil.copyfile(script_src, os.path.join(d, "script.s"))
-        shutil.copyfile(os.path.join(MOVES_DIR, anim, "anim.s"), os.path.join(d, "anim.s"))
+        if stem not in HANDWRITTEN_SCRIPTS:
+            shutil.copyfile(script_src, os.path.join(d, "script.s"))
+            shutil.copyfile(os.path.join(MOVES_DIR, anim, "anim.s"), os.path.join(d, "anim.s"))
         out_consts.append("MOVE_" + stem.upper())
 
     assert len(out_consts) == LAST_MOVE + 1 and len(set(out_consts)) == len(out_consts)

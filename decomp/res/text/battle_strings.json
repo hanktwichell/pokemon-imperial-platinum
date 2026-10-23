@@ -8593,6 +8593,27 @@
         "The foe’s {STRVAR_1 1, 0, 0} reverted\n",
         "to its primal form!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAbsorbedElectricity_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} absorbed\n",
+        "electricity!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAbsorbedElectricity_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} absorbed\n",
+        "electricity!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAbsorbedElectricity_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} absorbed\n",
+        "electricity!"
+      ]
     }
   ]
 }
