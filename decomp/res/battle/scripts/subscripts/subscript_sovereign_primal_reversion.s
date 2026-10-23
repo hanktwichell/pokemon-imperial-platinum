@@ -28,6 +28,8 @@ _swap:
     Wait 
     PlayBattleAnimation BTLSCR_MSG_TEMP, BATTLE_ANIMATION_SOVEREIGN_MEGA_EVOLVED
     Wait 
+    SovereignRefreshHealthBox BTLSCR_MSG_TEMP
+    Wait 
     // {0}'s Primal Reversion! It reverted to its primal form!
     PrintMessage BattleStrings_Text_SovereignPrimalReversion_Ally, TAG_NICKNAME, BTLSCR_MSG_TEMP
     Wait 

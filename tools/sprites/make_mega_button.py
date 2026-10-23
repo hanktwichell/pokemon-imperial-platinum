@@ -8,6 +8,10 @@ Three 64x32 frames stacked vertically (the art uses the top 24 rows), one 16-col
 The held Mega Stone's own item icon is drawn over the socket as a second sprite (battle_subscreen.c). The socket is
 centred on the stone, at (13.5, 11.5) here, and leaves a one-pixel ring around a 14x14 stone.
 
+It also draws the 8x8 Mega symbol shown on a Mega or Primal's HP bar (healthbox.c, HEALTHBOX_PART_SOVEREIGN_MEGA) as
+the last tile of decomp/res/graphics/battle/healthbox/healthbox_parts.png, in that sheet's palette: a rainbow ring
+around a white ring.
+
 Usage: python3 tools/sprites/make_mega_button.py
 """
 import os
@@ -16,6 +20,22 @@ from PIL import Image
 
 OUT = os.path.join(os.path.dirname(__file__), "..", "..", "decomp", "res", "graphics", "battle", "interface",
                    "mega_button.png")
+HEALTHBOX_PARTS = os.path.join(os.path.dirname(__file__), "..", "..", "decomp", "res", "graphics", "battle", "healthbox",
+                               "healthbox_parts.png")
+HEALTHBOX_PART_COUNT = 78  # Platinum's parts; the Mega symbol is part 78 (enum HealthBoxPart)
+
+# The HP bar palette (healthbox_parts.png / player_singles.png): 2 outline, 8 orange, 10 red, 11 blue, 12 light blue,
+# 13 magenta, 14 white. 0 keeps the HP bar's own pixel (healthbox.c draws the symbol over the tile it covers).
+HEALTHBOX_MEGA_TILE = [
+    "00222200",
+    "02dd8820",
+    "2ddee882",
+    "2de22e82",
+    "2be22ea2",
+    "2bbeeaa2",
+    "02bbcc20",
+    "00222200",
+]
 
 PALETTE = [
     (255, 0, 255),    # 0 transparent
@@ -112,6 +132,18 @@ def draw_frame(img, top, state):
         img.putpixel((px, top + py), 6 if on else 5)
 
 
+def write_healthbox_tile():
+    parts = Image.open(HEALTHBOX_PARTS)
+    out = Image.new("P", ((HEALTHBOX_PART_COUNT + 1) * 8, 8), 0)
+    out.putpalette(parts.getpalette())
+    out.paste(parts.crop((0, 0, HEALTHBOX_PART_COUNT * 8, 8)), (0, 0))
+    for y, row in enumerate(HEALTHBOX_MEGA_TILE):
+        for x, c in enumerate(row):
+            out.putpixel((HEALTHBOX_PART_COUNT * 8 + x, y), int(c, 16))
+    out.save(HEALTHBOX_PARTS, bits=4)
+    print(f"wrote {HEALTHBOX_PARTS}")
+
+
 def main():
     img = Image.new("P", (W, H * 3), 0)
     img.putpalette([c for rgb in PALETTE for c in rgb])
@@ -119,6 +151,7 @@ def main():
         draw_frame(img, state * H, state)
     img.save(OUT, bits=4)
     print(f"wrote {OUT}")
+    write_healthbox_tile()
 
 
 if __name__ == "__main__":

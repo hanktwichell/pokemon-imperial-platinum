@@ -33,6 +33,8 @@ _sprite:
     Wait 
     PlayBattleAnimation BTLSCR_MSG_TEMP, BATTLE_ANIMATION_SOVEREIGN_MEGA_EVOLVED
     Wait 
+    SovereignRefreshHealthBox BTLSCR_MSG_TEMP
+    Wait 
     // {0} has Mega Evolved into Mega {1}!
     PrintMessage BattleStrings_Text_SovereignMegaEvolved_Ally, TAG_NICKNAME_POKE, BTLSCR_MSG_TEMP, BTLSCR_MSG_TEMP
     Wait 
