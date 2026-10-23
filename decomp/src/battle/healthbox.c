@@ -8,6 +8,7 @@
 #include "constants/heap.h"
 #include "constants/pokemon.h"
 #include "constants/string.h"
+#include "generated/species.h"
 
 #include "battle/battle_system.h"
 
@@ -158,7 +159,6 @@ enum HealthBoxPart {
     HEALTHBOX_PART_LEVEL_MALE_BOTTOM_1,
     HEALTHBOX_PART_LEVEL_GENDERLESS_BOTTOM_0,
     HEALTHBOX_PART_LEVEL_GENDERLESS_BOTTOM_1,
-    HEALTHBOX_PART_SOVEREIGN_MEGA, // Sovereign (E8): drawn by tools/sprites/make_mega_button.py
 };
 
 static s32 HealthBox_DrawGauge(HealthBox *healthbox, enum HealthBoxGaugeType gaugeType);
@@ -174,6 +174,9 @@ static void HealthBox_DrawCurrentHP(HealthBox *healthbox, u32 hp);
 static void HealthBox_DrawMaxHP(HealthBox *healthbox);
 static void HealthBox_DrawCaughtIcon(HealthBox *healthbox);
 static void HealthBox_SovereignDrawMegaIcon(HealthBox *healthbox);
+static void HealthBox_SovereignCreateMegaIcon(HealthBox *healthbox, NARC *narc);
+static void HealthBox_SovereignDestroyMegaIcon(HealthBox *healthbox);
+static void HealthBox_SovereignPlaceMegaIcon(HealthBox *healthbox, s16 x, s16 y);
 static void HealthBox_DrawStatusIcon(HealthBox *healthbox, enum HealthBoxPart part);
 static void HealthBox_DrawBallCount(HealthBox *healthbox, u32 flags);
 static void HealthBox_DrawBallsLeftMessage(HealthBox *healthbox, u32 flags);
@@ -577,6 +580,48 @@ static const SpriteTemplate sHealthBoxTemplate_NoPlayerMon = {
     .vramTransfer = FALSE,
 };
 
+// Sovereign (E8): the Mega symbol by the name of a Mega or Primal (res/graphics/battle/healthbox/sovereign_mega_icon.png,
+// tools/sprites/make_mega_icon.py), in the HP bar's palette. Animation 0 is the Mega symbol, 1 Kyogre's alpha and 2
+// Groudon's omega. The healthboxes share one set of resources.
+#define SOVEREIGN_MEGA_ICON_RES_ID 20042
+
+enum SovereignMegaIconAnim {
+    SOVEREIGN_MEGA_ICON_MEGA = 0,
+    SOVEREIGN_MEGA_ICON_ALPHA,
+    SOVEREIGN_MEGA_ICON_OMEGA,
+};
+
+static const SpriteTemplate sSovereignMegaIconTemplate = {
+    .x = 0,
+    .y = 0,
+    .z = 0,
+    .animIdx = SOVEREIGN_MEGA_ICON_MEGA,
+    .priority = 20,
+    .plttIdx = 0,
+    .vramType = NNS_G2D_VRAM_TYPE_2DMAIN,
+    .resources = {
+        SOVEREIGN_MEGA_ICON_RES_ID,
+        HEALTHBOX_MAIN_PALETTE_RESID,
+        SOVEREIGN_MEGA_ICON_RES_ID,
+        SOVEREIGN_MEGA_ICON_RES_ID,
+        SPRITE_RESOURCE_NONE,
+        SPRITE_RESOURCE_NONE,
+    },
+    .bgPriority = 0,
+    .vramTransfer = FALSE,
+};
+
+// Where the symbol's centre sits from the healthbox's: on the name's row, over the box's border, right of the level on
+// the foe's boxes and left of the name on the player's.
+static const s8 sSovereignMegaIconOffset[][2] = {
+    [HEALTHBOX_TYPE_PLAYER_SOLO] = { -52, -10 },
+    [HEALTHBOX_TYPE_ENEMY_SOLO] = { 58, -6 },
+    [HEALTHBOX_TYPE_PLAYER_SLOT_1] = { -59, -6 },
+    [HEALTHBOX_TYPE_ENEMY_SLOT_1] = { 58, -6 },
+    [HEALTHBOX_TYPE_PLAYER_SLOT_2] = { -59, -6 },
+    [HEALTHBOX_TYPE_ENEMY_SLOT_2] = { 58, -6 },
+};
+
 #include "res/graphics/battle/healthbox/healthbox_parts.4bpp.h"
 
 void HealthBox_LoadResources(SpriteSystem *spriteSys, SpriteManager *spriteMan, NARC *narc, PaletteData *palette, enum HealthBoxType healthboxType)
@@ -805,9 +850,9 @@ void Healthbox_CreateMainSprite(HealthBox *healthbox)
 
     HealthBox_LoadResources(spriteSystem, spriteManager, narc, paletteData, healthbox->type);
     healthbox->mainSprite = HealthBox_DrawSprite(spriteSystem, spriteManager, healthbox->type);
-    healthbox->sovereignMegaDrawn = FALSE;
 
     HealthBox_LoadMainPalette(spriteSystem, spriteManager, narc, paletteData, healthbox->type);
+    HealthBox_SovereignCreateMegaIcon(healthbox, narc);
 
     if (healthbox->arrowSprite != NULL) {
         Sprite_SetPositionXY(healthbox->arrowSprite->sprite, spriteTemplate->x - sArrowOffsetX[healthbox->type], spriteTemplate->y + 0);
@@ -822,6 +867,7 @@ void Healthbox_DestroySprites(HealthBox *healthbox)
     Healthbox_UnloadMainSpriteObjects(healthbox);
     Healthbox_DeleteArrowSprite(healthbox);
     Healthbox_UnloadArrowSpriteObjects(healthbox);
+    HealthBox_SovereignDestroyMegaIcon(healthbox);
 }
 
 void Healthbox_ToggleHPDisplayMode(HealthBox *healthbox)
@@ -973,6 +1019,10 @@ void Healthbox_SetExplicitPriority(HealthBox *healthbox, int priority)
     if (healthbox->arrowSprite != NULL) {
         ManagedSprite_SetExplicitPriority(healthbox->arrowSprite, priority);
     }
+
+    if (healthbox->sovereignMegaIcon != NULL) {
+        ManagedSprite_SetExplicitPriority(healthbox->sovereignMegaIcon, priority);
+    }
 }
 
 /**
@@ -1004,6 +1054,10 @@ void HealthBox_Enable(HealthBox *battleSys, BOOL enable)
 
     ManagedSprite_SetDrawFlag(battleSys->mainSprite, enable);
     HealthBox_EnableArrow(battleSys, enable);
+
+    if (battleSys->sovereignMegaIcon != NULL) {
+        ManagedSprite_SetDrawFlag(battleSys->sovereignMegaIcon, enable && battleSys->sovereignMegaIconShown);
+    }
 }
 
 void HealthBox_OffsetPositionXY(HealthBox *healthbox, int x, int y)
@@ -1017,6 +1071,8 @@ void HealthBox_OffsetPositionXY(HealthBox *healthbox, int x, int y)
             template->x + x - sArrowOffsetX[healthbox->type],
             template->y + y + 0);
     }
+
+    HealthBox_SovereignPlaceMegaIcon(healthbox, template->x + x, template->y + y);
 }
 
 void HealthBox_Scroll(HealthBox *healthbox, enum HealthBoxScrollDirection direction)
@@ -1115,6 +1171,8 @@ static void Healthbox_Task_Scroll(SysTask *task, void *data)
     if (healthbox->arrowSprite != NULL) {
         ManagedSprite_SetPositionXY(healthbox->arrowSprite, x - sArrowOffsetX[healthbox->type], y + 0);
     }
+
+    HealthBox_SovereignPlaceMegaIcon(healthbox, x, y);
 
     // If the sprites are now in position, we're done
     if (done > 0) {
@@ -1293,47 +1351,71 @@ static void HealthBox_DrawCaughtIcon(HealthBox *healthbox)
     MI_CpuCopy16(tileNum, (void *)((u32)objCharPtr + sCaughtIconVRAMTransfer[healthbox->type].pos + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]), sCaughtIconVRAMTransfer[healthbox->type].size);
 }
 
-// Sovereign (E8): a Mega or Primal shows the Mega symbol on its HP bar, in the caught-species icon's place (a wild
-// Pokemon never Mega Evolves, and only wild Pokemon show that icon). The party Pokemon keeps its Mega form for the
-// whole battle, so the HP bar reads it from there. The symbol's color 0 shows the tile it covers, which is kept to put
-// back when a Pokemon that isn't Mega takes the slot.
+// Sovereign (E8): a Mega or Primal shows the Mega symbol (Kyogre the alpha, Groudon the omega) by its name, Insurgence-
+// style. The party Pokemon keeps its Mega form for the whole battle, so the healthbox reads it from there.
 static void HealthBox_SovereignDrawMegaIcon(HealthBox *healthbox)
 {
-    if (healthbox->type == HEALTHBOX_TYPE_SAFARI_ZONE || healthbox->type == HEALTHBOX_TYPE_PAL_PARK) {
+    if (healthbox->sovereignMegaIcon == NULL) {
         return;
     }
 
     Pokemon *mon = BattleSystem_GetPartyPokemon(healthbox->battleSys, healthbox->battler, healthbox->selectedPartySlot);
-    BOOL mega = Pokemon_IsSovereignMegaForm(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), Pokemon_GetValue(mon, MON_DATA_FORM, NULL));
+    u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
 
-    if (mega == FALSE && healthbox->sovereignMegaDrawn == FALSE) {
+    healthbox->sovereignMegaIconShown = Pokemon_IsSovereignMegaForm(species, Pokemon_GetValue(mon, MON_DATA_FORM, NULL));
+
+    if (healthbox->sovereignMegaIconShown) {
+        ManagedSprite_SetAnim(healthbox->sovereignMegaIcon, species == SPECIES_KYOGRE ? SOVEREIGN_MEGA_ICON_ALPHA : species == SPECIES_GROUDON ? SOVEREIGN_MEGA_ICON_OMEGA : SOVEREIGN_MEGA_ICON_MEGA);
+    }
+
+    ManagedSprite_SetDrawFlag(healthbox->sovereignMegaIcon, healthbox->sovereignMegaIconShown && ManagedSprite_GetDrawFlag(healthbox->mainSprite));
+}
+
+static void HealthBox_SovereignCreateMegaIcon(HealthBox *healthbox, NARC *narc)
+{
+    SpriteSystem *spriteSystem = BattleSystem_GetSpriteSystem(healthbox->battleSys);
+    SpriteManager *spriteManager = BattleSystem_GetSpriteManager(healthbox->battleSys);
+    const SpriteTemplate *template = HealthBox_MainSpriteTemplate(healthbox->type);
+
+    healthbox->sovereignMegaIcon = NULL;
+    healthbox->sovereignMegaIconShown = FALSE;
+
+    if (healthbox->type == HEALTHBOX_TYPE_SAFARI_ZONE || healthbox->type == HEALTHBOX_TYPE_PAL_PARK) {
         return;
     }
 
-    NNSG2dImageProxy *imgProxy = Sprite_GetImageProxy(healthbox->mainSprite->sprite);
-    u8 *slot = (u8 *)((u32)G2_GetOBJCharPtr() + sCaughtIconVRAMTransfer[healthbox->type].pos + imgProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN]);
+    // The first healthbox loads them; the others find them loaded.
+    SpriteSystem_LoadCharResObjFromOpenNarc(spriteSystem, spriteManager, narc, healthbox_sovereign_mega_icon_NCGR_lz, TRUE, NNS_G2D_VRAM_TYPE_2DMAIN, SOVEREIGN_MEGA_ICON_RES_ID);
+    SpriteSystem_LoadCellResObjFromOpenNarc(spriteSystem, spriteManager, narc, healthbox_sovereign_mega_icon_cell_NCER_lz, TRUE, SOVEREIGN_MEGA_ICON_RES_ID);
+    SpriteSystem_LoadAnimResObjFromOpenNarc(spriteSystem, spriteManager, narc, healthbox_sovereign_mega_icon_anim_NANR_lz, TRUE, SOVEREIGN_MEGA_ICON_RES_ID);
 
-    if (mega == FALSE) {
-        MI_CpuCopy16(healthbox->sovereignMegaSlotBackup, slot, TILE_SIZE_4BPP);
-        healthbox->sovereignMegaDrawn = FALSE;
+    healthbox->sovereignMegaIcon = SpriteSystem_NewSprite(spriteSystem, spriteManager, &sSovereignMegaIconTemplate);
+    ManagedSprite_SetDrawFlag(healthbox->sovereignMegaIcon, FALSE);
+    HealthBox_SovereignPlaceMegaIcon(healthbox, template->x, template->y);
+}
+
+// The battle ends with every healthbox: the first to go unloads the shared resources.
+static void HealthBox_SovereignDestroyMegaIcon(HealthBox *healthbox)
+{
+    SpriteManager *spriteManager = BattleSystem_GetSpriteManager(healthbox->battleSys);
+
+    if (healthbox->sovereignMegaIcon == NULL) {
         return;
     }
 
-    if (healthbox->sovereignMegaDrawn == FALSE) {
-        MI_CpuCopy16(slot, healthbox->sovereignMegaSlotBackup, TILE_SIZE_4BPP);
-        healthbox->sovereignMegaDrawn = TRUE;
+    Sprite_DeleteAndFreeResources(healthbox->sovereignMegaIcon);
+    healthbox->sovereignMegaIcon = NULL;
+    SpriteManager_UnloadCharObjById(spriteManager, SOVEREIGN_MEGA_ICON_RES_ID);
+    SpriteManager_UnloadCellObjById(spriteManager, SOVEREIGN_MEGA_ICON_RES_ID);
+    SpriteManager_UnloadAnimObjById(spriteManager, SOVEREIGN_MEGA_ICON_RES_ID);
+}
+
+// Keeps the symbol with its healthbox, at (x, y).
+static void HealthBox_SovereignPlaceMegaIcon(HealthBox *healthbox, s16 x, s16 y)
+{
+    if (healthbox->sovereignMegaIcon != NULL) {
+        ManagedSprite_SetPositionXY(healthbox->sovereignMegaIcon, x + sSovereignMegaIconOffset[healthbox->type][0], y + sSovereignMegaIconOffset[healthbox->type][1]);
     }
-
-    const u8 *icon = GetHealthBoxPartsTile(HEALTHBOX_PART_SOVEREIGN_MEGA);
-    u8 tile[TILE_SIZE_4BPP];
-
-    for (int i = 0; i < TILE_SIZE_4BPP; i++) {
-        u8 lo = (icon[i] & 0xF) ? (icon[i] & 0xF) : (healthbox->sovereignMegaSlotBackup[i] & 0xF);
-        u8 hi = (icon[i] & 0xF0) ? (icon[i] & 0xF0) : (healthbox->sovereignMegaSlotBackup[i] & 0xF0);
-        tile[i] = hi | lo;
-    }
-
-    MI_CpuCopy16(tile, slot, TILE_SIZE_4BPP);
 }
 
 static void HealthBox_DrawStatusIcon(HealthBox *healthbox, enum HealthBoxPart part)

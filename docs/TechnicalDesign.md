@@ -123,10 +123,16 @@ implemented.
   - Load particles with `LoadParticleSystem` while sprites are held faded. `LoadParticleResource` draws unfaded
     battler copies while it loads.
   - In a single battle, `BATTLE_ANIM_BATTLER_PLAYER_2` / `ENEMY_2` fall back to player 1, so don't fade by slot.
-- **HP-bar symbol.** `HealthBox_SovereignDrawMegaIcon` (`healthbox.c`) draws part `HEALTHBOX_PART_SOVEREIGN_MEGA` in
-  the caught-icon slot (`sCaughtIconVRAMTransfer`), over the tile it saves first. It's called whenever the name is
-  drawn. The battle-script command `SovereignRefreshHealthBox` (after `End` in `btlcmd.h`) sends
-  `BattleController_EmitRefreshHPGauge`.
+- **Mega symbol by the name.** Each healthbox has a third sprite, `sovereignMegaIcon` (`healthbox.c`).
+  - Resources: char, cell and anim ID 20042, shared by all the healthboxes; palette `HEALTHBOX_MAIN_PALETTE_RESID`.
+  - Animation 0 is the Mega symbol, 1 is α and 2 is Ω.
+  - `HealthBox_SovereignPlaceMegaIcon` keeps it at `sSovereignMegaIconOffset` from the box. It's called on create,
+    in `HealthBox_OffsetPositionXY` (slide and bob) and in the scroll task.
+  - `HealthBox_Enable` and `Healthbox_SetExplicitPriority` apply to it too.
+  - `HealthBox_SovereignDrawMegaIcon` runs whenever the name is drawn. It reads the party Pokémon's form and shows
+    the symbol only while the box is drawn.
+  - The battle-script command `SovereignRefreshHealthBox` (after `End` in `btlcmd.h`) sends
+    `BattleController_EmitRefreshHPGauge`, which redraws the name after the reveal.
 
 ### 4b. All other forms (milestone FM, decision 16)
 - **Data.** `data/forms.csv` (`build_species_data.py`) lists every alternate form with its own data, with a category.

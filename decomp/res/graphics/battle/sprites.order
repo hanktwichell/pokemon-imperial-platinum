@@ -345,3 +345,6 @@ interface/mega_button.NCLR
 interface/mega_button.NCGR.lz
 interface/mega_button_cell.NCER.lz
 interface/mega_button_anim.NANR.lz
+healthbox/sovereign_mega_icon.NCGR.lz
+healthbox/sovereign_mega_icon_cell.NCER.lz
+healthbox/sovereign_mega_icon_anim.NANR.lz

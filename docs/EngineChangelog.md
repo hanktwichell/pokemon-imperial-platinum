@@ -4,6 +4,30 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E8 — The Mega symbol moves next to the name
+
+The Mega symbol is now a 16×16 stone next to the Pokémon's name, as in Pokémon Insurgence. Before, it was an 8×8
+ring at the left end of the HP bar's strip, where it looked like a status condition.
+- **The art.** A Mega shows a rainbow stone split by the white swirl of the Mega Evolution symbol. Primal Kyogre shows
+  a blue stone with α, and Primal Groudon a red stone with Ω.
+- **The position.** It sits on the name's row, over the box's border:
+  - on the foe's boxes, right after the level;
+  - on the player's boxes, just left of the name, where nothing else is drawn.
+- **How it's drawn.** It's a sprite of its own, one per healthbox (`healthbox.c`). It moves with its box when the box
+  slides in or out and when it bobs, and it hides when the box does.
+  - The art is `res/graphics/battle/healthbox/sovereign_mega_icon.png` (new
+    `tools/sprites/make_mega_icon.py`), in the HP bar's own palette.
+  - The healthboxes share one set of resources.
+  - The 8×8 tile is gone, and `healthbox_parts.png` is back to Platinum's.
+- **Verified in the test build:**
+  - Garchomp in a wild battle.
+  - Doubles: Garchomp and the foe's Charizard show it; Turtwig and Venusaur don't. Both boxes and their symbols hide
+    during the Drought animation.
+  - Switching Turtwig in shows a clean box, and switching Garchomp back brings the symbol back.
+  - Primal Kyogre (α) and Primal Groudon (Ω), each as a temporary lead.
+  - The release ROM builds with no warnings.
+
+
 ## Item 11 (part 3) — 22 common Gen V+ abilities
 
 Ranked by how many species can have each ability:
