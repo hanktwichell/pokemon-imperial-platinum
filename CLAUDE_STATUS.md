@@ -1787,3 +1787,26 @@ where the regional forms live.
 2. Common Gen V+ move effects. They're placeholders now; start with the moves the most species learn.
 3. More abilities: Analytic, Protosynthesis/Quark Drive, Healer, Harvest, Cheek Pouch, Magic Bounce, Protean/Libero,
    Intimidate triggers (Defiant, Rattled).
+
+## CA-0028 — 2026-10-23 (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented (item 11 part 5):**
+- 10 stat-changing status moves exact, through the new generator `tools/engine/gen_stat_moves.py` (Hone Claws, Work Up,
+  Coil, Quiver Dance, Shell Smash, Cotton Guard, Shift Gear, Victory Dance, Noble Roar, Tearful Look).
+- 12 damaging moves exact: Hex, Venoshock, Acrobatics, Electro Ball, Heavy Slam, Heat Crash, Stored Power, Power Trip
+  (`Sovereign_MovePower`), Psyshock, Psystrike, Secret Sword (hit Defense), Foul Play (target's Attack).
+- Verified in game: Shell Smash, Noble Roar, Heavy Slam (59 = exact), Foul Play (uses target Attack 148).
+- Move checklist: exact 119, approximate 67, placeholder 194.
+- PR #32 (part 4) had a conflict with main; main merged into the branch, a new PR carries parts 4 and 5.
+
+**Files modified:** `decomp/src/battle/battle_lib.c`, `decomp/include/battle/battle_lib.h`,
+`tools/engine/gen_stat_moves.py` (new), `tools/engine/gen_moves.py`, `docs/MoveChecklist.md`,
+`docs/EngineChangelog.md`, battle subscripts/effects and their `meson.build`/`sub_seq.order`/`generated/*` lists, the
+10 moves' `data.json`, `include/data/move_side_effect_subscripts.h`.
+
+**Next 3 steps:**
+1. More item 11 moves: Smack Down, Incinerate, Clear Smog, Dragon Tail, Flame Charge, Retaliate, Fell Stinger, Final
+   Gambit, Acid Spray, Soak, Wide/Quick Guard.
+2. More abilities: Analytic, Protosynthesis/Quark Drive, Magic Bounce, Protean/Libero, Overcoat powder immunity,
+   Intimidate triggering Defiant/Competitive/Rattled.
+3. Oak/Rowan National Dex scene once the owner answers the three questions in `docs/Story.md`.
