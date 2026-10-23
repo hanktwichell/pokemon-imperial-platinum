@@ -1246,6 +1246,48 @@ screen, off and on. The release ROM builds and passes boot smoke.
 
 ---
 
+## CB-0019 — 2026-10-22, 8:20 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: the Mega Evolution and Primal Reversion animation** (E8 step 4, `docs/MegaEvolution.md`), verified frame
+by frame in the test build:
+- The background darkens and the other battlers dim.
+- Light beams and gathering sparkles reach the Pokémon, and a ring of light forms around it.
+- It pulses pink, cyan and gold (blues for Kyogre, reds for Groudon) as it shakes, then turns white.
+- The sprite swaps while it's white. Streaks burst out, the new form fades in from white with sparkles, and it cries.
+- About 6 seconds in all. It was checked on Garchomp (wild), Kyogre and Groudon (temporary leads), and the foe's
+  Charizard in the doubles test battle.
+- It's built from Platinum's own particle effects plus one new animation function, a one-way sprite fade that
+  survives the form change. Details are in `docs/TechnicalDesign.md` §4.
+
+**Also (owner asked):**
+- CITATIONS credits the Mega Garchomp Z sprite to thesonicgameryt (DeviantArt), and Nolan Herkomer for many of the
+  shiny sprites.
+- thesonicgameryt's page is saved in `docs/ProjectStatus.md` as a source of new Mega sprites to check for E12.
+
+**Files modified:**
+- Animations:
+  - `decomp/res/battle/scripts/common_anims/sovereign_mega_evolution.s`, `sovereign_mega_evolved.s`,
+    `sovereign_primal_alpha.s`, `sovereign_primal_omega.s` (formerly `dummy23/24/41/42.s`), with `meson.build` and
+    `anim_subscripts.order`
+  - `decomp/generated/battle_sub_animations.txt`
+  - `decomp/res/battle/scripts/subscripts/subscript_sovereign_mega_evolution.s`,
+    `subscript_sovereign_primal_reversion.s`
+- Engine:
+  - `decomp/src/battle_anim/script_funcs_3.c`, `script_func_tables.c`, `decomp/include/battle_anim/script_funcs_3.h`
+  - `decomp/include/constants/battle/battle_anim.h`, `decomp/asm/macros/btlanimfunc.inc`
+  - `decomp/src/battle/battle_io_command.c`
+- Docs:
+  - `docs/EngineChangelog.md`, `docs/TechnicalDesign.md`, `docs/EngineRoadmap.md`, `docs/MegaEvolution.md` (via
+    `tools/design/gen_mega_doc.py`), `docs/ProjectStatus.md`
+  - `CITATIONS.md`, `docs/SpriteLog.md` (via `tools/sprites/import_sprite_pack.py`), `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR when green.
+2. The Mega abilities the boss teams need: Magic Bounce, Parental Bond, Strong Jaw, Tough Claws, Aura Guard.
+3. The rest of the animation spec: the Mega symbol over the sprite and a Mega icon on the HP bar.
+
+---
+
 ## CA-0022 — 2026-10-23 (session on `claude/festive-bardeen-5h7beo`)
 
 **Implemented:** 12b #8 checked; no code change needed now. `docs/AIReview.md` has a new *#8* section:
@@ -1300,3 +1342,89 @@ the owner / Claude B.
 2. Item 11 continued: the moves and abilities T1's new boss teams will use (Megas and Gen V+ species), and 12b #4–#5
    (Gen V+ absorbing abilities and redirection) with them.
 3. The owner's answers on Oak's visit (CA-0021).
+
+---
+
+## CB-0020 — 2026-10-22, 8:35 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Merged:** PR #24 (the Mega Evolution / Primal Reversion animation and the sprite credits, CB-0019). I merged main
+into it first: CA-0021 and CA-0022 are kept, in time order.
+
+**Implemented: the Mega symbol on the HP bar** (E8 step 5). A Mega or Primal shows a small rainbow Mega symbol at the
+left end of its HP bar's strip, from the reveal until it leaves the field.
+- It's an 8×8 tile at the end of `healthbox_parts.png`, drawn by `tools/sprites/make_mega_button.py`.
+- It sits where Platinum shows the caught-species Poké Ball (that ball only appears on wild Pokémon, which never Mega
+  Evolve).
+- The tile under it is kept and put back when a Pokémon that isn't Mega takes the slot.
+- The subscripts redraw the HP bar with a new script command, `SovereignRefreshHealthBox`, appended after `End`.
+- Verified in the test build:
+  - Singles: Garchomp's bar shows it.
+  - Doubles: Garchomp's and the foe's Charizard's bars show it; Turtwig's and Venusaur's don't.
+  - Switching Turtwig in leaves a clean bar, and switching Garchomp back shows it again.
+  - The release ROM builds without warnings and passes boot smoke.
+
+**For Claude A:**
+- The boss Mega abilities (Magic Bounce, Parental Bond, Strong Jaw, Tough Claws, Aura Guard) are yours, with item 11
+  (CA-0022). I won't start them.
+- Your Oak scene (CA-0021) can use the flag DX added, `FLAG_SOVEREIGN_SHOWED_ROWAN_SINNOH_DEX` (CB-0016). Rowan's
+  event already runs on it.
+
+**Files modified:**
+- Code:
+  - `decomp/src/battle/healthbox.c`, `decomp/include/battle/healthbox.h`
+  - `decomp/src/battle/battle_script.c`, `decomp/include/data/scripts/btlcmd.h`, `decomp/asm/macros/btlcmd.inc`
+  - `decomp/res/battle/scripts/subscripts/subscript_sovereign_mega_evolution.s`,
+    `subscript_sovereign_primal_reversion.s`
+- Art: `decomp/res/graphics/battle/healthbox/healthbox_parts.png`, via `tools/sprites/make_mega_button.py`
+- Docs:
+  - `docs/EngineChangelog.md`, `docs/TechnicalDesign.md`, `docs/EngineRoadmap.md`, `docs/MegaEvolution.md` (via
+    `tools/design/gen_mega_doc.py`)
+  - `CITATIONS.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR when green.
+2. The last part of the animation spec: the Mega symbol flashing over the sprite at the reveal (an animation sprite
+   with `SPRITE_FUNC_OFFSET_AND_ANIMATE`).
+3. Then a milestone nobody holds: FM's held-item forms (Crowned Zacian/Zamazenta, Ogerpon's masks), which the roadmap
+   puts right after E7's items. I'll check with the roadmap first.
+
+---
+
+## CB-0021 — 2026-10-22, 8:52 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Merged:** PR #25 (the HP-bar Mega symbol, CB-0020).
+
+**Implemented: the symbol flash** (the last step of the E8 animation spec). As the new form fades in, a 32×32 symbol
+flashes over it and blinks out:
+- the Mega Evolution symbol (a rainbow ring around an S-swirl) for a Mega;
+- Kyogre's α (blues) and Groudon's Ω (reds) for a Primal.
+
+How it's built:
+- The art is original, by `tools/sprites/make_mega_symbols.py`. Each symbol is an animation sprite
+  (`res/graphics/battle/moves/sovereign_*_symbol.*`, added to the four `anim_*.order` files) shown with
+  `SPRITE_FUNC_OFFSET_AND_ANIMATE`.
+- The Primals get their own reveals, `sovereign_primal_alpha_revealed` and `sovereign_primal_omega_revealed` (formerly
+  `dummy43/44`). The Primal subscript picks one by species.
+- Verified frame by frame: Garchomp (wild), the foe's Charizard (doubles test battle) and Kyogre (temporary lead). The
+  release ROM builds without warnings and passes boot smoke.
+
+**E8 is done** (roadmap row 10 ✅). Mega sprites come with E12, the missing Mega abilities with item 11 (Claude A), and
+Mega timing with 12b.
+
+**Files modified:**
+- Art: `tools/sprites/make_mega_symbols.py` (new), `decomp/res/graphics/battle/moves/sovereign_{mega,alpha,omega}_symbol.png`
+  plus `_cell.json` and `_anim.json` (new), `decomp/res/graphics/battle/moves/meson.build`, `anim_ncgr/nclr/ncer/nanr.order`
+- Animations: `decomp/res/battle/scripts/common_anims/sovereign_mega_evolved.s`,
+  `sovereign_primal_alpha_revealed.s` and `sovereign_primal_omega_revealed.s` (formerly `dummy43/44.s`),
+  `sovereign_primal_alpha.s`, `sovereign_primal_omega.s` (comments), `meson.build`, `anim_subscripts.order`,
+  `decomp/generated/battle_sub_animations.txt`, `decomp/res/battle/scripts/subscripts/subscript_sovereign_primal_reversion.s`
+- Docs:
+  - `docs/EngineChangelog.md`, `docs/TechnicalDesign.md`, `docs/EngineRoadmap.md`, `docs/MegaEvolution.md` (via
+    `tools/design/gen_mega_doc.py`)
+  - `CITATIONS.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR when green.
+2. FM's held-item forms (Crowned Zacian/Zamazenta, Ogerpon's masks), which the roadmap puts right after E7's items.
+   Check that nobody holds it first.
+3. The Route 208 Mint sale (E14).

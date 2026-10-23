@@ -25,12 +25,15 @@ _evolve:
     Wait 
 
 _sprite:
-    PlaySound BTLSCR_MSG_TEMP, 1980
-    SetMosaic BTLSCR_MSG_TEMP, 8, 1
+    // The animation (with Battle Scene on) leaves the Pokemon white; the sprite is swapped while it's white, and
+    // sovereign_mega_evolved.s fades the new form in.
+    PlayBattleAnimation BTLSCR_MSG_TEMP, BATTLE_ANIMATION_SOVEREIGN_MEGA_EVOLUTION
     Wait 
     ChangeForm BTLSCR_MSG_TEMP
-    PlaySound BTLSCR_MSG_TEMP, 1984
-    SetMosaic BTLSCR_MSG_TEMP, 0, 1
+    Wait 
+    PlayBattleAnimation BTLSCR_MSG_TEMP, BATTLE_ANIMATION_SOVEREIGN_MEGA_EVOLVED
+    Wait 
+    SovereignRefreshHealthBox BTLSCR_MSG_TEMP
     Wait 
     // {0} has Mega Evolved into Mega {1}!
     PrintMessage BattleStrings_Text_SovereignMegaEvolved_Ally, TAG_NICKNAME_POKE, BTLSCR_MSG_TEMP, BTLSCR_MSG_TEMP

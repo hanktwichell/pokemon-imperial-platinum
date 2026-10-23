@@ -13,12 +13,29 @@ _000:
     Wait 
 
 _sprite:
-    PlaySound BTLSCR_MSG_TEMP, 1980
-    SetMosaic BTLSCR_MSG_TEMP, 8, 1
+    // The animation (with Battle Scene on) leaves the Pokemon white, after pulsing in blues for Kyogre or reds for
+    // Groudon; the sprite is swapped while it's white, and sovereign_primal_*_revealed.s fades the new form in.
+    CompareMonDataToValue OPCODE_EQU, BTLSCR_MSG_TEMP, BATTLEMON_SPECIES, SPECIES_GROUDON, _omega
+    PlayBattleAnimation BTLSCR_MSG_TEMP, BATTLE_ANIMATION_SOVEREIGN_PRIMAL_ALPHA
+    GoTo _swap
+
+_omega:
+    PlayBattleAnimation BTLSCR_MSG_TEMP, BATTLE_ANIMATION_SOVEREIGN_PRIMAL_OMEGA
+
+_swap:
     Wait 
     ChangeForm BTLSCR_MSG_TEMP
-    PlaySound BTLSCR_MSG_TEMP, 1984
-    SetMosaic BTLSCR_MSG_TEMP, 0, 1
+    Wait 
+    CompareMonDataToValue OPCODE_EQU, BTLSCR_MSG_TEMP, BATTLEMON_SPECIES, SPECIES_GROUDON, _omegaRevealed
+    PlayBattleAnimation BTLSCR_MSG_TEMP, BATTLE_ANIMATION_SOVEREIGN_PRIMAL_ALPHA_REVEALED
+    GoTo _revealed
+
+_omegaRevealed:
+    PlayBattleAnimation BTLSCR_MSG_TEMP, BATTLE_ANIMATION_SOVEREIGN_PRIMAL_OMEGA_REVEALED
+
+_revealed:
+    Wait 
+    SovereignRefreshHealthBox BTLSCR_MSG_TEMP
     Wait 
     // {0}'s Primal Reversion! It reverted to its primal form!
     PrintMessage BattleStrings_Text_SovereignPrimalReversion_Ally, TAG_NICKNAME, BTLSCR_MSG_TEMP

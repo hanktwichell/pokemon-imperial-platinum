@@ -114,14 +114,13 @@ exact yet. All four now are:
   - The party Pokémon stays Mega while switched out. Every Mega/Primal form reverts when the battle ends
     (`BattleMain_CopyBattleSysToDTOAndFree`).
   - Messages: "<Pokémon>'s <stone> is reacting to the Mega Ring!", then "<Pokémon> has Mega Evolved into Mega
-    <species>!". The new subscript is `subscript_sovereign_mega_evolution`; the sprite flashes with Platinum's
-    form-change mosaic.
+    <species>!". The new subscript is `subscript_sovereign_mega_evolution`; the animation is described below.
   - Verified in the test build:
     - The test trainer's Charizard Mega Evolved on turn 1 and Drought set the sun.
     - The player's Garchomp Mega Evolved in a wild battle (a temporary always-Mega hook stood in for the button) and
       didn't again on turn 2.
     - After the battle, Garchomp was back to its normal stats with its Garchompite.
-  - Still to do: the animation and the AI review.
+  - Still to do: the AI review.
 - **The MEGA button** (step 3; `battle_subscreen.c`, `battle_display.c`). When the active Pokémon can Mega Evolve, the
   move menu shows a MEGA button above the moves, with the held Mega Stone's item icon in its socket (Mega Rayquaza shows
   the Mega Ring). Off, it's grey; on, it turns pink, violet and blue with white lettering, and its outline pulses
@@ -147,6 +146,56 @@ exact yet. All four now are:
   - A caught Primal reverts in `BattleSystem_SetPokemonCatchData`, because it skips the battle-end revert.
   - Verified (temporary Kyogre leading the test party): "KYOGRE's Primal Reversion! It reverted to its primal form!",
     then Drizzle's rain. After running from the battle, Kyogre was back to its normal stats.
+- **The Mega Evolution and Primal Reversion animation** (step 4; `docs/MegaEvolution.md`). With Battle Scene on:
+  1. The background darkens and every other battler on the field dims.
+  2. Two beams of light reach the Pokémon (Morning Sun's), and sparkles gather on it (Judgment's and Power Gem's).
+  3. A ring of light forms around it (Safeguard's). It pulses pink, cyan and gold as it shakes: blues for Kyogre,
+     reds for Groudon.
+  4. It turns white and stays white while the subscript swaps its form.
+  5. Streaks of light burst out, the new form fades in from white with sparkles, and it cries. The background and the
+     other battlers brighten again.
+
+  How it's built:
+  - Four new common animations fill unused slots: `sovereign_mega_evolution`, `sovereign_primal_alpha` and
+    `sovereign_primal_omega` before the swap, and `sovereign_mega_evolved` after it (`BATTLE_ANIMATION_SOVEREIGN_*`).
+    Only Platinum's own particle effects are used.
+  - A new animation function, `Func_SovereignFadeSprites`, fades the attacker or every other battler one way and
+    leaves them faded, so the second animation can fade them back. `BtlIOCmd_ChangeWeatherForm` re-applies a held fade
+    to the reloaded palette, so the new form stays white until then. Platinum's own fades end at 0, so its form
+    changes are unaffected.
+  - The reveal loads its particles with `LoadParticleSystem` instead of `LoadParticleResource`. The latter draws
+    unfaded copies of the battlers while it loads, which flashed them back for 6 frames.
+  - The form-change mosaic is gone from both subscripts. With Battle Scene off, the sprite simply swaps.
+  - The anim takes about 6 seconds, from the darkening to the "has Mega Evolved" message.
+  - The symbol flash (step 6): as the new form fades in, a 32×32 symbol flashes over it and blinks out. It's the Mega
+    Evolution symbol for a Mega, Kyogre's α or Groudon's Ω for a Primal.
+    - The symbols are original art by `tools/sprites/make_mega_symbols.py`, as animation sprites
+      (`res/graphics/battle/moves/sovereign_*_symbol.*`) shown with `SPRITE_FUNC_OFFSET_AND_ANIMATE`.
+    - The Primals now have their own reveals, `sovereign_primal_alpha_revealed` and `sovereign_primal_omega_revealed`
+      (formerly `dummy43/44`).
+    - Verified: Garchomp (wild), the foe's Charizard (doubles) and Kyogre (temporary lead).
+- **The Mega symbol on the HP bar** (step 5; `healthbox.c`). A Mega or Primal shows a small rainbow Mega symbol at
+  the left end of its HP bar's strip, from the moment its new form fades in until it leaves the field. It returns
+  when the Pokémon comes back.
+  - The symbol is an 8×8 tile appended to `healthbox_parts.png`, drawn by `tools/sprites/make_mega_button.py`.
+  - It goes where Platinum puts the caught-species Poké Ball. Only wild Pokémon show that ball, and they never Mega
+    Evolve, so the two never collide.
+  - The HP bar reads the form from the party Pokémon, which stays Mega for the whole battle.
+  - The symbol's color 0 shows the strip under it. The tile it covers is saved, and put back when a Pokémon that
+    isn't Mega takes the slot.
+  - The Mega and Primal subscripts redraw the HP bar after the reveal with a new script command,
+    `SovereignRefreshHealthBox`. It's appended after `End`, so no existing command ID changes, and it sends the
+    existing HP-gauge refresh.
+  - Verified in the test build:
+    - The symbol shows on Garchomp's bar in singles.
+    - In doubles it shows on Garchomp's and the foe's Charizard's bars, and not on Turtwig's or Venusaur's.
+    - Switching Turtwig in leaves a clean bar, and switching Garchomp back shows the symbol again.
+
+  Verified frame by frame in the test build (no flicker):
+  - Garchomp in a wild battle.
+  - Kyogre and Groudon leading the test party (temporary).
+  - The foe's Charizard in the doubles test battle: Garchomp, Turtwig and the foe's Venusaur dimmed.
+  - Release ROM built without warnings and passed boot smoke.
 - Test build: Garchomp holds a Garchompite and the Mega flag is set at new game.
 - **The four Mega Stone vendors** (`data/mega_stones.yaml`):
   - **Collector:** Bebe's house in Hearthome, after the Relic Badge.

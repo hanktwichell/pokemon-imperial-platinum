@@ -5,7 +5,7 @@
 ## Sources
 
 - **DPPt Style Gen VI and Beyond** (provided by the project owner): Pokémon Essentials-format **back sprites only** (normal + shiny), 160×160 (2× the DS's 80×80). Artist credits are in `CITATIONS.md` and in the pack's `Credits.txt`.
-- **Mega Garchomp Z front + shiny front**: reference image provided by the project owner (`assets/sprites/reference/mega_garchomp_z_reference.png`; native-size copies in `assets/sprites/owner_supplied/mega_garchomp_z/`). It is a 4× upscale of a 120×120 sprite whose art is 116×95 px, so it does not fit Gen IV's 80×80 battle frame and needs a resize/redraw pass. Original artist: **unknown — needs attribution**.
+- **Mega Garchomp Z front + shiny front**: reference image provided by the project owner (`assets/sprites/reference/mega_garchomp_z_reference.png`; native-size copies in `assets/sprites/owner_supplied/mega_garchomp_z/`). It is a 4× upscale of a 120×120 sprite whose art is 116×95 px, so it does not fit Gen IV's 80×80 battle frame and needs a resize/redraw pass. Original artist: **thesonicgameryt** (DeviantArt, “Custom Sprite | Mega Garchomp Z”; see `CITATIONS.md`).
 
 ## Legend
 

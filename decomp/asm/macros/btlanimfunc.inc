@@ -24,7 +24,7 @@
     .endm
 
     // Calls a function from src/battle_anim/script_func_tables.c
-    // funcID: The function ID to call (0-83, see src/battle_anim/script_func_tables.c)
+    // funcID: The function ID to call (0-84, see src/battle_anim/script_func_tables.c)
     // arg0-arg9: The arguments to pass to the function
     .macro CallFunc funcID:req, arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9
     .long 45
@@ -610,4 +610,15 @@
     // mode: The mode of the animation (STAT_CHANGE_MODE_ATTACKER or STAT_CHANGE_MODE_DEFENDER)
     .macro Func_StatChangeMetal mode:req
     CallFunc 83, 3, \mode
+    .endm
+
+    // Sovereign (E8): fades battler sprites one way and leaves them faded, so a later animation can fade them back
+    // (Mega Evolution and Primal Reversion; a form change keeps the fade, see BtlIOCmd_ChangeWeatherForm)
+    // targets: SOVEREIGN_FADE_ATTACKER, or SOVEREIGN_FADE_OTHERS for every battler on the field but the attacker
+    // startAlpha: The starting alpha (0-16)
+    // endAlpha: The ending alpha (0-16)
+    // stepFrames: The number of frames between fade steps
+    // color: The color to fade to (16-bit BGR555)
+    .macro Func_SovereignFadeSprites targets:req, startAlpha:req, endAlpha:req, stepFrames:req, color:req
+    CallFunc 84, \targets, \startAlpha, \endAlpha, \stepFrames, \color
     .endm

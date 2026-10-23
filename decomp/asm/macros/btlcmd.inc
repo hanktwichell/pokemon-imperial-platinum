@@ -1235,6 +1235,12 @@
     .long BTLCMD_END
     .endm
 
+    // Sovereign (E8): redraws the battler's HP bar (after Mega Evolution or Primal Reversion, to show the Mega symbol).
+    .macro SovereignRefreshHealthBox battler
+    .long BTLCMD_SOVEREIGNREFRESHHEALTHBOX
+    .long \battler
+    .endm
+
     .text
     .globl _start
 _start:

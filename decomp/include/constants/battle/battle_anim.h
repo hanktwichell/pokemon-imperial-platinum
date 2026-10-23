@@ -199,6 +199,10 @@
 #define FADE_BG_TYPE_MON_SPRITE 1
 #define FADE_BG_TYPE_EFFECT     2
 
+// Sovereign (E8): targets of Func_SovereignFadeSprites
+#define SOVEREIGN_FADE_ATTACKER 0
+#define SOVEREIGN_FADE_OTHERS   1 // every battler on the field but the attacker
+
 #define SCALE_F(frames) (((frames) & 0xFFFF) << 16)
 #define RESTORE_F(frames) ((frames) & 0xFFFF)
 #define HOLD_F(frames) (((frames) & 0xFFFF) << 16)

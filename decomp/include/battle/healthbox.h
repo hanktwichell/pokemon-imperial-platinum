@@ -86,6 +86,8 @@ typedef struct HealthBox {
     u8 padding : 4;
     SysTask *bobbingAnimTask;
     u16 degrees;
+    u8 sovereignMegaDrawn; // Sovereign (E8): the Mega symbol is on the HP bar...
+    u8 sovereignMegaSlotBackup[32]; // ... over this original tile
 } HealthBox;
 
 /**

@@ -36,6 +36,11 @@ Finding and gathering the sprite artwork used in Sovereign Platinum:
 
 - **Nolan Herkomer**
 
+### Shiny sprites
+Creating and modifying many of the shiny sprites:
+
+- **Nolan Herkomer**
+
 ### "DPPt Style Gen VI and Beyond" sprite pack (back sprites, normal + shiny)
 Location: `assets/sprites/packs/dppt_gen6_and_beyond/` (Pokémon Essentials v19+ layout, kept unmodified).
 Supplied by the project owner. The pack's own `Credits.txt` is kept verbatim next to the sprites. Per-file artist
@@ -98,9 +103,13 @@ plus transparent, at most 24×24 px). Source: **PokeAPI sprites**, https://githu
 `97a7832`), `sprites/items/<item>.png`. The item art is © Nintendo / Game Freak / The Pokémon Company; PokeAPI hosts
 it. **Placeholders**, to be replaced by DS-style icons where the owner wants.
 
-### Battle MEGA button
-`decomp/res/graphics/battle/interface/mega_button.png` is original art, drawn pixel by pixel by
-`tools/sprites/make_mega_button.py` (no source image). The Mega Stone shown on it in battle is the item icon above.
+### Battle MEGA button and Mega symbols
+These are original art, drawn pixel by pixel with no source image:
+- `decomp/res/graphics/battle/interface/mega_button.png`, and the Mega symbol tile at the end of
+  `decomp/res/graphics/battle/healthbox/healthbox_parts.png`, by `tools/sprites/make_mega_button.py`. The Mega Stone shown
+  on the button in battle is the item icon above.
+- The Mega, α and Ω symbols that flash in the animation (`decomp/res/graphics/battle/moves/sovereign_*_symbol.png`), by
+  `tools/sprites/make_mega_symbols.py`.
 
 ## Audio
 
@@ -111,8 +120,9 @@ Converted copies for the DS will go in `assets/audio/cries/`. Tracked in `docs/C
 (`tools/audio/gen_cry_checklist.py`).
 
 ### Mega Garchomp Z (front + shiny front)
-`assets/sprites/reference/mega_garchomp_z_reference.png`, supplied by the project owner. **Original artist unknown —
-attribution needed before release.**
+`assets/sprites/reference/mega_garchomp_z_reference.png`, supplied by the project owner. Source: "Custom Sprite | Mega
+Garchomp Z" by **thesonicgameryt** on DeviantArt —
+https://www.deviantart.com/thesonicgameryt/art/Custom-Sprite-%7C-Mega-Garchomp-Z-1275121452
 
 ## Design inspiration (no assets copied)
 

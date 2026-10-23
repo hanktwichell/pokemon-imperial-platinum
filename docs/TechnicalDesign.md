@@ -110,6 +110,23 @@ implemented.
   - Recording stores one byte per input, so it needs the flag too.
 - **Primal Reversion.** A new state in `BattleSystem_TriggerEffectOnSwitch` (`battle_lib.c`) before
   `SWITCH_IN_CHECK_STATE_WEATHER_ABILITIES`, so Primordial Sea and Desolate Land start on the same switch-in.
+- **Animation.** It's split around the form change, because `ChangeForm` is a battle-script command:
+  - The common animations `sovereign_mega_evolution` / `sovereign_primal_alpha` / `sovereign_primal_omega`
+    (`res/battle/scripts/common_anims/`) run before it. `sovereign_mega_evolved` /
+    `sovereign_primal_alpha_revealed` / `sovereign_primal_omega_revealed` run after it.
+  - Each reveal flashes its symbol, an animation sprite in `res/graphics/battle/moves/` (`anim_*.order`), with
+    `SPRITE_FUNC_OFFSET_AND_ANIMATE`. That function deletes the sprite when its non-looping NANR ends.
+  - Fades normally return to 0 before an animation ends. `Func_SovereignFadeSprites` (func 84,
+    `script_funcs_3.c`) fades one way instead: the attacker stays white and the other battlers stay dim across the
+    swap.
+  - The palette reload in `BtlIOCmd_ChangeWeatherForm` would undo the fade, so it re-applies a held fade.
+  - Load particles with `LoadParticleSystem` while sprites are held faded. `LoadParticleResource` draws unfaded
+    battler copies while it loads.
+  - In a single battle, `BATTLE_ANIM_BATTLER_PLAYER_2` / `ENEMY_2` fall back to player 1, so don't fade by slot.
+- **HP-bar symbol.** `HealthBox_SovereignDrawMegaIcon` (`healthbox.c`) draws part `HEALTHBOX_PART_SOVEREIGN_MEGA` in
+  the caught-icon slot (`sCaughtIconVRAMTransfer`), over the tile it saves first. It's called whenever the name is
+  drawn. The battle-script command `SovereignRefreshHealthBox` (after `End` in `btlcmd.h`) sends
+  `BattleController_EmitRefreshHPGauge`.
 
 ### 5. Trainer data
 - Vanilla Gen IV trainer Pokémon can't specify EVs, natures directly (nature comes from the PID seeded by trainer

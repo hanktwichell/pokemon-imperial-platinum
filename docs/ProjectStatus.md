@@ -153,4 +153,7 @@ Open:
 - Special evolutions (decision 20): owner discussion pending.
 - The developer battle: Lv. 100 at Spear Pillar, leads Charizard-Y + Venusaur, custom weather-control AI (`DeveloperBattle.md`). Opponent: Sovereign Henry (decision 23). Open: text, sprites (owner's sprite coming soon).
 - Front sprites and the part 2 shiny pack (owner is sourcing them).
+  - Source to check for E12 (owner, 2026-10-23): **thesonicgameryt** on DeviantArt,
+    https://www.deviantart.com/thesonicgameryt. It has good custom sprites for a lot of the new Megas, including the
+    Mega Garchomp Z the owner supplied. Credit every sprite used in `CITATIONS.md`.
 - hg-engine and Smogon credit lists: Claude compiles them (owner, 2026-10-22).

@@ -4282,3 +4282,63 @@ void BattleAnimScriptFunc_ScrollSwitchedBg(BattleAnimSystem *system)
 
     BattleAnimSystem_StartAnimTask(ctx->common.battleAnimSys, BattleAnimTask_ScrollSwitchedBg, ctx);
 }
+
+// Sovereign (E8): fade battler sprites one way, from startAlpha to endAlpha, and leave them there (the Mega Evolution
+// and Primal Reversion animations, docs/MegaEvolution.md). Unlike FadeBattlerSprite, the sprites stay faded when the
+// animation ends, so the next animation can fade them back; BtlIOCmd_ChangeWeatherForm keeps a held fade on a new form.
+typedef struct SovereignFadeSpritesContext {
+    BattleAnimSystem *battleAnimSys;
+    PokemonSprite *sprites[MAX_BATTLERS];
+} SovereignFadeSpritesContext;
+
+#define SOVEREIGN_FADE_SPRITES_VAR_TARGETS     0
+#define SOVEREIGN_FADE_SPRITES_VAR_START_ALPHA 1
+#define SOVEREIGN_FADE_SPRITES_VAR_END_ALPHA   2
+#define SOVEREIGN_FADE_SPRITES_VAR_STEP_FRAMES 3
+#define SOVEREIGN_FADE_SPRITES_VAR_COLOR       4
+
+static void BattleAnimTask_SovereignFadeSprites(SysTask *task, void *param)
+{
+    SovereignFadeSpritesContext *ctx = param;
+    BattleAnimSystem *system = ctx->battleAnimSys;
+
+    for (int i = 0; i < MAX_BATTLERS; i++) {
+        if (ctx->sprites[i] != NULL && PokemonSprite_IsFadeActive(ctx->sprites[i])) {
+            return;
+        }
+    }
+
+    Heap_Free(ctx);
+    BattleAnimSystem_EndAnimTask(system, task);
+}
+
+void BattleAnimScriptFunc_SovereignFadeSprites(BattleAnimSystem *system)
+{
+    SovereignFadeSpritesContext *ctx = BattleAnimUtil_Alloc(system, sizeof(SovereignFadeSpritesContext));
+    int attacker = BattleAnimSystem_GetAttacker(system);
+    BOOL others = BattleAnimSystem_GetScriptVar(system, SOVEREIGN_FADE_SPRITES_VAR_TARGETS) == SOVEREIGN_FADE_OTHERS;
+
+    ctx->battleAnimSys = system;
+
+    for (int battler = 0; battler < MAX_BATTLERS; battler++) {
+        ctx->sprites[battler] = NULL;
+
+        if ((battler != attacker) != others) {
+            continue;
+        }
+
+        PokemonSprite *sprite = BattleAnimSystem_GetBattlerSprite(system, battler);
+
+        if (sprite != NULL) {
+            PokemonSprite_StartFade(
+                sprite,
+                BattleAnimSystem_GetScriptVar(system, SOVEREIGN_FADE_SPRITES_VAR_START_ALPHA),
+                BattleAnimSystem_GetScriptVar(system, SOVEREIGN_FADE_SPRITES_VAR_END_ALPHA),
+                BattleAnimSystem_GetScriptVar(system, SOVEREIGN_FADE_SPRITES_VAR_STEP_FRAMES),
+                BattleAnimSystem_GetScriptVar(system, SOVEREIGN_FADE_SPRITES_VAR_COLOR));
+            ctx->sprites[battler] = sprite;
+        }
+    }
+
+    BattleAnimSystem_StartAnimTask(system, BattleAnimTask_SovereignFadeSprites, ctx);
+}
