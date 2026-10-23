@@ -1715,12 +1715,6 @@ CommonScript_GriseousOrbCouldNotBeRemoved:
     ReturnCommonScript
     End
 
-@ Sovereign (decision 18): a Totem trial, called by the Totem's script (Common_SovereignTotemTrial) with the trial's
-@ TOTEM_TRIAL_* number in VAR_0x8004. The map's OnLoad script removes the Totem while FLAG_MAP_LOCAL_REMOVE_OBJECT is
-@ set, as the field comes back after the battle; removing it sets its hidden flag, the trial's
-@ FLAG_SOVEREIGN_TOTEM_TRIAL_* flag. Win (or catch) and the trial is done: the Totem leaves its crown piece
-@ (ITEM_GOLD_SHARD + trial) behind, and the 11th piece merges them all into the Crown (decision 23, docs/Story.md).
-@ Lose and the flag is cleared, so the Totem is back next time.
 @ Sovereign (the Chronicles, docs/PostgameLegendaries.md): a static legendary. VAR_0x8004 = species, VAR_0x8005 =
 @ level. FLAG_SOVEREIGN_REMOVE_LEGENDARY asks the map's OnLoad script to remove the Pokémon when the field comes back
 @ (map objects survive a battle). Not caught, it vanishes until the next visit: the map's OnTransition shows it again
@@ -1760,6 +1754,12 @@ CommonScript_SovereignLegendaryLost:
     ReturnCommonScript
     End
 
+@ Sovereign (decision 18): a Totem trial, called by the Totem's script (Common_SovereignTotemTrial) with the trial's
+@ TOTEM_TRIAL_* number in VAR_0x8004. The map's OnLoad script removes the Totem while FLAG_MAP_LOCAL_REMOVE_OBJECT is
+@ set, as the field comes back after the battle; removing it sets its hidden flag, the trial's
+@ FLAG_SOVEREIGN_TOTEM_TRIAL_* flag. Win (or catch) and the trial is done: the Totem leaves its crown piece
+@ (ITEM_GOLD_SHARD + trial) behind, and the 11th piece merges them all into the Crown (decision 23, docs/Story.md).
+@ Lose and the flag is cleared, so the Totem is back next time.
 CommonScript_SovereignTotemTrial:
     PlaySE SE_CONFIRM_sseq_3
     LockAll

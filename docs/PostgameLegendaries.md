@@ -11,7 +11,7 @@ Renegade Platinum's own legendary events (Gen I–IV) are unchanged; see `Renega
 - Chapters open one after another (each needs the previous chapter's "key" legendary caught), so the post-game has a guided order.
 - Static encounters can be retried after fainting or fleeing, and have the normal shiny odds (Renegade behaviour).
 - New maps or rooms are marked _(new)_ and need map work in DSPRE.
-- **Built:** The Archivist (CB-0035) stands in Canalave Library 2F from the first Hall of Fame; his first talk opens the Unova Chronicle (VAR_SOVEREIGN_CHRONICLE). Static encounters share CommonScript_SovereignLegendaryEncounter: each stays on the map until the Pokédex has it as caught, and vanishes after a win or a run until the next visit.
+- **Built:** The Archivist (CB-0035) stands in Canalave Library 2F from the first Hall of Fame; his first talk opens the Unova Chronicle (VAR_SOVEREIGN_CHRONICLE). Later talks name where each Swords of Justice member not caught yet stands, then point to Keldeo (CB-0036). Static encounters share CommonScript_SovereignLegendaryEncounter: each stays on the map until the Pokédex has it as caught, and vanishes after it's knocked out until the next visit (as in vanilla legendary battles, the player can't run).
 
 Covers **90** species.
 
@@ -26,15 +26,16 @@ Covers **90** species.
 ### Swords of Justice
 - **Pokémon:** #638 Cobalion, #639 Terrakion, #640 Virizion
 - **Level:** 65
-- **Location:** Cobalion — Iron Island B2F (new dead end); Terrakion — Route 227 rock cave; Virizion — Eterna Forest (north clearing)
+- **Location:** Cobalion — Iron Island B2F (side cave); Terrakion — Route 227 (rock pocket); Virizion — Eterna Forest (north corridor)
 - **How:** All three are static encounters as soon as the chapter opens.
-- **Built:** Virizion (CB-0035): at the top of Eterna Forest's north corridor (80, 10), past the Cut trees. Cobalion and Terrakion: not yet.
+- **Built:** Virizion (CB-0035): at the top of Eterna Forest's north corridor (80, 10), past the Cut trees. Terrakion (CB-0036): in the rock pocket at the north end of Route 227 (759, 258). Cobalion (CB-0036): in the top pocket of Iron Island B2F's right room (17, 1), the side cave reached from B1F; an existing dead end in place of a new one.
 
 ### The Young Sword
 - **Pokémon:** #647 Keldeo
 - **Level:** 55
-- **Location:** Lake Valor (north shore)
+- **Location:** Lake Valor (north-west clearing)
 - **How:** Visit with Cobalion, Terrakion and Virizion in the party.
+- **Built:** Keldeo (CB-0036): in the clearing at Lake Valor's north-west shore (36, 14), there while Cobalion, Terrakion and Virizion are all in the party, until it's caught. It comes in its Ordinary Form; the Resolute Form comes with the battle forms (FM).
 
 ### Forces of Nature
 - **Pokémon:** #641 Tornadus, #642 Thundurus, #645 Landorus, #905 Enamorus
