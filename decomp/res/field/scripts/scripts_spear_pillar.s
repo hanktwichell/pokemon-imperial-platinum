@@ -83,6 +83,8 @@ SpearPillar_CoordEvent_Grunts:
     ApplyMovement LOCALID_GRUNT_F, SpearPillar_Movement_GruntFWalkOnSpotEast
     ApplyMovement LOCALID_GRUNT_M, SpearPillar_Movement_GruntMWalkOnSpotWest
     WaitMovement
+    @ Sovereign (decision 23): Mars and Jupiter wait on Totem Kommo-o's trial (Mt. Coronet 6F).
+    GoToIfUnset FLAG_SOVEREIGN_TOTEM_TRIAL_KOMMO_O, SpearPillar_GruntsWaitOnTotem
     CheckHasTwoAliveMons VAR_RESULT
     GoToIfNe VAR_RESULT, FALSE, SpearPillar_BattleGrunts
     GoTo SpearPillar_GruntsOnlyOnePokemon
@@ -90,6 +92,17 @@ SpearPillar_CoordEvent_Grunts:
 
 SpearPillar_GruntsOnlyOnePokemon:
     Message SpearPillar_Text_OnlyOnePokemon
+    CloseMessage
+    ApplyMovement LOCALID_PLAYER, SpearPillar_Movement_PlayerWalkSouth
+    WaitMovement
+    ApplyMovement LOCALID_GRUNT_F, SpearPillar_Movement_GruntFWalkOnSpotSouth
+    ApplyMovement LOCALID_GRUNT_M, SpearPillar_Movement_GruntMWalkOnSpotSouth
+    WaitMovement
+    ReleaseAll
+    End
+
+SpearPillar_GruntsWaitOnTotem:
+    Message SpearPillar_Text_SovereignKommoOBelow
     CloseMessage
     ApplyMovement LOCALID_PLAYER, SpearPillar_Movement_PlayerWalkSouth
     WaitMovement

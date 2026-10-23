@@ -4,6 +4,92 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E11 — The Galactic gates wait on the Totem trials (decision 23)
+
+Each Team Galactic encounter now waits on the Totem trials placed before it (`docs/Story.md`, the table under
+"Galactic encounters wait on the trials"). Each blocker's line points the player to the open trials.
+- **Commander Mars (Valley Windworks) ← Gumshoos.** The grunt at the door won't battle: "W-what? A battle? Not now!
+  There's a huge GUMSHOOS glaring at me from the flowers by the river!"
+- **Commander Jupiter (Eterna Building) ← Ribombee, Vikavolt.** A new grunt guards the door (305, 520), behind the
+  Cut trees, until both are done. His hidden flag is `FLAG_MAP_LOCAL_HIDE_TRIAL_GATE` (the unused map-local 0x3F),
+  set by Eterna City's OnTransition.
+- **Cyrus (Celestic ruins) ← Mimikyu, Marowak, Raticate, Lurantis, Araquanid.** The grunt in front of the ruins
+  won't battle, and names the five places.
+- **Saturn and Mars (the lakes) ← Salazzle.**
+  - The Route 218 blockade now leaves once Salazzle's trial is done (Route 218's new OnTransition), not when Cynthia
+    speaks after Cyrus.
+  - After Cyrus, the Guitarist explains that a huge SALAZZLE chased them out of their practice spot at the Fuego
+    Ironworks.
+  - Canalave, and so Barry, Byron and the lakes, wait on it.
+- **Mars and Jupiter (Spear Pillar) ← Kommo-o.** The grunts' coord event sends the player back with a new line, like
+  their one-Pokémon refusal.
+- **Victory Road ← Togedemaru.** Platinum has no check at the entrance, so a new guard stands in front of the middle
+  warp (851, 598), with a coord event on the tiles beside him.
+  - He checks all eight Badges, then Togedemaru's trial, and steps the player back if either is missing.
+  - The coord event's var is `VAR_MAP_LOCAL_0x00`, so the check runs again on every visit.
+- **Verified in the test build**, with temporary warps to each gate:
+  - With no trials done (and Cyrus beaten, for the Guitarist's new line): every blocker says its line, and the
+    Spear Pillar grunts and the Victory Road guard step the player back.
+  - With all 11 trials done and eight Badges: the Windworks and Celestic grunts are back to Platinum's lines; the
+    Eterna door grunt and the Route 218 blockade are gone; the Spear Pillar grunts start their usual scene; and the
+    player walks into Victory Road.
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+
+## FM — The last six Totems on the map (decision 18)
+
+All 11 Totems now stand on the map (`docs/TotemTrials.md`, "On the map"). Each appears once the fight before its
+trial is won, like the four before.
+- **Totem Alolan Raticate**, the Galactic Warehouse (Veilstone): in the lower hall (x 13, z 10). It shows with the
+  Relic Badge once Looker has found HM02 there, so it stays out of his scene.
+- **Totem Lurantis**, Great Marsh Area 3: at the edge of the marsh grass (x 54, z 84), with the Cobble Badge.
+  - It's reached in a Safari Game. The trial is a normal battle with the player's own Pokémon.
+  - Area 3's OnTransition was Platinum's Safari tram script. It's now the map's own, which hides or shows the Totem
+    and then runs `InitGreatMarshTram`, as the old one did.
+  - **A loss in a Safari Game.** A blackout doesn't end the game, so the player would wake up at home with Safari
+    battles still on. The trial's loss branch now clears `FLAG_SAFARI_GAME_ACTIVE` and the gate's state.
+    `EndSafariGame` itself can't be used there: it records the game for TV and the journal, and with no field loaded
+    after a lost battle that hangs the game.
+- **Totem Araquanid**, Route 213: on the beach below the hotel (x 713, z 826), with the Fen Badge.
+- **Totem Salazzle**, Fuego Ironworks: north of the yard (x 181, z 585), once Cyrus is beaten at Celestic Town. The
+  Ironworks can be walked to from Route 205 after Mars.
+- **Totem Kommo-o**, Mt. Coronet 6F: beside the path to Spear Pillar (x 5, z 13), once Saturn is beaten at the
+  Galactic HQ. It stands out of the Galactic grunt's line of sight, and 5F has no script file of its own.
+- **Totem Togedemaru**, Vista Lighthouse: on the top floor (x 10, z 7), once Cyrus is beaten in the Distortion World.
+- **Test build:** SELECT+L+R's stops 14 to 19 are in front of Raticate, Lurantis, Araquanid, Salazzle, Kommo-o and
+  Togedemaru.
+- **Verified in the test build:**
+  - In a new game, all six are hidden.
+  - In a temporary build with every condition met, all six show. Kommo-o's talk works, and Togedemaru's and
+    Lurantis's battles open (with Skarmory and Trumbeak).
+  - **A real loss** (a temporary build that left the player's battle party at 1 HP): "A blacked out!", then home with
+    Mom, the screen drawn normally. With a Safari Game running, the same, and the start menu no longer shows RETIRE.
+  - The earlier loss checks (CB-0028) sent a won battle down the loss branch. That reaches home but over a black
+    screen, because after a real loss the field is never reloaded before the blackout. The real-loss check replaces
+    them.
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+
+## FM — Totems Ribombee, Vikavolt, Mimikyu and Alolan Marowak on the map (decision 18)
+
+Five of the 11 Totems now stand on the map (`docs/TotemTrials.md`, "On the map").
+- **Totem Ribombee**, Floaroma Meadow: in the flowers just past the entrance (x 18, z 43).
+- **Totem Vikavolt**, Eterna Forest: in a clearing west of the path (x 22, z 68).
+- **Totem Mimikyu** (Disguised), the Old Chateau: in the dining area (x 26, z 10).
+- **Totem Alolan Marowak**, Lost Tower 5F: left of the stairs (x 3, z 4), in the tower's fog.
+- **Each trial opens after its "After" fight.** The meadow, the chateau and the tower can be reached earlier, so
+  those Totems stay hidden until then: Ribombee until Mars is beaten at the Valley Windworks, Mimikyu until Jupiter has
+  left the Eterna Building, Marowak until the Relic Badge. Eterna Forest itself opens after Mars, so Vikavolt needs no
+  check.
+  - How: the map's OnTransition script sets `FLAG_MAP_LOCAL_HIDE_TOTEM` (the unused map-local flag 0x3E), the
+    Totem's hidden flag, while the trial is done or not yet open. Map-local flags are cleared on every map change.
+- **Test build:** SELECT+L+R's stops 10 to 13 are in front of Ribombee, Vikavolt, Mimikyu and Marowak.
+- **Verified in the test build:**
+  - In a new game, Ribombee, Mimikyu and Marowak are hidden and Vikavolt stands in the forest.
+  - In temporary builds with the fight before each one won: Ribombee shows, and its trial runs through to "A found an
+    Oval Emerald!" with the Totem gone afterwards. Mimikyu and Marowak show, and their trials open (Mimikyu with
+    Haunter, Marowak with Salazzle).
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+- **Not done yet:** Alolan Raticate, Lurantis, Araquanid, Salazzle, Kommo-o and Togedemaru.
+
 ## Item 11 (part 14) — Psychic Noise and Steel Beam
 
 - **Psychic Noise:** after the hit, the target can't heal for two turns (Heal Block's message).

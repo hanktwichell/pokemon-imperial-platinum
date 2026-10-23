@@ -137,6 +137,8 @@ Talking to it starts the trial (`CommonScript_SovereignTotemTrial` in `scripts_c
 - **Win or catch.** The trial is done (its `FLAG_SOVEREIGN_TOTEM_TRIAL_*` flag, which also hides the Totem), and the
   Totem leaves its crown piece on the ground (`docs/Story.md`, *The crown*). The 11th piece merges them into the Crown.
 - **Lose.** The player blacks out and the Totem is back next time.
+- **When it appears.** A Totem whose place opens before its trial does (the "After" column) stays hidden until that
+  fight is won: the map's OnTransition script hides it with `FLAG_MAP_LOCAL_HIDE_TOTEM`.
 
 The places, levels and auras are approved by the owner; the helpers are a proposal. The auras' stages marked "check"
 come from a second guide where Serebii gives none.

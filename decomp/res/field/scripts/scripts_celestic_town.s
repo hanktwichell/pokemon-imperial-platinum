@@ -25,10 +25,23 @@ CelesticTown_GruntM:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
+    @ Sovereign (decision 23): Cyrus's encounter at the ruins waits on five Totem trials.
+    GoToIfUnset FLAG_SOVEREIGN_TOTEM_TRIAL_MIMIKYU, CelesticTown_GruntMWaitsOnTotems
+    GoToIfUnset FLAG_SOVEREIGN_TOTEM_TRIAL_MAROWAK, CelesticTown_GruntMWaitsOnTotems
+    GoToIfUnset FLAG_SOVEREIGN_TOTEM_TRIAL_RATICATE, CelesticTown_GruntMWaitsOnTotems
+    GoToIfUnset FLAG_SOVEREIGN_TOTEM_TRIAL_LURANTIS, CelesticTown_GruntMWaitsOnTotems
+    GoToIfUnset FLAG_SOVEREIGN_TOTEM_TRIAL_ARAQUANID, CelesticTown_GruntMWaitsOnTotems
     Message CelesticTown_Text_WillYouMessWithMe
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, CelesticTown_GruntMBattle
     GoToIfEq VAR_RESULT, MENU_NO, CelesticTown_VerySmart
+    End
+
+CelesticTown_GruntMWaitsOnTotems:
+    Message CelesticTown_Text_SovereignFaceTheTotemsFirst
+    WaitButton
+    CloseMessage
+    ReleaseAll
     End
 
 CelesticTown_VerySmart:
@@ -234,7 +247,7 @@ CelesticTown_OnFrame_Cynthia:
     ApplyMovement LOCALID_CYNTHIA, CelesticTown_Movement_CynthiaWalkOnSpotWest
     WaitMovement
     SetVar VAR_CELESTIC_TOWN_STATE, 2
-    SetFlag FLAG_HIDE_ROUTE_218_BLOCKADE
+    @ Sovereign: the Route 218 blockade now leaves once Totem Salazzle's trial is done (scripts_route_218.s).
     WaitTime 12, VAR_RESULT
     Message CelesticTown_Text_LibraryInCanalave
     WaitButton

@@ -844,6 +844,16 @@ static const struct {
     { MAP_HEADER_SURVIVAL_AREA_SOUTH_HOUSE, 8, 5, FACE_UP }, // the Mega Stone Curator (after the Champion)
     { MAP_HEADER_ROUTE_221, 306, 910, FACE_UP }, // outside the Regional Forms Park (a warp inside leaves NPCs untalkable)
     { MAP_HEADER_ROUTE_205_SOUTH, 197, 660, FACE_UP }, // 3 steps south of Totem Gumshoos (its trial)
+    { MAP_HEADER_FLOAROMA_MEADOW, 18, 44, FACE_UP }, // in front of Totem Ribombee (shown once Mars is beaten)
+    { MAP_HEADER_ETERNA_FOREST, 22, 69, FACE_UP }, // in front of Totem Vikavolt
+    { MAP_HEADER_OLD_CHATEAU_DINING_AREA, 26, 11, FACE_UP }, // in front of Totem Mimikyu (shown once Jupiter has left Eterna)
+    { MAP_HEADER_ROUTE_209_LOST_TOWER_5F, 3, 5, FACE_UP }, // in front of Totem Marowak (shown with the Relic Badge)
+    { MAP_HEADER_VEILSTONE_CITY_GALACTIC_WAREHOUSE, 13, 11, FACE_UP }, // in front of Totem Raticate (Relic Badge, after Looker's HM02)
+    { MAP_HEADER_GREAT_MARSH_3, 54, 85, FACE_UP }, // in front of Totem Lurantis (Cobble Badge; walking in needs a Safari Game)
+    { MAP_HEADER_ROUTE_213, 713, 827, FACE_UP }, // in front of Totem Araquanid (shown with the Fen Badge)
+    { MAP_HEADER_FUEGO_IRONWORKS_OUTSIDE, 181, 586, FACE_UP }, // in front of Totem Salazzle (after Cyrus at Celestic)
+    { MAP_HEADER_MT_CORONET_6F, 5, 14, FACE_UP }, // in front of Totem Kommo-o (after Saturn at the Galactic HQ)
+    { MAP_HEADER_VISTA_LIGHTHOUSE, 10, 8, FACE_UP }, // in front of Totem Togedemaru (after the Distortion World)
 };
 
 static u8 sSovereignTestWarpIndex;

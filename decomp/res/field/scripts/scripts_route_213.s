@@ -1,6 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_213.h"
 #include "res/field/events/events_route_213.h"
+#include "constants/sovereign_totem_trials.h"
 
 
     ScriptEntry Route213_OnTransition
@@ -11,9 +12,34 @@
     ScriptEntry Route213_ArrowSignpostPastoriaCity
     ScriptEntry Route213_SignboardHotelGrandLake
     ScriptEntry Route213_SignboardDrFootstepsHouse
+    ScriptEntry Route213_TotemAraquanid
+    ScriptEntry Route213_OnLoad
     ScriptEntryEnd
 
+Route213_OnLoad:
+    CallIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, Route213_RemoveTotemAraquanid
+    End
+
+Route213_HideTotemAraquanid:
+    SetFlag FLAG_MAP_LOCAL_HIDE_TOTEM
+    Return
+
+Route213_RemoveTotemAraquanid:
+    RemoveObject LOCALID_TOTEM_ARAQUANID
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
+    Return
+
+@ Sovereign (decision 18): the Totem Araquanid trial.
+Route213_TotemAraquanid:
+    SetVar VAR_0x8004, TOTEM_TRIAL_ARAQUANID
+    Common_SovereignTotemTrial
+    End
+
 Route213_OnTransition:
+    @ Sovereign: Totem Araquanid's trial opens once Wake is beaten (the Fen Badge).
+    CallIfSet FLAG_SOVEREIGN_TOTEM_TRIAL_ARAQUANID, Route213_HideTotemAraquanid
+    CheckBadgeAcquired BADGE_ID_FEN, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, Route213_HideTotemAraquanid
     GoToIfUnset FLAG_ROUTE_213_GRUNT_M_LEFT, Route213_CheckBadge
     End
 

@@ -1,6 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/eterna_forest.h"
 #include "res/field/events/events_eterna_forest.h"
+#include "constants/sovereign_totem_trials.h"
 
     ScriptEntry EternaForest_CoordEvent_CherylStartFollowing
     ScriptEntry EternaForest_CoordEvent_PlayerLeaveCheryl
@@ -14,6 +15,8 @@
     ScriptEntry EternaForest_MossRock
     ScriptEntry EternaForest_OnTransition
     ScriptEntry EternaForest_OnFrame_CherylOldChateauCutscene
+    ScriptEntry EternaForest_TotemVikavolt
+    ScriptEntry EternaForest_OnLoad
     ScriptEntryEnd
 
 EternaForest_OnTransition:
@@ -22,6 +25,21 @@ EternaForest_OnTransition:
 
 EternaForest_ResetFollowerCherylState:
     SetVar VAR_ETERNA_FOREST_FOLLOWER_CHERYL_STATE, 0
+    End
+
+EternaForest_OnLoad:
+    GoToIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, EternaForest_RemoveTotemVikavolt
+    End
+
+EternaForest_RemoveTotemVikavolt:
+    RemoveObject LOCALID_TOTEM_VIKAVOLT
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
+    End
+
+@ Sovereign (decision 18): the Totem Vikavolt trial. The forest opens after Mars, as the trial does.
+EternaForest_TotemVikavolt:
+    SetVar VAR_0x8004, TOTEM_TRIAL_VIKAVOLT
+    Common_SovereignTotemTrial
     End
 
 EternaForest_CoordEvent_CherylStartFollowing:

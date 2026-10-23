@@ -100,8 +100,10 @@ Made by the owner (2026-10-22):
     - Built (CB-0027): the Totem forms and the trial battle (`docs/TotemTrials.md`).
     - Built (CB-0028): the Totems on the map (huge overworld sprites), the trial script, and the crown pieces. Totem
       Gumshoos stands on Route 205 South.
-    - Still to do: the other 10 Totems on the map, and 1 vs 2 for a player with one able Pokémon (Platinum can't start
-      a double battle with one).
+    - Built (CB-0029): Ribombee, Vikavolt, Mimikyu and Alolan Marowak on the map, each shown once its trial opens.
+    - Built (CB-0030): the last six on the map. All 11 trials are playable.
+    - Still to do: the Galactic gates (`Story.md`), and 1 vs 2 for a player with one able Pokémon (Platinum can't
+      start a double battle with one).
     - The auras were checked against Serebii; the helpers are a proposal from each trial's original allies.
 19. **Trade evolutions follow Renegade's system** (owner, 2026-10-22, after briefly considering a Link Stone): plain
     trade evolutions evolve at Level 36, and trade-with-item evolutions by using the item like a stone.
@@ -142,7 +144,7 @@ Made by the owner (2026-10-22):
     Spear Pillar (catchable) → Elite Four rematch, locked until both are done and then repeatable → after the second
     win against Cynthia, she sends the player to Spear Pillar for the Sovereign battle.
     Gates and crown (owner): each Galactic encounter waits on the Totem trials placed before it (existing blocking
-    NPCs get the trial added to their unlock condition). Each trial, once its catch encounter is over (caught or
+    NPCs get the trial added to their unlock condition; built in CB-0031, `Story.md`). Each trial, once its catch encounter is over (caught or
     not), leaves a crown piece: a Gold Shard first, then jewels or gold shards, and the Crown Diamond 11th; all key
     items, unsellable and untossable. The 11 merge into the **Crown**, which becomes the **Sovereign Crown** after the
     rematch win over Cynthia. Victory Road waits on the last trial (Togedemaru). Henry appears at Spear Pillar only

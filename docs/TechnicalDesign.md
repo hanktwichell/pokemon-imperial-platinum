@@ -229,8 +229,22 @@ implemented.
     - The common script hides the Totem by setting `FLAG_MAP_LOCAL_REMOVE_OBJECT` around the battle: map objects
       survive a battle, so the map's OnLoad script removes the Totem when the field comes back, as Platinum does for
       Regigigas. Removing it sets its hidden flag; a loss clears it again (`SovereignClearFlagFromVar`).
+    - A Totem whose place opens before its trial uses `FLAG_MAP_LOCAL_HIDE_TOTEM` (map-local 0x3E) as its hidden flag
+      instead: the map's OnTransition sets it while the trial is done or not yet open (Floaroma Meadow, the Old
+      Chateau dining area, Lost Tower 5F). Map-local flags are cleared on every map change, so this check runs
+      again on each visit.
+    - Great Marsh Area 3's OnTransition is the map's own script (Totem check, then `InitGreatMarshTram`), not the shared
+      Safari script 0x2260. The trial's loss branch clears `FLAG_SAFARI_GAME_ACTIVE` and `VAR_SAFARI_GAME_STATE` itself:
+      `EndSafariGame` hangs between a lost battle and the blackout, since the field isn't loaded then.
     - The piece is `ITEM_GOLD_SHARD + trial`: the 11 piece constants are consecutive in trial order. The merge into
       `ITEM_CROWN` checks and removes `ITEM_GOLD_SHARD`..`ITEM_CROWN_DIAMOND` in a loop.
+- **Galactic gates** (decision 23, `docs/Story.md`). Each Galactic encounter checks the `FLAG_SOVEREIGN_TOTEM_TRIAL_*`
+  flags of the trials before it, at a blocker the player already meets:
+  - the Windworks door grunt and the Celestic ruins grunt (`GoToIfUnset` before their battle);
+  - a new Eterna door grunt (hidden with `FLAG_MAP_LOCAL_HIDE_TRIAL_GATE`, map-local 0x3F);
+  - the Route 218 blockade (`FLAG_HIDE_ROUTE_218_BLOCKADE`, now set by Route 218's OnTransition once Salazzle is done);
+  - the Spear Pillar grunts' coord event;
+  - a new Victory Road guard with a coord event on `VAR_MAP_LOCAL_0x00`.
 ### 5. Trainer data
 - Vanilla Gen IV trainer Pokémon can't specify EVs, natures directly (nature comes from the PID seeded by trainer
   data), or abilities. **The EV spreads and natures in `TrainerPokemon_Sovereign.md` need an extended trainer-Pokémon

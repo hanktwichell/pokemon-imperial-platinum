@@ -32,9 +32,11 @@
     ScriptEntry EternaCity_CoordEvent_CynthiaTryGiveEgg
     ScriptEntry EternaCity_CoordEvent_CynthiaBlockBikeShop
     ScriptEntry EternaCity_Cynthia
+    ScriptEntry EternaCity_SovereignDoorGrunt
     ScriptEntryEnd
 
 EternaCity_OnTransition:
+    Call EternaCity_SovereignSetDoorGruntVisibility
     CallIfEq VAR_ETERNA_CITY_STATE, 4, EternaCity_SetCynthiaPositionForGiveEgg
     CheckItem ITEM_BICYCLE, 1, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_MAP_LOCAL_0x00, TRUE, EternaCity_CheckShouldBlockExits
@@ -52,6 +54,19 @@ EternaCity_SetVarDontBlockExits:
 EternaCity_SetCynthiaPositionForGiveEgg:
     SetObjectEventPos LOCALID_CYNTHIA, 307, 541
     Return
+
+@ Sovereign (decision 23): Jupiter's encounter waits on the Totem Ribombee and Vikavolt trials. A grunt guards the
+@ building's door (behind the Cut trees) until both are done.
+EternaCity_SovereignSetDoorGruntVisibility:
+    GoToIfUnset FLAG_SOVEREIGN_TOTEM_TRIAL_RIBOMBEE, EternaCity_SovereignDoorGruntStays
+    GoToIfUnset FLAG_SOVEREIGN_TOTEM_TRIAL_VIKAVOLT, EternaCity_SovereignDoorGruntStays
+    SetFlag FLAG_MAP_LOCAL_HIDE_TRIAL_GATE
+EternaCity_SovereignDoorGruntStays:
+    Return
+
+EternaCity_SovereignDoorGrunt:
+    NPCMessage EternaCity_Text_SovereignTotemsLoose
+    End
 
 EternaCity_PokemonBreederM:
     NPCMessage EternaCity_Text_GetYourselfABicycle

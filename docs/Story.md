@@ -109,6 +109,23 @@ such NPC exists, a new one is placed (E11 finds them).
   so the gate doubles as the prompt.
 - This changes decision 18: the trials are no longer optional. All 11 are done before the Elite Four, so the crown
   is always complete by the first Hall of Fame.
+- **Built (CB-0031):** each gate and what it says while its trials are open.
+  - **Mars:** the Galactic grunt at the Valley Windworks door won't battle: "There's a huge GUMSHOOS glaring at me
+    from the flowers by the river!"
+  - **Jupiter:** a new grunt guards the Galactic Eterna Building's door, behind the Cut trees: "nobody gets in while
+    the Totems roam! There's a huge RIBOMBEE in Floaroma Meadow, and a VIKAVOLT in the forest." He's gone once both
+    are done.
+  - **Cyrus:** the grunt in front of the Celestic ruins won't battle, and names the five places: "You haven't even
+    faced every Totem roaming Sinnoh yet!"
+  - **Saturn and Mars:** the Route 218 blockade (the dancers and their Clefairy and Pikachu) now stays until Salazzle's
+    trial is done, instead of leaving once Cyrus is beaten. After Cyrus the Guitarist says a huge SALAZZLE chased them
+    out of their practice spot at the Fuego Ironworks. So Canalave, Barry and Byron wait on it too, which matches
+    Salazzle's level, set under Barry's cap.
+  - **Mars and Jupiter:** the Spear Pillar grunts send the player back: "You couldn't even get past that KOMMO-O down
+    on the mountain, huh?"
+  - **Victory Road:** Platinum has no check there (Waterfall is the real gate), so a new guard stands at the entrance.
+    Without all eight Badges: "Only Trainers who have gathered all eight Badges may enter Victory Road." With them
+    but before Togedemaru's trial: "But a huge TOGEDEMARU is sparking atop Sunyshore's Vista Lighthouse."
 
 ### The crown (owner)
 
@@ -211,12 +228,13 @@ Owner's call:
   Platinum's Spear Pillar post-game script checks, plus a scene or message directing the player there.
 - **Celestic elder at home:** a scene in the player's house the first time they wake there after the Hall of Fame.
 - **Galactic gates:** each gating NPC's script checks the trial flags in the table above (one flag per trial, set
-  when its catch encounter ends).
+  when its catch encounter ends). Built (CB-0031), see the list under the table.
 - **Crown pieces:** 13 new key items (key items can't be sold or tossed): the 11 pieces, the Crown and the
   Sovereign Crown. Picking up the 11th piece removes the 11 and gives the Crown. Beating Cynthia in the rematch
   swaps the Crown for the Sovereign Crown. Built (CB-0028): the 13 items, each trial's piece, and the merge into the
   Crown (`CommonScript_SovereignTotemTrial`). The swap for the Sovereign Crown comes with the rematch.
-- **Victory Road gate:** the existing check at Victory Road's entrance also needs Togedemaru's trial flag.
+- **Victory Road gate:** Platinum has no check at Victory Road's entrance, so a new guard checks the eight Badges and
+  Togedemaru's trial flag (CB-0031).
 - **Elite Four rematch lock:** the League's save-prompt NPC checks a "Dialga and Palkia both done" condition
   (caught or defeated) before letting the player through for a rematch.
 - **Henry's unlock:** the second win against Cynthia (the Elite Four rematch, Sovereign's E4 format:

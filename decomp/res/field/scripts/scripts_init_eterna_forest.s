@@ -2,6 +2,7 @@
 
 
     InitScriptEntry_OnTransition 11
+    InitScriptEntry_OnLoad 14
     InitScriptEntry_OnFrameTable InitScriptFrameTable
     InitScriptEntryEnd
 

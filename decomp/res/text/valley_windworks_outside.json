@@ -91,6 +91,16 @@
         "Valley Windworks\n",
         "Ecological, Wind-Driven Energy"
       ]
+    },
+    {
+      "id": "ValleyWindworksOutside_Text_SovereignNotWithThatGumshoos",
+      "en_US": [
+        "W-what? A battle? Not now!\r",
+        "There’s a huge GUMSHOOS glaring at me\n",
+        "from the flowers by the river!\r",
+        "I’m not moving from this door until\n",
+        "somebody deals with it!"
+      ]
     }
   ]
 }

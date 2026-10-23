@@ -2028,3 +2028,128 @@ three new stat subscripts and effect scripts 0306–0308 with their registration
 3. Remaining abilities: Mirror Armor, Long Reach, Stakeout, Supreme Overlord, Magic Bounce, Protean/Libero.
 
 Lesson: a user-side status effect's direct side effect needs `MOVE_SIDE_EFFECT_ON_HIT` (as Light Screen), or it never runs.
+
+---
+
+## CB-0029 — 2026-10-23, 2:11 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** four more Totems on the map (decision 18). PR #36 (Totem Gumshoos and the crown pieces) is merged.
+- **Totem Ribombee**, Floaroma Meadow (x 18, z 43), in the flowers just past the entrance.
+- **Totem Vikavolt**, Eterna Forest (x 22, z 68), in a clearing west of the path.
+- **Totem Mimikyu**, the Old Chateau dining area (x 26, z 10).
+- **Totem Alolan Marowak**, Lost Tower 5F (x 3, z 4), left of the stairs.
+- **Each trial opens after its "After" fight.** The meadow, the chateau and the tower can be reached earlier, so those
+  Totems stay hidden until it's won: Ribombee until Mars (`VAR_VALLEY_WINDWORKS_STATE` ≥ 2), Mimikyu until Jupiter
+  (`FLAG_TEAM_GALACTIC_LEFT_ETERNA_BUILDING`), Marowak until the Relic Badge.
+  - Their hidden flag is `FLAG_MAP_LOCAL_HIDE_TOTEM` (the unused map-local 0x3E), which the map's OnTransition sets
+    while the trial is done or not yet open.
+  - Gumshoos and Vikavolt keep the trial flag as their hidden flag, since their places open with the trial.
+- **Test build:** SELECT+L+R's stops 10 to 13 are in front of Ribombee, Vikavolt, Mimikyu and Marowak.
+- **Verified:**
+  - A new game: Ribombee, Mimikyu and Marowak hidden, Vikavolt shown and its talk works.
+  - Temporary builds with the earlier fights won: Ribombee's trial run through to the Oval Emerald, the Totem gone after.
+    Mimikyu's and Marowak's trials open (Haunter and Salazzle helpers).
+  - The release ROM builds without warnings and passes boot smoke; docs regenerate clean.
+
+**Files modified:**
+- `data/totem_trials.yaml` (`map:` for the four), `tools/engine/gen_totem_trials.py`, `docs/TotemTrials.md`
+- `decomp/generated/vars_flags.txt` (`FLAG_MAP_LOCAL_HIDE_TOTEM`), `decomp/src/script_manager.c` (test warps)
+- Events, scripts and init scripts of `floaroma_meadow`, `eterna_forest`, `old_chateau_dining_area` and
+  `route_209_lost_tower_5f` (`decomp/res/field/events/`, `decomp/res/field/scripts/`)
+- `docs/EngineChangelog.md`, `docs/TechnicalDesign.md` §4b, `docs/EngineRoadmap.md`, `docs/ProjectStatus.md`,
+  `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR when green.
+2. **The last 6 Totems:**
+   - Alolan Raticate (Galactic Warehouse; check when the warehouse opens and closes);
+   - Lurantis (Great Marsh: the Safari Game's ball rules may clash with a trial);
+   - Araquanid (Route 213 beach), Salazzle (Fuego Ironworks, needs Surf);
+   - Kommo-o (Mt. Coronet to Spear Pillar);
+   - Togedemaru (Vista Lighthouse).
+3. **The Galactic gates** (`Story.md`), then 1 vs 2 trials for a player with one able Pokémon.
+
+---
+
+## CB-0030 — 2026-10-23, 2:53 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** the last six Totems on the map, so all 11 trials are playable (decision 18).
+- **The six** (each shown once its "After" fight is won, via `FLAG_MAP_LOCAL_HIDE_TOTEM`):
+  - Alolan Raticate in the Galactic Warehouse (x 13, z 10): Relic Badge and Looker's HM02 scene done;
+  - Lurantis in Great Marsh Area 3 (x 54, z 84): Cobble Badge, reached in a Safari Game;
+  - Araquanid on the Route 213 beach (x 713, z 826): Fen Badge;
+  - Salazzle north of the Fuego Ironworks yard (x 181, z 585): Cyrus beaten at Celestic;
+  - Kommo-o on Mt. Coronet 6F (x 5, z 13): Saturn beaten at the HQ, out of the grunt's sight;
+  - Togedemaru at the top of Vista Lighthouse (x 10, z 7): the Distortion World done.
+- **Great Marsh Area 3.** Its OnTransition is now the map's own script, which runs `InitGreatMarshTram` after the
+  Totem check.
+- **A loss in a Safari Game** used to leave the game running after the blackout. The trial's loss branch now clears
+  `FLAG_SAFARI_GAME_ACTIVE` and `VAR_SAFARI_GAME_STATE`. `EndSafariGame` hung the game there, since there is no field
+  between a lost battle and the blackout.
+- **Test build:** SELECT+L+R's stops 14 to 19 are in front of the six.
+- **Verified:**
+  - New game: all six hidden.
+  - All conditions met (temporary build): all six shown. Kommo-o's talk works, and Togedemaru's and Lurantis's
+    battles open.
+  - A real loss (temporary build, the battle party at 1 HP): "A blacked out!" and home with Mom. With a Safari Game
+    running, the same, and RETIRE is gone from the start menu.
+  - My CB-0028 loss check forced a won battle down the loss branch; that showed home over a black screen. That was
+    an artifact of the shortcut, and the real loss above replaces it.
+  - The release ROM builds without warnings and passes boot smoke; docs regenerate clean.
+- PR #37's first CI run died in `apt-get` (runner timeout, before the build); it's re-running.
+
+**Files modified:**
+- `data/totem_trials.yaml` (`map:` for the six), `docs/TotemTrials.md`
+- Events, scripts and init scripts of `veilstone_city_galactic_warehouse`, `great_marsh_3`, `route_213`,
+  `fuego_ironworks_outside`, `mt_coronet_6f` and `vista_lighthouse`
+- `decomp/res/field/scripts/scripts_common.s` (the Safari Game on a loss), `decomp/src/script_manager.c` (test warps)
+- `docs/EngineChangelog.md`, `docs/TechnicalDesign.md` §4b, `docs/EngineRoadmap.md`, `docs/ProjectStatus.md`,
+  `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge PR #37, then this one.
+2. **The Galactic gates** (`Story.md`, E11): each Galactic encounter waits on the trials before it, using NPCs that
+   already block the way; Victory Road's gate also checks Togedemaru. All 11 flags exist
+   (`FLAG_SOVEREIGN_TOTEM_TRIAL_*`).
+3. **1 vs 2 Totem trials** for a player with one able Pokémon; then battle forms with item 11's abilities.
+
+---
+
+## CB-0031 — 2026-10-23, 3:24 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** the Galactic gates (decision 23, `Story.md`). Each Team Galactic encounter waits on the Totem trials
+before it, at a blocker the player already meets, and the blocker's line points to the open trials.
+- **Mars ← Gumshoos:** the Valley Windworks door grunt won't battle.
+- **Jupiter ← Ribombee, Vikavolt:** a new grunt guards the Eterna Building door (behind the Cut trees), hidden by
+  `FLAG_MAP_LOCAL_HIDE_TRIAL_GATE` (map-local 0x3F) once both are done.
+- **Cyrus ← Mimikyu, Marowak, Raticate, Lurantis, Araquanid:** the Celestic ruins grunt won't battle.
+- **Saturn and Mars ← Salazzle:**
+  - The Route 218 blockade stays until Salazzle's trial is done (Route 218's new OnTransition; Cynthia no longer
+    removes it after Cyrus).
+  - After Cyrus the Guitarist blames a huge SALAZZLE.
+  - Canalave and Barry wait on it too, as Salazzle's level is set under Barry's cap.
+- **Mars and Jupiter ← Kommo-o:** the Spear Pillar grunts send the player back.
+- **Victory Road ← Togedemaru:** Platinum has no check there, so a new guard (851, 598) with a coord event checks the
+  eight Badges and the trial.
+- **Research:** an Explore agent mapped each fight's vanilla blocker (cited in the changelog entry).
+- **Verified** (temporary builds with warps to each gate):
+  - Nothing done: every gate refuses with its line.
+  - All 11 trials and eight Badges: every gate opens.
+  - The release ROM builds without warnings and passes boot smoke; docs regenerate clean.
+
+**Files modified:**
+- Scripts: `scripts_valley_windworks_outside.s`, `scripts_eterna_city.s`, `scripts_celestic_town.s`,
+  `scripts_route_218.s` and `scripts_init_route_218.s`, `scripts_spear_pillar.s`, `scripts_pokemon_league.s`
+- Events: `events_eterna_city.json`, `events_pokemon_league.json`
+- Texts: `valley_windworks_outside`, `eterna_city`, `celestic_town`, `route_218`, `spear_pillar`, `pokemon_league`
+  (`decomp/res/text/`)
+- `decomp/generated/vars_flags.txt` (`FLAG_MAP_LOCAL_HIDE_TRIAL_GATE`)
+- Docs: `docs/Story.md`, `docs/EngineChangelog.md`, `docs/TechnicalDesign.md`, `docs/ProjectStatus.md`,
+  `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge PR #37 (its CI keeps dying in `apt-get` before the build; re-run queued), then the PR with the last six
+   Totems and these gates.
+2. **1 vs 2 Totem trials** for a player with one able Pokémon (the doubles init leaves battler 2 empty).
+3. **The Sovereign Crown swap** after the Elite Four rematch win over Cynthia, and the other post-game story
+   events (`Story.md`: Celestic elder at home, Spear Pillar trigger, rematch lock).
