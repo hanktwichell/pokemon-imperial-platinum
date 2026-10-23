@@ -2939,7 +2939,7 @@ rom job timed out in apt-get before building). Then Victini and the whole Kalos 
      (Oreburgh Mine): gifts.
    - Marshadow (Old Chateau) and Zeraora (Route 222 at night): static encounters.
 
-## CB-0043 — 2026-10-23, 2:31 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+## CB-0043 — 2026-10-23, 2:25 pm US Central (session on `claude/sweet-wright-rk4wl1`)
 
 **Status: work in progress (WIP commits c0f351e8, e22fed35, e5ae0dab on the branch; no PR yet).** The owner asked to
 "get everything into the game before worrying about placements", so every remaining Chronicle legendary is now in,
