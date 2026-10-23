@@ -9735,6 +9735,12 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         return &battleCtx->sovereignSmackedDown[battleCtx->sideEffectMon];
     case BTLVAR_SOVEREIGN_SIDE_GUARDS_ATTACKER: // Sovereign (item 11)
         return &battleCtx->sovereignSideGuards[BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker)];
+    case BTLVAR_SOVEREIGN_TELEKINESIS_SIDE_EFFECT_MON: // Sovereign (item 11)
+        return &battleCtx->sovereignTelekinesis[battleCtx->sideEffectMon];
+    case BTLVAR_SOVEREIGN_MAGIC_ROOM_TURNS: // Sovereign (item 11)
+        return &battleCtx->sovereignMagicRoomTurns;
+    case BTLVAR_SOVEREIGN_WONDER_ROOM_TURNS: // Sovereign (item 11)
+        return &battleCtx->sovereignWonderRoomTurns;
     case BTLVAR_SOVEREIGN_DRAGON_CHEER_SIDE_EFFECT_MON: // Sovereign (item 11)
         return &battleCtx->sovereignDragonCheer[battleCtx->sideEffectMon];
     case BTLVAR_SOVEREIGN_LASER_FOCUS_SIDE_EFFECT_MON: // Sovereign (item 11)

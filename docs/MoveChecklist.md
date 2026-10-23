@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 254 |
+| exact | 257 |
 | approximate | 39 |
-| placeholder | 87 |
+| placeholder | 84 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -19,13 +19,13 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 469 | Wide Guard | Rock | `SOVEREIGN_WIDE_GUARD` | exact | Sovereign effect: protects the user's side from spread moves this turn |
 | 470 | Guard Split | Psychic | `SOVEREIGN_GUARD_SPLIT` | exact | Sovereign effect: the user and target average their Defense and Sp. Def |
 | 471 | Power Split | Psychic | `SOVEREIGN_POWER_SPLIT` | exact | Sovereign effect: the user and target average their Attack and Sp. Atk |
-| 472 | Wonder Room | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 472 | Wonder Room | Psychic | `SOVEREIGN_WONDER_ROOM` | exact | Sovereign effect: Defense and Sp. Def are swapped for 5 turns; using it again ends it |
 | 473 | Psyshock | Psychic | `HIT` | exact | Sovereign effect: special damage against the target's Defense |
 | 474 | Venoshock | Poison | `HIT` | exact | Sovereign effect: target is poisoned: power doubles |
 | 475 | Autotomize | Steel | `SPEED_UP_2` | approximate | has its own mechanic in Gen IX; closest effect |
 | 476 | Rage Powder | Bug | `MAKE_GLOBAL_TARGET` | exact |  |
-| 477 | Telekinesis | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
-| 478 | Magic Room | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 477 | Telekinesis | Psychic | `SOVEREIGN_TELEKINESIS` | exact | Sovereign effect: for 3 turns the target is immune to Ground moves and other moves always hit it |
+| 478 | Magic Room | Psychic | `SOVEREIGN_MAGIC_ROOM` | exact | Sovereign effect: held items have no effect for 5 turns; using it again ends it |
 | 479 | Smack Down | Rock | `SOVEREIGN_SMACK_DOWN` | exact | Sovereign effect: grounds the target until it switches out |
 | 480 | Storm Throw | Fighting | `HIT` | exact | Sovereign effect: always a critical hit |
 | 481 | Flame Burst | Fire | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |

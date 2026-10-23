@@ -9259,6 +9259,76 @@
       "en_US": [
         "Both Pokémon will faint in three turns!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignMagicRoomStart",
+      "en_US": [
+        "It created a bizarre area in which\n",
+        "Pokémon’s held items lose their effects!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignMagicRoomEnd",
+      "en_US": [
+        "Magic Room wore off, and held items’\n",
+        "effects returned to normal!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignWonderRoomStart",
+      "en_US": [
+        "It created a bizarre area in which\n",
+        "Defense and Sp. Def stats are swapped!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignWonderRoomEnd",
+      "en_US": [
+        "Wonder Room wore off, and Defense and\n",
+        "Sp. Def stats returned to normal!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignHurledIntoTheAir_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} was hurled\n",
+        "into the air!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignHurledIntoTheAir_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}\n",
+        "was hurled into the air!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignHurledIntoTheAir_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}\n",
+        "was hurled into the air!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFreedFromTelekinesis_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} was freed\n",
+        "from the telekinesis!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFreedFromTelekinesis_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} was freed\n",
+        "from the telekinesis!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFreedFromTelekinesis_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} was freed\n",
+        "from the telekinesis!"
+      ]
     }
   ]
 }
