@@ -6,8 +6,8 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 252 |
-| approximate | 39 |
+| exact | 253 |
+| approximate | 38 |
 | placeholder | 89 |
 | removed | 72 |
 
@@ -122,7 +122,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 572 | Petal Blizzard | Grass | `HIT` | exact | Sovereign effect: hits all adjacent Pokémon |
 | 573 | Freeze-Dry | Ice | `FREEZE_HIT` | exact | Sovereign effect: super effective against Water; 10% freeze |
 | 574 | Disarming Voice | Fairy | `HIT` | exact | Sovereign effect: never misses, hits both foes |
-| 575 | Parting Shot | Dark | `ATK_DEF_DOWN` | approximate | stat changes [('atk', -1), ('spa', -1)] in the original |
+| 575 | Parting Shot | Dark | `SOVEREIGN_PARTING_SHOT` | exact | Sovereign effect: target Attack and Sp. Atk -1, then the user switches out (stays if no stat fell) |
 | 576 | Topsy-Turvy | Dark | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 577 | Draining Kiss | Fairy | `RECOVER_HALF_DAMAGE_DEALT` | exact | Sovereign effect: drains 3/4 of the damage dealt |
 | 578 | Crafty Shield | Fairy | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |

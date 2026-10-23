@@ -2597,3 +2597,18 @@ and Keldeo, CB-0036) is merged; its first CI run died in apt-get and the one re-
 1. Merge PR #50 (parts 21 and 22) when CI is green.
 2. More moves: Parting Shot, Belch, Bestow, the Pledges, Ally Switch, Telekinesis, Wonder/Magic Room.
 3. Abilities: Mirror Armor, Cotton Down, Wind Rider/Wind Power, Purifying Salt's status immunity.
+
+## CA-0041 (Claude A, branch `claude/festive-bardeen-5h7beo`, 2026-10-23)
+
+**Just implemented:** item 11 part 23, Parting Shot (verified in game). It rides PR #52 with part 22.
+
+**Files modified:**
+- New `effect_script_0328.s` and `subscript_sovereign_parting_shot.s`, registered in the effect, pointer and subscript
+  lists
+- `decomp/include/data/move_side_effect_subscripts.h`, `res/moves/parting_shot/data.json`
+- `tools/engine/gen9_move_fixes.py`, `docs/MoveChecklist.md`, `docs/EngineChangelog.md`
+
+**Next 3 steps:**
+1. Merge PR #52 when CI is green.
+2. More moves: Belch, Bestow, the Pledges, Ally Switch, Telekinesis, Wonder/Magic Room.
+3. Abilities: Mirror Armor, Cotton Down, Wind Rider/Wind Power, Purifying Salt's status immunity.

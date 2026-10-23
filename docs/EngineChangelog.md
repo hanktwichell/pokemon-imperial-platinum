@@ -4,6 +4,16 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (part 23) — Parting Shot
+
+- **Parting Shot:** lowers the target's Attack and Sp. Atk by 1 stage, then the user switches out as after U-turn.
+  If the stats can't be lowered, the user stays in (Gen VII+).
+  - New effect `SOVEREIGN_PARTING_SHOT` (328), whose subscript runs Noble Roar's stat drop, then U-turn's switch-out.
+- Move checklist: exact 253, approximate 38, placeholder 89.
+
+**Verified in the test build:** Garchomp's Parting Shot lowered Venusaur's Attack and Sp. Atk. "GARCHOMP went back to
+A!" followed and the party list opened.
+
 ## Item 11 (part 22) — Scale Shot, Coaching, Dragon Cheer
 
 - **Scale Shot:** hits 2–5 times; after the last hit ("Hit N time(s)!") the user's Defense falls 1 stage and its

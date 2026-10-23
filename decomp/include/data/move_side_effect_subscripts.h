@@ -188,5 +188,6 @@ static const int sSideEffectSubscripts[] = {
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_FINAL_GAMBIT] = subscript_sovereign_final_gambit,
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_COACHING] = subscript_sovereign_coaching,
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_DRAGON_CHEER] = subscript_sovereign_dragon_cheer,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_PARTING_SHOT] = subscript_sovereign_parting_shot,
 };
 // clang-format on

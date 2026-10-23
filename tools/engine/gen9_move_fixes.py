@@ -214,6 +214,7 @@ MOVES = {
     "scale_shot": (None, None, "hits 2-5 times, then user Defense -1 and Speed +1"),
     "coaching": ("SOVEREIGN_COACHING", 0, "the user's ally gets Attack and Defense +1 (fails without one)"),
     "dragon_cheer": ("SOVEREIGN_DRAGON_CHEER", 0, "the user's ally gets +1 crit stage, +2 if Dragon type (fails without one)"),
+    "parting_shot": ("SOVEREIGN_PARTING_SHOT", 0, "target Attack and Sp. Atk -1, then the user switches out (stays if no stat fell)"),
 }
 
 
