@@ -39,14 +39,14 @@ opponent for checking these in game.
 | 5 | Redirection | single-target Electric and Water moves aimed at a foe whose partner has Lightning Rod or Storm Drain get redirected (Gen V+) | wasted moves in doubles | penalise them when the target's partner redirects that type | 🔧 (with #4) |
 | 6 | Moves that can't be selected | Champions rules make Fake Out selectable only on the first turn (`CHECK_INVALID_FIRST_TURN`) | if the AI still picks it later, it wastes a turn | checked: the AI drops every move the player couldn't select (`TrainerAI_Init` filters with `CHECK_INVALID_ALL`, which includes Sovereign's first-turn check), so it never picks Fake Out after the first turn | ➖ |
 | 7 | Weather | weather moves are scored by name. Weather from abilities on switch-in (5 turns under Champions rules) isn't part of switching decisions | this matters most for the developer battle's weather control | general part here; the custom weather AI is T2 | 🔧 / T2 |
-| 8 | Ally-targeted support moves | moves on the partner need a score of 100 or more. Gen V+ ally moves are mapped to the closest Gen IV effects (E3), so whether they ever target the partner depends on that effect's scoring | e.g. Pollen Puff, Heal Pulse, Coaching, Decorate, After You, Instruct, Ally Switch | list them and check each one's target and score | 🔧 |
+| 8 | Ally-targeted support moves | moves on the partner need a score of 100 or more. Gen V+ ally moves are mapped to the closest Gen IV effects (E3), so whether they ever target the partner depends on that effect's scoring | e.g. Pollen Puff, Heal Pulse, Coaching, Decorate, After You, Instruct, Ally Switch | **checked** (table below): today nothing can hurt the AI's side. Each move gets its partner scoring as item 11 gives it its exact effect | ➖ now / with item 11 |
 | 9 | Mega Evolution timing | none (E8 adds Mega Evolution) | — | decide with E8 (other session): Mega on the first turn unless there's a reason not to | 🔧 with E8 |
 
 ## Order of work
 
 1. ✅ #1–#2 (partner safety). (#6 checked: nothing to fix.)
 2. ✅ #3 (spread credit). Then #4–#5 with item 11's ability effects.
-3. #8, then #7 (with T2) and #9 (with E8).
+3. ✅ #8 checked (scoring added per move with item 11). Then #7 (with T2) and #9 (with E8).
 
 Each fix gets a scenario in the test build. The developer team has Heat Wave and Rock Slide as spread moves, Water
 Spout and Origin Pulse with Kyogre, and Venusaur/Charizard sharing the field.
@@ -69,3 +69,32 @@ Moves that hit only the opponents (Heat Wave, Hurricane…) read as not hitting 
 - **Heat Wave:** reads 100% (a knockout) on the other foe for either target.
 - **With a Flash Fire Heatran swapped in temporarily:** when Heat Wave targets Garchomp, the other foe (Heatran) reads "absorbs" (254); when it targets Heatran, Garchomp reads 100%.
 - **Single-target moves:** read as not hitting a second foe.
+
+## #8: moves aimed at the partner (checked 2026-10-23)
+
+**How the AI treats a move aimed at its partner** (`TagStrategy_Partner`, `script.s`):
+- A damaging move scores −30 unless the partner absorbs its type (Flash Fire, Volt Absorb, Motor Drive, Water
+  Absorb). `TrainerAI_MainDoubles` only uses a partner-aimed move if it scores 100 or more, so the AI never attacks
+  its own partner.
+- A status move scores −30 unless Platinum names it: Skill Swap, Will-O-Wisp, Thunder Wave, the poison moves, Helping
+  Hand, Swagger, Trick, Switcheroo, Gastro Acid and Acupressure. Each of those has its own rules.
+
+**The Gen V+ ally moves today.** E3 maps each to the closest Gen IV effect, and those effects act on the user. So
+none of these is ever aimed at the partner, and none can hurt the AI's side:
+
+| Move | Range | Gen IV effect used now | What it does now | Partner scoring to add with its exact effect (item 11) |
+|---|---|---|---|---|
+| Pollen Puff | single target | plain hit | hits a foe; scores −30 on the partner | partner at ≤ 50% HP, or about to be knocked out, and no Heal Block: +3 on the partner |
+| Heal Pulse, Floral Healing | single target | Recover | heals the user | partner ≤ 50% HP: +3 (+1 more on Grassy Terrain for Floral Healing); partner at full HP: −30 |
+| Life Dew, Jungle Healing, Lunar Blessing | user's side | Recover / none | heals the user / nothing | score as Recover on whichever of the pair is hurt most |
+| Decorate | single target | Swords Dance | raises the user's Attack | partner with a strong attacking move: +2 |
+| Coaching | user's side | Bulk Up | raises the user's Attack and Defense | partner's Attack < +6 and it has physical moves: +1 |
+| Aromatic Mist | ally | Calm Mind-style Sp. Def | raises the user's Sp. Def | partner faces a special attacker: +1 |
+| Instruct | single target | none | nothing | partner's last move was a strong hit: +2 on the partner |
+| After You | single target | none | nothing | partner slower than a foe it can knock out: +2 on the partner |
+| Ally Switch | user | none | nothing | foe aimed a single-target move at us last turn: +1 (random) |
+| Hold Hands | ally | none | nothing | −10 always (no battle effect) |
+| Dragon Cheer, Magnetic Flux, Gear Up | user's side | none / Def+SpD / Swords Dance | nothing / the user | score as the stat move for each of the pair it can affect |
+| Purify, Spotlight, Quash, Entrainment, Simple Beam | single target | none | nothing | Purify: partner has a status condition +2. Others: per their exact effect |
+
+Platinum's own ally moves keep their rules: Helping Hand, Acupressure, Skill Swap, Swagger, Trick and so on.

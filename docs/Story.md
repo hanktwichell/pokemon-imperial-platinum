@@ -145,6 +145,57 @@ such NPC exists, a new one is placed (E11 finds them).
 - **Icons:** the 11 pieces, the Crown and the Sovereign Crown are on the owner's sprite list
   (`docs/SpriteChecklist.xlsx`, sheet *Item Icons*, from `data/item_sprites.csv`).
 
+## Oak's visit to Rowan's lab (redo, draft for the owner)
+
+Platinum's scene: when the player shows Rowan a complete Sinnoh Pokédex, Oak arrives, upgrades it to the National
+Pokédex (fanfare) and sends the player to Pal Park on Route 221. In Sovereign the National Dex comes with the Pokédex
+(decision 21) and Pal Park is gone (decision 22), so both halves are wrong. Worse, the script only plays it while the
+National Dex is off, so as things stand the scene, and the Fight Area unlock it carries, would never play.
+
+**Proposed:** keep the trigger (a complete Sinnoh Pokédex) and the cameo, drop the upgrade, and make Oak's errand part
+of the story: Pokémon from every region are turning up, the strange regional forms gather on Route 221, and that's
+the **Regional Forms Park**. It follows on from Rowan's early remark (*Early: two vague references*).
+
+Draft text (new lines in **bold**; the greetings stay as in Platinum):
+
+- Oak: Greetings, Professor Rowan! It's been a very long time! … *(unchanged)*
+- Rowan: Oh! If it isn't my old colleague, Professor Oak! … *(unchanged)*
+- Rowan: Professor Oak, let me introduce you to my young assistant. This youngster has filled every page of the
+  Sinnoh Pokédex for me. *(unchanged)*
+- **Oak: Ah, very glad to meet you! My name is Oak. Professor Rowan has told me a great deal about you.**
+  **I see you already carry a National Pokédex. Rowan was ahead of us all, it seems.**
+  **In truth, that's why I've come. Pokémon from Kanto, from every region, have been turning up here in Sinnoh,**
+  **and no one can say how they got here.**
+- **Rowan: Then I was right to worry. I'd hoped it was a quirk of this region alone.**
+- **Oak: Stranger still, some of them look like no Pokémon I know. A Vulpix as white as snow… a Meowth from Galar…**
+  **The odd ones keep gathering on the old grounds at the end of Route 221. They've been made into a park for them:**
+  **the Regional Forms Park.**
+- **Oak: {PLAYER}, you should take a look. Whatever is bringing them here, someone ought to keep a record.**
+  Oops! I'll be late for my meeting if I don't get going! OK, it was a pleasure seeing the both of you! Bye, now!
+  *(the farewell unchanged)*
+
+Removed: "Let me upgrade your Pokédex", "…was upgraded with the National Mode!" and its fanfare, "It won't be easy
+to complete the National Pokédex", and both Pal Park lines. Rowan still gives the Poké Radar afterwards.
+
+**Engineering:** the scene's check changes from "National Dex off" to a new "Oak's visit seen" flag. The Fight Area
+blockade it lifts and the `FLAG_GAME_COMPLETED` step stay. If the Regional Forms Park opens with this scene, it
+sets that flag too.
+
+**Route 221 text:**
+- "Pal Park isn't open yet. We're still setting up." → **"The park isn't open yet. We're still setting up."**
+- "We're getting Pal Park ready. I wonder what you can do there?" → **"We're getting the park ready. Some very odd
+  Pokémon have been wandering in…"**
+- Sign: "Pal Park / A Place for New Beginnings" → **"Regional Forms Park / Where Far-Off Forms Gather"**
+
+**Other lines:** Dawn/Lucas, Bebe (Hearthome) and the woman in the counterpart's house mention the National Pokédex
+as something newly earned. They still read fine with the National Dex from the start, but they'd appear from early
+on. Pal Park's lobby, the GBA Migrate text and the Pal Park TV commercial go with Pal Park (decision 22).
+
+Owner's call:
+1. Keep the trigger at a complete Sinnoh Pokédex, or move it (e.g. the first Hall of Fame)?
+2. Should the park open with this scene, or earlier or later? This also settles the open Regional Forms Park question.
+3. Since there's no upgrade any more, should Oak give the player something?
+
 ## Engineering notes
 
 - **Dialga/Palkia trigger:** the first Hall of Fame entry, instead of the National Pokédex. Find the flag or variable

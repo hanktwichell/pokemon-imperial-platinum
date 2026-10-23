@@ -1111,6 +1111,53 @@ files. Also `decomp/src/script_manager.c` (test warps), `.github/workflows/build
 
 ---
 
+## CA-0020 — 2026-10-22, 5:45 pm US Central (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** nothing new. PR #19 is merged (12b #1–#3, the story docs, the README, `make_release_patch.sh`), and
+the branch is reset to main (`2bd5bec2`). Paused for the usage limit, with the next task started below.
+
+**Started: 12b #8 (ally-targeted support moves).** Plan, nothing built yet:
+1. List every Gen V+ move that can target the partner: Pollen Puff, Heal Pulse, Coaching, Decorate, After You,
+   Instruct, Ally Switch, Aromatic Mist, Floral Healing, Life Dew, Jungle Healing and so on.
+   - Use `MOVE_DATA(...).range` (`RANGE_USER_OR_ALLY`, `RANGE_ALLY`, single-target) and the E3 effect mapping in
+     `decomp/res/battle/moves/`.
+2. For each move, find the Gen IV effect it maps to and what `script.s` scores it at when the target is the partner.
+   `TrainerAI_MainDoubles` only picks a partner target scoring ≥ 100.
+3. Write the table into `docs/AIReview.md` #8. Fix the ones that never or wrongly target the partner, e.g. Pollen
+   Puff heals the partner and damages foes. Verify with SELECT+R (developer team).
+
+**Files modified:** `CLAUDE_STATUS.md`.
+
+**Next 3 steps:** 12b #8 as planned above; then item 11 (exact effects, boss teams first); then T1.
+
+---
+
+## CA-0021 — 2026-10-23 (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** a draft redo of Oak's visit to Rowan's lab (owner request), in `docs/Story.md` (*Oak's visit…*).
+- **Why it breaks:** Platinum plays it only while the National Dex is off (`SandgemTownLab_ProfRowanReactToPokedex`,
+  `GetNationalDexEnabled`). With the National Dex from the start (decision 21) it would never play, and its Fight
+  Area unlock would be lost with it.
+- **The draft:** Oak doesn't upgrade the Pokédex; instead he comes because Pokémon from every region are turning up,
+  and he points the player to the Regional Forms Park on Route 221.
+- **Also drafted:** new Route 221 NPC and sign text, and a note on the other lines that mention the National Dex or
+  Pal Park.
+- **Waiting on the owner:**
+  1. the trigger;
+  2. when the park opens;
+  3. whether Oak gives an item.
+
+**Files modified:** `docs/Story.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Build the Oak scene once the owner signs off. The text goes in `res/text/sandgem_town_pokemon_research_lab.json`
+   and `route_221.json`, and the script check becomes a new flag. Coordinate with Claude B's DX, which turns on the
+   National Dex.
+2. 12b #8 (CA-0020's plan).
+3. Item 11.
+
+---
+
 ## CB-0016 — 2026-10-22, 6:45 pm US Central (session on `claude/sweet-wright-rk4wl1`)
 
 **Implemented and verified in the test build:**
@@ -1238,3 +1285,24 @@ by frame in the test build:
 1. Merge this PR when green.
 2. The Mega abilities the boss teams need: Magic Bounce, Parental Bond, Strong Jaw, Tough Claws, Aura Guard.
 3. The rest of the animation spec: the Mega symbol over the sprite and a Mega icon on the HP bar.
+
+---
+
+## CA-0022 — 2026-10-23 (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** 12b #8 checked; no code change needed now. `docs/AIReview.md` has a new *#8* section:
+- **How the AI scores partner-aimed moves:** −30 for any damaging move unless the partner absorbs it, and −30 for
+  any status move Platinum doesn't name. A partner target needs a score of 100 or more to be used, so the AI never
+  attacks or wrongly buffs its partner.
+- **What the Gen V+ ally moves do now:** E3 maps them to Gen IV effects that act on the user, e.g. Heal Pulse acts
+  like Recover and Decorate like Swords Dance, so none can hurt the AI's side.
+- **Item 11:** each move gets partner scoring as it gets its exact effect, per the table (Pollen Puff and Heal Pulse
+  heal a hurt partner, Instruct, After You, and so on).
+- Also merged main (CB-0016 to CB-0018).
+
+**Files modified:** `docs/AIReview.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Owner's answers on Oak's visit (CA-0021), then build it.
+2. Item 11: exact effects, boss teams first, adding #8's partner scoring per move as it's built.
+3. 12b #4–#5 (Gen V+ absorbing abilities and redirection) along with item 11.
