@@ -4,6 +4,33 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (part 12) — Wide Guard, Quick Guard, Dragon Tail, Smack Down, Soak, Retaliate, Poltergeist
+
+- **Wide Guard / Quick Guard:** protect the user's side this turn from spread moves / foes' priority moves (new side
+  flags `sovereignSideGuards`, "Wide Guard protected your team!").
+- **Dragon Tail, Circle Throw:** drag the target out after the hit (end a wild battle), quietly doing nothing when it
+  can't (Suction Cups, Ingrain, no Pokémon to switch in).
+- **Smack Down:** grounds the target until it switches out ("{0} fell straight down!" if it was airborne); grounded
+  Pokémon feel terrains and Ground moves.
+- **Soak:** the target becomes pure Water-type ("{0} transformed into the Water type!").
+- **Retaliate:** double power if a Pokémon on the user's side fainted last turn (new `sovereignSideFaintTurn`).
+- **Poltergeist:** fails against a target with no item (the item message isn't shown yet).
+- Move checklist: exact 220, approximate 47, placeholder 113.
+
+**Verified in the test build:** Venusaur's Wide Guard stopped Garchomp's Hyper Voice on both foes for two turns
+(Archaludon stayed at full HP).
+
+## Item 11 (part 11) — Laser Focus and Throat Chop
+
+- **Laser Focus:** the user's moves always crit this turn and the next ("{0} concentrated intensely!").
+- **Throat Chop:** the target can't use sound moves this turn and the next. They're greyed out at selection with
+  Heal Block's "{0} can't use {2} because of {1}!" message, and a sound move chosen before the hit fails with it.
+- New per-battler counters `sovereignLaserFocus` / `sovereignThroatChop`, which wear off at the start of each turn, and
+  the subscript pointers `MOVE_SUBSCRIPT_PTR_SOVEREIGN_LASER_FOCUS` / `_THROAT_CHOP`.
+- Move checklist: exact 213, approximate 46, placeholder 121.
+
+**Verified in the test build:** after Venusaur's Throat Chop hit Garchomp, Garchomp's Hyper Voice didn't go off.
+
 ## Item 11 (part 10) — Terrains
 
 Electric, Grassy, Misty and Psychic Terrain, as in Gen IX: 5 turns (8 with a Terrain Extender), set by the four moves or
@@ -22,11 +49,14 @@ by Electric/Grassy/Misty/Psychic Surge and Hadron Engine on entry, with start an
   Drought, Attack ×1.33 in it).
 - Implementation: one bit per terrain plus a 4-bit turn count in `fieldConditionsMask` (bits 19–26), a read-only script
   variable `BTLVAR_SOVEREIGN_TERRAIN_EFFECT_MON` for the status subscripts, and `Sovereign_TerrainUnder`.
-- Not yet: the terrain Seeds, Mimicry, and the background tint.
+- Terrain Seeds: the Electric and Grassy Seeds raise Defense, the Misty and Psychic Seeds Sp. Def, when their terrain
+  is up (checked after every move, so a terrain set mid-turn triggers them).
+- Not yet: Mimicry and the background tint.
 - Move checklist: exact 211, approximate 47, placeholder 122.
 
 **Verified in the test build:** with an Electric Surge Archaludon on the field, Garchomp's Thunder Fang dealt 26
-pre-variance (the ×1.3 value; 21 without) and Venusaur's Sleep Powder put neither Garchomp nor Turtwig to sleep.
+pre-variance (the ×1.3 value; 21 without) and Venusaur's Sleep Powder put neither Garchomp nor Turtwig to sleep; a
+Venusaur holding an Electric Seed ended at Defense +1 with the Seed used up.
 
 ## Item 11 (part 9) — Booster Energy and moves that read the turn
 

@@ -325,4 +325,13 @@ subscript_files = files(
     'subscript_sovereign_terrain_end.s',
     'subscript_sovereign_grassy_terrain_heal.s',
     'subscript_sovereign_terrain_start.s',
+    'subscript_sovereign_terrain_seed.s',
+    'subscript_sovereign_move_blocked.s',
+    'subscript_sovereign_laser_focus.s',
+    'subscript_sovereign_throat_chop.s',
+    'subscript_sovereign_drag_out.s',
+    'subscript_sovereign_soak.s',
+    'subscript_sovereign_smack_down.s',
+    'subscript_sovereign_wide_guard.s',
+    'subscript_sovereign_quick_guard.s',
 )

@@ -169,6 +169,16 @@ MOVES = {
     "grassy_glide": (None, None, "+1 priority in Grassy Terrain"),
     "steel_roller": (None, None, "fails without a terrain, then removes it (no message yet)", "approximate"),
     "ice_spinner": (None, None, "removes the terrain (no message yet)", "approximate"),
+    "laser_focus": ("SOVEREIGN_LASER_FOCUS", 0, "the user's moves always crit this turn and the next"),
+    "throat_chop": ("SOVEREIGN_THROAT_CHOP", 100, "the target can't use sound moves for two turns"),
+    "dragon_tail": ("SOVEREIGN_DRAG_OUT_HIT", 0, "drags the target out after the hit"),
+    "circle_throw": ("SOVEREIGN_DRAG_OUT_HIT", 0, "drags the target out after the hit"),
+    "smack_down": ("SOVEREIGN_SMACK_DOWN", 0, "grounds the target until it switches out"),
+    "soak": ("SOVEREIGN_SOAK", 0, "the target becomes pure Water-type"),
+    "wide_guard": ("SOVEREIGN_WIDE_GUARD", 0, "protects the user's side from spread moves this turn"),
+    "quick_guard": ("SOVEREIGN_QUICK_GUARD", 0, "protects the user's side from foes' priority moves this turn"),
+    "poltergeist": (None, None, "fails against a target holding no item (no item message yet)", "approximate"),
+    "retaliate": (None, None, "power doubles if a Pokémon on the user's side fainted last turn"),
 }
 
 

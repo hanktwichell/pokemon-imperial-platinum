@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 211 |
+| exact | 220 |
 | approximate | 47 |
-| placeholder | 122 |
+| placeholder | 113 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -16,7 +16,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | # | Move | Type | Effect used | Fidelity | Note |
 |---|---|---|---|---|---|
 | 468 | Hone Claws | Dark | `SOVEREIGN_HONE_CLAWS` | exact | Sovereign effect: user Attack +1, user accuracy +1 |
-| 469 | Wide Guard | Rock | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 469 | Wide Guard | Rock | `SOVEREIGN_WIDE_GUARD` | exact | Sovereign effect: protects the user's side from spread moves this turn |
 | 470 | Guard Split | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 471 | Power Split | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 472 | Wonder Room | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
@@ -26,7 +26,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 476 | Rage Powder | Bug | `MAKE_GLOBAL_TARGET` | exact |  |
 | 477 | Telekinesis | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 478 | Magic Room | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
-| 479 | Smack Down | Rock | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 479 | Smack Down | Rock | `SOVEREIGN_SMACK_DOWN` | exact | Sovereign effect: grounds the target until it switches out |
 | 480 | Storm Throw | Fighting | `HIT` | exact | Sovereign effect: always a critical hit |
 | 481 | Flame Burst | Fire | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 482 | Sludge Wave | Poison | `POISON_HIT` | exact |  |
@@ -34,7 +34,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 484 | Heavy Slam | Steel | `HIT` | exact | Sovereign effect: power from the user/target weight ratio (40-120) |
 | 485 | Synchronoise | Psychic | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 486 | Electro Ball | Electric | `HIT` | exact | Sovereign effect: power from the user/target Speed ratio (40-150) |
-| 487 | Soak | Water | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 487 | Soak | Water | `SOVEREIGN_SOAK` | exact | Sovereign effect: the target becomes pure Water-type |
 | 488 | Flame Charge | Fire | `SOVEREIGN_RAISE_SPEED_HIT` | exact | Sovereign effect: user Speed +1 (100%) |
 | 489 | Coil | Poison | `SOVEREIGN_COIL` | exact | Sovereign effect: user Attack +1, user Defense +1, user accuracy +1 |
 | 490 | Low Sweep | Fighting | `LOWER_SPEED_HIT` | exact |  |
@@ -48,7 +48,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 498 | Chip Away | Normal | `HIT` | exact | Sovereign effect: ignores the target's stat changes |
 | 499 | Clear Smog | Poison | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 500 | Stored Power | Psychic | `HIT` | exact | Sovereign effect: power 20 + 20 per positive stat stage on the user |
-| 501 | Quick Guard | Fighting | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 501 | Quick Guard | Fighting | `SOVEREIGN_QUICK_GUARD` | exact | Sovereign effect: protects the user's side from foes' priority moves this turn |
 | 502 | Ally Switch | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 503 | Scald | Water | `BURN_HIT` | exact |  |
 | 504 | Shell Smash | Normal | `SOVEREIGN_SHELL_SMASH` | exact | Sovereign effect: user Defense -1, user Sp. Def -1, user Attack +2, user Sp. Atk +2, user Speed +2 |
@@ -56,12 +56,12 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 506 | Hex | Ghost | `HIT` | exact | Sovereign effect: target has a status condition: power doubles |
 | 507 | Sky Drop | Flying | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 508 | Shift Gear | Steel | `SOVEREIGN_SHIFT_GEAR` | exact | Sovereign effect: user Attack +1, user Speed +2 |
-| 509 | Circle Throw | Fighting | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 509 | Circle Throw | Fighting | `SOVEREIGN_DRAG_OUT_HIT` | exact | Sovereign effect: drags the target out after the hit |
 | 510 | Incinerate | Fire | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 511 | Quash | Dark | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 512 | Acrobatics | Flying | `HIT` | exact | Sovereign effect: user holds no item: power doubles |
 | 513 | Reflect Type | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
-| 514 | Retaliate | Normal | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 514 | Retaliate | Normal | `HIT` | exact | Sovereign effect: power doubles if a Pokémon on the user's side fainted last turn |
 | 515 | Final Gambit | Fighting | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 516 | Bestow | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 517 | Inferno | Fire | `BURN_HIT` | exact |  |
@@ -72,7 +72,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 522 | Struggle Bug | Bug | `LOWER_SP_ATK_HIT` | exact |  |
 | 523 | Bulldoze | Ground | `LOWER_SPEED_HIT` | exact |  |
 | 524 | Frost Breath | Ice | `HIT` | exact | Sovereign effect: always a critical hit |
-| 525 | Dragon Tail | Dragon | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 525 | Dragon Tail | Dragon | `SOVEREIGN_DRAG_OUT_HIT` | exact | Sovereign effect: drags the target out after the hit |
 | 526 | Work Up | Normal | `SOVEREIGN_WORK_UP` | exact | Sovereign effect: user Attack +1, user Sp. Atk +1 |
 | 527 | Electroweb | Electric | `LOWER_SPEED_HIT` | exact |  |
 | 528 | Wild Charge | Electric | `RECOIL_QUARTER` | exact |  |
@@ -220,9 +220,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 670 | Leafage | Grass | `HIT` | exact |  |
 | 671 | Spotlight | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 672 | Toxic Thread | Poison | `STATUS_POISON` | approximate | also changes stats [('spe', -1)] in the original |
-| 673 | Laser Focus | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 673 | Laser Focus | Normal | `SOVEREIGN_LASER_FOCUS` | exact | Sovereign effect: the user's moves always crit this turn and the next |
 | 674 | Gear Up | Steel | `ATK_UP_2` | approximate | raises [('atk', 1), ('spa', 1)] in the original |
-| 675 | Throat Chop | Dark | `HIT` | approximate | secondary ailment 24 not reproduced |
+| 675 | Throat Chop | Dark | `SOVEREIGN_THROAT_CHOP` | exact | Sovereign effect: the target can't use sound moves for two turns |
 | 676 | Pollen Puff | Bug | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 677 | Anchor Shot | Steel | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 678 | Psychic Terrain | Psychic | `SOVEREIGN_PSYCHIC_TERRAIN` | exact | Sovereign effect: Psychic Terrain: grounded Psychic moves x1.3, blocks priority moves |
@@ -356,7 +356,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 806 | Skitter Smack | Bug | `LOWER_SP_ATK_HIT` | exact | Sovereign effect: target Sp. Atk -1 (100%) |
 | 807 | BurnJealousy | Fire | `BURN_HIT` | exact | Sovereign effect: burns a target whose stats rose this turn |
 | 808 | Lash Out | Dark | `HIT` | exact | Sovereign effect: power doubles if the user's stats were lowered this turn |
-| 809 | Poltergeist | Ghost | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 809 | Poltergeist | Ghost | `HIT` | approximate | Sovereign effect: fails against a target holding no item (no item message yet) |
 | 810 | Corrosive Gas | Poison | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 811 | Coaching | Fighting | `ATK_DEF_UP` | approximate | has its own mechanic in Gen IX; closest effect |
 | 812 | Flip Turn | Water | `SWITCH_HIT` | exact |  |

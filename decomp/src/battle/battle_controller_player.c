@@ -2524,6 +2524,7 @@ enum CheckStatusState {
     CHECK_STATUS_STATE_IMPRISON,
     CHECK_STATUS_STATE_GRAVITY,
     CHECK_STATUS_STATE_HEAL_BLOCK,
+    CHECK_STATUS_STATE_SOVEREIGN_THROAT_CHOP,
     CHECK_STATUS_STATE_CONFUSION,
     CHECK_STATUS_STATE_PARALYSIS,
     CHECK_STATUS_STATE_ATTRACT,
@@ -2748,6 +2749,20 @@ static BOOL BattleControllerPlayer_CheckStatusDisruption(BattleSystem *battleSys
                 battleCtx->moveFailFlags[battleCtx->attacker].healBlocked = TRUE;
 
                 LOAD_SUBSEQ(subscript_move_is_heal_blocked);
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+                battleCtx->commandNext = BATTLE_CONTROL_UPDATE_MOVE_BUFFERS;
+
+                result = CHECK_STATUS_DISRUPT_MOVE;
+            }
+
+            battleCtx->statusCheckState++;
+            break;
+
+        case CHECK_STATUS_STATE_SOVEREIGN_THROAT_CHOP:
+            // Sovereign (item 11): Throat Chop stops sound moves chosen before it hit.
+            if (battleCtx->sovereignThroatChop[battleCtx->attacker] && Move_IsSound(battleCtx->moveCur)) {
+                battleCtx->msgMoveTemp = MOVE_THROAT_CHOP;
+                LOAD_SUBSEQ(subscript_sovereign_move_blocked);
                 battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
                 battleCtx->commandNext = BATTLE_CONTROL_UPDATE_MOVE_BUFFERS;
 
@@ -3210,6 +3225,21 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
         && Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_BULLETPROOF) == TRUE
         && Move_IsBallOrBomb(move)) {
         battleCtx->moveStatusFlags |= MOVE_STATUS_INEFFECTIVE;
+    }
+
+    // Sovereign (item 11): Wide Guard blocks spread moves aimed at its side, Quick Guard foes' priority moves.
+    if (attacker != defender
+        && (((battleCtx->sovereignSideGuards[BattleSystem_GetBattlerSide(battleSys, defender)] & 1)
+                && (MOVE_DATA(move).range == RANGE_ADJACENT_OPPONENTS || MOVE_DATA(move).range == RANGE_ALL_ADJACENT))
+            || ((battleCtx->sovereignSideGuards[BattleSystem_GetBattlerSide(battleSys, defender)] & 2)
+                && BattleSystem_GetBattlerSide(battleSys, attacker) != BattleSystem_GetBattlerSide(battleSys, defender)
+                && Sovereign_MovePriority(battleCtx, attacker, move) > 0))) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_PROTECTED;
+    }
+
+    // Sovereign (item 11): Poltergeist fails against a target holding no item.
+    if (move == MOVE_POLTERGEIST && battleCtx->battleMons[defender].heldItem == ITEM_NONE) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_FAILED;
     }
 
     // Sovereign (item 11): Psychic Terrain protects grounded Pokemon from foes' priority moves; Steel Roller fails without
@@ -4099,6 +4129,7 @@ static void BattleControllerPlayer_FaintAfterSelfdestruct(BattleSystem *battleSy
 {
     if (battleCtx->battleStatusMask & SYSCTL_MON_SELFDESTRUCTED) {
         battleCtx->faintedMon = LowestBit((battleCtx->battleStatusMask & SYSCTL_MON_SELFDESTRUCTED) >> SYSCTL_MON_SELFDESTRUCTED_SHIFT);
+        battleCtx->sovereignSideFaintTurn[battleCtx->faintedMon & 1] = battleCtx->totalTurns + 1; // Sovereign (item 11): Retaliate
         battleCtx->battleStatusMask &= ~SYSCTL_MON_SELFDESTRUCTED;
 
         LOAD_SUBSEQ(subscript_after_selfdestruct);
@@ -4653,6 +4684,7 @@ static BOOL BattleControllerPlayer_AnyFainted(BattleContext *battleCtx, int next
 
         battleCtx->battleStatusMask &= (battlerBit ^ 0xFFFFFFFF);
         battleCtx->faintedMon = LowestBit(battlerBit >> SYSCTL_MON_FAINTED_SHIFT);
+        battleCtx->sovereignSideFaintTurn[battleCtx->faintedMon & 1] = battleCtx->totalTurns + 1; // Sovereign (item 11): Retaliate
 
         if (onlyFaint == TRUE) {
             LOAD_SUBSEQ(subscript_faint_mon);
