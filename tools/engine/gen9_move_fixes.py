@@ -169,6 +169,8 @@ MOVES = {
     "grassy_glide": (None, None, "+1 priority in Grassy Terrain"),
     "steel_roller": (None, None, "fails without a terrain, then removes it (no message yet)", "approximate"),
     "ice_spinner": (None, None, "removes the terrain (no message yet)", "approximate"),
+    "laser_focus": ("SOVEREIGN_LASER_FOCUS", 0, "the user's moves always crit this turn and the next"),
+    "throat_chop": ("SOVEREIGN_THROAT_CHOP", 100, "the target can't use sound moves for two turns"),
 }
 
 

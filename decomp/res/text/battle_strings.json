@@ -8800,6 +8800,27 @@
         "The foe’s {STRVAR_1 1, 0, 0} was healed\n",
         "by the Grassy Terrain!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignConcentratedIntensely_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}\n",
+        "concentrated intensely!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignConcentratedIntensely_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}\n",
+        "concentrated intensely!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignConcentratedIntensely_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}\n",
+        "concentrated intensely!"
+      ]
     }
   ]
 }

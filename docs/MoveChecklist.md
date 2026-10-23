@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 211 |
-| approximate | 47 |
-| placeholder | 122 |
+| exact | 213 |
+| approximate | 46 |
+| placeholder | 121 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -220,9 +220,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 670 | Leafage | Grass | `HIT` | exact |  |
 | 671 | Spotlight | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 672 | Toxic Thread | Poison | `STATUS_POISON` | approximate | also changes stats [('spe', -1)] in the original |
-| 673 | Laser Focus | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 673 | Laser Focus | Normal | `SOVEREIGN_LASER_FOCUS` | exact | Sovereign effect: the user's moves always crit this turn and the next |
 | 674 | Gear Up | Steel | `ATK_UP_2` | approximate | raises [('atk', 1), ('spa', 1)] in the original |
-| 675 | Throat Chop | Dark | `HIT` | approximate | secondary ailment 24 not reproduced |
+| 675 | Throat Chop | Dark | `SOVEREIGN_THROAT_CHOP` | exact | Sovereign effect: the target can't use sound moves for two turns |
 | 676 | Pollen Puff | Bug | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 677 | Anchor Shot | Steel | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 678 | Psychic Terrain | Psychic | `SOVEREIGN_PSYCHIC_TERRAIN` | exact | Sovereign effect: Psychic Terrain: grounded Psychic moves x1.3, blocks priority moves |

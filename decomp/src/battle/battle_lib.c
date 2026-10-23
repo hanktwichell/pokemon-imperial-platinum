@@ -2163,6 +2163,8 @@ void BattleSystem_UpdateAfterSwitch(BattleSystem *battleSys, BattleContext *batt
     battleCtx->moveHitType[battler] = MOVE_NONE;
     battleCtx->movePrevByBattler[battler] = MOVE_NONE;
     battleCtx->sovereignLastMoveFailed[battler] = FALSE;
+    battleCtx->sovereignLaserFocus[battler] = 0;
+    battleCtx->sovereignThroatChop[battler] = 0;
     battleCtx->moveCopied[battler] = MOVE_NONE;
     battleCtx->moveCopiedHit[battler][0] = MOVE_NONE;
     battleCtx->moveCopiedHit[battler][1] = MOVE_NONE;
@@ -2242,6 +2244,8 @@ void BattleSystem_CleanupFaintedMon(BattleSystem *battleSys, BattleContext *batt
     battleCtx->moveHitType[battler] = MOVE_NONE;
     battleCtx->movePrevByBattler[battler] = MOVE_NONE;
     battleCtx->sovereignLastMoveFailed[battler] = FALSE;
+    battleCtx->sovereignLaserFocus[battler] = 0;
+    battleCtx->sovereignThroatChop[battler] = 0;
     battleCtx->moveCopied[battler] = MOVE_NONE;
     battleCtx->moveCopiedHit[battler][0] = MOVE_NONE;
     battleCtx->moveCopiedHit[battler][1] = MOVE_NONE;
@@ -2270,6 +2274,14 @@ void BattleSystem_CleanupFaintedMon(BattleSystem *battleSys, BattleContext *batt
 void BattleSystem_SetupNextTurn(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     for (int i = 0; i < MAX_BATTLERS; i++) {
+        // Sovereign (item 11): Laser Focus and Throat Chop wear off.
+        if (battleCtx->sovereignLaserFocus[i]) {
+            battleCtx->sovereignLaserFocus[i]--;
+        }
+        if (battleCtx->sovereignThroatChop[i]) {
+            battleCtx->sovereignThroatChop[i]--;
+        }
+
         MI_CpuClearFast(&battleCtx->turnFlags[i], sizeof(struct TurnFlags));
         MI_CpuClearFast(&battleCtx->moveFailFlags[i], sizeof(struct MoveFailFlags));
 
@@ -2347,6 +2359,12 @@ int BattleSystem_CheckInvalidMoves(BattleSystem *battleSys, BattleContext *battl
         }
 
         // Sovereign (Pokémon Champions): first-turn-only moves can't even be selected after the user's first turn.
+        if (battleCtx->sovereignThroatChop[battler]
+            && Move_IsSound(battleCtx->battleMons[battler].moves[i])
+            && (opMask & CHECK_INVALID_THROAT_CHOP)) {
+            invalidMoves |= FlagIndex(i);
+        }
+
         if (MOVE_DATA(battleCtx->battleMons[battler].moves[i]).effect == BATTLE_EFFECT_ALWAYS_FLINCH_FIRST_TURN_ONLY
             && battleCtx->battleMons[battler].moveEffectsData.fakeOutTurnNumber != battleCtx->totalTurns
             && (opMask & CHECK_INVALID_FIRST_TURN)) {
@@ -2412,6 +2430,13 @@ BOOL BattleSystem_CanUseMove(BattleSystem *battleSys, BattleContext *battleCtx, 
         msgOut->id = BattleStrings_Text_TheItemAllowsTheUseOfOnlyMove; // "The {0} allows the use of only {1}!"
         msgOut->params[0] = battleCtx->battleMons[battler].heldItem;
         msgOut->params[1] = battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove;
+        result = FALSE;
+    } else if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_THROAT_CHOP) & FlagIndex(moveSlot)) {
+        msgOut->tags = TAG_NICKNAME_MOVE_MOVE;
+        msgOut->id = BattleStrings_Text_PokemonCantUseMoveBecauseOfMove_Ally; // "{0} can't use {2} because of {1}!"
+        msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, battler);
+        msgOut->params[1] = MOVE_THROAT_CHOP;
+        msgOut->params[2] = battleCtx->battleMons[battler].moves[moveSlot];
         result = FALSE;
     } else if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_FIRST_TURN) & FlagIndex(moveSlot)) {
         msgOut->tags = TAG_NICKNAME_MOVE;

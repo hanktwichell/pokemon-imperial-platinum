@@ -4,6 +4,17 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (part 11) — Laser Focus and Throat Chop
+
+- **Laser Focus:** the user's moves always crit this turn and the next ("{0} concentrated intensely!").
+- **Throat Chop:** the target can't use sound moves this turn and the next. They're greyed out at selection with
+  Heal Block's "{0} can't use {2} because of {1}!" message, and a sound move chosen before the hit fails with it.
+- New per-battler counters `sovereignLaserFocus` / `sovereignThroatChop`, which wear off at the start of each turn, and
+  the subscript pointers `MOVE_SUBSCRIPT_PTR_SOVEREIGN_LASER_FOCUS` / `_THROAT_CHOP`.
+- Move checklist: exact 213, approximate 46, placeholder 121.
+
+**Verified in the test build:** after Venusaur's Throat Chop hit Garchomp, Garchomp's Hyper Voice didn't go off.
+
 ## Item 11 (part 10) — Terrains
 
 Electric, Grassy, Misty and Psychic Terrain, as in Gen IX: 5 turns (8 with a Terrain Extender), set by the four moves or

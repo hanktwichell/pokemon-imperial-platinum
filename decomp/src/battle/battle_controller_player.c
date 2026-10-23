@@ -2524,6 +2524,7 @@ enum CheckStatusState {
     CHECK_STATUS_STATE_IMPRISON,
     CHECK_STATUS_STATE_GRAVITY,
     CHECK_STATUS_STATE_HEAL_BLOCK,
+    CHECK_STATUS_STATE_SOVEREIGN_THROAT_CHOP,
     CHECK_STATUS_STATE_CONFUSION,
     CHECK_STATUS_STATE_PARALYSIS,
     CHECK_STATUS_STATE_ATTRACT,
@@ -2748,6 +2749,20 @@ static BOOL BattleControllerPlayer_CheckStatusDisruption(BattleSystem *battleSys
                 battleCtx->moveFailFlags[battleCtx->attacker].healBlocked = TRUE;
 
                 LOAD_SUBSEQ(subscript_move_is_heal_blocked);
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+                battleCtx->commandNext = BATTLE_CONTROL_UPDATE_MOVE_BUFFERS;
+
+                result = CHECK_STATUS_DISRUPT_MOVE;
+            }
+
+            battleCtx->statusCheckState++;
+            break;
+
+        case CHECK_STATUS_STATE_SOVEREIGN_THROAT_CHOP:
+            // Sovereign (item 11): Throat Chop stops sound moves chosen before it hit.
+            if (battleCtx->sovereignThroatChop[battleCtx->attacker] && Move_IsSound(battleCtx->moveCur)) {
+                battleCtx->msgMoveTemp = MOVE_THROAT_CHOP;
+                LOAD_SUBSEQ(subscript_sovereign_move_blocked);
                 battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
                 battleCtx->commandNext = BATTLE_CONTROL_UPDATE_MOVE_BUFFERS;
 

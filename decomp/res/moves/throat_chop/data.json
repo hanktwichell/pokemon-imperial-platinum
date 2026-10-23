@@ -13,8 +13,8 @@
     "accuracy": 100,
     "pp": 15,
     "effect": {
-        "type": "BATTLE_EFFECT_HIT",
-        "chance": 0
+        "type": "BATTLE_EFFECT_SOVEREIGN_THROAT_CHOP",
+        "chance": 100
     },
     "range": "RANGE_SINGLE_TARGET",
     "priority": 0,

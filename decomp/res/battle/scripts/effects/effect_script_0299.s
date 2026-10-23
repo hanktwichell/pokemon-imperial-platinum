@@ -1,0 +1,7 @@
+#include "macros/btlcmd.inc"
+
+// Sovereign (item 11): Laser Focus.
+
+_000:
+    UpdateVar OPCODE_FLAG_ON, BTLVAR_SIDE_EFFECT_FLAGS_DIRECT, MOVE_SIDE_EFFECT_TO_ATTACKER|MOVE_SUBSCRIPT_PTR_SOVEREIGN_LASER_FOCUS
+    End 
