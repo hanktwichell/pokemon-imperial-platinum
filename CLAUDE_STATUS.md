@@ -1683,3 +1683,37 @@ It's an incremental-build race; removing the object fixes it. Clean CI builds pa
    - Unnerve, Analytic, Cursed Body, Poison Touch, Gooey/Tangling Hair;
    - Healer, Harvest, Moody, Cheek Pouch.
 3. The common Gen V+ move effects (placeholders first, by how many species learn them).
+
+---
+
+## CB-0025 — 2026-10-22, 11:52 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** the Mega symbol moved next to the name, Insurgence-style (owner's request, with a reference picture).
+- Before, it was an 8×8 ring at the left end of the HP bar's strip. The owner read it as a second status condition.
+- It's now a 16×16 stone sprite on the name's row, over the box's border: right of the level on the foe's boxes, left
+  of the name on the player's.
+- A Mega shows a rainbow stone with the white Mega swirl, Primal Kyogre a blue α stone, Primal Groudon a red Ω stone.
+- It slides and bobs with its box and hides when the box hides. It uses the HP bar's palette, and the healthboxes
+  share one set of resources (ID 20042).
+- The 8×8 tile is gone; `healthbox_parts.png` is back to Platinum's.
+- Checked the status scripts on the owner's note ("only one status at a time"). Every status script checks for an
+  existing status first, so nothing could stack; the old symbol only looked like a status tag.
+- Checked Sirfetch'd: the in-game name is "SIRFETCH’D", with the same apostrophe as Platinum's FARFETCH’D, and every doc
+  has it. `SIRFETCHD` is only in identifiers.
+- Verified: wild singles, doubles (Garchomp and the foe's Charizard yes, Turtwig and Venusaur no), switching out and
+  back in, Primal Kyogre and Groudon as temporary leads. The release ROM builds without warnings, passes boot smoke,
+  and the docs regenerate clean.
+
+**Files modified:**
+- `decomp/src/battle/healthbox.c`, `decomp/include/battle/healthbox.h`
+- `decomp/res/graphics/battle/healthbox/sovereign_mega_icon.png`, `_cell.json` and `_anim.json` (new),
+  `healthbox_parts.png` (restored), `meson.build`; `decomp/res/graphics/battle/sprites.order`
+- `tools/sprites/make_mega_icon.py` (new), `tools/sprites/make_mega_button.py`, `tools/design/gen_mega_doc.py`
+- `docs/EngineChangelog.md`, `docs/TechnicalDesign.md` §4, `docs/MegaEvolution.md`, `docs/EngineRoadmap.md`,
+  `CITATIONS.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR when green.
+2. **The Regional Forms Park** (decision 22, local branch `rfp-wip`): test the worker, the zone encounters and the
+   exit; remove the temporary warp. Then its docs and PR.
+3. **Totem forms and the Totem trials** (`data/totem_trials.yaml`), then the battle forms with item 11's abilities.

@@ -86,8 +86,8 @@ typedef struct HealthBox {
     u8 padding : 4;
     SysTask *bobbingAnimTask;
     u16 degrees;
-    u8 sovereignMegaDrawn; // Sovereign (E8): the Mega symbol is on the HP bar...
-    u8 sovereignMegaSlotBackup[32]; // ... over this original tile
+    ManagedSprite *sovereignMegaIcon; // Sovereign (E8): the Mega or Primal symbol by the name...
+    u8 sovereignMegaIconShown; // ... shown with the box while its Pokemon is in a Mega or Primal form
 } HealthBox;
 
 /**

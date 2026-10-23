@@ -87,7 +87,24 @@ battle_sprites += [
       'arrows_wide_anim.json',
     ),
     preserve_path_from: base_directory,
-  )
+  ),
+
+  # Sovereign (E8): the Mega symbol by a Mega's name (tools/sprites/make_mega_icon.py), in the HP bar palette.
+  ncgr_lz_gen.process(
+    files('sovereign_mega_icon.png'),
+    preserve_path_from: base_directory,
+    extra_args: [ '-bitdepth', '4', '-clobbersize', '-mappingtype', '64' ],
+  ),
+
+  ncer_lz_gen.process(
+    files('sovereign_mega_icon_cell.json'),
+    preserve_path_from: base_directory,
+  ),
+
+  nanr_lz_gen.process(
+    files('sovereign_mega_icon_anim.json'),
+    preserve_path_from: base_directory,
+  ),
 ]
 
 healthbox_parts_embed = custom_target(
