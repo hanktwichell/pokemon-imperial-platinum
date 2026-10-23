@@ -4,6 +4,20 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (part 14) — Psychic Noise and Steel Beam
+
+- **Psychic Noise:** after the hit, the target can't heal for two turns (Heal Block's message).
+- **Steel Beam:** after the hit, the user loses half its max HP, rounded up (Magic Guard prevents it). "Approximate":
+  in Gen IX the HP is lost even when the move misses.
+- **Freeze-Dry:** super effective against Water (a per-move override of the type chart, `Sovereign_ChartMul`, used by
+  the damage and effectiveness paths), and its 10% freeze chance is back.
+- **Sound moves and Infiltrator get past Substitute** (Gen VI+): damage hits the Pokémon, and status and stat effects
+  aren't blocked. Confide is now exact.
+- Move checklist: exact 231, approximate 42, placeholder 107.
+
+**Verified in the test build:** Garchomp fainted after its second Steel Beam (half its max HP each time). Psychic Noise,
+Freeze-Dry and the Substitute bypass aren't tested in game yet.
+
 ## Item 11 (part 12) — Wide Guard, Quick Guard, Dragon Tail, Smack Down, Soak, Retaliate, Poltergeist
 
 - **Wide Guard / Quick Guard:** protect the user's side this turn from spread moves / foes' priority moves (new side

@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 228 |
-| approximate | 43 |
-| placeholder | 109 |
+| exact | 231 |
+| approximate | 42 |
+| placeholder | 107 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -120,7 +120,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 570 | ParabolcCharge | Electric | `RECOVER_HALF_DAMAGE_DEALT` | approximate | has its own mechanic in Gen IX; closest effect |
 | 571 | Forest’s Curse | Grass | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 572 | Petal Blizzard | Grass | `HIT` | exact | Sovereign effect: hits all adjacent Pokémon |
-| 573 | Freeze-Dry | Ice | `FREEZE_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
+| 573 | Freeze-Dry | Ice | `FREEZE_HIT` | exact | Sovereign effect: super effective against Water; 10% freeze |
 | 574 | Disarming Voice | Fairy | `HIT` | exact | Sovereign effect: never misses, hits both foes |
 | 575 | Parting Shot | Dark | `ATK_DEF_DOWN` | approximate | stat changes [('atk', -1), ('spa', -1)] in the original |
 | 576 | Topsy-Turvy | Dark | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
@@ -137,7 +137,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 587 | Fairy Lock | Fairy | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 588 | King’s Shield | Steel | `PROTECT` | approximate | protects like Protect; the contact penalty is missing |
 | 589 | Play Nice | Normal | `ATK_DOWN` | exact | Sovereign effect: never misses, ignores Protect, target Attack -1 |
-| 590 | Confide | Normal | `SP_ATK_DOWN` | approximate | has its own mechanic in Gen IX; closest effect |
+| 590 | Confide | Normal | `SP_ATK_DOWN` | exact | Sovereign effect: target Sp. Atk -1; as a sound move it gets past Substitute |
 | 591 | Diamond Storm | Rock | `SOVEREIGN_RAISE_DEF_2_HIT` | exact | Sovereign effect: user Defense +2 (50%) |
 | 592 | Steam Eruption | Water | `BURN_HIT` | exact |  |
 | 593 | Hyperspace Hole | Psychic | `HIT` | exact | Sovereign effect: never misses, ignores Protect |
@@ -343,7 +343,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 793 | False Surrender | Dark | `BYPASS_ACCURACY` | exact |  |
 | 794 | Meteor Assault | Fighting | `RECHARGE_AFTER` | exact |  |
 | 795 | Eternabeam | Dragon | `RECHARGE_AFTER` | exact |  |
-| 796 | Steel Beam | Steel | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 796 | Steel Beam | Steel | `SOVEREIGN_HALF_HP_COST_HIT` | approximate | Sovereign effect: the user loses half its max HP (only when it hits, so far) |
 | 797 | Expanding Force | Psychic | `HIT` | approximate | Sovereign effect: 1.5x in Psychic Terrain (doesn't spread to both foes yet) |
 | 798 | Steel Roller | Steel | `HIT` | approximate | Sovereign effect: fails without a terrain, then removes it (no message yet) |
 | 799 | Scale Shot | Dragon | `MULTI_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
@@ -464,7 +464,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 914 | Alluring Voice | Fairy | `CONFUSE_HIT` | exact | Sovereign effect: confuses a target whose stats rose this turn |
 | 915 | Temper Flare | Fire | `HIT` | exact | Sovereign effect: power doubles if the user's last move failed |
 | 916 | Supercell Slam | Electric | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 917 | Psychic Noise | Psychic | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 917 | Psychic Noise | Psychic | `SOVEREIGN_PSYCHIC_NOISE` | exact | Sovereign effect: the target can't heal for two turns |
 | 918 | Upper Hand | Fighting | `PRIORITY_1` | approximate | extra effect not reproduced |
 | 919 | Malignant Chain | Poison | `BADLY_POISON_HIT` | exact | Sovereign effect: badly poisons (50%) |
 

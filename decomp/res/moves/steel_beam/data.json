@@ -12,7 +12,7 @@
     "accuracy": 95,
     "pp": 5,
     "effect": {
-        "type": "BATTLE_EFFECT_HIT",
+        "type": "BATTLE_EFFECT_SOVEREIGN_HALF_HP_COST_HIT",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",
