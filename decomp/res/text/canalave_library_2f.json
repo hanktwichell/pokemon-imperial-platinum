@@ -272,6 +272,50 @@
         "They say Team Galactic tried that\n",
         "too, in their Veilstone lab.\r"
       ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistStones",
+      "en_US": [
+        "The Chronicle ends with two dragons,\n",
+        "RESHIRAM and ZEKROM.\r",
+        "They say each one sleeps in a stone\n",
+        "until a hero wakes it.\r",
+        "These two stones came with the\n",
+        "Chronicle. Please, take them.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistReshiram",
+      "en_US": [
+        "RESHIRAM: the LIGHT STONE is warm,\n",
+        "like a fire. Try Fuego Ironworks.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistZekrom",
+      "en_US": [
+        "ZEKROM: the DARK STONE crackles.\n",
+        "Try the Valley Windworks, at night.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistKyurem",
+      "en_US": [
+        "RESHIRAM and ZEKROM, both here!\r",
+        "The Chronicle tells of a third dragon,\n",
+        "KYUREM, left empty when they split.\r",
+        "It sleeps in the ice. Try the icy\n",
+        "chamber in Mt. Coronet by Route 216.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistDNASplicers",
+      "en_US": [
+        "KYUREM too! The Chronicle says it can\n",
+        "join with RESHIRAM or ZEKROM.\r",
+        "These DNA SPLICERS came with the\n",
+        "Chronicle. They join and split them.\r"
+      ]
     }
   ]
 }

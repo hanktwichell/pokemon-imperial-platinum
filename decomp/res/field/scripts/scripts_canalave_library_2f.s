@@ -166,8 +166,8 @@ CanalaveLibrary2F_Movement_PlayerMoveAside:
 
 @ Sovereign (the Chronicles, docs/PostgameLegendaries.md): the Legend Archivist, here from the first Hall of Fame. His
 @ first talk opens the Unova Chronicle (VAR_SOVEREIGN_CHRONICLE 1). After that he tells where each sword not caught yet
-@ stands; once all three are caught, he sends the player to Lake Valor for Keldeo. Then a hint for Meloetta and
-@ Genesect while they aren't caught.
+@ stands; once all three are caught, he sends the player to Lake Valor for Keldeo. Then Truth and Ideals (below), and a
+@ hint for Meloetta and Genesect while they aren't caught.
 CanalaveLibrary2F_SovereignArchivist:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
@@ -187,17 +187,50 @@ CanalaveLibrary2F_SovereignArchivistUnova:
     SovereignCheckSpeciesCaught SPECIES_KELDEO, VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, CanalaveLibrary2F_SovereignArchivistKeldeoCaught
     Message CanalaveLibrary2F_Text_SovereignArchivistKeldeo
-    GoTo CanalaveLibrary2F_SovereignArchivistOthers
+    GoTo CanalaveLibrary2F_SovereignArchivistDragons
 
 CanalaveLibrary2F_SovereignArchivistKeldeoCaught:
     Message CanalaveLibrary2F_Text_SovereignArchivistKeldeoCaught
-    GoTo CanalaveLibrary2F_SovereignArchivistOthers
+    GoTo CanalaveLibrary2F_SovereignArchivistDragons
 
 CanalaveLibrary2F_SovereignArchivistSwords:
     Message CanalaveLibrary2F_Text_SovereignArchivistSwords
     CallIfEq VAR_0x8004, FALSE, CanalaveLibrary2F_SovereignArchivistCobalion
     CallIfEq VAR_0x8005, FALSE, CanalaveLibrary2F_SovereignArchivistTerrakion
     CallIfEq VAR_0x8006, FALSE, CanalaveLibrary2F_SovereignArchivistVirizion
+@ Truth and Ideals: the Light and Dark Stones on the first pass, a hint for each dragon not caught yet, then Kyurem,
+@ then the DNA Splicers once Kyurem is caught.
+CanalaveLibrary2F_SovereignArchivistDragons:
+    CheckItem ITEM_LIGHT_STONE, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, CanalaveLibrary2F_SovereignArchivistDragonHints
+    SovereignCheckSpeciesCaught SPECIES_RESHIRAM, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, CanalaveLibrary2F_SovereignArchivistDragonHints
+    Message CanalaveLibrary2F_Text_SovereignArchivistStones
+    SetVar VAR_0x8004, ITEM_LIGHT_STONE
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    SetVar VAR_0x8004, ITEM_DARK_STONE
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+CanalaveLibrary2F_SovereignArchivistDragonHints:
+    SovereignCheckSpeciesCaught SPECIES_RESHIRAM, VAR_0x8006
+    SovereignCheckSpeciesCaught SPECIES_ZEKROM, VAR_0x8007
+    CallIfEq VAR_0x8006, FALSE, CanalaveLibrary2F_SovereignArchivistReshiram
+    CallIfEq VAR_0x8007, FALSE, CanalaveLibrary2F_SovereignArchivistZekrom
+    GoToIfEq VAR_0x8006, FALSE, CanalaveLibrary2F_SovereignArchivistOthers
+    GoToIfEq VAR_0x8007, FALSE, CanalaveLibrary2F_SovereignArchivistOthers
+    SovereignCheckSpeciesCaught SPECIES_KYUREM, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, CanalaveLibrary2F_SovereignArchivistKyuremCaught
+    Message CanalaveLibrary2F_Text_SovereignArchivistKyurem
+    GoTo CanalaveLibrary2F_SovereignArchivistOthers
+
+CanalaveLibrary2F_SovereignArchivistKyuremCaught:
+    CheckItem ITEM_DNA_SPLICERS, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, CanalaveLibrary2F_SovereignArchivistOthers
+    Message CanalaveLibrary2F_Text_SovereignArchivistDNASplicers
+    SetVar VAR_0x8004, ITEM_DNA_SPLICERS
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
 CanalaveLibrary2F_SovereignArchivistOthers:
     SovereignCheckSpeciesCaught SPECIES_MELOETTA, VAR_0x8004
     SovereignCheckSpeciesCaught SPECIES_GENESECT, VAR_0x8005
@@ -216,6 +249,14 @@ CanalaveLibrary2F_SovereignArchivistTerrakion:
 
 CanalaveLibrary2F_SovereignArchivistVirizion:
     Message CanalaveLibrary2F_Text_SovereignArchivistVirizion
+    Return
+
+CanalaveLibrary2F_SovereignArchivistReshiram:
+    Message CanalaveLibrary2F_Text_SovereignArchivistReshiram
+    Return
+
+CanalaveLibrary2F_SovereignArchivistZekrom:
+    Message CanalaveLibrary2F_Text_SovereignArchivistZekrom
     Return
 
 CanalaveLibrary2F_SovereignArchivistMeloetta:

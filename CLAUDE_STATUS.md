@@ -2580,6 +2580,60 @@ and Keldeo, CB-0036) is merged; its first CI run died in apt-get and the one re-
    Telekinesis, Wonder/Magic Room.
 3. Abilities: Mirror Armor, Cotton Down, Wind Rider/Wind Power, Purifying Salt's status immunity.
 
+
+## CB-0038 — 2026-10-23, 8:18 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** Truth and Ideals, the Unova Chronicle's key chapter (`docs/PostgameLegendaries.md`). PR #49 (Meloetta
+and Genesect, CB-0037) is merged.
+- **The Archivist** (after the swords, before the Meloetta/Genesect hints):
+  - gives the Light Stone and Dark Stone while the player has neither the Light Stone nor Reshiram;
+  - gives one hint per dragon not caught yet, then the Kyurem hint;
+  - gives the DNA Splicers once Kyurem is caught (no longer "not placed yet" in `docs/ItemChanges_Sovereign.md`).
+- **Reshiram** (Lv. 70): in Fuego Ironworks (49, 5), by the furnaces, while the Light Stone is in the bag. The
+  Ironworks' own interior stands in for the planned new furnace room.
+- **Zekrom** (Lv. 70): on Valley Windworks' windmill island (236, 650), reached by Surf. It's there at night
+  (`GetTimeOfDay` at `TIMEOFDAY_NIGHT` or later, 8 pm to 4 am) while the Dark Stone is in the bag.
+- **Kyurem** (Lv. 70): in `MT_CORONET_ICEBERG_RUINS` (7, 5), once Reshiram and Zekrom are both caught.
+  - That's the ice chamber off Mt. Coronet's north room by Route 216.
+  - It had `scripts_empty`; it now has `scripts_mt_coronet_iceberg_ruins` and its init archive, appended to
+    `scripts.order`.
+  - With a fateful Regigigas in the party, vanilla sends that doorway to the Regice chamber instead.
+- Both stones' encounters show a line first ("The LIGHT STONE is glowing with heat!", "The DARK STONE is crackling
+  with electricity!").
+- **Sprites:** Reshiram, Zekrom and Kyurem (`sovlegend07` to `09`); the earlier six come out the same. `CITATIONS.md`
+  lists the ids.
+- **Verified** (test build with a temporary patch: game completed, Chronicle open, Master Balls, party at level 100,
+  night forced from one warp on in `ScrCmd_GetTimeOfDay`, test warps; all removed before committing):
+  - the stones and hints;
+  - Reshiram shown, its line, caught, and gone afterwards;
+  - Zekrom hidden in the daytime, shown at night, caught, and gone afterwards;
+  - Kyurem hidden until both dragons were caught, then shown, caught, and gone afterwards;
+  - the Kyurem hint and the DNA Splicers.
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+
+**Files modified:**
+- Scripts: `scripts_canalave_library_2f.s`, `scripts_fuego_ironworks_building.s`,
+  `scripts_init_fuego_ironworks_building.s`, `scripts_valley_windworks_outside.s`,
+  `scripts_mt_coronet_iceberg_ruins.s` (new), `scripts_init_mt_coronet_iceberg_ruins.s` (new),
+  `res/field/scripts/scripts.order`, `res/field/scripts/meson.build`, `decomp/include/data/map_headers.h`
+- Events: `events_fuego_ironworks_building.json`, `events_valley_windworks_outside.json`,
+  `events_mt_coronet_iceberg_ruins.json`
+- Texts: `canalave_library_2f`, `fuego_ironworks_building`, `valley_windworks_outside`
+- Sprites: `decomp/generated/object_events_gfx.txt`, `decomp/src/overlay005/object_event_gfx_data.c`,
+  `decomp/res/graphics/field_sprites/` (`field_sprites.order`, `meson.build`,
+  `pokemon/legendary_{reshiram,zekrom,kyurem}.png`), `tools/sprites/make_legendary_overworld.py`
+- Data and docs: `data/postgame_legendaries.yaml`, `docs/PostgameLegendaries.md`, `docs/ItemChanges_Sovereign.md`,
+  `docs/TechnicalDesign.md`, `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `CITATIONS.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR once CI is green.
+2. **Forces of Nature:**
+   - Tornadus and Thundurus roaming Sinnoh, like Mesprit and Cresselia;
+   - Landorus at a Route 228 shrine (planned as new: an existing spot, or ask the owner);
+   - Enamorus at the Route 224 Flower Paradise gate, after Landorus.
+   - The Reveal Glass (Therian Formes) is "not placed yet" and fits here.
+3. **Victini** (Vista Lighthouse basement, planned as new: an existing spot or map work; ask the owner). Then the
+   Unova Chronicle is complete and the Kalos Chronicle can open.
 ## CA-0040 (Claude A, branch `claude/festive-bardeen-5h7beo`, 2026-10-23)
 
 **Just implemented:** item 11 part 22: Scale Shot, Coaching, Dragon Cheer, all verified in game.

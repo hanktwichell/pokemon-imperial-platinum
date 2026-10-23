@@ -22,6 +22,9 @@ LEGENDARIES = {
     "keldeo": 647,
     "meloetta": 648,
     "genesect": 649,
+    "reshiram": 643,
+    "zekrom": 644,
+    "kyurem": 646,
 }
 
 
