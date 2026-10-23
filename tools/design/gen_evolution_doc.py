@@ -6,6 +6,7 @@ Usage: python3 tools/design/gen_evolution_doc.py
 """
 import csv
 import os
+import re
 import sys
 
 import yaml
@@ -47,6 +48,21 @@ def main():
     for it, where in items.items():
         L.append(f"| {it} | {where} |")
     L.append("")
+    names = {re.sub(r"[^a-z0-9]", "", r["name"].lower()): r["name"] for r in rows}  # "sirfetchd": "Sirfetch’d"
+    forms = {r["identifier"]: r["form"] for r in csv.DictReader(open(os.path.join(ROOT, "data", "forms.csv"), encoding="utf-8"))}
+    L.append("## Regional forms\n")
+    L.append("A regional form evolves like its base species and keeps its region (Alolan Rattata → Alolan Raticate, "
+             "Galarian Darumaka → Galarian Darmanitan). These evolve differently (`regional_forms`; "
+             "`tools/engine/gen_forms.py` builds them into the forms' data):\n")
+    L.append("| Form | Sovereign method | Why |")
+    L.append("|---|---|---|")
+    for e in data["regional_forms"]:
+        L.append(f"| {forms[e['form']]} | **{e['method']}** | {e['why']} |")
+    L.append("")
+    L.append("An Egg hatches into its parent's regional form (the mother's, or the parent that isn't Ditto), or the base "
+             "form when the baby has no form of that region. These species hatch from Eggs in their regional form, as "
+             "in the official games: " + ", ".join(
+                 f"{names[stem]} → {forms[ident]}" for stem, ident in data["regional_parents"].items()) + ".\n")
     with open(os.path.join(ROOT, "docs", "EvolutionChanges_Sovereign.md"), "w", encoding="utf-8") as f:
         f.write("\n".join(L))
     for n in missing:

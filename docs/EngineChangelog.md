@@ -4,6 +4,49 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## FM (part 3) — the regional forms
+
+- **All 57 regional forms exist**, plus Blue- and White-Striped Basculin.
+  - Alolan, Galarian, Hisuian and Paldean, each with its own stats, types and abilities.
+  - Each has its own Gen IX learnset from PokeAPI: level-up moves and TMs (Alolan Vulpix learns Ice Beam at Lv.
+    32).
+  - Sprites and icons are the base form's until E12. Where they live in the wild is the Regional Forms Park's job
+    (decision 22), so for now nothing in the game gives one.
+- **Form numbers follow the official games** (Alolan Raichu 1, Galarian Meowth 2, Galarian Darmanitan 2, the
+  Paldean Tauros 1–3).
+  - A species' saved forms now come before its Megas. So Mega Raichu X and Y are forms 2 and 3, and adding a Mega
+    can never change a saved form number.
+  - Zen Mode Darmanitan (Unova and Galar) is in the form data too, waiting for Zen Mode itself.
+- **Regional forms evolve into their region's form.**
+  - Alolan Rattata becomes Alolan Raticate, and Galarian Darumaka becomes Galarian Darmanitan.
+  - Where the regional form leads to its own species, it evolves into that species' base form (Galarian Meowth →
+    Perrserker).
+  - Some regional forms evolve by their own method: official where Platinum has the method, otherwise Sovereign's
+    method for the base species. They're listed in `EvolutionChanges_Sovereign.md` (Alolan Vulpix uses an Ice Stone,
+    Galarian Meowth reaches Perrserker at Lv. 28, Galarian Slowpoke uses the Galarica Cuff or Wreath…).
+  - Every other form keeps its number when it evolves, as in Platinum (Burmy → Wormadam).
+- **Eggs hatch in the parent's regional form.** The form comes from the mother, or from the parent that isn't Ditto
+  (Platinum took Ditto's form). A baby with no form of that region hatches in its base form (Alolan Raichu → Pichu).
+  Perrserker, Sirfetch'd, Cursola, Obstagoon, Runerigus, Sneasler, Overqwil, Clodsire and Basculegion hatch in their
+  regional form (Perrserker → Galarian Meowth).
+- **The other FM forms get their own learnsets as well:** the Therian Formes, Hoopa Unbound, the fusions, Crowned
+  Zacian/Zamazenta, Ogerpon's masks and the Origin forms. Megas keep their base species' learnsets.
+- **`data/forms.csv` categories:**
+  - Pikachu's Alola cap is a cap (other), not a regional form.
+  - Galarian Zen Darmanitan is a battle form.
+  - White-Striped Basculin is regional (Hisui).
+- `tools/engine/gen_forms.py` now needs the PokeAPI path. It reads the regional evolutions and Egg rules from
+  `data/evolution_changes.yaml`.
+- Verified in the test build (a temporary test party):
+  - **Learnset:** a Rare Candy taught Alolan Vulpix Ice Beam at Lv. 32.
+  - **Ice Stone evolutions:** the party menu marked Alolan Vulpix and Galarian Darumaka "ABLE!" and both Galarian
+    Meowth "UNABLE!".
+    - Vulpix became Alolan Ninetales (Ice/Fairy, Snow Cloak).
+    - Darumaka became Galarian Darmanitan (Ice, Gorilla Tactics).
+  - **Level evolution:** Galarian Meowth reached Lv. 28 and became Perrserker (Steel, Battle Armor).
+  - **Eggs:** Perrserker and Ditto bred a Galarian Meowth (Steel, Tough Claws, Growl and Fake Out).
+  - The release ROM builds and passes `boot_smoke.py`, and the docs regenerate with no diff.
+
 ## FM (part 2) — form-change key items and fusions
 
 - **Eleven more forms**, each with its own stats, types and abilities:

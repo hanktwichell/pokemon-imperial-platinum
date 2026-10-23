@@ -85,12 +85,8 @@
                 "MOVE_POWER_SPLIT"
             ],
             [
-                35,
-                "MOVE_PHANTOM_FORCE"
-            ],
-            [
                 46,
-                "MOVE_ZEN_HEADBUTT"
+                "MOVE_KNOCK_OFF"
             ],
             [
                 50,
@@ -102,11 +98,7 @@
             ],
             [
                 55,
-                "MOVE_SHADOW_BALL"
-            ],
-            [
-                68,
-                "MOVE_NASTY_PLOT"
+                "MOVE_DARK_PULSE"
             ],
             [
                 75,
@@ -114,7 +106,7 @@
             ],
             [
                 85,
-                "MOVE_HYPERSPACE_HOLE"
+                "MOVE_HYPERSPACE_FURY"
             ]
         ],
         "by_tm": [

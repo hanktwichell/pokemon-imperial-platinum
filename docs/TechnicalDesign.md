@@ -163,6 +163,23 @@ implemented.
     main menu's Migrate option is gone, so nothing else writes there.
   - The form's moves are a table in `sovereign_form_items.c`.
   - `BoxAppMan_CheckReleaseMonValid` (`pc_boxes/box_app_manager.c`) refuses to release a fused Pokémon.
+- **Regional forms** (`SOVEREIGN_FORM_REGIONAL`), plus `SOVEREIGN_FORM_BATTLE` (Zen Mode, data only).
+  - **What's form-aware:**
+    - Already, through `Pokemon_GetFormNarcIndex`: stats, types, abilities, TM bits and level-up learnsets (so the
+      move reminder and Eggs too).
+    - Base species only: egg moves, tutor moves and the baby lookup.
+    - `gen_forms.py` builds an FM form's learnset with `gen_species_gen9.build_learnset` from its PokeAPI id.
+  - **Evolutions.** `evo.narc` has a member for every form, but Platinum only reads the species'.
+    `Pokemon_GetEvolutionTargetSpecies` now reads a regional form's own member, which holds the base species'
+    evolutions or `regional_forms` (`data/evolution_changes.yaml`).
+  - **The evolved form.** `Pokemon_SovereignSetEvolvedSpecies` (called by `evolution.c` for the evolution and its
+    preview sprite) sets the target's form from `sSovereignFormEvolutions`: the target's form of the same region,
+    else 0. Other forms are kept, as before.
+  - **Eggs.** `Daycare_GiveEggFromDaycare` asks `Pokemon_SovereignBabyForm` for the form of the non-Ditto parent
+    (`sSovereignBabyForms`: the baby's form of the parent's region, or 0, and `regional_parents`). Parents with no
+    rule keep Platinum's raw form copy.
+  - **Numbering.** A species' FM forms come first, in `FM_FORMS` order, and its Megas follow. FM numbers are saved
+    and follow the official games; Mega numbers only exist in battle.
 
 ### 5. Trainer data
 - Vanilla Gen IV trainer Pokémon can't specify EVs, natures directly (nature comes from the PID seeded by trainer

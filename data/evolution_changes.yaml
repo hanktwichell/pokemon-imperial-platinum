@@ -33,16 +33,16 @@ changes:
   - {species: Houndstone,   from: Greavard,  method: Level 30, why: "Time of day dropped"}
   - {species: Lycanroc,     from: Rockruff,  method: "Level 25 (Midday Form by day, Midnight Form at night; Dusk Form needs a form-change hook — Midday until then)", why: "Form chosen by time of day needs a small engine hook"}
   - {species: Toxtricity,   from: Toxel,     method: "Level 30 (Amped Form; Low Key Form by nature once a form hook exists)", why: "Nature-dependent form needs an engine hook"}
-  - {species: Obstagoon,    from: Linoone,   method: Level up holding a Razor Claw at night, why: "Galarian Linoone isn't in the game; uses Gen IV's held-item-at-night method"}
-  - {species: Perrserker,   from: Meowth,    method: Use Metal Coat, why: "Galarian Meowth isn't in the game; Meowth still becomes Persian at Lv. 28"}
-  - {species: Cursola,      from: Corsola,   method: Use Dusk Stone, why: "Galarian Corsola isn't in the game"}
-  - {species: Sirfetch’d,   from: Farfetch’d, method: Level 40, why: "Can't count critical hits; Galarian Farfetch'd isn't in the game. Renegade's Farfetch'd is already Fighting/Flying, which suits Sirfetch'd"}
-  - {species: Mr. Rime,     from: Mr. Mime,  method: Level 42, why: "Galarian Mr. Mime isn't in the game; Gen VIII level kept"}
-  - {species: Runerigus,    from: Yamask,    method: Use Dusk Stone, why: "Galarian Yamask isn't in the game; Yamask still becomes Cofagrigus at Lv. 34"}
-  - {species: Clodsire,     from: Wooper,    method: Use Dusk Stone, why: "Paldean Wooper isn't in the game; Wooper still becomes Quagsire at Lv. 20"}
-  - {species: Sneasler,     from: Sneasel,   method: Level up holding a Razor Claw by day, why: "Hisuian Sneasel isn't in the game; Weavile stays Razor Claw at night"}
-  - {species: Overqwil,     from: Qwilfish,  method: Level up knowing Pin Missile, why: "Barb Barrage isn't in the engine; Hisuian Qwilfish isn't in the game"}
-  - {species: Basculegion,  from: Basculin,  method: "Level 36 (male → Male Form, female → Female Form)", why: "Can't count recoil damage; White-Striped Basculin isn't in the game"}
+  - {species: Obstagoon,    from: Linoone,   method: Level up holding a Razor Claw at night, why: "The base form's route, set before Galarian Linoone was in the game (Galarian Linoone: see regional_forms); uses Gen IV's held-item-at-night method"}
+  - {species: Perrserker,   from: Meowth,    method: Use Metal Coat, why: "The base form's route, set before Galarian Meowth was in the game (Galarian Meowth: see regional_forms); Meowth still becomes Persian at Lv. 28"}
+  - {species: Cursola,      from: Corsola,   method: Use Dusk Stone, why: "The base form's route, set before Galarian Corsola was in the game (Galarian Corsola: see regional_forms)"}
+  - {species: Sirfetch’d,   from: Farfetch’d, method: Level 40, why: "Can't count critical hits; the base form's route, set before Galarian Farfetch'd was in the game (Galarian Farfetch'd: see regional_forms). Renegade's Farfetch'd is already Fighting/Flying, which suits Sirfetch'd"}
+  - {species: Mr. Rime,     from: Mr. Mime,  method: Level 42, why: "The base form's route, set before Galarian Mr. Mime was in the game (Galarian Mr. Mime: see regional_forms); Gen VIII level kept"}
+  - {species: Runerigus,    from: Yamask,    method: Use Dusk Stone, why: "The base form's route, set before Galarian Yamask was in the game (Galarian Yamask: see regional_forms); Yamask still becomes Cofagrigus at Lv. 34"}
+  - {species: Clodsire,     from: Wooper,    method: Use Dusk Stone, why: "The base form's route, set before Paldean Wooper was in the game (Paldean Wooper: see regional_forms); Wooper still becomes Quagsire at Lv. 20"}
+  - {species: Sneasler,     from: Sneasel,   method: Level up holding a Razor Claw by day, why: "The base form's route, set before Hisuian Sneasel was in the game (Hisuian Sneasel: see regional_forms); Weavile stays Razor Claw at night"}
+  - {species: Overqwil,     from: Qwilfish,  method: Level up knowing Pin Missile, why: "Barb Barrage isn't in the engine; the base form's route, set before Hisuian Qwilfish was in the game (Hisuian Qwilfish: see regional_forms)"}
+  - {species: Basculegion,  from: Basculin,  method: "Level 36 (male → Male Form, female → Female Form)", why: "Can't count recoil damage; the base form's route, set before White-Striped Basculin was in the game (White-Striped Basculin: see regional_forms)"}
   - {species: Wyrdeer,      from: Stantler,  method: Level up knowing Zen Headbutt, why: "Psyshield Bash isn't in the engine"}
   - {species: Kleavor,      from: Scyther,   method: Use Black Augurite, new_items: [Black Augurite], why: "Item kept; Scyther still becomes Scizor with a Metal Coat"}
   - {species: Ursaluna,     from: Ursaring,  method: Use Peat Block, new_items: [Peat Block], why: "Full-moon condition dropped"}
@@ -73,3 +73,27 @@ changes:
 extra:
   - {species: Solgaleo, from: Cosmoem, method: Use Sun Stone, why: "Sun/Moon split by version; Sovereign has one version"}
   - {species: Lunala,   from: Cosmoem, method: Use Moon Stone, why: "Sun/Moon split by version; Sovereign has one version"}
+
+# Regional forms (milestone FM). A regional form evolves like its base species, keeping its region (Alolan Rattata →
+# Alolan Raticate), except for the forms below, which get their official method where Platinum has one and otherwise
+# the method Sovereign already gives the base species. tools/engine/gen_forms.py writes these into the forms' data.
+# The base species keep their own Sovereign routes to the regional-only species above (Meowth still becomes
+# Perrserker with a Metal Coat) until the owner says otherwise.
+regional_forms:
+  - {form: vulpix-alola,    evolutions: [[EVO_USE_ITEM, ITEM_ICE_STONE, SPECIES_NINETALES]], method: Use Ice Stone, why: Official}
+  - {form: sandshrew-alola, evolutions: [[EVO_USE_ITEM, ITEM_ICE_STONE, SPECIES_SANDSLASH]], method: Use Ice Stone, why: Official}
+  - {form: meowth-alola,    evolutions: [[EVO_LEVEL, 28, SPECIES_PERSIAN]], method: "Level 28 (Alolan Persian)", why: "Renegade's level for Meowth (official: friendship); no Perrserker"}
+  - {form: meowth-galar,    evolutions: [[EVO_LEVEL, 28, SPECIES_PERRSERKER]], method: Level 28 (Perrserker), why: Official}
+  - {form: slowpoke-galar,  evolutions: [[EVO_USE_ITEM, ITEM_GALARICA_CUFF, SPECIES_SLOWBRO], [EVO_USE_ITEM, ITEM_GALARICA_WREATH, SPECIES_SLOWKING]], method: Use Galarica Cuff / Galarica Wreath, why: Official}
+  - {form: corsola-galar,   evolutions: [[EVO_LEVEL, 38, SPECIES_CURSOLA]], method: Level 38 (Cursola), why: Official}
+  - {form: darumaka-galar,  evolutions: [[EVO_USE_ITEM, ITEM_ICE_STONE, SPECIES_DARMANITAN]], method: Use Ice Stone, why: Official}
+  - {form: yamask-galar,    evolutions: [[EVO_LEVEL, 34, SPECIES_RUNERIGUS]], method: Level 34 (Runerigus), why: "Can't count HP lost; Yamask's own level, so it never becomes Cofagrigus"}
+  - {form: voltorb-hisui,   evolutions: [[EVO_USE_ITEM, ITEM_LEAF_STONE, SPECIES_ELECTRODE]], method: Use Leaf Stone, why: Official}
+  - {form: sneasel-hisui,   evolutions: [[EVO_LEVEL_WITH_HELD_ITEM_DAY, ITEM_RAZOR_CLAW, SPECIES_SNEASLER]], method: Level up holding a Razor Claw by day (Sneasler), why: Official}
+  - {form: wooper-paldea,   evolutions: [[EVO_LEVEL, 20, SPECIES_CLODSIRE]], method: Level 20 (Clodsire), why: Official}
+
+# Species found only through a regional form: their Eggs hatch into that form (Perrserker: Galarian Meowth), as in
+# the official games. Every other regional form passes its region's form to its Eggs.
+regional_parents: {perrserker: meowth-galar, sirfetchd: farfetchd-galar, cursola: corsola-galar, obstagoon: zigzagoon-galar,
+                   runerigus: yamask-galar, sneasler: sneasel-hisui, overqwil: qwilfish-hisui, clodsire: wooper-paldea,
+                   basculegion: basculin-white-striped}

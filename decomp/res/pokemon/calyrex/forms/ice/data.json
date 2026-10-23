@@ -46,11 +46,31 @@
         "by_level": [
             [
                 1,
-                "MOVE_POUND"
+                "MOVE_GLACIAL_LANCE"
             ],
             [
                 1,
-                "MOVE_MEGA_DRAIN"
+                "MOVE_ICICLE_CRASH"
+            ],
+            [
+                1,
+                "MOVE_AVALANCHE"
+            ],
+            [
+                1,
+                "MOVE_IRON_DEFENSE"
+            ],
+            [
+                1,
+                "MOVE_TAUNT"
+            ],
+            [
+                1,
+                "MOVE_TORMENT"
+            ],
+            [
+                1,
+                "MOVE_CONFUSION"
             ],
             [
                 1,
@@ -58,7 +78,47 @@
             ],
             [
                 1,
-                "MOVE_CONFUSION"
+                "MOVE_MEGA_DRAIN"
+            ],
+            [
+                1,
+                "MOVE_POUND"
+            ],
+            [
+                1,
+                "MOVE_TAIL_WHIP"
+            ],
+            [
+                1,
+                "MOVE_SWORDS_DANCE"
+            ],
+            [
+                1,
+                "MOVE_DOUBLE_EDGE"
+            ],
+            [
+                1,
+                "MOVE_THRASH"
+            ],
+            [
+                1,
+                "MOVE_STOMP"
+            ],
+            [
+                1,
+                "MOVE_TAKE_DOWN"
+            ],
+            [
+                1,
+                "MOVE_TACKLE"
+            ],
+            [
+                1,
+                "MOVE_MIST"
+            ],
+            [
+                1,
+                "MOVE_DOUBLE_KICK"
             ],
             [
                 8,
@@ -113,6 +173,9 @@
             "TM04",
             "TM09",
             "TM11",
+            "TM12",
+            "TM13",
+            "TM14",
             "TM15",
             "TM16",
             "TM17",
@@ -120,22 +183,27 @@
             "TM22",
             "TM29",
             "TM33",
+            "TM41",
             "TM42",
             "TM44",
             "TM48",
             "TM53",
             "TM58",
             "TM68",
-            "TM77",
+            "TM72",
+            "TM75",
             "TM82",
             "TM86",
             "TM90",
             "TM92"
         ],
         "by_tutor": [
+            "MOVE_ICY_WIND",
             "MOVE_HELPING_HAND",
+            "MOVE_OUTRAGE",
             "MOVE_ZEN_HEADBUTT",
             "MOVE_SEED_BOMB",
+            "MOVE_IRON_DEFENSE",
             "MOVE_TRICK",
             "MOVE_SWIFT"
         ]
