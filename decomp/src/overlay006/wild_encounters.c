@@ -57,6 +57,8 @@
 #include "unk_020559DC.h"
 #include "vars_flags.h"
 
+#include "data/regional_forms_park.h"
+
 typedef struct RadarEncounterData {
     int shakeType;
     BOOL preserveChain;
@@ -229,6 +231,50 @@ static void WildEncounters_ReplaceTrophyGardenEncounters(FieldSystem *fieldSyste
     }
 }
 
+static BOOL RegionalFormsPark_IsParkMap(FieldSystem *fieldSystem)
+{
+    return fieldSystem->location->mapHeaderID == MAP_HEADER_PAL_PARK;
+}
+
+// Sovereign (decision 22): in the Regional Forms Park (Pal Park's grounds), each quadrant of the map is a zone with its
+// own regional forms (data/regional_forms_park.yaml). An encounter picks one by weight and fills every slot with it,
+// so the usual slot rules (Repel, Intimidate, Hustle...) still apply.
+static void RegionalFormsPark_FillEncounterTable(FieldSystem *fieldSystem, EncounterSlot *encounterTable, int numSlots, BOOL water)
+{
+    if (RegionalFormsPark_IsParkMap(fieldSystem) == FALSE) {
+        return;
+    }
+
+    int playerX = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+    int playerZ = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
+    const RegionalFormsParkZone *zone = &sRegionalFormsParkZones[(playerX < 32 ? 0 : 1) + (playerZ < 32 ? 0 : 2)];
+    const RegionalFormsParkEntry *entries = water ? zone->water : zone->grass;
+    int count = water ? zone->waterCount : zone->grassCount;
+    int i, totalWeight = 0;
+
+    if (count == 0) {
+        return; // no such terrain in this quadrant
+    }
+
+    for (i = 0; i < count; i++) {
+        totalWeight += entries[i].weight;
+    }
+
+    int roll = LCRNG_RandMod(totalWeight);
+
+    for (i = 0; i < count - 1 && roll >= entries[i].weight; i++) {
+        roll -= entries[i].weight;
+    }
+
+    u8 level = entries[i].minLevel + LCRNG_RandMod(entries[i].maxLevel - entries[i].minLevel + 1);
+
+    for (int slot = 0; slot < numSlots; slot++) {
+        encounterTable[slot].species = WILD_SLOT(entries[i].species, entries[i].form);
+        encounterTable[slot].maxLevel = level;
+        encounterTable[slot].minLevel = level;
+    }
+}
+
 BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
 {
     FieldBattleDTO *battleParams;
@@ -287,6 +333,11 @@ BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
         gettingEncounter = TRUE;
     }
 
+    // Sovereign (decision 22): the Regional Forms Park has no radar species of its own; a patch gives a park encounter.
+    if (RegionalFormsPark_IsParkMap(fieldSystem)) {
+        radarData.isRadarEncounter = FALSE;
+    }
+
     if (!gettingEncounter) {
         return FALSE;
     }
@@ -339,6 +390,7 @@ BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
         WildEncounters_ReplaceSwarmEncounters(fieldSystem, encounterData, &encounterTable[0].species, &encounterTable[1].species);
         WildEncounters_ReplaceTrophyGardenEncounters(fieldSystem, nationalDexObtained, &encounterTable[6].species, &encounterTable[7].species);
         WildEncounters_ReplaceDualSlotEncounters(encounterData, nationalDexObtained, &encounterTable[8].species, &encounterTable[9].species);
+        RegionalFormsPark_FillEncounterTable(fieldSystem, encounterTable, MAX_GRASS_ENCOUNTERS, FALSE);
 
         if (!withPartner) {
             WildEncounters_ReplaceGreatMarshDailyEncounters(fieldSystem, safariGameActive, nationalDexObtained, encounterTable);
@@ -355,6 +407,8 @@ BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
             encounterTable[i].maxLevel = encounterData->surfEncounters.encounters[i].maxLevel;
             encounterTable[i].minLevel = encounterData->surfEncounters.encounters[i].minLevel;
         }
+
+        RegionalFormsPark_FillEncounterTable(fieldSystem, encounterTable, MAX_WATER_ENCOUNTERS, TRUE);
 
         encounterSuccess = TryGenerateSurfEncounter(fieldSystem, firstPartyMon, battleParams, encounterTable, &encounterFieldParams);
     } else {
@@ -441,6 +495,8 @@ BOOL WildEncounters_TryFishingEncounter(FieldSystem *fieldSystem, enum Encounter
             encounterTable[i].maxLevel = fishingEncounters[i].maxLevel;
             encounterTable[i].minLevel = fishingEncounters[i].minLevel;
         }
+
+        RegionalFormsPark_FillEncounterTable(fieldSystem, encounterTable, MAX_WATER_ENCOUNTERS, TRUE);
     }
 
     if (!TryGenerateFishingEncounter(fieldSystem, firstPartyMon, *battleParams, encounterTable, &encounterFieldParams, fishingRodType)) {
@@ -527,6 +583,7 @@ BOOL WildEncounters_TrySweetScentEncounter(FieldSystem *fieldSystem, FieldTask *
         WildEncounters_ReplaceSwarmEncounters(fieldSystem, encounterData, &encounterTable[0].species, &encounterTable[1].species);
         WildEncounters_ReplaceTrophyGardenEncounters(fieldSystem, nationalDexObtained, &encounterTable[6].species, &encounterTable[7].species);
         WildEncounters_ReplaceDualSlotEncounters(encounterData, nationalDexObtained, &encounterTable[8].species, &encounterTable[9].species);
+        RegionalFormsPark_FillEncounterTable(fieldSystem, encounterTable, MAX_GRASS_ENCOUNTERS, FALSE);
 
         if (!withPartner) {
             WildEncounters_ReplaceGreatMarshDailyEncounters(fieldSystem, safariGameActive, nationalDexObtained, encounterTable);
@@ -543,6 +600,8 @@ BOOL WildEncounters_TrySweetScentEncounter(FieldSystem *fieldSystem, FieldTask *
             encounterTable[i].maxLevel = encounterData->surfEncounters.encounters[i].maxLevel;
             encounterTable[i].minLevel = encounterData->surfEncounters.encounters[i].minLevel;
         }
+
+        RegionalFormsPark_FillEncounterTable(fieldSystem, encounterTable, MAX_WATER_ENCOUNTERS, TRUE);
 
         encounterSuccess = TryGenerateSurfEncounter(fieldSystem, firstPartyMon, battleParams, encounterTable, &encounterFieldParams);
     } else {
@@ -660,6 +719,7 @@ BOOL WildEncounters_TryMudEncounter(FieldSystem *fieldSystem, FieldBattleDTO **b
         WildEncounters_ReplaceSwarmEncounters(fieldSystem, encounterData, &encounterTable[0].species, &encounterTable[1].species);
         WildEncounters_ReplaceTrophyGardenEncounters(fieldSystem, nationalDexObtained, &encounterTable[6].species, &encounterTable[7].species);
         WildEncounters_ReplaceDualSlotEncounters(encounterData, nationalDexObtained, &encounterTable[8].species, &encounterTable[9].species);
+        RegionalFormsPark_FillEncounterTable(fieldSystem, encounterTable, MAX_GRASS_ENCOUNTERS, FALSE);
 
         if (!withPartner) {
             WildEncounters_ReplaceGreatMarshDailyEncounters(fieldSystem, safariGameActive, nationalDexObtained, encounterTable);
@@ -986,10 +1046,23 @@ static u8 GetWildMonLevel(const EncounterSlot *slot, const WildEncounters_FieldP
     return minLevel + randRange;
 }
 
+// Sovereign (FM): an encounter slot can name a form in its species' upper bits (WILD_SLOT, the Regional Forms Park).
+static void ApplySlotForm(Pokemon *mon, int slotSpecies)
+{
+    int form = WILD_SLOT_FORM(slotSpecies);
+
+    if (form != 0) {
+        Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+        Pokemon_CalcAbility(mon);
+        Pokemon_CalcLevelAndStats(mon);
+    }
+}
+
 // Creates a mon with a personality that will make it shiny, and complies with Cute Charm/Synchronize.
 // It only has to check one or the other, not both, because only one ability can be in effect at a time.
-static void CreateWildMonShinyWithGenderOrNature(const u16 species, const u8 level, const int partySlot, const u32 param3, const WildEncounters_FieldParams *encounterFieldParams, Pokemon *firstPartyMon, FieldBattleDTO *battleParams)
+static void CreateWildMonShinyWithGenderOrNature(const int slotSpecies, const u8 level, const int partySlot, const u32 param3, const WildEncounters_FieldParams *encounterFieldParams, Pokemon *firstPartyMon, FieldBattleDTO *battleParams)
 {
+    const u16 species = WILD_SLOT_SPECIES(slotSpecies);
     u8 firstMonGender;
     u8 firstMonNature;
 
@@ -1047,13 +1120,15 @@ static void CreateWildMonShinyWithGenderOrNature(const u16 species, const u8 lev
     }
 
     Pokemon_InitWith(newEncounter, species, level, INIT_IVS_RANDOM, TRUE, newEncounterPersonality, OTID_SET, encounterFieldParams->trainerID);
+    ApplySlotForm(newEncounter, slotSpecies);
 
     GF_ASSERT(AddWildMonToParty(partySlot, encounterFieldParams, newEncounter, battleParams));
     Heap_Free(newEncounter);
 }
 
-static void CreateWildMon(u16 species, u8 level, const int partyDest, const WildEncounters_FieldParams *encounterFieldParams, Pokemon *firstPartyMon, FieldBattleDTO *battleParams)
+static void CreateWildMon(int slotSpecies, u8 level, const int partyDest, const WildEncounters_FieldParams *encounterFieldParams, Pokemon *firstPartyMon, FieldBattleDTO *battleParams)
 {
+    u16 species = WILD_SLOT_SPECIES(slotSpecies);
     Pokemon *newEncounter = Pokemon_New(HEAP_ID_FIELD2);
     Pokemon_Init(newEncounter);
     BOOL hasRandomGender = TRUE;
@@ -1081,6 +1156,7 @@ static void CreateWildMon(u16 species, u8 level, const int partyDest, const Wild
 
         sub_02074088(newEncounter, species, level, 32, gender, GetNatureForWildMon(firstPartyMon, encounterFieldParams), 0);
         Pokemon_SetValue(newEncounter, MON_DATA_OT_ID, &encounterFieldParams->trainerID);
+        ApplySlotForm(newEncounter, slotSpecies);
 
         GF_ASSERT(AddWildMonToParty(partyDest, encounterFieldParams, newEncounter, battleParams));
         Heap_Free(newEncounter);
@@ -1089,6 +1165,7 @@ static void CreateWildMon(u16 species, u8 level, const int partyDest, const Wild
 
     sub_02074044(newEncounter, species, level, 32, GetNatureForWildMon(firstPartyMon, encounterFieldParams));
     Pokemon_SetValue(newEncounter, MON_DATA_OT_ID, &encounterFieldParams->trainerID);
+    ApplySlotForm(newEncounter, slotSpecies);
 
     GF_ASSERT(AddWildMonToParty(partyDest, encounterFieldParams, newEncounter, battleParams));
     Heap_Free(newEncounter);
@@ -1305,8 +1382,9 @@ static BOOL ForceMatchingTypeEncounterSlot(const EncounterSlot *encounterTable, 
     u8 numMonsOfType = 0;
 
     for (i = 0; i < maxEncounters; i++) {
-        u8 type1 = SpeciesData_GetSpeciesValue(encounterTable[i].species, SPECIES_DATA_TYPE_1);
-        u8 type2 = SpeciesData_GetSpeciesValue(encounterTable[i].species, SPECIES_DATA_TYPE_2);
+        int slotSpecies = encounterTable[i].species;
+        u8 type1 = SpeciesData_GetFormValue(WILD_SLOT_SPECIES(slotSpecies), WILD_SLOT_FORM(slotSpecies), SPECIES_DATA_TYPE_1);
+        u8 type2 = SpeciesData_GetFormValue(WILD_SLOT_SPECIES(slotSpecies), WILD_SLOT_FORM(slotSpecies), SPECIES_DATA_TYPE_2);
 
         if (type1 == type || type2 == type) {
             typeMatchingSlots[numMonsOfType++] = i;

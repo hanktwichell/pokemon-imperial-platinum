@@ -4,22 +4,23 @@
     {
       "id": "Route221_Text_PalParkIsntOpenYet",
       "en_US": [
-        "Pal Park isn’t open yet.\n",
+        "The park isn’t open yet.\n",
         "We’re still setting up."
       ]
     },
     {
       "id": "Route221_Text_GettingPalParkReady",
       "en_US": [
-        "We’re getting Pal Park ready.\n",
-        "I wonder what you can do there?"
+        "We’re getting the park ready.\n",
+        "Some very odd Pokémon have been\f",
+        "wandering in…"
       ]
     },
     {
       "id": "Route221_Text_SignPalPark",
       "en_US": [
-        "Pal Park\n",
-        "A Place for New Beginnings"
+        "Regional Forms Park\n",
+        "Where Far-Off Forms Gather"
       ]
     }
   ]

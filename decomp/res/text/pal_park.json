@@ -76,6 +76,19 @@
     {
       "id": "PalPark_Text_Start",
       "en_US": "Start!"
+    },
+    {
+      "id": "PalPark_Text_SovereignWorker",
+      "en_US": [
+        "Alola’s forms are in the field,\n",
+        "Galar’s in the forest, Hisui’s on\f",
+        "the mountain and Paldea’s at sea.\r",
+        "Would you like to leave the park?"
+      ]
+    },
+    {
+      "id": "PalPark_Text_SovereignLeave",
+      "en_US": "Would you like to leave the park?"
     }
   ]
 }

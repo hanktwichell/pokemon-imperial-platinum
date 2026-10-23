@@ -9,6 +9,7 @@ pl_enc_data_srcs = files(
     'encounters_canalave_city.json',
     'encounters_eterna_city.json',
     'encounters_pastoria_city.json',
+    'encounters_pal_park.json',
     'encounters_sunyshore_city.json',
     'encounters_pokemon_league.json',
     'encounters_oreburgh_mine_b1f.json',

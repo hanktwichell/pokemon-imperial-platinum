@@ -15,6 +15,7 @@ python3 tools/design/build_species_data.py "$pokeapi"
 python3 tools/design/gen_encounters.py
 python3 tools/design/gen_trainer_docs.py --pokeapi "$pokeapi"
 python3 tools/engine/gen_level_caps.py
+python3 tools/engine/gen_regional_forms_park.py
 if [ -n "$decomp" ]; then
   python3 tools/design/gen_mega_doc.py --decomp "$decomp"
 else
