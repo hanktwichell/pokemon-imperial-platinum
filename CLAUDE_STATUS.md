@@ -2010,3 +2010,21 @@ scripts 0295–0298, `decomp/generated/{move_battle_effects,battle_subscripts,ba
 1. Merge PR #38 when green.
 2. The terrain-removal message (Steel Roller, Ice Spinner); Mimicry; Laser Focus, Throat Chop, Smack Down, Retaliate, Dragon Tail.
 3. Ally Switch, After You, Wide/Quick Guard, Telekinesis (doubles-relevant status moves, AIReview #8).
+
+## CA-0033 — 2026-10-23 (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** PR #38 (turn-aware moves, terrains) and PR #39 (Seeds, Laser Focus, Throat Chop, Wide/Quick Guard,
+Dragon Tail, Circle Throw, Smack Down, Soak, Retaliate, Poltergeist) merged. Now: Venom Drench, No Retreat, Clangorous
+Soul through `gen_stat_moves.py` (new optional "poisoned" condition), Shelter. Move checklist: exact 222, approximate
+46, placeholder 112.
+
+**Files modified:** `tools/engine/gen_stat_moves.py`, `tools/engine/gen9_move_fixes.py`, `tools/engine/gen_moves.py`,
+three new stat subscripts and effect scripts 0306–0308 with their registrations, the four moves' `data.json`,
+`docs/MoveChecklist.md`, `docs/EngineChangelog.md`.
+
+**Next 3 steps:**
+1. After You, Ally Switch, Quash (turn order), Telekinesis, Meteor Beam, Steel Beam / Mind Blown.
+2. Wonder Room / Magic Room, Coaching, Dragon Cheer, Heal Pulse (partner scoring, AIReview #8).
+3. Remaining abilities: Mirror Armor, Long Reach, Stakeout, Supreme Overlord, Magic Bounce, Protean/Libero.
+
+Lesson: a user-side status effect's direct side effect needs `MOVE_SIDE_EFFECT_ON_HIT` (as Light Screen), or it never runs.
