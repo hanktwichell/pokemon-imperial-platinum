@@ -187,6 +187,8 @@ MOVES = {
     "floral_healing": ("SOVEREIGN_HEAL_TARGET", 0, "heals the target by 1/2 (2/3 in Grassy Terrain)"),
     "life_dew": ("SOVEREIGN_LIFE_DEW", 0, "heals the user and its ally by 1/4"),
     "meteor_beam": ("ELECTRO_SHOT", 100, "charge turn raises Sp. Atk 1 stage, attacks next turn (Power Herb skips it)"),
+    "after_you": ("SOVEREIGN_AFTER_YOU", 0, "the target moves right after the user"),
+    "quash": ("SOVEREIGN_QUASH", 0, "the target moves last this turn"),
 }
 
 

@@ -8926,6 +8926,48 @@
         "The foe’s {STRVAR_1 1, 0, 0} is overflowing\n",
         "with space power!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTookTheKindOffer_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} took\n",
+        "the kind offer!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTookTheKindOffer_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} took\n",
+        "the kind offer!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTookTheKindOffer_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} took\n",
+        "the kind offer!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignMoveWasPostponed_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s move\n",
+        "was postponed!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignMoveWasPostponed_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}’s move\n",
+        "was postponed!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignMoveWasPostponed_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}’s move\n",
+        "was postponed!"
+      ]
     }
   ]
 }

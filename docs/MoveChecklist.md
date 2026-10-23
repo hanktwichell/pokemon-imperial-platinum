@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 226 |
+| exact | 228 |
 | approximate | 43 |
-| placeholder | 111 |
+| placeholder | 109 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -42,7 +42,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 492 | Foul Play | Dark | `HIT` | exact | Sovereign effect: damage uses the target's Attack and Attack stage |
 | 493 | Simple Beam | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 494 | Entrainment | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
-| 495 | After You | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 495 | After You | Normal | `SOVEREIGN_AFTER_YOU` | exact | Sovereign effect: the target moves right after the user |
 | 496 | Round | Normal | `HIT` | approximate | Sovereign effect: power doubles after its ally's Round this turn (the ally doesn't move up in turn order) |
 | 497 | Echoed Voice | Normal | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 498 | Chip Away | Normal | `HIT` | exact | Sovereign effect: ignores the target's stat changes |
@@ -58,7 +58,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 508 | Shift Gear | Steel | `SOVEREIGN_SHIFT_GEAR` | exact | Sovereign effect: user Attack +1, user Speed +2 |
 | 509 | Circle Throw | Fighting | `SOVEREIGN_DRAG_OUT_HIT` | exact | Sovereign effect: drags the target out after the hit |
 | 510 | Incinerate | Fire | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
-| 511 | Quash | Dark | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 511 | Quash | Dark | `SOVEREIGN_QUASH` | exact | Sovereign effect: the target moves last this turn |
 | 512 | Acrobatics | Flying | `HIT` | exact | Sovereign effect: user holds no item: power doubles |
 | 513 | Reflect Type | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 514 | Retaliate | Normal | `HIT` | exact | Sovereign effect: power doubles if a Pokémon on the user's side fainted last turn |

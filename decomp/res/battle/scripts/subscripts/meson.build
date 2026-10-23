@@ -339,4 +339,6 @@ subscript_files = files(
     'subscript_sovereign_stats_clangorous_soul.s',
     'subscript_sovereign_heal_target.s',
     'subscript_sovereign_life_dew.s',
+    'subscript_sovereign_after_you.s',
+    'subscript_sovereign_quash.s',
 )
