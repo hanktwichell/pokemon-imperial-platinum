@@ -1,13 +1,42 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/vista_lighthouse.h"
 #include "res/field/events/events_vista_lighthouse.h"
+#include "constants/sovereign_totem_trials.h"
 
 
     ScriptEntry VistaLighthouse_Sailor
     ScriptEntry VistaLighthouse_Youngster
     ScriptEntry VistaLighthouse_Binoculars
     ScriptEntry VistaLighthouse_Volkner
+    ScriptEntry VistaLighthouse_OnTransition
+    ScriptEntry VistaLighthouse_TotemTogedemaru
+    ScriptEntry VistaLighthouse_OnLoad
     ScriptEntryEnd
+
+@ Sovereign: Totem Togedemaru's trial, the last, opens once Cyrus is beaten in the Distortion World.
+VistaLighthouse_OnTransition:
+    CallIfSet FLAG_SOVEREIGN_TOTEM_TRIAL_TOGEDEMARU, VistaLighthouse_HideTotemTogedemaru
+    CallIfLt VAR_DISTORTION_WORLD_PROGRESS, DIST_WORLD_PROGRESS_WON_CYRUS_BATTLE, VistaLighthouse_HideTotemTogedemaru
+    End
+
+VistaLighthouse_OnLoad:
+    CallIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, VistaLighthouse_RemoveTotemTogedemaru
+    End
+
+VistaLighthouse_HideTotemTogedemaru:
+    SetFlag FLAG_MAP_LOCAL_HIDE_TOTEM
+    Return
+
+VistaLighthouse_RemoveTotemTogedemaru:
+    RemoveObject LOCALID_TOTEM_TOGEDEMARU
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
+    Return
+
+@ Sovereign (decision 18): the Totem Togedemaru trial.
+VistaLighthouse_TotemTogedemaru:
+    SetVar VAR_0x8004, TOTEM_TRIAL_TOGEDEMARU
+    Common_SovereignTotemTrial
+    End
 
 VistaLighthouse_Sailor:
     NPCMessage VistaLighthouse_Text_LighthouseRepresentsSafety

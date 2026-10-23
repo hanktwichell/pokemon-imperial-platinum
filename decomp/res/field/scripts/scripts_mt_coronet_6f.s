@@ -1,16 +1,38 @@
 #include "macros/scrcmd.inc"
+#include "res/field/events/events_mt_coronet_6f.h"
+#include "constants/sovereign_totem_trials.h"
 
 
     ScriptEntry MtCoronet6F_OnTransition
     ScriptEntry MtCoronet6F_OnLoad
+    ScriptEntry MtCoronet6F_TotemKommoO
     ScriptEntryEnd
 
+MtCoronet6F_HideTotemKommoO:
+    SetFlag FLAG_MAP_LOCAL_HIDE_TOTEM
+    Return
+
+MtCoronet6F_RemoveTotemKommoO:
+    RemoveObject LOCALID_TOTEM_KOMMO_O
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
+    Return
+
+@ Sovereign (decision 18): the Totem Kommo-o trial.
+MtCoronet6F_TotemKommoO:
+    SetVar VAR_0x8004, TOTEM_TRIAL_KOMMO_O
+    Common_SovereignTotemTrial
+    End
+
 MtCoronet6F_OnTransition:
+    @ Sovereign: Totem Kommo-o's trial opens once Saturn is beaten at the Galactic HQ.
+    CallIfSet FLAG_SOVEREIGN_TOTEM_TRIAL_KOMMO_O, MtCoronet6F_HideTotemKommoO
+    CallIfUnset FLAG_DEFEATED_GALACTIC_HQ_CONTROL_ROOM_SATURN, MtCoronet6F_HideTotemKommoO
     GoToIfSet FLAG_SPEAR_PILLAR_IS_DISTORTED, MtCoronet6F_SetWarpSpearPillarDistorted
     GoToIfUnset FLAG_SPEAR_PILLAR_IS_DISTORTED, MtCoronet6F_TrySetWarpSpearPillarDialgaPalkia
     End
 
 MtCoronet6F_OnLoad:
+    CallIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, MtCoronet6F_RemoveTotemKommoO
     Call MtCoronet6F_RemoveSpearPillarWarps
     GoToIfSet FLAG_SPEAR_PILLAR_IS_DISTORTED, MtCoronet6F_SetWarpSpearPillarDistorted
     GoToIfUnset FLAG_SPEAR_PILLAR_IS_DISTORTED, MtCoronet6F_TrySetWarpSpearPillarDialgaPalkia

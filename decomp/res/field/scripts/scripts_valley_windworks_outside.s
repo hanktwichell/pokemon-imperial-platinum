@@ -62,6 +62,8 @@ ValleyWindworksOutside_GruntM:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
+    @ Sovereign (decision 23): Mars's encounter waits on Totem Gumshoos's trial (Route 205 South).
+    GoToIfUnset FLAG_SOVEREIGN_TOTEM_TRIAL_GUMSHOOS, ValleyWindworksOutside_GruntMWaitsOnTotem
     Message ValleyWindworksOutside_Text_BattleMeForIt
     CloseMessage
     StartTrainerBattle TRAINER_GALACTIC_GRUNT_VALLEY_WINDWORKS_1
@@ -81,6 +83,13 @@ ValleyWindworksOutside_GruntM:
     UnloadAnimation ANIMATION_TAG_DOOR_1
     Message ValleyWindworksOutside_Text_Kerchunk
     RemoveObject LOCALID_GRUNT_M
+    CloseMessage
+    ReleaseAll
+    End
+
+ValleyWindworksOutside_GruntMWaitsOnTotem:
+    Message ValleyWindworksOutside_Text_SovereignNotWithThatGumshoos
+    WaitButton
     CloseMessage
     ReleaseAll
     End
