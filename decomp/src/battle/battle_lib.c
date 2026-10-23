@@ -2165,6 +2165,7 @@ void BattleSystem_UpdateAfterSwitch(BattleSystem *battleSys, BattleContext *batt
     battleCtx->sovereignLastMoveFailed[battler] = FALSE;
     battleCtx->sovereignLaserFocus[battler] = 0;
     battleCtx->sovereignThroatChop[battler] = 0;
+    battleCtx->sovereignSmackedDown[battler] = 0;
     battleCtx->moveCopied[battler] = MOVE_NONE;
     battleCtx->moveCopiedHit[battler][0] = MOVE_NONE;
     battleCtx->moveCopiedHit[battler][1] = MOVE_NONE;
@@ -2246,6 +2247,7 @@ void BattleSystem_CleanupFaintedMon(BattleSystem *battleSys, BattleContext *batt
     battleCtx->sovereignLastMoveFailed[battler] = FALSE;
     battleCtx->sovereignLaserFocus[battler] = 0;
     battleCtx->sovereignThroatChop[battler] = 0;
+    battleCtx->sovereignSmackedDown[battler] = 0;
     battleCtx->moveCopied[battler] = MOVE_NONE;
     battleCtx->moveCopiedHit[battler][0] = MOVE_NONE;
     battleCtx->moveCopiedHit[battler][1] = MOVE_NONE;
@@ -2274,7 +2276,10 @@ void BattleSystem_CleanupFaintedMon(BattleSystem *battleSys, BattleContext *batt
 void BattleSystem_SetupNextTurn(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     for (int i = 0; i < MAX_BATTLERS; i++) {
-        // Sovereign (item 11): Laser Focus and Throat Chop wear off.
+        // Sovereign (item 11): Wide Guard and Quick Guard last one turn; Laser Focus and Throat Chop wear off.
+        if (i < 2) {
+            battleCtx->sovereignSideGuards[i] = 0;
+        }
         if (battleCtx->sovereignLaserFocus[i]) {
             battleCtx->sovereignLaserFocus[i]--;
         }
@@ -6020,6 +6025,7 @@ static inline BOOL BattlerIsGrounded(BattleContext *battleCtx, int battler)
                && battleCtx->battleMons[battler].moveEffectsData.magnetRiseTurns == 0
                && MON_IS_NOT_TYPE(battler, TYPE_FLYING))
         || Battler_HeldItemEffect(battleCtx, battler) == HOLD_EFFECT_SPEED_DOWN_GROUNDED
+        || battleCtx->sovereignSmackedDown[battler] // Sovereign (item 11)
         || (battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY);
 }
 
@@ -7471,6 +7477,12 @@ int Sovereign_MovePower(BattleSystem *battleSys, BattleContext *battleCtx, int m
 
     case MOVE_TERRAIN_PULSE: // double from a grounded user in a terrain (its type follows the terrain)
         if (Sovereign_TerrainUnder(battleCtx, attacker)) {
+            power *= 2;
+        }
+        break;
+
+    case MOVE_RETALIATE: // double if a Pokemon on the user's side fainted last turn
+        if (battleCtx->sovereignSideFaintTurn[BattleSystem_GetBattlerSide(battleSys, attacker)] == battleCtx->totalTurns) {
             power *= 2;
         }
         break;

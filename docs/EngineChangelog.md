@@ -4,6 +4,22 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (part 12) — Wide Guard, Quick Guard, Dragon Tail, Smack Down, Soak, Retaliate, Poltergeist
+
+- **Wide Guard / Quick Guard:** protect the user's side this turn from spread moves / foes' priority moves (new side
+  flags `sovereignSideGuards`, "Wide Guard protected your team!").
+- **Dragon Tail, Circle Throw:** drag the target out after the hit (end a wild battle), quietly doing nothing when it
+  can't (Suction Cups, Ingrain, no Pokémon to switch in).
+- **Smack Down:** grounds the target until it switches out ("{0} fell straight down!" if it was airborne); grounded
+  Pokémon feel terrains and Ground moves.
+- **Soak:** the target becomes pure Water-type ("{0} transformed into the Water type!").
+- **Retaliate:** double power if a Pokémon on the user's side fainted last turn (new `sovereignSideFaintTurn`).
+- **Poltergeist:** fails against a target with no item (the item message isn't shown yet).
+- Move checklist: exact 220, approximate 47, placeholder 113.
+
+**Verified in the test build:** Venusaur's Wide Guard stopped Garchomp's Hyper Voice on both foes for two turns
+(Archaludon stayed at full HP).
+
 ## Item 11 (part 11) — Laser Focus and Throat Chop
 
 - **Laser Focus:** the user's moves always crit this turn and the next ("{0} concentrated intensely!").

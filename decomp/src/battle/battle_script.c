@@ -9684,6 +9684,10 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         return &battleCtx->sideConditionsMask[BattleSystem_GetBattlerSide(battleSys, battleCtx->defender)];
     case BTLVAR_SIDE_CONDITIONS_EFFECT_MON:
         return &battleCtx->sideConditionsMask[BattleSystem_GetBattlerSide(battleSys, battleCtx->sideEffectMon)];
+    case BTLVAR_SOVEREIGN_SMACKED_DOWN_SIDE_EFFECT_MON: // Sovereign (item 11)
+        return &battleCtx->sovereignSmackedDown[battleCtx->sideEffectMon];
+    case BTLVAR_SOVEREIGN_SIDE_GUARDS_ATTACKER: // Sovereign (item 11)
+        return &battleCtx->sovereignSideGuards[BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker)];
     case BTLVAR_SOVEREIGN_LASER_FOCUS_SIDE_EFFECT_MON: // Sovereign (item 11)
         return &battleCtx->sovereignLaserFocus[battleCtx->sideEffectMon];
     case BTLVAR_SOVEREIGN_THROAT_CHOP_SIDE_EFFECT_MON: // Sovereign (item 11)

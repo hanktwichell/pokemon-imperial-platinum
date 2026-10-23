@@ -3227,6 +3227,21 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
         battleCtx->moveStatusFlags |= MOVE_STATUS_INEFFECTIVE;
     }
 
+    // Sovereign (item 11): Wide Guard blocks spread moves aimed at its side, Quick Guard foes' priority moves.
+    if (attacker != defender
+        && (((battleCtx->sovereignSideGuards[BattleSystem_GetBattlerSide(battleSys, defender)] & 1)
+                && (MOVE_DATA(move).range == RANGE_ADJACENT_OPPONENTS || MOVE_DATA(move).range == RANGE_ALL_ADJACENT))
+            || ((battleCtx->sovereignSideGuards[BattleSystem_GetBattlerSide(battleSys, defender)] & 2)
+                && BattleSystem_GetBattlerSide(battleSys, attacker) != BattleSystem_GetBattlerSide(battleSys, defender)
+                && Sovereign_MovePriority(battleCtx, attacker, move) > 0))) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_PROTECTED;
+    }
+
+    // Sovereign (item 11): Poltergeist fails against a target holding no item.
+    if (move == MOVE_POLTERGEIST && battleCtx->battleMons[defender].heldItem == ITEM_NONE) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_FAILED;
+    }
+
     // Sovereign (item 11): Psychic Terrain protects grounded Pokemon from foes' priority moves; Steel Roller fails without
     // a terrain.
     if (attacker != defender
@@ -4114,6 +4129,7 @@ static void BattleControllerPlayer_FaintAfterSelfdestruct(BattleSystem *battleSy
 {
     if (battleCtx->battleStatusMask & SYSCTL_MON_SELFDESTRUCTED) {
         battleCtx->faintedMon = LowestBit((battleCtx->battleStatusMask & SYSCTL_MON_SELFDESTRUCTED) >> SYSCTL_MON_SELFDESTRUCTED_SHIFT);
+        battleCtx->sovereignSideFaintTurn[battleCtx->faintedMon & 1] = battleCtx->totalTurns + 1; // Sovereign (item 11): Retaliate
         battleCtx->battleStatusMask &= ~SYSCTL_MON_SELFDESTRUCTED;
 
         LOAD_SUBSEQ(subscript_after_selfdestruct);
@@ -4668,6 +4684,7 @@ static BOOL BattleControllerPlayer_AnyFainted(BattleContext *battleCtx, int next
 
         battleCtx->battleStatusMask &= (battlerBit ^ 0xFFFFFFFF);
         battleCtx->faintedMon = LowestBit(battlerBit >> SYSCTL_MON_FAINTED_SHIFT);
+        battleCtx->sovereignSideFaintTurn[battleCtx->faintedMon & 1] = battleCtx->totalTurns + 1; // Sovereign (item 11): Retaliate
 
         if (onlyFaint == TRUE) {
             LOAD_SUBSEQ(subscript_faint_mon);
