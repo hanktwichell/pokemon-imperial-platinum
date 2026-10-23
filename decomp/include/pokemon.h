@@ -843,6 +843,12 @@ BOOL CanPokemonFormLearnTM(u16 monSpecies, int monForm, u8 tmID);
 void Pokemon_CalcAbility(Pokemon *mon);
 int Pokemon_SovereignBattleForm(u16 species, u16 heldItem, const u16 *moves, BOOL primal);
 BOOL Pokemon_IsSovereignBattleForm(u16 species, int form);
+BOOL Pokemon_IsSovereignMegaForm(u16 species, int form);
+BOOL Pokemon_SovereignHasHeldItemForms(u16 species);
+int Pokemon_SovereignHeldItemForm(u16 species, u16 heldItem);
+BOOL Pokemon_SovereignItemIsLocked(u16 species, u16 item);
+void Pokemon_SovereignSetBattleItemForm(Pokemon *mon);
+void Pokemon_SovereignRevertBattleForm(Pokemon *mon);
 
 void sub_020780C4(Pokemon *mon, u32 monPersonality);
 

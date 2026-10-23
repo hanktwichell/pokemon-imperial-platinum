@@ -1304,7 +1304,7 @@ static void HealthBox_SovereignDrawMegaIcon(HealthBox *healthbox)
     }
 
     Pokemon *mon = BattleSystem_GetPartyPokemon(healthbox->battleSys, healthbox->battler, healthbox->selectedPartySlot);
-    BOOL mega = Pokemon_IsSovereignBattleForm(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), Pokemon_GetValue(mon, MON_DATA_FORM, NULL));
+    BOOL mega = Pokemon_IsSovereignMegaForm(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), Pokemon_GetValue(mon, MON_DATA_FORM, NULL));
 
     if (mega == FALSE && healthbox->sovereignMegaDrawn == FALSE) {
         return;

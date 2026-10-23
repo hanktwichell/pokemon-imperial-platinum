@@ -5160,8 +5160,8 @@ static BOOL BtlCmd_TryStealItem(BattleSystem *battleSys, BattleContext *battleCt
     } else if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_MULTITYPE || Battler_Ability(battleCtx, battleCtx->defender) == ABILITY_MULTITYPE) {
         // Either battler has Multitype.
         BattleScript_Iter(battleCtx, jumpOnFail);
-    } else if (DEFENDING_MON.heldItem == ITEM_GRISEOUS_ORB) {
-        // The defender is holding a Griseous Orb.
+    } else if (DEFENDING_MON.heldItem == ITEM_GRISEOUS_ORB || Battler_SovereignHeldItemLocked(battleCtx, battleCtx->defender)) {
+        // The defender is holding a Griseous Orb, or (Sovereign) an item that changes its form.
         BattleScript_Iter(battleCtx, jumpOnFail);
     } else if (DEFENDING_MON.moveEffectsData.custapBerry || DEFENDING_MON.moveEffectsData.quickClaw) {
         // The defender activated a Custap Berry or a Quick Claw this turn.
@@ -6400,7 +6400,10 @@ static BOOL BtlCmd_TrySwapItems(BattleSystem *battleSys, BattleContext *battleCt
         BattleScript_Iter(battleCtx, jumpOnFail);
     } else if ((ATTACKING_MON.heldItem == ITEM_NONE && DEFENDING_MON.heldItem == ITEM_NONE)
         || BattleSystem_NotHoldingMail(battleCtx, battleCtx->attacker) == FALSE
-        || BattleSystem_NotHoldingMail(battleCtx, battleCtx->defender) == FALSE) {
+        || BattleSystem_NotHoldingMail(battleCtx, battleCtx->defender) == FALSE
+        || Battler_SovereignHeldItemLocked(battleCtx, battleCtx->attacker)
+        || Battler_SovereignHeldItemLocked(battleCtx, battleCtx->defender)) {
+        // Sovereign: neither may hold an item that changes its form.
         BattleScript_Iter(battleCtx, jumpOnFail);
     } else if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->defender, ABILITY_STICKY_HOLD) == TRUE) {
         BattleScript_Iter(battleCtx, jumpStickyHold);
@@ -6667,7 +6670,8 @@ static BOOL BtlCmd_TryKnockOff(BattleSystem *battleSys, BattleContext *battleCtx
         battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->defender);
         battleCtx->msgBuffer.params[1] = DEFENDING_MON.ability;
         battleCtx->msgBuffer.params[2] = battleCtx->moveCur;
-    } else if (DEFENDING_MON.heldItem) {
+    } else if (DEFENDING_MON.heldItem && Battler_SovereignHeldItemLocked(battleCtx, battleCtx->defender) == FALSE) {
+        // Sovereign: an item that changes the defender's form stays.
         battleCtx->msgBuffer.id = BattleStrings_Text_PokemonKnockedOffPokemonsItem_AllyAlly; // "{0} knocked off {1}'s {2}!"
         battleCtx->msgBuffer.tags = TAG_NICKNAME_NICKNAME_ITEM;
         battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->attacker);

@@ -7,6 +7,7 @@ BSD-3-Clause). Pass the path to that csv directory as the first argument.
 Outputs (relative to the repository root):
   data/species.csv  - all 1025 species with types, base stats, family and evolution info
   data/megas.csv    - every Mega Evolution / Primal Reversion with stats, types, ability, stone
+  data/forms.csv    - every other alternate form with its own data (milestone FM), with its category
 
 Usage:
   python3 tools/design/build_species_data.py /path/to/pokeapi/data/v2/csv
@@ -284,6 +285,62 @@ def main():
                        [st[k] for k in STAT_KEYS] + [types_of(base_pid), sum(pstats[base_pid].values()), src,
                                                        "" if ab_gen4 == "" else int(ab_gen4)])
     print("wrote", mega_path)
+
+    write_forms(d, pokemon, sp_names, pstats, pabil, types_of, default_form)
+
+
+# Milestone FM (decision 16): every form is in the game except Dynamax/Gigantamax and unplayable forms. Each alternate
+# form with its own data gets a category; "vanilla" forms are already in Platinum, "excluded" ones never will be.
+FORM_CATEGORIES = {
+    "vanilla": ["deoxys-", "wormadam-", "shaymin-sky", "giratina-origin", "rotom-", "castform-"],
+    "excluded": ["eternatus-eternamax", "koraidon-", "miraidon-", "terapagos-stellar"],
+    "item": ["zacian-crowned", "zamazenta-crowned", "ogerpon-", "dialga-origin", "palkia-origin"],
+    "battle": ["darmanitan-zen", "meloetta-pirouette", "aegislash-blade", "greninja-ash", "zygarde-complete",
+               "wishiwashi-school", "minior-red", "minior-orange", "minior-yellow", "minior-green", "minior-blue",
+               "minior-indigo", "minior-violet", "mimikyu-busted", "cramorant-", "eiscue-noice", "morpeko-hangry",
+               "necrozma-ultra", "palafin-hero", "terapagos-terastal"],
+    "fusion": ["kyurem-black", "kyurem-white", "necrozma-dusk", "necrozma-dawn", "calyrex-ice", "calyrex-shadow"],
+}
+
+
+def form_category(ident):
+    if "-gmax" in ident:
+        return "excluded"
+    if "totem" in ident:
+        return "totem"
+    for category, prefixes in FORM_CATEGORIES.items():
+        if any(ident == p or (p.endswith("-") and ident.startswith(p)) or ident.startswith(p + "-") for p in prefixes):
+            if category == "battle" and ident.endswith("-meteor"):
+                break
+            return category
+    if any(t in ident for t in ("alola", "galar", "hisui", "paldea")):
+        return "regional"
+    return "other"
+
+
+def write_forms(d, pokemon, sp_names, pstats, pabil, types_of, default_form):
+    forms = {r["pokemon_id"]: r for r in read(d, "pokemon_forms.csv") if r["is_default"] == "1"}
+    form_names = {r["pokemon_form_id"]: r for r in read(d, "pokemon_form_names.csv") if r["local_language_id"] == EN}
+    path = os.path.join(ROOT, "data", "forms.csv")
+    with open(path, "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(["form_id", "identifier", "form", "base_species", "dex", "category", "types", "abilities", "bst"]
+                   + STAT_KEYS + ["base_types", "ability_in_gen4_engine"])
+        for p in pokemon:
+            ident = p["identifier"]
+            if p["is_default"] == "1" or "-mega" in ident or ident.endswith("-primal"):
+                continue
+            sid, pid = p["species_id"], p["id"]
+            base = sp_names[sid]
+            names = form_names.get(forms.get(pid, {}).get("id", ""), {})
+            label = names.get("pokemon_name") or f"{base} ({names.get('form_name') or ident})"
+            st = pstats[pid]
+            ab = [n + (" (H)" if hid else "") for _, hid, n, _ in sorted(pabil[pid])]
+            ab_gen4 = all(aid <= GEN4_MAX_ABILITY for *_, aid in pabil[pid]) if pabil[pid] else ""
+            w.writerow([pid, ident, label, base, int(sid), form_category(ident), types_of(pid), "; ".join(ab),
+                        sum(st.values())] + [st[k] for k in STAT_KEYS]
+                       + [types_of(default_form[sid]), "" if ab_gen4 == "" else int(ab_gen4)])
+    print("wrote", path)
 
 
 def mega_stone_name(base, suffix, item_names):

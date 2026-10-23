@@ -4,6 +4,47 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## FM (part 1) — held-item forms and form-item locks
+
+- **Seven held-item forms exist** (decision 16):
+  - **Crowned Zacian and Crowned Zamazenta**, holding the Rusted Sword or Rusted Shield.
+  - **Ogerpon's Wellspring, Hearthflame and Cornerstone Mask forms**.
+  - **Origin Dialga and Origin Palkia**, holding the Adamant Crystal or Lustrous Globe.
+
+  Each form has its own stats, types and abilities. `tools/engine/gen_forms.py` packs them after the Megas, in the
+  same form table (`TechnicalDesign.md` §4b). Sprites and icons are the base form's until E12, and abilities the
+  engine doesn't have yet (Embody Aspect, Intrepid Sword's effect…) wait for item 11.
+- **The form follows the held item.**
+  - Ogerpon's masks and the Origin items change the form whenever the item changes: giving or taking it in the party
+    menu, or giving it in the PC. Stats and ability are recalculated.
+  - The Griseous Core now works like the Griseous Orb (Origin Giratina, also in battle).
+  - Zacian and Zamazenta become Crowned when a battle starts with them holding their item. Iron Head becomes
+    Behemoth Blade or Behemoth Bash, and the PP used carries over.
+  - They revert when the battle ends, or when caught, the same way a Mega does. Behemoth Blade/Bash goes back to
+    Iron Head.
+- **Form items can't be taken.** Knock Off, Thief, Covet, Trick, Switcheroo and Fling fail or leave the item when the
+  holder's form depends on it:
+  - a Mega Stone on the species it's for;
+  - the Blue and Red Orbs on Kyogre and Groudon;
+  - the Rusted Sword and Shield, Ogerpon's four masks (the Teal Mask too), the Adamant Crystal, the Lustrous Globe
+    and the Griseous Core, each on its own Pokémon.
+
+  On any other Pokémon these items can be taken as usual. This makes `MegaEvolution.md`'s rule true in the engine.
+- **`data/forms.csv`** (new, written by `tools/design/build_species_data.py`): every alternate form with its own data
+  in PokeAPI, other than Megas and Primals (227). Each has a category: vanilla (already in Platinum), item, battle,
+  fusion, regional, Totem, other, or excluded (Gigantamax and the unplayable forms).
+- Verified in the test build (temporary test parties):
+  - **Crowned Zacian** has Behemoth Blade in battle. After the battle it is Fairy-type with Intrepid Sword, and Iron
+    Head is back at 14/15 after one Behemoth Blade.
+  - **Ogerpon** given the Wellspring Mask in the party menu is Grass/Water with Water Absorb.
+  - **Origin forms** at Lv. 50: Dialga's summary shows Attack 115 and Sp. Def 131, and Palkia's Attack 106 and Speed
+    135. Only the Origin forms' base stats allow these values.
+  - **Locks:** in the doubles test battle, Zacian's Knock Off hit the foe's Mega Charizard Y and left its
+    Charizardite Y. In a wild battle, Zacian's Trick failed: its own Rusted Sword is locked.
+  - Knock Off still takes an ordinary item (a wild Chansey's Oval Stone).
+  - The release ROM builds without warnings and passes `boot_smoke.py`, and the docs regenerate with no diff.
+
+
 ## DX — the Pokédex (decision 21)
 
 - **Rowan's Pokédex is the National Dex.** The Sandgem lab script sets the National Dex flag right after giving the

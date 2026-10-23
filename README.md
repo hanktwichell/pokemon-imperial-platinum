@@ -84,6 +84,7 @@ decided is in [`docs/ProjectStatus.md`](docs/ProjectStatus.md). Every engine cha
 data/                 Source-of-truth design data (CSV/YAML/JSON): edit these, then regenerate docs
   species.csv                all 1025 species (generated from PokeAPI)
   megas.csv                  all 99 Mega / Primal forms (generated from PokeAPI)
+  forms.csv                  every other alternate form, with its FM category (generated from PokeAPI)
   encounters_sovereign.json  slot-exact wild tables (generated)
   trainers_sovereign.yaml    boss / League teams (hand-written)
   items_sovereign.yaml       new items (hand-written; decomp tables generated from it)

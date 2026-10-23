@@ -700,18 +700,10 @@ static void BattleMain_CopyBattleSysToDTOAndFree(ApplicationManager *appMan)
         BattleSystem_InitCaptureAttempt(battleSys, Party_GetPokemonBySlotIndex(battleSys->parties[BATTLER_ENEMY_1], 0));
     }
 
-    // Sovereign (E8): Mega and Primal forms only last for the battle.
+    // Sovereign (E8, FM): Mega, Primal and Crowned forms only last for the battle.
     for (battlerId = 0; battlerId < MAX_BATTLERS; battlerId++) {
         for (int slot = 0; slot < Party_GetCurrentCount(battleSys->parties[battlerId]); slot++) {
-            Pokemon *mon = Party_GetPokemonBySlotIndex(battleSys->parties[battlerId], slot);
-            int form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
-
-            if (form && Pokemon_IsSovereignBattleForm(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), form)) {
-                form = 0;
-                Pokemon_SetValue(mon, MON_DATA_FORM, &form);
-                Pokemon_CalcAbility(mon);
-                Pokemon_CalcLevelAndStats(mon);
-            }
+            Pokemon_SovereignRevertBattleForm(Party_GetPokemonBySlotIndex(battleSys->parties[battlerId], slot));
         }
     }
 
@@ -1366,6 +1358,13 @@ static void BattleSys_New(BattleSystem *battleSys, FieldBattleDTO *dto)
 
         BattleSystem_InitPartyOrder(battleSys, battleSys->battleCtx);
         battleSys->battleInitialized = 1;
+    }
+
+    // Sovereign (FM): Zacian holding the Rusted Sword (Zamazenta the Rusted Shield) is Crowned for the whole battle.
+    for (i = 0; i < MAX_BATTLERS; i++) {
+        for (slot = 0; slot < Party_GetCurrentCount(battleSys->parties[i]); slot++) {
+            Pokemon_SovereignSetBattleItemForm(Party_GetPokemonBySlotIndex(battleSys->parties[i], slot));
+        }
     }
 
     if (battleSys->battleType & BATTLE_TYPE_PAL_PARK) {
