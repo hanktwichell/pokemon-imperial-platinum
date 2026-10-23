@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 249 |
-| approximate | 41 |
-| placeholder | 90 |
+| exact | 254 |
+| approximate | 39 |
+| placeholder | 87 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -63,7 +63,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 513 | Reflect Type | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 514 | Retaliate | Normal | `HIT` | exact | Sovereign effect: power doubles if a Pokémon on the user's side fainted last turn |
 | 515 | Final Gambit | Fighting | `SOVEREIGN_FINAL_GAMBIT` | exact | Sovereign effect: damage equal to the user's HP; the user faints if it hits |
-| 516 | Bestow | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 516 | Bestow | Normal | `SOVEREIGN_BESTOW` | exact | Sovereign effect: gives the user's held item to a target holding none |
 | 517 | Inferno | Fire | `BURN_HIT` | exact |  |
 | 518 | Water Pledge | Water | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 519 | Fire Pledge | Fire | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
@@ -109,7 +109,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 559 | Fusion Bolt | Electric | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 560 | Flying Press | Fighting | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 561 | Mat Block | Fighting | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
-| 562 | Belch | Poison | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 562 | Belch | Poison | `HIT` | approximate | Sovereign effect: fails unless the user has eaten a Berry this battle (Bug Bite and Pluck don't count yet) |
 | 563 | Rototiller | Ground | `ATK_UP_2` | approximate | raises [('atk', 1), ('spa', 1)] in the original |
 | 564 | Sticky Web | Bug | `SOVEREIGN_STICKY_WEB` | exact | Sovereign effect: grounded foes switching in lose 1 Speed stage (Rapid Spin clears it) |
 | 565 | Fell Stinger | Bug | `HIT` | exact | Sovereign effect: user Attack +3 if it knocks out the target |
@@ -122,7 +122,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 572 | Petal Blizzard | Grass | `HIT` | exact | Sovereign effect: hits all adjacent Pokémon |
 | 573 | Freeze-Dry | Ice | `FREEZE_HIT` | exact | Sovereign effect: super effective against Water; 10% freeze |
 | 574 | Disarming Voice | Fairy | `HIT` | exact | Sovereign effect: never misses, hits both foes |
-| 575 | Parting Shot | Dark | `ATK_DEF_DOWN` | approximate | stat changes [('atk', -1), ('spa', -1)] in the original |
+| 575 | Parting Shot | Dark | `SOVEREIGN_PARTING_SHOT` | exact | Sovereign effect: target Attack and Sp. Atk -1, then the user switches out (stays if no stat fell) |
 | 576 | Topsy-Turvy | Dark | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 577 | Draining Kiss | Fairy | `RECOVER_HALF_DAMAGE_DEALT` | exact | Sovereign effect: drains 3/4 of the damage dealt |
 | 578 | Crafty Shield | Fairy | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
@@ -346,7 +346,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 796 | Steel Beam | Steel | `SOVEREIGN_HALF_HP_COST_HIT` | approximate | Sovereign effect: the user loses half its max HP (only when it hits, so far) |
 | 797 | Expanding Force | Psychic | `HIT` | approximate | Sovereign effect: 1.5x in Psychic Terrain (doesn't spread to both foes yet) |
 | 798 | Steel Roller | Steel | `HIT` | approximate | Sovereign effect: fails without a terrain, then removes it (no message yet) |
-| 799 | Scale Shot | Dragon | `MULTI_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
+| 799 | Scale Shot | Dragon | `MULTI_HIT` | exact | Sovereign effect: hits 2-5 times, then user Defense -1 and Speed +1 |
 | 800 | Meteor Beam | Rock | `ELECTRO_SHOT` | exact | Sovereign effect: charge turn raises Sp. Atk 1 stage, attacks next turn (Power Herb skips it) |
 | 801 | Shell Side Arm | Poison | `POISON_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
 | 802 | Misty Explosion | Fairy | `HALVE_DEFENSE` | approximate | Sovereign effect: user faints; 1.5x in Misty Terrain (uses Explosion's effect) |
@@ -358,7 +358,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 808 | Lash Out | Dark | `HIT` | exact | Sovereign effect: power doubles if the user's stats were lowered this turn |
 | 809 | Poltergeist | Ghost | `HIT` | approximate | Sovereign effect: fails against a target holding no item (no item message yet) |
 | 810 | Corrosive Gas | Poison | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
-| 811 | Coaching | Fighting | `ATK_DEF_UP` | approximate | has its own mechanic in Gen IX; closest effect |
+| 811 | Coaching | Fighting | `SOVEREIGN_COACHING` | exact | Sovereign effect: the user's ally gets Attack and Defense +1 (fails without one) |
 | 812 | Flip Turn | Water | `SWITCH_HIT` | exact |  |
 | 813 | Triple Axel | Ice | `HIT_THREE_TIMES` | exact |  |
 | 814 | Dual Wingbeat | Flying | `HIT_TWICE` | exact |  |
@@ -460,7 +460,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 910 | Mighty Cleave | Rock | `HIT` | exact | Sovereign effect: ignores Protect |
 | 911 | Tachyon Cutter | Steel | `HIT_TWICE` | exact | Sovereign effect: hits twice, never misses |
 | 912 | Hard Press | Steel | `HIT` | exact | Sovereign effect: power 1-100 from the target's remaining HP |
-| 913 | Dragon Cheer | Dragon | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 913 | Dragon Cheer | Dragon | `SOVEREIGN_DRAGON_CHEER` | exact | Sovereign effect: the user's ally gets +1 crit stage, +2 if Dragon type (fails without one) |
 | 914 | Alluring Voice | Fairy | `CONFUSE_HIT` | exact | Sovereign effect: confuses a target whose stats rose this turn |
 | 915 | Temper Flare | Fire | `HIT` | exact | Sovereign effect: power doubles if the user's last move failed |
 | 916 | Supercell Slam | Electric | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |

@@ -2175,6 +2175,7 @@ void BattleSystem_UpdateAfterSwitch(BattleSystem *battleSys, BattleContext *batt
     battleCtx->movePrevByBattler[battler] = MOVE_NONE;
     battleCtx->sovereignLastMoveFailed[battler] = FALSE;
     battleCtx->sovereignLaserFocus[battler] = 0;
+    battleCtx->sovereignDragonCheer[battler] = 0;
     battleCtx->sovereignThroatChop[battler] = 0;
     battleCtx->sovereignSmackedDown[battler] = 0;
     battleCtx->moveCopied[battler] = MOVE_NONE;
@@ -2257,6 +2258,7 @@ void BattleSystem_CleanupFaintedMon(BattleSystem *battleSys, BattleContext *batt
     battleCtx->movePrevByBattler[battler] = MOVE_NONE;
     battleCtx->sovereignLastMoveFailed[battler] = FALSE;
     battleCtx->sovereignLaserFocus[battler] = 0;
+    battleCtx->sovereignDragonCheer[battler] = 0;
     battleCtx->sovereignThroatChop[battler] = 0;
     battleCtx->sovereignSmackedDown[battler] = 0;
     battleCtx->moveCopied[battler] = MOVE_NONE;

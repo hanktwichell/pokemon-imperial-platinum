@@ -32,6 +32,46 @@ The Unova Chronicle's Forces of Nature (`docs/PostgameLegendaries.md`):
   - the Archivist with all four caught: no Forces of Nature lines.
   - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
 
+## Item 11 (part 24) — Bestow, Belch
+
+- **Bestow:** gives the user's held item to a target holding none ("{0} obtained one {1}.").
+  - Fails if the user holds nothing, the target holds an item, or the item sets the user's form (Mega Stones, Orbs...,
+    `Battler_SovereignHeldItemLocked`).
+  - New effect `SOVEREIGN_BESTOW` (329).
+- **Belch:** fails unless the user has eaten a Berry this battle. A Berry used up through `RemoveItem` is recorded
+  per party slot (new field `sovereignAteBerry`). In the games Belch can't be selected at all; here it fails.
+  Berries eaten through Bug Bite or Pluck don't count yet.
+- Move checklist: exact 254, approximate 39, placeholder 87.
+
+**Verified in the test build:** the foe Charizard's Bestow gave Turtwig its Leftovers ("TURTWIG obtained one
+Leftovers."). The foe Venusaur's Belch, with no Berry eaten, gave "But it failed!".
+
+## Item 11 (part 23) — Parting Shot
+
+- **Parting Shot:** lowers the target's Attack and Sp. Atk by 1 stage, then the user switches out as after U-turn.
+  If the stats can't be lowered, the user stays in (Gen VII+).
+  - New effect `SOVEREIGN_PARTING_SHOT` (328), whose subscript runs Noble Roar's stat drop, then U-turn's switch-out.
+- Move checklist: exact 253, approximate 38, placeholder 89.
+
+**Verified in the test build:** Garchomp's Parting Shot lowered Venusaur's Attack and Sp. Atk. "GARCHOMP went back to
+A!" followed and the party list opened.
+
+## Item 11 (part 22) — Scale Shot, Coaching, Dragon Cheer
+
+- **Scale Shot:** hits 2–5 times; after the last hit ("Hit N time(s)!") the user's Defense falls 1 stage and its
+  Speed rises 1 stage. Done in the multi-hit loop.
+- **Coaching:** raises the Attack and Defense of the user's ally by 1 stage; fails without one. New effect
+  `SOVEREIGN_COACHING` (326).
+- **Dragon Cheer:** gives the user's ally +1 critical-hit stage (+2 for a Dragon type) until it leaves battle. Fails
+  without an ally, or if the ally is already cheered.
+  - New effect `SOVEREIGN_DRAGON_CHEER` (327).
+  - New `BattleContext` field `sovereignDragonCheer[4]` and script variable
+    `BTLVAR_SOVEREIGN_DRAGON_CHEER_SIDE_EFFECT_MON`.
+- Move checklist: exact 252, approximate 39, placeholder 89.
+
+**Verified in the test build:** the foe Venusaur's Dragon Cheer gave "The foe's CHARIZARD is getting pumped!". Garchomp's
+Scale Shot hit 3 times, then its Defense fell and its Speed rose. Turtwig's Coaching then raised Garchomp's Attack and
+Defense, ending at Attack +1, Speed +1, Defense 0.
 ## E11 — The Chronicles: Truth and Ideals (Reshiram, Zekrom and Kyurem)
 
 The Unova Chronicle's key chapter (`docs/PostgameLegendaries.md`):
