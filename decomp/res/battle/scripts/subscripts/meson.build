@@ -300,4 +300,7 @@ subscript_files = files(
     'subscript_giratina_form_change.s',
     'subscript_sovereign_mega_evolution.s',
     'subscript_sovereign_primal_reversion.s',
+    'subscript_sovereign_stamina.s',
+    'subscript_sovereign_power_herb_electro_shot.s',
+    'subscript_sovereign_electro_shot_rain.s',
 )

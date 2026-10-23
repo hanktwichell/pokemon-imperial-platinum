@@ -3002,6 +3002,7 @@ BOOL Move_IsMultiTurn(BattleContext *battleCtx, int move)
     case BATTLE_EFFECT_CHARGE_TURN_HIGH_CRIT:
     case BATTLE_EFFECT_CHARGE_TURN_HIGH_CRIT_FLINCH:
     case BATTLE_EFFECT_CHARGE_TURN_DEF_UP:
+    case BATTLE_EFFECT_ELECTRO_SHOT: // Sovereign (item 11)
     case BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN:
     case BATTLE_EFFECT_FLY:
     case BATTLE_EFFECT_DIVE:
@@ -4306,6 +4307,19 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && BattleMon_Get(battleCtx, battleCtx->defender, BATTLEMON_TYPE_2, NULL) != moveType) {
             *subscript = subscript_color_change;
             battleCtx->msgTemp = moveType;
+            result = TRUE;
+        }
+        break;
+
+    // Sovereign (item 11): Stamina raises Defense 1 stage whenever a damaging move hits (contact or not), as long as
+    // the holder is still standing.
+    case ABILITY_STAMINA:
+        if (DEFENDING_MON.curHP
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+            && DEFENDING_MON.statBoosts[BATTLE_STAT_DEFENSE] < MAX_STAT_STAGE) {
+            *subscript = subscript_sovereign_stamina;
             result = TRUE;
         }
         break;
@@ -6996,6 +7010,13 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         movePower = movePower * 125 / 100;
     }
 
+    // Sovereign (item 11): Body Press uses the user's Defense and Defense stage in place of its Attack. Effects that
+    // raise Attack (Choice Band, Huge Power, Hustle, Guts...) don't apply, as in Gen IX.
+    if (MOVE_DATA(move).effect == BATTLE_EFFECT_BODY_PRESS) {
+        attackStat = BattleMon_Get(battleCtx, attacker, BATTLEMON_DEFENSE, NULL);
+        attackStage = BattleMon_Get(battleCtx, attacker, BATTLEMON_DEFENSE_STAGE, NULL) - DEFAULT_STAT_STAGE;
+    }
+
     if (attackerParams.ability == ABILITY_SIMPLE) {
         attackStage *= 2;
         if (attackStage < MIN_STAT_STAGE - DEFAULT_STAT_STAGE) {
@@ -7766,6 +7787,7 @@ static BOOL MoveIsOnDamagingTurn(BattleContext *battleCtx, int move)
     case BATTLE_EFFECT_CHARGE_TURN_HIGH_CRIT:
     case BATTLE_EFFECT_CHARGE_TURN_HIGH_CRIT_FLINCH:
     case BATTLE_EFFECT_CHARGE_TURN_DEF_UP:
+    case BATTLE_EFFECT_ELECTRO_SHOT: // Sovereign (item 11)
     case BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN:
     case BATTLE_EFFECT_FLY:
     case BATTLE_EFFECT_DIVE:

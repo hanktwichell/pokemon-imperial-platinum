@@ -3018,7 +3018,9 @@ static int BattleControllerPlayer_CheckMoveHitAccuracy(BattleSystem *battleSys, 
         return 0;
     }
 
-    if (NO_CLOUD_NINE && WEATHER_IS_SUN && MOVE_DATA(move).effect == BATTLE_EFFECT_THUNDER) {
+    // Sovereign (item 11): Hurricane shares Thunder's weather accuracy.
+    if (NO_CLOUD_NINE && WEATHER_IS_SUN
+        && (MOVE_DATA(move).effect == BATTLE_EFFECT_THUNDER || MOVE_DATA(move).effect == BATTLE_EFFECT_HURRICANE)) {
         hitRate = 50;
     }
 
@@ -3128,7 +3130,8 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
     }
 
     if (NO_CLOUD_NINE) {
-        if (WEATHER_IS_RAIN && MOVE_DATA(move).effect == BATTLE_EFFECT_THUNDER) {
+        if (WEATHER_IS_RAIN
+            && (MOVE_DATA(move).effect == BATTLE_EFFECT_THUNDER || MOVE_DATA(move).effect == BATTLE_EFFECT_HURRICANE)) {
             battleCtx->moveStatusFlags &= ~MOVE_STATUS_MISSED;
         }
 
