@@ -341,4 +341,5 @@ subscript_files = files(
     'subscript_sovereign_life_dew.s',
     'subscript_sovereign_after_you.s',
     'subscript_sovereign_quash.s',
+    'subscript_sovereign_psychic_noise.s',
 )

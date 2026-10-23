@@ -189,6 +189,7 @@ MOVES = {
     "meteor_beam": ("ELECTRO_SHOT", 100, "charge turn raises Sp. Atk 1 stage, attacks next turn (Power Herb skips it)"),
     "after_you": ("SOVEREIGN_AFTER_YOU", 0, "the target moves right after the user"),
     "quash": ("SOVEREIGN_QUASH", 0, "the target moves last this turn"),
+    "psychic_noise": ("SOVEREIGN_PSYCHIC_NOISE", 100, "the target can't heal for two turns"),
 }
 
 

@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 228 |
+| exact | 229 |
 | approximate | 43 |
-| placeholder | 109 |
+| placeholder | 108 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -464,7 +464,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 914 | Alluring Voice | Fairy | `CONFUSE_HIT` | exact | Sovereign effect: confuses a target whose stats rose this turn |
 | 915 | Temper Flare | Fire | `HIT` | exact | Sovereign effect: power doubles if the user's last move failed |
 | 916 | Supercell Slam | Electric | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 917 | Psychic Noise | Psychic | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 917 | Psychic Noise | Psychic | `SOVEREIGN_PSYCHIC_NOISE` | exact | Sovereign effect: the target can't heal for two turns |
 | 918 | Upper Hand | Fighting | `PRIORITY_1` | approximate | extra effect not reproduced |
 | 919 | Malignant Chain | Poison | `BADLY_POISON_HIT` | exact | Sovereign effect: badly poisons (50%) |
 
