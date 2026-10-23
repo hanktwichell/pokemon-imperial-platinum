@@ -2153,3 +2153,91 @@ before it, at a blocker the player already meets, and the blocker's line points 
 2. **1 vs 2 Totem trials** for a player with one able Pokémon (the doubles init leaves battler 2 empty).
 3. **The Sovereign Crown swap** after the Elite Four rematch win over Cynthia, and the other post-game story
    events (`Story.md`: Celestic elder at home, Spear Pillar trigger, rematch lock).
+
+---
+
+## CB-0032 — 2026-10-23, 5:07 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** 1 vs 2 Totem trials (decision 18, the owner's rule from `Story.md`). PR #37 (all 11 Totems and the
+Galactic gates, CB-0029 to CB-0031) is merged, after one more merge of main (Claude A's Item 11 parts 11-14).
+- **The trial** no longer needs two Pokémon: the "Its aura is overwhelming!" refusal and its text are gone.
+- **The engine.** A player with one Pokémon able to battle starts a double battle with the second slot empty. That
+  slot takes the state Platinum leaves after a doubles faint with no replacement, so later checks work unchanged:
+  - party slot 6, its bit in `battlersSwitchingMask`, and 0 HP;
+  - its sprite pointer aimed at its own inactive sprite-manager slot, never NULL.
+- **The intro skips it.** No ball is preloaded, the trainer's throw has no second ball, and there's no slide-in or
+  HP bar. The line reads "Go! GARCHOMP!".
+- **Trainer double battles** get it too, which the Elite Four's "doubles with one healthy Pokémon" rule needs.
+  Platinum's own double-battle trainers still check for two.
+- **Verified** (test build; a temporary patch set the other five party members to 0 HP and was removed after):
+  - Totem Gumshoos from SELECT+B+R: a helper was called, the Mega toggle showed, spread and single moves worked, and
+    the trial was won.
+  - The target screen greys out the empty slot. The party menu refuses fainted Pokémon. The bag opens.
+  - Route 205 South from the map: a win, with the Totem gone. At 1 HP, a loss: blackout and Mom's welcome home.
+  - The test trainer's double battle: both foes acted (Mega Charizard Y, Venusaur), GARCHOMP fainted, and the battle
+    ended.
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+
+**Files modified:**
+- Engine: `decomp/src/battle/battle_main.c`, `battle_controller_player.c`, `battle_lib.c`, `battle_display.c`,
+  `battle_script.c`; `decomp/include/battle/battle_display.h`
+- Script and text: `decomp/res/field/scripts/scripts_common.s`, `decomp/res/text/common_strings.json`
+- `tools/engine/gen_totem_trials.py` → `docs/TotemTrials.md`
+- Docs: `docs/EngineChangelog.md`, `docs/TechnicalDesign.md`, `docs/ProjectStatus.md`, `docs/EngineRoadmap.md`,
+  `docs/EliteFourFormat.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR once CI is green.
+2. **The Sovereign Crown swap** after the Elite Four rematch win over Cynthia, and the other post-game story events
+   (`Story.md`: Celestic elder at home, Spear Pillar trigger, rematch lock).
+3. **Key Items pocket room:** Platinum's 40 key items plus Sovereign's 26 against the pocket's slots; check before
+   more key items land.
+
+---
+
+## CB-0033 — 2026-10-23, 5:50 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** the first three steps of the post-game story (decision 23, `Story.md`). PR #43 (1 vs 2 Totem
+trials, CB-0032) is merged.
+- **The Celestic elder at home.** The first time the player comes downstairs after the first Hall of Fame, she
+  waits with Mom.
+  - She sends the player to the Spear Pillar, tells them about the Adamant and Lustrous Orbs, and leaves.
+  - She sets Platinum's own `FLAG_UNLOCKED_DIALGA_PALKIA_SPEAR_PILLAR`, which Platinum sets in her Celestic house.
+  - Note: Platinum's trigger was never the National Pokédex.
+- **The Elite Four rematch lock.** Platinum has no save-prompt NPC, so the north Pokémon Center's door guard is the
+  gate.
+  - After the first Hall of Fame he stays at the door until Dialga and Palkia are both done (caught, or the battle
+    won or fled).
+  - The first pass is kept in `FLAG_SOVEREIGN_REMATCH_UNLOCKED`, since Platinum resets the legendaries' state vars at
+    each Hall of Fame.
+- **The Sovereign Crown.** The first rematch win over Cynthia swaps the Crown for the Sovereign Crown, and she sends
+  the player to the Spear Pillar (`FLAG_SOVEREIGN_CALLED_TO_SPEAR_PILLAR`). Later wins get a reminder until
+  `FLAG_SOVEREIGN_DEFEATED_HENRY`, a flag for the future Sovereign battle to set.
+- **Research:** an Explore agent mapped Platinum's post-game flags and scripts.
+- **Key Items pocket (checked):** at most 46 key items at once after the Hall of Fame (66, minus the 8 Platinum takes
+  back, minus the 11 pieces that become one Crown), well under the 50 slots. Nothing to change.
+- **Verified** (test build with a temporary post-game patch, test warps and a poked warp index):
+  - the elder's scene;
+  - Mt. Coronet 6F leading to the Dialga map;
+  - the guard locked, then open with both done;
+  - the Crown swap and Cynthia's lines through to the Hall of Fame hallway.
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+
+**Files modified:**
+- Scripts: `scripts_twinleaf_town_player_house_1f.s`, `scripts_pokemon_league_north_pokecenter_1f.s`,
+  `scripts_pokemon_league_champion_room.s` (`decomp/res/field/scripts/`)
+- Events: `events_twinleaf_town_player_house_1f.json` (the elder)
+- Texts: `twinleaf_town_player_house_1f`, `pokemon_league_north_pokecenter_1f`, `pokemon_league_champion_room`
+  (`decomp/res/text/`)
+- `decomp/generated/vars_flags.txt`: flags 0x1C4, 0x1C6, 0x1CE and 0x1CF
+- Docs: `docs/Story.md`, `docs/TechnicalDesign.md`, `docs/EngineChangelog.md`, `docs/ProjectStatus.md`,
+  `docs/EngineRoadmap.md`, `docs/EliteFourFormat.md` (`FLAG_GAME_CLEAR` is really `FLAG_GAME_COMPLETED`),
+  `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR once CI is green.
+2. **Henry at the throne:** the throne room at the Spear Pillar (a new map state). He appears with
+   `FLAG_SOVEREIGN_CALLED_TO_SPEAR_PILLAR` and the Sovereign Crown. Then the developer battle (T2, Claude A), the owner's
+   text, the Sovereign title, and Cynthia's scene after the battle.
+3. **The Chronicles and the Regional Forms Park log** (`Story.md`, "Alongside these"), or the Celestic elder's
+   story line about the rulers who sat at the Spear Pillar (the Celestic beat of the main story).

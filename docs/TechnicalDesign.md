@@ -216,6 +216,16 @@ implemented.
       makes `CheckBattleOver` a win once both enemy battlers are down.
     - `LoadSendOutMessage` prints the "called its ally" line.
     - The ball rule reuses the AI-partner check in `BattleController_EmitShowBagMenu`.
+  - **1 vs 2.** With one Pokémon able to battle, the player's second slot starts empty, in the state Platinum leaves a
+    doubles slot in after a faint with no replacement: party slot 6, its bit in `battlersSwitchingMask`, 0 HP.
+    - `battle_main.c` gives slot 2 party slot 6 when no second able Pokémon is found (plain doubles, so a scripted
+      trainer double battle works the same way). `BattleSystem_InitPartyOrder` and `BattleMain_InitTerrains` skip
+      it.
+    - `BattleControllerPlayer_InitBattleMons` sets the mask bit and, through
+      `BattleDisplay_SovereignSetAbsentBattler`, points its sprite at its own inactive slot in the sprite manager
+      (what `PokemonSprite_Delete` leaves after a faint), so animations never meet a NULL sprite.
+    - The intro skips it: `PokemonSlideIn` and `HealthBoxSlideInDelay` check the mask, the trainer's throw has no
+      second ball (`Task_ThrowTrainerBall`), and `LoadLeadMonMessage` prints "Go! {0}!".
   - **Aura.** `SWITCH_IN_CHECK_STATE_SOVEREIGN_TOTEM_AURA` runs once (`sovereignTotemAuraDone`).
     `BattleSystem_SovereignApplyTotemAura` raises the stages and buffers the message for
     `subscript_sovereign_totem_aura`.
@@ -245,6 +255,25 @@ implemented.
   - the Route 218 blockade (`FLAG_HIDE_ROUTE_218_BLOCKADE`, now set by Route 218's OnTransition once Salazzle is done);
   - the Spear Pillar grunts' coord event;
   - a new Victory Road guard with a coord event on `VAR_MAP_LOCAL_0x00`.
+- **After the first Hall of Fame** (decision 23, `docs/Story.md`).
+  - **The elder at home.** `VAR_PLAYER_HOUSE_POSTGAME_STATE` is 1 from the first Hall of Fame until the player first
+    comes downstairs.
+    - While it is 1, the 1F OnTransition shows `LOCALID_SOVEREIGN_ELDER` (hidden flag `FLAG_SOVEREIGN_HIDE_HOME_ELDER`,
+      recomputed on every visit).
+    - Mom's Platinum post-game scene calls `TwinleafTownPlayerHouse1F_SovereignElderVisit`. The elder sets Platinum's
+      own `FLAG_UNLOCKED_DIALGA_PALKIA_SPEAR_PILLAR` (vanilla sets it in her Celestic house), then leaves.
+    - Mt. Coronet 6F then warps to the Dialga or Palkia map for a player holding that Orb, as in Platinum.
+  - **The rematch lock.** Platinum has no save-prompt NPC, so the north Pokémon Center's door guard is the gate.
+    - `PokemonLeagueNorthPokecenter1F_SovereignCheckRematchLocked` returns TRUE after the first Hall of Fame until
+      both legendaries are done: each one caught (`FLAG_CAUGHT_*`) or its `VAR_SPEAR_PILLAR_*_STATE` at 1 or more.
+    - The state vars reset at each Hall of Fame while uncaught, so the first pass sets `FLAG_SOVEREIGN_REMATCH_UNLOCKED`
+      for good.
+    - While locked, OnTransition leaves the guard at the door and his talk script explains.
+  - **The Sovereign Crown.** The Champion room calls `PokemonLeagueChampionRoom_SovereignRematchWin` after any win with
+    `FLAG_GAME_COMPLETED` set, which means a rematch, since the first Hall of Fame sets it.
+    - The first time, it swaps `ITEM_CROWN` for `ITEM_SOVEREIGN_CROWN`, and Cynthia sends the player to the Spear
+      Pillar (`FLAG_SOVEREIGN_CALLED_TO_SPEAR_PILLAR`, which Henry's appearance will check).
+    - On later wins she only reminds them, until `FLAG_SOVEREIGN_DEFEATED_HENRY`, which the Sovereign battle will set.
 ### 5. Trainer data
 - Vanilla Gen IV trainer Pokémon can't specify EVs, natures directly (nature comes from the PID seeded by trainer
   data), or abilities. **The EV spreads and natures in `TrainerPokemon_Sovereign.md` need an extended trainer-Pokémon

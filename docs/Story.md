@@ -55,8 +55,9 @@ The player learns about the Sovereign passively, without ever meeting one before
 1. **First time as Champion** (first Hall of Fame entry). The player is directed to **Spear Pillar** to resolve a
    disturbance involving Dialga and Palkia. Both can be **caught** there. The **Celestic Town elder** meets the
    player at home (where they wake after the Hall of Fame) and sends them to Spear Pillar (owner).
-2. **The Elite Four rematch stays locked until both the Dialga and Palkia encounters are completed.** The NPC at the
-   Pokémon League who prompts you to save before the Elite Four blocks the rematch until then.
+2. **The Elite Four rematch stays locked until both the Dialga and Palkia encounters are completed.** Platinum has
+   no NPC who prompts you to save, so the door guard in the League's north Pokémon Center blocks the rematch until
+   then (built, CB-0033).
 3. **Elite Four rematch.** Once it's open, the player may rematch the Elite Four any number of times, from completing
    Dialga and Palkia up to the Sovereign battle.
 4. **After beating Cynthia the second time,** Cynthia directs the player back to Spear Pillar to resolve the mystery
@@ -224,22 +225,28 @@ Owner's call:
 
 ## Engineering notes
 
-- **Dialga/Palkia trigger:** the first Hall of Fame entry, instead of the National Pokédex. Find the flag or variable
-  Platinum's Spear Pillar post-game script checks, plus a scene or message directing the player there.
+- **Dialga/Palkia trigger:** the first Hall of Fame entry. In Platinum it isn't the National Pokédex: the Celestic
+  elder sets `FLAG_UNLOCKED_DIALGA_PALKIA_SPEAR_PILLAR` in her house after the Hall of Fame, and Mt. Coronet 6F then
+  leads to Dialga or Palkia for a player holding the Adamant or Lustrous Orb. Built (CB-0033): the elder's scene at
+  home sets it, and her line tells the player about the Orbs.
 - **Celestic elder at home:** a scene in the player's house the first time they wake there after the Hall of Fame.
+  Built (CB-0033): she waits downstairs with Mom, sends the player to the Spear Pillar and leaves. Mom's Platinum
+  line about the rival follows.
 - **Galactic gates:** each gating NPC's script checks the trial flags in the table above (one flag per trial, set
   when its catch encounter ends). Built (CB-0031), see the list under the table.
 - **Crown pieces:** 13 new key items (key items can't be sold or tossed): the 11 pieces, the Crown and the
   Sovereign Crown. Picking up the 11th piece removes the 11 and gives the Crown. Beating Cynthia in the rematch
   swaps the Crown for the Sovereign Crown. Built (CB-0028): the 13 items, each trial's piece, and the merge into the
-  Crown (`CommonScript_SovereignTotemTrial`). The swap for the Sovereign Crown comes with the rematch.
+  Crown (`CommonScript_SovereignTotemTrial`). Built (CB-0033): the swap for the Sovereign Crown, in the Champion room
+  after the first rematch win.
 - **Victory Road gate:** Platinum has no check at Victory Road's entrance, so a new guard checks the eight Badges and
   Togedemaru's trial flag (CB-0031).
-- **Elite Four rematch lock:** the League's save-prompt NPC checks a "Dialga and Palkia both done" condition
-  (caught or defeated) before letting the player through for a rematch.
+- **Elite Four rematch lock:** the League's door guard checks a "Dialga and Palkia both done" condition (caught, or
+  the battle won or fled) before letting the player through for a rematch. Built (CB-0033).
 - **Henry's unlock:** the second win against Cynthia (the Elite Four rematch, Sovereign's E4 format:
   `docs/EliteFourFormat.md`) sets the flag, and Cynthia's scene sends the player there. Henry appears only if the
-  player also holds all 11 crown pieces. Elite Four rematches stay repeatable throughout.
+  player also holds all 11 crown pieces. Elite Four rematches stay repeatable throughout. Built (CB-0033): the flag
+  (`FLAG_SOVEREIGN_CALLED_TO_SPEAR_PILLAR`) and Cynthia's lines; Henry's appearance comes with the throne room.
 - **Elite Four after the Sovereign:** a third set of teams for the Elite Four and Cynthia, all Lv. 100, used once
   Henry is beaten (T1, with the boss team compositions).
 - **The Sovereign title** shows in three places (owner): the Trainer Card, the Hall of Fame record, and NPC lines

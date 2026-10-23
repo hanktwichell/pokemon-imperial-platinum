@@ -43,10 +43,11 @@ every member, Cynthia included.
 
 - Choices last for one run. If the player loses (whites out) or leaves the League, the run resets and Aaron asks again.
 - Saving mid-run keeps the choices (they live in save variables).
-- **Doubles with one healthy Pokémon:** a scripted double battle lets a lone Pokémon fight (it sends out one). The
-  member warns the player first: *"You only have one Pokémon able to fight… are you sure?"* Choosing "No" switches that
-  battle to singles. If a member's format is forced (e.g. Flint/Lucian after a matching pair), the same warning and
-  fallback apply, and Lucian takes whatever is left over.
+- **Doubles with one healthy Pokémon:** a scripted double battle lets a lone Pokémon fight (it sends out one; the
+  engine supports this since CB-0032, tested against the test trainer's double battle). The member warns the player
+  first: *"You only have one Pokémon able to fight… are you sure?"* Choosing "No" switches that battle to singles. If
+  a member's format is forced (e.g. Flint/Lucian after a matching pair), the same warning and fallback apply, and
+  Lucian takes whatever is left over.
 - Cynthia's singles teams never use Protect/Detect. Her doubles teams use Protect on the Pokémon where it's optimal. The
   validator in `tools/design/gen_trainer_docs.py` enforces this.
 - Renegade's random choice among four teams per member is replaced by one fixed team per format.
@@ -60,7 +61,7 @@ New save variables and flag (IDs to be assigned from unused slots):
 | `VAR_SOVEREIGN_E4_MODE` | 0 = two-and-two (first challenge), 1 = all singles, 2 = all doubles |
 | `VAR_SOVEREIGN_E4_FORMAT` | bit 0 Aaron, bit 1 Bertha, bit 2 Flint, bit 3 Lucian, bit 4 Cynthia (1 = doubles) |
 | `VAR_SOVEREIGN_E4_STAGE` | how many prompts have been answered this run (0–3) |
-| `FLAG_GAME_CLEAR` | existing vanilla flag: Champion beaten at least once |
+| `FLAG_GAME_COMPLETED` | existing vanilla flag: Champion beaten at least once |
 
 New trainer entries (each with the double-battle flag set where needed):
 
@@ -74,14 +75,14 @@ decomp when implementing):
 LeagueEntrance_OnEnter:                    ; existing script on entering Aaron's room
     SetVar VAR_SOVEREIGN_E4_FORMAT, 0
     SetVar VAR_SOVEREIGN_E4_STAGE, 0
-    GoToIfUnset FLAG_GAME_CLEAR, _first
+    GoToIfUnset FLAG_GAME_COMPLETED, _first
     SetVar VAR_SOVEREIGN_E4_MODE, 0         ; reset; Aaron asks again
 _first:
     End
 
 Aaron_PreBattle:
     Message Aaron_Intro
-    GoToIfUnset FLAG_GAME_CLEAR, _ask_aaron
+    GoToIfUnset FLAG_GAME_COMPLETED, _ask_aaron
     ShowMenu3 "All singles", "All doubles", "Two and two" -> VAR_RESULT
     CallIfEq VAR_RESULT, 0, _set_all_singles     ; MODE=1, FORMAT=0b00000
     CallIfEq VAR_RESULT, 1, _set_all_doubles     ; MODE=2, FORMAT=0b11111

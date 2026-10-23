@@ -930,6 +930,12 @@ static void BattleMain_InitTerrains(BattleSystem *battleSys)
 
     for (int battler = 0; battler < battleSys->maxBattlers; battler++) {
         selectedPartySlot = BattleContext_Get(battleSys, battleCtx, BATTLECTX_SELECTED_PARTY_SLOT, battler);
+
+        // Sovereign (decision 18): no Poke Ball to send out for a slot that starts empty.
+        if (selectedPartySlot == MAX_PARTY_SIZE) {
+            continue;
+        }
+
         mon = BattleSystem_GetPartyPokemon(battleSys, battler, selectedPartySlot);
         BattlerData_InitSendOutBallThrow(battleSys, battleSys->battlers[battler], Pokemon_GetValue(mon, MON_DATA_POKEBALL, NULL), selectedPartySlot);
     }
@@ -1323,6 +1329,14 @@ static void BattleSys_New(BattleSystem *battleSys, FieldBattleDTO *dto)
                         break;
                     }
                 }
+            }
+
+            // Sovereign (decision 18): with no second Pokémon able to battle, the player's second slot starts empty
+            // (party slot 6, as after a faint with none left to replace it; BattleControllerPlayer_InitBattleMons).
+            // Platinum's double battles check for two Pokémon first; a Totem trial doesn't
+            // (CommonScript_SovereignTotemTrial).
+            if (i == BATTLER_PLAYER_2 && slot == Party_GetCurrentCount(battleSys->parties[i & 1])) {
+                slot = MAX_PARTY_SIZE;
             }
 
             BattleContext_Set(battleSys, battleSys->battleCtx, BATTLECTX_SELECTED_PARTY_SLOT, i, slot);

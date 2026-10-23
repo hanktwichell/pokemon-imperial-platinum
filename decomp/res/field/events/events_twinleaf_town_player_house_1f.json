@@ -95,6 +95,21 @@
             "x": 6,
             "z": 10,
             "y": 1
+        },
+        {
+            "id": "LOCALID_SOVEREIGN_ELDER",
+            "graphics_id": "OBJ_EVENT_GFX_EXPERT_F",
+            "movement_type": "MOVEMENT_TYPE_LOOK_NORTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_SOVEREIGN_HIDE_HOME_ELDER",
+            "script": 12,
+            "initial_dir": 0,
+            "data": [],
+            "movement_range_x": 1,
+            "movement_range_z": 1,
+            "x": 8,
+            "z": 8,
+            "y": 1
         }
     ],
     "warp_events": [

@@ -1732,9 +1732,6 @@ CommonScript_SovereignTotemTrial:
     PlayCry VAR_0x800A
     Message CommonStrings_Text_SovereignTotemGlares
     WaitCry
-    @ Until a lone Pokémon can fight a Totem's double battle 1 vs 2, the trial needs two.
-    CheckHasTwoAliveMons VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, CommonScript_SovereignTotemNeedTwoPokemon
     CloseMessage
     SetFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     SovereignStartTotemTrial VAR_0x8009
@@ -1749,14 +1746,6 @@ CommonScript_SovereignTotemTrial:
     AddVar VAR_0x8004, VAR_0x8009
     Call CommonScript_SovereignFindCrownPiece
     Call CommonScript_SovereignTryMergeCrown
-    CloseMessage
-    ReleaseAll
-    ReturnCommonScript
-    End
-
-CommonScript_SovereignTotemNeedTwoPokemon:
-    Message CommonStrings_Text_SovereignTotemNeedTwoPokemon
-    WaitButton
     CloseMessage
     ReleaseAll
     ReturnCommonScript

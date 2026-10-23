@@ -102,8 +102,8 @@ Made by the owner (2026-10-22):
       Gumshoos stands on Route 205 South.
     - Built (CB-0029): Ribombee, Vikavolt, Mimikyu and Alolan Marowak on the map, each shown once its trial opens.
     - Built (CB-0030): the last six on the map. All 11 trials are playable.
-    - Still to do: the Galactic gates (`Story.md`), and 1 vs 2 for a player with one able Pokémon (Platinum can't
-      start a double battle with one).
+    - Built (CB-0031): the Galactic gates (`Story.md`).
+    - Built (CB-0032): 1 vs 2 for a player with one able Pokémon. The second slot starts empty.
     - The auras were checked against Serebii; the helpers are a proposal from each trial's original allies.
 19. **Trade evolutions follow Renegade's system** (owner, 2026-10-22, after briefly considering a Link Stone): plain
     trade evolutions evolve at Level 36, and trade-with-item evolutions by using the item like a stone.
@@ -150,6 +150,8 @@ Made by the owner (2026-10-22):
     rematch win over Cynthia. Victory Road waits on the last trial (Togedemaru). Henry appears at Spear Pillar only
     with the complete crown. The Celestic Town elder meets the player at home after the first Hall of Fame and sends
     them to Spear Pillar. After the Sovereign battle the Elite Four can still be rematched, with all-Lv. 100 teams.
+    - Built (CB-0033): the elder at home, the rematch lock (the League door guard), and the Crown swap with
+      Cynthia's call to Spear Pillar. Still to do: Henry at the throne, the title, and the Lv. 100 teams.
 24. **Post-Champion money** (owner, 2026-10-22, all four options). Built in E7 part 2:
     - every shop that takes money sells at **half price** after the Hall of Fame (Battle Point shops are unchanged);
     - **3× prize money** from the Elite Four and Cynthia rematches, the Gym Leader rematches and the five Battleground

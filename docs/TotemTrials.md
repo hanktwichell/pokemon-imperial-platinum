@@ -13,7 +13,8 @@ Four. Each is a wild double battle:
 
 On the map the Totem stands as a huge Pokémon (its 64x64 overworld sprite, `tools/sprites/make_totem_overworld.py`).
 Talking to it starts the trial (`CommonScript_SovereignTotemTrial` in `scripts_common.s`):
-- **Two Pokémon.** Until a lone Pokémon can fight a double battle 1 vs 2, the trial needs two that can battle.
+- **One Pokémon is enough.** A player with only one Pokémon that can battle fights 1 vs 2: "Go! GARCHOMP!", and the
+  second slot stays empty all battle, as if its Pokémon had fainted with none left to replace it.
 - **Win or catch.** The trial is done (its `FLAG_SOVEREIGN_TOTEM_TRIAL_*` flag, which also hides the Totem), and the
   Totem leaves its crown piece on the ground (`docs/Story.md`, *The crown*). The 11th piece merges them into the Crown.
 - **Lose.** The player blacks out and the Totem is back next time.
