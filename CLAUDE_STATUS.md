@@ -1111,6 +1111,27 @@ files. Also `decomp/src/script_manager.c` (test warps), `.github/workflows/build
 
 ---
 
+## CA-0020 — 2026-10-22, 5:45 pm US Central (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** nothing new. PR #19 is merged (12b #1–#3, the story docs, the README, `make_release_patch.sh`), and
+the branch is reset to main (`2bd5bec2`). Paused for the usage limit, with the next task started below.
+
+**Started: 12b #8 (ally-targeted support moves).** Plan, nothing built yet:
+1. List every Gen V+ move that can target the partner: Pollen Puff, Heal Pulse, Coaching, Decorate, After You,
+   Instruct, Ally Switch, Aromatic Mist, Floral Healing, Life Dew, Jungle Healing and so on.
+   - Use `MOVE_DATA(...).range` (`RANGE_USER_OR_ALLY`, `RANGE_ALLY`, single-target) and the E3 effect mapping in
+     `decomp/res/battle/moves/`.
+2. For each move, find the Gen IV effect it maps to and what `script.s` scores it at when the target is the partner.
+   `TrainerAI_MainDoubles` only picks a partner target scoring ≥ 100.
+3. Write the table into `docs/AIReview.md` #8. Fix the ones that never or wrongly target the partner, e.g. Pollen
+   Puff heals the partner and damages foes. Verify with SELECT+R (developer team).
+
+**Files modified:** `CLAUDE_STATUS.md`.
+
+**Next 3 steps:** 12b #8 as planned above; then item 11 (exact effects, boss teams first); then T1.
+
+---
+
 ## CA-0021 — 2026-10-23 (session on `claude/festive-bardeen-5h7beo`)
 
 **Implemented:** a draft redo of Oak's visit to Rowan's lab (owner request), in `docs/Story.md` (*Oak's visit…*).
