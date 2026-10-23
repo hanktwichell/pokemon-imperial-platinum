@@ -578,6 +578,143 @@
         "You found DIANCIE, HOOPA and\n",
         "VOLCANION too!\r"
       ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistAlolaOpens",
+      "en_US": [
+        "XERNEAS and YVELTAL, the heart of\n",
+        "the Kalos Chronicle, both caught!\r",
+        "And look! A third tome has opened:\n",
+        "the Alola Chronicle!\r",
+        "Alola is a land of islands. Its\n",
+        "legends tell of guardians, and of\r",
+        "Pokémon that came from the sky.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignMenuAlola",
+      "en_US": [
+        "Alola Chronicle"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistAlolaWhichLegend",
+      "en_US": [
+        "Which legend of the Alola Chronicle\n",
+        "shall I read to you?"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistAlolaKeepReading",
+      "en_US": [
+        "I’ll keep reading the Alola Chronicle."
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignMenuGuardians",
+      "en_US": [
+        "Island Guardians"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignMenuSky",
+      "en_US": [
+        "Sun and Moon"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistGuardians",
+      "en_US": [
+        "Each island of Alola has a guardian,\n",
+        "the Chronicle says. Four of them!\r",
+        "They like the sea and the flowers.\n",
+        "Here’s where they’ve been seen:\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistTapuKoko",
+      "en_US": [
+        "TAPU KOKO: on the beach at the\n",
+        "east end of Route 222.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistTapuLele",
+      "en_US": [
+        "TAPU LELE: in the grove on\n",
+        "Fullmoon Island.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistTapuBulu",
+      "en_US": [
+        "TAPU BULU: among the flowers of\n",
+        "Floaroma Meadow.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistTapuFini",
+      "en_US": [
+        "TAPU FINI: on a little beach out\n",
+        "at sea, on Route 226.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistGuardiansDone",
+      "en_US": [
+        "All four guardians of Alola...\n",
+        "You found every one!\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistCosmog",
+      "en_US": [
+        "The Chronicle tells of COSMOG, a\n",
+        "little Pokémon from beyond the sky.\r",
+        "It appears where the sky is thin...\n",
+        "Spear Pillar, perhaps?\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistCosmogRaise",
+      "en_US": [
+        "Raise your COSMOG well. The\n",
+        "Chronicle says it becomes COSMOEM,\r",
+        "then SOLGALEO with a SUN STONE,\n",
+        "or LUNALA with a MOON STONE.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistCosmogAgain",
+      "en_US": [
+        "Another COSMOG may wait at Spear\n",
+        "Pillar now, for the other form!\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistNecrozma",
+      "en_US": [
+        "And the Chronicle warns of NECROZMA,\n",
+        "who steals the light.\r",
+        "It follows the sun and the moon to\n",
+        "Spear Pillar...\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistSkyDone",
+      "en_US": [
+        "Two COSMOG and NECROZMA...\n",
+        "The legends of the sky are yours!\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistSolarizers",
+      "en_US": [
+        "NECROZMA too! The Chronicle says it\n",
+        "can join with SOLGALEO or LUNALA.\r",
+        "These two came with the Chronicle:\n",
+        "the N-SOLARIZER and N-LUNARIZER.\r"
+      ]
     }
   ]
 }

@@ -474,6 +474,15 @@
         "KOMMO-O down on the mountain, huh?\r",
         "Scram!"
       ]
+    },
+    {
+      "id": "SpearPillar_Text_SovereignCosmog",
+      "en_US": [
+        "A little Pokémon is floating here,\n",
+        "like a wisp of the night sky...\r",
+        "It’s COSMOG! It seems to want to\n",
+        "come along with you.\r"
+      ]
     }
   ]
 }

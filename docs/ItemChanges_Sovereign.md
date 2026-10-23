@@ -24,7 +24,7 @@ Renegade Platinum's item changes and item locations are unchanged unless listed 
 | Adamant Crystal, Lustrous Globe, Griseous Core | Not placed yet | Held: Origin Dialga, Palkia, Giratina |
 | Reveal Glass (key item) | Legend Archivist, Canalave Library, once Tornadus and Thundurus are caught | Used on Tornadus, Thundurus, Landorus or Enamorus from the bag: Incarnate ↔ Therian Forme |
 | DNA Splicers (key item) | Legend Archivist, Canalave Library, once Kyurem is caught | Used from the bag on Kyurem or on Reshiram/Zekrom: fuses them (White/Black Kyurem); used on the fused Kyurem: separates them |
-| N-Solarizer, N-Lunarizer (key items) | Not placed yet | The same for Necrozma and Solgaleo (Dusk Mane) or Lunala (Dawn Wings) |
+| N-Solarizer, N-Lunarizer (key items) | Legend Archivist, Canalave Library, once Necrozma is caught | The same for Necrozma and Solgaleo (Dusk Mane) or Lunala (Dawn Wings) |
 | Reins of Unity (key item) | Not placed yet | The same for Calyrex and Glastrier (Ice Rider) or Spectrier (Shadow Rider) |
 
 ## New held / evolution items

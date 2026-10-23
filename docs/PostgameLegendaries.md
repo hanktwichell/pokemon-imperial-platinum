@@ -11,7 +11,7 @@ Renegade Platinum's own legendary events (Gen I–IV) are unchanged; see `Renega
 - Chapters open one after another (each needs the previous chapter's "key" legendary caught), so the post-game has a guided order.
 - Static encounters can be retried after fainting or fleeing, and have the normal shiny odds (Renegade behaviour).
 - New maps or rooms are marked _(new)_ and need map work in DSPRE.
-- **Built:** The Archivist (CB-0035) stands in Canalave Library 2F from the first Hall of Fame; his first talk opens the Unova Chronicle (VAR_SOVEREIGN_CHRONICLE). Later talks offer a menu of its legends (CB-0040): Swords of Justice (the swords, then Keldeo, CB-0036), Truth and Ideals (the Light and Dark Stones, the dragons, then the DNA Splicers, CB-0038), Forces of Nature (the roamers' release, then the Reveal Glass, Landorus and Enamorus, CB-0039) and Other legends (Meloetta, Genesect and Victini, CB-0037 and CB-0041). Once Kyurem is caught he opens the Kalos Chronicle (CB-0041) and first asks which Chronicle to read from; Kalos has Life and Destruction (Xerneas and Yveltal, then Zygarde) and Other legends (the Prison Bottle, Diancie, Hoopa and Volcanion). Static encounters share CommonScript_SovereignLegendaryEncounter: each stays on the map until the Pokédex has it as caught, and vanishes after it's knocked out until the next visit (as in vanilla legendary battles, the player can't run).
+- **Built:** The Archivist (CB-0035) stands in Canalave Library 2F from the first Hall of Fame; his first talk opens the Unova Chronicle (VAR_SOVEREIGN_CHRONICLE). Later talks offer a menu of its legends (CB-0040): Swords of Justice (the swords, then Keldeo, CB-0036), Truth and Ideals (the Light and Dark Stones, the dragons, then the DNA Splicers, CB-0038), Forces of Nature (the roamers' release, then the Reveal Glass, Landorus and Enamorus, CB-0039) and Other legends (Meloetta, Genesect and Victini, CB-0037 and CB-0041). Once Kyurem is caught he opens the Kalos Chronicle (CB-0041) and first asks which Chronicle to read from; Kalos has Life and Destruction (Xerneas and Yveltal, then Zygarde) and Other legends (the Prison Bottle, Diancie, Hoopa and Volcanion). Xerneas and Yveltal caught open the Alola Chronicle (CB-0042): Island Guardians (the Tapus) and Sun and Moon (Cosmog, then Necrozma). Gifts share CommonScript_SovereignGiftPokemon (party check, nickname prompt). Static encounters share CommonScript_SovereignLegendaryEncounter: each stays on the map until the Pokédex has it as caught, and vanishes after it's knocked out until the next visit (as in vanilla legendary battles, the player can't run).
 
 Covers **90** species.
 
@@ -108,20 +108,23 @@ Covers **90** species.
 ### The Island Guardians
 - **Pokémon:** #785 Tapu Koko, #786 Tapu Lele, #787 Tapu Bulu, #788 Tapu Fini
 - **Level:** 65
-- **Location:** Koko — Route 222 beach shrine. Lele — Fullmoon Island grove. Bulu — Floaroma Meadow shrine. Fini — Route 226 sea shrine
+- **Location:** Koko — Route 222 beach. Lele — Fullmoon Island grove. Bulu — Floaroma Meadow. Fini — Route 226, an islet at sea
 - **How:** Four new shrine objects; interacting starts the battle.
+- **Built:** The Island Guardians (CB-0042), all level 65, from the moment the Alola Chronicle opens (VAR_SOVEREIGN_CHRONICLE 3, when the player talks to the Archivist with Xerneas and Yveltal caught) until each is caught. Koko on the sand strip at Route 222's east end (808, 795); Lele at the north-west edge of Fullmoon Island's grove (13, 12); Bulu in Floaroma Meadow's north field (24, 36); Fini on the little beach under Route 226's cliffs, reached by Surf (716, 345). **Changed from the plan** (owner, 2026-10-23: existing spots): each Tapu stands there itself, with no shrine object.
 
 ### Nebby (chapter key)
 - **Pokémon:** #789 Cosmog, #790 Cosmoem, #791 Solgaleo, #792 Lunala
 - **Level:** 5
 - **Location:** Spear Pillar
 - **How:** A Cosmog is found at Spear Pillar (gift, Lv. 5). It evolves into Cosmoem at Lv. 43; Cosmoem becomes Solgaleo with a Sun Stone or Lunala with a Moon Stone (see EvolutionChanges_Sovereign.md). Return to Spear Pillar for a second Cosmog after the first evolves, so both Solgaleo and Lunala are obtainable.
+- **Built:** Cosmog (CB-0042): floating in Spear Pillar's plaza (31, 25) once the Alola Chronicle is open, a gift at level 5 (FLAG_SOVEREIGN_RECEIVED_COSMOG). Once the Pokédex has Solgaleo or Lunala as caught, a second one waits there (FLAG_SOVEREIGN_RECEIVED_COSMOG_2). With a full party, it waits until the player comes back with room.
 
 ### The Blinding One
 - **Pokémon:** #800 Necrozma
 - **Level:** 70
 - **Location:** Spear Pillar
 - **How:** Appears after owning Solgaleo or Lunala.
+- **Built:** Necrozma (CB-0042), level 70: in Spear Pillar's plaza (31, 20), north of Cosmog's spot, once the Pokédex has Solgaleo or Lunala as caught, until it's caught. The Archivist then gives the N-Solarizer and N-Lunarizer, which fuse it with Solgaleo (Dusk Mane) or Lunala (Dawn Wings) from the bag (FM part 2).
 
 ### Ultra Wormholes
 - **Pokémon:** #793 Nihilego, #794 Buzzwole, #795 Pheromosa, #796 Xurkitree, #797 Celesteela, #798 Kartana, #799 Guzzlord, #805 Stakataka, #806 Blacephalon

@@ -34,6 +34,12 @@ LEGENDARIES = {
     "diancie": 719,
     "hoopa": 720,
     "volcanion": 721,
+    "tapu_koko": 785,
+    "tapu_lele": 786,
+    "tapu_bulu": 787,
+    "tapu_fini": 788,
+    "cosmog": 789,
+    "necrozma": 800,
 }
 
 

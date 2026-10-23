@@ -169,7 +169,8 @@ CanalaveLibrary2F_Movement_PlayerMoveAside:
 @ legends, and each topic gives what's left of it: hints, and the key items (the Light and Dark Stones, the DNA
 @ Splicers, the Reveal Glass, the Prison Bottle) or the release of the Forces of Nature roamers. The menu comes back
 @ until the player is done. Once Kyurem, the Unova Chronicle's key, is caught, he opens the Kalos Chronicle
-@ (VAR_SOVEREIGN_CHRONICLE 2) and first asks which Chronicle to read from.
+@ (VAR_SOVEREIGN_CHRONICLE 2) and first asks which Chronicle to read from. Xerneas and Yveltal, the Kalos key, open
+@ the Alola Chronicle (3).
 CanalaveLibrary2F_SovereignArchivist:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
@@ -180,23 +181,37 @@ CanalaveLibrary2F_SovereignArchivist:
     GoTo CanalaveLibrary2F_SovereignArchivistEnd
 
 CanalaveLibrary2F_SovereignArchivistRead:
-    GoToIfGe VAR_SOVEREIGN_CHRONICLE, 2, CanalaveLibrary2F_SovereignArchivistChapters
+    GoToIfGe VAR_SOVEREIGN_CHRONICLE, 3, CanalaveLibrary2F_SovereignArchivistChapters
+    GoToIfGe VAR_SOVEREIGN_CHRONICLE, 2, CanalaveLibrary2F_SovereignArchivistTryAlola
     SovereignCheckSpeciesCaught SPECIES_KYUREM, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistUnova
     SetVar VAR_SOVEREIGN_CHRONICLE, 2
     Message CanalaveLibrary2F_Text_SovereignArchivistKalosOpens
+CanalaveLibrary2F_SovereignArchivistTryAlola:
+    SovereignCheckSpeciesCaught SPECIES_XERNEAS, VAR_0x8004
+    SovereignCheckSpeciesCaught SPECIES_YVELTAL, VAR_0x8005
+    GoToIfEq VAR_0x8004, FALSE, CanalaveLibrary2F_SovereignArchivistChapters
+    GoToIfEq VAR_0x8005, FALSE, CanalaveLibrary2F_SovereignArchivistChapters
+    SetVar VAR_SOVEREIGN_CHRONICLE, 3
+    Message CanalaveLibrary2F_Text_SovereignArchivistAlolaOpens
 CanalaveLibrary2F_SovereignArchivistChapters:
     Message CanalaveLibrary2F_Text_SovereignArchivistWhichChronicle
     InitLocalTextMenu 31, 3, 0, VAR_RESULT
     SetMenuXOriginToRight
     AddMenuEntryImm CanalaveLibrary2F_Text_SovereignMenuUnova, 0
     AddMenuEntryImm CanalaveLibrary2F_Text_SovereignMenuKalos, 1
-    AddMenuEntryImm CanalaveLibrary2F_Text_SovereignMenuDone, 2
+    CallIfGe VAR_SOVEREIGN_CHRONICLE, 3, CanalaveLibrary2F_SovereignArchivistAddAlolaEntry
+    AddMenuEntryImm CanalaveLibrary2F_Text_SovereignMenuDone, 9
     ShowMenu
     GoToIfEq VAR_RESULT, 0, CanalaveLibrary2F_SovereignArchivistUnova
     GoToIfEq VAR_RESULT, 1, CanalaveLibrary2F_SovereignArchivistKalos
+    GoToIfEq VAR_RESULT, 2, CanalaveLibrary2F_SovereignArchivistAlola
     Message CanalaveLibrary2F_Text_SovereignArchivistKeepReadingChronicles
     GoTo CanalaveLibrary2F_SovereignArchivistEnd
+
+CanalaveLibrary2F_SovereignArchivistAddAlolaEntry:
+    AddMenuEntryImm CanalaveLibrary2F_Text_SovereignMenuAlola, 2
+    Return
 
 CanalaveLibrary2F_SovereignArchivistUnova:
     Message CanalaveLibrary2F_Text_SovereignArchivistWhichLegend
@@ -415,6 +430,83 @@ CanalaveLibrary2F_SovereignArchivistKalosOthers:
     Message CanalaveLibrary2F_Text_SovereignArchivistKalosOthersDone
     GoTo CanalaveLibrary2F_SovereignArchivistKalosAskMore
 
+@ The Alola Chronicle: a menu of its legends, as for Unova's and Kalos'.
+CanalaveLibrary2F_SovereignArchivistAlola:
+    Message CanalaveLibrary2F_Text_SovereignArchivistAlolaWhichLegend
+CanalaveLibrary2F_SovereignArchivistAlolaMenu:
+    InitLocalTextMenu 31, 3, 0, VAR_RESULT
+    SetMenuXOriginToRight
+    AddMenuEntryImm CanalaveLibrary2F_Text_SovereignMenuGuardians, 0
+    AddMenuEntryImm CanalaveLibrary2F_Text_SovereignMenuSky, 1
+    AddMenuEntryImm CanalaveLibrary2F_Text_SovereignMenuDone, 9
+    ShowMenu
+    GoToIfEq VAR_RESULT, 0, CanalaveLibrary2F_SovereignArchivistGuardians
+    GoToIfEq VAR_RESULT, 1, CanalaveLibrary2F_SovereignArchivistSky
+    Message CanalaveLibrary2F_Text_SovereignArchivistAlolaKeepReading
+    GoTo CanalaveLibrary2F_SovereignArchivistEnd
+
+CanalaveLibrary2F_SovereignArchivistAlolaAskMore:
+    Message CanalaveLibrary2F_Text_SovereignArchivistAnythingElse
+    GoTo CanalaveLibrary2F_SovereignArchivistAlolaMenu
+
+@ The Island Guardians: a hint for each Tapu not caught yet.
+CanalaveLibrary2F_SovereignArchivistGuardians:
+    SovereignCheckSpeciesCaught SPECIES_TAPU_KOKO, VAR_0x8004
+    SovereignCheckSpeciesCaught SPECIES_TAPU_LELE, VAR_0x8005
+    SovereignCheckSpeciesCaught SPECIES_TAPU_BULU, VAR_0x8006
+    SovereignCheckSpeciesCaught SPECIES_TAPU_FINI, VAR_0x8007
+    GoToIfEq VAR_0x8004, FALSE, CanalaveLibrary2F_SovereignArchivistGuardianHints
+    GoToIfEq VAR_0x8005, FALSE, CanalaveLibrary2F_SovereignArchivistGuardianHints
+    GoToIfEq VAR_0x8006, FALSE, CanalaveLibrary2F_SovereignArchivistGuardianHints
+    GoToIfEq VAR_0x8007, FALSE, CanalaveLibrary2F_SovereignArchivistGuardianHints
+    Message CanalaveLibrary2F_Text_SovereignArchivistGuardiansDone
+    GoTo CanalaveLibrary2F_SovereignArchivistAlolaAskMore
+
+CanalaveLibrary2F_SovereignArchivistGuardianHints:
+    Message CanalaveLibrary2F_Text_SovereignArchivistGuardians
+    CallIfEq VAR_0x8004, FALSE, CanalaveLibrary2F_SovereignArchivistTapuKoko
+    CallIfEq VAR_0x8005, FALSE, CanalaveLibrary2F_SovereignArchivistTapuLele
+    CallIfEq VAR_0x8006, FALSE, CanalaveLibrary2F_SovereignArchivistTapuBulu
+    CallIfEq VAR_0x8007, FALSE, CanalaveLibrary2F_SovereignArchivistTapuFini
+    GoTo CanalaveLibrary2F_SovereignArchivistAlolaAskMore
+
+@ Sun and Moon, the Alola Chronicle's key: Cosmog at Spear Pillar (FLAG_SOVEREIGN_RECEIVED_COSMOG), how it evolves, then
+@ once the player has Solgaleo or Lunala, the second Cosmog and Necrozma, then the N-Solarizer and N-Lunarizer once
+@ Necrozma is caught.
+CanalaveLibrary2F_SovereignArchivistSky:
+    GoToIfUnset FLAG_SOVEREIGN_RECEIVED_COSMOG, CanalaveLibrary2F_SovereignArchivistCosmog
+    SovereignCheckSpeciesCaught SPECIES_SOLGALEO, VAR_0x8004
+    SovereignCheckSpeciesCaught SPECIES_LUNALA, VAR_0x8005
+    GoToIfEq VAR_0x8004, TRUE, CanalaveLibrary2F_SovereignArchivistSkyNecrozma
+    GoToIfEq VAR_0x8005, TRUE, CanalaveLibrary2F_SovereignArchivistSkyNecrozma
+    Message CanalaveLibrary2F_Text_SovereignArchivistCosmogRaise
+    GoTo CanalaveLibrary2F_SovereignArchivistAlolaAskMore
+
+CanalaveLibrary2F_SovereignArchivistCosmog:
+    Message CanalaveLibrary2F_Text_SovereignArchivistCosmog
+    GoTo CanalaveLibrary2F_SovereignArchivistAlolaAskMore
+
+CanalaveLibrary2F_SovereignArchivistSkyNecrozma:
+    SovereignCheckSpeciesCaught SPECIES_NECROZMA, VAR_0x8006
+    CallIfUnset FLAG_SOVEREIGN_RECEIVED_COSMOG_2, CanalaveLibrary2F_SovereignArchivistCosmogAgain
+    CallIfEq VAR_0x8006, FALSE, CanalaveLibrary2F_SovereignArchivistNecrozma
+    GoToIfEq VAR_0x8006, FALSE, CanalaveLibrary2F_SovereignArchivistAlolaAskMore
+    CheckItem ITEM_N_SOLARIZER, 1, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistSolarizers
+    GoToIfUnset FLAG_SOVEREIGN_RECEIVED_COSMOG_2, CanalaveLibrary2F_SovereignArchivistAlolaAskMore
+    Message CanalaveLibrary2F_Text_SovereignArchivistSkyDone
+    GoTo CanalaveLibrary2F_SovereignArchivistAlolaAskMore
+
+CanalaveLibrary2F_SovereignArchivistSolarizers:
+    Message CanalaveLibrary2F_Text_SovereignArchivistSolarizers
+    SetVar VAR_0x8004, ITEM_N_SOLARIZER
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    SetVar VAR_0x8004, ITEM_N_LUNARIZER
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    Return
+
 CanalaveLibrary2F_SovereignArchivistPrisonBottle:
     Message CanalaveLibrary2F_Text_SovereignArchivistPrisonBottle
     SetVar VAR_0x8004, ITEM_PRISON_BOTTLE
@@ -472,6 +564,30 @@ CanalaveLibrary2F_SovereignArchivistHoopa:
 
 CanalaveLibrary2F_SovereignArchivistVolcanion:
     Message CanalaveLibrary2F_Text_SovereignArchivistVolcanion
+    Return
+
+CanalaveLibrary2F_SovereignArchivistTapuKoko:
+    Message CanalaveLibrary2F_Text_SovereignArchivistTapuKoko
+    Return
+
+CanalaveLibrary2F_SovereignArchivistTapuLele:
+    Message CanalaveLibrary2F_Text_SovereignArchivistTapuLele
+    Return
+
+CanalaveLibrary2F_SovereignArchivistTapuBulu:
+    Message CanalaveLibrary2F_Text_SovereignArchivistTapuBulu
+    Return
+
+CanalaveLibrary2F_SovereignArchivistTapuFini:
+    Message CanalaveLibrary2F_Text_SovereignArchivistTapuFini
+    Return
+
+CanalaveLibrary2F_SovereignArchivistCosmogAgain:
+    Message CanalaveLibrary2F_Text_SovereignArchivistCosmogAgain
+    Return
+
+CanalaveLibrary2F_SovereignArchivistNecrozma:
+    Message CanalaveLibrary2F_Text_SovereignArchivistNecrozma
     Return
 
 CanalaveLibrary2F_SovereignArchivistEnd:

@@ -5305,6 +5305,11 @@
     CallCommonScript 0x80B
     .endm
 
+    // Sovereign (the Chronicles): a gift Pokémon (VAR_0x8004 species, VAR_0x8005 level); VAR_RESULT is TRUE if given.
+    .macro Common_SovereignGiftPokemon
+    CallCommonScript 0x80C
+    .endm
+
     .macro Common_CallPokecenterNurse nurseLocalID
     SetVar VAR_0x8007, \nurseLocalID
     CallCommonScript 0x7D2

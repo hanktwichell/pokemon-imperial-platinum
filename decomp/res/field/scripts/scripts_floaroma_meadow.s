@@ -13,6 +13,7 @@
     ScriptEntry FloaromaMeadow_ItemWorksKey
     ScriptEntry FloaromaMeadow_TotemRibombee
     ScriptEntry FloaromaMeadow_OnLoad
+    ScriptEntry FloaromaMeadow_LegendaryTapuBulu
     ScriptEntryEnd
 
 FloaromaMeadow_OnTransition:
@@ -20,7 +21,19 @@ FloaromaMeadow_OnTransition:
     @ Sovereign: Totem Ribombee's trial opens once Mars is beaten at the Valley Windworks.
     CallIfSet FLAG_SOVEREIGN_TOTEM_TRIAL_RIBOMBEE, FloaromaMeadow_HideTotemRibombee
     CallIfLt VAR_VALLEY_WINDWORKS_STATE, 2, FloaromaMeadow_HideTotemRibombee
+    Call FloaromaMeadow_SovereignSetTapuBuluVisibility
     End
+
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Tapu Bulu stands among the flowers of the north field once
+@ the Alola Chronicle is open (VAR_SOVEREIGN_CHRONICLE 3), until it's caught.
+FloaromaMeadow_SovereignSetTapuBuluVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+    GoToIfLt VAR_SOVEREIGN_CHRONICLE, 3, FloaromaMeadow_SovereignSetTapuBuluVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_TAPU_BULU, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, FloaromaMeadow_SovereignSetTapuBuluVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+FloaromaMeadow_SovereignSetTapuBuluVisibilityEnd:
+    Return
 
 FloaromaMeadow_HideTotemRibombee:
     SetFlag FLAG_MAP_LOCAL_HIDE_TOTEM
@@ -28,6 +41,18 @@ FloaromaMeadow_HideTotemRibombee:
 
 FloaromaMeadow_OnLoad:
     GoToIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, FloaromaMeadow_RemoveTotemRibombee
+    GoToIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, FloaromaMeadow_RemoveLegendaryTapuBulu
+    End
+
+FloaromaMeadow_RemoveLegendaryTapuBulu:
+    RemoveObject LOCALID_LEGENDARY_TAPU_BULU
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+    End
+
+FloaromaMeadow_LegendaryTapuBulu:
+    SetVar VAR_0x8004, SPECIES_TAPU_BULU
+    SetVar VAR_0x8005, 65
+    Common_SovereignLegendaryEncounter
     End
 
 FloaromaMeadow_RemoveTotemRibombee:

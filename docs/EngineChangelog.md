@@ -4,6 +4,35 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E11 — The Chronicles: the Alola Chronicle opens (the Tapus, Cosmog and Necrozma)
+
+The first part of the Alola Chronicle (`docs/PostgameLegendaries.md`), in existing spots (owner, 2026-10-23):
+- **The Alola Chronicle** opens when the player talks to the Archivist with Xerneas and Yveltal caught: "XERNEAS and
+  YVELTAL, the heart of the Kalos Chronicle, both caught! And look! A third tome has opened: the Alola Chronicle!"
+  "Alola Chronicle" then joins his first menu. Its own menu has two topics so far: Island Guardians, and Sun and Moon.
+- **The Island Guardians** (Lv. 65):
+  - Tapu Koko on the sand strip at Route 222's east end.
+  - Tapu Lele at the edge of Fullmoon Island's grove.
+  - Tapu Bulu in Floaroma Meadow's north field.
+  - Tapu Fini on a little beach under Route 226's cliffs, reached by Surf.
+- **Sun and Moon:**
+  - A **Cosmog** floats in Spear Pillar's plaza, a gift at Lv. 5: "A little Pokémon is floating here, like a wisp of
+    the night sky... It's COSMOG! It seems to want to come along with you." With a full party it waits.
+  - Once the player has Solgaleo or Lunala, a second Cosmog waits there, so both can be raised.
+  - **Necrozma** (Lv. 70) then stands north of it.
+  - With Necrozma caught, the Archivist gives the **N-Solarizer and N-Lunarizer**, not obtainable anywhere before.
+- New overworld sprites for the six. Gifts share a new common script with the party check and the nickname prompt.
+- **Verified** (test build; a temporary patch set the game completed, opened the Kalos Chronicle, marked Xerneas,
+  Yveltal and Solgaleo caught, made room in the party and raised it to level 100):
+  - The Tapus hidden before the Alola opening.
+  - The opening, the four-entry chapter menu, both Alola topics with their hints, then "You found every one!" and
+    "The legends of the sky are yours!".
+  - The four Tapus and Necrozma seen, caught and gone afterwards.
+  - Both Cosmog gifts ("A received COSMOG!", the nickname prompt), and none after the second. "Your party is full"
+    with a full party.
+  - The N-Solarizer and N-Lunarizer given once.
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+
 ## E11 — The Chronicles: Victini and the Kalos Chronicle
 
 The rest of the Unova Chronicle and all of the Kalos Chronicle (`docs/PostgameLegendaries.md`). The owner chose

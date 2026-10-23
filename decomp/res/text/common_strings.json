@@ -936,6 +936,27 @@
         "{STRVAR_1 1, 0, 0} vanished...\n",
         "It might show itself here again."
       ]
+    },
+    {
+      "id": "CommonStrings_Text_SovereignPlayerReceivedPokemon",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received\n",
+        "{STRVAR_1 1, 1, 0}!"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_SovereignAskNicknameGift",
+      "en_US": [
+        "Give a nickname to the {STRVAR_1 1, 1, 0}\n",
+        "you received?"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_SovereignGiftPartyFull",
+      "en_US": [
+        "Your party is full. Make some room,\n",
+        "then come back."
+      ]
     }
   ]
 }

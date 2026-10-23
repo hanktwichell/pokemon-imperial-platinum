@@ -273,6 +273,14 @@ implemented.
       var only. Zygarde (`WAYWARD_CAVE_B1F`, own script archives like the ice chamber's) waits for Xerneas and Yveltal
       caught. Diancie (Oreburgh Mine B2F) checks `CheckPartyHasSpecies` for a Carbink. Hoopa (Solaceon Ruins Room 7)
       checks `CheckItem ITEM_PRISON_BOTTLE`, which the Archivist gives while the player doesn't have it.
+    - **Alola** (var 3, from a talk with Xerneas and Yveltal caught): the four Tapus need the var only.
+      - Spear Pillar shows a Cosmog object while `FLAG_SOVEREIGN_RECEIVED_COSMOG` is unset. It shows again while
+        `_COSMOG_2` is unset and the Pokédex has Solgaleo or Lunala as caught (`VAR_MAP_LOCAL_0x01` holds that check
+        in the OnTransition).
+      - Necrozma (`FLAG_MAP_LOCAL_HIDE_LEGENDARY_2`) needs the same check.
+    - **Gifts** use `Common_SovereignGiftPokemon` (common script 0x80C): `VAR_0x8004` species, `VAR_0x8005` level. It
+      checks for room in the party, plays the fanfare, gives the Pokémon and offers a nickname. `VAR_RESULT` comes back
+      TRUE once it's given, so the caller sets its flag and removes the object only then.
     - **Two legendaries on one map** (Eterna Forest: Virizion and Xerneas). Xerneas hides with
       `FLAG_MAP_LOCAL_HIDE_LEGENDARY_2` (map-local 0x1C, unused in vanilla). The OnLoad removal after a battle has to
       know which one was fought: each talk script stores its species in `VAR_MAP_LOCAL_0x00` first. Map-local vars last
