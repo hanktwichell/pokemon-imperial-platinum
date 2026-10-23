@@ -39,7 +39,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 154 | Justified | Gen 5 | not yet (no battle effect) |
 | 155 | Rattled | Gen 5 | not yet (no battle effect) |
 | 156 | Magic Bounce | Gen 5 | not yet (no battle effect) |
-| 157 | Sap Sipper | Gen 5 | not yet (no battle effect) |
+| 157 | Sap Sipper | Gen 5 | yes: absorbs Grass moves, Attack +1 (`BattleSystem_TriggerImmunityAbility`) |
 | 158 | Prankster | Gen 5 | not yet (no battle effect) |
 | 159 | Sand Force | Gen 5 | not yet (no battle effect) |
 | 160 | Iron Barbs | Gen 5 | not yet (no battle effect) |
@@ -155,7 +155,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 270 | ThermalExchange | Gen 9 | not yet (no battle effect) |
 | 271 | Anger Shell | Gen 9 | not yet (no battle effect) |
 | 272 | Purifying Salt | Gen 9 | not yet (no battle effect) |
-| 273 | Well-Baked Body | Gen 9 | not yet (no battle effect) |
+| 273 | Well-Baked Body | Gen 9 | yes: absorbs Fire moves, Defense +2 (`BattleSystem_TriggerImmunityAbility`) |
 | 274 | Wind Rider | Gen 9 | not yet (no battle effect) |
 | 275 | Guard Dog | Gen 9 | not yet (no battle effect) |
 | 276 | Rocky Payload | Gen 9 | not yet (no battle effect) |
@@ -179,7 +179,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 294 | Costar | Gen 9 | not yet (no battle effect) |
 | 295 | Toxic Debris | Gen 9 | not yet (no battle effect) |
 | 296 | Armor Tail | Gen 9 | not yet (no battle effect) |
-| 297 | Earth Eater | Gen 9 | not yet (no battle effect) |
+| 297 | Earth Eater | Gen 9 | yes: absorbs Ground moves, restores 1/4 of max HP (`BattleSystem_TriggerImmunityAbility`) |
 | 298 | Mycelium Might | Gen 9 | not yet (no battle effect) |
 | 299 | Mind’s Eye | Gen 9 | not yet (no battle effect) |
 | 300 | SupersweetSyrup | Gen 9 | not yet (no battle effect) |

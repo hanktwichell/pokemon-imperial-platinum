@@ -3574,6 +3574,29 @@ int BattleSystem_TriggerImmunityAbility(BattleContext *battleCtx, int attacker, 
         subscript = subscript_ability_restores_hp;
     }
 
+    // Sovereign (item 11): the Gen V+ absorbing abilities. Storm Drain and Lightning Rod already draw single-target
+    // moves of their type in Platinum; since Gen V the holder also absorbs them. None trigger on the user's own move
+    // or on the first turn of a two-turn move.
+    if (attacker != defender && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE) {
+        if ((Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_STORM_DRAIN) == TRUE && moveType == TYPE_WATER)
+            || (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_LIGHTNING_ROD) == TRUE && moveType == TYPE_ELECTRIC)) {
+            subscript = subscript_sovereign_absorb_and_sp_atk_up_1_stage;
+        }
+
+        if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_SAP_SIPPER) == TRUE && moveType == TYPE_GRASS) {
+            subscript = subscript_sovereign_absorb_and_atk_up_1_stage;
+        }
+
+        if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_WELL_BAKED_BODY) == TRUE && moveType == TYPE_FIRE) {
+            subscript = subscript_sovereign_absorb_and_def_up_2_stages;
+        }
+
+        if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_EARTH_EATER) == TRUE && moveType == TYPE_GROUND) {
+            battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[defender].maxHP, 4);
+            subscript = subscript_ability_restores_hp;
+        }
+    }
+
     return subscript;
 }
 

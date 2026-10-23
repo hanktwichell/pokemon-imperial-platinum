@@ -114,7 +114,10 @@ MANUAL_DESCRIPTIONS = {
 # Implemented beyond Platinum's 123 (updated as abilities get battle code).
 # Newer abilities whose battle effect is built (item 11): ability number -> what the Battle effect column says.
 IMPLEMENTED = {
+    157: "yes: absorbs Grass moves, Attack +1 (`BattleSystem_TriggerImmunityAbility`)",  # Sap Sipper
     192: "yes: Defense +1 stage each time a damaging move hits (`BattleSystem_TriggerAbilityOnHit`)",  # Stamina
+    273: "yes: absorbs Fire moves, Defense +2 (`BattleSystem_TriggerImmunityAbility`)",  # Well-Baked Body
+    297: "yes: absorbs Ground moves, restores 1/4 of max HP (`BattleSystem_TriggerImmunityAbility`)",  # Earth Eater
 }
 
 

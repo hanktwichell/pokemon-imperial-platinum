@@ -4,6 +4,38 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (part 2) and 12b #4–#5 — absorbing abilities and redirection
+
+- **Gen V+ absorbing abilities** (`BattleSystem_TriggerImmunityAbility`):
+
+  | Ability | Absorbs | Effect |
+  |---|---|---|
+  | Sap Sipper | Grass | Attack +1 |
+  | Storm Drain | Water | Sp. Atk +1 |
+  | Lightning Rod | Electric | Sp. Atk +1 |
+  | Well-Baked Body | Fire | Defense +2 |
+  | Earth Eater | Ground | restores 1/4 of max HP |
+
+  - Storm Drain and Lightning Rod already drew single-target moves in Platinum; now they also absorb them, as since
+    Gen V.
+  - Three new subscripts modelled on Motor Drive's.
+- **AI:**
+  - The basic immunity check, the Thunder Wave check and the doubles partner/other-foe estimates know these
+    abilities.
+  - Platinum's immunity check tested Levitate twice where it meant Dry Skin; fixed.
+  - New command `LoadTargetPartnerRedirects`: a single-target Electric or Water move aimed at a foe whose partner has
+    Lightning Rod or Storm Drain scores −10, unless the attacker has Mold Breaker.
+- **Verified in the test build:**
+  - Garchomp's spread moves against the developer team's Archaludon (ability set for each test). Archaludon took no
+    damage and got the right boost; its partner took normal damage:
+    - Razor Leaf vs Sap Sipper: Attack +1;
+    - Surf vs Storm Drain: Sp. Atk +1;
+    - Heat Wave vs Well-Baked Body: Defense +2;
+    - Discharge vs Lightning Rod: Sp. Atk +1;
+    - Precipice Blades vs Earth Eater: no HP lost.
+  - With Lightning Rod on Garchomp, the AI's check read "redirected" only for Electro Shot aimed at Garchomp's
+    partner.
+
 ## Item 11 (part 1) — exact effects for the developer team and boss teams
 
 The boss teams (`data/trainers_sovereign.yaml`) and the developer team use only four moves and abilities that weren't

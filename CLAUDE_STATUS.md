@@ -1500,3 +1500,42 @@ PR #28 (item 11 part 1) is merged; the branch is reset to main.
    Earth Eater, Well-Baked Body…), with the AI's immunity check (12b #4–#5).
 2. The owner's answers on Oak's visit (CA-0021).
 3. T1 boss teams when the owner is ready.
+
+---
+
+## CA-0025 — 2026-10-23 (session on `claude/festive-bardeen-5h7beo`)
+
+**Implemented:** item 11 part 2 and 12b #4–#5.
+- **Absorbing abilities:**
+
+  | Ability | Absorbs | Effect |
+  |---|---|---|
+  | Sap Sipper | Grass | Attack +1 |
+  | Storm Drain | Water | Sp. Atk +1 |
+  | Lightning Rod | Electric | Sp. Atk +1 |
+  | Well-Baked Body | Fire | Defense +2 |
+  | Earth Eater | Ground | heals 1/4 |
+
+- **The AI knows them:**
+  - its immunity check, its Thunder Wave check and the doubles estimates;
+  - Platinum's Dry Skin check bug fixed;
+  - it avoids single-target Electric and Water moves that a target's partner would redirect (Lightning Rod, Storm
+    Drain).
+- **Verified in game:** each ability against a spread move, plus the redirection check.
+- **12b status:** #1–#6 and #8 are done. Left: #7 (weather, with T2) and #9 (Mega timing, with E8).
+
+**Files modified:**
+- `decomp/src/battle/battle_lib.c`.
+- `decomp/src/battle/trainer_ai/{trainer_ai.c,script.s}`.
+- `decomp/include/data/scripts/aicmd.h` and `decomp/asm/macros/aicmd.inc`.
+- `decomp/res/battle/scripts/subscripts/subscript_sovereign_absorb_and_{sp_atk_up_1_stage,atk_up_1_stage,def_up_2_stages}.s`
+  (new), plus the subscripts' `meson.build` and `sub_seq.order`.
+- `decomp/generated/battle_subscripts.txt`.
+- `tools/engine/gen_abilities.py`.
+- `docs/AbilityChecklist.md`, `docs/AIReview.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. PR and merge this.
+2. Item 11 continued, by impact: common Gen V+ abilities and moves wild Pokémon and trainers use (Intimidate-like,
+   Sheer Force, Technician-style boosts…), starting from the checklists.
+3. The owner's answers on Oak's visit (CA-0021); T1 when the owner is ready.

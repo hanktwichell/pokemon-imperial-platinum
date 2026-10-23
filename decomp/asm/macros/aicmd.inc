@@ -642,6 +642,12 @@
     .long AICMD_LOADOTHERFOEDAMAGEPERCENT
     .endm
 
+    // Sovereign (12b): load TRUE if the target's partner would draw the current move away and absorb it (Lightning
+    // Rod or Storm Drain against a single-target Electric or Water move), FALSE otherwise.
+    .macro LoadTargetPartnerRedirects
+    .long AICMD_LOADTARGETPARTNERREDIRECTS
+    .endm
+
     .equ TABLE_END, 0xFFFFFFFF
 
     .macro TableEntry entry:req

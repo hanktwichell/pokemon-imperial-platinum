@@ -75,7 +75,18 @@ Basic_CheckForImmunity:
     IfLoadedEqualTo ABILITY_FLASH_FIRE, Basic_CheckFireAbsorption
     IfLoadedEqualTo ABILITY_WONDER_GUARD, Basic_CheckWonderGuard
     IfLoadedEqualTo ABILITY_LEVITATE, Basic_CheckGroundAbsorption
-    IfLoadedEqualTo ABILITY_LEVITATE, Basic_CheckWaterAbsorption2 // BUG: This line should branch on Dry Skin rather than Levitate
+    // Sovereign (item 11): Platinum checked Levitate twice here instead of Dry Skin. Also the Gen V+ absorbers.
+    IfLoadedEqualTo ABILITY_DRY_SKIN, Basic_CheckWaterAbsorption2
+    IfLoadedEqualTo ABILITY_STORM_DRAIN, Basic_CheckWaterAbsorption
+    IfLoadedEqualTo ABILITY_LIGHTNING_ROD, Basic_CheckElectricAbsorption
+    IfLoadedEqualTo ABILITY_WELL_BAKED_BODY, Basic_CheckFireAbsorption
+    IfLoadedEqualTo ABILITY_EARTH_EATER, Basic_CheckGroundAbsorption
+    IfLoadedEqualTo ABILITY_SAP_SIPPER, Basic_CheckGrassAbsorption
+    GoTo Basic_NoImmunityAbility
+
+Basic_CheckGrassAbsorption:
+    LoadTypeFrom LOAD_MOVE_TYPE
+    IfTempEqualTo TYPE_GRASS, ScoreMinus12
     GoTo Basic_NoImmunityAbility
 
 Basic_CheckElectricAbsorption:
@@ -624,6 +635,7 @@ Basic_CheckCannotParalyze_ThunderWave:
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_MOTOR_DRIVE, ScoreMinus10
     IfLoadedEqualTo ABILITY_VOLT_ABSORB, ScoreMinus10
+    IfLoadedEqualTo ABILITY_LIGHTNING_ROD, ScoreMinus10 // Sovereign (item 11): absorbs Electric moves since Gen V
 
 Basic_CheckCannotParalyze_ImmuneToStatus:
     IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, ScoreMinus10
@@ -6769,6 +6781,11 @@ TagStrategy_PartnerHurt:
     AddToMoveScore -3
 
 TagStrategy_CheckOtherFoe:
+    // Sovereign (12b): a single-target Electric or Water move aimed at a foe whose partner has Lightning Rod or Storm
+    // Drain is drawn to that partner and absorbed (it gets a Sp. Atk boost), so score -10.
+    LoadTargetPartnerRedirects
+    IfLoadedEqualTo TRUE, TagStrategy_Redirected
+
     // Sovereign (12b): each move is scored against one target at a time, so a spread move (aimed at both foes, or at
     // every adjacent Pokemon) gets no credit for also hitting the other foe; its damage on the target already counts
     // the doubles x0.75. Score that second hit:
@@ -6780,6 +6797,10 @@ TagStrategy_CheckOtherFoe:
     IfLoadedEqualTo AI_SPREAD_ABSORBED, TagStrategy_OtherFoeAbsorbs
     IfLoadedGreaterThan 99, TagStrategy_OtherFoeKnockedOut
     IfLoadedGreaterThan 24, TagStrategy_OtherFoeHurt
+    GoTo TagStrategy_CheckSpecialScoringByMove
+
+TagStrategy_Redirected:
+    AddToMoveScore -10
     GoTo TagStrategy_CheckSpecialScoringByMove
 
 TagStrategy_OtherFoeAbsorbs:
