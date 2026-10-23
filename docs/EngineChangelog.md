@@ -26,6 +26,46 @@ Five of the 11 Totems now stand on the map (`docs/TotemTrials.md`, "On the map")
   - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
 - **Not done yet:** Alolan Raticate, Lurantis, Araquanid, Salazzle, Kommo-o and Togedemaru.
 
+## Item 11 (part 10) — Terrains
+
+Electric, Grassy, Misty and Psychic Terrain, as in Gen IX: 5 turns (8 with a Terrain Extender), set by the four moves or
+by Electric/Grassy/Misty/Psychic Surge and Hadron Engine on entry, with start and end messages.
+
+| Terrain | Effect on grounded Pokémon |
+|---|---|
+| Electric | their Electric moves ×1.3; can't fall asleep or be made drowsy |
+| Grassy | their Grass moves ×1.3; heal 1/16 of max HP each turn; Earthquake, Bulldoze and Magnitude halved against them |
+| Misty | Dragon moves against them halved; can't be statused or confused |
+| Psychic | their Psychic moves ×1.3; foes' priority moves can't hit them |
+
+- Moves: Rising Voltage, Expanding Force (single target), Misty Explosion, Psyblade, Terrain Pulse (type and power), Grassy
+  Glide (+1 priority); Steel Roller fails without a terrain, and it and Ice Spinner remove the terrain (no message yet).
+- Abilities: Quark Drive (in Electric Terrain), Surge Surfer, Grass Pelt, Hadron Engine, Orichalcum Pulse (sets sun like
+  Drought, Attack ×1.33 in it).
+- Implementation: one bit per terrain plus a 4-bit turn count in `fieldConditionsMask` (bits 19–26), a read-only script
+  variable `BTLVAR_SOVEREIGN_TERRAIN_EFFECT_MON` for the status subscripts, and `Sovereign_TerrainUnder`.
+- Not yet: the terrain Seeds, Mimicry, and the background tint.
+- Move checklist: exact 211, approximate 47, placeholder 122.
+
+**Verified in the test build:** with an Electric Surge Archaludon on the field, Garchomp's Thunder Fang dealt 26
+pre-variance (the ×1.3 value; 21 without) and Venusaur's Sleep Powder put neither Garchomp nor Turtwig to sleep.
+
+## Item 11 (part 9) — Booster Energy and moves that read the turn
+
+- **Booster Energy:** a Protosynthesis (outside sun) or Quark Drive Pokémon uses it on switch-in ("{0} used its
+  Booster Energy!", a new battle string), and its highest stat stays boosted until it switches out.
+- New per-turn flags (stats raised, stats lowered, used Round) and a per-battler "last move failed":
+  - Stomping Tantrum and Temper Flare double after a failed move; Lash Out doubles after the user's stats fell this
+    turn; Round doubles after its ally's Round (the ally doesn't move up in turn order yet).
+  - Burning Jealousy and Alluring Voice burn / confuse only a target whose stats rose this turn.
+- Draining Kiss and Oblivion Wing drain 3/4 of the damage.
+- Sacred Sword, Chip Away and Darkest Lariat are now marked exact (their engine rule landed in part 6).
+- Move checklist: exact 203, approximate 43, placeholder 134.
+
+**Verified in the test build:** a Protosynthesis Archaludon and a Quark Drive Venusaur both used up their Booster
+Energy at the start of the battle; Turtwig's Round after Garchomp's dealt the power-120 value (3; 2 with Tackle's
+control run at power 60).
+
 ## Item 11 (part 8) — Intimidate reactions and AI scores
 
 - Intimidate now triggers Defiant (Attack +2), Competitive (Sp. Atk +2) and Rattled (Speed +1), through a new switch-in
@@ -36,12 +76,8 @@ Five of the 11 Totems now stand on the map (`docs/TotemTrials.md`, "On the map")
 - AI: Clanging Scales, Hyperspace Fury and Spin Out score like Close Combat, Make It Rain like Overheat, and Storm Throw,
   Frost Breath, Wicked Blow and Flower Trick like high-critical moves.
 
-- **Booster Energy:** a Protosynthesis (outside sun) or Quark Drive Pokémon uses it on switch-in ("{0} used its
-  Booster Energy!", new battle string), and its highest stat stays boosted until it switches out.
-
 **Verified in the test build:** an Intimidate Garchomp left a Defiant Archaludon at Attack +1 (−1 then +2) and a Guard
-Dog Venusaur at Attack +1; a Protosynthesis Archaludon and a Quark Drive Venusaur both used up their Booster Energy
-at the start of the battle.
+Dog Venusaur at Attack +1.
 
 ## Item 11 (part 7) — 44 more abilities
 

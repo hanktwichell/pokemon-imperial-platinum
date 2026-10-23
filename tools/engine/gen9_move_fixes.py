@@ -62,7 +62,8 @@ HIT_EFFECTS = {
     "SOVEREIGN_LOWER_OWN_SPEED_2_HIT": ("MOVE_SUBSCRIPT_PTR_SPEED_DOWN_2_STAGES", "user Speed -2"),
 }
 
-# move: (battle effect without the BATTLE_EFFECT_ prefix, effect chance, checklist note). None keeps the current effect.
+# move: (battle effect without the BATTLE_EFFECT_ prefix, effect chance, checklist note[, checklist status]). None keeps the
+# current effect; the status defaults to exact.
 MOVES = {
     # Already Gen IX: the existing effect and chance match; only the checklist was wrong.
     "lunge": (None, None, "target Attack -1 (100%)"),
@@ -142,6 +143,32 @@ MOVES = {
     "hyperspace_fury": ("SOVEREIGN_LOWER_OWN_DEF_HIT", 100, "user Defense -1, ignores Protect"),
     "make_it_rain": ("SOVEREIGN_LOWER_OWN_SP_ATK_HIT", 100, "user Sp. Atk -1"),
     "spin_out": ("SOVEREIGN_LOWER_OWN_SPEED_2_HIT", 100, "user Speed -2"),
+    # Engine rules (battle_lib.c, battle_script.c, battle_controller_player.c, the drain subscript).
+    "sacred_sword": (None, None, "ignores the target's stat changes"),
+    "chip_away": (None, None, "ignores the target's stat changes"),
+    "darkest_lariat": (None, None, "ignores the target's stat changes"),
+    "stomping_tantrum": (None, None, "power doubles if the user's last move failed"),
+    "temper_flare": (None, None, "power doubles if the user's last move failed"),
+    "lash_out": (None, None, "power doubles if the user's stats were lowered this turn"),
+    "burning_jealousy": ("BURN_HIT", 100, "burns a target whose stats rose this turn"),
+    "alluring_voice": ("CONFUSE_HIT", 100, "confuses a target whose stats rose this turn"),
+    "draining_kiss": (None, None, "drains 3/4 of the damage dealt"),
+    "oblivion_wing": (None, None, "drains 3/4 of the damage dealt"),
+    "round": (None, None, "power doubles after its ally's Round this turn (the ally doesn't move up in turn order)",
+              "approximate"),
+    # Terrains (5 turns, 8 with a Terrain Extender; the Seeds aren't reproduced yet).
+    "electric_terrain": ("SOVEREIGN_ELECTRIC_TERRAIN", 0, "Electric Terrain: grounded Electric moves x1.3, grounded Pokémon can't fall asleep"),
+    "grassy_terrain": ("SOVEREIGN_GRASSY_TERRAIN", 0, "Grassy Terrain: grounded Grass moves x1.3, heals 1/16 each turn, halves Earthquake"),
+    "misty_terrain": ("SOVEREIGN_MISTY_TERRAIN", 0, "Misty Terrain: halves Dragon moves, grounded Pokémon can't be statused or confused"),
+    "psychic_terrain": ("SOVEREIGN_PSYCHIC_TERRAIN", 0, "Psychic Terrain: grounded Psychic moves x1.3, blocks priority moves"),
+    "rising_voltage": (None, None, "power doubles in Electric Terrain against a grounded target"),
+    "expanding_force": (None, None, "1.5x in Psychic Terrain (doesn't spread to both foes yet)", "approximate"),
+    "misty_explosion": ("HALVE_DEFENSE", 0, "user faints; 1.5x in Misty Terrain (uses Explosion's effect)", "approximate"),
+    "psyblade": (None, None, "1.5x in Electric Terrain"),
+    "terrain_pulse": (None, None, "type follows the terrain, double power in one"),
+    "grassy_glide": (None, None, "+1 priority in Grassy Terrain"),
+    "steel_roller": (None, None, "fails without a terrain, then removes it (no message yet)", "approximate"),
+    "ice_spinner": (None, None, "removes the terrain (no message yet)", "approximate"),
 }
 
 
@@ -187,11 +214,12 @@ def update_moves():
 
 def update_checklist():
     text = open(CHECKLIST, encoding="utf-8").read()
-    for move, (_, _, note) in MOVES.items():
+    for move, (_, _, note, *rest) in MOVES.items():
+        status = rest[0] if rest else "exact"
         data = json.load(open(os.path.join(MOVES_DIR, move, "data.json"), encoding="utf-8"))
         eff = data["effect"]["type"][len("BATTLE_EFFECT_"):]
         pat = re.compile(r"^(\| \d+ \| " + re.escape(data["name"]) + r" \| [^|]+ \| )`[^`]*` \| \w+ \| [^|]*\|$", re.M)
-        text, n = pat.subn(lambda m: f"{m.group(1)}`{eff}` | exact | Sovereign effect: {note} |", text)
+        text, n = pat.subn(lambda m: f"{m.group(1)}`{eff}` | {status} | Sovereign effect: {note} |", text)
         assert n == 1, (move, data["name"], n)
     rows = re.findall(r"^\| \d+ \| .* \| (exact|approximate|placeholder|removed) \| .*\|$", text, re.M)
     for status in ("exact", "approximate", "placeholder", "removed"):

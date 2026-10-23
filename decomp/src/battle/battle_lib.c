@@ -1244,6 +1244,14 @@ u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *batt
         }
     }
 
+    // Sovereign (item 11): Surge Surfer doubles Speed in Electric Terrain.
+    if (battler1Ability == ABILITY_SURGE_SURFER && (battleCtx->fieldConditionsMask & FIELD_CONDITION_TERRAIN_ELECTRIC)) {
+        battler1Speed *= 2;
+    }
+    if (battler2Ability == ABILITY_SURGE_SURFER && (battleCtx->fieldConditionsMask & FIELD_CONDITION_TERRAIN_ELECTRIC)) {
+        battler2Speed *= 2;
+    }
+
     // Sovereign (item 11): Protosynthesis raises Speed by 50% when Speed is the boosted stat.
     if (Sovereign_ProtosynthesisStat(battleSys, battleCtx, battler1) == BATTLE_STAT_SPEED) {
         battler1Speed = battler1Speed * 15 / 10;
@@ -1536,6 +1544,13 @@ BOOL BattleSystem_TriggerSecondaryEffect(BattleSystem *battleSys, BattleContext 
 {
     BOOL result = FALSE;
     u16 effectChance;
+
+    // Sovereign (item 11): Burning Jealousy burns, and Alluring Voice confuses, only a target whose stats rose this turn.
+    if ((battleCtx->moveCur == MOVE_BURNING_JEALOUSY || battleCtx->moveCur == MOVE_ALLURING_VOICE)
+        && battleCtx->turnFlags[battleCtx->defender].sovereignStatsRaised == FALSE) {
+        battleCtx->sideEffectIndirectFlags = 0;
+        return FALSE;
+    }
 
     // Sovereign (item 11): Sheer Force removes the chance effects (the last two cases below) of the moves it powers up.
     if (battleCtx->sideEffectIndirectFlags
@@ -2147,6 +2162,7 @@ void BattleSystem_UpdateAfterSwitch(BattleSystem *battleSys, BattleContext *batt
     battleCtx->moveHitBattler[battler] = BATTLER_NONE;
     battleCtx->moveHitType[battler] = MOVE_NONE;
     battleCtx->movePrevByBattler[battler] = MOVE_NONE;
+    battleCtx->sovereignLastMoveFailed[battler] = FALSE;
     battleCtx->moveCopied[battler] = MOVE_NONE;
     battleCtx->moveCopiedHit[battler][0] = MOVE_NONE;
     battleCtx->moveCopiedHit[battler][1] = MOVE_NONE;
@@ -2225,6 +2241,7 @@ void BattleSystem_CleanupFaintedMon(BattleSystem *battleSys, BattleContext *batt
     battleCtx->moveHitBattler[battler] = BATTLER_NONE;
     battleCtx->moveHitType[battler] = MOVE_NONE;
     battleCtx->movePrevByBattler[battler] = MOVE_NONE;
+    battleCtx->sovereignLastMoveFailed[battler] = FALSE;
     battleCtx->moveCopied[battler] = MOVE_NONE;
     battleCtx->moveCopiedHit[battler][0] = MOVE_NONE;
     battleCtx->moveCopiedHit[battler][1] = MOVE_NONE;
@@ -3992,6 +4009,29 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                         }
                         break;
 
+                    case ABILITY_ELECTRIC_SURGE: // Sovereign (item 11): the Surge abilities set their terrain
+                    case ABILITY_HADRON_ENGINE:
+                    case ABILITY_GRASSY_SURGE:
+                    case ABILITY_MISTY_SURGE:
+                    case ABILITY_PSYCHIC_SURGE: {
+                        int ability = Battler_Ability(battleCtx, battler);
+                        u32 terrain = (ability == ABILITY_GRASSY_SURGE) ? FIELD_CONDITION_TERRAIN_GRASSY
+                            : (ability == ABILITY_MISTY_SURGE)          ? FIELD_CONDITION_TERRAIN_MISTY
+                            : (ability == ABILITY_PSYCHIC_SURGE)        ? FIELD_CONDITION_TERRAIN_PSYCHIC
+                                                                        : FIELD_CONDITION_TERRAIN_ELECTRIC;
+                        battleCtx->battleMons[battler].weatherAbilityAnnounced = TRUE;
+
+                        if ((battleCtx->fieldConditionsMask & terrain) == FALSE) {
+                            battleCtx->fieldConditionsMask &= ~(FIELD_CONDITION_TERRAIN | FIELD_CONDITION_TERRAIN_TURNS);
+                            battleCtx->fieldConditionsMask |= terrain
+                                | (battleCtx->battleMons[battler].heldItem == ITEM_TERRAIN_EXTENDER ? FIELD_CONDITION_TERRAIN_8_TURNS : FIELD_CONDITION_TERRAIN_5_TURNS);
+                            subscript = subscript_sovereign_terrain_start;
+                            result = SWITCH_IN_CHECK_RESULT_BREAK;
+                        }
+                        break;
+                    }
+
+                    case ABILITY_ORICHALCUM_PULSE: // Sovereign (item 11): sets harsh sunlight like Drought
                     case ABILITY_DROUGHT:
                         battleCtx->battleMons[battler].weatherAbilityAnnounced = TRUE;
 
@@ -4052,7 +4092,8 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                 if (battleCtx->battleMons[battler].curHP
                     && battleCtx->battleMons[battler].sovereignBoosterEnergy == FALSE
                     && battleCtx->battleMons[battler].heldItem == ITEM_BOOSTER_ENERGY
-                    && (Battler_Ability(battleCtx, battler) == ABILITY_QUARK_DRIVE
+                    && ((Battler_Ability(battleCtx, battler) == ABILITY_QUARK_DRIVE
+                            && (battleCtx->fieldConditionsMask & FIELD_CONDITION_TERRAIN_ELECTRIC) == FALSE)
                         || (Battler_Ability(battleCtx, battler) == ABILITY_PROTOSYNTHESIS
                             && Sovereign_ProtosynthesisHasSun(battleSys, battleCtx) == FALSE))) {
                     battleCtx->battleMons[battler].sovereignBoosterEnergy = TRUE;
@@ -5921,6 +5962,41 @@ static inline BOOL BattlerIsGrounded(BattleContext *battleCtx, int battler)
         || (battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY);
 }
 
+// Sovereign (item 11): BattlerIsGrounded, for the terrains.
+BOOL Sovereign_IsGrounded(BattleContext *battleCtx, int battler)
+{
+    return BattlerIsGrounded(battleCtx, battler);
+}
+
+// Sovereign (item 11): Terrain Pulse takes the type of the terrain under a grounded user.
+int Sovereign_TerrainPulseType(BattleContext *battleCtx, int battler)
+{
+    u32 terrain = Sovereign_TerrainUnder(battleCtx, battler);
+
+    if (terrain & FIELD_CONDITION_TERRAIN_ELECTRIC) {
+        return TYPE_ELECTRIC;
+    } else if (terrain & FIELD_CONDITION_TERRAIN_GRASSY) {
+        return TYPE_GRASS;
+    } else if (terrain & FIELD_CONDITION_TERRAIN_MISTY) {
+        return TYPE_FAIRY;
+    } else if (terrain & FIELD_CONDITION_TERRAIN_PSYCHIC) {
+        return TYPE_PSYCHIC;
+    }
+
+    return TYPE_NORMAL;
+}
+
+// Sovereign (item 11): the terrain under a battler: its FIELD_CONDITION_TERRAIN_* flag, or 0 if there is none or the
+// battler isn't grounded.
+u32 Sovereign_TerrainUnder(BattleContext *battleCtx, int battler)
+{
+    if (BattlerIsGrounded(battleCtx, battler) == FALSE) {
+        return 0;
+    }
+
+    return battleCtx->fieldConditionsMask & FIELD_CONDITION_TERRAIN;
+}
+
 static inline int CountAbilityTheirSide(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int ability)
 {
     return BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_THEIR_SIDE, battler, ability);
@@ -7136,6 +7212,11 @@ int Sovereign_MovePriority(BattleContext *battleCtx, int battler, int move)
     int priority = MOVE_DATA(move).priority;
     int ability = Battler_Ability(battleCtx, battler);
 
+    // Grassy Glide: +1 priority from a grounded user in Grassy Terrain.
+    if (move == MOVE_GRASSY_GLIDE && (Sovereign_TerrainUnder(battleCtx, battler) & FIELD_CONDITION_TERRAIN_GRASSY)) {
+        priority++;
+    }
+
     if (ability == ABILITY_PRANKSTER && MOVE_DATA(move).class == CLASS_STATUS) {
         priority++;
     } else if (ability == ABILITY_GALE_WINGS && MOVE_DATA(move).type == TYPE_FLYING
@@ -7303,6 +7384,56 @@ int Sovereign_MovePower(BattleSystem *battleSys, BattleContext *battleCtx, int m
         }
         break;
 
+    case MOVE_RISING_VOLTAGE: // double in Electric Terrain against a grounded target
+        if (Sovereign_TerrainUnder(battleCtx, defender) & FIELD_CONDITION_TERRAIN_ELECTRIC) {
+            power *= 2;
+        }
+        break;
+
+    case MOVE_EXPANDING_FORCE: // 1.5x from a grounded user in Psychic Terrain
+        if (Sovereign_TerrainUnder(battleCtx, attacker) & FIELD_CONDITION_TERRAIN_PSYCHIC) {
+            power = power * 15 / 10;
+        }
+        break;
+
+    case MOVE_MISTY_EXPLOSION: // 1.5x from a grounded user in Misty Terrain
+        if (Sovereign_TerrainUnder(battleCtx, attacker) & FIELD_CONDITION_TERRAIN_MISTY) {
+            power = power * 15 / 10;
+        }
+        break;
+
+    case MOVE_PSYBLADE: // 1.5x in Electric Terrain
+        if (battleCtx->fieldConditionsMask & FIELD_CONDITION_TERRAIN_ELECTRIC) {
+            power = power * 15 / 10;
+        }
+        break;
+
+    case MOVE_TERRAIN_PULSE: // double from a grounded user in a terrain (its type follows the terrain)
+        if (Sovereign_TerrainUnder(battleCtx, attacker)) {
+            power *= 2;
+        }
+        break;
+
+    case MOVE_STOMPING_TANTRUM: // double if the user's last move failed
+    case MOVE_TEMPER_FLARE:
+        if (battleCtx->sovereignLastMoveFailed[attacker]) {
+            power *= 2;
+        }
+        break;
+
+    case MOVE_LASH_OUT: // double if the user's stats were lowered this turn
+        if (battleCtx->turnFlags[attacker].sovereignStatsLowered) {
+            power *= 2;
+        }
+        break;
+
+    case MOVE_ROUND: // double if the user's ally used Round earlier this turn
+        if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES)
+            && battleCtx->turnFlags[attacker ^ 2].sovereignUsedRound) {
+            power *= 2;
+        }
+        break;
+
     case MOVE_GRAV_APPLE: // 1.5x under Gravity
         if (battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) {
             power = power * 15 / 10;
@@ -7386,8 +7517,8 @@ static BOOL Sovereign_ProtosynthesisHasSun(BattleSystem *battleSys, BattleContex
         && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALL_BATTLERS, 0, ABILITY_AIR_LOCK) == 0;
 }
 
-// Sovereign (item 11): Protosynthesis (in harsh sunlight) and Quark Drive (Electric Terrain, which Sovereign doesn't
-// have) boost the holder's highest stat, as does a Booster Energy it used. Returns that BATTLE_STAT_*, or -1 if inactive.
+// Sovereign (item 11): Protosynthesis (in harsh sunlight) and Quark Drive (in Electric Terrain) boost the holder's
+// highest stat, as does a Booster Energy it used. Returns that BATTLE_STAT_*, or -1 if inactive.
 int Sovereign_ProtosynthesisStat(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
     BattleMon *mon = &battleCtx->battleMons[battler];
@@ -7395,7 +7526,8 @@ int Sovereign_ProtosynthesisStat(BattleSystem *battleSys, BattleContext *battleC
 
     if ((ability != ABILITY_PROTOSYNTHESIS && ability != ABILITY_QUARK_DRIVE)
         || (mon->sovereignBoosterEnergy == FALSE
-            && (ability != ABILITY_PROTOSYNTHESIS || Sovereign_ProtosynthesisHasSun(battleSys, battleCtx) == FALSE))) {
+            && (ability != ABILITY_PROTOSYNTHESIS || Sovereign_ProtosynthesisHasSun(battleSys, battleCtx) == FALSE)
+            && (ability != ABILITY_QUARK_DRIVE || (battleCtx->fieldConditionsMask & FIELD_CONDITION_TERRAIN_ELECTRIC) == FALSE))) {
         return -1;
     }
 
@@ -7906,6 +8038,32 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
             || ((battleType & BATTLE_TYPE_DOUBLES) && battleCtx->battleMons[attacker ^ 2].curHP
                 && Battler_Ability(battleCtx, attacker ^ 2) == ABILITY_STEELY_SPIRIT))) {
         movePower = movePower * 15 / 10;
+    }
+
+    // Terrains: Electric, Grassy and Psychic Terrain power up their type's moves from a grounded user by 30%; Misty
+    // Terrain halves Dragon moves against a grounded target, and Grassy Terrain halves Earthquake, Bulldoze and
+    // Magnitude against one. Grass Pelt and Hadron Engine work in their terrain.
+    if (((Sovereign_TerrainUnder(battleCtx, attacker) & FIELD_CONDITION_TERRAIN_ELECTRIC) && moveType == TYPE_ELECTRIC)
+        || ((Sovereign_TerrainUnder(battleCtx, attacker) & FIELD_CONDITION_TERRAIN_GRASSY) && moveType == TYPE_GRASS)
+        || ((Sovereign_TerrainUnder(battleCtx, attacker) & FIELD_CONDITION_TERRAIN_PSYCHIC) && moveType == TYPE_PSYCHIC)) {
+        movePower = movePower * 13 / 10;
+    }
+    if ((Sovereign_TerrainUnder(battleCtx, defender) & FIELD_CONDITION_TERRAIN_MISTY) && moveType == TYPE_DRAGON) {
+        movePower /= 2;
+    }
+    if ((Sovereign_TerrainUnder(battleCtx, defender) & FIELD_CONDITION_TERRAIN_GRASSY)
+        && (move == MOVE_EARTHQUAKE || move == MOVE_BULLDOZE || move == MOVE_MAGNITUDE)) {
+        movePower /= 2;
+    }
+    if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_TERRAIN_GRASSY)
+        && Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_GRASS_PELT) == TRUE) {
+        defenseStat = defenseStat * 15 / 10;
+    }
+    if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_TERRAIN_ELECTRIC) && attackerParams.ability == ABILITY_HADRON_ENGINE) {
+        spAttackStat = spAttackStat * 4 / 3;
+    }
+    if (NO_CLOUD_NINE && (fieldConditions & FIELD_CONDITION_SUNNY) && attackerParams.ability == ABILITY_ORICHALCUM_PULSE) {
+        attackStat = attackStat * 4 / 3;
     }
 
     i = Sovereign_ProtosynthesisStat(battleSys, battleCtx, attacker);
@@ -8987,6 +9145,10 @@ static int CalcMoveType(BattleSystem *battleSys, BattleContext *battleCtx, int i
         if (type >= TYPE_FAIRY) {
             type++;
         }
+        break;
+
+    case MOVE_TERRAIN_PULSE: // Sovereign (item 11)
+        type = Sovereign_TerrainPulseType(battleCtx, item);
         break;
 
     case MOVE_WEATHER_BALL:

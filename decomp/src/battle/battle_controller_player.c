@@ -1016,6 +1016,7 @@ enum FieldCondCheckState {
     FIELD_COND_CHECK_STATE_HAILING,
     FIELD_COND_CHECK_STATE_DEEP_FOG,
     FIELD_COND_CHECK_STATE_GRAVITY,
+    FIELD_COND_CHECK_STATE_SOVEREIGN_TERRAIN,
 
     FIELD_COND_CHECK_END
 };
@@ -1343,6 +1344,20 @@ static void BattleControllerPlayer_CheckFieldConditions(BattleSystem *battleSys,
             battleCtx->fieldConditionCheckState++;
             break;
 
+        case FIELD_COND_CHECK_STATE_SOVEREIGN_TERRAIN:
+            // Sovereign (item 11): count the terrain down; subscript_sovereign_terrain_end clears it.
+            if (battleCtx->fieldConditionsMask & FIELD_CONDITION_TERRAIN) {
+                battleCtx->fieldConditionsMask -= (1 << FIELD_CONDITION_TERRAIN_TURNS_SHIFT);
+
+                if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_TERRAIN_TURNS) == 0) {
+                    PrepareSubroutineSequence(battleCtx, subscript_sovereign_terrain_end);
+                    state = STATE_BREAK_OUT;
+                }
+            }
+
+            battleCtx->fieldConditionCheckState++;
+            break;
+
         case FIELD_COND_CHECK_END:
             state = STATE_DONE;
             break;
@@ -1363,6 +1378,7 @@ enum MonCondCheckState {
     MON_COND_CHECK_START = 0,
 
     MON_COND_CHECK_STATE_INGRAIN = MON_COND_CHECK_START,
+    MON_COND_CHECK_STATE_SOVEREIGN_GRASSY_TERRAIN,
     MON_COND_CHECK_STATE_AQUA_RING,
     MON_COND_CHECK_STATE_ABILITY,
     MON_COND_CHECK_STATE_USE_ITEM,
@@ -1426,6 +1442,23 @@ static void BattleControllerPlayer_CheckMonConditions(BattleSystem *battleSys, B
                     LOAD_SUBSEQ(subscript_ingrain_heal);
                 }
 
+                battleCtx->commandNext = battleCtx->command;
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+                state = STATE_BREAK_OUT;
+            }
+
+            battleCtx->monConditionCheckState++;
+            break;
+
+        case MON_COND_CHECK_STATE_SOVEREIGN_GRASSY_TERRAIN:
+            // Sovereign (item 11): Grassy Terrain heals grounded Pokemon by 1/16 of their max HP.
+            if ((Sovereign_TerrainUnder(battleCtx, battler) & FIELD_CONDITION_TERRAIN_GRASSY)
+                && battleCtx->battleMons[battler].curHP != battleCtx->battleMons[battler].maxHP
+                && battleCtx->battleMons[battler].curHP
+                && battleCtx->battleMons[battler].moveEffectsData.healBlockTurns == 0) {
+                battleCtx->msgBattlerTemp = battler;
+                LOAD_SUBSEQ(subscript_sovereign_grassy_terrain_heal);
                 battleCtx->commandNext = battleCtx->command;
                 battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
 
@@ -3179,6 +3212,18 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
         battleCtx->moveStatusFlags |= MOVE_STATUS_INEFFECTIVE;
     }
 
+    // Sovereign (item 11): Psychic Terrain protects grounded Pokemon from foes' priority moves; Steel Roller fails without
+    // a terrain.
+    if (attacker != defender
+        && BattleSystem_GetBattlerSide(battleSys, attacker) != BattleSystem_GetBattlerSide(battleSys, defender)
+        && (Sovereign_TerrainUnder(battleCtx, defender) & FIELD_CONDITION_TERRAIN_PSYCHIC)
+        && Sovereign_MovePriority(battleCtx, attacker, move) > 0) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_INEFFECTIVE;
+    }
+    if (move == MOVE_STEEL_ROLLER && (battleCtx->fieldConditionsMask & FIELD_CONDITION_TERRAIN) == FALSE) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_FAILED;
+    }
+
     // Sovereign (item 11): Queenly Majesty, Dazzling and Armor Tail block foes' priority moves aimed at their side.
     if (attacker != defender
         && BattleSystem_GetBattlerSide(battleSys, attacker) != BattleSystem_GetBattlerSide(battleSys, defender)
@@ -4110,6 +4155,18 @@ static void BattleControllerPlayer_UpdateMoveBuffers(BattleSystem *battleSys, Ba
             battleCtx->movePrevByBattler[battleCtx->attacker] = battleCtx->moveTemp;
         } else {
             battleCtx->movePrevByBattler[battleCtx->attacker] = MOVE_NONE;
+        }
+
+        // Sovereign (item 11): Stomping Tantrum and Temper Flare remember a failed move; Round tells its partner's.
+        battleCtx->sovereignLastMoveFailed[battleCtx->attacker] = (battleCtx->battleStatusMask2 & SYSCTL_MOVE_SUCCEEDED) == FALSE;
+        if (battleCtx->moveTemp == MOVE_ROUND) {
+            battleCtx->turnFlags[battleCtx->attacker].sovereignUsedRound = TRUE;
+        }
+
+        // Steel Roller and Ice Spinner flatten the terrain (no message yet).
+        if ((battleCtx->moveTemp == MOVE_STEEL_ROLLER || battleCtx->moveTemp == MOVE_ICE_SPINNER)
+            && (battleCtx->battleStatusMask2 & SYSCTL_MOVE_SUCCEEDED)) {
+            battleCtx->fieldConditionsMask &= ~(FIELD_CONDITION_TERRAIN | FIELD_CONDITION_TERRAIN_TURNS);
         }
     }
 

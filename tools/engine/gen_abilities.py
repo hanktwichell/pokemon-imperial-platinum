@@ -114,7 +114,15 @@ MANUAL_DESCRIPTIONS = {
 # Implemented beyond Platinum's 123 (updated as abilities get battle code).
 # Newer abilities whose battle effect is built (item 11): ability number -> what the Battle effect column says.
 IMPLEMENTED = {
-    282: "partly: after using a Booster Energy, its highest stat ×1.3 (Speed ×1.5) (no Electric Terrain yet)",
+    226: "yes: sets Electric Terrain on entry",
+    227: "yes: sets Psychic Terrain on entry",
+    228: "yes: sets Misty Terrain on entry",
+    229: "yes: sets Grassy Terrain on entry",
+    289: "yes: sets Electric Terrain on entry; Sp. Atk ×1.33 in it",
+    288: "yes: sets harsh sunlight on entry; Attack ×1.33 in it",
+    207: "yes: Speed doubled in Electric Terrain",
+    179: "yes: Defense ×1.5 in Grassy Terrain",
+    282: "yes: in Electric Terrain or after using a Booster Energy, its highest stat ×1.3 (Speed ×1.5)",
     275: "partly: Intimidate raises its Attack instead (immunity to Roar and Whirlwind not yet)",
     181: "yes: contact moves ×1.3",
     178: "yes: pulse moves ×1.5",
