@@ -248,7 +248,7 @@ def write_log(rows, megas, have, index, owner_fronts, general):
          "- **Mega Garchomp Z front + shiny front**: reference image provided by the project owner "
          "(`assets/sprites/reference/mega_garchomp_z_reference.png`; native-size copies in "
          "`assets/sprites/owner_supplied/mega_garchomp_z/`). It is a 4× upscale of a 120×120 sprite whose art is 116×95 px, "
-         "so it does not fit Gen IV's 80×80 battle frame and needs a resize/redraw pass. Original artist: **unknown — needs attribution**.\n",
+         "so it does not fit Gen IV's 80×80 battle frame and needs a resize/redraw pass. Original artist: **thesonicgameryt** (DeviantArt, “Custom Sprite | Mega Garchomp Z”; see `CITATIONS.md`).\n",
          "## Legend\n",
          "- ✅ available · ❌ missing (log and come back later) · ⚠️ available but needs work for the DS "
          "(more than 15 colours, or not a clean 2× upscale of an 80×80 frame).\n"]
