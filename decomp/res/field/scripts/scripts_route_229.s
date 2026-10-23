@@ -1,10 +1,45 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_229.h"
+#include "res/field/events/events_route_229.h"
 
 
     ScriptEntry Route229_PokefanM
     ScriptEntry Route229_ArrowSignpostResortArea
+    ScriptEntry Route229_OnTransition
+    ScriptEntry Route229_OnLoad
+    ScriptEntry Route229_LegendaryPheromosa
     ScriptEntryEnd
+
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): an Ultra Beast (Pheromosa) waits in the pocket by the Reaper
+@ Cloth once Necrozma is caught, until it's caught.
+Route229_OnTransition:
+    Call Route229_SovereignSetPheromosaVisibility
+    End
+
+Route229_SovereignSetPheromosaVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+    SovereignCheckSpeciesCaught SPECIES_NECROZMA, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, Route229_SovereignSetPheromosaVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_PHEROMOSA, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, Route229_SovereignSetPheromosaVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+Route229_SovereignSetPheromosaVisibilityEnd:
+    Return
+
+Route229_OnLoad:
+    GoToIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, Route229_RemoveLegendaryPheromosa
+    End
+
+Route229_RemoveLegendaryPheromosa:
+    RemoveObject LOCALID_LEGENDARY_PHEROMOSA
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+    End
+
+Route229_LegendaryPheromosa:
+    SetVar VAR_0x8004, SPECIES_PHEROMOSA
+    SetVar VAR_0x8005, 65
+    Common_SovereignLegendaryEncounter
+    End
 
 Route229_PokefanM:
     PlaySE SE_CONFIRM_sseq_3

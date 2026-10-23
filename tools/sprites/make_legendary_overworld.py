@@ -40,6 +40,15 @@ LEGENDARIES = {
     "tapu_fini": 788,
     "cosmog": 789,
     "necrozma": 800,
+    "nihilego": 793,
+    "buzzwole": 794,
+    "pheromosa": 795,
+    "xurkitree": 796,
+    "celesteela": 797,
+    "kartana": 798,
+    "guzzlord": 799,
+    "stakataka": 805,
+    "blacephalon": 806,
 }
 
 

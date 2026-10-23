@@ -438,10 +438,12 @@ CanalaveLibrary2F_SovereignArchivistAlolaMenu:
     SetMenuXOriginToRight
     AddMenuEntryImm CanalaveLibrary2F_Text_SovereignMenuGuardians, 0
     AddMenuEntryImm CanalaveLibrary2F_Text_SovereignMenuSky, 1
+    AddMenuEntryImm CanalaveLibrary2F_Text_SovereignMenuUltra, 2
     AddMenuEntryImm CanalaveLibrary2F_Text_SovereignMenuDone, 9
     ShowMenu
     GoToIfEq VAR_RESULT, 0, CanalaveLibrary2F_SovereignArchivistGuardians
     GoToIfEq VAR_RESULT, 1, CanalaveLibrary2F_SovereignArchivistSky
+    GoToIfEq VAR_RESULT, 2, CanalaveLibrary2F_SovereignArchivistUltra
     Message CanalaveLibrary2F_Text_SovereignArchivistAlolaKeepReading
     GoTo CanalaveLibrary2F_SovereignArchivistEnd
 
@@ -470,11 +472,11 @@ CanalaveLibrary2F_SovereignArchivistGuardianHints:
     CallIfEq VAR_0x8007, FALSE, CanalaveLibrary2F_SovereignArchivistTapuFini
     GoTo CanalaveLibrary2F_SovereignArchivistAlolaAskMore
 
-@ Sun and Moon, the Alola Chronicle's key: Cosmog at Spear Pillar (FLAG_SOVEREIGN_RECEIVED_COSMOG), how it evolves, then
+@ Sun and Moon, the Alola Chronicle's key: Cosmog at Spear Pillar (FLAG_SOVEREIGN_CAUGHT_COSMOG), how it evolves, then
 @ once the player has Solgaleo or Lunala, the second Cosmog and Necrozma, then the N-Solarizer and N-Lunarizer once
 @ Necrozma is caught.
 CanalaveLibrary2F_SovereignArchivistSky:
-    GoToIfUnset FLAG_SOVEREIGN_RECEIVED_COSMOG, CanalaveLibrary2F_SovereignArchivistCosmog
+    GoToIfUnset FLAG_SOVEREIGN_CAUGHT_COSMOG, CanalaveLibrary2F_SovereignArchivistCosmog
     SovereignCheckSpeciesCaught SPECIES_SOLGALEO, VAR_0x8004
     SovereignCheckSpeciesCaught SPECIES_LUNALA, VAR_0x8005
     GoToIfEq VAR_0x8004, TRUE, CanalaveLibrary2F_SovereignArchivistSkyNecrozma
@@ -488,14 +490,71 @@ CanalaveLibrary2F_SovereignArchivistCosmog:
 
 CanalaveLibrary2F_SovereignArchivistSkyNecrozma:
     SovereignCheckSpeciesCaught SPECIES_NECROZMA, VAR_0x8006
-    CallIfUnset FLAG_SOVEREIGN_RECEIVED_COSMOG_2, CanalaveLibrary2F_SovereignArchivistCosmogAgain
+    CallIfUnset FLAG_SOVEREIGN_CAUGHT_COSMOG_2, CanalaveLibrary2F_SovereignArchivistCosmogAgain
     CallIfEq VAR_0x8006, FALSE, CanalaveLibrary2F_SovereignArchivistNecrozma
     GoToIfEq VAR_0x8006, FALSE, CanalaveLibrary2F_SovereignArchivistAlolaAskMore
     CheckItem ITEM_N_SOLARIZER, 1, VAR_RESULT
     CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistSolarizers
-    GoToIfUnset FLAG_SOVEREIGN_RECEIVED_COSMOG_2, CanalaveLibrary2F_SovereignArchivistAlolaAskMore
+    GoToIfUnset FLAG_SOVEREIGN_CAUGHT_COSMOG_2, CanalaveLibrary2F_SovereignArchivistAlolaAskMore
     Message CanalaveLibrary2F_Text_SovereignArchivistSkyDone
     GoTo CanalaveLibrary2F_SovereignArchivistAlolaAskMore
+
+@ Ultra Beasts: once Necrozma is caught, a hint for each of the nine not caught yet (VAR_0x8008 counts them first).
+CanalaveLibrary2F_SovereignArchivistUltra:
+    SovereignCheckSpeciesCaught SPECIES_NECROZMA, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistUltraLocked
+    SetVar VAR_0x8008, 0
+    SovereignCheckSpeciesCaught SPECIES_NIHILEGO, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
+    SovereignCheckSpeciesCaught SPECIES_BUZZWOLE, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
+    SovereignCheckSpeciesCaught SPECIES_PHEROMOSA, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
+    SovereignCheckSpeciesCaught SPECIES_XURKITREE, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
+    SovereignCheckSpeciesCaught SPECIES_CELESTEELA, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
+    SovereignCheckSpeciesCaught SPECIES_KARTANA, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
+    SovereignCheckSpeciesCaught SPECIES_GUZZLORD, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
+    SovereignCheckSpeciesCaught SPECIES_STAKATAKA, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
+    SovereignCheckSpeciesCaught SPECIES_BLACEPHALON, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
+    GoToIfEq VAR_0x8008, 0, CanalaveLibrary2F_SovereignArchivistUltraDone
+    Message CanalaveLibrary2F_Text_SovereignArchivistUltra
+    SovereignCheckSpeciesCaught SPECIES_NIHILEGO, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistNihilego
+    SovereignCheckSpeciesCaught SPECIES_BUZZWOLE, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistBuzzwole
+    SovereignCheckSpeciesCaught SPECIES_PHEROMOSA, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistPheromosa
+    SovereignCheckSpeciesCaught SPECIES_XURKITREE, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistXurkitree
+    SovereignCheckSpeciesCaught SPECIES_CELESTEELA, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCelesteela
+    SovereignCheckSpeciesCaught SPECIES_KARTANA, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistKartana
+    SovereignCheckSpeciesCaught SPECIES_GUZZLORD, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistGuzzlord
+    SovereignCheckSpeciesCaught SPECIES_STAKATAKA, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistStakataka
+    SovereignCheckSpeciesCaught SPECIES_BLACEPHALON, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistBlacephalon
+    GoTo CanalaveLibrary2F_SovereignArchivistAlolaAskMore
+
+CanalaveLibrary2F_SovereignArchivistUltraLocked:
+    Message CanalaveLibrary2F_Text_SovereignArchivistUltraLocked
+    GoTo CanalaveLibrary2F_SovereignArchivistAlolaAskMore
+
+CanalaveLibrary2F_SovereignArchivistUltraDone:
+    Message CanalaveLibrary2F_Text_SovereignArchivistUltraDone
+    GoTo CanalaveLibrary2F_SovereignArchivistAlolaAskMore
+
+CanalaveLibrary2F_SovereignArchivistCountUltra:
+    AddVar VAR_0x8008, 1
+    Return
 
 CanalaveLibrary2F_SovereignArchivistSolarizers:
     Message CanalaveLibrary2F_Text_SovereignArchivistSolarizers
@@ -588,6 +647,42 @@ CanalaveLibrary2F_SovereignArchivistCosmogAgain:
 
 CanalaveLibrary2F_SovereignArchivistNecrozma:
     Message CanalaveLibrary2F_Text_SovereignArchivistNecrozma
+    Return
+
+CanalaveLibrary2F_SovereignArchivistNihilego:
+    Message CanalaveLibrary2F_Text_SovereignArchivistNihilego
+    Return
+
+CanalaveLibrary2F_SovereignArchivistBuzzwole:
+    Message CanalaveLibrary2F_Text_SovereignArchivistBuzzwole
+    Return
+
+CanalaveLibrary2F_SovereignArchivistPheromosa:
+    Message CanalaveLibrary2F_Text_SovereignArchivistPheromosa
+    Return
+
+CanalaveLibrary2F_SovereignArchivistXurkitree:
+    Message CanalaveLibrary2F_Text_SovereignArchivistXurkitree
+    Return
+
+CanalaveLibrary2F_SovereignArchivistCelesteela:
+    Message CanalaveLibrary2F_Text_SovereignArchivistCelesteela
+    Return
+
+CanalaveLibrary2F_SovereignArchivistKartana:
+    Message CanalaveLibrary2F_Text_SovereignArchivistKartana
+    Return
+
+CanalaveLibrary2F_SovereignArchivistGuzzlord:
+    Message CanalaveLibrary2F_Text_SovereignArchivistGuzzlord
+    Return
+
+CanalaveLibrary2F_SovereignArchivistStakataka:
+    Message CanalaveLibrary2F_Text_SovereignArchivistStakataka
+    Return
+
+CanalaveLibrary2F_SovereignArchivistBlacephalon:
+    Message CanalaveLibrary2F_Text_SovereignArchivistBlacephalon
     Return
 
 CanalaveLibrary2F_SovereignArchivistEnd:

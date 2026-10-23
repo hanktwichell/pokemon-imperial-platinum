@@ -239,6 +239,15 @@ field_sprites_textures_single_frame = [
     { 'file': 'pokemon/legendary_tapu_fini.png', 'basename': 'sovlegend22'},
     { 'file': 'pokemon/legendary_cosmog.png', 'basename': 'sovlegend23'},
     { 'file': 'pokemon/legendary_necrozma.png', 'basename': 'sovlegend24'},
+    { 'file': 'pokemon/legendary_nihilego.png', 'basename': 'sovlegend25'},
+    { 'file': 'pokemon/legendary_buzzwole.png', 'basename': 'sovlegend26'},
+    { 'file': 'pokemon/legendary_pheromosa.png', 'basename': 'sovlegend27'},
+    { 'file': 'pokemon/legendary_xurkitree.png', 'basename': 'sovlegend28'},
+    { 'file': 'pokemon/legendary_celesteela.png', 'basename': 'sovlegend29'},
+    { 'file': 'pokemon/legendary_kartana.png', 'basename': 'sovlegend30'},
+    { 'file': 'pokemon/legendary_guzzlord.png', 'basename': 'sovlegend31'},
+    { 'file': 'pokemon/legendary_stakataka.png', 'basename': 'sovlegend32'},
+    { 'file': 'pokemon/legendary_blacephalon.png', 'basename': 'sovlegend33'},
 ]
 
 field_sprites_textures_single_frame_pl_suffix = [

@@ -22,12 +22,42 @@
     ScriptEntry SunyshoreCity_SealMerchant_Unused
     ScriptEntry SunyshoreCity_Flint
     ScriptEntry SunyshoreCity_OnTransition
+    ScriptEntry SunyshoreCity_OnLoad
+    ScriptEntry SunyshoreCity_LegendaryXurkitree
     ScriptEntryEnd
 
 SunyshoreCity_OnTransition:
+    Call SunyshoreCity_SovereignSetXurkitreeVisibility
     CallIfEq VAR_SANDGEM_TOWN_LAB_STATE, 2, SunyshoreCity_HideSandgemTownLabCounterpart
     CallIfEq VAR_SANDGEM_TOWN_LAB_STATE, 3, SunyshoreCity_HideSandgemTownLabCounterpart
     GoToIfEq VAR_SUNYSHORE_CITY_STATE, 0, SunyshoreCity_SetFlintPositionAtGate
+    End
+
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): an Ultra Beast (Xurkitree) sparks at the end of the walkway
+@ by the Thunderstone once Necrozma is caught, until it's caught.
+SunyshoreCity_SovereignSetXurkitreeVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+    SovereignCheckSpeciesCaught SPECIES_NECROZMA, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SunyshoreCity_SovereignSetXurkitreeVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_XURKITREE, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, SunyshoreCity_SovereignSetXurkitreeVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+SunyshoreCity_SovereignSetXurkitreeVisibilityEnd:
+    Return
+
+SunyshoreCity_OnLoad:
+    GoToIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, SunyshoreCity_RemoveLegendaryXurkitree
+    End
+
+SunyshoreCity_RemoveLegendaryXurkitree:
+    RemoveObject LOCALID_LEGENDARY_XURKITREE
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+    End
+
+SunyshoreCity_LegendaryXurkitree:
+    SetVar VAR_0x8004, SPECIES_XURKITREE
+    SetVar VAR_0x8005, 65
+    Common_SovereignLegendaryEncounter
     End
 
 SunyshoreCity_HideSandgemTownLabCounterpart:

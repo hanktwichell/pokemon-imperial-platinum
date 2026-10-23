@@ -86,7 +86,6 @@
     ScriptEntry CommonScript_GriseousOrbCouldNotBeRemoved @ 0x809
     ScriptEntry CommonScript_SovereignTotemTrial @ 0x80A
     ScriptEntry CommonScript_SovereignLegendaryEncounter @ 0x80B
-    ScriptEntry CommonScript_SovereignGiftPokemon @ 0x80C
     ScriptEntryEnd
 
 CommonScript_Dummy2010:
@@ -1719,7 +1718,7 @@ CommonScript_GriseousOrbCouldNotBeRemoved:
 @ Sovereign (the Chronicles, docs/PostgameLegendaries.md): a static legendary. VAR_0x8004 = species, VAR_0x8005 =
 @ level. FLAG_SOVEREIGN_REMOVE_LEGENDARY asks the map's OnLoad script to remove the Pokémon when the field comes back
 @ (map objects survive a battle). Not caught, it vanishes until the next visit: the map's OnTransition shows it again
-@ until the Pokédex has it as caught.
+@ until the Pokédex has it as caught. VAR_RESULT comes back TRUE when the player caught it, FALSE otherwise.
 CommonScript_SovereignLegendaryEncounter:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
@@ -1737,7 +1736,8 @@ CommonScript_SovereignLegendaryEncounter:
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, CommonScript_SovereignLegendaryLost
     CheckDidNotCapture VAR_RESULT
-    CallIfEq VAR_RESULT, TRUE, CommonScript_SovereignLegendaryVanished
+    GoToIfEq VAR_RESULT, TRUE, CommonScript_SovereignLegendaryVanished
+    SetVar VAR_RESULT, TRUE
     ReleaseAll
     ReturnCommonScript
     End
@@ -1747,60 +1747,15 @@ CommonScript_SovereignLegendaryVanished:
     Message CommonStrings_Text_SovereignLegendaryVanished
     WaitButton
     CloseMessage
-    Return
-
-CommonScript_SovereignLegendaryLost:
-    BlackOutFromBattle
+    SetVar VAR_RESULT, FALSE
     ReleaseAll
     ReturnCommonScript
     End
 
-@ Sovereign (the Chronicles): a gift Pokémon, with the nickname prompt. VAR_0x8004 = species, VAR_0x8005 = level.
-@ VAR_RESULT comes back TRUE once it's given, FALSE when the party is full (the caller lets the player come back). The
-@ caller locks and releases the player.
-CommonScript_SovereignGiftPokemon:
-    SetVar VAR_0x8009, VAR_0x8004
-    SetVar VAR_0x800A, VAR_0x8005
-    GetPartyCount VAR_RESULT
-    GoToIfEq VAR_RESULT, MAX_PARTY_SIZE, CommonScript_SovereignGiftPartyFull
-    PlayFanfare SEQ_FANFA4_sseq
-    BufferPlayerName 0
-    BufferSpeciesNameFromVar 1, VAR_0x8009, 0, 0
-    Message CommonStrings_Text_SovereignPlayerReceivedPokemon
-    WaitFanfare
-    GivePokemon VAR_0x8009, VAR_0x800A, ITEM_NONE, VAR_RESULT
-    BufferSpeciesNameFromVar 1, VAR_0x8009, 0, 0
-    Message CommonStrings_Text_SovereignAskNicknameGift
-    ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, CommonScript_SovereignGiftNoNickname
-    CloseMessage
-    GetPartyCount VAR_0x800B
-    SubVar VAR_0x800B, 1
-    FadeScreenOut
-    WaitFadeScreen
-    OpenPokemonNamingScreen VAR_0x800B, VAR_RESULT
-    CallIfNe VAR_RESULT, 1, CommonScript_SovereignGiftNicknamed
-    FadeScreenIn
-    WaitFadeScreen
-    SetVar VAR_RESULT, TRUE
-    ReturnCommonScript
-    End
-
-CommonScript_SovereignGiftNicknamed:
-    IncrementGameRecord RECORD_POKEMON_NICKNAMED
-    Return
-
-CommonScript_SovereignGiftNoNickname:
-    CloseMessage
-    SetVar VAR_RESULT, TRUE
-    ReturnCommonScript
-    End
-
-CommonScript_SovereignGiftPartyFull:
-    Message CommonStrings_Text_SovereignGiftPartyFull
-    WaitButton
-    CloseMessage
+CommonScript_SovereignLegendaryLost:
+    BlackOutFromBattle
     SetVar VAR_RESULT, FALSE
+    ReleaseAll
     ReturnCommonScript
     End
 

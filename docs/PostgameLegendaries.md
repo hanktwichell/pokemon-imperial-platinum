@@ -11,7 +11,7 @@ Renegade Platinum's own legendary events (Gen I–IV) are unchanged; see `Renega
 - Chapters open one after another (each needs the previous chapter's "key" legendary caught), so the post-game has a guided order.
 - Static encounters can be retried after fainting or fleeing, and have the normal shiny odds (Renegade behaviour).
 - New maps or rooms are marked _(new)_ and need map work in DSPRE.
-- **Built:** The Archivist (CB-0035) stands in Canalave Library 2F from the first Hall of Fame; his first talk opens the Unova Chronicle (VAR_SOVEREIGN_CHRONICLE). Later talks offer a menu of its legends (CB-0040): Swords of Justice (the swords, then Keldeo, CB-0036), Truth and Ideals (the Light and Dark Stones, the dragons, then the DNA Splicers, CB-0038), Forces of Nature (the roamers' release, then the Reveal Glass, Landorus and Enamorus, CB-0039) and Other legends (Meloetta, Genesect and Victini, CB-0037 and CB-0041). Once Kyurem is caught he opens the Kalos Chronicle (CB-0041) and first asks which Chronicle to read from; Kalos has Life and Destruction (Xerneas and Yveltal, then Zygarde) and Other legends (the Prison Bottle, Diancie, Hoopa and Volcanion). Xerneas and Yveltal caught open the Alola Chronicle (CB-0042): Island Guardians (the Tapus) and Sun and Moon (Cosmog, then Necrozma). Gifts share CommonScript_SovereignGiftPokemon (party check, nickname prompt). Static encounters share CommonScript_SovereignLegendaryEncounter: each stays on the map until the Pokédex has it as caught, and vanishes after it's knocked out until the next visit (as in vanilla legendary battles, the player can't run).
+- **Built:** The Archivist (CB-0035) stands in Canalave Library 2F from the first Hall of Fame; his first talk opens the Unova Chronicle (VAR_SOVEREIGN_CHRONICLE). Later talks offer a menu of its legends (CB-0040): Swords of Justice (the swords, then Keldeo, CB-0036), Truth and Ideals (the Light and Dark Stones, the dragons, then the DNA Splicers, CB-0038), Forces of Nature (the roamers' release, then the Reveal Glass, Landorus and Enamorus, CB-0039) and Other legends (Meloetta, Genesect and Victini, CB-0037 and CB-0041). Once Kyurem is caught he opens the Kalos Chronicle (CB-0041) and first asks which Chronicle to read from; Kalos has Life and Destruction (Xerneas and Yveltal, then Zygarde) and Other legends (the Prison Bottle, Diancie, Hoopa and Volcanion). Xerneas and Yveltal caught open the Alola Chronicle (CB-0042): Island Guardians (the Tapus), Sun and Moon (Cosmog, then Necrozma) and Ultra Beasts (CB-0043). Every legendary is battled and caught, never given (owner, 2026-10-23). Static encounters share CommonScript_SovereignLegendaryEncounter: each stays on the map until the Pokédex has it as caught, and vanishes after it's knocked out until the next visit (as in vanilla legendary battles, the player can't run).
 
 Covers **90** species.
 
@@ -116,8 +116,8 @@ Covers **90** species.
 - **Pokémon:** #789 Cosmog, #790 Cosmoem, #791 Solgaleo, #792 Lunala
 - **Level:** 5
 - **Location:** Spear Pillar
-- **How:** A Cosmog is found at Spear Pillar (gift, Lv. 5). It evolves into Cosmoem at Lv. 43; Cosmoem becomes Solgaleo with a Sun Stone or Lunala with a Moon Stone (see EvolutionChanges_Sovereign.md). Return to Spear Pillar for a second Cosmog after the first evolves, so both Solgaleo and Lunala are obtainable.
-- **Built:** Cosmog (CB-0042): floating in Spear Pillar's plaza (31, 25) once the Alola Chronicle is open, a gift at level 5 (FLAG_SOVEREIGN_RECEIVED_COSMOG). Once the Pokédex has Solgaleo or Lunala as caught, a second one waits there (FLAG_SOVEREIGN_RECEIVED_COSMOG_2). With a full party, it waits until the player comes back with room.
+- **How:** A Cosmog waits at Spear Pillar (Lv. 5) to be battled and caught. It evolves into Cosmoem at Lv. 43; Cosmoem becomes Solgaleo with a Sun Stone or Lunala with a Moon Stone (see EvolutionChanges_Sovereign.md). Return to Spear Pillar for a second Cosmog after the first evolves, so both Solgaleo and Lunala are obtainable.
+- **Built:** Cosmog (CB-0042, a battle since CB-0043): floating in Spear Pillar's plaza (31, 25) once the Alola Chronicle is open, at level 5, until it's caught (FLAG_SOVEREIGN_CAUGHT_COSMOG). Once the Pokédex has Solgaleo or Lunala as caught, a second one waits there until it's caught too (FLAG_SOVEREIGN_CAUGHT_COSMOG_2). Like every static legendary, one that's knocked out comes back on the next visit. **Changed from the plan** (owner, 2026-10-23: legendaries are battled and caught, never given): CB-0042 made Cosmog a gift.
 
 ### The Blinding One
 - **Pokémon:** #800 Necrozma
@@ -131,24 +131,25 @@ Covers **90** species.
 - **Level:** 65
 - **Location:** Nihilego — Iron Island B3F. Buzzwole — Route 225. Pheromosa — Route 229. Xurkitree — Sunyshore City power plant. Celesteela — Mt. Coronet Summit. Kartana — Eterna Forest. Guzzlord — Turnback Cave. Stakataka — Route 227. Blacephalon — Stark Mountain (outside)
 - **How:** After Necrozma is caught, a glowing wormhole object appears at each location (static encounter).
+- **Built:** The Ultra Beasts (CB-0043), all level 65, each a static encounter from the moment Necrozma is caught until it's caught: Nihilego in Iron Island B3F's east pocket (15, 4); Buzzwole beside the item at Route 225's north end (633, 330); Pheromosa in the Route 229 pocket by the Reaper Cloth (813, 426); Xurkitree at the end of Sunyshore City's walkway by the Thunderstone (882, 778); Celesteela on Mt. Coronet's highest snowfield (Mt. Coronet outside north, (51, 3)); Kartana by Eterna Forest's east passage (87, 51); Guzzlord in Turnback Cave's first room (11, 7); Stakataka in the hollow south of Route 227's grass (747, 273); Blacephalon in the hollow east of Stark Mountain's entrance (760, 234). The Archivist's Ultra Beasts topic hints at each one not caught yet. **Changed from the plan** (owner, 2026-10-23: existing spots): each Ultra Beast stands there itself, with no wormhole object, and Xurkitree uses Sunyshore's walkway in place of a power plant.
 
 ### The Poison Pin
 - **Pokémon:** #803 Poipole, #804 Naganadel
 - **Level:** 40
 - **Location:** Fight Area — Pokémon Center
-- **How:** An Ultra Recon-style researcher gives Poipole (gift). Naganadel by levelling up knowing Dragon Pulse.
+- **How:** An Ultra Recon-style researcher tells of a Poipole that came through a wormhole; it then waits nearby to be battled and caught. Naganadel by levelling up knowing Dragon Pulse. **Changed from the plan** (owner, 2026-10-23: legendaries are battled and caught, never given); the plan had a gift.
 
 ### Type Experiments
 - **Pokémon:** #772 Type: Null, #773 Silvally
 - **Level:** 40
 - **Location:** Veilstone City — Team Galactic HQ
-- **How:** Gift from the same reformed scientist as Genesect. Silvally via high friendship.
+- **How:** The same reformed scientist as Genesect confesses to a second experiment; Type: Null then waits in the lab to be battled and caught. Silvally via high friendship. **Changed from the plan** (owner, 2026-10-23: legendaries are battled and caught, never given); the plan had a gift.
 
 ### The Artificial Pokémon
 - **Pokémon:** #801 Magearna
 - **Level:** 50
 - **Location:** Sunyshore City — Volkner's workshop (new room in the Gym)
-- **How:** Volkner restores a 500-year-old automaton after you defeat him in a rematch.
+- **How:** Volkner restores a 500-year-old automaton after you defeat him in a rematch; Magearna wakes and must be battled and caught. **Changed from the plan** (owner, 2026-10-23: legendaries are battled and caught, never given); the plan had Volkner hand it over.
 
 ### Shadows
 - **Pokémon:** #802 Marshadow
@@ -166,7 +167,7 @@ Covers **90** species.
 - **Pokémon:** #808 Meltan, #809 Melmetal
 - **Level:** 40
 - **Location:** Oreburgh Mine B2F
-- **How:** The mine foreman gives a Meltan, and after you show it to him, a Melmetal (Lv. 50).
+- **How:** A Meltan (Lv. 40) is battled and caught in the mine; show it to the foreman and a Melmetal (Lv. 50) appears to battle. **Changed from the plan** (owner, 2026-10-23: legendaries are battled and caught, never given); the plan had the foreman give both.
 
 ## Galar Chronicle
 
@@ -186,7 +187,7 @@ Covers **90** species.
 - **Pokémon:** #891 Kubfu, #892 Urshifu
 - **Level:** 10
 - **Location:** Veilstone Gym
-- **How:** Maylene gives a Kubfu (gift) and both Scrolls; using one evolves Kubfu into Urshifu (Single Strike or Rapid Strike).
+- **How:** A Kubfu trains in the Veilstone Gym; battle and catch it, then Maylene gives both Scrolls; using one evolves Kubfu into Urshifu (Single Strike or Rapid Strike). **Changed from the plan** (owner, 2026-10-23: legendaries are battled and caught, never given); the plan had Maylene give Kubfu.
 
 ### The Jungle Guardian
 - **Pokémon:** #893 Zarude

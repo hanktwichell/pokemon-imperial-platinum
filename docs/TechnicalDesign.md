@@ -274,13 +274,20 @@ implemented.
       caught. Diancie (Oreburgh Mine B2F) checks `CheckPartyHasSpecies` for a Carbink. Hoopa (Solaceon Ruins Room 7)
       checks `CheckItem ITEM_PRISON_BOTTLE`, which the Archivist gives while the player doesn't have it.
     - **Alola** (var 3, from a talk with Xerneas and Yveltal caught): the four Tapus need the var only.
-      - Spear Pillar shows a Cosmog object while `FLAG_SOVEREIGN_RECEIVED_COSMOG` is unset. It shows again while
-        `_COSMOG_2` is unset and the Pokédex has Solgaleo or Lunala as caught (`VAR_MAP_LOCAL_0x01` holds that check
-        in the OnTransition).
+      - Spear Pillar shows a Cosmog (a Lv. 5 battle) while `FLAG_SOVEREIGN_CAUGHT_COSMOG` is unset. It shows again
+        while `_COSMOG_2` is unset and the Pokédex has Solgaleo or Lunala as caught (`VAR_MAP_LOCAL_0x01` holds that
+        check in the OnTransition). The Pokédex can't tell the two apart, so a catch sets the flag. Cosmog and Necrozma
+        note their species in `VAR_MAP_LOCAL_0x02` for the removal after a battle.
       - Necrozma (`FLAG_MAP_LOCAL_HIDE_LEGENDARY_2`) needs the same check.
-    - **Gifts** use `Common_SovereignGiftPokemon` (common script 0x80C): `VAR_0x8004` species, `VAR_0x8005` level. It
-      checks for room in the party, plays the fanfare, gives the Pokémon and offers a nickname. `VAR_RESULT` comes back
-      TRUE once it's given, so the caller sets its flag and removes the object only then.
+    - **Ultra Beasts** (Necrozma caught): nine statics that check `SovereignCheckSpeciesCaught SPECIES_NECROZMA` only.
+      - Kartana is Eterna Forest's third legendary: `FLAG_MAP_LOCAL_HIDE_LEGENDARY_3` (map-local 0x1B, unused in
+        vanilla), and the same `VAR_MAP_LOCAL_0x00` note as Virizion and Xerneas.
+      - Stakataka shares Route 227 with Terrakion (`FLAG_MAP_LOCAL_HIDE_LEGENDARY_2`, `VAR_MAP_LOCAL_0x00`).
+      - Iron Island B3F's OnLoad also places its Iron Ruins warp, so Nihilego's removal there is a `CallIfSet`.
+      - Mt. Coronet outside north had `scripts_empty` and gets its own archives, like the ice chamber's.
+    - **No gifts** (owner, 2026-10-23): every legendary is a battle. `Common_SovereignLegendaryEncounter` returns
+      `VAR_RESULT` TRUE after a catch (FALSE after a knock-out or a loss), for encounters that need a flag of their own.
+      CB-0042's gift script (common script 0x80C) is gone.
     - **Two legendaries on one map** (Eterna Forest: Virizion and Xerneas). Xerneas hides with
       `FLAG_MAP_LOCAL_HIDE_LEGENDARY_2` (map-local 0x1C, unused in vanilla). The OnLoad removal after a battle has to
       know which one was fought: each talk script stores its species in `VAR_MAP_LOCAL_0x00` first. Map-local vars last

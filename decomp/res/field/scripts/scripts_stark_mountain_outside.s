@@ -7,10 +7,40 @@
     ScriptEntry StarkMountainOutside_SignboardStarkMountain
     ScriptEntry StarkMountainOutside_CoordEvent_Grunts
     ScriptEntry StarkMountainOutside_OnFrame_LookerBuck
+    ScriptEntry StarkMountainOutside_OnLoad
+    ScriptEntry StarkMountainOutside_LegendaryBlacephalon
     ScriptEntryEnd
 
 StarkMountainOutside_OnTransition:
     SetFlag FLAG_FIRST_ARRIVAL_STARK_MOUNTAIN_EXTERIOR
+    Call StarkMountainOutside_SovereignSetBlacephalonVisibility
+    End
+
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): an Ultra Beast (Blacephalon) juggles its head in the hollow
+@ east of the entrance once Necrozma is caught, until it's caught.
+StarkMountainOutside_SovereignSetBlacephalonVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+    SovereignCheckSpeciesCaught SPECIES_NECROZMA, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, StarkMountainOutside_SovereignSetBlacephalonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_BLACEPHALON, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, StarkMountainOutside_SovereignSetBlacephalonVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+StarkMountainOutside_SovereignSetBlacephalonVisibilityEnd:
+    Return
+
+StarkMountainOutside_OnLoad:
+    GoToIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, StarkMountainOutside_RemoveLegendaryBlacephalon
+    End
+
+StarkMountainOutside_RemoveLegendaryBlacephalon:
+    RemoveObject LOCALID_LEGENDARY_BLACEPHALON
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+    End
+
+StarkMountainOutside_LegendaryBlacephalon:
+    SetVar VAR_0x8004, SPECIES_BLACEPHALON
+    SetVar VAR_0x8005, 65
+    Common_SovereignLegendaryEncounter
     End
 
 StarkMountainOutside_SignboardStarkMountain:
