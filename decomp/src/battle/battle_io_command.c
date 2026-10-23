@@ -693,6 +693,15 @@ static void BtlIOCmd_ChangeWeatherForm(BattleSystem *battleSys, BattlerData *bat
     *monSpriteTemplatePtr = monSpriteTemplate;
 
     PokemonSprite_ScheduleReloadFromNARC(battlerData->monSprite);
+
+    // Sovereign (E8): a sprite held faded (the Mega Evolution animation leaves it white) stays faded on the new form:
+    // blend the reloaded palette again. Platinum's own fades end at 0, so its form changes are unaffected.
+    int heldAlpha = PokemonSprite_GetAttribute(battlerData->monSprite, MON_SPRITE_FADE_INIT_ALPHA);
+
+    if (PokemonSprite_IsFadeActive(battlerData->monSprite) == FALSE && heldAlpha > 0) {
+        PokemonSprite_StartFade(battlerData->monSprite, heldAlpha, heldAlpha, 0, PokemonSprite_GetAttribute(battlerData->monSprite, MON_SPRITE_FADE_TARGET_COLOR));
+    }
+
     CharacterSprite_LoadPokemonSprite(monSpriteTemplatePtr->narcID, monSpriteTemplatePtr->character, HEAP_ID_BATTLE, PokemonSpriteData_GetTiles(BattleSystem_GetPokemonSpriteData(battleSys), battlerData->battler), message->personality, FALSE, face, monSpriteTemplatePtr->spindaSpots);
 
     PokemonSpriteData_SetNarcID(BattleSystem_GetPokemonSpriteData(battleSys), battlerData->battler, monSpriteTemplatePtr->narcID);

@@ -24,23 +24,26 @@
   trainer may Mega Evolve once.
 - **Wild Pokémon** never Mega Evolve.
 
-## Mega Evolution animation (target spec)
+## Mega Evolution animation
 
-Modelled on how Pokémon Unbound and Pokémon Insurgence present Mega Evolution (credited in `CITATIONS.md`); all assets
-will be original or credited.
+Modelled on how Pokémon Unbound and Pokémon Insurgence present Mega Evolution (credited in `CITATIONS.md`). It's built
+from Platinum's own particle effects; any new assets will be original or credited. Each step below is marked as built
+(✅) or still to do.
 
-1. Battle text: *"<Trainer>'s Mega Ring is reacting to <Pokémon>'s <Stone>!"* (player) or *"<Pokémon>'s <Stone> is
-   reacting to <Trainer>'s Key Stone!"* (opponent).
-2. Background darkens (palette fade to ~40 % brightness); the other battlers dim.
-3. Two light streams (Key Stone colour → stone colour) arc from the trainer side to the Pokémon, with rainbow particles.
-4. A sphere of prismatic light grows over the Pokémon and pulses three times while the screen gently shakes.
-5. The sphere shatters into shards (white flash, 2 frames). The Mega sprite is swapped in during the flash.
-6. The Mega Evolution symbol flashes over the sprite; the Mega's cry plays (pitch-shifted base cry until custom cries exist).
-7. Text: *"<Pokémon> has Mega Evolved into Mega <Pokémon>!"*, and a Mega icon is drawn on the HP bar.
+1. ✅ Battle text: *"<Pokémon>'s <Stone> is reacting to the Mega Ring!"* (or *"The foe's <Pokémon>'s <Stone> is
+   reacting!"*).
+2. ✅ The background darkens and the other battlers dim.
+3. ✅ Two beams of light reach the Pokémon and sparkles gather on it. Still to do: streams in the Key Stone's and the
+   stone's colours.
+4. ✅ A ring of light forms around the Pokémon. It pulses three times (pink, cyan, gold) while it shakes.
+5. ✅ It turns white, and the Mega sprite is swapped in while it's white.
+6. ✅ Streaks of light burst out and the Mega form fades in from white with sparkles. The Mega's cry plays (the base
+   cry until custom cries exist). Still to do: the Mega Evolution symbol over the sprite.
+7. ✅ Text: *"<Pokémon> has Mega Evolved into Mega <Pokémon>!"*. Still to do: a Mega icon on the HP bar.
 
-Primal Reversion uses the same structure, with a red (Ω) or blue (α) sphere and symbol instead of the rainbow.
-Implementation: a new battle-animation script plus particle resources (`.spa`), driven by a battle subscript like the one the
-engine uses for form changes (see `TechnicalDesign.md`).
+Primal Reversion uses the same structure, with blue pulses for Kyogre (α) and red ones for Groudon (Ω). Still to do: the
+α and Ω symbols. With Battle Scene off, the sprite simply swaps. The scripts are the `sovereign_*` common animations,
+played by the Mega and Primal battle subscripts (`TechnicalDesign.md` §4).
 
 ## Abilities
 

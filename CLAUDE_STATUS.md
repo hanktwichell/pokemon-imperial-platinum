@@ -1196,3 +1196,45 @@ screen, off and on. The release ROM builds and passes boot smoke.
 1. Merge PR #22 when green.
 2. The Mega Evolution animation.
 3. The Mega abilities the boss teams need.
+
+---
+
+## CB-0019 — 2026-10-22, 8:20 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: the Mega Evolution and Primal Reversion animation** (E8 step 4, `docs/MegaEvolution.md`), verified frame
+by frame in the test build:
+- The background darkens and the other battlers dim.
+- Light beams and gathering sparkles reach the Pokémon, and a ring of light forms around it.
+- It pulses pink, cyan and gold (blues for Kyogre, reds for Groudon) as it shakes, then turns white.
+- The sprite swaps while it's white. Streaks burst out, the new form fades in from white with sparkles, and it cries.
+- About 6 seconds in all. It was checked on Garchomp (wild), Kyogre and Groudon (temporary leads), and the foe's
+  Charizard in the doubles test battle.
+- It's built from Platinum's own particle effects plus one new animation function, a one-way sprite fade that
+  survives the form change. Details are in `docs/TechnicalDesign.md` §4.
+
+**Also (owner asked):**
+- CITATIONS credits the Mega Garchomp Z sprite to thesonicgameryt (DeviantArt), and Nolan Herkomer for many of the
+  shiny sprites.
+- thesonicgameryt's page is saved in `docs/ProjectStatus.md` as a source of new Mega sprites to check for E12.
+
+**Files modified:**
+- Animations:
+  - `decomp/res/battle/scripts/common_anims/sovereign_mega_evolution.s`, `sovereign_mega_evolved.s`,
+    `sovereign_primal_alpha.s`, `sovereign_primal_omega.s` (formerly `dummy23/24/41/42.s`), with `meson.build` and
+    `anim_subscripts.order`
+  - `decomp/generated/battle_sub_animations.txt`
+  - `decomp/res/battle/scripts/subscripts/subscript_sovereign_mega_evolution.s`,
+    `subscript_sovereign_primal_reversion.s`
+- Engine:
+  - `decomp/src/battle_anim/script_funcs_3.c`, `script_func_tables.c`, `decomp/include/battle_anim/script_funcs_3.h`
+  - `decomp/include/constants/battle/battle_anim.h`, `decomp/asm/macros/btlanimfunc.inc`
+  - `decomp/src/battle/battle_io_command.c`
+- Docs:
+  - `docs/EngineChangelog.md`, `docs/TechnicalDesign.md`, `docs/EngineRoadmap.md`, `docs/MegaEvolution.md` (via
+    `tools/design/gen_mega_doc.py`), `docs/ProjectStatus.md`
+  - `CITATIONS.md`, `docs/SpriteLog.md` (via `tools/sprites/import_sprite_pack.py`), `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR when green.
+2. The Mega abilities the boss teams need: Magic Bounce, Parental Bond, Strong Jaw, Tough Claws, Aura Guard.
+3. The rest of the animation spec: the Mega symbol over the sprite and a Mega icon on the HP bar.
