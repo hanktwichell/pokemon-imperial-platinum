@@ -211,6 +211,9 @@ MOVES = {
     "synchronoise": (None, None, "only affects targets that share a type with the user"),
     "upper_hand": ("FLINCH_HIT", 100, "fails unless the target is about to use a damaging priority move; makes it flinch"),
     "final_gambit": ("SOVEREIGN_FINAL_GAMBIT", 0, "damage equal to the user's HP; the user faints if it hits"),
+    "scale_shot": (None, None, "hits 2-5 times, then user Defense -1 and Speed +1"),
+    "coaching": ("SOVEREIGN_COACHING", 0, "the user's ally gets Attack and Defense +1 (fails without one)"),
+    "dragon_cheer": ("SOVEREIGN_DRAGON_CHEER", 0, "the user's ally gets +1 crit stage, +2 if Dragon type (fails without one)"),
 }
 
 

@@ -2579,3 +2579,21 @@ and Keldeo, CB-0036) is merged; its first CI run died in apt-get and the one re-
 2. More moves: Scale Shot, Coaching, Dragon Cheer, Parting Shot, Belch, Bestow, the Pledges, Ally Switch,
    Telekinesis, Wonder/Magic Room.
 3. Abilities: Mirror Armor, Cotton Down, Wind Rider/Wind Power, Purifying Salt's status immunity.
+
+## CA-0040 (Claude A, branch `claude/festive-bardeen-5h7beo`, 2026-10-23)
+
+**Just implemented:** item 11 part 22: Scale Shot, Coaching, Dragon Cheer, all verified in game.
+- Move checklist: exact 252, approximate 39, placeholder 89.
+
+**Files modified:**
+- `decomp/src/battle/battle_controller_player.c`, `battle_script.c`, `battle_lib.c`
+- `decomp/include/battle/battle_context.h`
+- New effects 0326 and 0327; new subscripts `subscript_sovereign_coaching.s`, `_dragon_cheer.s`, `_scale_shot.s`
+- The effect, pointer, subscript and script-variable lists
+- `res/moves/{coaching,dragon_cheer}/data.json`
+- `tools/engine/gen9_move_fixes.py`, `docs/MoveChecklist.md`, `docs/EngineChangelog.md`
+
+**Next 3 steps:**
+1. Merge PR #50 (parts 21 and 22) when CI is green.
+2. More moves: Parting Shot, Belch, Bestow, the Pledges, Ally Switch, Telekinesis, Wonder/Magic Room.
+3. Abilities: Mirror Armor, Cotton Down, Wind Rider/Wind Power, Purifying Salt's status immunity.

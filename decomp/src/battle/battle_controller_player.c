@@ -4232,6 +4232,16 @@ static void BattleControllerPlayer_LeftoverState32(BattleSystem *battleSys, Batt
     return;
 }
 
+// Sovereign (item 11): Scale Shot changes the user's stats after its last hit.
+static int Sovereign_HitXTimesSubscript(BattleContext *battleCtx)
+{
+    if (battleCtx->moveCur == MOVE_SCALE_SHOT && ATTACKING_MON.curHP) {
+        return subscript_sovereign_scale_shot;
+    }
+
+    return subscript_hit_x_times;
+}
+
 static void BattleControllerPlayer_LoopMultiHit(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     if (battleCtx->multiHitNumHits) {
@@ -4251,7 +4261,7 @@ static void BattleControllerPlayer_LoopMultiHit(BattleSystem *battleSys, BattleC
             } else {
                 battleCtx->msgTemp = battleCtx->multiHitNumHits;
 
-                LOAD_SUBSEQ(subscript_hit_x_times);
+                LOAD_SUBSEQ(Sovereign_HitXTimesSubscript(battleCtx));
                 battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
                 battleCtx->commandNext = BATTLE_CONTROL_LOOP_FAINTED;
             }
@@ -4264,7 +4274,7 @@ static void BattleControllerPlayer_LoopMultiHit(BattleSystem *battleSys, BattleC
                 battleCtx->msgTemp = battleCtx->multiHitNumHits - battleCtx->multiHitCounter;
             }
 
-            LOAD_SUBSEQ(subscript_hit_x_times);
+            LOAD_SUBSEQ(Sovereign_HitXTimesSubscript(battleCtx));
             battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
             battleCtx->commandNext = BATTLE_CONTROL_LOOP_FAINTED;
         }

@@ -346,6 +346,7 @@ struct BattleContext {
     u8 sovereignParentalBond; // Sovereign (item 11): the current move hits a second time through Parental Bond
     u8 sovereignPiercingDrill; // Sovereign (item 11): the current hit goes through protection with Piercing Drill
     int sovereignHPBeforeHit[MAX_BATTLERS]; // Sovereign (item 11): each battler's HP before the last hit it took (Berserk, Innards Out)
+    int sovereignDragonCheer[MAX_BATTLERS]; // Sovereign (item 11): Dragon Cheer's crit stages (1, or 2 for a Dragon type)
 };
 
 #endif // POKEPLATINUM_BATTLE_BATTLE_CONTEXT_H

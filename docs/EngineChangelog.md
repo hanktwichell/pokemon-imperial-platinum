@@ -4,6 +4,23 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (part 22) — Scale Shot, Coaching, Dragon Cheer
+
+- **Scale Shot:** hits 2–5 times; after the last hit ("Hit N time(s)!") the user's Defense falls 1 stage and its
+  Speed rises 1 stage. Done in the multi-hit loop.
+- **Coaching:** raises the Attack and Defense of the user's ally by 1 stage; fails without one. New effect
+  `SOVEREIGN_COACHING` (326).
+- **Dragon Cheer:** gives the user's ally +1 critical-hit stage (+2 for a Dragon type) until it leaves battle. Fails
+  without an ally, or if the ally is already cheered.
+  - New effect `SOVEREIGN_DRAGON_CHEER` (327).
+  - New `BattleContext` field `sovereignDragonCheer[4]` and script variable
+    `BTLVAR_SOVEREIGN_DRAGON_CHEER_SIDE_EFFECT_MON`.
+- Move checklist: exact 252, approximate 39, placeholder 89.
+
+**Verified in the test build:** the foe Venusaur's Dragon Cheer gave "The foe's CHARIZARD is getting pumped!". Garchomp's
+Scale Shot hit 3 times, then its Defense fell and its Speed rose. Turtwig's Coaching then raised Garchomp's Attack and
+Defense, ending at Attack +1, Speed +1, Defense 0.
+
 ## Item 11 (part 21) — Final Gambit, Synchronoise, Upper Hand
 
 - **Final Gambit:** deals damage equal to the user's HP. If it hits, the user faints, through a new on-hit side
