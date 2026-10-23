@@ -238,6 +238,13 @@ implemented.
       `EndSafariGame` hangs between a lost battle and the blackout, since the field isn't loaded then.
     - The piece is `ITEM_GOLD_SHARD + trial`: the 11 piece constants are consecutive in trial order. The merge into
       `ITEM_CROWN` checks and removes `ITEM_GOLD_SHARD`..`ITEM_CROWN_DIAMOND` in a loop.
+- **Galactic gates** (decision 23, `docs/Story.md`). Each Galactic encounter checks the `FLAG_SOVEREIGN_TOTEM_TRIAL_*`
+  flags of the trials before it, at a blocker the player already meets:
+  - the Windworks door grunt and the Celestic ruins grunt (`GoToIfUnset` before their battle);
+  - a new Eterna door grunt (hidden with `FLAG_MAP_LOCAL_HIDE_TRIAL_GATE`, map-local 0x3F);
+  - the Route 218 blockade (`FLAG_HIDE_ROUTE_218_BLOCKADE`, now set by Route 218's OnTransition once Salazzle is done);
+  - the Spear Pillar grunts' coord event;
+  - a new Victory Road guard with a coord event on `VAR_MAP_LOCAL_0x00`.
 ### 5. Trainer data
 - Vanilla Gen IV trainer Pokémon can't specify EVs, natures directly (nature comes from the PID seeded by trainer
   data), or abilities. **The EV spreads and natures in `TrainerPokemon_Sovereign.md` need an extended trainer-Pokémon

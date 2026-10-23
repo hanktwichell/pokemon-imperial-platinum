@@ -9,7 +9,16 @@
     ScriptEntry Route218_ClefairySouth
     ScriptEntry Route218_ClefairyNorth
     ScriptEntry Route218_Pikachu
+    ScriptEntry Route218_OnTransition
     ScriptEntryEnd
+
+@ Sovereign (decision 23): the blockade stays until Totem Salazzle's trial is done (it used to leave once Cyrus was
+@ beaten at Celestic Town), so Canalave and the lakes' Saturn and Mars wait on it.
+Route218_OnTransition:
+    GoToIfUnset FLAG_SOVEREIGN_TOTEM_TRIAL_SALAZZLE, Route218_OnTransitionEnd
+    SetFlag FLAG_HIDE_ROUTE_218_BLOCKADE
+Route218_OnTransitionEnd:
+    End
 
 Route218_ArrowSignpostCanalaveCity:
     ShowArrowSign Route218_Text_SignCanalaveCity
@@ -20,7 +29,12 @@ Route218_ArrowSignpostJubilifeCity:
     End
 
 Route218_Guitarist:
+    GoToIfGe VAR_CELESTIC_TOWN_STATE, 1, Route218_GuitaristSalazzle
     EventMessage Route218_Text_ClefairyCuterNow
+    End
+
+Route218_GuitaristSalazzle:
+    EventMessage Route218_Text_SovereignSalazzleChasedUsOut
     End
 
 Route218_Fisherman:

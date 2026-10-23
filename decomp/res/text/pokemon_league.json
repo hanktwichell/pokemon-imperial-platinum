@@ -15,6 +15,27 @@
     {
       "id": "PokemonLeague_Text_VictoryRoadAhead",
       "en_US": "Victory Road Ahead"
+    },
+    {
+      "id": "PokemonLeague_Text_SovereignNeedEightBadges",
+      "en_US": [
+        "Only Trainers who have gathered all\n",
+        "eight Badges may enter Victory Road."
+      ]
+    },
+    {
+      "id": "PokemonLeague_Text_SovereignTogedemaruFirst",
+      "en_US": [
+        "You have all eight Badges, I see.\r",
+        "But a huge TOGEDEMARU is sparking\n",
+        "atop Sunyshore’s Vista Lighthouse.\r",
+        "The League won’t open Victory Road\n",
+        "until someone calms it down!"
+      ]
+    },
+    {
+      "id": "PokemonLeague_Text_SovereignVictoryRoadAwaits",
+      "en_US": "Go on! Victory Road awaits you."
     }
   ]
 }

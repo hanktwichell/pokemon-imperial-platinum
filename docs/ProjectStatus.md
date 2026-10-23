@@ -144,7 +144,7 @@ Made by the owner (2026-10-22):
     Spear Pillar (catchable) → Elite Four rematch, locked until both are done and then repeatable → after the second
     win against Cynthia, she sends the player to Spear Pillar for the Sovereign battle.
     Gates and crown (owner): each Galactic encounter waits on the Totem trials placed before it (existing blocking
-    NPCs get the trial added to their unlock condition). Each trial, once its catch encounter is over (caught or
+    NPCs get the trial added to their unlock condition; built in CB-0031, `Story.md`). Each trial, once its catch encounter is over (caught or
     not), leaves a crown piece: a Gold Shard first, then jewels or gold shards, and the Crown Diamond 11th; all key
     items, unsellable and untossable. The 11 merge into the **Crown**, which becomes the **Sovereign Crown** after the
     rematch win over Cynthia. Victory Road waits on the last trial (Togedemaru). Henry appears at Spear Pillar only

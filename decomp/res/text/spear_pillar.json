@@ -464,6 +464,16 @@
     {
       "id": "SpearPillar_Text_Dummy77",
       "garbage": 25
+    },
+    {
+      "id": "SpearPillar_Text_SovereignKommoOBelow",
+      "en_US": [
+        "Halt! The boss’s ritual must not be\n",
+        "disturbed!\r",
+        "Hah! You couldn’t even get past that\n",
+        "KOMMO-O down on the mountain, huh?\r",
+        "Scram!"
+      ]
     }
   ]
 }

@@ -2094,3 +2094,44 @@ scripts 0295–0298, `decomp/generated/{move_battle_effects,battle_subscripts,ba
    already block the way; Victory Road's gate also checks Togedemaru. All 11 flags exist
    (`FLAG_SOVEREIGN_TOTEM_TRIAL_*`).
 3. **1 vs 2 Totem trials** for a player with one able Pokémon; then battle forms with item 11's abilities.
+
+---
+
+## CB-0031 — 2026-10-23, 3:24 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** the Galactic gates (decision 23, `Story.md`). Each Team Galactic encounter waits on the Totem trials
+before it, at a blocker the player already meets, and the blocker's line points to the open trials.
+- **Mars ← Gumshoos:** the Valley Windworks door grunt won't battle.
+- **Jupiter ← Ribombee, Vikavolt:** a new grunt guards the Eterna Building door (behind the Cut trees), hidden by
+  `FLAG_MAP_LOCAL_HIDE_TRIAL_GATE` (map-local 0x3F) once both are done.
+- **Cyrus ← Mimikyu, Marowak, Raticate, Lurantis, Araquanid:** the Celestic ruins grunt won't battle.
+- **Saturn and Mars ← Salazzle:**
+  - The Route 218 blockade stays until Salazzle's trial is done (Route 218's new OnTransition; Cynthia no longer
+    removes it after Cyrus).
+  - After Cyrus the Guitarist blames a huge SALAZZLE.
+  - Canalave and Barry wait on it too, as Salazzle's level is set under Barry's cap.
+- **Mars and Jupiter ← Kommo-o:** the Spear Pillar grunts send the player back.
+- **Victory Road ← Togedemaru:** Platinum has no check there, so a new guard (851, 598) with a coord event checks the
+  eight Badges and the trial.
+- **Research:** an Explore agent mapped each fight's vanilla blocker (cited in the changelog entry).
+- **Verified** (temporary builds with warps to each gate):
+  - Nothing done: every gate refuses with its line.
+  - All 11 trials and eight Badges: every gate opens.
+  - The release ROM builds without warnings and passes boot smoke; docs regenerate clean.
+
+**Files modified:**
+- Scripts: `scripts_valley_windworks_outside.s`, `scripts_eterna_city.s`, `scripts_celestic_town.s`,
+  `scripts_route_218.s` and `scripts_init_route_218.s`, `scripts_spear_pillar.s`, `scripts_pokemon_league.s`
+- Events: `events_eterna_city.json`, `events_pokemon_league.json`
+- Texts: `valley_windworks_outside`, `eterna_city`, `celestic_town`, `route_218`, `spear_pillar`, `pokemon_league`
+  (`decomp/res/text/`)
+- `decomp/generated/vars_flags.txt` (`FLAG_MAP_LOCAL_HIDE_TRIAL_GATE`)
+- Docs: `docs/Story.md`, `docs/EngineChangelog.md`, `docs/TechnicalDesign.md`, `docs/ProjectStatus.md`,
+  `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge PR #37 (its CI keeps dying in `apt-get` before the build; re-run queued), then the PR with the last six
+   Totems and these gates.
+2. **1 vs 2 Totem trials** for a player with one able Pokémon (the doubles init leaves battler 2 empty).
+3. **The Sovereign Crown swap** after the Elite Four rematch win over Cynthia, and the other post-game story
+   events (`Story.md`: Celestic elder at home, Spear Pillar trigger, rematch lock).

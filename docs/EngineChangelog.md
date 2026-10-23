@@ -4,6 +4,37 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E11 — The Galactic gates wait on the Totem trials (decision 23)
+
+Each Team Galactic encounter now waits on the Totem trials placed before it (`docs/Story.md`, the table under
+"Galactic encounters wait on the trials"). Each blocker's line points the player to the open trials.
+- **Commander Mars (Valley Windworks) ← Gumshoos.** The grunt at the door won't battle: "W-what? A battle? Not now!
+  There's a huge GUMSHOOS glaring at me from the flowers by the river!"
+- **Commander Jupiter (Eterna Building) ← Ribombee, Vikavolt.** A new grunt guards the door (305, 520), behind the
+  Cut trees, until both are done. His hidden flag is `FLAG_MAP_LOCAL_HIDE_TRIAL_GATE` (the unused map-local 0x3F),
+  set by Eterna City's OnTransition.
+- **Cyrus (Celestic ruins) ← Mimikyu, Marowak, Raticate, Lurantis, Araquanid.** The grunt in front of the ruins
+  won't battle, and names the five places.
+- **Saturn and Mars (the lakes) ← Salazzle.**
+  - The Route 218 blockade now leaves once Salazzle's trial is done (Route 218's new OnTransition), not when Cynthia
+    speaks after Cyrus.
+  - After Cyrus, the Guitarist explains that a huge SALAZZLE chased them out of their practice spot at the Fuego
+    Ironworks.
+  - Canalave, and so Barry, Byron and the lakes, wait on it.
+- **Mars and Jupiter (Spear Pillar) ← Kommo-o.** The grunts' coord event sends the player back with a new line, like
+  their one-Pokémon refusal.
+- **Victory Road ← Togedemaru.** Platinum has no check at the entrance, so a new guard stands in front of the middle
+  warp (851, 598), with a coord event on the tiles beside him.
+  - He checks all eight Badges, then Togedemaru's trial, and steps the player back if either is missing.
+  - The coord event's var is `VAR_MAP_LOCAL_0x00`, so the check runs again on every visit.
+- **Verified in the test build**, with temporary warps to each gate:
+  - With no trials done (and Cyrus beaten, for the Guitarist's new line): every blocker says its line, and the
+    Spear Pillar grunts and the Victory Road guard step the player back.
+  - With all 11 trials done and eight Badges: the Windworks and Celestic grunts are back to Platinum's lines; the
+    Eterna door grunt and the Route 218 blockade are gone; the Spear Pillar grunts start their usual scene; and the
+    player walks into Victory Road.
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+
 ## FM — The last six Totems on the map (decision 18)
 
 All 11 Totems now stand on the map (`docs/TotemTrials.md`, "On the map"). Each appears once the fight before its
