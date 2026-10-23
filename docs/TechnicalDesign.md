@@ -233,6 +233,9 @@ implemented.
       instead: the map's OnTransition sets it while the trial is done or not yet open (Floaroma Meadow, the Old
       Chateau dining area, Lost Tower 5F). Map-local flags are cleared on every map change, so this check runs
       again on each visit.
+    - Great Marsh Area 3's OnTransition is the map's own script (Totem check, then `InitGreatMarshTram`), not the shared
+      Safari script 0x2260. The trial's loss branch clears `FLAG_SAFARI_GAME_ACTIVE` and `VAR_SAFARI_GAME_STATE` itself:
+      `EndSafariGame` hangs between a lost battle and the blackout, since the field isn't loaded then.
     - The piece is `ITEM_GOLD_SHARD + trial`: the 11 piece constants are consecutive in trial order. The merge into
       `ITEM_CROWN` checks and removes `ITEM_GOLD_SHARD`..`ITEM_CROWN_DIAMOND` in a loop.
 ### 5. Trainer data

@@ -101,8 +101,9 @@ Made by the owner (2026-10-22):
     - Built (CB-0028): the Totems on the map (huge overworld sprites), the trial script, and the crown pieces. Totem
       Gumshoos stands on Route 205 South.
     - Built (CB-0029): Ribombee, Vikavolt, Mimikyu and Alolan Marowak on the map, each shown once its trial opens.
-    - Still to do: the other 6 Totems on the map, and 1 vs 2 for a player with one able Pokémon (Platinum can't start
-      a double battle with one).
+    - Built (CB-0030): the last six on the map. All 11 trials are playable.
+    - Still to do: the Galactic gates (`Story.md`), and 1 vs 2 for a player with one able Pokémon (Platinum can't
+      start a double battle with one).
     - The auras were checked against Serebii; the helpers are a proposal from each trial's original allies.
 19. **Trade evolutions follow Renegade's system** (owner, 2026-10-22, after briefly considering a Link Stone): plain
     trade evolutions evolve at Level 36, and trade-with-item evolutions by using the item like a stone.

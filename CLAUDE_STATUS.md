@@ -2050,3 +2050,47 @@ scripts 0295–0298, `decomp/generated/{move_battle_effects,battle_subscripts,ba
    - Kommo-o (Mt. Coronet to Spear Pillar);
    - Togedemaru (Vista Lighthouse).
 3. **The Galactic gates** (`Story.md`), then 1 vs 2 trials for a player with one able Pokémon.
+
+---
+
+## CB-0030 — 2026-10-23, 2:53 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** the last six Totems on the map, so all 11 trials are playable (decision 18).
+- **The six** (each shown once its "After" fight is won, via `FLAG_MAP_LOCAL_HIDE_TOTEM`):
+  - Alolan Raticate in the Galactic Warehouse (x 13, z 10): Relic Badge and Looker's HM02 scene done;
+  - Lurantis in Great Marsh Area 3 (x 54, z 84): Cobble Badge, reached in a Safari Game;
+  - Araquanid on the Route 213 beach (x 713, z 826): Fen Badge;
+  - Salazzle north of the Fuego Ironworks yard (x 181, z 585): Cyrus beaten at Celestic;
+  - Kommo-o on Mt. Coronet 6F (x 5, z 13): Saturn beaten at the HQ, out of the grunt's sight;
+  - Togedemaru at the top of Vista Lighthouse (x 10, z 7): the Distortion World done.
+- **Great Marsh Area 3.** Its OnTransition is now the map's own script, which runs `InitGreatMarshTram` after the
+  Totem check.
+- **A loss in a Safari Game** used to leave the game running after the blackout. The trial's loss branch now clears
+  `FLAG_SAFARI_GAME_ACTIVE` and `VAR_SAFARI_GAME_STATE`. `EndSafariGame` hung the game there, since there is no field
+  between a lost battle and the blackout.
+- **Test build:** SELECT+L+R's stops 14 to 19 are in front of the six.
+- **Verified:**
+  - New game: all six hidden.
+  - All conditions met (temporary build): all six shown. Kommo-o's talk works, and Togedemaru's and Lurantis's
+    battles open.
+  - A real loss (temporary build, the battle party at 1 HP): "A blacked out!" and home with Mom. With a Safari Game
+    running, the same, and RETIRE is gone from the start menu.
+  - My CB-0028 loss check forced a won battle down the loss branch; that showed home over a black screen. That was
+    an artifact of the shortcut, and the real loss above replaces it.
+  - The release ROM builds without warnings and passes boot smoke; docs regenerate clean.
+- PR #37's first CI run died in `apt-get` (runner timeout, before the build); it's re-running.
+
+**Files modified:**
+- `data/totem_trials.yaml` (`map:` for the six), `docs/TotemTrials.md`
+- Events, scripts and init scripts of `veilstone_city_galactic_warehouse`, `great_marsh_3`, `route_213`,
+  `fuego_ironworks_outside`, `mt_coronet_6f` and `vista_lighthouse`
+- `decomp/res/field/scripts/scripts_common.s` (the Safari Game on a loss), `decomp/src/script_manager.c` (test warps)
+- `docs/EngineChangelog.md`, `docs/TechnicalDesign.md` §4b, `docs/EngineRoadmap.md`, `docs/ProjectStatus.md`,
+  `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge PR #37, then this one.
+2. **The Galactic gates** (`Story.md`, E11): each Galactic encounter waits on the trials before it, using NPCs that
+   already block the way; Victory Road's gate also checks Togedemaru. All 11 flags exist
+   (`FLAG_SOVEREIGN_TOTEM_TRIAL_*`).
+3. **1 vs 2 Totem trials** for a player with one able Pokémon; then battle forms with item 11's abilities.

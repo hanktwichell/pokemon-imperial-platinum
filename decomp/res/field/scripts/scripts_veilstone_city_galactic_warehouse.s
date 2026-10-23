@@ -1,6 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_city_galactic_warehouse.h"
 #include "res/field/events/events_veilstone_city_galactic_warehouse.h"
+#include "constants/sovereign_totem_trials.h"
 
 
     ScriptEntry VeilstoneCityGalacticWarehouse_GalacticHQDoor
@@ -8,9 +9,35 @@
     ScriptEntry VeilstoneCityGalacticWarehouse_Looker
     ScriptEntry VeilstoneCityGalacticWarehouse_OnTransition
     ScriptEntry VeilstoneCityGalacticWarehouse_CoordEvent_LookerOpenDoor
+    ScriptEntry VeilstoneCityGalacticWarehouse_TotemRaticate
+    ScriptEntry VeilstoneCityGalacticWarehouse_OnLoad
     ScriptEntryEnd
 
+VeilstoneCityGalacticWarehouse_OnLoad:
+    CallIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, VeilstoneCityGalacticWarehouse_RemoveTotemRaticate
+    End
+
+VeilstoneCityGalacticWarehouse_HideTotemRaticate:
+    SetFlag FLAG_MAP_LOCAL_HIDE_TOTEM
+    Return
+
+VeilstoneCityGalacticWarehouse_RemoveTotemRaticate:
+    RemoveObject LOCALID_TOTEM_RATICATE
+    ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
+    Return
+
+@ Sovereign (decision 18): the Totem Alolan Raticate trial.
+VeilstoneCityGalacticWarehouse_TotemRaticate:
+    SetVar VAR_0x8004, TOTEM_TRIAL_RATICATE
+    Common_SovereignTotemTrial
+    End
+
 VeilstoneCityGalacticWarehouse_OnTransition:
+    @ Sovereign: Totem Alolan Raticate's trial opens with the Relic Badge, once Looker has found HM02 here.
+    CallIfSet FLAG_SOVEREIGN_TOTEM_TRIAL_RATICATE, VeilstoneCityGalacticWarehouse_HideTotemRaticate
+    CallIfLt VAR_VEILSTONE_CITY_GALACTIC_WAREHOUSE_STATE, 2, VeilstoneCityGalacticWarehouse_HideTotemRaticate
+    CheckBadgeAcquired BADGE_ID_RELIC, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, VeilstoneCityGalacticWarehouse_HideTotemRaticate
     CallIfLt VAR_VEILSTONE_CITY_GALACTIC_WAREHOUSE_STATE, 2, VeilstoneCityGalacticWarehouse_SetLookerPosition
     End
 

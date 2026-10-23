@@ -1764,10 +1764,18 @@ CommonScript_SovereignTotemNeedTwoPokemon:
 
 CommonScript_SovereignTotemLost:
     SovereignClearFlagFromVar VAR_0x800B
+    @ A blackout doesn't end a Safari Game (Totem Lurantis, Great Marsh), so end it here. Only the flag and the gate's
+    @ state: EndSafariGame also records the game for TV and the journal, which hangs with no field loaded.
+    CallIfSet FLAG_SAFARI_GAME_ACTIVE, CommonScript_SovereignTotemEndSafariGame
     BlackOutFromBattle
     ReleaseAll
     ReturnCommonScript
     End
+
+CommonScript_SovereignTotemEndSafariGame:
+    SetVar VAR_SAFARI_GAME_STATE, 0
+    ClearFlag FLAG_SAFARI_GAME_ACTIVE
+    Return
 
 CommonScript_SovereignTotemDisappeared:
     BufferSpeciesNameFromVar 0, VAR_0x800A, 0, 0
