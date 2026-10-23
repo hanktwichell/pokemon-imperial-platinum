@@ -1336,6 +1336,11 @@ static void BattleScript_CalcMoveDamage(BattleSystem *battleSys, BattleContext *
     if (battleCtx->moveCur == MOVE_TERRAIN_PULSE) {
         battleCtx->moveType = Sovereign_TerrainPulseType(battleCtx, battleCtx->attacker);
     }
+
+    // Sovereign (item 11): Revelation Dance takes the user's primary type.
+    if (battleCtx->moveCur == MOVE_REVELATION_DANCE) {
+        battleCtx->moveType = ATTACKING_MON.type1;
+    }
     moveType = Sovereign_AbilityMoveType(Battler_Ability(battleCtx, battleCtx->attacker), battleCtx->moveCur, battleCtx->moveType ? battleCtx->moveType : CURRENT_MOVE_DATA.type); // Sovereign (item 11)
 
     battleCtx->damage = BattleSystem_CalcMoveDamage(battleSys,
@@ -6041,6 +6046,14 @@ static BOOL BtlCmd_RapidSpin(BattleSystem *battleSys, BattleContext *battleCtx)
         return FALSE;
     }
 
+    if (battleCtx->sideConditionsMask[side] & SIDE_CONDITION_SOVEREIGN_STICKY_WEB) { // Sovereign (item 11)
+        battleCtx->sideConditionsMask[side] &= ~SIDE_CONDITION_SOVEREIGN_STICKY_WEB;
+        battleCtx->msgMoveTemp = MOVE_STICKY_WEB;
+        BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, subscript_blow_away_hazards);
+
+        return FALSE;
+    }
+
     if (battleCtx->sideConditionsMask[side] & SIDE_CONDITION_STEALTH_ROCK) {
         battleCtx->sideConditionsMask[side] &= ~SIDE_CONDITION_STEALTH_ROCK;
         battleCtx->msgMoveTemp = MOVE_STEALTH_ROCK;
@@ -6661,9 +6674,12 @@ static BOOL BtlCmd_TryBreakScreens(BattleSystem *battleSys, BattleContext *battl
     int defending = BattleSystem_GetBattlerSide(battleSys, battleCtx->defender);
 
     if ((battleCtx->sideConditionsMask[defending] & SIDE_CONDITION_REFLECT)
-        || (battleCtx->sideConditionsMask[defending] & SIDE_CONDITION_LIGHT_SCREEN)) {
+        || (battleCtx->sideConditionsMask[defending] & SIDE_CONDITION_LIGHT_SCREEN)
+        || (battleCtx->sideConditionsMask[defending] & SIDE_CONDITION_SOVEREIGN_AURORA_VEIL)) { // Sovereign (item 11)
         battleCtx->sideConditionsMask[defending] &= ~SIDE_CONDITION_REFLECT;
         battleCtx->sideConditionsMask[defending] &= ~SIDE_CONDITION_LIGHT_SCREEN;
+        battleCtx->sideConditionsMask[defending] &= ~SIDE_CONDITION_SOVEREIGN_AURORA_VEIL;
+        battleCtx->sovereignAuroraVeilTurns[defending] = 0;
         battleCtx->sideConditions[defending].reflectTurns = 0;
         battleCtx->sideConditions[defending].lightScreenTurns = 0;
     } else {
@@ -9690,6 +9706,17 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         return &battleCtx->sideConditionsMask[BattleSystem_GetBattlerSide(battleSys, battleCtx->defender)];
     case BTLVAR_SIDE_CONDITIONS_EFFECT_MON:
         return &battleCtx->sideConditionsMask[BattleSystem_GetBattlerSide(battleSys, battleCtx->sideEffectMon)];
+    case BTLVAR_SOVEREIGN_AURORA_VEIL_TURNS_ATTACKER: // Sovereign (item 11)
+        return &battleCtx->sovereignAuroraVeilTurns[BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker)];
+    case BTLVAR_SOVEREIGN_FOE_SIDE_CONDITIONS: // Sovereign (item 11): the side conditions of the attacker's foes
+        return &battleCtx->sideConditionsMask[BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker) ^ 1];
+    case BTLVAR_SOVEREIGN_STICKY_WEB_SWITCHED_MON: // Sovereign (item 11): read-only, a grounded Pokemon entering a web
+        battleCtx->sovereignTerrainTemp = (battleCtx->sideConditionsMask[BattleSystem_GetBattlerSide(battleSys, battleCtx->switchedMon)] & SIDE_CONDITION_SOVEREIGN_STICKY_WEB)
+            && Sovereign_IsGrounded(battleCtx, battleCtx->switchedMon);
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_SIDE_EFFECT_MON_HOLDS_BERRY: // Sovereign (item 11): read-only, for Incinerate
+        battleCtx->sovereignTerrainTemp = Item_IsBerry(battleCtx->battleMons[battleCtx->sideEffectMon].heldItem) ? 1 : 0;
+        return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_SMACKED_DOWN_SIDE_EFFECT_MON: // Sovereign (item 11)
         return &battleCtx->sovereignSmackedDown[battleCtx->sideEffectMon];
     case BTLVAR_SOVEREIGN_SIDE_GUARDS_ATTACKER: // Sovereign (item 11)

@@ -8968,6 +8968,160 @@
         "The foe’s {STRVAR_1 1, 0, 0}’s move\n",
         "was postponed!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignSharedItsGuard_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} shared its\n",
+        "guard with the target!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignSharedItsGuard_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} shared its\n",
+        "guard with the target!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignSharedItsGuard_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} shared its\n",
+        "guard with the target!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignSharedItsPower_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} shared its\n",
+        "power with the target!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignSharedItsPower_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} shared its\n",
+        "power with the target!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignSharedItsPower_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} shared its\n",
+        "power with the target!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignSwitchedSpeed_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} switched Speed\n",
+        "with its target!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignSwitchedSpeed_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} switched Speed\n",
+        "with its target!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignSwitchedSpeed_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} switched Speed\n",
+        "with its target!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignStatChangesRemoved_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s stat changes\n",
+        "were removed!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignStatChangesRemoved_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}’s stat changes\n",
+        "were removed!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignStatChangesRemoved_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}’s stat changes\n",
+        "were removed!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignItemBurntUp_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s {STRVAR_1 8, 1, 0}\n",
+        "was burnt up!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignItemBurntUp_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}’s {STRVAR_1 8, 1, 0}\n",
+        "was burnt up!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignItemBurntUp_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}’s {STRVAR_1 8, 1, 0}\n",
+        "was burnt up!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAuroraVeilYourTeam",
+      "en_US": [
+        "Aurora Veil made your team\n",
+        "stronger against attacks!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAuroraVeilEnemyTeam",
+      "en_US": [
+        "Aurora Veil made the enemy team\n",
+        "stronger against attacks!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignStickyWebYourTeam",
+      "en_US": [
+        "A sticky web spread out around\n",
+        "your team’s feet!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignStickyWebEnemyTeam",
+      "en_US": [
+        "A sticky web spread out around\n",
+        "the enemy team’s feet!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCaughtInStickyWeb_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} was caught\n",
+        "in a sticky web!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCaughtInStickyWeb_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} was caught\n",
+        "in a sticky web!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCaughtInStickyWeb_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} was caught\n",
+        "in a sticky web!"
+      ]
     }
   ]
 }

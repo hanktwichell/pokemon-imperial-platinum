@@ -313,5 +313,15 @@ effect_script_files = files(
     'effect_script_0311.s',
     'effect_script_0312.s',
     'effect_script_0313.s',
-    'effect_script_0314.s'
+    'effect_script_0314.s',
+    'effect_script_0315.s',
+    'effect_script_0316.s',
+    'effect_script_0317.s',
+    'effect_script_0318.s',
+    'effect_script_0319.s',
+    'effect_script_0320.s',
+    'effect_script_0321.s',
+    'effect_script_0322.s',
+    'effect_script_0323.s',
+    'effect_script_0324.s'
 )

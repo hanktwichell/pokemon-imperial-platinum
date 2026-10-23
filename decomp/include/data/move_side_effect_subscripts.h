@@ -175,5 +175,15 @@ static const int sSideEffectSubscripts[] = {
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_QUASH] = subscript_sovereign_quash,
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_PSYCHIC_NOISE] = subscript_sovereign_psychic_noise,
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_HALF_HP_COST] = subscript_sovereign_half_hp_cost,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_TRAP_TARGET] = subscript_sovereign_trap_target,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_SIMPLE_BEAM] = subscript_sovereign_simple_beam,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_ENTRAINMENT] = subscript_sovereign_entrainment,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_GUARD_SPLIT] = subscript_sovereign_guard_split,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_POWER_SPLIT] = subscript_sovereign_power_split,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_SPEED_SWAP] = subscript_sovereign_speed_swap,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_CLEAR_SMOG] = subscript_sovereign_clear_smog,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_INCINERATE] = subscript_sovereign_incinerate,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_AURORA_VEIL] = subscript_sovereign_aurora_veil,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_STICKY_WEB] = subscript_sovereign_sticky_web,
 };
 // clang-format on

@@ -193,6 +193,21 @@ MOVES = {
     "steel_beam": ("SOVEREIGN_HALF_HP_COST_HIT", 0, "the user loses half its max HP (only when it hits, so far)", "approximate"),
     "freeze_dry": ("FREEZE_HIT", 10, "super effective against Water; 10% freeze"),
     "confide": (None, None, "target Sp. Atk -1; as a sound move it gets past Substitute"),
+    "psyshield_bash": ("RAISE_DEF_HIT", 100, "user Defense +1 (100%)"),
+    "spirit_shackle": ("SOVEREIGN_TRAP_HIT", 100, "the target can't escape while the user is in battle"),
+    "anchor_shot": ("SOVEREIGN_TRAP_HIT", 100, "the target can't escape while the user is in battle"),
+    "revelation_dance": (None, None, "takes the user's primary type"),
+    "simple_beam": ("SOVEREIGN_SIMPLE_BEAM", 0, "the target's ability becomes Simple"),
+    "entrainment": ("SOVEREIGN_ENTRAINMENT", 0, "the target's ability becomes the user's"),
+    "guard_split": ("SOVEREIGN_GUARD_SPLIT", 0, "the user and target average their Defense and Sp. Def"),
+    "power_split": ("SOVEREIGN_POWER_SPLIT", 0, "the user and target average their Attack and Sp. Atk"),
+    "speed_swap": ("SOVEREIGN_SPEED_SWAP", 0, "the user and target swap their Speed stats"),
+    "clear_smog": ("SOVEREIGN_CLEAR_SMOG", 0, "resets the target's stat stages"),
+    "incinerate": ("SOVEREIGN_INCINERATE", 0, "burns up the target's Berry"),
+    "aurora_veil": ("SOVEREIGN_AURORA_VEIL", 0, "in snow: halves damage to the user's side for 5 turns (8 with Light Clay)"),
+    "sticky_web": ("SOVEREIGN_STICKY_WEB", 0, "grounded foes switching in lose 1 Speed stage (Rapid Spin clears it)"),
+    "echoed_voice": (None, None, "40 more power for each consecutive turn it's used, up to 200"),
+    "fell_stinger": (None, None, "user Attack +3 if it knocks out the target"),
 }
 
 

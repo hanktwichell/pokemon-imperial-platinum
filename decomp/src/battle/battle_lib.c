@@ -7402,6 +7402,22 @@ static u32 Sovereign_Weight(BattleContext *battleCtx, int attacker, int battler)
     return weight ? weight : 1;
 }
 
+// Sovereign (item 11): how many consecutive turns Echoed Voice will have been used if used now (1-5).
+int Sovereign_EchoedVoiceCount(BattleContext *battleCtx)
+{
+    int count;
+
+    if (battleCtx->sovereignEchoedVoiceTurn == battleCtx->totalTurns + 1) {
+        count = battleCtx->sovereignEchoedVoiceCount; // already used this turn
+    } else if (battleCtx->sovereignEchoedVoiceTurn == battleCtx->totalTurns) {
+        count = battleCtx->sovereignEchoedVoiceCount + 1; // used last turn
+    } else {
+        count = 1;
+    }
+
+    return count > 5 ? 5 : count;
+}
+
 // Sovereign (item 11): the power of Gen V+ moves whose power depends on the battle (the move keeps the plain hit
 // effect; BattleSystem_CalcMoveDamage asks here). Returns the power unchanged for every other move.
 int Sovereign_MovePower(BattleSystem *battleSys, BattleContext *battleCtx, int move, int attacker, int defender, int power)
@@ -7500,6 +7516,10 @@ int Sovereign_MovePower(BattleSystem *battleSys, BattleContext *battleCtx, int m
         if (Sovereign_TerrainUnder(battleCtx, attacker)) {
             power *= 2;
         }
+        break;
+
+    case MOVE_ECHOED_VOICE: // 40 more power for each consecutive turn it's been used (by anyone), up to 200
+        power = 40 * Sovereign_EchoedVoiceCount(battleCtx);
         break;
 
     case MOVE_RETALIATE: // double if a Pokemon on the user's side fainted last turn
@@ -8294,7 +8314,7 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
             damage /= 2;
         }
 
-        if ((sideConditions & SIDE_CONDITION_REFLECT) != FALSE
+        if ((sideConditions & (SIDE_CONDITION_REFLECT | SIDE_CONDITION_SOVEREIGN_AURORA_VEIL)) != FALSE // Sovereign (item 11): Aurora Veil
             && criticalMul == 1
             && attackerParams.ability != ABILITY_INFILTRATOR // Sovereign (item 11)
             && MOVE_DATA(move).effect != BATTLE_EFFECT_REMOVE_SCREENS) {
@@ -8336,7 +8356,7 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         damage /= stageDivisor;
         damage /= 50;
 
-        if ((sideConditions & SIDE_CONDITION_LIGHT_SCREEN) != FALSE
+        if ((sideConditions & (SIDE_CONDITION_LIGHT_SCREEN | SIDE_CONDITION_SOVEREIGN_AURORA_VEIL)) != FALSE // Sovereign (item 11): Aurora Veil
             && criticalMul == 1
             && attackerParams.ability != ABILITY_INFILTRATOR // Sovereign (item 11)
             && MOVE_DATA(move).effect != BATTLE_EFFECT_REMOVE_SCREENS) {

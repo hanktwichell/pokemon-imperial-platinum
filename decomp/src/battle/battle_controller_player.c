@@ -1013,6 +1013,7 @@ enum FieldCondCheckState {
 
     FIELD_COND_CHECK_STATE_REFLECT = FIELD_COND_CHECK_START,
     FIELD_COND_CHECK_STATE_LIGHT_SCREEN,
+    FIELD_COND_CHECK_STATE_SOVEREIGN_AURORA_VEIL,
     FIELD_COND_CHECK_STATE_MIST,
     FIELD_COND_CHECK_STATE_SAFEGUARD,
     FIELD_COND_CHECK_STATE_TAILWIND,
@@ -1090,6 +1091,29 @@ static void BattleControllerPlayer_CheckFieldConditions(BattleSystem *battleSys,
                     && --battleCtx->sideConditions[side].lightScreenTurns == 0) {
                     battleCtx->sideConditionsMask[side] &= ~SIDE_CONDITION_LIGHT_SCREEN;
                     battleCtx->msgMoveTemp = MOVE_LIGHT_SCREEN;
+
+                    PrepareSubroutineSequence(battleCtx, subscript_move_effect_end);
+                    battleCtx->msgBattlerTemp = BattleSystem_SideToBattler(battleSys, battleCtx, side);
+                    state = STATE_BREAK_OUT;
+                }
+
+                battleCtx->fieldConditionCheckTemp++;
+                if (state) {
+                    break;
+                }
+            }
+
+            StepFieldConditionCheck(battleCtx, state);
+            break;
+
+        case FIELD_COND_CHECK_STATE_SOVEREIGN_AURORA_VEIL: // Sovereign (item 11)
+            while (battleCtx->fieldConditionCheckTemp < NUM_BATTLE_SIDES) {
+                side = battleCtx->fieldConditionCheckTemp;
+
+                if (battleCtx->sideConditionsMask[side] & SIDE_CONDITION_SOVEREIGN_AURORA_VEIL
+                    && --battleCtx->sovereignAuroraVeilTurns[side] <= 0) {
+                    battleCtx->sideConditionsMask[side] &= ~SIDE_CONDITION_SOVEREIGN_AURORA_VEIL;
+                    battleCtx->msgMoveTemp = MOVE_AURORA_VEIL;
 
                     PrepareSubroutineSequence(battleCtx, subscript_move_effect_end);
                     battleCtx->msgBattlerTemp = BattleSystem_SideToBattler(battleSys, battleCtx, side);
@@ -4246,6 +4270,12 @@ static void BattleControllerPlayer_UpdateMoveBuffers(BattleSystem *battleSys, Ba
             battleCtx->turnFlags[battleCtx->attacker].sovereignUsedRound = TRUE;
         }
 
+        // Echoed Voice remembers its streak.
+        if (battleCtx->moveTemp == MOVE_ECHOED_VOICE && (battleCtx->battleStatusMask2 & SYSCTL_MOVE_SUCCEEDED)) {
+            battleCtx->sovereignEchoedVoiceCount = Sovereign_EchoedVoiceCount(battleCtx);
+            battleCtx->sovereignEchoedVoiceTurn = battleCtx->totalTurns + 1;
+        }
+
         // After You and Quash reorder the rest of the turn.
         if ((battleCtx->moveTemp == MOVE_AFTER_YOU || battleCtx->moveTemp == MOVE_QUASH)
             && (battleCtx->battleStatusMask2 & SYSCTL_MOVE_SUCCEEDED)
@@ -5108,8 +5138,10 @@ static BOOL BattleControllerPlayer_TriggerAfterMoveHitEffects(BattleSystem *batt
             // knocked out. afterMoveHitCheckTemp marks the foes already counted.
             int ability = Battler_Ability(battleCtx, battleCtx->attacker);
             int foe, stat = -1;
+            BOOL fellStinger = battleCtx->moveCur == MOVE_FELL_STINGER; // Sovereign (item 11): Attack +3 on a knockout
 
-            if ((ability == ABILITY_MOXIE || ability == ABILITY_CHILLING_NEIGH || ability == ABILITY_GRIM_NEIGH || ability == ABILITY_BEAST_BOOST)
+            if ((ability == ABILITY_MOXIE || ability == ABILITY_CHILLING_NEIGH || ability == ABILITY_GRIM_NEIGH || ability == ABILITY_BEAST_BOOST
+                    || fellStinger)
                 && ATTACKING_MON.curHP) {
                 for (foe = 0; foe < maxBattlers; foe++) {
                     if ((battleCtx->afterMoveHitCheckTemp & FlagIndex(foe)) == FALSE
@@ -5122,7 +5154,19 @@ static BOOL BattleControllerPlayer_TriggerAfterMoveHitEffects(BattleSystem *batt
                     }
                 }
 
-                if (foe < maxBattlers) {
+                if (foe < maxBattlers && fellStinger) {
+                    if (ATTACKING_MON.statBoosts[BATTLE_STAT_ATTACK] < 12) { // MAX_STAT_STAGE
+                        battleCtx->sideEffectType = SIDE_EFFECT_TYPE_INDIRECT;
+                        battleCtx->sideEffectMon = battleCtx->attacker;
+
+                        LOAD_SUBSEQ(subscript_sovereign_fell_stinger);
+                        battleCtx->commandNext = battleCtx->command;
+                        battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+                        machineState = STATE_BREAK_OUT;
+                    }
+                    break; // stay in this state to look for another knocked-out foe
+                } else if (foe < maxBattlers) {
                     if (ability == ABILITY_MOXIE || ability == ABILITY_CHILLING_NEIGH) {
                         stat = BATTLE_STAT_ATTACK;
                     } else if (ability == ABILITY_GRIM_NEIGH) {

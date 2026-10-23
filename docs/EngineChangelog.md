@@ -81,6 +81,28 @@ aura is overwhelming! You'll need two Pokémon that can battle to stand against 
   - The test trainer's double battle: "Go! GARCHOMP!", the foe's Mega Charizard Y and Venusaur both acted, GARCHOMP
     fainted, and the battle ended.
   - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+## Item 11 (part 15) — trapping hits, ability moves, stat swaps, Clear Smog, Incinerate
+
+- **Spirit Shackle, Anchor Shot:** after the hit the target can't escape while the user is in battle (as Mean Look).
+- **Revelation Dance** takes the user's primary type; **Psyshield Bash** raises the user's Defense by 1.
+- **Simple Beam / Entrainment:** the target's ability becomes Simple / the user's (Worry Seed's rules, plus Gen IX's list
+  of abilities Entrainment can't pass on).
+- **Guard Split / Power Split / Speed Swap:** the user and target average their Defense and Sp. Def / Attack and Sp. Atk,
+  or swap Speed.
+- **Clear Smog:** after the hit the target's stat stages are reset. **Incinerate:** after the hit the target's Berry
+  is burnt up (new read-only script variable `BTLVAR_SOVEREIGN_SIDE_EFFECT_MON_HOLDS_BERRY`).
+- **Aurora Veil:** only in snow; halves physical and special damage to the user's side for 5 turns (8 with Light Clay),
+  without stacking with Reflect and Light Screen; Brick Break breaks it (new side condition and turn counter).
+- **Sticky Web:** grounded Pokémon switching in on the foes' side lose 1 Speed stage (Magic Guard doesn't stop it;
+  Clear Body does); Rapid Spin clears it.
+- **Echoed Voice:** 40 more power for each consecutive turn it's used (by any Pokémon), up to 200.
+- **Fell Stinger:** the user's Attack rises 3 stages if it knocks out the target (new after-hit case beside Moxie).
+- Move checklist: exact 246, approximate 42, placeholder 92.
+
+**Verified in the test build:** Venusaur, using Swords Dance each turn, ended at Attack stage 0 because Garchomp's
+Clear Smog hit it each turn. After Archaludon's Snowscape, Venusaur's Aurora Veil cut Garchomp's Tackle from 14 to 10
+(the doubles screen value). Archaludon's Fell Stinger knocked out Turtwig and left it at Attack +3. The other moves
+in this part (Sticky Web, Echoed Voice's streak) aren't tested in game yet.
 
 ## E11 — The Galactic gates wait on the Totem trials (decision 23)
 
