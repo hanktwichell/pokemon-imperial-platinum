@@ -15,9 +15,12 @@
     ScriptEntry CelesticTown_MapSignpost
     ScriptEntry CelesticTown_EtchingDialga
     ScriptEntry CelesticTown_EtchingPalkia
+    ScriptEntry CelesticTown_SovereignOnLoad
+    ScriptEntry CelesticTown_LegendaryCalyrex
     ScriptEntryEnd
 
 CelesticTown_OnTransition:
+    Call CelesticTown_SovereignSetCalyrexVisibility
     SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_2
     End
 
@@ -305,3 +308,31 @@ CelesticTown_EtchingPalkia:
     End
 
     .balign 4, 0
+
+CelesticTown_SovereignOnLoad:
+    CallIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, CelesticTown_RemoveLegendaryCalyrex
+    End
+
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Calyrex waits by the town's shrine once the Galar Chronicle
+@ is open, until it is caught.
+CelesticTown_SovereignSetCalyrexVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+    GoToIfLt VAR_SOVEREIGN_CHRONICLE, 4, CelesticTown_SovereignSetCalyrexVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_CALYREX, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, CelesticTown_SovereignSetCalyrexVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+CelesticTown_SovereignSetCalyrexVisibilityEnd:
+    Return
+
+CelesticTown_RemoveLegendaryCalyrex:
+    GoToIfNe VAR_SOVEREIGN_LEGENDARY_SPECIES, SPECIES_CALYREX, CelesticTown_RemoveLegendaryCalyrexEnd
+    RemoveObject LOCALID_LEGENDARY_CALYREX
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+CelesticTown_RemoveLegendaryCalyrexEnd:
+    Return
+
+CelesticTown_LegendaryCalyrex:
+    SetVar VAR_0x8004, SPECIES_CALYREX
+    SetVar VAR_0x8005, 70
+    Common_SovereignLegendaryEncounter
+    End

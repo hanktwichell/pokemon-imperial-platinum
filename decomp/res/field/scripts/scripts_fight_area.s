@@ -28,9 +28,12 @@
     ScriptEntry FightArea_BattleGirl2
     ScriptEntry FightArea_Sailor3
     ScriptEntry FightArea_Buck
+    ScriptEntry FightArea_SovereignOnLoad
+    ScriptEntry FightArea_LegendaryPoipole
     ScriptEntryEnd
 
 FightArea_OnTransition:
+    Call FightArea_SovereignSetPoipoleVisibility
     GoToIfEq VAR_FIGHT_AREA_STATE, 1, FightArea_SetRivalPositionBattleFrontierGate
     GoToIfGe VAR_STARK_MOUNTAIN_ROOM_3_STATE, 1, FightArea_HideRival
     End
@@ -699,3 +702,33 @@ FightArea_Sailor3:
     End
 
     .balign 0
+
+FightArea_SovereignOnLoad:
+    CallIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, FightArea_RemoveLegendaryPoipole
+    End
+
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Poipole, which came through a wormhole, waits here once
+@ Necrozma is caught, until it is caught.
+FightArea_SovereignSetPoipoleVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+    GoToIfLt VAR_SOVEREIGN_CHRONICLE, 3, FightArea_SovereignSetPoipoleVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_NECROZMA, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, FightArea_SovereignSetPoipoleVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_POIPOLE, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, FightArea_SovereignSetPoipoleVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+FightArea_SovereignSetPoipoleVisibilityEnd:
+    Return
+
+FightArea_RemoveLegendaryPoipole:
+    GoToIfNe VAR_SOVEREIGN_LEGENDARY_SPECIES, SPECIES_POIPOLE, FightArea_RemoveLegendaryPoipoleEnd
+    RemoveObject LOCALID_LEGENDARY_POIPOLE
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+FightArea_RemoveLegendaryPoipoleEnd:
+    Return
+
+FightArea_LegendaryPoipole:
+    SetVar VAR_0x8004, SPECIES_POIPOLE
+    SetVar VAR_0x8005, 40
+    Common_SovereignLegendaryEncounter
+    End

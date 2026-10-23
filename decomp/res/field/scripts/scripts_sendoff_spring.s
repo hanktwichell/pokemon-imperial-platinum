@@ -6,9 +6,16 @@
     ScriptEntry SendoffSpring_OnFrame_Cynthia
     ScriptEntry SendoffSpring_Cynthia
     ScriptEntry SendoffSpring_OnTransition
+    ScriptEntry SendoffSpring_SovereignOnLoad
+    ScriptEntry SendoffSpring_LegendaryKoraidon
+    ScriptEntry SendoffSpring_LegendaryMiraidon
+    ScriptEntry SendoffSpring_LegendaryTerapagos
     ScriptEntryEnd
 
 SendoffSpring_OnTransition:
+    Call SendoffSpring_SovereignSetTerapagosVisibility
+    Call SendoffSpring_SovereignSetMiraidonVisibility
+    Call SendoffSpring_SovereignSetKoraidonVisibility
     CallIfSet FLAG_CAUGHT_GIRATINA, SendoffSpring_ShowTurnbackCaveItem
     End
 
@@ -88,3 +95,165 @@ SendoffSpring_CynthiaEnd:
     End
 
     .balign 4, 0
+
+SendoffSpring_SovereignOnLoad:
+    CallIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, SendoffSpring_RemoveLegendaryTerapagos
+    CallIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, SendoffSpring_RemoveLegendaryMiraidon
+    CallIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, SendoffSpring_RemoveLegendaryKoraidon
+    End
+
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Koraidon appears once all twenty Paradox Pokemon are
+@ caught, until it is caught.
+SendoffSpring_SovereignSetKoraidonVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+    GoToIfLt VAR_SOVEREIGN_CHRONICLE, 5, SendoffSpring_SovereignSetKoraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_GREAT_TUSK, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_SCREAM_TAIL, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_BRUTE_BONNET, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_FLUTTER_MANE, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_SLITHER_WING, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_SANDY_SHOCKS, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_ROARING_MOON, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_WALKING_WAKE, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_GOUGING_FIRE, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_RAGING_BOLT, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_IRON_TREADS, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_IRON_BUNDLE, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_IRON_HANDS, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_IRON_JUGULIS, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_IRON_MOTH, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_IRON_THORNS, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_IRON_VALIANT, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_IRON_LEAVES, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_IRON_BOULDER, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_IRON_CROWN, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_KORAIDON, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+SendoffSpring_SovereignSetKoraidonVisibilityEnd:
+    Return
+
+SendoffSpring_RemoveLegendaryKoraidon:
+    GoToIfNe VAR_SOVEREIGN_LEGENDARY_SPECIES, SPECIES_KORAIDON, SendoffSpring_RemoveLegendaryKoraidonEnd
+    RemoveObject LOCALID_LEGENDARY_KORAIDON
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+SendoffSpring_RemoveLegendaryKoraidonEnd:
+    Return
+
+SendoffSpring_LegendaryKoraidon:
+    SetVar VAR_0x8004, SPECIES_KORAIDON
+    SetVar VAR_0x8005, 70
+    Common_SovereignLegendaryEncounter
+    End
+
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Miraidon appears once all twenty Paradox Pokemon are
+@ caught, until it is caught.
+SendoffSpring_SovereignSetMiraidonVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_2
+    GoToIfLt VAR_SOVEREIGN_CHRONICLE, 5, SendoffSpring_SovereignSetMiraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_GREAT_TUSK, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_SCREAM_TAIL, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_BRUTE_BONNET, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_FLUTTER_MANE, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_SLITHER_WING, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_SANDY_SHOCKS, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_ROARING_MOON, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_WALKING_WAKE, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_GOUGING_FIRE, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_RAGING_BOLT, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_IRON_TREADS, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_IRON_BUNDLE, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_IRON_HANDS, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_IRON_JUGULIS, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_IRON_MOTH, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_IRON_THORNS, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_IRON_VALIANT, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_IRON_LEAVES, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_IRON_BOULDER, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_IRON_CROWN, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_MIRAIDON, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_2
+SendoffSpring_SovereignSetMiraidonVisibilityEnd:
+    Return
+
+SendoffSpring_RemoveLegendaryMiraidon:
+    GoToIfNe VAR_SOVEREIGN_LEGENDARY_SPECIES, SPECIES_MIRAIDON, SendoffSpring_RemoveLegendaryMiraidonEnd
+    RemoveObject LOCALID_LEGENDARY_MIRAIDON
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+SendoffSpring_RemoveLegendaryMiraidonEnd:
+    Return
+
+SendoffSpring_LegendaryMiraidon:
+    SetVar VAR_0x8004, SPECIES_MIRAIDON
+    SetVar VAR_0x8005, 70
+    Common_SovereignLegendaryEncounter
+    End
+
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Terapagos appears once Koraidon and Miraidon are both
+@ caught, until it is caught.
+SendoffSpring_SovereignSetTerapagosVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_3
+    GoToIfLt VAR_SOVEREIGN_CHRONICLE, 5, SendoffSpring_SovereignSetTerapagosVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_KORAIDON, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetTerapagosVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_MIRAIDON, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetTerapagosVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_TERAPAGOS, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, SendoffSpring_SovereignSetTerapagosVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_3
+SendoffSpring_SovereignSetTerapagosVisibilityEnd:
+    Return
+
+SendoffSpring_RemoveLegendaryTerapagos:
+    GoToIfNe VAR_SOVEREIGN_LEGENDARY_SPECIES, SPECIES_TERAPAGOS, SendoffSpring_RemoveLegendaryTerapagosEnd
+    RemoveObject LOCALID_LEGENDARY_TERAPAGOS
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+SendoffSpring_RemoveLegendaryTerapagosEnd:
+    Return
+
+SendoffSpring_LegendaryTerapagos:
+    SetVar VAR_0x8004, SPECIES_TERAPAGOS
+    SetVar VAR_0x8005, 70
+    Common_SovereignLegendaryEncounter
+    End

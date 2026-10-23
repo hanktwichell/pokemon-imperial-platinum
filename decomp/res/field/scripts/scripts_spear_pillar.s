@@ -15,9 +15,12 @@
     ScriptEntry SpearPillar_Mars
     ScriptEntry SpearPillar_LegendaryCosmog
     ScriptEntry SpearPillar_LegendaryNecrozma
+    ScriptEntry SpearPillar_SovereignAncientRift
+    ScriptEntry SpearPillar_SovereignFutureRift
     ScriptEntryEnd
 
 SpearPillar_OnTransition:
+    Call SpearPillar_SovereignSetRiftsVisibility
     SetFlag FLAG_FIRST_ARRIVAL_SPEAR_PILLAR
     Call SpearPillar_SovereignSetSkyVisibility
     Call SpearPillar_TryHideRival
@@ -62,6 +65,7 @@ SpearPillar_HideRival:
     Return
 
 SpearPillar_OnLoad:
+    CallIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, SpearPillar_SovereignRemoveRift
     GoToIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, SpearPillar_RemoveLegendary
     End
 
@@ -549,3 +553,213 @@ SpearPillar_Movement_CameraMoveToCyrusX33:
     WalkNormalNorth 6
     WalkNormalWest 2
     EndMovement
+
+@ Sovereign (the Chronicles, the Paldea Chronicle's Time Rifts): once the Paldea Chronicle is open, a rift in time
+@ (after Dialga is caught) and one in space (after Palkia is caught) each hold the first Paradox Pokémon of their ten
+@ not caught yet. The rift shows that Pokémon (VAR_OBJ_GFX_ID_1 and _2) and VAR_MAP_LOCAL_0x03 and _0x04 hold its
+@ species for the battle and the removal after it. A rift closes once all ten are caught.
+SpearPillar_SovereignSetRiftsVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_3
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_4
+    SetVar VAR_MAP_LOCAL_0x03, 0
+    SetVar VAR_MAP_LOCAL_0x04, 0
+    GoToIfLt VAR_SOVEREIGN_CHRONICLE, 5, SpearPillar_SovereignSetRiftsVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_DIALGA, VAR_RESULT
+    CallIfEq VAR_RESULT, TRUE, SpearPillar_SovereignPickAncient
+    SovereignCheckSpeciesCaught SPECIES_PALKIA, VAR_RESULT
+    CallIfEq VAR_RESULT, TRUE, SpearPillar_SovereignPickFuture
+SpearPillar_SovereignSetRiftsVisibilityEnd:
+    Return
+
+SpearPillar_SovereignPickAncient:
+    SovereignCheckSpeciesCaught SPECIES_GREAT_TUSK, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SpearPillar_SovereignAncientGreatTusk
+    SovereignCheckSpeciesCaught SPECIES_SCREAM_TAIL, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SpearPillar_SovereignAncientScreamTail
+    SovereignCheckSpeciesCaught SPECIES_BRUTE_BONNET, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SpearPillar_SovereignAncientBruteBonnet
+    SovereignCheckSpeciesCaught SPECIES_FLUTTER_MANE, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SpearPillar_SovereignAncientFlutterMane
+    SovereignCheckSpeciesCaught SPECIES_SLITHER_WING, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SpearPillar_SovereignAncientSlitherWing
+    SovereignCheckSpeciesCaught SPECIES_SANDY_SHOCKS, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SpearPillar_SovereignAncientSandyShocks
+    SovereignCheckSpeciesCaught SPECIES_ROARING_MOON, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SpearPillar_SovereignAncientRoaringMoon
+    SovereignCheckSpeciesCaught SPECIES_WALKING_WAKE, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SpearPillar_SovereignAncientWalkingWake
+    SovereignCheckSpeciesCaught SPECIES_GOUGING_FIRE, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SpearPillar_SovereignAncientGougingFire
+    SovereignCheckSpeciesCaught SPECIES_RAGING_BOLT, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SpearPillar_SovereignAncientRagingBolt
+    Return
+
+SpearPillar_SovereignAncientGreatTusk:
+    SetVar VAR_MAP_LOCAL_0x03, SPECIES_GREAT_TUSK
+    SetVar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_LEGENDARY_GREAT_TUSK
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_3
+    Return
+
+SpearPillar_SovereignAncientScreamTail:
+    SetVar VAR_MAP_LOCAL_0x03, SPECIES_SCREAM_TAIL
+    SetVar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_LEGENDARY_SCREAM_TAIL
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_3
+    Return
+
+SpearPillar_SovereignAncientBruteBonnet:
+    SetVar VAR_MAP_LOCAL_0x03, SPECIES_BRUTE_BONNET
+    SetVar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_LEGENDARY_BRUTE_BONNET
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_3
+    Return
+
+SpearPillar_SovereignAncientFlutterMane:
+    SetVar VAR_MAP_LOCAL_0x03, SPECIES_FLUTTER_MANE
+    SetVar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_LEGENDARY_FLUTTER_MANE
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_3
+    Return
+
+SpearPillar_SovereignAncientSlitherWing:
+    SetVar VAR_MAP_LOCAL_0x03, SPECIES_SLITHER_WING
+    SetVar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_LEGENDARY_SLITHER_WING
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_3
+    Return
+
+SpearPillar_SovereignAncientSandyShocks:
+    SetVar VAR_MAP_LOCAL_0x03, SPECIES_SANDY_SHOCKS
+    SetVar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_LEGENDARY_SANDY_SHOCKS
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_3
+    Return
+
+SpearPillar_SovereignAncientRoaringMoon:
+    SetVar VAR_MAP_LOCAL_0x03, SPECIES_ROARING_MOON
+    SetVar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_LEGENDARY_ROARING_MOON
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_3
+    Return
+
+SpearPillar_SovereignAncientWalkingWake:
+    SetVar VAR_MAP_LOCAL_0x03, SPECIES_WALKING_WAKE
+    SetVar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_LEGENDARY_WALKING_WAKE
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_3
+    Return
+
+SpearPillar_SovereignAncientGougingFire:
+    SetVar VAR_MAP_LOCAL_0x03, SPECIES_GOUGING_FIRE
+    SetVar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_LEGENDARY_GOUGING_FIRE
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_3
+    Return
+
+SpearPillar_SovereignAncientRagingBolt:
+    SetVar VAR_MAP_LOCAL_0x03, SPECIES_RAGING_BOLT
+    SetVar VAR_OBJ_GFX_ID_1, OBJ_EVENT_GFX_LEGENDARY_RAGING_BOLT
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_3
+    Return
+
+SpearPillar_SovereignPickFuture:
+    SovereignCheckSpeciesCaught SPECIES_IRON_TREADS, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SpearPillar_SovereignFutureIronTreads
+    SovereignCheckSpeciesCaught SPECIES_IRON_BUNDLE, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SpearPillar_SovereignFutureIronBundle
+    SovereignCheckSpeciesCaught SPECIES_IRON_HANDS, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SpearPillar_SovereignFutureIronHands
+    SovereignCheckSpeciesCaught SPECIES_IRON_JUGULIS, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SpearPillar_SovereignFutureIronJugulis
+    SovereignCheckSpeciesCaught SPECIES_IRON_MOTH, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SpearPillar_SovereignFutureIronMoth
+    SovereignCheckSpeciesCaught SPECIES_IRON_THORNS, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SpearPillar_SovereignFutureIronThorns
+    SovereignCheckSpeciesCaught SPECIES_IRON_VALIANT, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SpearPillar_SovereignFutureIronValiant
+    SovereignCheckSpeciesCaught SPECIES_IRON_LEAVES, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SpearPillar_SovereignFutureIronLeaves
+    SovereignCheckSpeciesCaught SPECIES_IRON_BOULDER, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SpearPillar_SovereignFutureIronBoulder
+    SovereignCheckSpeciesCaught SPECIES_IRON_CROWN, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SpearPillar_SovereignFutureIronCrown
+    Return
+
+SpearPillar_SovereignFutureIronTreads:
+    SetVar VAR_MAP_LOCAL_0x04, SPECIES_IRON_TREADS
+    SetVar VAR_OBJ_GFX_ID_2, OBJ_EVENT_GFX_LEGENDARY_IRON_TREADS
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_4
+    Return
+
+SpearPillar_SovereignFutureIronBundle:
+    SetVar VAR_MAP_LOCAL_0x04, SPECIES_IRON_BUNDLE
+    SetVar VAR_OBJ_GFX_ID_2, OBJ_EVENT_GFX_LEGENDARY_IRON_BUNDLE
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_4
+    Return
+
+SpearPillar_SovereignFutureIronHands:
+    SetVar VAR_MAP_LOCAL_0x04, SPECIES_IRON_HANDS
+    SetVar VAR_OBJ_GFX_ID_2, OBJ_EVENT_GFX_LEGENDARY_IRON_HANDS
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_4
+    Return
+
+SpearPillar_SovereignFutureIronJugulis:
+    SetVar VAR_MAP_LOCAL_0x04, SPECIES_IRON_JUGULIS
+    SetVar VAR_OBJ_GFX_ID_2, OBJ_EVENT_GFX_LEGENDARY_IRON_JUGULIS
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_4
+    Return
+
+SpearPillar_SovereignFutureIronMoth:
+    SetVar VAR_MAP_LOCAL_0x04, SPECIES_IRON_MOTH
+    SetVar VAR_OBJ_GFX_ID_2, OBJ_EVENT_GFX_LEGENDARY_IRON_MOTH
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_4
+    Return
+
+SpearPillar_SovereignFutureIronThorns:
+    SetVar VAR_MAP_LOCAL_0x04, SPECIES_IRON_THORNS
+    SetVar VAR_OBJ_GFX_ID_2, OBJ_EVENT_GFX_LEGENDARY_IRON_THORNS
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_4
+    Return
+
+SpearPillar_SovereignFutureIronValiant:
+    SetVar VAR_MAP_LOCAL_0x04, SPECIES_IRON_VALIANT
+    SetVar VAR_OBJ_GFX_ID_2, OBJ_EVENT_GFX_LEGENDARY_IRON_VALIANT
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_4
+    Return
+
+SpearPillar_SovereignFutureIronLeaves:
+    SetVar VAR_MAP_LOCAL_0x04, SPECIES_IRON_LEAVES
+    SetVar VAR_OBJ_GFX_ID_2, OBJ_EVENT_GFX_LEGENDARY_IRON_LEAVES
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_4
+    Return
+
+SpearPillar_SovereignFutureIronBoulder:
+    SetVar VAR_MAP_LOCAL_0x04, SPECIES_IRON_BOULDER
+    SetVar VAR_OBJ_GFX_ID_2, OBJ_EVENT_GFX_LEGENDARY_IRON_BOULDER
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_4
+    Return
+
+SpearPillar_SovereignFutureIronCrown:
+    SetVar VAR_MAP_LOCAL_0x04, SPECIES_IRON_CROWN
+    SetVar VAR_OBJ_GFX_ID_2, OBJ_EVENT_GFX_LEGENDARY_IRON_CROWN
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_4
+    Return
+
+SpearPillar_SovereignRemoveRift:
+    GoToIfEq VAR_SOVEREIGN_LEGENDARY_SPECIES, VAR_MAP_LOCAL_0x03, SpearPillar_SovereignRemoveAncientRift
+    GoToIfEq VAR_SOVEREIGN_LEGENDARY_SPECIES, VAR_MAP_LOCAL_0x04, SpearPillar_SovereignRemoveFutureRift
+    Return
+
+SpearPillar_SovereignRemoveAncientRift:
+    RemoveObject LOCALID_SOVEREIGN_ANCIENT_RIFT
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+    Return
+
+SpearPillar_SovereignRemoveFutureRift:
+    RemoveObject LOCALID_SOVEREIGN_FUTURE_RIFT
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+    Return
+
+SpearPillar_SovereignAncientRift:
+    SetVar VAR_0x8004, VAR_MAP_LOCAL_0x03
+    SetVar VAR_0x8005, 65
+    Common_SovereignLegendaryEncounter
+    End
+
+SpearPillar_SovereignFutureRift:
+    SetVar VAR_0x8004, VAR_MAP_LOCAL_0x04
+    SetVar VAR_0x8005, 65
+    Common_SovereignLegendaryEncounter
+    End

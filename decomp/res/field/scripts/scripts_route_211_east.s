@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/field/events/events_route_211_east.h"
 #include "res/text/bank/route_211_east.h"
 
 
@@ -6,6 +7,9 @@
     ScriptEntry Route211East_ArrowSignpostMtCoronet
     ScriptEntry Route211East_TrainerTipsSignpost
     ScriptEntry Route211East_ArrowSignpostCelesticTown
+    ScriptEntry Route211East_SovereignOnTransition
+    ScriptEntry Route211East_SovereignOnLoad
+    ScriptEntry Route211East_LegendaryOgerpon
     ScriptEntryEnd
 
 Route211East_AceTrainerM:
@@ -57,3 +61,36 @@ Route211East_ArrowSignpostCelesticTown:
     End
 
     .balign 4, 0
+
+Route211East_SovereignOnTransition:
+    Call Route211East_SovereignSetOgerponVisibility
+    End
+
+Route211East_SovereignOnLoad:
+    CallIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, Route211East_RemoveLegendaryOgerpon
+    End
+
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Ogerpon, wearing the Teal Mask, waits by the mountain path
+@ once the Paldea Chronicle is open, until it is caught.
+Route211East_SovereignSetOgerponVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+    GoToIfLt VAR_SOVEREIGN_CHRONICLE, 5, Route211East_SovereignSetOgerponVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_OGERPON, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, Route211East_SovereignSetOgerponVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+Route211East_SovereignSetOgerponVisibilityEnd:
+    Return
+
+Route211East_RemoveLegendaryOgerpon:
+    GoToIfNe VAR_SOVEREIGN_LEGENDARY_SPECIES, SPECIES_OGERPON, Route211East_RemoveLegendaryOgerponEnd
+    RemoveObject LOCALID_LEGENDARY_OGERPON
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+Route211East_RemoveLegendaryOgerponEnd:
+    Return
+
+Route211East_LegendaryOgerpon:
+    SetVar VAR_SOVEREIGN_LEGENDARY_HELD_ITEM, ITEM_TEAL_MASK
+    SetVar VAR_0x8004, SPECIES_OGERPON
+    SetVar VAR_0x8005, 65
+    Common_SovereignLegendaryEncounter
+    End

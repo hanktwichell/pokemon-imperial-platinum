@@ -86,6 +86,7 @@
     ScriptEntry CommonScript_GriseousOrbCouldNotBeRemoved @ 0x809
     ScriptEntry CommonScript_SovereignTotemTrial @ 0x80A
     ScriptEntry CommonScript_SovereignLegendaryEncounter @ 0x80B
+    ScriptEntry CommonScript_SovereignStake @ 0x80C
     ScriptEntryEnd
 
 CommonScript_Dummy2010:
@@ -1719,10 +1720,13 @@ CommonScript_GriseousOrbCouldNotBeRemoved:
 @ level. FLAG_SOVEREIGN_REMOVE_LEGENDARY asks the map's OnLoad script to remove the Pokémon when the field comes back
 @ (map objects survive a battle). Not caught, it vanishes until the next visit: the map's OnTransition shows it again
 @ until the Pokédex has it as caught. VAR_RESULT comes back TRUE when the player caught it, FALSE otherwise.
+@ VAR_SOVEREIGN_LEGENDARY_SPECIES keeps the species, so a map with several legendaries knows which one to remove: the
+@ special vars can't be read from OnLoad on the way back from a battle.
 CommonScript_SovereignLegendaryEncounter:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     WaitSE SE_CONFIRM_sseq_3
+    SetVar VAR_SOVEREIGN_LEGENDARY_SPECIES, VAR_0x8004
     SetVar VAR_0x8009, VAR_0x8004
     SetVar VAR_0x800A, VAR_0x8005
     BufferSpeciesNameFromVar 0, VAR_0x8009, 0, 0
@@ -1754,6 +1758,33 @@ CommonScript_SovereignLegendaryVanished:
 
 CommonScript_SovereignLegendaryLost:
     BlackOutFromBattle
+    SetVar VAR_RESULT, FALSE
+    ReleaseAll
+    ReturnCommonScript
+    End
+
+@ Sovereign (the Chronicles, the Treasures of Ruin): one of the eight stakes that seal the Ruinous shrines.
+@ VAR_0x8004 = its FLAG_SOVEREIGN_PULLED_STAKE_* flag, VAR_0x8005 = its local ID. VAR_RESULT comes back TRUE once it's
+@ pulled out; the caller then shows the shrine's legendary if both its stakes are out.
+CommonScript_SovereignStake:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    Message CommonStrings_Text_SovereignStake
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, CommonScript_SovereignStakeLeave
+    SetFlagFromVar VAR_0x8004
+    RemoveObject VAR_0x8005
+    BufferPlayerName 0
+    Message CommonStrings_Text_SovereignStakePulled
+    WaitButton
+    CloseMessage
+    SetVar VAR_RESULT, TRUE
+    ReleaseAll
+    ReturnCommonScript
+    End
+
+CommonScript_SovereignStakeLeave:
+    CloseMessage
     SetVar VAR_RESULT, FALSE
     ReleaseAll
     ReturnCommonScript

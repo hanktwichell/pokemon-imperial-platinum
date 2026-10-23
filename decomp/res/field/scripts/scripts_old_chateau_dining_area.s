@@ -7,9 +7,11 @@
     ScriptEntry OldChateauDiningArea_OnFrame_OldManLeave
     ScriptEntry OldChateauDiningArea_TotemMimikyu
     ScriptEntry OldChateauDiningArea_OnLoad
+    ScriptEntry OldChateauDiningArea_LegendaryMarshadow
     ScriptEntryEnd
 
 OldChateauDiningArea_OnTransition:
+    Call OldChateauDiningArea_SovereignSetMarshadowVisibility
     @ Sovereign: Totem Mimikyu's trial opens once Jupiter has left the Galactic Eterna Building.
     CallIfSet FLAG_SOVEREIGN_TOTEM_TRIAL_MIMIKYU, OldChateauDiningArea_HideTotemMimikyu
     CallIfUnset FLAG_TEAM_GALACTIC_LEFT_ETERNA_BUILDING, OldChateauDiningArea_HideTotemMimikyu
@@ -28,6 +30,7 @@ OldChateauDiningArea_HideTotemMimikyu:
     Return
 
 OldChateauDiningArea_OnLoad:
+    CallIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, OldChateauDiningArea_RemoveLegendaryMarshadow
     GoToIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, OldChateauDiningArea_RemoveTotemMimikyu
     End
 
@@ -70,3 +73,27 @@ OldChateauDiningArea_Movement_OldManLeave:
     ResumeAnimation
     SetInvisible
     EndMovement
+
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Marshadow lurks in the dining room's shadows once the Alola
+@ Chronicle is open, until it is caught.
+OldChateauDiningArea_SovereignSetMarshadowVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+    GoToIfLt VAR_SOVEREIGN_CHRONICLE, 3, OldChateauDiningArea_SovereignSetMarshadowVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_MARSHADOW, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, OldChateauDiningArea_SovereignSetMarshadowVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+OldChateauDiningArea_SovereignSetMarshadowVisibilityEnd:
+    Return
+
+OldChateauDiningArea_RemoveLegendaryMarshadow:
+    GoToIfNe VAR_SOVEREIGN_LEGENDARY_SPECIES, SPECIES_MARSHADOW, OldChateauDiningArea_RemoveLegendaryMarshadowEnd
+    RemoveObject LOCALID_LEGENDARY_MARSHADOW
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+OldChateauDiningArea_RemoveLegendaryMarshadowEnd:
+    Return
+
+OldChateauDiningArea_LegendaryMarshadow:
+    SetVar VAR_0x8004, SPECIES_MARSHADOW
+    SetVar VAR_0x8005, 50
+    Common_SovereignLegendaryEncounter
+    End

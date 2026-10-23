@@ -936,6 +936,20 @@
         "{STRVAR_1 1, 0, 0} vanished...\n",
         "It might show itself here again."
       ]
+    },
+    {
+      "id": "CommonStrings_Text_SovereignStake",
+      "en_US": [
+        "A strange stake is driven deep into\n",
+        "the ground. Pull it out?"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_SovereignStakePulled",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} pulled out the stake!\n",
+        "Something nearby seems to stir..."
+      ]
     }
   ]
 }

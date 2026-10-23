@@ -1,4 +1,5 @@
 #include "macros/scrcmd.inc"
+#include "res/field/events/events_sunyshore_city_gym_room_3.h"
 #include "constants/sunyshore_gym_buttons.h"
 #include "res/text/bank/sunyshore_city_gym_room_3.h"
 
@@ -7,9 +8,12 @@
     ScriptEntry SunyshoreGymRoom3_TopButtons
     ScriptEntry SunyshoreGymRoom3_BottomButtons
     ScriptEntry SunyshoreGymRoom3_Volkner
+    ScriptEntry SunyshoreGymRoom3_SovereignOnLoad
+    ScriptEntry SunyshoreGymRoom3_LegendaryMagearna
     ScriptEntryEnd
 
 SunyshoreGymRoom3_Init:
+    Call SunyshoreGymRoom3_SovereignSetMagearnaVisibility
     SetVar VAR_MAP_LOCAL_0x00, 0
     InitPersistedMapFeaturesForSunyshoreGym 2
     End
@@ -85,4 +89,32 @@ SunyshoreGymRoom3_VolknerAlreadyHaveBeaconBadge:
 SunyshoreGymRoom3_LostBattle:
     BlackOutFromBattle
     ReleaseAll
+    End
+
+SunyshoreGymRoom3_SovereignOnLoad:
+    CallIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, SunyshoreGymRoom3_RemoveLegendaryMagearna
+    End
+
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Magearna, the 500-year-old automaton, stands in Volkner's
+@ room once the Alola Chronicle is open, until it is caught.
+SunyshoreGymRoom3_SovereignSetMagearnaVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+    GoToIfLt VAR_SOVEREIGN_CHRONICLE, 3, SunyshoreGymRoom3_SovereignSetMagearnaVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_MAGEARNA, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, SunyshoreGymRoom3_SovereignSetMagearnaVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+SunyshoreGymRoom3_SovereignSetMagearnaVisibilityEnd:
+    Return
+
+SunyshoreGymRoom3_RemoveLegendaryMagearna:
+    GoToIfNe VAR_SOVEREIGN_LEGENDARY_SPECIES, SPECIES_MAGEARNA, SunyshoreGymRoom3_RemoveLegendaryMagearnaEnd
+    RemoveObject LOCALID_LEGENDARY_MAGEARNA
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+SunyshoreGymRoom3_RemoveLegendaryMagearnaEnd:
+    Return
+
+SunyshoreGymRoom3_LegendaryMagearna:
+    SetVar VAR_0x8004, SPECIES_MAGEARNA
+    SetVar VAR_0x8005, 50
+    Common_SovereignLegendaryEncounter
     End

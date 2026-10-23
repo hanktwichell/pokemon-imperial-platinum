@@ -590,6 +590,21 @@
             "x": 808,
             "z": 795,
             "y": 0
+        },
+        {
+            "id": "LOCALID_LEGENDARY_ZERAORA",
+            "graphics_id": "OBJ_EVENT_GFX_LEGENDARY_ZERAORA",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_LEGENDARY_2",
+            "script": 11,
+            "initial_dir": 1,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 774,
+            "z": 783,
+            "y": 0
         }
     ],
     "warp_events": [

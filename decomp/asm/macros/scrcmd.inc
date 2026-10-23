@@ -5305,6 +5305,11 @@
     CallCommonScript 0x80B
     .endm
 
+    // Sovereign (the Chronicles): a stake sealing a Ruinous shrine (VAR_0x8004 its flag, VAR_0x8005 its local ID).
+    .macro Common_SovereignStake
+    CallCommonScript 0x80C
+    .endm
+
     .macro Common_CallPokecenterNurse nurseLocalID
     SetVar VAR_0x8007, \nurseLocalID
     CallCommonScript 0x7D2

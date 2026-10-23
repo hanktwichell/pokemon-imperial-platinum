@@ -16,6 +16,22 @@
         "If I climb on top of Mt. Coronet,\n",
         "will I be able to see all of Sinnoh?"
       ]
+    },
+    {
+      "id": "CelesticTownNortheastHouse_Text_SovereignOgerponMasks",
+      "en_US": [
+        "That OGERPON! My family has kept\n",
+        "three old masks for one like it.\r",
+        "It should have them. Here, take\n",
+        "all three!\r"
+      ]
+    },
+    {
+      "id": "CelesticTownNortheastHouse_Text_SovereignOgerponMasksAfter",
+      "en_US": [
+        "Holding a mask changes how OGERPON\n",
+        "looks, and its type too."
+      ]
     }
   ]
 }

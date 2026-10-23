@@ -16,7 +16,7 @@ TurnbackCaveEntrance_OnTransition:
     InitTurnbackCave VAR_TURNBACK_CAVE_PILLARS_SEEN, VAR_TURNBACK_CAVE_ROOMS_VISITED
     End
 
-@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): an Ultra Beast (Guzzlord) lurks in the first room once
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): an Ultra Beast (Guzzlord) lurks by the entrance once
 @ Necrozma is caught, until it's caught.
 TurnbackCaveEntrance_SovereignSetGuzzlordVisibility:
     SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
