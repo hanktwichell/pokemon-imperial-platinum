@@ -312,6 +312,8 @@ field_sprites_textures_single_frame = [
     { 'file': 'pokemon/legendary_zapdos.png', 'basename': 'sovlegend95'},
     { 'file': 'pokemon/legendary_moltres.png', 'basename': 'sovlegend96'},
     { 'file': 'pokemon/legendary_celebi.png', 'basename': 'sovlegend97'},
+    { 'file': 'pokemon/legendary_lugia.png', 'basename': 'sovlegend98'},
+    { 'file': 'pokemon/legendary_ho_oh.png', 'basename': 'sovlegend99'},
     { 'file': 'objects/time_portal.png', 'basename': 'sovobject01'},
 ]
 

@@ -114,6 +114,8 @@ key_items:
   - Reins of Unity       # Calyrex fusions
   - Zygarde Cube         # Zygarde's formes
   - Reveal Glass         # Therian Formes
+  - Silver Wing          # E10 (Renegade): Professor Oak, with Articuno, Zapdos and Moltres in the party; Lugia
+  - Rainbow Wing         # E10 (Renegade): Professor Oak, with Raikou, Entei and Suicune in the party; Ho-Oh
 
 custom_items:          # Sovereign's own items (not in PokeAPI): every field is given here.
   - name: Infinite Repel   # QoL #3 (owner-approved): a key item that toggles a permanent Repel on and off

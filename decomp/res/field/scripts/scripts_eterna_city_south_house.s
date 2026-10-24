@@ -10,7 +10,7 @@ EternaCitySouthHouse_ProfOak:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
-    GoToIfSet FLAG_CAUGHT_ROAMING_LEGENDARY_BIRDS, EternaCitySouthHouse_PokedexRatingsCheckOak2
+    GoToIfSet FLAG_CAUGHT_ROAMING_LEGENDARY_BIRDS, EternaCitySouthHouse_SovereignQuests
     Call EternaCitySouthHouse_CheckCaughtAllRoamingLegendaryBirds
     GoToIfEq VAR_RESULT, TRUE, EternaCitySouthHouse_CaughtAllRoamingLegendaryBirds
     GoToIfSet FLAG_ACTIVATED_ROAMING_LEGENDARY_BIRDS, EternaCitySouthHouse_TryReactivateRoamingLegendaryBirds
@@ -90,3 +90,72 @@ EternaCitySouthHouse_ProfOakEnd:
 EternaCitySouthHouse_Movement_EmoteExclamationMark:
     EmoteExclamationMark
     EndMovement
+
+@ Sovereign (E10 part 29, Renegade's QUESTS): once Oak has praised the three birds, he shows his two Clear Wings. With
+@ Articuno, Zapdos and Moltres in the party one turns into the Silver Wing (Lugia, Route 220); then, with Raikou,
+@ Entei and Suicune, the other turns into the Rainbow Wing (Ho-Oh, the Lost Tower). Both are key items, so holding
+@ them is the record. Otherwise Oak gives his hint and then rates the Pokédex, as before.
+EternaCitySouthHouse_SovereignQuests:
+    BufferPlayerName 0
+    CheckItem ITEM_SILVER_WING, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, EternaCitySouthHouse_SovereignQuestRainbow
+    Message EternaCitySouthHouse_Text_SovereignClearWings
+    WaitButton
+    CloseMessage
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_ARTICUNO
+    GoToIfEq VAR_RESULT, FALSE, EternaCitySouthHouse_PokedexRatingsCheckOak2
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_ZAPDOS
+    GoToIfEq VAR_RESULT, FALSE, EternaCitySouthHouse_PokedexRatingsCheckOak2
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_MOLTRES
+    GoToIfEq VAR_RESULT, FALSE, EternaCitySouthHouse_PokedexRatingsCheckOak2
+    ApplyMovement LOCALID_PROF_OAK, EternaCitySouthHouse_Movement_EmoteExclamationMark
+    WaitMovement
+    Message EternaCitySouthHouse_Text_SovereignBirdsInParty
+    CloseMessage
+    Call EternaCitySouthHouse_SovereignWingFlash
+    Message EternaCitySouthHouse_Text_SovereignOh
+    CloseMessage
+    Call EternaCitySouthHouse_SovereignWingFlash
+    Message EternaCitySouthHouse_Text_SovereignSilverWing
+    SetVar VAR_0x8004, ITEM_SILVER_WING
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    Message EternaCitySouthHouse_Text_SovereignLugiaHint
+    CloseMessage
+    ReleaseAll
+    End
+
+EternaCitySouthHouse_SovereignQuestRainbow:
+    CheckItem ITEM_RAINBOW_WING, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, EternaCitySouthHouse_PokedexRatingsCheckOak2
+    Message EternaCitySouthHouse_Text_SovereignRainbowClearWing
+    WaitButton
+    CloseMessage
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_RAIKOU
+    GoToIfEq VAR_RESULT, FALSE, EternaCitySouthHouse_PokedexRatingsCheckOak2
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_ENTEI
+    GoToIfEq VAR_RESULT, FALSE, EternaCitySouthHouse_PokedexRatingsCheckOak2
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_SUICUNE
+    GoToIfEq VAR_RESULT, FALSE, EternaCitySouthHouse_PokedexRatingsCheckOak2
+    ApplyMovement LOCALID_PROF_OAK, EternaCitySouthHouse_Movement_EmoteExclamationMark
+    WaitMovement
+    Message EternaCitySouthHouse_Text_SovereignBeastsInParty
+    CloseMessage
+    Call EternaCitySouthHouse_SovereignWingFlash
+    Message EternaCitySouthHouse_Text_SovereignRainbowWing
+    SetVar VAR_0x8004, ITEM_RAINBOW_WING
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    Message EternaCitySouthHouse_Text_SovereignHoOhHint
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+EternaCitySouthHouse_SovereignWingFlash:
+    FadeScreenOut FADE_SCREEN_SPEED_MEDIUM, COLOR_WHITE
+    WaitFadeScreen
+    FadeScreenIn FADE_SCREEN_SPEED_MEDIUM, COLOR_WHITE
+    WaitFadeScreen
+    WaitTime 15, VAR_RESULT
+    Return

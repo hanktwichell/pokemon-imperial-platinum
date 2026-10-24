@@ -9,10 +9,12 @@
     ScriptEntry Route209LostTower5F_OnTransition
     ScriptEntry Route209LostTower5F_TotemMarowak
     ScriptEntry Route209LostTower5F_OnLoad
+    ScriptEntry Route209LostTower5F_LegendaryHoOh
     ScriptEntryEnd
 
 @ Sovereign: Totem Alolan Marowak's trial opens once Fantina is beaten (the Relic Badge).
 Route209LostTower5F_OnTransition:
+    Call Route209LostTower5F_SovereignSetHoOhVisibility
     CallIfSet FLAG_SOVEREIGN_TOTEM_TRIAL_MAROWAK, Route209LostTower5F_HideTotemMarowak
     CheckBadgeAcquired BADGE_ID_RELIC, VAR_RESULT
     CallIfEq VAR_RESULT, FALSE, Route209LostTower5F_HideTotemMarowak
@@ -23,6 +25,7 @@ Route209LostTower5F_HideTotemMarowak:
     Return
 
 Route209LostTower5F_OnLoad:
+    GoToIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, Route209LostTower5F_SovereignRemoveLegendaryHoOh
     GoToIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, Route209LostTower5F_RemoveTotemMarowak
     End
 
@@ -100,3 +103,30 @@ Route209LostTower5F_ThisFogObscuresEverything2:
     CloseMessage
     ReleaseAll
     End
+
+@ Sovereign (E10 part 29, Renegade's Ho-Oh): after the Hall of Fame, Ho-Oh waits below the graves (7, 12) while the
+@ player carries the Rainbow Wing (Professor Oak's, once Raikou, Entei and Suicune are in the party), until it is
+@ caught (Renegade: Lv. 70, a portal here). Totem Marowak's trial stands at (3, 4), on its own flag.
+Route209LostTower5F_SovereignSetHoOhVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+    GoToIfUnset FLAG_GAME_COMPLETED, Route209LostTower5F_SovereignSetHoOhVisibilityEnd
+    CheckItem ITEM_RAINBOW_WING, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, Route209LostTower5F_SovereignSetHoOhVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_HO_OH, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, Route209LostTower5F_SovereignSetHoOhVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+Route209LostTower5F_SovereignSetHoOhVisibilityEnd:
+    Return
+
+Route209LostTower5F_SovereignRemoveLegendaryHoOh:
+    RemoveObject LOCALID_LEGENDARY_HO_OH
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+    End
+
+Route209LostTower5F_LegendaryHoOh:
+    SetVar VAR_0x8004, SPECIES_HO_OH
+    SetVar VAR_0x8005, 70
+    Common_SovereignLegendaryEncounter
+    End
+
+    .balign 4, 0

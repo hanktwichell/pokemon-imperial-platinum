@@ -4,6 +4,31 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 29) — Lugia and Ho-Oh: Professor Oak's Clear Wings
+
+Renegade's last two portal legendaries, with Oak's QUESTS:
+- **Professor Oak** (Eterna City's south house): once he has praised the three birds, he shows his two Clear Wings.
+  - With Articuno, Zapdos and Moltres in the party, one turns into the **Silver Wing**, with a hint at a sea
+    "surrounded by small islands".
+  - Then, with Raikou, Entei and Suicune in the party, the other turns into the **Rainbow Wing**, with a hint at a
+    tall place where the departed are remembered.
+  - Both are new key items (PokeAPI's data and icons). Holding them is the record, so no new flags.
+  - Until the party is right, Oak gives the hint and then rates the Pokédex, as before.
+- **Lugia:** Route 220, the sandbar island at the bottom of the route (190, 921), Surf. **Ho-Oh:** Lost Tower 5F,
+  below the old women's graves (7, 12), clear of Totem Marowak (3, 4).
+  - Both are Lv. 70, after the Hall of Fame, while the player carries their wing, until caught.
+  - Renegade opens a portal on each spot; Sovereign shows the Pokémon.
+- Route 220 had no scripts (`scripts_empty`); it now has its own script archive.
+- Lugia's and Ho-Oh's overworld sprites are placeholders, large (64×64) by the owner's size classes.
+
+Verified in a test build (a party of the three birds and the three beasts, Lv. 100; the Hall of Fame and Oak's praise
+set):
+- Neither legendary shows before the wings.
+- Oak's Silver Wing scene, then the Rainbow Wing scene, each with its hint.
+- Lugia and Ho-Oh then stand on their tiles, battle at Lv. 70 and are caught, and they're gone afterwards.
+- Harness note: in Oak's house a text box sometimes ignored a few B presses before advancing (also seen in part 27).
+  It always recovered; worth a look on hardware.
+
 ## E10 (part 28) — Celebi: the GS Ball and the time portals in Eterna Forest
 
 Renegade's Celebi event:

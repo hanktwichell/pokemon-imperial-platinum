@@ -1146,6 +1146,8 @@ scr_seq_files = files(
     'scripts_init_victory_road_b1f.s',
     'scripts_victory_road_2f.s',
     'scripts_init_victory_road_2f.s',
+    'scripts_route_220.s',
+    'scripts_init_route_220.s',
 )
 
 scr_seq_narc = custom_target('scr_seq.narc',

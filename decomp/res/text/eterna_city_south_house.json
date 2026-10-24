@@ -71,6 +71,118 @@
         "Well, then, allow me to examine your\n",
         "Pokédex.\r"
       ]
+    },
+    {
+      "id": "EternaCitySouthHouse_Text_SovereignClearWings",
+      "en_US": [
+        "Oak: Take a look at the two feathers\n",
+        "I have here, {STRVAR_1 3, 0, 0}.\r",
+        "They’re both known as Clear Wings.\n",
+        "You might think they look ordinary...\r",
+        "But these feathers have a puzzle that\n",
+        "I’m currently trying to solve.\r",
+        "They may have a connection to the two\n",
+        "Pokémon known as the guardians of the\f",
+        "sea and sky.\r",
+        "LUGIA, the guardian of the sea, is\n",
+        "said to mediate between the three\f",
+        "legendary birds of Kanto.\r",
+        "Maybe this Clear Wing would react to\n",
+        "ARTICUNO, ZAPDOS and MOLTRES?\r",
+        "Would you bring all three of them\n",
+        "here in your party?"
+      ]
+    },
+    {
+      "id": "EternaCitySouthHouse_Text_SovereignBirdsInParty",
+      "en_US": [
+        "Oak: What’s this? In your party...\n",
+        "ARTICUNO, ZAPDOS and MOLTRES?!\r",
+        "Now that is incredible!\n",
+        "Thank you, {STRVAR_1 3, 0, 0}.\r",
+        "Now, this Clear Wing...\n",
+        "Will it react, I wonder?\r"
+      ]
+    },
+    {
+      "id": "EternaCitySouthHouse_Text_SovereignOh",
+      "en_US": [
+        "Oak: Oh?!\r"
+      ]
+    },
+    {
+      "id": "EternaCitySouthHouse_Text_SovereignSilverWing",
+      "en_US": [
+        "Oak: Ah, splendid! It really did work!\n",
+        "This Clear Wing has changed.\r",
+        "It’s now a deep silver color...\n",
+        "And it’s sparkling, too.\r",
+        "It must be the Silver Wing!\r",
+        "Thanks for your assistance, {STRVAR_1 3, 0, 0}.\n",
+        "I’d like you to have this Silver Wing.\r"
+      ]
+    },
+    {
+      "id": "EternaCitySouthHouse_Text_SovereignLugiaHint",
+      "en_US": [
+        "Oak: Do you know of anywhere in the\n",
+        "sea surrounded by small islands?\r",
+        "Perhaps you’d somehow find LUGIA there\n",
+        "if you carry the Silver Wing with you.\r"
+      ]
+    },
+    {
+      "id": "EternaCitySouthHouse_Text_SovereignRainbowClearWing",
+      "en_US": [
+        "Oak: Now, this other Clear Wing...\n",
+        "Perhaps it could be the Rainbow Wing?\r",
+        "The guardian of the sky was said to\n",
+        "have resurrected three Pokémon.\r",
+        "RAIKOU, ENTEI and SUICUNE.\n",
+        "The legendary beasts of Johto.\r",
+        "I’m sure this Clear Wing would respond\n",
+        "to the presence of those Pokémon!\r",
+        "I would imagine those Pokémon would\n",
+        "enjoy high places...\r",
+        "Maybe the Rock Climb technique could\n",
+        "help you find them?\r",
+        "If you somehow catch all three...\n",
+        "Please show them to me."
+      ]
+    },
+    {
+      "id": "EternaCitySouthHouse_Text_SovereignBeastsInParty",
+      "en_US": [
+        "Oak: In your party...\n",
+        "RAIKOU, ENTEI, and SUICUNE?!\r",
+        "You’ve done it again, {STRVAR_1 3, 0, 0}!\n",
+        "Truly impressive!\r",
+        "Now, let’s see if this Clear Wing...\r",
+        "Oh?!\r"
+      ]
+    },
+    {
+      "id": "EternaCitySouthHouse_Text_SovereignRainbowWing",
+      "en_US": [
+        "Oak: Excellent! This Clear Wing is now\n",
+        "a sparkling, vibrant rainbow color!\r",
+        "This is clearly the Rainbow Wing!\n",
+        "How very exciting!\r",
+        "{STRVAR_1 3, 0, 0}, thank you again.\n",
+        "I’d like you to have this, too.\r"
+      ]
+    },
+    {
+      "id": "EternaCitySouthHouse_Text_SovereignHoOhHint",
+      "en_US": [
+        "Oak: A tall place where the departed\n",
+        "are given due respect...\r",
+        "There is a place like that in Sinnoh,\n",
+        "is there not?\r",
+        "Taking a Rainbow Wing to a place like\n",
+        "that might allow you to meet HO-OH,\f",
+        "the sky guardian."
+      ]
     }
   ]
 }
