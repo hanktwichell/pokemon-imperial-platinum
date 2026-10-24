@@ -1,0 +1,33 @@
+{
+    "name": "Clair",
+    "class": "TRAINER_CLASS_ACE_TRAINER_FEMALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_KINGDRA",
+            "form": 0,
+            "level": 45,
+            "item": null,
+            "moves": [
+                "MOVE_DRAGON_PULSE",
+                "MOVE_SCALD",
+                "MOVE_ICE_BEAM",
+                "MOVE_HYPER_BEAM"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "..."
+        }
+    ]
+}

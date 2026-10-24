@@ -151,6 +151,55 @@
         "...\r",
         "A piece of the rock fell off...\r"
       ]
+    },
+    {
+      "id": "EternaForest_Text_SovereignGSBallShaking",
+      "en_US": [
+        "Oh?\r",
+        "The GS Ball is shaking...\r"
+      ]
+    },
+    {
+      "id": "EternaForest_Text_SovereignCelebiBii",
+      "en_US": [
+        "Bii!"
+      ]
+    },
+    {
+      "id": "EternaForest_Text_SovereignPortal",
+      "en_US": [
+        "It’s a portal through time.\r",
+        "It feels as though reaching into it\n",
+        "would show memories of the past.\r",
+        "Do you want to reach into the portal?"
+      ]
+    },
+    {
+      "id": "EternaForest_Text_SovereignPortalMemory",
+      "en_US": [
+        "...\r",
+        "You were enveloped by the memory\n",
+        "of a battle!\r"
+      ]
+    },
+    {
+      "id": "EternaForest_Text_SovereignPortalGone",
+      "en_US": [
+        "The portal through time disappeared."
+      ]
+    },
+    {
+      "id": "EternaForest_Text_SovereignCelebiSad",
+      "en_US": [
+        "Bii..."
+      ]
+    },
+    {
+      "id": "EternaForest_Text_SovereignCelebiPresence",
+      "en_US": [
+        "A curious presence can be felt from\n",
+        "somewhere in the forest..."
+      ]
     }
   ]
 }

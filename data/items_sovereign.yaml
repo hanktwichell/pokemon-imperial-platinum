@@ -191,6 +191,13 @@ custom_items:          # Sovereign's own items (not in PokeAPI): every field is 
     description: "The crown of the Sovereign, who once ruled from Spear Pillar. It seems to be calling its wearer there."
     pocket: key
     icon: drawn
+  # E10 (Renegade's Celebi event): taken from Celestic Town's shrine; in Eterna Forest it opens the time portals.
+  # Icon: tools/sprites/make_gs_ball_icon.py (Platinum's Poké Ball, recoloured).
+  - name: GS Ball
+    plural: GS Balls
+    description: "A mysterious gold and silver Poké Ball, left as an offering to the forest's protector."
+    pocket: key
+    icon: drawn
 
 deferred:
   - "Roseli, Kee and Maranga Berries: Platinum's berry code assumes berries are one contiguous ID block (Cheri..Rowap),

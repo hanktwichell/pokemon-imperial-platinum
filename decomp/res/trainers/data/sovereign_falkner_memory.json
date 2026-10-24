@@ -1,0 +1,33 @@
+{
+    "name": "Falkner",
+    "class": "TRAINER_CLASS_BIRD_KEEPER",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_PIDGEOT",
+            "form": 0,
+            "level": 45,
+            "item": null,
+            "moves": [
+                "MOVE_AIR_SLASH",
+                "MOVE_HEAT_WAVE",
+                "MOVE_ROOST",
+                "MOVE_UPROAR"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "..."
+        }
+    ]
+}

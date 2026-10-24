@@ -1,0 +1,33 @@
+{
+    "name": "Bugsy",
+    "class": "TRAINER_CLASS_BUG_CATCHER",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_SCIZOR",
+            "form": 0,
+            "level": 45,
+            "item": null,
+            "moves": [
+                "MOVE_U_TURN",
+                "MOVE_BULLET_PUNCH",
+                "MOVE_X_SCISSOR",
+                "MOVE_AERIAL_ACE"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "..."
+        }
+    ]
+}

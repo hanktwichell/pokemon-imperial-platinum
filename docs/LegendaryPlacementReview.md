@@ -15,7 +15,7 @@ by-map review: no one has yet checked each spot's exact tiles against the NPCs, 
 | Map | Legendaries there (trigger) | What else is there | Possible clash |
 |---|---|---|---|
 | **Valley Windworks** | Zekrom on the island (Dark Stone, night) **→ moving to Route 215 (decision 34)**; Regieleki in the building (Galar, the three Regis in the party); Zapdos's Renegade portal on the island (after the Distortion World, decision 33) | Team Galactic's story in the building (Mars), the Friday Drifloon, a roamer route | Zekrom and Zapdos shared the island. Moving Zekrom settles it. **E10 part 27:** Zapdos stands on the small island north of the building (241, 644), beside the TM24 ball; Zekrom (236, 650) is on the west island, so the two never shared a tile |
-| **Eterna Forest** | Virizion (80, 10) and Xerneas (Chronicles); Celebi's Renegade portals (not ported yet) | Cheryl's tag-battle path (story), the Old Chateau entrance, the Kartana rare roll | Three legendaries in one forest. Celebi's portals have to avoid Virizion's and Xerneas's tiles |
+| **Eterna Forest** | Virizion (80, 10) and Xerneas (Chronicles); Celebi (70, 58) and its eight time portals (E10 part 28: (74, 32), (65, 34), (82, 46), (81, 72), (53, 60), (41, 58), (29, 64), (24, 68)) | Cheryl's tag-battle path (story), the Old Chateau entrance, the Kartana rare roll | Three legendaries in one forest. Celebi's portals keep Renegade's tiles, all clear of Virizion and Xerneas; the one beside Totem Vikavolt moved a tile east, to (24, 68) |
 | **Lost Tower** | Ho-Oh's Renegade portal on the top floor (not ported yet); Totem Marowak, 5F (3, 4) (Relic Badge). **Yveltal moved to Route 229 (813, 426) on 2026-10-24** | The two old ladies on the top floor (HM Defog, Spell Tag), graves | **Settled** by moving Yveltal. Keep Ho-Oh's portal off Marowak's tile (3, 4) |
 | **Fullmoon Island** | Tapu Lele in the grove (13, 12) (Alola); Cresselia in the clearing (16, 15) (Lunar Wing quest); Latias/Latios in the same clearing once Cresselia is caught | The Lunar Wing, the boat from Canalave | Sequenced, so they never stand at once. Tapu Lele is three tiles from the clearing; fine but crowded |
 | **Route 224** | Enamorus on the beach field (912, 535) (Landorus caught; **moved off the tablet on 2026-10-24**); Pecharunt (898, 526) (the Loyal Three caught) | **The tablet itself: Oak's Letter opens the way to Flower Paradise (Shaymin) there** | **Settled:** Enamorus now stands about 40 tiles south of the tablet scene, clear of Carl's patrol and the item balls |
@@ -69,7 +69,7 @@ by-map review: no one has yet checked each spot's exact tiles against the NPCs, 
 4. ~~**Solaceon Ruins Room 7:** Hoopa and Jirachi.~~ Settled 2026-10-24: Hoopa moved to Room 6's north-west dead end.
 5. ~~**Route 224 tablet:** Enamorus beside the Shaymin tablet.~~ Settled 2026-10-24: Enamorus moved to (912, 535).
 6. ~~**Rock Peak Ruins chamber:** Landorus and Regidrago.~~ Settled 2026-10-24: Landorus moved to Route 228's sand field.
-7. **Eterna Forest:** Celebi's portals must avoid Virizion's and Xerneas's tiles.
+7. **Eterna Forest:** Celebi's portals must avoid Virizion's and Xerneas's tiles. Done in E10 part 28.
 8. **Mt. Coronet:** Kyurem in Regice's doorway room (works through a condition), and Articuno's portal beside Cosmog.
 9. **Tile checks:** Magearna/Volkner, Kubfu/the Veilstone Gym puzzle, Calyrex/the Celestic ruins path, Mira/Wayward
    Cave, Meloetta/the Contest stage.

@@ -1,0 +1,30 @@
+{
+  "name": "GS Ball",
+  "plural": "GS Balls",
+  "article": "a",
+  "description": [
+    "A mysterious gold and silver Poké Ball,\n",
+    "left as an offering to the forest’s\n",
+    "protector."
+  ],
+  "icon": {
+    "sprite": "gs_ball_NCGR",
+    "palette": "gs_ball_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 0,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 0,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": true,
+  "canRegister": false,
+  "fieldPocket": "POCKET_KEY_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_NONE",
+  "battleUseCategory": "BATTLE_USE_CATEGORY_NONE",
+  "itemUseParams": null
+}

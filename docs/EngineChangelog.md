@@ -4,6 +4,39 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 28) — Celebi: the GS Ball and the time portals in Eterna Forest
+
+Renegade's Celebi event:
+- **The GS Ball** (a new key item) waits in the small shrine in the middle of Celestic Town, an offering to the
+  forest's protector. Once it's taken, an old man walks over and suggests taking it to a forest.
+- **Eterna Forest:** walking in from the Eterna City side with it (x = 78), the GS Ball shakes. Celebi peeks out at
+  the player and vanishes, and eight time portals open around the forest.
+- **The portals:** each holds the memory of a battle with one of Johto's Gym Leaders: Falkner, Bugsy, Whitney, Morty,
+  Chuck, Jasmine, Pryce and Clair. These are Renegade's trainers 1029–1036, one Lv. 45 Pokémon each. A beaten
+  memory closes its portal, and Celebi shows itself there for a moment.
+- **Celebi:** with all eight beaten, it waits near the middle of the forest (70, 58), Lv. 40, until it's caught.
+  Renegade puts it in a ninth portal; Sovereign shows the Pokémon, as for its other legendaries.
+- The portals keep Renegade's tiles, all clear of Virizion, Xerneas and the Old Chateau path. The one beside Totem
+  Vikavolt moved a tile east, to (24, 68).
+- **State:** `VAR_SOVEREIGN_CELEBI_STATE` (1 = GS Ball taken, 2 = portals open) takes over `VAR_DUMMY_0x4083`. Cynthia
+  wrote that var once as she left Valor Lakefront, and nothing read it. The portals hide themselves off their
+  trainers' defeated flags, so no new flags were needed.
+- New art, all placeholders: the GS Ball's icon (Platinum's Poké Ball recoloured gold and silver,
+  `tools/sprites/make_gs_ball_icon.py`), a time portal overworld sprite (`tools/sprites/make_time_portal_overworld.py`)
+  and Celebi's overworld sprite.
+
+Verified in a test build (a Lv. 100 Garchomp, Master Balls):
+- The shrine's YES gives the GS Ball (Key Items pocket), and the old man walks over with his lines.
+- The forest scene plays: the ball shakes, the portals appear, Celebi peeks and flees.
+- All eight memory battles happen (Pidgeot, Scizor, Miltank, Gengar, Poliwrath, Steelix, Mamoswine, Kingdra). Each
+  portal closes after its win.
+- After the eighth, "A curious presence..." and Celebi appears at (70, 58). The Lv. 40 battle and catch work, and
+  Celebi and the portals stay gone on later visits.
+- Not checked here: losing to a memory (the usual blackout), and declining a portal.
+- Found while testing: a second `CloseMessage` with no message open in between removes the message window twice,
+  and the game hangs. The portal script closed it twice after a win; fixed. `tools/test/check_double_close.py`
+  scans every script for this and finds no other Sovereign case.
+
 ## E10 (part 27) — Articuno, Zapdos and Moltres where Renegade's portals stood (decision 33)
 
 The legendary birds no longer roam. Like Raikou, Entei and Suicune (part 12), each now stands where Renegade put its
