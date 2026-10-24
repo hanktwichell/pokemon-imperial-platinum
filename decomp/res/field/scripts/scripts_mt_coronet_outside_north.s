@@ -5,6 +5,7 @@
     ScriptEntry MtCoronetOutsideNorth_OnTransition
     ScriptEntry MtCoronetOutsideNorth_OnLoad
     ScriptEntry MtCoronetOutsideNorth_LegendaryCosmog
+    ScriptEntry MtCoronetOutsideNorth_LegendaryArticuno
     ScriptEntryEnd
 
 @ Sovereign (the Chronicles, docs/PostgameLegendaries.md): once the Alola Chronicle is open (VAR_SOVEREIGN_CHRONICLE
@@ -13,6 +14,7 @@
 @ (_COSMOG_2). Vanilla gave this map no scripts (scripts_empty).
 MtCoronetOutsideNorth_OnTransition:
     Call MtCoronetOutsideNorth_SovereignSetCosmogVisibility
+    Call MtCoronetOutsideNorth_SovereignSetArticunoVisibility
     End
 
 MtCoronetOutsideNorth_SovereignSetCosmogVisibility:
@@ -34,6 +36,7 @@ MtCoronetOutsideNorth_OnLoad:
     End
 
 MtCoronetOutsideNorth_RemoveLegendaryCosmog:
+    GoToIfEq VAR_SOVEREIGN_LEGENDARY_SPECIES, SPECIES_ARTICUNO, MtCoronetOutsideNorth_SovereignRemoveLegendaryArticuno
     RemoveObject LOCALID_LEGENDARY_COSMOG
     ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
     End
@@ -52,3 +55,28 @@ MtCoronetOutsideNorth_LegendaryCosmogEnd:
 MtCoronetOutsideNorth_SovereignSetCaughtCosmog2:
     SetFlag FLAG_SOVEREIGN_CAUGHT_COSMOG_2
     Return
+
+@ Sovereign (E10 part 27, Renegade's legendary birds, decision 33): Articuno stands in the same snowfield after the
+@ Distortion World, until it is caught (Renegade: Lv. 60, a portal at (35, 20)). It stands two tiles from Cosmog's
+@ (35, 21), on its own hidden flag.
+MtCoronetOutsideNorth_SovereignSetArticunoVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_2
+    GoToIfUnset FLAG_DEFEATED_TRAINER_GALACTIC_BOSS_CYRUS_DISTORTION_WORLD, MtCoronetOutsideNorth_SovereignSetArticunoVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_ARTICUNO, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, MtCoronetOutsideNorth_SovereignSetArticunoVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_2
+MtCoronetOutsideNorth_SovereignSetArticunoVisibilityEnd:
+    Return
+
+MtCoronetOutsideNorth_SovereignRemoveLegendaryArticuno:
+    RemoveObject LOCALID_LEGENDARY_ARTICUNO
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+    End
+
+MtCoronetOutsideNorth_LegendaryArticuno:
+    SetVar VAR_0x8004, SPECIES_ARTICUNO
+    SetVar VAR_0x8005, 60
+    Common_SovereignLegendaryEncounter
+    End
+
+    .balign 4, 0

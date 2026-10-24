@@ -171,7 +171,7 @@ dealer a present-day Pokémon gives its Paradox Pokémon at the shown Pokémon's
 | Heatran | static | Stark Mountain room 3 | 68 (Renegade's; vanilla 50) | post-game, talked to Buck at the Battleground, room state 1 | the Hall of Fame |
 | Regigigas | static | Snowpoint Temple B5F | 70 (Renegade's; vanilla 1) | after the Hall of Fame, with Regirock, Regice and Registeel in the party (E10 part 26: the temple now opens before the Snowpoint Gym, for Renegade's story scene where Candice and Maylene put it back to sleep; decision 29) | the Hall of Fame |
 | Cresselia | static | Fullmoon Island's clearing (16, 15) | 68 (Renegade's; vanilla 50, a roamer) | after the Lunar Wing quest | caught; it's back on the next visit until then. The catch leaves the Lunar Wing where it stood |
-| Articuno, Zapdos, Moltres | roamers | released by Professor Oak in Eterna City's south house | 60 | post-game | Oak re-releases after a Hall of Fame |
+| Articuno, Zapdos, Moltres | no longer roam (E10 part 27, decision 33) | they stand where Renegade put its portals; see Renegade's events below. Professor Oak in Eterna City's south house now only hints at the places with the Up-Grade, and praises the catch as before | — | — | — |
 | Darkrai | static | Newmoon Island | 50 | Member Card and the distribution | — |
 | Shaymin | static | Flower Paradise | 30 | Oak's Letter and the distribution | — |
 | Arceus | static | Hall of Origin | 80 | Azure Flute and the distribution | — |
@@ -186,6 +186,9 @@ Darkrai, Shaymin and Arceus need vanilla's distribution events, so they can't be
 | Raikou | static | Route 208, the Rock Climb ledge west of the Berry Master's house (391, 717) | 60 | after the Distortion World (Cyrus beaten there) | caught. A win or a run makes it vanish until the next visit |
 | Entei | static | Route 211 East, the end of the Rock Climb ledge (424, 514), where Platinum had TM29 | 60 | after the Distortion World | as Raikou |
 | Suicune | static | Route 213, the Rock Climb ledge (689, 826); the TM05 ball moved to (651, 824), as in Renegade | 60 | after the Distortion World | as Raikou |
+| Articuno | static | Mt. Coronet's top snowfield (33, 20), two tiles from Cosmog's (35, 21); Renegade's portal was at (35, 20) | 60 | after the Distortion World | as Raikou |
+| Zapdos | static | Valley Windworks, the small island behind the building (241, 644), beside the TM24 ball (Surf); Renegade's portal stood on the ball's tile (Renegade moved TM24) | 60 | after the Distortion World | as Raikou |
+| Moltres | static | Victory Road 2F, the small room past the Strength boulders (20, 3), clear of the tiles the boulder puzzle needs; Renegade's portal was at (18, 3), where Sovereign keeps a boulder | 60 | after the Distortion World | as Raikou |
 
 | Regirock, Regice, Registeel | static | Rock Peak (Route 228), Iceberg (Mt. Coronet, Route 216 side) and Iron (Iron Island B3F) Ruins | 60 | after the Distortion World, with a Relicanth and a Wailord in the party: the doorway opens to the chamber, then the dots and the statue as in vanilla (no Champion check) | caught |
 | Latias, Latios | rock | Fullmoon Island's clearing, where Cresselia stood (16, 15) | 68 | Cresselia caught and the Lunar Wing taken; read from below with the Soul Dew and pick red (Latias) or blue (Latios) | caught; either can be fought again until then |
@@ -215,9 +218,6 @@ against the Chronicles':
 
 | Pokémon | Renegade's place | Lv. | Chronicle encounter nearby |
 |---|---|---|---|
-| Articuno | Mt. Coronet summit portal (Rock Climb) | 60 | Cosmog's snowfield (35, 21) and the Celesteela rare roll |
-| Zapdos | Valley Windworks, the island behind the building | 60 | **Zekrom stands on that island** |
-| Moltres | Victory Road, a small room | 60 | — |
 | Lugia, Ho-Oh | Route 220 island; Lost Tower top floor | 70 | — (Yveltal moved to Route 229 on 2026-10-24) |
 | Celebi | Eterna Forest portals | 40 | **Virizion and Xerneas stand in Eterna Forest** |
 | Darkrai | until caught | 68–70 | — |
