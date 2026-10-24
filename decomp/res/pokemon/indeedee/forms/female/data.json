@@ -1,0 +1,122 @@
+{
+    "base_stats": {
+        "hp": 70,
+        "attack": 55,
+        "defense": 65,
+        "speed": 85,
+        "special_attack": 95,
+        "special_defense": 105
+    },
+    "types": [
+        "TYPE_PSYCHIC",
+        "TYPE_NORMAL"
+    ],
+    "catch_rate": 30,
+    "base_exp_reward": 166,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 2,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 40,
+    "base_friendship": 140,
+    "exp_rate": "EXP_RATE_FAST",
+    "egg_groups": [
+        "EGG_GROUP_FAIRY",
+        "EGG_GROUP_FAIRY"
+    ],
+    "abilities": [
+        "ABILITY_OWN_TEMPO",
+        "ABILITY_SYNCHRONIZE",
+        "ABILITY_PSYCHIC_SURGE"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_PURPLE",
+    "flip_sprite": false,
+    "icon_palette": 2,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_STORED_POWER"
+            ],
+            [
+                1,
+                "MOVE_PLAY_NICE"
+            ],
+            [
+                5,
+                "MOVE_BATON_PASS"
+            ],
+            [
+                10,
+                "MOVE_DISARMING_VOICE"
+            ],
+            [
+                15,
+                "MOVE_PSYBEAM"
+            ],
+            [
+                20,
+                "MOVE_HELPING_HAND"
+            ],
+            [
+                25,
+                "MOVE_FOLLOW_ME"
+            ],
+            [
+                30,
+                "MOVE_HEALING_WISH"
+            ],
+            [
+                35,
+                "MOVE_PSYCHIC"
+            ],
+            [
+                40,
+                "MOVE_CALM_MIND"
+            ],
+            [
+                45,
+                "MOVE_GUARD_SPLIT"
+            ],
+            [
+                50,
+                "MOVE_PSYCHIC_TERRAIN"
+            ]
+        ],
+        "by_tm": [
+            "TM04",
+            "TM16",
+            "TM17",
+            "TM29",
+            "TM30",
+            "TM33",
+            "TM42",
+            "TM44",
+            "TM48",
+            "TM53",
+            "TM58",
+            "TM60",
+            "TM77",
+            "TM82",
+            "TM90",
+            "TM92"
+        ],
+        "by_tutor": [
+            "MOVE_HELPING_HAND",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_TRICK",
+            "MOVE_SWIFT"
+        ]
+    },
+    "evolutions": []
+}

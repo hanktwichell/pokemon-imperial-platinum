@@ -284,6 +284,13 @@ implemented.
   picks the form from the personality, personality % 7 for Minior as in Sun and Moon (Red is form 0). The Pokémon
   gets it when it's made (`sub_02073E18`, which every new Pokémon goes through), and an Egg gets its own from its
   personality rather than its parent's form. Trainer data still sets its own form.
+- **Gender forms** (`SOVEREIGN_FORM_GENDER`: Female Meowstic, Indeedee, Basculegion and Oinkologne, each form 1).
+  `Pokemon_SovereignPersonalityForm` gives the female's form to a female (its gender comes from its personality), so
+  a wild, gift or Egg Pokémon gets it when it's made, with the form's abilities. `Pokemon_SovereignSetEvolvedSpecies`
+  gives it to a female evolving into the species (Espurr, Lechonk, White-Striped Basculin), and
+  `Pokemon_SovereignSetGenderForm` to a trainer's Pokémon whatever its trainer data says. A Female Meowstic Mega
+  Evolves into Mega Meowstic (Female) (`Pokemon_SovereignBattleForm` takes the form) and goes back to the female's
+  form. PokeAPI has Oinkologne male only; `gen_new_species.py` gives it Lechonk's half-female rate.
 - **Item locks.** `Pokemon_SovereignItemIsLocked(species, item)` is TRUE for any form trigger on its own species
   except Mega Rayquaza's move, and also for the Teal Mask on Ogerpon, the Griseous Core on Giratina and the
   Ultranecrozium Z on Necrozma.

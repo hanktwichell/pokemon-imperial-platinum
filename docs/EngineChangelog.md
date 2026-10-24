@@ -4,6 +4,25 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## FM — Female Meowstic, Indeedee, Basculegion and Oinkologne
+
+- A female Meowstic, Indeedee, Basculegion or Oinkologne has its female's form, with its own abilities, learnset and,
+  for Indeedee, Basculegion and Oinkologne, stats:
+  - wild, gift and Egg Pokémon get it when they're made;
+  - a female Espurr, Lechonk or White-Striped Basculin evolving into one gets it;
+  - a trainer's Pokémon follows its gender too.
+- A Female Meowstic Mega Evolves into Mega Meowstic (Female) and goes back to its female's form after the battle.
+- Oinkologne can be female now: PokeAPI had it male only, so a female Lechonk would have evolved into a male.
+- FM: 114 forms.
+
+Verified in the test build (in-battle summaries):
+- Female Indeedee: Own Tempo, with Sp. Def 110 and Sp. Atk 101.
+- Male Indeedee: Inner Focus, with Sp. Atk 137 and Sp. Def 111.
+- Female Oinkologne: Aroma Veil.
+- Not replayed: evolution into a female's form and Mega Meowstic (Female).
+- Release build passes.
+
+
 ## FM — Terastal Terapagos
 
 - **Tera Shift.** Terapagos becomes its Terastal Form as it enters battle ("TERAPAGOS transformed!").

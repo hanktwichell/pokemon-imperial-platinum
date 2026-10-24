@@ -1,0 +1,159 @@
+{
+    "base_stats": {
+        "hp": 74,
+        "attack": 48,
+        "defense": 76,
+        "speed": 104,
+        "special_attack": 83,
+        "special_defense": 81
+    },
+    "types": [
+        "TYPE_PSYCHIC",
+        "TYPE_PSYCHIC"
+    ],
+    "catch_rate": 75,
+    "base_exp_reward": 163,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 2,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_50",
+    "hatch_cycles": 20,
+    "base_friendship": 70,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_FIELD",
+        "EGG_GROUP_FIELD"
+    ],
+    "abilities": [
+        "ABILITY_KEEN_EYE",
+        "ABILITY_INFILTRATOR",
+        "ABILITY_COMPETITIVE"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_BLUE",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_MAGICAL_LEAF"
+            ],
+            [
+                1,
+                "MOVE_DISARMING_VOICE"
+            ],
+            [
+                1,
+                "MOVE_FAKE_OUT"
+            ],
+            [
+                1,
+                "MOVE_LEER"
+            ],
+            [
+                1,
+                "MOVE_SCRATCH"
+            ],
+            [
+                9,
+                "MOVE_CONFUSION"
+            ],
+            [
+                12,
+                "MOVE_STORED_POWER"
+            ],
+            [
+                15,
+                "MOVE_CHARGE_BEAM"
+            ],
+            [
+                18,
+                "MOVE_COVET"
+            ],
+            [
+                21,
+                "MOVE_PSYBEAM"
+            ],
+            [
+                24,
+                "MOVE_SUCKER_PUNCH"
+            ],
+            [
+                29,
+                "MOVE_ROLE_PLAY"
+            ],
+            [
+                34,
+                "MOVE_LIGHT_SCREEN"
+            ],
+            [
+                34,
+                "MOVE_REFLECT"
+            ],
+            [
+                39,
+                "MOVE_PSYSHOCK"
+            ],
+            [
+                44,
+                "MOVE_EXTRASENSORY"
+            ],
+            [
+                49,
+                "MOVE_SHADOW_BALL"
+            ],
+            [
+                54,
+                "MOVE_PSYCHIC"
+            ],
+            [
+                59,
+                "MOVE_FUTURE_SIGHT"
+            ]
+        ],
+        "by_tm": [
+            "TM04",
+            "TM11",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM18",
+            "TM24",
+            "TM28",
+            "TM29",
+            "TM30",
+            "TM33",
+            "TM42",
+            "TM44",
+            "TM48",
+            "TM53",
+            "TM57",
+            "TM58",
+            "TM68",
+            "TM73",
+            "TM77",
+            "TM79",
+            "TM82",
+            "TM90",
+            "TM92"
+        ],
+        "by_tutor": [
+            "MOVE_HELPING_HAND",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_TRICK",
+            "MOVE_SUCKER_PUNCH",
+            "MOVE_SWIFT"
+        ]
+    },
+    "evolutions": []
+}

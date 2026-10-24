@@ -220,6 +220,7 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
             Pokemon_InitWith(mon, species, trmon[i].level, ivs, TRUE, rnd, OTID_NOT_SHINY, 0);
             Pokemon_SetBallSeal(trmon[i].cbSeal, mon, heapID);
             Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+            Pokemon_SovereignSetGenderForm(mon); // Sovereign (FM): a Female Meowstic's form follows its gender
             Party_AddPokemon(dto->parties[battler], mon);
         }
 
@@ -250,6 +251,7 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
 
             Pokemon_SetBallSeal(trmon[i].cbSeal, mon, heapID);
             Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+            Pokemon_SovereignSetGenderForm(mon); // Sovereign (FM): a Female Meowstic's form follows its gender
             Party_AddPokemon(dto->parties[battler], mon);
         }
 
@@ -276,6 +278,7 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
             Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &trmon[i].item);
             Pokemon_SetBallSeal(trmon[i].cbSeal, mon, heapID);
             Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+            Pokemon_SovereignSetGenderForm(mon); // Sovereign (FM): a Female Meowstic's form follows its gender
             Party_AddPokemon(dto->parties[battler], mon);
         }
 
@@ -307,6 +310,7 @@ static void TrainerData_BuildParty(FieldBattleDTO *dto, int battler, enum HeapID
 
             Pokemon_SetBallSeal(trmon[i].cbSeal, mon, heapID);
             Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+            Pokemon_SovereignSetGenderForm(mon); // Sovereign (FM): a Female Meowstic's form follows its gender
             Party_AddPokemon(dto->parties[battler], mon);
         }
 

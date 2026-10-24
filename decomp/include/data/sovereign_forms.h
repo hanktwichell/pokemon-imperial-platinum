@@ -102,7 +102,7 @@ static const SovereignForm sSovereignForms[SOVEREIGN_FORM_COUNT] = {
     { SPECIES_HEATRAN, 1, SOVEREIGN_FORM_MEGA, ITEM_HEATRANITE }, // Mega Heatran
     { SPECIES_DARKRAI, 1, SOVEREIGN_FORM_MEGA, ITEM_DARKRANITE }, // Mega Darkrai
     { SPECIES_GOLURK, 1, SOVEREIGN_FORM_MEGA, ITEM_GOLURKITE }, // Mega Golurk
-    { SPECIES_MEOWSTIC, 1, SOVEREIGN_FORM_MEGA, ITEM_MEOWSTICITE }, // Mega Meowstic (Male)
+    { SPECIES_MEOWSTIC, 2, SOVEREIGN_FORM_MEGA, ITEM_MEOWSTICITE }, // Mega Meowstic (Male)
     { SPECIES_CRABOMINABLE, 1, SOVEREIGN_FORM_MEGA, ITEM_CRABOMINITE }, // Mega Crabominable
     { SPECIES_GOLISOPOD, 1, SOVEREIGN_FORM_MEGA, ITEM_GOLISOPITE }, // Mega Golisopod
     { SPECIES_MAGEARNA, 1, SOVEREIGN_FORM_MEGA, ITEM_MAGEARNITE }, // Mega Magearna
@@ -114,7 +114,7 @@ static const SovereignForm sSovereignForms[SOVEREIGN_FORM_COUNT] = {
     { SPECIES_TATSUGIRI, 2, SOVEREIGN_FORM_MEGA, ITEM_TATSUGIRINITE }, // Mega Tatsugiri (Droopy Form)
     { SPECIES_TATSUGIRI, 3, SOVEREIGN_FORM_MEGA, ITEM_TATSUGIRINITE }, // Mega Tatsugiri (Stretchy Form)
     { SPECIES_BAXCALIBUR, 1, SOVEREIGN_FORM_MEGA, ITEM_BAXCALIBRITE }, // Mega Baxcalibur
-    { SPECIES_MEOWSTIC, 2, SOVEREIGN_FORM_MEGA, ITEM_MEOWSTICITE }, // Mega Meowstic (Female)
+    { SPECIES_MEOWSTIC, 3, SOVEREIGN_FORM_MEGA, ITEM_MEOWSTICITE }, // Mega Meowstic (Female)
     { SPECIES_ZACIAN, 1, SOVEREIGN_FORM_BATTLE_ITEM, ITEM_RUSTED_SWORD }, // Crowned Zacian
     { SPECIES_ZAMAZENTA, 1, SOVEREIGN_FORM_BATTLE_ITEM, ITEM_RUSTED_SHIELD }, // Crowned Zamazenta
     { SPECIES_OGERPON, 1, SOVEREIGN_FORM_HELD_ITEM, ITEM_WELLSPRING_MASK }, // Wellspring Mask Ogerpon
@@ -239,6 +239,10 @@ static const SovereignForm sSovereignForms[SOVEREIGN_FORM_COUNT] = {
     { SPECIES_CRAMORANT, 1, SOVEREIGN_FORM_BATTLE, ABILITY_GULP_MISSILE }, // Gulping Cramorant
     { SPECIES_CRAMORANT, 2, SOVEREIGN_FORM_BATTLE, ABILITY_GULP_MISSILE }, // Gorging Cramorant
     { SPECIES_TERAPAGOS, 1, SOVEREIGN_FORM_BATTLE, ABILITY_TERA_SHIFT }, // Terastal Form Terapagos
+    { SPECIES_MEOWSTIC, 1, SOVEREIGN_FORM_GENDER, 0 }, // Female Meowstic
+    { SPECIES_INDEEDEE, 1, SOVEREIGN_FORM_GENDER, 0 }, // Female Indeedee
+    { SPECIES_BASCULEGION, 1, SOVEREIGN_FORM_GENDER, 0 }, // Female Basculegion
+    { SPECIES_OINKOLOGNE, 1, SOVEREIGN_FORM_GENDER, 0 }, // Female Oinkologne
 };
 
 // A regional form that evolves into its region's form of the target species (any other evolves into form 0).
@@ -373,6 +377,7 @@ typedef struct SovereignBattleFormBase {
 } SovereignBattleFormBase;
 
 static const SovereignBattleFormBase sSovereignBattleFormBases[] = {
+    { SPECIES_MEOWSTIC, 3, 1 }, // Mega Meowstic (Female)
     { SPECIES_DARMANITAN, 3, 2 }, // Zen Galarian Darmanitan
     { SPECIES_MINIOR, 8, 1 }, // Orange Core Minior
     { SPECIES_MINIOR, 9, 2 }, // Yellow Core Minior

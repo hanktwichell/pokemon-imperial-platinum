@@ -68,6 +68,7 @@ KIND_TOTEM = "SOVEREIGN_FORM_TOTEM"
 KIND_ULTRA_BURST = "SOVEREIGN_FORM_ULTRA_BURST"
 KIND_BATTLE_MOVE = "SOVEREIGN_FORM_BATTLE_MOVE"
 KIND_PERSONALITY = "SOVEREIGN_FORM_PERSONALITY"
+KIND_GENDER = "SOVEREIGN_FORM_GENDER"
 MEGA_BY_MOVE = {"Dragon Ascent (move; no stone)": "MOVE_DRAGON_ASCENT"}  # Mega Rayquaza
 
 # Milestone FM forms built so far: PokeAPI identifier (data/forms.csv) -> (kind, the item that gives the form).
@@ -90,6 +91,8 @@ MEGA_BY_MOVE = {"Dragon Ascent (move; no stone)": "MOVE_DRAGON_ASCENT"}  # Mega 
 #                               is the move. It goes back when the Pokémon switches out and when the battle ends
 #   SOVEREIGN_FORM_PERSONALITY  a form for good that its personality picks when the Pokémon is made, Eggs included
 #                               (Minior's core color: personality % 7, as in Sun and Moon)
+#   SOVEREIGN_FORM_GENDER       the female's form for good (Meowstic, Indeedee, Basculegion, Oinkologne): a female gets
+#                               it when it's made, Eggs included, and when it evolves into the species
 # A species' forms are numbered in this order, after its Megas, as in the official games (Kyurem: 1 White, 2 Black).
 FM_FORMS = {
     "zacian-crowned": (KIND_BATTLE_ITEM, "ITEM_RUSTED_SWORD"),
@@ -187,6 +190,9 @@ FM_FORMS = {
     # Terapagos: Tera Shift makes it Terastal (1) as it enters battle, with Tera Shell. Stellar Form is shelved (no
     # Terastallization).
     "terapagos-terastal": (KIND_BATTLE, "ABILITY_TERA_SHIFT"),
+    # The females' forms, with their own abilities, stats (Indeedee, Basculegion, Oinkologne) and learnsets.
+    "meowstic-female": (KIND_GENDER, "0"), "indeedee-female": (KIND_GENDER, "0"),
+    "basculegion-female": (KIND_GENDER, "0"), "oinkologne-female": (KIND_GENDER, "0"),
 }
 
 # The form a battle form goes back to, when it isn't a regional form's (those follow the region) or 0: each Core
@@ -292,7 +298,8 @@ def load_rows():
             form["pid"] = fm_rows[usual]["form_id"] if usual else None
             form["region"] = region_of(usual) if usual else None
         trigger_table = {KIND_FUSION: "species", KIND_BATTLE: "abilities", KIND_REGIONAL: None, KIND_TOTEM: None,
-                         KIND_ULTRA_BURST: None, KIND_BATTLE_MOVE: "moves", KIND_PERSONALITY: None}.get(kind, "items")
+                         KIND_ULTRA_BURST: None, KIND_BATTLE_MOVE: "moves", KIND_PERSONALITY: None,
+                         KIND_GENDER: None}.get(kind, "items")
         checks = [(form["species"], "species")] + ([(trigger, trigger_table)] if trigger_table else [])
         for const, table_name in checks + [(a, "abilities") for a in abilities if a != "ABILITY_NONE"]:
             if const not in symbols[table_name]:
@@ -423,6 +430,7 @@ enum SovereignFormKind {{
     {KIND_ULTRA_BURST}, // Ultra Necrozma, in battle; the trigger is the form it bursts from and goes back to
     {KIND_BATTLE_MOVE}, // the form its move (the trigger) switches it in and out of in battle (Relic Song)
     {KIND_PERSONALITY}, // a form for good its personality picks when it's made (Minior's core color)
+    {KIND_GENDER}, // the female's form for good, from when it's made or evolves (Female Meowstic)
 }};
 
 #endif // POKEPLATINUM_CONSTANTS_SOVEREIGN_FORMS_H
@@ -441,6 +449,9 @@ enum SovereignFormKind {{
                      and region_of(x["ident"]) == region), None)
         if f.get("ident") in BATTLE_FORM_BASES:
             base = next(x for x in forms if x.get("ident") == BATTLE_FORM_BASES[f["ident"]])
+        # A female's Mega (Mega Meowstic (Female)) goes back to the female's form.
+        if f["kind"] == KIND_MEGA and "(Female)" in f["name"]:
+            base = next((x for x in forms if x["kind"] == KIND_GENDER and x["species"] == f["species"]), None)
         if base:
             base_rows += f"    {{ {f['species']}, {f['number']}, {base['number']} }}, // {f['name']}\n"
     disguise_rows = ""
