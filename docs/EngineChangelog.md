@@ -4,6 +4,14 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Revival Blessing left out for now
+
+- **Owner, 2026-10-24:** Revival Blessing stays out of the game for now.
+  - No Pokémon learns it: Pawmot and Rabsca lose it from their level-up moves.
+  - The move itself stays in the move list (it still does nothing).
+- **How:** `LEFT_OUT_MOVES` in `tools/engine/gen_species_gen9.py` keeps it out of every generated learnset. Remove it
+  there and rerun `tools/engine/gen_new_species.py` to teach it again.
+
 ## FM — Hero Palafin
 
 - **Zero to Hero.** Palafin turns into its Hero Form when it switches out. When it comes back in: "PALAFIN underwent a

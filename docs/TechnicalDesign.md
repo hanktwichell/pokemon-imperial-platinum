@@ -195,7 +195,8 @@ implemented.
   - Only those two paths bust it. Life Orb, recoil, poison, burn, weather and entry hazards change HP elsewhere.
   - The busted form is the party Pokémon's own form, so it stays busted for the rest of the battle: through
     switching (`Pokemon_SovereignRevertSwitchOutForm` skips Disguise), fainting and revival (a Revive or, once it
-    exists, Revival Blessing). A Mimikyu that faints with its disguise intact keeps it.
+    exists, Revival Blessing: left out of the learnsets for now, `LEFT_OUT_MOVES` in `gen_species_gen9.py`). A Mimikyu
+    that faints with its disguise intact keeps it.
   - `Pokemon_SovereignRevertBattleForm` gives the disguise back when the battle ends.
 - **Schooling and Shields Down** (School Wishiwashi and the Core Miniors, `SOVEREIGN_FORM_BATTLE` with the ability as
   trigger).

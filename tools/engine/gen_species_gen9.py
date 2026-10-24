@@ -72,11 +72,17 @@ def write_sections(path, d):
         f.write(text)
 
 
+# Moves left out of every learnset for now (they stay in the move list). Owner, 2026-10-24: Revival Blessing (Pawmot,
+# Rabsca) until the engine has its party-select effect. Remove a move here and regenerate to teach it again.
+LEFT_OUT_MOVES = {"MOVE_REVIVAL_BLESSING"}
+
+
 def load_context(api):
     """PokeAPI tables and decomp lists shared by the species generators (also used by gen_new_species.py)."""
     ctx = {}
     move_consts = [l.strip() for l in open(os.path.join(DECOMP, "generated", "moves.txt")) if l.strip().startswith("MOVE_")]
-    ctx["move_ok"] = {i: c for i, c in enumerate(move_consts) if i and not c.startswith("MOVE_UNUSED_")}
+    ctx["move_ok"] = {i: c for i, c in enumerate(move_consts)
+                      if i and not c.startswith("MOVE_UNUSED_") and c not in LEFT_OUT_MOVES}
     ctx["poke"] = {r["identifier"]: r for r in rd(api, "pokemon.csv")}
     types = {r["id"]: "TYPE_" + r["identifier"].upper() for r in rd(api, "types.csv")}
     stats, ptypes = defaultdict(dict), defaultdict(dict)
