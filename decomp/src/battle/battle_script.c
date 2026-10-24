@@ -9313,6 +9313,24 @@ static BOOL BtlCmd_TryRestoreStatusOnSwitch(BattleSystem *battleSys, BattleConte
         }
     }
 
+    // Sovereign (FM): Zero to Hero turns Palafin to its Hero Form as it switches out. It says so when it comes back in
+    // (BattleSystem_TriggerFormChange) and stays Hero until the battle ends.
+    if (inBattler != BTLSCR_PLAYER && inBattler != BTLSCR_PLAYER_SLOT_1 && inBattler != BTLSCR_PLAYER_SLOT_2
+        && battleCtx->battleMons[battler].curHP && battleCtx->selectedPartySlot[battler] != 6
+        && battleCtx->battleMons[battler].formNum == 0
+        && battleCtx->battleMons[battler].ability == ABILITY_ZERO_TO_HERO
+        && (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_TRANSFORM) == FALSE) {
+        int heroForm = Pokemon_SovereignAbilityForm(battleCtx->battleMons[battler].species, 0, ABILITY_ZERO_TO_HERO);
+
+        if (heroForm > 0) {
+            Pokemon *heroMon = BattleSystem_GetPartyPokemon(battleSys, battler, battleCtx->selectedPartySlot[battler]);
+
+            Pokemon_SetValue(heroMon, MON_DATA_FORM, &heroForm);
+            Pokemon_CalcLevelAndStats(heroMon);
+            battleCtx->sovereignHeroPending |= BattleSystem_SovereignHeroBit(battleSys, battler, battleCtx->selectedPartySlot[battler]);
+        }
+    }
+
     if (battleCtx->battleMons[battler].curHP && battleCtx->selectedPartySlot[battler] != 6) {
         Pokemon *mon = BattleSystem_GetPartyPokemon(battleSys, battler, battleCtx->selectedPartySlot[battler]);
         int ability = Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL);

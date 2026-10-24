@@ -9426,6 +9426,27 @@
         "The foe’s {STRVAR_1 1, 0, 0} transformed\n",
         "into its Complete Forme!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignZeroToHero_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} underwent a heroic\n",
+        "transformation!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignZeroToHero_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} underwent\n",
+        "a heroic transformation!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignZeroToHero_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} underwent\n",
+        "a heroic transformation!"
+      ]
     }
   ]
 }

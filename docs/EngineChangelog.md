@@ -4,6 +4,15 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## FM — Hero Palafin
+
+- **Zero to Hero.** Palafin turns into its Hero Form when it switches out. When it comes back in: "PALAFIN underwent a
+  heroic transformation!" (only the first time). Hero Palafin has 160 Attack and 106 Sp. Atk, against Zero's 70 and
+  53. It stays Hero until the battle ends.
+- **How:** `TechnicalDesign.md` (Zero to Hero). Hero Palafin shares Palafin's sprite until milestone E12.
+- **Verified** in the emulator (a level 30 Palafin on Route 201): switched out and back in, it showed the heroic
+  transformation. Switched out and in a second time, no message. Release build without warnings, boot smoke, docs.
+
 ## FM — Hangry Morpeko and Aura Wheel
 
 - **Hunger Switch.** At the end of each turn Morpeko switches between its Full Belly and Hangry Modes: "MORPEKO

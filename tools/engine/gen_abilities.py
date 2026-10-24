@@ -258,6 +258,7 @@ IMPLEMENTED = {
     209: "yes: takes one hit for 1/8 of its max HP, once per battle",  # Disguise
     211: "yes: Complete Forme at half HP or less, with its higher max HP",  # Power Construct
     258: "yes: switches between Full Belly and Hangry Mode at the end of each turn",  # Hunger Switch
+    278: "yes: Hero Form once it switches out, until the battle ends",  # Zero to Hero
 }
 
 

@@ -7351,6 +7351,15 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
     for (i = 0; i < BattleSystem_GetMaxBattlers(battleSys); i++) {
         battleCtx->msgBattlerTemp = battleCtx->monSpeedOrder[i];
 
+        // Sovereign (FM): a Palafin that became Hero as it switched out says so as it comes back in.
+        u32 heroBit = BattleSystem_SovereignHeroBit(battleSys, battleCtx->msgBattlerTemp, battleCtx->selectedPartySlot[battleCtx->msgBattlerTemp]);
+        if ((battleCtx->sovereignHeroPending & heroBit) && battleCtx->battleMons[battleCtx->msgBattlerTemp].curHP) {
+            battleCtx->sovereignHeroPending &= ~heroBit;
+            *subscript = subscript_sovereign_zero_to_hero;
+            result = TRUE;
+            break;
+        }
+
         // Sovereign (FM): Schooling forms a school (or not) and Shields Down drops Minior's shell (or not) as the
         // Pokémon enters; after that, at the end of each turn (BattleSystem_TriggerTurnEndAbility).
         BattleMon *hpFormMon = &battleCtx->battleMons[battleCtx->msgBattlerTemp];
@@ -9769,6 +9778,22 @@ static BOOL MoveCannotTriggerAnticipation(BattleContext *battleCtx, int move)
  * @param move      The move being used.
  * @return The variable-type of the given move.
  */
+// Sovereign (FM): the sovereignHeroPending bit of a battler's party slot. Battlers that share a party (a trainer's two
+// in a double battle) share its bits.
+u32 BattleSystem_SovereignHeroBit(BattleSystem *battleSys, int battler, int slot)
+{
+    int party = battler;
+
+    for (int i = 0; i < battler; i++) {
+        if (BattleSystem_GetParty(battleSys, i) == BattleSystem_GetParty(battleSys, battler)) {
+            party = i;
+            break;
+        }
+    }
+
+    return 1 << (party * MAX_PARTY_SIZE + slot);
+}
+
 // Sovereign (FM): Aura Wheel is Dark-type when a Hangry Morpeko uses it, else Electric.
 int Sovereign_AuraWheelType(u16 species, int form)
 {

@@ -5140,8 +5140,8 @@ int Pokemon_SovereignMoveForm(u16 species, int form, u16 move)
 }
 
 // Sovereign (FM): a form its move or ability gave it in battle (Pirouette Meloetta, Blade Aegislash) ends when the
-// Pokémon switches out, so it switches back in in its base form. A Busted Mimikyu stays busted, and a Complete Zygarde
-// stays Complete.
+// Pokémon switches out, so it switches back in in its base form. A Busted Mimikyu stays busted, a Complete Zygarde
+// stays Complete, and a Hero Palafin stays Hero.
 void Pokemon_SovereignRevertSwitchOutForm(Pokemon *mon)
 {
     u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
@@ -5149,7 +5149,8 @@ void Pokemon_SovereignRevertSwitchOutForm(Pokemon *mon)
 
     if (entry != NULL
         && (entry->kind == SOVEREIGN_FORM_BATTLE_MOVE
-            || (entry->kind == SOVEREIGN_FORM_BATTLE && entry->trigger != ABILITY_DISGUISE && entry->trigger != ABILITY_POWER_CONSTRUCT))) {
+            || (entry->kind == SOVEREIGN_FORM_BATTLE && entry->trigger != ABILITY_DISGUISE && entry->trigger != ABILITY_POWER_CONSTRUCT
+                && entry->trigger != ABILITY_ZERO_TO_HERO))) {
         int form = Pokemon_SovereignBattleFormBase(species, entry->form);
 
         Pokemon_SetValue(mon, MON_DATA_FORM, &form);
