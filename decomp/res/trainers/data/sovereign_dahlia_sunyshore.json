@@ -1,0 +1,109 @@
+{
+    "name": "Dahlia",
+    "class": "TRAINER_CLASS_ARCADE_STAR",
+    "items": [
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_BLAZIKEN",
+            "form": 0,
+            "level": 63,
+            "item": "ITEM_FOCUS_SASH",
+            "moves": [
+                "MOVE_SWORDS_DANCE",
+                "MOVE_BATON_PASS",
+                "MOVE_HI_JUMP_KICK",
+                "MOVE_BLAZE_KICK"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_DUSKNOIR",
+            "form": 0,
+            "level": 63,
+            "item": "ITEM_LUM_BERRY",
+            "moves": [
+                "MOVE_SHADOW_PUNCH",
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_ICE_PUNCH",
+                "MOVE_DRAIN_PUNCH"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MEDICHAM",
+            "form": 0,
+            "level": 63,
+            "item": "ITEM_CHOICE_SCARF",
+            "moves": [
+                "MOVE_HI_JUMP_KICK",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_ICE_PUNCH",
+                "MOVE_FIRE_PUNCH"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_TOGEKISS",
+            "form": 0,
+            "level": 63,
+            "item": "ITEM_WISE_GLASSES",
+            "moves": [
+                "MOVE_HURRICANE",
+                "MOVE_MOONBLAST",
+                "MOVE_AURA_SPHERE",
+                "MOVE_FLAMETHROWER"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_LUDICOLO",
+            "form": 0,
+            "level": 63,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_HYDRO_PUMP",
+                "MOVE_GIGA_DRAIN",
+                "MOVE_ICE_BEAM",
+                "MOVE_FAKE_OUT"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ZAPDOS",
+            "form": 0,
+            "level": 63,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_THUNDERBOLT",
+                "MOVE_HEAT_WAVE",
+                "MOVE_DRILL_PECK",
+                "MOVE_LIGHT_SCREEN"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 10
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Battling a wonderful Trainer is always\n",
+                "a happy occasion!\n"
+            ]
+        }
+    ]
+}

@@ -22,6 +22,7 @@
     ScriptEntry SunyshoreCity_SealMerchant_Unused
     ScriptEntry SunyshoreCity_Flint
     ScriptEntry SunyshoreCity_OnTransition
+    ScriptEntry SunyshoreCity_SovereignDahlia
     ScriptEntryEnd
 
 SunyshoreCity_OnTransition:
@@ -705,3 +706,52 @@ SunyshoreCity_Movement_PlayerWatchFlintLeaveWest:
 SunyshoreCity_Movement_SovereignFlintExclamationMark:
     EmoteExclamationMark
     EndMovement
+
+@ Sovereign (E10, Renegade's Dahlia battle): the Arcade Star relaxes by the sea and battles a player with all eight
+@ badges (Renegade's trainer 973), then heads off to the Frontier. Her trainer flag also hides her.
+SunyshoreCity_SovereignDahlia:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    Message SunyshoreCity_Text_SovereignDahliaIntro
+    CheckBadgeAcquired BADGE_ID_BEACON, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SunyshoreCity_SovereignDahliaGymChallenge
+    Message SunyshoreCity_Text_SovereignDahliaAskBattle
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, SunyshoreCity_SovereignDahliaNotNow
+    Message SunyshoreCity_Text_SovereignDahliaLetsBegin
+    CloseMessage
+    StartTrainerBattle TRAINER_SOVEREIGN_DAHLIA_SUNYSHORE
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SunyshoreCity_SovereignDahliaLost
+    Message SunyshoreCity_Text_SovereignDahliaVictory
+    CloseMessage
+    FadeScreenOut
+    WaitFadeScreen
+    SetTrainerFlag TRAINER_SOVEREIGN_DAHLIA_SUNYSHORE
+    RemoveObject LOCALID_SOVEREIGN_DAHLIA
+    FadeScreenIn
+    WaitFadeScreen
+    ReleaseAll
+    End
+
+SunyshoreCity_SovereignDahliaGymChallenge:
+    Message SunyshoreCity_Text_SovereignDahliaGymChallenge
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+SunyshoreCity_SovereignDahliaNotNow:
+    Message SunyshoreCity_Text_SovereignDahliaNotNow
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+SunyshoreCity_SovereignDahliaLost:
+    BlackOutFromBattle
+    ReleaseAll
+    End
+
+    .balign 4, 0

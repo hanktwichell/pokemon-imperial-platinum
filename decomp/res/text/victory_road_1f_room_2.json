@@ -75,6 +75,27 @@
     {
       "id": "VictoryRoad1FRoom2_Text_Dummy11",
       "garbage": 11
+    },
+    {
+      "id": "VictoryRoad1FRoom2_Text_SovereignMarleyLetsBattle",
+      "en_US": [
+        "...I’m Marley.\n",
+        "...You are?\r",
+        "Oh... {STRVAR_1 3, 0, 0}.\n",
+        "You’re a Pokémon League challenger?\r",
+        "I... I would like to battle.\n",
+        "...If that is OK...\r"
+      ]
+    },
+    {
+      "id": "VictoryRoad1FRoom2_Text_SovereignMarleyYoureSoStrong",
+      "en_US": [
+        "Marley: ...You’re so strong.\r",
+        "Oh... {STRVAR_1 3, 0, 0}, will you help me,\n",
+        "please?\r",
+        "I want to get through this tunnel.\n",
+        "Will you let me go with you?\r"
+      ]
     }
   ]
 }

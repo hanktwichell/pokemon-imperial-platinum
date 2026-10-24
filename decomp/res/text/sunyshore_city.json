@@ -293,6 +293,57 @@
         "Pokémon Rock\n",
         "Sunyshore’s Heritage Site"
       ]
+    },
+    {
+      "id": "SunyshoreCity_Text_SovereignDahliaIntro",
+      "en_US": [
+        "Dahlia: No need to worry. ♪\n",
+        "Let chance do what it does.\r",
+        "Life goes through twists and turns. ♪\n",
+        "Things will go as they will.\r",
+        "The sea here is so beautiful.\r",
+        "It’s relaxing to forget about your\n",
+        "troubles and simply watch the tides.\r"
+      ]
+    },
+    {
+      "id": "SunyshoreCity_Text_SovereignDahliaGymChallenge",
+      "en_US": [
+        "What brings you to Sunyshore?\n",
+        "You’re completing your Gym challenge?\r",
+        "Good luck! No need to worry. ♪"
+      ]
+    },
+    {
+      "id": "SunyshoreCity_Text_SovereignDahliaAskBattle",
+      "en_US": [
+        "You’ve completed the Gym challenge?\n",
+        "You must be a wonderful Trainer!\f",
+        "I’d love to have a battle with you!"
+      ]
+    },
+    {
+      "id": "SunyshoreCity_Text_SovereignDahliaNotNow",
+      "en_US": [
+        "Oh, not now? Do come back again\n",
+        "if you change your mind."
+      ]
+    },
+    {
+      "id": "SunyshoreCity_Text_SovereignDahliaLetsBegin",
+      "en_US": "Fabulous! Let’s begin!"
+    },
+    {
+      "id": "SunyshoreCity_Text_SovereignDahliaVictory",
+      "en_US": [
+        "Dahlia: How fabulous of you!\n",
+        "A most wonderful victory it was!\r",
+        "I wish to see how you’d perform\n",
+        "in the Battle Arcade at the Frontier.\r",
+        "Be sure to visit if you get an\n",
+        "opportunity to drop in!\r",
+        "Bye-bye for now!\r"
+      ]
     }
   ]
 }
