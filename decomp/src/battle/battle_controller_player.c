@@ -3709,6 +3709,7 @@ enum TryMoveState {
 
     TRY_MOVE_STATE_CHECK_VALID_TARGET = TRY_MOVE_START,
     TRY_MOVE_STATE_TRIGGER_REDIRECTION_ABILITIES,
+    TRY_MOVE_STATE_SOVEREIGN_STANCE_CHANGE, // Sovereign (FM)
     TRY_MOVE_STATE_SOVEREIGN_PROTEAN, // Sovereign (item 11)
     TRY_MOVE_STATE_CHECK_MOVE_HITS,
     TRY_MOVE_STATE_CHECK_MOVE_HIT_OVERRIDES,
@@ -3734,6 +3735,31 @@ static void BattleControllerPlayer_TryMove(BattleSystem *battleSys, BattleContex
         if (BattleSystem_TriggerRedirectionAbilities(battleSys, battleCtx) == TRUE) {
             return;
         }
+
+    case TRY_MOVE_STATE_SOVEREIGN_STANCE_CHANGE: {
+        // Sovereign (FM): Stance Change turns Aegislash to Blade Forme before an attack, and back to Shield Forme
+        // before King's Shield.
+        battleCtx->tryMoveCheckState++;
+
+        int stanceForm = ATTACKING_MON.formNum;
+        if (battleCtx->moveCur == MOVE_KINGS_SHIELD) {
+            stanceForm = 0;
+        } else if (CURRENT_MOVE_DATA.class != CLASS_STATUS) {
+            stanceForm = 1;
+        }
+
+        if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_STANCE_CHANGE
+            && ATTACKING_MON.species == SPECIES_AEGISLASH
+            && (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_TRANSFORM) == FALSE
+            && stanceForm != ATTACKING_MON.formNum) {
+            BattleSystem_SovereignChangeBattleForm(battleSys, battleCtx, battleCtx->attacker, stanceForm);
+            battleCtx->msgBattlerTemp = battleCtx->attacker;
+            LOAD_SUBSEQ(subscript_form_change);
+            battleCtx->commandNext = battleCtx->command;
+            battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+            return;
+        }
+    }
 
     case TRY_MOVE_STATE_SOVEREIGN_PROTEAN: {
         // Sovereign (item 11): Protean and Libero change the user's type to its move's, once per switch-in.

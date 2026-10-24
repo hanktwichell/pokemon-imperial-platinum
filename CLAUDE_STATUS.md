@@ -3190,3 +3190,33 @@ PR open.
 2. Milestone FM: Aegislash's Stance Change (King's Shield, then attacks), then Zen Mode, Schooling, Shields Down,
    Disguise and Power Construct.
 3. E10, Renegade's events: their spots against the Chronicles' (the clash table in `docs/LegendaryTriggers.md`).
+
+## CB-0050 — 2026-10-23, 9:12 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Status:** PR #62 (CB-0049, Pirouette Meloetta) is merged. Its `rom` check first timed out in the apt install and
+passed on one re-run. This entry adds Blade Aegislash (milestone FM). PR open.
+
+**What was implemented:**
+- **Stance Change:** Aegislash turns to Blade Forme before a damaging move, and back to Shield Forme before King's
+  Shield. The change shows before "AEGISLASH used ..." (a `TryMove` state before Protean's).
+- It goes back to Shield Forme on switch-out and at the battle's end. `Pokemon_SovereignRevertSwitchOutForm` now
+  covers every `SOVEREIGN_FORM_BATTLE` form except Busted Mimikyu.
+- **Verified** in the emulator:
+  - Shadow Ball turned it to Blade (Attack 56 to 135, Defense 125 to 53 in the battle summary).
+  - King's Shield turned it back.
+  - It switched back in as Shield.
+  - Release build without warnings, boot smoke, docs.
+
+**Files modified:** `tools/engine/gen_forms.py`, `decomp/src/pokemon.c`,
+`decomp/src/battle/battle_controller_player.c`, `decomp/include/constants/sovereign_forms.h`,
+`decomp/include/data/sovereign_forms.h`, `decomp/tools/dataproc/src/sovereign_forms.inc`,
+`decomp/res/pokemon/aegislash/meson.build`, `decomp/res/pokemon/aegislash/forms/blade/data.json` (new),
+`docs/TechnicalDesign.md`, `docs/EngineRoadmap.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Owner decisions: Koraidon/Miraidon after their own ten Paradox Pokémon or all twenty; Cosmog's Teleport; whether
+   Ultra Burst should count as the trainer's Mega (built: it doesn't); overworld sprites and sizing; final placements.
+2. Milestone FM: the ability forms that change with HP or a hit. Zen Mode and Galarian Zen Mode, Schooling (Wishiwashi),
+   Shields Down (Minior's cores) and Disguise (Busted Mimikyu) are data only, and Power Construct (Complete Zygarde)
+   and Battle Bond (Ash-Greninja) aren't in yet.
+3. E10, Renegade's events: their spots against the Chronicles' (the clash table in `docs/LegendaryTriggers.md`).

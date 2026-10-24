@@ -150,6 +150,7 @@ FM_FORMS = {
     "necrozma-ultra": (KIND_ULTRA_BURST, "1"),
     "necrozma-ultra-dawn": (KIND_ULTRA_BURST, "2"),
     "meloetta-pirouette": (KIND_BATTLE_MOVE, "MOVE_RELIC_SONG"),
+    "aegislash-blade": (KIND_BATTLE, "ABILITY_STANCE_CHANGE"),
 }
 
 # FM_FORMS entries that are a second copy of a data/forms.csv row.

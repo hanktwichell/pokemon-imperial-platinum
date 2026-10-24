@@ -4,6 +4,21 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## FM — Blade Aegislash
+
+- **Stance Change.**
+  - Aegislash switches from Shield Forme (Attack 50, Defense 140) to Blade Forme (Attack 140, Defense 50) before
+    using a damaging move, and back to Shield Forme before King's Shield.
+  - The change shows before the move's "AEGISLASH used ..." message, with Platinum's form-change scene.
+  - Blade Forme goes back to Shield Forme when Aegislash switches out and when the battle ends.
+- **How:** `TechnicalDesign.md` (Stance Change). Blade Aegislash shares Aegislash's sprite until milestone E12.
+- **Verified** in the emulator (a wild battle on Route 201):
+  - Shadow Ball turned Aegislash to Blade Forme even though it couldn't affect the Bidoof. The battle summary went
+    from Attack 56 / Defense 125 to Attack 135 / Defense 53.
+  - King's Shield turned it back.
+  - After another Shadow Ball, it switched out and back in as Shield Forme.
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+
 ## FM — Pirouette Meloetta
 
 - **Relic Song** switches Meloetta from Aria Forme (Normal/Psychic) to Pirouette Forme (Normal/Fighting, with its own

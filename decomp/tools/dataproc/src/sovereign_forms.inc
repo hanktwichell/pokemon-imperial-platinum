@@ -194,3 +194,4 @@
     { "necrozma/forms/ultra", NULL, .isGiratinaOrigin = false }, // Ultra Necrozma
     { "necrozma/forms/ultra_dawn", NULL, .isGiratinaOrigin = false }, // Ultra Necrozma
     { "meloetta/forms/pirouette", NULL, .isGiratinaOrigin = false }, // Pirouette Meloetta
+    { "aegislash/forms/blade", NULL, .isGiratinaOrigin = false }, // Blade Aegislash

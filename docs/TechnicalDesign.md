@@ -166,6 +166,12 @@ implemented.
     so does one whose move ended the battle.
   - `BattleSystem_InitBattleMon` calls `Pokemon_SovereignRevertSwitchOutForm`, so the Pokémon switches back in in its
     base form. `Pokemon_SovereignRevertBattleForm` undoes the form when the battle ends.
+- **Stance Change** (Blade Aegislash, `SOVEREIGN_FORM_BATTLE` with the ability as trigger).
+  - A `TryMove` state before Protean's, `TRY_MOVE_STATE_SOVEREIGN_STANCE_CHANGE`, switches Aegislash to Blade Forme
+    before a damaging move and to Shield Forme before King's Shield. It uses `subscript_form_change`, so the change
+    shows before "AEGISLASH used ...".
+  - Like a move form, it goes back on switch-out (`Pokemon_SovereignRevertSwitchOutForm` covers every
+    `SOVEREIGN_FORM_BATTLE` form except Busted Mimikyu) and at the battle's end.
 - **Item locks.** `Pokemon_SovereignItemIsLocked(species, item)` is TRUE for any form trigger on its own species
   except Mega Rayquaza's move, and also for the Teal Mask on Ogerpon, the Griseous Core on Giratina and the
   Ultranecrozium Z on Necrozma.
