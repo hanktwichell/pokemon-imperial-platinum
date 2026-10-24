@@ -9,15 +9,12 @@
     ScriptEntry TurnbackCaveGiratinaRoom_Inscription
     ScriptEntry TurnbackCaveGiratinaRoom_OnTransition
     ScriptEntry TurnbackCaveGiratinaRoom_Portal
-    ScriptEntry TurnbackCaveGiratinaRoom_LegendaryEternatus
     ScriptEntryEnd
 
 TurnbackCaveGiratinaRoom_OnTransition:
-    Call TurnbackCaveGiratinaRoom_SovereignSetEternatusVisibility
     End
 
 TurnbackCaveGiratinaRoom_OnLoad:
-    CallIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, TurnbackCaveGiratinaRoom_RemoveLegendaryEternatus
     GoToIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, TurnbackCaveGiratinaRoom_RemoveGiratina
     End
 
@@ -124,31 +121,3 @@ TurnbackCaveGiratinaRoom_PortalEnd:
     End
 
     .balign 4, 0
-
-@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Eternatus appears in the deepest room once Zacian and
-@ Zamazenta are both caught, until it is caught.
-TurnbackCaveGiratinaRoom_SovereignSetEternatusVisibility:
-    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
-    GoToIfLt VAR_SOVEREIGN_CHRONICLE, 4, TurnbackCaveGiratinaRoom_SovereignSetEternatusVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_ZACIAN, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, TurnbackCaveGiratinaRoom_SovereignSetEternatusVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_ZAMAZENTA, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, TurnbackCaveGiratinaRoom_SovereignSetEternatusVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_ETERNATUS, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, TurnbackCaveGiratinaRoom_SovereignSetEternatusVisibilityEnd
-    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
-TurnbackCaveGiratinaRoom_SovereignSetEternatusVisibilityEnd:
-    Return
-
-TurnbackCaveGiratinaRoom_RemoveLegendaryEternatus:
-    GoToIfNe VAR_SOVEREIGN_LEGENDARY_SPECIES, SPECIES_ETERNATUS, TurnbackCaveGiratinaRoom_RemoveLegendaryEternatusEnd
-    RemoveObject LOCALID_LEGENDARY_ETERNATUS
-    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
-TurnbackCaveGiratinaRoom_RemoveLegendaryEternatusEnd:
-    Return
-
-TurnbackCaveGiratinaRoom_LegendaryEternatus:
-    SetVar VAR_0x8004, SPECIES_ETERNATUS
-    SetVar VAR_0x8005, 70
-    Common_SovereignLegendaryEncounter
-    End

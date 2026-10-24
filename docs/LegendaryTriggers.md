@@ -66,7 +66,7 @@ The Archivist gives the DNA Splicers once Kyurem is caught.
 | Yveltal | static | Route 229, the nook behind the Cut tree (813, 426) | 70 | var ≥ 2 | Life and Destruction |
 | Zygarde (50%) | static | Wayward Cave B1F, north alcove (21, 4) | 70 | Xerneas and Yveltal caught | Life and Destruction |
 | Diancie | static | Oreburgh Mine B2F, west nook (2, 22) | 55 | var ≥ 2 and a **Carbink in the party** | Other legends |
-| Hoopa | static | Solaceon Ruins Room 7 | 55 | `ITEM_PRISON_BOTTLE` in the bag (the Archivist gives it) | Other legends |
+| Hoopa | static | Solaceon Ruins Room 6, north-west dead end (2, 3) | 55 | `ITEM_PRISON_BOTTLE` in the bag (the Archivist gives it) | Other legends |
 | Volcanion | static | Stark Mountain room 1 | 60 | var ≥ 2 (on a first visit, the vanilla Team Galactic scene plays first) | Other legends |
 
 Carbink for Diancie: wild outside Stark Mountain, 5%, Lv. 66–68, from the Kalos Chronicle's opening. It's a stopgap
@@ -110,7 +110,7 @@ until the planned wild tables (`data/encounters_sovereign.json`) are ported; bef
 |---|---|---|---|---|---|
 | Zacian | static | Route 210 North, the fog ledge (542, 528) | 70 | var ≥ 4; holds the Rusted Sword (Crowned in battle) | The Hero Legends |
 | Zamazenta | static | Route 210 North (540, 528) | 70 | Zacian caught; holds the Rusted Shield | The Hero Legends |
-| Eternatus | static | Turnback Cave, Giratina's room (8, 13) | 70 | Zacian and Zamazenta caught | The Hero Legends |
+| Eternatus | static | Victory Road B1F, the TM59 island (Surf) (14, 19) | 70 | Zacian and Zamazenta caught | The Hero Legends |
 | Calyrex | static | Celestic Town (461, 527) | 70 | var ≥ 4 | King of Harvests (the Archivist then gives the Reins of Unity) |
 | Glastrier, Spectrier | roamers | mainland routes | 70 | released once Calyrex is caught, on reading King of Harvests (`FLAG_SOVEREIGN_RELEASED_STEEDS`) | King of Harvests |
 | Kubfu | static | Veilstone Gym (13, 17) | 10 | var ≥ 4 | Other legends (the Archivist then gives both Scrolls, once) |

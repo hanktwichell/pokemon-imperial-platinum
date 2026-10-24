@@ -485,7 +485,7 @@ implemented.
       Victini (Vista Lighthouse) needs the var at 1 only.
     - **Kalos** (var 2): Xerneas (Eterna Forest), Yveltal (Route 229) and Volcanion (Stark Mountain room 1) need the
       var only. Zygarde (`WAYWARD_CAVE_B1F`, own script archives like the ice chamber's) waits for Xerneas and Yveltal
-      caught. Diancie (Oreburgh Mine B2F) checks `CheckPartyHasSpecies` for a Carbink. Hoopa (Solaceon Ruins Room 7)
+      caught. Diancie (Oreburgh Mine B2F) checks `CheckPartyHasSpecies` for a Carbink. Hoopa (Solaceon Ruins Room 6's north-west dead end)
       checks `CheckItem ITEM_PRISON_BOTTLE`, which the Archivist gives while the player doesn't have it.
     - **Alola** (var 3, from a talk with Xerneas and Yveltal caught): the four Tapus need the var only.
       - Mt. Coronet's top snowfield (`MT_CORONET_OUTSIDE_NORTH`, which had `scripts_empty` and gets its own archives,

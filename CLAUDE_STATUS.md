@@ -4672,3 +4672,28 @@ Plus some tile checks. The owner will decide on these.
    (Hoopa/Jirachi), Giratina's room (Eternatus), the Rock Peak chamber (Landorus/Regidrago).
 2. Pick Zekrom's Route 215 tile (decision 34) and move it.
 3. Claude B: when porting the bird, Ho-Oh and Celebi portals, keep them off the tiles in the spreadsheet.
+
+## CA-0050 (Claude A, 2026-10-24): Hoopa and Eternatus moved; Archivist hints updated
+
+**Implemented:**
+- **Hoopa** moved from Solaceon Ruins Room 7 (below Jirachi) to Room 6's north-west dead end, round the pillar (2, 3)
+  (owner, decision 37). The dead end gets its own script archives (`scripts_solaceon_ruins_room_6_northwest_dead_end`
+  and its init). Room 7 keeps Jirachi, whose object now uses script 4.
+- **Eternatus** moved from Turnback Cave's Giratina room to Victory Road B1F's TM59 island (Surf) (14, 19), with new
+  `scripts_victory_road_b1f` archives. Giratina's room is back to vanilla (an empty OnTransition).
+- The Archivist's hints (`res/text/canalave_library_2f.json`) now name the new places for Hoopa and Eternatus, and
+  also for Enamorus and Yveltal, which CA-0049 had missed.
+- `docs/StaticEncounters.xlsx` updated. Release build and boot smoke test pass; the moved encounters aren't tested in
+  game.
+
+**Files modified:** `decomp/include/data/map_headers.h`, `decomp/res/field/scripts/{meson.build,scripts.order}`, the
+four new script files, `scripts_solaceon_ruins_room_7.s`, `scripts_turnback_cave_giratina_room.s`, the events for
+Solaceon Ruins Room 6 NW dead end / Room 7, Turnback Cave Giratina room and Victory Road B1F,
+`decomp/res/text/canalave_library_2f.json`, `data/postgame_legendaries.yaml`, `docs/PostgameLegendaries.md`,
+`docs/LegendaryTriggers.md`, `docs/LegendaryPlacementReview.md`, `docs/TechnicalDesign.md`, `docs/ProjectStatus.md`,
+`docs/StaticEncounters.xlsx`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Owner: Stark Mountain room 1 (Volcanion/Groudon) and Landorus/Regidrago in the Rock Peak chamber.
+2. Zekrom's Route 215 tile (decision 34).
+3. An in-game check of the four moved encounters on a test ROM.
