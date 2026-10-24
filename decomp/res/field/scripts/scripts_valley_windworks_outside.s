@@ -12,6 +12,7 @@
     ScriptEntry ValleyWindworksOutside_OnResume
     ScriptEntry ValleyWindworksOutside_OnFrame_Looker
     ScriptEntry ValleyWindworksOutside_LegendaryZekrom
+    ScriptEntry ValleyWindworksOutside_LegendaryZapdos
     ScriptEntryEnd
 
 ValleyWindworksOutside_OnResume:
@@ -19,6 +20,7 @@ ValleyWindworksOutside_OnResume:
 
 ValleyWindworksOutside_OnTransition:
     Call ValleyWindworksOutside_SovereignSetZekromVisibility
+    Call ValleyWindworksOutside_SovereignSetZapdosVisibility
     CallIfEq VAR_VALLEY_WINDWORKS_TEAM_GALACTIC_STATE, 2, ValleyWindworksOutside_IncreaseTeamGalacticValleyWindworksState
     CallIfSet FLAG_UNLOCKED_VALLEY_WINDWORKS_DOOR, ValleyWindworksOutside_RemoveBgEventDoor
     CallIfUnset FLAG_UNLOCKED_VALLEY_WINDWORKS_DOOR, ValleyWindworksOutside_RemoveWarpValleyWindworksBuilding
@@ -48,6 +50,7 @@ ValleyWindworksOutside_OnLoad:
     End
 
 ValleyWindworksOutside_RemoveLegendaryZekrom:
+    GoToIfEq VAR_SOVEREIGN_LEGENDARY_SPECIES, SPECIES_ZAPDOS, ValleyWindworksOutside_SovereignRemoveLegendaryZapdos
     RemoveObject LOCALID_LEGENDARY_ZEKROM
     ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
     End
@@ -298,3 +301,28 @@ ValleyWindworksOutside_Movement_LookerLeave:
     WalkFastSouth 6
     WalkFastWest 9
     EndMovement
+
+@ Sovereign (E10 part 27, Renegade's legendary birds, decision 33): Zapdos stands on the small island behind the
+@ building (Surf) after the Distortion World, until it is caught (Renegade: Lv. 60, a portal at (242, 644), where
+@ Sovereign keeps vanilla's TM24 ball). Zekrom's island is the west one, so they don't share a tile.
+ValleyWindworksOutside_SovereignSetZapdosVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_2
+    GoToIfUnset FLAG_DEFEATED_TRAINER_GALACTIC_BOSS_CYRUS_DISTORTION_WORLD, ValleyWindworksOutside_SovereignSetZapdosVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_ZAPDOS, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, ValleyWindworksOutside_SovereignSetZapdosVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_2
+ValleyWindworksOutside_SovereignSetZapdosVisibilityEnd:
+    Return
+
+ValleyWindworksOutside_SovereignRemoveLegendaryZapdos:
+    RemoveObject LOCALID_LEGENDARY_ZAPDOS
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+    End
+
+ValleyWindworksOutside_LegendaryZapdos:
+    SetVar VAR_0x8004, SPECIES_ZAPDOS
+    SetVar VAR_0x8005, 60
+    Common_SovereignLegendaryEncounter
+    End
+
+    .balign 4, 0

@@ -107,8 +107,8 @@
             "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_F",
             "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
             "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "0",
-            "script": 2,
+            "hidden_flag": "FLAG_DEFEATED_TRAINER_SOVEREIGN_NEPHENEE_SNOWPOINT_TEMPLE",
+            "script": 15,
             "initial_dir": 1,
             "data": [],
             "movement_range_x": 2,
@@ -206,6 +206,36 @@
             "x": 378,
             "z": 220,
             "y": 0
+        },
+        {
+            "id": "LOCALID_SOVEREIGN_ARAN",
+            "graphics_id": "OBJ_EVENT_GFX_ACE_TRAINER_SNOW_M",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_DEFEATED_TRAINER_SOVEREIGN_ARAN_SNOWPOINT_TEMPLE",
+            "script": 15,
+            "initial_dir": 1,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 366,
+            "z": 198,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SOVEREIGN_GYM_GUIDE",
+            "graphics_id": "OBJ_EVENT_GFX_GYM_GUIDE",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_0x01",
+            "script": 14,
+            "initial_dir": 1,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 367,
+            "z": 223,
+            "y": 0
         }
     ],
     "warp_events": [
@@ -254,14 +284,54 @@
     ],
     "coord_events": [
         {
-            "script": 3,
-            "x": 366,
-            "z": 198,
+            "script": 16,
+            "x": 362,
+            "z": 239,
             "y": 0,
             "width": 1,
-            "length": 1,
-            "var": "VAR_SNOWPOINT_CITY_STATE",
+            "length": 8,
+            "var": "VAR_MAP_LOCAL_0x01",
             "value": 0
+        },
+        {
+            "script": 16,
+            "x": 366,
+            "z": 236,
+            "y": 0,
+            "width": 2,
+            "length": 1,
+            "var": "VAR_MAP_LOCAL_0x01",
+            "value": 1
+        },
+        {
+            "script": 16,
+            "x": 366,
+            "z": 228,
+            "y": 0,
+            "width": 2,
+            "length": 1,
+            "var": "VAR_MAP_LOCAL_0x01",
+            "value": 2
+        },
+        {
+            "script": 16,
+            "x": 366,
+            "z": 213,
+            "y": 0,
+            "width": 2,
+            "length": 1,
+            "var": "VAR_MAP_LOCAL_0x01",
+            "value": 3
+        },
+        {
+            "script": 16,
+            "x": 366,
+            "z": 203,
+            "y": 0,
+            "width": 2,
+            "length": 1,
+            "var": "VAR_MAP_LOCAL_0x01",
+            "value": 4
         }
     ]
 }

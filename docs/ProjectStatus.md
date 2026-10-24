@@ -207,6 +207,10 @@ Made by the owner (2026-10-22):
     - Renegade opens the portals after talking to Rowan after the Distortion World. That matches Renegade; Sovereign's
       other legendaries are post-game, and portals look different from Sovereign's shown legendaries. Both are noted
       for the owner.
+    - **Built in E10 part 27:** Articuno at (33, 20), Zapdos at (241, 644) and Moltres at Victory Road 2F (20, 3),
+      Lv. 60, after the Distortion World, until caught. Oak no longer releases roamers; he hints at the three places.
+      Zapdos's island is the small one north of the building, beside the TM24 ball. Zekrom stands on the west island,
+      so Zapdos didn't have to wait for Zekrom's move (decision 34 still stands).
 34. **Zekrom moves to Route 215** (owner, 2026-10-24), the always-raining route between Veilstone and Solaceon. Its
     trigger is unchanged (the Dark Stone, at night). That frees the Valley Windworks island for Zapdos's Renegade
     portal (decision 33). The tile is still to pick. The full placement review is `docs/LegendaryPlacementReview.md`.

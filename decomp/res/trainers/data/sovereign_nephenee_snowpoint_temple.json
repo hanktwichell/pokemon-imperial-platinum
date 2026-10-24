@@ -1,0 +1,64 @@
+{
+    "name": "Nephenee",
+    "class": "TRAINER_CLASS_ACE_TRAINER_SNOW_FEMALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_BLISSEY",
+            "form": 0,
+            "level": 54,
+            "item": null,
+            "moves": [
+                "MOVE_LIGHT_SCREEN",
+                "MOVE_HYPER_VOICE",
+                "MOVE_SOFTBOILED",
+                "MOVE_DAZZLING_GLEAM"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MEGANIUM",
+            "form": 0,
+            "level": 54,
+            "item": null,
+            "moves": [
+                "MOVE_PETAL_DANCE",
+                "MOVE_EARTH_POWER",
+                "MOVE_GRASS_WHISTLE",
+                "MOVE_REFLECT"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_FERALIGATR",
+            "form": 0,
+            "level": 54,
+            "item": null,
+            "moves": [
+                "MOVE_AQUA_TAIL",
+                "MOVE_CRUNCH",
+                "MOVE_AQUA_JET",
+                "MOVE_AGILITY"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Nephenee: That was an excellent\n",
+                "display of strength.\n"
+            ]
+        }
+    ]
+}

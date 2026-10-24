@@ -4824,6 +4824,97 @@ scripts and text, `decomp/res/text/canalave_library_2f.json`, `data/regional_for
 2. Owner: the special evolutions (decision 20) and when the park opens.
 3. Zekrom's Route 215 tile (decision 34), then an in-game check of the six moved encounters and the park signs.
 
+## CB-0100 — 2026-10-24, 2:56 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** E10 part 26, Renegade's Snowpoint Temple story and HM08 (decision 29), plus decisions 30 and 31.
+PR #113 (part 25, Manaphy) merged.
+- Snowpoint City:
+  - Five tremor coords on `VAR_MAP_LOCAL_0x01`, in Renegade's order, run `ScrCmd_29F 1` once per visit.
+  - The Gym guide (`LOCALID_SOVEREIGN_GYM_GUIDE`, 367, 223, map-local flag 0x01) blocks the Gym door.
+  - Five townspeople have tremor lines.
+  - The temple guards: Platinum's temple guard object becomes Nephenee (937), with Aran (936) beside it at
+    (366, 198). Their defeated flags hide them after a double battle that needs two Pokémon. The champion coord at
+    (366, 198) is gone.
+- Snowpoint Temple B5F:
+  - Candice and Maylene (map-local 0x01) stand by the statue, with a coord at (11, 15) on `VAR_MAP_LOCAL_0x01`.
+    The scene ends with HM08.
+  - New OnTransition (entry 3) hides them when HM08 is in the bag. Holding HM08 is the record: an HM can't leave the
+    bag, and HM08 has no other source.
+  - Regigigas now also needs `FLAG_GAME_COMPLETED`.
+- Route 217 west house: the hiker heals the party (Renegade); the Ice Master gives the Icicle Plate.
+- Decision 30: the gates were already right; the museum dealers' all-given lines now point to Sendoff Spring.
+- Decision 31: the home PC gives the Infinite Repel after the first Champion win. It's a key item, so possession is
+  the record.
+- Tested on a test ROM: the tremor, the Gym guide, the guards' battle start, the whole B5F scene and HM08, the
+  statue's line before the Champion, the guide gone afterwards, and the hiker's heal.
+  - The guards' after-battle lines weren't reached: the harness can't finish a double battle with two player
+    Pokémon (the target screens).
+
+**Files modified:**
+- `decomp/generated/{trainers,vars_flags}.txt`, 2 trainer JSONs
+- Scripts, events and text for `snowpoint_city` and `snowpoint_temple_b5f` (and its init)
+- Scripts and text for `route_217_west_house` and `twinleaf_town_player_house_2f`
+- Text for `mining_museum`
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `docs/ItemChanges_Sovereign.md`,
+  `docs/LegendaryTriggers.md`, `docs/QualityOfLife.md`, `docs/StaticEncounters.xlsx`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Decision 33: Moltres (Victory Road's small room) and Articuno (Mt. Coronet summit, off Cosmog's tile) portals, and
+   Zapdos once Claude A has moved Zekrom to Route 215.
+2. Celebi (Renegade's memory trainers 1029–1036, Eterna Forest portals clear of Virizion, Xerneas and Totem
+   Vikavolt), then Lugia (Route 220 island) and Ho-Oh (Lost Tower 5F, off Totem Marowak's tile).
+3. The Route 224 and Battleground counterpart battles, Buck, Darach and the reporters.
+
+## CB-0101 — 2026-10-24, 3:23 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: E10 part 27, the legendary birds where Renegade's portals stood (decision 33).** PR #115 (part 26)
+is merged.
+- Articuno, Zapdos and Moltres no longer roam. They are statics at Renegade's Lv. 60 from the Distortion World on,
+  until caught, with the same gate and vanish-until-next-visit rule as Raikou (part 12).
+  - **Articuno:** Mt. Coronet outside north (33, 20), on `FLAG_MAP_LOCAL_HIDE_LEGENDARY_2`, two tiles from Cosmog.
+    The OnLoad removal now checks `VAR_SOVEREIGN_LEGENDARY_SPECIES`, so catching one doesn't remove the other.
+  - **Zapdos:** Valley Windworks outside (241, 644), on the small island north of the building, beside the TM24
+    ball. Renegade's portal used the ball's tile. Same hidden flag and removal check as Articuno.
+  - **Moltres:** Victory Road 2F (20, 3), the small room past the Strength boulders, clear of the tiles the TM79
+    puzzle needs (column 19 and (18, 3)). The map had `scripts_empty`; it now has its own scripts and init.
+- **Zekrom doesn't block Zapdos.** Zekrom (236, 650) is on the west island, not Renegade's north one, so Zapdos
+  didn't need to wait for decision 34. Decision 34 (Zekrom to Route 215) is still Claude A's to do.
+- **Professor Oak** (Eterna City south house):
+  - He no longer releases roamers. With the Up-Grade he hints at the three places, using Renegade's "somewhere very
+    cold, somewhere that generates electricity, and somewhere Trainers gather".
+  - His all-caught check reads the Pokédex instead of the roamer states.
+  - The check now waits until his first talk is done (`FLAG_ACTIVATED_ROAMING_LEGENDARY_BIRDS`). Otherwise a player
+    who caught all three first would never get the Up-Grade.
+- Three small placeholder overworld sprites. My scratch `reglegend.py` now follows Claude A's size classes (32×32
+  for small).
+- Tested on a test ROM:
+  - All three birds: on their tiles, Lv. 60 battles, Master Ball catches, gone afterwards and on later visits.
+  - Moltres and Zapdos come back on the next visit after a run.
+  - Cosmog stays after Articuno's catch.
+  - Oak's first and second talks, with all three caught and with two caught.
+  - Not tested: the birds hidden before the Distortion World (the same gate code as Raikou).
+  - Harness note: one run left Oak's last text box open for a long stretch. It didn't happen in three later runs
+    with the same or similar key presses, so I take it for a harness timing glitch.
+
+**Files modified:**
+- `decomp/res/field/scripts/scripts_victory_road_2f.s` and `scripts_init_victory_road_2f.s` (new), with
+  `meson.build`, `scripts.order` and `decomp/include/data/map_headers.h`
+- Scripts and events for `mt_coronet_outside_north` and `valley_windworks_outside`; events for `victory_road_2f`
+- Scripts and text for `eterna_city_south_house`
+- Sprites: `decomp/res/graphics/field_sprites/pokemon/legendary_{articuno,zapdos,moltres}.png`,
+  `field_sprites.order`, the field_sprites `meson.build`, `decomp/generated/object_events_gfx.txt`,
+  `decomp/src/overlay005/object_event_gfx_data.c`, `tools/sprites/make_legendary_overworld.py`
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `docs/LegendaryTriggers.md`,
+  `docs/LegendaryPlacementReview.md`, `docs/ProjectStatus.md` (decision 33 note), `docs/OverworldSpriteSizes.md`,
+  `docs/StaticEncounters.xlsx`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Celebi: Renegade's memory trainers 1029–1036, with Eterna Forest portals clear of Virizion (80, 10),
+   Xerneas (70, 14) and Totem Vikavolt (22, 68).
+2. Lugia (Route 220 island; Oak's Silver Wing with the three birds in the party) and Ho-Oh (Lost Tower 5F, off
+   Totem Marowak's tile (3, 4); the Rainbow Wing with the three beasts). Renegade's Oak QUESTS menu gives both wings.
+3. The Route 224 and Battleground counterpart battles, Buck, Darach and the reporters.
+
 ## CA-0053 (Claude A, 2026-10-24): reference documentation (Google Doc, workbook, TM list, item prices)
 
 **Implemented:**

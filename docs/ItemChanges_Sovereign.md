@@ -34,7 +34,9 @@ In the game so far (E10 parts 2–11):
 - Part 24: the Lucky Egg, from Mr. Backlot's Happiny once its four Clefairy are freed during Team Galactic's siege
   of the Pokémon Mansion.
 
-Still to come: HM08 from Candice (waits for the owner: it comes with a story Regigigas scene).
+- Part 26: HM08 (Rock Climb) from Candice in the Snowpoint Temple's basement, once she and Maylene have put
+  Regigigas back to sleep (decision 29). The Route 217 hiker who lost it now lets the player rest instead, as in
+  Renegade.
 
 ## New key items
 
@@ -44,7 +46,7 @@ Still to come: HM08 from Candice (waits for the owner: it comes with a story Reg
 | Light Stone, Dark Stone | Legend Archivist, Canalave Library (post-game, with the Unova Chronicle) | Carried, they wake Reshiram (Fuego Ironworks) and Zekrom (Valley Windworks, at night) |
 | Prison Bottle | Legend Archivist, Canalave Library, in the Kalos Chronicle (Other legends) | Hoopa event (Hoopa appears in the Solaceon Ruins while the player carries it); used on Hoopa from the bag, switches it between Hoopa Confined and Hoopa Unbound |
 | Scroll of Darkness, Scroll of Waters | Legend Archivist, Canalave Library, once Kubfu is caught (the plan had Maylene) | Evolve Kubfu |
-| Infinite Repel | Not placed yet (QoL #3 says Professor Rowan's aide, after the Coal Badge) | Toggles a Repel that never runs out |
+| Infinite Repel | The PC in the player's room in Twinleaf Town, after the first Champion win (decision 31) | Toggles a Repel that never runs out |
 
 ## Form items
 

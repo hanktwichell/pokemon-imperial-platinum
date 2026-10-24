@@ -86,6 +86,16 @@
         "OK, {STRVAR_1 3, 1, 0}? If you’re late, I’m\n",
         "fining you $10 million!\r"
       ]
+    },
+    {
+      "id": "TwinleafTownPlayerHouse2F_Text_SovereignInfiniteRepel",
+      "en_US": [
+        "There’s an item stored in the PC for\n",
+        "{STRVAR_1 3, 0, 0}...\r",
+        "A message says: “For the new Champion!\n",
+        "No more wild Pokémon interrupting\f",
+        "your travels!”\r"
+      ]
     }
   ]
 }

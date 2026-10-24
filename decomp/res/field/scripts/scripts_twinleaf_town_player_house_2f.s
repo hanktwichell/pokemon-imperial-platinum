@@ -43,6 +43,20 @@ TwinleafTownPlayerHouse2F_PC:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     BufferPlayerName 0
+    @ Sovereign (decision 31): after the first Champion win, the Infinite Repel waits in the PC (once: a key item can't
+    @ leave the bag).
+    GoToIfUnset FLAG_GAME_COMPLETED, TwinleafTownPlayerHouse2F_PCBasics
+    CheckItem ITEM_INFINITE_REPEL, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, TwinleafTownPlayerHouse2F_PCBasics
+    Message TwinleafTownPlayerHouse2F_Text_SovereignInfiniteRepel
+    SetVar VAR_0x8004, ITEM_INFINITE_REPEL
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    CloseMessage
+    ReleaseAll
+    End
+
+TwinleafTownPlayerHouse2F_PCBasics:
     Message TwinleafTownPlayerHouse2F_Text_PCPokemonBasics
     WaitButton
     CloseMessage

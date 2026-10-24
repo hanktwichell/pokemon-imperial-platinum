@@ -39,6 +39,21 @@
         "Even as old as the time when Sinnoh\n",
         "came into being..."
       ]
+    },
+    {
+      "id": "Route217WestHouse_Text_SovereignTakeSomeRest",
+      "en_US": [
+        "Hello, Trainer! Are you cold?\n",
+        "Please, take some rest here.\r"
+      ]
+    },
+    {
+      "id": "Route217WestHouse_Text_SovereignKeepWarm",
+      "en_US": [
+        "Keep yourself warm, Trainer.\r",
+        "Don’t catch a cold from being in the\n",
+        "cold for too long!"
+      ]
     }
   ]
 }
