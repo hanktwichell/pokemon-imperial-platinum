@@ -315,8 +315,8 @@ Route208House_SovereignMulchFullPrice:
     Return
 
 Route208House_SovereignMulchHalfPrice:
-    AddMenuEntryImm MenuEntries_Text_SovereignMulchShop_GrowthMulchHalf, 0
-    AddMenuEntryImm MenuEntries_Text_SovereignMulchShop_DampMulchHalf, 1
-    AddMenuEntryImm MenuEntries_Text_SovereignMulchShop_StableMulchHalf, 2
-    AddMenuEntryImm MenuEntries_Text_SovereignMulchShop_GooeyMulchHalf, 3
+    AddMenuEntry MenuEntries_Text_SovereignMulchShop_GrowthMulchHalf, 0
+    AddMenuEntry MenuEntries_Text_SovereignMulchShop_DampMulchHalf, 1
+    AddMenuEntry MenuEntries_Text_SovereignMulchShop_StableMulchHalf, 2
+    AddMenuEntry MenuEntries_Text_SovereignMulchShop_GooeyMulchHalf, 3
     Return

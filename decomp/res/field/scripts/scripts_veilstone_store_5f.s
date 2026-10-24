@@ -217,9 +217,9 @@ VeilstoneStore5F_SovereignDrinksFullPrice:
     Return
 
 VeilstoneStore5F_SovereignDrinksHalfPrice:
-    AddMenuEntryImm MenuEntries_Text_SovereignFreshWaterHalf, 0
-    AddMenuEntryImm MenuEntries_Text_SovereignSodaPopHalf, 1
-    AddMenuEntryImm MenuEntries_Text_SovereignLemonadeHalf, 2
+    AddMenuEntry MenuEntries_Text_SovereignFreshWaterHalf, 0
+    AddMenuEntry MenuEntries_Text_SovereignSodaPopHalf, 1
+    AddMenuEntry MenuEntries_Text_SovereignLemonadeHalf, 2
     Return
 
 VeilstoneStore5F_VendingMachineCheckFreshWaterMoneySovereignHalf:
