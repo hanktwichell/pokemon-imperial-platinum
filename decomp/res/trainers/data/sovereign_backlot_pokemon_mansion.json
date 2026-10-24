@@ -1,0 +1,69 @@
+{
+    "name": "Backlot",
+    "class": "TRAINER_CLASS_GENTLEMAN",
+    "items": [
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_WIGGLYTUFF",
+            "form": 0,
+            "level": 33,
+            "item": "ITEM_ZOOM_LENS",
+            "moves": [
+                "MOVE_MOONBLAST",
+                "MOVE_HYPER_VOICE",
+                "MOVE_SING",
+                "MOVE_THUNDERBOLT"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 16
+        },
+        {
+            "species": "SPECIES_RAICHU",
+            "form": 0,
+            "level": 33,
+            "item": "ITEM_WISE_GLASSES",
+            "moves": [
+                "MOVE_FAKE_OUT",
+                "MOVE_THUNDERBOLT",
+                "MOVE_GRASS_KNOT",
+                "MOVE_TEETER_DANCE"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 16
+        },
+        {
+            "species": "SPECIES_ESPEON",
+            "form": 0,
+            "level": 33,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_PSYCHIC",
+                "MOVE_POWER_GEM",
+                "MOVE_DAZZLING_GLEAM",
+                "MOVE_PROTECT"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 16
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Ah...\n",
+                "My poor, poor Pokémon...\n"
+            ]
+        }
+    ]
+}

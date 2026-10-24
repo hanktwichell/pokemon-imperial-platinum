@@ -1,0 +1,61 @@
+{
+    "name": "Saturn",
+    "class": "TRAINER_CLASS_COMMANDER_SATURN",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_BRONZONG",
+            "form": 0,
+            "level": 33,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_HYPNOSIS",
+                "MOVE_GYRO_BALL",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_CONFUSE_RAY"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_OCTILLERY",
+            "form": 0,
+            "level": 33,
+            "item": "ITEM_WISE_GLASSES",
+            "moves": [
+                "MOVE_OCTAZOOKA",
+                "MOVE_SIGNAL_BEAM",
+                "MOVE_ICE_BEAM",
+                "MOVE_FLAMETHROWER"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_TOXICROAK",
+            "form": 0,
+            "level": 34,
+            "item": "ITEM_MUSCLE_BAND",
+            "moves": [
+                "MOVE_DRAIN_PUNCH",
+                "MOVE_POISON_JAB",
+                "MOVE_FAKE_OUT",
+                "MOVE_VACUUM_WAVE"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 20
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "You kids are tough!"
+        }
+    ]
+}
