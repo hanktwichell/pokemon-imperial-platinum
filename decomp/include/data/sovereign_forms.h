@@ -213,6 +213,19 @@ static const SovereignForm sSovereignForms[SOVEREIGN_FORM_COUNT] = {
     { SPECIES_MELOETTA, 1, SOVEREIGN_FORM_BATTLE_MOVE, MOVE_RELIC_SONG }, // Pirouette Meloetta
     { SPECIES_AEGISLASH, 1, SOVEREIGN_FORM_BATTLE, ABILITY_STANCE_CHANGE }, // Blade Aegislash
     { SPECIES_WISHIWASHI, 1, SOVEREIGN_FORM_BATTLE, ABILITY_SCHOOLING }, // School Wishiwashi
+    { SPECIES_MINIOR, 1, SOVEREIGN_FORM_PERSONALITY, 0 }, // Orange Meteor Minior
+    { SPECIES_MINIOR, 2, SOVEREIGN_FORM_PERSONALITY, 0 }, // Yellow Meteor Minior
+    { SPECIES_MINIOR, 3, SOVEREIGN_FORM_PERSONALITY, 0 }, // Green Meteor Minior
+    { SPECIES_MINIOR, 4, SOVEREIGN_FORM_PERSONALITY, 0 }, // Blue Meteor Minior
+    { SPECIES_MINIOR, 5, SOVEREIGN_FORM_PERSONALITY, 0 }, // Indigo Meteor Minior
+    { SPECIES_MINIOR, 6, SOVEREIGN_FORM_PERSONALITY, 0 }, // Violet Meteor Minior
+    { SPECIES_MINIOR, 7, SOVEREIGN_FORM_BATTLE, ABILITY_SHIELDS_DOWN }, // Red Core Minior
+    { SPECIES_MINIOR, 8, SOVEREIGN_FORM_BATTLE, ABILITY_SHIELDS_DOWN }, // Orange Core Minior
+    { SPECIES_MINIOR, 9, SOVEREIGN_FORM_BATTLE, ABILITY_SHIELDS_DOWN }, // Yellow Core Minior
+    { SPECIES_MINIOR, 10, SOVEREIGN_FORM_BATTLE, ABILITY_SHIELDS_DOWN }, // Green Core Minior
+    { SPECIES_MINIOR, 11, SOVEREIGN_FORM_BATTLE, ABILITY_SHIELDS_DOWN }, // Blue Core Minior
+    { SPECIES_MINIOR, 12, SOVEREIGN_FORM_BATTLE, ABILITY_SHIELDS_DOWN }, // Indigo Core Minior
+    { SPECIES_MINIOR, 13, SOVEREIGN_FORM_BATTLE, ABILITY_SHIELDS_DOWN }, // Violet Core Minior
 };
 
 // A regional form that evolves into its region's form of the target species (any other evolves into form 0).
@@ -337,7 +350,8 @@ static const SovereignItemEvolutionForm sSovereignItemEvolutionForms[] = {
     { SPECIES_KUBFU, ITEM_SCROLL_OF_WATERS, SPECIES_URSHIFU, 1 }, // Rapid Strike Urshifu
 };
 
-// The form a battle form goes back to, when it isn't 0 (a regional form's: Zen Galarian Darmanitan).
+// The form a battle form goes back to, when it isn't 0 (a regional form's: Zen Galarian Darmanitan; a Core Minior's
+// Meteor Form).
 typedef struct SovereignBattleFormBase {
     u16 species;
     u8 form;
@@ -346,6 +360,12 @@ typedef struct SovereignBattleFormBase {
 
 static const SovereignBattleFormBase sSovereignBattleFormBases[] = {
     { SPECIES_DARMANITAN, 3, 2 }, // Zen Galarian Darmanitan
+    { SPECIES_MINIOR, 8, 1 }, // Orange Core Minior
+    { SPECIES_MINIOR, 9, 2 }, // Yellow Core Minior
+    { SPECIES_MINIOR, 10, 3 }, // Green Core Minior
+    { SPECIES_MINIOR, 11, 4 }, // Blue Core Minior
+    { SPECIES_MINIOR, 12, 5 }, // Indigo Core Minior
+    { SPECIES_MINIOR, 13, 6 }, // Violet Core Minior
 };
 
 // Disguise: a disguised Mimikyu form and the form its disguise busts into (it goes back when the battle ends).

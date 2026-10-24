@@ -118,7 +118,7 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
     battleCtx->battleMons[battler].sovereignBoosterEnergy = FALSE;
     battleCtx->battleMons[battler].sovereignProteanUsed = FALSE;
     battleCtx->battleMons[battler].sovereignEntryAnnounced = FALSE;
-    battleCtx->battleMons[battler].sovereignSchoolingChecked = FALSE;
+    battleCtx->battleMons[battler].sovereignHPFormChecked = FALSE;
     battleCtx->battleMons[battler].type1 = Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
     battleCtx->battleMons[battler].type2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
     battleCtx->battleMons[battler].gender = Pokemon_GetGender(mon);
@@ -3780,24 +3780,46 @@ int BattleSystem_TriggerImmunityAbility(BattleContext *battleCtx, int attacker, 
     return subscript;
 }
 
-// Sovereign (FM): the form Schooling gives a Wishiwashi now: School Form at level 20 or more with over 1/4 of its HP,
-// else Solo. -1 if that's its form already, or Schooling doesn't apply.
-static int BattleSystem_SovereignSchoolingForm(BattleContext *battleCtx, int battler)
+// Sovereign (FM): the form its HP gives a Pokémon with Schooling or Shields Down now, or -1 if that's its form
+// already, or neither applies.
+//   Schooling: a Wishiwashi is in School Form at level 20 or more with over 1/4 of its HP, else Solo.
+//   Shields Down: a Minior is in its color's Meteor Form with over half its HP, else its Core.
+static int BattleSystem_SovereignHPForm(BattleContext *battleCtx, int battler)
 {
     BattleMon *mon = &battleCtx->battleMons[battler];
+    int ability = Battler_Ability(battleCtx, battler);
+    int form = -1;
 
-    if (mon->species != SPECIES_WISHIWASHI || mon->curHP == 0
-        || (mon->statusVolatile & VOLATILE_CONDITION_TRANSFORM)
-        || Battler_Ability(battleCtx, battler) != ABILITY_SCHOOLING) {
+    if (mon->curHP == 0 || (mon->statusVolatile & VOLATILE_CONDITION_TRANSFORM)) {
         return -1;
     }
 
-    int form = 0;
-    if (mon->level >= 20 && mon->curHP > mon->maxHP / 4) {
-        form = Pokemon_SovereignAbilityForm(mon->species, 0, ABILITY_SCHOOLING);
+    if (mon->species == SPECIES_WISHIWASHI && ability == ABILITY_SCHOOLING) {
+        form = 0;
+        if (mon->level >= 20 && mon->curHP > mon->maxHP / 4) {
+            form = Pokemon_SovereignAbilityForm(mon->species, 0, ABILITY_SCHOOLING);
+        }
+    } else if (mon->species == SPECIES_MINIOR && ability == ABILITY_SHIELDS_DOWN) {
+        // A Core goes back to its own color's Meteor Form.
+        form = Battler_SovereignShieldsUp(battleCtx, battler) ? mon->formNum : Pokemon_SovereignBattleFormBase(mon->species, mon->formNum);
+        if (mon->curHP <= mon->maxHP / 2) {
+            form = Pokemon_SovereignAbilityForm(mon->species, form, ABILITY_SHIELDS_DOWN);
+        }
     }
 
-    return form != mon->formNum ? form : -1;
+    return form >= 0 && form != mon->formNum ? form : -1;
+}
+
+// Sovereign (FM): TRUE for a Minior in Meteor Form with Shields Down. Its shell keeps off every status condition and
+// Yawn, and Mold Breaker can't get past it. (A Core's form is a Shields Down battle form; a Meteor Form isn't.)
+BOOL Battler_SovereignShieldsUp(BattleContext *battleCtx, int battler)
+{
+    BattleMon *mon = &battleCtx->battleMons[battler];
+
+    return mon->species == SPECIES_MINIOR && mon->curHP
+        && (mon->statusVolatile & VOLATILE_CONDITION_TRANSFORM) == FALSE
+        && Battler_Ability(battleCtx, battler) == ABILITY_SHIELDS_DOWN
+        && Pokemon_SovereignAbilityForm(mon->species, mon->formNum, ABILITY_SHIELDS_DOWN) >= 0;
 }
 
 BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
@@ -3806,9 +3828,11 @@ BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem *battleSys, BattleContext *
     int subscript;
 
     switch (Battler_Ability(battleCtx, battler)) {
-    // Sovereign (FM): Schooling forms a school at the end of each turn (and on entry: BattleSystem_TriggerFormChange).
-    case ABILITY_SCHOOLING: {
-        int form = BattleSystem_SovereignSchoolingForm(battleCtx, battler);
+    // Sovereign (FM): Schooling forms a school and Shields Down drops or raises Minior's shell at the end of each turn
+    // (and on entry: BattleSystem_TriggerFormChange).
+    case ABILITY_SCHOOLING:
+    case ABILITY_SHIELDS_DOWN: {
+        int form = BattleSystem_SovereignHPForm(battleCtx, battler);
 
         if (form >= 0) {
             BattleSystem_SovereignChangeBattleForm(battleSys, battleCtx, battler, form);
@@ -7294,15 +7318,15 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
     for (i = 0; i < BattleSystem_GetMaxBattlers(battleSys); i++) {
         battleCtx->msgBattlerTemp = battleCtx->monSpeedOrder[i];
 
-        // Sovereign (FM): Schooling forms a school (or not) as the Wishiwashi enters; after that, at the end of each
-        // turn (BattleSystem_TriggerTurnEndAbility).
-        BattleMon *schoolMon = &battleCtx->battleMons[battleCtx->msgBattlerTemp];
-        if (schoolMon->sovereignSchoolingChecked == FALSE && schoolMon->curHP) {
-            schoolMon->sovereignSchoolingChecked = TRUE;
+        // Sovereign (FM): Schooling forms a school (or not) and Shields Down drops Minior's shell (or not) as the
+        // Pokémon enters; after that, at the end of each turn (BattleSystem_TriggerTurnEndAbility).
+        BattleMon *hpFormMon = &battleCtx->battleMons[battleCtx->msgBattlerTemp];
+        if (hpFormMon->sovereignHPFormChecked == FALSE && hpFormMon->curHP) {
+            hpFormMon->sovereignHPFormChecked = TRUE;
 
-            int schoolForm = BattleSystem_SovereignSchoolingForm(battleCtx, battleCtx->msgBattlerTemp);
-            if (schoolForm >= 0) {
-                BattleSystem_SovereignChangeBattleForm(battleSys, battleCtx, battleCtx->msgBattlerTemp, schoolForm);
+            int hpForm = BattleSystem_SovereignHPForm(battleCtx, battleCtx->msgBattlerTemp);
+            if (hpForm >= 0) {
+                BattleSystem_SovereignChangeBattleForm(battleSys, battleCtx, battleCtx->msgBattlerTemp, hpForm);
                 *subscript = subscript_form_change;
                 result = TRUE;
                 break;

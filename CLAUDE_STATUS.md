@@ -3343,3 +3343,41 @@ interactions the owner listed on 2026-10-23. PR open.
 2. Milestone FM: Power Construct (Complete Zygarde) and Battle Bond (Ash-Greninja).
 3. Owner decisions still open: Revival Blessing; Koraidon/Miraidon gate; Cosmog's Teleport; whether Ultra Burst
    counts as the trainer's Mega; overworld sprites and sizing; final placements.
+
+---
+
+## CB-0055 — Minior: Meteor colors from personality, Shields Down in battle (Fri Oct 23 2026, 23:07 CDT)
+
+**Implemented:**
+- **Minior's 14 forms** in `gen_forms.py`, in the official order:
+  - Forms 1–6 are Orange to Violet Meteor. They use a new kind, `SOVEREIGN_FORM_PERSONALITY`.
+  - Forms 7–13 are the Red to Violet Cores, `SOVEREIGN_FORM_BATTLE` with Shields Down. `BATTLE_FORM_BASES` maps each
+    Core back to its own color's Meteor Form.
+- **Color from personality:** `Pokemon_SovereignPersonalityForm` gives personality % 7, as in Sun and Moon.
+  - `sub_02073E18` sets it for every new Pokémon.
+  - The daycare gives an Egg its own color, not its parent's.
+- **Shields Down:**
+  - `BattleSystem_SovereignHPForm` (Schooling's function, generalized) gives a Core at half HP or less, else the
+    Meteor Form. It runs on entry and at the end of each turn. The battle-mon bit is renamed `sovereignHPFormChecked`.
+- **Meteor Form status immunity:**
+  - `Battler_SovereignShieldsUp` and the read-only `BTLVAR_SOVEREIGN_SHIELDS_UP_EFFECT_MON` feed it.
+  - The poison, bad poison, paralysis, burn, freeze, sleep and Yawn subscripts check it before Leaf Guard's check and
+    go to the ability-immunity message. Rest fails.
+  - Mold Breaker doesn't get past it, as in Showdown.
+- **Verified** in the emulator: every case above; full list in `docs/EngineChangelog.md`.
+
+**Files modified:** `tools/engine/gen_forms.py`, `decomp/include/constants/sovereign_forms.h`,
+`decomp/include/data/sovereign_forms.h`, `decomp/tools/dataproc/src/sovereign_forms.inc`,
+`decomp/res/pokemon/minior/meson.build`, `decomp/res/pokemon/minior/forms/*/data.json` (13 new),
+`decomp/src/pokemon.c`, `decomp/include/pokemon.h`, `decomp/src/overlay005/daycare.c`,
+`decomp/include/battle/battle_mon.h`, `decomp/include/battle/battle_lib.h`, `decomp/src/battle/battle_lib.c`,
+`decomp/src/battle/battle_script.c`, `decomp/generated/battle_script_vars.txt`,
+`decomp/res/battle/scripts/subscripts/subscript_{poison,badly_poison,paralyze,burn,freeze,fall_asleep,yawn,rest}.s`,
+`docs/TechnicalDesign.md`, `docs/EngineRoadmap.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Milestone FM: Power Construct (Complete Zygarde) and Battle Bond (Ash-Greninja).
+2. Milestone FM: the other ability forms still data-less (Ice Face's Noice Eiscue, Hunger Switch's Hangry Morpeko,
+   Gulp Missile's Cramorant forms, Zero to Hero's Hero Palafin).
+3. Owner decisions still open: Revival Blessing; Koraidon/Miraidon gate; Cosmog's Teleport; whether Ultra Burst
+   counts as the trainer's Mega; overworld sprites and sizing; final placements.

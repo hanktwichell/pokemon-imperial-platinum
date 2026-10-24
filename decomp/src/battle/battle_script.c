@@ -9750,6 +9750,9 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
     case BTLVAR_SOVEREIGN_TERRAIN_EFFECT_MON: // Sovereign (item 11): read-only, the terrain under the side-effect target
         battleCtx->sovereignTerrainTemp = Sovereign_TerrainUnder(battleCtx, battleCtx->sideEffectMon);
         return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_SHIELDS_UP_EFFECT_MON: // Sovereign (FM): read-only, TRUE for a Meteor Minior (Shields Down)
+        battleCtx->sovereignTerrainTemp = Battler_SovereignShieldsUp(battleCtx, battleCtx->sideEffectMon);
+        return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_DAMAGE:
         return &battleCtx->damage;
     case BTLVAR_ATTACKER:

@@ -745,6 +745,12 @@ static void Egg_SetInitialData(Pokemon *mon, u16 species, Daycare *daycare, u32 
     Pokemon_SetValue(mon, MON_DATA_POKEBALL, &ball);
     Pokemon_SetValue(mon, MON_DATA_FRIENDSHIP, &hatchCycles);
     Pokemon_SetValue(mon, MON_DATA_MET_LEVEL, &level);
+
+    // Sovereign (FM): Minior's core color comes from the Egg's own personality, not its parent.
+    if (Pokemon_SovereignPersonalityForm(species, personality) >= 0) {
+        form = Pokemon_SovereignPersonalityForm(species, personality);
+    }
+
     Pokemon_SetValue(mon, MON_DATA_FORM, &form);
 
     string = MessageUtil_SpeciesName(SPECIES_EGG, HEAP_ID_FIELD1);

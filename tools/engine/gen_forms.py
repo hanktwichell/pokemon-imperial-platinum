@@ -67,6 +67,7 @@ KIND_REGIONAL, KIND_BATTLE = "SOVEREIGN_FORM_REGIONAL", "SOVEREIGN_FORM_BATTLE"
 KIND_TOTEM = "SOVEREIGN_FORM_TOTEM"
 KIND_ULTRA_BURST = "SOVEREIGN_FORM_ULTRA_BURST"
 KIND_BATTLE_MOVE = "SOVEREIGN_FORM_BATTLE_MOVE"
+KIND_PERSONALITY = "SOVEREIGN_FORM_PERSONALITY"
 MEGA_BY_MOVE = {"Dragon Ascent (move; no stone)": "MOVE_DRAGON_ASCENT"}  # Mega Rayquaza
 
 # Milestone FM forms built so far: PokeAPI identifier (data/forms.csv) -> (kind, the item that gives the form).
@@ -86,6 +87,8 @@ MEGA_BY_MOVE = {"Dragon Ascent (move; no stone)": "MOVE_DRAGON_ASCENT"}  # Mega 
 #                               bursts from, so there is one Ultra form for each (FM_ROW_ALIASES)
 #   SOVEREIGN_FORM_BATTLE_MOVE  a form its move switches it in and out of in battle (Meloetta's Relic Song); the trigger
 #                               is the move. It goes back when the Pokémon switches out and when the battle ends
+#   SOVEREIGN_FORM_PERSONALITY  a form for good that its personality picks when the Pokémon is made, Eggs included
+#                               (Minior's core color: personality % 7, as in Sun and Moon)
 # A species' forms are numbered in this order, after its Megas, as in the official games (Kyurem: 1 White, 2 Black).
 FM_FORMS = {
     "zacian-crowned": (KIND_BATTLE_ITEM, "ITEM_RUSTED_SWORD"),
@@ -152,7 +155,20 @@ FM_FORMS = {
     "meloetta-pirouette": (KIND_BATTLE_MOVE, "MOVE_RELIC_SONG"),
     "aegislash-blade": (KIND_BATTLE, "ABILITY_STANCE_CHANGE"),
     "wishiwashi-school": (KIND_BATTLE, "ABILITY_SCHOOLING"),
+    # Minior: forms 0-6 are the Meteor Forms of each core color (Red is the base form), 7-13 the Cores Shields Down
+    # gives them (BATTLE_FORM_BASES), in the official order.
+    "minior-orange-meteor": (KIND_PERSONALITY, "0"), "minior-yellow-meteor": (KIND_PERSONALITY, "0"),
+    "minior-green-meteor": (KIND_PERSONALITY, "0"), "minior-blue-meteor": (KIND_PERSONALITY, "0"),
+    "minior-indigo-meteor": (KIND_PERSONALITY, "0"), "minior-violet-meteor": (KIND_PERSONALITY, "0"),
+    "minior-red": (KIND_BATTLE, "ABILITY_SHIELDS_DOWN"), "minior-orange": (KIND_BATTLE, "ABILITY_SHIELDS_DOWN"),
+    "minior-yellow": (KIND_BATTLE, "ABILITY_SHIELDS_DOWN"), "minior-green": (KIND_BATTLE, "ABILITY_SHIELDS_DOWN"),
+    "minior-blue": (KIND_BATTLE, "ABILITY_SHIELDS_DOWN"), "minior-indigo": (KIND_BATTLE, "ABILITY_SHIELDS_DOWN"),
+    "minior-violet": (KIND_BATTLE, "ABILITY_SHIELDS_DOWN"),
 }
+
+# The form a battle form goes back to, when it isn't a regional form's (those follow the region) or 0: each Core
+# Minior goes back to the Meteor Form of its color.
+BATTLE_FORM_BASES = {f"minior-{c}": f"minior-{c}-meteor" for c in ("orange", "yellow", "green", "blue", "indigo", "violet")}
 
 # Disguise: the form Mimikyu's disguise busts into, for each disguised form (sSovereignDisguiseForms). The busted
 # form goes back to the disguised one when the battle ends. 0 is the base form.
@@ -251,7 +267,7 @@ def load_rows():
             form["pid"] = fm_rows[usual]["form_id"] if usual else None
             form["region"] = region_of(usual) if usual else None
         trigger_table = {KIND_FUSION: "species", KIND_BATTLE: "abilities", KIND_REGIONAL: None, KIND_TOTEM: None,
-                         KIND_ULTRA_BURST: None, KIND_BATTLE_MOVE: "moves"}.get(kind, "items")
+                         KIND_ULTRA_BURST: None, KIND_BATTLE_MOVE: "moves", KIND_PERSONALITY: None}.get(kind, "items")
         checks = [(form["species"], "species")] + ([(trigger, trigger_table)] if trigger_table else [])
         for const, table_name in checks + [(a, "abilities") for a in abilities if a != "ABILITY_NONE"]:
             if const not in symbols[table_name]:
@@ -381,6 +397,7 @@ enum SovereignFormKind {{
     {KIND_TOTEM}, // a Totem Pokemon's form, caught after its trial
     {KIND_ULTRA_BURST}, // Ultra Necrozma, in battle; the trigger is the form it bursts from and goes back to
     {KIND_BATTLE_MOVE}, // the form its move (the trigger) switches it in and out of in battle (Relic Song)
+    {KIND_PERSONALITY}, // a form for good its personality picks when it's made (Minior's core color)
 }};
 
 #endif // POKEPLATINUM_CONSTANTS_SOVEREIGN_FORMS_H
@@ -397,6 +414,8 @@ enum SovereignFormKind {{
         region = region_of(f.get("ident", "")) if f["kind"] == KIND_BATTLE else None
         base = next((x for x in forms if region and x["kind"] == KIND_REGIONAL and x["species"] == f["species"]
                      and region_of(x["ident"]) == region), None)
+        if f.get("ident") in BATTLE_FORM_BASES:
+            base = next(x for x in forms if x.get("ident") == BATTLE_FORM_BASES[f["ident"]])
         if base:
             base_rows += f"    {{ {f['species']}, {f['number']}, {base['number']} }}, // {f['name']}\n"
     disguise_rows = ""
@@ -463,7 +482,8 @@ typedef struct SovereignItemEvolutionForm {{
 static const SovereignItemEvolutionForm sSovereignItemEvolutionForms[] = {{
 {item_evo_rows}}};
 
-// The form a battle form goes back to, when it isn't 0 (a regional form's: Zen Galarian Darmanitan).
+// The form a battle form goes back to, when it isn't 0 (a regional form's: Zen Galarian Darmanitan; a Core Minior's
+// Meteor Form).
 typedef struct SovereignBattleFormBase {{
     u16 species;
     u8 form;

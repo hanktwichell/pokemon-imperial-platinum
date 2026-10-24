@@ -4,6 +4,9 @@
 _000:
     PrintAttackMessage 
     Wait 
+    // Sovereign (FM): a Meteor Minior can't fall asleep (Shields Down), so Rest fails.
+    UpdateVarFromVar OPCODE_SET, BTLVAR_SIDE_EFFECT_MON, BTLVAR_ATTACKER
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_SHIELDS_UP_EFFECT_MON, TRUE, _sovereignShieldsUp
     CheckAbility CHECK_HAVE, BTLSCR_ATTACKER, ABILITY_INSOMNIA, _098
     CheckAbility CHECK_HAVE, BTLSCR_ATTACKER, ABILITY_VITAL_SPIRIT, _098
     CompareMonDataToValue OPCODE_FLAG_SET, BTLSCR_ATTACKER, BATTLEMON_STATUS, MON_CONDITION_SLEEP, _107
@@ -76,3 +79,8 @@ _147:
     Wait 
     WaitButtonABTime 30
     End 
+
+_sovereignShieldsUp:
+    WaitButtonABTime 30
+    Call BATTLE_SUBSCRIPT_BUT_IT_FAILED
+    GoTo _143

@@ -5,7 +5,7 @@
 #include "constants/species.h"
 
 // Sovereign's forms are packed after Platinum's 12 alternate forms, in include/data/sovereign_forms.h order.
-#define SOVEREIGN_FORM_COUNT          197
+#define SOVEREIGN_FORM_COUNT          210
 #define SOVEREIGN_FORM_PERSONAL_START (SPECIES_BAD_EGG + 12 + 1)
 
 enum SovereignFormKind {
@@ -21,6 +21,7 @@ enum SovereignFormKind {
     SOVEREIGN_FORM_TOTEM, // a Totem Pokemon's form, caught after its trial
     SOVEREIGN_FORM_ULTRA_BURST, // Ultra Necrozma, in battle; the trigger is the form it bursts from and goes back to
     SOVEREIGN_FORM_BATTLE_MOVE, // the form its move (the trigger) switches it in and out of in battle (Relic Song)
+    SOVEREIGN_FORM_PERSONALITY, // a form for good its personality picks when it's made (Minior's core color)
 };
 
 #endif // POKEPLATINUM_CONSTANTS_SOVEREIGN_FORMS_H
