@@ -44,10 +44,10 @@ Pokédex's caught entry (`SovereignCheckSpeciesCaught`).
 |---|---|---|---|---|---|
 | Cobalion | static | Iron Island B2F right room (17, 1) | 65 | var ≥ 1 | Swords of Justice |
 | Terrakion | static | Route 227, north rock pocket (759, 258) | 65 | var ≥ 1 | Swords of Justice |
-| Virizion | static | Eterna Forest (80, 10) | 65 | var ≥ 1 | Swords of Justice |
+| Virizion | static | Eterna Forest (81, 12) | 65 | var ≥ 1 | Swords of Justice |
 | Keldeo | static | Lake Valor (36, 14) | 55 | Cobalion, Terrakion and Virizion **in the party** | Swords of Justice (after all three are caught) |
 | Victini | static | Vista Lighthouse top floor, west side | 55 | var ≥ 1 | Other legends |
-| Meloetta | static | In front of the Contest Hall stage (29, 8) | 55 | `FLAG_SOVEREIGN_MELOETTA_SONG`: the composer in the lobby (8, 7) hears a party Pokémon with Sing | Other legends |
+| Meloetta | static | In front of the Contest Hall stage (27, 8) | 55 | `FLAG_SOVEREIGN_MELOETTA_SONG`: the composer in the lobby (8, 7) hears a party Pokémon with Sing | Other legends |
 | Genesect | static | Galactic HQ lab, back room (34, 5) | 60 | `FLAG_SOVEREIGN_GENESECT_FREED`: the lab's male scientist confesses (shows at once) | Other legends |
 | Reshiram | static | Fuego Ironworks building, furnace pocket | 70 | `ITEM_LIGHT_STONE` in the bag (the Archivist gives both stones) | Truth and Ideals |
 | Zekrom | static | Valley Windworks, the island behind the building (Surf) | 70 | `ITEM_DARK_STONE` in the bag, and night (8 pm–4 am) **when entering the map** | Truth and Ideals |

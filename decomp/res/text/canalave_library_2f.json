@@ -1399,6 +1399,14 @@
       "en_US": [
         "IRON CROWN: deep in Iron Island.\r"
       ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistKoraidonOne",
+      "en_US": [
+        "One of them is in your record now.\n",
+        "The other still waits at Sendoff\r",
+        "Spring!\r"
+      ]
     }
   ]
 }
