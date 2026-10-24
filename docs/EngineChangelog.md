@@ -4,6 +4,30 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 7) — Iron Island as in Renegade: Riley's battle, HM04, the Steel-type Master
+
+- **Riley battles the player at Iron Island's entrance** instead of handing over HM04. His team is Renegade's,
+  read from its ROM (`res/trainers/data/sovereign_riley_iron_island.json`, `TRAINER_SOVEREIGN_RILEY_IRON_ISLAND`):
+  Absol, Ursaring, Metagross, Salamence and Slaking at Lv. 49, Lucario at Lv. 50. Then he heals the party and goes
+  inside.
+- **HM04 (Strength) comes from Riley on B2F**, after the tag battle against the Galactic grunts, as in Renegade.
+  He still gives his Riolu Egg there too (Renegade dropped it; Sovereign keeps it). Canalave's library still waits for
+  HM04, as in both games.
+- **Julian, a Steel-type Master,** stands near the dock, at (116, 505). Bring only one Pokémon, a Steel
+  type, and he battles it with a Lv. 85 Lucario (`TRAINER_SOVEREIGN_STEEL_MASTER_IRON_ISLAND`). Win, and he gives the
+  Iron Plate; lose, and you can try again.
+- **A nurse on B2F** heals the party, as in Renegade.
+
+Every TM and HM is now where Renegade has it, except HM08 (Rock Climb). Renegade's Snowpoint Temple scene, with
+Candice, Maylene and a half-awake Regigigas, waits for the owner.
+
+Verified in the test build:
+- Riley's challenge and the start of his battle;
+- the Steel-type Master turning down a full party;
+- the nurse's heal.
+
+Riley's B2F gift goes through the existing Egg scene. The release build passes.
+
 ## E10 (part 6) — Renegade's other TM and HM gifts
 
 Every TM and HM now comes from where Renegade gives it (`ItemChanges.txt`, "TM Locations"), with three exceptions

@@ -100,10 +100,8 @@
     {
       "id": "IronIslandB2FLeftRoom_Text_WouldYouTakeEgg",
       "en_US": [
-        "Riley: Thanks.\n",
-        "You really helped me out.\r",
-        "Listen, I have a Pokémon Egg\n",
-        "here.\r",
+        "Riley: Listen, I also have a Pokémon\n",
+        "Egg here.\r",
         "Would you take it with you?"
       ]
     },
@@ -197,6 +195,37 @@
         "The native Pokémon are restless...\r",
         "I don’t like this...\n",
         "Let’s hurry."
+      ]
+    },
+    {
+      "id": "IronIslandB2FLeftRoom_Text_SovereignHeresAGift",
+      "en_US": [
+        "Riley: Thanks.\n",
+        "You really helped me out.\r",
+        "Here, I’ve got a gift for you.\n",
+        "As a token of our friendship.\r"
+      ]
+    },
+    {
+      "id": "IronIslandB2FLeftRoom_Text_SovereignThatHMContainsStrength",
+      "en_US": [
+        "Riley: That Hidden Machine contains\n",
+        "the move Strength.\r",
+        "With the Mine Badge from Canalave Gym,\n",
+        "you can use it to move boulders.\r"
+      ]
+    },
+    {
+      "id": "IronIslandB2FLeftRoom_Text_SovereignLetsHealYourPokemon",
+      "en_US": [
+        "Let’s get those sweet Pokémon of\n",
+        "yours all healed up!\r"
+      ]
+    },
+    {
+      "id": "IronIslandB2FLeftRoom_Text_SovereignKeepOnGoing",
+      "en_US": [
+        "Keep on going, sweethearts!"
       ]
     }
   ]
