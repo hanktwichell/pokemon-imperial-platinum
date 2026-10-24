@@ -38,6 +38,73 @@
     {
       "id": "SnowpointTempleB5F_Text_RegigigasDisappeared",
       "en_US": "REGIGIGAS disappeared from view..."
+    },
+    {
+      "id": "SnowpointTempleB5F_Text_SovereignMayleneSituation",
+      "en_US": [
+        "Maylene: Oh, {STRVAR_1 3, 0, 0}!\n",
+        "I guess you made it to Snowpoint!\r",
+        "You can probably see Candice and I\n",
+        "are in a bit of a situation...\r"
+      ]
+    },
+    {
+      "id": "SnowpointTempleB5F_Text_SovereignCandiceHelpUs",
+      "en_US": [
+        "Candice: Hiya!\n",
+        "I haven’t seen you before!\r",
+        "Are you here to help Candice?\r",
+        "This big Pokémon here is awakening from\n",
+        "a long slumber.\r",
+        "But that isn’t good for anyone...\n",
+        "We need to put it back to sleep!\r",
+        "We just need a little more power.\n",
+        "So come and help us out!\r"
+      ]
+    },
+    {
+      "id": "SnowpointTempleB5F_Text_SovereignCandiceBackToSleep",
+      "en_US": [
+        "Candice: That should put it back\n",
+        "to sleep for a while... Whew.\r"
+      ]
+    },
+    {
+      "id": "SnowpointTempleB5F_Text_SovereignCandiceThanks",
+      "en_US": [
+        "Candice: Thanks for the help!\n",
+        "You’re a real superstar!\r",
+        "This is the legendary REGIGIGAS,\n",
+        "who sleeps within our temple.\r",
+        "But it was like it was waking up...\n",
+        "There were tremors all over town.\r",
+        "Anyway, it didn’t awaken fully, so\n",
+        "there’s no harm done!\r",
+        "Let me give you this as a gift for\n",
+        "helping us out.\r"
+      ]
+    },
+    {
+      "id": "SnowpointTempleB5F_Text_SovereignCandiceRockClimb",
+      "en_US": [
+        "Rock Climb allows you to scale sheer\n",
+        "cliff faces using your Pokémon.\r",
+        "However, you need the Icicle Badge\n",
+        "to be able to use it.\r",
+        "And that’s where I come in!\r",
+        "As the Snowpoint City Gym Leader,\n",
+        "I’ll be waiting inside the city’s Gym.\r",
+        "See you soon!\r"
+      ]
+    },
+    {
+      "id": "SnowpointTempleB5F_Text_SovereignMayleneThanks",
+      "en_US": [
+        "Maylene: {STRVAR_1 3, 0, 0}...\n",
+        "I’d like to thank you as well.\r",
+        "We’ll keep training hard so that\n",
+        "we can battle with you, {STRVAR_1 3, 0, 0}!\r"
+      ]
     }
   ]
 }

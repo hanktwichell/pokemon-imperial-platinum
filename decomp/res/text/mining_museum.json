@@ -286,8 +286,11 @@
     {
       "id": "MiningMuseum_Text_SovereignFossilManiacAllGiven",
       "en_US": [
-        "You have every ancient form I know of!\n",
-        "The past lives on with you!"
+        "Wow, you’ve obtained all of the PAST\n",
+        "Paradox Pokémon!\r",
+        "I’ve heard rumors that a legendary\n",
+        "PAST Paradox Pokémon can be found\f",
+        "at Sendoff Spring..."
       ]
     },
     {
@@ -346,8 +349,11 @@
     {
       "id": "MiningMuseum_Text_SovereignFutureScientistAllGiven",
       "en_US": [
-        "You have every future form I’ve built!\n",
-        "The future is in good hands."
+        "Wow, you’ve obtained all of the FUTURE\n",
+        "Paradox Pokémon!\r",
+        "I’ve heard rumors that a legendary\n",
+        "FUTURE Paradox Pokémon can be found\f",
+        "at Sendoff Spring..."
       ]
     },
     {

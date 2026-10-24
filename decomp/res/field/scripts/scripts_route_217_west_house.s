@@ -5,37 +5,23 @@
     ScriptEntry Route217WestHouse_Hiker
     ScriptEntryEnd
 
+@ Sovereign (E10 part 26): as in Renegade, Candice gives HM08 in the Snowpoint Temple, and this hiker lets the
+@ player rest (Platinum: the Icicle Plate for finding the HM; the Ice-type Master gives it now).
 Route217WestHouse_Hiker:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
-    GoToIfSet FLAG_RECEIVED_ROUTE_217_WEST_HOUSE_ICICLE_PLATE, Route217WestHouse_IFoundIciclePlate
-    CheckItem ITEM_HM08, 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, Route217WestHouse_TryGiveIciclePlate
-    Message Route217WestHouse_Text_IDroppedHM
-    WaitButton
+    Message Route217WestHouse_Text_SovereignTakeSomeRest
     CloseMessage
-    ReleaseAll
-    End
-
-Route217WestHouse_IFoundIciclePlate:
-    Message Route217WestHouse_Text_IFoundIciclePlate
+    FadeScreenOut
+    WaitFadeScreen
+    PlayFanfare SEQ_ASA_sseq
+    WaitFanfare
+    HealParty
+    FadeScreenIn
+    WaitFadeScreen
+    Message Route217WestHouse_Text_SovereignKeepWarm
     WaitButton
-    CloseMessage
-    ReleaseAll
-    End
-
-Route217WestHouse_TryGiveIciclePlate:
-    Message Route217WestHouse_Text_YouFoundHM
-    SetVar VAR_0x8004, ITEM_ICICLE_PLATE
-    SetVar VAR_0x8005, 1
-    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route217WestHouse_BagIsFull
-    Common_GiveItemQuantity
-    SetFlag FLAG_RECEIVED_ROUTE_217_WEST_HOUSE_ICICLE_PLATE
-    GoTo Route217WestHouse_IFoundIciclePlate
-
-Route217WestHouse_BagIsFull:
-    Common_MessageBagIsFull
     CloseMessage
     ReleaseAll
     End
