@@ -3,16 +3,18 @@
 Renegade Platinum's item changes and item locations are unchanged unless listed here
 (`RenegadePlatinumV130/Documentation/ItemChanges.txt`).
 
-In the game so far (E10 parts 2–5):
+In the game so far (E10 parts 2–6):
 - Renegade's six TM moves (Scald, Wild Charge, Bug Buzz, Hyper Voice, Dazzling Gleam, Hurricane), TMs as 99 of each
   and unsellable, and the Poké/Great/Ultra Ball prices.
 - Renegade's overworld item balls.
 - Renegade's hidden items are Platinum's.
 - Renegade's TM gifts from Fantina (TM30), Bertha (TM26), Floaroma's swordsman (TM40), the Underground Man house
-  (fossils, TM28, TM80), Flint (TM50), Aaron (TM81) and Mira (TM85) (`EngineChangelog.md`, E10 parts 4–5).
+  (fossils, TM28, TM80), Flint (TM50), Aaron (TM81) and Mira (TM85), and the rest of Renegade's TM and HM gifts
+  (`EngineChangelog.md`, E10 parts 4–6). Rowan gives the Poké Radar and 10 Repels in Sandgem Town.
 - The Snowpoint City evolution-item seller: 34 items at ₽10,000 each.
 
-Still to come: Renegade's other NPC gifts, and the TMs leaving Veilstone 3F and the Game Corner.
+Still to come: HM04 from Riley after Iron Island and the Steel Master's Iron Plate; HM08 from Candice (waits for the
+owner: it comes with a story Regigigas scene); Renegade's other NPC gifts, and the TMs leaving Veilstone 3F and the Game Corner.
 
 ## New key items
 

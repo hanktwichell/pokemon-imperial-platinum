@@ -48,10 +48,10 @@
       "en_US": [
         "That {STRVAR_1 8, 0, 0} contains the\n",
         "move {STRVAR_1 6, 1, 0}.\r",
-        "It inflicts double the damage on\n",
-        "targets with less than half their\f",
-        "HP left.\r",
-        "Use it to end battles decisively!"
+        "It’s a strong Water-type move that\n",
+        "can flinch the opponent.\r",
+        "It has its use in the field too, but\n",
+        "my Badge won’t help with that! Ha!"
       ]
     },
     {

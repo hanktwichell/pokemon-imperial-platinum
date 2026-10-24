@@ -437,13 +437,14 @@ SunyshoreCity_ICameToGetStronger:
     ReleaseAll
     End
 
+// Sovereign (E10): a Metal Coat instead of HM07, as in Renegade Platinum (Wake gives HM07).
 SunyshoreCity_GiveWaterfall:
     Message SunyshoreCity_Text_ThisIsntMuchBut
-    SetVar VAR_0x8004, ITEM_HM07
+    SetVar VAR_0x8004, ITEM_METAL_COAT
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
     SetFlag FLAG_RECEIVED_SUNYSHORE_CITY_HM07
-    Message SunyshoreCity_Text_ThatHMContainsWaterfall
+    Message SunyshoreCity_Text_SovereignGoodLuck
     Return
 
 SunyshoreCity_OnFrame_Flint:

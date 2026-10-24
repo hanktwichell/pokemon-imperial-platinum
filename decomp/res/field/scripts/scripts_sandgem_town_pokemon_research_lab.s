@@ -559,6 +559,9 @@ SandgemTownLab_EnableNationalDex:
     Message SandgemTownLab_Text_OffHeGoes
     CloseMessage
     WaitTime 15, VAR_RESULT
+    // Sovereign (E10): the player has had the Poké Radar since Rowan gave it in Sandgem Town.
+    CheckItem ITEM_POKE_RADAR, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, SandgemTownLab_SovereignAlreadyHasPokeRadar
     ApplyMovement LOCALID_PLAYER, SandgemTownLab_Movement_PlayerWalkBackToProfRowan
     WaitMovement
     BufferPlayerName 0
@@ -569,6 +572,10 @@ SandgemTownLab_EnableNationalDex:
     Message SandgemTownLab_Text_ThatsThePokemonRadar
     WaitButton
     CloseMessage
+    ReleaseAll
+    End
+
+SandgemTownLab_SovereignAlreadyHasPokeRadar:
     ReleaseAll
     End
 

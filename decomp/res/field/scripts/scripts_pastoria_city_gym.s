@@ -71,8 +71,9 @@ PastoriaGym_Wake:
     GoTo PastoriaGym_WakeTryGiveTM55
     End
 
+// Sovereign (E10): HM07 (Waterfall) instead of TM55, as in Renegade Platinum (the Poffin House gives TM55).
 PastoriaGym_WakeTryGiveTM55:
-    SetVar VAR_0x8004, ITEM_TM55
+    SetVar VAR_0x8004, ITEM_HM07
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, PastoriaGym_WakeCannotGiveTM55
     Common_GiveItemQuantity

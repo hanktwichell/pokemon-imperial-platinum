@@ -133,6 +133,37 @@
         "Pokémon News Press\n",
         "Wanted: Pro Pokémon Catcher!"
       ]
+    },
+    {
+      "id": "SolaceonTown_Text_SovereignImLucian",
+      "en_US": [
+        "Ah, hello.\n",
+        "Are you here to see the ruins?\r",
+        "Allow me to introduce myself.\n",
+        "I am Lucian, a user of Psychic-type\f",
+        "Pokémon and a member of the Sinnoh\f",
+        "region’s Elite Four.\r",
+        "Ruins are wonderful things, you know.\n",
+        "They’re like books--they have the\f",
+        "thoughts of many people recorded\f",
+        "inside them.\r",
+        "It allows the thoughts of the authors\n",
+        "to stretch beyond time and space.\r",
+        "Oh, you’re a Trainer, are you not?\n",
+        "Are you training any Psychic-type\f",
+        "Pokémon?\r",
+        "If you are, this Technical Machine\n",
+        "will teach them a powerful move.\r"
+      ]
+    },
+    {
+      "id": "SolaceonTown_Text_SovereignFurtherResearch",
+      "en_US": [
+        "I have some further research to\n",
+        "conduct, so I must take my leave.\r",
+        "Take care. Perhaps we’ll see each\n",
+        "other at the Pokémon League some day.\r"
+      ]
     }
   ]
 }

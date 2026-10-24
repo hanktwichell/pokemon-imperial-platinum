@@ -73,7 +73,8 @@ Route206CyclingRoadNorthGate_ScientistM:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
-    GoToIfSet FLAG_RECEIVED_ROUTE_206_CYCLING_ROAD_NORTH_GATE_EXP_SHARE, Route206CyclingRoadNorthGate_HoldingExpShareGetExpPoints
+    GoToIfSet FLAG_SOVEREIGN_RECEIVED_CYCLING_ROAD_GATE_TM54, Route206CyclingRoadNorthGate_SovereignExplainFalseSwipe
+    GoToIfSet FLAG_RECEIVED_ROUTE_206_CYCLING_ROAD_NORTH_GATE_EXP_SHARE, Route206CyclingRoadNorthGate_SovereignCheck150Seen
     BufferPlayerName 0
     BufferCounterpartName 1
     GetPlayerGender VAR_MAP_LOCAL_0x00
@@ -110,6 +111,32 @@ Route206CyclingRoadNorthGate_BagIsFull:
 
 Route206CyclingRoadNorthGate_HoldingExpShareGetExpPoints:
     Message Route206CyclingRoadNorthGate_Text_HoldingExpShareGetExpPoints
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+// Sovereign (E10): Renegade Platinum's aide gives TM54 (False Swipe) for 150 Pokémon seen, instead of the Exp. Share.
+// Here he gives both: the Exp. Share at 35 (it still works with the party-wide Exp. Share option off), TM54 at 150.
+Route206CyclingRoadNorthGate_SovereignCheck150Seen:
+    GetNationalDexSeenCount VAR_0x8004
+    BufferNumber 1, VAR_0x8004
+    GoToIfLt VAR_0x8004, 150, Route206CyclingRoadNorthGate_SovereignFindAtLeast150
+    Message Route206CyclingRoadNorthGate_Text_SomethingForYou
+    SetVar VAR_0x8004, ITEM_TM54
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    SetFlag FLAG_SOVEREIGN_RECEIVED_CYCLING_ROAD_GATE_TM54
+Route206CyclingRoadNorthGate_SovereignExplainFalseSwipe:
+    Message Route206CyclingRoadNorthGate_Text_SovereignExplainFalseSwipe
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+Route206CyclingRoadNorthGate_SovereignFindAtLeast150:
+    Message Route206CyclingRoadNorthGate_Text_HoldingExpShareGetExpPoints
+    Message Route206CyclingRoadNorthGate_Text_SovereignFindAtLeast150
     WaitButton
     CloseMessage
     ReleaseAll

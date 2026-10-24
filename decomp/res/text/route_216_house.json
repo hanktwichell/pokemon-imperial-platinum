@@ -56,6 +56,85 @@
         "{STRVAR_1 3, 0, 0} and the Pokémon\n",
         "became fully healed from the rest!"
       ]
+    },
+    {
+      "id": "Route216House_Text_SovereignPassOnIceBeam",
+      "en_US": [
+        "Oh, hey, you’re a Trainer?\n",
+        "That’s awesome!\r",
+        "Woah, you’re strong, too!\n",
+        "You have so many badges!\r",
+        "I’ve been trying to hone a powerful\n",
+        "Ice-type technique, but I can’t do it.\r",
+        "I think it would be best used by a\n",
+        "Trainer stronger than me.\r",
+        "Like you, in fact!\n",
+        "I’ll pass this technique on to you.\r",
+        "It’s the Technical Machine containing\n",
+        "the Ice-type move: Ice Beam!\r"
+      ]
+    },
+    {
+      "id": "Route216House_Text_SovereignIceBeamCanFreeze",
+      "en_US": [
+        "Ice Beam is a strong, reliable Ice-type\n",
+        "move that can freeze the opponent.\r",
+        "I hope you’ll be able to master it\n",
+        "in ways that I could not!"
+      ]
+    },
+    {
+      "id": "Route216House_Text_SovereignNotGivingUpIsMyMagic",
+      "en_US": [
+        "Hey, Trainer! Are you continuing on\n",
+        "the path to greatness?\r",
+        "I’m still trying to master all sorts\n",
+        "of techniques.\r",
+        "I have faith I’m gonna get there!\n",
+        "Not giving up is my magic!"
+      ]
+    },
+    {
+      "id": "Route216House_Text_SovereignMaybeWithFiveBadges",
+      "en_US": [
+        "Oh, hey, you’re a Trainer?\n",
+        "That’s awesome!\r",
+        "I’m a Trainer, too. I’m trying to hone\n",
+        "a powerful Ice-type technique.\r",
+        "I’m not having any luck, though.\n",
+        "I don’t think I’m strong enough.\r",
+        "Maybe if I had {COLOR 1}five badges{COLOR 0}...\n",
+        "That would be enough strength."
+      ]
+    },
+    {
+      "id": "Route216House_Text_SovereignSoColdHere",
+      "en_US": [
+        "Brr! It’s so cold in this area.\n",
+        "I’m not at all prepared for this snow.\r"
+      ]
+    },
+    {
+      "id": "Route216House_Text_SovereignImGardenia",
+      "en_US": [
+        "Oh, hi! I’m Gardenia.\n",
+        "I’m Eterna City’s Gym Leader!\r",
+        "Hm, what’s that?\n",
+        "You’re a challenger?\r",
+        "You’re saying that you came all the way\n",
+        "from Eterna City to find me?!\r",
+        "Oh, I’m so sorry!\r",
+        "I love Grass-types, you see.\n",
+        "I came here hoping to catch a SNOVER.\r",
+        "It’s a Pokémon that’s both a\n",
+        "Grass-type and an Ice-type.\r",
+        "But every time you approach it,\n",
+        "it suddenly starts to hail.\r",
+        "I wasn’t prepared for it at all!\n",
+        "I’ll have to try again another time.\r",
+        "Anyway, I’ll go back to the Gym.\n",
+        "I’ll be waiting for you, Trainer!\r"
+      ]
     }
   ]
 }

@@ -191,6 +191,40 @@
         "I’d also like to hear about the tough\n",
         "Elite Four of the Pokémon League."
       ]
+    },
+    {
+      "id": "JubilifeTV1F_Text_SovereignIdolGives",
+      "en_US": [
+        "Sigh...\n",
+        "Acting is hard sometimes.\r",
+        "You can’t really be yourself.\n",
+        "You have to put on a facade...\r",
+        "Just like how a Pokémon can when\n",
+        "afflicted by a status effect...\r",
+        "Oh, you’re a Trainer, right?\n",
+        "That means you have Pokémon.\r",
+        "Take this as an apology for having\n",
+        "to listen to my rambling.\r"
+      ]
+    },
+    {
+      "id": "JubilifeTV1F_Text_SovereignIdolExplains",
+      "en_US": [
+        "Facade is a move that has double\n",
+        "the power if the Pokémon using it is\f",
+        "poisoned, paralyzed or burned.\r",
+        "It works especially well if your\n",
+        "Pokémon has Guts..."
+      ]
+    },
+    {
+      "id": "JubilifeTV1F_Text_SovereignIdolAgain",
+      "en_US": [
+        "Sigh...\n",
+        "Maybe I should sing instead.\r",
+        "Then I can be myself on the stage!\n",
+        "At least, I’d like to think so."
+      ]
     }
   ]
 }

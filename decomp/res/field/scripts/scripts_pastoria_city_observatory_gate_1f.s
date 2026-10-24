@@ -162,6 +162,11 @@ PastoriaCityObservatoryGate1F_TryGiveMatchupchecker:
     ApplyMovement LOCALID_COWGIRL, PastoriaCityObservatoryGate1F_Movement_CowgirlWalkToPlayer
     WaitMovement
     Message PastoriaCityObservatoryGate1F_Text_HereAppMatchupChecker
+    // Sovereign (E10): TM17 (Protect) as in Renegade Platinum, which gives it instead of the app; here she gives both.
+    SetVar VAR_0x8004, ITEM_TM17
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    Message PastoriaCityObservatoryGate1F_Text_SovereignAndMatchupChecker
     SetVar VAR_0x8004, POKETCH_APPID_MATCHUPCHECKER
     Common_GivePoketchApp
     SetFlag FLAG_RECEIVED_PASTORIA_CITY_OBSERVATORY_GATE_1F_MATCHUPCHECKER
@@ -240,6 +245,7 @@ PastoriaCityObservatoryGate1F_Cowgirl:
     End
 
 PastoriaCityObservatoryGate1F_ExplainMatchupChecker:
+    Message PastoriaCityObservatoryGate1F_Text_SovereignProtectLikeTheMarsh
     Message PastoriaCityObservatoryGate1F_Text_ExplainMatchupChecker
     GoTo PastoriaCityObservatoryGate1F_CowgirlEnd
     End

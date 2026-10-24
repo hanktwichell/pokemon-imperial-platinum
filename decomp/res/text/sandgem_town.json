@@ -80,24 +80,6 @@
       ]
     },
     {
-      "id": "SandgemTown_Text_ContainsTheMoveReturn",
-      "en_US": [
-        "Rowan: That is a Technical Machine.\n",
-        "That one contains the move Return.\r",
-        "Using a Technical Machine, or TM for\n",
-        "short, teaches a move instantly to\f",
-        "a Pokémon.\r",
-        "Bear in mind, however, that a TM is\n",
-        "single-use only.\r",
-        "The move Return gains power the more\n",
-        "friendly your Pokémon is with you.\r",
-        "It’s up to you, of course, if you want\n",
-        "to use that TM or not.\r",
-        "I’ll send you off with the wish that\n",
-        "your journey will be fun.\r"
-      ]
-    },
-    {
       "id": "SandgemTown_Text_DawnIDidntKnowProfessorHadTMs",
       "en_US": [
         "Dawn: Oh, wow.\n",
@@ -280,6 +262,27 @@
       "en_US": [
         "Heal Your Pokémon!\n",
         "Pokémon Center"
+      ]
+    },
+    {
+      "id": "SandgemTown_Text_SovereignThatsThePokeRadar",
+      "en_US": [
+        "Rowan: That’s the Pokémon Radar,\n",
+        "or just Poké Radar for short.\r",
+        "Use it, and it will indicate grass\n",
+        "patches where Pokémon are lurking.\r",
+        "You may need it to locate some rare\n",
+        "species of Pokémon that you won’t\f",
+        "find in grass patches naturally.\r",
+        "Take these Repels, too.\n",
+        "They help when using the Poké Radar.\r"
+      ]
+    },
+    {
+      "id": "SandgemTown_Text_SovereignFunJourney",
+      "en_US": [
+        "Rowan: I’ll send you off with the wish\n",
+        "that your journey will be fun.\r"
       ]
     }
   ]

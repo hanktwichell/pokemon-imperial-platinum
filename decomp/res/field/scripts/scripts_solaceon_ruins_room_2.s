@@ -36,7 +36,8 @@ SolaceonRuinsRoom2_AskLoanHMDefog:
 
 SolaceonRuinsRoom2_LoanHMDefog:
     Message SolaceonRuinsRoom2_Text_ThanksYoureMyRescuer
-    SetVar VAR_0x8004, ITEM_GREEN_SHARD
+    // Sovereign (E10): a Choice Scarf instead of a Green Shard, as in Renegade Platinum (tutors don't take shards).
+    SetVar VAR_0x8004, ITEM_CHOICE_SCARF
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, SolaceonRuinsRoom2_BagIsFull
     SetFlag FLAG_RECEIVED_SOLACEON_RUINS_ROOM_2_GREEN_SHARD

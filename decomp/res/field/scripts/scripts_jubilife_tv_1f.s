@@ -11,6 +11,7 @@
     ScriptEntry JubilifeTV1F_Dummy7
     ScriptEntry JubilifeTV1F_OnTransition
     ScriptEntry JubilifeTV1F_AceTrainerM
+    ScriptEntry JubilifeTV1F_SovereignIdol
     ScriptEntryEnd
 
 JubilifeTV1F_OnTransition:
@@ -193,3 +194,27 @@ JubilifeTV1F_AceTrainerM:
     End
 
     .balign 4, 0
+
+// Sovereign (E10): as in Renegade Platinum, an idol in the lobby gives TM42 (Facade).
+JubilifeTV1F_SovereignIdol:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfSet FLAG_SOVEREIGN_RECEIVED_JUBILIFE_TV_TM42, JubilifeTV1F_SovereignIdolAgain
+    Message JubilifeTV1F_Text_SovereignIdolGives
+    SetVar VAR_0x8004, ITEM_TM42
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    SetFlag FLAG_SOVEREIGN_RECEIVED_JUBILIFE_TV_TM42
+    Message JubilifeTV1F_Text_SovereignIdolExplains
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+JubilifeTV1F_SovereignIdolAgain:
+    Message JubilifeTV1F_Text_SovereignIdolAgain
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End

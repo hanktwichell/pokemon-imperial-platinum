@@ -183,8 +183,9 @@ TrainersSchool_HardToWin:
     End
 
 TrainersSchool_GivePotion:
-    Message TrainersSchool_Text_UseThisPotion
-    SetVar VAR_0x8004, ITEM_POTION
+    // Sovereign (E10): TM10 (Hidden Power) instead of a Potion, as in Renegade Platinum.
+    Message TrainersSchool_Text_SovereignUseThisTM
+    SetVar VAR_0x8004, ITEM_TM10
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, TrainersSchool_BagIsFull
     Common_GiveItemQuantity
@@ -193,7 +194,7 @@ TrainersSchool_GivePotion:
     End
 
 TrainersSchool_PotionRestoresHP:
-    Message TrainersSchool_Text_PotionRestoresHP
+    Message TrainersSchool_Text_SovereignExplainTMs
     WaitButton
     CloseMessage
     ReleaseAll
