@@ -195,3 +195,4 @@
     { "necrozma/forms/ultra_dawn", NULL, .isGiratinaOrigin = false }, // Ultra Necrozma
     { "meloetta/forms/pirouette", NULL, .isGiratinaOrigin = false }, // Pirouette Meloetta
     { "aegislash/forms/blade", NULL, .isGiratinaOrigin = false }, // Blade Aegislash
+    { "wishiwashi/forms/school", NULL, .isGiratinaOrigin = false }, // School Wishiwashi

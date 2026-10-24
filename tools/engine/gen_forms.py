@@ -151,6 +151,7 @@ FM_FORMS = {
     "necrozma-ultra-dawn": (KIND_ULTRA_BURST, "2"),
     "meloetta-pirouette": (KIND_BATTLE_MOVE, "MOVE_RELIC_SONG"),
     "aegislash-blade": (KIND_BATTLE, "ABILITY_STANCE_CHANGE"),
+    "wishiwashi-school": (KIND_BATTLE, "ABILITY_SCHOOLING"),
 }
 
 # Disguise: the form Mimikyu's disguise busts into, for each disguised form (sSovereignDisguiseForms). The busted

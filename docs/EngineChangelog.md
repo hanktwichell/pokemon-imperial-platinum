@@ -4,6 +4,23 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## FM — School Wishiwashi
+
+- **Schooling.**
+  - A Wishiwashi at level 20 or more forms a school when it enters battle with over 1/4 of its HP: "WISHIWASHI
+    transformed!".
+  - School Wishiwashi has 140 Attack, 130 Defense, 140 Sp. Atk and 135 Sp. Def, against Solo's 20, 20, 25 and 25.
+  - At the end of a turn at 1/4 HP or less it goes back to Solo, and above 1/4 it schools again. A hit during the
+    turn doesn't change it.
+  - It goes back on switch-out and at the battle's end.
+- **How:** `TechnicalDesign.md` (Schooling). School Wishiwashi shares Wishiwashi's sprite until milestone E12.
+- **Verified** in the emulator (Route 201, level 30):
+  - At 18/70 HP it schooled on entry (Attack 95).
+  - At 20% HP the other one came in Solo, with no message.
+  - Switched back in at 18/70 it schooled. A Tackle took it to 17/70, and it went back to Solo only at the end of
+    the turn.
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+
 ## FM — Disguise
 
 - **Disguise.** The first hit a Mimikyu takes in a battle hits its disguise instead: "Its disguise served it as a

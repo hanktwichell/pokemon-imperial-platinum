@@ -118,6 +118,7 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
     battleCtx->battleMons[battler].sovereignBoosterEnergy = FALSE;
     battleCtx->battleMons[battler].sovereignProteanUsed = FALSE;
     battleCtx->battleMons[battler].sovereignEntryAnnounced = FALSE;
+    battleCtx->battleMons[battler].sovereignSchoolingChecked = FALSE;
     battleCtx->battleMons[battler].type1 = Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
     battleCtx->battleMons[battler].type2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
     battleCtx->battleMons[battler].gender = Pokemon_GetGender(mon);
@@ -3779,12 +3780,45 @@ int BattleSystem_TriggerImmunityAbility(BattleContext *battleCtx, int attacker, 
     return subscript;
 }
 
+// Sovereign (FM): the form Schooling gives a Wishiwashi now: School Form at level 20 or more with over 1/4 of its HP,
+// else Solo. -1 if that's its form already, or Schooling doesn't apply.
+static int BattleSystem_SovereignSchoolingForm(BattleContext *battleCtx, int battler)
+{
+    BattleMon *mon = &battleCtx->battleMons[battler];
+
+    if (mon->species != SPECIES_WISHIWASHI || mon->curHP == 0
+        || (mon->statusVolatile & VOLATILE_CONDITION_TRANSFORM)
+        || Battler_Ability(battleCtx, battler) != ABILITY_SCHOOLING) {
+        return -1;
+    }
+
+    int form = 0;
+    if (mon->level >= 20 && mon->curHP > mon->maxHP / 4) {
+        form = Pokemon_SovereignAbilityForm(mon->species, 0, ABILITY_SCHOOLING);
+    }
+
+    return form != mon->formNum ? form : -1;
+}
+
 BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
     BOOL result = FALSE;
     int subscript;
 
     switch (Battler_Ability(battleCtx, battler)) {
+    // Sovereign (FM): Schooling forms a school at the end of each turn (and on entry: BattleSystem_TriggerFormChange).
+    case ABILITY_SCHOOLING: {
+        int form = BattleSystem_SovereignSchoolingForm(battleCtx, battler);
+
+        if (form >= 0) {
+            BattleSystem_SovereignChangeBattleForm(battleSys, battleCtx, battler, form);
+            battleCtx->msgBattlerTemp = battler;
+            subscript = subscript_form_change;
+            result = TRUE;
+        }
+        break;
+    }
+
     // Sovereign (FM): Zen Mode turns Darmanitan to its Zen Mode at half its HP or less, and back above half.
     case ABILITY_ZEN_MODE: {
         BattleMon *mon = &battleCtx->battleMons[battler];
@@ -7259,6 +7293,21 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
 
     for (i = 0; i < BattleSystem_GetMaxBattlers(battleSys); i++) {
         battleCtx->msgBattlerTemp = battleCtx->monSpeedOrder[i];
+
+        // Sovereign (FM): Schooling forms a school (or not) as the Wishiwashi enters; after that, at the end of each
+        // turn (BattleSystem_TriggerTurnEndAbility).
+        BattleMon *schoolMon = &battleCtx->battleMons[battleCtx->msgBattlerTemp];
+        if (schoolMon->sovereignSchoolingChecked == FALSE && schoolMon->curHP) {
+            schoolMon->sovereignSchoolingChecked = TRUE;
+
+            int schoolForm = BattleSystem_SovereignSchoolingForm(battleCtx, battleCtx->msgBattlerTemp);
+            if (schoolForm >= 0) {
+                BattleSystem_SovereignChangeBattleForm(battleSys, battleCtx, battleCtx->msgBattlerTemp, schoolForm);
+                *subscript = subscript_form_change;
+                result = TRUE;
+                break;
+            }
+        }
 
         if (battleCtx->battleMons[battleCtx->msgBattlerTemp].species == SPECIES_CASTFORM
             && battleCtx->battleMons[battleCtx->msgBattlerTemp].curHP

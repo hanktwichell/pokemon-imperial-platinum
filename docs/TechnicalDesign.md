@@ -193,6 +193,13 @@ implemented.
     switching (`Pokemon_SovereignRevertSwitchOutForm` skips Disguise), fainting and revival (a Revive or, once it
     exists, Revival Blessing). A Mimikyu that faints with its disguise intact keeps it.
   - `Pokemon_SovereignRevertBattleForm` gives the disguise back when the battle ends.
+- **Schooling** (School Wishiwashi, `SOVEREIGN_FORM_BATTLE` with Schooling as trigger).
+  - `BattleSystem_SovereignSchoolingForm` gives the form: School Form at level 20 or more with over 1/4 of its HP,
+    else Solo.
+  - It is checked once on entry, in `BattleSystem_TriggerFormChange`, using the battler's `sovereignSchoolingChecked`
+    bit (cleared in `BattleSystem_InitBattleMon`; that check also runs after every move). After that it is checked
+    at the end of each turn, in `BattleSystem_TriggerTurnEndAbility`.
+  - It goes back on switch-out and at the battle's end, like Zen Mode.
 - **Item locks.** `Pokemon_SovereignItemIsLocked(species, item)` is TRUE for any form trigger on its own species
   except Mega Rayquaza's move, and also for the Teal Mask on Ogerpon, the Griseous Core on Giratina and the
   Ultranecrozium Z on Necrozma.
