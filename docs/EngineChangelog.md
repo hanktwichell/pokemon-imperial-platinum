@@ -4,6 +4,24 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## FM — Fairy Arceus, Silvally's Memories and Genesect's Drives
+
+- **Fairy Arceus.** Arceus holding the Pixie Plate is Fairy-type, and its Judgment is Fairy-type.
+- **Silvally.** With RKS System, Silvally takes its held Memory's type, and Multi-Attack takes the Memory's type. All 17
+  Memories work.
+- **Genesect.** Its Drive changes its form, and Techno Blast takes the Drive's type: Douse Water, Shock Electric,
+  Burn Fire, Chill Ice.
+- **Item locks.** These items can't be knocked off, stolen or swapped away from their Pokémon.
+- **Fairy boost.** The Pixie Plate and the Fairy Feather power up Fairy moves by 20%, like the other plates.
+
+Verified in the test build:
+- Arceus with the Pixie Plate showed FAIRY in the summary, and its Judgment was "not very effective" on a wild Gastly.
+  (A Normal Judgment wouldn't affect a Ghost.)
+- Silvally with a Fire Memory showed FIRE.
+- Genesect with the Douse Drive stayed Bug/Steel.
+- Release build passes.
+
+
 ## FM — Oricorio's styles and Resolute Keldeo
 
 - **Oricorio's four styles** (Baile, Pom-Pom, Pa'u, Sensu): a wild or gift Oricorio's style comes from its personality.

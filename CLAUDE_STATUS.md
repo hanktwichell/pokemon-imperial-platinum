@@ -3831,3 +3831,28 @@ generated form data (`decomp/include/data/sovereign_forms.h`, `decomp/include/co
    Flabébé's colors, Burmy...).
 2. Overworld sprites from the owner (in a few days): size them naturally against the existing overworld Pokémon.
 3. The shops step: where the nectars, Memories, Drives, Sweets and other new items are found or sold.
+
+---
+
+## CB-0070 — FM: Fairy Arceus, Silvally's Memories and Genesect's Drives (Sat Oct 24 2026, 02:48 CDT)
+
+**Implemented:**
+- **Fairy Arceus:** the Pixie Plate gives Fairy type, form 9 and a Fairy Judgment.
+- **Silvally (RKS System):** takes its Memory's type and form; Multi-Attack follows the Memory.
+- **Genesect:** its form follows its Drive; Techno Blast follows the Drive's type.
+- These items are locked on their Pokémon. The Pixie Plate and the Fairy Feather boost Fairy moves by 20%.
+- Verified in the emulator:
+  - Arceus with the Pixie Plate is FAIRY in the summary, and its Judgment was "not very effective" on Gastly.
+  - Silvally with a Fire Memory is FIRE.
+  - Genesect with the Douse Drive stays Bug/Steel.
+
+**Files modified:** `decomp/src/pokemon.c`, `decomp/include/pokemon.h`, `decomp/src/battle/battle_lib.c`,
+`decomp/src/battle/battle_script.c`, `tools/engine/gen_abilities.py`, `docs/AbilityChecklist.md`,
+`docs/TechnicalDesign.md`, `docs/EngineRoadmap.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Milestone FM, the cosmetic forms (Unown's new letters aside, Vivillon, Alcremie, Furfrou, Flabébé/Floette/Florges
+   colors, Deerling/Sawsbuck seasons, Burmy/Wormadam stay vanilla...): pick how each is chosen (personality, map,
+   season, item) and add them as forms.
+2. Overworld sprites from the owner (in a few days): size them naturally against the existing overworld Pokémon.
+3. The shops step: where the nectars, Memories, Drives, Pixie Plate, Sweets and other new items are found or sold.

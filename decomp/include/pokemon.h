@@ -701,6 +701,8 @@ void BoxPokemon_SetArceusForm(BoxPokemon *boxMon);
  * @param itemHoldEffect
  * @return The form arceus should be in
  */
+int Pokemon_SovereignMemoryType(u16 item);
+int Pokemon_SovereignItemMoveType(u16 move, u16 item);
 u8 Pokemon_GetArceusTypeOf(u16 itemHoldEffect);
 
 /**

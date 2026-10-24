@@ -312,6 +312,17 @@ implemented.
   party menu uses one up (`SovereignFormItem_IsUsedUp`).
 - **Keldeo's Resolute Form** (form 1, a form for good): `BoxPokemon_SetDataInternal` sets it whenever a move slot
   changes, Resolute while Keldeo knows Secret Sword, as in the Gen V+ games. It has the same stats, types and ability.
+- **Held-item types** (no form data, like Platinum's Arceus: the form is the type, and `MON_DATA_TYPE_1/2` gives the
+  type):
+  - Fairy Arceus: the Pixie Plate (no hold effect) is checked by item in the type getter, `BoxPokemon_SetArceusForm`
+    (form 9, Fairy's type ID), `Battler_MonType` and the in-battle Arceus form check.
+  - Silvally with RKS System takes its Memory's type (`Pokemon_SovereignMemoryType`) and the same form number.
+  - Genesect's form follows its Drive (1 Douse, 2 Shock, 3 Burn, 4 Chill), set in `BoxPokemon_SetArceusForm`.
+  - Move types: `Pokemon_SovereignItemMoveType` (Judgment with the Pixie Plate, Multi-Attack with a Memory, Techno
+    Blast with a Drive). The type is used in `BattleScript_CalcMoveDamage`, `CalcMoveType` and
+    `Move_CalcVariableType`.
+  - The Pixie Plate and the Fairy Feather power up Fairy moves by 20% (`BattleSystem_CalcMoveDamage`).
+  - These items are locked on their Pokémon (`Pokemon_SovereignItemIsLocked`).
 - **Gender forms** (`SOVEREIGN_FORM_GENDER`: Female Meowstic, Indeedee, Basculegion and Oinkologne, each form 1).
   `Pokemon_SovereignPersonalityForm` gives the female's form to a female (its gender comes from its personality), so
   a wild, gift or Egg Pokémon gets it when it's made, with the form's abilities. `Pokemon_SovereignSetEvolvedSpecies`
