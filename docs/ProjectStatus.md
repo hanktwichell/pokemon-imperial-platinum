@@ -182,7 +182,28 @@ Made by the owner (2026-10-22):
       in one place. The other legendaries stay static (roamers can't hold items, so Zacian, Zamazenta and Ogerpon
       can't roam).
 
+29. **Regigigas keeps Renegade's Snowpoint Temple story** (owner, 2026-10-24): the story Regigigas is put back to
+    sleep and Candice gives HM08, as in Renegade. Allowed because Renegade still lets the player catch Regigigas
+    afterwards (`RenegadePlatinumV130/Documentation/SpecialEvents.txt`, #486: after the story event and becoming
+    Champion, Lv. 70 in the temple's basement with Regirock, Regice and Registeel in the party).
+30. **Koraidon and Miraidon gates** (owner, 2026-10-24), replacing decision 28's pairing:
+    - **Koraidon** appears once all ten **future** Paradox Pokémon are obtained; **Miraidon** once all ten **past**
+      (ancient) ones are. The owner's wording; this is the reverse of their eras in the official games (Koraidon is
+      ancient), so confirm with the owner before building it.
+    - Each gate is independent: one legendary can be unlocked without any Paradox Pokémon from the other's group.
+    - The Paldea Chronicle must still be open.
+    - After giving all ten of their Pokémon, each Oreburgh Mining Museum dealer has a new line, like: "Wow, you've
+      obtained all of the FUTURE/PAST Paradox Pokémon! I've heard rumors that a legendary FUTURE/PAST Paradox Pokémon
+      can be found in LOCATION."
+31. **The Infinite Repel is in the PC in the player's house in Twinleaf Town** (owner, 2026-10-24), available after the
+    first Champion win, at the same time as the Celestic elder's visit.
+32. **Placeholders stay for now** (owner, 2026-10-24): event levels, the event-gift deliveryman's spot and the
+    provisional legendary spots are adjusted later.
+
 Open:
+- **The legendary birds** (owner, 2026-10-24: "come back to me on the birds"): Renegade's portals (Articuno on
+  Mt. Coronet's summit, Zapdos behind Valley Windworks, Moltres in Victory Road, opened by talking to Rowan after the
+  Distortion World) or Sovereign's roamers released by Oak. Undecided.
 - **Overworld sprites and sizing for the legendaries** (owner, 2026-10-23: "we will need to work on" it). Today each
   is a 64x64 placeholder shrunk from its PokeAPI front sprite (`tools/sprites/make_legendary_overworld.py`), so tiny
   and huge Pokémon look the same size and the big ones cover the player and nearby tiles.
