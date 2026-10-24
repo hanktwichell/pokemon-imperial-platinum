@@ -209,7 +209,8 @@ FloaromaMeadow_PokefanM:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
-    Message FloaromaMeadow_Text_BuySomeHoney
+    CallIfUnset FLAG_GAME_COMPLETED, FloaromaMeadow_SovereignFullPriceMsg
+    CallIfSet FLAG_GAME_COMPLETED, FloaromaMeadow_SovereignHalfPriceMsg
     ShowMoney 20, 2
     GoTo FloaromaMeadow_ShowMenuHoney
     End
@@ -229,6 +230,7 @@ FloaromaMeadow_ShowMenuHoney:
     End
 
 FloaromaMeadow_TryBuy1Honey:
+    GoToIfSet FLAG_GAME_COMPLETED, FloaromaMeadow_TryBuy1HoneySovereignHalf
     GoToIfNotEnoughMoney 100, FloaromaMeadow_NotEnoughMoney
     SetVar VAR_0x8005, 1
     SetVar VAR_0x8006, 100
@@ -236,6 +238,7 @@ FloaromaMeadow_TryBuy1Honey:
     End
 
 FloaromaMeadow_TryBuy10Honey:
+    GoToIfSet FLAG_GAME_COMPLETED, FloaromaMeadow_TryBuy10HoneySovereignHalf
     GoToIfNotEnoughMoney 1000, FloaromaMeadow_NotEnoughMoney
     SetVar VAR_0x8005, 10
     SetVar VAR_0x8006, 1000
@@ -356,3 +359,26 @@ FloaromaMeadow_SovereignGrassMasterLost:
     End
 
     .balign 4, 0
+
+@ Sovereign (decision 24, owner 2026-10-24): after the Hall of Fame, scripted sales are half price too.
+FloaromaMeadow_SovereignFullPriceMsg:
+    Message FloaromaMeadow_Text_BuySomeHoney
+    Return
+
+FloaromaMeadow_SovereignHalfPriceMsg:
+    Message FloaromaMeadow_Text_SovereignBuySomeHoneyHalf
+    Return
+
+FloaromaMeadow_TryBuy1HoneySovereignHalf:
+    GoToIfNotEnoughMoney 50, FloaromaMeadow_NotEnoughMoney
+    SetVar VAR_0x8005, 1
+    SetVar VAR_0x8006, 50
+    GoTo FloaromaMeadow_TryGiveHoney
+    End
+
+FloaromaMeadow_TryBuy10HoneySovereignHalf:
+    GoToIfNotEnoughMoney 500, FloaromaMeadow_NotEnoughMoney
+    SetVar VAR_0x8005, 10
+    SetVar VAR_0x8006, 500
+    GoTo FloaromaMeadow_TryGiveHoney
+    End

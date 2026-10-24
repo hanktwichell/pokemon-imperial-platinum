@@ -92,6 +92,18 @@
         "The person who gave you the\n",
         "SecretPotion must be quite the Trainer!"
       ]
+    },
+    {
+      "id": "Cafe_Text_SovereignMoomooMilkHalf",
+      "en_US": [
+        "How are ya doing?\n",
+        "Whatcha having?\r",
+        "Course, all we ever have is\n",
+        "Moomoo Milk.\r",
+        "Moomoo Milk, $250 a bottle.\r",
+        "Would you like to add some to your\n",
+        "traveling supplies?"
+      ]
     }
   ]
 }

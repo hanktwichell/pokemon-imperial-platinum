@@ -264,18 +264,21 @@ PokemonDayCare_SovereignRancher:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
-    Message PokemonDayCare_Text_SovereignRancherSellBerries
+    CallIfUnset FLAG_GAME_COMPLETED, PokemonDayCare_RancherSovereignFullPriceMsg
+    CallIfSet FLAG_GAME_COMPLETED, PokemonDayCare_RancherSovereignHalfPriceMsg
     ShowMoney 20, 2
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, PokemonDayCare_SovereignRancherNo
-    GoToIfNotEnoughMoney 5000, PokemonDayCare_SovereignRancherNotEnoughMoney
+    SetVar VAR_0x8006, 5000
+    CallIfSet FLAG_GAME_COMPLETED, PokemonDayCare_SovereignRancherHalfPrice
+    CheckMoney2 VAR_RESULT, VAR_0x8006
+    GoToIfEq VAR_RESULT, 0, PokemonDayCare_SovereignRancherNotEnoughMoney
     GoToIfCannotFitItem ITEM_POMEG_BERRY, 15, VAR_RESULT, PokemonDayCare_SovereignRancherBagFull
     GoToIfCannotFitItem ITEM_KELPSY_BERRY, 15, VAR_RESULT, PokemonDayCare_SovereignRancherBagFull
     GoToIfCannotFitItem ITEM_QUALOT_BERRY, 15, VAR_RESULT, PokemonDayCare_SovereignRancherBagFull
     GoToIfCannotFitItem ITEM_HONDEW_BERRY, 15, VAR_RESULT, PokemonDayCare_SovereignRancherBagFull
     GoToIfCannotFitItem ITEM_GREPA_BERRY, 15, VAR_RESULT, PokemonDayCare_SovereignRancherBagFull
     GoToIfCannotFitItem ITEM_TAMATO_BERRY, 15, VAR_RESULT, PokemonDayCare_SovereignRancherBagFull
-    SetVar VAR_0x8006, 5000
     RemoveMoney2 VAR_0x8006
     UpdateMoneyDisplay
     PlaySE SEQ_SE_DP_REGI_sseq
@@ -311,3 +314,16 @@ PokemonDayCare_SovereignRancherEnd:
     End
 
     .balign 4, 0
+
+@ Sovereign (decision 24, owner 2026-10-24): after the Hall of Fame, scripted sales are half price too.
+PokemonDayCare_RancherSovereignFullPriceMsg:
+    Message PokemonDayCare_Text_SovereignRancherSellBerries
+    Return
+
+PokemonDayCare_RancherSovereignHalfPriceMsg:
+    Message PokemonDayCare_Text_SovereignRancherSellBerriesHalf
+    Return
+
+PokemonDayCare_SovereignRancherHalfPrice:
+    SetVar VAR_0x8006, 2500
+    Return

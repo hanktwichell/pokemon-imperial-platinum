@@ -233,6 +233,16 @@ Made by the owner (2026-10-22):
 41. **The Regional Forms Park is approved** (owner, 2026-10-24): Claude B's zones stand; levels 40–55, the rarer forms
     (the Hisuian pseudo-legendary line, the Hisuian starters, other rare evolved forms) level 60, the Galarian birds
     level 70; a sign at the way into each zone.
+42. **Every trainer team is reworked** (owner, 2026-10-24: "we're going to end up slightly remaking/reworking every
+    trainer team in the game"). This covers all 1,015 trainer files, not only the bosses. Progress is logged team by
+    team in `docs/TrainerTeamLog.md` (Not started → Edited → Confirmed by the owner). It folds T1 (the boss teams)
+    into the larger pass.
+43. **Scripted sales are half price after the Hall of Fame too** (owner, 2026-10-24), extending decision 24: Floaroma's
+    honey, the Café Cabin's Moomoo Milk, the Veilstone 5F vending machines, the B1F Lava Cookies and Poffins, the
+    Route 208 Mulch, the Day Care rancher's berry bundle and Game Corner coins. Their dialogue and menus show the
+    halved prices. The items they sell now count as shop items, so after the Hall of Fame they sell for half their
+    value too, the same as they cost: no item can be bought and sold back at a profit (no infinite money). Services
+    (Safari Game, binoculars, the spa, Villa furniture, the Day Care fee) keep their prices.
 
 Open:
 - **The legendary placement tile checks** in `docs/LegendaryPlacementReview.md` (every clash is settled by decisions

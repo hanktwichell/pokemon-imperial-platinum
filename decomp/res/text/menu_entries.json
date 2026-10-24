@@ -1156,6 +1156,42 @@
     {
       "id": "MenuEntries_Text_SovereignGems",
       "en_US": "Gems"
+    },
+    {
+      "id": "MenuEntries_Text_SovereignFreshWaterHalf",
+      "en_US": "FRESH WATER{CURSOR_X 80}$100"
+    },
+    {
+      "id": "MenuEntries_Text_SovereignSodaPopHalf",
+      "en_US": "SODA POP{CURSOR_X 80}$150"
+    },
+    {
+      "id": "MenuEntries_Text_SovereignLemonadeHalf",
+      "en_US": "LEMONADE{CURSOR_X 80}$175"
+    },
+    {
+      "id": "MenuEntries_Text_SovereignMulchShop_GrowthMulchHalf",
+      "en_US": "GROWTH MULCH{CURSOR_X 90}$100"
+    },
+    {
+      "id": "MenuEntries_Text_SovereignMulchShop_DampMulchHalf",
+      "en_US": "DAMP MULCH{CURSOR_X 90}$100"
+    },
+    {
+      "id": "MenuEntries_Text_SovereignMulchShop_StableMulchHalf",
+      "en_US": "STABLE MULCH{CURSOR_X 90}$100"
+    },
+    {
+      "id": "MenuEntries_Text_SovereignMulchShop_GooeyMulchHalf",
+      "en_US": "GOOEY MULCH{CURSOR_X 90}$100"
+    },
+    {
+      "id": "MenuEntries_Text_SovereignGameCorner_50CoinsHalf",
+      "en_US": "50 Coins{CURSOR_X 60}$500"
+    },
+    {
+      "id": "MenuEntries_Text_SovereignGameCorner_500CoinsHalf",
+      "en_US": "500 Coins{CURSOR_X 60}$5,000"
     }
   ]
 }
