@@ -3723,3 +3723,31 @@ interactions the owner listed on 2026-10-23. PR open.
    Gimmighoul Roaming, Bloodmoon Ursaluna, Keldeo Resolute, Eternal Floette, Magearna Original, Zarude Dada, Pikachu caps.
 2. Overworld sprites from the owner (in a few days): size them naturally against the existing overworld Pokémon.
 3. The owner's final placements for the provisional spots (Paradox dealers, Greninja NPC, Chronicle encounters).
+
+---
+
+## CB-0066 — FM: sizes, plumages and other personality forms (Sat Oct 24 2026, 02:02 CDT)
+
+**Implemented:**
+- `Pokemon_SovereignPersonalityForm` now also picks these forms when the Pokémon is made and when it evolves:
+  - Pumpkaboo/Gourgeist sizes (X and Y odds, kept through evolution).
+  - Squawkabilly's plumage and Tatsugiri's form.
+  - Low Key Toxtricity, by nature.
+  - Maushold Family of Three and Three-Segment Dudunsparce (1 in 100).
+- A stone with one Mega for each form (Tatsugiri; Meowstic's genders) gives the form its own Mega, and it goes back
+  to that form.
+- Verified in the emulator: Modest Toxtricity is Low Key (Minus), Adamant Toxtricity is Amped (Plus), Super
+  Pumpkaboo's HP.
+
+**Files modified:** `tools/engine/gen_forms.py`, `decomp/include/data/sovereign_forms.h`,
+`decomp/include/constants/sovereign_forms.h`, `decomp/tools/dataproc/src/sovereign_forms.inc`,
+`decomp/res/pokemon/{pumpkaboo,gourgeist,squawkabilly,tatsugiri,toxtricity,maushold,dudunsparce}/meson.build`,
+their new `forms/*/data.json`, `decomp/src/pokemon.c`, `docs/TechnicalDesign.md`, `docs/EngineRoadmap.md`,
+`docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Milestone FM: Lycanroc's Midnight/Dusk Forms and Own Tempo Rockruff (evolution by time of day), Oricorio's styles
+   (nectars), then Keldeo Resolute, Eternal Floette, Magearna Original, Zarude Dada, Bloodmoon Ursaluna, Gimmighoul
+   Roaming, the Pikachu caps and the Let's Go partners.
+2. Overworld sprites from the owner (in a few days): size them naturally against the existing overworld Pokémon.
+3. The owner's final placements for the provisional spots (Paradox dealers, Greninja NPC, Chronicle encounters).

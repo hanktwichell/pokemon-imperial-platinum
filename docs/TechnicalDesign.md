@@ -284,6 +284,13 @@ implemented.
   picks the form from the personality, personality % 7 for Minior as in Sun and Moon (Red is form 0). The Pokémon
   gets it when it's made (`sub_02073E18`, which every new Pokémon goes through), and an Egg gets its own from its
   personality rather than its parent's form. Trainer data still sets its own form.
+- **More personality forms** (`SOVEREIGN_FORM_PERSONALITY`), each from `Pokemon_SovereignPersonalityForm`, when the
+  Pokémon is made and when it evolves into the species: Squawkabilly's plumage and Tatsugiri's form (personality %
+  count, like Minior); Pumpkaboo's and Gourgeist's size (personality % 10: Average 40%, Small 30%, Large 20%, Super
+  10%, as in X and Y; the same personality gives the same size, so a Gourgeist keeps its Pumpkaboo's); Low Key
+  Toxtricity for the 12 Low Key natures (Sword and Shield); Maushold Family of Three and Three-Segment Dudunsparce for
+  personality % 100 == 0 (Scarlet and Violet). Where a stone gives a Mega for each form (Tatsugiri; Meowstic's
+  genders), `Pokemon_SovereignBattleForm` picks the form's own, and it goes back to that form.
 - **Gender forms** (`SOVEREIGN_FORM_GENDER`: Female Meowstic, Indeedee, Basculegion and Oinkologne, each form 1).
   `Pokemon_SovereignPersonalityForm` gives the female's form to a female (its gender comes from its personality), so
   a wild, gift or Egg Pokémon gets it when it's made, with the form's abilities. `Pokemon_SovereignSetEvolvedSpecies`

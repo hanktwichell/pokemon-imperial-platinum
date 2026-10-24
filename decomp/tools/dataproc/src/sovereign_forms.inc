@@ -226,3 +226,17 @@
     { "indeedee/forms/female", NULL, .isGiratinaOrigin = false }, // Female Indeedee
     { "basculegion/forms/female", NULL, .isGiratinaOrigin = false }, // Female Basculegion
     { "oinkologne/forms/female", NULL, .isGiratinaOrigin = false }, // Female Oinkologne
+    { "pumpkaboo/forms/small", NULL, .isGiratinaOrigin = false }, // Small Pumpkaboo
+    { "pumpkaboo/forms/large", NULL, .isGiratinaOrigin = false }, // Large Pumpkaboo
+    { "pumpkaboo/forms/super", NULL, .isGiratinaOrigin = false }, // Super Pumpkaboo
+    { "gourgeist/forms/small", NULL, .isGiratinaOrigin = false }, // Small Gourgeist
+    { "gourgeist/forms/large", NULL, .isGiratinaOrigin = false }, // Large Gourgeist
+    { "gourgeist/forms/super", NULL, .isGiratinaOrigin = false }, // Super Gourgeist
+    { "squawkabilly/forms/blue_plumage", NULL, .isGiratinaOrigin = false }, // Blue Plumage Squawkabilly
+    { "squawkabilly/forms/yellow_plumage", NULL, .isGiratinaOrigin = false }, // Yellow Plumage Squawkabilly
+    { "squawkabilly/forms/white_plumage", NULL, .isGiratinaOrigin = false }, // White Plumage Squawkabilly
+    { "tatsugiri/forms/droopy", NULL, .isGiratinaOrigin = false }, // Droopy Form Tatsugiri
+    { "tatsugiri/forms/stretchy", NULL, .isGiratinaOrigin = false }, // Stretchy Form Tatsugiri
+    { "toxtricity/forms/low_key", NULL, .isGiratinaOrigin = false }, // Low Key Toxtricity
+    { "maushold/forms/family_of_three", NULL, .isGiratinaOrigin = false }, // Maushold (Family of Three)
+    { "dudunsparce/forms/three_segment", NULL, .isGiratinaOrigin = false }, // Three-Segment Form Dudunsparce

@@ -13,4 +13,6 @@ pokefoot_files += files('footprint.png')
 species_data_files += files('forms/mega_curly/data.json')
 species_data_files += files('forms/mega_droopy/data.json')
 species_data_files += files('forms/mega_stretchy/data.json')
+species_data_files += files('forms/droopy/data.json')
+species_data_files += files('forms/stretchy/data.json')
 # Sovereign forms: end
