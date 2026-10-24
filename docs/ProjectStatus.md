@@ -242,7 +242,8 @@ Made by the owner (2026-10-22):
     Route 208 Mulch, the Day Care rancher's berry bundle and Game Corner coins. Their dialogue and menus show the
     halved prices. The items they sell now count as shop items, so after the Hall of Fame they sell for half their
     value too, the same as they cost: no item can be bought and sold back at a profit (no infinite money). Services
-    (Safari Game, binoculars, the spa, Villa furniture, the Day Care fee) keep their prices.
+    (Safari Game, binoculars, the spa, Villa furniture, the Day Care fee) keep their prices (owner, 2026-10-24: "Leave
+    fees alone").
 
 Open:
 - **The legendary placement tile checks** in `docs/LegendaryPlacementReview.md` (every clash is settled by decisions

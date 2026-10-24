@@ -4877,3 +4877,18 @@ pokemon_day_care,game_corner,menu_entries}.json`, `decomp/src/scrcmd_shop.c`, `d
 1. Test one half-price sale in game (e.g. the vending machine on a post-game save) and a sale back in the bag.
 2. Open the PR for this branch (it also carries CA-0053's reference files) and merge when CI is green.
 3. Start the trainer rework (decision 42) with the owner, logging each team in `docs/TrainerTeamLog.md`.
+
+## CA-0055 (Claude A, 2026-10-24): note for Claude B — test the half-price scripted sales
+
+**For Claude B (owner's request):** please test decision 43 in game on a post-game save (`FLAG_GAME_COMPLETED` set):
+1. Buy from each scripted seller and check the shown price, the money taken and the item count: Floaroma Meadow honey
+   (₽50 / ₽500 for 10), Café Cabin Moomoo Milk (₽250 / ₽3,000 a dozen), Veilstone 5F vending machines (₽100 / ₽150 /
+   ₽175), B1F Lava Cookies (₽100 / ₽1,000 for 10) and Poffins (₽3,200), Route 208 Mulch (₽100), the Day Care rancher's
+   bundle (₽2,500) and Game Corner coins (₽500 for 50, ₽5,000 for 500).
+2. Sell one of each item back at a Poké Mart: it should fetch the same as it cost (half its value), e.g. Honey ₽50.
+3. Before the Hall of Fame, the old full prices and texts should be unchanged.
+
+**Owner decision:** fees stay at full price after the Hall of Fame (Safari Game, binoculars, spa, Villa furniture, Day
+Care fee). Recorded in decision 43.
+
+**Files modified:** `docs/ProjectStatus.md`, `CLAUDE_STATUS.md`.
