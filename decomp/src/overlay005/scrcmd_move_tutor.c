@@ -317,7 +317,8 @@ BOOL ScrCmd_ShowMoveTutorMoveSelectionMenu(ScriptContext *scriptContext)
         mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(scriptContext->fieldSystem->saveData), partySlot);
     }
 
-    moveNamesLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_FIELD3);
+    // Sovereign: the Gen IX move-name bank (~26 KB) no longer fits in the 16 KB field heap, so read names on demand.
+    moveNamesLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_MOVE_NAMES, HEAP_ID_FIELD3);
     moveTutorManager = MoveTutorManager_New(fieldSystem, 20, 1, 0, TRUE, FieldSystem_GetVarPointer(fieldSystem, selectedOptionVar), *stringTemplate, FieldSystem_GetScriptMemberPtr(scriptContext->fieldSystem, SCRIPT_MANAGER_WINDOW), moveNamesLoader);
 
     for (i = 0; i < NELEMS(sTeachableMoves); i++) {

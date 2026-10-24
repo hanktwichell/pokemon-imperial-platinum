@@ -33,6 +33,207 @@
         "Be always bonded in friendship.\n",
         "Pokémon Day Care"
       ]
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignTrayneeIntro",
+      "en_US": [
+        "Howdy, Trainer!\n",
+        "What’s your name?\r",
+        "{STRVAR_1 3, 0, 0}, huh?\n",
+        "That’s a proper tootin’ name!\r",
+        "Are your Pokémon in need of training?\r",
+        "In that case, I’m your gal!\n",
+        "Traynee, that’s me!\r",
+        "Pokémon are able to improve a stat if\n",
+        "they battle Pokémon that specialize\f",
+        "in that stat.\r",
+        "I’ve got teams of Pokémon to help\n",
+        "you with all of that.\r",
+        "Oh, and experience, too.\n",
+        "If you just want to level up, that is.\r",
+        "You just talk to me if you need any\n",
+        "help! All free of charge!\r",
+        "Oh! I almost forgot.\n",
+        "This is a starter pack for you.\r"
+      ]
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignTrayneeAllDone",
+      "en_US": [
+        "There! All done.\r",
+        "Equip those items to your Pokémon to\n",
+        "speed up training for a specific stat.\r",
+        "Now, if you want to train, just come\n",
+        "back here and chat to me!"
+      ]
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignTrayneeWhatToTrain",
+      "en_US": [
+        "Traynee: Howdy there, {STRVAR_1 3, 0, 0}!\n",
+        "What do you want to train today?"
+      ]
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignMenuExperience",
+      "en_US": "Experience"
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignMenuHP",
+      "en_US": "HP"
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignMenuAttack",
+      "en_US": "Attack"
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignMenuDefense",
+      "en_US": "Defense"
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignMenuSpAttack",
+      "en_US": "Sp. Atk"
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignMenuSpDefense",
+      "en_US": "Sp. Def"
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignMenuSpeed",
+      "en_US": "Speed"
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignMenuCancel",
+      "en_US": "Cancel"
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignTrayneeNotToday",
+      "en_US": [
+        "You don’t want to train today?\n",
+        "Well, never mind then."
+      ]
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignTrayneeWhatLevel",
+      "en_US": [
+        "Stat training? OK.\n",
+        "What level of training do you want?"
+      ]
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignMenuLow",
+      "en_US": "Low"
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignMenuMedium",
+      "en_US": "Medium"
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignMenuHigh",
+      "en_US": "High"
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignTrayneeLetsStart",
+      "en_US": [
+        "Brilliant!\n",
+        "Let’s get this started.\r"
+      ]
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignTrayneeTooRough",
+      "en_US": [
+        "Traynee: Oh, I’m sorry!\n",
+        "Was I too rough?"
+      ]
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignTrayneeFantastic",
+      "en_US": [
+        "Traynee: That training was fantastic!\n",
+        "Come back if you need any more."
+      ]
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignMenuLv25",
+      "en_US": "Lv. 25"
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignMenuLv35",
+      "en_US": "Lv. 35"
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignMenuLv45",
+      "en_US": "Lv. 45"
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignMenuLv55",
+      "en_US": "Lv. 55"
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignMenuLv65",
+      "en_US": "Lv. 65"
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignMenuLv75",
+      "en_US": "Lv. 75"
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignMenuLv85",
+      "en_US": "Lv. 85"
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignTrayneeWhatExpLevel",
+      "en_US": [
+        "Experience training? OK.\n",
+        "What level should we train at?"
+      ]
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignTrayneeNotStrongEnough",
+      "en_US": [
+        "Ah, fiddlesticks.\r",
+        "I don’t think you’re strong enough\n",
+        "for that level of training yet."
+      ]
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignRancherSellBerries",
+      "en_US": [
+        "I’ve got me some sweet and juicy\n",
+        "berries from the local fields.\r",
+        "They’ll make ya Pokémon happy!\n",
+        "Oh yes, so very happy!\r",
+        "I’ll sell ya a whole batch for $5000."
+      ]
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignRancherNotEnoughMoney",
+      "en_US": [
+        "Aye, sorry, partner.\n",
+        "You don’t have enough money."
+      ]
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignRancherDontWant",
+      "en_US": [
+        "You don’t want these here sweet and\n",
+        "juicy berries?"
+      ]
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignRancherHereYouGo",
+      "en_US": [
+        "Good choice, partner! Here ya go!\r",
+        "Fifteen each of Pomeg, Kelpsy, Qualot,\n",
+        "Hondew, Grepa and Tamato Berries!"
+      ]
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignRancherBagFull",
+      "en_US": [
+        "Whoa there, partner!\n",
+        "Your Bag can’t hold them all."
+      ]
     }
   ]
 }

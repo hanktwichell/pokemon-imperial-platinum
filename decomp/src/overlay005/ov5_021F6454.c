@@ -135,7 +135,8 @@ BOOL ScrCmd_ShowBattleHallRecordMonSelectionMenu(ScriptContext *ctx)
 
     ctx->data[0] = resultVar;
 
-    MessageLoader *monMsgLoader = MessageLoader_Init(MSG_LOADER_PRELOAD_ENTIRE_BANK, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD3);
+    // Sovereign: the 1025-species name bank (~26 KB) no longer fits in the 16 KB field heap, so read names on demand.
+    MessageLoader *monMsgLoader = MessageLoader_Init(MSG_LOADER_LOAD_ON_DEMAND, NARC_INDEX_MSGDATA__PL_MSG, TEXT_BANK_SPECIES_NAME, HEAP_ID_FIELD3);
     BattleHallRecordSelector *selector = BattleHallRecordSelecter_New(fieldSystem, 20, 1, 0, TRUE, FieldSystem_GetVarPointer(fieldSystem, resultVar), *strTemplate, FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_WINDOW), monMsgLoader, FieldSystem_GetVarPointer(fieldSystem, listPosVar), FieldSystem_GetVarPointer(fieldSystem, cursorPosVar));
     records = BattleHallWinRecords_Get(fieldSystem->saveData, HEAP_ID_FIELD2, &resultCode);
 

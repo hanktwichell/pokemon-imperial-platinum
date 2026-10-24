@@ -265,6 +265,45 @@ static const u16 SnowpointEvolutionItemStock[] = {
     SHOP_ITEM_END
 };
 
+// Sovereign (E10): Renegade Platinum's Rare Berry seller on Route 208, ₽10,000 an item (scrcmd_shop.c), and the
+// Nature Mints (QualityOfLife.md, item 1).
+const u16 RareBerryStock_Route208[] = {
+    ITEM_LIECHI_BERRY,
+    ITEM_GANLON_BERRY,
+    ITEM_SALAC_BERRY,
+    ITEM_PETAYA_BERRY,
+    ITEM_APICOT_BERRY,
+    ITEM_LANSAT_BERRY,
+    ITEM_STARF_BERRY,
+    ITEM_ENIGMA_BERRY,
+    ITEM_MICLE_BERRY,
+    ITEM_CUSTAP_BERRY,
+    ITEM_JABOCA_BERRY,
+    ITEM_ROWAP_BERRY,
+    ITEM_LONELY_MINT,
+    ITEM_ADAMANT_MINT,
+    ITEM_NAUGHTY_MINT,
+    ITEM_BRAVE_MINT,
+    ITEM_BOLD_MINT,
+    ITEM_IMPISH_MINT,
+    ITEM_LAX_MINT,
+    ITEM_RELAXED_MINT,
+    ITEM_MODEST_MINT,
+    ITEM_MILD_MINT,
+    ITEM_RASH_MINT,
+    ITEM_QUIET_MINT,
+    ITEM_CALM_MINT,
+    ITEM_GENTLE_MINT,
+    ITEM_CAREFUL_MINT,
+    ITEM_SASSY_MINT,
+    ITEM_TIMID_MINT,
+    ITEM_HASTY_MINT,
+    ITEM_JOLLY_MINT,
+    ITEM_NAIVE_MINT,
+    ITEM_SERIOUS_MINT,
+    SHOP_ITEM_END
+};
+
 const u16 *PokeMartSpecialties[] = {
     [MART_SPECIALTIES_ID_JUBILIFE] = JubilifeMartSpecialties,
     [MART_SPECIALTIES_ID_OREBURGH] = OreburghMartSpecialties,
@@ -294,7 +333,8 @@ const u16 *PokeMartSpecialties[] = {
     [MART_SPECIALTIES_ID_MEGA_STONES_PASTORIA] = MegaStoneStock_Pastoria,
     [MART_SPECIALTIES_ID_MEGA_STONES_SNOWPOINT] = MegaStoneStock_Snowpoint,
     [MART_SPECIALTIES_ID_MEGA_STONES_SURVIVAL_AREA] = MegaStoneStock_SurvivalArea,
-    [MART_SPECIALTIES_ID_EVOLUTION_ITEMS_SNOWPOINT] = SnowpointEvolutionItemStock
+    [MART_SPECIALTIES_ID_EVOLUTION_ITEMS_SNOWPOINT] = SnowpointEvolutionItemStock,
+    [MART_SPECIALTIES_ID_RARE_BERRIES_ROUTE_208] = RareBerryStock_Route208
 };
 
 const u16 VeilstoneDeptStoreStock_4F_UP[] = {

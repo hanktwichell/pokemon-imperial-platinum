@@ -4186,3 +4186,31 @@ northeast house and Pokémon Center; `decomp/res/trainers/data/sovereign_dragon_
 2. The remaining small gifts: Oval Stone (Oreburgh Machop), Dawn Stone (Cycle Shop; Bicycle from Mom), Shiny Stone,
    Leaf Stone, Lucky Egg, Exp. Share, Dive Balls.
 3. Ask the owner about Renegade's Snowpoint Temple scene (story Regigigas, Candice's HM08).
+
+## CB-0084 — 2026-10-24, 7:24 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** E10 part 10, Renegade's helper NPCs (`NPCChanges.txt`), and a crash fix. PR #94 (part 9) merged.
+- Free Move Relearner (Pastoria). All three tutors in the Route 212 house, free (one script, location in
+  `VAR_0x8007`); Snowpoint/Survival Area tutors removed (Survival Area keeps a Psyduck); tutor-list signs reworded.
+- Move Deleter moved to Oreburgh's middle house; a Pokéfan in the Canalave house points there.
+- Route 208 Rare Berry seller: 12 rare Berries + 21 Mints, ₽10,000 each (`MART_SPECIALTIES_ID_RARE_BERRIES_ROUTE_208`,
+  fixed-price shop).
+- Solaceon Day Care: Traynee (Power items, 7 EXP courses gated by progress, 18 EV courses; 25 new trainers
+  `TRAINER_SOVEREIGN_TRAYNEE_*` with defeat flags) and the rancher (15 of each EV-reducing Berry for ₽5,000).
+- Fix: the tutor move list crashed (the ~26 KB Gen IX move-name bank was preloaded into the 16 KB field heap); it and
+  the Battle Hall record list (species names) now load names on demand.
+- Verified in the test build; release build, battle-script check and docs pass.
+
+**Files modified:** `decomp/res/field/{scripts,events}/` and `decomp/res/text/` for Pastoria east house, Route 212
+house, Snowpoint east house, Survival Area north house, Oreburgh middle house, Canalave east house, Route 208 house,
+Pokémon Day Care; `scripts_common.s`, `common_strings.json`; `decomp/res/trainers/data/sovereign_traynee_*.json` (25,
+new); `decomp/generated/{trainers,vars_flags,mart_specialties_id}.txt`; `decomp/include/data/mart_items.h`;
+`decomp/src/scrcmd_shop.c`, `decomp/src/overlay005/scrcmd_move_tutor.c`, `decomp/src/overlay005/ov5_021F6454.c`;
+`docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `docs/ItemChanges_Sovereign.md`, `docs/QualityOfLife.md`,
+`CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. The remaining small gifts: Oval Stone (Oreburgh Machop), Dawn Stone (Cycle Shop; Bicycle from Mom), Shiny Stone
+   (contest hall), Leaf Stone (Eterna Forest), Lucky Egg (Pokémon Mansion), Exp. Share (Route 203), Dive Balls.
+2. Renegade's trainers from its ROM (`trdata`/`trpoke`), with `data/trainers_sovereign.yaml` on top.
+3. Ask the owner about Renegade's Snowpoint Temple scene (story Regigigas, Candice's HM08).

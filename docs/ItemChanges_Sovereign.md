@@ -3,7 +3,7 @@
 Renegade Platinum's item changes and item locations are unchanged unless listed here
 (`RenegadePlatinumV130/Documentation/ItemChanges.txt`).
 
-In the game so far (E10 parts 2–9):
+In the game so far (E10 parts 2–10):
 - Renegade's six TM moves (Scald, Wild Charge, Bug Buzz, Hyper Voice, Dazzling Gleam, Hurricane), TMs as 99 of each
   and unsellable, and the Poké/Great/Ultra Ball prices.
 - Renegade's overworld item balls.
@@ -18,10 +18,13 @@ In the game so far (E10 parts 2–9):
   Tower 1F), the Dragon Scale (a battle in the Veilstone Pokémon Center), the Dubious Disc (Veilstone northeast house),
   the Choice Band (Route 214), the Super Rod (Snowpoint's east house, or the Fight Area, whichever comes first) and the
   Item Fanatic's species items in Floaroma.
+- The Route 208 Rare Berry seller (Liechi, Ganlon, Salac, Petaya, Apicot, Lansat, Starf, Enigma, Micle, Custap,
+  Jaboca and Rowap Berries, and the Nature Mints, ₽10,000 each), the Solaceon rancher's EV-reducing Berry bundle
+  (15 of each for ₽5,000) and Traynee's Power items (part 10).
 
 Still to come: HM08 from Candice (waits for the
 owner: it comes with a story Regigigas scene); Renegade's remaining small gifts (the Oval Stone, Dawn Stone, Shiny
-Stone, Leaf Stone, Lucky Egg, Exp. Share and Dive Balls) and the Rare Berry seller.
+Stone, Leaf Stone, Lucky Egg, Exp. Share and Dive Balls).
 
 ## New key items
 

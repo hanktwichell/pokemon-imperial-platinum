@@ -1,0 +1,106 @@
+{
+    "name": "Traynee",
+    "class": "TRAINER_CLASS_COWGIRL",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_LOMBRE",
+            "form": 0,
+            "level": 10,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_MIST",
+                "MOVE_NONE",
+                "MOVE_NONE",
+                "MOVE_NONE"
+            ],
+            "iv_scale": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_LOMBRE",
+            "form": 0,
+            "level": 10,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_MIST",
+                "MOVE_NONE",
+                "MOVE_NONE",
+                "MOVE_NONE"
+            ],
+            "iv_scale": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_LOMBRE",
+            "form": 0,
+            "level": 10,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_MIST",
+                "MOVE_NONE",
+                "MOVE_NONE",
+                "MOVE_NONE"
+            ],
+            "iv_scale": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_LOMBRE",
+            "form": 0,
+            "level": 10,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_MIST",
+                "MOVE_NONE",
+                "MOVE_NONE",
+                "MOVE_NONE"
+            ],
+            "iv_scale": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_LOMBRE",
+            "form": 0,
+            "level": 10,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_MIST",
+                "MOVE_NONE",
+                "MOVE_NONE",
+                "MOVE_NONE"
+            ],
+            "iv_scale": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_LOMBRE",
+            "form": 0,
+            "level": 10,
+            "item": "ITEM_NONE",
+            "moves": [
+                "MOVE_MIST",
+                "MOVE_NONE",
+                "MOVE_NONE",
+                "MOVE_NONE"
+            ],
+            "iv_scale": 0,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Yee-haw!\n",
+                "That was some fantastic training!\n"
+            ]
+        }
+    ]
+}

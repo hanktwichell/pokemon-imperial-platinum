@@ -2,7 +2,7 @@
   "key": 13355,
   "messages": [
     {
-      "id": "PastoriaCityEastHouse_Text_TeachMoveForHeartScale",
+      "id": "PastoriaCityEastHouse_Text_ICanTeachAMove",
       "en_US": [
         "Everyone calls me the Pokémon\n",
         "Move Maniac. I prefer Move Tutor.\r",
@@ -10,25 +10,21 @@
         "while they’re leveling up, and I can\f",
         "teach Pokémon those moves.\r",
         "I can teach a move to a Pokémon\n",
-        "of yours if you’d like.\r",
-        "I’ll do it if you’ll trade me\n",
-        "a Heart Scale.\r"
+        "of yours if you’d like.\r"
       ]
     },
     {
-      "id": "PastoriaCityEastHouse_Text_ThatsAHeartScale",
+      "id": "PastoriaCityEastHouse_Text_WantMeToTeachAMove",
       "en_US": [
-        "Oh! That’s it! That’s an honest-to-\n",
-        "goodness Heart Scale!\r",
         "Let me guess, you want me to teach\n",
         "one of your Pokémon a move?\r"
       ]
     },
     {
-      "id": "PastoriaCityEastHouse_Text_ComeBackWithHeartScale",
+      "id": "PastoriaCityEastHouse_Text_ComeBackAnytime",
       "en_US": [
-        "If any of your Pokémon needs to learn a\n",
-        "move, come back with a Heart Scale."
+        "No problem. Come back again if you\n",
+        "want me to teach your Pokémon a move."
       ]
     },
     {
@@ -92,19 +88,17 @@
       "garbage": 76
     },
     {
-      "id": "PastoriaCityEastHouse_Text_HandedOverHeartScale",
+      "id": "PastoriaCityEastHouse_Text_ThatllDoIt",
       "en_US": [
-        "{STRVAR_1 3, 3, 0} handed over\n",
-        "{STRVAR_1 8, 4, 0} in exchange."
+        "That’ll do it. Come back again if you\n",
+        "want me to teach your Pokémon a move."
       ]
     },
     {
-      "id": "PastoriaCityEastHouse_Text_NewspaperGivesHeartScales",
+      "id": "PastoriaCityEastHouse_Text_BrotherIsWalkingPokedex",
       "en_US": [
-        "I often go to Solaceon Town for my big\n",
-        "brother.\r",
-        "The newspaper there gives me Heart\n",
-        "Scales for running errands."
+        "My big brother is crazy knowledgeable!\n",
+        "He’s practically a walking Pokédex."
       ]
     }
   ]

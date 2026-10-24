@@ -177,6 +177,16 @@
     {
       "id": "Route208House_Text_Exit",
       "en_US": "EXIT"
+    },
+    {
+      "id": "Route208House_Text_SovereignBuyRareBerries",
+      "en_US": [
+        "Do you want to buy some rare Berries?\n",
+        "They have extremely powerful effects!\r",
+        "I also have Mints that change how a\n",
+        "Pokémon’s nature affects its stats.\r",
+        "Everything is $10,000."
+      ]
     }
   ]
 }
