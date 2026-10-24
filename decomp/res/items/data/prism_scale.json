@@ -1,0 +1,30 @@
+{
+  "name": "Prism Scale",
+  "plural": "Prism Scales",
+  "article": "a",
+  "description": [
+    "A mysterious scale that causes a\n",
+    "certain Pokémon to evolve. It shines in\n",
+    "rainbow colors."
+  ],
+  "icon": {
+    "sprite": "prism_scale_NCGR",
+    "palette": "prism_scale_NCLR"
+  },
+  "gbaID": "GBA_ITEM_NONE",
+  "price": 2000,
+  "effectParam": 0,
+  "holdEffect": "HOLD_EFFECT_NONE",
+  "pluckEffect": "PLUCK_EFFECT_NONE",
+  "flingEffect": "FLING_EFFECT_NONE",
+  "flingPower": 30,
+  "naturalGiftPower": 0,
+  "naturalGiftType": null,
+  "preventToss": false,
+  "canRegister": false,
+  "fieldPocket": "POCKET_ITEMS",
+  "battlePocket": "BATTLE_POCKET_MASK_NONE",
+  "fieldUseFunc": "ITEM_USE_FUNC_EVO_STONE",
+  "battleUseCategory": "BATTLE_USE_CATEGORY_NONE",
+  "itemUseParams": {}
+}

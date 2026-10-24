@@ -5,8 +5,9 @@
 # field: overworld item balls that replace a low-value pickup (Potion-tier healing, status heals,
 #        Poké/Great Balls, Repels, Escape Ropes, X items). TMs, evolution stones, held items and
 #        other meaningful items are never replaced. "script" is the vanilla pokeplatinum script
-#        name (res/field/scripts/scripts_visible_items.s); Renegade may have moved a few items, so
-#        each one must be confirmed in DSPRE before editing.
+#        name (res/field/scripts/scripts_visible_items.s). "replaces" is Renegade's item there (its
+#        item balls come from its ROM, tools/engine/import_renegade_items.py); every spot is checked
+#        to be low-value in Renegade too.
 
 key_item:
   name: Mega Ring
@@ -14,19 +15,19 @@ key_item:
   unlocks: Mega Evolution in battle (flag FLAG_SOVEREIGN_MEGA_UNLOCKED).
 
 field:
-  - {stone: Alakazite,     replaces: Poké Ball,     location: Route 203,                script: VisibleItems_Route203_PokeBall,        why: Abra lives on Route 203}
-  - {stone: Aggronite,     replaces: Potion,        location: Oreburgh Mine B2F,        script: VisibleItems_OreburghMineB2F_Potion,   why: Aron lives in Oreburgh Mine}
+  - {stone: Alakazite,     replaces: Parlyz Heal,   location: Route 204 (South),        script: VisibleItems_Route204South_ParlyzHeal, why: next to Route 203, where Abra lives (Renegade's Route 203 ball holds a Silk Scarf)}
+  - {stone: Aggronite,     replaces: Escape Rope,   location: Oreburgh Mine B2F,        script: VisibleItems_OreburghMineB2F_EscapeRope, why: Aron lives in Oreburgh Mine}
   - {stone: Lopunnite,     replaces: Potion,        location: Eterna Forest,            script: VisibleItems_EternaForest_Potion,      why: Buneary lives in Eterna Forest}
-  - {stone: Sablenite,     replaces: Escape Rope,   location: Wayward Cave 1F,          script: VisibleItems_WaywardCave1F_EscapeRope, why: Sableye lives in Wayward Cave; Jupiter's Mega Sableye is fought nearby}
+  - {stone: Sablenite,     replaces: Escape Rope,   location: Mt. Coronet 1F (Route 211 side), script: VisibleItems_MtCoronet1FNorthRoom1_EscapeRope, why: a cave reached soon after Jupiter's Mega Sableye (Renegade's Wayward Cave balls are all valuable)}
   - {stone: Tyranitarite,  replaces: Super Potion,  location: Route 207,                script: VisibleItems_Route207_SuperPotion,     why: Larvitar lives on Route 207}
-  - {stone: Gardevoirite,  replaces: Great Ball,    location: Route 208,                script: VisibleItems_Route208_GreatBall,       why: Ralts line is common early}
+  - {stone: Gardevoirite,  replaces: Ether,         location: Route 208,                script: VisibleItems_Route208_Ether,           why: Ralts line is common early}
   - {stone: Banettite,     replaces: Hyper Potion,  location: Route 209,                script: VisibleItems_Route209_HyperPotion,     why: next to the Lost Tower}
   - {stone: Pinsirite,     replaces: Hyper Potion,  location: Route 210 (South),        script: VisibleItems_Route210South_HyperPotion, why: Pinsir lives on Route 210}
-  - {stone: Absolite,      replaces: Hyper Potion,  location: Route 215,                script: VisibleItems_Route215_HyperPotion,     why: Absol lives on Route 215}
-  - {stone: Kangaskhanite, replaces: Great Ball,    location: Great Marsh (Area 3),     script: VisibleItems_GreatMarsh3_GreatBall,    why: Kangaskhan lives in the Great Marsh}
+  - {stone: Absolite,      replaces: Full Heal,     location: Route 215,                script: VisibleItems_Route215_FullHeal,        why: Absol lives on Route 215}
+  - {stone: Kangaskhanite, replaces: Poké Ball,     location: Great Marsh (Area 4),     script: VisibleItems_GreatMarsh4_PokeBall,     why: Kangaskhan lives in the Great Marsh}
   - {stone: Swampertite,   replaces: Hyper Potion,  location: Route 212 (South),        script: VisibleItems_Route212South_HyperPotion, why: rainy marsh route for a Water/Ground Mega}
-  - {stone: Abomasite,     replaces: Full Heal,     location: Route 216,                script: VisibleItems_Route216_FullHeal,        why: Snover lives on Route 216}
-  - {stone: Glalitite,     replaces: Full Heal,     location: Snowpoint Temple B4F,     script: VisibleItems_SnowpointTempleB4F_FullHeal, why: Snorunt line lives around Snowpoint}
+  - {stone: Abomasite,     replaces: Max Potion,    location: Route 216,                script: VisibleItems_Route216_MaxPotion,       why: Snover lives on Route 216}
+  - {stone: Glalitite,     replaces: Ultra Ball,    location: Snowpoint City,           script: VisibleItems_SnowpointCity_UltraBall,  why: Snorunt line lives around Snowpoint (Renegade's temple ball holds an Ice Stone)}
   - {stone: Garchompite,   replaces: Max Repel,     location: Victory Road 1F,          script: VisibleItems_VictoryRoad1F_MaxRepel,   why: Gible/Gabite live in Victory Road}
   - {stone: Heatranite,    replaces: Full Heal,     location: Stark Mountain (Room 1),  script: VisibleItems_StarkMountainRoom1_FullHeal, why: Heatran's home; post-game}
 

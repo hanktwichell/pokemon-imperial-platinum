@@ -4,6 +4,41 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 3) — Renegade's item balls, the Mega Stone spots rechecked, Prism Scale
+
+- **Overworld item balls are Renegade's.** Renegade kept Platinum's 328 item balls and changed 110 of them: TMs
+  moved, held items, evolution stones, Plates removed. They're read from Renegade's ROM
+  (`tools/engine/import_renegade_items.py`, a one-off step); 73 balls change.
+  - Renegade reused two unused Platinum items for its own: its Contest Pass is the Ice Stone (Route 216, Snowpoint
+    Temple B4F) and its Loot Sack the Prism Scale (Mt. Coronet B1F).
+- **Ten balls keep Platinum's TM for now.** Renegade gives those TMs from NPCs whose scripts aren't ported yet:
+  - Bertha's TM26, Fantina's TM30, Floaroma's TM40, Aaron's TM81 and Flint's TM50;
+  - Mira's TM85, and the Underground Man's TM28 and TM80;
+  - plus the TM41 and TM59 balls that keeping those would cost.
+  - The importer keeps any ball whose TM would otherwise have no source in the main game. It lists them, and they
+    follow Renegade once their NPCs are in.
+- **Mega Stones rechecked against Renegade.** The 15 field Mega Stones replaced Platinum's low-value balls. Eight of
+  those balls hold something worth having in Renegade (TM75, a Silk Scarf, a Dusk Stone, a Razor Fang, Black Sludge, a
+  Rare Bone and two Ice Stones). Those stones move to a nearby ball that is low-value in Renegade too:
+
+  | Stone | Moves to |
+  |---|---|
+  | Alakazite | Route 204 South |
+  | Aggronite | another Oreburgh Mine B2F ball |
+  | Sablenite | Mt. Coronet 1F, Route 211 side |
+  | Gardevoirite | another Route 208 ball |
+  | Absolite | another Route 215 ball |
+  | Kangaskhanite | Great Marsh Area 4 |
+  | Abomasite | another Route 216 ball |
+  | Glalitite | Snowpoint City |
+
+  See `data/mega_stones.yaml` and `docs/MegaEvolution.md`.
+- **Prism Scale** (new evolution item): Feebas also evolves into Milotic when it's used on it, as in Renegade.
+- Renegade's hidden items are Platinum's (its table in the ROM is unchanged), so nothing changes there.
+
+Verified in the test build: Route 203's item ball, which held the Alakazite, now gives "A found a Silk Scarf!".
+The release build passes.
+
 ## E10 (part 2) — Renegade's TMs and ball prices
 
 - **Six TMs teach Renegade's moves:** TM55 Scald (was Brine), TM57 Wild Charge (Charge Beam), TM62 Bug Buzz

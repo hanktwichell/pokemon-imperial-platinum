@@ -68,9 +68,9 @@ PokeAPI has no ability listed for: Mega Zygarde, Mega Heatran, Mega Darkrai, Meg
 | Mega Charizard X | Charizardite X | Fire/Dragon | Tough Claws | 634 | 78/130/111/130/85/100 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Charizard Y | Charizardite Y | Fire/Flying | Drought | 634 | 78/104/78/159/115/100 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Blastoise | Blastoisinite | Water | Mega Launcher | 630 | 79/103/120/135/115/78 | Mega Stone Collector (Hearthome) — $10,000 |
-| Mega Alakazam | Alakazite | Psychic | Trace | 600 | 55/50/65/175/105/150 | Field item — Route 203 (replaces Poké Ball) |
+| Mega Alakazam | Alakazite | Psychic | Trace | 600 | 55/50/65/175/105/150 | Field item — Route 204 (South) (replaces Parlyz Heal) |
 | Mega Gengar | Gengarite | Ghost/Poison | Shadow Tag | 600 | 60/65/80/170/95/130 | Mega Stone Trader (Pastoria) — $10,000 |
-| Mega Kangaskhan | Kangaskhanite | Normal | Parental Bond | 590 | 105/125/100/60/100/100 | Field item — Great Marsh (Area 3) (replaces Great Ball) |
+| Mega Kangaskhan | Kangaskhanite | Normal | Parental Bond | 590 | 105/125/100/60/100/100 | Field item — Great Marsh (Area 4) (replaces Poké Ball) |
 | Mega Pinsir | Pinsirite | Bug/Flying | Aerilate | 600 | 65/155/120/65/90/105 | Field item — Route 210 (South) (replaces Hyper Potion) |
 | Mega Gyarados | Gyaradosite | Water/Dark | Mold Breaker | 640 | 95/155/109/70/130/81 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Aerodactyl | Aerodactylite | Rock/Flying | Tough Claws | 615 | 80/135/85/70/95/150 | Mega Stone Trader (Pastoria) — $10,000 |
@@ -82,21 +82,21 @@ PokeAPI has no ability listed for: Mega Zygarde, Mega Heatran, Mega Darkrai, Meg
 | Mega Houndoom | Houndoominite | Dark/Fire | Solar Power | 600 | 75/90/90/140/90/115 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Tyranitar | Tyranitarite | Rock/Dark | Sand Stream | 700 | 100/164/150/95/120/71 | Field item — Route 207 (replaces Super Potion) |
 | Mega Blaziken | Blazikenite | Fire/Fighting | Speed Boost | 630 | 80/160/80/130/80/100 | Mega Stone Trader (Pastoria) — $10,000 |
-| Mega Gardevoir | Gardevoirite | Psychic/Fairy | Pixilate | 618 | 68/85/65/165/135/100 | Field item — Route 208 (replaces Great Ball) |
+| Mega Gardevoir | Gardevoirite | Psychic/Fairy | Pixilate | 618 | 68/85/65/165/135/100 | Field item — Route 208 (replaces Ether) |
 | Mega Mawile | Mawilite | Steel/Fairy | Huge Power | 480 | 50/105/125/55/95/50 | Mega Stone Trader (Pastoria) — $10,000 |
-| Mega Aggron | Aggronite | Steel | Filter | 630 | 70/140/230/60/80/50 | Field item — Oreburgh Mine B2F (replaces Potion) |
+| Mega Aggron | Aggronite | Steel | Filter | 630 | 70/140/230/60/80/50 | Field item — Oreburgh Mine B2F (replaces Escape Rope) |
 | Mega Medicham | Medichamite | Fighting/Psychic | Pure Power | 510 | 60/100/85/80/85/100 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Manectric | Manectite | Electric | Intimidate | 575 | 70/75/80/135/80/135 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Banette | Banettite | Ghost | Prankster | 555 | 64/165/75/93/83/75 | Field item — Route 209 (replaces Hyper Potion) |
-| Mega Absol | Absolite | Dark | Magic Bounce | 565 | 65/150/60/115/60/115 | Field item — Route 215 (replaces Hyper Potion) |
+| Mega Absol | Absolite | Dark | Magic Bounce | 565 | 65/150/60/115/60/115 | Field item — Route 215 (replaces Full Heal) |
 | Mega Garchomp | Garchompite | Dragon/Ground | Sand Force | 700 | 108/170/115/120/95/92 | Field item — Victory Road 1F (replaces Max Repel) |
 | Mega Lucario | Lucarionite | Fighting/Steel | Adaptability | 625 | 70/145/88/140/70/112 | Mega Stone Collector (Hearthome) — $10,000 |
-| Mega Abomasnow | Abomasite | Grass/Ice | Snow Warning | 594 | 90/132/105/132/105/30 | Field item — Route 216 (replaces Full Heal) |
+| Mega Abomasnow | Abomasite | Grass/Ice | Snow Warning | 594 | 90/132/105/132/105/30 | Field item — Route 216 (replaces Max Potion) |
 | Mega Latias | Latiasite | Dragon/Psychic | Levitate | 700 | 80/100/120/140/150/110 | Mega Stone Curator (Survival Area) — $30,000 |
 | Mega Latios | Latiosite | Dragon/Psychic | Levitate | 700 | 80/130/100/160/120/110 | Mega Stone Curator (Survival Area) — $30,000 |
 | Mega Swampert | Swampertite | Water/Ground | Swift Swim | 635 | 100/150/110/95/110/70 | Field item — Route 212 (South) (replaces Hyper Potion) |
 | Mega Sceptile | Sceptilite | Grass/Dragon | Lightning Rod | 630 | 70/110/75/145/85/145 | Mega Stone Trader (Pastoria) — $10,000 |
-| Mega Sableye | Sablenite | Dark/Ghost | Magic Bounce | 480 | 50/85/125/85/115/20 | Field item — Wayward Cave 1F (replaces Escape Rope) |
+| Mega Sableye | Sablenite | Dark/Ghost | Magic Bounce | 480 | 50/85/125/85/115/20 | Field item — Mt. Coronet 1F (Route 211 side) (replaces Escape Rope) |
 | Mega Altaria | Altarianite | Dragon/Fairy | Pixilate | 590 | 75/110/110/110/105/80 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Gallade | Galladite | Psychic/Fighting | Inner Focus | 618 | 68/165/95/65/115/110 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Audino | Audinite | Normal/Fairy | Healer | 545 | 103/60/126/80/126/50 | Mega Stone Collector (Hearthome) — $10,000 |
@@ -104,7 +104,7 @@ PokeAPI has no ability listed for: Mega Zygarde, Mega Heatran, Mega Darkrai, Meg
 | Mega Slowbro | Slowbronite | Water/Psychic | Shell Armor | 590 | 95/75/180/130/80/30 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Steelix | Steelixite | Steel/Ground | Sand Force | 610 | 75/125/230/55/95/30 | Mega Stone Trader (Pastoria) — $10,000 |
 | Mega Pidgeot | Pidgeotite | Normal/Flying | No Guard | 579 | 83/80/80/135/80/121 | Mega Stone Collector (Hearthome) — $10,000 |
-| Mega Glalie | Glalitite | Ice | Refrigerate | 580 | 80/120/80/120/80/100 | Field item — Snowpoint Temple B4F (replaces Full Heal) |
+| Mega Glalie | Glalitite | Ice | Refrigerate | 580 | 80/120/80/120/80/100 | Field item — Snowpoint City (replaces Ultra Ball) |
 | Mega Diancie | Diancite | Rock/Fairy | Magic Bounce | 700 | 50/160/110/160/110/110 | Mega Stone Curator (Survival Area) — $30,000 |
 | Mega Metagross | Metagrossite | Steel/Psychic | Tough Claws | 700 | 80/145/150/105/110/110 | Mega Stone Sage (Snowpoint) — $10,000 |
 | Primal Kyogre | Blue Orb | Water | Primordial Sea | 770 | 100/150/90/180/160/90 | Given by the Kyogre shrine event once Kyogre is caught (Renegade's Kyogre event). |
@@ -170,19 +170,19 @@ Each replaces a low-value pickup (never a TM, evolution stone or held item). Scr
 
 | Stone | Location | Replaces | Vanilla script | Why here |
 |---|---|---|---|---|
-| Alakazite | Route 203 | Poké Ball | `VisibleItems_Route203_PokeBall` | Abra lives on Route 203 |
-| Aggronite | Oreburgh Mine B2F | Potion | `VisibleItems_OreburghMineB2F_Potion` | Aron lives in Oreburgh Mine |
+| Alakazite | Route 204 (South) | Parlyz Heal | `VisibleItems_Route204South_ParlyzHeal` | next to Route 203 |
+| Aggronite | Oreburgh Mine B2F | Escape Rope | `VisibleItems_OreburghMineB2F_EscapeRope` | Aron lives in Oreburgh Mine |
 | Lopunnite | Eterna Forest | Potion | `VisibleItems_EternaForest_Potion` | Buneary lives in Eterna Forest |
-| Sablenite | Wayward Cave 1F | Escape Rope | `VisibleItems_WaywardCave1F_EscapeRope` | Sableye lives in Wayward Cave; Jupiter's Mega Sableye is fought nearby |
+| Sablenite | Mt. Coronet 1F (Route 211 side) | Escape Rope | `VisibleItems_MtCoronet1FNorthRoom1_EscapeRope` | a cave reached soon after Jupiter's Mega Sableye (Renegade's Wayward Cave balls are all valuable) |
 | Tyranitarite | Route 207 | Super Potion | `VisibleItems_Route207_SuperPotion` | Larvitar lives on Route 207 |
-| Gardevoirite | Route 208 | Great Ball | `VisibleItems_Route208_GreatBall` | Ralts line is common early |
+| Gardevoirite | Route 208 | Ether | `VisibleItems_Route208_Ether` | Ralts line is common early |
 | Banettite | Route 209 | Hyper Potion | `VisibleItems_Route209_HyperPotion` | next to the Lost Tower |
 | Pinsirite | Route 210 (South) | Hyper Potion | `VisibleItems_Route210South_HyperPotion` | Pinsir lives on Route 210 |
-| Absolite | Route 215 | Hyper Potion | `VisibleItems_Route215_HyperPotion` | Absol lives on Route 215 |
-| Kangaskhanite | Great Marsh (Area 3) | Great Ball | `VisibleItems_GreatMarsh3_GreatBall` | Kangaskhan lives in the Great Marsh |
+| Absolite | Route 215 | Full Heal | `VisibleItems_Route215_FullHeal` | Absol lives on Route 215 |
+| Kangaskhanite | Great Marsh (Area 4) | Poké Ball | `VisibleItems_GreatMarsh4_PokeBall` | Kangaskhan lives in the Great Marsh |
 | Swampertite | Route 212 (South) | Hyper Potion | `VisibleItems_Route212South_HyperPotion` | rainy marsh route for a Water/Ground Mega |
-| Abomasite | Route 216 | Full Heal | `VisibleItems_Route216_FullHeal` | Snover lives on Route 216 |
-| Glalitite | Snowpoint Temple B4F | Full Heal | `VisibleItems_SnowpointTempleB4F_FullHeal` | Snorunt line lives around Snowpoint |
+| Abomasite | Route 216 | Max Potion | `VisibleItems_Route216_MaxPotion` | Snover lives on Route 216 |
+| Glalitite | Snowpoint City | Ultra Ball | `VisibleItems_SnowpointCity_UltraBall` | Snorunt line lives around Snowpoint (Renegade's temple ball holds an Ice Stone) |
 | Garchompite | Victory Road 1F | Max Repel | `VisibleItems_VictoryRoad1F_MaxRepel` | Gible/Gabite live in Victory Road |
 | Heatranite | Stark Mountain (Room 1) | Full Heal | `VisibleItems_StarkMountainRoom1_FullHeal` | Heatran's home; post-game |
 
