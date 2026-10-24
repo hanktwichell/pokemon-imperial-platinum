@@ -3,9 +3,9 @@
   "plural": "TM55s",
   "article": "a",
   "description": [
-    "If the foe’s HP is down to under half,\n",
-    "this attack will hit with double the\n",
-    "power."
+    "The user shoots boiling hot water at\n",
+    "its target. It may also leave the\n",
+    "target with a burn."
   ],
   "icon": {
     "sprite": "tm_NCGR",
@@ -27,5 +27,5 @@
   "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
   "battleUseCategory": "BATTLE_USE_CATEGORY_NONE",
   "itemUseParams": null,
-  "teachesMove": "MOVE_BRINE"
+  "teachesMove": "MOVE_SCALD"
 }

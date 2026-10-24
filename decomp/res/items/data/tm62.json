@@ -3,9 +3,9 @@
   "plural": "TM62s",
   "article": "a",
   "description": [
-    "The foe is attacked with powdery\n",
-    "scales blown by wind. It may also\n",
-    "raise all the user’s stats."
+    "The user vibrates to make a damaging\n",
+    "sound wave. It may also lower the\n",
+    "foe’s Sp. Def stat."
   ],
   "icon": {
     "sprite": "tm_NCGR",
@@ -27,5 +27,5 @@
   "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
   "battleUseCategory": "BATTLE_USE_CATEGORY_NONE",
   "itemUseParams": null,
-  "teachesMove": "MOVE_SILVER_WIND"
+  "teachesMove": "MOVE_BUG_BUZZ"
 }

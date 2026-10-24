@@ -3,9 +3,9 @@
   "plural": "TM88s",
   "article": "a",
   "description": [
-    "The user pecks the foe. If the foe is\n",
-    "holding a Berry, the user plucks it and\n",
-    "gains its effect."
+    "The user wraps its foe in a fierce\n",
+    "wind that flies up into the sky. It\n",
+    "may also confuse the foe."
   ],
   "icon": {
     "sprite": "tm_NCGR",
@@ -27,5 +27,5 @@
   "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
   "battleUseCategory": "BATTLE_USE_CATEGORY_NONE",
   "itemUseParams": null,
-  "teachesMove": "MOVE_PLUCK"
+  "teachesMove": "MOVE_HURRICANE"
 }

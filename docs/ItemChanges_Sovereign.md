@@ -3,6 +3,10 @@
 Renegade Platinum's item changes and item locations are unchanged unless listed here
 (`RenegadePlatinumV130/Documentation/ItemChanges.txt`).
 
+In the game so far (E10 part 2): Renegade's six TM moves (Scald, Wild Charge, Bug Buzz, Hyper Voice, Dazzling Gleam,
+Hurricane), TMs as 99 of each and unsellable, and the Poké/Great/Ultra Ball prices. Renegade's item and TM locations
+come next.
+
 ## New key items
 
 | Item | Where | Purpose |

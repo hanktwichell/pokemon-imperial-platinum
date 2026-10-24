@@ -39,7 +39,7 @@
             [ 1, "MOVE_BUG_BITE" ],
             [ 1, "MOVE_STRUGGLE_BUG" ]
         ],
-        "by_tm": [ "TM82" ],
+        "by_tm": [ "TM62", "TM82" ],
         "by_tutor": [
             "MOVE_MUD_SLAP",
             "MOVE_OMINOUS_WIND",

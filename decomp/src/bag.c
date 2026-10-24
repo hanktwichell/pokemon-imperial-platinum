@@ -95,6 +95,11 @@ static u32 Bag_GetPocketForItem(Bag *bag, u16 item, BagItem **outPocket, u32 *ou
     return pocket;
 }
 
+static BOOL Item_IsSovereignTM(u16 item)
+{
+    return item >= ITEM_TM01 && item <= ITEM_TM92;
+}
+
 static BagItem *Pocket_FindSlotToAddItem(BagItem *pocket, u32 pocketSize, u16 item, u16 count, u16 max)
 {
     u32 i; // Required for matching
@@ -126,7 +131,8 @@ static BagItem *Bag_FindSlotToAddItem(Bag *bag, u16 item, u16 count, enum HeapID
 
     u32 pocket = Bag_GetPocketForItem(bag, item, &pocketItems, &pocketSize, heapID);
     if (pocket == POCKET_TMHMS) {
-        return Pocket_FindSlotToAddItem(pocketItems, pocketSize, item, count, BAG_MAX_QUANTITY_TMHM);
+        // Sovereign (E10): a TM always fits; getting one again tops it back up to 99.
+        return Pocket_FindSlotToAddItem(pocketItems, pocketSize, item, Item_IsSovereignTM(item) ? 0 : count, BAG_MAX_QUANTITY_TMHM);
     }
 
     return Pocket_FindSlotToAddItem(pocketItems, pocketSize, item, count, BAG_MAX_QUANTITY_ITEM);
@@ -146,6 +152,11 @@ BOOL Bag_TryAddItem(Bag *bag, u16 item, u16 count, enum HeapID heapID)
 
     slot->item = item;
     slot->quantity += count;
+
+    // Sovereign (E10): as in Renegade, a TM comes as 99 of it.
+    if (Item_IsSovereignTM(item)) {
+        slot->quantity = BAG_MAX_QUANTITY_TMHM;
+    }
 
     u32 pocketSize;
     u32 pocket = Bag_GetPocketForItem(bag, item, &slot, &pocketSize, heapID);

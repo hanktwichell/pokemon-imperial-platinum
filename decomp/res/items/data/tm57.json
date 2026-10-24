@@ -3,9 +3,9 @@
   "plural": "TM57s",
   "article": "a",
   "description": [
-    "The user attacks with an electric\n",
-    "charge. The user may use any remaining\n",
-    "electricity to raise its Sp. Atk stat."
+    "The user shrouds itself in electricity\n",
+    "and smashes into its foe. It also\n",
+    "damages the user a little."
   ],
   "icon": {
     "sprite": "tm_NCGR",
@@ -27,5 +27,5 @@
   "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
   "battleUseCategory": "BATTLE_USE_CATEGORY_NONE",
   "itemUseParams": null,
-  "teachesMove": "MOVE_CHARGE_BEAM"
+  "teachesMove": "MOVE_WILD_CHARGE"
 }
