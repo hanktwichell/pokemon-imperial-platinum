@@ -60,7 +60,12 @@ def main():
     # Platinum's TM in a ball is in the ball's script name (VisibleItems_Route213_TM40).
     vanilla = {n: "ITEM_" + re.search(r"_((?:TM|HM)\d\d)$", n).group(1) for n in names if re.search(r"_(TM|HM)\d\d$", n)}
     renegade = {n: RENEGADE_ITEMS.get(items[e[0]], items[e[0]]) for n, e in zip(names, entries) if e}
-    others = set(re.findall(r"ITEM_((?:TM|HM)\d\d)", "".join(open(f, encoding="utf-8").read() for f in OTHER_TM_SOURCES)))
+    # A script gives an item with SetVar VAR_0x8004 (CheckItem and the like only mention it); the mart and prize lists
+    # name every item they sell.
+    others = set()
+    for f in OTHER_TM_SOURCES:
+        pattern = r"SetVar VAR_0x8004, ITEM_((?:TM|HM)\d\d)\b" if f.endswith(".s") else r"ITEM_((?:TM|HM)\d\d)\b"
+        others |= set(re.findall(pattern, open(f, encoding="utf-8").read()))
     keep = set()
     while True:
         have = {vanilla[n] if n in keep else renegade.get(n) for n in names} | {"ITEM_" + t for t in others}

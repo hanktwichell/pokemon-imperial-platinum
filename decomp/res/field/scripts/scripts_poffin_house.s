@@ -9,6 +9,7 @@
     ScriptEntry PoffinHouse_SchoolKidF
     ScriptEntry PoffinHouse_OnResume
     ScriptEntry PoffinHouse_OnTransition
+    ScriptEntry PoffinHouse_SovereignCollector
     ScriptEntryEnd
 
 PoffinHouse_OnTransition:
@@ -50,4 +51,43 @@ PoffinHouse_OldWoman:
 
 PoffinHouse_SchoolKidF:
     NPCMessage PoffinHouse_Text_ICanCookWithFriends
+    End
+
+// Sovereign (E10): as in Renegade Platinum, a man burned by boiling water gives TM55 (Scald) for a Burn Heal.
+PoffinHouse_SovereignCollector:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfSet FLAG_SOVEREIGN_RECEIVED_POFFIN_HOUSE_TM55, PoffinHouse_SovereignExplainScald
+    Message PoffinHouse_Text_SovereignDoYouHaveBurnHeal
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, PoffinHouse_SovereignNoBurnHeal
+    CheckItem ITEM_BURN_HEAL, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, PoffinHouse_SovereignNoBurnHeal
+    RemoveItem ITEM_BURN_HEAL, 1, VAR_RESULT
+    Message PoffinHouse_Text_SovereignLetMeApplyIt
+    CloseMessage
+    FadeScreenOut
+    WaitFadeScreen
+    PlayFanfare SEQ_ASA_sseq
+    WaitFanfare
+    FadeScreenIn
+    WaitFadeScreen
+    Message PoffinHouse_Text_SovereignMuchBetter
+    SetVar VAR_0x8004, ITEM_TM55
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    SetFlag FLAG_SOVEREIGN_RECEIVED_POFFIN_HOUSE_TM55
+PoffinHouse_SovereignExplainScald:
+    Message PoffinHouse_Text_SovereignExplainScald
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+PoffinHouse_SovereignNoBurnHeal:
+    Message PoffinHouse_Text_SovereignGetColdWater
+    WaitButton
+    CloseMessage
+    ReleaseAll
     End

@@ -67,11 +67,7 @@
         "It will get Exp. Points even if it didn’t\n",
         "actually battle.\r",
         "Therefore, it should be held by a\n",
-        "Pokémon you want to raise quickly.\r",
-        "Also, a Pokémon you get in a trade may\n",
-        "disobey you if it is too high in level.\r",
-        "Don’t worry, though. It will obey if\n",
-        "you have enough Gym Badges."
+        "Pokémon you want to raise quickly.\r"
       ]
     },
     {
@@ -82,6 +78,25 @@
         "You’ve got to find at least 35.\r",
         "If you can’t, it will be tough to\n",
         "complete the Sinnoh Pokédex."
+      ]
+    },
+    {
+      "id": "Route206CyclingRoadNorthGate_Text_SovereignExplainFalseSwipe",
+      "en_US": [
+        "False Swipe is a move that will never\n",
+        "faint the targeted Pokémon.\r",
+        "It allows you to consistently reduce\n",
+        "wild Pokémon to low health.\r",
+        "It’s very helpful for catching Pokémon\n",
+        "for your Pokédex!"
+      ]
+    },
+    {
+      "id": "Route206CyclingRoadNorthGate_Text_SovereignFindAtLeast150",
+      "en_US": [
+        "You’ve met {STRVAR_1 52, 1, 0} Pokémon so far.\r",
+        "Find at least 150, and I’ll have\n",
+        "something else for you!"
       ]
     }
   ]

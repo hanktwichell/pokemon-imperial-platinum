@@ -4,6 +4,7 @@
 
 
     ScriptEntry SunyshoreCityEastHouse_Scientist
+    ScriptEntry SunyshoreCityEastHouse_AceTrainerM
     ScriptEntryEnd
 
 SunyshoreCityEastHouse_Scientist:
@@ -89,6 +90,31 @@ SunyshoreCityEastHouse_GiveRouletteApp:
 
 SunyshoreCityEastHouse_AppsMayOutnumberPokemon:
     Message SunyshoreCityEastHouse_Text_AppsMayOutnumberPokemon
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+// Sovereign (E10): Renegade Platinum's Ace Trainer, who gives TM15 (Hyper Beam). In Renegade he replaces the
+// scientist; here he joins her, so her three Pokétch apps stay in the game.
+SunyshoreCityEastHouse_AceTrainerM:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfSet FLAG_SOVEREIGN_RECEIVED_SUNYSHORE_TM15, SunyshoreCityEastHouse_PutItToGoodUse
+    Message SunyshoreCityEastHouse_Text_SovereignTheStrongestMove
+    SetVar VAR_0x8004, ITEM_TM15
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    SetFlag FLAG_SOVEREIGN_RECEIVED_SUNYSHORE_TM15
+    Message SunyshoreCityEastHouse_Text_SovereignHyperBeamRecharge
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+SunyshoreCityEastHouse_PutItToGoodUse:
+    Message SunyshoreCityEastHouse_Text_SovereignPutItToGoodUse
     WaitButton
     CloseMessage
     ReleaseAll

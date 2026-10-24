@@ -449,10 +449,15 @@ SandgemTown_OnFrame_ExitLab:
     ApplyMovement LOCALID_SANDGEM_COUNTERPART, SandgemTown_Movement_CounterpartNoticeProfRowan
     WaitMovement
     Message SandgemTown_Text_TakeThisAsWell
-    SetVar VAR_0x8004, ITEM_TM27
+    // Sovereign (E10): as in Renegade Platinum, the Poké Radar and 10 Repels (Cheryl gives TM27 in Eterna Forest).
+    SetVar VAR_0x8004, ITEM_POKE_RADAR
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
-    Message SandgemTown_Text_ContainsTheMoveReturn
+    Message SandgemTown_Text_SovereignThatsThePokeRadar
+    SetVar VAR_0x8004, ITEM_REPEL
+    SetVar VAR_0x8005, 10
+    Common_GiveItemQuantity
+    Message SandgemTown_Text_SovereignFunJourney
     CloseMessage
     ApplyMovement LOCALID_PROF_ROWAN, SandgemTown_Movement_ProfRowanEnterLab
     WaitMovement

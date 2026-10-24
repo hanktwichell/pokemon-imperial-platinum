@@ -41,6 +41,53 @@
         "At the Wi-Fi Club, I can cook up Poffins\n",
         "with my friends!"
       ]
+    },
+    {
+      "id": "PoffinHouse_Text_SovereignDoYouHaveBurnHeal",
+      "en_US": [
+        "Argh! Ow!\n",
+        "That hurts!\r",
+        "I was adding some boiling water to the\n",
+        "pot to prepare it for Poffin making,\f",
+        "and I spilt it all over me!\r",
+        "Do you have a Burn Heal?\n",
+        "It’d be really useful right now..."
+      ]
+    },
+    {
+      "id": "PoffinHouse_Text_SovereignGetColdWater",
+      "en_US": [
+        "You don’t... That’s too bad.\n",
+        "Then I should get some cold water..."
+      ]
+    },
+    {
+      "id": "PoffinHouse_Text_SovereignMuchBetter",
+      "en_US": [
+        "Ah! That’s much better.\n",
+        "Thank you very much.\r",
+        "In fact, I can do more than just\n",
+        "give thanks!\r",
+        "Here’s a Technical Machine--one that’ll\n",
+        "put a Pokémon in the same situation!\r"
+      ]
+    },
+    {
+      "id": "PoffinHouse_Text_SovereignExplainScald",
+      "en_US": [
+        "Scald is a Water-type move that\n",
+        "shoots boiling water at the opponent.\r",
+        "Pokémon won’t be hurt as badly as\n",
+        "I was, but that move can still leave\f",
+        "a nasty burn on its target!"
+      ]
+    },
+    {
+      "id": "PoffinHouse_Text_SovereignLetMeApplyIt",
+      "en_US": [
+        "Oh, fantastic!\n",
+        "Let me just apply it...\r"
+      ]
     }
   ]
 }

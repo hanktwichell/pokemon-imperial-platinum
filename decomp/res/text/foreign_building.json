@@ -88,6 +88,31 @@
         "Balance is what’s needed.\n",
         "That’s the key."
       ]
+    },
+    {
+      "id": "ForeignBuilding_Text_SovereignExpertFGives",
+      "en_US": [
+        "Ah... These old bones are tired.\n",
+        "I need a long, rejuvenating rest.\r",
+        "I wish I could Rest like a Pokémon...\r",
+        "You are a Trainer, are you not?\r",
+        "You can let your Pokémon take\n",
+        "a well-deserved Rest with this TM...\r"
+      ]
+    },
+    {
+      "id": "ForeignBuilding_Text_SovereignExpertFExplains",
+      "en_US": [
+        "The Original One...\n",
+        "Do you think it ever needs to Rest?"
+      ]
+    },
+    {
+      "id": "ForeignBuilding_Text_SovereignExpertFAgain",
+      "en_US": [
+        "The Original One...\n",
+        "Do you think it ever needs to Rest?"
+      ]
     }
   ]
 }

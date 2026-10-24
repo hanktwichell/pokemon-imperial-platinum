@@ -130,7 +130,8 @@
         "real simple.\r",
         "All you have to do is capture five or\n",
         "more Pokémon in one Safari Game.\r",
-        "If you can do that, I’ll give you the\n",
+        "If you can do that, I’ll give you a\n",
+        "fancy Technical Machine and the\f",
         "Pokétch app Matchup Checker."
       ]
     },
@@ -149,8 +150,8 @@
         "your Safari Game? At least five?\r",
         "Ayup! You’ve done that all right!\n",
         "Isn’t that something!\r",
-        "Well, here you are, then.\n",
-        "The Pokétch app Matchup Checker.\r"
+        "Well, here you are, then. The\n",
+        "Technical Machine containing Protect.\r"
       ]
     },
     {
@@ -165,6 +166,22 @@
     {
       "id": "PastoriaCityObservatoryGate1F_Text_Dummy20",
       "garbage": 66
+    },
+    {
+      "id": "PastoriaCityObservatoryGate1F_Text_SovereignAndMatchupChecker",
+      "en_US": [
+        "And the Pokétch app Matchup Checker,\n",
+        "too.\r"
+      ]
+    },
+    {
+      "id": "PastoriaCityObservatoryGate1F_Text_SovereignProtectLikeTheMarsh",
+      "en_US": [
+        "Protect is a move that will prevent\n",
+        "your Pokémon from being hurt.\r",
+        "It’s similar to how the Great Marsh\n",
+        "protects rare species of Pokémon!\r"
+      ]
     }
   ]
 }

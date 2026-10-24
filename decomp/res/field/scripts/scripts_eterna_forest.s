@@ -210,7 +210,9 @@ EternaForest_CoordEvent_CherylLeavePlayer:
     WaitMovement
     BufferPlayerName 0
     Message EternaForest_Text_ThankYouSoMuch
-    SetVar VAR_0x8004, ITEM_SOOTHE_BELL
+    // Sovereign (E10): TM27 (Return), as in Renegade Platinum. The Soothe Bell is in a Route 203 item ball and with
+    // the Pokémon Mansion's maid.
+    SetVar VAR_0x8004, ITEM_TM27
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, EternaForest_CherylWalkToExit
     GoTo EternaForest_GiveSootheBell

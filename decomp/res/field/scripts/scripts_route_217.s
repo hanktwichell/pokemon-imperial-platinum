@@ -9,8 +9,32 @@
     ScriptEntry Route217_CoordEvent_Maylene
     ScriptEntryEnd
 
+// Sovereign (E10): as in Renegade Platinum, a piece of the Ice Rock comes off once: an Ice Stone.
 Route217_IceRock:
-    EventMessage Route217_Text_BoulderEncrustedWithIce
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    GoToIfSet FLAG_SOVEREIGN_RECEIVED_ROUTE_217_ICE_ROCK_ICE_STONE, Route217_IceRockEncrustedWithIce
+    Message Route217_Text_SovereignAPieceFellOff
+    SetVar VAR_0x8004, ITEM_ICE_STONE
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route217_IceRockBagIsFull
+    SetFlag FLAG_SOVEREIGN_RECEIVED_ROUTE_217_ICE_ROCK_ICE_STONE
+    Common_GiveItemQuantity
+    CloseMessage
+    ReleaseAll
+    End
+
+Route217_IceRockEncrustedWithIce:
+    Message Route217_Text_BoulderEncrustedWithIce
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+Route217_IceRockBagIsFull:
+    Common_MessageBagIsFull
+    CloseMessage
+    ReleaseAll
     End
 
 Route217_ArrowSignpostLakeAcuity:
@@ -35,7 +59,12 @@ Route217_CoordEvent_Maylene:
     WaitMovement
     ApplyMovement LOCALID_MAYLENE, Route217_Movement_MayleneWalkNorth
     WaitMovement
-    Message Route217_Text_GoingToSnowpointCity
+    // Sovereign (E10): Maylene gives TM52 (Focus Blast), as in Renegade Platinum.
+    Message Route217_Text_SovereignGoingToSnowpointCity
+    SetVar VAR_0x8004, ITEM_TM52
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    Message Route217_Text_SovereignThatContainsFocusBlast
     CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8004, 302, Route217_MayleneLeaveX302

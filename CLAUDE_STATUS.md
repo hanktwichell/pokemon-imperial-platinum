@@ -4085,3 +4085,33 @@ house, Route 208 gate, Sunyshore City, plus trade text in Oreburgh, Eterna condo
 2. Renegade's other NPC gifts and NPCs (`renegade_rom.py ROM gifts`): Route 216 house Ice Beam, Heather's Flying Club,
    Item Fanatic, Hidden Power teller, Rare Berry seller on Route 208, Super Rod in Snowpoint.
 3. Renegade's trainers from its ROM (`trdata`/`trpoke`), with `data/trainers_sovereign.yaml` on top.
+
+## CB-0080 — 2026-10-24, 5:48 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Merged:** PR #90 (E10 part 5: Mira's quest).
+
+**Implemented:** E10 part 6, Renegade's other TM/HM gifts.
+- New givers: Route 216 lodge Ace Trainer TM13 (five badges) and Gardenia's visit; Sunyshore east house Ace Trainer
+  TM15 (the app scientist stays); Jubilife TV idol TM42; foreign building old woman TM44; Poffin House cook TM55 for a
+  Burn Heal; Lucian's Solaceon scene TM29 (`VAR_SOVEREIGN_SOLACEON_LUCIAN_STATE`).
+- Swaps in existing scripts: school TM10 (was Potion), Great Marsh Cowgirl TM17 + Matchup Checker, Cheryl TM27 (was
+  Soothe Bell), Rowan Poké Radar + 10 Repels (was TM27; the lab skips the radar if owned), Maylene TM52 on Route 217,
+  Cycling Road aide TM54 at 150 seen (Exp. Share stays at 35), Wake HM07 (was TM55), Jasmine Metal Coat (was HM07),
+  Solaceon Ruins hiker Choice Scarf (was Green Shard), Route 217 Ice Rock gives an Ice Stone once.
+- `import_renegade_items.py` counts only real gifts as TM sources.
+- Verified in the test build: the new NPCs, Lucian, the Ice Rock. Release build and docs check pass.
+
+**Files modified:** scripts/events/text for route_216_house, sunyshore_city_east_house, jubilife_tv_1f,
+foreign_building, poffin_house, solaceon_town, route_217, trainers_school, pastoria_city_observatory_gate_1f,
+eterna_forest, sandgem_town, sandgem_town_pokemon_research_lab, pastoria_city_gym, sunyshore_city,
+route_206_cycling_road_north_gate, solaceon_ruins_room_2; `decomp/generated/vars_flags.txt`,
+`tools/engine/import_renegade_items.py`, `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`,
+`docs/ItemChanges_Sovereign.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Iron Island as in Renegade: Riley's entrance battle (Renegade trainer 970), HM04 after the B2F tag battle, the
+   Steel-type Master's single-Steel-Pokémon battle (trainer 1043) for the Iron Plate.
+2. Ask the owner about Renegade's Snowpoint Temple scene (a story Regigigas put back to sleep, Candice gives HM08)
+   versus Sovereign's post-game Regigigas.
+3. Take the TMs out of Veilstone 3F and the Game Corner; then Renegade's NPCs (Hidden Power teller and baby Egg in the
+   Trainers' School, Item Fanatic, Rare Berry seller, Dragon Scale in the Veilstone Pokémon Center...).

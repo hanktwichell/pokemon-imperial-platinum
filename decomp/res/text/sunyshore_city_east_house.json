@@ -74,6 +74,42 @@
         "Someday, Pokétch apps may outnumber\n",
         "all the species of Pokémon."
       ]
+    },
+    {
+      "id": "SunyshoreCityEastHouse_Text_SovereignTheStrongestMove",
+      "en_US": [
+        "Well, hello!\n",
+        "I’m shocked you came to visit!\r",
+        "That rocky surface outside puts a\n",
+        "lot of potential travelers off.\r",
+        "And look at you!\n",
+        "You’re an amazing Trainer!\r",
+        "Yes, I want to give you something!\n",
+        "An ultimate technique!\r",
+        "Behold the Technical Machine that has\n",
+        "the strongest move, Hyper Beam!\r"
+      ]
+    },
+    {
+      "id": "SunyshoreCityEastHouse_Text_SovereignHyperBeamRecharge",
+      "en_US": [
+        "Hyper Beam is a super powerful move,\n",
+        "but the user cannot take any action\f",
+        "on the turn after they use it.\r",
+        "It’s not the strongest possible move\n",
+        "either, if you want to be precise...\r",
+        "But it’ll consistently serve you with\n",
+        "some truly awesome power!"
+      ]
+    },
+    {
+      "id": "SunyshoreCityEastHouse_Text_SovereignPutItToGoodUse",
+      "en_US": [
+        "I hope you’re putting that technique\n",
+        "to good use, Trainer!\r",
+        "There’s some Pokémon that can get a\n",
+        "lot of mileage out of it."
+      ]
     }
   ]
 }

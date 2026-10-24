@@ -4,6 +4,55 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 6) — Renegade's other TM and HM gifts
+
+Every TM and HM now comes from where Renegade gives it (`ItemChanges.txt`, "TM Locations"), with three exceptions
+listed below. Where Renegade dropped something to make room, Sovereign keeps it too.
+
+| TM/HM | From | Note |
+|---|---|---|
+| TM10 Hidden Power | Jubilife Trainers' School, for beating both students | instead of a Potion |
+| TM13 Ice Beam | Route 216 lodge, an Ace Trainer, with five badges | new NPC |
+| TM15 Hyper Beam | Sunyshore City east house, an Ace Trainer | new NPC; Renegade replaced the Pokétch app scientist, who stays here |
+| TM17 Protect | Great Marsh gate, the Cowgirl, for five catches in one Safari Game | together with the Matchup Checker app, which Renegade dropped |
+| TM27 Return | Cheryl, at the end of Eterna Forest | instead of the Soothe Bell (a Route 203 ball and the Pokémon Mansion's maid give one) |
+| TM29 Psychic | Lucian, who comes down from the Solaceon Ruins once | new scene |
+| TM42 Facade | Jubilife TV lobby, an idol | new NPC; the Survival Area house still gives it too |
+| TM44 Rest | Hearthome's foreign building, an old woman | new NPC |
+| TM52 Focus Blast | Maylene, on Route 217 | in her scene |
+| TM54 False Swipe | Cycling Road north gate, the aide, for 150 Pokémon seen | he still gives the Exp. Share at 35 (it works when the party-wide Exp. Share option is off) |
+| TM55 Scald | Poffin House, a cook who scalded himself, for a Burn Heal | new NPC |
+| HM07 Waterfall | Wake, after his Gym battle | instead of TM55 |
+
+- **Rowan gives the Poké Radar and 10 Repels** in Sandgem Town instead of TM27, as in Renegade. When the National
+  Pokédex arrives he skips the Poké Radar gift if the player already has one.
+- **Jasmine gives a Metal Coat** in Sunyshore City instead of HM07.
+- **Route 216 lodge:** Gardenia stops by once, looking for a Snover.
+- **Route 217:** the Ice Rock gives an Ice Stone once.
+- **Solaceon Ruins:** the hiker gives a Choice Scarf for lending HM05 instead of a Green Shard (the tutors don't take shards).
+- The Cycling Road aide's Exp. Share talk no longer mentions obedience (traded Pokémon always obey since part 4).
+- `import_renegade_items.py` only counts real gifts (`SetVar VAR_0x8004`) as a TM's other source, not scripts that
+  merely check for the item. Every TM and HM is still obtainable.
+
+Not ported yet:
+- **HM04 Strength:** in Renegade, Riley battles the player at Iron Island's entrance and gives HM04 after the B2F tag
+  battle, and a Steel-type Master gives the Iron Plate. That needs two more Renegade trainers; for now Riley still gives
+  HM04 at the entrance.
+- **HM08 Rock Climb:** Renegade removes the Route 217 ball and has Candice give it after a new Snowpoint Temple scene,
+  where she, Maylene and the player put a half-awake Regigigas back to sleep before her Gym battle. That puts a
+  Regigigas battle in the story, against Sovereign's post-game Regigigas (`LegendaryTriggers.md`), so it waits for the
+  owner. The Route 217 ball still holds HM08.
+- Renegade's Azure Flute gift in the foreign building is left out: Arceus has its own trigger in Sovereign.
+
+Verified in the test build:
+- the Route 216 Ace Trainer without five badges, and Gardenia;
+- the TM15, TM42 and TM44 givers;
+- the Poffin House cook without a Burn Heal;
+- Lucian's scene through his TM29 speech;
+- the Ice Rock's Ice Stone, given once.
+
+The other changes are item swaps inside existing scripts; the release build passes.
+
 ## E10 (part 5) — Mira's quest in Wayward Cave (TM85), as in Renegade
 
 - **Mira's story is Renegade's.** She now waits just inside the hidden entrance under the Cycling Road, at (38, 42).

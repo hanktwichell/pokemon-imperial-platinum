@@ -15,6 +15,7 @@
     ScriptEntry SolaceonTown_OnTransition
     ScriptEntry SolaceonTown_OnResume
     ScriptEntry SolaceonTown_CoordEvent_Rival
+    ScriptEntry SolaceonTown_SovereignLucian
     ScriptEntryEnd
 
 SolaceonTown_OnResume:
@@ -171,4 +172,82 @@ SolaceonTown_Movement_PlayerNoticeRival:
     .balign 4, 0
 SolaceonTown_Movement_PlayerFaceNorth:
     FaceNorth
+    EndMovement
+
+// Sovereign (E10): as in Renegade Platinum, Lucian of the Elite Four comes down from the Solaceon Ruins the first time
+// the player walks past and gives TM29 (Psychic).
+SolaceonTown_SovereignLucian:
+    LockAll
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
+    RemoveObject LOCALID_LUCIAN
+    SetObjectEventPos LOCALID_LUCIAN, 595, 656
+    AddObject LOCALID_LUCIAN
+    LockObject LOCALID_LUCIAN
+    WaitSE SEQ_SE_DP_KAIDAN2_sseq
+    ApplyMovement LOCALID_LUCIAN, SolaceonTown_Movement_SovereignLucianExclamationMark
+    WaitMovement
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8005, 660, SolaceonTown_SovereignLucianWalkToPlayerZ660
+    CallIfEq VAR_0x8005, 661, SolaceonTown_SovereignLucianWalkToPlayerZ661
+    Message SolaceonTown_Text_SovereignImLucian
+    SetVar VAR_0x8004, ITEM_TM29
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    Message SolaceonTown_Text_SovereignFurtherResearch
+    CloseMessage
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8005, 660, SolaceonTown_SovereignLucianLeaveZ660
+    CallIfEq VAR_0x8005, 661, SolaceonTown_SovereignLucianLeaveZ661
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
+    RemoveObject LOCALID_LUCIAN
+    WaitSE SEQ_SE_DP_KAIDAN2_sseq
+    SetVar VAR_SOVEREIGN_SOLACEON_LUCIAN_STATE, 1
+    ReleaseAll
+    End
+
+SolaceonTown_SovereignLucianWalkToPlayerZ660:
+    ApplyMovement LOCALID_LUCIAN, SolaceonTown_Movement_SovereignLucianWalkToPlayerZ660
+    WaitMovement
+    Return
+
+SolaceonTown_SovereignLucianWalkToPlayerZ661:
+    ApplyMovement LOCALID_LUCIAN, SolaceonTown_Movement_SovereignLucianWalkToPlayerZ661
+    WaitMovement
+    Return
+
+SolaceonTown_SovereignLucianLeaveZ660:
+    ApplyMovement LOCALID_LUCIAN, SolaceonTown_Movement_SovereignLucianLeaveZ660
+    WaitMovement
+    Return
+
+SolaceonTown_SovereignLucianLeaveZ661:
+    ApplyMovement LOCALID_LUCIAN, SolaceonTown_Movement_SovereignLucianLeaveZ661
+    WaitMovement
+    Return
+
+    .balign 4, 0
+SolaceonTown_Movement_SovereignLucianExclamationMark:
+    EmoteExclamationMark
+    EndMovement
+
+    .balign 4, 0
+SolaceonTown_Movement_SovereignLucianWalkToPlayerZ660:
+    WalkNormalSouth 4
+    WalkOnSpotNormalWest
+    EndMovement
+
+    .balign 4, 0
+SolaceonTown_Movement_SovereignLucianWalkToPlayerZ661:
+    WalkNormalSouth 5
+    WalkOnSpotNormalWest
+    EndMovement
+
+    .balign 4, 0
+SolaceonTown_Movement_SovereignLucianLeaveZ660:
+    WalkNormalNorth 4
+    EndMovement
+
+    .balign 4, 0
+SolaceonTown_Movement_SovereignLucianLeaveZ661:
+    WalkNormalNorth 5
     EndMovement

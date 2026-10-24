@@ -11,6 +11,7 @@
     ScriptEntry ForeignBuilding_ExpertM
     ScriptEntry ForeignBuilding_Psychic
     ScriptEntry ForeignBuilding_Lady
+    ScriptEntry ForeignBuilding_SovereignExpertF
     ScriptEntryEnd
 
 ForeignBuilding_RuinManiac:
@@ -50,3 +51,27 @@ ForeignBuilding_Lady:
     End
 
     .balign 4, 0
+
+// Sovereign (E10): as in Renegade Platinum, an old woman gives TM44 (Rest).
+ForeignBuilding_SovereignExpertF:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfSet FLAG_SOVEREIGN_RECEIVED_FOREIGN_BUILDING_TM44, ForeignBuilding_SovereignExpertFAgain
+    Message ForeignBuilding_Text_SovereignExpertFGives
+    SetVar VAR_0x8004, ITEM_TM44
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    SetFlag FLAG_SOVEREIGN_RECEIVED_FOREIGN_BUILDING_TM44
+    Message ForeignBuilding_Text_SovereignExpertFExplains
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+ForeignBuilding_SovereignExpertFAgain:
+    Message ForeignBuilding_Text_SovereignExpertFAgain
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End

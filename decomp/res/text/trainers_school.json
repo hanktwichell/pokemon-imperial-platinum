@@ -115,24 +115,25 @@
       ]
     },
     {
-      "id": "TrainersSchool_Text_UseThisPotion",
+      "id": "TrainersSchool_Text_SovereignUseThisTM",
       "en_US": [
         "Whew! You’re really good!\r",
         "We’ve been studying every day, but\n",
         "we were no match for you at all!\r",
-        "You’d be able to use this Potion\n",
-        "properly. Here you go!\r"
+        "You’d be able to use this Technical\n",
+        "Machine properly. Here you go!\r"
       ]
     },
     {
-      "id": "TrainersSchool_Text_PotionRestoresHP",
+      "id": "TrainersSchool_Text_SovereignExplainTMs",
       "en_US": [
-        "When a Potion is used, it restores the\n",
-        "HP, the health, of a Pokémon.\r",
-        "Being a good Trainer isn’t only about\n",
-        "ordering your Pokémon around.\r",
-        "A superior Trainer knows how to use\n",
-        "items to the full advantage!"
+        "A Technical Machine, or TM for short,\n",
+        "contains a Pokémon move.\r",
+        "Using a TM, you can instantly teach\n",
+        "its move to a Pokémon.\r",
+        "You’ll find you receive lots of copies\n",
+        "of a TM when you obtain it.\r",
+        "Don’t be shy to use them!"
       ]
     },
     {
