@@ -98,7 +98,7 @@ typedef struct BattleMon {
     u32 sovereignBoosterEnergy : 1; // Sovereign (item 11): Booster Energy powers its Protosynthesis or Quark Drive
     u32 sovereignProteanUsed : 1; // Sovereign (item 11): Protean or Libero has changed its type since it switched in
     u32 sovereignEntryAnnounced : 1; // Sovereign (item 11): its entry ability (Screen Cleaner) has run since it switched in
-    u32 sovereignSchoolingChecked : 1; // Sovereign (FM): Schooling has been checked since it switched in
+    u32 sovereignHPFormChecked : 1; // Sovereign (FM): Schooling or Shields Down has been checked since it switched in
 
     u8 ppCur[LEARNED_MOVES_MAX];
     u8 ppUps[LEARNED_MOVES_MAX];

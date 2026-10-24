@@ -197,13 +197,24 @@ implemented.
     switching (`Pokemon_SovereignRevertSwitchOutForm` skips Disguise), fainting and revival (a Revive or, once it
     exists, Revival Blessing). A Mimikyu that faints with its disguise intact keeps it.
   - `Pokemon_SovereignRevertBattleForm` gives the disguise back when the battle ends.
-- **Schooling** (School Wishiwashi, `SOVEREIGN_FORM_BATTLE` with Schooling as trigger).
-  - `BattleSystem_SovereignSchoolingForm` gives the form: School Form at level 20 or more with over 1/4 of its HP,
-    else Solo.
-  - It is checked once on entry, in `BattleSystem_TriggerFormChange`, using the battler's `sovereignSchoolingChecked`
+- **Schooling and Shields Down** (School Wishiwashi and the Core Miniors, `SOVEREIGN_FORM_BATTLE` with the ability as
+  trigger).
+  - `BattleSystem_SovereignHPForm` gives the form its HP calls for:
+    - Schooling: School Form at level 20 or more with over 1/4 of its HP, else Solo.
+    - Shields Down: the Meteor Form of its color with over half its HP, else that color's Core.
+  - It is checked once on entry, in `BattleSystem_TriggerFormChange`, using the battler's `sovereignHPFormChecked`
     bit (cleared in `BattleSystem_InitBattleMon`; that check also runs after every move). After that it is checked
     at the end of each turn, in `BattleSystem_TriggerTurnEndAbility`.
-  - It goes back on switch-out and at the battle's end, like Zen Mode.
+  - It goes back on switch-out and at the battle's end, like Zen Mode. Each Core goes back to its own color's Meteor
+    Form (`sSovereignBattleFormBases`).
+  - Meteor Minior's status immunity: `Battler_SovereignShieldsUp` (Shields Down, not transformed, in a form that has a
+    Core). The status subscripts (poison, bad poison, paralysis, burn, freeze, sleep, Yawn) read it through the
+    read-only `BTLVAR_SOVEREIGN_SHIELDS_UP_EFFECT_MON` and go to their ability-immunity path ("MINIOR's Shields Down
+    prevents ..."). Rest fails. Mold Breaker doesn't get past it, as in the main series.
+- **Personality forms** (`SOVEREIGN_FORM_PERSONALITY`, Minior's Meteor colors). `Pokemon_SovereignPersonalityForm`
+  picks the form from the personality, personality % 7 for Minior as in Sun and Moon (Red is form 0). The Pokémon
+  gets it when it's made (`sub_02073E18`, which every new Pokémon goes through), and an Egg gets its own from its
+  personality rather than its parent's form. Trainer data still sets its own form.
 - **Item locks.** `Pokemon_SovereignItemIsLocked(species, item)` is TRUE for any form trigger on its own species
   except Mega Rayquaza's move, and also for the Teal Mask on Ogerpon, the Griseous Core on Giratina and the
   Ultranecrozium Z on Necrozma.

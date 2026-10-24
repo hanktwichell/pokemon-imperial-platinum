@@ -196,3 +196,16 @@
     { "meloetta/forms/pirouette", NULL, .isGiratinaOrigin = false }, // Pirouette Meloetta
     { "aegislash/forms/blade", NULL, .isGiratinaOrigin = false }, // Blade Aegislash
     { "wishiwashi/forms/school", NULL, .isGiratinaOrigin = false }, // School Wishiwashi
+    { "minior/forms/orange_meteor", NULL, .isGiratinaOrigin = false }, // Orange Meteor Minior
+    { "minior/forms/yellow_meteor", NULL, .isGiratinaOrigin = false }, // Yellow Meteor Minior
+    { "minior/forms/green_meteor", NULL, .isGiratinaOrigin = false }, // Green Meteor Minior
+    { "minior/forms/blue_meteor", NULL, .isGiratinaOrigin = false }, // Blue Meteor Minior
+    { "minior/forms/indigo_meteor", NULL, .isGiratinaOrigin = false }, // Indigo Meteor Minior
+    { "minior/forms/violet_meteor", NULL, .isGiratinaOrigin = false }, // Violet Meteor Minior
+    { "minior/forms/red", NULL, .isGiratinaOrigin = false }, // Red Core Minior
+    { "minior/forms/orange", NULL, .isGiratinaOrigin = false }, // Orange Core Minior
+    { "minior/forms/yellow", NULL, .isGiratinaOrigin = false }, // Yellow Core Minior
+    { "minior/forms/green", NULL, .isGiratinaOrigin = false }, // Green Core Minior
+    { "minior/forms/blue", NULL, .isGiratinaOrigin = false }, // Blue Core Minior
+    { "minior/forms/indigo", NULL, .isGiratinaOrigin = false }, // Indigo Core Minior
+    { "minior/forms/violet", NULL, .isGiratinaOrigin = false }, // Violet Core Minior

@@ -491,6 +491,13 @@ static void sub_02073E18(BoxPokemon *boxMon, int monSpecies, int monLevel, int m
     v1 = BoxPokemon_GetGender(boxMon);
 
     BoxPokemon_SetValue(boxMon, MON_DATA_GENDER, &v1);
+
+    // Sovereign (FM): a species whose form its personality picks (Minior's core color) gets it now.
+    int personalityForm = Pokemon_SovereignPersonalityForm(monSpecies, monPersonality);
+    if (personalityForm > 0) {
+        BoxPokemon_SetValue(boxMon, MON_DATA_FORM, &personalityForm);
+    }
+
     BoxPokemon_SetDefaultMoves(boxMon);
     BoxPokemon_ExitDecryptionContext(boxMon, reencrypt);
 }
@@ -5183,6 +5190,21 @@ int Pokemon_SovereignAbilityForm(u16 species, int form, u16 ability)
     }
 
     return -1;
+}
+
+// Sovereign (FM): the form a Pokémon of this species gets for good from its personality when it's made (Minior: its
+// core color, personality % 7 as in Sun and Moon, with Red as form 0), or -1 for a species without such forms.
+int Pokemon_SovereignPersonalityForm(u16 species, u32 personality)
+{
+    int count = 1;
+
+    for (int i = 0; i < SOVEREIGN_FORM_COUNT; i++) {
+        if (sSovereignForms[i].species == species && sSovereignForms[i].kind == SOVEREIGN_FORM_PERSONALITY) {
+            count++;
+        }
+    }
+
+    return count > 1 ? (int)(personality % count) : -1;
 }
 
 // Sovereign (FM): TRUE for a battle form that brings its own ability (Mega, Primal, Ultra Necrozma). The others keep

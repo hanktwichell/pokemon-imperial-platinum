@@ -848,6 +848,7 @@ int Pokemon_SovereignUltraBurstForm(u16 species, int form, u16 heldItem);
 int Pokemon_SovereignDisguiseBustedForm(u16 species, int form);
 int Pokemon_SovereignBattleFormBase(u16 species, int form);
 int Pokemon_SovereignAbilityForm(u16 species, int form, u16 ability);
+int Pokemon_SovereignPersonalityForm(u16 species, u32 personality);
 BOOL Pokemon_SovereignFormChangesAbility(u16 species, int form);
 int Pokemon_SovereignMoveForm(u16 species, int form, u16 move);
 void Pokemon_SovereignRevertSwitchOutForm(Pokemon *mon);

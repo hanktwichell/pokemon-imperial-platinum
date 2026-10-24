@@ -4,6 +4,8 @@
 _000:
     CheckIgnorableAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_INSOMNIA, _066
     CheckIgnorableAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_VITAL_SPIRIT, _066
+    // Sovereign (FM): Shields Down keeps every status condition off a Meteor Minior.
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_SHIELDS_UP_EFFECT_MON, TRUE, _066
     CheckIgnoreWeather _021
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_FIELD_CONDITIONS, FIELD_CONDITION_SUNNY, _021
     CheckIgnorableAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_LEAF_GUARD, _066

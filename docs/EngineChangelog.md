@@ -4,6 +4,34 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## FM — Minior and Shields Down
+
+- **Minior's colors.** Minior has its 7 Meteor Forms and 7 Cores, in the official order (0–6 Meteor, Red to Violet;
+  7–13 Core). Its color comes from its personality, as in Sun and Moon, and stays for good. A hatched Minior gets its
+  own color, not its parent's.
+- **Shields Down.**
+  - A Minior in Meteor Form drops its shell when it enters battle at half HP or less, or at the end of a turn at half
+    HP or less: "MINIOR transformed!". The Core has 100 Attack, 100 Sp. Atk and 120 Speed, against Meteor's 60, 60 and
+    60, and 60 Defense and Sp. Def against Meteor's 100.
+  - Above half HP at the end of a turn, it goes back to Meteor Form.
+  - In Meteor Form it can't be poisoned, paralyzed, burned, frozen, put to sleep or made drowsy: "MINIOR's Shields
+    Down prevents ...". Rest fails. Mold Breaker doesn't get past it. A status it got as a Core stays.
+  - It goes back to Meteor Form on switch-out and at the battle's end.
+- **How:** `TechnicalDesign.md` (Schooling and Shields Down, personality forms). Every Minior shares the base sprite
+  until milestone E12.
+- **Verified** in the emulator (a wild Minior on Route 201; a Mold Breaker Smeargle; two level 50 Miniors holding a
+  Flame Orb):
+  - Against the Meteor Minior, Thunder Wave, Toxic (twice) and Yawn were blocked ("Shields Down prevents
+    paralysis!", "... prevents poisoning!", "... made it ineffective!"), Mold Breaker or not.
+  - False Swipe took it to 1 HP and it became a Core at the end of the turn; Thunder Wave then paralyzed it.
+  - The player's full-HP Minior: Flame Orb didn't burn it, and Rest failed.
+  - The player's Minior at 40% became a Core as it came in. Flame Orb burned it. Rest healed it and put it to sleep,
+    and at the end of the turn it went back to Meteor Form, still asleep.
+  - From memory: the player's Minior is form 5 (Indigo) with personality % 7 = 5; the wild one at 1 HP was form 8
+    (Orange Core) with personality % 7 = 1.
+  - Release build without warnings, boot smoke, docs; every battle script fits its buffer (the largest is
+    badly poison, now 1680 bytes).
+
 ## Fix — Toxic broke the player's Pokémon
 
 - **Bug:** using Toxic, or any badly-poison effect, could leave the player's lead Pokémon with "has no moves left!", so
