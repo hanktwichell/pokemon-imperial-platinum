@@ -129,8 +129,8 @@ until the planned wild tables (`data/encounters_sovereign.json`) are ported; bef
 | Okidogi, Munkidori, Fezandipiti | roamers | mainland routes | 65 | released on the first reading of The Loyal Three (`FLAG_SOVEREIGN_RELEASED_LOYAL_THREE`) | The Loyal Three |
 | Pecharunt | static | Route 224 (898, 526) | 60 | the Loyal Three caught | The Loyal Three |
 | Ogerpon | static | Route 211 East (435, 531) | 65 | var ≥ 5; holds the Teal Mask | The Masked Ogre (the Celestic Pokéfan gives the other masks to a player leading with Ogerpon) |
-| Koraidon | static | Sendoff Spring (29, 36) | 70 | var ≥ 5 and all ten ancient Paradox Pokémon given by the museum's fossil maniac | Area Zero |
-| Miraidon | static | Sendoff Spring (27, 37) | 70 | var ≥ 5 and all ten future Paradox Pokémon given by the museum's futuristic scientist | Area Zero |
+| Koraidon | static | Sendoff Spring (29, 36) | 70 | var ≥ 5 and all ten ancient (past) Paradox Pokémon given by the museum's fossil maniac (decision 30; the dealer then mentions Sendoff Spring) | Area Zero |
+| Miraidon | static | Sendoff Spring (27, 37) | 70 | var ≥ 5 and all ten future Paradox Pokémon given by the museum's futuristic scientist (decision 30; the dealer then mentions Sendoff Spring) | Area Zero |
 | Terapagos | static | Sendoff Spring (30, 34) | 70 | Koraidon and Miraidon caught | Area Zero |
 
 The stakes stand next to their shrine for now and show while the Paldea Chronicle is open.
@@ -169,7 +169,7 @@ dealer a present-day Pokémon gives its Paradox Pokémon at the shown Pokémon's
 | Dialga, Palkia | static (rift) | Spear Pillar's Dialga and Palkia maps | 70 | post-game, `FLAG_UNLOCKED_DIALGA_PALKIA_SPEAR_PILLAR` (the Celestic elder), the Adamant or Lustrous Orb carried | the Hall of Fame resets a missed one. Spear Pillar itself has no Chronicle encounter (decision 27) |
 | Giratina | static | Distortion World (story); then Turnback Cave's Giratina room | 47; Turnback Cave 70 (Renegade's) | story; Turnback Cave if it wasn't caught | the Hall of Fame |
 | Heatran | static | Stark Mountain room 3 | 68 (Renegade's; vanilla 50) | post-game, talked to Buck at the Battleground, room state 1 | the Hall of Fame |
-| Regigigas | static | Snowpoint Temple B5F | 70 (Renegade's; vanilla 1) | Regirock, Regice and Registeel in the party | the Hall of Fame |
+| Regigigas | static | Snowpoint Temple B5F | 70 (Renegade's; vanilla 1) | after the Hall of Fame, with Regirock, Regice and Registeel in the party (E10 part 26: the temple now opens before the Snowpoint Gym, for Renegade's story scene where Candice and Maylene put it back to sleep; decision 29) | the Hall of Fame |
 | Cresselia | static | Fullmoon Island's clearing (16, 15) | 68 (Renegade's; vanilla 50, a roamer) | after the Lunar Wing quest | caught; it's back on the next visit until then. The catch leaves the Lunar Wing where it stood |
 | Articuno, Zapdos, Moltres | roamers | released by Professor Oak in Eterna City's south house | 60 | post-game | Oak re-releases after a Hall of Fame |
 | Darkrai | static | Newmoon Island | 50 | Member Card and the distribution | — |

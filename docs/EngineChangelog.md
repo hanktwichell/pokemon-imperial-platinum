@@ -4,6 +4,40 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 26) — Renegade's Snowpoint Temple story and HM08 (decision 29)
+
+- **Snowpoint City shakes** as the player walks in: Regigigas is stirring under the temple. The townspeople talk
+  about the tremors.
+- **The Gym guide** stands at the Gym door: Candice has gone to the temple to deal with it.
+- **The temple:** two Ace Trainers, Aran and Nephenee (Renegade's trainers 936 and 937, Lv. 54), now guard it instead
+  of Platinum's champion-only guard. They let in only the strong, after a double battle (two Pokémon needed).
+- **On B5F**, Candice and Maylene stand before Regigigas.
+  - With the player's help they put it back to sleep.
+  - Candice gives **HM08 (Rock Climb)** and heads back to her Gym, and the tremors stop.
+  - HM08 had no other source since part 3 replaced its Route 217 item ball, so holding it is the record of the scene.
+    An HM can't leave the bag.
+- **Regigigas itself** is still the Lv. 70 static on B5F. It now also waits for the Hall of Fame (Renegade: "become
+  the Champion"), with Regirock, Regice and Registeel in the party as before.
+- **The Route 217 hiker** who lost HM08 lets the player rest (a full heal), as in Renegade. The Icicle Plate he gave
+  in Platinum comes from the Ice-type Master.
+
+Also in this part:
+- **Decision 30:** the Koraidon and Miraidon gates were already right (all ten past / all ten future Paradox Pokémon,
+  independent, with the Paldea Chronicle open). Once a museum dealer has given all ten, they now pass on the rumour:
+  "a legendary PAST (FUTURE) Paradox Pokémon can be found at Sendoff Spring".
+- **Decision 31:** after the first Champion win, the PC in the player's room holds the **Infinite Repel**, once.
+
+Verified in a test build:
+- The tremor on entering Snowpoint, and the Gym guide at the Gym door.
+- The guards' double battle starts with both of Renegade's teams. My harness couldn't finish the battle, so the
+  lines after it weren't reached.
+- The whole B5F scene: HM08 received, Candice and Maylene gone, and the statue's "gather the three Pokémon" line
+  before the Champion.
+- The Gym guide gone afterwards, and the Route 217 hiker's heal.
+- The dealer lines and the PC weren't run in the emulator.
+
+The release build passes.
+
 ## E10 (part 25) — Manaphy, from Backlot's Egg
 
 - After the siege of the Pokémon Mansion (part 24), Mr. Backlot points the player to his maid, who now stands beside

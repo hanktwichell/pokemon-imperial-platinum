@@ -1,0 +1,61 @@
+{
+    "name": "Aran",
+    "class": "TRAINER_CLASS_ACE_TRAINER_SNOW_MALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_HERACROSS",
+            "form": 0,
+            "level": 54,
+            "item": null,
+            "moves": [
+                "MOVE_MEGAHORN",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_PROTECT"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_TYPHLOSION",
+            "form": 0,
+            "level": 54,
+            "item": null,
+            "moves": [
+                "MOVE_LAVA_PLUME",
+                "MOVE_EARTH_POWER",
+                "MOVE_EXTRASENSORY",
+                "MOVE_PROTECT"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_TYRANITAR",
+            "form": 0,
+            "level": 54,
+            "item": null,
+            "moves": [
+                "MOVE_ROCK_SLIDE",
+                "MOVE_CRUNCH",
+                "MOVE_FIRE_BLAST",
+                "MOVE_PROTECT"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "Aran: Very impressive."
+        }
+    ]
+}

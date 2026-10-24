@@ -16,9 +16,13 @@
     ScriptEntry SnowpointCity_GymSignpost
     ScriptEntry SnowpointCity_SailorSSSpiral
     ScriptEntry SnowpointCity_SovereignIceMaster
+    ScriptEntry SnowpointCity_SovereignGymGuide
+    ScriptEntry SnowpointCity_SovereignTempleGuards
+    ScriptEntry SnowpointCity_SovereignCoordEvent_Tremor
     ScriptEntryEnd
 
 SnowpointCity_OnTransition:
+    Call SnowpointCity_SovereignSetTempleVisibility
     GoToIfGe VAR_SNOWPOINT_CITY_STATE, 1, SnowpointCity_HideCandice
     End
 
@@ -136,21 +140,68 @@ SnowpointCity_Candice:
     End
 
 SnowpointCity_AceTrainerSnowF:
-    NPCMessage SnowpointCity_Text_TownIsFreezingCold
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    CheckItem ITEM_HM08, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SnowpointCity_AceTrainerSnowFTremors
+    Message SnowpointCity_Text_TownIsFreezingCold
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+SnowpointCity_AceTrainerSnowFTremors:
+    Message SnowpointCity_Text_SovereignTremorsFreezingCold
+    WaitButton
+    CloseMessage
+    ReleaseAll
     End
 
 SnowpointCity_SnowpointNPCF1:
-    NPCMessage SnowpointCity_Text_ScarfLooksWarm
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    CheckItem ITEM_HM08, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SnowpointCity_SnowpointNPCF1Tremors
+    Message SnowpointCity_Text_ScarfLooksWarm
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+SnowpointCity_SnowpointNPCF1Tremors:
+    Message SnowpointCity_Text_SovereignTremorsScarf
+    WaitButton
+    CloseMessage
+    ReleaseAll
     End
 
 SnowpointCity_SnowpointNPCF2:
-    NPCMessage SnowpointCity_Text_CandiceIsTeachingMe
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    CheckItem ITEM_HM08, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SnowpointCity_SnowpointNPCF2Tremors
+    Message SnowpointCity_Text_CandiceIsTeachingMe
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+SnowpointCity_SnowpointNPCF2Tremors:
+    Message SnowpointCity_Text_SovereignTremorsCandice
+    WaitButton
+    CloseMessage
+    ReleaseAll
     End
 
 SnowpointCity_SnowpointNPCM:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
+    CheckItem ITEM_HM08, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SnowpointCity_SovereignNPCMTremors
     GoToIfGe VAR_SNOWPOINT_CITY_STATE, 1, SnowpointCity_PokemonDraggedCityHere
     Message SnowpointCity_Text_IWantToLookAroundTemple
     WaitButton
@@ -166,7 +217,22 @@ SnowpointCity_PokemonDraggedCityHere:
     End
 
 SnowpointCity_Sailor:
-    NPCMessage SnowpointCity_Text_NothingExceptionalHere
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    CheckItem ITEM_HM08, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SnowpointCity_SailorTremors
+    Message SnowpointCity_Text_NothingExceptionalHere
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+SnowpointCity_SailorTremors:
+    Message SnowpointCity_Text_SovereignTremorsExceptional
+    WaitButton
+    CloseMessage
+    ReleaseAll
     End
 
 SnowpointCity_MapSignpost:
@@ -367,6 +433,82 @@ SnowpointCity_SovereignIceMasterLost:
     Message SnowpointCity_Text_SovereignIceMasterLose
     WaitButton
     CloseMessage
+    ReleaseAll
+    End
+
+    
+
+@ Sovereign (E10 part 26, Renegade's Snowpoint Temple story): Regigigas is stirring in the temple's basement and the
+@ town shakes. Candice has gone down to calm it, so the Gym guide stands at the Gym door, and two Ace Trainers let only
+@ the strong into the temple (Renegade's trainers 936 and 937). Once Candice has given the player HM08 down there, it's
+@ all over.
+SnowpointCity_SovereignSetTempleVisibility:
+    SetFlag FLAG_MAP_LOCAL_0x01
+    CheckItem ITEM_HM08, 1, VAR_MAP_LOCAL_0x02
+    GoToIfEq VAR_MAP_LOCAL_0x02, TRUE, SnowpointCity_SovereignTremorsOver
+    ClearFlag FLAG_MAP_LOCAL_0x01
+    Return
+
+SnowpointCity_SovereignTremorsOver:
+    SetVar VAR_MAP_LOCAL_0x01, 9
+    Return
+
+SnowpointCity_SovereignCoordEvent_Tremor:
+    LockAll
+    ScrCmd_29F 1
+    AddVar VAR_MAP_LOCAL_0x01, 1
+    ReleaseAll
+    End
+
+SnowpointCity_SovereignGymGuide:
+    NPCMessage SnowpointCity_Text_SovereignGymGuide
+    End
+
+SnowpointCity_SovereignNPCMTremors:
+    Message SnowpointCity_Text_SovereignTremorsTemple
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+SnowpointCity_SovereignTempleGuards:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    Message SnowpointCity_Text_SovereignGuardsChallenge
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, SnowpointCity_SovereignTempleGuardsDeclined
+    GetPartyCount VAR_RESULT
+    GoToIfLt VAR_RESULT, 2, SnowpointCity_SovereignTempleGuardsNeedTwo
+    Message SnowpointCity_Text_SovereignGuardsBegin
+    CloseMessage
+    StartTrainerBattle TRAINER_SOVEREIGN_ARAN_SNOWPOINT_TEMPLE, TRAINER_SOVEREIGN_NEPHENEE_SNOWPOINT_TEMPLE
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SnowpointCity_SovereignTempleGuardsLost
+    SetTrainerFlag TRAINER_SOVEREIGN_ARAN_SNOWPOINT_TEMPLE
+    SetTrainerFlag TRAINER_SOVEREIGN_NEPHENEE_SNOWPOINT_TEMPLE
+    Message SnowpointCity_Text_SovereignGuardsYouMayEnter
+    WaitButton
+    CloseMessage
+    FadeScreenOut
+    WaitFadeScreen
+    RemoveObject LOCALID_SOVEREIGN_ARAN
+    RemoveObject LOCALID_TEMPLE_GUARD
+    FadeScreenIn
+    WaitFadeScreen
+    ReleaseAll
+    End
+
+SnowpointCity_SovereignTempleGuardsNeedTwo:
+    Message SnowpointCity_Text_SovereignGuardsNeedTwo
+    WaitButton
+SnowpointCity_SovereignTempleGuardsDeclined:
+    CloseMessage
+    ReleaseAll
+    End
+
+SnowpointCity_SovereignTempleGuardsLost:
+    BlackOutFromBattle
     ReleaseAll
     End
 

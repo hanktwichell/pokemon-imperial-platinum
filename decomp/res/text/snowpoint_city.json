@@ -248,6 +248,114 @@
         "Hmm...\n",
         "Do you feel like you can’t win?"
       ]
+    },
+    {
+      "id": "SnowpointCity_Text_SovereignGymGuide",
+      "en_US": [
+        "Welcome to Snowpoint, Champ-to-be!\n",
+        "It’s chilly, but it’s a sight to see.\r",
+        "You’ve probably noticed the tremors\n",
+        "happening around the city, right?\r",
+        "Snowpoint’s Gym Leader is currently\n",
+        "dealing with the source of them.\r",
+        "The Gym Leaders in Sinnoh sure are a\n",
+        "busy bunch, huh?\r",
+        "Candice went to the Snowpoint Temple,\n",
+        "located at the north end of the city.\r",
+        "You’re welcome to go look for her if\n",
+        "you’re desperate to get your Badge.\r",
+        "But... don’t get too relaxed.\n",
+        "Access to the temple  is restricted.\r",
+        "You won’t be allowed to enter unless\n",
+        "you prove your strength!"
+      ]
+    },
+    {
+      "id": "SnowpointCity_Text_SovereignTremorsFreezingCold",
+      "en_US": [
+        "Brrr... This snowbound town is always\n",
+        "freezing cold.\r",
+        "But these tremors... They’re abnormal.\n",
+        "It’s honestly very strange."
+      ]
+    },
+    {
+      "id": "SnowpointCity_Text_SovereignTremorsExceptional",
+      "en_US": [
+        "There is nothing exceptional here.\n",
+        "Well, normally...\r",
+        "But these earthquakes keep happening!\n",
+        "It’s making the city stand out!"
+      ]
+    },
+    {
+      "id": "SnowpointCity_Text_SovereignTremorsTemple",
+      "en_US": [
+        "I want to take a look around in the\n",
+        "Snowpoint Temple.\r",
+        "But it’s off-limits to civilians right\n",
+        "now because of these tremors.\r",
+        "But even then, they usually only\n",
+        "allow strong Trainers to enter."
+      ]
+    },
+    {
+      "id": "SnowpointCity_Text_SovereignTremorsCandice",
+      "en_US": [
+        "Candice is teaching me about Pokémon.\r",
+        "You know, she went to Snowpoint Temple\n",
+        "to try and stop these tremors.\r",
+        "She’s an amazing person, right?\n",
+        "I’m glad to have her as a teacher."
+      ]
+    },
+    {
+      "id": "SnowpointCity_Text_SovereignTremorsScarf",
+      "en_US": [
+        "Your scarf looks nice and warm...\r",
+        "You were expecting a cosy walk in\n",
+        "this snowy town, right?\r",
+        "On a normal day, it’s very pleasant.\r",
+        "But because the ground is shaking,\n",
+        "it isn’t very appealing right now...\r",
+        "They’re saying something is up with a\n",
+        "Pokémon that sleeps inside the temple."
+      ]
+    },
+    {
+      "id": "SnowpointCity_Text_SovereignGuardsChallenge",
+      "en_US": [
+        "Only the strong may enter the\n",
+        "Snowpoint Temple.\r",
+        "Do you wish to prove your strength\n",
+        "to us in a battle?"
+      ]
+    },
+    {
+      "id": "SnowpointCity_Text_SovereignGuardsBegin",
+      "en_US": [
+        "Very well.\n",
+        "Let the battle begin.\r"
+      ]
+    },
+    {
+      "id": "SnowpointCity_Text_SovereignGuardsYouMayEnter",
+      "en_US": [
+        "You are indeed strong.\n",
+        "Then you may enter.\r",
+        "We would be grateful if you could\n",
+        "assist with handling the chaos in the\f",
+        "basement of the temple.\r"
+      ]
+    },
+    {
+      "id": "SnowpointCity_Text_SovereignGuardsNeedTwo",
+      "en_US": [
+        "Hmm...\n",
+        "You only have one Pokémon.\r",
+        "I’m sorry, but you’ll need at least\n",
+        "two Pokémon to battle us."
+      ]
     }
   ]
 }
