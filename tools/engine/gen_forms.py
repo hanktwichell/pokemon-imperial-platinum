@@ -386,6 +386,14 @@ enum SovereignFormKind {{
     evolutions, babies = regional_tables(forms)
     evo_rows = "".join(f"    {{ {a}, {b}, {d}, {c} }},\n" for a, b, c, d in evolutions)
     baby_rows = "".join(f"    {{ {a}, {b}, {d}, {c} }},\n" for a, b, c, d in babies)
+    # A battle form of a regional form goes back to that regional form (Zen Galarian Darmanitan: Standard Galarian).
+    base_rows = ""
+    for f in forms:
+        region = region_of(f.get("ident", "")) if f["kind"] == KIND_BATTLE else None
+        base = next((x for x in forms if region and x["kind"] == KIND_REGIONAL and x["species"] == f["species"]
+                     and region_of(x["ident"]) == region), None)
+        if base:
+            base_rows += f"    {{ {f['species']}, {f['number']}, {base['number']} }}, // {f['name']}\n"
     item_evo_rows = ""
     for e in ITEM_EVOLUTION_FORMS:
         f = next(x for x in forms if x.get("ident") == e["form"])
@@ -444,6 +452,16 @@ typedef struct SovereignItemEvolutionForm {{
 
 static const SovereignItemEvolutionForm sSovereignItemEvolutionForms[] = {{
 {item_evo_rows}}};
+
+// The form a battle form goes back to, when it isn't 0 (a regional form's: Zen Galarian Darmanitan).
+typedef struct SovereignBattleFormBase {{
+    u16 species;
+    u8 form;
+    u8 baseForm;
+}} SovereignBattleFormBase;
+
+static const SovereignBattleFormBase sSovereignBattleFormBases[] = {{
+{base_rows}}};
 
 #endif // POKEPLATINUM_DATA_SOVEREIGN_FORMS_H
 """)

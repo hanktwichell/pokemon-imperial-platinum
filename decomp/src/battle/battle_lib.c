@@ -3785,6 +3785,28 @@ BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem *battleSys, BattleContext *
     int subscript;
 
     switch (Battler_Ability(battleCtx, battler)) {
+    // Sovereign (FM): Zen Mode turns Darmanitan to its Zen Mode at half its HP or less, and back above half.
+    case ABILITY_ZEN_MODE: {
+        BattleMon *mon = &battleCtx->battleMons[battler];
+        int form = -1;
+
+        if (mon->curHP && mon->species == SPECIES_DARMANITAN && (mon->statusVolatile & VOLATILE_CONDITION_TRANSFORM) == FALSE) {
+            if (mon->curHP <= mon->maxHP / 2) {
+                form = Pokemon_SovereignAbilityForm(mon->species, mon->formNum, ABILITY_ZEN_MODE);
+            } else if (Pokemon_IsSovereignBattleForm(mon->species, mon->formNum)) {
+                form = Pokemon_SovereignBattleFormBase(mon->species, mon->formNum);
+            }
+        }
+
+        if (form >= 0) {
+            BattleSystem_SovereignChangeBattleForm(battleSys, battleCtx, battler, form);
+            battleCtx->msgBattlerTemp = battler;
+            subscript = subscript_form_change;
+            result = TRUE;
+        }
+        break;
+    }
+
     case ABILITY_SPEED_BOOST:
         if (battleCtx->battleMons[battler].curHP
             && battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_SPEED] < MAX_STAT_STAGE
@@ -7460,7 +7482,7 @@ void BattleSystem_SovereignChangeBattleForm(BattleSystem *battleSys, BattleConte
     // A Mega whose ability the engine lacks keeps its own (its form data lists none: tools/engine/gen_forms.py).
     // A new ability takes effect at once, as if the Pokémon had just switched in (Mega Charizard Y's Drought).
     u16 ability = SpeciesData_GetFormValue(mon->species, form, SPECIES_DATA_ABILITY_1);
-    if (ability != ABILITY_NONE && ability != mon->ability) {
+    if (ability != ABILITY_NONE && ability != mon->ability && Pokemon_SovereignFormChangesAbility(mon->species, form)) {
         mon->ability = ability;
         mon->weatherAbilityAnnounced = FALSE;
         mon->intimidateAnnounced = FALSE;
