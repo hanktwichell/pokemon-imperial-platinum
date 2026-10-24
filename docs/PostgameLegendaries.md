@@ -41,9 +41,9 @@ Covers **90** species.
 ### Forces of Nature
 - **Pokémon:** #641 Tornadus, #642 Thundurus, #645 Landorus, #905 Enamorus
 - **Level:** 65
-- **Location:** Tornadus and Thundurus roam Sinnoh (like Mesprit/Cresselia). Landorus — Route 228's ruins. Enamorus — Route 224, Flower Paradise gate
+- **Location:** Tornadus and Thundurus roam Sinnoh (like Mesprit/Cresselia). Landorus — Route 228, the north sand field. Enamorus — Route 224, the beach field
 - **How:** Roamers are released when the chapter opens. Bring both to the Route 228 shrine for Landorus; Enamorus appears after Landorus is caught.
-- **Built:** Forces of Nature (CB-0039). The Archivist releases Tornadus and Thundurus as roamers (two new roaming slots, FLAG_SOVEREIGN_RELEASED_FORCES_OF_NATURE). One that's knocked out comes back after the next Hall of Fame, when the Archivist releases it again. With both caught, he gives the Reveal Glass. Landorus appears in Route 228's ruins (the Rock Peak Ruins chamber, (7, 5)) while both are in the party; that chamber stands in for a new shrine. Enamorus then waits on the Route 224 beach field (912, 535), clear of the Flower Paradise tablet (moved off the tablet's tiles on 2026-10-24). All four are level 65.
+- **Built:** Forces of Nature (CB-0039). The Archivist releases Tornadus and Thundurus as roamers (two new roaming slots, FLAG_SOVEREIGN_RELEASED_FORCES_OF_NATURE). One that's knocked out comes back after the next Hall of Fame, when the Archivist releases it again. With both caught, he gives the Reveal Glass. Landorus appears at the north end of Route 228's first sand field (782, 323) while both are in the party. It first stood in the Rock Peak Ruins doorway room (7, 5), next to Regidrago; it moved on 2026-10-24 (owner: "Route 228 it is"). Enamorus then waits on the Route 224 beach field (912, 535), clear of the Flower Paradise tablet (moved off the tablet's tiles on 2026-10-24). All four are level 65.
 
 ### Truth and Ideals (chapter key)
 - **Pokémon:** #643 Reshiram, #644 Zekrom, #646 Kyurem

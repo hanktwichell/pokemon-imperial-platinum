@@ -4697,3 +4697,22 @@ Solaceon Ruins Room 6 NW dead end / Room 7, Turnback Cave Giratina room and Vict
 1. Owner: Stark Mountain room 1 (Volcanion/Groudon) and Landorus/Regidrago in the Rock Peak chamber.
 2. Zekrom's Route 215 tile (decision 34).
 3. An in-game check of the four moved encounters on a test ROM.
+
+## CA-0051 (Claude A, 2026-10-24): Landorus moved to Route 228's sand field
+
+**Implemented:** Landorus leaves the Rock Peak Ruins doorway room (7, 5) for the north end of Route 228's first sand
+field (782, 323) (owner, decision 38: "Route 228 it is"). Same trigger (Tornadus and Thundurus in the party, until
+caught, level 65). Route 228's scripts gain the visibility check, the removal and the encounter (entry 6); the ruins
+room keeps Regidrago, whose object now uses script 3. The Archivist's hint says "the sands of Route 228". Release
+build and boot smoke test pass; not tested in game.
+
+**Files modified:** `decomp/res/field/events/events_route_228.json`, `events_route_228_rock_peak_ruins.json`,
+`decomp/res/field/scripts/scripts_route_228.s`, `scripts_route_228_rock_peak_ruins.s`,
+`decomp/res/text/canalave_library_2f.json`, `data/postgame_legendaries.yaml`, `docs/PostgameLegendaries.md`,
+`docs/LegendaryTriggers.md`, `docs/LegendaryPlacementReview.md`, `docs/TechnicalDesign.md`, `docs/EngineChangelog.md`,
+`docs/ProjectStatus.md`, `docs/StaticEncounters.xlsx`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Owner: Stark Mountain room 1 (Volcanion/Groudon), the last clash.
+2. Zekrom's Route 215 tile (decision 34).
+3. An in-game check of the five moved encounters (Enamorus, Yveltal, Hoopa, Eternatus, Landorus) on a test ROM.

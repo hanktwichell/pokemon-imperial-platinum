@@ -53,7 +53,7 @@ Pokédex's caught entry (`SovereignCheckSpeciesCaught`).
 | Zekrom | static | Valley Windworks, the island behind the building (Surf) | 70 | `ITEM_DARK_STONE` in the bag, and night (8 pm–4 am) **when entering the map** | Truth and Ideals |
 | Kyurem | static | Mt. Coronet's Iceberg Ruins doorway room | 70 | Reshiram and Zekrom caught; no Relicanth and Wailord pair in the party (that pair swaps the doorway to the Iceberg Ruins, part 13) | Truth and Ideals |
 | Tornadus, Thundurus | roamers | mainland routes | 65 | released on the first reading of Forces of Nature (`FLAG_SOVEREIGN_RELEASED_FORCES_OF_NATURE`) | Forces of Nature |
-| Landorus | static | Route 228 Rock Peak Ruins chamber (7, 5) | 65 | Tornadus and Thundurus **in the party** | Forces of Nature (after both are caught; the Archivist also gives the Reveal Glass) |
+| Landorus | static | Route 228, north end of the first sand field (782, 323) | 65 | Tornadus and Thundurus **in the party** | Forces of Nature (after both are caught; the Archivist also gives the Reveal Glass) |
 | Enamorus | static | Route 224, the beach field (912, 535) | 65 | Landorus caught | Forces of Nature |
 
 The Archivist gives the DNA Splicers once Kyurem is caught.

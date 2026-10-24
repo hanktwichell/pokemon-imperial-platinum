@@ -560,7 +560,7 @@ implemented.
         (`SystemVars_SetRoamingSpeciesState`).
       - The Hall of Fame resets a knocked-out one (`ROAMER_STATE_DEFEATED` to `_RESET`), and the Archivist releases it
         again, as Professor Oak does for the legendary birds.
-      - Landorus (`ROUTE_228_ROCK_PEAK_RUINS`, own script archives like the ice chamber's) checks `CheckPartyHasSpecies`
+      - Landorus (Route 228's sand field, `scripts_route_228`) checks `CheckPartyHasSpecies`
         for both. Enamorus (Route 224) waits for Landorus caught.
     - **More roamers** (decision 28): Zeraora takes vanilla's unused Darkrai slot (`ROAMING_SLOT_ZERAORA`), and
       `ROAMING_SLOT_OKIDOGI`, `_MUNKIDORI`, `_FEZANDIPITI`, `_GLASTRIER` and `_SPECTRIER` make 13 slots. The five new
