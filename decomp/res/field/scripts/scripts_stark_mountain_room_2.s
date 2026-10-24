@@ -9,10 +9,40 @@
     ScriptEntry StarkMountainRoom2_Dummy4
     ScriptEntry StarkMountainRoom2_Dummy5
     ScriptEntry StarkMountainRoom2_OnTransition
+    ScriptEntry StarkMountainRoom2_OnLoad
+    ScriptEntry StarkMountainRoom2_LegendaryVolcanion
     ScriptEntryEnd
 
 StarkMountainRoom2_OnTransition:
+    Call StarkMountainRoom2_SovereignSetVolcanionVisibility
     GoToIfLt VAR_STARK_MOUNTAIN_ROOM_2_FOLLOWER_BUCK_STATE, 2, StarkMountainRoom2_ResetFollowerBuckState
+    End
+
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Volcanion stands at the end of the dead-end tunnel in the
+@ north-east (73, 15) once the Kalos Chronicle is open (VAR_SOVEREIGN_CHRONICLE 2), until it's caught. It moved here from
+@ room 1 (owner, 2026-10-24), which Groudon and the first-visit Galactic scene use.
+StarkMountainRoom2_SovereignSetVolcanionVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+    GoToIfLt VAR_SOVEREIGN_CHRONICLE, 2, StarkMountainRoom2_SovereignSetVolcanionVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_VOLCANION, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, StarkMountainRoom2_SovereignSetVolcanionVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+StarkMountainRoom2_SovereignSetVolcanionVisibilityEnd:
+    Return
+
+StarkMountainRoom2_OnLoad:
+    GoToIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, StarkMountainRoom2_RemoveLegendaryVolcanion
+    End
+
+StarkMountainRoom2_RemoveLegendaryVolcanion:
+    RemoveObject LOCALID_LEGENDARY_VOLCANION
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+    End
+
+StarkMountainRoom2_LegendaryVolcanion:
+    SetVar VAR_0x8004, SPECIES_VOLCANION
+    SetVar VAR_0x8005, 60
+    Common_SovereignLegendaryEncounter
     End
 
 StarkMountainRoom2_ResetFollowerBuckState:

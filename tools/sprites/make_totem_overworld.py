@@ -20,7 +20,6 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 OUT_DIR = os.path.join(ROOT, "decomp", "res", "graphics", "field_sprites", "pokemon")
 URL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{}.png"
 SIZE = 64
-FIT = SIZE - 2           # room for the aura outline on each side
 TRANSPARENT = (66, 107, 165)   # Regigigas's transparent colour
 AURA = (255, 140, 40)
 ART_COLOURS = 14         # + the aura and the transparent colour = 16
@@ -48,34 +47,36 @@ def load(sprites_dir, pokeapi_id):
         return Image.open(io.BytesIO(response.read()))
 
 
-def overworld(src, aura=True):
-    """One 64x64 frame. With aura, a one-pixel orange outline (palette index 1); without, 15 art colours."""
+def overworld(src, aura=True, width=SIZE, height=SIZE):
+    """One frame, 64x64 unless given. With aura, a one-pixel orange outline (palette index 1); without, 15 art
+    colours."""
+    fit_w, fit_h = width - 2, height - 2   # room for the aura outline on each side
     art = src.convert("RGBA")
     art = art.crop(art.getbbox())
-    scale = min(1.0, FIT / art.width, FIT / art.height)
+    scale = min(1.0, fit_w / art.width, fit_h / art.height)
     if scale < 1:
         art = art.resize((round(art.width * scale), round(art.height * scale)), Image.LANCZOS)
     # Hard edges: the DS has no partial transparency.
     alpha = art.getchannel("A").point(lambda a: 255 if a >= 128 else 0)
     art.putalpha(alpha)
-    canvas = Image.new("RGBA", (SIZE, SIZE), (0, 0, 0, 0))
-    canvas.paste(art, ((SIZE - art.width) // 2, SIZE - 1 - art.height), art)
+    canvas = Image.new("RGBA", (width, height), (0, 0, 0, 0))
+    canvas.paste(art, ((width - art.width) // 2, height - 1 - art.height), art)
 
     opaque = canvas.getchannel("A")
     outline = opaque.filter(ImageFilter.MaxFilter(3)) if aura else None
     art_colours = ART_COLOURS if aura else ART_COLOURS + 1
     first = 2 if aura else 1
-    rgb = Image.new("RGB", (SIZE, SIZE), TRANSPARENT)
+    rgb = Image.new("RGB", (width, height), TRANSPARENT)
     rgb.paste(canvas.convert("RGB"), (0, 0), opaque)
     quantized = rgb.quantize(colors=art_colours + 1, method=Image.MEDIANCUT, dither=Image.NONE)
     # Move the art's colours up past index 0 (transparent) and, with an aura, 1 (the aura).
     pal = quantized.getpalette()[:3 * (art_colours + 1)]
     colours = [tuple(pal[i:i + 3]) for i in range(0, len(pal), 3)]
-    out = Image.new("P", (SIZE, SIZE), 0)
+    out = Image.new("P", (width, height), 0)
     palette = list(TRANSPARENT) + (list(AURA) if aura else [])
     remap, used = {}, []
-    for y in range(SIZE):
-        for x in range(SIZE):
+    for y in range(height):
+        for x in range(width):
             if opaque.getpixel((x, y)):
                 c = quantized.getpixel((x, y))
                 if c not in remap:

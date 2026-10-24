@@ -257,7 +257,7 @@ field_sprites_textures_single_frame = [
     { 'file': 'pokemon/legendary_melmetal.png', 'basename': 'sovlegend40'},
     { 'file': 'pokemon/legendary_zacian.png', 'basename': 'sovlegend41'},
     { 'file': 'pokemon/legendary_zamazenta.png', 'basename': 'sovlegend42'},
-    { 'file': 'pokemon/legendary_eternatus.png', 'basename': 'sovlegend43'},
+    # legendary_eternatus.png is extra large: its own two-frame texture below, like Giratina's Origin Forme
     { 'file': 'pokemon/legendary_kubfu.png', 'basename': 'sovlegend44'},
     { 'file': 'pokemon/legendary_zarude.png', 'basename': 'sovlegend45'},
     { 'file': 'pokemon/legendary_regieleki.png', 'basename': 'sovlegend46'},
@@ -624,6 +624,27 @@ field_sprites_nsbtxs += custom_target(
         '--extract-palette',
         '--repeat-palette',
         '--name', 'giraori',
+        '@OUTPUT@'
+    ],
+)
+
+# Sovereign: Eternatus is extra large (tools/sprites/make_legendary_overworld.py), packed like Giratina's Origin Forme.
+field_sprites_nsbtxs += custom_target(
+    input: files(
+        'pokemon/legendary_eternatus.png'
+    ),
+    build_subdir: field_sprites_private_dir,
+    output: '@BASENAME@.nsbtx',
+    command: [
+        nitrobtx_exe,
+        'pack',
+        '--texture', '@INPUT0@',
+        '--name', 'sovlegend43',
+        '--spritesheet',
+        '--num-frames', '2',
+        '--extract-palette',
+        '--repeat-palette',
+        '--name', 'sovlegend43',
         '@OUTPUT@'
     ],
 )

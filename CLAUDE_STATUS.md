@@ -4716,3 +4716,33 @@ build and boot smoke test pass; not tested in game.
 1. Owner: Stark Mountain room 1 (Volcanion/Groudon), the last clash.
 2. Zekrom's Route 215 tile (decision 34).
 3. An in-game check of the five moved encounters (Enamorus, Yveltal, Hoopa, Eternatus, Landorus) on a test ROM.
+
+## CA-0052 (Claude A, 2026-10-24): Volcanion moved; overworld size classes; Regional Forms Park levels and signs
+
+**Implemented:**
+- **Volcanion** moved from Stark Mountain room 1 to the north-east dead-end tunnel of room 2 (73, 15) (decision 39).
+  Room 2 gets an OnLoad init script; room 1 keeps Groudon, whose object now uses script 4. Archivist hint updated.
+- **Overworld size classes** (decision 40): `tools/sprites/make_legendary_overworld.py` holds the owner's classes
+  (Eternatus extra large; Groudon, Kyogre, Rayquaza, Necrozma, Koraidon, Miraidon large, plus Lugia, Ho-Oh, Solgaleo
+  and Lunala once they exist; everything else small for now). Small sprites are 32×32 frames on
+  BILLBOARD_MODEL_GENERIC_32x32; Eternatus is a two-frame 128×64 sheet on Giratina Origin's model, frame sequence and
+  renderer, with its own nsbtx target in the field_sprites meson.build. `make_totem_overworld.overworld` takes a size
+  (the Totems are unchanged, byte for byte). The list the owner still has to sort: `docs/OverworldSpriteSizes.md`.
+  Checked on a test ROM: small, large and the extra large sprite render.
+- **Regional Forms Park** (decision 41): levels 40–55, the rare forms level 60, the Galarian birds level 70; four
+  arrow signs (`events_pal_park.json`, scripts 8–11, `pal_park.json` texts) at the way into each zone.
+- Release build and boot smoke test pass. The signs and Volcanion's new spot aren't tested in game.
+
+**Files modified:** `tools/sprites/make_legendary_overworld.py`, `tools/sprites/make_totem_overworld.py`, 86
+`decomp/res/graphics/field_sprites/pokemon/legendary_*.png`, `decomp/res/graphics/field_sprites/meson.build`,
+`decomp/src/overlay005/object_event_gfx_data.c`, Stark Mountain room 1/2 events and scripts, the Pal Park events,
+scripts and text, `decomp/res/text/canalave_library_2f.json`, `data/regional_forms_park.yaml`,
+`decomp/include/data/regional_forms_park.h`, `tools/engine/gen_regional_forms_park.py`, `docs/RegionalFormsPark.md`,
+`docs/OverworldSpriteSizes.md` (new), `data/postgame_legendaries.yaml`, `docs/PostgameLegendaries.md`,
+`docs/LegendaryTriggers.md`, `docs/LegendaryPlacementReview.md`, `docs/TechnicalDesign.md`, `docs/EngineChangelog.md`,
+`docs/ProjectStatus.md`, `docs/StaticEncounters.xlsx`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Owner: sort the 85 small placeholders in `docs/OverworldSpriteSizes.md`; Claude moves the large ones to 64×64.
+2. Owner: the special evolutions (decision 20) and when the park opens.
+3. Zekrom's Route 215 tile (decision 34), then an in-game check of the six moved encounters and the park signs.

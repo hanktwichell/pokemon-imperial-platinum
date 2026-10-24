@@ -2,15 +2,24 @@
 """Draw the overworld sprites of the post-game legendaries (docs/PostgameLegendaries.md, the Chronicles): the
 Pokémon standing at each static encounter, decomp/res/graphics/field_sprites/pokemon/legendary_<species>.png.
 
-Each is one 64x64 frame like the Totems' (make_totem_overworld.py, which draws them): the front sprite from PokeAPI's
-sprite repository, scaled down to fit when it's larger, standing on the bottom edge, without the Totem aura. These are
-placeholders until the owner's overworld art arrives (E12).
+Each is the front sprite from PokeAPI's sprite repository, scaled down to fit when it's larger, standing on the bottom
+edge, without the Totem aura (make_totem_overworld.py draws them). These are placeholders until the owner's overworld
+art arrives (E12). The size class is the owner's (2026-10-24), like Platinum's own overworld Pokémon:
+- small: one 32x32 frame (BILLBOARD_MODEL_GENERIC_32x32), like Uxie, Heatran or Shaymin. Every species the owner
+  hasn't sorted yet is small for now.
+- large: one 64x64 frame (BILLBOARD_MODEL_GENERIC_64x64), like Dialga, Palkia or Regigigas.
+- extra large: a 128x128 sheet of two 128x64 frames (BILLBOARD_MODEL_GIRATINA_ORIGIN), like Giratina's Origin Forme.
+Platinum's own legendaries keep their vanilla sprites. A species's class must match its billboard model in
+decomp/src/overlay005/object_event_gfx_data.c and, for the extra large ones, its texture in the field_sprites
+meson.build.
 
 Usage: python3 tools/sprites/make_legendary_overworld.py [/path/to/PokeAPI/sprites]
 Without a local copy of https://github.com/PokeAPI/sprites the sprites are downloaded from GitHub.
 """
 import os
 import sys
+
+from PIL import Image
 
 from make_totem_overworld import OUT_DIR, load, overworld
 
@@ -110,11 +119,34 @@ LEGENDARIES = {
     "mew": 151,
 }
 
+# The owner's size classes (2026-10-24). Lugia, Ho-Oh, Solgaleo and Lunala have no overworld sprite yet; they're listed
+# for when their encounters are added.
+EXTRA_LARGE = {"eternatus"}
+LARGE = {"lugia", "ho_oh", "groudon", "kyogre", "rayquaza", "solgaleo", "lunala", "necrozma", "koraidon", "miraidon"}
+
+
+def size_class(species):
+    return "extra large" if species in EXTRA_LARGE else "large" if species in LARGE else "small"
+
+
+def draw(src, species):
+    cls = size_class(species)
+    if cls == "small":
+        return overworld(src, aura=False, width=32, height=32)
+    if cls == "large":
+        return overworld(src, aura=False)
+    frame = overworld(src, aura=False, width=128, height=64)
+    sheet = Image.new("P", (128, 128), 0)
+    sheet.putpalette(frame.getpalette())
+    sheet.paste(frame, (0, 0))
+    sheet.paste(frame, (0, 64))
+    return sheet
+
 
 def main():
     sprites_dir = sys.argv[1] if len(sys.argv) > 1 else None
     for species, pokeapi_id in LEGENDARIES.items():
-        out = overworld(load(sprites_dir, pokeapi_id), aura=False)
+        out = draw(load(sprites_dir, pokeapi_id), species)
         out.save(os.path.join(OUT_DIR, f"legendary_{species}.png"), bits=4)
     print(f"wrote {len(LEGENDARIES)} legendary overworld sprites to {OUT_DIR}")
 
