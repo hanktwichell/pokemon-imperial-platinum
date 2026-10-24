@@ -205,6 +205,63 @@
         "our warehouse in Veilstone and the\n",
         "beach on Route 213. Go on, then!"
       ]
+    },
+    {
+      "id": "CelesticTown_Text_SovereignShrine",
+      "en_US": [
+        "It’s an ancient shrine.\n",
+        "There is some text engraved on it.\r",
+        "In honor of the forest’s protector.\r"
+      ]
+    },
+    {
+      "id": "CelesticTown_Text_SovereignShrineBall",
+      "en_US": [
+        "There is a mysterious gold and silver\n",
+        "colored Poké Ball inside the shrine.\r",
+        "Do you want to take the Poké Ball\n",
+        "from the shrine?"
+      ]
+    },
+    {
+      "id": "CelesticTown_Text_SovereignShrineTake",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} reached into the shrine and\n",
+        "took out the mysterious Poké Ball.\r"
+      ]
+    },
+    {
+      "id": "CelesticTown_Text_SovereignShrineLeave",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} decided to leave the mysterious\n",
+        "Poké Ball inside the shrine."
+      ]
+    },
+    {
+      "id": "CelesticTown_Text_SovereignShrineEmpty",
+      "en_US": [
+        "It’s an ancient shrine.\n",
+        "There is some text engraved on it.\r",
+        "In honor of the forest’s protector."
+      ]
+    },
+    {
+      "id": "CelesticTown_Text_SovereignShrineExpert",
+      "en_US": [
+        "Hm? What’s this?\r",
+        "Did you take that strange Poké Ball\n",
+        "out of the shrine, child?\r",
+        "Well, never mind.\n",
+        "It is of no consequence.\r",
+        "That Gold-Silver Ball was an offering\n",
+        "to the guardian of the forest.\r",
+        "There’s no forest near here, though.\n",
+        "Just a lot of mountains.\r",
+        "Perhaps it could better serve its\n",
+        "purpose if it were taken to a forest?\r",
+        "Well, take care of that relic.\n",
+        "Oh, and yourself, too.\r"
+      ]
     }
   ]
 }

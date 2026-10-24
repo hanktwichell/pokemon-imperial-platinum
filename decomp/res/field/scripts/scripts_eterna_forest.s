@@ -19,11 +19,22 @@
     ScriptEntry EternaForest_OnLoad
     ScriptEntry EternaForest_LegendaryVirizion
     ScriptEntry EternaForest_LegendaryXerneas
+    ScriptEntry EternaForest_SovereignCoordEvent_GSBall
+    ScriptEntry EternaForest_SovereignPortal1
+    ScriptEntry EternaForest_SovereignPortal2
+    ScriptEntry EternaForest_SovereignPortal3
+    ScriptEntry EternaForest_SovereignPortal4
+    ScriptEntry EternaForest_SovereignPortal5
+    ScriptEntry EternaForest_SovereignPortal6
+    ScriptEntry EternaForest_SovereignPortal7
+    ScriptEntry EternaForest_SovereignPortal8
+    ScriptEntry EternaForest_LegendaryCelebi
     ScriptEntryEnd
 
 EternaForest_OnTransition:
     Call EternaForest_SovereignSetVirizionVisibility
     Call EternaForest_SovereignSetXerneasVisibility
+    Call EternaForest_SovereignSetPortalVisibility
     GoToIfUnset FLAG_TRAVELED_WITH_CHERYL, EternaForest_ResetFollowerCherylState
     End
 
@@ -61,6 +72,7 @@ EternaForest_OnLoad:
 @ through a battle (they're cleared on map changes), and the special vars aren't readable from OnLoad then.
 EternaForest_RemoveLegendary:
     GoToIfEq VAR_MAP_LOCAL_0x00, SPECIES_XERNEAS, EternaForest_RemoveLegendaryXerneas
+    GoToIfEq VAR_MAP_LOCAL_0x00, SPECIES_CELEBI, EternaForest_SovereignRemoveLegendaryCelebi
     RemoveObject LOCALID_LEGENDARY_VIRIZION
     ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
     End
@@ -520,3 +532,258 @@ EternaForest_OnFrame_CherylOldChateauCutscene:
 EternaForest_Movement_CherylWalkOnSpotNorth:
     WalkOnSpotNormalNorth
     EndMovement
+
+@ Sovereign (E10 part 28, Renegade's Celebi event): once the GS Ball has shaken here (VAR_SOVEREIGN_CELEBI_STATE 2), eight time
+@ portals stand around the forest. Each holds the memory of a battle with one of Johto's Gym Leaders (Renegade's
+@ trainers 1029-1036) and closes once that memory is beaten. With all eight beaten, Celebi itself waits near the
+@ middle of the forest (70, 58), Lv. 40, until it is caught. Renegade puts it in a ninth portal; Sovereign shows the
+@ Pokémon, as for its other legendaries. The portals' hidden flags are map-local (0x01-0x08).
+EternaForest_SovereignSetPortalVisibility:
+    SetFlag FLAG_MAP_LOCAL_0x01
+    GoToIfLt VAR_SOVEREIGN_CELEBI_STATE, 2, EternaForest_SovereignSetPortal1VisibilityEnd
+    GoToIfSet FLAG_DEFEATED_TRAINER_SOVEREIGN_FALKNER_MEMORY, EternaForest_SovereignSetPortal1VisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_0x01
+EternaForest_SovereignSetPortal1VisibilityEnd:
+    SetFlag FLAG_MAP_LOCAL_0x02
+    GoToIfLt VAR_SOVEREIGN_CELEBI_STATE, 2, EternaForest_SovereignSetPortal2VisibilityEnd
+    GoToIfSet FLAG_DEFEATED_TRAINER_SOVEREIGN_BUGSY_MEMORY, EternaForest_SovereignSetPortal2VisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_0x02
+EternaForest_SovereignSetPortal2VisibilityEnd:
+    SetFlag FLAG_MAP_LOCAL_0x03
+    GoToIfLt VAR_SOVEREIGN_CELEBI_STATE, 2, EternaForest_SovereignSetPortal3VisibilityEnd
+    GoToIfSet FLAG_DEFEATED_TRAINER_SOVEREIGN_WHITNEY_MEMORY, EternaForest_SovereignSetPortal3VisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_0x03
+EternaForest_SovereignSetPortal3VisibilityEnd:
+    SetFlag FLAG_MAP_LOCAL_0x04
+    GoToIfLt VAR_SOVEREIGN_CELEBI_STATE, 2, EternaForest_SovereignSetPortal4VisibilityEnd
+    GoToIfSet FLAG_DEFEATED_TRAINER_SOVEREIGN_MORTY_MEMORY, EternaForest_SovereignSetPortal4VisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_0x04
+EternaForest_SovereignSetPortal4VisibilityEnd:
+    SetFlag FLAG_MAP_LOCAL_0x05
+    GoToIfLt VAR_SOVEREIGN_CELEBI_STATE, 2, EternaForest_SovereignSetPortal5VisibilityEnd
+    GoToIfSet FLAG_DEFEATED_TRAINER_SOVEREIGN_CHUCK_MEMORY, EternaForest_SovereignSetPortal5VisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_0x05
+EternaForest_SovereignSetPortal5VisibilityEnd:
+    SetFlag FLAG_MAP_LOCAL_0x06
+    GoToIfLt VAR_SOVEREIGN_CELEBI_STATE, 2, EternaForest_SovereignSetPortal6VisibilityEnd
+    GoToIfSet FLAG_DEFEATED_TRAINER_SOVEREIGN_JASMINE_MEMORY, EternaForest_SovereignSetPortal6VisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_0x06
+EternaForest_SovereignSetPortal6VisibilityEnd:
+    SetFlag FLAG_MAP_LOCAL_0x07
+    GoToIfLt VAR_SOVEREIGN_CELEBI_STATE, 2, EternaForest_SovereignSetPortal7VisibilityEnd
+    GoToIfSet FLAG_DEFEATED_TRAINER_SOVEREIGN_PRYCE_MEMORY, EternaForest_SovereignSetPortal7VisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_0x07
+EternaForest_SovereignSetPortal7VisibilityEnd:
+    SetFlag FLAG_MAP_LOCAL_0x08
+    GoToIfLt VAR_SOVEREIGN_CELEBI_STATE, 2, EternaForest_SovereignSetPortal8VisibilityEnd
+    GoToIfSet FLAG_DEFEATED_TRAINER_SOVEREIGN_CLAIR_MEMORY, EternaForest_SovereignSetPortal8VisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_0x08
+EternaForest_SovereignSetPortal8VisibilityEnd:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_3
+    GoToIfLt VAR_SOVEREIGN_CELEBI_STATE, 2, EternaForest_SovereignSetCelebiVisibilityEnd
+    GoToIfUnset FLAG_DEFEATED_TRAINER_SOVEREIGN_FALKNER_MEMORY, EternaForest_SovereignSetCelebiVisibilityEnd
+    GoToIfUnset FLAG_DEFEATED_TRAINER_SOVEREIGN_BUGSY_MEMORY, EternaForest_SovereignSetCelebiVisibilityEnd
+    GoToIfUnset FLAG_DEFEATED_TRAINER_SOVEREIGN_WHITNEY_MEMORY, EternaForest_SovereignSetCelebiVisibilityEnd
+    GoToIfUnset FLAG_DEFEATED_TRAINER_SOVEREIGN_MORTY_MEMORY, EternaForest_SovereignSetCelebiVisibilityEnd
+    GoToIfUnset FLAG_DEFEATED_TRAINER_SOVEREIGN_CHUCK_MEMORY, EternaForest_SovereignSetCelebiVisibilityEnd
+    GoToIfUnset FLAG_DEFEATED_TRAINER_SOVEREIGN_JASMINE_MEMORY, EternaForest_SovereignSetCelebiVisibilityEnd
+    GoToIfUnset FLAG_DEFEATED_TRAINER_SOVEREIGN_PRYCE_MEMORY, EternaForest_SovereignSetCelebiVisibilityEnd
+    GoToIfUnset FLAG_DEFEATED_TRAINER_SOVEREIGN_CLAIR_MEMORY, EternaForest_SovereignSetCelebiVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_CELEBI, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, EternaForest_SovereignSetCelebiVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_3
+EternaForest_SovereignSetCelebiVisibilityEnd:
+    Return
+
+@ The GS Ball shakes as the player walks in from the Eterna City side: the portals open, and Celebi peeks out at the
+@ player before vanishing.
+EternaForest_SovereignCoordEvent_GSBall:
+    LockAll
+    Message EternaForest_Text_SovereignGSBallShaking
+    CloseMessage
+    FadeScreenOut FADE_SCREEN_SPEED_SLOW, COLOR_WHITE
+    WaitFadeScreen
+    SetVar VAR_SOVEREIGN_CELEBI_STATE, 2
+    Call EternaForest_SovereignSetPortalVisibility
+    AddObject LOCALID_SOVEREIGN_TIME_PORTAL_1
+    AddObject LOCALID_SOVEREIGN_TIME_PORTAL_2
+    AddObject LOCALID_SOVEREIGN_TIME_PORTAL_3
+    AddObject LOCALID_SOVEREIGN_TIME_PORTAL_4
+    AddObject LOCALID_SOVEREIGN_TIME_PORTAL_5
+    AddObject LOCALID_SOVEREIGN_TIME_PORTAL_6
+    AddObject LOCALID_SOVEREIGN_TIME_PORTAL_7
+    AddObject LOCALID_SOVEREIGN_TIME_PORTAL_8
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    RemoveObject LOCALID_SOVEREIGN_CELEBI_SPIRIT
+    SetObjectEventPos LOCALID_SOVEREIGN_CELEBI_SPIRIT, 73, VAR_0x8005
+    AddObject LOCALID_SOVEREIGN_CELEBI_SPIRIT
+    FadeScreenIn FADE_SCREEN_SPEED_SLOW, COLOR_WHITE
+    WaitFadeScreen
+    WaitTime 15, VAR_RESULT
+    ApplyMovement LOCALID_SOVEREIGN_CELEBI_SPIRIT, EternaForest_Movement_SovereignCelebiNotice
+    WaitMovement
+    PlayCry SPECIES_CELEBI
+    Message EternaForest_Text_SovereignCelebiBii
+    WaitCry
+    CloseMessage
+    ApplyMovement LOCALID_SOVEREIGN_CELEBI_SPIRIT, EternaForest_Movement_SovereignCelebiFlee
+    WaitMovement
+    RemoveObject LOCALID_SOVEREIGN_CELEBI_SPIRIT
+    ReleaseAll
+    End
+
+EternaForest_SovereignPortal1:
+    SetVar VAR_MAP_LOCAL_0x01, TRAINER_SOVEREIGN_FALKNER_MEMORY
+    SetVar VAR_MAP_LOCAL_0x02, LOCALID_SOVEREIGN_TIME_PORTAL_1
+    SetVar VAR_MAP_LOCAL_0x03, 74
+    SetVar VAR_MAP_LOCAL_0x04, 32
+    GoTo EternaForest_SovereignPortal
+
+EternaForest_SovereignPortal2:
+    SetVar VAR_MAP_LOCAL_0x01, TRAINER_SOVEREIGN_BUGSY_MEMORY
+    SetVar VAR_MAP_LOCAL_0x02, LOCALID_SOVEREIGN_TIME_PORTAL_2
+    SetVar VAR_MAP_LOCAL_0x03, 65
+    SetVar VAR_MAP_LOCAL_0x04, 34
+    GoTo EternaForest_SovereignPortal
+
+EternaForest_SovereignPortal3:
+    SetVar VAR_MAP_LOCAL_0x01, TRAINER_SOVEREIGN_WHITNEY_MEMORY
+    SetVar VAR_MAP_LOCAL_0x02, LOCALID_SOVEREIGN_TIME_PORTAL_3
+    SetVar VAR_MAP_LOCAL_0x03, 82
+    SetVar VAR_MAP_LOCAL_0x04, 46
+    GoTo EternaForest_SovereignPortal
+
+EternaForest_SovereignPortal4:
+    SetVar VAR_MAP_LOCAL_0x01, TRAINER_SOVEREIGN_MORTY_MEMORY
+    SetVar VAR_MAP_LOCAL_0x02, LOCALID_SOVEREIGN_TIME_PORTAL_4
+    SetVar VAR_MAP_LOCAL_0x03, 81
+    SetVar VAR_MAP_LOCAL_0x04, 72
+    GoTo EternaForest_SovereignPortal
+
+EternaForest_SovereignPortal5:
+    SetVar VAR_MAP_LOCAL_0x01, TRAINER_SOVEREIGN_CHUCK_MEMORY
+    SetVar VAR_MAP_LOCAL_0x02, LOCALID_SOVEREIGN_TIME_PORTAL_5
+    SetVar VAR_MAP_LOCAL_0x03, 53
+    SetVar VAR_MAP_LOCAL_0x04, 60
+    GoTo EternaForest_SovereignPortal
+
+EternaForest_SovereignPortal6:
+    SetVar VAR_MAP_LOCAL_0x01, TRAINER_SOVEREIGN_JASMINE_MEMORY
+    SetVar VAR_MAP_LOCAL_0x02, LOCALID_SOVEREIGN_TIME_PORTAL_6
+    SetVar VAR_MAP_LOCAL_0x03, 41
+    SetVar VAR_MAP_LOCAL_0x04, 58
+    GoTo EternaForest_SovereignPortal
+
+EternaForest_SovereignPortal7:
+    SetVar VAR_MAP_LOCAL_0x01, TRAINER_SOVEREIGN_PRYCE_MEMORY
+    SetVar VAR_MAP_LOCAL_0x02, LOCALID_SOVEREIGN_TIME_PORTAL_7
+    SetVar VAR_MAP_LOCAL_0x03, 29
+    SetVar VAR_MAP_LOCAL_0x04, 64
+    GoTo EternaForest_SovereignPortal
+
+EternaForest_SovereignPortal8:
+    SetVar VAR_MAP_LOCAL_0x01, TRAINER_SOVEREIGN_CLAIR_MEMORY
+    SetVar VAR_MAP_LOCAL_0x02, LOCALID_SOVEREIGN_TIME_PORTAL_8
+    SetVar VAR_MAP_LOCAL_0x03, 24
+    SetVar VAR_MAP_LOCAL_0x04, 68
+    GoTo EternaForest_SovereignPortal
+
+@ The portal's memory trainer, its local ID and its tile are in map-local vars 0x01-0x04, which last through
+@ the battle. After a win the portal closes and Celebi shows itself on its tile for a moment.
+EternaForest_SovereignPortal:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    Message EternaForest_Text_SovereignPortal
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, EternaForest_SovereignPortalDeclined
+    Message EternaForest_Text_SovereignPortalMemory
+    CloseMessage
+    StartTrainerBattle VAR_MAP_LOCAL_0x01
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, EternaForest_SovereignPortalLost
+    SetTrainerFlag VAR_MAP_LOCAL_0x01
+    FadeScreenOut FADE_SCREEN_SPEED_MEDIUM, COLOR_WHITE
+    WaitFadeScreen
+    RemoveObject VAR_MAP_LOCAL_0x02
+    RemoveObject LOCALID_SOVEREIGN_CELEBI_SPIRIT
+    SetObjectEventPos LOCALID_SOVEREIGN_CELEBI_SPIRIT, VAR_MAP_LOCAL_0x03, VAR_MAP_LOCAL_0x04
+    AddObject LOCALID_SOVEREIGN_CELEBI_SPIRIT
+    FadeScreenIn FADE_SCREEN_SPEED_MEDIUM, COLOR_WHITE
+    WaitFadeScreen
+    ApplyMovement LOCALID_SOVEREIGN_CELEBI_SPIRIT, EternaForest_Movement_SovereignCelebiEmote
+    WaitMovement
+    PlayCry SPECIES_CELEBI
+    Message EternaForest_Text_SovereignCelebiSad
+    WaitCry
+    CloseMessage
+    FadeScreenOut FADE_SCREEN_SPEED_FAST, COLOR_WHITE
+    WaitFadeScreen
+    RemoveObject LOCALID_SOVEREIGN_CELEBI_SPIRIT
+    FadeScreenIn FADE_SCREEN_SPEED_FAST, COLOR_WHITE
+    WaitFadeScreen
+    Message EternaForest_Text_SovereignPortalGone
+    WaitButton
+    CloseMessage
+    GoToIfUnset FLAG_DEFEATED_TRAINER_SOVEREIGN_FALKNER_MEMORY, EternaForest_SovereignPortalEnd
+    GoToIfUnset FLAG_DEFEATED_TRAINER_SOVEREIGN_BUGSY_MEMORY, EternaForest_SovereignPortalEnd
+    GoToIfUnset FLAG_DEFEATED_TRAINER_SOVEREIGN_WHITNEY_MEMORY, EternaForest_SovereignPortalEnd
+    GoToIfUnset FLAG_DEFEATED_TRAINER_SOVEREIGN_MORTY_MEMORY, EternaForest_SovereignPortalEnd
+    GoToIfUnset FLAG_DEFEATED_TRAINER_SOVEREIGN_CHUCK_MEMORY, EternaForest_SovereignPortalEnd
+    GoToIfUnset FLAG_DEFEATED_TRAINER_SOVEREIGN_JASMINE_MEMORY, EternaForest_SovereignPortalEnd
+    GoToIfUnset FLAG_DEFEATED_TRAINER_SOVEREIGN_PRYCE_MEMORY, EternaForest_SovereignPortalEnd
+    GoToIfUnset FLAG_DEFEATED_TRAINER_SOVEREIGN_CLAIR_MEMORY, EternaForest_SovereignPortalEnd
+    WaitTime 15, VAR_RESULT
+    FadeScreenOut FADE_SCREEN_SPEED_MEDIUM, COLOR_WHITE
+    WaitFadeScreen
+    PlayCry SPECIES_CELEBI
+    WaitCry
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_3
+    AddObject LOCALID_LEGENDARY_CELEBI
+    FadeScreenIn FADE_SCREEN_SPEED_MEDIUM, COLOR_WHITE
+    WaitFadeScreen
+    WaitTime 15, VAR_RESULT
+    Message EternaForest_Text_SovereignCelebiPresence
+    WaitButton
+    CloseMessage
+EternaForest_SovereignPortalEnd:
+    ReleaseAll
+    End
+
+@ The message box is closed on every other path; closing it twice would remove its window twice.
+EternaForest_SovereignPortalDeclined:
+    CloseMessage
+    ReleaseAll
+    End
+
+EternaForest_SovereignPortalLost:
+    BlackOutFromBattle
+    ReleaseAll
+    End
+
+EternaForest_LegendaryCelebi:
+    SetVar VAR_MAP_LOCAL_0x00, SPECIES_CELEBI
+    SetVar VAR_0x8004, SPECIES_CELEBI
+    SetVar VAR_0x8005, 40
+    Common_SovereignLegendaryEncounter
+    End
+
+EternaForest_SovereignRemoveLegendaryCelebi:
+    RemoveObject LOCALID_LEGENDARY_CELEBI
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+    End
+
+    .balign 4, 0
+EternaForest_Movement_SovereignCelebiNotice:
+    FaceEast
+    EmoteExclamationMark
+    EndMovement
+
+EternaForest_Movement_SovereignCelebiFlee:
+    WalkFastWest 4
+    EndMovement
+
+EternaForest_Movement_SovereignCelebiEmote:
+    EmoteExclamationMark
+    EndMovement
+
+    .balign 4, 0

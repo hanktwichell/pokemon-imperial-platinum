@@ -4914,3 +4914,53 @@ is merged.
 2. Lugia (Route 220 island; Oak's Silver Wing with the three birds in the party) and Ho-Oh (Lost Tower 5F, off
    Totem Marowak's tile (3, 4); the Rainbow Wing with the three beasts). Renegade's Oak QUESTS menu gives both wings.
 3. The Route 224 and Battleground counterpart battles, Buck, Darach and the reporters.
+
+## CB-0102 — 2026-10-24, 4:15 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: E10 part 28, Celebi (Renegade's GS Ball and time portals).** PR #116 (part 27, the birds) is merged.
+- **GS Ball:** a new key item (`ITEM_GS_BALL`, a custom item in `data/items_sovereign.yaml`). Its icon is
+  Platinum's Poké Ball recoloured (`tools/sprites/make_gs_ball_icon.py`).
+  - It sits in Celestic Town's small shrine, a new bg event at (463, 529), facing north.
+  - Taking it brings an old man (`LOCALID_SOVEREIGN_SHRINE_EXPERT`, an off-map dummy at 999, 999), who suggests a
+    forest.
+- **State:** `VAR_SOVEREIGN_CELEBI_STATE` (1 = taken, 2 = portals open) takes over `VAR_DUMMY_0x4083`. Its only use
+  was a write when Cynthia leaves Valor Lakefront, and I removed that write. No new flags.
+- **Eterna Forest:**
+  - A coord at x = 78 (z 34–39), on state 1, plays the scene: the ball shakes and the portals appear. Celebi
+    (`LOCALID_SOVEREIGN_CELEBI_SPIRIT`, off-map dummy) peeks from 5 tiles west, then flees.
+  - Eight portals (`OBJ_EVENT_GFX_TIME_PORTAL`, new sprite from `tools/sprites/make_time_portal_overworld.py`) sit on
+    map-local flags 0x01–0x08. They're shown while the state is 2 and their trainer is unbeaten.
+  - The memory trainers are new: `TRAINER_SOVEREIGN_{FALKNER,BUGSY,WHITNEY,MORTY,CHUCK,JASMINE,PRYCE,CLAIR}_MEMORY`,
+    from Renegade's trainers 1029–1036.
+  - One shared portal script; each portal's entry passes its trainer, local ID and tile in map-local vars 0x01–0x04.
+  - After all eight, Celebi (`LOCALID_LEGENDARY_CELEBI`, HIDE_LEGENDARY_3) stands at (70, 58), Lv. 40. It's removed
+    through the map's `VAR_MAP_LOCAL_0x00` species note, like Virizion and Xerneas.
+- **Engine finding:** two `CloseMessage` in a row with no message in between hang the game (the window is removed
+  twice). The portal script did it after a win; fixed. New `tools/test/check_double_close.py` scans all scripts:
+  no other Sovereign case (vanilla has two harmless ones).
+- Tested on a test ROM:
+  - The shrine (YES, item, old man) and the forest scene.
+  - All eight memory battles, each portal closing.
+  - "A curious presence", Celebi appearing, the Lv. 40 catch, and Celebi and the portals gone afterwards.
+  - Not tested: losing a memory battle, saying NO at a portal, and the shrine's text once it's empty.
+
+**Files modified:**
+- `data/items_sovereign.yaml`, `decomp/generated/{items,trainers,vars_flags,object_events_gfx}.txt`
+- Items: `decomp/res/items/data/gs_ball.json`, `decomp/res/items/icons/gs_ball.{png,pal}`, the icons `meson.build`
+  and `item_icon.order`
+- Sprites: `decomp/res/graphics/field_sprites/{objects/time_portal.png,pokemon/legendary_celebi.png}`,
+  `field_sprites.order`, the field_sprites `meson.build`, `decomp/src/overlay005/object_event_gfx_data.c`,
+  `tools/sprites/make_legendary_overworld.py`
+- 8 trainer JSONs (`decomp/res/trainers/data/sovereign_*_memory.json`)
+- Scripts, events and text for `celestic_town` and `eterna_forest`; scripts for `valor_lakefront`
+- Tools: `tools/sprites/make_gs_ball_icon.py`, `tools/sprites/make_time_portal_overworld.py`,
+  `tools/test/check_double_close.py` (all new)
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `docs/ItemChanges_Sovereign.md`,
+  `docs/LegendaryTriggers.md`, `docs/LegendaryPlacementReview.md`, `docs/OverworldSpriteSizes.md`,
+  `docs/StaticEncounters.xlsx`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Lugia: Route 220's island, Lv. 70, after the credits, with Oak's Silver Wing. Renegade's Oak gives it from a
+   QUESTS menu once Articuno, Zapdos and Moltres are in the party.
+2. Ho-Oh: Lost Tower 5F, off Totem Marowak's tile (3, 4), with the Rainbow Wing (the three beasts in the party).
+3. The Route 224 and Battleground counterpart battles, Buck, Darach and the reporters.

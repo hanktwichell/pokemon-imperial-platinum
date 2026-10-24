@@ -1,0 +1,33 @@
+{
+    "name": "Chuck",
+    "class": "TRAINER_CLASS_BLACK_BELT",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_POLIWRATH",
+            "form": 0,
+            "level": 45,
+            "item": null,
+            "moves": [
+                "MOVE_WATERFALL",
+                "MOVE_FOCUS_PUNCH",
+                "MOVE_ICE_PUNCH",
+                "MOVE_HYPNOSIS"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "..."
+        }
+    ]
+}

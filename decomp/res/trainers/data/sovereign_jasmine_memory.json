@@ -1,0 +1,33 @@
+{
+    "name": "Jasmine",
+    "class": "TRAINER_CLASS_LASS",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_STEELIX",
+            "form": 0,
+            "level": 45,
+            "item": null,
+            "moves": [
+                "MOVE_IRON_TAIL",
+                "MOVE_EARTHQUAKE",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_SANDSTORM"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "..."
+        }
+    ]
+}

@@ -554,6 +554,7 @@ item_icon_pngs = files(
     'crown_diamond.png',
     'crown.png',
     'sovereign_crown.png',
+    'gs_ball.png',
     # end of Sovereign items (png)
 )
 
@@ -1169,6 +1170,7 @@ item_icon_pals = files(
     'crown_diamond.pal',
     'crown.pal',
     'sovereign_crown.pal',
+    'gs_ball.pal',
     # end of Sovereign items (pal)
 )
 

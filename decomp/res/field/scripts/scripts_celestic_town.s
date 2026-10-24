@@ -17,6 +17,7 @@
     ScriptEntry CelesticTown_EtchingPalkia
     ScriptEntry CelesticTown_SovereignOnLoad
     ScriptEntry CelesticTown_LegendaryCalyrex
+    ScriptEntry CelesticTown_SovereignShrine
     ScriptEntryEnd
 
 CelesticTown_OnTransition:
@@ -336,3 +337,65 @@ CelesticTown_LegendaryCalyrex:
     SetVar VAR_0x8005, 70
     Common_SovereignLegendaryEncounter
     End
+
+@ Sovereign (E10 part 28, Renegade's Celebi event): the small shrine in the middle of town holds the GS Ball, an
+@ offering to the forest's protector. An old man then suggests taking it to a forest (Eterna Forest, where it opens
+@ the time portals). VAR_SOVEREIGN_CELEBI_STATE: 1 once it's taken, 2 once the portals are open.
+CelesticTown_SovereignShrine:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    GoToIfGe VAR_SOVEREIGN_CELEBI_STATE, 1, CelesticTown_SovereignShrineEmpty
+    Message CelesticTown_Text_SovereignShrine
+    Message CelesticTown_Text_SovereignShrineBall
+    BufferPlayerName 0
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, CelesticTown_SovereignShrineLeave
+    Message CelesticTown_Text_SovereignShrineTake
+    SetVar VAR_0x8004, ITEM_GS_BALL
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    CloseMessage
+    SetVar VAR_SOVEREIGN_CELEBI_STATE, 1
+    SetObjectEventPos LOCALID_SOVEREIGN_SHRINE_EXPERT, 467, 530
+    AddObject LOCALID_SOVEREIGN_SHRINE_EXPERT
+    ApplyMovement LOCALID_SOVEREIGN_SHRINE_EXPERT, CelesticTown_Movement_SovereignShrineExpertEnter
+    WaitMovement
+    ApplyMovement LOCALID_PLAYER, CelesticTown_Movement_SovereignPlayerFaceEast
+    WaitMovement
+    Message CelesticTown_Text_SovereignShrineExpert
+    CloseMessage
+    ApplyMovement LOCALID_SOVEREIGN_SHRINE_EXPERT, CelesticTown_Movement_SovereignShrineExpertLeave
+    WaitMovement
+    RemoveObject LOCALID_SOVEREIGN_SHRINE_EXPERT
+    ReleaseAll
+    End
+
+CelesticTown_SovereignShrineLeave:
+    Message CelesticTown_Text_SovereignShrineLeave
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+CelesticTown_SovereignShrineEmpty:
+    Message CelesticTown_Text_SovereignShrineEmpty
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+    .balign 4, 0
+CelesticTown_Movement_SovereignShrineExpertEnter:
+    EmoteExclamationMark
+    WalkNormalWest 3
+    EndMovement
+
+CelesticTown_Movement_SovereignPlayerFaceEast:
+    FaceEast
+    EndMovement
+
+CelesticTown_Movement_SovereignShrineExpertLeave:
+    WalkNormalEast 3
+    EndMovement
+
+    .balign 4, 0
