@@ -111,10 +111,17 @@ def area_tags(name):
 def parse_renegade(path):
     areas, cur = [], None
     lines = open(path, encoding="utf-8-sig").read().splitlines()
-    for i, line in enumerate(lines):
-        if line.startswith("Level") and i > 0 and lines[i - 1].strip():
-            cur = {"name": lines[i - 1].strip(), "levels_line": line.strip(), "tables": {}}
+    start = lines.index("Area Changes") + 2
+    for i, line in enumerate(lines[start:], start):
+        # Area headers: the name, then a "Levels:" line (Routes 219/220 say "Wild Levels:"), then a rule.
+        if re.match(r"^(Wild )?Levels?:", line) and lines[i - 1].strip():
+            cur = {"name": lines[i - 1].strip(), "levels_line": line.replace("Wild ", "", 1).strip(), "tables": {}}
             areas.append(cur)
+            continue
+        if line.startswith("=====") and not re.match(r"^(Wild )?Levels?:", lines[i - 1]):
+            # A header with no levels line (the first "Turnback Cave": its pillar rooms, unchanged from
+            # Platinum). Its tables are skipped rather than added to the previous area.
+            cur = None
             continue
         if cur is None:
             continue

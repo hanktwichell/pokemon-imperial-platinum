@@ -4442,6 +4442,86 @@
    "grass": null,
    "water": {
     "Surf": [
+     "Psyduck",
+     "Golduck",
+     "Psyduck",
+     "Psyduck",
+     "Psyduck"
+    ],
+    "Old Rod": [
+     "Magikarp",
+     "Relicanth",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Good Rod": [
+     "Magikarp",
+     "Relicanth",
+     "Magikarp",
+     "Magikarp",
+     "Magikarp"
+    ],
+    "Super Rod": [
+     "Gyarados",
+     "Relicanth",
+     "Gyarados",
+     "Gyarados",
+     "Gyarados"
+    ]
+   },
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Route 219",
+   "levels": "Levels: 30 - 45 (Surf)",
+   "tags": [
+    "field"
+   ],
+   "grass": null,
+   "water": {
+    "Surf": [
+     "Wingull",
+     "Tentacool",
+     "Pelipper",
+     "Wingull",
+     "Wingull"
+    ],
+    "Old Rod": [
+     "Krabby",
+     "Horsea",
+     "Clamperl",
+     "Krabby",
+     "Krabby"
+    ],
+    "Good Rod": [
+     "Krabby",
+     "Horsea",
+     "Clamperl",
+     "Krabby",
+     "Krabby"
+    ],
+    "Super Rod": [
+     "Kingler",
+     "Horsea",
+     "Huntail",
+     "Kingler",
+     "Kingler"
+    ]
+   },
+   "radar": [],
+   "honey": []
+  },
+  {
+   "name": "Route 220",
+   "levels": "Levels: 30 - 45 (Surf)",
+   "tags": [
+    "field"
+   ],
+   "grass": null,
+   "water": {
+    "Surf": [
      "Wingull",
      "Mantyke",
      "Pelipper",
@@ -4537,9 +4617,9 @@
      "night": "Dodrio"
     },
     {
-     "morning": "Slurpuff",
-     "day": "Slurpuff",
-     "night": "Slurpuff"
+     "morning": "Lurantis",
+     "day": "Lurantis",
+     "night": "Lurantis"
     }
    ],
    "water": {
@@ -6167,19 +6247,19 @@
    ],
    "grass": [
     {
-     "morning": "Haunter",
-     "day": "Haunter",
-     "night": "Haunter"
+     "morning": "Staravia",
+     "day": "Staravia",
+     "night": "Staravia"
     },
     {
-     "morning": "Golbat",
-     "day": "Golbat",
-     "night": "Golbat"
+     "morning": "Bibarel",
+     "day": "Bibarel",
+     "night": "Bibarel"
     },
     {
-     "morning": "Bronzong",
-     "day": "Bronzong",
-     "night": "Bronzong"
+     "morning": "Masquerain",
+     "day": "Masquerain",
+     "night": "Masquerain"
     },
     {
      "morning": "Comfey",
@@ -6187,9 +6267,9 @@
      "night": "Gothorita"
     },
     {
-     "morning": "Chimecho",
-     "day": "Chimecho",
-     "night": "Chimecho"
+     "morning": "Lickitung",
+     "day": "Lickitung",
+     "night": "Lickitung"
     },
     {
      "morning": "Duosion",
@@ -6197,9 +6277,9 @@
      "night": "Duosion"
     },
     {
-     "morning": "Dusclops",
-     "day": "Dusclops",
-     "night": "Dusclops"
+     "morning": "Golduck",
+     "day": "Golduck",
+     "night": "Golduck"
     },
     {
      "morning": "Florges",
@@ -6207,14 +6287,14 @@
      "night": "Florges"
     },
     {
-     "morning": "Banette",
-     "day": "Banette",
-     "night": "Banette"
-    },
-    {
      "morning": "Meowstic",
      "day": "Meowstic",
      "night": "Meowstic"
+    },
+    {
+     "morning": "Slurpuff",
+     "day": "Slurpuff",
+     "night": "Slurpuff"
     },
     {
      "morning": "Alcremie",
@@ -7653,9 +7733,9 @@
      "night": "Volbeat"
     },
     {
-     "morning": "Lurantis",
-     "day": "Lurantis",
-     "night": "Lurantis"
+     "morning": "Dubwool",
+     "day": "Dubwool",
+     "night": "Dubwool"
     }
    ],
    "water": {
@@ -8346,7 +8426,7 @@
   "Meowstic": "Lake Valor (grass)",
   "Doublade": "Mt. Coronet ~ 4F (grass)",
   "Aromatisse": "Route 229 (grass)",
-  "Slurpuff": "Route 221 (grass)",
+  "Slurpuff": "Lake Valor (grass)",
   "Malamar": "Victory Road ~ 1F Back 1 (grass)",
   "Barbaracle": "Route 226 (grass)",
   "Dragalge": "Victory Road ~ 1F Back 2 (Super Rod)",
@@ -8364,7 +8444,7 @@
   "Toxapex": "Pokémon League (Super Rod)",
   "Mudsdale": "Route 228 (grass)",
   "Araquanid": "Twinleaf Town (Good Rod)",
-  "Lurantis": "Route 229 (grass)",
+  "Lurantis": "Route 221 (grass)",
   "Shiinotic": "Route 215 (grass)",
   "Salazzle": "Stark Mountain (Outside) (grass)",
   "Bewear": "Mt. Coronet ~ 5F (grass)",
@@ -8375,6 +8455,7 @@
   "Dottler": "Eterna Forest (grass)",
   "Thievul": "Mt. Coronet ~ Tunnel to Route 211 Entrance (grass)",
   "Eldegoss": "Great Marsh ~ Area 3/4 (grass)",
+  "Dubwool": "Route 229 (grass)",
   "Drednaw": "Iron Island ~ Outside (Good Rod)",
   "Boltund": "Route 222 (grass)",
   "Carkol": "Stark Mountain (Entrance) (grass)",
@@ -8444,7 +8525,6 @@
   "Toxel": "Ravaged Path (grass)"
  },
  "unplaced_regular_species": [
-  "Dubwool",
   "Maushold",
   "Stoutland",
   "Gothitelle",

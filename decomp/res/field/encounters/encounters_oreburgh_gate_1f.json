@@ -2,32 +2,8 @@
     "land_rate": 10,
     "land_encounters": [
         {
-            "level": 5,
-            "species": "SPECIES_ZUBAT"
-        },
-        {
-            "level": 5,
-            "species": "SPECIES_PSYDUCK"
-        },
-        {
-            "level": 6,
-            "species": "SPECIES_ZUBAT"
-        },
-        {
-            "level": 6,
-            "species": "SPECIES_PSYDUCK"
-        },
-        {
-            "level": 5,
-            "species": "SPECIES_GEODUDE"
-        },
-        {
-            "level": 5,
-            "species": "SPECIES_ZUBAT"
-        },
-        {
             "level": 7,
-            "species": "SPECIES_PSYDUCK"
+            "species": "SPECIES_ZUBAT"
         },
         {
             "level": 7,
@@ -35,6 +11,26 @@
         },
         {
             "level": 7,
+            "species": "SPECIES_DIGLETT"
+        },
+        {
+            "level": 8,
+            "species": "SPECIES_SCRAGGY"
+        },
+        {
+            "level": 8,
+            "species": "SPECIES_RIOLU"
+        },
+        {
+            "level": 8,
+            "species": "SPECIES_SINISTEA"
+        },
+        {
+            "level": 9,
+            "species": "SPECIES_ZUBAT"
+        },
+        {
+            "level": 9,
             "species": "SPECIES_ZUBAT"
         },
         {
@@ -42,31 +38,35 @@
             "species": "SPECIES_ZUBAT"
         },
         {
-            "level": 7,
+            "level": 8,
             "species": "SPECIES_ZUBAT"
         },
         {
-            "level": 8,
+            "level": 9,
+            "species": "SPECIES_ZUBAT"
+        },
+        {
+            "level": 9,
             "species": "SPECIES_ZUBAT"
         }
     ],
     "swarms": [
         "SPECIES_ZUBAT",
-        "SPECIES_PSYDUCK"
+        "SPECIES_GEODUDE"
     ],
     "day": [
-        "SPECIES_ZUBAT",
-        "SPECIES_PSYDUCK"
+        "SPECIES_DIGLETT",
+        "SPECIES_SCRAGGY"
     ],
     "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_PSYDUCK"
+        "SPECIES_DIGLETT",
+        "SPECIES_MUDBRAY"
     ],
     "radar": [
+        "SPECIES_ZUBAT",
         "SPECIES_GEODUDE",
-        "SPECIES_ZUBAT",
-        "SPECIES_ZUBAT",
-        "SPECIES_ZUBAT"
+        "SPECIES_DIGLETT",
+        "SPECIES_DIGLETT"
     ],
     "rate_form0": 0,
     "rate_form1": 0,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_ZUBAT",
-        "SPECIES_ZUBAT"
+        "SPECIES_DIGLETT",
+        "SPECIES_DIGLETT"
     ],
     "sapphire": [
-        "SPECIES_ZUBAT",
-        "SPECIES_ZUBAT"
+        "SPECIES_DIGLETT",
+        "SPECIES_DIGLETT"
     ],
     "emerald": [
-        "SPECIES_ZUBAT",
-        "SPECIES_ZUBAT"
+        "SPECIES_DIGLETT",
+        "SPECIES_DIGLETT"
     ],
     "firered": [
-        "SPECIES_ZUBAT",
-        "SPECIES_ZUBAT"
+        "SPECIES_DIGLETT",
+        "SPECIES_DIGLETT"
     ],
     "leafgreen": [
-        "SPECIES_ZUBAT",
-        "SPECIES_ZUBAT"
+        "SPECIES_DIGLETT",
+        "SPECIES_DIGLETT"
     ],
     "surf_rate": 0,
     "surf_encounters": [

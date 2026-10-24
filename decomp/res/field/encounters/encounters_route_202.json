@@ -2,71 +2,71 @@
     "land_rate": 30,
     "land_encounters": [
         {
-            "level": 3,
+            "level": 5,
             "species": "SPECIES_SHINX"
         },
         {
-            "level": 3,
-            "species": "SPECIES_BIDOOF"
+            "level": 5,
+            "species": "SPECIES_ZIGZAGOON"
         },
         {
-            "level": 4,
-            "species": "SPECIES_STARLY"
+            "level": 5,
+            "species": "SPECIES_SENTRET"
         },
         {
-            "level": 3,
-            "species": "SPECIES_KRICKETOT"
+            "level": 5,
+            "species": "SPECIES_WOOBAT"
         },
         {
-            "level": 4,
+            "level": 5,
+            "species": "SPECIES_RATTATA"
+        },
+        {
+            "level": 5,
+            "species": "SPECIES_LITLEO"
+        },
+        {
+            "level": 5,
+            "species": "SPECIES_POOCHYENA"
+        },
+        {
+            "level": 5,
+            "species": "SPECIES_LECHONK"
+        },
+        {
+            "level": 6,
+            "species": "SPECIES_GROWLITHE"
+        },
+        {
+            "level": 6,
             "species": "SPECIES_SHINX"
         },
         {
-            "level": 3,
-            "species": "SPECIES_BIDOOF"
+            "level": 6,
+            "species": "SPECIES_BURMY"
         },
         {
-            "level": 4,
-            "species": "SPECIES_STARLY"
-        },
-        {
-            "level": 4,
-            "species": "SPECIES_BIDOOF"
-        },
-        {
-            "level": 2,
-            "species": "SPECIES_STARLY"
-        },
-        {
-            "level": 2,
-            "species": "SPECIES_BIDOOF"
-        },
-        {
-            "level": 2,
-            "species": "SPECIES_STARLY"
-        },
-        {
-            "level": 2,
-            "species": "SPECIES_BIDOOF"
+            "level": 6,
+            "species": "SPECIES_SHINX"
         }
     ],
     "swarms": [
-        "SPECIES_ZIGZAGOON",
+        "SPECIES_SHINX",
         "SPECIES_ZIGZAGOON"
     ],
     "day": [
-        "SPECIES_STARLY",
-        "SPECIES_BIDOOF"
+        "SPECIES_SENTRET",
+        "SPECIES_WOOBAT"
     ],
     "night": [
-        "SPECIES_KRICKETOT",
-        "SPECIES_BIDOOF"
+        "SPECIES_HOOTHOOT",
+        "SPECIES_RUFFLET"
     ],
     "radar": [
-        "SPECIES_SENTRET",
-        "SPECIES_SENTRET",
-        "SPECIES_SENTRET",
-        "SPECIES_SENTRET"
+        "SPECIES_HOUNDOUR",
+        "SPECIES_HOUNDOUR",
+        "SPECIES_HOUNDOUR",
+        "SPECIES_HOUNDOUR"
     ],
     "rate_form0": 0,
     "rate_form1": 0,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_STARLY",
-        "SPECIES_BIDOOF"
+        "SPECIES_GROWLITHE",
+        "SPECIES_BURMY"
     ],
     "sapphire": [
-        "SPECIES_STARLY",
-        "SPECIES_BIDOOF"
+        "SPECIES_GROWLITHE",
+        "SPECIES_BURMY"
     ],
     "emerald": [
-        "SPECIES_STARLY",
-        "SPECIES_BIDOOF"
+        "SPECIES_GROWLITHE",
+        "SPECIES_BURMY"
     ],
     "firered": [
         "SPECIES_GROWLITHE",
-        "SPECIES_GROWLITHE"
+        "SPECIES_BURMY"
     ],
     "leafgreen": [
-        "SPECIES_STARLY",
-        "SPECIES_BIDOOF"
+        "SPECIES_GROWLITHE",
+        "SPECIES_BURMY"
     ],
     "surf_rate": 0,
     "surf_encounters": [

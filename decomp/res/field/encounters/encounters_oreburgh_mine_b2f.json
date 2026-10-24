@@ -2,71 +2,71 @@
     "land_rate": 10,
     "land_encounters": [
         {
-            "level": 6,
+            "level": 10,
             "species": "SPECIES_GEODUDE"
         },
         {
-            "level": 7,
-            "species": "SPECIES_GEODUDE"
-        },
-        {
-            "level": 6,
+            "level": 10,
             "species": "SPECIES_ZUBAT"
         },
         {
-            "level": 7,
-            "species": "SPECIES_ZUBAT"
+            "level": 11,
+            "species": "SPECIES_WHISMUR"
         },
         {
-            "level": 5,
-            "species": "SPECIES_GEODUDE"
+            "level": 10,
+            "species": "SPECIES_DRILBUR"
         },
         {
-            "level": 8,
-            "species": "SPECIES_GEODUDE"
+            "level": 11,
+            "species": "SPECIES_ARON"
         },
         {
-            "level": 7,
+            "level": 10,
+            "species": "SPECIES_FERROSEED"
+        },
+        {
+            "level": 11,
             "species": "SPECIES_ONIX"
         },
         {
-            "level": 9,
-            "species": "SPECIES_ONIX"
+            "level": 11,
+            "species": "SPECIES_ROCKRUFF"
         },
         {
-            "level": 9,
+            "level": 11,
+            "species": "SPECIES_TRAPINCH"
+        },
+        {
+            "level": 11,
+            "species": "SPECIES_NACLI"
+        },
+        {
+            "level": 11,
             "species": "SPECIES_GEODUDE"
         },
         {
-            "level": 8,
-            "species": "SPECIES_ZUBAT"
-        },
-        {
-            "level": 9,
+            "level": 11,
             "species": "SPECIES_GEODUDE"
-        },
-        {
-            "level": 8,
-            "species": "SPECIES_ZUBAT"
         }
     ],
     "swarms": [
         "SPECIES_GEODUDE",
-        "SPECIES_GEODUDE"
+        "SPECIES_ZUBAT"
     ],
     "day": [
-        "SPECIES_ZUBAT",
-        "SPECIES_ZUBAT"
+        "SPECIES_WHISMUR",
+        "SPECIES_DRILBUR"
     ],
     "night": [
-        "SPECIES_ZUBAT",
-        "SPECIES_ZUBAT"
+        "SPECIES_WHISMUR",
+        "SPECIES_TIRTOUGA"
     ],
     "radar": [
-        "SPECIES_GEODUDE",
-        "SPECIES_GEODUDE",
-        "SPECIES_GEODUDE",
-        "SPECIES_GEODUDE"
+        "SPECIES_WHISMUR",
+        "SPECIES_ARON",
+        "SPECIES_ONIX",
+        "SPECIES_ZUBAT"
     ],
     "rate_form0": 0,
     "rate_form1": 0,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_GEODUDE",
-        "SPECIES_GEODUDE"
+        "SPECIES_ONIX",
+        "SPECIES_ZUBAT"
     ],
     "sapphire": [
-        "SPECIES_GEODUDE",
-        "SPECIES_GEODUDE"
+        "SPECIES_ONIX",
+        "SPECIES_ZUBAT"
     ],
     "emerald": [
-        "SPECIES_GEODUDE",
-        "SPECIES_GEODUDE"
+        "SPECIES_ONIX",
+        "SPECIES_ZUBAT"
     ],
     "firered": [
-        "SPECIES_GEODUDE",
-        "SPECIES_GEODUDE"
+        "SPECIES_ONIX",
+        "SPECIES_ZUBAT"
     ],
     "leafgreen": [
-        "SPECIES_GEODUDE",
-        "SPECIES_GEODUDE"
+        "SPECIES_ONIX",
+        "SPECIES_ZUBAT"
     ],
     "surf_rate": 0,
     "surf_encounters": [

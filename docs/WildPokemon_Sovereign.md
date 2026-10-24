@@ -13,7 +13,7 @@
 - Gen V–IX starters are Pokémon Center gifts, not wild encounters; see `GiftPokemon_Sovereign.md`.
 - This is a **design draft**: the placements come from a type/habitat/level heuristic and should be playtested and hand-tuned.
 
-Added regular species placed directly in the wild: **389**. Not directly placed (obtain by evolution / breeding / events): **8** — listed at the bottom.
+Added regular species placed directly in the wild: **390**. Not directly placed (obtain by evolution / breeding / events): **7** — listed at the bottom.
 
 ### Twinleaf Town
 _Levels: 20 - 40 (Surfing)_  ·  habitat: lake
@@ -581,6 +581,26 @@ _Levels: 20 - 40 (Surfing)_  ·  habitat: ruins
 
 | Table | Encounters |
 |---|---|
+| Surf | Psyduck (70%), Golduck (30%) |
+| Old Rod | Magikarp (70%), Relicanth (30%) |
+| Good Rod | Magikarp (70%), Relicanth (30%) |
+| Super Rod | Gyarados (70%), Relicanth (30%) |
+
+### Route 219
+_Levels: 30 - 45 (Surf)_  ·  habitat: field
+
+| Table | Encounters |
+|---|---|
+| Surf | Wingull (65%), Tentacool (30%), Pelipper (5%) |
+| Old Rod | Krabby (65%), Horsea (30%), Clamperl (5%) |
+| Good Rod | Krabby (65%), Horsea (30%), Clamperl (5%) |
+| Super Rod | Kingler (65%), Horsea (30%), Huntail (5%) |
+
+### Route 220
+_Levels: 30 - 45 (Surf)_  ·  habitat: field
+
+| Table | Encounters |
+|---|---|
 | Surf | Wingull (65%), Mantyke (30%), Pelipper (5%) |
 | Old Rod | Luvdisc (65%), Horsea (30%), Corsola (5%) |
 | Good Rod | Luvdisc (65%), Horsea (30%), Corsola (5%) |
@@ -591,9 +611,9 @@ _Levels: 38 - 40 (Walking), 30 - 45 (Surf), 39 (Honey Tree)_  ·  habitat: sea, 
 
 | Table | Encounters |
 |---|---|
-| Morning | Sudowoodo (20%), Skuntank (20%), Nidorina (10%), **Wimpod**★ (10%), Nidorino (10%), **Cinccino**★ (10%), Farfetch'd (5%), **Sylveon**★ (5%), Girafarig (4%), **Obstagoon**★ (4%), Dodrio (1%), **Slurpuff**★ (1%) |
-| Day | Sudowoodo (20%), Skuntank (20%), Nidorina (10%), **Wimpod**★ (10%), Nidorino (10%), **Cinccino**★ (10%), Farfetch'd (5%), **Sylveon**★ (5%), Girafarig (4%), **Obstagoon**★ (4%), Dodrio (1%), **Slurpuff**★ (1%) |
-| Night | Sudowoodo (20%), Skuntank (20%), Nidorina (10%), **Whimsicott**★ (10%), Nidorino (10%), **Cinccino**★ (10%), Farfetch'd (5%), **Sylveon**★ (5%), Girafarig (4%), **Obstagoon**★ (4%), Dodrio (1%), **Slurpuff**★ (1%) |
+| Morning | Sudowoodo (20%), Skuntank (20%), Nidorina (10%), **Wimpod**★ (10%), Nidorino (10%), **Cinccino**★ (10%), Farfetch'd (5%), **Sylveon**★ (5%), Girafarig (4%), **Obstagoon**★ (4%), Dodrio (1%), **Lurantis**★ (1%) |
+| Day | Sudowoodo (20%), Skuntank (20%), Nidorina (10%), **Wimpod**★ (10%), Nidorino (10%), **Cinccino**★ (10%), Farfetch'd (5%), **Sylveon**★ (5%), Girafarig (4%), **Obstagoon**★ (4%), Dodrio (1%), **Lurantis**★ (1%) |
+| Night | Sudowoodo (20%), Skuntank (20%), Nidorina (10%), **Whimsicott**★ (10%), Nidorino (10%), **Cinccino**★ (10%), Farfetch'd (5%), **Sylveon**★ (5%), Girafarig (4%), **Obstagoon**★ (4%), Dodrio (1%), **Lurantis**★ (1%) |
 | Honey Tree | Cherrim (30%), Shroomish (20%), Exeggcute (20%), Nuzleaf (20%), Tangela (10%) |
 | Surf | Wingull (61%), Tentacool (30%), Pelipper (5%), **Golisopod**★ (4%) |
 | Old Rod | Krabby (61%), Horsea (30%), Clamperl (5%), **Dewpider**★ (4%) |
@@ -807,9 +827,9 @@ _Level: 53 - 54 (Walking), 35 - 55 (Surfing)_  ·  habitat: lake
 
 | Table | Encounters |
 |---|---|
-| Morning | Haunter (20%), Golbat (20%), Bronzong (10%), **Comfey**★ (10%), Chimecho (10%), **Duosion**★ (10%), Dusclops (5%), **Florges**★ (5%), Banette (4%), **Meowstic**★ (4%), **Alcremie**★ (1%), **Dachsbun**★ (1%) |
-| Day | Haunter (20%), Golbat (20%), Bronzong (10%), **Comfey**★ (10%), Chimecho (10%), **Duosion**★ (10%), Dusclops (5%), **Florges**★ (5%), Banette (4%), **Meowstic**★ (4%), **Alcremie**★ (1%), **Dachsbun**★ (1%) |
-| Night | Haunter (20%), Golbat (20%), Bronzong (10%), **Gothorita**★ (10%), Chimecho (10%), **Duosion**★ (10%), Dusclops (5%), **Florges**★ (5%), Banette (4%), **Meowstic**★ (4%), **Alcremie**★ (1%), **Dachsbun**★ (1%) |
+| Morning | Staravia (20%), Bibarel (20%), Masquerain (10%), **Comfey**★ (10%), Lickitung (10%), **Duosion**★ (10%), Golduck (5%), **Florges**★ (5%), **Meowstic**★ (4%), **Slurpuff**★ (4%), **Alcremie**★ (1%), **Dachsbun**★ (1%) |
+| Day | Staravia (20%), Bibarel (20%), Masquerain (10%), **Comfey**★ (10%), Lickitung (10%), **Duosion**★ (10%), Golduck (5%), **Florges**★ (5%), **Meowstic**★ (4%), **Slurpuff**★ (4%), **Alcremie**★ (1%), **Dachsbun**★ (1%) |
+| Night | Staravia (20%), Bibarel (20%), Masquerain (10%), **Gothorita**★ (10%), Lickitung (10%), **Duosion**★ (10%), Golduck (5%), **Florges**★ (5%), **Meowstic**★ (4%), **Slurpuff**★ (4%), **Alcremie**★ (1%), **Dachsbun**★ (1%) |
 | Poké Radar | Wobbuffet (22%) |
 | Surf | Surskit (70%), Masquerain (30%) |
 | Old Rod | Magikarp (70%), **Finizen**★ (30%) |
@@ -1002,9 +1022,9 @@ _Levels: 65 - 67 (Walking), 65 - 67 (Surfing)_  ·  habitat: forest
 
 | Table | Encounters |
 |---|---|
-| Morning | Scyther (20%), Pinsir (20%), Ledian (10%), **Nymble**★ (10%), Roselia (10%), **Lilligant**★ (10%), Venomoth (5%), **Sawsbuck**★ (5%), Illumise (4%), **Aromatisse**★ (4%), Volbeat (1%), **Lurantis**★ (1%) |
-| Day | Scyther (20%), Pinsir (20%), Sunkern (10%), **Nymble**★ (10%), Roselia (10%), **Lilligant**★ (10%), Venomoth (5%), **Sawsbuck**★ (5%), Illumise (4%), **Aromatisse**★ (4%), Volbeat (1%), **Lurantis**★ (1%) |
-| Night | Scyther (20%), Pinsir (20%), Ariados (10%), **Swadloon**★ (10%), Roselia (10%), **Lilligant**★ (10%), Venomoth (5%), **Sawsbuck**★ (5%), Illumise (4%), **Aromatisse**★ (4%), Volbeat (1%), **Lurantis**★ (1%) |
+| Morning | Scyther (20%), Pinsir (20%), Ledian (10%), **Nymble**★ (10%), Roselia (10%), **Lilligant**★ (10%), Venomoth (5%), **Sawsbuck**★ (5%), Illumise (4%), **Aromatisse**★ (4%), Volbeat (1%), **Dubwool**★ (1%) |
+| Day | Scyther (20%), Pinsir (20%), Sunkern (10%), **Nymble**★ (10%), Roselia (10%), **Lilligant**★ (10%), Venomoth (5%), **Sawsbuck**★ (5%), Illumise (4%), **Aromatisse**★ (4%), Volbeat (1%), **Dubwool**★ (1%) |
+| Night | Scyther (20%), Pinsir (20%), Ariados (10%), **Swadloon**★ (10%), Roselia (10%), **Lilligant**★ (10%), Venomoth (5%), **Sawsbuck**★ (5%), Illumise (4%), **Aromatisse**★ (4%), Volbeat (1%), **Dubwool**★ (1%) |
 | Surf | Masquerain (100%) |
 | Old Rod | Magikarp (70%), Goldeen (30%) |
 | Good Rod | Magikarp (70%), Goldeen (30%) |
@@ -1066,7 +1086,6 @@ These are obtainable by evolving a wild-caught pre-evolution (or by breeding, fo
 
 | # | Species | Obtain via |
 |---|---|---|
-| 832 | Dubwool | Evolve Wooloo (Level 24) |
 | 925 | Maushold | Evolve Tandemaus (In battle level up) |
 | 508 | Stoutland | Evolve Herdier (Level 32) |
 | 576 | Gothitelle | Evolve Gothorita (Level 41) |

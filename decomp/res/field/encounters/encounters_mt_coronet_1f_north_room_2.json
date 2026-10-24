@@ -2,71 +2,71 @@
     "land_rate": 10,
     "land_encounters": [
         {
-            "level": 33,
+            "level": 18,
+            "species": "SPECIES_GEODUDE"
+        },
+        {
+            "level": 18,
             "species": "SPECIES_BRONZOR"
         },
         {
-            "level": 34,
-            "species": "SPECIES_GRAVELER"
-        },
-        {
-            "level": 33,
-            "species": "SPECIES_MEDITITE"
-        },
-        {
-            "level": 32,
+            "level": 18,
             "species": "SPECIES_CLEFAIRY"
         },
         {
-            "level": 35,
-            "species": "SPECIES_MACHOKE"
+            "level": 18,
+            "species": "SPECIES_KLINK"
         },
         {
-            "level": 35,
-            "species": "SPECIES_MEDITITE"
-        },
-        {
-            "level": 32,
-            "species": "SPECIES_CHINGLING"
-        },
-        {
-            "level": 33,
+            "level": 18,
             "species": "SPECIES_NOSEPASS"
         },
         {
-            "level": 34,
-            "species": "SPECIES_GOLBAT"
+            "level": 18,
+            "species": "SPECIES_SNOM"
         },
         {
-            "level": 34,
-            "species": "SPECIES_CHINGLING"
+            "level": 18,
+            "species": "SPECIES_CHIMECHO"
         },
         {
-            "level": 34,
-            "species": "SPECIES_GOLBAT"
+            "level": 19,
+            "species": "SPECIES_GEODUDE"
         },
         {
-            "level": 34,
-            "species": "SPECIES_CHINGLING"
+            "level": 18,
+            "species": "SPECIES_ZUBAT"
+        },
+        {
+            "level": 18,
+            "species": "SPECIES_GEODUDE"
+        },
+        {
+            "level": 19,
+            "species": "SPECIES_BELDUM"
+        },
+        {
+            "level": 19,
+            "species": "SPECIES_FRIGIBAX"
         }
     ],
     "swarms": [
-        "SPECIES_BRONZOR",
-        "SPECIES_GRAVELER"
+        "SPECIES_GEODUDE",
+        "SPECIES_BRONZOR"
     ],
     "day": [
-        "SPECIES_MEDITITE",
-        "SPECIES_GRAVELER"
+        "SPECIES_CLEFAIRY",
+        "SPECIES_KLINK"
     ],
     "night": [
-        "SPECIES_GOLBAT",
-        "SPECIES_CLEFAIRY"
+        "SPECIES_CLEFAIRY",
+        "SPECIES_AMAURA"
     ],
     "radar": [
-        "SPECIES_MACHOKE",
-        "SPECIES_MEDITITE",
-        "SPECIES_GOLBAT",
-        "SPECIES_CHINGLING"
+        "SPECIES_BELDUM",
+        "SPECIES_ZUBAT",
+        "SPECIES_SOLROCK",
+        "SPECIES_LUNATONE"
     ],
     "rate_form0": 0,
     "rate_form1": 0,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_GOLBAT",
-        "SPECIES_CHINGLING"
+        "SPECIES_SOLROCK",
+        "SPECIES_LUNATONE"
     ],
     "sapphire": [
-        "SPECIES_GOLBAT",
-        "SPECIES_CHINGLING"
+        "SPECIES_SOLROCK",
+        "SPECIES_LUNATONE"
     ],
     "emerald": [
-        "SPECIES_GOLBAT",
-        "SPECIES_CHINGLING"
+        "SPECIES_SOLROCK",
+        "SPECIES_LUNATONE"
     ],
     "firered": [
-        "SPECIES_GOLBAT",
-        "SPECIES_CHINGLING"
+        "SPECIES_SOLROCK",
+        "SPECIES_LUNATONE"
     ],
     "leafgreen": [
-        "SPECIES_GOLBAT",
-        "SPECIES_CHINGLING"
+        "SPECIES_SOLROCK",
+        "SPECIES_LUNATONE"
     ],
     "surf_rate": 0,
     "surf_encounters": [

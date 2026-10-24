@@ -2,71 +2,71 @@
     "land_rate": 10,
     "land_encounters": [
         {
-            "level": 21,
+            "level": 24,
             "species": "SPECIES_PICHU"
         },
         {
-            "level": 22,
-            "species": "SPECIES_ROSELIA"
-        },
-        {
-            "level": 22,
-            "species": "SPECIES_STARAVIA"
-        },
-        {
-            "level": 23,
-            "species": "SPECIES_KRICKETUNE"
-        },
-        {
-            "level": 23,
-            "species": "SPECIES_ROSELIA"
-        },
-        {
-            "level": 24,
-            "species": "SPECIES_STARAVIA"
-        },
-        {
-            "level": 22,
+            "level": 26,
             "species": "SPECIES_PIKACHU"
         },
         {
-            "level": 22,
+            "level": 24,
+            "species": "SPECIES_CLEFFA"
+        },
+        {
+            "level": 26,
             "species": "SPECIES_PICHU"
         },
         {
             "level": 24,
-            "species": "SPECIES_PIKACHU"
+            "species": "SPECIES_IGGLYBUFF"
         },
         {
-            "level": 22,
+            "level": 24,
             "species": "SPECIES_PICHU"
         },
         {
             "level": 24,
-            "species": "SPECIES_PIKACHU"
+            "species": "SPECIES_TOGEPI"
         },
         {
-            "level": 22,
+            "level": 25,
             "species": "SPECIES_PICHU"
+        },
+        {
+            "level": 24,
+            "species": "SPECIES_PORYGON"
+        },
+        {
+            "level": 26,
+            "species": "SPECIES_PICHU"
+        },
+        {
+            "level": 24,
+            "species": "SPECIES_HAPPINY"
+        },
+        {
+            "level": 26,
+            "species": "SPECIES_EEVEE"
         }
     ],
     "swarms": [
         "SPECIES_PICHU",
-        "SPECIES_ROSELIA"
+        "SPECIES_PIKACHU"
     ],
     "day": [
-        "SPECIES_STARAVIA",
-        "SPECIES_STARAVIA"
+        "SPECIES_CLEFFA",
+        "SPECIES_PICHU"
     ],
     "night": [
-        "SPECIES_KRICKETUNE",
-        "SPECIES_KRICKETUNE"
+        "SPECIES_CLEFFA",
+        "SPECIES_PICHU"
     ],
     "radar": [
-        "SPECIES_ROSELIA",
-        "SPECIES_STARAVIA",
-        "SPECIES_PIKACHU",
-        "SPECIES_PICHU"
+        "SPECIES_CASTFORM",
+        "SPECIES_CASTFORM",
+        "SPECIES_CASTFORM",
+        "SPECIES_CASTFORM"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_PIKACHU",
-        "SPECIES_PICHU"
+        "SPECIES_HAPPINY",
+        "SPECIES_EEVEE"
     ],
     "sapphire": [
-        "SPECIES_PIKACHU",
-        "SPECIES_PICHU"
+        "SPECIES_HAPPINY",
+        "SPECIES_EEVEE"
     ],
     "emerald": [
-        "SPECIES_PIKACHU",
-        "SPECIES_PICHU"
+        "SPECIES_HAPPINY",
+        "SPECIES_EEVEE"
     ],
     "firered": [
-        "SPECIES_PIKACHU",
-        "SPECIES_PICHU"
+        "SPECIES_HAPPINY",
+        "SPECIES_EEVEE"
     ],
     "leafgreen": [
-        "SPECIES_PIKACHU",
-        "SPECIES_PICHU"
+        "SPECIES_HAPPINY",
+        "SPECIES_EEVEE"
     ],
     "surf_rate": 0,
     "surf_encounters": [

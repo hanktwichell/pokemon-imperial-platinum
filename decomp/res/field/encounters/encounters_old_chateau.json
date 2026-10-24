@@ -2,71 +2,71 @@
     "land_rate": 10,
     "land_encounters": [
         {
-            "level": 14,
-            "species": "SPECIES_GASTLY"
-        },
-        {
             "level": 15,
             "species": "SPECIES_GASTLY"
         },
         {
-            "level": 14,
-            "species": "SPECIES_GASTLY"
-        },
-        {
             "level": 15,
-            "species": "SPECIES_GASTLY"
+            "species": "SPECIES_RATTATA"
         },
         {
             "level": 16,
-            "species": "SPECIES_GASTLY"
-        },
-        {
-            "level": 17,
-            "species": "SPECIES_GASTLY"
+            "species": "SPECIES_DUSKULL"
         },
         {
             "level": 16,
-            "species": "SPECIES_GASTLY"
+            "species": "SPECIES_YAMASK"
+        },
+        {
+            "level": 16,
+            "species": "SPECIES_SHUPPET"
         },
         {
             "level": 17,
-            "species": "SPECIES_GASTLY"
+            "species": "SPECIES_HONEDGE"
         },
         {
             "level": 17,
-            "species": "SPECIES_GASTLY"
+            "species": "SPECIES_RATICATE"
         },
         {
             "level": 17,
+            "species": "SPECIES_GREAVARD"
+        },
+        {
+            "level": 18,
+            "species": "SPECIES_HAUNTER"
+        },
+        {
+            "level": 18,
             "species": "SPECIES_GASTLY"
         },
         {
-            "level": 17,
-            "species": "SPECIES_GASTLY"
+            "level": 18,
+            "species": "SPECIES_DREEPY"
         },
         {
-            "level": 17,
+            "level": 18,
             "species": "SPECIES_GASTLY"
         }
     ],
     "swarms": [
         "SPECIES_GASTLY",
-        "SPECIES_GASTLY"
+        "SPECIES_RATTATA"
     ],
     "day": [
-        "SPECIES_GASTLY",
-        "SPECIES_GASTLY"
+        "SPECIES_DUSKULL",
+        "SPECIES_YAMASK"
     ],
     "night": [
-        "SPECIES_GASTLY",
-        "SPECIES_GASTLY"
+        "SPECIES_DUSKULL",
+        "SPECIES_LITWICK"
     ],
     "radar": [
         "SPECIES_GASTLY",
-        "SPECIES_GASTLY",
-        "SPECIES_GASTLY",
-        "SPECIES_GASTLY"
+        "SPECIES_RATTATA",
+        "SPECIES_RATICATE",
+        "SPECIES_HAUNTER"
     ],
     "rate_form0": 0,
     "rate_form1": 0,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_GASTLY",
-        "SPECIES_GASTLY"
+        "SPECIES_RATICATE",
+        "SPECIES_HAUNTER"
     ],
     "sapphire": [
-        "SPECIES_GASTLY",
-        "SPECIES_GASTLY"
+        "SPECIES_RATICATE",
+        "SPECIES_HAUNTER"
     ],
     "emerald": [
-        "SPECIES_GASTLY",
-        "SPECIES_GASTLY"
+        "SPECIES_RATICATE",
+        "SPECIES_HAUNTER"
     ],
     "firered": [
-        "SPECIES_GASTLY",
-        "SPECIES_GASTLY"
+        "SPECIES_RATICATE",
+        "SPECIES_HAUNTER"
     ],
     "leafgreen": [
-        "SPECIES_GASTLY",
-        "SPECIES_GASTLY"
+        "SPECIES_RATICATE",
+        "SPECIES_HAUNTER"
     ],
     "surf_rate": 0,
     "surf_encounters": [

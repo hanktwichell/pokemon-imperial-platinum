@@ -2,71 +2,71 @@
     "land_rate": 30,
     "land_encounters": [
         {
-            "level": 16,
-            "species": "SPECIES_PONYTA"
+            "level": 21,
+            "species": "SPECIES_STUNKY"
         },
         {
-            "level": 16,
-            "species": "SPECIES_GEODUDE"
+            "level": 21,
+            "species": "SPECIES_SLUGMA"
         },
         {
-            "level": 18,
+            "level": 20,
+            "species": "SPECIES_MANKEY"
+        },
+        {
+            "level": 21,
+            "species": "SPECIES_SAWK"
+        },
+        {
+            "level": 20,
+            "species": "SPECIES_MAGBY"
+        },
+        {
+            "level": 21,
+            "species": "SPECIES_ESPURR"
+        },
+        {
+            "level": 20,
+            "species": "SPECIES_SPOINK"
+        },
+        {
+            "level": 21,
+            "species": "SPECIES_INDEEDEE"
+        },
+        {
+            "level": 21,
+            "species": "SPECIES_NUMEL"
+        },
+        {
+            "level": 22,
+            "species": "SPECIES_GUMSHOOS"
+        },
+        {
+            "level": 21,
             "species": "SPECIES_GLIGAR"
         },
         {
-            "level": 17,
-            "species": "SPECIES_KRICKETUNE"
-        },
-        {
-            "level": 16,
-            "species": "SPECIES_GLIGAR"
-        },
-        {
-            "level": 17,
-            "species": "SPECIES_MACHOP"
-        },
-        {
-            "level": 18,
-            "species": "SPECIES_MACHOP"
-        },
-        {
-            "level": 18,
-            "species": "SPECIES_GEODUDE"
-        },
-        {
-            "level": 19,
-            "species": "SPECIES_MACHOP"
-        },
-        {
-            "level": 18,
-            "species": "SPECIES_GEODUDE"
-        },
-        {
-            "level": 19,
-            "species": "SPECIES_MACHOP"
-        },
-        {
-            "level": 18,
-            "species": "SPECIES_GEODUDE"
+            "level": 22,
+            "species": "SPECIES_OINKOLOGNE"
         }
     ],
     "swarms": [
-        "SPECIES_LARVITAR",
-        "SPECIES_LARVITAR"
+        "SPECIES_STUNKY",
+        "SPECIES_SLUGMA"
     ],
     "day": [
-        "SPECIES_GLIGAR",
-        "SPECIES_PONYTA"
+        "SPECIES_MANKEY",
+        "SPECIES_SAWK"
     ],
     "night": [
-        "SPECIES_KRICKETUNE",
-        "SPECIES_ZUBAT"
+        "SPECIES_MANKEY",
+        "SPECIES_ELGYEM"
     ],
     "radar": [
-        "SPECIES_BALTOY",
-        "SPECIES_BALTOY",
-        "SPECIES_BALTOY",
-        "SPECIES_BALTOY"
+        "SPECIES_TORKOAL",
+        "SPECIES_TORKOAL",
+        "SPECIES_TORKOAL",
+        "SPECIES_TORKOAL"
     ],
     "rate_form0": 0,
     "rate_form1": 0,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_MACHOP",
-        "SPECIES_GEODUDE"
+        "SPECIES_NUMEL",
+        "SPECIES_GLIGAR"
     ],
     "sapphire": [
-        "SPECIES_MACHOP",
-        "SPECIES_GEODUDE"
+        "SPECIES_NUMEL",
+        "SPECIES_GLIGAR"
     ],
     "emerald": [
-        "SPECIES_MACHOP",
-        "SPECIES_GEODUDE"
+        "SPECIES_NUMEL",
+        "SPECIES_GLIGAR"
     ],
     "firered": [
-        "SPECIES_MACHOP",
-        "SPECIES_GEODUDE"
+        "SPECIES_NUMEL",
+        "SPECIES_GLIGAR"
     ],
     "leafgreen": [
-        "SPECIES_MACHOP",
-        "SPECIES_GEODUDE"
+        "SPECIES_NUMEL",
+        "SPECIES_GLIGAR"
     ],
     "surf_rate": 0,
     "surf_encounters": [
