@@ -24,11 +24,21 @@ players and the verification that was run.
   - Routes 219 and 220 have their own tables, and Celestic Town and Lake Valor have theirs back;
   - Slurpuff moves to Lake Valor and Lurantis to Route 221;
   - Dubwool is now placed (Route 229), leaving 7 added species catchable only by evolving.
-- Not yet: Renegade's Honey Tree tables differ by area in its doc, but its ROM has Platinum's honey data, so that's a
-  separate step.
+- **Honey Trees, as in Renegade.**
+  - Each of the 21 trees has its area's own species, percentages and level (`decomp/include/data/sovereign_honey_trees.h`,
+    from the plan). Platinum shared one table between every tree, at Lv. 5–15.
+  - Slathering a tree brings a Pokémon at once. Platinum made the player wait six hours, and sometimes nothing came.
+  - Renegade does this with a script per route; its ROM keeps Platinum's honey table (Route 207's script, for example,
+    rolls 0–9 for Aipom, Slakoth, Metapod, Kakuna and Munchlax, the doc's 30/20/20/20/10).
+  - The Pokédex's area map still shows Platinum's honey species at the trees.
 
-Verified in the test build: in Route 202's grass, the wild Pokémon were Shinx, Woobat, Zigzagoon, Litleo and Rattata,
-all at Lv. 5, Renegade's level (Platinum: Lv. 2–4, no Woobat or Litleo). The release build passes.
+Verified in the test build:
+- In Route 202's grass, the wild Pokémon were Shinx, Woobat, Zigzagoon, Litleo and Rattata, all at Lv. 5, Renegade's
+  level (Platinum: Lv. 2–4, no Woobat or Litleo).
+- At Route 205 South's Honey Tree: "There is a sweet scent in the air...", Yes to "Slather the bark with Honey?", "The
+  bark was slathered with Honey." and then a battle straight away. Five tries gave Combee four times and Wurmple once,
+  all Lv. 12.
+- The release build passes.
 
 ## FM — Alcremie, Furfrou's trims, Spiky-eared Pichu and Active Xerneas
 

@@ -3957,3 +3957,21 @@ species in their slots. Until now the decomp still had Platinum's tables.
    Charge…), the item locations and gifts.
 3. Renegade's NPCs (`NPCChanges.txt`) and trades; then its trainers. The patched ROM can be dumped the same way
    (`trdata`/`trpoke` NARCs).
+
+## CB-0075 — 2026-10-24, 3:49 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** Renegade's Honey Trees (E10 part 1, same PR as CB-0074).
+- Each of the 21 trees now has its area's own species, percentages and level. Slathering brings a Pokémon at once.
+  Renegade scripts this per route; its ROM keeps Platinum's honey table.
+- Verified: Route 205 South's tree gave a battle right after slathering (Combee and Wurmple, Lv. 12).
+
+**Files modified:** `tools/engine/gen_wild_encounters.py` (writes `decomp/include/data/sovereign_honey_trees.h`),
+`decomp/src/overlay005/honey_tree.c`, `decomp/include/overlay005/honey_tree.h`, `decomp/src/overlay006/wild_encounters.c`,
+`decomp/res/field/scripts/scripts_common.s`, `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Renegade's item changes: Poké/Great/Ultra Ball prices, TMs ×99 and not in marts, the TM move swaps, then item
+   locations and gifts (`ItemChanges.txt`).
+2. Renegade's NPCs (`NPCChanges.txt`: the Snowpoint evolution item seller, Item Fanatic, Hidden Power teller...) and trades.
+3. The Pokédex area map for the Honey Trees (it still shows Platinum's honey species), then Renegade's trainers from
+   its ROM (`trdata`/`trpoke`).
