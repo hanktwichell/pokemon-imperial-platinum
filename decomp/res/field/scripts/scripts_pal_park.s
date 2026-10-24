@@ -10,6 +10,10 @@
     ScriptEntry PalPark_CoordEvent_RetireFromGate
     ScriptEntry PalPark_Worker
     ScriptEntry PalPark_CoordEvent_LeaveRegionalFormsPark
+    ScriptEntry PalPark_SovereignSignAlola
+    ScriptEntry PalPark_SovereignSignGalar
+    ScriptEntry PalPark_SovereignSignHisui
+    ScriptEntry PalPark_SovereignSignPaldea
     ScriptEntryEnd
 
 PalPark_OnTransition:
@@ -192,3 +196,20 @@ PalPark_ClearFlagAndWarpOut:
     Return
 
     .balign 4, 0
+
+@ Sovereign (owner, 2026-10-24): a sign at the way into each zone of the Regional Forms Park.
+PalPark_SovereignSignAlola:
+    ShowArrowSign PalPark_Text_SovereignSignAlola
+    End
+
+PalPark_SovereignSignGalar:
+    ShowArrowSign PalPark_Text_SovereignSignGalar
+    End
+
+PalPark_SovereignSignHisui:
+    ShowArrowSign PalPark_Text_SovereignSignHisui
+    End
+
+PalPark_SovereignSignPaldea:
+    ShowArrowSign PalPark_Text_SovereignSignPaldea
+    End

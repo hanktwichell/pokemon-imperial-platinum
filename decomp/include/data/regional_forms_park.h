@@ -20,77 +20,77 @@ typedef struct RegionalFormsParkZone {
 } RegionalFormsParkZone;
 
 static const RegionalFormsParkEntry sRegionalFormsParkGalarGrass[] = {
-    { SPECIES_MEOWTH, 2, 12, 50, 54 }, // Galarian Meowth
-    { SPECIES_PONYTA, 1, 12, 50, 54 }, // Galarian Ponyta
-    { SPECIES_ZIGZAGOON, 1, 12, 50, 54 }, // Galarian Zigzagoon
-    { SPECIES_FARFETCHD, 1, 10, 50, 54 }, // Galarian Farfetch’d
-    { SPECIES_DARUMAKA, 1, 10, 50, 54 }, // Galarian Darumaka
-    { SPECIES_YAMASK, 1, 10, 50, 54 }, // Galarian Yamask
-    { SPECIES_MR_MIME, 1, 8, 50, 54 }, // Galarian Mr. Mime
-    { SPECIES_LINOONE, 1, 6, 55, 58 }, // Galarian Linoone
-    { SPECIES_RAPIDASH, 1, 4, 56, 60 }, // Galarian Rapidash
-    { SPECIES_WEEZING, 1, 4, 56, 60 }, // Galarian Weezing
-    { SPECIES_DARMANITAN, 2, 3, 56, 60 }, // Standard Galarian Darmanitan
-    { SPECIES_ARTICUNO, 1, 1, 60, 60 }, // Galarian Articuno
-    { SPECIES_ZAPDOS, 1, 1, 60, 60 }, // Galarian Zapdos
-    { SPECIES_MOLTRES, 1, 1, 60, 60 }, // Galarian Moltres
-    { SPECIES_SLOWPOKE, 1, 6, 50, 54 }, // Galarian Slowpoke
-    { SPECIES_CORSOLA, 1, 5, 50, 54 }, // Galarian Corsola
-    { SPECIES_STUNFISK, 1, 3, 50, 54 }, // Galarian Stunfisk
-    { SPECIES_SLOWBRO, 1, 2, 56, 60 }, // Galarian Slowbro
-    { SPECIES_SLOWKING, 1, 2, 56, 60 }, // Galarian Slowking
+    { SPECIES_MEOWTH, 2, 12, 40, 55 }, // Galarian Meowth
+    { SPECIES_PONYTA, 1, 12, 40, 55 }, // Galarian Ponyta
+    { SPECIES_ZIGZAGOON, 1, 12, 40, 55 }, // Galarian Zigzagoon
+    { SPECIES_FARFETCHD, 1, 10, 40, 55 }, // Galarian Farfetch’d
+    { SPECIES_DARUMAKA, 1, 10, 40, 55 }, // Galarian Darumaka
+    { SPECIES_YAMASK, 1, 10, 40, 55 }, // Galarian Yamask
+    { SPECIES_MR_MIME, 1, 8, 40, 55 }, // Galarian Mr. Mime
+    { SPECIES_LINOONE, 1, 6, 40, 55 }, // Galarian Linoone
+    { SPECIES_RAPIDASH, 1, 4, 40, 55 }, // Galarian Rapidash
+    { SPECIES_WEEZING, 1, 4, 40, 55 }, // Galarian Weezing
+    { SPECIES_DARMANITAN, 2, 3, 40, 55 }, // Standard Galarian Darmanitan
+    { SPECIES_ARTICUNO, 1, 1, 70, 70 }, // Galarian Articuno
+    { SPECIES_ZAPDOS, 1, 1, 70, 70 }, // Galarian Zapdos
+    { SPECIES_MOLTRES, 1, 1, 70, 70 }, // Galarian Moltres
+    { SPECIES_SLOWPOKE, 1, 6, 40, 55 }, // Galarian Slowpoke
+    { SPECIES_CORSOLA, 1, 5, 40, 55 }, // Galarian Corsola
+    { SPECIES_STUNFISK, 1, 3, 40, 55 }, // Galarian Stunfisk
+    { SPECIES_SLOWBRO, 1, 2, 60, 60 }, // Galarian Slowbro
+    { SPECIES_SLOWKING, 1, 2, 60, 60 }, // Galarian Slowking
 };
 
 static const RegionalFormsParkEntry sRegionalFormsParkHisuiGrass[] = {
-    { SPECIES_GROWLITHE, 1, 12, 50, 54 }, // Hisuian Growlithe
-    { SPECIES_VOLTORB, 1, 12, 50, 54 }, // Hisuian Voltorb
-    { SPECIES_SNEASEL, 1, 10, 50, 54 }, // Hisuian Sneasel
-    { SPECIES_ZORUA, 1, 10, 50, 54 }, // Hisuian Zorua
-    { SPECIES_SLIGGOO, 1, 8, 50, 54 }, // Hisuian Sliggoo
-    { SPECIES_LILLIGANT, 1, 5, 55, 58 }, // Hisuian Lilligant
-    { SPECIES_BRAVIARY, 1, 5, 55, 58 }, // Hisuian Braviary
-    { SPECIES_AVALUGG, 1, 5, 55, 58 }, // Hisuian Avalugg
-    { SPECIES_ARCANINE, 1, 3, 56, 60 }, // Hisuian Arcanine
-    { SPECIES_ELECTRODE, 1, 3, 56, 60 }, // Hisuian Electrode
-    { SPECIES_ZOROARK, 1, 3, 56, 60 }, // Hisuian Zoroark
-    { SPECIES_GOODRA, 1, 2, 58, 60 }, // Hisuian Goodra
-    { SPECIES_TYPHLOSION, 1, 1, 58, 60 }, // Hisuian Typhlosion
-    { SPECIES_SAMUROTT, 1, 1, 58, 60 }, // Hisuian Samurott
-    { SPECIES_DECIDUEYE, 1, 1, 58, 60 }, // Hisuian Decidueye
+    { SPECIES_GROWLITHE, 1, 12, 40, 55 }, // Hisuian Growlithe
+    { SPECIES_VOLTORB, 1, 12, 40, 55 }, // Hisuian Voltorb
+    { SPECIES_SNEASEL, 1, 10, 40, 55 }, // Hisuian Sneasel
+    { SPECIES_ZORUA, 1, 10, 40, 55 }, // Hisuian Zorua
+    { SPECIES_SLIGGOO, 1, 8, 60, 60 }, // Hisuian Sliggoo
+    { SPECIES_LILLIGANT, 1, 5, 40, 55 }, // Hisuian Lilligant
+    { SPECIES_BRAVIARY, 1, 5, 40, 55 }, // Hisuian Braviary
+    { SPECIES_AVALUGG, 1, 5, 40, 55 }, // Hisuian Avalugg
+    { SPECIES_ARCANINE, 1, 3, 40, 55 }, // Hisuian Arcanine
+    { SPECIES_ELECTRODE, 1, 3, 40, 55 }, // Hisuian Electrode
+    { SPECIES_ZOROARK, 1, 3, 40, 55 }, // Hisuian Zoroark
+    { SPECIES_GOODRA, 1, 2, 60, 60 }, // Hisuian Goodra
+    { SPECIES_TYPHLOSION, 1, 1, 60, 60 }, // Hisuian Typhlosion
+    { SPECIES_SAMUROTT, 1, 1, 60, 60 }, // Hisuian Samurott
+    { SPECIES_DECIDUEYE, 1, 1, 60, 60 }, // Hisuian Decidueye
 };
 
 static const RegionalFormsParkEntry sRegionalFormsParkHisuiWater[] = {
-    { SPECIES_QWILFISH, 1, 40, 50, 54 }, // Hisuian Qwilfish
-    { SPECIES_BASCULIN, 2, 35, 50, 54 }, // White-Striped Basculin
-    { SPECIES_BASCULIN, 1, 25, 50, 54 }, // Blue-Striped Basculin
+    { SPECIES_QWILFISH, 1, 40, 40, 55 }, // Hisuian Qwilfish
+    { SPECIES_BASCULIN, 2, 35, 40, 55 }, // White-Striped Basculin
+    { SPECIES_BASCULIN, 1, 25, 40, 55 }, // Blue-Striped Basculin
 };
 
 static const RegionalFormsParkEntry sRegionalFormsParkAlolaGrass[] = {
-    { SPECIES_RATTATA, 1, 12, 50, 54 }, // Alolan Rattata
-    { SPECIES_MEOWTH, 1, 12, 50, 54 }, // Alolan Meowth
-    { SPECIES_SANDSHREW, 1, 10, 50, 54 }, // Alolan Sandshrew
-    { SPECIES_VULPIX, 1, 10, 50, 54 }, // Alolan Vulpix
-    { SPECIES_DIGLETT, 1, 10, 50, 54 }, // Alolan Diglett
-    { SPECIES_GEODUDE, 1, 10, 50, 54 }, // Alolan Geodude
-    { SPECIES_GRIMER, 1, 8, 50, 54 }, // Alolan Grimer
-    { SPECIES_RATICATE, 1, 5, 55, 58 }, // Alolan Raticate
-    { SPECIES_PERSIAN, 1, 5, 55, 58 }, // Alolan Persian
-    { SPECIES_GRAVELER, 1, 5, 55, 58 }, // Alolan Graveler
-    { SPECIES_SANDSLASH, 1, 3, 56, 60 }, // Alolan Sandslash
-    { SPECIES_NINETALES, 1, 3, 56, 60 }, // Alolan Ninetales
-    { SPECIES_DUGTRIO, 1, 3, 56, 60 }, // Alolan Dugtrio
-    { SPECIES_MUK, 1, 3, 56, 60 }, // Alolan Muk
-    { SPECIES_GOLEM, 1, 2, 58, 60 }, // Alolan Golem
-    { SPECIES_RAICHU, 1, 2, 58, 60 }, // Alolan Raichu
-    { SPECIES_EXEGGUTOR, 1, 2, 58, 60 }, // Alolan Exeggutor
-    { SPECIES_MAROWAK, 1, 2, 58, 60 }, // Alolan Marowak
+    { SPECIES_RATTATA, 1, 12, 40, 55 }, // Alolan Rattata
+    { SPECIES_MEOWTH, 1, 12, 40, 55 }, // Alolan Meowth
+    { SPECIES_SANDSHREW, 1, 10, 40, 55 }, // Alolan Sandshrew
+    { SPECIES_VULPIX, 1, 10, 40, 55 }, // Alolan Vulpix
+    { SPECIES_DIGLETT, 1, 10, 40, 55 }, // Alolan Diglett
+    { SPECIES_GEODUDE, 1, 10, 40, 55 }, // Alolan Geodude
+    { SPECIES_GRIMER, 1, 8, 40, 55 }, // Alolan Grimer
+    { SPECIES_RATICATE, 1, 5, 40, 55 }, // Alolan Raticate
+    { SPECIES_PERSIAN, 1, 5, 40, 55 }, // Alolan Persian
+    { SPECIES_GRAVELER, 1, 5, 40, 55 }, // Alolan Graveler
+    { SPECIES_SANDSLASH, 1, 3, 40, 55 }, // Alolan Sandslash
+    { SPECIES_NINETALES, 1, 3, 40, 55 }, // Alolan Ninetales
+    { SPECIES_DUGTRIO, 1, 3, 40, 55 }, // Alolan Dugtrio
+    { SPECIES_MUK, 1, 3, 40, 55 }, // Alolan Muk
+    { SPECIES_GOLEM, 1, 2, 60, 60 }, // Alolan Golem
+    { SPECIES_RAICHU, 1, 2, 60, 60 }, // Alolan Raichu
+    { SPECIES_EXEGGUTOR, 1, 2, 60, 60 }, // Alolan Exeggutor
+    { SPECIES_MAROWAK, 1, 2, 60, 60 }, // Alolan Marowak
 };
 
 static const RegionalFormsParkEntry sRegionalFormsParkPaldeaWater[] = {
-    { SPECIES_WOOPER, 1, 40, 50, 54 }, // Paldean Wooper
-    { SPECIES_TAUROS, 3, 30, 54, 58 }, // Paldean Tauros (Aqua Breed)
-    { SPECIES_TAUROS, 1, 20, 52, 56 }, // Paldean Tauros (Combat Breed)
-    { SPECIES_TAUROS, 2, 10, 54, 58 }, // Paldean Tauros (Blaze Breed)
+    { SPECIES_WOOPER, 1, 40, 40, 55 }, // Paldean Wooper
+    { SPECIES_TAUROS, 3, 30, 40, 55 }, // Paldean Tauros (Aqua Breed)
+    { SPECIES_TAUROS, 1, 20, 40, 55 }, // Paldean Tauros (Combat Breed)
+    { SPECIES_TAUROS, 2, 10, 40, 55 }, // Paldean Tauros (Blaze Breed)
 };
 
 // One zone per quadrant of the Pal Park map: north-west, north-east, south-west, south-east.

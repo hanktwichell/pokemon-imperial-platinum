@@ -24,7 +24,7 @@ by-map review: no one has yet checked each spot's exact tiles against the NPCs, 
 | **Oreburgh Mine B2F** | Diancie, west nook (2, 22) (Carbink in the party); Meltan (5, 20); Melmetal (5, 24) | Miners, item balls | Three in a 4-tile area. Sequenced or conditional; check they don't block the path |
 | **Wayward Cave** | Zygarde, B1F north alcove (21, 4) (Xerneas and Yveltal caught); Necrozma, 1F dark chamber (70, 9) (Solgaleo/Lunala caught) | **Mira's Renegade quest (part 5) and the Gabite**, the hidden entrance | Check that Mira's spot and path don't touch Zygarde's alcove or Necrozma's chamber |
 | **Mt. Coronet** | Cosmog, top snowfield (35, 21); Articuno's Renegade portal near the summit; Kyurem, Iceberg Ruins doorway room; Kyogre, B1F lake island (22, 36) | The Celesteela rare roll, Regice's ruins (Route 216 side) | **Kyurem stands in the doorway room that Regice's Relicanth/Wailord event changes.** Handled by a condition (no Relicanth+Wailord pair), but fragile. Articuno: keep it off Cosmog's tile |
-| **Stark Mountain** | Volcanion, room 1 (Kalos); **Groudon, room 1 (6, 6)** (after the Hall of Fame); Heatran, room 3 | Buck and Team Galactic's scene in room 1 on a first visit, the Blacephalon roll and the Carbink stopgap outside | **Volcanion and Groudon share room 1**, also the room of the Galactic scene. Move one |
+| **Stark Mountain** | Groudon, room 1 (6, 6) (after the Hall of Fame); **Volcanion moved to room 2's north-east dead end (73, 15) on 2026-10-24**; Heatran, room 3 | Buck and Team Galactic's scene in room 1 on a first visit, Buck's escort and the trainers in room 2, the Blacephalon roll outside | **Settled**: one legendary per room |
 | **Turnback Cave** | Giratina back in its room after a Hall of Fame. **Eternatus moved to Victory Road B1F (14, 19) on 2026-10-24** | The Guzzlord roll in the pillar rooms | **Settled** |
 | **Solaceon Ruins** | Jirachi, asleep, Room 7 (5, 3) (three wishes); **Hoopa moved to Room 6's north-west dead end (2, 3) on 2026-10-24** (Prison Bottle) | The Unown rooms, the sign Jirachi's event reads | **Settled**: different rooms |
 | **Galactic HQ lab** | Genesect, back room (34, 5); Type: Null (24, 10) (Genesect caught) | The lab scientists, the Master Ball | Sequenced. Check the HQ is open post-game |
@@ -34,7 +34,7 @@ by-map review: no one has yet checked each spot's exact tiles against the NPCs, 
 | **Veilstone City** | Deoxys by the meteorites (731, 630); Kubfu in the Gym (13, 17) | The Gym's punching-bag puzzle, the department store, the Galactic building | Kubfu inside the Gym: check it doesn't block the Gym puzzle |
 | **Sunyshore City** | Magearna in **Volkner's room** (11, 13); Victini on Vista Lighthouse's top floor | **Volkner** (Gym battles and rematches), Flint, the lighthouse binoculars | Magearna next to Volkner: check it doesn't block his rematch or the Gym's exit |
 | **Old Chateau** | Marshadow, dining area (21, 9); Rotom, TV room (night) | The ghost girl and butler events | Different rooms. Fine |
-| **Route 212** | Wo-Chien, north (464, 788) (stakes 1–2); Zarude, south marsh | Pokémon Mansion, Renegade's Mansion grunts (not ported yet) | Check the grunts' spots when they're ported |
+| **Route 212** | Wo-Chien, north (464, 788) (stakes 1–2); Zarude, south marsh | Pokémon Mansion, Renegade's Mansion grunts (ported, E10 part 24: three on the route, two at the gate) | Fine: the grunts stand 8 or more tiles from Wo-Chien and its stakes, and they belong to the story while Wo-Chien is post-game |
 
 ## Maps with one legendary
 
@@ -64,7 +64,7 @@ by-map review: no one has yet checked each spot's exact tiles against the NPCs, 
 
 ## Clashes to settle (summary)
 1. ~~**Lost Tower top floor:** Yveltal and Ho-Oh (when ported).~~ Settled 2026-10-24: Yveltal moved to Route 229.
-2. **Stark Mountain room 1:** Volcanion and Groudon, plus the first-visit Galactic scene. Move one.
+2. ~~**Stark Mountain room 1:** Volcanion and Groudon.~~ Settled 2026-10-24: Volcanion moved to room 2.
 3. ~~**Turnback Cave, Giratina's room:** Eternatus and Giratina.~~ Settled 2026-10-24: Eternatus moved to Victory Road B1F.
 4. ~~**Solaceon Ruins Room 7:** Hoopa and Jirachi.~~ Settled 2026-10-24: Hoopa moved to Room 6's north-west dead end.
 5. ~~**Route 224 tablet:** Enamorus beside the Shaymin tablet.~~ Settled 2026-10-24: Enamorus moved to (912, 535).

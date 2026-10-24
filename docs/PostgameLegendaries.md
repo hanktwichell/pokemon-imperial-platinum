@@ -99,9 +99,9 @@ Covers **90** species.
 ### Steam Engine
 - **Pokémon:** #721 Volcanion
 - **Level:** 60
-- **Location:** Stark Mountain — the first cave's east tunnel
+- **Location:** Stark Mountain — the second cave's north-east dead end
 - **How:** Static encounter.
-- **Built:** Volcanion (CB-0041), level 60: at the end of the long east tunnel in Stark Mountain's first cave room (34, 24), by the PP Up, once the Kalos Chronicle is open, until it's caught. **Changed from the plan** (owner, 2026-10-23): an existing dead end in place of a new hot-spring room.
+- **Built:** Volcanion (CB-0041), level 60: at the end of the dead-end tunnel in the north-east of Stark Mountain's second cave room (73, 15), once the Kalos Chronicle is open, until it's caught. **Changed from the plan** (owner, 2026-10-23): an existing dead end in place of a new hot-spring room. It first stood in room 1 (34, 24) and moved on 2026-10-24 (owner), as Groudon and the first-visit Galactic scene use that room.
 
 ## Alola Chronicle
 
