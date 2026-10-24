@@ -165,13 +165,12 @@ dealer a present-day Pokémon gives its Paradox Pokémon at the shown Pokémon's
 
 | Pokémon | Kind | Where | Lv. | Appears when | Gone when / comes back |
 |---|---|---|---|---|---|
-| Uxie, Azelf | static | Acuity Cavern, Valor Cavern | 50 | after the Distortion World (Rowan's lab) | knocked out or run from: hidden until the next Hall of Fame |
-| Mesprit | roamer | released in Verity Cavern | 50 | after the Distortion World | knocked out: the Hall of Fame puts it back in the cavern |
+| Uxie, Mesprit, Azelf | static | Acuity, Verity and Valor Caverns | 60 (Renegade's; vanilla 50) | after the Distortion World (Rowan's lab) | caught; knocked out or run from, it's back on the next visit (Renegade's rule). Mesprit no longer roams |
 | Dialga, Palkia | static (rift) | Spear Pillar's Dialga and Palkia maps | 70 | post-game, `FLAG_UNLOCKED_DIALGA_PALKIA_SPEAR_PILLAR` (the Celestic elder), the Adamant or Lustrous Orb carried | the Hall of Fame resets a missed one. Spear Pillar itself has no Chronicle encounter (decision 27) |
-| Giratina | static | Distortion World (story); then Turnback Cave's Giratina room | 47 | story; Turnback Cave if it wasn't caught | the Hall of Fame |
-| Heatran | static | Stark Mountain room 3 | 50 | post-game, talked to Buck at the Battleground, room state 1 | the Hall of Fame |
+| Giratina | static | Distortion World (story); then Turnback Cave's Giratina room | 47; Turnback Cave 70 (Renegade's) | story; Turnback Cave if it wasn't caught | the Hall of Fame |
+| Heatran | static | Stark Mountain room 3 | 68 (Renegade's; vanilla 50) | post-game, talked to Buck at the Battleground, room state 1 | the Hall of Fame |
 | Regigigas | static | Snowpoint Temple B5F | 70 (Renegade's; vanilla 1) | Regirock, Regice and Registeel in the party | the Hall of Fame |
-| Cresselia | roamer | released on Fullmoon Island | 50 | after the Lunar Wing quest | the Hall of Fame |
+| Cresselia | static | Fullmoon Island's clearing (16, 15) | 68 (Renegade's; vanilla 50, a roamer) | after the Lunar Wing quest | caught; it's back on the next visit until then. The catch leaves the Lunar Wing where it stood |
 | Articuno, Zapdos, Moltres | roamers | released by Professor Oak in Eterna City's south house | 60 | post-game | Oak re-releases after a Hall of Fame |
 | Darkrai | static | Newmoon Island | 50 | Member Card and the distribution | — |
 | Shaymin | static | Flower Paradise | 30 | Oak's Letter and the distribution | — |
@@ -193,6 +192,8 @@ Darkrai, Shaymin and Arceus need vanilla's distribution events, so they can't be
 | Kyogre | static | Mt. Coronet B1F, the island in the lake (22, 36); the Light Clay ball moved to (12, 12) | 70 | after the Hall of Fame, once Steven has given the Orbs | caught |
 | Groudon | static | Stark Mountain room 1, left of the steps to the next room (6, 6); the Full Heal ball moved to (12, 3) | 70 | as Kyogre | caught |
 | Rayquaza | static | Pokémon League, the strip of land below the waterfall (847, 572) | 70 | as Kyogre (Renegade's Jade Orb isn't in Sovereign) | caught |
+| Mewtwo | static | Oreburgh Gate B1F, the north-west pocket beside the TM01 ball (7, 9), past the Rock Smash rock and Strength boulder | 70 | after the Hall of Fame | caught |
+| Uxie, Mesprit, Azelf; Cresselia; Heatran; Turnback Giratina | static | their vanilla spots | 60; 68; 68; 70 | as in vanilla | the lake trio and Cresselia come back each visit until caught; Heatran and Giratina still come back after a Hall of Fame, as in vanilla (see the vanilla table) |
 
 **Steven** (Oreburgh City's south house) gives a Lv. 10 Beldum, then takes requests from his QUESTS menu: the Magma
 Stone (Stark Mountain) for the Soul Dew; Latias and Latios in the party for the legendary titans' story (Relicanth and
@@ -213,16 +214,13 @@ against the Chronicles':
 | Articuno | Mt. Coronet summit portal (Rock Climb) | 60 | Cosmog's snowfield (35, 21) and the Celesteela rare roll |
 | Zapdos | Valley Windworks, the island behind the building | 60 | **Zekrom stands on that island** |
 | Moltres | Victory Road, a small room | 60 | — |
-| Mewtwo | Oreburgh Gate basement portal | 70 | — |
 | Mew | Route 201, after a chain of berry quests | 40 | — |
 | Lugia, Ho-Oh | Route 220 island; Lost Tower top floor | 70 | **Yveltal stands on Lost Tower 5F** |
 | Celebi | Eterna Forest portals | 40 | **Virizion and Xerneas stand in Eterna Forest** |
 | Jirachi | Solaceon Ruins | 40 | Hoopa (Room 7) |
 | Deoxys | Veilstone City | 70 | — |
-| Uxie, Mesprit, Azelf | their caverns, static, until caught | 60 | — |
-| Heatran, Regigigas, Cresselia, Darkrai | until caught | 68–70 | — |
+| Darkrai | until caught | 68–70 | — |
 | Shaymin | Flower Paradise, near Route 224's tablet | 30 | Enamorus, Pecharunt (Route 224) |
-| Giratina | Turnback Cave after the credits | 70 | Eternatus shares the room |
 | Arceus | Azure Flute from Hearthome's Foreign Building | 80 | — |
 
 ## Open issues
@@ -236,4 +234,4 @@ Found by the audit and still open (the CB-0045 to CB-0048 fixes are in `EngineCh
 - **Gates read the Pokédex,** so a legendary caught another way (a trade) can open the next one early, and a traded
   Reshiram skips the Light and Dark Stones (then Zekrom can't appear).
 - **Poipole is Lv. 40,** below Route 230's own Pokémon, so a Repel with a stronger lead hides it.
-- **The Marking Map and the TV news flash** can't tell the 13 roamers apart (vanilla behaviour).
+- **The Marking Map and the TV news flash** can't tell the 11 roamers apart (vanilla behaviour).

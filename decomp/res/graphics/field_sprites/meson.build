@@ -303,6 +303,7 @@ field_sprites_textures_single_frame = [
     { 'file': 'pokemon/legendary_kyogre.png', 'basename': 'sovlegend86'},
     { 'file': 'pokemon/legendary_groudon.png', 'basename': 'sovlegend87'},
     { 'file': 'pokemon/legendary_rayquaza.png', 'basename': 'sovlegend88'},
+    { 'file': 'pokemon/legendary_mewtwo.png', 'basename': 'sovlegend89'},
 ]
 
 field_sprites_textures_single_frame_pl_suffix = [

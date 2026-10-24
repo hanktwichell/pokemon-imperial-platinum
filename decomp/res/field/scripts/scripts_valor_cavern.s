@@ -30,8 +30,9 @@ ValorCavern_OnLoad:
     GoToIfSet FLAG_GALACTIC_LEFT_LAKE_VALOR, ValorCavern_RemoveWarpLakeValorDrained
     End
 
+@ Sovereign (E10, Renegade's legendary events): Azelf is Lv. 60 and comes back each visit until it's caught, so the
+@ battle only hides it for this visit; catching it sets the hide flag.
 ValorCavern_RemoveAzelf:
-    SetFlag FLAG_HIDE_VALOR_CAVERN_AZELF
     RemoveObject LOCALID_AZELF
     ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     Return
@@ -44,12 +45,13 @@ ValorCavern_Azelf:
     Message ValorCavern_Text_AzelfCry
     CloseMessage
     SetFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
-    StartLegendaryBattle SPECIES_AZELF, 50
+    StartLegendaryBattle SPECIES_AZELF, 60
     ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, ValorCavern_LostBattleAzelf
     CheckDidNotCapture VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, ValorCavern_AzelfDisappeared
+    SetFlag FLAG_HIDE_VALOR_CAVERN_AZELF
     SetFlag FLAG_CAUGHT_AZELF
     ReleaseAll
     End

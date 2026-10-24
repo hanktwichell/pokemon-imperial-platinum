@@ -16,8 +16,9 @@ AcuityCavern_OnLoad:
     GoToIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, AcuityCavern_RemoveUxie
     End
 
+@ Sovereign (E10, Renegade's legendary events): Uxie is Lv. 60 and comes back each visit until it's caught, so the
+@ battle only hides it for this visit; catching it sets the hide flag.
 AcuityCavern_RemoveUxie:
-    SetFlag FLAG_HIDE_ACUITY_CAVERN_UXIE
     RemoveObject LOCALID_UXIE
     ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     End
@@ -30,12 +31,13 @@ AcuityCavern_Uxie:
     Message AcuityCavern_Text_UxieCry
     CloseMessage
     SetFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
-    StartLegendaryBattle SPECIES_UXIE, 50
+    StartLegendaryBattle SPECIES_UXIE, 60
     ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, AcuityCavern_LostBattle
     CheckDidNotCapture VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, AcuityCavern_UxieDisappeared
+    SetFlag FLAG_HIDE_ACUITY_CAVERN_UXIE
     SetFlag FLAG_CAUGHT_UXIE
     ReleaseAll
     End

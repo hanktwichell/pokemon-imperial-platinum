@@ -4312,3 +4312,36 @@ Rock Peak/Iceberg/Iron Ruins, Snowpoint Temple B5F; `decomp/res/trainers/data/so
    the birds (Renegade portals vs Sovereign's Oak roamers), the lake trio, Mew's berry chain.
 2. Renegade's trainers from its ROM (`trdata`/`trpoke`), with `data/trainers_sovereign.yaml` on top.
 3. Ask the owner about Renegade's Snowpoint Temple scene (story Regigigas, Candice's HM08).
+
+## CB-0089 — 2026-10-24, 8:39 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** E10 part 15, Renegade's lake trio, Cresselia, Heatran, Giratina and Mewtwo. PR #99 (part 14)
+merged.
+- Uxie, Mesprit, Azelf: Lv. 60, back each visit until caught. A battle hides one for that visit only; a capture sets
+  its hide flag. Mesprit is a Verity Cavern battle now: no roamer, no Rowan scene (new OnLoad, script 3).
+- Cresselia: a Lv. 68 static through `Common_SovereignLegendaryEncounter`, no roamer. A capture sets its hide flag and
+  `FLAG_MET_CRESSELIA` and shows the Lunar Wing ball. Fullmoon's OnLoad removal is now per species (Tapu Lele,
+  Cresselia).
+- Heatran Lv. 68, Turnback Giratina Lv. 70. Both still reset after a Hall of Fame, as in vanilla.
+- Mewtwo: Oreburgh Gate B1F (7, 9), after the Hall of Fame, Lv. 70, until caught (new OnTransition/OnLoad and
+  placeholder sprite).
+  - TM01 stays at (8, 9): Sovereign keeps the Strength boulder, so Renegade's ball move would block it.
+  - The gate is the Hall of Fame. Renegade's portal wants its Odd Invitation instead.
+- Verified in a gate-skipped test build: Mesprit, Cresselia and Mewtwo battles, and the vanish messages. Release
+  build, battle-script check and docs pass.
+
+**Files modified:**
+- Scripts: `decomp/res/field/scripts/scripts_{acuity_cavern,valor_cavern,verity_cavern,init_verity_cavern,`
+  `fullmoon_island_forest,stark_mountain_room_3,turnback_cave_giratina_room,oreburgh_gate_b1f,init_oreburgh_gate_b1f}.s`
+- Events and text: `decomp/res/field/events/events_oreburgh_gate_b1f.json`,
+  `decomp/res/text/{verity_cavern,fullmoon_island_forest}.json`
+- Sprite tables and `legendary_mewtwo.png`; `tools/sprites/make_legendary_overworld.py`
+- Docs: `docs/LegendaryTriggers.md`, `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Jirachi's three wishes:
+   - The wishes are in Eterna's Pokémon Center, Solaceon's north-east house and Pastoria City (Renegade flags
+     2266–2268).
+   - Then the Solaceon Ruins room 7 sign and the sleeping Jirachi, woken by a Jigglypuff, Lv. 40.
+2. Deoxys at Veilstone (its forms and meteorites, Lv. 70); then Celebi, Lugia/Ho-Oh, the birds and Mew's chain.
+3. Renegade's trainers from its ROM (`trdata`/`trpoke`), with `data/trainers_sovereign.yaml` on top.

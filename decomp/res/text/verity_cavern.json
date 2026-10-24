@@ -62,6 +62,13 @@
         "I hope you’ll enjoy that experience!\n",
         "Take care, {STRVAR_1 3, 0, 0}.\r"
       ]
+    },
+    {
+      "id": "VerityCavern_Text_SovereignMespritDisappeared",
+      "en_US": [
+        "MESPRIT disappeared deep into\n",
+        "the cavern..."
+      ]
     }
   ]
 }

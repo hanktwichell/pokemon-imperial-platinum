@@ -104,6 +104,7 @@ LEGENDARIES = {
     "kyogre": 382,
     "groudon": 383,
     "rayquaza": 384,
+    "mewtwo": 150,
 }
 
 

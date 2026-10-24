@@ -58,6 +58,13 @@
     {
       "id": "FullmoonIslandForest_Text_SovereignButNothingHappened",
       "en_US": "But nothing happened..."
+    },
+    {
+      "id": "FullmoonIslandForest_Text_SovereignSomethingSparkling",
+      "en_US": [
+        "There is something sparkling where\n",
+        "CRESSELIA once was..."
+      ]
     }
   ]
 }
