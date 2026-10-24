@@ -281,6 +281,10 @@ static const SovereignForm sSovereignForms[SOVEREIGN_FORM_COUNT] = {
     { SPECIES_ZARUDE, 1, SOVEREIGN_FORM_REGIONAL, 0 }, // Dada Zarude
     { SPECIES_URSALUNA, 1, SOVEREIGN_FORM_REGIONAL, 0 }, // Bloodmoon Ursaluna
     { SPECIES_GIMMIGHOUL, 1, SOVEREIGN_FORM_REGIONAL, 0 }, // Roaming Form Gimmighoul
+    { SPECIES_ORICORIO, 1, SOVEREIGN_FORM_PERSONALITY, 0 }, // Pom-pom Oricorio
+    { SPECIES_ORICORIO, 2, SOVEREIGN_FORM_PERSONALITY, 0 }, // Pa’u Oricorio
+    { SPECIES_ORICORIO, 3, SOVEREIGN_FORM_PERSONALITY, 0 }, // Sensu Oricorio
+    { SPECIES_KELDEO, 1, SOVEREIGN_FORM_REGIONAL, 0 }, // Resolute Keldeo
 };
 
 // A regional form that evolves into its region's form of the target species (any other evolves into form 0).
@@ -405,6 +409,7 @@ static const SovereignBabyForm sSovereignBabyForms[] = {
     { SPECIES_ZARUDE, 1, 0, SPECIES_ZARUDE },
     { SPECIES_URSALUNA, 1, 0, SPECIES_TEDDIURSA },
     { SPECIES_GIMMIGHOUL, 1, 0, SPECIES_GIMMIGHOUL },
+    { SPECIES_KELDEO, 1, 1, SPECIES_KELDEO },
     { SPECIES_PERRSERKER, 0, 2, SPECIES_MEOWTH },
     { SPECIES_SIRFETCHD, 0, 1, SPECIES_FARFETCHD },
     { SPECIES_CURSOLA, 0, 1, SPECIES_CORSOLA },

@@ -16,6 +16,7 @@ enum SovereignFormItemResult {
 };
 
 BOOL SovereignFormItem_IsFormItem(u16 item);
+BOOL SovereignFormItem_IsUsedUp(u16 item);
 int SovereignFormItem_Use(SaveData *saveData, Party *party, int slot, u16 item, int *changedSlot, int *fusedPartnerSlot);
 
 #endif // POKEPLATINUM_SOVEREIGN_FORM_ITEMS_H

@@ -1540,6 +1540,18 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
     case MON_DATA_MOVE3:
     case MON_DATA_MOVE4:
         monDataBlockB->moves[param - MON_DATA_MOVE1] = *u16Value;
+
+        // Sovereign (FM): Keldeo is in its Resolute Form while it knows Secret Sword, as in the Gen V+ games (the same
+        // stats, types and ability as its Ordinary Form).
+        if (monDataBlockA->species == SPECIES_KELDEO) {
+            monDataBlockB->form = 0;
+
+            for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+                if (monDataBlockB->moves[i] == MOVE_SECRET_SWORD) {
+                    monDataBlockB->form = 1;
+                }
+            }
+        }
         break;
 
     case MON_DATA_MOVE1_PP:

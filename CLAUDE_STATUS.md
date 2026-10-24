@@ -3807,3 +3807,27 @@ their new `forms/*/data.json`, `decomp/src/pokemon.c`, `docs/TechnicalDesign.md`
 2. Overworld sprites from the owner (in a few days): size them naturally against the existing overworld Pokémon.
 3. The owner's final placements for the provisional spots (Paradox dealers, Greninja NPC, event deliveryman,
    Chronicle encounters).
+
+---
+
+## CB-0069 — FM: Oricorio's styles and Resolute Keldeo (Sat Oct 24 2026, 02:35 CDT)
+
+**Implemented:**
+- **Oricorio's styles:** from its personality (wild, gifts). The four nectars, used from the bag, change its style and
+  are used up.
+- **Keldeo's Resolute Form:** while it knows Secret Sword (set in `BoxPokemon_SetDataInternal` on any move change).
+- Verified in the emulator: a Yellow Nectar made Baile Oricorio Pom-Pom (Electric/Flying), and one nectar was used up.
+
+**Files modified:** `tools/engine/gen_forms.py`, `tools/engine/gen_items.py`, `decomp/res/items/data/*_nectar.json`,
+generated form data (`decomp/include/data/sovereign_forms.h`, `decomp/include/constants/sovereign_forms.h`,
+`decomp/tools/dataproc/src/sovereign_forms.inc`, Oricorio's and Keldeo's `meson.build` and new `forms/*/data.json`),
+`decomp/src/pokemon.c`, `decomp/src/sovereign_form_items.c`, `decomp/include/sovereign_form_items.h`,
+`decomp/src/applications/party_menu/main.c`, `docs/TechnicalDesign.md`, `docs/EngineRoadmap.md`,
+`docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Milestone FM, the form-only Pokémon not in `data/forms.csv` (about 228 forms): first the ones with battle effects
+   (Silvally's Memories, Genesect's Drives, Arceus-Fairy), then the cosmetic ones (Unown, Vivillon, Alcremie, Furfrou,
+   Flabébé's colors, Burmy...).
+2. Overworld sprites from the owner (in a few days): size them naturally against the existing overworld Pokémon.
+3. The shops step: where the nectars, Memories, Drives, Sweets and other new items are found or sold.

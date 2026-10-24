@@ -264,3 +264,7 @@
     { "zarude/forms/dada", NULL, .isGiratinaOrigin = false }, // Dada Zarude
     { "ursaluna/forms/bloodmoon", NULL, .isGiratinaOrigin = false }, // Bloodmoon Ursaluna
     { "gimmighoul/forms/roaming", NULL, .isGiratinaOrigin = false }, // Roaming Form Gimmighoul
+    { "oricorio/forms/pom_pom", NULL, .isGiratinaOrigin = false }, // Pom-pom Oricorio
+    { "oricorio/forms/pau", NULL, .isGiratinaOrigin = false }, // Pa’u Oricorio
+    { "oricorio/forms/sensu", NULL, .isGiratinaOrigin = false }, // Sensu Oricorio
+    { "keldeo/forms/resolute", NULL, .isGiratinaOrigin = false }, // Resolute Keldeo
