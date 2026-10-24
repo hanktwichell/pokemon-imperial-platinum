@@ -80,7 +80,7 @@ StarkMountainRoom3_Heatran:
     Message StarkMountainRoom3_Text_HeatranCry
     CloseMessage
     SetFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
-    StartLegendaryBattle SPECIES_HEATRAN, 50
+    StartLegendaryBattle SPECIES_HEATRAN, 68
     ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, StarkMountainRoom3_LostBattle

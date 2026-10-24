@@ -4,6 +4,23 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 15) — Renegade's legendary events: the lake trio, Cresselia, Heatran, Giratina and Mewtwo
+
+- **Uxie, Mesprit and Azelf** are Lv. 60 (vanilla 50) and stay in their caverns until caught: knocked out or run
+  from, one is gone for that visit only (vanilla hid it until the next Hall of Fame). Mesprit no longer roams: it's a
+  battle in Verity Cavern like the other two, without Rowan's scene after it.
+- **Cresselia** no longer roams: it's a Lv. 68 battle in Fullmoon Island's clearing, back each visit until caught.
+  The catch leaves the Lunar Wing where it stood, so the Canalave sailor's quest and the Latias/Latios rock still
+  follow it.
+- **Heatran** is Lv. 68 (vanilla 50) and **Turnback Cave's Giratina** Lv. 70 (vanilla 47), as in Renegade. They still
+  come back only after a Hall of Fame.
+- **Mewtwo** stands in Oreburgh Gate B1F's north-west pocket (past the Rock Smash rock and the Strength boulder,
+  beside the TM01 ball) after the Hall of Fame, Lv. 70, until caught. Placeholder overworld sprite.
+
+Verified in a gate-skipped test build: Mesprit stands in Verity Cavern and starts its Lv. 60 battle, then "disappeared
+deep into the cavern" and is gone; Cresselia starts its Lv. 68 battle through the shared legendary script and
+vanishes after a knock-out; Mewtwo stands in the pocket and starts its Lv. 70 battle. The release build passes.
+
 ## E10 (part 14) — Renegade's legendary events: Kyogre, Groudon and Rayquaza
 
 - After the Hall of Fame, once Steven has given the Red and Blue Orbs (for showing him the Regis), the weather trio

@@ -28,7 +28,8 @@ FullmoonIslandForest_SovereignSetTapuLeleVisibilityEnd:
     Return
 
 FullmoonIslandForest_OnLoad:
-    GoToIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, FullmoonIslandForest_RemoveLegendaryTapuLele
+    CallIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, FullmoonIslandForest_RemoveLegendaryTapuLele
+    CallIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, FullmoonIslandForest_RemoveLegendaryCresselia
     End
 
 FullmoonIslandForest_RemoveLegendaryTapuLele:
@@ -36,7 +37,14 @@ FullmoonIslandForest_RemoveLegendaryTapuLele:
     RemoveObject LOCALID_LEGENDARY_TAPU_LELE
     ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
 FullmoonIslandForest_RemoveLegendaryTapuLeleEnd:
-    End
+    Return
+
+FullmoonIslandForest_RemoveLegendaryCresselia:
+    GoToIfNe VAR_SOVEREIGN_LEGENDARY_SPECIES, SPECIES_CRESSELIA, FullmoonIslandForest_RemoveLegendaryCresseliaEnd
+    RemoveObject LOCALID_CRESSELIA
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+FullmoonIslandForest_RemoveLegendaryCresseliaEnd:
+    Return
 
 FullmoonIslandForest_LegendaryTapuLele:
     SetVar VAR_0x8004, SPECIES_TAPU_LELE
@@ -47,49 +55,24 @@ FullmoonIslandForest_LegendaryTapuLele:
 FullmoonIslandForest_Dummy1:
     End
 
+@ Sovereign (E10, Renegade's legendary events): Cresselia doesn't roam. It's a Lv. 68 battle here and comes back each
+@ visit until it's caught; catching it leaves the Lunar Wing where it was.
 FullmoonIslandForest_Cresselia:
-    PlaySE SE_CONFIRM_sseq_3
+    SetVar VAR_0x8004, SPECIES_CRESSELIA
+    SetVar VAR_0x8005, 68
+    Common_SovereignLegendaryEncounter
+    GoToIfEq VAR_RESULT, FALSE, FullmoonIslandForest_CresseliaEnd
     LockAll
-    FacePlayer
-    DrawPokemonPreview SPECIES_CRESSELIA, GENDER_FEMALE
-    WaitABPress
-    RemovePokemonPreview
-    PlayCry SPECIES_CRESSELIA
-    GetPlayerDir VAR_RESULT
-    CallIfEq VAR_RESULT, DIR_NORTH, FullmoonIslandForest_CresseliaMoveAwayForLunarWing
-    ReleaseObject LOCALID_CRESSELIA
-    FlickerObject LOCALID_CRESSELIA, 6, 8
-    LockObject LOCALID_CRESSELIA
     SetFlag FLAG_HIDE_FULLMOON_ISLAND_FOREST_CRESSELIA
-    RemoveObject LOCALID_CRESSELIA
-    ActivateRoamingPokemon ROAMING_SLOT_CRESSELIA
-    GoToIfEq VAR_ROAMING_CRESSELIA_STATE, ROAMER_STATE_RESET, FullmoonIslandForest_ResetCresseliaRoamingState
+    SetFlag FLAG_MET_CRESSELIA
     ClearFlag FLAG_OBTAINED_FULLMOON_ISLAND_FOREST_LUNAR_WING
     AddObject LOCALID_ITEM_LUNAR_WING
-    SetFlag FLAG_MET_CRESSELIA
-    Message FullmoonIslandForest_Text_SomethingSparkling
+    Message FullmoonIslandForest_Text_SovereignSomethingSparkling
     WaitButton
     CloseMessage
     ReleaseAll
+FullmoonIslandForest_CresseliaEnd:
     End
-
-FullmoonIslandForest_ResetCresseliaRoamingState:
-    SetVar VAR_ROAMING_CRESSELIA_STATE, ROAMER_STATE_ROAMING
-    ReleaseAll
-    End
-
-FullmoonIslandForest_CresseliaMoveAwayForLunarWing:
-    SetObjectEventPos LOCALID_ITEM_LUNAR_WING, 16, 14
-    ApplyMovement LOCALID_CRESSELIA, FullmoonIslandForest_Movement_CresseliaMoveBackNorth
-    WaitMovement
-    Return
-
-    .balign 4, 0
-FullmoonIslandForest_Movement_CresseliaMoveBackNorth:
-    LockDir
-    WalkNormalNorth
-    UnlockDir
-    EndMovement
 
 @ Sovereign (E10, Renegade's legendary events): once Cresselia is caught (and the Lunar Wing taken), a mysterious rock
 @ stands where it was. Read from below with the Soul Dew (Steven's gift), it asks "red or blue": Latias or Latios,
