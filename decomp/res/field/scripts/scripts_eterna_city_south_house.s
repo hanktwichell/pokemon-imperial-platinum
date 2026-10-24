@@ -40,37 +40,19 @@ EternaCitySouthHouse_BagIsFull:
     ReleaseAll
     End
 
+@ Sovereign (E10 part 27, decision 33): the birds no longer roam. They stand where Renegade put its portals (Mt.
+@ Coronet's summit, Valley Windworks, Victory Road) from the Distortion World on, so Oak only hints at the places.
+@ FLAG_ACTIVATED_ROAMING_LEGENDARY_BIRDS now means Oak has given the hint.
 EternaCitySouthHouse_ActivateRoamingLegendaryBirds:
-    ActivateRoamingPokemon ROAMING_SLOT_MOLTRES
-    ActivateRoamingPokemon ROAMING_SLOT_ZAPDOS
-    ActivateRoamingPokemon ROAMING_SLOT_ARTICUNO
     SetFlag FLAG_ACTIVATED_ROAMING_LEGENDARY_BIRDS
     Message EternaCitySouthHouse_Text_SightingsOfLegendaryBirds
     GoTo EternaCitySouthHouse_ProfOakEnd
     End
 
 EternaCitySouthHouse_TryReactivateRoamingLegendaryBirds:
-    CallIfEq VAR_ROAMING_MOLTRES_STATE, ROAMER_STATE_RESET, EternaCitySouthHouse_ReactivateRoamingMoltres
-    CallIfEq VAR_ROAMING_ZAPDOS_STATE, ROAMER_STATE_RESET, EternaCitySouthHouse_ReactivateRoamingZapdos
-    CallIfEq VAR_ROAMING_ARTICUNO_STATE, ROAMER_STATE_RESET, EternaCitySouthHouse_ReactivateRoamingArticuno
     Message EternaCitySouthHouse_Text_LegendaryBirdsExtremelyRare
     GoTo EternaCitySouthHouse_ProfOakEnd
     End
-
-EternaCitySouthHouse_ReactivateRoamingMoltres:
-    SetVar VAR_ROAMING_MOLTRES_STATE, ROAMER_STATE_ROAMING
-    ActivateRoamingPokemon ROAMING_SLOT_MOLTRES
-    Return
-
-EternaCitySouthHouse_ReactivateRoamingZapdos:
-    SetVar VAR_ROAMING_ZAPDOS_STATE, ROAMER_STATE_ROAMING
-    ActivateRoamingPokemon ROAMING_SLOT_ZAPDOS
-    Return
-
-EternaCitySouthHouse_ReactivateRoamingArticuno:
-    SetVar VAR_ROAMING_ARTICUNO_STATE, ROAMER_STATE_ROAMING
-    ActivateRoamingPokemon ROAMING_SLOT_ARTICUNO
-    Return
 
 EternaCitySouthHouse_CaughtAllRoamingLegendaryBirds:
     Message EternaCitySouthHouse_Text_YouveCaughtLegendaryBirds
@@ -82,10 +64,15 @@ EternaCitySouthHouse_PokedexRatingsCheckOak2:
     CallCommonScript 0x26E0
     End
 
+@ The birds can now be caught before Oak's first talk, so his praise waits until he has given the Up-Grade and his hint.
 EternaCitySouthHouse_CheckCaughtAllRoamingLegendaryBirds:
-    GoToIfNe VAR_ROAMING_MOLTRES_STATE, ROAMER_STATE_CAPTURED, EternaCitySouthHouse_DidNotCatchAllRoamingLegendaryBirds
-    GoToIfNe VAR_ROAMING_ZAPDOS_STATE, ROAMER_STATE_CAPTURED, EternaCitySouthHouse_DidNotCatchAllRoamingLegendaryBirds
-    GoToIfNe VAR_ROAMING_ARTICUNO_STATE, ROAMER_STATE_CAPTURED, EternaCitySouthHouse_DidNotCatchAllRoamingLegendaryBirds
+    GoToIfUnset FLAG_ACTIVATED_ROAMING_LEGENDARY_BIRDS, EternaCitySouthHouse_DidNotCatchAllRoamingLegendaryBirds
+    SovereignCheckSpeciesCaught SPECIES_MOLTRES, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, EternaCitySouthHouse_DidNotCatchAllRoamingLegendaryBirds
+    SovereignCheckSpeciesCaught SPECIES_ZAPDOS, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, EternaCitySouthHouse_DidNotCatchAllRoamingLegendaryBirds
+    SovereignCheckSpeciesCaught SPECIES_ARTICUNO, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, EternaCitySouthHouse_DidNotCatchAllRoamingLegendaryBirds
     SetVar VAR_RESULT, TRUE
     Return
 

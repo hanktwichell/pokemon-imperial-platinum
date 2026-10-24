@@ -15,7 +15,7 @@ own legendaries keep their vanilla sprites and sizes.
 - **Extra large:** Eternatus.
 - **Large:** Necrozma, Koraidon, Miraidon, Kyogre, Groudon, Rayquaza. Not in the game yet (their sprites come with their encounters): Ho-Oh, Lugia, Lunala, Solgaleo.
 
-## Not sorted yet: small for now (86)
+## Not sorted yet: small for now (89)
 
 The owner will say which of these become large.
 
@@ -105,3 +105,6 @@ The owner will say which of these become large.
 - Deoxys
 - Mew
 - Manaphy
+- Articuno
+- Zapdos
+- Moltres

@@ -118,6 +118,9 @@ LEGENDARIES = {
     "deoxys": 386,
     "mew": 151,
     "manaphy": 490,
+    "articuno": 144,
+    "zapdos": 145,
+    "moltres": 146,
 }
 
 # The owner's size classes (2026-10-24). Lugia, Ho-Oh, Solgaleo and Lunala have no overworld sprite yet; they're listed

@@ -4864,3 +4864,53 @@ PR #113 (part 25, Manaphy) merged.
 2. Celebi (Renegade's memory trainers 1029–1036, Eterna Forest portals clear of Virizion, Xerneas and Totem
    Vikavolt), then Lugia (Route 220 island) and Ho-Oh (Lost Tower 5F, off Totem Marowak's tile).
 3. The Route 224 and Battleground counterpart battles, Buck, Darach and the reporters.
+
+## CB-0101 — 2026-10-24, 3:23 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: E10 part 27, the legendary birds where Renegade's portals stood (decision 33).** PR #115 (part 26)
+is merged.
+- Articuno, Zapdos and Moltres no longer roam. They are statics at Renegade's Lv. 60 from the Distortion World on,
+  until caught, with the same gate and vanish-until-next-visit rule as Raikou (part 12).
+  - **Articuno:** Mt. Coronet outside north (33, 20), on `FLAG_MAP_LOCAL_HIDE_LEGENDARY_2`, two tiles from Cosmog.
+    The OnLoad removal now checks `VAR_SOVEREIGN_LEGENDARY_SPECIES`, so catching one doesn't remove the other.
+  - **Zapdos:** Valley Windworks outside (241, 644), on the small island north of the building, beside the TM24
+    ball. Renegade's portal used the ball's tile. Same hidden flag and removal check as Articuno.
+  - **Moltres:** Victory Road 2F (20, 3), the small room past the Strength boulders, clear of the tiles the TM79
+    puzzle needs (column 19 and (18, 3)). The map had `scripts_empty`; it now has its own scripts and init.
+- **Zekrom doesn't block Zapdos.** Zekrom (236, 650) is on the west island, not Renegade's north one, so Zapdos
+  didn't need to wait for decision 34. Decision 34 (Zekrom to Route 215) is still Claude A's to do.
+- **Professor Oak** (Eterna City south house):
+  - He no longer releases roamers. With the Up-Grade he hints at the three places, using Renegade's "somewhere very
+    cold, somewhere that generates electricity, and somewhere Trainers gather".
+  - His all-caught check reads the Pokédex instead of the roamer states.
+  - The check now waits until his first talk is done (`FLAG_ACTIVATED_ROAMING_LEGENDARY_BIRDS`). Otherwise a player
+    who caught all three first would never get the Up-Grade.
+- Three small placeholder overworld sprites. My scratch `reglegend.py` now follows Claude A's size classes (32×32
+  for small).
+- Tested on a test ROM:
+  - All three birds: on their tiles, Lv. 60 battles, Master Ball catches, gone afterwards and on later visits.
+  - Moltres and Zapdos come back on the next visit after a run.
+  - Cosmog stays after Articuno's catch.
+  - Oak's first and second talks, with all three caught and with two caught.
+  - Not tested: the birds hidden before the Distortion World (the same gate code as Raikou).
+  - Harness note: one run left Oak's last text box open for a long stretch. It didn't happen in three later runs
+    with the same or similar key presses, so I take it for a harness timing glitch.
+
+**Files modified:**
+- `decomp/res/field/scripts/scripts_victory_road_2f.s` and `scripts_init_victory_road_2f.s` (new), with
+  `meson.build`, `scripts.order` and `decomp/include/data/map_headers.h`
+- Scripts and events for `mt_coronet_outside_north` and `valley_windworks_outside`; events for `victory_road_2f`
+- Scripts and text for `eterna_city_south_house`
+- Sprites: `decomp/res/graphics/field_sprites/pokemon/legendary_{articuno,zapdos,moltres}.png`,
+  `field_sprites.order`, the field_sprites `meson.build`, `decomp/generated/object_events_gfx.txt`,
+  `decomp/src/overlay005/object_event_gfx_data.c`, `tools/sprites/make_legendary_overworld.py`
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `docs/LegendaryTriggers.md`,
+  `docs/LegendaryPlacementReview.md`, `docs/ProjectStatus.md` (decision 33 note), `docs/OverworldSpriteSizes.md`,
+  `docs/StaticEncounters.xlsx`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Celebi: Renegade's memory trainers 1029–1036, with Eterna Forest portals clear of Virizion (80, 10),
+   Xerneas (70, 14) and Totem Vikavolt (22, 68).
+2. Lugia (Route 220 island; Oak's Silver Wing with the three birds in the party) and Ho-Oh (Lost Tower 5F, off
+   Totem Marowak's tile (3, 4); the Rainbow Wing with the three beasts). Renegade's Oak QUESTS menu gives both wings.
+3. The Route 224 and Battleground counterpart battles, Buck, Darach and the reporters.

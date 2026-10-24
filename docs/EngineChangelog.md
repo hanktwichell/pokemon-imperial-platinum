@@ -4,6 +4,36 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 27) — Articuno, Zapdos and Moltres where Renegade's portals stood (decision 33)
+
+The legendary birds no longer roam. Like Raikou, Entei and Suicune (part 12), each now stands where Renegade put its
+portal, from the Distortion World on (Cyrus beaten there), at Renegade's Lv. 60. A win or a run makes it vanish until
+the next visit; it stays away once caught.
+- **Articuno:** Mt. Coronet's top snowfield (33, 20). Renegade's portal was at (35, 20), right above Cosmog's tile
+  (35, 21), so Articuno stands two tiles west of that, on its own hidden flag.
+- **Zapdos:** Valley Windworks, the small island north of the building (241, 644), beside the TM24 ball (Surf).
+  Renegade moved TM24 and used the ball's tile. Zekrom stands on the west island (236, 650), so the two don't clash.
+  Decision 34 still moves Zekrom to Route 215; that's a separate change.
+- **Moltres:** Victory Road 2F, the small room past the Strength boulders (20, 3). Renegade removed the boulders and
+  used (18, 3). Sovereign keeps the boulders and the TM79 ball, so Moltres stands clear of the tiles the puzzle
+  needs. Platinum gave this map no scripts; it now has its own script archive, like Victory Road B1F.
+- **Professor Oak** in Eterna City's south house still gives the Up-Grade, but now hints at the three places
+  (Renegade's "somewhere very cold, somewhere that generates electricity, and somewhere Trainers gather") instead of
+  releasing roamers. His praise for catching all three reads the Pokédex now, and it waits until after his first
+  talk, since the birds can now be caught before it.
+- New overworld sprites for the three birds: small placeholders from PokeAPI, listed as unsorted in
+  `OverworldSpriteSizes.md`.
+
+Verified in a test build (the Distortion World flag set, a Lv. 100 Garchomp, Master Balls):
+- Each bird stands on its tile and battles at Lv. 60.
+- Moltres and Zapdos come back on the next visit after a run.
+- Each is gone after the catch and on later visits.
+- On Mt. Coronet, catching Articuno leaves Cosmog standing: the map's removal now checks which species was battled.
+- Oak's first talk gives the Up-Grade and the hint even with all three already caught. The next talk gives his
+  praise and the Pokédex rating. With two caught, he repeats the "extremely rare" lines with the hint.
+- Not checked here: the birds staying hidden before the Distortion World. That's the same gate as Raikou's
+  (part 12).
+
 ## E10 (part 26) — Renegade's Snowpoint Temple story and HM08 (decision 29)
 
 - **Snowpoint City shakes** as the player walks in: Regigigas is stirring under the temple. The townspeople talk
