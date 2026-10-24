@@ -154,6 +154,31 @@
         "It’s beyond my ability to teach moves\n",
         "to an Egg!"
       ]
+    },
+    {
+      "id": "SnowpointCityEastHouse_Text_SovereignFishermanGives",
+      "en_US": [
+        "Hmm!\n",
+        "A Super Rod is really good!\r",
+        "Hmm!\n",
+        "I see that spark in your eyes!\r",
+        "Hmm!\n",
+        "Take this Super Rod with you!\r"
+      ]
+    },
+    {
+      "id": "SnowpointCityEastHouse_Text_SovereignFishermanExplains",
+      "en_US": [
+        "Hmm!\n",
+        "It’s all about the rod and technique!"
+      ]
+    },
+    {
+      "id": "SnowpointCityEastHouse_Text_SovereignFishermanAgain",
+      "en_US": [
+        "Hmm!\n",
+        "It’s all about the rod and technique!"
+      ]
     }
   ]
 }

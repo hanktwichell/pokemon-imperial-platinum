@@ -9,6 +9,7 @@
     ScriptEntry TeamGalacticEternaBuilding4F_Buneary
     ScriptEntry TeamGalacticEternaBuilding4F_PokefanM
     ScriptEntry TeamGalacticEternaBuilding4F_BgSign
+    ScriptEntry TeamGalacticEternaBuilding4F_SovereignPorygon
     ScriptEntryEnd
 
 TeamGalacticEternaBuilding4F_OnLoad:
@@ -162,4 +163,63 @@ TeamGalacticEternaBuilding4F_ThankYouCruiseByCycleShop:
 
 TeamGalacticEternaBuilding4F_BgSign:
     EventMessage TeamGalacticEternaBuilding4F_Text_WorkingForWorldPeace
+    End
+
+// Sovereign (E10): Renegade's Porygon, a Poké Ball behind Jupiter (it was the Veilstone northeast house gift).
+TeamGalacticEternaBuilding4F_SovereignPorygon:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    BufferPlayerName 0
+    PlayCry SPECIES_PORYGON
+    DrawPokemonPreview SPECIES_PORYGON, GENDER_MALE
+    Message TeamGalacticEternaBuilding4F_Text_SovereignItsAPorygon
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, TeamGalacticEternaBuilding4F_SovereignPorygonSad
+    GetPartyCount VAR_RESULT
+    GoToIfEq VAR_RESULT, MAX_PARTY_SIZE, TeamGalacticEternaBuilding4F_SovereignPorygonNoRoom
+    RemovePokemonPreview
+    SetFlag FLAG_RECEIVED_TEAM_GALACTIC_ETERNA_BUILDING_PORYGON
+    RemoveObject LOCALID_SOVEREIGN_PORYGON_BALL
+    PlayFanfare SEQ_FANFA4_sseq
+    Message TeamGalacticEternaBuilding4F_Text_SovereignAdoptedPorygon
+    WaitFanfare
+    GivePokemon SPECIES_PORYGON, 22, ITEM_NONE, VAR_RESULT
+    Message TeamGalacticEternaBuilding4F_Text_SovereignNicknamePorygon
+    ShowYesNoMenu VAR_RESULT
+    CloseMessage
+    GoToIfEq VAR_RESULT, MENU_YES, TeamGalacticEternaBuilding4F_SovereignNicknamePorygon
+    ReleaseAll
+    End
+
+TeamGalacticEternaBuilding4F_SovereignNicknamePorygon:
+    GetPartyCount VAR_MAP_LOCAL_0x00
+    SubVar VAR_MAP_LOCAL_0x00, 1
+    FadeScreenOut
+    WaitFadeScreen
+    OpenPokemonNamingScreen VAR_MAP_LOCAL_0x00, VAR_RESULT
+    CallIfNe VAR_RESULT, 1, TeamGalacticEternaBuilding4F_SovereignIncrementRecordNicknamed
+    FadeScreenIn
+    WaitFadeScreen
+    ReleaseAll
+    End
+
+TeamGalacticEternaBuilding4F_SovereignIncrementRecordNicknamed:
+    IncrementGameRecord RECORD_POKEMON_NICKNAMED
+    Return
+
+TeamGalacticEternaBuilding4F_SovereignPorygonSad:
+    Message TeamGalacticEternaBuilding4F_Text_SovereignPorygonLooksSad
+    GoTo TeamGalacticEternaBuilding4F_SovereignPorygonEnd
+    End
+
+TeamGalacticEternaBuilding4F_SovereignPorygonNoRoom:
+    Message TeamGalacticEternaBuilding4F_Text_SovereignNoRoomForPorygon
+    GoTo TeamGalacticEternaBuilding4F_SovereignPorygonEnd
+    End
+
+TeamGalacticEternaBuilding4F_SovereignPorygonEnd:
+    WaitButton
+    RemovePokemonPreview
+    CloseMessage
+    ReleaseAll
     End

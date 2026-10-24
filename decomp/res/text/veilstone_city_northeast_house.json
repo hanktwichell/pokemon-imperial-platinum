@@ -2,63 +2,28 @@
   "key": 9267,
   "messages": [
     {
-      "id": "VeilstoneCityNortheastHouse_Text_ImNoTrainerTakePorygon",
+      "id": "VeilstoneCityNortheastHouse_Text_FoundCreepyDisc",
       "en_US": [
-        "You’re a Trainer, aren’t you?\r",
-        "You see, there’s this Pokémon I’d like\n",
-        "someone to look after.\r",
-        "It’s a Pokémon called PORYGON.\n",
-        "I found it near Team Galactic’s building.\r",
-        "I’m no Trainer, so can you take it off\n",
-        "my hands?"
-      ]
-    },
-    {
-      "id": "VeilstoneCityNortheastHouse_Text_CanYouTakePorygon",
-      "en_US": [
-        "You’re a Trainer, aren’t you?\r",
-        "You see, there’s this Pokémon I’d like\n",
-        "someone to look after.\r",
-        "It’s a Pokémon called PORYGON.\n",
-        "Can you take it off my hands?"
+        "I found this creepy looking disc\n",
+        "near Team Galactic’s building.\r",
+        "I have no idea what it is...\n",
+        "It looks kind of dangerous, actually.\r",
+        "Do you want it?\n",
+        "I’d love to have it taken away."
       ]
     },
     {
       "id": "VeilstoneCityNortheastHouse_Text_Excellent",
       "en_US": [
         "Excellent! Thanks!\n",
-        "That’ll make the PORYGON happy, too.\r",
-        "I suspect it ran away from those Team\n",
-        "Galactic goons.\r"
+        "Though I wonder what the disc is for...\r"
       ]
     },
     {
-      "id": "VeilstoneCityNortheastHouse_Text_PlayerAcceptedThePorygon",
-      "en_US": "{STRVAR_1 3, 0, 0} accepted the PORYGON!\r"
-    },
-    {
-      "id": "VeilstoneCityNortheastHouse_Text_AskNicknamePorygon",
+      "id": "VeilstoneCityNortheastHouse_Text_MaybeSellIt",
       "en_US": [
-        "Would you like to give a nickname\n",
-        "to the PORYGON you received?"
-      ]
-    },
-    {
-      "id": "VeilstoneCityNortheastHouse_Text_AlreadyWholeTeam",
-      "en_US": [
-        "Thanks!\r",
-        "...But, oops, you already have a whole\n",
-        "team of Pokémon with you.\r",
-        "If you want this PORYGON, you’d better\n",
-        "put one in a PC Box first."
-      ]
-    },
-    {
-      "id": "VeilstoneCityNortheastHouse_Text_IsThatSo",
-      "en_US": [
-        "Is that so...\r",
-        "I’ll look after it for a while. Please\n",
-        "come see me if you change your mind."
+        "You don’t? Ahh...\n",
+        "Maybe I should sell it to somebody..."
       ]
     },
     {

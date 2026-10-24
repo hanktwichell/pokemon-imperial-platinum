@@ -10,6 +10,7 @@
     ScriptEntry Route214_LegendaryTingLu
     ScriptEntry Route214_SovereignStake5
     ScriptEntry Route214_SovereignStake6
+    ScriptEntry Route214_SovereignBlackBelt
     ScriptEntryEnd
 
 Route214_OnLoad:
@@ -119,4 +120,28 @@ Route214_SovereignStake6:
     GoToIfSet FLAG_MAP_LOCAL_HIDE_LEGENDARY, Route214_SovereignStake6End
     AddObject LOCALID_LEGENDARY_TING_LU
 Route214_SovereignStake6End:
+    End
+
+// Sovereign (E10): Renegade's Choice Band Black Belt.
+Route214_SovereignBlackBelt:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfSet FLAG_SOVEREIGN_RECEIVED_ROUTE_214_CHOICE_BAND, Route214_SovereignBlackBeltAgain
+    Message Route214_Text_SovereignBlackBeltGives
+    SetVar VAR_0x8004, ITEM_CHOICE_BAND
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    SetFlag FLAG_SOVEREIGN_RECEIVED_ROUTE_214_CHOICE_BAND
+    Message Route214_Text_SovereignBlackBeltExplains
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+Route214_SovereignBlackBeltAgain:
+    Message Route214_Text_SovereignBlackBeltAgain
+    WaitButton
+    CloseMessage
+    ReleaseAll
     End

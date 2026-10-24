@@ -4,6 +4,38 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 9) — Renegade's NPC gifts: the Trainers' School, the Item Fanatic, the trade-evolution items
+
+Read from Renegade's ROM (scripts, texts and NPC positions).
+
+- **Trainers' School:**
+  - a Cowgirl gives a random baby Pokémon Egg, once (any of the 18 babies);
+  - a Psychic tells a Pokémon's Hidden Power type.
+- **The Item Fanatic** lives in Floaroma's southeast house. Show him a Pokémon that has an item of its own and he gives
+  that item, once per Pokémon:
+  - Pikachu: Light Ball;
+  - Farfetch'd (or Sirfetch'd): Stick;
+  - Cubone or Marowak: Thick Club;
+  - Chansey: Lucky Punch;
+  - Ditto: Metal Powder and Quick Powder;
+  - Clamperl: Deep Sea Tooth and Deep Sea Scale.
+  The Pokéfan beside him talks about the Thick Club.
+- **Trade-evolution items from NPCs**, where Renegade has them:
+  - Hotel Grand Lake's lobby: two fans argue; one gives the Electirizer, the other the Magmarizer;
+  - Lost Tower 1F: a scientist gives the Reaper Cloth;
+  - Veilstone Pokémon Center: Dragon Tamer Nils battles for the Dragon Scale (Dragonair, Shelgon, Vibrava at Lv. 35,
+    Kingdra at Lv. 36; `TRAINER_SOVEREIGN_DRAGON_TAMER_VEILSTONE`). Lose and you can try again;
+  - Veilstone northeast house: the man gives the Dubious Disc.
+- **Porygon is a Poké Ball behind Jupiter** on the Eterna Galactic Building's 4F (Lv. 22), as in Renegade, instead of
+  the Veilstone man's gift.
+- **Route 214:** a Black Belt gives the Choice Band.
+- **Snowpoint's east house:** a fisherman gives the Super Rod. He shares its flag with the Fight Area fisherman, so
+  the rod comes once, from whichever is met first.
+
+Verified in the test build: each NPC gives its item and then says its after-line; the Hidden Power teller names a
+type; Porygon's ball shows Porygon and, with a full party, keeps it; Nils starts his battle with the Lv. 35 team. The
+release build passes.
+
 ## E10 (part 8) — No TMs in the shops: Renegade's Veilstone 3F and Game Corner prizes
 
 Read from Renegade's ROM (its mart lists and prize table sit where Platinum's do in `arm9`). These are the only shop

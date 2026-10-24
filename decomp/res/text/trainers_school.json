@@ -262,6 +262,104 @@
         "strong Trainers who await challengers\f",
         "in Pokémon Gyms."
       ]
+    },
+    {
+      "id": "TrainersSchool_Text_SovereignHeresAnEgg",
+      "en_US": [
+        "Well, howdy there!\n",
+        "You’re a Pokémon Trainer, aren’t you?\r",
+        "Have ya’ll heard about the Pokémon\n",
+        "Day Care in Solaceon Town?\r",
+        "It’s a place where you can ask ol’\n",
+        "Ma and Pa to raise your Pokémon.\r",
+        "Sometimes, there’s even a special\n",
+        "surprise with a Pokémon Egg!\r",
+        "As a special promotion, here’s an Egg,\n",
+        "just for you!\r",
+        "It’s got a cute baby Pokémon inside.\n",
+        "Do you want it?"
+      ]
+    },
+    {
+      "id": "TrainersSchool_Text_SovereignTakeCareOfEgg",
+      "en_US": [
+        "Ya’ll please take good care of that\n",
+        "baby Pokémon now.\r",
+        "Keep that Egg warm in your Pokémon\n",
+        "party and it’ll hatch in no time!"
+      ]
+    },
+    {
+      "id": "TrainersSchool_Text_SovereignHereYaGo",
+      "en_US": [
+        "Yessey!\n",
+        "Here ya go!\r"
+      ]
+    },
+    {
+      "id": "TrainersSchool_Text_SovereignDontWantEgg",
+      "en_US": [
+        "Are ya’ll sure you don’t want this Egg?\n",
+        "There’s something cute inside!"
+      ]
+    },
+    {
+      "id": "TrainersSchool_Text_SovereignTooManyPokemon",
+      "en_US": [
+        "Oh, ya’ll got too many Pokémon.\n",
+        "Come back here when ya’ll got room."
+      ]
+    },
+    {
+      "id": "TrainersSchool_Text_SovereignReceivedEgg",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received a Pokémon Egg!"
+      ]
+    },
+    {
+      "id": "TrainersSchool_Text_SovereignICanTellHiddenPower",
+      "en_US": [
+        "When a Pokémon uses Hidden Power, its\n",
+        "power and type are determined by the\f",
+        "Pokémon’s individual strengths.\r",
+        "I can tell you what type your\n",
+        "Pokémon’s Hidden Power will be."
+      ]
+    },
+    {
+      "id": "TrainersSchool_Text_SovereignHiddenPowerWouldBeType",
+      "en_US": [
+        "If this Pokémon were to learn\n",
+        "Hidden Power, the move’s type\f",
+        "would be {STRVAR_1 15, 0, 0}."
+      ]
+    },
+    {
+      "id": "TrainersSchool_Text_SovereignHiddenPowerIsType",
+      "en_US": [
+        "This Pokémon’s Hidden Power is the\n",
+        "{STRVAR_1 15, 0, 0} type."
+      ]
+    },
+    {
+      "id": "TrainersSchool_Text_SovereignIfYouWantToKnow",
+      "en_US": [
+        "If you want to know, ask me."
+      ]
+    },
+    {
+      "id": "TrainersSchool_Text_SovereignEggsCantLearnMoves",
+      "en_US": [
+        "A move that an Egg can learn?!\n",
+        "That’s flat-out impossible."
+      ]
+    },
+    {
+      "id": "TrainersSchool_Text_SovereignCantLearnHiddenPower",
+      "en_US": [
+        "Oh, no. This Pokémon can’t learn the\n",
+        "move Hidden Power in the first place."
+      ]
     }
   ]
 }

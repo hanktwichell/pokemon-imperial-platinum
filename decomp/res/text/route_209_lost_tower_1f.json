@@ -18,6 +18,40 @@
         "and you have no business here, there\f",
         "is no need to go up."
       ]
+    },
+    {
+      "id": "Route209LostTower1F_Text_SovereignScientistFGives",
+      "en_US": [
+        "Oh, hello!\n",
+        "Welcome to the Lost Tower.\r",
+        "Are you interested in hearing about\n",
+        "Ghost-type Pokémon?\r",
+        "There’s an old folk tale about a\n",
+        "nefarious Ghost-type Pokémon that\f",
+        "could travel across time.\r",
+        "This cloth is said to be a memoir\n",
+        "of that Pokémon.\r",
+        "As thanks for listening,\n",
+        "I’d like to make it a gift to you!\r"
+      ]
+    },
+    {
+      "id": "Route209LostTower1F_Text_SovereignScientistFExplains",
+      "en_US": [
+        "Ghost-types can be strong allies like\n",
+        "any other type of Pokémon.\r",
+        "But there’s always a sinister feeling\n",
+        "about them, wouldn’t you agree?"
+      ]
+    },
+    {
+      "id": "Route209LostTower1F_Text_SovereignScientistFAgain",
+      "en_US": [
+        "Ghost-types can be strong allies like\n",
+        "any other type of Pokémon.\r",
+        "But there’s always a sinister feeling\n",
+        "about them, wouldn’t you agree?"
+      ]
     }
   ]
 }

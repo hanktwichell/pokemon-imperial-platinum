@@ -87,6 +87,57 @@
         "I lost but I’m totally thrilled!\n",
         "We made a wonderful spectacle!"
       ]
+    },
+    {
+      "id": "VeilstoneCityPokecenter1F_Text_SovereignDuelWithDragons",
+      "en_US": [
+        "A duel with dragons!\n",
+        "Isn’t the idea simply exquisite?\r",
+        "What say you to a battle against\n",
+        "my lovely Dragon-type squad?"
+      ]
+    },
+    {
+      "id": "VeilstoneCityPokecenter1F_Text_SovereignDraconicForce",
+      "en_US": [
+        "Oh, yes!\n",
+        "Prepare for my draconic force!\r"
+      ]
+    },
+    {
+      "id": "VeilstoneCityPokecenter1F_Text_SovereignBequeathItem",
+      "en_US": [
+        "...\r",
+        "Well, perhaps draconic force isn’t\n",
+        "enough to win a battle by itself.\r",
+        "You are an impressive Trainer!\n",
+        "I bequeath this item upon you!\r"
+      ]
+    },
+    {
+      "id": "VeilstoneCityPokecenter1F_Text_SovereignDragonScaleExplains",
+      "en_US": [
+        "The Dragon Scale will allow you to\n",
+        "unleash the power of Dragon Pokémon!\r",
+        "Assuming you have a Seadra to evolve\n",
+        "using that Dragon Scale, of course."
+      ]
+    },
+    {
+      "id": "VeilstoneCityPokecenter1F_Text_SovereignDragonsAlwaysStrong",
+      "en_US": [
+        "Dragons have always been strong.\n",
+        "They will continue to be strong.\r",
+        "But those Fairy-type Pokémon...\n",
+        "What a nuisance! They are truly awful!"
+      ]
+    },
+    {
+      "id": "VeilstoneCityPokecenter1F_Text_SovereignPerhapsYouThinkIllWin",
+      "en_US": [
+        "I see...\n",
+        "Perhaps you think I’ll win, yes?"
+      ]
     }
   ]
 }
