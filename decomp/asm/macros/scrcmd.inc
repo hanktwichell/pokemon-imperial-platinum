@@ -5040,6 +5040,13 @@
     .short \destVar
     .endm
 
+    // Sovereign (FM): sets a party Pokémon's form (a gift in a form: Battle Bond Greninja)
+    .macro SovereignSetPartyMonForm partySlot, form
+    .short SCRCMD_SOVEREIGNSETPARTYMONFORM
+    .short \partySlot
+    .short \form
+    .endm
+
 
 
     .macro GoToIfLt varID, valueOrVarID, offset

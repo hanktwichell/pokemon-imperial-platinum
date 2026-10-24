@@ -216,3 +216,5 @@
     { "zygarde/forms/complete_50", NULL, .isGiratinaOrigin = false }, // Complete Zygarde
     { "morpeko/forms/hangry", NULL, .isGiratinaOrigin = false }, // Hangry Morpeko
     { "palafin/forms/hero", NULL, .isGiratinaOrigin = false }, // Hero Form Palafin
+    { "greninja/forms/battle_bond", NULL, .isGiratinaOrigin = false }, // Battle Bond Greninja
+    { "greninja/forms/ash", NULL, .isGiratinaOrigin = false }, // Ash’s Greninja

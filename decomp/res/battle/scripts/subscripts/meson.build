@@ -379,4 +379,5 @@ subscript_files = files(
     'subscript_sovereign_disguise_confusion.s',
     'subscript_sovereign_power_construct.s',
     'subscript_sovereign_zero_to_hero.s',
+    'subscript_sovereign_battle_bond.s',
 )

@@ -259,6 +259,7 @@ IMPLEMENTED = {
     211: "yes: Complete Forme at half HP or less, with its higher max HP",  # Power Construct
     258: "yes: switches between Full Belly and Hangry Mode at the end of each turn",  # Hunger Switch
     278: "yes: Hero Form once it switches out, until the battle ends",  # Zero to Hero
+    210: "yes: Ash-Greninja after its move knocks out a foe, until the battle ends",  # Battle Bond
 }
 
 

@@ -7965,6 +7965,12 @@ int Sovereign_MovePower(BattleSystem *battleSys, BattleContext *battleCtx, int m
         }
         break;
 
+    case MOVE_WATER_SHURIKEN: // Sovereign (FM): 20 power from Ash-Greninja
+        if (Sovereign_IsAshGreninja(&battleCtx->battleMons[attacker])) {
+            power = 20;
+        }
+        break;
+
     case MOVE_ACROBATICS: // double when the user holds no item
         if (battleCtx->battleMons[attacker].heldItem == ITEM_NONE) {
             power *= 2;
@@ -9792,6 +9798,14 @@ u32 BattleSystem_SovereignHeroBit(BattleSystem *battleSys, int battler, int slot
     }
 
     return 1 << (party * MAX_PARTY_SIZE + slot);
+}
+
+// Sovereign (FM): TRUE for Ash-Greninja (Battle Bond's battle form), whose Water Shuriken is stronger.
+BOOL Sovereign_IsAshGreninja(BattleMon *mon)
+{
+    const int ashForm = Pokemon_SovereignAbilityForm(SPECIES_GRENINJA, Pokemon_SovereignBattleFormBase(SPECIES_GRENINJA, mon->formNum), ABILITY_BATTLE_BOND);
+
+    return mon->species == SPECIES_GRENINJA && mon->formNum != 0 && mon->formNum == ashForm;
 }
 
 // Sovereign (FM): Aura Wheel is Dark-type when a Hangry Morpeko uses it, else Electric.

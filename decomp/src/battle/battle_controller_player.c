@@ -5437,7 +5437,7 @@ static BOOL BattleControllerPlayer_TriggerAfterMoveHitEffects(BattleSystem *batt
             BOOL fellStinger = battleCtx->moveCur == MOVE_FELL_STINGER; // Sovereign (item 11): Attack +3 on a knockout
 
             if ((ability == ABILITY_MOXIE || ability == ABILITY_CHILLING_NEIGH || ability == ABILITY_GRIM_NEIGH || ability == ABILITY_BEAST_BOOST
-                    || ability == ABILITY_EELEVATE
+                    || ability == ABILITY_EELEVATE || ability == ABILITY_BATTLE_BOND
                     || fellStinger)
                 && ATTACKING_MON.curHP) {
                 for (foe = 0; foe < maxBattlers; foe++) {
@@ -5449,6 +5449,23 @@ static BOOL BattleControllerPlayer_TriggerAfterMoveHitEffects(BattleSystem *batt
                         battleCtx->afterMoveHitCheckTemp |= FlagIndex(foe);
                         break;
                     }
+                }
+
+                // Sovereign (FM): Battle Bond makes Greninja Ash-Greninja when its move knocks out a foe.
+                if (foe < maxBattlers && ability == ABILITY_BATTLE_BOND && fellStinger == FALSE) {
+                    int ashForm = Pokemon_SovereignAbilityForm(ATTACKING_MON.species, ATTACKING_MON.formNum, ABILITY_BATTLE_BOND);
+
+                    if (ashForm >= 0 && (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_TRANSFORM) == FALSE) {
+                        BattleSystem_SovereignChangeBattleForm(battleSys, battleCtx, battleCtx->attacker, ashForm);
+                        battleCtx->msgBattlerTemp = battleCtx->attacker;
+
+                        LOAD_SUBSEQ(subscript_sovereign_battle_bond);
+                        battleCtx->commandNext = battleCtx->command;
+                        battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+                        machineState = STATE_BREAK_OUT;
+                    }
+                    break; // stay in this state to look for another knocked-out foe
                 }
 
                 if (foe < maxBattlers && fellStinger) {

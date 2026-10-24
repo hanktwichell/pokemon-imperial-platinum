@@ -9447,6 +9447,49 @@
         "The foe’s {STRVAR_1 1, 0, 0} underwent\n",
         "a heroic transformation!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignBattleBondCharged_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} became fully charged\n",
+        "due to its bond with its Trainer!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignBattleBondCharged_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}\n",
+        "became fully charged due to\r",
+        "its bond with its Trainer!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignBattleBondCharged_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}\n",
+        "became fully charged due to\r",
+        "its bond with its Trainer!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignBattleBondAsh_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} became Ash-Greninja!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignBattleBondAsh_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}\n",
+        "became Ash-Greninja!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignBattleBondAsh_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}\n",
+        "became Ash-Greninja!"
+      ]
     }
   ]
 }

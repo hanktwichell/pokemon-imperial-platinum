@@ -444,6 +444,7 @@ static BOOL ScrCmd_SovereignStartTotemTrial(ScriptContext *ctx);
 static BOOL ScrCmd_SovereignGetTotemTrialSpecies(ScriptContext *ctx);
 static BOOL ScrCmd_SovereignClearFlagFromVar(ScriptContext *ctx);
 static BOOL ScrCmd_SovereignCheckSpeciesCaught(ScriptContext *ctx);
+static BOOL ScrCmd_SovereignSetPartyMonForm(ScriptContext *ctx);
 static BOOL ScrCmd_StartFirstBattle(ScriptContext *ctx);
 static BOOL ScrCmd_StartCatchingTutorial(ScriptContext *ctx);
 static BOOL ScrCmd_SlatherHoneyTree(ScriptContext *ctx);
@@ -4077,6 +4078,21 @@ static BOOL ScrCmd_SovereignCheckSpeciesCaught(ScriptContext *ctx)
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
     *destVar = Pokedex_HasCaughtSpecies(SaveData_GetPokedex(ctx->fieldSystem->saveData), species);
+    return FALSE;
+}
+
+// Sovereign (FM): sets a party Pokémon's form, with its ability and stats, and registers the form in the Pokédex (a
+// gift in a form: Battle Bond Greninja, right after GivePokemon).
+static BOOL ScrCmd_SovereignSetPartyMonForm(ScriptContext *ctx)
+{
+    u16 partySlot = ScriptContext_GetVar(ctx);
+    int form = ScriptContext_GetVar(ctx);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), partySlot);
+
+    Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+    Pokemon_CalcAbility(mon);
+    Pokemon_CalcLevelAndStats(mon);
+    Pokedex_Capture(SaveData_GetPokedex(ctx->fieldSystem->saveData), mon);
     return FALSE;
 }
 

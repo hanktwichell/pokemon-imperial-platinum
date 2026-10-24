@@ -92,7 +92,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 207 | Surge Surfer | Gen 7 | yes: Speed doubled in Electric Terrain |
 | 208 | Schooling | Gen 7 | yes: School Form at level 20+ with over 1/4 HP |
 | 209 | Disguise | Gen 7 | yes: takes one hit for 1/8 of its max HP, once per battle |
-| 210 | Battle Bond | Gen 7 | not yet (no battle effect) |
+| 210 | Battle Bond | Gen 7 | yes: Ash-Greninja after its move knocks out a foe, until the battle ends |
 | 211 | Power Construct | Gen 7 | yes: Complete Forme at half HP or less, with its higher max HP |
 | 212 | Corrosion | Gen 7 | yes: can poison Steel and Poison types |
 | 213 | Comatose | Gen 7 | not yet (no battle effect) |

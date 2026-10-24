@@ -241,6 +241,18 @@ implemented.
     ("PALAFIN underwent a heroic transformation!"). That shows once.
   - It stays Hero through later switches (`Pokemon_SovereignRevertSwitchOutForm` skips Zero to Hero) and goes back to
     Zero at the battle's end.
+- **Battle Bond** (Battle Bond Greninja, form 1, a `SOVEREIGN_FORM_REGIONAL` form for good; Ash-Greninja, form 2,
+  `SOVEREIGN_FORM_BATTLE` with Battle Bond as trigger, going back to form 1).
+  - `AFTER_MOVE_HIT_STATE_KNOCKOUT_ABILITY` (with Moxie's): when a Battle Bond Greninja's move knocks out a foe, it
+    becomes Ash-Greninja (`subscript_sovereign_battle_bond`). It stays Ash-Greninja through switching and until the
+    battle ends.
+  - Ash-Greninja's Water Shuriken (`Sovereign_IsAshGreninja`): 20 power (`Sovereign_MovePower`), always 3 hits
+    (`BtlCmd_SetMultiHit`).
+  - **The gift** (owner, 2026-10-24): an Ace Trainer in the Fight Area Pokémon Center (12, 6), the Battle Frontier's
+    town, gives a level 50 Battle Bond Greninja with the official demo's moves (Water Shuriken, Aerial Ace, Double
+    Team, Night Slash), once (`FLAG_SOVEREIGN_RECEIVED_BATTLE_BOND_GRENINJA`, the former `FLAG_UNUSED_0x0101`). The new
+    script command `SovereignSetPartyMonForm partySlot, form` sets its form after `GivePokemon` (ability, stats and the
+    Pokédex form too).
 - **Personality forms** (`SOVEREIGN_FORM_PERSONALITY`, Minior's Meteor colors). `Pokemon_SovereignPersonalityForm`
   picks the form from the personality, personality % 7 for Minior as in Sun and Moon (Red is form 0). The Pokémon
   gets it when it's made (`sub_02073E18`, which every new Pokémon goes through), and an Egg gets its own from its
