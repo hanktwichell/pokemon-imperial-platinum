@@ -4025,3 +4025,35 @@ species in their slots. Until now the decomp still had Platinum's tables.
 2. Then take the TMs out of Veilstone 3F and the Game Corner, and set TM prices to 0.
 3. Renegade's other NPCs (`NPCChanges.txt`: Item Fanatic, Hidden Power teller, the evolution item seller, which also sells
    the Prism Scale...).
+
+## CB-0078 — 2026-10-24, 4:59 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Merged:** PR #88 (E10 part 3: item balls, Mega Stone spots, Prism Scale).
+
+**Implemented:** E10 part 4, Renegade's NPC TM gifts and trades.
+- TM gifts: Fantina TM30, Bertha TM26 (Veilstone 5F, then she leaves), Floaroma middle house swordsman TM40, the
+  Underground Man house's scientist (fossils ×3 each + Old Amber; TM80 for showing an Aerodactyl) and Ninja Boy (TM28),
+  Flint TM50 in Sunyshore, and Aaron at the Route 208 gate (heal, optional-loss battle, TM81).
+- `import_renegade_items.py` re-run: only Valor Lakefront still keeps TM85 (Mira's quest isn't ported).
+- Renegade's 4 trades (Gaspar's moves to Floaroma's Beauty), traded Pokémon always obey.
+- Snowpoint west house: the evolution-item seller (34 items at ₽10,000, `Shop_StartFixedPrice`), next to the Mega
+  Stone Sage.
+- `tools/design/renegade_rom.py` (new) disassembles Renegade's map scripts and dumps text and events from its ROM.
+- Verified in the test build: TM40, the seller's shop, fossils and TM28, Bertha's TM26 and exit, Aaron's scene and
+  battle through TM81 and his exit. Release build and docs check pass.
+
+**Files modified:** `tools/design/renegade_rom.py` (new), `decomp/res/trainers/data/sovereign_aaron_route_208.json`
+(new), `decomp/generated/{trainers,vars_flags,mart_specialties_id}.txt`, `decomp/include/data/mart_items.h`,
+`decomp/include/overlay007/shop_menu.h`, `decomp/src/overlay007/shop_menu.c`, `decomp/src/scrcmd_shop.c`,
+`decomp/src/battle/battle_controller_player.c`, `decomp/res/npc_trades/*.json`, scripts/events/text for
+Hearthome Gym leader room, Veilstone Store 5F, Floaroma middle house, Snowpoint west house, Eterna Underground Man
+house, Route 208 gate, Sunyshore City, plus trade text in Oreburgh, Eterna condos and the Route 226 house,
+`decomp/res/field/scripts/scripts_visible_items.s`, `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`,
+`docs/ItemChanges_Sovereign.md`, `docs/QualityOfLife.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Mira's quest in Wayward Cave (Renegade: an escort, a Gabite Lv25 battle, TM85 at the end; see
+   `renegade_rom.py ROM script scripts_wayward_cave_1f`), then re-run `import_renegade_items.py`.
+2. Take the TMs out of Veilstone 3F and the Game Corner, set TM prices to 0, then Renegade's other NPC gifts
+   (`renegade_rom.py ROM gifts`: Route 216 house Ice Beam, Item Fanatic, Hidden Power teller, Heather's Flying Club...).
+3. Renegade's trainers from its ROM (`trdata`/`trpoke`), with `data/trainers_sovereign.yaml` on top.
