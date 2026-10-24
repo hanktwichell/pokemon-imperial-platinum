@@ -136,8 +136,35 @@ BOOL ScrCmd_ShowAccessoryShop(ScriptContext *ctx)
 // Sovereign (decision 24): TRUE if any Poké Mart or specialty shop sells the item. After the Champion, items no
 // shop sells (Nuggets, Pearls, shards, items found on the field) sell for their full price; shop items stay at half
 // (their discounted buy price), so buying and reselling can't make money.
+// Sovereign (decision 24): items sold by scripted NPCs count as shop items too. After the Hall of Fame they're bought
+// at half price, so they also sell for half; at full value they would buy for less than they sell, an endless loop.
+static const u16 sSovereignScriptedSaleItems[] = {
+    ITEM_HONEY,
+    ITEM_MOOMOO_MILK,
+    ITEM_FRESH_WATER,
+    ITEM_SODA_POP,
+    ITEM_LEMONADE,
+    ITEM_LAVA_COOKIE,
+    ITEM_GROWTH_MULCH,
+    ITEM_DAMP_MULCH,
+    ITEM_STABLE_MULCH,
+    ITEM_GOOEY_MULCH,
+    ITEM_POMEG_BERRY,
+    ITEM_KELPSY_BERRY,
+    ITEM_QUALOT_BERRY,
+    ITEM_HONDEW_BERRY,
+    ITEM_GREPA_BERRY,
+    ITEM_TAMATO_BERRY,
+};
+
 BOOL Shop_IsItemSoldInMarts(u16 item)
 {
+    for (u32 i = 0; i < NELEMS(sSovereignScriptedSaleItems); i++) {
+        if (sSovereignScriptedSaleItems[i] == item) {
+            return TRUE;
+        }
+    }
+
     for (u32 i = 0; i < NELEMS(PokeMartCommonItems); i++) {
         if (PokeMartCommonItems[i].itemID == item) {
             return TRUE;
