@@ -3462,3 +3462,41 @@ interactions the owner listed on 2026-10-23. PR open.
 2. Milestone FM: Battle Bond (Ash-Greninja). Owner: how the player gets a Battle Bond Greninja.
 3. Owner decisions still open: Revival Blessing; Koraidon/Miraidon gate; Cosmog's Teleport; whether Ultra Burst
    counts as the trainer's Mega; overworld sprites and sizing; final placements.
+
+---
+
+## CB-0058 — Hero Palafin (Zero to Hero) (Sat Oct 24 2026, 00:01 CDT)
+
+**Implemented:**
+- `"palafin-hero": (KIND_BATTLE, "ABILITY_ZERO_TO_HERO")` in `gen_forms.py` (form 1).
+- **Zero to Hero:**
+  - In `BtlCmd_TryRestoreStatusOnSwitch`, a Zero Palafin that switches out becomes Hero in the party. It also sets a
+    bit in the new `battleCtx->sovereignHeroPending`, keyed by `BattleSystem_SovereignHeroBit` (party + slot).
+  - `BattleSystem_TriggerFormChange` shows `subscript_sovereign_zero_to_hero` once when it comes back in. The new
+    subscript is added to `sub_seq.order`, `meson.build` and `generated/battle_subscripts.txt`, with 3 new battle
+    strings.
+  - Switching out doesn't revert it (`Pokemon_SovereignRevertSwitchOutForm`). The end of battle does.
+- The ability checklist lists Zero to Hero.
+- **Verified** in the emulator: the message after the first switch back in, none after the second.
+
+**Owner answers (2026-10-24):**
+- An NPC in the Battle Frontier Pokémon Center gives a Battle Bond Greninja.
+- Leave Revival Blessing out for now: remove it from Pawmot's moveset, but make it easy to restore.
+- Use temporary placements for now.
+- Overworld sprites are coming from the owner in a few days; size them naturally against the existing overworld
+  Pokémon.
+
+**Files modified:** `tools/engine/gen_forms.py`, `tools/engine/gen_abilities.py`,
+`decomp/include/constants/sovereign_forms.h`, `decomp/include/data/sovereign_forms.h`,
+`decomp/tools/dataproc/src/sovereign_forms.inc`, `decomp/res/pokemon/palafin/meson.build`,
+`decomp/res/pokemon/palafin/forms/hero/data.json` (new), `decomp/include/battle/battle_context.h`,
+`decomp/include/battle/battle_lib.h`, `decomp/src/battle/battle_lib.c`, `decomp/src/battle/battle_script.c`,
+`decomp/src/pokemon.c`, `decomp/res/battle/scripts/subscripts/subscript_sovereign_zero_to_hero.s` (new),
+`decomp/res/battle/scripts/subscripts/sub_seq.order`, `decomp/res/battle/scripts/subscripts/meson.build`,
+`decomp/generated/battle_subscripts.txt`, `decomp/res/text/battle_strings.json`, `docs/AbilityChecklist.md`,
+`docs/TechnicalDesign.md`, `docs/EngineRoadmap.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Battle Bond (Ash-Greninja) in battle, and the Battle Bond Greninja gift in the Battle Frontier Pokémon Center.
+2. Remove Revival Blessing from Pawmot's moveset (easy to restore).
+3. Milestone FM: Ice Face (Noice Eiscue) and Gulp Missile (Cramorant).

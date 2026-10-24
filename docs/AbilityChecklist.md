@@ -160,7 +160,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 275 | Guard Dog | Gen 9 | partly: Intimidate raises its Attack instead (immunity to Roar and Whirlwind not yet) |
 | 276 | Rocky Payload | Gen 9 | yes: Rock moves ×1.5 |
 | 277 | Wind Power | Gen 9 | not yet (no battle effect) |
-| 278 | Zero to Hero | Gen 9 | not yet (no battle effect) |
+| 278 | Zero to Hero | Gen 9 | yes: Hero Form once it switches out, until the battle ends |
 | 279 | Commander | Gen 9 | not yet (no battle effect) |
 | 280 | Electromorphsis | Gen 9 | not yet (no battle effect) |
 | 281 | Protosynthesis | Gen 9 | yes: in harsh sunlight or after using a Booster Energy, its highest stat ×1.3 (Speed ×1.5) |

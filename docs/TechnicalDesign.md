@@ -231,6 +231,15 @@ implemented.
     sets `battleCtx->moveType` from it (like Revelation Dance); `CalcMoveType` and `Move_CalcVariableType` use it
     too. Its user's Speed +1 comes from `SOVEREIGN_RAISE_SPEED_HIT` (`gen9_move_fixes.py`). Other Pokémon can still
     use it (Sketch, Mimic); the official games make it fail.
+- **Zero to Hero** (Hero Palafin, `SOVEREIGN_FORM_BATTLE` with Zero to Hero as trigger).
+  - `BtlCmd_TryRestoreStatusOnSwitch` (the switch-out script, as for Regenerator) turns a Zero Palafin's party
+    Pokémon to Hero Form as it switches out. It also sets its bit in `battleCtx->sovereignHeroPending`
+    (`BattleSystem_SovereignHeroBit`: a party slot of the party the battler uses, so a trainer's two battlers share
+    it).
+  - When it comes back in, `BattleSystem_TriggerFormChange` clears the bit and runs `subscript_sovereign_zero_to_hero`
+    ("PALAFIN underwent a heroic transformation!"). That shows once.
+  - It stays Hero through later switches (`Pokemon_SovereignRevertSwitchOutForm` skips Zero to Hero) and goes back to
+    Zero at the battle's end.
 - **Personality forms** (`SOVEREIGN_FORM_PERSONALITY`, Minior's Meteor colors). `Pokemon_SovereignPersonalityForm`
   picks the form from the personality, personality % 7 for Minior as in Sun and Moon (Red is form 0). The Pokémon
   gets it when it's made (`sub_02073E18`, which every new Pokémon goes through), and an Egg gets its own from its

@@ -335,6 +335,7 @@ struct BattleContext {
     u8 sovereignDefiantPending;
     u8 sovereignLastMoveFailed[MAX_BATTLERS]; // Sovereign (item 11): Stomping Tantrum and Temper Flare
     u32 sovereignTerrainTemp; // Sovereign (item 11): BTLVAR_SOVEREIGN_TERRAIN_EFFECT_MON
+    u32 sovereignHeroPending; // Sovereign (FM): a Palafin that became Hero and hasn't come back in (BattleSystem_SovereignHeroBit)
     int sovereignLaserFocus[MAX_BATTLERS]; // Sovereign (item 11): turns of Laser Focus left (its moves always crit)
     int sovereignThroatChop[MAX_BATTLERS]; // Sovereign (item 11): turns it can't use sound moves (Throat Chop)
     int sovereignSmackedDown[MAX_BATTLERS]; // Sovereign (item 11): grounded by Smack Down
