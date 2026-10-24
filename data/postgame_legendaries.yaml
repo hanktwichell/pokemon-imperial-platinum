@@ -166,12 +166,13 @@ quests:
     name: Steam Engine
     species: [Volcanion]
     level: 60
-    location: Stark Mountain — the first cave's east tunnel
+    location: Stark Mountain — the second cave's north-east dead end
     steps: Static encounter.
     built: >-
-      Volcanion (CB-0041), level 60: at the end of the long east tunnel in Stark Mountain's first cave room (34, 24),
-      by the PP Up, once the Kalos Chronicle is open, until it's caught. **Changed from the plan** (owner,
-      2026-10-23): an existing dead end in place of a new hot-spring room.
+      Volcanion (CB-0041), level 60: at the end of the dead-end tunnel in the north-east of Stark Mountain's second
+      cave room (73, 15), once the Kalos Chronicle is open, until it's caught. **Changed from the plan** (owner,
+      2026-10-23): an existing dead end in place of a new hot-spring room. It first stood in room 1 (34, 24) and moved
+      on 2026-10-24 (owner), as Groudon and the first-visit Galactic scene use that room.
 
   # ---------------------------------------------------------------- Alola Chronicle
   - chapter: Alola Chronicle

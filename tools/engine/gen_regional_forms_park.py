@@ -37,10 +37,11 @@ wild area where the regional forms live.
 - **Encounters.** Each quadrant of the map is one region's zone. An encounter works like any route's (same step rates,
   Repel, abilities), but the Pokémon is picked from the zone's list by its odds, at a random level in its range.
 
-**Proposal:** the zones' contents, odds and levels are the owner's call. This first version:
-- keeps each region's forms in its own zone;
-- makes evolved forms rarer;
-- gives the Galarian birds 1% each (decision 22).
+**Approved** by the owner (2026-10-24):
+- each region's forms live in their own zone, with a sign at the way in;
+- evolved forms are rarer, and the Galarian birds are 1% each (decision 22);
+- levels 40–55, the rarer forms (the Hisuian pseudo-legendary line, the Hisuian starters and other rare evolved forms)
+  level 60, and the Galarian birds level 70.
 """
 
 

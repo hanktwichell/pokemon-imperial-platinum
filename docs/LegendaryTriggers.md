@@ -67,7 +67,7 @@ The Archivist gives the DNA Splicers once Kyurem is caught.
 | Zygarde (50%) | static | Wayward Cave B1F, north alcove (21, 4) | 70 | Xerneas and Yveltal caught | Life and Destruction |
 | Diancie | static | Oreburgh Mine B2F, west nook (2, 22) | 55 | var ≥ 2 and a **Carbink in the party** | Other legends |
 | Hoopa | static | Solaceon Ruins Room 6, north-west dead end (2, 3) | 55 | `ITEM_PRISON_BOTTLE` in the bag (the Archivist gives it) | Other legends |
-| Volcanion | static | Stark Mountain room 1 | 60 | var ≥ 2 (on a first visit, the vanilla Team Galactic scene plays first) | Other legends |
+| Volcanion | static | Stark Mountain room 2, the north-east dead-end tunnel (73, 15) | 60 | var ≥ 2 | Other legends |
 
 Carbink for Diancie: wild outside Stark Mountain, 5%, Lv. 66–68, from the Kalos Chronicle's opening. It's a stopgap
 until the planned wild tables (`data/encounters_sovereign.json`) are ported; before CB-0045 no Carbink could be had.

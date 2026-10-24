@@ -1241,7 +1241,8 @@ existing spots over new rooms (2026-10-23), so each legendary planned for a new 
   - Hoopa (Lv. 55) then plays in the Solaceon Ruins' innermost room while the player carries the bottle.
   - Diancie (Lv. 55) appears by Oreburgh Mine B2F's west wall to a player with a Carbink in the party. Carbink is wild
     outside Stark Mountain.
-  - Volcanion (Lv. 60) stands at the end of the long east tunnel in Stark Mountain's first cave.
+  - Volcanion (Lv. 60) stands at the end of the long east tunnel in Stark Mountain's first cave (moved to room 2's
+    north-east dead end on 2026-10-24).
 - New overworld sprites for all seven. Wayward Cave B1F gets its own script archives (it had `scripts_empty`).
   Xerneas shares Eterna Forest with Virizion, so it has its own hidden flag. Each one's script also notes itself so a
   knock-out removes the right one.

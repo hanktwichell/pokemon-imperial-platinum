@@ -223,16 +223,24 @@ Made by the owner (2026-10-22):
 38. **Landorus moves to Route 228's sand field** (owner, 2026-10-24: "Route 228 it is"), the north end of the first
     field (782, 323), out of the Rock Peak Ruins doorway room, which Regidrago keeps. The Archivist's hint now says
     "the sands of Route 228".
+39. **Volcanion moves to Stark Mountain room 2** (owner, 2026-10-24), to the end of the north-east dead-end tunnel
+    (73, 15), leaving room 1 to Groudon. That settles the last placement clash.
+40. **Overworld sprite sizes** (owner, 2026-10-24). The owner makes custom overworld sprites for every legendary, in
+    Platinum's three size classes: small 32×32, large 64×64, extra large 128×64. Eternatus is extra large; Lugia, Ho-Oh,
+    Groudon, Kyogre, Rayquaza, Solgaleo, Lunala, Necrozma, Koraidon and Miraidon are large. Platinum's own legendaries
+    keep their vanilla sprites. Every other legendary is small until the owner sorts it: the list is
+    `docs/OverworldSpriteSizes.md`.
+41. **The Regional Forms Park is approved** (owner, 2026-10-24): Claude B's zones stand; levels 40–55, the rarer forms
+    (the Hisuian pseudo-legendary line, the Hisuian starters, other rare evolved forms) level 60, the Galarian birds
+    level 70; a sign at the way into each zone.
 
 Open:
-- **The legendary placement clashes** in `docs/LegendaryPlacementReview.md` ("Clashes to settle"): Stark Mountain
-  room 1 and the tile checks (the Lost Tower, Route 224, Giratina's room, Solaceon Ruins Room 7 and the Rock Peak
-  chamber are settled by decisions 35–38). `docs/StaticEncounters.xlsx` lists every one.
-- **Overworld sprites and sizing for the legendaries** (owner, 2026-10-23: "we will need to work on" it). Today each
-  is a 64x64 placeholder shrunk from its PokeAPI front sprite (`tools/sprites/make_legendary_overworld.py`), so tiny
-  and huge Pokémon look the same size and the big ones cover the player and nearby tiles.
-- Regional Forms Park (decision 22): which zone holds which forms, the odds and levels (proposal in
-  `docs/RegionalFormsPark.md`), and when it opens (now after the Hall of Fame; `Story.md` suggests Oak's visit).
+- **The legendary placement tile checks** in `docs/LegendaryPlacementReview.md` (every clash is settled by decisions
+  35–39). `docs/StaticEncounters.xlsx` lists every encounter.
+- **Overworld sprites for the legendaries:** the owner draws them and sorts the rest of the sizes (decision 40,
+  `docs/OverworldSpriteSizes.md`). Until then each is a placeholder from its PokeAPI front sprite.
+- Regional Forms Park: when it opens (now after the Hall of Fame; `Story.md` suggests Oak's visit). The zones and
+  levels are decided (decision 41).
 - Special evolutions (decision 20): owner discussion pending.
 - The developer battle: Lv. 100 at Spear Pillar, leads Charizard-Y + Venusaur, custom weather-control AI (`DeveloperBattle.md`). Opponent: Sovereign Henry (decision 23). Open: text, sprites (owner's sprite coming soon).
 - Front sprites and the part 2 shiny pack (owner is sourcing them).

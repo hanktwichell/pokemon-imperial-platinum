@@ -89,6 +89,34 @@
     {
       "id": "PalPark_Text_SovereignLeave",
       "en_US": "Would you like to leave the park?"
+    },
+    {
+      "id": "PalPark_Text_SovereignSignAlola",
+      "en_US": [
+        "Alola Zone\n",
+        "The field: tall grass"
+      ]
+    },
+    {
+      "id": "PalPark_Text_SovereignSignGalar",
+      "en_US": [
+        "Galar Zone\n",
+        "The forest: tall grass"
+      ]
+    },
+    {
+      "id": "PalPark_Text_SovereignSignHisui",
+      "en_US": [
+        "Hisui Zone\n",
+        "The mountain and its lake"
+      ]
+    },
+    {
+      "id": "PalPark_Text_SovereignSignPaldea",
+      "en_US": [
+        "Paldea Zone\n",
+        "The sea: Surf and fish"
+      ]
     }
   ]
 }

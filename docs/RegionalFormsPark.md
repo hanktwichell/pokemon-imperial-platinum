@@ -10,10 +10,11 @@ wild area where the regional forms live.
 - **Encounters.** Each quadrant of the map is one region's zone. An encounter works like any route's (same step rates,
   Repel, abilities), but the Pokémon is picked from the zone's list by its odds, at a random level in its range.
 
-**Proposal:** the zones' contents, odds and levels are the owner's call. This first version:
-- keeps each region's forms in its own zone;
-- makes evolved forms rarer;
-- gives the Galarian birds 1% each (decision 22).
+**Approved** by the owner (2026-10-24):
+- each region's forms live in their own zone, with a sign at the way in;
+- evolved forms are rarer, and the Galarian birds are 1% each (decision 22);
+- levels 40–55, the rarer forms (the Hisuian pseudo-legendary line, the Hisuian starters and other rare evolved forms)
+  level 60, and the Galarian birds level 70.
 
 ## Alola — the field (south-west)
 
@@ -21,24 +22,24 @@ Tall grass:
 
 | Pokémon | Odds | Levels |
 |---|---|---|
-| Alolan Rattata | 11% | 50–54 |
-| Alolan Meowth | 11% | 50–54 |
-| Alolan Sandshrew | 9% | 50–54 |
-| Alolan Vulpix | 9% | 50–54 |
-| Alolan Diglett | 9% | 50–54 |
-| Alolan Geodude | 9% | 50–54 |
-| Alolan Grimer | 7% | 50–54 |
-| Alolan Raticate | 5% | 55–58 |
-| Alolan Persian | 5% | 55–58 |
-| Alolan Graveler | 5% | 55–58 |
-| Alolan Sandslash | 3% | 56–60 |
-| Alolan Ninetales | 3% | 56–60 |
-| Alolan Dugtrio | 3% | 56–60 |
-| Alolan Muk | 3% | 56–60 |
-| Alolan Golem | 2% | 58–60 |
-| Alolan Raichu | 2% | 58–60 |
-| Alolan Exeggutor | 2% | 58–60 |
-| Alolan Marowak | 2% | 58–60 |
+| Alolan Rattata | 11% | 40–55 |
+| Alolan Meowth | 11% | 40–55 |
+| Alolan Sandshrew | 9% | 40–55 |
+| Alolan Vulpix | 9% | 40–55 |
+| Alolan Diglett | 9% | 40–55 |
+| Alolan Geodude | 9% | 40–55 |
+| Alolan Grimer | 7% | 40–55 |
+| Alolan Raticate | 5% | 40–55 |
+| Alolan Persian | 5% | 40–55 |
+| Alolan Graveler | 5% | 40–55 |
+| Alolan Sandslash | 3% | 40–55 |
+| Alolan Ninetales | 3% | 40–55 |
+| Alolan Dugtrio | 3% | 40–55 |
+| Alolan Muk | 3% | 40–55 |
+| Alolan Golem | 2% | 60 |
+| Alolan Raichu | 2% | 60 |
+| Alolan Exeggutor | 2% | 60 |
+| Alolan Marowak | 2% | 60 |
 
 ## Galar — the forest (north-west)
 
@@ -46,25 +47,25 @@ Tall grass:
 
 | Pokémon | Odds | Levels |
 |---|---|---|
-| Galarian Meowth | 11% | 50–54 |
-| Galarian Ponyta | 11% | 50–54 |
-| Galarian Zigzagoon | 11% | 50–54 |
-| Galarian Farfetch’d | 9% | 50–54 |
-| Galarian Darumaka | 9% | 50–54 |
-| Galarian Yamask | 9% | 50–54 |
-| Galarian Mr. Mime | 7% | 50–54 |
-| Galarian Linoone | 5% | 55–58 |
-| Galarian Rapidash | 4% | 56–60 |
-| Galarian Weezing | 4% | 56–60 |
-| Galarian Darmanitan | 3% | 56–60 |
-| Galarian Articuno | 1% | 60 |
-| Galarian Zapdos | 1% | 60 |
-| Galarian Moltres | 1% | 60 |
-| Galarian Slowpoke | 5% | 50–54 |
-| Galarian Corsola | 4% | 50–54 |
-| Galarian Stunfisk | 3% | 50–54 |
-| Galarian Slowbro | 2% | 56–60 |
-| Galarian Slowking | 2% | 56–60 |
+| Galarian Meowth | 11% | 40–55 |
+| Galarian Ponyta | 11% | 40–55 |
+| Galarian Zigzagoon | 11% | 40–55 |
+| Galarian Farfetch’d | 9% | 40–55 |
+| Galarian Darumaka | 9% | 40–55 |
+| Galarian Yamask | 9% | 40–55 |
+| Galarian Mr. Mime | 7% | 40–55 |
+| Galarian Linoone | 5% | 40–55 |
+| Galarian Rapidash | 4% | 40–55 |
+| Galarian Weezing | 4% | 40–55 |
+| Galarian Darmanitan | 3% | 40–55 |
+| Galarian Articuno | 1% | 70 |
+| Galarian Zapdos | 1% | 70 |
+| Galarian Moltres | 1% | 70 |
+| Galarian Slowpoke | 5% | 40–55 |
+| Galarian Corsola | 4% | 40–55 |
+| Galarian Stunfisk | 3% | 40–55 |
+| Galarian Slowbro | 2% | 60 |
+| Galarian Slowking | 2% | 60 |
 
 ## Hisui — the mountain and its lake (north-east)
 
@@ -72,29 +73,29 @@ Tall grass:
 
 | Pokémon | Odds | Levels |
 |---|---|---|
-| Hisuian Growlithe | 15% | 50–54 |
-| Hisuian Voltorb | 15% | 50–54 |
-| Hisuian Sneasel | 12% | 50–54 |
-| Hisuian Zorua | 12% | 50–54 |
-| Hisuian Sliggoo | 10% | 50–54 |
-| Hisuian Lilligant | 6% | 55–58 |
-| Hisuian Braviary | 6% | 55–58 |
-| Hisuian Avalugg | 6% | 55–58 |
-| Hisuian Arcanine | 4% | 56–60 |
-| Hisuian Electrode | 4% | 56–60 |
-| Hisuian Zoroark | 4% | 56–60 |
-| Hisuian Goodra | 2% | 58–60 |
-| Hisuian Typhlosion | 1% | 58–60 |
-| Hisuian Samurott | 1% | 58–60 |
-| Hisuian Decidueye | 1% | 58–60 |
+| Hisuian Growlithe | 15% | 40–55 |
+| Hisuian Voltorb | 15% | 40–55 |
+| Hisuian Sneasel | 12% | 40–55 |
+| Hisuian Zorua | 12% | 40–55 |
+| Hisuian Sliggoo | 10% | 60 |
+| Hisuian Lilligant | 6% | 40–55 |
+| Hisuian Braviary | 6% | 40–55 |
+| Hisuian Avalugg | 6% | 40–55 |
+| Hisuian Arcanine | 4% | 40–55 |
+| Hisuian Electrode | 4% | 40–55 |
+| Hisuian Zoroark | 4% | 40–55 |
+| Hisuian Goodra | 2% | 60 |
+| Hisuian Typhlosion | 1% | 60 |
+| Hisuian Samurott | 1% | 60 |
+| Hisuian Decidueye | 1% | 60 |
 
 Surfing and fishing:
 
 | Pokémon | Odds | Levels |
 |---|---|---|
-| Hisuian Qwilfish | 40% | 50–54 |
-| White-Striped Basculin | 35% | 50–54 |
-| Blue-Striped Basculin | 25% | 50–54 |
+| Hisuian Qwilfish | 40% | 40–55 |
+| White-Striped Basculin | 35% | 40–55 |
+| Blue-Striped Basculin | 25% | 40–55 |
 
 ## Paldea — the sea (south-east)
 
@@ -102,7 +103,7 @@ Surfing and fishing:
 
 | Pokémon | Odds | Levels |
 |---|---|---|
-| Paldean Wooper | 40% | 50–54 |
-| Paldean Tauros (Aqua Breed) | 30% | 54–58 |
-| Paldean Tauros (Combat Breed) | 20% | 52–56 |
-| Paldean Tauros (Blaze Breed) | 10% | 54–58 |
+| Paldean Wooper | 40% | 40–55 |
+| Paldean Tauros (Aqua Breed) | 30% | 40–55 |
+| Paldean Tauros (Combat Breed) | 20% | 40–55 |
+| Paldean Tauros (Blaze Breed) | 10% | 40–55 |
