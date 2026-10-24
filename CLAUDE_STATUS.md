@@ -4580,3 +4580,70 @@ merged.
 2. The Route 224 and Battleground counterpart battles; the Mansion and Route 212 grunts; the E4 rematch teams
    (981–995) through the League rooms' var.
 3. Celebi's memory battles (1029–1036) and the Celebi event.
+
+## CA-0045 (Claude A, branch `claude/festive-bardeen-5h7beo`, 2026-10-24)
+
+**Owner decisions recorded (2026-10-24), decisions 29 to 32 in `docs/ProjectStatus.md`. For Claude B:**
+- **Regigigas:** keep Renegade's Snowpoint Temple story (story Regigigas put back to sleep, Candice's HM08). Renegade
+  still lets the player catch it afterwards (SpecialEvents.txt #486).
+- **Koraidon/Miraidon:** Koraidon after all ten future Paradox Pokémon, Miraidon after all ten past ones. That's the
+  owner's wording, the reverse of the official eras; Claude A asked the owner to confirm before it's built.
+  - Each gate is independent, and the Paldea Chronicle is still required.
+  - Each museum dealer gets a "you've obtained all of the FUTURE/PAST Paradox Pokémon... rumors... LOCATION" line.
+- **Infinite Repel:** from the PC in the player's house in Twinleaf, after the first Champion win (with the Celestic
+  elder's visit).
+- **Placeholders** (event levels, the deliveryman's spot, provisional legendary spots) stay; the owner adjusts them
+  later.
+- **The birds:** still open (Renegade's portals or Oak's roamers). The owner will decide.
+
+**Implemented:** CI apt cache (owner request) in `.github/workflows/build.yml`. Apt's package lists and `.deb` files are
+saved after a good install and reused offline; if that fails, it falls back to the network install.
+
+**Files modified:** `.github/workflows/build.yml`, `docs/ProjectStatus.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:** Claude A is idle until the owner's go (planned for Wednesday night). Then:
+1. Item 11: the Pledges, Ally Switch, the remaining abilities.
+2. BM's remaining rules.
+3. The 12b AI review.
+
+## CA-0046 (Claude A, branch `claude/festive-bardeen-5h7beo`, 2026-10-24)
+
+**Owner decision recorded (decision 33 in `docs/ProjectStatus.md`), for Claude B (E10):** the legendary birds use
+Renegade's portals where they don't clash with Sovereign's content. They replace the Oak roamer release for those birds.
+- **Moltres:** Victory Road's small room. Clear.
+- **Articuno:** Mt. Coronet's summit. Clear if the portal's tile isn't Cosmog's (35, 21).
+- **Zapdos:** clashes with Zekrom's island behind Valley Windworks. Its spot is open; the owner will be asked.
+
+**Files modified:** `docs/ProjectStatus.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:** unchanged from CA-0045. Claude A is idle until the owner's go.
+
+## CA-0047 (Claude A, branch `claude/festive-bardeen-5h7beo`, 2026-10-24)
+
+**Owner confirmation (decision 30), for Claude B:** use the official pairing. **Koraidon** appears after all ten
+**past (ancient)** Paradox Pokémon; **Miraidon** after all ten **future** ones. The rest of decision 30 stands:
+- the gates are independent of each other;
+- the Paldea Chronicle is still required;
+- each museum dealer gets its "all of the PAST/FUTURE Paradox Pokémon... LOCATION" line.
+
+Decision 30 can be built now.
+
+**Files modified:** `docs/ProjectStatus.md`, `CLAUDE_STATUS.md`
+
+## CA-0048 (Claude A, branch `claude/festive-bardeen-5h7beo`, 2026-10-24)
+
+**Owner decision 34, for Claude B:** Zekrom moves from the Valley Windworks island to **Route 215**, with the same
+trigger (Dark Stone, night). Zapdos takes Renegade's portal on the island (decision 33). The tile is still to pick.
+
+**New: `docs/LegendaryPlacementReview.md`** (owner request): every static legendary with its trigger, what else is on
+its map, and possible clashes. Clashes to settle:
+- Yveltal and Ho-Oh, Lost Tower top floor.
+- Volcanion and Groudon, Stark Mountain room 1.
+- Eternatus in Giratina's room.
+- Hoopa and Jirachi, Solaceon Ruins Room 7.
+- Enamorus beside the Shaymin tablet on Route 224.
+- Landorus and Regidrago beside Regirock's puzzle.
+
+Plus some tile checks. The owner will decide on these.
+
+**Files modified:** `docs/LegendaryPlacementReview.md` (new), `docs/ProjectStatus.md`, `CLAUDE_STATUS.md`

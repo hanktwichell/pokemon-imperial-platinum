@@ -182,7 +182,38 @@ Made by the owner (2026-10-22):
       in one place. The other legendaries stay static (roamers can't hold items, so Zacian, Zamazenta and Ogerpon
       can't roam).
 
+29. **Regigigas keeps Renegade's Snowpoint Temple story** (owner, 2026-10-24): the story Regigigas is put back to
+    sleep and Candice gives HM08, as in Renegade. Allowed because Renegade still lets the player catch Regigigas
+    afterwards (`RenegadePlatinumV130/Documentation/SpecialEvents.txt`, #486: after the story event and becoming
+    Champion, Lv. 70 in the temple's basement with Regirock, Regice and Registeel in the party).
+30. **Koraidon and Miraidon gates** (owner, 2026-10-24), replacing decision 28's pairing:
+    - **Koraidon** appears once all ten **past** (ancient) Paradox Pokémon are obtained; **Miraidon** once all ten
+      **future** ones are, matching the official games (owner confirmed, 2026-10-24).
+    - Each gate is independent: one legendary can be unlocked without any Paradox Pokémon from the other's group.
+    - The Paldea Chronicle must still be open.
+    - After giving all ten of their Pokémon, each Oreburgh Mining Museum dealer has a new line, like: "Wow, you've
+      obtained all of the FUTURE/PAST Paradox Pokémon! I've heard rumors that a legendary FUTURE/PAST Paradox Pokémon
+      can be found in LOCATION."
+31. **The Infinite Repel is in the PC in the player's house in Twinleaf Town** (owner, 2026-10-24), available after the
+    first Champion win, at the same time as the Celestic elder's visit.
+32. **Placeholders stay for now** (owner, 2026-10-24): event levels, the event-gift deliveryman's spot and the
+    provisional legendary spots are adjusted later.
+33. **The legendary birds use Renegade's portals where they don't clash** (owner, 2026-10-24: keep them "if they
+    don't conflict with anything we're adding"). They replace the birds' Oak roamer release.
+    - **Moltres:** Renegade's portal in Victory Road's small room (Rock Climb). No clash.
+    - **Articuno:** Renegade's portal on Mt. Coronet's summit (Rock Climb), on a tile clear of Cosmog's (35, 21). The
+      Celesteela rare roll on that map is a wild roll, not an object, so it doesn't clash.
+    - **Zapdos:** Renegade's portal on the island behind Valley Windworks, now free since Zekrom moves (decision 34).
+    - Renegade opens the portals after talking to Rowan after the Distortion World. That matches Renegade; Sovereign's
+      other legendaries are post-game, and portals look different from Sovereign's shown legendaries. Both are noted
+      for the owner.
+34. **Zekrom moves to Route 215** (owner, 2026-10-24), the always-raining route between Veilstone and Solaceon. Its
+    trigger is unchanged (the Dark Stone, at night). That frees the Valley Windworks island for Zapdos's Renegade
+    portal (decision 33). The tile is still to pick. The full placement review is `docs/LegendaryPlacementReview.md`.
+
 Open:
+- **The legendary placement clashes** in `docs/LegendaryPlacementReview.md` ("Clashes to settle"): the Lost Tower top
+  floor, Stark Mountain room 1, Giratina's room, Solaceon Ruins Room 7, Route 224's tablet and others.
 - **Overworld sprites and sizing for the legendaries** (owner, 2026-10-23: "we will need to work on" it). Today each
   is a 64x64 placeholder shrunk from its PokeAPI front sprite (`tools/sprites/make_legendary_overworld.py`), so tiny
   and huge Pokémon look the same size and the big ones cover the player and nearby tiles.
