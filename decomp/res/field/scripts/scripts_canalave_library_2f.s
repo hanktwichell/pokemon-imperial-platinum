@@ -1173,8 +1173,8 @@ CanalaveLibrary2F_SovereignArchivistAreaZero:
     GoToIfNe VAR_0x8008, 0, CanalaveLibrary2F_SovereignArchivistAreaZeroLocked
     SovereignCheckSpeciesCaught SPECIES_KORAIDON, VAR_0x8004
     SovereignCheckSpeciesCaught SPECIES_MIRAIDON, VAR_0x8005
-    GoToIfEq VAR_0x8004, FALSE, CanalaveLibrary2F_SovereignArchivistAreaZeroKoraidon
-    GoToIfEq VAR_0x8005, FALSE, CanalaveLibrary2F_SovereignArchivistAreaZeroKoraidon
+    GoToIfEq VAR_0x8004, FALSE, CanalaveLibrary2F_SovereignArchivistAreaZeroNoKoraidon
+    GoToIfEq VAR_0x8005, FALSE, CanalaveLibrary2F_SovereignArchivistAreaZeroOne
     SovereignCheckSpeciesCaught SPECIES_TERAPAGOS, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistAreaZeroTerapagos
     Message CanalaveLibrary2F_Text_SovereignArchivistAreaZeroDone
@@ -1184,8 +1184,14 @@ CanalaveLibrary2F_SovereignArchivistAreaZeroLocked:
     Message CanalaveLibrary2F_Text_SovereignArchivistAreaZeroLocked
     GoTo CanalaveLibrary2F_SovereignArchivistPaldeaAskMore
 
-CanalaveLibrary2F_SovereignArchivistAreaZeroKoraidon:
+@ Koraidon uncaught: both are waiting if Miraidon is uncaught too, else one is.
+CanalaveLibrary2F_SovereignArchivistAreaZeroNoKoraidon:
+    GoToIfEq VAR_0x8005, TRUE, CanalaveLibrary2F_SovereignArchivistAreaZeroOne
     Message CanalaveLibrary2F_Text_SovereignArchivistKoraidon
+    GoTo CanalaveLibrary2F_SovereignArchivistPaldeaAskMore
+
+CanalaveLibrary2F_SovereignArchivistAreaZeroOne:
+    Message CanalaveLibrary2F_Text_SovereignArchivistKoraidonOne
     GoTo CanalaveLibrary2F_SovereignArchivistPaldeaAskMore
 
 CanalaveLibrary2F_SovereignArchivistAreaZeroTerapagos:

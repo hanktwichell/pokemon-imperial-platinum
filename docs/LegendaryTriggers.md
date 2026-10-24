@@ -47,7 +47,7 @@ Pokédex's caught entry (`SovereignCheckSpeciesCaught`).
 | Virizion | static | Eterna Forest (80, 10) | 65 | var ≥ 1 | Swords of Justice |
 | Keldeo | static | Lake Valor (36, 14) | 55 | Cobalion, Terrakion and Virizion **in the party** | Swords of Justice (after all three are caught) |
 | Victini | static | Vista Lighthouse top floor, west side | 55 | var ≥ 1 | Other legends |
-| Meloetta | static | In front of the Contest Hall stage (29, 8) | 55 | `FLAG_SOVEREIGN_MELOETTA_SONG`: the composer in the lobby (8, 7) hears a party Pokémon with Sing | Other legends |
+| Meloetta | static | In front of the Contest Hall stage (27, 8) | 55 | `FLAG_SOVEREIGN_MELOETTA_SONG`: the composer in the lobby (8, 7) hears a party Pokémon with Sing | Other legends |
 | Genesect | static | Galactic HQ lab, back room (34, 5) | 60 | `FLAG_SOVEREIGN_GENESECT_FREED`: the lab's male scientist confesses (shows at once) | Other legends |
 | Reshiram | static | Fuego Ironworks building, furnace pocket | 70 | `ITEM_LIGHT_STONE` in the bag (the Archivist gives both stones) | Truth and Ideals |
 | Zekrom | static | Valley Windworks, the island behind the building (Surf) | 70 | `ITEM_DARK_STONE` in the bag, and night (8 pm–4 am) **when entering the map** | Truth and Ideals |
@@ -207,7 +207,7 @@ against the Chronicles':
 
 ## Open issues
 
-Found by the audit and still open (the CB-0045 fixes are in `EngineChangelog.md`):
+Found by the audit and still open (the CB-0045 and CB-0046 fixes are in `EngineChangelog.md`):
 - **Cosmog can flee.** At Lv. 5 it knows only Splash and Teleport, and a wild Teleport ends the battle about half the
   time it's picked. It then vanishes until the next visit. A trapping move or ability, or a quick catch, gets around
   it.
@@ -217,10 +217,5 @@ Found by the audit and still open (the CB-0045 fixes are in `EngineChangelog.md`
   nothing return. The RoamerGone line now says so.
 - **Gates read the Pokédex,** so a legendary caught another way (a trade) can open the next one early, and a traded
   Reshiram skips the Light and Dark Stones (then Zekrom can't appear).
-- **Virizion stands on the only tile facing Eterna Forest's hidden Insect Plate** (80, 9). The player can still take
-  it after battling Virizion, before leaving.
-- **Meloetta** is inside the lobby Beauty's wander area. She can stand on the tile east of it; the other two sides
-  stay open.
 - **Poipole is Lv. 40,** below Route 230's own Pokémon, so a Repel with a stronger lead hides it.
-- **The Area Zero topic** says "Koraidon and Miraidon have come" while either is still uncaught.
 - **The Marking Map and the TV news flash** can't tell the 13 roamers apart (vanilla behaviour).

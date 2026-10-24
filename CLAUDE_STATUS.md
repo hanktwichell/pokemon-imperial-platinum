@@ -3058,3 +3058,31 @@ asked for, and the bugs its code audit found. PR open.
 2. Milestone FM's next forms include Rapid Strike Urshifu (the Scroll of Waters does nothing yet) and Ultra Necrozma
    (Ultra Burst).
 3. E10, Renegade's events: their spots against the Chronicles' (the clash table in `docs/LegendaryTriggers.md`).
+
+## CB-0046 — 2026-10-23, 7:54 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Status:** PR #58 (CB-0045) is merged. This entry fixes three of the open issues in `docs/LegendaryTriggers.md`.
+PR open.
+
+**What was implemented:**
+- **The Insect Plate:** Virizion (80, 10) stood on the only tile facing Eterna Forest's hidden Insect Plate (80, 9).
+  The side pocket next to it, (81, 12), holds the Ether item ball, so Virizion stays and the plate moved one tile
+  down, into the corridor's west wall (79, 11).
+- **Meloetta** moved from (29, 8), inside the stage Beauty's wander range, to (27, 8).
+- **The Area Zero topic:** with one of Koraidon and Miraidon caught, the Archivist says the other still waits at
+  Sendoff Spring (new line `..._SovereignArchivistKoraidonOne`), not "Koraidon and Miraidon have come".
+- **Verified** in the emulator: the new line (Miraidon caught), Virizion's battle and then the plate from the
+  corridor, Meloetta's battle; release build, boot smoke, docs.
+
+**Files modified:** `decomp/res/field/events/events_eterna_forest.json`,
+`decomp/res/field/events/events_contest_hall_stage_no_contest.json`,
+`decomp/res/field/scripts/scripts_canalave_library_2f.s`, `decomp/res/text/canalave_library_2f.json`,
+`data/postgame_legendaries.yaml`, `docs/PostgameLegendaries.md`, `docs/LegendaryTriggers.md`,
+`docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Owner decisions: Koraidon/Miraidon after their own ten Paradox Pokémon or all twenty; whether Cosmog should be
+   kept from fleeing with Teleport; overworld sprites and sizing; final spots for the provisional placements.
+2. Milestone FM's next forms include Rapid Strike Urshifu (the Scroll of Waters does nothing yet) and Ultra Necrozma
+   (Ultra Burst).
+3. E10, Renegade's events: their spots against the Chronicles' (the clash table in `docs/LegendaryTriggers.md`).
