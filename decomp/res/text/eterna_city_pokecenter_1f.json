@@ -153,6 +153,66 @@
         "It adds flair and drama when many\n",
         "eager Pokémon get involved."
       ]
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignIdolWish",
+      "en_US": [
+        "Hello, Trainer!\n",
+        "I have a dream.\r",
+        "Could you help my CLEFAIRY\n",
+        "learn Dazzling Gleam?"
+      ]
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignIdolBootedTM",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} booted up the TM.\r",
+        "...\r",
+        "...\r"
+      ]
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignIdolClefairyLearned",
+      "en_US": [
+        "CLEFAIRY learned\n",
+        "Dazzling Gleam!\r"
+      ]
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignIdolDreamRealized",
+      "en_US": [
+        "Ah! My dream has been realized!\n",
+        "Thank you ever so much, Trainer!\r"
+      ]
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignIdolThanks",
+      "en_US": [
+        "Ah! My dream has been realized!\n",
+        "Thank you ever so much, Trainer!"
+      ]
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignIdolNoTM",
+      "en_US": [
+        "Oh...\r",
+        "You can’t teach my CLEFAIRY\n",
+        "Dazzling Gleam?\r",
+        "Or you simply don’t want to?\r",
+        "Sigh...\n",
+        "Will my CLEFAIRY ever sparkle?"
+      ]
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignClefairyCry",
+      "en_US": "CLEFAIRY: Pip piiih!"
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignWishSeen",
+      "en_US": [
+        "Someone, somewhere, saw that you\n",
+        "made somebody’s wish come true."
+      ]
     }
   ]
 }

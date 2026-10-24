@@ -11,6 +11,55 @@
         "SOMETHING\f",
         "ANEW AND ALIVE"
       ]
+    },
+    {
+      "id": "SolaceonRuinsRoom7_Text_SovereignThreeWishes",
+      "en_US": [
+        "There is more writing below...\r",
+        "Ye who desires a wish fulfilled must\n",
+        "first be one who grants three wishes."
+      ]
+    },
+    {
+      "id": "SolaceonRuinsRoom7_Text_SovereignSignChanged",
+      "en_US": "The writing on the sign changed..."
+    },
+    {
+      "id": "SolaceonRuinsRoom7_Text_SovereignBringBestVoice",
+      "en_US": [
+        "Trainer, dear Trainer.\n",
+        "I have a request.\r",
+        "Bring me the Pokémon whose\n",
+        "voice sounds the best."
+      ]
+    },
+    {
+      "id": "SolaceonRuinsRoom7_Text_SovereignSignBlank",
+      "en_US": [
+        "The sign is blank...\r",
+        "Was JIRACHI communicating to you\n",
+        "through the sign?"
+      ]
+    },
+    {
+      "id": "SolaceonRuinsRoom7_Text_SovereignDeepSleep",
+      "en_US": "The Pokémon is in a deep sleep."
+    },
+    {
+      "id": "SolaceonRuinsRoom7_Text_SovereignAskJigglypuff",
+      "en_US": [
+        "The Pokémon is in a deep sleep.\r",
+        "Do you want to ask JIGGLYPUFF\n",
+        "to sing to the Pokémon?"
+      ]
+    },
+    {
+      "id": "SolaceonRuinsRoom7_Text_SovereignJigglypuffPwff",
+      "en_US": "JIGGLYPUFF: Pwff!"
+    },
+    {
+      "id": "SolaceonRuinsRoom7_Text_SovereignWokeUp",
+      "en_US": "The Pokémon woke up!"
     }
   ]
 }

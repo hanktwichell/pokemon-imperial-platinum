@@ -4345,3 +4345,32 @@ merged.
    - Then the Solaceon Ruins room 7 sign and the sleeping Jirachi, woken by a Jigglypuff, Lv. 40.
 2. Deoxys at Veilstone (its forms and meteorites, Lv. 70); then Celebi, Lugia/Ho-Oh, the birds and Mew's chain.
 3. Renegade's trainers from its ROM (`trdata`/`trpoke`), with `data/trainers_sovereign.yaml` on top.
+
+## CB-0090 — 2026-10-24, 8:56 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** E10 part 16, Renegade's Jirachi event. PR #100 (part 15) merged.
+- Three wish NPCs, each with a white flash and Jirachi's cry when granted:
+  - Eterna Pokémon Center Idol and Clefairy at (10, 6)/(11, 6): TM85 Dazzling Gleam, which takes one of the 99.
+  - Solaceon north-east house Socialite at (2, 3): a fire-headed Pokémon.
+  - Pastoria City boy at (591, 845): Carvanha, Sharpedo or Gyarados.
+- New flags `FLAG_SOVEREIGN_JIRACHI_WISH_{ETERNA,SOLACEON,PASTORIA}`, `_SIGN_CHANGED` and `_AWAKE` (from unused
+  slots).
+- Solaceon Ruins room 7:
+  - With all three wishes granted, reading the sign shows Jirachi at (5, 3) (`FLAG_MAP_LOCAL_HIDE_LEGENDARY_2`).
+  - A Jigglypuff in the party sings it awake (`SEQ_FUE_sseq` as a fanfare), then a Lv. 40 battle until caught.
+  - The OnLoad removal is now per species (Hoopa, Jirachi).
+  - Placeholder Jirachi sprite.
+- Verified in a test build with the checks swapped for Garchomp and the TM check skipped: all three wishes, the sign,
+  the song and the battle. Release build and docs pass.
+
+**Files modified:**
+- Scripts, events and text for `eterna_city_pokecenter_1f`, `solaceon_town_northeast_house`, `pastoria_city` and
+  `solaceon_ruins_room_7`
+- `decomp/generated/vars_flags.txt`; sprite tables and `legendary_jirachi.png`; `tools/sprites/make_legendary_overworld.py`
+- Docs: `docs/LegendaryTriggers.md`, `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Deoxys at Veilstone City (Renegade: Lv. 70; forms by the meteorites; check Renegade's script for the trigger).
+2. Celebi (GS Ball, Eterna Forest), Lugia/Ho-Oh (Oak's wings), the birds, Mew's berry chain (Pastoria's Mew scene
+   in Renegade's script, flag 2589).
+3. Renegade's trainers from its ROM (`trdata`/`trpoke`), with `data/trainers_sovereign.yaml` on top.

@@ -26,6 +26,7 @@
     ScriptEntry PastoriaCity_CoordEvent_Bomb
     ScriptEntry PastoriaCity_CoordEvent_BlockGreatMarsh
     ScriptEntry PastoriaCity_CoordEvent_FaceBoard
+    ScriptEntry PastoriaCity_SovereignFishBoy
     ScriptEntryEnd
 
 PastoriaCity_OnTransition:
@@ -983,3 +984,65 @@ PastoriaCity_Movement_CroagunkLeave:
 PastoriaCity_Movement_PlayerWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
+
+@ Sovereign (E10, Renegade's Jirachi event): the third of three wishes. The boy wants to see a mean-looking fish
+@ (Carvanha, Sharpedo or Gyarados).
+PastoriaCity_SovereignFishBoy:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfSet FLAG_SOVEREIGN_JIRACHI_WISH_PASTORIA, PastoriaCity_SovereignFishBoyThanks
+    Message PastoriaCity_Text_SovereignFishBoyWish
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_CARVANHA
+    GoToIfEq VAR_RESULT, TRUE, PastoriaCity_SovereignFishBoyCarvanha
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_SHARPEDO
+    GoToIfEq VAR_RESULT, TRUE, PastoriaCity_SovereignFishBoySharpedo
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_GYARADOS
+    GoToIfEq VAR_RESULT, TRUE, PastoriaCity_SovereignFishBoyGyarados
+    Message PastoriaCity_Text_SovereignFishBoyNoFish
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+PastoriaCity_SovereignFishBoyCarvanha:
+    Message PastoriaCity_Text_SovereignFishBoyCarvanha
+    GoTo PastoriaCity_SovereignFishBoyYay
+
+PastoriaCity_SovereignFishBoySharpedo:
+    Message PastoriaCity_Text_SovereignFishBoySharpedo
+    GoTo PastoriaCity_SovereignFishBoyYay
+
+PastoriaCity_SovereignFishBoyGyarados:
+    Message PastoriaCity_Text_SovereignFishBoyGyarados
+    GoTo PastoriaCity_SovereignFishBoyYay
+
+PastoriaCity_SovereignFishBoyYay:
+    Message PastoriaCity_Text_SovereignFishBoyYay
+    CloseMessage
+    Call PastoriaCity_SovereignWishGranted
+    SetFlag FLAG_SOVEREIGN_JIRACHI_WISH_PASTORIA
+    ReleaseAll
+    End
+
+PastoriaCity_SovereignFishBoyThanks:
+    Message PastoriaCity_Text_SovereignFishBoyThanks
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+PastoriaCity_SovereignWishGranted:
+    WaitTime 10, VAR_RESULT
+    FadeScreenOut FADE_SCREEN_SPEED_FAST, COLOR_WHITE
+    WaitFadeScreen
+    PlayCry SPECIES_JIRACHI
+    WaitCry
+    FadeScreenIn FADE_SCREEN_SPEED_FAST, COLOR_WHITE
+    WaitFadeScreen
+    Message PastoriaCity_Text_SovereignWishSeen
+    WaitButton
+    CloseMessage
+    Return
+
+    .balign 4, 0

@@ -18,6 +18,93 @@
         "They say there were big Pokémon\n",
         "ranches ’round these parts."
       ]
+    },
+    {
+      "id": "SolaceonTownNortheastHouse_Text_SovereignSocialiteWish",
+      "en_US": [
+        "Greetings, young Trainer.\n",
+        "I have a desire.\r",
+        "Could you show me a Pokémon\n",
+        "whose head is on fire?\r"
+      ]
+    },
+    {
+      "id": "SolaceonTownNortheastHouse_Text_SovereignSocialitePonyta",
+      "en_US": "Oh, your PONYTA...\r"
+    },
+    {
+      "id": "SolaceonTownNortheastHouse_Text_SovereignSocialiteRapidash",
+      "en_US": "Oh, your RAPIDASH...\r"
+    },
+    {
+      "id": "SolaceonTownNortheastHouse_Text_SovereignSocialiteMoltres",
+      "en_US": [
+        "My word! Is that a MOLTRES?\n",
+        "You have a MOLTRES as a companion?!\r"
+      ]
+    },
+    {
+      "id": "SolaceonTownNortheastHouse_Text_SovereignSocialiteQuilava",
+      "en_US": "Oh, your QUILAVA...\r"
+    },
+    {
+      "id": "SolaceonTownNortheastHouse_Text_SovereignSocialiteInfernape",
+      "en_US": "Oh, your INFERNAPE...\r"
+    },
+    {
+      "id": "SolaceonTownNortheastHouse_Text_SovereignSocialiteMagmar",
+      "en_US": "Oh, your MAGMAR...\r"
+    },
+    {
+      "id": "SolaceonTownNortheastHouse_Text_SovereignSocialiteSlugma",
+      "en_US": "Oh, your SLUGMA...\r"
+    },
+    {
+      "id": "SolaceonTownNortheastHouse_Text_SovereignSocialiteMagmortar",
+      "en_US": "Oh, your MAGMORTAR...\r"
+    },
+    {
+      "id": "SolaceonTownNortheastHouse_Text_SovereignSocialiteRavishing",
+      "en_US": [
+        "There is a truly dazzling flame that\n",
+        "burns upon that Pokémon’s head!\r",
+        "What a sight to behold!\n",
+        "Absolutely ravishing!\r",
+        "I can leave a happy woman!\n",
+        "Thank you ever so much.\r"
+      ]
+    },
+    {
+      "id": "SolaceonTownNortheastHouse_Text_SovereignSocialiteNotTheFire",
+      "en_US": [
+        "This Pokémon’s head does look a bit\n",
+        "like a flame, doesn’t it...\r",
+        "But I’m afraid this isn’t the ravishing\n",
+        "fire that I seek."
+      ]
+    },
+    {
+      "id": "SolaceonTownNortheastHouse_Text_SovereignSocialiteNoFlame",
+      "en_US": [
+        "Hmm...\r",
+        "You’re not carrying any Pokémon that\n",
+        "have a flame on their head."
+      ]
+    },
+    {
+      "id": "SolaceonTownNortheastHouse_Text_SovereignSocialiteThanks",
+      "en_US": [
+        "I can’t thank you enough.\r",
+        "I wanted to see a dazzling flame...\n",
+        "Before I leave for good."
+      ]
+    },
+    {
+      "id": "SolaceonTownNortheastHouse_Text_SovereignWishSeen",
+      "en_US": [
+        "Someone, somewhere, saw that you\n",
+        "made somebody’s wish come true."
+      ]
     }
   ]
 }
