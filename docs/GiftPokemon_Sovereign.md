@@ -43,6 +43,7 @@ Notes
 | Cosplay Pikachu | 20 | — |
 | Pikachu Rock Star, Belle, Pop Star, Ph.D., Libre | 20 | Meteor Mash, Icicle Crash, Draining Kiss, Electric Terrain, Flying Press |
 | Original, Hoenn, Sinnoh, Unova, Kalos, Alola, Partner and World Cap Pikachu | 25 | — |
+| Spiky-eared Pichu | 30 | — |
 
   Magearna and Zarude are Mythical, so the deliveryman doesn't give them. He restyles a caught one into Original Color
   Magearna or Dada Zarude instead.

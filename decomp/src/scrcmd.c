@@ -451,6 +451,7 @@ static BOOL ScrCmd_SovereignCheckParadoxEraComplete(ScriptContext *ctx);
 static BOOL ScrCmd_SovereignGetEventGift(ScriptContext *ctx);
 static BOOL ScrCmd_SovereignFinishEventGift(ScriptContext *ctx);
 static BOOL ScrCmd_SovereignRestyleEventForm(ScriptContext *ctx);
+static BOOL ScrCmd_SovereignGroomFurfrou(ScriptContext *ctx);
 static BOOL ScrCmd_StartFirstBattle(ScriptContext *ctx);
 static BOOL ScrCmd_StartCatchingTutorial(ScriptContext *ctx);
 static BOOL ScrCmd_SlatherHoneyTree(ScriptContext *ctx);
@@ -4233,6 +4234,7 @@ static const u16 sSovereignEventGifts[][4] = {
     { SPECIES_PIKACHU, 12, 25, MOVE_NONE }, // Alola Cap Pikachu
     { SPECIES_PIKACHU, 13, 25, MOVE_NONE }, // Partner Cap Pikachu
     { SPECIES_PIKACHU, 15, 25, MOVE_NONE }, // World Cap Pikachu
+    { SPECIES_PICHU, 1, 30, MOVE_NONE }, // Spiky-eared Pichu
 };
 
 static u16 *Sovereign_EventGiftVar(FieldSystem *fieldSystem, int index)
@@ -4261,6 +4263,26 @@ static BOOL ScrCmd_SovereignGetEventGift(ScriptContext *ctx)
 
 // The deliveryman restyles a party Pokémon of a Mythical's event entry (level 0) into its event form: destVar TRUE if
 // it was that species in its base form, else FALSE.
+// Sovereign (FM): the Hearthome Fan Club's groomer trims a party Furfrou (form 0 Natural, 1-9 the trims): destVar TRUE
+// if it was a Furfrou.
+static BOOL ScrCmd_SovereignGroomFurfrou(ScriptContext *ctx)
+{
+    int form = ScriptContext_GetVar(ctx);
+    u16 partySlot = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), partySlot);
+
+    *destVar = FALSE;
+
+    if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE && Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) == SPECIES_FURFROU) {
+        Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+        Pokedex_Capture(SaveData_GetPokedex(ctx->fieldSystem->saveData), mon);
+        *destVar = TRUE;
+    }
+
+    return FALSE;
+}
+
 static BOOL ScrCmd_SovereignRestyleEventForm(ScriptContext *ctx)
 {
     u16 index = ScriptContext_GetVar(ctx);

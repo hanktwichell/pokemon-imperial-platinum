@@ -114,6 +114,83 @@
     {
       "id": "HearthomeCityPokemonFanClub_Text_ClefairyCryPipPiiih",
       "en_US": "CLEFAIRY: Pip piiih!"
+    },
+    {
+      "id": "HearthomeCityPokemonFanClub_Text_SovereignTrim00",
+      "en_US": "NATURAL"
+    },
+    {
+      "id": "HearthomeCityPokemonFanClub_Text_SovereignTrim01",
+      "en_US": "HEART TRIM"
+    },
+    {
+      "id": "HearthomeCityPokemonFanClub_Text_SovereignTrim02",
+      "en_US": "STAR TRIM"
+    },
+    {
+      "id": "HearthomeCityPokemonFanClub_Text_SovereignTrim03",
+      "en_US": "DIAMOND TRIM"
+    },
+    {
+      "id": "HearthomeCityPokemonFanClub_Text_SovereignTrim04",
+      "en_US": "DEBUTANTE TRIM"
+    },
+    {
+      "id": "HearthomeCityPokemonFanClub_Text_SovereignTrim05",
+      "en_US": "MATRON TRIM"
+    },
+    {
+      "id": "HearthomeCityPokemonFanClub_Text_SovereignTrim06",
+      "en_US": "DANDY TRIM"
+    },
+    {
+      "id": "HearthomeCityPokemonFanClub_Text_SovereignTrim07",
+      "en_US": "LA REINE TRIM"
+    },
+    {
+      "id": "HearthomeCityPokemonFanClub_Text_SovereignTrim08",
+      "en_US": "KABUKI TRIM"
+    },
+    {
+      "id": "HearthomeCityPokemonFanClub_Text_SovereignTrim09",
+      "en_US": "PHARAOH TRIM"
+    },
+    {
+      "id": "HearthomeCityPokemonFanClub_Text_SovereignGroomerCancel",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "HearthomeCityPokemonFanClub_Text_SovereignGroomerIntro",
+      "en_US": [
+        "I’m a Furfrou groomer from Kalos!\n",
+        "Which trim would you like?"
+      ]
+    },
+    {
+      "id": "HearthomeCityPokemonFanClub_Text_SovereignGroomerWhich",
+      "en_US": [
+        "Lovely choice! Which Pokémon shall\n",
+        "I groom?"
+      ]
+    },
+    {
+      "id": "HearthomeCityPokemonFanClub_Text_SovereignGroomerDone",
+      "en_US": [
+        "All done! Doesn’t it look fabulous?"
+      ]
+    },
+    {
+      "id": "HearthomeCityPokemonFanClub_Text_SovereignGroomerNotFurfrou",
+      "en_US": [
+        "Oh my... I only groom FURFROU!"
+      ]
+    },
+    {
+      "id": "HearthomeCityPokemonFanClub_Text_SovereignGroomerBye",
+      "en_US": [
+        "Come back whenever your FURFROU\n",
+        "needs a new look!"
+      ]
     }
   ]
 }

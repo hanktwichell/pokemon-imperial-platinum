@@ -335,6 +335,17 @@ implemented.
   - The teapots: Antique Sinistea and Polteageist, Artisan Poltchageist and Masterpiece Sinistcha, 1 in 10.
     `Pokemon_SovereignEvolutionItem` makes an Antique Sinistea need the Chipped Pot and an Artisan Poltchageist the
     Masterpiece Teacup.
+- **Form numbers are 7 bits** (Alcremie has 63 forms; Platinum's form field is 5 bits). `PokemonDataBlockB.formHighBits`
+  (2 bits of the unused halfword after it) holds bits 5–6, joined in `MON_DATA_FORM`; `BattleMon.formNum` is 7 bits
+  (from its padding).
+- **Alcremie** (forms 1–62, forms for good): any Sweet evolves Milcery (`Pokemon_SovereignEvolutionItem` maps it to
+  the Strawberry Sweet its data names). `Pokemon_SovereignAlcremieForm` picks the form, carried in the evolution type
+  (`EVO_TYPE_SOVEREIGN_FORM`): the Sweet gives the decoration. Platinum can't tell how Milcery is spun, so the cream
+  comes from the time of day and the personality: Rainbow Swirl at twilight, four creams by day, four at night.
+- **Furfrou's trims** (forms 1–9): the groomer in the Hearthome Pokémon Fan Club (10, 16; temporary placement) trims a
+  party Furfrou from a list, free and as often as asked (`SovereignGroomFurfrou`). An Egg is Natural.
+- **Spiky-eared Pichu**: the event deliveryman's 23rd gift (Lv. 30); it doesn't evolve. **Active Xerneas**: a battle
+  form (Fairy Aura) it takes quietly as it enters battle.
 - **Gender forms** (`SOVEREIGN_FORM_GENDER`: Female Meowstic, Indeedee, Basculegion and Oinkologne, each form 1).
   `Pokemon_SovereignPersonalityForm` gives the female's form to a female (its gender comes from its personality), so
   a wild, gift or Egg Pokémon gets it when it's made, with the form's abilities. `Pokemon_SovereignSetEvolvedSpecies`

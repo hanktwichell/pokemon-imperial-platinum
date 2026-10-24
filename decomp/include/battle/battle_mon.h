@@ -78,9 +78,8 @@ typedef struct BattleMon {
 
     u8 type1;
     u8 type2;
-    u8 formNum : 5;
+    u8 formNum : 7; // Sovereign: 7 bits, for Alcremie's 63 forms (Platinum: 5)
     u8 isShiny : 1;
-    u8 padding0026_06 : 2;
     u16 ability; // Sovereign: u16 (Gen IX ability IDs go past 255)
 
     u32 weatherAbilityAnnounced : 1;

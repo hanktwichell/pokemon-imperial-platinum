@@ -4,6 +4,26 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## FM — Alcremie, Furfrou's trims, Spiky-eared Pichu and Active Xerneas
+
+- **Alcremie** (63 creams and sweets). Using any of the seven Sweets on Milcery evolves it, and the Sweet decides
+  Alcremie's decoration.
+  - Platinum can't spin Milcery, so the cream comes from the time of day and the Pokémon: Rainbow Swirl at twilight;
+    Vanilla, Ruby Cream, Mint or Lemon Cream by day; Matcha, Salted Cream, Ruby Swirl or Caramel Swirl at night.
+- **Furfrou's trims.** A groomer in the Hearthome City Pokémon Fan Club trims a Furfrou into any of its nine trims, or
+  back to Natural, for free.
+- **Spiky-eared Pichu.** The event-gift deliveryman now also gives a Spiky-eared Pichu (Lv. 30). It doesn't evolve.
+- **Active Xerneas.** Xerneas is in its Active Mode in battle.
+- A Pokémon's form number can now go up to 127; Platinum's form field only held 31.
+- FM: 308 forms.
+
+Verified in the test build:
+- The groomer's list showed. Picking Heart Trim and then a Furfrou gave "All done! Doesn't it look fabulous?".
+- A Love Sweet showed "ABLE!" on Milcery. Using it, "MILCERY evolved into ALCREMIE!", and the Sweet was used up.
+- A wild battle with Xerneas leading ran normally.
+- Release build passes.
+
+
 ## FM — Flower colors, wing patterns, seasons and the Antique teapots
 
 - **Cosmetic forms** (79). They copy their species' data; their art comes with milestone E12.

@@ -3884,3 +3884,34 @@ generated form data (`decomp/include/data/sovereign_forms.h`, `decomp/include/co
    - Active Xerneas: in battle.
 2. Overworld sprites from the owner (in a few days): size them naturally against the existing overworld Pokémon.
 3. The shops step: where the nectars, Memories, Drives, Pixie Plate, pots, teacups and Sweets are found or sold.
+
+---
+
+## CB-0072 — FM: Alcremie, Furfrou's trims, Spiky-eared Pichu, Active Xerneas (Sat Oct 24 2026, 03:11 CDT)
+
+**Implemented:**
+- **7-bit form numbers.** `PokemonDataBlockB.formHighBits` holds bits 5–6, and `BattleMon.formNum` is 7 bits.
+- **Alcremie's 62 forms:** any Sweet evolves Milcery. The Sweet gives the decoration; the time of day and the
+  personality give the cream (Rainbow Swirl at twilight).
+- **Furfrou's 9 trims:** a groomer in the Hearthome Pokémon Fan Club (10, 16; temporary placement).
+- **Spiky-eared Pichu:** the event deliveryman's 23rd gift. It doesn't evolve.
+- **Active Xerneas:** a quiet battle form on entry.
+- Verified in the emulator: the groomer's trim; a Love Sweet evolving Milcery (and used up); a Xerneas battle.
+
+**Files modified:** `tools/engine/gen_forms.py`, `tools/engine/gen_items.py`, `decomp/res/items/data/*_sweet.json`,
+generated form data (`decomp/include/data/sovereign_forms.h`, `decomp/include/constants/sovereign_forms.h`,
+`decomp/tools/dataproc/src/sovereign_forms.inc`, the species' `meson.build` and new `forms/*/data.json`),
+`decomp/include/struct_defs/pokemon.h`, `decomp/include/battle/battle_mon.h`, `decomp/src/pokemon.c`,
+`decomp/src/battle/battle_lib.c`, `decomp/src/scrcmd.c`, `decomp/include/data/scripts/scrcmd.h`,
+`decomp/asm/macros/scrcmd.inc`, `decomp/res/field/scripts/scripts_hearthome_city_pokemon_fan_club.s`,
+`decomp/res/field/events/events_hearthome_city_pokemon_fan_club.json`, `decomp/res/text/hearthome_city_pokemon_fan_club.json`,
+`decomp/res/field/scripts/scripts_fight_area_pokecenter_1f.s`, `decomp/res/text/fight_area_pokecenter_1f.json`,
+`docs/GiftPokemon_Sovereign.md`, `docs/TechnicalDesign.md`, `docs/EngineRoadmap.md`, `docs/EngineChangelog.md`,
+`CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Milestone FM wrap-up: audit every PokeAPI form against the game. The ones left are the vanilla forms (Unown, Burmy,
+   Shellos, Cherrim, Rotom...), the gender-difference sprites (Pyroar, Frillish, Jellicent) and Mothim's cloaks, which
+   follow Burmy's. Then update the FM row of `EngineRoadmap.md`.
+2. Overworld sprites from the owner (in a few days): size them naturally against the existing overworld Pokémon.
+3. The shops step: where the nectars, Memories, Drives, Pixie Plate, pots, teacups and Sweets are found or sold.

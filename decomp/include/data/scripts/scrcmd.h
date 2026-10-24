@@ -860,6 +860,7 @@ ScriptCommand(SCRCMD_SOVEREIGNCHECKPARADOXERACOMPLETE,                    ScrCmd
 ScriptCommand(SCRCMD_SOVEREIGNGETEVENTGIFT,                               ScrCmd_SovereignGetEventGift)
 ScriptCommand(SCRCMD_SOVEREIGNFINISHEVENTGIFT,                            ScrCmd_SovereignFinishEventGift)
 ScriptCommand(SCRCMD_SOVEREIGNRESTYLEEVENTFORM,                           ScrCmd_SovereignRestyleEventForm)
+ScriptCommand(SCRCMD_SOVEREIGNGROOMFURFROU,                               ScrCmd_SovereignGroomFurfrou)
 
 // clang-format on
 

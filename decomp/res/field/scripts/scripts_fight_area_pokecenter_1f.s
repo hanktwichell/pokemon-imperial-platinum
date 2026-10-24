@@ -126,9 +126,10 @@ FightAreaPokecenter1F_SovereignEventGifts:
     AddListMenuEntry FightAreaPokecenter1F_Text_SovereignEventGift19, 19
     AddListMenuEntry FightAreaPokecenter1F_Text_SovereignEventGift20, 20
     AddListMenuEntry FightAreaPokecenter1F_Text_SovereignEventGift21, 21
-    AddListMenuEntry FightAreaPokecenter1F_Text_SovereignEventGiftsCancel, 22
+    AddListMenuEntry FightAreaPokecenter1F_Text_SovereignEventGift22, 22
+    AddListMenuEntry FightAreaPokecenter1F_Text_SovereignEventGiftsCancel, 23
     ShowListMenu
-    GoToIfGe VAR_0x8008, 22, FightAreaPokecenter1F_SovereignEventGiftsBye
+    GoToIfGe VAR_0x8008, 23, FightAreaPokecenter1F_SovereignEventGiftsBye
     SovereignGetEventGift VAR_0x8008, VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8004, SPECIES_NONE, FightAreaPokecenter1F_SovereignEventGiftsAlreadyGiven
     GoToIfEq VAR_0x8005, 0, FightAreaPokecenter1F_SovereignEventGiftsRestyle

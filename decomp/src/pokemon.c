@@ -292,6 +292,7 @@ static int Pokemon_GetFormNarcIndex(int monSpecies, int monForm);
 static BOOL Pokemon_IsSovereignRegionalForm(u16 species, int form);
 static const SovereignForm *Pokemon_FindSovereignForm(u16 species, int form);
 static u16 Pokemon_SovereignEvolutionItem(u16 species, int form, u16 item);
+static int Pokemon_SovereignAlcremieForm(u16 sweet, u32 personality);
 static inline int Pokemon_Face(int clientType);
 
 void Pokemon_Init(Pokemon *mon)
@@ -1075,7 +1076,7 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
         break;
 
     case MON_DATA_FORM:
-        result = monDataBlockB->form;
+        result = monDataBlockB->form | (monDataBlockB->formHighBits << 5); // Sovereign: 7 bits
         break;
 
     case MON_DATA_UNUSED_113:
@@ -1550,6 +1551,7 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         // stats, types and ability as its Ordinary Form).
         if (monDataBlockA->species == SPECIES_KELDEO) {
             monDataBlockB->form = 0;
+            monDataBlockB->formHighBits = 0;
 
             for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
                 if (monDataBlockB->moves[i] == MOVE_SECRET_SWORD) {
@@ -1663,7 +1665,8 @@ static void BoxPokemon_SetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam
         break;
 
     case MON_DATA_FORM:
-        monDataBlockB->form = *u8Value;
+        monDataBlockB->form = *u8Value & 0x1F;
+        monDataBlockB->formHighBits = *u8Value >> 5; // Sovereign: 7 bits
         break;
 
     case MON_DATA_UNUSED_113:
@@ -3823,8 +3826,10 @@ u16 Pokemon_GetEvolutionTargetSpecies(Party *party, Pokemon *mon, u8 evoClass, u
         break;
 
     case EVO_CLASS_UNUSED_02:
-    case EVO_CLASS_BY_ITEM:
-        evoParam = Pokemon_SovereignEvolutionItem(monSpecies, monForm, evoParam); // Sovereign (FM): the Antique teapots
+    case EVO_CLASS_BY_ITEM: {
+        u16 usedItem = evoParam;
+
+        evoParam = Pokemon_SovereignEvolutionItem(monSpecies, monForm, evoParam); // Sovereign (FM): the Antique teapots, Sweets
 
         for (i = 0; i < MAX_EVOLUTIONS; i++) {
             if (speciesEvolutions[i].method == EVO_USE_ITEM && speciesEvolutions[i].param == evoParam) {
@@ -3862,7 +3867,13 @@ u16 Pokemon_GetEvolutionTargetSpecies(Party *party, Pokemon *mon, u8 evoClass, u
                 *evoTypeResult = EVO_TYPE_SOVEREIGN_FORM | sSovereignItemEvolutionForms[i].targetForm;
             }
         }
+
+        // Sovereign (FM): Milcery's Sweet picks its Alcremie.
+        if (monSpecies == SPECIES_MILCERY && targetSpecies == SPECIES_ALCREMIE) {
+            *evoTypeResult = EVO_TYPE_SOVEREIGN_FORM | Pokemon_SovereignAlcremieForm(usedItem, Pokemon_GetValue(mon, MON_DATA_PERSONALITY, NULL));
+        }
         break;
+    }
     }
 
     Heap_Free(speciesEvolutions);
@@ -5378,11 +5389,40 @@ int Pokemon_SovereignPersonalityForm(u16 species, u32 personality)
     return 0;
 }
 
+// Sovereign (FM): the Alcremie a Milcery evolves into with this Sweet. Its decoration is the Sweet's. Its cream comes
+// from the time of day and the personality, as Platinum can't tell how Milcery is spun (Sword and Shield use the
+// spin's direction and length and the time): Rainbow Swirl at twilight; by day Vanilla, Ruby Cream, Mint or Lemon
+// Cream; at night Matcha Cream, Salted Cream, Ruby Swirl or Caramel Swirl. Forms run sweet by sweet (Strawberry,
+// Berry, Love, Star, Clover, Flower, Ribbon), nine creams each (Vanilla Cream ... Rainbow Swirl).
+static int Pokemon_SovereignAlcremieForm(u16 sweet, u32 personality)
+{
+    // Item order Strawberry, Love, Berry, Clover, Flower, Star, Ribbon -> the forms' sweet order.
+    static const u8 sweetIndex[] = { 0, 2, 1, 4, 5, 3, 6 };
+    static const u8 dayCreams[] = { 0, 1, 3, 4 };
+    static const u8 nightCreams[] = { 2, 5, 6, 7 };
+    int cream;
+
+    if (GetTimeOfDay() == TIMEOFDAY_TWILIGHT) {
+        cream = 8;
+    } else if (IsNight()) {
+        cream = nightCreams[personality % 4];
+    } else {
+        cream = dayCreams[personality % 4];
+    }
+
+    return sweetIndex[sweet - ITEM_STRAWBERRY_SWEET] * 9 + cream;
+}
+
 // Sovereign (FM): the item an evolution by item takes for this species and form: an Antique Sinistea evolves with a
 // Chipped Pot and an Artisan Poltchageist with a Masterpiece Teacup, not the usual Cracked Pot and Unremarkable
 // Teacup, as in the official games. Returns the item the species' evolution data names, or ITEM_NONE.
 static u16 Pokemon_SovereignEvolutionItem(u16 species, int form, u16 item)
 {
+    // Any Sweet evolves Milcery (its evolution data names the Strawberry Sweet).
+    if (species == SPECIES_MILCERY && item >= ITEM_STRAWBERRY_SWEET && item <= ITEM_RIBBON_SWEET) {
+        return ITEM_STRAWBERRY_SWEET;
+    }
+
     if (form == 1 && species == SPECIES_SINISTEA) {
         return item == ITEM_CHIPPED_POT ? ITEM_CRACKED_POT : (item == ITEM_CRACKED_POT ? ITEM_NONE : item);
     }
