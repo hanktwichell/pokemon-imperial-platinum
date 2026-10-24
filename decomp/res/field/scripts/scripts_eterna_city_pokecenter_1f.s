@@ -8,6 +8,8 @@
     ScriptEntry EternaCityPokecenter1F_SchoolKidM
     ScriptEntry EternaCityPokecenter1F_Buneary
     ScriptEntry EternaCityPokecenter1F_PokemonBreederF
+    ScriptEntry EternaCityPokecenter1F_SovereignIdol
+    ScriptEntry EternaCityPokecenter1F_SovereignClefairy
     ScriptEntryEnd
 
 EternaCityPokecenter1F_Nurse:
@@ -93,3 +95,82 @@ EternaCityPokecenter1F_NeedsToGetUsedToYou:
     CloseMessage
     ReleaseAll
     End
+
+@ Sovereign (E10, Renegade's Jirachi event): the first of three wishes. The Idol wants her Clefairy to learn Dazzling
+@ Gleam (TM85, Mira's gift in Wayward Cave). Granting it is seen by Jirachi (docs/LegendaryTriggers.md).
+EternaCityPokecenter1F_SovereignIdol:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfSet FLAG_SOVEREIGN_JIRACHI_WISH_ETERNA, EternaCityPokecenter1F_SovereignIdolThanks
+    Message EternaCityPokecenter1F_Text_SovereignIdolWish
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, EternaCityPokecenter1F_SovereignIdolNoTM
+    CheckItem ITEM_TM85, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, EternaCityPokecenter1F_SovereignIdolNoTM
+    RemoveItem ITEM_TM85, 1, VAR_RESULT
+    BufferPlayerName 0
+    Message EternaCityPokecenter1F_Text_SovereignIdolBootedTM
+    PlayFanfare SEQ_WAZA_sseq
+    Message EternaCityPokecenter1F_Text_SovereignIdolClefairyLearned
+    WaitFanfare
+    CloseMessage
+    ApplyMovement LOCALID_SOVEREIGN_CLEFAIRY, EternaCityPokecenter1F_SovereignMovement_ClefairyJump
+    WaitMovement
+    PlayCry SPECIES_CLEFAIRY
+    Message EternaCityPokecenter1F_Text_SovereignClefairyCry
+    WaitCry
+    CloseMessage
+    Message EternaCityPokecenter1F_Text_SovereignIdolDreamRealized
+    CloseMessage
+    Call EternaCityPokecenter1F_SovereignWishGranted
+    SetFlag FLAG_SOVEREIGN_JIRACHI_WISH_ETERNA
+    ReleaseAll
+    End
+
+EternaCityPokecenter1F_SovereignIdolThanks:
+    Message EternaCityPokecenter1F_Text_SovereignIdolThanks
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+EternaCityPokecenter1F_SovereignIdolNoTM:
+    Message EternaCityPokecenter1F_Text_SovereignIdolNoTM
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+EternaCityPokecenter1F_SovereignClefairy:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    WaitSE SE_CONFIRM_sseq_3
+    PlayCry SPECIES_CLEFAIRY
+    Message EternaCityPokecenter1F_Text_SovereignClefairyCry
+    WaitCry
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+EternaCityPokecenter1F_SovereignWishGranted:
+    WaitTime 10, VAR_RESULT
+    FadeScreenOut FADE_SCREEN_SPEED_FAST, COLOR_WHITE
+    WaitFadeScreen
+    PlayCry SPECIES_JIRACHI
+    WaitCry
+    FadeScreenIn FADE_SCREEN_SPEED_FAST, COLOR_WHITE
+    WaitFadeScreen
+    Message EternaCityPokecenter1F_Text_SovereignWishSeen
+    WaitButton
+    CloseMessage
+    Return
+
+    .balign 4, 0
+EternaCityPokecenter1F_SovereignMovement_ClefairyJump:
+    JumpOnSpotFastWest 2
+    EndMovement
+
+    .balign 4, 0

@@ -401,6 +401,66 @@
         "Try the Safari Game in\n",
         "Pastoria’s Great Marsh!"
       ]
+    },
+    {
+      "id": "PastoriaCity_Text_SovereignFishBoyWish",
+      "en_US": [
+        "Trainer! Hey, Trainer!\n",
+        "I have a wish!\r",
+        "Please show me a Pokémon that’s\n",
+        "a mean-looking fish!\r"
+      ]
+    },
+    {
+      "id": "PastoriaCity_Text_SovereignFishBoyNoFish",
+      "en_US": [
+        "Aww, you don’t have any Pokémon\n",
+        "that look like a mean fish..."
+      ]
+    },
+    {
+      "id": "PastoriaCity_Text_SovereignFishBoyCarvanha",
+      "en_US": [
+        "Ooh! Look at that CARVANHA!\n",
+        "It’s the meanest fish I’ve ever seen!\r"
+      ]
+    },
+    {
+      "id": "PastoriaCity_Text_SovereignFishBoySharpedo",
+      "en_US": [
+        "Ooh! Look at that SHARPEDO!\n",
+        "It’s the meanest fish I’ve ever seen!\r"
+      ]
+    },
+    {
+      "id": "PastoriaCity_Text_SovereignFishBoyGyarados",
+      "en_US": [
+        "Woah! You have a GYARADOS!\n",
+        "Hey, Trainer, is GYARADOS a fish?\r",
+        "I don’t know, but I love it!\n",
+        "It’s the meanest thing I’ve ever seen!\r"
+      ]
+    },
+    {
+      "id": "PastoriaCity_Text_SovereignFishBoyYay",
+      "en_US": [
+        "Yay! Thank you, Trainer!\n",
+        "I’ll tell my sister all about it!\r"
+      ]
+    },
+    {
+      "id": "PastoriaCity_Text_SovereignFishBoyThanks",
+      "en_US": [
+        "Thanks a bunch, Trainer!\n",
+        "I can’t wait to tell my sister!"
+      ]
+    },
+    {
+      "id": "PastoriaCity_Text_SovereignWishSeen",
+      "en_US": [
+        "Someone, somewhere, saw that you\n",
+        "made somebody’s wish come true."
+      ]
     }
   ]
 }

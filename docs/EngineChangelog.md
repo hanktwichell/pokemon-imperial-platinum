@@ -4,6 +4,24 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 16) — Renegade's Jirachi event: three wishes
+
+- **Three wishes:** new NPCs from Renegade, each of whom wants something. Granting it brings a white flash, Jirachi's
+  cry and "Someone, somewhere, saw that you made somebody's wish come true."
+  - The Idol in Eterna City's Pokémon Center wants her Clefairy to learn Dazzling Gleam (it uses one of the 99 TM85s).
+  - The Socialite in Solaceon Town's north-east house wants to see a Pokémon whose head is on fire: Ponyta, Rapidash,
+    Moltres, Quilava or Infernape. Magmar, Slugma and Magmortar don't count.
+  - A boy in Pastoria City (south of the Gym) wants to see a mean-looking fish: Carvanha, Sharpedo or Gyarados.
+- **Jirachi:** with all three granted, reading Solaceon Ruins room 7's sign makes Jirachi appear, asleep, at the top of
+  the room. The sign then asks for "the Pokémon whose voice sounds the best".
+  - With a Jigglypuff in the party it sings Jirachi awake (the Azure Flute tune), and the Lv. 40 battle starts.
+  - Jirachi stays until it's caught. Hoopa's battle in the same room no longer hides Jirachi, nor the other way round.
+- Placeholder overworld sprite for Jirachi.
+
+Verified in a test build (Garchomp standing in for the species checks, the TM check skipped): each wish ran its
+dialogue and the flash; the sign showed Jirachi; the Jigglypuff song woke it and the Lv. 40 battle ran, then "vanished"
+after a knock-out. The release build passes.
+
 ## E10 (part 15) — Renegade's legendary events: the lake trio, Cresselia, Heatran, Giratina and Mewtwo
 
 - **Uxie, Mesprit and Azelf** are Lv. 60 (vanilla 50) and stay in their caverns until caught: knocked out or run
