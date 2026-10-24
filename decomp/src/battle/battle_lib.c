@@ -7441,6 +7441,18 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
             }
         }
 
+        // Sovereign (FM): Xerneas is in its Active Mode in battle (Fairy Aura), as in X and Y. It's only how it looks.
+        if (hpFormMon->species == SPECIES_XERNEAS && hpFormMon->curHP
+            && (hpFormMon->statusVolatile & VOLATILE_CONDITION_TRANSFORM) == FALSE
+            && Battler_Ability(battleCtx, battleCtx->msgBattlerTemp) == ABILITY_FAIRY_AURA
+            && Pokemon_SovereignAbilityForm(hpFormMon->species, hpFormMon->formNum, ABILITY_FAIRY_AURA) >= 0) {
+            BattleSystem_SovereignChangeBattleForm(battleSys, battleCtx, battleCtx->msgBattlerTemp,
+                Pokemon_SovereignAbilityForm(hpFormMon->species, hpFormMon->formNum, ABILITY_FAIRY_AURA));
+            *subscript = subscript_sovereign_gulp_missile_catch; // a quiet form change
+            result = TRUE;
+            break;
+        }
+
         // Sovereign (FM): Tera Shift makes Terapagos Terastal as it enters battle (it then has Tera Shell). Its max HP
         // rises, and its HP by as much (subscript_sovereign_tera_shift).
         if (hpFormMon->species == SPECIES_TERAPAGOS && hpFormMon->curHP

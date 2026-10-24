@@ -8,6 +8,7 @@
     ScriptEntry HearthomeCityPokemonFanClub_Buneary
     ScriptEntry HearthomeCityPokemonFanClub_Clefairy
     ScriptEntry HearthomeCityPokemonFanClub_OnTransition
+    ScriptEntry HearthomeCityPokemonFanClub_SovereignGroomer
     ScriptEntryEnd
 
 HearthomeCityPokemonFanClub_OnTransition:
@@ -126,6 +127,57 @@ HearthomeCityPokemonFanClub_Buneary:
 
 HearthomeCityPokemonFanClub_Clefairy:
     PokemonCryAndMessage SPECIES_CLEFAIRY, HearthomeCityPokemonFanClub_Text_ClefairyCryPipPiiih
+    End
+
+@ Sovereign (FM, temporary placement, owner 2026-10-24): a groomer trims Furfrou, as in X and Y, for free and as often
+@ as asked (SovereignGroomFurfrou: form 0 Natural, 1-9 the trims).
+HearthomeCityPokemonFanClub_SovereignGroomer:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    Message HearthomeCityPokemonFanClub_Text_SovereignGroomerIntro
+    InitLocalTextListMenu 1, 1, 0, VAR_0x8008
+    AddListMenuEntry HearthomeCityPokemonFanClub_Text_SovereignTrim00, 0
+    AddListMenuEntry HearthomeCityPokemonFanClub_Text_SovereignTrim01, 1
+    AddListMenuEntry HearthomeCityPokemonFanClub_Text_SovereignTrim02, 2
+    AddListMenuEntry HearthomeCityPokemonFanClub_Text_SovereignTrim03, 3
+    AddListMenuEntry HearthomeCityPokemonFanClub_Text_SovereignTrim04, 4
+    AddListMenuEntry HearthomeCityPokemonFanClub_Text_SovereignTrim05, 5
+    AddListMenuEntry HearthomeCityPokemonFanClub_Text_SovereignTrim06, 6
+    AddListMenuEntry HearthomeCityPokemonFanClub_Text_SovereignTrim07, 7
+    AddListMenuEntry HearthomeCityPokemonFanClub_Text_SovereignTrim08, 8
+    AddListMenuEntry HearthomeCityPokemonFanClub_Text_SovereignTrim09, 9
+    AddListMenuEntry HearthomeCityPokemonFanClub_Text_SovereignGroomerCancel, 10
+    ShowListMenu
+    GoToIfGe VAR_0x8008, 10, HearthomeCityPokemonFanClub_SovereignGroomerBye
+    Message HearthomeCityPokemonFanClub_Text_SovereignGroomerWhich
+    CloseMessage
+    FadeScreenOut
+    WaitFadeScreen
+    SelectPokemonToTrade
+    FadeScreenIn
+    WaitFadeScreen
+    GoToIfEq VAR_RESULT, 0xFF, HearthomeCityPokemonFanClub_SovereignGroomerBye
+    SovereignGroomFurfrou VAR_0x8008, VAR_RESULT, VAR_0x8006
+    GoToIfEq VAR_0x8006, FALSE, HearthomeCityPokemonFanClub_SovereignGroomerNotFurfrou
+    Message HearthomeCityPokemonFanClub_Text_SovereignGroomerDone
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+HearthomeCityPokemonFanClub_SovereignGroomerNotFurfrou:
+    Message HearthomeCityPokemonFanClub_Text_SovereignGroomerNotFurfrou
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+HearthomeCityPokemonFanClub_SovereignGroomerBye:
+    Message HearthomeCityPokemonFanClub_Text_SovereignGroomerBye
+    WaitButton
+    CloseMessage
+    ReleaseAll
     End
 
     .balign 4, 0

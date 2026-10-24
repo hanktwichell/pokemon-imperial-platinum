@@ -289,7 +289,7 @@ def main():
             missing.append(name)
             desc = ["?"]
         is_key = name in groups["key"]
-        evo = name in groups["evolution"] or name.startswith("Scroll")
+        evo = name in groups["evolution"] or name.startswith("Scroll") or name.endswith(" Sweet")  # any Sweet evolves Milcery
         # Mints and the Ability Capsule/Patch open the party menu like medicine; the party menu applies them
         # (PartyMenu_TryUseSovereignTrainingItem in src/applications/party_menu/main.c).
         training = name in groups["training"]

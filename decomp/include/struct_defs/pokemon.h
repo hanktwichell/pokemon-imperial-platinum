@@ -67,7 +67,8 @@ typedef struct PokemonDataBlockB {
                u8 hasHiddenAbility : 1; //!< Sovereign: uses its species' hidden ability (kept through evolution).
                u8 mintNature : 5; //!< Sovereign: nature set by a Mint, plus 1 (0 = none). Used for stats instead of the PID's.
                u8 abilitySlotSwapped : 1; //!< Sovereign: Ability Capsule used, so the other regular ability slot applies.
-    /* 0x1A */ u16 unused2;
+    /* 0x1A */ u16 formHighBits : 2; //!< Sovereign: bits 5-6 of the form (Alcremie has 63 forms); bits 0-4 are form.
+               u16 unused2 : 14;
 
     /* 0x1C */ u16 EggLocation_PtHGSS;
     /* 0x1E */ u16 MetLocation_PtHGSS;

@@ -1,0 +1,127 @@
+{
+    "base_stats": {
+        "hp": 65,
+        "attack": 60,
+        "defense": 75,
+        "speed": 64,
+        "special_attack": 110,
+        "special_defense": 121
+    },
+    "types": [
+        "TYPE_FAIRY",
+        "TYPE_FAIRY"
+    ],
+    "catch_rate": 100,
+    "base_exp_reward": 173,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 2
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_FEMALE_ONLY",
+    "hatch_cycles": 20,
+    "base_friendship": 50,
+    "exp_rate": "EXP_RATE_MEDIUM_FAST",
+    "egg_groups": [
+        "EGG_GROUP_FAIRY",
+        "EGG_GROUP_AMORPHOUS"
+    ],
+    "abilities": [
+        "ABILITY_SWEET_VEIL",
+        "ABILITY_NONE",
+        "ABILITY_AROMA_VEIL"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_WHITE",
+    "flip_sprite": false,
+    "icon_palette": 0,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_DECORATE"
+            ],
+            [
+                1,
+                "MOVE_TACKLE"
+            ],
+            [
+                1,
+                "MOVE_SWEET_KISS"
+            ],
+            [
+                1,
+                "MOVE_SWEET_SCENT"
+            ],
+            [
+                1,
+                "MOVE_AROMATIC_MIST"
+            ],
+            [
+                15,
+                "MOVE_DRAINING_KISS"
+            ],
+            [
+                20,
+                "MOVE_CHARM"
+            ],
+            [
+                25,
+                "MOVE_ATTRACT"
+            ],
+            [
+                30,
+                "MOVE_ACID_ARMOR"
+            ],
+            [
+                35,
+                "MOVE_DAZZLING_GLEAM"
+            ],
+            [
+                40,
+                "MOVE_RECOVER"
+            ],
+            [
+                45,
+                "MOVE_MISTY_TERRAIN"
+            ],
+            [
+                50,
+                "MOVE_ENTRAINMENT"
+            ]
+        ],
+        "by_tm": [
+            "TM04",
+            "TM15",
+            "TM16",
+            "TM17",
+            "TM19",
+            "TM22",
+            "TM29",
+            "TM42",
+            "TM44",
+            "TM45",
+            "TM53",
+            "TM56",
+            "TM58",
+            "TM60",
+            "TM68",
+            "TM77",
+            "TM82",
+            "TM90"
+        ],
+        "by_tutor": [
+            "MOVE_HELPING_HAND",
+            "MOVE_ENDEAVOR",
+            "MOVE_LAST_RESORT"
+        ]
+    },
+    "evolutions": []
+}

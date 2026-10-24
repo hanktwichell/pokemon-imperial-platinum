@@ -5087,6 +5087,14 @@
     .short \destVar
     .endm
 
+    // Trims a party Furfrou (form: 0 Natural, 1-9 the trims): destVar TRUE if it was a Furfrou
+    .macro SovereignGroomFurfrou form, partySlot, destVar
+    .short SCRCMD_SOVEREIGNGROOMFURFROU
+    .short \form
+    .short \partySlot
+    .short \destVar
+    .endm
+
     // Sovereign (FM): sets a party Pokémon's form (a gift in a form: Battle Bond Greninja)
     .macro SovereignSetPartyMonForm partySlot, form
     .short SCRCMD_SOVEREIGNSETPARTYMONFORM
