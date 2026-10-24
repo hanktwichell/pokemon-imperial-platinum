@@ -347,4 +347,16 @@ static const SovereignBattleFormBase sSovereignBattleFormBases[] = {
     { SPECIES_DARMANITAN, 3, 2 }, // Zen Galarian Darmanitan
 };
 
+// Disguise: a disguised Mimikyu form and the form its disguise busts into (it goes back when the battle ends).
+typedef struct SovereignDisguiseForm {
+    u16 species;
+    u8 form;
+    u8 bustedForm;
+} SovereignDisguiseForm;
+
+static const SovereignDisguiseForm sSovereignDisguiseForms[] = {
+    { SPECIES_MIMIKYU, 0, 1 }, // Busted Mimikyu
+    { SPECIES_MIMIKYU, 2, 3 }, // Totem Busted Mimikyu
+};
+
 #endif // POKEPLATINUM_DATA_SOVEREIGN_FORMS_H

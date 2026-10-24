@@ -9371,6 +9371,34 @@
         "The foe’s {STRVAR_1 1, 0, 0} regained its\n",
         "true power through Ultra Burst!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignDisguiseDecoy",
+      "en_US": [
+        "Its disguise served it\n",
+        "as a decoy!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignDisguiseBusted_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s disguise\n",
+        "was busted!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignDisguiseBusted_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}’s\n",
+        "disguise was busted!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignDisguiseBusted_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}’s\n",
+        "disguise was busted!"
+      ]
     }
   ]
 }

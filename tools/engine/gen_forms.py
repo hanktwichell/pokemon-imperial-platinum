@@ -153,6 +153,10 @@ FM_FORMS = {
     "aegislash-blade": (KIND_BATTLE, "ABILITY_STANCE_CHANGE"),
 }
 
+# Disguise: the form Mimikyu's disguise busts into, for each disguised form (sSovereignDisguiseForms). The busted
+# form goes back to the disguised one when the battle ends. 0 is the base form.
+DISGUISE_FORMS = {0: "mimikyu-busted", "mimikyu-totem-disguised": "mimikyu-totem-busted"}
+
 # FM_FORMS entries that are a second copy of a data/forms.csv row.
 FM_ROW_ALIASES = {"necrozma-ultra-dawn": "necrozma-ultra"}
 
@@ -394,6 +398,11 @@ enum SovereignFormKind {{
                      and region_of(x["ident"]) == region), None)
         if base:
             base_rows += f"    {{ {f['species']}, {f['number']}, {base['number']} }}, // {f['name']}\n"
+    disguise_rows = ""
+    for disguised, busted in DISGUISE_FORMS.items():
+        b_form = next(x for x in forms if x.get("ident") == busted)
+        d_number = 0 if disguised == 0 else next(x for x in forms if x.get("ident") == disguised)["number"]
+        disguise_rows += f"    {{ {b_form['species']}, {d_number}, {b_form['number']} }}, // {b_form['name']}\n"
     item_evo_rows = ""
     for e in ITEM_EVOLUTION_FORMS:
         f = next(x for x in forms if x.get("ident") == e["form"])
@@ -462,6 +471,16 @@ typedef struct SovereignBattleFormBase {{
 
 static const SovereignBattleFormBase sSovereignBattleFormBases[] = {{
 {base_rows}}};
+
+// Disguise: a disguised Mimikyu form and the form its disguise busts into (it goes back when the battle ends).
+typedef struct SovereignDisguiseForm {{
+    u16 species;
+    u8 form;
+    u8 bustedForm;
+}} SovereignDisguiseForm;
+
+static const SovereignDisguiseForm sSovereignDisguiseForms[] = {{
+{disguise_rows}}};
 
 #endif // POKEPLATINUM_DATA_SOVEREIGN_FORMS_H
 """)

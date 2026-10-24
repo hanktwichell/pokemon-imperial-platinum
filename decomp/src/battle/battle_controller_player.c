@@ -2864,7 +2864,17 @@ static BOOL BattleControllerPlayer_CheckStatusDisruption(BattleSystem *battleSys
                         battleCtx->hpCalcTemp = BattleSystem_CalcDamageVariance(battleSys, battleCtx, battleCtx->hpCalcTemp);
                         battleCtx->hpCalcTemp *= -1;
 
-                        LOAD_SUBSEQ(subscript_hurt_self_in_confusion);
+                        // Sovereign (FM): Disguise takes the hit, as in the Gen VII+ games, and costs 1/8 max HP.
+                        int bustedForm = Pokemon_SovereignDisguiseBustedForm(ATTACKING_MON.species, ATTACKING_MON.formNum);
+                        if (bustedForm >= 0
+                            && Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_DISGUISE
+                            && (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_TRANSFORM) == FALSE) {
+                            BattleSystem_SovereignChangeBattleForm(battleSys, battleCtx, battleCtx->attacker, bustedForm);
+                            battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP, 8) * -1;
+                            LOAD_SUBSEQ(subscript_sovereign_disguise_confusion);
+                        } else {
+                            LOAD_SUBSEQ(subscript_hurt_self_in_confusion);
+                        }
                         battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
                         battleCtx->commandNext = BATTLE_CONTROL_LOOP_FAINTED;
 
@@ -3910,6 +3920,29 @@ static void BattleControllerPlayer_UpdateHP(BattleSystem *battleSys, BattleConte
             LOAD_SUBSEQ(subscript_hit_substitute);
             battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
             battleCtx->commandNext = BATTLE_CONTROL_AFTER_MOVE_MESSAGE;
+
+            return;
+        }
+
+        // Sovereign (FM): Disguise takes the first hit in Mimikyu's place. The move does no damage; the disguise is
+        // busted (Busted Mimikyu stays busted until the battle ends, through switches, fainting and revival) and costs
+        // 1/8 of Mimikyu's max HP. Only a move's hit gets here: Life Orb, poison, burn, weather and entry hazards
+        // don't bust it. Mold Breaker ignores it, and a substitute takes the hit first.
+        if (battleCtx->damage < 0
+            && (DEFENDING_MON.statusVolatile & VOLATILE_CONDITION_TRANSFORM) == FALSE
+            && Pokemon_SovereignDisguiseBustedForm(DEFENDING_MON.species, DEFENDING_MON.formNum) >= 0
+            && Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->defender, ABILITY_DISGUISE) == TRUE) {
+            BattleSystem_SovereignChangeBattleForm(battleSys, battleCtx, battleCtx->defender,
+                Pokemon_SovereignDisguiseBustedForm(DEFENDING_MON.species, DEFENDING_MON.formNum));
+            battleCtx->moveStatusFlags &= ~(MOVE_STATUS_BASIC_EFFECTIVENESS | MOVE_STATUS_CRITICAL_HIT | MOVE_STATUS_ONE_HIT_KO);
+            battleCtx->hitDamage = 0;
+            battleCtx->msgBattlerTemp = battleCtx->defender;
+            battleCtx->hpCalcTemp = BattleSystem_Divide(DEFENDING_MON.maxHP, 8) * -1;
+
+            LOAD_SUBSEQ(subscript_sovereign_disguise);
+            battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+            battleCtx->commandNext = BATTLE_CONTROL_AFTER_MOVE_MESSAGE;
+            battleCtx->battleStatusMask |= SYSCTL_MOVE_HIT;
 
             return;
         }

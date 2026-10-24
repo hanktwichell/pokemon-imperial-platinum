@@ -5194,6 +5194,31 @@ BOOL Pokemon_SovereignFormChangesAbility(u16 species, int form)
     return entry != NULL && (Pokemon_IsSovereignMegaForm(species, form) || entry->kind == SOVEREIGN_FORM_ULTRA_BURST);
 }
 
+// Sovereign (FM): the form a disguised Mimikyu's disguise busts into (Busted Mimikyu, or the Totem's busted form), or -1
+// for a Pokémon with no disguise to bust.
+int Pokemon_SovereignDisguiseBustedForm(u16 species, int form)
+{
+    for (int i = 0; i < NELEMS(sSovereignDisguiseForms); i++) {
+        if (sSovereignDisguiseForms[i].species == species && sSovereignDisguiseForms[i].form == form) {
+            return sSovereignDisguiseForms[i].bustedForm;
+        }
+    }
+
+    return -1;
+}
+
+// Sovereign (FM): the disguised form a busted Mimikyu goes back to when the battle ends, or -1.
+static int Pokemon_SovereignDisguisedForm(u16 species, int form)
+{
+    for (int i = 0; i < NELEMS(sSovereignDisguiseForms); i++) {
+        if (sSovereignDisguiseForms[i].species == species && sSovereignDisguiseForms[i].bustedForm == form) {
+            return sSovereignDisguiseForms[i].form;
+        }
+    }
+
+    return -1;
+}
+
 // Sovereign (FM): the Ultra form that a Pokémon of this species and form bursts into while holding heldItem (Dusk Mane
 // or Dawn Wings Necrozma with the Ultranecrozium Z), or 0.
 int Pokemon_SovereignUltraBurstForm(u16 species, int form, u16 heldItem)
@@ -5420,6 +5445,15 @@ void Pokemon_SovereignRevertBattleForm(Pokemon *mon)
 {
     u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     int form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+
+    // A busted Mimikyu gets its disguise back (the Totem's too).
+    int disguisedForm = Pokemon_SovereignDisguisedForm(species, form);
+    if (disguisedForm >= 0) {
+        Pokemon_SetValue(mon, MON_DATA_FORM, &disguisedForm);
+        Pokemon_CalcAbility(mon);
+        Pokemon_CalcLevelAndStats(mon);
+        return;
+    }
 
     if (form == 0 || Pokemon_IsSovereignBattleForm(species, form) == FALSE) {
         return;
