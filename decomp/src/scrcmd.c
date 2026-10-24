@@ -7410,25 +7410,36 @@ static BOOL ScrCmd_SetPartyGiratinaForm(ScriptContext *ctx)
     return FALSE;
 }
 
+// Sovereign (E10): Renegade Platinum's condition for the Regi chambers (the Route 228, Mt. Coronet and Iron Island
+// doorways and the statues): a Relicanth and a Wailord in the party once the Distortion World is done, instead of a
+// fateful-encounter Regigigas, which normal play can't get.
 static BOOL ScrCmd_CheckPartyHasFatefulEncounterRegigigas(ScriptContext *ctx)
 {
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    BOOL hasRelicanth = FALSE, hasWailord = FALSE;
 
     *destVar = FALSE;
+
+    if (!VarsFlags_CheckFlag(SaveData_GetVarsFlags(ctx->fieldSystem->saveData), FLAG_DEFEATED_TRAINER_GALACTIC_BOSS_CYRUS_DISTORTION_WORLD)) {
+        return FALSE;
+    }
+
     int partyCount = Party_GetCurrentCount(SaveData_GetParty(ctx->fieldSystem->saveData));
 
     for (int i = 0; i < partyCount; i++) {
         Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), i);
 
         if (!Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)) {
-            if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) == SPECIES_REGIGIGAS) {
-                if (Pokemon_GetValue(mon, MON_DATA_FATEFUL_ENCOUNTER, NULL) == TRUE) {
-                    *destVar = TRUE;
-                    return FALSE;
-                }
+            u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+
+            if (species == SPECIES_RELICANTH) {
+                hasRelicanth = TRUE;
+            } else if (species == SPECIES_WAILORD) {
+                hasWailord = TRUE;
             }
         }
     }
 
+    *destVar = hasRelicanth && hasWailord;
     return FALSE;
 }

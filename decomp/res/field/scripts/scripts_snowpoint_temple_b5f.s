@@ -48,7 +48,8 @@ SnowpointTempleB5F_EncounterRegigigas:
     PlayCry SPECIES_REGIGIGAS
     WaitCry
     SetFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
-    StartLegendaryBattle SPECIES_REGIGIGAS, 1
+    @ Sovereign (E10): Lv. 70, as in Renegade.
+    StartLegendaryBattle SPECIES_REGIGIGAS, 70
     ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, SnowpointTempleB5F_BlackOut

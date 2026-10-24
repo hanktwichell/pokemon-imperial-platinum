@@ -2,13 +2,318 @@
   "key": 25651,
   "messages": [
     {
-      "id": "OreburghCitySouthHouse_Text_ItsAlwaysGoodToLearn",
+      "id": "OreburghCitySouthHouse_Text_StevenIntro",
       "en_US": [
-        "You’re taking a tour of our coal mine?\r",
-        "Wonderful!\n",
-        "That’s excellent of you.\r",
-        "It’s always good to learn about new\n",
-        "things and broaden your horizons!"
+        "Hi! My name is Steven Stone.\n",
+        "The Champion from the Hoenn Region.\r",
+        "I’m interested in rare stones,\n",
+        "so I travel here and there.\r",
+        "The Oreburgh Mine sometimes discovers\n",
+        "rare stones while they mine for coal.\r",
+        "I wanted to be here to see any\n",
+        "discoveries they make in person.\r",
+        "Oh! You have a Pokédex.\n",
+        "So you are also in search of Pokémon.\r",
+        "Let me see...\n",
+        "I think I can help you with that.\r"
+      ]
+    },
+    {
+      "id": "OreburghCitySouthHouse_Text_StevenWillYouRaiseBeldum",
+      "en_US": [
+        "Steven: This is my favourite Pokémon.\n",
+        "Its name is BELDUM.\r",
+        "Would you be willing to raise it?\n",
+        "It’ll be useful for your Pokédex."
+      ]
+    },
+    {
+      "id": "OreburghCitySouthHouse_Text_StevenPartyFull",
+      "en_US": [
+        "Steven: Hmm. Your party is full.\r",
+        "Why don’t you go to the PC to make\n",
+        "some room?"
+      ]
+    },
+    {
+      "id": "OreburghCitySouthHouse_Text_StevenAreYouSure",
+      "en_US": [
+        "Steven: Are you sure?\n",
+        "Perhaps you are quite cautious..."
+      ]
+    },
+    {
+      "id": "OreburghCitySouthHouse_Text_StevenObtainedBeldum",
+      "en_US": "{STRVAR_1 3, 0, 0} obtained a BELDUM!"
+    },
+    {
+      "id": "OreburghCitySouthHouse_Text_StevenNicknameBeldum",
+      "en_US": [
+        "Do you want to give a nickname to\n",
+        "this BELDUM?"
+      ]
+    },
+    {
+      "id": "OreburghCitySouthHouse_Text_StevenTakeGoodCareOfIt",
+      "en_US": [
+        "Steven: Take good care of it.\r",
+        "Your caring for it will make me\n",
+        "very happy.\r",
+        "Now, if you want to talk about stones...\n",
+        "Please come and talk to me at any time."
+      ]
+    },
+    {
+      "id": "OreburghCitySouthHouse_Text_StevenWhatToTalkAbout",
+      "en_US": [
+        "Steven: Ah, we meet again!\n",
+        "What did you want to talk about?"
+      ]
+    },
+    {
+      "id": "OreburghCitySouthHouse_Text_StevenMenuGeneral",
+      "en_US": "General"
+    },
+    {
+      "id": "OreburghCitySouthHouse_Text_StevenMenuQuests",
+      "en_US": "Quests"
+    },
+    {
+      "id": "OreburghCitySouthHouse_Text_StevenMenuNothing",
+      "en_US": "Nothing"
+    },
+    {
+      "id": "OreburghCitySouthHouse_Text_StevenMenuBattle",
+      "en_US": "Battle"
+    },
+    {
+      "id": "OreburghCitySouthHouse_Text_StevenGeneralHoenn",
+      "en_US": [
+        "Steven: Have you been to Hoenn before?\r",
+        "It’s such a beautiful place, with the\n",
+        "clearest ocean you can imagine.\r",
+        "There’s lots of places to excavate\n",
+        "rare stones from, too.\r",
+        "For example, there is a place called\n",
+        "Granite Cave, on a small island...\r",
+        "I once met a young Trainer much like\n",
+        "yourself at that cave, in fact."
+      ]
+    },
+    {
+      "id": "OreburghCitySouthHouse_Text_StevenGeneralSteelTypes",
+      "en_US": [
+        "Steven: The BELDUM I gave to you is\n",
+        "an example of a Steel-type Pokémon.\r",
+        "That particular texture!\n",
+        "The cool and glowing bodies!\r",
+        "Such uniquenesses are only for the\n",
+        "amazing Steel-type Pokémon!\r",
+        "My METAGROSS is truly strong and cool!\n",
+        "Nothing else comes close!"
+      ]
+    },
+    {
+      "id": "OreburghCitySouthHouse_Text_StevenGeneralUnova",
+      "en_US": [
+        "Steven: Have you heard of a place\n",
+        "called the Unova region before?\r",
+        "There’s a place called Driftveil City\n",
+        "where you can mine emeralds.\r",
+        "I’d love to visit there.\n",
+        "If only I had a good excuse..."
+      ]
+    },
+    {
+      "id": "OreburghCitySouthHouse_Text_StevenGeneralAlola",
+      "en_US": [
+        "Steven: Do you know of Alola?\n",
+        "It’s a tropical region, like Hoenn.\r",
+        "Over in Alola, they wield a unique power\n",
+        "known as Z-moves, using a Z-Ring.\r",
+        "A Z-ring is a bracelet made by refining\n",
+        "something called a Sparkling Stone.\r",
+        "I would love to see a Sparkling Stone.\n",
+        "But they’re hard to come by."
+      ]
+    },
+    {
+      "id": "OreburghCitySouthHouse_Text_StevenGeneralBattleZone",
+      "en_US": [
+        "Steven: I recently gave up a villa that\n",
+        "I owned on Sinnoh’s Battle Zone island.\r",
+        "It was quite a nice place, actually.\n",
+        "But it was a bit too far away..."
+      ]
+    },
+    {
+      "id": "OreburghCitySouthHouse_Text_StevenMagmaStone",
+      "en_US": [
+        "Steven: There’s a particular stone\n",
+        "in Sinnoh that I’m interested in...\r",
+        "Have you heard of the Magma Stone?\r",
+        "It’s a big, red stone formed by rocks\n",
+        "melting in intensely hot magma.\r",
+        "Legends say that the stone is able to\n",
+        "control a legendary Pokémon, too.\r",
+        "It’s meant to be one-of-a-kind.\n",
+        "I’d love to see it."
+      ]
+    },
+    {
+      "id": "OreburghCitySouthHouse_Text_StevenThatsTheMagmaStone",
+      "en_US": [
+        "Steven: That rock you have there...\n",
+        "That’s the Magma Stone, isn’t it?!\r",
+        "You’ve captured the Pokémon it was\n",
+        "meant to control? Very impressive.\r",
+        "In that case... \r",
+        "I would very much appreciate some\n",
+        "time to inspect that Magma Stone.\r"
+      ]
+    },
+    {
+      "id": "OreburghCitySouthHouse_Text_StevenHandedOverMagmaStone",
+      "en_US": "{STRVAR_1 3, 0, 0} handed over the Magma Stone."
+    },
+    {
+      "id": "OreburghCitySouthHouse_Text_StevenBeholdSoulDew",
+      "en_US": [
+        "Steven: Let me share an equally\n",
+        "valuable stone with you.\r",
+        "Behold this beautiful gem.\n",
+        "This is the Soul Dew!\r"
+      ]
+    },
+    {
+      "id": "OreburghCitySouthHouse_Text_StevenLatiasAndLatios",
+      "en_US": [
+        "Steven: Have you heard of the two\n",
+        "Pokémon called LATIAS and LATIOS?\r",
+        "The Soul Dew is said to be the spirits\n",
+        "of these two Pokémon, solidified.\r",
+        "The spirits of these Pokémon and the\n",
+        "Soul Dew are said to call out to\f",
+        "one another...\r",
+        "LATIAS and LATIOS make their home in a\n",
+        "place known as Southern Island.\r",
+        "But that’s in the Hoenn region...\n",
+        "And this is Sinnoh...\r",
+        "Does Sinnoh have any secluded islands\n",
+        "you could take the Soul Dew to?\r",
+        "It might be worth a try if you want to\n",
+        "complete that Pokédex of yours.\r",
+        "If you do manage to capture both of \n",
+        "those Pokémon, show them to me."
+      ]
+    },
+    {
+      "id": "OreburghCitySouthHouse_Text_StevenThatsLatiasAndLatios",
+      "en_US": [
+        "Steven: That’s LATIAS and LATIOS in\n",
+        "your party, isn’t it?!\r",
+        "Very impressive. You really are the\n",
+        "real deal, young Trainer!\r",
+        "In that case, I have another request.\r"
+      ]
+    },
+    {
+      "id": "OreburghCitySouthHouse_Text_StevenLegendaryTitans",
+      "en_US": [
+        "Steven: Have you heard of the Pokémon\n",
+        "known as the legendary titans?\r",
+        "REGIROCK, REGICE and REGISTEEL.\n",
+        "A Rock-type, Ice-type and Steel-type.\r",
+        "I’ve had reports that these three\n",
+        "Pokémon may be sleeping in Sinnoh.\r",
+        "They would likely be sleeping in\n",
+        "caverns throughout the region.\r",
+        "Though they won’t be easy to find.\n",
+        "You may need to fulfil a condition...\r",
+        "I seem to remember an old reading\n",
+        "about RELICANTH and WAILORD.\r",
+        "Maybe you should visit places with\n",
+        "those Pokémon in your party?\r",
+        "Please show me the legendary titans.\n",
+        "I’ll have a reward waiting for you."
+      ]
+    },
+    {
+      "id": "OreburghCitySouthHouse_Text_StevenThatsTheTitans",
+      "en_US": [
+        "Steven: Ah, yes, that’s them.\n",
+        "The legendary titans!\r",
+        "You truly are a legendary Trainer.\n",
+        "In every sense of the word.\r",
+        "Your REGISTEEL in particular...\n",
+        "It’s very beautiful, isn’t it?\r",
+        "As promised, here’s a reward.\n",
+        "The ancient artifacts of Hoenn!\r"
+      ]
+    },
+    {
+      "id": "OreburghCitySouthHouse_Text_StevenGroudonKyogreRayquaza",
+      "en_US": [
+        "Steven: In Hoenn, legends say the\n",
+        "battle between GROUDON and KYOGRE\f",
+        "is what shaped the lands and seas.\r",
+        "But then the Pokémon that rules the\n",
+        "skies, known as RAYQUAZA, came down\f",
+        "and halted the battle.\r",
+        "Each of those Orbs I gave you has a\n",
+        "connection with one of those Pokémon.\r",
+        "Perhaps fate will allow you to meet\n",
+        "them for yourself.\r",
+        "Hmm...\r",
+        "An underground cave, filled with a\n",
+        "large amount of water...\r",
+        "A heated mountain, surrounded by\n",
+        "lava and molten rock...\r",
+        "A place that stretches into the sky,\n",
+        "where only powerful Trainers gather...\r",
+        "If you were to visit places like that...\n",
+        "You may just be able to find them."
+      ]
+    },
+    {
+      "id": "OreburghCitySouthHouse_Text_StevenThankYou",
+      "en_US": [
+        "Steven: Thank you for all of your help\n",
+        "in satisfying my unusual requests.\r",
+        "Oh, I never got your name, did I?\n",
+        "...But I won’t ask for it this time.\r",
+        "Our fun will have to wait for the\n",
+        "right time."
+      ]
+    },
+    {
+      "id": "OreburghCitySouthHouse_Text_StevenYouWouldntStandAChance",
+      "en_US": [
+        "Steven: A battle?\r",
+        "I won’t deny that you’re a very\n",
+        "interesting Trainer.\r",
+        "Sadly, as you are now...\n",
+        "You wouldn’t stand a chance."
+      ]
+    },
+    {
+      "id": "OreburghCitySouthHouse_Text_StevenGladlyAccept",
+      "en_US": [
+        "Steven: A battle?\n",
+        "With the Champion of the Sinnoh region?\r",
+        "I’ll gladly accept such an offer.\r",
+        "If you’re going to mount a serious\n",
+        "challenge...\r",
+        "Prepare for the worst!\r"
+      ]
+    },
+    {
+      "id": "OreburghCitySouthHouse_Text_StevenYouveBecomeStrong",
+      "en_US": [
+        "Steven: You...\n",
+        "You’ve become very strong.\r",
+        "Fufufu.\n",
+        "I hope we can battle again."
       ]
     }
   ]

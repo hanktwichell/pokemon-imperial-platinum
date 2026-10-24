@@ -4,6 +4,28 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 13) — Renegade's legendary events: the Regis, Steven's requests, Latias and Latios
+
+- **The Regis follow Renegade's rule.** After the Distortion World, a Relicanth and a Wailord in the party open the
+  Regi chambers (the Route 228, Mt. Coronet and Iron Island doorways); the dots and the statue work as in vanilla,
+  without the Champion check, and Regirock, Regice and Registeel are Lv. 60. Vanilla wanted a fateful-encounter
+  Regigigas, which normal play can't get, so the three (and Regigigas, Regieleki and Regidrago after them) were out of
+  reach. The doorway check (`CheckPartyHasFatefulEncounterRegigigas`) now tests for the pair.
+- **Regigigas is Lv. 70** in Snowpoint Temple, as in Renegade (vanilla: Lv. 1).
+- **Steven** lives in Oreburgh City's south house (he replaces the mine worker there). He gives a Lv. 10 Beldum, chats
+  about Hoenn, battles after the Hall of Fame (Renegade's Lv. 88–89 team, `TRAINER_SOVEREIGN_STEVEN_OREBURGH`; a loss
+  doesn't black out), and takes requests: the Magma Stone for the Soul Dew; Latias and Latios to see; Regirock,
+  Regice and Registeel to see, for the Red and Blue Orbs. His sprite and battle class are placeholders (Gentleman,
+  Ace Trainer) until the owner's art.
+- **Latias and Latios:** once Cresselia is caught and the Lunar Wing taken, a mysterious rock stands in Fullmoon
+  Island's clearing. Read from below with the Soul Dew, it asks "red or blue": Latias or Latios at Lv. 68, each until
+  caught.
+- Tapu Lele's removal after a battle on that map now checks the species, so a Latias battle doesn't hide it.
+
+Verified in the test build: Steven's introduction and Beldum offer; the rock's carving, the Soul Dew, the red/blue
+menu and a Lv. 68 Latias battle (with the Cresselia and Soul Dew checks skipped for the test). The release build
+passes.
+
 ## E10 (part 12) — Renegade's legendary events: Raikou, Entei and Suicune
 
 - **Raikou, Entei and Suicune stand on Renegade's spots** once the Distortion World is done (Cyrus beaten there), at

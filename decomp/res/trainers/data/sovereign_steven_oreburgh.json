@@ -1,0 +1,106 @@
+{
+    "name": "Steven",
+    "class": "TRAINER_CLASS_ACE_TRAINER_MALE",
+    "items": [
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_SKARMORY",
+            "form": 0,
+            "level": 88,
+            "item": "ITEM_OCCA_BERRY",
+            "moves": [
+                "MOVE_BRAVE_BIRD",
+                "MOVE_IRON_HEAD",
+                "MOVE_HORN_DRILL",
+                "MOVE_STEALTH_ROCK"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_AGGRON",
+            "form": 0,
+            "level": 88,
+            "item": "ITEM_FOCUS_SASH",
+            "moves": [
+                "MOVE_HEAD_SMASH",
+                "MOVE_AQUA_TAIL",
+                "MOVE_IRON_TAIL",
+                "MOVE_THUNDER_WAVE"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_AERODACTYL",
+            "form": 0,
+            "level": 88,
+            "item": "ITEM_MUSCLE_BAND",
+            "moves": [
+                "MOVE_BRAVE_BIRD",
+                "MOVE_STONE_EDGE",
+                "MOVE_CRUNCH",
+                "MOVE_FIRE_FANG"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_CRADILY",
+            "form": 0,
+            "level": 88,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_POWER_WHIP",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_TOXIC",
+                "MOVE_RECOVER"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ARMALDO",
+            "form": 0,
+            "level": 88,
+            "item": "ITEM_PASSHO_BERRY",
+            "moves": [
+                "MOVE_STONE_EDGE",
+                "MOVE_X_SCISSOR",
+                "MOVE_SWORDS_DANCE",
+                "MOVE_AQUA_JET"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_METAGROSS",
+            "form": 0,
+            "level": 89,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_METEOR_MASH",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_EARTHQUAKE",
+                "MOVE_ICE_PUNCH"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "You are a truly noble Pokémon Trainer!"
+        }
+    ]
+}
