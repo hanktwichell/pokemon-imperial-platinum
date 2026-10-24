@@ -111,7 +111,8 @@ static const SovereignRareWildEntry sSovereignRareWild[] = {{
            "The Paradox Pokémon and the Ultra Beasts aren't static encounters (decision 28, `ProjectStatus.md`). Each is ",
            "a rare wild Pokémon on its maps once its gate is met: the rate is the share of that map's wild encounters, ",
            "on the terrain shown. They can be met again after a catch. The Legend Archivist hints at the ones not caught ",
-           "yet. No rare roll happens in a Poké Radar patch, with a partner or in the Safari Game.\n\n",
+           "yet. No rare roll happens in a Poké Radar patch, with a partner or in the Safari Game. Carbink is a stopgap ",
+           "until the planned wild tables are ported: Diancie needs one in the party.\n\n",
            "| Pokémon | Where | Terrain | Rate | Lv. | Appears once |\n|---|---|---|---|---|---|\n"]
     doc += doc_rows
     with open(DOC, "w", encoding="utf-8") as f:

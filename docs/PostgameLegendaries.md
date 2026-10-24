@@ -11,7 +11,7 @@ Renegade Platinum's own legendary events (Gen I–IV) are unchanged; see `Renega
 - Chapters open one after another (each needs the previous chapter's "key" legendary caught), so the post-game has a guided order.
 - Static encounters can be retried after fainting or fleeing, and have the normal shiny odds (Renegade behaviour).
 - New maps or rooms are marked _(new)_ and need map work in DSPRE.
-- **Built:** The Archivist (CB-0035) stands in Canalave Library 2F from the first Hall of Fame; his first talk opens the Unova Chronicle (VAR_SOVEREIGN_CHRONICLE). Later talks offer a menu of its legends (CB-0040): Swords of Justice (the swords, then Keldeo, CB-0036), Truth and Ideals (the Light and Dark Stones, the dragons, then the DNA Splicers, CB-0038), Forces of Nature (the roamers' release, then the Reveal Glass, Landorus and Enamorus, CB-0039) and Other legends (Meloetta, Genesect and Victini, CB-0037 and CB-0041). Once Kyurem is caught he opens the Kalos Chronicle (CB-0041) and first asks which Chronicle to read from; Kalos has Life and Destruction (Xerneas and Yveltal, then Zygarde) and Other legends (the Prison Bottle, Diancie, Hoopa and Volcanion). Xerneas and Yveltal caught open the Alola Chronicle (CB-0042): Island Guardians (the Tapus), Sun and Moon (Cosmog, then Necrozma) and Ultra Beasts (CB-0043). Every legendary is battled and caught, never given (owner, 2026-10-23). Static encounters share CommonScript_SovereignLegendaryEncounter: each stays on the map until the Pokédex has it as caught, and vanishes after it's knocked out until the next visit (as in vanilla legendary battles, the player can't run).
+- **Built:** The Archivist (CB-0035) stands in Canalave Library 2F from the first Hall of Fame; his first talk opens the Unova Chronicle (VAR_SOVEREIGN_CHRONICLE). Later talks offer a menu of its legends (CB-0040): Swords of Justice (the swords, then Keldeo, CB-0036), Truth and Ideals (the Light and Dark Stones, the dragons, then the DNA Splicers, CB-0038), Forces of Nature (the roamers' release, then the Reveal Glass, Landorus and Enamorus, CB-0039) and Other legends (Meloetta, Genesect and Victini, CB-0037 and CB-0041). Once Kyurem is caught he opens the Kalos Chronicle (CB-0041) and first asks which Chronicle to read from; Kalos has Life and Destruction (Xerneas and Yveltal, then Zygarde) and Other legends (the Prison Bottle, Diancie, Hoopa and Volcanion). Xerneas and Yveltal caught open the Alola Chronicle (CB-0042): Island Guardians (the Tapus), Sun and Moon (Cosmog, then Necrozma) and Ultra Beasts (CB-0043). Every legendary is battled and caught, never given (owner, 2026-10-23). Static encounters share CommonScript_SovereignLegendaryEncounter: each stays on the map until the Pokédex has it as caught, and vanishes after it's knocked out until the next visit. The player can run, as from any wild battle in Platinum; a run ends like a knock-out.
 
 Covers **90** species.
 
@@ -87,7 +87,7 @@ Covers **90** species.
 - **Level:** 55
 - **Location:** Oreburgh Mine B2F (west nook)
 - **How:** Bring a Carbink to the mine's back wall.
-- **Built:** Diancie (CB-0041), level 55: in the nook by Oreburgh Mine B2F's west wall (2, 22) while the Kalos Chronicle is open and a Carbink (wild outside Stark Mountain) is in the party, until it's caught. **Changed from the plan** (owner, 2026-10-23): the mine's lowest floor, B2F, in place of a new B3F room.
+- **Built:** Diancie (CB-0041), level 55: in the nook by Oreburgh Mine B2F's west wall (2, 22) while the Kalos Chronicle is open and a Carbink is in the party, until it's caught. Carbink is wild outside Stark Mountain (5%, Lv. 66-68) from the Kalos Chronicle's opening, a stopgap in data/sovereign_rare_wild.yaml until the planned wild tables are ported (CB-0045; before it, no Carbink could be had). **Changed from the plan** (owner, 2026-10-23): the mine's lowest floor, B2F, in place of a new B3F room.
 
 ### Unbound Mischief
 - **Pokémon:** #720 Hoopa
@@ -196,7 +196,7 @@ Covers **90** species.
 - **Level:** 10
 - **Location:** Veilstone Gym
 - **How:** A Kubfu trains in the Veilstone Gym; battle and catch it, then Maylene gives both Scrolls; using one evolves Kubfu into Urshifu (Single Strike or Rapid Strike). **Changed from the plan** (owner, 2026-10-23: legendaries are battled and caught, never given); the plan had Maylene give Kubfu.
-- **Built:** Kubfu (CB-0043), level 10: in the Veilstone Gym (13, 17) once the Galar Chronicle is open, until it's caught. The Archivist then gives the Scroll of Darkness and the Scroll of Waters. A battle, not a gift; the Archivist stands in for Maylene. **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
+- **Built:** Kubfu (CB-0043), level 10: in the Veilstone Gym (13, 17) once the Galar Chronicle is open, until it's caught. The Archivist then gives the Scroll of Darkness and the Scroll of Waters, once (FLAG_SOVEREIGN_RECEIVED_SCROLLS; evolving Kubfu uses up its scroll). The Scroll of Darkness evolves it into Single Strike Urshifu; Rapid Strike Urshifu comes with the FM forms still to build, so the Scroll of Waters does nothing yet. A battle, not a gift; the Archivist stands in for Maylene. **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
 
 ### The Jungle Guardian
 - **Pokémon:** #893 Zarude

@@ -265,7 +265,8 @@ implemented.
     - The common script sets the global `FLAG_SOVEREIGN_REMOVE_LEGENDARY` around `StartLegendaryBattle`. The map's
       OnLoad removes the object while it's set, since objects survive a battle.
     - After a win: "{species} vanished... It might show itself here again." The object comes back on the next visit
-      until it's caught. A loss blacks out. `StartLegendaryBattle` doesn't let the player run, as in vanilla.
+      until it's caught. A loss blacks out. The player can run, as from any wild battle (`BATTLE_STATUS_LEGENDARY` only
+      picks the intro message), and a run ends like a knock-out.
     - Placed so far: Virizion (Eterna Forest), Terrakion (Route 227), Cobalion (Iron Island B2F right room) and Keldeo
       (Lake Valor). Keldeo's OnTransition also needs `CheckPartyHasSpecies` to find all three swords in the party.
       Victini (Vista Lighthouse) needs the var at 1 only.

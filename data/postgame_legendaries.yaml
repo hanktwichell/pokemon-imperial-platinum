@@ -24,7 +24,8 @@ hub:
     Alola Chronicle (CB-0042): Island Guardians (the Tapus), Sun and Moon (Cosmog, then Necrozma) and Ultra Beasts
     (CB-0043). Every legendary is battled and caught, never given (owner, 2026-10-23). Static encounters share
     CommonScript_SovereignLegendaryEncounter: each stays on the map until the Pokédex has it as caught, and vanishes
-    after it's knocked out until the next visit (as in vanilla legendary battles, the player can't run).
+    after it's knocked out until the next visit. The player can run, as from any wild battle in Platinum; a run ends
+    like a knock-out.
 
 quests:
   # ---------------------------------------------------------------- Unova Chronicle
@@ -138,8 +139,10 @@ quests:
     steps: Bring a Carbink to the mine's back wall.
     built: >-
       Diancie (CB-0041), level 55: in the nook by Oreburgh Mine B2F's west wall (2, 22) while the Kalos Chronicle is
-      open and a Carbink (wild outside Stark Mountain) is in the party, until it's caught. **Changed from the plan**
-      (owner, 2026-10-23): the mine's lowest floor, B2F, in place of a new B3F room.
+      open and a Carbink is in the party, until it's caught. Carbink is wild outside Stark Mountain (5%, Lv. 66-68)
+      from the Kalos Chronicle's opening, a stopgap in data/sovereign_rare_wild.yaml until the planned wild tables
+      are ported (CB-0045; before it, no Carbink could be had). **Changed from the plan** (owner, 2026-10-23): the
+      mine's lowest floor, B2F, in place of a new B3F room.
   - chapter: Kalos Chronicle
     name: Unbound Mischief
     species: [Hoopa]
@@ -311,8 +314,10 @@ quests:
     steps: "A Kubfu trains in the Veilstone Gym; battle and catch it, then Maylene gives both Scrolls; using one evolves Kubfu into Urshifu (Single Strike or Rapid Strike). **Changed from the plan** (owner, 2026-10-23: legendaries are battled and caught, never given); the plan had Maylene give Kubfu."
     built: >-
       Kubfu (CB-0043), level 10: in the Veilstone Gym (13, 17) once the Galar Chronicle is open, until it's caught.
-      The Archivist then gives the Scroll of Darkness and the Scroll of Waters. A battle, not a gift; the Archivist
-      stands in for Maylene. **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
+      The Archivist then gives the Scroll of Darkness and the Scroll of Waters, once (FLAG_SOVEREIGN_RECEIVED_SCROLLS;
+      evolving Kubfu uses up its scroll). The Scroll of Darkness evolves it into Single Strike Urshifu; Rapid Strike
+      Urshifu comes with the FM forms still to build, so the Scroll of Waters does nothing yet. A battle, not a gift;
+      the Archivist stands in for Maylene. **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
   - chapter: Galar Chronicle
     name: The Jungle Guardian
     species: [Zarude]

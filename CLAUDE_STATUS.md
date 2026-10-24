@@ -3028,3 +3028,33 @@ the Canalave Library 2F (with its text), `data/sovereign_rare_wild.yaml` (new), 
    spots; whether Koraidon and Miraidon should wait for the ten Paradox of their own era instead of all twenty.
 3. Port Renegade's special events (E10) and check their spots against the Chronicles' (the trigger note lists the
    clashes).
+
+## CB-0045 — 2026-10-23, 7:37 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Status:** PR #57 (CB-0043/CB-0044) is merged. This entry is the follow-up: the legendary trigger note the owner
+asked for, and the bugs its code audit found. PR open.
+
+**What was implemented:**
+- `docs/LegendaryTriggers.md`: what makes every legendary appear: each Chronicle's statics, roamers and rare wild
+  encounters with tile, level, condition and hint topic; vanilla Platinum's legendaries; Renegade's documented events
+  and the Chronicle spots they will share (Zekrom/Zapdos, Yveltal/Ho-Oh, Eterna Forest/Celebi, Volcanion/Groudon…);
+  open issues. The audit workflow ran out of usage twice, so the note was finished by hand from its six finished
+  extractions and the scripts.
+- **Fixes:** Diancie could never appear (no Carbink in the game): Carbink is now a stopgap rare wild entry outside
+  Stark Mountain (5%, Lv. 66–68, from the Kalos Chronicle). The Archivist's Galar topic checked Regieleki twice, so
+  Regidrago's "three Regis in the party" hint vanished. The Scrolls were given again after Kubfu used one (now once,
+  `FLAG_SOVEREIGN_RECEIVED_SCROLLS`). Poipole's and the knocked-out roamer's hints. The docs' "can't run" claim.
+- **Verified** in the emulator (the scrolls once, the Regi hint, a wild Carbink); release build, boot smoke, docs.
+
+**Files modified:** `docs/LegendaryTriggers.md` (new), `decomp/res/field/scripts/scripts_canalave_library_2f.s`,
+`decomp/res/text/canalave_library_2f.json`, `decomp/generated/vars_flags.txt`, `data/sovereign_rare_wild.yaml`,
+`decomp/include/data/sovereign_rare_wild.h`, `tools/engine/gen_rare_wild.py`, `docs/RareWildEncounters.md`,
+`data/postgame_legendaries.yaml`, `docs/PostgameLegendaries.md`, `docs/TechnicalDesign.md`,
+`docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Owner decisions: Koraidon/Miraidon after their own ten Paradox Pokémon or all twenty; whether Cosmog should be
+   kept from fleeing with Teleport; overworld sprites and sizing; final spots for the provisional placements.
+2. Milestone FM's next forms include Rapid Strike Urshifu (the Scroll of Waters does nothing yet) and Ultra Necrozma
+   (Ultra Burst).
+3. E10, Renegade's events: their spots against the Chronicles' (the clash table in `docs/LegendaryTriggers.md`).

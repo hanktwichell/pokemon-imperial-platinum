@@ -4,6 +4,26 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E11 — The Chronicles: the legendary trigger note and the fixes it found
+
+`docs/LegendaryTriggers.md` lists what makes every legendary, mythical, Ultra Beast and Paradox Pokémon appear: the
+Chronicle statics, roamers and rare wild encounters, vanilla Platinum's legendaries, and Renegade's documented events
+with the spots they share with the Chronicles. A code audit for it found these, now fixed:
+- **Diancie couldn't appear:** it needs a Carbink in the party, and no Carbink was obtainable. Carbink is now wild
+  outside Stark Mountain (5%, Lv. 66–68) from the Kalos Chronicle's opening, a stopgap in
+  `data/sovereign_rare_wild.yaml` until the planned wild tables are ported. The Archivist's hint says where.
+- **Regidrago's hint:** the Archivist's Galar topic checked Regieleki twice, so once Regieleki was caught he no longer
+  said that Regidrago wakes for Regirock, Regice and Registeel in the party.
+- **The Scrolls:** evolving Kubfu uses up its scroll, so the Archivist gave both scrolls again on every later reading.
+  He gives them once now (`FLAG_SOVEREIGN_RECEIVED_SCROLLS`).
+- **Hints:** Poipole's says to catch Necrozma first; the knocked-out roamer line says to come back to the Archivist
+  after the next Hall of Fame (the release needs him).
+- **Docs:** they said the player can't run from a Chronicle legendary. Running works, as from any wild battle, and
+  ends like a knock-out.
+- **Verified** in the emulator: the Galar topic gives the scrolls once and shows the Regi hint with Regieleki caught
+  and Regidrago not; a wild Carbink on Stark Mountain's grass (the test build forced the roll). The release ROM builds
+  without warnings and passes boot smoke; the docs regenerate clean.
+
 ## E11 — The Chronicles: every legendary in, rare wild encounters and new roamers
 
 Every Chronicle legendary left in the plan is now in the game (`docs/PostgameLegendaries.md`), and the owner's
