@@ -181,6 +181,18 @@ implemented.
     else 0. Both reverts use it, so a Zen Galarian Darmanitan ends the battle as a Galarian one.
   - `BattleSystem_SovereignChangeBattleForm` takes the new form's ability only for a Mega, Primal or Ultra Necrozma
     (`Pokemon_SovereignFormChangesAbility`). The other battle forms keep the Pokémon's own (Zen Mode).
+- **Disguise** (Busted Mimikyu and the Totem's busted form; `sSovereignDisguiseForms`, from `gen_forms.py`, pairs each
+  disguised form with its busted one).
+  - `BattleControllerPlayer_UseMove` checks it after the substitute: a hit on a disguised Mimikyu deals no damage,
+    busts the disguise (`BattleSystem_SovereignChangeBattleForm`), and costs 1/8 of its max HP
+    (`subscript_sovereign_disguise`). Mold Breaker ignores it. The effectiveness, critical-hit and one-hit-KO messages
+    are dropped.
+  - A confusion self-hit busts it too (`subscript_sovereign_disguise_confusion`, from the confusion check).
+  - Only those two paths bust it. Life Orb, recoil, poison, burn, weather and entry hazards change HP elsewhere.
+  - The busted form is the party Pokémon's own form, so it stays busted for the rest of the battle: through
+    switching (`Pokemon_SovereignRevertSwitchOutForm` skips Disguise), fainting and revival (a Revive or, once it
+    exists, Revival Blessing). A Mimikyu that faints with its disguise intact keeps it.
+  - `Pokemon_SovereignRevertBattleForm` gives the disguise back when the battle ends.
 - **Item locks.** `Pokemon_SovereignItemIsLocked(species, item)` is TRUE for any form trigger on its own species
   except Mega Rayquaza's move, and also for the Teal Mask on Ogerpon, the Griseous Core on Giratina and the
   Ultranecrozium Z on Necrozma.
