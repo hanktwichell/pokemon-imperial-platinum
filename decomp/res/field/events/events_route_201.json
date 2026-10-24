@@ -201,6 +201,36 @@
             "x": 112,
             "z": 854,
             "y": 0
+        },
+        {
+            "id": "LOCALID_SOVEREIGN_MEW_PACHIRISU",
+            "graphics_id": "OBJ_EVENT_GFX_PACHIRISU",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_SOVEREIGN_HIDE_MEW_PACHIRISU",
+            "script": 17,
+            "initial_dir": 1,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 108,
+            "z": 846,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_LEGENDARY_MEW",
+            "graphics_id": "OBJ_EVENT_GFX_LEGENDARY_MEW",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_SOVEREIGN_HIDE_ROUTE_201_MEW",
+            "script": 19,
+            "initial_dir": 1,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 108,
+            "z": 846,
+            "y": 0
         }
     ],
     "warp_events": [],

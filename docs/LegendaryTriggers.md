@@ -196,6 +196,7 @@ Darkrai, Shaymin and Arceus need vanilla's distribution events, so they can't be
 | Uxie, Mesprit, Azelf; Cresselia; Heatran; Turnback Giratina | static | their vanilla spots | 60; 68; 68; 70 | as in vanilla | the lake trio and Cresselia come back each visit until caught; Heatran and Giratina still come back after a Hall of Fame, as in vanilla (see the vanilla table) |
 | Jirachi | static (asleep) | Solaceon Ruins room 7, at the top of the room (5, 3) | 40 | three wishes granted: the Idol in Eterna City's Pokémon Center (TM85 Dazzling Gleam for her Clefairy), the Socialite in Solaceon Town's north-east house (show a Ponyta, Rapidash, Moltres, Quilava or Infernape) and the boy in Pastoria City (show a Carvanha, Sharpedo or Gyarados); then the room's sign, read, shows it. A Jigglypuff in the party sings it awake | caught |
 | Deoxys | static | Veilstone City, beside the meteorites (731, 630) | 70 | after the Hall of Fame, touching a meteorite without a Deoxys in the party ("something was seething with rage..."; `FLAG_SOVEREIGN_DEOXYS_SENSED`) | caught |
+| Mew | static | Route 201, a Pachirisu's spot (108, 846) | 40 | Renegade's chain: feed a hungry Shroomish on Route 203 an Oran Berry, then a Buneary on Route 209 a Sitrus Berry, then a Torchic in Pastoria City an Old Gateau (Mew shows itself and flies on each time); then the Pachirisu on Route 201 turns out to be Mew | caught |
 
 **Steven** (Oreburgh City's south house) gives a Lv. 10 Beldum, then takes requests from his QUESTS menu: the Magma
 Stone (Stark Mountain) for the Soul Dew; Latias and Latios in the party for the legendary titans' story (Relicanth and
@@ -216,7 +217,6 @@ against the Chronicles':
 | Articuno | Mt. Coronet summit portal (Rock Climb) | 60 | Cosmog's snowfield (35, 21) and the Celesteela rare roll |
 | Zapdos | Valley Windworks, the island behind the building | 60 | **Zekrom stands on that island** |
 | Moltres | Victory Road, a small room | 60 | — |
-| Mew | Route 201, after a chain of berry quests | 40 | — |
 | Lugia, Ho-Oh | Route 220 island; Lost Tower top floor | 70 | **Yveltal stands on Lost Tower 5F** |
 | Celebi | Eterna Forest portals | 40 | **Virizion and Xerneas stand in Eterna Forest** |
 | Darkrai | until caught | 68–70 | — |

@@ -9,6 +9,7 @@
     ScriptEntry Route203_TrainerTipsSignpostEast
     ScriptEntry Route203_TrainerTipsSignpostWest
     ScriptEntry Route203_CoordEvent_Rival
+    ScriptEntry Route203_SovereignMewShroomish
     ScriptEntryEnd
 
 Route203_Lass:
@@ -193,3 +194,65 @@ Route203_Movement_RivalNoticePlayer:
     EmoteExclamationMark
     Delay8
     EndMovement
+
+@ Sovereign (E10, Renegade's Mew event, step 1 of 4): a hungry Shroomish wants an Oran Berry. Feeding it brings Mew,
+@ which flies off to the next step (Route 203 Shroomish, Route 209 Buneary, Pastoria City Torchic, Route 201).
+Route203_SovereignMewShroomish:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    PlayCry SPECIES_SHROOMISH
+    Message Route203_Text_SovereignMewShroomishCry
+    WaitCry
+    Message Route203_Text_SovereignMewShroomishHungry
+    CheckItem ITEM_ORAN_BERRY, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, Route203_SovereignMewShroomishEnd
+    Message Route203_Text_SovereignMewShroomishAskGive
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, Route203_SovereignMewShroomishEnd
+    RemoveItem ITEM_ORAN_BERRY, 1, VAR_RESULT
+    PlayCry SPECIES_SHROOMISH
+    Message Route203_Text_SovereignMewShroomishHappy
+    WaitCry
+    Message Route203_Text_SovereignMewShroomishAte
+    CloseMessage
+    WaitTime 5, VAR_RESULT
+    FadeScreenOut FADE_SCREEN_SPEED_FAST, COLOR_WHITE
+    WaitFadeScreen
+    SetFlag FLAG_SOVEREIGN_HIDE_MEW_SHROOMISH
+    RemoveObject LOCALID_SOVEREIGN_MEW_SHROOMISH
+    SetObjectEventPos LOCALID_SOVEREIGN_MEW, 212, 746
+    AddObject LOCALID_SOVEREIGN_MEW
+    FadeScreenIn FADE_SCREEN_SPEED_FAST, COLOR_WHITE
+    WaitFadeScreen
+    ApplyMovement LOCALID_SOVEREIGN_MEW, Route203_SovereignMovement_MewNotice
+    WaitMovement
+    PlayCry SPECIES_MEW
+    Message Route203_Text_SovereignMewCry
+    WaitCry
+    CloseMessage
+    FadeScreenOut FADE_SCREEN_SPEED_FAST, COLOR_WHITE
+    WaitFadeScreen
+    RemoveObject LOCALID_SOVEREIGN_MEW
+    FadeScreenIn FADE_SCREEN_SPEED_FAST, COLOR_WHITE
+    WaitFadeScreen
+    WaitTime 15, VAR_RESULT
+    Message Route203_Text_SovereignMewDisappeared
+    WaitButton
+    CloseMessage
+    ClearFlag FLAG_SOVEREIGN_HIDE_MEW_BUNEARY
+    ReleaseAll
+    End
+
+Route203_SovereignMewShroomishEnd:
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+    .balign 4, 0
+Route203_SovereignMovement_MewNotice:
+    EmoteExclamationMark
+    EndMovement
+
+    .balign 4, 0

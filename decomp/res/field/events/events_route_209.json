@@ -326,7 +326,7 @@
             "movement_range_x": 0,
             "movement_range_z": 0,
             "x": 548,
-            "z": 674,
+            "z": 675,
             "y": 0
         },
         {
@@ -600,6 +600,36 @@
             "movement_range_z": 0,
             "x": 556,
             "z": 703,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SOVEREIGN_MEW_BUNEARY",
+            "graphics_id": "OBJ_EVENT_GFX_BUNEARY",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_SOVEREIGN_HIDE_MEW_BUNEARY",
+            "script": 10,
+            "initial_dir": 1,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 548,
+            "z": 674,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SOVEREIGN_MEW",
+            "graphics_id": "OBJ_EVENT_GFX_LEGENDARY_MEW",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": 0,
+            "initial_dir": 1,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 999,
+            "z": 999,
             "y": 0
         }
     ],

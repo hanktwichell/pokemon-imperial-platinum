@@ -461,6 +461,43 @@
         "Someone, somewhere, saw that you\n",
         "made somebody’s wish come true."
       ]
+    },
+    {
+      "id": "PastoriaCity_Text_SovereignMewTorchicCry",
+      "en_US": "TORCHIC: Chiic chic..."
+    },
+    {
+      "id": "PastoriaCity_Text_SovereignMewTorchicHungry",
+      "en_US": [
+        "TORCHIC seems extremely peckish.\n",
+        "It may want an Old Gateau.\r"
+      ]
+    },
+    {
+      "id": "PastoriaCity_Text_SovereignMewTorchicAskGive",
+      "en_US": "Give an Old Gateau to TORCHIC?"
+    },
+    {
+      "id": "PastoriaCity_Text_SovereignMewTorchicHappy",
+      "en_US": "TORCHIC: Chiic chic!"
+    },
+    {
+      "id": "PastoriaCity_Text_SovereignMewTorchicAte",
+      "en_US": [
+        "TORCHIC ate the Old Gateau.\n",
+        "It was thrilled to bits!\r"
+      ]
+    },
+    {
+      "id": "PastoriaCity_Text_SovereignMewCry",
+      "en_US": "Myuu!"
+    },
+    {
+      "id": "PastoriaCity_Text_SovereignMewDisappeared",
+      "en_US": [
+        "The strange Pokémon disappeared,\n",
+        "but it looked extremely happy."
+      ]
     }
   ]
 }

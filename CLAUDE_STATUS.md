@@ -4396,3 +4396,38 @@ merged.
 2. Celebi (GS Ball, Eterna Forest) and Lugia/Ho-Oh (Oak's wings). Check them against the Chronicles' Virizion,
    Xerneas and Yveltal spots.
 3. Renegade's trainers from its ROM (`trdata`/`trpoke`), with `data/trainers_sovereign.yaml` on top.
+
+## CB-0092 — 2026-10-24, 9:22 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** E10 part 18, Renegade's Mew event. PR #102 (part 17) merged.
+- Hungry Pokémon in a chain:
+  - Shroomish, Route 203 (212, 746): an Oran Berry.
+  - Buneary, Route 209 (548, 674): a Sitrus Berry.
+  - Torchic, Pastoria City (625, 828): an Old Gateau.
+  - Each feeding shows a Mew cameo (an off-map object moved in), then shows the next Pokémon.
+- Route 201 (108, 846): a Pachirisu turns into Mew, Lv. 40, until caught. Route 201 gets an OnLoad (script 18);
+  Mew is script 19.
+- Flags:
+  - `FLAG_SOVEREIGN_HIDE_MEW_{SHROOMISH,BUNEARY,TORCHIC,PACHIRISU}` and `FLAG_SOVEREIGN_HIDE_ROUTE_201_MEW`.
+  - Every hide flag except Shroomish's is set in `scripts_init_new_game.s`.
+  - The unused-flag pool in 0x03Cx–0x03Fx/0x053x–0x054x is now empty. Two came from other single unused flags (`FLAG_UNUSED_0x03BF`,
+    `_0x040F`); Claude A should know if they pick flags the same way.
+- Renegade's ball moves: Route 209 Calcium to (548, 675), Pastoria Mystic Water to (627, 828).
+- Route 209's script now includes its events header.
+- Placeholder Mew sprite. The scratchpad `reglegend.py` name check now matches whole names (MEW vs MEWTWO).
+- Verified in a test build (bag checks skipped, all shown): all three feedings and the Route 201 Mew battle. Release
+  build and docs pass.
+
+**Files modified:**
+- Scripts, events and text for `route_203`, `route_209`, `pastoria_city` and `route_201`
+- `decomp/res/field/scripts/{scripts_init_route_201,scripts_init_new_game}.s`, `decomp/generated/vars_flags.txt`
+- Sprite tables and `legendary_mew.png`; `tools/sprites/make_legendary_overworld.py`
+- Docs: `docs/LegendaryTriggers.md`, `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Celebi:
+   - Renegade's GS Ball and Eterna Forest portals (flags 2590–2595 in its scripts).
+   - Check them against the Chronicles' Virizion and Xerneas in Eterna Forest.
+2. Lugia and Ho-Oh (Oak's Silver and Rainbow Wings; Route 220 island, Lost Tower top). Yveltal is on Lost Tower 5F.
+3. The legendary birds (Renegade's portals vs Sovereign's Oak roamers: ask the owner which), then Renegade's
+   trainers.
