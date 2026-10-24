@@ -6,6 +6,7 @@
     ScriptEntry IronIsland_OnTransition
     ScriptEntry IronIsland_Sailor
     ScriptEntry IronIsland_Riley
+    ScriptEntry IronIsland_SovereignSteelMaster
     ScriptEntryEnd
 
 IronIsland_OnTransition:
@@ -89,28 +90,92 @@ IronIsland_Movement_PlayerWalkToShipWest:
     Delay15
     EndMovement
 
+// Sovereign (E10): as in Renegade Platinum, Riley battles the player at the entrance (HM04 comes after the Galactic
+// grunts on B2F), and Julian, a Steel-type master, battles a player whose only Pokémon is a Steel type for the Iron
+// Plate.
 IronIsland_Riley:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
     BufferPlayerName 0
-    Message IronIsland_Text_ImRileyHeresAGift
-    SetVar VAR_0x8004, ITEM_HM04
+    Message IronIsland_Text_SovereignRileyLetsBattle
+    CloseMessage
+    StartTrainerBattle TRAINER_SOVEREIGN_RILEY_IRON_ISLAND
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, IronIsland_SovereignBlackOut
+    Message IronIsland_Text_SovereignRileyStrongAura
+    CloseMessage
+    FadeScreenOut
+    WaitFadeScreen
+    PlayFanfare SEQ_ASA_sseq
+    WaitFanfare
+    HealParty
+    FadeScreenIn
+    WaitFadeScreen
+    Message IronIsland_Text_SovereignRileyTrainingInside
+    GoTo IronIsland_RileyEnterIronIsland
+    End
+
+IronIsland_SovereignBlackOut:
+    BlackOutFromBattle
+    ReleaseAll
+    End
+
+IronIsland_SovereignSteelMaster:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfSet FLAG_SOVEREIGN_RECEIVED_IRON_ISLAND_IRON_PLATE, IronIsland_SovereignThanksForSteelBattle
+    Message IronIsland_Text_SovereignSteelTypeMaster
+    GetPartyCount VAR_RESULT
+    GoToIfNe VAR_RESULT, 1, IronIsland_SovereignOnlyOneSteelType
+    GetPartyMonType VAR_0x8004, VAR_0x8005, 0
+    GoToIfEq VAR_0x8004, TYPE_STEEL, IronIsland_SovereignAskSteelBattle
+    GoToIfEq VAR_0x8005, TYPE_STEEL, IronIsland_SovereignAskSteelBattle
+IronIsland_SovereignOnlyOneSteelType:
+    Message IronIsland_Text_SovereignOnlyOneSteelType
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+IronIsland_SovereignAskSteelBattle:
+    Message IronIsland_Text_SovereignWhoHasUltimateSteelType
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, IronIsland_SovereignCantWin
+    Message IronIsland_Text_SovereignTimeForSteelBattle
+    CloseMessage
+    StartTrainerBattle TRAINER_SOVEREIGN_STEEL_MASTER_IRON_ISLAND
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, IronIsland_SovereignLostSteelBattle
+    Message IronIsland_Text_SovereignYouOwnUltimateSteelType
+    SetVar VAR_0x8004, ITEM_IRON_PLATE
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
-    CheckBadgeAcquired BADGE_ID_MINE, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, IronIsland_YouNeedMineBadge
-    GoTo IronIsland_YouCanJoinMeInside
+    SetFlag FLAG_SOVEREIGN_RECEIVED_IRON_ISLAND_IRON_PLATE
+IronIsland_SovereignThanksForSteelBattle:
+    Message IronIsland_Text_SovereignThanksForSteelBattle
+    WaitButton
+    CloseMessage
+    ReleaseAll
     End
 
-IronIsland_YouCanJoinMeInside:
-    Message IronIsland_Text_YouCanJoinMeInside
-    GoTo IronIsland_RileyEnterIronIsland
+IronIsland_SovereignCantWin:
+    Message IronIsland_Text_SovereignFeelYouCantWin
+    WaitButton
+    CloseMessage
+    ReleaseAll
     End
 
-IronIsland_YouNeedMineBadge:
-    Message IronIsland_Text_YouNeedMineBadge
-    GoTo IronIsland_RileyEnterIronIsland
+IronIsland_SovereignLostSteelBattle:
+    ReturnToField
+    FadeScreenIn FADE_SCREEN_SPEED_MEDIUM
+    WaitFadeScreen
+    HealParty
+    Message IronIsland_Text_SovereignUltimateSteelTypeIsMine
+    WaitButton
+    CloseMessage
+    ReleaseAll
     End
 
 IronIsland_RileyEnterIronIsland:

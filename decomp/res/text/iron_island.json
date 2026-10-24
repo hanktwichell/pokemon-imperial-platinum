@@ -2,42 +2,6 @@
   "key": 53182,
   "messages": [
     {
-      "id": "IronIsland_Text_ImRileyHeresAGift",
-      "en_US": [
-        "...You are?\r",
-        "OK, you’re {STRVAR_1 3, 0, 0}.\n",
-        "I’m Riley.\r",
-        "I’m a Trainer, and yes, it is a bit\n",
-        "odd that I would be training here.\r",
-        "Anyway, it’s always nice to meet\n",
-        "another Trainer. Here’s a gift.\r"
-      ]
-    },
-    {
-      "id": "IronIsland_Text_YouCanJoinMeInside",
-      "en_US": [
-        "Riley: That Hidden Machine contains\n",
-        "the move Strength.\r",
-        "To use it out of battle, you need the\n",
-        "Badge from Canalave Gym...\r",
-        "Oh, never mind, you’ve already got the\n",
-        "Mine Badge. My bad.\r",
-        "I’ll be training inside.\n",
-        "You can join me if you’d like.\r"
-      ]
-    },
-    {
-      "id": "IronIsland_Text_YouNeedMineBadge",
-      "en_US": [
-        "Riley: That Hidden Machine contains\n",
-        "the move Strength.\r",
-        "To use it out of battle, you need the\n",
-        "Mine Badge from Canalave Gym.\r",
-        "I’ll be training inside.\n",
-        "You can join me if you’d like.\r"
-      ]
-    },
-    {
       "id": "IronIsland_Text_WantToSailSomewhere",
       "en_US": "Do you want to sail somewhere?"
     },
@@ -53,6 +17,98 @@
       "en_US": [
         "You just go on and tell me whenever\n",
         "you want to set sail again!"
+      ]
+    },
+    {
+      "id": "IronIsland_Text_SovereignRileyLetsBattle",
+      "en_US": [
+        "...You are?\r",
+        "OK, you’re {STRVAR_1 3, 0, 0}.\n",
+        "I’m Riley. I’m a Trainer, as well.\n",
+        "I also came to Iron Island to train.\r",
+        "Anyway, it’s always nice to meet\n",
+        "another Trainer.\r",
+        "If it’s all right with you, I’d like to\n",
+        "challenge you to a battle right now.\r"
+      ]
+    },
+    {
+      "id": "IronIsland_Text_SovereignRileyStrongAura",
+      "en_US": [
+        "Riley: Thank you. I can sense you have\n",
+        "a strong aura.\r",
+        "Backed up by strong Pokémon, no less!\r",
+        "Allow me to heal your Pokémon...\r"
+      ]
+    },
+    {
+      "id": "IronIsland_Text_SovereignRileyTrainingInside",
+      "en_US": [
+        "Riley: I’ll be training more inside.\n",
+        "You can join me if you’d like.\r"
+      ]
+    },
+    {
+      "id": "IronIsland_Text_SovereignSteelTypeMaster",
+      "en_US": [
+        "I’m the Steel-type Master!\n",
+        "I aim to find the ultimate Steel-type!\r"
+      ]
+    },
+    {
+      "id": "IronIsland_Text_SovereignOnlyOneSteelType",
+      "en_US": [
+        "Come at me with only a {COLOR 1}single Pokémon{COLOR 0}\n",
+        "in your party if you want to battle me.\r",
+        "Oh, and there’s one other condition...\n",
+        "That Pokémon must be a {COLOR 1}Steel-type{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "IronIsland_Text_SovereignWhoHasUltimateSteelType",
+      "en_US": [
+        "Your Steel-type looks pretty strong!\r",
+        "Should we find out who has the\n",
+        "ultimate Steel-type Pokémon?"
+      ]
+    },
+    {
+      "id": "IronIsland_Text_SovereignTimeForSteelBattle",
+      "en_US": [
+        "Time for a Steel-type battle!"
+      ]
+    },
+    {
+      "id": "IronIsland_Text_SovereignYouOwnUltimateSteelType",
+      "en_US": [
+        "Oh, wow.\r",
+        "It seems the ultimate Steel-type\n",
+        "Pokémon belongs to you!\r",
+        "That means you are the rightful owner\n",
+        "of this precious item!\r"
+      ]
+    },
+    {
+      "id": "IronIsland_Text_SovereignUltimateSteelTypeIsMine",
+      "en_US": [
+        "The ultimate Steel-type Pokémon\n",
+        "belongs to me!\r",
+        "But I’m always ready for another\n",
+        "Steel-type battle."
+      ]
+    },
+    {
+      "id": "IronIsland_Text_SovereignThanksForSteelBattle",
+      "en_US": [
+        "Thank you for a great Steel-type\n",
+        "Pokémon battle."
+      ]
+    },
+    {
+      "id": "IronIsland_Text_SovereignFeelYouCantWin",
+      "en_US": [
+        "Hmm...\n",
+        "Do you feel like you can’t win?"
       ]
     }
   ]

@@ -4115,3 +4115,26 @@ route_206_cycling_road_north_gate, solaceon_ruins_room_2; `decomp/generated/vars
    versus Sovereign's post-game Regigigas.
 3. Take the TMs out of Veilstone 3F and the Game Corner; then Renegade's NPCs (Hidden Power teller and baby Egg in the
    Trainers' School, Item Fanatic, Rare Berry seller, Dragon Scale in the Veilstone Pokémon Center...).
+
+## CB-0081 — 2026-10-24, 5:57 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Merged:** PR #91 (E10 part 6: the other TM/HM gifts).
+
+**Implemented:** E10 part 7, Iron Island as in Renegade.
+- Riley battles the player at the entrance (`TRAINER_SOVEREIGN_RILEY_IRON_ISLAND`, Renegade's team from its ROM),
+  heals and goes in; HM04 now comes from him on B2F after the grunts, before his Riolu Egg (kept).
+- Julian the Steel-type Master (`TRAINER_SOVEREIGN_STEEL_MASTER_IRON_ISLAND`, Lv. 85 Lucario) battles a lone Steel
+  type for the Iron Plate; a nurse on B2F heals.
+- Verified in the test build: Riley's battle start, the Master's party rule, the nurse. Release build and docs pass.
+
+**Files modified:** `decomp/res/field/scripts/scripts_iron_island.s`, `scripts_iron_island_b2f_left_room.s`, their
+events and text, `decomp/res/trainers/data/sovereign_{riley,steel_master}_iron_island.json` (new),
+`decomp/generated/{trainers,vars_flags}.txt`, `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`,
+`docs/ItemChanges_Sovereign.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Ask the owner about Renegade's Snowpoint Temple scene (story Regigigas, Candice's HM08).
+2. Take the TMs out of Veilstone 3F and the Game Corner (Renegade sells none there): check Renegade's marts and prizes
+   from its ROM.
+3. Renegade's NPCs: Trainers' School Hidden Power teller and baby Egg, Item Fanatic, Rare Berry seller, Dragon Scale
+   in the Veilstone Pokémon Center, Super Rod in Snowpoint.

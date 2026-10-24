@@ -13,6 +13,7 @@
     ScriptEntry IronIslandB2FLeftRoom_Dummy7
     ScriptEntry IronIslandB2FLeftRoom_Riley
     ScriptEntry IronIslandB2FLeftRoom_CoordEvent_Grunts
+    ScriptEntry IronIslandB2FLeftRoom_SovereignNurse
     ScriptEntryEnd
 
 IronIslandB2FLeftRoom_OnTransition:
@@ -190,6 +191,12 @@ IronIslandB2FLeftRoom_CoordEvent_Grunts:
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8005, 40, IronIslandB2FLeftRoom_PlayerRileyFaceEachOtherZ40
     CallIfEq VAR_0x8005, 41, IronIslandB2FLeftRoom_PlayerRileyFaceEachOtherZ41
+    // Sovereign (E10): Riley gives HM04 (Strength) here, as in Renegade Platinum, then his Riolu Egg as in Platinum.
+    Message IronIslandB2FLeftRoom_Text_SovereignHeresAGift
+    SetVar VAR_0x8004, ITEM_HM04
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    Message IronIslandB2FLeftRoom_Text_SovereignThatHMContainsStrength
     Call IronIslandB2FLeftRoom_WouldYouTakeEgg
     ScrCmd_2B6 LOCALID_RILEY, 1
     ReleaseAll
@@ -445,3 +452,23 @@ IronIslandB2FLeftRoom_LetsMeetAgain:
     End
 
     .balign 4, 0
+
+// Sovereign (E10): as in Renegade Platinum, a nurse heals the party.
+IronIslandB2FLeftRoom_SovereignNurse:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    Message IronIslandB2FLeftRoom_Text_SovereignLetsHealYourPokemon
+    CloseMessage
+    FadeScreenOut
+    WaitFadeScreen
+    PlayFanfare SEQ_ASA_sseq
+    WaitFanfare
+    HealParty
+    FadeScreenIn
+    WaitFadeScreen
+    Message IronIslandB2FLeftRoom_Text_SovereignKeepOnGoing
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
