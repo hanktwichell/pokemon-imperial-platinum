@@ -5,7 +5,7 @@
 #include "constants/species.h"
 
 // Sovereign's forms are packed after Platinum's 12 alternate forms, in include/data/sovereign_forms.h order.
-#define SOVEREIGN_FORM_COUNT          269
+#define SOVEREIGN_FORM_COUNT          348
 #define SOVEREIGN_FORM_PERSONAL_START (SPECIES_BAD_EGG + 12 + 1)
 
 enum SovereignFormKind {

@@ -291,6 +291,7 @@ static void *BoxPokemon_GetDataBlock(BoxPokemon *boxMon, u32 personality, enum P
 static int Pokemon_GetFormNarcIndex(int monSpecies, int monForm);
 static BOOL Pokemon_IsSovereignRegionalForm(u16 species, int form);
 static const SovereignForm *Pokemon_FindSovereignForm(u16 species, int form);
+static u16 Pokemon_SovereignEvolutionItem(u16 species, int form, u16 item);
 static inline int Pokemon_Face(int clientType);
 
 void Pokemon_Init(Pokemon *mon)
@@ -3823,6 +3824,8 @@ u16 Pokemon_GetEvolutionTargetSpecies(Party *party, Pokemon *mon, u8 evoClass, u
 
     case EVO_CLASS_UNUSED_02:
     case EVO_CLASS_BY_ITEM:
+        evoParam = Pokemon_SovereignEvolutionItem(monSpecies, monForm, evoParam); // Sovereign (FM): the Antique teapots
+
         for (i = 0; i < MAX_EVOLUTIONS; i++) {
             if (speciesEvolutions[i].method == EVO_USE_ITEM && speciesEvolutions[i].param == evoParam) {
                 targetSpecies = speciesEvolutions[i].targetSpecies;
@@ -5326,6 +5329,26 @@ int Pokemon_SovereignPersonalityForm(u16 species, u32 personality)
     case SPECIES_MAUSHOLD:
     case SPECIES_DUDUNSPARCE:
         return personality % 100 == 0;
+    case SPECIES_SINISTEA:
+    case SPECIES_POLTEAGEIST:
+    case SPECIES_POLTCHAGEIST:
+    case SPECIES_SINISTCHA:
+        return personality % 10 == 0; // Antique / Artisan / Masterpiece, 1 in 10 (they keep it as they evolve)
+    case SPECIES_DEERLING:
+    case SPECIES_SAWSBUCK: {
+        // The season it's made in, as in Black and White: spring, summer, autumn, winter in turn each month.
+        RTCDate date;
+
+        GetCurrentDate(&date);
+        return (date.month - 1) % 4;
+    }
+    case SPECIES_VIVILLON: {
+        // Its pattern in the official order (Icy Snow 0 ... Poké Ball 19, as for Scatterbug and Spewpa, so it keeps
+        // theirs); Meadow (6) is Vivillon's base form here, and the patterns before it are one form number up.
+        int pattern = personality % 20;
+
+        return pattern == 6 ? 0 : (pattern < 6 ? pattern + 1 : pattern);
+    }
     }
 
     for (int i = 0; i < SOVEREIGN_FORM_COUNT; i++) {
@@ -5338,7 +5361,37 @@ int Pokemon_SovereignPersonalityForm(u16 species, u32 personality)
         }
     }
 
-    return count > 1 ? (int)(personality % count) : -1;
+    if (count == 1) {
+        return -1;
+    }
+
+    // The personality picks one of the base form and the species' personality forms, in table order (a species'
+    // other forms can come before them: Eternal Floette before Floette's flower colors).
+    int pick = personality % count;
+
+    for (int i = 0; i < SOVEREIGN_FORM_COUNT && pick > 0; i++) {
+        if (sSovereignForms[i].species == species && sSovereignForms[i].kind == SOVEREIGN_FORM_PERSONALITY && --pick == 0) {
+            return sSovereignForms[i].form;
+        }
+    }
+
+    return 0;
+}
+
+// Sovereign (FM): the item an evolution by item takes for this species and form: an Antique Sinistea evolves with a
+// Chipped Pot and an Artisan Poltchageist with a Masterpiece Teacup, not the usual Cracked Pot and Unremarkable
+// Teacup, as in the official games. Returns the item the species' evolution data names, or ITEM_NONE.
+static u16 Pokemon_SovereignEvolutionItem(u16 species, int form, u16 item)
+{
+    if (form == 1 && species == SPECIES_SINISTEA) {
+        return item == ITEM_CHIPPED_POT ? ITEM_CRACKED_POT : (item == ITEM_CRACKED_POT ? ITEM_NONE : item);
+    }
+
+    if (form == 1 && species == SPECIES_POLTCHAGEIST) {
+        return item == ITEM_MASTERPIECE_TEACUP ? ITEM_UNREMARKABLE_TEACUP : (item == ITEM_UNREMARKABLE_TEACUP ? ITEM_NONE : item);
+    }
+
+    return item;
 }
 
 // Sovereign (FM): TRUE for a battle form that brings its own ability (Mega, Primal, Ultra Necrozma, Terastal

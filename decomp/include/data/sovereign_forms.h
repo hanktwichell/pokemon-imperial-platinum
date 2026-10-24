@@ -84,7 +84,7 @@ static const SovereignForm sSovereignForms[SOVEREIGN_FORM_COUNT] = {
     { SPECIES_DELPHOX, 1, SOVEREIGN_FORM_MEGA, ITEM_DELPHOXITE }, // Mega Delphox
     { SPECIES_GRENINJA, 3, SOVEREIGN_FORM_MEGA, ITEM_GRENINJITE }, // Mega Greninja
     { SPECIES_PYROAR, 1, SOVEREIGN_FORM_MEGA, ITEM_PYROARITE }, // Mega Pyroar
-    { SPECIES_FLOETTE, 2, SOVEREIGN_FORM_MEGA, ITEM_FLOETTITE }, // Mega Floette
+    { SPECIES_FLOETTE, 6, SOVEREIGN_FORM_MEGA, ITEM_FLOETTITE }, // Mega Floette
     { SPECIES_MALAMAR, 1, SOVEREIGN_FORM_MEGA, ITEM_MALAMARITE }, // Mega Malamar
     { SPECIES_BARBARACLE, 1, SOVEREIGN_FORM_MEGA, ITEM_BARBARACITE }, // Mega Barbaracle
     { SPECIES_DRAGALGE, 1, SOVEREIGN_FORM_MEGA, ITEM_DRAGALGITE }, // Mega Dragalge
@@ -285,6 +285,85 @@ static const SovereignForm sSovereignForms[SOVEREIGN_FORM_COUNT] = {
     { SPECIES_ORICORIO, 2, SOVEREIGN_FORM_PERSONALITY, 0 }, // Pa’u Oricorio
     { SPECIES_ORICORIO, 3, SOVEREIGN_FORM_PERSONALITY, 0 }, // Sensu Oricorio
     { SPECIES_KELDEO, 1, SOVEREIGN_FORM_REGIONAL, 0 }, // Resolute Keldeo
+    { SPECIES_FLABEBE, 1, SOVEREIGN_FORM_PERSONALITY, 0 }, // Flabébé (Yellow Flower)
+    { SPECIES_FLABEBE, 2, SOVEREIGN_FORM_PERSONALITY, 0 }, // Flabébé (Orange Flower)
+    { SPECIES_FLABEBE, 3, SOVEREIGN_FORM_PERSONALITY, 0 }, // Flabébé (Blue Flower)
+    { SPECIES_FLABEBE, 4, SOVEREIGN_FORM_PERSONALITY, 0 }, // Flabébé (White Flower)
+    { SPECIES_FLOETTE, 2, SOVEREIGN_FORM_PERSONALITY, 0 }, // Floette (Yellow Flower)
+    { SPECIES_FLOETTE, 3, SOVEREIGN_FORM_PERSONALITY, 0 }, // Floette (Orange Flower)
+    { SPECIES_FLOETTE, 4, SOVEREIGN_FORM_PERSONALITY, 0 }, // Floette (Blue Flower)
+    { SPECIES_FLOETTE, 5, SOVEREIGN_FORM_PERSONALITY, 0 }, // Floette (White Flower)
+    { SPECIES_FLORGES, 1, SOVEREIGN_FORM_PERSONALITY, 0 }, // Florges (Yellow Flower)
+    { SPECIES_FLORGES, 2, SOVEREIGN_FORM_PERSONALITY, 0 }, // Florges (Orange Flower)
+    { SPECIES_FLORGES, 3, SOVEREIGN_FORM_PERSONALITY, 0 }, // Florges (Blue Flower)
+    { SPECIES_FLORGES, 4, SOVEREIGN_FORM_PERSONALITY, 0 }, // Florges (White Flower)
+    { SPECIES_SCATTERBUG, 1, SOVEREIGN_FORM_PERSONALITY, 0 }, // Scatterbug (Polar Pattern)
+    { SPECIES_SCATTERBUG, 2, SOVEREIGN_FORM_PERSONALITY, 0 }, // Scatterbug (Tundra Pattern)
+    { SPECIES_SCATTERBUG, 3, SOVEREIGN_FORM_PERSONALITY, 0 }, // Scatterbug (Continental Pattern)
+    { SPECIES_SCATTERBUG, 4, SOVEREIGN_FORM_PERSONALITY, 0 }, // Scatterbug (Garden Pattern)
+    { SPECIES_SCATTERBUG, 5, SOVEREIGN_FORM_PERSONALITY, 0 }, // Scatterbug (Elegant Pattern)
+    { SPECIES_SCATTERBUG, 6, SOVEREIGN_FORM_PERSONALITY, 0 }, // Scatterbug (Meadow Pattern)
+    { SPECIES_SCATTERBUG, 7, SOVEREIGN_FORM_PERSONALITY, 0 }, // Scatterbug (Modern Pattern)
+    { SPECIES_SCATTERBUG, 8, SOVEREIGN_FORM_PERSONALITY, 0 }, // Scatterbug (Marine Pattern)
+    { SPECIES_SCATTERBUG, 9, SOVEREIGN_FORM_PERSONALITY, 0 }, // Scatterbug (Archipelago Pattern)
+    { SPECIES_SCATTERBUG, 10, SOVEREIGN_FORM_PERSONALITY, 0 }, // Scatterbug (High Plains Pattern)
+    { SPECIES_SCATTERBUG, 11, SOVEREIGN_FORM_PERSONALITY, 0 }, // Scatterbug (Sandstorm Pattern)
+    { SPECIES_SCATTERBUG, 12, SOVEREIGN_FORM_PERSONALITY, 0 }, // Scatterbug (River Pattern)
+    { SPECIES_SCATTERBUG, 13, SOVEREIGN_FORM_PERSONALITY, 0 }, // Scatterbug (Monsoon Pattern)
+    { SPECIES_SCATTERBUG, 14, SOVEREIGN_FORM_PERSONALITY, 0 }, // Scatterbug (Savanna Pattern)
+    { SPECIES_SCATTERBUG, 15, SOVEREIGN_FORM_PERSONALITY, 0 }, // Scatterbug (Sun Pattern)
+    { SPECIES_SCATTERBUG, 16, SOVEREIGN_FORM_PERSONALITY, 0 }, // Scatterbug (Ocean Pattern)
+    { SPECIES_SCATTERBUG, 17, SOVEREIGN_FORM_PERSONALITY, 0 }, // Scatterbug (Jungle Pattern)
+    { SPECIES_SCATTERBUG, 18, SOVEREIGN_FORM_PERSONALITY, 0 }, // Scatterbug (Fancy Pattern)
+    { SPECIES_SCATTERBUG, 19, SOVEREIGN_FORM_PERSONALITY, 0 }, // Scatterbug (Poké Ball Pattern)
+    { SPECIES_SPEWPA, 1, SOVEREIGN_FORM_PERSONALITY, 0 }, // Spewpa (Polar Pattern)
+    { SPECIES_SPEWPA, 2, SOVEREIGN_FORM_PERSONALITY, 0 }, // Spewpa (Tundra Pattern)
+    { SPECIES_SPEWPA, 3, SOVEREIGN_FORM_PERSONALITY, 0 }, // Spewpa (Continental Pattern)
+    { SPECIES_SPEWPA, 4, SOVEREIGN_FORM_PERSONALITY, 0 }, // Spewpa (Garden Pattern)
+    { SPECIES_SPEWPA, 5, SOVEREIGN_FORM_PERSONALITY, 0 }, // Spewpa (Elegant Pattern)
+    { SPECIES_SPEWPA, 6, SOVEREIGN_FORM_PERSONALITY, 0 }, // Spewpa (Meadow Pattern)
+    { SPECIES_SPEWPA, 7, SOVEREIGN_FORM_PERSONALITY, 0 }, // Spewpa (Modern Pattern)
+    { SPECIES_SPEWPA, 8, SOVEREIGN_FORM_PERSONALITY, 0 }, // Spewpa (Marine Pattern)
+    { SPECIES_SPEWPA, 9, SOVEREIGN_FORM_PERSONALITY, 0 }, // Spewpa (Archipelago Pattern)
+    { SPECIES_SPEWPA, 10, SOVEREIGN_FORM_PERSONALITY, 0 }, // Spewpa (High Plains Pattern)
+    { SPECIES_SPEWPA, 11, SOVEREIGN_FORM_PERSONALITY, 0 }, // Spewpa (Sandstorm Pattern)
+    { SPECIES_SPEWPA, 12, SOVEREIGN_FORM_PERSONALITY, 0 }, // Spewpa (River Pattern)
+    { SPECIES_SPEWPA, 13, SOVEREIGN_FORM_PERSONALITY, 0 }, // Spewpa (Monsoon Pattern)
+    { SPECIES_SPEWPA, 14, SOVEREIGN_FORM_PERSONALITY, 0 }, // Spewpa (Savanna Pattern)
+    { SPECIES_SPEWPA, 15, SOVEREIGN_FORM_PERSONALITY, 0 }, // Spewpa (Sun Pattern)
+    { SPECIES_SPEWPA, 16, SOVEREIGN_FORM_PERSONALITY, 0 }, // Spewpa (Ocean Pattern)
+    { SPECIES_SPEWPA, 17, SOVEREIGN_FORM_PERSONALITY, 0 }, // Spewpa (Jungle Pattern)
+    { SPECIES_SPEWPA, 18, SOVEREIGN_FORM_PERSONALITY, 0 }, // Spewpa (Fancy Pattern)
+    { SPECIES_SPEWPA, 19, SOVEREIGN_FORM_PERSONALITY, 0 }, // Spewpa (Poké Ball Pattern)
+    { SPECIES_VIVILLON, 1, SOVEREIGN_FORM_PERSONALITY, 0 }, // Vivillon (Icy Snow Pattern)
+    { SPECIES_VIVILLON, 2, SOVEREIGN_FORM_PERSONALITY, 0 }, // Vivillon (Polar Pattern)
+    { SPECIES_VIVILLON, 3, SOVEREIGN_FORM_PERSONALITY, 0 }, // Vivillon (Tundra Pattern)
+    { SPECIES_VIVILLON, 4, SOVEREIGN_FORM_PERSONALITY, 0 }, // Vivillon (Continental Pattern)
+    { SPECIES_VIVILLON, 5, SOVEREIGN_FORM_PERSONALITY, 0 }, // Vivillon (Garden Pattern)
+    { SPECIES_VIVILLON, 6, SOVEREIGN_FORM_PERSONALITY, 0 }, // Vivillon (Elegant Pattern)
+    { SPECIES_VIVILLON, 7, SOVEREIGN_FORM_PERSONALITY, 0 }, // Vivillon (Modern Pattern)
+    { SPECIES_VIVILLON, 8, SOVEREIGN_FORM_PERSONALITY, 0 }, // Vivillon (Marine Pattern)
+    { SPECIES_VIVILLON, 9, SOVEREIGN_FORM_PERSONALITY, 0 }, // Vivillon (Archipelago Pattern)
+    { SPECIES_VIVILLON, 10, SOVEREIGN_FORM_PERSONALITY, 0 }, // Vivillon (High Plains Pattern)
+    { SPECIES_VIVILLON, 11, SOVEREIGN_FORM_PERSONALITY, 0 }, // Vivillon (Sandstorm Pattern)
+    { SPECIES_VIVILLON, 12, SOVEREIGN_FORM_PERSONALITY, 0 }, // Vivillon (River Pattern)
+    { SPECIES_VIVILLON, 13, SOVEREIGN_FORM_PERSONALITY, 0 }, // Vivillon (Monsoon Pattern)
+    { SPECIES_VIVILLON, 14, SOVEREIGN_FORM_PERSONALITY, 0 }, // Vivillon (Savanna Pattern)
+    { SPECIES_VIVILLON, 15, SOVEREIGN_FORM_PERSONALITY, 0 }, // Vivillon (Sun Pattern)
+    { SPECIES_VIVILLON, 16, SOVEREIGN_FORM_PERSONALITY, 0 }, // Vivillon (Ocean Pattern)
+    { SPECIES_VIVILLON, 17, SOVEREIGN_FORM_PERSONALITY, 0 }, // Vivillon (Jungle Pattern)
+    { SPECIES_VIVILLON, 18, SOVEREIGN_FORM_PERSONALITY, 0 }, // Vivillon (Fancy Pattern)
+    { SPECIES_VIVILLON, 19, SOVEREIGN_FORM_PERSONALITY, 0 }, // Vivillon (Poké Ball Pattern)
+    { SPECIES_DEERLING, 1, SOVEREIGN_FORM_PERSONALITY, 0 }, // Deerling (Summer Form)
+    { SPECIES_DEERLING, 2, SOVEREIGN_FORM_PERSONALITY, 0 }, // Deerling (Autumn Form)
+    { SPECIES_DEERLING, 3, SOVEREIGN_FORM_PERSONALITY, 0 }, // Deerling (Winter Form)
+    { SPECIES_SAWSBUCK, 1, SOVEREIGN_FORM_PERSONALITY, 0 }, // Sawsbuck (Summer Form)
+    { SPECIES_SAWSBUCK, 2, SOVEREIGN_FORM_PERSONALITY, 0 }, // Sawsbuck (Autumn Form)
+    { SPECIES_SAWSBUCK, 3, SOVEREIGN_FORM_PERSONALITY, 0 }, // Sawsbuck (Winter Form)
+    { SPECIES_SINISTEA, 1, SOVEREIGN_FORM_PERSONALITY, 0 }, // Antique Sinistea
+    { SPECIES_POLTEAGEIST, 1, SOVEREIGN_FORM_PERSONALITY, 0 }, // Antique Polteageist
+    { SPECIES_POLTCHAGEIST, 1, SOVEREIGN_FORM_PERSONALITY, 0 }, // Artisan Poltchageist
+    { SPECIES_SINISTCHA, 1, SOVEREIGN_FORM_PERSONALITY, 0 }, // Masterpiece Sinistcha
 };
 
 // A regional form that evolves into its region's form of the target species (any other evolves into form 0).
@@ -444,7 +523,7 @@ typedef struct SovereignBattleFormBase {
 } SovereignBattleFormBase;
 
 static const SovereignBattleFormBase sSovereignBattleFormBases[] = {
-    { SPECIES_FLOETTE, 2, 1 }, // Mega Floette
+    { SPECIES_FLOETTE, 6, 1 }, // Mega Floette
     { SPECIES_MAGEARNA, 3, 1 }, // Mega Magearna (Original Color)
     { SPECIES_TATSUGIRI, 4, 1 }, // Mega Tatsugiri (Droopy Form)
     { SPECIES_TATSUGIRI, 5, 2 }, // Mega Tatsugiri (Stretchy Form)
