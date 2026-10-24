@@ -1204,10 +1204,12 @@
     {
       "id": "CanalaveLibrary2F_Text_SovereignArchivistRifts",
       "en_US": [
-        "Paradox Pokémon from the past and the\n",
-        "future have come to Sinnoh’s wilds!\r",
-        "They’re rare, so keep looking.\n",
-        "Here’s where they’ve been seen:\r"
+        "Paradox Pokémon, from the past and\n",
+        "the future... Have you heard?\r",
+        "Two collectors at the Oreburgh\n",
+        "Mining Museum trade in them!\r",
+        "Show them a Pokémon of today, and\n",
+        "they may have its Paradox kin.\r"
       ]
     },
     {
@@ -1222,8 +1224,9 @@
       "en_US": [
         "The Chronicle’s last pages speak of\n",
         "a crater, Area Zero.\r",
-        "Catch all twenty Paradox Pokémon,\n",
-        "and its masters may come.\r"
+        "Gather every ancient Paradox Pokémon,\n",
+        "and KORAIDON may come.\r",
+        "Every future one, and MIRAIDON.\r"
       ]
     },
     {
@@ -1283,138 +1286,10 @@
       ]
     },
     {
-      "id": "CanalaveLibrary2F_Text_SovereignArchivistGreatTusk",
-      "en_US": [
-        "GREAT TUSK: in the grass of Route 207.\r"
-      ]
-    },
-    {
-      "id": "CanalaveLibrary2F_Text_SovereignArchivistScreamTail",
-      "en_US": [
-        "SCREAM TAIL: in the Trophy Garden.\r"
-      ]
-    },
-    {
-      "id": "CanalaveLibrary2F_Text_SovereignArchivistBruteBonnet",
-      "en_US": [
-        "BRUTE BONNET: in the\n",
-        "marsh of Route 212.\r"
-      ]
-    },
-    {
-      "id": "CanalaveLibrary2F_Text_SovereignArchivistFlutterMane",
-      "en_US": [
-        "FLUTTER MANE: in the Lost Tower.\r"
-      ]
-    },
-    {
-      "id": "CanalaveLibrary2F_Text_SovereignArchivistSlitherWing",
-      "en_US": [
-        "SLITHER WING: outside Stark Mountain.\r"
-      ]
-    },
-    {
-      "id": "CanalaveLibrary2F_Text_SovereignArchivistSandyShocks",
-      "en_US": [
-        "SANDY SHOCKS: in the\n",
-        "sandstorm of Route 228.\r"
-      ]
-    },
-    {
-      "id": "CanalaveLibrary2F_Text_SovereignArchivistRoaringMoon",
-      "en_US": [
-        "ROARING MOON: in the fog of Route 210.\r"
-      ]
-    },
-    {
-      "id": "CanalaveLibrary2F_Text_SovereignArchivistWalkingWake",
-      "en_US": [
-        "WALKING WAKE: on the\n",
-        "water of Route 213.\r"
-      ]
-    },
-    {
-      "id": "CanalaveLibrary2F_Text_SovereignArchivistGougingFire",
-      "en_US": [
-        "GOUGING FIRE: on the\n",
-        "east side of Route 211.\r"
-      ]
-    },
-    {
-      "id": "CanalaveLibrary2F_Text_SovereignArchivistRagingBolt",
-      "en_US": [
-        "RAGING BOLT: in the\n",
-        "grass of Route 208.\r"
-      ]
-    },
-    {
-      "id": "CanalaveLibrary2F_Text_SovereignArchivistIronTreads",
-      "en_US": [
-        "IRON TREADS: deep in Oreburgh Mine.\r"
-      ]
-    },
-    {
-      "id": "CanalaveLibrary2F_Text_SovereignArchivistIronBundle",
-      "en_US": [
-        "IRON BUNDLE: in the snow of Route 217.\r"
-      ]
-    },
-    {
-      "id": "CanalaveLibrary2F_Text_SovereignArchivistIronHands",
-      "en_US": [
-        "IRON HANDS: at the Valley Windworks.\r"
-      ]
-    },
-    {
-      "id": "CanalaveLibrary2F_Text_SovereignArchivistIronJugulis",
-      "en_US": [
-        "IRON JUGULIS: along the\n",
-        "power lines of Route 222.\r"
-      ]
-    },
-    {
-      "id": "CanalaveLibrary2F_Text_SovereignArchivistIronMoth",
-      "en_US": [
-        "IRON MOTH: outside Fuego Ironworks.\r"
-      ]
-    },
-    {
-      "id": "CanalaveLibrary2F_Text_SovereignArchivistIronThorns",
-      "en_US": [
-        "IRON THORNS: under the Cycling Road.\r"
-      ]
-    },
-    {
-      "id": "CanalaveLibrary2F_Text_SovereignArchivistIronValiant",
-      "en_US": [
-        "IRON VALIANT: on Route 212,\n",
-        "north of Hearthome.\r"
-      ]
-    },
-    {
-      "id": "CanalaveLibrary2F_Text_SovereignArchivistIronLeaves",
-      "en_US": [
-        "IRON LEAVES: in Eterna Forest.\r"
-      ]
-    },
-    {
-      "id": "CanalaveLibrary2F_Text_SovereignArchivistIronBoulder",
-      "en_US": [
-        "IRON BOULDER: on Route 227.\r"
-      ]
-    },
-    {
-      "id": "CanalaveLibrary2F_Text_SovereignArchivistIronCrown",
-      "en_US": [
-        "IRON CROWN: deep in Iron Island.\r"
-      ]
-    },
-    {
       "id": "CanalaveLibrary2F_Text_SovereignArchivistKoraidonOne",
       "en_US": [
-        "One of them is in your record now.\n",
-        "The other still waits at Sendoff\r",
-        "Spring!\r"
+        "One of Area Zero’s masters has come\n",
+        "to Sendoff Spring!\r"
       ]
     },
     {

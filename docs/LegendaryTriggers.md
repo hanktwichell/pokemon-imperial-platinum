@@ -129,35 +129,37 @@ until the planned wild tables (`data/encounters_sovereign.json`) are ported; bef
 | Okidogi, Munkidori, Fezandipiti | roamers | mainland routes | 65 | released on the first reading of The Loyal Three (`FLAG_SOVEREIGN_RELEASED_LOYAL_THREE`) | The Loyal Three |
 | Pecharunt | static | Route 224 (898, 526) | 60 | the Loyal Three caught | The Loyal Three |
 | Ogerpon | static | Route 211 East (435, 531) | 65 | var ≥ 5; holds the Teal Mask | The Masked Ogre (the Celestic Pokéfan gives the other masks to a player leading with Ogerpon) |
-| Koraidon, Miraidon | static | Sendoff Spring (29, 36), (27, 37) | 70 | all twenty Paradox Pokémon caught | Area Zero |
+| Koraidon | static | Sendoff Spring (29, 36) | 70 | var ≥ 5 and all ten ancient Paradox Pokémon given by the museum's fossil maniac | Area Zero |
+| Miraidon | static | Sendoff Spring (27, 37) | 70 | var ≥ 5 and all ten future Paradox Pokémon given by the museum's futuristic scientist | Area Zero |
 | Terapagos | static | Sendoff Spring (30, 34) | 70 | Koraidon and Miraidon caught | Area Zero |
 
 The stakes stand next to their shrine for now and show while the Paldea Chronicle is open.
 
-**Paradox Pokémon** (rare wild, 2%, from the Paldea Chronicle's opening; hint: Paradox Pokémon):
+**Paradox Pokémon** (owner, 2026-10-24; they were rare wild encounters until CB-0062): gifts from two dealers in the
+Oreburgh Mining Museum, a fossil maniac (11, 11) for the ancient ones and a futuristic scientist (13, 11) for the future
+ones. Both show once the player has all 8 badges (`FLAG_SOVEREIGN_HIDE_PARADOX_DEALERS`, cleared on entry). Showing a
+dealer a present-day Pokémon gives its Paradox Pokémon at the shown Pokémon's level, once each:
 
-| Pokémon | Maps | Lv. |
+| Present-day | Ancient (fossil maniac) | Future (futuristic scientist) |
 |---|---|---|
-| Great Tusk | Route 207 | 65 |
-| Scream Tail | Trophy Garden | 65 |
-| Brute Bonnet | Route 212 South | 65 |
-| Flutter Mane | Lost Tower 1F–5F | 65 |
-| Slither Wing | Stark Mountain outside | 65 |
-| Sandy Shocks | Route 228 | 65 |
-| Roaring Moon | Route 210 North | 68 |
-| Walking Wake | Route 213 (surfing) | 68 |
-| Gouging Fire | Route 211 East | 68 |
-| Raging Bolt | Route 208 | 68 |
-| Iron Treads | Oreburgh Mine B1F, B2F | 65 |
-| Iron Bundle | Route 217 | 65 |
-| Iron Hands | Valley Windworks outside | 65 |
-| Iron Jugulis | Route 222 | 65 |
-| Iron Moth | Fuego Ironworks outside | 65 |
-| Iron Thorns | Route 206 | 65 |
-| Iron Valiant | Route 212 North | 68 |
-| Iron Leaves | Eterna Forest | 68 |
-| Iron Boulder | Route 227 | 68 |
-| Iron Crown | Iron Island B2F (both rooms) | 68 |
+| Donphan | Great Tusk | Iron Treads |
+| Jigglypuff | Scream Tail | — |
+| Amoonguss | Brute Bonnet | — |
+| Misdreavus | Flutter Mane | — |
+| Volcarona | Slither Wing | Iron Moth |
+| Magneton | Sandy Shocks | — |
+| Salamence | Roaring Moon | — |
+| Suicune | Walking Wake | — |
+| Entei | Gouging Fire | — |
+| Raikou | Raging Bolt | — |
+| Delibird | — | Iron Bundle |
+| Hariyama | — | Iron Hands |
+| Hydreigon | — | Iron Jugulis |
+| Tyranitar | — | Iron Thorns |
+| Gardevoir or Gallade | — | Iron Valiant |
+| Virizion | — | Iron Leaves |
+| Terrakion | — | Iron Boulder |
+| Cobalion | — | Iron Crown |
 
 ## Vanilla Platinum legendaries (unchanged except where noted)
 

@@ -966,240 +966,50 @@ CanalaveLibrary2F_SovereignArchivistOgreMasks:
     Message CanalaveLibrary2F_Text_SovereignArchivistOgerponMasks
     GoTo CanalaveLibrary2F_SovereignArchivistPaldeaAskMore
 
-@ Paradox Pokémon (decision 28): rare wild encounters from the Paldea Chronicle's opening
-@ (data/sovereign_rare_wild.yaml); a hint for each one not caught yet.
+@ Paradox Pokémon (owner, 2026-10-24): the Oreburgh Mining Museum's two dealers give them for a look at their
+@ present-day Pokémon, once the player has all 8 badges.
 CanalaveLibrary2F_SovereignArchivistRifts:
-    SetVar VAR_0x8008, 0
-    SovereignCheckSpeciesCaught SPECIES_GREAT_TUSK, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_SCREAM_TAIL, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_BRUTE_BONNET, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_FLUTTER_MANE, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_SLITHER_WING, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_SANDY_SHOCKS, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_ROARING_MOON, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_WALKING_WAKE, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_GOUGING_FIRE, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_RAGING_BOLT, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_IRON_TREADS, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_IRON_BUNDLE, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_IRON_HANDS, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_IRON_JUGULIS, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_IRON_MOTH, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_IRON_THORNS, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_IRON_VALIANT, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_IRON_LEAVES, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_IRON_BOULDER, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_IRON_CROWN, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    GoToIfEq VAR_0x8008, 0, CanalaveLibrary2F_SovereignArchivistRiftsDone
-    Message CanalaveLibrary2F_Text_SovereignArchivistRifts
-    SovereignCheckSpeciesCaught SPECIES_GREAT_TUSK, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistGreatTusk
-    SovereignCheckSpeciesCaught SPECIES_SCREAM_TAIL, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistScreamTail
-    SovereignCheckSpeciesCaught SPECIES_BRUTE_BONNET, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistBruteBonnet
-    SovereignCheckSpeciesCaught SPECIES_FLUTTER_MANE, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistFlutterMane
-    SovereignCheckSpeciesCaught SPECIES_SLITHER_WING, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistSlitherWing
-    SovereignCheckSpeciesCaught SPECIES_SANDY_SHOCKS, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistSandyShocks
-    SovereignCheckSpeciesCaught SPECIES_ROARING_MOON, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistRoaringMoon
-    SovereignCheckSpeciesCaught SPECIES_WALKING_WAKE, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistWalkingWake
-    SovereignCheckSpeciesCaught SPECIES_GOUGING_FIRE, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistGougingFire
-    SovereignCheckSpeciesCaught SPECIES_RAGING_BOLT, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistRagingBolt
-    SovereignCheckSpeciesCaught SPECIES_IRON_TREADS, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistIronTreads
-    SovereignCheckSpeciesCaught SPECIES_IRON_BUNDLE, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistIronBundle
-    SovereignCheckSpeciesCaught SPECIES_IRON_HANDS, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistIronHands
-    SovereignCheckSpeciesCaught SPECIES_IRON_JUGULIS, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistIronJugulis
-    SovereignCheckSpeciesCaught SPECIES_IRON_MOTH, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistIronMoth
-    SovereignCheckSpeciesCaught SPECIES_IRON_THORNS, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistIronThorns
-    SovereignCheckSpeciesCaught SPECIES_IRON_VALIANT, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistIronValiant
-    SovereignCheckSpeciesCaught SPECIES_IRON_LEAVES, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistIronLeaves
-    SovereignCheckSpeciesCaught SPECIES_IRON_BOULDER, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistIronBoulder
-    SovereignCheckSpeciesCaught SPECIES_IRON_CROWN, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistIronCrown
-    GoTo CanalaveLibrary2F_SovereignArchivistPaldeaAskMore
-
-CanalaveLibrary2F_SovereignArchivistRiftsDone:
+    SovereignCheckParadoxEraComplete 0, VAR_0x8004
+    SovereignCheckParadoxEraComplete 1, VAR_0x8005
+    GoToIfEq VAR_0x8004, FALSE, CanalaveLibrary2F_SovereignArchivistRiftsHint
+    GoToIfEq VAR_0x8005, FALSE, CanalaveLibrary2F_SovereignArchivistRiftsHint
     Message CanalaveLibrary2F_Text_SovereignArchivistRiftsDone
     GoTo CanalaveLibrary2F_SovereignArchivistPaldeaAskMore
 
-CanalaveLibrary2F_SovereignArchivistGreatTusk:
-    Message CanalaveLibrary2F_Text_SovereignArchivistGreatTusk
-    Return
+CanalaveLibrary2F_SovereignArchivistRiftsHint:
+    Message CanalaveLibrary2F_Text_SovereignArchivistRifts
+    GoTo CanalaveLibrary2F_SovereignArchivistPaldeaAskMore
 
-CanalaveLibrary2F_SovereignArchivistScreamTail:
-    Message CanalaveLibrary2F_Text_SovereignArchivistScreamTail
-    Return
-
-CanalaveLibrary2F_SovereignArchivistBruteBonnet:
-    Message CanalaveLibrary2F_Text_SovereignArchivistBruteBonnet
-    Return
-
-CanalaveLibrary2F_SovereignArchivistFlutterMane:
-    Message CanalaveLibrary2F_Text_SovereignArchivistFlutterMane
-    Return
-
-CanalaveLibrary2F_SovereignArchivistSlitherWing:
-    Message CanalaveLibrary2F_Text_SovereignArchivistSlitherWing
-    Return
-
-CanalaveLibrary2F_SovereignArchivistSandyShocks:
-    Message CanalaveLibrary2F_Text_SovereignArchivistSandyShocks
-    Return
-
-CanalaveLibrary2F_SovereignArchivistRoaringMoon:
-    Message CanalaveLibrary2F_Text_SovereignArchivistRoaringMoon
-    Return
-
-CanalaveLibrary2F_SovereignArchivistWalkingWake:
-    Message CanalaveLibrary2F_Text_SovereignArchivistWalkingWake
-    Return
-
-CanalaveLibrary2F_SovereignArchivistGougingFire:
-    Message CanalaveLibrary2F_Text_SovereignArchivistGougingFire
-    Return
-
-CanalaveLibrary2F_SovereignArchivistRagingBolt:
-    Message CanalaveLibrary2F_Text_SovereignArchivistRagingBolt
-    Return
-
-CanalaveLibrary2F_SovereignArchivistIronTreads:
-    Message CanalaveLibrary2F_Text_SovereignArchivistIronTreads
-    Return
-
-CanalaveLibrary2F_SovereignArchivistIronBundle:
-    Message CanalaveLibrary2F_Text_SovereignArchivistIronBundle
-    Return
-
-CanalaveLibrary2F_SovereignArchivistIronHands:
-    Message CanalaveLibrary2F_Text_SovereignArchivistIronHands
-    Return
-
-CanalaveLibrary2F_SovereignArchivistIronJugulis:
-    Message CanalaveLibrary2F_Text_SovereignArchivistIronJugulis
-    Return
-
-CanalaveLibrary2F_SovereignArchivistIronMoth:
-    Message CanalaveLibrary2F_Text_SovereignArchivistIronMoth
-    Return
-
-CanalaveLibrary2F_SovereignArchivistIronThorns:
-    Message CanalaveLibrary2F_Text_SovereignArchivistIronThorns
-    Return
-
-CanalaveLibrary2F_SovereignArchivistIronValiant:
-    Message CanalaveLibrary2F_Text_SovereignArchivistIronValiant
-    Return
-
-CanalaveLibrary2F_SovereignArchivistIronLeaves:
-    Message CanalaveLibrary2F_Text_SovereignArchivistIronLeaves
-    Return
-
-CanalaveLibrary2F_SovereignArchivistIronBoulder:
-    Message CanalaveLibrary2F_Text_SovereignArchivistIronBoulder
-    Return
-
-CanalaveLibrary2F_SovereignArchivistIronCrown:
-    Message CanalaveLibrary2F_Text_SovereignArchivistIronCrown
-    Return
-
-@ Area Zero, the Paldea Chronicle's end: Koraidon and Miraidon once all twenty Paradox Pokémon are caught, then
-@ Terapagos.
+@ Area Zero, the Paldea Chronicle's end: Koraidon once the museum's fossil maniac has given all ten ancient Paradox
+@ Pokémon, Miraidon once the futuristic scientist has given all ten future ones (owner, 2026-10-24), then Terapagos.
 CanalaveLibrary2F_SovereignArchivistAreaZero:
-    SetVar VAR_0x8008, 0
-    SovereignCheckSpeciesCaught SPECIES_GREAT_TUSK, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_SCREAM_TAIL, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_BRUTE_BONNET, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_FLUTTER_MANE, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_SLITHER_WING, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_SANDY_SHOCKS, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_ROARING_MOON, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_WALKING_WAKE, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_GOUGING_FIRE, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_RAGING_BOLT, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_IRON_TREADS, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_IRON_BUNDLE, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_IRON_HANDS, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_IRON_JUGULIS, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_IRON_MOTH, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_IRON_THORNS, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_IRON_VALIANT, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_IRON_LEAVES, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_IRON_BOULDER, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_IRON_CROWN, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    GoToIfNe VAR_0x8008, 0, CanalaveLibrary2F_SovereignArchivistAreaZeroLocked
     SovereignCheckSpeciesCaught SPECIES_KORAIDON, VAR_0x8004
     SovereignCheckSpeciesCaught SPECIES_MIRAIDON, VAR_0x8005
-    GoToIfEq VAR_0x8004, FALSE, CanalaveLibrary2F_SovereignArchivistAreaZeroNoKoraidon
-    GoToIfEq VAR_0x8005, FALSE, CanalaveLibrary2F_SovereignArchivistAreaZeroOne
+    GoToIfEq VAR_0x8004, FALSE, CanalaveLibrary2F_SovereignArchivistAreaZeroWaiting
+    GoToIfEq VAR_0x8005, FALSE, CanalaveLibrary2F_SovereignArchivistAreaZeroWaiting
     SovereignCheckSpeciesCaught SPECIES_TERAPAGOS, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistAreaZeroTerapagos
     Message CanalaveLibrary2F_Text_SovereignArchivistAreaZeroDone
     GoTo CanalaveLibrary2F_SovereignArchivistPaldeaAskMore
 
-CanalaveLibrary2F_SovereignArchivistAreaZeroLocked:
-    Message CanalaveLibrary2F_Text_SovereignArchivistAreaZeroLocked
+@ Counts the ones waiting at Sendoff Spring: uncaught, with their era's Paradox Pokémon all given.
+CanalaveLibrary2F_SovereignArchivistAreaZeroWaiting:
+    SetVar VAR_0x8008, 0
+    GoToIfEq VAR_0x8004, TRUE, CanalaveLibrary2F_SovereignArchivistAreaZeroCountMiraidon
+    SovereignCheckParadoxEraComplete 0, VAR_RESULT
+    CallIfEq VAR_RESULT, TRUE, CanalaveLibrary2F_SovereignArchivistCountUltra
+CanalaveLibrary2F_SovereignArchivistAreaZeroCountMiraidon:
+    GoToIfEq VAR_0x8005, TRUE, CanalaveLibrary2F_SovereignArchivistAreaZeroCounted
+    SovereignCheckParadoxEraComplete 1, VAR_RESULT
+    CallIfEq VAR_RESULT, TRUE, CanalaveLibrary2F_SovereignArchivistCountUltra
+CanalaveLibrary2F_SovereignArchivistAreaZeroCounted:
+    GoToIfEq VAR_0x8008, 0, CanalaveLibrary2F_SovereignArchivistAreaZeroLocked
+    GoToIfEq VAR_0x8008, 1, CanalaveLibrary2F_SovereignArchivistAreaZeroOne
+    Message CanalaveLibrary2F_Text_SovereignArchivistKoraidon
     GoTo CanalaveLibrary2F_SovereignArchivistPaldeaAskMore
 
-@ Koraidon uncaught: both are waiting if Miraidon is uncaught too, else one is.
-CanalaveLibrary2F_SovereignArchivistAreaZeroNoKoraidon:
-    GoToIfEq VAR_0x8005, TRUE, CanalaveLibrary2F_SovereignArchivistAreaZeroOne
-    Message CanalaveLibrary2F_Text_SovereignArchivistKoraidon
+CanalaveLibrary2F_SovereignArchivistAreaZeroLocked:
+    Message CanalaveLibrary2F_Text_SovereignArchivistAreaZeroLocked
     GoTo CanalaveLibrary2F_SovereignArchivistPaldeaAskMore
 
 CanalaveLibrary2F_SovereignArchivistAreaZeroOne:

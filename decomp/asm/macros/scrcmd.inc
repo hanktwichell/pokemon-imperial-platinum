@@ -5040,6 +5040,29 @@
     .short \destVar
     .endm
 
+    // Sovereign (owner, 2026-10-24): the Paradox Pokémon dealers in the Oreburgh Mining Museum. era: 0 ancient, 1 future.
+    // The Paradox form of a party Pokémon in that era: 0 if none, 1 if already given, else its species.
+    .macro SovereignGetParadoxForm era, partySlot, destVar
+    .short SCRCMD_SOVEREIGNGETPARADOXFORM
+    .short \era
+    .short \partySlot
+    .short \destVar
+    .endm
+
+    // Marks a Paradox Pokémon (its species) as given, once each
+    .macro SovereignSetParadoxGiven era, species
+    .short SCRCMD_SOVEREIGNSETPARADOXGIVEN
+    .short \era
+    .short \species
+    .endm
+
+    // TRUE once every Paradox Pokémon of the era is given (Koraidon: ancient, Miraidon: future)
+    .macro SovereignCheckParadoxEraComplete era, destVar
+    .short SCRCMD_SOVEREIGNCHECKPARADOXERACOMPLETE
+    .short \era
+    .short \destVar
+    .endm
+
     // Sovereign (FM): sets a party Pokémon's form (a gift in a form: Battle Bond Greninja)
     .macro SovereignSetPartyMonForm partySlot, form
     .short SCRCMD_SOVEREIGNSETPARTYMONFORM

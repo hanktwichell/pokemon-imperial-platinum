@@ -276,7 +276,7 @@ static void RegionalFormsPark_FillEncounterTable(FieldSystem *fieldSystem, Encou
     }
 }
 
-// Sovereign (decision 28): the Paradox Pokemon and the Ultra Beasts are rare wild encounters
+// Sovereign (decision 28): the Ultra Beasts and a few others are rare wild encounters
 // (data/sovereign_rare_wild.yaml). One roll per encounter picks one of the map's entries whose gate is met, by its
 // rate, and fills every slot with it, so the usual slot rules (Repel, Intimidate, Hustle...) still apply.
 static void SovereignRareWild_TryFillEncounterTable(FieldSystem *fieldSystem, EncounterSlot *encounterTable, int numSlots, u8 terrain)

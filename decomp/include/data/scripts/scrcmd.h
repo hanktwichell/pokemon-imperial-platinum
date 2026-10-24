@@ -854,6 +854,9 @@ ScriptCommand(SCRCMD_SOVEREIGNGETTOTEMTRIALSPECIES,                       ScrCmd
 ScriptCommand(SCRCMD_SOVEREIGNCLEARFLAGFROMVAR,                           ScrCmd_SovereignClearFlagFromVar)
 ScriptCommand(SCRCMD_SOVEREIGNCHECKSPECIESCAUGHT,                         ScrCmd_SovereignCheckSpeciesCaught)
 ScriptCommand(SCRCMD_SOVEREIGNSETPARTYMONFORM,                            ScrCmd_SovereignSetPartyMonForm)
+ScriptCommand(SCRCMD_SOVEREIGNGETPARADOXFORM,                             ScrCmd_SovereignGetParadoxForm)
+ScriptCommand(SCRCMD_SOVEREIGNSETPARADOXGIVEN,                            ScrCmd_SovereignSetParadoxGiven)
+ScriptCommand(SCRCMD_SOVEREIGNCHECKPARADOXERACOMPLETE,                    ScrCmd_SovereignCheckParadoxEraComplete)
 
 // clang-format on
 

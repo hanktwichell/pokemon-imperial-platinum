@@ -445,6 +445,9 @@ static BOOL ScrCmd_SovereignGetTotemTrialSpecies(ScriptContext *ctx);
 static BOOL ScrCmd_SovereignClearFlagFromVar(ScriptContext *ctx);
 static BOOL ScrCmd_SovereignCheckSpeciesCaught(ScriptContext *ctx);
 static BOOL ScrCmd_SovereignSetPartyMonForm(ScriptContext *ctx);
+static BOOL ScrCmd_SovereignGetParadoxForm(ScriptContext *ctx);
+static BOOL ScrCmd_SovereignSetParadoxGiven(ScriptContext *ctx);
+static BOOL ScrCmd_SovereignCheckParadoxEraComplete(ScriptContext *ctx);
 static BOOL ScrCmd_StartFirstBattle(ScriptContext *ctx);
 static BOOL ScrCmd_StartCatchingTutorial(ScriptContext *ctx);
 static BOOL ScrCmd_SlatherHoneyTree(ScriptContext *ctx);
@@ -4093,6 +4096,102 @@ static BOOL ScrCmd_SovereignSetPartyMonForm(ScriptContext *ctx)
     Pokemon_CalcAbility(mon);
     Pokemon_CalcLevelAndStats(mon);
     Pokedex_Capture(SaveData_GetPokedex(ctx->fieldSystem->saveData), mon);
+    return FALSE;
+}
+
+// Sovereign (owner, 2026-10-24): the Paradox Pokémon, given by two dealers in the Oreburgh Mining Museum for a look at
+// their present-day Pokémon: { present-day species, Paradox species }, ancient (the fossil maniac) then future (the
+// futuristic scientist). Each era's ten Paradox Pokémon are bits 0-9 of its var, in this order; Iron Valiant has two
+// present-day Pokémon. Cyclizar's Paradox Pokémon, Koraidon and Miraidon, aren't given: they are the eras' rewards.
+#define PARADOX_ERA_COUNT 2
+#define PARADOX_PER_ERA   10
+
+static const u16 sParadoxForms[PARADOX_ERA_COUNT][PARADOX_PER_ERA + 1][2] = {
+    {
+        { SPECIES_DONPHAN, SPECIES_GREAT_TUSK },
+        { SPECIES_JIGGLYPUFF, SPECIES_SCREAM_TAIL },
+        { SPECIES_AMOONGUSS, SPECIES_BRUTE_BONNET },
+        { SPECIES_MISDREAVUS, SPECIES_FLUTTER_MANE },
+        { SPECIES_VOLCARONA, SPECIES_SLITHER_WING },
+        { SPECIES_MAGNETON, SPECIES_SANDY_SHOCKS },
+        { SPECIES_SALAMENCE, SPECIES_ROARING_MOON },
+        { SPECIES_SUICUNE, SPECIES_WALKING_WAKE },
+        { SPECIES_ENTEI, SPECIES_GOUGING_FIRE },
+        { SPECIES_RAIKOU, SPECIES_RAGING_BOLT },
+        { SPECIES_NONE, SPECIES_NONE },
+    },
+    {
+        { SPECIES_DONPHAN, SPECIES_IRON_TREADS },
+        { SPECIES_DELIBIRD, SPECIES_IRON_BUNDLE },
+        { SPECIES_HARIYAMA, SPECIES_IRON_HANDS },
+        { SPECIES_HYDREIGON, SPECIES_IRON_JUGULIS },
+        { SPECIES_VOLCARONA, SPECIES_IRON_MOTH },
+        { SPECIES_TYRANITAR, SPECIES_IRON_THORNS },
+        { SPECIES_GARDEVOIR, SPECIES_IRON_VALIANT },
+        { SPECIES_VIRIZION, SPECIES_IRON_LEAVES },
+        { SPECIES_TERRAKION, SPECIES_IRON_BOULDER },
+        { SPECIES_COBALION, SPECIES_IRON_CROWN },
+        { SPECIES_GALLADE, SPECIES_IRON_VALIANT },
+    },
+};
+
+static const u16 sParadoxEraVars[PARADOX_ERA_COUNT] = { VAR_SOVEREIGN_PARADOX_ANCIENT, VAR_SOVEREIGN_PARADOX_FUTURE };
+
+// The bit of a Paradox species in its era's var, or -1.
+static int ParadoxBit(int era, u16 paradox)
+{
+    for (int i = 0; i < PARADOX_PER_ERA; i++) {
+        if (sParadoxForms[era][i][1] == paradox) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
+static BOOL ScrCmd_SovereignGetParadoxForm(ScriptContext *ctx)
+{
+    u16 era = ScriptContext_GetVar(ctx);
+    u16 partySlot = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), partySlot);
+    u16 species = Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) ? SPECIES_NONE : Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+
+    *destVar = 0;
+
+    for (int i = 0; i <= PARADOX_PER_ERA && era < PARADOX_ERA_COUNT; i++) {
+        if (species != SPECIES_NONE && sParadoxForms[era][i][0] == species) {
+            u16 paradox = sParadoxForms[era][i][1];
+            BOOL given = FieldSystem_TryGetVar(ctx->fieldSystem, sParadoxEraVars[era]) & (1 << ParadoxBit(era, paradox));
+
+            *destVar = given ? 1 : paradox;
+            break;
+        }
+    }
+
+    return FALSE;
+}
+
+static BOOL ScrCmd_SovereignSetParadoxGiven(ScriptContext *ctx)
+{
+    u16 era = ScriptContext_GetVar(ctx);
+    u16 paradox = ScriptContext_GetVar(ctx);
+    int bit = era < PARADOX_ERA_COUNT ? ParadoxBit(era, paradox) : -1;
+
+    if (bit >= 0) {
+        *FieldSystem_GetVarPointer(ctx->fieldSystem, sParadoxEraVars[era]) |= 1 << bit;
+    }
+
+    return FALSE;
+}
+
+static BOOL ScrCmd_SovereignCheckParadoxEraComplete(ScriptContext *ctx)
+{
+    u16 era = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+
+    *destVar = era < PARADOX_ERA_COUNT
+        && FieldSystem_TryGetVar(ctx->fieldSystem, sParadoxEraVars[era]) == (1 << PARADOX_PER_ERA) - 1;
     return FALSE;
 }
 

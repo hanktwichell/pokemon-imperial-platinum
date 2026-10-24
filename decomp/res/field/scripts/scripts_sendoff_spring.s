@@ -102,50 +102,12 @@ SendoffSpring_SovereignOnLoad:
     CallIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, SendoffSpring_RemoveLegendaryKoraidon
     End
 
-@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Koraidon appears once all twenty Paradox Pokemon are
-@ caught, until it is caught.
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Koraidon appears once the Oreburgh Mining Museum's fossil
+@ maniac has given all ten ancient Paradox Pokemon (owner, 2026-10-24), until it is caught.
 SendoffSpring_SovereignSetKoraidonVisibility:
     SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
     GoToIfLt VAR_SOVEREIGN_CHRONICLE, 5, SendoffSpring_SovereignSetKoraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_GREAT_TUSK, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_SCREAM_TAIL, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_BRUTE_BONNET, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_FLUTTER_MANE, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_SLITHER_WING, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_SANDY_SHOCKS, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_ROARING_MOON, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_WALKING_WAKE, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_GOUGING_FIRE, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_RAGING_BOLT, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_IRON_TREADS, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_IRON_BUNDLE, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_IRON_HANDS, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_IRON_JUGULIS, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_IRON_MOTH, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_IRON_THORNS, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_IRON_VALIANT, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_IRON_LEAVES, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_IRON_BOULDER, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_IRON_CROWN, VAR_RESULT
+    SovereignCheckParadoxEraComplete 0, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
     SovereignCheckSpeciesCaught SPECIES_KORAIDON, VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, SendoffSpring_SovereignSetKoraidonVisibilityEnd
@@ -166,50 +128,12 @@ SendoffSpring_LegendaryKoraidon:
     Common_SovereignLegendaryEncounter
     End
 
-@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Miraidon appears once all twenty Paradox Pokemon are
-@ caught, until it is caught.
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Miraidon appears once the Oreburgh Mining Museum's
+@ futuristic scientist has given all ten future Paradox Pokemon (owner, 2026-10-24), until it is caught.
 SendoffSpring_SovereignSetMiraidonVisibility:
     SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_2
     GoToIfLt VAR_SOVEREIGN_CHRONICLE, 5, SendoffSpring_SovereignSetMiraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_GREAT_TUSK, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_SCREAM_TAIL, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_BRUTE_BONNET, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_FLUTTER_MANE, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_SLITHER_WING, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_SANDY_SHOCKS, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_ROARING_MOON, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_WALKING_WAKE, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_GOUGING_FIRE, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_RAGING_BOLT, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_IRON_TREADS, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_IRON_BUNDLE, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_IRON_HANDS, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_IRON_JUGULIS, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_IRON_MOTH, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_IRON_THORNS, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_IRON_VALIANT, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_IRON_LEAVES, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_IRON_BOULDER, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_IRON_CROWN, VAR_RESULT
+    SovereignCheckParadoxEraComplete 1, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
     SovereignCheckSpeciesCaught SPECIES_MIRAIDON, VAR_RESULT
     GoToIfEq VAR_RESULT, TRUE, SendoffSpring_SovereignSetMiraidonVisibilityEnd
