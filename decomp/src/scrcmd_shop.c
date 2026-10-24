@@ -89,6 +89,12 @@ BOOL ScrCmd_PokeMartSpecialties(ScriptContext *ctx)
         incBuyCount = FALSE;
     }
 
+    // Sovereign (E10): Renegade Platinum's evolution-item seller has one price for everything.
+    if (martID == MART_SPECIALTIES_ID_EVOLUTION_ITEMS_SNOWPOINT) {
+        Shop_StartFixedPrice(ctx->task, ctx->fieldSystem, (u16 *)PokeMartSpecialties[martID], 10000);
+        return TRUE;
+    }
+
     Shop_Start(ctx->task, ctx->fieldSystem, (u16 *)PokeMartSpecialties[martID], MART_TYPE_NORMAL, incBuyCount);
     return TRUE;
 }

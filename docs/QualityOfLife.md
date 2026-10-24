@@ -7,7 +7,7 @@
 - **Move Tutors:** all tutors are gathered in the Route 212 (South) house and teach for free.
 - **Move Deleter** moved next to the Oreburgh Pokémon Center.
 - **Hidden Power teller** in the Jubilife Trainers' School (and Veilstone).
-- **Evolution item seller** in Snowpoint City ($10,000 each). *Sovereign adds the new evolution items to her stock.*
+- **Evolution item seller** in Snowpoint City ($10,000 each). *Sovereign adds the new evolution items, Milcery's Sweets, the teapots' items and the Galarica Cuff and Wreath to her stock (34 items).*
 - **Rare Berry seller** on Route 208.
 - **Item Fanatic** in Floaroma (Light Ball, Stick, Thick Club, Lucky Punch, powders, Deep Sea items).
 - **Training NPCs** in the Solaceon Day Care (EXP trainers by badge tier, EV trainers, EV-reducing berry bundle).

@@ -635,6 +635,16 @@ SunyshoreCity_VolknerFinallyCameBack:
     Message SunyshoreCity_Text_VolknerFinallyCameBack
     CloseMessage
     WaitTime 15, VAR_RESULT
+    // Sovereign (E10): as in Renegade Platinum, Flint gives TM50 (Overheat) before he leaves.
+    ApplyMovement LOCALID_FLINT, SunyshoreCity_Movement_SovereignFlintExclamationMark
+    WaitMovement
+    Message SunyshoreCity_Text_SovereignFlintRewardInAdvance
+    SetVar VAR_0x8004, ITEM_TM50
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    Message SunyshoreCity_Text_SovereignFlintIllBeWaiting
+    CloseMessage
+    WaitTime 15, VAR_RESULT
     GetPlayerDir VAR_RESULT
     GoToIfEq VAR_RESULT, DIR_NORTH, SunyshoreCity_FlintLeaveNorth
     GoToIfEq VAR_RESULT, DIR_WEST, SunyshoreCity_FlintLeaveWest
@@ -688,4 +698,9 @@ SunyshoreCity_Movement_PlayerWatchFlintLeaveWest:
     Delay8
     WalkOnSpotNormalSouth
     WalkOnSpotNormalEast
+    EndMovement
+
+    .balign 4, 0
+SunyshoreCity_Movement_SovereignFlintExclamationMark:
+    EmoteExclamationMark
     EndMovement

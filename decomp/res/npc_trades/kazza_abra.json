@@ -1,13 +1,13 @@
 {
-    "name": "Kazza",
+    "name": "Gaia",
     "otName": "Hilary",
-    "species": "SPECIES_ABRA",
-    "hpIV": 15,
-    "atkIV": 15,
+    "species": "SPECIES_SPHEAL",
+    "hpIV": 31,
+    "atkIV": 31,
     "defIV": 15,
-    "speedIV": 20,
-    "spAtkIV": 25,
-    "spDefIV": 25,
+    "speedIV": 15,
+    "spAtkIV": 31,
+    "spDefIV": 15,
     "unused1": 28,
     "otID": 25643,
     "cool": 0,
@@ -16,9 +16,9 @@
     "smart": 0,
     "tough": 0,
     "personality": 142,
-    "heldItem": "ITEM_ORAN_BERRY",
+    "heldItem": "ITEM_NEVERMELTICE",
     "otGender": "GENDER_FEMALE",
     "unused2": 0,
     "language": "LANGUAGE_ENGLISH",
-    "requestedSpecies": "SPECIES_MACHOP"
+    "requestedSpecies": "SPECIES_PONYTA"
 }

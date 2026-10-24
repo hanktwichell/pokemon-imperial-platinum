@@ -42,7 +42,7 @@
       "en_US": [
         "Hey, konnichiwa!\n",
         "Bonjour and all the rest!\r",
-        "Have you a Pokémon named FINNEON?\n",
+        "Have you a Pokémon named MAGIKARP?\n",
         "C’est un Pokémon fish-style?\r",
         "If you will be so kind, trade it will\n",
         "you for my precious MAGIKARP?"
@@ -61,8 +61,8 @@
     {
       "id": "Route226House_Text_ThatIsNoFinneon",
       "en_US": [
-        "Oh, non, non! That is no FINNEON!\n",
-        "What I want is a FINNEON!\f",
+        "Oh, non, non! That is no MAGIKARP!\n",
+        "What I want is a MAGIKARP!\f",
         "You have made the Meister melancholy!"
       ]
     },

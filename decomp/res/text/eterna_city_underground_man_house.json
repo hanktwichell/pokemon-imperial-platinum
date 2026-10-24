@@ -596,6 +596,107 @@
         "Dig around all over and find\n",
         "Treasure!\r"
       ]
+    },
+    {
+      "id": "EternaCityUndergroundManHouse_Text_SovereignWouldYouTakeTheFossils",
+      "en_US": [
+        "Excuse me, are you a Trainer?\r",
+        "You are? Lovely!\r",
+        "I have several fossils here that some\n",
+        "of my colleagues have collected from\f",
+        "the tunnels underground.\r",
+        "There’s a machine in Oreburgh’s\n",
+        "museum that can revive the Pokémon\f",
+        "in these fossils.\r",
+        "Would you be willing to take the fossils\n",
+        "over there? They’ll know what to do."
+      ]
+    },
+    {
+      "id": "EternaCityUndergroundManHouse_Text_SovereignThreeOfEach",
+      "en_US": [
+        "Lovely! There’s three of each.\n",
+        "Except for the rare Old Amber.\r",
+        "There’s a lot of fossil types here,\n",
+        "so please bear with me...\r"
+      ]
+    },
+    {
+      "id": "EternaCityUndergroundManHouse_Text_SovereignIWantToSeeAerodactyl",
+      "en_US": [
+        "The reason I’m asking is because\n",
+        "I really want to see an AERODACTYL.\r",
+        "If you can show me one, then I’ll give\n",
+        "you another gift for your trouble!"
+      ]
+    },
+    {
+      "id": "EternaCityUndergroundManHouse_Text_SovereignICantForceYou",
+      "en_US": [
+        "Ah... Well, I can’t force you.\r",
+        "But you are carrying a Pokédex and\n",
+        "collecting data on Pokémon, right?\r",
+        "Reviving these fossils would help fill\n",
+        "several pages in that, too.\r",
+        "You can’t find these fossilized\n",
+        "Pokémon in the wild!"
+      ]
+    },
+    {
+      "id": "EternaCityUndergroundManHouse_Text_SovereignThatsAnAerodactyl",
+      "en_US": [
+        "Wow! That’s an AERODACTYL with you!\r",
+        "You must have revived it from an\n",
+        "Old Amber at the museum, right?\r",
+        "It looks super strong! In fact,\n",
+        "I have the perfect TM for it!\r",
+        "Please, take it as a thank you\n",
+        "gift for showing me AERODACTYL.\r"
+      ]
+    },
+    {
+      "id": "EternaCityUndergroundManHouse_Text_SovereignAllAerodactylCanUseRockSlide",
+      "en_US": [
+        "The Champion of the Kanto and Johto\n",
+        "regions owns an AERODACTYL, too.\r",
+        "His AERODACTYL is also able to use\n",
+        "the Rock Slide move in battle.\r",
+        "Over there, though, everyone thought\n",
+        "AERODACTYL couldn’t use the move!\r",
+        "Luckily, all AERODACTYL can definitely\n",
+        "use Rock Slide these days!\r",
+        "Anyway, thank you! I’m really glad that\n",
+        "I got to see AERODACTYL in person."
+      ]
+    },
+    {
+      "id": "EternaCityUndergroundManHouse_Text_SovereignTeachThemDig",
+      "en_US": [
+        "Hey! Trainer!\n",
+        "Hey, listen!\r",
+        "If you’re here, I bet you like\n",
+        "to dig around underground, right?\r",
+        "Did you know your Pokémon can\n",
+        "Dig underground as well?\r",
+        "You can teach them how to with this\n",
+        "Technical Machine! Here!\r"
+      ]
+    },
+    {
+      "id": "EternaCityUndergroundManHouse_Text_SovereignDigIsGoodForMore",
+      "en_US": [
+        "That isn’t all Dig is good for!\r",
+        "It lets the user dodge an opponent’s\n",
+        "move, then strike back at their\f",
+        "opponent on the next turn!"
+      ]
+    },
+    {
+      "id": "EternaCityUndergroundManHouse_Text_SovereignYouDontNeedAnEscapeRope",
+      "en_US": [
+        "Don’t forget! You don’t need an\n",
+        "Escape Rope when you can use Dig!"
+      ]
     }
   ]
 }

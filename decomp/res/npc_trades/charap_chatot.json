@@ -1,13 +1,13 @@
 {
-    "name": "Charap",
+    "name": "Macaw",
     "otName": "Norton",
     "species": "SPECIES_CHATOT",
     "hpIV": 15,
-    "atkIV": 20,
+    "atkIV": 15,
     "defIV": 15,
-    "speedIV": 25,
-    "spAtkIV": 25,
-    "spDefIV": 15,
+    "speedIV": 31,
+    "spAtkIV": 31,
+    "spDefIV": 31,
     "unused1": 77,
     "otID": 44142,
     "cool": 20,
@@ -15,10 +15,10 @@
     "cute": 20,
     "smart": 20,
     "tough": 20,
-    "personality": 2151,
-    "heldItem": "ITEM_LEPPA_BERRY",
+    "personality": 2140,
+    "heldItem": "ITEM_SHARP_BEAK",
     "otGender": "GENDER_MALE",
     "unused2": 50,
     "language": "LANGUAGE_ENGLISH",
-    "requestedSpecies": "SPECIES_BUIZEL"
+    "requestedSpecies": "SPECIES_SNORUNT"
 }

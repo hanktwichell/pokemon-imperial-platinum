@@ -13,6 +13,8 @@
     ScriptEntry EternaCityUndergroundManHouse_BgSign
     ScriptEntry EternaCityUndergroundManHouse_PC
     ScriptEntry EternaCityUndergroundManHouse_BugCatcher
+    ScriptEntry EternaCityUndergroundManHouse_ScientistF
+    ScriptEntry EternaCityUndergroundManHouse_NinjaBoy
     ScriptEntryEnd
 
 EternaCityUndergroundManHouse_UndergroundMan:
@@ -527,4 +529,116 @@ EternaCityUndergroundManHouse_BugCatcher:
     NPCMessage EternaCityUndergroundManHouse_Text_AllIUnearthAreArmorFossils
     End
 
+// Sovereign (E10): Renegade Platinum's two new NPCs. A scientist hands out fossils for Oreburgh's museum (three of
+// each, one Old Amber) and gives TM80 (Rock Slide) to a Trainer who shows her an Aerodactyl; a Ninja Boy gives TM28
+// (Dig).
+EternaCityUndergroundManHouse_ScientistF:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfSet FLAG_SOVEREIGN_RECEIVED_ETERNA_TM80, EternaCityUndergroundManHouse_AllAerodactylCanUseRockSlide
+    GoToIfSet FLAG_SOVEREIGN_RECEIVED_ETERNA_FOSSILS, EternaCityUndergroundManHouse_IWantToSeeAerodactyl
+    Message EternaCityUndergroundManHouse_Text_SovereignWouldYouTakeTheFossils
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, EternaCityUndergroundManHouse_ICantForceYou
+    Message EternaCityUndergroundManHouse_Text_SovereignThreeOfEach
+    SetVar VAR_0x8004, ITEM_HELIX_FOSSIL
+    SetVar VAR_0x8005, 3
+    Common_GiveItemQuantity
+    SetVar VAR_0x8004, ITEM_DOME_FOSSIL
+    SetVar VAR_0x8005, 3
+    Common_GiveItemQuantity
+    SetVar VAR_0x8004, ITEM_ROOT_FOSSIL
+    SetVar VAR_0x8005, 3
+    Common_GiveItemQuantity
+    SetVar VAR_0x8004, ITEM_CLAW_FOSSIL
+    SetVar VAR_0x8005, 3
+    Common_GiveItemQuantity
+    SetVar VAR_0x8004, ITEM_SKULL_FOSSIL
+    SetVar VAR_0x8005, 3
+    Common_GiveItemQuantity
+    SetVar VAR_0x8004, ITEM_ARMOR_FOSSIL
+    SetVar VAR_0x8005, 3
+    Common_GiveItemQuantity
+    SetVar VAR_0x8004, ITEM_OLD_AMBER
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    SetFlag FLAG_SOVEREIGN_RECEIVED_ETERNA_FOSSILS
+    Message EternaCityUndergroundManHouse_Text_SovereignIWantToSeeAerodactyl
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+EternaCityUndergroundManHouse_IWantToSeeAerodactyl:
+    Message EternaCityUndergroundManHouse_Text_SovereignIWantToSeeAerodactyl
+    WaitButton
+    CloseMessage
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_AERODACTYL
+    GoToIfEq VAR_RESULT, TRUE, EternaCityUndergroundManHouse_ThatsAnAerodactyl
+    ReleaseAll
+    End
+
+EternaCityUndergroundManHouse_ThatsAnAerodactyl:
+    ApplyMovement LOCALID_SCIENTIST_F, EternaCityUndergroundManHouse_Movement_ScientistFExclamationMark
+    WaitMovement
+    Message EternaCityUndergroundManHouse_Text_SovereignThatsAnAerodactyl
+    SetVar VAR_0x8004, ITEM_TM80
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, EternaCityUndergroundManHouse_SovereignBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_SOVEREIGN_RECEIVED_ETERNA_TM80
+    Message EternaCityUndergroundManHouse_Text_SovereignAllAerodactylCanUseRockSlide
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+EternaCityUndergroundManHouse_AllAerodactylCanUseRockSlide:
+    Message EternaCityUndergroundManHouse_Text_SovereignAllAerodactylCanUseRockSlide
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+EternaCityUndergroundManHouse_ICantForceYou:
+    Message EternaCityUndergroundManHouse_Text_SovereignICantForceYou
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+EternaCityUndergroundManHouse_NinjaBoy:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfSet FLAG_SOVEREIGN_RECEIVED_ETERNA_TM28, EternaCityUndergroundManHouse_YouDontNeedAnEscapeRope
+    Message EternaCityUndergroundManHouse_Text_SovereignTeachThemDig
+    SetVar VAR_0x8004, ITEM_TM28
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, EternaCityUndergroundManHouse_SovereignBagIsFull
+    Common_GiveItemQuantity
+    SetFlag FLAG_SOVEREIGN_RECEIVED_ETERNA_TM28
+    Message EternaCityUndergroundManHouse_Text_SovereignDigIsGoodForMore
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+EternaCityUndergroundManHouse_YouDontNeedAnEscapeRope:
+    Message EternaCityUndergroundManHouse_Text_SovereignYouDontNeedAnEscapeRope
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+EternaCityUndergroundManHouse_SovereignBagIsFull:
+    Common_MessageBagIsFull
+    CloseMessage
+    ReleaseAll
+    End
+
     .balign 4, 0
+EternaCityUndergroundManHouse_Movement_ScientistFExclamationMark:
+    EmoteExclamationMark
+    EndMovement

@@ -2332,6 +2332,8 @@ static int BattleControllerPlayer_CheckObedience(BattleSystem *battleSys, Battle
         && BattleSystem_GetBattlerType(battleSys, battleCtx->attacker) == BATTLER_TYPE_PLAYER_SIDE_SLOT_2) {
         return OBEY_CHECK_SUCCESS;
     }
+    // Sovereign (E10): as in Renegade Platinum, a traded Pokémon always obeys, whatever its level
+    return OBEY_CHECK_SUCCESS;
     if (BattleSystem_TrainerIsOT(battleSys, battleCtx) == TRUE) {
         return OBEY_CHECK_SUCCESS;
     }

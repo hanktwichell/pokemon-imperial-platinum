@@ -5,22 +5,22 @@
       "id": "OreburghCityNorthHouse1F_Text_AskTradeMachopForAbra",
       "en_US": [
         "Listen, listen. Do you have a Pokémon\n",
-        "called MACHOP?\r",
+        "called PONYTA?\r",
         "Would you be willing to trade your\n",
-        "MACHOP for my ABRA?"
+        "PONYTA for my SPHEAL?"
       ]
     },
     {
       "id": "OreburghCityNorthHouse1F_Text_BeNiceToMyAbra",
       "en_US": [
-        "Be nice to my ABRA!\r",
-        "I’ll be sure to look after your MACHOP\n",
+        "Be nice to my SPHEAL!\r",
+        "I’ll be sure to look after your PONYTA\n",
         "in return!"
       ]
     },
     {
       "id": "OreburghCityNorthHouse1F_Text_AskedForMachop",
-      "en_US": "What I asked for was a MACHOP..."
+      "en_US": "What I asked for was a PONYTA..."
     },
     {
       "id": "OreburghCityNorthHouse1F_Text_IllBeWaiting",
@@ -42,11 +42,7 @@
       "id": "OreburghCityNorthHouse1F_Text_PokemonFromTradeGrowsQuickly",
       "en_US": [
         "A Pokémon obtained in a trade grows\n",
-        "quickly.\r",
-        "But if a Pokémon grows too much, it may\n",
-        "ignore the Trainer.\r",
-        "Of course, it won’t matter if you have\n",
-        "lots of Gym Badges."
+        "quickly."
       ]
     },
     {

@@ -4,6 +4,51 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 4) — Renegade's TM gifts, trades, the evolution-item seller, Aaron at the Route 208 gate
+
+Renegade's NPCs are read from its ROM with `tools/design/renegade_rom.py` (new): it disassembles a map's scripts,
+decodes its text and lists its NPCs, so they can be ported by hand. They're ported one map at a time.
+
+- **TM gifts, as in Renegade:**
+  - Fantina gives TM30 (Shadow Ball) after her battle, instead of TM65.
+  - Bertha sits in the Veilstone Department Store 5F café, gives TM26 (Earthquake) and leaves.
+  - Floaroma Town's middle house: an old swordsman gives TM40 (Aerial Ace). The Twin who gave TM88 (Pluck in Platinum;
+    Hurricane in Renegade, now in an item ball), the Clefairy and the Pokémon Breeder are gone.
+  - Eterna City's Underground Man house: a scientist hands out fossils for the Oreburgh museum (three of each, one Old
+    Amber) and gives TM80 (Rock Slide) to a Trainer who shows her an Aerodactyl. A Ninja Boy gives TM28 (Dig).
+  - Flint gives TM50 (Overheat) in Sunyshore City before he leaves for the League.
+  - **Aaron at the Route 208 gate to Hearthome City.** The first time the player walks through, he comes in, heals the
+    party and asks for an unofficial battle (Lv. 31–32 bugs, Renegade's team). Losing is fine. Either way he gives
+    TM81 (X-Scissor). The gate's three NPCs are gone, as in Renegade. His team is
+    `res/trainers/data/sovereign_aaron_route_208.json` (`TRAINER_SOVEREIGN_AARON_ROUTE_208`).
+- **The item balls follow Renegade again.** With those NPCs in, `import_renegade_items.py` keeps only one ball on
+  Platinum's TM: Valor Lakefront's TM85, until Mira's quest in Wayward Cave (which gives it in Renegade) is ported.
+  Nine balls change, among them TM88 (Hurricane) on Route 210 North.
+- **In-game trades are Renegade's:**
+
+  | Where | You give | You get |
+  |---|---|---|
+  | Oreburgh City | Ponyta | Spheal "Gaia" (Never-Melt Ice) |
+  | Eterna City | Snorunt | Chatot "Macaw" (Sharp Beak) |
+  | Floaroma Town (was Snowpoint City) | Cherubi | Skorupi "Sting" (Poison Barb) |
+  | Route 226 | Magikarp | Magikarp "Foppa" (Starf Berry, perfect IVs) |
+
+- **Traded Pokémon always obey**, whatever their level and the player's badges.
+- **The evolution-item seller** replaces the trade NPCs in Snowpoint City's west house (the Mega Stone Sage stays). Her
+  shop sells every evolution item that isn't found elsewhere, ₽10,000 each (half after the Hall of Fame). The shop
+  can now give every item one price (`Shop_StartFixedPrice`). The 34 items:
+  - Renegade's 10: Dragon Scale, Dubious Disc, Electirizer, Magmarizer, Prism Scale, Protector, Razor Claw, Razor Fang,
+    Reaper Cloth, Up-Grade;
+  - the newer evolution items (Sachet, Whipped Dream, Black Augurite, Peat Block, Leader's Crest, the three Apples,
+    Cracked Pot, Unremarkable Teacup, Auspicious and Malicious Armor, Metal Alloy);
+  - Milcery's seven Sweets, the Chipped Pot, the Masterpiece Teacup and the Galarica Cuff and Wreath.
+
+Verified in the test build: the swordsman's TM40, the seller's shop (₽10,000 each; "You don't have enough money"
+with ₽3,000), the fossils and the Ninja Boy's TM28, Bertha's TM26 and her exit, and Aaron's scene through his battle
+(Dustox Lv. 31, then Beautifly) to TM81 and his exit. The win was checked with a weaker team for Aaron in the test
+build; losing goes through the same `ReturnToField` path as Platinum's first rival battle. Flint's scene, the Aerodactyl
+TM80 and the trades weren't played. The release build passes.
+
 ## E10 (part 3) — Renegade's item balls, the Mega Stone spots rechecked, Prism Scale
 
 - **Overworld item balls are Renegade's.** Renegade kept Platinum's 328 item balls and changed 110 of them: TMs

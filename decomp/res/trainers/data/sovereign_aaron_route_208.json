@@ -1,0 +1,94 @@
+{
+    "name": "Aaron",
+    "class": "TRAINER_CLASS_ELITE_FOUR_AARON",
+    "items": [
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_DUSTOX",
+            "form": 0,
+            "level": 31,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_BUG_BUZZ",
+                "MOVE_TOXIC",
+                "MOVE_PROTECT",
+                "MOVE_MOONLIGHT"
+            ],
+            "iv_scale": 254,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_BEAUTIFLY",
+            "form": 0,
+            "level": 31,
+            "item": "ITEM_FOCUS_SASH",
+            "moves": [
+                "MOVE_BUG_BUZZ",
+                "MOVE_AIR_SLASH",
+                "MOVE_ENERGY_BALL",
+                "MOVE_PSYCHIC"
+            ],
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_VENOMOTH",
+            "form": 0,
+            "level": 31,
+            "item": "ITEM_WISE_GLASSES",
+            "moves": [
+                "MOVE_BUG_BUZZ",
+                "MOVE_PSYCHIC",
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_SLEEP_POWDER"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SCIZOR",
+            "form": 0,
+            "level": 31,
+            "item": "ITEM_MUSCLE_BAND",
+            "moves": [
+                "MOVE_X_SCISSOR",
+                "MOVE_BULLET_PUNCH",
+                "MOVE_IRON_HEAD",
+                "MOVE_SWORDS_DANCE"
+            ],
+            "iv_scale": 249,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_DRAPION",
+            "form": 0,
+            "level": 32,
+            "item": "ITEM_SCOPE_LENS",
+            "moves": [
+                "MOVE_CROSS_POISON",
+                "MOVE_X_SCISSOR",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_SWORDS_DANCE"
+            ],
+            "iv_scale": 249,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Oh? I was defeated?\n",
+                "Perhaps I misjudged you!\n"
+            ]
+        }
+    ]
+}

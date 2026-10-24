@@ -1,11 +1,11 @@
 {
-    "name": "Gaspar",
+    "name": "Sting",
     "otName": "Mindy",
-    "species": "SPECIES_HAUNTER",
-    "hpIV": 20,
-    "atkIV": 25,
-    "defIV": 15,
-    "speedIV": 25,
+    "species": "SPECIES_SKORUPI",
+    "hpIV": 15,
+    "atkIV": 31,
+    "defIV": 31,
+    "speedIV": 31,
     "spAtkIV": 15,
     "spDefIV": 15,
     "unused1": 26,
@@ -15,10 +15,10 @@
     "cute": 0,
     "smart": 0,
     "tough": 0,
-    "personality": 136,
-    "heldItem": "ITEM_EVERSTONE",
+    "personality": 138,
+    "heldItem": "ITEM_POISON_BARB",
     "otGender": "GENDER_FEMALE",
     "unused2": 0,
     "language": "LANGUAGE_ENGLISH",
-    "requestedSpecies": "SPECIES_MEDICHAM"
+    "requestedSpecies": "SPECIES_CHERUBI"
 }

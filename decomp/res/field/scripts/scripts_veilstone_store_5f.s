@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/veilstone_store_5f.h"
+#include "res/field/events/events_veilstone_store_5f.h"
 #include "res/text/bank/menu_entries.h"
 
 
@@ -15,6 +16,7 @@
     ScriptEntry VeilstoneStore5F_Collector2
     ScriptEntry VeilstoneStore5F_Directory
     ScriptEntry VeilstoneStore5F_VendingMachine
+    ScriptEntry VeilstoneStore5F_Bertha
     ScriptEntryEnd
 
 VeilstoneStore5F_BugCatcher:
@@ -168,6 +170,35 @@ VeilstoneStore5F_VendingMachineClose:
     WaitButton
     CloseMessage
     HideMoney
+    ReleaseAll
+    End
+
+// Sovereign (E10): Renegade's Bertha, out shopping, gives TM26 Earthquake and leaves.
+VeilstoneStore5F_Bertha:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    Message VeilstoneStore5F_Text_SovereignBerthaTakeThisTM
+    SetVar VAR_0x8004, ITEM_TM26
+    SetVar VAR_0x8005, 1
+    GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, VeilstoneStore5F_BerthaBagIsFull
+    Common_GiveItemQuantity
+    Message VeilstoneStore5F_Text_SovereignBerthaExplainTM26
+    CloseMessage
+    FadeScreenOut
+    WaitFadeScreen
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
+    RemoveObject LOCALID_BERTHA
+    SetFlag FLAG_SOVEREIGN_RECEIVED_BERTHA_TM26
+    WaitSE SEQ_SE_DP_KAIDAN2_sseq
+    FadeScreenIn
+    WaitFadeScreen
+    ReleaseAll
+    End
+
+VeilstoneStore5F_BerthaBagIsFull:
+    Common_MessageBagIsFull
+    CloseMessage
     ReleaseAll
     End
 
