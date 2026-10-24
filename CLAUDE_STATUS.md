@@ -3997,3 +3997,31 @@ species in their slots. Until now the decomp still had Platinum's tables.
    Corner, and set TM prices to 0. Keep Sovereign's Mega Stone pickups.
 2. Renegade's NPCs (`NPCChanges.txt`) and trades (`TradeChanges.txt`).
 3. Renegade's trainers from its ROM (`trdata`/`trpoke`), with `data/trainers_sovereign.yaml` on top.
+
+## CB-0077 — 2026-10-24, 4:14 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Merged:** PR #87 (E10 part 2: TM moves, TMs ×99, ball prices).
+
+**Implemented:** E10 part 3.
+- Renegade's overworld item balls, read from its ROM (`tools/engine/import_renegade_items.py`): 73 balls change.
+  Contest Pass becomes Ice Stone and Loot Sack becomes Prism Scale.
+- Ten balls keep Platinum's TM until the NPC gifts that hand those TMs out in Renegade are ported. The importer keeps
+  every TM obtainable in the main game.
+- 8 of the 15 field Mega Stones moved off balls that hold something valuable in Renegade (`data/mega_stones.yaml`).
+- New Prism Scale item; Feebas → Milotic with it.
+- Renegade's hidden items are Platinum's, so no change there.
+- Verified: Route 203's ball gives a Silk Scarf.
+
+**Files modified:** `tools/engine/import_renegade_items.py` (new), `data/mega_stones.yaml`, `data/items_sovereign.yaml`,
+`decomp/res/field/scripts/scripts_visible_items.s`, `decomp/generated/items.txt`, `decomp/res/items/data/prism_scale.json`,
+`decomp/res/items/icons/*`, `decomp/res/pokemon/feebas/data.json`, `decomp/src/script_manager.c` (test warp comment),
+`docs/EngineChangelog.md`, `docs/ItemChanges_Sovereign.md`, `docs/MegaEvolution.md`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Renegade's NPC gifts. The ROM diff (88 script files) is in scratchpad `gifts.py`. Start with the TM givers that keep
+   10 balls on Platinum's TMs: Bertha TM26, Fantina TM30, Floaroma TM40, Aaron TM81, Flint TM50, Mira TM85, and the
+   Underground Man's TM28/TM80 (he also gives fossils). Then re-run `import_renegade_items.py` and
+   `place_mega_stones.py`.
+2. Then take the TMs out of Veilstone 3F and the Game Corner, and set TM prices to 0.
+3. Renegade's other NPCs (`NPCChanges.txt`: Item Fanatic, Hidden Power teller, the evolution item seller, which also sells
+   the Prism Scale...).

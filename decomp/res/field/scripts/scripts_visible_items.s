@@ -339,13 +339,13 @@ VisibleItems_Route202_Potion:
     End
 
 VisibleItems_Route203_Repel:
-    SetVar VAR_0x8008, ITEM_REPEL
+    SetVar VAR_0x8008, ITEM_SOOTHE_BELL
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
 
 VisibleItems_Route203_PokeBall:
-    SetVar VAR_0x8008, ITEM_ALAKAZITE // Sovereign: Alakazite (data/mega_stones.yaml), was Poké Ball
+    SetVar VAR_0x8008, ITEM_SILK_SCARF
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -369,19 +369,19 @@ VisibleItems_OreburghGateB1F_TM70:
     End
 
 VisibleItems_OreburghGateB1F_EarthPlate:
-    SetVar VAR_0x8008, ITEM_EARTH_PLATE
+    SetVar VAR_0x8008, ITEM_LIGHT_CLAY
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
 
 VisibleItems_OreburghMineB2F_EscapeRope:
-    SetVar VAR_0x8008, ITEM_ESCAPE_ROPE
+    SetVar VAR_0x8008, ITEM_AGGRONITE // Sovereign: Aggronite (data/mega_stones.yaml), was Escape Rope
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
 
 VisibleItems_OreburghMineB2F_Potion:
-    SetVar VAR_0x8008, ITEM_AGGRONITE // Sovereign: Aggronite (data/mega_stones.yaml), was Potion
+    SetVar VAR_0x8008, ITEM_RARE_BONE
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -411,7 +411,7 @@ VisibleItems_RavagedPath_LuckIncense:
     End
 
 VisibleItems_RavagedPath_TM03:
-    SetVar VAR_0x8008, ITEM_TM03
+    SetVar VAR_0x8008, ITEM_TM71
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -429,13 +429,13 @@ VisibleItems_ValleyWindworksOutside_TM24:
     End
 
 VisibleItems_Route205South_HealBall:
-    SetVar VAR_0x8008, ITEM_HEAL_BALL
+    SetVar VAR_0x8008, ITEM_DESTINY_KNOT
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
 
 VisibleItems_Route205South_XSpDef:
-    SetVar VAR_0x8008, ITEM_X_SP_DEF
+    SetVar VAR_0x8008, ITEM_TM08
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -459,7 +459,7 @@ VisibleItems_EternaForest_NetBall:
     End
 
 VisibleItems_EternaForest_GreenShard:
-    SetVar VAR_0x8008, ITEM_GREEN_SHARD
+    SetVar VAR_0x8008, ITEM_LEAF_STONE
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -471,7 +471,7 @@ VisibleItems_OldChateauSideRooms_OldGateau:
     End
 
 VisibleItems_Route205North_GuardSpec:
-    SetVar VAR_0x8008, ITEM_GUARD_SPEC
+    SetVar VAR_0x8008, ITEM_WATER_STONE
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -489,7 +489,7 @@ VisibleItems_Unused7025_PPUp:
     End
 
 VisibleItems_EternaCity_SuperPotion:
-    SetVar VAR_0x8008, ITEM_SUPER_POTION
+    SetVar VAR_0x8008, ITEM_SUN_STONE
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -525,13 +525,13 @@ VisibleItems_Route206_PPUp:
     End
 
 VisibleItems_Route206_SuperRepel:
-    SetVar VAR_0x8008, ITEM_SUPER_REPEL
+    SetVar VAR_0x8008, ITEM_THUNDERSTONE
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
 
 VisibleItems_Route206_BurnHeal:
-    SetVar VAR_0x8008, ITEM_BURN_HEAL
+    SetVar VAR_0x8008, ITEM_TM74
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -543,13 +543,13 @@ VisibleItems_WaywardCave1F_TM32:
     End
 
 VisibleItems_WaywardCave1F_Revive:
-    SetVar VAR_0x8008, ITEM_REVIVE
+    SetVar VAR_0x8008, ITEM_FOCUS_BAND
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
 
 VisibleItems_WaywardCave1F_EscapeRope:
-    SetVar VAR_0x8008, ITEM_SABLENITE // Sovereign: Sablenite (data/mega_stones.yaml), was Escape Rope
+    SetVar VAR_0x8008, ITEM_DUSK_STONE
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -591,13 +591,13 @@ VisibleItems_WaywardCaveB1F_GripClaw:
     End
 
 VisibleItems_Route207_PokeBall:
-    SetVar VAR_0x8008, ITEM_POKE_BALL
+    SetVar VAR_0x8008, ITEM_HARD_STONE
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
 
 VisibleItems_Route207_Revive:
-    SetVar VAR_0x8008, ITEM_REVIVE
+    SetVar VAR_0x8008, ITEM_METAL_COAT
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -627,13 +627,13 @@ VisibleItems_Route208_Carbos:
     End
 
 VisibleItems_Route208_GreatBall:
-    SetVar VAR_0x8008, ITEM_GARDEVOIRITE // Sovereign: Gardevoirite (data/mega_stones.yaml), was Great Ball
+    SetVar VAR_0x8008, ITEM_TM75
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
 
 VisibleItems_Route208_Ether:
-    SetVar VAR_0x8008, ITEM_ETHER
+    SetVar VAR_0x8008, ITEM_GARDEVOIRITE // Sovereign: Gardevoirite (data/mega_stones.yaml), was Ether
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -651,7 +651,7 @@ VisibleItems_AmitySquare_TM43:
     End
 
 VisibleItems_AmitySquare_SpookyPlate:
-    SetVar VAR_0x8008, ITEM_SPOOKY_PLATE
+    SetVar VAR_0x8008, ITEM_METRONOME
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -735,7 +735,7 @@ VisibleItems_GreatMarsh1_YellowShard:
     End
 
 VisibleItems_GreatMarsh1_PokeBall:
-    SetVar VAR_0x8008, ITEM_POKE_BALL
+    SetVar VAR_0x8008, ITEM_SHED_SHELL
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -747,13 +747,13 @@ VisibleItems_GreatMarsh2_BlueShard:
     End
 
 VisibleItems_GreatMarsh4_PokeBall:
-    SetVar VAR_0x8008, ITEM_POKE_BALL
+    SetVar VAR_0x8008, ITEM_KANGASKHANITE // Sovereign: Kangaskhanite (data/mega_stones.yaml), was Poké Ball
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
 
 VisibleItems_GreatMarsh3_GreatBall:
-    SetVar VAR_0x8008, ITEM_KANGASKHANITE // Sovereign: Kangaskhanite (data/mega_stones.yaml), was Great Ball
+    SetVar VAR_0x8008, ITEM_BLACK_SLUDGE
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -765,7 +765,7 @@ VisibleItems_GreatMarsh4_GreenShard:
     End
 
 VisibleItems_GreatMarsh5_GreatBall:
-    SetVar VAR_0x8008, ITEM_GREAT_BALL
+    SetVar VAR_0x8008, ITEM_TM36
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -825,7 +825,7 @@ VisibleItems_Route213_Protein:
     End
 
 VisibleItems_Route204South_ParlyzHeal:
-    SetVar VAR_0x8008, ITEM_PARLYZ_HEAL
+    SetVar VAR_0x8008, ITEM_ALAKAZITE // Sovereign: Alakazite (data/mega_stones.yaml), was Parlyz Heal
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -837,19 +837,19 @@ VisibleItems_ValorLakefront_TM85:
     End
 
 VisibleItems_ValorLakefront_UltraBall:
-    SetVar VAR_0x8008, ITEM_ULTRA_BALL
+    SetVar VAR_0x8008, ITEM_TM53
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
 
 VisibleItems_EternaForest_Ether:
-    SetVar VAR_0x8008, ITEM_ETHER
+    SetVar VAR_0x8008, ITEM_TM65
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
 
 VisibleItems_Route209_GreatBall:
-    SetVar VAR_0x8008, ITEM_GREAT_BALL
+    SetVar VAR_0x8008, ITEM_TWISTEDSPOON
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -861,7 +861,7 @@ VisibleItems_Route209_HyperPotion:
     End
 
 VisibleItems_Route209_Calcium:
-    SetVar VAR_0x8008, ITEM_CALCIUM
+    SetVar VAR_0x8008, ITEM_RARE_CANDY
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -897,13 +897,13 @@ VisibleItems_Route209LostTower3F_Revive:
     End
 
 VisibleItems_Route209LostTower4F_TM27:
-    SetVar VAR_0x8008, ITEM_TM27
+    SetVar VAR_0x8008, ITEM_TM61
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
 
 VisibleItems_SolaceonRuinsRoom7_MindPlate:
-    SetVar VAR_0x8008, ITEM_MIND_PLATE
+    SetVar VAR_0x8008, ITEM_TM04
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -927,7 +927,7 @@ VisibleItems_SolaceonRuinsRoom7_HM05:
     End
 
 VisibleItems_Route210South_SuperRepel:
-    SetVar VAR_0x8008, ITEM_SUPER_REPEL
+    SetVar VAR_0x8008, ITEM_LIFE_ORB
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -945,7 +945,7 @@ VisibleItems_Route221_PureIncense:
     End
 
 VisibleItems_Route210South_NestBall:
-    SetVar VAR_0x8008, ITEM_NEST_BALL
+    SetVar VAR_0x8008, ITEM_TM22
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -957,13 +957,13 @@ VisibleItems_Route210South_HyperPotion:
     End
 
 VisibleItems_Route215_FistPlate:
-    SetVar VAR_0x8008, ITEM_FIST_PLATE
+    SetVar VAR_0x8008, ITEM_BLACKGLASSES
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
 
 VisibleItems_Route215_HyperPotion:
-    SetVar VAR_0x8008, ITEM_ABSOLITE // Sovereign: Absolite (data/mega_stones.yaml), was Hyper Potion
+    SetVar VAR_0x8008, ITEM_RAZOR_FANG
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -975,13 +975,13 @@ VisibleItems_Route215_MaxEther:
     End
 
 VisibleItems_Route215_FullHeal:
-    SetVar VAR_0x8008, ITEM_FULL_HEAL
+    SetVar VAR_0x8008, ITEM_ABSOLITE // Sovereign: Absolite (data/mega_stones.yaml), was Full Heal
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
 
 VisibleItems_Route215_TM34:
-    SetVar VAR_0x8008, ITEM_TM34
+    SetVar VAR_0x8008, ITEM_TM83
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -993,7 +993,7 @@ VisibleItems_VeilstoneCity_FullIncense:
     End
 
 VisibleItems_VeilstoneCity_RareCandy:
-    SetVar VAR_0x8008, ITEM_RARE_CANDY
+    SetVar VAR_0x8008, ITEM_TM79
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -1083,7 +1083,7 @@ VisibleItems_Route219_Antidote:
     End
 
 VisibleItems_Route220_SplashPlate:
-    SetVar VAR_0x8008, ITEM_SPLASH_PLATE
+    SetVar VAR_0x8008, ITEM_DAMP_ROCK
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -1209,13 +1209,13 @@ VisibleItems_Route207_SuperPotion:
     End
 
 VisibleItems_FloaromaMeadow_MiracleSeed:
-    SetVar VAR_0x8008, ITEM_MIRACLE_SEED
+    SetVar VAR_0x8008, ITEM_WHITE_HERB
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
 
 VisibleItems_Route211East_TM29:
-    SetVar VAR_0x8008, ITEM_TM29
+    SetVar VAR_0x8008, ITEM_RED_FLUTE
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -1227,7 +1227,7 @@ VisibleItems_MtCoronet1FNorthRoom1_TM69:
     End
 
 VisibleItems_MtCoronet1FNorthRoom1_EscapeRope:
-    SetVar VAR_0x8008, ITEM_ESCAPE_ROPE
+    SetVar VAR_0x8008, ITEM_SABLENITE // Sovereign: Sablenite (data/mega_stones.yaml), was Escape Rope
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -1251,7 +1251,7 @@ VisibleItems_MtCoronetB1F_LightClay:
     End
 
 VisibleItems_MtCoronetB1F_UltraBall:
-    SetVar VAR_0x8008, ITEM_ULTRA_BALL
+    SetVar VAR_0x8008, ITEM_PRISM_SCALE
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -1275,7 +1275,7 @@ VisibleItems_MtCoronetB1F_Revive:
     End
 
 VisibleItems_Route216_TM13:
-    SetVar VAR_0x8008, ITEM_TM13
+    SetVar VAR_0x8008, ITEM_BLUE_FLUTE
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -1287,7 +1287,7 @@ VisibleItems_Route216_MentalHerb:
     End
 
 VisibleItems_Route216_FullHeal:
-    SetVar VAR_0x8008, ITEM_ABOMASITE // Sovereign: Abomasite (data/mega_stones.yaml), was Full Heal
+    SetVar VAR_0x8008, ITEM_ICE_STONE
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -1305,7 +1305,7 @@ VisibleItems_Route217_HM08:
     End
 
 VisibleItems_Route217_Iron:
-    SetVar VAR_0x8008, ITEM_IRON
+    SetVar VAR_0x8008, ITEM_ICY_ROCK
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -1317,7 +1317,7 @@ VisibleItems_AcuityLakefront_UltraBall:
     End
 
 VisibleItems_GalacticHQB2F_TM36:
-    SetVar VAR_0x8008, ITEM_TM36
+    SetVar VAR_0x8008, ITEM_TOXIC_ORB
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -1467,7 +1467,7 @@ VisibleItems_VictoryRoad2F_TM79:
     End
 
 VisibleItems_VictoryRoad2F_TM71:
-    SetVar VAR_0x8008, ITEM_TM71
+    SetVar VAR_0x8008, ITEM_RARE_CANDY
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -1563,7 +1563,7 @@ VisibleItems_Route225_Revive:
     End
 
 VisibleItems_Route226_TM53:
-    SetVar VAR_0x8008, ITEM_TM53
+    SetVar VAR_0x8008, ITEM_PP_MAX
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -1743,7 +1743,7 @@ VisibleItems_FloaromaMeadow_LeafStone:
     End
 
 VisibleItems_OreburghMineB1F_PokeBall:
-    SetVar VAR_0x8008, ITEM_POKE_BALL
+    SetVar VAR_0x8008, ITEM_MUSCLE_BAND
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -1791,7 +1791,7 @@ VisibleItems_SnowpointTempleB1F_Calcium:
     End
 
 VisibleItems_SnowpointTempleB4F_FullHeal:
-    SetVar VAR_0x8008, ITEM_GLALITITE // Sovereign: Glalitite (data/mega_stones.yaml), was Full Heal
+    SetVar VAR_0x8008, ITEM_ICE_STONE
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -1815,7 +1815,7 @@ VisibleItems_Route216_HPUp:
     End
 
 VisibleItems_OldChateauBackWestRoom_DreadPlate:
-    SetVar VAR_0x8008, ITEM_DREAD_PLATE
+    SetVar VAR_0x8008, ITEM_OLD_GATEAU
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -1839,13 +1839,13 @@ VisibleItems_AmitySquare_AmuletCoin:
     End
 
 VisibleItems_RavagedPath_Potion:
-    SetVar VAR_0x8008, ITEM_POTION
+    SetVar VAR_0x8008, ITEM_EXPERT_BELT
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
 
 VisibleItems_ValleyWindworksOutside_Potion:
-    SetVar VAR_0x8008, ITEM_POTION
+    SetVar VAR_0x8008, ITEM_MAGNET
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -1857,19 +1857,19 @@ VisibleItems_Route205South_SuperPotion:
     End
 
 VisibleItems_Route204North_Awakening:
-    SetVar VAR_0x8008, ITEM_AWAKENING
+    SetVar VAR_0x8008, ITEM_MIRACLE_SEED
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
 
 VisibleItems_Route203_XDefense:
-    SetVar VAR_0x8008, ITEM_X_DEFENSE
+    SetVar VAR_0x8008, ITEM_TM58
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
 
 VisibleItems_Route218_XAccuracy:
-    SetVar VAR_0x8008, ITEM_X_ACCURACY
+    SetVar VAR_0x8008, ITEM_TM03
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -1881,7 +1881,7 @@ VisibleItems_JubilifeCity_Potion:
     End
 
 VisibleItems_TrainersSchool_XAttack:
-    SetVar VAR_0x8008, ITEM_X_ATTACK
+    SetVar VAR_0x8008, ITEM_SCOPE_LENS
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -1899,31 +1899,31 @@ VisibleItems_OreburghCity_YellowShard:
     End
 
 VisibleItems_MtCoronet1FNorthRoom1_IceHeal:
-    SetVar VAR_0x8008, ITEM_ICE_HEAL
+    SetVar VAR_0x8008, ITEM_MOON_STONE
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
 
 VisibleItems_TeamGalacticEternaBuilding2F_XSpeed:
-    SetVar VAR_0x8008, ITEM_X_SPEED
+    SetVar VAR_0x8008, ITEM_TM73
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
 
 VisibleItems_TeamGalacticEternaBuilding3F_XSpecial:
-    SetVar VAR_0x8008, ITEM_X_SPECIAL
+    SetVar VAR_0x8008, ITEM_WISE_GLASSES
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
 
 VisibleItems_TeamGalacticEternaBuilding4F_BlueShard:
-    SetVar VAR_0x8008, ITEM_BLUE_SHARD
+    SetVar VAR_0x8008, ITEM_TM16
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
 
 VisibleItems_TeamGalacticEternaBuilding4F_Upgrade:
-    SetVar VAR_0x8008, ITEM_UPGRADE
+    SetVar VAR_0x8008, ITEM_SECRET_KEY
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -1935,7 +1935,7 @@ VisibleItems_OldChateauDiningArea_RareCandy:
     End
 
 VisibleItems_OldChateauDiningArea_BigPearl:
-    SetVar VAR_0x8008, ITEM_BIG_PEARL
+    SetVar VAR_0x8008, ITEM_SPELL_TAG
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -1953,7 +1953,7 @@ VisibleItems_SolaceonTown_PPUp:
     End
 
 VisibleItems_Route215_HPUp:
-    SetVar VAR_0x8008, ITEM_HP_UP
+    SetVar VAR_0x8008, ITEM_RAZOR_CLAW
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -1971,7 +1971,7 @@ VisibleItems_Route212North_Iron:
     End
 
 VisibleItems_Route212North_GreenShard:
-    SetVar VAR_0x8008, ITEM_GREEN_SHARD
+    SetVar VAR_0x8008, ITEM_TM20
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -1995,7 +1995,7 @@ VisibleItems_SolaceonTown_RareCandy:
     End
 
 VisibleItems_TeamGalacticEternaBuilding4F_Revive:
-    SetVar VAR_0x8008, ITEM_REVIVE
+    SetVar VAR_0x8008, ITEM_TM33
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -2007,7 +2007,7 @@ VisibleItems_Route210North_RedShard:
     End
 
 VisibleItems_Route210North_Zinc:
-    SetVar VAR_0x8008, ITEM_ZINC
+    SetVar VAR_0x8008, ITEM_YELLOW_FLUTE
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -2061,7 +2061,7 @@ VisibleItems_IronIslandB1FLeftRoom_YellowShard:
     End
 
 VisibleItems_IronIslandB2FLeftRoom_Nugget:
-    SetVar VAR_0x8008, ITEM_MAGNET
+    SetVar VAR_0x8008, ITEM_SMOOTH_ROCK
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -2073,7 +2073,7 @@ VisibleItems_IronIslandB1FRightRoom_Revive:
     End
 
 VisibleItems_Route216_MaxPotion:
-    SetVar VAR_0x8008, ITEM_MAX_POTION
+    SetVar VAR_0x8008, ITEM_ABOMASITE // Sovereign: Abomasite (data/mega_stones.yaml), was Max Potion
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -2193,7 +2193,7 @@ VisibleItems_AcuityLakefront_ReaperCloth:
     End
 
 VisibleItems_SnowpointCity_UltraBall:
-    SetVar VAR_0x8008, ITEM_ULTRA_BALL
+    SetVar VAR_0x8008, ITEM_GLALITITE // Sovereign: Glalitite (data/mega_stones.yaml), was Ultra Ball
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -2229,19 +2229,19 @@ VisibleItems_ValorLakefront_Iron:
     End
 
 VisibleItems_Route211East_Carbos:
-    SetVar VAR_0x8008, ITEM_CARBOS
+    SetVar VAR_0x8008, ITEM_FIRE_STONE
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
 
 VisibleItems_Route214_Magmarizer:
-    SetVar VAR_0x8008, ITEM_MAGMARIZER
+    SetVar VAR_0x8008, ITEM_HEAT_ROCK
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
 
 VisibleItems_ValleyWindworksOutside_Electirizer:
-    SetVar VAR_0x8008, ITEM_ELECTIRIZER
+    SetVar VAR_0x8008, ITEM_TM34
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End

@@ -3,9 +3,14 @@
 Renegade Platinum's item changes and item locations are unchanged unless listed here
 (`RenegadePlatinumV130/Documentation/ItemChanges.txt`).
 
-In the game so far (E10 part 2): Renegade's six TM moves (Scald, Wild Charge, Bug Buzz, Hyper Voice, Dazzling Gleam,
-Hurricane), TMs as 99 of each and unsellable, and the Poké/Great/Ultra Ball prices. Renegade's item and TM locations
-come next.
+In the game so far (E10 parts 2–3):
+- Renegade's six TM moves (Scald, Wild Charge, Bug Buzz, Hyper Voice, Dazzling Gleam, Hurricane), TMs as 99 of each
+  and unsellable, and the Poké/Great/Ultra Ball prices.
+- Renegade's overworld item balls. Ten balls keep Platinum's TM until the NPCs who give those TMs in Renegade are
+  ported (`EngineChangelog.md`, E10 part 3).
+- Renegade's hidden items are Platinum's.
+
+Still to come: Renegade's NPC gifts and their TMs, and the TMs leaving Veilstone 3F and the Game Corner.
 
 ## New key items
 
@@ -34,12 +39,15 @@ come next.
 ## New held / evolution items
 
 - **95 Mega Stones and Primal orbs**: full list, field locations and vendors in `MegaEvolution.md`.
+- **Prism Scale** (Renegade's, which reused the unused Loot Sack for it): Mt. Coronet B1F item ball. Used on Feebas, it
+  evolves it into Milotic.
 - **16 evolution items** (Tart/Sweet/Syrupy Apple, Cracked Pot, Unremarkable Teacup, Sachet, Whipped Dream, Strawberry
   Sweet, Black Augurite, Peat Block, Leader's Crest, Auspicious/Malicious Armor, Metal Alloy, Scrolls): `EvolutionChanges_Sovereign.md`.
 
 ## Field items replaced
 
-15 low-value pickups (Potions, status heals, Poké/Great Balls, Repels, Escape Ropes) become Mega Stones. TMs,
+15 pickups that are low-value in Renegade too (Potions, status heals, Poké/Great/Ultra Balls, Repels, Escape Ropes,
+Ether) become Mega Stones. TMs,
 evolution stones and held items are never replaced. Full table with map and script names: `MegaEvolution.md` →
 "Mega Stones hidden in the field".
 

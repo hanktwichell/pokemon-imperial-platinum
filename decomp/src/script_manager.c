@@ -838,7 +838,7 @@ static const struct {
     { MAP_HEADER_VEILSTONE_STORE_2F, 3, 6, FACE_LEFT }, // the vitamin / held item / Gem clerk
     { MAP_HEADER_ROUTE_202, 163, 822, FACE_UP }, // tall grass out of the trainers' sight (tools/test/find_tiles.py)
     { MAP_HEADER_SURVIVAL_AREA, 667, 339, FACE_UP }, // the Youngster who gives 3 Nuggets a day after the Champion
-    { MAP_HEADER_ROUTE_203, 211, 751, FACE_UP }, // the item ball that holds the Alakazite (data/mega_stones.yaml)
+    { MAP_HEADER_ROUTE_203, 211, 751, FACE_UP }, // an item ball (Renegade's Silk Scarf; it held the Alakazite before E10)
     { MAP_HEADER_HEARTHOME_CITY_GYM_LEADER_ROOM, 4, 11, FACE_UP }, // Fantina, who gives the Mega Ring with the Relic Badge
     { MAP_HEADER_HEARTHOME_CITY_NORTHWEST_HOUSE, 2, 5, FACE_UP }, // the Mega Stone Collector (Relic Badge)
     { MAP_HEADER_SURVIVAL_AREA_SOUTH_HOUSE, 8, 5, FACE_UP }, // the Mega Stone Curator (after the Champion)
