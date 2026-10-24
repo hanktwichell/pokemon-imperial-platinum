@@ -11,6 +11,7 @@
     ScriptEntry PokemonLeague_SovereignOnTransition
     ScriptEntry PokemonLeague_SovereignOnLoad
     ScriptEntry PokemonLeague_LegendaryRayquaza
+    ScriptEntry PokemonLeague_SovereignFlyingMaster
     ScriptEntryEnd
 
 @ Sovereign (decision 23): a guard at Victory Road's entrance. It opens with all eight Badges and Totem Togedemaru's
@@ -116,3 +117,64 @@ PokemonLeague_LegendaryRayquaza:
     SetVar VAR_0x8005, 70
     Common_SovereignLegendaryEncounter
     End
+
+@ Sovereign (E10, Renegade's Type Masters): the Flying-type Master battles one Flying-type Pokémon, alone in the party, for
+@ the Sky Plate (Renegade's trainer 1052).
+PokemonLeague_SovereignFlyingMaster:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfDefeated TRAINER_SOVEREIGN_FLYING_MASTER, PokemonLeague_SovereignFlyingMasterThanks
+    Message PokemonLeague_Text_SovereignFlyingMasterIntro
+    GetPartyCount VAR_RESULT
+    GoToIfNe VAR_RESULT, 1, PokemonLeague_SovereignFlyingMasterOnlyOne
+    GetPartyMonType VAR_0x8004, VAR_0x8005, 0
+    GoToIfEq VAR_0x8004, TYPE_FLYING, PokemonLeague_SovereignFlyingMasterAsk
+    GoToIfEq VAR_0x8005, TYPE_FLYING, PokemonLeague_SovereignFlyingMasterAsk
+PokemonLeague_SovereignFlyingMasterOnlyOne:
+    Message PokemonLeague_Text_SovereignFlyingMasterFail
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+PokemonLeague_SovereignFlyingMasterAsk:
+    Message PokemonLeague_Text_SovereignFlyingMasterAsk
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, PokemonLeague_SovereignFlyingMasterDecline
+    Message PokemonLeague_Text_SovereignFlyingMasterBattle
+    CloseMessage
+    StartTrainerBattle TRAINER_SOVEREIGN_FLYING_MASTER
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, PokemonLeague_SovereignFlyingMasterLost
+    Message PokemonLeague_Text_SovereignFlyingMasterWin
+    SetVar VAR_0x8004, ITEM_SKY_PLATE
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    SetTrainerFlag TRAINER_SOVEREIGN_FLYING_MASTER
+PokemonLeague_SovereignFlyingMasterThanks:
+    Message PokemonLeague_Text_SovereignFlyingMasterThanks
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+PokemonLeague_SovereignFlyingMasterDecline:
+    Message PokemonLeague_Text_SovereignFlyingMasterDecline
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+PokemonLeague_SovereignFlyingMasterLost:
+    ReturnToField
+    FadeScreenIn FADE_SCREEN_SPEED_MEDIUM
+    WaitFadeScreen
+    HealParty
+    Message PokemonLeague_Text_SovereignFlyingMasterLose
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+    .balign 4, 0

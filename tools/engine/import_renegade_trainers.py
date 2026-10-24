@@ -16,8 +16,10 @@ What it skips, and prints:
 * trainers whose party Renegade emptied (unused rival slots), and those listed in `SKIP` below.
 Renegade renamed some moves and items in place (Horn Drill is Drill Run, the Seal Bag is the GS Ball...): those are
 matched by their Renegade name to Sovereign's own move or item. `data/trainers_sovereign.yaml` (the owner's boss
-teams) goes on top of this later (milestone T1).
+teams) goes on top of this later (milestone T1). Other scripts can import `Renegade` to write Renegade's own trainers
+(`Renegade(rom).new_trainer(n)`), as their events are ported.
 """
+import ast
 import json
 import os
 import re
@@ -69,30 +71,81 @@ def renamed(rom_path, bank, consts):
     return out
 
 
+class Renegade:
+    """Renegade's trainers, read from its ROM, in Sovereign's trainer JSON terms."""
+
+    def __init__(self, rom_path):
+        rom = ndspy.rom.NintendoDSRom.fromFile(rom_path)
+        self.td = ndspy.narc.NARC(rom.getFileByName("poketool/trainer/trdata.narc")).files
+        self.tp = ndspy.narc.NARC(rom.getFileByName("poketool/trainer/trpoke.narc")).files
+        self.trtbl = bytes(ndspy.narc.NARC(rom.getFileByName("poketool/trmsg/trtbl.narc")).files[0])
+        self.rom_path = rom_path
+        self.species, self.moves, self.items = lines("species.txt"), lines("moves.txt"), lines("items.txt")
+        self.classes = lines("trainer_classes.txt")
+        self.ai_flags = [f for f in lines("ai_flags.txt") if f not in ("AI_FLAG_NONE", "AI_FLAG_ALL")]
+        self.move_map = renamed(rom_path, "move_names", self.moves)
+        self.item_map = renamed(rom_path, "item_names", self.items)
+        self.names = text_bank(rom_path, "TEXT_BANK_NPC_TRAINER_NAMES")
+
+    def move(self, i):
+        return self.move_map.get(i, self.moves[i])
+
+    def item(self, i):
+        return None if i == 0 else self.item_map.get(i, self.items[i])
+
+    def name(self, n):
+        return self.names.get(n, "").replace("{TRNAME}", "")
+
+    def fields(self, n):
+        """Trainer n's class, items, AI flags, battle type and party; None if Renegade left its party empty."""
+        td, tp = bytes(self.td[n]), bytes(self.tp[n])
+        kind, cls, count = td[0], td[1], td[3]
+        if count == 0:
+            return None
+        has_moves, has_items = kind in (1, 3), kind in (2, 3)
+        size = {0: 8, 1: 16, 2: 10, 3: 18}[kind]
+        party = []
+        for o in range(0, count * size, size):
+            v = struct.unpack_from("<%dH" % (size // 2), tp, o)
+            mon = {"species": self.species[v[2] & ((1 << FORM_SHIFT) - 1)], "form": v[2] >> FORM_SHIFT, "level": v[1]}
+            rest = list(v[3:])
+            mon["item"] = self.item(rest.pop(0)) if has_items else None
+            mon["moves"] = [self.move(m) for m in rest[:4]] if has_moves else None
+            mon["iv_scale"] = v[0]
+            mon["ball_seal"] = rest[-1]
+            party.append(mon)
+        ai_mask = struct.unpack_from("<I", td, 12)[0]
+        return {
+            "class": self.classes[cls],
+            "items": [it for it in (self.item(i) for i in struct.unpack_from("<4H", td, 4)) if it],
+            "ai_flags": [f for b, f in enumerate(self.ai_flags) if ai_mask & (1 << b)],
+            "double_battle": struct.unpack_from("<I", td, 16)[0] != 0,
+            "party": party,
+        }
+
+    def messages(self, n):
+        """Trainer n's battle messages (trtbl order), as the JSON's "messages" list."""
+        bank = text_bank(self.rom_path, "TEXT_BANK_NPC_TRAINER_MESSAGES")
+        types = lines("trainer_message_types.txt")
+        out = []
+        for i in range(0, len(self.trtbl), 4):
+            trainer, kind = struct.unpack_from("<HH", self.trtbl, i)
+            if trainer == n and i // 4 in bank:
+                text = bank[i // 4]
+                out.append({"type": types[kind], "en_US": ast.literal_eval(text) if text.startswith("[") else text})
+        return out
+
+    def new_trainer(self, n):
+        """A whole trainer JSON for Renegade's trainer n (for Renegade's own trainers, past Platinum's 928)."""
+        return {"name": self.name(n), **self.fields(n), "messages": self.messages(n)}
+
+
 def main():
     if len(sys.argv) < 2:
         sys.exit(__doc__)
     rom_path, dry = sys.argv[1], "--dry-run" in sys.argv
-    rom = ndspy.rom.NintendoDSRom.fromFile(rom_path)
-    td_all = ndspy.narc.NARC(rom.getFileByName("poketool/trainer/trdata.narc")).files
-    tp_all = ndspy.narc.NARC(rom.getFileByName("poketool/trainer/trpoke.narc")).files
-
+    rene = Renegade(rom_path)
     trainers = lines("trainers.txt")
-    species = lines("species.txt")
-    moves = lines("moves.txt")
-    items = lines("items.txt")
-    classes = lines("trainer_classes.txt")
-    ai_flags = [f for f in lines("ai_flags.txt") if f != "AI_FLAG_NONE" and f != "AI_FLAG_ALL"]
-    move_map = renamed(rom_path, "move_names", moves)
-    item_map = renamed(rom_path, "item_names", items)
-
-    rene_names = text_bank(rom_path, "TEXT_BANK_NPC_TRAINER_NAMES")
-
-    def move(i):
-        return move_map.get(i, moves[i])
-
-    def item(i):
-        return None if i == 0 else item_map.get(i, items[i])
 
     changed, skipped = 0, []
     for n in range(1, VANILLA_TRAINERS):
@@ -104,35 +157,15 @@ def main():
         with open(path, encoding="utf-8") as f:
             raw = f.read()
         data = json.loads(raw)
-        rene_name = rene_names.get(n, "").replace("{TRNAME}", "")
+        rene_name = rene.name(n)
         if const not in SAME and norm(rene_name.replace("＆", "&").replace(" nd ", " & ")) != norm(data["name"]):
             skipped.append((const, f"Renegade's {rene_name!r}"))
             continue
-        src = trainers.index(TEAM_FROM[const]) if const in TEAM_FROM else n
-        td, tp = bytes(td_all[src]), bytes(tp_all[src])
-        kind, cls, count = td[0], td[1], td[3]
-        if count == 0:  # Renegade emptied a few unused slots; a party needs a Pokémon
+        fields = rene.fields(trainers.index(TEAM_FROM[const]) if const in TEAM_FROM else n)
+        if fields is None:  # Renegade emptied a few unused slots; a party needs a Pokémon
             skipped.append((const, "Renegade's party is empty"))
             continue
-        has_moves, has_items = kind in (1, 3), kind in (2, 3)
-        size = {0: 8, 1: 16, 2: 10, 3: 18}[kind]
-        party = []
-        for o in range(0, count * size, size):
-            v = struct.unpack_from("<%dH" % (size // 2), tp, o)
-            mon = {"species": species[v[2] & ((1 << FORM_SHIFT) - 1)], "form": v[2] >> FORM_SHIFT, "level": v[1]}
-            rest = list(v[3:])
-            mon["item"] = item(rest.pop(0)) if has_items else None
-            mon["moves"] = [move(m) for m in rest[:4]] if has_moves else None
-            mon["iv_scale"] = v[0]
-            mon["ball_seal"] = rest[-1]
-            party.append(mon)
-        ai_mask = struct.unpack_from("<I", td, 12)[0]
-        new = dict(data)
-        new["class"] = classes[cls]
-        new["items"] = [it for it in (item(i) for i in struct.unpack_from("<4H", td, 4)) if it]
-        new["ai_flags"] = [f for b, f in enumerate(ai_flags) if ai_mask & (1 << b)]
-        new["double_battle"] = struct.unpack_from("<I", td, 16)[0] != 0
-        new["party"] = party
+        new = {**data, **fields}
         if new != data:
             changed += 1
             if not dry:

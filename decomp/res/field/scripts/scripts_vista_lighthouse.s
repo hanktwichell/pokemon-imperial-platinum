@@ -12,6 +12,7 @@
     ScriptEntry VistaLighthouse_TotemTogedemaru
     ScriptEntry VistaLighthouse_OnLoad
     ScriptEntry VistaLighthouse_LegendaryVictini
+    ScriptEntry VistaLighthouse_SovereignElectricMaster
     ScriptEntryEnd
 
 @ Sovereign: Totem Togedemaru's trial, the last, opens once Cyrus is beaten in the Distortion World.
@@ -163,3 +164,64 @@ VistaLighthouse_Movement_PlayerWatchVolknerWalkToDoorWest:
     Delay8
     WalkOnSpotNormalEast
     EndMovement
+
+@ Sovereign (E10, Renegade's Type Masters): the Electric-type Master battles one Electric-type Pokémon, alone in the party, for
+@ the Zap Plate (Renegade's trainer 1047).
+VistaLighthouse_SovereignElectricMaster:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfDefeated TRAINER_SOVEREIGN_ELECTRIC_MASTER, VistaLighthouse_SovereignElectricMasterThanks
+    Message VistaLighthouse_Text_SovereignElectricMasterIntro
+    GetPartyCount VAR_RESULT
+    GoToIfNe VAR_RESULT, 1, VistaLighthouse_SovereignElectricMasterOnlyOne
+    GetPartyMonType VAR_0x8004, VAR_0x8005, 0
+    GoToIfEq VAR_0x8004, TYPE_ELECTRIC, VistaLighthouse_SovereignElectricMasterAsk
+    GoToIfEq VAR_0x8005, TYPE_ELECTRIC, VistaLighthouse_SovereignElectricMasterAsk
+VistaLighthouse_SovereignElectricMasterOnlyOne:
+    Message VistaLighthouse_Text_SovereignElectricMasterFail
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+VistaLighthouse_SovereignElectricMasterAsk:
+    Message VistaLighthouse_Text_SovereignElectricMasterAsk
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, VistaLighthouse_SovereignElectricMasterDecline
+    Message VistaLighthouse_Text_SovereignElectricMasterBattle
+    CloseMessage
+    StartTrainerBattle TRAINER_SOVEREIGN_ELECTRIC_MASTER
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, VistaLighthouse_SovereignElectricMasterLost
+    Message VistaLighthouse_Text_SovereignElectricMasterWin
+    SetVar VAR_0x8004, ITEM_ZAP_PLATE
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    SetTrainerFlag TRAINER_SOVEREIGN_ELECTRIC_MASTER
+VistaLighthouse_SovereignElectricMasterThanks:
+    Message VistaLighthouse_Text_SovereignElectricMasterThanks
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+VistaLighthouse_SovereignElectricMasterDecline:
+    Message VistaLighthouse_Text_SovereignElectricMasterDecline
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+VistaLighthouse_SovereignElectricMasterLost:
+    ReturnToField
+    FadeScreenIn FADE_SCREEN_SPEED_MEDIUM
+    WaitFadeScreen
+    HealParty
+    Message VistaLighthouse_Text_SovereignElectricMasterLose
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+    .balign 4, 0

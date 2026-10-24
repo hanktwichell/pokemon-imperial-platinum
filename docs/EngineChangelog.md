@@ -4,6 +4,23 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 20) — Renegade's Type Masters
+
+- **15 more Type Masters**, from Renegade, join Iron Island's Steel-type Master. Each battles one Pokémon of their
+  type, alone in the player's party, with a Lv. 85 Pokémon of that type. A win gives their Plate, and they don't
+  battle again.
+  - Bug: Route 202. Rock: Route 207. Ghost: Lost Tower 1F (the Scientist there becomes the Master, as in Renegade).
+  - Fighting: Veilstone City's south-west house. Poison: the Pastoria observatory gate, 2F. Ground: Oreburgh Gate 1F.
+  - Grass: Floaroma Meadow. Psychic: Solaceon Ruins. Electric: Vista Lighthouse. Ice: Snowpoint City.
+  - Water: Route 219. Dragon: the Celestic Town cave. Fire: Route 226. Dark: Sendoff Spring. Flying: the Pokémon
+    League's grounds.
+- **Their trainers** (`TRAINER_SOVEREIGN_<TYPE>_MASTER`) are written from Renegade's own trainers 1037–1052 by the
+  trainer import tool's new `Renegade.new_trainer()`. Their names, classes, teams and defeat lines come from Renegade.
+- **No new flags:** each Master's trainer flag records the win.
+
+Verified in a test build with the party check skipped: the Bug (Yanmega), Ghost (Gengar) and Poison (Nidoking)
+Masters ran their dialogue and their Lv. 85 battles. The release build passes.
+
 ## E10 (part 19) — Renegade's trainer teams
 
 - **Platinum's trainers now have Renegade Platinum's teams**, read from its ROM by a new one-off tool,

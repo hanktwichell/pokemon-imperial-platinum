@@ -1,0 +1,36 @@
+{
+    "name": "Sal",
+    "class": "TRAINER_CLASS_LASS",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_TROPIUS",
+            "form": 0,
+            "level": 85,
+            "item": null,
+            "moves": [
+                "MOVE_HURRICANE",
+                "MOVE_SUBSTITUTE",
+                "MOVE_ROOST",
+                "MOVE_AIR_SLASH"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Amazing!\n",
+                "You have the ultimate Grass-type!\n"
+            ]
+        }
+    ]
+}

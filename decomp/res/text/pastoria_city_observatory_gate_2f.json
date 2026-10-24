@@ -48,6 +48,67 @@
         "If you turn while you’re stuck,\n",
         "sometimes Pokémon may pop out."
       ]
+    },
+    {
+      "id": "PastoriaCityObservatoryGate2F_Text_SovereignPoisonMasterIntro",
+      "en_US": [
+        "I’m the Poison-type Master!\n",
+        "I aim to find the ultimate Poison-type!\r"
+      ]
+    },
+    {
+      "id": "PastoriaCityObservatoryGate2F_Text_SovereignPoisonMasterFail",
+      "en_US": [
+        "Come at me with only a {COLOR 1}single Pokémon{COLOR 0}\n",
+        "in your party if you want to battle me.\r",
+        "Oh, and there’s one other condition...\n",
+        "That Pokémon must be a {COLOR 1}Poison-type{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "PastoriaCityObservatoryGate2F_Text_SovereignPoisonMasterAsk",
+      "en_US": [
+        "Your Poison-type looks pretty strong!\r",
+        "Should we find out who has the\n",
+        "ultimate Poison-type Pokémon?"
+      ]
+    },
+    {
+      "id": "PastoriaCityObservatoryGate2F_Text_SovereignPoisonMasterBattle",
+      "en_US": "Time for a Poison-type battle!\r"
+    },
+    {
+      "id": "PastoriaCityObservatoryGate2F_Text_SovereignPoisonMasterWin",
+      "en_US": [
+        "Oh, wow.\r",
+        "It seems the ultimate Poison-type\n",
+        "Pokémon belongs to you!\r",
+        "That means you are the rightful owner\n",
+        "of this precious item!\r"
+      ]
+    },
+    {
+      "id": "PastoriaCityObservatoryGate2F_Text_SovereignPoisonMasterLose",
+      "en_US": [
+        "The ultimate Poison-type Pokémon\n",
+        "belongs to me!\r",
+        "But I’m always ready for another\n",
+        "Poison-type battle."
+      ]
+    },
+    {
+      "id": "PastoriaCityObservatoryGate2F_Text_SovereignPoisonMasterThanks",
+      "en_US": [
+        "Thank you for a great Poison-type\n",
+        "Pokémon battle."
+      ]
+    },
+    {
+      "id": "PastoriaCityObservatoryGate2F_Text_SovereignPoisonMasterDecline",
+      "en_US": [
+        "Hmm...\n",
+        "Do you feel like you can’t win?"
+      ]
     }
   ]
 }

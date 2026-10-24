@@ -76,6 +76,68 @@
     {
       "id": "VeilstoneCitySouthwestHouse_Text_PachirisuCry",
       "en_US": "PACHIRISU: Pachi chiii!"
+    },
+    {
+      "id": "VeilstoneCitySouthwestHouse_Text_SovereignFightingMasterIntro",
+      "en_US": [
+        "I’m the Fighting-type Master!\n",
+        "I aim to find the ultimate Fighting-type!\r"
+      ]
+    },
+    {
+      "id": "VeilstoneCitySouthwestHouse_Text_SovereignFightingMasterFail",
+      "en_US": [
+        "Come at me with only a {COLOR 1}single Pokémon{COLOR 0}\n",
+        "in your party if you want to battle me.\r",
+        "Oh, and there’s one other condition...\n",
+        "That Pokémon must be a {COLOR 1}Fighting-type{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "VeilstoneCitySouthwestHouse_Text_SovereignFightingMasterAsk",
+      "en_US": [
+        "Your Fighting-type looks pretty\n",
+        "strong!\r",
+        "Should we find out who has the\n",
+        "ultimate Fighting-type Pokémon?"
+      ]
+    },
+    {
+      "id": "VeilstoneCitySouthwestHouse_Text_SovereignFightingMasterBattle",
+      "en_US": "Time for a Fighting-type battle!\r"
+    },
+    {
+      "id": "VeilstoneCitySouthwestHouse_Text_SovereignFightingMasterWin",
+      "en_US": [
+        "Oh, wow.\r",
+        "It seems the ultimate Fighting-type\n",
+        "Pokémon belongs to you!\r",
+        "That means you are the rightful owner\n",
+        "of this precious item!\r"
+      ]
+    },
+    {
+      "id": "VeilstoneCitySouthwestHouse_Text_SovereignFightingMasterLose",
+      "en_US": [
+        "The ultimate Fighting-type Pokémon\n",
+        "belongs to me!\r",
+        "But I’m always ready for another\n",
+        "Fighting-type battle."
+      ]
+    },
+    {
+      "id": "VeilstoneCitySouthwestHouse_Text_SovereignFightingMasterThanks",
+      "en_US": [
+        "Thank you for a great Fighting-type\n",
+        "Pokémon battle."
+      ]
+    },
+    {
+      "id": "VeilstoneCitySouthwestHouse_Text_SovereignFightingMasterDecline",
+      "en_US": [
+        "Hmm...\n",
+        "Do you feel like you can’t win?"
+      ]
     }
   ]
 }

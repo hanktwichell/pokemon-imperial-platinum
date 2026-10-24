@@ -12,6 +12,11 @@ In the game so far (E10 parts 2–11):
   (fossils, TM28, TM80), Flint (TM50), Aaron (TM81) and Mira (TM85), and the rest of Renegade's TM and HM gifts
   (`EngineChangelog.md`, E10 parts 4–7), HM04 from Riley after Iron Island's tag battle, and the Iron Plate from
   Iron Island's Steel-type Master. Rowan gives the Poké Radar and 10 Repels in Sandgem Town.
+- Renegade's other 15 Type Masters, each giving their Plate for a win with one Pokémon of their type (E10 part 20):
+  Insect (Route 202), Stone (Route 207), Spooky (Lost Tower 1F), Fist (Veilstone south-west house), Toxic (Pastoria
+  observatory gate 2F), Earth (Oreburgh Gate 1F), Meadow (Floaroma Meadow), Mind (Solaceon Ruins), Zap (Vista
+  Lighthouse), Icicle (Snowpoint City), Splash (Route 219), Draco (Celestic Town cave), Flame (Route 226), Dread
+  (Sendoff Spring), Sky (Pokémon League).
 - The Snowpoint City evolution-item seller: 34 items at ₽10,000 each.
 - No TMs in the shops: Veilstone 3F sells evolution stones and the Game Corner held items, as in Renegade.
 - Renegade's NPC item gifts (part 9): the Electirizer and Magmarizer (Hotel Grand Lake), the Reaper Cloth (Lost

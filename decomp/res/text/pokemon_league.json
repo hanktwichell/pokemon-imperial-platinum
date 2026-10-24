@@ -36,6 +36,67 @@
     {
       "id": "PokemonLeague_Text_SovereignVictoryRoadAwaits",
       "en_US": "Go on! Victory Road awaits you."
+    },
+    {
+      "id": "PokemonLeague_Text_SovereignFlyingMasterIntro",
+      "en_US": [
+        "I’m the Flying-type Master!\n",
+        "I aim to find the ultimate Flying-type!\r"
+      ]
+    },
+    {
+      "id": "PokemonLeague_Text_SovereignFlyingMasterFail",
+      "en_US": [
+        "Come at me with only a {COLOR 1}single Pokémon{COLOR 0}\n",
+        "in your party if you want to battle me.\r",
+        "Oh, and there’s one other condition...\n",
+        "That Pokémon must be a {COLOR 1}Flying-type{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "PokemonLeague_Text_SovereignFlyingMasterAsk",
+      "en_US": [
+        "Your Flying-type looks pretty strong!\r",
+        "Should we find out who has the\n",
+        "ultimate Flying-type Pokémon?"
+      ]
+    },
+    {
+      "id": "PokemonLeague_Text_SovereignFlyingMasterBattle",
+      "en_US": "Time for a Flying-type battle!\r"
+    },
+    {
+      "id": "PokemonLeague_Text_SovereignFlyingMasterWin",
+      "en_US": [
+        "Oh, wow.\r",
+        "It seems the ultimate Flying-type\n",
+        "Pokémon belongs to you!\r",
+        "That means you are the rightful owner\n",
+        "of this precious item!\r"
+      ]
+    },
+    {
+      "id": "PokemonLeague_Text_SovereignFlyingMasterLose",
+      "en_US": [
+        "The ultimate Flying-type Pokémon\n",
+        "belongs to me!\r",
+        "But I’m always ready for another\n",
+        "Flying-type battle."
+      ]
+    },
+    {
+      "id": "PokemonLeague_Text_SovereignFlyingMasterThanks",
+      "en_US": [
+        "Thank you for a great Flying-type\n",
+        "Pokémon battle."
+      ]
+    },
+    {
+      "id": "PokemonLeague_Text_SovereignFlyingMasterDecline",
+      "en_US": [
+        "Hmm...\n",
+        "Do you feel like you can’t win?"
+      ]
     }
   ]
 }

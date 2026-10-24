@@ -1,0 +1,36 @@
+{
+    "name": "Louie",
+    "class": "TRAINER_CLASS_BUG_CATCHER",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_YANMEGA",
+            "form": 0,
+            "level": 85,
+            "item": null,
+            "moves": [
+                "MOVE_AIR_SLASH",
+                "MOVE_PROTECT",
+                "MOVE_BUG_BUZZ",
+                "MOVE_SUBSTITUTE"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Amazing!\n",
+                "You have the ultimate Bug-type!\n"
+            ]
+        }
+    ]
+}

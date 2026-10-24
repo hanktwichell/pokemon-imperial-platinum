@@ -7,6 +7,67 @@
         "Rt. 219\n",
         "Sandgem Beach"
       ]
+    },
+    {
+      "id": "Route219_Text_SovereignWaterMasterIntro",
+      "en_US": [
+        "I’m the Water-type Master!\n",
+        "I aim to find the ultimate Water-type!\r"
+      ]
+    },
+    {
+      "id": "Route219_Text_SovereignWaterMasterFail",
+      "en_US": [
+        "Come at me with only a {COLOR 1}single Pokémon{COLOR 0}\n",
+        "in your party if you want to battle me.\r",
+        "Oh, and there’s one other condition...\n",
+        "That Pokémon must be a {COLOR 1}Water-type{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "Route219_Text_SovereignWaterMasterAsk",
+      "en_US": [
+        "Your Water-type looks pretty strong!\r",
+        "Should we find out who has the\n",
+        "ultimate Water-type Pokémon?"
+      ]
+    },
+    {
+      "id": "Route219_Text_SovereignWaterMasterBattle",
+      "en_US": "Time for a Water-type battle!\r"
+    },
+    {
+      "id": "Route219_Text_SovereignWaterMasterWin",
+      "en_US": [
+        "Oh, wow.\r",
+        "It seems the ultimate Water-type\n",
+        "Pokémon belongs to you!\r",
+        "That means you are the rightful owner\n",
+        "of this precious item!\r"
+      ]
+    },
+    {
+      "id": "Route219_Text_SovereignWaterMasterLose",
+      "en_US": [
+        "The ultimate Water-type Pokémon\n",
+        "belongs to me!\r",
+        "But I’m always ready for another\n",
+        "Water-type battle."
+      ]
+    },
+    {
+      "id": "Route219_Text_SovereignWaterMasterThanks",
+      "en_US": [
+        "Thank you for a great Water-type\n",
+        "Pokémon battle."
+      ]
+    },
+    {
+      "id": "Route219_Text_SovereignWaterMasterDecline",
+      "en_US": [
+        "Hmm...\n",
+        "Do you feel like you can’t win?"
+      ]
     }
   ]
 }

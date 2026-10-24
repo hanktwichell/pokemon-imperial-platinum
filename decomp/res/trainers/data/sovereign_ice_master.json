@@ -1,0 +1,36 @@
+{
+    "name": "Hazel",
+    "class": "TRAINER_CLASS_ACE_TRAINER_SNOW_FEMALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_WEAVILE",
+            "form": 0,
+            "level": 85,
+            "item": null,
+            "moves": [
+                "MOVE_LOW_KICK",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_X_SCISSOR"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Amazing!\n",
+                "You have the ultimate Ice-type!\n"
+            ]
+        }
+    ]
+}

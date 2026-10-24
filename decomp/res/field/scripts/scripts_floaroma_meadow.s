@@ -14,6 +14,7 @@
     ScriptEntry FloaromaMeadow_TotemRibombee
     ScriptEntry FloaromaMeadow_OnLoad
     ScriptEntry FloaromaMeadow_LegendaryTapuBulu
+    ScriptEntry FloaromaMeadow_SovereignGrassMaster
     ScriptEntryEnd
 
 FloaromaMeadow_OnTransition:
@@ -294,3 +295,64 @@ FloaromaMeadow_ItemWorksKey:
     RemoveObject LOCALID_ITEM_WORKS_KEY
     ReleaseAll
     End
+
+@ Sovereign (E10, Renegade's Type Masters): the Grass-type Master battles one Grass-type Pokémon, alone in the party, for
+@ the Meadow Plate (Renegade's trainer 1046).
+FloaromaMeadow_SovereignGrassMaster:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfDefeated TRAINER_SOVEREIGN_GRASS_MASTER, FloaromaMeadow_SovereignGrassMasterThanks
+    Message FloaromaMeadow_Text_SovereignGrassMasterIntro
+    GetPartyCount VAR_RESULT
+    GoToIfNe VAR_RESULT, 1, FloaromaMeadow_SovereignGrassMasterOnlyOne
+    GetPartyMonType VAR_0x8004, VAR_0x8005, 0
+    GoToIfEq VAR_0x8004, TYPE_GRASS, FloaromaMeadow_SovereignGrassMasterAsk
+    GoToIfEq VAR_0x8005, TYPE_GRASS, FloaromaMeadow_SovereignGrassMasterAsk
+FloaromaMeadow_SovereignGrassMasterOnlyOne:
+    Message FloaromaMeadow_Text_SovereignGrassMasterFail
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+FloaromaMeadow_SovereignGrassMasterAsk:
+    Message FloaromaMeadow_Text_SovereignGrassMasterAsk
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, FloaromaMeadow_SovereignGrassMasterDecline
+    Message FloaromaMeadow_Text_SovereignGrassMasterBattle
+    CloseMessage
+    StartTrainerBattle TRAINER_SOVEREIGN_GRASS_MASTER
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, FloaromaMeadow_SovereignGrassMasterLost
+    Message FloaromaMeadow_Text_SovereignGrassMasterWin
+    SetVar VAR_0x8004, ITEM_MEADOW_PLATE
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    SetTrainerFlag TRAINER_SOVEREIGN_GRASS_MASTER
+FloaromaMeadow_SovereignGrassMasterThanks:
+    Message FloaromaMeadow_Text_SovereignGrassMasterThanks
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+FloaromaMeadow_SovereignGrassMasterDecline:
+    Message FloaromaMeadow_Text_SovereignGrassMasterDecline
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+FloaromaMeadow_SovereignGrassMasterLost:
+    ReturnToField
+    FadeScreenIn FADE_SCREEN_SPEED_MEDIUM
+    WaitFadeScreen
+    HealParty
+    Message FloaromaMeadow_Text_SovereignGrassMasterLose
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+    .balign 4, 0

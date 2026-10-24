@@ -48,6 +48,67 @@
         "You deserve the glory and all the\n",
         "thanks for what you did."
       ]
+    },
+    {
+      "id": "SendoffSpring_Text_SovereignDarkMasterIntro",
+      "en_US": [
+        "I’m the Dark-type Master!\n",
+        "I aim to find the ultimate Dark-type!\r"
+      ]
+    },
+    {
+      "id": "SendoffSpring_Text_SovereignDarkMasterFail",
+      "en_US": [
+        "Come at me with only a {COLOR 1}single Pokémon{COLOR 0}\n",
+        "in your party if you want to battle me.\r",
+        "Oh, and there’s one other condition...\n",
+        "That Pokémon must be a {COLOR 1}Dark-type{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "SendoffSpring_Text_SovereignDarkMasterAsk",
+      "en_US": [
+        "Your Dark-type looks pretty strong!\r",
+        "Should we find out who has the\n",
+        "ultimate Dark-type Pokémon?"
+      ]
+    },
+    {
+      "id": "SendoffSpring_Text_SovereignDarkMasterBattle",
+      "en_US": "Time for a Dark-type battle!\r"
+    },
+    {
+      "id": "SendoffSpring_Text_SovereignDarkMasterWin",
+      "en_US": [
+        "Oh, wow.\r",
+        "It seems the ultimate Dark-type\n",
+        "Pokémon belongs to you!\r",
+        "That means you are the rightful owner\n",
+        "of this precious item!\r"
+      ]
+    },
+    {
+      "id": "SendoffSpring_Text_SovereignDarkMasterLose",
+      "en_US": [
+        "The ultimate Dark-type Pokémon\n",
+        "belongs to me!\r",
+        "But I’m always ready for another\n",
+        "Dark-type battle."
+      ]
+    },
+    {
+      "id": "SendoffSpring_Text_SovereignDarkMasterThanks",
+      "en_US": [
+        "Thank you for a great Dark-type\n",
+        "Pokémon battle."
+      ]
+    },
+    {
+      "id": "SendoffSpring_Text_SovereignDarkMasterDecline",
+      "en_US": [
+        "Hmm...\n",
+        "Do you feel like you can’t win?"
+      ]
     }
   ]
 }

@@ -25,7 +25,23 @@
             "player_facing_dir": "BG_EVENT_DIR_NORTH"
         }
     ],
-    "object_events": [],
+    "object_events": [
+        {
+            "id": "LOCALID_SOVEREIGN_PSYCHIC_MASTER",
+            "graphics_id": "OBJ_EVENT_GFX_PSYCHIC",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": 3,
+            "initial_dir": 3,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 4,
+            "z": 7,
+            "y": 0
+        }
+    ],
     "warp_events": [
         {
             "x": 5,

@@ -1,0 +1,36 @@
+{
+    "name": "Dexter",
+    "class": "TRAINER_CLASS_HIKER",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_QUAGSIRE",
+            "form": 0,
+            "level": 85,
+            "item": null,
+            "moves": [
+                "MOVE_AQUA_TAIL",
+                "MOVE_ICE_PUNCH",
+                "MOVE_EARTHQUAKE",
+                "MOVE_RECOVER"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Amazing!\n",
+                "You have the ultimate Ground-type!\n"
+            ]
+        }
+    ]
+}

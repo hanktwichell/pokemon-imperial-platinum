@@ -1,0 +1,36 @@
+{
+    "name": "Frasier",
+    "class": "TRAINER_CLASS_PSYCHIC_MALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_METAGROSS",
+            "form": 0,
+            "level": 85,
+            "item": null,
+            "moves": [
+                "MOVE_METEOR_MASH",
+                "MOVE_BULLET_PUNCH",
+                "MOVE_LIGHT_SCREEN",
+                "MOVE_THUNDER_PUNCH"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Amazing!\n",
+                "You have the ultimate Psychic-type!\n"
+            ]
+        }
+    ]
+}

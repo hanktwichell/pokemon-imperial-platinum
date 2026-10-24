@@ -36,6 +36,67 @@
         "All right! Now you can use the hidden\n",
         "move Rock Smash on small boulders!"
       ]
+    },
+    {
+      "id": "OreburghGate1F_Text_SovereignGroundMasterIntro",
+      "en_US": [
+        "I’m the Ground-type Master!\n",
+        "I aim to find the ultimate Ground-type!\r"
+      ]
+    },
+    {
+      "id": "OreburghGate1F_Text_SovereignGroundMasterFail",
+      "en_US": [
+        "Come at me with only a {COLOR 1}single Pokémon{COLOR 0}\n",
+        "in your party if you want to battle me.\r",
+        "Oh, and there’s one other condition...\n",
+        "That Pokémon must be a {COLOR 1}Ground-type{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "OreburghGate1F_Text_SovereignGroundMasterAsk",
+      "en_US": [
+        "Your Ground-type looks pretty strong!\r",
+        "Should we find out who has the\n",
+        "ultimate Ground-type Pokémon?"
+      ]
+    },
+    {
+      "id": "OreburghGate1F_Text_SovereignGroundMasterBattle",
+      "en_US": "Time for a Ground-type battle!\r"
+    },
+    {
+      "id": "OreburghGate1F_Text_SovereignGroundMasterWin",
+      "en_US": [
+        "Oh, wow.\r",
+        "It seems the ultimate Ground-type\n",
+        "Pokémon belongs to you!\r",
+        "That means you are the rightful owner\n",
+        "of this precious item!\r"
+      ]
+    },
+    {
+      "id": "OreburghGate1F_Text_SovereignGroundMasterLose",
+      "en_US": [
+        "The ultimate Ground-type Pokémon\n",
+        "belongs to me!\r",
+        "But I’m always ready for another\n",
+        "Ground-type battle."
+      ]
+    },
+    {
+      "id": "OreburghGate1F_Text_SovereignGroundMasterThanks",
+      "en_US": [
+        "Thank you for a great Ground-type\n",
+        "Pokémon battle."
+      ]
+    },
+    {
+      "id": "OreburghGate1F_Text_SovereignGroundMasterDecline",
+      "en_US": [
+        "Hmm...\n",
+        "Do you feel like you can’t win?"
+      ]
     }
   ]
 }

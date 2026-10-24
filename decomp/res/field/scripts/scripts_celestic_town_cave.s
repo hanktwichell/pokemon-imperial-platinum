@@ -6,6 +6,7 @@
     ScriptEntry CelesticTownCave_Painting
     ScriptEntry CelesticTownCave_Cyrus
     ScriptEntry CelesticTownCave_Elder
+    ScriptEntry CelesticTownCave_SovereignDragonMaster
     ScriptEntryEnd
 
 CelesticTownCave_Painting:
@@ -664,3 +665,64 @@ CelesticTownCave_Movement_PlayerWatchCynthiaLeave:
     Delay8 2
     FaceWest
     EndMovement
+
+@ Sovereign (E10, Renegade's Type Masters): the Dragon-type Master battles one Dragon-type Pokémon, alone in the party, for
+@ the Draco Plate (Renegade's trainer 1050).
+CelesticTownCave_SovereignDragonMaster:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfDefeated TRAINER_SOVEREIGN_DRAGON_MASTER, CelesticTownCave_SovereignDragonMasterThanks
+    Message CelesticTownCave_Text_SovereignDragonMasterIntro
+    GetPartyCount VAR_RESULT
+    GoToIfNe VAR_RESULT, 1, CelesticTownCave_SovereignDragonMasterOnlyOne
+    GetPartyMonType VAR_0x8004, VAR_0x8005, 0
+    GoToIfEq VAR_0x8004, TYPE_DRAGON, CelesticTownCave_SovereignDragonMasterAsk
+    GoToIfEq VAR_0x8005, TYPE_DRAGON, CelesticTownCave_SovereignDragonMasterAsk
+CelesticTownCave_SovereignDragonMasterOnlyOne:
+    Message CelesticTownCave_Text_SovereignDragonMasterFail
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+CelesticTownCave_SovereignDragonMasterAsk:
+    Message CelesticTownCave_Text_SovereignDragonMasterAsk
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, CelesticTownCave_SovereignDragonMasterDecline
+    Message CelesticTownCave_Text_SovereignDragonMasterBattle
+    CloseMessage
+    StartTrainerBattle TRAINER_SOVEREIGN_DRAGON_MASTER
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, CelesticTownCave_SovereignDragonMasterLost
+    Message CelesticTownCave_Text_SovereignDragonMasterWin
+    SetVar VAR_0x8004, ITEM_DRACO_PLATE
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    SetTrainerFlag TRAINER_SOVEREIGN_DRAGON_MASTER
+CelesticTownCave_SovereignDragonMasterThanks:
+    Message CelesticTownCave_Text_SovereignDragonMasterThanks
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+CelesticTownCave_SovereignDragonMasterDecline:
+    Message CelesticTownCave_Text_SovereignDragonMasterDecline
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+CelesticTownCave_SovereignDragonMasterLost:
+    ReturnToField
+    FadeScreenIn FADE_SCREEN_SPEED_MEDIUM
+    WaitFadeScreen
+    HealParty
+    Message CelesticTownCave_Text_SovereignDragonMasterLose
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+    .balign 4, 0

@@ -187,6 +187,67 @@
         "Leader: Candice\f",
         "The Diamond Dust Girl!"
       ]
+    },
+    {
+      "id": "SnowpointCity_Text_SovereignIceMasterIntro",
+      "en_US": [
+        "I’m the Ice-type Master!\n",
+        "I aim to find the ultimate Ice-type!\r"
+      ]
+    },
+    {
+      "id": "SnowpointCity_Text_SovereignIceMasterFail",
+      "en_US": [
+        "Come at me with only a {COLOR 1}single Pokémon{COLOR 0}\n",
+        "in your party if you want to battle me.\r",
+        "Oh, and there’s one other condition...\n",
+        "That Pokémon must be an {COLOR 1}Ice-type{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "SnowpointCity_Text_SovereignIceMasterAsk",
+      "en_US": [
+        "Your Ice-type looks pretty strong!\r",
+        "Should we find out who has the\n",
+        "ultimate Ice-type Pokémon?"
+      ]
+    },
+    {
+      "id": "SnowpointCity_Text_SovereignIceMasterBattle",
+      "en_US": "Time for an Ice-type battle!\r"
+    },
+    {
+      "id": "SnowpointCity_Text_SovereignIceMasterWin",
+      "en_US": [
+        "Oh, wow.\r",
+        "It seems the ultimate Ice-type\n",
+        "Pokémon belongs to you!\r",
+        "That means you are the rightful owner\n",
+        "of this precious item!\r"
+      ]
+    },
+    {
+      "id": "SnowpointCity_Text_SovereignIceMasterLose",
+      "en_US": [
+        "The ultimate Ice-type Pokémon\n",
+        "belongs to me!\r",
+        "But I’m always ready for another\n",
+        "Ice-type battle."
+      ]
+    },
+    {
+      "id": "SnowpointCity_Text_SovereignIceMasterThanks",
+      "en_US": [
+        "Thank you for a great Ice-type\n",
+        "Pokémon battle."
+      ]
+    },
+    {
+      "id": "SnowpointCity_Text_SovereignIceMasterDecline",
+      "en_US": [
+        "Hmm...\n",
+        "Do you feel like you can’t win?"
+      ]
     }
   ]
 }

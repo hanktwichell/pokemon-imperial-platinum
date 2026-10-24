@@ -11,6 +11,7 @@
     ScriptEntry Route207_ArrowSignpostMtCoronet
     ScriptEntry Route207_ArrowSignpostOreburghCity
     ScriptEntry Route207_TrainerTipsSignpost
+    ScriptEntry Route207_SovereignRockMaster
     ScriptEntryEnd
 
 Route207_OnTransition:
@@ -169,6 +170,67 @@ Route207_ArrowSignpostOreburghCity:
 
 Route207_TrainerTipsSignpost:
     ShowScrollingSign Route207_Text_TrainerTipsImmobilizedIfAsleepOrParalyzed
+    End
+
+    
+
+@ Sovereign (E10, Renegade's Type Masters): the Rock-type Master battles one Rock-type Pokémon, alone in the party, for
+@ the Stone Plate (Renegade's trainer 1042).
+Route207_SovereignRockMaster:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfDefeated TRAINER_SOVEREIGN_ROCK_MASTER, Route207_SovereignRockMasterThanks
+    Message Route207_Text_SovereignRockMasterIntro
+    GetPartyCount VAR_RESULT
+    GoToIfNe VAR_RESULT, 1, Route207_SovereignRockMasterOnlyOne
+    GetPartyMonType VAR_0x8004, VAR_0x8005, 0
+    GoToIfEq VAR_0x8004, TYPE_ROCK, Route207_SovereignRockMasterAsk
+    GoToIfEq VAR_0x8005, TYPE_ROCK, Route207_SovereignRockMasterAsk
+Route207_SovereignRockMasterOnlyOne:
+    Message Route207_Text_SovereignRockMasterFail
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+Route207_SovereignRockMasterAsk:
+    Message Route207_Text_SovereignRockMasterAsk
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, Route207_SovereignRockMasterDecline
+    Message Route207_Text_SovereignRockMasterBattle
+    CloseMessage
+    StartTrainerBattle TRAINER_SOVEREIGN_ROCK_MASTER
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, Route207_SovereignRockMasterLost
+    Message Route207_Text_SovereignRockMasterWin
+    SetVar VAR_0x8004, ITEM_STONE_PLATE
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    SetTrainerFlag TRAINER_SOVEREIGN_ROCK_MASTER
+Route207_SovereignRockMasterThanks:
+    Message Route207_Text_SovereignRockMasterThanks
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+Route207_SovereignRockMasterDecline:
+    Message Route207_Text_SovereignRockMasterDecline
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+Route207_SovereignRockMasterLost:
+    ReturnToField
+    FadeScreenIn FADE_SCREEN_SPEED_MEDIUM
+    WaitFadeScreen
+    HealParty
+    Message Route207_Text_SovereignRockMasterLose
+    WaitButton
+    CloseMessage
+    ReleaseAll
     End
 
     .balign 4, 0

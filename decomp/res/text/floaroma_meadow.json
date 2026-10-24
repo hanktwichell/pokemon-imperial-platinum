@@ -143,6 +143,67 @@
     {
       "id": "FloaromaMeadow_Text_Dummy18",
       "garbage": 27
+    },
+    {
+      "id": "FloaromaMeadow_Text_SovereignGrassMasterIntro",
+      "en_US": [
+        "I’m the Grass-type Master!\n",
+        "I aim to find the ultimate Grass-type!\r"
+      ]
+    },
+    {
+      "id": "FloaromaMeadow_Text_SovereignGrassMasterFail",
+      "en_US": [
+        "Come at me with only a {COLOR 1}single Pokémon{COLOR 0}\n",
+        "in your party if you want to battle me.\r",
+        "Oh, and there’s one other condition...\n",
+        "That Pokémon must be a {COLOR 1}Grass-type{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "FloaromaMeadow_Text_SovereignGrassMasterAsk",
+      "en_US": [
+        "Your Grass-type looks pretty strong!\r",
+        "Should we find out who has the\n",
+        "ultimate Grass-type Pokémon?"
+      ]
+    },
+    {
+      "id": "FloaromaMeadow_Text_SovereignGrassMasterBattle",
+      "en_US": "Time for a Grass-type battle!\r"
+    },
+    {
+      "id": "FloaromaMeadow_Text_SovereignGrassMasterWin",
+      "en_US": [
+        "Oh, wow.\r",
+        "It seems the ultimate Grass-type\n",
+        "Pokémon belongs to you!\r",
+        "That means you are the rightful owner\n",
+        "of this precious item!\r"
+      ]
+    },
+    {
+      "id": "FloaromaMeadow_Text_SovereignGrassMasterLose",
+      "en_US": [
+        "The ultimate Grass-type Pokémon\n",
+        "belongs to me!\r",
+        "But I’m always ready for another\n",
+        "Grass-type battle."
+      ]
+    },
+    {
+      "id": "FloaromaMeadow_Text_SovereignGrassMasterThanks",
+      "en_US": [
+        "Thank you for a great Grass-type\n",
+        "Pokémon battle."
+      ]
+    },
+    {
+      "id": "FloaromaMeadow_Text_SovereignGrassMasterDecline",
+      "en_US": [
+        "Hmm...\n",
+        "Do you feel like you can’t win?"
+      ]
     }
   ]
 }
