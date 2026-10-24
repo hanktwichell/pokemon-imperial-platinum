@@ -4,6 +4,23 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## FM — Zen Mode
+
+- **Zen Mode.** A Darmanitan with Zen Mode turns to Zen Mode at the end of a turn with half its HP or less:
+  - Darmanitan becomes Zen Darmanitan (Fire/Psychic).
+  - Galarian Darmanitan becomes Zen Galarian Darmanitan (Ice/Fire).
+  - Above half HP it turns back. It also goes back on switch-out and at the battle's end, and keeps Zen Mode as its
+    ability.
+- **Fixed:** a battle form of a regional form now goes back to that regional form (Galarian Darmanitan, not
+  Darmanitan). A form change in battle now changes the ability only for a Mega, Primal or Ultra Necrozma; before, Zen
+  Darmanitan would have taken Sheer Force.
+- **How:** `TechnicalDesign.md` (Zen Mode). The Zen forms share Darmanitan's sprite until milestone E12.
+- **Verified** in the emulator:
+  - Darmanitan at 40% HP turned to Zen Mode at the end of the turn (Fire/Psychic, Zen Mode).
+  - A Galarian Darmanitan switched in at 40% did the same (Ice/Fire).
+  - After the battle the two were Fire and Ice again, so the Galarian one stayed Galarian.
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+
 ## FM — Blade Aegislash
 
 - **Stance Change.**

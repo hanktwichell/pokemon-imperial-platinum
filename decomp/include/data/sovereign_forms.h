@@ -336,4 +336,15 @@ static const SovereignItemEvolutionForm sSovereignItemEvolutionForms[] = {
     { SPECIES_KUBFU, ITEM_SCROLL_OF_WATERS, SPECIES_URSHIFU, 1 }, // Rapid Strike Urshifu
 };
 
+// The form a battle form goes back to, when it isn't 0 (a regional form's: Zen Galarian Darmanitan).
+typedef struct SovereignBattleFormBase {
+    u16 species;
+    u8 form;
+    u8 baseForm;
+} SovereignBattleFormBase;
+
+static const SovereignBattleFormBase sSovereignBattleFormBases[] = {
+    { SPECIES_DARMANITAN, 3, 2 }, // Zen Galarian Darmanitan
+};
+
 #endif // POKEPLATINUM_DATA_SOVEREIGN_FORMS_H

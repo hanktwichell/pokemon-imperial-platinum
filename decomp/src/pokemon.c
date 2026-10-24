@@ -5142,12 +5142,56 @@ void Pokemon_SovereignRevertSwitchOutForm(Pokemon *mon)
     if (entry != NULL
         && (entry->kind == SOVEREIGN_FORM_BATTLE_MOVE
             || (entry->kind == SOVEREIGN_FORM_BATTLE && entry->trigger != ABILITY_DISGUISE))) {
-        int form = 0;
+        int form = Pokemon_SovereignBattleFormBase(species, entry->form);
 
         Pokemon_SetValue(mon, MON_DATA_FORM, &form);
         Pokemon_CalcAbility(mon);
         Pokemon_CalcLevelAndStats(mon);
     }
+}
+
+// Sovereign (FM): the form a battle form goes back to. That is the fused form Ultra Necrozma burst from, the regional
+// form a regional form's battle form came from (Zen Galarian Darmanitan: Standard Galarian), or else 0.
+int Pokemon_SovereignBattleFormBase(u16 species, int form)
+{
+    const SovereignForm *entry = Pokemon_FindSovereignForm(species, form);
+
+    if (entry != NULL && entry->kind == SOVEREIGN_FORM_ULTRA_BURST) {
+        return entry->trigger;
+    }
+
+    for (int i = 0; i < NELEMS(sSovereignBattleFormBases); i++) {
+        if (sSovereignBattleFormBases[i].species == species && sSovereignBattleFormBases[i].form == form) {
+            return sSovereignBattleFormBases[i].baseForm;
+        }
+    }
+
+    return 0;
+}
+
+// Sovereign (FM): the battle form an ability gives a Pokémon of this species and form (Zen Mode: Darmanitan to Zen
+// Darmanitan, Galarian to Zen Galarian), or -1.
+int Pokemon_SovereignAbilityForm(u16 species, int form, u16 ability)
+{
+    for (int i = 0; i < SOVEREIGN_FORM_COUNT; i++) {
+        const SovereignForm *entry = &sSovereignForms[i];
+
+        if (entry->species == species && entry->kind == SOVEREIGN_FORM_BATTLE && entry->trigger == ability
+            && Pokemon_SovereignBattleFormBase(species, entry->form) == form) {
+            return entry->form;
+        }
+    }
+
+    return -1;
+}
+
+// Sovereign (FM): TRUE for a battle form that brings its own ability (Mega, Primal, Ultra Necrozma). The others keep
+// the Pokémon's (Zen Mode's Darmanitan keeps Zen Mode).
+BOOL Pokemon_SovereignFormChangesAbility(u16 species, int form)
+{
+    const SovereignForm *entry = Pokemon_FindSovereignForm(species, form);
+
+    return entry != NULL && (Pokemon_IsSovereignMegaForm(species, form) || entry->kind == SOVEREIGN_FORM_ULTRA_BURST);
 }
 
 // Sovereign (FM): the Ultra form that a Pokémon of this species and form bursts into while holding heldItem (Dusk Mane
@@ -5381,9 +5425,8 @@ void Pokemon_SovereignRevertBattleForm(Pokemon *mon)
         return;
     }
 
-    // Ultra Necrozma goes back to the fused form it burst from.
-    const SovereignForm *entry = Pokemon_FindSovereignForm(species, form);
-    form = entry->kind == SOVEREIGN_FORM_ULTRA_BURST ? entry->trigger : 0;
+    // Ultra Necrozma goes back to the fused form it burst from, a regional form's battle form to the regional form.
+    form = Pokemon_SovereignBattleFormBase(species, form);
     Pokemon_SetValue(mon, MON_DATA_FORM, &form);
 
     if (Pokemon_SovereignCrownedMove(species) != MOVE_NONE) {

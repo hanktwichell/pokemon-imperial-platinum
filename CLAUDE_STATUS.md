@@ -3220,3 +3220,30 @@ passed on one re-run. This entry adds Blade Aegislash (milestone FM). PR open.
    Shields Down (Minior's cores) and Disguise (Busted Mimikyu) are data only, and Power Construct (Complete Zygarde)
    and Battle Bond (Ash-Greninja) aren't in yet.
 3. E10, Renegade's events: their spots against the Chronicles' (the clash table in `docs/LegendaryTriggers.md`).
+
+## CB-0051 — 2026-10-23, 9:28 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Status:** PR #63 (CB-0050, Blade Aegislash) is merged. This entry adds Zen Mode in battle (milestone FM). PR open.
+
+**What was implemented:**
+- **Zen Mode:** at the end of a turn, a Darmanitan with Zen Mode at half its HP or less turns to Zen Darmanitan, or
+  to Zen Galarian Darmanitan if it is Galarian. Above half HP it turns back (`BattleSystem_TriggerTurnEndAbility`).
+- **Fixed:** battle forms now go back to their regional form, not 0 (`Pokemon_SovereignBattleFormBase`, with
+  `sSovereignBattleFormBases` from `gen_forms.py`). A battle form now takes its own ability only for a Mega, Primal
+  or Ultra Necrozma (`Pokemon_SovereignFormChangesAbility`); before, Zen Darmanitan would have lost Zen Mode.
+- **Verified** in the emulator:
+  - Both Darmanitan turned to Zen Mode at 40% HP: Fire/Psychic and Ice/Fire, still with Zen Mode.
+  - After the battle they were Fire and Ice again.
+  - Release build without warnings, boot smoke, docs.
+  - Not tested: turning back above half HP. That needs healing during the battle; the code path is the same.
+
+**Files modified:** `tools/engine/gen_forms.py`, `decomp/src/pokemon.c`, `decomp/include/pokemon.h`,
+`decomp/src/battle/battle_lib.c`, `decomp/include/data/sovereign_forms.h`, `docs/TechnicalDesign.md`,
+`docs/EngineRoadmap.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Owner decisions: Koraidon/Miraidon after their own ten Paradox Pokémon or all twenty; Cosmog's Teleport; whether
+   Ultra Burst should count as the trainer's Mega (built: it doesn't); overworld sprites and sizing; final placements.
+2. Milestone FM: Disguise (Busted Mimikyu: the first hit is blocked), then Schooling and Shields Down. Their forms'
+   data comes first: School Wishiwashi and Minior's meteor and core forms.
+3. E10, Renegade's events: their spots against the Chronicles' (the clash table in `docs/LegendaryTriggers.md`).
