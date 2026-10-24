@@ -221,6 +221,67 @@
         "same kind of Pokémon, you should\f",
         "consider using Repels.\r"
       ]
+    },
+    {
+      "id": "Route202_Text_SovereignBugMasterIntro",
+      "en_US": [
+        "I’m the Bug-type Master!\n",
+        "I aim to find the ultimate Bug-type!\r"
+      ]
+    },
+    {
+      "id": "Route202_Text_SovereignBugMasterFail",
+      "en_US": [
+        "Come at me with only a {COLOR 1}single Pokémon{COLOR 0}\n",
+        "in your party if you want to battle me.\r",
+        "Oh, and there’s one other condition...\n",
+        "That Pokémon must be a {COLOR 1}Bug-type{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "Route202_Text_SovereignBugMasterAsk",
+      "en_US": [
+        "Your Bug-type looks pretty strong!\r",
+        "Should we find out who has the\n",
+        "ultimate Bug-type Pokémon?"
+      ]
+    },
+    {
+      "id": "Route202_Text_SovereignBugMasterBattle",
+      "en_US": "Time for a Bug-type battle!\r"
+    },
+    {
+      "id": "Route202_Text_SovereignBugMasterWin",
+      "en_US": [
+        "Oh, wow.\r",
+        "It seems the ultimate Bug-type\n",
+        "Pokémon belongs to you!\r",
+        "That means you are the rightful owner\n",
+        "of this precious item!\r"
+      ]
+    },
+    {
+      "id": "Route202_Text_SovereignBugMasterLose",
+      "en_US": [
+        "The ultimate Bug-type Pokémon\n",
+        "belongs to me!\r",
+        "But I’m always ready for another\n",
+        "Bug-type battle."
+      ]
+    },
+    {
+      "id": "Route202_Text_SovereignBugMasterThanks",
+      "en_US": [
+        "Thank you for a great Bug-type\n",
+        "Pokémon battle."
+      ]
+    },
+    {
+      "id": "Route202_Text_SovereignBugMasterDecline",
+      "en_US": [
+        "Hmm...\n",
+        "Do you feel like you can’t win?"
+      ]
     }
   ]
 }

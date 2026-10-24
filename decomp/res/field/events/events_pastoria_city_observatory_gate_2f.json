@@ -85,6 +85,21 @@
             "x": 7,
             "z": 5,
             "y": 0
+        },
+        {
+            "id": "LOCALID_SOVEREIGN_POISON_MASTER",
+            "graphics_id": "OBJ_EVENT_GFX_SCIENTIST_M",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": 6,
+            "initial_dir": 1,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 8,
+            "z": 3,
+            "y": 0
         }
     ],
     "warp_events": [

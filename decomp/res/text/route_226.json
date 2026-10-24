@@ -14,6 +14,65 @@
         "Rt. 227\n",
         "Rt. 228"
       ]
+    },
+    {
+      "id": "Route226_Text_SovereignFireMasterIntro",
+      "en_US": [
+        "I’m the Fire-type Master!\n",
+        "I aim to find the ultimate Fire-type!\r"
+      ]
+    },
+    {
+      "id": "Route226_Text_SovereignFireMasterFail",
+      "en_US": [
+        "Come at me with only a {COLOR 1}single Pokémon{COLOR 0}\n",
+        "in your party if you want to battle me.\r",
+        "Oh, and there’s one other condition...\n",
+        "That Pokémon must be a {COLOR 1}Fire-type{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "Route226_Text_SovereignFireMasterAsk",
+      "en_US": [
+        "Your Fire-type looks pretty strong!\r",
+        "Should we find out who has the\n",
+        "ultimate Fire-type Pokémon?"
+      ]
+    },
+    {
+      "id": "Route226_Text_SovereignFireMasterBattle",
+      "en_US": "Time for a Fire-type battle!\r"
+    },
+    {
+      "id": "Route226_Text_SovereignFireMasterWin",
+      "en_US": [
+        "Oh, wow.\r",
+        "It seems the ultimate Fire-type\n",
+        "Pokémon belongs to you!\r",
+        "That means you are the rightful owner\n",
+        "of this precious item!\r"
+      ]
+    },
+    {
+      "id": "Route226_Text_SovereignFireMasterLose",
+      "en_US": [
+        "Thank you for a great Fire-type\n",
+        "Pokémon battle."
+      ]
+    },
+    {
+      "id": "Route226_Text_SovereignFireMasterThanks",
+      "en_US": [
+        "Thank you for a great Fire-type\n",
+        "Pokémon battle."
+      ]
+    },
+    {
+      "id": "Route226_Text_SovereignFireMasterDecline",
+      "en_US": [
+        "Hmm...\n",
+        "Do you feel like you can’t win?"
+      ]
     }
   ]
 }

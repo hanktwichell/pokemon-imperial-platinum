@@ -52,6 +52,67 @@
         "But there’s always a sinister feeling\n",
         "about them, wouldn’t you agree?"
       ]
+    },
+    {
+      "id": "Route209LostTower1F_Text_SovereignGhostMasterIntro",
+      "en_US": [
+        "I’m the Ghost-type Master!\n",
+        "I aim to find the ultimate Ghost-type!\r"
+      ]
+    },
+    {
+      "id": "Route209LostTower1F_Text_SovereignGhostMasterFail",
+      "en_US": [
+        "Come at me with only a {COLOR 1}single Pokémon{COLOR 0}\n",
+        "in your party if you want to battle me.\r",
+        "Oh, and there’s one other condition...\n",
+        "That Pokémon must be a {COLOR 1}Ghost-type{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "Route209LostTower1F_Text_SovereignGhostMasterAsk",
+      "en_US": [
+        "Your Ghost-type looks pretty strong!\r",
+        "Should we find out who has the\n",
+        "ultimate Ghost-type Pokémon?"
+      ]
+    },
+    {
+      "id": "Route209LostTower1F_Text_SovereignGhostMasterBattle",
+      "en_US": "Time for a Ghost-type battle!"
+    },
+    {
+      "id": "Route209LostTower1F_Text_SovereignGhostMasterWin",
+      "en_US": [
+        "Oh, wow.\r",
+        "It seems the ultimate Ghost-type\n",
+        "Pokémon belongs to you!\r",
+        "That means you are the rightful owner\n",
+        "of this precious item!\r"
+      ]
+    },
+    {
+      "id": "Route209LostTower1F_Text_SovereignGhostMasterLose",
+      "en_US": [
+        "The ultimate Ghost-type Pokémon\n",
+        "belongs to me!\r",
+        "But I’m always ready for another\n",
+        "Ghost-type battle."
+      ]
+    },
+    {
+      "id": "Route209LostTower1F_Text_SovereignGhostMasterThanks",
+      "en_US": [
+        "Thank you for a great Ghost-type\n",
+        "Pokémon battle."
+      ]
+    },
+    {
+      "id": "Route209LostTower1F_Text_SovereignGhostMasterDecline",
+      "en_US": [
+        "Hmm...\n",
+        "Do you feel like you can’t win?"
+      ]
     }
   ]
 }

@@ -288,6 +288,67 @@
         "I’m so sorry.\n",
         "I let myself get carried away...\r"
       ]
+    },
+    {
+      "id": "CelesticTownCave_Text_SovereignDragonMasterIntro",
+      "en_US": [
+        "I’m the Dragon-type Master!\n",
+        "I aim to find the ultimate Dragon-type!\r"
+      ]
+    },
+    {
+      "id": "CelesticTownCave_Text_SovereignDragonMasterFail",
+      "en_US": [
+        "Come at me with only a {COLOR 1}single Pokémon{COLOR 0}\n",
+        "in your party if you want to battle me.\r",
+        "Oh, and there’s one other condition...\n",
+        "That Pokémon must be a {COLOR 1}Dragon-type{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "CelesticTownCave_Text_SovereignDragonMasterAsk",
+      "en_US": [
+        "Your Dragon-type looks pretty strong!\r",
+        "Should we find out who has the\n",
+        "ultimate Dragon-type Pokémon?"
+      ]
+    },
+    {
+      "id": "CelesticTownCave_Text_SovereignDragonMasterBattle",
+      "en_US": "Time for a Dragon-type battle!\r"
+    },
+    {
+      "id": "CelesticTownCave_Text_SovereignDragonMasterWin",
+      "en_US": [
+        "Oh, wow.\r",
+        "It seems the ultimate Dragon-type\n",
+        "Pokémon belongs to you!\r",
+        "That means you are the rightful owner\n",
+        "of this precious item!\r"
+      ]
+    },
+    {
+      "id": "CelesticTownCave_Text_SovereignDragonMasterLose",
+      "en_US": [
+        "The ultimate Dragon-type Pokémon\n",
+        "belongs to me!\r",
+        "But I’m always ready for another\n",
+        "Dragon-type battle."
+      ]
+    },
+    {
+      "id": "CelesticTownCave_Text_SovereignDragonMasterThanks",
+      "en_US": [
+        "Thank you for a great Dragon-type\n",
+        "Pokémon battle."
+      ]
+    },
+    {
+      "id": "CelesticTownCave_Text_SovereignDragonMasterDecline",
+      "en_US": [
+        "I’m sorry this is so long.\n",
+        "May I say one last bit?"
+      ]
     }
   ]
 }

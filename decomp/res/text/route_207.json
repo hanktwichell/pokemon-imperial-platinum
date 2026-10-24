@@ -146,6 +146,67 @@
         "If your opponent’s Pokémon can’t\n",
         "move, it’s a big opportunity!"
       ]
+    },
+    {
+      "id": "Route207_Text_SovereignRockMasterIntro",
+      "en_US": [
+        "I’m the Rock-type Master!\n",
+        "I aim to find the ultimate Rock-type!\r"
+      ]
+    },
+    {
+      "id": "Route207_Text_SovereignRockMasterFail",
+      "en_US": [
+        "Come at me with only a {COLOR 1}single Pokémon{COLOR 0}\n",
+        "in your party if you want to battle me.\r",
+        "Oh, and there’s one other condition...\n",
+        "That Pokémon must be a {COLOR 1}Rock-type{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "Route207_Text_SovereignRockMasterAsk",
+      "en_US": [
+        "Your Rock-type looks pretty strong!\r",
+        "Should we find out who has the\n",
+        "ultimate Rock-type Pokémon?"
+      ]
+    },
+    {
+      "id": "Route207_Text_SovereignRockMasterBattle",
+      "en_US": "Time for a Rock-type battle!\r"
+    },
+    {
+      "id": "Route207_Text_SovereignRockMasterWin",
+      "en_US": [
+        "Oh, wow.\r",
+        "It seems the ultimate Rock-type\n",
+        "Pokémon belongs to you!\r",
+        "That means you are the rightful owner\n",
+        "of this precious item!\r"
+      ]
+    },
+    {
+      "id": "Route207_Text_SovereignRockMasterLose",
+      "en_US": [
+        "The ultimate Rock-type Pokémon\n",
+        "belongs to me!\r",
+        "But I’m always ready for another\n",
+        "Rock-type battle."
+      ]
+    },
+    {
+      "id": "Route207_Text_SovereignRockMasterThanks",
+      "en_US": [
+        "Thank you for a great Rock-type\n",
+        "Pokémon battle."
+      ]
+    },
+    {
+      "id": "Route207_Text_SovereignRockMasterDecline",
+      "en_US": [
+        "Hmm...\n",
+        "Do you feel like you can’t win?"
+      ]
     }
   ]
 }

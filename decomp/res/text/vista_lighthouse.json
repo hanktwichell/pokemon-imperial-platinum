@@ -84,6 +84,68 @@
     {
       "id": "VistaLighthouse_Text_Dummy13",
       "garbage": 27
+    },
+    {
+      "id": "VistaLighthouse_Text_SovereignElectricMasterIntro",
+      "en_US": [
+        "I’m the Electric-type Master!\n",
+        "I aim to find the ultimate Electric-type!\r"
+      ]
+    },
+    {
+      "id": "VistaLighthouse_Text_SovereignElectricMasterFail",
+      "en_US": [
+        "Come at me with only a {COLOR 1}single Pokémon{COLOR 0}\n",
+        "in your party if you want to battle me.\r",
+        "Oh, and there’s one other condition...\n",
+        "That Pokémon must be an {COLOR 1}Electric-type{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "VistaLighthouse_Text_SovereignElectricMasterAsk",
+      "en_US": [
+        "Your Electric-type looks pretty\n",
+        "strong!\r",
+        "Should we find out who has the\n",
+        "ultimate Electric-type Pokémon?"
+      ]
+    },
+    {
+      "id": "VistaLighthouse_Text_SovereignElectricMasterBattle",
+      "en_US": "Time for an Electric-type battle!\r"
+    },
+    {
+      "id": "VistaLighthouse_Text_SovereignElectricMasterWin",
+      "en_US": [
+        "Oh, wow.\r",
+        "It seems the ultimate Electric-type\n",
+        "Pokémon belongs to you!\r",
+        "That means you are the rightful owner\n",
+        "of this precious item!\r"
+      ]
+    },
+    {
+      "id": "VistaLighthouse_Text_SovereignElectricMasterLose",
+      "en_US": [
+        "The ultimate Electric-type Pokémon\n",
+        "belongs to me!\r",
+        "But I’m always ready for another\n",
+        "Electric-type battle."
+      ]
+    },
+    {
+      "id": "VistaLighthouse_Text_SovereignElectricMasterThanks",
+      "en_US": [
+        "Thank you for a great Electric-type\n",
+        "Pokémon battle."
+      ]
+    },
+    {
+      "id": "VistaLighthouse_Text_SovereignElectricMasterDecline",
+      "en_US": [
+        "Hmm...\n",
+        "Do you feel like you can’t win?"
+      ]
     }
   ]
 }

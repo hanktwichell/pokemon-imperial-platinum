@@ -11,6 +11,67 @@
         "TOP LEFT\r",
         "LOWER LEFT"
       ]
+    },
+    {
+      "id": "SolaceonRuinsRoom1_Text_SovereignPsychicMasterIntro",
+      "en_US": [
+        "I’m the Psychic-type Master!\n",
+        "I aim to find the ultimate Psychic-type!\r"
+      ]
+    },
+    {
+      "id": "SolaceonRuinsRoom1_Text_SovereignPsychicMasterFail",
+      "en_US": [
+        "Come at me with only a {COLOR 1}single Pokémon{COLOR 0}\n",
+        "in your party if you want to battle me.\r",
+        "Oh, and there’s one other condition...\n",
+        "That Pokémon must be a {COLOR 1}Psychic-type{COLOR 0}!"
+      ]
+    },
+    {
+      "id": "SolaceonRuinsRoom1_Text_SovereignPsychicMasterAsk",
+      "en_US": [
+        "Your Psychic-type looks pretty strong!\r",
+        "Should we find out who has the\n",
+        "ultimate Psychic-type Pokémon?"
+      ]
+    },
+    {
+      "id": "SolaceonRuinsRoom1_Text_SovereignPsychicMasterBattle",
+      "en_US": "Time for a Psychic-type battle!\r"
+    },
+    {
+      "id": "SolaceonRuinsRoom1_Text_SovereignPsychicMasterWin",
+      "en_US": [
+        "Oh, wow.\r",
+        "It seems the ultimate Psychic-type\n",
+        "Pokémon belongs to you!\r",
+        "That means you are the rightful owner\n",
+        "of this precious item!\r"
+      ]
+    },
+    {
+      "id": "SolaceonRuinsRoom1_Text_SovereignPsychicMasterLose",
+      "en_US": [
+        "The ultimate Psychic-type Pokémon\n",
+        "belongs to me!\r",
+        "But I’m always ready for another\n",
+        "Psychic-type battle."
+      ]
+    },
+    {
+      "id": "SolaceonRuinsRoom1_Text_SovereignPsychicMasterThanks",
+      "en_US": [
+        "Thank you for a great Psychic-type\n",
+        "Pokémon battle."
+      ]
+    },
+    {
+      "id": "SolaceonRuinsRoom1_Text_SovereignPsychicMasterDecline",
+      "en_US": [
+        "Hmm...\n",
+        "Do you feel like you can’t win?"
+      ]
     }
   ]
 }

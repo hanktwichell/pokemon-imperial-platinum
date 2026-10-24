@@ -1,0 +1,36 @@
+{
+    "name": "Thea",
+    "class": "TRAINER_CLASS_BIRD_KEEPER",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_DRAGONITE",
+            "form": 0,
+            "level": 85,
+            "item": null,
+            "moves": [
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_ICE_PUNCH",
+                "MOVE_ROOST",
+                "MOVE_THUNDER_WAVE"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Amazing!\n",
+                "You have the ultimate Flying-type!\n"
+            ]
+        }
+    ]
+}

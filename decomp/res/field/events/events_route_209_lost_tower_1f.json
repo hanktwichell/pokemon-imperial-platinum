@@ -37,7 +37,7 @@
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "0",
-            "script": 4,
+            "script": 5,
             "initial_dir": 1,
             "data": [],
             "movement_range_x": 0,

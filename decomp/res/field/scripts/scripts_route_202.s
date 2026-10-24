@@ -10,6 +10,7 @@
     ScriptEntry Route202_TrainerTipsSignpost
     ScriptEntry Route202_CoordEvent_CatchingTutorial
     ScriptEntry Route202_Counterpart
+    ScriptEntry Route202_SovereignBugMaster
     ScriptEntryEnd
 
 Route202_OnTransition:
@@ -544,3 +545,64 @@ Route202_Movement_Unused4:
 Route202_Movement_CameraMoveEast:
     WalkNormalEast
     EndMovement
+
+@ Sovereign (E10, Renegade's Type Masters): the Bug-type Master battles one Bug-type Pokémon, alone in the party, for
+@ the Insect Plate (Renegade's trainer 1038).
+Route202_SovereignBugMaster:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfDefeated TRAINER_SOVEREIGN_BUG_MASTER, Route202_SovereignBugMasterThanks
+    Message Route202_Text_SovereignBugMasterIntro
+    GetPartyCount VAR_RESULT
+    GoToIfNe VAR_RESULT, 1, Route202_SovereignBugMasterOnlyOne
+    GetPartyMonType VAR_0x8004, VAR_0x8005, 0
+    GoToIfEq VAR_0x8004, TYPE_BUG, Route202_SovereignBugMasterAsk
+    GoToIfEq VAR_0x8005, TYPE_BUG, Route202_SovereignBugMasterAsk
+Route202_SovereignBugMasterOnlyOne:
+    Message Route202_Text_SovereignBugMasterFail
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+Route202_SovereignBugMasterAsk:
+    Message Route202_Text_SovereignBugMasterAsk
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, Route202_SovereignBugMasterDecline
+    Message Route202_Text_SovereignBugMasterBattle
+    CloseMessage
+    StartTrainerBattle TRAINER_SOVEREIGN_BUG_MASTER
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, Route202_SovereignBugMasterLost
+    Message Route202_Text_SovereignBugMasterWin
+    SetVar VAR_0x8004, ITEM_INSECT_PLATE
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    SetTrainerFlag TRAINER_SOVEREIGN_BUG_MASTER
+Route202_SovereignBugMasterThanks:
+    Message Route202_Text_SovereignBugMasterThanks
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+Route202_SovereignBugMasterDecline:
+    Message Route202_Text_SovereignBugMasterDecline
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+Route202_SovereignBugMasterLost:
+    ReturnToField
+    FadeScreenIn FADE_SCREEN_SPEED_MEDIUM
+    WaitFadeScreen
+    HealParty
+    Message Route202_Text_SovereignBugMasterLose
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+    .balign 4, 0

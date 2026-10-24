@@ -15,6 +15,7 @@
     ScriptEntry SnowpointCity_MapSignpost
     ScriptEntry SnowpointCity_GymSignpost
     ScriptEntry SnowpointCity_SailorSSSpiral
+    ScriptEntry SnowpointCity_SovereignIceMaster
     ScriptEntryEnd
 
 SnowpointCity_OnTransition:
@@ -309,3 +310,64 @@ SnowpointCity_Movement_PlayerWalkToShip:
     WalkNormalSouth
     Delay15
     EndMovement
+
+@ Sovereign (E10, Renegade's Type Masters): the Ice-type Master battles one Ice-type Pokémon, alone in the party, for
+@ the Icicle Plate (Renegade's trainer 1049).
+SnowpointCity_SovereignIceMaster:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfDefeated TRAINER_SOVEREIGN_ICE_MASTER, SnowpointCity_SovereignIceMasterThanks
+    Message SnowpointCity_Text_SovereignIceMasterIntro
+    GetPartyCount VAR_RESULT
+    GoToIfNe VAR_RESULT, 1, SnowpointCity_SovereignIceMasterOnlyOne
+    GetPartyMonType VAR_0x8004, VAR_0x8005, 0
+    GoToIfEq VAR_0x8004, TYPE_ICE, SnowpointCity_SovereignIceMasterAsk
+    GoToIfEq VAR_0x8005, TYPE_ICE, SnowpointCity_SovereignIceMasterAsk
+SnowpointCity_SovereignIceMasterOnlyOne:
+    Message SnowpointCity_Text_SovereignIceMasterFail
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+SnowpointCity_SovereignIceMasterAsk:
+    Message SnowpointCity_Text_SovereignIceMasterAsk
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, SnowpointCity_SovereignIceMasterDecline
+    Message SnowpointCity_Text_SovereignIceMasterBattle
+    CloseMessage
+    StartTrainerBattle TRAINER_SOVEREIGN_ICE_MASTER
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SnowpointCity_SovereignIceMasterLost
+    Message SnowpointCity_Text_SovereignIceMasterWin
+    SetVar VAR_0x8004, ITEM_ICICLE_PLATE
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    SetTrainerFlag TRAINER_SOVEREIGN_ICE_MASTER
+SnowpointCity_SovereignIceMasterThanks:
+    Message SnowpointCity_Text_SovereignIceMasterThanks
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+SnowpointCity_SovereignIceMasterDecline:
+    Message SnowpointCity_Text_SovereignIceMasterDecline
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+SnowpointCity_SovereignIceMasterLost:
+    ReturnToField
+    FadeScreenIn FADE_SCREEN_SPEED_MEDIUM
+    WaitFadeScreen
+    HealParty
+    Message SnowpointCity_Text_SovereignIceMasterLose
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+    .balign 4, 0

@@ -10,6 +10,7 @@
     ScriptEntry SendoffSpring_LegendaryKoraidon
     ScriptEntry SendoffSpring_LegendaryMiraidon
     ScriptEntry SendoffSpring_LegendaryTerapagos
+    ScriptEntry SendoffSpring_SovereignDarkMaster
     ScriptEntryEnd
 
 SendoffSpring_OnTransition:
@@ -181,3 +182,64 @@ SendoffSpring_LegendaryTerapagos:
     SetVar VAR_0x8005, 70
     Common_SovereignLegendaryEncounter
     End
+
+@ Sovereign (E10, Renegade's Type Masters): the Dark-type Master battles one Dark-type Pokémon, alone in the party, for
+@ the Dread Plate (Renegade's trainer 1051).
+SendoffSpring_SovereignDarkMaster:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfDefeated TRAINER_SOVEREIGN_DARK_MASTER, SendoffSpring_SovereignDarkMasterThanks
+    Message SendoffSpring_Text_SovereignDarkMasterIntro
+    GetPartyCount VAR_RESULT
+    GoToIfNe VAR_RESULT, 1, SendoffSpring_SovereignDarkMasterOnlyOne
+    GetPartyMonType VAR_0x8004, VAR_0x8005, 0
+    GoToIfEq VAR_0x8004, TYPE_DARK, SendoffSpring_SovereignDarkMasterAsk
+    GoToIfEq VAR_0x8005, TYPE_DARK, SendoffSpring_SovereignDarkMasterAsk
+SendoffSpring_SovereignDarkMasterOnlyOne:
+    Message SendoffSpring_Text_SovereignDarkMasterFail
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+SendoffSpring_SovereignDarkMasterAsk:
+    Message SendoffSpring_Text_SovereignDarkMasterAsk
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, SendoffSpring_SovereignDarkMasterDecline
+    Message SendoffSpring_Text_SovereignDarkMasterBattle
+    CloseMessage
+    StartTrainerBattle TRAINER_SOVEREIGN_DARK_MASTER
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, SendoffSpring_SovereignDarkMasterLost
+    Message SendoffSpring_Text_SovereignDarkMasterWin
+    SetVar VAR_0x8004, ITEM_DREAD_PLATE
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    SetTrainerFlag TRAINER_SOVEREIGN_DARK_MASTER
+SendoffSpring_SovereignDarkMasterThanks:
+    Message SendoffSpring_Text_SovereignDarkMasterThanks
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+SendoffSpring_SovereignDarkMasterDecline:
+    Message SendoffSpring_Text_SovereignDarkMasterDecline
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+SendoffSpring_SovereignDarkMasterLost:
+    ReturnToField
+    FadeScreenIn FADE_SCREEN_SPEED_MEDIUM
+    WaitFadeScreen
+    HealParty
+    Message SendoffSpring_Text_SovereignDarkMasterLose
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+    .balign 4, 0
