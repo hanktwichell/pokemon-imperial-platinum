@@ -1,0 +1,61 @@
+{
+    "name": "Jenny",
+    "class": "TRAINER_CLASS_REPORTER",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_CHIKORITA",
+            "form": 0,
+            "level": 15,
+            "item": null,
+            "moves": [
+                "MOVE_MAGICAL_LEAF",
+                "MOVE_SYNTHESIS",
+                "MOVE_POISON_POWDER",
+                "MOVE_TACKLE"
+            ],
+            "iv_scale": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_CYNDAQUIL",
+            "form": 0,
+            "level": 15,
+            "item": null,
+            "moves": [
+                "MOVE_FLAME_WHEEL",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_SMOKE_SCREEN",
+                "MOVE_TACKLE"
+            ],
+            "iv_scale": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_TOTODILE",
+            "form": 0,
+            "level": 15,
+            "item": null,
+            "moves": [
+                "MOVE_WATER_GUN",
+                "MOVE_BITE",
+                "MOVE_SCRATCH",
+                "MOVE_SCARY_FACE"
+            ],
+            "iv_scale": 100,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "We have a winner..."
+        }
+    ]
+}

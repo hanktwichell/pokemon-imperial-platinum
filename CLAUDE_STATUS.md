@@ -5206,3 +5206,51 @@ half-price menu fix) is merged.
    - Plan: one new flag per interviewer, with the trainer flag as "won". Prizes need room for all three.
 2. Darach (Renegade 969) needs a new spot, since Renegade's Pal Park lobby is now the Regional Forms Park.
 3. Renegade's other added trainers (e.g. the Eterna grunt 939, Egadd 961, Telkin 962).
+
+## CB-0107 — 2026-10-24, 7:37 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: E10 part 32, the Pokémon Center Interviewers for every region's starters.** PR #122 (part 31) is merged.
+- **Placement:** a reporter at (3, 4) and a cameraman at (2, 4) in eight Pokémon Centers.
+  - Renegade's three: Jubilife (Kanto, Lv. 5, Kayla 1022), Oreburgh (Hoenn, Lv. 10, Helen 934) and Floaroma (Johto,
+    Lv. 15, Jenny 1021).
+  - The new five follow `docs/GiftPokemon_Sovereign.md`: Eterna (Unova, Lv. 20, Forest Badge), Hearthome (Kalos, 25,
+    Relic), Veilstone (Alola, 30, Cobble), Pastoria (Galar, 35, Fen) and Canalave (Paldea, 40, Mine).
+- **Quiz:** Renegade's quizzes keep their text, answers and jingles. The new five have four questions about their region,
+  then "Can you beat me?".
+- **Battle:** against the three prize starters. The win sets the reporter's trainer flag.
+- **Prize:** talking again gives all three, holding a Miracle Seed, Charcoal and Mystic Water. Then the pair leave.
+  - The prize needs room for three. Renegade gives them one at a time, but that needs two more flags per reporter
+    than we have.
+- **Save data:**
+  - Flags: `FLAG_SOVEREIGN_INTERVIEWER_{KANTO..PALDEA}_DONE`, from the `FLAG_UNUSED_*` pool.
+  - Correction: `FLAG_UNUSED_0x04E4` is set by `scripts_init_new_game.s`, so it isn't free.
+  - Usable unused flags left: `0x0975`, `0x0976`, `0x0990`, `0x0991`, plus `FLAG_HIDE_BATTLEGROUND_TRAINER_1`–`4`
+    (freed by part 31).
+  - Eight `TRAINER_SOVEREIGN_INTERVIEWER_*` take dummy slots 007–009, 238, 239 and 251–253. 57 dummies are left.
+- **Local IDs:** `LOCALID_<CITY>_SOVEREIGN_INTERVIEWER`/`_CAMERAMAN`, prefixed by city because
+  `scripts_common.s` includes every Pokémon Center's event header.
+- **For the owner:** the plan's levels don't follow the badge order. Kalos (Lv. 25) waits for the Relic Badge, the
+  5th, while Alola (Lv. 30) opens at the Cobble Badge, the 3rd. Built as written.
+- Tested in a test build (three Lv. 100 Pokémon, only the Mine Badge):
+  - Paldea in full: quiz, battle, prize, and the pair gone.
+  - Kanto: a wrong answer, then the right ones, the battle, and the full-party line.
+  - Hoenn (the "Yes Town?" reply) and Johto (cut to the battle), each through the battle.
+  - Unova and Galar refuse without their badges.
+  - Not tested: a loss, the nickname screen, and the Kalos and Alola quizzes (same script as Paldea's).
+
+**Files modified:**
+- `decomp/generated/{trainers,vars_flags}.txt`
+- 8 new trainer JSONs; 8 dummy JSONs deleted
+- For the 8 Pokémon Center 1F maps: `res/field/scripts/scripts_*_pokecenter_1f.s`,
+  `res/field/events/events_*_pokecenter_1f.json` and `res/text/*_pokecenter_1f.json`
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `docs/GiftPokemon_Sovereign.md`,
+  `docs/TrainerTeamLog.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. E10 part 33: Darach (Renegade 969, Lv. 48) and Caitlin.
+   - Put them in the Pal Park lobby, now the Regional Forms Park's. Renegade's tiles (3–4, 4) hold our Youngster, so
+     they need other tiles.
+   - The scene: Darach's battle (win or lose, no blackout), Caitlin's psychic fit, and the Tea.
+   - Swap the Catching Show lines for the park.
+2. Renegade's other added trainers (e.g. the Eterna grunt 939, Egadd 961, Telkin 962).
+3. Check the remaining Renegade map scripts against ours for anything not yet ported.

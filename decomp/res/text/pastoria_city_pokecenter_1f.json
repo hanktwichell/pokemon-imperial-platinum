@@ -107,6 +107,194 @@
         "Battling is about spirit, too!\f",
         "That’s why a battle is rock!"
       ]
+    },
+    {
+      "id": "PastoriaCityPokecenter1F_Text_SovereignInterviewerIntro",
+      "en_US": [
+        "Hello there! I’m Fiona from Jubilife\n",
+        "TV, the Fun-and-Games TV Station!\r",
+        "We’re taking our quiz show all over\n",
+        "Sinnoh. Answer five questions right,\r",
+        "and you’ll win a fantastic prize!\r",
+        "Today’s theme is the Galar\n",
+        "region. Do you want to have a go?"
+      ]
+    },
+    {
+      "id": "PastoriaCityPokecenter1F_Text_SovereignInterviewerNotYet",
+      "en_US": [
+        "Hello there! I’m Fiona from Jubilife TV.\r",
+        "Our quiz is for Trainers\n",
+        "who’ve earned the Fen Badge.\r",
+        "Come back once you have it,\n",
+        "and we’ll roll the cameras!"
+      ]
+    },
+    {
+      "id": "PastoriaCityPokecenter1F_Text_SovereignInterviewerDeclined",
+      "en_US": [
+        "Aww... Well, we’ll be right\n",
+        "here if you change your mind!"
+      ]
+    },
+    {
+      "id": "PastoriaCityPokecenter1F_Text_SovereignInterviewerRollCamera",
+      "en_US": [
+        "Wonderful! Roll camera!\r"
+      ]
+    },
+    {
+      "id": "PastoriaCityPokecenter1F_Text_SovereignInterviewerLetsFind",
+      "en_US": [
+        "Let’s find out if you’re right!"
+      ]
+    },
+    {
+      "id": "PastoriaCityPokecenter1F_Text_SovereignInterviewerWrong",
+      "en_US": [
+        "Oh no, I’m sorry... That’s\n",
+        "not the right answer.\r",
+        "You’re welcome to try again anytime!"
+      ]
+    },
+    {
+      "id": "PastoriaCityPokecenter1F_Text_SovereignInterviewerWon",
+      "en_US": [
+        "We have a winner! Congratulations!\r",
+        "Your grand prize is the three\n",
+        "Pokémon I just battled you with!\r",
+        "The first partners of the\n",
+        "Galar region: Grookey,\r",
+        "Scorbunny and Sobble!\r",
+        "Talk to me when you’re\n",
+        "ready to take them."
+      ]
+    },
+    {
+      "id": "PastoriaCityPokecenter1F_Text_SovereignInterviewerNoRoom",
+      "en_US": [
+        "I’d love to hand over your prize, but\n",
+        "your party needs room for all three!"
+      ]
+    },
+    {
+      "id": "PastoriaCityPokecenter1F_Text_SovereignInterviewerPrizeIntro",
+      "en_US": [
+        "Here they are! The\n",
+        "prizes for our winner!\r"
+      ]
+    },
+    {
+      "id": "PastoriaCityPokecenter1F_Text_SovereignInterviewerBye",
+      "en_US": [
+        "Thanks for playing! Keep\n",
+        "watching Jubilife TV!\r"
+      ]
+    },
+    {
+      "id": "PastoriaCityPokecenter1F_Text_SovereignInterviewerCameraman",
+      "en_US": [
+        "I’m just the cameraman. Don’t mind me!"
+      ]
+    },
+    {
+      "id": "PastoriaCityPokecenter1F_Text_SovereignInterviewerName1",
+      "en_US": [
+        "First, the Chimp\n",
+        "Pokémon. It’s GROOKEY!\r"
+      ]
+    },
+    {
+      "id": "PastoriaCityPokecenter1F_Text_SovereignInterviewerReceived1",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received a GROOKEY!"
+      ]
+    },
+    {
+      "id": "PastoriaCityPokecenter1F_Text_SovereignInterviewerNickname1",
+      "en_US": [
+        "Do you want to give a nickname to\n",
+        "this GROOKEY?"
+      ]
+    },
+    {
+      "id": "PastoriaCityPokecenter1F_Text_SovereignInterviewerName2",
+      "en_US": [
+        "Next, the Rabbit\n",
+        "Pokémon. It’s SCORBUNNY!\r"
+      ]
+    },
+    {
+      "id": "PastoriaCityPokecenter1F_Text_SovereignInterviewerReceived2",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received a SCORBUNNY!"
+      ]
+    },
+    {
+      "id": "PastoriaCityPokecenter1F_Text_SovereignInterviewerNickname2",
+      "en_US": [
+        "Do you want to give a nickname to\n",
+        "this SCORBUNNY?"
+      ]
+    },
+    {
+      "id": "PastoriaCityPokecenter1F_Text_SovereignInterviewerName3",
+      "en_US": [
+        "Last, the Water Lizard\n",
+        "Pokémon. It’s SOBBLE!\r"
+      ]
+    },
+    {
+      "id": "PastoriaCityPokecenter1F_Text_SovereignInterviewerReceived3",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received a SOBBLE!"
+      ]
+    },
+    {
+      "id": "PastoriaCityPokecenter1F_Text_SovereignInterviewerNickname3",
+      "en_US": [
+        "Do you want to give a nickname to\n",
+        "this SOBBLE?"
+      ]
+    },
+    {
+      "id": "PastoriaCityPokecenter1F_Text_SovereignInterviewerQuestion1",
+      "en_US": [
+        "Here we go! Question one!\r",
+        "In Galar, are Gym battles held in\n",
+        "huge stadiums in front of crowds?"
+      ]
+    },
+    {
+      "id": "PastoriaCityPokecenter1F_Text_SovereignInterviewerQuestion2",
+      "en_US": [
+        "Correct! Question two!\r",
+        "Is Leon, the Champion of\n",
+        "Galar, Hop’s older brother?"
+      ]
+    },
+    {
+      "id": "PastoriaCityPokecenter1F_Text_SovereignInterviewerQuestion3",
+      "en_US": [
+        "Right again! Question three!\r",
+        "Is Wyndon, Galar’s biggest city,\n",
+        "in the far south of the region?"
+      ]
+    },
+    {
+      "id": "PastoriaCityPokecenter1F_Text_SovereignInterviewerQuestion4",
+      "en_US": [
+        "Brilliant! Question four!\r",
+        "Does Milo, the Turffield Gym\n",
+        "Leader, use Water-type Pokémon?"
+      ]
+    },
+    {
+      "id": "PastoriaCityPokecenter1F_Text_SovereignInterviewerQuestion5",
+      "en_US": [
+        "Amazing! Here’s the final question!\r",
+        "Can you beat me in a Pokémon battle?"
+      ]
     }
   ]
 }

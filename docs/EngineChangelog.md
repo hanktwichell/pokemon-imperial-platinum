@@ -4,6 +4,53 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 32) — the Pokémon Center Interviewers: every region's starters
+
+Renegade's Jubilife TV quiz, and Sovereign's five new ones (`docs/GiftPokemon_Sovereign.md`):
+- **Where:** a reporter stands at (3, 4) in a Pokémon Center, with a cameraman at (2, 4).
+  - Jubilife: Kanto, Lv. 5 (Renegade's Kayla, 1022).
+  - Oreburgh: Hoenn, Lv. 10 (Renegade's Helen, 934).
+  - Floaroma: Johto, Lv. 15 (Renegade's Jenny, 1021).
+  - Eterna, after the Forest Badge: Unova, Lv. 20.
+  - Hearthome, after the Relic Badge: Kalos, Lv. 25.
+  - Veilstone, after the Cobble Badge: Alola, Lv. 30.
+  - Pastoria, after the Fen Badge: Galar, Lv. 35.
+  - Canalave, after the Mine Badge: Paldea, Lv. 40.
+- **The quiz:** yes/no questions, then "Can you beat me in a battle?"
+  - The first three keep Renegade's questions, answers, jingles and lines. Johto's reporter cuts to the battle after
+    three questions.
+  - The new five ask four questions about their region.
+  - A wrong answer ends the quiz, and the player can try again any time. Before the badge, the new five say to come back
+    with it.
+- **The battle** is against the prize: the region's three starters at the gift level. A loss blacks out, and the win
+  sets the reporter's trainer flag.
+- **The prize:** talking again gives the three starters, holding a Miracle Seed, Charcoal and Mystic Water, each with
+  a nickname prompt. Then the reporter and cameraman leave for good.
+  - The party needs room for all three. Renegade hands them over one at a time, but that needs two more save flags
+    per reporter than Sovereign has left.
+- **Save data:**
+  - Eight new flags, `FLAG_SOVEREIGN_INTERVIEWER_{KANTO,HOENN,JOHTO,UNOVA,KALOS,ALOLA,GALAR,PALDEA}_DONE`, from the
+    `FLAG_UNUSED_*` pool.
+  - `FLAG_UNUSED_0x04E4` wasn't actually free: the new-game script sets it, so it stays as it is.
+  - Eight trainers, `TRAINER_SOVEREIGN_INTERVIEWER_*`, reuse unused dummy slots (`dummy_007`–`009`, `238`, `239`,
+    `251`–`253`).
+- `docs/TrainerTeamLog.md` replaces the eight dummy rows with the reporters.
+
+Verified in a test build (a party of three Lv. 100 Pokémon; only the Mine Badge set):
+- Canalave (Paldea): all five questions answered, Marisol's three Lv. 40 starters beaten, and the win lines played.
+  - Talking again gave Sprigatito, Fuecoco and Quaxly, each with the nickname prompt.
+  - The pair faded out, and they're still gone on re-entering.
+- Jubilife (Kanto):
+  - A wrong first answer got the buzzer and Renegade's "try again" line.
+  - Answered right, Kayla battled and won the prize talk.
+  - With six Pokémon now in the party, the prize talk gave the "no room for these three" line.
+- Oreburgh (Hoenn): the "Yes Town?" reply played, then Helen's battle and win lines.
+- Floaroma (Johto): three questions, then Jenny cut to the battle, then her win lines.
+- Eterna (no Forest Badge) and Pastoria (no Fen Badge): both said to come back with the badge.
+- Not tested: a battle loss, the nickname screen, and Hearthome's and Veilstone's quizzes (they use the same script as
+  Canalave's).
+
+
 ## E10 (part 31) — the Battleground as in Renegade: fixed rematches, a nurse and the Battle Marathon
 
 Renegade's Battleground replaces vanilla's four daily random trainers and their multi battles:

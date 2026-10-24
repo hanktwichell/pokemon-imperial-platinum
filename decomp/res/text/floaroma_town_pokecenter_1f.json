@@ -61,6 +61,172 @@
         "Don’t give up, me!\n",
         "Become a Pokémon, me!"
       ]
+    },
+    {
+      "id": "FloaromaTownPokecenter1F_Text_SovereignInterviewerIntro",
+      "en_US": [
+        "Oh, you’re a Trainer.\r",
+        "I’m with Jubilife TV.\n",
+        "The Fun-and-Games TV Station...\r",
+        "Do you want to answer five questions\n",
+        "to get a reward?"
+      ]
+    },
+    {
+      "id": "FloaromaTownPokecenter1F_Text_SovereignInterviewerDeclined",
+      "en_US": [
+        "Great.\n",
+        "I don’t need to bother then."
+      ]
+    },
+    {
+      "id": "FloaromaTownPokecenter1F_Text_SovereignInterviewerRollCamera",
+      "en_US": [
+        "I guess you wouldn’t say no.\n",
+        "OK, roll the camera...\r"
+      ]
+    },
+    {
+      "id": "FloaromaTownPokecenter1F_Text_SovereignInterviewerWrong",
+      "en_US": [
+        "Yeah, sorry, that was wrong.\n",
+        "Try again if you must."
+      ]
+    },
+    {
+      "id": "FloaromaTownPokecenter1F_Text_SovereignInterviewerWon",
+      "en_US": [
+        "Yawn...\n",
+        "You’ve won. Well done.\r",
+        "Your prize is those three Pokémon\n",
+        "I just battled you with.\r",
+        "Talk to me when you want them."
+      ]
+    },
+    {
+      "id": "FloaromaTownPokecenter1F_Text_SovereignInterviewerPrizeIntro",
+      "en_US": [
+        "Here’s your prize.\n",
+        "Congratulations...\r"
+      ]
+    },
+    {
+      "id": "FloaromaTownPokecenter1F_Text_SovereignInterviewerBye",
+      "en_US": [
+        "OK, bye.\n",
+        "I need a new job...\r"
+      ]
+    },
+    {
+      "id": "FloaromaTownPokecenter1F_Text_SovereignInterviewerCameraman",
+      "en_US": [
+        "Me? I’m a cameraman.\n",
+        "I just do the filming."
+      ]
+    },
+    {
+      "id": "FloaromaTownPokecenter1F_Text_SovereignInterviewerLetsFind",
+      "en_US": [
+        "Well done.\n",
+        "Fourth question...\r",
+        "Actually, you know what?\n",
+        "This is really boring.\r",
+        "Let’s just cut to the battle.\r"
+      ]
+    },
+    {
+      "id": "FloaromaTownPokecenter1F_Text_SovereignInterviewerName1",
+      "en_US": [
+        "The Leaf Pokémon.\n",
+        "Yay, it’s CHIKORITA...\r"
+      ]
+    },
+    {
+      "id": "FloaromaTownPokecenter1F_Text_SovereignInterviewerReceived1",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received a CHIKORITA!\r"
+      ]
+    },
+    {
+      "id": "FloaromaTownPokecenter1F_Text_SovereignInterviewerNickname1",
+      "en_US": [
+        "Do you want to give a nickname to\n",
+        "this CHIKORITA?"
+      ]
+    },
+    {
+      "id": "FloaromaTownPokecenter1F_Text_SovereignInterviewerName2",
+      "en_US": [
+        "The Fire Mouse.\n",
+        "It’s CYNDAQUIL.\r"
+      ]
+    },
+    {
+      "id": "FloaromaTownPokecenter1F_Text_SovereignInterviewerReceived2",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received a CYNDAQUIL!\r"
+      ]
+    },
+    {
+      "id": "FloaromaTownPokecenter1F_Text_SovereignInterviewerNickname2",
+      "en_US": [
+        "Do you want to give a nickname to\n",
+        "this CYNDAQUIL?"
+      ]
+    },
+    {
+      "id": "FloaromaTownPokecenter1F_Text_SovereignInterviewerName3",
+      "en_US": [
+        "Big Jaw.\n",
+        "TOTODILE.\r"
+      ]
+    },
+    {
+      "id": "FloaromaTownPokecenter1F_Text_SovereignInterviewerReceived3",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received a TOTODILE!\r"
+      ]
+    },
+    {
+      "id": "FloaromaTownPokecenter1F_Text_SovereignInterviewerNickname3",
+      "en_US": [
+        "Do you want to give a nickname to\n",
+        "this TOTODILE?"
+      ]
+    },
+    {
+      "id": "FloaromaTownPokecenter1F_Text_SovereignInterviewerNoRoom",
+      "en_US": [
+        "You haven’t got room in your party\n",
+        "for all three. Can you hurry up\r",
+        "and make some?"
+      ]
+    },
+    {
+      "id": "FloaromaTownPokecenter1F_Text_SovereignInterviewerQuestion1",
+      "en_US": [
+        "Here’s the first question...\r",
+        "Is there a cave called Tohjo Falls\n",
+        "within the Johto region?"
+      ]
+    },
+    {
+      "id": "FloaromaTownPokecenter1F_Text_SovereignInterviewerQuestion2",
+      "en_US": [
+        "Yes, that’s right.\n",
+        "Second question, then.\r",
+        "Does the Gym in Violet City give\n",
+        "out the Feather Badge to Trainers?"
+      ]
+    },
+    {
+      "id": "FloaromaTownPokecenter1F_Text_SovereignInterviewerQuestion3",
+      "en_US": [
+        "Mhm.\n",
+        "Third question.\r",
+        "Can an Orange Apricorn be found\n",
+        "within the Johto region?"
+      ]
     }
   ]
 }

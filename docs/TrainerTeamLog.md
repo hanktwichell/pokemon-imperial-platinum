@@ -254,9 +254,6 @@ Total: 1040 trainer files; 0 edited, 0 confirmed (2026-10-24). The boss rows not
 | `dragon_tamer_patrick_rematch_1` | Dragon Tamer | Patrick | 4 | Singles | (script / not on a map) | Not started | |
 | `dragon_tamer_patrick_rematch_2` | Dragon Tamer | Patrick | 4 | Singles | (script / not on a map) | Not started | |
 | `dragon_tamer_stanley` | Dragon Tamer | Stanley | 1 | Singles | Route 226 | Not started | |
-| `dummy_007` | Picnicker | Angelica | 1 | Singles | (script / not on a map) | Not started | |
-| `dummy_008` | Picnicker | Angelica | 1 | Singles | (script / not on a map) | Not started | |
-| `dummy_009` | Youngster | Mickey | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_050` | Pokefan Male | Mickey | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_051` | Pokefan Female | Angelica | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_052` | Youngster | Mickey | 1 | Singles | (script / not on a map) | Not started | |
@@ -326,14 +323,9 @@ Total: 1040 trainer files; 0 edited, 0 confirmed (2026-10-24). The boss rows not
 | `dummy_221` | School Kid Male | Mickey | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_222` | School Kid Female | Angelica | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_223` | Young Couple | Tara & Tim | 2 | Doubles | (script / not on a map) | Not started | |
-| `dummy_238` | Youngster | Mickey | 1 | Singles | (script / not on a map) | Not started | |
-| `dummy_239` | Lass | Angelica | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_241` | Fisherman | Mickey | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_242` | Sailor | Mickey | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_243` | Beauty | Angelica | 1 | Singles | (script / not on a map) | Not started | |
-| `dummy_251` | Ace Trainer Female | Angelica | 1 | Singles | (script / not on a map) | Not started | |
-| `dummy_252` | Camper | Mickey | 1 | Singles | (script / not on a map) | Not started | |
-| `dummy_253` | Camper | Mickey | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_254` | Camper | Mickey | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_255` | Camper | Mickey | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_291` | Rancher | Mickey | 1 | Singles | (script / not on a map) | Not started | |
@@ -885,6 +877,14 @@ Total: 1040 trainer files; 0 edited, 0 confirmed (2026-10-24). The boss rows not
 | `sovereign_grunt_route_212_2` | Galactic Grunt Female | Grunt | 3 | Singles | (script / not on a map) | Not started | |
 | `sovereign_grunt_route_212_3` | Galactic Grunt Female | Grunt | 1 | Singles | (script / not on a map) | Not started | |
 | `sovereign_ice_master` | Ace Trainer Snow Female | Hazel | 1 | Singles | (script / not on a map) | Not started | |
+| `sovereign_interviewer_alola` | Reporter | Leilani | 3 | Singles | (script / not on a map) | Not started | |
+| `sovereign_interviewer_galar` | Reporter | Fiona | 3 | Singles | (script / not on a map) | Not started | |
+| `sovereign_interviewer_hoenn` | Reporter | Helen | 3 | Singles | (script / not on a map) | Not started | |
+| `sovereign_interviewer_johto` | Reporter | Jenny | 3 | Singles | (script / not on a map) | Not started | |
+| `sovereign_interviewer_kalos` | Reporter | Margot | 3 | Singles | (script / not on a map) | Not started | |
+| `sovereign_interviewer_kanto` | Reporter | Kayla | 3 | Singles | (script / not on a map) | Not started | |
+| `sovereign_interviewer_paldea` | Reporter | Marisol | 3 | Singles | (script / not on a map) | Not started | |
+| `sovereign_interviewer_unova` | Reporter | Paige | 3 | Singles | (script / not on a map) | Not started | |
 | `sovereign_jasmine_memory` | Lass | Jasmine | 1 | Singles | (script / not on a map) | Not started | |
 | `sovereign_jupiter_battleground` | Commander Jupiter | Jupiter | 6 | Singles | (script / not on a map) | Not started | Boss: a Sovereign team is drafted in `data/trainers_sovereign.yaml` (T1), not in the game yet |
 | `sovereign_lucas_battleground_chimchar` | Player Male | Lucas | 6 | Singles | (script / not on a map) | Not started | |

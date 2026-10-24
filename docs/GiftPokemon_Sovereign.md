@@ -22,11 +22,20 @@ behaviour. The starter lines are **not** wild encounters.
 | **Galar** | Grookey, Scorbunny, Sobble | Pastoria City | 35 | After the Fen Badge |
 | **Paldea** | Sprigatito, Fuecoco, Quaxly | Canalave City | 40 | After the Mine Badge |
 
-Notes
-- Each Interviewer battle uses a team of that region's Pokémon at the gift level (to be authored with the trainer data).
+Notes (built in E10 part 32)
+- Each Interviewer is a reporter at (3, 4) in the Pokémon Center, with a cameraman at (2, 4). Renegade's save-fixing NPC
+  isn't in Sovereign, so every Pokémon Center uses the same spot.
+- The quiz has five questions, the last being a battle against the prize: the region's three starters at the gift level,
+  as in Renegade.
+  - Kanto, Hoenn and Johto keep Renegade's questions and lines. Johto's bored reporter skips to the battle after three.
+  - Unova–Paldea get four questions about their region, then the battle.
+  - A wrong answer ends the quiz, and the player can try again. A loss blacks out.
+- The later five Interviewers tell the player to come back with the badge until they have it.
 - Like Renegade's starters, these carry a type-boosting held item: Miracle Seed (Grass), Charcoal (Fire), Mystic Water (Water).
-- The Eterna, Hearthome and Veilstone Pokémon Centers also hold Renegade's save-fixing NPC; the Interviewer stands on the
-  opposite side of the counter.
+- The prize needs room for all three in the party. Renegade hands them over one at a time instead, which needs more
+  save flags than Sovereign has left.
+- The win is the Interviewer's trainer flag. One flag per Interviewer (`FLAG_SOVEREIGN_INTERVIEWER_*_DONE`) hides the
+  pair once the prize is given.
 
 ## Fight Area Pokémon Center (post-game, temporary placements)
 

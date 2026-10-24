@@ -213,6 +213,193 @@
         "Someone, somewhere, saw that you\n",
         "made somebody’s wish come true."
       ]
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignInterviewerIntro",
+      "en_US": [
+        "Hello there! I’m Paige from Jubilife\n",
+        "TV, the Fun-and-Games TV Station!\r",
+        "We’re taking our quiz show all over\n",
+        "Sinnoh. Answer five questions right,\r",
+        "and you’ll win a fantastic prize!\r",
+        "Today’s theme is the Unova\n",
+        "region. Do you want to have a go?"
+      ]
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignInterviewerNotYet",
+      "en_US": [
+        "Hello there! I’m Paige from Jubilife TV.\r",
+        "Our quiz is for Trainers who’ve\n",
+        "earned the Forest Badge.\r",
+        "Come back once you have it,\n",
+        "and we’ll roll the cameras!"
+      ]
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignInterviewerDeclined",
+      "en_US": [
+        "Aww... Well, we’ll be right\n",
+        "here if you change your mind!"
+      ]
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignInterviewerRollCamera",
+      "en_US": [
+        "Wonderful! Roll camera!\r"
+      ]
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignInterviewerLetsFind",
+      "en_US": [
+        "Let’s find out if you’re right!"
+      ]
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignInterviewerWrong",
+      "en_US": [
+        "Oh no, I’m sorry... That’s\n",
+        "not the right answer.\r",
+        "You’re welcome to try again anytime!"
+      ]
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignInterviewerWon",
+      "en_US": [
+        "We have a winner! Congratulations!\r",
+        "Your grand prize is the three\n",
+        "Pokémon I just battled you with!\r",
+        "The first partners of the Unova\n",
+        "region: Snivy, Tepig and Oshawott!\r",
+        "Talk to me when you’re\n",
+        "ready to take them."
+      ]
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignInterviewerNoRoom",
+      "en_US": [
+        "I’d love to hand over your prize, but\n",
+        "your party needs room for all three!"
+      ]
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignInterviewerPrizeIntro",
+      "en_US": [
+        "Here they are! The\n",
+        "prizes for our winner!\r"
+      ]
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignInterviewerBye",
+      "en_US": [
+        "Thanks for playing! Keep\n",
+        "watching Jubilife TV!\r"
+      ]
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignInterviewerCameraman",
+      "en_US": [
+        "I’m just the cameraman. Don’t mind me!"
+      ]
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignInterviewerName1",
+      "en_US": [
+        "First, the Grass Snake\n",
+        "Pokémon. It’s SNIVY!\r"
+      ]
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignInterviewerReceived1",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received a SNIVY!"
+      ]
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignInterviewerNickname1",
+      "en_US": [
+        "Do you want to give a nickname to\n",
+        "this SNIVY?"
+      ]
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignInterviewerName2",
+      "en_US": [
+        "Next, the Fire Pig\n",
+        "Pokémon. It’s TEPIG!\r"
+      ]
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignInterviewerReceived2",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received a TEPIG!"
+      ]
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignInterviewerNickname2",
+      "en_US": [
+        "Do you want to give a nickname to\n",
+        "this TEPIG?"
+      ]
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignInterviewerName3",
+      "en_US": [
+        "Last, the Sea Otter\n",
+        "Pokémon. It’s OSHAWOTT!\r"
+      ]
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignInterviewerReceived3",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received an OSHAWOTT!"
+      ]
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignInterviewerNickname3",
+      "en_US": [
+        "Do you want to give a nickname to\n",
+        "this OSHAWOTT?"
+      ]
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignInterviewerQuestion1",
+      "en_US": [
+        "Here we go! Question one!\r",
+        "In the Unova region, does Burgh\n",
+        "lead the Castelia City Gym?"
+      ]
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignInterviewerQuestion2",
+      "en_US": [
+        "Correct! Question two!\r",
+        "Does the Skyarrow Bridge link\n",
+        "Castelia City with Nimbasa City?"
+      ]
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignInterviewerQuestion3",
+      "en_US": [
+        "Right again! Question three!\r",
+        "Is Professor Juniper’s\n",
+        "lab in Nuvema Town?"
+      ]
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignInterviewerQuestion4",
+      "en_US": [
+        "Brilliant! Question four!\r",
+        "Is Elesa, the Nimbasa City Gym\n",
+        "Leader, an expert on Fire types?"
+      ]
+    },
+    {
+      "id": "EternaCityPokecenter1F_Text_SovereignInterviewerQuestion5",
+      "en_US": [
+        "Amazing! Here’s the final question!\r",
+        "Can you beat me in a Pokémon battle?"
+      ]
     }
   ]
 }
