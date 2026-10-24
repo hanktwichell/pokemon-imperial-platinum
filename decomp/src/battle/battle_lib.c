@@ -119,6 +119,7 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
     battleCtx->battleMons[battler].sovereignProteanUsed = FALSE;
     battleCtx->battleMons[battler].sovereignEntryAnnounced = FALSE;
     battleCtx->battleMons[battler].sovereignHPFormChecked = FALSE;
+    battleCtx->battleMons[battler].sovereignIceFaceHail = FALSE;
     battleCtx->battleMons[battler].type1 = Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
     battleCtx->battleMons[battler].type2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
     battleCtx->battleMons[battler].gender = Pokemon_GetGender(mon);
@@ -5128,6 +5129,35 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
         }
         break;
 
+    // Sovereign (FM): Gulp Missile. A Gulping or Gorging Cramorant hit by a damaging move spits its catch at the
+    // attacker, even as it faints: 1/4 of the attacker's max HP (not with Magic Guard), then an Arrokuda lowers its
+    // Defense and a Pikachu paralyzes it. Cramorant goes back to its base form. Not while it's underwater.
+    case ABILITY_GULP_MISSILE:
+        if (DEFENDING_MON.species == SPECIES_CRAMORANT
+            && Pokemon_SovereignBattleFormBase(DEFENDING_MON.species, DEFENDING_MON.formNum) != DEFENDING_MON.formNum
+            && (DEFENDING_MON.statusVolatile & VOLATILE_CONDITION_TRANSFORM) == FALSE
+            && (DEFENDING_MON.moveEffectsMask & MOVE_EFFECT_SEMI_INVULNERABLE) == FALSE
+            && ATTACKING_MON.curHP
+            && battleCtx->attacker != battleCtx->defender
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)) {
+            int baseForm = Pokemon_SovereignBattleFormBase(DEFENDING_MON.species, DEFENDING_MON.formNum);
+
+            // MSG_TEMP: 0 for the Gulping Form's Arrokuda, 1 for the Gorging Form's Pikachu.
+            battleCtx->msgTemp = DEFENDING_MON.formNum != Pokemon_SovereignAbilityForm(DEFENDING_MON.species, baseForm, ABILITY_GULP_MISSILE);
+            battleCtx->hpCalcTemp = Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_MAGIC_GUARD
+                ? 0
+                : BattleSystem_Divide(ATTACKING_MON.maxHP * -1, 4);
+            battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
+            battleCtx->sideEffectMon = battleCtx->attacker;
+            BattleSystem_SovereignChangeBattleForm(battleSys, battleCtx, battleCtx->defender, baseForm);
+
+            *subscript = subscript_sovereign_gulp_missile;
+            result = TRUE;
+        }
+        break;
+
     case ABILITY_IRON_BARBS: // Sovereign (item 11): same as Rough Skin
     case ABILITY_ROUGH_SKIN:
         if (ATTACKING_MON.curHP
@@ -7372,6 +7402,29 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
                 *subscript = subscript_form_change;
                 result = TRUE;
                 break;
+            }
+        }
+
+        // Sovereign (FM): snow (Platinum's hail) brings back a Noice Face Eiscue's ice when it switches in during snow
+        // or when snow starts, not on every turn of it (as in Scarlet and Violet). Snow that Cloud Nine or Air Lock
+        // hides doesn't, nor does it when they leave.
+        if (hpFormMon->species == SPECIES_EISCUE && hpFormMon->curHP
+            && (hpFormMon->statusVolatile & VOLATILE_CONDITION_TRANSFORM) == FALSE
+            && Battler_Ability(battleCtx, battleCtx->msgBattlerTemp) == ABILITY_ICE_FACE) {
+            if (WEATHER_IS_HAIL) {
+                if (hpFormMon->sovereignIceFaceHail == FALSE) {
+                    hpFormMon->sovereignIceFaceHail = TRUE;
+
+                    int iceForm = Pokemon_SovereignBattleFormBase(hpFormMon->species, hpFormMon->formNum);
+                    if (NO_CLOUD_NINE && iceForm != hpFormMon->formNum) {
+                        BattleSystem_SovereignChangeBattleForm(battleSys, battleCtx, battleCtx->msgBattlerTemp, iceForm);
+                        *subscript = subscript_form_change;
+                        result = TRUE;
+                        break;
+                    }
+                }
+            } else {
+                hpFormMon->sovereignIceFaceHail = FALSE;
             }
         }
 

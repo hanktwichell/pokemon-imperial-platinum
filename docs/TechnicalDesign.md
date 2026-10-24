@@ -253,6 +253,23 @@ implemented.
     Team, Night Slash), once (`FLAG_SOVEREIGN_RECEIVED_BATTLE_BOND_GRENINJA`, the former `FLAG_UNUSED_0x0101`). The new
     script command `SovereignSetPartyMonForm partySlot, form` sets its form after `GivePokemon` (ability, stats and the
     Pokédex form too).
+- **Ice Face** (Noice Eiscue, form 1, `SOVEREIGN_FORM_BATTLE` with Ice Face as trigger).
+  - In `BattleControllerPlayer_UseMove`, next to Disguise: the first physical hit on an Ice Face Eiscue does no damage
+    and makes it Noice Face (`subscript_sovereign_ice_face`). Mold Breaker ignores it; a substitute takes the hit first.
+  - It stays Noice through switching (`Pokemon_SovereignRevertSwitchOutForm` skips Ice Face) until the battle ends.
+  - `BattleSystem_TriggerFormChange`: snow (Platinum's hail, `WEATHER_IS_HAIL`) brings the ice back when Eiscue
+    switches in during it or when it starts, once per snow (`BattleMon.sovereignIceFaceHail`). Snow under Cloud Nine
+    or Air Lock doesn't.
+- **Gulp Missile** (Gulping Cramorant, form 1; Gorging Cramorant, form 2; both `SOVEREIGN_FORM_BATTLE` with Gulp Missile
+  as trigger).
+  - `TRY_MOVE_STATE_SOVEREIGN_GULP_MISSILE` (`BattleControllerPlayer_TryMove`, after the accuracy and immunity checks):
+    when Cramorant's Surf hits or it dives (Dive's first turn), it becomes Gulping above half its HP, else Gorging
+    (`subscript_sovereign_gulp_missile_catch`, silent as in Sword and Shield).
+  - `BattleSystem_TriggerAbilityOnHit`: a damaging hit on a Gulping or Gorging Cramorant (not while it's underwater,
+    and even as it faints) takes 1/4 of the attacker's max HP (not with Magic Guard), then lowers its Defense (Arrokuda;
+    not past Clear Body, White Smoke or Full Metal Body) or paralyzes it (Pikachu, through `subscript_paralyze`).
+    Cramorant goes back to its base form (`subscript_sovereign_gulp_missile`).
+  - A catch is lost when Cramorant switches out, as in the official games.
 - **Personality forms** (`SOVEREIGN_FORM_PERSONALITY`, Minior's Meteor colors). `Pokemon_SovereignPersonalityForm`
   picks the form from the personality, personality % 7 for Minior as in Sun and Moon (Red is form 0). The Pokémon
   gets it when it's made (`sub_02073E18`, which every new Pokémon goes through), and an Egg gets its own from its

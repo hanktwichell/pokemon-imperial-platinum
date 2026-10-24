@@ -235,6 +235,9 @@ static const SovereignForm sSovereignForms[SOVEREIGN_FORM_COUNT] = {
     { SPECIES_PALAFIN, 1, SOVEREIGN_FORM_BATTLE, ABILITY_ZERO_TO_HERO }, // Hero Form Palafin
     { SPECIES_GRENINJA, 1, SOVEREIGN_FORM_REGIONAL, 0 }, // Battle Bond Greninja
     { SPECIES_GRENINJA, 2, SOVEREIGN_FORM_BATTLE, ABILITY_BATTLE_BOND }, // Ash’s Greninja
+    { SPECIES_EISCUE, 1, SOVEREIGN_FORM_BATTLE, ABILITY_ICE_FACE }, // Noice Eiscue
+    { SPECIES_CRAMORANT, 1, SOVEREIGN_FORM_BATTLE, ABILITY_GULP_MISSILE }, // Gulping Cramorant
+    { SPECIES_CRAMORANT, 2, SOVEREIGN_FORM_BATTLE, ABILITY_GULP_MISSILE }, // Gorging Cramorant
 };
 
 // A regional form that evolves into its region's form of the target species (any other evolves into form 0).

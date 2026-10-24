@@ -3630,3 +3630,37 @@ interactions the owner listed on 2026-10-23. PR open.
 1. Milestone FM: Ice Face (Noice Eiscue) and Gulp Missile (Cramorant).
 2. Overworld sprites from the owner (in a few days): size them naturally against the existing overworld Pokémon.
 3. The owner's final placements for the provisional spots (dealers, Greninja NPC, Chronicle encounters).
+
+---
+
+## CB-0063 — FM: Ice Face and Gulp Missile (Sat Oct 24 2026, 01:21 CDT)
+
+**Implemented:**
+- **Ice Face (Noice Eiscue).**
+  - The first physical hit on Eiscue does no damage and makes it Noice Face, which lasts through switching until the
+    battle ends.
+  - Snow (Platinum's hail) brings the ice back when Eiscue switches in during it or when snow starts, once per snow.
+- **Gulp Missile (Gulping and Gorging Cramorant).**
+  - Surf (when it hits) or Dive (its first turn) catches an Arrokuda above half HP, or a Pikachu at half or less.
+  - A damaging hit spits the catch: 1/4 of the attacker's max HP (Magic Guard prevents it), then Defense -1
+    (Arrokuda) or paralysis (Pikachu).
+  - Not while Cramorant is underwater. The catch is lost on a switch-out.
+- Verified in the emulator: Ice Face's block, Noice through a switch, snow restoring the ice once; Gorging (Surf at
+  2/5 HP) spitting a paralyzing Pikachu; Gulping (Dive) spitting an Arrokuda for Defense -1.
+
+**Files modified:** `tools/engine/gen_forms.py`, `tools/engine/gen_abilities.py`,
+`decomp/include/constants/sovereign_forms.h`, `decomp/include/data/sovereign_forms.h`,
+`decomp/tools/dataproc/src/sovereign_forms.inc`, `decomp/res/pokemon/eiscue/meson.build`,
+`decomp/res/pokemon/eiscue/forms/noice/data.json` (new), `decomp/res/pokemon/cramorant/meson.build`,
+`decomp/res/pokemon/cramorant/forms/{gulping,gorging}/data.json` (new), `decomp/include/battle/battle_mon.h`,
+`decomp/src/battle/battle_controller_player.c`, `decomp/src/battle/battle_lib.c`, `decomp/src/pokemon.c`,
+`decomp/res/battle/scripts/subscripts/subscript_sovereign_{ice_face,gulp_missile,gulp_missile_catch}.s` (new),
+`decomp/res/battle/scripts/subscripts/sub_seq.order`, `decomp/res/battle/scripts/subscripts/meson.build`,
+`decomp/generated/battle_subscripts.txt`, `decomp/res/text/battle_strings.json`, `docs/AbilityChecklist.md`,
+`docs/TechnicalDesign.md`, `docs/EngineRoadmap.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Milestone FM: the remaining battle forms (for example Castform's and Cherrim's newer handling, Primal checks,
+   Commander/Tatsugiri, Terapagos' Terastal Form shelved) and the cosmetic forms.
+2. Overworld sprites from the owner (in a few days): size them naturally against the existing overworld Pokémon.
+3. The owner's final placements for the provisional spots (Paradox dealers, Greninja NPC, Chronicle encounters).

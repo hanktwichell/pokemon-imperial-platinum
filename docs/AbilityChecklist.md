@@ -123,14 +123,14 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 238 | Cotton Down | Gen 8 | not yet (no battle effect) |
 | 239 | Propeller Tail | Gen 8 | yes: ignores moves and abilities that draw in attacks |
 | 240 | Mirror Armor | Gen 8 | not yet (no battle effect) |
-| 241 | Gulp Missile | Gen 8 | not yet (no battle effect) |
+| 241 | Gulp Missile | Gen 8 | yes: Surf or Dive catches prey; a hit spits it for 1/4 HP and Defense -1 or paralysis |
 | 242 | Stalwart | Gen 8 | yes: ignores moves and abilities that draw in attacks |
 | 243 | Steam Engine | Gen 8 | yes: Fire or Water hits raise Speed 6 stages |
 | 244 | Punk Rock | Gen 8 | yes: its sound moves ×1.3, sound damage taken halved |
 | 245 | Sand Spit | Gen 8 | yes: getting hit whips up a sandstorm |
 | 246 | Ice Scales | Gen 8 | yes: special damage halved |
 | 247 | Ripen | Gen 8 | not yet (no battle effect) |
-| 248 | Ice Face | Gen 8 | not yet (no battle effect) |
+| 248 | Ice Face | Gen 8 | yes: takes one physical hit; snow brings the ice back |
 | 249 | Power Spot | Gen 8 | yes: its ally's moves ×1.3 |
 | 250 | Mimicry | Gen 8 | not yet (no battle effect) |
 | 251 | Screen Cleaner | Gen 8 | yes: removes Reflect, Light Screen and Aurora Veil on entry |

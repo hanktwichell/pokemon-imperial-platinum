@@ -179,6 +179,11 @@ FM_FORMS = {
     # it Ash-Greninja (2) in battle, and it goes back to Battle Bond Greninja (BATTLE_FORM_BASES).
     "greninja-battle-bond": (KIND_REGIONAL, "0"),
     "greninja-ash": (KIND_BATTLE, "ABILITY_BATTLE_BOND"),
+    "eiscue-noice": (KIND_BATTLE, "ABILITY_ICE_FACE"),
+    # Cramorant: Surf or Dive catches an Arrokuda (Gulping, 1) above half HP or a Pikachu (Gorging, 2) at half or
+    # less, as in Sword and Shield.
+    "cramorant-gulping": (KIND_BATTLE, "ABILITY_GULP_MISSILE"),
+    "cramorant-gorging": (KIND_BATTLE, "ABILITY_GULP_MISSILE"),
 }
 
 # The form a battle form goes back to, when it isn't a regional form's (those follow the region) or 0: each Core

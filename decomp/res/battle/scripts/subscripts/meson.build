@@ -380,4 +380,7 @@ subscript_files = files(
     'subscript_sovereign_power_construct.s',
     'subscript_sovereign_zero_to_hero.s',
     'subscript_sovereign_battle_bond.s',
+    'subscript_sovereign_ice_face.s',
+    'subscript_sovereign_gulp_missile.s',
+    'subscript_sovereign_gulp_missile_catch.s',
 )
