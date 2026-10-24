@@ -1,0 +1,153 @@
+{
+    "base_stats": {
+        "hp": 54,
+        "attack": 100,
+        "defense": 71,
+        "speed": 115,
+        "special_attack": 61,
+        "special_defense": 85
+    },
+    "types": [
+        "TYPE_DRAGON",
+        "TYPE_GROUND"
+    ],
+    "catch_rate": 3,
+    "base_exp_reward": 255,
+    "ev_yields": {
+        "hp": 3,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_NO_GENDER",
+    "hatch_cycles": 120,
+    "base_friendship": 0,
+    "exp_rate": "EXP_RATE_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_UNDISCOVERED",
+        "EGG_GROUP_UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_POWER_CONSTRUCT",
+        "ABILITY_POWER_CONSTRUCT",
+        "ABILITY_POWER_CONSTRUCT"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
+    "icon_palette": 1,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_THOUSAND_ARROWS"
+            ],
+            [
+                1,
+                "MOVE_THOUSAND_WAVES"
+            ],
+            [
+                1,
+                "MOVE_CORE_ENFORCER"
+            ],
+            [
+                1,
+                "MOVE_BIND"
+            ],
+            [
+                1,
+                "MOVE_BULLDOZE"
+            ],
+            [
+                1,
+                "MOVE_DRAGON_BREATH"
+            ],
+            [
+                1,
+                "MOVE_BITE"
+            ],
+            [
+                8,
+                "MOVE_HAZE"
+            ],
+            [
+                16,
+                "MOVE_DIG"
+            ],
+            [
+                24,
+                "MOVE_SAFEGUARD"
+            ],
+            [
+                32,
+                "MOVE_CRUNCH"
+            ],
+            [
+                40,
+                "MOVE_DRAGON_PULSE"
+            ],
+            [
+                48,
+                "MOVE_LANDS_WRATH"
+            ],
+            [
+                56,
+                "MOVE_GLARE"
+            ],
+            [
+                64,
+                "MOVE_SANDSTORM"
+            ],
+            [
+                72,
+                "MOVE_COIL"
+            ],
+            [
+                80,
+                "MOVE_EARTHQUAKE"
+            ],
+            [
+                88,
+                "MOVE_OUTRAGE"
+            ]
+        ],
+        "by_tm": [
+            "TM11",
+            "TM15",
+            "TM17",
+            "TM20",
+            "TM23",
+            "TM26",
+            "TM28",
+            "TM31",
+            "TM37",
+            "TM42",
+            "TM44",
+            "TM52",
+            "TM58",
+            "TM59",
+            "TM66",
+            "TM68",
+            "TM71",
+            "TM80",
+            "TM82",
+            "TM86",
+            "TM90"
+        ],
+        "by_tutor": [
+            "MOVE_SUPERPOWER",
+            "MOVE_SNORE",
+            "MOVE_OUTRAGE",
+            "MOVE_ZEN_HEADBUTT",
+            "MOVE_EARTH_POWER",
+            "MOVE_SWIFT"
+        ]
+    },
+    "evolutions": []
+}

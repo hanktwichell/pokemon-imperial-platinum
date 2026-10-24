@@ -6,7 +6,7 @@
 #include "savedata.h"
 
 // Sovereign (FM): key items used on a Pokemon from the bag to change its form. The Reveal Glass and the Prison Bottle
-// switch a form on and off; the DNA Splicers, N-Solarizer, N-Lunarizer and Reins of Unity fuse two Pokemon and
+// switch a form on and off, the Zygarde Cube goes through Zygarde's formes; the DNA Splicers, N-Solarizer, N-Lunarizer and Reins of Unity fuse two Pokemon and
 // separate them again.
 enum SovereignFormItemResult {
     SOVEREIGN_FORM_ITEM_NONE = 0, // not a form-change key item

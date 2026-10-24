@@ -211,6 +211,19 @@ implemented.
     Core). The status subscripts (poison, bad poison, paralysis, burn, freeze, sleep, Yawn) read it through the
     read-only `BTLVAR_SOVEREIGN_SHIELDS_UP_EFFECT_MON` and go to their ability-immunity path ("MINIOR's Shields Down
     prevents ..."). Rest fails. Mold Breaker doesn't get past it, as in the main series.
+- **Power Construct** (Complete Zygarde, `SOVEREIGN_FORM_BATTLE` with Power Construct as trigger: forms 4 and 5).
+  - Each Power Construct forme has its own Complete form (5 is a second copy of 4's data, `FM_ROW_ALIASES`), so
+    `sSovereignBattleFormBases` sends it back to the forme it came from. Like Ultra Necrozma, a Complete form is never
+    saved.
+  - `BattleSystem_TriggerTurnEndAbility` makes a Zygarde with a Power Construct forme Complete at the end of a turn at
+    half its HP or less (not while transformed).
+  - `BattleSystem_SovereignChangeBattleForm` now also sets the battler's max HP from the new form (Complete Zygarde
+    is the only form with more HP). The caller sets `hpCalcTemp` to the rise.
+  - `subscript_sovereign_power_construct` shows "You sense the presence of many!", changes the sprite, redraws the
+    HP bar with the new max (`SovereignRefreshHealthBox`), then raises the HP (`BATTLE_SUBSCRIPT_UPDATE_HP`).
+  - It stays Complete through switching (`Pokemon_SovereignRevertSwitchOutForm` skips Power Construct) and until the
+    battle ends. `Pokemon_SovereignRevertBattleForm` then keeps the damage it took: max HP minus the HP lost, at least
+    1 for a Pokémon still standing.
 - **Personality forms** (`SOVEREIGN_FORM_PERSONALITY`, Minior's Meteor colors). `Pokemon_SovereignPersonalityForm`
   picks the form from the personality, personality % 7 for Minior as in Sun and Moon (Red is form 0). The Pokémon
   gets it when it's made (`sub_02073E18`, which every new Pokémon goes through), and an Egg gets its own from its
@@ -222,8 +235,11 @@ implemented.
   - `BtlCmd_TryStealItem` (Thief and Covet) and `BtlCmd_TrySwapItems` (Trick and Switcheroo) fail.
   - `BtlCmd_TryKnockOff` leaves the item.
   - `BattleSystem_FlingItem` fails.
-- **Key-item forms** (`SOVEREIGN_FORM_KEY_ITEM`: Therian Formes, Hoopa Unbound) and **fusions**
+- **Key-item forms** (`SOVEREIGN_FORM_KEY_ITEM`: Therian Formes, Hoopa Unbound, Zygarde's formes) and **fusions**
   (`SOVEREIGN_FORM_FUSION`: Kyurem, Necrozma, Calyrex; the form's `trigger` is the partner species).
+  - `Pokemon_SovereignNextKeyItemForm` gives the form a key item leads to. With several forms for one item, it goes
+    through them in turn and back to 0: the Zygarde Cube takes Zygarde from 50% (form 0) to 10% (1), 10% with Power
+    Construct (2), 50% with Power Construct (3), and back to 0. The Archivist gives the Cube once Zygarde is caught.
   - The key items have `ITEM_USE_FUNC_SOVEREIGN_FORM` (`item_use_functions.c`), which opens the party menu with the
     item like the Gracidea.
   - `ApplyItemEffectOnPokemon` (`party_menu/main.c`) hands them to `SovereignFormItem_Use`

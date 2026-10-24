@@ -3381,3 +3381,51 @@ interactions the owner listed on 2026-10-23. PR open.
    Gulp Missile's Cramorant forms, Zero to Hero's Hero Palafin).
 3. Owner decisions still open: Revival Blessing; Koraidon/Miraidon gate; Cosmog's Teleport; whether Ultra Burst
    counts as the trainer's Mega; overworld sprites and sizing; final placements.
+
+---
+
+## CB-0056 — Zygarde Cube formes and Power Construct (Fri Oct 23 2026, 23:33 CDT)
+
+**Implemented:**
+- **Zygarde's forms** in `gen_forms.py`, in the official order:
+  - 1 = 10%, 2 = 10% with Power Construct, 3 = 50% with Power Construct. These are `SOVEREIGN_FORM_KEY_ITEM` with the
+    Zygarde Cube.
+  - 4 and 5 = Complete, from forms 2 and 3. These are `SOVEREIGN_FORM_BATTLE` with Power Construct; 5 is an alias of
+    4's data row, and `BATTLE_FORM_BASES` sends each back to its own forme.
+  - Mega Zygarde is now form 6. Megas are never saved, so nothing saved changes.
+- **Zygarde Cube:**
+  - The Cube now has `ITEM_USE_FUNC_SOVEREIGN_FORM` (`gen_items.py` `FORM_KEY_ITEMS`).
+  - `Pokemon_SovereignNextKeyItemForm` replaces `Pokemon_SovereignKeyItemForm` and cycles 0 → 1 → 2 → 3 → 0. The
+    Reveal Glass and Prison Bottle still toggle on and off.
+  - The Archivist gives the Cube once Zygarde is caught: `CanalaveLibrary2F_SovereignArchivistZygardeCube`, in Life
+    and Destruction.
+- **Power Construct:**
+  - It runs at the end of the turn at half HP or less: a `BattleSystem_TriggerTurnEndAbility` case, then
+    `subscript_sovereign_power_construct` (new; added to `sub_seq.order`, `meson.build` and
+    `generated/battle_subscripts.txt`).
+  - `BattleSystem_SovereignChangeBattleForm` now sets the max HP from the new form; the HP rise goes through
+    `UPDATE_HP` after `SovereignRefreshHealthBox`.
+  - Complete Zygarde stays Complete through switch-out. At the end of battle it reverts and keeps the damage it took,
+    with at least 1 HP if it's still standing.
+- **Verified** in the emulator: every step above; details in `docs/EngineChangelog.md`.
+
+**Files modified:** `tools/engine/gen_forms.py`, `tools/engine/gen_items.py`, `decomp/res/items/data/zygarde_cube.json`,
+`decomp/include/constants/sovereign_forms.h`, `decomp/include/data/sovereign_forms.h`,
+`decomp/tools/dataproc/src/sovereign_forms.inc`, `decomp/res/pokemon/zygarde/meson.build`,
+`decomp/res/pokemon/zygarde/forms/{10,10_power_construct,50_power_construct,complete,complete_50}/data.json` (new),
+`decomp/src/pokemon.c`, `decomp/include/pokemon.h`, `decomp/src/sovereign_form_items.c`,
+`decomp/include/sovereign_form_items.h`, `decomp/src/battle/battle_lib.c`,
+`decomp/res/battle/scripts/subscripts/subscript_sovereign_power_construct.s` (new),
+`decomp/res/battle/scripts/subscripts/sub_seq.order`, `decomp/res/battle/scripts/subscripts/meson.build`,
+`decomp/generated/battle_subscripts.txt`, `decomp/res/text/battle_strings.json`,
+`decomp/res/field/scripts/scripts_canalave_library_2f.s`, `decomp/res/text/canalave_library_2f.json`,
+`data/postgame_legendaries.yaml`, `docs/PostgameLegendaries.md`, `docs/TechnicalDesign.md`, `docs/EngineRoadmap.md`,
+`docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Milestone FM: Battle Bond (Ash-Greninja, forms 1-2). Owner: how the player gets a Battle Bond Greninja (in the
+   official games it was a demo gift that can't breed).
+2. Milestone FM: the other ability forms (Ice Face's Noice Eiscue, Hunger Switch's Hangry Morpeko, Gulp Missile's
+   Cramorant, Zero to Hero's Hero Palafin).
+3. Owner decisions still open: Revival Blessing; Koraidon/Miraidon gate; Cosmog's Teleport; whether Ultra Burst
+   counts as the trainer's Mega; overworld sprites and sizing; final placements.

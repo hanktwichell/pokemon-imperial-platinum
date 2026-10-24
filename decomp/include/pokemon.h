@@ -855,7 +855,7 @@ void Pokemon_SovereignRevertSwitchOutForm(Pokemon *mon);
 BOOL Pokemon_SovereignHasHeldItemForms(u16 species);
 int Pokemon_SovereignHeldItemForm(u16 species, u16 heldItem);
 BOOL Pokemon_SovereignItemIsLocked(u16 species, u16 item);
-int Pokemon_SovereignKeyItemForm(u16 species, u16 item);
+int Pokemon_SovereignNextKeyItemForm(u16 species, int form, u16 item);
 int Pokemon_SovereignFusionForm(u16 species, u16 partner);
 u16 Pokemon_SovereignFusionPartner(u16 species, int form);
 // Sovereign (FM): the evolution type of an item evolution into a form, ORed with the form.

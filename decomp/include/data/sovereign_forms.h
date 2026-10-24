@@ -89,7 +89,7 @@ static const SovereignForm sSovereignForms[SOVEREIGN_FORM_COUNT] = {
     { SPECIES_BARBARACLE, 1, SOVEREIGN_FORM_MEGA, ITEM_BARBARACITE }, // Mega Barbaracle
     { SPECIES_DRAGALGE, 1, SOVEREIGN_FORM_MEGA, ITEM_DRAGALGITE }, // Mega Dragalge
     { SPECIES_HAWLUCHA, 1, SOVEREIGN_FORM_MEGA, ITEM_HAWLUCHANITE }, // Mega Hawlucha
-    { SPECIES_ZYGARDE, 1, SOVEREIGN_FORM_MEGA, ITEM_ZYGARDITE }, // Mega Zygarde
+    { SPECIES_ZYGARDE, 6, SOVEREIGN_FORM_MEGA, ITEM_ZYGARDITE }, // Mega Zygarde
     { SPECIES_DRAMPA, 1, SOVEREIGN_FORM_MEGA, ITEM_DRAMPANITE }, // Mega Drampa
     { SPECIES_FALINKS, 1, SOVEREIGN_FORM_MEGA, ITEM_FALINKSITE }, // Mega Falinks
     { SPECIES_RAICHU, 2, SOVEREIGN_FORM_MEGA, ITEM_RAICHUNITE_X }, // Mega Raichu X
@@ -226,6 +226,11 @@ static const SovereignForm sSovereignForms[SOVEREIGN_FORM_COUNT] = {
     { SPECIES_MINIOR, 11, SOVEREIGN_FORM_BATTLE, ABILITY_SHIELDS_DOWN }, // Blue Core Minior
     { SPECIES_MINIOR, 12, SOVEREIGN_FORM_BATTLE, ABILITY_SHIELDS_DOWN }, // Indigo Core Minior
     { SPECIES_MINIOR, 13, SOVEREIGN_FORM_BATTLE, ABILITY_SHIELDS_DOWN }, // Violet Core Minior
+    { SPECIES_ZYGARDE, 1, SOVEREIGN_FORM_KEY_ITEM, ITEM_ZYGARDE_CUBE }, // 10% Zygarde
+    { SPECIES_ZYGARDE, 2, SOVEREIGN_FORM_KEY_ITEM, ITEM_ZYGARDE_CUBE }, // 10% Zygarde
+    { SPECIES_ZYGARDE, 3, SOVEREIGN_FORM_KEY_ITEM, ITEM_ZYGARDE_CUBE }, // 50% Zygarde
+    { SPECIES_ZYGARDE, 4, SOVEREIGN_FORM_BATTLE, ABILITY_POWER_CONSTRUCT }, // Complete Zygarde
+    { SPECIES_ZYGARDE, 5, SOVEREIGN_FORM_BATTLE, ABILITY_POWER_CONSTRUCT }, // Complete Zygarde
 };
 
 // A regional form that evolves into its region's form of the target species (any other evolves into form 0).
@@ -366,6 +371,8 @@ static const SovereignBattleFormBase sSovereignBattleFormBases[] = {
     { SPECIES_MINIOR, 11, 4 }, // Blue Core Minior
     { SPECIES_MINIOR, 12, 5 }, // Indigo Core Minior
     { SPECIES_MINIOR, 13, 6 }, // Violet Core Minior
+    { SPECIES_ZYGARDE, 4, 2 }, // Complete Zygarde
+    { SPECIES_ZYGARDE, 5, 3 }, // Complete Zygarde
 };
 
 // Disguise: a disguised Mimikyu form and the form its disguise busts into (it goes back when the battle ends).

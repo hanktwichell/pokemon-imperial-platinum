@@ -3843,6 +3843,25 @@ BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem *battleSys, BattleContext *
         break;
     }
 
+    // Sovereign (FM): Power Construct makes a 10% or 50% Zygarde Complete at the end of a turn at half its HP or less.
+    // Its max HP rises and its HP rises by as much (subscript_sovereign_power_construct). It stays Complete until the
+    // battle ends, switching out too.
+    case ABILITY_POWER_CONSTRUCT: {
+        BattleMon *mon = &battleCtx->battleMons[battler];
+        int form = Pokemon_SovereignAbilityForm(mon->species, mon->formNum, ABILITY_POWER_CONSTRUCT);
+
+        if (form >= 0 && mon->curHP && mon->curHP <= mon->maxHP / 2 && (mon->statusVolatile & VOLATILE_CONDITION_TRANSFORM) == FALSE) {
+            int oldMaxHP = mon->maxHP;
+
+            BattleSystem_SovereignChangeBattleForm(battleSys, battleCtx, battler, form);
+            battleCtx->msgBattlerTemp = battler;
+            battleCtx->hpCalcTemp = mon->maxHP - oldMaxHP;
+            subscript = subscript_sovereign_power_construct;
+            result = TRUE;
+        }
+        break;
+    }
+
     // Sovereign (FM): Zen Mode turns Darmanitan to its Zen Mode at half its HP or less, and back above half.
     case ABILITY_ZEN_MODE: {
         BattleMon *mon = &battleCtx->battleMons[battler];
@@ -7550,6 +7569,11 @@ void BattleSystem_SovereignChangeBattleForm(BattleSystem *battleSys, BattleConte
     mon->type1 = SpeciesData_GetFormValue(mon->species, form, SPECIES_DATA_TYPE_1);
     mon->type2 = SpeciesData_GetFormValue(mon->species, form, SPECIES_DATA_TYPE_2);
     mon->formNum = form;
+    // A form with more HP (Complete Zygarde) raises its max HP; the caller raises its HP to match.
+    mon->maxHP = Pokemon_GetValue(tmp, MON_DATA_MAX_HP, NULL);
+    if (mon->curHP > mon->maxHP) {
+        mon->curHP = mon->maxHP;
+    }
     Heap_Free(tmp);
 
     // A Mega whose ability the engine lacks keeps its own (its form data lists none: tools/engine/gen_forms.py).

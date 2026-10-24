@@ -131,7 +131,10 @@ quests:
     built: >-
       Zygarde (CB-0041), level 70, in its 50% Forme: in the alcove at the north of Wayward Cave B1F (21, 4) once
       Xerneas and Yveltal are both caught, until it's caught. **Changed from the plan** (owner, 2026-10-23): an
-      existing alcove in place of a new chamber. The 10% and Complete Formes come with the forms milestone (FM).
+      existing alcove in place of a new chamber. Once it's caught, the Archivist's Life and Destruction chapter gives
+      the Zygarde Cube (CB-0056): used from the bag, it takes Zygarde from its 50% Forme to 10%, 10% with Power
+      Construct, 50% with Power Construct and back. With Power Construct, Zygarde turns Complete in battle at half HP or
+      less.
   - chapter: Kalos Chronicle
     name: The Jewel
     species: [Diancie]

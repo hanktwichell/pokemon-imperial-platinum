@@ -209,3 +209,8 @@
     { "minior/forms/blue", NULL, .isGiratinaOrigin = false }, // Blue Core Minior
     { "minior/forms/indigo", NULL, .isGiratinaOrigin = false }, // Indigo Core Minior
     { "minior/forms/violet", NULL, .isGiratinaOrigin = false }, // Violet Core Minior
+    { "zygarde/forms/10", NULL, .isGiratinaOrigin = false }, // 10% Zygarde
+    { "zygarde/forms/10_power_construct", NULL, .isGiratinaOrigin = false }, // 10% Zygarde
+    { "zygarde/forms/50_power_construct", NULL, .isGiratinaOrigin = false }, // 50% Zygarde
+    { "zygarde/forms/complete", NULL, .isGiratinaOrigin = false }, // Complete Zygarde
+    { "zygarde/forms/complete_50", NULL, .isGiratinaOrigin = false }, // Complete Zygarde

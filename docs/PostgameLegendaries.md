@@ -80,7 +80,7 @@ Covers **90** species.
 - **Level:** 70
 - **Location:** Wayward Cave — B1F (lowest floor)
 - **How:** Appears after Xerneas and Yveltal are caught. Zygardite is sold post-game. Zygarde's 10%, 50% and Complete Formes are in the game (all forms are in scope, owner 2026-10-22).
-- **Built:** Zygarde (CB-0041), level 70, in its 50% Forme: in the alcove at the north of Wayward Cave B1F (21, 4) once Xerneas and Yveltal are both caught, until it's caught. **Changed from the plan** (owner, 2026-10-23): an existing alcove in place of a new chamber. The 10% and Complete Formes come with the forms milestone (FM).
+- **Built:** Zygarde (CB-0041), level 70, in its 50% Forme: in the alcove at the north of Wayward Cave B1F (21, 4) once Xerneas and Yveltal are both caught, until it's caught. **Changed from the plan** (owner, 2026-10-23): an existing alcove in place of a new chamber. Once it's caught, the Archivist's Life and Destruction chapter gives the Zygarde Cube (CB-0056): used from the bag, it takes Zygarde from its 50% Forme to 10%, 10% with Power Construct, 50% with Power Construct and back. With Power Construct, Zygarde turns Complete in battle at half HP or less.
 
 ### The Jewel
 - **Pokémon:** #719 Diancie

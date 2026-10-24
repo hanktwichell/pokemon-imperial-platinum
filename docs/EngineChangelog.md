@@ -4,6 +4,30 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## FM — Zygarde's formes and Power Construct
+
+- **Zygarde Cube.**
+  - Once Zygarde is caught, the Archivist gives the Zygarde Cube (Kalos Chronicle, Life and Destruction).
+  - Used on Zygarde from the bag, it goes through its formes in turn: 50%, 10%, 10% with Power Construct, 50% with
+    Power Construct, then 50% again ("ZYGARDE changed Forme!").
+  - The 10% Formes have 54 HP and 115 Speed. The ability goes with the forme: Aura Break, or Power Construct.
+- **Power Construct.**
+  - At the end of a turn at half HP or less, a Zygarde with Power Construct turns Complete: "You sense the presence
+    of many!", then "ZYGARDE transformed into its Complete Forme!".
+  - Its max HP rises (216 base HP) and its HP rises by as much, shown on the HP bar.
+  - It stays Complete when it switches out, until the battle ends. It then goes back to the forme it came from and
+    keeps the damage it took.
+- **How:** `TechnicalDesign.md` (key-item forms, Power Construct). Every forme shares Zygarde's sprite until milestone
+  E12.
+- **Verified** in the emulator (two level 70 Zygarde on Route 201):
+  - A 10% Power Construct Zygarde at 68/170 turned Complete at the end of the first turn. The HP bar showed 65/397,
+    then rose to 292/397.
+  - It switched out and came back still Complete at 292/397.
+  - After the battle it was 10% again at 64/170, the 106 HP it had lost as Complete kept.
+  - The Cube on a 50% Zygarde (240/241): 165/166 twice (the two 10% Formes), then 240/241 twice. The third forme's
+    summary showed Power Construct.
+  - Release build without warnings, boot smoke, docs.
+
 ## FM — Minior and Shields Down
 
 - **Minior's colors.** Minior has its 7 Meteor Forms and 7 Cores, in the official order (0–6 Meteor, Red to Violet;

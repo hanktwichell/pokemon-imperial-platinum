@@ -377,4 +377,5 @@ subscript_files = files(
     'subscript_sovereign_telekinesis_end.s',
     'subscript_sovereign_disguise.s',
     'subscript_sovereign_disguise_confusion.s',
+    'subscript_sovereign_power_construct.s',
 )

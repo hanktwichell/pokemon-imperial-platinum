@@ -5140,7 +5140,8 @@ int Pokemon_SovereignMoveForm(u16 species, int form, u16 move)
 }
 
 // Sovereign (FM): a form its move or ability gave it in battle (Pirouette Meloetta, Blade Aegislash) ends when the
-// Pokémon switches out, so it switches back in in its base form. A Busted Mimikyu stays busted.
+// Pokémon switches out, so it switches back in in its base form. A Busted Mimikyu stays busted, and a Complete Zygarde
+// stays Complete.
 void Pokemon_SovereignRevertSwitchOutForm(Pokemon *mon)
 {
     u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
@@ -5148,7 +5149,7 @@ void Pokemon_SovereignRevertSwitchOutForm(Pokemon *mon)
 
     if (entry != NULL
         && (entry->kind == SOVEREIGN_FORM_BATTLE_MOVE
-            || (entry->kind == SOVEREIGN_FORM_BATTLE && entry->trigger != ABILITY_DISGUISE))) {
+            || (entry->kind == SOVEREIGN_FORM_BATTLE && entry->trigger != ABILITY_DISGUISE && entry->trigger != ABILITY_POWER_CONSTRUCT))) {
         int form = Pokemon_SovereignBattleFormBase(species, entry->form);
 
         Pokemon_SetValue(mon, MON_DATA_FORM, &form);
@@ -5381,16 +5382,24 @@ BOOL Pokemon_SovereignItemIsLocked(u16 species, u16 item)
     return FALSE;
 }
 
-// Sovereign (FM): the form a key item used on the species gives it (the Reveal Glass on Landorus: Therian), or 0.
-int Pokemon_SovereignKeyItemForm(u16 species, u16 item)
+// Sovereign (FM): the form a key item used on a Pokémon of this species and form gives it, or -1 for no effect. The
+// item goes through its forms in turn and back to 0: the Reveal Glass switches Landorus to Therian and back, the
+// Zygarde Cube takes Zygarde from 50% to 10%, 10% with Power Construct, 50% with Power Construct, and 50% again.
+int Pokemon_SovereignNextKeyItemForm(u16 species, int form, u16 item)
 {
+    BOOL found = form == 0;
+
     for (int i = 0; i < SOVEREIGN_FORM_COUNT; i++) {
         if (sSovereignForms[i].species == species && sSovereignForms[i].kind == SOVEREIGN_FORM_KEY_ITEM && sSovereignForms[i].trigger == item) {
-            return sSovereignForms[i].form;
+            if (found) {
+                return sSovereignForms[i].form;
+            }
+
+            found = sSovereignForms[i].form == form;
         }
     }
 
-    return 0;
+    return found && form != 0 ? 0 : -1;
 }
 
 // Sovereign (FM): the form of the species fused with the partner species (Kyurem and Reshiram: White Kyurem), or 0.
@@ -5489,8 +5498,19 @@ void Pokemon_SovereignRevertBattleForm(Pokemon *mon)
         Pokemon_SovereignReplaceMove(mon, Pokemon_SovereignCrownedMove(species), MOVE_IRON_HEAD);
     }
 
+    // A form with more HP (Complete Zygarde) keeps the damage it took, but a Pokémon that is still standing keeps at
+    // least 1 HP.
+    int hp = Pokemon_GetValue(mon, MON_DATA_HP, NULL);
+    int lostHP = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL) - hp;
+
     Pokemon_CalcAbility(mon);
     Pokemon_CalcLevelAndStats(mon);
+
+    if (hp != 0) {
+        hp = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL) - lostHP;
+        hp = hp < 1 ? 1 : hp;
+        Pokemon_SetValue(mon, MON_DATA_HP, &hp);
+    }
 }
 
 u32 FlagIndex(int num)
