@@ -323,6 +323,18 @@ implemented.
     `Move_CalcVariableType`.
   - The Pixie Plate and the Fairy Feather power up Fairy moves by 20% (`BattleSystem_CalcMoveDamage`).
   - These items are locked on their Pokémon (`Pokemon_SovereignItemIsLocked`).
+- **Cosmetic forms** (`COSMETIC_FORMS` in `gen_forms.py`): forms PokeAPI gives no data of their own, so
+  `data/forms.csv` doesn't list them. Each copies its base species' stats, types, abilities and learnset. Those added
+  so far are `SOVEREIGN_FORM_PERSONALITY` forms:
+  - The Flabébé line's flower colors and the Scatterbug line's wing patterns: the personality picks one of the
+    species' personality forms in table order. That's the same pick for each species of the line, so the form is kept
+    through evolution, and the order lets Eternal Floette come before Floette's colors.
+  - Vivillon's pattern numbers are mapped from the official order, where Meadow is 6 and its base form here.
+  - Deerling and Sawsbuck take the season they're made in. As in Black and White, the season changes each month:
+    (month − 1) % 4.
+  - The teapots: Antique Sinistea and Polteageist, Artisan Poltchageist and Masterpiece Sinistcha, 1 in 10.
+    `Pokemon_SovereignEvolutionItem` makes an Antique Sinistea need the Chipped Pot and an Artisan Poltchageist the
+    Masterpiece Teacup.
 - **Gender forms** (`SOVEREIGN_FORM_GENDER`: Female Meowstic, Indeedee, Basculegion and Oinkologne, each form 1).
   `Pokemon_SovereignPersonalityForm` gives the female's form to a female (its gender comes from its personality), so
   a wild, gift or Egg Pokémon gets it when it's made, with the form's abilities. `Pokemon_SovereignSetEvolvedSpecies`

@@ -3856,3 +3856,31 @@ generated form data (`decomp/include/data/sovereign_forms.h`, `decomp/include/co
    season, item) and add them as forms.
 2. Overworld sprites from the owner (in a few days): size them naturally against the existing overworld Pokémon.
 3. The shops step: where the nectars, Memories, Drives, Pixie Plate, Sweets and other new items are found or sold.
+
+---
+
+## CB-0071 — FM: flower colors, wing patterns, seasons and the Antique teapots (Sat Oct 24 2026, 03:00 CDT)
+
+**Implemented:**
+- `COSMETIC_FORMS` in `gen_forms.py`: forms PokeAPI gives no data of their own. Each copies its base species' data.
+- 79 cosmetic forms, from the personality (made, hatched or evolved):
+  - the Flabébé line's colors and the Vivillon line's 20 patterns, kept through evolution;
+  - Deerling/Sawsbuck by the season (the month, as in Black and White);
+  - the Antique/Artisan/Masterpiece teapots, 1 in 10, with the Chipped Pot and the Masterpiece Teacup.
+- `Pokemon_SovereignPersonalityForm` now picks the n-th personality form in table order, so a species' other forms can
+  come first (Eternal Floette).
+- Verified in the emulator: a battle with these forms ran normally. Their art is missing, as for their base species.
+
+**Files modified:** `tools/engine/gen_forms.py`, generated form data (`decomp/include/data/sovereign_forms.h`,
+`decomp/include/constants/sovereign_forms.h`, `decomp/tools/dataproc/src/sovereign_forms.inc`, the species'
+`meson.build` and new `forms/*/data.json`), `decomp/src/pokemon.c`, `docs/TechnicalDesign.md`, `docs/EngineRoadmap.md`,
+`docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Milestone FM, the last cosmetic forms:
+   - Furfrou's trims: a groomer.
+   - Alcremie's 63 creams and sweets: Milcery spun with a Sweet.
+   - Spiky-eared Pichu: the event deliveryman.
+   - Active Xerneas: in battle.
+2. Overworld sprites from the owner (in a few days): size them naturally against the existing overworld Pokémon.
+3. The shops step: where the nectars, Memories, Drives, Pixie Plate, pots, teacups and Sweets are found or sold.

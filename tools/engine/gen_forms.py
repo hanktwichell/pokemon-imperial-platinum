@@ -230,6 +230,89 @@ FM_FORMS = {
     "oricorio-sensu": (KIND_PERSONALITY, "0"),
     # Keldeo: Resolute Form while it knows Secret Sword (BoxPokemon_SetDataInternal), as in the Gen V+ games.
     "keldeo-resolute": (KIND_REGIONAL, "0"),
+    # Cosmetic forms (COSMETIC_FORMS: no data of their own), each picked by the personality when the Pokemon is made
+    # and kept through evolution (Pokemon_SovereignPersonalityForm): Flabébé's line's flower colors, the Vivillon
+    # line's wing patterns, Deerling's and Sawsbuck's seasons (the season it's made in) and the rare Antique and
+    # Artisan teapots.
+    "flabebe-yellow": (KIND_PERSONALITY, "0"),
+    "flabebe-orange": (KIND_PERSONALITY, "0"),
+    "flabebe-blue": (KIND_PERSONALITY, "0"),
+    "flabebe-white": (KIND_PERSONALITY, "0"),
+    "floette-yellow": (KIND_PERSONALITY, "0"),
+    "floette-orange": (KIND_PERSONALITY, "0"),
+    "floette-blue": (KIND_PERSONALITY, "0"),
+    "floette-white": (KIND_PERSONALITY, "0"),
+    "florges-yellow": (KIND_PERSONALITY, "0"),
+    "florges-orange": (KIND_PERSONALITY, "0"),
+    "florges-blue": (KIND_PERSONALITY, "0"),
+    "florges-white": (KIND_PERSONALITY, "0"),
+    "scatterbug-polar": (KIND_PERSONALITY, "0"),
+    "scatterbug-tundra": (KIND_PERSONALITY, "0"),
+    "scatterbug-continental": (KIND_PERSONALITY, "0"),
+    "scatterbug-garden": (KIND_PERSONALITY, "0"),
+    "scatterbug-elegant": (KIND_PERSONALITY, "0"),
+    "scatterbug-meadow": (KIND_PERSONALITY, "0"),
+    "scatterbug-modern": (KIND_PERSONALITY, "0"),
+    "scatterbug-marine": (KIND_PERSONALITY, "0"),
+    "scatterbug-archipelago": (KIND_PERSONALITY, "0"),
+    "scatterbug-high-plains": (KIND_PERSONALITY, "0"),
+    "scatterbug-sandstorm": (KIND_PERSONALITY, "0"),
+    "scatterbug-river": (KIND_PERSONALITY, "0"),
+    "scatterbug-monsoon": (KIND_PERSONALITY, "0"),
+    "scatterbug-savanna": (KIND_PERSONALITY, "0"),
+    "scatterbug-sun": (KIND_PERSONALITY, "0"),
+    "scatterbug-ocean": (KIND_PERSONALITY, "0"),
+    "scatterbug-jungle": (KIND_PERSONALITY, "0"),
+    "scatterbug-fancy": (KIND_PERSONALITY, "0"),
+    "scatterbug-poke-ball": (KIND_PERSONALITY, "0"),
+    "spewpa-polar": (KIND_PERSONALITY, "0"),
+    "spewpa-tundra": (KIND_PERSONALITY, "0"),
+    "spewpa-continental": (KIND_PERSONALITY, "0"),
+    "spewpa-garden": (KIND_PERSONALITY, "0"),
+    "spewpa-elegant": (KIND_PERSONALITY, "0"),
+    "spewpa-meadow": (KIND_PERSONALITY, "0"),
+    "spewpa-modern": (KIND_PERSONALITY, "0"),
+    "spewpa-marine": (KIND_PERSONALITY, "0"),
+    "spewpa-archipelago": (KIND_PERSONALITY, "0"),
+    "spewpa-high-plains": (KIND_PERSONALITY, "0"),
+    "spewpa-sandstorm": (KIND_PERSONALITY, "0"),
+    "spewpa-river": (KIND_PERSONALITY, "0"),
+    "spewpa-monsoon": (KIND_PERSONALITY, "0"),
+    "spewpa-savanna": (KIND_PERSONALITY, "0"),
+    "spewpa-sun": (KIND_PERSONALITY, "0"),
+    "spewpa-ocean": (KIND_PERSONALITY, "0"),
+    "spewpa-jungle": (KIND_PERSONALITY, "0"),
+    "spewpa-fancy": (KIND_PERSONALITY, "0"),
+    "spewpa-poke-ball": (KIND_PERSONALITY, "0"),
+    "vivillon-icy-snow": (KIND_PERSONALITY, "0"),
+    "vivillon-polar": (KIND_PERSONALITY, "0"),
+    "vivillon-tundra": (KIND_PERSONALITY, "0"),
+    "vivillon-continental": (KIND_PERSONALITY, "0"),
+    "vivillon-garden": (KIND_PERSONALITY, "0"),
+    "vivillon-elegant": (KIND_PERSONALITY, "0"),
+    "vivillon-modern": (KIND_PERSONALITY, "0"),
+    "vivillon-marine": (KIND_PERSONALITY, "0"),
+    "vivillon-archipelago": (KIND_PERSONALITY, "0"),
+    "vivillon-high-plains": (KIND_PERSONALITY, "0"),
+    "vivillon-sandstorm": (KIND_PERSONALITY, "0"),
+    "vivillon-river": (KIND_PERSONALITY, "0"),
+    "vivillon-monsoon": (KIND_PERSONALITY, "0"),
+    "vivillon-savanna": (KIND_PERSONALITY, "0"),
+    "vivillon-sun": (KIND_PERSONALITY, "0"),
+    "vivillon-ocean": (KIND_PERSONALITY, "0"),
+    "vivillon-jungle": (KIND_PERSONALITY, "0"),
+    "vivillon-fancy": (KIND_PERSONALITY, "0"),
+    "vivillon-poke-ball": (KIND_PERSONALITY, "0"),
+    "deerling-summer": (KIND_PERSONALITY, "0"),
+    "deerling-autumn": (KIND_PERSONALITY, "0"),
+    "deerling-winter": (KIND_PERSONALITY, "0"),
+    "sawsbuck-summer": (KIND_PERSONALITY, "0"),
+    "sawsbuck-autumn": (KIND_PERSONALITY, "0"),
+    "sawsbuck-winter": (KIND_PERSONALITY, "0"),
+    "sinistea-antique": (KIND_PERSONALITY, "0"),
+    "polteageist-antique": (KIND_PERSONALITY, "0"),
+    "poltchageist-artisan": (KIND_PERSONALITY, "0"),
+    "sinistcha-masterpiece": (KIND_PERSONALITY, "0"),
 }
 
 # The form a battle form goes back to, when it isn't a regional form's (those follow the region) or 0: each Core
@@ -253,6 +336,90 @@ NO_EVOLUTION_FORMS = {"pikachu-rock-star", "pikachu-belle", "pikachu-pop-star", 
                       "pikachu-cosplay", "pikachu-original-cap", "pikachu-hoenn-cap", "pikachu-sinnoh-cap",
                       "pikachu-unova-cap", "pikachu-kalos-cap", "pikachu-alola-cap", "pikachu-partner-cap",
                       "pikachu-starter", "pikachu-world-cap", "eevee-starter", "floette-eternal"}
+
+# Cosmetic forms: PokeAPI gives them no data of their own, so data/forms.csv doesn't list them. Each copies its base
+# species' data (stats, types, abilities, learnset). identifier -> (form name, species stem).
+COSMETIC_FORMS = {
+    "flabebe-yellow": ("Flabébé (Yellow Flower)", "flabebe"),
+    "flabebe-orange": ("Flabébé (Orange Flower)", "flabebe"),
+    "flabebe-blue": ("Flabébé (Blue Flower)", "flabebe"),
+    "flabebe-white": ("Flabébé (White Flower)", "flabebe"),
+    "floette-yellow": ("Floette (Yellow Flower)", "floette"),
+    "floette-orange": ("Floette (Orange Flower)", "floette"),
+    "floette-blue": ("Floette (Blue Flower)", "floette"),
+    "floette-white": ("Floette (White Flower)", "floette"),
+    "florges-yellow": ("Florges (Yellow Flower)", "florges"),
+    "florges-orange": ("Florges (Orange Flower)", "florges"),
+    "florges-blue": ("Florges (Blue Flower)", "florges"),
+    "florges-white": ("Florges (White Flower)", "florges"),
+    "scatterbug-polar": ("Scatterbug (Polar Pattern)", "scatterbug"),
+    "scatterbug-tundra": ("Scatterbug (Tundra Pattern)", "scatterbug"),
+    "scatterbug-continental": ("Scatterbug (Continental Pattern)", "scatterbug"),
+    "scatterbug-garden": ("Scatterbug (Garden Pattern)", "scatterbug"),
+    "scatterbug-elegant": ("Scatterbug (Elegant Pattern)", "scatterbug"),
+    "scatterbug-meadow": ("Scatterbug (Meadow Pattern)", "scatterbug"),
+    "scatterbug-modern": ("Scatterbug (Modern Pattern)", "scatterbug"),
+    "scatterbug-marine": ("Scatterbug (Marine Pattern)", "scatterbug"),
+    "scatterbug-archipelago": ("Scatterbug (Archipelago Pattern)", "scatterbug"),
+    "scatterbug-high-plains": ("Scatterbug (High Plains Pattern)", "scatterbug"),
+    "scatterbug-sandstorm": ("Scatterbug (Sandstorm Pattern)", "scatterbug"),
+    "scatterbug-river": ("Scatterbug (River Pattern)", "scatterbug"),
+    "scatterbug-monsoon": ("Scatterbug (Monsoon Pattern)", "scatterbug"),
+    "scatterbug-savanna": ("Scatterbug (Savanna Pattern)", "scatterbug"),
+    "scatterbug-sun": ("Scatterbug (Sun Pattern)", "scatterbug"),
+    "scatterbug-ocean": ("Scatterbug (Ocean Pattern)", "scatterbug"),
+    "scatterbug-jungle": ("Scatterbug (Jungle Pattern)", "scatterbug"),
+    "scatterbug-fancy": ("Scatterbug (Fancy Pattern)", "scatterbug"),
+    "scatterbug-poke-ball": ("Scatterbug (Poké Ball Pattern)", "scatterbug"),
+    "spewpa-polar": ("Spewpa (Polar Pattern)", "spewpa"),
+    "spewpa-tundra": ("Spewpa (Tundra Pattern)", "spewpa"),
+    "spewpa-continental": ("Spewpa (Continental Pattern)", "spewpa"),
+    "spewpa-garden": ("Spewpa (Garden Pattern)", "spewpa"),
+    "spewpa-elegant": ("Spewpa (Elegant Pattern)", "spewpa"),
+    "spewpa-meadow": ("Spewpa (Meadow Pattern)", "spewpa"),
+    "spewpa-modern": ("Spewpa (Modern Pattern)", "spewpa"),
+    "spewpa-marine": ("Spewpa (Marine Pattern)", "spewpa"),
+    "spewpa-archipelago": ("Spewpa (Archipelago Pattern)", "spewpa"),
+    "spewpa-high-plains": ("Spewpa (High Plains Pattern)", "spewpa"),
+    "spewpa-sandstorm": ("Spewpa (Sandstorm Pattern)", "spewpa"),
+    "spewpa-river": ("Spewpa (River Pattern)", "spewpa"),
+    "spewpa-monsoon": ("Spewpa (Monsoon Pattern)", "spewpa"),
+    "spewpa-savanna": ("Spewpa (Savanna Pattern)", "spewpa"),
+    "spewpa-sun": ("Spewpa (Sun Pattern)", "spewpa"),
+    "spewpa-ocean": ("Spewpa (Ocean Pattern)", "spewpa"),
+    "spewpa-jungle": ("Spewpa (Jungle Pattern)", "spewpa"),
+    "spewpa-fancy": ("Spewpa (Fancy Pattern)", "spewpa"),
+    "spewpa-poke-ball": ("Spewpa (Poké Ball Pattern)", "spewpa"),
+    "vivillon-icy-snow": ("Vivillon (Icy Snow Pattern)", "vivillon"),
+    "vivillon-polar": ("Vivillon (Polar Pattern)", "vivillon"),
+    "vivillon-tundra": ("Vivillon (Tundra Pattern)", "vivillon"),
+    "vivillon-continental": ("Vivillon (Continental Pattern)", "vivillon"),
+    "vivillon-garden": ("Vivillon (Garden Pattern)", "vivillon"),
+    "vivillon-elegant": ("Vivillon (Elegant Pattern)", "vivillon"),
+    "vivillon-modern": ("Vivillon (Modern Pattern)", "vivillon"),
+    "vivillon-marine": ("Vivillon (Marine Pattern)", "vivillon"),
+    "vivillon-archipelago": ("Vivillon (Archipelago Pattern)", "vivillon"),
+    "vivillon-high-plains": ("Vivillon (High Plains Pattern)", "vivillon"),
+    "vivillon-sandstorm": ("Vivillon (Sandstorm Pattern)", "vivillon"),
+    "vivillon-river": ("Vivillon (River Pattern)", "vivillon"),
+    "vivillon-monsoon": ("Vivillon (Monsoon Pattern)", "vivillon"),
+    "vivillon-savanna": ("Vivillon (Savanna Pattern)", "vivillon"),
+    "vivillon-sun": ("Vivillon (Sun Pattern)", "vivillon"),
+    "vivillon-ocean": ("Vivillon (Ocean Pattern)", "vivillon"),
+    "vivillon-jungle": ("Vivillon (Jungle Pattern)", "vivillon"),
+    "vivillon-fancy": ("Vivillon (Fancy Pattern)", "vivillon"),
+    "vivillon-poke-ball": ("Vivillon (Poké Ball Pattern)", "vivillon"),
+    "deerling-summer": ("Deerling (Summer Form)", "deerling"),
+    "deerling-autumn": ("Deerling (Autumn Form)", "deerling"),
+    "deerling-winter": ("Deerling (Winter Form)", "deerling"),
+    "sawsbuck-summer": ("Sawsbuck (Summer Form)", "sawsbuck"),
+    "sawsbuck-autumn": ("Sawsbuck (Autumn Form)", "sawsbuck"),
+    "sawsbuck-winter": ("Sawsbuck (Winter Form)", "sawsbuck"),
+    "sinistea-antique": ("Antique Sinistea", "sinistea"),
+    "polteageist-antique": ("Antique Polteageist", "polteageist"),
+    "poltchageist-artisan": ("Artisan Poltchageist", "poltchageist"),
+    "sinistcha-masterpiece": ("Masterpiece Sinistcha", "sinistcha"),
+}
 
 # FM_FORMS entries that are a second copy of a data/forms.csv row.
 FM_ROW_ALIASES = {"necrozma-ultra-dawn": "necrozma-ultra", "zygarde-complete-50": "zygarde-complete"}
@@ -293,7 +460,7 @@ def load_rows():
     fm_rows = {r["identifier"]: r for r in csv.DictReader(open(os.path.join(ROOT, "data", "forms.csv"), encoding="utf-8"))}
     forms, numbers = [], {}
     for ident in FM_FORMS:  # the FM forms take the first numbers; the Megas follow
-        stem = stem_of(fm_rows[FM_ROW_ALIASES.get(ident, ident)]["base_species"])
+        stem = COSMETIC_FORMS[ident][1] if ident in COSMETIC_FORMS else stem_of(fm_rows[FM_ROW_ALIASES.get(ident, ident)]["base_species"])
         numbers[stem] = numbers.get(stem, 0) + 1
     fm_numbers = {}
     for row in rows:
@@ -323,6 +490,20 @@ def load_rows():
         forms.append(form)
 
     for ident, (kind, trigger) in FM_FORMS.items():
+        if ident in COSMETIC_FORMS:
+            name, stem = COSMETIC_FORMS[ident]
+            base = json.load(open(os.path.join(POKEMON, stem, "data.json"), encoding="utf-8"))
+            fm_numbers[stem] = fm_numbers.get(stem, 0) + 1
+            bs = base["base_stats"]
+            forms.append({
+                "name": name, "stem": stem, "species": "SPECIES_" + stem.upper(), "number": fm_numbers[stem],
+                "dir": ident.split("-", 1)[1].replace("-", "_"), "kind": kind, "trigger": trigger,
+                "abilities": list(base["abilities"]), "types": list(base["types"]),
+                "stats": {"hp": bs["hp"], "atk": bs["attack"], "def": bs["defense"], "spa": bs["special_attack"],
+                          "spd": bs["special_defense"], "spe": bs["speed"]},
+                "ident": ident, "pid": None,
+            })
+            continue
         row = fm_rows[FM_ROW_ALIASES.get(ident, ident)]
         species = row["base_species"]
         stem = stem_of(species)

@@ -4,6 +4,25 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## FM — Flower colors, wing patterns, seasons and the Antique teapots
+
+- **Cosmetic forms** (79). They copy their species' data; their art comes with milestone E12.
+  - **Flabébé, Floette and Florges:** red, yellow, orange, blue or white flower, from the personality. A Pokémon keeps
+    its color when it evolves.
+  - **Scatterbug, Spewpa and Vivillon:** the 20 wing patterns, from the personality. A Pokémon keeps its pattern when it
+    evolves.
+  - **Deerling and Sawsbuck:** the season they're met or hatched in. As in Black and White, spring, summer, autumn and
+    winter change each month.
+  - **Antique Sinistea and Polteageist, Artisan Poltchageist and Masterpiece Sinistcha:** 1 in 10.
+    - An Antique Sinistea evolves with a Chipped Pot, and an Artisan Poltchageist with a Masterpiece Teacup.
+    - The Cracked Pot and the Unremarkable Teacup work only on the ordinary ones.
+- FM: 235 forms.
+
+Verified in the test build: a wild Flabébé battle with a Vivillon, a Florges and a Sawsbuck in the party ran normally,
+and the summaries opened. Both species already showed the "?" sprite, since neither has a front sprite yet.
+Release build passes.
+
+
 ## FM — Fairy Arceus, Silvally's Memories and Genesect's Drives
 
 - **Fairy Arceus.** Arceus holding the Pixie Plate is Fairy-type, and its Judgment is Fairy-type.
