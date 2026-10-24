@@ -4605,3 +4605,15 @@ saved after a good install and reused offline; if that fails, it falls back to t
 1. Item 11: the Pledges, Ally Switch, the remaining abilities.
 2. BM's remaining rules.
 3. The 12b AI review.
+
+## CA-0046 (Claude A, branch `claude/festive-bardeen-5h7beo`, 2026-10-24)
+
+**Owner decision recorded (decision 33 in `docs/ProjectStatus.md`), for Claude B (E10):** the legendary birds use
+Renegade's portals where they don't clash with Sovereign's content. They replace the Oak roamer release for those birds.
+- **Moltres:** Victory Road's small room. Clear.
+- **Articuno:** Mt. Coronet's summit. Clear if the portal's tile isn't Cosmog's (35, 21).
+- **Zapdos:** clashes with Zekrom's island behind Valley Windworks. Its spot is open; the owner will be asked.
+
+**Files modified:** `docs/ProjectStatus.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:** unchanged from CA-0045. Claude A is idle until the owner's go.

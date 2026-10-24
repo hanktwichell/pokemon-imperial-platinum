@@ -200,10 +200,19 @@ Made by the owner (2026-10-22):
 32. **Placeholders stay for now** (owner, 2026-10-24): event levels, the event-gift deliveryman's spot and the
     provisional legendary spots are adjusted later.
 
+33. **The legendary birds use Renegade's portals where they don't clash** (owner, 2026-10-24: keep them "if they
+    don't conflict with anything we're adding"). They replace the birds' Oak roamer release.
+    - **Moltres:** Renegade's portal in Victory Road's small room (Rock Climb). No clash.
+    - **Articuno:** Renegade's portal on Mt. Coronet's summit (Rock Climb), on a tile clear of Cosmog's (35, 21). The
+      Celesteela rare roll on that map is a wild roll, not an object, so it doesn't clash.
+    - **Zapdos clashes:** Renegade's portal is on the island behind Valley Windworks, where Zekrom's night encounter
+      stands. Its spot is open; the owner will be asked.
+    - Renegade opens the portals after talking to Rowan after the Distortion World. That matches Renegade; Sovereign's
+      other legendaries are post-game, and portals look different from Sovereign's shown legendaries. Both are noted
+      for the owner.
 Open:
-- **The legendary birds** (owner, 2026-10-24: "come back to me on the birds"): Renegade's portals (Articuno on
-  Mt. Coronet's summit, Zapdos behind Valley Windworks, Moltres in Victory Road, opened by talking to Rowan after the
-  Distortion World) or Sovereign's roamers released by Oak. Undecided.
+- **Zapdos's portal spot** (decision 33): Renegade's island behind Valley Windworks is Zekrom's. Pick another spot,
+  or leave Zapdos as an Oak roamer.
 - **Overworld sprites and sizing for the legendaries** (owner, 2026-10-23: "we will need to work on" it). Today each
   is a 64x64 placeholder shrunk from its PokeAPI front sprite (`tools/sprites/make_legendary_overworld.py`), so tiny
   and huge Pokémon look the same size and the big ones cover the player and nearby tiles.
