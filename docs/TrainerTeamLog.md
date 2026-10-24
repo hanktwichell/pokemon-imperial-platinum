@@ -8,7 +8,7 @@ Status values:
 - **Edited**: Sovereign's new team is in `decomp/res/trainers/data/` (and `data/trainers_sovereign.yaml` for bosses); waiting on the owner.
 - **Confirmed**: the owner has signed it off.
 
-Total: 1015 trainer files; 0 edited, 0 confirmed (2026-10-24). The boss rows note the drafted teams that are waiting for T1. Rematch and alternate-starter variants are separate files, so each has its own row.
+Total: 1032 trainer files; 0 edited, 0 confirmed (2026-10-24). The boss rows note the drafted teams that are waiting for T1. Rematch and alternate-starter variants are separate files, so each has its own row.
 
 | File | Class | Name | Pokémon | Format | Map | Status | Notes |
 |---|---|---|---|---|---|---|---|
@@ -833,6 +833,7 @@ Total: 1015 trainer files; 0 edited, 0 confirmed (2026-10-24). The boss rows not
 | `socialite_reina_rematch_1` | Socialite | Reina | 1 | Singles | (script / not on a map) | Not started | |
 | `socialite_reina_rematch_2` | Socialite | Reina | 1 | Singles | (script / not on a map) | Not started | |
 | `sovereign_aaron_route_208` | Elite Four Aaron | Aaron | 5 | Singles | (script / not on a map) | Not started | Boss: a Sovereign team is drafted in `data/trainers_sovereign.yaml` (T1), not in the game yet |
+| `sovereign_aran_snowpoint_temple` | Ace Trainer Snow Male | Aran | 3 | Singles | (script / not on a map) | Not started | |
 | `sovereign_backlot_pokemon_mansion` | Gentleman | Backlot | 3 | Singles | (script / not on a map) | Not started | |
 | `sovereign_battle_zone_gene` | Ace Trainer Snow Male | Gene | 6 | Singles | (script / not on a map) | Not started | |
 | `sovereign_battle_zone_heather` | Ace Trainer Snow Female | Heather | 6 | Singles | (script / not on a map) | Not started | |
@@ -840,7 +841,11 @@ Total: 1015 trainer files; 0 edited, 0 confirmed (2026-10-24). The boss rows not
 | `sovereign_battle_zone_shade` | Ace Trainer Snow Male | Shade | 6 | Singles | (script / not on a map) | Not started | |
 | `sovereign_battle_zone_slythe` | Ace Trainer Snow Female | Slythe | 6 | Singles | (script / not on a map) | Not started | |
 | `sovereign_battle_zone_wyver` | Ace Trainer Snow Male | Wyver | 6 | Singles | (script / not on a map) | Not started | |
+| `sovereign_buck_route_227` | Trainer Buck | Buck | 6 | Singles | (script / not on a map) | Not started | |
 | `sovereign_bug_master` | Bug Catcher | Louie | 1 | Singles | (script / not on a map) | Not started | |
+| `sovereign_bugsy_memory` | Bug Catcher | Bugsy | 1 | Singles | (script / not on a map) | Not started | |
+| `sovereign_chuck_memory` | Black Belt | Chuck | 1 | Singles | (script / not on a map) | Not started | |
+| `sovereign_clair_memory` | Ace Trainer Female | Clair | 1 | Singles | (script / not on a map) | Not started | |
 | `sovereign_dahlia_sunyshore` | Arcade Star | Dahlia | 6 | Singles | (script / not on a map) | Not started | |
 | `sovereign_dark_master` | Ace Trainer Female | Kimberly | 1 | Singles | (script / not on a map) | Not started | |
 | `sovereign_dawn_route_202_chimchar` | Player Female | Dawn | 1 | Singles | (script / not on a map) | Not started | |
@@ -852,9 +857,13 @@ Total: 1015 trainer files; 0 edited, 0 confirmed (2026-10-24). The boss rows not
 | `sovereign_dawn_route_210_chimchar` | Player Female | Dawn | 6 | Singles | (script / not on a map) | Not started | |
 | `sovereign_dawn_route_210_piplup` | Player Female | Dawn | 6 | Singles | (script / not on a map) | Not started | |
 | `sovereign_dawn_route_210_turtwig` | Player Female | Dawn | 6 | Singles | (script / not on a map) | Not started | |
+| `sovereign_dawn_route_224_chimchar` | Player Female | Dawn | 6 | Singles | (script / not on a map) | Not started | |
+| `sovereign_dawn_route_224_piplup` | Player Female | Dawn | 6 | Singles | (script / not on a map) | Not started | |
+| `sovereign_dawn_route_224_turtwig` | Player Female | Dawn | 6 | Singles | (script / not on a map) | Not started | |
 | `sovereign_dragon_master` | Ace Trainer Male | Grayson | 1 | Singles | (script / not on a map) | Not started | |
 | `sovereign_dragon_tamer_veilstone` | Dragon Tamer | Nils | 4 | Singles | (script / not on a map) | Not started | |
 | `sovereign_electric_master` | Guitarist | Elton | 1 | Singles | (script / not on a map) | Not started | |
+| `sovereign_falkner_memory` | Bird Keeper | Falkner | 1 | Singles | (script / not on a map) | Not started | |
 | `sovereign_fighting_master` | Black Belt | Randy | 1 | Singles | (script / not on a map) | Not started | |
 | `sovereign_fire_master` | Ace Trainer Male | Edmund | 1 | Singles | (script / not on a map) | Not started | |
 | `sovereign_flying_master` | Bird Keeper | Thea | 1 | Singles | (script / not on a map) | Not started | |
@@ -874,6 +883,7 @@ Total: 1015 trainer files; 0 edited, 0 confirmed (2026-10-24). The boss rows not
 | `sovereign_grunt_route_212_2` | Galactic Grunt Female | Grunt | 3 | Singles | (script / not on a map) | Not started | |
 | `sovereign_grunt_route_212_3` | Galactic Grunt Female | Grunt | 1 | Singles | (script / not on a map) | Not started | |
 | `sovereign_ice_master` | Ace Trainer Snow Female | Hazel | 1 | Singles | (script / not on a map) | Not started | |
+| `sovereign_jasmine_memory` | Lass | Jasmine | 1 | Singles | (script / not on a map) | Not started | |
 | `sovereign_lucas_route_202_chimchar` | Player Male | Lucas | 1 | Singles | (script / not on a map) | Not started | |
 | `sovereign_lucas_route_202_piplup` | Player Male | Lucas | 1 | Singles | (script / not on a map) | Not started | |
 | `sovereign_lucas_route_202_turtwig` | Player Male | Lucas | 1 | Singles | (script / not on a map) | Not started | |
@@ -883,9 +893,15 @@ Total: 1015 trainer files; 0 edited, 0 confirmed (2026-10-24). The boss rows not
 | `sovereign_lucas_route_210_chimchar` | Player Male | Lucas | 6 | Singles | (script / not on a map) | Not started | |
 | `sovereign_lucas_route_210_piplup` | Player Male | Lucas | 6 | Singles | (script / not on a map) | Not started | |
 | `sovereign_lucas_route_210_turtwig` | Player Male | Lucas | 6 | Singles | (script / not on a map) | Not started | |
+| `sovereign_lucas_route_224_chimchar` | Player Male | Lucas | 6 | Singles | (script / not on a map) | Not started | |
+| `sovereign_lucas_route_224_piplup` | Player Male | Lucas | 6 | Singles | (script / not on a map) | Not started | |
+| `sovereign_lucas_route_224_turtwig` | Player Male | Lucas | 6 | Singles | (script / not on a map) | Not started | |
 | `sovereign_marley_victory_road` | Trainer Marley | Marley | 6 | Singles | (script / not on a map) | Not started | |
 | `sovereign_mira_wayward_cave` | Trainer Mira | Mira | 4 | Singles | (script / not on a map) | Not started | |
+| `sovereign_morty_memory` | Ace Trainer Male | Morty | 1 | Singles | (script / not on a map) | Not started | |
+| `sovereign_nephenee_snowpoint_temple` | Ace Trainer Snow Female | Nephenee | 3 | Singles | (script / not on a map) | Not started | |
 | `sovereign_poison_master` | Scientist | Donnie | 1 | Singles | (script / not on a map) | Not started | |
+| `sovereign_pryce_memory` | Veteran | Pryce | 1 | Singles | (script / not on a map) | Not started | |
 | `sovereign_psychic_master` | Psychic Male | Frasier | 1 | Singles | (script / not on a map) | Not started | |
 | `sovereign_riley_iron_island` | Trainer Riley | Riley | 6 | Singles | (script / not on a map) | Not started | |
 | `sovereign_rock_master` | Hiker | Hisato | 1 | Singles | (script / not on a map) | Not started | |
@@ -919,6 +935,7 @@ Total: 1015 trainer files; 0 edited, 0 confirmed (2026-10-24). The boss rows not
 | `sovereign_traynee_speed_low` | Cowgirl | Traynee | 6 | Singles | (script / not on a map) | Not started | |
 | `sovereign_traynee_speed_medium` | Cowgirl | Traynee | 6 | Singles | (script / not on a map) | Not started | |
 | `sovereign_water_master` | Beauty | Tessa | 1 | Singles | (script / not on a map) | Not started | |
+| `sovereign_whitney_memory` | Idol | Whitney | 1 | Singles | (script / not on a map) | Not started | |
 | `swimmer_adrian` | Swimmer Male | Adrian | 3 | Singles | Route 220 | Not started | |
 | `swimmer_aubree` | Swimmer Female | Aubree | 2 | Singles | Route 223 | Not started | |
 | `swimmer_cassandra` | Swimmer Female | Cassandra | 1 | Singles | Route 223 | Not started | |

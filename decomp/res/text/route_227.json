@@ -181,6 +181,70 @@
         "They’re just like how a bit of Toxic\n",
         "can cradle a Pokémon to sleep..."
       ]
+    },
+    {
+      "id": "Route227_Text_SovereignBuckBeatAllSix",
+      "en_US": [
+        "Buck: Yo, if it isn’t {STRVAR_1 3, 0, 0}!\n",
+        "Out training in the Zone, are you?\r",
+        "So, did you manage to beat all six\n",
+        "of the Battle Zone leaders?\r",
+        "...\r"
+      ]
+    },
+    {
+      "id": "Route227_Text_SovereignBuckNotYet",
+      "en_US": [
+        "Nope, doesn’t look like it!\n",
+        "You really should tackle them first.\r",
+        "Remember, look for the Trainers in the\n",
+        "orange winter outfits!\r"
+      ]
+    },
+    {
+      "id": "Route227_Text_SovereignBuckYouDidIt",
+      "en_US": [
+        "Wind...\r",
+        "Fang...\r",
+        "Acid...\r",
+        "Shadow...\r",
+        "General...\r",
+        "Moon...\r",
+        "Woah! You did!\n",
+        "You’re one tough Trainer, huh?\r",
+        "In that case, it’s my turn.\n",
+        "Let me train with you!\r"
+      ]
+    },
+    {
+      "id": "Route227_Text_SovereignBuckSmokingHot",
+      "en_US": [
+        "Heeheehee! So hot, you!\n",
+        "What a smoking-hot battle!\r",
+        "The least I can do is heal your\n",
+        "Pokémon after a battle like that!\r"
+      ]
+    },
+    {
+      "id": "Route227_Text_SovereignBuckPatrolStarkMountain",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}. After making you do all that...\n",
+        "I can see you’re really strong.\r",
+        "I wanted to ask you for a favor.\r",
+        "I’d like you to help me patrol the\n",
+        "volcano up past here for a while.\r",
+        "It’s a place called Stark Mountain.\r",
+        "Deep inside it is this special rock\n",
+        "called the Magma Stone.\r",
+        "I can’t explain it well, but it’s really\n",
+        "important. It keeps a Pokémon asleep.\r",
+        "But lately, I’ve been hearing rumors\n",
+        "about vandals in Stark Mountain.\r",
+        "They say goons in space suits are\n",
+        "causing trouble there.\r",
+        "I’ll meet you inside the volcano’s cave.\n",
+        "Don’t be too long!\r"
+      ]
     }
   ]
 }

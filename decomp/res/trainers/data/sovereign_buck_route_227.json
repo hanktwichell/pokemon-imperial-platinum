@@ -1,0 +1,109 @@
+{
+    "name": "Buck",
+    "class": "TRAINER_CLASS_TRAINER_BUCK",
+    "items": [
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_TORKOAL",
+            "form": 0,
+            "level": 77,
+            "item": "ITEM_SHUCA_BERRY",
+            "moves": [
+                "MOVE_FIRE_BLAST",
+                "MOVE_EARTH_POWER",
+                "MOVE_SOLAR_BEAM",
+                "MOVE_STEALTH_ROCK"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SHUCKLE",
+            "form": 0,
+            "level": 77,
+            "item": "ITEM_LUM_BERRY",
+            "moves": [
+                "MOVE_TOXIC",
+                "MOVE_ENCORE",
+                "MOVE_REST",
+                "MOVE_PROTECT"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_UMBREON",
+            "form": 0,
+            "level": 77,
+            "item": "ITEM_CHOPLE_BERRY",
+            "moves": [
+                "MOVE_PAYBACK",
+                "MOVE_CONFUSE_RAY",
+                "MOVE_TOXIC",
+                "MOVE_MOONLIGHT"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_DUSKNOIR",
+            "form": 0,
+            "level": 77,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_SHADOW_PUNCH",
+                "MOVE_CONFUSE_RAY",
+                "MOVE_PROTECT",
+                "MOVE_DRAIN_PUNCH"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_CLOYSTER",
+            "form": 0,
+            "level": 77,
+            "item": "ITEM_EXPERT_BELT",
+            "moves": [
+                "MOVE_ICICLE_SPEAR",
+                "MOVE_HYDRO_PUMP",
+                "MOVE_SPIKES",
+                "MOVE_TOXIC_SPIKES"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_CLAYDOL",
+            "form": 0,
+            "level": 78,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_EARTH_POWER",
+                "MOVE_PSYCHIC",
+                "MOVE_ICE_BEAM",
+                "MOVE_CALM_MIND"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 3
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Heeheehee!\n",
+                "So hot, you!\n"
+            ]
+        }
+    ]
+}

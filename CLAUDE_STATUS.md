@@ -5111,3 +5111,49 @@ I merged main into it first: it conflicted on this file.
 2. The Battleground: the counterpart's Lv. 83 rematch (1054–1059) and Renegade's gauntlet with the Galactic rematches
    (1060–1063) and the Master Ball reward.
 3. Darach (969) and the reporters (934, 1021, 1022).
+
+## CB-0105 — 2026-10-24, 5:56 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: E10 part 30, the counterpart on Route 224, Route 224's nurse, and Buck on Route 227.** PR #120 (the
+half-price menu fix) is merged.
+- **Counterpart** (Dawn for a boy, Lucas for a girl, `OBJ_EVENT_GFX_VAR_0`) by Route 224's tablet (908, 492):
+  - The first talk gives Renegade's lines and sets `FLAG_SOVEREIGN_ROUTE_224_COUNTERPART_MET` (was
+    `FLAG_UNUSED_0x0122`; 14 unused flags left).
+  - After that, a yes/no leads to a battle with Renegade's teams 975–980 (Lv. 69–70, by the player's starter), as
+    `TRAINER_SOVEREIGN_{DAWN,LUCAS}_ROUTE_224_{CHIMCHAR,PIPLUP,TURTWIG}`.
+  - After the win they walk off. The trainer flag hides them for good, through `FLAG_MAP_LOCAL_HIDE_SOVEREIGN_NPC` in
+    OnTransition. They're also hidden while Oak's Shaymin scene is on, since it uses their tile.
+- **Nurse** (879, 557) by the Victory Road entrance heals the party (Renegade).
+- **Buck** (`TRAINER_SOVEREIGN_BUCK_ROUTE_227`, Renegade 1023, Lv. 77–78) moved to (758, 257), below the ledges.
+  - The coord strip at (758, 258–260) and talking to him both check the six Battle Zone trainer flags.
+  - Without them he sends the player on; the coord path also steps the player west.
+  - With them: battle, heal, the Stark Mountain request, and he leaves.
+  - His `hidden_flag` is his own trainer flag (vanilla's `FLAG_HIDE_ROUTE_227_BUCK` is set on entering Stark Mountain).
+    The coord uses `VAR_ROUTE_227_BUCK_STATE`.
+- `docs/TrainerTeamLog.md` (Claude A's log): added the 17 trainer files missing from it (parts 26, 28 and 30); the
+  total is now 1,032.
+- Tested in test builds (a Lv. 100 party):
+  - Dawn's first talk, "no" and "yes", and her full team beaten. She walks off and is gone on re-entering.
+  - The nurse.
+  - Buck without the badges (coord and talk paths).
+  - Buck with the badges, against a Lv. 5 test-only copy of his team: battle, heal, request, gone, and the strip is
+    inactive afterwards.
+  - Not tested: Lucas, the loss paths, and the Shaymin-scene hiding.
+- Harness notes:
+  - The emulator battle loop now handles the "give up learning the move?" prompt: touch (128, 50).
+  - It sends in the next party member when one faints.
+  - It alternates moves 1 and 2, because of Levitate.
+
+**Files modified:**
+- `decomp/generated/{trainers,vars_flags}.txt`, 7 trainer JSONs
+- Scripts, events and text for `route_224` and `route_227`
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `docs/TrainerTeamLog.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. E10 part 31: the Battleground as Renegade has it. Vanilla's four daily slots become fixed NPCs: the 8 Gym
+   Leaders, Marley, Cheryl, Mira, Riley, Buck and Barry. Add the nurse, the Gym Guide's 24-battle "Battle Marathon"
+   (heals every 3, a Master Ball each clear; Galactic rematches 1060–1063, the rival 871–873) and the counterpart's
+   Lv. 83 rematch (1054–1059).
+2. E10 part 32: the Pokémon Center Interviewers. Renegade's Hoenn (Oreburgh, 934), Johto (Floaroma, 1021) and Kanto
+   (Jubilife, 1022) starter quizzes, then Sovereign's Unova–Paldea ones (`docs/GiftPokemon_Sovereign.md`).
+3. Darach (969; Renegade's Pal Park lobby, which Sovereign replaced with the Regional Forms Park) needs a new spot.

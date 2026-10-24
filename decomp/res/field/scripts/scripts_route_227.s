@@ -205,15 +205,29 @@ Route227_ArrowSignpostStarkMountain:
     End
 
 Route227_Buck:
-    NPCMessage Route227_Text_YoureInCharge
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    BufferPlayerName 0
+    Message Route227_Text_SovereignBuckBeatAllSix
+    Call Route227_SovereignCheckBadges
+    GoToIfEq VAR_RESULT, FALSE, Route227_SovereignBuckNotYet
+    GoTo Route227_SovereignBuckBattle
     End
 
 Route227_CoordEvent_Buck:
     LockAll
-    ApplyMovement LOCALID_BUCK, Route227_Movement_BuckNoticePlayer
+    ApplyMovement LOCALID_BUCK, Route227_SovereignMovement_BuckNoticePlayer
     ApplyMovement LOCALID_PLAYER, Route227_Movement_PlayerFaceBuck
     WaitMovement
-    GoTo Route227_AskPatrolStarkMountain
+    GetPlayerMapPos VAR_0x8004, VAR_0x8005
+    CallIfEq VAR_0x8005, 259, Route227_SovereignPlayerWalkToBuck1
+    CallIfEq VAR_0x8005, 260, Route227_SovereignPlayerWalkToBuck2
+    BufferPlayerName 0
+    Message Route227_Text_SovereignBuckBeatAllSix
+    Call Route227_SovereignCheckBadges
+    GoToIfEq VAR_RESULT, FALSE, Route227_SovereignBuckNotYetStepAside
+    GoTo Route227_SovereignBuckBattle
     End
 
 Route227_AskPatrolStarkMountain:
@@ -311,5 +325,100 @@ Route227_SovereignSlytheLost:
     BlackOutFromBattle
     ReleaseAll
     End
+
+    
+
+@ Sovereign (E10, Renegade): Buck waits below the ledges near Stark Mountain. Once the player has beaten the six
+@ Battle Zone leaders (their trainer flags are the badges), he battles (Renegade's trainer 1023), heals the party, asks
+@ for the Stark Mountain patrol and leaves. Until then the coord event sends the player on.
+Route227_SovereignCheckBadges:
+    SetVar VAR_RESULT, FALSE
+    GoToIfNotDefeated TRAINER_SOVEREIGN_BATTLE_ZONE_WYVER, Route227_SovereignCheckBadgesEnd
+    GoToIfNotDefeated TRAINER_SOVEREIGN_BATTLE_ZONE_HEATHER, Route227_SovereignCheckBadgesEnd
+    GoToIfNotDefeated TRAINER_SOVEREIGN_BATTLE_ZONE_SLYTHE, Route227_SovereignCheckBadgesEnd
+    GoToIfNotDefeated TRAINER_SOVEREIGN_BATTLE_ZONE_SHADE, Route227_SovereignCheckBadgesEnd
+    GoToIfNotDefeated TRAINER_SOVEREIGN_BATTLE_ZONE_GENE, Route227_SovereignCheckBadgesEnd
+    GoToIfNotDefeated TRAINER_SOVEREIGN_BATTLE_ZONE_LUNA, Route227_SovereignCheckBadgesEnd
+    SetVar VAR_RESULT, TRUE
+Route227_SovereignCheckBadgesEnd:
+    Return
+
+Route227_SovereignBuckBattle:
+    Message Route227_Text_SovereignBuckYouDidIt
+    CloseMessage
+    StartTrainerBattle TRAINER_SOVEREIGN_BUCK_ROUTE_227
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, Route227_SovereignBuckLost
+    Message Route227_Text_SovereignBuckSmokingHot
+    CloseMessage
+    FadeScreenOut
+    WaitFadeScreen
+    PlayFanfare SEQ_ASA_sseq
+    WaitFanfare
+    HealParty
+    FadeScreenIn
+    WaitFadeScreen
+    BufferPlayerName 0
+    Message Route227_Text_SovereignBuckPatrolStarkMountain
+    CloseMessage
+    FadeScreenOut
+    WaitFadeScreen
+    RemoveObject LOCALID_BUCK
+    SetTrainerFlag TRAINER_SOVEREIGN_BUCK_ROUTE_227
+    SetVar VAR_ROUTE_227_BUCK_STATE, 1
+    FadeScreenIn
+    WaitFadeScreen
+    ReleaseAll
+    End
+
+Route227_SovereignBuckNotYet:
+    Message Route227_Text_SovereignBuckNotYet
+    CloseMessage
+    ReleaseAll
+    End
+
+Route227_SovereignBuckNotYetStepAside:
+    Message Route227_Text_SovereignBuckNotYet
+    CloseMessage
+    ApplyMovement LOCALID_PLAYER, Route227_SovereignMovement_PlayerStepWest
+    WaitMovement
+    ReleaseAll
+    End
+
+Route227_SovereignBuckLost:
+    BlackOutFromBattle
+    ReleaseAll
+    End
+
+Route227_SovereignPlayerWalkToBuck1:
+    ApplyMovement LOCALID_PLAYER, Route227_SovereignMovement_PlayerWalkNorth1
+    WaitMovement
+    Return
+
+Route227_SovereignPlayerWalkToBuck2:
+    ApplyMovement LOCALID_PLAYER, Route227_SovereignMovement_PlayerWalkNorth2
+    WaitMovement
+    Return
+
+    .balign 4, 0
+Route227_SovereignMovement_BuckNoticePlayer:
+    FaceSouth
+    EmoteExclamationMark
+    EndMovement
+
+    .balign 4, 0
+Route227_SovereignMovement_PlayerWalkNorth1:
+    WalkNormalNorth
+    EndMovement
+
+    .balign 4, 0
+Route227_SovereignMovement_PlayerWalkNorth2:
+    WalkNormalNorth 2
+    EndMovement
+
+    .balign 4, 0
+Route227_SovereignMovement_PlayerStepWest:
+    WalkNormalWest
+    EndMovement
 
     .balign 4, 0

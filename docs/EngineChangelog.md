@@ -4,6 +4,44 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 30) — the counterpart on Route 224, Route 224's nurse, and Buck on Route 227
+
+Renegade's last counterpart battle before the Battleground, and Buck's battle:
+- **The counterpart** (Dawn for a boy, Lucas for a girl) stands by Route 224's stone tablet (908, 492).
+  - The first talk gives Renegade's lines: they're looking into the tablet for Professor Rowan and want to battle again
+    since Route 210.
+  - After that, they ask whether the player is ready. On a yes they battle with Renegade's teams (975–980, Lv. 69–70,
+    by the player's starter); a loss blacks out.
+  - After the win they leave and don't come back. Their six trainer flags record the win, so the only new flag is
+    `FLAG_SOVEREIGN_ROUTE_224_COUNTERPART_MET` (was `FLAG_UNUSED_0x0122`).
+  - They also stay hidden while Professor Oak's Shaymin scene is on: Oak's scene uses their tile.
+- **A nurse** at the Victory Road entrance (879, 557) heals the party, as in Renegade.
+- **Buck** moved from (758, 275) to (758, 257), below the ledges near Stark Mountain, off the main path.
+  - Walking through the strip below him (758, 258–260), or talking to him, he asks whether the player has beaten the
+    six Battle Zone leaders. Their trainer flags are the badges (part 22).
+  - Not yet: he sends the player on (a step west from the strip).
+  - With all six, he battles (Renegade's trainer 1023, Lv. 77–78), heals the party, asks for the Stark Mountain patrol
+    and leaves.
+  - His hidden flag is now his own trainer flag, so visiting Stark Mountain no longer hides him. The coord event uses
+    `VAR_ROUTE_227_BUCK_STATE` as before.
+  - Vanilla's patrol request at (758, 277) is gone: his after-battle lines carry it.
+- `docs/TrainerTeamLog.md` gains the 17 trainer files added since it was written (parts 26, 28 and 30).
+
+Verified in test builds (a Lv. 100 party; the Hall of Fame set):
+- Route 224, as a boy with Turtwig: Dawn stands at the tablet.
+  - The first talk plays her lines with the "!" emote. Then "no" gets "Go get ready", and "yes" starts the battle.
+  - Her full Lv. 69–70 team was beaten, and the win lines played. She walked off, and she's gone on re-entering.
+- The nurse heals and says her lines.
+- Route 227 without the six badges:
+  - Stepping onto the strip, Buck notices the player, who walks up to him; he says "Nope… look for the Trainers in
+    the orange winter outfits!" and the player steps west.
+  - Talking to him gives the same lines, without the step.
+- Route 227 with the six badges, and Buck's team cut to Lv. 5 in that test build only: he battles, heals, asks for the
+  patrol and fades out. On return he's gone and the strip does nothing.
+- Not tested: Lucas (a girl's save), a loss to either, and Professor Oak's Shaymin scene hiding the counterpart (it
+  needs the distribution's Oak's Letter).
+
+
 ## Fix — the half-price menus after the Hall of Fame (decision 43)
 
 Tested decision 43's half-price scripted sales in game, on post-game and pre-game test saves:
