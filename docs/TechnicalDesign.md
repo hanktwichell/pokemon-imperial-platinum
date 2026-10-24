@@ -485,7 +485,7 @@ implemented.
       Victini (Vista Lighthouse) needs the var at 1 only.
     - **Kalos** (var 2): Xerneas (Eterna Forest), Yveltal (Route 229) and Volcanion (Stark Mountain room 1) need the
       var only. Zygarde (`WAYWARD_CAVE_B1F`, own script archives like the ice chamber's) waits for Xerneas and Yveltal
-      caught. Diancie (Oreburgh Mine B2F) checks `CheckPartyHasSpecies` for a Carbink. Hoopa (Solaceon Ruins Room 7)
+      caught. Diancie (Oreburgh Mine B2F) checks `CheckPartyHasSpecies` for a Carbink. Hoopa (Solaceon Ruins Room 6's north-west dead end)
       checks `CheckItem ITEM_PRISON_BOTTLE`, which the Archivist gives while the player doesn't have it.
     - **Alola** (var 3, from a talk with Xerneas and Yveltal caught): the four Tapus need the var only.
       - Mt. Coronet's top snowfield (`MT_CORONET_OUTSIDE_NORTH`, which had `scripts_empty` and gets its own archives,
@@ -560,7 +560,7 @@ implemented.
         (`SystemVars_SetRoamingSpeciesState`).
       - The Hall of Fame resets a knocked-out one (`ROAMER_STATE_DEFEATED` to `_RESET`), and the Archivist releases it
         again, as Professor Oak does for the legendary birds.
-      - Landorus (`ROUTE_228_ROCK_PEAK_RUINS`, own script archives like the ice chamber's) checks `CheckPartyHasSpecies`
+      - Landorus (Route 228's sand field, `scripts_route_228`) checks `CheckPartyHasSpecies`
         for both. Enamorus (Route 224) waits for Landorus caught.
     - **More roamers** (decision 28): Zeraora takes vanilla's unused Darkrai slot (`ROAMING_SLOT_ZERAORA`), and
       `ROAMING_SLOT_OKIDOGI`, `_MUNKIDORI`, `_FEZANDIPITI`, `_GLASTRIER` and `_SPECTRIER` make 13 slots. The five new

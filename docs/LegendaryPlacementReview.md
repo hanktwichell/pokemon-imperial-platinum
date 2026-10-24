@@ -20,13 +20,13 @@ by-map review: no one has yet checked each spot's exact tiles against the NPCs, 
 | **Fullmoon Island** | Tapu Lele in the grove (13, 12) (Alola); Cresselia in the clearing (16, 15) (Lunar Wing quest); Latias/Latios in the same clearing once Cresselia is caught | The Lunar Wing, the boat from Canalave | Sequenced, so they never stand at once. Tapu Lele is three tiles from the clearing; fine but crowded |
 | **Route 224** | Enamorus on the beach field (912, 535) (Landorus caught; **moved off the tablet on 2026-10-24**); Pecharunt (898, 526) (the Loyal Three caught) | **The tablet itself: Oak's Letter opens the way to Flower Paradise (Shaymin) there** | **Settled:** Enamorus now stands about 40 tiles south of the tablet scene, clear of Carl's patrol and the item balls |
 | **Fuego Ironworks** | Reshiram in the furnace pocket (Light Stone); Chi-Yu outside (180, 593) (two stakes) | Mr. Fuego, the Fire Stone and Star Piece gifts, a roamer route | Inside and outside are separate maps. Fine |
-| **Route 228, Rock Peak Ruins chamber** | Landorus (7, 5); Regidrago (5, 6); Regirock's statue and dots | The Relicanth/Wailord doorway (Renegade part 13) | **Three legendaries within about 2 tiles in one small chamber.** Landorus and Regidrago stand next to Regirock's puzzle. Check that they don't sit on the dots or the statue |
+| **Route 228** | Regidrago, Rock Peak Ruins doorway room (5, 6) (Galar, the three Regis in the party); **Landorus moved outside to the north sand field (782, 323) on 2026-10-24** | The Relicanth/Wailord doorway (Renegade part 13), Ace Trainer Jose (779, 325) | **Settled**: Regidrago has the room to itself |
 | **Oreburgh Mine B2F** | Diancie, west nook (2, 22) (Carbink in the party); Meltan (5, 20); Melmetal (5, 24) | Miners, item balls | Three in a 4-tile area. Sequenced or conditional; check they don't block the path |
 | **Wayward Cave** | Zygarde, B1F north alcove (21, 4) (Xerneas and Yveltal caught); Necrozma, 1F dark chamber (70, 9) (Solgaleo/Lunala caught) | **Mira's Renegade quest (part 5) and the Gabite**, the hidden entrance | Check that Mira's spot and path don't touch Zygarde's alcove or Necrozma's chamber |
 | **Mt. Coronet** | Cosmog, top snowfield (35, 21); Articuno's Renegade portal near the summit; Kyurem, Iceberg Ruins doorway room; Kyogre, B1F lake island (22, 36) | The Celesteela rare roll, Regice's ruins (Route 216 side) | **Kyurem stands in the doorway room that Regice's Relicanth/Wailord event changes.** Handled by a condition (no Relicanth+Wailord pair), but fragile. Articuno: keep it off Cosmog's tile |
 | **Stark Mountain** | Volcanion, room 1 (Kalos); **Groudon, room 1 (6, 6)** (after the Hall of Fame); Heatran, room 3 | Buck and Team Galactic's scene in room 1 on a first visit, the Blacephalon roll and the Carbink stopgap outside | **Volcanion and Groudon share room 1**, also the room of the Galactic scene. Move one |
-| **Turnback Cave** | Eternatus in **Giratina's room (8, 13)** (Zacian and Zamazenta caught); Giratina back there after a Hall of Fame | The Guzzlord roll in the pillar rooms | **Two legendaries in one room.** Fine only if they never stand at once; better to move Eternatus |
-| **Solaceon Ruins, Room 7** | Hoopa (Prison Bottle); Jirachi, asleep (5, 3) (three wishes) | The Unown rooms, the sign Jirachi's event reads | **Two legendaries in one small room.** Move one (for example Hoopa to another Unown room) |
+| **Turnback Cave** | Giratina back in its room after a Hall of Fame. **Eternatus moved to Victory Road B1F (14, 19) on 2026-10-24** | The Guzzlord roll in the pillar rooms | **Settled** |
+| **Solaceon Ruins** | Jirachi, asleep, Room 7 (5, 3) (three wishes); **Hoopa moved to Room 6's north-west dead end (2, 3) on 2026-10-24** (Prison Bottle) | The Unown rooms, the sign Jirachi's event reads | **Settled**: different rooms |
 | **Galactic HQ lab** | Genesect, back room (34, 5); Type: Null (24, 10) (Genesect caught) | The lab scientists, the Master Ball | Sequenced. Check the HQ is open post-game |
 | **Route 211 East** | Ogerpon (435, 531) (Paldea); Entei, Rock Climb ledge (424, 514) (after the Distortion World) | Mt. Coronet's east entrance, trainers | About 11–17 tiles apart; fine |
 | **Route 210 North** | Zacian (542, 528); Zamazenta (540, 528) | **Renegade's counterpart battle coord event at (480, 528–532)**, fog, the Celestic path | Same rows, about 60 tiles apart. Fine |
@@ -65,10 +65,10 @@ by-map review: no one has yet checked each spot's exact tiles against the NPCs, 
 ## Clashes to settle (summary)
 1. ~~**Lost Tower top floor:** Yveltal and Ho-Oh (when ported).~~ Settled 2026-10-24: Yveltal moved to Route 229.
 2. **Stark Mountain room 1:** Volcanion and Groudon, plus the first-visit Galactic scene. Move one.
-3. **Turnback Cave, Giratina's room:** Eternatus and Giratina. Move Eternatus.
-4. **Solaceon Ruins Room 7:** Hoopa and Jirachi. Move one.
+3. ~~**Turnback Cave, Giratina's room:** Eternatus and Giratina.~~ Settled 2026-10-24: Eternatus moved to Victory Road B1F.
+4. ~~**Solaceon Ruins Room 7:** Hoopa and Jirachi.~~ Settled 2026-10-24: Hoopa moved to Room 6's north-west dead end.
 5. ~~**Route 224 tablet:** Enamorus beside the Shaymin tablet.~~ Settled 2026-10-24: Enamorus moved to (912, 535).
-6. **Rock Peak Ruins chamber:** Landorus and Regidrago beside Regirock's puzzle. Check the tiles.
+6. ~~**Rock Peak Ruins chamber:** Landorus and Regidrago.~~ Settled 2026-10-24: Landorus moved to Route 228's sand field.
 7. **Eterna Forest:** Celebi's portals must avoid Virizion's and Xerneas's tiles.
 8. **Mt. Coronet:** Kyurem in Regice's doorway room (works through a condition), and Articuno's portal beside Cosmog.
 9. **Tile checks:** Magearna/Volkner, Kubfu/the Veilstone Gym puzzle, Calyrex/the Celestic ruins path, Mira/Wayward

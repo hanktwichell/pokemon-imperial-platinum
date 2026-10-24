@@ -41,9 +41,9 @@ Covers **90** species.
 ### Forces of Nature
 - **Pokémon:** #641 Tornadus, #642 Thundurus, #645 Landorus, #905 Enamorus
 - **Level:** 65
-- **Location:** Tornadus and Thundurus roam Sinnoh (like Mesprit/Cresselia). Landorus — Route 228's ruins. Enamorus — Route 224, Flower Paradise gate
+- **Location:** Tornadus and Thundurus roam Sinnoh (like Mesprit/Cresselia). Landorus — Route 228, the north sand field. Enamorus — Route 224, the beach field
 - **How:** Roamers are released when the chapter opens. Bring both to the Route 228 shrine for Landorus; Enamorus appears after Landorus is caught.
-- **Built:** Forces of Nature (CB-0039). The Archivist releases Tornadus and Thundurus as roamers (two new roaming slots, FLAG_SOVEREIGN_RELEASED_FORCES_OF_NATURE). One that's knocked out comes back after the next Hall of Fame, when the Archivist releases it again. With both caught, he gives the Reveal Glass. Landorus appears in Route 228's ruins (the Rock Peak Ruins chamber, (7, 5)) while both are in the party; that chamber stands in for a new shrine. Enamorus then waits on the Route 224 beach field (912, 535), clear of the Flower Paradise tablet (moved off the tablet's tiles on 2026-10-24). All four are level 65.
+- **Built:** Forces of Nature (CB-0039). The Archivist releases Tornadus and Thundurus as roamers (two new roaming slots, FLAG_SOVEREIGN_RELEASED_FORCES_OF_NATURE). One that's knocked out comes back after the next Hall of Fame, when the Archivist releases it again. With both caught, he gives the Reveal Glass. Landorus appears at the north end of Route 228's first sand field (782, 323) while both are in the party. It first stood in the Rock Peak Ruins doorway room (7, 5), next to Regidrago; it moved on 2026-10-24 (owner: "Route 228 it is"). Enamorus then waits on the Route 224 beach field (912, 535), clear of the Flower Paradise tablet (moved off the tablet's tiles on 2026-10-24). All four are level 65.
 
 ### Truth and Ideals (chapter key)
 - **Pokémon:** #643 Reshiram, #644 Zekrom, #646 Kyurem
@@ -92,9 +92,9 @@ Covers **90** species.
 ### Unbound Mischief
 - **Pokémon:** #720 Hoopa
 - **Level:** 55
-- **Location:** Solaceon Ruins — innermost chamber
+- **Location:** Solaceon Ruins — Room 6's north-west dead end
 - **How:** The Archivist gives a Prison Bottle key item; use it in the ruins.
-- **Built:** Hoopa (CB-0041), level 55: the Archivist's Kalos Other legends topic gives the Prison Bottle. Hoopa then plays in the ruins' innermost room, Room 7 (5, 4), while the player carries the bottle, until it's caught. Carrying the bottle replaces using it there. It comes Confined; the bottle switches it to Unbound from the bag (FM part 2).
+- **Built:** Hoopa (CB-0041), level 55: the Archivist's Kalos Other legends topic gives the Prison Bottle. Hoopa then plays in Room 6's north-west dead end, round the pillar (2, 3), while the player carries the bottle, until it's caught. Carrying the bottle replaces using it there. It comes Confined; the bottle switches it to Unbound from the bag (FM part 2). It first stood in Room 7 (5, 4), below Jirachi; it moved on 2026-10-24 (owner: "Move Hoopa to another Unown room").
 
 ### Steam Engine
 - **Pokémon:** #721 Volcanion
@@ -189,7 +189,7 @@ Covers **90** species.
 - **Level:** 70
 - **Location:** Distortion World
 - **How:** Appears after both heroes are caught.
-- **Built:** Eternatus (CB-0043), level 70: in Turnback Cave's Giratina room (8, 13) once Zacian and Zamazenta are both caught, until it's caught. **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later): the Distortion World needed more than a quick placement.
+- **Built:** Eternatus (CB-0043), level 70: on Victory Road B1F's TM59 island (Surf) (14, 19) once Zacian and Zamazenta are both caught, until it's caught. It first stood in Turnback Cave's Giratina room (8, 13); it moved on 2026-10-24 (owner: "Move ... Eternatus out of Turnback"), as Giratina comes back to that room. The Distortion World needed more than a quick placement.
 
 ### Master Dojo
 - **Pokémon:** #891 Kubfu, #892 Urshifu

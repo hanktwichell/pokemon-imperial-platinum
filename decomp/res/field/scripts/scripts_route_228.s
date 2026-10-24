@@ -8,9 +8,11 @@
     ScriptEntry Route228_OnTransition
     ScriptEntry Route228_OnLoad
     ScriptEntry Route228_SovereignShade
+    ScriptEntry Route228_LegendaryLandorus
     ScriptEntryEnd
 
 Route228_OnTransition:
+    Call Route228_SovereignSetLandorusVisibility
     CallIfNe VAR_ROCK_PEAK_RUINS_STATE, RUINS_STATE_CAUGHT_REGI, Route228_ResetRockPeakRuinsState
     CheckPartyHasFatefulEncounterRegigigas VAR_MAP_LOCAL_0x01
     GoToIfEq VAR_MAP_LOCAL_0x01, FALSE, Route228_RemoveWarpRockPeakRuinsWithRegirock
@@ -22,9 +24,36 @@ Route228_ResetRockPeakRuinsState:
     Return
 
 Route228_OnLoad:
+    CallIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, Route228_RemoveLegendaryLandorus
     CheckPartyHasFatefulEncounterRegigigas VAR_MAP_LOCAL_0x01
     GoToIfEq VAR_MAP_LOCAL_0x01, FALSE, Route228_RemoveWarpRockPeakRuinsWithRegirock
     GoToIfEq VAR_MAP_LOCAL_0x01, TRUE, Route228_RemoveWarpRockPeakRuinsWithoutRegirock
+    End
+
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Landorus waits at the north end of the first sand field
+@ when the player brings Tornadus and Thundurus along, until it's caught. It moved here from the Rock Peak Ruins
+@ doorway room (owner, 2026-10-24).
+Route228_SovereignSetLandorusVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+    SovereignCheckSpeciesCaught SPECIES_LANDORUS, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, Route228_SovereignSetLandorusVisibilityEnd
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_TORNADUS
+    GoToIfEq VAR_RESULT, FALSE, Route228_SovereignSetLandorusVisibilityEnd
+    CheckPartyHasSpecies VAR_RESULT, SPECIES_THUNDURUS
+    GoToIfEq VAR_RESULT, FALSE, Route228_SovereignSetLandorusVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+Route228_SovereignSetLandorusVisibilityEnd:
+    Return
+
+Route228_RemoveLegendaryLandorus:
+    RemoveObject LOCALID_LEGENDARY_LANDORUS
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+    Return
+
+Route228_LegendaryLandorus:
+    SetVar VAR_0x8004, SPECIES_LANDORUS
+    SetVar VAR_0x8005, 65
+    Common_SovereignLegendaryEncounter
     End
 
 Route228_RemoveWarpRockPeakRuinsWithRegirock:

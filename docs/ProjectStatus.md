@@ -216,11 +216,18 @@ Made by the owner (2026-10-22):
     trial and Ho-Oh's Renegade portal. Claude A picked Route 229's nook behind the Cut tree, by the Reaper Cloth
     (813, 426); the owner can still change it. Every static encounter, with its spot and conflicts, is in
     `docs/StaticEncounters.xlsx`.
+37. **Hoopa and Eternatus move** (owner, 2026-10-24: "Move Hoopa to another Unown room and Eternatus out of
+    Turnback"). Hoopa now plays in Solaceon Ruins Room 6's north-west dead end, round the pillar (2, 3), leaving Room 7
+    to Jirachi. Eternatus waits on Victory Road B1F's TM59 island (Surf) (14, 19), leaving Giratina's room to
+    Giratina. Claude A picked both spots. The Archivist's hints now name the new places (and Enamorus's and Yveltal's).
+38. **Landorus moves to Route 228's sand field** (owner, 2026-10-24: "Route 228 it is"), the north end of the first
+    field (782, 323), out of the Rock Peak Ruins doorway room, which Regidrago keeps. The Archivist's hint now says
+    "the sands of Route 228".
 
 Open:
 - **The legendary placement clashes** in `docs/LegendaryPlacementReview.md` ("Clashes to settle"): Stark Mountain
-  room 1, Giratina's room, Solaceon Ruins Room 7, the Rock Peak chamber and others (the Lost Tower and Route 224 are
-  settled by decisions 35–36). `docs/StaticEncounters.xlsx` lists every one.
+  room 1 and the tile checks (the Lost Tower, Route 224, Giratina's room, Solaceon Ruins Room 7 and the Rock Peak
+  chamber are settled by decisions 35–38). `docs/StaticEncounters.xlsx` lists every one.
 - **Overworld sprites and sizing for the legendaries** (owner, 2026-10-23: "we will need to work on" it). Today each
   is a 64x64 placeholder shrunk from its PokeAPI front sprite (`tools/sprites/make_legendary_overworld.py`), so tiny
   and huge Pokémon look the same size and the big ones cover the player and nearby tiles.

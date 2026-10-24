@@ -6,26 +6,12 @@
     ScriptEntry SolaceonRuinsRoom7_Inscription
     ScriptEntry SolaceonRuinsRoom7_OnTransition
     ScriptEntry SolaceonRuinsRoom7_OnLoad
-    ScriptEntry SolaceonRuinsRoom7_LegendaryHoopa
     ScriptEntry SolaceonRuinsRoom7_LegendaryJirachi
     ScriptEntryEnd
 
 SolaceonRuinsRoom7_OnTransition:
-    Call SolaceonRuinsRoom7_SovereignSetHoopaVisibility
     Call SolaceonRuinsRoom7_SovereignSetJirachiVisibility
     End
-
-@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Hoopa plays in the ruins' innermost room while the player
-@ carries the Prison Bottle, which the Archivist gives, until it's caught.
-SolaceonRuinsRoom7_SovereignSetHoopaVisibility:
-    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
-    CheckItem ITEM_PRISON_BOTTLE, 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, SolaceonRuinsRoom7_SovereignSetHoopaVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_HOOPA, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, SolaceonRuinsRoom7_SovereignSetHoopaVisibilityEnd
-    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
-SolaceonRuinsRoom7_SovereignSetHoopaVisibilityEnd:
-    Return
 
 @ Sovereign (E10, Renegade's Jirachi event): once the three wishes are granted (Eterna City's Pokémon Center, Solaceon
 @ Town's north-east house, Pastoria City) and the sign read, Jirachi sleeps at the top of the room until it's caught.
@@ -40,16 +26,8 @@ SolaceonRuinsRoom7_SovereignSetJirachiVisibilityEnd:
     Return
 
 SolaceonRuinsRoom7_OnLoad:
-    CallIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, SolaceonRuinsRoom7_RemoveLegendaryHoopa
     CallIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, SolaceonRuinsRoom7_RemoveLegendaryJirachi
     End
-
-SolaceonRuinsRoom7_RemoveLegendaryHoopa:
-    GoToIfNe VAR_SOVEREIGN_LEGENDARY_SPECIES, SPECIES_HOOPA, SolaceonRuinsRoom7_RemoveLegendaryHoopaEnd
-    RemoveObject LOCALID_LEGENDARY_HOOPA
-    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
-SolaceonRuinsRoom7_RemoveLegendaryHoopaEnd:
-    Return
 
 SolaceonRuinsRoom7_RemoveLegendaryJirachi:
     GoToIfNe VAR_SOVEREIGN_LEGENDARY_SPECIES, SPECIES_JIRACHI, SolaceonRuinsRoom7_RemoveLegendaryJirachiEnd
@@ -57,12 +35,6 @@ SolaceonRuinsRoom7_RemoveLegendaryJirachi:
     ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
 SolaceonRuinsRoom7_RemoveLegendaryJirachiEnd:
     Return
-
-SolaceonRuinsRoom7_LegendaryHoopa:
-    SetVar VAR_0x8004, SPECIES_HOOPA
-    SetVar VAR_0x8005, 55
-    Common_SovereignLegendaryEncounter
-    End
 
 SolaceonRuinsRoom7_LegendaryJirachi:
     GoToIfSet FLAG_SOVEREIGN_JIRACHI_AWAKE, SolaceonRuinsRoom7_JirachiBattle
