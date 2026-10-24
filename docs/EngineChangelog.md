@@ -4,6 +4,37 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 10) — Renegade's helper NPCs: free tutors and relearner, the Move Deleter, the Berry seller, Traynee
+
+From Renegade's `NPCChanges.txt`, with scripts, texts and spots read from its ROM.
+
+- **The Move Relearner** (Pastoria) teaches for free; no Heart Scale.
+- **All three move tutors live in the Route 212 house** and teach for free: special effects (the Route 212 tutor),
+  support (Snowpoint's) and power (the Survival Area's). The Snowpoint house keeps its trendy-saying man and the
+  Super Rod fisherman; the Survival Area house keeps the tutor's Psyduck. The tutor-list signs say the moves are
+  taught for free in the Route 212 house.
+- **The Move Deleter** moved from Canalave to the house beside Oreburgh's Pokémon Center. A man in his old Canalave
+  house says where he went.
+- **Route 208's Rare Berry seller** (in the Berry Master's house) sells the Liechi, Ganlon, Salac, Petaya, Apicot,
+  Lansat, Starf, Enigma, Micle, Custap, Jaboca and Rowap Berries, and the Nature Mints, at ₽10,000 each (half price
+  after the Hall of Fame, decision 24).
+- **Solaceon's Day Care has Renegade's training NPCs:**
+  - Traynee gives the six Power items on the first visit, then battles for EXP or EVs, free:
+    - EXP: six Healing Wish Chansey or Blissey holding a Toxic Orb, at Lv. 25, 35 (Cobble Badge), 45 (Celestic Town
+      reached), 55 (Icicle Badge), 65 (Pokémon League reached), 75 (Champion) or 85 (Stark Mountain finished);
+    - EVs: six Lv. 10 Pokémon worth 1, 2 or 3 EVs of the chosen stat (the Azurill, Bellsprout, Geodude, Abra, Lotad
+      and Pidgey lines);
+    - her 25 teams are `TRAINER_SOVEREIGN_TRAYNEE_*`. Losing doesn't black out.
+  - A rancher sells 15 each of the Pomeg, Kelpsy, Qualot, Hondew, Grepa and Tamato Berries for ₽5,000.
+- **Fix: the move tutors crashed the game** when their move list opened. The list loads the move-name bank into the
+  16 KB field heap, and with the Gen IX moves that bank is about 26 KB. It now reads each name as it needs it. The
+  Battle Hall's record list had the same problem with the 1025 species names and gets the same fix.
+
+Verified in the test build: the relearner, the power tutor's move list (Mud-Slap, Iron Head, Aqua Tail, Outrage,
+Earth Power, Twister) and the "trying to learn" step with no Shard cost, the Move Deleter, the Berry seller's shop,
+Traynee's Power items, menus and Lv. 25 Chansey course, the rancher (not enough money), the Psyduck and the Canalave
+man. The release build passes.
+
 ## E10 (part 9) — Renegade's NPC gifts: the Trainers' School, the Item Fanatic, the trade-evolution items
 
 Read from Renegade's ROM (scripts, texts and NPC positions).

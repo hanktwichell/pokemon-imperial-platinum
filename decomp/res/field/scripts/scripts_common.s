@@ -1677,14 +1677,10 @@ CommonScript_ShardCostWindowSnowpointCity:
     GoTo CommonScript_ShardCostWindow
     End
 
+// Sovereign (E10): the tutors teach for free (Renegade), so the sign lists the moves without a Shard cost.
 CommonScript_ShardCostWindow:
     Message CommonStrings_Text_CheckShardsNeededForMove
     ShowMoveTutorMoveSelectionMenu PARTY_SLOT_NONE, VAR_0x8004, VAR_RESULT
-    SetVar VAR_0x8003, VAR_RESULT
-    GoToIfEq VAR_0x8003, -2, CommonScript_NoMoveSelected
-    ShowShardCost 21, 1, VAR_0x8003, VAR_RESULT
-    WaitABPress
-    CloseShardCostWindow
     GoTo CommonScript_NoMoveSelected
     End
 

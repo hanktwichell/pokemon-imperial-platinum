@@ -8,6 +8,8 @@
     ScriptEntry Route212House_Beauty
     ScriptEntry Route212House_Diary
     ScriptEntry Route212House_Hiker
+    ScriptEntry Route212House_HikerSupport
+    ScriptEntry Route212House_HikerPower
     ScriptEntryEnd
 
 Route212House_OnTransition:
@@ -19,18 +21,43 @@ Route212House_Twin:
     End
 
 Route212House_Beauty:
-    NPCMessage Route212House_Text_DaddyLikesBlueShards
+    NPCMessage Route212House_Text_ThreeMenLiveHere
     End
 
 Route212House_Diary:
-    EventMessage Route212House_Text_BlueShardsForMe
+    EventMessage Route212House_Text_WeDontNeedShards
     End
 
+// Sovereign (E10): as in Renegade, the three tutors (Route 212, Snowpoint City, Survival Area) live here and teach
+// for free. VAR_0x8007 holds the tutor's location.
 Route212House_Hiker:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
+    SetVar VAR_0x8007, TUTOR_LOCATION_ROUTE_212
     Message Route212House_Text_WantToTeachMove
+    GoTo Route212House_AskTeachMove
+    End
+
+Route212House_HikerSupport:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    SetVar VAR_0x8007, TUTOR_LOCATION_SNOWPOINT_CITY
+    Message Route212House_Text_WantToTeachSupportMove
+    GoTo Route212House_AskTeachMove
+    End
+
+Route212House_HikerPower:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    SetVar VAR_0x8007, TUTOR_LOCATION_SURVIVAL_AREA
+    Message Route212House_Text_WantToTeachPowerMove
+    GoTo Route212House_AskTeachMove
+    End
+
+Route212House_AskTeachMove:
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, Route212House_TryTeachMove
     GoToIfEq VAR_RESULT, MENU_NO, Route212House_SeeYouThen
@@ -49,15 +76,13 @@ Route212House_TryTeachMove:
     GoToIfEq VAR_0x8000, PARTY_SLOT_NONE, Route212House_SeeYouThen
     GetPartyMonSpecies VAR_0x8000, VAR_0x8001
     GoToIfEq VAR_0x8001, SPECIES_NONE, Route212House_CantTeachEgg
-    CheckHasLearnableTutorMoves VAR_0x8000, TUTOR_LOCATION_ROUTE_212, VAR_RESULT
+    CheckHasLearnableTutorMoves VAR_0x8000, VAR_0x8007, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, Route212House_NoMovesToTeach
     BufferPartyMonNickname 0, VAR_0x8000
     Message Route212House_Text_TeachWhichMove
-    ShowMoveTutorMoveSelectionMenu VAR_0x8000, TUTOR_LOCATION_ROUTE_212, VAR_RESULT
+    ShowMoveTutorMoveSelectionMenu VAR_0x8000, VAR_0x8007, VAR_RESULT
     SetVar VAR_0x8003, VAR_RESULT
     GoToIfEq VAR_0x8003, MENU_CANCEL, Route212House_SeeYouThen
-    CheckCanAffordMove VAR_0x8003, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, Route212House_NotEnoughShards
     GetPartyMonMoveCount VAR_RESULT, VAR_0x8000
     SetVar VAR_0x8002, VAR_RESULT
     GoToIfEq VAR_RESULT, LEARNED_MOVES_MAX, Route212House_TryReplaceMove
@@ -98,7 +123,7 @@ Route212House_TryReplaceMove:
     Message Route212House_Text_PokemonLearnedMove2
     WaitFanfare
     WaitTime 16, VAR_RESULT
-    GoTo Route212House_PayShards
+    GoTo Route212House_ResetMoveSlot
     End
 
 Route212House_StopTryingToTeachMove:
@@ -124,11 +149,10 @@ Route212House_TeachMove:
     PlayFanfare SEQ_FANFA1_sseq
     WaitFanfare
     WaitTime 16, VAR_RESULT
-    GoTo Route212House_PayShards
+    GoTo Route212House_ResetMoveSlot
     End
 
-Route212House_PayShards:
-    PayShardCost VAR_0x8003
+Route212House_ResetMoveSlot:
     ResetMoveSlot VAR_0x8000, VAR_0x8002, VAR_0x8003
     GoTo Route212House_SeeYouThen
     End
@@ -149,13 +173,6 @@ Route212House_SeeYouThen:
 
 Route212House_NoMovesToTeach:
     Message Route212House_Text_NoMovesToTeach
-    WaitButton
-    CloseMessage
-    ReleaseAll
-    End
-
-Route212House_NotEnoughShards:
-    Message Route212House_Text_NotEnoughShards
     WaitButton
     CloseMessage
     ReleaseAll

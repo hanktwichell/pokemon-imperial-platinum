@@ -8,6 +8,7 @@
     ScriptEntry Route208House_Twin
     ScriptEntry Route208House_PokemonBreederF
     ScriptEntry Route208House_Book
+    ScriptEntry Route208House_SovereignRareBerrySeller
     ScriptEntryEnd
 
 Route208House_OnTransition:
@@ -249,3 +250,16 @@ Route208House_BookEnd:
     End
 
     .balign 4, 0
+
+// Sovereign (E10): Renegade Platinum's Rare Berry seller, ₽10,000 an item (scrcmd_shop.c). She also sells the
+// Nature Mints (QualityOfLife.md).
+Route208House_SovereignRareBerrySeller:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    Message Route208House_Text_SovereignBuyRareBerries
+    WaitButton
+    CloseMessage
+    PokeMartSpecialties MART_SPECIALTIES_ID_RARE_BERRIES_ROUTE_208
+    ReleaseAll
+    End
