@@ -850,7 +850,9 @@ BOOL Pokemon_SovereignItemIsLocked(u16 species, u16 item);
 int Pokemon_SovereignKeyItemForm(u16 species, u16 item);
 int Pokemon_SovereignFusionForm(u16 species, u16 partner);
 u16 Pokemon_SovereignFusionPartner(u16 species, int form);
-void Pokemon_SovereignSetEvolvedSpecies(Pokemon *mon, u16 targetSpecies);
+// Sovereign (FM): the evolution type of an item evolution into a form, ORed with the form.
+#define EVO_TYPE_SOVEREIGN_FORM 0x100
+void Pokemon_SovereignSetEvolvedSpecies(Pokemon *mon, u16 targetSpecies, int evoType);
 int Pokemon_SovereignBabyForm(u16 species, int form, u16 eggSpecies);
 void Pokemon_SovereignSetBattleItemForm(Pokemon *mon);
 void Pokemon_SovereignRevertBattleForm(Pokemon *mon);

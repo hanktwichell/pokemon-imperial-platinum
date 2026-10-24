@@ -196,7 +196,7 @@ Covers **90** species.
 - **Level:** 10
 - **Location:** Veilstone Gym
 - **How:** A Kubfu trains in the Veilstone Gym; battle and catch it, then Maylene gives both Scrolls; using one evolves Kubfu into Urshifu (Single Strike or Rapid Strike). **Changed from the plan** (owner, 2026-10-23: legendaries are battled and caught, never given); the plan had Maylene give Kubfu.
-- **Built:** Kubfu (CB-0043), level 10: in the Veilstone Gym (13, 17) once the Galar Chronicle is open, until it's caught. The Archivist then gives the Scroll of Darkness and the Scroll of Waters, once (FLAG_SOVEREIGN_RECEIVED_SCROLLS; evolving Kubfu uses up its scroll). The Scroll of Darkness evolves it into Single Strike Urshifu; Rapid Strike Urshifu comes with the FM forms still to build, so the Scroll of Waters does nothing yet. A battle, not a gift; the Archivist stands in for Maylene. **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
+- **Built:** Kubfu (CB-0043), level 10: in the Veilstone Gym (13, 17) once the Galar Chronicle is open, until it's caught. The Archivist then gives the Scroll of Darkness and the Scroll of Waters, once (FLAG_SOVEREIGN_RECEIVED_SCROLLS; evolving Kubfu uses up its scroll). The Scroll of Darkness evolves it into Single Strike Urshifu, the Scroll of Waters into Rapid Strike Urshifu (CB-0047, a form of milestone FM). A battle, not a gift; the Archivist stands in for Maylene. **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
 
 ### The Jungle Guardian
 - **Pokémon:** #893 Zarude

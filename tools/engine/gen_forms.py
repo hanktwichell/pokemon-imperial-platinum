@@ -72,8 +72,9 @@ MEGA_BY_MOVE = {"Dragon Ascent (move; no stone)": "MOVE_DRAGON_ASCENT"}  # Mega 
 #   SOVEREIGN_FORM_BATTLE_ITEM  the Pokemon takes the form in battle while holding the item (Crowned Zacian/Zamazenta)
 #   SOVEREIGN_FORM_KEY_ITEM     using the key item on the Pokemon switches it in and out of the form (Reveal Glass)
 #   SOVEREIGN_FORM_FUSION       the fusion item fuses the Pokemon with this partner species (src/sovereign_form_items.c)
-#   SOVEREIGN_FORM_REGIONAL     a form the Pokemon has for good: the regional forms, and Basculin's stripes. It evolves
-#                               into its region's form and passes to its Eggs (REGIONAL_EVOLUTIONS, baby forms below)
+#   SOVEREIGN_FORM_REGIONAL     a form the Pokemon has for good: the regional forms, Basculin's stripes and Rapid Strike
+#                               Urshifu. It evolves into its region's form and passes to its Eggs (REGIONAL_EVOLUTIONS,
+#                               baby forms below)
 #   SOVEREIGN_FORM_BATTLE       a form its ability gives it in battle (Zen Mode); the trigger is the ability. Data only so
 #                               far, which keeps the official numbers of the forms after it (Galarian Darmanitan: 2)
 #   SOVEREIGN_FORM_TOTEM        a Totem Pokemon's form (decision 18), caught after its trial (data/totem_trials.yaml)
@@ -135,6 +136,8 @@ FM_FORMS = {
     "togedemaru-totem": (KIND_TOTEM, "0"), "mimikyu-busted": (KIND_BATTLE, "ABILITY_DISGUISE"),
     "mimikyu-totem-disguised": (KIND_TOTEM, "0"), "mimikyu-totem-busted": (KIND_TOTEM, "0"),
     "kommo-o-totem": (KIND_TOTEM, "0"),
+    # A form chosen by how the Pokemon evolved, and kept for good like a regional form (ITEM_EVOLUTION_FORMS).
+    "urshifu-rapid-strike": (KIND_REGIONAL, "0"),
 }
 
 # A Totem form learns what its usual form learns (PokeAPI only has the Totems' old Ultra Sun/Ultra Moon learnsets):
@@ -145,6 +148,8 @@ TOTEM_USUAL_FORMS = {"raticate-totem-alola": "raticate-alola", "marowak-totem": 
 _EVOLUTION_CHANGES = yaml.safe_load(open(os.path.join(ROOT, "data", "evolution_changes.yaml"), encoding="utf-8"))
 REGIONAL_EVOLUTIONS = {e["form"]: e["evolutions"] for e in _EVOLUTION_CHANGES["regional_forms"]}
 REGIONAL_PARENTS = _EVOLUTION_CHANGES["regional_parents"]
+# Item evolutions into a form (Kubfu with the Scroll of Waters: Rapid Strike Urshifu).
+ITEM_EVOLUTION_FORMS = _EVOLUTION_CHANGES["item_evolution_forms"]
 
 # PokeAPI names both of Calyrex's fused abilities "As One"; the decomp has one per form.
 ABILITY_OVERRIDES = {"calyrex-ice": ["ABILITY_AS_ONE_GLASTRIER"], "calyrex-shadow": ["ABILITY_AS_ONE_SPECTRIER"]}
@@ -347,7 +352,7 @@ enum SovereignFormKind {{
     {KIND_BATTLE_ITEM}, // the form while holding the item in battle (Crowned Zacian)
     {KIND_KEY_ITEM}, // a key item used on the Pokemon switches the form (Reveal Glass)
     {KIND_FUSION}, // fused with the partner species in the trigger field (DNA Splicers)
-    {KIND_REGIONAL}, // a form for good: regional forms, Basculin's stripes
+    {KIND_REGIONAL}, // a form for good: regional forms, Basculin's stripes, Rapid Strike Urshifu
     {KIND_BATTLE}, // the form its ability (the trigger) gives it in battle (Zen Mode)
     {KIND_TOTEM}, // a Totem Pokemon's form, caught after its trial
 }};
@@ -360,6 +365,13 @@ enum SovereignFormKind {{
     evolutions, babies = regional_tables(forms)
     evo_rows = "".join(f"    {{ {a}, {b}, {d}, {c} }},\n" for a, b, c, d in evolutions)
     baby_rows = "".join(f"    {{ {a}, {b}, {d}, {c} }},\n" for a, b, c, d in babies)
+    item_evo_rows = ""
+    for e in ITEM_EVOLUTION_FORMS:
+        f = next(x for x in forms if x.get("ident") == e["form"])
+        parent = json.load(open(os.path.join(POKEMON, e["from"][8:].lower(), "data.json"), encoding="utf-8"))
+        if ["EVO_USE_ITEM", e["item"], f["species"]] not in parent["evolutions"]:
+            sys.exit(f"{e['from']} has no EVO_USE_ITEM {e['item']} evolution into {f['species']}")
+        item_evo_rows += f"    {{ {e['from']}, {e['item']}, {f['species']}, {f['number']} }}, // {f['name']}\n"
     write(os.path.join(DECOMP, "include", "data", "sovereign_forms.h"), f"""{header}#ifndef POKEPLATINUM_DATA_SOVEREIGN_FORMS_H
 #define POKEPLATINUM_DATA_SOVEREIGN_FORMS_H
 
@@ -400,6 +412,17 @@ typedef struct SovereignBabyForm {{
 
 static const SovereignBabyForm sSovereignBabyForms[] = {{
 {baby_rows}}};
+
+// An item evolution into a form: the item used decides it (data/evolution_changes.yaml, item_evolution_forms).
+typedef struct SovereignItemEvolutionForm {{
+    u16 species;
+    u16 item;
+    u16 targetSpecies;
+    u16 targetForm;
+}} SovereignItemEvolutionForm;
+
+static const SovereignItemEvolutionForm sSovereignItemEvolutionForms[] = {{
+{item_evo_rows}}};
 
 #endif // POKEPLATINUM_DATA_SOVEREIGN_FORMS_H
 """)

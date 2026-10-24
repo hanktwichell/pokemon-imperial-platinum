@@ -207,6 +207,7 @@ static const SovereignForm sSovereignForms[SOVEREIGN_FORM_COUNT] = {
     { SPECIES_MIMIKYU, 2, SOVEREIGN_FORM_TOTEM, 0 }, // Totem Disguised Mimikyu
     { SPECIES_MIMIKYU, 3, SOVEREIGN_FORM_TOTEM, 0 }, // Totem Busted Mimikyu
     { SPECIES_KOMMO_O, 1, SOVEREIGN_FORM_TOTEM, 0 }, // Totem Kommo-o
+    { SPECIES_URSHIFU, 1, SOVEREIGN_FORM_REGIONAL, 0 }, // Rapid Strike Urshifu
 };
 
 // A regional form that evolves into its region's form of the target species (any other evolves into form 0).
@@ -305,6 +306,7 @@ static const SovereignBabyForm sSovereignBabyForms[] = {
     { SPECIES_TAUROS, 2, 2, SPECIES_TAUROS },
     { SPECIES_TAUROS, 3, 3, SPECIES_TAUROS },
     { SPECIES_WOOPER, 1, 1, SPECIES_WOOPER },
+    { SPECIES_URSHIFU, 1, 0, SPECIES_KUBFU },
     { SPECIES_PERRSERKER, 0, 2, SPECIES_MEOWTH },
     { SPECIES_SIRFETCHD, 0, 1, SPECIES_FARFETCHD },
     { SPECIES_CURSOLA, 0, 1, SPECIES_CORSOLA },
@@ -316,6 +318,18 @@ static const SovereignBabyForm sSovereignBabyForms[] = {
     { SPECIES_BASCULEGION, 0, 2, SPECIES_BASCULIN },
     { SPECIES_RATICATE, 2, 1, SPECIES_RATTATA },
     { SPECIES_MAROWAK, 2, 0, SPECIES_CUBONE },
+};
+
+// An item evolution into a form: the item used decides it (data/evolution_changes.yaml, item_evolution_forms).
+typedef struct SovereignItemEvolutionForm {
+    u16 species;
+    u16 item;
+    u16 targetSpecies;
+    u16 targetForm;
+} SovereignItemEvolutionForm;
+
+static const SovereignItemEvolutionForm sSovereignItemEvolutionForms[] = {
+    { SPECIES_KUBFU, ITEM_SCROLL_OF_WATERS, SPECIES_URSHIFU, 1 }, // Rapid Strike Urshifu
 };
 
 #endif // POKEPLATINUM_DATA_SOVEREIGN_FORMS_H

@@ -406,7 +406,7 @@ Evolutions waiting for an item from milestone E7: 0 (marked ⏳).
 | 889 | Zamazenta | ZAMAZENTA | Scarlet/Violet | 13 | — | — |
 | 890 | Eternatus | ETERNATUS | Scarlet/Violet | 15 | — | — |
 | 891 | Kubfu | KUBFU | Scarlet/Violet | 15 | — | — |
-| 892 | Urshifu | URSHIFU | Scarlet/Violet | 17 | EVO_USE_ITEM ITEM_SCROLL_OF_DARKNESS | — |
+| 892 | Urshifu | URSHIFU | Scarlet/Violet | 17 | EVO_USE_ITEM ITEM_SCROLL_OF_DARKNESS / EVO_USE_ITEM ITEM_SCROLL_OF_WATERS | — |
 | 893 | Zarude | ZARUDE | Scarlet/Violet | 17 | — | de |
 | 894 | Regieleki | REGIELEKI | Scarlet/Violet | 15 | — | jp |
 | 895 | Regidrago | REGIDRAGO | Scarlet/Violet | 13 | — | jp |

@@ -190,3 +190,4 @@
     { "mimikyu/forms/totem_disguised", NULL, .isGiratinaOrigin = false }, // Totem Disguised Mimikyu
     { "mimikyu/forms/totem_busted", NULL, .isGiratinaOrigin = false }, // Totem Busted Mimikyu
     { "kommo_o/forms/o_totem", NULL, .isGiratinaOrigin = false }, // Totem Kommo-o
+    { "urshifu/forms/rapid_strike", NULL, .isGiratinaOrigin = false }, // Rapid Strike Urshifu
