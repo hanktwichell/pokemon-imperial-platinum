@@ -506,7 +506,8 @@ CanalaveLibrary2F_SovereignArchivistGuardianHints:
 
 @ Sun and Moon, the Alola Chronicle's key: Cosmog atop Mt. Coronet (FLAG_SOVEREIGN_CAUGHT_COSMOG), how it evolves,
 @ then once the player has Solgaleo or Lunala, the second Cosmog and Necrozma (Wayward Cave), then the N-Solarizer and
-@ N-Lunarizer once Necrozma is caught.
+@ N-Lunarizer once Necrozma is caught, and the Ultranecrozium Z once (FLAG_SOVEREIGN_RECEIVED_ULTRANECROZIUM: a
+@ Necrozma may be holding it).
 CanalaveLibrary2F_SovereignArchivistSky:
     GoToIfUnset FLAG_SOVEREIGN_CAUGHT_COSMOG, CanalaveLibrary2F_SovereignArchivistCosmog
     SovereignCheckSpeciesCaught SPECIES_SOLGALEO, VAR_0x8004
@@ -527,6 +528,7 @@ CanalaveLibrary2F_SovereignArchivistSkyNecrozma:
     GoToIfEq VAR_0x8006, FALSE, CanalaveLibrary2F_SovereignArchivistAlolaAskMore
     CheckItem ITEM_N_SOLARIZER, 1, VAR_RESULT
     CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistSolarizers
+    CallIfUnset FLAG_SOVEREIGN_RECEIVED_ULTRANECROZIUM, CanalaveLibrary2F_SovereignArchivistUltranecrozium
     GoToIfUnset FLAG_SOVEREIGN_CAUGHT_COSMOG_2, CanalaveLibrary2F_SovereignArchivistAlolaAskMore
     Message CanalaveLibrary2F_Text_SovereignArchivistSkyDone
     GoTo CanalaveLibrary2F_SovereignArchivistAlolaAskMore
@@ -1261,6 +1263,14 @@ CanalaveLibrary2F_SovereignArchivistSolarizers:
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
     SetVar VAR_0x8004, ITEM_N_LUNARIZER
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    Return
+
+CanalaveLibrary2F_SovereignArchivistUltranecrozium:
+    SetFlag FLAG_SOVEREIGN_RECEIVED_ULTRANECROZIUM
+    Message CanalaveLibrary2F_Text_SovereignArchivistUltranecrozium
+    SetVar VAR_0x8004, ITEM_ULTRANECROZIUM_Z
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
     Return

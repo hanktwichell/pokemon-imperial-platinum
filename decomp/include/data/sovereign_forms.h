@@ -208,6 +208,8 @@ static const SovereignForm sSovereignForms[SOVEREIGN_FORM_COUNT] = {
     { SPECIES_MIMIKYU, 3, SOVEREIGN_FORM_TOTEM, 0 }, // Totem Busted Mimikyu
     { SPECIES_KOMMO_O, 1, SOVEREIGN_FORM_TOTEM, 0 }, // Totem Kommo-o
     { SPECIES_URSHIFU, 1, SOVEREIGN_FORM_REGIONAL, 0 }, // Rapid Strike Urshifu
+    { SPECIES_NECROZMA, 3, SOVEREIGN_FORM_ULTRA_BURST, 1 }, // Ultra Necrozma
+    { SPECIES_NECROZMA, 4, SOVEREIGN_FORM_ULTRA_BURST, 2 }, // Ultra Necrozma
 };
 
 // A regional form that evolves into its region's form of the target species (any other evolves into form 0).

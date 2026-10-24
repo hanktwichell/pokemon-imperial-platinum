@@ -12,4 +12,6 @@ pokefoot_files += files('footprint.png')
 # Sovereign forms (tools/engine/gen_forms.py): start
 species_data_files += files('forms/dusk/data.json')
 species_data_files += files('forms/dawn/data.json')
+species_data_files += files('forms/ultra/data.json')
+species_data_files += files('forms/ultra_dawn/data.json')
 # Sovereign forms: end

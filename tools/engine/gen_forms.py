@@ -65,6 +65,7 @@ KIND_HELD_ITEM, KIND_BATTLE_ITEM = "SOVEREIGN_FORM_HELD_ITEM", "SOVEREIGN_FORM_B
 KIND_KEY_ITEM, KIND_FUSION = "SOVEREIGN_FORM_KEY_ITEM", "SOVEREIGN_FORM_FUSION"
 KIND_REGIONAL, KIND_BATTLE = "SOVEREIGN_FORM_REGIONAL", "SOVEREIGN_FORM_BATTLE"
 KIND_TOTEM = "SOVEREIGN_FORM_TOTEM"
+KIND_ULTRA_BURST = "SOVEREIGN_FORM_ULTRA_BURST"
 MEGA_BY_MOVE = {"Dragon Ascent (move; no stone)": "MOVE_DRAGON_ASCENT"}  # Mega Rayquaza
 
 # Milestone FM forms built so far: PokeAPI identifier (data/forms.csv) -> (kind, the item that gives the form).
@@ -79,6 +80,9 @@ MEGA_BY_MOVE = {"Dragon Ascent (move; no stone)": "MOVE_DRAGON_ASCENT"}  # Mega 
 #                               far, which keeps the official numbers of the forms after it (Galarian Darmanitan: 2)
 #   SOVEREIGN_FORM_TOTEM        a Totem Pokemon's form (decision 18), caught after its trial (data/totem_trials.yaml)
 #                               and kept for good. It doesn't evolve
+#   SOVEREIGN_FORM_ULTRA_BURST  Ultra Necrozma: Dusk Mane or Dawn Wings Necrozma holding the Ultranecrozium Z bursts into
+#                               it in battle (from the MEGA button) and goes back after. The trigger is the form it
+#                               bursts from, so there is one Ultra form for each (FM_ROW_ALIASES)
 # A species' forms are numbered in this order, after its Megas, as in the official games (Kyurem: 1 White, 2 Black).
 FM_FORMS = {
     "zacian-crowned": (KIND_BATTLE_ITEM, "ITEM_RUSTED_SWORD"),
@@ -138,7 +142,14 @@ FM_FORMS = {
     "kommo-o-totem": (KIND_TOTEM, "0"),
     # A form chosen by how the Pokemon evolved, and kept for good like a regional form (ITEM_EVOLUTION_FORMS).
     "urshifu-rapid-strike": (KIND_REGIONAL, "0"),
+    # Ultra Burst: Necrozma's forms 3 (from Dusk Mane, form 1) and 4 (from Dawn Wings, form 2). An Ultra form only
+    # exists in battle, so its number is never saved.
+    "necrozma-ultra": (KIND_ULTRA_BURST, "1"),
+    "necrozma-ultra-dawn": (KIND_ULTRA_BURST, "2"),
 }
+
+# FM_FORMS entries that are a second copy of a data/forms.csv row.
+FM_ROW_ALIASES = {"necrozma-ultra-dawn": "necrozma-ultra"}
 
 # A Totem form learns what its usual form learns (PokeAPI only has the Totems' old Ultra Sun/Ultra Moon learnsets):
 # its regional form's, or else the species' own (the base data.json).
@@ -176,7 +187,7 @@ def load_rows():
     fm_rows = {r["identifier"]: r for r in csv.DictReader(open(os.path.join(ROOT, "data", "forms.csv"), encoding="utf-8"))}
     forms, numbers = [], {}
     for ident in FM_FORMS:  # the FM forms take the first numbers; the Megas follow
-        stem = stem_of(fm_rows[ident]["base_species"])
+        stem = stem_of(fm_rows[FM_ROW_ALIASES.get(ident, ident)]["base_species"])
         numbers[stem] = numbers.get(stem, 0) + 1
     fm_numbers = {}
     for row in rows:
@@ -206,7 +217,7 @@ def load_rows():
         forms.append(form)
 
     for ident, (kind, trigger) in FM_FORMS.items():
-        row = fm_rows[ident]
+        row = fm_rows[FM_ROW_ALIASES.get(ident, ident)]
         species = row["base_species"]
         stem = stem_of(species)
         fm_numbers[stem] = fm_numbers.get(stem, 0) + 1
@@ -214,22 +225,25 @@ def load_rows():
             "ABILITY_" + stem_of(a.replace(" (H)", "")).upper() for a in row["abilities"].split("; ")]
         hidden = [a for a in row["abilities"].split("; ") if a.endswith(" (H)")]
         normal = abilities[:len(abilities) - len(hidden)]
+        if kind == KIND_ULTRA_BURST and not engine_has_ability(abilities[0]):
+            # Like a Mega: without its ability in the battle engine, it keeps the Pokémon's own.
+            abilities, normal, hidden = ["ABILITY_NONE"], ["ABILITY_NONE"], []
         form = {
             "name": row["form"], "stem": stem, "species": "SPECIES_" + stem.upper(), "number": fm_numbers[stem],
             "dir": ident.split("-", 1)[1].replace("-", "_"), "kind": kind, "trigger": trigger,
             "abilities": [normal[0], normal[-1], abilities[-1] if hidden else normal[0]],
             "types": [type_const(t) for t in row["types"].split("/")],
             "stats": {k: int(row[k]) for k in ("hp", "atk", "def", "spa", "spd", "spe")},
-            "ident": ident, "pid": row["form_id"],
+            "ident": ident, "pid": row["form_id"] if kind != KIND_ULTRA_BURST else None,
         }
         if kind == KIND_TOTEM:
             usual = TOTEM_USUAL_FORMS.get(ident)
             form["pid"] = fm_rows[usual]["form_id"] if usual else None
             form["region"] = region_of(usual) if usual else None
-        trigger_table = {KIND_FUSION: "species", KIND_BATTLE: "abilities", KIND_REGIONAL: None, KIND_TOTEM: None}.get(
-            kind, "items")
+        trigger_table = {KIND_FUSION: "species", KIND_BATTLE: "abilities", KIND_REGIONAL: None, KIND_TOTEM: None,
+                         KIND_ULTRA_BURST: None}.get(kind, "items")
         checks = [(form["species"], "species")] + ([(trigger, trigger_table)] if trigger_table else [])
-        for const, table_name in checks + [(a, "abilities") for a in abilities]:
+        for const, table_name in checks + [(a, "abilities") for a in abilities if a != "ABILITY_NONE"]:
             if const not in symbols[table_name]:
                 sys.exit(f"{row['form']}: {const} isn't in generated/{table_name}.txt")
         forms.append(form)
@@ -355,6 +369,7 @@ enum SovereignFormKind {{
     {KIND_REGIONAL}, // a form for good: regional forms, Basculin's stripes, Rapid Strike Urshifu
     {KIND_BATTLE}, // the form its ability (the trigger) gives it in battle (Zen Mode)
     {KIND_TOTEM}, // a Totem Pokemon's form, caught after its trial
+    {KIND_ULTRA_BURST}, // Ultra Necrozma, in battle; the trigger is the form it bursts from and goes back to
 }};
 
 #endif // POKEPLATINUM_CONSTANTS_SOVEREIGN_FORMS_H

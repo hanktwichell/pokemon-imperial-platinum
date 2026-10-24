@@ -7399,18 +7399,20 @@ u8 BattleSystem_SovereignMegaTrainerBit(BattleSystem *battleSys, int battler)
     return FlagIndex(BattleSystem_GetBattlerSide(battleSys, battler));
 }
 
-// Sovereign (E8): the form this battler can Mega Evolve into right now, or 0 (docs/MegaEvolution.md).
+// Sovereign (E8): the form this battler can Mega Evolve into right now, or 0 (docs/MegaEvolution.md). Ultra Burst (FM)
+// goes through the MEGA button too, but doesn't use up the trainer's Mega Evolution.
 int BattleSystem_SovereignMegaForm(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
     BattleMon *mon = &battleCtx->battleMons[battler];
     u32 battleType = BattleSystem_GetBattleType(battleSys);
     u8 side = BattleSystem_GetBattlerSide(battleSys, battler);
+    int ultraForm = Pokemon_SovereignUltraBurstForm(mon->species, mon->formNum, mon->heldItem);
 
     if ((battleType & BATTLE_TYPE_NO_MOVES)
         || mon->curHP == 0
-        || mon->formNum != 0
+        || (mon->formNum != 0 && ultraForm == 0)
         || (mon->statusVolatile & VOLATILE_CONDITION_TRANSFORM)
-        || (battleCtx->sovereignMegaUsed & BattleSystem_SovereignMegaTrainerBit(battleSys, battler))) {
+        || (ultraForm == 0 && (battleCtx->sovereignMegaUsed & BattleSystem_SovereignMegaTrainerBit(battleSys, battler)))) {
         return 0;
     }
 
@@ -7422,6 +7424,10 @@ int BattleSystem_SovereignMegaForm(BattleSystem *battleSys, BattleContext *battl
     } else if (BattlerData_GetBootState(BattleSystem_GetBattlerData(battleSys, battler)) != BATTLER_BOOT_STATE_AI
         && BattleSystem_IsMegaUnlocked(battleSys) == FALSE) {
         return 0;
+    }
+
+    if (ultraForm != 0) {
+        return ultraForm;
     }
 
     return Pokemon_SovereignBattleForm(mon->species, mon->heldItem, mon->moves, FALSE);
@@ -7469,11 +7475,18 @@ void BattleSystem_SovereignChangeBattleForm(BattleSystem *battleSys, BattleConte
     BattleController_EmitUpdatePartyMon(battleSys, battleCtx, battler);
 }
 
-// Sovereign (E8): Mega Evolve a battler; its trainer can't Mega Evolve again this battle.
+// Sovereign (E8): Mega Evolve a battler; its trainer can't Mega Evolve again this battle. An Ultra Burst (FM) leaves
+// the trainer's Mega Evolution unused.
 void BattleSystem_SovereignMegaEvolve(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int form)
 {
+    BattleMon *mon = &battleCtx->battleMons[battler];
+    BOOL ultraBurst = Pokemon_SovereignUltraBurstForm(mon->species, mon->formNum, mon->heldItem) == form;
+
     BattleSystem_SovereignChangeBattleForm(battleSys, battleCtx, battler, form);
-    battleCtx->sovereignMegaUsed |= BattleSystem_SovereignMegaTrainerBit(battleSys, battler);
+
+    if (ultraBurst == FALSE) {
+        battleCtx->sovereignMegaUsed |= BattleSystem_SovereignMegaTrainerBit(battleSys, battler);
+    }
 }
 
 void BattleSystem_InitPartyOrder(BattleSystem *battleSys, BattleContext *battleCtx)
