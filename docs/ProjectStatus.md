@@ -187,9 +187,8 @@ Made by the owner (2026-10-22):
     afterwards (`RenegadePlatinumV130/Documentation/SpecialEvents.txt`, #486: after the story event and becoming
     Champion, Lv. 70 in the temple's basement with Regirock, Regice and Registeel in the party).
 30. **Koraidon and Miraidon gates** (owner, 2026-10-24), replacing decision 28's pairing:
-    - **Koraidon** appears once all ten **future** Paradox Pokémon are obtained; **Miraidon** once all ten **past**
-      (ancient) ones are. The owner's wording; this is the reverse of their eras in the official games (Koraidon is
-      ancient), so confirm with the owner before building it.
+    - **Koraidon** appears once all ten **past** (ancient) Paradox Pokémon are obtained; **Miraidon** once all ten
+      **future** ones are, matching the official games (owner confirmed, 2026-10-24).
     - Each gate is independent: one legendary can be unlocked without any Paradox Pokémon from the other's group.
     - The Paldea Chronicle must still be open.
     - After giving all ten of their Pokémon, each Oreburgh Mining Museum dealer has a new line, like: "Wow, you've

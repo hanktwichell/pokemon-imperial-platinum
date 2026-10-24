@@ -4617,3 +4617,15 @@ Renegade's portals where they don't clash with Sovereign's content. They replace
 **Files modified:** `docs/ProjectStatus.md`, `CLAUDE_STATUS.md`
 
 **Next 3 steps:** unchanged from CA-0045. Claude A is idle until the owner's go.
+
+## CA-0047 (Claude A, branch `claude/festive-bardeen-5h7beo`, 2026-10-24)
+
+**Owner confirmation (decision 30), for Claude B:** use the official pairing. **Koraidon** appears after all ten
+**past (ancient)** Paradox Pokémon; **Miraidon** after all ten **future** ones. The rest of decision 30 stands:
+- the gates are independent of each other;
+- the Paldea Chronicle is still required;
+- each museum dealer gets its "all of the PAST/FUTURE Paradox Pokémon... LOCATION" line.
+
+Decision 30 can be built now.
+
+**Files modified:** `docs/ProjectStatus.md`, `CLAUDE_STATUS.md`
