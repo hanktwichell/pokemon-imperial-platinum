@@ -134,6 +134,53 @@
         "Rt. 227\n",
         "Stark Mountain"
       ]
+    },
+    {
+      "id": "Route227_Text_SovereignSlytheIntro",
+      "en_US": [
+        "Hello, sweetie.\n",
+        "Me? I’m the Battle Zone’s Slythe.\r",
+        "With my team’s beautiful toxicity,\n",
+        "even the climate cannot vex me.\r",
+        "So, sweetie. Did you want a go at\n",
+        "winning the unofficial {COLOR 1}Acid Badge{COLOR 0}?"
+      ]
+    },
+    {
+      "id": "Route227_Text_SovereignSlytheBattle",
+      "en_US": [
+        "Excellent. I’m glad...\n",
+        "Well then, show me what you’ve got.\r"
+      ]
+    },
+    {
+      "id": "Route227_Text_SovereignSlytheReward",
+      "en_US": [
+        "Mm. You’re truly a rose with thorns.\n",
+        "You deserve this reward.\r"
+      ]
+    },
+    {
+      "id": "Route227_Text_SovereignSlytheReceived",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received\n",
+        "the Acid Badge from Slythe!"
+      ]
+    },
+    {
+      "id": "Route227_Text_SovereignSlytheExplain",
+      "en_US": [
+        "The Acid Badge is just a pretty token.\n",
+        "It doesn’t do anything, really."
+      ]
+    },
+    {
+      "id": "Route227_Text_SovereignSlytheThanks",
+      "en_US": [
+        "Slythe: Do you enjoy my dulcet tones?\f",
+        "They’re just like how a bit of Toxic\n",
+        "can cradle a Pokémon to sleep..."
+      ]
     }
   ]
 }

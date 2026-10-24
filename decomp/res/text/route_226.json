@@ -73,6 +73,49 @@
         "Hmm...\n",
         "Do you feel like you can’t win?"
       ]
+    },
+    {
+      "id": "Route226_Text_SovereignWyverIntro",
+      "en_US": [
+        "Hello, challenger.\n",
+        "I am Wyver of the Battle Zone.\r",
+        "Hard training with Dragon-type Pokémon\n",
+        "allows me to endure any heat.\r",
+        "Did you want to challenge me for the\n",
+        "unofficial {COLOR 1}Fang Badge{COLOR 0}?"
+      ]
+    },
+    {
+      "id": "Route226_Text_SovereignWyverBattle",
+      "en_US": "Show me the tenacity of your Pokémon.\r"
+    },
+    {
+      "id": "Route226_Text_SovereignWyverReward",
+      "en_US": [
+        "Impressive. Your Pokémon are strong.\n",
+        "Here you go.\r"
+      ]
+    },
+    {
+      "id": "Route226_Text_SovereignWyverReceived",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received\n",
+        "the Fang Badge from Wyver!"
+      ]
+    },
+    {
+      "id": "Route226_Text_SovereignWyverExplain",
+      "en_US": [
+        "That Fang Badge...\n",
+        "It’s totally useless, really."
+      ]
+    },
+    {
+      "id": "Route226_Text_SovereignWyverThanks",
+      "en_US": [
+        "Wyver: Dragon-type Pokémon are hard\n",
+        "to train, but can be very rewarding."
+      ]
     }
   ]
 }

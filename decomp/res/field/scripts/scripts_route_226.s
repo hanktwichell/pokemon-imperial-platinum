@@ -9,6 +9,7 @@
     ScriptEntry Route226_OnLoad
     ScriptEntry Route226_LegendaryTapuFini
     ScriptEntry Route226_SovereignFireMaster
+    ScriptEntry Route226_SovereignWyver
     ScriptEntryEnd
 
 @ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Tapu Fini stands on the little beach under the cliffs, out
@@ -105,6 +106,53 @@ Route226_SovereignFireMasterLost:
     Message Route226_Text_SovereignFireMasterLose
     WaitButton
     CloseMessage
+    ReleaseAll
+    End
+
+    
+
+@ Sovereign (E10, Renegade's Battle Zone): Wyver gives the unofficial Fang Badge (just a keepsake, no item) to a player
+@ who beats their team (Renegade's trainer 1024). Renegade stands Wyver at (716, 345), where Tapu Fini (the Chronicles) is.
+@ Sovereign moves Wyver one tile down and right.
+Route226_SovereignWyver:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfDefeated TRAINER_SOVEREIGN_BATTLE_ZONE_WYVER, Route226_SovereignWyverThanks
+    Message Route226_Text_SovereignWyverIntro
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, Route226_SovereignWyverDecline
+    Message Route226_Text_SovereignWyverBattle
+    CloseMessage
+    StartTrainerBattle TRAINER_SOVEREIGN_BATTLE_ZONE_WYVER
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, Route226_SovereignWyverLost
+    Message Route226_Text_SovereignWyverReward
+    BufferPlayerName 0
+    Message Route226_Text_SovereignWyverReceived
+    PlayFanfare SEQ_BADGE_sseq
+    WaitFanfare
+    Message Route226_Text_SovereignWyverExplain
+    WaitButton
+    CloseMessage
+    SetTrainerFlag TRAINER_SOVEREIGN_BATTLE_ZONE_WYVER
+    ReleaseAll
+    End
+
+Route226_SovereignWyverThanks:
+    Message Route226_Text_SovereignWyverThanks
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+Route226_SovereignWyverDecline:
+    CloseMessage
+    ReleaseAll
+    End
+
+Route226_SovereignWyverLost:
+    BlackOutFromBattle
     ReleaseAll
     End
 

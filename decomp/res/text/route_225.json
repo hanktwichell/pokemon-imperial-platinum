@@ -14,6 +14,51 @@
         "Rt. 225\n",
         "Survival Area"
       ]
+    },
+    {
+      "id": "Route225_Text_SovereignHeatherIntro",
+      "en_US": [
+        "Hello, challenger!\n",
+        "I am Heather of the Battle Zone.\r",
+        "With the gusts of Flying-type Pokémon,\n",
+        "I keep myself cool in this heat!\r",
+        "Do you wish to challenge me for the\n",
+        "unofficial {COLOR 1}Wind Badge{COLOR 0}?"
+      ]
+    },
+    {
+      "id": "Route225_Text_SovereignHeatherBattle",
+      "en_US": "Show me the grace of your Pokémon!\r"
+    },
+    {
+      "id": "Route225_Text_SovereignHeatherReward",
+      "en_US": [
+        "That was beautiful. I’m very impressed.\n",
+        "Here’s your reward!\r"
+      ]
+    },
+    {
+      "id": "Route225_Text_SovereignHeatherReceived",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received\n",
+        "the Wind Badge from Heather!"
+      ]
+    },
+    {
+      "id": "Route225_Text_SovereignHeatherExplain",
+      "en_US": [
+        "That Wind Badge...\n",
+        "Well, it doesn’t do anything.\r",
+        "But it is proof that you can beat\n",
+        "the toughest Flying-type Pokémon!"
+      ]
+    },
+    {
+      "id": "Route225_Text_SovereignHeatherThanks",
+      "en_US": [
+        "Heather: I love Flying-type Pokémon.\n",
+        "Nothing beats a cruise in the air."
+      ]
     }
   ]
 }

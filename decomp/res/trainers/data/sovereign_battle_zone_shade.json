@@ -1,0 +1,110 @@
+{
+    "name": "Shade",
+    "class": "TRAINER_CLASS_ACE_TRAINER_SNOW_MALE",
+    "items": [
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_HOUNDOOM",
+            "form": 0,
+            "level": 76,
+            "item": "ITEM_WHITE_HERB",
+            "moves": [
+                "MOVE_DARK_PULSE",
+                "MOVE_OVERHEAT",
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_THUNDER_FANG"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_WEAVILE",
+            "form": 0,
+            "level": 76,
+            "item": "ITEM_MUSCLE_BAND",
+            "moves": [
+                "MOVE_ICICLE_CRASH",
+                "MOVE_FAINT_ATTACK",
+                "MOVE_AERIAL_ACE",
+                "MOVE_LOW_KICK"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SHIFTRY",
+            "form": 0,
+            "level": 76,
+            "item": "ITEM_WISE_GLASSES",
+            "moves": [
+                "MOVE_ENERGY_BALL",
+                "MOVE_DARK_PULSE",
+                "MOVE_HURRICANE",
+                "MOVE_FOCUS_BLAST"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SHARPEDO",
+            "form": 0,
+            "level": 76,
+            "item": "ITEM_EXPERT_BELT",
+            "moves": [
+                "MOVE_WATERFALL",
+                "MOVE_CRUNCH",
+                "MOVE_ICE_FANG",
+                "MOVE_ZEN_HEADBUTT"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SPIRITOMB",
+            "form": 0,
+            "level": 76,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_DARK_PULSE",
+                "MOVE_PSYCHIC",
+                "MOVE_HYPNOSIS",
+                "MOVE_DOUBLE_TEAM"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_TYRANITAR",
+            "form": 0,
+            "level": 77,
+            "item": "ITEM_CHOPLE_BERRY",
+            "moves": [
+                "MOVE_CRUNCH",
+                "MOVE_STONE_EDGE",
+                "MOVE_IRON_TAIL",
+                "MOVE_FIRE_PUNCH"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I am blinded by your light.\n",
+                "This Shadow Badge is well earned.\n",
+                "                   "
+            ]
+        }
+    ]
+}

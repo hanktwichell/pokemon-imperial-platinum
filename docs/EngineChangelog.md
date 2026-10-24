@@ -4,6 +4,25 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 22) — Renegade's Battle Zone leaders
+
+- **Six postgame "leaders"** from Renegade stand on the Battle Zone routes. Each battles a Lv. 76-ish team of one type
+  and gives an unofficial badge: a keepsake line with the badge fanfare, but no item and no effect.
+  - Heather, Flying, the Wind Badge: Route 225.
+  - Wyver, the Fang Badge: Route 226. Renegade's spot is Tapu Fini's (the Chronicles), so Wyver stands one tile down
+    and right.
+  - Slythe, the Acid Badge: Route 227.
+  - Shade, the Shadow Badge: Route 228.
+  - Gene, the General Badge: Route 229.
+  - Luna, Fairy, the Moon Badge: Route 230.
+- **Trainers:** `TRAINER_SOVEREIGN_BATTLE_ZONE_<NAME>`, from Renegade's trainers 938 and 1024–1028. Each one's trainer
+  flag records the win, and they don't battle again.
+- **Not ported yet:** Renegade's Buck battle on Route 227, which needs all six badges and ties into his Stark Mountain
+  story.
+
+Verified in a test build: Heather (Pelipper) and Luna (Wigglytuff) ran their dialogue and started their Lv. 76 battles.
+The release build passes.
+
 ## E10 (part 21) — Renegade's counterpart battles (Routes 202, 207, 210)
 
 - **Route 202:** Dawn or Lucas no longer demonstrates catching. They heal the player's Pokémon and battle with the

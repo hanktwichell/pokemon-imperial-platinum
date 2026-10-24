@@ -30,6 +30,54 @@
         "They’ll often have different Pokémon,\n",
         "so your Pokédex should fill up fast!"
       ]
+    },
+    {
+      "id": "Route230_Text_SovereignLunaIntro",
+      "en_US": [
+        "Oh, young challenger.\n",
+        "Isn’t this view grand?\r",
+        "I’m Luna of the Battle Zone.\n",
+        "I’m a Trainer of Fairy-type Pokémon.\r",
+        "My Pokémon and I love to keep\n",
+        "cool under the soft moonlight.\r",
+        "Of course, it’s not always night!\n",
+        "But the sea breeze is lovely, too.\r",
+        "Anyway, you’re here for a chance\n",
+        "at the {COLOR 1}Moon Badge{COLOR 0}?"
+      ]
+    },
+    {
+      "id": "Route230_Text_SovereignLunaBattle",
+      "en_US": "Let me see your Pokémon sparkle!\r"
+    },
+    {
+      "id": "Route230_Text_SovereignLunaReward",
+      "en_US": [
+        "Your Pokémon are real stars.\n",
+        "Here you go!\r"
+      ]
+    },
+    {
+      "id": "Route230_Text_SovereignLunaReceived",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received\n",
+        "the Moon Badge from Luna!"
+      ]
+    },
+    {
+      "id": "Route230_Text_SovereignLunaExplain",
+      "en_US": [
+        "That Moon Badge...\n",
+        "It’s as beautiful as the moon itself.\r",
+        "Keep it as a memento."
+      ]
+    },
+    {
+      "id": "Route230_Text_SovereignLunaThanks",
+      "en_US": [
+        "Luna: There’s nothing quite like a dance\n",
+        "with a bunch of Fairy-type Pokémon."
+      ]
     }
   ]
 }
