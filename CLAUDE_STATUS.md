@@ -4289,3 +4289,26 @@ Rock Peak/Iceberg/Iron Ruins, Snowpoint Temple B5F; `decomp/res/trainers/data/so
 2. Mewtwo (Oreburgh Gate B1F; Renegade's Odd Invitation from the Battleground nurse), Jirachi, Deoxys, Celebi,
    Lugia/Ho-Oh (Oak's quests), the birds, Mew's berry chain; Manaphy without a Mythical gift.
 3. Renegade's trainers from its ROM (`trdata`/`trpoke`), with `data/trainers_sovereign.yaml` on top.
+
+## CB-0088 — 2026-10-24, 8:17 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** E10 part 14, Kyogre, Groudon and Rayquaza. PR #98 (part 13) merged.
+- Statics at Renegade's spots, Lv. 70, after the Hall of Fame once `FLAG_SOVEREIGN_STEVEN_GAVE_ORBS` is set, until
+  caught: Kyogre (Mt. Coronet B1F 22/36; new `scripts_mt_coronet_b1f` + init archives, registered in scripts.order,
+  meson.build and map_headers.h), Groudon (Stark Mountain room 1, 6/6), Rayquaza (Pokémon League 847/572; new
+  OnTransition/OnLoad hooks).
+- Ball moves as in Renegade (Light Clay, Full Heal). Volcanion's post-battle removal checks the species.
+- Placeholder sprites registered (scratchpad `reglegend.py`).
+- Verified (gate-skipped test build): Kyogre's battle, Groudon on the map. Release build and docs pass.
+
+**Files modified:** scripts/events for Mt. Coronet B1F (new archives), Stark Mountain room 1, Pokémon League (+ init);
+`decomp/res/field/scripts/{scripts.order,meson.build}`, `decomp/include/data/map_headers.h`; sprite tables and 3 PNGs;
+`tools/sprites/make_legendary_overworld.py`; `docs/LegendaryTriggers.md`, `docs/EngineChangelog.md`,
+`docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Mewtwo (Oreburgh Gate B1F; Renegade's Odd Invitation from the Battleground nurse), Jirachi (Solaceon Ruins chain),
+   Deoxys (Veilstone meteorites), Celebi (GS Ball, Eterna Forest portals), Lugia/Ho-Oh (Oak's Silver/Rainbow Wings),
+   the birds (Renegade portals vs Sovereign's Oak roamers), the lake trio, Mew's berry chain.
+2. Renegade's trainers from its ROM (`trdata`/`trpoke`), with `data/trainers_sovereign.yaml` on top.
+3. Ask the owner about Renegade's Snowpoint Temple scene (story Regigigas, Candice's HM08).
