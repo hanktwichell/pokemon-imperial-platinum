@@ -29,7 +29,7 @@ Covers **90** species.
 - **Level:** 65
 - **Location:** Cobalion — Iron Island B2F (side cave); Terrakion — Route 227 (rock pocket); Virizion — Eterna Forest (north corridor)
 - **How:** All three are static encounters as soon as the chapter opens.
-- **Built:** Virizion (CB-0035): at the top of Eterna Forest's north corridor (80, 10), past the Cut trees. Terrakion (CB-0036): in the rock pocket at the north end of Route 227 (759, 258). Cobalion (CB-0036): in the top pocket of Iron Island B2F's right room (17, 1), the side cave reached from B1F; an existing dead end in place of a new one.
+- **Built:** Virizion (CB-0035): at the top of Eterna Forest's north corridor (80, 10), past the Cut trees. It stood on the only tile facing the hidden Insect Plate, so CB-0046 moved the plate into the corridor's west wall (79, 11). Terrakion (CB-0036): in the rock pocket at the north end of Route 227 (759, 258). Cobalion (CB-0036): in the top pocket of Iron Island B2F's right room (17, 1), the side cave reached from B1F; an existing dead end in place of a new one.
 
 ### The Young Sword
 - **Pokémon:** #647 Keldeo
@@ -57,7 +57,7 @@ Covers **90** species.
 - **Level:** 55
 - **Location:** Hearthome City — Contest Hall stage
 - **How:** Talk to the composer in the Contest Hall with a Pokémon that knows Sing in the party.
-- **Built:** Meloetta (CB-0037): the composer (a new NPC in the Contest Hall lobby, (8, 7)) lets a party Pokémon that knows Sing sing the Relic Song (FLAG_SOVEREIGN_MELOETTA_SONG). Meloetta then stands just in front of the Contest Hall's stage (29, 8) until it's caught (CB-0043 moved it off the stage itself, (28, 5), which the player can't walk onto). The stage replaces Amity Square, which has no stage the player can reach and only lets in players leading certain Pokémon. It comes in its Aria Forme; the Pirouette Forme comes with the battle forms (FM).
+- **Built:** Meloetta (CB-0037): the composer (a new NPC in the Contest Hall lobby, (8, 7)) lets a party Pokémon that knows Sing sing the Relic Song (FLAG_SOVEREIGN_MELOETTA_SONG). Meloetta then stands just in front of the Contest Hall's stage (27, 8) until it's caught (CB-0043 moved it off the stage itself, (28, 5), which the player can't walk onto; CB-0046 moved it from (29, 8), inside the Beauty's wander area). The stage replaces Amity Square, which has no stage the player can reach and only lets in players leading certain Pokémon. It comes in its Aria Forme; the Pirouette Forme comes with the battle forms (FM).
 
 ### Plasma's Leftovers
 - **Pokémon:** #649 Genesect

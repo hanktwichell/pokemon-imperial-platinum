@@ -4,6 +4,18 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E11 — The Chronicles: three more fixes from the trigger note
+
+- **The Insect Plate:** Virizion stands on the only tile that faced Eterna Forest's hidden Insect Plate, so the plate
+  couldn't be found while Virizion was there. The plate is now one tile down the corridor, in its west wall (79, 11).
+- **Meloetta** stood inside the wander range of the Beauty in front of the Contest Hall stage. It now stands two tiles
+  west (27, 8), clear of her.
+- **The Area Zero topic** said "Koraidon and Miraidon have come" when one of them was already caught. It now says the
+  other one still waits at Sendoff Spring.
+- **Verified** in the emulator: the Area Zero line with Miraidon caught and Koraidon not; Virizion's battle from the
+  corridor, then the Insect Plate from the tile below it; Meloetta's battle from its new tile. The release ROM builds
+  without warnings and passes boot smoke; the docs regenerate clean.
+
 ## E11 — The Chronicles: the legendary trigger note and the fixes it found
 
 `docs/LegendaryTriggers.md` lists what makes every legendary, mythical, Ultra Beast and Paradox Pokémon appear: the
