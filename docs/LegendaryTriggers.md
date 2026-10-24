@@ -207,11 +207,10 @@ against the Chronicles':
 
 ## Open issues
 
-Found by the audit and still open (the CB-0045 to CB-0047 fixes are in `EngineChangelog.md`):
+Found by the audit and still open (the CB-0045 to CB-0048 fixes are in `EngineChangelog.md`):
 - **Cosmog can flee.** At Lv. 5 it knows only Splash and Teleport, and a wild Teleport ends the battle about half the
   time it's picked. It then vanishes until the next visit. A trapping move or ability, or a quick catch, gets around
   it.
-- **Ultra Necrozma** waits on milestone FM: the Ultranecrozium Z isn't given anywhere.
 - **Roamers come back only through the Archivist** after a Hall of Fame. A player who doesn't reopen the topic sees
   nothing return. The RoamerGone line now says so.
 - **Gates read the Pokédex,** so a legendary caught another way (a trade) can open the next one early, and a traded

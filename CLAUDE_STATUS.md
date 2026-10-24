@@ -3118,3 +3118,42 @@ PR open.
    kept from fleeing with Teleport; overworld sprites and sizing; final spots for the provisional placements.
 2. Milestone FM: Ultra Necrozma (Ultra Burst with the Ultranecrozium Z), then the other battle forms.
 3. E10, Renegade's events: their spots against the Chronicles' (the clash table in `docs/LegendaryTriggers.md`).
+
+## CB-0048 — 2026-10-23, 8:28 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Status:** PR #60 (CB-0047, Rapid Strike Urshifu) is merged. This entry adds Ultra Necrozma (milestone FM). PR open.
+
+**What was implemented:**
+- **Ultra Burst:** Dusk Mane or Dawn Wings Necrozma holding the Ultranecrozium Z bursts into Ultra Necrozma
+  (Psychic/Dragon, Neuroforce) from the MEGA button. It needs the Mega Ring but doesn't use up the trainer's Mega,
+  and it shows its own two battle messages.
+- **Two data forms** (3 and 4, kind `SOVEREIGN_FORM_ULTRA_BURST`): each one's trigger is the fused form it bursts
+  from, so the revert at the battle's end keeps the fusion. They come from `FM_ROW_ALIASES` in `gen_forms.py`.
+- **The Ultranecrozium Z** comes from the Archivist once, in Sun and Moon after Necrozma is caught
+  (`FLAG_SOVEREIGN_RECEIVED_ULTRANECROZIUM`, formerly 0x00EC). It is locked on Necrozma against Knock Off and the
+  like.
+- **Verified** in the emulator:
+  - The Archivist gave the Z.
+  - Dusk Mane Ultra Burst in a wild battle, and the battle summary showed Psychic/Dragon with Neuroforce.
+  - Dawn Wings Ultra Burst in the same battle.
+  - Both went back to their fused forms afterwards.
+  - Release build without warnings, boot smoke, docs.
+
+**Files modified:** `tools/engine/gen_forms.py`, `tools/design/gen_mega_doc.py`, `decomp/src/pokemon.c`,
+`decomp/include/pokemon.h`, `decomp/src/battle/battle_lib.c`, `decomp/src/battle/battle_controller_player.c`,
+`decomp/res/battle/scripts/subscripts/subscript_sovereign_mega_evolution.s`, `decomp/res/text/battle_strings.json`,
+`decomp/res/field/scripts/scripts_canalave_library_2f.s`, `decomp/res/text/canalave_library_2f.json`,
+`decomp/generated/vars_flags.txt`, `decomp/include/constants/sovereign_forms.h`,
+`decomp/include/data/sovereign_forms.h`, `decomp/tools/dataproc/src/sovereign_forms.inc`,
+`decomp/res/pokemon/necrozma/meson.build`, `decomp/res/pokemon/necrozma/forms/ultra{,_dawn}/data.json` (new),
+`data/postgame_legendaries.yaml`, `docs/PostgameLegendaries.md`, `docs/MegaEvolution.md`,
+`docs/LegendaryTriggers.md`, `docs/TechnicalDesign.md`, `docs/EngineRoadmap.md`, `docs/EngineChangelog.md`,
+`CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Owner decisions: Koraidon/Miraidon after their own ten Paradox Pokémon or all twenty; whether Cosmog should be
+   kept from fleeing with Teleport; whether Ultra Burst should count as the trainer's Mega (built: it doesn't);
+   overworld sprites and sizing; final spots for the provisional placements.
+2. Milestone FM's remaining battle forms (Zen Mode is data only; Aegislash, Meloetta Pirouette, Mimikyu Busted and
+   the others still need their in-battle switches).
+3. E10, Renegade's events: their spots against the Chronicles' (the clash table in `docs/LegendaryTriggers.md`).
