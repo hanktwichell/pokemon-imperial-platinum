@@ -437,7 +437,7 @@ Evolutions waiting for an item from milestone E7: 0 (marked ⏳).
 | 920 | Lokix | LOKIX | Scarlet/Violet | 19 | EVO_LEVEL 24 | fr, de, it, es, jp |
 | 921 | Pawmi | PAWMI | Scarlet/Violet | 15 | — | fr, de, it, es, jp |
 | 922 | Pawmo | PAWMO | Scarlet/Violet | 16 | EVO_LEVEL 18 | en, fr, de, it, es, jp |
-| 923 | Pawmot | PAWMOT | Scarlet/Violet | 19 | EVO_LEVEL 40 | fr, de, it, es, jp |
+| 923 | Pawmot | PAWMOT | Scarlet/Violet | 18 | EVO_LEVEL 40 | fr, de, it, es, jp |
 | 924 | Tandemaus | TANDEMAUS | Scarlet/Violet | 14 | — | fr, de, it, es, jp |
 | 925 | Maushold | MAUSHOLD | Scarlet/Violet | 16 | EVO_LEVEL 25 | fr, de, it, es, jp |
 | 926 | Fidough | FIDOUGH | Scarlet/Violet | 15 | — | fr, de, it, es, jp |
@@ -468,7 +468,7 @@ Evolutions waiting for an item from milestone E7: 0 (marked ⏳).
 | 951 | Capsakid | CAPSAKID | Scarlet/Violet | 12 | — | en, fr, de, it, es, jp |
 | 952 | Scovillain | SCOVILLAIN | Scarlet/Violet | 17 | EVO_USE_ITEM ITEM_FIRE_STONE | fr, de, it, es, jp |
 | 953 | Rellor | RELLOR | Scarlet/Violet | 10 | — | fr, de, it, es, jp |
-| 954 | Rabsca | RABSCA | Scarlet/Violet | 17 | EVO_LEVEL 35 | fr, de, it, es, jp |
+| 954 | Rabsca | RABSCA | Scarlet/Violet | 16 | EVO_LEVEL 35 | fr, de, it, es, jp |
 | 955 | Flittle | FLITTLE | Scarlet/Violet | 10 | — | fr, de, it, es, jp |
 | 956 | Espathra | ESPATHRA | Scarlet/Violet | 16 | EVO_LEVEL 35 | fr, de, it, es, jp |
 | 957 | Tinkatink | TINKATINK | Scarlet/Violet | 16 | — | fr, de, it, es, jp |

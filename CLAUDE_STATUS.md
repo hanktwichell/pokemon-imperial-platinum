@@ -3500,3 +3500,26 @@ interactions the owner listed on 2026-10-23. PR open.
 1. Battle Bond (Ash-Greninja) in battle, and the Battle Bond Greninja gift in the Battle Frontier Pokémon Center.
 2. Remove Revival Blessing from Pawmot's moveset (easy to restore).
 3. Milestone FM: Ice Face (Noice Eiscue) and Gulp Missile (Cramorant).
+
+---
+
+## CB-0059 — Revival Blessing left out of the learnsets (Sat Oct 24 2026, 00:03 CDT)
+
+**Implemented:**
+- Owner, 2026-10-24: leave Revival Blessing out for now, and keep the option to add it back later.
+- New `LEFT_OUT_MOVES` set in `tools/engine/gen_species_gen9.py`. The species generators (`gen_species_gen9.py`,
+  `gen_new_species.py`, `gen_forms.py`) skip those moves in every learnset.
+- Pawmot and Rabsca no longer learn it at level 1. Rabsca also learned it in PokeAPI's data, so it was removed there
+  too.
+- To restore it: remove `MOVE_REVIVAL_BLESSING` from the set, then rerun `gen_new_species.py` (and `gen_forms.py`,
+  which restores the forms' `meson.build` blocks that `gen_new_species.py` drops).
+- No trainer team used it.
+
+**Files modified:** `tools/engine/gen_species_gen9.py`, `decomp/res/pokemon/pawmot/data.json`,
+`decomp/res/pokemon/rabsca/data.json`, `docs/NewSpecies.md`, `docs/TechnicalDesign.md`, `docs/EngineChangelog.md`,
+`CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Battle Bond (Ash-Greninja) in battle, and the Battle Bond Greninja gift in the Battle Frontier Pokémon Center.
+2. Milestone FM: Ice Face (Noice Eiscue) and Gulp Missile (Cramorant).
+3. Owner decisions still open: the Koraidon/Miraidon gate, Cosmog's Teleport, Ultra Burst and the trainer's Mega.
