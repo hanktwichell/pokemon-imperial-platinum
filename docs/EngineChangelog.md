@@ -4,6 +4,24 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 23) — Renegade's Marley and Dahlia battles
+
+- **Marley** (Victory Road) asks for a battle the first time she's met (Renegade's trainer 974, Lv. 85), then asks to
+  go along as before. A loss blacks out, and she asks again next time.
+- **Dahlia**, the Arcade Star, relaxes on Sunyshore City's north platform (882, 747). With all eight badges she
+  battles (Renegade's trainer 973), then leaves for the Frontier. Her trainer flag also hides her afterwards. Before
+  the eighth badge she wishes the player luck.
+- **Left out on purpose:** Renegade's Dray, the hack's creator in person ("I created this enhancement hack"), since
+  the character is the Renegade author's self-insert. Darach's Pal Park battle, Buck's Route 227 battle and the
+  reporters' battles are still to port.
+
+Verified in a test build:
+- Marley's battle started from her trigger.
+- Dahlia stands on the platform when Sunyshore is entered through a door. A test warp straight into Sunyshore doesn't
+  load her (a test-warp quirk on that map).
+
+The release build passes.
+
 ## E10 (part 22) — Renegade's Battle Zone leaders
 
 - **Six postgame "leaders"** from Renegade stand on the Battle Zone routes. Each battles a Lv. 76-ish team of one type

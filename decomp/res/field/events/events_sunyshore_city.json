@@ -334,6 +334,21 @@
             "x": 855,
             "z": 747,
             "y": 0
+        },
+        {
+            "id": "LOCALID_SOVEREIGN_DAHLIA",
+            "graphics_id": "OBJ_EVENT_GFX_DAHLIA",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_DEFEATED_TRAINER_SOVEREIGN_DAHLIA_SUNYSHORE",
+            "script": 20,
+            "initial_dir": 1,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 882,
+            "z": 747,
+            "y": 0
         }
     ],
     "warp_events": [
@@ -435,4 +450,3 @@
         }
     ]
 }
-

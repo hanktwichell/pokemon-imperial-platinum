@@ -1,0 +1,106 @@
+{
+    "name": "Marley",
+    "class": "TRAINER_CLASS_TRAINER_MARLEY",
+    "items": [
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_STARMIE",
+            "form": 0,
+            "level": 65,
+            "item": "ITEM_EXPERT_BELT",
+            "moves": [
+                "MOVE_HYDRO_PUMP",
+                "MOVE_BLIZZARD",
+                "MOVE_THUNDER",
+                "MOVE_PSYCHIC"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ELECTRODE",
+            "form": 0,
+            "level": 65,
+            "item": "ITEM_LIGHT_CLAY",
+            "moves": [
+                "MOVE_THUNDERBOLT",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_LIGHT_SCREEN",
+                "MOVE_EXPLOSION"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SCEPTILE",
+            "form": 0,
+            "level": 65,
+            "item": "ITEM_PETAYA_BERRY",
+            "moves": [
+                "MOVE_ENERGY_BALL",
+                "MOVE_DRAGON_PULSE",
+                "MOVE_FOCUS_BLAST",
+                "MOVE_ENDURE"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_CROBAT",
+            "form": 0,
+            "level": 65,
+            "item": "ITEM_BRIGHTPOWDER",
+            "moves": [
+                "MOVE_BRAVE_BIRD",
+                "MOVE_CROSS_POISON",
+                "MOVE_HYPNOSIS",
+                "MOVE_ROOST"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_WEAVILE",
+            "form": 0,
+            "level": 65,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_CRUNCH",
+                "MOVE_ICICLE_CRASH",
+                "MOVE_AERIAL_ACE",
+                "MOVE_LOW_KICK"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ARCANINE",
+            "form": 0,
+            "level": 66,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_FLARE_BLITZ",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_CRUNCH",
+                "MOVE_EXTREME_SPEED"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "...Awww."
+        }
+    ]
+}

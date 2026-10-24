@@ -80,9 +80,22 @@ VictoryRoad1FRoom2_MarleyStartFollowing:
     ReleaseAll
     End
 
+@ Sovereign (E10, Renegade's Marley battle): the first time, Marley asks for a battle (Renegade's trainer 974) before
+@ asking to go along. A loss blacks out, and she asks again next time.
 VictoryRoad1FRoom2_LetMeGoWithYou:
-    Message VictoryRoad1FRoom2_Text_LetMeGoWithYou
+    Message VictoryRoad1FRoom2_Text_SovereignMarleyLetsBattle
+    CloseMessage
+    StartTrainerBattle TRAINER_SOVEREIGN_MARLEY_VICTORY_ROAD
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, VictoryRoad1FRoom2_SovereignMarleyLost
+    BufferPlayerName 0
+    Message VictoryRoad1FRoom2_Text_SovereignMarleyYoureSoStrong
     Return
+
+VictoryRoad1FRoom2_SovereignMarleyLost:
+    BlackOutFromBattle
+    ReleaseAll
+    End
 
 VictoryRoad1FRoom2_YouTookSoLong:
     Message VictoryRoad1FRoom2_Text_YouTookSoLong

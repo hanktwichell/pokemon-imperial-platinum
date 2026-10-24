@@ -4552,3 +4552,31 @@ merged.
    Valor lakefront house).
 2. The Route 224 and Battleground counterpart battles; the Mansion and Route 212 grunts; the E4 rematch teams.
 3. Celebi's memory battles and the Celebi event.
+
+## CB-0097 — 2026-10-24, 10:45 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** E10 part 23, Renegade's Marley and Dahlia battles. PR #107 (part 22) merged.
+- Marley: `VictoryRoad1FRoom2_LetMeGoWithYou` now runs Renegade's battle-request text, then
+  `TRAINER_SOVEREIGN_MARLEY_VICTORY_ROAD` (Renegade 974), then the "You're so strong… let me go with you" text.
+  A loss blacks out.
+- Dahlia: new NPC `LOCALID_SOVEREIGN_DAHLIA` in Sunyshore City (882, 747), script 20.
+  - Before the Beacon Badge she gives a gym-challenge line; with it, a yes/no then `TRAINER_SOVEREIGN_DAHLIA_SUNYSHORE`
+    (973).
+  - On a win she fades out and `SetTrainerFlag` runs. Her `hidden_flag` is that trainer flag.
+- Dray (Renegade's author self-insert) is skipped on purpose; noted in the changelog.
+- Test note: the test warp into Sunyshore City doesn't load the map's objects. Enter through a door (the north-east
+  house's) to see them.
+- Verified: Marley's battle start. Dahlia shows when the map is entered normally; her battle wasn't reached in the
+  emulator (a Repel prompt got in the way).
+
+**Files modified:**
+- `decomp/generated/{trainers,vars_flags}.txt`, 2 trainer JSONs
+- Scripts, events and text for `victory_road_1f_room_2` and `sunyshore_city`
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Darach (Pal Park lobby's menu script, 969), Buck on Route 227 (1023; it needs the six Battle Zone trainer flags),
+   and the reporters (934, 1021, 1022).
+2. The Route 224 and Battleground counterpart battles; the Mansion and Route 212 grunts; the E4 rematch teams
+   (981–995) through the League rooms' var.
+3. Celebi's memory battles (1029–1036) and the Celebi event.
