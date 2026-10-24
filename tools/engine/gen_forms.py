@@ -73,7 +73,8 @@ MEGA_BY_MOVE = {"Dragon Ascent (move; no stone)": "MOVE_DRAGON_ASCENT"}  # Mega 
 # Milestone FM forms built so far: PokeAPI identifier (data/forms.csv) -> (kind, the item that gives the form).
 #   SOVEREIGN_FORM_HELD_ITEM    the form follows the held item, out of battle too (Ogerpon's masks, Origin Dialga/Palkia)
 #   SOVEREIGN_FORM_BATTLE_ITEM  the Pokemon takes the form in battle while holding the item (Crowned Zacian/Zamazenta)
-#   SOVEREIGN_FORM_KEY_ITEM     using the key item on the Pokemon switches it in and out of the form (Reveal Glass)
+#   SOVEREIGN_FORM_KEY_ITEM     using the key item on the Pokemon switches it in and out of the form (Reveal Glass);
+#                               with several forms for one item, it goes through them in turn (the Zygarde Cube)
 #   SOVEREIGN_FORM_FUSION       the fusion item fuses the Pokemon with this partner species (src/sovereign_form_items.c)
 #   SOVEREIGN_FORM_REGIONAL     a form the Pokemon has for good: the regional forms, Basculin's stripes and Rapid Strike
 #                               Urshifu. It evolves into its region's form and passes to its Eggs (REGIONAL_EVOLUTIONS,
@@ -164,18 +165,27 @@ FM_FORMS = {
     "minior-yellow": (KIND_BATTLE, "ABILITY_SHIELDS_DOWN"), "minior-green": (KIND_BATTLE, "ABILITY_SHIELDS_DOWN"),
     "minior-blue": (KIND_BATTLE, "ABILITY_SHIELDS_DOWN"), "minior-indigo": (KIND_BATTLE, "ABILITY_SHIELDS_DOWN"),
     "minior-violet": (KIND_BATTLE, "ABILITY_SHIELDS_DOWN"),
+    # Zygarde: the Zygarde Cube switches it through its 10% and 50% Formes with Aura Break or Power Construct (1-3,
+    # after the 50% Forme with Aura Break: 0). Power Construct makes a Zygarde with either form Complete (4) in battle,
+    # and it goes back to the form it came from: one Complete form for each (FM_ROW_ALIASES).
+    "zygarde-10": (KIND_KEY_ITEM, "ITEM_ZYGARDE_CUBE"),
+    "zygarde-10-power-construct": (KIND_KEY_ITEM, "ITEM_ZYGARDE_CUBE"),
+    "zygarde-50-power-construct": (KIND_KEY_ITEM, "ITEM_ZYGARDE_CUBE"),
+    "zygarde-complete": (KIND_BATTLE, "ABILITY_POWER_CONSTRUCT"),
+    "zygarde-complete-50": (KIND_BATTLE, "ABILITY_POWER_CONSTRUCT"),
 }
 
 # The form a battle form goes back to, when it isn't a regional form's (those follow the region) or 0: each Core
 # Minior goes back to the Meteor Form of its color.
 BATTLE_FORM_BASES = {f"minior-{c}": f"minior-{c}-meteor" for c in ("orange", "yellow", "green", "blue", "indigo", "violet")}
+BATTLE_FORM_BASES.update({"zygarde-complete": "zygarde-10-power-construct", "zygarde-complete-50": "zygarde-50-power-construct"})
 
 # Disguise: the form Mimikyu's disguise busts into, for each disguised form (sSovereignDisguiseForms). The busted
 # form goes back to the disguised one when the battle ends. 0 is the base form.
 DISGUISE_FORMS = {0: "mimikyu-busted", "mimikyu-totem-disguised": "mimikyu-totem-busted"}
 
 # FM_FORMS entries that are a second copy of a data/forms.csv row.
-FM_ROW_ALIASES = {"necrozma-ultra-dawn": "necrozma-ultra"}
+FM_ROW_ALIASES = {"necrozma-ultra-dawn": "necrozma-ultra", "zygarde-complete-50": "zygarde-complete"}
 
 # A Totem form learns what its usual form learns (PokeAPI only has the Totems' old Ultra Sun/Ultra Moon learnsets):
 # its regional form's, or else the species' own (the base data.json).

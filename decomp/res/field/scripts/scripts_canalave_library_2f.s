@@ -436,7 +436,17 @@ CanalaveLibrary2F_SovereignArchivistLife:
 
 CanalaveLibrary2F_SovereignArchivistLifeDone:
     Message CanalaveLibrary2F_Text_SovereignArchivistLifeDone
+    CheckItem ITEM_ZYGARDE_CUBE, 1, VAR_RESULT
+    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistZygardeCube
     GoTo CanalaveLibrary2F_SovereignArchivistKalosAskMore
+
+@ Sovereign (FM): the Zygarde Cube switches Zygarde's formes (src/sovereign_form_items.c).
+CanalaveLibrary2F_SovereignArchivistZygardeCube:
+    Message CanalaveLibrary2F_Text_SovereignArchivistZygardeCube
+    SetVar VAR_0x8004, ITEM_ZYGARDE_CUBE
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    Return
 
 CanalaveLibrary2F_SovereignArchivistLifeHints:
     Message CanalaveLibrary2F_Text_SovereignArchivistLife

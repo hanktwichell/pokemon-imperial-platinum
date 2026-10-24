@@ -9399,6 +9399,33 @@
         "The foe’s {STRVAR_1 1, 0, 0}’s\n",
         "disguise was busted!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignPowerConstructPresence",
+      "en_US": [
+        "You sense the presence of many!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignPowerConstructComplete_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} transformed into\n",
+        "its Complete Forme!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignPowerConstructComplete_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} transformed\n",
+        "into its Complete Forme!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignPowerConstructComplete_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} transformed\n",
+        "into its Complete Forme!"
+      ]
     }
   ]
 }

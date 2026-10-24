@@ -57,7 +57,7 @@ static int FusionItemIndex(u16 item)
 
 BOOL SovereignFormItem_IsFormItem(u16 item)
 {
-    return item == ITEM_REVEAL_GLASS || item == ITEM_PRISON_BOTTLE || FusionItemIndex(item) >= 0;
+    return item == ITEM_REVEAL_GLASS || item == ITEM_PRISON_BOTTLE || item == ITEM_ZYGARDE_CUBE || FusionItemIndex(item) >= 0;
 }
 
 static int FindMoveSlot(Pokemon *mon, u16 move)
@@ -242,14 +242,12 @@ int SovereignFormItem_Use(SaveData *saveData, Party *party, int slot, u16 item, 
         return UseFusionItem(saveData, party, slot, fusionIndex, changedSlot, fusedPartnerSlot);
     }
 
-    u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
-    int keyForm = Pokemon_SovereignKeyItemForm(species, item);
-    int form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+    int form = Pokemon_SovereignNextKeyItemForm(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), Pokemon_GetValue(mon, MON_DATA_FORM, NULL), item);
 
-    if (keyForm == 0 || (form != 0 && form != keyForm)) {
+    if (form < 0) {
         return SOVEREIGN_FORM_ITEM_NO_EFFECT;
     }
 
-    SetForm(mon, form == 0 ? keyForm : 0);
+    SetForm(mon, form);
     return SOVEREIGN_FORM_ITEM_CHANGED;
 }

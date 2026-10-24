@@ -32,8 +32,9 @@ ITEMS_TXT = os.path.join(DECOMP, "generated", "items.txt")
 DATA_DIR = os.path.join(DECOMP, "res", "items", "data")
 ICON_DIR = os.path.join(DECOMP, "res", "items", "icons")
 
-# Key items used on a Pokemon to change its form (milestone FM): Therian Formes, Hoopa Unbound and the fusions.
-FORM_KEY_ITEMS = {"Reveal Glass", "Prison Bottle", "DNA Splicers", "N-Solarizer", "N-Lunarizer", "Reins of Unity"}
+# Key items used on a Pokemon to change its form (milestone FM): Therian Formes, Hoopa Unbound, the fusions and
+# Zygarde's formes.
+FORM_KEY_ITEMS = {"Reveal Glass", "Prison Bottle", "DNA Splicers", "N-Solarizer", "N-Lunarizer", "Reins of Unity", "Zygarde Cube"}
 ICON_ORDER = os.path.join(DECOMP, "res", "items", "item_icon.order")
 ICON_MESON = os.path.join(ICON_DIR, "meson.build")
 MART_HEADER = os.path.join(DECOMP, "include", "data", "sovereign_mart_items.h")
