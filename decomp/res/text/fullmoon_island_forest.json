@@ -8,6 +8,56 @@
         "There is something sparkling where\n",
         "the Pokémon once was..."
       ]
+    },
+    {
+      "id": "FullmoonIslandForest_Text_SovereignMysteriousRockCarving",
+      "en_US": [
+        "It’s a mysterious rock.\n",
+        "It glows with a mystical light.\r",
+        "There appears to be a carving\n",
+        "on the front of the rock."
+      ]
+    },
+    {
+      "id": "FullmoonIslandForest_Text_SovereignSoulDewGlowing",
+      "en_US": [
+        "The Soul Dew in your Bag is glowing...\n",
+        "It revealed a second carving.\r"
+      ]
+    },
+    {
+      "id": "FullmoonIslandForest_Text_SovereignAllDreamsAreReality",
+      "en_US": [
+        "It’s a mysterious rock.\n",
+        "It glows with a mystical light.\r",
+        "There is a carving on the rock\n",
+        "on this side...\r",
+        "All dreams are but another reality.\n",
+        "Never forget..."
+      ]
+    },
+    {
+      "id": "FullmoonIslandForest_Text_SovereignRedOrBlue",
+      "en_US": [
+        "Ye who hold the solid soul.\n",
+        "Do ye dream in red or blue?"
+      ]
+    },
+    {
+      "id": "FullmoonIslandForest_Text_SovereignMenuRed",
+      "en_US": "Red"
+    },
+    {
+      "id": "FullmoonIslandForest_Text_SovereignMenuBlue",
+      "en_US": "Blue"
+    },
+    {
+      "id": "FullmoonIslandForest_Text_SovereignMenuNeither",
+      "en_US": "Neither"
+    },
+    {
+      "id": "FullmoonIslandForest_Text_SovereignButNothingHappened",
+      "en_US": "But nothing happened..."
     }
   ]
 }

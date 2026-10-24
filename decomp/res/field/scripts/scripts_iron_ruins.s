@@ -27,7 +27,7 @@ IronRuins_Statue:
     FacePlayer
     GoToIfEq VAR_IRON_RUINS_STATE, RUINS_STATE_CAUGHT_REGI, IronRuins_CaughtRegisteelStatueStoppedEmanatingPower
     GoToIfEq VAR_IRON_RUINS_STATE, RUINS_STATE_DID_NOT_CATCH_REGI, IronRuins_DidNotCatchRegisteelStatueStoppedEmanatingPower
-    GoToIfUnset FLAG_GAME_COMPLETED, IronRuins_BecomeStrongerYouMust
+    @ Sovereign (E10): as in Renegade, no Champion check; the chamber only opens with Relicanth and Wailord.
     CheckPartyHasFatefulEncounterRegigigas VAR_RESULT
     GoToIfEq VAR_RESULT, 0, IronRuins_ItsAStatueOfAPokemon
     GoToIfEq VAR_IRON_RUINS_STATE, RUINS_STATE_ACTIVATED_STATUE, IronRuins_EncounterRegisteel
@@ -44,7 +44,7 @@ IronRuins_EncounterRegisteel:
     Message IronRuins_Text_RegisteelCry
     WaitCry
     CloseMessage
-    StartLegendaryBattle SPECIES_REGISTEEL, 30
+    StartLegendaryBattle SPECIES_REGISTEEL, 60
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, IronRuins_BlackOut
     CheckDidNotCapture VAR_RESULT
@@ -139,7 +139,6 @@ IronRuins_DotEnd:
     End
 
 IronRuins_ActivateStatue:
-    GoToIfUnset FLAG_GAME_COMPLETED, IronRuins_DotEnd
     WaitSE SE_CONFIRM_sseq_3
     ScrCmd_29F 1
     SetVar VAR_IRON_RUINS_STATE, RUINS_STATE_ACTIVATED_STATUE

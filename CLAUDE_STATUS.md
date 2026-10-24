@@ -4261,3 +4261,31 @@ Oreburgh City, Eterna Forest, Contest Hall lobby; `decomp/generated/vars_flags.t
    the birds (Sovereign has Oak's roamers), Mew's berry chain, Manaphy (no Mythical gifts).
 2. Renegade's trainers from its ROM (`trdata`/`trpoke`), with `data/trainers_sovereign.yaml` on top.
 3. Ask the owner about Renegade's Snowpoint Temple scene (story Regigigas, Candice's HM08).
+
+## CB-0087 — 2026-10-24, 8:07 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** E10 part 13, Renegade's legendary events, second batch. PR #97 (part 12) merged.
+- Regis: `ScrCmd_CheckPartyHasFatefulEncounterRegigigas` (src/scrcmd.c) now means Renegade's rule: Relicanth and
+  Wailord in the party after the Distortion World. It drives the three doorways and statues; the Champion checks are
+  gone and the Regis are Lv. 60. Regigigas Lv. 70.
+- Steven (Oreburgh south house, replacing the worker): Beldum Lv. 10, GENERAL/QUESTS/BATTLE menu, Magma Stone → Soul
+  Dew, Latis → titans request, Regis → Red and Blue Orbs (`FLAG_SOVEREIGN_STEVEN_GAVE_ORBS`; no Jade Orb item, so
+  Rayquaza should check this flag), battle after the Hall of Fame (`TRAINER_SOVEREIGN_STEVEN_OREBURGH`).
+- Fullmoon Island: Renegade's mysterious rock (Cresselia caught, Lunar Wing taken) with the Soul Dew → Latias or
+  Latios, Lv. 68, until caught. Tapu Lele's removal now checks the species.
+- Orb sources updated in `data/mega_stones.yaml` (MegaEvolution.md regenerated); Beldum and Porygon in
+  GiftPokemon_Sovereign.md.
+- Verified in the test build (Steven's intro/Beldum; the rock's menu and a Latias battle). Release build and docs pass.
+
+**Files modified:** `decomp/src/scrcmd.c`; scripts/events/texts for Oreburgh City south house, Fullmoon Island forest,
+Rock Peak/Iceberg/Iron Ruins, Snowpoint Temple B5F; `decomp/res/trainers/data/sovereign_steven_oreburgh.json` (new);
+`decomp/generated/{trainers,vars_flags}.txt`; `data/mega_stones.yaml`; `docs/EngineChangelog.md`,
+`docs/EngineRoadmap.md`, `docs/LegendaryTriggers.md`, `docs/GiftPokemon_Sovereign.md`, `docs/MegaEvolution.md`,
+`CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Kyogre (Mt. Coronet B1F island, Blue Orb), Groudon (Stark Mountain room 1, Red Orb; Volcanion stands there:
+   pick a nearby tile) and Rayquaza (League waterfall, Steven's flag), Lv. 70.
+2. Mewtwo (Oreburgh Gate B1F; Renegade's Odd Invitation from the Battleground nurse), Jirachi, Deoxys, Celebi,
+   Lugia/Ho-Oh (Oak's quests), the birds, Mew's berry chain; Manaphy without a Mythical gift.
+3. Renegade's trainers from its ROM (`trdata`/`trpoke`), with `data/trainers_sovereign.yaml` on top.

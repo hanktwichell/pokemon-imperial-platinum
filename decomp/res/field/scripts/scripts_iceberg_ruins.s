@@ -27,7 +27,7 @@ IcebergRuins_Statue:
     FacePlayer
     GoToIfEq VAR_ICEBERG_RUINS_STATE, RUINS_STATE_CAUGHT_REGI, IcebergRuins_CaughtRegiceStatueStoppedEmanatingPower
     GoToIfEq VAR_ICEBERG_RUINS_STATE, RUINS_STATE_DID_NOT_CATCH_REGI, IcebergRuins_DidNotCatchRegiceStatueStoppedEmanatingPower
-    GoToIfUnset FLAG_GAME_COMPLETED, IcebergRuins_BecomeStrongerYouMust
+    @ Sovereign (E10): as in Renegade, no Champion check; the chamber only opens with Relicanth and Wailord.
     CheckPartyHasFatefulEncounterRegigigas VAR_RESULT
     GoToIfEq VAR_RESULT, 0, IcebergRuins_ItsAStatueOfAPokemon
     GoToIfEq VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_STATUE, IcebergRuins_EncounterRegice
@@ -44,7 +44,7 @@ IcebergRuins_EncounterRegice:
     Message IcebergRuins_Text_RegiceCry
     WaitCry
     CloseMessage
-    StartLegendaryBattle SPECIES_REGICE, 30
+    StartLegendaryBattle SPECIES_REGICE, 60
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, IcebergRuins_BlackOut
     CheckDidNotCapture VAR_RESULT
@@ -139,7 +139,6 @@ IcebergRuins_DotEnd:
     End
 
 IcebergRuins_ActivateStatue:
-    GoToIfUnset FLAG_GAME_COMPLETED, IcebergRuins_DotEnd
     WaitSE SE_CONFIRM_sseq_3
     ScrCmd_29F 1
     SetVar VAR_ICEBERG_RUINS_STATE, RUINS_STATE_ACTIVATED_STATUE

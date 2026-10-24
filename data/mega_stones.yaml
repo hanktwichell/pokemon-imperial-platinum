@@ -61,6 +61,6 @@ vendors:
             Zeraorite, Garchompite Z]
 
 events:
-  - {item: Red Orb, source: "Given by the Groudon shrine event once Groudon is caught (Renegade's Groudon event; see SpecialEvents.txt)."}
-  - {item: Blue Orb, source: "Given by the Kyogre shrine event once Kyogre is caught (Renegade's Kyogre event)."}
+  - {item: Red Orb, source: "Steven, Oreburgh City's south house, for showing him Regirock, Regice and Registeel (Renegade's quest; it calls Groudon)."}
+  - {item: Blue Orb, source: "Steven, Oreburgh City's south house, for showing him Regirock, Regice and Registeel (Renegade's quest; it calls Kyogre)."}
   - {item: "Dragon Ascent (move; no stone)", source: "Move tutor in the Route 212 tutor house teaches Dragon Ascent to Rayquaza after it is caught. Mega Rayquaza needs Dragon Ascent and no held stone."}

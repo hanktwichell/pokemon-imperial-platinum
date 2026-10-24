@@ -107,8 +107,8 @@ PokeAPI has no ability listed for: Mega Zygarde, Mega Heatran, Mega Darkrai, Meg
 | Mega Glalie | Glalitite | Ice | Refrigerate | 580 | 80/120/80/120/80/100 | Field item — Snowpoint City (replaces Ultra Ball) |
 | Mega Diancie | Diancite | Rock/Fairy | Magic Bounce | 700 | 50/160/110/160/110/110 | Mega Stone Curator (Survival Area) — $30,000 |
 | Mega Metagross | Metagrossite | Steel/Psychic | Tough Claws | 700 | 80/145/150/105/110/110 | Mega Stone Sage (Snowpoint) — $10,000 |
-| Primal Kyogre | Blue Orb | Water | Primordial Sea | 770 | 100/150/90/180/160/90 | Given by the Kyogre shrine event once Kyogre is caught (Renegade's Kyogre event). |
-| Primal Groudon | Red Orb | Ground/Fire | Desolate Land | 770 | 100/180/160/150/90/90 | Given by the Groudon shrine event once Groudon is caught (Renegade's Groudon event; see SpecialEvents.txt). |
+| Primal Kyogre | Blue Orb | Water | Primordial Sea | 770 | 100/150/90/180/160/90 | Steven, Oreburgh City's south house, for showing him Regirock, Regice and Registeel (Renegade's quest; it calls Kyogre). |
+| Primal Groudon | Red Orb | Ground/Fire | Desolate Land | 770 | 100/180/160/150/90/90 | Steven, Oreburgh City's south house, for showing him Regirock, Regice and Registeel (Renegade's quest; it calls Groudon). |
 | Mega Rayquaza | Dragon Ascent (move; no stone) | Dragon/Flying | Delta Stream | 780 | 105/180/100/180/100/115 | Move tutor in the Route 212 tutor house teaches Dragon Ascent to Rayquaza after it is caught. Mega Rayquaza needs Dragon Ascent and no held stone. |
 | Mega Camerupt | Cameruptite | Fire/Ground | Sheer Force | 560 | 70/120/100/145/105/20 | Mega Stone Collector (Hearthome) — $10,000 |
 | Mega Lopunny | Lopunnite | Normal/Fighting | Scrappy | 580 | 65/136/94/54/96/135 | Field item — Eterna Forest (replaces Potion) |
@@ -215,6 +215,6 @@ Each replaces a low-value pickup (never a TM, evolution stone or held item). Scr
 ## Other sources
 
 - **Mega Ring:** Leader Fantina, Hearthome Gym — given together with the Relic Badge. Unlocks Mega Evolution in battle (flag FLAG_SOVEREIGN_MEGA_UNLOCKED).
-- **Red Orb:** Given by the Groudon shrine event once Groudon is caught (Renegade's Groudon event; see SpecialEvents.txt).
-- **Blue Orb:** Given by the Kyogre shrine event once Kyogre is caught (Renegade's Kyogre event).
+- **Red Orb:** Steven, Oreburgh City's south house, for showing him Regirock, Regice and Registeel (Renegade's quest; it calls Groudon).
+- **Blue Orb:** Steven, Oreburgh City's south house, for showing him Regirock, Regice and Registeel (Renegade's quest; it calls Kyogre).
 - **Dragon Ascent (move; no stone):** Move tutor in the Route 212 tutor house teaches Dragon Ascent to Rayquaza after it is caught. Mega Rayquaza needs Dragon Ascent and no held stone.

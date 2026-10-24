@@ -51,7 +51,7 @@ Pokédex's caught entry (`SovereignCheckSpeciesCaught`).
 | Genesect | static | Galactic HQ lab, back room (34, 5) | 60 | `FLAG_SOVEREIGN_GENESECT_FREED`: the lab's male scientist confesses (shows at once) | Other legends |
 | Reshiram | static | Fuego Ironworks building, furnace pocket | 70 | `ITEM_LIGHT_STONE` in the bag (the Archivist gives both stones) | Truth and Ideals |
 | Zekrom | static | Valley Windworks, the island behind the building (Surf) | 70 | `ITEM_DARK_STONE` in the bag, and night (8 pm–4 am) **when entering the map** | Truth and Ideals |
-| Kyurem | static | Mt. Coronet's Iceberg Ruins doorway room | 70 | Reshiram and Zekrom caught; no fateful-encounter Regigigas in the party (vanilla's doorway swap) | Truth and Ideals |
+| Kyurem | static | Mt. Coronet's Iceberg Ruins doorway room | 70 | Reshiram and Zekrom caught; no Relicanth and Wailord pair in the party (that pair swaps the doorway to the Iceberg Ruins, part 13) | Truth and Ideals |
 | Tornadus, Thundurus | roamers | mainland routes | 65 | released on the first reading of Forces of Nature (`FLAG_SOVEREIGN_RELEASED_FORCES_OF_NATURE`) | Forces of Nature |
 | Landorus | static | Route 228 Rock Peak Ruins chamber (7, 5) | 65 | Tornadus and Thundurus **in the party** | Forces of Nature (after both are caught; the Archivist also gives the Reveal Glass) |
 | Enamorus | static | Route 224, by the tablet (914, 494) | 65 | Landorus caught | Forces of Nature |
@@ -170,8 +170,7 @@ dealer a present-day Pokémon gives its Paradox Pokémon at the shown Pokémon's
 | Dialga, Palkia | static (rift) | Spear Pillar's Dialga and Palkia maps | 70 | post-game, `FLAG_UNLOCKED_DIALGA_PALKIA_SPEAR_PILLAR` (the Celestic elder), the Adamant or Lustrous Orb carried | the Hall of Fame resets a missed one. Spear Pillar itself has no Chronicle encounter (decision 27) |
 | Giratina | static | Distortion World (story); then Turnback Cave's Giratina room | 47 | story; Turnback Cave if it wasn't caught | the Hall of Fame |
 | Heatran | static | Stark Mountain room 3 | 50 | post-game, talked to Buck at the Battleground, room state 1 | the Hall of Fame |
-| Regigigas | static | Snowpoint Temple B5F | 1 | Regirock, Regice and Registeel in the party | the Hall of Fame |
-| Regirock, Regice, Registeel | static | Rock Peak, Iceberg and Iron Ruins | 30 | post-game and a fateful-encounter Regigigas in the party | — |
+| Regigigas | static | Snowpoint Temple B5F | 70 (Renegade's; vanilla 1) | Regirock, Regice and Registeel in the party | the Hall of Fame |
 | Cresselia | roamer | released on Fullmoon Island | 50 | after the Lunar Wing quest | the Hall of Fame |
 | Articuno, Zapdos, Moltres | roamers | released by Professor Oak in Eterna City's south house | 60 | post-game | Oak re-releases after a Hall of Fame |
 | Darkrai | static | Newmoon Island | 50 | Member Card and the distribution | — |
@@ -188,6 +187,15 @@ Darkrai, Shaymin and Arceus need vanilla's distribution events, so they can't be
 | Raikou | static | Route 208, the Rock Climb ledge west of the Berry Master's house (391, 717) | 60 | after the Distortion World (Cyrus beaten there) | caught. A win or a run makes it vanish until the next visit |
 | Entei | static | Route 211 East, the end of the Rock Climb ledge (424, 514), where Platinum had TM29 | 60 | after the Distortion World | as Raikou |
 | Suicune | static | Route 213, the Rock Climb ledge (689, 826); the TM05 ball moved to (651, 824), as in Renegade | 60 | after the Distortion World | as Raikou |
+
+| Regirock, Regice, Registeel | static | Rock Peak (Route 228), Iceberg (Mt. Coronet, Route 216 side) and Iron (Iron Island B3F) Ruins | 60 | after the Distortion World, with a Relicanth and a Wailord in the party: the doorway opens to the chamber, then the dots and the statue as in vanilla (no Champion check) | caught |
+| Latias, Latios | rock | Fullmoon Island's clearing, where Cresselia stood (16, 15) | 68 | Cresselia caught and the Lunar Wing taken; read from below with the Soul Dew and pick red (Latias) or blue (Latios) | caught; either can be fought again until then |
+
+**Steven** (Oreburgh City's south house) gives a Lv. 10 Beldum, then takes requests from his QUESTS menu: the Magma
+Stone (Stark Mountain) for the Soul Dew; Latias and Latios in the party for the legendary titans' story (Relicanth and
+Wailord); Regirock, Regice and Registeel in the party for the Red and Blue Orbs, which Kyogre, Groudon and Rayquaza's
+events will need (Sovereign has no Jade Orb item, so Rayquaza will check Steven's flag). After the Hall of Fame he
+battles (Renegade's Lv. 88–89 team).
 
 Renegade puts a portal on each spot and opens them when Rowan is spoken to after the Distortion World; Sovereign shows
 the Pokémon itself (as for its own legendaries) and needs no talk. Spots are provisional (owner, 2026-10-24).
@@ -206,8 +214,6 @@ against the Chronicles':
 | Mew | Route 201, after a chain of berry quests | 40 | — |
 | Lugia, Ho-Oh | Route 220 island; Lost Tower top floor | 70 | **Yveltal stands on Lost Tower 5F** |
 | Celebi | Eterna Forest portals | 40 | **Virizion and Xerneas stand in Eterna Forest** |
-| Regirock, Regice, Registeel | Route 228, Mt. Coronet (Route 216 side), Iron Island B3F | 60 | Landorus and Regidrago share the Route 228 chamber; Nihilego's rare roll on Iron Island B3F |
-| Latias, Latios | Fullmoon Island clearing | 68 | Tapu Lele (13, 12) |
 | Kyogre, Groudon, Rayquaza | Mt. Coronet B1F, Stark Mountain room 1, the League waterfall | 70 | **Volcanion stands in Stark Mountain room 1** |
 | Jirachi | Solaceon Ruins | 40 | Hoopa (Room 7) |
 | Deoxys | Veilstone City | 70 | — |
