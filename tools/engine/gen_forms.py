@@ -76,8 +76,8 @@ MEGA_BY_MOVE = {"Dragon Ascent (move; no stone)": "MOVE_DRAGON_ASCENT"}  # Mega 
 #   SOVEREIGN_FORM_KEY_ITEM     using the key item on the Pokemon switches it in and out of the form (Reveal Glass);
 #                               with several forms for one item, it goes through them in turn (the Zygarde Cube)
 #   SOVEREIGN_FORM_FUSION       the fusion item fuses the Pokemon with this partner species (src/sovereign_form_items.c)
-#   SOVEREIGN_FORM_REGIONAL     a form the Pokemon has for good: the regional forms, Basculin's stripes and Rapid Strike
-#                               Urshifu. It evolves into its region's form and passes to its Eggs (REGIONAL_EVOLUTIONS,
+#   SOVEREIGN_FORM_REGIONAL     a form the Pokemon has for good: the regional forms, Basculin's stripes, Rapid Strike
+#                               Urshifu and Battle Bond Greninja. It evolves into its region's form and passes to its Eggs (REGIONAL_EVOLUTIONS,
 #                               baby forms below)
 #   SOVEREIGN_FORM_BATTLE       a form its ability gives it in battle (Zen Mode); the trigger is the ability. Data only so
 #                               far, which keeps the official numbers of the forms after it (Galarian Darmanitan: 2)
@@ -175,12 +175,17 @@ FM_FORMS = {
     "zygarde-complete-50": (KIND_BATTLE, "ABILITY_POWER_CONSTRUCT"),
     "morpeko-hangry": (KIND_BATTLE, "ABILITY_HUNGER_SWITCH"),
     "palafin-hero": (KIND_BATTLE, "ABILITY_ZERO_TO_HERO"),
+    # Greninja: Battle Bond Greninja (1) is a form for good, a gift in the Fight Area Pokémon Center; Battle Bond makes
+    # it Ash-Greninja (2) in battle, and it goes back to Battle Bond Greninja (BATTLE_FORM_BASES).
+    "greninja-battle-bond": (KIND_REGIONAL, "0"),
+    "greninja-ash": (KIND_BATTLE, "ABILITY_BATTLE_BOND"),
 }
 
 # The form a battle form goes back to, when it isn't a regional form's (those follow the region) or 0: each Core
 # Minior goes back to the Meteor Form of its color.
 BATTLE_FORM_BASES = {f"minior-{c}": f"minior-{c}-meteor" for c in ("orange", "yellow", "green", "blue", "indigo", "violet")}
-BATTLE_FORM_BASES.update({"zygarde-complete": "zygarde-10-power-construct", "zygarde-complete-50": "zygarde-50-power-construct"})
+BATTLE_FORM_BASES.update({"zygarde-complete": "zygarde-10-power-construct", "zygarde-complete-50": "zygarde-50-power-construct",
+                          "greninja-ash": "greninja-battle-bond"})
 
 # Disguise: the form Mimikyu's disguise busts into, for each disguised form (sSovereignDisguiseForms). The busted
 # form goes back to the disguised one when the battle ends. 0 is the base form.

@@ -3523,3 +3523,53 @@ interactions the owner listed on 2026-10-23. PR open.
 1. Battle Bond (Ash-Greninja) in battle, and the Battle Bond Greninja gift in the Battle Frontier Pokémon Center.
 2. Milestone FM: Ice Face (Noice Eiscue) and Gulp Missile (Cramorant).
 3. Owner decisions still open: the Koraidon/Miraidon gate, Cosmog's Teleport, Ultra Burst and the trainer's Mega.
+
+---
+
+## CB-0060 — Battle Bond Greninja gift and Ash-Greninja (Sat Oct 24 2026, 00:25 CDT)
+
+**Implemented:**
+- `gen_forms.py`: `"greninja-battle-bond": (KIND_REGIONAL, "0")` (form 1, kept for good) and
+  `"greninja-ash": (KIND_BATTLE, "ABILITY_BATTLE_BOND")` (form 2, going back to 1 through `BATTLE_FORM_BASES`). Mega
+  Greninja is now form 3 (Megas are never saved).
+- **Battle Bond:**
+  - It is a case in `AFTER_MOVE_HIT_STATE_KNOCKOUT_ABILITY` (`battle_controller_player.c`), using the new
+    `subscript_sovereign_battle_bond` and 6 battle strings.
+  - Switching out doesn't revert it (`Pokemon_SovereignRevertSwitchOutForm`).
+  - Ash-Greninja's Water Shuriken: `Sovereign_IsAshGreninja`; 20 power in `Sovereign_MovePower`, 3 hits in
+    `BtlCmd_SetMultiHit`.
+- **The gift NPC:**
+  - An Ace Trainer in the Fight Area Pokémon Center 1F at (12, 6). It's the Battle Frontier's town; the Frontier has
+    no Pokémon Center of its own.
+  - Level 50, the demo's moves, once (`FLAG_SOVEREIGN_RECEIVED_BATTLE_BOND_GRENINJA` replaces `FLAG_UNUSED_0x0101`).
+  - Uses a new script command, `SovereignSetPartyMonForm partySlot, form` (`scrcmd.c`, `scrcmd.h`, `scrcmd.inc`).
+- The ability checklist lists Battle Bond.
+- **Lesson:** a `'` in a text bank fails the build; use `’`. Check `make`'s exit status, not a grep, which missed
+  `Error 1`.
+
+**Owner answers (2026-10-24, second message):**
+- **Paradox Pokémon:** once the player has all 8 badges, two NPCs appear in the Oreburgh Mining Museum: a futuristic
+  scientist (future Paradox) and a fossil maniac (ancient Paradox).
+  - Showing either of them the present-day Pokémon of a Paradox Pokémon gets the player that Paradox Pokémon, once
+    each. Cyclizar is excluded.
+  - Koraidon's encounter opens after all the ancient ones are obtained; Miraidon's after all the future ones.
+- **Cosmog:** remove Teleport from its moveset.
+- **No Z-Moves:** Ultra Burst counts as the trainer's Mega Evolution.
+
+**Files modified:** `tools/engine/gen_forms.py`, `tools/engine/gen_abilities.py`,
+`decomp/include/constants/sovereign_forms.h`, `decomp/include/data/sovereign_forms.h`,
+`decomp/tools/dataproc/src/sovereign_forms.inc`, `decomp/res/pokemon/greninja/meson.build`,
+`decomp/res/pokemon/greninja/forms/{battle_bond,ash}/data.json` (new), `decomp/src/battle/battle_controller_player.c`,
+`decomp/src/battle/battle_lib.c`, `decomp/include/battle/battle_lib.h`, `decomp/src/battle/battle_script.c`,
+`decomp/src/pokemon.c`, `decomp/res/battle/scripts/subscripts/subscript_sovereign_battle_bond.s` (new),
+`decomp/res/battle/scripts/subscripts/sub_seq.order`, `decomp/res/battle/scripts/subscripts/meson.build`,
+`decomp/generated/battle_subscripts.txt`, `decomp/res/text/battle_strings.json`, `decomp/src/scrcmd.c`,
+`decomp/include/data/scripts/scrcmd.h`, `decomp/asm/macros/scrcmd.inc`, `decomp/generated/vars_flags.txt`,
+`decomp/res/field/scripts/scripts_fight_area_pokecenter_1f.s`, `decomp/res/field/events/events_fight_area_pokecenter_1f.json`,
+`decomp/res/text/fight_area_pokecenter_1f.json`, `docs/AbilityChecklist.md`, `docs/TechnicalDesign.md`,
+`docs/EngineRoadmap.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Ultra Burst uses the trainer's Mega Evolution; remove Teleport from Cosmog's moveset.
+2. The Paradox dealers in the Oreburgh Mining Museum, and the Koraidon/Miraidon gates by era.
+3. Milestone FM: Ice Face (Noice Eiscue) and Gulp Missile (Cramorant).

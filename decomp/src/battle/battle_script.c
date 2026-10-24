@@ -2670,7 +2670,10 @@ static BOOL BtlCmd_SetMultiHit(BattleSystem *battleSys, BattleContext *battleCtx
 
     if (battleCtx->multiHitNumHits == 0) {
         if (hits == 0) {
-            if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_SKILL_LINK) {
+            // Sovereign (FM): Ash-Greninja's Water Shuriken always hits 3 times.
+            if (battleCtx->moveCur == MOVE_WATER_SHURIKEN && Sovereign_IsAshGreninja(&ATTACKING_MON)) {
+                hits = 3;
+            } else if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_SKILL_LINK) {
                 hits = 5;
             } else {
                 // Sovereign: Gen V+ / Champions odds, 35% 2 hits, 35% 3, 15% 4, 15% 5

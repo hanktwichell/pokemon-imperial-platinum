@@ -853,6 +853,7 @@ ScriptCommand(SCRCMD_SOVEREIGNSTARTTOTEMTRIAL,                             ScrCm
 ScriptCommand(SCRCMD_SOVEREIGNGETTOTEMTRIALSPECIES,                       ScrCmd_SovereignGetTotemTrialSpecies)
 ScriptCommand(SCRCMD_SOVEREIGNCLEARFLAGFROMVAR,                           ScrCmd_SovereignClearFlagFromVar)
 ScriptCommand(SCRCMD_SOVEREIGNCHECKSPECIESCAUGHT,                         ScrCmd_SovereignCheckSpeciesCaught)
+ScriptCommand(SCRCMD_SOVEREIGNSETPARTYMONFORM,                            ScrCmd_SovereignSetPartyMonForm)
 
 // clang-format on
 

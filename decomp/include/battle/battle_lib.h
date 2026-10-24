@@ -1243,6 +1243,7 @@ void BattleSystem_SovereignChangeBattleForm(BattleSystem *battleSys, BattleConte
 BOOL Battler_SovereignShieldsUp(BattleContext *battleCtx, int battler);
 int Sovereign_AuraWheelType(u16 species, int form);
 u32 BattleSystem_SovereignHeroBit(BattleSystem *battleSys, int battler, int slot);
+BOOL Sovereign_IsAshGreninja(BattleMon *mon);
 BOOL BattleSystem_SovereignApplyTotemAura(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 BOOL BattleSystem_SovereignTotemFainted(BattleSystem *battleSys);
 void BattleSystem_SovereignMegaEvolve(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int form);

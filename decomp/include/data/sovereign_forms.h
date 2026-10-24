@@ -82,7 +82,7 @@ static const SovereignForm sSovereignForms[SOVEREIGN_FORM_COUNT] = {
     { SPECIES_CHANDELURE, 1, SOVEREIGN_FORM_MEGA, ITEM_CHANDELURITE }, // Mega Chandelure
     { SPECIES_CHESNAUGHT, 1, SOVEREIGN_FORM_MEGA, ITEM_CHESNAUGHTITE }, // Mega Chesnaught
     { SPECIES_DELPHOX, 1, SOVEREIGN_FORM_MEGA, ITEM_DELPHOXITE }, // Mega Delphox
-    { SPECIES_GRENINJA, 1, SOVEREIGN_FORM_MEGA, ITEM_GRENINJITE }, // Mega Greninja
+    { SPECIES_GRENINJA, 3, SOVEREIGN_FORM_MEGA, ITEM_GRENINJITE }, // Mega Greninja
     { SPECIES_PYROAR, 1, SOVEREIGN_FORM_MEGA, ITEM_PYROARITE }, // Mega Pyroar
     { SPECIES_FLOETTE, 1, SOVEREIGN_FORM_MEGA, ITEM_FLOETTITE }, // Mega Floette
     { SPECIES_MALAMAR, 1, SOVEREIGN_FORM_MEGA, ITEM_MALAMARITE }, // Mega Malamar
@@ -233,6 +233,8 @@ static const SovereignForm sSovereignForms[SOVEREIGN_FORM_COUNT] = {
     { SPECIES_ZYGARDE, 5, SOVEREIGN_FORM_BATTLE, ABILITY_POWER_CONSTRUCT }, // Complete Zygarde
     { SPECIES_MORPEKO, 1, SOVEREIGN_FORM_BATTLE, ABILITY_HUNGER_SWITCH }, // Hangry Morpeko
     { SPECIES_PALAFIN, 1, SOVEREIGN_FORM_BATTLE, ABILITY_ZERO_TO_HERO }, // Hero Form Palafin
+    { SPECIES_GRENINJA, 1, SOVEREIGN_FORM_REGIONAL, 0 }, // Battle Bond Greninja
+    { SPECIES_GRENINJA, 2, SOVEREIGN_FORM_BATTLE, ABILITY_BATTLE_BOND }, // Ash’s Greninja
 };
 
 // A regional form that evolves into its region's form of the target species (any other evolves into form 0).
@@ -332,6 +334,7 @@ static const SovereignBabyForm sSovereignBabyForms[] = {
     { SPECIES_TAUROS, 3, 3, SPECIES_TAUROS },
     { SPECIES_WOOPER, 1, 1, SPECIES_WOOPER },
     { SPECIES_URSHIFU, 1, 0, SPECIES_KUBFU },
+    { SPECIES_GRENINJA, 1, 0, SPECIES_FROAKIE },
     { SPECIES_PERRSERKER, 0, 2, SPECIES_MEOWTH },
     { SPECIES_SIRFETCHD, 0, 1, SPECIES_FARFETCHD },
     { SPECIES_CURSOLA, 0, 1, SPECIES_CORSOLA },
@@ -375,6 +378,7 @@ static const SovereignBattleFormBase sSovereignBattleFormBases[] = {
     { SPECIES_MINIOR, 13, 6 }, // Violet Core Minior
     { SPECIES_ZYGARDE, 4, 2 }, // Complete Zygarde
     { SPECIES_ZYGARDE, 5, 3 }, // Complete Zygarde
+    { SPECIES_GRENINJA, 2, 1 }, // Ash’s Greninja
 };
 
 // Disguise: a disguised Mimikyu form and the form its disguise busts into (it goes back when the battle ends).

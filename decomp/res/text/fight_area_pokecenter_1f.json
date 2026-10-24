@@ -83,6 +83,58 @@
         "The combination of you and your Pokémon\n",
         "will tear up the Battle Tower!"
       ]
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignGreninjaOffer",
+      "en_US": [
+        "My GRENINJA and I came to take on\n",
+        "the Battle Frontier together.\r",
+        "But it keeps looking at you, as if\n",
+        "you two share some kind of bond...\r",
+        "Would you take it with you?"
+      ]
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignGreninjaTakeCare",
+      "en_US": [
+        "Fight side by side, and it’ll show\n",
+        "you power you’ve never seen.\r"
+      ]
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignGreninjaReceived",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received the GRENINJA!\r"
+      ]
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignGreninjaNickname",
+      "en_US": [
+        "Would you like to give a nickname\n",
+        "to the GRENINJA you received?"
+      ]
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignGreninjaPartyFull",
+      "en_US": [
+        "Your party’s full. Come back when\n",
+        "you have room for it."
+      ]
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignGreninjaDeclined",
+      "en_US": [
+        "Oh... Well, it’ll be here\n",
+        "if you change your mind."
+      ]
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignGreninjaAfter",
+      "en_US": [
+        "When GRENINJA knocks out a foe at\n",
+        "your side, its bond with you grows.\r",
+        "Then it takes on a whole new form!"
+      ]
     }
   ]
 }

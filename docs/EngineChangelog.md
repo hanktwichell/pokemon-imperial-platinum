@@ -12,6 +12,26 @@ players and the verification that was run.
 - **How:** `LEFT_OUT_MOVES` in `tools/engine/gen_species_gen9.py` keeps it out of every generated learnset. Remove it
   there and rerun `tools/engine/gen_new_species.py` to teach it again.
 
+## FM — Battle Bond Greninja and Ash-Greninja
+
+- **The gift** (owner, 2026-10-24: the Battle Frontier's Battle Bond).
+  - An Ace Trainer in the Fight Area Pokémon Center gives a level 50 Battle Bond Greninja, once.
+  - It knows Water Shuriken, Aerial Ace, Double Team and Night Slash, like the official demo's.
+  - With a full party, he asks the player to come back.
+- **Battle Bond.**
+  - When its move knocks out a foe: "GRENINJA became fully charged due to its bond with its Trainer!", then
+    "GRENINJA became Ash-Greninja!".
+  - It stays Ash-Greninja until the battle ends.
+  - Ash-Greninja's Water Shuriken has 20 power and always hits 3 times.
+- **How:** `TechnicalDesign.md` (Battle Bond). Both forms share Greninja's sprite until milestone E12.
+- **Verified** in the emulator:
+  - An Ash-Greninja's Water Shuriken: "Hit 3 time(s)!".
+  - A Battle Bond Greninja's Night Slash knocked out a wild Starly, and Greninja became Ash-Greninja with both
+    messages.
+  - The gift with a full party: "Your party's full". With room: received, nickname prompt, then the summary showed
+    Lv. 50, Battle Bond, the four moves and "Fight Area".
+  - Release build, boot smoke, docs.
+
 ## FM — Hero Palafin
 
 - **Zero to Hero.** Palafin turns into its Hero Form when it switches out. When it comes back in: "PALAFIN underwent a
