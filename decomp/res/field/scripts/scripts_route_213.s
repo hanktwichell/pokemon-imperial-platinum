@@ -14,9 +14,11 @@
     ScriptEntry Route213_SignboardDrFootstepsHouse
     ScriptEntry Route213_TotemAraquanid
     ScriptEntry Route213_OnLoad
+    ScriptEntry Route213_LegendarySuicune
     ScriptEntryEnd
 
 Route213_OnLoad:
+    CallIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, Route213_RemoveLegendarySuicune
     CallIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, Route213_RemoveTotemAraquanid
     End
 
@@ -36,6 +38,7 @@ Route213_TotemAraquanid:
     End
 
 Route213_OnTransition:
+    Call Route213_SovereignSetSuicuneVisibility
     @ Sovereign: Totem Araquanid's trial opens once Wake is beaten (the Fen Badge).
     CallIfSet FLAG_SOVEREIGN_TOTEM_TRIAL_ARAQUANID, Route213_HideTotemAraquanid
     CheckBadgeAcquired BADGE_ID_FEN, VAR_RESULT
@@ -365,3 +368,26 @@ Route213_SignboardDrFootstepsHouse:
     End
 
     .balign 4, 0
+
+@ Sovereign (E10, Renegade's legendary events): Suicune on the Rock Climb ledge, after the Distortion World, until it is caught (Renegade: Lv. 60, a portal here; the TM05 ball moved to (651, 824) as in Renegade).
+Route213_SovereignSetSuicuneVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+    GoToIfUnset FLAG_DEFEATED_TRAINER_GALACTIC_BOSS_CYRUS_DISTORTION_WORLD, Route213_SovereignSetSuicuneVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_SUICUNE, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, Route213_SovereignSetSuicuneVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+Route213_SovereignSetSuicuneVisibilityEnd:
+    Return
+
+Route213_RemoveLegendarySuicune:
+    GoToIfNe VAR_SOVEREIGN_LEGENDARY_SPECIES, SPECIES_SUICUNE, Route213_RemoveLegendarySuicuneEnd
+    RemoveObject LOCALID_LEGENDARY_SUICUNE
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+Route213_RemoveLegendarySuicuneEnd:
+    Return
+
+Route213_LegendarySuicune:
+    SetVar VAR_0x8004, SPECIES_SUICUNE
+    SetVar VAR_0x8005, 60
+    Common_SovereignLegendaryEncounter
+    End

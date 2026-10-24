@@ -4,6 +4,20 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 12) — Renegade's legendary events: Raikou, Entei and Suicune
+
+- **Raikou, Entei and Suicune stand on Renegade's spots** once the Distortion World is done (Cyrus beaten there), at
+  Lv. 60, until caught: Raikou on Route 208's Rock Climb ledge, Entei at the end of Route 211 East's ledge, Suicune on
+  Route 213's ledge. They use the shared static encounter (a win or a run makes them vanish until the next visit).
+  Renegade shows a portal and wants a talk with Rowan first; Sovereign shows the Pokémon, like its own legendaries.
+- Renegade's item moves on those spots: the extra TM29 ball on Route 211 East is gone (TM29 is Lucian's gift), and the
+  Route 213 TM05 ball moved to Renegade's spot, (651, 824).
+- Their overworld sprites are placeholders from `tools/sprites/make_legendary_overworld.py`, like the Chronicles'.
+- This also opens the past Paradox dealer's Suicune, Entei and Raikou trades in the Oreburgh museum.
+
+Verified in the test build (with the Distortion World gate skipped): Raikou and Entei stand on their ledges and start
+their Lv. 60 battles. The release build passes.
+
 ## E10 (part 11) — Renegade's remaining small gifts
 
 - **Mom gives the Bicycle** with the Running Shoes. The Cycle Shop manager, rescued from the Galactic building, gives a
