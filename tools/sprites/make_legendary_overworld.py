@@ -108,6 +108,7 @@ LEGENDARIES = {
     "jirachi": 385,
     "deoxys": 386,
     "mew": 151,
+    "manaphy": 490,
 }
 
 

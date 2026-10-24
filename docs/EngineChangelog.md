@@ -4,6 +4,20 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 25) — Manaphy, from Backlot's Egg
+
+- After the siege of the Pokémon Mansion (part 24), Mr. Backlot points the player to his maid, who now stands beside
+  him in his office with the deep blue Egg. Talking to her makes it hatch, and the frightened **Manaphy** attacks: a
+  Lv. 40 battle (Renegade gives the Egg instead, but Mythicals are battled and caught, never given: decision 26).
+- If it isn't caught, it vanishes until the next visit, then waits in the office (18, 7) until it is. The maid's
+  lines follow along: it "still won't calm down", then "take good care of it".
+- A placeholder overworld sprite for Manaphy (`legendary_manaphy.png`, from `make_legendary_overworld.py`).
+- `VAR_SOVEREIGN_MANSION_SIEGE_STATE` carries it: 7 hatched, 8 caught. Phione comes from breeding Manaphy.
+
+Verified in a test build: the hatch scene and battle, the vanished message, the maid's later line, and Manaphy back in
+the office on the next visit, battled again when talked to. The catch itself goes through the common legendary script
+used by every static. The release build passes.
+
 ## E10 (part 24) — Renegade's Pokémon Mansion siege
 
 After Barry's battle in the Route 209 gate (Hearthome side), a maid from the Pokémon Mansion runs in for help: Team

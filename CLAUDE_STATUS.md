@@ -4755,3 +4755,41 @@ build and boot smoke test pass; not tested in game.
 2. The Route 224 and Battleground counterpart battles (975–980, 1054–1059), Buck (1023), Darach (969), the
    reporters.
 3. Celebi's memory battles (1029–1036) and the Celebi event; then Lugia, Ho-Oh and the birds.
+
+## CB-0099 — 2026-10-24, 1:24 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** E10 part 25, Manaphy from Backlot's Egg, as a battle (decision 26). PR #112 (part 24) was synced
+with main (the merge kept Claude A's CA-0045 to CA-0051 entries).
+- Office: `LOCALID_SOVEREIGN_MAID` stands at (17, 8) from siege state 6. Talking to her hatches the Egg (white fade),
+  shows `LOCALID_LEGENDARY_MANAPHY` at (18, 7), and starts `Common_SovereignLegendaryEncounter` (Manaphy, Lv. 40).
+  - State 7: hatched, not caught. Manaphy stands there each visit.
+  - State 8: caught.
+- Backlot gives the "speak to my assistant" line at state 6 and keeps vanilla's Trophy Garden lines otherwise.
+- New office OnLoad init script (entry 10) for the usual legendary removal. Map-local flags: 0x02 the maid,
+  0x03 Manaphy.
+- New overworld sprite: `OBJ_EVENT_GFX_LEGENDARY_MANAPHY` (`legendary_manaphy.png`).
+- Docs: the LegendaryTriggers row; a Manaphy row in Claude A's `docs/StaticEncounters.xlsx` (73, after Mew; later
+  rows renumbered).
+- Verified in a test build: the hatch, the battle, the "vanished" path, and the return on the next visit. The catch
+  path is the shared common script.
+- Owner decisions for me, read in the merge (CA-0045 to CA-0048):
+  - Regigigas keeps Renegade's Snowpoint Temple story and Candice's HM08 (29).
+  - Koraidon comes after all ten past Paradox Pokémon, Miraidon after all ten future ones; each dealer gets a rumour
+    line (30).
+  - The Infinite Repel comes from the home PC after the first Champion win.
+  - The birds use Renegade's portals: Moltres in Victory Road's small room, Articuno at the Coronet summit off
+    Cosmog's tile, Zapdos on the Valley Windworks island once Zekrom moves to Route 215 (33, 34).
+
+**Files modified:**
+- `decomp/generated/object_events_gfx.txt`, `decomp/src/overlay005/object_event_gfx_data.c`
+- `decomp/res/graphics/field_sprites/{field_sprites.order,meson.build,pokemon/legendary_manaphy.png}`,
+  `tools/sprites/make_legendary_overworld.py`
+- Scripts (and the init), events and text for `pokemon_mansion_office`
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `docs/LegendaryTriggers.md`,
+  `docs/StaticEncounters.xlsx`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Decision 29: Renegade's Snowpoint Temple Regigigas scene and Candice's HM08.
+2. Decision 30: the Koraidon and Miraidon gates (all past / all future Paradox) and the dealers' rumour lines; the
+   Infinite Repel from the home PC.
+3. Decision 33: Moltres and Articuno portals (Zapdos once Claude A has moved Zekrom); then Celebi, Lugia and Ho-Oh.
