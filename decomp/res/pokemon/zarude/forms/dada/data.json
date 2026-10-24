@@ -1,0 +1,157 @@
+{
+    "base_stats": {
+        "hp": 105,
+        "attack": 120,
+        "defense": 105,
+        "speed": 105,
+        "special_attack": 70,
+        "special_defense": 95
+    },
+    "types": [
+        "TYPE_DARK",
+        "TYPE_GRASS"
+    ],
+    "catch_rate": 3,
+    "base_exp_reward": 255,
+    "ev_yields": {
+        "hp": 0,
+        "attack": 3,
+        "defense": 0,
+        "speed": 0,
+        "special_attack": 0,
+        "special_defense": 0
+    },
+    "held_items": {
+        "common": "ITEM_NONE",
+        "rare": "ITEM_NONE"
+    },
+    "gender_ratio": "GENDER_RATIO_NO_GENDER",
+    "hatch_cycles": 120,
+    "base_friendship": 0,
+    "exp_rate": "EXP_RATE_SLOW",
+    "egg_groups": [
+        "EGG_GROUP_UNDISCOVERED",
+        "EGG_GROUP_UNDISCOVERED"
+    ],
+    "abilities": [
+        "ABILITY_LEAF_GUARD",
+        "ABILITY_LEAF_GUARD",
+        "ABILITY_LEAF_GUARD"
+    ],
+    "safari_flee_rate": 0,
+    "body_color": "MON_COLOR_GREEN",
+    "flip_sprite": false,
+    "icon_palette": 1,
+    "learnset": {
+        "by_level": [
+            [
+                1,
+                "MOVE_SCRATCH"
+            ],
+            [
+                1,
+                "MOVE_BIND"
+            ],
+            [
+                6,
+                "MOVE_LEER"
+            ],
+            [
+                12,
+                "MOVE_VINE_WHIP"
+            ],
+            [
+                18,
+                "MOVE_GROWTH"
+            ],
+            [
+                24,
+                "MOVE_FURY_SWIPES"
+            ],
+            [
+                30,
+                "MOVE_SCARY_FACE"
+            ],
+            [
+                36,
+                "MOVE_GRASS_KNOT"
+            ],
+            [
+                42,
+                "MOVE_BITE"
+            ],
+            [
+                48,
+                "MOVE_U_TURN"
+            ],
+            [
+                54,
+                "MOVE_SWAGGER"
+            ],
+            [
+                60,
+                "MOVE_ENERGY_BALL"
+            ],
+            [
+                66,
+                "MOVE_SYNTHESIS"
+            ],
+            [
+                72,
+                "MOVE_HAMMER_ARM"
+            ],
+            [
+                78,
+                "MOVE_THRASH"
+            ],
+            [
+                84,
+                "MOVE_POWER_WHIP"
+            ],
+            [
+                90,
+                "MOVE_JUNGLE_HEALING"
+            ]
+        ],
+        "by_tm": [
+            "TM01",
+            "TM05",
+            "TM08",
+            "TM09",
+            "TM11",
+            "TM12",
+            "TM15",
+            "TM17",
+            "TM19",
+            "TM22",
+            "TM28",
+            "TM31",
+            "TM39",
+            "TM40",
+            "TM42",
+            "TM44",
+            "TM46",
+            "TM53",
+            "TM56",
+            "TM58",
+            "TM60",
+            "TM68",
+            "TM75",
+            "TM79",
+            "TM80",
+            "TM82",
+            "TM86",
+            "TM87",
+            "TM89",
+            "TM90"
+        ],
+        "by_tutor": [
+            "MOVE_HELPING_HAND",
+            "MOVE_SYNTHESIS",
+            "MOVE_SEED_BOMB",
+            "MOVE_KNOCK_OFF",
+            "MOVE_SWIFT"
+        ]
+    },
+    "evolutions": []
+}

@@ -206,6 +206,24 @@ FM_FORMS = {
     "toxtricity-low-key": (KIND_PERSONALITY, "0"),
     "maushold-family-of-three": (KIND_PERSONALITY, "0"),
     "dudunsparce-three-segment": (KIND_PERSONALITY, "0"),
+    # Lycanroc: Midnight (1) for a Rockruff that evolves at night, Dusk (2) for an Own Tempo Rockruff (1, a form for
+    # good) that evolves at twilight (Pokemon_SovereignSetEvolvedSpecies).
+    "lycanroc-midnight": (KIND_REGIONAL, "0"), "rockruff-own-tempo": (KIND_REGIONAL, "0"),
+    "lycanroc-dusk": (KIND_REGIONAL, "0"),
+    # Event forms, forms for good given by the event-gift NPC (scrcmd.c sSovereignEventGifts): Pikachu's costumes and
+    # caps and the Let's Go partners, Eternal Floette, Original Color Magearna, Dada Zarude, Bloodmoon Ursaluna and
+    # Roaming Gimmighoul. The costumes, caps, partners and Eternal Floette don't evolve (NO_EVOLUTION_FORMS).
+    "pikachu-rock-star": (KIND_REGIONAL, "0"), "pikachu-belle": (KIND_REGIONAL, "0"),
+    "pikachu-pop-star": (KIND_REGIONAL, "0"), "pikachu-phd": (KIND_REGIONAL, "0"),
+    "pikachu-libre": (KIND_REGIONAL, "0"), "pikachu-cosplay": (KIND_REGIONAL, "0"),
+    "pikachu-original-cap": (KIND_REGIONAL, "0"), "pikachu-hoenn-cap": (KIND_REGIONAL, "0"),
+    "pikachu-sinnoh-cap": (KIND_REGIONAL, "0"), "pikachu-unova-cap": (KIND_REGIONAL, "0"),
+    "pikachu-kalos-cap": (KIND_REGIONAL, "0"), "pikachu-alola-cap": (KIND_REGIONAL, "0"),
+    "pikachu-partner-cap": (KIND_REGIONAL, "0"), "pikachu-starter": (KIND_REGIONAL, "0"),
+    "pikachu-world-cap": (KIND_REGIONAL, "0"), "eevee-starter": (KIND_REGIONAL, "0"),
+    "floette-eternal": (KIND_REGIONAL, "0"), "magearna-original": (KIND_REGIONAL, "0"),
+    "zarude-dada": (KIND_REGIONAL, "0"), "ursaluna-bloodmoon": (KIND_REGIONAL, "0"),
+    "gimmighoul-roaming": (KIND_REGIONAL, "0"),
 }
 
 # The form a battle form goes back to, when it isn't a regional form's (those follow the region) or 0: each Core
@@ -217,6 +235,18 @@ BATTLE_FORM_BASES.update({"zygarde-complete": "zygarde-10-power-construct", "zyg
 # Disguise: the form Mimikyu's disguise busts into, for each disguised form (sSovereignDisguiseForms). The busted
 # form goes back to the disguised one when the battle ends. 0 is the base form.
 DISGUISE_FORMS = {0: "mimikyu-busted", "mimikyu-totem-disguised": "mimikyu-totem-busted"}
+
+# A Mega only one form can take, and goes back to (Mega Floette: AZ's Eternal Floette, as in Legends: Z-A).
+MEGA_FORM_BASES = {"Mega Floette": "floette-eternal"}
+
+# Forms for good an Egg doesn't take from its parent of the same species.
+NOT_INHERITED_FORMS = {"rockruff-own-tempo", "eevee-starter", "gimmighoul-roaming", "magearna-original", "zarude-dada"}
+
+# Forms for good that never evolve, as in the official games.
+NO_EVOLUTION_FORMS = {"pikachu-rock-star", "pikachu-belle", "pikachu-pop-star", "pikachu-phd", "pikachu-libre",
+                      "pikachu-cosplay", "pikachu-original-cap", "pikachu-hoenn-cap", "pikachu-sinnoh-cap",
+                      "pikachu-unova-cap", "pikachu-kalos-cap", "pikachu-alola-cap", "pikachu-partner-cap",
+                      "pikachu-starter", "pikachu-world-cap", "eevee-starter", "floette-eternal"}
 
 # FM_FORMS entries that are a second copy of a data/forms.csv row.
 FM_ROW_ALIASES = {"necrozma-ultra-dawn": "necrozma-ultra", "zygarde-complete-50": "zygarde-complete"}
@@ -344,7 +374,7 @@ def form_data(form, ctx):
         if level:
             data["learnset"] = {"by_level": level, "by_tm": tms, "by_tutor": tutor}
     data["evolutions"] = []
-    if form["kind"] == KIND_REGIONAL:
+    if form["kind"] == KIND_REGIONAL and form["ident"] not in NO_EVOLUTION_FORMS:
         data["evolutions"] = copy.deepcopy(REGIONAL_EVOLUTIONS.get(form["ident"]) or base["evolutions"])
     return data
 
@@ -372,7 +402,10 @@ def regional_tables(forms):
             if target_form:
                 evolutions.append((f["species"], f["number"], evo[-1], target_form))
         baby = json.load(open(os.path.join(POKEMON, f["stem"], "data.json"), encoding="utf-8"))["offspring"]
-        babies.append((f["species"], f["number"], baby, form_of(baby, region_of(f["ident"]), same=f)))
+        # An Egg takes its parent's own form for good (Basculin's stripes), except Own Tempo Rockruff's (an event
+        # form, as in Ultra Sun and Ultra Moon).
+        same = None if f["ident"] in NOT_INHERITED_FORMS else f
+        babies.append((f["species"], f["number"], baby, form_of(baby, region_of(f["ident"]), same=same)))
     for parent, ident in REGIONAL_PARENTS.items():
         f = next(x for x in regional if x["ident"] == ident)
         babies.append(("SPECIES_" + parent.upper(), 0, f["species"], f["number"]))
@@ -384,6 +417,8 @@ def regional_tables(forms):
 
 
 def form_data_evolutions(form):
+    if form["ident"] in NO_EVOLUTION_FORMS:
+        return []
     base = json.load(open(os.path.join(POKEMON, form["stem"], "data.json"), encoding="utf-8"))
     return REGIONAL_EVOLUTIONS.get(form["ident"]) or base["evolutions"]
 
@@ -466,8 +501,11 @@ enum SovereignFormKind {{
         # Mega Tatsugiri (Droopy Form) to Droopy Form Tatsugiri.
         variant = re.search(r"\((.+)\)$", f["name"]) if f["kind"] == KIND_MEGA else None
         if variant:
-            base = next((x for x in forms if x["kind"] in (KIND_GENDER, KIND_PERSONALITY) and x["species"] == f["species"]
-                         and variant.group(1) in x["name"]), base)
+            variant_name = variant.group(1).replace(" Color", "")  # Original Color: Original Magearna
+            base = next((x for x in forms if x["kind"] in (KIND_GENDER, KIND_PERSONALITY, KIND_REGIONAL)
+                         and x["species"] == f["species"] and variant_name in x["name"]), base)
+        if f["kind"] == KIND_MEGA and f["name"] in MEGA_FORM_BASES:
+            base = next(x for x in forms if x.get("ident") == MEGA_FORM_BASES[f["name"]])
         if base:
             base_rows += f"    {{ {f['species']}, {f['number']}, {base['number']} }}, // {f['name']}\n"
     disguise_rows = ""

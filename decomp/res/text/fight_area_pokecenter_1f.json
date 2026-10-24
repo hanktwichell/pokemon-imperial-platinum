@@ -135,6 +135,155 @@
         "your side, its bond with you grows.\r",
         "Then it takes on a whole new form!"
       ]
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignEventGift00",
+      "en_US": "OWN TEMPO ROCKRUFF"
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignEventGift01",
+      "en_US": "ORIGINAL MAGEARNA"
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignEventGift02",
+      "en_US": "DADA ZARUDE"
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignEventGift03",
+      "en_US": "ETERNAL FLOETTE"
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignEventGift04",
+      "en_US": "BLOODMOON URSALUNA"
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignEventGift05",
+      "en_US": "ROAMING GIMMIGHOUL"
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignEventGift06",
+      "en_US": "PARTNER PIKACHU"
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignEventGift07",
+      "en_US": "PARTNER EEVEE"
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignEventGift08",
+      "en_US": "COSPLAY PIKACHU"
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignEventGift09",
+      "en_US": "PIKACHU ROCK STAR"
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignEventGift10",
+      "en_US": "PIKACHU BELLE"
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignEventGift11",
+      "en_US": "PIKACHU POP STAR"
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignEventGift12",
+      "en_US": "PIKACHU PH.D."
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignEventGift13",
+      "en_US": "PIKACHU LIBRE"
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignEventGift14",
+      "en_US": "ORIGINAL CAP PIKACHU"
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignEventGift15",
+      "en_US": "HOENN CAP PIKACHU"
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignEventGift16",
+      "en_US": "SINNOH CAP PIKACHU"
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignEventGift17",
+      "en_US": "UNOVA CAP PIKACHU"
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignEventGift18",
+      "en_US": "KALOS CAP PIKACHU"
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignEventGift19",
+      "en_US": "ALOLA CAP PIKACHU"
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignEventGift20",
+      "en_US": "PARTNER CAP PIKACHU"
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignEventGift21",
+      "en_US": "WORLD CAP PIKACHU"
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignEventGiftsCancel",
+      "en_US": "CANCEL"
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignEventGiftsIntro",
+      "en_US": [
+        "Special delivery! I bring Pokémon\n",
+        "from events all over the world.\r",
+        "Each one only once, mind you.\n",
+        "Which one would you like?"
+      ]
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignEventGiftsReceived",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received the {STRVAR_1 1, 1, 0}!\r"
+      ]
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignEventGiftsNickname",
+      "en_US": [
+        "Would you like to give a nickname\n",
+        "to the {STRVAR_1 1, 1, 0} you received?"
+      ]
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignEventGiftsAlreadyGiven",
+      "en_US": [
+        "I already delivered that one!\n",
+        "Each Pokémon only once!"
+      ]
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignEventGiftsBye",
+      "en_US": [
+        "Come by anytime for a delivery!"
+      ]
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignEventGiftsRestyleAsk",
+      "en_US": [
+        "That one’s a Mythical Pokémon. I can’t\n",
+        "deliver it, but I can restyle yours!\r",
+        "Show me your {STRVAR_1 1, 0, 0}."
+      ]
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignEventGiftsRestyled",
+      "en_US": [
+        "There! Your {STRVAR_1 1, 0, 0} looks just\n",
+        "like the one from the event!"
+      ]
+    },
+    {
+      "id": "FightAreaPokecenter1F_Text_SovereignEventGiftsRestyleWrong",
+      "en_US": [
+        "Hmm... That isn’t a {STRVAR_1 1, 0, 0}\n",
+        "I can restyle."
+      ]
     }
   ]
 }

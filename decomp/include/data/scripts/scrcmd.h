@@ -857,6 +857,9 @@ ScriptCommand(SCRCMD_SOVEREIGNSETPARTYMONFORM,                            ScrCmd
 ScriptCommand(SCRCMD_SOVEREIGNGETPARADOXFORM,                             ScrCmd_SovereignGetParadoxForm)
 ScriptCommand(SCRCMD_SOVEREIGNSETPARADOXGIVEN,                            ScrCmd_SovereignSetParadoxGiven)
 ScriptCommand(SCRCMD_SOVEREIGNCHECKPARADOXERACOMPLETE,                    ScrCmd_SovereignCheckParadoxEraComplete)
+ScriptCommand(SCRCMD_SOVEREIGNGETEVENTGIFT,                               ScrCmd_SovereignGetEventGift)
+ScriptCommand(SCRCMD_SOVEREIGNFINISHEVENTGIFT,                            ScrCmd_SovereignFinishEventGift)
+ScriptCommand(SCRCMD_SOVEREIGNRESTYLEEVENTFORM,                           ScrCmd_SovereignRestyleEventForm)
 
 // clang-format on
 

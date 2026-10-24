@@ -291,6 +291,21 @@ implemented.
   Toxtricity for the 12 Low Key natures (Sword and Shield); Maushold Family of Three and Three-Segment Dudunsparce for
   personality % 100 == 0 (Scarlet and Violet). Where a stone gives a Mega for each form (Tatsugiri; Meowstic's
   genders), `Pokemon_SovereignBattleForm` picks the form's own, and it goes back to that form.
+- **Lycanroc** (Midnight, form 1; Dusk, form 2; Own Tempo Rockruff, form 1: forms for good, `SOVEREIGN_FORM_REGIONAL`).
+  `Pokemon_SovereignSetEvolvedSpecies`: Rockruff evolves into Midday Lycanroc from 6:00 to 17:59 and Midnight
+  Lycanroc otherwise (Sun and Moon), and an Own Tempo Rockruff into Dusk Lycanroc at twilight (17:00 to 19:59).
+  An Own Tempo Rockruff's Eggs are ordinary Rockruff (`NOT_INHERITED_FORMS`).
+- **Event forms** (forms for good, `SOVEREIGN_FORM_REGIONAL`): Pikachu's costumes, caps and Let's Go partner, Partner
+  Eevee, Eternal Floette, Original Color Magearna, Dada Zarude, Bloodmoon Ursaluna and Roaming Gimmighoul. The
+  costumes, caps, partners and Eternal Floette don't evolve (`NO_EVOLUTION_FORMS`: no evolutions in their form data).
+  - The event-gift deliveryman in the Fight Area Pokémon Center (2, 7; temporary placement) gives each once from a
+    list (`SovereignGetEventGift`, `SovereignFinishEventGift` over `sSovereignEventGifts` in `scrcmd.c`: species,
+    form, level and signature move, put in the last move slot). Given ones are bits of `VAR_SOVEREIGN_EVENT_GIFTS_1`
+    and `_2`.
+  - Mythicals are never gifts (owner, 2026-10-23), so for Magearna and Zarude (level 0 entries) he restyles one the
+    player caught into the event form instead (`SovereignRestyleEventForm`).
+  - Megas: `MEGA_FORM_BASES` in `gen_forms.py` makes Mega Floette come only from (and go back to) Eternal Floette, as
+    in Legends: Z-A; Original Color Magearna takes Mega Magearna (Original Color).
 - **Gender forms** (`SOVEREIGN_FORM_GENDER`: Female Meowstic, Indeedee, Basculegion and Oinkologne, each form 1).
   `Pokemon_SovereignPersonalityForm` gives the female's form to a female (its gender comes from its personality), so
   a wild, gift or Egg Pokémon gets it when it's made, with the form's abilities. `Pokemon_SovereignSetEvolvedSpecies`
