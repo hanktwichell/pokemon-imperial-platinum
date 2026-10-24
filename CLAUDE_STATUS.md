@@ -3664,3 +3664,33 @@ interactions the owner listed on 2026-10-23. PR open.
    Commander/Tatsugiri, Terapagos' Terastal Form shelved) and the cosmetic forms.
 2. Overworld sprites from the owner (in a few days): size them naturally against the existing overworld Pokémon.
 3. The owner's final placements for the provisional spots (Paradox dealers, Greninja NPC, Chronicle encounters).
+
+---
+
+## CB-0064 — FM: Terastal Terapagos (Sat Oct 24 2026, 01:43 CDT)
+
+**Implemented:**
+- **Tera Shift:** Terapagos becomes Terastal as it enters battle. Its HP rises with its max HP (as in Scarlet and
+  Violet). It stays Terastal through switching, until the battle ends.
+- **Tera Shell:** at full HP, a damaging move it isn't immune to is not very effective, for every hit of a multi-hit
+  move. Mold Breaker ignores it. A Terastal Terapagos switching back in keeps Tera Shell.
+- Verified in the emulator: the transformation and HP rise on entry, Tera Shell in the summary, Terastal after a
+  switch, and Tackle "not very effective" at full HP.
+- With this, every battle form in `data/forms.csv` is in except the shelved Stellar Form.
+
+**Files modified:** `tools/engine/gen_forms.py`, `tools/engine/gen_abilities.py`,
+`decomp/include/constants/sovereign_forms.h`, `decomp/include/data/sovereign_forms.h`,
+`decomp/tools/dataproc/src/sovereign_forms.inc`, `decomp/res/pokemon/terapagos/meson.build`,
+`decomp/res/pokemon/terapagos/forms/terastal/data.json` (new), `decomp/include/battle/battle_mon.h`,
+`decomp/src/battle/battle_lib.c`, `decomp/src/pokemon.c`,
+`decomp/res/battle/scripts/subscripts/subscript_sovereign_tera_shift.s` (new),
+`decomp/res/battle/scripts/subscripts/sub_seq.order`, `decomp/res/battle/scripts/subscripts/meson.build`,
+`decomp/generated/battle_subscripts.txt`, `docs/AbilityChecklist.md`, `docs/TechnicalDesign.md`,
+`docs/EngineRoadmap.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Milestone FM, the "other" forms in `data/forms.csv` (46): gender forms (Meowstic, Indeedee, Basculegion,
+   Oinkologne), Oricorio's styles, Lycanroc's Midnight/Dusk, Pumpkaboo/Gourgeist sizes, Toxtricity Low Key, Tatsugiri,
+   Squawkabilly, Maushold, Dudunsparce, Gimmighoul Roaming, Bloodmoon Ursaluna, Keldeo Resolute, the Pikachu caps...
+2. Overworld sprites from the owner (in a few days): size them naturally against the existing overworld Pokémon.
+3. The owner's final placements for the provisional spots (Paradox dealers, Greninja NPC, Chronicle encounters).

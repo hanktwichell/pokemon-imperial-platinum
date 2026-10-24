@@ -186,8 +186,8 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 301 | Hospitality | Gen 9 | not yet (no battle effect) |
 | 302 | Toxic Chain | Gen 9 | not yet (no battle effect) |
 | 303 | Embody Aspect | Gen 9 | not yet (no battle effect) |
-| 304 | Tera Shift | Gen 9 | not yet (no battle effect) |
-| 305 | Tera Shell | Gen 9 | not yet (no battle effect) |
+| 304 | Tera Shift | Gen 9 | yes: Terastal Form as it enters battle, until the battle ends |
+| 305 | Tera Shell | Gen 9 | yes: at full HP, damaging moves are not very effective on it |
 | 306 | Teraform Zero | Gen 9 | not yet (no battle effect) |
 | 307 | PoisonPuppeteer | Gen 9 | not yet (no battle effect) |
 | 308 | Piercing Drill | Gen 9 | yes: contact moves go through protection at 1/4 damage |

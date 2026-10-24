@@ -131,6 +131,15 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
         battleCtx->battleMons[battler].heldItem = ITEM_NONE;
     } else {
         battleCtx->battleMons[battler].ability = Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL);
+
+        // Sovereign (FM): a Terastal Terapagos switching back in still has its form's Tera Shell.
+        u16 sovereignSpecies = battleCtx->battleMons[battler].species;
+        int sovereignForm = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+        if (battleCtx->battleMons[battler].ability == ABILITY_TERA_SHIFT
+            && Pokemon_SovereignFormChangesAbility(sovereignSpecies, sovereignForm)) {
+            battleCtx->battleMons[battler].ability = SpeciesData_GetFormValue(sovereignSpecies, sovereignForm, SPECIES_DATA_ABILITY_1);
+        }
+
         battleCtx->battleMons[battler].status = Pokemon_GetValue(mon, MON_DATA_STATUS, NULL);
         battleCtx->battleMons[battler].heldItem = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
     }
@@ -2722,6 +2731,8 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
         }
     }
 
+    int sovereignDamageBeforeChart = damage;
+
     if ((Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_LEVITATE) == TRUE
             || Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_EELEVATE) == TRUE) // Sovereign (item 11)
         && moveType == TYPE_GROUND
@@ -2770,6 +2781,31 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
             }
 
             chartEntry++;
+        }
+
+        // Sovereign (FM): Tera Shell. At full HP, a damaging move it isn't immune to is not very effective on it, for
+        // every hit of a multi-hit move. Mold Breaker ignores it.
+        if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_TERA_SHELL) == TRUE
+            && movePower
+            && (*moveStatusMask & MOVE_STATUS_INEFFECTIVE) == FALSE
+            && (battleCtx->battleStatusMask & (SYSCTL_IGNORE_TYPE_CHECKS | SYSCTL_IGNORE_IMMUNITIES)) == FALSE) {
+            BattleMon *shellMon = &battleCtx->battleMons[defender];
+            BOOL shell = shellMon->curHP == shellMon->maxHP;
+
+            // On the move being used, the first hit decides for the later ones.
+            if (move == battleCtx->moveCur && attacker == battleCtx->attacker && defender == battleCtx->defender) {
+                if (battleCtx->multiHitNumHits == 0 || battleCtx->multiHitCounter == battleCtx->multiHitNumHits) {
+                    shellMon->sovereignTeraShell = shell;
+                }
+
+                shell = shellMon->sovereignTeraShell;
+            }
+
+            if (shell) {
+                damage = BattleSystem_Divide(sovereignDamageBeforeChart * TYPE_MULTI_NOT_VERY_EFF, 10);
+                *moveStatusMask &= ~MOVE_STATUS_SUPER_EFFECTIVE;
+                *moveStatusMask |= MOVE_STATUS_NOT_VERY_EFFECTIVE;
+            }
         }
     }
 
@@ -7403,6 +7439,22 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
                 result = TRUE;
                 break;
             }
+        }
+
+        // Sovereign (FM): Tera Shift makes Terapagos Terastal as it enters battle (it then has Tera Shell). Its max HP
+        // rises, and its HP by as much (subscript_sovereign_tera_shift).
+        if (hpFormMon->species == SPECIES_TERAPAGOS && hpFormMon->curHP
+            && (hpFormMon->statusVolatile & VOLATILE_CONDITION_TRANSFORM) == FALSE
+            && Battler_Ability(battleCtx, battleCtx->msgBattlerTemp) == ABILITY_TERA_SHIFT
+            && Pokemon_SovereignAbilityForm(hpFormMon->species, hpFormMon->formNum, ABILITY_TERA_SHIFT) >= 0) {
+            int oldMaxHP = hpFormMon->maxHP;
+
+            BattleSystem_SovereignChangeBattleForm(battleSys, battleCtx, battleCtx->msgBattlerTemp,
+                Pokemon_SovereignAbilityForm(hpFormMon->species, hpFormMon->formNum, ABILITY_TERA_SHIFT));
+            battleCtx->hpCalcTemp = hpFormMon->maxHP - oldMaxHP;
+            *subscript = subscript_sovereign_tera_shift;
+            result = TRUE;
+            break;
         }
 
         // Sovereign (FM): snow (Platinum's hail) brings back a Noice Face Eiscue's ice when it switches in during snow

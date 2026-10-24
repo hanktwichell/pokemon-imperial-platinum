@@ -5141,7 +5141,7 @@ int Pokemon_SovereignMoveForm(u16 species, int form, u16 move)
 
 // Sovereign (FM): a form its move or ability gave it in battle (Pirouette Meloetta, Blade Aegislash) ends when the
 // Pokémon switches out, so it switches back in in its base form. A Busted Mimikyu stays busted, a Complete Zygarde
-// stays Complete, a Hero Palafin stays Hero, Ash-Greninja stays Ash-Greninja, and a Noice Face Eiscue stays Noice.
+// stays Complete, a Hero Palafin stays Hero, Ash-Greninja stays Ash-Greninja, a Noice Face Eiscue stays Noice, and a Terastal Terapagos stays Terastal.
 void Pokemon_SovereignRevertSwitchOutForm(Pokemon *mon)
 {
     u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
@@ -5151,7 +5151,7 @@ void Pokemon_SovereignRevertSwitchOutForm(Pokemon *mon)
         && (entry->kind == SOVEREIGN_FORM_BATTLE_MOVE
             || (entry->kind == SOVEREIGN_FORM_BATTLE && entry->trigger != ABILITY_DISGUISE && entry->trigger != ABILITY_POWER_CONSTRUCT
                 && entry->trigger != ABILITY_ZERO_TO_HERO && entry->trigger != ABILITY_BATTLE_BOND
-                && entry->trigger != ABILITY_ICE_FACE))) {
+                && entry->trigger != ABILITY_ICE_FACE && entry->trigger != ABILITY_TERA_SHIFT))) {
         int form = Pokemon_SovereignBattleFormBase(species, entry->form);
 
         Pokemon_SetValue(mon, MON_DATA_FORM, &form);
@@ -5210,13 +5210,15 @@ int Pokemon_SovereignPersonalityForm(u16 species, u32 personality)
     return count > 1 ? (int)(personality % count) : -1;
 }
 
-// Sovereign (FM): TRUE for a battle form that brings its own ability (Mega, Primal, Ultra Necrozma). The others keep
+// Sovereign (FM): TRUE for a battle form that brings its own ability (Mega, Primal, Ultra Necrozma, Terastal
+// Terapagos's Tera Shell). The others keep
 // the Pokémon's (Zen Mode's Darmanitan keeps Zen Mode).
 BOOL Pokemon_SovereignFormChangesAbility(u16 species, int form)
 {
     const SovereignForm *entry = Pokemon_FindSovereignForm(species, form);
 
-    return entry != NULL && (Pokemon_IsSovereignMegaForm(species, form) || entry->kind == SOVEREIGN_FORM_ULTRA_BURST);
+    return entry != NULL && (Pokemon_IsSovereignMegaForm(species, form) || entry->kind == SOVEREIGN_FORM_ULTRA_BURST
+        || (entry->kind == SOVEREIGN_FORM_BATTLE && entry->trigger == ABILITY_TERA_SHIFT));
 }
 
 // Sovereign (FM): the form a disguised Mimikyu's disguise busts into (Busted Mimikyu, or the Totem's busted form), or -1

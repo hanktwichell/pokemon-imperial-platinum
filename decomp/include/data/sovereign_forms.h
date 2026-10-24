@@ -238,6 +238,7 @@ static const SovereignForm sSovereignForms[SOVEREIGN_FORM_COUNT] = {
     { SPECIES_EISCUE, 1, SOVEREIGN_FORM_BATTLE, ABILITY_ICE_FACE }, // Noice Eiscue
     { SPECIES_CRAMORANT, 1, SOVEREIGN_FORM_BATTLE, ABILITY_GULP_MISSILE }, // Gulping Cramorant
     { SPECIES_CRAMORANT, 2, SOVEREIGN_FORM_BATTLE, ABILITY_GULP_MISSILE }, // Gorging Cramorant
+    { SPECIES_TERAPAGOS, 1, SOVEREIGN_FORM_BATTLE, ABILITY_TERA_SHIFT }, // Terastal Form Terapagos
 };
 
 // A regional form that evolves into its region's form of the target species (any other evolves into form 0).

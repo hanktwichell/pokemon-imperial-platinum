@@ -184,6 +184,9 @@ FM_FORMS = {
     # less, as in Sword and Shield.
     "cramorant-gulping": (KIND_BATTLE, "ABILITY_GULP_MISSILE"),
     "cramorant-gorging": (KIND_BATTLE, "ABILITY_GULP_MISSILE"),
+    # Terapagos: Tera Shift makes it Terastal (1) as it enters battle, with Tera Shell. Stellar Form is shelved (no
+    # Terastallization).
+    "terapagos-terastal": (KIND_BATTLE, "ABILITY_TERA_SHIFT"),
 }
 
 # The form a battle form goes back to, when it isn't a regional form's (those follow the region) or 0: each Core

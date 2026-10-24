@@ -221,3 +221,4 @@
     { "eiscue/forms/noice", NULL, .isGiratinaOrigin = false }, // Noice Eiscue
     { "cramorant/forms/gulping", NULL, .isGiratinaOrigin = false }, // Gulping Cramorant
     { "cramorant/forms/gorging", NULL, .isGiratinaOrigin = false }, // Gorging Cramorant
+    { "terapagos/forms/terastal", NULL, .isGiratinaOrigin = false }, // Terastal Form Terapagos

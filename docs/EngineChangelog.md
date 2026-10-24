@@ -4,6 +4,21 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## FM — Terastal Terapagos
+
+- **Tera Shift.** Terapagos becomes its Terastal Form as it enters battle ("TERAPAGOS transformed!").
+  - Its max HP rises, and its HP rises by as much, as in Scarlet and Violet.
+  - It stays Terastal through switching, until the battle ends.
+- **Tera Shell** (the Terastal Form's ability). At full HP, every damaging move it isn't immune to is not very effective
+  on it, for every hit of a multi-hit move. Mold Breaker ignores it.
+- The Stellar Form stays shelved (no Terastallization). FM: 110 forms.
+
+Verified in the test build (Terapagos vs. a wild Rattata):
+- It transformed on entry, and its HP rose with its max HP. The summary showed Tera Shell.
+- It switched back in still Terastal. At full HP, Rattata's Tackle was "not very effective".
+- Release build passes.
+
+
 ## FM — Ice Face and Gulp Missile
 
 - **Ice Face (Eiscue).**

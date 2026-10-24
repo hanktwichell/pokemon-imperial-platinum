@@ -270,6 +270,16 @@ implemented.
     not past Clear Body, White Smoke or Full Metal Body) or paralyzes it (Pikachu, through `subscript_paralyze`).
     Cramorant goes back to its base form (`subscript_sovereign_gulp_missile`).
   - A catch is lost when Cramorant switches out, as in the official games.
+- **Tera Shift** (Terastal Terapagos, form 1, `SOVEREIGN_FORM_BATTLE` with Tera Shift as trigger; Stellar Form is
+  shelved, as there's no Terastallization).
+  - `BattleSystem_TriggerFormChange`: Terapagos becomes Terastal as it enters battle. Its max HP rises and its HP by as
+    much, as in Scarlet and Violet (`subscript_sovereign_tera_shift`).
+  - The form brings its own ability, Tera Shell (`Pokemon_SovereignFormChangesAbility`). It stays Terastal through
+    switching (`Pokemon_SovereignRevertSwitchOutForm` skips Tera Shift), and `BattleSystem_InitBattleMon` gives a
+    Terastal Terapagos switching back in its Tera Shell.
+  - **Tera Shell** (`BattleSystem_ApplyTypeChart`): at full HP, a damaging move it isn't immune to is not very
+    effective (×0.5 in place of the chart). On the move in use, the first hit decides for every hit of a multi-hit
+    move (`BattleMon.sovereignTeraShell`). Mold Breaker ignores it. The "shell gleam" message isn't shown.
 - **Personality forms** (`SOVEREIGN_FORM_PERSONALITY`, Minior's Meteor colors). `Pokemon_SovereignPersonalityForm`
   picks the form from the personality, personality % 7 for Minior as in Sun and Moon (Red is form 0). The Pokémon
   gets it when it's made (`sub_02073E18`, which every new Pokémon goes through), and an Egg gets its own from its
