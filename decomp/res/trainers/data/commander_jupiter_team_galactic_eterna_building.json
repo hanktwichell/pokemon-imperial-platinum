@@ -10,31 +10,60 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_ZUBAT",
+            "species": "SPECIES_GOLBAT",
             "form": 0,
-            "level": 21,
-            "item": "ITEM_NONE",
+            "level": 26,
+            "item": null,
+            "moves": [
+                "MOVE_WING_ATTACK",
+                "MOVE_GIGA_DRAIN",
+                "MOVE_LEECH_LIFE",
+                "MOVE_CONFUSE_RAY"
+            ],
+            "iv_scale": 251,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SABLEYE",
+            "form": 0,
+            "level": 26,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_FAKE_OUT",
+                "MOVE_SHADOW_CLAW",
+                "MOVE_KNOCK_OFF",
+                "MOVE_SHADOW_SNEAK"
+            ],
+            "iv_scale": 251,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_TANGELA",
+            "form": 0,
+            "level": 26,
+            "item": null,
             "moves": [
                 "MOVE_GIGA_DRAIN",
-                "MOVE_WING_ATTACK",
-                "MOVE_BITE"
+                "MOVE_SHOCK_WAVE",
+                "MOVE_LEECH_SEED",
+                "MOVE_SLEEP_POWDER"
             ],
-            "iv_scale": 100,
+            "iv_scale": 253,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_SKUNTANK",
             "form": 0,
-            "level": 23,
+            "level": 27,
             "item": "ITEM_SITRUS_BERRY",
             "moves": [
+                "MOVE_POISON_JAB",
                 "MOVE_NIGHT_SLASH",
-                "MOVE_POISON_GAS",
-                "MOVE_SCREECH",
-                "MOVE_SMOKE_SCREEN"
+                "MOVE_FOCUS_ENERGY",
+                "MOVE_TORMENT"
             ],
-            "iv_scale": 100,
-            "ball_seal": 0
+            "iv_scale": 242,
+            "ball_seal": 25
         }
     ],
     "messages": [

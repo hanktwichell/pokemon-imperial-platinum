@@ -12,28 +12,28 @@
         {
             "species": "SPECIES_LINOONE",
             "form": 0,
-            "level": 60,
+            "level": 78,
             "item": null,
             "moves": null,
-            "iv_scale": 50,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_BUTTERFREE",
-            "form": 0,
-            "level": 60,
-            "item": null,
-            "moves": null,
-            "iv_scale": 50,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_ARBOK",
             "form": 0,
-            "level": 60,
+            "level": 78,
             "item": null,
             "moves": null,
-            "iv_scale": 50,
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_BUTTERFREE",
+            "form": 0,
+            "level": 78,
+            "item": null,
+            "moves": null,
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

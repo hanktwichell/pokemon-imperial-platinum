@@ -3,49 +3,37 @@
     "class": "TRAINER_CLASS_BUG_CATCHER",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_WURMPLE",
+            "species": "SPECIES_SURSKIT",
             "form": 0,
-            "level": 11,
+            "level": 16,
             "item": null,
-            "moves": [
-                "MOVE_TACKLE",
-                "MOVE_STRING_SHOT",
-                "MOVE_POISON_STING"
-            ],
-            "iv_scale": 0,
+            "moves": null,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_SILCOON",
+            "species": "SPECIES_PARAS",
             "form": 0,
-            "level": 13,
+            "level": 16,
             "item": null,
-            "moves": [
-                "MOVE_TACKLE",
-                "MOVE_STRING_SHOT",
-                "MOVE_POISON_STING",
-                "MOVE_HARDEN"
-            ],
-            "iv_scale": 0,
+            "moves": null,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_BEAUTIFLY",
+            "species": "SPECIES_VENONAT",
             "form": 0,
-            "level": 15,
+            "level": 16,
             "item": null,
-            "moves": [
-                "MOVE_TACKLE",
-                "MOVE_POISON_STING",
-                "MOVE_ABSORB",
-                "MOVE_GUST"
-            ],
-            "iv_scale": 20,
+            "moves": null,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

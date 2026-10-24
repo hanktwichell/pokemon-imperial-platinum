@@ -4,20 +4,23 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
-        "AI_FLAG_RISKY"
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SEAKING",
+            "species": "SPECIES_DUGTRIO",
             "form": 0,
-            "level": 48,
+            "level": 62,
             "item": null,
             "moves": [
-                "MOVE_HORN_DRILL",
-                "MOVE_FLAIL"
+                "MOVE_FISSURE",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_NONE",
+                "MOVE_NONE"
             ],
-            "iv_scale": 150,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

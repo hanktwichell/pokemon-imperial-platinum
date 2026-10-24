@@ -12,7 +12,7 @@
         {
             "species": "SPECIES_SWALOT",
             "form": 0,
-            "level": 53,
+            "level": 64,
             "item": null,
             "moves": [
                 "MOVE_GUNK_SHOT",
@@ -20,13 +20,13 @@
                 "MOVE_BODY_SLAM",
                 "MOVE_PROTECT"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_NINETALES",
             "form": 0,
-            "level": 54,
+            "level": 64,
             "item": null,
             "moves": [
                 "MOVE_WILL_O_WISP",
@@ -34,21 +34,21 @@
                 "MOVE_DARK_PULSE",
                 "MOVE_EXTRASENSORY"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_MAGNEZONE",
+            "species": "SPECIES_SCIZOR",
             "form": 0,
-            "level": 56,
+            "level": 64,
             "item": null,
             "moves": [
-                "MOVE_FLASH_CANNON",
-                "MOVE_MIRROR_COAT",
-                "MOVE_DISCHARGE",
-                "MOVE_HYPER_BEAM"
+                "MOVE_X_SCISSOR",
+                "MOVE_IRON_HEAD",
+                "MOVE_WING_ATTACK",
+                "MOVE_QUICK_ATTACK"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

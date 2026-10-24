@@ -10,44 +10,45 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SNEASEL",
+            "species": "SPECIES_DEWGONG",
             "form": 0,
-            "level": 40,
+            "level": 53,
             "item": null,
             "moves": [
-                "MOVE_ICE_SHARD",
-                "MOVE_SLASH",
-                "MOVE_FAINT_ATTACK",
-                "MOVE_QUICK_ATTACK"
+                "MOVE_REST",
+                "MOVE_SLEEP_TALK",
+                "MOVE_SURF",
+                "MOVE_ICE_BEAM"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_SNORUNT",
+            "species": "SPECIES_CLOYSTER",
             "form": 0,
-            "level": 40,
+            "level": 53,
             "item": null,
             "moves": [
-                "MOVE_ICE_FANG",
-                "MOVE_CRUNCH",
-                "MOVE_HAIL"
+                "MOVE_HYDRO_PUMP",
+                "MOVE_ICICLE_SPEAR",
+                "MOVE_ROCK_BLAST",
+                "MOVE_NONE"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_SNOVER",
+            "species": "SPECIES_LAPRAS",
             "form": 0,
-            "level": 41,
+            "level": 53,
             "item": null,
             "moves": [
-                "MOVE_ICE_SHARD",
-                "MOVE_WOOD_HAMMER",
-                "MOVE_INGRAIN",
-                "MOVE_GRASS_WHISTLE"
+                "MOVE_SHEER_COLD",
+                "MOVE_SING",
+                "MOVE_SURF",
+                "MOVE_BLIZZARD"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

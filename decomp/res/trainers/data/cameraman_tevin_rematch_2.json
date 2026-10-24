@@ -3,44 +3,28 @@
     "class": "TRAINER_CLASS_CAMERAMAN",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MAGNEMITE",
-            "form": 0,
-            "level": 42,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_MAGNETON",
-            "form": 0,
-            "level": 42,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
-        },
-        {
             "species": "SPECIES_MR_MIME",
             "form": 0,
-            "level": 43,
+            "level": 60,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_MACHOKE",
+            "species": "SPECIES_MACHAMP",
             "form": 0,
-            "level": 45,
+            "level": 60,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

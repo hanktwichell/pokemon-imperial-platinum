@@ -5,18 +5,38 @@
         "ITEM_FULL_RESTORE"
     ],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
             "species": "SPECIES_LUXRAY",
             "form": 0,
-            "level": 54,
+            "level": 70,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 4
+            "iv_scale": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SCEPTILE",
+            "form": 0,
+            "level": 70,
+            "item": null,
+            "moves": null,
+            "iv_scale": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_LINOONE",
+            "form": 0,
+            "level": 70,
+            "item": null,
+            "moves": null,
+            "iv_scale": 100,
+            "ball_seal": 0
         }
     ],
     "messages": [

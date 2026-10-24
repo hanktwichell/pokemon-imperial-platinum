@@ -12,15 +12,43 @@
         {
             "species": "SPECIES_DRAPION",
             "form": 0,
-            "level": 61,
+            "level": 78,
             "item": null,
             "moves": [
-                "MOVE_CROSS_POISON",
+                "MOVE_POISON_JAB",
                 "MOVE_CRUNCH",
                 "MOVE_X_SCISSOR",
                 "MOVE_AERIAL_ACE"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_HIPPOWDON",
+            "form": 0,
+            "level": 78,
+            "item": null,
+            "moves": [
+                "MOVE_EARTHQUAKE",
+                "MOVE_FIRE_FANG",
+                "MOVE_ICE_FANG",
+                "MOVE_THUNDER_FANG"
+            ],
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MAGMORTAR",
+            "form": 0,
+            "level": 78,
+            "item": null,
+            "moves": [
+                "MOVE_FLAMETHROWER",
+                "MOVE_THUNDERBOLT",
+                "MOVE_PSYCHIC",
+                "MOVE_FOCUS_BLAST"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

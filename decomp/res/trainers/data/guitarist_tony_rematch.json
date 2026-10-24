@@ -3,27 +3,29 @@
     "class": "TRAINER_CLASS_GUITARIST",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
             "species": "SPECIES_KRICKETUNE",
             "form": 0,
-            "level": 52,
+            "level": 71,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_MAGNETON",
+            "species": "SPECIES_EXPLOUD",
             "form": 0,
-            "level": 52,
+            "level": 71,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 18
+            "iv_scale": 100,
+            "ball_seal": 0
         }
     ],
     "messages": [

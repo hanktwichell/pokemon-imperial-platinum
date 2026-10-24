@@ -3,50 +3,52 @@
     "class": "TRAINER_CLASS_ARTIST",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
             "species": "SPECIES_SMEARGLE",
             "form": 0,
-            "level": 60,
+            "level": 53,
             "item": null,
             "moves": [
-                "MOVE_OMINOUS_WIND",
-                "MOVE_ANCIENT_POWER",
-                "MOVE_SILVER_WIND",
-                "MOVE_BATON_PASS"
+                "MOVE_BLAST_BURN",
+                "MOVE_NONE",
+                "MOVE_NONE",
+                "MOVE_NONE"
             ],
-            "iv_scale": 250,
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_MR_MIME",
+            "species": "SPECIES_SMEARGLE",
             "form": 0,
-            "level": 57,
+            "level": 53,
             "item": null,
             "moves": [
-                "MOVE_PSYCHIC",
-                "MOVE_LIGHT_SCREEN",
-                "MOVE_REFLECT",
-                "MOVE_MIMIC"
+                "MOVE_HYDRO_CANNON",
+                "MOVE_NONE",
+                "MOVE_NONE",
+                "MOVE_NONE"
             ],
-            "iv_scale": 0,
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_SUDOWOODO",
+            "species": "SPECIES_SMEARGLE",
             "form": 0,
-            "level": 57,
+            "level": 53,
             "item": null,
             "moves": [
-                "MOVE_ROCK_THROW",
-                "MOVE_FLAIL",
-                "MOVE_SUCKER_PUNCH",
-                "MOVE_MIMIC"
+                "MOVE_FRENZY_PLANT",
+                "MOVE_NONE",
+                "MOVE_NONE",
+                "MOVE_NONE"
             ],
-            "iv_scale": 0,
+            "iv_scale": 255,
             "ball_seal": 0
         }
     ],

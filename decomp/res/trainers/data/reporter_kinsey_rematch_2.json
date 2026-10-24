@@ -10,19 +10,19 @@
         {
             "species": "SPECIES_DRIFBLIM",
             "form": 0,
-            "level": 45,
+            "level": 60,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_LUXRAY",
             "form": 0,
-            "level": 45,
+            "level": 60,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

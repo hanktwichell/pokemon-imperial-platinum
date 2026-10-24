@@ -3,26 +3,37 @@
     "class": "TRAINER_CLASS_NINJA_BOY",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_STUNKY",
+            "species": "SPECIES_SWALOT",
             "form": 0,
-            "level": 31,
+            "level": 39,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_GOLBAT",
+            "species": "SPECIES_DUSTOX",
             "form": 0,
-            "level": 31,
+            "level": 39,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MOTHIM",
+            "form": 0,
+            "level": 39,
+            "item": null,
+            "moves": null,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

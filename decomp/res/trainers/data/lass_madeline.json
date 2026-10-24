@@ -4,6 +4,7 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
@@ -11,10 +12,19 @@
         {
             "species": "SPECIES_PSYDUCK",
             "form": 0,
-            "level": 8,
+            "level": 10,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SUNKERN",
+            "form": 0,
+            "level": 10,
+            "item": null,
+            "moves": null,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

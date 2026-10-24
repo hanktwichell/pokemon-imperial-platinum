@@ -2,7 +2,7 @@
     "name": "Byron",
     "class": "TRAINER_CLASS_LEADER_BYRON",
     "items": [
-        "ITEM_HYPER_POTION",
+        "ITEM_FULL_RESTORE",
         "ITEM_FULL_RESTORE"
     ],
     "ai_flags": [
@@ -13,46 +13,88 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MAGNETON",
+            "species": "SPECIES_BRONZONG",
             "form": 0,
-            "level": 37,
-            "item": "ITEM_NONE",
+            "level": 52,
+            "item": "ITEM_LIGHT_CLAY",
             "moves": [
-                "MOVE_FLASH_CANNON",
-                "MOVE_THUNDERBOLT",
-                "MOVE_TRI_ATTACK",
-                "MOVE_METAL_SOUND"
+                "MOVE_GYRO_BALL",
+                "MOVE_STEALTH_ROCK",
+                "MOVE_REFLECT",
+                "MOVE_LIGHT_SCREEN"
             ],
-            "iv_scale": 200,
+            "iv_scale": 254,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MAGNEZONE",
+            "form": 0,
+            "level": 52,
+            "item": "ITEM_WISE_GLASSES",
+            "moves": [
+                "MOVE_THUNDERBOLT",
+                "MOVE_FLASH_CANNON",
+                "MOVE_SIGNAL_BEAM",
+                "MOVE_THUNDER_WAVE"
+            ],
+            "iv_scale": 254,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_STEELIX",
             "form": 0,
-            "level": 38,
-            "item": "ITEM_NONE",
+            "level": 52,
+            "item": "ITEM_MUSCLE_BAND",
             "moves": [
-                "MOVE_FLASH_CANNON",
-                "MOVE_ICE_FANG",
+                "MOVE_GYRO_BALL",
                 "MOVE_EARTHQUAKE",
-                "MOVE_SANDSTORM"
+                "MOVE_STONE_EDGE",
+                "MOVE_EXPLOSION"
             ],
-            "iv_scale": 200,
+            "iv_scale": 249,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_FORRETRESS",
+            "form": 0,
+            "level": 52,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_GYRO_BALL",
+                "MOVE_SPIKES",
+                "MOVE_TOXIC_SPIKES",
+                "MOVE_EXPLOSION"
+            ],
+            "iv_scale": 247,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_AGGRON",
+            "form": 0,
+            "level": 52,
+            "item": "ITEM_FOCUS_SASH",
+            "moves": [
+                "MOVE_HEAD_SMASH",
+                "MOVE_IRON_HEAD",
+                "MOVE_AQUA_TAIL",
+                "MOVE_LOW_KICK"
+            ],
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_BASTIODON",
             "form": 0,
-            "level": 41,
-            "item": "ITEM_SITRUS_BERRY",
+            "level": 53,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_METAL_BURST",
-                "MOVE_STONE_EDGE",
-                "MOVE_IRON_DEFENSE",
-                "MOVE_TAUNT"
+                "MOVE_IRON_HEAD",
+                "MOVE_TOXIC",
+                "MOVE_PROTECT",
+                "MOVE_METAL_BURST"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "ball_seal": 12
         }
     ],
     "messages": [

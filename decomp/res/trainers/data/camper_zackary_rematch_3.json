@@ -12,29 +12,28 @@
         {
             "species": "SPECIES_AMBIPOM",
             "form": 0,
-            "level": 52,
+            "level": 70,
             "item": null,
-            "moves": [
-                "MOVE_BATON_PASS",
-                "MOVE_SWIFT",
-                "MOVE_NASTY_PLOT",
-                "MOVE_WATER_PULSE"
-            ],
-            "iv_scale": 0,
+            "moves": null,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_BIBAREL",
+            "species": "SPECIES_SLAKING",
             "form": 0,
-            "level": 52,
+            "level": 70,
             "item": null,
-            "moves": [
-                "MOVE_THUNDERBOLT",
-                "MOVE_ICE_BEAM",
-                "MOVE_SURF",
-                "MOVE_SHADOW_BALL"
-            ],
-            "iv_scale": 0,
+            "moves": null,
+            "iv_scale": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SWELLOW",
+            "form": 0,
+            "level": 70,
+            "item": null,
+            "moves": null,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

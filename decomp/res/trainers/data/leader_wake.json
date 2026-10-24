@@ -13,46 +13,88 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_GYARADOS",
+            "species": "SPECIES_QUAGSIRE",
             "form": 0,
-            "level": 33,
-            "item": "ITEM_NONE",
+            "level": 43,
+            "item": "ITEM_RINDO_BERRY",
             "moves": [
-                "MOVE_WATERFALL",
-                "MOVE_BRINE",
-                "MOVE_BITE",
-                "MOVE_TWISTER"
+                "MOVE_AQUA_TAIL",
+                "MOVE_EARTHQUAKE",
+                "MOVE_RECOVER",
+                "MOVE_ICE_PUNCH"
             ],
-            "iv_scale": 150,
+            "iv_scale": 252,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_QUAGSIRE",
+            "species": "SPECIES_GYARADOS",
             "form": 0,
-            "level": 34,
-            "item": "ITEM_NONE",
+            "level": 43,
+            "item": "ITEM_WACAN_BERRY",
             "moves": [
-                "MOVE_MUD_SHOT",
-                "MOVE_ROCK_TOMB",
-                "MOVE_WATER_PULSE",
-                "MOVE_YAWN"
+                "MOVE_AQUA_TAIL",
+                "MOVE_ICE_FANG",
+                "MOVE_CRUNCH",
+                "MOVE_DRAGON_DANCE"
             ],
-            "iv_scale": 150,
+            "iv_scale": 253,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_POLIWRATH",
+            "form": 0,
+            "level": 43,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_WATERFALL",
+                "MOVE_DRAIN_PUNCH",
+                "MOVE_ICE_PUNCH",
+                "MOVE_HYPNOSIS"
+            ],
+            "iv_scale": 246,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_LUDICOLO",
+            "form": 0,
+            "level": 43,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_HYDRO_PUMP",
+                "MOVE_ICE_BEAM",
+                "MOVE_ENERGY_BALL",
+                "MOVE_FAKE_OUT"
+            ],
+            "iv_scale": 242,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SHARPEDO",
+            "form": 0,
+            "level": 43,
+            "item": "ITEM_FOCUS_SASH",
+            "moves": [
+                "MOVE_WATERFALL",
+                "MOVE_CRUNCH",
+                "MOVE_ICE_FANG",
+                "MOVE_ZEN_HEADBUTT"
+            ],
+            "iv_scale": 253,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_FLOATZEL",
             "form": 0,
-            "level": 37,
-            "item": "ITEM_SITRUS_BERRY",
+            "level": 44,
+            "item": "ITEM_LIFE_ORB",
             "moves": [
-                "MOVE_BRINE",
-                "MOVE_ICE_FANG",
+                "MOVE_AQUA_TAIL",
                 "MOVE_CRUNCH",
+                "MOVE_ICE_PUNCH",
                 "MOVE_AQUA_JET"
             ],
-            "iv_scale": 150,
-            "ball_seal": 0
+            "iv_scale": 253,
+            "ball_seal": 24
         }
     ],
     "messages": [

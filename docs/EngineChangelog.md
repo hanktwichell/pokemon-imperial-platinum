@@ -4,6 +4,29 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 19) — Renegade's trainer teams
+
+- **Platinum's trainers now have Renegade Platinum's teams**, read from its ROM by a new one-off tool,
+  `tools/engine/import_renegade_trainers.py`.
+  - 712 of the 927 trainer files changed: class, items, AI flags, single or double battle, and the whole party
+    (species and form, level, held items, moves, IV scale, Ball Capsule). Names and messages stay.
+  - Roark, for example, now leads with Nosepass and has six Pokémon (Lv. 15–16) with items and full movesets.
+- **Renamed slots:** Renegade renamed 14 moves and 10 items in place (Horn Drill is Drill Run, Lunar Dance is
+  Moonblast...). Those are matched by name to Sovereign's real moves and items.
+- **Survival Area Barry:** Renegade emptied Barry's first Survival Area teams (for fewer than 20 League wins) and
+  filled only the second. Both now get the second team (Lv. 84).
+- **Left as they were:**
+  - Renegade's own trainers come with the events that use them:
+    - the three slots it gave to its own characters (trainer 5 is Steven; Ace Trainers Felix and Dana became
+      "Butler" and "Diane");
+    - its 138 trainers past Platinum's 928.
+  - Three unused rival slots it emptied.
+- **Boss teams:** the owner's boss teams (`data/trainers_sovereign.yaml`) still go on top of these at milestone T1.
+
+Verified: the release build passes. In a test build, the SELECT+R battle was pointed at Roark, and
+`tools/test/check_trainer_party.py` read his six Pokémon from the battle (species, level, moves, items and all six
+stats) and matched each one to the JSON (PASS).
+
 ## E10 (part 18) — Renegade's Mew event
 
 - **A chain of hungry Pokémon**, as in Renegade. Feeding each one brings Mew for a moment ("Myuu!"); it flies off,

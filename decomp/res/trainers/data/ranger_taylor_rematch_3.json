@@ -12,28 +12,28 @@
         {
             "species": "SPECIES_CARNIVINE",
             "form": 0,
-            "level": 60,
+            "level": 71,
             "item": null,
             "moves": null,
-            "iv_scale": 50,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_LUXRAY",
+            "species": "SPECIES_KECLEON",
             "form": 0,
-            "level": 62,
+            "level": 71,
             "item": null,
             "moves": null,
-            "iv_scale": 50,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_DEWGONG",
+            "species": "SPECIES_ELECTIVIRE",
             "form": 0,
-            "level": 58,
+            "level": 71,
             "item": null,
             "moves": null,
-            "iv_scale": 50,
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

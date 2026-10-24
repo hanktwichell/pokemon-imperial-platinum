@@ -13,73 +13,87 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_AERODACTYL",
+            "species": "SPECIES_GOLEM",
             "form": 0,
-            "level": 62,
-            "item": "ITEM_NONE",
+            "level": 81,
+            "item": "ITEM_FOCUS_SASH",
             "moves": [
-                "MOVE_STONE_EDGE",
-                "MOVE_AERIAL_ACE",
                 "MOVE_EARTHQUAKE",
-                "MOVE_DRAGON_CLAW"
+                "MOVE_STONE_EDGE",
+                "MOVE_FIRE_PUNCH",
+                "MOVE_THUNDER_PUNCH"
             ],
-            "iv_scale": 200,
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_PROBOPASS",
             "form": 0,
-            "level": 61,
-            "item": "ITEM_NONE",
+            "level": 81,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
                 "MOVE_EARTH_POWER",
-                "MOVE_STEALTH_ROCK",
-                "MOVE_DISCHARGE",
-                "MOVE_STONE_EDGE"
+                "MOVE_POWER_GEM",
+                "MOVE_THUNDERBOLT",
+                "MOVE_THUNDER_WAVE"
             ],
-            "iv_scale": 200,
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_GOLEM",
+            "species": "SPECIES_SUDOWOODO",
             "form": 0,
-            "level": 61,
-            "item": "ITEM_NONE",
+            "level": 81,
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
                 "MOVE_STONE_EDGE",
-                "MOVE_EARTHQUAKE",
-                "MOVE_BRICK_BREAK",
-                "MOVE_FLAMETHROWER"
+                "MOVE_HAMMER_ARM",
+                "MOVE_WOOD_HAMMER",
+                "MOVE_SUCKER_PUNCH"
             ],
-            "iv_scale": 200,
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_RAMPARDOS",
+            "species": "SPECIES_AERODACTYL",
             "form": 0,
-            "level": 63,
-            "item": "ITEM_NONE",
+            "level": 81,
+            "item": "ITEM_LIFE_ORB",
             "moves": [
-                "MOVE_HEAD_SMASH",
-                "MOVE_ZEN_HEADBUTT",
-                "MOVE_AVALANCHE",
-                "MOVE_EARTHQUAKE"
+                "MOVE_BRAVE_BIRD",
+                "MOVE_EARTHQUAKE",
+                "MOVE_STONE_EDGE",
+                "MOVE_CRUNCH"
             ],
-            "iv_scale": 200,
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_TYRANITAR",
             "form": 0,
-            "level": 65,
-            "item": "ITEM_SITRUS_BERRY",
+            "level": 81,
+            "item": "ITEM_LIFE_ORB",
             "moves": [
-                "MOVE_STONE_EDGE",
                 "MOVE_CRUNCH",
-                "MOVE_AERIAL_ACE",
-                "MOVE_FIRE_FANG"
+                "MOVE_STONE_EDGE",
+                "MOVE_FIRE_PUNCH",
+                "MOVE_DRAGON_DANCE"
             ],
-            "iv_scale": 200,
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_RAMPARDOS",
+            "form": 0,
+            "level": 82,
+            "item": "ITEM_CHOICE_SCARF",
+            "moves": [
+                "MOVE_HEAD_SMASH",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_SUPERPOWER",
+                "MOVE_FIRE_PUNCH"
+            ],
+            "iv_scale": 255,
             "ball_seal": 0
         }
     ],

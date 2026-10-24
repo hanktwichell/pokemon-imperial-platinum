@@ -4,6 +4,7 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
@@ -11,14 +12,28 @@
         {
             "species": "SPECIES_ROSELIA",
             "form": 0,
-            "level": 19,
+            "level": 23,
             "item": null,
-            "moves": [
-                "MOVE_MEGA_DRAIN",
-                "MOVE_POISON_STING",
-                "MOVE_STUN_SPORE"
-            ],
-            "iv_scale": 20,
+            "moves": null,
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_BAYLEEF",
+            "form": 0,
+            "level": 23,
+            "item": null,
+            "moves": null,
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SKIPLOOM",
+            "form": 0,
+            "level": 23,
+            "item": null,
+            "moves": null,
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

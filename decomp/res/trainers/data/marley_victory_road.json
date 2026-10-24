@@ -12,15 +12,43 @@
         {
             "species": "SPECIES_ARCANINE",
             "form": 0,
-            "level": 59,
+            "level": 66,
             "item": null,
             "moves": [
-                "MOVE_EXTREME_SPEED",
-                "MOVE_FIRE_FANG",
-                "MOVE_HELPING_HAND",
-                "MOVE_AGILITY"
+                "MOVE_FLARE_BLITZ",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_CRUNCH",
+                "MOVE_EXTREME_SPEED"
             ],
-            "iv_scale": 30,
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_STARMIE",
+            "form": 0,
+            "level": 65,
+            "item": null,
+            "moves": [
+                "MOVE_HYDRO_PUMP",
+                "MOVE_BLIZZARD",
+                "MOVE_THUNDER",
+                "MOVE_PSYCHIC"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SCEPTILE",
+            "form": 0,
+            "level": 65,
+            "item": null,
+            "moves": [
+                "MOVE_ENERGY_BALL",
+                "MOVE_DRAGON_PULSE",
+                "MOVE_FOCUS_BLAST",
+                "MOVE_ENDURE"
+            ],
+            "iv_scale": 255,
             "ball_seal": 0
         }
     ],

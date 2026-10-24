@@ -10,12 +10,30 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_CHIMCHAR",
+            "species": "SPECIES_MAGBY",
             "form": 0,
-            "level": 22,
+            "level": 24,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_TRAPINCH",
+            "form": 0,
+            "level": 24,
+            "item": null,
+            "moves": null,
+            "iv_scale": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_CHARMANDER",
+            "form": 0,
+            "level": 24,
+            "item": null,
+            "moves": null,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

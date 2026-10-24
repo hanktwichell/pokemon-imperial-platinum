@@ -17,7 +17,8 @@
             "moves": [
                 "MOVE_PAYBACK",
                 "MOVE_SUCKER_PUNCH",
-                "MOVE_CONFUSE_RAY"
+                "MOVE_CONFUSE_RAY",
+                "MOVE_NONE"
             ],
             "iv_scale": 10,
             "ball_seal": 0
@@ -30,7 +31,8 @@
             "moves": [
                 "MOVE_SUCKER_PUNCH",
                 "MOVE_NIGHT_SHADE",
-                "MOVE_CONFUSE_RAY"
+                "MOVE_CONFUSE_RAY",
+                "MOVE_NONE"
             ],
             "iv_scale": 10,
             "ball_seal": 0
@@ -43,7 +45,8 @@
             "moves": [
                 "MOVE_NIGHT_SHADE",
                 "MOVE_PAYBACK",
-                "MOVE_CONFUSE_RAY"
+                "MOVE_CONFUSE_RAY",
+                "MOVE_NONE"
             ],
             "iv_scale": 10,
             "ball_seal": 0

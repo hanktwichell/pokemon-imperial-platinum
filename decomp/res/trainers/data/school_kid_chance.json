@@ -1,27 +1,39 @@
 {
     "name": "Chance",
     "class": "TRAINER_CLASS_SCHOOL_KID_MALE",
-    "items": [
-        "ITEM_X_DEFENSE"
-    ],
+    "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_GASTLY",
+            "species": "SPECIES_DUSKULL",
             "form": 0,
-            "level": 23,
+            "level": 26,
             "item": null,
-            "moves": [
-                "MOVE_NIGHT_SHADE",
-                "MOVE_SUCKER_PUNCH",
-                "MOVE_CONFUSE_RAY",
-                "MOVE_HYPNOSIS"
-            ],
-            "iv_scale": 10,
+            "moves": null,
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SHUPPET",
+            "form": 0,
+            "level": 26,
+            "item": null,
+            "moves": null,
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_DUSKULL",
+            "form": 0,
+            "level": 26,
+            "item": null,
+            "moves": null,
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

@@ -3,36 +3,20 @@
     "class": "TRAINER_CLASS_TUBER_MALE",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
             "species": "SPECIES_GASTRODON",
             "form": 1,
-            "level": 51,
+            "level": 69,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 100,
             "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_GASTRODON",
-            "form": 1,
-            "level": 51,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_GASTRODON",
-            "form": 0,
-            "level": 51,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 8
         }
     ],
     "messages": [

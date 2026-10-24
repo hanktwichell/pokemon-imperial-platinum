@@ -4,19 +4,36 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_ABRA",
+            "species": "SPECIES_SPOINK",
             "form": 0,
             "level": 17,
             "item": null,
-            "moves": [
-                "MOVE_HIDDEN_POWER"
-            ],
-            "iv_scale": 20,
+            "moves": null,
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_DROWZEE",
+            "form": 0,
+            "level": 17,
+            "item": null,
+            "moves": null,
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_BALTOY",
+            "form": 0,
+            "level": 17,
+            "item": null,
+            "moves": null,
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

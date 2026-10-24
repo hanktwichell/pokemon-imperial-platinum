@@ -10,17 +10,21 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_TROPIUS",
+            "species": "SPECIES_TOGETIC",
             "form": 0,
-            "level": 42,
+            "level": 23,
             "item": null,
-            "moves": [
-                "MOVE_AIR_SLASH",
-                "MOVE_BODY_SLAM",
-                "MOVE_MAGICAL_LEAF",
-                "MOVE_SWEET_SCENT"
-            ],
-            "iv_scale": 50,
+            "moves": null,
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SWELLOW",
+            "form": 0,
+            "level": 23,
+            "item": null,
+            "moves": null,
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

@@ -3,26 +3,28 @@
     "class": "TRAINER_CLASS_SWIMMER_MALE",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
             "species": "SPECIES_OCTILLERY",
             "form": 0,
-            "level": 53,
+            "level": 73,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_POLIWHIRL",
+            "species": "SPECIES_POLITOED",
             "form": 0,
-            "level": 53,
+            "level": 73,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

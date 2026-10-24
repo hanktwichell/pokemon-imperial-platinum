@@ -10,30 +10,12 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_BASTIODON",
+            "species": "SPECIES_AERODACTYL",
             "form": 0,
-            "level": 50,
+            "level": 72,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_RAMPARDOS",
-            "form": 0,
-            "level": 50,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_BRONZONG",
-            "form": 0,
-            "level": 53,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

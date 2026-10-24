@@ -12,7 +12,7 @@
         {
             "species": "SPECIES_GLALIE",
             "form": 0,
-            "level": 59,
+            "level": 78,
             "item": null,
             "moves": [
                 "MOVE_HAIL",
@@ -20,21 +20,35 @@
                 "MOVE_SHEER_COLD",
                 "MOVE_CRUNCH"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_CROBAT",
             "form": 0,
-            "level": 60,
+            "level": 78,
             "item": null,
             "moves": [
                 "MOVE_AIR_SLASH",
-                "MOVE_POISON_FANG",
+                "MOVE_SLUDGE_BOMB",
                 "MOVE_CONFUSE_RAY",
                 "MOVE_SHADOW_BALL"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_NINETALES",
+            "form": 0,
+            "level": 78,
+            "item": null,
+            "moves": [
+                "MOVE_FLAMETHROWER",
+                "MOVE_SOLAR_BEAM",
+                "MOVE_DARK_PULSE",
+                "MOVE_CONFUSE_RAY"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

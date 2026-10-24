@@ -12,28 +12,28 @@
         {
             "species": "SPECIES_SKARMORY",
             "form": 0,
-            "level": 54,
+            "level": 73,
             "item": null,
             "moves": null,
-            "iv_scale": 50,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_GOLDUCK",
             "form": 0,
-            "level": 54,
+            "level": 73,
             "item": null,
             "moves": null,
-            "iv_scale": 50,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_DONPHAN",
             "form": 0,
-            "level": 54,
+            "level": 73,
             "item": null,
             "moves": null,
-            "iv_scale": 50,
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

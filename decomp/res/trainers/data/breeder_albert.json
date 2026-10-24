@@ -3,44 +3,64 @@
     "class": "TRAINER_CLASS_BREEDER_MALE",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_BUDEW",
+            "species": "SPECIES_TYROGUE",
             "form": 0,
-            "level": 20,
+            "level": 26,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_CHINGLING",
+            "form": 0,
+            "level": 26,
+            "item": null,
+            "moves": null,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_BONSLY",
             "form": 0,
-            "level": 20,
+            "level": 26,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_PICHU",
+            "species": "SPECIES_MAGBY",
             "form": 0,
-            "level": 20,
+            "level": 26,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_EEVEE",
+            "species": "SPECIES_ELEKID",
             "form": 0,
-            "level": 20,
+            "level": 26,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MIME_JR",
+            "form": 0,
+            "level": 26,
+            "item": null,
+            "moves": null,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

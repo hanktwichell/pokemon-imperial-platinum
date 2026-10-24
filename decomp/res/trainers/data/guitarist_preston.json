@@ -3,26 +3,38 @@
     "class": "TRAINER_CLASS_GUITARIST",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_LUXIO",
+            "species": "SPECIES_ELECTABUZZ",
             "form": 0,
-            "level": 45,
+            "level": 60,
             "item": null,
-            "moves": null,
-            "iv_scale": 10,
+            "moves": [
+                "MOVE_LIGHT_SCREEN",
+                "MOVE_PSYCHIC",
+                "MOVE_DISCHARGE",
+                "MOVE_FOCUS_BLAST"
+            ],
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_LUXIO",
+            "species": "SPECIES_MAGNEZONE",
             "form": 0,
-            "level": 45,
+            "level": 60,
             "item": null,
-            "moves": null,
-            "iv_scale": 10,
+            "moves": [
+                "MOVE_DISCHARGE",
+                "MOVE_FLASH_CANNON",
+                "MOVE_SIGNAL_BEAM",
+                "MOVE_SUPERSONIC"
+            ],
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

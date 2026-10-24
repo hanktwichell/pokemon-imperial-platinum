@@ -10,16 +10,30 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_PACHIRISU",
+            "species": "SPECIES_SMOOCHUM",
             "form": 0,
-            "level": 22,
+            "level": 24,
             "item": null,
-            "moves": [
-                "MOVE_SPARK",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_CHARM"
-            ],
-            "iv_scale": 0,
+            "moves": null,
+            "iv_scale": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SNUBBULL",
+            "form": 0,
+            "level": 24,
+            "item": null,
+            "moves": null,
+            "iv_scale": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_TREECKO",
+            "form": 0,
+            "level": 24,
+            "item": null,
+            "moves": null,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

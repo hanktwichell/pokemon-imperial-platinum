@@ -10,31 +10,21 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_AMBIPOM",
+            "species": "SPECIES_PORYGON",
             "form": 0,
-            "level": 39,
+            "level": 23,
             "item": null,
-            "moves": [
-                "MOVE_DOUBLE_HIT",
-                "MOVE_U_TURN",
-                "MOVE_SAND_ATTACK",
-                "MOVE_SCREECH"
-            ],
-            "iv_scale": 50,
+            "moves": null,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_PORYGON2",
+            "species": "SPECIES_VIGOROTH",
             "form": 0,
-            "level": 40,
+            "level": 23,
             "item": null,
-            "moves": [
-                "MOVE_PSYBEAM",
-                "MOVE_SIGNAL_BEAM",
-                "MOVE_CONVERSION_2",
-                "MOVE_RECOVER"
-            ],
-            "iv_scale": 50,
+            "moves": null,
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

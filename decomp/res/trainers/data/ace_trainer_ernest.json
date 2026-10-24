@@ -10,45 +10,59 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SCYTHER",
+            "species": "SPECIES_POLITOED",
             "form": 0,
-            "level": 32,
+            "level": 41,
             "item": null,
             "moves": [
-                "MOVE_SLASH",
-                "MOVE_WING_ATTACK",
-                "MOVE_PURSUIT",
-                "MOVE_QUICK_ATTACK"
+                "MOVE_SCALD",
+                "MOVE_ICY_WIND",
+                "MOVE_HYPNOSIS",
+                "MOVE_PSYCHIC"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_PINSIR",
+            "form": 0,
+            "level": 41,
+            "item": null,
+            "moves": [
+                "MOVE_MEGAHORN",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_KNOCK_OFF",
+                "MOVE_NONE"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_PROBOPASS",
             "form": 0,
-            "level": 31,
-            "item": null,
-            "moves": [
-                "MOVE_THUNDER_WAVE",
-                "MOVE_ROCK_SLIDE",
-                "MOVE_MAGNET_BOMB",
-                "MOVE_IRON_DEFENSE"
-            ],
-            "iv_scale": 50,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_LUXIO",
-            "form": 0,
-            "level": 34,
+            "level": 41,
             "item": null,
             "moves": [
                 "MOVE_THUNDERBOLT",
-                "MOVE_CRUNCH",
-                "MOVE_SWAGGER",
-                "MOVE_DOUBLE_TEAM"
+                "MOVE_FLASH_CANNON",
+                "MOVE_EARTH_POWER",
+                "MOVE_POWER_GEM"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_XATU",
+            "form": 0,
+            "level": 41,
+            "item": null,
+            "moves": [
+                "MOVE_PSYCHIC",
+                "MOVE_AIR_SLASH",
+                "MOVE_GIGA_DRAIN",
+                "MOVE_CONFUSE_RAY"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

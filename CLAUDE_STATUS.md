@@ -4431,3 +4431,33 @@ merged.
 2. Lugia and Ho-Oh (Oak's Silver and Rainbow Wings; Route 220 island, Lost Tower top). Yveltal is on Lost Tower 5F.
 3. The legendary birds (Renegade's portals vs Sovereign's Oak roamers: ask the owner which), then Renegade's
    trainers.
+
+## CB-0093 — 2026-10-24, 9:32 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** E10 part 19, Renegade's trainer teams for Platinum's trainers. PR #103 (part 18) merged.
+- New `tools/engine/import_renegade_trainers.py ROM` (one-off, like the wild import).
+  - It rewrites class, items, AI flags, doubles and party in 712 of the 927 vanilla trainer JSONs; names and
+    messages stay.
+  - Moves and items are mapped by name where Renegade renamed an ID in place.
+- Skipped:
+  - Renegade's repurposed slots: 5 = Steven, Felix = "Butler", Dana = "Diane".
+  - Its 138 trainers past 928.
+  - Three emptied unused rival slots.
+- Survival Area Barry `_1` slots get Renegade's `_2` teams (Renegade emptied the `_1` ones).
+- Verified: release build. The test build's SELECT+R was pointed at Roark; `check_trainer_party.py` PASS on all
+  6 Pokémon.
+
+**Files modified:**
+- 712 `decomp/res/trainers/data/*.json`
+- `tools/engine/import_renegade_trainers.py` (new)
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Renegade's added trainers (IDs 928–1065).
+   - Add them only where their event is ported: the Route 202/207/212 trainers, Pokémon Mansion, Celebi's six
+     memory battles (1029–1034), Riley 970, Steven's slot 5.
+   - Each needs a `TRAINER_` constant, a flag and a JSON. The importer can be extended to write a JSON from a
+     Renegade ID.
+2. Celebi (GS Ball, the Eterna Forest portals) once its memory trainers exist; then Lugia, Ho-Oh and the birds.
+3. T1: apply `data/trainers_sovereign.yaml`'s boss teams over Renegade's (the owner deferred it until the engine
+   features are done; check before starting).

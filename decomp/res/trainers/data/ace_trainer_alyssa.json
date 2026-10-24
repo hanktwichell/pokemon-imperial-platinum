@@ -10,44 +10,45 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_AIPOM",
+            "species": "SPECIES_AMBIPOM",
             "form": 0,
-            "level": 32,
+            "level": 42,
             "item": null,
             "moves": [
-                "MOVE_SWIFT",
-                "MOVE_WATER_PULSE",
-                "MOVE_SHOCK_WAVE",
-                "MOVE_AERIAL_ACE"
+                "MOVE_COVET",
+                "MOVE_FAKE_OUT",
+                "MOVE_AERIAL_ACE",
+                "MOVE_U_TURN"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_GIRAFARIG",
+            "species": "SPECIES_STARMIE",
             "form": 0,
-            "level": 32,
+            "level": 42,
             "item": null,
             "moves": [
-                "MOVE_DOUBLE_HIT",
-                "MOVE_PSYBEAM",
-                "MOVE_ASSURANCE",
-                "MOVE_LIGHT_SCREEN"
+                "MOVE_SCALD",
+                "MOVE_POWER_GEM",
+                "MOVE_PSYCHIC",
+                "MOVE_GRASS_KNOT"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_GROTLE",
+            "species": "SPECIES_TORTERRA",
             "form": 0,
-            "level": 33,
+            "level": 42,
             "item": null,
             "moves": [
-                "MOVE_MEGA_DRAIN",
-                "MOVE_BITE",
-                "MOVE_CURSE"
+                "MOVE_EARTHQUAKE",
+                "MOVE_SEED_BOMB",
+                "MOVE_CRUNCH",
+                "MOVE_IRON_HEAD"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

@@ -9,30 +9,30 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_CHIMECHO",
-            "form": 0,
-            "level": 57,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_DRIFBLIM",
-            "form": 0,
-            "level": 59,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
-        },
-        {
             "species": "SPECIES_GARDEVOIR",
             "form": 0,
-            "level": 61,
+            "level": 72,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_CHIMECHO",
+            "form": 0,
+            "level": 72,
+            "item": null,
+            "moves": null,
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GIRAFARIG",
+            "form": 0,
+            "level": 72,
+            "item": null,
+            "moves": null,
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

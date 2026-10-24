@@ -10,31 +10,59 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_ELECTABUZZ",
+            "species": "SPECIES_RAICHU",
             "form": 0,
-            "level": 47,
+            "level": 60,
             "item": null,
             "moves": [
-                "MOVE_THUNDERBOLT",
-                "MOVE_SHOCK_WAVE",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_IRON_TAIL"
+                "MOVE_WILD_CHARGE",
+                "MOVE_FOCUS_BLAST",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_TEETER_DANCE"
             ],
-            "iv_scale": 60,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_RAICHU",
+            "species": "SPECIES_LANTURN",
             "form": 0,
-            "level": 48,
+            "level": 60,
             "item": null,
             "moves": [
-                "MOVE_THUNDERBOLT",
-                "MOVE_DIG",
-                "MOVE_THUNDER_WAVE",
-                "MOVE_LIGHT_SCREEN"
+                "MOVE_SCALD",
+                "MOVE_DISCHARGE",
+                "MOVE_ICE_BEAM",
+                "MOVE_AMNESIA"
             ],
-            "iv_scale": 60,
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_JOLTEON",
+            "form": 0,
+            "level": 60,
+            "item": null,
+            "moves": [
+                "MOVE_DISCHARGE",
+                "MOVE_SHADOW_BALL",
+                "MOVE_EXTRASENSORY",
+                "MOVE_BATON_PASS"
+            ],
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_LUXRAY",
+            "form": 0,
+            "level": 60,
+            "item": null,
+            "moves": [
+                "MOVE_IRON_TAIL",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_WILD_CHARGE",
+                "MOVE_HOWL"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

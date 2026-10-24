@@ -8,12 +8,12 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_PONYTA",
+            "species": "SPECIES_RAPIDASH",
             "form": 0,
-            "level": 24,
+            "level": 33,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

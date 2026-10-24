@@ -3,35 +3,37 @@
     "class": "TRAINER_CLASS_SKIER_MALE",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_DELIBIRD",
+            "species": "SPECIES_MAMOSWINE",
             "form": 0,
-            "level": 56,
+            "level": 72,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_WEAVILE",
-            "form": 0,
-            "level": 58,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_MAMOSWINE",
             "form": 0,
-            "level": 60,
+            "level": 72,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MAMOSWINE",
+            "form": 0,
+            "level": 72,
+            "item": null,
+            "moves": null,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

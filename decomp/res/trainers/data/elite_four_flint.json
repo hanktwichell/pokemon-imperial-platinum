@@ -13,71 +13,85 @@
     "double_battle": false,
     "party": [
         {
+            "species": "SPECIES_NINETALES",
+            "form": 0,
+            "level": 73,
+            "item": "ITEM_WHITE_HERB",
+            "moves": [
+                "MOVE_OVERHEAT",
+                "MOVE_SOLAR_BEAM",
+                "MOVE_MOONBLAST",
+                "MOVE_CONFUSE_RAY"
+            ],
+            "iv_scale": 248,
+            "ball_seal": 0
+        },
+        {
             "species": "SPECIES_HOUNDOOM",
             "form": 0,
-            "level": 52,
-            "item": "ITEM_NONE",
+            "level": 73,
+            "item": "ITEM_CHOICE_SCARF",
             "moves": [
-                "MOVE_FLAMETHROWER",
-                "MOVE_SLUDGE_BOMB",
+                "MOVE_FIRE_BLAST",
                 "MOVE_DARK_PULSE",
-                "MOVE_SUNNY_DAY"
+                "MOVE_SOLAR_BEAM",
+                "MOVE_SLUDGE_BOMB"
             ],
-            "iv_scale": 250,
+            "iv_scale": 238,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_FLAREON",
             "form": 0,
-            "level": 55,
-            "item": "ITEM_NONE",
+            "level": 73,
+            "item": "ITEM_CHOICE_BAND",
             "moves": [
-                "MOVE_OVERHEAT",
-                "MOVE_GIGA_IMPACT",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_WILL_O_WISP"
+                "MOVE_FLARE_BLITZ",
+                "MOVE_PLAY_ROUGH",
+                "MOVE_WILD_CHARGE",
+                "MOVE_CLOSE_COMBAT"
             ],
-            "iv_scale": 250,
+            "iv_scale": 246,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_RAPIDASH",
             "form": 0,
-            "level": 53,
-            "item": "ITEM_NONE",
+            "level": 73,
+            "item": "ITEM_POWER_HERB",
             "moves": [
                 "MOVE_FLARE_BLITZ",
-                "MOVE_SOLAR_BEAM",
-                "MOVE_BOUNCE",
-                "MOVE_SUNNY_DAY"
+                "MOVE_WILD_CHARGE",
+                "MOVE_MEGAHORN",
+                "MOVE_DRILL_RUN"
             ],
-            "iv_scale": 250,
+            "iv_scale": 251,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_INFERNAPE",
             "form": 0,
-            "level": 55,
-            "item": "ITEM_NONE",
+            "level": 73,
+            "item": "ITEM_EXPERT_BELT",
             "moves": [
                 "MOVE_FLARE_BLITZ",
+                "MOVE_CLOSE_COMBAT",
                 "MOVE_THUNDER_PUNCH",
-                "MOVE_MACH_PUNCH",
-                "MOVE_EARTHQUAKE"
+                "MOVE_GRASS_KNOT"
             ],
-            "iv_scale": 250,
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_MAGMORTAR",
             "form": 0,
-            "level": 57,
-            "item": "ITEM_SITRUS_BERRY",
+            "level": 74,
+            "item": "ITEM_LIFE_ORB",
             "moves": [
-                "MOVE_FLAMETHROWER",
+                "MOVE_FIRE_BLAST",
                 "MOVE_THUNDERBOLT",
-                "MOVE_SOLAR_BEAM",
-                "MOVE_HYPER_BEAM"
+                "MOVE_AURA_SPHERE",
+                "MOVE_SOLAR_BEAM"
             ],
             "iv_scale": 250,
             "ball_seal": 13

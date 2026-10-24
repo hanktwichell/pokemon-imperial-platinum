@@ -10,45 +10,45 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_KIRLIA",
+            "species": "SPECIES_SHIFTRY",
             "form": 0,
-            "level": 38,
+            "level": 52,
             "item": null,
             "moves": [
-                "MOVE_FUTURE_SIGHT",
-                "MOVE_PSYCHIC",
-                "MOVE_MAGICAL_LEAF",
-                "MOVE_LUCKY_CHANT"
+                "MOVE_LEAF_BLADE",
+                "MOVE_DARK_PULSE",
+                "MOVE_HURRICANE",
+                "MOVE_FAKE_OUT"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_SEAKING",
+            "species": "SPECIES_ALTARIA",
             "form": 0,
-            "level": 39,
+            "level": 52,
             "item": null,
             "moves": [
-                "MOVE_WATERFALL",
-                "MOVE_POISON_JAB",
-                "MOVE_SUPERSONIC",
-                "MOVE_AQUA_RING"
+                "MOVE_DRAGON_PULSE",
+                "MOVE_MOONBLAST",
+                "MOVE_FLAMETHROWER",
+                "MOVE_ICE_BEAM"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_BUNEARY",
+            "species": "SPECIES_BLISSEY",
             "form": 0,
-            "level": 38,
+            "level": 52,
             "item": null,
             "moves": [
-                "MOVE_DIZZY_PUNCH",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_JUMP_KICK",
-                "MOVE_SHADOW_BALL"
+                "MOVE_HYPER_VOICE",
+                "MOVE_THUNDERBOLT",
+                "MOVE_SOFTBOILED",
+                "MOVE_FLAMETHROWER"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

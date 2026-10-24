@@ -2,7 +2,7 @@
     "name": "Roark",
     "class": "TRAINER_CLASS_LEADER_ROARK",
     "items": [
-        "ITEM_POTION",
+        "ITEM_SUPER_POTION",
         "ITEM_POTION"
     ],
     "ai_flags": [
@@ -13,42 +13,88 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_GEODUDE",
+            "species": "SPECIES_NOSEPASS",
             "form": 0,
-            "level": 12,
-            "item": null,
+            "level": 15,
+            "item": "ITEM_SMOOTH_ROCK",
             "moves": [
                 "MOVE_STEALTH_ROCK",
-                "MOVE_ROCK_THROW"
+                "MOVE_SANDSTORM",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_SHOCK_WAVE"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_BONSLY",
+            "form": 0,
+            "level": 15,
+            "item": "ITEM_RINDO_BERRY",
+            "moves": [
+                "MOVE_STEALTH_ROCK",
+                "MOVE_BRICK_BREAK",
+                "MOVE_ROLLOUT",
+                "MOVE_DEFENSE_CURL"
+            ],
+            "iv_scale": 251,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GEODUDE",
+            "form": 0,
+            "level": 15,
+            "item": "ITEM_EXPERT_BELT",
+            "moves": [
+                "MOVE_BULLDOZE",
+                "MOVE_ROCK_TOMB",
+                "MOVE_FIRE_PUNCH",
+                "MOVE_THUNDER_PUNCH"
+            ],
+            "iv_scale": 244,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_ONIX",
             "form": 0,
-            "level": 12,
-            "item": null,
+            "level": 15,
+            "item": "ITEM_MUSCLE_BAND",
             "moves": [
                 "MOVE_STEALTH_ROCK",
-                "MOVE_ROCK_THROW",
-                "MOVE_SCREECH"
+                "MOVE_ROCK_TOMB",
+                "MOVE_BULLDOZE",
+                "MOVE_SANDSTORM"
             ],
-            "iv_scale": 50,
+            "iv_scale": 245,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_LARVITAR",
+            "form": 0,
+            "level": 15,
+            "item": "ITEM_FLAME_ORB",
+            "moves": [
+                "MOVE_ROCK_TOMB",
+                "MOVE_BULLDOZE",
+                "MOVE_BITE",
+                "MOVE_PROTECT"
+            ],
+            "iv_scale": 252,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_CRANIDOS",
             "form": 0,
-            "level": 14,
-            "item": null,
+            "level": 16,
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
-                "MOVE_HEADBUTT",
-                "MOVE_PURSUIT",
-                "MOVE_LEER"
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_ROCK_TOMB",
+                "MOVE_SCARY_FACE",
+                "MOVE_THUNDER_PUNCH"
             ],
-            "iv_scale": 50,
-            "ball_seal": 0
+            "iv_scale": 254,
+            "ball_seal": 12
         }
     ],
     "messages": [

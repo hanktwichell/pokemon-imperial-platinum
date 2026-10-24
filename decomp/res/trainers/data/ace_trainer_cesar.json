@@ -10,17 +10,45 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SCIZOR",
+            "species": "SPECIES_EMPOLEON",
             "form": 0,
-            "level": 40,
+            "level": 50,
             "item": null,
             "moves": [
-                "MOVE_METAL_CLAW",
-                "MOVE_X_SCISSOR",
-                "MOVE_SLASH",
-                "MOVE_PURSUIT"
+                "MOVE_SURF",
+                "MOVE_FLASH_CANNON",
+                "MOVE_GRASS_KNOT",
+                "MOVE_SIGNAL_BEAM"
             ],
-            "iv_scale": 60,
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SCIZOR",
+            "form": 0,
+            "level": 50,
+            "item": null,
+            "moves": [
+                "MOVE_BULLET_PUNCH",
+                "MOVE_X_SCISSOR",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_IRON_HEAD"
+            ],
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_METAGROSS",
+            "form": 0,
+            "level": 50,
+            "item": null,
+            "moves": [
+                "MOVE_METEOR_MASH",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_ICE_PUNCH",
+                "MOVE_ROCK_SLIDE"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

@@ -10,31 +10,45 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SNEASEL",
+            "species": "SPECIES_SPHEAL",
             "form": 0,
-            "level": 40,
+            "level": 51,
             "item": null,
             "moves": [
-                "MOVE_ICY_WIND",
-                "MOVE_SLASH",
-                "MOVE_SCREECH",
-                "MOVE_FAINT_ATTACK"
+                "MOVE_SURF",
+                "MOVE_ICE_BEAM",
+                "MOVE_NONE",
+                "MOVE_NONE"
             ],
-            "iv_scale": 60,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_SNEASEL",
+            "species": "SPECIES_SEALEO",
             "form": 0,
-            "level": 43,
+            "level": 53,
             "item": null,
             "moves": [
-                "MOVE_ICY_WIND",
-                "MOVE_SLASH",
-                "MOVE_SCREECH",
-                "MOVE_FAINT_ATTACK"
+                "MOVE_SURF",
+                "MOVE_ICE_BEAM",
+                "MOVE_NONE",
+                "MOVE_NONE"
             ],
-            "iv_scale": 60,
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_WALREIN",
+            "form": 0,
+            "level": 55,
+            "item": null,
+            "moves": [
+                "MOVE_BLIZZARD",
+                "MOVE_SHEER_COLD",
+                "MOVE_SURF",
+                "MOVE_AQUA_TAIL"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

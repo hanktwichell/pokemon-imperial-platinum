@@ -10,21 +10,30 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_PUPITAR",
+            "species": "SPECIES_TYRANITAR",
             "form": 0,
-            "level": 58,
+            "level": 78,
             "item": null,
             "moves": null,
-            "iv_scale": 50,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_TORTERRA",
             "form": 0,
-            "level": 61,
+            "level": 78,
             "item": null,
             "moves": null,
-            "iv_scale": 50,
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_AGGRON",
+            "form": 0,
+            "level": 78,
+            "item": null,
+            "moves": null,
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

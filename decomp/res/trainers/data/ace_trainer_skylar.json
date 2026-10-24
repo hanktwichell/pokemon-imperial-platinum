@@ -10,45 +10,45 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_LOUDRED",
+            "species": "SPECIES_EXPLOUD",
             "form": 0,
-            "level": 58,
+            "level": 78,
             "item": null,
             "moves": [
                 "MOVE_HYPER_VOICE",
-                "MOVE_BITE",
-                "MOVE_SUPERSONIC",
-                "MOVE_SCREECH"
+                "MOVE_FLAMETHROWER",
+                "MOVE_THUNDERBOLT",
+                "MOVE_ICE_BEAM"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_RAMPARDOS",
             "form": 0,
-            "level": 59,
+            "level": 78,
             "item": null,
             "moves": [
                 "MOVE_HEAD_SMASH",
                 "MOVE_ZEN_HEADBUTT",
-                "MOVE_ANCIENT_POWER",
-                "MOVE_SCREECH"
+                "MOVE_CRUNCH",
+                "MOVE_HAMMER_ARM"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_PELIPPER",
             "form": 0,
-            "level": 58,
+            "level": 78,
             "item": null,
             "moves": [
-                "MOVE_AIR_SLASH",
-                "MOVE_WATER_PULSE",
-                "MOVE_ROOST",
-                "MOVE_QUICK_ATTACK"
+                "MOVE_HYDRO_PUMP",
+                "MOVE_HURRICANE",
+                "MOVE_ICE_BEAM",
+                "MOVE_SHOCK_WAVE"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

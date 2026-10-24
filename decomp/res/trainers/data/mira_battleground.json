@@ -13,73 +13,87 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_PORYGON_Z",
+            "species": "SPECIES_TOGEKISS",
             "form": 0,
-            "level": 61,
-            "item": "ITEM_NONE",
+            "level": 81,
+            "item": "ITEM_WISE_GLASSES",
             "moves": [
-                "MOVE_TRI_ATTACK",
-                "MOVE_PSYCHIC",
-                "MOVE_THUNDERBOLT",
-                "MOVE_DARK_PULSE"
+                "MOVE_MOONBLAST",
+                "MOVE_HURRICANE",
+                "MOVE_AURA_SPHERE",
+                "MOVE_NASTY_PLOT"
             ],
-            "iv_scale": 200,
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_GENGAR",
             "form": 0,
-            "level": 61,
-            "item": "ITEM_NONE",
+            "level": 81,
+            "item": "ITEM_POISON_BARB",
             "moves": [
                 "MOVE_SHADOW_BALL",
-                "MOVE_PSYCHIC",
+                "MOVE_HYPNOSIS",
                 "MOVE_SLUDGE_BOMB",
                 "MOVE_ENERGY_BALL"
             ],
-            "iv_scale": 200,
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_EXEGGUTOR",
+            "form": 0,
+            "level": 81,
+            "item": "ITEM_WHITE_HERB",
+            "moves": [
+                "MOVE_LEAF_STORM",
+                "MOVE_PSYCHIC",
+                "MOVE_SLEEP_POWDER",
+                "MOVE_REFLECT"
+            ],
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_MAGNEZONE",
             "form": 0,
-            "level": 62,
-            "item": "ITEM_NONE",
+            "level": 81,
+            "item": "ITEM_ZOOM_LENS",
             "moves": [
                 "MOVE_THUNDER",
                 "MOVE_FLASH_CANNON",
-                "MOVE_THUNDER_WAVE",
+                "MOVE_BUG_BUZZ",
                 "MOVE_HYPER_BEAM"
             ],
-            "iv_scale": 200,
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_TOGEKISS",
+            "species": "SPECIES_PORYGON_Z",
             "form": 0,
-            "level": 63,
-            "item": "ITEM_NONE",
+            "level": 81,
+            "item": "ITEM_SILK_SCARF",
             "moves": [
-                "MOVE_EXTREME_SPEED",
-                "MOVE_AIR_SLASH",
-                "MOVE_AURA_SPHERE",
-                "MOVE_PSYCHIC"
+                "MOVE_HYPER_BEAM",
+                "MOVE_THUNDERBOLT",
+                "MOVE_ICE_BEAM",
+                "MOVE_GRAVITY"
             ],
-            "iv_scale": 200,
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_ALAKAZAM",
             "form": 0,
-            "level": 65,
-            "item": "ITEM_SITRUS_BERRY",
+            "level": 82,
+            "item": "ITEM_LIFE_ORB",
             "moves": [
                 "MOVE_PSYCHIC",
                 "MOVE_FOCUS_BLAST",
-                "MOVE_CALM_MIND",
-                "MOVE_HYPER_BEAM"
+                "MOVE_SHADOW_BALL",
+                "MOVE_GRASS_KNOT"
             ],
-            "iv_scale": 200,
+            "iv_scale": 255,
             "ball_seal": 0
         }
     ],

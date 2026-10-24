@@ -4,46 +4,54 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
-        "AI_FLAG_PRIORITIZE_EXTREMES"
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MACHOKE",
+            "species": "SPECIES_MACHOP",
             "form": 0,
-            "level": 23,
+            "level": 33,
             "item": null,
-            "moves": [
-                "MOVE_KARATE_CHOP",
-                "MOVE_LEER",
-                "MOVE_FORESIGHT"
-            ],
-            "iv_scale": 40,
+            "moves": null,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_MACHOKE",
+            "species": "SPECIES_MEDITITE",
             "form": 0,
-            "level": 25,
+            "level": 33,
             "item": null,
-            "moves": [
-                "MOVE_LOW_KICK",
-                "MOVE_FORESIGHT"
-            ],
-            "iv_scale": 40,
+            "moves": null,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_MACHOKE",
+            "species": "SPECIES_CROAGUNK",
             "form": 0,
-            "level": 27,
+            "level": 33,
             "item": null,
-            "moves": [
-                "MOVE_SUBMISSION",
-                "MOVE_LEER",
-                "MOVE_FORESIGHT"
-            ],
-            "iv_scale": 40,
+            "moves": null,
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MANKEY",
+            "form": 0,
+            "level": 33,
+            "item": null,
+            "moves": null,
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MAKUHITA",
+            "form": 0,
+            "level": 33,
+            "item": null,
+            "moves": null,
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

@@ -10,21 +10,45 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_DRATINI",
+            "species": "SPECIES_DRAGONAIR",
             "form": 0,
-            "level": 52,
+            "level": 65,
             "item": null,
-            "moves": null,
-            "iv_scale": 50,
+            "moves": [
+                "MOVE_FLAMETHROWER",
+                "MOVE_ICE_BEAM",
+                "MOVE_THUNDERBOLT",
+                "MOVE_DRAGON_PULSE"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_GABITE",
+            "species": "SPECIES_SALAMENCE",
             "form": 0,
-            "level": 56,
+            "level": 65,
             "item": null,
-            "moves": null,
-            "iv_scale": 50,
+            "moves": [
+                "MOVE_OUTRAGE",
+                "MOVE_FLY",
+                "MOVE_HYDRO_PUMP",
+                "MOVE_FLAMETHROWER"
+            ],
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_KINGDRA",
+            "form": 0,
+            "level": 65,
+            "item": null,
+            "moves": [
+                "MOVE_WATERFALL",
+                "MOVE_OUTRAGE",
+                "MOVE_ICE_BEAM",
+                "MOVE_DRAGON_DANCE"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

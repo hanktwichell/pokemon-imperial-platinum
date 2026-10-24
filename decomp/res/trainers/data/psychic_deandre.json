@@ -4,22 +4,51 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_DUSKNOIR",
+            "species": "SPECIES_DUSCLOPS",
             "form": 0,
-            "level": 56,
+            "level": 64,
             "item": null,
             "moves": [
+                "MOVE_TOXIC",
                 "MOVE_SHADOW_PUNCH",
+                "MOVE_ICE_BEAM",
+                "MOVE_ROCK_SLIDE"
+            ],
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SABLEYE",
+            "form": 0,
+            "level": 64,
+            "item": null,
+            "moves": [
+                "MOVE_SHADOW_CLAW",
+                "MOVE_KNOCK_OFF",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_RECOVER"
+            ],
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_DUSKNOIR",
+            "form": 0,
+            "level": 64,
+            "item": null,
+            "moves": [
+                "MOVE_SHADOW_FORCE",
+                "MOVE_ROCK_SLIDE",
                 "MOVE_FIRE_PUNCH",
-                "MOVE_ICE_PUNCH",
                 "MOVE_THUNDER_PUNCH"
             ],
-            "iv_scale": 0,
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

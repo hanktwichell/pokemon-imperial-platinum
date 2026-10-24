@@ -4,28 +4,29 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
-        "AI_FLAG_PRIORITIZE_EXTREMES"
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
             "species": "SPECIES_BRELOOM",
             "form": 0,
-            "level": 58,
+            "level": 78,
             "item": null,
             "moves": [
                 "MOVE_SEED_BOMB",
                 "MOVE_MACH_PUNCH",
-                "MOVE_SKY_UPPERCUT",
+                "MOVE_THUNDER_PUNCH",
                 "MOVE_SPORE"
             ],
-            "iv_scale": 30,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_TOXICROAK",
             "form": 0,
-            "level": 58,
+            "level": 78,
             "item": null,
             "moves": [
                 "MOVE_SLUDGE_BOMB",
@@ -33,7 +34,21 @@
                 "MOVE_FOCUS_BLAST",
                 "MOVE_DARK_PULSE"
             ],
-            "iv_scale": 30,
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_HARIYAMA",
+            "form": 0,
+            "level": 78,
+            "item": null,
+            "moves": [
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_BULK_UP",
+                "MOVE_SMELLING_SALT",
+                "MOVE_EARTHQUAKE"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

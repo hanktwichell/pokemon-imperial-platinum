@@ -13,73 +13,87 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SKARMORY",
+            "species": "SPECIES_BRONZONG",
             "form": 0,
-            "level": 61,
-            "item": "ITEM_NONE",
+            "level": 81,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_NIGHT_SLASH",
-                "MOVE_DRILL_PECK",
-                "MOVE_ROCK_TOMB",
-                "MOVE_STEALTH_ROCK"
-            ],
-            "iv_scale": 200,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_STEELIX",
-            "form": 0,
-            "level": 61,
-            "item": "ITEM_NONE",
-            "moves": [
+                "MOVE_TOXIC",
+                "MOVE_PROTECT",
                 "MOVE_GYRO_BALL",
-                "MOVE_ICE_FANG",
-                "MOVE_DRAGON_BREATH",
-                "MOVE_SANDSTORM"
+                "MOVE_ZEN_HEADBUTT"
             ],
-            "iv_scale": 200,
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_MAGNEZONE",
             "form": 0,
-            "level": 62,
-            "item": "ITEM_NONE",
+            "level": 81,
+            "item": "ITEM_WISE_GLASSES",
             "moves": [
-                "MOVE_FLASH_CANNON",
                 "MOVE_THUNDERBOLT",
-                "MOVE_SUPERSONIC",
-                "MOVE_THUNDER_WAVE"
+                "MOVE_FLASH_CANNON",
+                "MOVE_BUG_BUZZ",
+                "MOVE_LIGHT_SCREEN"
             ],
-            "iv_scale": 200,
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_BASTIODON",
+            "species": "SPECIES_STEELIX",
             "form": 0,
-            "level": 63,
-            "item": "ITEM_NONE",
+            "level": 81,
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
-                "MOVE_METAL_BURST",
-                "MOVE_ANCIENT_POWER",
-                "MOVE_IRON_DEFENSE",
-                "MOVE_REST"
+                "MOVE_EARTHQUAKE",
+                "MOVE_IRON_TAIL",
+                "MOVE_STONE_EDGE",
+                "MOVE_FIRE_FANG"
             ],
-            "iv_scale": 200,
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_FORRETRESS",
+            "form": 0,
+            "level": 81,
+            "item": "ITEM_MUSCLE_BAND",
+            "moves": [
+                "MOVE_POWER_TRICK",
+                "MOVE_DRILL_RUN",
+                "MOVE_GYRO_BALL",
+                "MOVE_EXPLOSION"
+            ],
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_AGGRON",
             "form": 0,
-            "level": 65,
-            "item": "ITEM_SITRUS_BERRY",
+            "level": 81,
+            "item": "ITEM_HARD_STONE",
+            "moves": [
+                "MOVE_HEAD_SMASH",
+                "MOVE_DRAGON_RUSH",
+                "MOVE_EARTHQUAKE",
+                "MOVE_IRON_TAIL"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_BASTIODON",
+            "form": 0,
+            "level": 82,
+            "item": "ITEM_FOCUS_SASH",
             "moves": [
                 "MOVE_METAL_BURST",
+                "MOVE_FISSURE",
                 "MOVE_STONE_EDGE",
-                "MOVE_EARTHQUAKE",
-                "MOVE_AVALANCHE"
+                "MOVE_IRON_TAIL"
             ],
-            "iv_scale": 200,
+            "iv_scale": 255,
             "ball_seal": 0
         }
     ],

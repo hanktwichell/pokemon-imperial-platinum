@@ -12,16 +12,16 @@
         {
             "species": "SPECIES_TAUROS",
             "form": 0,
-            "level": 61,
+            "level": 78,
             "item": null,
             "moves": [
                 "MOVE_THRASH",
                 "MOVE_ZEN_HEADBUTT",
-                "MOVE_SWAGGER",
+                "MOVE_MEGAHORN",
                 "MOVE_PAYBACK"
             ],
-            "iv_scale": 50,
-            "ball_seal": 12
+            "iv_scale": 250,
+            "ball_seal": 0
         }
     ],
     "messages": [

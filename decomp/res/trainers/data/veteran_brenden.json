@@ -12,43 +12,43 @@
         {
             "species": "SPECIES_FORRETRESS",
             "form": 0,
-            "level": 54,
+            "level": 66,
             "item": null,
             "moves": [
-                "MOVE_FLASH_CANNON",
-                "MOVE_ROCK_SLIDE",
-                "MOVE_STEALTH_ROCK",
-                "MOVE_TOXIC_SPIKES"
+                "MOVE_GYRO_BALL",
+                "MOVE_PAYBACK",
+                "MOVE_PROTECT",
+                "MOVE_BUG_BITE"
             ],
-            "iv_scale": 100,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_GYARADOS",
+            "species": "SPECIES_KABUTOPS",
             "form": 0,
-            "level": 54,
+            "level": 66,
+            "item": null,
+            "moves": [
+                "MOVE_STONE_EDGE",
+                "MOVE_AQUA_TAIL",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_AQUA_JET"
+            ],
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_DONPHAN",
+            "form": 0,
+            "level": 66,
             "item": null,
             "moves": [
                 "MOVE_EARTHQUAKE",
-                "MOVE_AQUA_TAIL",
-                "MOVE_ICE_FANG",
-                "MOVE_DRAGON_PULSE"
+                "MOVE_ICE_SHARD",
+                "MOVE_PLAY_ROUGH",
+                "MOVE_HEAD_SMASH"
             ],
-            "iv_scale": 100,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_HIPPOWDON",
-            "form": 0,
-            "level": 54,
-            "item": null,
-            "moves": [
-                "MOVE_DIG",
-                "MOVE_CRUNCH",
-                "MOVE_PROTECT",
-                "MOVE_REST"
-            ],
-            "iv_scale": 100,
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

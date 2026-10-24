@@ -10,21 +10,59 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_ALTARIA",
+            "species": "SPECIES_KINGDRA",
             "form": 0,
-            "level": 45,
+            "level": 64,
             "item": null,
-            "moves": null,
-            "iv_scale": 50,
+            "moves": [
+                "MOVE_MUDDY_WATER",
+                "MOVE_DRAGON_PULSE",
+                "MOVE_ICE_BEAM",
+                "MOVE_SIGNAL_BEAM"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_GABITE",
+            "species": "SPECIES_ALTARIA",
             "form": 0,
-            "level": 47,
+            "level": 64,
             "item": null,
-            "moves": null,
-            "iv_scale": 50,
+            "moves": [
+                "MOVE_DRAGON_PULSE",
+                "MOVE_FLAMETHROWER",
+                "MOVE_ICE_BEAM",
+                "MOVE_HURRICANE"
+            ],
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SALAMENCE",
+            "form": 0,
+            "level": 64,
+            "item": null,
+            "moves": [
+                "MOVE_DRAGON_CLAW",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_FIRE_FANG",
+                "MOVE_THUNDER_FANG"
+            ],
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_CHARIZARD",
+            "form": 0,
+            "level": 64,
+            "item": null,
+            "moves": [
+                "MOVE_FLAMETHROWER",
+                "MOVE_DRAGON_PULSE",
+                "MOVE_HURRICANE",
+                "MOVE_CRUNCH"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

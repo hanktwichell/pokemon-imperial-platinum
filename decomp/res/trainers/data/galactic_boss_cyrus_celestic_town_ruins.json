@@ -1,9 +1,7 @@
 {
     "name": "Cyrus",
     "class": "TRAINER_CLASS_GALACTIC_BOSS",
-    "items": [
-        "ITEM_HYPER_POTION"
-    ],
+    "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
@@ -12,45 +10,59 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SNEASEL",
+            "species": "SPECIES_CROBAT",
             "form": 0,
-            "level": 34,
-            "item": "ITEM_NONE",
+            "level": 45,
+            "item": "ITEM_WISE_GLASSES",
             "moves": [
-                "MOVE_SLASH",
-                "MOVE_ICE_PUNCH",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_SCREECH"
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_AIR_SLASH",
+                "MOVE_GIGA_DRAIN",
+                "MOVE_HYPNOSIS"
             ],
-            "iv_scale": 250,
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_GOLBAT",
+            "species": "SPECIES_HONCHKROW",
             "form": 0,
-            "level": 34,
-            "item": "ITEM_NONE",
+            "level": 45,
+            "item": "ITEM_SCOPE_LENS",
             "moves": [
-                "MOVE_POISON_FANG",
-                "MOVE_AIR_CUTTER",
-                "MOVE_BITE",
-                "MOVE_SUPERSONIC"
+                "MOVE_BRAVE_BIRD",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_SWAGGER",
+                "MOVE_TORMENT"
             ],
-            "iv_scale": 250,
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_MURKROW",
+            "species": "SPECIES_MAGNEZONE",
             "form": 0,
-            "level": 36,
-            "item": "ITEM_SITRUS_BERRY",
+            "level": 45,
+            "item": "ITEM_LIFE_ORB",
             "moves": [
-                "MOVE_DRILL_PECK",
-                "MOVE_NIGHT_SHADE",
-                "MOVE_ASTONISH",
-                "MOVE_FAINT_ATTACK"
+                "MOVE_THUNDERBOLT",
+                "MOVE_FLASH_CANNON",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_MIRROR_COAT"
             ],
-            "iv_scale": 250,
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_WEAVILE",
+            "form": 0,
+            "level": 46,
+            "item": "ITEM_EXPERT_BELT",
+            "moves": [
+                "MOVE_FAINT_ATTACK",
+                "MOVE_ICICLE_CRASH",
+                "MOVE_ICE_SHARD",
+                "MOVE_SWORDS_DANCE"
+            ],
+            "iv_scale": 255,
             "ball_seal": 0
         }
     ],

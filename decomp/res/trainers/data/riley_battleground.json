@@ -15,71 +15,85 @@
         {
             "species": "SPECIES_ABSOL",
             "form": 0,
-            "level": 61,
-            "item": "ITEM_NONE",
+            "level": 81,
+            "item": "ITEM_SCOPE_LENS",
             "moves": [
                 "MOVE_PSYCHO_CUT",
                 "MOVE_NIGHT_SLASH",
                 "MOVE_SWORDS_DANCE",
-                "MOVE_QUICK_ATTACK"
+                "MOVE_MEGAHORN"
             ],
-            "iv_scale": 200,
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_URSARING",
             "form": 0,
-            "level": 61,
-            "item": "ITEM_NONE",
+            "level": 81,
+            "item": "ITEM_TOXIC_ORB",
             "moves": [
-                "MOVE_AVALANCHE",
-                "MOVE_SLASH",
-                "MOVE_AERIAL_ACE",
-                "MOVE_SHADOW_CLAW"
+                "MOVE_PROTECT",
+                "MOVE_THRASH",
+                "MOVE_PLAY_ROUGH",
+                "MOVE_HAMMER_ARM"
             ],
-            "iv_scale": 200,
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_METAGROSS",
             "form": 0,
-            "level": 62,
-            "item": "ITEM_NONE",
+            "level": 81,
+            "item": "ITEM_MUSCLE_BAND",
             "moves": [
                 "MOVE_METEOR_MASH",
                 "MOVE_ZEN_HEADBUTT",
                 "MOVE_HAMMER_ARM",
                 "MOVE_BULLET_PUNCH"
             ],
-            "iv_scale": 200,
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_SALAMENCE",
             "form": 0,
-            "level": 63,
-            "item": "ITEM_NONE",
+            "level": 81,
+            "item": "ITEM_POWER_HERB",
             "moves": [
-                "MOVE_DRAGON_CLAW",
-                "MOVE_CRUNCH",
-                "MOVE_FIRE_FANG",
-                "MOVE_THUNDER_FANG"
+                "MOVE_DRAGON_DANCE",
+                "MOVE_OUTRAGE",
+                "MOVE_FIRE_BLAST",
+                "MOVE_FLY"
             ],
-            "iv_scale": 200,
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SLAKING",
+            "form": 0,
+            "level": 81,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_BODY_SLAM",
+                "MOVE_PLAY_ROUGH",
+                "MOVE_HAMMER_ARM",
+                "MOVE_EARTHQUAKE"
+            ],
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_LUCARIO",
             "form": 0,
-            "level": 65,
-            "item": "ITEM_SITRUS_BERRY",
+            "level": 82,
+            "item": "ITEM_EXPERT_BELT",
             "moves": [
+                "MOVE_HI_JUMP_KICK",
+                "MOVE_METEOR_MASH",
                 "MOVE_EXTREME_SPEED",
-                "MOVE_CLOSE_COMBAT",
-                "MOVE_BONE_RUSH",
-                "MOVE_BLAZE_KICK"
+                "MOVE_CRUNCH"
             ],
-            "iv_scale": 200,
+            "iv_scale": 255,
             "ball_seal": 0
         }
     ],

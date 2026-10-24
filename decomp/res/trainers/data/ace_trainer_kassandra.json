@@ -12,43 +12,43 @@
         {
             "species": "SPECIES_JUMPLUFF",
             "form": 0,
-            "level": 58,
+            "level": 78,
             "item": null,
             "moves": [
                 "MOVE_MEMENTO",
-                "MOVE_GIGA_DRAIN",
+                "MOVE_ENERGY_BALL",
                 "MOVE_TOXIC",
-                "MOVE_BOUNCE"
+                "MOVE_HURRICANE"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_ONIX",
+            "species": "SPECIES_STEELIX",
             "form": 0,
-            "level": 58,
+            "level": 78,
             "item": null,
             "moves": [
                 "MOVE_STONE_EDGE",
                 "MOVE_EARTHQUAKE",
                 "MOVE_IRON_TAIL",
-                "MOVE_DRAGON_BREATH"
+                "MOVE_THUNDER_FANG"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_AMPHAROS",
             "form": 0,
-            "level": 59,
+            "level": 78,
             "item": null,
             "moves": [
-                "MOVE_THUNDER_PUNCH",
+                "MOVE_THUNDERBOLT",
                 "MOVE_POWER_GEM",
                 "MOVE_SIGNAL_BEAM",
                 "MOVE_FIRE_PUNCH"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

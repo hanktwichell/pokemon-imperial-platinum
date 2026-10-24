@@ -12,11 +12,38 @@
         {
             "species": "SPECIES_GABITE",
             "form": 0,
-            "level": 46,
+            "level": 58,
             "item": null,
             "moves": null,
-            "iv_scale": 50,
-            "ball_seal": 17
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SHELGON",
+            "form": 0,
+            "level": 58,
+            "item": null,
+            "moves": null,
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_VIBRAVA",
+            "form": 0,
+            "level": 58,
+            "item": null,
+            "moves": null,
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_DRAGONAIR",
+            "form": 0,
+            "level": 58,
+            "item": null,
+            "moves": null,
+            "iv_scale": 200,
+            "ball_seal": 0
         }
     ],
     "messages": [

@@ -4,35 +4,51 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
-        "AI_FLAG_PRIORITIZE_EXTREMES"
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MANKEY",
+            "species": "SPECIES_PRIMEAPE",
             "form": 0,
-            "level": 51,
+            "level": 64,
             "item": null,
-            "moves": null,
-            "iv_scale": 30,
+            "moves": [
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_OUTRAGE"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_MACHOKE",
+            "species": "SPECIES_BRELOOM",
             "form": 0,
-            "level": 53,
+            "level": 64,
             "item": null,
-            "moves": null,
-            "iv_scale": 30,
+            "moves": [
+                "MOVE_SEED_BOMB",
+                "MOVE_SKY_UPPERCUT",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_THUNDER_PUNCH"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_INFERNAPE",
             "form": 0,
-            "level": 55,
+            "level": 64,
             "item": null,
-            "moves": null,
-            "iv_scale": 30,
+            "moves": [
+                "MOVE_FLARE_BLITZ",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_GRASS_KNOT",
+                "MOVE_FAKE_OUT"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

@@ -3,44 +3,64 @@
     "class": "TRAINER_CLASS_BREEDER_FEMALE",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_BUDEW",
+            "species": "SPECIES_AZURILL",
             "form": 0,
-            "level": 20,
+            "level": 26,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_MIME_JR",
+            "species": "SPECIES_TOGEPI",
             "form": 0,
-            "level": 20,
+            "level": 26,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_CLEFFA",
             "form": 0,
-            "level": 20,
+            "level": 26,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_EEVEE",
+            "species": "SPECIES_IGGLYBUFF",
             "form": 0,
-            "level": 20,
+            "level": 26,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SMOOCHUM",
+            "form": 0,
+            "level": 26,
+            "item": null,
+            "moves": null,
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_BUDEW",
+            "form": 0,
+            "level": 26,
+            "item": null,
+            "moves": null,
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],
