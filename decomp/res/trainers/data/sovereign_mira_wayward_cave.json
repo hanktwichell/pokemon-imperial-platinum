@@ -1,0 +1,80 @@
+{
+    "name": "Mira",
+    "class": "TRAINER_CLASS_TRAINER_MIRA",
+    "items": [
+        "ITEM_HYPER_POTION"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_TOGETIC",
+            "form": 0,
+            "level": 27,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_LUSTER_PURGE",
+                "MOVE_AIR_CUTTER",
+                "MOVE_SOFTBOILED",
+                "MOVE_SWEET_KISS"
+            ],
+            "iv_scale": 253,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_HAUNTER",
+            "form": 0,
+            "level": 27,
+            "item": "ITEM_SPELL_TAG",
+            "moves": [
+                "MOVE_SHADOW_BALL",
+                "MOVE_DOUBLE_TEAM",
+                "MOVE_HYPNOSIS",
+                "MOVE_CURSE"
+            ],
+            "iv_scale": 247,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_PORYGON2",
+            "form": 0,
+            "level": 27,
+            "item": "ITEM_EXPERT_BELT",
+            "moves": [
+                "MOVE_TRI_ATTACK",
+                "MOVE_CHARGE_BEAM",
+                "MOVE_SIGNAL_BEAM",
+                "MOVE_RECOVER"
+            ],
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_KADABRA",
+            "form": 0,
+            "level": 28,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_PSYBEAM",
+                "MOVE_GRASS_KNOT",
+                "MOVE_LUSTER_PURGE",
+                "MOVE_RECOVER"
+            ],
+            "iv_scale": 251,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Ah!\n",
+                "Did Mira make a mistake?\n"
+            ]
+        }
+    ]
+}

@@ -4,6 +4,33 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 5) — Mira's quest in Wayward Cave (TM85), as in Renegade
+
+- **Mira's story is Renegade's.** She now waits just inside the hidden entrance under the Cycling Road, at (38, 42).
+  - She battles the player first. Her team is `res/trainers/data/sovereign_mira_wayward_cave.json`
+    (`TRAINER_SOVEREIGN_MIRA_WAYWARD_CAVE`): Togetic, Haunter and Porygon2 at Lv. 27, Kadabra at Lv. 28.
+  - She then joins as the tag partner, as before, and asks the player to find the Crimson Ribbon she lost deep in the
+    cave. It's in a ball where she used to be (72, 11), next to Necrozma's chamber.
+  - Heading back to the exit without the ribbon, she stays behind to keep searching. Coming back for her, she rejoins.
+  - With the ribbon, at the exit, she gives TM85 (Dazzling Gleam) before she leaves.
+  - Leaving the cave another way (Escape Rope, Fly) leaves her waiting at her spot. Finding the ribbon before meeting
+    her, or while she waits, works too.
+  - `VAR_SOVEREIGN_MIRA_QUEST_STATE` tracks it: 1 following, 2 waiting, 3 ribbon found, 4 done.
+- **A Gabite (Lv. 25) waits by the stairs to B1F** in the main part of the cave, once. Beat it, catch it or run, and
+  it's gone; losing brings it back.
+- **The cave's eleven Rock Smash rocks are gone**, and the TM26 ball (King's Rock in Renegade) moved a step, as in
+  Renegade. Two trainers see two tiles instead of one.
+- **No ball keeps a Platinum TM any more.** With Mira's TM85 in, `import_renegade_items.py` gives Valor Lakefront's
+  ball Renegade's Sharp Beak. Every TM is still obtainable in the main game.
+
+Verified in the test build, with a Lv. 1 team for Mira so the battle stays short:
+- Mira's battle and joining, her staying behind at (40, 42) and rejoining at (39, 42);
+- the ribbon picked up while she waited, then "That's it!" when the player came back;
+- the walk to the exit, and TM85 at the exit;
+- the Gabite battle, and the Gabite gone after running.
+
+Mira's real team was seen in battle (Togetic, Haunter, Kadabra). The release build passes.
+
 ## E10 (part 4) — Renegade's TM gifts, trades, the evolution-item seller, Aaron at the Route 208 gate
 
 Renegade's NPCs are read from its ROM with `tools/design/renegade_rom.py` (new): it disassembles a map's scripts,

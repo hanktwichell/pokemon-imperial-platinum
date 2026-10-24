@@ -2,14 +2,21 @@
   "key": 42051,
   "messages": [
     {
-      "id": "WaywardCave1F_Text_PleaseTakeMeToTheExit",
+      "id": "WaywardCave1F_Text_SovereignPleaseHelpFindMyItem",
       "en_US": [
+        "Ah! I’m very sorry!\r",
+        "I’m so scared...\r",
+        "I had my KADABRA send out a distress\n",
+        "signal, but I didn’t think anybody\f",
+        "would respond...\r",
         "I’m Mira...\r",
         "I was catching Pokémon, and then\n",
-        "I got lost...\r",
-        "I’m so scared...\r",
-        "Please!\n",
-        "Please take me to the exit!\r"
+        "I dropped something really valuable\f",
+        "to me, and then I got lost...\r",
+        "Please! Can you help me find my\n",
+        "lost item?\r",
+        "Mira thinks she dropped it really far\n",
+        "inside this cave!\r"
       ]
     },
     {
@@ -42,13 +49,13 @@
       ]
     },
     {
-      "id": "WaywardCave1F_Text_TheresTheExit",
+      "id": "WaywardCave1F_Text_SovereignTheresTheExit",
       "en_US": [
         "Mira: Oh! There’s the exit!\r",
         "I want to get tougher so I\n",
         "won’t be such a scaredy-cat.\r",
-        "{STRVAR_1 3, 0, 0}, bye-bye!\n",
-        "Thank you!\r"
+        "{STRVAR_1 3, 0, 0}, Mira has a great gift for\n",
+        "you, for all of your help!\r"
       ]
     },
     {
@@ -88,6 +95,75 @@
         "your Pokémon?\r",
         "Yes! That has to be it!\n",
         "Mira will try like you!"
+      ]
+    },
+    {
+      "id": "WaywardCave1F_Text_SovereignGabiteCry",
+      "en_US": [
+        "Keeeeeul!"
+      ]
+    },
+    {
+      "id": "WaywardCave1F_Text_SovereignStayAwayFromMira",
+      "en_US": [
+        "Eek!\r",
+        "Stay away from Mira!\r"
+      ]
+    },
+    {
+      "id": "WaywardCave1F_Text_SovereignAreYouLeaving",
+      "en_US": [
+        "Mira: Oh... Are you leaving?\n",
+        "I haven’t found my item yet...\r",
+        "I’ll keep searching until you\n",
+        "return here, {STRVAR_1 3, 0, 0}.\r",
+        "Please don’t be long!\r"
+      ]
+    },
+    {
+      "id": "WaywardCave1F_Text_SovereignYouCameBack",
+      "en_US": [
+        "Mira: Yay! I’m so happy that\n",
+        "you came back, {STRVAR_1 3, 0, 0}!\r",
+        "Let’s keep searching! Mira is sure\n",
+        "we’ll find her item soon...\r"
+      ]
+    },
+    {
+      "id": "WaywardCave1F_Text_SovereignFoundCrimsonRibbon",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} found\n",
+        "a Crimson Ribbon!"
+      ]
+    },
+    {
+      "id": "WaywardCave1F_Text_SovereignThatsMyRibbon",
+      "en_US": [
+        "Mira: Oh! {STRVAR_1 3, 0, 0}! That’s it! That’s\n",
+        "Mira’s special ribbon that she lost!\r",
+        "Thank you! Now, let’s get out of\n",
+        "this scary cave!\r",
+        "You know where the exit is, right?\n",
+        "It’s the same way you came in!"
+      ]
+    },
+    {
+      "id": "WaywardCave1F_Text_SovereignTM85IsDazzlingGleam",
+      "en_US": [
+        "Mira: That TM contains Dazzling Gleam!\n",
+        "It’s a rare Fairy-type move that\f",
+        "a lot of Pokémon can use!\r",
+        "Okay! Bye-bye! See you again some\n",
+        "other time!\r"
+      ]
+    },
+    {
+      "id": "WaywardCave1F_Text_SovereignThankYouLetsGetOut",
+      "en_US": [
+        "Mira: Thank you!\r",
+        "Now, let’s get out of this scary cave!\r",
+        "You know where the exit is, right?\n",
+        "It’s the same way you came in!"
       ]
     }
   ]

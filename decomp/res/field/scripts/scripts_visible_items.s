@@ -831,7 +831,7 @@ VisibleItems_Route204South_ParlyzHeal:
     End
 
 VisibleItems_ValorLakefront_TM85:
-    SetVar VAR_0x8008, ITEM_TM85
+    SetVar VAR_0x8008, ITEM_SHARP_BEAK
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
