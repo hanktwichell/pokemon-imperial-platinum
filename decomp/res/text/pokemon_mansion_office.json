@@ -209,6 +209,54 @@
     {
       "id": "PokemonMansionOffice_Text_PlayerPutBookBack",
       "en_US": "{STRVAR_1 3, 0, 0} put the book back."
+    },
+    {
+      "id": "PokemonMansionOffice_Text_SovereignBacklotEgg",
+      "en_US": [
+        "Backlot: Muhohoho! My lovely assistant\n",
+        "beside me has been taking care of the\f",
+        "Egg I mentioned.\r",
+        "Do speak to her if you would like to\n",
+        "see it."
+      ]
+    },
+    {
+      "id": "PokemonMansionOffice_Text_SovereignMaidThanks",
+      "en_US": [
+        "Trainer, thank you for defeating the\n",
+        "awful man just outside this room.\r",
+        "I would be beside myself if this\n",
+        "precious Egg was taken by them...\r",
+        "As my master wishes, here it is.\n",
+        "Isn’t it the most curious blue?\r",
+        "...Oh! Oh my! It’s moving!\n",
+        "It’s hatching!\r"
+      ]
+    },
+    {
+      "id": "PokemonMansionOffice_Text_SovereignMaidFrightened",
+      "en_US": [
+        "Oh, no! The poor little thing is\n",
+        "frightened by all of today’s commotion!\r"
+      ]
+    },
+    {
+      "id": "PokemonMansionOffice_Text_SovereignMaidStillFrightened",
+      "en_US": [
+        "The little one still won’t calm down.\r",
+        "I think it trusts you more than any\n",
+        "of us, Trainer."
+      ]
+    },
+    {
+      "id": "PokemonMansionOffice_Text_SovereignMaidTakeCare",
+      "en_US": [
+        "It seems to have taken to you!\n",
+        "Please take good care of it.\r",
+        "Master worked extremely hard to\n",
+        "locate that Egg. It is truly one of\f",
+        "a kind."
+      ]
     }
   ]
 }

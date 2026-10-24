@@ -34,7 +34,7 @@ by-map review: no one has yet checked each spot's exact tiles against the NPCs, 
 | **Veilstone City** | Deoxys by the meteorites (731, 630); Kubfu in the Gym (13, 17) | The Gym's punching-bag puzzle, the department store, the Galactic building | Kubfu inside the Gym: check it doesn't block the Gym puzzle |
 | **Sunyshore City** | Magearna in **Volkner's room** (11, 13); Victini on Vista Lighthouse's top floor | **Volkner** (Gym battles and rematches), Flint, the lighthouse binoculars | Magearna next to Volkner: check it doesn't block his rematch or the Gym's exit |
 | **Old Chateau** | Marshadow, dining area (21, 9); Rotom, TV room (night) | The ghost girl and butler events | Different rooms. Fine |
-| **Route 212** | Wo-Chien, north (464, 788) (stakes 1–2); Zarude, south marsh | Pokémon Mansion, Renegade's Mansion grunts (not ported yet) | Check the grunts' spots when they're ported |
+| **Route 212** | Wo-Chien, north (464, 788) (stakes 1–2); Zarude, south marsh | Pokémon Mansion, Renegade's Mansion grunts (ported, E10 part 24: three on the route, two at the gate) | Fine: the grunts stand 8 or more tiles from Wo-Chien and its stakes, and they belong to the story while Wo-Chien is post-game |
 
 ## Maps with one legendary
 

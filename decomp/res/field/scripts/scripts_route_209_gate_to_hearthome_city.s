@@ -54,6 +54,37 @@ Route209GateToHearthomeCity_PostRivalBattle:
     BufferPlayerName 1
     Message Route209GateToHearthomeCity_Text_MyStrategyDoesntWork
     CloseMessage
+    @ Sovereign (E10, Renegade's Pokémon Mansion siege): a maid from the Pokémon Mansion runs in for help, and Barry
+    @ heads off to Route 212 instead of Route 209. The siege starts (VAR_SOVEREIGN_MANSION_SIEGE_STATE 1).
+    RemoveObject LOCALID_SOVEREIGN_MAID
+    SetObjectEventPos LOCALID_SOVEREIGN_MAID, 1, 7
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
+    AddObject LOCALID_SOVEREIGN_MAID
+    WaitSE SEQ_SE_DP_KAIDAN2_sseq
+    LockObject LOCALID_SOVEREIGN_MAID
+    Message Route209GateToHearthomeCity_Text_SovereignMaidHelp
+    WaitButton
+    CloseMessage
+    ApplyMovement LOCALID_PLAYER, Route209GateToHearthomeCity_SovereignMovement_Notice
+    ApplyMovement LOCALID_RIVAL, Route209GateToHearthomeCity_SovereignMovement_Notice
+    WaitMovement
+    ApplyMovement LOCALID_PLAYER, Route209GateToHearthomeCity_SovereignMovement_FaceWest
+    WaitMovement
+    Message Route209GateToHearthomeCity_Text_SovereignMaidThugs
+    CloseMessage
+    ApplyMovement LOCALID_SOVEREIGN_MAID, Route209GateToHearthomeCity_SovereignMovement_FaceWest
+    WaitMovement
+    Message Route209GateToHearthomeCity_Text_SovereignMaidInformEveryone
+    CloseMessage
+    PlaySE SEQ_SE_DP_KAIDAN2_sseq
+    RemoveObject LOCALID_SOVEREIGN_MAID
+    WaitSE SEQ_SE_DP_KAIDAN2_sseq
+    ApplyMovement LOCALID_PLAYER, Route209GateToHearthomeCity_SovereignMovement_FaceEast
+    WaitMovement
+    BufferRivalName 0
+    Message Route209GateToHearthomeCity_Text_SovereignRivalHelpTheLady
+    CloseMessage
+    SetVar VAR_SOVEREIGN_MANSION_SIEGE_STATE, 1
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     CallIfEq VAR_0x8005, 5, Route209GateToHearthomeCity_RivalLeaveZ5
     CallIfEq VAR_0x8005, 6, Route209GateToHearthomeCity_RivalLeaveZ6
@@ -163,35 +194,34 @@ Route209GateToHearthomeCity_Movement_RivalWalkToPlayerZ9:
 
     .balign 4, 0
 Route209GateToHearthomeCity_Movement_RivalLeaveZ5:
-    WalkFastEast 2
     WalkFastSouth 2
-    WalkFastEast 2
+    WalkFastWest 5
     EndMovement
 
     .balign 4, 0
 Route209GateToHearthomeCity_Movement_RivalLeaveZ6:
-    WalkFastEast 2
     WalkFastSouth
-    WalkFastEast 2
+    WalkFastWest 5
     EndMovement
 
     .balign 4, 0
 Route209GateToHearthomeCity_Movement_RivalLeaveZ7:
-    WalkFastEast 4
+    WalkFastNorth
+    WalkFastWest 2
+    WalkFastSouth
+    WalkFastWest 3
     EndMovement
 
     .balign 4, 0
 Route209GateToHearthomeCity_Movement_RivalLeaveZ8:
-    WalkFastEast 2
     WalkFastNorth
-    WalkFastEast 2
+    WalkFastWest 5
     EndMovement
 
     .balign 4, 0
 Route209GateToHearthomeCity_Movement_RivalLeaveZ9:
-    WalkFastEast 2
     WalkFastNorth 2
-    WalkFastEast 2
+    WalkFastWest 5
     EndMovement
 
     .balign 4, 0
@@ -199,4 +229,19 @@ Route209GateToHearthomeCity_Movement_RivalNoticePlayer:
     Delay8
     EmoteExclamationMark
     Delay8
+    EndMovement
+
+    .balign 4, 0
+Route209GateToHearthomeCity_SovereignMovement_Notice:
+    EmoteExclamationMark
+    EndMovement
+
+    .balign 4, 0
+Route209GateToHearthomeCity_SovereignMovement_FaceWest:
+    WalkOnSpotNormalWest
+    EndMovement
+
+    .balign 4, 0
+Route209GateToHearthomeCity_SovereignMovement_FaceEast:
+    WalkOnSpotNormalEast
     EndMovement

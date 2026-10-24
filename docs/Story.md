@@ -104,6 +104,7 @@ such NPC exists, a new one is placed (E11 finds them).
 |---|---|
 | Commander Mars (Valley Windworks) | Gumshoos (Route 205 South) |
 | Commander Jupiter (Eterna Building) | Ribombee (Floaroma Meadow), Vikavolt (Eterna Forest) |
+| Team Galactic at the Pokémon Mansion (Route 212 North, E10 part 24) | Mimikyu (Old Chateau) |
 | Galactic Boss Cyrus (Celestic Town) | Mimikyu (Old Chateau), Alolan Marowak (Lost Tower), Alolan Raticate (Galactic Warehouse), Lurantis (Great Marsh), Araquanid (Route 213) |
 | Saturn and Mars (the lakes) | Salazzle (Fuego Ironworks) |
 | Mars and Jupiter (Spear Pillar) | Kommo-o (Mt. Coronet) |
@@ -127,6 +128,9 @@ such NPC exists, a new one is placed (E11 finds them).
     Salazzle's level, set under Barry's cap.
   - **Mars and Jupiter:** the Spear Pillar grunts send the player back: "You couldn't even get past that KOMMO-O down
     on the mountain, huh?"
+  - **The Pokémon Mansion (E10 part 24, Renegade's siege):** the two grunts at the Mansion's door won't battle
+    before Mimikyu's trial, and send the player back: "Our grunts won't even go near the Old Chateau with that huge
+    MIMIKYU haunting it!"
   - **Victory Road:** Platinum has no check there (Waterfall is the real gate), so a new guard stands at the entrance.
     Without all eight Badges: "Only Trainers who have gathered all eight Badges may enter Victory Road." With them
     but before Togedemaru's trial: "But a huge TOGEDEMARU is sparking atop Sunyshore's Vista Lighthouse."

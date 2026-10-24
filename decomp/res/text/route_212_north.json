@@ -69,6 +69,108 @@
         "The items in the Bag can be\n",
         "reorganized by pressing SELECT."
       ]
+    },
+    {
+      "id": "Route212North_Text_SovereignGrunt1Intro",
+      "en_US": [
+        "Team Galactic will change the world!\n",
+        "But to do that, we need money!\r"
+      ]
+    },
+    {
+      "id": "Route212North_Text_SovereignGrunt1After",
+      "en_US": [
+        "Where better to get money from than\n",
+        "some crusty old mansion?"
+      ]
+    },
+    {
+      "id": "Route212North_Text_SovereignGrunt2Intro",
+      "en_US": [
+        "Isn’t the Pokémon Mansion just swell?\n",
+        "The owner is filthy rich!\r"
+      ]
+    },
+    {
+      "id": "Route212North_Text_SovereignGrunt2After",
+      "en_US": [
+        "There’s plenty of money to go around!\n",
+        "All for the glory of Team Galactic!"
+      ]
+    },
+    {
+      "id": "Route212North_Text_SovereignGrunt3Intro",
+      "en_US": [
+        "That mansion is like, totally cute.\n",
+        "It’s a shame we’re attacking it!\r"
+      ]
+    },
+    {
+      "id": "Route212North_Text_SovereignGrunt3After",
+      "en_US": [
+        "Did you hear the owner lets super\n",
+        "cute Pokémon play in the back garden?\r",
+        "I’m totally jealous.\n",
+        "We mostly get gross Bug Pokémon..."
+      ]
+    },
+    {
+      "id": "Route212North_Text_SovereignGateGruntsMimikyu",
+      "en_US": [
+        "Hold it right there, kid!\n",
+        "The Pokémon Mansion is closed today!\r",
+        "You want in? Fwahaha! Not a chance!\r",
+        "Our grunts won’t even go near the\n",
+        "Old Chateau with that huge MIMIKYU\f",
+        "haunting it! What could you do?"
+      ]
+    },
+    {
+      "id": "Route212North_Text_SovereignGateGrunt1",
+      "en_US": [
+        "This is the Pokémon Mansion!\n",
+        "The key to our victory!\r"
+      ]
+    },
+    {
+      "id": "Route212North_Text_SovereignGateGrunt2",
+      "en_US": [
+        "The path to our success!\n",
+        "The source of our salaries!\r"
+      ]
+    },
+    {
+      "id": "Route212North_Text_SovereignGateGruntsBegone",
+      "en_US": "{SIZE 200}Begone, intruder!!{SIZE 100}"
+    },
+    {
+      "id": "Route212North_Text_SovereignGateGrunt1Lost",
+      "en_US": [
+        "Our Galactic force wasn’t enough!\n",
+        "What do we do?\r"
+      ]
+    },
+    {
+      "id": "Route212North_Text_SovereignGateGrunt2Lost",
+      "en_US": [
+        "We must tell Commander Saturn that\n",
+        "we have an intruder in our midst!\r"
+      ]
+    },
+    {
+      "id": "Route212North_Text_SovereignRivalYo",
+      "en_US": "{STRVAR_1 3, 0, 0}: Yo, {STRVAR_1 3, 1, 0}!"
+    },
+    {
+      "id": "Route212North_Text_SovereignRivalEasyGoons",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: These Galactic goons are easy!\n",
+        "I’m cleaning their clocks out!\r",
+        "You dealt with the guards at the\n",
+        "mansion’s gate? Awesome!\r",
+        "Now, let’s move!\n",
+        "No time to waste!\r"
+      ]
     }
   ]
 }

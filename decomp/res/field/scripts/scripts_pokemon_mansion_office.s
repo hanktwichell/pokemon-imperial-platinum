@@ -10,14 +10,26 @@
     ScriptEntry PokemonMansionOffice_CoordEvent_BlockStatue
     ScriptEntry PokemonMansionOffice_Statue
     ScriptEntry PokemonMansionOffice_Book
+    ScriptEntry PokemonMansionOffice_SovereignMaid
+    ScriptEntry PokemonMansionOffice_SovereignManaphy
+    ScriptEntry PokemonMansionOffice_SovereignOnLoad
     ScriptEntryEnd
 
 PokemonMansionOffice_OnTransition:
+    @ Sovereign (E10, Renegade's Pokémon Mansion siege): Mr. Backlot and his guest are held by Saturn meanwhile.
+    CallIfGe VAR_SOVEREIGN_MANSION_SIEGE_STATE, 1, PokemonMansionOffice_SovereignHideDuringSiege
+    Call PokemonMansionOffice_SovereignSetEggVisibility
     GetHour VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_MAP_LOCAL_0x00, 0, PokemonMansionOffice_SetBlockStatue
     GoToIfEq VAR_MAP_LOCAL_0x00, 1, PokemonMansionOffice_SetBlockStatue
     GoToIfLe VAR_MAP_LOCAL_0x00, 5, PokemonMansionOffice_SetDontBlockStatue
     GoTo PokemonMansionOffice_SetBlockStatue
+
+PokemonMansionOffice_SovereignHideDuringSiege:
+    GoToIfGe VAR_SOVEREIGN_MANSION_SIEGE_STATE, 6, PokemonMansionOffice_SovereignHideDuringSiegeEnd
+    SetFlag FLAG_MAP_LOCAL_0x01
+PokemonMansionOffice_SovereignHideDuringSiegeEnd:
+    Return
 
 PokemonMansionOffice_SetBlockStatue:
     ClearFlag FLAG_HIDE_POKEMON_MANSION_OFFICE_POLICEMAN
@@ -33,6 +45,7 @@ PokemonMansionOffice_MrBacklot:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
+    GoToIfEq VAR_SOVEREIGN_MANSION_SIEGE_STATE, 6, PokemonMansionOffice_SovereignBacklotEgg
     GoToIfSet FLAG_DAILY_ADDED_TROPHY_GARDEN_MON, PokemonMansionOffice_ThereAreCutePokemon
     GoToIfEq VAR_MAP_LOCAL_0x0B, 1, PokemonMansionOffice_ThereAreCutePokemon
     GetNationalDexEnabled VAR_RESULT
@@ -323,6 +336,81 @@ PokemonMansionOffice_PutBookBack:
     End
 
 PokemonMansionOffice_BookEnd:
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+    
+
+@ Sovereign (E10 part 25, Renegade's Manaphy Egg): after the siege of the Mansion (VAR_SOVEREIGN_MANSION_SIEGE_STATE 6)
+@ Backlot's maid shows the player his deep blue Egg, and it hatches. Mythicals are battled and caught, never given
+@ (decision 26), so the frightened Manaphy is a Lv. 40 battle. It stays in the office until it's caught (state 7),
+@ and state 8 is caught.
+PokemonMansionOffice_SovereignSetEggVisibility:
+    SetFlag FLAG_MAP_LOCAL_0x02
+    SetFlag FLAG_MAP_LOCAL_0x03
+    GoToIfLt VAR_SOVEREIGN_MANSION_SIEGE_STATE, 6, PokemonMansionOffice_SovereignSetEggVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_0x02
+    GoToIfNe VAR_SOVEREIGN_MANSION_SIEGE_STATE, 7, PokemonMansionOffice_SovereignSetEggVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_0x03
+PokemonMansionOffice_SovereignSetEggVisibilityEnd:
+    Return
+
+PokemonMansionOffice_SovereignMaid:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfEq VAR_SOVEREIGN_MANSION_SIEGE_STATE, 7, PokemonMansionOffice_SovereignMaidStillFrightened
+    GoToIfGe VAR_SOVEREIGN_MANSION_SIEGE_STATE, 8, PokemonMansionOffice_SovereignMaidTakeCare
+    Message PokemonMansionOffice_Text_SovereignMaidThanks
+    CloseMessage
+    FadeScreenOut FADE_SCREEN_SPEED_FAST, COLOR_WHITE
+    WaitFadeScreen
+    SetVar VAR_SOVEREIGN_MANSION_SIEGE_STATE, 7
+    ClearFlag FLAG_MAP_LOCAL_0x03
+    AddObject LOCALID_LEGENDARY_MANAPHY
+    FadeScreenIn FADE_SCREEN_SPEED_FAST, COLOR_WHITE
+    WaitFadeScreen
+    Message PokemonMansionOffice_Text_SovereignMaidFrightened
+    CloseMessage
+    GoTo PokemonMansionOffice_SovereignManaphyBattle
+
+PokemonMansionOffice_SovereignMaidStillFrightened:
+    Message PokemonMansionOffice_Text_SovereignMaidStillFrightened
+    GoTo PokemonMansionOffice_SovereignMaidEnd
+
+PokemonMansionOffice_SovereignMaidTakeCare:
+    Message PokemonMansionOffice_Text_SovereignMaidTakeCare
+PokemonMansionOffice_SovereignMaidEnd:
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+PokemonMansionOffice_SovereignManaphy:
+PokemonMansionOffice_SovereignManaphyBattle:
+    SetVar VAR_0x8004, SPECIES_MANAPHY
+    SetVar VAR_0x8005, 40
+    Common_SovereignLegendaryEncounter
+    GoToIfEq VAR_RESULT, FALSE, PokemonMansionOffice_SovereignManaphyEnd
+    SetVar VAR_SOVEREIGN_MANSION_SIEGE_STATE, 8
+PokemonMansionOffice_SovereignManaphyEnd:
+    End
+
+PokemonMansionOffice_SovereignOnLoad:
+    CallIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, PokemonMansionOffice_SovereignRemoveLegendaryManaphy
+    End
+
+PokemonMansionOffice_SovereignRemoveLegendaryManaphy:
+    GoToIfNe VAR_SOVEREIGN_LEGENDARY_SPECIES, SPECIES_MANAPHY, PokemonMansionOffice_SovereignRemoveLegendaryManaphyEnd
+    RemoveObject LOCALID_LEGENDARY_MANAPHY
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+PokemonMansionOffice_SovereignRemoveLegendaryManaphyEnd:
+    Return
+
+PokemonMansionOffice_SovereignBacklotEgg:
+    Message PokemonMansionOffice_Text_SovereignBacklotEgg
     WaitButton
     CloseMessage
     ReleaseAll

@@ -4,6 +4,59 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 25) — Manaphy, from Backlot's Egg
+
+- After the siege of the Pokémon Mansion (part 24), Mr. Backlot points the player to his maid, who now stands beside
+  him in his office with the deep blue Egg. Talking to her makes it hatch, and the frightened **Manaphy** attacks: a
+  Lv. 40 battle (Renegade gives the Egg instead, but Mythicals are battled and caught, never given: decision 26).
+- If it isn't caught, it vanishes until the next visit, then waits in the office (18, 7) until it is. The maid's
+  lines follow along: it "still won't calm down", then "take good care of it".
+- A placeholder overworld sprite for Manaphy (`legendary_manaphy.png`, from `make_legendary_overworld.py`).
+- `VAR_SOVEREIGN_MANSION_SIEGE_STATE` carries it: 7 hatched, 8 caught. Phione comes from breeding Manaphy.
+
+Verified in a test build: the hatch scene and battle, the vanished message, the maid's later line, and Manaphy back in
+the office on the next visit, battled again when talked to. The catch itself goes through the common legendary script
+used by every static. The release build passes.
+
+## E10 (part 24) — Renegade's Pokémon Mansion siege
+
+After Barry's battle in the Route 209 gate (Hearthome side), a maid from the Pokémon Mansion runs in for help: Team
+Galactic has taken over the Mansion. Barry heads off to help, and the siege lasts until Saturn is beaten
+(`VAR_SOVEREIGN_MANSION_SIEGE_STATE`, 1 to 5 during the siege, 6 after). All of it is Renegade's, with its trainers
+947 to 960.
+
+- **Route 212 North.** Three grunts stand on the route and battle when talked to. The Mansion's visitors (the four
+  trainers by the door, the Youngster and the Collector) stay away meanwhile.
+- **The Mansion's door.** Two grunts guard it and battle together. Like every Team Galactic encounter, they wait
+  on the Totem trial before them, Mimikyu's at the Old Chateau, and send the player back until then. Then Barry runs
+  up and goes in ahead.
+- **Inside.** The maids are out of sight. Grunts guard the three rooms, the office door and the Trophy Garden door.
+  - At the west end, a grunt challenges the player to beat three grunts in a row in exactly 6 turns. He breaks his
+    promise, but a Clefairy slips out behind him.
+  - Each room grunt beaten frees another of Mr. Backlot's Clefairy, or his Happiny. They gather around the grunt at
+    the garden door.
+  - With all four Clefairy back, the Happiny's Metronome turns into Teleport, and the grunt is gone. The Happiny
+    gives the player a **Lucky Egg**.
+  - Saturn then comes out of the garden with Mr. Backlot for a tag battle, with Barry as the partner (his Route 209
+    team). After it, Barry leaves for Solaceon Town and Backlot thanks the player.
+- **The office.** Mr. Backlot and his guest are with Saturn during the siege. Backlot's Manaphy Egg, which Renegade
+  gives here, isn't given: Mythicals are battled and caught, never given (decision 26). Backlot only mentions the Egg
+  for now, and Manaphy comes in a later part.
+- Barry's line about heading to Solaceon moves from the gate to after the Mansion, as in Renegade.
+
+Verified in a test build, from Barry's gate battle to Backlot's thanks:
+- The gate scene, the door guards' double battle, and Barry's arrival on Route 212 North.
+- The 6-turn challenge in both outcomes: the turn count after each battle, "That isn't 6" on a miss (5 turns), and
+  the Clefairy on a hit.
+- The four room grunts, each freeing a Clefairy or the Happiny; the Metronome teleport and the Lucky Egg.
+- Saturn and Backlot's tag battle with Barry, and the ending.
+- Leaving and coming back: the maids are back and the grunts gone.
+- Not reached in the emulator: the three talk-to grunts on the route, and the office during the siege.
+- The test found that `StartTrainerBattle` doesn't set a trainer's defeated flag. The scripts now set it after each
+  win, so a beaten grunt stays beaten. The earlier parts were checked: they all set it.
+
+The release build passes.
+
 ## E10 (part 23) — Renegade's Marley and Dahlia battles
 
 - **Marley** (Victory Road) asks for a battle the first time she's met (Renegade's trainer 974, Lv. 85), then asks to
