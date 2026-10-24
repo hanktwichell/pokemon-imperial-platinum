@@ -64,6 +64,8 @@ jobs:
         run: make -C decomp rom -j"$(nproc)"
       - name: Battle scripts fit their buffer
         run: python3 tools/test/check_battle_scripts.py decomp
+      - name: Field-script text IDs fit their one-byte arguments
+        run: python3 tools/test/check_byte_text_ids.py decomp
       - name: Boot smoke test (headless DeSmuME)
         timeout-minutes: 5
         env:

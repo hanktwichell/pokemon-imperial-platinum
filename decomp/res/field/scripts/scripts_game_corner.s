@@ -363,8 +363,8 @@ GameCorner_SovereignCoinsFullPrice:
     Return
 
 GameCorner_SovereignCoinsHalfPrice:
-    AddMenuEntryImm MenuEntries_Text_SovereignGameCorner_50CoinsHalf, 0
-    AddMenuEntryImm MenuEntries_Text_SovereignGameCorner_500CoinsHalf, 1
+    AddMenuEntry MenuEntries_Text_SovereignGameCorner_50CoinsHalf, 0
+    AddMenuEntry MenuEntries_Text_SovereignGameCorner_500CoinsHalf, 1
     Return
 
 GameCorner_CoinsClerk_Buy50CoinsSovereignHalf:

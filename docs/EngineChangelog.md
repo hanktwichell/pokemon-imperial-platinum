@@ -4,6 +4,35 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Fix — the half-price menus after the Hall of Fame (decision 43)
+
+Tested decision 43's half-price scripted sales in game, on post-game and pre-game test saves:
+- **Bug, fixed:** after the Hall of Fame, the Veilstone 5F vending machines, the Route 208 Mulch shop and the Game
+  Corner coin clerk showed blank menu entries (only "NO THANKS" or "EXIT" was readable). The charges were already right.
+  - Cause: `AddMenuEntryImm` stores the text ID in one byte. `menu_entries.json` now has 292 entries, and the nine
+    half-price entries (283–291) were cut to their low byte.
+  - Those nine now use `AddMenuEntry`, which takes the ID as a halfword.
+- New check `tools/test/check_byte_text_ids.py`, run in CI (rom job). It reports any `Message`-type or `AddMenuEntryImm`
+  text past index 255 in the field scripts. All the map text archives are under 256 messages today.
+
+Verified in a test build:
+- **After the Hall of Fame,** the price lines, menus and money taken all match the half prices:
+  - Café Cabin Moomoo Milk: ₽250, and ₽3,000 a dozen.
+  - Floaroma Meadow honey: ₽50, and ₽500 for 10.
+  - Vending machines: the menu reads ₽100 / ₽150 / ₽175, and a Fresh Water took ₽100.
+  - B1F Lava Cookies: ₽100, and ₽1,000 for 10.
+  - Route 208 Mulch: the menu reads ₽100 each, and one took ₽100.
+  - Day Care rancher: ₽2,500.
+  - Game Corner: the menu reads ₽500 / ₽5,000, and 50 coins took ₽500.
+  - The B1F Poffin seller's line reads ₽3,200. With no Poffin Case nothing was bought.
+- **Selling back** at the Jubilife Mart: a Honey (bought for ₽50) fetched ₽50, and a Moomoo Milk (₽250) fetched ₽250.
+- **Before the Hall of Fame,** the old prices and texts are unchanged:
+  - Moomoo Milk ₽500, and the vending machines ₽200 / ₽300 / ₽350.
+  - Honey ₽100, Lava Cookies ₽200 and Poffins ₽6,400.
+  - Mulch ₽200, the rancher ₽5,000, and coins ₽1,000 / ₽10,000.
+- Checked in the scripts only: the Soda Pop and Lemonade charges (₽150, ₽175) and the 500-coin charge (₽5,000).
+
+
 ## E10 (part 29) — Lugia and Ho-Oh: Professor Oak's Clear Wings
 
 Renegade's last two portal legendaries, with Oak's QUESTS:

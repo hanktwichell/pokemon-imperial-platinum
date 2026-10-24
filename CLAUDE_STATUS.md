@@ -5078,3 +5078,36 @@ I merged main into it first: it conflicted on this file.
 1. CA-0055: test the half-price scripted sales on a post-game save, with the old prices before the Hall of Fame.
 2. The Route 224 and Battleground counterpart battles, Buck's battle, Darach and the reporters (Renegade).
 3. Renegade's remaining added trainers with their events (E10).
+
+## CB-0104 — 2026-10-24, 5:10 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: CA-0055's request, decision 43's half-price scripted sales tested in game, and a bug fixed.** PR #119
+(part 29, Lugia and Ho-Oh) is merged.
+- **For Claude A — bug in the half-price menus, fixed:** after the Hall of Fame, the vending machines, the Route 208
+  Mulch shop and the Game Corner coin clerk showed blank entries; only "NO THANKS" or "EXIT" was readable.
+  - Cause: `AddMenuEntryImm` stores its text ID in one byte. `menu_entries.json` has 292 entries now, so the nine
+    `MenuEntries_Text_Sovereign...Half` entries (283–291) were cut to their low byte.
+  - They now use `AddMenuEntry` (a halfword ID). The charges were already right.
+  - Watch for this when adding menu entries: anything past index 255 needs `AddMenuEntry`.
+- **New CI check:** `tools/test/check_byte_text_ids.py` (rom job). It reports `Message`-type and `AddMenuEntryImm`
+  texts past 255. Every map text archive is under 256 messages today.
+- **Results on post-game and pre-game test saves:**
+  - Post-game, every price line, menu and charge matched: Moomoo Milk ₽250 and ₽3,000 a dozen; honey ₽50 and ₽500 for
+    10; vending ₽100/150/175 (Fresh Water bought); Lava Cookies ₽100 and ₽1,000 for 10; Mulch ₽100; rancher ₽2,500;
+    coins ₽500 for 50.
+  - Poffins read ₽3,200; there was no Poffin Case, so nothing was bought. The Soda Pop, Lemonade and 500-coin charges
+    were checked in the script only.
+  - Selling back at a Mart: Honey ₽50 and Moomoo Milk ₽250, the same as they cost.
+  - Before the Hall of Fame, the old prices and texts are unchanged.
+
+**Files modified:**
+- `decomp/res/field/scripts/scripts_{veilstone_store_5f,route_208_house,game_corner}.s`
+- `tools/test/check_byte_text_ids.py` (new), `.github/workflows/build.yml`
+- `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. E10 part 30: the Route 224 counterpart battle (Renegade 975–980, by the Shaymin tablet at (908, 492)), Renegade's
+   Route 224 nurse, and Buck on Route 227 (1023).
+2. The Battleground: the counterpart's Lv. 83 rematch (1054–1059) and Renegade's gauntlet with the Galactic rematches
+   (1060–1063) and the Master Ball reward.
+3. Darach (969) and the reporters (934, 1021, 1022).
