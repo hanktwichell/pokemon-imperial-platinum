@@ -142,6 +142,15 @@
         "seen in the murky darkness.\r",
         "Take the time to search carefully!"
       ]
+    },
+    {
+      "id": "EternaForest_Text_SovereignMossRockPieceFellOff",
+      "en_US": [
+        "The rock is covered in moss.\n",
+        "It feels pleasantly cool.\r",
+        "...\r",
+        "A piece of the rock fell off...\r"
+      ]
     }
   ]
 }

@@ -58,6 +58,12 @@ Route218GateToJubilifeCity_AcceptOldRod:
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
     SetFlag FLAG_RECEIVED_OLD_ROD
+    // Sovereign (E10): as in Renegade, 10 Dive Balls come with the Old Rod.
+    Message Route218GateToJubilifeCity_Text_SovereignDiveBalls
+    SetVar VAR_0x8004, ITEM_DIVE_BALL
+    SetVar VAR_0x8005, 10
+    Common_GiveItemQuantity
+    SetVar VAR_0x8004, ITEM_OLD_ROD
     GoTo Route218GateToJubilifeCity_DidYouNeedTips
 
     .balign 4, 0

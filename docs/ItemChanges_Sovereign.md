@@ -3,7 +3,7 @@
 Renegade Platinum's item changes and item locations are unchanged unless listed here
 (`RenegadePlatinumV130/Documentation/ItemChanges.txt`).
 
-In the game so far (E10 parts 2–10):
+In the game so far (E10 parts 2–11):
 - Renegade's six TM moves (Scald, Wild Charge, Bug Buzz, Hyper Voice, Dazzling Gleam, Hurricane), TMs as 99 of each
   and unsellable, and the Poké/Great/Ultra Ball prices.
 - Renegade's overworld item balls.
@@ -22,9 +22,13 @@ In the game so far (E10 parts 2–10):
   Jaboca and Rowap Berries, and the Nature Mints, ₽10,000 each), the Solaceon rancher's EV-reducing Berry bundle
   (15 of each for ₽5,000) and Traynee's Power items (part 10).
 
+- Part 11: the Bicycle from Mom (the Cycle Shop gives a Dawn Stone), the Exp. Share from Barry on Route 203, the
+  Oval Stone (Oreburgh's guide), Leaf Stone (Eterna Forest's Moss Rock), Shiny Stone (Keira), 10 Potions (Route 201),
+  30 Poké Balls (Route 202) and 10 Dive Balls with the Old Rod.
+
 Still to come: HM08 from Candice (waits for the
-owner: it comes with a story Regigigas scene); Renegade's remaining small gifts (the Oval Stone, Dawn Stone, Shiny
-Stone, Leaf Stone, Lucky Egg, Exp. Share and Dive Balls).
+owner: it comes with a story Regigigas scene); the Lucky Egg, which comes with Renegade's Pokémon Mansion Manaphy
+story (legendary events).
 
 ## New key items
 

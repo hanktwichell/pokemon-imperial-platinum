@@ -91,6 +91,18 @@ Route203_RivalBattleEnd:
     BufferRivalName 0
     Message Route203_Text_WhatDoYouMeanILost
     CloseMessage
+    // Sovereign (E10): as in Renegade, Barry shares an Exp. Share from the parcel.
+    ApplyMovement LOCALID_RIVAL, Route203_Movement_RivalNoticePlayer
+    WaitMovement
+    BufferPlayerName 1
+    BufferRivalName 0
+    Message Route203_Text_SovereignRivalTwoOfAnotherItem
+    SetVar VAR_0x8004, ITEM_EXP_SHARE
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    BufferRivalName 0
+    Message Route203_Text_SovereignRivalOKBye
+    CloseMessage
     GetPlayerMapPos VAR_0x8004, VAR_0x8005
     GoToIfEq VAR_0x8005, 757, Route203_RivalLeaveZ757
     GoToIfEq VAR_0x8005, 758, Route203_RivalLeaveZ758

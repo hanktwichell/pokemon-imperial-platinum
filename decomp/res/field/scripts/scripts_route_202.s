@@ -117,23 +117,23 @@ Route202_DoCatchingTutorial:
     ApplyMovement LOCALID_COUNTERPART, Route202_Movement_CounterpartWalkOnSpotEastAfterCatchingTutorial
     WaitMovement
     GetPlayerGender VAR_RESULT
-    GoToIfEq VAR_RESULT, GENDER_MALE, Route202_DawnIllGiveYouFivePokeBalls
-    GoToIfEq VAR_RESULT, GENDER_FEMALE, Route202_LucasIllGiveYouFivePokeBalls
+    GoToIfEq VAR_RESULT, GENDER_MALE, Route202_DawnIllGiveYouThirtyPokeBalls
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, Route202_LucasIllGiveYouThirtyPokeBalls
     End
 
-Route202_DawnIllGiveYouFivePokeBalls:
+Route202_DawnIllGiveYouThirtyPokeBalls:
     BufferPlayerName 0
-    Message Route202_Text_DawnIllGiveYouFivePokeBalls
+    Message Route202_Text_DawnIllGiveYouThirtyPokeBalls
     GoTo Route202_GivePokeballs
 
-Route202_LucasIllGiveYouFivePokeBalls:
+Route202_LucasIllGiveYouThirtyPokeBalls:
     BufferPlayerName 0
-    Message Route202_Text_LucasIllGiveYouFivePokeBalls
+    Message Route202_Text_LucasIllGiveYouThirtyPokeBalls
     GoTo Route202_GivePokeballs
 
 Route202_GivePokeballs:
     SetVar VAR_0x8004, ITEM_POKE_BALL
-    SetVar VAR_0x8005, 5
+    SetVar VAR_0x8005, 30
     Common_GiveItemQuantity
     GetPlayerGender VAR_RESULT
     GoToIfEq VAR_RESULT, GENDER_MALE, Route202_DawnLeave

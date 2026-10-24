@@ -35,7 +35,12 @@ ContestHallLobby_OnFrame_FirstEntry:
     Message ContestHallLobby_Text_WaitJohannaIsYourMom
     BufferPlayerName 0
     Message ContestHallLobby_Text_NeverSpokenAboutContests
+    // Sovereign (E10): as in Renegade, Keira gives a Shiny Stone before the Accessory.
     Message ContestHallLobby_Text_ThankYouForEarlier
+    SetVar VAR_0x8004, ITEM_SHINY_STONE
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    Message ContestHallLobby_Text_SovereignTakeThisAccessoryToo
     SetVar VAR_0x8004, ACCESSORY_GLITTER_POWDER
     SetVar VAR_0x8005, 1
     Common_GiveAccessory

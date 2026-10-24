@@ -447,6 +447,13 @@
         "Now, I’ll be on my way.\n",
         "Do come and visit Celestic Town."
       ]
+    },
+    {
+      "id": "TwinleafTownPlayerHouse1F_Text_SovereignTakeYourBike",
+      "en_US": [
+        "Mom: You should take your bike with\n",
+        "you as well, dear.\r"
+      ]
     }
   ]
 }

@@ -32,7 +32,7 @@
       "en_US": [
         "Keira: Oh, yes, that’s right!\r",
         "I need to thank you for earlier.\n",
-        "Please take this Accessory.\r"
+        "Here’s a simply dazzling stone!\r"
       ]
     },
     {
@@ -302,6 +302,10 @@
         "Now I can finish my composition.\n",
         "Thank you!"
       ]
+    },
+    {
+      "id": "ContestHallLobby_Text_SovereignTakeThisAccessoryToo",
+      "en_US": "Keira: Take this Accessory, too!"
     }
   ]
 }

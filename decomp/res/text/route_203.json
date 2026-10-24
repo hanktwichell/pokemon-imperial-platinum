@@ -71,6 +71,18 @@
         "If the PP of moves runs low, head for\n",
         "any Pokémon Center."
       ]
+    },
+    {
+      "id": "Route203_Text_SovereignRivalTwoOfAnotherItem",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Oh, yeah, {STRVAR_1 3, 1, 0}!\r",
+        "There were two of another item\n",
+        "in that parcel. Here, you have one!\r"
+      ]
+    },
+    {
+      "id": "Route203_Text_SovereignRivalOKBye",
+      "en_US": "{STRVAR_1 3, 0, 0}: OK, bye!"
     }
   ]
 }

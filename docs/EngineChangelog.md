@@ -4,6 +4,23 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 11) — Renegade's remaining small gifts
+
+- **Mom gives the Bicycle** with the Running Shoes. The Cycle Shop manager, rescued from the Galactic building, gives a
+  Dawn Stone instead (he still opens Eterna's exits as before).
+- **Barry gives an Exp. Share** after the Route 203 battle ("there were two in the parcel").
+- **Oreburgh's guide gives an Oval Stone** from the mine before walking you to the Gym.
+- **Eterna Forest's Moss Rock** drops a Leaf Stone the first time it's touched.
+- **Keira gives a Shiny Stone** in the Contest Hall, then her Accessory.
+- **More starting supplies:** 10 Potions from the Route 201 Mart worker, 30 Poké Balls from Dawn or Lucas on Route 202,
+  and 10 Dive Balls with the Old Rod (Route 218 gate).
+
+Not ported here: the Lucky Egg comes inside Renegade's Pokémon Mansion Manaphy Egg story, and the Route 203 Shroomish
+starts its Mew chain; both wait for Renegade's legendary events (Sovereign never gives Mythicals as gifts).
+
+Verified in the test build: the Moss Rock's Leaf Stone (once, then its usual text) and the Old Rod with 10 Dive Balls.
+The release build passes.
+
 ## E10 (part 10) — Renegade's helper NPCs: free tutors and relearner, the Move Deleter, the Berry seller, Traynee
 
 From Renegade's `NPCChanges.txt`, with scripts, texts and spots read from its ROM.

@@ -1164,7 +1164,7 @@ Route201_Cashier:
     GoToIfSet FLAG_RECEIVED_ROUTE_201_POTION, Route201_FindMartsInCitiesAndTowns
     Message Route201_Text_PotionAsFreeSample
     SetVar VAR_0x8004, ITEM_POTION
-    SetVar VAR_0x8005, 1
+    SetVar VAR_0x8005, 10
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, Route201_BagIsFull
     SetFlag FLAG_RECEIVED_ROUTE_201_POTION
     Common_GiveItemQuantityNoLineFeed
