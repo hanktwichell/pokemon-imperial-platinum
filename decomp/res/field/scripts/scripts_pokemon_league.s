@@ -8,6 +8,9 @@
     ScriptEntry PokemonLeague_Statue
     ScriptEntry PokemonLeague_SovereignGuard
     ScriptEntry PokemonLeague_CoordEvent_SovereignGuard
+    ScriptEntry PokemonLeague_SovereignOnTransition
+    ScriptEntry PokemonLeague_SovereignOnLoad
+    ScriptEntry PokemonLeague_LegendaryRayquaza
     ScriptEntryEnd
 
 @ Sovereign (decision 23): a guard at Victory Road's entrance. It opens with all eight Badges and Totem Togedemaru's
@@ -79,3 +82,37 @@ PokemonLeague_Statue:
     End
 
     .balign 4, 0
+
+PokemonLeague_SovereignOnTransition:
+    Call PokemonLeague_SovereignSetRayquazaVisibility
+    End
+
+PokemonLeague_SovereignOnLoad:
+    CallIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, PokemonLeague_RemoveLegendaryRayquaza
+    End
+
+@ Sovereign (E10, Renegade's legendary events): Rayquaza on the strip of land below the waterfall, after the Hall of
+@ Fame once Steven has given the Orbs (Renegade: a portal, Lv. 70, with the Jade Orb, which Sovereign doesn't have),
+@ until it is caught.
+PokemonLeague_SovereignSetRayquazaVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+    GoToIfUnset FLAG_GAME_COMPLETED, PokemonLeague_SovereignSetRayquazaVisibilityEnd
+    GoToIfUnset FLAG_SOVEREIGN_STEVEN_GAVE_ORBS, PokemonLeague_SovereignSetRayquazaVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_RAYQUAZA, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, PokemonLeague_SovereignSetRayquazaVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+PokemonLeague_SovereignSetRayquazaVisibilityEnd:
+    Return
+
+PokemonLeague_RemoveLegendaryRayquaza:
+    GoToIfNe VAR_SOVEREIGN_LEGENDARY_SPECIES, SPECIES_RAYQUAZA, PokemonLeague_RemoveLegendaryRayquazaEnd
+    RemoveObject LOCALID_LEGENDARY_RAYQUAZA
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+PokemonLeague_RemoveLegendaryRayquazaEnd:
+    Return
+
+PokemonLeague_LegendaryRayquaza:
+    SetVar VAR_0x8004, SPECIES_RAYQUAZA
+    SetVar VAR_0x8005, 70
+    Common_SovereignLegendaryEncounter
+    End

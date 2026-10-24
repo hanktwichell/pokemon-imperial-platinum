@@ -1134,6 +1134,8 @@ scr_seq_files = files(
     'scripts_init_mt_coronet_iceberg_ruins.s',
     'scripts_route_228_rock_peak_ruins.s',
     'scripts_init_route_228_rock_peak_ruins.s',
+    'scripts_mt_coronet_b1f.s',
+    'scripts_init_mt_coronet_b1f.s',
     'scripts_wayward_cave_b1f.s',
     'scripts_init_wayward_cave_b1f.s',
     'scripts_mt_coronet_outside_north.s',

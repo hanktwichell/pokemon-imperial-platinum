@@ -4,6 +4,24 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 14) — Renegade's legendary events: Kyogre, Groudon and Rayquaza
+
+- After the Hall of Fame, once Steven has given the Red and Blue Orbs (for showing him the Regis), the weather trio
+  stand on Renegade's spots at Lv. 70, until caught:
+  - Kyogre on the island in Mt. Coronet B1F's lake (that floor now has its own script archive; vanilla used the
+    empty one);
+  - Groudon left of the steps in Stark Mountain room 1 (Volcanion stays at the far east end);
+  - Rayquaza below the waterfall outside the Pokémon League.
+  Renegade wants the matching Orb in the Bag; Sovereign has no Jade Orb, so all three check Steven's flag instead.
+- Renegade's ball moves on those spots: Mt. Coronet B1F's Light Clay to (12, 12), Stark Mountain room 1's Full Heal to
+  (12, 3).
+- Volcanion's removal after a battle in Stark Mountain room 1 now checks the species, so a Groudon battle doesn't
+  hide it.
+- Placeholder overworld sprites for the three.
+
+Verified in a gate-skipped test build: Kyogre stands on its island and starts its Lv. 70 battle; Groudon stands in
+Stark Mountain room 1. The release build passes.
+
 ## E10 (part 13) — Renegade's legendary events: the Regis, Steven's requests, Latias and Latios
 
 - **The Regis follow Renegade's rule.** After the Distortion World, a Relicanth and a Wailord in the party open the

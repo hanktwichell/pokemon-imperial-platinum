@@ -190,6 +190,9 @@ Darkrai, Shaymin and Arceus need vanilla's distribution events, so they can't be
 
 | Regirock, Regice, Registeel | static | Rock Peak (Route 228), Iceberg (Mt. Coronet, Route 216 side) and Iron (Iron Island B3F) Ruins | 60 | after the Distortion World, with a Relicanth and a Wailord in the party: the doorway opens to the chamber, then the dots and the statue as in vanilla (no Champion check) | caught |
 | Latias, Latios | rock | Fullmoon Island's clearing, where Cresselia stood (16, 15) | 68 | Cresselia caught and the Lunar Wing taken; read from below with the Soul Dew and pick red (Latias) or blue (Latios) | caught; either can be fought again until then |
+| Kyogre | static | Mt. Coronet B1F, the island in the lake (22, 36); the Light Clay ball moved to (12, 12) | 70 | after the Hall of Fame, once Steven has given the Orbs | caught |
+| Groudon | static | Stark Mountain room 1, left of the steps to the next room (6, 6); the Full Heal ball moved to (12, 3) | 70 | as Kyogre | caught |
+| Rayquaza | static | Pokémon League, the strip of land below the waterfall (847, 572) | 70 | as Kyogre (Renegade's Jade Orb isn't in Sovereign) | caught |
 
 **Steven** (Oreburgh City's south house) gives a Lv. 10 Beldum, then takes requests from his QUESTS menu: the Magma
 Stone (Stark Mountain) for the Soul Dew; Latias and Latios in the party for the legendary titans' story (Relicanth and
@@ -214,7 +217,6 @@ against the Chronicles':
 | Mew | Route 201, after a chain of berry quests | 40 | — |
 | Lugia, Ho-Oh | Route 220 island; Lost Tower top floor | 70 | **Yveltal stands on Lost Tower 5F** |
 | Celebi | Eterna Forest portals | 40 | **Virizion and Xerneas stand in Eterna Forest** |
-| Kyogre, Groudon, Rayquaza | Mt. Coronet B1F, Stark Mountain room 1, the League waterfall | 70 | **Volcanion stands in Stark Mountain room 1** |
 | Jirachi | Solaceon Ruins | 40 | Hoopa (Room 7) |
 | Deoxys | Veilstone City | 70 | — |
 | Uxie, Mesprit, Azelf | their caverns, static, until caught | 60 | — |

@@ -101,6 +101,9 @@ LEGENDARIES = {
     "raikou": 243,
     "entei": 244,
     "suicune": 245,
+    "kyogre": 382,
+    "groudon": 383,
+    "rayquaza": 384,
 }
 
 
