@@ -172,6 +172,15 @@ implemented.
     shows before "AEGISLASH used ...".
   - Like a move form, it goes back on switch-out (`Pokemon_SovereignRevertSwitchOutForm` covers every
     `SOVEREIGN_FORM_BATTLE` form except Busted Mimikyu) and at the battle's end.
+- **Zen Mode** (Zen Darmanitan and Zen Galarian Darmanitan, `SOVEREIGN_FORM_BATTLE` with Zen Mode as trigger).
+  - `BattleSystem_TriggerTurnEndAbility` turns Darmanitan to its Zen Mode at the end of a turn at half its HP or less,
+    and back above half, with `subscript_form_change`.
+  - `Pokemon_SovereignAbilityForm` finds the battle form an ability gives the current form.
+  - `Pokemon_SovereignBattleFormBase` gives the form a battle form goes back to: the regional form a regional form's
+    battle form came from (`sSovereignBattleFormBases`, written by `gen_forms.py`), Ultra Necrozma's fused form, or
+    else 0. Both reverts use it, so a Zen Galarian Darmanitan ends the battle as a Galarian one.
+  - `BattleSystem_SovereignChangeBattleForm` takes the new form's ability only for a Mega, Primal or Ultra Necrozma
+    (`Pokemon_SovereignFormChangesAbility`). The other battle forms keep the Pokémon's own (Zen Mode).
 - **Item locks.** `Pokemon_SovereignItemIsLocked(species, item)` is TRUE for any form trigger on its own species
   except Mega Rayquaza's move, and also for the Teal Mask on Ogerpon, the Griseous Core on Giratina and the
   Ultranecrozium Z on Necrozma.
