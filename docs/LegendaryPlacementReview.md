@@ -16,9 +16,9 @@ by-map review: no one has yet checked each spot's exact tiles against the NPCs, 
 |---|---|---|---|
 | **Valley Windworks** | Zekrom on the island (Dark Stone, night) **→ moving to Route 215 (decision 34)**; Regieleki in the building (Galar, the three Regis in the party); Zapdos's Renegade portal on the island (after the Distortion World, decision 33) | Team Galactic's story in the building (Mars), the Friday Drifloon, a roamer route | Zekrom and Zapdos shared the island. Moving Zekrom settles it |
 | **Eterna Forest** | Virizion (80, 10) and Xerneas (Chronicles); Celebi's Renegade portals (not ported yet) | Cheryl's tag-battle path (story), the Old Chateau entrance, the Kartana rare roll | Three legendaries in one forest. Celebi's portals have to avoid Virizion's and Xerneas's tiles |
-| **Lost Tower** | Yveltal, 5F (13, 14) (Kalos); Ho-Oh's Renegade portal on the top floor (not ported yet) | The two old ladies on the top floor (HM Defog, Spell Tag), graves | **5F is the top floor: Ho-Oh and Yveltal would share it.** Move one |
+| **Lost Tower** | Ho-Oh's Renegade portal on the top floor (not ported yet); Totem Marowak, 5F (3, 4) (Relic Badge). **Yveltal moved to Route 229 (813, 426) on 2026-10-24** | The two old ladies on the top floor (HM Defog, Spell Tag), graves | **Settled** by moving Yveltal. Keep Ho-Oh's portal off Marowak's tile (3, 4) |
 | **Fullmoon Island** | Tapu Lele in the grove (13, 12) (Alola); Cresselia in the clearing (16, 15) (Lunar Wing quest); Latias/Latios in the same clearing once Cresselia is caught | The Lunar Wing, the boat from Canalave | Sequenced, so they never stand at once. Tapu Lele is three tiles from the clearing; fine but crowded |
-| **Route 224** | Enamorus by the tablet (914, 494) (Landorus caught); Pecharunt (898, 526) (the Loyal Three caught) | **The tablet itself: Oak's Letter opens the way to Flower Paradise (Shaymin) there** | Enamorus standing by the tablet could block the Shaymin event's tile or cutscene. Check before Shaymin is ported |
+| **Route 224** | Enamorus on the beach field (912, 535) (Landorus caught; **moved off the tablet on 2026-10-24**); Pecharunt (898, 526) (the Loyal Three caught) | **The tablet itself: Oak's Letter opens the way to Flower Paradise (Shaymin) there** | **Settled:** Enamorus now stands about 40 tiles south of the tablet scene, clear of Carl's patrol and the item balls |
 | **Fuego Ironworks** | Reshiram in the furnace pocket (Light Stone); Chi-Yu outside (180, 593) (two stakes) | Mr. Fuego, the Fire Stone and Star Piece gifts, a roamer route | Inside and outside are separate maps. Fine |
 | **Route 228, Rock Peak Ruins chamber** | Landorus (7, 5); Regidrago (5, 6); Regirock's statue and dots | The Relicanth/Wailord doorway (Renegade part 13) | **Three legendaries within about 2 tiles in one small chamber.** Landorus and Regidrago stand next to Regirock's puzzle. Check that they don't sit on the dots or the statue |
 | **Oreburgh Mine B2F** | Diancie, west nook (2, 22) (Carbink in the party); Meltan (5, 20); Melmetal (5, 24) | Miners, item balls | Three in a 4-tile area. Sequenced or conditional; check they don't block the path |
@@ -40,6 +40,7 @@ by-map review: no one has yet checked each spot's exact tiles against the NPCs, 
 
 | Legendary | Where | Trigger | What else is there | Clash |
 |---|---|---|---|---|
+| **Yveltal** (moved) | **Route 229**, the nook behind the Cut tree by the Reaper Cloth (813, 426) | Kalos Chronicle | Gene (Battle Zone badge), Ace Trainers, the Pheromosa rare roll (no tile) | None found |
 | **Zekrom** (moved) | **Route 215** (decision 34; tile to pick) | Dark Stone, night | Permanent rain, trainers (Black Belts, Ace Trainers), the Veilstone and Solaceon gates | None found |
 | Cobalion | Iron Island B2F right room (17, 1) | Unova | The Riley/Galactic tag-battle story floors; Registeel's ruins on B3F | Post-game, after the story. Fine |
 | Terrakion | Route 227 north pocket (759, 258) | Unova | The Stakataka roll | None |
@@ -62,11 +63,11 @@ by-map review: no one has yet checked each spot's exact tiles against the NPCs, 
 | Lugia | Route 220 island (Renegade portal, not ported yet) | after the Hall of Fame, Silver Wing | — | None |
 
 ## Clashes to settle (summary)
-1. **Lost Tower top floor:** Yveltal and Ho-Oh (when ported). Move one.
+1. ~~**Lost Tower top floor:** Yveltal and Ho-Oh (when ported).~~ Settled 2026-10-24: Yveltal moved to Route 229.
 2. **Stark Mountain room 1:** Volcanion and Groudon, plus the first-visit Galactic scene. Move one.
 3. **Turnback Cave, Giratina's room:** Eternatus and Giratina. Move Eternatus.
 4. **Solaceon Ruins Room 7:** Hoopa and Jirachi. Move one.
-5. **Route 224 tablet:** Enamorus beside the Shaymin tablet. Check before Shaymin is ported.
+5. ~~**Route 224 tablet:** Enamorus beside the Shaymin tablet.~~ Settled 2026-10-24: Enamorus moved to (912, 535).
 6. **Rock Peak Ruins chamber:** Landorus and Regidrago beside Regirock's puzzle. Check the tiles.
 7. **Eterna Forest:** Celebi's portals must avoid Virizion's and Xerneas's tiles.
 8. **Mt. Coronet:** Kyurem in Regice's doorway room (works through a condition), and Articuno's portal beside Cosmog.

@@ -483,7 +483,7 @@ implemented.
     - Placed so far: Virizion (Eterna Forest), Terrakion (Route 227), Cobalion (Iron Island B2F right room) and Keldeo
       (Lake Valor). Keldeo's OnTransition also needs `CheckPartyHasSpecies` to find all three swords in the party.
       Victini (Vista Lighthouse) needs the var at 1 only.
-    - **Kalos** (var 2): Xerneas (Eterna Forest), Yveltal (Lost Tower 5F) and Volcanion (Stark Mountain room 1) need the
+    - **Kalos** (var 2): Xerneas (Eterna Forest), Yveltal (Route 229) and Volcanion (Stark Mountain room 1) need the
       var only. Zygarde (`WAYWARD_CAVE_B1F`, own script archives like the ice chamber's) waits for Xerneas and Yveltal
       caught. Diancie (Oreburgh Mine B2F) checks `CheckPartyHasSpecies` for a Carbink. Hoopa (Solaceon Ruins Room 7)
       checks `CheckItem ITEM_PRISON_BOTTLE`, which the Archivist gives while the player doesn't have it.
