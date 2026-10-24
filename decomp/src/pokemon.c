@@ -3824,6 +3824,15 @@ u16 Pokemon_GetEvolutionTargetSpecies(Party *party, Pokemon *mon, u8 evoClass, u
                 break;
             }
         }
+
+        // Sovereign (FM): an item that evolves it into a form says so in the evolution type (Scroll of Waters:
+        // Rapid Strike Urshifu), for Pokemon_SovereignSetEvolvedSpecies.
+        for (i = 0; targetSpecies != SPECIES_NONE && i < NELEMS(sSovereignItemEvolutionForms); i++) {
+            if (sSovereignItemEvolutionForms[i].species == monSpecies && sSovereignItemEvolutionForms[i].item == evoParam
+                && sSovereignItemEvolutionForms[i].targetSpecies == targetSpecies) {
+                *evoTypeResult = EVO_TYPE_SOVEREIGN_FORM | sSovereignItemEvolutionForms[i].targetForm;
+            }
+        }
         break;
     }
 
@@ -5108,15 +5117,20 @@ static BOOL Pokemon_IsSovereignRegionalForm(u16 species, int form)
     return entry != NULL && entry->kind == SOVEREIGN_FORM_REGIONAL;
 }
 
-// Sovereign (FM): evolves mon into targetSpecies. A regional form evolves into the target's form of the same region
-// (Galarian Darumaka: Galarian Darmanitan), or its base form if it has none (Galarian Meowth: Perrserker). Any other
-// form is kept, as in Platinum (Burmy's cloak becomes Wormadam's).
-void Pokemon_SovereignSetEvolvedSpecies(Pokemon *mon, u16 targetSpecies)
+// Sovereign (FM): evolves mon into targetSpecies, with evoType the evolution type Pokemon_GetEvolutionTargetSpecies
+// gave. An item evolution into a form takes that form (Scroll of Waters: Rapid Strike Urshifu). A regional form
+// evolves into the target's form of the same region (Galarian Darumaka: Galarian Darmanitan), or its base form if it
+// has none (Galarian Meowth: Perrserker). Any other form is kept, as in Platinum (Burmy's cloak becomes Wormadam's).
+void Pokemon_SovereignSetEvolvedSpecies(Pokemon *mon, u16 targetSpecies, int evoType)
 {
     u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     int form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
 
-    if (Pokemon_IsSovereignRegionalForm(species, form)) {
+    if (evoType & EVO_TYPE_SOVEREIGN_FORM) {
+        int targetForm = evoType & ~EVO_TYPE_SOVEREIGN_FORM;
+
+        Pokemon_SetValue(mon, MON_DATA_FORM, &targetForm);
+    } else if (Pokemon_IsSovereignRegionalForm(species, form)) {
         int targetForm = 0;
 
         for (int i = 0; i < NELEMS(sSovereignFormEvolutions); i++) {

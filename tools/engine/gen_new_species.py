@@ -260,6 +260,9 @@ def main():
     evo_ctx = {"items": items, "moves_by_name": moves_by_name, "species_by_name": species_by_name}
     ychanges = yaml.safe_load(open(os.path.join(ROOT, "data", "evolution_changes.yaml"), encoding="utf-8"))
     overrides = {c["species"]: c["method"] for c in ychanges["changes"] + ychanges.get("extra", [])}
+    # A method with several entries lists them (Urshifu: one per Scroll).
+    override_entries = {c["species"]: c["evolutions"] for c in ychanges["changes"] + ychanges.get("extra", [])
+                        if c.get("evolutions")}
     icon_pal = {int(r["dex"]): int(r["icon_palette"]) for r in csv.DictReader(open(os.path.join(ROOT, "data", "icon_placeholders.csv")))}
     icon_files = {int(f[:4]): f for f in os.listdir(os.path.join(ROOT, "assets", "sprites", "icons_placeholder"))}
 
@@ -361,15 +364,17 @@ def main():
         evo_note = ""
         if parent:
             method = overrides.get(design[dex]["name"]) or design[dex]["evolution_method"]
-            entry = evo_entry(method, const, evo_ctx)
+            entries = override_entries.get(design[dex]["name"])
+            entry = entries[0] if entries else evo_entry(method, const, evo_ctx)
             if isinstance(entry, list):
+                entries = entries or [entry]
                 parent_stem = const_name(species_rows[int(parent)]["identifier"]).lower()
                 data_path = os.path.join(POKEMON, parent_stem, "data.json")
                 if int(parent) < FIRST:
-                    replace_evolutions_block(data_path, [entry])
+                    replace_evolutions_block(data_path, entries)
                 else:
-                    pending_evos.append((parent_stem, entry))
-                evo_note = " ".join(str(x) for x in entry[:-1])
+                    pending_evos.extend((parent_stem, e) for e in entries)
+                evo_note = " / ".join(" ".join(str(x) for x in e[:-1]) for e in entries)
             elif entry.startswith("not an evolution"):
                 evo_note = entry
             else:

@@ -136,6 +136,11 @@
             "EVO_USE_ITEM",
             "ITEM_SCROLL_OF_DARKNESS",
             "SPECIES_URSHIFU"
+        ],
+        [
+            "EVO_USE_ITEM",
+            "ITEM_SCROLL_OF_WATERS",
+            "SPECIES_URSHIFU"
         ]
     ],
     "offspring": "SPECIES_KUBFU",

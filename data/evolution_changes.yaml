@@ -10,6 +10,7 @@
 # (Gholdengo, Malamar and others the engine can't check) will be discussed later (decision 20); the methods below
 # stand until then.
 #
+# evolutions: the entries tools/engine/gen_new_species.py writes, when the method needs more than one (Urshifu).
 # new_items: items that must be added to the item table. All are sold by Renegade's Snowpoint City
 # evolution-item seller ($10,000 each) unless "where" says otherwise.
 
@@ -67,7 +68,8 @@ changes:
   - {species: Ceruledge,    from: Charcadet, method: Use Malicious Armor, new_items: [Malicious Armor], why: "New item"}
   - {species: Archaludon,   from: Duraludon, method: Use Metal Alloy, new_items: [Metal Alloy], why: "New item"}
   - {species: Melmetal,     from: Meltan,    method: "Not an evolution — Melmetal is given by its own post-game event", why: "No Meltan Candy / GO link"}
-  - {species: Urshifu,      from: Kubfu,     method: "Use Scroll of Darkness (Single Strike) / Scroll of Waters (Rapid Strike)", new_items: [Scroll of Darkness, Scroll of Waters], where: "Kubfu's post-game event", why: "Tower challenge replaced by the scrolls"}
+  - {species: Urshifu,      from: Kubfu,     method: "Use Scroll of Darkness (Single Strike) / Scroll of Waters (Rapid Strike)", new_items: [Scroll of Darkness, Scroll of Waters], where: "Kubfu's post-game event", why: "Tower challenge replaced by the scrolls",
+     evolutions: [[EVO_USE_ITEM, ITEM_SCROLL_OF_DARKNESS, SPECIES_URSHIFU], [EVO_USE_ITEM, ITEM_SCROLL_OF_WATERS, SPECIES_URSHIFU]]}
 
 # Legendary evolutions that need a decision even though PokeAPI lists them as plain levels.
 extra:
@@ -91,6 +93,11 @@ regional_forms:
   - {form: voltorb-hisui,   evolutions: [[EVO_USE_ITEM, ITEM_LEAF_STONE, SPECIES_ELECTRODE]], method: Use Leaf Stone, why: Official}
   - {form: sneasel-hisui,   evolutions: [[EVO_LEVEL_WITH_HELD_ITEM_DAY, ITEM_RAZOR_CLAW, SPECIES_SNEASLER]], method: Level up holding a Razor Claw by day (Sneasler), why: Official}
   - {form: wooper-paldea,   evolutions: [[EVO_LEVEL, 20, SPECIES_CLODSIRE]], method: Level 20 (Clodsire), why: Official}
+
+# Item evolutions into a form (milestone FM): the item used decides the evolved form (Pokemon_SovereignSetEvolvedSpecies
+# in src/pokemon.c). The evolution itself is in the change list above. tools/engine/gen_forms.py writes the table.
+item_evolution_forms:
+  - {from: SPECIES_KUBFU, item: ITEM_SCROLL_OF_WATERS, form: urshifu-rapid-strike}
 
 # Species found only through a regional form: their Eggs hatch into that form (Perrserker: Galarian Meowth), as in
 # the official games. Every other regional form passes its region's form to its Eggs.
