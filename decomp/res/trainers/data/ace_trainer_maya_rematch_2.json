@@ -10,45 +10,45 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_ROSERADE",
+            "species": "SPECIES_LICKILICKY",
             "form": 0,
-            "level": 59,
+            "level": 77,
             "item": null,
             "moves": [
-                "MOVE_TOXIC_SPIKES",
-                "MOVE_GIGA_DRAIN",
-                "MOVE_LEECH_SEED",
-                "MOVE_TOXIC"
+                "MOVE_BODY_SLAM",
+                "MOVE_POWER_WHIP",
+                "MOVE_ROLLOUT",
+                "MOVE_ZEN_HEADBUTT"
             ],
-            "iv_scale": 50,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_GARDEVOIR",
             "form": 0,
-            "level": 61,
+            "level": 77,
             "item": null,
             "moves": [
                 "MOVE_PSYCHIC",
-                "MOVE_MAGICAL_LEAF",
-                "MOVE_CALM_MIND",
-                "MOVE_DOUBLE_TEAM"
+                "MOVE_MOONBLAST",
+                "MOVE_THUNDERBOLT",
+                "MOVE_FOCUS_BLAST"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_LICKILICKY",
+            "species": "SPECIES_ROSERADE",
             "form": 0,
-            "level": 61,
+            "level": 77,
             "item": null,
             "moves": [
-                "MOVE_SUPERSONIC",
-                "MOVE_STOMP",
-                "MOVE_SCREECH",
-                "MOVE_POWER_WHIP"
+                "MOVE_PETAL_DANCE",
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_EXTRASENSORY",
+                "MOVE_DAZZLING_GLEAM"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

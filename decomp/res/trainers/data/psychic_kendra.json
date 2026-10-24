@@ -4,6 +4,7 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
@@ -11,43 +12,43 @@
         {
             "species": "SPECIES_CHIMECHO",
             "form": 0,
-            "level": 52,
+            "level": 64,
             "item": null,
             "moves": [
-                "MOVE_EXTRASENSORY",
+                "MOVE_PSYCHIC",
                 "MOVE_SHADOW_BALL",
                 "MOVE_ENERGY_BALL",
                 "MOVE_CHARGE_BEAM"
             ],
-            "iv_scale": 0,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_HAUNTER",
+            "species": "SPECIES_FROSLASS",
             "form": 0,
-            "level": 52,
+            "level": 64,
             "item": null,
             "moves": [
-                "MOVE_SHADOW_PUNCH",
-                "MOVE_DARK_PULSE",
-                "MOVE_CONFUSE_RAY",
-                "MOVE_TOXIC"
-            ],
-            "iv_scale": 0,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_GENGAR",
-            "form": 0,
-            "level": 55,
-            "item": null,
-            "moves": [
+                "MOVE_BLIZZARD",
                 "MOVE_SHADOW_BALL",
-                "MOVE_DARK_PULSE",
-                "MOVE_FRUSTRATION",
-                "MOVE_SLUDGE_BOMB"
+                "MOVE_THUNDERBOLT",
+                "MOVE_CAPTIVATE"
             ],
-            "iv_scale": 0,
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_WOBBUFFET",
+            "form": 0,
+            "level": 64,
+            "item": null,
+            "moves": [
+                "MOVE_COUNTER",
+                "MOVE_MIRROR_COAT",
+                "MOVE_ENCORE",
+                "MOVE_DESTINY_BOND"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

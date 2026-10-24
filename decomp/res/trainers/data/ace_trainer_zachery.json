@@ -10,30 +10,59 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_ELECTABUZZ",
+            "species": "SPECIES_AMPHAROS",
             "form": 0,
-            "level": 47,
+            "level": 60,
             "item": null,
             "moves": [
                 "MOVE_THUNDERBOLT",
-                "MOVE_SHOCK_WAVE",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_IRON_TAIL"
+                "MOVE_DRAGON_PULSE",
+                "MOVE_FOCUS_BLAST",
+                "MOVE_POWER_GEM"
             ],
-            "iv_scale": 60,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_MAGNETON",
+            "species": "SPECIES_MAGNEZONE",
             "form": 0,
-            "level": 48,
+            "level": 60,
             "item": null,
             "moves": [
                 "MOVE_THUNDERBOLT",
-                "MOVE_TRI_ATTACK",
-                "MOVE_MIRROR_SHOT"
+                "MOVE_FLASH_CANNON",
+                "MOVE_SIGNAL_BEAM",
+                "MOVE_MIRROR_COAT"
             ],
-            "iv_scale": 60,
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MANECTRIC",
+            "form": 0,
+            "level": 60,
+            "item": null,
+            "moves": [
+                "MOVE_THUNDERBOLT",
+                "MOVE_ICE_FANG",
+                "MOVE_FLAMETHROWER",
+                "MOVE_CRUNCH"
+            ],
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ELECTRODE",
+            "form": 0,
+            "level": 60,
+            "item": null,
+            "moves": [
+                "MOVE_THUNDER",
+                "MOVE_SIGNAL_BEAM",
+                "MOVE_EXPLOSION",
+                "MOVE_SUCKER_PUNCH"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

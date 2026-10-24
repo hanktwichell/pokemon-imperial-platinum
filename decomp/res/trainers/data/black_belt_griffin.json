@@ -4,36 +4,51 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
-        "AI_FLAG_PRIORITIZE_EXTREMES"
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
             "species": "SPECIES_BRELOOM",
             "form": 0,
-            "level": 58,
+            "level": 75,
             "item": null,
             "moves": [
                 "MOVE_SPORE",
                 "MOVE_MACH_PUNCH",
                 "MOVE_SEED_BOMB",
-                "MOVE_SKY_UPPERCUT"
+                "MOVE_ROCK_SLIDE"
             ],
-            "iv_scale": 30,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_MEDICHAM",
             "form": 0,
-            "level": 58,
+            "level": 75,
             "item": null,
             "moves": [
                 "MOVE_DETECT",
-                "MOVE_PSYCHIC",
+                "MOVE_ZEN_HEADBUTT",
                 "MOVE_HI_JUMP_KICK",
                 "MOVE_ICE_PUNCH"
             ],
-            "iv_scale": 30,
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_LUCARIO",
+            "form": 0,
+            "level": 75,
+            "item": null,
+            "moves": [
+                "MOVE_AURA_SPHERE",
+                "MOVE_BONE_RUSH",
+                "MOVE_BLAZE_KICK",
+                "MOVE_CRUNCH"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

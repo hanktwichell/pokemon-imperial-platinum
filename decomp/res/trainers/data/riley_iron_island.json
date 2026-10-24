@@ -12,15 +12,43 @@
         {
             "species": "SPECIES_LUCARIO",
             "form": 0,
-            "level": 41,
+            "level": 51,
             "item": null,
             "moves": [
-                "MOVE_METAL_CLAW",
-                "MOVE_FORCE_PALM",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_BONE_RUSH"
+                "MOVE_HI_JUMP_KICK",
+                "MOVE_METEOR_MASH",
+                "MOVE_BLAZE_KICK",
+                "MOVE_BULLET_PUNCH"
             ],
-            "iv_scale": 30,
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SALAMENCE",
+            "form": 0,
+            "level": 50,
+            "item": null,
+            "moves": [
+                "MOVE_DRAGON_RUSH",
+                "MOVE_FLY",
+                "MOVE_CRUNCH",
+                "MOVE_DRAGON_DANCE"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_METAGROSS",
+            "form": 0,
+            "level": 50,
+            "item": null,
+            "moves": [
+                "MOVE_METEOR_MASH",
+                "MOVE_EARTHQUAKE",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_AGILITY"
+            ],
+            "iv_scale": 255,
             "ball_seal": 0
         }
     ],

@@ -2,23 +2,41 @@
     "name": "Harrison",
     "class": "TRAINER_CLASS_SCHOOL_KID_MALE",
     "items": [
-        "ITEM_X_ATTACK"
+        "ITEM_POTION"
     ],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_STARLY",
+            "species": "SPECIES_ABRA",
             "form": 0,
-            "level": 6,
+            "level": 8,
             "item": null,
             "moves": [
-                "MOVE_QUICK_ATTACK"
+                "MOVE_HIDDEN_POWER",
+                "MOVE_NONE",
+                "MOVE_NONE",
+                "MOVE_NONE"
             ],
-            "iv_scale": 10,
+            "iv_scale": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_PSYDUCK",
+            "form": 0,
+            "level": 8,
+            "item": null,
+            "moves": [
+                "MOVE_HIDDEN_POWER",
+                "MOVE_WATER_GUN",
+                "MOVE_NONE",
+                "MOVE_NONE"
+            ],
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

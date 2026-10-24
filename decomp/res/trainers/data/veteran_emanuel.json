@@ -10,29 +10,12 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MACHOKE",
+            "species": "SPECIES_BLAZIKEN",
             "form": 0,
-            "level": 28,
+            "level": 37,
             "item": null,
-            "moves": [
-                "MOVE_SEISMIC_TOSS",
-                "MOVE_LOW_KICK",
-                "MOVE_FORESIGHT"
-            ],
-            "iv_scale": 100,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_BRONZOR",
-            "form": 0,
-            "level": 28,
-            "item": null,
-            "moves": [
-                "MOVE_EXTRASENSORY",
-                "MOVE_TACKLE",
-                "MOVE_CONFUSE_RAY"
-            ],
-            "iv_scale": 100,
+            "moves": null,
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

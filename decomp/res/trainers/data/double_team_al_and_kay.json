@@ -3,36 +3,66 @@
     "class": "TRAINER_CLASS_DOUBLE_TEAM",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": true,
     "party": [
         {
-            "species": "SPECIES_STARAPTOR",
+            "species": "SPECIES_WHISCASH",
             "form": 0,
-            "level": 50,
+            "level": 64,
             "item": null,
             "moves": [
-                "MOVE_CLOSE_COMBAT",
-                "MOVE_BRAVE_BIRD",
-                "MOVE_GROWL",
-                "MOVE_QUICK_ATTACK"
+                "MOVE_MUDDY_WATER",
+                "MOVE_EARTH_POWER",
+                "MOVE_FUTURE_SIGHT",
+                "MOVE_SPARK"
             ],
-            "iv_scale": 0,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_AMBIPOM",
             "form": 0,
-            "level": 50,
+            "level": 64,
             "item": null,
             "moves": [
                 "MOVE_DOUBLE_HIT",
                 "MOVE_AERIAL_ACE",
-                "MOVE_SHOCK_WAVE",
-                "MOVE_WATER_PULSE"
+                "MOVE_FAKE_OUT",
+                "MOVE_LOW_KICK"
             ],
-            "iv_scale": 0,
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_UMBREON",
+            "form": 0,
+            "level": 64,
+            "item": null,
+            "moves": [
+                "MOVE_CRUNCH",
+                "MOVE_PLAY_ROUGH",
+                "MOVE_GUNK_SHOT",
+                "MOVE_CONFUSE_RAY"
+            ],
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_VENUSAUR",
+            "form": 0,
+            "level": 64,
+            "item": null,
+            "moves": [
+                "MOVE_LEAF_STORM",
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_SYNTHESIS",
+                "MOVE_PROTECT"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

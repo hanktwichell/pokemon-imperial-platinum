@@ -4,17 +4,65 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
-        "AI_FLAG_PRIORITIZE_EXTREMES"
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
             "species": "SPECIES_MACHAMP",
             "form": 0,
-            "level": 48,
+            "level": 63,
             "item": null,
-            "moves": null,
-            "iv_scale": 30,
+            "moves": [
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_PAYBACK",
+                "MOVE_COUNTER",
+                "MOVE_STONE_EDGE"
+            ],
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_POLIWRATH",
+            "form": 0,
+            "level": 63,
+            "item": null,
+            "moves": [
+                "MOVE_WATERFALL",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_ICE_PUNCH",
+                "MOVE_HYPNOSIS"
+            ],
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_HITMONCHAN",
+            "form": 0,
+            "level": 63,
+            "item": null,
+            "moves": [
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_ICE_PUNCH",
+                "MOVE_FIRE_PUNCH"
+            ],
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_HITMONLEE",
+            "form": 0,
+            "level": 63,
+            "item": null,
+            "moves": [
+                "MOVE_HI_JUMP_KICK",
+                "MOVE_BLAZE_KICK",
+                "MOVE_QUICK_ATTACK",
+                "MOVE_MEGA_KICK"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

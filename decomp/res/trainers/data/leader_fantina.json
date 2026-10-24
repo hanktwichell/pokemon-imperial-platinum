@@ -2,8 +2,8 @@
     "name": "Fantina",
     "class": "TRAINER_CLASS_LEADER_FANTINA",
     "items": [
-        "ITEM_SUPER_POTION",
-        "ITEM_SUPER_POTION"
+        "ITEM_HYPER_POTION",
+        "ITEM_HYPER_POTION"
     ],
     "ai_flags": [
         "AI_FLAG_BASIC",
@@ -13,46 +13,88 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_DUSKULL",
+            "species": "SPECIES_DRIFBLIM",
             "form": 0,
-            "level": 24,
-            "item": "ITEM_NONE",
+            "level": 32,
+            "item": "ITEM_STARF_BERRY",
             "moves": [
-                "MOVE_WILL_O_WISP",
-                "MOVE_PURSUIT",
-                "MOVE_SHADOW_SNEAK",
-                "MOVE_FUTURE_SIGHT"
+                "MOVE_SHADOW_BALL",
+                "MOVE_AIR_SLASH",
+                "MOVE_BATON_PASS",
+                "MOVE_CALM_MIND"
             ],
-            "iv_scale": 100,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_HAUNTER",
+            "species": "SPECIES_DUSCLOPS",
             "form": 0,
-            "level": 24,
-            "item": "ITEM_NONE",
+            "level": 32,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_SHADOW_PUNCH",
+                "MOVE_WILL_O_WISP",
+                "MOVE_PROTECT",
+                "MOVE_PAIN_SPLIT"
+            ],
+            "iv_scale": 247,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_BANETTE",
+            "form": 0,
+            "level": 32,
+            "item": "ITEM_MUSCLE_BAND",
             "moves": [
                 "MOVE_SHADOW_CLAW",
+                "MOVE_WILL_O_WISP",
                 "MOVE_SUCKER_PUNCH",
-                "MOVE_HYPNOSIS",
-                "MOVE_CONFUSE_RAY"
+                "MOVE_DISABLE"
             ],
-            "iv_scale": 100,
+            "iv_scale": 254,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SPIRITOMB",
+            "form": 0,
+            "level": 32,
+            "item": "ITEM_ZOOM_LENS",
+            "moves": [
+                "MOVE_SHADOW_BALL",
+                "MOVE_WILL_O_WISP",
+                "MOVE_DARK_PULSE",
+                "MOVE_DISABLE"
+            ],
+            "iv_scale": 252,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GENGAR",
+            "form": 0,
+            "level": 32,
+            "item": "ITEM_WISE_GLASSES",
+            "moves": [
+                "MOVE_SHADOW_BALL",
+                "MOVE_WILL_O_WISP",
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_DAZZLING_GLEAM"
+            ],
+            "iv_scale": 254,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_MISMAGIUS",
             "form": 0,
-            "level": 26,
+            "level": 33,
             "item": "ITEM_SITRUS_BERRY",
             "moves": [
                 "MOVE_SHADOW_BALL",
-                "MOVE_PSYBEAM",
-                "MOVE_MAGICAL_LEAF",
-                "MOVE_CONFUSE_RAY"
+                "MOVE_POWER_GEM",
+                "MOVE_CALM_MIND",
+                "MOVE_DAZZLING_GLEAM"
             ],
-            "iv_scale": 100,
-            "ball_seal": 0
+            "iv_scale": 246,
+            "ball_seal": 14
         }
     ],
     "messages": [

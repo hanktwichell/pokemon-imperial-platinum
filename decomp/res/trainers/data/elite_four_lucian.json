@@ -8,80 +8,93 @@
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
-        "AI_FLAG_EXPERT",
-        "AI_FLAG_SETUP_FIRST_TURN"
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
             "species": "SPECIES_MR_MIME",
             "form": 0,
-            "level": 53,
-            "item": "ITEM_NONE",
+            "level": 74,
+            "item": "ITEM_LIGHT_CLAY",
             "moves": [
                 "MOVE_PSYCHIC",
-                "MOVE_THUNDERBOLT",
+                "MOVE_DAZZLING_GLEAM",
                 "MOVE_REFLECT",
                 "MOVE_LIGHT_SCREEN"
             ],
-            "iv_scale": 250,
+            "iv_scale": 242,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_ESPEON",
             "form": 0,
-            "level": 55,
-            "item": "ITEM_NONE",
+            "level": 74,
+            "item": "ITEM_WISE_GLASSES",
             "moves": [
                 "MOVE_PSYCHIC",
-                "MOVE_SHADOW_BALL",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_SIGNAL_BEAM"
+                "MOVE_DAZZLING_GLEAM",
+                "MOVE_AURA_SPHERE",
+                "MOVE_POWER_GEM"
             ],
-            "iv_scale": 250,
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_BRONZONG",
             "form": 0,
-            "level": 54,
-            "item": "ITEM_NONE",
+            "level": 74,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_PSYCHIC",
+                "MOVE_ZEN_HEADBUTT",
                 "MOVE_GYRO_BALL",
-                "MOVE_EARTHQUAKE",
-                "MOVE_CALM_MIND"
+                "MOVE_REFLECT",
+                "MOVE_LIGHT_SCREEN"
             ],
-            "iv_scale": 250,
+            "iv_scale": 248,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_ALAKAZAM",
             "form": 0,
-            "level": 56,
-            "item": "ITEM_NONE",
+            "level": 74,
+            "item": "ITEM_LIFE_ORB",
             "moves": [
                 "MOVE_PSYCHIC",
+                "MOVE_SHADOW_BALL",
                 "MOVE_ENERGY_BALL",
-                "MOVE_FOCUS_BLAST",
-                "MOVE_RECOVER"
+                "MOVE_AURA_SPHERE"
             ],
-            "iv_scale": 250,
+            "iv_scale": 237,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_METAGROSS",
+            "form": 0,
+            "level": 74,
+            "item": "ITEM_MUSCLE_BAND",
+            "moves": [
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_METEOR_MASH",
+                "MOVE_EARTHQUAKE",
+                "MOVE_EXPLOSION"
+            ],
+            "iv_scale": 243,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_GALLADE",
             "form": 0,
-            "level": 59,
-            "item": "ITEM_SITRUS_BERRY",
+            "level": 75,
+            "item": "ITEM_SCOPE_LENS",
             "moves": [
-                "MOVE_DRAIN_PUNCH",
                 "MOVE_PSYCHO_CUT",
+                "MOVE_CLOSE_COMBAT",
                 "MOVE_LEAF_BLADE",
-                "MOVE_STONE_EDGE"
+                "MOVE_NIGHT_SLASH"
             ],
-            "iv_scale": 250,
-            "ball_seal": 0
+            "iv_scale": 251,
+            "ball_seal": 11
         }
     ],
     "messages": [

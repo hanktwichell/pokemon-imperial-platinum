@@ -4,26 +4,36 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
-        "AI_FLAG_PRIORITIZE_EXTREMES"
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MEDICHAM",
+            "species": "SPECIES_HITMONTOP",
             "form": 0,
-            "level": 60,
+            "level": 72,
             "item": null,
             "moves": null,
-            "iv_scale": 30,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_MACHAMP",
+            "species": "SPECIES_MEDICHAM",
             "form": 0,
-            "level": 60,
+            "level": 72,
             "item": null,
             "moves": null,
-            "iv_scale": 30,
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_HARIYAMA",
+            "form": 0,
+            "level": 72,
+            "item": null,
+            "moves": null,
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

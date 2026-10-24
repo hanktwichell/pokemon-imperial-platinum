@@ -12,19 +12,19 @@
         {
             "species": "SPECIES_ALTARIA",
             "form": 0,
-            "level": 59,
+            "level": 79,
             "item": null,
             "moves": null,
-            "iv_scale": 50,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_GARCHOMP",
             "form": 0,
-            "level": 61,
+            "level": 79,
             "item": null,
             "moves": null,
-            "iv_scale": 50,
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

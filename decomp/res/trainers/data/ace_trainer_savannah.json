@@ -10,45 +10,45 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SNORUNT",
+            "species": "SPECIES_SEEL",
             "form": 0,
-            "level": 39,
+            "level": 51,
             "item": null,
             "moves": [
-                "MOVE_ICE_FANG",
-                "MOVE_CRUNCH",
+                "MOVE_AQUA_TAIL",
+                "MOVE_ICE_BEAM",
                 "MOVE_HAIL",
-                "MOVE_PROTECT"
+                "MOVE_NONE"
             ],
-            "iv_scale": 60,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_SNORUNT",
+            "species": "SPECIES_JYNX",
             "form": 0,
-            "level": 40,
+            "level": 54,
             "item": null,
             "moves": [
-                "MOVE_ICE_FANG",
-                "MOVE_CRUNCH",
-                "MOVE_HAIL",
-                "MOVE_PROTECT"
+                "MOVE_PSYCHIC",
+                "MOVE_LOVELY_KISS",
+                "MOVE_ICE_BEAM",
+                "MOVE_NONE"
             ],
-            "iv_scale": 60,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_GLALIE",
+            "species": "SPECIES_DEWGONG",
             "form": 0,
-            "level": 42,
+            "level": 54,
             "item": null,
             "moves": [
-                "MOVE_ICE_FANG",
-                "MOVE_CRUNCH",
-                "MOVE_HAIL",
-                "MOVE_PROTECT"
+                "MOVE_BLIZZARD",
+                "MOVE_SHEER_COLD",
+                "MOVE_FAKE_OUT",
+                "MOVE_SURF"
             ],
-            "iv_scale": 60,
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

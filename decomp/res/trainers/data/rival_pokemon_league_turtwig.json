@@ -1,7 +1,10 @@
 {
     "name": "Cedric",
     "class": "TRAINER_CLASS_RIVAL",
-    "items": [],
+    "items": [
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE"
+    ],
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
@@ -12,85 +15,85 @@
         {
             "species": "SPECIES_STARAPTOR",
             "form": 0,
-            "level": 48,
-            "item": null,
+            "level": 70,
+            "item": "ITEM_CHOICE_SCARF",
             "moves": [
+                "MOVE_DOUBLE_EDGE",
+                "MOVE_BRAVE_BIRD",
                 "MOVE_CLOSE_COMBAT",
-                "MOVE_AERIAL_ACE",
-                "MOVE_STEEL_WING",
                 "MOVE_U_TURN"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_FLOATZEL",
-            "form": 0,
-            "level": 47,
-            "item": null,
-            "moves": [
-                "MOVE_AQUA_JET",
-                "MOVE_CRUNCH",
-                "MOVE_ICE_FANG",
-                "MOVE_BRICK_BREAK"
-            ],
-            "iv_scale": 200,
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_HERACROSS",
             "form": 0,
-            "level": 48,
-            "item": null,
+            "level": 70,
+            "item": "ITEM_TOXIC_ORB",
             "moves": [
+                "MOVE_MEGAHORN",
                 "MOVE_CLOSE_COMBAT",
-                "MOVE_ROCK_SLIDE",
-                "MOVE_NIGHT_SLASH",
-                "MOVE_AERIAL_ACE"
+                "MOVE_STONE_EDGE",
+                "MOVE_PROTECT"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_ROSERADE",
-            "form": 0,
-            "level": 47,
-            "item": null,
-            "moves": [
-                "MOVE_POISON_JAB",
-                "MOVE_GIGA_DRAIN",
-                "MOVE_SHADOW_BALL",
-                "MOVE_GRASS_WHISTLE"
-            ],
-            "iv_scale": 200,
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_SNORLAX",
             "form": 0,
-            "level": 49,
-            "item": null,
+            "level": 70,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
                 "MOVE_BODY_SLAM",
-                "MOVE_CRUNCH",
                 "MOVE_EARTHQUAKE",
-                "MOVE_REST"
+                "MOVE_CURSE",
+                "MOVE_SLACK_OFF"
             ],
-            "iv_scale": 200,
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_AZUMARILL",
+            "form": 0,
+            "level": 70,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_AQUA_TAIL",
+                "MOVE_PLAY_ROUGH",
+                "MOVE_ICE_PUNCH",
+                "MOVE_AQUA_JET"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_BRELOOM",
+            "form": 0,
+            "level": 70,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_BULLET_SEED",
+                "MOVE_FORCE_PALM",
+                "MOVE_STONE_EDGE",
+                "MOVE_SPORE"
+            ],
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_INFERNAPE",
             "form": 0,
-            "level": 51,
-            "item": null,
+            "level": 71,
+            "item": "ITEM_SITRUS_BERRY",
             "moves": [
-                "MOVE_FLAMETHROWER",
-                "MOVE_FOCUS_BLAST",
-                "MOVE_SHADOW_CLAW",
-                "MOVE_AERIAL_ACE"
+                "MOVE_FLARE_BLITZ",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_STONE_EDGE",
+                "MOVE_GRASS_KNOT"
             ],
-            "iv_scale": 200,
+            "iv_scale": 255,
             "ball_seal": 24
         }
     ],

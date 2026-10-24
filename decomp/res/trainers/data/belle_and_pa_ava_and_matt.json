@@ -8,21 +8,21 @@
     "double_battle": true,
     "party": [
         {
-            "species": "SPECIES_PONYTA",
+            "species": "SPECIES_TAUROS",
             "form": 0,
-            "level": 24,
+            "level": 33,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_RAPIDASH",
+            "species": "SPECIES_MILTANK",
             "form": 0,
-            "level": 24,
+            "level": 33,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

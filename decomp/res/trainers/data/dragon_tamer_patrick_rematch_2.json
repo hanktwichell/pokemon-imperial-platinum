@@ -10,30 +10,39 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SHELGON",
+            "species": "SPECIES_GARCHOMP",
             "form": 0,
-            "level": 61,
+            "level": 70,
             "item": null,
             "moves": null,
-            "iv_scale": 50,
-            "ball_seal": 17
-        },
-        {
-            "species": "SPECIES_GABITE",
-            "form": 0,
-            "level": 61,
-            "item": null,
-            "moves": null,
-            "iv_scale": 50,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_DRAGONAIR",
+            "species": "SPECIES_SALAMENCE",
             "form": 0,
-            "level": 61,
+            "level": 70,
             "item": null,
             "moves": null,
-            "iv_scale": 50,
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_FLYGON",
+            "form": 0,
+            "level": 70,
+            "item": null,
+            "moves": null,
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_DRAGONITE",
+            "form": 0,
+            "level": 70,
+            "item": null,
+            "moves": null,
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

@@ -12,19 +12,28 @@
         {
             "species": "SPECIES_CARNIVINE",
             "form": 0,
-            "level": 28,
+            "level": 39,
             "item": null,
             "moves": null,
-            "iv_scale": 50,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_LUXIO",
+            "species": "SPECIES_KECLEON",
             "form": 0,
-            "level": 30,
+            "level": 39,
             "item": null,
             "moves": null,
-            "iv_scale": 50,
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ELECTABUZZ",
+            "form": 0,
+            "level": 39,
+            "item": null,
+            "moves": null,
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

@@ -12,15 +12,43 @@
         {
             "species": "SPECIES_CLAYDOL",
             "form": 0,
-            "level": 63,
+            "level": 78,
             "item": null,
             "moves": [
+                "MOVE_EARTH_POWER",
                 "MOVE_PSYCHIC",
-                "MOVE_ANCIENT_POWER",
-                "MOVE_LIGHT_SCREEN",
-                "MOVE_REFLECT"
+                "MOVE_ICE_BEAM",
+                "MOVE_CALM_MIND"
             ],
-            "iv_scale": 30,
+            "iv_scale": 255,
+            "ball_seal": 3
+        },
+        {
+            "species": "SPECIES_TORKOAL",
+            "form": 0,
+            "level": 77,
+            "item": null,
+            "moves": [
+                "MOVE_FIRE_BLAST",
+                "MOVE_EARTH_POWER",
+                "MOVE_SOLAR_BEAM",
+                "MOVE_STEALTH_ROCK"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_CLOYSTER",
+            "form": 0,
+            "level": 77,
+            "item": null,
+            "moves": [
+                "MOVE_ICICLE_SPEAR",
+                "MOVE_HYDRO_PUMP",
+                "MOVE_SPIKES",
+                "MOVE_TOXIC_SPIKES"
+            ],
+            "iv_scale": 255,
             "ball_seal": 0
         }
     ],

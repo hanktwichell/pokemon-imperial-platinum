@@ -3,22 +3,38 @@
     "class": "TRAINER_CLASS_GUITARIST",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_RAICHU",
+            "species": "SPECIES_ELECTABUZZ",
             "form": 0,
-            "level": 47,
+            "level": 60,
+            "item": null,
+            "moves": [
+                "MOVE_THUNDER",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_SUBSTITUTE",
+                "MOVE_FOCUS_PUNCH"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ELECTRODE",
+            "form": 0,
+            "level": 60,
             "item": null,
             "moves": [
                 "MOVE_THUNDERBOLT",
-                "MOVE_SLAM",
-                "MOVE_THUNDER_WAVE",
-                "MOVE_QUICK_ATTACK"
+                "MOVE_SIGNAL_BEAM",
+                "MOVE_EXPLOSION",
+                "MOVE_TOXIC"
             ],
-            "iv_scale": 10,
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

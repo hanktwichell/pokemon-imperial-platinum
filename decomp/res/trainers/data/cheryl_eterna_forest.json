@@ -1,7 +1,9 @@
 {
     "name": "Cheryl",
     "class": "TRAINER_CLASS_TRAINER_CHERYL",
-    "items": [],
+    "items": [
+        "ITEM_HYPER_POTION"
+    ],
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
@@ -15,11 +17,40 @@
             "level": 20,
             "item": null,
             "moves": [
-                "MOVE_EGG_BOMB",
+                "MOVE_HYPER_VOICE",
                 "MOVE_SOFTBOILED",
-                "MOVE_REFRESH"
+                "MOVE_ICE_BEAM",
+                "MOVE_THUNDERBOLT"
             ],
-            "iv_scale": 30,
+            "iv_scale": 254,
+            "ball_seal": 9
+        },
+        {
+            "species": "SPECIES_DRIFLOON",
+            "form": 0,
+            "level": 19,
+            "item": null,
+            "moves": [
+                "MOVE_OMINOUS_WIND",
+                "MOVE_AIR_CUTTER",
+                "MOVE_SHOCK_WAVE",
+                "MOVE_SWIFT"
+            ],
+            "iv_scale": 249,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MAKUHITA",
+            "form": 0,
+            "level": 19,
+            "item": null,
+            "moves": [
+                "MOVE_KNOCK_OFF",
+                "MOVE_FAKE_OUT",
+                "MOVE_BRICK_BREAK",
+                "MOVE_BULLET_PUNCH"
+            ],
+            "iv_scale": 249,
             "ball_seal": 0
         }
     ],

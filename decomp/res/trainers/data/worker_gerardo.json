@@ -3,34 +3,28 @@
     "class": "TRAINER_CLASS_WORKER",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MAGNEMITE",
+            "species": "SPECIES_PROBOPASS",
             "form": 0,
-            "level": 35,
+            "level": 49,
             "item": null,
-            "moves": [
-                "MOVE_SUPERSONIC",
-                "MOVE_MAGNET_BOMB",
-                "MOVE_SPARK"
-            ],
-            "iv_scale": 10,
+            "moves": null,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_MAGNEMITE",
+            "species": "SPECIES_FORRETRESS",
             "form": 0,
-            "level": 35,
+            "level": 49,
             "item": null,
-            "moves": [
-                "MOVE_THUNDER_WAVE",
-                "MOVE_MAGNET_BOMB",
-                "MOVE_SPARK"
-            ],
-            "iv_scale": 10,
+            "moves": null,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

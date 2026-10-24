@@ -4,14 +4,15 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
-        "AI_FLAG_PRIORITIZE_EXTREMES"
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
             "species": "SPECIES_MACHAMP",
             "form": 0,
-            "level": 60,
+            "level": 78,
             "item": null,
             "moves": [
                 "MOVE_CROSS_CHOP",
@@ -19,7 +20,35 @@
                 "MOVE_ICE_PUNCH",
                 "MOVE_THUNDER_PUNCH"
             ],
-            "iv_scale": 30,
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_BLAZIKEN",
+            "form": 0,
+            "level": 78,
+            "item": null,
+            "moves": [
+                "MOVE_FLAMETHROWER",
+                "MOVE_HI_JUMP_KICK",
+                "MOVE_BULK_UP",
+                "MOVE_THUNDER_PUNCH"
+            ],
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_POLIWRATH",
+            "form": 0,
+            "level": 78,
+            "item": null,
+            "moves": [
+                "MOVE_WATERFALL",
+                "MOVE_HYPNOSIS",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_ICE_PUNCH"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

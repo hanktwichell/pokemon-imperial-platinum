@@ -10,12 +10,30 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MONFERNO",
+            "species": "SPECIES_MAGMAR",
             "form": 0,
-            "level": 31,
+            "level": 39,
             "item": null,
             "moves": null,
-            "iv_scale": 50,
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MANECTRIC",
+            "form": 0,
+            "level": 39,
+            "item": null,
+            "moves": null,
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_NIDOKING",
+            "form": 0,
+            "level": 39,
+            "item": null,
+            "moves": null,
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

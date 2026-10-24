@@ -3,27 +3,29 @@
     "class": "TRAINER_CLASS_TWINS",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": true,
     "party": [
         {
-            "species": "SPECIES_PIKACHU",
+            "species": "SPECIES_FURRET",
             "form": 0,
-            "level": 23,
+            "level": 32,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 20
+            "iv_scale": 100,
+            "ball_seal": 0
         },
         {
-            "species": "SPECIES_CLEFAIRY",
+            "species": "SPECIES_LINOONE",
             "form": 0,
-            "level": 23,
+            "level": 32,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 20
+            "iv_scale": 100,
+            "ball_seal": 0
         }
     ],
     "messages": [

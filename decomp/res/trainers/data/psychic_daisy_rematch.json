@@ -11,19 +11,19 @@
         {
             "species": "SPECIES_SLOWBRO",
             "form": 0,
-            "level": 58,
+            "level": 79,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_SLOWKING",
             "form": 0,
-            "level": 62,
+            "level": 79,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

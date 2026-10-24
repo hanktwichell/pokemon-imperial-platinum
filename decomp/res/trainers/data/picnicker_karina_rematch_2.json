@@ -10,17 +10,21 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_PRINPLUP",
+            "species": "SPECIES_EMPOLEON",
             "form": 0,
-            "level": 35,
+            "level": 39,
             "item": null,
-            "moves": [
-                "MOVE_BUBBLE_BEAM",
-                "MOVE_METAL_CLAW",
-                "MOVE_FURY_ATTACK",
-                "MOVE_GROWL"
-            ],
-            "iv_scale": 0,
+            "moves": null,
+            "iv_scale": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_INFERNAPE",
+            "form": 0,
+            "level": 39,
+            "item": null,
+            "moves": null,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

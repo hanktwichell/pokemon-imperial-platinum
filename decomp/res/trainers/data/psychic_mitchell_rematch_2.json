@@ -4,35 +4,36 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_GRUMPIG",
-            "form": 0,
-            "level": 59,
-            "item": null,
-            "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 0
-        },
-        {
             "species": "SPECIES_ALAKAZAM",
             "form": 0,
-            "level": 59,
+            "level": 72,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_DUSKNOIR",
+            "species": "SPECIES_GRUMPIG",
             "form": 0,
-            "level": 59,
+            "level": 72,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_HYPNO",
+            "form": 0,
+            "level": 72,
+            "item": null,
+            "moves": null,
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

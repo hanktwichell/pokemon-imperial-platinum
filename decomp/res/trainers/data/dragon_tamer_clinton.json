@@ -10,30 +10,59 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_GIBLE",
+            "species": "SPECIES_FLYGON",
             "form": 0,
-            "level": 43,
+            "level": 64,
             "item": null,
-            "moves": null,
-            "iv_scale": 50,
+            "moves": [
+                "MOVE_BUG_BUZZ",
+                "MOVE_DRAGON_PULSE",
+                "MOVE_EARTH_POWER",
+                "MOVE_HURRICANE"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_SWABLU",
+            "species": "SPECIES_GYARADOS",
             "form": 0,
-            "level": 45,
+            "level": 64,
             "item": null,
-            "moves": null,
-            "iv_scale": 50,
+            "moves": [
+                "MOVE_AQUA_TAIL",
+                "MOVE_OUTRAGE",
+                "MOVE_ICE_FANG",
+                "MOVE_EARTHQUAKE"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_GABITE",
+            "species": "SPECIES_DRAGONITE",
             "form": 0,
-            "level": 47,
+            "level": 64,
             "item": null,
-            "moves": null,
-            "iv_scale": 50,
+            "moves": [
+                "MOVE_DRAGON_RUSH",
+                "MOVE_HURRICANE",
+                "MOVE_FIRE_BLAST",
+                "MOVE_BLIZZARD"
+            ],
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_AERODACTYL",
+            "form": 0,
+            "level": 64,
+            "item": null,
+            "moves": [
+                "MOVE_STONE_EDGE",
+                "MOVE_IRON_HEAD",
+                "MOVE_BRAVE_BIRD",
+                "MOVE_FIRE_FANG"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

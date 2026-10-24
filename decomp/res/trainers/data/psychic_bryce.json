@@ -4,35 +4,65 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_HAUNTER",
+            "species": "SPECIES_GENGAR",
             "form": 0,
-            "level": 43,
+            "level": 63,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_SHADOW_BALL",
+                "MOVE_THUNDERBOLT",
+                "MOVE_DOUBLE_TEAM",
+                "MOVE_SLUDGE_BOMB"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_GARDEVOIR",
             "form": 0,
-            "level": 46,
+            "level": 63,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_PSYCHIC",
+                "MOVE_MOONBLAST",
+                "MOVE_THUNDERBOLT",
+                "MOVE_ENERGY_BALL"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_GENGAR",
+            "species": "SPECIES_EXEGGUTOR",
             "form": 0,
-            "level": 46,
+            "level": 63,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_ENERGY_BALL",
+                "MOVE_PSYCHIC",
+                "MOVE_LOW_KICK",
+                "MOVE_ANCIENT_POWER"
+            ],
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ESPEON",
+            "form": 0,
+            "level": 63,
+            "item": null,
+            "moves": [
+                "MOVE_PSYCHIC",
+                "MOVE_POWER_GEM",
+                "MOVE_SHADOW_BALL",
+                "MOVE_HYPER_VOICE"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

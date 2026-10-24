@@ -10,28 +10,28 @@
         {
             "species": "SPECIES_FARFETCHD",
             "form": 0,
-            "level": 57,
+            "level": 78,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_SWELLOW",
             "form": 0,
-            "level": 59,
+            "level": 78,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_PIDGEOT",
             "form": 0,
-            "level": 61,
+            "level": 78,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

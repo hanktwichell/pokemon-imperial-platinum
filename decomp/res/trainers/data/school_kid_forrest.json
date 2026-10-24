@@ -6,21 +6,51 @@
     ],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MAGNETON",
+            "species": "SPECIES_ELEKID",
             "form": 0,
-            "level": 47,
+            "level": 56,
             "item": null,
             "moves": [
                 "MOVE_THUNDERBOLT",
-                "MOVE_TRI_ATTACK",
-                "MOVE_MIRROR_SHOT"
+                "MOVE_LIGHT_SCREEN",
+                "MOVE_LOW_KICK",
+                "MOVE_QUICK_ATTACK"
             ],
-            "iv_scale": 10,
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ELEKID",
+            "form": 0,
+            "level": 56,
+            "item": null,
+            "moves": [
+                "MOVE_WILD_CHARGE",
+                "MOVE_BRICK_BREAK",
+                "MOVE_FIRE_PUNCH",
+                "MOVE_QUICK_ATTACK"
+            ],
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ELECTABUZZ",
+            "form": 0,
+            "level": 59,
+            "item": null,
+            "moves": [
+                "MOVE_THUNDERBOLT",
+                "MOVE_CROSS_CHOP",
+                "MOVE_LIGHT_SCREEN",
+                "MOVE_ICE_PUNCH"
+            ],
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

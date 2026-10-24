@@ -6,18 +6,47 @@
         "ITEM_SUPER_POTION"
     ],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_BONSLY",
+            "species": "SPECIES_CLEFAIRY",
             "form": 0,
-            "level": 23,
+            "level": 30,
             "item": "ITEM_SITRUS_BERRY",
             "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 6
+            "iv_scale": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_WAILMER",
+            "form": 0,
+            "level": 30,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": null,
+            "iv_scale": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_BONSLY",
+            "form": 0,
+            "level": 30,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": null,
+            "iv_scale": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SKITTY",
+            "form": 0,
+            "level": 30,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": null,
+            "iv_scale": 100,
+            "ball_seal": 0
         }
     ],
     "messages": [

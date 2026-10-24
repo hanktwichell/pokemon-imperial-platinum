@@ -4,26 +4,27 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_SLOWPOKE",
+            "species": "SPECIES_SLOWBRO",
             "form": 0,
-            "level": 52,
+            "level": 74,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_SLOWBRO",
+            "species": "SPECIES_SLOWKING",
             "form": 0,
-            "level": 56,
+            "level": 74,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

@@ -4,6 +4,7 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
@@ -11,29 +12,43 @@
         {
             "species": "SPECIES_MR_MIME",
             "form": 0,
-            "level": 54,
+            "level": 64,
             "item": null,
             "moves": [
                 "MOVE_PSYCHIC",
                 "MOVE_REFLECT",
                 "MOVE_LIGHT_SCREEN",
-                "MOVE_DRAIN_PUNCH"
+                "MOVE_DAZZLING_GLEAM"
             ],
-            "iv_scale": 0,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_MISMAGIUS",
+            "species": "SPECIES_DRIFBLIM",
             "form": 0,
-            "level": 54,
+            "level": 64,
             "item": null,
             "moves": [
                 "MOVE_SHADOW_BALL",
-                "MOVE_MAGICAL_LEAF",
-                "MOVE_AERIAL_ACE",
-                "MOVE_SHOCK_WAVE"
+                "MOVE_HURRICANE",
+                "MOVE_THUNDERBOLT",
+                "MOVE_DESTINY_BOND"
             ],
-            "iv_scale": 0,
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_HYPNO",
+            "form": 0,
+            "level": 64,
+            "item": null,
+            "moves": [
+                "MOVE_PROTECT",
+                "MOVE_DRAIN_PUNCH",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_SWAGGER"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

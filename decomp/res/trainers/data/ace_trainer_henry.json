@@ -10,31 +10,73 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_RHYDON",
+            "species": "SPECIES_HONCHKROW",
             "form": 0,
-            "level": 47,
+            "level": 63,
             "item": null,
             "moves": [
-                "MOVE_STONE_EDGE",
-                "MOVE_EARTHQUAKE",
-                "MOVE_HAMMER_ARM",
-                "MOVE_TAKE_DOWN"
+                "MOVE_BRAVE_BIRD",
+                "MOVE_DARK_PULSE",
+                "MOVE_HEAT_WAVE",
+                "MOVE_SUPERPOWER"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MAROWAK",
+            "form": 0,
+            "level": 63,
+            "item": "ITEM_THICK_CLUB",
+            "moves": [
+                "MOVE_BONEMERANG",
+                "MOVE_IRON_HEAD",
+                "MOVE_STONE_EDGE",
+                "MOVE_SING"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_CARNIVINE",
             "form": 0,
-            "level": 48,
+            "level": 63,
             "item": null,
             "moves": [
-                "MOVE_WRING_OUT",
+                "MOVE_POWER_WHIP",
                 "MOVE_CRUNCH",
-                "MOVE_FAINT_ATTACK",
-                "MOVE_INGRAIN"
+                "MOVE_STUN_SPORE",
+                "MOVE_SLUDGE_BOMB"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MANECTRIC",
+            "form": 0,
+            "level": 63,
+            "item": null,
+            "moves": [
+                "MOVE_THUNDERBOLT",
+                "MOVE_FLAMETHROWER",
+                "MOVE_CRUNCH",
+                "MOVE_SIGNAL_BEAM"
+            ],
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SLOWKING",
+            "form": 0,
+            "level": 63,
+            "item": null,
+            "moves": [
+                "MOVE_FLAMETHROWER",
+                "MOVE_PSYCHIC",
+                "MOVE_SURF",
+                "MOVE_AURA_SPHERE"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

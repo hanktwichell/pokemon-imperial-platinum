@@ -12,29 +12,29 @@
         {
             "species": "SPECIES_DELCATTY",
             "form": 0,
-            "level": 57,
+            "level": 77,
             "item": null,
             "moves": [
                 "MOVE_FAKE_OUT",
-                "MOVE_CAPTIVATE",
-                "MOVE_FAINT_ATTACK",
-                "MOVE_DOUBLE_EDGE"
+                "MOVE_DOUBLE_EDGE",
+                "MOVE_PLAY_ROUGH",
+                "MOVE_ICE_BEAM"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_ABOMASNOW",
             "form": 0,
-            "level": 58,
+            "level": 77,
             "item": null,
             "moves": [
                 "MOVE_ICE_SHARD",
                 "MOVE_AVALANCHE",
-                "MOVE_RAZOR_LEAF",
+                "MOVE_WOOD_HAMMER",
                 "MOVE_WATER_PULSE"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

@@ -4,21 +4,27 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MEDITITE",
+            "species": "SPECIES_MIME_JR",
             "form": 0,
-            "level": 17,
+            "level": 18,
             "item": null,
-            "moves": [
-                "MOVE_CONFUSION",
-                "MOVE_BIDE",
-                "MOVE_MEDITATE"
-            ],
-            "iv_scale": 20,
+            "moves": null,
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MR_MIME",
+            "form": 0,
+            "level": 20,
+            "item": null,
+            "moves": null,
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

@@ -10,45 +10,45 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_CLEFAIRY",
-            "form": 0,
-            "level": 25,
-            "item": null,
-            "moves": [
-                "MOVE_METRONOME",
-                "MOVE_GRAVITY",
-                "MOVE_WAKE_UP_SLAP",
-                "MOVE_SING"
-            ],
-            "iv_scale": 60,
-            "ball_seal": 0
-        },
-        {
             "species": "SPECIES_KADABRA",
             "form": 0,
-            "level": 25,
+            "level": 35,
             "item": null,
             "moves": [
-                "MOVE_PSYBEAM",
-                "MOVE_PSYCHO_CUT",
-                "MOVE_REFLECT",
-                "MOVE_LIGHT_SCREEN"
+                "MOVE_PSYCHIC",
+                "MOVE_RECOVER",
+                "MOVE_SHOCK_WAVE",
+                "MOVE_DISABLE"
             ],
-            "iv_scale": 60,
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_MONFERNO",
+            "species": "SPECIES_PILOSWINE",
             "form": 0,
-            "level": 27,
+            "level": 35,
             "item": null,
             "moves": [
-                "MOVE_FLAME_WHEEL",
-                "MOVE_MACH_PUNCH",
-                "MOVE_FURY_SWIPES",
-                "MOVE_TORMENT"
+                "MOVE_AVALANCHE",
+                "MOVE_TAKE_DOWN",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_ICE_SHARD"
             ],
-            "iv_scale": 60,
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_INFERNAPE",
+            "form": 0,
+            "level": 36,
+            "item": null,
+            "moves": [
+                "MOVE_FLAMETHROWER",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_VACUUM_WAVE",
+                "MOVE_FAKE_OUT"
+            ],
+            "iv_scale": 255,
             "ball_seal": 0
         }
     ],

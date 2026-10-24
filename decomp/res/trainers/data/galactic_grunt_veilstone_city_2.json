@@ -3,26 +3,37 @@
     "class": "TRAINER_CLASS_GALACTIC_GRUNT_MALE",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_ZUBAT",
+            "species": "SPECIES_SKUNTANK",
             "form": 0,
-            "level": 24,
+            "level": 35,
             "item": null,
             "moves": null,
-            "iv_scale": 30,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_CROAGUNK",
+            "species": "SPECIES_DUSTOX",
             "form": 0,
-            "level": 26,
+            "level": 35,
             "item": null,
             "moves": null,
-            "iv_scale": 30,
+            "iv_scale": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_WORMADAM",
+            "form": 0,
+            "level": 35,
+            "item": null,
+            "moves": null,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

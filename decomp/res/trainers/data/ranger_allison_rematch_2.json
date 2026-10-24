@@ -10,21 +10,30 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_AZUMARILL",
+            "species": "SPECIES_MILOTIC",
             "form": 0,
-            "level": 45,
+            "level": 60,
             "item": null,
             "moves": null,
-            "iv_scale": 50,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_LEAFEON",
             "form": 0,
-            "level": 45,
+            "level": 60,
             "item": null,
             "moves": null,
-            "iv_scale": 50,
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_JYNX",
+            "form": 0,
+            "level": 60,
+            "item": null,
+            "moves": null,
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

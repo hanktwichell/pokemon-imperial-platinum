@@ -10,46 +10,74 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_GOLBAT",
+            "species": "SPECIES_CROBAT",
             "form": 0,
-            "level": 38,
-            "item": "ITEM_NONE",
+            "level": 52,
+            "item": "ITEM_BRIGHTPOWDER",
             "moves": [
-                "MOVE_AIR_CUTTER",
-                "MOVE_BITE",
-                "MOVE_TOXIC",
-                "MOVE_SUPERSONIC"
+                "MOVE_BRAVE_BIRD",
+                "MOVE_HYPNOSIS",
+                "MOVE_DOUBLE_TEAM",
+                "MOVE_GIGA_DRAIN"
             ],
-            "iv_scale": 200,
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_BRONZOR",
+            "species": "SPECIES_YANMEGA",
             "form": 0,
-            "level": 38,
-            "item": "ITEM_NONE",
+            "level": 52,
+            "item": "ITEM_WISE_GLASSES",
             "moves": [
-                "MOVE_GYRO_BALL",
-                "MOVE_EXTRASENSORY",
-                "MOVE_IRON_DEFENSE",
-                "MOVE_CONFUSE_RAY"
+                "MOVE_BUG_BUZZ",
+                "MOVE_AIR_SLASH",
+                "MOVE_PSYCHIC",
+                "MOVE_DETECT"
             ],
-            "iv_scale": 200,
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_BRONZONG",
+            "form": 0,
+            "level": 52,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_STEALTH_ROCK",
+                "MOVE_GYRO_BALL",
+                "MOVE_PAYBACK",
+                "MOVE_EXPLOSION"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_KANGASKHAN",
+            "form": 0,
+            "level": 52,
+            "item": "ITEM_MUSCLE_BAND",
+            "moves": [
+                "MOVE_DOUBLE_EDGE",
+                "MOVE_HAMMER_ARM",
+                "MOVE_CRUNCH",
+                "MOVE_FAKE_OUT"
+            ],
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_PURUGLY",
             "form": 0,
-            "level": 40,
+            "level": 53,
             "item": "ITEM_SITRUS_BERRY",
             "moves": [
-                "MOVE_SLASH",
-                "MOVE_FAINT_ATTACK",
+                "MOVE_BODY_SLAM",
+                "MOVE_PLAY_ROUGH",
                 "MOVE_HYPNOSIS",
                 "MOVE_FAKE_OUT"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "ball_seal": 26
         }
     ],
     "messages": [

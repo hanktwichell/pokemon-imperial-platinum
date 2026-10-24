@@ -3,14 +3,16 @@
     "class": "TRAINER_CLASS_COLLECTOR",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
             "species": "SPECIES_JOLTEON",
             "form": 0,
-            "level": 24,
+            "level": 33,
             "item": null,
             "moves": null,
             "iv_scale": 0,
@@ -19,7 +21,7 @@
         {
             "species": "SPECIES_VAPOREON",
             "form": 0,
-            "level": 24,
+            "level": 33,
             "item": null,
             "moves": null,
             "iv_scale": 0,
@@ -28,7 +30,7 @@
         {
             "species": "SPECIES_FLAREON",
             "form": 0,
-            "level": 24,
+            "level": 33,
             "item": null,
             "moves": null,
             "iv_scale": 0,

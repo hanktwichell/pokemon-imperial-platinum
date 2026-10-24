@@ -15,40 +15,68 @@
         {
             "species": "SPECIES_JOLTEON",
             "form": 0,
-            "level": 46,
-            "item": "ITEM_NONE",
+            "level": 61,
+            "item": "ITEM_FOCUS_SASH",
             "moves": [
-                "MOVE_THUNDER_WAVE",
-                "MOVE_CHARGE_BEAM",
-                "MOVE_IRON_TAIL",
-                "MOVE_QUICK_ATTACK"
+                "MOVE_THUNDERBOLT",
+                "MOVE_SHADOW_BALL",
+                "MOVE_GRASS_KNOT",
+                "MOVE_THUNDER_WAVE"
             ],
-            "iv_scale": 250,
+            "iv_scale": 253,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_RAICHU",
             "form": 0,
-            "level": 46,
-            "item": "ITEM_NONE",
+            "level": 61,
+            "item": "ITEM_EXPERT_BELT",
             "moves": [
-                "MOVE_CHARGE_BEAM",
+                "MOVE_THUNDERBOLT",
+                "MOVE_GRASS_KNOT",
                 "MOVE_FOCUS_BLAST",
-                "MOVE_SIGNAL_BEAM",
-                "MOVE_QUICK_ATTACK"
+                "MOVE_SURF"
             ],
-            "iv_scale": 250,
+            "iv_scale": 252,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ROTOM",
+            "form": 2,
+            "level": 61,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_THUNDERBOLT",
+                "MOVE_HYDRO_PUMP",
+                "MOVE_SHADOW_BALL",
+                "MOVE_THUNDER_WAVE"
+            ],
+            "iv_scale": 241,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ROTOM",
+            "form": 1,
+            "level": 61,
+            "item": "ITEM_WHITE_HERB",
+            "moves": [
+                "MOVE_THUNDERBOLT",
+                "MOVE_OVERHEAT",
+                "MOVE_SHADOW_BALL",
+                "MOVE_WILL_O_WISP"
+            ],
+            "iv_scale": 241,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_LUXRAY",
             "form": 0,
-            "level": 48,
-            "item": "ITEM_NONE",
+            "level": 61,
+            "item": "ITEM_CHOICE_BAND",
             "moves": [
-                "MOVE_ICE_FANG",
-                "MOVE_THUNDER_FANG",
+                "MOVE_WILD_CHARGE",
                 "MOVE_CRUNCH",
+                "MOVE_ICE_FANG",
                 "MOVE_FIRE_FANG"
             ],
             "iv_scale": 250,
@@ -57,16 +85,16 @@
         {
             "species": "SPECIES_ELECTIVIRE",
             "form": 0,
-            "level": 50,
-            "item": "ITEM_SITRUS_BERRY",
+            "level": 62,
+            "item": "ITEM_LIFE_ORB",
             "moves": [
-                "MOVE_THUNDER_PUNCH",
-                "MOVE_FIRE_PUNCH",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_GIGA_IMPACT"
+                "MOVE_WILD_CHARGE",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_ICE_PUNCH",
+                "MOVE_EARTHQUAKE"
             ],
-            "iv_scale": 2500,
-            "ball_seal": 14
+            "iv_scale": 251,
+            "ball_seal": 4
         }
     ],
     "messages": [

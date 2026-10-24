@@ -3,35 +3,46 @@
     "class": "TRAINER_CLASS_SAILOR",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_PELIPPER",
+            "species": "SPECIES_KINGLER",
             "form": 0,
-            "level": 56,
+            "level": 74,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_MACHAMP",
             "form": 0,
-            "level": 60,
+            "level": 74,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_GASTRODON",
             "form": 0,
-            "level": 58,
+            "level": 74,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SLOWKING",
+            "form": 0,
+            "level": 74,
+            "item": null,
+            "moves": null,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

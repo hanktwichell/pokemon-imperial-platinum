@@ -3,17 +3,38 @@
     "class": "TRAINER_CLASS_GALACTIC_GRUNT_MALE",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
             "species": "SPECIES_STUNKY",
             "form": 0,
-            "level": 11,
+            "level": 13,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_POISON_GAS",
+                "MOVE_SCREECH",
+                "MOVE_BITE",
+                "MOVE_SMOG"
+            ],
+            "iv_scale": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SILCOON",
+            "form": 0,
+            "level": 13,
+            "item": null,
+            "moves": [
+                "MOVE_BUG_BITE",
+                "MOVE_IRON_DEFENSE",
+                "MOVE_TACKLE",
+                "MOVE_STRING_SHOT"
+            ],
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

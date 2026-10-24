@@ -3,26 +3,28 @@
     "class": "TRAINER_CLASS_INTERVIEWERS",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": true,
     "party": [
         {
             "species": "SPECIES_MAGNEZONE",
             "form": 0,
-            "level": 53,
+            "level": 70,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_GARDEVOIR",
             "form": 0,
-            "level": 53,
+            "level": 70,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

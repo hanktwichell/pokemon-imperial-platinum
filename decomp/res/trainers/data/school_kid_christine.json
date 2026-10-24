@@ -6,17 +6,37 @@
     ],
     "ai_flags": [
         "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
         "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_BIDOOF",
+            "species": "SPECIES_RALTS",
             "form": 0,
-            "level": 6,
+            "level": 8,
             "item": null,
-            "moves": null,
-            "iv_scale": 10,
+            "moves": [
+                "MOVE_CONFUSION",
+                "MOVE_HIDDEN_POWER",
+                "MOVE_NONE",
+                "MOVE_NONE"
+            ],
+            "iv_scale": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_STARYU",
+            "form": 0,
+            "level": 8,
+            "item": null,
+            "moves": [
+                "MOVE_HIDDEN_POWER",
+                "MOVE_WATER_GUN",
+                "MOVE_NONE",
+                "MOVE_NONE"
+            ],
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

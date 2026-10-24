@@ -10,60 +10,88 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_STARAVIA",
+            "species": "SPECIES_STARAPTOR",
             "form": 0,
-            "level": 34,
-            "item": null,
+            "level": 41,
+            "item": "ITEM_MUSCLE_BAND",
             "moves": [
-                "MOVE_WING_ATTACK",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_ENDEAVOR",
-                "MOVE_DOUBLE_TEAM"
+                "MOVE_DOUBLE_EDGE",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_AERIAL_ACE",
+                "MOVE_ROOST"
             ],
-            "iv_scale": 80,
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_BUIZEL",
+            "species": "SPECIES_HERACROSS",
             "form": 0,
-            "level": 32,
-            "item": null,
+            "level": 41,
+            "item": "ITEM_COBA_BERRY",
             "moves": [
-                "MOVE_AQUA_JET",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_PURSUIT",
-                "MOVE_GROWL"
+                "MOVE_MEGAHORN",
+                "MOVE_BRICK_BREAK",
+                "MOVE_BULLET_SEED",
+                "MOVE_NIGHT_SLASH"
             ],
-            "iv_scale": 80,
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_PONYTA",
+            "species": "SPECIES_SNORLAX",
             "form": 0,
-            "level": 32,
-            "item": null,
+            "level": 41,
+            "item": "ITEM_LEFTOVERS",
             "moves": [
-                "MOVE_EMBER",
-                "MOVE_STOMP",
-                "MOVE_TAIL_WHIP",
-                "MOVE_GROWL"
+                "MOVE_BODY_SLAM",
+                "MOVE_CRUNCH",
+                "MOVE_REST",
+                "MOVE_SLEEP_TALK"
             ],
-            "iv_scale": 80,
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_GROTLE",
+            "species": "SPECIES_AZUMARILL",
             "form": 0,
-            "level": 36,
-            "item": null,
+            "level": 41,
+            "item": "ITEM_LIFE_ORB",
             "moves": [
-                "MOVE_RAZOR_LEAF",
-                "MOVE_BITE",
-                "MOVE_MEGA_DRAIN",
-                "MOVE_WITHDRAW"
+                "MOVE_AQUA_TAIL",
+                "MOVE_PLAY_ROUGH",
+                "MOVE_BODY_SLAM",
+                "MOVE_AQUA_JET"
             ],
-            "iv_scale": 80,
-            "ball_seal": 10
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ARCANINE",
+            "form": 0,
+            "level": 41,
+            "item": "ITEM_EXPERT_BELT",
+            "moves": [
+                "MOVE_HEAT_WAVE",
+                "MOVE_THUNDER_FANG",
+                "MOVE_OUTRAGE",
+                "MOVE_CRUNCH"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_TORTERRA",
+            "form": 0,
+            "level": 42,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_SEED_BOMB",
+                "MOVE_EARTHQUAKE",
+                "MOVE_CRUNCH",
+                "MOVE_IRON_HEAD"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 24
         }
     ],
     "messages": [

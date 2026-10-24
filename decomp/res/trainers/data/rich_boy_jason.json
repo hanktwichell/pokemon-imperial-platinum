@@ -5,18 +5,29 @@
         "ITEM_FULL_RESTORE"
     ],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
             "species": "SPECIES_PRINPLUP",
             "form": 0,
-            "level": 27,
+            "level": 30,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
-            "ball_seal": 23
+            "iv_scale": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_AZUMARILL",
+            "form": 0,
+            "level": 30,
+            "item": null,
+            "moves": null,
+            "iv_scale": 100,
+            "ball_seal": 0
         }
     ],
     "messages": [

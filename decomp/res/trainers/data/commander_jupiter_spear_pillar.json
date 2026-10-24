@@ -5,52 +5,93 @@
     "ai_flags": [
         "AI_FLAG_BASIC",
         "AI_FLAG_EVAL_ATTACK",
-        "AI_FLAG_EXPERT",
-        "AI_FLAG_SETUP_FIRST_TURN"
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_BRONZOR",
+            "species": "SPECIES_CROBAT",
             "form": 0,
-            "level": 44,
-            "item": "ITEM_NONE",
+            "level": 57,
+            "item": "ITEM_BRIGHTPOWDER",
             "moves": [
-                "MOVE_GYRO_BALL",
-                "MOVE_EXTRASENSORY",
-                "MOVE_ROCK_SLIDE",
-                "MOVE_REFLECT"
+                "MOVE_BRAVE_BIRD",
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_DOUBLE_TEAM",
+                "MOVE_HYPNOSIS"
             ],
-            "iv_scale": 200,
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_GOLBAT",
+            "species": "SPECIES_SABLEYE",
             "form": 0,
-            "level": 44,
-            "item": "ITEM_NONE",
+            "level": 57,
+            "item": "ITEM_MUSCLE_BAND",
             "moves": [
-                "MOVE_SLUDGE_BOMB",
-                "MOVE_AIR_CUTTER",
-                "MOVE_GIGA_DRAIN",
-                "MOVE_MEAN_LOOK"
+                "MOVE_SHADOW_CLAW",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_FAKE_OUT"
             ],
-            "iv_scale": 200,
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_BRONZONG",
+            "form": 0,
+            "level": 57,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_SWAGGER",
+                "MOVE_PSYCHIC",
+                "MOVE_FLASH_CANNON",
+                "MOVE_GRASS_KNOT"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_TANGROWTH",
+            "form": 0,
+            "level": 57,
+            "item": "ITEM_BIG_ROOT",
+            "moves": [
+                "MOVE_GIGA_DRAIN",
+                "MOVE_LEECH_SEED",
+                "MOVE_FOCUS_BLAST",
+                "MOVE_SLUDGE_BOMB"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GASTRODON",
+            "form": 0,
+            "level": 57,
+            "item": "ITEM_WISE_GLASSES",
+            "moves": [
+                "MOVE_MUDDY_WATER",
+                "MOVE_EARTH_POWER",
+                "MOVE_ICE_BEAM",
+                "MOVE_RECOVER"
+            ],
+            "iv_scale": 255,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_SKUNTANK",
             "form": 0,
-            "level": 46,
+            "level": 58,
             "item": "ITEM_SITRUS_BERRY",
             "moves": [
-                "MOVE_NIGHT_SLASH",
-                "MOVE_POISON_JAB",
-                "MOVE_FLAMETHROWER",
-                "MOVE_SMOKE_SCREEN"
+                "MOVE_GUNK_SHOT",
+                "MOVE_CRUNCH",
+                "MOVE_PLAY_ROUGH",
+                "MOVE_TOXIC"
             ],
-            "iv_scale": 200,
-            "ball_seal": 0
+            "iv_scale": 255,
+            "ball_seal": 25
         }
     ],
     "messages": [

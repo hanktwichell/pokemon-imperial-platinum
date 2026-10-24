@@ -3,36 +3,66 @@
     "class": "TRAINER_CLASS_DOUBLE_TEAM",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": true,
     "party": [
         {
-            "species": "SPECIES_LUMINEON",
+            "species": "SPECIES_MEDICHAM",
             "form": 0,
-            "level": 50,
+            "level": 64,
             "item": null,
             "moves": [
-                "MOVE_WATER_PULSE",
-                "MOVE_AQUA_RING",
-                "MOVE_CAPTIVATE",
-                "MOVE_SILVER_WIND"
+                "MOVE_HI_JUMP_KICK",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_ICE_PUNCH",
+                "MOVE_THUNDER_PUNCH"
             ],
-            "iv_scale": 0,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_RAPIDASH",
+            "species": "SPECIES_MILOTIC",
             "form": 0,
-            "level": 50,
+            "level": 64,
             "item": null,
             "moves": [
-                "MOVE_FIRE_BLAST",
-                "MOVE_STOMP",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_IRON_TAIL"
+                "MOVE_HYDRO_PUMP",
+                "MOVE_DRAGON_PULSE",
+                "MOVE_ICE_BEAM",
+                "MOVE_ATTRACT"
             ],
-            "iv_scale": 0,
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_NINETALES",
+            "form": 0,
+            "level": 64,
+            "item": null,
+            "moves": [
+                "MOVE_FLAMETHROWER",
+                "MOVE_SOLAR_BEAM",
+                "MOVE_MOONBLAST",
+                "MOVE_DARK_PULSE"
+            ],
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_VICTREEBEL",
+            "form": 0,
+            "level": 64,
+            "item": null,
+            "moves": [
+                "MOVE_SOLAR_BEAM",
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_WEATHER_BALL",
+                "MOVE_LEECH_LIFE"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

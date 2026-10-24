@@ -3,19 +3,37 @@
     "class": "TRAINER_CLASS_YOUNGSTER",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
+            "species": "SPECIES_GROWLITHE",
+            "form": 0,
+            "level": 7,
+            "item": null,
+            "moves": null,
+            "iv_scale": 100,
+            "ball_seal": 0
+        },
+        {
             "species": "SPECIES_BURMY",
             "form": 0,
-            "level": 5,
+            "level": 7,
             "item": null,
-            "moves": [
-                "MOVE_TACKLE"
-            ],
-            "iv_scale": 0,
+            "moves": null,
+            "iv_scale": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ZIGZAGOON",
+            "form": 0,
+            "level": 7,
+            "item": null,
+            "moves": null,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

@@ -4,35 +4,27 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
-        "AI_FLAG_PRIORITIZE_EXTREMES"
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MACHOP",
+            "species": "SPECIES_PRIMEAPE",
             "form": 0,
-            "level": 23,
+            "level": 34,
             "item": null,
             "moves": null,
-            "iv_scale": 30,
+            "iv_scale": 200,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_MACHOP",
+            "species": "SPECIES_HITMONCHAN",
             "form": 0,
-            "level": 23,
+            "level": 34,
             "item": null,
             "moves": null,
-            "iv_scale": 30,
-            "ball_seal": 0
-        },
-        {
-            "species": "SPECIES_MACHOP",
-            "form": 0,
-            "level": 23,
-            "item": null,
-            "moves": null,
-            "iv_scale": 30,
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

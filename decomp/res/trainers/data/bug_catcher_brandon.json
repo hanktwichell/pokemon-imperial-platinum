@@ -4,32 +4,27 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
-        "AI_FLAG_EVAL_ATTACK"
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
             "species": "SPECIES_WURMPLE",
             "form": 0,
-            "level": 10,
+            "level": 14,
             "item": null,
-            "moves": [
-                "MOVE_TACKLE",
-                "MOVE_STRING_SHOT",
-                "MOVE_POISON_STING"
-            ],
-            "iv_scale": 0,
+            "moves": null,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_KRICKETOT",
+            "species": "SPECIES_KRICKETUNE",
             "form": 0,
-            "level": 11,
+            "level": 14,
             "item": null,
-            "moves": [
-                "MOVE_BIDE"
-            ],
-            "iv_scale": 0,
+            "moves": null,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

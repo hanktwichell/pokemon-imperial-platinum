@@ -10,31 +10,73 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_STARAPTOR",
+            "species": "SPECIES_LICKILICKY",
             "form": 0,
-            "level": 47,
+            "level": 64,
             "item": null,
             "moves": [
-                "MOVE_BRAVE_BIRD",
-                "MOVE_QUICK_ATTACK",
-                "MOVE_DOUBLE_TEAM",
-                "MOVE_GROWL"
+                "MOVE_BODY_SLAM",
+                "MOVE_POWER_WHIP",
+                "MOVE_FLAMETHROWER",
+                "MOVE_ZEN_HEADBUTT"
             ],
-            "iv_scale": 100,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_LICKILICKY",
+            "species": "SPECIES_HIPPOWDON",
             "form": 0,
-            "level": 47,
+            "level": 64,
             "item": null,
             "moves": [
-                "MOVE_SLAM",
-                "MOVE_POWER_WHIP",
                 "MOVE_EARTHQUAKE",
-                "MOVE_BRICK_BREAK"
+                "MOVE_CRUNCH",
+                "MOVE_ICE_FANG",
+                "MOVE_SLACK_OFF"
             ],
-            "iv_scale": 100,
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_STARAPTOR",
+            "form": 0,
+            "level": 64,
+            "item": null,
+            "moves": [
+                "MOVE_DOUBLE_EDGE",
+                "MOVE_BRAVE_BIRD",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_U_TURN"
+            ],
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_PINSIR",
+            "form": 0,
+            "level": 64,
+            "item": null,
+            "moves": [
+                "MOVE_MEGAHORN",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_STONE_EDGE",
+                "MOVE_EARTHQUAKE"
+            ],
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ELECTIVIRE",
+            "form": 0,
+            "level": 64,
+            "item": null,
+            "moves": [
+                "MOVE_WILD_CHARGE",
+                "MOVE_EARTHQUAKE",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_FIRE_PUNCH"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

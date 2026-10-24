@@ -8,30 +8,30 @@
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_WAILMER",
+            "species": "SPECIES_WAILORD",
             "form": 0,
-            "level": 56,
+            "level": 75,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
             "species": "SPECIES_SEAKING",
             "form": 0,
-            "level": 59,
+            "level": 75,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 100,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_PELIPPER",
+            "species": "SPECIES_CORSOLA",
             "form": 0,
-            "level": 59,
+            "level": 75,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],

@@ -15,7 +15,8 @@
             "moves": [
                 "MOVE_MEGA_DRAIN",
                 "MOVE_POISON_STING",
-                "MOVE_STUN_SPORE"
+                "MOVE_STUN_SPORE",
+                "MOVE_NONE"
             ],
             "iv_scale": 20,
             "ball_seal": 0

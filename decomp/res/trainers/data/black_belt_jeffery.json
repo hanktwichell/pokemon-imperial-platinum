@@ -4,21 +4,37 @@
     "items": [],
     "ai_flags": [
         "AI_FLAG_BASIC",
-        "AI_FLAG_PRIORITIZE_EXTREMES"
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
             "species": "SPECIES_HERACROSS",
             "form": 0,
-            "level": 28,
+            "level": 36,
             "item": null,
             "moves": [
+                "MOVE_BUG_BITE",
                 "MOVE_BRICK_BREAK",
                 "MOVE_AERIAL_ACE",
-                "MOVE_LEER"
+                "MOVE_KNOCK_OFF"
             ],
-            "iv_scale": 40,
+            "iv_scale": 200,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_POLIWRATH",
+            "form": 0,
+            "level": 36,
+            "item": null,
+            "moves": [
+                "MOVE_HYPNOSIS",
+                "MOVE_WATERFALL",
+                "MOVE_WAKE_UP_SLAP",
+                "MOVE_VACUUM_WAVE"
+            ],
+            "iv_scale": 200,
             "ball_seal": 0
         }
     ],

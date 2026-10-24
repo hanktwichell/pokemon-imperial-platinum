@@ -12,43 +12,71 @@
         {
             "species": "SPECIES_BLISSEY",
             "form": 0,
-            "level": 45,
+            "level": 63,
             "item": null,
             "moves": [
-                "MOVE_DOUBLE_EDGE",
-                "MOVE_SING",
+                "MOVE_CALM_MIND",
+                "MOVE_HYPER_VOICE",
                 "MOVE_SOFTBOILED",
-                "MOVE_LIGHT_SCREEN"
+                "MOVE_ICE_BEAM"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_GLALIE",
+            "species": "SPECIES_WALREIN",
             "form": 0,
-            "level": 46,
+            "level": 63,
             "item": null,
             "moves": [
-                "MOVE_ICE_BEAM",
+                "MOVE_SURF",
                 "MOVE_CRUNCH",
-                "MOVE_HEADBUTT",
-                "MOVE_SHADOW_BALL"
+                "MOVE_ICE_BEAM",
+                "MOVE_EARTHQUAKE"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_MAGNEZONE",
+            "species": "SPECIES_AGGRON",
             "form": 0,
-            "level": 48,
+            "level": 63,
             "item": null,
             "moves": [
-                "MOVE_DISCHARGE",
-                "MOVE_FLASH_CANNON",
-                "MOVE_THUNDER_WAVE",
-                "MOVE_BARRIER"
+                "MOVE_HEAD_SMASH",
+                "MOVE_IRON_TAIL",
+                "MOVE_DRAGON_RUSH",
+                "MOVE_SUPERPOWER"
             ],
-            "iv_scale": 50,
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_JUMPLUFF",
+            "form": 0,
+            "level": 63,
+            "item": null,
+            "moves": [
+                "MOVE_ENERGY_BALL",
+                "MOVE_HURRICANE",
+                "MOVE_SLEEP_POWDER",
+                "MOVE_DAZZLING_GLEAM"
+            ],
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MISMAGIUS",
+            "form": 0,
+            "level": 63,
+            "item": null,
+            "moves": [
+                "MOVE_SHADOW_BALL",
+                "MOVE_MOONBLAST",
+                "MOVE_THUNDERBOLT",
+                "MOVE_POWER_GEM"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

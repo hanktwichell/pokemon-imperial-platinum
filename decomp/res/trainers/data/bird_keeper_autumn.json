@@ -3,26 +3,52 @@
     "class": "TRAINER_CLASS_BIRD_KEEPER",
     "items": [],
     "ai_flags": [
-        "AI_FLAG_BASIC"
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
     ],
     "double_battle": false,
     "party": [
         {
-            "species": "SPECIES_MURKROW",
+            "species": "SPECIES_XATU",
             "form": 0,
-            "level": 54,
+            "level": 64,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_PSYCHIC",
+                "MOVE_AIR_SLASH",
+                "MOVE_GIGA_DRAIN",
+                "MOVE_TAILWIND"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         },
         {
-            "species": "SPECIES_XATU",
+            "species": "SPECIES_PELIPPER",
             "form": 0,
-            "level": 54,
+            "level": 64,
             "item": null,
-            "moves": null,
-            "iv_scale": 0,
+            "moves": [
+                "MOVE_HYDRO_PUMP",
+                "MOVE_HURRICANE",
+                "MOVE_ICE_BEAM",
+                "MOVE_SHOCK_WAVE"
+            ],
+            "iv_scale": 250,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_DELIBIRD",
+            "form": 0,
+            "level": 64,
+            "item": null,
+            "moves": [
+                "MOVE_ICE_BEAM",
+                "MOVE_HURRICANE",
+                "MOVE_PRESENT",
+                "MOVE_FAKE_OUT"
+            ],
+            "iv_scale": 250,
             "ball_seal": 0
         }
     ],

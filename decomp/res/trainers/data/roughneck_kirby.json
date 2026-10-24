@@ -10,10 +10,10 @@
         {
             "species": "SPECIES_CLEFFA",
             "form": 0,
-            "level": 23,
+            "level": 33,
             "item": null,
             "moves": null,
-            "iv_scale": 0,
+            "iv_scale": 100,
             "ball_seal": 0
         }
     ],
