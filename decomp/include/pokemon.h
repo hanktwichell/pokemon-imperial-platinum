@@ -841,7 +841,7 @@ BOOL CanPokemonFormLearnTM(u16 monSpecies, int monForm, u8 tmID);
  * @param mon
  */
 void Pokemon_CalcAbility(Pokemon *mon);
-int Pokemon_SovereignBattleForm(u16 species, u16 heldItem, const u16 *moves, BOOL primal);
+int Pokemon_SovereignBattleForm(u16 species, int monForm, u16 heldItem, const u16 *moves, BOOL primal);
 BOOL Pokemon_IsSovereignBattleForm(u16 species, int form);
 BOOL Pokemon_IsSovereignMegaForm(u16 species, int form);
 int Pokemon_SovereignUltraBurstForm(u16 species, int form, u16 heldItem);
@@ -849,6 +849,7 @@ int Pokemon_SovereignDisguiseBustedForm(u16 species, int form);
 int Pokemon_SovereignBattleFormBase(u16 species, int form);
 int Pokemon_SovereignAbilityForm(u16 species, int form, u16 ability);
 int Pokemon_SovereignPersonalityForm(u16 species, u32 personality);
+void Pokemon_SovereignSetGenderForm(Pokemon *mon);
 BOOL Pokemon_SovereignFormChangesAbility(u16 species, int form);
 int Pokemon_SovereignMoveForm(u16 species, int form, u16 move);
 void Pokemon_SovereignRevertSwitchOutForm(Pokemon *mon);

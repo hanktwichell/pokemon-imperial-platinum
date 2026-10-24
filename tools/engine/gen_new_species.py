@@ -61,6 +61,9 @@ SHORT_NAMES = {
     "Gouging Fire": "GOUGNGFIRE", "Raging Bolt": "RAGINGBOLT", "Iron Boulder": "IRONBOULDR",
 }
 
+# PokeAPI gives a species with a female's form the male form's gender rate (Oinkologne: male only). Sovereign's
+# species has both, its female's form being a form of it (gen_forms.py, SOVEREIGN_FORM_GENDER).
+GENDER_RATE_FIXES = {"916": "4"}  # Oinkologne: half female, like Lechonk
 GENDER = {"-1": "GENDER_RATIO_NO_GENDER", "0": "GENDER_RATIO_MALE_ONLY", "1": "GENDER_RATIO_FEMALE_12_5",
           "2": "GENDER_RATIO_FEMALE_25", "4": "GENDER_RATIO_FEMALE_50", "6": "GENDER_RATIO_FEMALE_75",
           "7": "GENDER_RATIO_FEMALE_87_5", "8": "GENDER_RATIO_FEMALE_ONLY"}
@@ -340,7 +343,7 @@ def main():
             "ev_yields": {k: ev_yields[pid][k] for k in ("hp", "attack", "defense", "speed", "special_attack",
                                                          "special_defense")},
             "held_items": {"common": common, "rare": rare},
-            "gender_ratio": GENDER[sp["gender_rate"]],
+            "gender_ratio": GENDER[GENDER_RATE_FIXES.get(dex, sp["gender_rate"])],
             "hatch_cycles": int(sp["hatch_counter"]),
             "base_friendship": int(sp["base_happiness"] or 0),
             "exp_rate": GROWTH[sp["growth_rate_id"]],

@@ -3694,3 +3694,32 @@ interactions the owner listed on 2026-10-23. PR open.
    Squawkabilly, Maushold, Dudunsparce, Gimmighoul Roaming, Bloodmoon Ursaluna, Keldeo Resolute, the Pikachu caps...
 2. Overworld sprites from the owner (in a few days): size them naturally against the existing overworld Pokémon.
 3. The owner's final placements for the provisional spots (Paradox dealers, Greninja NPC, Chronicle encounters).
+
+---
+
+## CB-0065 — FM: the female forms (Sat Oct 24 2026, 01:55 CDT)
+
+**Implemented:**
+- `SOVEREIGN_FORM_GENDER`: Female Meowstic, Indeedee, Basculegion and Oinkologne (form 1), with their own abilities,
+  learnsets and stats.
+  - A female gets the form when she's made (wild, gift, Egg), when she evolves into the species, and as a trainer's
+    Pokémon.
+- A Female Meowstic Mega Evolves into Mega Meowstic (Female) and goes back to the female's form.
+- Oinkologne's gender rate fixed to half female (PokeAPI had it male only).
+- Verified in the emulator: Female Indeedee (Own Tempo, female stats), Male Indeedee (Inner Focus, male stats),
+  Female Oinkologne (Aroma Veil). Not replayed: evolution, Mega Meowstic (Female).
+
+**Files modified:** `tools/engine/gen_forms.py`, `tools/engine/gen_new_species.py`,
+`decomp/include/constants/sovereign_forms.h`, `decomp/include/data/sovereign_forms.h`,
+`decomp/tools/dataproc/src/sovereign_forms.inc`, `decomp/res/pokemon/{meowstic,indeedee,basculegion,oinkologne}/meson.build`,
+`decomp/res/pokemon/{meowstic,indeedee,basculegion,oinkologne}/forms/female/data.json` (new),
+`decomp/res/pokemon/oinkologne/data.json`, `decomp/include/pokemon.h`, `decomp/src/pokemon.c`,
+`decomp/src/trainer_data.c`, `decomp/src/battle/battle_lib.c`, `docs/TechnicalDesign.md`, `docs/EngineRoadmap.md`,
+`docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Milestone FM, the other "other" forms: Oricorio's styles (nectars), Lycanroc's Midnight/Dusk and Own Tempo
+   Rockruff, Toxtricity Low Key (nature), Pumpkaboo/Gourgeist sizes, Tatsugiri, Squawkabilly, Maushold, Dudunsparce,
+   Gimmighoul Roaming, Bloodmoon Ursaluna, Keldeo Resolute, Eternal Floette, Magearna Original, Zarude Dada, Pikachu caps.
+2. Overworld sprites from the owner (in a few days): size them naturally against the existing overworld Pokémon.
+3. The owner's final placements for the provisional spots (Paradox dealers, Greninja NPC, Chronicle encounters).

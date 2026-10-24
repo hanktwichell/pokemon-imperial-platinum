@@ -222,3 +222,7 @@
     { "cramorant/forms/gulping", NULL, .isGiratinaOrigin = false }, // Gulping Cramorant
     { "cramorant/forms/gorging", NULL, .isGiratinaOrigin = false }, // Gorging Cramorant
     { "terapagos/forms/terastal", NULL, .isGiratinaOrigin = false }, // Terastal Form Terapagos
+    { "meowstic/forms/female", NULL, .isGiratinaOrigin = false }, // Female Meowstic
+    { "indeedee/forms/female", NULL, .isGiratinaOrigin = false }, // Female Indeedee
+    { "basculegion/forms/female", NULL, .isGiratinaOrigin = false }, // Female Basculegion
+    { "oinkologne/forms/female", NULL, .isGiratinaOrigin = false }, // Female Oinkologne

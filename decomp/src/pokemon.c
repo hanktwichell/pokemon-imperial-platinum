@@ -290,6 +290,7 @@ static u16 Pokemon_GetDataChecksum(void *data, u32 bytes);
 static void *BoxPokemon_GetDataBlock(BoxPokemon *boxMon, u32 personality, enum PokemonDataBlockID dataBlockID);
 static int Pokemon_GetFormNarcIndex(int monSpecies, int monForm);
 static BOOL Pokemon_IsSovereignRegionalForm(u16 species, int form);
+static const SovereignForm *Pokemon_FindSovereignForm(u16 species, int form);
 static inline int Pokemon_Face(int clientType);
 
 void Pokemon_Init(Pokemon *mon)
@@ -492,10 +493,12 @@ static void sub_02073E18(BoxPokemon *boxMon, int monSpecies, int monLevel, int m
 
     BoxPokemon_SetValue(boxMon, MON_DATA_GENDER, &v1);
 
-    // Sovereign (FM): a species whose form its personality picks (Minior's core color) gets it now.
+    // Sovereign (FM): a species whose form its personality picks (Minior's core color, a Female Meowstic) gets it
+    // now, with the form's abilities.
     int personalityForm = Pokemon_SovereignPersonalityForm(monSpecies, monPersonality);
     if (personalityForm > 0) {
         BoxPokemon_SetValue(boxMon, MON_DATA_FORM, &personalityForm);
+        BoxPokemon_CalcAbility(boxMon);
     }
 
     BoxPokemon_SetDefaultMoves(boxMon);
@@ -5060,10 +5063,13 @@ static int Pokemon_GetFormNarcIndex(int monSpecies, int monForm)
 }
 
 // Sovereign (E8): the Mega or Primal form this species takes with the held item (Mega Rayquaza: with a move it knows
-// and no Mega Stone held), or 0 if none. primal picks Primal Reversion instead of Mega Evolution.
-int Pokemon_SovereignBattleForm(u16 species, u16 heldItem, const u16 *moves, BOOL primal)
+// and no Mega Stone held), or 0 if none. primal picks Primal Reversion instead of Mega Evolution. A Female Meowstic
+// (form, a female's form) takes the second Mega its stone gives, Mega Meowstic (Female).
+int Pokemon_SovereignBattleForm(u16 species, int monForm, u16 heldItem, const u16 *moves, BOOL primal)
 {
     BOOL holdsMegaStone = FALSE;
+    const SovereignForm *entry = Pokemon_FindSovereignForm(species, monForm);
+    BOOL female = entry != NULL && entry->kind == SOVEREIGN_FORM_GENDER;
 
     for (int i = 0; i < SOVEREIGN_FORM_COUNT; i++) {
         if (sSovereignForms[i].kind == SOVEREIGN_FORM_MEGA && sSovereignForms[i].trigger == heldItem) {
@@ -5083,6 +5089,15 @@ int Pokemon_SovereignBattleForm(u16 species, u16 heldItem, const u16 *moves, BOO
                 return form->form;
             }
         } else if (form->kind == SOVEREIGN_FORM_MEGA && form->trigger == heldItem) {
+            if (female) {
+                for (int j = i + 1; j < SOVEREIGN_FORM_COUNT; j++) {
+                    if (sSovereignForms[j].species == species && sSovereignForms[j].kind == SOVEREIGN_FORM_MEGA
+                        && sSovereignForms[j].trigger == heldItem) {
+                        return sSovereignForms[j].form;
+                    }
+                }
+            }
+
             return form->form;
         } else if (form->kind == SOVEREIGN_FORM_MEGA_BY_MOVE && holdsMegaStone == FALSE) {
             for (int j = 0; j < LEARNED_MOVES_MAX; j++) {
@@ -5195,13 +5210,19 @@ int Pokemon_SovereignAbilityForm(u16 species, int form, u16 ability)
     return -1;
 }
 
-// Sovereign (FM): the form a Pokémon of this species gets for good from its personality when it's made (Minior: its
-// core color, personality % 7 as in Sun and Moon, with Red as form 0), or -1 for a species without such forms.
+// Sovereign (FM): the form a Pokémon of this species gets for good from its personality when it's made, or -1 for a
+// species without such forms:
+//   Minior: its core color, personality % 7 as in Sun and Moon, with Red as form 0;
+//   Meowstic, Indeedee, Basculegion, Oinkologne: the female's form for a female (its personality picks its gender), else 0.
 int Pokemon_SovereignPersonalityForm(u16 species, u32 personality)
 {
     int count = 1;
 
     for (int i = 0; i < SOVEREIGN_FORM_COUNT; i++) {
+        if (sSovereignForms[i].species == species && sSovereignForms[i].kind == SOVEREIGN_FORM_GENDER) {
+            return Pokemon_GetGenderOf(species, personality) == GENDER_FEMALE ? sSovereignForms[i].form : 0;
+        }
+
         if (sSovereignForms[i].species == species && sSovereignForms[i].kind == SOVEREIGN_FORM_PERSONALITY) {
             count++;
         }
@@ -5275,7 +5296,8 @@ static BOOL Pokemon_IsSovereignRegionalForm(u16 species, int form)
 // Sovereign (FM): evolves mon into targetSpecies, with evoType the evolution type Pokemon_GetEvolutionTargetSpecies
 // gave. An item evolution into a form takes that form (Scroll of Waters: Rapid Strike Urshifu). A regional form
 // evolves into the target's form of the same region (Galarian Darumaka: Galarian Darmanitan), or its base form if it
-// has none (Galarian Meowth: Perrserker). Any other form is kept, as in Platinum (Burmy's cloak becomes Wormadam's).
+// has none (Galarian Meowth: Perrserker). A female evolving into a species with a female's form takes it (Female
+// Meowstic, Female Basculegion). Any other form is kept, as in Platinum (Burmy's cloak becomes Wormadam's).
 void Pokemon_SovereignSetEvolvedSpecies(Pokemon *mon, u16 targetSpecies, int evoType)
 {
     u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
@@ -5299,6 +5321,30 @@ void Pokemon_SovereignSetEvolvedSpecies(Pokemon *mon, u16 targetSpecies, int evo
     }
 
     Pokemon_SetValue(mon, MON_DATA_SPECIES, &targetSpecies);
+
+    // A female evolving into a species with a female's form (Espurr into Meowstic) takes it.
+    int personalityForm = Pokemon_SovereignPersonalityForm(targetSpecies, Pokemon_GetValue(mon, MON_DATA_PERSONALITY, NULL));
+    if (personalityForm >= 0) {
+        Pokemon_SetValue(mon, MON_DATA_FORM, &personalityForm);
+    }
+}
+
+// Sovereign (FM): a trainer's Pokémon of a species with a female's form takes the form its gender gives it, whatever
+// form the trainer data says, with that form's ability and stats.
+void Pokemon_SovereignSetGenderForm(Pokemon *mon)
+{
+    u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+
+    for (int i = 0; i < SOVEREIGN_FORM_COUNT; i++) {
+        if (sSovereignForms[i].species == species && sSovereignForms[i].kind == SOVEREIGN_FORM_GENDER) {
+            int form = Pokemon_SovereignPersonalityForm(species, Pokemon_GetValue(mon, MON_DATA_PERSONALITY, NULL));
+
+            Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+            Pokemon_CalcAbility(mon);
+            Pokemon_CalcLevelAndStats(mon);
+            return;
+        }
+    }
 }
 
 // Sovereign (FM): the form of an Egg of eggSpecies from a parent of this species and form: its regional form

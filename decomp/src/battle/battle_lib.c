@@ -4177,7 +4177,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                 BattleMon *mon = &battleCtx->battleMons[battler];
 
                 if (mon->curHP && mon->formNum == 0 && (mon->statusVolatile & VOLATILE_CONDITION_TRANSFORM) == FALSE) {
-                    int form = Pokemon_SovereignBattleForm(mon->species, mon->heldItem, mon->moves, TRUE);
+                    int form = Pokemon_SovereignBattleForm(mon->species, mon->formNum, mon->heldItem, mon->moves, TRUE);
 
                     if (form) {
                         BattleSystem_SovereignChangeBattleForm(battleSys, battleCtx, battler, form);
@@ -7674,7 +7674,7 @@ int BattleSystem_SovereignMegaForm(BattleSystem *battleSys, BattleContext *battl
         return ultraForm;
     }
 
-    return Pokemon_SovereignBattleForm(mon->species, mon->heldItem, mon->moves, FALSE);
+    return Pokemon_SovereignBattleForm(mon->species, mon->formNum, mon->heldItem, mon->moves, FALSE);
 }
 
 // Sovereign (E8): change a battler into its Mega or Primal form: stats, types and, when the engine has it, the form's
