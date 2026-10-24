@@ -1,0 +1,103 @@
+{
+    "name": "Saturn",
+    "class": "TRAINER_CLASS_COMMANDER_SATURN",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_BRONZONG",
+            "form": 0,
+            "level": 81,
+            "item": "ITEM_LIGHT_CLAY",
+            "moves": [
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_GYRO_BALL",
+                "MOVE_REFLECT",
+                "MOVE_LIGHT_SCREEN"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_OCTILLERY",
+            "form": 0,
+            "level": 81,
+            "item": "ITEM_EXPERT_BELT",
+            "moves": [
+                "MOVE_HYDRO_PUMP",
+                "MOVE_BLIZZARD",
+                "MOVE_FIRE_BLAST",
+                "MOVE_ENERGY_BALL"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ALAKAZAM",
+            "form": 0,
+            "level": 81,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_PSYCHIC",
+                "MOVE_SHADOW_BALL",
+                "MOVE_DAZZLING_GLEAM",
+                "MOVE_FOCUS_BLAST"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_RHYPERIOR",
+            "form": 0,
+            "level": 81,
+            "item": "ITEM_CHOICE_BAND",
+            "moves": [
+                "MOVE_STONE_EDGE",
+                "MOVE_EARTHQUAKE",
+                "MOVE_MEGAHORN",
+                "MOVE_HAMMER_ARM"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MAGMORTAR",
+            "form": 0,
+            "level": 81,
+            "item": "ITEM_CHOICE_SPECS",
+            "moves": [
+                "MOVE_FIRE_BLAST",
+                "MOVE_THUNDERBOLT",
+                "MOVE_AURA_SPHERE",
+                "MOVE_PSYCHIC"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_TOXICROAK",
+            "form": 0,
+            "level": 82,
+            "item": "ITEM_FOCUS_SASH",
+            "moves": [
+                "MOVE_CROSS_CHOP",
+                "MOVE_GUNK_SHOT",
+                "MOVE_ICE_PUNCH",
+                "MOVE_FAKE_OUT"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "..."
+        }
+    ]
+}

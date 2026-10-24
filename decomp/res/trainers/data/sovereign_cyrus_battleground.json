@@ -1,0 +1,103 @@
+{
+    "name": "Cyrus",
+    "class": "TRAINER_CLASS_GALACTIC_BOSS",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_CROBAT",
+            "form": 0,
+            "level": 83,
+            "item": "ITEM_CHOICE_BAND",
+            "moves": [
+                "MOVE_BRAVE_BIRD",
+                "MOVE_U_TURN",
+                "MOVE_CROSS_POISON",
+                "MOVE_ZEN_HEADBUTT"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_HONCHKROW",
+            "form": 0,
+            "level": 83,
+            "item": "ITEM_WHITE_HERB",
+            "moves": [
+                "MOVE_BRAVE_BIRD",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_SUPERPOWER"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_HOUNDOOM",
+            "form": 0,
+            "level": 83,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_DARK_PULSE",
+                "MOVE_FLAMETHROWER",
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_NASTY_PLOT"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GYARADOS",
+            "form": 0,
+            "level": 83,
+            "item": "ITEM_MUSCLE_BAND",
+            "moves": [
+                "MOVE_AQUA_TAIL",
+                "MOVE_STONE_EDGE",
+                "MOVE_ICE_FANG",
+                "MOVE_DRAGON_DANCE"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MAGNEZONE",
+            "form": 0,
+            "level": 83,
+            "item": "ITEM_WISE_GLASSES",
+            "moves": [
+                "MOVE_THUNDERBOLT",
+                "MOVE_FLASH_CANNON",
+                "MOVE_SIGNAL_BEAM",
+                "MOVE_MIRROR_COAT"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_WEAVILE",
+            "form": 0,
+            "level": 84,
+            "item": "ITEM_FOCUS_SASH",
+            "moves": [
+                "MOVE_FAINT_ATTACK",
+                "MOVE_ICICLE_CRASH",
+                "MOVE_AERIAL_ACE",
+                "MOVE_SWORDS_DANCE"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "..."
+        }
+    ]
+}

@@ -15,7 +15,13 @@
         "those selfsame Gym Leaders.\r",
         "It’s a place where the best seek to\n",
         "better themselves.\r",
-        "Welcome to the Battleground!"
+        "Welcome to the Battleground!\r",
+        "Oh, yes. Let me thank you for helping\n",
+        "Buck with his Stark Mountain patrol.\r",
+        "I hear the Magma Stone was moved,\n",
+        "if only for a short while.\r",
+        "I hope the volcano’s Pokémon hasn’t\n",
+        "somehow appeared!"
       ]
     },
     {
@@ -1183,6 +1189,181 @@
         "Buck: Fweh! Too much!\r",
         "I guess I’ll better my team on\n",
         "Stark Mountain!"
+      ]
+    },
+    {
+      "id": "Battleground_Text_SovereignBarryAskBattle",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Hey, {STRVAR_1 3, 1, 0}! You aren’t the\n",
+        "only one getting tougher!\r",
+        "I’ll prove it to you!\n",
+        "Let’s go!"
+      ]
+    },
+    {
+      "id": "Battleground_Text_SovereignBarryLetsGo",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: I’ll test you and your Pokémon\n",
+        "out, {STRVAR_1 3, 1, 0}!\r",
+        "Let’s see how buff and tough you are!\r"
+      ]
+    },
+    {
+      "id": "Battleground_Text_SovereignBarryDeclined",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Aww, no way!\r",
+        "I thought you’d always be up for\n",
+        "a battle, {STRVAR_1 3, 1, 0}!"
+      ]
+    },
+    {
+      "id": "Battleground_Text_SovereignBarryDefeat",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: ...!\r",
+        "It’s all right, though.\n",
+        "Keep getting tougher, {STRVAR_1 3, 1, 0}.\r",
+        "Thanks to Master, I got myself\n",
+        "into the Battleground.\r",
+        "Between here and the Battle Tower,\n",
+        "there’s no end to tough battles to\f",
+        "train us up.\r",
+        "We’ll keep up with you, {STRVAR_1 3, 1, 0}!"
+      ]
+    },
+    {
+      "id": "Battleground_Text_SovereignNurseHeal",
+      "en_US": [
+        "Let me restore your Pokémon’s health.\n",
+        "So they can fight in tip-top condition!\r"
+      ]
+    },
+    {
+      "id": "Battleground_Text_SovereignNurseHappyToHelp",
+      "en_US": [
+        "The battles here are intense.\n",
+        "I’m happy to help if needed!"
+      ]
+    },
+    {
+      "id": "Battleground_Text_SovereignMarathonIntro",
+      "en_US": [
+        "Howdy!\n",
+        "How’s it going, Champ?\r",
+        "The Battleground has a fun activity\n",
+        "called the Battle Marathon.\r",
+        "Can you take on 24 battles in a row\n",
+        "against Sinnoh’s strongest Trainers?\r",
+        "Your Pokémon will be healed after\n",
+        "every 3 battles you complete.\r",
+        "Every time you win all 24 battles,\n",
+        "you’ll also win a Master Ball!\r",
+        "So, Champ.\n",
+        "Are you up to the challenge?"
+      ]
+    },
+    {
+      "id": "Battleground_Text_SovereignDawnAskBattle",
+      "en_US": [
+        "Dawn: Hi, {STRVAR_1 3, 0, 0}!\n",
+        "It’s great to see you out and about.\r",
+        "So, {STRVAR_1 3, 0, 0}, how about a battle?\n",
+        "It’ll be just like old times!"
+      ]
+    },
+    {
+      "id": "Battleground_Text_SovereignDawnDeclined",
+      "en_US": [
+        "Dawn: Aw, no!\n",
+        "I really thought you’d say yes..."
+      ]
+    },
+    {
+      "id": "Battleground_Text_SovereignDawnGoodAnswer",
+      "en_US": "Dawn: Good answer!\r"
+    },
+    {
+      "id": "Battleground_Text_SovereignDawnDefeat",
+      "en_US": [
+        "Dawn: Wow, {STRVAR_1 3, 0, 0}. You’re incredible.\n",
+        "You just keep getting stronger!"
+      ]
+    },
+    {
+      "id": "Battleground_Text_SovereignLucasAskBattle",
+      "en_US": [
+        "Lucas: Hi, {STRVAR_1 3, 0, 0}.\n",
+        "It’s great to see you out and about.\r",
+        "So, {STRVAR_1 3, 0, 0}, how about a battle?\n",
+        "It’ll be just like old times."
+      ]
+    },
+    {
+      "id": "Battleground_Text_SovereignLucasDeclined",
+      "en_US": [
+        "Lucas: Ah, really?\n",
+        "I was sure you’d say yes..."
+      ]
+    },
+    {
+      "id": "Battleground_Text_SovereignLucasGoodAnswer",
+      "en_US": "Lucas: Good answer!\r"
+    },
+    {
+      "id": "Battleground_Text_SovereignLucasDefeat",
+      "en_US": [
+        "Lucas: Wow, {STRVAR_1 3, 0, 0}. You’re incredible.\n",
+        "You just keep getting stronger."
+      ]
+    },
+    {
+      "id": "Battleground_Text_SovereignMarathonDeclined",
+      "en_US": [
+        "No worries, Champ!\n",
+        "The Battle Marathon is always here!"
+      ]
+    },
+    {
+      "id": "Battleground_Text_SovereignMarathonStart",
+      "en_US": [
+        "Alright, Champ!\n",
+        "Let’s see how long you last!\r"
+      ]
+    },
+    {
+      "id": "Battleground_Text_SovereignMarathonNext",
+      "en_US": [
+        "Well done, Champ.\n",
+        "On to the next battle!\r"
+      ]
+    },
+    {
+      "id": "Battleground_Text_SovereignMarathonHeal",
+      "en_US": [
+        "You’ve completed three battles.\n",
+        "It’s time for some healing!\r"
+      ]
+    },
+    {
+      "id": "Battleground_Text_SovereignMarathonLost",
+      "en_US": [
+        "Too bad, Champ!\n",
+        "Better luck next time!"
+      ]
+    },
+    {
+      "id": "Battleground_Text_SovereignMarathonWon",
+      "en_US": [
+        "Incredible! Absolutely incredible!\n",
+        "You truly are the Sinnoh Champion!\r",
+        "Here is your much deserved reward.\n",
+        "Courtesy of Silph Co.!\r"
+      ]
+    },
+    {
+      "id": "Battleground_Text_SovereignMarathonAgain",
+      "en_US": [
+        "We’re always open for more challenges\n",
+        "if you want to win another Master Ball!"
       ]
     }
   ]

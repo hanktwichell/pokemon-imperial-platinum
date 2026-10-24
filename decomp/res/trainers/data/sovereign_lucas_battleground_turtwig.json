@@ -1,0 +1,109 @@
+{
+    "name": "Lucas",
+    "class": "TRAINER_CLASS_PLAYER_MALE",
+    "items": [
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_ALAKAZAM",
+            "form": 0,
+            "level": 83,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_PSYCHIC",
+                "MOVE_SHADOW_BALL",
+                "MOVE_AURA_SPHERE",
+                "MOVE_DAZZLING_GLEAM"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MAMOSWINE",
+            "form": 0,
+            "level": 83,
+            "item": "ITEM_CHOICE_BAND",
+            "moves": [
+                "MOVE_EARTHQUAKE",
+                "MOVE_ICICLE_CRASH",
+                "MOVE_STONE_EDGE",
+                "MOVE_SUPERPOWER"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GRANBULL",
+            "form": 0,
+            "level": 83,
+            "item": "ITEM_MUSCLE_BAND",
+            "moves": [
+                "MOVE_PLAY_ROUGH",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_CRUNCH",
+                "MOVE_EARTHQUAKE"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_LICKILICKY",
+            "form": 0,
+            "level": 83,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_DOUBLE_EDGE",
+                "MOVE_EARTHQUAKE",
+                "MOVE_HAMMER_ARM",
+                "MOVE_SWORDS_DANCE"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_FLAREON",
+            "form": 0,
+            "level": 83,
+            "item": "ITEM_PASSHO_BERRY",
+            "moves": [
+                "MOVE_FLARE_BLITZ",
+                "MOVE_PLAY_ROUGH",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_WILD_CHARGE"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_EMPOLEON",
+            "form": 0,
+            "level": 84,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_HYDRO_CANNON",
+                "MOVE_FLASH_CANNON",
+                "MOVE_GRASS_KNOT",
+                "MOVE_ICE_BEAM"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 11
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Your Pokémon just keep getting\n",
+                "stronger, don’t they?\n"
+            ]
+        }
+    ]
+}

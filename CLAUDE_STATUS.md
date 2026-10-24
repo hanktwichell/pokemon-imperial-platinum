@@ -5157,3 +5157,52 @@ half-price menu fix) is merged.
 2. E10 part 32: the Pokémon Center Interviewers. Renegade's Hoenn (Oreburgh, 934), Johto (Floaroma, 1021) and Kanto
    (Jubilife, 1022) starter quizzes, then Sovereign's Unova–Paldea ones (`docs/GiftPokemon_Sovereign.md`).
 3. Darach (969; Renegade's Pal Park lobby, which Sovereign replaced with the Regional Forms Park) needs a new spot.
+
+## CB-0106 — 2026-10-24, 6:26 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: E10 part 31, the Battleground as Renegade has it.** PR #121 (part 30) is merged.
+- Vanilla's four daily random trainers and their multi battles are gone. The Battleground now has fixed NPCs, each
+  ready for a single battle any time, with Renegade's lines.
+  - The eight Gym Leaders use their `*_REMATCH` teams.
+  - Cheryl, Mira, Riley, Marley and Buck use their `*_BATTLEGROUND` teams.
+  - Barry uses `TRAINER_RIVAL_SURVIVAL_AREA_2_*`, by the player's starter.
+  - All stand on Renegade's spots with `MOVEMENT_TYPE_NONE`. A loss blacks out.
+- **Counterpart** at (11, 10): `OBJ_EVENT_GFX_VAR_0`, shown once any of the six Route 224 trainer flags is set.
+  - It's hidden through `FLAG_MAP_LOCAL_HIDE_SOVEREIGN_NPC` in OnTransition.
+  - Teams: Renegade 1054–1059 (Lv. 83–84), as `TRAINER_SOVEREIGN_{DAWN,LUCAS}_BATTLEGROUND_*`.
+- **Nurse** at (5, 3).
+- **Battle Marathon** at the Gym Guide (6, 3): 24 battles, a heal after every third. A loss returns to the field healed
+  (no blackout), and a clear gives a Master Ball each time.
+  - Mars, Jupiter, Saturn and Cyrus are Renegade 1060–1063 (`TRAINER_SOVEREIGN_*_BATTLEGROUND`).
+  - As in Renegade, the marathon isn't held back by the decision 23 rematch lock; the owner may want it to be.
+- **Welcome:** it now uses Renegade's text, which thanks the player for Buck's patrol. It sets the three Buck flags
+  that talking to Buck used to set, so Heatran's room still opens (`docs/LegendaryTriggers.md` updated).
+- **Trainer slots are full (note for Claude A too).** `MAX_TRAINERS` is 1040, the same as the number of trainer flags.
+  - Saturn and Cyrus reuse `TRAINER_DUMMY_005` and `TRAINER_DUMMY_006`. Their trainer and flag constants are renamed,
+    and their `dummy_00{5,6}.json` are deleted.
+  - Any new trainer must reuse an unreferenced dummy slot the same way. 65 are left.
+  - Part 31 also frees `VAR_RANDOM_BATTLEGROUND_MESSAGE`, `VAR_BATTLEGROUND_TRAINER_1`–`4` and
+    `FLAG_HIDE_BATTLEGROUND_TRAINER_1`–`4`: nothing references them now.
+- `docs/TrainerTeamLog.md`: the two dummy rows are replaced, and the 10 new trainers are added (1,040 files).
+- Tested in a test build (a Lv. 100 party, the Hall of Fame and the Route 224 win set, the 31 teams cut to one Lv. 2
+  Pokémon in that build only):
+  - The welcome, the nurse, and Roark's "no" and "yes".
+  - Dawn's and Barry's battles.
+  - All 24 marathon battles in order, ending with the Master Ball and the re-offer.
+  - Not tested: the loss paths, Lucas, and the counterpart before the Route 224 win.
+
+**Files modified:**
+- `decomp/generated/{trainers,vars_flags}.txt`
+- 10 new trainer JSONs, and `dummy_005.json` and `dummy_006.json` deleted
+- `decomp/res/field/{scripts/scripts_battleground.s,events/events_battleground.json}` and `decomp/res/text/battleground.json`
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `docs/LegendaryTriggers.md`, `docs/TrainerTeamLog.md`,
+  `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. E10 part 32: the Pokémon Center Interviewers.
+   - Renegade's three: Kanto in Jubilife (1022), Hoenn in Oreburgh (934), Johto in Floaroma (1021). Each is a reporter
+     and a cameraman at (3, 4)/(2, 4), with a 5-question quiz, a battle, then the three starters.
+   - Then Unova–Paldea in Eterna, Hearthome, Veilstone, Pastoria and Canalave, per `docs/GiftPokemon_Sovereign.md`.
+   - Plan: one new flag per interviewer, with the trainer flag as "won". Prizes need room for all three.
+2. Darach (Renegade 969) needs a new spot, since Renegade's Pal Park lobby is now the Regional Forms Park.
+3. Renegade's other added trainers (e.g. the Eterna grunt 939, Egadd 961, Telkin 962).
