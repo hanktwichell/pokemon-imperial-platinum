@@ -73,6 +73,8 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
 {
     Pokemon *mon = BattleSystem_GetPartyPokemon(battleSys, battler, partySlot);
 
+    Pokemon_SovereignRevertSwitchOutForm(mon); // Sovereign (FM): Pirouette Meloetta switches back in as Aria
+
     battleCtx->battleMons[battler].species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     battleCtx->battleMons[battler].attack = Pokemon_GetValue(mon, MON_DATA_ATK, NULL);
     battleCtx->battleMons[battler].defense = Pokemon_GetValue(mon, MON_DATA_DEF, NULL);

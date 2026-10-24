@@ -193,3 +193,4 @@
     { "urshifu/forms/rapid_strike", NULL, .isGiratinaOrigin = false }, // Rapid Strike Urshifu
     { "necrozma/forms/ultra", NULL, .isGiratinaOrigin = false }, // Ultra Necrozma
     { "necrozma/forms/ultra_dawn", NULL, .isGiratinaOrigin = false }, // Ultra Necrozma
+    { "meloetta/forms/pirouette", NULL, .isGiratinaOrigin = false }, // Pirouette Meloetta
