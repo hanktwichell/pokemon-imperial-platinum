@@ -1,0 +1,110 @@
+{
+    "name": "Wyver",
+    "class": "TRAINER_CLASS_ACE_TRAINER_SNOW_MALE",
+    "items": [
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_KINGDRA",
+            "form": 0,
+            "level": 76,
+            "item": "ITEM_HABAN_BERRY",
+            "moves": [
+                "MOVE_WATERFALL",
+                "MOVE_OUTRAGE",
+                "MOVE_YAWN",
+                "MOVE_DRAGON_DANCE"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_FLYGON",
+            "form": 0,
+            "level": 76,
+            "item": "ITEM_WHITE_HERB",
+            "moves": [
+                "MOVE_DRACO_METEOR",
+                "MOVE_EARTH_POWER",
+                "MOVE_BUG_BUZZ",
+                "MOVE_FIRE_BLAST"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ALTARIA",
+            "form": 0,
+            "level": 76,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_DRAGON_CLAW",
+                "MOVE_TOXIC",
+                "MOVE_REST",
+                "MOVE_SLEEP_TALK"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_DRAGONITE",
+            "form": 0,
+            "level": 76,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_OUTRAGE",
+                "MOVE_EARTHQUAKE",
+                "MOVE_EXTREME_SPEED",
+                "MOVE_IRON_TAIL"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GARCHOMP",
+            "form": 0,
+            "level": 76,
+            "item": "ITEM_CHOICE_SCARF",
+            "moves": [
+                "MOVE_OUTRAGE",
+                "MOVE_EARTHQUAKE",
+                "MOVE_POISON_JAB",
+                "MOVE_FIRE_FANG"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SALAMENCE",
+            "form": 0,
+            "level": 77,
+            "item": "ITEM_FOCUS_SASH",
+            "moves": [
+                "MOVE_OUTRAGE",
+                "MOVE_AERIAL_ACE",
+                "MOVE_DRAGON_DANCE",
+                "MOVE_EARTHQUAKE"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Congratulations.\n",
+                "You have earned the Fang Badge.\n",
+                "     "
+            ]
+        }
+    ]
+}

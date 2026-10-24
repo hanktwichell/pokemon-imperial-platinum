@@ -10,6 +10,7 @@
     ScriptEntry Route227_OnTransition
     ScriptEntry Route227_OnLoad
     ScriptEntry Route227_LegendaryTerrakion
+    ScriptEntry Route227_SovereignSlythe
     ScriptEntryEnd
 
 @ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Terrakion stands in the rock pocket at the north end once
@@ -266,3 +267,49 @@ Route227_Movement_BuckWalkOnSpotNorth:
 Route227_Movement_BuckWalkOnSpotSouth:
     WalkOnSpotNormalSouth
     EndMovement
+
+@ Sovereign (E10, Renegade's Battle Zone): Slythe gives the unofficial Acid Badge (just a keepsake, no item) to a player
+@ who beats their team (Renegade's trainer 1025).
+Route227_SovereignSlythe:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfDefeated TRAINER_SOVEREIGN_BATTLE_ZONE_SLYTHE, Route227_SovereignSlytheThanks
+    Message Route227_Text_SovereignSlytheIntro
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, Route227_SovereignSlytheDecline
+    Message Route227_Text_SovereignSlytheBattle
+    CloseMessage
+    StartTrainerBattle TRAINER_SOVEREIGN_BATTLE_ZONE_SLYTHE
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, Route227_SovereignSlytheLost
+    Message Route227_Text_SovereignSlytheReward
+    BufferPlayerName 0
+    Message Route227_Text_SovereignSlytheReceived
+    PlayFanfare SEQ_BADGE_sseq
+    WaitFanfare
+    Message Route227_Text_SovereignSlytheExplain
+    WaitButton
+    CloseMessage
+    SetTrainerFlag TRAINER_SOVEREIGN_BATTLE_ZONE_SLYTHE
+    ReleaseAll
+    End
+
+Route227_SovereignSlytheThanks:
+    Message Route227_Text_SovereignSlytheThanks
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+Route227_SovereignSlytheDecline:
+    CloseMessage
+    ReleaseAll
+    End
+
+Route227_SovereignSlytheLost:
+    BlackOutFromBattle
+    ReleaseAll
+    End
+
+    .balign 4, 0

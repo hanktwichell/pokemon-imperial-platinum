@@ -34,6 +34,58 @@
         "Rt. 229\n",
         "Resort Area"
       ]
+    },
+    {
+      "id": "Route229_Text_SovereignGeneIntro",
+      "en_US": [
+        "Oh, are you partaking in our little\n",
+        "island challenge in the Battle Zone?\r",
+        "I’m probably one of your stops, then.\n",
+        "My name is Gene.\r",
+        "I like to stand by the water here to\n",
+        "help myself cool down from the heat.\r",
+        "You see, I use Normal-type Pokémon...\n",
+        "And that doesn’t help to cool down!\r",
+        "So, are you interested in a battle\n",
+        "for your {COLOR 1}General Badge{COLOR 0}?"
+      ]
+    },
+    {
+      "id": "Route229_Text_SovereignGeneBattle",
+      "en_US": [
+        "Show me what makes your Pokémon\n",
+        "extra special!\r"
+      ]
+    },
+    {
+      "id": "Route229_Text_SovereignGeneReward",
+      "en_US": [
+        "Congratulations.\n",
+        "This badge is well deserved...\r"
+      ]
+    },
+    {
+      "id": "Route229_Text_SovereignGeneReceived",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received\n",
+        "the General Badge from Gene!"
+      ]
+    },
+    {
+      "id": "Route229_Text_SovereignGeneExplain",
+      "en_US": [
+        "The General Badge is a token of\n",
+        "victory over plain but dangerous foes."
+      ]
+    },
+    {
+      "id": "Route229_Text_SovereignGeneThanks",
+      "en_US": [
+        "Gene: Normal-type Pokémon may seem\n",
+        "boring to the untrained eye...\r",
+        "But their ability to wield multiple types\n",
+        "in battle is almost unparalleled!"
+      ]
     }
   ]
 }

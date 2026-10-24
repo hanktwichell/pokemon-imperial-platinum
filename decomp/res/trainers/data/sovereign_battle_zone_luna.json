@@ -1,0 +1,111 @@
+{
+    "name": "Luna",
+    "class": "TRAINER_CLASS_ACE_TRAINER_SNOW_FEMALE",
+    "items": [
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_WIGGLYTUFF",
+            "form": 0,
+            "level": 76,
+            "item": "ITEM_EXPERT_BELT",
+            "moves": [
+                "MOVE_MOONBLAST",
+                "MOVE_THUNDERBOLT",
+                "MOVE_ICE_BEAM",
+                "MOVE_FLAMETHROWER"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_CLEFABLE",
+            "form": 0,
+            "level": 76,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_MOONBLAST",
+                "MOVE_SOFTBOILED",
+                "MOVE_FOCUS_BLAST",
+                "MOVE_REFLECT"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_AZUMARILL",
+            "form": 0,
+            "level": 76,
+            "item": "ITEM_WHITE_HERB",
+            "moves": [
+                "MOVE_PLAY_ROUGH",
+                "MOVE_AQUA_TAIL",
+                "MOVE_SUPERPOWER",
+                "MOVE_AQUA_JET"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GRANBULL",
+            "form": 0,
+            "level": 76,
+            "item": "ITEM_MUSCLE_BAND",
+            "moves": [
+                "MOVE_PLAY_ROUGH",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_CRUNCH",
+                "MOVE_LOVELY_KISS"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MAWILE",
+            "form": 0,
+            "level": 76,
+            "item": "ITEM_FOCUS_SASH",
+            "moves": [
+                "MOVE_PLAY_ROUGH",
+                "MOVE_IRON_HEAD",
+                "MOVE_SUCKER_PUNCH",
+                "MOVE_SWORDS_DANCE"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GARDEVOIR",
+            "form": 0,
+            "level": 77,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_MOONBLAST",
+                "MOVE_PSYCHIC",
+                "MOVE_THUNDERBOLT",
+                "MOVE_AURA_SPHERE"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Your Pokémon are shining as\n",
+                "brightly as the moon!\r",
+                "Well done.\n",
+                "You’ve earned the Moon Badge!\n"
+            ]
+        }
+    ]
+}

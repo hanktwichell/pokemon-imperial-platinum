@@ -1,0 +1,110 @@
+{
+    "name": "Gene",
+    "class": "TRAINER_CLASS_ACE_TRAINER_SNOW_MALE",
+    "items": [
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_STANTLER",
+            "form": 0,
+            "level": 76,
+            "item": "ITEM_CHOICE_SCARF",
+            "moves": [
+                "MOVE_DOUBLE_EDGE",
+                "MOVE_JUMP_KICK",
+                "MOVE_MEGAHORN",
+                "MOVE_ZEN_HEADBUTT"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_DODRIO",
+            "form": 0,
+            "level": 76,
+            "item": "ITEM_MUSCLE_BAND",
+            "moves": [
+                "MOVE_DOUBLE_EDGE",
+                "MOVE_BRAVE_BIRD",
+                "MOVE_HI_JUMP_KICK",
+                "MOVE_DRILL_RUN"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GIRAFARIG",
+            "form": 0,
+            "level": 76,
+            "item": "ITEM_WISE_GLASSES",
+            "moves": [
+                "MOVE_HYPER_VOICE",
+                "MOVE_PSYCHIC",
+                "MOVE_THUNDERBOLT",
+                "MOVE_DAZZLING_GLEAM"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_BIBAREL",
+            "form": 0,
+            "level": 76,
+            "item": "ITEM_CHOPLE_BERRY",
+            "moves": [
+                "MOVE_DOUBLE_EDGE",
+                "MOVE_AQUA_TAIL",
+                "MOVE_CRUNCH",
+                "MOVE_CURSE"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_PORYGON_Z",
+            "form": 0,
+            "level": 76,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_HYPER_BEAM",
+                "MOVE_THUNDERBOLT",
+                "MOVE_ICE_BEAM",
+                "MOVE_PSYCHIC"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SNORLAX",
+            "form": 0,
+            "level": 77,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_BODY_SLAM",
+                "MOVE_EARTHQUAKE",
+                "MOVE_CURSE",
+                "MOVE_SLACK_OFF"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Your Pokémon are most certainly\n",
+                "not ordinary. Very impressive!\r",
+                "The General Badge is all yours.\n"
+            ]
+        }
+    ]
+}

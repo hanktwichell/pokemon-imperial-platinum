@@ -1,0 +1,111 @@
+{
+    "name": "Heather",
+    "class": "TRAINER_CLASS_ACE_TRAINER_SNOW_FEMALE",
+    "items": [
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_PELIPPER",
+            "form": 0,
+            "level": 76,
+            "item": "ITEM_FOCUS_SASH",
+            "moves": [
+                "MOVE_HYDRO_PUMP",
+                "MOVE_HURRICANE",
+                "MOVE_ICE_BEAM",
+                "MOVE_TAILWIND"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_TOGEKISS",
+            "form": 0,
+            "level": 76,
+            "item": "ITEM_EXPERT_BELT",
+            "moves": [
+                "MOVE_HURRICANE",
+                "MOVE_MOONBLAST",
+                "MOVE_SHADOW_BALL",
+                "MOVE_ROOST"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_AERODACTYL",
+            "form": 0,
+            "level": 76,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_BRAVE_BIRD",
+                "MOVE_STONE_EDGE",
+                "MOVE_CRUNCH",
+                "MOVE_EARTHQUAKE"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_PIDGEOT",
+            "form": 0,
+            "level": 76,
+            "item": "ITEM_WISE_GLASSES",
+            "moves": [
+                "MOVE_HURRICANE",
+                "MOVE_HYPER_BEAM",
+                "MOVE_HEAT_WAVE",
+                "MOVE_TAILWIND"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_TROPIUS",
+            "form": 0,
+            "level": 76,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_HURRICANE",
+                "MOVE_ENERGY_BALL",
+                "MOVE_DRAGON_PULSE",
+                "MOVE_ROOST"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_DRAGONITE",
+            "form": 0,
+            "level": 77,
+            "item": "ITEM_WHITE_HERB",
+            "moves": [
+                "MOVE_HURRICANE",
+                "MOVE_DRACO_METEOR",
+                "MOVE_THUNDER",
+                "MOVE_ICE_BEAM"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Your Pokémon are so unbelievably\n",
+                "graceful in battle.\r",
+                "You are absolutely worthy of\n",
+                "the Wind Badge!\n"
+            ]
+        }
+    ]
+}

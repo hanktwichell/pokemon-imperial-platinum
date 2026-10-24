@@ -14,6 +14,52 @@
         "Rt. 228\n",
         "Rt. 229"
       ]
+    },
+    {
+      "id": "Route228_Text_SovereignShadeIntro",
+      "en_US": [
+        "...Greetings.\n",
+        "Me? I’m Shade.\n",
+        "A leader in the Battle Zone.\r",
+        "The darkness... It’s compelling.\n",
+        "It shields against the harsh light...\r",
+        "Do you want to test your light\n",
+        "against me for a {COLOR 1}Shadow Badge{COLOR 0}?"
+      ]
+    },
+    {
+      "id": "Route228_Text_SovereignShadeBattle",
+      "en_US": "Show me what light means...\r"
+    },
+    {
+      "id": "Route228_Text_SovereignShadeReward",
+      "en_US": "...\r"
+    },
+    {
+      "id": "Route228_Text_SovereignShadeReceived",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received\n",
+        "the Shadow Badge from Shade!"
+      ]
+    },
+    {
+      "id": "Route228_Text_SovereignShadeExplain",
+      "en_US": [
+        "The Shadow Badge.\n",
+        "It’s a reminder of impending darkness.\r",
+        "Functionally speaking?\n",
+        "It’ll do nothing for you.\r",
+        "But it’s nothing personal, kid."
+      ]
+    },
+    {
+      "id": "Route228_Text_SovereignShadeThanks",
+      "en_US": [
+        "Shade: Dark-type Pokémon...\n",
+        "They can be vicious and difficult.\r",
+        "But they can understand you in a\n",
+        "way other Pokémon are incapable of."
+      ]
     }
   ]
 }
