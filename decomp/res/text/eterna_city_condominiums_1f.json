@@ -79,14 +79,14 @@
       "id": "EternaCityCondominiums1F_Text_AskTradeBuizelForChatot",
       "en_US": [
         "Excuse me, but do you got that\n",
-        "Pokémon named BUIZEL?\r",
+        "Pokémon named SNORUNT?\r",
         "Wanna trade it for my CHATOT?"
       ]
     },
     {
       "id": "EternaCityCondominiums1F_Text_YesSoAwesomeABuizel",
       "en_US": [
-        "Yes! So awesome! A BUIZEL!\n",
+        "Yes! So awesome! A SNORUNT!\n",
         "I so promise I’ll be good to it!\r",
         "Oh yeah, CHATOT can learn some human\n",
         "speech pretty quickly.\r",
@@ -96,7 +96,7 @@
     },
     {
       "id": "EternaCityCondominiums1F_Text_IWantBuizel",
-      "en_US": "What I totally want is a BUIZEL..."
+      "en_US": "What I totally want is a SNORUNT..."
     },
     {
       "id": "EternaCityCondominiums1F_Text_OhOKTotallyGotIt",

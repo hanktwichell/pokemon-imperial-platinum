@@ -61,9 +61,23 @@
         "Remember what you have to do,\n",
         "hotshot.\r",
         "Give him a battle that’s so hot, it\n",
-        "will reignite his passion for battling!\r",
-        "All right, hotshot! I’ll be waiting at\n",
-        "the Pokémon League!\r"
+        "will reignite his passion for battling!\r"
+      ]
+    },
+    {
+      "id": "SunyshoreCity_Text_SovereignFlintRewardInAdvance",
+      "en_US": [
+        "I’ve got a reward for you, hotshot.\n",
+        "Consider it payment in advance.\r",
+        "It’s a Technical Machine containing a\n",
+        "real scorcher of a move!\r"
+      ]
+    },
+    {
+      "id": "SunyshoreCity_Text_SovereignFlintIllBeWaiting",
+      "en_US": [
+        "Flint: All right, hotshot! I’ll be\n",
+        "waiting at the Pokémon League!\r"
       ]
     },
     {

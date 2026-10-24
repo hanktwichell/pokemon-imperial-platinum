@@ -116,9 +116,11 @@ typedef struct {
     u16 itemAmountMax;
     u32 itemPrice;
     FontSpecialCharsContext *unk_2B4;
+    u32 sovereignFixedPrice; // Sovereign (E10): when not 0, every item costs this much
 } ShopMenu;
 
 void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 martType, BOOL incBuyCount);
+void Shop_StartFixedPrice(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u32 price);
 BOOL FieldTask_InitShop(FieldTask *task);
 
 #endif // POKEPLATINUM_SHOP_MENU_H

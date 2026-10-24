@@ -2,52 +2,75 @@
   "key": 33815,
   "messages": [
     {
-      "id": "FloaromaTownMiddleHouse_Text_FloaromaTownWasBarren",
+      "id": "FloaromaTownMiddleHouse_Text_SovereignTakeThisTM",
       "en_US": [
-        "Floaroma Town was a barren, desolate\n",
-        "hill long ago, avoided even by Pokémon.\r",
-        "People started planting flowers on it\n",
-        "because it was such a sad place.\r",
-        "But nothing would grow...\n",
-        "People didn’t know what to do...\r",
-        "And then one day, someone expressed\n",
-        "thanks for the blessings of nature.\r",
-        "Then, the whole hill burst into bloom."
+        "Santoryu?\r",
+        "Nitoryu?\r",
+        "All you need is one sword to\n",
+        "perform the Turning Swallow Cut!\r",
+        "Your enemies will be cut down\n",
+        "before they can even blink!\r",
+        "But swordsmanship is difficult in\n",
+        "my old age...\r",
+        "Your Pokémon can perform a similar\n",
+        "technique too, you know.\r",
+        "Take this TM, youngster.\r"
       ]
     },
     {
-      "id": "FloaromaTownMiddleHouse_Text_CuteHowPokemonPluckBerries",
+      "id": "FloaromaTownMiddleHouse_Text_SovereignTM40IsAerialAce",
       "en_US": [
-        "Do you think it’s cute how\n",
-        "Pokémon pluck Berries?"
+        "That TM contains Aerial Ace.\r",
+        "With its swiftness and accuracy, the\n",
+        "move will never miss its target."
       ]
     },
     {
-      "id": "FloaromaTownMiddleHouse_Text_HeresTMForPluck",
+      "id": "FloaromaTownMiddleHouse_Text_SovereignIMissTheSword",
       "en_US": [
-        "Yes! You agreed!\n",
-        "Here’s the TM for the move Pluck!\r"
+        "Ah, I do miss practicing the way\n",
+        "of the sword in my youth."
       ]
     },
     {
-      "id": "FloaromaTownMiddleHouse_Text_IJustLikeWeirdThings",
+      "id": "FloaromaTownMiddleHouse_Text_SovereignAskTradeCherubiForSkorupi",
       "en_US": [
-        "Oh...\n",
-        "I guess I just like weird things..."
+        "By any chance, do you have a Pokémon\n",
+        "called CHERUBI?\r",
+        "If you do, would you like to trade\n",
+        "your CHERUBI for my SKORUPI?"
       ]
     },
     {
-      "id": "FloaromaTownMiddleHouse_Text_UsingPluckEatsBerry",
+      "id": "FloaromaTownMiddleHouse_Text_SovereignTreatMySkorupiNicely",
       "en_US": [
-        "When a Pokémon uses Pluck, it eats\n",
-        "a Berry held by its foe in battle.\r",
-        "I like how it steals a Berry.\n",
-        "It’s so cute!"
+        "SKORUPI isn’t fitting for such a\n",
+        "beautiful lady like myself.\r",
+        "Just kidding!\r",
+        "Please treat my SKORUPI nicely.\n",
+        "I’ll be good to your CHERUBI, too!"
       ]
     },
     {
-      "id": "FloaromaTownMiddleHouse_Text_ClefairyCry",
-      "en_US": "CLEFAIRY: Rii?"
+      "id": "FloaromaTownMiddleHouse_Text_SovereignIAskedForCherubi",
+      "en_US": [
+        "What I asked for was a CHERUBI...?"
+      ]
+    },
+    {
+      "id": "FloaromaTownMiddleHouse_Text_SovereignOKIfYouDontWant",
+      "en_US": [
+        "It’s OK if you don’t want to.\r",
+        "But if you change your mind, let’s\n",
+        "trade Pokémon."
+      ]
+    },
+    {
+      "id": "FloaromaTownMiddleHouse_Text_SovereignWeGotToBeFriends",
+      "en_US": [
+        "Thanks to Pokémon, we got to be\n",
+        "friends, didn’t we?"
+      ]
     }
   ]
 }

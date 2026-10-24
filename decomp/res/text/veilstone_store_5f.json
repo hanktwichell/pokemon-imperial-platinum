@@ -81,6 +81,41 @@
     {
       "id": "VeilstoneStore5F_Text_DecidedNotToBuyADrink",
       "en_US": "Decided not to buy a drink."
+    },
+    {
+      "id": "VeilstoneStore5F_Text_SovereignBerthaTakeThisTM",
+      "en_US": [
+        "Well, well. You’re quite the adorable\n",
+        "Trainer. Ahaha!\r",
+        "I’m Bertha. An expert in Ground-type\n",
+        "Pokémon, and one of Sinnoh’s Elite Four.\r",
+        "It’s good to get out of the Pokémon\n",
+        "League for a spot of shopping every\f",
+        "now and then, though! Ahaha!\r",
+        "Are you aiming for the Pokémon League?\n",
+        "Then we may well have a battle between\f",
+        "us in the future.\r",
+        "I hope when the time comes, you can\n",
+        "show this old lady what you’ve learned!\r",
+        "You just keep on with your journey\n",
+        "for the moment, youngster.\r",
+        "But as a token of our meeting,\n",
+        "please take this Technical Machine.\r"
+      ]
+    },
+    {
+      "id": "VeilstoneStore5F_Text_SovereignBerthaExplainTM26",
+      "en_US": [
+        "That Technical Machine contains the\n",
+        "Ground-type move, Earthquake.\r",
+        "It’s an extremely powerful move that\n",
+        "can be used by a surprisingly large\f",
+        "amount of Pokémon in battle.\r",
+        "I’m sure you’ll get plenty of use\n",
+        "out of it. Ahaha!\r",
+        "Well then, this old lady must be going.\n",
+        "It was lovely to meet you.\r"
+      ]
     }
   ]
 }

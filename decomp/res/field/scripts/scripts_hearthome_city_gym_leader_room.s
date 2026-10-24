@@ -85,8 +85,10 @@ HearthomeGym_FantinaMain:
     Message HearthomeGym_Text_FantinaExplainRelicBadge
     GoTo HearthomeGym_FantinaTryGiveTM65
 
+// Sovereign (E10): as in Renegade, Fantina gives TM30 Shadow Ball (Platinum: TM65 Shadow Claw). The labels and the flag
+// keep Platinum's names.
 HearthomeGym_FantinaTryGiveTM65:
-    SetVar VAR_0x8004, ITEM_TM65
+    SetVar VAR_0x8004, ITEM_TM30
     SetVar VAR_0x8005, 1
     GoToIfCannotFitItem VAR_0x8004, VAR_0x8005, VAR_RESULT, HearthomeGym_FantinaCannotGiveTM65
     Common_GiveItemQuantity

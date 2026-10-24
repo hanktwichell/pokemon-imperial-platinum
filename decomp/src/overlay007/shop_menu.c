@@ -109,6 +109,7 @@ static void Shop_SetCursorSpritePalette(ShopMenu *shopMenu, u8 selected);
 static u8 Shop_ShowPurchaseMessage(ShopMenu *shopMenu);
 static void Shop_SetItemNameToIndex(ShopMenu *shopMenu, u16 itemId, u16 idx);
 static u32 Shop_GetItemPrice(ShopMenu *shopMenu, u16 itemId);
+static void Shop_SovereignStart(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 martType, BOOL incBuyCount, u32 fixedPrice);
 static u16 Shop_GetItemBPPrice(ShopMenu *shopMenu, u16 itemId);
 static u32 Shop_GetCurrentMoney(ShopMenu *shopMenu);
 static void Shop_TakeMoney(ShopMenu *shopMenu, u32 amount);
@@ -240,7 +241,21 @@ static ShopMenu *Shop_Alloc(void)
 
 void Shop_Start(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 martType, BOOL incBuyCount)
 {
+    Shop_SovereignStart(task, fieldSystem, shopItems, martType, incBuyCount, 0);
+}
+
+// Sovereign (E10): a Poké Mart where every item costs the same, like Renegade Platinum's evolution-item seller in
+// Snowpoint City (₽10,000 each). It's still half price after the Hall of Fame.
+void Shop_StartFixedPrice(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u32 price)
+{
+    Shop_SovereignStart(task, fieldSystem, shopItems, MART_TYPE_NORMAL, FALSE, price);
+}
+
+static void Shop_SovereignStart(FieldTask *task, FieldSystem *fieldSystem, u16 *shopItems, u8 martType, BOOL incBuyCount, u32 fixedPrice)
+{
     ShopMenu *shopMenu = Shop_Alloc();
+
+    shopMenu->sovereignFixedPrice = fixedPrice;
 
     shopMenu->bgConfig = fieldSystem->bgConfig;
 
@@ -1328,7 +1343,9 @@ static u32 Shop_GetItemPrice(ShopMenu *shopMenu, u16 itemId)
 {
     u32 price;
 
-    if (shopMenu->martType == MART_TYPE_NORMAL) {
+    if (shopMenu->sovereignFixedPrice) {
+        price = shopMenu->sovereignFixedPrice;
+    } else if (shopMenu->martType == MART_TYPE_NORMAL) {
         price = Item_LoadParam(itemId, ITEM_PARAM_PRICE, HEAP_ID_FIELD2);
     } else if (shopMenu->martType == MART_TYPE_FRONTIER) {
         return Shop_GetItemBPPrice(shopMenu, itemId);

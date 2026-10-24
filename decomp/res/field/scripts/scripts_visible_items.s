@@ -561,7 +561,7 @@ VisibleItems_MtCoronet4FRooms1And2_AdamantOrb:
     End
 
 VisibleItems_WaywardCave1F_TM26:
-    SetVar VAR_0x8008, ITEM_TM26
+    SetVar VAR_0x8008, ITEM_KINGS_ROCK
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -789,7 +789,7 @@ VisibleItems_Route213_TM05:
     End
 
 VisibleItems_Route213_TM40:
-    SetVar VAR_0x8008, ITEM_TM40
+    SetVar VAR_0x8008, ITEM_TM41
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -1029,7 +1029,7 @@ VisibleItems_Route214_RareCandy:
     End
 
 VisibleItems_RuinManiacCaveOrTunnel_TM28:
-    SetVar VAR_0x8008, ITEM_TM28
+    SetVar VAR_0x8008, ITEM_TM59
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -1047,7 +1047,7 @@ VisibleItems_Route210North_WaveIncense:
     End
 
 VisibleItems_Route210North_TM30:
-    SetVar VAR_0x8008, ITEM_TM30
+    SetVar VAR_0x8008, ITEM_TM88
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -1119,7 +1119,7 @@ VisibleItems_Route221_Protein:
     End
 
 VisibleItems_Route221_TM81:
-    SetVar VAR_0x8008, ITEM_TM81
+    SetVar VAR_0x8008, ITEM_POWER_HERB
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -1359,7 +1359,7 @@ VisibleItems_MtCoronet2F_MaxRevive:
     End
 
 VisibleItems_MtCoronet2F_TM80:
-    SetVar VAR_0x8008, ITEM_TM80
+    SetVar VAR_0x8008, ITEM_BRIGHTPOWDER
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -1419,7 +1419,7 @@ VisibleItems_Route223_TM18:
     End
 
 VisibleItems_VictoryRoad1F_TM41:
-    SetVar VAR_0x8008, ITEM_TM41
+    SetVar VAR_0x8008, ITEM_TM68
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -1473,7 +1473,7 @@ VisibleItems_VictoryRoad2F_TM71:
     End
 
 VisibleItems_VictoryRoadB1F_TM59:
-    SetVar VAR_0x8008, ITEM_TM59
+    SetVar VAR_0x8008, ITEM_DRAGON_SCALE
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End
@@ -1629,7 +1629,7 @@ VisibleItems_StarkMountainRoom1_FullRestore:
     End
 
 VisibleItems_StarkMountainRoom2_TM50:
-    SetVar VAR_0x8008, ITEM_TM50
+    SetVar VAR_0x8008, ITEM_RARE_CANDY
     SetVar VAR_0x8009, 1
     GoTo VisibleItems_TryGiveItem
     End

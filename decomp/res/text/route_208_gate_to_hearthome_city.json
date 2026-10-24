@@ -2,25 +2,84 @@
   "key": 33826,
   "messages": [
     {
-      "id": "Route208GateToHearthomeCity_Text_HearthomeCityGreatPlace",
+      "id": "Route208GateToHearthomeCity_Text_SovereignLetMeHealThem",
       "en_US": [
-        "Hearthome City is a great place.\r",
-        "Every year, it gets voted the most\n",
-        "desirable place to live in Sinnoh."
+        "Hello! You’re a Trainer, aren’t you?\r",
+        "Oh, your Pokémon look hurt.\n",
+        "Let me heal them for you...\r"
       ]
     },
     {
-      "id": "Route208GateToHearthomeCity_Text_YouSayHearthomeISayContests",
+      "id": "Route208GateToHearthomeCity_Text_SovereignImAaron",
       "en_US": [
-        "If you say Hearthome City, I only\n",
-        "say this: Pokémon Contests!\r",
-        "I’m going to enter my darling\n",
-        "Pokémon in them!"
+        "Your name is {STRVAR_1 3, 0, 0}?\r",
+        "I’m Aaron of the Elite Four.\n",
+        "It’s good to meet you.\r",
+        "I’m a huge fan of Bug-type Pokémon.\n",
+        "They’re nasty-mean, and yet beautiful.\r",
+        "Do you get what I mean?\n",
+        "Some of them are really strong, too.\r",
+        "I just can’t help but gush about\n",
+        "them to everyone!\r",
+        "In fact, how about I show you some\n",
+        "beautiful bugs right now?\r",
+        "I’ll try and fight closer to your level,\n",
+        "but don’t worry if you lose!\r",
+        "So, shall I show you my beautiful\n",
+        "bugs in an unofficial battle?"
       ]
     },
     {
-      "id": "Route208GateToHearthomeCity_Text_ClefairyCryPippii",
-      "en_US": "CLEFAIRY: Pippii?!"
+      "id": "Route208GateToHearthomeCity_Text_SovereignIdReconsider",
+      "en_US": [
+        "Aaron: Really? I’d reconsider.\r",
+        "I’ll make it worth your while,\n",
+        "and it’s fine if you lose.\r",
+        "So, shall I show you my beautiful\n",
+        "bugs in an unofficial battle?"
+      ]
+    },
+    {
+      "id": "Route208GateToHearthomeCity_Text_SovereignHereComeMyPartners",
+      "en_US": [
+        "Aaron: Brilliant! Here come my nasty,\n",
+        "mean, yet beautiful partners!\r"
+      ]
+    },
+    {
+      "id": "Route208GateToHearthomeCity_Text_SovereignThatWasFun",
+      "en_US": [
+        "Aaron: Ha! That was fun.\r",
+        "Don’t sweat about losing.\n",
+        "I’m an Elite Four member, after all!\r"
+      ]
+    },
+    {
+      "id": "Route208GateToHearthomeCity_Text_SovereignTrainedSeriouslyWell",
+      "en_US": [
+        "Aaron: Wow! Your Pokémon are\n",
+        "trained seriously well.\r",
+        "I expect I’ll see you at the\n",
+        "Pokémon League for an official battle!\r"
+      ]
+    },
+    {
+      "id": "Route208GateToHearthomeCity_Text_SovereignTMForListening",
+      "en_US": [
+        "So, have I shown you the greatness\n",
+        "of Bug-type Pokémon?\r",
+        "Either way, I’ve got a TM for you\n",
+        "for listening to my spiel!\r",
+        "It’s the purely offensive Bug-type\n",
+        "move, X-Scissor!\r"
+      ]
+    },
+    {
+      "id": "Route208GateToHearthomeCity_Text_SovereignSeeYouAnotherTime",
+      "en_US": [
+        "Aaron: Alright! It was great to meet\n",
+        "you. See you another time!\r"
+      ]
     }
   ]
 }

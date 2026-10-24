@@ -220,6 +220,50 @@ const u16 VeilstoneDeptStoreStock_B1F_DOWN_LEFT[] = {
 
 #include "data/sovereign_mart_items.h"
 
+// Sovereign (E10): the Snowpoint City evolution-item seller from Renegade Platinum, ₽10,000 an item
+// (scrcmd_shop.c). It sells every evolution item that isn't found anywhere else.
+static const u16 SnowpointEvolutionItemStock[] = {
+    // Renegade Platinum's evolution items
+    ITEM_DRAGON_SCALE,
+    ITEM_DUBIOUS_DISC,
+    ITEM_ELECTIRIZER,
+    ITEM_MAGMARIZER,
+    ITEM_PRISM_SCALE,
+    ITEM_PROTECTOR,
+    ITEM_RAZOR_CLAW,
+    ITEM_RAZOR_FANG,
+    ITEM_REAPER_CLOTH,
+    ITEM_UPGRADE,
+    // Sovereign: the newer evolution items (docs/EvolutionChanges_Sovereign.md)
+    ITEM_SACHET,
+    ITEM_WHIPPED_DREAM,
+    ITEM_BLACK_AUGURITE,
+    ITEM_PEAT_BLOCK,
+    ITEM_LEADERS_CREST,
+    ITEM_TART_APPLE,
+    ITEM_SWEET_APPLE,
+    ITEM_SYRUPY_APPLE,
+    ITEM_CRACKED_POT,
+    ITEM_UNREMARKABLE_TEACUP,
+    ITEM_AUSPICIOUS_ARMOR,
+    ITEM_MALICIOUS_ARMOR,
+    ITEM_METAL_ALLOY,
+    // Milcery's Sweets (each gives Alcremie its sweet)
+    ITEM_STRAWBERRY_SWEET,
+    ITEM_LOVE_SWEET,
+    ITEM_BERRY_SWEET,
+    ITEM_CLOVER_SWEET,
+    ITEM_FLOWER_SWEET,
+    ITEM_STAR_SWEET,
+    ITEM_RIBBON_SWEET,
+    // the teapots' and Galarian Slowpoke's items
+    ITEM_CHIPPED_POT,
+    ITEM_MASTERPIECE_TEACUP,
+    ITEM_GALARICA_CUFF,
+    ITEM_GALARICA_WREATH,
+    SHOP_ITEM_END
+};
+
 const u16 *PokeMartSpecialties[] = {
     [MART_SPECIALTIES_ID_JUBILIFE] = JubilifeMartSpecialties,
     [MART_SPECIALTIES_ID_OREBURGH] = OreburghMartSpecialties,
@@ -248,7 +292,8 @@ const u16 *PokeMartSpecialties[] = {
     [MART_SPECIALTIES_ID_MEGA_STONES_HEARTHOME] = MegaStoneStock_Hearthome,
     [MART_SPECIALTIES_ID_MEGA_STONES_PASTORIA] = MegaStoneStock_Pastoria,
     [MART_SPECIALTIES_ID_MEGA_STONES_SNOWPOINT] = MegaStoneStock_Snowpoint,
-    [MART_SPECIALTIES_ID_MEGA_STONES_SURVIVAL_AREA] = MegaStoneStock_SurvivalArea
+    [MART_SPECIALTIES_ID_MEGA_STONES_SURVIVAL_AREA] = MegaStoneStock_SurvivalArea,
+    [MART_SPECIALTIES_ID_EVOLUTION_ITEMS_SNOWPOINT] = SnowpointEvolutionItemStock
 };
 
 const u16 VeilstoneDeptStoreStock_4F_UP[] = {

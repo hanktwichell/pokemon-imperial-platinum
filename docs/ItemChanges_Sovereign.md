@@ -3,14 +3,17 @@
 Renegade Platinum's item changes and item locations are unchanged unless listed here
 (`RenegadePlatinumV130/Documentation/ItemChanges.txt`).
 
-In the game so far (E10 parts 2–3):
+In the game so far (E10 parts 2–4):
 - Renegade's six TM moves (Scald, Wild Charge, Bug Buzz, Hyper Voice, Dazzling Gleam, Hurricane), TMs as 99 of each
   and unsellable, and the Poké/Great/Ultra Ball prices.
-- Renegade's overworld item balls. Ten balls keep Platinum's TM until the NPCs who give those TMs in Renegade are
-  ported (`EngineChangelog.md`, E10 part 3).
+- Renegade's overworld item balls. Valor Lakefront's ball keeps TM85 until Mira's quest, which gives it in Renegade,
+  is ported.
 - Renegade's hidden items are Platinum's.
+- Renegade's TM gifts from Fantina (TM30), Bertha (TM26), Floaroma's swordsman (TM40), the Underground Man house
+  (fossils, TM28, TM80), Flint (TM50) and Aaron (TM81) (`EngineChangelog.md`, E10 part 4).
+- The Snowpoint City evolution-item seller: 34 items at ₽10,000 each.
 
-Still to come: Renegade's NPC gifts and their TMs, and the TMs leaving Veilstone 3F and the Game Corner.
+Still to come: Mira's TM85, Renegade's other NPC gifts, and the TMs leaving Veilstone 3F and the Game Corner.
 
 ## New key items
 
