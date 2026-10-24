@@ -204,6 +204,13 @@
         "Hmm...\n",
         "Do you feel like you can’t win?"
       ]
+    },
+    {
+      "id": "FloaromaMeadow_Text_SovereignBuySomeHoneyHalf",
+      "en_US": [
+        "Would you like to buy some Honey for\n",
+        "attracting Pokémon? Just $50 each!"
+      ]
     }
   ]
 }
