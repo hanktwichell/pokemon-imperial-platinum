@@ -3318,3 +3318,28 @@ interactions the owner listed on 2026-10-23. PR open.
 2. Milestone FM: Power Construct (Complete Zygarde) and Battle Bond (Ash-Greninja).
 3. Owner decisions still open: Revival Blessing; Koraidon/Miraidon gate; Cosmog's Teleport; whether Ultra Burst
    counts as the trainer's Mega; overworld sprites and sizing; final placements.
+
+---
+
+## CB-0054 — Fix: Toxic's battle script overflowed into the player's Pokémon (Fri Oct 23 2026, 23:00 CDT)
+
+**Implemented:**
+- **Bug found while testing Shields Down:** after a Toxic, the player's lead had "no moves left!" and could only
+  Struggle. `subscript_badly_poison` was 1620 bytes and the battle script buffer holds 1600
+  (`BATTLE_SCRIPT_SIZE_MAX` 400 u32s). The buffer sits right before `battleMons[0]`, so loading the script overwrote
+  battler 0's species, stats and moves. A DeSmuME write watch on the battle mon caught it.
+- `BATTLE_SCRIPT_SIZE_MAX` is now 512, and `BattleSystem_CallScript`'s assert uses the constant instead of `400 * 4`.
+- New `tools/test/check_battle_scripts.py`: fails when a built battle script doesn't fit. CI runs it after the build.
+- **Verified:** after the fix a Toxic on a wild Zangoose poisoned it through Mold Breaker (Immunity then cured it), and
+  the next turn's moves worked. Release build without warnings, boot smoke, docs.
+
+**Files modified:** `decomp/include/constants/battle.h`, `decomp/src/battle/battle_lib.c`,
+`tools/test/check_battle_scripts.py` (new), `.github/workflows/build.yml`, `docs/TechnicalDesign.md`,
+`docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Finish milestone FM's Minior (Meteor colors from personality, Shields Down) on top of this fix; it is built and
+   tested on a local branch.
+2. Milestone FM: Power Construct (Complete Zygarde) and Battle Bond (Ash-Greninja).
+3. Owner decisions still open: Revival Blessing; Koraidon/Miraidon gate; Cosmog's Teleport; whether Ultra Burst
+   counts as the trainer's Mega; overworld sprites and sizing; final placements.
