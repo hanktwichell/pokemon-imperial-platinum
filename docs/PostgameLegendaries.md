@@ -124,7 +124,7 @@ Covers **90** species.
 - **Level:** 70
 - **Location:** Wayward Cave 1F — the dark back chamber
 - **How:** Appears after owning Solgaleo or Lunala.
-- **Built:** Necrozma (CB-0042), level 70: in Wayward Cave 1F's dark north-east chamber, where Mira was lost (70, 9), once the Alola Chronicle is open and the Pokédex has Solgaleo or Lunala as caught, until it's caught. Wayward Cave is the only cave that needs Flash: a place whose light was stolen. The Archivist then gives the N-Solarizer and N-Lunarizer, which fuse it with Solgaleo (Dusk Mane) or Lunala (Dawn Wings) from the bag (FM part 2), and the Ultranecrozium Z, once (CB-0048): a fused Necrozma holding it Ultra Bursts into Ultra Necrozma from the battle's MEGA button. **Changed from the plan** (owner, 2026-10-23, decision 27): Spear Pillar is kept for Dialga, Palkia and the story.
+- **Built:** Necrozma (CB-0042), level 70: in Wayward Cave 1F's dark north-east chamber, where Mira lost her Crimson Ribbon (70, 9), once the Alola Chronicle is open and the Pokédex has Solgaleo or Lunala as caught, until it's caught. Wayward Cave is the only cave that needs Flash: a place whose light was stolen. The Archivist then gives the N-Solarizer and N-Lunarizer, which fuse it with Solgaleo (Dusk Mane) or Lunala (Dawn Wings) from the bag (FM part 2), and the Ultranecrozium Z, once (CB-0048): a fused Necrozma holding it Ultra Bursts into Ultra Necrozma from the battle's MEGA button. **Changed from the plan** (owner, 2026-10-23, decision 27): Spear Pillar is kept for Dialga, Palkia and the story.
 
 ### Ultra Wormholes
 - **Pokémon:** #793 Nihilego, #794 Buzzwole, #795 Pheromosa, #796 Xurkitree, #797 Celesteela, #798 Kartana, #799 Guzzlord, #805 Stakataka, #806 Blacephalon

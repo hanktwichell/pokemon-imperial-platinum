@@ -4057,3 +4057,31 @@ house, Route 208 gate, Sunyshore City, plus trade text in Oreburgh, Eterna condo
 2. Take the TMs out of Veilstone 3F and the Game Corner, set TM prices to 0, then Renegade's other NPC gifts
    (`renegade_rom.py ROM gifts`: Route 216 house Ice Beam, Item Fanatic, Hidden Power teller, Heather's Flying Club...).
 3. Renegade's trainers from its ROM (`trdata`/`trpoke`), with `data/trainers_sovereign.yaml` on top.
+
+## CB-0079 — 2026-10-24, 5:27 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Merged:** PR #89 (E10 part 4: TM gifts, trades, evolution-item seller, Aaron).
+
+**Implemented:** E10 part 5, Mira's quest in Wayward Cave as in Renegade.
+- Mira at (38, 42) by the hidden entrance: a battle (`TRAINER_SOVEREIGN_MIRA_WAYWARD_CAVE`), then she follows the
+  player to find her Crimson Ribbon at (72, 11). She stays behind at (40, 42) without it and rejoins at (39, 42);
+  at the exit she gives TM85. `VAR_SOVEREIGN_MIRA_QUEST_STATE` (1 following, 2 waiting, 3 ribbon, 4 done),
+  `FLAG_SOVEREIGN_FOUND_CRIMSON_RIBBON`.
+- A one-time Gabite Lv. 25 by the B1F stairs (`VAR_SOVEREIGN_WAYWARD_CAVE_GABITE_STATE`); the 11 Rock Smash rocks
+  removed; TM26/King's Rock ball moved; two trainers' sight 2.
+- `import_renegade_items.py` re-run: no ball keeps a Platinum TM now (Valor Lakefront: Sharp Beak).
+- Verified in the test build (with a temporary Lv. 1 Mira team): battle, join, stay, rejoin, ribbon, TM85 at the
+  exit, Gabite once. Release build and docs check pass.
+
+**Files modified:** `decomp/res/field/scripts/scripts_wayward_cave_1f.s`, `decomp/res/field/events/events_wayward_cave_1f.json`,
+`decomp/res/text/wayward_cave_1f.json`, `decomp/res/trainers/data/sovereign_mira_wayward_cave.json` (new),
+`decomp/generated/{trainers,vars_flags}.txt`, `decomp/res/field/scripts/scripts_visible_items.s`,
+`data/postgame_legendaries.yaml`, `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `docs/ItemChanges_Sovereign.md`,
+`docs/PostgameLegendaries.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Take the TMs out of Veilstone 3F and the Game Corner (Renegade sells none there) and check every TM still has a
+   source (`import_renegade_items.py`'s loss check covers balls, marts, scripts).
+2. Renegade's other NPC gifts and NPCs (`renegade_rom.py ROM gifts`): Route 216 house Ice Beam, Heather's Flying Club,
+   Item Fanatic, Hidden Power teller, Rare Berry seller on Route 208, Super Rod in Snowpoint.
+3. Renegade's trainers from its ROM (`trdata`/`trpoke`), with `data/trainers_sovereign.yaml` on top.
