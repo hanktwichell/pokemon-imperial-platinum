@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_209.h"
+#include "res/field/events/events_route_209.h"
 
 
     ScriptEntry Route209_PokefanM
@@ -11,6 +12,7 @@
     ScriptEntry Route209_JoggerRaul
     ScriptEntry Route209_OnTransition
     ScriptEntry Route209_TrainerTipsSignpost
+    ScriptEntry Route209_SovereignMewBuneary
     ScriptEntryEnd
 
 Route209_OnTransition:
@@ -199,5 +201,67 @@ Route209_JoggerRichard:
 Route209_JoggerRaul:
     NPCMessage Route209_Text_PokemonChasedAfterMe
     End
+
+    
+
+@ Sovereign (E10, Renegade's Mew event, step 2 of 4): a hungry Buneary wants a Sitrus Berry. Feeding it brings Mew,
+@ which flies off to the next step (Route 203 Shroomish, Route 209 Buneary, Pastoria City Torchic, Route 201).
+Route209_SovereignMewBuneary:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    PlayCry SPECIES_BUNEARY
+    Message Route209_Text_SovereignMewBunearyCry
+    WaitCry
+    Message Route209_Text_SovereignMewBunearyHungry
+    CheckItem ITEM_SITRUS_BERRY, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, Route209_SovereignMewBunearyEnd
+    Message Route209_Text_SovereignMewBunearyAskGive
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, Route209_SovereignMewBunearyEnd
+    RemoveItem ITEM_SITRUS_BERRY, 1, VAR_RESULT
+    PlayCry SPECIES_BUNEARY
+    Message Route209_Text_SovereignMewBunearyHappy
+    WaitCry
+    Message Route209_Text_SovereignMewBunearyAte
+    CloseMessage
+    WaitTime 5, VAR_RESULT
+    FadeScreenOut FADE_SCREEN_SPEED_FAST, COLOR_WHITE
+    WaitFadeScreen
+    SetFlag FLAG_SOVEREIGN_HIDE_MEW_BUNEARY
+    RemoveObject LOCALID_SOVEREIGN_MEW_BUNEARY
+    SetObjectEventPos LOCALID_SOVEREIGN_MEW, 548, 674
+    AddObject LOCALID_SOVEREIGN_MEW
+    FadeScreenIn FADE_SCREEN_SPEED_FAST, COLOR_WHITE
+    WaitFadeScreen
+    ApplyMovement LOCALID_SOVEREIGN_MEW, Route209_SovereignMovement_MewNotice
+    WaitMovement
+    PlayCry SPECIES_MEW
+    Message Route209_Text_SovereignMewCry
+    WaitCry
+    CloseMessage
+    FadeScreenOut FADE_SCREEN_SPEED_FAST, COLOR_WHITE
+    WaitFadeScreen
+    RemoveObject LOCALID_SOVEREIGN_MEW
+    FadeScreenIn FADE_SCREEN_SPEED_FAST, COLOR_WHITE
+    WaitFadeScreen
+    WaitTime 15, VAR_RESULT
+    Message Route209_Text_SovereignMewDisappeared
+    WaitButton
+    CloseMessage
+    ClearFlag FLAG_SOVEREIGN_HIDE_MEW_TORCHIC
+    ReleaseAll
+    End
+
+Route209_SovereignMewBunearyEnd:
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+    .balign 4, 0
+Route209_SovereignMovement_MewNotice:
+    EmoteExclamationMark
+    EndMovement
 
     .balign 4, 0

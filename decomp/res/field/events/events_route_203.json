@@ -242,6 +242,36 @@
             "x": 231,
             "z": 754,
             "y": 0
+        },
+        {
+            "id": "LOCALID_SOVEREIGN_MEW_SHROOMISH",
+            "graphics_id": "OBJ_EVENT_GFX_SHROOMISH",
+            "movement_type": "MOVEMENT_TYPE_LOOK_SOUTH",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_SOVEREIGN_HIDE_MEW_SHROOMISH",
+            "script": 7,
+            "initial_dir": 1,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 212,
+            "z": 746,
+            "y": 0
+        },
+        {
+            "id": "LOCALID_SOVEREIGN_MEW",
+            "graphics_id": "OBJ_EVENT_GFX_LEGENDARY_MEW",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": 0,
+            "initial_dir": 1,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 999,
+            "z": 999,
+            "y": 0
         }
     ],
     "warp_events": [

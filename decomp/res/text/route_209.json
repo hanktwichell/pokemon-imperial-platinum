@@ -167,6 +167,43 @@
         "Simply press the Y Button to use the\n",
         "registered item instantly."
       ]
+    },
+    {
+      "id": "Route209_Text_SovereignMewBunearyCry",
+      "en_US": "BUNEARY: Kukuuh..."
+    },
+    {
+      "id": "Route209_Text_SovereignMewBunearyHungry",
+      "en_US": [
+        "BUNEARY seems very hungry.\n",
+        "It may want a Sitrus Berry.\r"
+      ]
+    },
+    {
+      "id": "Route209_Text_SovereignMewBunearyAskGive",
+      "en_US": "Give a Sitrus Berry to BUNEARY?"
+    },
+    {
+      "id": "Route209_Text_SovereignMewBunearyHappy",
+      "en_US": "BUNEARY: Nii nii!"
+    },
+    {
+      "id": "Route209_Text_SovereignMewBunearyAte",
+      "en_US": [
+        "BUNEARY ate the Sitrus Berry.\n",
+        "It was delighted!\r"
+      ]
+    },
+    {
+      "id": "Route209_Text_SovereignMewCry",
+      "en_US": "Myuu!"
+    },
+    {
+      "id": "Route209_Text_SovereignMewDisappeared",
+      "en_US": [
+        "The strange Pokémon disappeared,\n",
+        "but it looked very happy."
+      ]
     }
   ]
 }

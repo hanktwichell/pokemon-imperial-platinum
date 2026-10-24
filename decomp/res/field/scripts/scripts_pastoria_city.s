@@ -27,6 +27,7 @@
     ScriptEntry PastoriaCity_CoordEvent_BlockGreatMarsh
     ScriptEntry PastoriaCity_CoordEvent_FaceBoard
     ScriptEntry PastoriaCity_SovereignFishBoy
+    ScriptEntry PastoriaCity_SovereignMewTorchic
     ScriptEntryEnd
 
 PastoriaCity_OnTransition:
@@ -1044,5 +1045,67 @@ PastoriaCity_SovereignWishGranted:
     WaitButton
     CloseMessage
     Return
+
+    
+
+@ Sovereign (E10, Renegade's Mew event, step 3 of 4): a hungry Torchic wants an Old Gateau. Feeding it brings Mew,
+@ which flies off to the next step (Route 203 Shroomish, Route 209 Buneary, Pastoria City Torchic, Route 201).
+PastoriaCity_SovereignMewTorchic:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    PlayCry SPECIES_TORCHIC
+    Message PastoriaCity_Text_SovereignMewTorchicCry
+    WaitCry
+    Message PastoriaCity_Text_SovereignMewTorchicHungry
+    CheckItem ITEM_OLD_GATEAU, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, PastoriaCity_SovereignMewTorchicEnd
+    Message PastoriaCity_Text_SovereignMewTorchicAskGive
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, PastoriaCity_SovereignMewTorchicEnd
+    RemoveItem ITEM_OLD_GATEAU, 1, VAR_RESULT
+    PlayCry SPECIES_TORCHIC
+    Message PastoriaCity_Text_SovereignMewTorchicHappy
+    WaitCry
+    Message PastoriaCity_Text_SovereignMewTorchicAte
+    CloseMessage
+    WaitTime 5, VAR_RESULT
+    FadeScreenOut FADE_SCREEN_SPEED_FAST, COLOR_WHITE
+    WaitFadeScreen
+    SetFlag FLAG_SOVEREIGN_HIDE_MEW_TORCHIC
+    RemoveObject LOCALID_SOVEREIGN_MEW_TORCHIC
+    SetObjectEventPos LOCALID_SOVEREIGN_MEW, 625, 828
+    AddObject LOCALID_SOVEREIGN_MEW
+    FadeScreenIn FADE_SCREEN_SPEED_FAST, COLOR_WHITE
+    WaitFadeScreen
+    ApplyMovement LOCALID_SOVEREIGN_MEW, PastoriaCity_SovereignMovement_MewNotice
+    WaitMovement
+    PlayCry SPECIES_MEW
+    Message PastoriaCity_Text_SovereignMewCry
+    WaitCry
+    CloseMessage
+    FadeScreenOut FADE_SCREEN_SPEED_FAST, COLOR_WHITE
+    WaitFadeScreen
+    RemoveObject LOCALID_SOVEREIGN_MEW
+    FadeScreenIn FADE_SCREEN_SPEED_FAST, COLOR_WHITE
+    WaitFadeScreen
+    WaitTime 15, VAR_RESULT
+    Message PastoriaCity_Text_SovereignMewDisappeared
+    WaitButton
+    CloseMessage
+    ClearFlag FLAG_SOVEREIGN_HIDE_MEW_PACHIRISU
+    ReleaseAll
+    End
+
+PastoriaCity_SovereignMewTorchicEnd:
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+    .balign 4, 0
+PastoriaCity_SovereignMovement_MewNotice:
+    EmoteExclamationMark
+    EndMovement
 
     .balign 4, 0

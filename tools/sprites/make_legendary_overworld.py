@@ -107,6 +107,7 @@ LEGENDARIES = {
     "mewtwo": 150,
     "jirachi": 385,
     "deoxys": 386,
+    "mew": 151,
 }
 
 

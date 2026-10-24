@@ -83,6 +83,43 @@
     {
       "id": "Route203_Text_SovereignRivalOKBye",
       "en_US": "{STRVAR_1 3, 0, 0}: OK, bye!"
+    },
+    {
+      "id": "Route203_Text_SovereignMewShroomishCry",
+      "en_US": "SHROOMISH: Pofwaaah?"
+    },
+    {
+      "id": "Route203_Text_SovereignMewShroomishHungry",
+      "en_US": [
+        "SHROOMISH seems hungry.\n",
+        "It may want an Oran Berry.\r"
+      ]
+    },
+    {
+      "id": "Route203_Text_SovereignMewShroomishAskGive",
+      "en_US": "Give an Oran Berry to SHROOMISH?"
+    },
+    {
+      "id": "Route203_Text_SovereignMewShroomishHappy",
+      "en_US": "SHROOMISH: Pofwaaah!"
+    },
+    {
+      "id": "Route203_Text_SovereignMewShroomishAte",
+      "en_US": [
+        "SHROOMISH ate the Oran Berry.\n",
+        "It was pleased!\r"
+      ]
+    },
+    {
+      "id": "Route203_Text_SovereignMewCry",
+      "en_US": "Myuu..."
+    },
+    {
+      "id": "Route203_Text_SovereignMewDisappeared",
+      "en_US": [
+        "The strange Pokémon disappeared,\n",
+        "but it looked happy."
+      ]
     }
   ]
 }

@@ -552,6 +552,14 @@
         "By talking to people, you will get\n",
         "invaluable information and advice."
       ]
+    },
+    {
+      "id": "Route201_Text_SovereignMewPachirisuCry",
+      "en_US": "PACHIRISU: Pachipachi pacchipachii!"
+    },
+    {
+      "id": "Route201_Text_SovereignMewCry",
+      "en_US": "Myuu."
     }
   ]
 }

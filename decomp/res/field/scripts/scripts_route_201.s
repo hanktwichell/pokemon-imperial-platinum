@@ -18,6 +18,9 @@
     ScriptEntry Route201_CoordEvent_FollowingRivalStopPlayerEast
     ScriptEntry Route201_ProfRowan
     ScriptEntry Route201_CoordEvent_RivalStartFollowing
+    ScriptEntry Route201_SovereignMewPachirisu
+    ScriptEntry Route201_OnLoad
+    ScriptEntry Route201_LegendaryMew
     ScriptEntryEnd
 
 Route201_OnTransition:
@@ -1252,6 +1255,55 @@ Route201_ArrowSignpostSandgemTown:
 
 Route201_TrainerTipsSignpost:
     ShowScrollingSign Route201_Text_TrainerTipsTalkToAnyone
+    End
+
+    
+
+@ Sovereign (E10, Renegade's Mew event, step 4 of 4): after the Shroomish, Buneary and Torchic are fed, a Pachirisu
+@ waits here. Talking to it reveals Mew (Lv. 40), which stays until it's caught.
+Route201_SovereignMewPachirisu:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    PlayCry SPECIES_PACHIRISU
+    Message Route201_Text_SovereignMewPachirisuCry
+    WaitCry
+    CloseMessage
+    FadeScreenOut FADE_SCREEN_SPEED_SLOW, COLOR_WHITE
+    WaitFadeScreen
+    SetFlag FLAG_SOVEREIGN_HIDE_MEW_PACHIRISU
+    RemoveObject LOCALID_SOVEREIGN_MEW_PACHIRISU
+    ClearFlag FLAG_SOVEREIGN_HIDE_ROUTE_201_MEW
+    AddObject LOCALID_LEGENDARY_MEW
+    FadeScreenIn FADE_SCREEN_SPEED_SLOW, COLOR_WHITE
+    WaitFadeScreen
+    WaitTime 15, VAR_RESULT
+    PlayCry SPECIES_MEW
+    Message Route201_Text_SovereignMewCry
+    WaitCry
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+Route201_OnLoad:
+    CallIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, Route201_RemoveLegendaryMew
+    End
+
+Route201_RemoveLegendaryMew:
+    GoToIfNe VAR_SOVEREIGN_LEGENDARY_SPECIES, SPECIES_MEW, Route201_RemoveLegendaryMewEnd
+    RemoveObject LOCALID_LEGENDARY_MEW
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+Route201_RemoveLegendaryMewEnd:
+    Return
+
+Route201_LegendaryMew:
+    SetVar VAR_0x8004, SPECIES_MEW
+    SetVar VAR_0x8005, 40
+    Common_SovereignLegendaryEncounter
+    GoToIfEq VAR_RESULT, FALSE, Route201_LegendaryMewEnd
+    SetFlag FLAG_SOVEREIGN_HIDE_ROUTE_201_MEW
+Route201_LegendaryMewEnd:
     End
 
     .balign 4, 0

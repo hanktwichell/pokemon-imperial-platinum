@@ -4,6 +4,22 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 18) — Renegade's Mew event
+
+- **A chain of hungry Pokémon**, as in Renegade. Feeding each one brings Mew for a moment ("Myuu!"); it flies off,
+  and the next Pokémon appears:
+  - a Shroomish on Route 203 wants an Oran Berry;
+  - then a Buneary on Route 209 wants a Sitrus Berry;
+  - then a Torchic in Pastoria City wants an Old Gateau.
+- **Mew:** then a Pachirisu waits on Route 201. Talking to it reveals Mew, Lv. 40, which stays until it's caught.
+- Renegade's ball moves beside the new Pokémon: Route 209's Calcium to (548, 675), Pastoria City's Mystic Water to
+  (627, 828).
+- Placeholder overworld sprite for Mew. The sprite tool no longer takes "Mew" for "Mewtwo".
+
+Verified in a test build (the bag checks skipped, all four Pokémon shown): each feeding ran its dialogue, Mew's
+appearance and the "strange Pokémon disappeared" line; the Pachirisu turned into Mew, whose Lv. 40 battle ran and
+which vanished after a knock-out. The release build passes.
+
 ## E10 (part 17) — Renegade's Deoxys event
 
 - After the Hall of Fame, touching one of Veilstone City's meteorites without a Deoxys in the party brings a flash and
