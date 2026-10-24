@@ -7539,7 +7539,7 @@ u8 BattleSystem_SovereignMegaTrainerBit(BattleSystem *battleSys, int battler)
 }
 
 // Sovereign (E8): the form this battler can Mega Evolve into right now, or 0 (docs/MegaEvolution.md). Ultra Burst (FM)
-// goes through the MEGA button too, but doesn't use up the trainer's Mega Evolution.
+// goes through the MEGA button too and counts as the trainer's Mega Evolution (owner, 2026-10-24: no Z-Moves).
 int BattleSystem_SovereignMegaForm(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
     BattleMon *mon = &battleCtx->battleMons[battler];
@@ -7551,7 +7551,7 @@ int BattleSystem_SovereignMegaForm(BattleSystem *battleSys, BattleContext *battl
         || mon->curHP == 0
         || (mon->formNum != 0 && ultraForm == 0)
         || (mon->statusVolatile & VOLATILE_CONDITION_TRANSFORM)
-        || (ultraForm == 0 && (battleCtx->sovereignMegaUsed & BattleSystem_SovereignMegaTrainerBit(battleSys, battler)))) {
+        || (battleCtx->sovereignMegaUsed & BattleSystem_SovereignMegaTrainerBit(battleSys, battler))) {
         return 0;
     }
 
@@ -7619,18 +7619,12 @@ void BattleSystem_SovereignChangeBattleForm(BattleSystem *battleSys, BattleConte
     BattleController_EmitUpdatePartyMon(battleSys, battleCtx, battler);
 }
 
-// Sovereign (E8): Mega Evolve a battler; its trainer can't Mega Evolve again this battle. An Ultra Burst (FM) leaves
-// the trainer's Mega Evolution unused.
+// Sovereign (E8): Mega Evolve (or Ultra Burst) a battler; its trainer can't Mega Evolve or Ultra Burst again this
+// battle.
 void BattleSystem_SovereignMegaEvolve(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int form)
 {
-    BattleMon *mon = &battleCtx->battleMons[battler];
-    BOOL ultraBurst = Pokemon_SovereignUltraBurstForm(mon->species, mon->formNum, mon->heldItem) == form;
-
     BattleSystem_SovereignChangeBattleForm(battleSys, battleCtx, battler, form);
-
-    if (ultraBurst == FALSE) {
-        battleCtx->sovereignMegaUsed |= BattleSystem_SovereignMegaTrainerBit(battleSys, battler);
-    }
+    battleCtx->sovereignMegaUsed |= BattleSystem_SovereignMegaTrainerBit(battleSys, battler);
 }
 
 void BattleSystem_InitPartyOrder(BattleSystem *battleSys, BattleContext *battleCtx)

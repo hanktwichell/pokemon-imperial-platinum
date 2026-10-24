@@ -75,6 +75,9 @@ def write_sections(path, d):
 # Moves left out of every learnset for now (they stay in the move list). Owner, 2026-10-24: Revival Blessing (Pawmot,
 # Rabsca) until the engine has its party-select effect. Remove a move here and regenerate to teach it again.
 LEFT_OUT_MOVES = {"MOVE_REVIVAL_BLESSING"}
+# Moves one Pokémon doesn't learn, by PokeAPI pokemon id. Owner, 2026-10-24: Cosmog (789) has no Teleport, so the wild
+# one can't flee its battle.
+LEFT_OUT_BY_POKEMON = {"789": {"MOVE_TELEPORT"}}
 
 
 def load_context(api):
@@ -116,7 +119,8 @@ def load_context(api):
 def build_learnset(ctx, pid, old_tm=(), old_tutor=(), want_eggs=True):
     """Gen IX learnset for PokeAPI pokemon id `pid`. Returns (family name, level-up list, TMs, tutor moves, egg moves).
     TM/tutor compatibility keeps whatever is in old_tm/old_tutor (Platinum's) and adds what the newest games allow."""
-    learn, move_ok = ctx["learn"], ctx["move_ok"]
+    learn, all_moves = ctx["learn"], ctx["move_ok"]
+    move_ok = {i: c for i, c in all_moves.items() if c not in LEFT_OUT_BY_POKEMON.get(str(pid), ())}
     fam_name, groups = next(((n, g) for n, g in FAMILIES if any(learn[pid][v] for v in g)), (None, []))
     lv_group = next((v for v in groups if any(m == "1" for m, *_ in learn[pid][v])), None)
     level, seen = [], set()

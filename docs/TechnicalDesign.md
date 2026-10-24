@@ -156,9 +156,9 @@ implemented.
 - **Ultra Burst** (`SOVEREIGN_FORM_ULTRA_BURST`: Ultra Necrozma). There are two Ultra forms, 3 and 4, with the same
   data. Each one's `trigger` is the fused form it bursts from (1 Dusk Mane, 2 Dawn Wings), so the battle can send it back.
   - `Pokemon_SovereignUltraBurstForm` gives the Ultra form for a species, form and held item (the Ultranecrozium Z).
-  - `BattleSystem_SovereignMegaForm` offers it through the MEGA button, with the Mega Ring. It skips the form-0 and
-    once-per-trainer checks.
-  - `BattleSystem_SovereignMegaEvolve` doesn't set `sovereignMegaUsed` for it.
+  - `BattleSystem_SovereignMegaForm` offers it through the MEGA button, with the Mega Ring. It skips the form-0 check.
+  - It counts as the trainer's one Mega Evolution (owner, 2026-10-24: no Z-Moves): `BattleSystem_SovereignMegaEvolve`
+    sets `sovereignMegaUsed`, so a trainer who Ultra Bursts can't Mega Evolve, and the other way round.
   - `MSG_TEMP` 2 gives `subscript_sovereign_mega_evolution` the Ultra Burst messages.
   - `Pokemon_SovereignRevertBattleForm` sends it back to its trigger form instead of 0, which keeps the fusion.
 - **Move forms** (`SOVEREIGN_FORM_BATTLE_MOVE`: Pirouette Meloetta; the form's `trigger` is the move, Relic Song).

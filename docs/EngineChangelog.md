@@ -12,6 +12,15 @@ players and the verification that was run.
 - **How:** `LEFT_OUT_MOVES` in `tools/engine/gen_species_gen9.py` keeps it out of every generated learnset. Remove it
   there and rerun `tools/engine/gen_new_species.py` to teach it again.
 
+## Ultra Burst counts as the Mega; Cosmog without Teleport
+
+- **Ultra Burst** (owner, 2026-10-24: no Z-Moves) now counts as the trainer's one Mega Evolution. A trainer who Ultra
+  Bursts Necrozma can't Mega Evolve in that battle, and one who Mega Evolved can't Ultra Burst.
+- **Cosmog** (owner, 2026-10-24) no longer learns Teleport, so the Cosmog on Mt. Coronet can't flee its battle. It
+  knows only Splash until it evolves. This is `LEFT_OUT_BY_POKEMON` in `tools/engine/gen_species_gen9.py`.
+- **Verified:** release build, boot smoke, docs. The Ultra Burst change is two lines in `battle_lib.c`; it wasn't
+  replayed in the emulator.
+
 ## FM — Battle Bond Greninja and Ash-Greninja
 
 - **The gift** (owner, 2026-10-24: the Battle Frontier's Battle Bond).

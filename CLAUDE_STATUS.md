@@ -3573,3 +3573,24 @@ interactions the owner listed on 2026-10-23. PR open.
 1. Ultra Burst uses the trainer's Mega Evolution; remove Teleport from Cosmog's moveset.
 2. The Paradox dealers in the Oreburgh Mining Museum, and the Koraidon/Miraidon gates by era.
 3. Milestone FM: Ice Face (Noice Eiscue) and Gulp Missile (Cramorant).
+
+---
+
+## CB-0061 — Ultra Burst counts as the Mega; Cosmog without Teleport (Sat Oct 24 2026, 00:27 CDT)
+
+**Implemented:**
+- **Ultra Burst** (owner, 2026-10-24: no Z-Moves; Ultra Burst counts as a Mega):
+  - `BattleSystem_SovereignMegaForm` no longer lets Ultra Burst skip the once-per-trainer check.
+  - `BattleSystem_SovereignMegaEvolve` always sets `sovereignMegaUsed`.
+  - Not replayed in the emulator: the change is the removal of the two Ultra Burst exceptions.
+- **Cosmog** (owner, 2026-10-24): `LEFT_OUT_BY_POKEMON` (PokeAPI id → moves) in `gen_species_gen9.py` takes Teleport
+  out of Cosmog's learnset. It knows only Splash, so the Mt. Coronet Cosmog can't flee.
+
+**Files modified:** `decomp/src/battle/battle_lib.c`, `tools/engine/gen_species_gen9.py`,
+`decomp/res/pokemon/cosmog/data.json`, `tools/design/gen_mega_doc.py`, `docs/MegaEvolution.md`, `docs/NewSpecies.md`,
+`docs/TechnicalDesign.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. The Paradox dealers in the Oreburgh Mining Museum (owner, 2026-10-24), and Koraidon/Miraidon gated by era.
+2. Milestone FM: Ice Face (Noice Eiscue) and Gulp Missile (Cramorant).
+3. Overworld sprites from the owner (in a few days): size them naturally against the existing overworld Pokémon.

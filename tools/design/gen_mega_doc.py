@@ -50,7 +50,7 @@ INTRO = """# Sovereign Platinum — Mega Evolution & Primal Reversion
   a Mega Stone.
 - **Ultra Burst** (milestone FM) goes through the same MEGA button: Dusk Mane or Dawn Wings Necrozma holding the
   **Ultranecrozium Z** bursts into Ultra Necrozma (Psychic/Dragon, Neuroforce) and goes back to its fused form when the
-  battle ends. It needs the Mega Ring, but doesn't use up the trainer's one Mega. The Legend Archivist gives the
+  battle ends. It needs the Mega Ring and counts as the trainer's one Mega (owner, 2026-10-24: no Z-Moves). The Legend Archivist gives the
   Ultranecrozium Z once Necrozma is caught.
 - **Mega Stones can't be removed** by Knock Off, Thief, Covet, Trick or Switcheroo from a Pokémon that can use them, and
   can't be Flung.
