@@ -4,6 +4,18 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 17) — Renegade's Deoxys event
+
+- After the Hall of Fame, touching one of Veilstone City's meteorites without a Deoxys in the party brings a flash and
+  Deoxys's cry: "Suddenly, you got the feeling that something was seething with rage..." Deoxys then stands beside
+  the meteorites, Lv. 70, until it's caught. Renegade opens a rift there instead; Sovereign shows the Pokémon, as for
+  its other legendaries.
+- The meteorites still change a Deoxys's form when it's in the party.
+- Placeholder overworld sprite for Deoxys.
+
+Verified in a gate-skipped test build: touching a meteorite showed the message and Deoxys; its Lv. 70 battle ran, and
+it vanished after a knock-out. The release build passes.
+
 ## E10 (part 16) — Renegade's Jirachi event: three wishes
 
 - **Three wishes:** new NPCs from Renegade, each of whom wants something. Granting it brings a white flash, Jirachi's

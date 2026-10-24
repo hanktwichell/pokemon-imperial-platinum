@@ -35,9 +35,12 @@
     ScriptEntry VeilstoneCity_Looker
     ScriptEntry VeilstoneCity_Guitarist3
     ScriptEntry VeilstoneCity_BattleGirl3
+    ScriptEntry VeilstoneCity_OnLoad
+    ScriptEntry VeilstoneCity_LegendaryDeoxys
     ScriptEntryEnd
 
 VeilstoneCity_OnTransition:
+    Call VeilstoneCity_SovereignSetDeoxysVisibility
     CallIfSet FLAG_VEILSTONE_CITY_GRUNT_DROPPED_STORAGE_KEY, VeilstoneCity_SetLookerPositionAtGalacticBuilding
     CallIfGe VAR_VEILSTONE_CITY_COUNTERPART_NEEDS_HELP_STATE, 2, VeilstoneCity_SetCounterpartPositionAtWarehouse
     GetPlayerGender VAR_MAP_LOCAL_0x00
@@ -1339,7 +1342,53 @@ VeilstoneCity_MeteoriteFromTheStars:
     Message VeilstoneCity_Text_MeteoriteFromTheStars
     WaitButton
     CloseMessage
+    GoToIfUnset FLAG_GAME_COMPLETED, VeilstoneCity_MeteoriteFromTheStarsEnd
+    GoToIfSet FLAG_SOVEREIGN_DEOXYS_SENSED, VeilstoneCity_MeteoriteFromTheStarsEnd
+    SovereignCheckSpeciesCaught SPECIES_DEOXYS, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, VeilstoneCity_MeteoriteFromTheStarsEnd
+    FadeScreenOut FADE_SCREEN_SPEED_FAST
+    WaitFadeScreen
+    PlayCry SPECIES_DEOXYS
+    WaitCry
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+    AddObject LOCALID_LEGENDARY_DEOXYS
+    FadeScreenIn FADE_SCREEN_SPEED_FAST
+    WaitFadeScreen
+    WaitTime 10, VAR_RESULT
+    Message VeilstoneCity_Text_SovereignSeethingWithRage
+    WaitButton
+    CloseMessage
+    SetFlag FLAG_SOVEREIGN_DEOXYS_SENSED
+VeilstoneCity_MeteoriteFromTheStarsEnd:
     ReleaseAll
+    End
+
+@ Sovereign (E10, Renegade's legendary events): after the Hall of Fame, touching a meteorite without a Deoxys brings
+@ Deoxys down beside the meteorites (Renegade: a rift and a Lv. 70 battle). It stays there until it's caught.
+VeilstoneCity_SovereignSetDeoxysVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+    GoToIfUnset FLAG_SOVEREIGN_DEOXYS_SENSED, VeilstoneCity_SovereignSetDeoxysVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_DEOXYS, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, VeilstoneCity_SovereignSetDeoxysVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+VeilstoneCity_SovereignSetDeoxysVisibilityEnd:
+    Return
+
+VeilstoneCity_OnLoad:
+    CallIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, VeilstoneCity_RemoveLegendaryDeoxys
+    End
+
+VeilstoneCity_RemoveLegendaryDeoxys:
+    GoToIfNe VAR_SOVEREIGN_LEGENDARY_SPECIES, SPECIES_DEOXYS, VeilstoneCity_RemoveLegendaryDeoxysEnd
+    RemoveObject LOCALID_LEGENDARY_DEOXYS
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+VeilstoneCity_RemoveLegendaryDeoxysEnd:
+    Return
+
+VeilstoneCity_LegendaryDeoxys:
+    SetVar VAR_0x8004, SPECIES_DEOXYS
+    SetVar VAR_0x8005, 70
+    Common_SovereignLegendaryEncounter
     End
 
 VeilstoneCity_OnFrame_CounterpartNeedsHelp:

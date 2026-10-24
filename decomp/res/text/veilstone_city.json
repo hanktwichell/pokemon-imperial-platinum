@@ -647,6 +647,13 @@
         "Visit Beautiful Lake Valor!\n",
         "Right off Rt. 214!"
       ]
+    },
+    {
+      "id": "VeilstoneCity_Text_SovereignSeethingWithRage",
+      "en_US": [
+        "Suddenly, you got the feeling that\n",
+        "something was seething with rage..."
+      ]
     }
   ]
 }

@@ -4374,3 +4374,25 @@ merged.
 2. Celebi (GS Ball, Eterna Forest), Lugia/Ho-Oh (Oak's wings), the birds, Mew's berry chain (Pastoria's Mew scene
    in Renegade's script, flag 2589).
 3. Renegade's trainers from its ROM (`trdata`/`trpoke`), with `data/trainers_sovereign.yaml` on top.
+
+## CB-0091 — 2026-10-24, 9:09 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** E10 part 17, Renegade's Deoxys event. PR #101 (part 16) merged.
+- Veilstone City: after the Hall of Fame, touching a meteorite without a Deoxys in the party gives a flash, the cry
+  and Renegade's "seething with rage" line, and sets `FLAG_SOVEREIGN_DEOXYS_SENSED` (from an unused slot).
+- Deoxys then stands at (731, 630) (`FLAG_MAP_LOCAL_HIDE_LEGENDARY`), Lv. 70, until caught.
+- New OnLoad (script 33, per-species removal) and Deoxys script 34. Placeholder sprite.
+- Verified in a gate-skipped test build: the message, Deoxys appearing and the battle. Release build and docs pass.
+
+**Files modified:**
+- `decomp/res/field/scripts/scripts_{veilstone_city,init_veilstone_city}.s`
+- `decomp/res/field/events/events_veilstone_city.json`, `decomp/res/text/veilstone_city.json`
+- `decomp/generated/vars_flags.txt`; sprite tables and `legendary_deoxys.png`; `tools/sprites/make_legendary_overworld.py`
+- Docs: `docs/LegendaryTriggers.md`, `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Mew: Renegade's berry-quest chain ending on Route 201, plus the Pastoria scene (Renegade flag 2589). Read
+   Renegade's scripts for the chain.
+2. Celebi (GS Ball, Eterna Forest) and Lugia/Ho-Oh (Oak's wings). Check them against the Chronicles' Virizion,
+   Xerneas and Yveltal spots.
+3. Renegade's trainers from its ROM (`trdata`/`trpoke`), with `data/trainers_sovereign.yaml` on top.
