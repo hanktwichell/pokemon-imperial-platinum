@@ -4823,3 +4823,31 @@ scripts and text, `decomp/res/text/canalave_library_2f.json`, `data/regional_for
 1. Owner: sort the 85 small placeholders in `docs/OverworldSpriteSizes.md`; Claude moves the large ones to 64×64.
 2. Owner: the special evolutions (decision 20) and when the park opens.
 3. Zekrom's Route 215 tile (decision 34), then an in-game check of the six moved encounters and the park signs.
+
+## CA-0053 (Claude A, 2026-10-24): reference documentation (Google Doc, workbook, TM list, item prices)
+
+**Implemented:**
+- **Google Doc** "Pokémon Sovereign Platinum — Overview" in the owner's Drive
+  (https://docs.google.com/document/d/1Cvuhs6qXO5KjMaCiEQ8x_AH1BdKgCe_y0xPjaeo9T90/edit): the whole hack in ten sections.
+- **`docs/SovereignReference.xlsx`**: tabs for Items, Wild Pokémon, Trainers, Static encounters, Totem trials, Gift
+  Pokémon, Notable NPCs, TMs and HMs, and Item prices. Image cells hold `IMAGE("url")` as text (Drive's importer
+  refuses image formulas); Find & Replace `IMAGE(` → `=IMAGE(` in Sheets turns them on. The owner uploaded an earlier
+  copy to Drive ("Pokémon Sovereign Platinum – Locations.xlsx").
+- **Google Sheet** "Pokémon Sovereign Platinum – TMs and HMs" in the same Drive folder: all 100 TM/HM sources read
+  from the game's scripts and maps.
+- **`docs/SovereignItemPrices.xlsx`**: all 705 items, every place to buy each one, and the price before and after the
+  Hall of Fame (331 buyable, 374 marked "Cannot be purchased").
+- Generators saved in `tools/reference/` (one-off scripts from the scratchpad; they read `npcs.txt` and
+  `tm_sources.txt` beside them and still carry scratchpad paths; tidy them before reuse).
+- Checked: the Elite Four rematch gate needs only the Dialga and Palkia encounters; the Infinite Repel isn't involved
+  (and its PC gift, decision 31, isn't built yet).
+
+**Files modified:** `docs/SovereignReference.xlsx` (new), `docs/SovereignItemPrices.xlsx` (new), `tools/reference/`
+(new), `CLAUDE_STATUS.md`.
+
+**Next 3 steps (owner decisions flagged):**
+1. Scripted sales aren't halved after the Hall of Fame (Floaroma honey, Café Cabin Moomoo Milk, Veilstone 5F vending
+   machines, the Day Care rancher's bundle, Game Corner coins): decision 24 says every money shop is half price. Ask.
+2. The TM sheet lacks the 15 Battle Frontier BP TMs (04, 06, 08, 26, 30, 31, 36, 40, 45, 53, 59, 61, 71, 73, 81).
+3. Build the Infinite Repel PC gift (decision 31), Zekrom's Route 215 tile (decision 34), and sort the 86 small
+   overworld sprites when the owner sends the sizes.
