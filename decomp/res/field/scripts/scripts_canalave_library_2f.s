@@ -504,9 +504,9 @@ CanalaveLibrary2F_SovereignArchivistGuardianHints:
     CallIfEq VAR_0x8007, FALSE, CanalaveLibrary2F_SovereignArchivistTapuFini
     GoTo CanalaveLibrary2F_SovereignArchivistAlolaAskMore
 
-@ Sun and Moon, the Alola Chronicle's key: Cosmog at Spear Pillar (FLAG_SOVEREIGN_CAUGHT_COSMOG), how it evolves, then
-@ once the player has Solgaleo or Lunala, the second Cosmog and Necrozma, then the N-Solarizer and N-Lunarizer once
-@ Necrozma is caught.
+@ Sun and Moon, the Alola Chronicle's key: Cosmog atop Mt. Coronet (FLAG_SOVEREIGN_CAUGHT_COSMOG), how it evolves,
+@ then once the player has Solgaleo or Lunala, the second Cosmog and Necrozma (Wayward Cave), then the N-Solarizer and
+@ N-Lunarizer once Necrozma is caught.
 CanalaveLibrary2F_SovereignArchivistSky:
     GoToIfUnset FLAG_SOVEREIGN_CAUGHT_COSMOG, CanalaveLibrary2F_SovereignArchivistCosmog
     SovereignCheckSpeciesCaught SPECIES_SOLGALEO, VAR_0x8004
@@ -713,15 +713,12 @@ CanalaveLibrary2F_SovereignArchivistGiveReins:
 CanalaveLibrary2F_SovereignArchivistGalarOthers:
     SovereignCheckSpeciesCaught SPECIES_KUBFU, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistGalarOthersHints
-    CheckItem ITEM_SCROLL_OF_DARKNESS, 1, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistGiveScrolls
+    CallIfUnset FLAG_SOVEREIGN_RECEIVED_SCROLLS, CanalaveLibrary2F_SovereignArchivistGiveScrolls
 CanalaveLibrary2F_SovereignArchivistGalarOthersHints:
     SetVar VAR_0x8008, 0
     SovereignCheckSpeciesCaught SPECIES_KUBFU, VAR_RESULT
     CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
     SovereignCheckSpeciesCaught SPECIES_ZARUDE, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
-    SovereignCheckSpeciesCaught SPECIES_REGIELEKI, VAR_RESULT
     CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
     SovereignCheckSpeciesCaught SPECIES_REGIELEKI, VAR_RESULT
     CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistCountUltra
@@ -732,10 +729,13 @@ CanalaveLibrary2F_SovereignArchivistGalarOthersHints:
     CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistKubfu
     SovereignCheckSpeciesCaught SPECIES_ZARUDE, VAR_RESULT
     CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistZarude
-    SovereignCheckSpeciesCaught SPECIES_REGIELEKI, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistNewRegis
-    SovereignCheckSpeciesCaught SPECIES_REGIELEKI, VAR_RESULT
-    CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistRegieleki
+    SovereignCheckSpeciesCaught SPECIES_REGIELEKI, VAR_0x8004
+    SovereignCheckSpeciesCaught SPECIES_REGIDRAGO, VAR_0x8005
+    CallIfEq VAR_0x8004, FALSE, CanalaveLibrary2F_SovereignArchivistNewRegis
+    GoToIfEq VAR_0x8004, FALSE, CanalaveLibrary2F_SovereignArchivistGalarOthersRegieleki
+    CallIfEq VAR_0x8005, FALSE, CanalaveLibrary2F_SovereignArchivistNewRegis
+CanalaveLibrary2F_SovereignArchivistGalarOthersRegieleki:
+    CallIfEq VAR_0x8004, FALSE, CanalaveLibrary2F_SovereignArchivistRegieleki
     SovereignCheckSpeciesCaught SPECIES_REGIDRAGO, VAR_RESULT
     CallIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistRegidrago
     GoTo CanalaveLibrary2F_SovereignArchivistGalarAskMore
@@ -744,7 +744,9 @@ CanalaveLibrary2F_SovereignArchivistGalarOthersDone:
     Message CanalaveLibrary2F_Text_SovereignArchivistGalarOthersDone
     GoTo CanalaveLibrary2F_SovereignArchivistGalarAskMore
 
+@ Once (FLAG_SOVEREIGN_RECEIVED_SCROLLS): evolving Kubfu uses up the scroll it was shown.
 CanalaveLibrary2F_SovereignArchivistGiveScrolls:
+    SetFlag FLAG_SOVEREIGN_RECEIVED_SCROLLS
     Message CanalaveLibrary2F_Text_SovereignArchivistScrolls
     SetVar VAR_0x8004, ITEM_SCROLL_OF_DARKNESS
     SetVar VAR_0x8005, 1
