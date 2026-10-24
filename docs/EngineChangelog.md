@@ -4,6 +4,48 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 31) — the Battleground as in Renegade: fixed rematches, a nurse and the Battle Marathon
+
+Renegade's Battleground replaces vanilla's four daily random trainers and their multi battles:
+- **Fixed trainers.** Each one asks for a single battle any time, from Renegade's lines; "no" gets their decline line.
+  - The eight Gym Leaders use their rematch teams.
+  - Cheryl, Mira, Riley, Marley and Buck use their Battleground teams.
+  - Barry uses his Survival Area team, by the player's starter.
+  - They stand on Renegade's spots and don't walk around.
+  - A loss blacks out.
+- **The counterpart** (Dawn for a boy, Lucas for a girl) waits at (11, 10) once beaten on Route 224. They use Renegade's
+  new teams (1054–1059, Lv. 83–84, by the player's starter).
+- **A nurse** at (5, 3) heals the party.
+- **The Battle Marathon**, run by the Gym Guide at (6, 3): 24 battles in a row, with a heal after every third.
+  - The order is Roark, Cheryl, Gardenia, Mars, Fantina, Mira, Maylene, Jupiter, Wake, Riley, Byron, Saturn, Candice,
+    Marley, Volkner, Buck, the counterpart, Cyrus, Barry, the Elite Four and Cynthia (rematch teams).
+  - Mars, Jupiter, Saturn and Cyrus are Renegade's Battleground teams (Lv. 81–84).
+  - A loss ends the run without a blackout: back on the field, healed.
+  - A full clear gives a Master Ball, every time.
+  - As in Renegade, it isn't held back by the post-game Elite Four rematch lock (decision 23). The owner may want that
+    changed.
+- **The welcome.** The receptionist's greeting is now Renegade's, which thanks the player for Buck's patrol.
+  - Buck no longer waits here to talk, so the welcome sets his flags. Heatran's room on Stark Mountain still opens
+    (`docs/LegendaryTriggers.md`).
+- **Trainer slots.** The trainer-flag range is full: 1040 flags, and all 1040 slots are now in use.
+  - Saturn and Cyrus take the unused `TRAINER_DUMMY_005` and `TRAINER_DUMMY_006` slots. Their trainer and flag
+    constants are renamed, and their `dummy_*.json` files are gone.
+  - Later added trainers must reuse dummy slots the same way. 65 are still unreferenced.
+- `docs/TrainerTeamLog.md`: the two dummy rows are replaced, and the 10 new trainers are added (1040 files).
+
+Verified in a test build (a Lv. 100 party; the Hall of Fame and the Route 224 win set; the 31 Battleground and rematch
+teams cut to one Lv. 2 Pokémon in that build only):
+- The welcome plays on the first visit: Renegade's greeting, ending with the thanks for Buck's patrol.
+- The nurse says her lines and heals.
+- Roark: "no" gets his decline line; "yes" starts the battle, and his after-battle line plays.
+- Dawn (a boy's save with Turtwig) stands at (11, 10), asks for a battle, battles and gives her after-battle line.
+- Barry asks, battles (Staraptor leads: his team against a Turtwig player) and gives his after-battle line.
+- The marathon runs all 24 battles in order: each opponent's lead matched the trainer list above. It ends with
+  "Obtained the Master Ball!" and the offer to try again.
+- Not tested: a loss in the marathon or to a fixed trainer, Lucas (a girl's save), and the counterpart hidden before
+  the Route 224 win.
+
+
 ## E10 (part 30) — the counterpart on Route 224, Route 224's nurse, and Buck on Route 227
 
 Renegade's last counterpart battle before the Battleground, and Buck's battle:
