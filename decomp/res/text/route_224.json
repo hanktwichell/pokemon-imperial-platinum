@@ -140,6 +140,152 @@
         "Marley: To you, too...\r",
         "Thank you..."
       ]
+    },
+    {
+      "id": "Route224_Text_SovereignDawnThisStoneTablet",
+      "en_US": [
+        "Dawn: This stone tablet...\r",
+        "Is there really a mythical Pokémon\n",
+        "that visits this? And why?\r"
+      ]
+    },
+    {
+      "id": "Route224_Text_SovereignLucasThisStoneTablet",
+      "en_US": [
+        "Lucas: This stone tablet...\r",
+        "Is there really a mythical Pokémon\n",
+        "that visits this? And why?\r"
+      ]
+    },
+    {
+      "id": "Route224_Text_SovereignDawnLetsBattleAgain",
+      "en_US": [
+        "Dawn: Oh, {STRVAR_1 3, 0, 0}!\n",
+        "I didn’t expect to see you!\r",
+        "I guess you’re on your way to\n",
+        "the Pokémon League, right?\r",
+        "I was just performing an errand for\n",
+        "Prof. Rowan.\r",
+        "This stone tablet is meant to be\n",
+        "the key to meeting a Pokémon.\r",
+        "I can’t figure it out, though.\n",
+        "The writing on it is ancient...\r",
+        "Anyway, {STRVAR_1 3, 0, 0}, you must be really\n",
+        "strong to have made it this far!\r",
+        "I’ve been training too, you know...\r",
+        "We haven’t battled since Route 210...\n",
+        "So, I want to battle again.\r",
+        "I want to see how far you’ve come\n",
+        "since we first met in Route 201!\r",
+        "Please, let me know when you’re ready.\n",
+        "I can’t wait for our battle!"
+      ]
+    },
+    {
+      "id": "Route224_Text_SovereignLucasLetsBattleAgain",
+      "en_US": [
+        "Lucas: Oh, {STRVAR_1 3, 0, 0}.\n",
+        "I’m surprised to see you.\r",
+        "I guess you’re on your way to\n",
+        "the Pokémon League, huh?\r",
+        "I was just performing an errand for\n",
+        "Prof. Rowan.\r",
+        "This stone tablet is meant to be\n",
+        "the key to meeting a Pokémon.\r",
+        "I can’t figure it out, though.\n",
+        "The writing on it is ancient...\r",
+        "So, {STRVAR_1 3, 0, 0}, you must be really strong\n",
+        "by now--you’ve made it here, after all.\r",
+        "I’ve been growing stronger, too.\r",
+        "We haven’t battled since Route 210...\n",
+        "I’d like to test my skill again.\r",
+        "And... I want to see your growth since\n",
+        "we first met in Route 201.\r",
+        "Please, let me know when you’re ready.\n",
+        "I’m looking forward to our battle."
+      ]
+    },
+    {
+      "id": "Route224_Text_SovereignDawnReadyToBattle",
+      "en_US": [
+        "Dawn: Hi, {STRVAR_1 3, 0, 0}!\n",
+        "Are you ready to battle?"
+      ]
+    },
+    {
+      "id": "Route224_Text_SovereignDawnLetsGetStarted",
+      "en_US": [
+        "Dawn: Fantastic!\n",
+        "Let’s get started!\r"
+      ]
+    },
+    {
+      "id": "Route224_Text_SovereignDawnGoGetReady",
+      "en_US": [
+        "Dawn: Go get ready, then.\n",
+        "I’ll be waiting right here!"
+      ]
+    },
+    {
+      "id": "Route224_Text_SovereignLucasReadyToBattle",
+      "en_US": [
+        "Lucas: Hey, {STRVAR_1 3, 0, 0}.\n",
+        "Are you ready to battle?"
+      ]
+    },
+    {
+      "id": "Route224_Text_SovereignLucasLetsGetStarted",
+      "en_US": [
+        "Lucas: Alright, great.\n",
+        "Let’s get started, then!\r"
+      ]
+    },
+    {
+      "id": "Route224_Text_SovereignLucasGoGetReady",
+      "en_US": [
+        "Lucas: OK, no problem.\n",
+        "I’ll be waiting here for you."
+      ]
+    },
+    {
+      "id": "Route224_Text_SovereignDawnYouveGrown",
+      "en_US": [
+        "Dawn: Wow, {STRVAR_1 3, 0, 0}, you’ve really\n",
+        "grown into a great Trainer!\r",
+        "It’s amazing to think you didn’t even\n",
+        "own a Pokémon when I met you...\r",
+        "You’re definitely ready to challenge\n",
+        "the Pokémon League now.\r",
+        "Good luck, {STRVAR_1 3, 0, 0}.\n",
+        "I know you can do it!\r"
+      ]
+    },
+    {
+      "id": "Route224_Text_SovereignLucasYouveGrown",
+      "en_US": [
+        "Lucas: ...\n",
+        "You’re really something, {STRVAR_1 3, 0, 0}.\r",
+        "I can’t believe you’re the same person\n",
+        "I met back on Route 201.\r",
+        "I think you must be ready to challenge\n",
+        "the Pokemon League now.\r",
+        "Best of luck, {STRVAR_1 3, 0, 0}.\n",
+        "I know you can do it.\r"
+      ]
+    },
+    {
+      "id": "Route224_Text_SovereignNurseHeal",
+      "en_US": [
+        "Hello, Trainer!\n",
+        "Allow me heal your Pokémon.\r"
+      ]
+    },
+    {
+      "id": "Route224_Text_SovereignNurseGoodLuck",
+      "en_US": [
+        "Good luck with your challenge!\n",
+        "You can do it!"
+      ]
     }
   ]
 }

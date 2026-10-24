@@ -14,6 +14,8 @@
     ScriptEntry Route224_OnLoad
     ScriptEntry Route224_LegendaryEnamorus
     ScriptEntry Route224_LegendaryPecharunt
+    ScriptEntry Route224_SovereignCounterpart
+    ScriptEntry Route224_SovereignNurse
     ScriptEntryEnd
 
 Route224_OnTransition:
@@ -31,6 +33,7 @@ Route224_OnTransition:
     GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, Route224_DontHideProfOak
     ClearFlag FLAG_HIDE_ROUTE_224_PROF_OAK
 Route224_DontHideProfOak:
+    Call Route224_SovereignSetCounterpart
     End
 
 Route224_OnResume:
@@ -565,3 +568,204 @@ Route224_LegendaryPecharunt:
     SetVar VAR_0x8005, 60
     Common_SovereignLegendaryEncounter
     End
+
+@ Sovereign (E10, Renegade): the counterpart waits by the stone tablet for a last battle before the League rematches
+@ (Renegade's trainers 975-980, by the player's starter). They leave once beaten, and stay out of the way while
+@ Professor Oak's Shaymin scene is on.
+Route224_SovereignSetCounterpart:
+    GetPlayerGender VAR_RESULT
+    CallIfEq VAR_RESULT, GENDER_MALE, Route224_SovereignSetCounterpartDawn
+    CallIfEq VAR_RESULT, GENDER_FEMALE, Route224_SovereignSetCounterpartLucas
+    ClearFlag FLAG_MAP_LOCAL_HIDE_SOVEREIGN_NPC
+    GoToIfUnset FLAG_HIDE_ROUTE_224_PROF_OAK, Route224_SovereignHideCounterpart
+    GoToIfDefeated TRAINER_SOVEREIGN_DAWN_ROUTE_224_CHIMCHAR, Route224_SovereignHideCounterpart
+    GoToIfDefeated TRAINER_SOVEREIGN_DAWN_ROUTE_224_PIPLUP, Route224_SovereignHideCounterpart
+    GoToIfDefeated TRAINER_SOVEREIGN_DAWN_ROUTE_224_TURTWIG, Route224_SovereignHideCounterpart
+    GoToIfDefeated TRAINER_SOVEREIGN_LUCAS_ROUTE_224_CHIMCHAR, Route224_SovereignHideCounterpart
+    GoToIfDefeated TRAINER_SOVEREIGN_LUCAS_ROUTE_224_PIPLUP, Route224_SovereignHideCounterpart
+    GoToIfDefeated TRAINER_SOVEREIGN_LUCAS_ROUTE_224_TURTWIG, Route224_SovereignHideCounterpart
+    Return
+
+Route224_SovereignHideCounterpart:
+    SetFlag FLAG_MAP_LOCAL_HIDE_SOVEREIGN_NPC
+    Return
+
+Route224_SovereignSetCounterpartDawn:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PLAYER_F
+    Return
+
+Route224_SovereignSetCounterpartLucas:
+    SetVar VAR_OBJ_GFX_ID_0, OBJ_EVENT_GFX_PLAYER_M
+    Return
+
+Route224_SovereignCounterpart:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    BufferPlayerName 0
+    GetPlayerGender VAR_RESULT
+    GoToIfSet FLAG_SOVEREIGN_ROUTE_224_COUNTERPART_MET, Route224_SovereignAskCounterpart
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, Route224_SovereignMeetLucas
+    GoTo Route224_SovereignMeetDawn
+
+Route224_SovereignAskCounterpart:
+    FacePlayer
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, Route224_SovereignAskLucas
+    GoTo Route224_SovereignAskDawn
+
+Route224_SovereignMeetDawn:
+    Message Route224_Text_SovereignDawnThisStoneTablet
+    CloseMessage
+    FacePlayer
+    ApplyMovement LOCALID_SOVEREIGN_COUNTERPART, Route224_SovereignMovement_CounterpartNotice
+    WaitMovement
+    BufferPlayerName 0
+    Message Route224_Text_SovereignDawnLetsBattleAgain
+    WaitButton
+    CloseMessage
+    SetFlag FLAG_SOVEREIGN_ROUTE_224_COUNTERPART_MET
+    ReleaseAll
+    End
+
+Route224_SovereignAskDawn:
+    Message Route224_Text_SovereignDawnReadyToBattle
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, Route224_SovereignNotReadyDawn
+    Message Route224_Text_SovereignDawnLetsGetStarted
+    CloseMessage
+    GetPlayerStarterSpecies VAR_RESULT
+    SetVar VAR_MAP_LOCAL_0x01, TRAINER_SOVEREIGN_DAWN_ROUTE_224_TURTWIG
+    CallIfEq VAR_RESULT, SPECIES_CHIMCHAR, Route224_SovereignSetDawnChimchar
+    CallIfEq VAR_RESULT, SPECIES_PIPLUP, Route224_SovereignSetDawnPiplup
+    StartTrainerBattle VAR_MAP_LOCAL_0x01
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, Route224_SovereignCounterpartLost
+    SetTrainerFlag VAR_MAP_LOCAL_0x01
+    BufferPlayerName 0
+    Message Route224_Text_SovereignDawnYouveGrown
+    CloseMessage
+    GoTo Route224_SovereignCounterpartLeave
+
+Route224_SovereignSetDawnChimchar:
+    SetVar VAR_MAP_LOCAL_0x01, TRAINER_SOVEREIGN_DAWN_ROUTE_224_CHIMCHAR
+    Return
+
+Route224_SovereignSetDawnPiplup:
+    SetVar VAR_MAP_LOCAL_0x01, TRAINER_SOVEREIGN_DAWN_ROUTE_224_PIPLUP
+    Return
+
+Route224_SovereignNotReadyDawn:
+    Message Route224_Text_SovereignDawnGoGetReady
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+Route224_SovereignMeetLucas:
+    Message Route224_Text_SovereignLucasThisStoneTablet
+    CloseMessage
+    FacePlayer
+    ApplyMovement LOCALID_SOVEREIGN_COUNTERPART, Route224_SovereignMovement_CounterpartNotice
+    WaitMovement
+    BufferPlayerName 0
+    Message Route224_Text_SovereignLucasLetsBattleAgain
+    WaitButton
+    CloseMessage
+    SetFlag FLAG_SOVEREIGN_ROUTE_224_COUNTERPART_MET
+    ReleaseAll
+    End
+
+Route224_SovereignAskLucas:
+    Message Route224_Text_SovereignLucasReadyToBattle
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, Route224_SovereignNotReadyLucas
+    Message Route224_Text_SovereignLucasLetsGetStarted
+    CloseMessage
+    GetPlayerStarterSpecies VAR_RESULT
+    SetVar VAR_MAP_LOCAL_0x01, TRAINER_SOVEREIGN_LUCAS_ROUTE_224_TURTWIG
+    CallIfEq VAR_RESULT, SPECIES_CHIMCHAR, Route224_SovereignSetLucasChimchar
+    CallIfEq VAR_RESULT, SPECIES_PIPLUP, Route224_SovereignSetLucasPiplup
+    StartTrainerBattle VAR_MAP_LOCAL_0x01
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, Route224_SovereignCounterpartLost
+    SetTrainerFlag VAR_MAP_LOCAL_0x01
+    BufferPlayerName 0
+    Message Route224_Text_SovereignLucasYouveGrown
+    CloseMessage
+    GoTo Route224_SovereignCounterpartLeave
+
+Route224_SovereignSetLucasChimchar:
+    SetVar VAR_MAP_LOCAL_0x01, TRAINER_SOVEREIGN_LUCAS_ROUTE_224_CHIMCHAR
+    Return
+
+Route224_SovereignSetLucasPiplup:
+    SetVar VAR_MAP_LOCAL_0x01, TRAINER_SOVEREIGN_LUCAS_ROUTE_224_PIPLUP
+    Return
+
+Route224_SovereignNotReadyLucas:
+    Message Route224_Text_SovereignLucasGoGetReady
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+Route224_SovereignCounterpartLost:
+    BlackOutFromBattle
+    ReleaseAll
+    End
+
+Route224_SovereignCounterpartLeave:
+    GetPlayerDir VAR_RESULT
+    GoToIfEq VAR_RESULT, DIR_NORTH, Route224_SovereignCounterpartLeaveBehindPlayer
+    ApplyMovement LOCALID_SOVEREIGN_COUNTERPART, Route224_SovereignMovement_CounterpartLeave
+    WaitMovement
+    GoTo Route224_SovereignCounterpartGone
+
+Route224_SovereignCounterpartLeaveBehindPlayer:
+    ApplyMovement LOCALID_SOVEREIGN_COUNTERPART, Route224_SovereignMovement_CounterpartLeaveAroundPlayer
+    WaitMovement
+Route224_SovereignCounterpartGone:
+    RemoveObject LOCALID_SOVEREIGN_COUNTERPART
+    ReleaseAll
+    End
+
+@ Sovereign (E10, Renegade): a nurse at the Victory Road entrance heals the party.
+Route224_SovereignNurse:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    Message Route224_Text_SovereignNurseHeal
+    CloseMessage
+    FadeScreenOut
+    WaitFadeScreen
+    PlayFanfare SEQ_ASA_sseq
+    WaitFanfare
+    HealParty
+    FadeScreenIn
+    WaitFadeScreen
+    Message Route224_Text_SovereignNurseGoodLuck
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+    .balign 4, 0
+Route224_SovereignMovement_CounterpartNotice:
+    EmoteExclamationMark
+    EndMovement
+
+    .balign 4, 0
+Route224_SovereignMovement_CounterpartLeaveAroundPlayer:
+    WalkNormalWest
+    WalkNormalSouth 3
+    WalkNormalWest 4
+    WalkNormalSouth 5
+    EndMovement
+
+    .balign 4, 0
+Route224_SovereignMovement_CounterpartLeave:
+    WalkNormalSouth 3
+    WalkNormalWest 5
+    WalkNormalSouth 5
+    EndMovement
+
+    .balign 4, 0
