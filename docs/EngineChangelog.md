@@ -4,6 +4,31 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 2) — Renegade's TMs and ball prices
+
+- **Six TMs teach Renegade's moves:** TM55 Scald (was Brine), TM57 Wild Charge (Charge Beam), TM62 Bug Buzz
+  (Silver Wind), TM83 Hyper Voice (Natural Gift), TM85 Dazzling Gleam (Dream Eater) and TM88 Hurricane (Pluck).
+  - New bag descriptions. TM85 keeps its pink disc, since there is no Fairy disc colour.
+  - Who can learn them:
+    - #1–493: Renegade's own compatibility, read from its ROM, plus every Pokémon that can learn the move in the
+      newest games;
+    - #494–1025 and the forms: the newest games (a form PokeAPI doesn't list follows its species).
+  - Learners: TM55 135, TM57 187, TM62 113, TM83 261, TM85 285, TM88 137 (species and forms).
+  - `tools/engine/apply_renegade_tms.py` is a one-off step (it needs the patched ROM), like `import_renegade_wild.py`.
+    It only rewrites each file's `by_tm` list.
+- **Every TM comes as 99 of it**, wherever it's obtained. Getting one again tops it back up to 99. TMs can't be sold
+  (in Renegade they are worth ₽0).
+  - TMs keep their prices for now, because Veilstone's 3rd floor and the Game Corner still sell some. Renegade moves
+    those TMs elsewhere; they leave the shops with the item locations step.
+- **Ball prices:** Poké Ball ₽50 (was 200), Great Ball ₽150 (600), Ultra Ball ₽300 (1,200).
+
+Verified in the test build:
+- The bag's TM pocket showed "No.55 Scald ×99" and "No.88 Hurricane ×99" with their new descriptions. Scald's details
+  read Water, PP 15, power 80, accuracy 100.
+- Using TM88 said "It contained Hurricane." The party screen showed Starly ABLE and Garchomp, Turtwig, Gallade,
+  Archaludon and Ditto UNABLE.
+- The release build passes.
+
 ## E10 (part 1) — Renegade's wild Pokémon, with the Sovereign plan
 
 - **Every wild table is Renegade Platinum's now**, with the Gen V–IX species of the Sovereign encounter plan

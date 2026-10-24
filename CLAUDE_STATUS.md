@@ -3975,3 +3975,25 @@ species in their slots. Until now the decomp still had Platinum's tables.
 2. Renegade's NPCs (`NPCChanges.txt`: the Snowpoint evolution item seller, Item Fanatic, Hidden Power teller...) and trades.
 3. The Pokédex area map for the Honey Trees (it still shows Platinum's honey species), then Renegade's trainers from
    its ROM (`trdata`/`trpoke`).
+
+## CB-0076 — 2026-10-24, 3:58 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Merged:** PR #86 (E10 part 1: Renegade's wild tables and Honey Trees, with the Sovereign plan).
+
+**Implemented:** E10 part 2, Renegade's TMs and ball prices.
+- TM55 Scald, TM57 Wild Charge, TM62 Bug Buzz, TM83 Hyper Voice, TM85 Dazzling Gleam, TM88 Hurricane. Who learns
+  them: Renegade's compatibility from its ROM (#1–493) plus the Gen IX learnsets.
+- TMs come as 99 and can't be sold. Poké Ball ₽50, Great Ball ₽150, Ultra Ball ₽300.
+- Verified in the test build: TM pocket (×99, descriptions), TM88 ABLE only on Starly.
+
+**Files modified:** `tools/engine/apply_renegade_tms.py` (new), `decomp/res/items/data/tm{55,57,62,83,85,88}.json`,
+`{poke,great,ultra}_ball.json`, 991 species and form `data.json` files (`by_tm` only), `decomp/src/bag.c`,
+`decomp/src/applications/bag/main.c`, `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `docs/ItemChanges_Sovereign.md`,
+`CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Renegade's item and TM locations (`ItemChanges.txt`): item balls, hidden items and NPC gifts. Read them from Renegade's
+   scripts in its ROM if they can be matched to the decomp's scripts. Then take the TMs out of Veilstone 3F and the Game
+   Corner, and set TM prices to 0. Keep Sovereign's Mega Stone pickups.
+2. Renegade's NPCs (`NPCChanges.txt`) and trades (`TradeChanges.txt`).
+3. Renegade's trainers from its ROM (`trdata`/`trpoke`), with `data/trainers_sovereign.yaml` on top.

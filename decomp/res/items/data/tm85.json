@@ -3,9 +3,8 @@
   "plural": "TM85s",
   "article": "a",
   "description": [
-    "An attack that works only on a\n",
-    "sleeping foe. It absorbs half the\n",
-    "damage caused to heal the user’s HP."
+    "The user damages opposing Pokémon by\n",
+    "emitting a powerful flash."
   ],
   "icon": {
     "sprite": "tm_NCGR",
@@ -27,5 +26,5 @@
   "fieldUseFunc": "ITEM_USE_FUNC_TM_HM",
   "battleUseCategory": "BATTLE_USE_CATEGORY_NONE",
   "itemUseParams": null,
-  "teachesMove": "MOVE_DREAM_EATER"
+  "teachesMove": "MOVE_DAZZLING_GLEAM"
 }
