@@ -181,6 +181,11 @@ implemented.
   - **The evolved form.** `Pokemon_SovereignSetEvolvedSpecies` (called by `evolution.c` for the evolution and its
     preview sprite) sets the target's form from `sSovereignFormEvolutions`: the target's form of the same region,
     else 0. Other forms are kept, as before.
+  - **Item evolutions into a form.** An item can decide the evolved form (`item_evolution_forms` in
+    `data/evolution_changes.yaml`: Kubfu with the Scroll of Waters becomes Rapid Strike Urshifu, with the Darkness
+    Scroll Single Strike). `Pokemon_GetEvolutionTargetSpecies` finds the item in `sSovereignItemEvolutionForms` and
+    returns `EVO_TYPE_SOVEREIGN_FORM | form` as the evolution type. The party menu passes the type on to
+    `Evolution_Begin` as its method, and `Pokemon_SovereignSetEvolvedSpecies` sets that form.
   - **Eggs.** `Daycare_GiveEggFromDaycare` asks `Pokemon_SovereignBabyForm` for the form of the non-Ditto parent
     (`sSovereignBabyForms`: the baby's form of the parent's region, or 0, and `regional_parents`). Parents with no
     rule keep Platinum's raw form copy.

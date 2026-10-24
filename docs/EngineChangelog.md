@@ -4,6 +4,18 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## FM — Rapid Strike Urshifu
+
+- **Rapid Strike Urshifu** (Fighting/Water, Unseen Fist, its own Gen IX learnset) is in the game.
+  Kubfu evolves into it with the Scroll of Waters, and into Single Strike Urshifu with the Darkness Scroll, as the
+  item descriptions already said. Before, the Scroll of Waters did nothing.
+- **How:** an item evolution can now choose the evolved form (`item_evolution_forms` in
+  `data/evolution_changes.yaml`; `TechnicalDesign.md`). The form is kept for good, like a regional form. It shares
+  Urshifu's sprite and icon until milestone E12 adds form art, as the other forms do.
+- **Verified** in the emulator: each Scroll used from the bag on a Kubfu evolved it, and the summaries show
+  Fighting/Water and Fighting/Dark; each Scroll was used up. The release ROM builds without warnings and passes boot
+  smoke; the docs regenerate clean.
+
 ## E11 — The Chronicles: three more fixes from the trigger note
 
 - **The Insect Plate:** Virizion stands on the only tile that faced Eterna Forest's hidden Insect Plate, so the plate

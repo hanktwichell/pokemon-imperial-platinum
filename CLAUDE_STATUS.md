@@ -3086,3 +3086,35 @@ PR open.
 2. Milestone FM's next forms include Rapid Strike Urshifu (the Scroll of Waters does nothing yet) and Ultra Necrozma
    (Ultra Burst).
 3. E10, Renegade's events: their spots against the Chronicles' (the clash table in `docs/LegendaryTriggers.md`).
+
+## CB-0047 — 2026-10-23, 8:08 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Status:** PR #59 (CB-0046) is merged. This entry adds Rapid Strike Urshifu (milestone FM). PR open.
+
+**What was implemented:**
+- **Rapid Strike Urshifu**, form 1 of Urshifu (Fighting/Water, Unseen Fist, its own Gen IX learnset), kept for good
+  like a regional form. Kubfu evolves into it with the Scroll of Waters; the Darkness Scroll still gives Single
+  Strike Urshifu.
+- **Item evolutions into a form:** `item_evolution_forms` in `data/evolution_changes.yaml`, written by
+  `tools/engine/gen_forms.py` into `sSovereignItemEvolutionForms`. `Pokemon_GetEvolutionTargetSpecies` returns
+  `EVO_TYPE_SOVEREIGN_FORM | form` as the evolution type; the party menu passes it to `Evolution_Begin`, and
+  `Pokemon_SovereignSetEvolvedSpecies` (now given the type) sets the form.
+- A change row in `evolution_changes.yaml` can list its `evolutions` (Urshifu: one per Scroll), which
+  `gen_new_species.py` writes. Kubfu's `data.json` and `docs/NewSpecies.md` were updated by hand to match, rather
+  than rerunning that generator.
+- **Verified** in the emulator: each Scroll from the bag evolved a Kubfu, and the summaries show Fighting/Water and
+  Fighting/Dark; release build without warnings, boot smoke, docs.
+
+**Files modified:** `data/evolution_changes.yaml`, `tools/engine/gen_forms.py`, `tools/engine/gen_new_species.py`,
+`decomp/src/pokemon.c`, `decomp/include/pokemon.h`, `decomp/src/evolution.c`, `decomp/res/pokemon/kubfu/data.json`,
+`decomp/res/pokemon/urshifu/forms/rapid_strike/data.json` (new), `decomp/res/pokemon/urshifu/meson.build`,
+`decomp/include/constants/sovereign_forms.h`, `decomp/include/data/sovereign_forms.h`,
+`decomp/tools/dataproc/src/sovereign_forms.inc`, `data/postgame_legendaries.yaml`, `docs/PostgameLegendaries.md`,
+`docs/LegendaryTriggers.md`, `docs/NewSpecies.md`, `docs/TechnicalDesign.md`, `docs/EngineRoadmap.md`,
+`docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Owner decisions: Koraidon/Miraidon after their own ten Paradox Pokémon or all twenty; whether Cosmog should be
+   kept from fleeing with Teleport; overworld sprites and sizing; final spots for the provisional placements.
+2. Milestone FM: Ultra Necrozma (Ultra Burst with the Ultranecrozium Z), then the other battle forms.
+3. E10, Renegade's events: their spots against the Chronicles' (the clash table in `docs/LegendaryTriggers.md`).
