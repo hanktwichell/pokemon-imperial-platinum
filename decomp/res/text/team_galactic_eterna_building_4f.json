@@ -68,6 +68,37 @@
         "Working for world peace.\n",
         "              Team Galactic"
       ]
+    },
+    {
+      "id": "TeamGalacticEternaBuilding4F_Text_SovereignItsAPorygon",
+      "en_US": [
+        "It’s a PORYGON!\n",
+        "It seems to have been abandoned...\r",
+        "It appears eager to join your team.\n",
+        "Will you take PORYGON with you?"
+      ]
+    },
+    {
+      "id": "TeamGalacticEternaBuilding4F_Text_SovereignPorygonLooksSad",
+      "en_US": "PORYGON looks sad..."
+    },
+    {
+      "id": "TeamGalacticEternaBuilding4F_Text_SovereignNoRoomForPorygon",
+      "en_US": [
+        "You have no room for Pokémon!\r",
+        "PORYGON looks sad..."
+      ]
+    },
+    {
+      "id": "TeamGalacticEternaBuilding4F_Text_SovereignAdoptedPorygon",
+      "en_US": "{STRVAR_1 3, 0, 0} adopted the PORYGON!"
+    },
+    {
+      "id": "TeamGalacticEternaBuilding4F_Text_SovereignNicknamePorygon",
+      "en_US": [
+        "Do you want to give a nickname to\n",
+        "this PORYGON?"
+      ]
     }
   ]
 }

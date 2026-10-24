@@ -4157,3 +4157,32 @@ events and text, `decomp/res/trainers/data/sovereign_{riley,steel_master}_iron_i
 2. Renegade's NPCs: Trainers' School Hidden Power teller and baby Egg, Item Fanatic (Floaroma), Rare Berry seller
    (Route 208), Dragon Scale in the Veilstone Pokémon Center, Super Rod in Snowpoint.
 3. Renegade's trainers from its ROM (`trdata`/`trpoke`), with `data/trainers_sovereign.yaml` on top.
+
+## CB-0083 — 2026-10-24, 6:44 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** E10 part 9, Renegade's NPC gifts (scripts, texts and spots read from its ROM).
+- Trainers' School: a Cowgirl gives a random baby Egg once; a Psychic tells Hidden Power types.
+- Floaroma's Item Fanatic: Light Ball, Stick, Thick Club, Lucky Punch, the powders, the Deep Sea items (one visit per
+  species; Sirfetch'd counts for the Stick).
+- Electirizer and Magmarizer (Hotel Grand Lake lobby), Reaper Cloth (Lost Tower 1F), Choice Band (Route 214),
+  Dubious Disc (Veilstone northeast house), Dragon Scale (Dragon Tamer Nils's battle, Veilstone Pokémon Center).
+- Porygon moved to a Poké Ball behind Jupiter (Eterna Galactic Building 4F, Lv. 22); its flag is renamed
+  `FLAG_RECEIVED_TEAM_GALACTIC_ETERNA_BUILDING_PORYGON`.
+- Super Rod also from Snowpoint's east house fisherman (shares `FLAG_RECEIVED_SUPER_ROD` with the Fight Area).
+- PR #93 (part 8) merged.
+- Verified in the test build (all gifts, HP teller, Porygon's ball with a full party, Nils's battle starting).
+  Release build, battle-script check and docs pass.
+
+**Files modified:** `decomp/res/field/{scripts,events}/` and `decomp/res/text/` for the Trainers' School, Floaroma
+southeast house, Grand Lake lobby, Lost Tower 1F, Route 214, Snowpoint east house, Galactic Building 4F, Veilstone
+northeast house and Pokémon Center; `decomp/res/trainers/data/sovereign_dragon_tamer_veilstone.json` (new);
+`decomp/generated/{trainers,vars_flags}.txt`; `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`,
+`docs/ItemChanges_Sovereign.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Renegade's QoL NPCs that `QualityOfLife.md` lists but the scripts don't have yet: free Move Relearner (no Heart
+   Scale), all tutors in the Route 212 house and free, the Move Deleter beside Oreburgh's Pokémon Center, the Route
+   208 Rare Berry seller (with the Mints), the Solaceon Day Care training NPCs.
+2. The remaining small gifts: Oval Stone (Oreburgh Machop), Dawn Stone (Cycle Shop; Bicycle from Mom), Shiny Stone,
+   Leaf Stone, Lucky Egg, Exp. Share, Dive Balls.
+3. Ask the owner about Renegade's Snowpoint Temple scene (story Regigigas, Candice's HM08).

@@ -6,73 +6,28 @@
     ScriptEntry VeilstoneCityNortheastHouse_PokefanF
     ScriptEntryEnd
 
+// Sovereign (E10): as in Renegade, he gives the Dubious Disc. Porygon is a Poké Ball behind Jupiter in the Eterna
+// Galactic Building instead.
 VeilstoneCityNortheastHouse_PokefanM:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
-    GoToIfSet FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_PORYGON, VeilstoneCityNortheastHouse_GalacticsBuildingBugsMe
-    GoToIfSet FLAG_TALKED_TO_VEILSTONE_CITY_NORTHEAST_HOUSE_POKEFAN_M, VeilstoneCityNortheastHouse_CanYouTakePoryon
+    GoToIfSet FLAG_SOVEREIGN_RECEIVED_VEILSTONE_DUBIOUS_DISC, VeilstoneCityNortheastHouse_GalacticsBuildingBugsMe
     SetFlag FLAG_TALKED_TO_VEILSTONE_CITY_NORTHEAST_HOUSE_POKEFAN_M
-    Message VeilstoneCityNortheastHouse_Text_ImNoTrainerTakePorygon
-    GoTo VeilstoneCityNortheastHouse_AcceptPorygonYesNo
-    End
-
-VeilstoneCityNortheastHouse_CanYouTakePoryon:
-    Message VeilstoneCityNortheastHouse_Text_CanYouTakePorygon
-    GoTo VeilstoneCityNortheastHouse_AcceptPorygonYesNo
-    End
-
-VeilstoneCityNortheastHouse_AcceptPorygonYesNo:
+    Message VeilstoneCityNortheastHouse_Text_FoundCreepyDisc
     ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, VeilstoneCityNortheastHouse_AcceptPorygon
-    GoTo VeilstoneCityNortheastHouse_DontAcceptPorygon
-    End
-
-VeilstoneCityNortheastHouse_AcceptPorygon:
-    GetPartyCount VAR_RESULT
-    GoToIfEq VAR_RESULT, 6, VeilstoneCityNortheastHouse_PartyIsFull
+    GoToIfEq VAR_RESULT, MENU_NO, VeilstoneCityNortheastHouse_DontAcceptDisc
     Message VeilstoneCityNortheastHouse_Text_Excellent
-    PlayFanfare SEQ_FANFA4_sseq
-    BufferPlayerName 0
-    Message VeilstoneCityNortheastHouse_Text_PlayerAcceptedThePorygon
-    WaitFanfare
-    GivePokemon SPECIES_PORYGON, 25, ITEM_NONE, VAR_RESULT
-    SetFlag FLAG_RECEIVED_VEILSTONE_CITY_NORTHEAST_HOUSE_PORYGON
-    Message VeilstoneCityNortheastHouse_Text_AskNicknamePorygon
-    ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_YES, VeilstoneCityNortheastHouse_NicknamePorygon
-    GoToIfEq VAR_RESULT, MENU_NO, VeilstoneCityNortheastHouse_DontNicknamePorygon
-    End
-
-VeilstoneCityNortheastHouse_NicknamePorygon:
-    CloseMessage
-    GetPartyCount VAR_MAP_LOCAL_0x00
-    SubVar VAR_MAP_LOCAL_0x00, 1
-    FadeScreenOut
-    WaitFadeScreen
-    OpenPokemonNamingScreen VAR_MAP_LOCAL_0x00, VAR_RESULT
-    CallIfNe VAR_RESULT, 1, VeilstoneCityNortheastHouse_IncrementRecordPokemonNicknamed
-    FadeScreenIn
-    WaitFadeScreen
-    ReleaseAll
-    End
-
-VeilstoneCityNortheastHouse_IncrementRecordPokemonNicknamed:
-    IncrementGameRecord RECORD_POKEMON_NICKNAMED
-    Return
-
-VeilstoneCityNortheastHouse_DontNicknamePorygon:
+    SetVar VAR_0x8004, ITEM_DUBIOUS_DISC
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    SetFlag FLAG_SOVEREIGN_RECEIVED_VEILSTONE_DUBIOUS_DISC
     CloseMessage
     ReleaseAll
     End
 
-VeilstoneCityNortheastHouse_PartyIsFull:
-    Message VeilstoneCityNortheastHouse_Text_AlreadyWholeTeam
-    GoTo VeilstoneCityNortheastHouse_PokefanMEnd
-    End
-
-VeilstoneCityNortheastHouse_DontAcceptPorygon:
-    Message VeilstoneCityNortheastHouse_Text_IsThatSo
+VeilstoneCityNortheastHouse_DontAcceptDisc:
+    Message VeilstoneCityNortheastHouse_Text_MaybeSellIt
     GoTo VeilstoneCityNortheastHouse_PokefanMEnd
     End
 

@@ -2,20 +2,76 @@
   "key": 1054,
   "messages": [
     {
-      "id": "FloaromaTownSoutheastHouse_Text_SomePokemonAppearOnlyByHoney",
+      "id": "FloaromaTownSoutheastHouse_Text_ImAnItemFanatic",
       "en_US": [
-        "Some kinds of Pokémon appear only\n",
-        "if they’re attracted by the sweet\f",
-        "scent of Honey."
+        "I’m a total fanatic about items.\n",
+        "There’s so many interesting ones!\r",
+        "Did you know some items only work\n",
+        "with specific species of Pokémon?\r",
+        "If you can show me a Pokémon that\n",
+        "can use a special item like that...\r",
+        "I’ll share that special item with you!"
       ]
     },
     {
-      "id": "FloaromaTownSoutheastHouse_Text_PokemonHaveAcuteSmell",
+      "id": "FloaromaTownSoutheastHouse_Text_HeresOneForYou",
       "en_US": [
-        "Pokémon must have an acute sense\n",
-        "of smell.\r",
-        "They can sense the aroma of Honey\n",
-        "from very far away."
+        "Oh?\n",
+        "That’s a {STRVAR_1 0, 0, 0}!\r",
+        "Yes, there is an item that only\n",
+        "that Pokémon can use!\r",
+        "It is known as the {STRVAR_1 8, 1, 0}.\n",
+        "Here’s one for you!\r"
+      ]
+    },
+    {
+      "id": "FloaromaTownSoutheastHouse_Text_ComeBackWithMorePokemon",
+      "en_US": [
+        "Do come back again if you have\n",
+        "any more Pokémon to show me."
+      ]
+    },
+    {
+      "id": "FloaromaTownSoutheastHouse_Text_ShowMeAPokemon",
+      "en_US": [
+        "Did you want to show me a Pokémon\n",
+        "that can use a special item?\r"
+      ]
+    },
+    {
+      "id": "FloaromaTownSoutheastHouse_Text_NoPokemonCanUseSpecialItem",
+      "en_US": [
+        "Hmm...\r",
+        "It doesn’t look like any Pokémon in\n",
+        "your party can use a special item."
+      ]
+    },
+    {
+      "id": "FloaromaTownSoutheastHouse_Text_TwoSpecialItems",
+      "en_US": [
+        "Oh, my!\n",
+        "That’s a {STRVAR_1 0, 0, 0}!\r",
+        "There are actually two special items\n",
+        "that a {STRVAR_1 0, 0, 0} can use!\r",
+        "I’ll give you both of them!\r"
+      ]
+    },
+    {
+      "id": "FloaromaTownSoutheastHouse_Text_AlreadyGivenThatItem",
+      "en_US": [
+        "Oh, yes.\n",
+        "That’s a {STRVAR_1 0, 0, 0}.\r",
+        "I’ve already given you the special item\n",
+        "for that Pokémon, though."
+      ]
+    },
+    {
+      "id": "FloaromaTownSoutheastHouse_Text_MarowakThickClub",
+      "en_US": [
+        "Did you know a Marowak can use an\n",
+        "item called the Thick Club?\r",
+        "The Fire-type Marowak in the Alola\n",
+        "region can use the item as well."
       ]
     }
   ]

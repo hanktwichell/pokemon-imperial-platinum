@@ -5,6 +5,7 @@
 
     ScriptEntry SnowpointCityEastHouse_ExpertM
     ScriptEntry SnowpointCityEastHouse_Hiker
+    ScriptEntry SnowpointCityEastHouse_SovereignFisherman
     ScriptEntryEnd
 
 SnowpointCityEastHouse_ExpertM:
@@ -183,3 +184,27 @@ SnowpointCityEastHouse_NotEnoughShards:
     End
 
     .balign 4, 0
+
+// Sovereign (E10): Renegade's Super Rod fisherman. He shares FLAG_RECEIVED_SUPER_ROD with the Fight Area fisherman, so the rod comes once.
+SnowpointCityEastHouse_SovereignFisherman:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfSet FLAG_RECEIVED_SUPER_ROD, SnowpointCityEastHouse_SovereignFishermanAgain
+    Message SnowpointCityEastHouse_Text_SovereignFishermanGives
+    SetVar VAR_0x8004, ITEM_SUPER_ROD
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    SetFlag FLAG_RECEIVED_SUPER_ROD
+    Message SnowpointCityEastHouse_Text_SovereignFishermanExplains
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+SnowpointCityEastHouse_SovereignFishermanAgain:
+    Message SnowpointCityEastHouse_Text_SovereignFishermanAgain
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End

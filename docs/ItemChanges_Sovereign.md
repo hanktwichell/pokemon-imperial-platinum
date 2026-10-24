@@ -3,7 +3,7 @@
 Renegade Platinum's item changes and item locations are unchanged unless listed here
 (`RenegadePlatinumV130/Documentation/ItemChanges.txt`).
 
-In the game so far (E10 parts 2–8):
+In the game so far (E10 parts 2–9):
 - Renegade's six TM moves (Scald, Wild Charge, Bug Buzz, Hyper Voice, Dazzling Gleam, Hurricane), TMs as 99 of each
   and unsellable, and the Poké/Great/Ultra Ball prices.
 - Renegade's overworld item balls.
@@ -14,9 +14,14 @@ In the game so far (E10 parts 2–8):
   Iron Island's Steel-type Master. Rowan gives the Poké Radar and 10 Repels in Sandgem Town.
 - The Snowpoint City evolution-item seller: 34 items at ₽10,000 each.
 - No TMs in the shops: Veilstone 3F sells evolution stones and the Game Corner held items, as in Renegade.
+- Renegade's NPC item gifts (part 9): the Electirizer and Magmarizer (Hotel Grand Lake), the Reaper Cloth (Lost
+  Tower 1F), the Dragon Scale (a battle in the Veilstone Pokémon Center), the Dubious Disc (Veilstone northeast house),
+  the Choice Band (Route 214), the Super Rod (Snowpoint's east house, or the Fight Area, whichever comes first) and the
+  Item Fanatic's species items in Floaroma.
 
 Still to come: HM08 from Candice (waits for the
-owner: it comes with a story Regigigas scene); Renegade's other NPC gifts.
+owner: it comes with a story Regigigas scene); Renegade's remaining small gifts (the Oval Stone, Dawn Stone, Shiny
+Stone, Leaf Stone, Lucky Egg, Exp. Share and Dive Balls) and the Rare Berry seller.
 
 ## New key items
 

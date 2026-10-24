@@ -1,6 +1,7 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/trainers_school.h"
 #include "res/text/bank/menu_entries.h"
+#include "res/text/bank/special_met_location_names.h"
 #include "res/field/events/events_trainers_school.h"
 
 
@@ -16,6 +17,8 @@
     ScriptEntry TrainersSchool_SchoolKidChristine
     ScriptEntry TrainersSchool_Blackboard
     ScriptEntry TrainersSchool_Book
+    ScriptEntry TrainersSchool_SovereignCowgirl
+    ScriptEntry TrainersSchool_SovereignPsychic
     ScriptEntryEnd
 
 TrainersSchool_Rival:
@@ -364,3 +367,127 @@ TrainersSchool_Book:
     End
 
     .balign 4, 0
+
+// Sovereign (E10): Renegade Platinum's two new NPCs. A Cowgirl from the Solaceon Day Care gives an Egg that hatches
+// into one of 18 baby Pokémon at random, once; a Psychic tells a Pokémon's Hidden Power type, like the one in
+// Veilstone's prize exchange.
+TrainersSchool_SovereignCowgirl:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfSet FLAG_SOVEREIGN_RECEIVED_TRAINERS_SCHOOL_EGG, TrainersSchool_SovereignTakeCareOfEgg
+    Message TrainersSchool_Text_SovereignHeresAnEgg
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, TrainersSchool_SovereignDontWantEgg
+    GetPartyCount VAR_RESULT
+    GoToIfGe VAR_RESULT, MAX_PARTY_SIZE, TrainersSchool_SovereignTooManyPokemon
+    Message TrainersSchool_Text_SovereignHereYaGo
+    BufferPlayerName 0
+    Message TrainersSchool_Text_SovereignReceivedEgg
+    PlayFanfare SEQ_FANFA4_sseq
+    WaitFanfare
+    GetRandom VAR_RESULT, 18
+    SetVar VAR_0x8004, SPECIES_PICHU
+    GoToIfEq VAR_RESULT, 0, TrainersSchool_SovereignGiveEgg
+    SetVar VAR_0x8004, SPECIES_CLEFFA
+    GoToIfEq VAR_RESULT, 1, TrainersSchool_SovereignGiveEgg
+    SetVar VAR_0x8004, SPECIES_IGGLYBUFF
+    GoToIfEq VAR_RESULT, 2, TrainersSchool_SovereignGiveEgg
+    SetVar VAR_0x8004, SPECIES_TOGEPI
+    GoToIfEq VAR_RESULT, 3, TrainersSchool_SovereignGiveEgg
+    SetVar VAR_0x8004, SPECIES_TYROGUE
+    GoToIfEq VAR_RESULT, 4, TrainersSchool_SovereignGiveEgg
+    SetVar VAR_0x8004, SPECIES_SMOOCHUM
+    GoToIfEq VAR_RESULT, 5, TrainersSchool_SovereignGiveEgg
+    SetVar VAR_0x8004, SPECIES_ELEKID
+    GoToIfEq VAR_RESULT, 6, TrainersSchool_SovereignGiveEgg
+    SetVar VAR_0x8004, SPECIES_MAGBY
+    GoToIfEq VAR_RESULT, 7, TrainersSchool_SovereignGiveEgg
+    SetVar VAR_0x8004, SPECIES_AZURILL
+    GoToIfEq VAR_RESULT, 8, TrainersSchool_SovereignGiveEgg
+    SetVar VAR_0x8004, SPECIES_WYNAUT
+    GoToIfEq VAR_RESULT, 9, TrainersSchool_SovereignGiveEgg
+    SetVar VAR_0x8004, SPECIES_BUDEW
+    GoToIfEq VAR_RESULT, 10, TrainersSchool_SovereignGiveEgg
+    SetVar VAR_0x8004, SPECIES_CHINGLING
+    GoToIfEq VAR_RESULT, 11, TrainersSchool_SovereignGiveEgg
+    SetVar VAR_0x8004, SPECIES_BONSLY
+    GoToIfEq VAR_RESULT, 12, TrainersSchool_SovereignGiveEgg
+    SetVar VAR_0x8004, SPECIES_MIME_JR
+    GoToIfEq VAR_RESULT, 13, TrainersSchool_SovereignGiveEgg
+    SetVar VAR_0x8004, SPECIES_HAPPINY
+    GoToIfEq VAR_RESULT, 14, TrainersSchool_SovereignGiveEgg
+    SetVar VAR_0x8004, SPECIES_MUNCHLAX
+    GoToIfEq VAR_RESULT, 15, TrainersSchool_SovereignGiveEgg
+    SetVar VAR_0x8004, SPECIES_RIOLU
+    GoToIfEq VAR_RESULT, 16, TrainersSchool_SovereignGiveEgg
+    SetVar VAR_0x8004, SPECIES_MANTYKE
+TrainersSchool_SovereignGiveEgg:
+    GiveEgg VAR_0x8004, SPECIAL_METLOC_NAME_DAYCARE
+    SetFlag FLAG_SOVEREIGN_RECEIVED_TRAINERS_SCHOOL_EGG
+TrainersSchool_SovereignTakeCareOfEgg:
+    Message TrainersSchool_Text_SovereignTakeCareOfEgg
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+TrainersSchool_SovereignDontWantEgg:
+    Message TrainersSchool_Text_SovereignDontWantEgg
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+TrainersSchool_SovereignTooManyPokemon:
+    Message TrainersSchool_Text_SovereignTooManyPokemon
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+TrainersSchool_SovereignPsychic:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    Message TrainersSchool_Text_SovereignICanTellHiddenPower
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, TrainersSchool_SovereignIfYouWantToKnow
+    CloseMessage
+    FadeScreenOut
+    WaitFadeScreen
+    SelectMoveTutorPokemon
+    GetSelectedPartySlot VAR_0x8000
+    ReturnToField
+    FadeScreenIn
+    WaitFadeScreen
+    GoToIfEq VAR_0x8000, PARTY_SLOT_NONE, TrainersSchool_SovereignIfYouWantToKnow
+    GetPartyMonSpecies VAR_0x8000, VAR_0x8001
+    GoToIfEq VAR_0x8001, 0, TrainersSchool_SovereignEggsCantLearnMoves
+    CalcHiddenPowerType VAR_0x8000, VAR_0x8004
+    GoToIfEq VAR_0x8004, -1, TrainersSchool_SovereignCantLearnHiddenPower
+    BufferTypeName 0, VAR_0x8004
+    CheckPartyMonHasMove VAR_RESULT, MOVE_HIDDEN_POWER, VAR_0x8000
+    GoToIfEq VAR_RESULT, 0, TrainersSchool_SovereignHiddenPowerWouldBeType
+    Message TrainersSchool_Text_SovereignHiddenPowerIsType
+    GoTo TrainersSchool_SovereignPsychicEnd
+
+TrainersSchool_SovereignHiddenPowerWouldBeType:
+    Message TrainersSchool_Text_SovereignHiddenPowerWouldBeType
+    GoTo TrainersSchool_SovereignPsychicEnd
+
+TrainersSchool_SovereignCantLearnHiddenPower:
+    Message TrainersSchool_Text_SovereignCantLearnHiddenPower
+    GoTo TrainersSchool_SovereignPsychicEnd
+
+TrainersSchool_SovereignEggsCantLearnMoves:
+    Message TrainersSchool_Text_SovereignEggsCantLearnMoves
+    GoTo TrainersSchool_SovereignPsychicEnd
+
+TrainersSchool_SovereignIfYouWantToKnow:
+    Message TrainersSchool_Text_SovereignIfYouWantToKnow
+TrainersSchool_SovereignPsychicEnd:
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
