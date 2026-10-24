@@ -3594,3 +3594,39 @@ interactions the owner listed on 2026-10-23. PR open.
 1. The Paradox dealers in the Oreburgh Mining Museum (owner, 2026-10-24), and Koraidon/Miraidon gated by era.
 2. Milestone FM: Ice Face (Noice Eiscue) and Gulp Missile (Cramorant).
 3. Overworld sprites from the owner (in a few days): size them naturally against the existing overworld Pokémon.
+
+---
+
+## CB-0062 — Paradox dealers in the Oreburgh Mining Museum (Sat Oct 24 2026, 00:52 CDT)
+
+**Implemented:**
+- **Paradox dealers** (owner, 2026-10-24): once the player has all 8 badges, a fossil maniac (11, 11) and a futuristic
+  scientist (13, 11) stand in the Oreburgh Mining Museum.
+  - Showing one a present-day Pokémon of their era gives its Paradox Pokémon, once each, at the shown Pokémon's level.
+    The shown Pokémon isn't taken. Iron Valiant answers to Gardevoir or Gallade; no Cyclizar.
+  - Script commands `SovereignGetParadoxForm`, `SovereignSetParadoxGiven` and `SovereignCheckParadoxEraComplete` over
+    `sParadoxForms` in `scrcmd.c`. The bits are in `VAR_SOVEREIGN_PARADOX_ANCIENT` / `_FUTURE`; the dealers hide under
+    `FLAG_SOVEREIGN_HIDE_PARADOX_DEALERS`.
+- **Koraidon** appears at Sendoff Spring once all ten ancient Paradox Pokémon are given, **Miraidon** once all ten future
+  ones are (still from the Paldea Chronicle's opening, var ≥ 5).
+- The twenty wild Paradox encounters are removed from `data/sovereign_rare_wild.yaml`. The Archivist's Paradox topic
+  now points to the museum, and its Area Zero topic explains the two era gates.
+- Verified in the emulator: the gift paths (Great Tusk, Iron Valiant, Iron Treads), no form, already given, all
+  given, cancel, the nickname screen, and Koraidon-only at Sendoff Spring. The party-full branch wasn't replayed.
+- Defaults I picked, for the owner to confirm: the shown Pokémon isn't taken; the gift is at its level; the Paradox
+  Pokémon are no longer wild; Koraidon and Miraidon still need the Paldea Chronicle open.
+
+**Files modified:** `decomp/src/scrcmd.c`, `decomp/include/data/scripts/scrcmd.h`, `decomp/asm/macros/scrcmd.inc`,
+`decomp/generated/vars_flags.txt`, `decomp/res/field/scripts/scripts_mining_museum.s`,
+`decomp/res/field/scripts/scripts_init_mining_museum.s`, `decomp/res/field/events/events_mining_museum.json`,
+`decomp/res/text/mining_museum.json`, `decomp/res/field/scripts/scripts_sendoff_spring.s`,
+`decomp/res/field/scripts/scripts_canalave_library_2f.s`, `decomp/res/text/canalave_library_2f.json`,
+`decomp/src/overlay006/wild_encounters.c`, `decomp/include/data/sovereign_rare_wild.h`, `data/sovereign_rare_wild.yaml`,
+`tools/engine/gen_rare_wild.py`, `data/postgame_legendaries.yaml`, `docs/PostgameLegendaries.md`,
+`docs/LegendaryTriggers.md`, `docs/RareWildEncounters.md`, `docs/ProjectStatus.md`, `docs/TechnicalDesign.md`,
+`docs/WildPokemon_Sovereign.md`, `tools/design/gen_encounters.py`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Milestone FM: Ice Face (Noice Eiscue) and Gulp Missile (Cramorant).
+2. Overworld sprites from the owner (in a few days): size them naturally against the existing overworld Pokémon.
+3. The owner's final placements for the provisional spots (dealers, Greninja NPC, Chronicle encounters).

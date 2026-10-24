@@ -4,6 +4,32 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Paradox dealers in the Oreburgh Mining Museum
+
+- **Owner, 2026-10-24:** the Paradox Pokémon are gifts, not rare wild encounters.
+  - Once the player has all 8 badges, two NPCs stand in the Oreburgh Mining Museum: a fossil maniac (ancient Paradox
+    Pokémon) and a futuristic scientist (future ones).
+  - Show either one a Pokémon. If it is the present-day Pokémon of a Paradox Pokémon of their era, they give that
+    Paradox Pokémon at the shown Pokémon's level, with a nickname prompt. The shown Pokémon stays with the player.
+  - Each Paradox Pokémon is given once. Iron Valiant answers to Gardevoir or Gallade. Cyclizar's Paradox Pokémon,
+    Koraidon and Miraidon, aren't given.
+  - **Koraidon** appears at Sendoff Spring once all ten ancient Paradox Pokémon are given, and **Miraidon** once all ten
+    future ones are (both still from the Paldea Chronicle's opening).
+- The twenty wild Paradox encounters are gone, and the Archivist's Paradox topic now points to the museum.
+- **How:** three script commands (`SovereignGetParadoxForm`, `SovereignSetParadoxGiven`,
+  `SovereignCheckParadoxEraComplete`) over the `sParadoxForms` table in `scrcmd.c`; each era's ten are bits of
+  `VAR_SOVEREIGN_PARADOX_ANCIENT` / `VAR_SOVEREIGN_PARADOX_FUTURE`.
+
+Verified in the test build:
+- With the museum entered at 8 badges, both dealers stand at (11, 11) and (13, 11).
+- Donphan to the fossil maniac gave Great Tusk at Lv. 40, with the nickname screen. With the other nine ancient bits
+  preset, talking again gave the "every ancient form" line.
+- To the futuristic scientist: Bidoof gave the no-form line; Gallade gave Iron Valiant at Lv. 45; Gallade again gave
+  the already-given line; Donphan gave Iron Treads (nickname declined). Cancelling the party menu ends the talk.
+- At Sendoff Spring, Koraidon showed and Miraidon didn't.
+- Release build passes.
+
+
 ## Revival Blessing left out for now
 
 - **Owner, 2026-10-24:** Revival Blessing stays out of the game for now.

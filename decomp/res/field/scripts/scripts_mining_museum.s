@@ -20,6 +20,9 @@
     ScriptEntry MiningMuseum_Collector
     ScriptEntry MiningMuseum_ExpertM
     ScriptEntry MiningMuseum_SovereignStoneFragment
+    ScriptEntry MiningMuseum_SovereignOnTransition
+    ScriptEntry MiningMuseum_SovereignFossilManiac
+    ScriptEntry MiningMuseum_SovereignFutureScientist
     ScriptEntryEnd
 
 MiningMuseum_AceTrainerF:
@@ -333,6 +336,178 @@ MiningMuseum_Collector:
 MiningMuseum_ExpertM:
     NPCMessage MiningMuseum_Text_MineHistory
     End
+
+@ Sovereign (owner, 2026-10-24): the Paradox Pokémon dealers, in the museum once the player has all 8 badges. Each one
+@ gives the Paradox Pokémon of a party Pokémon's present-day species (ScrCmd_SovereignGetParadoxForm), at its level,
+@ once per Paradox Pokémon. The fossil maniac gives the ancient ones, the futuristic scientist the future ones.
+MiningMuseum_SovereignOnTransition:
+    SetFlag FLAG_SOVEREIGN_HIDE_PARADOX_DEALERS
+    CountBadgesAcquired VAR_RESULT
+    GoToIfLt VAR_RESULT, 8, MiningMuseum_SovereignOnTransitionEnd
+    ClearFlag FLAG_SOVEREIGN_HIDE_PARADOX_DEALERS
+MiningMuseum_SovereignOnTransitionEnd:
+    End
+
+MiningMuseum_SovereignParadoxNicknamed:
+    IncrementGameRecord RECORD_POKEMON_NICKNAMED
+    Return
+
+MiningMuseum_SovereignFossilManiac:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    SovereignCheckParadoxEraComplete 0, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, MiningMuseum_SovereignFossilManiacAllGiven
+    Message MiningMuseum_Text_SovereignFossilManiacIntro
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, MiningMuseum_SovereignFossilManiacBye
+    CloseMessage
+    FadeScreenOut
+    WaitFadeScreen
+    SelectPokemonToTrade
+    FadeScreenIn
+    WaitFadeScreen
+    GoToIfEq VAR_RESULT, 0xFF, MiningMuseum_SovereignFossilManiacBye
+    SetVar VAR_0x8004, VAR_RESULT
+    SovereignGetParadoxForm 0, VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 0, MiningMuseum_SovereignFossilManiacNoForm
+    GoToIfEq VAR_0x8005, 1, MiningMuseum_SovereignFossilManiacAlreadyGiven
+    GetPartyCount VAR_RESULT
+    GoToIfEq VAR_RESULT, 6, MiningMuseum_SovereignFossilManiacPartyFull
+    GetPartyMonLevel VAR_0x8006, VAR_0x8004
+    BufferPartyMonSpecies 0, VAR_0x8004
+    BufferSpeciesNameFromVar 1, VAR_0x8005, 0, 0
+    Message MiningMuseum_Text_SovereignFossilManiacFound
+    PlayFanfare SEQ_FANFA4_sseq
+    BufferPlayerName 0
+    Message MiningMuseum_Text_SovereignFossilManiacReceived
+    WaitFanfare
+    GivePokemon VAR_0x8005, VAR_0x8006, ITEM_NONE, VAR_RESULT
+    SovereignSetParadoxGiven 0, VAR_0x8005
+    Message MiningMuseum_Text_SovereignFossilManiacNickname
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, MiningMuseum_SovereignFossilManiacGiveNickname
+    CloseMessage
+    ReleaseAll
+    End
+
+MiningMuseum_SovereignFossilManiacGiveNickname:
+    CloseMessage
+    GetPartyCount VAR_MAP_LOCAL_0x00
+    SubVar VAR_MAP_LOCAL_0x00, 1
+    FadeScreenOut
+    WaitFadeScreen
+    OpenPokemonNamingScreen VAR_MAP_LOCAL_0x00, VAR_RESULT
+    CallIfNe VAR_RESULT, 1, MiningMuseum_SovereignParadoxNicknamed
+    FadeScreenIn
+    WaitFadeScreen
+    ReleaseAll
+    End
+
+MiningMuseum_SovereignFossilManiacNoForm:
+    BufferPartyMonSpecies 0, VAR_0x8004
+    Message MiningMuseum_Text_SovereignFossilManiacNoForm
+    GoTo MiningMuseum_SovereignFossilManiacEnd
+
+MiningMuseum_SovereignFossilManiacAlreadyGiven:
+    BufferPartyMonSpecies 0, VAR_0x8004
+    Message MiningMuseum_Text_SovereignFossilManiacAlreadyGiven
+    GoTo MiningMuseum_SovereignFossilManiacEnd
+
+MiningMuseum_SovereignFossilManiacPartyFull:
+    Message MiningMuseum_Text_SovereignParadoxPartyFull
+    GoTo MiningMuseum_SovereignFossilManiacEnd
+
+MiningMuseum_SovereignFossilManiacAllGiven:
+    Message MiningMuseum_Text_SovereignFossilManiacAllGiven
+    GoTo MiningMuseum_SovereignFossilManiacEnd
+
+MiningMuseum_SovereignFossilManiacBye:
+    Message MiningMuseum_Text_SovereignFossilManiacBye
+MiningMuseum_SovereignFossilManiacEnd:
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+MiningMuseum_SovereignFutureScientist:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    SovereignCheckParadoxEraComplete 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, MiningMuseum_SovereignFutureScientistAllGiven
+    Message MiningMuseum_Text_SovereignFutureScientistIntro
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, MiningMuseum_SovereignFutureScientistBye
+    CloseMessage
+    FadeScreenOut
+    WaitFadeScreen
+    SelectPokemonToTrade
+    FadeScreenIn
+    WaitFadeScreen
+    GoToIfEq VAR_RESULT, 0xFF, MiningMuseum_SovereignFutureScientistBye
+    SetVar VAR_0x8004, VAR_RESULT
+    SovereignGetParadoxForm 1, VAR_0x8004, VAR_0x8005
+    GoToIfEq VAR_0x8005, 0, MiningMuseum_SovereignFutureScientistNoForm
+    GoToIfEq VAR_0x8005, 1, MiningMuseum_SovereignFutureScientistAlreadyGiven
+    GetPartyCount VAR_RESULT
+    GoToIfEq VAR_RESULT, 6, MiningMuseum_SovereignFutureScientistPartyFull
+    GetPartyMonLevel VAR_0x8006, VAR_0x8004
+    BufferPartyMonSpecies 0, VAR_0x8004
+    BufferSpeciesNameFromVar 1, VAR_0x8005, 0, 0
+    Message MiningMuseum_Text_SovereignFutureScientistFound
+    PlayFanfare SEQ_FANFA4_sseq
+    BufferPlayerName 0
+    Message MiningMuseum_Text_SovereignFutureScientistReceived
+    WaitFanfare
+    GivePokemon VAR_0x8005, VAR_0x8006, ITEM_NONE, VAR_RESULT
+    SovereignSetParadoxGiven 1, VAR_0x8005
+    Message MiningMuseum_Text_SovereignFutureScientistNickname
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, MiningMuseum_SovereignFutureScientistGiveNickname
+    CloseMessage
+    ReleaseAll
+    End
+
+MiningMuseum_SovereignFutureScientistGiveNickname:
+    CloseMessage
+    GetPartyCount VAR_MAP_LOCAL_0x00
+    SubVar VAR_MAP_LOCAL_0x00, 1
+    FadeScreenOut
+    WaitFadeScreen
+    OpenPokemonNamingScreen VAR_MAP_LOCAL_0x00, VAR_RESULT
+    CallIfNe VAR_RESULT, 1, MiningMuseum_SovereignParadoxNicknamed
+    FadeScreenIn
+    WaitFadeScreen
+    ReleaseAll
+    End
+
+MiningMuseum_SovereignFutureScientistNoForm:
+    BufferPartyMonSpecies 0, VAR_0x8004
+    Message MiningMuseum_Text_SovereignFutureScientistNoForm
+    GoTo MiningMuseum_SovereignFutureScientistEnd
+
+MiningMuseum_SovereignFutureScientistAlreadyGiven:
+    BufferPartyMonSpecies 0, VAR_0x8004
+    Message MiningMuseum_Text_SovereignFutureScientistAlreadyGiven
+    GoTo MiningMuseum_SovereignFutureScientistEnd
+
+MiningMuseum_SovereignFutureScientistPartyFull:
+    Message MiningMuseum_Text_SovereignParadoxPartyFull
+    GoTo MiningMuseum_SovereignFutureScientistEnd
+
+MiningMuseum_SovereignFutureScientistAllGiven:
+    Message MiningMuseum_Text_SovereignFutureScientistAllGiven
+    GoTo MiningMuseum_SovereignFutureScientistEnd
+
+MiningMuseum_SovereignFutureScientistBye:
+    Message MiningMuseum_Text_SovereignFutureScientistBye
+MiningMuseum_SovereignFutureScientistEnd:
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
 
     .balign 4, 0
 

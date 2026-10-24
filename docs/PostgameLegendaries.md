@@ -249,16 +249,16 @@ Covers **90** species.
 - **How:** Static encounter.
 - **Built:** Pecharunt (CB-0043), level 60: on Route 224 (898, 526) once the Loyal Three are all caught, until it's caught. **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later).
 
-### Time Rifts (Paradox Pokémon)
+### Paradox dealers (Paradox Pokémon)
 - **Pokémon:** #984 Great Tusk, #985 Scream Tail, #986 Brute Bonnet, #987 Flutter Mane, #988 Slither Wing, #989 Sandy Shocks, #1005 Roaring Moon, #1009 Walking Wake, #1020 Gouging Fire, #1021 Raging Bolt, #990 Iron Treads, #991 Iron Bundle, #992 Iron Hands, #993 Iron Jugulis, #994 Iron Moth, #995 Iron Thorns, #1006 Iron Valiant, #1010 Iron Leaves, #1022 Iron Boulder, #1023 Iron Crown
-- **Level:** 65
-- **Location:** Rare wild encounters across Sinnoh: ancient ones in wild, rugged places, future ones in industrial ones (docs/RareWildEncounters.md)
-- **How:** Each Paradox Pokémon is a rare wild encounter (2%) on its themed map once the Paldea Chronicle is open.
-- **Built:** The twenty Paradox Pokémon (CB-0043), level 65 (68 for the stronger ones), are rare wild encounters from the Paldea Chronicle's opening (data/sovereign_rare_wild.yaml, tools/engine/gen_rare_wild.py, a roll in decomp/src/overlay006/wild_encounters.c): 2% of the wild encounters on one or two maps each, such as Great Tusk on Route 207, Walking Wake surfing on Route 213 and Iron Moth at Fuego Ironworks. They can be met again after a catch. The Archivist's Paradox Pokémon topic hints at each one not caught yet. **Changed from the plan** (owner, 2026-10-23, decisions 27 and 28): no rifts and no Spear Pillar floor; static encounters are for legendaries.
+- **Level:** the shown Pokémon's level
+- **Location:** Oreburgh Mining Museum — a fossil maniac (ancient) and a futuristic scientist (future), once the player has all 8 badges
+- **How:** Show a dealer the present-day Pokémon of a Paradox Pokémon and receive the Paradox Pokémon, once each.
+- **Built:** Owner, 2026-10-24 (replaces the rare wild encounters of CB-0043): once the player has all 8 badges, a fossil maniac (11, 11) and a futuristic scientist (13, 11) stand in the Oreburgh Mining Museum. Each asks to see a Pokémon; for a present-day Pokémon with a Paradox Pokémon of their era (Donphan, Jigglypuff, Amoonguss, Misdreavus, Volcarona, Magneton, Salamence, Suicune, Entei, Raikou for the past; Donphan, Delibird, Hariyama, Hydreigon, Volcarona, Tyranitar, Gardevoir or Gallade, Virizion, Terrakion, Cobalion for the future) they give that Paradox Pokémon, at the shown Pokémon's level, once each. The shown Pokémon stays with the player. Cyclizar's Paradox Pokémon, Koraidon and Miraidon, are the eras' rewards instead. Each era's ten are bits of `VAR_SOVEREIGN_PARADOX_ANCIENT` and `VAR_SOVEREIGN_PARADOX_FUTURE` (scrcmd.c `sParadoxForms`). The Archivist's Paradox Pokémon topic points to the museum. **Provisional spot** (owner, 2026-10-24: temporary placements).
 
 ### Area Zero (chapter key)
 - **Pokémon:** #1007 Koraidon, #1008 Miraidon, #1024 Terapagos
 - **Level:** 70
 - **Location:** Sendoff Spring — the crater (new map)
-- **How:** Koraidon and Miraidon after all twenty Paradox Pokémon are registered; Terapagos after both are caught.
-- **Built:** Koraidon (29, 36) and Miraidon (27, 37) at Sendoff Spring once all twenty Paradox Pokémon are caught, then Terapagos (30, 34) once both are caught (CB-0043), level 70. **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later): Sendoff Spring stands in for a new crater map.
+- **How:** Koraidon once the fossil maniac has given all ten ancient Paradox Pokémon, Miraidon once the futuristic scientist has given all ten future ones; Terapagos after both are caught.
+- **Built:** Koraidon (29, 36) at Sendoff Spring once the museum's fossil maniac has given all ten ancient Paradox Pokémon, and Miraidon (27, 37) once the futuristic scientist has given all ten future ones (owner, 2026-10-24), both from the Paldea Chronicle's opening; then Terapagos (30, 34) once both are caught (CB-0043), level 70. **Provisional spot** (owner, 2026-10-23: everything in the game first, placements later): Sendoff Spring stands in for a new crater map.

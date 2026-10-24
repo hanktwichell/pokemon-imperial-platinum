@@ -9,7 +9,7 @@
 - Grass tables use the Gen IV slot rates 20/20/10/10/10/10/5/5/4/4/1/1. Slots 3 and 4 (the two 10% slots used by time of day) may change at Morning/Day/Night.
 - Surf and each rod use the Gen IV slot rates 60/30/5/4/1.
 - Poké Radar and Honey Tree encounters are unchanged from Renegade Platinum.
-- Legendary and Mythical Pokémon are not in these tables; see `PostgameLegendaries.md`. The Paradox Pokémon and the Ultra Beasts are rare post-game encounters added on top of them (decision 28); see `RareWildEncounters.md`.
+- Legendary and Mythical Pokémon are not in these tables; see `PostgameLegendaries.md`. The Ultra Beasts are rare post-game encounters added on top of them (decision 28); see `RareWildEncounters.md`. The Paradox Pokémon are gifts from the Oreburgh Mining Museum's dealers.
 - Gen V–IX starters are Pokémon Center gifts, not wild encounters; see `GiftPokemon_Sovereign.md`.
 - This is a **design draft**: the placements come from a type/habitat/level heuristic and should be playtested and hand-tuned.
 

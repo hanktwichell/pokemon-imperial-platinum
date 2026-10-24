@@ -398,8 +398,13 @@ implemented.
         tell the two apart, so a catch sets the flag.
       - Necrozma (Wayward Cave 1F's dark back chamber, a new OnLoad entry there) needs the same Solgaleo-or-Lunala
         check. Spear Pillar has no Chronicle encounter (decision 27): it's kept for Dialga, Palkia and the story.
-    - **Rare wild encounters** (decision 28): the Paradox Pokémon (from var 5) and the Ultra Beasts with Poipole
-      (once Necrozma is caught) aren't statics. `data/sovereign_rare_wild.yaml` lists each one's maps, terrain, rate
+    - **Paradox dealers** (decision 28, owner 2026-10-24): two Oreburgh Mining Museum NPCs, shown with all 8 badges
+      (`FLAG_SOVEREIGN_HIDE_PARADOX_DEALERS`, OnTransition), give Paradox Pokémon. `SovereignGetParadoxForm era,
+      slot, var` looks up the shown Pokémon in `sParadoxForms` (scrcmd.c: 0 none, 1 already given, else the species),
+      `SovereignSetParadoxGiven` sets its bit in `VAR_SOVEREIGN_PARADOX_ANCIENT` / `_FUTURE`, and
+      `SovereignCheckParadoxEraComplete` (all ten bits) gates Koraidon and Miraidon at Sendoff Spring.
+    - **Rare wild encounters** (decision 28): the Ultra Beasts with Poipole (once Necrozma is caught) and Carbink
+      aren't statics. `data/sovereign_rare_wild.yaml` lists each one's maps, terrain, rate
       and level; `tools/engine/gen_rare_wild.py` checks it (every map must have wild encounters of that terrain, and a
       map's rates add up to 100 or less) and writes `include/data/sovereign_rare_wild.h` and
       `docs/RareWildEncounters.md`.

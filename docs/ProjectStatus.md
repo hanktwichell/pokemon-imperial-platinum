@@ -172,9 +172,10 @@ Made by the owner (2026-10-22):
     there. Cosmog (both battles) moves to Mt. Coronet's top snowfield, and Necrozma to Wayward Cave 1F's dark back
     chamber.
 28. **Static encounters are for legendaries, and not every legendary needs one** (owner, 2026-10-23):
-    - **Paradox Pokémon are rare wild encounters,** each on one or two themed maps (ancient ones in wild, rugged
-      places, future ones in industrial ones), at 2% of the wild encounters there, from when the Paldea Chronicle
-      opens. They can be met again after a catch.
+    - **Paradox Pokémon come from two dealers in the Oreburgh Mining Museum** (owner, 2026-10-24, replacing the
+      rare wild encounters): once the player has all 8 badges, a fossil maniac (ancient) and a futuristic scientist
+      (future) each give a Paradox Pokémon for a look at its present-day Pokémon, once each (no Cyclizar). Koraidon
+      appears once all ten ancient ones are given, Miraidon once all ten future ones are.
     - **Ultra Beasts are rare wild encounters too,** on the maps they stood on, once Necrozma is caught. Poipole
       becomes wild on a route near the Fight Area.
     - **Roamers:** Okidogi, Munkidori, Fezandipiti, Glastrier, Spectrier and Zeraora roam Sinnoh instead of standing
