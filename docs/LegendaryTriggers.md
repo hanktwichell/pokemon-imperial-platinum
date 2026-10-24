@@ -181,7 +181,18 @@ dealer a present-day Pokémon gives its Paradox Pokémon at the shown Pokémon's
 
 Darkrai, Shaymin and Arceus need vanilla's distribution events, so they can't be met in normal play yet.
 
-## Renegade Platinum's events (documented, not ported: E10)
+## Renegade Platinum's events, ported (E10)
+
+| Pokémon | Kind | Where | Lv. | Appears when | Gone when / comes back |
+|---|---|---|---|---|---|
+| Raikou | static | Route 208, the Rock Climb ledge west of the Berry Master's house (391, 717) | 60 | after the Distortion World (Cyrus beaten there) | caught. A win or a run makes it vanish until the next visit |
+| Entei | static | Route 211 East, the end of the Rock Climb ledge (424, 514), where Platinum had TM29 | 60 | after the Distortion World | as Raikou |
+| Suicune | static | Route 213, the Rock Climb ledge (689, 826); the TM05 ball moved to (651, 824), as in Renegade | 60 | after the Distortion World | as Raikou |
+
+Renegade puts a portal on each spot and opens them when Rowan is spoken to after the Distortion World; Sovereign shows
+the Pokémon itself (as for its own legendaries) and needs no talk. Spots are provisional (owner, 2026-10-24).
+
+## Renegade Platinum's events (documented, not ported yet: E10)
 
 `RenegadePlatinumV130/Documentation/SpecialEvents.txt` changes or adds these. When E10 ports them, check their spots
 against the Chronicles':
@@ -193,7 +204,6 @@ against the Chronicles':
 | Moltres | Victory Road, a small room | 60 | — |
 | Mewtwo | Oreburgh Gate basement portal | 70 | — |
 | Mew | Route 201, after a chain of berry quests | 40 | — |
-| Raikou, Entei, Suicune | Routes 208, 211 East and 213 portals | 60 | Raging Bolt, Gouging Fire and Walking Wake rare rolls (by design) |
 | Lugia, Ho-Oh | Route 220 island; Lost Tower top floor | 70 | **Yveltal stands on Lost Tower 5F** |
 | Celebi | Eterna Forest portals | 40 | **Virizion and Xerneas stand in Eterna Forest** |
 | Regirock, Regice, Registeel | Route 228, Mt. Coronet (Route 216 side), Iron Island B3F | 60 | Landorus and Regidrago share the Route 228 chamber; Nihilego's rare roll on Iron Island B3F |

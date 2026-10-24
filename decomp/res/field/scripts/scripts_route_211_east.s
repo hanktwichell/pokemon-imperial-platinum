@@ -10,6 +10,7 @@
     ScriptEntry Route211East_SovereignOnTransition
     ScriptEntry Route211East_SovereignOnLoad
     ScriptEntry Route211East_LegendaryOgerpon
+    ScriptEntry Route211East_LegendaryEntei
     ScriptEntryEnd
 
 Route211East_AceTrainerM:
@@ -64,10 +65,12 @@ Route211East_ArrowSignpostCelesticTown:
 
 Route211East_SovereignOnTransition:
     Call Route211East_SovereignSetOgerponVisibility
+    Call Route211East_SovereignSetEnteiVisibility
     End
 
 Route211East_SovereignOnLoad:
     CallIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, Route211East_RemoveLegendaryOgerpon
+    CallIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, Route211East_RemoveLegendaryEntei
     End
 
 @ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Ogerpon, wearing the Teal Mask, waits by the mountain path
@@ -92,5 +95,28 @@ Route211East_LegendaryOgerpon:
     SetVar VAR_SOVEREIGN_LEGENDARY_HELD_ITEM, ITEM_TEAL_MASK
     SetVar VAR_0x8004, SPECIES_OGERPON
     SetVar VAR_0x8005, 65
+    Common_SovereignLegendaryEncounter
+    End
+
+@ Sovereign (E10, Renegade's legendary events): Entei at the end of the Rock Climb ledge, after the Distortion World, until it is caught (Renegade: Lv. 60, a portal here, where Platinum had TM29).
+Route211East_SovereignSetEnteiVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_2
+    GoToIfUnset FLAG_DEFEATED_TRAINER_GALACTIC_BOSS_CYRUS_DISTORTION_WORLD, Route211East_SovereignSetEnteiVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_ENTEI, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, Route211East_SovereignSetEnteiVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_2
+Route211East_SovereignSetEnteiVisibilityEnd:
+    Return
+
+Route211East_RemoveLegendaryEntei:
+    GoToIfNe VAR_SOVEREIGN_LEGENDARY_SPECIES, SPECIES_ENTEI, Route211East_RemoveLegendaryEnteiEnd
+    RemoveObject LOCALID_LEGENDARY_ENTEI
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+Route211East_RemoveLegendaryEnteiEnd:
+    Return
+
+Route211East_LegendaryEntei:
+    SetVar VAR_0x8004, SPECIES_ENTEI
+    SetVar VAR_0x8005, 60
     Common_SovereignLegendaryEncounter
     End

@@ -4237,3 +4237,27 @@ Oreburgh City, Eterna Forest, Contest Hall lobby; `decomp/generated/vars_flags.t
    (no Mythical gifts: battle or a Sovereign trigger instead).
 2. Renegade's trainers from its ROM (`trdata`/`trpoke`), with `data/trainers_sovereign.yaml` on top.
 3. Ask the owner about Renegade's Snowpoint Temple scene (story Regigigas, Candice's HM08).
+
+## CB-0086 — 2026-10-24, 7:52 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** E10 part 12, Renegade's legendary events, first batch. PR #96 (part 11) merged.
+- Raikou (Route 208 ledge, 391/717), Entei (Route 211 East ledge, 424/514) and Suicune (Route 213 ledge, 689/826):
+  static, Lv. 60, after the Distortion World (`FLAG_DEFEATED_TRAINER_GALACTIC_BOSS_CYRUS_DISTORTION_WORLD`), until
+  caught, on the shared `Common_SovereignLegendaryEncounter`. Route 208 got OnTransition/OnLoad hooks.
+- Renegade's item moves there: Route 211 East's TM29 ball removed, Route 213's TM05 ball moved to (651, 824).
+- Overworld sprites drawn and registered (new helper in the scratchpad, `reglegend.py`, does the drawing and all four
+  gfx tables; worth turning into a repo tool if more come).
+- Verified in a gate-skipped test build (Raikou, Entei appear and battle). Release build and docs pass.
+
+**Files modified:** `decomp/res/field/{scripts,events}/` for Route 208 (and its init script), 211 East, 213;
+`decomp/res/graphics/field_sprites/` (3 PNGs, `field_sprites.order`, `meson.build`),
+`decomp/generated/object_events_gfx.txt`, `decomp/src/overlay005/object_event_gfx_data.c`,
+`tools/sprites/make_legendary_overworld.py`; `docs/LegendaryTriggers.md`, `docs/EngineChangelog.md`,
+`docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. More of Renegade's legendary events: Regirock/Regice/Registeel (Renegade's Relicanth+Wailord rooms vs Sovereign's
+   vanilla Regigigas route), Latias/Latios, Kyogre/Groudon/Rayquaza, Mewtwo, Jirachi, Deoxys, Celebi, Lugia/Ho-Oh,
+   the birds (Sovereign has Oak's roamers), Mew's berry chain, Manaphy (no Mythical gifts).
+2. Renegade's trainers from its ROM (`trdata`/`trpoke`), with `data/trainers_sovereign.yaml` on top.
+3. Ask the owner about Renegade's Snowpoint Temple scene (story Regigigas, Candice's HM08).

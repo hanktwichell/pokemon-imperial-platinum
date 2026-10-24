@@ -98,6 +98,9 @@ LEGENDARIES = {
     "koraidon": 1007,
     "miraidon": 1008,
     "terapagos": 1024,
+    "raikou": 243,
+    "entei": 244,
+    "suicune": 245,
 }
 
 
