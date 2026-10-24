@@ -203,15 +203,17 @@ Made by the owner (2026-10-22):
     - **Moltres:** Renegade's portal in Victory Road's small room (Rock Climb). No clash.
     - **Articuno:** Renegade's portal on Mt. Coronet's summit (Rock Climb), on a tile clear of Cosmog's (35, 21). The
       Celesteela rare roll on that map is a wild roll, not an object, so it doesn't clash.
-    - **Zapdos clashes:** Renegade's portal is on the island behind Valley Windworks, where Zekrom's night encounter
-      stands. Its spot is open; the owner will be asked.
+    - **Zapdos:** Renegade's portal on the island behind Valley Windworks, now free since Zekrom moves (decision 34).
     - Renegade opens the portals after talking to Rowan after the Distortion World. That matches Renegade; Sovereign's
       other legendaries are post-game, and portals look different from Sovereign's shown legendaries. Both are noted
       for the owner.
+34. **Zekrom moves to Route 215** (owner, 2026-10-24), the always-raining route between Veilstone and Solaceon. Its
+    trigger is unchanged (the Dark Stone, at night). That frees the Valley Windworks island for Zapdos's Renegade
+    portal (decision 33). The tile is still to pick. The full placement review is `docs/LegendaryPlacementReview.md`.
 
 Open:
-- **Zapdos's portal spot** (decision 33): Renegade's island behind Valley Windworks is Zekrom's. Pick another spot,
-  or leave Zapdos as an Oak roamer.
+- **The legendary placement clashes** in `docs/LegendaryPlacementReview.md` ("Clashes to settle"): the Lost Tower top
+  floor, Stark Mountain room 1, Giratina's room, Solaceon Ruins Room 7, Route 224's tablet and others.
 - **Overworld sprites and sizing for the legendaries** (owner, 2026-10-23: "we will need to work on" it). Today each
   is a 64x64 placeholder shrunk from its PokeAPI front sprite (`tools/sprites/make_legendary_overworld.py`), so tiny
   and huge Pokémon look the same size and the big ones cover the player and nearby tiles.

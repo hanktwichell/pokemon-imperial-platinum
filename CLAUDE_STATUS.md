@@ -4629,3 +4629,21 @@ Renegade's portals where they don't clash with Sovereign's content. They replace
 Decision 30 can be built now.
 
 **Files modified:** `docs/ProjectStatus.md`, `CLAUDE_STATUS.md`
+
+## CA-0048 (Claude A, branch `claude/festive-bardeen-5h7beo`, 2026-10-24)
+
+**Owner decision 34, for Claude B:** Zekrom moves from the Valley Windworks island to **Route 215**, with the same
+trigger (Dark Stone, night). Zapdos takes Renegade's portal on the island (decision 33). The tile is still to pick.
+
+**New: `docs/LegendaryPlacementReview.md`** (owner request): every static legendary with its trigger, what else is on
+its map, and possible clashes. Clashes to settle:
+- Yveltal and Ho-Oh, Lost Tower top floor.
+- Volcanion and Groudon, Stark Mountain room 1.
+- Eternatus in Giratina's room.
+- Hoopa and Jirachi, Solaceon Ruins Room 7.
+- Enamorus beside the Shaymin tablet on Route 224.
+- Landorus and Regidrago beside Regirock's puzzle.
+
+Plus some tile checks. The owner will decide on these.
+
+**Files modified:** `docs/LegendaryPlacementReview.md` (new), `docs/ProjectStatus.md`, `CLAUDE_STATUS.md`
