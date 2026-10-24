@@ -3247,3 +3247,46 @@ passed on one re-run. This entry adds Blade Aegislash (milestone FM). PR open.
 2. Milestone FM: Disguise (Busted Mimikyu: the first hit is blocked), then Schooling and Shields Down. Their forms'
    data comes first: School Wishiwashi and Minior's meteor and core forms.
 3. E10, Renegade's events: their spots against the Chronicles' (the clash table in `docs/LegendaryTriggers.md`).
+
+## CB-0052 — 2026-10-23, 10:04 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Status:** PR #64 (CB-0051, Zen Mode) is merged. This entry adds Disguise in battle (milestone FM), with the
+interactions the owner listed on 2026-10-23. PR open.
+
+**What was implemented:**
+- **Disguise:**
+  - The first damaging move that hits a disguised Mimikyu (or the Totem's) does no damage. It busts the disguise
+    ("Its disguise served it as a decoy!" / "MIMIKYU's disguise was busted!") and costs 1/8 of max HP (owner:
+    Mimikyu does lose HP when its disguise breaks).
+  - A confusion self-hit busts it too.
+  - Life Orb, recoil, poison, burn, weather and entry hazards don't bust it. Mold Breaker ignores it, and a
+    substitute takes the hit first.
+- **Once per battle:** the busted form stays through switching, fainting and revival. A Mimikyu that faints with its
+  disguise intact keeps it when revived, and the disguise comes back when the battle ends.
+- `sSovereignDisguiseForms` (from `gen_forms.py`, `DISGUISE_FORMS`); the hook in `BattleControllerPlayer_UseMove`
+  after the substitute check; `subscript_sovereign_disguise` and `subscript_sovereign_disguise_confusion` (new
+  entries in `sub_seq.order`, `meson.build` and `generated/battle_subscripts.txt`).
+- **Revival Blessing doesn't exist yet** (its effect is "do nothing"). It will follow the owner's rules once built,
+  since the disguise is kept on the form.
+- **Verified** in the emulator:
+  - Life Orb recoil and poison didn't bust it.
+  - Earthquake busted it and the 1/8 cost knocked out a 3 HP Mimikyu.
+  - Revives: an intact one kept its disguise, a busted one didn't.
+  - After fleeing, the disguise was back in the next battle.
+  - Release build without warnings, boot smoke, docs.
+  - Not tested: the confusion and Mold Breaker paths, and the Totem.
+
+**Files modified:** `tools/engine/gen_forms.py`, `decomp/include/data/sovereign_forms.h`, `decomp/src/pokemon.c`,
+`decomp/include/pokemon.h`, `decomp/src/battle/battle_controller_player.c`,
+`decomp/res/battle/scripts/subscripts/subscript_sovereign_disguise.s` (new),
+`decomp/res/battle/scripts/subscripts/subscript_sovereign_disguise_confusion.s` (new),
+`decomp/res/battle/scripts/subscripts/sub_seq.order`, `decomp/res/battle/scripts/subscripts/meson.build`,
+`decomp/generated/battle_subscripts.txt`, `decomp/res/text/battle_strings.json`, `docs/TechnicalDesign.md`,
+`docs/EngineRoadmap.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Owner: whether to implement Revival Blessing now (choose a fainted party Pokémon in battle, revive it at half HP).
+2. Milestone FM: School Wishiwashi (Schooling) and Minior's meteor and core forms (Shields Down); their form data
+   first.
+3. Owner decisions still open: Koraidon/Miraidon after their own ten Paradox Pokémon or all twenty; Cosmog's
+   Teleport; whether Ultra Burst should count as the trainer's Mega; overworld sprites and sizing; final placements.

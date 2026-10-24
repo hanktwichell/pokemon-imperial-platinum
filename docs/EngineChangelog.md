@@ -4,6 +4,30 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## FM — Disguise
+
+- **Disguise.** The first hit a Mimikyu takes in a battle hits its disguise instead: "Its disguise served it as a
+  decoy!", then "MIMIKYU's disguise was busted!".
+  - It takes no damage from the move but loses 1/8 of its max HP, as in Gen VIII and later.
+  - A move's hit or hurting itself in confusion busts the disguise. Life Orb, recoil, poison, burn, sandstorm and entry
+    hazards don't. Mold Breaker ignores it, and a substitute takes the hit first.
+  - The Totem Mimikyu's disguise works the same way.
+- **Once per battle.** A busted Mimikyu stays busted for the rest of the battle: when it switches out and back, and
+  when it faints and is revived.
+  - A Mimikyu that faints with its disguise intact keeps it when revived.
+  - The disguise comes back when the battle ends.
+  - Revival Blessing isn't implemented yet (the move does nothing). It will follow these rules, since the disguise is
+    kept on the Pokémon's form.
+- **How:** `TechnicalDesign.md` (Disguise). Busted Mimikyu shares Mimikyu's sprite until milestone E12.
+- **Verified** in the emulator:
+  - Route 201: Life Orb recoil and poison didn't bust it.
+  - Stark Mountain, Earthquake: the disguise took the hit and cost 1/8. At 3 HP that knocked Mimikyu out, busted.
+  - A Mimikyu that fainted to its own Life Orb recoil, disguise intact, was revived with a Revive and switched in; its
+    disguise took the next Earthquake.
+  - The one revived after busting took the next Earthquake in full.
+  - After fleeing, the busted Mimikyu's disguise took a hit in the next battle.
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+
 ## FM — Zen Mode
 
 - **Zen Mode.** A Darmanitan with Zen Mode turns to Zen Mode at the end of a turn with half its HP or less:
