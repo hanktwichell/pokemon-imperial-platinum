@@ -3157,3 +3157,36 @@ PR open.
 2. Milestone FM's remaining battle forms (Zen Mode is data only; Aegislash, Meloetta Pirouette, Mimikyu Busted and
    the others still need their in-battle switches).
 3. E10, Renegade's events: their spots against the Chronicles' (the clash table in `docs/LegendaryTriggers.md`).
+
+## CB-0049 — 2026-10-23, 8:53 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Status:** PR #61 (CB-0048, Ultra Necrozma) is merged. This entry adds Pirouette Meloetta (milestone FM). PR open.
+
+**What was implemented:**
+- **Relic Song** switches Meloetta between Aria Forme (Normal/Psychic) and Pirouette Forme (Normal/Fighting) after
+  it hits. It uses Platinum's form-change scene and "MELOETTA transformed!". There is no change if Relic Song misses
+  or doesn't affect the target, or if it ends the battle.
+- It goes back to Aria Forme on switch-out (`Pokemon_SovereignRevertSwitchOutForm` in `BattleSystem_InitBattleMon`)
+  and at the battle's end.
+- A new form kind, `SOVEREIGN_FORM_BATTLE_MOVE` (the trigger is the move), with `Pokemon_SovereignMoveForm` and
+  `sovereignMoveFormBattler` (set in `LoopSpreadMoves`, used in `MoveEnd`). Aegislash's Stance Change can reuse it.
+- **Verified** in the emulator:
+  - The form change after a hit, with Normal/Fighting in the battle summary.
+  - Aria again after switching out and back in.
+  - No change against a Gastly.
+  - Release build without warnings, boot smoke, docs.
+
+**Files modified:** `tools/engine/gen_forms.py`, `decomp/src/pokemon.c`, `decomp/include/pokemon.h`,
+`decomp/src/battle/battle_lib.c`, `decomp/src/battle/battle_controller_player.c`,
+`decomp/include/battle/battle_context.h`, `decomp/include/constants/sovereign_forms.h`,
+`decomp/include/data/sovereign_forms.h`, `decomp/tools/dataproc/src/sovereign_forms.inc`,
+`decomp/res/pokemon/meloetta/meson.build`, `decomp/res/pokemon/meloetta/forms/pirouette/data.json` (new),
+`data/postgame_legendaries.yaml`, `docs/PostgameLegendaries.md`, `docs/TechnicalDesign.md`,
+`docs/EngineRoadmap.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Owner decisions: Koraidon/Miraidon after their own ten Paradox Pokémon or all twenty; Cosmog's Teleport; whether
+   Ultra Burst should count as the trainer's Mega (built: it doesn't); overworld sprites and sizing; final placements.
+2. Milestone FM: Aegislash's Stance Change (King's Shield, then attacks), then Zen Mode, Schooling, Shields Down,
+   Disguise and Power Construct.
+3. E10, Renegade's events: their spots against the Chronicles' (the clash table in `docs/LegendaryTriggers.md`).

@@ -157,6 +157,15 @@ implemented.
   - `BattleSystem_SovereignMegaEvolve` doesn't set `sovereignMegaUsed` for it.
   - `MSG_TEMP` 2 gives `subscript_sovereign_mega_evolution` the Ultra Burst messages.
   - `Pokemon_SovereignRevertBattleForm` sends it back to its trigger form instead of 0, which keeps the fusion.
+- **Move forms** (`SOVEREIGN_FORM_BATTLE_MOVE`: Pirouette Meloetta; the form's `trigger` is the move, Relic Song).
+  - `Pokemon_SovereignMoveForm` gives the form a move switches the Pokémon to: base to the form, or back.
+  - `BattleControllerPlayer_LoopSpreadMoves` notes the user in `sovereignMoveFormBattler` once the move has hit a
+    target (not `MOVE_STATUS_DID_NOT_HIT`).
+  - `BattleControllerPlayer_MoveEnd` then changes the form with `BattleSystem_SovereignChangeBattleForm`, and Platinum's
+    `subscript_form_change` shows it ("MELOETTA transformed!"). A user that fainted or transformed keeps its form, and
+    so does one whose move ended the battle.
+  - `BattleSystem_InitBattleMon` calls `Pokemon_SovereignRevertSwitchOutForm`, so the Pokémon switches back in in its
+    base form. `Pokemon_SovereignRevertBattleForm` undoes the form when the battle ends.
 - **Item locks.** `Pokemon_SovereignItemIsLocked(species, item)` is TRUE for any form trigger on its own species
   except Mega Rayquaza's move, and also for the Teal Mask on Ogerpon, the Griseous Core on Giratina and the
   Ultranecrozium Z on Necrozma.
