@@ -60,6 +60,16 @@
         "got to battle it.\r",
         "So, fishing gives you twice the fun!"
       ]
+    },
+    {
+      "id": "Route218GateToJubilifeCity_Text_SovereignDiveBalls",
+      "en_US": [
+        "A fisherman’s kit also includes some\n",
+        "trusty Dive Balls!\r",
+        "They’re the perfect thing to throw at\n",
+        "anything you fish up!\r",
+        "Here’s ten of them for you!\r"
+      ]
     }
   ]
 }

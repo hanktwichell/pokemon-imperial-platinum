@@ -9,16 +9,18 @@
     ScriptEntry CycleShop_Catalog
     ScriptEntryEnd
 
+// Sovereign (E10): as in Renegade, Mom already gave the Bicycle, so the manager gives a Dawn Stone instead.
 CycleShop_PokefanM:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
-    GoToIfSet FLAG_RECEIVED_BICYCLE, CycleShop_IllReadOperatingManual
+    GoToIfSet FLAG_SOVEREIGN_RECEIVED_CYCLE_SHOP_DAWN_STONE, CycleShop_IllReadOperatingManual
     Message CycleShop_Text_ThanksForRescuingMe
-    SetVar VAR_0x8004, ITEM_BICYCLE
+    Message CycleShop_Text_SovereignYouAlreadyOwnThisBike
+    SetVar VAR_0x8004, ITEM_DAWN_STONE
     SetVar VAR_0x8005, 1
     Common_GiveItemQuantity
-    SetFlag FLAG_RECEIVED_BICYCLE
+    SetFlag FLAG_SOVEREIGN_RECEIVED_CYCLE_SHOP_DAWN_STONE
     SetVar VAR_ETERNA_CITY_BLOCK_EXITS_STATE, 1
     SetBlackOutWarpId 9
     GoTo CycleShop_IllReadOperatingManual

@@ -4214,3 +4214,26 @@ new); `decomp/generated/{trainers,vars_flags,mart_specialties_id}.txt`; `decomp/
    (contest hall), Leaf Stone (Eterna Forest), Lucky Egg (Pokémon Mansion), Exp. Share (Route 203), Dive Balls.
 2. Renegade's trainers from its ROM (`trdata`/`trpoke`), with `data/trainers_sovereign.yaml` on top.
 3. Ask the owner about Renegade's Snowpoint Temple scene (story Regigigas, Candice's HM08).
+
+## CB-0085 — 2026-10-24, 7:39 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** E10 part 11, Renegade's remaining small gifts. PR #95 (part 10) merged.
+- Mom gives the Bicycle with the Running Shoes; the Cycle Shop manager gives a Dawn Stone instead
+  (`FLAG_SOVEREIGN_RECEIVED_CYCLE_SHOP_DAWN_STONE`; he still sets `VAR_ETERNA_CITY_BLOCK_EXITS_STATE` and the
+  blackout warp).
+- Barry's Exp. Share after Route 203; Oreburgh guide's Oval Stone; Eterna Forest Moss Rock Leaf Stone
+  (`FLAG_SOVEREIGN_RECEIVED_ETERNA_FOREST_LEAF_STONE`); Keira's Shiny Stone; 10 Potions (Route 201), 30 Poké Balls
+  (Route 202), 10 Dive Balls with the Old Rod.
+- Not ported: the Lucky Egg (inside Renegade's Manaphy Egg story) and the Shroomish→Mew chain: legendary events.
+- Verified in the test build (Moss Rock, Old Rod + Dive Balls); release build and docs pass.
+
+**Files modified:** scripts and texts for Twinleaf player house 1F, Cycle Shop, Route 201, 202, 203, Route 218 gate,
+Oreburgh City, Eterna Forest, Contest Hall lobby; `decomp/generated/vars_flags.txt`; `docs/EngineChangelog.md`,
+`docs/EngineRoadmap.md`, `docs/ItemChanges_Sovereign.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Renegade's legendary and special events (`SpecialEvents.txt`) against Sovereign's triggers in
+   `docs/LegendaryTriggers.md`: the Mew chain, the portals (Raikou/Entei/Suicune, Celebi, Mewtwo...), the Manaphy story
+   (no Mythical gifts: battle or a Sovereign trigger instead).
+2. Renegade's trainers from its ROM (`trdata`/`trpoke`), with `data/trainers_sovereign.yaml` on top.
+3. Ask the owner about Renegade's Snowpoint Temple scene (story Regigigas, Candice's HM08).

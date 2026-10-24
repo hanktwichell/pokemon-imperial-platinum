@@ -64,9 +64,9 @@
     {
       "id": "OreburghCity_Text_IllTakeYouToTheGym",
       "en_US": [
-        "Howdy, Trainer!\r",
-        "Huh? Uh-oh!\n",
-        "You don’t have a single Gym Badge?\r",
+        "Huh? Uh-oh!\r",
+        "You’re a Trainer, but you don’t have\n",
+        "a single Gym Badge?\r",
         "You’d better do something about that!\n",
         "I’ll take you to the Pokémon Gym.\r"
       ]
@@ -248,6 +248,17 @@
       "en_US": [
         "Oreburgh Mine\n",
         "Beware of Busy Pokémon!"
+      ]
+    },
+    {
+      "id": "OreburghCity_Text_SovereignWelcomeOvalStone",
+      "en_US": [
+        "Howdy, Trainer!\n",
+        "Welcome to Oreburgh City!\r",
+        "I’ve got a super cool stone that was\n",
+        "excavated from Oreburgh Mine.\r",
+        "To celebrate your arrival, I’ll give it\n",
+        "to you as a gift!\r"
       ]
     }
   ]

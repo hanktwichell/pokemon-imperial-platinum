@@ -182,6 +182,12 @@ TwinleafTownPlayerHouse1F_OnFrame_CutsceneAfterRivalBattle:
     Message TwinleafTownPlayerHouse1F_Text_PlayerReceivedRunningShoes
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
+    // Sovereign (E10): as in Renegade, Mom gives the Bicycle too (the Cycle Shop gives a Dawn Stone instead).
+    Message TwinleafTownPlayerHouse1F_Text_SovereignTakeYourBike
+    SetVar VAR_0x8004, ITEM_BICYCLE
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    SetFlag FLAG_RECEIVED_BICYCLE
     Message TwinleafTownPlayerHouse1F_Text_LetMeReadTheInstructions
     WaitButton
     CloseMessage

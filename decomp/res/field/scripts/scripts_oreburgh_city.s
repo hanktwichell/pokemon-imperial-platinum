@@ -341,7 +341,12 @@ OreburghCity_YoungsterWalkToPlayerZ751:
     GoTo OreburghCity_IllTakeYouToTheGym
     End
 
+// Sovereign (E10): as in Renegade, the guide first gives an Oval Stone from Oreburgh Mine.
 OreburghCity_IllTakeYouToTheGym:
+    Message OreburghCity_Text_SovereignWelcomeOvalStone
+    SetVar VAR_0x8004, ITEM_OVAL_STONE
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
     Message OreburghCity_Text_IllTakeYouToTheGym
     CloseMessage
     Common_SetFollowMeBGM

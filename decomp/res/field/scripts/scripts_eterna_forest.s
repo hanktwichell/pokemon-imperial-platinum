@@ -484,8 +484,25 @@ EternaForest_TrainerTipsSignpost:
     ShowScrollingSign EternaForest_Text_TrainerTipsItemsOnGround
     End
 
+// Sovereign (E10): as in Renegade, a piece of the Moss Rock falls off once: a Leaf Stone.
 EternaForest_MossRock:
-    EventMessage EternaForest_Text_RockIsCoveredInMoss
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    GoToIfSet FLAG_SOVEREIGN_RECEIVED_ETERNA_FOREST_LEAF_STONE, EternaForest_MossRockCool
+    Message EternaForest_Text_SovereignMossRockPieceFellOff
+    SetVar VAR_0x8004, ITEM_LEAF_STONE
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantityNoLineFeed
+    CloseMessage
+    SetFlag FLAG_SOVEREIGN_RECEIVED_ETERNA_FOREST_LEAF_STONE
+    ReleaseAll
+    End
+
+EternaForest_MossRockCool:
+    Message EternaForest_Text_RockIsCoveredInMoss
+    WaitButton
+    CloseMessage
+    ReleaseAll
     End
 
 EternaForest_OnFrame_CherylOldChateauCutscene:

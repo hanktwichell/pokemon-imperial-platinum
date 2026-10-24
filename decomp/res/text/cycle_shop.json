@@ -63,6 +63,17 @@
         "Acro Bike--a folding Bike designed for\n",
         "stunts like jumps and wheelies!"
       ]
+    },
+    {
+      "id": "CycleShop_Text_SovereignYouAlreadyOwnThisBike",
+      "en_US": [
+        "Oh, what’s that? You already own\n",
+        "this exact bicycle?\r",
+        "Hah! Looks like your mother has some\n",
+        "good taste in vehicles!\r",
+        "Then, I’ll let you have this rare stone\n",
+        "my CLEFAIRY found instead!\r"
+      ]
     }
   ]
 }
