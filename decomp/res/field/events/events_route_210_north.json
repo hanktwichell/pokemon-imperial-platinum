@@ -470,6 +470,21 @@
             "x": 540,
             "z": 528,
             "y": 8
+        },
+        {
+            "id": "LOCALID_SOVEREIGN_COUNTERPART",
+            "graphics_id": "OBJ_EVENT_GFX_VAR_0",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "0",
+            "script": 0,
+            "initial_dir": 2,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 0,
+            "z": 0,
+            "y": 0
         }
     ],
     "warp_events": [
@@ -480,5 +495,16 @@
             "dest_warp_id": 0
         }
     ],
-    "coord_events": []
+    "coord_events": [
+        {
+            "script": 8,
+            "x": 480,
+            "z": 528,
+            "width": 1,
+            "length": 5,
+            "y": 0,
+            "value": 0,
+            "var": "VAR_SOVEREIGN_ROUTE_210_COUNTERPART_STATE"
+        }
+    ]
 }

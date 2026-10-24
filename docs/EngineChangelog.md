@@ -4,6 +4,26 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 21) — Renegade's counterpart battles (Routes 202, 207, 210)
+
+- **Route 202:** Dawn or Lucas no longer demonstrates catching. They heal the player's Pokémon and battle with the
+  starter that's weak to the player's (Lv. 9), then give the 30 Poké Balls, with Renegade's lines.
+- **Route 207:** the counterpart battles first, a Lv. 29–30 team that depends on the player's starter. They then give
+  the Vs. Seeker as a training gift. The Dowsing Machine app still follows, as in Platinum (Renegade drops it here).
+- **Route 210 (north):** a new scene. The first time the player crosses the column past the fog, the counterpart walks
+  over, heals the party and battles (Lv. 44 team), then leaves. It's tracked in a new var,
+  `VAR_SOVEREIGN_ROUTE_210_COUNTERPART_STATE` (an unused one).
+- **Trainers:** 18 new ones (`TRAINER_SOVEREIGN_<DAWN|LUCAS>_ROUTE_<202|207|210>_<the player's starter>`), from
+  Renegade's trainers 928–945 and 963–968.
+- **A loss** blacks out, and the scene runs again on the next pass.
+
+Verified in a test build, entering each scene from its trigger:
+- Route 202 ran through the heal, the battle against Dawn's Piplup, "Wasn't that fun?" and the 30 Poké Balls.
+- Routes 207 and 210 ran their dialogue and started their battles (Piloswine and Clefable, Lv. 29; Alakazam,
+  Lv. 44). The test party lost both, so their post-battle lines weren't seen.
+
+The release build passes.
+
 ## E10 (part 20) — Renegade's Type Masters
 
 - **15 more Type Masters**, from Renegade, join Iron Island's Steel-type Master. Each battles one Pokémon of their
