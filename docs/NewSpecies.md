@@ -303,7 +303,7 @@ Evolutions waiting for an item from milestone E7: 0 (marked ⏳).
 | 786 | Tapu Lele | TAPU LELE | Sword/Shield | 17 | — | — |
 | 787 | Tapu Bulu | TAPU BULU | Sword/Shield | 17 | — | — |
 | 788 | Tapu Fini | TAPU FINI | Sword/Shield | 18 | — | — |
-| 789 | Cosmog | COSMOG | Scarlet/Violet | 2 | — | — |
+| 789 | Cosmog | COSMOG | Scarlet/Violet | 1 | — | — |
 | 790 | Cosmoem | COSMOEM | Scarlet/Violet | 2 | EVO_LEVEL 43 | — |
 | 791 | Solgaleo | SOLGALEO | Scarlet/Violet | 17 | EVO_USE_ITEM ITEM_SUN_STONE | — |
 | 792 | Lunala | LUNALA | Scarlet/Violet | 16 | EVO_USE_ITEM ITEM_MOON_STONE | — |

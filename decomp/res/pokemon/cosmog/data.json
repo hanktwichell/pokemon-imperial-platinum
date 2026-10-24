@@ -47,10 +47,6 @@
             [
                 1,
                 "MOVE_SPLASH"
-            ],
-            [
-                1,
-                "MOVE_TELEPORT"
             ]
         ],
         "by_tm": [],
