@@ -199,7 +199,6 @@ Made by the owner (2026-10-22):
     first Champion win, at the same time as the Celestic elder's visit.
 32. **Placeholders stay for now** (owner, 2026-10-24): event levels, the event-gift deliveryman's spot and the
     provisional legendary spots are adjusted later.
-
 33. **The legendary birds use Renegade's portals where they don't clash** (owner, 2026-10-24: keep them "if they
     don't conflict with anything we're adding"). They replace the birds' Oak roamer release.
     - **Moltres:** Renegade's portal in Victory Road's small room (Rock Climb). No clash.
@@ -210,6 +209,7 @@ Made by the owner (2026-10-22):
     - Renegade opens the portals after talking to Rowan after the Distortion World. That matches Renegade; Sovereign's
       other legendaries are post-game, and portals look different from Sovereign's shown legendaries. Both are noted
       for the owner.
+
 Open:
 - **Zapdos's portal spot** (decision 33): Renegade's island behind Valley Windworks is Zekrom's. Pick another spot,
   or leave Zapdos as an Oak roamer.
