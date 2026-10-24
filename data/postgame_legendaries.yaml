@@ -47,8 +47,9 @@ quests:
     location: "Cobalion — Iron Island B2F (side cave); Terrakion — Route 227 (rock pocket); Virizion — Eterna Forest (north corridor)"
     steps: All three are static encounters as soon as the chapter opens.
     built: >-
-      Virizion (CB-0035): in the side pocket at the top of Eterna Forest's north corridor (81, 12), past the Cut
-      trees (CB-0046 moved it off (80, 10), the only tile facing the hidden Insect Plate). Terrakion (CB-0036): in the rock pocket at the north end of Route 227 (759, 258). Cobalion (CB-0036): in the top pocket of
+      Virizion (CB-0035): at the top of Eterna Forest's north corridor (80, 10), past the Cut trees. It stood on the
+      only tile facing the hidden Insect Plate, so CB-0046 moved the plate into the corridor's west wall (79, 11).
+      Terrakion (CB-0036): in the rock pocket at the north end of Route 227 (759, 258). Cobalion (CB-0036): in the top pocket of
       Iron Island B2F's right room (17, 1), the side cave reached from B1F; an existing dead end in place of a new one.
   - chapter: Unova Chronicle
     name: The Young Sword
