@@ -5063,6 +5063,30 @@
     .short \destVar
     .endm
 
+    // Sovereign (FM): the event-gift deliveryman's gift number index (scrcmd.c sSovereignEventGifts). destSpecies: its
+    // species, or 0 if already given; destLevel: its level, or 0 for a Mythical's form he restyles instead
+    .macro SovereignGetEventGift index, destSpecies, destLevel
+    .short SCRCMD_SOVEREIGNGETEVENTGIFT
+    .short \index
+    .short \destSpecies
+    .short \destLevel
+    .endm
+
+    // Gives the event gift just added to the party (by GivePokemon) its form and signature move, and marks it given
+    .macro SovereignFinishEventGift index, partySlot
+    .short SCRCMD_SOVEREIGNFINISHEVENTGIFT
+    .short \index
+    .short \partySlot
+    .endm
+
+    // Restyles the party Pokémon into the entry's event form (Original Color Magearna): destVar TRUE if it could
+    .macro SovereignRestyleEventForm index, partySlot, destVar
+    .short SCRCMD_SOVEREIGNRESTYLEEVENTFORM
+    .short \index
+    .short \partySlot
+    .short \destVar
+    .endm
+
     // Sovereign (FM): sets a party Pokémon's form (a gift in a form: Battle Bond Greninja)
     .macro SovereignSetPartyMonForm partySlot, form
     .short SCRCMD_SOVEREIGNSETPARTYMONFORM

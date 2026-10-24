@@ -448,6 +448,9 @@ static BOOL ScrCmd_SovereignSetPartyMonForm(ScriptContext *ctx);
 static BOOL ScrCmd_SovereignGetParadoxForm(ScriptContext *ctx);
 static BOOL ScrCmd_SovereignSetParadoxGiven(ScriptContext *ctx);
 static BOOL ScrCmd_SovereignCheckParadoxEraComplete(ScriptContext *ctx);
+static BOOL ScrCmd_SovereignGetEventGift(ScriptContext *ctx);
+static BOOL ScrCmd_SovereignFinishEventGift(ScriptContext *ctx);
+static BOOL ScrCmd_SovereignRestyleEventForm(ScriptContext *ctx);
 static BOOL ScrCmd_StartFirstBattle(ScriptContext *ctx);
 static BOOL ScrCmd_StartCatchingTutorial(ScriptContext *ctx);
 static BOOL ScrCmd_SlatherHoneyTree(ScriptContext *ctx);
@@ -4192,6 +4195,119 @@ static BOOL ScrCmd_SovereignCheckParadoxEraComplete(ScriptContext *ctx)
 
     *destVar = era < PARADOX_ERA_COUNT
         && FieldSystem_TryGetVar(ctx->fieldSystem, sParadoxEraVars[era]) == (1 << PARADOX_PER_ERA) - 1;
+    return FALSE;
+}
+
+// Sovereign (FM): the event forms, which the official games gave at events, from the event-gift deliveryman in the
+// Fight Area Pokémon Center, once each (temporary placement, owner 2026-10-24): { species, form, level, signature move
+// (MOVE_NONE for none) }, in the order of his list. Given ones are bits 0-15 of VAR_SOVEREIGN_EVENT_GIFTS_1 and 16-31
+// of _2. A Mythical's event form (level 0) isn't a gift, as Mythicals never are (owner, 2026-10-23): he restyles one
+// the player caught instead, as often as asked (SovereignRestyleEventForm).
+enum SovereignEventGiftField {
+    EVENT_GIFT_SPECIES = 0,
+    EVENT_GIFT_FORM,
+    EVENT_GIFT_LEVEL,
+    EVENT_GIFT_MOVE,
+};
+
+static const u16 sSovereignEventGifts[][4] = {
+    { SPECIES_ROCKRUFF, 1, 10, MOVE_NONE }, // Own Tempo Rockruff
+    { SPECIES_MAGEARNA, 1, 0, MOVE_NONE }, // Original Color Magearna (restyled)
+    { SPECIES_ZARUDE, 1, 0, MOVE_NONE }, // Dada Zarude (restyled)
+    { SPECIES_FLOETTE, 1, 50, MOVE_LIGHT_OF_RUIN }, // Eternal Floette
+    { SPECIES_URSALUNA, 1, 70, MOVE_BLOOD_MOON }, // Bloodmoon Ursaluna
+    { SPECIES_GIMMIGHOUL, 1, 20, MOVE_NONE }, // Roaming Form Gimmighoul
+    { SPECIES_PIKACHU, 14, 5, MOVE_ZIPPY_ZAP }, // Partner Pikachu
+    { SPECIES_EEVEE, 1, 5, MOVE_VEEVEE_VOLLEY }, // Partner Eevee
+    { SPECIES_PIKACHU, 6, 20, MOVE_NONE }, // Cosplay Pikachu
+    { SPECIES_PIKACHU, 1, 20, MOVE_METEOR_MASH }, // Pikachu Rock Star
+    { SPECIES_PIKACHU, 2, 20, MOVE_ICICLE_CRASH }, // Pikachu Belle
+    { SPECIES_PIKACHU, 3, 20, MOVE_DRAINING_KISS }, // Pikachu Pop Star
+    { SPECIES_PIKACHU, 4, 20, MOVE_ELECTRIC_TERRAIN }, // Pikachu Ph.D.
+    { SPECIES_PIKACHU, 5, 20, MOVE_FLYING_PRESS }, // Pikachu Libre
+    { SPECIES_PIKACHU, 7, 25, MOVE_NONE }, // Original Cap Pikachu
+    { SPECIES_PIKACHU, 8, 25, MOVE_NONE }, // Hoenn Cap Pikachu
+    { SPECIES_PIKACHU, 9, 25, MOVE_NONE }, // Sinnoh Cap Pikachu
+    { SPECIES_PIKACHU, 10, 25, MOVE_NONE }, // Unova Cap Pikachu
+    { SPECIES_PIKACHU, 11, 25, MOVE_NONE }, // Kalos Cap Pikachu
+    { SPECIES_PIKACHU, 12, 25, MOVE_NONE }, // Alola Cap Pikachu
+    { SPECIES_PIKACHU, 13, 25, MOVE_NONE }, // Partner Cap Pikachu
+    { SPECIES_PIKACHU, 15, 25, MOVE_NONE }, // World Cap Pikachu
+};
+
+static u16 *Sovereign_EventGiftVar(FieldSystem *fieldSystem, int index)
+{
+    return FieldSystem_GetVarPointer(fieldSystem, index < 16 ? VAR_SOVEREIGN_EVENT_GIFTS_1 : VAR_SOVEREIGN_EVENT_GIFTS_2);
+}
+
+static BOOL ScrCmd_SovereignGetEventGift(ScriptContext *ctx)
+{
+    u16 index = ScriptContext_GetVar(ctx);
+    u16 *destSpecies = ScriptContext_GetVarPointer(ctx);
+    u16 *destLevel = ScriptContext_GetVarPointer(ctx);
+
+    *destSpecies = SPECIES_NONE;
+    *destLevel = 0;
+
+    if (index < NELEMS(sSovereignEventGifts)
+        && (sSovereignEventGifts[index][EVENT_GIFT_LEVEL] == 0
+            || (*Sovereign_EventGiftVar(ctx->fieldSystem, index) & (1 << (index % 16))) == 0)) {
+        *destSpecies = sSovereignEventGifts[index][EVENT_GIFT_SPECIES];
+        *destLevel = sSovereignEventGifts[index][EVENT_GIFT_LEVEL];
+    }
+
+    return FALSE;
+}
+
+// The deliveryman restyles a party Pokémon of a Mythical's event entry (level 0) into its event form: destVar TRUE if
+// it was that species in its base form, else FALSE.
+static BOOL ScrCmd_SovereignRestyleEventForm(ScriptContext *ctx)
+{
+    u16 index = ScriptContext_GetVar(ctx);
+    u16 partySlot = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), partySlot);
+
+    *destVar = FALSE;
+
+    if (index < NELEMS(sSovereignEventGifts)
+        && Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE
+        && Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) == sSovereignEventGifts[index][EVENT_GIFT_SPECIES]
+        && Pokemon_GetValue(mon, MON_DATA_FORM, NULL) == 0) {
+        int form = sSovereignEventGifts[index][EVENT_GIFT_FORM];
+
+        Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+        Pokemon_CalcAbility(mon);
+        Pokemon_CalcLevelAndStats(mon);
+        Pokedex_Capture(SaveData_GetPokedex(ctx->fieldSystem->saveData), mon);
+        *destVar = TRUE;
+    }
+
+    return FALSE;
+}
+
+static BOOL ScrCmd_SovereignFinishEventGift(ScriptContext *ctx)
+{
+    u16 index = ScriptContext_GetVar(ctx);
+    u16 partySlot = ScriptContext_GetVar(ctx);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), partySlot);
+
+    if (index >= NELEMS(sSovereignEventGifts)) {
+        return FALSE;
+    }
+
+    int form = sSovereignEventGifts[index][EVENT_GIFT_FORM];
+
+    Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+    Pokemon_CalcAbility(mon);
+    Pokemon_CalcLevelAndStats(mon);
+
+    if (sSovereignEventGifts[index][EVENT_GIFT_MOVE] != MOVE_NONE) {
+        Pokemon_ResetMoveSlot(mon, sSovereignEventGifts[index][EVENT_GIFT_MOVE], LEARNED_MOVES_MAX - 1);
+    }
+
+    Pokedex_Capture(SaveData_GetPokedex(ctx->fieldSystem->saveData), mon);
+    *Sovereign_EventGiftVar(ctx->fieldSystem, index) |= 1 << (index % 16);
     return FALSE;
 }
 

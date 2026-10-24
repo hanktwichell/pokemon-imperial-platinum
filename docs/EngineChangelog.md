@@ -4,6 +4,42 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## FM — Event forms and the event-gift deliveryman
+
+- **Deliveryman.** An event-gift deliveryman in the Fight Area Pokémon Center (temporary placement) gives each event
+  form once, from a list:
+  - Own Tempo Rockruff (Lv. 10).
+  - Eternal Floette (Lv. 50, with Light of Ruin).
+  - Bloodmoon Ursaluna (Lv. 70, with Blood Moon).
+  - Roaming Gimmighoul (Lv. 20).
+  - Partner Pikachu with Zippy Zap and Partner Eevee with Veevee Volley (Lv. 5).
+  - Cosplay Pikachu and its five costumes, each costume with its contest move (Lv. 20).
+  - The eight cap Pikachu (Lv. 25).
+- **Mythicals.** Magearna and Zarude are Mythical, and Mythicals are never gifts. He restyles a Magearna or Zarude the
+  player caught into Original Color Magearna or Dada Zarude instead.
+- The costumes, caps, partners and Eternal Floette don't evolve, as in the official games.
+- **Megas:**
+  - Mega Floette comes only from Eternal Floette, as in Legends: Z-A, and goes back to it.
+  - Original Color Magearna Mega Evolves into Mega Magearna (Original Color).
+- FM: 152 forms.
+
+Verified in the test build:
+- The list showed. Partner Pikachu came at Lv. 5, met in the Fight Area, with Zippy Zap and its partner Speed.
+- Asking for it again gave "I already delivered that one!". World Cap Pikachu came at Lv. 25.
+- Showing Donphan for Magearna gave the "isn't a MAGEARNA" line. Showing Magearna restyled it.
+- Release build passes.
+
+
+## FM — Midnight and Dusk Lycanroc
+
+- Rockruff evolves into Midday Lycanroc from 6:00 to 17:59, and into Midnight Lycanroc otherwise, as in Sun and Moon.
+- Own Tempo Rockruff (with Own Tempo) evolves into Dusk Lycanroc (Tough Claws) at twilight, 17:00 to 19:59.
+- Its Eggs are ordinary Rockruff. How players get it comes with the event-form gifts.
+- FM: 131 forms.
+
+Release build passes. Not replayed in the emulator: the evolution depends on the clock.
+
+
 ## FM — Sizes, plumages and other personality forms
 
 These forms are picked by the Pokémon's personality when it's made (wild, gift, Egg) and when it evolves into the

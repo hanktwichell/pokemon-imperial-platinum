@@ -5064,13 +5064,15 @@ static int Pokemon_GetFormNarcIndex(int monSpecies, int monForm)
 
 // Sovereign (E8): the Mega or Primal form this species takes with the held item (Mega Rayquaza: with a move it knows
 // and no Mega Stone held), or 0 if none. primal picks Primal Reversion instead of Mega Evolution. Where the stone gives
-// one Mega for each form (monForm) of a female's or personality form, the form picks its own: Mega Meowstic (Female)
-// for a Female Meowstic, Mega Tatsugiri (Droopy Form) for a Droopy Tatsugiri.
+// one Mega for each form (monForm) of a female's, personality or event form, the form picks its own: Mega Meowstic
+// (Female) for a Female Meowstic, Mega Tatsugiri (Droopy Form) for a Droopy Tatsugiri, Mega Magearna (Original Color)
+// for Original Color Magearna.
 int Pokemon_SovereignBattleForm(u16 species, int monForm, u16 heldItem, const u16 *moves, BOOL primal)
 {
     BOOL holdsMegaStone = FALSE;
     const SovereignForm *entry = Pokemon_FindSovereignForm(species, monForm);
-    int megasToSkip = entry != NULL && (entry->kind == SOVEREIGN_FORM_GENDER || entry->kind == SOVEREIGN_FORM_PERSONALITY)
+    int megasToSkip = entry != NULL
+            && (entry->kind == SOVEREIGN_FORM_GENDER || entry->kind == SOVEREIGN_FORM_PERSONALITY || entry->kind == SOVEREIGN_FORM_REGIONAL)
         ? monForm
         : 0;
 
@@ -5099,6 +5101,12 @@ int Pokemon_SovereignBattleForm(u16 species, int monForm, u16 heldItem, const u1
                     form = &sSovereignForms[j];
                     megasToSkip--;
                 }
+            }
+
+            // A Mega that goes back to a form of its own comes only from that form (Mega Floette: Eternal Floette).
+            int megaBase = Pokemon_SovereignBattleFormBase(species, form->form);
+            if (megaBase != 0 && megaBase != monForm) {
+                return 0;
             }
 
             return form->form;
@@ -5342,6 +5350,27 @@ void Pokemon_SovereignSetEvolvedSpecies(Pokemon *mon, u16 targetSpecies, int evo
 {
     u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     int form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+
+    // Rockruff evolves into Midday Lycanroc from 6:00 to 17:59 and Midnight Lycanroc otherwise, as in Sun and Moon. An
+    // Own Tempo Rockruff evolves into Dusk Lycanroc at twilight (17:00 to 19:59).
+    if (species == SPECIES_ROCKRUFF && targetSpecies == SPECIES_LYCANROC) {
+        RTCTime time;
+        int lycanrocForm;
+
+        RTC_GetCurrentTime(&time);
+
+        if (form == 1 && GetTimeOfDay() == TIMEOFDAY_TWILIGHT) {
+            lycanrocForm = 2;
+        } else if (time.hour >= 6 && time.hour < 18) {
+            lycanrocForm = 0;
+        } else {
+            lycanrocForm = 1;
+        }
+
+        Pokemon_SetValue(mon, MON_DATA_FORM, &lycanrocForm);
+        Pokemon_SetValue(mon, MON_DATA_SPECIES, &targetSpecies);
+        return;
+    }
 
     if (evoType & EVO_TYPE_SOVEREIGN_FORM) {
         int targetForm = evoType & ~EVO_TYPE_SOVEREIGN_FORM;

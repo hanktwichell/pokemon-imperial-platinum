@@ -3751,3 +3751,59 @@ their new `forms/*/data.json`, `decomp/src/pokemon.c`, `docs/TechnicalDesign.md`
    Roaming, the Pikachu caps and the Let's Go partners.
 2. Overworld sprites from the owner (in a few days): size them naturally against the existing overworld Pokémon.
 3. The owner's final placements for the provisional spots (Paradox dealers, Greninja NPC, Chronicle encounters).
+
+---
+
+## CB-0067 — FM: Midnight and Dusk Lycanroc (Sat Oct 24 2026, 02:07 CDT)
+
+**Implemented:**
+- Rockruff evolves into Midday Lycanroc from 6:00 to 17:59, otherwise Midnight Lycanroc (Sun and Moon hours).
+- Own Tempo Rockruff (a form for good) evolves into Dusk Lycanroc at twilight (17:00 to 19:59).
+- Own Tempo Rockruff's Eggs are ordinary Rockruff (`NOT_INHERITED_FORMS` in `gen_forms.py`).
+- Release build passes. Not replayed: the evolution, which depends on the clock.
+
+**Files modified:** `tools/engine/gen_forms.py`, `decomp/include/data/sovereign_forms.h`,
+`decomp/include/constants/sovereign_forms.h`, `decomp/tools/dataproc/src/sovereign_forms.inc`,
+`decomp/res/pokemon/{rockruff,lycanroc}/meson.build`, their new `forms/*/data.json`, `decomp/src/pokemon.c`,
+`docs/TechnicalDesign.md`, `docs/EngineRoadmap.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. An event-form gift NPC (temporary placement) for Own Tempo Rockruff, Magearna Original Color, Dada Zarude,
+   Eternal Floette, the Pikachu caps and the Let's Go partners; then Oricorio's styles (nectars), Keldeo Resolute,
+   Bloodmoon Ursaluna and Gimmighoul Roaming.
+2. Overworld sprites from the owner (in a few days): size them naturally against the existing overworld Pokémon.
+3. The owner's final placements for the provisional spots (Paradox dealers, Greninja NPC, Chronicle encounters).
+
+---
+
+## CB-0068 — FM: event forms and the event-gift deliveryman (Sat Oct 24 2026, 02:25 CDT)
+
+**Implemented:**
+- New forms for good:
+  - Pikachu: 6 costumes, 8 caps and the Let's Go partner.
+  - Partner Eevee, Eternal Floette, Original Color Magearna, Dada Zarude, Bloodmoon Ursaluna, Roaming Gimmighoul.
+  - The costumes, caps, partners and Eternal Floette don't evolve.
+- Event-gift deliveryman in the Fight Area Pokémon Center (2, 7), a temporary placement.
+  - Gives each non-Mythical event form once from a list, with its signature move: Own Tempo Rockruff, Eternal Floette,
+    Bloodmoon Ursaluna, Roaming Gimmighoul, the partners, the costumes and the caps.
+  - Mythicals are never gifts, so he restyles a caught Magearna or Zarude into Original Color Magearna or Dada Zarude.
+- Mega Floette only from Eternal Floette (and back to it); Original Color Magearna takes Mega Magearna (Original
+  Color).
+- Verified in the emulator: the list, Partner Pikachu (Zippy Zap, met in the Fight Area), the already-given line,
+  World Cap Pikachu, and the restyle (wrong Pokémon and Magearna).
+- **For the owner:** the event levels and the deliveryman's spot are placeholders.
+
+**Files modified:** `tools/engine/gen_forms.py`, generated form data (`decomp/include/data/sovereign_forms.h`,
+`decomp/include/constants/sovereign_forms.h`, `decomp/tools/dataproc/src/sovereign_forms.inc`, the species'
+`meson.build` and new `forms/*/data.json`), `decomp/src/pokemon.c`, `decomp/src/scrcmd.c`,
+`decomp/include/data/scripts/scrcmd.h`, `decomp/asm/macros/scrcmd.inc`, `decomp/generated/vars_flags.txt`,
+`decomp/res/field/scripts/scripts_fight_area_pokecenter_1f.s`, `decomp/res/field/events/events_fight_area_pokecenter_1f.json`,
+`decomp/res/text/fight_area_pokecenter_1f.json`, `docs/GiftPokemon_Sovereign.md`, `docs/TechnicalDesign.md`,
+`docs/EngineRoadmap.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Milestone FM: Oricorio's styles (the four nectars), Keldeo's Resolute Form (knowing Secret Sword), then the
+   cosmetic forms (about 228: Unown, Vivillon, Alcremie, Furfrou, Flabébé colors and others).
+2. Overworld sprites from the owner (in a few days): size them naturally against the existing overworld Pokémon.
+3. The owner's final placements for the provisional spots (Paradox dealers, Greninja NPC, event deliveryman,
+   Chronicle encounters).

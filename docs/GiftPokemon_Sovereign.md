@@ -27,6 +27,26 @@ Notes
 - The Eterna, Hearthome and Veilstone Pokémon Centers also hold Renegade's save-fixing NPC; the Interviewer stands on the
   opposite side of the counter.
 
+## Fight Area Pokémon Center (post-game, temporary placements)
+
+- **Battle Bond Greninja** (Lv. 50, with Water Shuriken, Aerial Ace, Double Team, Night Slash) from an Ace Trainer,
+  once (owner, 2026-10-24).
+- **Event forms** from the event-gift deliveryman, each once (owner rule: every form exists):
+
+| Pokémon | Lv. | Signature move |
+|---|---|---|
+| Own Tempo Rockruff | 10 | — |
+| Eternal Floette | 50 | Light of Ruin |
+| Bloodmoon Ursaluna | 70 | Blood Moon |
+| Roaming Gimmighoul | 20 | — |
+| Partner Pikachu, Partner Eevee | 5 | Zippy Zap, Veevee Volley |
+| Cosplay Pikachu | 20 | — |
+| Pikachu Rock Star, Belle, Pop Star, Ph.D., Libre | 20 | Meteor Mash, Icicle Crash, Draining Kiss, Electric Terrain, Flying Press |
+| Original, Hoenn, Sinnoh, Unova, Kalos, Alola, Partner and World Cap Pikachu | 25 | — |
+
+  Magearna and Zarude are Mythical, so the deliveryman doesn't give them. He restyles a caught one into Original Color
+  Magearna or Dada Zarude instead.
+
 ## No legendary gifts
 
 Legendaries, Mythicals and Ultra Beasts are never gifts: the player battles and catches every one (owner, 2026-10-23).
