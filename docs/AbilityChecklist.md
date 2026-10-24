@@ -107,7 +107,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 222 | Receiver | Gen 7 | not yet (no battle effect) |
 | 223 | PowerOfAlchemy | Gen 7 | not yet (no battle effect) |
 | 224 | Beast Boost | Gen 7 | yes: its highest stat +1 for each foe its move knocks out |
-| 225 | RKS System | Gen 7 | not yet (no battle effect) |
+| 225 | RKS System | Gen 7 | yes: Silvally takes its held Memory's type (and form) |
 | 226 | Electric Surge | Gen 7 | yes: sets Electric Terrain on entry |
 | 227 | Psychic Surge | Gen 7 | yes: sets Psychic Terrain on entry |
 | 228 | Misty Surge | Gen 7 | yes: sets Misty Terrain on entry |

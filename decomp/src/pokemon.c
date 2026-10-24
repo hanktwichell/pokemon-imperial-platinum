@@ -1246,7 +1246,11 @@ static u32 BoxPokemon_GetDataInternal(BoxPokemon *boxMon, enum PokemonDataParam 
     case MON_DATA_TYPE_1:
     case MON_DATA_TYPE_2:
         if (monDataBlockA->species == SPECIES_ARCEUS && monDataBlockA->ability == ABILITY_MULTITYPE) {
-            result = Pokemon_GetArceusTypeOf(Item_LoadParam(monDataBlockA->heldItem, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_SYSTEM));
+            result = monDataBlockA->heldItem == ITEM_PIXIE_PLATE // Sovereign (FM): Fairy Arceus
+                ? TYPE_FAIRY
+                : Pokemon_GetArceusTypeOf(Item_LoadParam(monDataBlockA->heldItem, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_SYSTEM));
+        } else if (monDataBlockA->species == SPECIES_SILVALLY && monDataBlockA->ability == ABILITY_RKS_SYSTEM) {
+            result = Pokemon_SovereignMemoryType(monDataBlockA->heldItem); // Sovereign (FM): Silvally's Memory
         } else {
             result = SpeciesData_GetFormValue(monDataBlockA->species, monDataBlockB->form, SPECIES_DATA_TYPE_1 + (param - MON_DATA_TYPE_1));
         }
@@ -4398,8 +4402,22 @@ void BoxPokemon_SetArceusForm(BoxPokemon *boxMon)
     int monHeldItem = BoxPokemon_GetValue(boxMon, MON_DATA_HELD_ITEM, NULL);
 
     if (monSpecies == SPECIES_ARCEUS && monAbility == ABILITY_MULTITYPE) {
-        int monForm = Pokemon_GetArceusTypeOf(Item_LoadParam(monHeldItem, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_SYSTEM));
+        int monForm = monHeldItem == ITEM_PIXIE_PLATE // Sovereign (FM): Fairy Arceus (form 9, Fairy's type ID)
+            ? TYPE_FAIRY
+            : Pokemon_GetArceusTypeOf(Item_LoadParam(monHeldItem, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_SYSTEM));
         BoxPokemon_SetValue(boxMon, MON_DATA_FORM, &monForm);
+    }
+
+    // Sovereign (FM): Silvally's form is its Memory's type, like Arceus's (RKS System), and Genesect's follows its
+    // Drive (1 Douse, 2 Shock, 3 Burn, 4 Chill).
+    if (monSpecies == SPECIES_SILVALLY && monAbility == ABILITY_RKS_SYSTEM) {
+        int form = Pokemon_SovereignMemoryType(monHeldItem);
+        BoxPokemon_SetValue(boxMon, MON_DATA_FORM, &form);
+    }
+
+    if (monSpecies == SPECIES_GENESECT) {
+        int form = monHeldItem >= ITEM_DOUSE_DRIVE && monHeldItem <= ITEM_CHILL_DRIVE ? monHeldItem - ITEM_DOUSE_DRIVE + 1 : 0;
+        BoxPokemon_SetValue(boxMon, MON_DATA_FORM, &form);
     }
 
     // Sovereign (FM): Ogerpon's masks and Origin Dialga/Palkia follow the held item, wherever the item changes (every
@@ -4412,6 +4430,38 @@ void BoxPokemon_SetArceusForm(BoxPokemon *boxMon)
             BoxPokemon_CalcAbility(boxMon);
         }
     }
+}
+
+// Sovereign (FM): the type a Memory gives Silvally (RKS System) and Multi-Attack, or Normal for any other item.
+int Pokemon_SovereignMemoryType(u16 item)
+{
+    static const u8 memoryTypes[] = {
+        TYPE_FIGHTING, TYPE_FLYING, TYPE_POISON, TYPE_GROUND, TYPE_ROCK, TYPE_BUG, TYPE_GHOST, TYPE_STEEL, TYPE_FIRE,
+        TYPE_WATER, TYPE_GRASS, TYPE_ELECTRIC, TYPE_PSYCHIC, TYPE_ICE, TYPE_DRAGON, TYPE_DARK, TYPE_FAIRY
+    };
+
+    return item >= ITEM_FIGHTING_MEMORY && item <= ITEM_FAIRY_MEMORY ? memoryTypes[item - ITEM_FIGHTING_MEMORY] : TYPE_NORMAL;
+}
+
+// Sovereign (FM): the type a held item gives a move whose type follows it, or -1: Judgment with the Pixie Plate
+// (Fairy; Platinum's plates have their hold effects), Multi-Attack with a Memory, Techno Blast with a Drive.
+int Pokemon_SovereignItemMoveType(u16 move, u16 item)
+{
+    static const u8 driveTypes[] = { TYPE_WATER, TYPE_ELECTRIC, TYPE_FIRE, TYPE_ICE };
+
+    if (move == MOVE_JUDGMENT && item == ITEM_PIXIE_PLATE) {
+        return TYPE_FAIRY;
+    }
+
+    if (move == MOVE_MULTI_ATTACK) {
+        return Pokemon_SovereignMemoryType(item);
+    }
+
+    if (move == MOVE_TECHNO_BLAST && item >= ITEM_DOUSE_DRIVE && item <= ITEM_CHILL_DRIVE) {
+        return driveTypes[item - ITEM_DOUSE_DRIVE];
+    }
+
+    return -1;
 }
 
 u8 Pokemon_GetArceusTypeOf(u16 itemHoldEffect)
@@ -5497,6 +5547,13 @@ BOOL Pokemon_SovereignItemIsLocked(u16 species, u16 item)
     }
 
     if (species == SPECIES_NECROZMA && item == ITEM_ULTRANECROZIUM_Z) {
+        return TRUE;
+    }
+
+    // Arceus's Pixie Plate, Silvally's Memories and Genesect's Drives, as in the Gen V+ games.
+    if ((species == SPECIES_ARCEUS && item == ITEM_PIXIE_PLATE)
+        || (species == SPECIES_SILVALLY && item >= ITEM_FIGHTING_MEMORY && item <= ITEM_FAIRY_MEMORY)
+        || (species == SPECIES_GENESECT && item >= ITEM_DOUSE_DRIVE && item <= ITEM_CHILL_DRIVE)) {
         return TRUE;
     }
 

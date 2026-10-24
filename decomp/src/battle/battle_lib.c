@@ -7569,6 +7569,9 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
             && battleCtx->battleMons[battleCtx->msgBattlerTemp].curHP
             && Battler_Ability(battleCtx, battleCtx->msgBattlerTemp) == ABILITY_MULTITYPE) {
             arceusForm = Pokemon_GetArceusTypeOf(Item_LoadParam(battleCtx->battleMons[battleCtx->msgBattlerTemp].heldItem, ITEM_PARAM_HOLD_EFFECT, HEAP_ID_BATTLE));
+            if (battleCtx->battleMons[battleCtx->msgBattlerTemp].heldItem == ITEM_PIXIE_PLATE) {
+                arceusForm = TYPE_FAIRY; // Sovereign (FM): Fairy Arceus
+            }
 
             if (battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum != arceusForm) {
                 battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = arceusForm;
@@ -8452,6 +8455,12 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
             movePower = movePower * (100 + attackerParams.heldItemPower) / 100;
             break;
         }
+    }
+
+    // Sovereign (FM): the Pixie Plate and the Fairy Feather power up Fairy moves by 20%, like the other plates.
+    if ((Battler_HeldItem(battleCtx, attacker) == ITEM_PIXIE_PLATE || Battler_HeldItem(battleCtx, attacker) == ITEM_FAIRY_FEATHER)
+        && moveType == TYPE_FAIRY) {
+        movePower = movePower * 120 / 100;
     }
 
     if (attackerParams.heldItemEffect == HOLD_EFFECT_CHOICE_ATK) {
@@ -9697,7 +9706,12 @@ static u8 Battler_MonType(BattleContext *battleCtx, int battler, enum BattleMonP
         GF_ASSERT(FALSE);
     }
 
+    // Sovereign (FM): Fairy Arceus.
     if (battleCtx->battleMons[battler].species == SPECIES_ARCEUS
+        && battleCtx->battleMons[battler].ability == ABILITY_MULTITYPE
+        && battleCtx->battleMons[battler].heldItem == ITEM_PIXIE_PLATE) {
+        type = TYPE_FAIRY;
+    } else if (battleCtx->battleMons[battler].species == SPECIES_ARCEUS
         && battleCtx->battleMons[battler].ability == ABILITY_MULTITYPE) {
         switch (BattleSystem_GetItemData(battleCtx, battleCtx->battleMons[battler].heldItem, ITEM_PARAM_HOLD_EFFECT)) {
         case HOLD_EFFECT_ARCEUS_FIRE:
@@ -9916,6 +9930,12 @@ int Sovereign_AuraWheelType(u16 species, int form)
 static int CalcMoveType(BattleSystem *battleSys, BattleContext *battleCtx, int item, int move)
 {
     int type;
+
+    // Sovereign (FM): Judgment with the Pixie Plate, Multi-Attack with a Memory, Techno Blast with a Drive. (item is
+    // the battler; Klutz and Embargo leave Battler_HeldItem empty.)
+    if (Pokemon_SovereignItemMoveType(move, Battler_HeldItem(battleCtx, item)) >= 0) {
+        return Pokemon_SovereignItemMoveType(move, Battler_HeldItem(battleCtx, item));
+    }
 
     switch (move) {
     case MOVE_NATURAL_GIFT:
@@ -10207,6 +10227,11 @@ int BattleAI_SwitchedSlot(BattleSystem *battleSys, int battler)
 int Move_CalcVariableType(BattleSystem *battleSys, BattleContext *battleCtx, Pokemon *mon, int move)
 {
     int type;
+
+    // Sovereign (FM): Judgment with the Pixie Plate, Multi-Attack with a Memory, Techno Blast with a Drive.
+    if (Pokemon_SovereignItemMoveType(move, Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL)) >= 0) {
+        return Pokemon_SovereignItemMoveType(move, Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL));
+    }
 
     switch (move) {
     case MOVE_AURA_WHEEL: // Sovereign (FM)

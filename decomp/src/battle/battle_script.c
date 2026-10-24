@@ -1346,6 +1346,11 @@ static void BattleScript_CalcMoveDamage(BattleSystem *battleSys, BattleContext *
     if (battleCtx->moveCur == MOVE_AURA_WHEEL) {
         battleCtx->moveType = Sovereign_AuraWheelType(ATTACKING_MON.species, ATTACKING_MON.formNum);
     }
+
+    // Sovereign (FM): Judgment with the Pixie Plate, Multi-Attack with a Memory, Techno Blast with a Drive.
+    if (Pokemon_SovereignItemMoveType(battleCtx->moveCur, Battler_HeldItem(battleCtx, battleCtx->attacker)) >= 0) {
+        battleCtx->moveType = Pokemon_SovereignItemMoveType(battleCtx->moveCur, Battler_HeldItem(battleCtx, battleCtx->attacker));
+    }
     moveType = Sovereign_AbilityMoveType(Battler_Ability(battleCtx, battleCtx->attacker), battleCtx->moveCur, battleCtx->moveType ? battleCtx->moveType : CURRENT_MOVE_DATA.type); // Sovereign (item 11)
 
     battleCtx->damage = BattleSystem_CalcMoveDamage(battleSys,

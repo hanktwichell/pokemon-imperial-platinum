@@ -264,6 +264,7 @@ IMPLEMENTED = {
     241: "yes: Surf or Dive catches prey; a hit spits it for 1/4 HP and Defense -1 or paralysis",  # Gulp Missile
     304: "yes: Terastal Form as it enters battle, until the battle ends",  # Tera Shift
     305: "yes: at full HP, damaging moves are not very effective on it",  # Tera Shell
+    225: "yes: Silvally takes its held Memory's type (and form)",  # RKS System
 }
 
 
