@@ -4,6 +4,25 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 8) — No TMs in the shops: Renegade's Veilstone 3F and Game Corner prizes
+
+Read from Renegade's ROM (its mart lists and prize table sit where Platinum's do in `arm9`). These are the only shop
+lists Renegade changed.
+
+- **Veilstone Department Store 3F is the "Stone Corner".**
+  - Top counter: Fire, Ice, Leaf, Moon, Sun, Thunder and Water Stones.
+  - Bottom counter: Dawn and Dusk Stones, Everstone, Hard Stone, Oval Stone and Shiny Stone.
+  - The clerks' tips and every floor's directory say so.
+- **Game Corner prizes are held items, not TMs:**
+  - for 1,000 coins: Focus Sash, Wide Lens, Zoom Lens, Metronome, Light Clay, Expert Belt, Muscle Band, Wise Glasses,
+    Life Orb, Toxic Orb, Flame Orb, Leftovers, Mental Herb, Power Herb and White Herb;
+  - for 2,000 coins: King's Rock, Metal Coat, Deep Sea Tooth and Deep Sea Scale.
+- Every TM that left the shops is found or given elsewhere: `import_renegade_items.py`'s loss check finds none
+  missing. The Battle Frontier's BP shop still has its TMs.
+
+Verified in the test build: the 3F top counter lists the stones (a Fire Stone bought for ₽2,100), and the prize
+list starts with Focus Sash, Wide Lens and Zoom Lens. The release build passes.
+
 ## E10 (part 7) — Iron Island as in Renegade: Riley's battle, HM04, the Steel-type Master
 
 - **Riley battles the player at Iron Island's entrance** instead of handing over HM04. His team is Renegade's,

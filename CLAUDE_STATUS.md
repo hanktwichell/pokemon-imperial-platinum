@@ -4138,3 +4138,22 @@ events and text, `decomp/res/trainers/data/sovereign_{riley,steel_master}_iron_i
    from its ROM.
 3. Renegade's NPCs: Trainers' School Hidden Power teller and baby Egg, Item Fanatic, Rare Berry seller, Dragon Scale
    in the Veilstone Pokémon Center, Super Rod in Snowpoint.
+
+## CB-0082 — 2026-10-24, 6:03 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** E10 part 8, no TMs in the shops (Renegade's lists, read from its ROM's `arm9`).
+- Veilstone 3F "Stone Corner": the seven elemental stones (Ice Stone for Renegade's Contest Pass) up top; Dawn,
+  Dusk, Everstone, Hard Stone, Oval and Shiny Stones below. Clerk tips and floor directories updated.
+- Game Corner prizes: 15 held items at 1,000 coins, King's Rock, Metal Coat and the Deep Sea items at 2,000.
+- The importer's loss check finds every TM still obtainable.
+- Verified in the test build: the 3F stones (bought a Fire Stone), the prize list. Release build and docs pass.
+
+**Files modified:** `decomp/include/data/mart_items.h`, `decomp/src/scrcmd_game_corner_prize.c`,
+`decomp/res/text/veilstone_store_*.json`, `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`,
+`docs/ItemChanges_Sovereign.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Ask the owner about Renegade's Snowpoint Temple scene (story Regigigas, Candice's HM08).
+2. Renegade's NPCs: Trainers' School Hidden Power teller and baby Egg, Item Fanatic (Floaroma), Rare Berry seller
+   (Route 208), Dragon Scale in the Veilstone Pokémon Center, Super Rod in Snowpoint.
+3. Renegade's trainers from its ROM (`trdata`/`trpoke`), with `data/trainers_sovereign.yaml` on top.
