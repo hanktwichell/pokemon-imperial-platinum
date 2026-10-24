@@ -19,26 +19,27 @@ BOOL ScrCmd_GetGameCornerPrizeData(ScriptContext *ctx)
     u16 *item = ScriptContext_GetVarPointer(ctx);
     u16 *price = ScriptContext_GetVarPointer(ctx);
 
+    // Sovereign (E10): Renegade Platinum's prizes, held and evolution items instead of TMs.
     static const GameCornerPrize sGameCornerPrizeData[] = {
-        { ITEM_SILK_SCARF, 1000 },
+        { ITEM_FOCUS_SASH, 1000 },
         { ITEM_WIDE_LENS, 1000 },
         { ITEM_ZOOM_LENS, 1000 },
         { ITEM_METRONOME, 1000 },
-        { ITEM_TM90, 2000 },
-        { ITEM_TM58, 2000 },
-        { ITEM_TM75, 4000 },
-        { ITEM_TM32, 4000 },
-        { ITEM_TM44, 6000 },
-        { ITEM_TM89, 6000 },
-        { ITEM_TM10, 6000 },
-        { ITEM_TM27, 8000 },
-        { ITEM_TM21, 8000 },
-        { ITEM_TM35, 10000 },
-        { ITEM_TM24, 10000 },
-        { ITEM_TM13, 10000 },
-        { ITEM_TM29, 10000 },
-        { ITEM_TM74, 15000 },
-        { ITEM_TM68, 20000 }
+        { ITEM_LIGHT_CLAY, 1000 },
+        { ITEM_EXPERT_BELT, 1000 },
+        { ITEM_MUSCLE_BAND, 1000 },
+        { ITEM_WISE_GLASSES, 1000 },
+        { ITEM_LIFE_ORB, 1000 },
+        { ITEM_TOXIC_ORB, 1000 },
+        { ITEM_FLAME_ORB, 1000 },
+        { ITEM_LEFTOVERS, 1000 },
+        { ITEM_MENTAL_HERB, 1000 },
+        { ITEM_POWER_HERB, 1000 },
+        { ITEM_WHITE_HERB, 1000 },
+        { ITEM_KINGS_ROCK, 2000 },
+        { ITEM_METAL_COAT, 2000 },
+        { ITEM_DEEPSEATOOTH, 2000 },
+        { ITEM_DEEPSEASCALE, 2000 }
     };
 
     *item = sGameCornerPrizeData[index].item;

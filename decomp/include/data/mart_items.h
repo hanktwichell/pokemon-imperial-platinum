@@ -146,24 +146,25 @@ const u16 VeilstoneDeptStoreStock_2F_MID[] = {
     SHOP_ITEM_END
 };
 
+// Sovereign (E10): Renegade Platinum's 3F sells evolution stones, not TMs (its Contest Pass is the Ice Stone).
 const u16 VeilstoneDeptStoreStock_3F_UP[] = {
-    ITEM_TM83,
-    ITEM_TM17,
-    ITEM_TM54,
-    ITEM_TM20,
-    ITEM_TM33,
-    ITEM_TM16,
-    ITEM_TM70,
+    ITEM_FIRE_STONE,
+    ITEM_ICE_STONE,
+    ITEM_LEAF_STONE,
+    ITEM_MOON_STONE,
+    ITEM_SUN_STONE,
+    ITEM_THUNDERSTONE,
+    ITEM_WATER_STONE,
     SHOP_ITEM_END
 };
 
 const u16 VeilstoneDeptStoreStock_3F_DOWN[] = {
-    ITEM_TM38,
-    ITEM_TM25,
-    ITEM_TM14,
-    ITEM_TM22,
-    ITEM_TM52,
-    ITEM_TM15,
+    ITEM_DAWN_STONE,
+    ITEM_DUSK_STONE,
+    ITEM_EVERSTONE,
+    ITEM_HARD_STONE,
+    ITEM_OVAL_STONE,
+    ITEM_SHINY_STONE,
     SHOP_ITEM_END
 };
 
