@@ -1186,7 +1186,7 @@ existing spots over new rooms (2026-10-23), so each legendary planned for a new 
   has its own menu.
 - **Life and Destruction**, the Kalos key (Lv. 70):
   - Xerneas in the green nook beside the Old Chateau in Eterna Forest.
-  - Yveltal at the end of the Lost Tower top floor's east corridor.
+  - Yveltal at the end of the Lost Tower top floor's east corridor (moved to Route 229 on 2026-10-24).
   - Zygarde (50% Forme) in an alcove of Wayward Cave B1F once both are caught.
 - **Other legends:**
   - The Archivist gives the **Prison Bottle**, not obtainable anywhere before.
@@ -1237,7 +1237,7 @@ The Unova Chronicle's Forces of Nature (`docs/PostgameLegendaries.md`):
     your next Hall of Fame." The Archivist then releases it again.
 - With both caught, he gives the **Reveal Glass** ("this REVEAL GLASS shows their true forms"), which was not
   obtainable anywhere before. Then: "Take TORNADUS and THUNDURUS to the ruins on Route 228, and see!"
-- **Landorus** (Lv. 65) appears in Route 228's ruins (the Rock Peak Ruins chamber) while both are in the party.
+- **Landorus** (Lv. 65) appears in Route 228's ruins (the Rock Peak Ruins chamber) while both are in the party (moved to Route 228's sand field on 2026-10-24).
   - The design asked for a new shrine; the existing chamber stands in.
   - The chamber had no scripts of its own and now has its own script archives.
 - **Enamorus** (Lv. 65) then waits by the tablet at the north end of Route 224, the Flower Paradise gate.

@@ -11,19 +11,47 @@ jobs:
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
+      # The apt step has timed out often (2026-10-22 to 24). Its package lists and .deb files are cached: on a cache hit
+      # the install runs offline from them, and only falls back to the network if that fails.
+      - name: Restore apt cache
+        id: apt-cache
+        uses: actions/cache/restore@v4
+        with:
+          path: ~/apt-cache
+          key: apt-v1-ubuntu-24.04-${{ hashFiles('.github/workflows/build.yml') }}
       - name: Install dependencies
-        # apt has hung on the runner for the whole job timeout (2026-10-22, twice): give it network timeouts and
-        # retries, and stop the step after 10 minutes instead.
         timeout-minutes: 10
         run: |
+          PACKAGES="bison flex g++ gcc-arm-none-eabi make ninja-build pkg-config wget python3 xz-utils nasm libc6:i386 libpng-dev libgl1 libglib2.0-0t64 libx11-6"
           sudo dpkg --add-architecture i386
+          if [ -d ~/apt-cache/lists ] && [ -d ~/apt-cache/archives ]; then
+            sudo cp -a ~/apt-cache/lists/. /var/lib/apt/lists/
+            sudo cp -a ~/apt-cache/archives/. /var/cache/apt/archives/
+            if sudo apt-get install -y -qq --no-download $PACKAGES; then
+              echo "Installed from the apt cache"
+              exit 0
+            fi
+            echo "Offline install from the cache failed; downloading instead"
+          fi
           APT_OPTS="-o Acquire::Retries=3 -o Acquire::http::Timeout=30 -o Acquire::https::Timeout=30"
           for attempt in 1 2 3; do
             sudo apt-get $APT_OPTS update -qq && break
             echo "apt-get update failed (attempt $attempt), retrying"
             sleep 10
           done
-          sudo apt-get $APT_OPTS install -y -qq bison flex g++ gcc-arm-none-eabi make ninja-build pkg-config wget python3 xz-utils nasm libc6:i386 libpng-dev libgl1 libglib2.0-0t64 libx11-6
+          sudo apt-get $APT_OPTS install -y -qq $PACKAGES
+          # Keep what was downloaded for the next run.
+          mkdir -p ~/apt-cache/lists ~/apt-cache/archives
+          sudo cp -a /var/lib/apt/lists/. ~/apt-cache/lists/
+          sudo cp -a /var/cache/apt/archives/*.deb ~/apt-cache/archives/ 2>/dev/null || true
+          sudo rm -f ~/apt-cache/lists/lock
+          sudo chown -R "$(id -u):$(id -g)" ~/apt-cache
+      - name: Save apt cache
+        if: steps.apt-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: ~/apt-cache
+          key: apt-v1-ubuntu-24.04-${{ hashFiles('.github/workflows/build.yml') }}
       - name: Cache subprojects and toolchain
         uses: actions/cache@v4
         with:

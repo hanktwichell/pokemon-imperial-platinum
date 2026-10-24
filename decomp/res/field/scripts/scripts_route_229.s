@@ -6,7 +6,37 @@
     ScriptEntry Route229_PokefanM
     ScriptEntry Route229_ArrowSignpostResortArea
     ScriptEntry Route229_SovereignGene
+    ScriptEntry Route229_OnTransition
+    ScriptEntry Route229_OnLoad
+    ScriptEntry Route229_LegendaryYveltal
     ScriptEntryEnd
+
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Yveltal roosts in the nook behind the Cut tree, by the Reaper
+@ Cloth, once the Kalos Chronicle is open (VAR_SOVEREIGN_CHRONICLE 2), until it's caught. It moved here from Lost Tower
+@ 5F, which holds Totem Marowak's trial and Ho-Oh's Renegade portal.
+Route229_OnTransition:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+    GoToIfLt VAR_SOVEREIGN_CHRONICLE, 2, Route229_OnTransitionEnd
+    SovereignCheckSpeciesCaught SPECIES_YVELTAL, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, Route229_OnTransitionEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+Route229_OnTransitionEnd:
+    End
+
+Route229_OnLoad:
+    GoToIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, Route229_RemoveLegendaryYveltal
+    End
+
+Route229_RemoveLegendaryYveltal:
+    RemoveObject LOCALID_LEGENDARY_YVELTAL
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+    End
+
+Route229_LegendaryYveltal:
+    SetVar VAR_0x8004, SPECIES_YVELTAL
+    SetVar VAR_0x8005, 70
+    Common_SovereignLegendaryEncounter
+    End
 
 Route229_PokefanM:
     PlaySE SE_CONFIRM_sseq_3

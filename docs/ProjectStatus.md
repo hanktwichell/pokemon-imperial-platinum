@@ -182,7 +182,52 @@ Made by the owner (2026-10-22):
       in one place. The other legendaries stay static (roamers can't hold items, so Zacian, Zamazenta and Ogerpon
       can't roam).
 
+29. **Regigigas keeps Renegade's Snowpoint Temple story** (owner, 2026-10-24): the story Regigigas is put back to
+    sleep and Candice gives HM08, as in Renegade. Allowed because Renegade still lets the player catch Regigigas
+    afterwards (`RenegadePlatinumV130/Documentation/SpecialEvents.txt`, #486: after the story event and becoming
+    Champion, Lv. 70 in the temple's basement with Regirock, Regice and Registeel in the party).
+30. **Koraidon and Miraidon gates** (owner, 2026-10-24), replacing decision 28's pairing:
+    - **Koraidon** appears once all ten **past** (ancient) Paradox Pokémon are obtained; **Miraidon** once all ten
+      **future** ones are, matching the official games (owner confirmed, 2026-10-24).
+    - Each gate is independent: one legendary can be unlocked without any Paradox Pokémon from the other's group.
+    - The Paldea Chronicle must still be open.
+    - After giving all ten of their Pokémon, each Oreburgh Mining Museum dealer has a new line, like: "Wow, you've
+      obtained all of the FUTURE/PAST Paradox Pokémon! I've heard rumors that a legendary FUTURE/PAST Paradox Pokémon
+      can be found in LOCATION."
+31. **The Infinite Repel is in the PC in the player's house in Twinleaf Town** (owner, 2026-10-24), available after the
+    first Champion win, at the same time as the Celestic elder's visit.
+32. **Placeholders stay for now** (owner, 2026-10-24): event levels, the event-gift deliveryman's spot and the
+    provisional legendary spots are adjusted later.
+33. **The legendary birds use Renegade's portals where they don't clash** (owner, 2026-10-24: keep them "if they
+    don't conflict with anything we're adding"). They replace the birds' Oak roamer release.
+    - **Moltres:** Renegade's portal in Victory Road's small room (Rock Climb). No clash.
+    - **Articuno:** Renegade's portal on Mt. Coronet's summit (Rock Climb), on a tile clear of Cosmog's (35, 21). The
+      Celesteela rare roll on that map is a wild roll, not an object, so it doesn't clash.
+    - **Zapdos:** Renegade's portal on the island behind Valley Windworks, now free since Zekrom moves (decision 34).
+    - Renegade opens the portals after talking to Rowan after the Distortion World. That matches Renegade; Sovereign's
+      other legendaries are post-game, and portals look different from Sovereign's shown legendaries. Both are noted
+      for the owner.
+34. **Zekrom moves to Route 215** (owner, 2026-10-24), the always-raining route between Veilstone and Solaceon. Its
+    trigger is unchanged (the Dark Stone, at night). That frees the Valley Windworks island for Zapdos's Renegade
+    portal (decision 33). The tile is still to pick. The full placement review is `docs/LegendaryPlacementReview.md`.
+35. **Enamorus moves off the Route 224 tablet** (owner, 2026-10-24: "Definitely move Enamorus now"). It now stands on
+    the beach field at (912, 535), clear of the Flower Paradise tablet scene, Carl's patrol and the item balls.
+36. **Yveltal leaves the Lost Tower** (owner, 2026-10-24: "Yveltal needs to move"). Lost Tower 5F holds Totem Marowak's
+    trial and Ho-Oh's Renegade portal. Claude A picked Route 229's nook behind the Cut tree, by the Reaper Cloth
+    (813, 426); the owner can still change it. Every static encounter, with its spot and conflicts, is in
+    `docs/StaticEncounters.xlsx`.
+37. **Hoopa and Eternatus move** (owner, 2026-10-24: "Move Hoopa to another Unown room and Eternatus out of
+    Turnback"). Hoopa now plays in Solaceon Ruins Room 6's north-west dead end, round the pillar (2, 3), leaving Room 7
+    to Jirachi. Eternatus waits on Victory Road B1F's TM59 island (Surf) (14, 19), leaving Giratina's room to
+    Giratina. Claude A picked both spots. The Archivist's hints now name the new places (and Enamorus's and Yveltal's).
+38. **Landorus moves to Route 228's sand field** (owner, 2026-10-24: "Route 228 it is"), the north end of the first
+    field (782, 323), out of the Rock Peak Ruins doorway room, which Regidrago keeps. The Archivist's hint now says
+    "the sands of Route 228".
+
 Open:
+- **The legendary placement clashes** in `docs/LegendaryPlacementReview.md` ("Clashes to settle"): Stark Mountain
+  room 1 and the tile checks (the Lost Tower, Route 224, Giratina's room, Solaceon Ruins Room 7 and the Rock Peak
+  chamber are settled by decisions 35–38). `docs/StaticEncounters.xlsx` lists every one.
 - **Overworld sprites and sizing for the legendaries** (owner, 2026-10-23: "we will need to work on" it). Today each
   is a 64x64 placeholder shrunk from its PokeAPI front sprite (`tools/sprites/make_legendary_overworld.py`), so tiny
   and huge Pokémon look the same size and the big ones cover the player and nearby tiles.

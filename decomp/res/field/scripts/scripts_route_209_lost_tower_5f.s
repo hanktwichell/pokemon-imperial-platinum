@@ -9,7 +9,6 @@
     ScriptEntry Route209LostTower5F_OnTransition
     ScriptEntry Route209LostTower5F_TotemMarowak
     ScriptEntry Route209LostTower5F_OnLoad
-    ScriptEntry Route209LostTower5F_LegendaryYveltal
     ScriptEntryEnd
 
 @ Sovereign: Totem Alolan Marowak's trial opens once Fantina is beaten (the Relic Badge).
@@ -17,19 +16,7 @@ Route209LostTower5F_OnTransition:
     CallIfSet FLAG_SOVEREIGN_TOTEM_TRIAL_MAROWAK, Route209LostTower5F_HideTotemMarowak
     CheckBadgeAcquired BADGE_ID_RELIC, VAR_RESULT
     CallIfEq VAR_RESULT, FALSE, Route209LostTower5F_HideTotemMarowak
-    Call Route209LostTower5F_SovereignSetYveltalVisibility
     End
-
-@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Yveltal perches at the end of the top floor's east
-@ corridor once the Kalos Chronicle is open (VAR_SOVEREIGN_CHRONICLE 2), until it's caught.
-Route209LostTower5F_SovereignSetYveltalVisibility:
-    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
-    GoToIfLt VAR_SOVEREIGN_CHRONICLE, 2, Route209LostTower5F_SovereignSetYveltalVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_YVELTAL, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, Route209LostTower5F_SovereignSetYveltalVisibilityEnd
-    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
-Route209LostTower5F_SovereignSetYveltalVisibilityEnd:
-    Return
 
 Route209LostTower5F_HideTotemMarowak:
     SetFlag FLAG_MAP_LOCAL_HIDE_TOTEM
@@ -37,18 +24,6 @@ Route209LostTower5F_HideTotemMarowak:
 
 Route209LostTower5F_OnLoad:
     GoToIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, Route209LostTower5F_RemoveTotemMarowak
-    GoToIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, Route209LostTower5F_RemoveLegendaryYveltal
-    End
-
-Route209LostTower5F_RemoveLegendaryYveltal:
-    RemoveObject LOCALID_LEGENDARY_YVELTAL
-    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
-    End
-
-Route209LostTower5F_LegendaryYveltal:
-    SetVar VAR_0x8004, SPECIES_YVELTAL
-    SetVar VAR_0x8005, 70
-    Common_SovereignLegendaryEncounter
     End
 
 Route209LostTower5F_RemoveTotemMarowak:
