@@ -262,6 +262,8 @@ IMPLEMENTED = {
     210: "yes: Ash-Greninja after its move knocks out a foe, until the battle ends",  # Battle Bond
     248: "yes: takes one physical hit; snow brings the ice back",  # Ice Face
     241: "yes: Surf or Dive catches prey; a hit spits it for 1/4 HP and Defense -1 or paralysis",  # Gulp Missile
+    304: "yes: Terastal Form as it enters battle, until the battle ends",  # Tera Shift
+    305: "yes: at full HP, damaging moves are not very effective on it",  # Tera Shell
 }
 
 

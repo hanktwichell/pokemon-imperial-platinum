@@ -100,6 +100,7 @@ typedef struct BattleMon {
     u32 sovereignEntryAnnounced : 1; // Sovereign (item 11): its entry ability (Screen Cleaner) has run since it switched in
     u32 sovereignHPFormChecked : 1; // Sovereign (FM): Schooling or Shields Down has been checked since it switched in
     u32 sovereignIceFaceHail : 1; // Sovereign (FM): Ice Face has seen this snow (it restores the ice once per snow)
+    u32 sovereignTeraShell : 1; // Sovereign (FM): Tera Shell works on the move hitting it now (it had full HP at its first hit)
 
     u8 ppCur[LEARNED_MOVES_MAX];
     u8 ppUps[LEARNED_MOVES_MAX];
