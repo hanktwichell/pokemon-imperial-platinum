@@ -3429,3 +3429,36 @@ interactions the owner listed on 2026-10-23. PR open.
    Cramorant, Zero to Hero's Hero Palafin).
 3. Owner decisions still open: Revival Blessing; Koraidon/Miraidon gate; Cosmog's Teleport; whether Ultra Burst
    counts as the trainer's Mega; overworld sprites and sizing; final placements.
+
+---
+
+## CB-0057 — Hangry Morpeko (Hunger Switch) and Aura Wheel (Fri Oct 23 2026, 23:47 CDT)
+
+**Implemented:**
+- `"morpeko-hangry": (KIND_BATTLE, "ABILITY_HUNGER_SWITCH")` in `gen_forms.py` (form 1).
+- **Hunger Switch:** a `BattleSystem_TriggerTurnEndAbility` case switches Morpeko between Full Belly and Hangry at the
+  end of each turn, with `subscript_form_change`. The usual battle-form reverts happen on switch-out and at the end of
+  battle.
+- **Aura Wheel:**
+  - It now uses `SOVEREIGN_RAISE_SPEED_HIT`, 100% Speed +1 (`gen9_move_fixes.py`).
+  - `Sovereign_AuraWheelType` gives Dark-type for a Hangry Morpeko, else Electric. The damage calc, `CalcMoveType`
+    and `Move_CalcVariableType` all use it.
+  - Not built: in the official games, Aura Wheel fails for other users (Sketch, Mimic).
+- **Ability checklist:** `gen_abilities.py` `IMPLEMENTED` now lists the form abilities built: Zen Mode, Stance
+  Change, Shields Down, Schooling, Disguise, Power Construct and Hunger Switch.
+- **Verified** in the emulator: Hangry, then Full Belly, then Hangry over three turns; then a Dark Aura Wheel was
+  super effective on Gastly, with Speed +1.
+
+**Files modified:** `tools/engine/gen_forms.py`, `tools/engine/gen9_move_fixes.py`, `tools/engine/gen_abilities.py`,
+`decomp/include/constants/sovereign_forms.h`, `decomp/include/data/sovereign_forms.h`,
+`decomp/tools/dataproc/src/sovereign_forms.inc`, `decomp/res/pokemon/morpeko/meson.build`,
+`decomp/res/pokemon/morpeko/forms/hangry/data.json` (new), `decomp/res/moves/aura_wheel/data.json`,
+`decomp/src/battle/battle_lib.c`, `decomp/include/battle/battle_lib.h`, `decomp/src/battle/battle_script.c`,
+`docs/AbilityChecklist.md`, `docs/MoveChecklist.md`, `docs/TechnicalDesign.md`, `docs/EngineRoadmap.md`,
+`docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Milestone FM: Ice Face (Noice Eiscue), Gulp Missile (Cramorant) and Zero to Hero (Hero Palafin).
+2. Milestone FM: Battle Bond (Ash-Greninja). Owner: how the player gets a Battle Bond Greninja.
+3. Owner decisions still open: Revival Blessing; Koraidon/Miraidon gate; Cosmog's Teleport; whether Ultra Burst
+   counts as the trainer's Mega; overworld sprites and sizing; final placements.

@@ -214,3 +214,4 @@
     { "zygarde/forms/50_power_construct", NULL, .isGiratinaOrigin = false }, // 50% Zygarde
     { "zygarde/forms/complete", NULL, .isGiratinaOrigin = false }, // Complete Zygarde
     { "zygarde/forms/complete_50", NULL, .isGiratinaOrigin = false }, // Complete Zygarde
+    { "morpeko/forms/hangry", NULL, .isGiratinaOrigin = false }, // Hangry Morpeko

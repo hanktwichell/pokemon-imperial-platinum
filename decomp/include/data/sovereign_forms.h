@@ -231,6 +231,7 @@ static const SovereignForm sSovereignForms[SOVEREIGN_FORM_COUNT] = {
     { SPECIES_ZYGARDE, 3, SOVEREIGN_FORM_KEY_ITEM, ITEM_ZYGARDE_CUBE }, // 50% Zygarde
     { SPECIES_ZYGARDE, 4, SOVEREIGN_FORM_BATTLE, ABILITY_POWER_CONSTRUCT }, // Complete Zygarde
     { SPECIES_ZYGARDE, 5, SOVEREIGN_FORM_BATTLE, ABILITY_POWER_CONSTRUCT }, // Complete Zygarde
+    { SPECIES_MORPEKO, 1, SOVEREIGN_FORM_BATTLE, ABILITY_HUNGER_SWITCH }, // Hangry Morpeko
 };
 
 // A regional form that evolves into its region's form of the target species (any other evolves into form 0).

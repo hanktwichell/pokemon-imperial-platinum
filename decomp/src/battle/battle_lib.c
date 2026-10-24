@@ -3862,6 +3862,20 @@ BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem *battleSys, BattleContext *
         break;
     }
 
+    // Sovereign (FM): Hunger Switch takes Morpeko between its Full Belly and Hangry Modes at the end of each turn.
+    case ABILITY_HUNGER_SWITCH: {
+        BattleMon *mon = &battleCtx->battleMons[battler];
+        int hangryForm = Pokemon_SovereignAbilityForm(mon->species, 0, ABILITY_HUNGER_SWITCH);
+
+        if (hangryForm >= 0 && mon->curHP && (mon->statusVolatile & VOLATILE_CONDITION_TRANSFORM) == FALSE) {
+            BattleSystem_SovereignChangeBattleForm(battleSys, battleCtx, battler, mon->formNum == 0 ? hangryForm : 0);
+            battleCtx->msgBattlerTemp = battler;
+            subscript = subscript_form_change;
+            result = TRUE;
+        }
+        break;
+    }
+
     // Sovereign (FM): Zen Mode turns Darmanitan to its Zen Mode at half its HP or less, and back above half.
     case ABILITY_ZEN_MODE: {
         BattleMon *mon = &battleCtx->battleMons[battler];
@@ -9755,6 +9769,12 @@ static BOOL MoveCannotTriggerAnticipation(BattleContext *battleCtx, int move)
  * @param move      The move being used.
  * @return The variable-type of the given move.
  */
+// Sovereign (FM): Aura Wheel is Dark-type when a Hangry Morpeko uses it, else Electric.
+int Sovereign_AuraWheelType(u16 species, int form)
+{
+    return species == SPECIES_MORPEKO && form != 0 ? TYPE_DARK : TYPE_ELECTRIC;
+}
+
 static int CalcMoveType(BattleSystem *battleSys, BattleContext *battleCtx, int item, int move)
 {
     int type;
@@ -9837,6 +9857,10 @@ static int CalcMoveType(BattleSystem *battleSys, BattleContext *battleCtx, int i
 
     case MOVE_TERRAIN_PULSE: // Sovereign (item 11)
         type = Sovereign_TerrainPulseType(battleCtx, item);
+        break;
+
+    case MOVE_AURA_WHEEL: // Sovereign (FM): Dark-type from a Hangry Morpeko (the parameter is the battler)
+        type = Sovereign_AuraWheelType(battleCtx->battleMons[item].species, battleCtx->battleMons[item].formNum);
         break;
 
     case MOVE_WEATHER_BALL:
@@ -10047,6 +10071,10 @@ int Move_CalcVariableType(BattleSystem *battleSys, BattleContext *battleCtx, Pok
     int type;
 
     switch (move) {
+    case MOVE_AURA_WHEEL: // Sovereign (FM)
+        type = Sovereign_AuraWheelType(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), Pokemon_GetValue(mon, MON_DATA_FORM, NULL));
+        break;
+
     case MOVE_NATURAL_GIFT:
         type = BattleSystem_GetItemData(battleCtx, Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL), ITEM_PARAM_NATURAL_GIFT_TYPE);
         break;

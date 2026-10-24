@@ -224,6 +224,13 @@ implemented.
   - It stays Complete through switching (`Pokemon_SovereignRevertSwitchOutForm` skips Power Construct) and until the
     battle ends. `Pokemon_SovereignRevertBattleForm` then keeps the damage it took: max HP minus the HP lost, at least
     1 for a Pokémon still standing.
+- **Hunger Switch** (Hangry Morpeko, `SOVEREIGN_FORM_BATTLE` with Hunger Switch as trigger).
+  - `BattleSystem_TriggerTurnEndAbility` takes Morpeko between Full Belly (0) and Hangry Mode at the end of each
+    turn, with `subscript_form_change`. It goes back to Full Belly on switch-out and at the battle's end.
+  - Aura Wheel: `Sovereign_AuraWheelType` makes it Dark-type from a Hangry Morpeko, else Electric. The damage calc
+    sets `battleCtx->moveType` from it (like Revelation Dance); `CalcMoveType` and `Move_CalcVariableType` use it
+    too. Its user's Speed +1 comes from `SOVEREIGN_RAISE_SPEED_HIT` (`gen9_move_fixes.py`). Other Pokémon can still
+    use it (Sketch, Mimic); the official games make it fail.
 - **Personality forms** (`SOVEREIGN_FORM_PERSONALITY`, Minior's Meteor colors). `Pokemon_SovereignPersonalityForm`
   picks the form from the personality, personality % 7 for Minior as in Sun and Moon (Red is form 0). The Pokémon
   gets it when it's made (`sub_02073E18`, which every new Pokémon goes through), and an Egg gets its own from its
