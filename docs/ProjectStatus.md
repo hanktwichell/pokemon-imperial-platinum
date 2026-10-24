@@ -210,10 +210,17 @@ Made by the owner (2026-10-22):
 34. **Zekrom moves to Route 215** (owner, 2026-10-24), the always-raining route between Veilstone and Solaceon. Its
     trigger is unchanged (the Dark Stone, at night). That frees the Valley Windworks island for Zapdos's Renegade
     portal (decision 33). The tile is still to pick. The full placement review is `docs/LegendaryPlacementReview.md`.
+35. **Enamorus moves off the Route 224 tablet** (owner, 2026-10-24: "Definitely move Enamorus now"). It now stands on
+    the beach field at (912, 535), clear of the Flower Paradise tablet scene, Carl's patrol and the item balls.
+36. **Yveltal leaves the Lost Tower** (owner, 2026-10-24: "Yveltal needs to move"). Lost Tower 5F holds Totem Marowak's
+    trial and Ho-Oh's Renegade portal. Claude A picked Route 229's nook behind the Cut tree, by the Reaper Cloth
+    (813, 426); the owner can still change it. Every static encounter, with its spot and conflicts, is in
+    `docs/StaticEncounters.xlsx`.
 
 Open:
-- **The legendary placement clashes** in `docs/LegendaryPlacementReview.md` ("Clashes to settle"): the Lost Tower top
-  floor, Stark Mountain room 1, Giratina's room, Solaceon Ruins Room 7, Route 224's tablet and others.
+- **The legendary placement clashes** in `docs/LegendaryPlacementReview.md` ("Clashes to settle"): Stark Mountain
+  room 1, Giratina's room, Solaceon Ruins Room 7, the Rock Peak chamber and others (the Lost Tower and Route 224 are
+  settled by decisions 35–36). `docs/StaticEncounters.xlsx` lists every one.
 - **Overworld sprites and sizing for the legendaries** (owner, 2026-10-23: "we will need to work on" it). Today each
   is a 64x64 placeholder shrunk from its PokeAPI front sprite (`tools/sprites/make_legendary_overworld.py`), so tiny
   and huge Pokémon look the same size and the big ones cover the player and nearby tiles.

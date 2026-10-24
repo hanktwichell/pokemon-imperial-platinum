@@ -1147,7 +1147,7 @@ existing spots over new rooms (2026-10-23), so each legendary planned for a new 
   has its own menu.
 - **Life and Destruction**, the Kalos key (Lv. 70):
   - Xerneas in the green nook beside the Old Chateau in Eterna Forest.
-  - Yveltal at the end of the Lost Tower top floor's east corridor.
+  - Yveltal at the end of the Lost Tower top floor's east corridor (moved to Route 229 on 2026-10-24).
   - Zygarde (50% Forme) in an alcove of Wayward Cave B1F once both are caught.
 - **Other legends:**
   - The Archivist gives the **Prison Bottle**, not obtainable anywhere before.

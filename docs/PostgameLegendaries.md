@@ -43,7 +43,7 @@ Covers **90** species.
 - **Level:** 65
 - **Location:** Tornadus and Thundurus roam Sinnoh (like Mesprit/Cresselia). Landorus — Route 228's ruins. Enamorus — Route 224, Flower Paradise gate
 - **How:** Roamers are released when the chapter opens. Bring both to the Route 228 shrine for Landorus; Enamorus appears after Landorus is caught.
-- **Built:** Forces of Nature (CB-0039). The Archivist releases Tornadus and Thundurus as roamers (two new roaming slots, FLAG_SOVEREIGN_RELEASED_FORCES_OF_NATURE). One that's knocked out comes back after the next Hall of Fame, when the Archivist releases it again. With both caught, he gives the Reveal Glass. Landorus appears in Route 228's ruins (the Rock Peak Ruins chamber, (7, 5)) while both are in the party; that chamber stands in for a new shrine. Enamorus then waits by the Route 224 tablet (914, 494). All four are level 65.
+- **Built:** Forces of Nature (CB-0039). The Archivist releases Tornadus and Thundurus as roamers (two new roaming slots, FLAG_SOVEREIGN_RELEASED_FORCES_OF_NATURE). One that's knocked out comes back after the next Hall of Fame, when the Archivist releases it again. With both caught, he gives the Reveal Glass. Landorus appears in Route 228's ruins (the Rock Peak Ruins chamber, (7, 5)) while both are in the party; that chamber stands in for a new shrine. Enamorus then waits on the Route 224 beach field (912, 535), clear of the Flower Paradise tablet (moved off the tablet's tiles on 2026-10-24). All four are level 65.
 
 ### Truth and Ideals (chapter key)
 - **Pokémon:** #643 Reshiram, #644 Zekrom, #646 Kyurem
@@ -71,9 +71,9 @@ Covers **90** species.
 ### Life and Destruction (chapter key)
 - **Pokémon:** #716 Xerneas, #717 Yveltal
 - **Level:** 70
-- **Location:** Xerneas — Eterna Forest, beside the Old Chateau. Yveltal — Lost Tower 5F (top floor)
+- **Location:** Xerneas — Eterna Forest, beside the Old Chateau. Yveltal — Route 229, the nook behind the Cut tree
 - **How:** Both are static once the chapter opens.
-- **Built:** The Kalos Chronicle (CB-0041) opens when the player talks to the Archivist with Kyurem caught (VAR_SOVEREIGN_CHRONICLE 2). Xerneas stands in the nook west of the Old Chateau's door (70, 14); Yveltal at the end of the Lost Tower top floor's east corridor (13, 14). Both are level 70. **Changed from the plan** (owner, 2026-10-23: existing spots rather than new rooms): Yveltal uses the existing top floor in place of a new roof.
+- **Built:** The Kalos Chronicle (CB-0041) opens when the player talks to the Archivist with Kyurem caught (VAR_SOVEREIGN_CHRONICLE 2). Xerneas stands in the nook west of the Old Chateau's door (70, 14); Yveltal roosts in Route 229's nook behind the Cut tree, by the Reaper Cloth (813, 426). Both are level 70. **Changed from the plan** (owner, 2026-10-23: existing spots rather than new rooms). Yveltal first stood on Lost Tower 5F; it moved on 2026-10-24 (owner: "Yveltal needs to move"), as that floor holds Totem Marowak's trial and Ho-Oh's Renegade portal.
 
 ### Order
 - **Pokémon:** #718 Zygarde

@@ -4647,3 +4647,28 @@ its map, and possible clashes. Clashes to settle:
 Plus some tile checks. The owner will decide on these.
 
 **Files modified:** `docs/LegendaryPlacementReview.md` (new), `docs/ProjectStatus.md`, `CLAUDE_STATUS.md`
+
+## CA-0049 (Claude A, 2026-10-24): Enamorus and Yveltal moved; static encounter spreadsheet
+
+**Implemented:**
+- **Enamorus** (Route 224) moved from (914, 494), beside the Flower Paradise tablet, to the beach field at (912, 535)
+  (owner, decision 35).
+- **Yveltal** moved from Lost Tower 5F to Route 229's nook behind the Cut tree, by the Reaper Cloth (813, 426)
+  (owner, decision 36: "Yveltal needs to move"; Claude A picked the spot). The Lost Tower 5F script keeps only Totem
+  Marowak. Route 229 gets OnTransition/OnLoad init scripts (indices 4 and 5) and the encounter script (6), the same
+  pattern as before (Kalos Chronicle var ≥ 2, until caught, level 70).
+- **`docs/StaticEncounters.xlsx`** (new, hand-made, not generated): all 89 static encounters including the 11 Totems,
+  with map, tile, level, trigger and a Clash/Check/None conflict column, plus a "Conflicts by map" sheet and a legend.
+- Release build and boot smoke test pass. Not tested in game: the Yveltal encounter on Route 229.
+
+**Files modified:** `decomp/res/field/events/events_route_224.json`, `events_route_229.json`,
+`events_route_209_lost_tower_5f.json`, `decomp/res/field/scripts/scripts_route_229.s`, `scripts_init_route_229.s`,
+`scripts_route_209_lost_tower_5f.s`, `data/postgame_legendaries.yaml`, `docs/PostgameLegendaries.md`,
+`docs/LegendaryTriggers.md`, `docs/LegendaryPlacementReview.md`, `docs/TechnicalDesign.md`, `docs/EngineChangelog.md`,
+`docs/ProjectStatus.md`, `docs/StaticEncounters.xlsx`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. The owner settles the remaining clashes: Stark Mountain room 1 (Volcanion/Groudon), Solaceon Ruins Room 7
+   (Hoopa/Jirachi), Giratina's room (Eternatus), the Rock Peak chamber (Landorus/Regidrago).
+2. Pick Zekrom's Route 215 tile (decision 34) and move it.
+3. Claude B: when porting the bird, Ho-Oh and Celebi portals, keep them off the tiles in the spreadsheet.

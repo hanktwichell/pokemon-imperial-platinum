@@ -54,7 +54,7 @@ Pokédex's caught entry (`SovereignCheckSpeciesCaught`).
 | Kyurem | static | Mt. Coronet's Iceberg Ruins doorway room | 70 | Reshiram and Zekrom caught; no Relicanth and Wailord pair in the party (that pair swaps the doorway to the Iceberg Ruins, part 13) | Truth and Ideals |
 | Tornadus, Thundurus | roamers | mainland routes | 65 | released on the first reading of Forces of Nature (`FLAG_SOVEREIGN_RELEASED_FORCES_OF_NATURE`) | Forces of Nature |
 | Landorus | static | Route 228 Rock Peak Ruins chamber (7, 5) | 65 | Tornadus and Thundurus **in the party** | Forces of Nature (after both are caught; the Archivist also gives the Reveal Glass) |
-| Enamorus | static | Route 224, by the tablet (914, 494) | 65 | Landorus caught | Forces of Nature |
+| Enamorus | static | Route 224, the beach field (912, 535) | 65 | Landorus caught | Forces of Nature |
 
 The Archivist gives the DNA Splicers once Kyurem is caught.
 
@@ -63,7 +63,7 @@ The Archivist gives the DNA Splicers once Kyurem is caught.
 | Pokémon | Kind | Where | Lv. | Appears when | Hint |
 |---|---|---|---|---|---|
 | Xerneas | static | Eterna Forest | 70 | var ≥ 2 | Life and Destruction |
-| Yveltal | static | Lost Tower 5F (13, 14) | 70 | var ≥ 2 | Life and Destruction |
+| Yveltal | static | Route 229, the nook behind the Cut tree (813, 426) | 70 | var ≥ 2 | Life and Destruction |
 | Zygarde (50%) | static | Wayward Cave B1F, north alcove (21, 4) | 70 | Xerneas and Yveltal caught | Life and Destruction |
 | Diancie | static | Oreburgh Mine B2F, west nook (2, 22) | 55 | var ≥ 2 and a **Carbink in the party** | Other legends |
 | Hoopa | static | Solaceon Ruins Room 7 | 55 | `ITEM_PRISON_BOTTLE` in the bag (the Archivist gives it) | Other legends |
@@ -217,7 +217,7 @@ against the Chronicles':
 | Articuno | Mt. Coronet summit portal (Rock Climb) | 60 | Cosmog's snowfield (35, 21) and the Celesteela rare roll |
 | Zapdos | Valley Windworks, the island behind the building | 60 | **Zekrom stands on that island** |
 | Moltres | Victory Road, a small room | 60 | — |
-| Lugia, Ho-Oh | Route 220 island; Lost Tower top floor | 70 | **Yveltal stands on Lost Tower 5F** |
+| Lugia, Ho-Oh | Route 220 island; Lost Tower top floor | 70 | — (Yveltal moved to Route 229 on 2026-10-24) |
 | Celebi | Eterna Forest portals | 40 | **Virizion and Xerneas stand in Eterna Forest** |
 | Darkrai | until caught | 68–70 | — |
 | Shaymin | Flower Paradise, near Route 224's tablet | 30 | Enamorus, Pecharunt (Route 224) |
