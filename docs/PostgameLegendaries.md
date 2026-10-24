@@ -57,7 +57,7 @@ Covers **90** species.
 - **Level:** 55
 - **Location:** Hearthome City — Contest Hall stage
 - **How:** Talk to the composer in the Contest Hall with a Pokémon that knows Sing in the party.
-- **Built:** Meloetta (CB-0037): the composer (a new NPC in the Contest Hall lobby, (8, 7)) lets a party Pokémon that knows Sing sing the Relic Song (FLAG_SOVEREIGN_MELOETTA_SONG). Meloetta then stands just in front of the Contest Hall's stage (27, 8) until it's caught (CB-0043 moved it off the stage itself, (28, 5), which the player can't walk onto; CB-0046 moved it from (29, 8), inside the Beauty's wander area). The stage replaces Amity Square, which has no stage the player can reach and only lets in players leading certain Pokémon. It comes in its Aria Forme; the Pirouette Forme comes with the battle forms (FM).
+- **Built:** Meloetta (CB-0037): the composer (a new NPC in the Contest Hall lobby, (8, 7)) lets a party Pokémon that knows Sing sing the Relic Song (FLAG_SOVEREIGN_MELOETTA_SONG). Meloetta then stands just in front of the Contest Hall's stage (27, 8) until it's caught (CB-0043 moved it off the stage itself, (28, 5), which the player can't walk onto; CB-0046 moved it from (29, 8), inside the Beauty's wander area). The stage replaces Amity Square, which has no stage the player can reach and only lets in players leading certain Pokémon. It comes in its Aria Forme; Relic Song switches it to Pirouette Forme in battle and back (CB-0049).
 
 ### Plasma's Leftovers
 - **Pokémon:** #649 Genesect

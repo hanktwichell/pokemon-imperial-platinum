@@ -5108,7 +5108,44 @@ BOOL Pokemon_IsSovereignBattleForm(u16 species, int form)
 
     return entry != NULL
         && (Pokemon_IsSovereignMegaForm(species, form) || entry->kind == SOVEREIGN_FORM_BATTLE_ITEM || entry->kind == SOVEREIGN_FORM_BATTLE
-            || entry->kind == SOVEREIGN_FORM_ULTRA_BURST);
+            || entry->kind == SOVEREIGN_FORM_ULTRA_BURST || entry->kind == SOVEREIGN_FORM_BATTLE_MOVE);
+}
+
+// Sovereign (FM): the form a Pokémon of this species and form switches to by using move in battle (Relic Song:
+// Meloetta's Aria Forme to Pirouette and back), or -1.
+int Pokemon_SovereignMoveForm(u16 species, int form, u16 move)
+{
+    for (int i = 0; i < SOVEREIGN_FORM_COUNT; i++) {
+        const SovereignForm *entry = &sSovereignForms[i];
+
+        if (entry->species == species && entry->kind == SOVEREIGN_FORM_BATTLE_MOVE && entry->trigger == move) {
+            if (form == 0) {
+                return entry->form;
+            }
+
+            if (form == entry->form) {
+                return 0;
+            }
+        }
+    }
+
+    return -1;
+}
+
+// Sovereign (FM): a form its move gave it in battle (Pirouette Meloetta) ends when the Pokémon switches out, so it
+// switches back in in its base form.
+void Pokemon_SovereignRevertSwitchOutForm(Pokemon *mon)
+{
+    u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    const SovereignForm *entry = Pokemon_FindSovereignForm(species, Pokemon_GetValue(mon, MON_DATA_FORM, NULL));
+
+    if (entry != NULL && entry->kind == SOVEREIGN_FORM_BATTLE_MOVE) {
+        int form = 0;
+
+        Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+        Pokemon_CalcAbility(mon);
+        Pokemon_CalcLevelAndStats(mon);
+    }
 }
 
 // Sovereign (FM): the Ultra form that a Pokémon of this species and form bursts into while holding heldItem (Dusk Mane

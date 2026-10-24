@@ -4,6 +4,20 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## FM — Pirouette Meloetta
+
+- **Relic Song** switches Meloetta from Aria Forme (Normal/Psychic) to Pirouette Forme (Normal/Fighting, with its own
+  stats) and back, as in Black and White. It happens after the move, with Platinum's form-change scene and
+  "MELOETTA transformed!". The move must hit: against a Ghost type, or if it misses, Meloetta keeps its form.
+- Pirouette Meloetta goes back to Aria Forme when it switches out and when the battle ends.
+- **How:** `TechnicalDesign.md` (Move forms). Pirouette Meloetta shares Meloetta's sprite until milestone E12.
+- **Verified** in the emulator:
+  - Relic Song hit a Camerupt and Meloetta transformed. The battle summary showed Normal/Fighting and Pirouette's
+    stats.
+  - It switched out and back in as Aria (Normal/Psychic).
+  - Against a Gastly, Relic Song had no effect and Meloetta didn't transform.
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+
 ## FM — Ultra Necrozma
 
 - **Ultra Burst.** Dusk Mane or Dawn Wings Necrozma holding the **Ultranecrozium Z** can Ultra Burst into Ultra

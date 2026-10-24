@@ -4352,6 +4352,12 @@ static void BattleControllerPlayer_LoopSpreadMoves(BattleSystem *battleSys, Batt
 
     BattleControllerPlayer_UpdateFlagsWhenHit(battleSys, battleCtx);
 
+    // Sovereign (FM): a move that changes the user's form (Relic Song) does it at move end, once it has hit a target.
+    if ((battleCtx->moveStatusFlags & MOVE_STATUS_DID_NOT_HIT) == FALSE
+        && Pokemon_SovereignMoveForm(ATTACKING_MON.species, ATTACKING_MON.formNum, battleCtx->moveCur) >= 0) {
+        battleCtx->sovereignMoveFormBattler = battleCtx->attacker + 1;
+    }
+
     if (CURRENT_MOVE_DATA.range == RANGE_ADJACENT_OPPONENTS
         && (battleCtx->battleStatusMask & SYSCTL_CHECK_LOOP_ONLY_ONCE) == FALSE
         && battleCtx->battlerCounter < BattleSystem_GetMaxBattlers(battleSys)) {
@@ -4501,6 +4507,32 @@ static void BattleControllerPlayer_UpdateMoveBuffers(BattleSystem *battleSys, Ba
     battleCtx->command = BATTLE_CONTROL_MOVE_END;
 }
 
+// Sovereign (FM): the user's move changed its form (Relic Song: Meloetta's Aria and Pirouette Formes). A Pokémon that
+// fainted or transformed keeps its form.
+static BOOL BattleControllerPlayer_SovereignMoveFormChange(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    if (battleCtx->sovereignMoveFormBattler == 0) {
+        return FALSE;
+    }
+
+    int battler = battleCtx->sovereignMoveFormBattler - 1;
+    BattleMon *mon = &battleCtx->battleMons[battler];
+    int form = Pokemon_SovereignMoveForm(mon->species, mon->formNum, battleCtx->moveCur);
+
+    battleCtx->sovereignMoveFormBattler = 0;
+    if (mon->curHP == 0 || (mon->statusVolatile & VOLATILE_CONDITION_TRANSFORM) || form < 0) {
+        return FALSE;
+    }
+
+    BattleSystem_SovereignChangeBattleForm(battleSys, battleCtx, battler, form);
+    battleCtx->msgBattlerTemp = battler;
+    LOAD_SUBSEQ(subscript_form_change);
+    battleCtx->commandNext = battleCtx->command;
+    battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+    return TRUE;
+}
+
 static void BattleControllerPlayer_MoveEnd(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_NO_MOVES) == FALSE) {
@@ -4522,6 +4554,10 @@ static void BattleControllerPlayer_MoveEnd(BattleSystem *battleSys, BattleContex
         }
 
         if (BattleControllerPlayer_ToggleSemiInvulnMons(battleSys, battleCtx) == TRUE) {
+            return;
+        }
+
+        if (BattleControllerPlayer_SovereignMoveFormChange(battleSys, battleCtx) == TRUE) {
             return;
         }
 

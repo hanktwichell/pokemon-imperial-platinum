@@ -66,6 +66,7 @@ KIND_KEY_ITEM, KIND_FUSION = "SOVEREIGN_FORM_KEY_ITEM", "SOVEREIGN_FORM_FUSION"
 KIND_REGIONAL, KIND_BATTLE = "SOVEREIGN_FORM_REGIONAL", "SOVEREIGN_FORM_BATTLE"
 KIND_TOTEM = "SOVEREIGN_FORM_TOTEM"
 KIND_ULTRA_BURST = "SOVEREIGN_FORM_ULTRA_BURST"
+KIND_BATTLE_MOVE = "SOVEREIGN_FORM_BATTLE_MOVE"
 MEGA_BY_MOVE = {"Dragon Ascent (move; no stone)": "MOVE_DRAGON_ASCENT"}  # Mega Rayquaza
 
 # Milestone FM forms built so far: PokeAPI identifier (data/forms.csv) -> (kind, the item that gives the form).
@@ -83,6 +84,8 @@ MEGA_BY_MOVE = {"Dragon Ascent (move; no stone)": "MOVE_DRAGON_ASCENT"}  # Mega 
 #   SOVEREIGN_FORM_ULTRA_BURST  Ultra Necrozma: Dusk Mane or Dawn Wings Necrozma holding the Ultranecrozium Z bursts into
 #                               it in battle (from the MEGA button) and goes back after. The trigger is the form it
 #                               bursts from, so there is one Ultra form for each (FM_ROW_ALIASES)
+#   SOVEREIGN_FORM_BATTLE_MOVE  a form its move switches it in and out of in battle (Meloetta's Relic Song); the trigger
+#                               is the move. It goes back when the Pokémon switches out and when the battle ends
 # A species' forms are numbered in this order, after its Megas, as in the official games (Kyurem: 1 White, 2 Black).
 FM_FORMS = {
     "zacian-crowned": (KIND_BATTLE_ITEM, "ITEM_RUSTED_SWORD"),
@@ -146,6 +149,7 @@ FM_FORMS = {
     # exists in battle, so its number is never saved.
     "necrozma-ultra": (KIND_ULTRA_BURST, "1"),
     "necrozma-ultra-dawn": (KIND_ULTRA_BURST, "2"),
+    "meloetta-pirouette": (KIND_BATTLE_MOVE, "MOVE_RELIC_SONG"),
 }
 
 # FM_FORMS entries that are a second copy of a data/forms.csv row.
@@ -241,7 +245,7 @@ def load_rows():
             form["pid"] = fm_rows[usual]["form_id"] if usual else None
             form["region"] = region_of(usual) if usual else None
         trigger_table = {KIND_FUSION: "species", KIND_BATTLE: "abilities", KIND_REGIONAL: None, KIND_TOTEM: None,
-                         KIND_ULTRA_BURST: None}.get(kind, "items")
+                         KIND_ULTRA_BURST: None, KIND_BATTLE_MOVE: "moves"}.get(kind, "items")
         checks = [(form["species"], "species")] + ([(trigger, trigger_table)] if trigger_table else [])
         for const, table_name in checks + [(a, "abilities") for a in abilities if a != "ABILITY_NONE"]:
             if const not in symbols[table_name]:
@@ -370,6 +374,7 @@ enum SovereignFormKind {{
     {KIND_BATTLE}, // the form its ability (the trigger) gives it in battle (Zen Mode)
     {KIND_TOTEM}, // a Totem Pokemon's form, caught after its trial
     {KIND_ULTRA_BURST}, // Ultra Necrozma, in battle; the trigger is the form it bursts from and goes back to
+    {KIND_BATTLE_MOVE}, // the form its move (the trigger) switches it in and out of in battle (Relic Song)
 }};
 
 #endif // POKEPLATINUM_CONSTANTS_SOVEREIGN_FORMS_H
