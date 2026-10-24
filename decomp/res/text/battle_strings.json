@@ -6276,7 +6276,7 @@
         "stopped evolving!\r"
       ]
     },
-    {           
+    {
       "id": "BattleStrings_Text_EllipsesEllipses",
       "en_US": "... ...?\r"
     },
@@ -9328,6 +9328,48 @@
       "en_US": [
         "The foe’s {STRVAR_1 1, 0, 0} was freed\n",
         "from the telekinesis!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignUltraBurstLight_Ally",
+      "en_US": [
+        "Bright light is about to burst\n",
+        "out of {STRVAR_1 1, 0, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignUltraBurstLight_Wild",
+      "en_US": [
+        "Bright light is about to burst\n",
+        "out of the wild {STRVAR_1 1, 0, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignUltraBurstLight_Foe",
+      "en_US": [
+        "Bright light is about to burst\n",
+        "out of the foe’s {STRVAR_1 1, 0, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignUltraBurst_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} regained its true\n",
+        "power through Ultra Burst!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignUltraBurst_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} regained its\n",
+        "true power through Ultra Burst!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignUltraBurst_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} regained its\n",
+        "true power through Ultra Burst!"
       ]
     }
   ]

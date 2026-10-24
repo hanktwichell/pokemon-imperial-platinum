@@ -48,6 +48,10 @@ INTRO = """# Sovereign Platinum — Mega Evolution & Primal Reversion
   button, no Mega Ring needed and no once-per-battle limit (owner-confirmed, 2026-10-22).
 - **Mega Rayquaza** needs to know **Dragon Ascent** (taught post-game) instead of holding a stone, and must not be holding
   a Mega Stone.
+- **Ultra Burst** (milestone FM) goes through the same MEGA button: Dusk Mane or Dawn Wings Necrozma holding the
+  **Ultranecrozium Z** bursts into Ultra Necrozma (Psychic/Dragon, Neuroforce) and goes back to its fused form when the
+  battle ends. It needs the Mega Ring, but doesn't use up the trainer's one Mega. The Legend Archivist gives the
+  Ultranecrozium Z once Necrozma is caught.
 - **Mega Stones can't be removed** by Knock Off, Thief, Covet, Trick or Switcheroo from a Pokémon that can use them, and
   can't be Flung.
 - **Trainer AI.** Trainers with a Mega Evolve the first turn their Mega is on the field. In multi/tag battles each opposing

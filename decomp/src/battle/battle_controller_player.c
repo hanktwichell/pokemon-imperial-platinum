@@ -936,7 +936,13 @@ static BOOL BattleControllerPlayer_SovereignMegaEvolve(BattleSystem *battleSys, 
         BattleController_EmitClearMessageBox(battleSys);
         battleCtx->msgBattlerTemp = battler;
         battleCtx->msgItemTemp = battleCtx->battleMons[battler].heldItem;
-        battleCtx->msgTemp = battleCtx->battleMons[battler].species == SPECIES_RAYQUAZA; // no stone: "fervent wish"
+        // MSG_TEMP: 1 for Mega Rayquaza (no stone: "fervent wish"), 2 for Ultra Burst (FM).
+        BattleMon *megaMon = &battleCtx->battleMons[battler];
+        if (Pokemon_SovereignUltraBurstForm(megaMon->species, megaMon->formNum, megaMon->heldItem) == form) {
+            battleCtx->msgTemp = 2;
+        } else {
+            battleCtx->msgTemp = megaMon->species == SPECIES_RAYQUAZA;
+        }
         BattleSystem_SovereignMegaEvolve(battleSys, battleCtx, battler, form);
         battleCtx->sovereignMegaResort = TRUE;
         battleCtx->sovereignMegaSwitchInCheck = TRUE;

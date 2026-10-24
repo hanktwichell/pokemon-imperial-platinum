@@ -5107,7 +5107,27 @@ BOOL Pokemon_IsSovereignBattleForm(u16 species, int form)
     const SovereignForm *entry = Pokemon_FindSovereignForm(species, form);
 
     return entry != NULL
-        && (Pokemon_IsSovereignMegaForm(species, form) || entry->kind == SOVEREIGN_FORM_BATTLE_ITEM || entry->kind == SOVEREIGN_FORM_BATTLE);
+        && (Pokemon_IsSovereignMegaForm(species, form) || entry->kind == SOVEREIGN_FORM_BATTLE_ITEM || entry->kind == SOVEREIGN_FORM_BATTLE
+            || entry->kind == SOVEREIGN_FORM_ULTRA_BURST);
+}
+
+// Sovereign (FM): the Ultra form that a Pokémon of this species and form bursts into while holding heldItem (Dusk Mane
+// or Dawn Wings Necrozma with the Ultranecrozium Z), or 0.
+int Pokemon_SovereignUltraBurstForm(u16 species, int form, u16 heldItem)
+{
+    if (heldItem != ITEM_ULTRANECROZIUM_Z) {
+        return 0;
+    }
+
+    for (int i = 0; i < SOVEREIGN_FORM_COUNT; i++) {
+        const SovereignForm *entry = &sSovereignForms[i];
+
+        if (entry->species == species && entry->kind == SOVEREIGN_FORM_ULTRA_BURST && entry->trigger == form) {
+            return entry->form;
+        }
+    }
+
+    return 0;
 }
 
 static BOOL Pokemon_IsSovereignRegionalForm(u16 species, int form)
@@ -5211,6 +5231,10 @@ BOOL Pokemon_SovereignItemIsLocked(u16 species, u16 item)
     }
 
     if (species == SPECIES_GIRATINA && item == ITEM_GRISEOUS_CORE) {
+        return TRUE;
+    }
+
+    if (species == SPECIES_NECROZMA && item == ITEM_ULTRANECROZIUM_Z) {
         return TRUE;
     }
 
@@ -5318,7 +5342,9 @@ void Pokemon_SovereignRevertBattleForm(Pokemon *mon)
         return;
     }
 
-    form = 0;
+    // Ultra Necrozma goes back to the fused form it burst from.
+    const SovereignForm *entry = Pokemon_FindSovereignForm(species, form);
+    form = entry->kind == SOVEREIGN_FORM_ULTRA_BURST ? entry->trigger : 0;
     Pokemon_SetValue(mon, MON_DATA_FORM, &form);
 
     if (Pokemon_SovereignCrownedMove(species) != MOVE_NONE) {

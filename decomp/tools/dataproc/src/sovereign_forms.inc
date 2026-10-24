@@ -191,3 +191,5 @@
     { "mimikyu/forms/totem_busted", NULL, .isGiratinaOrigin = false }, // Totem Busted Mimikyu
     { "kommo_o/forms/o_totem", NULL, .isGiratinaOrigin = false }, // Totem Kommo-o
     { "urshifu/forms/rapid_strike", NULL, .isGiratinaOrigin = false }, // Rapid Strike Urshifu
+    { "necrozma/forms/ultra", NULL, .isGiratinaOrigin = false }, // Ultra Necrozma
+    { "necrozma/forms/ultra_dawn", NULL, .isGiratinaOrigin = false }, // Ultra Necrozma

@@ -4,6 +4,23 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## FM — Ultra Necrozma
+
+- **Ultra Burst.** Dusk Mane or Dawn Wings Necrozma holding the **Ultranecrozium Z** can Ultra Burst into Ultra
+  Necrozma (Psychic/Dragon, Neuroforce) from the battle's MEGA button. It needs the Mega Ring, like Mega Evolution, but
+  doesn't use up the trainer's one Mega. Its messages: "Bright light is about to burst out of NECROZMA!" and "NECROZMA
+  regained its true power through Ultra Burst!". When the battle ends it goes back to the fused form it burst from.
+- **The Ultranecrozium Z** comes from the Legend Archivist, once, in the Sun and Moon topic after Necrozma is caught
+  (`FLAG_SOVEREIGN_RECEIVED_ULTRANECROZIUM`). Knock Off, Thief, Trick and Fling can't take it from a Necrozma.
+- **How:** `TechnicalDesign.md` (Ultra Burst). Ultra Necrozma shares Necrozma's sprite until milestone E12.
+- **Verified** in the emulator:
+  - The Archivist gave the Z.
+  - In a wild battle a Dusk Mane Necrozma Ultra Burst from the MEGA button. The battle summary showed Psychic/Dragon
+    and Neuroforce.
+  - A Dawn Wings Necrozma switched in and Ultra Burst in the same battle.
+  - After the battle the two were Dusk Mane (Psychic/Steel) and Dawn Wings (Psychic/Ghost) again.
+  - The release ROM builds without warnings and passes boot smoke; the docs regenerate clean.
+
 ## FM — Rapid Strike Urshifu
 
 - **Rapid Strike Urshifu** (Fighting/Water, Unseen Fist, its own Gen IX learnset) is in the game.

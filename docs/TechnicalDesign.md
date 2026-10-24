@@ -149,8 +149,17 @@ implemented.
     copies them. It swaps Iron Head for the Behemoth move, keeping the PP used.
   - `Pokemon_SovereignRevertBattleForm` undoes it, and undoes Megas and Primals. It runs at the end of the battle
     and in `BattleSystem_SetPokemonCatchData`.
+- **Ultra Burst** (`SOVEREIGN_FORM_ULTRA_BURST`: Ultra Necrozma). There are two Ultra forms, 3 and 4, with the same
+  data. Each one's `trigger` is the fused form it bursts from (1 Dusk Mane, 2 Dawn Wings), so the battle can send it back.
+  - `Pokemon_SovereignUltraBurstForm` gives the Ultra form for a species, form and held item (the Ultranecrozium Z).
+  - `BattleSystem_SovereignMegaForm` offers it through the MEGA button, with the Mega Ring. It skips the form-0 and
+    once-per-trainer checks.
+  - `BattleSystem_SovereignMegaEvolve` doesn't set `sovereignMegaUsed` for it.
+  - `MSG_TEMP` 2 gives `subscript_sovereign_mega_evolution` the Ultra Burst messages.
+  - `Pokemon_SovereignRevertBattleForm` sends it back to its trigger form instead of 0, which keeps the fusion.
 - **Item locks.** `Pokemon_SovereignItemIsLocked(species, item)` is TRUE for any form trigger on its own species
-  except Mega Rayquaza's move, and also for the Teal Mask on Ogerpon and the Griseous Core on Giratina.
+  except Mega Rayquaza's move, and also for the Teal Mask on Ogerpon, the Griseous Core on Giratina and the
+  Ultranecrozium Z on Necrozma.
   `Battler_SovereignHeldItemLocked` (`battle_lib.c`) applies it in battle:
   - `BtlCmd_TryStealItem` (Thief and Covet) and `BtlCmd_TrySwapItems` (Trick and Switcheroo) fail.
   - `BtlCmd_TryKnockOff` leaves the item.
