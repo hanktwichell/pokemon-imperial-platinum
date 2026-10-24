@@ -3915,3 +3915,19 @@ generated form data (`decomp/include/data/sovereign_forms.h`, `decomp/include/co
    follow Burmy's. Then update the FM row of `EngineRoadmap.md`.
 2. Overworld sprites from the owner (in a few days): size them naturally against the existing overworld Pokémon.
 3. The shops step: where the nectars, Memories, Drives, Pixie Plate, pots, teacups and Sweets are found or sold.
+
+## CB-0073 — 2026-10-24, 3:40 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** merged PR #84 (Alcremie, Furfrou, Spiky-eared Pichu, Active Xerneas). Milestone FM is complete:
+an audit of every PokeAPI form found nothing missing. What's left is the vanilla forms, the gender-difference sprites
+and Mothim's cloaks; Stellar Terapagos is shelved. The FM row of the roadmap now reads ✅.
+
+**Files modified:** `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. E10 (Renegade port), part 1: the wild tables. Nothing of Renegade is in the decomp yet (vanilla encounters, prices
+   and TMs). Plan: build vanilla Platinum from the first decomp import, apply Renegade's patch, and dump its encounter
+   tables for the exact per-slot levels, swarms, radar and honey data. Then write the Sovereign plan
+   (`data/encounters_sovereign.json`) into `decomp/res/field/encounters/` with a generator.
+2. Renegade's per-area Honey Tree tables (vanilla has one table for every tree, so this needs an engine change).
+3. Renegade's item changes: prices, TMs ×99 and not in marts, the TM move swaps, then the item locations.
