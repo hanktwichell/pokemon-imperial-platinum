@@ -5033,3 +5033,48 @@ Care fee). Recorded in decision 43.
    QUESTS menu once Articuno, Zapdos and Moltres are in the party.
 2. Ho-Oh: Lost Tower 5F, off Totem Marowak's tile (3, 4), with the Rainbow Wing (the three beasts in the party).
 3. The Route 224 and Battleground counterpart battles, Buck, Darach and the reporters.
+
+## CB-0103 — 2026-10-24, 4:40 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: E10 part 29, Lugia and Ho-Oh with Professor Oak's Clear Wings.** PR #118 (part 28, Celebi) is merged.
+I merged main into it first: it conflicted on this file.
+- **Oak** (Eterna City south house), once `FLAG_CAUGHT_ROAMING_LEGENDARY_BIRDS` is set (his praise):
+  - New `SovereignQuests` path. It shows the Clear Wings, and with Articuno, Zapdos and Moltres in the party gives
+    `ITEM_SILVER_WING` (scene, white flashes, Lugia hint).
+  - With the Silver Wing held, it shows the other Clear Wing, and with Raikou, Entei and Suicune in the party gives
+    `ITEM_RAINBOW_WING` (Ho-Oh hint).
+  - With both wings, or without the right party, he goes on to his Pokédex rating as before.
+  - The wings are PokeAPI key items (`data/items_sovereign.yaml` key_items, icons from PokeAPI).
+- **Lugia:** Route 220 (190, 921), the sandbar island. The map had `scripts_empty`; it now has
+  `scripts_route_220.s` and its init.
+- **Ho-Oh:** Lost Tower 5F (7, 12), on `FLAG_MAP_LOCAL_HIDE_LEGENDARY`. Totem Marowak keeps HIDE_TOTEM.
+- Both are Lv. 70, after `FLAG_GAME_COMPLETED`, while carrying their wing, until caught.
+- Sprites: `legendary_lugia.png` and `legendary_ho_oh.png`, large (64×64).
+- Tested on a test ROM:
+  - Neither legendary shows before the wings.
+  - Both Oak scenes and both items.
+  - Lugia and Ho-Oh shown, caught at Lv. 70, and gone afterwards.
+  - Not tested: Oak without the right party (hint then rating), and a run from either legendary.
+- **Harness note:** in Oak's house a text box sometimes ignored a few B presses before advancing. In part 27 one run
+  stuck for a long time, after a test warp was tried mid-script. It always recovered. Worth a check on hardware.
+- **Owner's request (CA-0055):** testing the half-price scripted sales is my next task.
+
+**Files modified:**
+- `data/items_sovereign.yaml`, `decomp/generated/{items,object_events_gfx}.txt`
+- Items: `decomp/res/items/data/{silver,rainbow}_wing.json`, their icons, the icons `meson.build`, `item_icon.order`
+- Sprites: `decomp/res/graphics/field_sprites/pokemon/legendary_{lugia,ho_oh}.png`, `field_sprites.order`, the
+  field_sprites `meson.build`, `decomp/src/overlay005/object_event_gfx_data.c`,
+  `tools/sprites/make_legendary_overworld.py`
+- Maps:
+  - `decomp/res/field/scripts/scripts_route_220.s` and `scripts_init_route_220.s` (new), plus `meson.build`,
+    `scripts.order`, `decomp/include/data/map_headers.h`
+  - Events for `route_220`; scripts and events for `route_209_lost_tower_5f`
+  - Scripts and text for `eterna_city_south_house`
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `docs/ItemChanges_Sovereign.md`,
+  `docs/LegendaryTriggers.md`, `docs/LegendaryPlacementReview.md`, `docs/OverworldSpriteSizes.md`,
+  `docs/StaticEncounters.xlsx`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. CA-0055: test the half-price scripted sales on a post-game save, with the old prices before the Hall of Fame.
+2. The Route 224 and Battleground counterpart battles, Buck's battle, Darach and the reporters (Renegade).
+3. Renegade's remaining added trainers with their events (E10).

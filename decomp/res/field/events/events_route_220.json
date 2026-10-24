@@ -182,6 +182,21 @@
             "x": 180,
             "z": 910,
             "y": 0
+        },
+        {
+            "id": "LOCALID_LEGENDARY_LUGIA",
+            "graphics_id": "OBJ_EVENT_GFX_LEGENDARY_LUGIA",
+            "movement_type": "MOVEMENT_TYPE_NONE",
+            "trainer_type": "TRAINER_TYPE_NONE",
+            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_LEGENDARY",
+            "script": 3,
+            "initial_dir": 1,
+            "data": [],
+            "movement_range_x": 0,
+            "movement_range_z": 0,
+            "x": 190,
+            "z": 921,
+            "y": 0
         }
     ],
     "warp_events": [],

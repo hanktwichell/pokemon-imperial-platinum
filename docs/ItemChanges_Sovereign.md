@@ -48,6 +48,7 @@ In the game so far (E10 parts 2–11):
 | Scroll of Darkness, Scroll of Waters | Legend Archivist, Canalave Library, once Kubfu is caught (the plan had Maylene) | Evolve Kubfu |
 | Infinite Repel | The PC in the player's room in Twinleaf Town, after the first Champion win (decision 31) | Toggles a Repel that never runs out |
 | GS Ball | Celestic Town's small shrine, in the middle of town (E10 part 28, Renegade's) | An offering to the forest's protector: carried into Eterna Forest from the Eterna City side, it shakes and opens the time portals that lead to Celebi. A placeholder icon (Platinum's Poké Ball, gold and silver) |
+| Silver Wing, Rainbow Wing | Professor Oak, Eterna City's south house (E10 part 29, Renegade's): his two Clear Wings change when Articuno, Zapdos and Moltres, then Raikou, Entei and Suicune, are in the party | Carried after the Hall of Fame, they bring Lugia to Route 220's sandbar island and Ho-Oh to the top of the Lost Tower |
 
 ## Form items
 
