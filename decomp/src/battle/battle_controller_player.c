@@ -3725,6 +3725,7 @@ enum TryMoveState {
     TRY_MOVE_STATE_CHECK_MOVE_HIT_OVERRIDES,
     TRY_MOVE_STATE_CHECK_TYPE_CHART,
     TRY_MOVE_STATE_TRIGGER_IMMUNITY_ABILITIES,
+    TRY_MOVE_STATE_SOVEREIGN_GULP_MISSILE, // Sovereign (FM)
 
     TRY_MOVE_END,
 };
@@ -3826,6 +3827,33 @@ static void BattleControllerPlayer_TryMove(BattleSystem *battleSys, BattleContex
         }
 
         battleCtx->tryMoveCheckState++;
+
+    case TRY_MOVE_STATE_SOVEREIGN_GULP_MISSILE: {
+        // Sovereign (FM): Gulp Missile. Cramorant catches an Arrokuda (Gulping Form) above half its HP, or a Pikachu
+        // (Gorging Form) at half or less, when its Surf hits or as it dives (Dive's first turn). A hit spits the catch
+        // back (BattleSystem_TriggerAbilityOnHit).
+        battleCtx->tryMoveCheckState++;
+
+        int gulpForm = Pokemon_SovereignAbilityForm(ATTACKING_MON.species, ATTACKING_MON.formNum, ABILITY_GULP_MISSILE);
+
+        if ((battleCtx->moveCur == MOVE_SURF || battleCtx->moveCur == MOVE_DIVE)
+            && gulpForm >= 0
+            && Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_GULP_MISSILE
+            && (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_TRANSFORM) == FALSE
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_DID_NOT_HIT) == FALSE) {
+            // The Gorging Form comes right after the Gulping Form.
+            if (ATTACKING_MON.curHP <= ATTACKING_MON.maxHP / 2) {
+                gulpForm++;
+            }
+
+            BattleSystem_SovereignChangeBattleForm(battleSys, battleCtx, battleCtx->attacker, gulpForm);
+            battleCtx->msgBattlerTemp = battleCtx->attacker;
+            LOAD_SUBSEQ(subscript_sovereign_gulp_missile_catch);
+            battleCtx->commandNext = battleCtx->command;
+            battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+            return;
+        }
+    }
 
     case TRY_MOVE_END:
         battleCtx->tryMoveCheckState = TRY_MOVE_START;
@@ -3940,6 +3968,29 @@ static void BattleControllerPlayer_UpdateHP(BattleSystem *battleSys, BattleConte
             battleCtx->hpCalcTemp = BattleSystem_Divide(DEFENDING_MON.maxHP, 8) * -1;
 
             LOAD_SUBSEQ(subscript_sovereign_disguise);
+            battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+            battleCtx->commandNext = BATTLE_CONTROL_AFTER_MOVE_MESSAGE;
+            battleCtx->battleStatusMask |= SYSCTL_MOVE_HIT;
+
+            return;
+        }
+
+        // Sovereign (FM): Ice Face takes the first physical hit in Eiscue's place, at no cost. The move does no damage
+        // and Eiscue becomes Noice Face, through switches, until snow brings the ice back
+        // (BattleSystem_TriggerFormChange) or the battle ends. Mold Breaker ignores it, and a substitute takes the hit
+        // first. Of a multi-hit move, only the first hit is blocked.
+        if (battleCtx->damage < 0
+            && CURRENT_MOVE_DATA.class == CLASS_PHYSICAL
+            && (DEFENDING_MON.statusVolatile & VOLATILE_CONDITION_TRANSFORM) == FALSE
+            && Pokemon_SovereignAbilityForm(DEFENDING_MON.species, DEFENDING_MON.formNum, ABILITY_ICE_FACE) >= 0
+            && Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->defender, ABILITY_ICE_FACE) == TRUE) {
+            BattleSystem_SovereignChangeBattleForm(battleSys, battleCtx, battleCtx->defender,
+                Pokemon_SovereignAbilityForm(DEFENDING_MON.species, DEFENDING_MON.formNum, ABILITY_ICE_FACE));
+            battleCtx->moveStatusFlags &= ~(MOVE_STATUS_BASIC_EFFECTIVENESS | MOVE_STATUS_CRITICAL_HIT | MOVE_STATUS_ONE_HIT_KO);
+            battleCtx->hitDamage = 0;
+            battleCtx->msgBattlerTemp = battleCtx->defender;
+
+            LOAD_SUBSEQ(subscript_sovereign_ice_face);
             battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
             battleCtx->commandNext = BATTLE_CONTROL_AFTER_MOVE_MESSAGE;
             battleCtx->battleStatusMask |= SYSCTL_MOVE_HIT;

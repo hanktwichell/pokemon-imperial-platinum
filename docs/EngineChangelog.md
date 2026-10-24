@@ -4,6 +4,39 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## FM — Ice Face and Gulp Missile
+
+- **Ice Face (Eiscue).**
+  - The first physical hit on Eiscue does no damage: "EISCUE’s Ice Face took the hit!", and it becomes Noice Face.
+  - Mold Breaker ignores Ice Face, and a substitute takes the hit first. Of a multi-hit move, only the first hit is
+    blocked.
+  - Noice Face stays through switching, until the battle ends.
+  - Snow brings the ice back when Eiscue switches in during it or when snow starts, not on every turn of it (as in
+    Scarlet and Violet). Platinum's hail is Gen IX snow in Sovereign.
+- **Gulp Missile (Cramorant).**
+  - When Cramorant's Surf hits, or as it dives (Dive's first turn), it catches an Arrokuda (Gulping Form) above half
+    its HP, or a Pikachu (Gorging Form) at half or less.
+  - A damaging hit on it spits the catch at the attacker, even as Cramorant faints:
+    - The attacker loses 1/4 of its max HP ("CRAMORANT’s Gulp Missile hurt …!"); Magic Guard prevents this.
+    - Then an Arrokuda lowers the attacker's Defense, and a Pikachu paralyzes it.
+  - Cramorant goes back to its base form. A Cramorant underwater can't be made to spit, and a catch is lost when it
+    switches out.
+- New forms: Noice Eiscue, and Gulping and Gorging Cramorant (FM: 109 forms).
+
+Verified in the test build:
+- **Eiscue vs. a wild Rattata:**
+  - Tackle was blocked and Eiscue transformed.
+  - After a switch out and back in, Eiscue was still Noice, and Tackle hurt it.
+  - Hail ("It started to snow!") brought the ice back once, and the next Tackle was blocked again. Later snowy turns
+    didn't restore it.
+- **Cramorant vs. a wild Lotad:**
+  - At 2/5 HP, Surf caught a Pikachu. Absorb then made Cramorant spit it: "Gulp Missile hurt the wild LOTAD!" and
+    Lotad was paralyzed. Later hits did nothing extra.
+  - At full HP, Dive caught an Arrokuda; Lotad's Astonish missed while Cramorant was underwater. Its next Astonish
+    made Cramorant spit: Lotad was hurt and its Defense fell.
+- Release build passes.
+
+
 ## Paradox dealers in the Oreburgh Mining Museum
 
 - **Owner, 2026-10-24:** the Paradox Pokémon are gifts, not rare wild encounters.

@@ -9401,6 +9401,27 @@
       ]
     },
     {
+      "id": "BattleStrings_Text_SovereignIceFace_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s Ice Face\n",
+        "took the hit!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignIceFace_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}’s\n",
+        "Ice Face took the hit!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignIceFace_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}’s\n",
+        "Ice Face took the hit!"
+      ]
+    },
+    {
       "id": "BattleStrings_Text_SovereignPowerConstructPresence",
       "en_US": [
         "You sense the presence of many!"
