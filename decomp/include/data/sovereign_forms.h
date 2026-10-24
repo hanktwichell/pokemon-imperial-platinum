@@ -110,9 +110,9 @@ static const SovereignForm sSovereignForms[SOVEREIGN_FORM_COUNT] = {
     { SPECIES_ZERAORA, 1, SOVEREIGN_FORM_MEGA, ITEM_ZERAORITE }, // Mega Zeraora
     { SPECIES_SCOVILLAIN, 1, SOVEREIGN_FORM_MEGA, ITEM_SCOVILLAINITE }, // Mega Scovillain
     { SPECIES_GLIMMORA, 1, SOVEREIGN_FORM_MEGA, ITEM_GLIMMORANITE }, // Mega Glimmora
-    { SPECIES_TATSUGIRI, 1, SOVEREIGN_FORM_MEGA, ITEM_TATSUGIRINITE }, // Mega Tatsugiri (Curly Form)
-    { SPECIES_TATSUGIRI, 2, SOVEREIGN_FORM_MEGA, ITEM_TATSUGIRINITE }, // Mega Tatsugiri (Droopy Form)
-    { SPECIES_TATSUGIRI, 3, SOVEREIGN_FORM_MEGA, ITEM_TATSUGIRINITE }, // Mega Tatsugiri (Stretchy Form)
+    { SPECIES_TATSUGIRI, 3, SOVEREIGN_FORM_MEGA, ITEM_TATSUGIRINITE }, // Mega Tatsugiri (Curly Form)
+    { SPECIES_TATSUGIRI, 4, SOVEREIGN_FORM_MEGA, ITEM_TATSUGIRINITE }, // Mega Tatsugiri (Droopy Form)
+    { SPECIES_TATSUGIRI, 5, SOVEREIGN_FORM_MEGA, ITEM_TATSUGIRINITE }, // Mega Tatsugiri (Stretchy Form)
     { SPECIES_BAXCALIBUR, 1, SOVEREIGN_FORM_MEGA, ITEM_BAXCALIBRITE }, // Mega Baxcalibur
     { SPECIES_MEOWSTIC, 3, SOVEREIGN_FORM_MEGA, ITEM_MEOWSTICITE }, // Mega Meowstic (Female)
     { SPECIES_ZACIAN, 1, SOVEREIGN_FORM_BATTLE_ITEM, ITEM_RUSTED_SWORD }, // Crowned Zacian
@@ -243,6 +243,20 @@ static const SovereignForm sSovereignForms[SOVEREIGN_FORM_COUNT] = {
     { SPECIES_INDEEDEE, 1, SOVEREIGN_FORM_GENDER, 0 }, // Female Indeedee
     { SPECIES_BASCULEGION, 1, SOVEREIGN_FORM_GENDER, 0 }, // Female Basculegion
     { SPECIES_OINKOLOGNE, 1, SOVEREIGN_FORM_GENDER, 0 }, // Female Oinkologne
+    { SPECIES_PUMPKABOO, 1, SOVEREIGN_FORM_PERSONALITY, 0 }, // Small Pumpkaboo
+    { SPECIES_PUMPKABOO, 2, SOVEREIGN_FORM_PERSONALITY, 0 }, // Large Pumpkaboo
+    { SPECIES_PUMPKABOO, 3, SOVEREIGN_FORM_PERSONALITY, 0 }, // Super Pumpkaboo
+    { SPECIES_GOURGEIST, 1, SOVEREIGN_FORM_PERSONALITY, 0 }, // Small Gourgeist
+    { SPECIES_GOURGEIST, 2, SOVEREIGN_FORM_PERSONALITY, 0 }, // Large Gourgeist
+    { SPECIES_GOURGEIST, 3, SOVEREIGN_FORM_PERSONALITY, 0 }, // Super Gourgeist
+    { SPECIES_SQUAWKABILLY, 1, SOVEREIGN_FORM_PERSONALITY, 0 }, // Blue Plumage Squawkabilly
+    { SPECIES_SQUAWKABILLY, 2, SOVEREIGN_FORM_PERSONALITY, 0 }, // Yellow Plumage Squawkabilly
+    { SPECIES_SQUAWKABILLY, 3, SOVEREIGN_FORM_PERSONALITY, 0 }, // White Plumage Squawkabilly
+    { SPECIES_TATSUGIRI, 1, SOVEREIGN_FORM_PERSONALITY, 0 }, // Droopy Form Tatsugiri
+    { SPECIES_TATSUGIRI, 2, SOVEREIGN_FORM_PERSONALITY, 0 }, // Stretchy Form Tatsugiri
+    { SPECIES_TOXTRICITY, 1, SOVEREIGN_FORM_PERSONALITY, 0 }, // Low Key Toxtricity
+    { SPECIES_MAUSHOLD, 1, SOVEREIGN_FORM_PERSONALITY, 0 }, // Maushold (Family of Three)
+    { SPECIES_DUDUNSPARCE, 1, SOVEREIGN_FORM_PERSONALITY, 0 }, // Three-Segment Form Dudunsparce
 };
 
 // A regional form that evolves into its region's form of the target species (any other evolves into form 0).
@@ -377,6 +391,8 @@ typedef struct SovereignBattleFormBase {
 } SovereignBattleFormBase;
 
 static const SovereignBattleFormBase sSovereignBattleFormBases[] = {
+    { SPECIES_TATSUGIRI, 4, 1 }, // Mega Tatsugiri (Droopy Form)
+    { SPECIES_TATSUGIRI, 5, 2 }, // Mega Tatsugiri (Stretchy Form)
     { SPECIES_MEOWSTIC, 3, 1 }, // Mega Meowstic (Female)
     { SPECIES_DARMANITAN, 3, 2 }, // Zen Galarian Darmanitan
     { SPECIES_MINIOR, 8, 1 }, // Orange Core Minior

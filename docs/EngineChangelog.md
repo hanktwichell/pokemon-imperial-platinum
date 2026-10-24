@@ -4,6 +4,26 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## FM — Sizes, plumages and other personality forms
+
+These forms are picked by the Pokémon's personality when it's made (wild, gift, Egg) and when it evolves into the
+species:
+- **Pumpkaboo and Gourgeist sizes:** Average 40%, Small 30%, Large 20%, Super 10%, as in X and Y. A Gourgeist keeps
+  its Pumpkaboo's size.
+- **Squawkabilly's plumage** (Green, Blue, Yellow, White) and **Tatsugiri's form** (Curly, Droopy, Stretchy).
+- **Low Key Toxtricity:** from the Low Key natures (Lonely, Bold, Relaxed, Timid, Serious, Modest, Mild, Quiet,
+  Bashful, Calm, Gentle, Careful), as in Sword and Shield. Otherwise Toxtricity is Amped.
+- **Maushold Family of Three and Three-Segment Dudunsparce:** 1 in 100, as in Scarlet and Violet.
+- **Megas:** a Droopy or Stretchy Tatsugiri Mega Evolves into its own form's Mega Tatsugiri and goes back to its form.
+- FM: 128 forms.
+
+Verified in the test build (in-battle summaries):
+- Modest Toxtricity: Low Key, with Minus.
+- Adamant Toxtricity: Amped, with Plus.
+- Super Pumpkaboo: HP 127 at Lv. 50, from its higher base HP.
+- Release build passes.
+
+
 ## FM — Female Meowstic, Indeedee, Basculegion and Oinkologne
 
 - A female Meowstic, Indeedee, Basculegion or Oinkologne has its female's form, with its own abilities, learnset and,

@@ -5063,13 +5063,16 @@ static int Pokemon_GetFormNarcIndex(int monSpecies, int monForm)
 }
 
 // Sovereign (E8): the Mega or Primal form this species takes with the held item (Mega Rayquaza: with a move it knows
-// and no Mega Stone held), or 0 if none. primal picks Primal Reversion instead of Mega Evolution. A Female Meowstic
-// (form, a female's form) takes the second Mega its stone gives, Mega Meowstic (Female).
+// and no Mega Stone held), or 0 if none. primal picks Primal Reversion instead of Mega Evolution. Where the stone gives
+// one Mega for each form (monForm) of a female's or personality form, the form picks its own: Mega Meowstic (Female)
+// for a Female Meowstic, Mega Tatsugiri (Droopy Form) for a Droopy Tatsugiri.
 int Pokemon_SovereignBattleForm(u16 species, int monForm, u16 heldItem, const u16 *moves, BOOL primal)
 {
     BOOL holdsMegaStone = FALSE;
     const SovereignForm *entry = Pokemon_FindSovereignForm(species, monForm);
-    BOOL female = entry != NULL && entry->kind == SOVEREIGN_FORM_GENDER;
+    int megasToSkip = entry != NULL && (entry->kind == SOVEREIGN_FORM_GENDER || entry->kind == SOVEREIGN_FORM_PERSONALITY)
+        ? monForm
+        : 0;
 
     for (int i = 0; i < SOVEREIGN_FORM_COUNT; i++) {
         if (sSovereignForms[i].kind == SOVEREIGN_FORM_MEGA && sSovereignForms[i].trigger == heldItem) {
@@ -5089,12 +5092,12 @@ int Pokemon_SovereignBattleForm(u16 species, int monForm, u16 heldItem, const u1
                 return form->form;
             }
         } else if (form->kind == SOVEREIGN_FORM_MEGA && form->trigger == heldItem) {
-            if (female) {
-                for (int j = i + 1; j < SOVEREIGN_FORM_COUNT; j++) {
-                    if (sSovereignForms[j].species == species && sSovereignForms[j].kind == SOVEREIGN_FORM_MEGA
-                        && sSovereignForms[j].trigger == heldItem) {
-                        return sSovereignForms[j].form;
-                    }
+            // Skip to the form's own Mega, if the stone gives one more.
+            for (int j = i + 1; j < SOVEREIGN_FORM_COUNT && megasToSkip > 0; j++) {
+                if (sSovereignForms[j].species == species && sSovereignForms[j].kind == SOVEREIGN_FORM_MEGA
+                    && sSovereignForms[j].trigger == heldItem) {
+                    form = &sSovereignForms[j];
+                    megasToSkip--;
                 }
             }
 
@@ -5210,13 +5213,50 @@ int Pokemon_SovereignAbilityForm(u16 species, int form, u16 ability)
     return -1;
 }
 
-// Sovereign (FM): the form a Pokémon of this species gets for good from its personality when it's made, or -1 for a
-// species without such forms:
-//   Minior: its core color, personality % 7 as in Sun and Moon, with Red as form 0;
-//   Meowstic, Indeedee, Basculegion, Oinkologne: the female's form for a female (its personality picks its gender), else 0.
+// Sovereign (FM): the form a Pokémon of this species gets for good from its personality when it's made (and when it
+// evolves into the species), or -1 for a species without such forms:
+//   Minior: its core color, personality % 7 as in Sun and Moon, with Red as form 0 (Squawkabilly's plumage and
+//     Tatsugiri's form the same way, from their own count of forms);
+//   Meowstic, Indeedee, Basculegion, Oinkologne: the female's form for a female (its personality picks its gender), else 0;
+//   Pumpkaboo, Gourgeist: its size, Average 40%, Small 30%, Large 20%, Super 10% as in X and Y (the same personality
+//     gives the same size, so a Gourgeist keeps its Pumpkaboo's);
+//   Toxtricity: Low Key for a Lonely, Bold, Relaxed, Timid, Serious, Modest, Mild, Quiet, Bashful, Calm, Gentle or
+//     Careful nature, else Amped, as in Sword and Shield;
+//   Maushold, Dudunsparce: Family of Three or Three-Segment for 1 in 100 (personality % 100 == 0), as in Scarlet and
+//     Violet.
 int Pokemon_SovereignPersonalityForm(u16 species, u32 personality)
 {
     int count = 1;
+
+    switch (species) {
+    case SPECIES_PUMPKABOO:
+    case SPECIES_GOURGEIST: {
+        static const u8 sizeForms[10] = { 0, 0, 0, 0, 1, 1, 1, 2, 2, 3 };
+
+        return sizeForms[personality % 10];
+    }
+    case SPECIES_TOXTRICITY:
+        switch (Pokemon_GetNatureOf(personality)) {
+        case NATURE_LONELY:
+        case NATURE_BOLD:
+        case NATURE_RELAXED:
+        case NATURE_TIMID:
+        case NATURE_SERIOUS:
+        case NATURE_MODEST:
+        case NATURE_MILD:
+        case NATURE_QUIET:
+        case NATURE_BASHFUL:
+        case NATURE_CALM:
+        case NATURE_GENTLE:
+        case NATURE_CAREFUL:
+            return 1;
+        }
+
+        return 0;
+    case SPECIES_MAUSHOLD:
+    case SPECIES_DUDUNSPARCE:
+        return personality % 100 == 0;
+    }
 
     for (int i = 0; i < SOVEREIGN_FORM_COUNT; i++) {
         if (sSovereignForms[i].species == species && sSovereignForms[i].kind == SOVEREIGN_FORM_GENDER) {

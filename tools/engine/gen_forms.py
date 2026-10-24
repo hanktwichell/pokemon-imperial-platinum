@@ -193,6 +193,19 @@ FM_FORMS = {
     # The females' forms, with their own abilities, stats (Indeedee, Basculegion, Oinkologne) and learnsets.
     "meowstic-female": (KIND_GENDER, "0"), "indeedee-female": (KIND_GENDER, "0"),
     "basculegion-female": (KIND_GENDER, "0"), "oinkologne-female": (KIND_GENDER, "0"),
+    # More forms its personality picks (Pokemon_SovereignPersonalityForm): Pumpkaboo's and Gourgeist's sizes (kept
+    # when it evolves), Squawkabilly's plumage, Tatsugiri's form, Toxtricity's Low Key Form (its nature), and the rare
+    # Maushold Family of Three and Three-Segment Dudunsparce (1 in 100, from its evolution as in Scarlet and Violet).
+    "pumpkaboo-small": (KIND_PERSONALITY, "0"), "pumpkaboo-large": (KIND_PERSONALITY, "0"),
+    "pumpkaboo-super": (KIND_PERSONALITY, "0"),
+    "gourgeist-small": (KIND_PERSONALITY, "0"), "gourgeist-large": (KIND_PERSONALITY, "0"),
+    "gourgeist-super": (KIND_PERSONALITY, "0"),
+    "squawkabilly-blue-plumage": (KIND_PERSONALITY, "0"), "squawkabilly-yellow-plumage": (KIND_PERSONALITY, "0"),
+    "squawkabilly-white-plumage": (KIND_PERSONALITY, "0"),
+    "tatsugiri-droopy": (KIND_PERSONALITY, "0"), "tatsugiri-stretchy": (KIND_PERSONALITY, "0"),
+    "toxtricity-low-key": (KIND_PERSONALITY, "0"),
+    "maushold-family-of-three": (KIND_PERSONALITY, "0"),
+    "dudunsparce-three-segment": (KIND_PERSONALITY, "0"),
 }
 
 # The form a battle form goes back to, when it isn't a regional form's (those follow the region) or 0: each Core
@@ -449,9 +462,12 @@ enum SovereignFormKind {{
                      and region_of(x["ident"]) == region), None)
         if f.get("ident") in BATTLE_FORM_BASES:
             base = next(x for x in forms if x.get("ident") == BATTLE_FORM_BASES[f["ident"]])
-        # A female's Mega (Mega Meowstic (Female)) goes back to the female's form.
-        if f["kind"] == KIND_MEGA and "(Female)" in f["name"]:
-            base = next((x for x in forms if x["kind"] == KIND_GENDER and x["species"] == f["species"]), None)
+        # A Mega of a female's or personality form goes back to that form: Mega Meowstic (Female) to Female Meowstic,
+        # Mega Tatsugiri (Droopy Form) to Droopy Form Tatsugiri.
+        variant = re.search(r"\((.+)\)$", f["name"]) if f["kind"] == KIND_MEGA else None
+        if variant:
+            base = next((x for x in forms if x["kind"] in (KIND_GENDER, KIND_PERSONALITY) and x["species"] == f["species"]
+                         and variant.group(1) in x["name"]), base)
         if base:
             base_rows += f"    {{ {f['species']}, {f['number']}, {base['number']} }}, // {f['name']}\n"
     disguise_rows = ""
