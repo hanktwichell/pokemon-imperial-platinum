@@ -224,6 +224,12 @@ FM_FORMS = {
     "floette-eternal": (KIND_REGIONAL, "0"), "magearna-original": (KIND_REGIONAL, "0"),
     "zarude-dada": (KIND_REGIONAL, "0"), "ursaluna-bloodmoon": (KIND_REGIONAL, "0"),
     "gimmighoul-roaming": (KIND_REGIONAL, "0"),
+    # Oricorio: its style comes from its personality (Baile, Pom-Pom, Pa'u, Sensu), and a nectar changes it
+    # (sovereign_form_items.c).
+    "oricorio-pom-pom": (KIND_PERSONALITY, "0"), "oricorio-pau": (KIND_PERSONALITY, "0"),
+    "oricorio-sensu": (KIND_PERSONALITY, "0"),
+    # Keldeo: Resolute Form while it knows Secret Sword (BoxPokemon_SetDataInternal), as in the Gen V+ games.
+    "keldeo-resolute": (KIND_REGIONAL, "0"),
 }
 
 # The form a battle form goes back to, when it isn't a regional form's (those follow the region) or 0: each Core

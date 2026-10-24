@@ -306,6 +306,12 @@ implemented.
     player caught into the event form instead (`SovereignRestyleEventForm`).
   - Megas: `MEGA_FORM_BASES` in `gen_forms.py` makes Mega Floette come only from (and go back to) Eternal Floette, as
     in Legends: Z-A; Original Color Magearna takes Mega Magearna (Original Color).
+- **Oricorio** (Pom-Pom, Pa'u and Sensu Styles, forms 1–3, `SOVEREIGN_FORM_PERSONALITY`): a wild or gift Oricorio's
+  style comes from its personality. The nectars are party-menu form items (`ITEM_USE_FUNC_SOVEREIGN_FORM`,
+  `FORM_USED_ITEMS` in `gen_items.py`): Red, Yellow, Pink and Purple give Baile, Pom-Pom, Pa'u and Sensu, and the
+  party menu uses one up (`SovereignFormItem_IsUsedUp`).
+- **Keldeo's Resolute Form** (form 1, a form for good): `BoxPokemon_SetDataInternal` sets it whenever a move slot
+  changes, Resolute while Keldeo knows Secret Sword, as in the Gen V+ games. It has the same stats, types and ability.
 - **Gender forms** (`SOVEREIGN_FORM_GENDER`: Female Meowstic, Indeedee, Basculegion and Oinkologne, each form 1).
   `Pokemon_SovereignPersonalityForm` gives the female's form to a female (its gender comes from its personality), so
   a wild, gift or Egg Pokémon gets it when it's made, with the form's abilities. `Pokemon_SovereignSetEvolvedSpecies`

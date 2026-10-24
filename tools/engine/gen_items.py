@@ -35,6 +35,8 @@ ICON_DIR = os.path.join(DECOMP, "res", "items", "icons")
 # Key items used on a Pokemon to change its form (milestone FM): Therian Formes, Hoopa Unbound, the fusions and
 # Zygarde's formes.
 FORM_KEY_ITEMS = {"Reveal Glass", "Prison Bottle", "DNA Splicers", "N-Solarizer", "N-Lunarizer", "Reins of Unity", "Zygarde Cube"}
+# Items that change a Pokemon's form from the party menu and are used up: the nectars (Oricorio's styles).
+FORM_USED_ITEMS = {"Red Nectar", "Yellow Nectar", "Pink Nectar", "Purple Nectar"}
 ICON_ORDER = os.path.join(DECOMP, "res", "items", "item_icon.order")
 ICON_MESON = os.path.join(ICON_DIR, "meson.build")
 MART_HEADER = os.path.join(DECOMP, "include", "data", "sovereign_mart_items.h")
@@ -293,7 +295,7 @@ def main():
         training = name in groups["training"]
         # Form-change key items open the party menu like the Gracidea; the party menu applies them
         # (PartyMenu_TryUseSovereignFormItem, src/sovereign_form_items.c).
-        form_item = name in FORM_KEY_ITEMS
+        form_item = name in FORM_KEY_ITEMS or name in FORM_USED_ITEMS
         data = {
             "name": display,
             "plural": PLURALS.get(name, display if display.endswith("s") else display + "s"),

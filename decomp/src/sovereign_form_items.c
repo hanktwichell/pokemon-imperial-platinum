@@ -55,9 +55,22 @@ static int FusionItemIndex(u16 item)
     return -1;
 }
 
+// The nectars, used up as they change Oricorio's style: the form each one gives, in item order (Red: Baile, Yellow:
+// Pom-Pom, Pink: Pa'u, Purple: Sensu).
+static int NectarForm(u16 item)
+{
+    return item >= ITEM_RED_NECTAR && item <= ITEM_PURPLE_NECTAR ? item - ITEM_RED_NECTAR : -1;
+}
+
+BOOL SovereignFormItem_IsUsedUp(u16 item)
+{
+    return NectarForm(item) >= 0;
+}
+
 BOOL SovereignFormItem_IsFormItem(u16 item)
 {
-    return item == ITEM_REVEAL_GLASS || item == ITEM_PRISON_BOTTLE || item == ITEM_ZYGARDE_CUBE || FusionItemIndex(item) >= 0;
+    return item == ITEM_REVEAL_GLASS || item == ITEM_PRISON_BOTTLE || item == ITEM_ZYGARDE_CUBE || FusionItemIndex(item) >= 0
+        || NectarForm(item) >= 0;
 }
 
 static int FindMoveSlot(Pokemon *mon, u16 move)
@@ -240,6 +253,16 @@ int SovereignFormItem_Use(SaveData *saveData, Party *party, int slot, u16 item, 
 
     if (fusionIndex >= 0) {
         return UseFusionItem(saveData, party, slot, fusionIndex, changedSlot, fusedPartnerSlot);
+    }
+
+    if (NectarForm(item) >= 0) {
+        if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) != SPECIES_ORICORIO
+            || Pokemon_GetValue(mon, MON_DATA_FORM, NULL) == NectarForm(item)) {
+            return SOVEREIGN_FORM_ITEM_NO_EFFECT;
+        }
+
+        SetForm(mon, NectarForm(item));
+        return SOVEREIGN_FORM_ITEM_CHANGED;
     }
 
     int form = Pokemon_SovereignNextKeyItemForm(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), Pokemon_GetValue(mon, MON_DATA_FORM, NULL), item);

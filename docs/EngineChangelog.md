@@ -4,6 +4,21 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## FM — Oricorio's styles and Resolute Keldeo
+
+- **Oricorio's four styles** (Baile, Pom-Pom, Pa'u, Sensu): a wild or gift Oricorio's style comes from its personality.
+  - Using a nectar on it from the bag changes its style: Red for Baile, Yellow for Pom-Pom, Pink for Pa'u, Purple for
+    Sensu.
+  - The nectar is used up, and a nectar for its current style has no effect.
+  - Where the nectars are found comes with the shops step (`data/items_sovereign.yaml`).
+- **Keldeo** is in its Resolute Form while it knows Secret Sword, and goes back when it forgets it.
+- FM: 156 forms.
+
+Verified in the test build: a Yellow Nectar from the bag on a Baile Style Oricorio said "ORICORIO changed Forme!". It
+became Electric/Flying, and the bag went from 2 Yellow Nectars to 1. Not replayed: Keldeo's form, which has no art yet.
+Release build passes.
+
+
 ## FM — Event forms and the event-gift deliveryman
 
 - **Deliveryman.** An event-gift deliveryman in the Fight Area Pokémon Center (temporary placement) gives each event

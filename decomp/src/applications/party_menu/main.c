@@ -2819,6 +2819,11 @@ static int PartyMenu_UseSovereignFormItem(PartyMenuApplication *app)
     int result = SovereignFormItem_Use(SaveData_Ptr(), app->partyMenu->party, app->currPartySlot, app->partyMenu->usedItemID, &changedSlot, &fusedPartnerSlot);
 
     if (result == SOVEREIGN_FORM_ITEM_CHANGED) {
+        // A nectar is used up.
+        if (SovereignFormItem_IsUsedUp(app->partyMenu->usedItemID)) {
+            Bag_TryRemoveItem(app->partyMenu->bag, app->partyMenu->usedItemID, 1, HEAP_ID_PARTY_MENU);
+        }
+
         app->currPartySlot = changedSlot;
         app->sovereignFusedPartnerSlot = fusedPartnerSlot + 1;
         PartyMenu_SetupFormChangeAnim(app);
