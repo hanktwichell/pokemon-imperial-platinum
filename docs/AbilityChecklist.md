@@ -43,7 +43,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 158 | Prankster | Gen 5 | yes: status moves +1 priority; they don't affect Dark-type foes |
 | 159 | Sand Force | Gen 5 | yes: Rock/Ground/Steel moves ×1.3 in a sandstorm; no sandstorm damage |
 | 160 | Iron Barbs | Gen 5 | yes: contact costs the attacker 1/8 of its max HP (as Rough Skin) |
-| 161 | Zen Mode | Gen 5 | not yet (no battle effect) |
+| 161 | Zen Mode | Gen 5 | yes: Zen Mode at half HP or less (Darmanitan, Galarian Darmanitan) |
 | 162 | Victory Star | Gen 5 | yes: accuracy ×1.1 for it and its ally |
 | 163 | Turboblaze | Gen 5 | yes: ignores the target's ability, like Mold Breaker |
 | 164 | Teravolt | Gen 5 | yes: ignores the target's ability, like Mold Breaker |
@@ -58,7 +58,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 173 | Strong Jaw | Gen 6 | yes: biting moves ×1.5 |
 | 174 | Refrigerate | Gen 6 | yes: Normal moves become Ice-type, ×1.2 |
 | 175 | Sweet Veil | Gen 6 | not yet (no battle effect) |
-| 176 | Stance Change | Gen 6 | not yet (no battle effect) |
+| 176 | Stance Change | Gen 6 | yes: Blade Forme before a damaging move, Shield Forme before King's Shield |
 | 177 | Gale Wings | Gen 6 | yes: Flying moves +1 priority at full HP |
 | 178 | Mega Launcher | Gen 6 | yes: pulse moves ×1.5 |
 | 179 | Grass Pelt | Gen 6 | yes: Defense ×1.5 in Grassy Terrain |
@@ -79,7 +79,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 194 | Emergency Exit | Gen 7 | not yet (no battle effect) |
 | 195 | WaterCompaction | Gen 7 | yes: Defense +2 when hit by a Water move |
 | 196 | Merciless | Gen 7 | yes: always a critical hit on a poisoned target |
-| 197 | Shields Down | Gen 7 | not yet (no battle effect) |
+| 197 | Shields Down | Gen 7 | yes: Core at half HP or less; the Meteor Form blocks status and Yawn |
 | 198 | Stakeout | Gen 7 | yes: double power against a target that switched in this turn |
 | 199 | Water Bubble | Gen 7 | partly: its Water moves ×2, Fire damage taken halved (burn immunity not yet) |
 | 200 | Steelworker | Gen 7 | yes: Steel moves ×1.5 |
@@ -90,10 +90,10 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 205 | Triage | Gen 7 | yes: healing moves +3 priority |
 | 206 | Galvanize | Gen 7 | yes: Normal moves become Electric-type, ×1.2 |
 | 207 | Surge Surfer | Gen 7 | yes: Speed doubled in Electric Terrain |
-| 208 | Schooling | Gen 7 | not yet (no battle effect) |
-| 209 | Disguise | Gen 7 | not yet (no battle effect) |
+| 208 | Schooling | Gen 7 | yes: School Form at level 20+ with over 1/4 HP |
+| 209 | Disguise | Gen 7 | yes: takes one hit for 1/8 of its max HP, once per battle |
 | 210 | Battle Bond | Gen 7 | not yet (no battle effect) |
-| 211 | Power Construct | Gen 7 | not yet (no battle effect) |
+| 211 | Power Construct | Gen 7 | yes: Complete Forme at half HP or less, with its higher max HP |
 | 212 | Corrosion | Gen 7 | yes: can poison Steel and Poison types |
 | 213 | Comatose | Gen 7 | not yet (no battle effect) |
 | 214 | Queenly Majesty | Gen 7 | yes: foes' priority moves can't hit its side |
@@ -140,7 +140,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 255 | Gorilla Tactics | Gen 8 | partly: Attack ×1.5 (the move lock not yet) |
 | 256 | NeutralizingGas | Gen 8 | not yet (no battle effect) |
 | 257 | Pastel Veil | Gen 8 | not yet (no battle effect) |
-| 258 | Hunger Switch | Gen 8 | not yet (no battle effect) |
+| 258 | Hunger Switch | Gen 8 | yes: switches between Full Belly and Hangry Mode at the end of each turn |
 | 259 | Quick Draw | Gen 8 | not yet (no battle effect) |
 | 260 | Unseen Fist | Gen 8 | yes: contact moves go through protection |
 | 261 | CuriousMedicine | Gen 8 | not yet (no battle effect) |

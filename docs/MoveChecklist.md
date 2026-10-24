@@ -6,8 +6,8 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 257 |
-| approximate | 39 |
+| exact | 258 |
+| approximate | 38 |
 | placeholder | 84 |
 | removed | 72 |
 
@@ -330,7 +330,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 780 | Pyro Ball | Fire | `BURN_HIT` | exact |  |
 | 781 | Behemoth Blade | Steel | `HIT` | exact | Sovereign effect: plain hit (no Dynamax in Sovereign) |
 | 782 | Behemoth Bash | Steel | `HIT` | exact | Sovereign effect: plain hit (no Dynamax in Sovereign) |
-| 783 | Aura Wheel | Electric | `HIT` | approximate | user's stats change by [('spe', 1)] in the original |
+| 783 | Aura Wheel | Electric | `SOVEREIGN_RAISE_SPEED_HIT` | exact | Sovereign effect: user Speed +1 (100%); Dark-type from a Hangry Morpeko |
 | 784 | Breaking Swipe | Dragon | `LOWER_ATTACK_HIT` | exact | Sovereign effect: foes' Attack -1 (100%) |
 | 785 | Branch Poke | Grass | `HIT` | exact |  |
 | 786 | Overdrive | Electric | `HIT` | exact |  |

@@ -138,6 +138,7 @@ MOVES = {
     "trailblaze": ("SOVEREIGN_RAISE_SPEED_HIT", 100, "user Speed +1 (100%)"),
     "aqua_step": ("SOVEREIGN_RAISE_SPEED_HIT", 100, "user Speed +1 (100%)"),
     "esper_wing": ("SOVEREIGN_RAISE_SPEED_HIT", 100, "user Speed +1 (100%); high critical-hit ratio"),
+    "aura_wheel": ("SOVEREIGN_RAISE_SPEED_HIT", 100, "user Speed +1 (100%); Dark-type from a Hangry Morpeko"),
     "diamond_storm": ("SOVEREIGN_RAISE_DEF_2_HIT", 50, "user Defense +2 (50%)"),
     "clanging_scales": ("SOVEREIGN_LOWER_OWN_DEF_HIT", 100, "user Defense -1"),
     "hyperspace_fury": ("SOVEREIGN_LOWER_OWN_DEF_HIT", 100, "user Defense -1, ignores Protect"),

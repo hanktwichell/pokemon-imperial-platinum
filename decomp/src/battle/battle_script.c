@@ -1341,6 +1341,11 @@ static void BattleScript_CalcMoveDamage(BattleSystem *battleSys, BattleContext *
     if (battleCtx->moveCur == MOVE_REVELATION_DANCE) {
         battleCtx->moveType = ATTACKING_MON.type1;
     }
+
+    // Sovereign (FM): Aura Wheel is Dark-type from a Hangry Morpeko.
+    if (battleCtx->moveCur == MOVE_AURA_WHEEL) {
+        battleCtx->moveType = Sovereign_AuraWheelType(ATTACKING_MON.species, ATTACKING_MON.formNum);
+    }
     moveType = Sovereign_AbilityMoveType(Battler_Ability(battleCtx, battleCtx->attacker), battleCtx->moveCur, battleCtx->moveType ? battleCtx->moveType : CURRENT_MOVE_DATA.type); // Sovereign (item 11)
 
     battleCtx->damage = BattleSystem_CalcMoveDamage(battleSys,

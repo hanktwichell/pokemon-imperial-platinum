@@ -250,6 +250,14 @@ IMPLEMENTED = {
     254: "yes: swaps abilities with an attacker that makes contact",
     253: "yes: contact gives it and the attacker a Perish Song count of 3",
     295: "yes: physical hits scatter Toxic Spikes on the attacker's side",
+    # The form-changing abilities (milestone FM, docs/TechnicalDesign.md §4b).
+    161: "yes: Zen Mode at half HP or less (Darmanitan, Galarian Darmanitan)",  # Zen Mode
+    176: "yes: Blade Forme before a damaging move, Shield Forme before King's Shield",  # Stance Change
+    197: "yes: Core at half HP or less; the Meteor Form blocks status and Yawn",  # Shields Down
+    208: "yes: School Form at level 20+ with over 1/4 HP",  # Schooling
+    209: "yes: takes one hit for 1/8 of its max HP, once per battle",  # Disguise
+    211: "yes: Complete Forme at half HP or less, with its higher max HP",  # Power Construct
+    258: "yes: switches between Full Belly and Hangry Mode at the end of each turn",  # Hunger Switch
 }
 
 

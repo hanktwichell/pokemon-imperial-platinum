@@ -173,6 +173,7 @@ FM_FORMS = {
     "zygarde-50-power-construct": (KIND_KEY_ITEM, "ITEM_ZYGARDE_CUBE"),
     "zygarde-complete": (KIND_BATTLE, "ABILITY_POWER_CONSTRUCT"),
     "zygarde-complete-50": (KIND_BATTLE, "ABILITY_POWER_CONSTRUCT"),
+    "morpeko-hangry": (KIND_BATTLE, "ABILITY_HUNGER_SWITCH"),
 }
 
 # The form a battle form goes back to, when it isn't a regional form's (those follow the region) or 0: each Core

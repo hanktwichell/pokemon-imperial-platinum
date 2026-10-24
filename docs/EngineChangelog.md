@@ -4,6 +4,21 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## FM — Hangry Morpeko and Aura Wheel
+
+- **Hunger Switch.** At the end of each turn Morpeko switches between its Full Belly and Hangry Modes: "MORPEKO
+  transformed!". It comes back in, and ends the battle, in Full Belly Mode.
+- **Aura Wheel** raises the user's Speed by 1 every time. It is Electric-type from a Full Belly Morpeko and Dark-type
+  from a Hangry one.
+- **Ability checklist:** `docs/AbilityChecklist.md` now lists the form abilities that work in battle: Zen Mode,
+  Stance Change, Shields Down, Schooling, Disguise, Power Construct and Hunger Switch.
+- **How:** `TechnicalDesign.md` (Hunger Switch). Hangry Morpeko shares Morpeko's sprite until milestone E12.
+- **Verified** in the emulator (a level 30 Morpeko against a wild Gastly):
+  - Hangry at the end of turn 1, Full Belly at the end of turn 2 (after hurting itself in confusion), Hangry again at
+    the end of turn 3.
+  - Then Aura Wheel was super effective on Gastly (Dark-type) and Morpeko's Speed rose.
+  - Release build without warnings, boot smoke, docs.
+
 ## FM — Zygarde's formes and Power Construct
 
 - **Zygarde Cube.**
