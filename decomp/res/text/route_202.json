@@ -23,32 +23,22 @@
       ]
     },
     {
-      "id": "Route202_Text_DawnIllDemonstrateHowToCatch",
+      "id": "Route202_Text_DawnWeShouldBattle",
       "en_US": [
         "Dawn: Oh, that’s right!\r",
-        "{STRVAR_1 3, 1, 0}, I haven’t shown you\n",
-        "how to catch a Pokémon.\r",
-        "I’ll demonstrate how to catch \n",
-        "one, so just watch me, OK?\r"
+        "{STRVAR_1 3, 1, 0}, we should have a battle!\n",
+        "I’ll heal your Pokémon first, though.\r"
       ]
     },
     {
       "id": "Route202_Text_DawnIllGiveYouThirtyPokeBalls",
       "en_US": [
         "Dawn: Giggle...\n",
-        "See? Isn’t it neat?\r",
-        "Actually, it’s better to lower your\n",
-        "target’s HP more than I did.\r",
-        "It’s important to get the Pokémon’s\n",
-        "HP down as low as possible.\r",
-        "This is because a healthy Pokémon\n",
-        "is very difficult to catch.\r",
-        "Oh, Pokémon also get easier to catch\n",
-        "if you make them sleep or something\f",
-        "by using a Pokémon’s move.\r",
-        "OK, {STRVAR_1 3, 0, 0}, to get you\n",
-        "started, I’ll give you thirty\f",
-        "Poké Balls!\r"
+        "Wasn’t that fun?\r",
+        "It’s even better if you have\n",
+        "more Pokémon with you!\r",
+        "OK, {STRVAR_1 3, 0, 0}, to get you started,\n",
+        "I’ll give you thirty Poké Balls!\r"
       ]
     },
     {
@@ -85,29 +75,21 @@
       ]
     },
     {
-      "id": "Route202_Text_LucasIllDemonstrateHowToCatch",
+      "id": "Route202_Text_LucasWeShouldBattle",
       "en_US": [
-        "Lucas: {STRVAR_1 3, 1, 0}, do you know\n",
-        "how to catch a Pokémon?\r",
-        "I’ll demonstrate how to catch\n",
-        "one, so just watch, OK?\r"
+        "Lucas: {STRVAR_1 3, 1, 0}, we should have a\n",
+        "Pokémon battle!\r",
+        "Let me heal your Pokémon...\r"
       ]
     },
     {
       "id": "Route202_Text_LucasIllGiveYouThirtyPokeBalls",
       "en_US": [
         "Lucas: And that’s how it’s done.\r",
-        "Actually, I should have lowered the\n",
-        "target’s HP some more.\r",
-        "Yup, the important thing is to lower\n",
-        "the Pokémon’s HP as much as possible.\r",
-        "See, a healthy Pokémon isn’t easy to\n",
-        "catch.\r",
-        "Oh, yeah. They also get easier to\n",
-        "catch if you make one of your\f",
-        "Pokémon put them to sleep or such.\r",
-        "Here, {STRVAR_1 3, 0, 0}, I’ll give you\n",
-        "thirty Poké Balls to get you started.\r"
+        "It gets a whole lot more interesting\n",
+        "if you have more Pokémon with you, too.\r",
+        "Here, {STRVAR_1 3, 0, 0}, I’ll give you thirty\n",
+        "Poké Balls to get you started.\r"
       ]
     },
     {
@@ -281,6 +263,17 @@
       "en_US": [
         "Hmm...\n",
         "Do you feel like you can’t win?"
+      ]
+    },
+    {
+      "id": "Route202_Text_DawnLetsGetStarted",
+      "en_US": "Dawn: Let’s get started, {STRVAR_1 3, 1, 0}!"
+    },
+    {
+      "id": "Route202_Text_LucasReadyToBattle",
+      "en_US": [
+        "Lucas: Now, I hope you’re ready\n",
+        "to battle, {STRVAR_1 3, 1, 0}!\r"
       ]
     }
   ]

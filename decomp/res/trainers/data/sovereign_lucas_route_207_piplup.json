@@ -1,0 +1,80 @@
+{
+    "name": "Lucas",
+    "class": "TRAINER_CLASS_PLAYER_MALE",
+    "items": [
+        "ITEM_HYPER_POTION"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_PILOSWINE",
+            "form": 0,
+            "level": 29,
+            "item": "ITEM_FOCUS_SASH",
+            "moves": [
+                "MOVE_AVALANCHE",
+                "MOVE_TAKE_DOWN",
+                "MOVE_ROCK_SLIDE",
+                "MOVE_ICE_SHARD"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GRANBULL",
+            "form": 0,
+            "level": 29,
+            "item": "ITEM_MUSCLE_BAND",
+            "moves": [
+                "MOVE_PLAY_ROUGH",
+                "MOVE_FIRE_FANG",
+                "MOVE_THUNDER_FANG",
+                "MOVE_ICE_FANG"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_LICKILICKY",
+            "form": 0,
+            "level": 29,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_SLAM",
+                "MOVE_MAGNITUDE",
+                "MOVE_KNOCK_OFF",
+                "MOVE_PROTECT"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MONFERNO",
+            "form": 0,
+            "level": 30,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_FLAMETHROWER",
+                "MOVE_FAKE_OUT",
+                "MOVE_MACH_PUNCH",
+                "MOVE_GRASS_KNOT"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Wow.\n",
+                "You just keep getting stronger.\n"
+            ]
+        }
+    ]
+}

@@ -91,35 +91,82 @@ Route202_CounterpartWalkToPlayerZ829:
 Route202_CheckStartCatchingTutorial:
     GoToIfUnset FLAG_RECEIVED_PARCEL, Route202_TellYourFamily
     GetPlayerGender VAR_RESULT
-    GoToIfEq VAR_RESULT, GENDER_MALE, Route202_DawnIllDemonstrateHowToCatch
-    GoToIfEq VAR_RESULT, GENDER_FEMALE, Route202_LucasIllDemonstrateHowToCatch
+    GoToIfEq VAR_RESULT, GENDER_MALE, Route202_DawnWeShouldBattle
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, Route202_LucasWeShouldBattle
     End
 
-Route202_DawnIllDemonstrateHowToCatch:
+@ Sovereign (E10, Renegade's Route 202 battle): instead of the catching demonstration, the counterpart heals the
+@ player's Pokémon and battles with the starter that's weak to the player's (TRAINER_SOVEREIGN_<DAWN|LUCAS>_ROUTE_202_<the
+@ player's starter>, Renegade's trainers 928-933), then gives the 30 Poké Balls.
+Route202_DawnWeShouldBattle:
     Common_SetCounterpartBGM
     BufferCounterpartName 0
     BufferPlayerName 1
-    Message Route202_Text_DawnIllDemonstrateHowToCatch
-    GoTo Route202_DoCatchingTutorial
+    Message Route202_Text_DawnWeShouldBattle
+    GoTo Route202_CounterpartHealParty
 
-Route202_LucasIllDemonstrateHowToCatch:
+Route202_LucasWeShouldBattle:
     Common_SetCounterpartBGM
     BufferCounterpartName 0
     BufferPlayerName 1
-    Message Route202_Text_LucasIllDemonstrateHowToCatch
-    GoTo Route202_DoCatchingTutorial
+    Message Route202_Text_LucasWeShouldBattle
+    GoTo Route202_CounterpartHealParty
 
-Route202_DoCatchingTutorial:
+Route202_CounterpartHealParty:
     CloseMessage
-    ApplyMovement LOCALID_COUNTERPART, Route202_Movement_CounterpartWalkWestIntoTallGrass
-    ApplyMovement LOCALID_PLAYER, Route202_Movement_PlayerWalkWestIntoTallGrass
-    WaitMovement
-    StartCatchingTutorial
-    ApplyMovement LOCALID_COUNTERPART, Route202_Movement_CounterpartWalkOnSpotEastAfterCatchingTutorial
-    WaitMovement
+    FadeScreenOut
+    WaitFadeScreen
+    PlayFanfare SEQ_ASA_sseq
+    WaitFanfare
+    HealParty
+    FadeScreenIn
+    WaitFadeScreen
+    BufferPlayerName 1
+    GetPlayerStarterSpecies VAR_0x8004
+    GetPlayerGender VAR_RESULT
+    GoToIfEq VAR_RESULT, GENDER_FEMALE, Route202_LucasBattle
+    Message Route202_Text_DawnLetsGetStarted
+    CloseMessage
+    GoToIfEq VAR_0x8004, SPECIES_TURTWIG, Route202_DawnBattleTurtwig
+    GoToIfEq VAR_0x8004, SPECIES_CHIMCHAR, Route202_DawnBattleChimchar
+    StartTrainerBattle TRAINER_SOVEREIGN_DAWN_ROUTE_202_PIPLUP
+    GoTo Route202_CounterpartBattleEnd
+
+Route202_DawnBattleTurtwig:
+    StartTrainerBattle TRAINER_SOVEREIGN_DAWN_ROUTE_202_TURTWIG
+    GoTo Route202_CounterpartBattleEnd
+
+Route202_DawnBattleChimchar:
+    StartTrainerBattle TRAINER_SOVEREIGN_DAWN_ROUTE_202_CHIMCHAR
+    GoTo Route202_CounterpartBattleEnd
+
+Route202_LucasBattle:
+    Message Route202_Text_LucasReadyToBattle
+    CloseMessage
+    GoToIfEq VAR_0x8004, SPECIES_TURTWIG, Route202_LucasBattleTurtwig
+    GoToIfEq VAR_0x8004, SPECIES_CHIMCHAR, Route202_LucasBattleChimchar
+    StartTrainerBattle TRAINER_SOVEREIGN_LUCAS_ROUTE_202_PIPLUP
+    GoTo Route202_CounterpartBattleEnd
+
+Route202_LucasBattleTurtwig:
+    StartTrainerBattle TRAINER_SOVEREIGN_LUCAS_ROUTE_202_TURTWIG
+    GoTo Route202_CounterpartBattleEnd
+
+Route202_LucasBattleChimchar:
+    StartTrainerBattle TRAINER_SOVEREIGN_LUCAS_ROUTE_202_CHIMCHAR
+    GoTo Route202_CounterpartBattleEnd
+
+Route202_CounterpartBattleEnd:
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, Route202_CounterpartBattleLost
     GetPlayerGender VAR_RESULT
     GoToIfEq VAR_RESULT, GENDER_MALE, Route202_DawnIllGiveYouThirtyPokeBalls
     GoToIfEq VAR_RESULT, GENDER_FEMALE, Route202_LucasIllGiveYouThirtyPokeBalls
+    End
+
+Route202_CounterpartBattleLost:
+    BlackOutFromBattle
+    ReleaseAll
     End
 
 Route202_DawnIllGiveYouThirtyPokeBalls:
@@ -327,16 +374,6 @@ Route202_Movement_CounterpartWalkOnSpotEast:
     EndMovement
 
     .balign 4, 0
-Route202_Movement_CounterpartWalkWestIntoTallGrass:
-    WalkNormalWest 2
-    EndMovement
-
-    .balign 4, 0
-Route202_Movement_CounterpartWalkOnSpotEastAfterCatchingTutorial:
-    WalkOnSpotNormalEast
-    EndMovement
-
-    .balign 4, 0
 Route202_Movement_CounterpartLeaveCatchingTutorial:
     WalkNormalWest 12
     EndMovement
@@ -354,10 +391,6 @@ Route202_Movement_PlayerStepBackEast:
     UnlockDir
     EndMovement
 
-    .balign 4, 0
-Route202_Movement_PlayerWalkWestIntoTallGrass:
-    WalkNormalWest 2
-    EndMovement
 
 Route202_Counterpart:
     PlaySE SE_CONFIRM_sseq_3

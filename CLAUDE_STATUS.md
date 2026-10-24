@@ -4496,3 +4496,35 @@ merged.
 2. Renegade's postgame aces: Routes 225–230 (936–938, 1023–1028), Buck, Marley, Darach, Dahlia, Palmer, the
    Mansion and Route 212 grunts, the Galactic rematches (1060–1063), the E4 rematch teams (981–995).
 3. Celebi's memory battles (1029–1036) and the Celebi event.
+
+## CB-0095 — 2026-10-24, 10:02 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** E10 part 21, Renegade's counterpart battles on Routes 202, 207 and 210 North. PR #105 (part 20)
+merged.
+- 18 trainers `TRAINER_SOVEREIGN_<DAWN|LUCAS>_ROUTE_<202|207|210>_<player's starter>` from Renegade 928–945 and
+  963–968, added via the scratchpad's `trainerlib.add_trainer` (const, defeated flag and JSON from
+  `Renegade.new_trainer`).
+- Route 202: the catching tutorial is replaced. Heal (`SEQ_ASA_sseq`), `GetPlayerStarterSpecies` → battle, then
+  the 30 Poké Balls with Renegade's texts.
+  - Text IDs renamed: `...WeShouldBattle`, plus `DawnLetsGetStarted` and `LucasReadyToBattle`.
+  - The tall-grass movements were removed.
+- Route 207: the hand-choice menu is replaced by a battle. Then Renegade's gift line, the Vs. Seeker, and the Dowsing
+  Machine (kept).
+- Route 210 North: a new coord event at (480, 528–532) on `VAR_SOVEREIGN_ROUTE_210_COUNTERPART_STATE` (was
+  `VAR_UNK_0x4072`).
+  - A counterpart object (`OBJ_EVENT_GFX_VAR_0`, parked at 0,0) walks in by Renegade's paths, heals, battles and
+    leaves.
+- Verified in a test build: Route 202 end to end; the Route 207 and 210 battles start. The test party lost both, so
+  their post-battle paths weren't seen. Release build and docs pass.
+
+**Files modified:**
+- `decomp/generated/{trainers,vars_flags}.txt`, 18 new trainer JSONs
+- Scripts, events and text for `route_202`, `route_207` and `route_210_north`
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Route 224 counterpart battle (975–980; Renegade's object at 908/492, its coord at 903/496–498), then the
+   Battleground battles (1054–1059 and the Galactic 1060–1063). One unused var is left: `VAR_UNUSED_0x411C`.
+2. Renegade's postgame aces (Routes 225–230, Buck, Marley, Darach, Dahlia, Palmer), the Mansion and Route 212 grunts,
+   and the E4 rematch teams (981–995).
+3. Celebi's memory battles (1029–1036) and the Celebi event.

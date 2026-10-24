@@ -54,15 +54,34 @@ Route207_Counterpart:
     GoToIfEq VAR_RESULT, GENDER_MALE, Route207_Dawn
     GoTo Route207_Lucas
 
+@ Sovereign (E10, Renegade's Route 207 battle): the counterpart battles first (their team depends on the player's
+@ starter: Renegade's trainers 940-945), then gives the Vs. Seeker as a training gift. The Dowsing Machine app follows
+@ as in Platinum (Renegade drops it here).
 Route207_Dawn:
     BufferPlayerName 0
-    Message Route207_Text_DawnChooseWhichHand
-    InitGlobalTextListMenu 30, 13, 0, VAR_RESULT, NO_EXIT_ON_B
-    SetMenuXOriginToRight
-    AddListMenuEntry MenuEntries_Text_CounterpartHand_Right, 0
-    AddListMenuEntry MenuEntries_Text_CounterpartHand_Left, 1
-    ShowListMenu
-    Message Route207_Text_DawnYouWantTheVsSeeker
+    Message Route207_Text_DawnIllProveItInABattle
+    CloseMessage
+    GetPlayerStarterSpecies VAR_0x8004
+    GoToIfEq VAR_0x8004, SPECIES_TURTWIG, Route207_DawnBattleTurtwig
+    GoToIfEq VAR_0x8004, SPECIES_CHIMCHAR, Route207_DawnBattleChimchar
+    StartTrainerBattle TRAINER_SOVEREIGN_DAWN_ROUTE_207_PIPLUP
+    GoTo Route207_DawnBattleEnd
+
+Route207_DawnBattleTurtwig:
+    StartTrainerBattle TRAINER_SOVEREIGN_DAWN_ROUTE_207_TURTWIG
+    GoTo Route207_DawnBattleEnd
+
+Route207_DawnBattleChimchar:
+    StartTrainerBattle TRAINER_SOVEREIGN_DAWN_ROUTE_207_CHIMCHAR
+    GoTo Route207_DawnBattleEnd
+
+Route207_DawnBattleEnd:
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, Route207_CounterpartBattleLost
+    LockAll
+    Common_SetCounterpartBGM
+    BufferPlayerName 0
+    Message Route207_Text_DawnGiftForTraining
     Call Route207_GiveVsSeeker
     Message Route207_Text_DawnHaveThisTooThen
     Call Route207_GivePoketchAppDowsingMachine
@@ -71,18 +90,40 @@ Route207_Dawn:
 
 Route207_Lucas:
     BufferPlayerName 0
-    Message Route207_Text_LucasChooseAHand
-    InitGlobalTextListMenu 30, 13, 0, VAR_RESULT, NO_EXIT_ON_B
-    SetMenuXOriginToRight
-    AddListMenuEntry MenuEntries_Text_CounterpartHand_Right, 0
-    AddListMenuEntry MenuEntries_Text_CounterpartHand_Left, 1
-    ShowListMenu
-    Message Route207_Text_LucasYouWantTheVsSeeker
+    Message Route207_Text_LucasIllProveItInABattle
+    CloseMessage
+    GetPlayerStarterSpecies VAR_0x8004
+    GoToIfEq VAR_0x8004, SPECIES_TURTWIG, Route207_LucasBattleTurtwig
+    GoToIfEq VAR_0x8004, SPECIES_CHIMCHAR, Route207_LucasBattleChimchar
+    StartTrainerBattle TRAINER_SOVEREIGN_LUCAS_ROUTE_207_PIPLUP
+    GoTo Route207_LucasBattleEnd
+
+Route207_LucasBattleTurtwig:
+    StartTrainerBattle TRAINER_SOVEREIGN_LUCAS_ROUTE_207_TURTWIG
+    GoTo Route207_LucasBattleEnd
+
+Route207_LucasBattleChimchar:
+    StartTrainerBattle TRAINER_SOVEREIGN_LUCAS_ROUTE_207_CHIMCHAR
+    GoTo Route207_LucasBattleEnd
+
+Route207_LucasBattleEnd:
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, Route207_CounterpartBattleLost
+    LockAll
+    Common_SetCounterpartBGM
+    BufferPlayerName 0
+    Message Route207_Text_LucasGiftForTraining
     Call Route207_GiveVsSeeker
     Message Route207_Text_LucasHaveThisTooThen
     Call Route207_GivePoketchAppDowsingMachine
     Message Route207_Text_LucasTryTouchingDowsingMachine
     GoTo Route207_CounterpartLeave
+
+Route207_CounterpartBattleLost:
+    RemoveObject LOCALID_COUNTERPART
+    BlackOutFromBattle
+    ReleaseAll
+    End
 
 Route207_GiveVsSeeker:
     SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_1

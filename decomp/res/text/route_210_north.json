@@ -21,6 +21,87 @@
     {
       "id": "Route210North_Text_SignGrandmaWilmasHouse",
       "en_US": "Grandma Wilma’s House"
+    },
+    {
+      "id": "Route210North_Text_SovereignCounterpartDawnHi",
+      "en_US": [
+        "Dawn: Hi, {STRVAR_1 3, 0, 0}!\n",
+        "I didn’t expect to bump into you!\r",
+        "I was exploring around this area\n",
+        "to get some entries in my Pokédex.\r",
+        "There’s lots of rare Pokémon here.\n",
+        "There’s even a few Dragon-types!\f",
+        "It’s pretty incredible, right?\r",
+        "Oh, how are your Pokémon doing?\n",
+        "Let me heal them for you!\r"
+      ]
+    },
+    {
+      "id": "Route210North_Text_SovereignCounterpartDawnLetsBattle",
+      "en_US": [
+        "Dawn: When did I last see you?\n",
+        "It was when we met at Veilstone City...\r",
+        "That was when those Team Galactic\n",
+        "goons stole my Pokédex from me...\r",
+        "Honestly, that ordeal was upsetting.\n",
+        "So I’ve been trying to get stronger.\n",
+        "While still filling the Pokédex, of course!\r",
+        "In fact, {STRVAR_1 3, 0, 0}, why don’t I just show\n",
+        "you how much stronger I’ve gotten?\r",
+        "Don’t be too surprised when I win\n",
+        "our battle!\r"
+      ]
+    },
+    {
+      "id": "Route210North_Text_SovereignCounterpartDawnSeeYou",
+      "en_US": [
+        "Dawn: That was a good battle, {STRVAR_1 3, 0, 0}.\n",
+        "You’ve gotten stronger, too!\r",
+        "Even though I lost, I feel like I’ve\n",
+        "gotten so much stronger than before.\r",
+        "Anyway, I’m going to keep exploring\n",
+        "to fill up the pages in my Pokédex.\r",
+        "See you another time!\r"
+      ]
+    },
+    {
+      "id": "Route210North_Text_SovereignCounterpartLucasHi",
+      "en_US": [
+        "Lucas: Hi, {STRVAR_1 3, 0, 0}.\n",
+        "I’m surprised to see you here.\r",
+        "I was searching for some Pokémon\n",
+        "to fill up my Pokédex.\r",
+        "There’s lots of rare Pokémon here.\n",
+        "Even some Dragon-types. Cool, right?\r",
+        "Oh, your Pokémon look a bit hurt.\n",
+        "Let me heal them for you.\r"
+      ]
+    },
+    {
+      "id": "Route210North_Text_SovereignCounterpartLucasLetsBattle",
+      "en_US": [
+        "Lucas: I last saw you in Veilstone City,\n",
+        "when we battled those Team Galactic\f",
+        "goons who stole my Pokédex.\r",
+        "I was frustrated that ever happened,\n",
+        "so I’ve been trying to get stronger\f",
+        "to protect myself and my Pokémon.\r",
+        "{STRVAR_1 3, 0, 0}, let me battle you with the\n",
+        "skills we’ve learnt from our training!\r"
+      ]
+    },
+    {
+      "id": "Route210North_Text_SovereignCounterpartLucasSeeYou",
+      "en_US": [
+        "Lucas: Thanks for the battle, {STRVAR_1 3, 0, 0}.\n",
+        "You’ve grown very strong, too.\r",
+        "I may have lost, but I still think that\n",
+        "battle was worthwhile for pushing us\f",
+        "forward.\r",
+        "I need to keep investigating the rare\n",
+        "Pokémon around here, so I’ll see you\f",
+        "around!\r"
+      ]
     }
   ]
 }
