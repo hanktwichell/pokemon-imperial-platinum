@@ -240,6 +240,23 @@
         "4F: Poké Dolls & Goods\r",
         "5F: Rooftop Plaza"
       ]
+    },
+    {
+      "id": "VeilstoneStoreB1F_Text_SovereignLavaCookiesHalf",
+      "en_US": [
+        "Hello, there.\r",
+        "Would you like some Lava Cookies?\n",
+        "They’re $100 each."
+      ]
+    },
+    {
+      "id": "VeilstoneStoreB1F_Text_SovereignPoffinsHalf",
+      "en_US": [
+        "Hello!\n",
+        "I sell Poffins.\r",
+        "The ones I sell go for $3,200 each.\n",
+        "Would you like one?"
+      ]
     }
   ]
 }

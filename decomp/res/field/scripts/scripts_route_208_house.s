@@ -96,10 +96,8 @@ Route208House_PokemonBreederF:
     Message Route208House_Text_WouldYouLikeSomeMulch
     ShowMoney 20, 2
     InitGlobalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm MenuEntries_Text_MulchShop_GrowthMulch, 0
-    AddMenuEntryImm MenuEntries_Text_MulchShop_DampMulch, 1
-    AddMenuEntryImm MenuEntries_Text_MulchShop_StableMulch, 2
-    AddMenuEntryImm MenuEntries_Text_MulchShop_GooeyMulch, 3
+    CallIfUnset FLAG_GAME_COMPLETED, Route208House_SovereignMulchFullPrice
+    CallIfSet FLAG_GAME_COMPLETED, Route208House_SovereignMulchHalfPrice
     AddMenuEntryImm MenuEntries_Text_MulchShop_Exit, 4
     ShowMenu
     SetVar VAR_0x8000, VAR_RESULT
@@ -162,37 +160,45 @@ Route208House_TryBuyGooeyMulch:
     GoTo Route208House_TryBuyMulch
 
 Route208House_CheckMoneyGrowthMulch:
+    GoToIfSet FLAG_GAME_COMPLETED, Route208House_CheckMoneyGrowthMulchSovereignHalf
     CheckMoney VAR_RESULT, 200
     Return
 
 Route208House_CheckMoneyDampMulch:
+    GoToIfSet FLAG_GAME_COMPLETED, Route208House_CheckMoneyDampMulchSovereignHalf
     CheckMoney VAR_RESULT, 200
     Return
 
 Route208House_CheckMoneyStableMulch:
+    GoToIfSet FLAG_GAME_COMPLETED, Route208House_CheckMoneyStableMulchSovereignHalf
     CheckMoney VAR_RESULT, 200
     Return
 
 Route208House_CheckMoneyGooeyMulch:
+    GoToIfSet FLAG_GAME_COMPLETED, Route208House_CheckMoneyGooeyMulchSovereignHalf
     CheckMoney VAR_RESULT, 200
     Return
 
 Route208House_SpendMoneyGrowthMulch:
+    GoToIfSet FLAG_GAME_COMPLETED, Route208House_SpendMoneyGrowthMulchSovereignHalf
     AddToGameRecord RECORD_MONEY_SPENT, 200
     RemoveMoney 200
     Return
 
 Route208House_SpendMoneyDampMulch:
+    GoToIfSet FLAG_GAME_COMPLETED, Route208House_SpendMoneyDampMulchSovereignHalf
     AddToGameRecord RECORD_MONEY_SPENT, 200
     RemoveMoney 200
     Return
 
 Route208House_SpendMoneyStableMulch:
+    GoToIfSet FLAG_GAME_COMPLETED, Route208House_SpendMoneyStableMulchSovereignHalf
     AddToGameRecord RECORD_MONEY_SPENT, 200
     RemoveMoney 200
     Return
 
 Route208House_SpendMoneyGooeyMulch:
+    GoToIfSet FLAG_GAME_COMPLETED, Route208House_SpendMoneyGooeyMulchSovereignHalf
     AddToGameRecord RECORD_MONEY_SPENT, 200
     RemoveMoney 200
     Return
@@ -263,3 +269,54 @@ Route208House_SovereignRareBerrySeller:
     PokeMartSpecialties MART_SPECIALTIES_ID_RARE_BERRIES_ROUTE_208
     ReleaseAll
     End
+
+Route208House_CheckMoneyGrowthMulchSovereignHalf:
+    CheckMoney VAR_RESULT, 100
+    Return
+
+Route208House_SpendMoneyGrowthMulchSovereignHalf:
+    AddToGameRecord RECORD_MONEY_SPENT, 100
+    RemoveMoney 100
+    Return
+
+Route208House_CheckMoneyDampMulchSovereignHalf:
+    CheckMoney VAR_RESULT, 100
+    Return
+
+Route208House_SpendMoneyDampMulchSovereignHalf:
+    AddToGameRecord RECORD_MONEY_SPENT, 100
+    RemoveMoney 100
+    Return
+
+Route208House_CheckMoneyStableMulchSovereignHalf:
+    CheckMoney VAR_RESULT, 100
+    Return
+
+Route208House_SpendMoneyStableMulchSovereignHalf:
+    AddToGameRecord RECORD_MONEY_SPENT, 100
+    RemoveMoney 100
+    Return
+
+Route208House_CheckMoneyGooeyMulchSovereignHalf:
+    CheckMoney VAR_RESULT, 100
+    Return
+
+Route208House_SpendMoneyGooeyMulchSovereignHalf:
+    AddToGameRecord RECORD_MONEY_SPENT, 100
+    RemoveMoney 100
+    Return
+
+@ Sovereign (decision 24, owner 2026-10-24): after the Hall of Fame, scripted sales are half price too.
+Route208House_SovereignMulchFullPrice:
+    AddMenuEntryImm MenuEntries_Text_MulchShop_GrowthMulch, 0
+    AddMenuEntryImm MenuEntries_Text_MulchShop_DampMulch, 1
+    AddMenuEntryImm MenuEntries_Text_MulchShop_StableMulch, 2
+    AddMenuEntryImm MenuEntries_Text_MulchShop_GooeyMulch, 3
+    Return
+
+Route208House_SovereignMulchHalfPrice:
+    AddMenuEntryImm MenuEntries_Text_SovereignMulchShop_GrowthMulchHalf, 0
+    AddMenuEntryImm MenuEntries_Text_SovereignMulchShop_DampMulchHalf, 1
+    AddMenuEntryImm MenuEntries_Text_SovereignMulchShop_StableMulchHalf, 2
+    AddMenuEntryImm MenuEntries_Text_SovereignMulchShop_GooeyMulchHalf, 3
+    Return

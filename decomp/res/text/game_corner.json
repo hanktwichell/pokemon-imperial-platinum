@@ -253,6 +253,14 @@
     {
       "id": "GameCorner_Text_Dummy27",
       "garbage": 0
+    },
+    {
+      "id": "GameCorner_Text_Sovereign500For50Coins",
+      "en_US": [
+        "Did you want some game Coins?\r",
+        "It’s $500 for 50 Coins.\n",
+        "Would you like some?"
+      ]
     }
   ]
 }

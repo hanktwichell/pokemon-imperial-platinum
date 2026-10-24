@@ -1,0 +1,51 @@
+canalave_library_2f|SOVEREIGN_ARCHIVIST|EXPERT_M|16,5|Sovereign (the Chronicles, docs/PostgameLegendaries.md): the Legend Archivist, here from the first Hall of Fame. His first talk opens the Unova Chronicle (VAR_SOVEREIGN_CHRONICLE 1). After that he offers a menu of the Chronicle's legends, and each topic gives 
+celestic_town_cave|SOVEREIGN_DRAGON_MASTER|ACE_TRAINER_M|9,11|Sovereign (E10, Renegade's Type Masters): the Dragon-type Master battles one Dragon-type Pokémon, alone in the party, for the Draco Plate (Renegade's trainer 1050).
+contest_hall_lobby|SOVEREIGN_COMPOSER|GENTLEMAN|8,7|Sovereign (the Chronicles, docs/PostgameLegendaries.md): the composer. Once the Unova Chronicle is open, a party Pokémon that knows Sing can sing the Relic Song for him, and Meloetta answers from the stage (FLAG_SOVEREIGN_MELOETTA_SONG).
+eterna_city|SOVEREIGN_DOOR_GRUNT|GRUNT_M|305,520|
+eterna_city_pokecenter_1f|SOVEREIGN_IDOL|IDOL|10,6|Sovereign (E10, Renegade's Jirachi event): the first of three wishes. The Idol wants her Clefairy to learn Dazzling Gleam (TM85, Mira's gift in Wayward Cave). Granting it is seen by Jirachi (docs/LegendaryTriggers.md).
+eterna_city_pokecenter_1f|SOVEREIGN_CLEFAIRY|CLEFAIRY|11,6|
+fight_area_pokecenter_1f|FIGHT_AREA_SOVEREIGN_GRENINJA_TRAINER|ACE_TRAINER_M|12,6|Sovereign (FM, owner 2026-10-24): an Ace Trainer gives Battle Bond Greninja, the Battle Frontier's bond. Level 50, with the official demo's moves.
+fight_area_pokecenter_1f|FIGHT_AREA_SOVEREIGN_EVENT_DELIVERYMAN|MYSTERY_GIFT_DELIVERYMAN|2,7|Sovereign (FM, temporary placement, owner 2026-10-24): the event-gift deliveryman gives each event form once, the forms the official games gave at events (scrcmd.c sSovereignEventGifts: its species, form, level and signature move).
+floaroma_meadow|SOVEREIGN_GRASS_MASTER|LASS|47,41|Sovereign (E10, Renegade's Type Masters): the Grass-type Master battles one Grass-type Pokémon, alone in the party, for the Meadow Plate (Renegade's trainer 1046).
+fullmoon_island_forest|SOVEREIGN_LATI_ROCK|MOSS_ROCK|16,15|
+hearthome_city_pokemon_fan_club|SOVEREIGN_FURFROU_GROOMER|POKEFAN_F|10,16|Sovereign (FM, temporary placement, owner 2026-10-24): a groomer trims Furfrou, as in X and Y, for free and as often as asked (SovereignGroomFurfrou: form 0 Natural, 1-9 the trims).
+mining_museum|SOVEREIGN_STONE_FRAGMENT|CAVE_PAINTING_SHARDS_LEFT|18,3|Sovereign (Story.md): the first vague reference to the Sovereign, a new exhibit.
+mining_museum|SOVEREIGN_FOSSIL_MANIAC|RUIN_MANIAC|11,11|
+mining_museum|SOVEREIGN_FUTURE_SCIENTIST|SCIENTIST_F|13,11|
+oreburgh_gate_1f|SOVEREIGN_GROUND_MASTER|HIKER|16,4|Sovereign (E10, Renegade's Type Masters): the Ground-type Master battles one Ground-type Pokémon, alone in the party, for the Earth Plate (Renegade's trainer 1041).
+pal_park|SOVEREIGN_SIGN_ALOLA|ARROW_SIGNPOST|18,48|Sovereign (owner, 2026-10-24): a sign at the way into each zone of the Regional Forms Park.
+pal_park|SOVEREIGN_SIGN_GALAR|ARROW_SIGNPOST|10,33|
+pal_park|SOVEREIGN_SIGN_HISUI|ARROW_SIGNPOST|30,26|
+pal_park|SOVEREIGN_SIGN_PALDEA|ARROW_SIGNPOST|31,49|
+pastoria_city|SOVEREIGN_NINJA_BOY|NINJA_BOY|591,845|Sovereign (E10, Renegade's Jirachi event): the third of three wishes. The boy wants to see a mean-looking fish (Carvanha, Sharpedo or Gyarados).
+pastoria_city|SOVEREIGN_MEW_TORCHIC|TORCHIC|625,828|Sovereign (E10, Renegade's Mew event, step 3 of 4): a hungry Torchic wants an Old Gateau. Feeding it brings Mew, which flies off to the next step (Route 203 Shroomish, Route 209 Buneary, Pastoria City Torchic, Route 201).
+pastoria_city|SOVEREIGN_MEW|LEGENDARY_MEW|999,999|
+pastoria_city_observatory_gate_2f|SOVEREIGN_POISON_MASTER|SCIENTIST_M|8,3|Sovereign (E10, Renegade's Type Masters): the Poison-type Master battles one Poison-type Pokémon, alone in the party, for the Toxic Plate (Renegade's trainer 1040).
+pokemon_league|SOVEREIGN_GUARD|POLICEMAN|851,598|
+pokemon_league|SOVEREIGN_FLYING_MASTER|ACE_TRAINER_F|859,564|Sovereign (E10, Renegade's Type Masters): the Flying-type Master battles one Flying-type Pokémon, alone in the party, for the Sky Plate (Renegade's trainer 1052).
+route_201|SOVEREIGN_MEW_PACHIRISU|PACHIRISU|108,846|Sovereign (E10, Renegade's Mew event, step 4 of 4): after the Shroomish, Buneary and Torchic are fed, a Pachirisu waits here. Talking to it reveals Mew (Lv. 40), which stays until it's caught.
+route_202|SOVEREIGN_BUG_MASTER|BUG_CATCHER|170,824|Sovereign (E10, Renegade's Type Masters): the Bug-type Master battles one Bug-type Pokémon, alone in the party, for the Insect Plate (Renegade's trainer 1038).
+route_203|SOVEREIGN_MEW_SHROOMISH|SHROOMISH|212,746|Sovereign (E10, Renegade's Mew event, step 1 of 4): a hungry Shroomish wants an Oran Berry. Feeding it brings Mew, which flies off to the next step (Route 203 Shroomish, Route 209 Buneary, Pastoria City Torchic, Route 201).
+route_203|SOVEREIGN_MEW|LEGENDARY_MEW|999,999|
+route_207|SOVEREIGN_ROCK_MASTER|HIKER|314,723|Sovereign (E10, Renegade's Type Masters): the Rock-type Master battles one Rock-type Pokémon, alone in the party, for the Stone Plate (Renegade's trainer 1042).
+route_209|SOVEREIGN_MEW_BUNEARY|BUNEARY|548,674|Sovereign (E10, Renegade's Mew event, step 2 of 4): a hungry Buneary wants a Sitrus Berry. Feeding it brings Mew, which flies off to the next step (Route 203 Shroomish, Route 209 Buneary, Pastoria City Torchic, Route 201).
+route_209|SOVEREIGN_MEW|LEGENDARY_MEW|999,999|
+route_210_north|SOVEREIGN_COUNTERPART|VAR_0|0,0|
+route_219|SOVEREIGN_WATER_MASTER|BEAUTY|172,878|Sovereign (E10, Renegade's Type Masters): the Water-type Master battles one Water-type Pokémon, alone in the party, for the Splash Plate (Renegade's trainer 1045).
+route_225|SOVEREIGN_HEATHER|ACE_TRAINER_SNOW_F|617,400|Sovereign (E10, Renegade's Battle Zone): Heather gives the unofficial Wind Badge (just a keepsake, no item) to a player who beats their team (Renegade's trainer 938).
+route_226|SOVEREIGN_FIRE_MASTER|ACE_TRAINER_M|677,329|Sovereign (E10, Renegade's Type Masters): the Fire-type Master battles one Fire-type Pokémon, alone in the party, for the Flame Plate (Renegade's trainer 1044).
+route_226|SOVEREIGN_WYVER|ACE_TRAINER_SNOW_M|717,346|Sovereign (E10, Renegade's Battle Zone): Wyver gives the unofficial Fang Badge (just a keepsake, no item) to a player who beats their team (Renegade's trainer 1024). Renegade stands Wyver at (716, 345), where Tapu Fini (the Chronicles) is. Sovereign moves Wyve
+route_227|SOVEREIGN_SLYTHE|ACE_TRAINER_SNOW_F|748,280|Sovereign (E10, Renegade's Battle Zone): Slythe gives the unofficial Acid Badge (just a keepsake, no item) to a player who beats their team (Renegade's trainer 1025).
+route_228|SOVEREIGN_SHADE|ACE_TRAINER_SNOW_M|790,404|Sovereign (E10, Renegade's Battle Zone): Shade gives the unofficial Shadow Badge (just a keepsake, no item) to a player who beats their team (Renegade's trainer 1026).
+route_229|SOVEREIGN_GENE|ACE_TRAINER_SNOW_M|827,438|Sovereign (E10, Renegade's Battle Zone): Gene gives the unofficial General Badge (just a keepsake, no item) to a player who beats their team (Renegade's trainer 1027).
+route_230|SOVEREIGN_LUNA|ACE_TRAINER_SNOW_F|729,432|Sovereign (E10, Renegade's Battle Zone): Luna gives the unofficial Moon Badge (just a keepsake, no item) to a player who beats their team (Renegade's trainer 1028).
+sendoff_spring|SOVEREIGN_DARK_MASTER|ACE_TRAINER_F|17,48|Sovereign (E10, Renegade's Type Masters): the Dark-type Master battles one Dark-type Pokémon, alone in the party, for the Dread Plate (Renegade's trainer 1051).
+snowpoint_city|SOVEREIGN_ICE_MASTER|ACE_TRAINER_SNOW_F|378,220|Sovereign (E10, Renegade's Type Masters): the Ice-type Master battles one Ice-type Pokémon, alone in the party, for the Icicle Plate (Renegade's trainer 1049).
+solaceon_ruins_room_1|SOVEREIGN_PSYCHIC_MASTER|PSYCHIC|4,7|Sovereign (E10, Renegade's Type Masters): the Psychic-type Master battles one Psychic-type Pokémon, alone in the party, for the Mind Plate (Renegade's trainer 1048).
+solaceon_town_northeast_house|SOVEREIGN_SOCIALITE|SOCIALITE|2,3|Sovereign (E10, Renegade's Jirachi event): the second of three wishes. The Socialite wants to see a Pokémon whose head is on fire (Renegade's list: Ponyta, Rapidash, Moltres, Quilava, Infernape; Magmar, Slugma and Magmortar don't count).
+sunyshore_city|SOVEREIGN_DAHLIA|DAHLIA|882,747|Sovereign (E10, Renegade's Dahlia battle): the Arcade Star relaxes by the sea and battles a player with all eight badges (Renegade's trainer 973), then heads off to the Frontier. Her trainer flag also hides her.
+team_galactic_eterna_building_4f|SOVEREIGN_PORYGON_BALL|POKEBALL|14,5|
+twinleaf_town_player_house_1f|SOVEREIGN_ELDER|EXPERT_F|8,8|
+veilstone_city_pokecenter_1f|VEILSTONE_SOVEREIGN_DRAGON_TAMER|ACE_TRAINER_M|11,6|
+veilstone_city_southwest_house|SOVEREIGN_FIGHTING_MASTER|BLACK_BELT|8,4|Sovereign (E10, Renegade's Type Masters): the Fighting-type Master battles one Fighting-type Pokémon, alone in the party, for the Fist Plate (Renegade's trainer 1039).
+vista_lighthouse|SOVEREIGN_ELECTRIC_MASTER|GUITARIST|4,3|Sovereign (E10, Renegade's Type Masters): the Electric-type Master battles one Electric-type Pokémon, alone in the party, for the Zap Plate (Renegade's trainer 1047).

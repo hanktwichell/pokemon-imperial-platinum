@@ -21,7 +21,8 @@ Cafe_Waitress:
     LockAll
     FacePlayer
     ShowMoney 20, 2
-    Message Cafe_Text_MoomooMilk500ABottle
+    CallIfUnset FLAG_GAME_COMPLETED, Cafe_SovereignFullPriceMsg
+    CallIfSet FLAG_GAME_COMPLETED, Cafe_SovereignHalfPriceMsg
     GoTo Cafe_MoomooMilkMenu
     End
 
@@ -40,6 +41,7 @@ Cafe_MoomooMilkMenu:
     End
 
 Cafe_TryBuyBottle:
+    GoToIfSet FLAG_GAME_COMPLETED, Cafe_TryBuyBottleSovereignHalf
     GoToIfNotEnoughMoney 500, Cafe_YouDontHaveTheMoney
     SetVar VAR_0x8005, 1
     SetVar VAR_0x8006, 500
@@ -47,6 +49,7 @@ Cafe_TryBuyBottle:
     End
 
 Cafe_TryBuyDozen:
+    GoToIfSet FLAG_GAME_COMPLETED, Cafe_TryBuyDozenSovereignHalf
     GoToIfNotEnoughMoney 6000, Cafe_YouDontHaveTheMoney
     SetVar VAR_0x8005, 12
     SetVar VAR_0x8006, 6000
@@ -63,6 +66,8 @@ Cafe_GiveMoomooMilk:
     WaitSE SEQ_SE_DP_REGI_sseq
     CallIfEq VAR_0x8006, 500, Cafe_HeresYourMoomooMilk
     CallIfEq VAR_0x8006, 6000, Cafe_GetMoomooMilkByDozen
+    CallIfEq VAR_0x8006, 250, Cafe_HeresYourMoomooMilk
+    CallIfEq VAR_0x8006, 3000, Cafe_GetMoomooMilkByDozen
     Common_GiveItemQuantityNoLineFeed
     CloseMessage
     HideMoney
@@ -120,3 +125,26 @@ Cafe_RelievedPsyduckOfHeadaches:
     End
 
     .balign 4, 0
+
+@ Sovereign (decision 24, owner 2026-10-24): after the Hall of Fame, scripted sales are half price too.
+Cafe_SovereignFullPriceMsg:
+    Message Cafe_Text_MoomooMilk500ABottle
+    Return
+
+Cafe_SovereignHalfPriceMsg:
+    Message Cafe_Text_SovereignMoomooMilkHalf
+    Return
+
+Cafe_TryBuyBottleSovereignHalf:
+    GoToIfNotEnoughMoney 250, Cafe_YouDontHaveTheMoney
+    SetVar VAR_0x8005, 1
+    SetVar VAR_0x8006, 250
+    GoTo Cafe_GiveMoomooMilk
+    End
+
+Cafe_TryBuyDozenSovereignHalf:
+    GoToIfNotEnoughMoney 3000, Cafe_YouDontHaveTheMoney
+    SetVar VAR_0x8005, 12
+    SetVar VAR_0x8006, 3000
+    GoTo Cafe_GiveMoomooMilk
+    End

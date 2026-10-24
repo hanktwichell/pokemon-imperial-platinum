@@ -71,9 +71,8 @@ VeilstoneStore5F_VendingMachine:
 
 VeilstoneStore5F_VendingMachineMenu:
     InitGlobalTextMenu 1, 1, 0, LOCAL_VAR_DRINK_CHOICE
-    AddMenuEntryImm MenuEntries_Text_FreshWater, 0
-    AddMenuEntryImm MenuEntries_Text_SodaPop, 1
-    AddMenuEntryImm MenuEntries_Text_Lemonade, 2
+    CallIfUnset FLAG_GAME_COMPLETED, VeilstoneStore5F_SovereignDrinksFullPrice
+    CallIfSet FLAG_GAME_COMPLETED, VeilstoneStore5F_SovereignDrinksHalfPrice
     AddMenuEntryImm MenuEntries_Text_NoThanks, 3
     ShowMenu
     SetVar LOCAL_VAR_DRINK_CHOICE_COPY, LOCAL_VAR_DRINK_CHOICE
@@ -96,28 +95,34 @@ VeilstoneStore5F_VendingMachineChooseLemonade:
     GoTo VeilstoneStore5F_VendingMachineDispenseDrink
 
 VeilstoneStore5F_VendingMachineCheckFreshWaterMoney:
+    GoToIfSet FLAG_GAME_COMPLETED, VeilstoneStore5F_VendingMachineCheckFreshWaterMoneySovereignHalf
     CheckMoney VAR_RESULT, 200
     Return
 
 VeilstoneStore5F_VendingMachineCheckSodaPopMoney:
+    GoToIfSet FLAG_GAME_COMPLETED, VeilstoneStore5F_VendingMachineCheckSodaPopMoneySovereignHalf
     CheckMoney VAR_RESULT, 300
     Return
 
 VeilstoneStore5F_VendingMachineCheckLemonadeMoney:
+    GoToIfSet FLAG_GAME_COMPLETED, VeilstoneStore5F_VendingMachineCheckLemonadeMoneySovereignHalf
     CheckMoney VAR_RESULT, 350
     Return
 
 VeilstoneStore5F_VendingMachineBuyFreshWater:
+    GoToIfSet FLAG_GAME_COMPLETED, VeilstoneStore5F_VendingMachineBuyFreshWaterSovereignHalf
     AddToGameRecord RECORD_MONEY_SPENT, 200
     RemoveMoney 200
     Return
 
 VeilstoneStore5F_VendingMachineBuySodaPop:
+    GoToIfSet FLAG_GAME_COMPLETED, VeilstoneStore5F_VendingMachineBuySodaPopSovereignHalf
     AddToGameRecord RECORD_MONEY_SPENT, 300
     RemoveMoney 300
     Return
 
 VeilstoneStore5F_VendingMachineBuyLemonade:
+    GoToIfSet FLAG_GAME_COMPLETED, VeilstoneStore5F_VendingMachineBuyLemonadeSovereignHalf
     AddToGameRecord RECORD_MONEY_SPENT, 350
     RemoveMoney 350
     Return
@@ -203,3 +208,43 @@ VeilstoneStore5F_BerthaBagIsFull:
     End
 
     .balign 4, 0
+
+@ Sovereign (decision 24, owner 2026-10-24): after the Hall of Fame, scripted sales are half price too.
+VeilstoneStore5F_SovereignDrinksFullPrice:
+    AddMenuEntryImm MenuEntries_Text_FreshWater, 0
+    AddMenuEntryImm MenuEntries_Text_SodaPop, 1
+    AddMenuEntryImm MenuEntries_Text_Lemonade, 2
+    Return
+
+VeilstoneStore5F_SovereignDrinksHalfPrice:
+    AddMenuEntryImm MenuEntries_Text_SovereignFreshWaterHalf, 0
+    AddMenuEntryImm MenuEntries_Text_SovereignSodaPopHalf, 1
+    AddMenuEntryImm MenuEntries_Text_SovereignLemonadeHalf, 2
+    Return
+
+VeilstoneStore5F_VendingMachineCheckFreshWaterMoneySovereignHalf:
+    CheckMoney VAR_RESULT, 100
+    Return
+
+VeilstoneStore5F_VendingMachineCheckSodaPopMoneySovereignHalf:
+    CheckMoney VAR_RESULT, 150
+    Return
+
+VeilstoneStore5F_VendingMachineCheckLemonadeMoneySovereignHalf:
+    CheckMoney VAR_RESULT, 175
+    Return
+
+VeilstoneStore5F_VendingMachineBuyFreshWaterSovereignHalf:
+    AddToGameRecord RECORD_MONEY_SPENT, 100
+    RemoveMoney 100
+    Return
+
+VeilstoneStore5F_VendingMachineBuySodaPopSovereignHalf:
+    AddToGameRecord RECORD_MONEY_SPENT, 150
+    RemoveMoney 150
+    Return
+
+VeilstoneStore5F_VendingMachineBuyLemonadeSovereignHalf:
+    AddToGameRecord RECORD_MONEY_SPENT, 175
+    RemoveMoney 175
+    Return

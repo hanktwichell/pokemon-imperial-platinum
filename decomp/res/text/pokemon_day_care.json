@@ -234,6 +234,16 @@
         "Whoa there, partner!\n",
         "Your Bag can’t hold them all."
       ]
+    },
+    {
+      "id": "PokemonDayCare_Text_SovereignRancherSellBerriesHalf",
+      "en_US": [
+        "I’ve got me some sweet and juicy\n",
+        "berries from the local fields.\r",
+        "They’ll make ya Pokémon happy!\n",
+        "Oh yes, so very happy!\r",
+        "I’ll sell ya a whole batch for $2500."
+      ]
     }
   ]
 }

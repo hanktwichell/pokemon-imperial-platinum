@@ -124,10 +124,11 @@ GameCorner_CoinsClerk_ShowCoinsAndMoney:
     ShowCoins 20, 2
     ShowMoney 20, 7
 GameCorner_CoinsClerk_OpenCoinBuyMenu:
-    Message GameCorner_Text_1000For50Coins
+    CallIfUnset FLAG_GAME_COMPLETED, GameCorner_CoinsSovereignFullPriceMsg
+    CallIfSet FLAG_GAME_COMPLETED, GameCorner_CoinsSovereignHalfPriceMsg
     InitGlobalTextMenu 1, 1, 0, VAR_RESULT
-    AddMenuEntryImm MenuEntries_Text_GameCorner_50Coins, 0
-    AddMenuEntryImm MenuEntries_Text_GameCorner_500Coins, 1
+    CallIfUnset FLAG_GAME_COMPLETED, GameCorner_SovereignCoinsFullPrice
+    CallIfSet FLAG_GAME_COMPLETED, GameCorner_SovereignCoinsHalfPrice
     AddMenuEntryImm MenuEntries_Text_GameCorner_NoThanks, 2
     ShowMenu
     SetVar VAR_0x8008, VAR_RESULT
@@ -136,6 +137,7 @@ GameCorner_CoinsClerk_OpenCoinBuyMenu:
     GoTo GameCorner_CoinsClerk_Cancel
 
 GameCorner_CoinsClerk_Buy50Coins:
+    GoToIfSet FLAG_GAME_COMPLETED, GameCorner_CoinsClerk_Buy50CoinsSovereignHalf
     GoToIfNotEnoughMoney 1000, GameCorner_CoinsClerk_NotEnoughMoney
     GoToIfCannotAddCoins 50, GameCorner_CoinsClerk_CoinCaseFull
     PlaySE SEQ_SE_DP_REGI_sseq
@@ -152,6 +154,7 @@ GameCorner_CoinsClerk_Buy50Coins:
     GoTo GameCorner_CoinsClerk_OpenCoinBuyMenu
 
 GameCorner_CoinsClerk_Buy500Coins:
+    GoToIfSet FLAG_GAME_COMPLETED, GameCorner_CoinsClerk_Buy500CoinsSovereignHalf
     GoToIfNotEnoughMoney 10000, GameCorner_CoinsClerk_NotEnoughMoney
     GoToIfCannotAddCoins 500, GameCorner_CoinsClerk_CoinCaseFull
     PlaySE SEQ_SE_DP_REGI_sseq
@@ -344,3 +347,54 @@ GameCorner_Looker_End:
     End
 
     .balign 4, 0
+
+@ Sovereign (decision 24, owner 2026-10-24): after the Hall of Fame, scripted sales are half price too.
+GameCorner_CoinsSovereignFullPriceMsg:
+    Message GameCorner_Text_1000For50Coins
+    Return
+
+GameCorner_CoinsSovereignHalfPriceMsg:
+    Message GameCorner_Text_Sovereign500For50Coins
+    Return
+
+GameCorner_SovereignCoinsFullPrice:
+    AddMenuEntryImm MenuEntries_Text_GameCorner_50Coins, 0
+    AddMenuEntryImm MenuEntries_Text_GameCorner_500Coins, 1
+    Return
+
+GameCorner_SovereignCoinsHalfPrice:
+    AddMenuEntryImm MenuEntries_Text_SovereignGameCorner_50CoinsHalf, 0
+    AddMenuEntryImm MenuEntries_Text_SovereignGameCorner_500CoinsHalf, 1
+    Return
+
+GameCorner_CoinsClerk_Buy50CoinsSovereignHalf:
+    GoToIfNotEnoughMoney 500, GameCorner_CoinsClerk_NotEnoughMoney
+    GoToIfCannotAddCoins 50, GameCorner_CoinsClerk_CoinCaseFull
+    PlaySE SEQ_SE_DP_REGI_sseq
+    AddToGameRecord RECORD_MONEY_SPENT, 500
+    RemoveMoney 500
+    UpdateMoneyDisplay
+    WaitSE SEQ_SE_DP_REGI_sseq
+    PlaySE SEQ_SE_PL_COIN_sseq
+    AddCoins 50
+    UpdateCoinDisplay
+    WaitSE SEQ_SE_PL_COIN_sseq
+    Message GameCorner_Text_HereAreYourCoins
+    WaitTime 30, VAR_RESULT
+    GoTo GameCorner_CoinsClerk_OpenCoinBuyMenu
+
+GameCorner_CoinsClerk_Buy500CoinsSovereignHalf:
+    GoToIfNotEnoughMoney 5000, GameCorner_CoinsClerk_NotEnoughMoney
+    GoToIfCannotAddCoins 500, GameCorner_CoinsClerk_CoinCaseFull
+    PlaySE SEQ_SE_DP_REGI_sseq
+    AddToGameRecord RECORD_MONEY_SPENT, 5000
+    RemoveMoney 5000
+    UpdateMoneyDisplay
+    WaitSE SEQ_SE_DP_REGI_sseq
+    PlaySE SEQ_SE_PL_COIN_sseq
+    AddCoins 500
+    UpdateCoinDisplay
+    WaitSE SEQ_SE_PL_COIN_sseq
+    Message GameCorner_Text_HereAreYourCoins
+    WaitTime 30, VAR_RESULT
+    GoTo GameCorner_CoinsClerk_OpenCoinBuyMenu

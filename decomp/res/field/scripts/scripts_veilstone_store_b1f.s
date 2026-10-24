@@ -82,7 +82,8 @@ VeilstoneStoreB1F_LavaCookieVendor:
     LockAll
     FacePlayer
     ShowMoney 20, 2
-    Message VeilstoneStoreB1F_Text_WouldYouLikeSomeLavaCookies
+    CallIfUnset FLAG_GAME_COMPLETED, VeilstoneStoreB1F_LavaCookieSovereignFullPriceMsg
+    CallIfSet FLAG_GAME_COMPLETED, VeilstoneStoreB1F_LavaCookieSovereignHalfPriceMsg
     InitLocalTextMenu 31, 11, 0, VAR_RESULT
     SetMenuXOriginToRight
     AddMenuEntryImm VeilstoneStoreB1F_Text_MenuEntry_One, 0
@@ -96,6 +97,7 @@ VeilstoneStoreB1F_LavaCookieVendor:
     End
 
 VeilstoneStoreB1F_LavaCookieVendorBuyOne:
+    GoToIfSet FLAG_GAME_COMPLETED, VeilstoneStoreB1F_LavaCookieVendorBuyOneSovereignHalf
     SetVar VAR_0x8004, 1
     SetVar VAR_0x8005, 200
     GoToIfCannotFitItem ITEM_LAVA_COOKIE, VAR_0x8004, VAR_RESULT, VeilstoneStoreB1F_LavaCookieVendorBagIsFull
@@ -106,6 +108,7 @@ VeilstoneStoreB1F_LavaCookieVendorBuyOne:
     End
 
 VeilstoneStoreB1F_LavaCookieVendorBuyTen:
+    GoToIfSet FLAG_GAME_COMPLETED, VeilstoneStoreB1F_LavaCookieVendorBuyTenSovereignHalf
     SetVar VAR_0x8004, 10
     SetVar VAR_0x8005, 2000
     GoToIfCannotFitItem ITEM_LAVA_COOKIE, VAR_0x8004, VAR_RESULT, VeilstoneStoreB1F_LavaCookieVendorBagIsFull
@@ -153,7 +156,8 @@ VeilstoneStoreB1F_PoffinVendor:
     LockAll
     FacePlayer
     ShowMoney 20, 2
-    Message VeilstoneStoreB1F_Text_ISellPoffins
+    CallIfUnset FLAG_GAME_COMPLETED, VeilstoneStoreB1F_PoffinSovereignFullPriceMsg
+    CallIfSet FLAG_GAME_COMPLETED, VeilstoneStoreB1F_PoffinSovereignHalfPriceMsg
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_YES, VeilstoneStoreB1F_PoffinVendorBuyPoffins
     GoToIfEq VAR_RESULT, MENU_NO, VeilstoneStoreB1F_PoffinVendorPleaseComeAgain
@@ -190,70 +194,80 @@ VeilstoneStoreB1F_PoffinVendorClose:
     End
 
 VeilstoneStoreB1F_PoffinVendorChooseSpicyDry:
-    GoToIfNotEnoughMoney 6400, VeilstoneStoreB1F_PoffinVendorNotEnoughMoney
+    Call VeilstoneStoreB1F_SovereignCheckPoffinMoney
+    GoToIfEq VAR_RESULT, 0, VeilstoneStoreB1F_PoffinVendorNotEnoughMoney
     SetVar VAR_0x8005, 1
     Call VeilstoneStoreB1F_PoffinVendorCreateSpicyDry
     GoTo VeilstoneStoreB1F_PoffinVendorCheckCaseIsFull
     End
 
 VeilstoneStoreB1F_PoffinVendorChooseSpicySweet:
-    GoToIfNotEnoughMoney 6400, VeilstoneStoreB1F_PoffinVendorNotEnoughMoney
+    Call VeilstoneStoreB1F_SovereignCheckPoffinMoney
+    GoToIfEq VAR_RESULT, 0, VeilstoneStoreB1F_PoffinVendorNotEnoughMoney
     SetVar VAR_0x8005, 1
     Call VeilstoneStoreB1F_PoffinVendorCreateSpicySweet
     GoTo VeilstoneStoreB1F_PoffinVendorCheckCaseIsFull
     End
 
 VeilstoneStoreB1F_PoffinVendorChooseSpicyBitter:
-    GoToIfNotEnoughMoney 6400, VeilstoneStoreB1F_PoffinVendorNotEnoughMoney
+    Call VeilstoneStoreB1F_SovereignCheckPoffinMoney
+    GoToIfEq VAR_RESULT, 0, VeilstoneStoreB1F_PoffinVendorNotEnoughMoney
     SetVar VAR_0x8005, 1
     Call VeilstoneStoreB1F_PoffinVendorCreateSpicyBitter
     GoTo VeilstoneStoreB1F_PoffinVendorCheckCaseIsFull
     End
 
 VeilstoneStoreB1F_PoffinVendorChooseSpicySour:
-    GoToIfNotEnoughMoney 6400, VeilstoneStoreB1F_PoffinVendorNotEnoughMoney
+    Call VeilstoneStoreB1F_SovereignCheckPoffinMoney
+    GoToIfEq VAR_RESULT, 0, VeilstoneStoreB1F_PoffinVendorNotEnoughMoney
     SetVar VAR_0x8005, 1
     Call VeilstoneStoreB1F_PoffinVendorCreateSpicySour
     GoTo VeilstoneStoreB1F_PoffinVendorCheckCaseIsFull
     End
 
 VeilstoneStoreB1F_PoffinVendorChooseDrySweet:
-    GoToIfNotEnoughMoney 6400, VeilstoneStoreB1F_PoffinVendorNotEnoughMoney
+    Call VeilstoneStoreB1F_SovereignCheckPoffinMoney
+    GoToIfEq VAR_RESULT, 0, VeilstoneStoreB1F_PoffinVendorNotEnoughMoney
     SetVar VAR_0x8005, 1
     Call VeilstoneStoreB1F_PoffinVendorCreateDrySweet
     GoTo VeilstoneStoreB1F_PoffinVendorCheckCaseIsFull
     End
 
 VeilstoneStoreB1F_PoffinVendorChooseDryBitter:
-    GoToIfNotEnoughMoney 6400, VeilstoneStoreB1F_PoffinVendorNotEnoughMoney
+    Call VeilstoneStoreB1F_SovereignCheckPoffinMoney
+    GoToIfEq VAR_RESULT, 0, VeilstoneStoreB1F_PoffinVendorNotEnoughMoney
     SetVar VAR_0x8005, 1
     Call VeilstoneStoreB1F_PoffinVendorCreateDryBitter
     GoTo VeilstoneStoreB1F_PoffinVendorCheckCaseIsFull
     End
 
 VeilstoneStoreB1F_PoffinVendorChooseDrySour:
-    GoToIfNotEnoughMoney 6400, VeilstoneStoreB1F_PoffinVendorNotEnoughMoney
+    Call VeilstoneStoreB1F_SovereignCheckPoffinMoney
+    GoToIfEq VAR_RESULT, 0, VeilstoneStoreB1F_PoffinVendorNotEnoughMoney
     SetVar VAR_0x8005, 1
     Call VeilstoneStoreB1F_PoffinVendorCreateDrySour
     GoTo VeilstoneStoreB1F_PoffinVendorCheckCaseIsFull
     End
 
 VeilstoneStoreB1F_PoffinVendorChooseSweetBitter:
-    GoToIfNotEnoughMoney 6400, VeilstoneStoreB1F_PoffinVendorNotEnoughMoney
+    Call VeilstoneStoreB1F_SovereignCheckPoffinMoney
+    GoToIfEq VAR_RESULT, 0, VeilstoneStoreB1F_PoffinVendorNotEnoughMoney
     SetVar VAR_0x8005, 1
     Call VeilstoneStoreB1F_PoffinVendorCreateSweetBitter
     GoTo VeilstoneStoreB1F_PoffinVendorCheckCaseIsFull
     End
 
 VeilstoneStoreB1F_PoffinVendorChooseSweetSour:
-    GoToIfNotEnoughMoney 6400, VeilstoneStoreB1F_PoffinVendorNotEnoughMoney
+    Call VeilstoneStoreB1F_SovereignCheckPoffinMoney
+    GoToIfEq VAR_RESULT, 0, VeilstoneStoreB1F_PoffinVendorNotEnoughMoney
     SetVar VAR_0x8005, 1
     Call VeilstoneStoreB1F_PoffinVendorCreateSweetSour
     GoTo VeilstoneStoreB1F_PoffinVendorCheckCaseIsFull
     End
 
 VeilstoneStoreB1F_PoffinVendorChooseBitterSour:
-    GoToIfNotEnoughMoney 6400, VeilstoneStoreB1F_PoffinVendorNotEnoughMoney
+    Call VeilstoneStoreB1F_SovereignCheckPoffinMoney
+    GoToIfEq VAR_RESULT, 0, VeilstoneStoreB1F_PoffinVendorNotEnoughMoney
     SetVar VAR_0x8005, 1
     Call VeilstoneStoreB1F_PoffinVendorCreateBitterSour
     GoTo VeilstoneStoreB1F_PoffinVendorCheckCaseIsFull
@@ -268,8 +282,8 @@ VeilstoneStoreB1F_PoffinVendorCheckCaseIsFull:
 VeilstoneStoreB1F_PoffinVendorGivePoffin:
     GoToIfEq VAR_0x8005, 0, VeilstoneStoreB1F_PoffinVendorThankYou
     GivePoffin VAR_RESULT, LOCAL_VAR_SPICINESS, LOCAL_VAR_DRYNESS, LOCAL_VAR_SWEETNESS, LOCAL_VAR_BITTERNESS, LOCAL_VAR_SOURNESS, LOCAL_VAR_SMOOTHNESS
-    AddToGameRecord RECORD_MONEY_SPENT, 6400
-    RemoveMoney2 6400
+    CallIfUnset FLAG_GAME_COMPLETED, VeilstoneStoreB1F_SovereignPayPoffinFull
+    CallIfSet FLAG_GAME_COMPLETED, VeilstoneStoreB1F_SovereignPayPoffinHalf
     SubVar VAR_0x8005, 1
     GoTo VeilstoneStoreB1F_PoffinVendorGivePoffin
     End
@@ -418,3 +432,60 @@ VeilstoneStoreB1F_Directory:
     End
 
     .balign 4, 0
+
+@ Sovereign (decision 24, owner 2026-10-24): after the Hall of Fame, scripted sales are half price too.
+VeilstoneStoreB1F_LavaCookieSovereignFullPriceMsg:
+    Message VeilstoneStoreB1F_Text_WouldYouLikeSomeLavaCookies
+    Return
+
+VeilstoneStoreB1F_LavaCookieSovereignHalfPriceMsg:
+    Message VeilstoneStoreB1F_Text_SovereignLavaCookiesHalf
+    Return
+
+VeilstoneStoreB1F_LavaCookieVendorBuyOneSovereignHalf:
+    SetVar VAR_0x8004, 1
+    SetVar VAR_0x8005, 100
+    GoToIfCannotFitItem ITEM_LAVA_COOKIE, VAR_0x8004, VAR_RESULT, VeilstoneStoreB1F_LavaCookieVendorBagIsFull
+    CheckMoney2 VAR_RESULT, 100
+    GoToIfEq VAR_RESULT, 0, VeilstoneStoreB1F_LavaCookieVendorNotEnoughMoney
+    Message VeilstoneStoreB1F_Text_OneLavaCookie
+    GoTo VeilstoneStoreB1F_LavaCookieVendorReceiveCookies
+    End
+
+VeilstoneStoreB1F_LavaCookieVendorBuyTenSovereignHalf:
+    SetVar VAR_0x8004, 10
+    SetVar VAR_0x8005, 1000
+    GoToIfCannotFitItem ITEM_LAVA_COOKIE, VAR_0x8004, VAR_RESULT, VeilstoneStoreB1F_LavaCookieVendorBagIsFull
+    CheckMoney2 VAR_RESULT, 1000
+    GoToIfEq VAR_RESULT, 0, VeilstoneStoreB1F_LavaCookieVendorNotEnoughMoney
+    Message VeilstoneStoreB1F_Text_TenLavaCookies
+    GoTo VeilstoneStoreB1F_LavaCookieVendorReceiveCookies
+    End
+
+@ Sovereign (decision 24, owner 2026-10-24): after the Hall of Fame, scripted sales are half price too.
+VeilstoneStoreB1F_PoffinSovereignFullPriceMsg:
+    Message VeilstoneStoreB1F_Text_ISellPoffins
+    Return
+
+VeilstoneStoreB1F_PoffinSovereignHalfPriceMsg:
+    Message VeilstoneStoreB1F_Text_SovereignPoffinsHalf
+    Return
+
+VeilstoneStoreB1F_SovereignCheckPoffinMoney:
+    GoToIfSet FLAG_GAME_COMPLETED, VeilstoneStoreB1F_SovereignCheckPoffinMoneyHalf
+    CheckMoney2 VAR_RESULT, 6400
+    Return
+
+VeilstoneStoreB1F_SovereignCheckPoffinMoneyHalf:
+    CheckMoney2 VAR_RESULT, 3200
+    Return
+
+VeilstoneStoreB1F_SovereignPayPoffinFull:
+    AddToGameRecord RECORD_MONEY_SPENT, 6400
+    RemoveMoney2 6400
+    Return
+
+VeilstoneStoreB1F_SovereignPayPoffinHalf:
+    AddToGameRecord RECORD_MONEY_SPENT, 3200
+    RemoveMoney2 3200
+    Return
