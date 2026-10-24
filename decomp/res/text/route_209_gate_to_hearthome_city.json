@@ -36,11 +36,39 @@
         "I thought that was a wicked strategy,\n",
         "but it doesn’t work worth beans.\r",
         "I guess I have to grind it out and\n",
-        "toughen up the team a bit at a time.\r",
-        "Anyway! I’m off to Solaceon Town!\n",
-        "See ya, {STRVAR_1 3, 1, 0}!\r",
-        "You’ll be shocked by my growth the\n",
-        "next time we meet!\r"
+        "toughen up the team a bit at a time.\r"
+      ]
+    },
+    {
+      "id": "Route209GateToHearthomeCity_Text_SovereignMaidHelp",
+      "en_US": "Help! Help!"
+    },
+    {
+      "id": "Route209GateToHearthomeCity_Text_SovereignMaidThugs",
+      "en_US": [
+        "Weirdly dressed thugs have taken\n",
+        "over the Pokémon Mansion!\r"
+      ]
+    },
+    {
+      "id": "Route209GateToHearthomeCity_Text_SovereignMaidInformEveryone",
+      "en_US": [
+        "I must inform everyone in the hope\n",
+        "that we receive aid...\r"
+      ]
+    },
+    {
+      "id": "Route209GateToHearthomeCity_Text_SovereignRivalHelpTheLady",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Woah! That was a surprise!\r",
+        "The Pokémon Mansion is that huge\n",
+        "building on Route 212, yeah?\r",
+        "Weirdly dressed thugs... Does she\n",
+        "mean those strange Team Galactic guys?\r",
+        "Those goons must have decided\n",
+        "they want something from there...\r",
+        "I’m off then!\n",
+        "To help a lady in distress!\r"
       ]
     }
   ]

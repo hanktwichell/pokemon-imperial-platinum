@@ -4580,3 +4580,42 @@ merged.
 2. The Route 224 and Battleground counterpart battles; the Mansion and Route 212 grunts; the E4 rematch teams
    (981–995) through the League rooms' var.
 3. Celebi's memory battles (1029–1036) and the Celebi event.
+
+## CB-0098 — 2026-10-24, 1:15 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** E10 part 24, Renegade's Pokémon Mansion siege. PR #108 (part 23) merged.
+- Siege state: `VAR_SOVEREIGN_MANSION_SIEGE_STATE` (was `VAR_UNUSED_0x411C`).
+  - 1 is set at the Route 209 gate, after Barry's battle; the maid scene happens there.
+  - 2: the door guards are beaten. 3: Barry has gone in. 4: the 6-turn trio is passed.
+  - 5: the Happiny has teleported the garden grunt away. 6: Saturn is beaten.
+- Objects are shown and hidden with map-local flags, set in each map's `OnTransition` from that var and the
+  trainer flags:
+  - Route 212 North: 0x01 the grunts, 0x02 the door guards, 0x03 the visitors.
+  - Mansion: 0x01 the maids, and 0x02–0x0D the siege objects.
+  - Office: 0x01, Backlot and the old man.
+- 14 trainers from Renegade 947–960: `TRAINER_SOVEREIGN_GRUNT_ROUTE_212_1..3`, `_MANSION_GATE_1/2`,
+  `_MANSION_TRIO_1..3`, `_MANSION_ROOM_1..3`, `_MANSION_OFFICE`, `_SATURN_POKEMON_MANSION` and
+  `_BACKLOT_POKEMON_MANSION`. The tag partner is Barry's Route 209 team.
+- The door guards wait on Mimikyu's Totem trial; `docs/Story.md` gets a new row in the gate table.
+- The Happiny gives the Lucky Egg. Backlot's Manaphy Egg isn't given (decision 26); his line only mentions it.
+- Barry's Solaceon line moved from the gate to after the Mansion.
+- Bug found in testing and fixed: `StartTrainerBattle` doesn't set the defeated flag, so each win now runs
+  `SetTrainerFlag`. All earlier parts were audited and were fine.
+- Test harness:
+  - In this build the player's x and z are at 0x021C8BC6 / 0x021C8BCE; drive.py's addresses are stale.
+  - Test warps index: 0x021C36C0.
+  - The harness is in scratchpad `b24/` (`p.py` with `S_`/`F_` one-tile steps, `battle2:` for doubles).
+
+**Files modified:**
+- `decomp/generated/{trainers,vars_flags}.txt`, 14 trainer JSONs
+- Scripts, events and text for `route_209_gate_to_hearthome_city`, `route_212_north` and `pokemon_mansion`
+- Scripts and events for `pokemon_mansion_office`
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `docs/ItemChanges_Sovereign.md`, `docs/Story.md`,
+  `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Manaphy as a battle: Backlot's office scene, maybe the Egg hatching or the Trophy Garden. Phione comes by
+   breeding.
+2. The Route 224 and Battleground counterpart battles (975–980, 1054–1059), Buck (1023), Darach (969), the
+   reporters.
+3. Celebi's memory battles (1029–1036) and the Celebi event; then Lugia, Ho-Oh and the birds.

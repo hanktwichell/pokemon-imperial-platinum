@@ -253,6 +253,317 @@
         "The expensive-looking book Mr. Backlot\n",
         "has... It tugs at my attention."
       ]
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignTrioChallenge",
+      "en_US": [
+        "You’re not allowed through here!\r",
+        "Unless you can beat three of us,\n",
+        "in a row, and in exactly 6 turns.\r",
+        "Fwahahaha!\n",
+        "Are you up to the challenge?"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignTrioDeclined",
+      "en_US": "Fwahahaha! Too bad!"
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignTrioVeryWell",
+      "en_US": [
+        "Fwahahaha! Very well then!\r",
+        "Again, you need to beat three of us\n",
+        "in exactly 6 turns! No more, no less!\r"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignTrioBeatAll",
+      "en_US": [
+        "You beat all three of us!\n",
+        "It took you {STRVAR_1 52, 1, 0} turns in all.\r"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignTrioNotSix",
+      "en_US": [
+        "Fwahahaha! That isn’t 6, is it?!\n",
+        "Try again if you want, kiddo!"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignTrioNoPromises",
+      "en_US": [
+        "Oh, hey. Nice job, kiddo.\r",
+        "You met the requirement alright.\n",
+        "But who said we have to keep promises!\r",
+        "Fwahahaha..."
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignClefairyCry",
+      "en_US": "CLEFAIRY: Pippi!"
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignSpacePokemonEscaped",
+      "en_US": [
+        "Shoot, the space Pokémon escaped!\n",
+        "But you’re still not allowed through!\r"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignTrioNotAllowed",
+      "en_US": [
+        "You’re absolutely not allowed through!\n",
+        "Not that it matters much now..."
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignGardenGrunt",
+      "en_US": [
+        "The Trophy Garden in the back is\n",
+        "chock full of rare Pokémon!\r",
+        "We can sell them for a high price,\n",
+        "and fund our research!\r",
+        "You want to go through? No chance.\n",
+        "I’m not moving an inch.\r",
+        "Not even if I get surrounded by five\n",
+        "dangerous looking Pokémon!"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignRivalOneTurn",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Win in exactly 6 turns?\r",
+        "No way! Watch me! I’ll win in 1 turn!\n",
+        "Who’s got time for 6?"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignEastGrunt",
+      "en_US": [
+        "Ugh...\n",
+        "I don’t think this kid understands..."
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignTrioSoFar",
+      "en_US": [
+        "So far, you’ve taken {STRVAR_1 52, 1, 0} turns.\n",
+        "Do you think you’re in good time?\r"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignTrioHadTurns",
+      "en_US": [
+        "You’ve had {STRVAR_1 52, 1, 0} turns.\n",
+        "Still think you can do it?\r"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignRoom1Intro",
+      "en_US": [
+        "You want to play, little kid?\n",
+        "I’ll show you not to mess with us!\r"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignRoom1Lost",
+      "en_US": [
+        "Ah... you’re strong.\n",
+        "I’m sorry, Commander Saturn!\r"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignRoom2Intro",
+      "en_US": [
+        "What’s that? You wanted a nap?\n",
+        "I’ll give you one--permanently!\r"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignRoom2Lost",
+      "en_US": [
+        "Ah... Perhaps I’m the one who\n",
+        "is going to sleep for a while...\r"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignRoom3Intro",
+      "en_US": [
+        "You wish to see the lady of the house?\n",
+        "Too bad, she’s busy!\r"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignRoom3Lost",
+      "en_US": "The lady will see you now..."
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignOfficeIntro",
+      "en_US": [
+        "The maid in this room has a weird Egg.\n",
+        "It’s blue! With some strange red core!\r",
+        "It’s totally disturbing.\n",
+        "Pokémon Eggs are meant to be yellow!\r"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignOfficeLost",
+      "en_US": [
+        "Gah! At least I don’t need\n",
+        "to look at that Egg anymore...\r"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignHappinyCry",
+      "en_US": "HAPPINY: Pinny haaa!"
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignHappinyWaiting",
+      "en_US": [
+        "HAPPINY: Pinny haaa!\r",
+        "It seems to be waiting for more\n",
+        "CLEFAIRY to arrive."
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignHappinyInstructions",
+      "en_US": [
+        "HAPPINY: Pinny haaa!\r",
+        "The HAPPINY seems to be giving\n",
+        "instructions to the CLEFAIRY...\r"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignHappinyWagged",
+      "en_US": "HAPPINY wagged its finger..."
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignMetronome",
+      "en_US": [
+        "The CLEFAIRY used Metronome!\r",
+        "The CLEFAIRY used Teleport!\r"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignHappinyHeldOut",
+      "en_US": "HAPPINY held out something to you..."
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignRivalCallsPlayer",
+      "en_US": "{STRVAR_1 3, 0, 0}: {STRVAR_1 3, 1, 0}!"
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignRivalWhew",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: Whew! I thought that wouldn’t\n",
+        "ever end!\r",
+        "Keeping to turn limits is hard!\r",
+        "So, have we beat all the goons?\n",
+        "Or are there still more?\r"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignSaturnWhoAreYou",
+      "en_US": [
+        "Hm? Who are you children?\n",
+        "Where are the grunts I left?\r"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignSaturnComeAlong",
+      "en_US": "Come along, Mr. Backlot."
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignBacklotPoorMansion",
+      "en_US": [
+        "Backlot: Yes, yes, I suppose I must...\n",
+        "Ah... My poor Pokémon Mansion...\r"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignSaturnRecognize",
+      "en_US": [
+        "You... I recognise your face!\r",
+        "You’re the child who raided the\n",
+        "Team Galactic Building in Eterna!\r",
+        "Humph! Anything that continues to\n",
+        "oppose Team Galactic must be crushed!\r"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignSaturnEject",
+      "en_US": [
+        "Come, Mr. Backlot. You’ll help me eject\n",
+        "these children from your home, yes?\r"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignBacklotPreferNot",
+      "en_US": [
+        "Backlot: Ahh! I would prefer not...\n",
+        "But I suppose I must...\r",
+        "My poor beautiful Pokémon, used for\n",
+        "such a boorish task...\r"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignRivalTeamUp",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: OK, {STRVAR_1 3, 1, 0}, no problem!\n",
+        "Let’s team up and win this!\r",
+        "We can just heal the old man’s Pokémon\n",
+        "afterwards! Don’t worry about him!\r"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignSaturnLost",
+      "en_US": [
+        "Gah! What makes you so tough?\r",
+        "Not to mention this old man is\n",
+        "completely useless.\r",
+        "Fine, we’ll leave. We’ve bargained with\n",
+        "this old man for the riches we need.\r",
+        "Next time, you won’t be so lucky.\r"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignRivalOffToSolaceon",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}: There, {STRVAR_1 3, 1, 0}, all sorted!\n",
+        "Now it’s time to dash!\r",
+        "I’m off to Solaceon Town!\n",
+        "See ya, {STRVAR_1 3, 1, 0}!\r",
+        "You’ll be shocked by my growth the\n",
+        "next time we meet!\r"
+      ]
+    },
+    {
+      "id": "PokemonMansion_Text_SovereignBacklotThanks",
+      "en_US": [
+        "Backlot: That friend of yours takes\n",
+        "off very quickly, doesn’t he?\r",
+        "Thank you for coming to the aid\n",
+        "of my Pokémon Mansion.\r",
+        "Those Team Galactic people wanted some\n",
+        "of my most valuable objects.\r",
+        "With their threats against my lovely\n",
+        "staff and the people of this mansion,\f",
+        "I had no choice but to co-operate...\r",
+        "Alas, I’m sure things will mostly\n",
+        "return to normal, now.\r",
+        "There’s one particularly valuable item\n",
+        "that was not taken by them.\r",
+        "It is an unusual deep blue Pokémon Egg.\n",
+        "Looking at it is like looking straight\f",
+        "into the sea.\r",
+        "Please come and see it in my office\n",
+        "on the right when you’re ready.\r",
+        "Oh, and please do visit the\n",
+        "Trophy Garden in the back.\r",
+        "The wild Pokémon in there are\n",
+        "simply exquisite!\r"
+      ]
     }
   ]
 }

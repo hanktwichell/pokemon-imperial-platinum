@@ -31,9 +31,10 @@ In the game so far (E10 parts 2–11):
   Oval Stone (Oreburgh's guide), Leaf Stone (Eterna Forest's Moss Rock), Shiny Stone (Keira), 10 Potions (Route 201),
   30 Poké Balls (Route 202) and 10 Dive Balls with the Old Rod.
 
-Still to come: HM08 from Candice (waits for the
-owner: it comes with a story Regigigas scene); the Lucky Egg, which comes with Renegade's Pokémon Mansion Manaphy
-story (legendary events).
+- Part 24: the Lucky Egg, from Mr. Backlot's Happiny once its four Clefairy are freed during Team Galactic's siege
+  of the Pokémon Mansion.
+
+Still to come: HM08 from Candice (waits for the owner: it comes with a story Regigigas scene).
 
 ## New key items
 

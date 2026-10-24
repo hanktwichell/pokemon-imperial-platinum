@@ -13,11 +13,19 @@
     ScriptEntryEnd
 
 PokemonMansionOffice_OnTransition:
+    @ Sovereign (E10, Renegade's Pokémon Mansion siege): Mr. Backlot and his guest are held by Saturn meanwhile.
+    CallIfGe VAR_SOVEREIGN_MANSION_SIEGE_STATE, 1, PokemonMansionOffice_SovereignHideDuringSiege
     GetHour VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_MAP_LOCAL_0x00, 0, PokemonMansionOffice_SetBlockStatue
     GoToIfEq VAR_MAP_LOCAL_0x00, 1, PokemonMansionOffice_SetBlockStatue
     GoToIfLe VAR_MAP_LOCAL_0x00, 5, PokemonMansionOffice_SetDontBlockStatue
     GoTo PokemonMansionOffice_SetBlockStatue
+
+PokemonMansionOffice_SovereignHideDuringSiege:
+    GoToIfGe VAR_SOVEREIGN_MANSION_SIEGE_STATE, 6, PokemonMansionOffice_SovereignHideDuringSiegeEnd
+    SetFlag FLAG_MAP_LOCAL_0x01
+PokemonMansionOffice_SovereignHideDuringSiegeEnd:
+    Return
 
 PokemonMansionOffice_SetBlockStatue:
     ClearFlag FLAG_HIDE_POKEMON_MANSION_OFFICE_POLICEMAN
