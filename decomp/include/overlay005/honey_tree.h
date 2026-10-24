@@ -14,6 +14,7 @@ u16 HoneyTree_GetTreeSlatherStatus(FieldSystem *fieldSystem);
 void HoneyTree_SlatherTree(FieldSystem *fieldSystem);
 void HoneyTree_StopShaking(FieldSystem *fieldSystem);
 int HoneyTree_GetSpecies(FieldSystem *fieldSystem);
+u8 HoneyTree_GetLevel(FieldSystem *fieldSystem);
 void ov5_021F0030(void *param0, const int param1, MapPropManager *const mapPropManager);
 void HoneyTree_Unslather(FieldSystem *fieldSystem);
 

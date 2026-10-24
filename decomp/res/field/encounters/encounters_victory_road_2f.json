@@ -2,70 +2,70 @@
     "land_rate": 15,
     "land_encounters": [
         {
-            "level": 41,
-            "species": "SPECIES_MAGNETON"
-        },
-        {
-            "level": 42,
+            "level": 59,
             "species": "SPECIES_STEELIX"
         },
         {
-            "level": 41,
+            "level": 59,
+            "species": "SPECIES_MAGNETON"
+        },
+        {
+            "level": 59,
             "species": "SPECIES_GRAVELER"
         },
         {
-            "level": 42,
-            "species": "SPECIES_STEELIX"
+            "level": 59,
+            "species": "SPECIES_MANDIBUZZ"
         },
         {
-            "level": 44,
-            "species": "SPECIES_STEELIX"
+            "level": 59,
+            "species": "SPECIES_KADABRA"
         },
         {
-            "level": 43,
-            "species": "SPECIES_MAGNETON"
+            "level": 59,
+            "species": "SPECIES_OVERQWIL"
         },
         {
-            "level": 44,
+            "level": 59,
+            "species": "SPECIES_LICKITUNG"
+        },
+        {
+            "level": 59,
+            "species": "SPECIES_HAXORUS"
+        },
+        {
+            "level": 59,
             "species": "SPECIES_GOLBAT"
         },
         {
-            "level": 43,
-            "species": "SPECIES_GRAVELER"
+            "level": 59,
+            "species": "SPECIES_GARGANACL"
         },
         {
-            "level": 42,
-            "species": "SPECIES_ONIX"
+            "level": 59,
+            "species": "SPECIES_MAROWAK"
         },
         {
-            "level": 43,
-            "species": "SPECIES_GABITE"
-        },
-        {
-            "level": 42,
-            "species": "SPECIES_ONIX"
-        },
-        {
-            "level": 43,
-            "species": "SPECIES_GABITE"
+            "level": 59,
+            "species": "SPECIES_STEELIX"
         }
     ],
     "swarms": [
-        "SPECIES_MAGNETON",
-        "SPECIES_STEELIX"
+        "SPECIES_STEELIX",
+        "SPECIES_MAGNETON"
     ],
     "day": [
         "SPECIES_GRAVELER",
-        "SPECIES_STEELIX"
+        "SPECIES_MANDIBUZZ"
     ],
     "night": [
-        "SPECIES_GOLBAT",
-        "SPECIES_STEELIX"
+        "SPECIES_GRAVELER",
+        "SPECIES_POLTEAGEIST"
     ],
     "radar": [
-        "SPECIES_STEELIX",
-        "SPECIES_MAGNETON",
-        "SPECIES_ONIX",
+        "SPECIES_LICKITUNG",
+        "SPECIES_GOLBAT",
+        "SPECIES_MAROWAK",
         "SPECIES_GABITE"
     ],
     "rate_form0": 100,
@@ -75,23 +75,23 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_ONIX",
+        "SPECIES_MAROWAK",
         "SPECIES_GABITE"
     ],
     "sapphire": [
-        "SPECIES_ONIX",
+        "SPECIES_MAROWAK",
         "SPECIES_GABITE"
     ],
     "emerald": [
-        "SPECIES_ONIX",
+        "SPECIES_MAROWAK",
         "SPECIES_GABITE"
     ],
     "firered": [
-        "SPECIES_ONIX",
+        "SPECIES_MAROWAK",
         "SPECIES_GABITE"
     ],
     "leafgreen": [
-        "SPECIES_ONIX",
+        "SPECIES_MAROWAK",
         "SPECIES_GABITE"
     ],
     "surf_rate": 0,

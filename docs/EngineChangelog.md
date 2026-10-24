@@ -4,6 +4,42 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 1) — Renegade's wild Pokémon, with the Sovereign plan
+
+- **Every wild table is Renegade Platinum's now**, with the Gen V–IX species of the Sovereign encounter plan
+  (`docs/WildPokemon_Sovereign.md`) in their slots. Before this, the game still had Platinum's tables.
+  - Renegade's levels, rates and time-of-day slots, Poké Radar species and fishing tables come from Renegade's own
+    ROM, not from its documentation.
+  - Renegade left 65 tables as Platinum had them: Solaceon Ruins (Unown), Turnback Cave's pillar rooms, Ruin
+    Maniac's cave and the Lake Verity of the opening. They stay that way.
+- **How it's built.**
+  - `tools/engine/import_renegade_wild.py` is a one-off step: it reads Renegade's tables from a patched ROM into
+    `decomp/res/field/encounters/` (118 files changed). Build vanilla Platinum from the first decomp import, then
+    apply Renegade with `tools/build/apply_renegade_patch.sh`.
+  - `tools/engine/gen_wild_encounters.py` then writes each plan species into its slot and keeps Renegade's levels. It
+    runs in `tools/regenerate_docs.sh`, so the docs check catches a plan and a table that disagree.
+- **Encounter plan fixes** (`tools/design/gen_encounters.py`). Routes 219 and 220 ("Wild Levels:" in Renegade's
+  doc) were read as part of Celestic Town. The first "Turnback Cave", which has no levels line, replaced Lake Valor's
+  grass. With both fixed:
+  - Routes 219 and 220 have their own tables, and Celestic Town and Lake Valor have theirs back;
+  - Slurpuff moves to Lake Valor and Lurantis to Route 221;
+  - Dubwool is now placed (Route 229), leaving 7 added species catchable only by evolving.
+- **Honey Trees, as in Renegade.**
+  - Each of the 21 trees has its area's own species, percentages and level (`decomp/include/data/sovereign_honey_trees.h`,
+    from the plan). Platinum shared one table between every tree, at Lv. 5–15.
+  - Slathering a tree brings a Pokémon at once. Platinum made the player wait six hours, and sometimes nothing came.
+  - Renegade does this with a script per route; its ROM keeps Platinum's honey table (Route 207's script, for example,
+    rolls 0–9 for Aipom, Slakoth, Metapod, Kakuna and Munchlax, the doc's 30/20/20/20/10).
+  - The Pokédex's area map still shows Platinum's honey species at the trees.
+
+Verified in the test build:
+- In Route 202's grass, the wild Pokémon were Shinx, Woobat, Zigzagoon, Litleo and Rattata, all at Lv. 5, Renegade's
+  level (Platinum: Lv. 2–4, no Woobat or Litleo).
+- At Route 205 South's Honey Tree: "There is a sweet scent in the air...", Yes to "Slather the bark with Honey?", "The
+  bark was slathered with Honey." and then a battle straight away. Five tries gave Combee four times and Wurmple once,
+  all Lv. 12.
+- The release build passes.
+
 ## FM — Alcremie, Furfrou's trims, Spiky-eared Pichu and Active Xerneas
 
 - **Alcremie** (63 creams and sweets). Using any of the seven Sweets on Milcery evolves it, and the Sweet decides

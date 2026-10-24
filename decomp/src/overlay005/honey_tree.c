@@ -21,6 +21,8 @@
 #include "terrain_collision_manager.h"
 #include "trainer_info.h"
 
+#include "data/sovereign_honey_trees.h"
+
 #include "res/field/props/models/prop_models.naix"
 
 #define TREE_GROUP_NO_ENCOUNTER 0
@@ -60,20 +62,6 @@ static const int sHoneyTreeMapHeaderIDs[NUM_HONEY_TREES] = {
     MAP_HEADER_ETERNA_FOREST_OUTSIDE,
     MAP_HEADER_FUEGO_IRONWORKS_OUTSIDE,
     MAP_HEADER_FLOAROMA_MEADOW
-};
-
-// Seems they considered having version exclusive Honey Tree encounters.
-static const int sEncounterTableIndexes_DPt[] = {
-    0x2,
-    0x3,
-    0x4
-};
-
-// These IDs ultimately point to the same encounters.
-static const int sEncounterTableIndexes_P_Unused[] = {
-    0x5,
-    0x6,
-    0x7
 };
 
 HoneyTreeShakeList *HoneyTree_ShakeDataInit(void)
@@ -423,20 +411,18 @@ int HoneyTree_GetSpecies(FieldSystem *fieldSystem)
     u8 treeId = GetTreeIDFromMapHeaderID(fieldSystem->location->mapHeaderID);
     GF_ASSERT(treeId != NUM_HONEY_TREES);
 
-    int *narcData;
-    PlayerHoneyTreeStates *treeDat = SpecialEncounter_GetPlayerHoneyTreeStates(SaveData_GetSpecialEncounters(fieldSystem->saveData));
-    HoneyTree *tree = SpecialEncounter_GetHoneyTree(treeId, treeDat);
+    // Sovereign (E10): each tree has its area's own species and percentages, as in Renegade Platinum.
+    int roll = LCRNG_RandMod(100);
 
-    if ((GAME_VERSION == VERSION_DIAMOND) || (GAME_VERSION == VERSION_PLATINUM)) {
-        narcData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, sEncounterTableIndexes_DPt[tree->encounterTableIndex], HEAP_ID_FIELD1);
-    } else {
-        narcData = NARC_AllocAtEndAndReadWholeMemberByIndexPair(NARC_INDEX_ARC__ENCDATA_EX, sEncounterTableIndexes_P_Unused[tree->encounterTableIndex], HEAP_ID_FIELD1);
+    for (int i = 0; i < sSovereignHoneyTrees[treeId].count; i++) {
+        roll -= sSovereignHoneyTrees[treeId].slots[i].percent;
+
+        if (roll < 0) {
+            return sSovereignHoneyTrees[treeId].slots[i].species;
+        }
     }
 
-    int species = narcData[tree->encounterSlot];
-    Heap_Free(narcData);
-
-    return species;
+    return sSovereignHoneyTrees[treeId].slots[0].species;
 }
 
 void ov5_021F0030(void *param0, const int param1, MapPropManager *const mapPropManager)
@@ -447,6 +433,15 @@ void ov5_021F0030(void *param0, const int param1, MapPropManager *const mapPropM
 
     FieldSystem *fieldSystem = (FieldSystem *)param0;
     DoTreeShakingAnimation(fieldSystem, mapPropManager, param1);
+}
+
+// Sovereign (E10): the level of the wild Pokemon in this map's Honey Tree (Renegade's level for the area).
+u8 HoneyTree_GetLevel(FieldSystem *fieldSystem)
+{
+    u8 treeId = GetTreeIDFromMapHeaderID(fieldSystem->location->mapHeaderID);
+    GF_ASSERT(treeId != NUM_HONEY_TREES);
+
+    return sSovereignHoneyTrees[treeId].level;
 }
 
 void HoneyTree_Unslather(FieldSystem *fieldSystem)

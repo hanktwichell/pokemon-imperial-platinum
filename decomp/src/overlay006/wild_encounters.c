@@ -1352,17 +1352,8 @@ void CreateWildMon_HoneyTree(FieldSystem *fieldSystem, FieldBattleDTO *battlePar
     WildEncounters_FieldParams encounterFieldParams;
     InitEncounterFieldParams(fieldSystem, firstPartyMon, NULL, &encounterFieldParams);
 
-    u8 levelVariance = 15 - 5 + 1;
-
-    u8 level = 5 + LCRNG_RandMod(levelVariance);
-
-    if (!encounterFieldParams.isFirstMonEgg && (encounterFieldParams.firstMonAbility == ABILITY_HUSTLE || encounterFieldParams.firstMonAbility == ABILITY_VITAL_SPIRIT || encounterFieldParams.firstMonAbility == ABILITY_PRESSURE)) {
-        if (LCRNG_RandMod(2) == 0) {
-            (void)0;
-        } else {
-            level = 15;
-        }
-    }
+    // Sovereign (E10): Renegade's fixed level for the area (Platinum: Lv. 5 to 15 everywhere).
+    u8 level = HoneyTree_GetLevel(fieldSystem);
 
     HoneyTree_Unslather(fieldSystem);
     battleParams->battleStatusMask |= BATTLE_STATUS_HONEY_TREE;

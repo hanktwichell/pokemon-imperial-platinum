@@ -2,70 +2,70 @@
     "land_rate": 10,
     "land_encounters": [
         {
-            "level": 53,
-            "species": "SPECIES_CAMERUPT"
+            "level": 67,
+            "species": "SPECIES_FEAROW"
         },
         {
-            "level": 54,
+            "level": 68,
             "species": "SPECIES_RHYDON"
         },
         {
-            "level": 51,
-            "species": "SPECIES_FEAROW"
+            "level": 67,
+            "species": "SPECIES_CAMERUPT"
         },
         {
-            "level": 51,
-            "species": "SPECIES_GRAVELER"
+            "level": 66,
+            "species": "SPECIES_EXCADRILL"
         },
         {
-            "level": 53,
-            "species": "SPECIES_FEAROW"
+            "level": 67,
+            "species": "SPECIES_MACHOKE"
         },
         {
-            "level": 52,
-            "species": "SPECIES_WEEZING"
+            "level": 66,
+            "species": "SPECIES_SALAZZLE"
         },
         {
-            "level": 53,
+            "level": 67,
             "species": "SPECIES_SKARMORY"
         },
         {
-            "level": 53,
-            "species": "SPECIES_GRAVELER"
+            "level": 67,
+            "species": "SPECIES_CARBINK"
         },
         {
-            "level": 51,
-            "species": "SPECIES_NUMEL"
+            "level": 68,
+            "species": "SPECIES_GLIGAR"
         },
         {
-            "level": 52,
-            "species": "SPECIES_RHYHORN"
+            "level": 68,
+            "species": "SPECIES_HYDREIGON"
         },
         {
-            "level": 51,
-            "species": "SPECIES_NUMEL"
+            "level": 68,
+            "species": "SPECIES_MAGMAR"
         },
         {
-            "level": 52,
-            "species": "SPECIES_RHYHORN"
+            "level": 68,
+            "species": "SPECIES_COALOSSAL"
         }
     ],
     "swarms": [
-        "SPECIES_CAMERUPT",
+        "SPECIES_FEAROW",
         "SPECIES_RHYDON"
     ],
     "day": [
-        "SPECIES_FEAROW",
-        "SPECIES_GRAVELER"
+        "SPECIES_CAMERUPT",
+        "SPECIES_EXCADRILL"
     ],
     "night": [
-        "SPECIES_GOLBAT",
-        "SPECIES_GRAVELER"
+        "SPECIES_CAMERUPT",
+        "SPECIES_LAMPENT"
     ],
     "radar": [
-        "SPECIES_TORKOAL",
-        "SPECIES_TORKOAL",
-        "SPECIES_TORKOAL",
+        "SPECIES_SKARMORY",
+        "SPECIES_GLIGAR",
+        "SPECIES_CAMERUPT",
         "SPECIES_TORKOAL"
     ],
     "rate_form0": 100,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_NUMEL",
-        "SPECIES_RHYHORN"
+        "SPECIES_CAMERUPT",
+        "SPECIES_TORKOAL"
     ],
     "sapphire": [
-        "SPECIES_NUMEL",
-        "SPECIES_RHYHORN"
+        "SPECIES_CAMERUPT",
+        "SPECIES_TORKOAL"
     ],
     "emerald": [
-        "SPECIES_NUMEL",
-        "SPECIES_RHYHORN"
+        "SPECIES_CAMERUPT",
+        "SPECIES_TORKOAL"
     ],
     "firered": [
-        "SPECIES_NUMEL",
-        "SPECIES_RHYHORN"
+        "SPECIES_CAMERUPT",
+        "SPECIES_TORKOAL"
     ],
     "leafgreen": [
-        "SPECIES_NUMEL",
-        "SPECIES_RHYHORN"
+        "SPECIES_CAMERUPT",
+        "SPECIES_TORKOAL"
     ],
     "surf_rate": 0,
     "surf_encounters": [

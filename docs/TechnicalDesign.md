@@ -610,6 +610,8 @@ implemented.
   starter Interviewers, the Legend Archivist and ~35 post-game events, some of them in new rooms/maps (Sendoff Spring
   crater, Oreburgh Mine B3F, …).
 - Wild encounter tables per `WildPokemon_Sovereign.md` / `data/encounters_sovereign.json` (slot-exact, 12 grass + 5×4 water).
+  Built (E10 part 1): Renegade's tables come from its ROM (`tools/engine/import_renegade_wild.py`, a one-off step) and
+  `tools/engine/gen_wild_encounters.py` lays the plan's species over them, keeping Renegade's levels.
 
 ### 7. Graphics
 - Gen IV battle sprites: 80×80 per frame, two frames per sheet (160×80), 4bpp, **one 16-colour palette shared by the

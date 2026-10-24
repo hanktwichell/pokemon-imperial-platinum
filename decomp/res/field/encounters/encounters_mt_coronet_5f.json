@@ -2,71 +2,71 @@
     "land_rate": 15,
     "land_encounters": [
         {
-            "level": 37,
-            "species": "SPECIES_BRONZONG"
-        },
-        {
-            "level": 38,
+            "level": 52,
             "species": "SPECIES_GRAVELER"
         },
         {
-            "level": 37,
-            "species": "SPECIES_MEDICHAM"
+            "level": 53,
+            "species": "SPECIES_BRONZONG"
         },
         {
-            "level": 36,
+            "level": 51,
             "species": "SPECIES_CLEFAIRY"
         },
         {
-            "level": 39,
-            "species": "SPECIES_MACHOKE"
+            "level": 51,
+            "species": "SPECIES_LIEPARD"
         },
         {
-            "level": 39,
-            "species": "SPECIES_MEDICHAM"
-        },
-        {
-            "level": 36,
-            "species": "SPECIES_CHINGLING"
-        },
-        {
-            "level": 37,
+            "level": 52,
             "species": "SPECIES_NOSEPASS"
         },
         {
-            "level": 38,
-            "species": "SPECIES_GOLBAT"
+            "level": 52,
+            "species": "SPECIES_BEWEAR"
         },
         {
-            "level": 39,
+            "level": 52,
             "species": "SPECIES_CHIMECHO"
         },
         {
-            "level": 38,
+            "level": 53,
+            "species": "SPECIES_HOUNDSTONE"
+        },
+        {
+            "level": 52,
             "species": "SPECIES_GOLBAT"
         },
         {
-            "level": 40,
-            "species": "SPECIES_CHIMECHO"
+            "level": 52,
+            "species": "SPECIES_KROOKODILE"
+        },
+        {
+            "level": 53,
+            "species": "SPECIES_METANG"
+        },
+        {
+            "level": 53,
+            "species": "SPECIES_GRAVELER"
         }
     ],
     "swarms": [
-        "SPECIES_BRONZONG",
-        "SPECIES_GRAVELER"
+        "SPECIES_GRAVELER",
+        "SPECIES_BRONZONG"
     ],
     "day": [
-        "SPECIES_MEDICHAM",
-        "SPECIES_GRAVELER"
+        "SPECIES_CLEFAIRY",
+        "SPECIES_LIEPARD"
     ],
     "night": [
-        "SPECIES_GOLBAT",
-        "SPECIES_CLEFAIRY"
+        "SPECIES_CLEFAIRY",
+        "SPECIES_ESCAVALIER"
     ],
     "radar": [
-        "SPECIES_MACHOKE",
-        "SPECIES_MEDICHAM",
+        "SPECIES_CHIMECHO",
         "SPECIES_GOLBAT",
-        "SPECIES_CHIMECHO"
+        "SPECIES_SOLROCK",
+        "SPECIES_LUNATONE"
     ],
     "rate_form0": 0,
     "rate_form1": 0,
@@ -76,23 +76,23 @@
     "unown_table": 0,
     "ruby": [
         "SPECIES_SOLROCK",
-        "SPECIES_SOLROCK"
+        "SPECIES_LUNATONE"
     ],
     "sapphire": [
-        "SPECIES_LUNATONE",
+        "SPECIES_SOLROCK",
         "SPECIES_LUNATONE"
     ],
     "emerald": [
-        "SPECIES_GOLBAT",
-        "SPECIES_CHIMECHO"
+        "SPECIES_SOLROCK",
+        "SPECIES_LUNATONE"
     ],
     "firered": [
-        "SPECIES_GOLBAT",
-        "SPECIES_CHIMECHO"
+        "SPECIES_SOLROCK",
+        "SPECIES_LUNATONE"
     ],
     "leafgreen": [
-        "SPECIES_GOLBAT",
-        "SPECIES_CHIMECHO"
+        "SPECIES_SOLROCK",
+        "SPECIES_LUNATONE"
     ],
     "surf_rate": 0,
     "surf_encounters": [

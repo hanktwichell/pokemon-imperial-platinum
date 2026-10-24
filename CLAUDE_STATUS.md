@@ -3931,3 +3931,47 @@ and Mothim's cloaks; Stellar Terapagos is shelved. The FM row of the roadmap now
    (`data/encounters_sovereign.json`) into `decomp/res/field/encounters/` with a generator.
 2. Renegade's per-area Honey Tree tables (vanilla has one table for every tree, so this needs an engine change).
 3. Renegade's item changes: prices, TMs ×99 and not in marts, the TM move swaps, then the item locations.
+
+## CB-0074 — 2026-10-24, 3:38 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** E10 part 1. The game now has Renegade Platinum's wild tables, with the Sovereign plan's Gen V–IX
+species in their slots. Until now the decomp still had Platinum's tables.
+- Renegade's real tables come from its ROM (vanilla Platinum built from the first decomp import, plus Renegade's
+  patch), so levels, rates, time-of-day, radar and fishing slots are exact. Renegade left 65 tables as in Platinum.
+- `tools/engine/import_renegade_wild.py` (one-off, needs the patched ROM) and `tools/engine/gen_wild_encounters.py`
+  (lays the plan over them; in `regenerate_docs.sh`).
+- Plan fix in `gen_encounters.py`: Routes 219/220 and the first Turnback Cave entry were mis-read (Celestic Town and
+  Lake Valor got their tables). Dubwool is now placed; Slurpuff and Lurantis moved.
+- Verified: Route 202's grass in the test build gave Shinx, Woobat, Zigzagoon, Litleo and Rattata at Lv. 5.
+
+**Files modified:** `tools/engine/import_renegade_wild.py` (new), `tools/engine/gen_wild_encounters.py` (new),
+`tools/design/gen_encounters.py`, `tools/regenerate_docs.sh`, `data/encounters_sovereign.json`,
+`decomp/res/field/encounters/encounters_*.json` (121 files), `docs/WildPokemon_Sovereign.md`, `docs/EngineChangelog.md`,
+`docs/TechnicalDesign.md`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Honey Trees. Renegade's doc gives each area its own honey table, but its ROM keeps Platinum's honey data
+   (encdata_ex is unchanged), so check how Renegade picks them (its arm9/overlay patches) before building per-area
+   tables.
+2. Renegade's item changes: Poké/Great/Ultra Ball prices, TMs ×99 and not in marts, the TM move swaps (Scald, Wild
+   Charge…), the item locations and gifts.
+3. Renegade's NPCs (`NPCChanges.txt`) and trades; then its trainers. The patched ROM can be dumped the same way
+   (`trdata`/`trpoke` NARCs).
+
+## CB-0075 — 2026-10-24, 3:49 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented:** Renegade's Honey Trees (E10 part 1, same PR as CB-0074).
+- Each of the 21 trees now has its area's own species, percentages and level. Slathering brings a Pokémon at once.
+  Renegade scripts this per route; its ROM keeps Platinum's honey table.
+- Verified: Route 205 South's tree gave a battle right after slathering (Combee and Wurmple, Lv. 12).
+
+**Files modified:** `tools/engine/gen_wild_encounters.py` (writes `decomp/include/data/sovereign_honey_trees.h`),
+`decomp/src/overlay005/honey_tree.c`, `decomp/include/overlay005/honey_tree.h`, `decomp/src/overlay006/wild_encounters.c`,
+`decomp/res/field/scripts/scripts_common.s`, `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Renegade's item changes: Poké/Great/Ultra Ball prices, TMs ×99 and not in marts, the TM move swaps, then item
+   locations and gifts (`ItemChanges.txt`).
+2. Renegade's NPCs (`NPCChanges.txt`: the Snowpoint evolution item seller, Item Fanatic, Hidden Power teller...) and trades.
+3. The Pokédex area map for the Honey Trees (it still shows Platinum's honey species), then Renegade's trainers from
+   its ROM (`trdata`/`trpoke`).

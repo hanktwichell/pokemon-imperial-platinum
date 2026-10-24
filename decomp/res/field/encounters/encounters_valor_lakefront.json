@@ -2,71 +2,71 @@
     "land_rate": 30,
     "land_encounters": [
         {
-            "level": 26,
+            "level": 31,
             "species": "SPECIES_GIRAFARIG"
         },
         {
-            "level": 25,
+            "level": 33,
             "species": "SPECIES_BIBAREL"
         },
         {
-            "level": 26,
-            "species": "SPECIES_STARAVIA"
+            "level": 31,
+            "species": "SPECIES_NIDORINA"
         },
         {
-            "level": 27,
+            "level": 31,
+            "species": "SPECIES_GIRAFARIG"
+        },
+        {
+            "level": 33,
+            "species": "SPECIES_NIDORINO"
+        },
+        {
+            "level": 33,
+            "species": "SPECIES_GIRAFARIG"
+        },
+        {
+            "level": 32,
             "species": "SPECIES_KRICKETUNE"
         },
         {
-            "level": 27,
-            "species": "SPECIES_STARAVIA"
-        },
-        {
-            "level": 28,
-            "species": "SPECIES_HOUNDOUR"
-        },
-        {
-            "level": 28,
-            "species": "SPECIES_STARAVIA"
-        },
-        {
-            "level": 26,
-            "species": "SPECIES_BIBAREL"
-        },
-        {
-            "level": 28,
+            "level": 32,
             "species": "SPECIES_GIRAFARIG"
         },
         {
-            "level": 27,
-            "species": "SPECIES_BIBAREL"
-        },
-        {
-            "level": 28,
+            "level": 32,
             "species": "SPECIES_GIRAFARIG"
         },
         {
-            "level": 27,
-            "species": "SPECIES_BIBAREL"
+            "level": 32,
+            "species": "SPECIES_GIRAFARIG"
+        },
+        {
+            "level": 33,
+            "species": "SPECIES_GIRAFARIG"
+        },
+        {
+            "level": 33,
+            "species": "SPECIES_GIRAFARIG"
         }
     ],
     "swarms": [
-        "SPECIES_GIRAFARIG",
+        "SPECIES_VENONAT",
         "SPECIES_BIBAREL"
     ],
     "day": [
-        "SPECIES_STARAVIA",
-        "SPECIES_STARAVIA"
+        "SPECIES_NIDORINA",
+        "SPECIES_GIRAFARIG"
     ],
     "night": [
-        "SPECIES_KRICKETUNE",
-        "SPECIES_HOUNDOUR"
+        "SPECIES_NIDORINA",
+        "SPECIES_GIRAFARIG"
     ],
     "radar": [
-        "SPECIES_NIDORINO",
-        "SPECIES_NIDORINA",
-        "SPECIES_NIDORINO",
-        "SPECIES_NIDORINA"
+        "SPECIES_VENOMOTH",
+        "SPECIES_VENOMOTH",
+        "SPECIES_VENOMOTH",
+        "SPECIES_VENOMOTH"
     ],
     "rate_form0": 100,
     "rate_form1": 100,
@@ -75,24 +75,24 @@
     "rate_form4": 0,
     "unown_table": 0,
     "ruby": [
-        "SPECIES_GIRAFARIG",
-        "SPECIES_BIBAREL"
+        "SPECIES_NIDORINA",
+        "SPECIES_NIDORINO"
     ],
     "sapphire": [
-        "SPECIES_GIRAFARIG",
-        "SPECIES_BIBAREL"
+        "SPECIES_NIDORINA",
+        "SPECIES_NIDORINO"
     ],
     "emerald": [
-        "SPECIES_GIRAFARIG",
-        "SPECIES_BIBAREL"
+        "SPECIES_NIDORINA",
+        "SPECIES_NIDORINO"
     ],
     "firered": [
-        "SPECIES_GIRAFARIG",
-        "SPECIES_BIBAREL"
+        "SPECIES_NIDORINA",
+        "SPECIES_NIDORINO"
     ],
     "leafgreen": [
-        "SPECIES_GIRAFARIG",
-        "SPECIES_BIBAREL"
+        "SPECIES_NIDORINA",
+        "SPECIES_NIDORINO"
     ],
     "surf_rate": 0,
     "surf_encounters": [

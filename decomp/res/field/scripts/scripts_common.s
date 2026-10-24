@@ -529,7 +529,8 @@ CommonScript_SlatherHoneyTree:
     Message CommonStrings_Text_BarkWasSlathered
     WaitButton
     CloseMessage
-    ReleaseAll
+    // Sovereign (E10): as in Renegade, a Pokemon comes to the Honey at once (Platinum: hours later, or none).
+    GoTo CommonScript_HoneyTreeEncounter
     End
 
 CommonScript_HoneyTreeEncounter:
