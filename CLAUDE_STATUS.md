@@ -3290,3 +3290,31 @@ interactions the owner listed on 2026-10-23. PR open.
    first.
 3. Owner decisions still open: Koraidon/Miraidon after their own ten Paradox Pokémon or all twenty; Cosmog's
    Teleport; whether Ultra Burst should count as the trainer's Mega; overworld sprites and sizing; final placements.
+
+---
+
+## CB-0053 — School Wishiwashi, Schooling in battle (Fri Oct 23 2026, 22:21 CDT)
+
+**Implemented:**
+- **School Wishiwashi** (form 1) is now a battle form, `"wishiwashi-school": (KIND_BATTLE, "ABILITY_SCHOOLING")` in
+  `gen_forms.py`, with its own stats from forms.csv.
+- **Schooling:** a Wishiwashi with Schooling at level 20 or higher and above 1/4 max HP turns into School Form:
+  - when it switches in (checked once per switch-in, through the new `sovereignSchoolingChecked` battle-mon bit);
+  - at the end of each turn, where it also turns back into Solo Form when its HP is 1/4 or lower.
+  - It doesn't change mid-turn, like the main series, and doesn't work while transformed.
+  - It shows "X transformed!" through `subscript_form_change`.
+- Switching out and the end of battle return it to Solo Form (it is a BATTLE form).
+- **Verified** in the emulator: School Form on entry; a low-HP Wishiwashi stays Solo on entry; the revert at the end of
+  the turn after it drops to 1/4 HP, not mid-turn. Release build without warnings, boot smoke, docs regenerated.
+
+**Files modified:** `tools/engine/gen_forms.py`, `decomp/include/data/sovereign_forms.h`,
+`decomp/include/constants/sovereign_forms.h`, `decomp/tools/dataproc/src/sovereign_forms.inc`,
+`decomp/res/pokemon/wishiwashi/forms/school/data.json` (new), `decomp/res/pokemon/wishiwashi/meson.build`,
+`decomp/include/battle/battle_mon.h`, `decomp/src/battle/battle_lib.c`, `docs/TechnicalDesign.md`,
+`docs/EngineRoadmap.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Milestone FM: Minior's meteor and core forms (Shields Down); its form data first.
+2. Milestone FM: Power Construct (Complete Zygarde) and Battle Bond (Ash-Greninja).
+3. Owner decisions still open: Revival Blessing; Koraidon/Miraidon gate; Cosmog's Teleport; whether Ultra Burst
+   counts as the trainer's Mega; overworld sprites and sizing; final placements.

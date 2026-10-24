@@ -212,6 +212,7 @@ static const SovereignForm sSovereignForms[SOVEREIGN_FORM_COUNT] = {
     { SPECIES_NECROZMA, 4, SOVEREIGN_FORM_ULTRA_BURST, 2 }, // Ultra Necrozma
     { SPECIES_MELOETTA, 1, SOVEREIGN_FORM_BATTLE_MOVE, MOVE_RELIC_SONG }, // Pirouette Meloetta
     { SPECIES_AEGISLASH, 1, SOVEREIGN_FORM_BATTLE, ABILITY_STANCE_CHANGE }, // Blade Aegislash
+    { SPECIES_WISHIWASHI, 1, SOVEREIGN_FORM_BATTLE, ABILITY_SCHOOLING }, // School Wishiwashi
 };
 
 // A regional form that evolves into its region's form of the target species (any other evolves into form 0).
