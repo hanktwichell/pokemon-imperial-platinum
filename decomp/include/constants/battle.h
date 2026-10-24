@@ -62,7 +62,10 @@
 
 #define BATTLE_IO_QUEUE_SIZE    16
 #define BATTLE_IO_BUFFER_SIZE   256
-#define BATTLE_SCRIPT_SIZE_MAX  400
+// Sovereign: 400 in Platinum. A script loads whole into BattleContext.battleScript and one that doesn't fit overwrites
+// the battlers after it (Toxic's grew past 400 with Corrosion and Misty Terrain). tools/test/check_battle_scripts.py
+// checks the built scripts against it.
+#define BATTLE_SCRIPT_SIZE_MAX  512
 #define BATTLE_SCRIPT_STACK_MAX 4
 
 #define MAX_OPPONENTS     2

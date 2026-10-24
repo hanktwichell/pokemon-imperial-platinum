@@ -4,6 +4,24 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Fix — Toxic broke the player's Pokémon
+
+- **Bug:** using Toxic, or any badly-poison effect, could leave the player's lead Pokémon with "has no moves left!", so
+  it could only Struggle. It could also change its stats, and even its species, for the rest of the battle.
+- **Cause:** Toxic's subscript had grown to 1620 bytes with Corrosion and Misty Terrain. The battle script buffer holds
+  1600 (`BATTLE_SCRIPT_SIZE_MAX`, 400 u32s), and the buffer sits right before the first battler's data. Loading the
+  script overwrote that battler's species, stats and moves.
+- **Fix:**
+  - The buffer holds 512 u32s (2048 bytes).
+  - `BattleSystem_CallScript` checks against the same constant instead of a copy of 400.
+  - `tools/test/check_battle_scripts.py` fails the CI build when a built script doesn't fit.
+- **Verified** in the emulator:
+  - Before the fix, a Mold Breaker Smeargle used Toxic on a wild Zangoose. The next turn it had "no moves left", and a
+    write watch caught the script load overwriting its battle data.
+  - After the fix: Zangoose was badly poisoned and cured itself with Immunity, and Smeargle used Yawn the next turn.
+  - The checker passes at 512 and fails at 400 (badly poison, 1620 bytes). Release build without warnings, boot
+    smoke, docs.
+
 ## FM — School Wishiwashi
 
 - **Schooling.**

@@ -50,6 +50,10 @@ implemented.
 - Most added species' abilities are Gen V+. Same decision: map to Gen IV abilities, or implement new abilities. Mega
   abilities used by boss trainers must be implemented first (Magic Bounce, Parental Bond, Strong Jaw, Tough Claws,
   Aura Guard). See `MegaEvolution.md`.
+- **Battle script size.** A battle script (effect, subscript or move script) loads whole into
+  `BattleContext.battleScript`, `BATTLE_SCRIPT_SIZE_MAX` u32s (512; Platinum's was 400). Nothing stops a longer one at
+  run time: it overwrites the battlers after the buffer. `tools/test/check_battle_scripts.py` checks every built script
+  against it, in CI after the build. When a subscript nears the limit, move a branch into a new subscript.
 
 ### 3. Items
 - Add 95 Mega Stones/orbs, the Mega Ring, 16 evolution items and the legendary key items (Light Stone, Dark Stone, Prison
@@ -460,6 +464,7 @@ implemented.
 - Mega Garchomp Z's owner-supplied front art is 116×95 px and must be redrawn to fit 80×80.
 
 ### 8. Testing
+- After every build, `python3 tools/test/check_battle_scripts.py decomp` (CI runs it).
 - Play-test each badge segment with the encounter tables and boss teams; check that every Renegade species is still
   obtainable (the encounter generator guarantees this for the wild tables).
 - Battle tests for each Mega ability, the Mega UI, multi battles with two Mega trainers (Spear Pillar, Fight Area), and
