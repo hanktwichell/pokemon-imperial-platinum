@@ -4,6 +4,47 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Playtest checks — script menus fit on the screen; every changed map loads
+
+**New check `tools/test/check_menus.py` (CI, rom job):** every field-script menu fits on the screen above the
+message box.
+- **How the window is sized:** as the engine sizes it (`src/overlay005/field_menu.c`).
+  - Width: the widest entry in the system font, plus a 12-pixel cursor margin, rounded up to tiles.
+  - `{CURSOR_X n}` (a price column) puts the text n − 12 pixels past the margin, as
+    `FontManager_CalcStringWidthWithCursorControl` does.
+  - Height: two tiles per entry; a list menu shows at most 8.
+- **What must fit:**
+  - The window must lie within columns 1 to 30, since the frame takes one tile on each side.
+  - It must end by row 16, because the message box's frame starts at row 18. Vanilla's lowest menus end at row 16.
+- **How a menu is read:** it is followed from its Init command through the script's jumps and calls to its Show
+  command.
+  - Entries added in branches and subroutines count, and the menu's size is the largest any path gives it.
+  - A flag tested one way and then the other on the next line (the half-price shops' `CallIfUnset` /
+    `CallIfSet FLAG_GAME_COMPLETED`) counts as one choice.
+  - A menu set up in a subroutine is followed back through its callers.
+- **Result:** all 138 menus fit. 46 entries take their width from a name or number placeholder, all in vanilla's
+  menus. `-v` lists them.
+- **Verified:** a lengthened Veilstone Store menu entry and a menu moved down to row 13 are both reported.
+
+**New tool `tools/test/visit_changed_maps.py` (local; about an hour):** it warps into every map whose events or
+scripts Sovereign changed (182 map headers) and checks that the field runs there.
+- **Test build only** (behind the `sovereign_test` option; the shipping ROM is byte-identical):
+  - `gSovereignTestWarpTarget` (`src/script_manager.c`): a place a harness writes, which SELECT+L+R then warps to.
+  - `gSovereignTestIdleFrames` (`src/field_system.c`): counts the frames the field runs with no script, warp or
+    battle.
+- **The tool:**
+  - Spawn tile: a warp on the map, or the walkable tile nearest a block's middle.
+  - It reads the hooks' addresses from the build's symbol map.
+  - It waits until the field is idle on the target map. `--scene` presses A, waits longer and saves screens over
+    time.
+- **2026-10-25 run:** all 182 maps load.
+  - 174 are idle at once.
+  - 8 open on a scene that runs, not a hang: the Contest Hall lobby, the Pal Park lobby (the Trainer Counter app),
+    the Sandgem lab and the Battleground are vanilla's first-visit scenes and end idle.
+  - Cynthia's intro and battle: singles, since warping in skips the lobby's format choice.
+  - The Hall of Fame, then the save and the credits.
+  - Stark Mountain: the Galactic battle in room 1, and the Charon scene and Looker's arrest in room 3.
+
 ## Playtest checks — field message lines fit the box's width
 
 `tools/test/check_message_box_lines.py` (CI, rom job) now also checks each line's **width**.

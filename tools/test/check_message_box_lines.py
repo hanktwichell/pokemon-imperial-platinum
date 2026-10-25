@@ -36,9 +36,10 @@ SIGN_WIDTHS = {'ShowMapSign': 20 * 8, 'ShowArrowSign': 20 * 8, 'ShowLandmarkSign
 USE = re.compile(r'^\s*(' + '|'.join(MESSAGE_COMMANDS + tuple(SIGN_WIDTHS)) + r')\s+(\w+)')
 
 
-def glyph_widths(decomp):
-    """Each character's width in pixels in the message font, and the multi-character sequences the charmap encodes."""
-    widths = json.load(open(os.path.join(decomp, 'res', 'fonts', 'font_message.json'), encoding='utf-8'))['glyphWidths']
+def glyph_widths(decomp, font='font_message'):
+    """Each character's width in pixels in a font (the message font by default), and the multi-character sequences
+    the charmap encodes."""
+    widths = json.load(open(os.path.join(decomp, 'res', 'fonts', font + '.json'), encoding='utf-8'))['glyphWidths']
     width_of = {}
     with open(os.path.join(decomp, 'tools', 'msgenc', 'charmap.txt'), encoding='utf-8') as f:
         for line in f:

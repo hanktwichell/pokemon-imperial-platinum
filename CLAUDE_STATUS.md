@@ -5905,3 +5905,39 @@ vanilla's post-game guard.
 2. (Checked: species names stay within vanilla's 10 characters, e.g. "CRABMINABL", so a name placeholder can't make
    a line longer than vanilla's.) Next: a menu-width check for the multichoice menus Sovereign added.
 3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
+
+## CB-0127 — 2026-10-25, 2:45 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: a menu-size check in CI, and a smoke test that warps into every changed map.** PR #139 (the
+message-width check and credits) is merged.
+- **`tools/test/check_menus.py` (CI, rom job):** every field-script menu must fit on the screen and end above the
+  message box.
+  - The window is sized as the engine sizes it (`src/overlay005/field_menu.c`): the widest entry in the system
+    font, plus a 12-pixel cursor margin. `{CURSOR_X n}` price columns count.
+  - Each menu is followed through jumps, calls and back-to-back opposite flag tests, so menus built in branches
+    (the half-price shops) are sized right.
+  - All 138 fit. A too-wide entry and a too-low menu are both caught.
+- **`tools/test/visit_changed_maps.py` (local):** warps into each of the 182 map headers whose events or scripts
+  changed, and waits for the field to be idle there.
+  - It uses two new test-build hooks, behind the `sovereign_test` option: `gSovereignTestWarpTarget` (SELECT+L+R
+    warps there) and `gSovereignTestIdleFrames`. The shipping ROM is byte-identical
+    (sha1 d1d3de1f9641dbacb3355d8a4cd62f8799a435d3, same as main).
+  - **Run result:** all 182 maps load, and no bug was found. 174 are idle at once. The other 8 open on scenes
+    that run, not hangs:
+    - Vanilla first-visit scenes, which end idle: the Contest Hall lobby, the Pal Park lobby, the Sandgem lab and
+      the Battleground.
+    - Cynthia's battle: singles, since the warp skips the lobby's format choice.
+    - The Hall of Fame and credits.
+    - Stark Mountain's Galactic battle, Charon scene and Looker's arrest.
+- `check_message_box_lines.glyph_widths` now takes the font name.
+
+**Files modified:** `tools/test/check_menus.py` (new), `tools/test/visit_changed_maps.py` (new),
+`tools/test/check_message_box_lines.py`, `tools/test/build_test_rom.sh`, `.github/workflows/build.yml`,
+`decomp/src/script_manager.c`, `decomp/include/script_manager.h`, `decomp/src/field_system.c`,
+`docs/EngineChangelog.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR once both checks are green.
+2. Trainer sight lines: find trainers whose line of sight covers a tile the player must cross where an added object
+   now blocks the trainer's approach (a check in the spirit of `check_object_tiles.py`).
+3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
