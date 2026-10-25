@@ -4,6 +4,19 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Playtest pass — the Trainers' School Egg, and heap checks in the battle tests
+
+- **The Trainers' School Egg:** the gift test (`tools/test/gift_pokemon.py`) now also covers the Cowgirl's Egg, for
+  59 runs. It must be an Egg of one of the 18 babies her script picks from at random, at Lv. 1, knowing its species'
+  moves at that level. The party hook (`gSovereignTestParty`) now notes whether each Pokémon is an Egg, so every other
+  gift must not be one.
+- **Heap checks in every battle test:** `fight()` in `tools/test/battle_all_trainers.py` checks the heaps
+  (`heap_check.py`) when a battle ends. A battle that leaves them broken gets the result **HEAP**. The trainer,
+  species, form-change, evolution and Egg tests all fight through it.
+
+**Results:** RESULTS
+
+
 ## Playtest pass — Elite Four runs
 
 A new test, `tools/test/elite_four_runs.py`, plays the Elite Four and the Champion in the test build. It takes each
