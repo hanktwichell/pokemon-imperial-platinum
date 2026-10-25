@@ -4,6 +4,28 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Playtest pass — talking to every added object
+
+**`tools/test/talk_to_objects.py` (local; about an hour in 4 parts)** talks to each of the 252 map objects Sovereign
+added or moved, which have a script (`check_object_tiles.py`'s list), in the test build:
+- **Setting up:** it comes into the map by its way in (the tile a player steps onto from its first warp), and plays
+  out any scene on entering it there. Then it warps next to the object (or across a counter), facing it, and presses A.
+- **Playing it out:** A pages through text and answers prompts, taps pick moves in a battle, and B now and then backs
+  out of a menu, until the field is free again. God mode is on, so a trainer's battle ends at once.
+- **Results:** a script must end, with no hang. An object that nothing answers isn't there on a new game: a flag hides
+  it until later in the story.
+
+Two scenes on entering a map need the story's own way in, so the test marks them as seen first:
+- Flint at Sunyshore's gate, as the player comes from Route 222;
+- Mars and Jupiter in Stark Mountain, with Buck along.
+
+**Results:** RESULTS
+
+**Test-build hooks** (`include/sovereign_test.h`):
+- `gSovereignTestWarpTarget` also sets the way the player faces.
+- `gSovereignTestVar` sets a var before the next test warp.
+
+
 ## Playtest pass — Zero to Hero, and the forms' TMs
 
 **Fix: the forms that share their species' learnset can learn Renegade's six swapped TMs as it can.** E10's TM swaps
