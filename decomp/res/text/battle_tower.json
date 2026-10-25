@@ -1133,6 +1133,70 @@
         "A Ribbon will be awarded to the\n",
         "participating Pokémon!"
       ]
+    },
+    {
+      "id": "BattleTower_Text_SovereignAbilityIntro",
+      "en_US": [
+        "I study Pokémon Abilities.\r",
+        "Most Pokémon can have one of two\n",
+        "regular Abilities.\r",
+        "For a fee, I can switch one of your\n",
+        "Pokémon to its other Ability.\r",
+        "It costs 50 BP or $20,000.\n",
+        "How would you like to pay?"
+      ]
+    },
+    {
+      "id": "BattleTower_Text_SovereignAbilityMenuBP",
+      "en_US": "50 BP"
+    },
+    {
+      "id": "BattleTower_Text_SovereignAbilityMenuMoney",
+      "en_US": "$20,000"
+    },
+    {
+      "id": "BattleTower_Text_SovereignAbilityMenuNo",
+      "en_US": "No, thanks"
+    },
+    {
+      "id": "BattleTower_Text_SovereignAbilityWhich",
+      "en_US": "Which Pokémon should I look at?"
+    },
+    {
+      "id": "BattleTower_Text_SovereignAbilityDone",
+      "en_US": [
+        "There!\n",
+        "{STRVAR_1 1, 0, 0}’s Ability is now\n",
+        "{STRVAR_1 5, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleTower_Text_SovereignAbilityCantSwap",
+      "en_US": [
+        "Hmm... This one has only one\n",
+        "regular Ability. I can’t switch it."
+      ]
+    },
+    {
+      "id": "BattleTower_Text_SovereignAbilityHidden",
+      "en_US": [
+        "Oh! This one has a rare, hidden\n",
+        "Ability.\r",
+        "Only an Ability Patch can switch\n",
+        "that one, I’m afraid."
+      ]
+    },
+    {
+      "id": "BattleTower_Text_SovereignAbilityNotEnoughBP",
+      "en_US": "You don’t have enough BP."
+    },
+    {
+      "id": "BattleTower_Text_SovereignAbilityNotEnoughMoney",
+      "en_US": "You don’t have enough money."
+    },
+    {
+      "id": "BattleTower_Text_SovereignAbilityBye",
+      "en_US": "Come back any time!"
     }
   ]
 }

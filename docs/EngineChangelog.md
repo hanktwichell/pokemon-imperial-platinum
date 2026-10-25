@@ -4,6 +4,26 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E14 (part) — the Ability Capsule NPC in the Battle Tower lobby (QoL #11)
+
+A researcher (scientist) now stands in the Battle Tower lobby, at (6, 7) below the reception desks. She switches a
+Pokémon between its two regular Abilities, as the Ability Capsule does:
+- She asks how to pay: **50 BP**, **$20,000**, or "No, thanks". Without enough BP or money she says so and stops.
+- The player then picks a Pokémon from the party screen.
+- She charges only when the switch works:
+  - **Two regular Abilities:** the Pokémon switches to the other one, and she names it. The payment is taken.
+  - **One regular Ability, or an Egg:** "This one has only one regular Ability." Nothing is taken.
+  - **Its Hidden Ability:** only the Ability Patch can change that one. Nothing is taken.
+- A new script command, `SovereignSwapAbility templateArg, partySlot, destVar`, does the switch. It toggles the same
+  ability-slot bit as the Ability Capsule, recalculates the ability, and buffers the new ability's name.
+
+Verified in a test build (60 BP, $30,000):
+- **BP:** Archaludon switched, and 50 BP was taken. The next 50 BP choice said there wasn't enough BP.
+- **Money:** Gallade with its Hidden Ability got the Ability Patch line, and Garchomp (one regular Ability) got the
+  "only one" line. Neither was charged. Archaludon switched back for $20,000, and the next try said there wasn't
+  enough money.
+- "No, thanks" ends the talk.
+
 ## E10 (part 41) — Renegade's special encounters: Gengar, Spiritomb and Rotom
 
 The "Special Encounters" in Renegade's `SpecialEvents.txt`. Gabite (E10 part 5) was already in; these three weren't:

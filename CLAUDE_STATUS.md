@@ -5637,3 +5637,34 @@ vanilla's post-game guard.
    - the Tea and Route 218's gate, with when the park opens.
 3. Check Renegade's `NPCChanges.txt` and `TradeChanges.txt` against the ports, to see whether the remaining audit
    lines are covered.
+
+## CB-0119 — 2026-10-24, 11:35 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: QoL #11, the Ability Capsule NPC in the Battle Tower lobby.** PR #132 (E10 part 41) is merged.
+- A researcher at (6, 7) in the Battle Tower lobby switches a Pokémon between its two regular Abilities. The player
+  pays 50 BP or $20,000, chosen from a menu.
+- She charges only when the switch works. A Pokémon with one regular Ability, an Egg, or a Pokémon with its Hidden
+  Ability (that needs the Ability Patch) costs nothing.
+- New script command `SovereignSwapAbility templateArg, partySlot, destVar`. It returns 0 for no change, 1 for
+  switched (the new Ability's name is buffered) and 2 for a Hidden Ability.
+- Tested in a test build: BP and money switches, not enough of either, the one-Ability and Hidden Ability lines, and
+  "No, thanks". RAM checks showed the BP and money going down only on a switch.
+- The E14 lines in the roadmap and the project status now say 6 of 8. Two stale notes are fixed: the Mints'
+  Route 208 sale is done, and where the Infinite Repel is given was decided (decision 31).
+- **Audit:** Renegade's `NPCChanges.txt` and `TradeChanges.txt` are fully covered (E10 parts 4 and 10). The map-script
+  audit (CB-0118's list) has nothing left but the two owner questions.
+
+**Files modified:**
+- Engine: `decomp/src/scrcmd.c`, `decomp/include/data/scripts/scrcmd.h`, `decomp/asm/macros/scrcmd.inc`
+- Map: `decomp/res/field/scripts/scripts_battle_tower.s`, `decomp/res/field/events/events_battle_tower.json`,
+  `decomp/res/text/battle_tower.json`
+- Docs: `docs/EngineChangelog.md`, `docs/QualityOfLife.md`, `docs/EngineRoadmap.md`, `docs/ProjectStatus.md`,
+  `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR once both checks are green.
+2. QoL #3: the Infinite Repel's status tag in the bag ("ON" on its Key Items row while it's on). That is the last open
+   E14 item.
+3. Owner questions, both in `docs/ProjectStatus.md`:
+   - Route 224 before the Elite Four;
+   - the Tea and Route 218's gate.

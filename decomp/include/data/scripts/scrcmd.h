@@ -861,6 +861,7 @@ ScriptCommand(SCRCMD_SOVEREIGNGETEVENTGIFT,                               ScrCmd
 ScriptCommand(SCRCMD_SOVEREIGNFINISHEVENTGIFT,                            ScrCmd_SovereignFinishEventGift)
 ScriptCommand(SCRCMD_SOVEREIGNRESTYLEEVENTFORM,                           ScrCmd_SovereignRestyleEventForm)
 ScriptCommand(SCRCMD_SOVEREIGNGROOMFURFROU,                               ScrCmd_SovereignGroomFurfrou)
+ScriptCommand(SCRCMD_SOVEREIGNSWAPABILITY,                                ScrCmd_SovereignSwapAbility)
 
 // clang-format on
 
