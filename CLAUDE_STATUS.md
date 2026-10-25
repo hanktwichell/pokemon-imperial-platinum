@@ -6157,3 +6157,31 @@ is merged.
    species but not the forms that copy their learnset (Partner Pikachu and Eevee, the costume Pikachu, Totem Araquanid,
    Gumshoos and Salazzle, and the Megas), so these miss TM55/57/62/83/85/88 where their species has them.
 3. Zero to Hero in `battle_form_changes.py` (Palafin switching out with Flip Turn), the last untested battle form.
+
+## CB-0134 — 2026-10-25, 10:02 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: the forms' TMs and the Zero to Hero test.** PR #145 (evolution and Egg form tests) is merged.
+- **Fix: Renegade's six swapped TMs reach the forms that share their species' learnset.** E10 part 2 updated the base
+  species only, so 49 forms that copy the species' learnset were missing them. Rerunning `tools/engine/gen_forms.py`
+  rebuilt these forms' learnsets; only the TM lists change. Playable ones:
+  - Partner Pikachu and the six costume Pikachu (Wild Charge);
+  - Partner Eevee (Hyper Voice);
+  - Totem Gumshoos (Wild Charge), Totem Salazzle (Hyper Voice) and Totem Araquanid (Bug Buzz in place of Scald).
+
+  The other 40 are Megas.
+- **`tools/test/battle_form_changes.py` covers Zero to Hero** (211 cases): Palafin uses Flip Turn, switches out, becomes
+  Hero, and is Zero again after the battle. It passes. The Zero to Hero form change on the player's side now sets
+  `gSovereignTestPlayerBattleForm` (test build only).
+- Checks: the docs regeneration is clean.
+
+**Files modified:**
+- Data: 49 `decomp/res/pokemon/*/forms/*/data.json`
+- Test hook: `decomp/src/battle/battle_script.c`
+- Tools: `tools/test/battle_form_changes.py`
+- Docs: `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR once both checks are green.
+2. More automated playtest coverage (row 18): wild encounters' forms by map (Unown, Shellos, regional forms in the
+   Regional Forms Park) through the real encounter code.
+3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.

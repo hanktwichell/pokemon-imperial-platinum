@@ -18,9 +18,9 @@ The list comes from include/data/sovereign_forms.h. Each case is the species in 
   - Stance Change attacking;
   - Schooling, Tera Shift and Fairy Aura as it comes in;
   - Hunger Switch at the end of a turn;
-  - Battle Bond knocking the foe out.
-
-  Zero to Hero needs a switch and isn't covered.
+  - Battle Bond knocking the foe out;
+  - Zero to Hero switching out with Flip Turn (the foe survives the first turn, so it switches; the battle picks the
+    Pokémon that comes in).
 - **Item forms** (SOVEREIGN_FORM_BATTLE_ITEM): Crowned Zacian and Zamazenta, holding the Rusted Sword or Shield.
 - **Move forms** (SOVEREIGN_FORM_BATTLE_MOVE): Pirouette Meloetta, using Relic Song.
 - **Key items** (SOVEREIGN_FORM_KEY_ITEM, SOVEREIGN_FORM_FUSION; src/sovereign_form_items.c), used on the lead before
@@ -57,7 +57,7 @@ says), HANG or STUCK (as in battle_all_trainers.py), with a screenshot for any t
 Needs what battle_all_trainers.py needs. From the repo root:
     SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 tools/test/battle_form_changes.py \\
         decomp/build_test/pokeplatinum.us.nds STATE OUT_DIR [SPECIES ...]
-SPECIES (a constant, e.g. SPECIES_MEOWSTIC) limits the list to those species. The whole list (210 cases) takes about
+SPECIES (a constant, e.g. SPECIES_MEOWSTIC) limits the list to those species. The whole list (211 cases) takes about
 an hour.
 Each result is a line in OUT_DIR/results.txt.
 """
@@ -94,7 +94,7 @@ ABILITY_SETUP = {
     'ABILITY_FAIRY_AURA': {},
     'ABILITY_HUNGER_SWITCH': {},
     'ABILITY_BATTLE_BOND': {},
-    'ABILITY_ZERO_TO_HERO': None,  # Palafin becomes a hero when it switches out
+    'ABILITY_ZERO_TO_HERO': {'moves': ['MOVE_FLIP_TURN'] * 3},  # Palafin becomes a hero as Flip Turn switches it out
 }
 # Gulp Missile: Cramorant catches an Arrokuda (Gulping Form) above half its HP and a Pikachu (Gorging Form) at half
 # or less.
