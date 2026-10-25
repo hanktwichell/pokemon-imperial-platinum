@@ -4,6 +4,22 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Playtest pass — Zero to Hero, and the forms' TMs
+
+**Fix: the forms that share their species' learnset can learn Renegade's six swapped TMs as it can.** E10's TM swaps
+(Scald, Wild Charge, Bug Buzz, Hyper Voice, Dazzling Gleam and Hurricane) reached the base species but not 49 forms
+that copy their learnset. Rerunning `tools/engine/gen_forms.py` rebuilds them from the species, so they get its TMs:
+- Partner Pikachu, the six costume Pikachu (Wild Charge) and Partner Eevee (Hyper Voice);
+- Totem Gumshoos (Wild Charge), Totem Salazzle (Hyper Voice) and Totem Araquanid (Bug Buzz, in place of Scald, which
+  Araquanid can't learn here);
+- the Megas, which change nothing in play, since a Pokémon is never taught a TM while Mega Evolved.
+
+**`tools/test/battle_form_changes.py` now covers Zero to Hero** (211 cases). Palafin uses Flip Turn, and the foe
+survives the first turn, so Palafin switches out. It must become Hero Palafin, and be back in its Zero Form after the
+battle. **Result:** it passes. Test-build hook: a Zero to Hero form change on the player's side is recorded in
+`gSovereignTestPlayerBattleForm`, as the other battle form changes are.
+
+
 ## Playtest pass — evolving and breeding into forms
 
 **Fixes:**

@@ -9363,6 +9363,11 @@ static BOOL BtlCmd_TryRestoreStatusOnSwitch(BattleSystem *battleSys, BattleConte
             Pokemon_SetValue(heroMon, MON_DATA_FORM, &heroForm);
             Pokemon_CalcLevelAndStats(heroMon);
             battleCtx->sovereignHeroPending |= BattleSystem_SovereignHeroBit(battleSys, battler, battleCtx->selectedPartySlot[battler]);
+#ifdef SOVEREIGN_TEST
+            if (BattleSystem_GetBattlerSide(battleSys, battler) == BATTLER_US && gSovereignTestPlayerBattleForm == 0) {
+                gSovereignTestPlayerBattleForm = heroForm;
+            }
+#endif
         }
     }
 
