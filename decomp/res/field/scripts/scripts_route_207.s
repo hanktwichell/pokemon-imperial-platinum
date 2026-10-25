@@ -194,8 +194,10 @@ Route207_CyclistM:
     ReleaseAll
     End
 
+@ Sovereign (E10, Renegade): Mom gives the Bicycle (E10 part 11), so this cyclist blocks the slope's foot with
+@ Renegade's broken-bike lines until the Cycle Shop manager is rescued in Eterna City (his hidden flag).
 Route207_ChangeGearTakeARun:
-    Message Route207_Text_ChangeGearTakeARun
+    Message Route207_Text_SovereignBikeBroken
     WaitButton
     CloseMessage
     ReleaseAll

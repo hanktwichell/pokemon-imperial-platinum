@@ -168,7 +168,7 @@ dealer a present-day Pokémon gives its Paradox Pokémon at the shown Pokémon's
 | Uxie, Mesprit, Azelf | static | Acuity, Verity and Valor Caverns | 60 (Renegade's; vanilla 50) | after the Distortion World (Rowan's lab) | caught; knocked out or run from, it's back on the next visit (Renegade's rule). Mesprit no longer roams |
 | Dialga, Palkia | static (rift) | Spear Pillar's Dialga and Palkia maps | 70 | post-game, `FLAG_UNLOCKED_DIALGA_PALKIA_SPEAR_PILLAR` (the Celestic elder), the Adamant or Lustrous Orb carried | the Hall of Fame resets a missed one. Spear Pillar itself has no Chronicle encounter (decision 27) |
 | Giratina | static | Distortion World (story); then Turnback Cave's Giratina room | 47; Turnback Cave 70 (Renegade's) | story; Turnback Cave if it wasn't caught | the Hall of Fame |
-| Heatran | static | Stark Mountain room 3 | 68 (Renegade's; vanilla 50) | post-game, the Battleground's welcome (E10 part 31: Buck has already left on his Route 227 patrol, so the receptionist's greeting sets his flags), room state 1 | the Hall of Fame |
+| Heatran | static | Stark Mountain room 3 | 68 (Renegade's; vanilla 50) | post-game, the Battleground's welcome (E10 part 31: Buck has already left on his Route 227 patrol, so the receptionist's greeting sets his flags), room state 1 | the Hall of Fame. The catch leaves the Magma Stone behind, which the player takes for Steven (E10 part 40) |
 | Regigigas | static | Snowpoint Temple B5F | 70 (Renegade's; vanilla 1) | after the Hall of Fame, with Regirock, Regice and Registeel in the party (E10 part 26: the temple now opens before the Snowpoint Gym, for Renegade's story scene where Candice and Maylene put it back to sleep; decision 29) | the Hall of Fame |
 | Cresselia | static | Fullmoon Island's clearing (16, 15) | 68 (Renegade's; vanilla 50, a roamer) | after the Lunar Wing quest | caught; it's back on the next visit until then. The catch leaves the Lunar Wing where it stood |
 | Articuno, Zapdos, Moltres | no longer roam (E10 part 27, decision 33) | they stand where Renegade put its portals; see Renegade's events below. Professor Oak in Eterna City's south house now only hints at the places with the Up-Grade, and praises the catch as before | — | — | — |
@@ -204,10 +204,10 @@ dealer a present-day Pokémon gives its Paradox Pokémon at the shown Pokémon's
 | Manaphy | static (hatched) | Pokémon Mansion, Mr. Backlot's office, beside his maid (18, 7) | 40 | after Team Galactic's siege of the Mansion (E10 part 24), Backlot's maid shows the deep blue Egg and it hatches; the frightened Manaphy attacks. Renegade gives the Egg instead; Mythicals are battled, never given (decision 26). Phione comes from breeding it | caught; a win or a run makes it vanish until the next visit |
 
 **Steven** (Oreburgh City's south house) gives a Lv. 10 Beldum, then takes requests from his QUESTS menu: the Magma
-Stone (Stark Mountain) for the Soul Dew; Latias and Latios in the party for the legendary titans' story (Relicanth and
-Wailord); Regirock, Regice and Registeel in the party for the Red and Blue Orbs, which Kyogre, Groudon and Rayquaza's
-events will need (Sovereign has no Jade Orb item, so Rayquaza will check Steven's flag). After the Hall of Fame he
-battles (Renegade's Lv. 88–89 team).
+Stone (Heatran's catch leaves it in Stark Mountain room 3, E10 part 40) for the Soul Dew; Latias and Latios in the
+party for the legendary titans' story (Relicanth and Wailord); Regirock, Regice and Registeel in the party for the Red
+and Blue Orbs, which Kyogre, Groudon and Rayquaza's events will need (Sovereign has no Jade Orb item, so Rayquaza will
+check Steven's flag). After the Hall of Fame he battles (Renegade's Lv. 88–89 team).
 
 Renegade puts a portal on each spot and opens them when Rowan is spoken to after the Distortion World; Sovereign shows
 the Pokémon itself (as for its own legendaries) and needs no talk. Spots are provisional (owner, 2026-10-24).

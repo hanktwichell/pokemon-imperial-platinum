@@ -210,6 +210,15 @@
         "Hmm...\n",
         "Do you feel like you can’t win?"
       ]
+    },
+    {
+      "id": "Route207_Text_SovereignBikeBroken",
+      "en_US": [
+        "I failed to ride up the slope and my\n",
+        "Bike got broken... Sigh...\r",
+        "Could I ask you to take a different\n",
+        "route while I clean this mess up?"
+      ]
     }
   ]
 }

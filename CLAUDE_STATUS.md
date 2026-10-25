@@ -5554,3 +5554,53 @@ vanilla's post-game guard.
    - check level caps (`data/level_caps.yaml`) and the post-game gates on Route 224 (Shaymin, Enamorus, Pecharunt).
 3. More audit sweeps by command rather than by text: trainer battles, `AddItem`/gift `CallCommonScript 2044` counts,
    and `GivePokemon` per map, Renegade against Sovereign, as done for `HealParty`.
+
+## CB-0116 — 2026-10-24, 10:42 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: E10 part 40, Renegade's Magma Stone.** PR #130 (part 39) is merged.
+- **Bug found by a new item audit** (`$S/item_audit.py`, which compares the items each map's scripts give):
+  - Steven's first request (part 13) needs the Magma Stone, but nothing in Sovereign gave it. Vanilla's Charon scene
+    takes it away, so the Soul Dew, and with it Latias and Latios, were out of reach.
+- **The fix, as in Renegade:** catching Heatran in Stark Mountain room 3 brings "Oh?". The stone shows where Heatran
+  stood, and the player obtains it.
+- **Tested in a test build:** Heatran caught, the Magma Stone obtained, then Steven's Quests take it and give the Soul
+  Dew.
+- **Audit notes:** the item audit's other hits are Renegade's reused vanilla item IDs (the Wings, Orbs, GS Ball and
+  Oak's Letter). The Old Gateau and Up-Grade are already obtainable in Sovereign, from item balls and Oak.
+
+**Files modified:**
+- `decomp/res/field/scripts/scripts_stark_mountain_room_3.s`, `decomp/res/text/stark_mountain_room_3.json`
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `docs/LegendaryTriggers.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge the part 40 PR once both checks are green.
+2. Owner question: Route 224 before the Elite Four (`docs/ProjectStatus.md` Open list).
+3. More command sweeps:
+   - `GivePokemon`/`GiveEgg` per map (Pokémon Mansion office: Renegade's Manaphy Egg; Sovereign battles Manaphy on
+     purpose, decision 26);
+   - `SetVar` on story vars that Renegade changes (gates);
+   - each map's object count, to catch NPCs Renegade added or removed.
+
+## CB-0117 — 2026-10-24, 10:54 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Added to E10 part 40 (PR #131): Renegade's Route 207 cyclist, which fixes a sequence break.**
+- **The break:** Mom gives the Bicycle (part 11), so Route 207's slope was open from Oreburgh. That let a player reach
+  Hearthome City before Eterna City.
+- **The fix:** vanilla's slope man now stands at the slope's foot (306, 720) with Renegade's broken-bike lines. He's
+  hidden by `FLAG_SOVEREIGN_RECEIVED_CYCLE_SHOP_DAWN_STONE`, so he leaves once the Cycle Shop manager is rescued.
+- **Checks:** a collision BFS (`$S/bfs_strict.py`) confirms he cuts off the slope. Test builds confirm both states.
+- **New object audit** (`$S/obj_audit.py`, `$S/blocker_info.py`): Renegade's other new route blockers stand in for the
+  Rock Smash rocks and Cut trees it removed. Sovereign keeps those (`$S/hm_audit.py`), so none of the other blockers
+  are needed.
+- The scratchpad disk filled up; the old test folders (b11–b57) were deleted.
+
+**Files modified:** `events_route_207.json`, `scripts_route_207.s`, `decomp/res/text/route_207.json`,
+`docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge PR #131 once both checks are green.
+2. Owner question: Route 224 before the Elite Four.
+3. Look over the rest of the object audit for NPCs that matter to play:
+   - the Route 217 west house nurse (Renegade heals there);
+   - Palmer at home in Twinleaf;
+   - the Old Chateau maid and old men.

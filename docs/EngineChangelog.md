@@ -4,6 +4,42 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 40) — Renegade's Magma Stone after Heatran's catch, and Route 207's slope cyclist
+
+Steven's first request (E10 part 13) trades the Magma Stone for the Soul Dew, which Latias and Latios need. Nothing
+in Sovereign gave the Magma Stone: in vanilla, Charon's scene takes it away. Renegade gives it after Heatran:
+- **Stark Mountain room 3:** catching Heatran brings "Oh?", and the Magma Stone shows for a moment where Heatran
+  stood. The player obtains it, into the Key Items pocket. Knocking Heatran out gives nothing: it comes back after the
+  Hall of Fame, as before.
+- The catch flag (`FLAG_CAUGHT_HEATRAN`) is set after the stone, so no new flag is needed.
+
+Found by a new audit that compares the items each map's scripts give, Renegade against Sovereign. Its other hits are
+items Renegade gives under reused vanilla item IDs (the Wings, Orbs, GS Ball, Oak's Letter), which Sovereign gives
+under its own constants.
+
+**Route 207's slope, closed until Eterna City (a sequence break):**
+- Mom gives the Bicycle (E10 part 11), so Route 207's slope was open from the start. A player could ride from Oreburgh
+  through Mt. Coronet to Route 208 and Hearthome City before Eterna.
+- Renegade's fix: vanilla's slope man moves to the slope's foot (306, 720) with new lines ("I failed to ride up the
+  slope and my Bike got broken... Could I ask you to take a different route while I clean this mess up?").
+- He's hidden once the Cycle Shop manager is rescued in Eterna City (`FLAG_SOVEREIGN_RECEIVED_CYCLE_SHOP_DAWN_STONE`,
+  set with the Dawn Stone), as Renegade does with its own flag.
+- A collision check (BFS from Oreburgh's side) shows the slope's one-tile corridor and Mt. Coronet's door can't be
+  reached while he stands there.
+- Found by a new audit of Renegade's NPCs against Sovereign's. Renegade's other new blockers are not needed:
+  - Route 204 North's grunts, the Beedrill swarm outside Eterna Forest, and those on Routes 211 East, 212 North, 214
+    and 216 stand in for the Rock Smash rocks and Cut trees Renegade removed everywhere.
+  - Sovereign keeps those rocks and trees, which work from the bag's HMs with the badges (E14).
+
+Verified in a test build (post-game, Heatran shown, Charon's scene done):
+- Heatran's battle and Master Ball catch, then "Oh?", "A obtained the Magma Stone!" and "put the Magma Stone in the
+  KEY ITEMS Pocket."
+- Steven's Quests: "That rock you have there... That's the Magma Stone, isn't it?!" Then he takes it, gives "the
+  Soul Dew!" into the Items pocket, and goes on to Latias and Latios.
+- Route 207, standing below the cyclist:
+  - With the Bicycle he gives Renegade's lines, and the player can't step past him.
+  - With the Cycle Shop flag set he's gone, and the player reaches the slope's foot.
+
 ## E10 (part 39) — Renegade's TM collector, the Pokétch with every app, and its healers
 
 Found by the map-script audit:

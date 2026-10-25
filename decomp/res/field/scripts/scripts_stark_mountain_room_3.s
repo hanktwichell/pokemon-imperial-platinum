@@ -91,7 +91,24 @@ StarkMountainRoom3_Heatran:
     GoTo StarkMountainRoom3_CaughtHeatran
     End
 
+@ Sovereign (E10, Renegade): Heatran's catch leaves the Magma Stone behind, and the player takes it (for Steven's
+@ Soul Dew, E10 part 13). Charon's scene removed the stone's object; it comes back at Heatran's spot for a moment.
 StarkMountainRoom3_CaughtHeatran:
+    Message StarkMountainRoom3_Text_SovereignOh
+    CloseMessage
+    FadeScreenOut FADE_SCREEN_SPEED_MEDIUM
+    WaitFadeScreen
+    SetObjectEventPos LOCALID_MAGMA_STONE, 7, 6
+    ClearFlag FLAG_HIDE_STARK_MOUNTAIN_ROOM_3_MAGMA_STONE
+    AddObject LOCALID_MAGMA_STONE
+    FadeScreenIn FADE_SCREEN_SPEED_MEDIUM
+    WaitFadeScreen
+    WaitTime 15, VAR_RESULT
+    RemoveObject LOCALID_MAGMA_STONE
+    SetVar VAR_0x8004, ITEM_MAGMA_STONE
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    CloseMessage
     SetFlag FLAG_CAUGHT_HEATRAN
     ReleaseAll
     End

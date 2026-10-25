@@ -172,6 +172,10 @@
     {
       "id": "StarkMountainRoom3_Text_Dummy19",
       "garbage": 127
+    },
+    {
+      "id": "StarkMountainRoom3_Text_SovereignOh",
+      "en_US": "Oh?\r"
     }
   ]
 }
