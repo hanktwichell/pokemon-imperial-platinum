@@ -11,7 +11,7 @@
         {
             "script": 8141,
             "type": 2,
-            "x": 73,
+            "x": 74,
             "z": 15,
             "y": 0,
             "player_facing_dir": "BG_EVENT_DIR_ALL"

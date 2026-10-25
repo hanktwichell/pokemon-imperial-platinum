@@ -132,9 +132,10 @@ quests:
     location: Wayward Cave — B1F (lowest floor)
     steps: Appears after Xerneas and Yveltal are caught. Zygardite is sold post-game. Zygarde's 10%, 50% and Complete Formes are in the game (all forms are in scope, owner 2026-10-22).
     built: >-
-      Zygarde (CB-0041), level 70, in its 50% Forme: in the alcove at the north of Wayward Cave B1F (21, 4) once
+      Zygarde (CB-0041), level 70, in its 50% Forme: in the north-west alcove of Wayward Cave B1F (12, 4) once
       Xerneas and Yveltal are both caught, until it's caught. **Changed from the plan** (owner, 2026-10-23): an
-      existing alcove in place of a new chamber. Once it's caught, the Archivist's Life and Destruction chapter gives
+      existing alcove in place of a new chamber. It first stood in the alcove at (21, 4), which lies under a bike
+      bridge and can't be reached, and moved on 2026-10-25. Once it's caught, the Archivist's Life and Destruction chapter gives
       the Zygarde Cube (CB-0056): used from the bag, it takes Zygarde from its 50% Forme to 10%, 10% with Power
       Construct, 50% with Power Construct and back. With Power Construct, Zygarde turns Complete in battle at half HP or
       less.
@@ -183,8 +184,9 @@ quests:
     steps: Four new shrine objects; interacting starts the battle.
     built: >-
       The Island Guardians (CB-0042), all level 65, from the moment the Alola Chronicle opens (VAR_SOVEREIGN_CHRONICLE
-      3, when the player talks to the Archivist with Xerneas and Yveltal caught) until each is caught. Koko on the sand
-      strip at Route 222's east end (808, 795); Lele at the north-west edge of Fullmoon Island's grove (13, 12); Bulu in
+      3, when the player talks to the Archivist with Xerneas and Yveltal caught) until each is caught. Koko at the east end
+      of Route 222's sand strip (813, 795; it moved from (808, 795), which blocked the way to the Quick Ball, on
+      2026-10-25); Lele at the north-west edge of Fullmoon Island's grove (13, 12); Bulu in
       Floaroma Meadow's north field (24, 36); Fini on the little beach under Route 226's cliffs, reached by Surf
       (716, 345). **Changed from the plan** (owner, 2026-10-23: existing spots): each Tapu stands there itself, with
       no shrine object.

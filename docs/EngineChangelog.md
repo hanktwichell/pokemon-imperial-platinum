@@ -4,6 +4,40 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Placement tile check — Zygarde, Tapu Koko, a hidden Iron and the tutor-list signs
+
+New tool `tools/test/check_object_tiles.py` checks the exact tile of every map object Sovereign added or moved (256
+of them), against vanilla's events in the git history. It closes item 9 of `docs/LegendaryPlacementReview.md`.
+- **Overlaps:** it reports another object, a sign or hidden item, a warp or a coord trigger on the same tile.
+- **Reach:** it walks the map's tile collision under the engine's movement rules: Surf, Waterfall and Rock Climb;
+  one-way jump ledges; bike ramps (1 or 3 tiles); no turning off an elevated bike bridge; talking across counters.
+  It reports any object the player can't reach, and anything an object cuts off: a warp, a sign, a hidden item or
+  another object.
+- Overlaps and blocks that are on purpose are listed in the tool with their reason. Examples are siege grunts on the
+  hidden maids' tiles, the Route 224 counterpart before the tablet, and Mira's gate at Wayward Cave's hidden entrance.
+- It needs the git history, so it runs locally (`python3 tools/test/check_object_tiles.py decomp`), not in CI.
+
+Fixed:
+- **Zygarde couldn't be reached.** Its Wayward Cave B1F alcove (21, 4) lies under an east-west bike bridge: on the
+  bridge the player can't turn north, and the ledges below only go down. It now stands in the north-west alcove
+  (12, 4), which opens onto the cave floor west of that bridge.
+- **Tapu Koko blocked the way to items.** At (808, 795) it stood in the only land entrance to the walled area that
+  holds Route 222's Quick Ball and three hidden items, until it was caught. It now stands at the east end of the
+  same sand strip (813, 795), clear of the way in.
+- **Volcanion stood on a hidden Iron** at the end of its one-tile tunnel in Stark Mountain room 2 (73, 15). The Iron
+  moved a tile east (74, 15), where the player can still face it from the tunnel.
+- **The tutor-list signs couldn't be read.** In the Route 212 house, Snowpoint's east house and the Survival Area's
+  north house, an NPC (the Beauty tutor, the Super Rod fisherman, the Psyduck) stood at (4, 3), the only tile the sign
+  above can be read from. Since part 10 the signs say the moves are taught for free in the Route 212 house. Each
+  NPC moved a tile east, to (5, 3).
+
+Also checked: Magearna, Kubfu, Calyrex, Meloetta, Mira and every other added legendary are clear. Each overlap the
+tool lists is sequenced by flags (Route 201's Mew and Pachirisu, the Fullmoon Island rock, the Mansion siege).
+
+Verified in a test build: Zygarde shows in its new alcove and its battle starts; Tapu Koko's battle starts from
+(812, 795); "A found an Iron!" from (75, 15), with Volcanion beside it; and the Route 212 house's sign reads "The
+tutors in the Route 212 house..." from (4, 3). On the tree before these fixes, the tool reports exactly these six.
+
 ## Playtest checks — map events name scripts that exist
 
 New check `tools/test/check_event_scripts.py`, run in CI (rom job). It catches the mistake behind the silent Battle
