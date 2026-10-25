@@ -6242,3 +6242,30 @@ is merged.
 2. More playtest automation (row 18): wild encounters' forms by map (Unown, Shellos, Burmy, regional forms in the
    Regional Forms Park) through the real encounter code.
 3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
+
+## CB-0137 — 2026-10-25, 1:43 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: the wild form test.** PR #148 (sign, hidden item and trigger test) is merged.
+- **`tools/test/wild_forms.py`** covers all 153 map headers with wild encounters, on each terrain (land, surf and the
+  three rods; each Regional Forms Park quadrant on its own).
+  - A survey runs the map's encounter 48 times through the game's own code, with no roll and no battle, and records
+    each Pokémon.
+  - Each form must follow the map's rules: the park zone's list, East or West Shellos and Gastrodon, the map's Unown
+    table, Deerling's and Sawsbuck's season (on their maps in all four), or else the personality's form or the base
+    form.
+- **Result: 398 surveys, 19,104 Pokémon, all forms right; no game bugs found.** 108 forms other than the base form
+  turned up, across 64 species.
+- **Test-build hook:** `gSovereignTestWildSurvey` (SELECT+L+R runs `SovereignTest_WildSurvey`). The shipping ROM is
+  unchanged: it builds to the same bytes with and without the hook.
+
+**Files modified:**
+- Test hooks: `decomp/include/sovereign_test.h`, `decomp/include/overlay006/wild_encounters.h`,
+  `decomp/src/overlay006/wild_encounters.c`, `decomp/src/overlay005/field_control.c`, `decomp/src/script_manager.c`
+- Tools: `tools/test/wild_forms.py` (new)
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR once both checks are green.
+2. The gift test (row 18, in progress): receive each event-form gift from the Fight Area deliveryman and Battle Bond
+   Greninja through the real menus, then check species, form, level, ability and moves. More gifts after that.
+3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.

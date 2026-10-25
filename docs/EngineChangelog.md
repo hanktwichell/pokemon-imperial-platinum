@@ -4,6 +4,50 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Playtest pass — wild Pokémon forms on every map
+
+**`tools/test/wild_forms.py` (local; about 20 minutes in 4 parts)** checks the forms of the wild Pokémon the real
+encounter code makes, in the test build. It covers all 153 map headers that have wild encounters, and each of their
+terrains: land (grass and caves), surfing, and the Old, Good and Super Rods.
+
+On each map the test runs a survey (`gSovereignTestWildSurvey`). A survey runs the map's encounter 48 times through
+the game's own code (`WildEncounters_TryWildEncounter`, `WildEncounters_TryFishingEncounter`), with no encounter roll
+and no battle. It records each Pokémon made: its species, form, level and personality. Each quadrant of the Regional
+Forms Park is surveyed on its own.
+
+Each form must follow the first rule that applies:
+- **Regional Forms Park:** one of the zone's Pokémon for that terrain, in its form. A quadrant with no list for a
+  terrain uses the park's usual table and the rules below.
+- **Shellos and Gastrodon:** East Sea where the map's encounter file says so, else West Sea.
+- **Unown:** one of the letters of the map's Unown table, across the 18 Solaceon Ruins rooms and their 8 tables.
+- **Deerling and Sawsbuck:** the season of the month. On their two maps (Routes 204 and 229), each terrain is
+  surveyed in all four seasons.
+- **Everything else:** the form its personality gives (Minior's core, Vivillon's pattern, a female Meowstic...) or
+  the base form. So no Totem, regional or other form turns up in the wild outside the park.
+
+**Results:** every form was right, and the runs found no game bugs.
+- **Scale:** 398 surveys and 19,104 Pokémon. Every survey made all 48.
+- **Forms other than the base form:** 108 of them, across 64 species, all as the rules say. They include:
+  - the regional forms, in their own park zones;
+  - East Sea Shellos and Gastrodon;
+  - 26 Unown letters;
+  - all four Deerling and Sawsbuck seasons;
+  - Basculin's stripes, Oricorio's styles, Paldean Tauros and Wooper;
+  - Scatterbug, Spewpa and Vivillon patterns;
+  - Squawkabilly's plumages, Tatsugiri's forms, and Antique and Artisan teapots.
+
+The harness took two fixes:
+- A survey of 48 encounters takes the game about 10 frames, so the test waits for it to end before reading it.
+- The game reads the clock only every 11 frames, so the test waits after setting the month.
+
+**Test-build hooks** (`include/sovereign_test.h`, `src/overlay006/wild_encounters.c`):
+- With `gSovereignTestWildSurvey.wanted` set, SELECT+L+R runs `SovereignTest_WildSurvey`. During a survey:
+  - the terrain is the one asked for, whatever tile the player stands on;
+  - every step and every cast finds a Pokémon;
+  - roamers, the Poké Radar, a Repel and the lead's Intimidate or Keen Eye are left out;
+  - each Pokémon is recorded, and no battle starts.
+- The shipping ROM is unchanged: it builds to the same bytes with and without these hooks.
+
 ## Playtest pass — signs, hidden items and triggers
 
 **`tools/test/signs_and_triggers.py` (local; about 10 minutes in 4 parts)** runs each bg event (sign, hidden item) and

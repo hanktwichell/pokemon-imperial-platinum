@@ -60,6 +60,10 @@
 #include "data/regional_forms_park.h"
 #include "data/sovereign_rare_wild.h"
 
+#ifdef SOVEREIGN_TEST
+#include "sovereign_test.h"
+#endif
+
 typedef struct RadarEncounterData {
     int shakeType;
     BOOL preserveChain;
@@ -317,6 +321,49 @@ static void SovereignRareWild_TryFillEncounterTable(FieldSystem *fieldSystem, En
     }
 }
 
+#ifdef SOVEREIGN_TEST
+// Test build only (include/sovereign_test.h): writes down the wild Pokémon an encounter made.
+static void SovereignTest_RecordWildParty(FieldBattleDTO *battleParams)
+{
+    Party *party = battleParams->parties[BATTLER_ENEMY_1];
+
+    for (int i = 0; i < Party_GetCurrentCount(party) && gSovereignTestWildSurvey.count < SOVEREIGN_TEST_SURVEY_MAX; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
+        struct SovereignTestWildMon *made = &gSovereignTestWildSurvey.mons[gSovereignTestWildSurvey.count++];
+
+        made->personality = Pokemon_GetValue(mon, MON_DATA_PERSONALITY, NULL);
+        made->species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+        made->form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+        made->level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
+    }
+}
+
+// Test build only: runs the map's wild encounter of the terrain asked for (gSovereignTestWildSurvey) that many times,
+// through the same code as a step in the grass, a step while surfing or a cast of a rod, and records each Pokémon made
+// with no battle.
+void SovereignTest_WildSurvey(FieldSystem *fieldSystem)
+{
+    gSovereignTestWildSurvey.count = 0;
+    gSovereignTestWildSurvey.active = TRUE;
+
+    for (int i = 0; i < gSovereignTestWildSurvey.wanted && MapHeader_HasWildEncounters(fieldSystem->location->mapHeaderID); i++) {
+        if (gSovereignTestWildSurvey.terrain >= SOVEREIGN_TEST_SURVEY_OLD_ROD) {
+            FieldBattleDTO *battleParams;
+
+            if (WildEncounters_TryFishingEncounter(fieldSystem, FISHING_TYPE_OLD_ROD + gSovereignTestWildSurvey.terrain - SOVEREIGN_TEST_SURVEY_OLD_ROD, &battleParams)) {
+                SovereignTest_RecordWildParty(battleParams);
+                FieldBattleDTO_Free(battleParams);
+            }
+        } else {
+            WildEncounters_TryWildEncounter(fieldSystem);
+        }
+    }
+
+    gSovereignTestWildSurvey.active = FALSE;
+    gSovereignTestWildSurvey.wanted = 0;
+}
+#endif
+
 BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
 {
     FieldBattleDTO *battleParams;
@@ -337,6 +384,18 @@ BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
 
     u8 encounterRate = GetTileEncounterRateAndType(fieldSystem, tileBehavior, &encounterType);
 
+#ifdef SOVEREIGN_TEST
+    // Test build only (SovereignTest_WildSurvey): the terrain asked for, on whatever tile the player stands.
+    BOOL surveying = gSovereignTestWildSurvey.active;
+
+    if (surveying) {
+        encounterType = gSovereignTestWildSurvey.terrain == SOVEREIGN_TEST_SURVEY_SURF ? ENCOUNTER_TYPE_SURF : ENCOUNTER_TYPE_GRASS;
+        encounterRate = encounterType == ENCOUNTER_TYPE_SURF ? GetSurfEncounterRate(fieldSystem) : GetGrassEncounterRate(fieldSystem);
+    }
+#else
+    BOOL surveying = FALSE;
+#endif
+
     if (encounterRate == 0) {
         return FALSE;
     }
@@ -355,12 +414,19 @@ BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
         encounterFieldParams.firstBattlerLevel = Pokemon_GetValue(firstLiveMon, MON_DATA_LEVEL, NULL);
     }
 
+#ifdef SOVEREIGN_TEST
+    if (surveying) { // the survey counts what the map makes, not what a Repel or the lead's ability lets through
+        encounterFieldParams.repelActive = FALSE;
+        encounterFieldParams.ignoreAbilityBlock = TRUE;
+    }
+#endif
+
     encounterRate = ModifyEncounterRateWithFieldParams(FALSE, encounterRate, &encounterFieldParams, FieldOverworldState_GetWeather(SaveData_GetFieldOverworldState(fieldSystem->saveData)), firstPartyMon);
 
     ModifyEncounterRateWithFlute(fieldSystem, &encounterRate);
     ModifyEncounterRateWithHeldItem(firstPartyMon, &encounterRate);
 
-    if (ShouldGetRandomEncounter(fieldSystem, encounterRate, tileBehavior)) {
+    if (ShouldGetRandomEncounter(fieldSystem, encounterRate, tileBehavior) || surveying) {
         gettingEncounter = TRUE;
     } else {
         gettingEncounter = FALSE;
@@ -368,7 +434,7 @@ BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
 
     memset(&radarData, 0, sizeof(RadarEncounterData));
 
-    if (!PokeRadar_ShouldDoRadarEncounter(playerX, playerZ, fieldSystem, fieldSystem->chain, &radarData.shakeType, &radarData.preserveChain, &radarData.isShiny)) {
+    if (surveying || !PokeRadar_ShouldDoRadarEncounter(playerX, playerZ, fieldSystem, fieldSystem->chain, &radarData.shakeType, &radarData.preserveChain, &radarData.isShiny)) {
         radarData.isRadarEncounter = FALSE;
     } else {
         radarData.isRadarEncounter = TRUE;
@@ -391,7 +457,7 @@ BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
     }
 
     // Roamers can't appear in Poke Radar patches or double battles.
-    if (!withPartner && !radarData.isRadarEncounter) {
+    if (!withPartner && !radarData.isRadarEncounter && !surveying) {
         Roamer *roamer;
 
         if (TryEncounterRoamer(fieldSystem, &roamer)) {
@@ -467,6 +533,13 @@ BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
         return FALSE;
     }
 
+#ifdef SOVEREIGN_TEST
+    if (encounterSuccess && surveying) {
+        SovereignTest_RecordWildParty(battleParams);
+        encounterSuccess = FALSE;
+    }
+#endif
+
     if (encounterSuccess) {
         Encounter_NewVsWild(fieldSystem, battleParams);
     } else {
@@ -500,6 +573,13 @@ BOOL WildEncounters_TryFishingEncounter(FieldSystem *fieldSystem, enum Encounter
     WildEncounters_FieldParams encounterFieldParams;
     InitEncounterFieldParams(fieldSystem, firstPartyMon, NULL, &encounterFieldParams);
     encounterRate = ModifyEncounterRateWithFieldParams(TRUE, encounterRate, &encounterFieldParams, FieldOverworldState_GetWeather(SaveData_GetFieldOverworldState(fieldSystem->saveData)), firstPartyMon);
+
+#ifdef SOVEREIGN_TEST
+    if (gSovereignTestWildSurvey.active) { // SovereignTest_WildSurvey: every cast bites, whatever the lead
+        encounterRate = 100;
+        encounterFieldParams.ignoreAbilityBlock = TRUE;
+    }
+#endif
 
     if (LCRNG_RandMod(100) >= encounterRate) {
         return FALSE;
