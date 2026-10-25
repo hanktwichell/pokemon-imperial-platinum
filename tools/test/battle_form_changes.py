@@ -23,6 +23,21 @@ The list comes from include/data/sovereign_forms.h. Each case is the species in 
   Zero to Hero needs a switch and isn't covered.
 - **Item forms** (SOVEREIGN_FORM_BATTLE_ITEM): Crowned Zacian and Zamazenta, holding the Rusted Sword or Shield.
 - **Move forms** (SOVEREIGN_FORM_BATTLE_MOVE): Pirouette Meloetta, using Relic Song.
+- **Key items** (SOVEREIGN_FORM_KEY_ITEM, SOVEREIGN_FORM_FUSION; src/sovereign_form_items.c), used on the lead before
+  the battle (gSovereignTestItemUse) as from the bag:
+  - the Reveal Glass, Prison Bottle and Zygarde Cube, from each form to the next;
+  - each fusion (DNA Splicers, N-Solarizer, N-Lunarizer, Reins of Unity), with its partner second in the party,
+    used again after the battle to separate them;
+  - each nectar on an Oricorio in another style, and one on an Oricorio already in its style;
+  - the Reveal Glass on a Pokémon with no Therian Forme, and the DNA Splicers on a Kyurem with no partner.
+
+  Each use must do what it should: change the form or not, take the partner out of the party and give it back, and
+  change the moves a form brings (Kyurem's Glaciate and Scary Face, Hoopa's Hyperspace Hole, the fusions' signature
+  moves). The form it gives lasts through the battle.
+- **Held-item forms**, given the item as the party menu gives one (Pokemon_SetArceusForm,
+  Pokemon_SetGiratinaFormByHeldItem): Ogerpon's masks, Origin Dialga and Palkia (SOVEREIGN_FORM_HELD_ITEM), Arceus with
+  each Plate, Silvally with each Memory, Genesect with each Drive, and Giratina with the Griseous Orb or Core; and
+  Arceus with an item that isn't a Plate. The form lasts through the battle.
 
 For each one this loads a save state in the overworld, where the test build has given the Mega Ring. It writes the
 Pokémon to gSovereignTestLead (include/sovereign_test.h), so the party's lead becomes it at Lv. 50, at the HP and with
@@ -36,17 +51,19 @@ Afterwards it reads two test-build hooks:
   form (for a "no Mega" case, none of the species' Megas).
 - gSovereignTestLeadFormAfter, the lead's form once the battle is over. It must be the one it started in.
 
-Each one gets a result: ok, FORM (the wrong form in battle or after it, as the line says), HANG or STUCK (as in
-battle_all_trainers.py), with a screenshot for any that isn't ok.
+Each one gets a result: ok, FORM (the wrong form in battle or after it, or a key item doing the wrong thing, as the line
+says), HANG or STUCK (as in battle_all_trainers.py), with a screenshot for any that isn't ok.
 
 Needs what battle_all_trainers.py needs. From the repo root:
     SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 tools/test/battle_form_changes.py \\
         decomp/build_test/pokeplatinum.us.nds STATE OUT_DIR [SPECIES ...]
-SPECIES (a constant, e.g. SPECIES_MEOWSTIC) limits the list to those species. The whole list takes about 25 minutes.
+SPECIES (a constant, e.g. SPECIES_MEOWSTIC) limits the list to those species. The whole list (210 cases) takes about
+an hour.
 Each result is a line in OUT_DIR/results.txt.
 """
 import os
 import re
+import struct
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -82,6 +99,14 @@ ABILITY_SETUP = {
 # Gulp Missile: Cramorant catches an Arrokuda (Gulping Form) above half its HP and a Pikachu (Gorging Form) at half
 # or less.
 GULP_MISSILE_HP = {1: 0, 2: 40}
+NO_MOVE = 0xFFFF  # SOVEREIGN_TEST_NO_MOVE: an empty move slot for the lead
+# enum SovereignFormItemResult
+ITEM_NO_EFFECT, ITEM_CHANGED = 1, 3
+# struct SovereignTestItemUse: u16 item, u8 times, u8 results[2], u8 forms[2], u8 partyCounts[2], u16 lastSpecies[2],
+# u16 moves[2][4]
+ITEM_USE = {'item': 0, 'times': 2, 'results': 3, 'forms': 5, 'counts': 7, 'last': 10, 'moves': 14}
+NECTARS = ['ITEM_RED_NECTAR', 'ITEM_YELLOW_NECTAR', 'ITEM_PINK_NECTAR', 'ITEM_PURPLE_NECTAR']  # Oricorio forms 0-3
+FAIRY_MOVES = ['MOVE_MOONBLAST', 'MOVE_DAZZLING_GLEAM', 'MOVE_PLAY_ROUGH', 'MOVE_DRAINING_KISS']
 
 
 def battle_form_bases():
@@ -95,7 +120,113 @@ def battle_form_bases():
 def case(species, form, want, label, item='ITEM_NONE', moves=(), hp=0):
     """A case as a dict; the lead gets its hidden ability when the ability the case needs is only that."""
     return {'species': species, 'form': form, 'want': want, 'label': label, 'item': item,
-            'moves': list(moves) + ['MOVE_NONE'] * (4 - len(moves)), 'hp': hp, 'hidden': 0}
+            'moves': list(moves) + ['MOVE_NONE'] * (4 - len(moves)), 'hp': hp, 'hidden': 0, 'use': None}
+
+
+def form_item_tables():
+    """src/sovereign_form_items.c's sFormMoves [(species, form, base form's move, form's move)] and sFusionItems
+    {partner species: item}."""
+    source = open(os.path.join(DECOMP, 'src', 'sovereign_form_items.c')).read()
+    moves = re.findall(r'\{ (SPECIES_\w+), (\d+), (MOVE_\w+), (MOVE_\w+) \}', source)
+    fusions = {}
+    for item, partners in re.findall(r'\{ (ITEM_\w+), \{ ([\w, ]+) \} \}', source):
+        for partner in partners.split(', '):
+            fusions[partner] = item
+    return [(s, int(f), b, m) for s, f, b, m in moves], fusions
+
+
+def change_moves(moves, form_moves, species, form, enter):
+    """The lead's moves after it enters (or leaves) a form, as ChangeFormMoves (src/sovereign_form_items.c) does."""
+    moves = list(moves)
+    for row_species, row_form, base, form_move in form_moves:
+        if (row_species, row_form) != (species, form):
+            continue
+        if base != 'MOVE_NONE':
+            old, new = (base, form_move) if enter else (form_move, base)
+            moves = [new if m == old else m for m in moves]
+        elif enter:
+            if form_move not in moves and 'MOVE_NONE' in moves:
+                moves[moves.index('MOVE_NONE')] = form_move
+        elif form_move in moves:
+            if moves[1] == 'MOVE_NONE':  # its only move: it learns Confusion
+                moves[moves.index(form_move)] = 'MOVE_CONFUSION'
+            else:  # the slots after it move up (Pokemon_ClearMoveSlot)
+                moves.remove(form_move)
+                moves.append('MOVE_NONE')
+    return moves
+
+
+def item_case(species, form, item, label, form_moves, results, forms, partner=None, after=None):
+    """A key item used on the lead (once, or twice for a fusion), with what each use must do."""
+    moves = list(FAIRY_MOVES)
+    rows = [r for r in form_moves if r[0] == species]
+    for slot, base in zip((0, 3), dict.fromkeys(r[2] for r in rows if r[2] != 'MOVE_NONE')):
+        moves[slot] = base  # the moves its forms change, where the harness's taps don't need them
+    if any(r[2] == 'MOVE_NONE' for r in rows):
+        moves[3] = 'MOVE_NONE'  # a free slot for the move a fusion teaches
+    if form:
+        moves = change_moves(moves, form_moves, species, form, True)
+    want_moves = []
+    current, start = moves, form
+    for f in forms:
+        if f != start:
+            current = change_moves(current, form_moves, species, start, False) if start else current
+            current = change_moves(current, form_moves, species, f, True) if f else current
+        want_moves.append(current)
+        start = f
+    c = case(species, form, 0, label, moves=[m if m != 'MOVE_NONE' else NO_MOVE for m in moves])
+    c['use'] = {'item': item, 'results': results, 'forms': forms, 'partner': partner, 'moves': want_moves}
+    c['after'] = forms[0] if after is None else after
+    return c
+
+
+def held_item_cases():
+    """Each item that gives its holder a form, and the form."""
+    types = consts('pokemon_types.txt')
+    items = consts('items.txt')
+    plates = {'FIST': 'FIGHTING', 'SKY': 'FLYING', 'TOXIC': 'POISON', 'EARTH': 'GROUND', 'STONE': 'ROCK',
+              'INSECT': 'BUG', 'SPOOKY': 'GHOST', 'IRON': 'STEEL', 'PIXIE': 'FAIRY', 'FLAME': 'FIRE', 'SPLASH': 'WATER',
+              'MEADOW': 'GRASS', 'ZAP': 'ELECTRIC', 'MIND': 'PSYCHIC', 'ICICLE': 'ICE', 'DRACO': 'DRAGON',
+              'DREAD': 'DARK'}  # Arceus's form is its Plate's type
+    out = [case(species, 0, 0, 'held item', item=trigger) | {'after': form}
+           for species, form, kind, trigger in sovereign_forms() if kind == 'SOVEREIGN_FORM_HELD_ITEM']
+    for plate, type_name in plates.items():
+        out.append(case('SPECIES_ARCEUS', 0, 0, 'Plate', item=f'ITEM_{plate}_PLATE')
+                   | {'after': types.index('TYPE_' + type_name)})
+    out.append(case('SPECIES_ARCEUS', 0, 0, 'not a Plate', item='ITEM_LEFTOVERS') | {'after': 0})
+    for item in items:
+        if item.endswith('_MEMORY'):
+            out.append(case('SPECIES_SILVALLY', 0, 0, 'Memory', item=item)
+                       | {'after': types.index('TYPE_' + item[5:-7])})
+        elif item.endswith('_DRIVE'):
+            out.append(case('SPECIES_GENESECT', 0, 0, 'Drive', item=item)
+                       | {'after': items.index(item) - items.index('ITEM_DOUSE_DRIVE') + 1})
+    for item in ('ITEM_GRISEOUS_ORB', 'ITEM_GRISEOUS_CORE'):
+        out.append(case('SPECIES_GIRATINA', 0, 0, 'Griseous', item=item) | {'after': 1})
+    return out
+
+
+def key_item_cases():
+    form_moves, fusions = form_item_tables()
+    out, cycles = [], {}
+    for species, form, kind, trigger in sovereign_forms():
+        if kind == 'SOVEREIGN_FORM_KEY_ITEM':
+            cycles.setdefault((species, trigger), []).append(form)
+        elif kind == 'SOVEREIGN_FORM_FUSION':
+            out.append(item_case(species, 0, fusions[trigger], f'fusion with {trigger[8:].title()}', form_moves,
+                                 [ITEM_CHANGED] * 2, [form, 0], partner=trigger))
+    for (species, item), forms in cycles.items():
+        order = [0] + forms
+        for i, start in enumerate(order):
+            out.append(item_case(species, start, item, 'key item', form_moves, [ITEM_CHANGED],
+                                 [order[(i + 1) % len(order)]]))
+    for form, nectar in enumerate(NECTARS):
+        out.append(item_case('SPECIES_ORICORIO', (form + 1) % 4, nectar, 'nectar', form_moves, [ITEM_CHANGED], [form]))
+    out.append(item_case('SPECIES_ORICORIO', 0, NECTARS[0], 'nectar, same style', form_moves, [ITEM_NO_EFFECT], [0]))
+    out.append(item_case('SPECIES_GARCHOMP', 0, 'ITEM_REVEAL_GLASS', 'no Therian Forme', form_moves, [ITEM_NO_EFFECT],
+                         [0]))
+    out.append(item_case('SPECIES_KYUREM', 0, 'ITEM_DNA_SPLICERS', 'no partner', form_moves, [ITEM_NO_EFFECT], [0]))
+    return out
 
 
 def cases():
@@ -134,7 +265,34 @@ def cases():
         for stone, from_forms in stones[species].items():
             if 0 not in from_forms:
                 out.append(case(species, 0, 0, 'no Mega', item=stone))
-    return out
+    return out + key_item_cases() + held_item_cases()
+
+
+def u16(mem, addr):
+    return struct.unpack('<H', bytes(mem.unsigned[addr:addr + 2]))[0]
+
+
+def check_item_use(mem, base, use, species_ids, moves):
+    """What the key item did (gSovereignTestItemUse), against what it should have."""
+    problems = []
+    party = 6  # the test party (src/script_manager.c)
+    for i, (want_result, want_form, want_moves) in enumerate(zip(use['results'], use['forms'], use['moves'])):
+        result = mem.unsigned[base + ITEM_USE['results'] + i]
+        form = mem.unsigned[base + ITEM_USE['forms'] + i]
+        count = mem.unsigned[base + ITEM_USE['counts'] + i]
+        last = u16(mem, base + ITEM_USE['last'] + 2 * i)
+        got_moves = [moves[u16(mem, base + ITEM_USE['moves'] + 8 * i + 2 * j)] for j in range(4)]
+        if use['partner'] and want_result == ITEM_CHANGED:
+            party += -1 if i == 0 else 1
+        if (result, form) != (want_result, want_form):
+            problems.append(f'use {i + 1}: result {result}, form {form}; want {want_result}, {want_form}')
+        if count != party:
+            problems.append(f'use {i + 1}: {count} in the party, want {party}')
+        if use['partner'] and i == 1 and species_ids[last] != use['partner']:
+            problems.append(f'use 2: {species_ids[last]} came back, want {use["partner"]}')
+        if got_moves != want_moves:
+            problems.append(f'use {i + 1}: moves {got_moves}, want {want_moves}')
+    return problems
 
 
 def main():
@@ -144,9 +302,9 @@ def main():
     only = set(sys.argv[4:])
     os.makedirs(out, exist_ok=True)
     species_ids, items, moves = consts('species.txt'), consts('items.txt'), consts('moves.txt')
-    sym = symbols(('gSovereignTestLead', 'gSovereignTestWild', 'gSovereignTestPlayerBattleForm',
-                   'gSovereignTestLeadFormAfter', 'gSovereignTestFoeSurvivesTurns', 'gSovereignTestGodMode',
-                   'gSovereignTestIdleFrames', 'gSystem'))
+    sym = symbols(('gSovereignTestLead', 'gSovereignTestWild', 'gSovereignTestPartner', 'gSovereignTestItemUse',
+                   'gSovereignTestPlayerBattleForm', 'gSovereignTestLeadFormAfter', 'gSovereignTestFoeSurvivesTurns',
+                   'gSovereignTestGodMode', 'gSovereignTestIdleFrames', 'gSystem'))
     megas = {}
     for species, form, kind, _ in sovereign_forms():
         if kind in MEGA_KINDS:
@@ -166,7 +324,7 @@ def main():
             mem.write_byte(lead + LEAD['level'], LEVEL)
             mem.write_short(lead + LEAD['item'], items.index(c['item']))
             for slot, move in enumerate(c['moves']):
-                mem.write_short(lead + LEAD['moves'] + 2 * slot, moves.index(move))
+                mem.write_short(lead + LEAD['moves'] + 2 * slot, move if move == NO_MOVE else moves.index(move))
             mem.write_byte(lead + LEAD['mega'], 1)
             mem.write_byte(lead + LEAD['hp'], c['hp'])
             mem.write_byte(lead + LEAD['hidden'], c['hidden'])
@@ -177,6 +335,14 @@ def main():
             mem.write_byte(sym['gSovereignTestFoeSurvivesTurns'], 1)
             mem.write_byte(sym['gSovereignTestLeadFormAfter'], 0xFF)
             mem.write_byte(sym['gSovereignTestGodMode'], 1)
+            use = c['use']
+            if use:
+                item_use = sym['gSovereignTestItemUse']
+                mem.write_short(item_use + ITEM_USE['item'], items.index(use['item']))
+                mem.write_byte(item_use + ITEM_USE['times'], len(use['results']))
+                if use['partner']:
+                    mem.write_short(sym['gSovereignTestPartner'], species_ids.index(use['partner']))
+                    mem.write_byte(sym['gSovereignTestPartner'] + 3, LEVEL)
             d.press('SELECT')
             result, frames = fight(d, sym, FRAME_LIMIT)
 
@@ -184,17 +350,21 @@ def main():
             after = mem.unsigned[sym['gSovereignTestLeadFormAfter']]
             want = c['want']
             problems = []
-            if (got != want) if want else (got in megas[c['species']]):
-                problems.append(f'battle form {got}, want {want or "none of " + str(sorted(megas[c["species"]]))}')
-            if after != c['form']:
-                problems.append(f'form after the battle {after}, want {c["form"]}')
+            species_megas = sorted(megas.get(c['species'], ()))
+            if (got != want) if want else (got in species_megas):
+                problems.append(f'battle form {got}, want {want or "none of " + str(species_megas)}')
+            if after != c.get('after', c['form']):
+                problems.append(f'form after the battle {after}, want {c.get("after", c["form"])}')
+            if use:
+                problems += check_item_use(mem, sym['gSovereignTestItemUse'], use, species_ids, moves)
             if problems:
                 result = 'FORM' if result == 'ok' else result + '+FORM'
             if result != 'ok':
                 d.screenshot().save(os.path.join(out, f'{index:03d}_{c["species"]}_{c["form"]}_{result}.png'))
                 bad += 1
             setup = ' '.join(x for x in (c['item'] if c['item'] != 'ITEM_NONE' else '',
-                                         ','.join(m for m in c['moves'] if m != 'MOVE_NONE'),
+                                         use['item'] if use else '',
+                                         ','.join(m for m in c['moves'] if m not in ('MOVE_NONE', NO_MOVE)),
                                          f'{c["hp"]}% HP' if c['hp'] else '',
                                          'hidden ability' if c['hidden'] else '') if x)
             line = f'{index} {c["species"]} {c["form"]} ({c["label"]}; {setup or "as it is"}) {result} {frames}' + \

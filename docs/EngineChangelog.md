@@ -4,6 +4,35 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Playtest pass — form-change key items and held-item forms
+
+**`tools/test/battle_form_changes.py` now also covers the forms the player changes outside battle** (210 cases in all,
+about an hour). These are tested through the code the bag and the party menu use, not their screens:
+- **Key items**, used on the lead as from the bag (`SovereignFormItem_Use`):
+  - the Reveal Glass on the four Forces of Nature, the Prison Bottle on Hoopa and the Zygarde Cube through Zygarde's
+    four formes, each from every form to the next;
+  - each fusion (DNA Splicers with Reshiram and with Zekrom, N-Solarizer, N-Lunarizer, Reins of Unity with Glastrier and
+    with Spectrier), fused before a battle and separated after it;
+  - each nectar on an Oricorio of another style, and one on an Oricorio already in its style;
+  - the Reveal Glass on Garchomp, and the DNA Splicers on a Kyurem with no partner, which do nothing.
+
+  Each use must give the right result and form. A fusion must take its partner out of the party and give it back.
+  The moves a form brings must change both ways (Kyurem's Glaciate and Scary Face, Hoopa's Hyperspace Hole, the fused
+  Necrozma's and Calyrex's signature moves). The form must last through a battle.
+- **Held-item forms**, given the item as the party menu gives one: Ogerpon's three masks, Origin Dialga and Palkia,
+  Arceus with each of the 17 Plates (and an item that isn't one), Silvally with each of the 17 Memories, Genesect with
+  each Drive, and Giratina with the Griseous Orb or Core.
+
+**Results:** all 210 cases pass, and the runs found no new bugs. (The 164 battle and key item cases ran on one build and
+the 46 held-item cases on the next, which only adds the item-giving step for those species.)
+
+**Test-build hooks** (`include/sovereign_test.h`):
+- `gSovereignTestPartner`: the party's second Pokémon, for a fusion.
+- `gSovereignTestItemUse`: a key item used on the lead, before the battle and optionally after it, with what each use
+  did.
+- The lead is given its item as the party menu gives one, so a held-item form takes its form.
+
+
 ## Playtest pass — every battle form change from the player's side
 
 **`tools/test/battle_form_changes.py` (local; about an hour) replaces `battle_all_megas.py`.** As well as every Mega,

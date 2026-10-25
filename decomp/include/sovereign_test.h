@@ -18,6 +18,9 @@ struct SovereignTestWild {
     u16 move; // when set, the only move it knows
 };
 
+// In SovereignTestLead.moves: the slot is empty.
+#define SOVEREIGN_TEST_NO_MOVE 0xFFFF
+
 struct SovereignTestLead {
     u16 species;
     u8 form;
@@ -29,16 +32,38 @@ struct SovereignTestLead {
     u8 hiddenAbility; // when set, it has its hidden ability (Zen Mode)
 };
 
+struct SovereignTestPartner {
+    u16 species;
+    u8 form;
+    u8 level;
+};
+
+// A form-change key item used on the lead from the bag (SovereignFormItem_Use, as the party menu does), before the
+// battle and, the second time, after it. The game writes what each use did.
+struct SovereignTestItemUse {
+    u16 item;
+    u8 times; // 1, or 2 (on and off again)
+    u8 results[2]; // enum SovereignFormItemResult
+    u8 forms[2]; // the lead's form after each use
+    u8 partyCounts[2];
+    u16 lastSpecies[2]; // the species in the party's last slot after each use (a fused partner coming back)
+    u16 moves[2][4]; // the lead's moves after each use
+};
+
 // When mapHeaderID is set, the next SELECT+L+R warps here instead of to the next test location (script_manager.c).
 extern struct SovereignTestWarpTarget gSovereignTestWarpTarget;
 // When set, the next SELECT+R battles this trainer instead of TRAINER_SOVEREIGN_TEST (field_control.c).
 extern u16 gSovereignTestBattleTrainer;
 // When species is set, the next SELECT battles this wild Pokémon instead of a Chansey (field_control.c).
 extern struct SovereignTestWild gSovereignTestWild;
-// When species is set, the next test battle (SELECT or SELECT+R) first makes the party's lead this Pokémon, holding
-// the item and knowing four Fairy moves: Moonblast, Dazzling Gleam, Play Rough (the moves the battle harnesses pick) and
+// When species is set, the next test battle (SELECT or SELECT+R) first makes the party's lead this Pokémon, given
+// the item as the party menu gives one (a held-item form takes its form) and knowing four Fairy moves: Moonblast, Dazzling Gleam, Play Rough (the moves the battle harnesses pick) and
 // Draining Kiss, or the moves set instead (field_control.c).
 extern struct SovereignTestLead gSovereignTestLead;
+// When species is set, the party's second Pokémon becomes this one too, with its level-up moves (a fusion partner).
+extern struct SovereignTestPartner gSovereignTestPartner;
+// When item is set, the next test battle uses it on the lead first (see struct SovereignTestItemUse).
+extern struct SovereignTestItemUse gSovereignTestItemUse;
 // The first form a battle form change gave a Pokémon on the player's side (Mega Evolution, Primal Reversion, Ultra
 // Burst...; BattleSystem_SovereignChangeBattleForm), and the lead's form once the test battle is over (field_control.c).
 extern u8 gSovereignTestPlayerBattleForm;

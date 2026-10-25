@@ -6069,3 +6069,34 @@ merged.
    other fusions, Prison Bottle, Zygarde Cube), the held-item forms (Ogerpon's masks, Origin Dialga and Palkia, Arceus,
    Silvally, Genesect), and the form evolutions.
 3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
+
+## CB-0131 — 2026-10-25, 8:27 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: the form-change key items and held-item forms tested from the player's side.** PR #143 (battle form
+changes) is merged.
+- **`tools/test/battle_form_changes.py`** now has 210 cases (about an hour). It adds the forms changed outside battle,
+  tested through the code the bag and party menu use:
+  - **Key items** (`SovereignFormItem_Use`):
+    - the Reveal Glass, Prison Bottle and Zygarde Cube, from each form to the next;
+    - all six fusions, fused before a battle and separated after it;
+    - the four nectars, plus three uses that must do nothing.
+    - Checked: result, form, party size, the partner coming back, and the moves a form changes both ways.
+  - **Held-item forms**, given as the party menu gives an item: Ogerpon's masks, Origin Dialga and Palkia, the 17
+    Plates, 17 Memories, 4 Drives, and the Griseous Orb and Core.
+- **Result: all 210 ok; no new game bugs.**
+- **Test-build hooks:**
+  - `gSovereignTestPartner` (the party's second Pokémon);
+  - `gSovereignTestItemUse` (a key item used on the lead, with what each use did);
+  - the lead is now given its item through `Pokemon_SetArceusForm` / `Pokemon_SetGiratinaFormByHeldItem`.
+- The shipping ROM is unchanged.
+
+**Files modified:**
+- Test hooks: `decomp/include/sovereign_test.h`, `decomp/src/script_manager.c`, `decomp/src/overlay005/field_control.c`
+- Tools: `tools/test/battle_form_changes.py`
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR once both checks are green.
+2. Form evolutions (Alolan Raichu from Pikachu on the right map, Lycanroc by time, Alcremie by Sweet, Urshifu by scroll,
+   regional evolutions) and Egg forms from a regional parent, tested in the same style.
+3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.

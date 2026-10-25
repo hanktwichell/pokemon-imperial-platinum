@@ -68,6 +68,7 @@
 
 #include "encounter.h"
 #include "field_task.h"
+#include "sovereign_form_items.h"
 #include "sovereign_test.h"
 #include "unk_02092494.h"
 #endif
@@ -191,7 +192,7 @@ static int sSovereignTestBattleResult;
 static u8 sSovereignTestTotemTrial;
 
 // Test build only: the party's lead becomes the Pokémon a test harness wrote to gSovereignTestLead, as the player's
-// own, holding its item and knowing four Fairy moves or the ones set, at the HP set (include/sovereign_test.h).
+// own, given its item, and knowing four Fairy moves or the ones set, at the HP set (include/sovereign_test.h).
 static void SovereignTest_SetLead(FieldSystem *fieldSystem)
 {
     Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), 0);
@@ -208,9 +209,15 @@ static void SovereignTest_SetLead(FieldSystem *fieldSystem)
     Pokemon_CalcAbility(mon);
     Pokemon_CalcLevelAndStats(mon);
     Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &item);
+    // As the party menu gives an item: Arceus's Plates, Silvally's Memories, Genesect's Drives, Ogerpon's masks, Origin
+    // Dialga and Palkia, and Giratina's Griseous Orb set the form.
+    Pokemon_SetArceusForm(mon);
+    Pokemon_SetGiratinaFormByHeldItem(mon);
 
     for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
-        Pokemon_ResetMoveSlot(mon, gSovereignTestLead.moves[i] != MOVE_NONE ? gSovereignTestLead.moves[i] : fairyMoves[i], i);
+        u16 move = gSovereignTestLead.moves[i] != MOVE_NONE ? gSovereignTestLead.moves[i] : fairyMoves[i];
+
+        Pokemon_ResetMoveSlot(mon, move == SOVEREIGN_TEST_NO_MOVE ? MOVE_NONE : move, i);
     }
 
     if (gSovereignTestLead.hpPercent) {
@@ -221,12 +228,49 @@ static void SovereignTest_SetLead(FieldSystem *fieldSystem)
     }
 
     gSovereignTestLead.species = SPECIES_NONE;
+
+    if (gSovereignTestPartner.species != SPECIES_NONE) {
+        Pokemon *partner = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), 1);
+        form = gSovereignTestPartner.form;
+
+        Pokemon_InitWith(partner, gSovereignTestPartner.species, gSovereignTestPartner.level, INIT_IVS_RANDOM, FALSE, 0, OTID_NOT_SET, 0);
+        UpdateMonStatusAndTrainerInfo(partner, SaveData_GetTrainerInfo(fieldSystem->saveData), 0, 0, HEAP_ID_FIELD2);
+        Pokemon_SetValue(partner, MON_DATA_FORM, &form);
+        Pokemon_CalcAbility(partner);
+        Pokemon_CalcLevelAndStats(partner);
+        gSovereignTestPartner.species = SPECIES_NONE;
+    }
+}
+
+// Test build only: uses the key item a test harness wrote to gSovereignTestItemUse on the lead, as the party menu does
+// (it takes a fused partner out of the party), and writes down what it did (include/sovereign_test.h).
+static void SovereignTest_UseItem(FieldSystem *fieldSystem, int use)
+{
+    Party *party = SaveData_GetParty(fieldSystem->saveData);
+    int changedSlot, fusedPartnerSlot;
+
+    gSovereignTestItemUse.results[use] = SovereignFormItem_Use(fieldSystem->saveData, party, 0, gSovereignTestItemUse.item, &changedSlot, &fusedPartnerSlot);
+
+    if (fusedPartnerSlot >= 0) {
+        Party_RemovePokemonBySlotIndex(party, fusedPartnerSlot);
+    }
+
+    Pokemon *lead = Party_GetPokemonBySlotIndex(party, 0);
+
+    gSovereignTestItemUse.forms[use] = Pokemon_GetValue(lead, MON_DATA_FORM, NULL);
+    gSovereignTestItemUse.partyCounts[use] = Party_GetCurrentCount(party);
+    gSovereignTestItemUse.lastSpecies[use] = Pokemon_GetValue(Party_GetPokemonBySlotIndex(party, Party_GetCurrentCount(party) - 1), MON_DATA_SPECIES, NULL);
+
+    for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+        gSovereignTestItemUse.moves[use][i] = Pokemon_GetValue(lead, MON_DATA_MOVE1 + i, NULL);
+    }
 }
 
 // Test build only (meson -Dsovereign_test=true): a wild battle (Chansey Lv. 30, or the Pokémon a test harness wrote to
 // gSovereignTestWild); with env 1 a trainer battle (TRAINER_SOVEREIGN_TEST, or the trainer a test harness wrote to
 // gSovereignTestBattleTrainer); with env 2 the next Totem trial (data/totem_trials.yaml, in order). A test harness can
-// set the party's lead first (gSovereignTestLead), and reads the lead's form when the battle is over.
+// set the party's lead first (gSovereignTestLead) and use a form-change key item on it before and after the battle
+// (gSovereignTestItemUse), and reads the lead's form when the battle is over.
 static BOOL SovereignTest_BattleTask(FieldTask *task)
 {
     int *state = FieldTask_GetState(task);
@@ -234,6 +278,10 @@ static BOOL SovereignTest_BattleTask(FieldTask *task)
     if (*state == 0) {
         if (gSovereignTestLead.species != SPECIES_NONE) {
             SovereignTest_SetLead(FieldTask_GetFieldSystem(task));
+        }
+
+        if (gSovereignTestItemUse.item != ITEM_NONE) {
+            SovereignTest_UseItem(FieldTask_GetFieldSystem(task), 0);
         }
 
         if (FieldTask_GetEnv(task) == (void *)2) {
@@ -257,6 +305,12 @@ static BOOL SovereignTest_BattleTask(FieldTask *task)
 
     Pokemon *lead = Party_GetPokemonBySlotIndex(SaveData_GetParty(FieldTask_GetFieldSystem(task)->saveData), 0);
     gSovereignTestLeadFormAfter = Pokemon_GetValue(lead, MON_DATA_FORM, NULL);
+
+    if (gSovereignTestItemUse.item != ITEM_NONE && gSovereignTestItemUse.times > 1) {
+        SovereignTest_UseItem(FieldTask_GetFieldSystem(task), 1);
+    }
+
+    gSovereignTestItemUse.item = ITEM_NONE;
     return TRUE;
 }
 #endif
