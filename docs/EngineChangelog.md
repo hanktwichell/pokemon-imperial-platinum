@@ -4,6 +4,36 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Decision 34 — Zekrom moves to Route 215
+
+The owner's decision 34 (2026-10-24) is now in the game: **Zekrom stands on Route 215**, the always-raining route
+between Veilstone and Solaceon, in place of Valley Windworks' island. That leaves the islands to Zapdos's Renegade
+portal (decision 33).
+- **Its spot:** the north-west loop, north of the big tree (590, 578). It's a quiet loop off the route's path. The
+  tile check (`tools/test/check_object_tiles.py`) finds it reachable from either side of the tree, and it cuts
+  nothing off.
+- **Unchanged trigger:** the Dark Stone in the bag, at night (8 pm to 4 am). The Dark Stone's crackle line now lives
+  in Route 215's text bank. Zekrom is Lv. 70 and stays until caught.
+- **Route 215 gets an OnLoad script** to remove Zekrom after its battle.
+- **Valley Windworks:** Zekrom's object, scripts and text are gone. Zapdos's script entry moved from 10 to 9, and
+  the map's OnLoad goes straight to Zapdos's removal.
+- **The Archivist's hint** now says "Try rainy Route 215, at night."
+
+Docs:
+- `docs/LegendaryTriggers.md`, `docs/LegendaryPlacementReview.md`, decision 34 in `docs/ProjectStatus.md`.
+- `data/postgame_legendaries.yaml` → `docs/PostgameLegendaries.md`.
+- **The review's last open clash (8, Mt. Coronet) is settled.** Mt. Coronet's doorway leads to Regice's chamber only
+  with the Relicanth and Wailord pair in the party, and to Kyurem's room otherwise. That's as designed.
+- **`docs/StaticEncounters.xlsx`:** every "Check" verdict is now "None", with the reason (the tile check, or timing).
+  Two needed a closer look:
+  - Kubfu is off every punching-bag track in the Veilstone Gym's track table (`src/overlay008/gym_features.c`).
+  - Tapu Fini can be reached even with Wyver beside it.
+
+Verified in a test build (night forced, Dark Stone given):
+- Zekrom shows on Route 215 in the rain; its line, then the Lv. 70 battle; caught, and gone on the next visit.
+- Zapdos's battle still starts from (241, 645).
+- Zekrom's old island tile is empty.
+
 ## Placement tile check — Zygarde, Tapu Koko, a hidden Iron and the tutor-list signs
 
 New tool `tools/test/check_object_tiles.py` checks the exact tile of every map object Sovereign added or moved (256

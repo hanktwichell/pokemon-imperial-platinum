@@ -224,7 +224,8 @@ Made by the owner (2026-10-22):
       so Zapdos didn't have to wait for Zekrom's move (decision 34 still stands).
 34. **Zekrom moves to Route 215** (owner, 2026-10-24), the always-raining route between Veilstone and Solaceon. Its
     trigger is unchanged (the Dark Stone, at night). That frees the Valley Windworks island for Zapdos's Renegade
-    portal (decision 33). The tile is still to pick. The full placement review is `docs/LegendaryPlacementReview.md`.
+    portal (decision 33). Built 2026-10-25: Zekrom stands on the route's north-west loop, by the big tree (590, 578).
+    The full placement review is `docs/LegendaryPlacementReview.md`.
 35. **Enamorus moves off the Route 224 tablet** (owner, 2026-10-24: "Definitely move Enamorus now"). It now stands on
     the beach field at (912, 535), clear of the Flower Paradise tablet scene, Carl's patrol and the item balls.
 36. **Yveltal leaves the Lost Tower** (owner, 2026-10-24: "Yveltal needs to move"). Lost Tower 5F holds Totem Marowak's

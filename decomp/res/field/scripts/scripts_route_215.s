@@ -1,5 +1,6 @@
 #include "macros/scrcmd.inc"
 #include "res/text/bank/route_215.h"
+#include "res/field/events/events_route_215.h"
 
 
     ScriptEntry Route215_Dummy1
@@ -10,9 +11,12 @@
     ScriptEntry Route215_JoggerCraig
     ScriptEntry Route215_OnTransition
     ScriptEntry Route215_TrainerTipsSignpost
+    ScriptEntry Route215_OnLoad
+    ScriptEntry Route215_LegendaryZekrom
     ScriptEntryEnd
 
 Route215_OnTransition:
+    Call Route215_SovereignSetZekromVisibility
     GetTimeOfDay VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_MAP_LOCAL_0x00, TIMEOFDAY_MORNING, Route215_SetJoggersBattle
     GoToIfInRange VAR_MAP_LOCAL_0x00, TIMEOFDAY_DAY, TIMEOFDAY_LATE_NIGHT, Route215_SetJoggersNoBattle
@@ -80,6 +84,41 @@ Route215_JoggerScott:
 
 Route215_JoggerCraig:
     NPCMessage Route215_Text_ImOnlyHuman
+    End
+
+@ Sovereign (the Chronicles, docs/PostgameLegendaries.md; decision 34): Zekrom stands in the rain on the north-west
+@ loop, north of the pillar, at night (8 pm to 4 am) while the player carries the Dark Stone (the Legend Archivist
+@ gives it), until it's caught. It stood on Valley Windworks' island before decision 34 gave that to Zapdos.
+Route215_SovereignSetZekromVisibility:
+    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+    CheckItem ITEM_DARK_STONE, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, Route215_SovereignSetZekromVisibilityEnd
+    GetTimeOfDay VAR_RESULT
+    GoToIfLt VAR_RESULT, TIMEOFDAY_NIGHT, Route215_SovereignSetZekromVisibilityEnd
+    SovereignCheckSpeciesCaught SPECIES_ZEKROM, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, Route215_SovereignSetZekromVisibilityEnd
+    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
+Route215_SovereignSetZekromVisibilityEnd:
+    Return
+
+Route215_OnLoad:
+    GoToIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, Route215_RemoveLegendaryZekrom
+    End
+
+Route215_RemoveLegendaryZekrom:
+    RemoveObject LOCALID_LEGENDARY_ZEKROM
+    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
+    End
+
+Route215_LegendaryZekrom:
+    LockAll
+    Message Route215_Text_SovereignDarkStoneCrackles
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    SetVar VAR_0x8004, SPECIES_ZEKROM
+    SetVar VAR_0x8005, 70
+    Common_SovereignLegendaryEncounter
     End
 
     .balign 4, 0

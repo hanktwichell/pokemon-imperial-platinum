@@ -5837,3 +5837,41 @@ vanilla's post-game guard.
 2. Clash 8 in the review (Mt. Coronet: Kyurem in Regice's doorway room works only through a condition) is the last
    open placement item. Check that the condition can't leave both, or neither, showing.
 3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
+
+## CB-0125 — 2026-10-25, 2:01 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: decision 34, Zekrom moves to Route 215.** PR #137 (the placement tile check) is merged.
+- **Zekrom** now stands on Route 215's north-west loop, north of the big tree (590, 578).
+  - Trigger unchanged: the Dark Stone in the bag, at night.
+  - It's Lv. 70 and stays until caught.
+  - Route 215 gets the visibility call, an OnLoad removal after the battle, and the crackle line.
+  - The tile check finds the spot reachable from both sides of the tree, cutting nothing off.
+- **Valley Windworks:** Zekrom's object, scripts and text are removed.
+  - Zapdos's script entry is renumbered 10 → 9.
+  - The map's OnLoad goes straight to Zapdos's removal.
+- **The Archivist's hint:** "Try rainy Route 215, at night."
+- **The placement review is closed:**
+  - Clash 8 (Kyurem's doorway; Articuno beside Cosmog) is settled as working by design.
+  - Every "Check" verdict in `docs/StaticEncounters.xlsx` is now "None", with the reason.
+  - Kubfu is off every punching-bag track in the Veilstone Gym's track table.
+  - Tapu Fini is reachable even with Wyver beside it.
+- **Verified in a test build** (night forced in `ScrCmd_GetTimeOfDay`, Dark Stone given; patch at `$S/tiles/t2/patch.py`,
+  reverted):
+  - Zekrom shows on Route 215 with its line and the Lv. 70 battle, is caught, and is gone on the next visit.
+  - Zapdos's battle still starts.
+  - Zekrom's old island tile is empty.
+  - Harness note: the line waits for A after its text finishes, so press A until the battle menu shows.
+
+**Files modified:**
+- Events: `events_route_215.json`, `events_valley_windworks_outside.json`
+- Scripts: `scripts_route_215.s`, `scripts_init_route_215.s`, `scripts_valley_windworks_outside.s`
+- Text: `route_215.json`, `valley_windworks_outside.json`, `canalave_library_2f.json`
+- Data and docs: `data/postgame_legendaries.yaml`, `docs/PostgameLegendaries.md`, `docs/LegendaryTriggers.md`,
+  `docs/LegendaryPlacementReview.md`, `docs/ProjectStatus.md`, `docs/StaticEncounters.xlsx`,
+  `tools/reference/make_static_encounters.py`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR once both checks are green.
+2. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
+3. More map checks in the spirit of `check_object_tiles.py`, for example trainers whose sight line crosses a
+   one-tile path the player must take (a forced battle is fine, but one hidden behind an added object isn't).

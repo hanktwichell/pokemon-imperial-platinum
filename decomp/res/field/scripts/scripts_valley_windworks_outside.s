@@ -11,7 +11,6 @@
     ScriptEntry ValleyWindworksOutside_Drifloon
     ScriptEntry ValleyWindworksOutside_OnResume
     ScriptEntry ValleyWindworksOutside_OnFrame_Looker
-    ScriptEntry ValleyWindworksOutside_LegendaryZekrom
     ScriptEntry ValleyWindworksOutside_LegendaryZapdos
     ScriptEntryEnd
 
@@ -19,7 +18,6 @@ ValleyWindworksOutside_OnResume:
     End
 
 ValleyWindworksOutside_OnTransition:
-    Call ValleyWindworksOutside_SovereignSetZekromVisibility
     Call ValleyWindworksOutside_SovereignSetZapdosVisibility
     CallIfEq VAR_VALLEY_WINDWORKS_TEAM_GALACTIC_STATE, 2, ValleyWindworksOutside_IncreaseTeamGalacticValleyWindworksState
     CallIfSet FLAG_UNLOCKED_VALLEY_WINDWORKS_DOOR, ValleyWindworksOutside_RemoveBgEventDoor
@@ -45,39 +43,8 @@ ValleyWindworksOutside_IncreaseTeamGalacticValleyWindworksState:
 ValleyWindworksOutside_OnLoad:
     CallIfSet FLAG_UNLOCKED_VALLEY_WINDWORKS_DOOR, ValleyWindworksOutside_RemoveBgEventDoor
     CallIfUnset FLAG_UNLOCKED_VALLEY_WINDWORKS_DOOR, ValleyWindworksOutside_RemoveWarpValleyWindworksBuilding
-    GoToIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, ValleyWindworksOutside_RemoveLegendaryZekrom
+    GoToIfSet FLAG_SOVEREIGN_REMOVE_LEGENDARY, ValleyWindworksOutside_SovereignRemoveLegendaryZapdos
     GoToIfSet FLAG_MAP_LOCAL_REMOVE_OBJECT, ValleyWindworksOutside_RemoveDrifloon
-    End
-
-ValleyWindworksOutside_RemoveLegendaryZekrom:
-    GoToIfEq VAR_SOVEREIGN_LEGENDARY_SPECIES, SPECIES_ZAPDOS, ValleyWindworksOutside_SovereignRemoveLegendaryZapdos
-    RemoveObject LOCALID_LEGENDARY_ZEKROM
-    ClearFlag FLAG_SOVEREIGN_REMOVE_LEGENDARY
-    End
-
-@ Sovereign (the Chronicles, docs/PostgameLegendaries.md): Zekrom stands on the windmill island at night (8 pm to
-@ 4 am) while the player carries the Dark Stone (the Legend Archivist gives it), until it's caught.
-ValleyWindworksOutside_SovereignSetZekromVisibility:
-    SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
-    CheckItem ITEM_DARK_STONE, 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, FALSE, ValleyWindworksOutside_SovereignSetZekromVisibilityEnd
-    GetTimeOfDay VAR_RESULT
-    GoToIfLt VAR_RESULT, TIMEOFDAY_NIGHT, ValleyWindworksOutside_SovereignSetZekromVisibilityEnd
-    SovereignCheckSpeciesCaught SPECIES_ZEKROM, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, ValleyWindworksOutside_SovereignSetZekromVisibilityEnd
-    ClearFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY
-ValleyWindworksOutside_SovereignSetZekromVisibilityEnd:
-    Return
-
-ValleyWindworksOutside_LegendaryZekrom:
-    LockAll
-    Message ValleyWindworksOutside_Text_SovereignDarkStoneCrackles
-    WaitButton
-    CloseMessage
-    ReleaseAll
-    SetVar VAR_0x8004, SPECIES_ZEKROM
-    SetVar VAR_0x8005, 70
-    Common_SovereignLegendaryEncounter
     End
 
 ValleyWindworksOutside_RemoveDrifloon:
@@ -304,7 +271,7 @@ ValleyWindworksOutside_Movement_LookerLeave:
 
 @ Sovereign (E10 part 27, Renegade's legendary birds, decision 33): Zapdos stands on the small island behind the
 @ building (Surf) after the Distortion World, until it is caught (Renegade: Lv. 60, a portal at (242, 644), where
-@ Sovereign keeps vanilla's TM24 ball). Zekrom's island is the west one, so they don't share a tile.
+@ Sovereign keeps vanilla's TM24 ball). Zekrom stood on the west island until it moved to Route 215 (decision 34).
 ValleyWindworksOutside_SovereignSetZapdosVisibility:
     SetFlag FLAG_MAP_LOCAL_HIDE_LEGENDARY_2
     GoToIfUnset FLAG_DEFEATED_TRAINER_GALACTIC_BOSS_CYRUS_DISTORTION_WORLD, ValleyWindworksOutside_SovereignSetZapdosVisibilityEnd
