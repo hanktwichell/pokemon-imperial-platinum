@@ -2626,6 +2626,7 @@ static BOOL ScrCmd_OpenPartyMenuForTrade(ScriptContext *ctx)
     void **pPartyMenu = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_PARTY_MANAGEMENT_DATA);
     *pPartyMenu = FieldSystem_OpenPartyMenu_SelectForTrade(32, ctx->fieldSystem);
 
+    SOVEREIGN_TEST_NOTE_MENU(SOVEREIGN_TEST_MENU_PARTY);
     ScriptContext_Pause(ctx, ScriptContext_WaitForApplicationExit);
     return TRUE;
 }
