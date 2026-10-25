@@ -42,7 +42,8 @@ Route209_PokefanM:
 Route209_HallowedTower:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
-    GoToIfEq VAR_HALLOWED_TOWER_STATE, 1, Route209_CheckSpiritombCounter
+    @ Sovereign (E10, Renegade): Spiritomb comes at once after the Odd Keystone, without the 32 Underground talks.
+    GoToIfEq VAR_HALLOWED_TOWER_STATE, 1, Route209_EncounterSpiritomb
     CheckItem ITEM_ODD_KEYSTONE, 1, VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, Route209_ThereIsABrokenTower
     Message Route209_Text_UseTheOddKeystone
@@ -57,9 +58,9 @@ Route209_UseOddKeystone:
     Message Route209_Text_PlayerUsedTheOddKeystone
     WaitButton
     RemoveItem ITEM_ODD_KEYSTONE, 1, VAR_RESULT
-    SetVar VAR_HALLOWED_TOWER_STATE, 1
     CloseMessage
-    ReleaseAll
+    WaitTime 30, VAR_RESULT
+    GoTo Route209_EncounterSpiritomb
     End
 
 Route209_CheckSpiritombCounter:
@@ -77,7 +78,7 @@ Route209_EncounterSpiritomb:
     Message Route209_Text_SpiritombCry
     WaitCry
     CloseMessage
-    StartWildBattle SPECIES_SPIRITOMB, 25
+    StartWildBattle SPECIES_SPIRITOMB, 30
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, Route209_BlackOut
     SetVar VAR_HALLOWED_TOWER_STATE, 0

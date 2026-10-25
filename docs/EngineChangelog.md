@@ -4,6 +4,31 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 41) — Renegade's special encounters: Gengar, Spiritomb and Rotom
+
+The "Special Encounters" in Renegade's `SpecialEvents.txt`. Gabite (E10 part 5) was already in; these three weren't:
+- **Gengar (Old Chateau, the back middle-east room):**
+  - A new painting on the north wall (12, 2): "Piercing red eyes are staring at you. You can suddenly feel a chill."
+  - Stepping onto the room's exit afterwards fades the screen, and a wild Gengar (Lv. 20) attacks.
+  - A win or a catch ends it for good (`FLAG_SOVEREIGN_OLD_CHATEAU_GENGAR_DONE`, was `FLAG_UNUSED_0x0991`). The
+    painting then only "appears as if it is glaring". A loss blacks out, and the painting can be read again.
+  - `VAR_MAP_LOCAL_0x01` arms the exit only for that visit. The room's texts live in Jubilife City's archive, as in
+    vanilla and Renegade.
+- **Spiritomb (Route 209, the Hallowed Tower):** pushing the Odd Keystone in brings Spiritomb at once, at Lv. 30.
+  Renegade drops the 32 Underground talks, and so does Sovereign. Each Odd Keystone gives one battle.
+- **Rotom (the Old Chateau's TV):** any time of day, and as often as the player likes, even after a catch. Vanilla
+  wants night, once a day, until caught.
+
+Not ported, owner question: Renegade's Route 218 gate guard wants the Tea before he opens the road to Canalave City.
+- Sovereign gives the Tea (Darach, E10 part 33), but the Regional Forms Park lobby opens only after the Hall of Fame.
+- So Darach and the Tea come too late to gate Canalave.
+
+Verified in a test build:
+- Gengar: the painting's lines, then the exit tile starts the Lv. 20 battle. After the catch, the painting only
+  glares.
+- Spiritomb: the Odd Keystone, "pushed the Odd Keystone into the stone tower", then the Lv. 30 battle.
+- Rotom: the TV, then the Lv. 20 battle. After running away, the next talk starts another battle.
+
 ## E10 (part 40) — Renegade's Magma Stone after Heatran's catch, and Route 207's slope cyclist
 
 Steven's first request (E10 part 13) trades the Magma Stone for the Soul Dew, which Latias and Latios need. Nothing
