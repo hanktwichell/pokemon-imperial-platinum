@@ -5764,3 +5764,23 @@ vanilla's post-game guard.
 2. More playtest checks in the same spirit, for example flags set or checked by scripts but never named in
    `vars_flags.txt`, or warps that lead to a missing warp index.
 3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
+
+## CB-0123 — 2026-10-25, 1:25 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: a second playtest check, `tools/test/check_map_links.py`,** added to PR #136 (still open, green).
+- **Warps:** every warp's destination warp index exists in the destination map's events (0x100, "back to the saved
+  position", is skipped). All 1213 warps pass.
+- **Map texts:** every message, sign and menu-entry text a map's scripts show is in that map header's text bank
+  (`msgArchiveID`); menu entries may also use `TEXT_BANK_MENU_ENTRIES`. All 491 script files pass.
+- It runs in CI (rom job) after the event-script check.
+- Mutation-tested: a Route 207 warp pointed at warp 40, and a Jubilife City text used in Route 207's scripts, were
+  both reported. Both files were restored.
+
+**Files modified:** `tools/test/check_map_links.py` (new), `.github/workflows/build.yml`, `docs/EngineChangelog.md`,
+`CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge PR #136 once both checks are green.
+2. More checks in the same spirit: flags and vars that scripts use but `vars_flags.txt` doesn't name, or trainers
+   that scripts start but `generated/trainers.txt` doesn't list.
+3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
