@@ -1165,9 +1165,8 @@
     {
       "id": "BattleTower_Text_SovereignAbilityDone",
       "en_US": [
-        "There!\n",
-        "{STRVAR_1 1, 0, 0}’s Ability is now\n",
-        "{STRVAR_1 5, 1, 0}!"
+        "There! {STRVAR_1 1, 0, 0}’s Ability\n",
+        "is now {STRVAR_1 5, 1, 0}!"
       ]
     },
     {

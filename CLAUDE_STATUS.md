@@ -5649,6 +5649,10 @@ vanilla's post-game guard.
   switched (the new Ability's name is buffered) and 2 for a Hidden Ability.
 - Tested in a test build: BP and money switches, not enough of either, the one-Ability and Hidden Ability lines, and
   "No, thanks". RAM checks showed the BP and money going down only on a switch.
+- **Text bug found and fixed:** six Sovereign field texts had three lines in one two-line box, so the third line was
+  never seen. They were the researcher's "There!" line (it lost the Ability's name), Riley, Dawn (Route 210 North),
+  Shade, the Legend Archivist and the Route 221 nurse.
+  - New CI check `tools/test/check_message_box_lines.py` catches this from now on. Vanilla has no such text.
 - The E14 lines in the roadmap and the project status now say 6 of 8. Two stale notes are fixed: the Mints'
   Route 208 sale is done, and where the Infinite Repel is given was decided (decision 31).
 - **Audit:** Renegade's `NPCChanges.txt` and `TradeChanges.txt` are fully covered (E10 parts 4 and 10). The map-script
@@ -5658,6 +5662,9 @@ vanilla's post-game guard.
 - Engine: `decomp/src/scrcmd.c`, `decomp/include/data/scripts/scrcmd.h`, `decomp/asm/macros/scrcmd.inc`
 - Map: `decomp/res/field/scripts/scripts_battle_tower.s`, `decomp/res/field/events/events_battle_tower.json`,
   `decomp/res/text/battle_tower.json`
+- Text fixes: `decomp/res/text/iron_island.json`, `route_210_north.json`, `route_228.json`,
+  `canalave_library_2f.json` and `route_221.json`
+- Checks: `tools/test/check_message_box_lines.py` (new), `.github/workflows/build.yml`
 - Docs: `docs/EngineChangelog.md`, `docs/QualityOfLife.md`, `docs/EngineRoadmap.md`, `docs/ProjectStatus.md`,
   `CLAUDE_STATUS.md`
 

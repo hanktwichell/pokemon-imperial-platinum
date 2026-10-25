@@ -17,12 +17,21 @@ Pokémon between its two regular Abilities, as the Ability Capsule does:
 - A new script command, `SovereignSwapAbility templateArg, partySlot, destVar`, does the switch. It toggles the same
   ability-slot bit as the Ability Capsule, recalculates the ability, and buffers the new ability's name.
 
-Verified in a test build (60 BP, $30,000):
-- **BP:** Archaludon switched, and 50 BP was taken. The next 50 BP choice said there wasn't enough BP.
-- **Money:** Gallade with its Hidden Ability got the Ability Patch line, and Garchomp (one regular Ability) got the
-  "only one" line. Neither was charged. Archaludon switched back for $20,000, and the next try said there wasn't
-  enough money.
-- "No, thanks" ends the talk.
+Text fixes:
+- Six Sovereign field texts had three lines in one two-line box. The third line was printed below the box, so the
+  player never saw it. The researcher's own "There!" line lost the new Ability's name this way. The others were Riley
+  (Iron Island), Dawn (Route 210 North), Shade (Route 228), the Legend Archivist and the Route 221 nurse. Each now
+  scrolls to a new box at the right place, or is reworded to fit.
+- New check `tools/test/check_message_box_lines.py`, run in CI (rom job). It reports any text a field script shows
+  through a message command with more than two lines between scrolls. Vanilla has none.
+
+Verified in a test build (60 BP, $30,000), with RAM reads of the BP and money after each talk:
+- **BP:** Archaludon switched to Stamina, and BP went from 60 to 10. The next 50 BP choice said "You don't have
+  enough BP."
+- **Money:** Gallade (Hidden Ability) got the Ability Patch line, and Garchomp (one regular Ability) got the "only
+  one" line. Neither changed the money. Archaludon switched back to Sturdy, and the money went from $30,000 to
+  $10,000. The next $20,000 choice said "You don't have enough money."
+- "No, thanks" and cancelling the party screen both end with "Come back any time!"
 
 ## E10 (part 41) — Renegade's special encounters: Gengar, Spiritomb and Rotom
 
