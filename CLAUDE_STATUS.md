@@ -5466,3 +5466,47 @@ is merged. Part 36 is committed and pushed to the branch as work in progress. No
      harder than Renegade's (493), so the owner should decide whether to keep it.
 3. Then the rest of the E10 map-script audit (`$S/ren_text_missing2.txt`). Candidates: the summary-screen nature
    hints, Palmer, the Floaroma Flying club, and Oak's flavor lines.
+
+## CB-0114 — 2026-10-24, 10:02 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: E10 part 38, Renegade's Arceus.** PR #128 (part 37, Shaymin) is merged.
+- **Owner decision 44:** only the 16 Plates are needed for the Azure Flute. Renegade's Pokédex task is dropped,
+  because Sovereign's National Dex is over 1,000 species.
+- **The Foreign Building elder** (Hearthome City) is new at (8, 8). The Lady moves to (6, 8). The elder uses
+  Renegade's lines:
+  - before the Hall of Fame, a greeting;
+  - after it, the sixteen Type Masters' task;
+  - with all 16 Plates, the Azure Flute, then the Spear Pillar hint.
+  - Having the flute (a key item) marks the event done.
+- **The Arceus distribution checks are removed** from:
+  - the flute's bag/field use check (`CanUseAzureFlute` in `src/item_use_functions.c`);
+  - the flute's common script;
+  - the Hall of Origin and the three Spear Pillar maps.
+  - Arceus stays Lv. 80.
+- **Tested in full in test builds:**
+  - The elder with 15 and with 16 Plates.
+  - The flute from Y at Spear Pillar's top step, into the Hall of Origin ("A glowing stairway appeared!").
+  - Arceus's scene, the Lv. 80 battle and the catch.
+- **`docs/StaticEncounters.xlsx`:**
+  - The Darkrai and Arceus rows now give their new conditions.
+  - The generator was stale: running it would have undone the part 27–29 workbook edits. It is now synced, so
+    `python3 tools/reference/make_static_encounters.py docs/StaticEncounters.xlsx` rebuilds the same workbook.
+- **Harness notes:**
+  - The test warp index moved to `0x021C36A0`.
+  - Run test scripts from the repo root, since `drive` is imported from `tools/test`.
+
+**Files modified:**
+- Scripts: `scripts_foreign_building.s`, `scripts_common.s`, `scripts_hall_of_origin.s`, `scripts_spear_pillar.s`,
+  `scripts_spear_pillar_dialga.s` and `scripts_spear_pillar_palkia.s`
+- `decomp/res/field/events/events_foreign_building.json`, `decomp/res/text/foreign_building.json`
+- `decomp/src/item_use_functions.c`
+- Tools: `tools/reference/make_static_encounters.py`
+- Docs: `docs/StaticEncounters.xlsx`, `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`,
+  `docs/LegendaryTriggers.md`, `docs/ProjectStatus.md` (decision 44), `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge the part 38 PR once both checks are green.
+2. The rest of the E10 map-script audit (`$S/ren_text_missing2.txt`). Candidates: the summary-screen nature hints,
+   Palmer, the Floaroma Flying club, and Oak's flavor lines.
+3. All of Renegade's documented legendary events are now ported. Check `docs/LegendaryTriggers.md`'s open issues
+   (Cosmog can flee; roamers return only through the Archivist).

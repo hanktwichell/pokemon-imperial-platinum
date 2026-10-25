@@ -1,5 +1,4 @@
 #include "macros/scrcmd.inc"
-#include "generated/distribution_events.h"
 #include "res/text/bank/hall_of_origin.h"
 #include "res/field/events/events_hall_of_origin.h"
 
@@ -10,9 +9,8 @@
     ScriptEntry HallOfOrigin_CoordEvent_Arceus
     ScriptEntryEnd
 
+@ Sovereign (E10, Renegade): no Arceus distribution check; only the Azure Flute's player reaches this hall.
 HallOfOrigin_OnTransition:
-    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_MAP_LOCAL_0x00
-    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, HallOfOrigin_HideArceus
     GoToIfSet FLAG_CAUGHT_ARCEUS, HallOfOrigin_HideArceus
     ClearFlag FLAG_HIDE_HALL_OF_ORIGIN_ARCEUS
     End

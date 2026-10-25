@@ -248,6 +248,9 @@ Made by the owner (2026-10-22):
     value too, the same as they cost: no item can be bought and sold back at a profit (no infinite money). Services
     (Safari Game, binoculars, the spa, Villa furniture, the Day Care fee) keep their prices (owner, 2026-10-24: "Leave
     fees alone").
+44. **Arceus's Azure Flute needs only the 16 Plates** (owner, 2026-10-24). Renegade's Foreign Building elder also asks
+    for a Pokédex worthy of the National diploma. In Sovereign that's over 1,000 species, so that task is dropped. With
+    all sixteen Type Masters' Plates in the bag, the elder gives the Azure Flute (E10 part 38).
 
 Open:
 - **The legendary placement tile checks** in `docs/LegendaryPlacementReview.md` (every clash is settled by decisions

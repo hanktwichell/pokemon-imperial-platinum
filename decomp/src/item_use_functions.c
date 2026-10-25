@@ -981,10 +981,7 @@ static enum ItemUseCheckResult CanUseAzureFlute(const ItemUseContext *usageConte
         return ITEM_USE_CANNOT_USE_GENERIC;
     }
 
-    if (SystemVars_CheckDistributionEvent(v0, DISTRIBUTION_EVENT_ARCEUS) == FALSE) {
-        return ITEM_USE_CANNOT_USE_GENERIC;
-    }
-
+    // Sovereign (E10 part 38): no distribution check. The Foreign Building elder gives the flute for the 16 Plates.
     if (Pokedex_IsNationalDexObtained(SaveData_GetPokedex(usageContext->fieldSystem->saveData)) == FALSE) {
         return ITEM_USE_CANNOT_USE_GENERIC;
     }
