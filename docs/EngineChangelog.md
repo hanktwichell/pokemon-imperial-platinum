@@ -47,7 +47,7 @@ Galarian Darmanitan, and Flabébé (Yellow Flower) must become Floette (Yellow F
 Sweet and the cream the time gives.
 
 **`tools/test/battle_eggs.py` (local; about an hour in 4 parts)** breeds every form in the Day Care and hatches the
-Egg at once, then battles with the hatched Pokémon. There are 875 cases, from every form but the battle forms of each
+Egg at once, then battles with the hatched Pokémon. There are 874 cases, from every form but the battle forms of each
 species outside the Undiscovered egg group:
 - each form as the mother with a Ditto, and as the father with a Ditto;
 - for a regional form that passes on its region: a base-form mother with the regional father, whose form must not pass
@@ -58,7 +58,12 @@ Each case checks the Egg's species and form, that it hatches into them, and that
 The names cross-check the form when the Egg is another species (Galarian Rapidash: Galarian Ponyta; Alolan Raichu:
 Pichu).
 
-**Results:** RESULTS
+**Results:**
+- **Evolutions:** 335 of 336 passed on the first build. The failure was the Sylveon bug above; on the fixed build all 16
+  of Eevee's cases pass, including Partner Eevee's eight, which must not evolve. (The other changes between the two
+  builds don't touch evolution.)
+- **Eggs:** all 874 pass (on the build with the fixes), once the harness expects a Burmy's cloak to change in the
+  battle: as in Platinum, a Burmy takes the Trash Cloak after an indoor battle.
 
 **Test-build hooks** (`include/sovereign_test.h`):
 - `gSovereignTestEvolve`: evolves the lead before the battle, with an evolution's class and item or map method.

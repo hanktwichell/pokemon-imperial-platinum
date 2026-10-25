@@ -29,8 +29,8 @@ The names cross-check it when the Egg is another species: a regional parent's Eg
 name (Alolan Raichu: Pichu, with no Alolan form; Galarian Rapidash: Galarian Ponyta), or its base form.
 
 Each case gets a result: ok, EGG (wrong Egg species or form), HATCH (the hatched Pokémon isn't the Egg's species and
-form), NAMES (the form isn't the one the names give), FORM (its form changed in the battle), HANG or STUCK. Needs what
-battle_all_trainers.py needs. From the repo root:
+form), NAMES (the form isn't the one the names give), FORM (its form changed in the battle; a Burmy takes the Trash
+Cloak, as the test battles indoors), HANG or STUCK. Needs what battle_all_trainers.py needs. From the repo root:
     SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 tools/test/battle_eggs.py \\
         decomp/build_test/pokeplatinum.us.nds STATE OUT_DIR [-v] [--part I/N] [SPECIES ...]
 SPECIES (a constant) limits the list to the cases with a parent of those species, and --part I/N to every Nth case
@@ -57,6 +57,8 @@ BREED = {'species': 0, 'forms': 4, 'genders': 6, 'items': 8, 'personality': 12, 
 MONTH = 3  # March: (3 - 1) % 4 = autumn for a Deerling
 EGG_GENDER_MALE = 0x8000  # include/constants/daycare.h
 DITTO = 'SPECIES_DITTO'
+# BattleSystem_SetBurmyForm (as in Platinum): a Burmy takes the cloak of where it battled, the Trash Cloak indoors.
+FORM_AFTER_BATTLE = {'SPECIES_BURMY': 2}
 
 
 @functools.lru_cache(maxsize=None)
@@ -249,8 +251,8 @@ def main():
             elif c['names_want'] is not None and c['names_want'] != form:
                 problems.append(f'the forms\' names give form {c["names_want"]}')
                 result = 'NAMES' if result == 'ok' else result + '+NAMES'
-            elif after != form:
-                problems.append(f'form after the battle {after}, want {form}')
+            elif after != FORM_AFTER_BATTLE.get(egg, form):
+                problems.append(f'form after the battle {after}, want {FORM_AFTER_BATTLE.get(egg, form)}')
                 result = 'FORM' if result == 'ok' else result + '+FORM'
             if result != 'ok':
                 d.screenshot().save(os.path.join(out, f'{index:03d}_{c["species"]}_{result}.png'))

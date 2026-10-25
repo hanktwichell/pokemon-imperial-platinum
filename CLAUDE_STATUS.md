@@ -6137,3 +6137,23 @@ is merged.
 1. Finish the Egg run, fix anything it finds, fill in the changelog's results, then open and merge the PR.
 2. Regenerate the forms' learnsets with `gen_forms.py` (the TM drift above), checking each change.
 3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
+
+## CB-0133 — 2026-10-25, 9:56 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: the Egg form test's results; the evolution and Egg PR is ready.**
+- **`tools/test/battle_eggs.py`:** 874 cases (CB-0132's 875 counted a female's form as a father, which the harness now
+  leaves out). **All 874 pass** on the fixed build. The only failures in the first run were the harness's: a hatched
+  Burmy takes the Trash Cloak after the indoor test battle (`BattleSystem_SetBurmyForm`, as in Platinum), which it now
+  expects.
+- **`tools/test/battle_evolutions.py`:** 335 of 336 on the first build (the Sylveon bug, fixed); Eevee's 16 cases pass on
+  the fixed build.
+- Checks: docs regeneration clean, the 7 static checks pass, the shipping ROM builds (it changes with the game fixes).
+
+**Files modified (since CB-0132):** `tools/test/battle_eggs.py`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge the PR once both checks are green.
+2. Rerun `tools/engine/gen_forms.py` for the forms' learnsets: Renegade's TM swaps (E10 part 2) reached the base
+   species but not the forms that copy their learnset (Partner Pikachu and Eevee, the costume Pikachu, Totem Araquanid,
+   Gumshoos and Salazzle, and the Megas), so these miss TM55/57/62/83/85/88 where their species has them.
+3. Zero to Hero in `battle_form_changes.py` (Palafin switching out with Flip Turn), the last untested battle form.
