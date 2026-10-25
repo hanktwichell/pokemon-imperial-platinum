@@ -1,0 +1,40 @@
+{
+    "name": "Grunt",
+    "class": "TRAINER_CLASS_GALACTIC_GRUNT_MALE",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_LEDIAN",
+            "form": 0,
+            "level": 24,
+            "item": null,
+            "moves": null,
+            "iv_scale": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ARIADOS",
+            "form": 0,
+            "level": 24,
+            "item": null,
+            "moves": null,
+            "iv_scale": 100,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Curses! How am I meant to steal\n",
+                "Pokémon that are this strong?!\n"
+            ]
+        }
+    ]
+}

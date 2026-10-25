@@ -406,6 +406,43 @@
         "Meadow, and a VIKAVOLT in the forest.\r",
         "Hah! Like some kid could handle them!"
       ]
+    },
+    {
+      "id": "EternaCity_Text_SovereignGruntNoBadge",
+      "en_US": [
+        "You! Kid!\r",
+        "Behind me is the one, the only,\n",
+        "Team Galactic Eterna Building!\r",
+        "You can see it on the sign, yeah?\n",
+        "It’s no place for a kid like you.\r",
+        "You don’t have a Forest Badge either,\n",
+        "so your Pokémon must be weak!\r",
+        "We don’t want them, either!"
+      ]
+    },
+    {
+      "id": "EternaCity_Text_SovereignGruntTakePokemon",
+      "en_US": [
+        "You! Kid!\r",
+        "You have the Forest Badge from the\n",
+        "Pokémon Gym here?\r",
+        "Then your Pokémon must be plenty\n",
+        "strong, yeah?\r",
+        "Then they’ll be perfect for\n",
+        "Team Galactic!\r",
+        "I’ll be taking them now!\r"
+      ]
+    },
+    {
+      "id": "EternaCity_Text_SovereignGruntDefeated",
+      "en_US": [
+        "These Pokemon are very strong...\r",
+        "Wait, was I meant to collect weak\n",
+        "Pokémon instead?\r",
+        "Is this kid planning to raid our\n",
+        "building and take the Pokémon back?\r",
+        "I must inform Commander Jupiter...\r"
+      ]
     }
   ]
 }

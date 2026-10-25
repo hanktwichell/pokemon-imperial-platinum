@@ -4,6 +4,46 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 34) — Renegade's last added trainers: Cheryl's test, the Eterna door grunt, Cyrus's Dialga and Palkia
+
+An audit of Renegade's added trainers (IDs 928 and up) against Sovereign's found three still missing:
+- **Cheryl, Eterna Forest:** before asking to go through the forest together, she tests the player in a battle
+  (Renegade's trainer 1064: Drifloon, Makuhita, Wailmer and Chansey, Lv. 19–20).
+  - A win heals the party, then she asks ("Ah, marvelous! … may I go through with you?"). A loss blacks out, and she
+    battles again next time.
+- **The Eterna City door grunt:** Sovereign's Totem-trial gate grunt now does what Renegade's does once both trials are
+  done.
+  - Without the Forest Badge, he turns the player away with Renegade's lines.
+  - With it, he battles (Renegade's trainer 939, Lv. 24), then leaves to warn Jupiter.
+  - His trainer flag keeps him gone. Before the trials he still talks about the Totems.
+- **Cyrus, Distortion World:** before his own team, he sends out Dialga and Palkia together in a double battle
+  (Renegade's trainer 972, Lv. 70), then heals the player and battles as before.
+  - His opening line now boasts of their power, as in Renegade.
+  - Renegade turns away a player with one Pokémon ("Bring another Pokémon"). The Distortion World has no way out, so a
+    player without two able Pokémon skips the double battle instead.
+- **Left out on purpose:**
+  - Renegade's three random alternate teams for each Elite Four member and Cynthia (981–995):
+    `docs/EliteFourFormat.md` picks one fixed team per format.
+  - Dray, Renegade's author (1053): Sovereign's developer battle is its own (`docs/DeveloperBattle.md`).
+  - Egadd, Telkin and Palmer (961, 962, 971): no Renegade script or map uses them.
+- `docs/TrainerTeamLog.md`: three dummy rows are replaced.
+  - The new boss-class rows (this Cyrus and part 31's Battleground commanders) now say no Sovereign team is drafted for
+    them yet, instead of the T1 note.
+
+Verified in a test build (a Lv. 100 party, both Eterna trials and the Forest Badge set, and the Distortion World
+progress at Cynthia and Cyrus's talk):
+- Eterna Forest: stepping onto Cheryl's trigger plays her new "test your strength" lines, then her battle.
+  - After the win: "Ah, marvelous! … may I go through with you?", "decided to go with Cheryl!" and the heal line.
+- Eterna City: the door grunt's Forest Badge lines play, then his battle and "I must inform Commander Jupiter…".
+  - He fades out and is gone on re-entering.
+- Distortion World B7F: Cyrus's new opening line ("Not with DIALGA and PALKIA's power!") plays.
+  - The Lv. 70 Dialga and Palkia double battle was won, then his own team's battle started and was won.
+  - Then the vanilla scene went on (he leaves; Cynthia talks).
+  - The line between the two battles wasn't captured on screen: the harness overwrote those frames.
+- Not tested: the losses, the grunt without the badge (the Totem text still plays before the trials), and a player
+  with one able Pokémon at Cyrus.
+
+
 ## E10 (part 33) — Darach and Lady Caitlin in the Regional Forms Park lobby
 
 Renegade's Darach event, moved from the Catching Show to the Regional Forms Park:

@@ -326,9 +326,7 @@ Total: 1040 trainer files; 0 edited, 0 confirmed (2026-10-24). The boss rows not
 | `dummy_241` | Fisherman | Mickey | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_242` | Sailor | Mickey | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_243` | Beauty | Angelica | 1 | Singles | (script / not on a map) | Not started | |
-| `dummy_255` | Camper | Mickey | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_291` | Rancher | Mickey | 1 | Singles | (script / not on a map) | Not started | |
-| `dummy_321` | Lass | Angelica | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_334` | Rich Boy | Mickey | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_336` | Lady | Angelica | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_347` | Beauty | Angelica | 1 | Singles | (script / not on a map) | Not started | |
@@ -341,7 +339,6 @@ Total: 1040 trainer files; 0 edited, 0 confirmed (2026-10-24). The boss rows not
 | `dummy_363` | Waiter | Mickey | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_364` | Waiter | Mickey | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_365` | Waiter | Mickey | 1 | Singles | (script / not on a map) | Not started | |
-| `dummy_374` | Breeder Male | Mickey | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_375` | Breeder Female | Angelica | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_376` | Cameraman | Mickey | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_384` | Pokefan Male | Mickey | 1 | Singles | (script / not on a map) | Not started | |
@@ -833,9 +830,11 @@ Total: 1040 trainer files; 0 edited, 0 confirmed (2026-10-24). The boss rows not
 | `sovereign_buck_route_227` | Trainer Buck | Buck | 6 | Singles | (script / not on a map) | Not started | |
 | `sovereign_bug_master` | Bug Catcher | Louie | 1 | Singles | (script / not on a map) | Not started | |
 | `sovereign_bugsy_memory` | Bug Catcher | Bugsy | 1 | Singles | (script / not on a map) | Not started | |
+| `sovereign_cheryl_eterna_forest` | Trainer Cheryl | Cheryl | 4 | Singles | (script / not on a map) | Not started | |
 | `sovereign_chuck_memory` | Black Belt | Chuck | 1 | Singles | (script / not on a map) | Not started | |
 | `sovereign_clair_memory` | Ace Trainer Female | Clair | 1 | Singles | (script / not on a map) | Not started | |
-| `sovereign_cyrus_battleground` | Galactic Boss | Cyrus | 6 | Singles | (script / not on a map) | Not started | Boss: a Sovereign team is drafted in `data/trainers_sovereign.yaml` (T1), not in the game yet |
+| `sovereign_cyrus_battleground` | Galactic Boss | Cyrus | 6 | Singles | (script / not on a map) | Not started | Boss class, added in E10 (Renegade's team); no Sovereign team drafted yet |
+| `sovereign_cyrus_distortion_world_legends` | Galactic Boss | Cyrus | 2 | Doubles | (script / not on a map) | Not started | Boss class, added in E10 (Renegade's team); no Sovereign team drafted yet |
 | `sovereign_dahlia_sunyshore` | Arcade Star | Dahlia | 6 | Singles | (script / not on a map) | Not started | |
 | `sovereign_darach_pal_park` | Castle Valet | Darach | 6 | Singles | (script / not on a map) | Not started | |
 | `sovereign_dark_master` | Ace Trainer Female | Kimberly | 1 | Singles | (script / not on a map) | Not started | |
@@ -864,6 +863,7 @@ Total: 1040 trainer files; 0 edited, 0 confirmed (2026-10-24). The boss rows not
 | `sovereign_ghost_master` | Psychic Male | Ross | 1 | Singles | (script / not on a map) | Not started | |
 | `sovereign_grass_master` | Lass | Sal | 1 | Singles | (script / not on a map) | Not started | |
 | `sovereign_ground_master` | Hiker | Dexter | 1 | Singles | (script / not on a map) | Not started | |
+| `sovereign_grunt_eterna_city` | Galactic Grunt Male | Grunt | 2 | Singles | (script / not on a map) | Not started | |
 | `sovereign_grunt_mansion_gate_1` | Galactic Grunt Male | Grunt | 2 | Singles | (script / not on a map) | Not started | |
 | `sovereign_grunt_mansion_gate_2` | Galactic Grunt Female | Grunt | 2 | Singles | (script / not on a map) | Not started | |
 | `sovereign_grunt_mansion_office` | Galactic Grunt Male | Grunt | 3 | Singles | (script / not on a map) | Not started | |
@@ -886,7 +886,7 @@ Total: 1040 trainer files; 0 edited, 0 confirmed (2026-10-24). The boss rows not
 | `sovereign_interviewer_paldea` | Reporter | Marisol | 3 | Singles | (script / not on a map) | Not started | |
 | `sovereign_interviewer_unova` | Reporter | Paige | 3 | Singles | (script / not on a map) | Not started | |
 | `sovereign_jasmine_memory` | Lass | Jasmine | 1 | Singles | (script / not on a map) | Not started | |
-| `sovereign_jupiter_battleground` | Commander Jupiter | Jupiter | 6 | Singles | (script / not on a map) | Not started | Boss: a Sovereign team is drafted in `data/trainers_sovereign.yaml` (T1), not in the game yet |
+| `sovereign_jupiter_battleground` | Commander Jupiter | Jupiter | 6 | Singles | (script / not on a map) | Not started | Boss class, added in E10 (Renegade's team); no Sovereign team drafted yet |
 | `sovereign_lucas_battleground_chimchar` | Player Male | Lucas | 6 | Singles | (script / not on a map) | Not started | |
 | `sovereign_lucas_battleground_piplup` | Player Male | Lucas | 6 | Singles | (script / not on a map) | Not started | |
 | `sovereign_lucas_battleground_turtwig` | Player Male | Lucas | 6 | Singles | (script / not on a map) | Not started | |
@@ -903,7 +903,7 @@ Total: 1040 trainer files; 0 edited, 0 confirmed (2026-10-24). The boss rows not
 | `sovereign_lucas_route_224_piplup` | Player Male | Lucas | 6 | Singles | (script / not on a map) | Not started | |
 | `sovereign_lucas_route_224_turtwig` | Player Male | Lucas | 6 | Singles | (script / not on a map) | Not started | |
 | `sovereign_marley_victory_road` | Trainer Marley | Marley | 6 | Singles | (script / not on a map) | Not started | |
-| `sovereign_mars_battleground` | Commander Mars | Mars | 6 | Singles | (script / not on a map) | Not started | Boss: a Sovereign team is drafted in `data/trainers_sovereign.yaml` (T1), not in the game yet |
+| `sovereign_mars_battleground` | Commander Mars | Mars | 6 | Singles | (script / not on a map) | Not started | Boss class, added in E10 (Renegade's team); no Sovereign team drafted yet |
 | `sovereign_mira_wayward_cave` | Trainer Mira | Mira | 4 | Singles | (script / not on a map) | Not started | |
 | `sovereign_morty_memory` | Ace Trainer Male | Morty | 1 | Singles | (script / not on a map) | Not started | |
 | `sovereign_nephenee_snowpoint_temple` | Ace Trainer Snow Female | Nephenee | 3 | Singles | (script / not on a map) | Not started | |
@@ -912,7 +912,7 @@ Total: 1040 trainer files; 0 edited, 0 confirmed (2026-10-24). The boss rows not
 | `sovereign_psychic_master` | Psychic Male | Frasier | 1 | Singles | (script / not on a map) | Not started | |
 | `sovereign_riley_iron_island` | Trainer Riley | Riley | 6 | Singles | (script / not on a map) | Not started | |
 | `sovereign_rock_master` | Hiker | Hisato | 1 | Singles | (script / not on a map) | Not started | |
-| `sovereign_saturn_battleground` | Commander Saturn | Saturn | 6 | Singles | (script / not on a map) | Not started | Boss: a Sovereign team is drafted in `data/trainers_sovereign.yaml` (T1), not in the game yet |
+| `sovereign_saturn_battleground` | Commander Saturn | Saturn | 6 | Singles | (script / not on a map) | Not started | Boss class, added in E10 (Renegade's team); no Sovereign team drafted yet |
 | `sovereign_saturn_pokemon_mansion` | Commander Saturn | Saturn | 3 | Singles | (script / not on a map) | Not started | Boss: a Sovereign team is drafted in `data/trainers_sovereign.yaml` (T1), not in the game yet |
 | `sovereign_steel_master_iron_island` | Scientist | Julian | 1 | Singles | (script / not on a map) | Not started | |
 | `sovereign_steven_oreburgh` | Ace Trainer Male | Steven | 6 | Singles | (script / not on a map) | Not started | |

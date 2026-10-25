@@ -48,7 +48,9 @@
       "en_US": [
         "Cyrus: I won’t lose!\r",
         "Not to that shadowy Pokémon!\n",
-        "Not in any worthless world!\r"
+        "Not in any worthless world!\r",
+        "Not with DIALGA and PALKIA’s power!\n",
+        "Not to you!\r"
       ]
     },
     {
@@ -130,6 +132,19 @@
     {
       "id": "DistortionWorldB7F_Text_Dummy12",
       "garbage": 7
+    },
+    {
+      "id": "DistortionWorldB7F_Text_SovereignLegendsDefeated",
+      "en_US": [
+        "Cyrus: What?\n",
+        "DIALGA and PALKIA were defeated?\r",
+        "No matter. There will be other ways\n",
+        "to achieve my plans.\r",
+        "However, {STRVAR_1 3, 0, 0}, for your continued\n",
+        "interference after being forgiven...\r",
+        "I will eliminate you here!\n",
+        "You will not exist in my reality!\r"
+      ]
     }
   ]
 }

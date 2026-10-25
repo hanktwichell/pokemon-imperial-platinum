@@ -53,6 +53,19 @@ DistortionWorldB7F_Cyrus:
     FacePlayer
     Message DistortionWorldB7F_Text_IWontLose
     CloseMessage
+    @ Sovereign (E10, Renegade): Cyrus first sends out Dialga and Palkia together (Renegade's trainer 972, a double
+    @ battle), then his own team after a heal. Renegade refuses a player with one Pokemon; with no way out of the
+    @ Distortion World that could strand them, so here the double battle is skipped instead.
+    CheckHasTwoAliveMons VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, DistortionWorldB7F_SovereignCyrusTeam
+    StartTrainerBattle TRAINER_SOVEREIGN_CYRUS_DISTORTION_WORLD_LEGENDS
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, DistortionWorldB7F_LostBattle
+    BufferPlayerName 0
+    HealParty
+    Message DistortionWorldB7F_Text_SovereignLegendsDefeated
+    CloseMessage
+DistortionWorldB7F_SovereignCyrusTeam:
     StartTrainerBattle TRAINER_GALACTIC_BOSS_CYRUS_DISTORTION_WORLD
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, DistortionWorldB7F_LostBattle
