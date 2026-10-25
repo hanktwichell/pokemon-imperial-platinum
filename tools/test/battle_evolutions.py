@@ -1,34 +1,44 @@
 #!/usr/bin/env python3
 """Evolve every Pokémon whose evolution involves a form in the test build, and check the form it evolves into.
 
-The cases (each evolution in the species' data, res/pokemon/*/data.json, that the test can set up):
-- every form with evolutions of its own (Alolan Vulpix, Galarian Meowth, Hisuian Sliggoo...);
-- every base form that evolves into a species with forms (Pikachu into Raichu, Espurr into Meowstic, Kubfu into
-  Urshifu...), once for each form the evolution can give: each gender for a species with a female's form, a personality
-  for each of a species' personality forms (Pumpkaboo's sizes, Low Key Toxtricity, Antique Polteageist), each item
-  for an item evolution into a form (the Scroll of Waters).
+The cases (each evolution in the species' data, res/pokemon/*/data.json, that the test can set up), from every form
+but the battle forms (Mega, Primal, Zen Mode...):
+- a regional form (kind SOVEREIGN_FORM_REGIONAL: Alolan Vulpix, Galarian Meowth, the cap Pikachu) evolves by its
+  form's own evolutions, and any other form by its species' (Pokemon_GetEvolutionTargetSpecies). A regional form with
+  none of its own (a cap Pikachu, Partner Eevee, Eternal Floette, Spiky-eared Pichu) must not evolve by its species';
+- each base form of a species with forms, or that evolves into one (Pikachu into Raichu, Espurr into Meowstic);
+- once for each form the evolution can give: each gender for a species with a female's form, a personality for each
+  of a species' personality forms (Pumpkaboo's sizes, Low Key Toxtricity, the flower colors), each item for an item
+  evolution into a form (the Scroll of Waters), each Sweet and cream for Milcery, and day, night and twilight for
+  Rockruff;
+- the teapots both ways: only an Antique Sinistea evolves with the Chipped Pot, and only an ordinary one with the
+  Cracked Pot (Poltchageist's teacups the same).
 
-Evolutions that hang on the time of day or the date (Rockruff's Lycanroc, Alcremie's cream, Deerling's season) or
-on something the test can't set up (stats, beauty, Shedinja) are left out, and listed with -v.
+Evolutions that hang on something the test can't set up (stats, beauty, Shedinja) are left out, and listed with -v.
 
-For each case this loads a save state in the overworld and writes the Pokémon to gSovereignTestLead
-(include/sovereign_test.h): the species and form, a level that meets the evolution's, its gender or personality,
-full friendship, a held item or a move the evolution needs, and the partner species it needs second in the party
-(gSovereignTestPartner). gSovereignTestEvolve evolves it as the evolution screen does (Pokemon_GetEvolutionTargetSpecies
-with the evolution's class and item, then Pokemon_SovereignSetEvolvedSpecies), and it battles a wild Chansey in its
-new form as in battle_form_changes.py.
+For each case this loads a save state in the overworld, sets the clock (gSovereignTestClock: the hour for a day or
+night evolution, Rockruff and Milcery, and for a Deerling a month of another season than its own) and writes the
+Pokémon to gSovereignTestLead (include/sovereign_test.h): the species and form, a level that meets the evolution's,
+its personality, full friendship, a held item or a move the evolution needs, and the partner species it needs second
+in the party (gSovereignTestPartner). gSovereignTestEvolve evolves it as the evolution screen does
+(Pokemon_GetEvolutionTargetSpecies with the evolution's class and item, then Pokemon_SovereignSetEvolvedSpecies), and
+it battles a wild Chansey in its new form as in battle_form_changes.py.
 
 The evolved form it must have is worked out as src/pokemon.c does: an item evolution into a form takes that form
 (sSovereignItemEvolutionForms); a regional form takes its region's form of the target (sSovereignFormEvolutions), or
-0; any other form is kept; and a target whose form comes from the personality takes that one
-(Pokemon_SovereignPersonalityForm, mirrored in personality_form below).
+0; any other form is kept (a Deerling keeps its season); a target whose form comes from the personality takes that
+one (Pokemon_SovereignPersonalityForm, mirrored in personality_form below); and Rockruff's and Milcery's come from the
+time (and the Sweet). The names cross-check it: an evolved form must be the target's form named as the start form is
+(Galarian Darumaka: Galarian Darmanitan; Flabébé (Yellow Flower): Floette (Yellow Flower)), or its base form when the
+target has none so named, and Alcremie's must be named for the Sweet and the cream the time gives.
 
-Each case gets a result: ok, EVOLVE (it didn't evolve, or into the wrong species or form), FORM (its form changed in
-the battle), HANG or STUCK. Needs what battle_all_trainers.py needs. From the repo root:
+Each case gets a result: ok, EVOLVE (it didn't evolve, or into the wrong species or form, or it evolved when it
+mustn't), NAMES (the form isn't the one the names give), FORM (its form changed in the battle), HANG or STUCK. Needs
+what battle_all_trainers.py needs. From the repo root:
     SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 tools/test/battle_evolutions.py \\
-        decomp/build_test/pokeplatinum.us.nds STATE OUT_DIR [-v] [SPECIES ...]
-SPECIES (a constant) limits the list to the cases that start from those species. Each result is a line in
-OUT_DIR/results.txt.
+        decomp/build_test/pokeplatinum.us.nds STATE OUT_DIR [-v] [--part I/N] [SPECIES ...]
+SPECIES (a constant) limits the list to the cases that start from those species, and --part I/N to every Nth case
+from the Ith (from 0; to run N at once, each with its own OUT_DIR). Each result is a line in OUT_DIR/results.txt.
 """
 import functools
 import json
@@ -37,9 +47,10 @@ import random
 import re
 import struct
 import sys
+import unicodedata
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from battle_all_species import sovereign_forms  # noqa: E402
+from battle_all_species import entries, sovereign_forms  # noqa: E402
 from battle_all_trainers import DECOMP, fight, symbols  # noqa: E402
 from battle_form_changes import FOE, LEAD  # noqa: E402
 from check_trainer_party import consts, form_dirs  # noqa: E402
@@ -53,8 +64,20 @@ GENDER_MALE, GENDER_FEMALE, GENDER_NONE = 0, 1, 2
 # Toxtricity's Low Key natures (Pokemon_SovereignPersonalityForm)
 LOW_KEY = {'NATURE_LONELY', 'NATURE_BOLD', 'NATURE_RELAXED', 'NATURE_TIMID', 'NATURE_SERIOUS', 'NATURE_MODEST',
            'NATURE_MILD', 'NATURE_QUIET', 'NATURE_BASHFUL', 'NATURE_CALM', 'NATURE_GENTLE', 'NATURE_CAREFUL'}
-# Forms that come from the date or the time of day, which the test doesn't set.
-TIMED = {'SPECIES_DEERLING', 'SPECIES_SAWSBUCK', 'SPECIES_LYCANROC', 'SPECIES_ALCREMIE'}
+# struct SovereignTestClock: u8 hour (+ 1), u8 month
+CLOCK = {'hour': 0, 'month': 1}
+DAY, NIGHT, TWILIGHT = 12, 22, 18
+# Forms only a battle gives: no Pokémon is in one when it evolves.
+BATTLE_KINDS = {'SOVEREIGN_FORM_' + kind for kind in ('BATTLE', 'BATTLE_ITEM', 'BATTLE_MOVE', 'MEGA', 'MEGA_BY_MOVE',
+                                                       'PRIMAL', 'ULTRA_BURST')}
+# Pokemon_SovereignEvolutionItem: the Antique Sinistea and the Artisan Poltchageist evolve with these instead.
+TEAPOTS = {('SPECIES_SINISTEA', 'ITEM_CRACKED_POT'): 'ITEM_CHIPPED_POT',
+           ('SPECIES_POLTCHAGEIST', 'ITEM_UNREMARKABLE_TEACUP'): 'ITEM_MASTERPIECE_TEACUP'}
+SWEETS = ['ITEM_STRAWBERRY_SWEET', 'ITEM_LOVE_SWEET', 'ITEM_BERRY_SWEET', 'ITEM_CLOVER_SWEET', 'ITEM_FLOWER_SWEET',
+          'ITEM_STAR_SWEET', 'ITEM_RIBBON_SWEET']
+# Words a form's name differs by that don't make it another form: the official names of the Artisan Poltchageist's
+# line say Masterpiece for Sinistcha, and Standard Galarian Darmanitan is named for its Zen Mode.
+QUALIFIER_ALIASES = {'artisan': 'masterpiece', 'standard': ''}
 
 
 @functools.lru_cache(maxsize=None)
@@ -74,8 +97,8 @@ def form_tables():
 
     regional = {(s, int(f), t): int(tf) for s, f, tf, t in
                 re.findall(r'\{ (SPECIES_\w+), (\d+), (\d+), (SPECIES_\w+) \}', block('sSovereignFormEvolutions'))}
-    items = {(s, i): (t, int(f)) for s, i, t, f in
-             re.findall(r'\{ (SPECIES_\w+), (ITEM_\w+), (SPECIES_\w+), (\d+) \}', block('sSovereignItemEvolutionForms'))}
+    items = {(s, i): (t, int(f)) for s, i, t, f in re.findall(r'\{ (SPECIES_\w+), (ITEM_\w+), (SPECIES_\w+), (\d+) \}',
+                                                              block('sSovereignItemEvolutionForms'))}
     return regional, items
 
 
@@ -95,6 +118,9 @@ class Forms:
     @functools.lru_cache(maxsize=None)
     def ratio(self, species):
         return int(self.ratios[data_of(species)['gender_ratio']])
+
+    def kind(self, species, form):
+        return next((kind for s, f, kind, _ in self.table if (s, f) == (species, form)), None)
 
     @functools.lru_cache(maxsize=None)
     def kinds(self, species):
@@ -119,6 +145,8 @@ class Forms:
             return int(p % 100 == 0)
         if species in ('SPECIES_SINISTEA', 'SPECIES_POLTEAGEIST', 'SPECIES_POLTCHAGEIST', 'SPECIES_SINISTCHA'):
             return int(p % 10 == 0)
+        if species in ('SPECIES_DEERLING', 'SPECIES_SAWSBUCK'):
+            return -1  # the month's season, not the personality's: a Deerling keeps its own as it evolves
         if species == 'SPECIES_VIVILLON':
             pattern = p % 20
             return 0 if pattern == 6 else pattern + 1 if pattern < 6 else pattern
@@ -145,77 +173,198 @@ def find_personality(rng, want):
     return None
 
 
+def norm(word):
+    return re.sub(r'[^a-z0-9]', '', unicodedata.normalize('NFKD', word).encode('ascii', 'ignore').decode().lower())
+
+
+@functools.lru_cache(maxsize=None)
+def form_names():
+    """{(species, form): its name} from the comments in include/data/sovereign_forms.h's sSovereignForms."""
+    text = open(os.path.join(DECOMP, 'include', 'data', 'sovereign_forms.h')).read()
+    text = text[text.index('sSovereignForms['):]
+    return {(s, int(f)): name for s, f, name in
+            re.findall(r'\{ (SPECIES_\w+), (\d+), SOVEREIGN_FORM_\w+, \w+ \}, // (.+)', text[:text.index('};')])}
+
+
+def qualifier(species, form):
+    """What a form's name says besides the species' name ("galarian", "small", "yellow flower"), or None."""
+    name = form_names().get((species, form))
+    if name is None:
+        return None
+    own = set(species[8:].lower().split('_')) | {species[8:].lower().replace('_', '')}
+    words = [norm(w) for w in re.split(r'[\s(),]+', name) if norm(w) and norm(w) not in own]
+    return ' '.join(w for w in (QUALIFIER_ALIASES.get(w, w) for w in words) if w)
+
+
+def lycanroc_form(form, hour):
+    """Pokemon_SovereignSetEvolvedSpecies: Own Tempo Rockruff at twilight (17:00 to 19:59) gives Dusk Lycanroc, 6:00 to
+    17:59 Midday, other hours Midnight."""
+    return 2 if form == 1 and 17 <= hour <= 19 else 0 if 6 <= hour < 18 else 1
+
+
+def alcremie_form(sweet, hour, p):
+    """The Alcremie form whose name has the Sweet's decoration and the cream the time gives (by its name, as
+    Pokemon_SovereignAlcremieForm's comment gives the rule)."""
+    if 17 <= hour <= 19:
+        cream = 'Rainbow Swirl'
+    elif hour >= 20 or hour < 4:
+        cream = ('Matcha Cream', 'Salted Cream', 'Ruby Swirl', 'Caramel Swirl')[p % 4]
+    else:
+        cream = ('Vanilla Cream', 'Ruby Cream', 'Mint Cream', 'Lemon Cream')[p % 4]
+    name = f'Alcremie ({cream}, {sweet[5:].replace("_", " ").title()})'
+    if name == 'Alcremie (Vanilla Cream, Strawberry Sweet)':
+        return 0
+    return next(f for (s, f), n in form_names().items() if s == 'SPECIES_ALCREMIE' and n == name)
+
+
+def setup_for(method, params):
+    """The lead's level, item, move or partner, the evolution's class and parameter, and the hour an evolution needs,
+    or None when the test can't set it up."""
+    setup = {'level': 50, 'gender': 0, 'item': 'ITEM_NONE', 'move': None, 'partner': None,
+             'class': EVO_CLASS_BY_LEVEL, 'param': 0, 'hour': 0, 'month': 0}
+    if method in ('EVO_LEVEL', 'EVO_LEVEL_MALE', 'EVO_LEVEL_FEMALE'):
+        setup['level'] = max(params[0], 2)
+    elif method == 'EVO_LEVEL_HAPPINESS':
+        pass  # full friendship
+    elif method in ('EVO_LEVEL_HAPPINESS_DAY', 'EVO_LEVEL_HAPPINESS_NIGHT'):
+        setup['hour'] = DAY if method.endswith('_DAY') else NIGHT
+    elif method in ('EVO_LEVEL_WITH_HELD_ITEM_DAY', 'EVO_LEVEL_WITH_HELD_ITEM_NIGHT'):
+        setup.update({'item': params[0], 'hour': DAY if method.endswith('_DAY') else NIGHT})
+    elif method in ('EVO_USE_ITEM', 'EVO_USE_ITEM_MALE', 'EVO_USE_ITEM_FEMALE'):
+        setup.update({'class': EVO_CLASS_BY_ITEM, 'param': params[0]})
+    elif method == 'EVO_TRADE':
+        setup['class'] = EVO_CLASS_BY_TRADE
+    elif method == 'EVO_TRADE_WITH_HELD_ITEM':
+        setup.update({'class': EVO_CLASS_BY_TRADE, 'item': params[0]})
+    elif method == 'EVO_LEVEL_KNOW_MOVE':
+        setup['move'] = params[0]
+    elif method == 'EVO_LEVEL_SPECIES_IN_PARTY':
+        setup['partner'] = params[0]
+    elif method in ('EVO_LEVEL_MAGNETIC_FIELD', 'EVO_LEVEL_MOSS_ROCK', 'EVO_LEVEL_ICE_ROCK'):
+        setup['param'] = method  # the map's evolution method
+    else:
+        return None
+    if method.endswith('_MALE'):
+        setup['gender'] = GENDER_MALE + 1
+    elif method.endswith('_FEMALE'):
+        setup['gender'] = GENDER_FEMALE + 1
+    return setup
+
+
 def cases(forms, verbose=False):
     regional, item_forms = form_tables()
-    species_list = consts('species.txt')
     rng = random.Random(1)
     out, skipped = [], []
-    regional_forms = {(s, f) for s, f, kind, _ in forms.table if kind == 'SOVEREIGN_FORM_REGIONAL'}
-    has_forms = {s for s, *_ in forms.table}
-    starts = [(s, f) for s, f in form_dirs() if data_of(s, f).get('evolutions')]
-    starts += [(s, 0) for s in species_list if s.startswith('SPECIES_') and s not in ('SPECIES_NONE', 'SPECIES_EGG',
-                                                                                     'SPECIES_BAD_EGG')
-               and any(e[-1] in has_forms for e in data_of(s).get('evolutions') or [])]
-    for species, form in starts:
-        for method, *params, target in data_of(species, form).get('evolutions') or []:
+    all_forms = entries()
+    kinds = {(s, f): kind for s, f, kind, _ in forms.table}
+    has_forms = {s for s, f in all_forms if f}
+    forms_of = {}
+    for s, f in all_forms:
+        forms_of.setdefault(s, []).append(f)
+
+    def add(c, species, form, target, label, p):
+        c = dict(c, species=species, form=form, target=target, personality=p, label=label)
+        # The form the names give: the target's form named as the start form is ("Galarian", "(Yellow Flower)"), or
+        # its base form if it has none. Not for a target whose gender picks its form.
+        q = qualifier(species, form)
+        c['names_want'] = None
+        if q is not None and target != 'SPECIES_NONE' and forms.kinds(target)[0] is None \
+                and species != 'SPECIES_ROCKRUFF':
+            c['names_want'] = next((f for f in forms_of.get(target, []) if qualifier(target, f) == q), 0)
+        out.append(c)
+
+    for species, form in all_forms:
+        kind = kinds.get((species, form))
+        if kind in BATTLE_KINDS:
+            continue
+        own = data_of(species, form).get('evolutions') or [] if kind == 'SOVEREIGN_FORM_REGIONAL' else \
+            data_of(species).get('evolutions') or []
+        base = data_of(species).get('evolutions') or []
+        if not form and species not in has_forms and not any(e[-1] in has_forms for e in base):
+            continue
+        evolutions = [(e, False) for e in own]
+        if kind == 'SOVEREIGN_FORM_REGIONAL' and not own:
+            evolutions = [(e, True) for e in base]  # it can't evolve (a cap Pikachu, Partner Eevee, Eternal Floette)
+        for (method, *params, target), never in evolutions:
             label = f'{species} {form} -> {target} ({method} {" ".join(map(str, params))})'
-            setup = {'level': 50, 'gender': 0, 'item': 'ITEM_NONE', 'move': None, 'partner': None,
-                     'class': EVO_CLASS_BY_LEVEL, 'param': 0}
-            if method in ('EVO_LEVEL', 'EVO_LEVEL_MALE', 'EVO_LEVEL_FEMALE'):
-                setup['level'] = max(params[0], 2)
-            elif method == 'EVO_LEVEL_HAPPINESS':
-                pass  # full friendship
-            elif method in ('EVO_USE_ITEM', 'EVO_USE_ITEM_MALE', 'EVO_USE_ITEM_FEMALE'):
-                setup.update({'class': EVO_CLASS_BY_ITEM, 'param': params[0]})
-            elif method == 'EVO_TRADE':
-                setup['class'] = EVO_CLASS_BY_TRADE
-            elif method == 'EVO_TRADE_WITH_HELD_ITEM':
-                setup.update({'class': EVO_CLASS_BY_TRADE, 'item': params[0]})
-            elif method == 'EVO_LEVEL_KNOW_MOVE':
-                setup['move'] = params[0]
-            elif method == 'EVO_LEVEL_SPECIES_IN_PARTY':
-                setup['partner'] = params[0]
-            elif method in ('EVO_LEVEL_MAGNETIC_FIELD', 'EVO_LEVEL_MOSS_ROCK', 'EVO_LEVEL_ICE_ROCK'):
-                setup['param'] = method  # the map's evolution method
-            else:
+            setup = setup_for(method, params)
+            if setup is None:
                 skipped.append(label + ': the test can\'t set this up')
                 continue
-            if target in TIMED or species in TIMED:
-                skipped.append(label + ': the form comes from the time or the date')
-                continue
-            if method.endswith('_MALE'):
-                setup['gender'] = GENDER_MALE + 1
-            elif method.endswith('_FEMALE'):
-                setup['gender'] = GENDER_FEMALE + 1
-            # The variants whose forms differ: each target form a personality can give, and each gender.
-            variants = sorted(forms.forms_of(target) | {0}) if forms.forms_of(target) else [None]
-            for want_form in variants:
-                def ok(p, want_form=want_form):
-                    if setup['gender'] and forms.gender_of(species, p) != setup['gender'] - 1:
-                        return False
-                    own = forms.personality_form(species, p)
-                    if own >= 0 and own != form:
-                        return False  # the start form must be the one its personality gives
-                    return want_form is None or forms.personality_form(target, p) == want_form
-                p = find_personality(rng, ok)
-                if p is None:
-                    if want_form is not None:
-                        skipped.append(f'{label}: no personality gives form {want_form}')
-                    continue
-                if setup['class'] == EVO_CLASS_BY_ITEM and (species, setup['param']) in item_forms:
-                    want = item_forms[(species, setup['param'])][1]
-                elif (species, form) in regional_forms:
-                    want = regional.get((species, form, target), 0)
-                else:
-                    want = form
-                if forms.personality_form(target, p) >= 0:
-                    want = forms.personality_form(target, p)
-                out.append(dict(setup, species=species, form=form, target=target, want=want, personality=p,
-                                label=label))
+            items = [setup['item'] if setup['class'] != EVO_CLASS_BY_ITEM else setup['param']]
+            if species == 'SPECIES_MILCERY':
+                items = SWEETS
+            teapot = TEAPOTS.get((species, setup['param']))
+            hours = [setup['hour']]
+            if species in ('SPECIES_ROCKRUFF', 'SPECIES_MILCERY'):
+                hours = [DAY, NIGHT, TWILIGHT]
+            for item in items:
+                for hour in hours:
+                    run = dict(setup, hour=hour)
+                    if setup['class'] == EVO_CLASS_BY_ITEM:
+                        run['param'] = item
+                    if species == 'SPECIES_DEERLING':
+                        run['month'] = (form + 1) % 4 + 1  # a season other than its own: it keeps its own
+                    # The variants whose forms differ: each target form a personality can give, each cream.
+                    variants = sorted(forms.forms_of(target) | {0}) if forms.forms_of(target) and not never \
+                        and species != 'SPECIES_DEERLING' else [None]
+                    if species == 'SPECIES_MILCERY':
+                        variants = [0] if hour == TWILIGHT else [0, 1, 2, 3]
+                    found = 0
+                    for variant in variants:
+                        def ok(p, variant=variant):
+                            if run['gender'] and forms.gender_of(species, p) != run['gender'] - 1:
+                                return False
+                            mine = forms.personality_form(species, p)
+                            if mine >= 0 and mine != form and kind != 'SOVEREIGN_FORM_REGIONAL':
+                                return False  # the start form is the one its personality gives (not Eternal Floette's)
+                            if species == 'SPECIES_MILCERY':
+                                return p % 4 == variant
+                            return variant is None or forms.personality_form(target, p) == variant
+                        p = find_personality(rng, ok)
+                        if p is None:
+                            continue  # this start form can't evolve into that one (a Small Pumpkaboo into a Large)
+                        found += 1
+                        tags = ([item] if species == 'SPECIES_MILCERY' else []) + ([f'{hour}:00'] if hour else []) + \
+                            ([f'month {run["month"]}'] if run['month'] else [])
+                        name = label + (f' [{", ".join(tags)}]' if tags else '')
+                        if never:
+                            add(dict(run, want=None), species, form, 'SPECIES_NONE', name + ' (can\'t evolve)', p)
+                            continue
+                        if teapot:
+                            # Only the Antique or Artisan one evolves with the Chipped Pot or Masterpiece Teacup.
+                            if form:
+                                add(dict(run, want=None), species, form, 'SPECIES_NONE', f'{name} (needs {teapot})', p)
+                                run = dict(run, param=teapot)
+                                name = f'{name} [{teapot}]'
+                            else:
+                                add(dict(run, param=teapot, want=None), species, form, 'SPECIES_NONE',
+                                    f'{name} [{teapot}] (an ordinary one)', p)
+                        want = expected(forms, regional, item_forms, species, form, target, run, p)
+                        add(dict(run, want=want), species, form, target, name, p)
+                    if not found:
+                        skipped.append(label + ': no personality gives this start form')
     if verbose:
         for line in skipped:
             print('left out:', line)
     return out
+
+
+def expected(forms, regional, item_forms, species, form, target, run, p):
+    """The form it must evolve into, as src/pokemon.c gives it."""
+    if species == 'SPECIES_ROCKRUFF':
+        return lycanroc_form(form, run['hour'])
+    if species == 'SPECIES_MILCERY':
+        return alcremie_form(run['param'], run['hour'], p)
+    if run['class'] == EVO_CLASS_BY_ITEM and (species, run['param']) in item_forms:
+        want = item_forms[(species, run['param'])][1]
+    elif forms.kind(species, form) == 'SOVEREIGN_FORM_REGIONAL':
+        want = regional.get((species, form, target), 0)
+    else:
+        want = form
+    if species != 'SPECIES_DEERLING' and forms.personality_form(target, p) >= 0:
+        want = forms.personality_form(target, p)
+    return want
 
 
 def main():
@@ -225,15 +374,21 @@ def main():
     verbose = '-v' in args
     if verbose:
         args.remove('-v')
+    part, parts = 0, 1
+    if '--part' in args:
+        at = args.index('--part')
+        part, parts = map(int, args[at + 1].split('/'))
+        del args[at:at + 2]
     rom, state, out = args[:3]
     only = set(args[3:])
     os.makedirs(out, exist_ok=True)
     species_ids, items, moves = consts('species.txt'), consts('items.txt'), consts('moves.txt')
     methods = consts('evolution_methods.txt')
     sym = symbols(('gSovereignTestLead', 'gSovereignTestWild', 'gSovereignTestPartner', 'gSovereignTestEvolve',
-                   'gSovereignTestLeadFormAfter', 'gSovereignTestFoeSurvivesTurns', 'gSovereignTestGodMode',
-                   'gSovereignTestIdleFrames', 'gSystem'))
-    chosen = [(i, c) for i, c in enumerate(cases(Forms(), verbose)) if not only or c['species'] in only]
+                   'gSovereignTestClock', 'gSovereignTestLeadFormAfter', 'gSovereignTestFoeSurvivesTurns',
+                   'gSovereignTestGodMode', 'gSovereignTestIdleFrames', 'gSystem'))
+    chosen = [(i, c) for i, c in enumerate(cases(Forms(), verbose))
+              if (not only or c['species'] in only) and i % parts == part]
     d = Driver(rom, state)
     d.added, d.armed = [], False
     mem = d.emu.memory
@@ -245,7 +400,9 @@ def main():
     with open(os.path.join(out, 'results.txt'), 'w') as f:
         for index, c in chosen:
             d.emu.savestate.load_file(state)
-            d.run(30)
+            mem.write_byte(sym['gSovereignTestClock'] + CLOCK['hour'], c['hour'] + 1 if c['hour'] else 0)
+            mem.write_byte(sym['gSovereignTestClock'] + CLOCK['month'], c['month'])
+            d.run(30)  # the game reads the clock every 10 frames (rtc.c)
             lead, wild, evolve = sym['gSovereignTestLead'], sym['gSovereignTestWild'], sym['gSovereignTestEvolve']
             mem.write_short(lead + LEAD['species'], species_ids.index(c['species']))
             mem.write_byte(lead + LEAD['form'], c['form'])
@@ -254,7 +411,8 @@ def main():
             if c['move']:
                 mem.write_short(lead + LEAD['moves'] + 6, moves.index(c['move']))  # its fourth move
             mem.write_byte(lead + LEAD_EXTRA['friendship'], 255)
-            mem.write_long(lead + LEAD_EXTRA['personality'], c['personality'])
+            mem.write_short(lead + LEAD_EXTRA['personality'], c['personality'] & 0xFFFF)
+            mem.write_short(lead + LEAD_EXTRA['personality'] + 2, c['personality'] >> 16)
             if c['partner']:
                 mem.write_short(sym['gSovereignTestPartner'], species_ids.index(c['partner']))
                 mem.write_byte(sym['gSovereignTestPartner'] + 3, 50)
@@ -272,21 +430,28 @@ def main():
             d.press('SELECT')
             result, frames = fight(d, sym, FRAME_LIMIT)
 
-            target, species, form = (species_ids[u16(evolve + EVOLVE['target'])], species_ids[u16(evolve + EVOLVE['species'])],
-                                     mem.unsigned[evolve + EVOLVE['form']])
+            target = species_ids[u16(evolve + EVOLVE['target'])]
+            species, form = species_ids[u16(evolve + EVOLVE['species'])], mem.unsigned[evolve + EVOLVE['form']]
             after = mem.unsigned[sym['gSovereignTestLeadFormAfter']]
             problems = []
-            if (target, species, form) != (c['target'], c['target'], c['want']):
-                problems.append(f'evolved into {species} form {form} (target {target}), want {c["target"]} form '
-                                f'{c["want"]}')
+            if c['target'] == 'SPECIES_NONE':
+                want = ('SPECIES_NONE', c['species'], c['form'])  # it stays as it is
+            else:
+                want = (c['target'], c['target'], c['want'])
+            if (target, species, form) != want:
+                problems.append(f'became {species} form {form} (target {target}), want {want[1]} form {want[2]}')
                 result = 'EVOLVE' if result == 'ok' else result + '+EVOLVE'
+            elif c['names_want'] is not None and c['names_want'] != form:
+                problems.append(f'the forms\' names give form {c["names_want"]}')
+                result = 'NAMES' if result == 'ok' else result + '+NAMES'
             elif after != form:
                 problems.append(f'form after the battle {after}, want {form}')
                 result = 'FORM' if result == 'ok' else result + '+FORM'
             if result != 'ok':
                 d.screenshot().save(os.path.join(out, f'{index:03d}_{c["species"]}_{result}.png'))
                 bad += 1
-            line = f'{index} {c["label"]} personality {c["personality"]:08x} -> form {c["want"]}: {result} {frames}' + \
+            line = f'{index} {c["label"]} personality {c["personality"]:08x} -> ' \
+                f'{"no evolution" if c["want"] is None else "form " + str(c["want"])}: {result} {frames}' + \
                 (' | ' + '; '.join(problems) if problems else '')
             print(line, file=f, flush=True)
             print(line, flush=True)

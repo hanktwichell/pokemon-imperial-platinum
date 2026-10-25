@@ -47,6 +47,28 @@ struct SovereignTestEvolve {
     u8 form;
 };
 
+// Breeds two Pokémon in the Day Care before the battle, as Daycare_GiveEggFromDaycare does with this offspring
+// personality, and hatches the Egg at once (Egg_CreateHatchedMon) as the party's lead. The game writes the Egg's
+// species and form and the hatched Pokémon's afterwards.
+struct SovereignTestBreed {
+    u16 species[2];
+    u8 forms[2];
+    u8 genders[2]; // GENDER_MALE + 1 or GENDER_FEMALE + 1, or 0 for any
+    u16 items[2]; // what they hold (an incense)
+    u32 personality; // the Egg's
+    u8 breed; // when set, it breeds
+    u8 eggForm;
+    u16 eggSpecies;
+    u16 hatchedSpecies;
+    u8 hatchedForm;
+};
+
+// The clock the game reads instead of the DS's (rtc.c), so a test can pick the time of day and the season.
+struct SovereignTestClock {
+    u8 hour; // when set, the hour + 1
+    u8 month; // when set, the month (1 to 12)
+};
+
 struct SovereignTestPartner {
     u16 species;
     u8 form;
@@ -79,7 +101,12 @@ extern struct SovereignTestLead gSovereignTestLead;
 extern struct SovereignTestPartner gSovereignTestPartner;
 // When item is set, the next test battle uses it on the lead first (see struct SovereignTestItemUse).
 extern struct SovereignTestItemUse gSovereignTestItemUse;
+// When evolve is set, the next test battle evolves the lead first, after the item use (see struct SovereignTestEvolve).
 extern struct SovereignTestEvolve gSovereignTestEvolve;
+// When breed is set, the next test battle first breeds two Pokémon and hatches the Egg (see struct SovereignTestBreed).
+extern struct SovereignTestBreed gSovereignTestBreed;
+// While a field is set, the game's clock reads that hour or month (see struct SovereignTestClock).
+extern struct SovereignTestClock gSovereignTestClock;
 // The first form a battle form change gave a Pokémon on the player's side (Mega Evolution, Primal Reversion, Ultra
 // Burst...; BattleSystem_SovereignChangeBattleForm), and the lead's form once the test battle is over (field_control.c).
 extern u8 gSovereignTestPlayerBattleForm;

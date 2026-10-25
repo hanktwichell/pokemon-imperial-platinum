@@ -5546,9 +5546,10 @@ void Pokemon_SovereignSetEvolvedSpecies(Pokemon *mon, u16 targetSpecies, int evo
 
     Pokemon_SetValue(mon, MON_DATA_SPECIES, &targetSpecies);
 
-    // A female evolving into a species with a female's form (Espurr into Meowstic) takes it.
+    // A female evolving into a species with a female's form (Espurr into Meowstic) takes it. A Deerling keeps the season
+    // it was met in, which Sawsbuck's personality form would take from today's date.
     int personalityForm = Pokemon_SovereignPersonalityForm(targetSpecies, Pokemon_GetValue(mon, MON_DATA_PERSONALITY, NULL));
-    if (personalityForm >= 0) {
+    if (personalityForm >= 0 && species != SPECIES_DEERLING) {
         Pokemon_SetValue(mon, MON_DATA_FORM, &personalityForm);
     }
 }
@@ -5583,8 +5584,9 @@ void Pokemon_SovereignSetDefaultMoves(Pokemon *mon)
 }
 
 // Sovereign (FM): the form of an Egg of eggSpecies from a parent of this species and form: its regional form
-// (Alolan Ninetales: Alolan Vulpix; Perrserker: Galarian Meowth), or 0. -1 if the parent has no regional rule, so the
-// Egg takes the parent's form as in Platinum.
+// (Alolan Ninetales: Alolan Vulpix; Perrserker: Galarian Meowth), or 0. A parent in any other Sovereign form (a Totem,
+// a female's form, Low Key Toxtricity) passes on none: 0, and the Egg's own personality may give it one. -1 for a
+// Platinum form (Burmy's cloak, Shellos's sea), which the Egg takes from its mother as in Platinum.
 int Pokemon_SovereignBabyForm(u16 species, int form, u16 eggSpecies)
 {
     for (int i = 0; i < NELEMS(sSovereignBabyForms); i++) {
@@ -5599,7 +5601,7 @@ int Pokemon_SovereignBabyForm(u16 species, int form, u16 eggSpecies)
         }
     }
 
-    return -1;
+    return Pokemon_FindSovereignForm(species, form) != NULL ? 0 : -1;
 }
 
 // Sovereign (E8): TRUE for a Mega or Primal form (the HP bar shows the Mega symbol).

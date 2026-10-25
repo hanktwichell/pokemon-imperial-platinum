@@ -62,7 +62,8 @@ def main():
     L.append("An Egg hatches into its parent's regional form (the mother's, or the parent that isn't Ditto), or the base "
              "form when the baby has no form of that region. These species hatch from Eggs in their regional form, as "
              "in the official games: " + ", ".join(
-                 f"{names[stem]} → {forms[ident]}" for stem, ident in data["regional_parents"].items()) + ".\n")
+                 f"{names[re.sub(r'[^a-z0-9]', '', stem)]} → {forms[ident]}"
+                 for stem, ident in data["regional_parents"].items()) + ".\n")
     with open(os.path.join(ROOT, "docs", "EvolutionChanges_Sovereign.md"), "w", encoding="utf-8") as f:
         f.write("\n".join(L))
     for n in missing:

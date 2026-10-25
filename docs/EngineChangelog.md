@@ -4,6 +4,44 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Playtest pass — evolving into forms
+
+**Fixes:**
+- **A female Espurr or Lechonk can evolve.** Their only evolution was "level 25 (18) as a male", so a female never
+  became Meowstic or Oinkologne. Either gender now evolves at the same level, and the gender picks the form (a female
+  becomes the female's form). The species generator (`tools/engine/gen_new_species.py`) now turns a male and a female
+  evolution by the same method into one, for any species like them.
+- **A Deerling keeps its season when it evolves.** A Sawsbuck took the season of the day it evolved instead, so a
+  Deerling met in spring could become a summer Sawsbuck.
+
+**`tools/test/battle_evolutions.py` (local; about 20 minutes in 4 parts)** evolves every Pokémon whose evolution
+involves a form, as the evolution screen does, then battles in its new form. There are 336 cases:
+- **Start forms:** every form but the battle forms. A regional form evolves by its own evolutions (Galarian Meowth
+  into Perrserker, the Hisuian, Alolan and Paldean lines, the Basculin stripes, Roaming Gimmighoul). Any other form
+  evolves by its species' (the Flabébé and Scatterbug lines' colors and patterns, Pumpkaboo's sizes, Burmy's cloaks,
+  Deerling's seasons, the teapots), and so does each base form.
+- **Variants:** each form the evolution can give, such as each gender for Meowstic, Basculegion and Oinkologne, a
+  Low Key Toxtricity, the Antique and Artisan teapots, and Rapid Strike Urshifu.
+  - **Milcery:** every one of Alcremie's 63 forms (each Sweet with each cream).
+  - **Rockruff:** Midday, Midnight and Dusk Lycanroc by the hour.
+  - **Day and night evolutions:** Hisuian Sneasel into Sneasler, and Espeon and Umbreon.
+- **Forms that must not evolve** don't: the cap and costume Pikachu, Partner Pikachu and Eevee, Eternal Floette and
+  Spiky-eared Pichu. An Antique Sinistea doesn't evolve with the Cracked Pot, nor an ordinary one with the Chipped Pot
+  (the teacups the same).
+
+Each case checks that it evolves into the right species and form, and that the form lasts through a battle. The
+expected form is worked out as the game's rules give it. The names cross-check it: Galarian Darumaka must become
+Galarian Darmanitan, and Flabébé (Yellow Flower) must become Floette (Yellow Flower). Alcremie must be named for its
+Sweet and the cream the time gives.
+
+**Results:** RESULTS
+
+**Test-build hooks** (`include/sovereign_test.h`):
+- `gSovereignTestEvolve`: evolves the lead before the battle, with an evolution's class and item or map method.
+- `gSovereignTestClock`: the hour and month the game's clock reads (`rtc.c`).
+- `gSovereignTestLead` also sets the personality, gender and friendship.
+
+
 ## Playtest pass — form-change key items and held-item forms
 
 **`tools/test/battle_form_changes.py` now also covers the forms the player changes outside battle** (210 cases in all,
