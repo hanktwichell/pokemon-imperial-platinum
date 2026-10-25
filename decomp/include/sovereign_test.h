@@ -9,6 +9,7 @@ struct SovereignTestWarpTarget {
     u16 mapHeaderID;
     u16 x;
     u16 z;
+    u16 dir; // when set, the way the player faces + 1 (FACE_UP + 1...); else down
 };
 
 struct SovereignTestWild {

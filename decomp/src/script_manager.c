@@ -880,7 +880,9 @@ u8 gSovereignTestFoeSurvivesTurns;
 void SovereignTest_WarpNext(FieldSystem *fieldSystem)
 {
     if (gSovereignTestWarpTarget.mapHeaderID != 0) {
-        FieldTask_StartMapChangeFly(fieldSystem, gSovereignTestWarpTarget.mapHeaderID, -1, gSovereignTestWarpTarget.x, gSovereignTestWarpTarget.z, FACE_DOWN);
+        int dir = gSovereignTestWarpTarget.dir ? gSovereignTestWarpTarget.dir - 1 : FACE_DOWN;
+
+        FieldTask_StartMapChangeFly(fieldSystem, gSovereignTestWarpTarget.mapHeaderID, -1, gSovereignTestWarpTarget.x, gSovereignTestWarpTarget.z, dir);
         gSovereignTestWarpTarget.mapHeaderID = 0;
         return;
     }
