@@ -38,8 +38,9 @@ import struct
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from battle_all_trainers import HANG_FRAMES, SWITCH_FRAMES, TAPS, VBLANK_COUNTER  # noqa: E402
+from battle_all_trainers import HANG_FRAMES, SWITCH_FRAMES, TAPS, VBLANK_COUNTER, heap_info  # noqa: E402
 from battle_evolutions import data_of  # noqa: E402
+from heap_check import heap_problems  # noqa: E402
 from talk_to_objects import (DECOMP, FRAME_LIMIT, START_FRAMES, SYMBOLS, arrive, cases as talk_cases,  # noqa: E402
                              parse_args, symbols, u32, var_ids)
 
@@ -187,8 +188,8 @@ def talk_and_answer(d, sym, answers, limit=FRAME_LIMIT, press_a=True, done=None)
     counted as the script shows it, before it reads any input, so A is never pressed into one the test hasn't seen.
     Without press_a, it plays out a script that starts on its own (a scene on entering a map); with done, it stops as
     soon as done() is true, with all the answers given, even if the script goes on.
-    Returns ('ok', 'NOSCRIPT', 'HANG', 'STUCK' or 'MENU ...' (a menu with no answer, or of the wrong kind, or answers
-    left over), frames)."""
+    Returns ('ok', 'NOSCRIPT', 'HANG', 'STUCK', 'HEAP' (as in talk_to_objects.play_out) or 'MENU ...' (a menu with no
+    answer, or of the wrong kind, or answers left over), frames)."""
     answers = list(answers)
     menu = sym['gSovereignTestMenu']
     seen = u32(d, menu)
@@ -206,12 +207,12 @@ def talk_and_answer(d, sym, answers, limit=FRAME_LIMIT, press_a=True, done=None)
         if stalled >= HANG_FRAMES:
             return 'HANG', frames
         if done and not answers and done():
-            return 'ok', frames
+            return heap_result(d), frames
         if u32(d, sym['gSovereignTestIdleFrames']) != before:
             if started:
                 idle += 1
                 if idle >= 2:
-                    return ('ok' if not answers else f'MENU {len(answers)} answers left'), frames
+                    return (heap_result(d) if not answers else f'MENU {len(answers)} answers left'), frames
             elif frames >= START_FRAMES:
                 return 'NOSCRIPT', frames
             continue
@@ -244,6 +245,11 @@ def talk_and_answer(d, sym, answers, limit=FRAME_LIMIT, press_a=True, done=None)
         else:  # the move a tap opens in a battle
             d.touch(*TAPS[frames // SWITCH_FRAMES % len(TAPS)], frames=4, after=0)
     return 'STUCK', frames
+
+
+def heap_result(d):
+    """'ok', or 'HEAP' when a heap's block lists are broken (heap_check.py)."""
+    return 'HEAP' if heap_problems(d.emu.memory, heap_info()) else 'ok'
 
 
 def note_party(d, sym):

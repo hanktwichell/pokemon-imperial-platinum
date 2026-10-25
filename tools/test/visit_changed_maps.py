@@ -7,8 +7,10 @@ middle of one of its blocks. It warps there in the test build (it writes the pla
 presses SELECT+L+R; src/script_manager.c) and waits until the field is idle on that map, which is when
 gSovereignTestIdleFrames (src/field_system.c) counts up: no script, warp or battle is running.
 
-A map that isn't idle within the time limit is a FAIL. That is a crash or a hang, or a scene on entry: B is pressed
-now and then to page through text, which isn't enough for a battle or a long scene. Each map's last screen is saved.
+A map that is idle but leaves a heap's block lists broken (heap_check.py) is a HEAP: a failed load freed, say,
+which crashes the game or writes over memory later. A map that isn't idle within the time limit is a FAIL. That is a
+crash or a hang, or a scene on entry: B is pressed now and then to page through text, which isn't enough for a battle
+or a long scene. Each map's last screen is saved.
 Re-run the FAILs with --scene, which presses A, waits longer and saves a screen every 600 frames, to tell them apart.
 
 Needs the test build (tools/test/build_test_rom.sh) with its symbol map (decomp/build_test/main.nef.xMAP), a save
@@ -27,6 +29,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from check_object_tiles import COLLISION, VANILLA_REF, Maps  # noqa: E402
+from heap_check import heap_info_address, heap_problems  # noqa: E402
 
 DECOMP = 'decomp'
 SYMBOLS = ('gSovereignTestWarpTarget', 'gSovereignTestIdleFrames', 'gSovereignTestIdleMapHeaderID')
@@ -91,6 +94,7 @@ def main():
     only = {int(a) for a in sys.argv[4:] if a.isdigit()}
     os.makedirs(out, exist_ok=True)
     target_addr, idle_addr, map_addr = symbol_addresses()
+    heaps = heap_info_address()
     d = Driver(rom, state)
 
     def u32(addr):
@@ -116,10 +120,11 @@ def main():
                 d.screenshot().save(os.path.join(out, f'{i:03d}_{frames:05d}.png'))
             if idle == 0 and frames % (60 if scene else 120) == 0:
                 d.press('A' if scene else 'B', frames=4, after=4)
-        ok = idle >= 2
-        d.screenshot().save(os.path.join(out, f'{i:03d}_{name}_{"ok" if ok else "FAIL"}.png'))
-        print(i, name, 'ok' if ok else 'FAIL', frames, 'on', u32(map_addr), flush=True)
-        if not ok:
+        problems = heap_problems(d.emu.memory, heaps) if idle >= 2 else []
+        result = 'FAIL' if idle < 2 else 'HEAP' if problems else 'ok'
+        d.screenshot().save(os.path.join(out, f'{i:03d}_{name}_{result}.png'))
+        print(i, name, result, frames, 'on', u32(map_addr), *problems, flush=True)
+        if result != 'ok':
             failures.append(i)
     print('failures:', ' '.join(map(str, failures)) or 'none')
     sys.exit(1 if failures else 0)
