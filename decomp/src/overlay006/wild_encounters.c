@@ -1117,6 +1117,7 @@ static void ApplySlotForm(Pokemon *mon, int slotSpecies)
         Pokemon_SetValue(mon, MON_DATA_FORM, &form);
         Pokemon_CalcAbility(mon);
         Pokemon_CalcLevelAndStats(mon);
+        Pokemon_SovereignSetDefaultMoves(mon); // the form's level-up moves, not the base form's
     }
 }
 

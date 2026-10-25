@@ -753,6 +753,11 @@ static void Egg_SetInitialData(Pokemon *mon, u16 species, Daycare *daycare, u32 
 
     Pokemon_SetValue(mon, MON_DATA_FORM, &form);
 
+    // Sovereign (FM): a regional form's Egg starts with that form's level-up moves, not the base form's.
+    if (form != 0) {
+        Pokemon_SovereignSetDefaultMoves(mon);
+    }
+
     string = MessageUtil_SpeciesName(SPECIES_EGG, HEAP_ID_FIELD1);
 
     Pokemon_SetValue(mon, MON_DATA_NICKNAME_STRING, string);

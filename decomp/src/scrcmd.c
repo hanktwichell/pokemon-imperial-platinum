@@ -4090,8 +4090,8 @@ static BOOL ScrCmd_SovereignCheckSpeciesCaught(ScriptContext *ctx)
     return FALSE;
 }
 
-// Sovereign (FM): sets a party Pokémon's form, with its ability and stats, and registers the form in the Pokédex (a
-// gift in a form: Battle Bond Greninja, right after GivePokemon).
+// Sovereign (FM): sets a party Pokémon's form, with its ability, stats and level-up moves, and registers the form in the
+// Pokédex (a gift in a form: Battle Bond Greninja, right after GivePokemon).
 static BOOL ScrCmd_SovereignSetPartyMonForm(ScriptContext *ctx)
 {
     u16 partySlot = ScriptContext_GetVar(ctx);
@@ -4101,6 +4101,7 @@ static BOOL ScrCmd_SovereignSetPartyMonForm(ScriptContext *ctx)
     Pokemon_SetValue(mon, MON_DATA_FORM, &form);
     Pokemon_CalcAbility(mon);
     Pokemon_CalcLevelAndStats(mon);
+    Pokemon_SovereignSetDefaultMoves(mon);
     Pokedex_Capture(SaveData_GetPokedex(ctx->fieldSystem->saveData), mon);
     return FALSE;
 }
@@ -4386,6 +4387,7 @@ static BOOL ScrCmd_SovereignFinishEventGift(ScriptContext *ctx)
     Pokemon_SetValue(mon, MON_DATA_FORM, &form);
     Pokemon_CalcAbility(mon);
     Pokemon_CalcLevelAndStats(mon);
+    Pokemon_SovereignSetDefaultMoves(mon); // the form's level-up moves (Bloodmoon Ursaluna's are its own)
 
     if (sSovereignEventGifts[index][EVENT_GIFT_MOVE] != MOVE_NONE) {
         Pokemon_ResetMoveSlot(mon, sSovereignEventGifts[index][EVENT_GIFT_MOVE], LEARNED_MOVES_MAX - 1);

@@ -11,10 +11,18 @@ struct SovereignTestWarpTarget {
     u16 z;
 };
 
+struct SovereignTestWild {
+    u16 species;
+    u8 form;
+    u8 level;
+};
+
 // When mapHeaderID is set, the next SELECT+L+R warps here instead of to the next test location (script_manager.c).
 extern struct SovereignTestWarpTarget gSovereignTestWarpTarget;
 // When set, the next SELECT+R battles this trainer instead of TRAINER_SOVEREIGN_TEST (field_control.c).
 extern u16 gSovereignTestBattleTrainer;
+// When species is set, the next SELECT battles this wild Pokémon instead of a Chansey (field_control.c).
+extern struct SovereignTestWild gSovereignTestWild;
 // While set (god mode), test battles are one-sided, so one sends out every Pokémon the opponent has:
 // - a foe that loses any HP loses all of it, and the player's Pokémon lose none (BtlCmd_UpdateHealthBarValue);
 // - the player's moves ignore the foes' abilities (Battler_IgnorableAbility);

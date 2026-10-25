@@ -186,9 +186,9 @@ void FieldInput_Update(FieldInput *input, FieldSystem *fieldSystem, u16 pressedK
 static int sSovereignTestBattleResult;
 static u8 sSovereignTestTotemTrial;
 
-// Test build only (meson -Dsovereign_test=true): a wild battle (Chansey Lv. 30); with env 1 a trainer battle
-// (TRAINER_SOVEREIGN_TEST, or the trainer a test harness wrote to gSovereignTestBattleTrainer); with env 2 the next
-// Totem trial (data/totem_trials.yaml, in order).
+// Test build only (meson -Dsovereign_test=true): a wild battle (Chansey Lv. 30, or the Pokémon a test harness wrote to
+// gSovereignTestWild); with env 1 a trainer battle (TRAINER_SOVEREIGN_TEST, or the trainer a test harness wrote to
+// gSovereignTestBattleTrainer); with env 2 the next Totem trial (data/totem_trials.yaml, in order).
 static BOOL SovereignTest_BattleTask(FieldTask *task)
 {
     int *state = FieldTask_GetState(task);
@@ -202,6 +202,9 @@ static BOOL SovereignTest_BattleTask(FieldTask *task)
 
             gSovereignTestBattleTrainer = TRAINER_NONE;
             Encounter_NewVsTrainer(task, trainer, TRAINER_NONE, TRAINER_NONE, HEAP_ID_FIELD2, &sSovereignTestBattleResult);
+        } else if (gSovereignTestWild.species != SPECIES_NONE) {
+            Encounter_SovereignTestNewVsWildForm(task, gSovereignTestWild.species, gSovereignTestWild.form, gSovereignTestWild.level, &sSovereignTestBattleResult);
+            gSovereignTestWild.species = SPECIES_NONE;
         } else {
             Encounter_NewVsSpeciesAtLevel(task, SPECIES_CHANSEY, 30, &sSovereignTestBattleResult, FALSE);
         }
