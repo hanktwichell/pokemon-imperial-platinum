@@ -870,7 +870,7 @@ static u8 sSovereignTestWarpIndex;
 // tools/test/battle_all_species.py the wild Pokémon, and tools/test/battle_form_changes.py the lead, the wild Pokémon
 // and how many turns it survives.
 struct SovereignTestWarpTarget gSovereignTestWarpTarget;
-struct SovereignTestVar gSovereignTestVar;
+struct SovereignTestVar gSovereignTestVar[SOVEREIGN_TEST_VARS];
 struct SovereignTestScripts gSovereignTestScripts;
 struct SovereignTestWildSurvey gSovereignTestWildSurvey;
 u8 gSovereignTestPartyKeep;
@@ -923,13 +923,29 @@ void SovereignTest_WarpNext(FieldSystem *fieldSystem)
 
     gSovereignTestBadges = 0;
 
-    if (gSovereignTestVar.var != 0) {
-        *FieldSystem_GetVarPointer(fieldSystem, gSovereignTestVar.var) = gSovereignTestVar.value;
-        gSovereignTestVar.var = 0;
+    BOOL setVar = FALSE;
 
-        if (gSovereignTestWarpTarget.mapHeaderID == 0) {
-            return;
+    for (int i = 0; i < SOVEREIGN_TEST_VARS; i++) {
+        struct SovereignTestVar *testVar = &gSovereignTestVar[i];
+
+        if (testVar->var == 0) {
+            continue;
         }
+
+        if (testVar->var >= VARS_START) {
+            *FieldSystem_GetVarPointer(fieldSystem, testVar->var) = testVar->value;
+        } else if (testVar->value != 0) {
+            FieldSystem_SetFlag(fieldSystem, testVar->var);
+        } else {
+            FieldSystem_ClearFlag(fieldSystem, testVar->var);
+        }
+
+        testVar->var = 0;
+        setVar = TRUE;
+    }
+
+    if (setVar && gSovereignTestWarpTarget.mapHeaderID == 0) {
+        return;
     }
 
     if (gSovereignTestWarpTarget.mapHeaderID != 0) {

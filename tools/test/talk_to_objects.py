@@ -205,6 +205,12 @@ def play_out(d, sym, limit, header=None, press_a=True):
 def warp(d, sym, header, x, z, dir):
     """Warp to the tile on the header's map facing dir (enum FaceDirection + 1, or 0 for down) and play out what
     starts on the way in. Returns play_out's result."""
+    start_warp(d, sym, header, x, z, dir)
+    return play_out(d, sym, FRAME_LIMIT, header, press_a=False)
+
+
+def start_warp(d, sym, header, x, z, dir):
+    """Start the warp warp() makes, and leave what follows to the caller."""
     mem, target = d.emu.memory, sym['gSovereignTestWarpTarget']
     mem.write_short(target + WARP['x'], x)
     mem.write_short(target + WARP['z'], z)
@@ -218,7 +224,6 @@ def warp(d, sym, header, x, z, dir):
         d.run(10 + attempt % 2)
         if u32(d, sym['gSovereignTestIdleFrames']) - before < 10:
             break
-    return play_out(d, sym, FRAME_LIMIT, header, press_a=False)
 
 
 def arrive(d, sym, state, variables, events, header, way_in, x, z, face, setup=None):

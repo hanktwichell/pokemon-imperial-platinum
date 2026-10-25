@@ -4,6 +4,56 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Playtest pass — Elite Four runs
+
+A new test, `tools/test/elite_four_runs.py`, plays the Elite Four and the Champion in the test build. It takes each
+path through the battle formats in `docs/EliteFourFormat.md`, for 13 runs of five battles:
+- **The first challenge:** all six ways to pick.
+  - Singles twice: Flint and Lucian get doubles, with no question.
+  - Doubles twice: Flint and Lucian get singles, with no question.
+  - The four mixed pairs, with Flint's pick either way.
+- **The rematch menu:**
+  - All singles, all doubles, and two and two, with the rematch teams.
+  - All doubles before Stark Mountain, with the first teams.
+- **One Pokémon able to fight:** the warning before a double battle is answered yes (a lone Pokémon in a double
+  battle) or no (singles). Three runs:
+  - A doubles pick turned down: it counts as singles for the rest of the run.
+  - A forced format turned down: only that battle changes.
+  - An all-doubles rematch.
+
+Each battle must have the right trainer, format and result. The trainer is the singles one or the Sovereign doubles
+one, and the rematch version once Charon is arrested. The format comes from the trainer data, so a doubles team set to
+singles would show up. The battle must be won.
+
+The runs play the real scripts. The player warps onto each room's entrance, as the elevator brings them, walks up to
+the member and talks. Each menu gets the run's answer, and the battles are fought in god mode. A run ends after
+Cynthia's battle, before the Hall of Fame.
+
+**Results:** all 13 runs pass with the fix below: 65 battles, each with the right trainer and format. Before the
+fix, the 10 runs with a full party passed, and the 3 with one Pokémon failed.
+
+**Fixed: a double battle with one Pokémon broke the system heap.** The runs with one Pokémon able to fight crashed
+or wrote over memory in the room after a double battle. Totem trials with one Pokémon (decision 18) had the same bug.
+- **The cause:** the empty slot (CB-0032) had an inactive sprite but no sprite data, as nothing was ever sent out.
+  Move animations copy every battler's sprite with its palette (`BattleMonOBJData_New`), and for the empty slot that
+  palette came from NARC 0, member 0, which isn't a palette.
+- **Why it spread:** the failed load was freed as `Heap_Free(NULL)`. That put a block at 0xFFFFFFE0 on the system
+  heap's free list, and later allocations and file loads landed on whatever memory it pointed to.
+- **The fix:** `BattleDisplay_SovereignSetAbsentBattler` now also gives the empty slot the sprite data a fainted
+  battler would still have: a real palette (species 0's) and blank tiles.
+- **Found with:** heap walks between frames, then a hook on `Heap_Free(NULL)` that named the palette load.
+- **New check:** `tools/test/heap_check.py` checks every heap's lists of used and free blocks. The Elite Four runs
+  call it after each battle.
+
+**Test-build hooks** (`include/sovereign_test.h`):
+- `gSovereignTestTrainerBattles`: the trainer battles the field starts, with each one's trainer, battle type and
+  result.
+- `gSovereignTestVar` now takes up to four vars or flags. A flag is a number below `VARS_START`: 0 clears it, and
+  anything else sets it. A run can set `FLAG_GAME_COMPLETED` and `FLAG_ARRESTED_CHARON_STARK_MOUNTAIN` this way.
+- The hooks don't change the shipping ROM: with the fix, it builds to the same bytes with and without them. It builds
+  without warnings and passes the boot smoke test.
+
+
 ## Playtest pass — Paradox dealers and Mythical restyles
 
 The gift test (`tools/test/gift_pokemon.py`) now also covers the gifts that need a Pokémon shown to the giver, for 58

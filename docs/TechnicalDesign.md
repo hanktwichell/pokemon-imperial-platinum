@@ -437,6 +437,11 @@ implemented.
     - `BattleControllerPlayer_InitBattleMons` sets the mask bit and, through
       `BattleDisplay_SovereignSetAbsentBattler`, points its sprite at its own inactive slot in the sprite manager
       (what `PokemonSprite_Delete` leaves after a faint), so animations never meet a NULL sprite.
+    - The same function gives the slot sprite data a fainted battler would still have: a real palette (species 0's)
+      and blank tiles. Move animations copy every battler's sprite with its palette (`BattleMonOBJData_New`).
+      Without that data, the palette came from NARC 0, member 0, which isn't a palette. The failed load was freed as
+      `Heap_Free(NULL)`, which broke the system heap's free list, and the game later crashed or wrote over memory
+      (found by `tools/test/elite_four_runs.py`).
     - The intro skips it: `PokemonSlideIn` and `HealthBoxSlideInDelay` check the mask, the trainer's throw has no
       second ball (`Task_ThrowTrainerBall`), and `LoadLeadMonMessage` prints "Go! {0}!".
   - **Aura.** `SWITCH_IN_CHECK_STATE_SOVEREIGN_TOTEM_AURA` runs once (`sovereignTotemAuraDone`).

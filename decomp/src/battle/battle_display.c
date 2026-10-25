@@ -5873,11 +5873,23 @@ PokemonSprite *BattlerData_GetPokemonSprite(BattlerData *battlerData)
 }
 
 // Sovereign (decision 18): a battler absent from the start (BattleControllerPlayer_InitBattleMons) gets what a fainted
-// battler leaves behind: its own slot in the sprite manager, inactive (PokemonSprite_Delete only clears the flag).
+// battler leaves behind: its own slot in the sprite manager, inactive (PokemonSprite_Delete only clears the flag), and
+// sprite data naming a real palette (species 0's) with blank tiles. Move animations copy every battler's sprite with
+// its palette (BattleMonOBJData_New), the partner's too; with no sprite data the palette came from NARC 0, member 0,
+// which isn't one, and freeing the failed load (Heap_Free(NULL)) broke the system heap's free list, so the game later
+// crashed or wrote over memory.
 void BattleDisplay_SovereignSetAbsentBattler(BattleSystem *battleSys, int battler)
 {
     BattlerData *battlerData = BattleSystem_GetBattlerData(battleSys, battler);
+    PokemonSpriteData *spriteData = BattleSystem_GetPokemonSpriteData(battleSys);
+    PokemonSpriteTemplate spriteTemplate;
+
     battlerData->monSprite = &BattleSystem_GetPokemonSpriteManager(battleSys)->sprites[battler];
+
+    BuildPokemonSpriteTemplate(&spriteTemplate, SPECIES_NONE, GENDER_MALE, FACE_BACK, FALSE, 0, 0);
+    PokemonSpriteData_SetNarcID(spriteData, battler, spriteTemplate.narcID);
+    PokemonSpriteData_SetPalette(spriteData, battler, spriteTemplate.palette);
+    MI_CpuClear8(PokemonSpriteData_GetTiles(spriteData, battler), 32 * 10 * 10);
 }
 
 HealthBox *BattlerData_GetHealthBox(BattlerData *battlerData)
