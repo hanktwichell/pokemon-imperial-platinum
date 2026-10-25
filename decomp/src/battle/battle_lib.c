@@ -39,6 +39,7 @@
 #include "pokedex_data_index.h"
 #include "pokedex_heightweight.h"
 #include "pokemon.h"
+#include "sovereign_test.h"
 #include "string_gf.h"
 #include "trainer_data.h"
 #include "trainer_info.h"
@@ -3294,6 +3295,14 @@ BOOL Sovereign_IsMoldBreaker(BattleContext *battleCtx, int battler)
 BOOL Battler_IgnorableAbility(BattleContext *battleCtx, int attacker, int defender, int ability)
 {
     BOOL result = FALSE;
+
+#ifdef SOVEREIGN_TEST
+    // Test build only: in god mode the player's moves ignore the foes' abilities, as with Mold Breaker, so Wonder
+    // Guard and the like can't hold up a test battle (include/sovereign_test.h).
+    if (gSovereignTestGodMode && (attacker & 1) == BATTLE_SIDE_PLAYER && (defender & 1) == BATTLE_SIDE_ENEMY) {
+        return FALSE;
+    }
+#endif
 
     if (Sovereign_IsMoldBreaker(battleCtx, attacker) == FALSE) {
         if (Battler_Ability(battleCtx, defender) == ability) {

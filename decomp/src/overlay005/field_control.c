@@ -65,6 +65,7 @@
 
 #include "encounter.h"
 #include "field_task.h"
+#include "sovereign_test.h"
 #endif
 #include "system.h"
 #include "system_flags.h"
@@ -186,7 +187,8 @@ static int sSovereignTestBattleResult;
 static u8 sSovereignTestTotemTrial;
 
 // Test build only (meson -Dsovereign_test=true): a wild battle (Chansey Lv. 30); with env 1 a trainer battle
-// (TRAINER_SOVEREIGN_TEST); with env 2 the next Totem trial (data/totem_trials.yaml, in order).
+// (TRAINER_SOVEREIGN_TEST, or the trainer a test harness wrote to gSovereignTestBattleTrainer); with env 2 the next
+// Totem trial (data/totem_trials.yaml, in order).
 static BOOL SovereignTest_BattleTask(FieldTask *task)
 {
     int *state = FieldTask_GetState(task);
@@ -196,7 +198,10 @@ static BOOL SovereignTest_BattleTask(FieldTask *task)
             Encounter_SovereignNewTotemTrial(task, sSovereignTestTotemTrial++ % SOVEREIGN_TOTEM_TRIAL_COUNT, &sSovereignTestBattleResult);
         } else if (FieldTask_GetEnv(task) != NULL) {
             // TRAINER_SOVEREIGN_TEST: a double battle against the developer team in the Sovereign trainer format (E9).
-            Encounter_NewVsTrainer(task, TRAINER_SOVEREIGN_TEST, TRAINER_NONE, TRAINER_NONE, HEAP_ID_FIELD2, &sSovereignTestBattleResult);
+            int trainer = gSovereignTestBattleTrainer != TRAINER_NONE ? gSovereignTestBattleTrainer : TRAINER_SOVEREIGN_TEST;
+
+            gSovereignTestBattleTrainer = TRAINER_NONE;
+            Encounter_NewVsTrainer(task, trainer, TRAINER_NONE, TRAINER_NONE, HEAP_ID_FIELD2, &sSovereignTestBattleResult);
         } else {
             Encounter_NewVsSpeciesAtLevel(task, SPECIES_CHANSEY, 30, &sSovereignTestBattleResult, FALSE);
         }

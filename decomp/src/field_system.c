@@ -36,6 +36,7 @@
 #include "pokedex_memory.h"
 #include "pokeradar.h"
 #include "savedata.h"
+#include "sovereign_test.h"
 #include "system.h"
 #include "unk_0209C370.h"
 
@@ -203,8 +204,8 @@ static void ExecuteAndCleanupIfDone(ApplicationManager **appManPtr)
 }
 
 #ifdef SOVEREIGN_TEST
-// Test build only: the frames the field map has run with no task (no script, warp or battle) and the map it was on;
-// a test harness (tools/test/visit_changed_maps.py) reads them to tell when the player is free to move.
+// Test build only (include/sovereign_test.h): the frames the field map has run with no task (no script, warp or
+// battle) and the map it was on; test harnesses read them to tell when the player is free to move.
 u32 gSovereignTestIdleFrames;
 u32 gSovereignTestIdleMapHeaderID;
 #endif

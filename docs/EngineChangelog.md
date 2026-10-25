@@ -4,6 +4,54 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Playtest pass — every trainer battled; held items, form stats and form moves fixed
+
+**New tool `tools/test/battle_all_trainers.py` (local; about 2 hours with 4 jobs).** For each of the 1,039
+trainers it starts the battle in the test build. It checks three things:
+- the party the game builds matches the trainer's JSON: species, form, level, item, moves, IVs, EVs, nature, ability
+  and every stat;
+- the battle ends;
+- the main loop never stops.
+
+The run found four kinds of trainer bug in the game, now fixed:
+- **Held items lost (6 trainers).** The trainer data packer (`tools/dataproc/src/trainerproc.c`, Platinum's) chose a
+  party's layout from its first Pokémon: no item there meant no items for the whole party. Renegade's teams give
+  items to some members only. Affected:
+  - Ace Trainer Henry's Marowak (Thick Club);
+  - the three Route 203 counterpart starters (Oran Berry);
+  - Mars at Valley Windworks and Jupiter in the Eterna building (Sitrus Berries).
+
+  Now any member's item decides the layout, and a member without one holds nothing. A team that gives moves to some
+  members but not others is a build error, because those others would know no moves at all.
+- **Form stats (Volkner, his rematch, Ace Trainer Breanna).** In Platinum's layouts a trainer Pokémon got its form
+  after its stats were worked out, so it kept the base form's stats. Volkner's two Rotom forms had plain Rotom's
+  stats (Defense 116 for 153 at Lv. 61). The stats are now recalculated once the form is set. (Forms that follow
+  the Pokémon's gender, such as female Indeedee, were already right.)
+- **Form moves (Beauty Devon).** A trainer Pokémon given no moves learned its base form's moves: Devon's Sandy and
+  Trash Cloak Wormadam knew Razor Leaf and Growth. New `Pokemon_SovereignSetDefaultMoves` gives a Pokémon with a
+  form that form's level-up moves, in every trainer layout that can leave moves out.
+- Only those 10 trainers' teams change.
+
+**Test-build hooks** (`include/sovereign_test.h`, behind the `sovereign_test` option):
+- `gSovereignTestBattleTrainer`: SELECT+R battles this trainer.
+- `gSovereignTestGodMode` makes test battles one-sided:
+  - a foe that loses any HP loses all of it, and the player's Pokémon lose none;
+  - the player's moves ignore the foes' abilities;
+  - no EXP, Set battle style and fast text.
+- The harness taps FIGHT and then Dazzling Gleam or Play Rough (it switches between them every 2,000 frames, which
+  gets past Torment, Disable and moves out of PP). It presses A for messages and doubles targets.
+- The earlier warp and idle hooks moved into the same header.
+- `check_trainer_party.compare_party` can now be reused, and handles:
+  - trainers that give no moves (the level-up moves) or no item;
+  - forms' base stats;
+  - Shedinja's 1 HP.
+
+**Result: all 1,039 trainers battle cleanly.**
+- **First full run (before the fixes):** 984 of 1,000 ok. The other 16 were the bugs above, or battles stalled by
+  Wonder Guard, Torment or Disable before the harness handled them. The run's 2-hour time limit cut off 39 more.
+- **Re-run on the fixed build:** those 16 and the 39 cut off, all ok.
+- No battle stopped the game.
+
 ## Playtest checks — script menus fit on the screen; every changed map loads
 
 **New check `tools/test/check_menus.py` (CI, rom job):** every field-script menu fits on the screen above the

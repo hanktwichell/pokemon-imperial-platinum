@@ -40,6 +40,7 @@
 #include "party.h"
 #include "pokedex.h"
 #include "pokemon.h"
+#include "sovereign_test.h"
 #include "special_encounter.h"
 #include "system_vars.h"
 #include "trainer_info.h"
@@ -858,9 +859,11 @@ static const struct {
 
 static u8 sSovereignTestWarpIndex;
 
-// Test build only: a test harness (tools/test/visit_changed_maps.py) writes a place here, and the next SELECT+L+R
-// warps there instead of to the next place in the list.
+// Test build only: hooks for test harnesses (include/sovereign_test.h). tools/test/visit_changed_maps.py writes a
+// place to the warp target; tools/test/battle_all_trainers.py sets the trainer and god mode.
 struct SovereignTestWarpTarget gSovereignTestWarpTarget;
+u16 gSovereignTestBattleTrainer;
+u8 gSovereignTestGodMode;
 
 void SovereignTest_WarpNext(FieldSystem *fieldSystem)
 {

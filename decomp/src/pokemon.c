@@ -5571,6 +5571,17 @@ void Pokemon_SovereignSetGenderForm(Pokemon *mon)
     }
 }
 
+// Sovereign: replaces the Pokémon's moves with its form's level-up moves. Pokemon_InitWith gives a new Pokémon the
+// base form's, as its form is set after (trainer data: a Sandy Cloak Wormadam knew Razor Leaf).
+void Pokemon_SovereignSetDefaultMoves(Pokemon *mon)
+{
+    for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+        Pokemon_SetMoveSlot(mon, MOVE_NONE, i);
+    }
+
+    BoxPokemon_SetDefaultMoves(Pokemon_GetBoxPokemon(mon));
+}
+
 // Sovereign (FM): the form of an Egg of eggSpecies from a parent of this species and form: its regional form
 // (Alolan Ninetales: Alolan Vulpix; Perrserker: Galarian Meowth), or 0. -1 if the parent has no regional rule, so the
 // Egg takes the parent's form as in Platinum.
