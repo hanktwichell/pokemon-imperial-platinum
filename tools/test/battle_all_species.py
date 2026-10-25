@@ -49,11 +49,11 @@ PERSONALITY_KINDS = ('SOVEREIGN_FORM_PERSONALITY', 'SOVEREIGN_FORM_GENDER')
 
 
 def sovereign_forms():
-    """[(species constant, form, kind)] in include/data/sovereign_forms.h's sSovereignForms."""
+    """[(species constant, form, kind, trigger)] in include/data/sovereign_forms.h's sSovereignForms."""
     table = open(os.path.join(DECOMP, 'include', 'data', 'sovereign_forms.h')).read()
     table = table[table.index('sSovereignForms['):]
-    return [(s, int(f), k) for s, f, k in re.findall(r'\{ (SPECIES_\w+), (\d+), (SOVEREIGN_FORM_\w+),',
-                                                       table[:table.index('};')])]
+    return [(s, int(f), k, t) for s, f, k, t in re.findall(r'\{ (SPECIES_\w+), (\d+), (SOVEREIGN_FORM_\w+), (\w+) \}',
+                                                             table[:table.index('};')])]
 
 
 def entries():
@@ -66,7 +66,7 @@ def entries():
         forms.setdefault('SPECIES_' + name.upper(), set()).update(range(1, count + 1))
     for name, form in form_dirs():
         forms.setdefault(name, set()).add(form)
-    for name, form, _ in sovereign_forms():
+    for name, form, *_ in sovereign_forms():
         forms.setdefault(name, set()).add(form)
     out = []
     for name in species:
@@ -192,7 +192,7 @@ def main():
 
     sym = symbols(('gSovereignTestWild', 'gSovereignTestGodMode', 'gSovereignTestIdleFrames', 'gSystem'))
     personality_forms = {}
-    for name, form, kind in sovereign_forms():
+    for name, form, kind, _ in sovereign_forms():
         if kind in PERSONALITY_KINDS:
             personality_forms.setdefault(name, set()).add(form)
     personality_forms['SPECIES_UNOWN'] = set(range(28))  # its letter

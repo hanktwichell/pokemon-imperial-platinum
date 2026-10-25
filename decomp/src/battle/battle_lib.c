@@ -7746,6 +7746,12 @@ void BattleSystem_SovereignChangeBattleForm(BattleSystem *battleSys, BattleConte
 
     battleCtx->battleStatusMask2 |= SYSCTL_RECALC_MON_STATS;
     BattleController_EmitUpdatePartyMon(battleSys, battleCtx, battler);
+
+#ifdef SOVEREIGN_TEST
+    if (BattleSystem_GetBattlerSide(battleSys, battler) == BATTLER_US && gSovereignTestPlayerBattleForm == 0) {
+        gSovereignTestPlayerBattleForm = form;
+    }
+#endif
 }
 
 // Sovereign (E8): Mega Evolve (or Ultra Burst) a battler; its trainer can't Mega Evolve or Ultra Burst again this

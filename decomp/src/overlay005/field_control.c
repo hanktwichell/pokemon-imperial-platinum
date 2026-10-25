@@ -63,9 +63,13 @@
 #include "generated/species.h"
 #include "generated/trainers.h"
 
+#include "generated/items.h"
+#include "generated/moves.h"
+
 #include "encounter.h"
 #include "field_task.h"
 #include "sovereign_test.h"
+#include "unk_02092494.h"
 #endif
 #include "system.h"
 #include "system_flags.h"
@@ -186,14 +190,40 @@ void FieldInput_Update(FieldInput *input, FieldSystem *fieldSystem, u16 pressedK
 static int sSovereignTestBattleResult;
 static u8 sSovereignTestTotemTrial;
 
+// Test build only: the party's lead becomes the Pokémon a test harness wrote to gSovereignTestLead, as the player's
+// own, holding its item and knowing four Fairy moves (include/sovereign_test.h).
+static void SovereignTest_SetLead(FieldSystem *fieldSystem)
+{
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), 0);
+    int form = gSovereignTestLead.form;
+    u32 item = gSovereignTestLead.item;
+
+    Pokemon_InitWith(mon, gSovereignTestLead.species, gSovereignTestLead.level, INIT_IVS_RANDOM, FALSE, 0, OTID_NOT_SET, 0);
+    UpdateMonStatusAndTrainerInfo(mon, SaveData_GetTrainerInfo(fieldSystem->saveData), 0, 0, HEAP_ID_FIELD2);
+    Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+    Pokemon_CalcAbility(mon);
+    Pokemon_CalcLevelAndStats(mon);
+    Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &item);
+    Pokemon_ResetMoveSlot(mon, MOVE_MOONBLAST, 0);
+    Pokemon_ResetMoveSlot(mon, MOVE_DAZZLING_GLEAM, 1);
+    Pokemon_ResetMoveSlot(mon, MOVE_PLAY_ROUGH, 2);
+    Pokemon_ResetMoveSlot(mon, gSovereignTestLead.move != MOVE_NONE ? gSovereignTestLead.move : MOVE_DRAINING_KISS, 3);
+    gSovereignTestLead.species = SPECIES_NONE;
+}
+
 // Test build only (meson -Dsovereign_test=true): a wild battle (Chansey Lv. 30, or the Pokémon a test harness wrote to
 // gSovereignTestWild); with env 1 a trainer battle (TRAINER_SOVEREIGN_TEST, or the trainer a test harness wrote to
-// gSovereignTestBattleTrainer); with env 2 the next Totem trial (data/totem_trials.yaml, in order).
+// gSovereignTestBattleTrainer); with env 2 the next Totem trial (data/totem_trials.yaml, in order). A test harness can
+// set the party's lead first (gSovereignTestLead), and reads the lead's form when the battle is over.
 static BOOL SovereignTest_BattleTask(FieldTask *task)
 {
     int *state = FieldTask_GetState(task);
 
     if (*state == 0) {
+        if (gSovereignTestLead.species != SPECIES_NONE) {
+            SovereignTest_SetLead(FieldTask_GetFieldSystem(task));
+        }
+
         if (FieldTask_GetEnv(task) == (void *)2) {
             Encounter_SovereignNewTotemTrial(task, sSovereignTestTotemTrial++ % SOVEREIGN_TOTEM_TRIAL_COUNT, &sSovereignTestBattleResult);
         } else if (FieldTask_GetEnv(task) != NULL) {
@@ -213,6 +243,8 @@ static BOOL SovereignTest_BattleTask(FieldTask *task)
         return FALSE;
     }
 
+    Pokemon *lead = Party_GetPokemonBySlotIndex(SaveData_GetParty(FieldTask_GetFieldSystem(task)->saveData), 0);
+    gSovereignTestLeadFormAfter = Pokemon_GetValue(lead, MON_DATA_FORM, NULL);
     return TRUE;
 }
 #endif

@@ -69,6 +69,7 @@
 #include "render_window.h"
 #include "sound.h"
 #include "sound_playback.h"
+#include "sovereign_test.h"
 #include "sprite_system.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
@@ -3578,6 +3579,13 @@ static void Task_PlayerShowMoveSelectMenu(SysTask *task, void *data)
             && BattleSubscreen_SovereignMegaSelected(btlSubscreen)) {
             moveSelectMenuData->input |= 1 << 8;
         }
+
+#ifdef SOVEREIGN_TEST
+        // Test build only: a test harness can keep the toggle on for every move (include/sovereign_test.h).
+        if (moveSelectMenuData->input >= 1 && moveSelectMenuData->input <= LEARNED_MOVES_MAX && gSovereignTestLead.mega) {
+            moveSelectMenuData->input |= 1 << 8;
+        }
+#endif
 
         BattleController_EmitSelectedMove(moveSelectMenuData->battleSys, moveSelectMenuData->battler, moveSelectMenuData->input);
         moveSelectMenuData->state++;
