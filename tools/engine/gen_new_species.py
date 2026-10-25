@@ -155,6 +155,10 @@ def evo_entry(method, target, ctx):
     if method.startswith("Not an evolution"):
         return "not an evolution: " + method.split("—")[-1].strip()
     alternatives = [re.sub(r" from the [a-z0-9-]+ form", "", a).strip() for a in method.split(" OR ")]
+    genderless = {re.sub(r" \((male|female)\)$", "", a) for a in alternatives}
+    if len(alternatives) > 1 and len(genderless) == 1:
+        # The same method for either gender (Meowstic, Oinkologne): any gender evolves, and the gender picks the form.
+        return evo_entry(genderless.pop(), target, ctx)
     if len(alternatives) > 1:
         # Use the first alternative Platinum can run (e.g. a Sinnoh location or a stone).
         tried = [evo_entry(a, target, ctx) for a in alternatives]

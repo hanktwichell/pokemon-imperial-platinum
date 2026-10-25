@@ -746,7 +746,10 @@ def regional_tables(forms):
         babies.append((f["species"], f["number"], baby, form_of(baby, region_of(f["ident"]), same=same)))
     for parent, ident in REGIONAL_PARENTS.items():
         f = next(x for x in regional if x["ident"] == ident)
-        babies.append(("SPECIES_" + parent.upper(), 0, f["species"], f["number"]))
+        species = "SPECIES_" + parent.upper().replace("-", "_")
+        # Its female's form too (Female Basculegion: White-Striped Basculin).
+        numbers = [0] + [g["number"] for g in forms if g["species"] == species and g["kind"] == KIND_GENDER]
+        babies += [(species, number, f["species"], f["number"]) for number in numbers]
     for f in forms:  # a regional Totem's Eggs hatch into its region's form (Totem Alolan Raticate: Alolan Rattata)
         if f["kind"] == KIND_TOTEM and f.get("region"):
             baby = json.load(open(os.path.join(POKEMON, f["stem"], "data.json"), encoding="utf-8"))["offspring"]

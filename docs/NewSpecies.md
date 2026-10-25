@@ -192,7 +192,7 @@ Evolutions waiting for an item from milestone E7: 0 (marked ⏳).
 | 675 | Pangoro | PANGORO | Sword/Shield | 16 | EVO_LEVEL 32 | — |
 | 676 | Furfrou | FURFROU | USUM | 13 | — | — |
 | 677 | Espurr | ESPURR | Scarlet/Violet | 10 | — | it, jp |
-| 678 | Meowstic | MEOWSTIC | Scarlet/Violet | 19 | EVO_LEVEL_MALE 25 | es, jp |
+| 678 | Meowstic | MEOWSTIC | Scarlet/Violet | 19 | EVO_LEVEL 25 | es, jp |
 | 679 | Honedge | HONEDGE | Sword/Shield | 14 | — | — |
 | 680 | Doublade | DOUBLADE | Sword/Shield | 14 | EVO_LEVEL 35 | — |
 | 681 | Aegislash | AEGISLASH | Sword/Shield | 16 | EVO_USE_ITEM ITEM_DUSK_STONE | — |
@@ -430,7 +430,7 @@ Evolutions waiting for an item from milestone E7: 0 (marked ⏳).
 | 913 | Quaxwell | QUAXWELL | Scarlet/Violet | 15 | EVO_LEVEL 16 | en, fr, de, it, es, jp |
 | 914 | Quaquaval | QUAQUAVAL | Scarlet/Violet | 19 | EVO_LEVEL 36 | fr, de, it, es, jp |
 | 915 | Lechonk | LECHONK | Scarlet/Violet | 13 | — | fr, de, it, es, jp |
-| 916 | Oinkologne | OINKOLOGNE | Scarlet/Violet | 15 | EVO_LEVEL_MALE 18 | fr, de, it, es, jp |
+| 916 | Oinkologne | OINKOLOGNE | Scarlet/Violet | 15 | EVO_LEVEL 18 | fr, de, it, es, jp |
 | 917 | Tarountula | TAROUNTULA | Scarlet/Violet | 14 | — | fr, de, it, es, jp |
 | 918 | Spidops | SPIDOPS | Scarlet/Violet | 15 | EVO_LEVEL 15 | fr, de, it, es, jp |
 | 919 | Nymble | NYMBLE | Scarlet/Violet | 13 | — | fr, de, it, es, jp |

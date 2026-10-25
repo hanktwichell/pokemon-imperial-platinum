@@ -30,6 +30,43 @@ struct SovereignTestLead {
     u8 mega; // while set, every move the player picks has the MEGA toggle on (battle_display.c)
     u8 hpPercent; // when set, its HP starts at this percentage of its max (Zen Mode, Shields Down, Power Construct)
     u8 hiddenAbility; // when set, it has its hidden ability (Zen Mode)
+    u8 gender; // when set, GENDER_MALE + 1 or GENDER_FEMALE + 1: its personality gives it that gender
+    u8 friendship; // when set, its friendship
+    u32 personality; // when set, its personality (over gender)
+};
+
+// Evolves the lead before the battle, as the evolution screen does: Pokemon_GetEvolutionTargetSpecies with this class
+// and parameter (the item used, or the map's evolution method for a level-up), then Pokemon_SovereignSetEvolvedSpecies.
+// The game writes the target species and the lead's species and form afterwards.
+struct SovereignTestEvolve {
+    u8 evolve; // when set, it evolves
+    u8 evoClass; // enum EvolutionClass
+    u16 param;
+    u16 target; // SPECIES_NONE: it can't evolve this way
+    u16 species;
+    u8 form;
+};
+
+// Breeds two Pokémon in the Day Care before the battle, as Daycare_GiveEggFromDaycare does with this offspring
+// personality, and hatches the Egg at once (Egg_CreateHatchedMon) as the party's lead. The game writes the Egg's
+// species and form and the hatched Pokémon's afterwards.
+struct SovereignTestBreed {
+    u16 species[2];
+    u8 forms[2];
+    u8 genders[2]; // GENDER_MALE + 1 or GENDER_FEMALE + 1, or 0 for any
+    u16 items[2]; // what they hold (an incense)
+    u32 personality; // the Egg's
+    u8 breed; // when set, it breeds
+    u8 eggForm;
+    u16 eggSpecies;
+    u16 hatchedSpecies;
+    u8 hatchedForm;
+};
+
+// The clock the game reads instead of the DS's (rtc.c), so a test can pick the time of day and the season.
+struct SovereignTestClock {
+    u8 hour; // when set, the hour + 1
+    u8 month; // when set, the month (1 to 12)
 };
 
 struct SovereignTestPartner {
@@ -64,6 +101,12 @@ extern struct SovereignTestLead gSovereignTestLead;
 extern struct SovereignTestPartner gSovereignTestPartner;
 // When item is set, the next test battle uses it on the lead first (see struct SovereignTestItemUse).
 extern struct SovereignTestItemUse gSovereignTestItemUse;
+// When evolve is set, the next test battle evolves the lead first, after the item use (see struct SovereignTestEvolve).
+extern struct SovereignTestEvolve gSovereignTestEvolve;
+// When breed is set, the next test battle first breeds two Pokémon and hatches the Egg (see struct SovereignTestBreed).
+extern struct SovereignTestBreed gSovereignTestBreed;
+// While a field is set, the game's clock reads that hour or month (see struct SovereignTestClock).
+extern struct SovereignTestClock gSovereignTestClock;
 // The first form a battle form change gave a Pokémon on the player's side (Mega Evolution, Primal Reversion, Ultra
 // Burst...; BattleSystem_SovereignChangeBattleForm), and the lead's form once the test battle is over (field_control.c).
 extern u8 gSovereignTestPlayerBattleForm;

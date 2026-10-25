@@ -18,7 +18,7 @@ Renegade Platinum's own evolution changes (`RenegadePlatinumV130/Documentation/E
 | 687 | Malamar | Inkay | Level 30 with the console upside down | **Level 30** | Can't detect an upside-down console |
 | 697 | Tyrantrum | Tyrunt | Level 39 at day | **Level 39** | Gen IV can't combine plain levelling with time of day |
 | 699 | Aurorus | Amaura | Level 39 at night | **Level 39** | Gen IV can't combine plain levelling with time of day |
-| 700 | Sylveon | Eevee | Level up with high affection knowing a Fairy-type move OR Level up with high friendship knowing a Fairy-type move | **Level up knowing Charm** | Gen IV has 'knows move' but not 'knows a move of type'; Charm is Fairy-type in Renegade. Renegade's other Eeveelutions use stones, so this doesn't clash. |
+| 700 | Sylveon | Eevee | Level up with high affection knowing a Fairy-type move OR Level up with high friendship knowing a Fairy-type move | **Level up knowing Charm** | Gen IV has 'knows move' but not 'knows a move of type'; Charm is Fairy-type in Renegade. It comes before Espeon's and Umbreon's friendship, as in Sword and Shield, so a friendly Eevee that knows Charm becomes Sylveon. |
 | 706 | Goodra | Sliggoo | Level 50 in rain OR Level 50 in rain from the sliggoo-hisui form | **Level 50** | No overworld-rain check in Gen IV |
 | 735 | Gumshoos | Yungoos | Level 20 at day | **Level 20** | Time of day dropped |
 | 754 | Lurantis | Fomantis | Level 34 at day | **Level 34** | Time of day dropped |
@@ -104,4 +104,4 @@ A regional form evolves like its base species and keeps its region (Alolan Ratta
 | Hisuian Sneasel | **Level up holding a Razor Claw by day (Sneasler)** | Official |
 | Paldean Wooper | **Level 20 (Clodsire)** | Official |
 
-An Egg hatches into its parent's regional form (the mother's, or the parent that isn't Ditto), or the base form when the baby has no form of that region. These species hatch from Eggs in their regional form, as in the official games: Perrserker → Galarian Meowth, Sirfetch’d → Galarian Farfetch’d, Cursola → Galarian Corsola, Obstagoon → Galarian Zigzagoon, Runerigus → Galarian Yamask, Sneasler → Hisuian Sneasel, Overqwil → Hisuian Qwilfish, Clodsire → Paldean Wooper, Basculegion → White-Striped Basculin.
+An Egg hatches into its parent's regional form (the mother's, or the parent that isn't Ditto), or the base form when the baby has no form of that region. These species hatch from Eggs in their regional form, as in the official games: Perrserker → Galarian Meowth, Sirfetch’d → Galarian Farfetch’d, Mr. Rime → Galarian Mr. Mime, Cursola → Galarian Corsola, Obstagoon → Galarian Zigzagoon, Runerigus → Galarian Yamask, Sneasler → Hisuian Sneasel, Overqwil → Hisuian Qwilfish, Clodsire → Paldean Wooper, Basculegion → White-Striped Basculin.

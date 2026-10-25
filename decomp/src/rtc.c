@@ -6,6 +6,10 @@
 
 #include "inlines.h"
 
+#ifdef SOVEREIGN_TEST
+#include "sovereign_test.h"
+#endif
+
 typedef struct {
     BOOL valid;
     BOOL readInProgress;
@@ -57,6 +61,18 @@ static void GetTimeCallback(RTCResult result, void *data)
     state->valid = 1;
     state->date = state->tempDate;
     state->time = state->tempTime;
+
+#ifdef SOVEREIGN_TEST
+    // Test build only: the hour or month a test harness set (include/sovereign_test.h).
+    if (gSovereignTestClock.hour) {
+        state->time.hour = gSovereignTestClock.hour - 1;
+        state->time.minute = 0;
+    }
+
+    if (gSovereignTestClock.month) {
+        state->date.month = gSovereignTestClock.month;
+    }
+#endif
     state->readInProgress = 0;
 }
 

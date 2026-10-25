@@ -4,6 +4,75 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Playtest pass — evolving and breeding into forms
+
+**Fixes:**
+- **A female Espurr or Lechonk can evolve.** Their only evolution was "level 25 (18) as a male", so a female never
+  became Meowstic or Oinkologne. Either gender now evolves at the same level, and the gender picks the form (a female
+  becomes the female's form). The species generator (`tools/engine/gen_new_species.py`) now turns a male and a female
+  evolution by the same method into one, for any species like them.
+- **An Eevee that knows Charm becomes Sylveon, even with high friendship.** Espeon's and Umbreon's friendship came
+  first in Eevee's list, so a friendly Eevee that learned Charm still became Espeon or Umbreon. Sylveon now comes first,
+  as in Sword and Shield. No other species has two level-up evolutions whose conditions can both hold.
+- **A Deerling keeps its season when it evolves.** A Sawsbuck took the season of the day it evolved instead, so a
+  Deerling met in spring could become a summer Sawsbuck.
+- **Eggs:**
+  - A female Basculegion's Egg is a White-Striped Basculin, as a male's is. It was a Blue-Striped one, because the
+    female's form number was passed on as Basculin's.
+  - A Mr. Rime's Egg is a Galarian Mr. Mime (or a Mime Jr. with the Odd Incense), like the other species found only
+    through a regional form (`regional_parents` in `data/evolution_changes.yaml`).
+  - A parent in any other Sovereign form passes no form to its Egg (`Pokemon_SovereignBabyForm`): a Totem (a Totem
+    Togedemaru or Mimikyu laid Totem Eggs), a female's form, Low Key Toxtricity, or Three-Segment Dudunsparce. An Egg
+    whose species takes its form from its personality still does (the Flabébé line's colors). Platinum's own forms are
+    kept as in Platinum (Burmy's cloak and Shellos's sea come from the mother).
+
+**`tools/test/battle_evolutions.py` (local; about 25 minutes in 4 parts)** evolves every Pokémon whose evolution
+involves a form, as the evolution screen does, then battles in its new form. There are 336 cases:
+- **Start forms:** every form but the battle forms. A regional form evolves by its own evolutions (Galarian Meowth
+  into Perrserker, the Hisuian, Alolan and Paldean lines, the Basculin stripes, Roaming Gimmighoul). Any other form
+  evolves by its species' (the Flabébé and Scatterbug lines' colors and patterns, Pumpkaboo's sizes, Burmy's cloaks,
+  Deerling's seasons, the teapots), and so does each base form.
+- **Variants:** each form the evolution can give, such as each gender for Meowstic, Basculegion and Oinkologne, a
+  Low Key Toxtricity, the Antique and Artisan teapots, and Rapid Strike Urshifu.
+  - **Milcery:** every one of Alcremie's 63 forms (each Sweet with each cream).
+  - **Rockruff:** Midday, Midnight and Dusk Lycanroc by the hour.
+  - **Day and night evolutions:** Hisuian Sneasel into Sneasler, and Espeon and Umbreon.
+- **Forms that must not evolve** don't: the cap and costume Pikachu, Partner Pikachu and Eevee, Eternal Floette and
+  Spiky-eared Pichu. An Antique Sinistea doesn't evolve with the Cracked Pot, nor an ordinary one with the Chipped Pot
+  (the teacups the same).
+
+Each case checks that it evolves into the right species and form, and that the form lasts through a battle. The
+expected form is worked out as the game's rules give it. The names cross-check it: Galarian Darumaka must become
+Galarian Darmanitan, and Flabébé (Yellow Flower) must become Floette (Yellow Flower). Alcremie must be named for its
+Sweet and the cream the time gives.
+
+**`tools/test/battle_eggs.py` (local; about an hour in 4 parts)** breeds every form in the Day Care and hatches the
+Egg at once, then battles with the hatched Pokémon. There are 874 cases, from every form but the battle forms of each
+species outside the Undiscovered egg group:
+- each form as the mother with a Ditto, and as the father with a Ditto;
+- for a regional form that passes on its region: a base-form mother with the regional father, whose form must not pass
+  on;
+- with and without the incense, for a parent whose baby is an incense baby (Galarian Mr. Mime and Mr. Rime).
+
+Each case checks the Egg's species and form, that it hatches into them, and that the form lasts through a battle.
+The names cross-check the form when the Egg is another species (Galarian Rapidash: Galarian Ponyta; Alolan Raichu:
+Pichu).
+
+**Results:**
+- **Evolutions:** 335 of 336 passed on the first build. The failure was the Sylveon bug above; on the fixed build all 16
+  of Eevee's cases pass, including Partner Eevee's eight, which must not evolve. (The other changes between the two
+  builds don't touch evolution.)
+- **Eggs:** all 874 pass (on the build with the fixes), once the harness expects a Burmy's cloak to change in the
+  battle: as in Platinum, a Burmy takes the Trash Cloak after an indoor battle.
+
+**Test-build hooks** (`include/sovereign_test.h`):
+- `gSovereignTestEvolve`: evolves the lead before the battle, with an evolution's class and item or map method.
+- `gSovereignTestBreed`: breeds two Pokémon in the Day Care with a chosen Egg personality, hatches the Egg and makes it
+  the lead.
+- `gSovereignTestClock`: the hour and month the game's clock reads (`rtc.c`).
+- `gSovereignTestLead` also sets the personality, gender and friendship.
+
+
 ## Playtest pass — form-change key items and held-item forms
 
 **`tools/test/battle_form_changes.py` now also covers the forms the player changes outside battle** (210 cases in all,

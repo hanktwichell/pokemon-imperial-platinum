@@ -68,6 +68,7 @@
 
 #include "encounter.h"
 #include "field_task.h"
+#include "math_util.h"
 #include "sovereign_form_items.h"
 #include "sovereign_test.h"
 #include "unk_02092494.h"
@@ -191,6 +192,10 @@ void FieldInput_Update(FieldInput *input, FieldSystem *fieldSystem, u16 pressedK
 static int sSovereignTestBattleResult;
 static u8 sSovereignTestTotemTrial;
 
+// The moves a test lead knows: Moonblast, Dazzling Gleam, Play Rough (the moves the battle harnesses pick) and
+// Draining Kiss.
+static const u16 sSovereignTestFairyMoves[LEARNED_MOVES_MAX] = { MOVE_MOONBLAST, MOVE_DAZZLING_GLEAM, MOVE_PLAY_ROUGH, MOVE_DRAINING_KISS };
+
 // Test build only: the party's lead becomes the Pokémon a test harness wrote to gSovereignTestLead, as the player's
 // own, given its item, and knowing four Fairy moves or the ones set, at the HP set (include/sovereign_test.h).
 static void SovereignTest_SetLead(FieldSystem *fieldSystem)
@@ -198,11 +203,17 @@ static void SovereignTest_SetLead(FieldSystem *fieldSystem)
     Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), 0);
     int form = gSovereignTestLead.form;
     u32 item = gSovereignTestLead.item;
-
-    static const u16 fairyMoves[LEARNED_MOVES_MAX] = { MOVE_MOONBLAST, MOVE_DAZZLING_GLEAM, MOVE_PLAY_ROUGH, MOVE_DRAINING_KISS };
     u8 hiddenAbility = gSovereignTestLead.hiddenAbility;
 
-    Pokemon_InitWith(mon, gSovereignTestLead.species, gSovereignTestLead.level, INIT_IVS_RANDOM, FALSE, 0, OTID_NOT_SET, 0);
+    u32 personality = gSovereignTestLead.personality;
+
+    while (personality == 0
+        || (gSovereignTestLead.personality == 0 && gSovereignTestLead.gender != 0
+            && Pokemon_GetGenderOf(gSovereignTestLead.species, personality) != gSovereignTestLead.gender - 1)) {
+        personality = LCRNG_Next() | (LCRNG_Next() << 16);
+    }
+
+    Pokemon_InitWith(mon, gSovereignTestLead.species, gSovereignTestLead.level, INIT_IVS_RANDOM, TRUE, personality, OTID_NOT_SET, 0);
     UpdateMonStatusAndTrainerInfo(mon, SaveData_GetTrainerInfo(fieldSystem->saveData), 0, 0, HEAP_ID_FIELD2);
     Pokemon_SetValue(mon, MON_DATA_FORM, &form);
     Pokemon_SetValue(mon, MON_DATA_HAS_HIDDEN_ABILITY, &hiddenAbility);
@@ -215,9 +226,15 @@ static void SovereignTest_SetLead(FieldSystem *fieldSystem)
     Pokemon_SetGiratinaFormByHeldItem(mon);
 
     for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
-        u16 move = gSovereignTestLead.moves[i] != MOVE_NONE ? gSovereignTestLead.moves[i] : fairyMoves[i];
+        u16 move = gSovereignTestLead.moves[i] != MOVE_NONE ? gSovereignTestLead.moves[i] : sSovereignTestFairyMoves[i];
 
         Pokemon_ResetMoveSlot(mon, move == SOVEREIGN_TEST_NO_MOVE ? MOVE_NONE : move, i);
+    }
+
+    if (gSovereignTestLead.friendship) {
+        u32 friendship = gSovereignTestLead.friendship;
+
+        Pokemon_SetValue(mon, MON_DATA_FRIENDSHIP, &friendship);
     }
 
     if (gSovereignTestLead.hpPercent) {
@@ -240,6 +257,78 @@ static void SovereignTest_SetLead(FieldSystem *fieldSystem)
         Pokemon_CalcLevelAndStats(partner);
         gSovereignTestPartner.species = SPECIES_NONE;
     }
+}
+
+// Test build only: evolves the lead as the evolution screen does, the way a test harness wrote to gSovereignTestEvolve,
+// and writes down what it became (include/sovereign_test.h).
+static void SovereignTest_Evolve(FieldSystem *fieldSystem)
+{
+    Party *party = SaveData_GetParty(fieldSystem->saveData);
+    Pokemon *lead = Party_GetPokemonBySlotIndex(party, 0);
+    int evoType;
+
+    gSovereignTestEvolve.target = Pokemon_GetEvolutionTargetSpecies(party, lead, gSovereignTestEvolve.evoClass, gSovereignTestEvolve.param, &evoType);
+
+    if (gSovereignTestEvolve.target != SPECIES_NONE) {
+        Pokemon_SovereignSetEvolvedSpecies(lead, gSovereignTestEvolve.target, evoType);
+        Pokemon_CalcAbility(lead);
+        Pokemon_CalcLevelAndStats(lead);
+    }
+
+    gSovereignTestEvolve.species = Pokemon_GetValue(lead, MON_DATA_SPECIES, NULL);
+    gSovereignTestEvolve.form = Pokemon_GetValue(lead, MON_DATA_FORM, NULL);
+    gSovereignTestEvolve.evolve = FALSE;
+}
+
+// Test build only: breeds the two Pokémon a test harness wrote to gSovereignTestBreed in the Day Care, hatches the Egg
+// at once and makes it the party's lead, knowing the four Fairy moves, and writes down what the Egg and the hatched
+// Pokémon are (include/sovereign_test.h).
+static void SovereignTest_Breed(FieldSystem *fieldSystem)
+{
+    SaveData *saveData = fieldSystem->saveData;
+    Party *party = SaveData_GetParty(saveData);
+    Daycare *daycare = SaveData_GetDaycare(saveData);
+
+    for (int i = 0; i < 2; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, 1 + i);
+        u16 species = gSovereignTestBreed.species[i];
+        int form = gSovereignTestBreed.forms[i];
+        u32 item = gSovereignTestBreed.items[i];
+        u32 personality = 0;
+
+        while (personality == 0
+            || (gSovereignTestBreed.genders[i] != 0 && Pokemon_GetGenderOf(species, personality) != gSovereignTestBreed.genders[i] - 1)) {
+            personality = LCRNG_Next() | (LCRNG_Next() << 16);
+        }
+
+        Pokemon_InitWith(mon, species, 50, INIT_IVS_RANDOM, TRUE, personality, OTID_NOT_SET, 0);
+        UpdateMonStatusAndTrainerInfo(mon, SaveData_GetTrainerInfo(saveData), 0, 0, HEAP_ID_FIELD2);
+        Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+        Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &item);
+        Pokemon_CalcAbility(mon);
+        Pokemon_CalcLevelAndStats(mon);
+    }
+
+    Daycare_MoveToEmptySlotFromParty(party, 2, daycare, saveData);
+    Daycare_MoveToEmptySlotFromParty(party, 1, daycare, saveData);
+    Daycare_SetOffspringPersonality(daycare, gSovereignTestBreed.personality);
+    Daycare_GiveEggFromDaycare(daycare, party, SaveData_GetTrainerInfo(saveData));
+
+    int last = Party_GetCurrentCount(party) - 1;
+    Pokemon *egg = Party_GetPokemonBySlotIndex(party, last);
+
+    gSovereignTestBreed.eggSpecies = Pokemon_GetValue(egg, MON_DATA_SPECIES, NULL);
+    gSovereignTestBreed.eggForm = Pokemon_GetValue(egg, MON_DATA_FORM, NULL);
+    Egg_CreateHatchedMon(egg, HEAP_ID_FIELD2);
+    gSovereignTestBreed.hatchedSpecies = Pokemon_GetValue(egg, MON_DATA_SPECIES, NULL);
+    gSovereignTestBreed.hatchedForm = Pokemon_GetValue(egg, MON_DATA_FORM, NULL);
+
+    for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+        Pokemon_ResetMoveSlot(egg, sSovereignTestFairyMoves[i], i);
+    }
+
+    Party_SwapSlots(party, 0, last);
+    gSovereignTestBreed.breed = FALSE;
 }
 
 // Test build only: uses the key item a test harness wrote to gSovereignTestItemUse on the lead, as the party menu does
@@ -282,6 +371,14 @@ static BOOL SovereignTest_BattleTask(FieldTask *task)
 
         if (gSovereignTestItemUse.item != ITEM_NONE) {
             SovereignTest_UseItem(FieldTask_GetFieldSystem(task), 0);
+        }
+
+        if (gSovereignTestEvolve.evolve) {
+            SovereignTest_Evolve(FieldTask_GetFieldSystem(task));
+        }
+
+        if (gSovereignTestBreed.breed) {
+            SovereignTest_Breed(FieldTask_GetFieldSystem(task));
         }
 
         if (FieldTask_GetEnv(task) == (void *)2) {

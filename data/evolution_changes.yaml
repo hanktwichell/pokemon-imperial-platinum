@@ -27,7 +27,7 @@ changes:
   - {species: Malamar,      from: Inkay,     method: Level 30, why: "Can't detect an upside-down console"}
   - {species: Tyrantrum,    from: Tyrunt,    method: Level 39, why: "Gen IV can't combine plain levelling with time of day"}
   - {species: Aurorus,      from: Amaura,    method: Level 39, why: "Gen IV can't combine plain levelling with time of day"}
-  - {species: Sylveon,      from: Eevee,     method: Level up knowing Charm, why: "Gen IV has 'knows move' but not 'knows a move of type'; Charm is Fairy-type in Renegade. Renegade's other Eeveelutions use stones, so this doesn't clash."}
+  - {species: Sylveon,      from: Eevee,     method: Level up knowing Charm, why: "Gen IV has 'knows move' but not 'knows a move of type'; Charm is Fairy-type in Renegade. It comes before Espeon's and Umbreon's friendship, as in Sword and Shield, so a friendly Eevee that knows Charm becomes Sylveon."}
   - {species: Goodra,       from: Sliggoo,   method: Level 50, why: "No overworld-rain check in Gen IV"}
   - {species: Gumshoos,     from: Yungoos,   method: Level 20, why: "Time of day dropped"}
   - {species: Lurantis,     from: Fomantis,  method: Level 34, why: "Time of day dropped"}
@@ -101,6 +101,6 @@ item_evolution_forms:
 
 # Species found only through a regional form: their Eggs hatch into that form (Perrserker: Galarian Meowth), as in
 # the official games. Every other regional form passes its region's form to its Eggs.
-regional_parents: {perrserker: meowth-galar, sirfetchd: farfetchd-galar, cursola: corsola-galar, obstagoon: zigzagoon-galar,
-                   runerigus: yamask-galar, sneasler: sneasel-hisui, overqwil: qwilfish-hisui, clodsire: wooper-paldea,
-                   basculegion: basculin-white-striped}
+regional_parents: {perrserker: meowth-galar, sirfetchd: farfetchd-galar, mr-rime: mr-mime-galar, cursola: corsola-galar,
+                   obstagoon: zigzagoon-galar, runerigus: yamask-galar, sneasler: sneasel-hisui, overqwil: qwilfish-hisui,
+                   clodsire: wooper-paldea, basculegion: basculin-white-striped}
