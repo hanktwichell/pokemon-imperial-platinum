@@ -62,6 +62,7 @@
 #include "screen_fade.h"
 #include "sound_chatot.h"
 #include "sound_playback.h"
+#include "sovereign_test.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "string_gf.h"
@@ -1726,6 +1727,19 @@ static BOOL BtlCmd_UpdateHealthBarValue(BattleSystem *battleSys, BattleContext *
 
     // Cap the hit damage to the battler's current HP
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+
+#ifdef SOVEREIGN_TEST
+    // Test build only: in god mode a foe that loses any HP loses all of it, and the player's Pokémon lose none
+    // (include/sovereign_test.h).
+    if (gSovereignTestGodMode && battleCtx->hpCalcTemp < 0) {
+        if (BattleSystem_GetBattlerSide(battleSys, battler) == BATTLE_SIDE_ENEMY) {
+            battleCtx->hpCalcTemp = battleCtx->battleMons[battler].curHP * -1;
+        } else {
+            battleCtx->hpCalcTemp = 0;
+        }
+    }
+#endif
+
     if (battleCtx->battleMons[battler].curHP + battleCtx->hpCalcTemp <= 0) {
         battleCtx->hitDamage = battleCtx->battleMons[battler].curHP * -1;
     } else {
@@ -2224,6 +2238,14 @@ static BOOL BtlCmd_CalcExpGain(BattleSystem *battleSys, BattleContext *battleCtx
 
     BattleScript_Iter(battleCtx, 1);
     jump = BattleScript_Read(battleCtx);
+
+#ifdef SOVEREIGN_TEST
+    // Test build only: no EXP in god mode, so no level-up or new-move prompts (include/sovereign_test.h).
+    if (gSovereignTestGodMode) {
+        BattleScript_Iter(battleCtx, jump);
+        return FALSE;
+    }
+#endif
 
     if ((battlerData->battlerType & BATTLER_TYPE_SOLO_ENEMY) && (battleType & BATTLE_TYPE_NO_EXPERIENCE) == FALSE) {
         int i;

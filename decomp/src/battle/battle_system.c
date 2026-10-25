@@ -60,6 +60,7 @@
 #include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
+#include "sovereign_test.h"
 #include "sprite.h"
 #include "sprite_system.h"
 #include "string_gf.h"
@@ -899,11 +900,25 @@ u8 BattleSystem_GetTextSpeed(BattleSystem *battleSys)
         return TEXT_SPEED_FAST;
     }
 
+#ifdef SOVEREIGN_TEST
+    // Test build only: fast text in god mode (include/sovereign_test.h).
+    if (gSovereignTestGodMode) {
+        return TEXT_SPEED_FAST;
+    }
+#endif
+
     return Options_TextFrameDelay(battleSys->options);
 }
 
 int BattleSystem_GetBattleStyle(BattleSystem *battleSys)
 {
+#ifdef SOVEREIGN_TEST
+    // Test build only: no "Will you change Pokémon?" prompt in god mode (include/sovereign_test.h).
+    if (gSovereignTestGodMode) {
+        return OPTIONS_BATTLE_STYLE_SET;
+    }
+#endif
+
     return Options_BattleStyle(battleSys->options);
 }
 

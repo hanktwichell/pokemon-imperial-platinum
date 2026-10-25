@@ -74,8 +74,34 @@ def read_pokemon(raw):
     }
 
 
-def expected_stats(species_const, level, ivs, evs, nature):
-    base = json.load(open(os.path.join(DECOMP, "res", "pokemon", species_const[8:].lower(), "data.json")))["base_stats"]
+def species_data(species_const, form=0):
+    """The species' data.json, or its form's when the form has data of its own (res/pokemon/form_registry.json)."""
+    name = species_const[8:].lower()
+    path = os.path.join(DECOMP, "res", "pokemon", name, "data.json")
+    forms = [f for f in json.load(open(os.path.join(DECOMP, "res", "pokemon", "form_registry.json"))).get(name, {})
+             if not f.startswith("__")]
+    if 0 < form <= len(forms):
+        form_path = os.path.join(DECOMP, "res", "pokemon", name, "forms", forms[form - 1], "data.json")
+        if os.path.exists(form_path):
+            path = form_path
+    return json.load(open(path))
+
+
+def default_moves(species_const, form, level):
+    """BoxPokemon_SetDefaultMoves (src/pokemon.c): the level-up moves up to the level, keeping the last four."""
+    data = species_data(species_const, form)
+    learnset = data.get("learnset") or species_data(species_const).get("learnset", {})
+    moves = []
+    for move_level, move in learnset.get("by_level", []):
+        if move_level > level:
+            break
+        if move not in moves:
+            moves = (moves + [move])[-4:]
+    return (moves + ["MOVE_NONE"] * 4)[:4]
+
+
+def expected_stats(species_const, level, ivs, evs, nature, form=0):
+    base = species_data(species_const, form)["base_stats"]
     base = [base[k] for k in BASE_KEYS]
     stats = [(2 * base[0] + ivs[0] + evs[0] // 4) * level // 100 + level + 10]
     # Natures: rows/columns in the order Atk, Def, Speed, SpAtk, SpDef (game order indices 1..5).
@@ -91,15 +117,73 @@ def expected_stats(species_const, level, ivs, evs, nature):
     return stats
 
 
+def compare_party(added, trainer):
+    """Compare the Pokémon the game added (raw 236-byte Pokémon) with the trainer's JSON party.
+    Returns the number of failures and a report line per Pokémon (plus one per mismatched field)."""
+    species, moves, items = consts("species.txt"), consts("moves.txt"), consts("items.txt")
+    natures, abilities = consts("natures.txt"), consts("abilities.txt")
+    party = trainer["party"]
+    report = []
+    failures = 0
+    if len(added) != len(party):
+        failures += 1
+        report.append(f"FAIL {len(added)} Pokémon added; the trainer has {len(party)}")
+
+    for i, (raw, want) in enumerate(zip(added, party)):
+        got = read_pokemon(raw)
+        name = want["species"][8:].title()
+        ivs = [31] * 6 if "ivs" in want else [want["iv_scale"] * 31 // 255] * 6
+        for k, v in want.get("ivs", {}).items():
+            ivs[STATS.index(k)] = v
+        evs = [want.get("evs", {}).get(k, 0) for k in STATS]
+        nature = got["personality"] % 25
+        checks = {
+            "species": (species[got["species"]], want["species"]),
+            "form": (got["form"], want.get("form") or 0),
+            "level": (got["level"], want["level"]),
+            "item": (items[got["item"]], want.get("item") or "ITEM_NONE"),
+            "ivs": (got["ivs"], ivs),
+            "evs": (got["evs"], evs),
+            "stats": (got["stats"], expected_stats(want["species"], want["level"], ivs, evs, nature,
+                                                   want.get("form") or 0)),
+        }
+        if want.get("moves"):
+            checks["moves"] = ([moves[m] for m in got["moves"]], (want["moves"] + ["MOVE_NONE"] * 4)[:4])
+        else:  # no moves given: the level-up moves
+            checks["moves"] = ([moves[m] for m in got["moves"]],
+                               default_moves(want["species"], want.get("form") or 0, want["level"]))
+        if "nature" in want:
+            checks["nature"] = (natures[nature], want["nature"])
+        if "ability" in want:
+            checks["ability"] = (abilities[got["ability"]], want["ability"])
+        if "gender" in want:
+            checks["gender"] = (got["gender"], want["gender"])
+        checks["shiny"] = (got["shiny"], bool(want.get("shiny", False)))
+        if "ball" in want:
+            checks["ball"] = (items[got["ball"]], want["ball"])
+
+        bad = {k: v for k, v in checks.items() if v[0] != v[1]}
+        failures += bool(bad)
+        flags = []
+        if got["shiny"]:
+            flags.append("shiny")
+        if got["hidden_ability"]:
+            flags.append("hidden ability")
+        report.append(f"{'FAIL' if bad else 'ok  '} {i + 1}. {name} Lv. {got['level']} {got['gender']} "
+                      f"{natures[nature][7:].title()} {abilities[got['ability']][8:].title()} "
+                      f"stats {got['stats']} {' '.join(flags)}")
+        for k, (g, w) in bad.items():
+            report.append(f"       {k}: got {g}, want {w}")
+
+    return failures, report
+
+
 def main():
     if len(sys.argv) < 4:
         sys.exit(__doc__)
     rom, xmap, save = sys.argv[1:4]
     trainer_path = sys.argv[4] if len(sys.argv) > 4 else os.path.join(DECOMP, "res", "trainers", "data", "sovereign_test.json")
     trainer = json.load(open(trainer_path))
-
-    species, moves, items = consts("species.txt"), consts("moves.txt"), consts("items.txt")
-    natures, abilities = consts("natures.txt"), consts("abilities.txt")
 
     addr = None
     for line in open(xmap):
@@ -128,53 +212,10 @@ def main():
     d.do("wait:600")
     d.do("shot:trainer_battle", os.environ.get("OUT_DIR", "."))
 
-    party = trainer["party"]
-    print(f"{len(added)} Pokémon added after SELECT+R; the trainer has {len(party)}")
-    failures = 0
-    if len(added) != len(party):
-        failures += 1
-
-    for i, (raw, want) in enumerate(zip(added, party)):
-        got = read_pokemon(raw)
-        name = want["species"][8:].title()
-        ivs = [31] * 6 if "ivs" in want else [want["iv_scale"] * 31 // 255] * 6
-        for k, v in want.get("ivs", {}).items():
-            ivs[STATS.index(k)] = v
-        evs = [want.get("evs", {}).get(k, 0) for k in STATS]
-        nature = got["personality"] % 25
-        checks = {
-            "species": (species[got["species"]], want["species"]),
-            "form": (got["form"], want.get("form", 0)),
-            "level": (got["level"], want["level"]),
-            "item": (items[got["item"]], want.get("item", "ITEM_NONE")),
-            "ivs": (got["ivs"], ivs),
-            "evs": (got["evs"], evs),
-            "stats": (got["stats"], expected_stats(want["species"], want["level"], ivs, evs, nature)),
-        }
-        if "moves" in want:
-            checks["moves"] = ([moves[m] for m in got["moves"]], (want["moves"] + ["MOVE_NONE"] * 4)[:4])
-        if "nature" in want:
-            checks["nature"] = (natures[nature], want["nature"])
-        if "ability" in want:
-            checks["ability"] = (abilities[got["ability"]], want["ability"])
-        if "gender" in want:
-            checks["gender"] = (got["gender"], want["gender"])
-        checks["shiny"] = (got["shiny"], bool(want.get("shiny", False)))
-        if "ball" in want:
-            checks["ball"] = (items[got["ball"]], want["ball"])
-
-        bad = {k: v for k, v in checks.items() if v[0] != v[1]}
-        failures += bool(bad)
-        flags = []
-        if got["shiny"]:
-            flags.append("shiny")
-        if got["hidden_ability"]:
-            flags.append("hidden ability")
-        print(f"{'FAIL' if bad else 'ok  '} {i + 1}. {name} Lv. {got['level']} {got['gender']} "
-              f"{natures[nature][7:].title()} {abilities[got['ability']][8:].title()} "
-              f"stats {got['stats']} {' '.join(flags)}")
-        for k, (g, w) in bad.items():
-            print(f"       {k}: got {g}, want {w}")
+    failures, report = compare_party(added, trainer)
+    print(f"{len(added)} Pokémon added after SELECT+R; the trainer has {len(trainer['party'])}")
+    for line in report:
+        print(line)
 
     print("PASS" if not failures else f"FAIL ({failures})")
     sys.exit(1 if failures else 0)

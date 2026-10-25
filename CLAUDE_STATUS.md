@@ -5941,3 +5941,29 @@ message-width check and credits) is merged.
 2. Trainer sight lines: find trainers whose line of sight covers a tile the player must cross where an added object
    now blocks the trainer's approach (a check in the spirit of `check_object_tiles.py`).
 3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
+
+## CB-0128 — 2026-10-25, 3:20 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**In progress: a battle test against every trainer.** PR #140 (menu check, changed-map visit test) is merged.
+- **New `tools/test/battle_all_trainers.py`:** for each of the 1,039 trainers it starts a battle in the test build
+  and checks three things:
+  - The party the game builds matches the trainer's JSON (`check_trainer_party.compare_party`, which now handles
+    null moves and items and form base stats).
+  - The battle ends.
+  - The main loop never stops (`gSystem.vblankCounter`).
+- **New test-build hooks** in `include/sovereign_test.h`:
+  - `gSovereignTestBattleTrainer`: SELECT+R battles this trainer.
+  - `gSovereignTestGodMode`: a foe that loses any HP loses all of it, the player's Pokémon lose none, no EXP, Set
+    style and fast text.
+  - The earlier warp and idle hooks moved into the same header.
+- Roark, a doubles pair and the developer team pass. The full run (4 jobs) is going.
+
+**Files modified:** `decomp/include/sovereign_test.h` (new), `decomp/include/script_manager.h`,
+`decomp/src/script_manager.c`, `decomp/src/field_system.c`, `decomp/src/overlay005/field_control.c`,
+`decomp/src/battle/battle_script.c`, `decomp/src/battle/battle_system.c`, `tools/test/battle_all_trainers.py` (new),
+`tools/test/check_trainer_party.py`, `tools/test/build_test_rom.sh`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Finish the full run, review every trainer that isn't ok, and fix what it finds.
+2. Changelog entry, then a PR (check that the shipping ROM is byte-identical first).
+3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
