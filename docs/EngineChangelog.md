@@ -4,6 +4,44 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 39) — Renegade's TM collector, the Pokétch with every app, and its healers
+
+Found by the map-script audit:
+- **The TM collector** (Pokémon League, north Pokémon Center, (19, 3)) asks whether the player wants "a full use set
+  of every Technical Machine". On a yes the screen fades and every TM, TM01–TM92, is topped up to 99 (Renegade's
+  `ItemChanges.txt`: "An NPC at the Pokémon League can reset your inventory to have 99 of all TMs"). A TM always fits
+  the bag (E10 part 2), so the script adds one of each.
+- **The Pokétch at once, with every app** (Jubilife City):
+  - The president no longer sends the player after the three clowns' Coupons. In the campaign scene he says "Well,
+    this simply cannot do! Here, a Pokétch for you!", and all 25 apps come installed (Renegade's lines).
+  - Looker's hints say "I believe a Pokétch is now free?" (Renegade).
+  - The clowns still quiz and give Coupons, as in Renegade. Their old path to the Pokétch also registers every app.
+- **Renegade's healers:**
+  - A nurse on Route 210 North in the fog (545, 532).
+  - Two nurses in Victory Road 1F (5, 36) and (34, 23).
+  - A nurse on Route 221 (249, 912). Renegade's "Enjoy yourself at Pal Park!" becomes "the Regional Forms Park".
+  - The Route 225 house's worker heals on every talk; vanilla's Fresh Water still comes on the first talk.
+  - Stark Mountain: the party is healed between Mars's and Jupiter's battles.
+
+Checked and left alone:
+- Renegade's Gardenia "show me a Snover" lines are dead: no object in Renegade uses that script.
+- The other audit lines are already ported with Sovereign's wording, or are flavour.
+
+**Open question for the owner:** in Renegade, Victory Road's back area and Route 224 come before the Elite Four.
+Renegade removes vanilla's post-game guard in Victory Road 1F, and adds a guard by the League exit ("You're not quite
+ready yet. Have you been to Route 224?"). That guard steps aside once the counterpart by Route 224's tablet is beaten
+(Lv. 69–70, E10 part 30). Sovereign keeps vanilla's post-game guard, so Route 224 is post-game only.
+
+Verified in test builds:
+- **TM collector:** with No, the bag is unchanged. With Yes, his lines play, then the bag holds TM01–TM92 at ×99 each
+  (read from RAM), and "Alright. Come back again!".
+- **Pokétch:** stepping onto the campaign trigger plays the president's new lines, then "A received a Pokétch!" and
+  "That Pokétch has every app installed!". The Pokétch save data shows 25 apps. Switching apps showed the Alarm Clock,
+  Stopwatch and Matchup Checker.
+- **Healers:** each of the five gave its lines, the heal fade and its closing line. The Route 225 house also gave the
+  Fresh Water and its tip-top line.
+- Not tested: the Stark Mountain heal (one `HealParty` after the Mars win).
+
 ## E10 (part 38) — Renegade's Arceus: the Foreign Building elder's Azure Flute, no distribution
 
 Vanilla's Arceus needs the Azure Flute distribution. Renegade has an elder give the flute in the game instead:

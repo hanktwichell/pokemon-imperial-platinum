@@ -3,6 +3,8 @@
 ## Kept from Renegade Platinum (all unchanged)
 
 - **TMs:** every TM has a quantity of 99 when obtained; TMs cost nothing (unsellable); a League NPC refills all TMs to 99.
+- **Pokétch** given in Jubilife without the Coupons, with every app installed.
+- **Healers** on Routes 210 (North), 221 and 225 (the house), in Victory Road, and between the Stark Mountain battles.
 - **Move Relearner** (Pastoria) is free; no Heart Scales.
 - **Move Tutors:** all tutors are gathered in the Route 212 (South) house and teach for free.
 - **Move Deleter** moved next to the Oreburgh Pokémon Center.

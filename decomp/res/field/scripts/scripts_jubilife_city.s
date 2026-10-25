@@ -1322,12 +1322,10 @@ JubilifeCity_CoordEvent_PoketchCampaign:
     CallIfEq VAR_0x8004, 174, JubilifeCity_PoketchCoPresidentWalkToPlayerX174
     CallIfEq VAR_0x8004, 175, JubilifeCity_PoketchCoPresidentWalkToPlayerX175
     CallIfEq VAR_0x8004, 176, JubilifeCity_PoketchCoPresidentWalkToPlayerX176
+    @ Sovereign (E10, Renegade): the president gives the Pokétch at once, without the three clowns' Coupons.
     Message JubilifeCity_Text_YouHaveNoPoketch
     SetVar VAR_POKETCH_CAMPAIGN_STATE, 2
-    Message JubilifeCity_Text_FindThreeClowns
-    WaitButton
-    CloseMessage
-    ReleaseAll
+    GoTo JubilifeCity_SovereignGivePoketch
     End
 
 JubilifeCity_PoketchCoPresidentWalkToPlayerX172:
@@ -1424,20 +1422,43 @@ JubilifeCity_IncreaseObtainedCouponsCount:
 
 JubilifeCity_GivePoketch:
     Message JubilifeCity_Text_PokemonWatchInReturnForCoupons
+JubilifeCity_SovereignGivePoketch:
     RemoveItem ITEM_COUPON_1, 1, VAR_RESULT
     RemoveItem ITEM_COUPON_2, 1, VAR_RESULT
     RemoveItem ITEM_COUPON_3, 1, VAR_RESULT
     EnablePoketch
     SetVar VAR_JUBILIFE_CITY_STATE, 2
+    @ Sovereign (E10, Renegade): every app comes installed.
     RegisterPoketchApp POKETCH_APPID_DIGITALWATCH
     RegisterPoketchApp POKETCH_APPID_CALCULATOR
+    RegisterPoketchApp POKETCH_APPID_MEMOPAD
     RegisterPoketchApp POKETCH_APPID_PEDOMETER
     RegisterPoketchApp POKETCH_APPID_PARTYSTATUS
+    RegisterPoketchApp POKETCH_APPID_FRIENDSHIPCHECKER
+    RegisterPoketchApp POKETCH_APPID_DOWSINGMACHINE
+    RegisterPoketchApp POKETCH_APPID_BERRYSEARCHER
+    RegisterPoketchApp POKETCH_APPID_DAYCARECHECKER
+    RegisterPoketchApp POKETCH_APPID_POKEMONHISTORY
+    RegisterPoketchApp POKETCH_APPID_COUNTER
+    RegisterPoketchApp POKETCH_APPID_ANALOGWATCH
+    RegisterPoketchApp POKETCH_APPID_MARKINGMAP
+    RegisterPoketchApp POKETCH_APPID_LINKSEARCHER
+    RegisterPoketchApp POKETCH_APPID_COINTOSS
+    RegisterPoketchApp POKETCH_APPID_MOVETESTER
+    RegisterPoketchApp POKETCH_APPID_CALENDAR
+    RegisterPoketchApp POKETCH_APPID_DOTART
+    RegisterPoketchApp POKETCH_APPID_ROULETTE
+    RegisterPoketchApp POKETCH_APPID_TRAINERCOUNTER
+    RegisterPoketchApp POKETCH_APPID_KITCHENTIMER
+    RegisterPoketchApp POKETCH_APPID_COLORCHANGER
+    RegisterPoketchApp POKETCH_APPID_MATCHUPCHECKER
+    RegisterPoketchApp POKETCH_APPID_STOPWATCH
+    RegisterPoketchApp POKETCH_APPID_ALARMCLOCK
     BufferPlayerName 0
     Message JubilifeCity_Text_PlayerReceivedAPoketch
     PlayFanfare SEQ_FANFA4_sseq
     WaitFanfare
-    Message JubilifeCity_Text_AddAppsToPoketch
+    Message JubilifeCity_Text_SovereignPoketchHasEveryApp
     CloseMessage
     GetPlayerDir VAR_RESULT
     GoToIfEq VAR_RESULT, DIR_NORTH, JubilifeCity_PoketchCoPresidentLeaveNorthWestEast

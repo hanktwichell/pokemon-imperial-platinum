@@ -5510,3 +5510,47 @@ is merged. Part 36 is committed and pushed to the branch as work in progress. No
    Palmer, the Floaroma Flying club, and Oak's flavor lines.
 3. All of Renegade's documented legendary events are now ported. Check `docs/LegendaryTriggers.md`'s open issues
    (Cosmog can flee; roamers return only through the Archivist).
+
+## CB-0115 — 2026-10-24, 10:28 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: E10 part 39, from the map-script audit.** PR #129 (part 38, Arceus) is merged.
+- **The TM collector** in the Pokémon League's north Pokémon Center, at (19, 3), tops every TM (TM01–TM92) up to 99
+  after a Yes (Renegade's `ItemChanges.txt`).
+- **The Pokétch is given at once, with all 25 apps.** In the Jubilife campaign scene the president gives it without
+  the clowns' Coupons. Looker's hints are Renegade's.
+- **Renegade's healers:**
+  - nurses on Route 210 North, in Victory Road 1F (two) and on Route 221;
+  - the Route 225 house's worker, who still gives the Fresh Water the first time;
+  - a heal between Mars's and Jupiter's battles at Stark Mountain.
+- **Tested in test builds:** all of the above except the Stark Mountain heal. The TM and Pokétch results were checked
+  in RAM.
+- **Audit notes:**
+  - The text audit dedups against all of Sovereign's text, so NPCs that reuse lines (the Victory Road nurses) were
+    hidden. I found them with a new `HealParty` count per map (`$S/heal_audit.py`); `$S/find_ren.py` greps every
+    Renegade script.
+  - `$S/jirachi_helpers.py`'s `add_entries` no longer leaves a whitespace-only line.
+  - The Pokétch replaces the bottom-screen background, so the harness's `field()` check no longer sees the field
+    after the player has the Pokétch.
+
+**Owner question (open, in `docs/ProjectStatus.md`):** in Renegade, Victory Road's back area and Route 224 come
+before the Elite Four. A guard by the League exit waits until the Route 224 counterpart is beaten. Sovereign keeps
+vanilla's post-game guard.
+
+**Files modified:**
+- Scripts: `scripts_pokemon_league_north_pokecenter_1f.s`, `scripts_jubilife_city.s`, `scripts_route_210_north.s`,
+  `scripts_victory_road_1f.s`, `scripts_route_221.s`, `scripts_route_225_house.s` and `scripts_stark_mountain_room_1.s`
+- Events: `events_pokemon_league_north_pokecenter_1f.json`, `events_route_210_north.json`, `events_victory_road_1f.json`
+  and `events_route_221.json`
+- Text: `pokemon_league_north_pokecenter_1f.json`, `jubilife_city.json`, `route_210_north.json`, `victory_road_1f.json`,
+  `route_221.json` and `route_225_house.json`
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `docs/QualityOfLife.md`, `docs/ProjectStatus.md`,
+  `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge the part 39 PR once both checks are green.
+2. Ask the owner about Route 224 before the Elite Four. If yes:
+   - remove vanilla's Victory Road 1F post-game guard;
+   - add Renegade's League-exit guard, cleared by the Route 224 counterpart win;
+   - check level caps (`data/level_caps.yaml`) and the post-game gates on Route 224 (Shaymin, Enamorus, Pecharunt).
+3. More audit sweeps by command rather than by text: trainer battles, `AddItem`/gift `CallCommonScript 2044` counts,
+   and `GivePokemon` per map, Renegade against Sovereign, as done for `HealParty`.
