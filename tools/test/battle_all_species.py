@@ -13,8 +13,8 @@ The Pokémon the game built (caught with a hook on Party_AddPokemon) is checked 
 (check_trainer_party.species_data): species, form and level; moves, which must be the form's level-up moves;
 all six stats, recomputed from the form's base stats and the Pokémon's own IVs, EVs and nature; the ability, which
 must be the one its personality picks from the form's (or its hidden ability, if it has one); and its held item, none
-or one of the form's. A base form may come back as a form its personality picks (Minior's core, a Female Meowstic,
-an Unown letter), and is then checked as that form.
+or one of the form's. A base form may come back as a form its personality picks (Minior's core, a Female Meowstic)
+or the map does (an Unown letter, East Sea Shellos and Gastrodon), and is then checked as that form.
 
 Each one gets a result:
 - **DATA:** the Pokémon differs from its form's data (the line says how).
@@ -195,7 +195,9 @@ def main():
     for name, form, kind, _ in sovereign_forms():
         if kind in PERSONALITY_KINDS:
             personality_forms.setdefault(name, set()).add(form)
-    personality_forms['SPECIES_UNOWN'] = set(range(28))  # its letter
+    # Platinum gives these their form from the map as they're added to the battle (AddWildMonToParty).
+    personality_forms['SPECIES_UNOWN'] = set(range(28))  # the area's letters
+    personality_forms['SPECIES_SHELLOS'] = personality_forms['SPECIES_GASTRODON'] = {1}  # East Sea
 
     d = Driver(rom, state)
     d.added, d.armed = [], False
