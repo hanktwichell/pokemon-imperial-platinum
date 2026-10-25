@@ -4,6 +4,25 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 40) — Renegade's Magma Stone after Heatran's catch
+
+Steven's first request (E10 part 13) trades the Magma Stone for the Soul Dew, which Latias and Latios need. Nothing
+in Sovereign gave the Magma Stone: in vanilla, Charon's scene takes it away. Renegade gives it after Heatran:
+- **Stark Mountain room 3:** catching Heatran brings "Oh?", and the Magma Stone shows for a moment where Heatran
+  stood. The player obtains it, into the Key Items pocket. Knocking Heatran out gives nothing: it comes back after the
+  Hall of Fame, as before.
+- The catch flag (`FLAG_CAUGHT_HEATRAN`) is set after the stone, so no new flag is needed.
+
+Found by a new audit that compares the items each map's scripts give, Renegade against Sovereign. Its other hits are
+items Renegade gives under reused vanilla item IDs (the Wings, Orbs, GS Ball, Oak's Letter), which Sovereign gives
+under its own constants.
+
+Verified in a test build (post-game, Heatran shown, Charon's scene done):
+- Heatran's battle and Master Ball catch, then "Oh?", "A obtained the Magma Stone!" and "put the Magma Stone in the
+  KEY ITEMS Pocket."
+- Steven's Quests: "That rock you have there... That's the Magma Stone, isn't it?!" Then he takes it, gives "the
+  Soul Dew!" into the Items pocket, and goes on to Latias and Latios.
+
 ## E10 (part 39) — Renegade's TM collector, the Pokétch with every app, and its healers
 
 Found by the map-script audit:

@@ -5554,3 +5554,29 @@ vanilla's post-game guard.
    - check level caps (`data/level_caps.yaml`) and the post-game gates on Route 224 (Shaymin, Enamorus, Pecharunt).
 3. More audit sweeps by command rather than by text: trainer battles, `AddItem`/gift `CallCommonScript 2044` counts,
    and `GivePokemon` per map, Renegade against Sovereign, as done for `HealParty`.
+
+## CB-0116 — 2026-10-24, 10:42 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: E10 part 40, Renegade's Magma Stone.** PR #130 (part 39) is merged.
+- **Bug found by a new item audit** (`$S/item_audit.py`, which compares the items each map's scripts give):
+  - Steven's first request (part 13) needs the Magma Stone, but nothing in Sovereign gave it. Vanilla's Charon scene
+    takes it away, so the Soul Dew, and with it Latias and Latios, were out of reach.
+- **The fix, as in Renegade:** catching Heatran in Stark Mountain room 3 brings "Oh?". The stone shows where Heatran
+  stood, and the player obtains it.
+- **Tested in a test build:** Heatran caught, the Magma Stone obtained, then Steven's Quests take it and give the Soul
+  Dew.
+- **Audit notes:** the item audit's other hits are Renegade's reused vanilla item IDs (the Wings, Orbs, GS Ball and
+  Oak's Letter). The Old Gateau and Up-Grade are already obtainable in Sovereign, from item balls and Oak.
+
+**Files modified:**
+- `decomp/res/field/scripts/scripts_stark_mountain_room_3.s`, `decomp/res/text/stark_mountain_room_3.json`
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `docs/LegendaryTriggers.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge the part 40 PR once both checks are green.
+2. Owner question: Route 224 before the Elite Four (`docs/ProjectStatus.md` Open list).
+3. More command sweeps:
+   - `GivePokemon`/`GiveEgg` per map (Pokémon Mansion office: Renegade's Manaphy Egg; Sovereign battles Manaphy on
+     purpose, decision 26);
+   - `SetVar` on story vars that Renegade changes (gates);
+   - each map's object count, to catch NPCs Renegade added or removed.
