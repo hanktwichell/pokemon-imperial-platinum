@@ -12,10 +12,16 @@ struct SovereignTestWarpTarget {
     u16 dir; // when set, the way the player faces + 1 (FACE_UP + 1...); else down
 };
 
-// A var the next test warp sets first, so a harness can mark a story scene as seen.
+// A var the next test warp sets first, so a harness can mark a story scene as seen. With no warp target set, the
+// SELECT+L+R only sets the var (a map's own local vars are cleared as the player comes in, so they are set after).
 struct SovereignTestVar {
     u16 var; // when set
     u16 value;
+};
+
+struct SovereignTestScripts {
+    u16 count;
+    u16 first;
 };
 
 struct SovereignTestWild {
@@ -96,7 +102,7 @@ struct SovereignTestItemUse {
 
 // When mapHeaderID is set, the next SELECT+L+R warps here instead of to the next test location (script_manager.c).
 extern struct SovereignTestWarpTarget gSovereignTestWarpTarget;
-// When var is set, the next SELECT+L+R sets it first (see struct SovereignTestVar).
+// When var is set, the next SELECT+L+R sets it first, and only that with no warp target (see struct SovereignTestVar).
 extern struct SovereignTestVar gSovereignTestVar;
 // When set, the next SELECT+R battles this trainer instead of TRAINER_SOVEREIGN_TEST (field_control.c).
 extern u16 gSovereignTestBattleTrainer;
@@ -134,6 +140,9 @@ extern u8 gSovereignTestFoeSurvivesTurns;
 // The frames the field map has run with no task (no script, warp or battle), and the map it was on (field_system.c).
 extern u32 gSovereignTestIdleFrames;
 extern u32 gSovereignTestIdleMapHeaderID;
+// The scripts the field has started (ScriptManager_Set: an object's, a sign's, a trigger's...) since a harness cleared
+// count, and the ID of the first, so it can tell that a script that ends at once ran.
+extern struct SovereignTestScripts gSovereignTestScripts;
 #endif
 
 #endif // POKEPLATINUM_SOVEREIGN_TEST_H

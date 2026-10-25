@@ -101,6 +101,12 @@ static u16 FieldSystem_GetFrameTableInitScriptID(FieldSystem *fieldSystem, const
 
 void ScriptManager_Set(FieldSystem *fieldSystem, u16 scriptID, MapObject *object)
 {
+#ifdef SOVEREIGN_TEST
+    if (gSovereignTestScripts.count++ == 0) {
+        gSovereignTestScripts.first = scriptID;
+    }
+#endif
+
     ScriptManager *scriptManager = ScriptManager_New();
 
     ScriptManager_Init(fieldSystem, scriptManager, scriptID, object, NULL);
@@ -865,6 +871,7 @@ static u8 sSovereignTestWarpIndex;
 // and how many turns it survives.
 struct SovereignTestWarpTarget gSovereignTestWarpTarget;
 struct SovereignTestVar gSovereignTestVar;
+struct SovereignTestScripts gSovereignTestScripts;
 u16 gSovereignTestBattleTrainer;
 struct SovereignTestWild gSovereignTestWild;
 struct SovereignTestLead gSovereignTestLead;
@@ -883,6 +890,10 @@ void SovereignTest_WarpNext(FieldSystem *fieldSystem)
     if (gSovereignTestVar.var != 0) {
         *FieldSystem_GetVarPointer(fieldSystem, gSovereignTestVar.var) = gSovereignTestVar.value;
         gSovereignTestVar.var = 0;
+
+        if (gSovereignTestWarpTarget.mapHeaderID == 0) {
+            return;
+        }
     }
 
     if (gSovereignTestWarpTarget.mapHeaderID != 0) {

@@ -4,6 +4,41 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Playtest pass — signs, hidden items and triggers
+
+**`tools/test/signs_and_triggers.py` (local; about 10 minutes in 4 parts)** runs each bg event (sign, hidden item) and
+coord trigger that Sovereign added or changed, in the test build. That's 83 events in all, each one either missing
+from vanilla Platinum or with a script whose code differs from vanilla's:
+- 25 new or moved: the library book, the Celestic shrine, the Gengar painting, two hidden items, the Celebi, Mansion siege,
+  Snowpoint tremor, Wayward Cave and other story triggers;
+- 58 vanilla ones whose script Sovereign changed: the ruins' statues, the League statues, the Galactic lab machines,
+  Cheryl, Riley, Mira, Maylene, the Spear Pillar grunts and others.
+
+Each event is reached as the talk test reaches an object. The test comes in by the map's way in, then warps next to the
+event, facing it:
+- **A sign or hidden item:** A is pressed, from the side the sign is read from.
+- **A coord trigger:** its var is set to the value it waits for, then the player steps onto it. The var is set after
+  the warp, because a map's own local vars are cleared on the way in.
+
+The script is then played out as in the talk test. To pass, the event's own script must be the first to start, with
+no other scene and no object in the way, and it must end with no hang.
+
+Mira's exit at Wayward Cave runs twice:
+- with her ribbon quest open: she stays, and the script ends at once;
+- with the ribbon found: she thanks the player and gives TM85.
+
+**Results:** all 84 runs pass, and the runs found no game bugs. Two negative controls fail as they should:
+- a trigger stepped on with the wrong value;
+- a sign pressed while facing away from it.
+
+**Test-build hooks** (`include/sovereign_test.h`):
+- `gSovereignTestVar` with no warp target: SELECT+L+R sets only the var, on the map the player is on.
+- `gSovereignTestScripts` counts the scripts the field starts (`ScriptManager_Set`) and keeps the first one's ID. The
+  test uses it to tell that a script which ends at once did run, and which script it was.
+
+**Refactor:** `talk_to_objects.py`'s tile finding and arrival steps are now functions that both tests use. The talk
+test's list of 252 objects is unchanged.
+
 ## Playtest pass — talking to every added object
 
 **`tools/test/talk_to_objects.py` (local; about an hour in 4 parts)** talks to each of the 252 map objects with a script
