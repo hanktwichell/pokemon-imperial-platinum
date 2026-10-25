@@ -23,7 +23,8 @@ about an hour). These are tested through the code the bag and the party menu use
   Arceus with each of the 17 Plates (and an item that isn't one), Silvally with each of the 17 Memories, Genesect with
   each Drive, and Giratina with the Griseous Orb or Core.
 
-**Results:** RESULTS_PENDING
+**Results:** all 210 cases pass, and the runs found no new bugs. (The 164 battle and key item cases ran on one build and
+the 46 held-item cases on the next, which only adds the item-giving step for those species.)
 
 **Test-build hooks** (`include/sovereign_test.h`):
 - `gSovereignTestPartner`: the party's second Pokémon, for a fusion.
