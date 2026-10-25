@@ -4,6 +4,7 @@
 
     ScriptEntry VictoryRoad_OnTransition
     ScriptEntry VictoryRoad_Collector
+    ScriptEntry VictoryRoad1F_SovereignNurse
     ScriptEntryEnd
 
 VictoryRoad_OnTransition:
@@ -30,6 +31,26 @@ VictoryRoad1F_YoullMeetManyPokemon:
     End
 
 VictoryRoad1F_CollectorEnd:
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+@ Sovereign (E10, Renegade): two nurses in Victory Road heal the party.
+VictoryRoad1F_SovereignNurse:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    Message VictoryRoad1F_Text_SovereignNurseHeal
+    CloseMessage
+    FadeScreenOut
+    WaitFadeScreen
+    PlayFanfare SEQ_ASA_sseq
+    WaitFanfare
+    HealParty
+    FadeScreenIn
+    WaitFadeScreen
+    Message VictoryRoad1F_Text_SovereignNurseGoodLuck
     WaitButton
     CloseMessage
     ReleaseAll

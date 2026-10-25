@@ -98,6 +98,28 @@
         "stirring at the Spear Pillar.\r",
         "Please see to them first."
       ]
+    },
+    {
+      "id": "PokemonLeagueNorthPokecenter1F_Text_SovereignTMCollectorAsk",
+      "en_US": [
+        "Hello, strong Trainer!\r",
+        "I am the Technical Machine collector!\n",
+        "I’ve got all the TMs you’ll ever need.\r",
+        "Do you need me to give you a full use\n",
+        "set of every Technical Machine?"
+      ]
+    },
+    {
+      "id": "PokemonLeagueNorthPokecenter1F_Text_SovereignTMCollectorYes",
+      "en_US": [
+        "Excellent! Here I go, then.\r",
+        "Please be patient.\n",
+        "This may take a moment..."
+      ]
+    },
+    {
+      "id": "PokemonLeagueNorthPokecenter1F_Text_SovereignTMCollectorNo",
+      "en_US": "Alright. Come back again!"
     }
   ]
 }

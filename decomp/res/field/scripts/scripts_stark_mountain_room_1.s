@@ -30,6 +30,8 @@ StarkMountainOutside_OnFrame_TeamGalactic:
     StartTrainerBattle TRAINER_COMMANDER_MARS_STARK_MOUNTAIN
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, StarkMountainRoom1_LostBattle
+    @ Sovereign (E10, Renegade): the party is healed between Mars's and Jupiter's battles.
+    HealParty
     Message StarkMountainRoom1_Text_PokemonLetMeDown
     CloseMessage
     ApplyMovement LOCALID_MARS, StarkMountainRoom1_Movement_MarsWalkBack

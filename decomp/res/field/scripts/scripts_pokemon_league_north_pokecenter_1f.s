@@ -11,6 +11,7 @@
     ScriptEntry PokemonLeagueNorthPokecenter1F_AceTrainerF
     ScriptEntry PokemonLeagueNorthPokecenter1F_Guitarist
     ScriptEntry PokemonLeagueNorthPokecenter1F_Nurse
+    ScriptEntry PokemonLeagueNorthPokecenter1F_SovereignTMCollector
     ScriptEntryEnd
 
 PokemonLeagueNorthPokecenter1F_OnTransition:
@@ -280,6 +281,36 @@ PokemonLeagueNorthPokecenter1F_Guitarist:
 
 PokemonLeagueNorthPokecenter1F_Nurse:
     Common_CallPokecenterNurse LOCALID_LEAGUE_NORTH_NURSE
+    End
+
+@ Sovereign (E10, Renegade): the TM collector tops every TM up to 99, after a Yes. A TM always fits the bag and comes
+@ as 99 of it (E10 part 2), so adding one of each TM is enough.
+PokemonLeagueNorthPokecenter1F_SovereignTMCollector:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    Message PokemonLeagueNorthPokecenter1F_Text_SovereignTMCollectorAsk
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, PokemonLeagueNorthPokecenter1F_SovereignTMCollectorEnd
+    Message PokemonLeagueNorthPokecenter1F_Text_SovereignTMCollectorYes
+    WaitButton
+    CloseMessage
+    FadeScreenOut
+    WaitFadeScreen
+    SetVar VAR_0x8004, ITEM_TM01
+PokemonLeagueNorthPokecenter1F_SovereignTMCollectorLoop:
+    AddItem VAR_0x8004, 1, VAR_RESULT
+    AddVar VAR_0x8004, 1
+    GoToIfLe VAR_0x8004, ITEM_TM92, PokemonLeagueNorthPokecenter1F_SovereignTMCollectorLoop
+    PlayFanfare SEQ_WAZA_sseq
+    WaitFanfare
+    FadeScreenIn
+    WaitFadeScreen
+PokemonLeagueNorthPokecenter1F_SovereignTMCollectorEnd:
+    Message PokemonLeagueNorthPokecenter1F_Text_SovereignTMCollectorNo
+    WaitButton
+    CloseMessage
+    ReleaseAll
     End
 
     .balign 4, 0

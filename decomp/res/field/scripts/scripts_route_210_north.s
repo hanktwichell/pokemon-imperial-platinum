@@ -11,6 +11,7 @@
     ScriptEntry Route210North_LegendaryZacian
     ScriptEntry Route210North_LegendaryZamazenta
     ScriptEntry Route210North_SovereignCounterpartBattle
+    ScriptEntry Route210North_SovereignNurse
     ScriptEntryEnd
 
 Route210North_BlackBelt:
@@ -338,5 +339,25 @@ Route210North_SovereignMovement_CounterpartLeave532:
     WalkNormalNorth 2
     WalkNormalEast 5
     EndMovement
+
+@ Sovereign (E10, Renegade): a nurse in the fog heals the party.
+Route210North_SovereignNurse:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    Message Route210North_Text_SovereignNurseHeal
+    CloseMessage
+    FadeScreenOut
+    WaitFadeScreen
+    PlayFanfare SEQ_ASA_sseq
+    WaitFanfare
+    HealParty
+    FadeScreenIn
+    WaitFadeScreen
+    Message Route210North_Text_SovereignNurseGoodbye
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
 
     .balign 4, 0

@@ -22,6 +22,23 @@
         "Regional Forms Park\n",
         "Where Far-Off Forms Gather"
       ]
+    },
+    {
+      "id": "Route221_Text_SovereignNurseHeal",
+      "en_US": [
+        "Hello, Trainer!\n",
+        "Do you need healing?\r",
+        "Don’t worry. Pokémon never faint\n",
+        "when I’m on the job!\r"
+      ]
+    },
+    {
+      "id": "Route221_Text_SovereignNurseEnjoyPark",
+      "en_US": [
+        "All better!\n",
+        "Enjoy yourself at the Regional\n",
+        "Forms Park!"
+      ]
     }
   ]
 }

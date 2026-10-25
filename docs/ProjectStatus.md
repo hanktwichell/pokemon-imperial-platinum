@@ -253,6 +253,9 @@ Made by the owner (2026-10-22):
     all sixteen Type Masters' Plates in the bag, the elder gives the Azure Flute (E10 part 38).
 
 Open:
+- **Route 224 before the Elite Four?** In Renegade, Victory Road's back area and Route 224 come before the League. A
+  guard by the League exit waits until the counterpart by Route 224's tablet (Lv. 69–70) is beaten. Sovereign keeps
+  vanilla's post-game guard (E10 part 39 notes).
 - **The legendary placement tile checks** in `docs/LegendaryPlacementReview.md` (every clash is settled by decisions
   35–39). `docs/StaticEncounters.xlsx` lists every encounter.
 - **Overworld sprites for the legendaries:** the owner draws them and sorts the rest of the sizes (decision 40,

@@ -102,6 +102,20 @@
         "Pokémon around here, so I’ll see you\f",
         "around!\r"
       ]
+    },
+    {
+      "id": "Route210North_Text_SovereignNurseHeal",
+      "en_US": [
+        "Hello! Let’s get you all fixed up!\n",
+        "Just leave it to me!\r"
+      ]
+    },
+    {
+      "id": "Route210North_Text_SovereignNurseGoodbye",
+      "en_US": [
+        "Now you’re ready to keep exploring!\n",
+        "Feel free to come back anytime."
+      ]
     }
   ]
 }

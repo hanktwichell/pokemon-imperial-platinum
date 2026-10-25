@@ -303,8 +303,7 @@
         "There are no shady characters about.\r",
         "Incidentally, have you not obtained\n",
         "a Pokétch?\r",
-        "I believe a Pokétch is now free in\n",
-        "exchange for some Coupons?"
+        "I believe a Pokétch is now free?"
       ]
     },
     {
@@ -312,8 +311,7 @@
       "en_US": [
         "Looker: Tell me, have you not obtained\n",
         "a Pokétch?\r",
-        "I believe a Pokétch is now free in\n",
-        "exchange for some Coupons?\r"
+        "I believe a Pokétch is now free?\r"
       ]
     },
     {
@@ -370,7 +368,9 @@
         "That is, Pokémon Watch, or Pokétch\n",
         "for short!\r",
         "Oh my, you are a rare case\n",
-        "indeed!\r"
+        "indeed!\r",
+        "Well, this simply cannot do!\n",
+        "Here, a Pokétch for you!\r"
       ]
     },
     {
@@ -947,6 +947,15 @@
       "en_US": [
         "The Global Terminal\n",
         "Your Gateway to the Whole World!"
+      ]
+    },
+    {
+      "id": "JubilifeCity_Text_SovereignPoketchHasEveryApp",
+      "en_US": [
+        "You’re a lucky one today!\n",
+        "That Pokétch has every app installed!\r",
+        "Touch the Pokétch screen and find the\n",
+        "apps that are right for you!\r"
       ]
     }
   ]
