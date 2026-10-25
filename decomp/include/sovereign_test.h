@@ -122,7 +122,8 @@ extern u8 gSovereignTestPlayerBattleForm;
 extern u8 gSovereignTestLeadFormAfter;
 // While set (god mode), test battles are one-sided, so one sends out every Pokémon the opponent has:
 // - a foe that loses any HP loses all of it, and the player's Pokémon lose none (BtlCmd_UpdateHealthBarValue);
-// - the player's moves ignore the foes' abilities (Battler_IgnorableAbility);
+// - the player's moves ignore the foes' abilities (Battler_IgnorableAbility) and cost no PP
+//   (BattleControllerPlayer_DecrementPP);
 // - no EXP is gained, so there are no level-up prompts (BtlCmd_CalcExpGain);
 // - the battle style is Set, with no "Will you change Pokémon?" prompt (BattleSystem_GetBattleStyle);
 // - the text is fast (BattleSystem_GetTextSpeed).

@@ -24,6 +24,7 @@ Two scenes on entering a map need the story's own way in, so the test marks them
 **Test-build hooks** (`include/sovereign_test.h`):
 - `gSovereignTestWarpTarget` also sets the way the player faces.
 - `gSovereignTestVar` sets a var before the next test warp.
+- In god mode the player's moves cost no PP, so the Battle Marathon's 24 battles can't leave the lead with no move.
 
 
 ## Playtest pass — Zero to Hero, and the forms' TMs

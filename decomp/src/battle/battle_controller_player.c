@@ -41,6 +41,7 @@
 #include "pokemon.h"
 #include "screen_fade.h"
 #include "sound_playback.h"
+#include "sovereign_test.h"
 #include "trainer_info.h"
 
 #include "res/battle/scripts/sub_seq.naix"
@@ -2478,6 +2479,14 @@ static BOOL BattleControllerPlayer_DecrementPP(BattleSystem *battleSys, BattleCo
             }
         }
     }
+
+#ifdef SOVEREIGN_TEST
+    // Test build only: in god mode the player's moves cost no PP, so a long run of battles (the Battle Marathon) can't
+    // leave a test lead with no move to use (include/sovereign_test.h).
+    if (gSovereignTestGodMode && (battleCtx->attacker & 1) == BATTLE_SIDE_PLAYER) {
+        ppCost = 0;
+    }
+#endif
 
     int moveSlot = Battler_SlotForMove(&ATTACKING_MON, battleCtx->moveTemp);
     if (ATTACKER_TURN_FLAGS.ppDecremented == FALSE && ATTACKER_TURN_FLAGS.struggling == FALSE) {
