@@ -204,6 +204,14 @@ void FieldSystem_InitNewGameState(FieldSystem *fieldSystem);
 void FieldSystem_RunScript(FieldSystem *fieldSystem, u16 scriptID);
 BOOL FieldSystem_RunInitScript(FieldSystem *fieldSystem, u8 param1);
 #ifdef SOVEREIGN_TEST
+struct SovereignTestWarpTarget {
+    u16 mapHeaderID;
+    u16 x;
+    u16 z;
+};
+
+extern struct SovereignTestWarpTarget gSovereignTestWarpTarget;
+
 void SovereignTest_OpenEasyChat(FieldSystem *fieldSystem);
 void SovereignTest_WarpNext(FieldSystem *fieldSystem);
 #endif

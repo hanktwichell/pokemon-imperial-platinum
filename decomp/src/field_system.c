@@ -202,8 +202,22 @@ static void ExecuteAndCleanupIfDone(ApplicationManager **appManPtr)
     }
 }
 
+#ifdef SOVEREIGN_TEST
+// Test build only: the frames the field map has run with no task (no script, warp or battle) and the map it was on;
+// a test harness (tools/test/visit_changed_maps.py) reads them to tell when the player is free to move.
+u32 gSovereignTestIdleFrames;
+u32 gSovereignTestIdleMapHeaderID;
+#endif
+
 static BOOL HandleInputsEventsAndProcesses(FieldSystem *fieldSystem)
 {
+#ifdef SOVEREIGN_TEST
+    if (fieldSystem->runningFieldMap && FieldSystem_IsRunningTask(fieldSystem) == FALSE) {
+        gSovereignTestIdleFrames++;
+        gSovereignTestIdleMapHeaderID = fieldSystem->location->mapHeaderID;
+    }
+#endif
+
     HandleFieldInput(fieldSystem);
     if (FieldTask_Run(fieldSystem) == TRUE && fieldSystem->unk_04 != NULL) {
         FieldSystem_SendPoketchEvent(fieldSystem, POKETCH_EVENT_SLEEP, 0);

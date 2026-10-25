@@ -858,8 +858,18 @@ static const struct {
 
 static u8 sSovereignTestWarpIndex;
 
+// Test build only: a test harness (tools/test/visit_changed_maps.py) writes a place here, and the next SELECT+L+R
+// warps there instead of to the next place in the list.
+struct SovereignTestWarpTarget gSovereignTestWarpTarget;
+
 void SovereignTest_WarpNext(FieldSystem *fieldSystem)
 {
+    if (gSovereignTestWarpTarget.mapHeaderID != 0) {
+        FieldTask_StartMapChangeFly(fieldSystem, gSovereignTestWarpTarget.mapHeaderID, -1, gSovereignTestWarpTarget.x, gSovereignTestWarpTarget.z, FACE_DOWN);
+        gSovereignTestWarpTarget.mapHeaderID = 0;
+        return;
+    }
+
     u8 i = sSovereignTestWarpIndex++ % NELEMS(sSovereignTestWarps);
 
     FieldTask_StartMapChangeFly(fieldSystem, sSovereignTestWarps[i].mapHeaderID, -1, sSovereignTestWarps[i].x, sSovereignTestWarps[i].z, sSovereignTestWarps[i].dir);

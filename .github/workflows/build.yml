@@ -72,6 +72,8 @@ jobs:
         run: python3 tools/test/check_event_scripts.py decomp
       - name: Warps and map texts link up
         run: python3 tools/test/check_map_links.py decomp
+      - name: Script menus fit on the screen
+        run: python3 tools/test/check_menus.py decomp
       - name: Boot smoke test (headless DeSmuME)
         timeout-minutes: 5
         env:
