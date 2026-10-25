@@ -68,7 +68,7 @@ def read_pokemon(raw):
         "moves": list(struct.unpack_from("<4H", b, 0)),
         "ivs": [(ivword >> (5 * i)) & 31 for i in range(6)],
         "gender": GENDERS[(b[0x18] >> 1) & 3],
-        "form": b[0x18] >> 3,
+        "form": (b[0x18] >> 3) | ((b[0x1A] & 3) << 5),  # Sovereign: bits 5-6 in formHighBits (Alcremie's 63 forms)
         "ball": d[0x1B],
         "shiny": ((otid >> 16) ^ (otid & 0xFFFF) ^ (personality >> 16) ^ (personality & 0xFFFF)) < 8,
         "level": party[4],
