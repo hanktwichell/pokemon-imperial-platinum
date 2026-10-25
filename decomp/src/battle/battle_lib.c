@@ -7676,9 +7676,11 @@ int BattleSystem_SovereignMegaForm(BattleSystem *battleSys, BattleContext *battl
     u8 side = BattleSystem_GetBattlerSide(battleSys, battler);
     int ultraForm = Pokemon_SovereignUltraBurstForm(mon->species, mon->formNum, mon->heldItem);
 
+    // A form for good can have a Mega of its own (Female Meowstic, Eternal Floette); a battle form can't Mega Evolve
+    // again (Pokemon_SovereignBattleForm decides which forms have one).
     if ((battleType & BATTLE_TYPE_NO_MOVES)
         || mon->curHP == 0
-        || (mon->formNum != 0 && ultraForm == 0)
+        || (Pokemon_IsSovereignBattleForm(mon->species, mon->formNum) && ultraForm == 0)
         || (mon->statusVolatile & VOLATILE_CONDITION_TRANSFORM)
         || (battleCtx->sovereignMegaUsed & BattleSystem_SovereignMegaTrainerBit(battleSys, battler))) {
         return 0;
