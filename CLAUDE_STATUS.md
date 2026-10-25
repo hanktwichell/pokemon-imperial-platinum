@@ -5580,3 +5580,27 @@ vanilla's post-game guard.
      purpose, decision 26);
    - `SetVar` on story vars that Renegade changes (gates);
    - each map's object count, to catch NPCs Renegade added or removed.
+
+## CB-0117 — 2026-10-24, 10:54 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Added to E10 part 40 (PR #131): Renegade's Route 207 cyclist, which fixes a sequence break.**
+- **The break:** Mom gives the Bicycle (part 11), so Route 207's slope was open from Oreburgh. That let a player reach
+  Hearthome City before Eterna City.
+- **The fix:** vanilla's slope man now stands at the slope's foot (306, 720) with Renegade's broken-bike lines. He's
+  hidden by `FLAG_SOVEREIGN_RECEIVED_CYCLE_SHOP_DAWN_STONE`, so he leaves once the Cycle Shop manager is rescued.
+- **Checks:** a collision BFS (`$S/bfs_strict.py`) confirms he cuts off the slope. Test builds confirm both states.
+- **New object audit** (`$S/obj_audit.py`, `$S/blocker_info.py`): Renegade's other new route blockers stand in for the
+  Rock Smash rocks and Cut trees it removed. Sovereign keeps those (`$S/hm_audit.py`), so none of the other blockers
+  are needed.
+- The scratchpad disk filled up; the old test folders (b11–b57) were deleted.
+
+**Files modified:** `events_route_207.json`, `scripts_route_207.s`, `decomp/res/text/route_207.json`,
+`docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge PR #131 once both checks are green.
+2. Owner question: Route 224 before the Elite Four.
+3. Look over the rest of the object audit for NPCs that matter to play:
+   - the Route 217 west house nurse (Renegade heals there);
+   - Palmer at home in Twinleaf;
+   - the Old Chateau maid and old men.
