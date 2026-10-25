@@ -4,17 +4,29 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
-## Playtest pass — evolving into forms
+## Playtest pass — evolving and breeding into forms
 
 **Fixes:**
 - **A female Espurr or Lechonk can evolve.** Their only evolution was "level 25 (18) as a male", so a female never
   became Meowstic or Oinkologne. Either gender now evolves at the same level, and the gender picks the form (a female
   becomes the female's form). The species generator (`tools/engine/gen_new_species.py`) now turns a male and a female
   evolution by the same method into one, for any species like them.
+- **An Eevee that knows Charm becomes Sylveon, even with high friendship.** Espeon's and Umbreon's friendship came
+  first in Eevee's list, so a friendly Eevee that learned Charm still became Espeon or Umbreon. Sylveon now comes first,
+  as in Sword and Shield. No other species has two level-up evolutions whose conditions can both hold.
 - **A Deerling keeps its season when it evolves.** A Sawsbuck took the season of the day it evolved instead, so a
   Deerling met in spring could become a summer Sawsbuck.
+- **Eggs:**
+  - A female Basculegion's Egg is a White-Striped Basculin, as a male's is. It was a Blue-Striped one, because the
+    female's form number was passed on as Basculin's.
+  - A Mr. Rime's Egg is a Galarian Mr. Mime (or a Mime Jr. with the Odd Incense), like the other species found only
+    through a regional form (`regional_parents` in `data/evolution_changes.yaml`).
+  - A parent in any other Sovereign form passes no form to its Egg (`Pokemon_SovereignBabyForm`): a Totem (a Totem
+    Togedemaru or Mimikyu laid Totem Eggs), a female's form, Low Key Toxtricity, or Three-Segment Dudunsparce. An Egg
+    whose species takes its form from its personality still does (the Flabébé line's colors). Platinum's own forms are
+    kept as in Platinum (Burmy's cloak and Shellos's sea come from the mother).
 
-**`tools/test/battle_evolutions.py` (local; about 20 minutes in 4 parts)** evolves every Pokémon whose evolution
+**`tools/test/battle_evolutions.py` (local; about 25 minutes in 4 parts)** evolves every Pokémon whose evolution
 involves a form, as the evolution screen does, then battles in its new form. There are 336 cases:
 - **Start forms:** every form but the battle forms. A regional form evolves by its own evolutions (Galarian Meowth
   into Perrserker, the Hisuian, Alolan and Paldean lines, the Basculin stripes, Roaming Gimmighoul). Any other form
@@ -34,10 +46,24 @@ expected form is worked out as the game's rules give it. The names cross-check i
 Galarian Darmanitan, and Flabébé (Yellow Flower) must become Floette (Yellow Flower). Alcremie must be named for its
 Sweet and the cream the time gives.
 
+**`tools/test/battle_eggs.py` (local; about an hour in 4 parts)** breeds every form in the Day Care and hatches the
+Egg at once, then battles with the hatched Pokémon. There are 875 cases, from every form but the battle forms of each
+species outside the Undiscovered egg group:
+- each form as the mother with a Ditto, and as the father with a Ditto;
+- for a regional form that passes on its region: a base-form mother with the regional father, whose form must not pass
+  on;
+- with and without the incense, for a parent whose baby is an incense baby (Galarian Mr. Mime and Mr. Rime).
+
+Each case checks the Egg's species and form, that it hatches into them, and that the form lasts through a battle.
+The names cross-check the form when the Egg is another species (Galarian Rapidash: Galarian Ponyta; Alolan Raichu:
+Pichu).
+
 **Results:** RESULTS
 
 **Test-build hooks** (`include/sovereign_test.h`):
 - `gSovereignTestEvolve`: evolves the lead before the battle, with an evolution's class and item or map method.
+- `gSovereignTestBreed`: breeds two Pokémon in the Day Care with a chosen Egg personality, hatches the Egg and makes it
+  the lead.
 - `gSovereignTestClock`: the hour and month the game's clock reads (`rtc.c`).
 - `gSovereignTestLead` also sets the personality, gender and friendship.
 

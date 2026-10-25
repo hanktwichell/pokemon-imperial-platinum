@@ -6100,3 +6100,40 @@ changes) is merged.
 2. Form evolutions (Alolan Raichu from Pikachu on the right map, Lycanroc by time, Alcremie by Sweet, Urshifu by scroll,
    regional evolutions) and Egg forms from a regional parent, tested in the same style.
 3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
+
+## CB-0132 — 2026-10-25, 9:28 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: evolution and Egg form tests, and the game bugs they found.** PR #144 (key items and held-item forms)
+is merged.
+- **Game fixes** (the shipping ROM changes):
+  - A female Espurr or Lechonk evolves (both had only the male's evolution); `gen_new_species.py` merges a same-method
+    male/female pair.
+  - An Eevee that knows Charm becomes Sylveon even with high friendship (Sylveon now comes before Espeon and Umbreon in
+    `eevee/data.json`, as in Sword and Shield). No other species has overlapping level-up evolutions.
+  - A Deerling keeps its season when it evolves (`Pokemon_SovereignSetEvolvedSpecies`).
+  - Eggs: a female Basculegion's is White-Striped (it was Blue-Striped); a Mr. Rime's is Galarian Mr. Mime
+    (`regional_parents`); a parent in any other Sovereign form (Totems, female forms, Low Key Toxtricity...) passes no
+    form (`Pokemon_SovereignBabyForm`), so no more Totem Eggs.
+- **`tools/test/battle_evolutions.py`:** 336 cases, every non-battle form evolving (time, season, Sweets, teapots, forms
+  that must not evolve). Result: 335 of 336 ok on the first build; the one failure was Sylveon, and Eevee's 16 cases pass
+  on the fixed build.
+- **`tools/test/battle_eggs.py`:** 875 cases, every breedable form as mother and father, with incense variants. Running
+  now (4 parts, about an hour); 169 done, all ok so far.
+- **Test-build hooks:** `gSovereignTestEvolve`, `gSovereignTestBreed`, `gSovereignTestClock` (hour and month, `rtc.c`),
+  and the lead's personality, gender and friendship.
+- Found, not fixed (not this task's): rerunning `tools/engine/gen_forms.py` adds TMs (TM55, 57, 62, 83, 85, 88) to 49
+  forms' learnsets, so the form data has drifted from the base species' TM lists since the last run.
+
+**Files modified:**
+- Game: `decomp/src/pokemon.c`, `decomp/include/data/sovereign_forms.h`, `decomp/res/pokemon/{espurr,lechonk,eevee}/data.json`
+- Test hooks: `decomp/include/sovereign_test.h`, `decomp/src/script_manager.c`, `decomp/src/overlay005/field_control.c`,
+  `decomp/src/rtc.c`
+- Tools: `tools/test/battle_evolutions.py`, `tools/test/battle_eggs.py`, `tools/engine/gen_new_species.py`,
+  `tools/engine/gen_forms.py`, `tools/design/gen_evolution_doc.py`
+- Data and docs: `data/evolution_changes.yaml`, `docs/EvolutionChanges_Sovereign.md`, `docs/NewSpecies.md`,
+  `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Finish the Egg run, fix anything it finds, fill in the changelog's results, then open and merge the PR.
+2. Regenerate the forms' learnsets with `gen_forms.py` (the TM drift above), checking each change.
+3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
