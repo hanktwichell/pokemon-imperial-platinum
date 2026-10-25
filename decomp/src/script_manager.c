@@ -867,6 +867,8 @@ struct SovereignTestWarpTarget gSovereignTestWarpTarget;
 u16 gSovereignTestBattleTrainer;
 struct SovereignTestWild gSovereignTestWild;
 struct SovereignTestLead gSovereignTestLead;
+struct SovereignTestPartner gSovereignTestPartner;
+struct SovereignTestItemUse gSovereignTestItemUse;
 u8 gSovereignTestPlayerBattleForm;
 u8 gSovereignTestLeadFormAfter;
 u8 gSovereignTestGodMode;
