@@ -628,6 +628,97 @@
         "Your Pokédex will record them too.\n",
         "Every last one of them.\r"
       ]
+    },
+    {
+      "id": "SandgemTownPokemonResearchLab_Text_SovereignBriefcaseLook",
+      "en_US": [
+        "It’s Professor Rowan’s briefcase.\r",
+        "It’s crammed full of academic papers\n",
+        "and notes about field research.\r",
+        "There are also two Poké Balls.\n",
+        "They appear to contain Pokémon.\r"
+      ]
+    },
+    {
+      "id": "SandgemTownPokemonResearchLab_Text_SovereignBriefcaseRowan",
+      "en_US": [
+        "Rowan: Ah, {STRVAR_1 3, 0, 0}.\r",
+        "You’ve noticed the Poké Balls that are\n",
+        "inside my briefcase, have you not?\r",
+        "You know... I have been very impressed\n",
+        "at your ability to bond with Pokémon.\r",
+        "So much so that I would feel safe if\n",
+        "I were to entrust the two Pokémon\f",
+        "inside that briefcase to you.\r",
+        "They are also young Pokémon who would\n",
+        "benefit from seeing the world.\r",
+        "As their individual species, they are\n",
+        "also exceedingly rare...\r",
+        "As such, it would benefit your Pokédex\n",
+        "to take them with you on your journey.\r",
+        "Please do raise them well.\r"
+      ]
+    },
+    {
+      "id": "SandgemTownPokemonResearchLab_Text_SovereignBriefcaseTake",
+      "en_US": [
+        "Do you want to take the Poké Balls\n",
+        "inside the briefcase?"
+      ]
+    },
+    {
+      "id": "SandgemTownPokemonResearchLab_Text_SovereignBriefcaseNoRoom",
+      "en_US": [
+        "You have no room for the Pokémon.\r",
+        "{STRVAR_1 0, 0, 0} put the Poké Ball back."
+      ]
+    },
+    {
+      "id": "SandgemTownPokemonResearchLab_Text_SovereignBriefcasePapers",
+      "en_US": [
+        "It’s Professor Rowan’s briefcase.\r",
+        "It’s crammed full of academic papers\n",
+        "and notes about field research."
+      ]
+    },
+    {
+      "id": "SandgemTownPokemonResearchLab_Text_SovereignBriefcaseObtainedTurtwig",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} obtained the Turtwig!\r"
+      ]
+    },
+    {
+      "id": "SandgemTownPokemonResearchLab_Text_SovereignBriefcaseObtainedChimchar",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} obtained the Chimchar!\r"
+      ]
+    },
+    {
+      "id": "SandgemTownPokemonResearchLab_Text_SovereignBriefcaseObtainedPiplup",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} obtained the Piplup!\r"
+      ]
+    },
+    {
+      "id": "SandgemTownPokemonResearchLab_Text_SovereignBriefcaseNicknameTurtwig",
+      "en_US": [
+        "Do you want to give a nickname to\n",
+        "this Turtwig?"
+      ]
+    },
+    {
+      "id": "SandgemTownPokemonResearchLab_Text_SovereignBriefcaseNicknameChimchar",
+      "en_US": [
+        "Do you want to give a nickname to\n",
+        "this Chimchar?"
+      ]
+    },
+    {
+      "id": "SandgemTownPokemonResearchLab_Text_SovereignBriefcaseNicknamePiplup",
+      "en_US": [
+        "Do you want to give a nickname to\n",
+        "this Piplup?"
+      ]
     }
   ]
 }

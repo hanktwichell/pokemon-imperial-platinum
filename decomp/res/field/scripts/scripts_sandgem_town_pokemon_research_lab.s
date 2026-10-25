@@ -18,6 +18,7 @@
     ScriptEntry SandgemTownLab_ResearchMaterials_Unused
     ScriptEntry SandgemTownLab_Refrigerator
     ScriptEntry SandgemTownLab_OnFrame_ReturnedFromDistortionWorld
+    ScriptEntry SandgemTownPokemonResearchLab_SovereignBriefcase
     ScriptEntryEnd
 
 SandgemTownLab_OnTransition:
@@ -714,5 +715,141 @@ SandgemTownLab_CheckArrivedInSunyshoreCity:
 SandgemTownLab_SetVarArrivedInSunyshoreCity:
     SetVar VAR_0x8006, TRUE
     Return
+
+    
+
+@ Sovereign (E10, Renegade): Rowan's briefcase holds the two Sinnoh starters the player didn't choose. He walks over and
+@ lets the player take them (Lv. 5), in Turtwig, Chimchar, Piplup order; the party needs room for both. Between the
+@ Distortion World and Sunyshore (lab states 2 and 3) Rowan stands by the door with the counterpart, so he stays there.
+SandgemTownPokemonResearchLab_SovereignBriefcase:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    BufferPlayerName 0
+    GoToIfSet FLAG_SOVEREIGN_TOOK_BRIEFCASE_STARTERS, SandgemTownPokemonResearchLab_SovereignBriefcasePapers
+    GoToIfSet FLAG_HIDE_SANDGEM_TOWN_LAB_PROF_ROWAN, SandgemTownPokemonResearchLab_SovereignBriefcasePapers
+    GetPlayerStarterSpecies VAR_RESULT
+    GoToIfEq VAR_RESULT, SPECIES_NONE, SandgemTownPokemonResearchLab_SovereignBriefcasePapers
+    Message SandgemTownPokemonResearchLab_Text_SovereignBriefcaseLook
+    CloseMessage
+    SetVar VAR_MAP_LOCAL_0x01, TRUE
+    CallIfEq VAR_SANDGEM_TOWN_LAB_STATE, 2, SandgemTownPokemonResearchLab_SovereignBriefcaseRowanStays
+    CallIfEq VAR_SANDGEM_TOWN_LAB_STATE, 3, SandgemTownPokemonResearchLab_SovereignBriefcaseRowanStays
+    CallIfEq VAR_MAP_LOCAL_0x01, TRUE, SandgemTownPokemonResearchLab_SovereignBriefcaseRowanWalkOver
+    BufferPlayerName 0
+    Message SandgemTownPokemonResearchLab_Text_SovereignBriefcaseRowan
+    Message SandgemTownPokemonResearchLab_Text_SovereignBriefcaseTake
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, SandgemTownPokemonResearchLab_SovereignBriefcaseRowanWalkBack
+    GetPartyCount VAR_RESULT
+    GoToIfGt VAR_RESULT, 4, SandgemTownPokemonResearchLab_SovereignBriefcaseNoRoom
+    CloseMessage
+    GetPlayerStarterSpecies VAR_RESULT
+    CallIfNe VAR_RESULT, SPECIES_TURTWIG, SandgemTownPokemonResearchLab_SovereignBriefcaseGiveTurtwig
+    GetPlayerStarterSpecies VAR_RESULT
+    CallIfNe VAR_RESULT, SPECIES_CHIMCHAR, SandgemTownPokemonResearchLab_SovereignBriefcaseGiveChimchar
+    GetPlayerStarterSpecies VAR_RESULT
+    CallIfNe VAR_RESULT, SPECIES_PIPLUP, SandgemTownPokemonResearchLab_SovereignBriefcaseGivePiplup
+    SetFlag FLAG_SOVEREIGN_TOOK_BRIEFCASE_STARTERS
+    GoTo SandgemTownPokemonResearchLab_SovereignBriefcaseMessageClosed
+
+SandgemTownPokemonResearchLab_SovereignBriefcaseNoRoom:
+    Message SandgemTownPokemonResearchLab_Text_SovereignBriefcaseNoRoom
+    WaitButton
+SandgemTownPokemonResearchLab_SovereignBriefcaseRowanWalkBack:
+    CloseMessage
+SandgemTownPokemonResearchLab_SovereignBriefcaseMessageClosed:
+    CallIfEq VAR_MAP_LOCAL_0x01, TRUE, SandgemTownPokemonResearchLab_SovereignBriefcaseRowanWalkBackMove
+    ReleaseAll
+    End
+
+SandgemTownPokemonResearchLab_SovereignBriefcaseRowanStays:
+    SetVar VAR_MAP_LOCAL_0x01, FALSE
+    Return
+
+SandgemTownPokemonResearchLab_SovereignBriefcaseRowanWalkOver:
+    ApplyMovement LOCALID_PROF_ROWAN, SandgemTownPokemonResearchLab_SovereignBriefcaseMovement_RowanWalkOver
+    WaitMovement
+    ApplyMovement LOCALID_PLAYER, SandgemTownPokemonResearchLab_SovereignBriefcaseMovement_PlayerFaceRowan
+    WaitMovement
+    Return
+
+SandgemTownPokemonResearchLab_SovereignBriefcaseRowanWalkBackMove:
+    ApplyMovement LOCALID_PROF_ROWAN, SandgemTownPokemonResearchLab_SovereignBriefcaseMovement_RowanWalkBack
+    WaitMovement
+    Return
+
+SandgemTownPokemonResearchLab_SovereignBriefcasePapers:
+    Message SandgemTownPokemonResearchLab_Text_SovereignBriefcasePapers
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+SandgemTownPokemonResearchLab_SovereignBriefcaseGiveTurtwig:
+    PlayFanfare SEQ_FANFA4_sseq
+    BufferPlayerName 0
+    Message SandgemTownPokemonResearchLab_Text_SovereignBriefcaseObtainedTurtwig
+    WaitFanfare
+    GivePokemon SPECIES_TURTWIG, 5, ITEM_NONE, VAR_RESULT
+    Message SandgemTownPokemonResearchLab_Text_SovereignBriefcaseNicknameTurtwig
+    ShowYesNoMenu VAR_RESULT
+    CloseMessage
+    CallIfEq VAR_RESULT, MENU_YES, SandgemTownPokemonResearchLab_SovereignBriefcaseNickname
+    Return
+
+SandgemTownPokemonResearchLab_SovereignBriefcaseGiveChimchar:
+    PlayFanfare SEQ_FANFA4_sseq
+    BufferPlayerName 0
+    Message SandgemTownPokemonResearchLab_Text_SovereignBriefcaseObtainedChimchar
+    WaitFanfare
+    GivePokemon SPECIES_CHIMCHAR, 5, ITEM_NONE, VAR_RESULT
+    Message SandgemTownPokemonResearchLab_Text_SovereignBriefcaseNicknameChimchar
+    ShowYesNoMenu VAR_RESULT
+    CloseMessage
+    CallIfEq VAR_RESULT, MENU_YES, SandgemTownPokemonResearchLab_SovereignBriefcaseNickname
+    Return
+
+SandgemTownPokemonResearchLab_SovereignBriefcaseGivePiplup:
+    PlayFanfare SEQ_FANFA4_sseq
+    BufferPlayerName 0
+    Message SandgemTownPokemonResearchLab_Text_SovereignBriefcaseObtainedPiplup
+    WaitFanfare
+    GivePokemon SPECIES_PIPLUP, 5, ITEM_NONE, VAR_RESULT
+    Message SandgemTownPokemonResearchLab_Text_SovereignBriefcaseNicknamePiplup
+    ShowYesNoMenu VAR_RESULT
+    CloseMessage
+    CallIfEq VAR_RESULT, MENU_YES, SandgemTownPokemonResearchLab_SovereignBriefcaseNickname
+    Return
+
+SandgemTownPokemonResearchLab_SovereignBriefcaseNickname:
+    GetPartyCount VAR_MAP_LOCAL_0x00
+    SubVar VAR_MAP_LOCAL_0x00, 1
+    FadeScreenOut
+    WaitFadeScreen
+    OpenPokemonNamingScreen VAR_MAP_LOCAL_0x00, VAR_RESULT
+    CallIfNe VAR_RESULT, 1, SandgemTownPokemonResearchLab_SovereignBriefcaseNicknamed
+    FadeScreenIn
+    WaitFadeScreen
+    Return
+
+SandgemTownPokemonResearchLab_SovereignBriefcaseNicknamed:
+    IncrementGameRecord RECORD_POKEMON_NICKNAMED
+    Return
+
+    .balign 4, 0
+SandgemTownPokemonResearchLab_SovereignBriefcaseMovement_RowanWalkOver:
+    WalkNormalEast 7
+    EndMovement
+
+    .balign 4, 0
+SandgemTownPokemonResearchLab_SovereignBriefcaseMovement_PlayerFaceRowan:
+    WalkOnSpotNormalWest
+    EndMovement
+
+    .balign 4, 0
+SandgemTownPokemonResearchLab_SovereignBriefcaseMovement_RowanWalkBack:
+    WalkNormalWest 7
+    FaceSouth
+    EndMovement
 
     .balign 4, 0

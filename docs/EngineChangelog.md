@@ -4,6 +4,53 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 35) — Renegade's remaining gifts: Lapras, Mom's Eevee, the briefcase starters, Roark's stone
+
+An audit of Renegade's script texts against ours (`SpecialEvents.txt` and the gift list in
+`docs/GiftPokemon_Sovereign.md`) found four gifts still missing:
+- **Lapras, Pastoria City's north house:** a socialite (new, at (5, 5); the scientist moves to (3, 4) by the Psyduck, as
+  in Renegade) tells of her Lapras and its days at sea, then entrusts it (Lv. 35, holding a NeverMeltIce).
+  - Saying no to the story skips to the request. A second talk in the same visit skips the story too.
+  - A full party is turned away; she asks again next time. `FLAG_SOVEREIGN_RECEIVED_LAPRAS` (was `FLAG_UNUSED_0x0975`).
+- **Mom's Eevee, Twinleaf Town:** a Poké Ball by the window of the player's house (4, 3).
+  - Before Mom gives the Journal it's "an EEVEE! Mom is taking care of it."
+  - When Mom gives the Journal and sees the player off, she now adds Renegade's lines asking the player to take it.
+    Then the ball gives a Lv. 5 Eevee (cry and picture first, as in Renegade).
+  - `FLAG_SOVEREIGN_RECEIVED_EEVEE` (was `FLAG_UNUSED_0x0976`) hides the ball.
+- **The other two Sinnoh starters, Rowan's lab:** his briefcase (18, 4) holds the two starters the player didn't pick.
+  - Rowan walks over and offers them (Lv. 5, in Turtwig, Chimchar, Piplup order).
+  - The party needs room for both: Renegade gives them one at a time, which would need another save flag.
+  - Between the Distortion World and Sunyshore (lab states 2 and 3) Rowan stands by the door with the counterpart,
+    so there he speaks from where he is instead of walking over.
+  - Before the player has a starter, or while Rowan is away, or once taken, the briefcase only holds papers.
+  - `FLAG_SOVEREIGN_TOOK_BRIEFCASE_STARTERS` (was `FLAG_UNUSED_0x0990`).
+- **Roark's stone, Oreburgh Mine B2F:** after his Rock Smash demo, the boulder he smashed held an evolution stone.
+  - He asks which one it is (Water Stone, Thunderstone, Fire, Sun, Moon, Leaf, Ice). The player gets the stone they
+    name, and "Don't know" gets a random one. Then his usual line about fallen boulders, and he leaves.
+- Flags: one save flag is left unused (`FLAG_UNUSED_0x0991`).
+
+Verified in a test build (a party of three, Mom's Journal given, lab state 1, and a second build with lab state 3):
+- Rowan's lab, state 1: the briefcase lines play, Rowan walks over and asks, and Chimchar and Piplup are received
+  (nickname prompts declined). Checking it again shows only the papers.
+- Rowan's lab, state 3: the same with Rowan staying by the door.
+- Pastoria: the socialite stands at (5, 5). The story, the request, "accepted the LAPRAS!" and the nickname prompt
+  play, then her after-line on the next talk.
+- Twinleaf: the Eevee picture and cry, then the question. With room, "obtained an EEVEE!" and the nickname prompt
+  play. With a full party, "You have no room for Pokémon!" plays instead and the ball stays.
+- Oreburgh Mine B2F: Roark's Rock Smash, the stone lines and the question play, with the eight-entry menu at the top
+  right.
+  - Picking the Water Stone gives it ("Yes, that's correct!", "Obtained the Water Stone!").
+  - "Don't know" gives a random one ("You don't know? Then I'll tell you. It's a Moon Stone.").
+  - Then his boulder lines and his exit.
+- Not tested: Eevee before the Journal (Mom's "taking care of it" line), the briefcase and Lapras with a full party,
+  and declining Lapras's story.
+- Bugs found and fixed while testing:
+  - The naming subroutines closed the message and their callers closed it again. Two CloseMessage in a row hang the
+    game. `tools/test/check_double_close.py` misses this, because it resets at every Call. Each message now closes
+    once, before the call.
+  - The stone menu was off screen (`SetMenuYOriginSide` instead of `SetMenuXOriginToRight`).
+
+
 ## E10 (part 34) — Renegade's last added trainers: Cheryl's test, the Eterna door grunt, Cyrus's Dialga and Palkia
 
 An audit of Renegade's added trainers (IDs 928 and up) against Sovereign's found three still missing:

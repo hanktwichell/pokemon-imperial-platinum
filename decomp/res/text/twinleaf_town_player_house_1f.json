@@ -192,7 +192,17 @@
         "It makes your mother happy, too.\r",
         "...But come back sometimes.\r",
         "I would like to see the kinds of\n",
-        "Pokémon you’ve caught, dear.\r"
+        "Pokémon you’ve caught, dear.\r",
+        "Oh, yes--there’s one more thing I\n",
+        "wanted to ask of you, dear.\r",
+        "That Poké Ball by the window has\n",
+        "an EEVEE I’ve been looking after.\r",
+        "It’s very young, but I think it\n",
+        "deserves to see the world.\r",
+        "Why don’t you take EEVEE with\n",
+        "you on your journey?\r",
+        "Just take the Poké Ball when\n",
+        "you’re ready.\r"
       ]
     },
     {
@@ -453,6 +463,37 @@
       "en_US": [
         "Mom: You should take your bike with\n",
         "you as well, dear.\r"
+      ]
+    },
+    {
+      "id": "TwinleafTownPlayerHouse1F_Text_SovereignEeveeMomCaring",
+      "en_US": [
+        "It’s an EEVEE!\n",
+        "Mom is taking care of it."
+      ]
+    },
+    {
+      "id": "TwinleafTownPlayerHouse1F_Text_SovereignEeveeAsk",
+      "en_US": [
+        "It’s an EEVEE!\n",
+        "Will you take EEVEE with you?"
+      ]
+    },
+    {
+      "id": "TwinleafTownPlayerHouse1F_Text_SovereignEeveeNoRoom",
+      "en_US": "You have no room for Pokémon!"
+    },
+    {
+      "id": "TwinleafTownPlayerHouse1F_Text_SovereignEeveeObtained",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} obtained an EEVEE!\r"
+      ]
+    },
+    {
+      "id": "TwinleafTownPlayerHouse1F_Text_SovereignEeveeNickname",
+      "en_US": [
+        "Do you want to give a nickname to\n",
+        "this EEVEE?"
       ]
     }
   ]

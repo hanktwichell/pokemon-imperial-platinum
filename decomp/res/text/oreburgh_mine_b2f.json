@@ -40,6 +40,97 @@
         "They’ve now become my most trusted\n",
         "partners!"
       ]
+    },
+    {
+      "id": "OreburghMineB2F_Text_SovereignStoneFound",
+      "en_US": [
+        "Oh, what do you know! There was a\n",
+        "valuable stone inside the rubble.\r",
+        "You don’t normally find treasure from\n",
+        "fallen boulders in this region...\r",
+        "In fact, this is an Evolution stone!\n",
+        "It must be our lucky day.\r"
+      ]
+    },
+    {
+      "id": "OreburghMineB2F_Text_SovereignStoneCorrect",
+      "en_US": [
+        "Yes, that’s correct!\n",
+        "It’s a {STRVAR_1 8, 0, 0}.\r"
+      ]
+    },
+    {
+      "id": "OreburghMineB2F_Text_SovereignBoulderBadge",
+      "en_US": [
+        "Oh, yes--if you see fallen boulders,\n",
+        "you can smash them out of the way.\r",
+        "But you need to have the Badge\n",
+        "from Oreburgh Gym to do it.\r",
+        "Of course, you’d have to beat the\n",
+        "Gym Leader first. That’d be me!\r"
+      ]
+    },
+    {
+      "id": "OreburghMineB2F_Text_SovereignStoneTell",
+      "en_US": [
+        "You don’t know? Then I’ll tell you.\n",
+        "It’s a {STRVAR_1 8, 0, 0}.\r"
+      ]
+    },
+    {
+      "id": "OreburghMineB2F_Text_SovereignStoneGive",
+      "en_US": [
+        "I don’t really need it, so I’ll\n",
+        "hand it over to you.\r",
+        "Maybe you can evolve a Pokémon with it?\n",
+        "Like an EEVEE, for instance.\r"
+      ]
+    },
+    {
+      "id": "OreburghMineB2F_Text_SovereignStoneGuess",
+      "en_US": [
+        "Come on! Have a guess.\n",
+        "You don’t need to be shy about it.\r"
+      ]
+    },
+    {
+      "id": "OreburghMineB2F_Text_SovereignStoneQuestion",
+      "en_US": [
+        "This stone is very pretty, isn’t it?\n",
+        "Do you recognize what stone it is?"
+      ]
+    },
+    {
+      "id": "OreburghMineB2F_Text_SovereignMenuWaterStone",
+      "en_US": "Water Stone"
+    },
+    {
+      "id": "OreburghMineB2F_Text_SovereignMenuThunderStone",
+      "en_US": "Thunderstone"
+    },
+    {
+      "id": "OreburghMineB2F_Text_SovereignMenuFireStone",
+      "en_US": "Fire Stone"
+    },
+    {
+      "id": "OreburghMineB2F_Text_SovereignMenuSunStone",
+      "en_US": "Sun Stone"
+    },
+    {
+      "id": "OreburghMineB2F_Text_SovereignMenuMoonStone",
+      "en_US": "Moon Stone"
+    },
+    {
+      "id": "OreburghMineB2F_Text_SovereignMenuLeafStone",
+      "en_US": "Leaf Stone"
+    },
+    {
+      "id": "OreburghMineB2F_Text_SovereignMenuIceStone",
+      "en_US": "Ice Stone"
+    },
+    {
+      "id": "OreburghMineB2F_Text_SovereignMenuDontKnow",
+      "en_US": "Don’t know"
     }
   ]
 }
