@@ -670,6 +670,183 @@
       "en_US": [
         "Please come again!"
       ]
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignDarachGreeting",
+      "en_US": [
+        "Greetings. The Pokémon of\n",
+        "the Regional Forms Park are a\r",
+        "sight to behold, are they not?\r",
+        "My name is Darach, and to my\n",
+        "left is my employer, Lady Caitlin.\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignCaitlinIsTrainer",
+      "en_US": [
+        "Caitlin: ...\n",
+        "Darach! This person is a Trainer, yes?\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignDarachYesMyLady",
+      "en_US": "Darach: Yes, my lady. I believe so.\r"
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignDarachBattleCastle",
+      "en_US": [
+        "Darach: Lady Caitlin is the owner of\n",
+        "the Battle Castle, you see.\r",
+        "You will find that she can be very\n",
+        "taken by superlative battles.\r",
+        "However, for a reason I’m not able to\n",
+        "disclose, Lady Caitlin cannot battle\f",
+        "you herself.\r",
+        "Consequently, I partake in battle\n",
+        "in her ladyship’s place.\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignDarachRequestBattle",
+      "en_US": [
+        "Darach: Lady Caitlin would very much\n",
+        "appreciate viewing a Pokémon battle.\r",
+        "As such, I would like to humbly request\n",
+        "that you and I partake in one now."
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignDarachDeclined",
+      "en_US": [
+        "Darach: That is a disappointment...\n",
+        "Do you feel your Pokémon aren’t ready?"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignDarachEnGarde",
+      "en_US": [
+        "Darach: Let me assure you that you\n",
+        "won’t be shortchanged by facing me.\r",
+        "En garde!\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignDarachWon",
+      "en_US": [
+        "Darach: Bravo! My hat’s off to you.\r",
+        "I shall see to appeasing Lady Caitlin’s\n",
+        "displeasure at my loss.\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignDarachLost",
+      "en_US": [
+        "Darach: Ah, a most valiant effort.\r",
+        "Lady Caitlin is not one to accept\n",
+        "defeat willingly.\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignDarachEnjoyable",
+      "en_US": [
+        "Darach: My lady, was this battle most\n",
+        "enjoyable for you?\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignCaitlinFight",
+      "en_US": [
+        "Caitlin: ...\r",
+        "Fight.\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignCaitlinFightFight",
+      "en_US": [
+        "Caitlin: Fight. Fight. Fight. Fight.\n",
+        "Fight. Fight. Fight. Fight. Fight.\r",
+        "Fight. Fight. Fight. Fight. Fight. Fight.\n",
+        "Fight. Fight. Fight. Fight. Fight. Fight.\r",
+        "Fight. Fight. Fight. Fight. Fight. Fight.\n",
+        "Fight. Fight. Fight. Fight. Fight. Fight.\r",
+        "Fight. Fight. Fight. Fight. Fight. Fight.\n",
+        "Fight. Fight. Fight. Fight. Fight. Fight.\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignDarachMyLady",
+      "en_US": "Darach: My lady?\r"
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignDarachPsychic",
+      "en_US": [
+        "Darach: Ah. Lady Caitlin’s psychic\n",
+        "powers...\r",
+        "The intensity of our fight must have\n",
+        "stimulated her latent talent.\r",
+        "Alas, she still cannot control it...\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignDarachTea",
+      "en_US": [
+        "Darach: Do not fear.\r",
+        "An offer of fresh Tea should defuse\n",
+        "this situation.\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignCaitlinFightAgain",
+      "en_US": [
+        "Caitlin: Fight. Fight. Fight. Fight.\n",
+        "Fight. Fight. Fight. Fight. Fight.\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignDarachBrewedTea",
+      "en_US": [
+        "Darach: Lady Caitlin, some freshly\n",
+        "brewed Tea for you.\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignCaitlinSilence",
+      "en_US": [
+        "Caitlin: ...\r",
+        "...\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignDarachTeaForYou",
+      "en_US": [
+        "Darach: Here is some Tea for you, too.\n",
+        "It really is divine.\r",
+        "The flavour of this beverage can quench\n",
+        "the thirst of anyone in this world.\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignDarachGoodbye",
+      "en_US": [
+        "Darach: We should be going.\n",
+        "But our battle was stupendous.\r",
+        "Please come visit the Battle Frontier\n",
+        "and look for us in the Battle Castle.\r",
+        "We would be delighted to host another\n",
+        "battle with you in the future.\r",
+        "Goodbye for now!\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignCaitlinSilence2",
+      "en_US": [
+        "Caitlin: ...\r",
+        "...\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignCaitlinThankYou",
+      "en_US": "Caitlin: Ah. Thank you, Darach.\r"
     }
   ]
 }

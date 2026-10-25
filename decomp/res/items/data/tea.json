@@ -1,17 +1,16 @@
 {
-  "name": "S.S. Ticket",
-  "plural": "S.S. Tickets",
-  "article": "an",
+  "name": "Tea",
+  "plural": "Teas",
+  "article": "a",
   "description": [
-    "The ticket required for sailing on the\n",
-    "ferry S.S. Anne. It has a drawing of a\n",
-    "ship on it."
+    "A hot drink which is good for quenching\n",
+    "thirst. It was brewed by Darach."
   ],
   "icon": {
-    "sprite": "s_s_ticket_NCGR",
-    "palette": "s_s_ticket_NCLR"
+    "sprite": "tea_NCGR",
+    "palette": "tea_NCLR"
   },
-  "gbaID": "GBA_ITEM_SS_TICKET",
+  "gbaID": "GBA_ITEM_TEA",
   "price": 0,
   "effectParam": 0,
   "holdEffect": "HOLD_EFFECT_NONE",

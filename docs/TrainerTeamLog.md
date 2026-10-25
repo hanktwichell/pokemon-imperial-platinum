@@ -326,7 +326,6 @@ Total: 1040 trainer files; 0 edited, 0 confirmed (2026-10-24). The boss rows not
 | `dummy_241` | Fisherman | Mickey | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_242` | Sailor | Mickey | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_243` | Beauty | Angelica | 1 | Singles | (script / not on a map) | Not started | |
-| `dummy_254` | Camper | Mickey | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_255` | Camper | Mickey | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_291` | Rancher | Mickey | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_321` | Lass | Angelica | 1 | Singles | (script / not on a map) | Not started | |
@@ -838,6 +837,7 @@ Total: 1040 trainer files; 0 edited, 0 confirmed (2026-10-24). The boss rows not
 | `sovereign_clair_memory` | Ace Trainer Female | Clair | 1 | Singles | (script / not on a map) | Not started | |
 | `sovereign_cyrus_battleground` | Galactic Boss | Cyrus | 6 | Singles | (script / not on a map) | Not started | Boss: a Sovereign team is drafted in `data/trainers_sovereign.yaml` (T1), not in the game yet |
 | `sovereign_dahlia_sunyshore` | Arcade Star | Dahlia | 6 | Singles | (script / not on a map) | Not started | |
+| `sovereign_darach_pal_park` | Castle Valet | Darach | 6 | Singles | (script / not on a map) | Not started | |
 | `sovereign_dark_master` | Ace Trainer Female | Kimberly | 1 | Singles | (script / not on a map) | Not started | |
 | `sovereign_dawn_battleground_chimchar` | Player Female | Dawn | 6 | Singles | (script / not on a map) | Not started | |
 | `sovereign_dawn_battleground_piplup` | Player Female | Dawn | 6 | Singles | (script / not on a map) | Not started | |

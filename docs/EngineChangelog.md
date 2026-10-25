@@ -4,6 +4,34 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 33) — Darach and Lady Caitlin in the Regional Forms Park lobby
+
+Renegade's Darach event, moved from the Catching Show to the Regional Forms Park:
+- **Darach and Caitlin** stand at the lobby window, at (5, 4) and (6, 4). Renegade used (3, 4) and (4, 4), but our
+  Youngster stands at (3, 4).
+  - Talking to either one first walks the player below Darach.
+  - Darach's greeting now mentions the park's Pokémon instead of the Catching Show. The rest are Renegade's lines.
+  - He introduces Lady Caitlin, owner of the Battle Castle, and asks for a battle in her place: Renegade's trainer 969,
+    Castle Valet Darach, Lv. 48.
+  - "No" ends the talk. The next talk on the same visit skips the introduction (`VAR_MAP_LOCAL_0x05`).
+- **The battle:** win or lose, the scene goes on. A loss heals the party instead of blacking out, as in Renegade.
+  - Caitlin's psychic powers flare ("Fight. Fight. Fight..."). Darach calms her with Tea, then gives the player some.
+  - They leave for the Battle Frontier. His trainer flag hides them for good, so no new save flag is needed.
+- **The Tea:** a key item, Renegade's. Like Renegade, it takes the place of the unused S.S. Ticket (`ITEM_TEA`, #456),
+  with Renegade's name, description and icon.
+- `docs/TrainerTeamLog.md`: `dummy_254` becomes `sovereign_darach_pal_park` (trainer slot reuse).
+
+Verified in a test build (the test party; Oak's lobby scene marked done; Darach's team raised to Lv. 100 in that build
+only, so the loss path runs):
+- Talking to Darach from the west walks the player below him. His greeting, Caitlin's line and the Battle Castle
+  introduction play, then "no" gets his "disappointment" line.
+- Talking again skips the introduction. "Yes" starts the battle against Castle Valet Darach.
+- The loss: no blackout. He gives his "valiant effort" line, Caitlin's "Fight. Fight..." fit and the Tea scene play,
+  and "Obtained the Tea!" puts it in the Key Items pocket. They say goodbye and fade out, and they're gone on
+  re-entering.
+- Not tested: the win line (one message, then the same scene), and talking to Caitlin first.
+
+
 ## E10 (part 32) — the Pokémon Center Interviewers: every region's starters
 
 Renegade's Jubilife TV quiz, and Sovereign's five new ones (`docs/GiftPokemon_Sovereign.md`):

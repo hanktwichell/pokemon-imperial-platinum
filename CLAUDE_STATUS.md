@@ -5254,3 +5254,40 @@ half-price menu fix) is merged.
    - Swap the Catching Show lines for the park.
 2. Renegade's other added trainers (e.g. the Eterna grunt 939, Egadd 961, Telkin 962).
 3. Check the remaining Renegade map scripts against ours for anything not yet ported.
+
+## CB-0108 — 2026-10-24, 7:21 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: E10 part 33, Darach and Lady Caitlin in the Regional Forms Park lobby.** PR #123 (part 32) is merged.
+- **Placement:** Darach (`LOCALID_DARACH`, (5, 4)) and Caitlin (`LOCALID_CAITLIN`, (6, 4)) face the lobby window.
+  Renegade's (3, 4) holds our Youngster.
+- **The talk:** talking to either first walks the player below Darach. Then Renegade's scene plays, with the greeting
+  rewritten for the Regional Forms Park instead of the Catching Show.
+  - Darach battles in Caitlin's place: Renegade 969, Castle Valet Darach, Lv. 48, as
+    `TRAINER_SOVEREIGN_DARACH_PAL_PARK` in dummy slot 254 (56 dummies left).
+  - "No" ends the talk. `VAR_MAP_LOCAL_0x05` skips the introduction on the next talk.
+- **After the battle:** win or lose (a loss heals instead of blacking out), Caitlin's psychic fit and the Tea scene
+  play. They give the player Tea and leave.
+  - Their `hidden_flag` is Darach's trainer flag, set at the end, so no new save flag is needed.
+- **The Tea:** `ITEM_S_S_TICKET` (#456, unused) is now `ITEM_TEA`, with Renegade's name, description and icon
+  (`res/items/{data/tea.json,icons/tea.png,tea.pal}`; the icon order and meson list are updated).
+  - `*.pal` files must keep CRLF line endings (`.gitattributes`), or nitrogfx fails.
+- **Tested** in a test build, with Darach at Lv. 100 in that build so the loss path runs:
+  - The walk-over from the west, the greeting, "no", and the second talk skipping the introduction.
+  - The battle, the loss path, the whole scene, the Tea in Key Items, and the pair gone on re-entering.
+  - Not tested: the win line, and talking to Caitlin first.
+- **Harness fix:** the battle loop's party switch now backs out when it picks a fainted Pokémon (it looped before).
+
+**Files modified:**
+- `decomp/generated/{items,trainers,vars_flags}.txt`
+- `decomp/res/items/{data/tea.json,icons/tea.png,icons/tea.pal,icons/meson.build,item_icon.order}`; the S.S. Ticket
+  files are deleted
+- `decomp/res/trainers/data/sovereign_darach_pal_park.json`; `dummy_254.json` is deleted
+- `decomp/res/field/{scripts/scripts_pal_park_lobby.s,events/events_pal_park_lobby.json}` and
+  `decomp/res/text/pal_park_lobby.json`
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `docs/TrainerTeamLog.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Renegade's other added trainers, e.g. the Eterna grunt 939, Egadd 961 and Telkin 962. Diff Renegade's trainer
+   list against ours to find the rest.
+2. Check the remaining Renegade map scripts against ours for anything not yet ported.
+3. Update `docs/EngineRoadmap.md`'s E10 status once the Renegade audit is clean.
