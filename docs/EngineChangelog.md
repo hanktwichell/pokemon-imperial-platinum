@@ -4,6 +4,35 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Playtest pass — every battle form change from the player's side
+
+**`tools/test/battle_form_changes.py` (local; about an hour) replaces `battle_all_megas.py`.** As well as every Mega,
+Primal and Ultra Burst and the forms that must not Mega Evolve, it now makes each form change the battle itself brings
+happen to the player's lead. Each case is set up so the change happens:
+- **Ability forms:**
+  - Zen Mode (Darmanitan and Galarian Darmanitan), Shields Down (all 7 Minior colors) and Power Construct (both
+    Zygarde formes), at 40% HP;
+  - Gulp Missile, using Surf at full HP (Gulping) and at 40% (Gorging);
+  - Disguise and Ice Face, hit by the foe;
+  - Stance Change, attacking;
+  - Schooling, Tera Shift and Fairy Aura (Active Xerneas), as it comes in;
+  - Hunger Switch, at the end of a turn;
+  - Battle Bond, knocking the foe out.
+- **Item forms:** Crowned Zacian and Zamazenta.
+- **Move forms:** Pirouette Meloetta, using Relic Song.
+
+Each must take the right form in battle and be back in its own form afterwards. **All 137 cases pass**, and the run found
+no new bugs. Hero Palafin isn't covered, since Zero to Hero needs the harness to switch Pokémon.
+
+**Test-build hooks** (`include/sovereign_test.h`):
+- `gSovereignTestLead` also sets the lead's moves, its HP and its hidden ability.
+- `gSovereignTestWild` can give the foe a single move. Here it's Bullet Punch: physical, first to move, and no type is
+  immune to it.
+- `gSovereignTestFoeSurvivesTurns` keeps the foe from fainting in the first turn in god mode, so turn-end abilities act
+  and the foe gets to hit.
+- The Crowned form, which the lead takes as the battle starts, is recorded too.
+
+
 ## Playtest pass — every species and form battled, every Mega Evolved; form moves and Megas fixed
 
 **New tool `tools/test/battle_all_species.py` (local; about an hour with 4 jobs).** It battles all 1,510 species and
