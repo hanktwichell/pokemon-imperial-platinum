@@ -8,14 +8,16 @@ The list comes from include/data/sovereign_forms.h:
 - each Primal: Kyogre or Groudon holding its Orb (it reverts as it comes in, with no button);
 - each Ultra Burst: Dusk Mane or Dawn Wings Necrozma holding the Ultranecrozium Z;
 - and each other form of a species with a Mega (a regional form, a Floette's flower color, 10% Zygarde...) holding
-  each of that species' stones, which must not Mega Evolve.
+  each of that species' stones, which must not Mega Evolve. (It may still take another battle form: Battle Bond
+  Greninja becomes Ash-Greninja when it knocks the foe out.)
 
 For each one this loads a save state in the overworld (where the test build has given the Mega Ring), writes the
 Pokémon to gSovereignTestLead (include/sovereign_test.h), so the party's lead becomes it at Lv. 50 with four Fairy
 moves, with the MEGA toggle on for every move, and presses SELECT for a wild battle. God mode is on and the battle is
 played as in battle_all_trainers.py. Afterwards it reads two test-build hooks: the first form a battle form change
-gave the player's side (gSovereignTestPlayerBattleForm), which must be the Mega's (or none), and the lead's form once
-the battle is over (gSovereignTestLeadFormAfter), which must be the one it started in.
+gave the player's side (gSovereignTestPlayerBattleForm), which must be the Mega's (or, for a form with no Mega, none
+of the species' Megas), and the lead's form once the battle is over (gSovereignTestLeadFormAfter), which must be the
+one it started in.
 
 Each one gets a result: ok, FORM (the wrong form in battle or after it, as the line says), HANG or STUCK (as in
 battle_all_trainers.py), with a screenshot for any that isn't ok.
@@ -39,9 +41,9 @@ LEVEL = 50
 FRAME_LIMIT = 6400
 LEAD = 'gSovereignTestLead'  # struct SovereignTestLead: u16 species, u8 form, u8 level, u16 item, u16 move, u8 mega
 # Forms that are a battle's only (they go back when it ends), so no party Pokémon is in one.
-BATTLE_KINDS = ('SOVEREIGN_FORM_MEGA', 'SOVEREIGN_FORM_PRIMAL', 'SOVEREIGN_FORM_MEGA_BY_MOVE',
-                'SOVEREIGN_FORM_BATTLE', 'SOVEREIGN_FORM_BATTLE_ITEM', 'SOVEREIGN_FORM_BATTLE_MOVE',
-                'SOVEREIGN_FORM_ULTRA_BURST')
+MEGA_KINDS = ('SOVEREIGN_FORM_MEGA', 'SOVEREIGN_FORM_PRIMAL', 'SOVEREIGN_FORM_MEGA_BY_MOVE',
+              'SOVEREIGN_FORM_ULTRA_BURST')
+BATTLE_KINDS = MEGA_KINDS + ('SOVEREIGN_FORM_BATTLE', 'SOVEREIGN_FORM_BATTLE_ITEM', 'SOVEREIGN_FORM_BATTLE_MOVE')
 
 
 def battle_form_bases():
@@ -90,6 +92,10 @@ def main():
     species_ids, items, moves = consts('species.txt'), consts('items.txt'), consts('moves.txt')
     sym = symbols(('gSovereignTestLead', 'gSovereignTestPlayerBattleForm', 'gSovereignTestLeadFormAfter',
                    'gSovereignTestGodMode', 'gSovereignTestIdleFrames', 'gSystem'))
+    megas = {}
+    for species, form, kind, _ in sovereign_forms():
+        if kind in MEGA_KINDS:
+            megas.setdefault(species, set()).add(form)
     d = Driver(rom, state)
     d.added, d.armed = [], False
     bad = 0
@@ -114,8 +120,8 @@ def main():
             got = d.emu.memory.unsigned[sym['gSovereignTestPlayerBattleForm']]
             after = d.emu.memory.unsigned[sym['gSovereignTestLeadFormAfter']]
             problems = []
-            if got != want:
-                problems.append(f'battle form {got}, want {want}')
+            if (got != want) if want else (got in megas[species]):
+                problems.append(f'battle form {got}, want {want or "none of " + str(sorted(megas[species]))}')
             if after != form:
                 problems.append(f'form after the battle {after}, want {form}')
             if problems:
