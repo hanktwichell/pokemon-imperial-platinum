@@ -23,6 +23,7 @@ void BagUI_PrintTMHMNumber(BagController *controller, BagItem *itemSlot, u32 yOf
 void BagUI_PrintBerryNumber(BagController *controller, BagItem *itemSlot, u32 yOffset);
 void BagUI_PrintCloseBagEntry(BagController *controller, u32 yOffset);
 void BagUI_DrawRegisteredIcon(BagController *controller, u32 yOffset);
+void BagUI_PrintInfiniteRepelOnTag(BagController *controller, u32 yOffset);
 void BagUI_LoadItemActionStrings(BagController *controller);
 void BagUI_FreeItemActionStrings(BagController *controller);
 void BagUI_ShowItemActionsMenu(BagController *controller, u8 *actions, u8 numActions);

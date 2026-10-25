@@ -377,6 +377,16 @@ void BagUI_DrawRegisteredIcon(BagController *controller, u32 yOffset)
     Heap_FreeExplicit(HEAP_ID_BAG, file);
 }
 
+// Sovereign (QoL #3): "ON" at the right end of the Infinite Repel's row in the Key Items list while it's on.
+void BagUI_PrintInfiniteRepelOnTag(BagController *controller, u32 yOffset)
+{
+    String *string = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_SovereignInfiniteRepelOnTag);
+    u32 stringWidth = Font_CalcStringWidth(FONT_SYSTEM, string, 0);
+
+    Text_AddPrinterWithParamsAndColor(&controller->windows[BAG_UI_WINDOW_ITEM_LIST], FONT_SYSTEM, string, ITEM_COUNT_NUMBER_START_POS - stringWidth, yOffset, TEXT_SPEED_NO_TRANSFER, TEXT_COLOR(1, 2, 0), NULL);
+    String_Free(string);
+}
+
 void BagUI_LoadItemActionStrings(BagController *controller)
 {
     controller->itemActionStrings[0] = MessageLoader_GetNewString(controller->bagStringsLoader, Bag_Text_Use);
