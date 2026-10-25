@@ -20,7 +20,12 @@ Ultra Bursts. It also gives each species' stones to its other forms (Alolan Raic
 Greninja, 10% Zygarde, a Floette's flower colors), which must not Mega Evolve. Each Pokémon must take the right form
 in battle and be back in its own form afterwards.
 
-The runs found these, now fixed:
+**Results:** all 1,510 species and forms battle cleanly and are built from their form's data, and all 113 Mega cases
+pass. (The first run's four workers were stopped partway by something outside the game; the 539 entries they hadn't
+passed were run again on the final build.) The checks follow the game's own rules where a form isn't simply the one
+asked for: a base form may come back in a form its personality or the map picks (Minior's core, a Female Meowstic, an
+Unown letter, East Sea Shellos), Keldeo is Resolute only while it knows Secret Sword (a Lv. 50 Keldeo has forgotten
+it), and Battle Bond Greninja may still become Ash-Greninja. The runs found these, now fixed:
 - **Form moves for wild Pokémon, Eggs and gifts.** A Pokémon is made with its base form's moves before its form is set
   (trainers were fixed in the last entry). Now these get their form's level-up moves too:
   - a wild Pokémon whose slot names a form (the Regional Forms Park, the Totems and their helpers);
@@ -41,7 +46,7 @@ The runs found these, now fixed:
 - `gSovereignTestPlayerBattleForm` and `gSovereignTestLeadFormAfter`: the form the player's side took in battle, and
   the lead's form afterwards.
 - `check_trainer_party.species_data` now finds every form's data, Sovereign's included, as the game does
-  (`Pokemon_GetFormNarcIndex`).
+  (`Pokemon_GetFormNarcIndex`), and its decoder reads all 7 bits of the form (Alcremie's forms past 31).
 
 Form sprites aren't checked: the forms show their base species' sprites until E12.
 
