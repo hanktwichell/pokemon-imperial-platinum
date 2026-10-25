@@ -21,7 +21,7 @@ and T2 only. See `EngineRoadmap.md` for the per-milestone breakdown.
 | E0b | Fairy type + Gen VI+ type chart | ✅ done (checked against the official chart) |
 | E13 | Options: level cap, Infinite Rare Candy, party Exp. Share, music volume | ✅ done (PR #5); verified in battle with the test build |
 | E1 | Own save signature, ROM title/banner "Pokémon Sovereign Platinum" | ✅ done (PR #7) |
-| E14 | Approved QoL | 🟡 4 of 8 done (IV/EV viewer, Repel prompt, HM-free field moves, Gen VI+ breeding; all tested in-game). The type-effectiveness indicator is shelved by the owner. Mints and the Ability Capsule/Patch work as items (E7); their sales and the Infinite Repel come next |
+| E14 | Approved QoL | 🟡 6 of 8 done (IV/EV viewer, Repel prompt, HM-free field moves, Gen VI+ breeding, Mints sold on Route 208, the Battle Tower Ability researcher with the Ability Capsule/Patch items; all tested in-game). The type-effectiveness indicator is shelved by the owner. The Infinite Repel works and is given by the player's PC; its bag status icon is still to do |
 | — | Test build (`tools/test/build_test_rom.sh`): test party at new game, SELECT = wild battle, SELECT+R = trainer battle | ✅ working |
 | E3 | All 919 moves, ID = official number; 93 new moves exact, 76 approximate, 211 placeholder (`MoveChecklist.md`) | ✅ done (PR #9); tested in battle |
 | E5 | Gen IX stats, types and learnsets for #1–493 and forms; 32-bit learnset entries | ✅ done (PR #9); tested in battle |

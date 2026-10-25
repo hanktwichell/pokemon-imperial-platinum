@@ -5095,6 +5095,15 @@
     .short \destVar
     .endm
 
+    // Swaps a party Pokémon between its two regular abilities, like the Ability Capsule (QoL #11). destVar: 0 no change
+    // (an Egg, or one regular ability), 1 swapped (the new ability goes in templateArg), 2 it has its Hidden Ability
+    .macro SovereignSwapAbility templateArg, partySlot, destVar
+    .short SCRCMD_SOVEREIGNSWAPABILITY
+    .short \templateArg
+    .short \partySlot
+    .short \destVar
+    .endm
+
     // Sovereign (FM): sets a party Pokémon's form (a gift in a form: Battle Bond Greninja)
     .macro SovereignSetPartyMonForm partySlot, form
     .short SCRCMD_SOVEREIGNSETPARTYMONFORM

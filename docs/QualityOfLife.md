@@ -42,7 +42,7 @@
 | 6 | **IV/EV viewer** | Summary screen stats page: press **SELECT** to cycle Stats → IVs → EVs. | ✅ done (E14) |
 | 8 | **HMs as key items / no HM slaves** | Once the right badge and HM are obtained, field moves (Cut, Rock Smash, Strength, Surf, Defog, Rock Climb, Waterfall, Fly) work from the field prompt without any party Pokémon knowing them. HMs can be forgotten freely. | ✅ done (E14) |
 | 9 | **Gen VI+ breeding** | Destiny Knot passes 5 of the parents' 10 IVs; Everstone passes nature 100%; Egg moves pass from either parent; Poké Ball inheritance from the mother. Also: Hidden Ability passes 60%. | ✅ done (E14) |
-| 11 | **Ability Capsule NPC** | NPC in the Battle Tower lobby (Fight Area) swaps a Pokémon between its two standard abilities for 50 BP (or $20,000). The Hidden Ability needs the Ability Patch (later). | 🟡 Ability Capsule and Ability Patch work as items (E7). The Patch switches between the regular and Hidden Ability, as in Scarlet/Violet. The Battle Tower NPC (50 BP / $20,000) comes with the shops step |
+| 11 | **Ability Capsule NPC** | NPC in the Battle Tower lobby (Fight Area) swaps a Pokémon between its two standard abilities for 50 BP (or $20,000). The Hidden Ability needs the Ability Patch (later). | ✅ done. The Ability Capsule and Ability Patch work as items (E7); the Patch switches between the regular and Hidden Ability, as in Scarlet/Violet. A researcher in the Battle Tower lobby switches between the two regular Abilities for 50 BP or $20,000, charged only when the switch works (E14) |
 
 ## Remaining proposals (not approved)
 

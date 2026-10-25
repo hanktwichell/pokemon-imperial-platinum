@@ -29,6 +29,7 @@
     ScriptEntry BattleTower_OnTransition
     ScriptEntry BattleTower_OnResume
     ScriptEntry BattleTower_StatsJudge
+    ScriptEntry BattleTower_SovereignAbilityResearcher
     ScriptEntryEnd
 
 BattleTower_OnTransition:
@@ -1316,3 +1317,90 @@ BattleTower_CancelJudge:
     CloseMessage
     ReleaseAll
     End
+
+@ Sovereign (QoL #11): a researcher swaps a Pokémon between its two regular Abilities, like the Ability Capsule, for
+@ 50 BP or 20,000. She charges only when the swap works. The Hidden Ability needs the Ability Patch.
+BattleTower_SovereignAbilityResearcher:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    Message BattleTower_Text_SovereignAbilityIntro
+    InitLocalTextMenu 31, 11, 0, VAR_0x8008
+    SetMenuXOriginToRight
+    AddMenuEntryImm BattleTower_Text_SovereignAbilityMenuBP, 0
+    AddMenuEntryImm BattleTower_Text_SovereignAbilityMenuMoney, 1
+    AddMenuEntryImm BattleTower_Text_SovereignAbilityMenuNo, 2
+    ShowMenu
+    GoToIfEq VAR_0x8008, 0, BattleTower_SovereignAbilityCheckBP
+    GoToIfEq VAR_0x8008, 1, BattleTower_SovereignAbilityCheckMoney
+    GoTo BattleTower_SovereignAbilityBye
+    End
+
+BattleTower_SovereignAbilityCheckBP:
+    CheckBattlePoints 50, VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, BattleTower_SovereignAbilityNotEnoughBP
+    GoTo BattleTower_SovereignAbilityChoose
+    End
+
+BattleTower_SovereignAbilityCheckMoney:
+    GoToIfNotEnoughMoney 20000, BattleTower_SovereignAbilityNotEnoughMoney
+BattleTower_SovereignAbilityChoose:
+    Message BattleTower_Text_SovereignAbilityWhich
+    WaitButton
+    FadeScreenOut
+    WaitFadeScreen
+    CloseMessage
+    SelectMoveTutorPokemon
+    GetSelectedPartySlot VAR_RESULT
+    ReturnToField
+    SetVar VAR_0x8000, VAR_RESULT
+    FadeScreenIn
+    WaitFadeScreen
+    GoToIfEq VAR_0x8000, PARTY_SLOT_NONE, BattleTower_SovereignAbilityBye
+    SovereignSwapAbility 1, VAR_0x8000, VAR_RESULT
+    GoToIfEq VAR_RESULT, 2, BattleTower_SovereignAbilityHidden
+    GoToIfEq VAR_RESULT, 0, BattleTower_SovereignAbilityCantSwap
+    CallIfEq VAR_0x8008, 0, BattleTower_SovereignAbilityTakeBP
+    CallIfEq VAR_0x8008, 1, BattleTower_SovereignAbilityTakeMoney
+    BufferPartyMonNickname 0, VAR_0x8000
+    Message BattleTower_Text_SovereignAbilityDone
+    GoTo BattleTower_SovereignAbilityEnd
+    End
+
+BattleTower_SovereignAbilityTakeBP:
+    RemoveBattlePoints 50
+    Return
+
+BattleTower_SovereignAbilityTakeMoney:
+    RemoveMoney 20000
+    Return
+
+BattleTower_SovereignAbilityHidden:
+    Message BattleTower_Text_SovereignAbilityHidden
+    GoTo BattleTower_SovereignAbilityEnd
+    End
+
+BattleTower_SovereignAbilityCantSwap:
+    Message BattleTower_Text_SovereignAbilityCantSwap
+    GoTo BattleTower_SovereignAbilityEnd
+    End
+
+BattleTower_SovereignAbilityNotEnoughBP:
+    Message BattleTower_Text_SovereignAbilityNotEnoughBP
+    GoTo BattleTower_SovereignAbilityEnd
+    End
+
+BattleTower_SovereignAbilityNotEnoughMoney:
+    Message BattleTower_Text_SovereignAbilityNotEnoughMoney
+    GoTo BattleTower_SovereignAbilityEnd
+    End
+
+BattleTower_SovereignAbilityBye:
+    Message BattleTower_Text_SovereignAbilityBye
+BattleTower_SovereignAbilityEnd:
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+    .balign 4, 0

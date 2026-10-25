@@ -452,6 +452,7 @@ static BOOL ScrCmd_SovereignGetEventGift(ScriptContext *ctx);
 static BOOL ScrCmd_SovereignFinishEventGift(ScriptContext *ctx);
 static BOOL ScrCmd_SovereignRestyleEventForm(ScriptContext *ctx);
 static BOOL ScrCmd_SovereignGroomFurfrou(ScriptContext *ctx);
+static BOOL ScrCmd_SovereignSwapAbility(ScriptContext *ctx);
 static BOOL ScrCmd_StartFirstBattle(ScriptContext *ctx);
 static BOOL ScrCmd_StartCatchingTutorial(ScriptContext *ctx);
 static BOOL ScrCmd_SlatherHoneyTree(ScriptContext *ctx);
@@ -4279,6 +4280,47 @@ static BOOL ScrCmd_SovereignGroomFurfrou(ScriptContext *ctx)
         Pokedex_Capture(SaveData_GetPokedex(ctx->fieldSystem->saveData), mon);
         *destVar = TRUE;
     }
+
+    return FALSE;
+}
+
+// Sovereign (QoL #11): the Battle Tower lobby's Ability researcher swaps a party Pokémon between its two regular
+// abilities, as the Ability Capsule does in the party menu. destVar: 0 no change (an Egg, or only one regular ability),
+// 1 swapped (the new ability is buffered in templateArg), 2 it has its Hidden Ability (that needs the Ability Patch).
+static BOOL ScrCmd_SovereignSwapAbility(ScriptContext *ctx)
+{
+    u16 templateArg = ScriptContext_GetVar(ctx);
+    u16 partySlot = ScriptContext_GetVar(ctx);
+    u16 *destVar = ScriptContext_GetVarPointer(ctx);
+    StringTemplate **strTemplate = FieldSystem_GetScriptMemberPtr(ctx->fieldSystem, SCRIPT_MANAGER_STR_TEMPLATE);
+    Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(ctx->fieldSystem->saveData), partySlot);
+
+    *destVar = 0;
+
+    if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)) {
+        return FALSE;
+    }
+
+    if (Pokemon_GetValue(mon, MON_DATA_HAS_HIDDEN_ABILITY, NULL)) {
+        *destVar = 2;
+        return FALSE;
+    }
+
+    int species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+    int form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+    int ability1 = SpeciesData_GetFormValue(species, form, SPECIES_DATA_ABILITY_1);
+    int ability2 = SpeciesData_GetFormValue(species, form, SPECIES_DATA_ABILITY_2);
+
+    if (ability2 == ABILITY_NONE || ability1 == ability2) {
+        return FALSE;
+    }
+
+    u8 swapped = !Pokemon_GetValue(mon, MON_DATA_ABILITY_SLOT_SWAPPED, NULL);
+
+    Pokemon_SetValue(mon, MON_DATA_ABILITY_SLOT_SWAPPED, &swapped);
+    Pokemon_CalcAbility(mon);
+    StringTemplate_SetAbilityName(*strTemplate, templateArg, Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL));
+    *destVar = 1;
 
     return FALSE;
 }

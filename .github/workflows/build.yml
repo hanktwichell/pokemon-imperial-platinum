@@ -66,6 +66,8 @@ jobs:
         run: python3 tools/test/check_battle_scripts.py decomp
       - name: Field-script text IDs fit their one-byte arguments
         run: python3 tools/test/check_byte_text_ids.py decomp
+      - name: Field messages fit their two-line boxes
+        run: python3 tools/test/check_message_box_lines.py decomp
       - name: Boot smoke test (headless DeSmuME)
         timeout-minutes: 5
         env:
