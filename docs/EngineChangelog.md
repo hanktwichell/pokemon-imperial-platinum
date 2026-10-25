@@ -46,7 +46,11 @@ The run found four kinds of trainer bug in the game, now fixed:
   - forms' base stats;
   - Shedinja's 1 HP.
 
-**Result:** the first full run (before the fixes) had 984 of 1,000 finished trainers ok; the 16 others were the bugs above and harness limits since fixed. A re-run of those, and of the 39 trainers its time limit cut off, is in progress.
+**Result: all 1,039 trainers battle cleanly.**
+- **First full run (before the fixes):** 984 of 1,000 ok. The other 16 were the bugs above, or battles stalled by
+  Wonder Guard, Torment or Disable before the harness handled them. The run's 2-hour time limit cut off 39 more.
+- **Re-run on the fixed build:** those 16 and the 39 cut off, all ok.
+- No battle stopped the game.
 
 ## Playtest checks — script menus fit on the screen; every changed map loads
 

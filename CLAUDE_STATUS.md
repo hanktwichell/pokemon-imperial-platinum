@@ -5942,28 +5942,47 @@ message-width check and credits) is merged.
    now blocks the trainer's approach (a check in the spirit of `check_object_tiles.py`).
 3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
 
-## CB-0128 — 2026-10-25, 3:20 am US Central (session on `claude/sweet-wright-rk4wl1`)
+## CB-0128 — 2026-10-25, 4:48 am US Central (session on `claude/sweet-wright-rk4wl1`)
 
-**In progress: a battle test against every trainer.** PR #140 (menu check, changed-map visit test) is merged.
-- **New `tools/test/battle_all_trainers.py`:** for each of the 1,039 trainers it starts a battle in the test build
-  and checks three things:
-  - The party the game builds matches the trainer's JSON (`check_trainer_party.compare_party`, which now handles
-    null moves and items and form base stats).
-  - The battle ends.
-  - The main loop never stops (`gSystem.vblankCounter`).
-- **New test-build hooks** in `include/sovereign_test.h`:
-  - `gSovereignTestBattleTrainer`: SELECT+R battles this trainer.
-  - `gSovereignTestGodMode`: a foe that loses any HP loses all of it, the player's Pokémon lose none, no EXP, Set
-    style and fast text.
-  - The earlier warp and idle hooks moved into the same header.
-- Roark, a doubles pair and the developer team pass. The full run (4 jobs) is going.
+**Implemented: every trainer battled in the test build, and three trainer bugs it found, fixed.** PR #140 (menu
+check, changed-map visit test) is merged.
+- **New `tools/test/battle_all_trainers.py`** (local; about 2 hours with 4 jobs). For each of the 1,039 trainers it
+  starts the battle and checks three things:
+  - the built party matches the JSON (`check_trainer_party.compare_party`, now reusable);
+  - the battle ends;
+  - the main loop never stops.
+- **Result: all 1,039 battle cleanly.**
+  - The first run had 984 of 1,000 ok; its 2-hour background limit cut off 39.
+  - Those 39 and the 16 failures all pass on the fixed build.
+  - The script now lists a cut-off trainer as NO-RESULT instead of leaving it out.
+- **Fixed in the game:**
+  - **Held items lost:** `trainerproc.c` read a party's layout from its first member only. Six trainers lost items:
+    Henry's Thick Club, the Route 203 counterpart starters' Oran Berries, and the Sitrus Berries of Mars (Valley
+    Windworks) and Jupiter (Eterna). Now any member decides. Moves on some members only is a build error.
+  - **Form stats:** in Platinum's layouts, trainer Pokémon kept their base form's stats. Volkner's Rotom forms (and
+    his rematch's) and Breanna's Wormadam are affected. Stats are now recalculated after the form.
+  - **Form moves:** Beauty Devon's Wormadam knew the Plant Cloak's moves. New `Pokemon_SovereignSetDefaultMoves`.
+  - Only those 10 trainers' teams change. Gender forms were already right; commit 3ed2471a's note says otherwise.
+- **Test-build hooks** in `include/sovereign_test.h`:
+  - `gSovereignTestBattleTrainer`: picks SELECT+R's trainer.
+  - `gSovereignTestGodMode`: a foe that loses any HP loses all of it, the player's Pokémon lose none, the player's
+    moves ignore the foes' abilities, no EXP, Set style, fast text.
+  - The earlier warp and idle hooks moved here.
+- **The harness's inputs:** it taps FIGHT, then Dazzling Gleam or Play Rough, switching between them every 2,000
+  frames to get past Torment, Disable and an empty PP; A handles messages and doubles targets.
 
-**Files modified:** `decomp/include/sovereign_test.h` (new), `decomp/include/script_manager.h`,
-`decomp/src/script_manager.c`, `decomp/src/field_system.c`, `decomp/src/overlay005/field_control.c`,
-`decomp/src/battle/battle_script.c`, `decomp/src/battle/battle_system.c`, `tools/test/battle_all_trainers.py` (new),
-`tools/test/check_trainer_party.py`, `tools/test/build_test_rom.sh`, `CLAUDE_STATUS.md`
+**Files modified:**
+- Hooks: `decomp/include/sovereign_test.h` (new), `decomp/include/script_manager.h`, `decomp/src/script_manager.c`,
+  `decomp/src/field_system.c`, `decomp/src/overlay005/field_control.c`
+- Battle (god mode): `decomp/src/battle/battle_script.c`, `decomp/src/battle/battle_system.c`,
+  `decomp/src/battle/battle_lib.c`
+- Trainer fixes: `decomp/src/trainer_data.c`, `decomp/src/pokemon.c`, `decomp/include/pokemon.h`,
+  `decomp/tools/dataproc/src/trainerproc.c`
+- Tools: `tools/test/battle_all_trainers.py` (new), `tools/test/check_trainer_party.py`,
+  `tools/test/build_test_rom.sh`
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`
 
 **Next 3 steps:**
-1. Finish the full run, review every trainer that isn't ok, and fix what it finds.
-2. Changelog entry, then a PR (check that the shipping ROM is byte-identical first).
+1. Merge this PR once both checks are green.
+2. The same kind of run for wild encounters and static battles (legendaries, gifts), which this one doesn't cover.
 3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
