@@ -1,5 +1,4 @@
 #include "macros/scrcmd.inc"
-#include "generated/distribution_events.h"
 #include "res/text/bank/canalave_city_harbor_inn.h"
 #include "res/field/events/events_canalave_city_harbor_inn.h"
 
@@ -22,13 +21,9 @@ CanalaveCityHarborInn_CheckNationalDexEnabled:
     GoToIfEq VAR_MAP_LOCAL_0x00, TRUE, CanalaveCityHarborInn_CheckMemberCard
     End
 
+@ Sovereign (E10, Renegade): no Darkrai distribution check; the Member Card comes from Route 217.
 CanalaveCityHarborInn_CheckMemberCard:
     CheckItem ITEM_MEMBER_CARD, 1, VAR_MAP_LOCAL_0x00
-    GoToIfEq VAR_MAP_LOCAL_0x00, TRUE, CanalaveCityHarborInn_CheckDistributionEventDarkrai
-    End
-
-CanalaveCityHarborInn_CheckDistributionEventDarkrai:
-    CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_MAP_LOCAL_0x00, TRUE, CanalaveCityWestHouse_CheckWokeUpLittleBoy
     End
 

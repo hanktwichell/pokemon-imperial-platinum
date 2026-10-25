@@ -1,5 +1,4 @@
 #include "macros/scrcmd.inc"
-#include "generated/distribution_events.h"
 #include "res/text/bank/newmoon_island_forest.h"
 #include "res/field/events/events_newmoon_island_forest.h"
 
@@ -12,9 +11,8 @@
 NewmoonIslandForest_OnTransition:
     GetNationalDexEnabled VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, NewmoonIslandForest_HideDarkrai
+    @ Sovereign (E10, Renegade): no Darkrai distribution check; the Member Card comes from Route 217.
     CheckItem ITEM_MEMBER_CARD, 1, VAR_MAP_LOCAL_0x00
-    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, NewmoonIslandForest_HideDarkrai
-    CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, NewmoonIslandForest_HideDarkrai
     GoToIfSet FLAG_CAUGHT_DARKRAI, NewmoonIslandForest_HideDarkrai
     ClearFlag FLAG_HIDE_NEWMOON_ISLAND_FOREST_DARKRAI
@@ -41,7 +39,8 @@ NewmoonIslandForest_Darkrai:
     Message NewmoonIslandForest_Text_Ellipses
     CloseMessage
     SetFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
-    StartLegendaryBattle SPECIES_DARKRAI, 50
+    @ Sovereign (E10): Renegade's level.
+    StartLegendaryBattle SPECIES_DARKRAI, 68
     ClearFlag FLAG_MAP_LOCAL_REMOVE_OBJECT
     CheckWonBattle VAR_RESULT
     GoToIfEq VAR_RESULT, FALSE, NewmoonIslandForest_BlackOut

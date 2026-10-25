@@ -1,5 +1,4 @@
 #include "macros/scrcmd.inc"
-#include "generated/distribution_events.h"
 #include "res/text/bank/canalave_city.h"
 #include "res/text/bank/menu_entries.h"
 #include "res/field/events/events_canalave_city.h"
@@ -93,9 +92,9 @@ CanalaveCity_CheckDoDarkraiEvent:
     GoToIfUnset FLAG_GAME_COMPLETED, CanalaveCity_SetMapLocalFalse
     GetNationalDexEnabled VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, CanalaveCity_SetMapLocalFalse
+    @ Sovereign (E10, Renegade): the Member Card comes from the woman in Route 217's north-east house, so the inn no
+    @ longer waits on the Darkrai distribution.
     CheckItem ITEM_MEMBER_CARD, 1, VAR_MAP_LOCAL_0x00
-    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, CanalaveCity_SetMapLocalFalse
-    CheckDistributionEvent DISTRIBUTION_EVENT_DARKRAI, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, CanalaveCity_SetMapLocalFalse
     GoToIfUnset FLAG_WOKE_UP_CANALAVE_CITY_SAILOR_ELDRITCH_HOUSE_LITTLE_BOY, CanalaveCity_SetMapLocalFalse
     SetVar VAR_MAP_LOCAL_0x00, TRUE
