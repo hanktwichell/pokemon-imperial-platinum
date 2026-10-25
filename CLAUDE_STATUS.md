@@ -6185,3 +6185,32 @@ is merged.
 2. More automated playtest coverage (row 18): wild encounters' forms by map (Unown, Shellos, regional forms in the
    Regional Forms Park) through the real encounter code.
 3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
+
+## CB-0135 — 2026-10-25, 12:27 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: the talk-to-objects test.** PR #146 (forms' TMs, Zero to Hero) is merged.
+- **`tools/test/talk_to_objects.py`** talks to each of the 252 map objects with a script that Sovereign added or moved.
+  It comes in by the map's way in (playing out any entry scene), warps next to the object facing it, presses A and
+  plays the script out (text, prompts, battles in god mode) until the field is free.
+- **Result: all 252 pass, no game bugs found.**
+  - 140 scripts ran and ended, including the Battleground's trainers and the 24-battle Battle Marathon.
+  - 112 objects are hidden on a new game by a story flag.
+- Two vanilla entry scenes need the story's own way in, so the test marks them as seen (`SCENES_SEEN`): Flint at
+  Sunyshore's gate, and Mars and Jupiter in Stark Mountain.
+- **Test-build hooks:**
+  - `gSovereignTestWarpTarget` has a facing direction;
+  - `gSovereignTestVar` sets a var before a warp;
+  - in god mode the player's moves cost no PP.
+- The shipping ROM is unchanged.
+
+**Files modified:**
+- Test hooks: `decomp/include/sovereign_test.h`, `decomp/src/script_manager.c`,
+  `decomp/src/battle/battle_controller_player.c`
+- Tools: `tools/test/talk_to_objects.py`
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR once both checks are green.
+2. More playtest automation (row 18): the bg events (signs, hidden items) and coord triggers Sovereign added, the same
+   way.
+3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
