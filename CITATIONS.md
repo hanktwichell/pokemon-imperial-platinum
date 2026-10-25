@@ -82,11 +82,20 @@ Diancie, Mega Salamence, Mega Slowbro). They're marked in `data/sprite_index.csv
 Location: `assets/sprites/packs/gen5_9_part1/` (`NNNN-Name/{front,back,shiny_front,shiny_back}.png`, kept as supplied).
 Compiled and supplied by the project owner from two sources (per the pack's README):
 
-- **hg-engine DS-style sprite set** ("GenIV_Style_Sprites_Gen5-9"), the 80×80 files: BluRosie and the hg-engine
-  contributors and sprite artists — https://github.com/BluRosie/hg-engine. Per-sprite artist credits are kept in the
-  hg-engine project; **we still need to copy the matching credit list into this file.**
-- **Smogon Sprite Project** (Gen 6/7/8 archives), the 96×96 files: the Smogon Sprite Project contributors —
-  https://www.smogon.com/forums/forums/smeargles-laptop.325/. **Per-sprite artist credits still needed.**
+- **hg-engine DS-style sprite set** ("GenIV_Style_Sprites_Gen5-9"), the 80×80 files (699 fronts and backs): BluRosie
+  and the hg-engine contributors and sprite artists — https://github.com/BluRosie/hg-engine. hg-engine credits its
+  sprites as a group, not per sprite. Its `CREDITS.md` (commit `f4fca05`, read 2026-10-25) lists, for **Pokémon
+  sprites**: the Smogon Sprite Project, TraviS, LennyBitao, MyMarshlands, DarkusShadow, CarmaNekko, kiriaura,
+  Gnomowladny, Krune, n-kin, JaegerLucciano23, joshr691, Jefelin, MultiDiegoDani, onigin_pixelart, Prodigal96,
+  zerudez, leparagon, arinoelle, diegotoon20, gardow, greyenna, conyjams, kingofthe-x-roads, RayquazaFlygon,
+  metalflygon08 (on DeviantArt), MaMe, maple, Layell, SelenaFF, Sopita Yorita and zlolxd; **MaMe and maple** touched up
+  many Mega sprites; **Adcroc1** helped with sprite formatting; and **Chritchy** fixed sprite translation errors.
+- **Smogon Sprite Project** (Gen 6/7/8 archives), the 96×96 files (727 fronts, backs and shinies, for 197 species from
+  #650 on): the Smogon Sprite Project contributors — https://www.smogon.com/forums/forums/smeargles-laptop.325/.
+  Pokémon Showdown's credits (https://pokemonshowdown.com/credits, read 2026-10-25) name the leads: the **X/Y and
+  Sun/Moon Sprite Projects**, led by **Ian Clail (Layell)**, and the **Sun/Moon and Sword/Shield Sprite Projects**, led
+  by **leparagon**. The per-sprite artist lists are in the projects' Smogon forum threads, which need a browser to
+  read; they're still to be copied here. Which files came from which set is by size, 80×80 or 96×96.
 
 The owner's README notes a part 2 (257 shiny sprites from the Smogon links) that hasn't been added yet.
 
