@@ -1,0 +1,47 @@
+{
+    "name": "Cyrus",
+    "class": "TRAINER_CLASS_GALACTIC_BOSS",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": true,
+    "party": [
+        {
+            "species": "SPECIES_PALKIA",
+            "form": 0,
+            "level": 70,
+            "item": null,
+            "moves": null,
+            "iv_scale": 0,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_DIALGA",
+            "form": 0,
+            "level": 70,
+            "item": null,
+            "moves": null,
+            "iv_scale": 0,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DOUBLE_BATTLE_DEFEAT_1",
+            "en_US": [
+                "What?\n",
+                "Do my eyes deceive me?\n"
+            ]
+        },
+        {
+            "type": "TRMSG_DOUBLE_BATTLE_DEFEAT_2",
+            "en_US": [
+                "This child was able to best the\n",
+                "mythical Pokémon of time and space?"
+            ]
+        }
+    ]
+}

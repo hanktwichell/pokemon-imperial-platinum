@@ -5291,3 +5291,46 @@ half-price menu fix) is merged.
    list against ours to find the rest.
 2. Check the remaining Renegade map scripts against ours for anything not yet ported.
 3. Update `docs/EngineRoadmap.md`'s E10 status once the Renegade audit is clean.
+
+## CB-0109 — 2026-10-24, 8:21 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: E10 part 34, Renegade's last added trainers.** PR #124 (part 33, Darach) is merged.
+- **Audit:** Renegade's trainers 928 and up were compared against ours by name, class and party.
+- **Ported:**
+  - **Cheryl's test battle** in Eterna Forest, before she asks to go along. Renegade 1064, Lv. 19–20, as
+    `TRAINER_SOVEREIGN_CHERYL_ETERNA_FOREST` (dummy 255). `EternaForest_Text_MayIGoWithYou` now holds Renegade's
+    post-battle wording.
+  - **The Eterna City door grunt** (Sovereign's Totem gate).
+    - After both trials: no Forest Badge gets Renegade's refusal; with it, a battle (Renegade 939, Lv. 24, as
+      `TRAINER_SOVEREIGN_GRUNT_ETERNA_CITY`, dummy 321), then he leaves.
+    - OnTransition now hides him only when the trials are done and he's beaten.
+  - **Cyrus's Dialga and Palkia** double battle in the Distortion World before his own team. Renegade 972, Lv. 70, as
+    `TRAINER_SOVEREIGN_CYRUS_DISTORTION_WORLD_LEGENDS` (dummy 374).
+    - Without two able Pokémon it's skipped, so a player can't be stranded there.
+- **Left out on purpose (owner may disagree):**
+  - Renegade's random alternate Elite Four and Cynthia teams (981–995), because `docs/EliteFourFormat.md` picks
+    fixed teams.
+  - Dray (1053), the Renegade author's battle, because Sovereign has its own developer battle.
+  - Egadd, Telkin and Palmer (961, 962, 971), which are unused in Renegade.
+- **TrainerTeamLog:** the boss-class rows added in E10 (part 31's Battleground commanders and this Cyrus) said a T1
+  team was drafted for them. None is, so the note now says so.
+- **Dummy slots left:** 53.
+- **Tested:**
+  - Cheryl and the grunt in full.
+  - Cyrus: both battles won and the scene after. The line between the battles wasn't captured on screen.
+- **Harness notes:**
+  - Use the party-switch fix from `b48/t33b.py` (it backs out of a fainted pick).
+  - Double battles need the target tapped after the move: (64, 30) for the left foe.
+  - Give each `seq` call its own prefix, or the frames get overwritten.
+
+**Files modified:**
+- `decomp/generated/{trainers,vars_flags}.txt`
+- 3 trainer JSONs added; dummies 255, 321 and 374 deleted
+- Scripts and text for `eterna_forest`, `eterna_city` and `distortion_world_b7f`
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `docs/TrainerTeamLog.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Audit Renegade's map scripts against ours for anything still missing: compare each changed script's new
+   texts and commands. Most E10 parts came from `SpecialEvents.txt`, so the next check is the scripts it doesn't list.
+2. Update the E10 line in `docs/EngineRoadmap.md` to done once that audit is clean.
+3. Then the next milestone after E10 in `docs/EngineRoadmap.md`.

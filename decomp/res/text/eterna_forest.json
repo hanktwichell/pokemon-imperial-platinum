@@ -4,14 +4,13 @@
     {
       "id": "EternaForest_Text_MayIGoWithYou",
       "en_US": [
-        "Hello, my name’s Cheryl.\n",
-        "And you are...?\r",
-        "OK, so your name is {STRVAR_1 3, 0, 0}.\n",
-        "I’m sincerely glad to meet you.\r",
+        "Ah, marvelous!\r",
         "{STRVAR_1 3, 0, 0}, may I ask a big favor\n",
         "of you?\r",
         "I want to get through this forest,\n",
         "but I’m afraid of doing it alone.\r",
+        "From that battle we just had, I can\n",
+        "see you’re a strong Trainer.\r",
         "I’ve heard that there is a sinister\n",
         "group of people called Team Galactic\f",
         "about.\r",
@@ -199,6 +198,18 @@
       "en_US": [
         "A curious presence can be felt from\n",
         "somewhere in the forest..."
+      ]
+    },
+    {
+      "id": "EternaForest_Text_SovereignCherylTestStrength",
+      "en_US": [
+        "Hello, my name’s Cheryl.\n",
+        "And you are...?\r",
+        "OK, so your name is {STRVAR_1 3, 0, 0}.\n",
+        "I’m sincerely glad to meet you.\r",
+        "{STRVAR_1 3, 0, 0}, are you a strong Trainer?\r",
+        "Sorry to be so sudden, but may we have\n",
+        "a battle so I can test your strength?\r"
       ]
     }
   ]

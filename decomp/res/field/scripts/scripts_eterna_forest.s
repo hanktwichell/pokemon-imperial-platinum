@@ -144,10 +144,24 @@ EternaForest_CherylStartFollowing:
     ReleaseAll
     End
 
+@ Sovereign (E10, Renegade): Cheryl tests the player's strength in a battle (Renegade's trainer 1064) before asking to
+@ go through the forest together.
 EternaForest_MayIGoWithYou:
+    BufferPlayerName 0
+    Message EternaForest_Text_SovereignCherylTestStrength
+    CloseMessage
+    StartTrainerBattle TRAINER_SOVEREIGN_CHERYL_ETERNA_FOREST
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, EternaForest_SovereignCherylLost
+    HealParty
     BufferPlayerName 0
     Message EternaForest_Text_MayIGoWithYou
     Return
+
+EternaForest_SovereignCherylLost:
+    BlackOutFromBattle
+    ReleaseAll
+    End
 
 EternaForest_LetsGetThroughForestTogether:
     BufferPlayerName 0

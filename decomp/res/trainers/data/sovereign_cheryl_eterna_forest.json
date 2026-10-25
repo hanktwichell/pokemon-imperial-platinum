@@ -1,0 +1,80 @@
+{
+    "name": "Cheryl",
+    "class": "TRAINER_CLASS_TRAINER_CHERYL",
+    "items": [
+        "ITEM_SUPER_POTION"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_DRIFLOON",
+            "form": 0,
+            "level": 19,
+            "item": null,
+            "moves": [
+                "MOVE_OMINOUS_WIND",
+                "MOVE_AIR_CUTTER",
+                "MOVE_SHOCK_WAVE",
+                "MOVE_SWIFT"
+            ],
+            "iv_scale": 249,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MAKUHITA",
+            "form": 0,
+            "level": 19,
+            "item": null,
+            "moves": [
+                "MOVE_KNOCK_OFF",
+                "MOVE_FAKE_OUT",
+                "MOVE_BRICK_BREAK",
+                "MOVE_BULLET_PUNCH"
+            ],
+            "iv_scale": 249,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_WAILMER",
+            "form": 0,
+            "level": 19,
+            "item": null,
+            "moves": [
+                "MOVE_WATER_PULSE",
+                "MOVE_ROCK_TOMB",
+                "MOVE_MIST",
+                "MOVE_ROLLOUT"
+            ],
+            "iv_scale": 244,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_CHANSEY",
+            "form": 0,
+            "level": 20,
+            "item": null,
+            "moves": [
+                "MOVE_HYPER_VOICE",
+                "MOVE_SOFTBOILED",
+                "MOVE_ICE_BEAM",
+                "MOVE_THUNDERBOLT"
+            ],
+            "iv_scale": 254,
+            "ball_seal": 9
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Striking the right balance of offense\n",
+                "and defense... It’s not easy to do.\n"
+            ]
+        }
+    ]
+}

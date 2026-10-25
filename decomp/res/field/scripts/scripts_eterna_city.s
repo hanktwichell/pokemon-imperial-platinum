@@ -56,17 +56,65 @@ EternaCity_SetCynthiaPositionForGiveEgg:
     Return
 
 @ Sovereign (decision 23): Jupiter's encounter waits on the Totem Ribombee and Vikavolt trials. A grunt guards the
-@ building's door (behind the Cut trees) until both are done.
+@ building's door (behind the Cut trees) until both are done. Then, as in Renegade, he battles a player with the Forest
+@ Badge (Renegade's trainer 939) and leaves.
 EternaCity_SovereignSetDoorGruntVisibility:
     GoToIfUnset FLAG_SOVEREIGN_TOTEM_TRIAL_RIBOMBEE, EternaCity_SovereignDoorGruntStays
     GoToIfUnset FLAG_SOVEREIGN_TOTEM_TRIAL_VIKAVOLT, EternaCity_SovereignDoorGruntStays
+    GoToIfNotDefeated TRAINER_SOVEREIGN_GRUNT_ETERNA_CITY, EternaCity_SovereignDoorGruntStays
     SetFlag FLAG_MAP_LOCAL_HIDE_TRIAL_GATE
 EternaCity_SovereignDoorGruntStays:
     Return
 
 EternaCity_SovereignDoorGrunt:
-    NPCMessage EternaCity_Text_SovereignTotemsLoose
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    FacePlayer
+    GoToIfUnset FLAG_SOVEREIGN_TOTEM_TRIAL_RIBOMBEE, EternaCity_SovereignDoorGruntTotems
+    GoToIfUnset FLAG_SOVEREIGN_TOTEM_TRIAL_VIKAVOLT, EternaCity_SovereignDoorGruntTotems
+    GoToIfBadgeAcquired BADGE_ID_FOREST, EternaCity_SovereignDoorGruntBattle
+    Message EternaCity_Text_SovereignGruntNoBadge
+    WaitButton
+    CloseMessage
+    ReleaseAll
     End
+
+EternaCity_SovereignDoorGruntTotems:
+    Message EternaCity_Text_SovereignTotemsLoose
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+EternaCity_SovereignDoorGruntBattle:
+    Message EternaCity_Text_SovereignGruntTakePokemon
+    CloseMessage
+    StartTrainerBattle TRAINER_SOVEREIGN_GRUNT_ETERNA_CITY
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, EternaCity_SovereignDoorGruntLost
+    SetTrainerFlag TRAINER_SOVEREIGN_GRUNT_ETERNA_CITY
+    ApplyMovement LOCALID_SOVEREIGN_DOOR_GRUNT, EternaCity_SovereignMovement_DoorGruntFaceNorth
+    WaitMovement
+    Message EternaCity_Text_SovereignGruntDefeated
+    CloseMessage
+    FadeScreenOut
+    WaitFadeScreen
+    RemoveObject LOCALID_SOVEREIGN_DOOR_GRUNT
+    SetFlag FLAG_MAP_LOCAL_HIDE_TRIAL_GATE
+    FadeScreenIn
+    WaitFadeScreen
+    ReleaseAll
+    End
+
+EternaCity_SovereignDoorGruntLost:
+    BlackOutFromBattle
+    ReleaseAll
+    End
+
+    .balign 4, 0
+EternaCity_SovereignMovement_DoorGruntFaceNorth:
+    FaceNorth
+    EndMovement
 
 EternaCity_PokemonBreederM:
     NPCMessage EternaCity_Text_GetYourselfABicycle
