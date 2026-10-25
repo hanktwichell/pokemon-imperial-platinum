@@ -5409,3 +5409,27 @@ is merged. Part 36 is committed and pushed to the branch as work in progress. No
 3. Shaymin (part 37): Renegade's Oak gives Oak's Letter after the Route 224 counterpart battle (Renegade's text 40–41
    in `eterna_city_south_house`). Remove the Shaymin distribution checks in `scripts_route_224.s` and
    `scripts_flower_paradise.s`.
+
+## CB-0112 — 2026-10-24, 9:30 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: E10 part 36, Renegade's Darkrai (finishes CB-0111's work in progress).**
+- **Forest fix:** the Newmoon Island Forest distribution check is now removed, so Darkrai appears.
+- **Tested in full in a test build:**
+  - Route 217's woman: the Spell Tag first, then the Lunar Wing scene and the Member Card, then her after-line.
+  - The Harbor Inn dream warps to Newmoon Island.
+  - Darkrai at Lv. 68 is caught with a Master Ball. The player wakes in the inn, and Darkrai is gone from the forest.
+- **Docs:** an EngineChangelog part 36 entry, the roadmap's E10 line, and `docs/LegendaryTriggers.md`. The Darkrai row
+  is now ported, and only Shaymin and Arceus still wait on vanilla distributions.
+- **Not tested:** a Darkrai knocked out instead of caught, and the repeated dream (vanilla's reset).
+
+**Files modified:**
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `docs/LegendaryTriggers.md`, `CLAUDE_STATUS.md`
+- The code, including the forest fix in `scripts_newmoon_island_forest.s`, is already in CB-0111's commit.
+
+**Next 3 steps:**
+1. Open the part 36 PR, and merge it once both checks are green.
+2. Shaymin (part 37): Renegade's Oak gives Oak's Letter after the Route 224 counterpart battle (Renegade's text 40–41
+   in `eterna_city_south_house`). Remove the Shaymin distribution checks in `scripts_route_224.s` and
+   `scripts_flower_paradise.s`. Check how part 30's Route 224 battle flag fits.
+3. Arceus (part 38): the Foreign Building elder's Plates and Pokédex tasks, the Azure Flute, then Spear Pillar at
+   Lv. 80. The Pokédex condition needs an owner call, because the National Dex has over 1,000 species.
