@@ -175,7 +175,7 @@ dealer a present-day Pokémon gives its Paradox Pokémon at the shown Pokémon's
 | Darkrai | static | Newmoon Island Forest | 68 (Renegade's; vanilla 50) | post-game, with the National Dex and the Canalave boy woken, and the Member Card from the woman in Route 217's north-east house (the Lunar Wing wakes her; E10 part 36). The Harbor Inn's dream then takes the player to Newmoon Island. No distribution | caught; until then the dream can be repeated (vanilla's reset on waking) |
 | Shaymin | static | Flower Paradise | 30 | post-game: once the counterpart has been beaten by Route 224's tablet (E10 part 30), Oak in Eterna City's south house gives Oak's Letter (E10 part 37). On Route 224 Marley's scene plays, then Oak's tablet scene opens the Seabreak Path. No distribution | caught; until then it's back on the next visit |
 | Arceus | static | Hall of Origin | 80 | post-game: with all sixteen Type Masters' Plates (E10 part 20), the elder in Hearthome's Foreign Building gives the Azure Flute (E10 part 38; no Pokédex task, decision 44). Played at Spear Pillar, it opens the Hall of Origin. No distribution | — |
-| Rotom | static | Old Chateau, the TV room | 20 | night | — |
+| Rotom | static | Old Chateau, the TV room | 20 | any time of day (Renegade's, E10 part 41; vanilla: night) | none: it can be battled and caught again and again (Renegade's) |
 
 ## Renegade Platinum's events, ported (E10)
 

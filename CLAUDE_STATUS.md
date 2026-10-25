@@ -5604,3 +5604,36 @@ vanilla's post-game guard.
    - the Route 217 west house nurse (Renegade heals there);
    - Palmer at home in Twinleaf;
    - the Old Chateau maid and old men.
+
+## CB-0118 — 2026-10-24, 11:09 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: E10 part 41, Renegade's special encounters.** PR #131 (part 40) is merged.
+- **Gengar:** a painting with red eyes in the Old Chateau's back middle-east room (12, 2). Leaving the room afterwards
+  brings a wild Gengar, Lv. 20, once.
+  - New flag `FLAG_SOVEREIGN_OLD_CHATEAU_GENGAR_DONE` (was `FLAG_UNUSED_0x0991`). Its texts are in Jubilife City's
+    archive, the room's archive in vanilla.
+- **Spiritomb:** comes at once after the Odd Keystone, at Lv. 30, with no Underground talks.
+- **Rotom:** any time of day, and repeatable.
+- All three were tested in a test build.
+- **New owner question in `docs/ProjectStatus.md`:** Renegade's Tea opens Route 218's gate to Canalave City.
+  Sovereign's Darach and Tea are post-game, because the Regional Forms Park lobby opens after the Hall of Fame.
+- **Audit notes:**
+  - `$S/coord_audit.py` compares coord triggers.
+  - Renegade's `SpecialEvents.txt` "Special Encounters" list is now fully ported.
+  - The Route 217 west house heal was already done in part 26, by the hiker.
+
+**Files modified:**
+- Scripts: `scripts_old_chateau_back_middle_east_room.s`, `scripts_old_chateau_back_middle_west_room.s` and
+  `scripts_route_209.s`
+- `events_old_chateau_back_middle_east_room.json`, `decomp/res/text/jubilife_city.json`,
+  `decomp/generated/vars_flags.txt`
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `docs/LegendaryTriggers.md`, `docs/ProjectStatus.md`,
+  `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge the part 41 PR once both checks are green.
+2. Owner questions, both in `docs/ProjectStatus.md`:
+   - Route 224 before the Elite Four;
+   - the Tea and Route 218's gate, with when the park opens.
+3. Check Renegade's `NPCChanges.txt` and `TradeChanges.txt` against the ports, to see whether the remaining audit
+   lines are covered.

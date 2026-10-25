@@ -957,6 +957,17 @@
         "Touch the Pokétch screen and find the\n",
         "apps that are right for you!\r"
       ]
+    },
+    {
+      "id": "JubilifeCity_Text_SovereignGengarEyes",
+      "en_US": [
+        "Piercing red eyes are staring at you.\r",
+        "You can suddenly feel a chill."
+      ]
+    },
+    {
+      "id": "JubilifeCity_Text_SovereignGengarGlaring",
+      "en_US": "...It appears as if it is glaring..."
     }
   ]
 }

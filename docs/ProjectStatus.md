@@ -256,6 +256,10 @@ Open:
 - **Route 224 before the Elite Four?** In Renegade, Victory Road's back area and Route 224 come before the League. A
   guard by the League exit waits until the counterpart by Route 224's tablet (Lv. 69–70) is beaten. Sovereign keeps
   vanilla's post-game guard (E10 part 39 notes).
+- **The Tea and Route 218's gate?** In Renegade, Darach (Lv. 48, the Pal Park lobby) gives the Tea mid-game, and
+  Route 218's gate guard opens the road to Canalave City for it. Sovereign's Regional Forms Park lobby opens after
+  the Hall of Fame, so Darach is post-game and the Tea has no use yet (E10 part 41 notes). This ties in with when the
+  park opens.
 - **The legendary placement tile checks** in `docs/LegendaryPlacementReview.md` (every clash is settled by decisions
   35–39). `docs/StaticEncounters.xlsx` lists every encounter.
 - **Overworld sprites for the legendaries:** the owner draws them and sorts the rest of the sizes (decision 40,

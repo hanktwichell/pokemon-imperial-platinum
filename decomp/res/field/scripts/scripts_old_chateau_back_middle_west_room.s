@@ -8,10 +8,7 @@
 OldChateauBackMiddleWestRoom_TV:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
-    GoToIfSet FLAG_CAUGHT_OLD_CHATEAU_ROTOM, OldChateauBackMiddleWestRoom_TVHasMalevolentFeel
-    GoToIfSet FLAG_DAILY_BATTLED_OLD_CHATEAU_ROTOM, OldChateauBackMiddleWestRoom_TVHasMalevolentFeel
-    GetTimeOfDay VAR_RESULT
-    GoToIfLt VAR_RESULT, TIMEOFDAY_NIGHT, OldChateauBackMiddleWestRoom_TVHasMalevolentFeel
+    @ Sovereign (E10, Renegade): Rotom comes out of the TV at any time of day, as often as the player likes.
     Message OldChateauBackMiddleWestRoom_Text_WantToThumpTheTV
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, OldChateauBackMiddleWestRoom_End
