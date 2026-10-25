@@ -4,14 +4,18 @@
 The gifts:
 - the event-gift deliveryman in the Fight Area Pokémon Center: each event form of his list (sSovereignEventGifts,
   src/scrcmd.c) that is a gift, in its form and at its level, knowing its form's level-up moves with its signature move
-  last (the Mythicals' entries are restyles, not gifts);
+  last; and his Mythicals' entries, which restyle a Magearna or Zarude shown to him into its event form;
 - the Ace Trainer there: Battle Bond Greninja, Lv. 50, with Water Shuriken, Aerial Ace, Double Team and Night Slash;
 - the eight Pokémon Center Interviewers: the quiz (its right answers read from the script) and the battle against
   the region's starters, then, talking again, the prize: the three starters at the gift level, each with its
   type's held item (docs/GiftPokemon_Sovereign.md). The player has all eight badges (gSovereignTestBadges), as the
   later Interviewers wait on one;
 - the other gifts Sovereign added: Lapras, Steven's Beldum, Porygon, the Twinleaf Eevee (Mom's state set to after the
-  Journal) and Rowan's briefcase (the two starters the player didn't pick).
+  Journal) and Rowan's briefcase (the two starters the player didn't pick; Rowan back in his lab);
+- the Mining Museum's Paradox dealers (all eight badges): each pair of their list (sParadoxForms), the Paradox
+  Pokémon of a present-day one shown to them, at its level.
+For a gift that needs a Pokémon shown, the next test warp adds it to the party (gSovereignTestPartyAdd, Lv. 50), and
+the script's party screen is answered like its other menus.
 
 Each gift is a run from the save state: the party is cut to its lead to make room (gSovereignTestPartyKeep), the
 player comes in by the map's way in and warps next to the giver (talk_to_objects.arrive), and talks, as many times as
@@ -40,13 +44,15 @@ from talk_to_objects import (DECOMP, FRAME_LIMIT, START_FRAMES, SYMBOLS, arrive,
 EVENTS = 'events_fight_area_pokecenter_1f'
 DELIVERYMAN = 'LOCALID_FIGHT_AREA_SOVEREIGN_EVENT_DELIVERYMAN'
 GRENINJA_TRAINER = 'LOCALID_FIGHT_AREA_SOVEREIGN_GRENINJA_TRAINER'
-MENU_LIST, MENU_YES_NO = 1, 2  # enum SovereignTestMenuKind
+MENU_LIST, MENU_YES_NO, MENU_PARTY = 1, 2, 3  # enum SovereignTestMenuKind
 PARTY = {'wanted': 0, 'count': 1, 'mons': 4}  # struct SovereignTestParty
 # struct SovereignTestPartyMon: species, ability, held item, moves, form, level, hasHiddenAbility.
 MON = '<HHH4HBBBx'
 ALL_BADGES = 0xff
 STEP = 10
 MENU_SETTLE = 10
+PARTY_SETTLE = 90  # the party screen fades in
+SHOWN_LEVEL = 50  # the level of a Pokémon shown to a dealer
 
 
 def names(kind):
@@ -94,7 +100,7 @@ def interviewers():
     return out
 
 
-Gift = collections.namedtuple('Gift', 'name events giver badges var talks gifts')
+Gift = collections.namedtuple('Gift', 'name events giver badges var talks gifts add', defaults=[None])
 # Gifts given straight away, with no list to read them from: (name, events, giver, story var set first, the answers
 # of each talk, [(species, level, held item)]). Their moves are their level-up moves.
 SIMPLE = [
@@ -107,10 +113,24 @@ SIMPLE = [
     # Mom suggests it once she has given the Journal.
     ('Twinleaf Eevee', 'events_twinleaf_town_player_house_1f', 'LOCALID_SOVEREIGN_EEVEE_BALL',
      ('VAR_PLAYER_HOUSE_STATE', 6), [[True, False]], [('SPECIES_EEVEE', 5, 'ITEM_NONE')]),
-    # The test save's starter is Turtwig, so Rowan gives the other two.
-    ("Rowan's briefcase", 'events_sandgem_town_pokemon_research_lab', 'LOCALID_SOVEREIGN_BRIEFCASE', None,
-     [[True, False, False]], [('SPECIES_CHIMCHAR', 5, 'ITEM_NONE'), ('SPECIES_PIPLUP', 5, 'ITEM_NONE')]),
+    # Later in the story: Rowan is back in his lab (VAR_SANDGEM_TOWN_LAB_STATE 3: placed on entering, with no scene).
+    # The test save's starter is Turtwig, so he gives the other two.
+    ("Rowan's briefcase", 'events_sandgem_town_pokemon_research_lab', 'LOCALID_SOVEREIGN_BRIEFCASE',
+     ('VAR_SANDGEM_TOWN_LAB_STATE', 3), [[True, False, False]],
+     [('SPECIES_CHIMCHAR', 5, 'ITEM_NONE'), ('SPECIES_PIPLUP', 5, 'ITEM_NONE')]),
 ]
+
+
+def paradox_dealers():
+    """[(era, dealer, present species, Paradox species)] from sParadoxForms (src/scrcmd.c): the Mining Museum's fossil
+    maniac gives the ancient ones, the futuristic scientist the future ones."""
+    source = open(os.path.join(DECOMP, 'src', 'scrcmd.c'), encoding='utf-8').read()
+    table = re.search(r'sParadoxForms\[\w+\]\[\w+ \+ 1\]\[2\] = \{(.*?)\n\};', source, re.S).group(1)
+    dealers = ('LOCALID_SOVEREIGN_FOSSIL_MANIAC', 'LOCALID_SOVEREIGN_FUTURE_SCIENTIST')
+    return [(era, dealers[era], present, paradox)
+            for era, block in enumerate(re.findall(r'\{\n(.*?)\n    \}', table, re.S))
+            for present, paradox in re.findall(r'\{ (SPECIES_\w+), (SPECIES_\w+) \}', block)
+            if present != 'SPECIES_NONE']
 
 
 def cases():
@@ -131,6 +151,17 @@ def cases():
         out.append(Gift(f'Interviewer {events[len("events_"):-len("_pokecenter_1f")]}', events, local, ALL_BADGES,
                         None, [answers, [False] * len(gifts)],
                         [(sp, 0, lv, it, default_moves(sp, 0, lv)) for sp, lv, it in gifts]))
+    for index, (species, form, level, move) in enumerate(event_gifts()):
+        if level == 0:  # the deliveryman restyles a party Pokémon of a Mythical's into its event form
+            out.append(Gift(f'event restyle {index}', EVENTS, DELIVERYMAN, 0, None, [[index, ('party', 1)]],
+                            [(species, form, SHOWN_LEVEL, 'ITEM_NONE', default_moves(species, 0, SHOWN_LEVEL))],
+                            add=(species, 0, SHOWN_LEVEL)))
+    for era, giver, present, paradox in paradox_dealers():
+        out.append(Gift(f'{paradox[8:].lower()} for {present[8:].lower()}', 'events_mining_museum', giver,
+                        ALL_BADGES, None, [[True, ('party', 1), False]],
+                        [(present, 0, SHOWN_LEVEL, 'ITEM_NONE', default_moves(present, 0, SHOWN_LEVEL)),
+                         (paradox, 0, SHOWN_LEVEL, 'ITEM_NONE', default_moves(paradox, 0, SHOWN_LEVEL))],
+                        add=(present, 0, SHOWN_LEVEL)))
     for name, events, giver, var, talks, gifts in SIMPLE:
         out.append(Gift(name, events, giver, 0, var, talks,
                         [(sp, 0, lv, it, default_moves(sp, 0, lv)) for sp, lv, it in gifts]))
@@ -139,10 +170,11 @@ def cases():
 
 def talk_and_answer(d, sym, answers, limit=FRAME_LIMIT):
     """Talk (A) and play the script out on its menus: each time it shows one, the next answer is given (an entry
-    number for a list menu, True or False for a yes/no question). Otherwise, as in talk_to_objects.play_out, A pages
-    through the text and taps pick moves in a battle (god mode). A menu is counted as the script shows it, before it
-    reads any input, so A is never pressed into one the test hasn't seen. Returns ('ok', 'NOSCRIPT', 'HANG', 'STUCK'
-    or 'MENU ...' (a menu with no answer, or of the wrong kind, or answers left over), frames)."""
+    number for a list menu, True or False for a yes/no question, ('party', slot) for the party screen). Otherwise, as
+    in talk_to_objects.play_out, A pages through the text and taps pick moves in a battle (god mode). A menu is
+    counted as the script shows it, before it reads any input, so A is never pressed into one the test hasn't seen.
+    Returns ('ok', 'NOSCRIPT', 'HANG', 'STUCK' or 'MENU ...' (a menu with no answer, or of the wrong kind, or answers
+    left over), frames)."""
     answers = list(answers)
     menu = sym['gSovereignTestMenu']
     seen = u32(d, menu)
@@ -179,6 +211,12 @@ def talk_and_answer(d, sym, answers, limit=FRAME_LIMIT):
                 d.press('A', frames=4, after=0)
             elif kind == MENU_YES_NO and type(answer) is bool:
                 d.press('A' if answer else 'B', frames=4, after=0)
+            elif kind == MENU_PARTY and type(answer) is tuple and answer[0] == 'party':
+                d.run(PARTY_SETTLE)
+                frames += PARTY_SETTLE
+                for key in ['DOWN'] * (answer[1] // 2) + ['RIGHT'] * (answer[1] % 2):  # two columns of slots
+                    d.press(key, frames=2, after=6)
+                d.press('A', frames=4, after=0)
             else:
                 return f'MENU kind {kind} for {answer!r}', frames
             seen = u32(d, menu)
@@ -213,7 +251,7 @@ def main():
 
     rom, state, out, only, _, _ = parse_args(sys.argv[1:])
     sym = symbols(SYMBOLS + ('gSovereignTestMenu', 'gSovereignTestPartyKeep', 'gSovereignTestParty',
-                             'gSovereignTestBadges'))
+                             'gSovereignTestBadges', 'gSovereignTestPartyAdd'))
     variables = var_ids()
     species_names, move_names, ability_names, item_names = (names(k) for k in ('species', 'moves', 'abilities',
                                                                                  'items'))
@@ -229,6 +267,10 @@ def main():
         if gift.var:
             mem.write_short(sym['gSovereignTestVar'], variables[gift.var[0]])
             mem.write_short(sym['gSovereignTestVar'] + 2, gift.var[1])
+        if gift.add:
+            mem.write_short(sym['gSovereignTestPartyAdd'], species_names.index(gift.add[0]))
+            mem.write_byte(sym['gSovereignTestPartyAdd'] + 2, gift.add[1])
+            mem.write_byte(sym['gSovereignTestPartyAdd'] + 3, gift.add[2])
 
     bad = 0
     with open(os.path.join(out, 'results.txt'), 'w') as f:

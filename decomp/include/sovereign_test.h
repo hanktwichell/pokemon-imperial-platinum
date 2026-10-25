@@ -19,6 +19,13 @@ struct SovereignTestVar {
     u16 value;
 };
 
+// A Pokémon the next test warp adds to the party (script_manager.c), for a script to be shown.
+struct SovereignTestPartyAdd {
+    u16 species; // when set
+    u8 form;
+    u8 level;
+};
+
 // The player's party, written down on request while the field is free (field_system.c).
 struct SovereignTestPartyMon {
     u16 species;
@@ -44,6 +51,7 @@ struct SovereignTestParty {
 enum SovereignTestMenuKind {
     SOVEREIGN_TEST_MENU_LIST = 1, // a list or multiple-choice menu: the cursor moves down the entries, A picks one
     SOVEREIGN_TEST_MENU_YES_NO, // A picks Yes, B No
+    SOVEREIGN_TEST_MENU_PARTY, // the party screen, to pick a Pokémon: the cursor moves to its slot, A picks it
 };
 
 struct SovereignTestMenu {
@@ -207,6 +215,8 @@ extern struct SovereignTestParty gSovereignTestParty;
 // When set, the next SELECT+L+R first leaves only this many Pokémon in the party (the first ones), to make room for
 // gifts.
 extern u8 gSovereignTestPartyKeep;
+// When species is set, the next SELECT+L+R first adds this Pokémon to the party (after gSovereignTestPartyKeep).
+extern struct SovereignTestPartyAdd gSovereignTestPartyAdd;
 // When set, the next SELECT+L+R first gives the player these badges (bit 0 the Coal Badge... bit 7 the Beacon Badge).
 extern u8 gSovereignTestBadges;
 // The menus scripts have shown, and the last one's kind (see struct SovereignTestMenu).

@@ -6296,3 +6296,27 @@ is merged.
 2. More gift coverage (row 18): the Mining Museum's Paradox dealers and the deliveryman's Mythical restyles need a
    given Pokémon in the party (a test hook to set a party slot), and the Trainers' School Egg.
 3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
+
+## CB-0139 — 2026-10-25, 3:36 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: the gift test, part 2.** PR #150 (gift test) is merged.
+- `tools/test/gift_pokemon.py` now covers 58 runs:
+  - the Mining Museum's Paradox dealers: all 21 pairs, the Paradox Pokémon of a shown present-day one, at its level;
+  - the deliveryman's Mythical restyles: Original Color Magearna and Dada Zarude, from a shown one.
+- **Result: all 58 runs pass; no game bugs found.** Rowan's briefcase now starts with Rowan back in his lab. His
+  new-game scene made that case pass in one run and not the next.
+- **Test-build hooks:**
+  - `gSovereignTestPartyAdd`: the next test warp adds a Pokémon to the party;
+  - `gSovereignTestMenu` counts the party screen a script opens (a third kind of menu).
+- The shipping ROM is unchanged: the same bytes with and without the hooks.
+
+**Files modified:**
+- Test hooks: `decomp/include/sovereign_test.h`, `decomp/src/scrcmd.c`, `decomp/src/script_manager.c`
+- Tools: `tools/test/gift_pokemon.py`
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR once both checks are green.
+2. More playtest automation (row 18): an Elite Four run in each format path (two singles and two doubles, the
+   rematch menu), checking each battle's format against `docs/EliteFourFormat.md`.
+3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.

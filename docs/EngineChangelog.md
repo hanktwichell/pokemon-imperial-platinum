@@ -4,6 +4,33 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Playtest pass — Paradox dealers and Mythical restyles
+
+The gift test (`tools/test/gift_pokemon.py`) now also covers the gifts that need a Pokémon shown to the giver, for 58
+runs in all:
+- **The Mining Museum's Paradox dealers:** each of the 21 pairs in their list (`sParadoxForms`). The fossil maniac
+  takes a present-day Pokémon and gives its ancient Paradox Pokémon, the futuristic scientist its future one. Both
+  Gardevoir and Gallade lead to Iron Valiant. The Paradox Pokémon comes at the shown one's level.
+- **The deliveryman's two Mythical entries:** a Magearna or Zarude shown to him is restyled into Original Color
+  Magearna or Dada Zarude. Its form, ability and stats change; its moves stay.
+
+For these runs, the next test warp adds the Pokémon to show to the party at Lv. 50, and gives all eight badges (the
+dealers appear only then). The script's party screen is answered like its other menus: the cursor moves to the
+Pokémon's slot and A picks it.
+
+**Results:** all 58 runs pass, and the runs found no game bugs.
+- The 23 new runs pass: 21 Paradox Pokémon and the two restyles.
+- The 35 earlier gifts still pass.
+
+Rowan's briefcase now starts later in the story, with Rowan back in his lab (`VAR_SANDGEM_TOWN_LAB_STATE` 3). On a
+new game his first-visit scene plays as the player comes in, and the briefcase finds him gone. The case passed in one
+run and not in the next, so it now starts where his scene is over.
+
+**Test-build hooks** (`include/sovereign_test.h`):
+- `gSovereignTestPartyAdd`: the next test warp adds this Pokémon to the party.
+- `gSovereignTestMenu` also counts the party screen a script opens to pick a Pokémon (a third kind of menu).
+- The shipping ROM is unchanged: it builds to the same bytes with and without these hooks.
+
 ## Playtest pass — gift Pokémon
 
 **`tools/test/gift_pokemon.py` (local; about 20 minutes)** receives every Pokémon gift Sovereign added, in the test

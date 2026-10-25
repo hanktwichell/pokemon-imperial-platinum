@@ -874,6 +874,7 @@ struct SovereignTestVar gSovereignTestVar;
 struct SovereignTestScripts gSovereignTestScripts;
 struct SovereignTestWildSurvey gSovereignTestWildSurvey;
 u8 gSovereignTestPartyKeep;
+struct SovereignTestPartyAdd gSovereignTestPartyAdd;
 u8 gSovereignTestBadges;
 struct SovereignTestMenu gSovereignTestMenu;
 u16 gSovereignTestBattleTrainer;
@@ -899,6 +900,19 @@ void SovereignTest_WarpNext(FieldSystem *fieldSystem)
         }
 
         gSovereignTestPartyKeep = 0;
+    }
+
+    if (gSovereignTestPartyAdd.species != SPECIES_NONE) {
+        Pokemon *mon = Pokemon_New(HEAP_ID_FIELD2);
+        int form = gSovereignTestPartyAdd.form;
+
+        Pokemon_InitWith(mon, gSovereignTestPartyAdd.species, gSovereignTestPartyAdd.level, INIT_IVS_RANDOM, FALSE, 0, OTID_NOT_SET, 0);
+        Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+        Pokemon_CalcAbility(mon);
+        Pokemon_CalcLevelAndStats(mon);
+        Party_AddPokemon(SaveData_GetParty(fieldSystem->saveData), mon);
+        Heap_Free(mon);
+        gSovereignTestPartyAdd.species = SPECIES_NONE;
     }
 
     for (int i = 0; i < 8; i++) {
