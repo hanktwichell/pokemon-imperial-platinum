@@ -1,0 +1,123 @@
+{
+    "name": "Bertha",
+    "class": "TRAINER_CLASS_ELITE_FOUR_BERTHA",
+    "items": [
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_TAG_STRATEGY"
+    ],
+    "double_battle": true,
+    "party": [
+        {
+            "species": "SPECIES_HIPPOWDON",
+            "form": 0,
+            "level": 84,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_EARTHQUAKE",
+                "MOVE_STONE_EDGE",
+                "MOVE_STEALTH_ROCK",
+                "MOVE_SLACK_OFF"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SWAMPERT",
+            "form": 0,
+            "level": 84,
+            "item": "ITEM_RINDO_BERRY",
+            "moves": [
+                "MOVE_EARTHQUAKE",
+                "MOVE_AQUA_TAIL",
+                "MOVE_AVALANCHE",
+                "MOVE_MIRROR_COAT"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GLISCOR",
+            "form": 0,
+            "level": 84,
+            "item": "ITEM_TOXIC_ORB",
+            "moves": [
+                "MOVE_EARTHQUAKE",
+                "MOVE_PROTECT",
+                "MOVE_DOUBLE_TEAM",
+                "MOVE_GUILLOTINE"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_TYRANITAR",
+            "form": 0,
+            "level": 84,
+            "item": "ITEM_EXPERT_BELT",
+            "moves": [
+                "MOVE_STONE_EDGE",
+                "MOVE_CRUNCH",
+                "MOVE_FIRE_PUNCH",
+                "MOVE_THUNDER_PUNCH"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_DUGTRIO",
+            "form": 0,
+            "level": 84,
+            "item": "ITEM_CHOICE_BAND",
+            "moves": [
+                "MOVE_EARTHQUAKE",
+                "MOVE_STONE_EDGE",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_AERIAL_ACE"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_RHYPERIOR",
+            "form": 0,
+            "level": 85,
+            "item": "ITEM_FOCUS_SASH",
+            "moves": [
+                "MOVE_EARTHQUAKE",
+                "MOVE_ROCK_WRECKER",
+                "MOVE_MEGAHORN",
+                "MOVE_HAMMER_ARM"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_LAST_BATTLER_HALF_HP",
+            "en_US": [
+                "Dear child, don’t assume for an\n",
+                "instant that you’ve won.\n"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Well! Dear child, I must say, that\n",
+                "was most impressive.\r",
+                "Your Pokémon believed in you and did\n",
+                "their best to earn you the win.\r",
+                "Even though I’ve lost, I find myself\n",
+                "with this silly grin!\n"
+            ]
+        }
+    ]
+}

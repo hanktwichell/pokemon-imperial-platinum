@@ -15,14 +15,9 @@
     ScriptEntryEnd
 
 TwinleafTown_OnTransition:
-    CallIfEq VAR_DUMMY_0x40F4, 1, TwinleafTown_IncreaseDummyVar
     CallIfEq VAR_PLAYER_HOUSE_STATE, 4, TwinleafTown_SetPlayerHouseState5
     CallIfEq VAR_PLAYER_HOUSE_STATE, 6, TwinleafTown_SetPlayerHouseState7
     End
-
-TwinleafTown_IncreaseDummyVar:
-    SetVar VAR_DUMMY_0x40F4, 2
-    Return
 
 TwinleafTown_SetPlayerHouseState7:
     SetVar VAR_PLAYER_HOUSE_STATE, 7

@@ -1,0 +1,124 @@
+{
+    "name": "Aaron",
+    "class": "TRAINER_CLASS_ELITE_FOUR_AARON",
+    "items": [
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_TAG_STRATEGY"
+    ],
+    "double_battle": true,
+    "party": [
+        {
+            "species": "SPECIES_YANMEGA",
+            "form": 0,
+            "level": 83,
+            "item": "ITEM_WISE_GLASSES",
+            "moves": [
+                "MOVE_BUG_BUZZ",
+                "MOVE_AIR_SLASH",
+                "MOVE_GIGA_DRAIN",
+                "MOVE_PROTECT"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SCIZOR",
+            "form": 0,
+            "level": 83,
+            "item": "ITEM_MUSCLE_BAND",
+            "moves": [
+                "MOVE_BUG_BITE",
+                "MOVE_AERIAL_ACE",
+                "MOVE_SUPERPOWER",
+                "MOVE_BULLET_PUNCH"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_HERACROSS",
+            "form": 0,
+            "level": 83,
+            "item": "ITEM_TOXIC_ORB",
+            "moves": [
+                "MOVE_MEGAHORN",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_STONE_EDGE",
+                "MOVE_PROTECT"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SCYTHER",
+            "form": 0,
+            "level": 83,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_BUG_BITE",
+                "MOVE_AERIAL_ACE",
+                "MOVE_BRICK_BREAK",
+                "MOVE_QUICK_ATTACK"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ARMALDO",
+            "form": 0,
+            "level": 83,
+            "item": "ITEM_PASSHO_BERRY",
+            "moves": [
+                "MOVE_X_SCISSOR",
+                "MOVE_STONE_EDGE",
+                "MOVE_EARTHQUAKE",
+                "MOVE_AQUA_JET"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_DRAPION",
+            "form": 0,
+            "level": 84,
+            "item": "ITEM_SCOPE_LENS",
+            "moves": [
+                "MOVE_CROSS_POISON",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_X_SCISSOR",
+                "MOVE_EARTHQUAKE"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_LAST_BATTLER_HALF_HP",
+            "en_US": [
+                "It’s not over yet!\n",
+                "A League Elite Four can’t give up!\n"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I will now concede defeat.\r",
+                "But I think you came to see how\n",
+                "great Bug-type Pokémon can be.\r",
+                "I hope you also realized what you’re\n",
+                "up against in the Pokémon League.\r",
+                "Battling is a deep and complex\n",
+                "affair...\n"
+            ]
+        }
+    ]
+}

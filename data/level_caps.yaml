@@ -32,6 +32,6 @@ caps:
   - {label: Galactic Boss Cyrus (Distortion World), trainers: [TRAINER_GALACTIC_BOSS_CYRUS_DISTORTION_WORLD], level: 60, check: [Galactic Boss Cyrus, Distortion World]}
   - {label: Leader Volkner,               trainers: [TRAINER_LEADER_VOLKNER],                                level: 62, check: [Leader Volkner, Sunyshore Gym]}
   - {label: Rival Barry (Pokémon League), any: [TRAINER_RIVAL_POKEMON_LEAGUE_TURTWIG, TRAINER_RIVAL_POKEMON_LEAGUE_CHIMCHAR, TRAINER_RIVAL_POKEMON_LEAGUE_PIPLUP], level: 71, check: [PKMN Trainer Barry, "Pokémon League (before the Elite Four) — Turtwig"]}
-  - {label: Elite Four + Champion Cynthia, trainers: [TRAINER_CHAMPION_CYNTHIA],                             level: 78, check: [Champion Cynthia, round 1]}
-  - {label: Champion rematch (post-game),  trainers: [TRAINER_CHAMPION_CYNTHIA_REMATCH],                     level: 89, check: [Champion Cynthia, round 2]}
+  - {label: Elite Four + Champion Cynthia, any: [TRAINER_CHAMPION_CYNTHIA, TRAINER_SOVEREIGN_CHAMPION_CYNTHIA_DOUBLES],                    level: 78, check: [Champion Cynthia, round 1]}
+  - {label: Champion rematch (post-game),  any: [TRAINER_CHAMPION_CYNTHIA_REMATCH, TRAINER_SOVEREIGN_CHAMPION_CYNTHIA_REMATCH_DOUBLES],    level: 89, check: [Champion Cynthia, round 2]}
 # After the Champion rematch is won the cap is lifted (Lv. 100).

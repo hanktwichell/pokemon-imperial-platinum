@@ -36,6 +36,22 @@
         "However, I think you can go as far\n",
         "as you desire. Ahahaha!"
       ]
+    },
+    {
+      "id": "PokemonLeagueBerthaRoom_Text_SovereignTwiceSingles",
+      "en_US": [
+        "You’ve chosen single battles twice.\r",
+        "Flint and Lucian will meet you in\n",
+        "double battles!"
+      ]
+    },
+    {
+      "id": "PokemonLeagueBerthaRoom_Text_SovereignTwiceDoubles",
+      "en_US": [
+        "You’ve chosen double battles twice.\r",
+        "Flint and Lucian will meet you in\n",
+        "single battles!"
+      ]
     }
   ]
 }

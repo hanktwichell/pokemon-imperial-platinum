@@ -453,6 +453,7 @@ static BOOL ScrCmd_SovereignFinishEventGift(ScriptContext *ctx);
 static BOOL ScrCmd_SovereignRestyleEventForm(ScriptContext *ctx);
 static BOOL ScrCmd_SovereignGroomFurfrou(ScriptContext *ctx);
 static BOOL ScrCmd_SovereignSwapAbility(ScriptContext *ctx);
+static BOOL ScrCmd_SovereignVarBit(ScriptContext *ctx);
 static BOOL ScrCmd_StartFirstBattle(ScriptContext *ctx);
 static BOOL ScrCmd_StartCatchingTutorial(ScriptContext *ctx);
 static BOOL ScrCmd_SlatherHoneyTree(ScriptContext *ctx);
@@ -4321,6 +4322,26 @@ static BOOL ScrCmd_SovereignSwapAbility(ScriptContext *ctx)
     Pokemon_CalcAbility(mon);
     StringTemplate_SetAbilityName(*strTemplate, templateArg, Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL));
     *destVar = 1;
+
+    return FALSE;
+}
+
+// Sovereign: reads or writes one bit of a variable, for state packed into one variable (the Elite Four format,
+// docs/EliteFourFormat.md). op 0: destVar = the bit. op 1: the bit = (value != 0), value a number or a variable.
+static BOOL ScrCmd_SovereignVarBit(ScriptContext *ctx)
+{
+    u16 op = ScriptContext_ReadHalfWord(ctx);
+    u16 *var = ScriptContext_GetVarPointer(ctx);
+    u16 bit = ScriptContext_GetVar(ctx);
+
+    if (op == 0) {
+        u16 *destVar = ScriptContext_GetVarPointer(ctx);
+        *destVar = (*var >> bit) & 1;
+    } else if (ScriptContext_GetVar(ctx) != 0) {
+        *var |= 1 << bit;
+    } else {
+        *var &= ~(1 << bit);
+    }
 
     return FALSE;
 }

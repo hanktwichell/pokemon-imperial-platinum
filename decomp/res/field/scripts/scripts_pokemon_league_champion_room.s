@@ -17,6 +17,7 @@ PokemonLeagueChampionRoom_OnFrame_EnterRoom:
     PlayTrainerEncounterBGM TRAINER_CHAMPION_CYNTHIA
     CallIfUnset FLAG_GAME_COMPLETED, PokemonLeagueChampionRoom_CynthiaIntro
     CallIfSet FLAG_GAME_COMPLETED, PokemonLeagueChampionRoom_CynthiaGameCompletedIntro
+    Call PokemonLeagueChampionRoom_SovereignDecidedFormat
     CloseMessage
     SetFlag FLAG_ALT_MUSIC_CHAMPION_ROOM
     CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueChampionRoom_StartCynthiaBattle
@@ -86,11 +87,21 @@ PokemonLeagueChampionRoom_CynthiaGameCompletedIntro:
     Return
 
 PokemonLeagueChampionRoom_StartCynthiaBattle:
+    GoToIfEq VAR_0x8008, 1, PokemonLeagueChampionRoom_SovereignStartCynthiaDoublesBattle
     StartTrainerBattle TRAINER_CHAMPION_CYNTHIA
     Return
 
+PokemonLeagueChampionRoom_SovereignStartCynthiaDoublesBattle:
+    StartTrainerBattle TRAINER_SOVEREIGN_CHAMPION_CYNTHIA_DOUBLES
+    Return
+
 PokemonLeagueChampionRoom_StartCynthiaRematchBattle:
+    GoToIfEq VAR_0x8008, 1, PokemonLeagueChampionRoom_SovereignStartCynthiaRematchDoublesBattle
     StartTrainerBattle TRAINER_CHAMPION_CYNTHIA_REMATCH
+    Return
+
+PokemonLeagueChampionRoom_SovereignStartCynthiaRematchDoublesBattle:
+    StartTrainerBattle TRAINER_SOVEREIGN_CHAMPION_CYNTHIA_REMATCH_DOUBLES
     Return
 
 PokemonLeagueChampionRoom_CreateJournalEventDefeatedCynthia:
@@ -106,6 +117,16 @@ PokemonLeagueChampionRoom_BlackOut:
     BlackOutFromBattle
     ReleaseAll
     End
+
+@ Sovereign (E11, docs/EliteFourFormat.md): Cynthia's format was decided earlier in the run (bit 4 of
+@ VAR_SOVEREIGN_E4_FORMAT, see PokemonLeagueAaronRoom_SovereignChooseFormat).
+PokemonLeagueChampionRoom_SovereignDecidedFormat:
+    CheckVarBit VAR_SOVEREIGN_E4_FORMAT, 4, VAR_0x8008
+    GoToIfEq VAR_0x8008, 0, PokemonLeagueChampionRoom_SovereignDecidedFormatEnd
+    Common_SovereignE4CheckLoneMon
+    SetVar VAR_0x8008, VAR_RESULT
+PokemonLeagueChampionRoom_SovereignDecidedFormatEnd:
+    Return
 
     .balign 4, 0
 PokemonLeagueChampionRoom_Movement_PlayerApproachCynthia:

@@ -42,6 +42,27 @@
         "Trainer who can’t be outclassed with\f",
         "my beautiful and tough bug Pokémon!"
       ]
+    },
+    {
+      "id": "PokemonLeagueAaronRoom_Text_SovereignHowToChallenge",
+      "en_US": [
+        "You’re the Champion now, so you\n",
+        "may choose how to take us on.\r",
+        "How would you like to battle the\n",
+        "Elite Four this time?"
+      ]
+    },
+    {
+      "id": "PokemonLeagueAaronRoom_Text_SovereignMenuAllSingles",
+      "en_US": "All singles"
+    },
+    {
+      "id": "PokemonLeagueAaronRoom_Text_SovereignMenuAllDoubles",
+      "en_US": "All doubles"
+    },
+    {
+      "id": "PokemonLeagueAaronRoom_Text_SovereignMenuTwoAndTwo",
+      "en_US": "Two and two"
     }
   ]
 }

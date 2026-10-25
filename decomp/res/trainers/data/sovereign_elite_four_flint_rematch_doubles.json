@@ -1,0 +1,131 @@
+{
+    "name": "Flint",
+    "class": "TRAINER_CLASS_ELITE_FOUR_FLINT",
+    "items": [
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_TAG_STRATEGY"
+    ],
+    "double_battle": true,
+    "party": [
+        {
+            "species": "SPECIES_NINETALES",
+            "form": 0,
+            "level": 85,
+            "item": "ITEM_WIDE_LENS",
+            "moves": [
+                "MOVE_FIRE_BLAST",
+                "MOVE_SOLAR_BEAM",
+                "MOVE_MOONBLAST",
+                "MOVE_HYPNOSIS"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_HOUNDOOM",
+            "form": 0,
+            "level": 85,
+            "item": "ITEM_WHITE_HERB",
+            "moves": [
+                "MOVE_OVERHEAT",
+                "MOVE_DARK_PULSE",
+                "MOVE_SOLAR_BEAM",
+                "MOVE_SLUDGE_BOMB"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MAGMORTAR",
+            "form": 0,
+            "level": 85,
+            "item": "ITEM_EXPERT_BELT",
+            "moves": [
+                "MOVE_FIRE_BLAST",
+                "MOVE_THUNDERBOLT",
+                "MOVE_FOCUS_BLAST",
+                "MOVE_PSYCHIC"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_INFERNAPE",
+            "form": 0,
+            "level": 85,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_FLARE_BLITZ",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_THUNDER_PUNCH",
+                "MOVE_MACH_PUNCH"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_RAPIDASH",
+            "form": 0,
+            "level": 85,
+            "item": "ITEM_POWER_HERB",
+            "moves": [
+                "MOVE_FLARE_BLITZ",
+                "MOVE_DRILL_RUN",
+                "MOVE_MEGAHORN",
+                "MOVE_BOUNCE"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MOLTRES",
+            "form": 0,
+            "level": 86,
+            "item": "ITEM_CHOICE_SCARF",
+            "moves": [
+                "MOVE_FIRE_BLAST",
+                "MOVE_HURRICANE",
+                "MOVE_SOLAR_BEAM",
+                "MOVE_U_TURN"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_LAST_BATTLER",
+            "en_US": [
+                "I can feel your determination.\n",
+                "Your will is overpowering me!\n"
+            ]
+        },
+        {
+            "type": "TRMSG_LAST_BATTLER_HALF_HP",
+            "en_US": [
+                "This situation...\n",
+                "This is heating up! I’m blazing now!\n"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "...!\r",
+                "I don’t believe it! I lost!\n",
+                "I didn’t take you for granted...\r",
+                "But I never expected you to win!\n",
+                "I’d never even considered it!\r",
+                "I’m blown away by this!\n",
+                "You and your Pokémon are hot stuff!\n"
+            ]
+        }
+    ]
+}

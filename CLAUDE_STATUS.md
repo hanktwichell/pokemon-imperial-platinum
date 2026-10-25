@@ -5696,3 +5696,50 @@ vanilla's post-game guard.
    - Route 224 before the Elite Four;
    - the Tea and Route 218's gate.
 3. Pick the next open roadmap item (`docs/EngineRoadmap.md`). E10's audit is finished and E14 is done.
+
+## CB-0121 — 2026-10-25, 12:19 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: E11, the Elite Four format (`docs/EliteFourFormat.md`).** PRs #133 (Ability researcher) and #134
+(Infinite Repel tag) are merged.
+- **First challenge:** Aaron and Bertha ask singles or doubles; Flint asks when they differed, and Lucian gets the
+  other format. A matching pair forces Flint and Lucian to the other format, and Bertha announces it. Cynthia is
+  doubles.
+- **Rematches:** Aaron offers All singles / All doubles / Two and two.
+- **One Pokémon able to battle:** a warning before any double battle, with a switch to singles.
+- **State:** `VAR_SOVEREIGN_E4_FORMAT` (was `VAR_DUMMY_0x40F4`; its two dummy writes are removed) holds the bits.
+  - New scrcmd `SovereignVarBit` (`CheckVarBit`, `SetVarBit`).
+  - Common scripts 0x80D (ask) and 0x80E (lone-Pokémon warning).
+- **Trainers:** ten doubles trainers in dummy slots 375, 384, 385, 387, 391, 402, 448, 449, 468, 469. The slots
+  were picked from those not in trainerproc's `trtblOrder`.
+  - For now each is its singles team as a double battle, with `AI_FLAG_TAG_STRATEGY`. T1 brings the real teams.
+- **Elsewhere:** the rematch doubles teams get the 3× post-game prize. The level cap's Champion steps use `any:`
+  with both Cynthias.
+- **Tested in a test build.** A test-only patch skipped each battle and logged the trainer. Seven scripted runs:
+  - first challenge: S/D/S, S/S, D/D;
+  - rematch: all singles, all doubles, two and two;
+  - one healthy Pokémon.
+
+  Each logged exactly the expected five trainers. Bertha's announcement shows. A real (unskipped) Aaron doubles
+  battle starts with Yanmega and Scizor against two of the player's Pokémon.
+- **Docs:**
+  - `docs/ProjectStatus.md`: the milestone table's stale E7, E8 and E10/E11 rows now say where things stand.
+  - `docs/TrainerTeamLog.md`: the ten renamed rows.
+
+**Files modified:**
+- Engine: `decomp/src/scrcmd.c`, `decomp/include/data/scripts/scrcmd.h`, `decomp/asm/macros/scrcmd.inc`,
+  `decomp/src/battle/battle_script.c`, `decomp/include/data/level_caps.h`
+- Scripts: `scripts_common.s`, the five `scripts_pokemon_league_*_room.s`, `scripts_twinleaf_town.s`,
+  `scripts_pokemon_league_hall_of_fame.s`
+- Text: `common_strings.json`, `pokemon_league_aaron_room.json`, `pokemon_league_bertha_room.json`
+- Data:
+  - `decomp/generated/trainers.txt` and `decomp/generated/vars_flags.txt`
+  - ten trainer files renamed from `dummy_*.json` to `sovereign_*_doubles.json`
+  - `data/level_caps.yaml`
+- Docs: `docs/EliteFourFormat.md`, `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `docs/ProjectStatus.md`,
+  `docs/TrainerTeamLog.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR once both checks are green.
+2. T1 (owner-deferred): load the Sovereign singles and doubles League teams from `data/trainers_sovereign.yaml` into
+   the twenty League trainers.
+3. Owner questions in `docs/ProjectStatus.md`: Route 224 before the Elite Four, and the Tea and Route 218's gate.

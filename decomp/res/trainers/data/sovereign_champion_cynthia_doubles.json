@@ -1,0 +1,129 @@
+{
+    "name": "Cynthia",
+    "class": "TRAINER_CLASS_CHAMPION_CYNTHIA",
+    "items": [
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_TAG_STRATEGY"
+    ],
+    "double_battle": true,
+    "party": [
+        {
+            "species": "SPECIES_SPIRITOMB",
+            "form": 0,
+            "level": 77,
+            "item": "ITEM_LUM_BERRY",
+            "moves": [
+                "MOVE_DARK_PULSE",
+                "MOVE_WILL_O_WISP",
+                "MOVE_CONFUSE_RAY",
+                "MOVE_REST"
+            ],
+            "iv_scale": 245,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ROSERADE",
+            "form": 0,
+            "level": 77,
+            "item": "ITEM_WHITE_HERB",
+            "moves": [
+                "MOVE_LEAF_STORM",
+                "MOVE_SLUDGE_BOMB",
+                "MOVE_DAZZLING_GLEAM",
+                "MOVE_SLEEP_POWDER"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_TOGEKISS",
+            "form": 0,
+            "level": 77,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_AIR_SLASH",
+                "MOVE_THUNDER_WAVE",
+                "MOVE_ROOST",
+                "MOVE_MOONBLAST"
+            ],
+            "iv_scale": 245,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_LUCARIO",
+            "form": 0,
+            "level": 77,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_HI_JUMP_KICK",
+                "MOVE_METEOR_MASH",
+                "MOVE_EXTREME_SPEED",
+                "MOVE_ICE_PUNCH"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_MILOTIC",
+            "form": 0,
+            "level": 77,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_SURF",
+                "MOVE_ICE_BEAM",
+                "MOVE_RECOVER",
+                "MOVE_HYPNOSIS"
+            ],
+            "iv_scale": 238,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GARCHOMP",
+            "form": 0,
+            "level": 78,
+            "item": "ITEM_YACHE_BERRY",
+            "moves": [
+                "MOVE_EARTHQUAKE",
+                "MOVE_OUTRAGE",
+                "MOVE_STONE_EDGE",
+                "MOVE_SWORDS_DANCE"
+            ],
+            "iv_scale": 246,
+            "ball_seal": 10
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_LAST_BATTLER",
+            "en_US": [
+                "I can’t remember the last time I\n",
+                "was put in a corner like this!\n"
+            ]
+        },
+        {
+            "type": "TRMSG_LAST_BATTLER_HALF_HP",
+            "en_US": [
+                "I won’t let this end yet! This match\n",
+                "is too fun to let it end this easily!\n"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "...Just a few minutes ago, you were\n",
+                "the most powerful challenger.\r",
+                "And just now, you became the most\n",
+                "powerful of all the Trainers.\r",
+                "You are now our newest Champion!\n"
+            ]
+        }
+    ]
+}

@@ -950,6 +950,30 @@
         "{STRVAR_1 3, 0, 0} pulled out the stake!\n",
         "Something nearby seems to stir..."
       ]
+    },
+    {
+      "id": "CommonStrings_Text_SovereignE4AskFormat",
+      "en_US": [
+        "Will you face me in a single battle\n",
+        "or a double battle?"
+      ]
+    },
+    {
+      "id": "CommonStrings_Text_SovereignE4MenuSingles",
+      "en_US": "Single battle"
+    },
+    {
+      "id": "CommonStrings_Text_SovereignE4MenuDoubles",
+      "en_US": "Double battle"
+    },
+    {
+      "id": "CommonStrings_Text_SovereignE4LoneMon",
+      "en_US": [
+        "You have only one Pokémon able to\n",
+        "battle. It would face two alone.\r",
+        "Will you still take on a double\n",
+        "battle?"
+      ]
     }
   ]
 }
