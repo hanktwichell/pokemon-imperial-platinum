@@ -5875,3 +5875,30 @@ vanilla's post-game guard.
 2. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
 3. More map checks in the spirit of `check_object_tiles.py`, for example trainers whose sight line crosses a
    one-tile path the player must take (a forced battle is fine, but one hidden behind an added object isn't).
+
+## CB-0126 — 2026-10-25, 2:09 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: a width check for field messages, two fixed lines, and the hg-engine/Smogon credits.** PR #138
+(decision 34, Zekrom on Route 215) is merged.
+- **`tools/test/check_message_box_lines.py`** now also reports any line wider than the 216-pixel box, measured in the
+  message font's glyph widths (charmap code − 1; no letter spacing). Vanilla's widest lines are exactly 216.
+  Placeholders count as nothing, so it only finds fixed text that's too wide.
+- **It found two lines, now fixed:**
+  - Dawn's Route 210 line (221 pixels): "And still filling the Pokédex, of course!".
+  - The Electric-type Master's intro (217 pixels): the line break moved, same words.
+- **`CITATIONS.md`:**
+  - hg-engine's sprite credit list, copied from its `CREDITS.md` (commit f4fca05). It credits sprites as a group.
+  - The Smogon Sprite Projects' leads (Layell; leparagon), per Pokémon Showdown's credits page.
+  - Per-sprite Smogon credits stay open. The forum threads are behind a browser check, so they can't be fetched here.
+  - Which pack files are Smogon's (96×96) and which are hg-engine's (80×80) is now noted.
+- **`docs/ProjectStatus.md`:** the credit-lists item says what's done and what's left.
+
+**Files modified:** `tools/test/check_message_box_lines.py`, `decomp/res/text/route_210_north.json`,
+`decomp/res/text/vista_lighthouse.json`, `CITATIONS.md`, `docs/ProjectStatus.md`, `docs/EngineChangelog.md`,
+`CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR once both checks are green.
+2. Placeholders in long lines: Sovereign has species names up to 12 letters (Crabominable, Squawkabilly), where
+   vanilla had 10. Find the lines with a species placeholder that would overflow with the longest name.
+3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.

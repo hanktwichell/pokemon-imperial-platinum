@@ -4,6 +4,24 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Playtest checks — field message lines fit the box's width
+
+`tools/test/check_message_box_lines.py` (CI, rom job) now also checks each line's **width**.
+- **Why:** the field message box is 27 tiles (216 pixels) wide, and a line is never wrapped. The part past the edge
+  is cut off.
+- **How:** a line's width is the sum of its characters' glyph widths in the message font
+  (`res/fonts/font_message.json`, by charmap code; no spacing between letters). Vanilla's widest lines are exactly
+  216 pixels. Placeholders such as names count as nothing, so it finds lines whose fixed text alone is too wide.
+- **It found two Sovereign lines, now fixed:**
+  - Dawn's Route 210 line "While still filling the Pokédex, of course!" (221 pixels) is now "And still filling the
+    Pokédex, of course!".
+  - The Electric-type Master's intro (217 pixels) breaks its two lines at "I aim", with the same words.
+- Verified by running the check on the old texts: it reported both lines.
+
+Also: `CITATIONS.md` now carries hg-engine's sprite credits (its `CREDITS.md` credits them as a group) and the Smogon
+Sprite Projects' leads, per Pokémon Showdown's credits. Smogon's per-sprite lists are in its forum threads, which
+need a browser, and are still to copy.
+
 ## Decision 34 — Zekrom moves to Route 215
 
 The owner's decision 34 (2026-10-24) is now in the game: **Zekrom stands on Route 215**, the always-raining route
