@@ -6320,3 +6320,43 @@ is merged.
 2. More playtest automation (row 18): an Elite Four run in each format path (two singles and two doubles, the
    rematch menu), checking each battle's format against `docs/EliteFourFormat.md`.
 3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
+
+## CB-0140 — 2026-10-25, 5:05 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: the Elite Four run test, and a fix for double battles with one Pokémon.** PR #151 (gift test part 2)
+is merged.
+- `tools/test/elite_four_runs.py` plays the Elite Four and Cynthia on each path through `docs/EliteFourFormat.md`, for
+  13 runs of five battles:
+  - the six first-challenge paths;
+  - the rematch menu's three entries with the rematch teams, and all doubles before Stark Mountain;
+  - three runs with one Pokémon, where the warning before a double battle is answered yes or no.
+- Each battle must have the right trainer (singles or Sovereign doubles, first or rematch team) and format, and must
+  be won. The heaps must be intact after each battle (`tools/test/heap_check.py`, new).
+- **Result: all 13 runs pass, after a game fix.** Before the fix, the 10 full-party runs passed and the 3 one-Pokémon
+  runs crashed or wrote over memory in the room after a double battle.
+- **The bug (since CB-0032, Totem trials too):**
+  - The empty second slot had no sprite data. Move animations load each battler's palette (`BattleMonOBJData_New`),
+    so the empty slot's came from NARC 0, member 0, which isn't a palette.
+  - The failed load was freed as `Heap_Free(NULL)`, which broke the system heap's free list.
+  - Found with heap walks between frames, then a hook on `Heap_Free(NULL)`.
+- **The fix:** `BattleDisplay_SovereignSetAbsentBattler` gives the slot a real palette (species 0's) and blank tiles,
+  as a fainted battler's slot keeps. Lone and full-party Totem trials leave the heaps intact too.
+- **Test-build hooks:**
+  - `gSovereignTestTrainerBattles`: each trainer battle's trainer, battle type and result;
+  - `gSovereignTestVar` takes four vars or flags (a flag below `VARS_START`: 0 clears it, anything else sets it).
+- The hooks don't change the shipping ROM: with the fix, it builds to the same bytes with and without them
+  (sha1 `cffefd95…`). It builds without warnings and passes the boot smoke test.
+
+**Files modified:**
+- Game fix: `decomp/src/battle/battle_display.c`
+- Test hooks: `decomp/include/sovereign_test.h`, `decomp/src/encounter.c`, `decomp/src/script_manager.c`
+- Tools: `tools/test/elite_four_runs.py` (new), `tools/test/heap_check.py` (new), `tools/test/gift_pokemon.py`
+  (`talk_and_answer` takes `press_a` and `done`), `tools/test/talk_to_objects.py` (`start_warp`)
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `docs/TechnicalDesign.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR once both checks are green.
+2. More gift coverage (row 18): the Trainers' School Egg, one of 18 babies at random. The party hook needs an Egg
+   flag, then the test checks the Egg's species is on the list.
+3. Run the heap check in the other battle harnesses (`battle_all_trainers.py`, `battle_form_changes.py`) to look for
+   more heap breaks.

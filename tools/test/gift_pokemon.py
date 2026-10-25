@@ -168,17 +168,20 @@ def cases():
     return out
 
 
-def talk_and_answer(d, sym, answers, limit=FRAME_LIMIT):
+def talk_and_answer(d, sym, answers, limit=FRAME_LIMIT, press_a=True, done=None):
     """Talk (A) and play the script out on its menus: each time it shows one, the next answer is given (an entry
     number for a list menu, True or False for a yes/no question, ('party', slot) for the party screen). Otherwise, as
     in talk_to_objects.play_out, A pages through the text and taps pick moves in a battle (god mode). A menu is
     counted as the script shows it, before it reads any input, so A is never pressed into one the test hasn't seen.
+    Without press_a, it plays out a script that starts on its own (a scene on entering a map); with done, it stops as
+    soon as done() is true, with all the answers given, even if the script goes on.
     Returns ('ok', 'NOSCRIPT', 'HANG', 'STUCK' or 'MENU ...' (a menu with no answer, or of the wrong kind, or answers
     left over), frames)."""
     answers = list(answers)
     menu = sym['gSovereignTestMenu']
     seen = u32(d, menu)
-    d.press('A', frames=4, after=0)
+    if press_a:
+        d.press('A', frames=4, after=0)
     frames, stalled, started, idle, step = 0, 0, False, 0, 0
     vblank = u32(d, sym['gSystem'] + VBLANK_COUNTER)
     while frames < limit:
@@ -190,6 +193,8 @@ def talk_and_answer(d, sym, answers, limit=FRAME_LIMIT):
         vblank = now
         if stalled >= HANG_FRAMES:
             return 'HANG', frames
+        if done and not answers and done():
+            return 'ok', frames
         if u32(d, sym['gSovereignTestIdleFrames']) != before:
             if started:
                 idle += 1

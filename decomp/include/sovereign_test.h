@@ -12,10 +12,13 @@ struct SovereignTestWarpTarget {
     u16 dir; // when set, the way the player faces + 1 (FACE_UP + 1...); else down
 };
 
-// A var the next test warp sets first, so a harness can mark a story scene as seen. With no warp target set, the
-// SELECT+L+R only sets the var (a map's own local vars are cleared as the player comes in, so they are set after).
+// Vars and flags the next test warp sets first, so a harness can mark a story scene as seen or a part of the story as
+// done. With no warp target set, the SELECT+L+R only sets them (a map's own local vars are cleared as the player comes
+// in, so they are set after).
+#define SOVEREIGN_TEST_VARS 4
+
 struct SovereignTestVar {
-    u16 var; // when set
+    u16 var; // when set: a var, or a flag (below VARS_START), which a value of 0 clears and any other sets
     u16 value;
 };
 
@@ -62,6 +65,21 @@ struct SovereignTestMenu {
 struct SovereignTestScripts {
     u16 count;
     u16 first;
+};
+
+// The trainer battles the field has started (Encounter_NewVsTrainer) since a harness cleared count, so it can check
+// which trainer a script battled and in which format.
+#define SOVEREIGN_TEST_TRAINER_BATTLES_MAX 8
+
+struct SovereignTestTrainerBattle {
+    u16 trainerIDs[2]; // the opponents (the same one twice, or the second 0, for one trainer)
+    u32 battleType; // with the trainer data's BATTLE_TYPE_DOUBLES
+    u32 resultMask; // BATTLE_IN_PROGRESS until it ends, then the result (BATTLE_RESULT_WIN...)
+};
+
+struct SovereignTestTrainerBattles {
+    u32 count; // all started, though only the first SOVEREIGN_TEST_TRAINER_BATTLES_MAX are written down
+    struct SovereignTestTrainerBattle battles[SOVEREIGN_TEST_TRAINER_BATTLES_MAX];
 };
 
 // A survey of the wild Pokémon the real encounter code makes (SovereignTest_WildSurvey, wild_encounters.c).
@@ -172,8 +190,9 @@ extern struct SovereignTestWarpTarget gSovereignTestWarpTarget;
 // encounter roll and no battle, and records each Pokémon made (its species, form, level and personality), so a harness
 // can check the forms the real encounter code gives on that map and tile.
 extern struct SovereignTestWildSurvey gSovereignTestWildSurvey;
-// When var is set, the next SELECT+L+R sets it first, and only that with no warp target (see struct SovereignTestVar).
-extern struct SovereignTestVar gSovereignTestVar;
+// The next SELECT+L+R sets each var or flag that is set here first, and only those with no warp target (see struct
+// SovereignTestVar).
+extern struct SovereignTestVar gSovereignTestVar[SOVEREIGN_TEST_VARS];
 // When set, the next SELECT+R battles this trainer instead of TRAINER_SOVEREIGN_TEST (field_control.c).
 extern u16 gSovereignTestBattleTrainer;
 // When species is set, the next SELECT battles this wild Pokémon instead of a Chansey (field_control.c).
@@ -224,6 +243,8 @@ extern struct SovereignTestMenu gSovereignTestMenu;
 // The scripts the field has started (ScriptManager_Set: an object's, a sign's, a trigger's...) since a harness cleared
 // count, and the ID of the first, so it can tell that a script that ends at once ran.
 extern struct SovereignTestScripts gSovereignTestScripts;
+// The trainer battles started, and how each ended (see struct SovereignTestTrainerBattles).
+extern struct SovereignTestTrainerBattles gSovereignTestTrainerBattles;
 #endif
 
 #endif // POKEPLATINUM_SOVEREIGN_TEST_H

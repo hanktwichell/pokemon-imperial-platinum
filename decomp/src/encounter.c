@@ -43,6 +43,7 @@
 #include "save_player.h"
 #include "script_manager.h"
 #include "sound.h"
+#include "sovereign_test.h"
 #include "system_flags.h"
 #include "system_vars.h"
 #include "trainer_data.h"
@@ -93,6 +94,41 @@ static BOOL FieldTask_PalParkEncounter(FieldTask *task);
 static BOOL FieldTask_CatchingTutorialEncounter(FieldTask *task);
 static BOOL FieldTask_LinkEncounterWithRecording(FieldTask *task);
 static BOOL FieldTask_WildEncounter(FieldTask *task);
+
+#ifdef SOVEREIGN_TEST
+// Test build only: the trainer battles started, and how each ended (include/sovereign_test.h), for
+// tools/test/elite_four_runs.py.
+struct SovereignTestTrainerBattles gSovereignTestTrainerBattles;
+
+static void SovereignTest_NoteTrainerBattle(const FieldBattleDTO *dto)
+{
+    if (gSovereignTestTrainerBattles.count < SOVEREIGN_TEST_TRAINER_BATTLES_MAX) {
+        struct SovereignTestTrainerBattle *noted = &gSovereignTestTrainerBattles.battles[gSovereignTestTrainerBattles.count];
+
+        noted->trainerIDs[0] = dto->trainerIDs[BATTLER_ENEMY_1];
+        noted->trainerIDs[1] = dto->trainerIDs[BATTLER_ENEMY_2];
+        noted->battleType = dto->battleType;
+        noted->resultMask = BATTLE_IN_PROGRESS;
+    }
+
+    gSovereignTestTrainerBattles.count++;
+}
+
+static void SovereignTest_NoteBattleEnd(const FieldBattleDTO *dto)
+{
+    u32 last = gSovereignTestTrainerBattles.count - 1;
+
+    if (gSovereignTestTrainerBattles.count == 0 || last >= SOVEREIGN_TEST_TRAINER_BATTLES_MAX) {
+        return;
+    }
+
+    struct SovereignTestTrainerBattle *noted = &gSovereignTestTrainerBattles.battles[last];
+
+    if (noted->resultMask == BATTLE_IN_PROGRESS && noted->trainerIDs[0] == dto->trainerIDs[BATTLER_ENEMY_1]) {
+        noted->resultMask = dto->resultMask;
+    }
+}
+#endif
 
 static BOOL FieldTask_RunBattle(FieldTask *task)
 {
@@ -186,6 +222,9 @@ static BOOL FieldTask_Encounter(FieldTask *task)
 
     case 3:
         UpdateFieldSystemFromDTO(encounter->dto, fieldSystem);
+#ifdef SOVEREIGN_TEST
+        SovereignTest_NoteBattleEnd(encounter->dto);
+#endif
 
         if (encounter->dto->battleType == BATTLE_TYPE_WILD_MON
             || encounter->dto->battleType == BATTLE_TYPE_ROAMER
@@ -805,6 +844,9 @@ void Encounter_NewVsTrainer(FieldTask *taskMan, int enemyTrainer1ID, int enemyTr
     dto->trainerIDs[BATTLER_PLAYER_2] = partnerTrainerID;
 
     Trainer_Encounter(dto, fieldSystem->saveData, heapID);
+#ifdef SOVEREIGN_TEST
+    SovereignTest_NoteTrainerBattle(dto);
+#endif
     GameRecords_IncrementRecordValue(SaveData_GetGameRecords(fieldSystem->saveData), RECORD_TRAINER_BATTLES_FOUGHT);
     StartEncounter(taskMan, dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), resultMaskPtr);
 }
