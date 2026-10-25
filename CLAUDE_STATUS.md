@@ -6214,3 +6214,31 @@ is merged.
 2. More playtest automation (row 18): the bg events (signs, hidden items) and coord triggers Sovereign added, the same
    way.
 3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
+
+## CB-0136 — 2026-10-25, 1:04 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: the sign, hidden item and trigger test.** PR #147 (talk-to-objects test) is merged.
+- **`tools/test/signs_and_triggers.py`** runs each bg event (sign, hidden item) and coord trigger that Sovereign added
+  or changed: 83 events, 25 new or moved and 58 vanilla ones whose script's code changed.
+  - It comes in by the map's way in, then warps next to the event, facing it.
+  - A sign or hidden item: A is pressed.
+  - A trigger: its var is set after the warp, then the player steps onto it.
+  - To pass, the event's own script must start first and end with no hang.
+- **Result: all 84 runs pass, no game bugs found.** Mira's Wayward Cave exit runs twice, with her quest open and with
+  the ribbon found. Two negative controls fail as they should: the wrong trigger value, and a sign faced away from.
+- **Test-build hooks:**
+  - SELECT+L+R with only `gSovereignTestVar` set sets the var on the current map;
+  - `gSovereignTestScripts` counts the scripts the field starts and keeps the first one's ID.
+- `talk_to_objects.py` now shares its tile finding and arrival steps; its 252 cases are unchanged.
+- The shipping ROM is unchanged.
+
+**Files modified:**
+- Test hooks: `decomp/include/sovereign_test.h`, `decomp/src/script_manager.c`
+- Tools: `tools/test/signs_and_triggers.py` (new), `tools/test/talk_to_objects.py`
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR once both checks are green.
+2. More playtest automation (row 18): wild encounters' forms by map (Unown, Shellos, Burmy, regional forms in the
+   Regional Forms Park) through the real encounter code.
+3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
