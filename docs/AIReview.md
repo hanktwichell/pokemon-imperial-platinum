@@ -40,13 +40,13 @@ opponent for checking these in game.
 | 6 | Moves that can't be selected | Champions rules make Fake Out selectable only on the first turn (`CHECK_INVALID_FIRST_TURN`) | if the AI still picks it later, it wastes a turn | checked: the AI drops every move the player couldn't select (`TrainerAI_Init` filters with `CHECK_INVALID_ALL`, which includes Sovereign's first-turn check), so it never picks Fake Out after the first turn | ➖ |
 | 7 | Weather | weather moves are scored by name. Weather from abilities on switch-in (5 turns under Champions rules) isn't part of switching decisions | this matters most for the developer battle's weather control | general part here; the custom weather AI is T2 | 🔧 / T2 |
 | 8 | Ally-targeted support moves | moves on the partner need a score of 100 or more. Gen V+ ally moves are mapped to the closest Gen IV effects (E3), so whether they ever target the partner depends on that effect's scoring | e.g. Pollen Puff, Heal Pulse, Coaching, Decorate, After You, Instruct, Ally Switch | **checked** (table below): today nothing can hurt the AI's side. Each move gets its partner scoring as item 11 gives it its exact effect | ➖ now / with item 11 |
-| 9 | Mega Evolution timing | none (E8 adds Mega Evolution) | — | decide with E8 (other session): Mega on the first turn unless there's a reason not to | 🔧 with E8 |
+| 9 | Mega Evolution timing | none (E8 adds Mega Evolution) | — | **done with E8:** the AI Mega Evolves as soon as it can, so on its first turn with the stone (`docs/EngineChangelog.md`, E8 step 2) | ✅ |
 
 ## Order of work
 
 1. ✅ #1–#2 (partner safety). (#6 checked: nothing to fix.)
 2. ✅ #3 (spread credit). ✅ #4–#5 (absorbing abilities and redirection).
-3. ✅ #8 checked (scoring added per move with item 11). Then #7 (with T2) and #9 (with E8).
+3. ✅ #8 checked (scoring added per move with item 11). ✅ #9 (with E8). #7 waits for T2.
 
 Each fix gets a scenario in the test build. The developer team has Heat Wave and Rock Slide as spread moves, Water
 Spout and Origin Pulse with Kyogre, and Venusaur/Charizard sharing the field.

@@ -2,11 +2,22 @@
 
 _Last updated: 2026-10-25 (milestone table)_
 
-**Where we are:** the design phase is finished and engine work has started on the pret/pokeplatinum decompilation.
-The ROM builds in CI on every PR. Merged so far: Fairy type, the Options additions, the Sovereign save format/identity,
-the test build and the whole Gen IX data pass (all 919 moves, all 314 abilities with Hidden Abilities, Gen IX stats,
-types and learnsets for #1–493). All 1025 species are in the game (E6). In progress: the remaining QoL features (E14) and the Pokémon Champions
-battle rules (10b; core rules built). Next: items (E7).
+**Where we are (2026-10-25):** the engine work on the pret/pokeplatinum decompilation is well along, and the ROM builds
+in CI on every PR.
+- **Done:**
+  - all 1025 species and the Gen IX data;
+  - items and Mega Evolution;
+  - every Pokémon form;
+  - the approved QoL list (E14);
+  - the Renegade port (E10), apart from two owner questions;
+  - the Sovereign story, Totem trials, post-game legendaries and Elite Four format (E11).
+- **In progress:**
+  - the exact Gen IX move and ability effects (item 11);
+  - the Pokémon Champions battle rules (10b).
+- **Waiting on the owner:**
+  - the boss team compositions (T1);
+  - the art (E12);
+  - the developer battle (T2).
 
 **Estimate to a first playable version:** about 25–40 more working sessions, roughly 3–6 weeks at one or two sessions
 a day. The two biggest uncertainties are fitting 1025 species into the DS engine (E6) and how exactly the Gen IX move
