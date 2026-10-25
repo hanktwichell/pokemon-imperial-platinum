@@ -14,7 +14,7 @@ The list comes from include/data/sovereign_forms.h. Each case is the species in 
 - **Ability forms** (SOVEREIGN_FORM_BATTLE), each set up so its ability acts:
   - Zen Mode, Shields Down and Power Construct at 40% HP;
   - Gulp Missile using Surf, at full HP (Gulping) or 40% (Gorging);
-  - Disguise and Ice Face hit by the foe's Tackle;
+  - Disguise and Ice Face hit by the foe's Bullet Punch;
   - Stance Change attacking;
   - Schooling, Tera Shift and Fairy Aura as it comes in;
   - Hunger Switch at the end of a turn;
@@ -27,7 +27,7 @@ The list comes from include/data/sovereign_forms.h. Each case is the species in 
 For each one this loads a save state in the overworld, where the test build has given the Mega Ring. It writes the
 Pokémon to gSovereignTestLead (include/sovereign_test.h), so the party's lead becomes it at Lv. 50, at the HP and with
 the moves the case needs, with the MEGA toggle on for every move. The foe is a wild Chansey (Lv. 30) that knows only
-Tackle (gSovereignTestWild), and it can't faint in the first turn (gSovereignTestFoeSurvivesTurns), so the lead's
+Bullet Punch (gSovereignTestWild), and it can't faint in the first turn (gSovereignTestFoeSurvivesTurns), so the lead's
 turn-end abilities act and the foe gets to hit it. Then it presses SELECT for the wild battle. God mode is on and the
 battle is played as in battle_all_trainers.py.
 
@@ -56,7 +56,7 @@ from check_trainer_party import consts, species_data  # noqa: E402
 
 LEVEL = 50
 FRAME_LIMIT = 6400
-FOE = ('SPECIES_CHANSEY', 30, 'MOVE_TACKLE')
+FOE = ('SPECIES_CHANSEY', 30, 'MOVE_BULLET_PUNCH')  # physical, first to move, and no type is immune to Steel
 # struct SovereignTestLead: u16 species, u8 form, u8 level, u16 item, u16 moves[4], u8 mega, u8 hpPercent,
 # u8 hiddenAbility
 LEAD = {'species': 0, 'form': 2, 'level': 3, 'item': 4, 'moves': 6, 'mega': 14, 'hp': 15, 'hidden': 16}
