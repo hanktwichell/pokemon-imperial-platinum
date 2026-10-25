@@ -1,0 +1,46 @@
+{
+    "name": "Kayla",
+    "class": "TRAINER_CLASS_REPORTER",
+    "items": [],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_BULBASAUR",
+            "form": 0,
+            "level": 5,
+            "item": null,
+            "moves": null,
+            "iv_scale": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_CHARMANDER",
+            "form": 0,
+            "level": 5,
+            "item": null,
+            "moves": null,
+            "iv_scale": 100,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_SQUIRTLE",
+            "form": 0,
+            "level": 5,
+            "item": null,
+            "moves": null,
+            "iv_scale": 100,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": "We have a winner!"
+        }
+    ]
+}

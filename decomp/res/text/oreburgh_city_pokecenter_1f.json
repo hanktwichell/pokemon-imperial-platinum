@@ -137,6 +137,209 @@
         "Just so you know, our latest single is\n",
         "titled “Jigglin’ Pokémon Wub”!"
       ]
+    },
+    {
+      "id": "OreburghCityPokecenter1F_Text_SovereignInterviewerIntro",
+      "en_US": [
+        "Hello there, young Trainer!\r",
+        "I’m with Jubilife TV.\n",
+        "The Fun-and-Games TV Station!\r",
+        "We’re running a special promotion all\n",
+        "over the Sinnoh region right now.\r",
+        "We’re challenging Trainers to take\n",
+        "a short quiz of five questions.\r",
+        "There’s a great reward if you win!\n",
+        "Do you want to have a go?"
+      ]
+    },
+    {
+      "id": "OreburghCityPokecenter1F_Text_SovereignInterviewerDeclined",
+      "en_US": [
+        "Come back if you change your mind.\n",
+        "We’ll be waiting for more challengers."
+      ]
+    },
+    {
+      "id": "OreburghCityPokecenter1F_Text_SovereignInterviewerRollCamera",
+      "en_US": [
+        "Fantastic!\n",
+        "Roll camera!\r"
+      ]
+    },
+    {
+      "id": "OreburghCityPokecenter1F_Text_SovereignInterviewerWrong",
+      "en_US": [
+        "I’m sorry...\n",
+        "That was the wrong answer.\r",
+        "But you’re welcome to try again\n",
+        "to score the big prize."
+      ]
+    },
+    {
+      "id": "OreburghCityPokecenter1F_Text_SovereignInterviewerWon",
+      "en_US": [
+        "We have a winner!\n",
+        "Congratulations, Trainer!\r",
+        "The grand prize is these three lovely\n",
+        "Pokémon that I battled you with!\r",
+        "The rare Pokémon from Hoenn...\n",
+        "Treecko, Torchic, and Mudkip!\r",
+        "Please speak to me when you’re able\n",
+        "to collect your prize."
+      ]
+    },
+    {
+      "id": "OreburghCityPokecenter1F_Text_SovereignInterviewerPrizeIntro",
+      "en_US": [
+        "Here they are!\n",
+        "The prizes for our winner!\r"
+      ]
+    },
+    {
+      "id": "OreburghCityPokecenter1F_Text_SovereignInterviewerBye",
+      "en_US": [
+        "Thank you for playing.\n",
+        "Look out for our colleagues!\r"
+      ]
+    },
+    {
+      "id": "OreburghCityPokecenter1F_Text_SovereignInterviewerCameraman",
+      "en_US": [
+        "Oh, I’m just a cameraman.\n",
+        "Don’t mind me."
+      ]
+    },
+    {
+      "id": "OreburghCityPokecenter1F_Text_SovereignInterviewerLetsFind",
+      "en_US": "Let’s find out if you’re correct!\r"
+    },
+    {
+      "id": "OreburghCityPokecenter1F_Text_SovereignInterviewerAnswerYes",
+      "en_US": [
+        "Yes?\n",
+        "Yes Town?\r",
+        "I’ve never heard of a place like that.\r"
+      ]
+    },
+    {
+      "id": "OreburghCityPokecenter1F_Text_SovereignInterviewerAnswerNo",
+      "en_US": [
+        "No? That doesn’t make any sense.\n",
+        "You have to come from somewhere.\r",
+        "Oh! Wait! You’re not going to say you\n",
+        "were born at the bottom of the sea?\r"
+      ]
+    },
+    {
+      "id": "OreburghCityPokecenter1F_Text_SovereignInterviewerName1",
+      "en_US": [
+        "First up, the Wood Gecko Pokémon.\n",
+        "It’s TREECKO!\r"
+      ]
+    },
+    {
+      "id": "OreburghCityPokecenter1F_Text_SovereignInterviewerReceived1",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received a TREECKO!\r"
+      ]
+    },
+    {
+      "id": "OreburghCityPokecenter1F_Text_SovereignInterviewerNickname1",
+      "en_US": [
+        "Do you want to give a nickname to\n",
+        "this TREECKO?"
+      ]
+    },
+    {
+      "id": "OreburghCityPokecenter1F_Text_SovereignInterviewerName2",
+      "en_US": [
+        "Next, we have the Chick Pokémon.\n",
+        "It’s TORCHIC!\r"
+      ]
+    },
+    {
+      "id": "OreburghCityPokecenter1F_Text_SovereignInterviewerReceived2",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received a TORCHIC!\r"
+      ]
+    },
+    {
+      "id": "OreburghCityPokecenter1F_Text_SovereignInterviewerNickname2",
+      "en_US": [
+        "Do you want to give a nickname to\n",
+        "this TORCHIC?"
+      ]
+    },
+    {
+      "id": "OreburghCityPokecenter1F_Text_SovereignInterviewerName3",
+      "en_US": [
+        "Last, we have the Mud Fish Pokémon.\n",
+        "It’s MUDKIP!\r"
+      ]
+    },
+    {
+      "id": "OreburghCityPokecenter1F_Text_SovereignInterviewerReceived3",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received a MUDKIP!\r"
+      ]
+    },
+    {
+      "id": "OreburghCityPokecenter1F_Text_SovereignInterviewerNickname3",
+      "en_US": [
+        "Do you want to give a nickname to\n",
+        "this MUDKIP?"
+      ]
+    },
+    {
+      "id": "OreburghCityPokecenter1F_Text_SovereignInterviewerNoRoom",
+      "en_US": [
+        "I can’t give you your amazing prizes\n",
+        "unless your party has room for\r",
+        "all three of them!"
+      ]
+    },
+    {
+      "id": "OreburghCityPokecenter1F_Text_SovereignInterviewerQuestion1",
+      "en_US": [
+        "The first question!\r",
+        "Is there a place in the Hoenn region\n",
+        "known as Fallarbor Town?"
+      ]
+    },
+    {
+      "id": "OreburghCityPokecenter1F_Text_SovereignInterviewerQuestion2",
+      "en_US": [
+        "Well done!\n",
+        "Now for the second question!\r",
+        "Is it true that there are reporters\n",
+        "in Hoenn known as Tabby and Gai?"
+      ]
+    },
+    {
+      "id": "OreburghCityPokecenter1F_Text_SovereignInterviewerQuestion3",
+      "en_US": [
+        "Wow!\n",
+        "Time for the third question!\r",
+        "Is Lisia, the Contest Spectactular idol,\n",
+        "also the sister of Gym Leader Wallace?"
+      ]
+    },
+    {
+      "id": "OreburghCityPokecenter1F_Text_SovereignInterviewerQuestion4",
+      "en_US": [
+        "Incredible!\n",
+        "It’s the fourth question!\r",
+        "Tell me, Trainer...\n",
+        "Where do you come from?"
+      ]
+    },
+    {
+      "id": "OreburghCityPokecenter1F_Text_SovereignInterviewerQuestion5",
+      "en_US": [
+        "Fascinating!\n",
+        "Now, for the last question!\r",
+        "Can you beat me in a battle?"
+      ]
     }
   ]
 }

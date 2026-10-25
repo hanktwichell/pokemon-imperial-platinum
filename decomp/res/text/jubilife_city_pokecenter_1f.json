@@ -120,6 +120,194 @@
         "crying while laughing. Mwahahah!\r",
         "It defines what we do!"
       ]
+    },
+    {
+      "id": "JubilifeCityPokecenter1F_Text_SovereignInterviewerIntro",
+      "en_US": [
+        "Oh! You’re a Trainer!\n",
+        "You’re just who we need!\r",
+        "Ah, excuse me. I’m with Jubilife TV.\r",
+        "We’re the Fun-and-Games TV station,\n",
+        "operating straight from this city!\r",
+        "We’re running a little promotion\n",
+        "right now in south west Sinnoh.\r",
+        "Just answer five questions correctly,\n",
+        "and you can receive a fantastic prize!\r",
+        "Do you want to have a go?"
+      ]
+    },
+    {
+      "id": "JubilifeCityPokecenter1F_Text_SovereignInterviewerDeclined",
+      "en_US": [
+        "No, really? You really should!\n",
+        "Trust me, the prize is G-R-E-A-T!"
+      ]
+    },
+    {
+      "id": "JubilifeCityPokecenter1F_Text_SovereignInterviewerRollCamera",
+      "en_US": [
+        "Alright! Brilliant!\n",
+        "Let’s get these cameras rolling!\r"
+      ]
+    },
+    {
+      "id": "JubilifeCityPokecenter1F_Text_SovereignInterviewerWrong",
+      "en_US": [
+        "I’m sorry, but that’s not correct...\n",
+        "But you’re welcome to try again!"
+      ]
+    },
+    {
+      "id": "JubilifeCityPokecenter1F_Text_SovereignInterviewerWon",
+      "en_US": [
+        "You’ve won the grand prize!\n",
+        "Stupendous work, young Trainer.\r",
+        "The grand prize of this quiz is the\n",
+        "three Pokémon I just battled you with!\r",
+        "The Pokémon for Trainers in Kanto.\n",
+        "Bulbasaur, Charmander and Squirtle!\r",
+        "Talk to me when you’re ready to\n",
+        "receive your fabulous prize!"
+      ]
+    },
+    {
+      "id": "JubilifeCityPokecenter1F_Text_SovereignInterviewerPrizeIntro",
+      "en_US": [
+        "To the winner go the spoils!\n",
+        "Here you go!\r"
+      ]
+    },
+    {
+      "id": "JubilifeCityPokecenter1F_Text_SovereignInterviewerBye",
+      "en_US": [
+        "Thanks a bunch for playing!\r",
+        "Keep an eye out for our colleagues\n",
+        "in Oreburgh and Floaroma.\r"
+      ]
+    },
+    {
+      "id": "JubilifeCityPokecenter1F_Text_SovereignInterviewerCameraman",
+      "en_US": [
+        "Hello, Trainer! Don’t mind me.\n",
+        "I’m just a friendly cameraman."
+      ]
+    },
+    {
+      "id": "JubilifeCityPokecenter1F_Text_SovereignInterviewerLetsFind",
+      "en_US": "We’ll see if your answer is correct!\r"
+    },
+    {
+      "id": "JubilifeCityPokecenter1F_Text_SovereignInterviewerName1",
+      "en_US": [
+        "First up, the Seed Pokémon.\n",
+        "It’s BULBASAUR!\r"
+      ]
+    },
+    {
+      "id": "JubilifeCityPokecenter1F_Text_SovereignInterviewerReceived1",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received a BULBASAUR!\r"
+      ]
+    },
+    {
+      "id": "JubilifeCityPokecenter1F_Text_SovereignInterviewerNickname1",
+      "en_US": [
+        "Do you want to give a nickname to\n",
+        "this BULBASAUR?"
+      ]
+    },
+    {
+      "id": "JubilifeCityPokecenter1F_Text_SovereignInterviewerName2",
+      "en_US": [
+        "Next, we have the Lizard Pokémon.\n",
+        "It’s CHARMANDER!\r"
+      ]
+    },
+    {
+      "id": "JubilifeCityPokecenter1F_Text_SovereignInterviewerReceived2",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received a CHARMANDER!\r"
+      ]
+    },
+    {
+      "id": "JubilifeCityPokecenter1F_Text_SovereignInterviewerNickname2",
+      "en_US": [
+        "Do you want to give a nickname to\n",
+        "this CHARMANDER?"
+      ]
+    },
+    {
+      "id": "JubilifeCityPokecenter1F_Text_SovereignInterviewerName3",
+      "en_US": [
+        "Last, we have the Tiny Turtle Pokémon.\n",
+        "It’s SQUIRTLE!\r"
+      ]
+    },
+    {
+      "id": "JubilifeCityPokecenter1F_Text_SovereignInterviewerReceived3",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} received a SQUIRTLE!\r"
+      ]
+    },
+    {
+      "id": "JubilifeCityPokecenter1F_Text_SovereignInterviewerNickname3",
+      "en_US": [
+        "Do you want to give a nickname to\n",
+        "this SQUIRTLE?"
+      ]
+    },
+    {
+      "id": "JubilifeCityPokecenter1F_Text_SovereignInterviewerNoRoom",
+      "en_US": [
+        "Oh, sorry.\r",
+        "You haven’t got room in your team\n",
+        "for these three fabulous Pokémon."
+      ]
+    },
+    {
+      "id": "JubilifeCityPokecenter1F_Text_SovereignInterviewerQuestion1",
+      "en_US": [
+        "Here we go!\n",
+        "It’s the first question!\r",
+        "Is Pikachu an Electric-type Pokémon?"
+      ]
+    },
+    {
+      "id": "JubilifeCityPokecenter1F_Text_SovereignInterviewerQuestion2",
+      "en_US": [
+        "That is correct!\n",
+        "How about this second question?\r",
+        "Does the Kanto region’s Saffron City\n",
+        "have an active Fighting-type Gym?"
+      ]
+    },
+    {
+      "id": "JubilifeCityPokecenter1F_Text_SovereignInterviewerQuestion3",
+      "en_US": [
+        "Keep it going!\n",
+        "Question number three!\r",
+        "Professor Oak is a well-known Pokémon\n",
+        "researcher based in the Kanto region.\r",
+        "Is his full name Samson Oak?"
+      ]
+    },
+    {
+      "id": "JubilifeCityPokecenter1F_Text_SovereignInterviewerQuestion4",
+      "en_US": [
+        "Right you are!\n",
+        "The semifinal question!\r",
+        "On the Sevii Islands, is it true that\n",
+        "the Trainer Tower is on Seven Island?"
+      ]
+    },
+    {
+      "id": "JubilifeCityPokecenter1F_Text_SovereignInterviewerQuestion5",
+      "en_US": [
+        "Excellent! Fantastic!\n",
+        "The last question!\r",
+        "Do you think you can beat me\n",
+        "in a Pokémon battle?"
+      ]
     }
   ]
 }
