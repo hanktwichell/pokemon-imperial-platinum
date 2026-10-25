@@ -34,6 +34,10 @@ The list comes from include/data/sovereign_forms.h. Each case is the species in 
   Each use must do what it should: change the form or not, take the partner out of the party and give it back, and
   change the moves a form brings (Kyurem's Glaciate and Scary Face, Hoopa's Hyperspace Hole, the fusions' signature
   moves). The form it gives lasts through the battle.
+- **Held-item forms**, given the item as the party menu gives one (Pokemon_SetArceusForm,
+  Pokemon_SetGiratinaFormByHeldItem): Ogerpon's masks, Origin Dialga and Palkia (SOVEREIGN_FORM_HELD_ITEM), Arceus with
+  each Plate, Silvally with each Memory, Genesect with each Drive, and Giratina with the Griseous Orb or Core; and
+  Arceus with an item that isn't a Plate. The form lasts through the battle.
 
 For each one this loads a save state in the overworld, where the test build has given the Mega Ring. It writes the
 Pokémon to gSovereignTestLead (include/sovereign_test.h), so the party's lead becomes it at Lv. 50, at the HP and with
@@ -175,6 +179,32 @@ def item_case(species, form, item, label, form_moves, results, forms, partner=No
     return c
 
 
+def held_item_cases():
+    """Each item that gives its holder a form, and the form."""
+    types = consts('pokemon_types.txt')
+    items = consts('items.txt')
+    plates = {'FIST': 'FIGHTING', 'SKY': 'FLYING', 'TOXIC': 'POISON', 'EARTH': 'GROUND', 'STONE': 'ROCK',
+              'INSECT': 'BUG', 'SPOOKY': 'GHOST', 'IRON': 'STEEL', 'PIXIE': 'FAIRY', 'FLAME': 'FIRE', 'SPLASH': 'WATER',
+              'MEADOW': 'GRASS', 'ZAP': 'ELECTRIC', 'MIND': 'PSYCHIC', 'ICICLE': 'ICE', 'DRACO': 'DRAGON',
+              'DREAD': 'DARK'}  # Arceus's form is its Plate's type
+    out = [case(species, 0, 0, 'held item', item=trigger) | {'after': form}
+           for species, form, kind, trigger in sovereign_forms() if kind == 'SOVEREIGN_FORM_HELD_ITEM']
+    for plate, type_name in plates.items():
+        out.append(case('SPECIES_ARCEUS', 0, 0, 'Plate', item=f'ITEM_{plate}_PLATE')
+                   | {'after': types.index('TYPE_' + type_name)})
+    out.append(case('SPECIES_ARCEUS', 0, 0, 'not a Plate', item='ITEM_LEFTOVERS') | {'after': 0})
+    for item in items:
+        if item.endswith('_MEMORY'):
+            out.append(case('SPECIES_SILVALLY', 0, 0, 'Memory', item=item)
+                       | {'after': types.index('TYPE_' + item[5:-7])})
+        elif item.endswith('_DRIVE'):
+            out.append(case('SPECIES_GENESECT', 0, 0, 'Drive', item=item)
+                       | {'after': items.index(item) - items.index('ITEM_DOUSE_DRIVE') + 1})
+    for item in ('ITEM_GRISEOUS_ORB', 'ITEM_GRISEOUS_CORE'):
+        out.append(case('SPECIES_GIRATINA', 0, 0, 'Griseous', item=item) | {'after': 1})
+    return out
+
+
 def key_item_cases():
     form_moves, fusions = form_item_tables()
     out, cycles = [], {}
@@ -234,7 +264,7 @@ def cases():
         for stone, from_forms in stones[species].items():
             if 0 not in from_forms:
                 out.append(case(species, 0, 0, 'no Mega', item=stone))
-    return out + key_item_cases()
+    return out + key_item_cases() + held_item_cases()
 
 
 def u16(mem, addr):

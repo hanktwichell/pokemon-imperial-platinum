@@ -192,7 +192,7 @@ static int sSovereignTestBattleResult;
 static u8 sSovereignTestTotemTrial;
 
 // Test build only: the party's lead becomes the Pokémon a test harness wrote to gSovereignTestLead, as the player's
-// own, holding its item and knowing four Fairy moves or the ones set, at the HP set (include/sovereign_test.h).
+// own, given its item, and knowing four Fairy moves or the ones set, at the HP set (include/sovereign_test.h).
 static void SovereignTest_SetLead(FieldSystem *fieldSystem)
 {
     Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), 0);
@@ -209,6 +209,10 @@ static void SovereignTest_SetLead(FieldSystem *fieldSystem)
     Pokemon_CalcAbility(mon);
     Pokemon_CalcLevelAndStats(mon);
     Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &item);
+    // As the party menu gives an item: Arceus's Plates, Silvally's Memories, Genesect's Drives, Ogerpon's masks, Origin
+    // Dialga and Palkia, and Giratina's Griseous Orb set the form.
+    Pokemon_SetArceusForm(mon);
+    Pokemon_SetGiratinaFormByHeldItem(mon);
 
     for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
         u16 move = gSovereignTestLead.moves[i] != MOVE_NONE ? gSovereignTestLead.moves[i] : fairyMoves[i];

@@ -56,8 +56,8 @@ extern struct SovereignTestWarpTarget gSovereignTestWarpTarget;
 extern u16 gSovereignTestBattleTrainer;
 // When species is set, the next SELECT battles this wild Pokémon instead of a Chansey (field_control.c).
 extern struct SovereignTestWild gSovereignTestWild;
-// When species is set, the next test battle (SELECT or SELECT+R) first makes the party's lead this Pokémon, holding
-// the item and knowing four Fairy moves: Moonblast, Dazzling Gleam, Play Rough (the moves the battle harnesses pick) and
+// When species is set, the next test battle (SELECT or SELECT+R) first makes the party's lead this Pokémon, given
+// the item as the party menu gives one (a held-item form takes its form) and knowing four Fairy moves: Moonblast, Dazzling Gleam, Play Rough (the moves the battle harnesses pick) and
 // Draining Kiss, or the moves set instead (field_control.c).
 extern struct SovereignTestLead gSovereignTestLead;
 // When species is set, the party's second Pokémon becomes this one too, with its level-up moves (a fusion partner).
