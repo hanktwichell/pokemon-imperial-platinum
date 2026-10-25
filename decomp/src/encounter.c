@@ -1045,8 +1045,9 @@ void Encounter_NewVsGiratinaOrigin(FieldTask *task, u16 species, u8 level, int *
 }
 
 #ifdef SOVEREIGN_TEST
-// Test build only: a wild battle against a Pokémon in a form (include/sovereign_test.h, gSovereignTestWild).
-void Encounter_SovereignTestNewVsWildForm(FieldTask *task, u16 species, u8 form, u8 level, int *resultMaskPtr)
+// Test build only: a wild battle against a Pokémon in a form, knowing only move if it's set (include/sovereign_test.h,
+// gSovereignTestWild).
+void Encounter_SovereignTestNewVsWildForm(FieldTask *task, u16 species, u8 form, u8 level, u16 move, int *resultMaskPtr)
 {
     FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
     RadarChain_Clear(fieldSystem->chain);
@@ -1054,6 +1055,14 @@ void Encounter_SovereignTestNewVsWildForm(FieldTask *task, u16 species, u8 form,
     FieldBattleDTO *dto = FieldBattleDTO_New(HEAP_ID_FIELD2, BATTLE_TYPE_WILD_MON);
     FieldBattleDTO_Init(dto, fieldSystem);
     CreateWildMon_SovereignScriptedForm(fieldSystem, species, form, level, dto);
+
+    if (move != MOVE_NONE) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(dto->parties[BATTLER_ENEMY_1], 0);
+
+        for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+            Pokemon_ResetMoveSlot(mon, i == 0 ? move : MOVE_NONE, i);
+        }
+    }
     StartEncounter(task, dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), resultMaskPtr);
 }
 #endif
