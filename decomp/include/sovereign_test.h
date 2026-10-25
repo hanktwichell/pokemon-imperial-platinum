@@ -15,10 +15,12 @@ struct SovereignTestWarpTarget {
 extern struct SovereignTestWarpTarget gSovereignTestWarpTarget;
 // When set, the next SELECT+R battles this trainer instead of TRAINER_SOVEREIGN_TEST (field_control.c).
 extern u16 gSovereignTestBattleTrainer;
-// While set, a foe that loses any HP loses all of it, the player's Pokémon lose none (BtlCmd_UpdateHealthBarValue)
-// and no EXP is gained (BtlCmd_CalcExpGain), so a test battle sends out every Pokémon the opponent has, with no
-// level-up prompts. The battle style is Set, with no "Will you change Pokémon?" prompt (BattleSystem_GetBattleStyle),
-// and the text is fast (BattleSystem_GetTextSpeed).
+// While set (god mode), test battles are one-sided, so one sends out every Pokémon the opponent has:
+// - a foe that loses any HP loses all of it, and the player's Pokémon lose none (BtlCmd_UpdateHealthBarValue);
+// - the player's moves ignore the foes' abilities (Battler_IgnorableAbility);
+// - no EXP is gained, so there are no level-up prompts (BtlCmd_CalcExpGain);
+// - the battle style is Set, with no "Will you change Pokémon?" prompt (BattleSystem_GetBattleStyle);
+// - the text is fast (BattleSystem_GetTextSpeed).
 extern u8 gSovereignTestGodMode;
 // The frames the field map has run with no task (no script, warp or battle), and the map it was on (field_system.c).
 extern u32 gSovereignTestIdleFrames;

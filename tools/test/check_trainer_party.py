@@ -104,6 +104,8 @@ def expected_stats(species_const, level, ivs, evs, nature, form=0):
     base = species_data(species_const, form)["base_stats"]
     base = [base[k] for k in BASE_KEYS]
     stats = [(2 * base[0] + ivs[0] + evs[0] // 4) * level // 100 + level + 10]
+    if species_const == "SPECIES_SHEDINJA":  # its HP is always 1
+        stats = [1]
     # Natures: rows/columns in the order Atk, Def, Speed, SpAtk, SpDef (game order indices 1..5).
     up, down = nature // 5, nature % 5
     for i in range(1, 6):
