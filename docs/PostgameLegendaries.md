@@ -48,9 +48,9 @@ Covers **90** species.
 ### Truth and Ideals (chapter key)
 - **Pokémon:** #643 Reshiram, #644 Zekrom, #646 Kyurem
 - **Level:** 70
-- **Location:** Reshiram — Fuego Ironworks (by the furnaces). Zekrom — Valley Windworks at night. Kyurem — Mt. Coronet's ice chamber
+- **Location:** Reshiram — Fuego Ironworks (by the furnaces). Zekrom — Route 215 at night. Kyurem — Mt. Coronet's ice chamber
 - **How:** The Archivist gives the Light Stone and Dark Stone. Using each at its location summons Reshiram/Zekrom. Kyurem appears once both are caught. The DNA Splicers and Kyurem's fused forms are in the game (all forms are in scope, owner 2026-10-22).
-- **Built:** Truth and Ideals (CB-0038). The Archivist gives the Light and Dark Stones on the first talk that reaches this part. Reshiram stands in Fuego Ironworks (49, 5) while the player carries the Light Stone. Zekrom stands on Valley Windworks' windmill island (236, 650) at night (8 pm to 4 am) while the player carries the Dark Stone. Kyurem sleeps in Mt. Coronet's ice chamber (7, 5), the room off the north room by Route 216, once both are caught. The Archivist then gives the DNA Splicers. The furnaces are the Ironworks' own, in place of a new room. All three are level 70.
+- **Built:** Truth and Ideals (CB-0038). The Archivist gives the Light and Dark Stones on the first talk that reaches this part. Reshiram stands in Fuego Ironworks (49, 5) while the player carries the Light Stone. Zekrom stands in the rain on Route 215's north-west loop, by the big tree (590, 578), at night (8 pm to 4 am) while the player carries the Dark Stone. It stood on Valley Windworks' windmill island (236, 650) until decision 34 moved it (2026-10-25). Kyurem sleeps in Mt. Coronet's ice chamber (7, 5), the room off the north room by Route 216, once both are caught. The Archivist then gives the DNA Splicers. The furnaces are the Ironworks' own, in place of a new room. All three are level 70.
 
 ### The Relic Song
 - **Pokémon:** #648 Meloetta

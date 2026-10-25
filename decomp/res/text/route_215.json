@@ -63,6 +63,13 @@
         "Likewise, a special attack is based\n",
         "on the Special Attack stat."
       ]
+    },
+    {
+      "id": "Route215_Text_SovereignDarkStoneCrackles",
+      "en_US": [
+        "The DARK STONE is crackling with\n",
+        "electricity!"
+      ]
     }
   ]
 }

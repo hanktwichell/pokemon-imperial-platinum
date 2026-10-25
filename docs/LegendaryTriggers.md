@@ -50,7 +50,7 @@ Pokédex's caught entry (`SovereignCheckSpeciesCaught`).
 | Meloetta | static | In front of the Contest Hall stage (27, 8) | 55 | `FLAG_SOVEREIGN_MELOETTA_SONG`: the composer in the lobby (8, 7) hears a party Pokémon with Sing | Other legends |
 | Genesect | static | Galactic HQ lab, back room (34, 5) | 60 | `FLAG_SOVEREIGN_GENESECT_FREED`: the lab's male scientist confesses (shows at once) | Other legends |
 | Reshiram | static | Fuego Ironworks building, furnace pocket | 70 | `ITEM_LIGHT_STONE` in the bag (the Archivist gives both stones) | Truth and Ideals |
-| Zekrom | static | Valley Windworks, the island behind the building (Surf) | 70 | `ITEM_DARK_STONE` in the bag, and night (8 pm–4 am) **when entering the map** | Truth and Ideals |
+| Zekrom | static | Route 215, the north-west loop by the big tree (590, 578) (decision 34; it stood on Valley Windworks' island before) | 70 | `ITEM_DARK_STONE` in the bag, and night (8 pm–4 am) **when entering the map** | Truth and Ideals |
 | Kyurem | static | Mt. Coronet's Iceberg Ruins doorway room | 70 | Reshiram and Zekrom caught; no Relicanth and Wailord pair in the party (that pair swaps the doorway to the Iceberg Ruins, part 13) | Truth and Ideals |
 | Tornadus, Thundurus | roamers | mainland routes | 65 | released on the first reading of Forces of Nature (`FLAG_SOVEREIGN_RELEASED_FORCES_OF_NATURE`) | Forces of Nature |
 | Landorus | static | Route 228, north end of the first sand field (782, 323) | 65 | Tornadus and Thundurus **in the party** | Forces of Nature (after both are caught; the Archivist also gives the Reveal Glass) |

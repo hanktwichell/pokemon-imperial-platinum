@@ -148,27 +148,12 @@
             "y": 0
         },
         {
-            "id": "LOCALID_LEGENDARY_ZEKROM",
-            "graphics_id": "OBJ_EVENT_GFX_LEGENDARY_ZEKROM",
-            "movement_type": "MOVEMENT_TYPE_NONE",
-            "trainer_type": "TRAINER_TYPE_NONE",
-            "hidden_flag": "FLAG_MAP_LOCAL_HIDE_LEGENDARY",
-            "script": 9,
-            "initial_dir": 2,
-            "data": [],
-            "movement_range_x": 0,
-            "movement_range_z": 0,
-            "x": 236,
-            "z": 650,
-            "y": 0
-        },
-        {
             "id": "LOCALID_LEGENDARY_ZAPDOS",
             "graphics_id": "OBJ_EVENT_GFX_LEGENDARY_ZAPDOS",
             "movement_type": "MOVEMENT_TYPE_NONE",
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_MAP_LOCAL_HIDE_LEGENDARY_2",
-            "script": 10,
+            "script": 9,
             "initial_dir": 1,
             "data": [],
             "movement_range_x": 0,
