@@ -2,7 +2,18 @@
 
 Owner request (2026-10-24): for every static legendary encounter, note when it triggers, what else is on that map,
 and what it could clash with. Built from `LegendaryTriggers.md` as it stands on `main` (2026-10-24). This is a
-by-map review: no one has yet checked each spot's exact tiles against the NPCs, trainers and item balls nearby.
+by-map review.
+
+**Tile check (2026-10-25):** every spot's exact tile has now been checked against the collision, NPCs, item balls,
+signs, hidden items and warps nearby, with `tools/test/check_object_tiles.py` (it checks every object Sovereign added
+or moved). It found and fixed:
+- **Zygarde** couldn't be reached: its alcove at (21, 4) lies under an east-west bike bridge, and the ledges below go
+  one way. It moved to the north-west alcove (12, 4).
+- **Tapu Koko** at (808, 795) blocked the only way to the Quick Ball and three hidden items. It moved to the east
+  end of the same sand strip (813, 795).
+- **Volcanion** stood on a hidden Iron at the end of its one-tile tunnel. The Iron moved a tile east (74, 15).
+
+Three tutor-house NPCs that blocked the tutor-list signs moved a tile too (see `EngineChangelog.md`).
 
 **Timing:**
 - **Chronicles:** the Chronicle encounters are all post-game. The Legend Archivist (Canalave Library 2F) opens them
@@ -22,9 +33,9 @@ by-map review: no one has yet checked each spot's exact tiles against the NPCs, 
 | **Fuego Ironworks** | Reshiram in the furnace pocket (Light Stone); Chi-Yu outside (180, 593) (two stakes) | Mr. Fuego, the Fire Stone and Star Piece gifts, a roamer route | Inside and outside are separate maps. Fine |
 | **Route 228** | Regidrago, Rock Peak Ruins doorway room (5, 6) (Galar, the three Regis in the party); **Landorus moved outside to the north sand field (782, 323) on 2026-10-24** | The Relicanth/Wailord doorway (Renegade part 13), Ace Trainer Jose (779, 325) | **Settled**: Regidrago has the room to itself |
 | **Oreburgh Mine B2F** | Diancie, west nook (2, 22) (Carbink in the party); Meltan (5, 20); Melmetal (5, 24) | Miners, item balls | Three in a 4-tile area. Sequenced or conditional; check they don't block the path |
-| **Wayward Cave** | Zygarde, B1F north alcove (21, 4) (Xerneas and Yveltal caught); Necrozma, 1F dark chamber (70, 9) (Solgaleo/Lunala caught) | **Mira's Renegade quest (part 5) and the Gabite**, the hidden entrance | Check that Mira's spot and path don't touch Zygarde's alcove or Necrozma's chamber |
+| **Wayward Cave** | Zygarde, B1F north-west alcove (12, 4) (Xerneas and Yveltal caught); Necrozma, 1F dark chamber (70, 9) (Solgaleo/Lunala caught) | **Mira's Renegade quest (part 5) and the Gabite**, the hidden entrance | **Checked 2026-10-25:** Mira waits at 1F's hidden entrance, a gate until her battle, and Zygarde is on B1F. Zygarde moved from (21, 4), which can't be reached |
 | **Mt. Coronet** | Cosmog, top snowfield (35, 21); Articuno's Renegade portal near the summit; Kyurem, Iceberg Ruins doorway room; Kyogre, B1F lake island (22, 36) | The Celesteela rare roll, Regice's ruins (Route 216 side) | **Kyurem stands in the doorway room that Regice's Relicanth/Wailord event changes.** Handled by a condition (no Relicanth+Wailord pair), but fragile. Articuno: keep it off Cosmog's tile. **E10 part 27:** Articuno stands at (33, 20), two tiles from Cosmog |
-| **Stark Mountain** | Groudon, room 1 (6, 6) (after the Hall of Fame); **Volcanion moved to room 2's north-east dead end (73, 15) on 2026-10-24**; Heatran, room 3 | Buck and Team Galactic's scene in room 1 on a first visit, Buck's escort and the trainers in room 2, the Blacephalon roll outside | **Settled**: one legendary per room |
+| **Stark Mountain** | Groudon, room 1 (6, 6) (after the Hall of Fame); **Volcanion moved to room 2's north-east dead end (73, 15) on 2026-10-24** (the hidden Iron there moved to (74, 15)); Heatran, room 3 | Buck and Team Galactic's scene in room 1 on a first visit, Buck's escort and the trainers in room 2, the Blacephalon roll outside | **Settled**: one legendary per room |
 | **Turnback Cave** | Giratina back in its room after a Hall of Fame. **Eternatus moved to Victory Road B1F (14, 19) on 2026-10-24** | The Guzzlord roll in the pillar rooms | **Settled** |
 | **Solaceon Ruins** | Jirachi, asleep, Room 7 (5, 3) (three wishes); **Hoopa moved to Room 6's north-west dead end (2, 3) on 2026-10-24** (Prison Bottle) | The Unown rooms, the sign Jirachi's event reads | **Settled**: different rooms |
 | **Galactic HQ lab** | Genesect, back room (34, 5); Type: Null (24, 10) (Genesect caught) | The lab scientists, the Master Ball | Sequenced. Check the HQ is open post-game |
@@ -46,7 +57,7 @@ by-map review: no one has yet checked each spot's exact tiles against the NPCs, 
 | Terrakion | Route 227 north pocket (759, 258) | Unova | The Stakataka roll | None |
 | Keldeo | Lake Valor (36, 14) | the three Swords in the party | Azelf's cavern (after the Distortion World) | None |
 | Meloetta | Contest Hall stage (29, 8) | the composer and Sing | Contests on the stage | Check it doesn't stand where the contest runs |
-| Tapu Koko / Tapu Fini | Route 222 east sand (808, 795) / Route 226 beach | Alola | The Xurkitree roll / Route 226 trainers | None |
+| Tapu Koko / Tapu Fini | Route 222, the sand strip's east end (813, 795) / Route 226 beach | Alola | The Xurkitree roll / Route 226 trainers | Tapu Koko moved from (808, 795), which blocked the Quick Ball (2026-10-25) |
 | Tapu Bulu | Floaroma Meadow, north field | Alola | The Honey seller, Galactic's grunts (story) | None post-game |
 | Zarude | Route 212 South marsh | Galar | Marsh trainers | None |
 | Calyrex | Celestic Town (461, 527) | Galar | **The Celestic elder, the ruins entrance, the Pokéfan with the masks** | Check it isn't on the path to the ruins |
@@ -71,5 +82,6 @@ by-map review: no one has yet checked each spot's exact tiles against the NPCs, 
 6. ~~**Rock Peak Ruins chamber:** Landorus and Regidrago.~~ Settled 2026-10-24: Landorus moved to Route 228's sand field.
 7. **Eterna Forest:** Celebi's portals must avoid Virizion's and Xerneas's tiles. Done in E10 part 28.
 8. **Mt. Coronet:** Kyurem in Regice's doorway room (works through a condition), and Articuno's portal beside Cosmog.
-9. **Tile checks:** Magearna/Volkner, Kubfu/the Veilstone Gym puzzle, Calyrex/the Celestic ruins path, Mira/Wayward
-   Cave, Meloetta/the Contest stage.
+9. ~~**Tile checks:** Magearna/Volkner, Kubfu/the Veilstone Gym puzzle, Calyrex/the Celestic ruins path, Mira/Wayward
+   Cave, Meloetta/the Contest stage.~~ Done 2026-10-25 (`tools/test/check_object_tiles.py`): those five are clear.
+   Zygarde, Tapu Koko and Volcanion's hidden Iron were fixed (see the top of this file).

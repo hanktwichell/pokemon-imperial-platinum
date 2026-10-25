@@ -271,8 +271,6 @@ Open:
   Route 218's gate guard opens the road to Canalave City for it. Sovereign's Regional Forms Park lobby opens after
   the Hall of Fame, so Darach is post-game and the Tea has no use yet (E10 part 41 notes). This ties in with when the
   park opens.
-- **The legendary placement tile checks** in `docs/LegendaryPlacementReview.md` (every clash is settled by decisions
-  35–39). `docs/StaticEncounters.xlsx` lists every encounter.
 - **Overworld sprites for the legendaries:** the owner draws them and sorts the rest of the sizes (decision 40,
   `docs/OverworldSpriteSizes.md`). Until then each is a placeholder from its PokeAPI front sprite.
 - Regional Forms Park: when it opens (now after the Hall of Fame; `Story.md` suggests Oak's visit). The zones and

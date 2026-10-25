@@ -5784,3 +5784,56 @@ vanilla's post-game guard.
 2. More checks in the same spirit: flags and vars that scripts use but `vars_flags.txt` doesn't name, or trainers
    that scripts start but `generated/trainers.txt` doesn't list.
 3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
+
+## CB-0124 — 2026-10-25, 1:52 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: the placement tile check (`docs/LegendaryPlacementReview.md` item 9), and four fixes it found.** PR #136
+(the event-script and map-link checks) is merged.
+- **New tool `tools/test/check_object_tiles.py`** checks each object Sovereign added or moved (256), against vanilla's
+  events in git (commit 22fddfd4):
+  - It reports objects sharing a tile with another object, a sign or hidden item, a warp or a trigger.
+  - It walks tile collision (bit 15 of the land data) under the engine's rules: Surf, Waterfall, Rock Climb, one-way
+    ledges, bike ramps (1 or 3 tiles), no turning off an elevated bike bridge (`src/player_move.c`), counters.
+  - It reports any object the player can't reach and anything an object cuts off.
+  - On-purpose cases are in its `KNOWN` list with reasons.
+  - It needs git history, so it runs locally, not in CI. Checking every vanilla object would need an allowlist of
+    about 100 entries (Great Marsh's shared matrix, drained lakes, decorations).
+- **Fixed:**
+  - **Zygarde** couldn't be reached: (21, 4) is under Wayward Cave B1F's east-west bike bridge. It's now in the
+    north-west alcove (12, 4).
+  - **Tapu Koko** at (808, 795) blocked the only way to Route 222's Quick Ball and three hidden items. It's now at
+    the sand strip's east end (813, 795).
+  - **Volcanion** stood on a hidden Iron (Stark Mountain room 2). The Iron moved to (74, 15).
+  - **Three tutor houses' NPCs** blocked the tutor-list signs: Route 212's Beauty, Snowpoint's fisherman and the
+    Survival Area's Psyduck. Each moved from (4, 3) to (5, 3).
+- **Verified in a test build:**
+  - Zygarde's and Tapu Koko's battles start from the new spots.
+  - "A found an Iron!" with Volcanion beside it.
+  - The Route 212 sign reads.
+  - On the pre-fix tree, the tool reports exactly these six.
+- **Docs:**
+  - `docs/LegendaryPlacementReview.md` (item 9 done, rows updated), `docs/LegendaryTriggers.md`.
+  - `data/postgame_legendaries.yaml` → `docs/PostgameLegendaries.md`.
+  - `tools/reference/make_static_encounters.py` → `docs/StaticEncounters.xlsx`. The generator reproduced the old
+    workbook exactly before the edit.
+  - The tile checks are off `docs/ProjectStatus.md`'s Open list; changelog entry.
+- **Harness notes:**
+  - This build's test warp index is at `0x021C3880`.
+  - The test patch is `$S/tiles/t/patch.py`.
+  - The exploration scripts are in `$S/tiles/`.
+  - A `sed` on `"x": 825` also hit two Route 222 gate warps; they were caught in the diff and restored. Edit events
+    files by object, not by bare coordinates.
+
+**Files modified:**
+- Events: `events_wayward_cave_b1f.json`, `events_route_222.json`, `events_stark_mountain_room_2.json`,
+  `events_route_212_house.json`, `events_snowpoint_city_east_house.json`, `events_survival_area_north_house.json`
+- Tools: `tools/test/check_object_tiles.py` (new), `tools/reference/make_static_encounters.py`
+- Data and docs: `data/postgame_legendaries.yaml`, `docs/PostgameLegendaries.md`, `docs/StaticEncounters.xlsx`,
+  `docs/LegendaryPlacementReview.md`, `docs/LegendaryTriggers.md`, `docs/ProjectStatus.md`, `docs/EngineChangelog.md`,
+  `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR once both checks are green.
+2. Clash 8 in the review (Mt. Coronet: Kyurem in Regice's doorway room works only through a condition) is the last
+   open placement item. Check that the condition can't leave both, or neither, showing.
+3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
