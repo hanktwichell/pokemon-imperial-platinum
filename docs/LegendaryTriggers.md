@@ -174,10 +174,8 @@ dealer a present-day Pokémon gives its Paradox Pokémon at the shown Pokémon's
 | Articuno, Zapdos, Moltres | no longer roam (E10 part 27, decision 33) | they stand where Renegade put its portals; see Renegade's events below. Professor Oak in Eterna City's south house now only hints at the places with the Up-Grade, and praises the catch as before | — | — | — |
 | Darkrai | static | Newmoon Island Forest | 68 (Renegade's; vanilla 50) | post-game, with the National Dex and the Canalave boy woken, and the Member Card from the woman in Route 217's north-east house (the Lunar Wing wakes her; E10 part 36). The Harbor Inn's dream then takes the player to Newmoon Island. No distribution | caught; until then the dream can be repeated (vanilla's reset on waking) |
 | Shaymin | static | Flower Paradise | 30 | post-game: once the counterpart has been beaten by Route 224's tablet (E10 part 30), Oak in Eterna City's south house gives Oak's Letter (E10 part 37). On Route 224 Marley's scene plays, then Oak's tablet scene opens the Seabreak Path. No distribution | caught; until then it's back on the next visit |
-| Arceus | static | Hall of Origin | 80 | Azure Flute and the distribution | — |
+| Arceus | static | Hall of Origin | 80 | post-game: with all sixteen Type Masters' Plates (E10 part 20), the elder in Hearthome's Foreign Building gives the Azure Flute (E10 part 38; no Pokédex task, decision 44). Played at Spear Pillar, it opens the Hall of Origin. No distribution | — |
 | Rotom | static | Old Chateau, the TV room | 20 | night | — |
-
-Arceus still needs vanilla's distribution event, so it can't be met in normal play yet.
 
 ## Renegade Platinum's events, ported (E10)
 
@@ -213,15 +211,6 @@ battles (Renegade's Lv. 88–89 team).
 
 Renegade puts a portal on each spot and opens them when Rowan is spoken to after the Distortion World; Sovereign shows
 the Pokémon itself (as for its own legendaries) and needs no talk. Spots are provisional (owner, 2026-10-24).
-
-## Renegade Platinum's events (documented, not ported yet: E10)
-
-`RenegadePlatinumV130/Documentation/SpecialEvents.txt` changes or adds these. When E10 ports them, check their spots
-against the Chronicles':
-
-| Pokémon | Renegade's place | Lv. | Chronicle encounter nearby |
-|---|---|---|---|
-| Arceus | Azure Flute from Hearthome's Foreign Building | 80 | — |
 
 ## Open issues
 

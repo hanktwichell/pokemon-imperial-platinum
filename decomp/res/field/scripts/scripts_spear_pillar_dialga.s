@@ -1,5 +1,4 @@
 #include "macros/scrcmd.inc"
-#include "generated/distribution_events.h"
 #include "res/text/bank/spear_pillar_dialga.h"
 
 
@@ -16,9 +15,8 @@ SpearPillarDialga_TryEnableHallOfOrigin:
     GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, SpearPillarDialga_TryEnableHallOfOriginEnd
     GetNationalDexEnabled VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, SpearPillarDialga_TryEnableHallOfOriginEnd
+    @ Sovereign (E10, Renegade): no Arceus distribution check; the Foreign Building's elder gives the Azure Flute.
     CheckItem ITEM_AZURE_FLUTE, 1, VAR_MAP_LOCAL_0x00
-    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, SpearPillarDialga_TryEnableHallOfOriginEnd
-    CheckDistributionEvent DISTRIBUTION_EVENT_ARCEUS, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, SpearPillarDialga_TryEnableHallOfOriginEnd
     GoToIfSet FLAG_CAUGHT_ARCEUS, SpearPillarDialga_TryEnableHallOfOriginEnd
     SetVar VAR_HALL_OF_ORIGIN_STATE, 1

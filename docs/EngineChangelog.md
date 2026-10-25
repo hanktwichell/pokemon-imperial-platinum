@@ -4,6 +4,36 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 38) — Renegade's Arceus: the Foreign Building elder's Azure Flute, no distribution
+
+Vanilla's Arceus needs the Azure Flute distribution. Renegade has an elder give the flute in the game instead:
+- **Hearthome City's Foreign Building:** a new elder (Renegade's lines) stands at (8, 8), facing the door. The Lady who
+  stood there moves to (6, 8).
+  - Before the Hall of Fame she greets the player and speaks of the Original One.
+  - After it she asks the Champion to beat the sixteen Type Masters (E10 part 20) for their Plates.
+  - With all sixteen Plates in the bag she gives the Azure Flute and sends the player to Spear Pillar.
+  - Renegade also asks for a Pokédex worthy of the National diploma. That task is dropped (owner, decision 44),
+    because Sovereign's National Dex is over 1,000 species.
+  - The flute is a key item, so having it marks the event done; no new flag.
+- **The Azure Flute's use** (`src/item_use_functions.c` and its common script), **the Hall of Origin and the three
+  Spear Pillar maps:** the Arceus distribution checks are gone. The other vanilla gates stay: the flute works only
+  post-game, with the National Dex, on Spear Pillar's top step, until Arceus is caught. Arceus stays Lv. 80, as in
+  both.
+
+Verified in test builds (post-game, Plates or the flute added to the bag):
+- With 15 Plates, the elder gives the Champion and Type Master lines, and the same again on the next talk.
+- With 16 Plates: her exclamation, "All sixteen Plates…", "obtained the Azure Flute!" and the Spear Pillar hint.
+  The next talk gives the hint only.
+- At the Hall of Origin, Arceus stands at the top. Walking up starts its scene ("Dodogyuuun!"), and it battles at
+  Lv. 80. A Master Ball catches it, and it's gone afterwards.
+- With the National Dex and the flute registered to Y, at Spear Pillar's top step: "A's Azure Flute is making a
+  sound!", the Yes/No question, "A blew the Azure Flute.", then the white fade into the Hall of Origin and "A glowing
+  stairway appeared!"
+
+Docs: `docs/StaticEncounters.xlsx` gives Darkrai's and Arceus's new conditions (and Darkrai's Lv. 68). Its
+generator, `tools/reference/make_static_encounters.py`, had fallen behind the workbook's E10 part 27–29 edits; it now
+writes the same workbook again.
+
 ## E10 (part 37) — Renegade's Shaymin: Oak's Letter from Oak, no distribution
 
 Vanilla's Shaymin needs the Oak's Letter distribution. Renegade has Oak give it in the game instead:

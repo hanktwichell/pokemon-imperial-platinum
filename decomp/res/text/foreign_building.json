@@ -113,6 +113,67 @@
         "The Original One...\n",
         "Do you think it ever needs to Rest?"
       ]
+    },
+    {
+      "id": "ForeignBuilding_Text_SovereignElderGreeting",
+      "en_US": [
+        "Greetings, child.\r",
+        "Welcome to this place of worship for\n",
+        "that which we call the Original One.\r",
+        "It is the creator of both our land and\n",
+        "the Pokémon found within legends.\r",
+        "Mere weaklings like us cannot hope\n",
+        "to ever meet the Original One...\r",
+        "You’d have to be the Champion to even\n",
+        "stand a chance of being worthy.\r",
+        "Nevertheless, we continue to offer\n",
+        "our gratitude for its blessings."
+      ]
+    },
+    {
+      "id": "ForeignBuilding_Text_SovereignElderChampion",
+      "en_US": [
+        "Oh, goodness... \n",
+        "You’re the new Champion, aren’t you?\r",
+        "Perhaps, child, you could be the one\n",
+        "to finally meet the Original One.\r",
+        "But first, you must prove that you\n",
+        "have mastery over all Pokémon types!\r"
+      ]
+    },
+    {
+      "id": "ForeignBuilding_Text_SovereignElderTypeMasters",
+      "en_US": [
+        "There are sixteen Type Master trainers\n",
+        "around Sinnoh, each possessing a Plate.\r",
+        "Defeat them using the same type in a\n",
+        "one-on-one battle to win the Plate.\r",
+        "If you gather all sixteen of the\n",
+        "Original One’s Plates, return here!"
+      ]
+    },
+    {
+      "id": "ForeignBuilding_Text_SovereignElderAllPlates",
+      "en_US": [
+        "All sixteen Plates are indeed currently\n",
+        "in your possession...\r",
+        "Excellent work, young Champion.\r",
+        "As you have proven yourself worthy,\n",
+        "I shall bequeath this to you.\r",
+        "The ancient relic known only as the\n",
+        "Azure Flute!\r"
+      ]
+    },
+    {
+      "id": "ForeignBuilding_Text_SovereignElderSpearPillar",
+      "en_US": [
+        "You must journey to the Spear Pillar\n",
+        "at the peak of Mt. Coronet.\r",
+        "If you are truly the one who is fated\n",
+        "to meet with the Original One...\r",
+        "Then it will undoubtedly respond to\n",
+        "the sound of the Azure Flute."
+      ]
     }
   ]
 }
