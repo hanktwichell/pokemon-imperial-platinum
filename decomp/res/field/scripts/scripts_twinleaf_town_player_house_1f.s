@@ -15,6 +15,7 @@
     ScriptEntry TwinleafTownPlayerHouse1F_KitchenCounter
     ScriptEntry TwinleafTownPlayerHouse1F_OnFrame_Postgame
     ScriptEntry TwinleafTownPlayerHouse1F_SovereignElder
+    ScriptEntry TwinleafTownPlayerHouse1F_SovereignEevee
     ScriptEntryEnd
 
 TwinleafTownPlayerHouse1F_OnTransition:
@@ -866,5 +867,66 @@ TwinleafTownPlayerHouse1F_KitchenSink:
 TwinleafTownPlayerHouse1F_KitchenCounter:
     EventMessage TwinleafTownPlayerHouse1F_Text_WhereMomDoesDeliciousCooking
     End
+
+    
+
+@ Sovereign (E10, Renegade): Mom's Eevee waits in a Poke Ball by the window. Once she has given the Journal
+@ (VAR_PLAYER_HOUSE_STATE 6) she suggests taking it along (Lv. 5).
+TwinleafTownPlayerHouse1F_SovereignEevee:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    BufferPlayerName 0
+    PlayCry SPECIES_EEVEE
+    DrawPokemonPreview SPECIES_EEVEE, GENDER_MALE
+    GoToIfLt VAR_PLAYER_HOUSE_STATE, 6, TwinleafTownPlayerHouse1F_SovereignEeveeMomCaring
+    Message TwinleafTownPlayerHouse1F_Text_SovereignEeveeAsk
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, TwinleafTownPlayerHouse1F_SovereignEeveeClose
+    GetPartyCount VAR_RESULT
+    GoToIfEq VAR_RESULT, 6, TwinleafTownPlayerHouse1F_SovereignEeveeNoRoom
+    RemovePokemonPreview
+    WaitCry
+    SetFlag FLAG_SOVEREIGN_RECEIVED_EEVEE
+    RemoveObject LOCALID_SOVEREIGN_EEVEE_BALL
+    PlayFanfare SEQ_FANFA4_sseq
+    Message TwinleafTownPlayerHouse1F_Text_SovereignEeveeObtained
+    WaitFanfare
+    GivePokemon SPECIES_EEVEE, 5, ITEM_NONE, VAR_RESULT
+    Message TwinleafTownPlayerHouse1F_Text_SovereignEeveeNickname
+    ShowYesNoMenu VAR_RESULT
+    CloseMessage
+    CallIfEq VAR_RESULT, MENU_YES, TwinleafTownPlayerHouse1F_SovereignEeveeNickname
+    ReleaseAll
+    End
+
+TwinleafTownPlayerHouse1F_SovereignEeveeMomCaring:
+    Message TwinleafTownPlayerHouse1F_Text_SovereignEeveeMomCaring
+    WaitButton
+    GoTo TwinleafTownPlayerHouse1F_SovereignEeveeClose
+
+TwinleafTownPlayerHouse1F_SovereignEeveeNoRoom:
+    Message TwinleafTownPlayerHouse1F_Text_SovereignEeveeNoRoom
+    WaitButton
+TwinleafTownPlayerHouse1F_SovereignEeveeClose:
+    RemovePokemonPreview
+    WaitCry
+    CloseMessage
+    ReleaseAll
+    End
+
+TwinleafTownPlayerHouse1F_SovereignEeveeNickname:
+    GetPartyCount VAR_MAP_LOCAL_0x00
+    SubVar VAR_MAP_LOCAL_0x00, 1
+    FadeScreenOut
+    WaitFadeScreen
+    OpenPokemonNamingScreen VAR_MAP_LOCAL_0x00, VAR_RESULT
+    CallIfNe VAR_RESULT, 1, TwinleafTownPlayerHouse1F_SovereignEeveeNicknamed
+    FadeScreenIn
+    WaitFadeScreen
+    Return
+
+TwinleafTownPlayerHouse1F_SovereignEeveeNicknamed:
+    IncrementGameRecord RECORD_POKEMON_NICKNAMED
+    Return
 
     .balign 4, 0

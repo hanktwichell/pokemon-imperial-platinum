@@ -22,6 +22,95 @@
         "They’re the Quick Trams that traverse\n",
         "the Great Marsh."
       ]
+    },
+    {
+      "id": "PastoriaCityNorthHouse_Text_SovereignLaprasAsk",
+      "en_US": [
+        "Ah, heavens!\n",
+        "A Trainer has come to visit!\r",
+        "Young Trainer, would you be willing\n",
+        "to listen to my tale?"
+      ]
+    },
+    {
+      "id": "PastoriaCityNorthHouse_Text_SovereignLaprasNoStory",
+      "en_US": [
+        "You should listen to your elders!\n",
+        "You don’t know what you’re missing!"
+      ]
+    },
+    {
+      "id": "PastoriaCityNorthHouse_Text_SovereignLaprasStory",
+      "en_US": [
+        "Splendid!\r",
+        "As you can likely see from my clothing\n",
+        "and demeanor, I come from a wealthy\f",
+        "background.\r",
+        "I was fortunate to be born into a\n",
+        "wealthy family, and enjoyed a wide\f",
+        "range of experiences as a result.\r",
+        "One thing that I especially enjoyed\n",
+        "as a young girl was Surfing.\r",
+        "I was gifted a darling LAPRAS by\n",
+        "my father, and we were able to\f",
+        "take to the seas as we pleased.\r",
+        "There’s no sad end to this tale, but\n",
+        "at my age, I cannot continue such\f",
+        "activities, fun as they are.\r",
+        "However, LAPRAS love to cross the sea\n",
+        "with people and Pokémon on its back.\r",
+        "Which brings me to my point, and the\n",
+        "reason for telling you this tale...\r"
+      ]
+    },
+    {
+      "id": "PastoriaCityNorthHouse_Text_SovereignLaprasEntrust",
+      "en_US": [
+        "Could I entrust my LAPRAS to you,\n",
+        "so it can cross the seas once more?"
+      ]
+    },
+    {
+      "id": "PastoriaCityNorthHouse_Text_SovereignLaprasDeclined",
+      "en_US": [
+        "Oh, goodness...\n",
+        "Was telling that tale a waste?"
+      ]
+    },
+    {
+      "id": "PastoriaCityNorthHouse_Text_SovereignLaprasPartyFull",
+      "en_US": [
+        "Oh, goodness...\n",
+        "You have too many Pokémon."
+      ]
+    },
+    {
+      "id": "PastoriaCityNorthHouse_Text_SovereignLaprasRelief",
+      "en_US": [
+        "Oh, goodness...\n",
+        "That’s a relief. Thank you.\r"
+      ]
+    },
+    {
+      "id": "PastoriaCityNorthHouse_Text_SovereignLaprasReceived",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0} accepted the LAPRAS!\r"
+      ]
+    },
+    {
+      "id": "PastoriaCityNorthHouse_Text_SovereignLaprasNickname",
+      "en_US": [
+        "Would you like to give a nickname\n",
+        "to the LAPRAS you received?"
+      ]
+    },
+    {
+      "id": "PastoriaCityNorthHouse_Text_SovereignLaprasAfter",
+      "en_US": [
+        "I do miss Surfing the seas...\n",
+        "It was very exhilarating.\r",
+        "Please take good care of LAPRAS."
+      ]
     }
   ]
 }

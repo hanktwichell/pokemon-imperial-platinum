@@ -5334,3 +5334,42 @@ half-price menu fix) is merged.
    texts and commands. Most E10 parts came from `SpecialEvents.txt`, so the next check is the scripts it doesn't list.
 2. Update the E10 line in `docs/EngineRoadmap.md` to done once that audit is clean.
 3. Then the next milestone after E10 in `docs/EngineRoadmap.md`.
+
+## CB-0110 — 2026-10-24, 8:52 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: E10 part 35, Renegade's remaining gifts.** PR #125 (part 34) is merged.
+- **Lapras** (Lv. 35, NeverMeltIce) from a new socialite in Pastoria City's north house, with Renegade's story.
+  The scientist moves to (3, 4), as in Renegade. Flag `FLAG_SOVEREIGN_RECEIVED_LAPRAS` (was `FLAG_UNUSED_0x0975`).
+- **Mom's Eevee** (Lv. 5): a Poké Ball by the window of the player's house.
+  - Mom's send-off line (`TwinleafTownPlayerHouse1F_Text_GoEnjoyYourAdventure`) now suggests taking it.
+  - The ball can be taken from `VAR_PLAYER_HOUSE_STATE` 6 on. Flag `FLAG_SOVEREIGN_RECEIVED_EEVEE` (was `0x0976`).
+- **The other two Sinnoh starters** (Lv. 5) from Rowan's briefcase in the lab.
+  - Both at once: the party needs room for two.
+  - In lab states 2 and 3, Rowan stands by the door, so he doesn't walk over.
+  - Flag `FLAG_SOVEREIGN_TOOK_BRIEFCASE_STARTERS` (was `0x0990`).
+- **Roark's evolution stone** after his Oreburgh Mine B2F Rock Smash demo: the player names the stone, or "Don't
+  know" gets a random one of seven.
+- **One unused save flag left:** `FLAG_UNUSED_0x0991`.
+- **Tested:** all four in test builds; the gaps are listed in the changelog.
+- **Bugs caught by the tests:**
+  - A double CloseMessage around the naming subroutines. `check_double_close.py` misses this because it resets at
+    every Call.
+  - An off-screen menu: use `SetMenuXOriginToRight` with `InitLocalTextMenu 31, 1`.
+- **Harness notes:**
+  - The test save is at a new game, so the Sandgem lab plays its intro unless `VAR_SANDGEM_TOWN_LAB_STATE` is set (1).
+  - The test party has 6 Pokémon. Remove slots 5–3 with `Party_RemovePokemonBySlotIndex` for gift tests.
+
+**Files modified:**
+- `decomp/generated/vars_flags.txt`
+- Events, scripts and text for `pastoria_city_north_house`, `twinleaf_town_player_house_1f`,
+  `sandgem_town_pokemon_research_lab` and `oreburgh_mine_b2f` (scripts and text only for the mine)
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `docs/GiftPokemon_Sovereign.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Darkrai (Renegade): Lunar Wing → heal the Canalave boy → the Route 217 dark house woman's Member Card →
+   Newmoon Island, Lv. 68, fought until caught. `docs/LegendaryTriggers.md` lists it as not ported.
+2. Shaymin (Renegade): Oak's Letter from Oak in Eterna after the Route 224 counterpart battle → the tablet scene →
+   Flower Paradise, Lv. 30.
+3. Arceus (Renegade): the Foreign Building elder's tasks (16 Plates, then the Pokédex) → the Azure Flute → Spear
+   Pillar, Lv. 80. The Pokédex condition needs an owner call, because Sovereign's National Dex is far larger than
+   Renegade's.

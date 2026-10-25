@@ -5,6 +5,17 @@ the Sinnoh starters, Twinleaf Eevee, the fossils, Porygon (a Poké Ball behind J
 Lv. 22), Beldum (Steven, Oreburgh City's south house, Lv. 10), Lapras, the Jubilife School Egg, and the Kanto, Johto
 and Hoenn starters from the Pokémon Center Interviewers.
 
+## Renegade's gifts built in E10 part 35
+
+These four were in Renegade but not yet in Sovereign until part 35:
+
+| Gift | Where | Level | Notes |
+|---|---|---|---|
+| Lapras (NeverMeltIce) | Pastoria City, north house: the socialite | 35 | She tells of her days at sea, then entrusts it (story skippable on a second talk) |
+| Eevee | Twinleaf Town, the player's house: the Poké Ball by the window | 5 | Mom suggests it once she has given the Journal; before then it's hers to look after |
+| The other two Sinnoh starters | Sandgem Town, Rowan's lab: the briefcase | 5 | Rowan lets the player take both; the party needs room for two |
+| An evolution stone | Oreburgh Mine B2F: Roark, after his Rock Smash demo | — | The stone the player names (Water, Thunder, Fire, Sun, Moon, Leaf or Ice); "Don't know" gets a random one |
+
 ## New: starters from the other regions
 
 Renegade gives each earlier region's starters through the **Interviewer** in a Pokémon Center. Sovereign Platinum
