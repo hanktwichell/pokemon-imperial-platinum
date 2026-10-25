@@ -11,9 +11,12 @@ character's code in decomp/tools/msgenc/charmap.txt, minus one; the font adds no
 widest lines are exactly 216 pixels. Placeholders such as {STRVAR_1 ...} (names, numbers) count as nothing, so this
 only finds lines whose fixed text alone is too wide.
 
-This reads every text that a field script shows through a message command (Message, NPCMessage and the like), splits it
-into boxes at \\r and \\f, and reports each box with more than two lines, and each line wider than the box. A trailing
-\\n doesn't count. Signposts use their own windows and aren't checked. Exits 1 if it finds any.
+Signs have two-line windows of their own (FieldMessage_AddSignpostWindow): map and arrow signs are 20 tiles (160
+pixels) wide, the other kinds 27 tiles. Vanilla's widest map or arrow sign line is 159 pixels.
+
+This reads every text that a field script shows through a message or sign command (Message, NPCMessage, ShowMapSign
+and the like), splits it into boxes at \\r and \\f, and reports each box with more than two lines, and each line wider
+than its window. A trailing \\n doesn't count. Exits 1 if it finds any.
 
 Usage: python3 tools/test/check_message_box_lines.py decomp
 """
@@ -25,8 +28,12 @@ import sys
 
 MESSAGE_COMMANDS = ('Message', 'MessageInstant', 'MessageSynchronized', 'NPCMessage', 'EventMessage',
                     'PokemonCryAndMessage')
-USE = re.compile(r'^\s*(' + '|'.join(MESSAGE_COMMANDS) + r')\s+(\w+)')
 BOX_WIDTH = 27 * 8
+# Each sign command's window width in pixels; message commands use BOX_WIDTH.
+SIGN_WIDTHS = {'ShowMapSign': 20 * 8, 'ShowArrowSign': 20 * 8, 'ShowLandmarkSign': BOX_WIDTH,
+               'ShowScrollingSign': BOX_WIDTH, 'DrawSignpostInstantMessage': BOX_WIDTH,
+               'DrawSignpostScrollingMessage': BOX_WIDTH}
+USE = re.compile(r'^\s*(' + '|'.join(MESSAGE_COMMANDS + tuple(SIGN_WIDTHS)) + r')\s+(\w+)')
 
 
 def glyph_widths(decomp):
@@ -74,13 +81,14 @@ def main():
                 text = text_of(m)
                 if isinstance(text, str):
                     texts.setdefault(m['id'], text)
-    used = set()
+    used = {}  # text ID -> the narrowest window it's shown in
     for path in sorted(glob.glob(os.path.join(decomp, 'res', 'field', 'scripts', '*.s'))):
         with open(path, encoding='utf-8') as f:
             for line in f:
                 m = USE.match(line.split('@')[0])
                 if m:
-                    used.add(m.group(2))
+                    width = SIGN_WIDTHS.get(m.group(1), BOX_WIDTH)
+                    used[m.group(2)] = min(width, used.get(m.group(2), width))
     width_of, sequences = glyph_widths(decomp)
     bad, wide = [], []
     for text_id in sorted(used):
@@ -91,19 +99,19 @@ def main():
                 break
         for line in re.split(r'[\n\r\f]', texts.get(text_id, '')):
             width = line_width(line, width_of, sequences)
-            if width > BOX_WIDTH:
-                wide.append((text_id, width, line))
+            if width > used[text_id]:
+                wide.append((text_id, width, used[text_id], line))
     for text_id, lines, box in bad:
         print(f'{text_id}: {lines} lines in one box: {box!r}')
-    for text_id, width, line in wide:
-        print(f'{text_id}: a line is {width} pixels wide, more than the box\'s {BOX_WIDTH}: {line!r}')
+    for text_id, width, limit, line in wide:
+        print(f'{text_id}: a line is {width} pixels wide, more than its window\'s {limit}: {line!r}')
     if bad:
         print(f'{len(bad)} message(s) have a line the player can\'t see; split the box with \\r')
     if wide:
-        print(f'{len(wide)} line(s) are cut off at the box\'s right edge; reword or move a line break')
+        print(f'{len(wide)} line(s) are cut off at the window\'s right edge; reword or move a line break')
     if bad or wide:
         sys.exit(1)
-    print(f'ok: all {len(used)} field messages fit their boxes, in lines and in width')
+    print(f'ok: all {len(used)} field messages and signs fit their boxes, in lines and in width')
 
 
 if __name__ == '__main__':

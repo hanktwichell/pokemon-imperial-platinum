@@ -5883,6 +5883,9 @@ vanilla's post-game guard.
 - **`tools/test/check_message_box_lines.py`** now also reports any line wider than the 216-pixel box, measured in the
   message font's glyph widths (charmap code − 1; no letter spacing). Vanilla's widest lines are exactly 216.
   Placeholders count as nothing, so it only finds fixed text that's too wide.
+- **It also covers signs**, against their own windows: map and arrow signs are 160 pixels wide (vanilla's widest is
+  159), the other kinds 216. All 176 sign uses fit. Item descriptions were measured too (bag window, system font):
+  all fit, at most 214 of 216 pixels and 3 lines.
 - **It found two lines, now fixed:**
   - Dawn's Route 210 line (221 pixels): "And still filling the Pokédex, of course!".
   - The Electric-type Master's intro (217 pixels): the line break moved, same words.
@@ -5899,6 +5902,6 @@ vanilla's post-game guard.
 
 **Next 3 steps:**
 1. Merge this PR once both checks are green.
-2. Placeholders in long lines: Sovereign has species names up to 12 letters (Crabominable, Squawkabilly), where
-   vanilla had 10. Find the lines with a species placeholder that would overflow with the longest name.
+2. (Checked: species names stay within vanilla's 10 characters, e.g. "CRABMINABL", so a name placeholder can't make
+   a line longer than vanilla's.) Next: a menu-width check for the multichoice menus Sovereign added.
 3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.

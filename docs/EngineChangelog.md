@@ -16,7 +16,10 @@ players and the verification that was run.
   - Dawn's Route 210 line "While still filling the Pokédex, of course!" (221 pixels) is now "And still filling the
     Pokédex, of course!".
   - The Electric-type Master's intro (217 pixels) breaks its two lines at "I aim", with the same words.
-- Verified by running the check on the old texts: it reported both lines.
+- **Signs too:** the check now covers sign commands (ShowMapSign, ShowArrowSign and the other kinds), against their
+  own windows. Map and arrow signs are 20 tiles (160 pixels) wide; vanilla's widest is 159. All 176 sign uses fit,
+  in lines and in width.
+- Verified by running the check on the old texts, which reported both lines, and on a widened arrow sign.
 
 Also: `CITATIONS.md` now carries hg-engine's sprite credits (its `CREDITS.md` credits them as a group) and the Smogon
 Sprite Projects' leads, per Pokémon Showdown's credits. Smogon's per-sprite lists are in its forum threads, which
