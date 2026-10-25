@@ -120,7 +120,7 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_MALE",
+            "EVO_LEVEL",
             25,
             "SPECIES_MEOWSTIC"
         ]

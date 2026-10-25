@@ -130,7 +130,7 @@
     },
     "evolutions": [
         [
-            "EVO_LEVEL_MALE",
+            "EVO_LEVEL",
             18,
             "SPECIES_OINKOLOGNE"
         ]
