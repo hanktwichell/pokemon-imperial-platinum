@@ -864,6 +864,7 @@ static u8 sSovereignTestWarpIndex;
 // tools/test/battle_all_species.py the wild Pokémon, and tools/test/battle_form_changes.py the lead, the wild Pokémon
 // and how many turns it survives.
 struct SovereignTestWarpTarget gSovereignTestWarpTarget;
+struct SovereignTestVar gSovereignTestVar;
 u16 gSovereignTestBattleTrainer;
 struct SovereignTestWild gSovereignTestWild;
 struct SovereignTestLead gSovereignTestLead;
@@ -879,8 +880,15 @@ u8 gSovereignTestFoeSurvivesTurns;
 
 void SovereignTest_WarpNext(FieldSystem *fieldSystem)
 {
+    if (gSovereignTestVar.var != 0) {
+        *FieldSystem_GetVarPointer(fieldSystem, gSovereignTestVar.var) = gSovereignTestVar.value;
+        gSovereignTestVar.var = 0;
+    }
+
     if (gSovereignTestWarpTarget.mapHeaderID != 0) {
-        FieldTask_StartMapChangeFly(fieldSystem, gSovereignTestWarpTarget.mapHeaderID, -1, gSovereignTestWarpTarget.x, gSovereignTestWarpTarget.z, FACE_DOWN);
+        int dir = gSovereignTestWarpTarget.dir ? gSovereignTestWarpTarget.dir - 1 : FACE_DOWN;
+
+        FieldTask_StartMapChangeFly(fieldSystem, gSovereignTestWarpTarget.mapHeaderID, -1, gSovereignTestWarpTarget.x, gSovereignTestWarpTarget.z, dir);
         gSovereignTestWarpTarget.mapHeaderID = 0;
         return;
     }

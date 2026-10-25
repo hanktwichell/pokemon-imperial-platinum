@@ -4,6 +4,39 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Playtest pass — talking to every added object
+
+**`tools/test/talk_to_objects.py` (local; about an hour in 4 parts)** talks to each of the 252 map objects with a script
+that Sovereign added or moved (`check_object_tiles.py`'s list), in the test build:
+- **Setting up:** it comes into the map by its way in (the tile a player steps onto from its first warp), and plays
+  out any scene on entering it there. Then it warps next to the object (or across a counter), facing it, and presses A.
+- **Playing it out:** A pages through text and answers prompts, taps pick moves in a battle, and B now and then backs
+  out of a menu, until the field is free again. God mode is on, so a trainer's battle ends at once.
+- **To pass:** the script must end, with no hang. An object that nothing answers isn't there on a new game: a flag
+  hides it until later in the story.
+
+Two scenes on entering a map need the story's own way in, so the test marks them as seen first:
+- Flint at Sunyshore's gate, as the player comes from Route 222;
+- Mars and Jupiter in Stark Mountain, with Buck along.
+
+**Results:** all 252 pass, and the runs found no game bugs.
+- **Script ran and ended:** 140 objects, including all the Battleground's trainers and the 24-battle Battle Marathon.
+- **Hidden on a new game:** 112, each behind a flag until later in the story.
+
+The harness took a few rounds to get right:
+- A scene on entering a map has to play out where the player really arrives.
+- A busy map can miss the frame a button goes down.
+- The Battle Marathon ran the lead's moves out of PP, so in god mode the player's moves now cost no PP.
+
+The marathon passed on that last build. The other 251 objects ran on the build before it, which differs only in that
+PP rule.
+
+**Test-build hooks** (`include/sovereign_test.h`):
+- `gSovereignTestWarpTarget` also sets the way the player faces.
+- `gSovereignTestVar` sets a var before the next test warp.
+- In god mode the player's moves cost no PP, so the Battle Marathon's 24 battles can't leave the lead with no move.
+
+
 ## Playtest pass — Zero to Hero, and the forms' TMs
 
 **Fix: the forms that share their species' learnset can learn Renegade's six swapped TMs as it can.** E10's TM swaps

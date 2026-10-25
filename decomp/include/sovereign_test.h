@@ -9,6 +9,13 @@ struct SovereignTestWarpTarget {
     u16 mapHeaderID;
     u16 x;
     u16 z;
+    u16 dir; // when set, the way the player faces + 1 (FACE_UP + 1...); else down
+};
+
+// A var the next test warp sets first, so a harness can mark a story scene as seen.
+struct SovereignTestVar {
+    u16 var; // when set
+    u16 value;
 };
 
 struct SovereignTestWild {
@@ -89,6 +96,8 @@ struct SovereignTestItemUse {
 
 // When mapHeaderID is set, the next SELECT+L+R warps here instead of to the next test location (script_manager.c).
 extern struct SovereignTestWarpTarget gSovereignTestWarpTarget;
+// When var is set, the next SELECT+L+R sets it first (see struct SovereignTestVar).
+extern struct SovereignTestVar gSovereignTestVar;
 // When set, the next SELECT+R battles this trainer instead of TRAINER_SOVEREIGN_TEST (field_control.c).
 extern u16 gSovereignTestBattleTrainer;
 // When species is set, the next SELECT battles this wild Pokémon instead of a Chansey (field_control.c).
@@ -113,7 +122,8 @@ extern u8 gSovereignTestPlayerBattleForm;
 extern u8 gSovereignTestLeadFormAfter;
 // While set (god mode), test battles are one-sided, so one sends out every Pokémon the opponent has:
 // - a foe that loses any HP loses all of it, and the player's Pokémon lose none (BtlCmd_UpdateHealthBarValue);
-// - the player's moves ignore the foes' abilities (Battler_IgnorableAbility);
+// - the player's moves ignore the foes' abilities (Battler_IgnorableAbility) and cost no PP
+//   (BattleControllerPlayer_DecrementPP);
 // - no EXP is gained, so there are no level-up prompts (BtlCmd_CalcExpGain);
 // - the battle style is Set, with no "Will you change Pokémon?" prompt (BattleSystem_GetBattleStyle);
 // - the text is fast (BattleSystem_GetTextSpeed).
