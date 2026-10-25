@@ -4,6 +4,32 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 36) — Renegade's Darkrai: the Member Card from Route 217, no distribution
+
+Vanilla's Darkrai needs the Member Card distribution. Renegade gives the card in the game instead:
+- **Route 217's north-east house:** the woman still gives the Spell Tag on the first talk, but she no longer vanishes.
+  - After that she dozes, muttering about Darkrai's nightmares.
+  - If the player has the Lunar Wing (from catching Cresselia), it glows and wakes her. In a rage she hands over the
+    Member Card and sends the player to Canalave. Then she praises Darkrai's nightmares (Renegade's lines).
+  - Having the card marks this done; no new flag. Her old hide flag is cleared on entry, for saves where she vanished.
+  - As in Renegade she sits still, facing east.
+- **Canalave City, the Harbor Inn, Newmoon Island Forest:** the distribution checks are gone. The rest of vanilla's
+  chain stays:
+  - post-game, the National Dex, the Member Card, and the sailor's son woken with the Lunar Wing;
+  - then the inn's dream, Newmoon Island, and Darkrai in the forest.
+- **Darkrai is Lv. 68** (Renegade's; vanilla 50). Vanilla already lets the dream repeat until it's caught.
+
+Verified in a test build (post-game, the boy woken, the Lunar Wing and Master Balls in the bag):
+- Route 217: "...A person...?" and the Spell Tag, then the muttering, "A's Lunar Wing began to glow...", "The muttering
+  woman woke up!", her rage, the Member Card into the Key Items pocket, and her after-line.
+- Canalave: the Harbor Inn door opens. The dream scene plays and ends on Newmoon Island.
+- Newmoon Island Forest: Darkrai stands at (16, 13). The battle is Lv. 68, and a Master Ball catches it.
+  - The voice's lines play, then the player wakes in the inn's bed.
+  - Back in the forest, Darkrai is gone.
+- Bug found and fixed while testing: the patch script's "already applied" check skipped the forest's change, because
+  the new text was a prefix of the old. Darkrai stayed hidden until it was fixed by hand.
+- Not tested: a defeated (not caught) Darkrai and the repeated dream.
+
 ## E10 (part 35) — Renegade's remaining gifts: Lapras, Mom's Eevee, the briefcase starters, Roark's stone
 
 An audit of Renegade's script texts against ours (`SpecialEvents.txt` and the gift list in

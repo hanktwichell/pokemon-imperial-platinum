@@ -5373,3 +5373,63 @@ half-price menu fix) is merged.
 3. Arceus (Renegade): the Foreign Building elder's tasks (16 Plates, then the Pokédex) → the Azure Flute → Spear
    Pillar, Lv. 80. The Pokédex condition needs an owner call, because Sovereign's National Dex is far larger than
    Renegade's.
+
+## CB-0111 — 2026-10-24, 9:02 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Work in progress (stopped on the owner's interrupt): E10 part 36, Renegade's Darkrai chain.** PR #126 (part 35)
+is merged. Part 36 is committed and pushed to the branch as work in progress. No PR yet.
+- **Route 217 north-east house:** the woman gives the Spell Tag as before, but she no longer vanishes after it.
+  - Later she dozes, muttering about Darkrai. The Lunar Wing in the bag wakes her, and she gives the Member Card
+    (Renegade's texts).
+  - Having the card marks the event done, so no flag is needed. Her after-line then plays.
+  - A new OnTransition clears her old hide flag, so she comes back on saves where she had vanished.
+- **Canalave City, the Harbor Inn and Newmoon Island Forest:** the Darkrai distribution checks are removed. The
+  vanilla gates stay: post-game, National Dex, the Member Card, and the Canalave boy woken.
+- **Darkrai:** Lv. 68 (Renegade's; vanilla 50).
+- **Tested in a test build:**
+  - The Spell Tag, then the Lunar Wing scene and the Member Card, then her after-line.
+  - The Harbor Inn door opens and the dream warps the player to Newmoon Island.
+- **Not tested yet:** Darkrai in the forest. In that test it didn't appear, because the patch script had skipped the
+  forest's distribution check (its "already applied" test matched a prefix of the original). It has since been
+  removed by hand, but that fix hasn't been built or tested.
+- **Note:** the interrupted test command had left the test patch in `decomp/src/script_manager.c`. It was restored to
+  HEAD before this commit.
+
+**Files modified:**
+- Scripts: `scripts_route_217_northeast_house.s`, `scripts_init_route_217_northeast_house.s`,
+  `scripts_canalave_city.s`, `scripts_canalave_city_harbor_inn.s` and `scripts_newmoon_island_forest.s`
+- `decomp/res/text/route_217_northeast_house.json` and `decomp/res/field/events/events_route_217_northeast_house.json`
+- `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Build, then test Darkrai in Newmoon Island Forest: does it appear, and does a Master Ball catch it at Lv. 68?
+   Also check the return to the inn after the dream.
+2. Docs: an EngineChangelog part 36 entry, the Darkrai row in `docs/LegendaryTriggers.md`, the roadmap E10 line, and
+   CB-0112. Then the docs regeneration check, a PR, and a merge when green.
+3. Shaymin (part 37): Renegade's Oak gives Oak's Letter after the Route 224 counterpart battle (Renegade's text 40–41
+   in `eterna_city_south_house`). Remove the Shaymin distribution checks in `scripts_route_224.s` and
+   `scripts_flower_paradise.s`.
+
+## CB-0112 — 2026-10-24, 9:30 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: E10 part 36, Renegade's Darkrai (finishes CB-0111's work in progress).**
+- **Forest fix:** the Newmoon Island Forest distribution check is now removed, so Darkrai appears.
+- **Tested in full in a test build:**
+  - Route 217's woman: the Spell Tag first, then the Lunar Wing scene and the Member Card, then her after-line.
+  - The Harbor Inn dream warps to Newmoon Island.
+  - Darkrai at Lv. 68 is caught with a Master Ball. The player wakes in the inn, and Darkrai is gone from the forest.
+- **Docs:** an EngineChangelog part 36 entry, the roadmap's E10 line, and `docs/LegendaryTriggers.md`. The Darkrai row
+  is now ported, and only Shaymin and Arceus still wait on vanilla distributions.
+- **Not tested:** a Darkrai knocked out instead of caught, and the repeated dream (vanilla's reset).
+
+**Files modified:**
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `docs/LegendaryTriggers.md`, `CLAUDE_STATUS.md`
+- The code, including the forest fix in `scripts_newmoon_island_forest.s`, is already in CB-0111's commit.
+
+**Next 3 steps:**
+1. Open the part 36 PR, and merge it once both checks are green.
+2. Shaymin (part 37): Renegade's Oak gives Oak's Letter after the Route 224 counterpart battle (Renegade's text 40–41
+   in `eterna_city_south_house`). Remove the Shaymin distribution checks in `scripts_route_224.s` and
+   `scripts_flower_paradise.s`. Check how part 30's Route 224 battle flag fits.
+3. Arceus (part 38): the Foreign Building elder's Plates and Pokédex tasks, the Azure Flute, then Spear Pillar at
+   Lv. 80. The Pokédex condition needs an owner call, because the National Dex has over 1,000 species.

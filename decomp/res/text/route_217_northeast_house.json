@@ -17,6 +17,51 @@
         "It intensifies Ghost-type moves...\f",
         "May it serve you well..."
       ]
+    },
+    {
+      "id": "Route217NortheastHouse_Text_SovereignNightmare",
+      "en_US": [
+        "...Kekeke...\n",
+        "What a wonderful nightmare...\r",
+        "I hope nobody ever wakes me up...\n",
+        "Thank you, DARKRAI... Zzz..."
+      ]
+    },
+    {
+      "id": "Route217NortheastHouse_Text_SovereignLunarWingGlows",
+      "en_US": [
+        "{STRVAR_1 3, 0, 0}’s Lunar Wing began\n",
+        "to glow...\r"
+      ]
+    },
+    {
+      "id": "Route217NortheastHouse_Text_SovereignWokeUp",
+      "en_US": "The muttering woman woke up!\r"
+    },
+    {
+      "id": "Route217NortheastHouse_Text_SovereignHowDareYou",
+      "en_US": [
+        "Keh! How dare you!\n",
+        "I was enjoying that lovely nightmare!\r",
+        "You! You don’t get it, do you?\n",
+        "The power of the Pitch-Black Pokémon!\r",
+        "Why don’t you learn about it?!\n",
+        "Here, you scoundrel!\r"
+      ]
+    },
+    {
+      "id": "Route217NortheastHouse_Text_SovereignGoToCanalave",
+      "en_US": [
+        "Go to the abandoned house in Canalave!\n",
+        "Meet the amazing DARKRAI for yourself!"
+      ]
+    },
+    {
+      "id": "Route217NortheastHouse_Text_SovereignVividNightmares",
+      "en_US": [
+        "Vivid! Memorable! Mind-numbing!\n",
+        "Nightmares from DARKRAI are the best!"
+      ]
     }
   ]
 }

@@ -172,12 +172,12 @@ dealer a present-day Pokémon gives its Paradox Pokémon at the shown Pokémon's
 | Regigigas | static | Snowpoint Temple B5F | 70 (Renegade's; vanilla 1) | after the Hall of Fame, with Regirock, Regice and Registeel in the party (E10 part 26: the temple now opens before the Snowpoint Gym, for Renegade's story scene where Candice and Maylene put it back to sleep; decision 29) | the Hall of Fame |
 | Cresselia | static | Fullmoon Island's clearing (16, 15) | 68 (Renegade's; vanilla 50, a roamer) | after the Lunar Wing quest | caught; it's back on the next visit until then. The catch leaves the Lunar Wing where it stood |
 | Articuno, Zapdos, Moltres | no longer roam (E10 part 27, decision 33) | they stand where Renegade put its portals; see Renegade's events below. Professor Oak in Eterna City's south house now only hints at the places with the Up-Grade, and praises the catch as before | — | — | — |
-| Darkrai | static | Newmoon Island | 50 | Member Card and the distribution | — |
+| Darkrai | static | Newmoon Island Forest | 68 (Renegade's; vanilla 50) | post-game, with the National Dex and the Canalave boy woken, and the Member Card from the woman in Route 217's north-east house (the Lunar Wing wakes her; E10 part 36). The Harbor Inn's dream then takes the player to Newmoon Island. No distribution | caught; until then the dream can be repeated (vanilla's reset on waking) |
 | Shaymin | static | Flower Paradise | 30 | Oak's Letter and the distribution | — |
 | Arceus | static | Hall of Origin | 80 | Azure Flute and the distribution | — |
 | Rotom | static | Old Chateau, the TV room | 20 | night | — |
 
-Darkrai, Shaymin and Arceus need vanilla's distribution events, so they can't be met in normal play yet.
+Shaymin and Arceus still need vanilla's distribution events, so they can't be met in normal play yet.
 
 ## Renegade Platinum's events, ported (E10)
 
@@ -221,7 +221,6 @@ against the Chronicles':
 
 | Pokémon | Renegade's place | Lv. | Chronicle encounter nearby |
 |---|---|---|---|
-| Darkrai | until caught | 68–70 | — |
 | Shaymin | Flower Paradise, near Route 224's tablet | 30 | Enamorus, Pecharunt (Route 224) |
 | Arceus | Azure Flute from Hearthome's Foreign Building | 80 | — |
 
