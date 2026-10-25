@@ -47,7 +47,6 @@ PokemonLeagueHallOfFame_EnterHallOfFame:
     SetFlag FLAG_UNLOCKED_VS_SEEKER_LVL_4
     GetNationalDexEnabled VAR_RESULT
     CallIfEq VAR_RESULT, TRUE, PokemonLeagueHallOfFame_EnableHiddenLocationSpringPath
-    CallIfEq VAR_DUMMY_0x40F4, 0, PokemonLeagueHallOfFame_IncreaseDummyVar
     GetPartyCount VAR_RESULT
     PlayHallOfFameHealingAnimation VAR_RESULT
     FadeScreenOut FADE_SCREEN_SPEED_MEDIUM
@@ -60,10 +59,6 @@ PokemonLeagueHallOfFame_EnterHallOfFame:
     WaitFadeScreen
     ReleaseAll
     End
-
-PokemonLeagueHallOfFame_IncreaseDummyVar:
-    SetVar VAR_DUMMY_0x40F4, 1
-    Return
 
 PokemonLeagueHallOfFame_EnableHiddenLocationSpringPath:
     EnableHiddenLocation HIDDEN_LOCATION_SPRING_PATH

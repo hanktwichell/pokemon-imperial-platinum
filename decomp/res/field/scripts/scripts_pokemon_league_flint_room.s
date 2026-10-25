@@ -15,6 +15,7 @@ PokemonLeagueFlintRoom_Flint:
     PlayTrainerEncounterBGM TRAINER_ELITE_FOUR_FLINT
     CallIfUnset FLAG_GAME_COMPLETED, PokemonLeagueFlintRoom_FlintIntro
     CallIfSet FLAG_GAME_COMPLETED, PokemonLeagueFlintRoom_FlintGameCompletedIntro
+    Call PokemonLeagueFlintRoom_SovereignChooseFormat
     CloseMessage
     CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueFlintRoom_StartFlintBattle
     CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueFlintRoom_StartFlintRematchBattle
@@ -33,11 +34,21 @@ PokemonLeagueFlintRoom_Flint:
     End
 
 PokemonLeagueFlintRoom_StartFlintBattle:
+    GoToIfEq VAR_0x8008, 1, PokemonLeagueFlintRoom_SovereignStartFlintDoublesBattle
     StartTrainerBattle TRAINER_ELITE_FOUR_FLINT
     Return
 
+PokemonLeagueFlintRoom_SovereignStartFlintDoublesBattle:
+    StartTrainerBattle TRAINER_SOVEREIGN_ELITE_FOUR_FLINT_DOUBLES
+    Return
+
 PokemonLeagueFlintRoom_StartFlintRematchBattle:
+    GoToIfEq VAR_0x8008, 1, PokemonLeagueFlintRoom_SovereignStartFlintRematchDoublesBattle
     StartTrainerBattle TRAINER_ELITE_FOUR_FLINT_REMATCH
+    Return
+
+PokemonLeagueFlintRoom_SovereignStartFlintRematchDoublesBattle:
+    StartTrainerBattle TRAINER_SOVEREIGN_ELITE_FOUR_FLINT_REMATCH_DOUBLES
     Return
 
 PokemonLeagueFlintRoom_CreateJournalEventDefeatedFlint:
@@ -87,6 +98,31 @@ PokemonLeagueFlintRoom_FlintPostBattle:
 
 PokemonLeagueFlintRoom_FlintGameCompletedPostBattle:
     Message PokemonLeagueFlintRoom_Text_FlintGameCompletedPostBattle
+    Return
+
+@ Sovereign (E11, docs/EliteFourFormat.md): see PokemonLeagueAaronRoom_SovereignChooseFormat for the bits. Flint asks
+@ only when Aaron and Bertha differed; Lucian gets the other format.
+PokemonLeagueFlintRoom_SovereignChooseFormat:
+    CheckVarBit VAR_SOVEREIGN_E4_FORMAT, 5, VAR_RESULT
+    GoToIfEq VAR_RESULT, 1, PokemonLeagueFlintRoom_SovereignDecidedFormat
+    Common_SovereignE4AskFormat
+    SetVar VAR_0x8008, VAR_RESULT
+    SetVarBit VAR_SOVEREIGN_E4_FORMAT, 2, VAR_RESULT
+    SetVarBit VAR_SOVEREIGN_E4_FORMAT, 5, 1
+    SetVarBit VAR_SOVEREIGN_E4_FORMAT, 3, 1
+    CallIfEq VAR_0x8008, 1, PokemonLeagueFlintRoom_SovereignLucianSingles
+    Return
+
+PokemonLeagueFlintRoom_SovereignLucianSingles:
+    SetVarBit VAR_SOVEREIGN_E4_FORMAT, 3, 0
+    Return
+
+PokemonLeagueFlintRoom_SovereignDecidedFormat:
+    CheckVarBit VAR_SOVEREIGN_E4_FORMAT, 2, VAR_0x8008
+    GoToIfEq VAR_0x8008, 0, PokemonLeagueFlintRoom_SovereignDecidedFormatEnd
+    Common_SovereignE4CheckLoneMon
+    SetVar VAR_0x8008, VAR_RESULT
+PokemonLeagueFlintRoom_SovereignDecidedFormatEnd:
     Return
 
     .balign 4, 0

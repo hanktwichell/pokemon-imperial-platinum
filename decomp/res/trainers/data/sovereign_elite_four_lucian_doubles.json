@@ -1,0 +1,118 @@
+{
+    "name": "Lucian",
+    "class": "TRAINER_CLASS_ELITE_FOUR_LUCIAN",
+    "items": [
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT",
+        "AI_FLAG_TAG_STRATEGY"
+    ],
+    "double_battle": true,
+    "party": [
+        {
+            "species": "SPECIES_MR_MIME",
+            "form": 0,
+            "level": 74,
+            "item": "ITEM_LIGHT_CLAY",
+            "moves": [
+                "MOVE_PSYCHIC",
+                "MOVE_DAZZLING_GLEAM",
+                "MOVE_REFLECT",
+                "MOVE_LIGHT_SCREEN"
+            ],
+            "iv_scale": 242,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ESPEON",
+            "form": 0,
+            "level": 74,
+            "item": "ITEM_WISE_GLASSES",
+            "moves": [
+                "MOVE_PSYCHIC",
+                "MOVE_DAZZLING_GLEAM",
+                "MOVE_AURA_SPHERE",
+                "MOVE_POWER_GEM"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_BRONZONG",
+            "form": 0,
+            "level": 74,
+            "item": "ITEM_LEFTOVERS",
+            "moves": [
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_GYRO_BALL",
+                "MOVE_REFLECT",
+                "MOVE_LIGHT_SCREEN"
+            ],
+            "iv_scale": 248,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ALAKAZAM",
+            "form": 0,
+            "level": 74,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_PSYCHIC",
+                "MOVE_SHADOW_BALL",
+                "MOVE_ENERGY_BALL",
+                "MOVE_AURA_SPHERE"
+            ],
+            "iv_scale": 237,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_METAGROSS",
+            "form": 0,
+            "level": 74,
+            "item": "ITEM_MUSCLE_BAND",
+            "moves": [
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_METEOR_MASH",
+                "MOVE_EARTHQUAKE",
+                "MOVE_EXPLOSION"
+            ],
+            "iv_scale": 243,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_GALLADE",
+            "form": 0,
+            "level": 75,
+            "item": "ITEM_SCOPE_LENS",
+            "moves": [
+                "MOVE_PSYCHO_CUT",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_LEAF_BLADE",
+                "MOVE_NIGHT_SLASH"
+            ],
+            "iv_scale": 251,
+            "ball_seal": 11
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_LAST_BATTLER",
+            "en_US": [
+                "Hmm...\n",
+                "Now what should I do...\n"
+            ]
+        },
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "I see...\r",
+                "You getting past the three before\n",
+                "me was no fluke. Your power is real.\n"
+            ]
+        }
+    ]
+}

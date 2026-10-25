@@ -52,82 +52,46 @@ every member, Cynthia included.
   validator in `tools/design/gen_trainer_docs.py` enforces this.
 - Renegade's random choice among four teams per member is replaced by one fixed team per format.
 
-## Implementation notes (scripts)
+## In the game (E11)
 
-New save variables and flag (IDs to be assigned from unused slots):
+Built as designed above. The scripts are in the five room maps (`scripts_pokemon_league_*_room.s`).
 
-| Name | Meaning |
+**State.** One variable, `VAR_SOVEREIGN_E4_FORMAT` (it was the unused `VAR_DUMMY_0x40F4`), holds the run's formats as
+bits. New script commands `CheckVarBit` and `SetVarBit` read and write them.
+
+| Bit | Meaning |
 |---|---|
-| `VAR_SOVEREIGN_E4_MODE` | 0 = two-and-two (first challenge), 1 = all singles, 2 = all doubles |
-| `VAR_SOVEREIGN_E4_FORMAT` | bit 0 Aaron, bit 1 Bertha, bit 2 Flint, bit 3 Lucian, bit 4 Cynthia (1 = doubles) |
-| `VAR_SOVEREIGN_E4_STAGE` | how many prompts have been answered this run (0–3) |
-| `FLAG_GAME_COMPLETED` | existing vanilla flag: Champion beaten at least once |
+| 0 | Aaron (1 = doubles) |
+| 1 | Bertha |
+| 2 | Flint |
+| 3 | Lucian |
+| 4 | Cynthia |
+| 5 | the remaining formats are decided, so no more questions |
+| 6 | Bertha announces the forced pair after her battle |
 
-New trainer entries (each with the double-battle flag set where needed):
+**The run.** Aaron starts every run, so his script sets the variable afresh:
+- First challenge, or "Two and two": Cynthia doubles, then Aaron asks.
+- "All singles": everyone singles, decided.
+- "All doubles": everyone doubles, decided.
 
-- Round 1: Aaron, Bertha, Flint, Lucian × {singles, doubles} = 8, plus Cynthia doubles (+ an optional Cynthia R1 singles test team).
-- Round 2: Aaron, Bertha, Flint, Lucian, Cynthia × {singles, doubles} = 10.
+A loss sends the player back to the Pokémon Center. The defeated flags reset there (vanilla), so Aaron asks again.
 
-Pseudocode in the style of the pret/pokeplatinum script macros (exact command names to be confirmed against DSPRE or the
-decomp when implementing):
+**The questions** are two common scripts, so every room shares them:
+- `Common_SovereignE4AskFormat` (0x80D) asks "single battle or double battle?" and returns 1 for doubles.
+- `Common_SovereignE4CheckLoneMon` (0x80E) runs before a double battle when the player has only one Pokémon able to
+  battle. It warns and offers singles, and returns 1 to keep doubles.
+- A forced or pre-decided double battle also gets the warning. Choosing singles there changes only that battle.
 
-```
-LeagueEntrance_OnEnter:                    ; existing script on entering Aaron's room
-    SetVar VAR_SOVEREIGN_E4_FORMAT, 0
-    SetVar VAR_SOVEREIGN_E4_STAGE, 0
-    GoToIfUnset FLAG_GAME_COMPLETED, _first
-    SetVar VAR_SOVEREIGN_E4_MODE, 0         ; reset; Aaron asks again
-_first:
-    End
+**Teams.** The singles battles use the existing trainers:
+- `TRAINER_ELITE_FOUR_*` and `TRAINER_CHAMPION_CYNTHIA`.
+- Their `_REMATCH` versions once Charon is arrested at Stark Mountain, as in vanilla.
 
-Aaron_PreBattle:
-    Message Aaron_Intro
-    GoToIfUnset FLAG_GAME_COMPLETED, _ask_aaron
-    ShowMenu3 "All singles", "All doubles", "Two and two" -> VAR_RESULT
-    CallIfEq VAR_RESULT, 0, _set_all_singles     ; MODE=1, FORMAT=0b00000
-    CallIfEq VAR_RESULT, 1, _set_all_doubles     ; MODE=2, FORMAT=0b11111
-    GoToIfNe VAR_SOVEREIGN_E4_MODE, 0, _battle_aaron
-_ask_aaron:
-    Call AskSinglesOrDoubles                     ; VAR_RESULT: 0 singles / 1 doubles
-    SetFormatBit 0, VAR_RESULT
-    AddVar VAR_SOVEREIGN_E4_STAGE, 1
-_battle_aaron:
-    Call StartFormatBattle_Aaron                 ; picks R1/R2 x singles/doubles trainer ID from bit 0
+The doubles battles use ten new trainers, `TRAINER_SOVEREIGN_ELITE_FOUR_*_DOUBLES` and
+`TRAINER_SOVEREIGN_CHAMPION_CYNTHIA_DOUBLES`, each with a `_REMATCH_DOUBLES` version:
+- They took over unused dummy trainer slots.
+- For now each is a copy of its singles team as a double battle, with the doubles AI (`AI_FLAG_TAG_STRATEGY`).
+- The Sovereign teams in `data/trainers_sovereign.yaml` (singles and doubles, both rounds) replace them with T1.
 
-Bertha_PreBattle:
-    GoToIfNe VAR_SOVEREIGN_E4_MODE, 0, _battle_bertha
-    Call AskSinglesOrDoubles
-    SetFormatBit 1, VAR_RESULT
-    ; if bit0 == bit1: force Flint and Lucian to the opposite and announce it after the battle
-    CallIf Bit0EqualsBit1, _force_flint_lucian
-_battle_bertha:
-    Call StartFormatBattle_Bertha
-
-Flint_PreBattle:
-    GoToIfNe VAR_SOVEREIGN_E4_MODE, 0, _battle_flint
-    GoToIf Bit0EqualsBit1, _battle_flint         ; already forced
-    Call AskSinglesOrDoubles
-    SetFormatBit 2, VAR_RESULT
-    SetFormatBit 3, !VAR_RESULT                  ; Lucian gets the other one
-_battle_flint:
-    Call StartFormatBattle_Flint
-
-Lucian_PreBattle:
-    Call StartFormatBattle_Lucian                ; no prompt
-
-Cynthia_PreBattle:
-    ; first challenge or two-and-two: doubles; otherwise bit 4 from MODE
-    Call StartFormatBattle_Cynthia
-
-AskSinglesOrDoubles:
-    ShowYesNo-style 2-option menu "Singles" / "Doubles" -> VAR_RESULT
-    GoToIfEq VAR_RESULT, 0, _done
-    CheckPartyUsableCount -> VAR_0x8004
-    GoToIfGe VAR_0x8004, 2, _done
-    Message Warn_OnlyOnePokemon                  ; "Are you sure?" -> No => VAR_RESULT = 0
-_done:
-    Return
-```
-
-`StartFormatBattle_<Member>` chooses between the four trainer IDs (round × format) and calls the double-battle or
-single-battle start command accordingly.
+**Elsewhere:**
+- The rematch doubles teams pay the post-game 3× prize money (decision 24).
+- The level cap's Champion steps end with either Cynthia (`data/level_caps.yaml`).

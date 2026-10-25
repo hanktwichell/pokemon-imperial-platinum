@@ -4,6 +4,50 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E11 (part) — the Elite Four format: two singles, two doubles, and the rematch menu
+
+`docs/EliteFourFormat.md` is now in the game:
+- **First challenge:** Aaron and Bertha each ask "single battle or double battle?" after their intro.
+  - If the two answers differ, Flint asks too, and Lucian gets the other format.
+  - If they match, Flint and Lucian get the other format with no question, and Bertha says so after her battle
+    ("You've chosen single battles twice. Flint and Lucian will meet you in double battles!").
+  - Cynthia is always a double battle.
+- **Rematches** (after the first Hall of Fame): Aaron first offers "All singles", "All doubles" or "Two and two".
+  "Two and two" works like the first challenge.
+- **One Pokémon able to battle:** before any double battle the player is warned ("It would face two alone") and may
+  switch that battle to singles. This covers the forced and pre-decided ones too.
+- A loss resets the run. Aaron asks again, because the defeated flags reset at the Pokémon Center as in vanilla.
+
+How it works:
+- **State:** one variable, `VAR_SOVEREIGN_E4_FORMAT` (was the unused `VAR_DUMMY_0x40F4`), holds a bit per member plus
+  "decided" and "announce" bits. Its only writes were two dummy increments, in Twinleaf Town and the Hall of Fame;
+  those are removed.
+  - New script command `SovereignVarBit`, with the macros `CheckVarBit` and `SetVarBit`, reads and writes the bits.
+- **Shared scripts:** the question and the warning are new common scripts, `Common_SovereignE4AskFormat` (0x80D) and
+  `Common_SovereignE4CheckLoneMon` (0x80E). Their texts are in `common_strings.json`.
+- **Doubles trainers:** ten new trainers took over unused dummy slots: `TRAINER_SOVEREIGN_ELITE_FOUR_*_DOUBLES`,
+  `TRAINER_SOVEREIGN_CHAMPION_CYNTHIA_DOUBLES`, and a `_REMATCH_DOUBLES` version of each.
+  - They're placeholders: each is its singles team as a double battle, with the doubles AI (`AI_FLAG_TAG_STRATEGY`).
+  - T1 replaces both formats with the Sovereign teams in `data/trainers_sovereign.yaml`.
+  - The round 2 teams still come with Charon's arrest, as in vanilla.
+- **Elsewhere:** the rematch doubles teams pay the post-game 3× prize money (decision 24). The level cap's two
+  Champion steps now end with either Cynthia (`any:` in `data/level_caps.yaml`).
+
+Verified in a test build. A test-only patch skipped each battle and logged the trainer it would have started. Each of
+the seven runs logged the expected five trainers:
+
+| Run | Choices | Logged (Aaron, Bertha, Flint, Lucian, Cynthia) |
+|---|---|---|
+| First challenge | S, D, Flint asked: S | singles, doubles, singles, doubles, doubles |
+| First challenge | S, S | singles, singles, doubles, doubles, doubles (Bertha announced it) |
+| First challenge | D, D | doubles, doubles, singles, singles, doubles |
+| Rematch | All singles | the five round 2 singles teams |
+| Rematch | All doubles | the five round 2 doubles teams |
+| Rematch | Two and two: D, S, Flint asked: D | doubles, singles, doubles, singles, doubles (round 2) |
+| One Pokémon able | D then No, D then Yes, Flint S, Lucian's forced D then No, Cynthia Yes | singles, doubles, singles, singles, doubles |
+
+A real (unskipped) Aaron double battle starts: Yanmega and Scizor against Garchomp and Turtwig.
+
 ## E14 (part) — the Infinite Repel's ON tag in the bag (QoL #3)
 
 The last open piece of QoL #3 (the approved list's "a bag icon shows its state"):

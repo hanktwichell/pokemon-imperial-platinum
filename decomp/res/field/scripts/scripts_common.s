@@ -86,6 +86,8 @@
     ScriptEntry CommonScript_SovereignTotemTrial @ 0x80A
     ScriptEntry CommonScript_SovereignLegendaryEncounter @ 0x80B
     ScriptEntry CommonScript_SovereignStake @ 0x80C
+    ScriptEntry CommonScript_SovereignE4AskFormat @ 0x80D
+    ScriptEntry CommonScript_SovereignE4CheckLoneMon @ 0x80E
     ScriptEntryEnd
 
 CommonScript_Dummy2010:
@@ -1877,5 +1879,38 @@ CommonScript_SovereignRemoveCrownPiece:
     Call CommonScript_InternalAddItemQuantityNoLineFeed
 CommonScript_SovereignTryMergeCrownEnd:
     Return
+
+    
+
+@ Sovereign (E11, docs/EliteFourFormat.md): an Elite Four member asks for a single or a double battle. VAR_RESULT
+@ comes back 1 for doubles, 0 for singles; doubles with only one Pokémon able to battle asks first.
+CommonScript_SovereignE4AskFormat:
+    Message CommonStrings_Text_SovereignE4AskFormat
+    InitLocalTextMenu 31, 11, 0, VAR_RESULT, FALSE
+    SetMenuXOriginToRight
+    AddMenuEntryImm CommonStrings_Text_SovereignE4MenuSingles, 0
+    AddMenuEntryImm CommonStrings_Text_SovereignE4MenuDoubles, 1
+    ShowMenu
+    GoToIfEq VAR_RESULT, 1, CommonScript_SovereignE4CheckLoneMon
+    SetVar VAR_RESULT, 0
+    ReturnCommonScript
+    End
+
+@ Sovereign (E11): before a double battle in the League. With one Pokémon able to battle, the player may switch to a
+@ single battle. VAR_RESULT comes back 1 for doubles, 0 for singles.
+CommonScript_SovereignE4CheckLoneMon:
+    CheckHasTwoAliveMons VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, CommonScript_SovereignE4KeepDoubles
+    Message CommonStrings_Text_SovereignE4LoneMon
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_YES, CommonScript_SovereignE4KeepDoubles
+    SetVar VAR_RESULT, 0
+    ReturnCommonScript
+    End
+
+CommonScript_SovereignE4KeepDoubles:
+    SetVar VAR_RESULT, 1
+    ReturnCommonScript
+    End
 
     .balign 4, 0

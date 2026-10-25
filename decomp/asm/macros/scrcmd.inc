@@ -5104,6 +5104,25 @@
     .short \destVar
     .endm
 
+    // Sovereign: one bit of a variable (the Elite Four format, docs/EliteFourFormat.md).
+    // CheckVarBit: destVar = that bit (0 or 1).
+    .macro CheckVarBit var, bit, destVar
+    .short SCRCMD_SOVEREIGNVARBIT
+    .short 0
+    .short \var
+    .short \bit
+    .short \destVar
+    .endm
+
+    // SetVarBit: the bit = 1 if value (a number or a variable) isn't 0, else 0.
+    .macro SetVarBit var, bit, value
+    .short SCRCMD_SOVEREIGNVARBIT
+    .short 1
+    .short \var
+    .short \bit
+    .short \value
+    .endm
+
     // Sovereign (FM): sets a party Pokémon's form (a gift in a form: Battle Bond Greninja)
     .macro SovereignSetPartyMonForm partySlot, form
     .short SCRCMD_SOVEREIGNSETPARTYMONFORM
@@ -5379,6 +5398,17 @@
     // Sovereign (the Chronicles): a stake sealing a Ruinous shrine (VAR_0x8004 its flag, VAR_0x8005 its local ID).
     .macro Common_SovereignStake
     CallCommonScript 0x80C
+    .endm
+
+    // Sovereign (E11): an Elite Four member asks singles or doubles. VAR_RESULT: 1 doubles, 0 singles.
+    .macro Common_SovereignE4AskFormat
+    CallCommonScript 0x80D
+    .endm
+
+    // Sovereign (E11): before a League double battle, offers singles if only one Pokémon can battle. VAR_RESULT:
+    // 1 doubles, 0 singles.
+    .macro Common_SovereignE4CheckLoneMon
+    CallCommonScript 0x80E
     .endm
 
     .macro Common_CallPokecenterNurse nurseLocalID

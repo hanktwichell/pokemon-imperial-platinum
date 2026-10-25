@@ -339,13 +339,13 @@ Total: 1040 trainer files; 0 edited, 0 confirmed (2026-10-24). The boss rows not
 | `dummy_363` | Waiter | Mickey | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_364` | Waiter | Mickey | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_365` | Waiter | Mickey | 1 | Singles | (script / not on a map) | Not started | |
-| `dummy_375` | Breeder Female | Angelica | 1 | Singles | (script / not on a map) | Not started | |
+| `sovereign_elite_four_aaron_doubles` | Elite Four Aaron | Aaron | 6 | Doubles | (script / not on a map) | Not started | Boss (E11 Elite Four format): for now the `elite_four_aaron` team as a double battle; the Sovereign doubles team is drafted in `data/trainers_sovereign.yaml` (T1) |
 | `dummy_376` | Cameraman | Mickey | 1 | Singles | (script / not on a map) | Not started | |
-| `dummy_384` | Pokefan Male | Mickey | 1 | Singles | (script / not on a map) | Not started | |
-| `dummy_385` | Pokefan Female | Angelica | 1 | Singles | (script / not on a map) | Not started | |
-| `dummy_387` | Ace Trainer Male | Mickey | 1 | Singles | (script / not on a map) | Not started | |
-| `dummy_391` | Ace Trainer Female | Angelica | 1 | Singles | (script / not on a map) | Not started | |
-| `dummy_402` | Gentleman | Mickey | 1 | Singles | (script / not on a map) | Not started | |
+| `sovereign_elite_four_bertha_doubles` | Elite Four Bertha | Bertha | 6 | Doubles | (script / not on a map) | Not started | Boss (E11 Elite Four format): for now the `elite_four_bertha` team as a double battle; the Sovereign doubles team is drafted in `data/trainers_sovereign.yaml` (T1) |
+| `sovereign_elite_four_flint_doubles` | Elite Four Flint | Flint | 6 | Doubles | (script / not on a map) | Not started | Boss (E11 Elite Four format): for now the `elite_four_flint` team as a double battle; the Sovereign doubles team is drafted in `data/trainers_sovereign.yaml` (T1) |
+| `sovereign_elite_four_lucian_doubles` | Elite Four Lucian | Lucian | 6 | Doubles | (script / not on a map) | Not started | Boss (E11 Elite Four format): for now the `elite_four_lucian` team as a double battle; the Sovereign doubles team is drafted in `data/trainers_sovereign.yaml` (T1) |
+| `sovereign_champion_cynthia_doubles` | Champion Cynthia | Cynthia | 6 | Doubles | (script / not on a map) | Not started | Boss (E11 Elite Four format): for now the `champion_cynthia` team as a double battle; the Sovereign doubles team is drafted in `data/trainers_sovereign.yaml` (T1) |
+| `sovereign_elite_four_aaron_rematch_doubles` | Elite Four Aaron | Aaron | 6 | Doubles | (script / not on a map) | Not started | Boss (E11 Elite Four format): for now the `elite_four_aaron_rematch` team as a double battle; the Sovereign doubles team is drafted in `data/trainers_sovereign.yaml` (T1) |
 | `dummy_411` | Galactic Grunt Male | Grunt | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_413` | Galactic Grunt Male | Grunt | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_424` | Galactic Grunt Female | Grunt | 1 | Singles | (script / not on a map) | Not started | |
@@ -360,16 +360,16 @@ Total: 1040 trainer files; 0 edited, 0 confirmed (2026-10-24). The boss rows not
 | `dummy_439` | Idol | Angelica | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_440` | Idol | Angelica | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_441` | Ruin Maniac | Mickey | 1 | Singles | (script / not on a map) | Not started | |
-| `dummy_448` | Socialite | Angelica | 1 | Singles | (script / not on a map) | Not started | |
-| `dummy_449` | Lass | Angelica | 1 | Singles | (script / not on a map) | Not started | |
+| `sovereign_elite_four_bertha_rematch_doubles` | Elite Four Bertha | Bertha | 6 | Doubles | (script / not on a map) | Not started | Boss (E11 Elite Four format): for now the `elite_four_bertha_rematch` team as a double battle; the Sovereign doubles team is drafted in `data/trainers_sovereign.yaml` (T1) |
+| `sovereign_elite_four_flint_rematch_doubles` | Elite Four Flint | Flint | 6 | Doubles | (script / not on a map) | Not started | Boss (E11 Elite Four format): for now the `elite_four_flint_rematch` team as a double battle; the Sovereign doubles team is drafted in `data/trainers_sovereign.yaml` (T1) |
 | `dummy_461` | Clown | Mickey | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_462` | Clown | Mickey | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_463` | Clown | Mickey | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_464` | Clown | Mickey | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_466` | Policeman | Mickey | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_467` | Rich Boy | Mickey | 1 | Singles | (script / not on a map) | Not started | |
-| `dummy_468` | Rich Boy | Mickey | 1 | Singles | (script / not on a map) | Not started | |
-| `dummy_469` | Lady | Angelica | 1 | Singles | (script / not on a map) | Not started | |
+| `sovereign_elite_four_lucian_rematch_doubles` | Elite Four Lucian | Lucian | 6 | Doubles | (script / not on a map) | Not started | Boss (E11 Elite Four format): for now the `elite_four_lucian_rematch` team as a double battle; the Sovereign doubles team is drafted in `data/trainers_sovereign.yaml` (T1) |
+| `sovereign_champion_cynthia_rematch_doubles` | Champion Cynthia | Cynthia | 6 | Doubles | (script / not on a map) | Not started | Boss (E11 Elite Four format): for now the `champion_cynthia_rematch` team as a double battle; the Sovereign doubles team is drafted in `data/trainers_sovereign.yaml` (T1) |
 | `dummy_484` | School Kid Male | Mickey | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_485` | School Kid Female | Angelica | 1 | Singles | (script / not on a map) | Not started | |
 | `dummy_487` | Scientist | Mickey | 1 | Singles | (script / not on a map) | Not started | |

@@ -1,6 +1,6 @@
 # Sovereign Platinum — Progress Report
 
-_Last updated: 2026-10-22_
+_Last updated: 2026-10-25 (milestone table)_
 
 **Where we are:** the design phase is finished and engine work has started on the pret/pokeplatinum decompilation.
 The ROM builds in CI on every PR. Merged so far: Fairy type, the Options additions, the Sovereign save format/identity,
@@ -28,10 +28,10 @@ and T2 only. See `EngineRoadmap.md` for the per-milestone breakdown.
 | E2/E4 | All 314 abilities, ID = official number (191 new, no battle effect yet: `AbilityChecklist.md`); Hidden Ability slot and flag | ✅ done; tested on the summary screen |
 | 10b | Battle mechanics → Pokémon Champions (IVs/EVs unchanged); rules in `BattleMechanics.md` | 🟡 core rules built (status, dynamic speed, crits, weather, Snow, Fake Out, move values); ability/move behaviour with item 11 |
 | E6 | Species expansion to 1025 | ✅ done: all 532 Gen V–IX species (`NewSpecies.md`) with placeholder sprites, Easy Chat words, English-only Pokédex; tested in battle and on the summary screen. No cries for the new species yet (last step). 16 evolutions wait on E7 items |
-| E7 | Items (Mega Stones, new held/evolution items) | not started |
-| E8 | Mega Evolution / Primal Reversion | not started |
+| E7 | Items (Mega Stones, new held/evolution items) | ✅ done: 245 items with icons, evolution items, Mints, Ability Capsule/Patch, the Infinite Repel (see `EngineRoadmap.md` row 9) |
+| E8 | Mega Evolution / Primal Reversion | ✅ done: 99 forms, battle flow, MEGA button, Primal Reversion, animation and symbols (row 10) |
 | E9 | Extended trainer data (natures, EVs, abilities, forms) | ✅ done: `docs/TrainerFormat.md` |
-| E10 / E11 | Renegade port; Sovereign content (encounters, E4 format, gifts, post-game) | not started |
+| E10 / E11 | Renegade port; Sovereign content (encounters, E4 format, gifts, post-game) | 🟡 E10: Renegade's encounters, trainers, items, NPCs, gifts and legendary events are ported (41 parts); two owner questions remain (Open list). E11: the Totem trials, the story beats, the Chronicles post-game legendaries and the Elite Four format are in; the doubles teams wait on T1 (rows 14 and 15) |
 | E12 | Graphics (convert sprites, icons) | waiting on the owner's front sprites |
 | T1 | Boss team compositions with the owner's Mega picks; revise all boss teams | deferred by the owner until the engine features are done |
 | T2 | Developer final battle (Red-style double battle) | team received (`DeveloperBattle.md`); waiting on trainer text, sprites and level |

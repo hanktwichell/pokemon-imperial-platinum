@@ -14,6 +14,7 @@ PokemonLeagueLucianRoom_Lucian:
     GoToIfSet FLAG_DEFEATED_LUCIAN, PokemonLeagueLucianRoom_LucianPostBattle
     PlayTrainerEncounterBGM TRAINER_ELITE_FOUR_LUCIAN
     Message PokemonLeagueLucianRoom_Text_LucianIntro
+    Call PokemonLeagueLucianRoom_SovereignDecidedFormat
     CloseMessage
     CallIfUnset FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueLucianRoom_StartLucianBattle
     CallIfSet FLAG_ARRESTED_CHARON_STARK_MOUNTAIN, PokemonLeagueLucianRoom_StartLucianRematchBattle
@@ -31,11 +32,21 @@ PokemonLeagueLucianRoom_Lucian:
     End
 
 PokemonLeagueLucianRoom_StartLucianBattle:
+    GoToIfEq VAR_0x8008, 1, PokemonLeagueLucianRoom_SovereignStartLucianDoublesBattle
     StartTrainerBattle TRAINER_ELITE_FOUR_LUCIAN
     Return
 
+PokemonLeagueLucianRoom_SovereignStartLucianDoublesBattle:
+    StartTrainerBattle TRAINER_SOVEREIGN_ELITE_FOUR_LUCIAN_DOUBLES
+    Return
+
 PokemonLeagueLucianRoom_StartLucianRematchBattle:
+    GoToIfEq VAR_0x8008, 1, PokemonLeagueLucianRoom_SovereignStartLucianRematchDoublesBattle
     StartTrainerBattle TRAINER_ELITE_FOUR_LUCIAN_REMATCH
+    Return
+
+PokemonLeagueLucianRoom_SovereignStartLucianRematchDoublesBattle:
+    StartTrainerBattle TRAINER_SOVEREIGN_ELITE_FOUR_LUCIAN_REMATCH_DOUBLES
     Return
 
 PokemonLeagueLucianRoom_CreateJournalEventDefeatedLucian:
@@ -68,6 +79,16 @@ PokemonLeagueLucianRoom_OnFrame_EnterRoom:
     SetVar VAR_MAP_LOCAL_0x01, 1
     ReleaseAll
     End
+
+@ Sovereign (E11, docs/EliteFourFormat.md): Lucian's format was decided earlier in the run (bit 3 of
+@ VAR_SOVEREIGN_E4_FORMAT, see PokemonLeagueAaronRoom_SovereignChooseFormat).
+PokemonLeagueLucianRoom_SovereignDecidedFormat:
+    CheckVarBit VAR_SOVEREIGN_E4_FORMAT, 3, VAR_0x8008
+    GoToIfEq VAR_0x8008, 0, PokemonLeagueLucianRoom_SovereignDecidedFormatEnd
+    Common_SovereignE4CheckLoneMon
+    SetVar VAR_0x8008, VAR_RESULT
+PokemonLeagueLucianRoom_SovereignDecidedFormatEnd:
+    Return
 
     .balign 4, 0
 PokemonLeagueLucianRoom_Movement_PlayerEnterRoom:
