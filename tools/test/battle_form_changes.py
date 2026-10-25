@@ -57,7 +57,8 @@ says), HANG or STUCK (as in battle_all_trainers.py), with a screenshot for any t
 Needs what battle_all_trainers.py needs. From the repo root:
     SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 tools/test/battle_form_changes.py \\
         decomp/build_test/pokeplatinum.us.nds STATE OUT_DIR [SPECIES ...]
-SPECIES (a constant, e.g. SPECIES_MEOWSTIC) limits the list to those species. The whole list takes about 25 minutes.
+SPECIES (a constant, e.g. SPECIES_MEOWSTIC) limits the list to those species. The whole list (210 cases) takes about
+an hour.
 Each result is a line in OUT_DIR/results.txt.
 """
 import os
