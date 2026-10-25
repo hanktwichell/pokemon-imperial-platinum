@@ -183,6 +183,25 @@
         "that might allow you to meet HO-OH,\f",
         "the sky guardian."
       ]
+    },
+    {
+      "id": "EternaCitySouthHouse_Text_SovereignOaksLetter",
+      "en_US": [
+        "Oak: Ah, {STRVAR_1 3, 0, 0}!\n",
+        "What fantastic timing.\r",
+        "I was hoping you could meet me soon on\n",
+        "Route 224, east of the Pokémon League.\r",
+        "I have a letter here with instructions\n",
+        "on what I’d like your help with.\r",
+        "Here you go!\r"
+      ]
+    },
+    {
+      "id": "EternaCitySouthHouse_Text_SovereignMeetMeOnRoute224",
+      "en_US": [
+        "Oak: Once again, that’s Route 224.\n",
+        "Please visit when you can."
+      ]
     }
   ]
 }

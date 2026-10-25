@@ -4,6 +4,27 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 (part 37) — Renegade's Shaymin: Oak's Letter from Oak, no distribution
+
+Vanilla's Shaymin needs the Oak's Letter distribution. Renegade has Oak give it in the game instead:
+- **Eterna City's south house:** once the player has beaten the counterpart by Route 224's tablet (E10 part 30), Oak
+  greets them ("What fantastic timing"), gives Oak's Letter and asks to meet on Route 224 (Renegade's lines).
+  - This comes before his usual talk, once. Having the letter (a key item) marks it done; no new flag.
+  - The letter sets `VAR_SHAYMIN_EVENT_STATE` to 1, as the distribution did in vanilla. Route 224 then plays its
+    vanilla scenes: Marley meets the player, then Oak at the tablet asks for a name, the flowers bloom, Shaymin
+    appears and flees, and the Seabreak Path opens.
+- **Route 224 and Flower Paradise:** the Shaymin distribution checks are gone. The other vanilla gates stay
+  (post-game, the National Dex, the letter). Shaymin stays Lv. 30, as in both.
+
+Verified in a test build (post-game, the Route 224 counterpart's trainer flag set, Oak shown in Eterna City):
+- Eterna City: Oak's new lines, "obtained the Oak's Letter!" into the Key Items pocket, and "Once again, that's Route
+  224." The next talk goes on to his usual Up-Grade lines.
+- Route 224: stepping onto Marley's trigger plays her scene. Oak stands at the tablet, and his tablet talk and the
+  naming screen run.
+  - Then the flowers bloom, Shaymin appears and flees, and Oak's and Marley's closing lines play.
+- Flower Paradise: Shaymin ("Kyuu uuhn.") battles at Lv. 30, and a Master Ball catches it. On re-entry it's gone.
+- Not tested: Shaymin knocked out instead of caught.
+
 ## E10 (part 36) — Renegade's Darkrai: the Member Card from Route 217, no distribution
 
 Vanilla's Darkrai needs the Member Card distribution. Renegade gives the card in the game instead:
