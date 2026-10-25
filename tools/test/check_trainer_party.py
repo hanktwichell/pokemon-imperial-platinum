@@ -16,6 +16,7 @@ Saves a screenshot, trainer_battle.png, in $OUT_DIR (default: the current direct
 """
 import json
 import os
+import re
 import struct
 import sys
 
@@ -33,6 +34,7 @@ SHUFFLE = [(0, 1, 2, 3), (0, 1, 3, 2), (0, 2, 1, 3), (0, 3, 1, 2), (0, 2, 3, 1),
 STATS = ["hp", "atk", "def", "spe", "spa", "spd"]  # the game's IV/EV order
 BASE_KEYS = ["hp", "attack", "defense", "speed", "special_attack", "special_defense"]
 GENDERS = {0: "male", 1: "female", 2: "genderless"}
+MAX_LEARNSET_ENTRIES = 48  # include/struct_defs/species.h: tools/dataproc packs no more
 
 
 def consts(name):
@@ -66,7 +68,7 @@ def read_pokemon(raw):
         "moves": list(struct.unpack_from("<4H", b, 0)),
         "ivs": [(ivword >> (5 * i)) & 31 for i in range(6)],
         "gender": GENDERS[(b[0x18] >> 1) & 3],
-        "form": b[0x18] >> 3,
+        "form": (b[0x18] >> 3) | ((b[0x1A] & 3) << 5),  # Sovereign: bits 5-6 in formHighBits (Alcremie's 63 forms)
         "ball": d[0x1B],
         "shiny": ((otid >> 16) ^ (otid & 0xFFFF) ^ (personality >> 16) ^ (personality & 0xFFFF)) < 8,
         "level": party[4],
@@ -74,17 +76,35 @@ def read_pokemon(raw):
     }
 
 
+def form_dirs():
+    """{(species constant, form): its directory in res/pokemon} for each form with data of its own, as
+    Pokemon_GetFormNarcIndex (src/pokemon.c) finds it: Platinum's forms (altFormsWithData in
+    tools/dataproc/src/speciesproc.c, numbered in order for each species), then Sovereign's (sSovereignForms in
+    include/data/sovereign_forms.h, packed in the order of tools/dataproc/src/sovereign_forms.inc)."""
+    if not FORM_DIRS:
+        speciesproc = open(os.path.join(DECOMP, "tools", "dataproc", "src", "speciesproc.c")).read()
+        for path in re.findall(r'^\s*\{ "(\w+/forms/\w+)",\s+"ICON_', speciesproc, re.M):
+            species = "SPECIES_" + path.split("/")[0].upper()
+            FORM_DIRS[(species, sum(s == species for s, _ in FORM_DIRS) + 1)] = path
+        table = open(os.path.join(DECOMP, "include", "data", "sovereign_forms.h")).read()
+        table = table[table.index("sSovereignForms["):]
+        table = table[:table.index("};")]
+        entries = re.findall(r"\{ (SPECIES_\w+), (\d+), ", table)
+        paths = re.findall(r'\{ "([\w/]+)"', open(os.path.join(DECOMP, "tools", "dataproc", "src",
+                                                                "sovereign_forms.inc")).read())
+        assert len(entries) == len(paths), "sovereign_forms.h and sovereign_forms.inc differ"
+        for (species, form), path in zip(entries, paths):
+            FORM_DIRS[(species, int(form))] = path
+    return FORM_DIRS
+
+
+FORM_DIRS = {}
+
+
 def species_data(species_const, form=0):
-    """The species' data.json, or its form's when the form has data of its own (res/pokemon/form_registry.json)."""
-    name = species_const[8:].lower()
-    path = os.path.join(DECOMP, "res", "pokemon", name, "data.json")
-    forms = [f for f in json.load(open(os.path.join(DECOMP, "res", "pokemon", "form_registry.json"))).get(name, {})
-             if not f.startswith("__")]
-    if 0 < form <= len(forms):
-        form_path = os.path.join(DECOMP, "res", "pokemon", name, "forms", forms[form - 1], "data.json")
-        if os.path.exists(form_path):
-            path = form_path
-    return json.load(open(path))
+    """The species' data.json, or its form's when the form has data of its own (form_dirs)."""
+    path = form_dirs().get((species_const, form), species_const[8:].lower())
+    return json.load(open(os.path.join(DECOMP, "res", "pokemon", path, "data.json")))
 
 
 def default_moves(species_const, form, level):
@@ -92,7 +112,7 @@ def default_moves(species_const, form, level):
     data = species_data(species_const, form)
     learnset = data.get("learnset") or species_data(species_const).get("learnset", {})
     moves = []
-    for move_level, move in learnset.get("by_level", []):
+    for move_level, move in learnset.get("by_level", [])[:MAX_LEARNSET_ENTRIES]:
         if move_level > level:
             break
         if move not in moves:

@@ -1117,6 +1117,7 @@ static void ApplySlotForm(Pokemon *mon, int slotSpecies)
         Pokemon_SetValue(mon, MON_DATA_FORM, &form);
         Pokemon_CalcAbility(mon);
         Pokemon_CalcLevelAndStats(mon);
+        Pokemon_SovereignSetDefaultMoves(mon); // the form's level-up moves, not the base form's
     }
 }
 
@@ -1640,7 +1641,8 @@ static BOOL AddWildMonToParty(const int partySlot, const WildEncounters_FieldPar
         form = WildEncounters_UnownTables[encounterFieldParams->unownTableID].forms[LCRNG_Next() % availableUnownForms];
     }
 
-    if (setForm) {
+    // Sovereign (FM): a form the encounter slot names (WILD_SLOT, ApplySlotForm) stays; the map's is for the rest.
+    if (setForm && Pokemon_GetValue(mon, MON_DATA_FORM, NULL) == 0) {
         Pokemon_SetValue(mon, MON_DATA_FORM, &form);
     }
 

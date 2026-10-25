@@ -5986,3 +5986,49 @@ check, changed-map visit test) is merged.
 1. Merge this PR once both checks are green.
 2. The same kind of run for wild encounters and static battles (legendaries, gifts), which this one doesn't cover.
 3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
+
+## CB-0129 — 2026-10-25, 6:21 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: every species and form battled as a wild Pokémon, every Mega Evolved from the player's side, and
+three bugs those runs found, fixed.** PR #141 (all trainers battled) is merged.
+- **New `tools/test/battle_all_species.py`** (local; about an hour with 4 jobs). It battles all 1,510 species and forms
+  at Lv. 50 (1,025 base forms, Platinum's 64 forms, Sovereign's 421). It checks the built Pokémon against its form's
+  data: form, level, the form's level-up moves, every stat, the ability, the held item. It also checks the battle ends
+  and nothing hangs. **Result: all 1,510 ok.**
+- **New `tools/test/battle_all_megas.py`** (local; about 20 minutes). It Mega Evolves the player's lead for each of the
+  96 Megas (from the form each comes from), Mega Rayquaza (Dragon Ascent), the 2 Primals and the 2 Ultra Bursts. It
+  also checks that 12 forms without a Mega of their own can't use their species' stones. It reads the form taken in
+  battle and the lead's form afterwards. **Result: all 113 ok.**
+- **Fixed in the game:**
+  - **Form moves:** wild Pokémon whose slot names a form (Regional Forms Park, Totems and helpers), Eggs that take a
+    regional parent's form, and the form gifts (Battle Bond Greninja, the deliveryman's event forms) now learn their
+    form's level-up moves, not the base form's.
+  - **Megas from another form:** Female Meowstic, Eternal Floette (so Mega Floette at all), Droopy and Stretchy
+    Tatsugiri and Original Color Magearna couldn't Mega Evolve. `BattleSystem_SovereignMegaForm` turned down any form
+    but 0. Now only battle forms are turned down, and `Pokemon_SovereignBattleForm` lets a Mega come only from the
+    form it goes back to.
+  - **Slot forms for Shellos, Gastrodon and Unown:** the map's form (sea, Unown letters) overwrote a form the slot
+    named. No encounter table names one yet, so play is unchanged.
+- **Test-build hooks** (`include/sovereign_test.h`):
+  - `gSovereignTestWild`: SELECT's wild Pokémon.
+  - `gSovereignTestLead`: the party's lead before a test battle, with its item, four Fairy moves and the MEGA toggle on.
+  - `gSovereignTestPlayerBattleForm` and `gSovereignTestLeadFormAfter`: the forms it took.
+- **Harness fixes:** `check_trainer_party.species_data` finds Sovereign forms' data, and the decoder reads the form's
+  high bits. `battle_all_trainers.fight` is now the shared battle loop, and `--shots` reaches the workers.
+- Not covered: form sprites (the forms show base sprites until E12).
+
+**Files modified:**
+- Game: `decomp/src/overlay006/wild_encounters.c`, `decomp/src/overlay005/daycare.c`, `decomp/src/scrcmd.c`,
+  `decomp/src/battle/battle_lib.c`, `decomp/src/pokemon.c`
+- Test hooks: `decomp/include/sovereign_test.h`, `decomp/include/encounter.h`, `decomp/src/encounter.c`,
+  `decomp/src/script_manager.c`, `decomp/src/overlay005/field_control.c`, `decomp/src/battle/battle_display.c`,
+  `decomp/src/battle/battle_lib.c`
+- Tools: `tools/test/battle_all_species.py` (new), `tools/test/battle_all_megas.py` (new),
+  `tools/test/battle_all_trainers.py`, `tools/test/check_trainer_party.py`, `tools/test/build_test_rom.sh`
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR once both checks are green.
+2. More player-side form tests in the same style: the in-battle form changes (Zen Mode, Schooling, Shields Down,
+   Disguise, Stance Change, Power Construct, Relic Song...) and the key-item and held-item forms out of battle.
+3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.

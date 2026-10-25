@@ -860,9 +860,14 @@ static const struct {
 static u8 sSovereignTestWarpIndex;
 
 // Test build only: hooks for test harnesses (include/sovereign_test.h). tools/test/visit_changed_maps.py writes a
-// place to the warp target; tools/test/battle_all_trainers.py sets the trainer and god mode.
+// place to the warp target; tools/test/battle_all_trainers.py sets the trainer and god mode,
+// tools/test/battle_all_species.py the wild Pokémon, and tools/test/battle_all_megas.py the lead.
 struct SovereignTestWarpTarget gSovereignTestWarpTarget;
 u16 gSovereignTestBattleTrainer;
+struct SovereignTestWild gSovereignTestWild;
+struct SovereignTestLead gSovereignTestLead;
+u8 gSovereignTestPlayerBattleForm;
+u8 gSovereignTestLeadFormAfter;
 u8 gSovereignTestGodMode;
 
 void SovereignTest_WarpNext(FieldSystem *fieldSystem)

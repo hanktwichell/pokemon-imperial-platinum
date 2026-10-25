@@ -53,16 +53,15 @@ STEP = 20  # frames between inputs
 VBLANK_COUNTER = 0x2C  # offsetof(System, vblankCounter)
 
 
-def symbols():
+def symbols(names=('gSovereignTestBattleTrainer', 'gSovereignTestGodMode', 'gSovereignTestIdleFrames', 'gSystem')):
+    """The addresses of these .bss symbols and of Party_AddPokemon, from the test build's map."""
     xmap = open(os.path.join(DECOMP, 'build_test', 'main.nef.xMAP'), encoding='utf-8', errors='replace').read()
 
     def find(name, section):
         return int(re.search(r'^\s*([0-9A-F]{8}) [0-9A-F]{8} \.' + section + r'\s+' + name + r'\b', xmap, re.M)
                    .group(1), 16)
 
-    return {name: find(name, 'bss') for name in ('gSovereignTestBattleTrainer', 'gSovereignTestGodMode',
-                                                  'gSovereignTestIdleFrames', 'gSystem')} | \
-        {'Party_AddPokemon': find('Party_AddPokemon', 'text')}
+    return {name: find(name, 'bss') for name in names} | {'Party_AddPokemon': find('Party_AddPokemon', 'text')}
 
 
 def trainer_ids():
@@ -84,30 +83,23 @@ def pick(args):
     return chosen
 
 
-def battle(d, sym, state, index, name, out, shots=False):
+def fight(d, sym, limit, shot=None):
+    """Play the battle just started (with SELECT or SELECT+R) to its end, as the docstring says: taps and A presses
+    while the field is busy, until the field runs again. d.armed is cleared after 400 frames, when both parties are
+    built. shot(frames), if given, is called every 600 frames. Returns ('ok', 'HANG' or 'STUCK', frames run)."""
     def u32(addr):
         return struct.unpack('<I', bytes(d.emu.memory.unsigned[addr:addr + 4]))[0]
-
-    trainer = json.load(open(os.path.join(DECOMP, 'res', 'trainers', 'data', name[len('TRAINER_'):].lower() + '.json')))
-    d.emu.savestate.load_file(state)
-    d.run(30)
-    d.emu.memory.write_short(sym['gSovereignTestBattleTrainer'], index)
-    d.emu.memory.write_byte(sym['gSovereignTestGodMode'], 1)
-    d.added.clear()
-    d.armed = True  # the parties are built as the battle starts
-    d.press('SELECT+R')
 
     frames, stalled, started, idle = 0, 0, False, 0
     vblank = u32(sym['gSystem'] + VBLANK_COUNTER)
     result = 'STUCK'
-    limit = FRAME_LIMIT[0] + FRAME_LIMIT[1] * len(trainer['party'])
     while frames < limit:
         before = u32(sym['gSovereignTestIdleFrames'])
         d.run(STEP)
         frames += STEP
         d.armed = frames < 400  # long enough for both parties
-        if shots and frames % 600 < STEP:
-            d.screenshot().save(os.path.join(out, f'{index:04d}_{frames:05d}.png'))
+        if shot and frames % 600 < STEP:
+            shot(frames)
         now = u32(sym['gSystem'] + VBLANK_COUNTER)
         stalled = stalled + STEP if now == vblank else 0
         vblank = now
@@ -125,6 +117,22 @@ def battle(d, sym, state, index, name, out, shots=False):
             if idle >= 2:
                 result = 'ok'
                 break
+
+    return result, frames
+
+
+def battle(d, sym, state, index, name, out, shots=False):
+    trainer = json.load(open(os.path.join(DECOMP, 'res', 'trainers', 'data', name[len('TRAINER_'):].lower() + '.json')))
+    d.emu.savestate.load_file(state)
+    d.run(30)
+    d.emu.memory.write_short(sym['gSovereignTestBattleTrainer'], index)
+    d.emu.memory.write_byte(sym['gSovereignTestGodMode'], 1)
+    d.added.clear()
+    d.armed = True  # the parties are built as the battle starts
+    d.press('SELECT+R')
+
+    shot = (lambda frames: d.screenshot().save(os.path.join(out, f'{index:04d}_{frames:05d}.png'))) if shots else None
+    result, frames = fight(d, sym, FRAME_LIMIT[0] + FRAME_LIMIT[1] * len(trainer['party']), shot)
 
     failures, report = compare_party(d.added, trainer)
     if failures:
@@ -155,7 +163,8 @@ def main():
 
     if jobs > 1:
         procs = [subprocess.Popen([sys.executable, '-W', 'ignore', __file__, rom, state, out, '--worker',
-                                   f'{k}/{jobs}'] + args[3:], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                                   f'{k}/{jobs}'] + (['--shots'] if shots else []) + args[3:],
+                                  stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
                  for k in range(jobs)]
         for p in procs:
             p.wait()

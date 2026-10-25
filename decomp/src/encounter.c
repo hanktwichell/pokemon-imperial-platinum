@@ -1043,3 +1043,17 @@ void Encounter_NewVsGiratinaOrigin(FieldTask *task, u16 species, u8 level, int *
     GameRecords_IncrementRecordValue(SaveData_GetGameRecords(fieldSystem->saveData), RECORD_WILD_BATTLES_FOUGHT);
     StartEncounter(task, dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), resultMaskPtr);
 }
+
+#ifdef SOVEREIGN_TEST
+// Test build only: a wild battle against a Pokémon in a form (include/sovereign_test.h, gSovereignTestWild).
+void Encounter_SovereignTestNewVsWildForm(FieldTask *task, u16 species, u8 form, u8 level, int *resultMaskPtr)
+{
+    FieldSystem *fieldSystem = FieldTask_GetFieldSystem(task);
+    RadarChain_Clear(fieldSystem->chain);
+
+    FieldBattleDTO *dto = FieldBattleDTO_New(HEAP_ID_FIELD2, BATTLE_TYPE_WILD_MON);
+    FieldBattleDTO_Init(dto, fieldSystem);
+    CreateWildMon_SovereignScriptedForm(fieldSystem, species, form, level, dto);
+    StartEncounter(task, dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), resultMaskPtr);
+}
+#endif

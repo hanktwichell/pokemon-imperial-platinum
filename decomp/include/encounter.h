@@ -23,5 +23,8 @@ void Encounter_NewVsWiFi(FieldTask *task, int param1, int normalizedLevel, int w
 void Encounter_NewVsLinkWithRecording(FieldSystem *fieldSystem, const u8 *partyOrder, int battleType);
 void Encounter_NewVsLinkWithRecordingAndParty(FieldSystem *fieldSystem, const Party *party, int battleType);
 void Encounter_NewVsGiratinaOrigin(FieldTask *task, u16 species, u8 level, int *resultMaskPtr, BOOL isLegendary);
+#ifdef SOVEREIGN_TEST
+void Encounter_SovereignTestNewVsWildForm(FieldTask *task, u16 species, u8 form, u8 level, int *resultMaskPtr);
+#endif
 
 #endif // POKEPLATINUM_ENCOUNTER_H

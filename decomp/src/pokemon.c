@@ -5179,9 +5179,9 @@ int Pokemon_SovereignBattleForm(u16 species, int monForm, u16 heldItem, const u1
                 }
             }
 
-            // A Mega that goes back to a form of its own comes only from that form (Mega Floette: Eternal Floette).
-            int megaBase = Pokemon_SovereignBattleFormBase(species, form->form);
-            if (megaBase != 0 && megaBase != monForm) {
+            // A Mega comes only from the form it goes back to (Mega Floette: Eternal Floette), so a form without a
+            // Mega of its own can't use the stone (Alolan Raichu, Galarian Slowbro, 10% Zygarde).
+            if (Pokemon_SovereignBattleFormBase(species, form->form) != monForm) {
                 return 0;
             }
 

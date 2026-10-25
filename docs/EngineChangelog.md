@@ -4,6 +4,53 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Playtest pass — every species and form battled, every Mega Evolved; form moves and Megas fixed
+
+**New tool `tools/test/battle_all_species.py` (local; about an hour with 4 jobs).** It battles all 1,510 species and
+forms as wild Pokémon at Lv. 50 in the test build: each of the 1,025 species in its base form, and each of the 485
+forms (Platinum's 64 and Sovereign's 421). For each one it checks that:
+- the game builds the Pokémon from its form's data: species, form, level, the form's level-up moves, all six stats
+  (from the form's base stats and the Pokémon's own IVs, EVs and nature), the ability its personality picks and a held
+  item the form can have;
+- the battle ends and the main loop never stops.
+
+**New tool `tools/test/battle_all_megas.py` (local; about 20 minutes).** It Mega Evolves from the player's side, in a
+wild battle, each of the 96 Megas from the form it comes from, Mega Rayquaza with Dragon Ascent, both Primals and both
+Ultra Bursts. It also gives each species' stones to its other forms (Alolan Raichu, Galarian Slowbro, Battle Bond
+Greninja, 10% Zygarde, a Floette's flower colors), which must not Mega Evolve. Each Pokémon must take the right form
+in battle and be back in its own form afterwards.
+
+**Results:** all 1,510 species and forms battle cleanly and are built from their form's data, and all 113 Mega cases
+pass. (The first run's four workers were stopped partway by something outside the game; the 539 entries they hadn't
+passed were run again on the final build.) The checks follow the game's own rules where a form isn't simply the one
+asked for: a base form may come back in a form its personality or the map picks (Minior's core, a Female Meowstic, an
+Unown letter, East Sea Shellos), Keldeo is Resolute only while it knows Secret Sword (a Lv. 50 Keldeo has forgotten
+it), and Battle Bond Greninja may still become Ash-Greninja. The runs found these, now fixed:
+- **Form moves for wild Pokémon, Eggs and gifts.** A Pokémon is made with its base form's moves before its form is set
+  (trainers were fixed in the last entry). Now these get their form's level-up moves too:
+  - a wild Pokémon whose slot names a form (the Regional Forms Park, the Totems and their helpers);
+  - an Egg that takes a regional parent's form;
+  - the form gifts (Battle Bond Greninja, the deliveryman's event forms).
+- **Megas from another form.** Female Meowstic, Eternal Floette, Droopy and Stretchy Tatsugiri and Original Color
+  Magearna couldn't Mega Evolve: the check turned down any Pokémon not in its base form. So Mega Floette, which comes only
+  from Eternal Floette, was never possible. Now only a battle form (a Mega, a Primal, Complete Zygarde...) is turned
+  down. A Mega comes only from the form it goes back to, so a form without a Mega of its own still can't use the stone.
+- **Slot forms for Shellos, Gastrodon and Unown.** Platinum sets these three species' forms from the map (East or West
+  Sea, the area's Unown letters) as a wild Pokémon enters the battle, which overwrote a form its slot named. The map's
+  form is now only for one the slot didn't name. No encounter table names a form for them yet.
+
+**Test-build hooks** (`include/sovereign_test.h`):
+- `gSovereignTestWild`: the next SELECT battles this species and form at this level, made as a slot in a form is.
+- `gSovereignTestLead`: before the next test battle the party's lead becomes this Pokémon, with its item and four
+  Fairy moves, and the MEGA toggle stays on.
+- `gSovereignTestPlayerBattleForm` and `gSovereignTestLeadFormAfter`: the form the player's side took in battle, and
+  the lead's form afterwards.
+- `check_trainer_party.species_data` now finds every form's data, Sovereign's included, as the game does
+  (`Pokemon_GetFormNarcIndex`), and its decoder reads all 7 bits of the form (Alcremie's forms past 31).
+
+Form sprites aren't checked: the forms show their base species' sprites until E12.
+
+
 ## Playtest pass — every trainer battled; held items, form stats and form moves fixed
 
 **New tool `tools/test/battle_all_trainers.py` (local; about 2 hours with 4 jobs).** For each of the 1,039
