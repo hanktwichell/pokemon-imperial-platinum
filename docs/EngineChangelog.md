@@ -4,6 +4,50 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Playtest pass — gift Pokémon
+
+**`tools/test/gift_pokemon.py` (local; about 20 minutes)** receives every Pokémon gift Sovereign added, in the test
+build, through the real scripts and menus, and checks what arrives in the party. There are 35 gift runs:
+- **Event-gift deliveryman** (Fight Area Pokémon Center): each event form on his list that is a gift, 21 in all.
+  The two Mythical entries are restyles, not gifts.
+- **Battle Bond Greninja**, from the Ace Trainer there.
+- **The eight Pokémon Center Interviewers:** the quiz, with its right answers read from each script, and the battle
+  against the region's three starters. Then, talking again, the prize.
+- **The other added gifts:** Lapras, Steven's Beldum, Porygon, the Twinleaf Eevee and Rowan's briefcase.
+
+Each run starts from the save state:
+- The party is cut to its lead, to make room.
+- The player comes in by the map's way in and warps next to the giver, then talks as many times as the gift takes.
+- The script plays out on the real menus. When it shows a menu, the test moves the cursor to the entry it wants and
+  presses A, or answers the yes/no question (no nickname). Otherwise A pages through the text, and taps pick moves in
+  a battle (god mode).
+
+Each gift must arrive with:
+- its species, form and level;
+- an ability of its form's, not its Hidden Ability;
+- its held item (the Interviewers' starters carry Miracle Seed, Charcoal or Mystic Water, Lapras NeverMeltIce);
+- its moves: the form's level-up moves at that level, with an event form's signature move last, or Greninja's four
+  set moves.
+
+**Results:** all 35 gifts arrive as they should, and the runs found no game bugs. That is 47 Pokémon: 21 event
+forms, Battle Bond Greninja, the 24 Interviewer starters, Lapras, Beldum, Porygon, Eevee, Chimchar and Piplup.
+
+The harness took three fixes:
+- A list menu ignores keys for its first frames, so the test waits 10 frames before it answers a menu.
+- A press of A for text could land on a yes/no question as it opened, answering it with the default. The test now
+  counts menus as the script shows them and never presses A into one it hasn't seen.
+- In battle the test taps the moves, as the talk test does. The lead's first move, Precipice Blades, can't touch
+  Alola's Rowlet.
+
+**Test-build hooks** (`include/sovereign_test.h`):
+- `gSovereignTestPartyKeep`: the next test warp leaves only that many Pokémon in the party.
+- `gSovereignTestBadges`: the next test warp gives these badges.
+- `gSovereignTestParty`: the party, written down on request while the field is free.
+- `gSovereignTestMenu`: the menus scripts have shown and the last one's kind. A menu is counted as the script starts
+  waiting on it, before it reads any input, so the test never presses A into a menu it hasn't seen.
+- `talk_to_objects.arrive` takes a setup step that runs once the save state is loaded.
+- The shipping ROM is unchanged: it builds to the same bytes with and without these hooks.
+
 ## Playtest pass — wild Pokémon forms on every map
 
 **`tools/test/wild_forms.py` (local; about 20 minutes in 4 parts)** checks the forms of the wild Pokémon the real

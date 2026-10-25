@@ -221,13 +221,16 @@ def warp(d, sym, header, x, z, dir):
     return play_out(d, sym, FRAME_LIMIT, header, press_a=False)
 
 
-def arrive(d, sym, state, variables, events, header, way_in, x, z, face):
+def arrive(d, sym, state, variables, events, header, way_in, x, z, face, setup=None):
     """From the save state, with god mode on: in by the map's way in first, as a player comes, so a scene on entering
-    it plays out where it expects the player (it may walk them about), then to the tile (x, z) facing face. Returns
-    ('ok', frames) or ('NOWARP ' + play_out's result, frames)."""
+    it plays out where it expects the player (it may walk them about), then to the tile (x, z) facing face. setup, if
+    given, runs once the state is loaded (to set test hooks the first warp applies). Returns ('ok', frames) or
+    ('NOWARP ' + play_out's result, frames)."""
     d.emu.savestate.load_file(state)
     d.run(30)
     d.emu.memory.write_byte(sym['gSovereignTestGodMode'], 1)
+    if setup:
+        setup()
     if events in SCENES_SEEN:
         var, value = SCENES_SEEN[events]
         d.emu.memory.write_short(sym['gSovereignTestVar'], variables[var])
