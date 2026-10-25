@@ -14,7 +14,8 @@ The Pokémon the game built (caught with a hook on Party_AddPokemon) is checked 
 all six stats, recomputed from the form's base stats and the Pokémon's own IVs, EVs and nature; the ability, which
 must be the one its personality picks from the form's (or its hidden ability, if it has one); and its held item, none
 or one of the form's. A base form may come back as a form its personality picks (Minior's core, a Female Meowstic)
-or the map does (an Unown letter, East Sea Shellos and Gastrodon), and is then checked as that form.
+or the map does (an Unown letter, East Sea Shellos and Gastrodon), and is then checked as that form. Keldeo's form
+must be the one its moves give it (Resolute while it knows Secret Sword).
 
 Each one gets a result:
 - **DATA:** the Pokémon differs from its form's data (the line says how).
@@ -46,6 +47,9 @@ LEVEL = 50
 FRAME_LIMIT = 6400
 # Forms a Pokémon can get from its personality when it's made (Pokemon_SovereignPersonalityForm, src/pokemon.c).
 PERSONALITY_KINDS = ('SOVEREIGN_FORM_PERSONALITY', 'SOVEREIGN_FORM_GENDER')
+# Forms that follow a move the Pokémon knows (BoxPokemon_SetValue, src/pokemon.c): Resolute Keldeo knows Secret Sword,
+# which a Keldeo above level 40 or so has forgotten for later level-up moves.
+FORM_BY_MOVE = {'SPECIES_KELDEO': ('MOVE_SECRET_SWORD', 1)}
 
 
 def sovereign_forms():
@@ -99,7 +103,11 @@ def check(raw, name, form, personality_forms):
     problems = []
     if species[got['species']] != name:
         return [f'species {species[got["species"]]}']
-    if got['form'] != form and not (form == 0 and got['form'] in personality_forms.get(name, ())):
+    if name in FORM_BY_MOVE:
+        move, move_form = FORM_BY_MOVE[name]
+        if got['form'] != (move_form if move in [moves[m] for m in got['moves']] else 0):
+            problems.append(f'form {got["form"]} with moves {[moves[m] for m in got["moves"]]}')
+    elif got['form'] != form and not (form == 0 and got['form'] in personality_forms.get(name, ())):
         problems.append(f'form {got["form"]}')
     form = got['form']
     if got['level'] != LEVEL:
