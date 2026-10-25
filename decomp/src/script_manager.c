@@ -861,7 +861,8 @@ static u8 sSovereignTestWarpIndex;
 
 // Test build only: hooks for test harnesses (include/sovereign_test.h). tools/test/visit_changed_maps.py writes a
 // place to the warp target; tools/test/battle_all_trainers.py sets the trainer and god mode,
-// tools/test/battle_all_species.py the wild Pokémon, and tools/test/battle_all_megas.py the lead.
+// tools/test/battle_all_species.py the wild Pokémon, and tools/test/battle_form_changes.py the lead, the wild Pokémon
+// and how many turns it survives.
 struct SovereignTestWarpTarget gSovereignTestWarpTarget;
 u16 gSovereignTestBattleTrainer;
 struct SovereignTestWild gSovereignTestWild;
@@ -869,6 +870,7 @@ struct SovereignTestLead gSovereignTestLead;
 u8 gSovereignTestPlayerBattleForm;
 u8 gSovereignTestLeadFormAfter;
 u8 gSovereignTestGodMode;
+u8 gSovereignTestFoeSurvivesTurns;
 
 void SovereignTest_WarpNext(FieldSystem *fieldSystem)
 {

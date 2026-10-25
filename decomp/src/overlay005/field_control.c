@@ -191,23 +191,35 @@ static int sSovereignTestBattleResult;
 static u8 sSovereignTestTotemTrial;
 
 // Test build only: the party's lead becomes the Pokémon a test harness wrote to gSovereignTestLead, as the player's
-// own, holding its item and knowing four Fairy moves (include/sovereign_test.h).
+// own, holding its item and knowing four Fairy moves or the ones set, at the HP set (include/sovereign_test.h).
 static void SovereignTest_SetLead(FieldSystem *fieldSystem)
 {
     Pokemon *mon = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), 0);
     int form = gSovereignTestLead.form;
     u32 item = gSovereignTestLead.item;
 
+    static const u16 fairyMoves[LEARNED_MOVES_MAX] = { MOVE_MOONBLAST, MOVE_DAZZLING_GLEAM, MOVE_PLAY_ROUGH, MOVE_DRAINING_KISS };
+    u8 hiddenAbility = gSovereignTestLead.hiddenAbility;
+
     Pokemon_InitWith(mon, gSovereignTestLead.species, gSovereignTestLead.level, INIT_IVS_RANDOM, FALSE, 0, OTID_NOT_SET, 0);
     UpdateMonStatusAndTrainerInfo(mon, SaveData_GetTrainerInfo(fieldSystem->saveData), 0, 0, HEAP_ID_FIELD2);
     Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+    Pokemon_SetValue(mon, MON_DATA_HAS_HIDDEN_ABILITY, &hiddenAbility);
     Pokemon_CalcAbility(mon);
     Pokemon_CalcLevelAndStats(mon);
     Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &item);
-    Pokemon_ResetMoveSlot(mon, MOVE_MOONBLAST, 0);
-    Pokemon_ResetMoveSlot(mon, MOVE_DAZZLING_GLEAM, 1);
-    Pokemon_ResetMoveSlot(mon, MOVE_PLAY_ROUGH, 2);
-    Pokemon_ResetMoveSlot(mon, gSovereignTestLead.move != MOVE_NONE ? gSovereignTestLead.move : MOVE_DRAINING_KISS, 3);
+
+    for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+        Pokemon_ResetMoveSlot(mon, gSovereignTestLead.moves[i] != MOVE_NONE ? gSovereignTestLead.moves[i] : fairyMoves[i], i);
+    }
+
+    if (gSovereignTestLead.hpPercent) {
+        u32 hp = Pokemon_GetValue(mon, MON_DATA_MAX_HP, NULL) * gSovereignTestLead.hpPercent / 100;
+
+        hp = hp ? hp : 1;
+        Pokemon_SetValue(mon, MON_DATA_HP, &hp);
+    }
+
     gSovereignTestLead.species = SPECIES_NONE;
 }
 
@@ -233,7 +245,7 @@ static BOOL SovereignTest_BattleTask(FieldTask *task)
             gSovereignTestBattleTrainer = TRAINER_NONE;
             Encounter_NewVsTrainer(task, trainer, TRAINER_NONE, TRAINER_NONE, HEAP_ID_FIELD2, &sSovereignTestBattleResult);
         } else if (gSovereignTestWild.species != SPECIES_NONE) {
-            Encounter_SovereignTestNewVsWildForm(task, gSovereignTestWild.species, gSovereignTestWild.form, gSovereignTestWild.level, &sSovereignTestBattleResult);
+            Encounter_SovereignTestNewVsWildForm(task, gSovereignTestWild.species, gSovereignTestWild.form, gSovereignTestWild.level, gSovereignTestWild.move, &sSovereignTestBattleResult);
             gSovereignTestWild.species = SPECIES_NONE;
         } else {
             Encounter_NewVsSpeciesAtLevel(task, SPECIES_CHANSEY, 30, &sSovereignTestBattleResult, FALSE);

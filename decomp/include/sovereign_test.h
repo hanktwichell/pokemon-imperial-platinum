@@ -15,6 +15,7 @@ struct SovereignTestWild {
     u16 species;
     u8 form;
     u8 level;
+    u16 move; // when set, the only move it knows
 };
 
 struct SovereignTestLead {
@@ -22,8 +23,10 @@ struct SovereignTestLead {
     u8 form;
     u8 level;
     u16 item;
-    u16 move; // in the fourth move slot when set (Dragon Ascent, for Mega Rayquaza)
+    u16 moves[4]; // a move set here replaces that slot's Fairy move (Dragon Ascent for Mega Rayquaza, Relic Song)
     u8 mega; // while set, every move the player picks has the MEGA toggle on (battle_display.c)
+    u8 hpPercent; // when set, its HP starts at this percentage of its max (Zen Mode, Shields Down, Power Construct)
+    u8 hiddenAbility; // when set, it has its hidden ability (Zen Mode)
 };
 
 // When mapHeaderID is set, the next SELECT+L+R warps here instead of to the next test location (script_manager.c).
@@ -34,7 +37,7 @@ extern u16 gSovereignTestBattleTrainer;
 extern struct SovereignTestWild gSovereignTestWild;
 // When species is set, the next test battle (SELECT or SELECT+R) first makes the party's lead this Pokémon, holding
 // the item and knowing four Fairy moves: Moonblast, Dazzling Gleam, Play Rough (the moves the battle harnesses pick) and
-// Draining Kiss, or move instead (field_control.c).
+// Draining Kiss, or the moves set instead (field_control.c).
 extern struct SovereignTestLead gSovereignTestLead;
 // The first form a battle form change gave a Pokémon on the player's side (Mega Evolution, Primal Reversion, Ultra
 // Burst...; BattleSystem_SovereignChangeBattleForm), and the lead's form once the test battle is over (field_control.c).
@@ -47,6 +50,9 @@ extern u8 gSovereignTestLeadFormAfter;
 // - the battle style is Set, with no "Will you change Pokémon?" prompt (BattleSystem_GetBattleStyle);
 // - the text is fast (BattleSystem_GetTextSpeed).
 extern u8 gSovereignTestGodMode;
+// In god mode, a foe loses no HP in the battle's first this many turns, so the form changes at the end of a turn have one
+// to happen in, and it gets to use its move (BtlCmd_UpdateHealthBarValue).
+extern u8 gSovereignTestFoeSurvivesTurns;
 // The frames the field map has run with no task (no script, warp or battle), and the map it was on (field_system.c).
 extern u32 gSovereignTestIdleFrames;
 extern u32 gSovereignTestIdleMapHeaderID;

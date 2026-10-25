@@ -6032,3 +6032,40 @@ three bugs those runs found, fixed.** PR #141 (all trainers battled) is merged.
 2. More player-side form tests in the same style: the in-battle form changes (Zen Mode, Schooling, Shields Down,
    Disguise, Stance Change, Power Construct, Relic Song...) and the key-item and held-item forms out of battle.
 3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
+
+## CB-0130 — 2026-10-25, 7:30 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: every battle form change tested from the player's side.** PR #142 (species and Mega battle tests) is
+merged.
+- **`tools/test/battle_form_changes.py`** (local; about an hour) replaces `battle_all_megas.py`. It still covers every
+  Mega, Primal and Ultra Burst, and the forms that must not Mega Evolve. It now also makes the player's lead take each
+  form the battle itself brings:
+  - Zen Mode (both Darmanitan), Shields Down (all 7 Minior colors) and Power Construct (both Zygarde formes), at 40% HP;
+  - Gulp Missile (Gulping at full HP, Gorging at 40%), using Surf;
+  - Disguise and Ice Face, hit by the foe;
+  - Stance Change, Schooling, Tera Shift, Fairy Aura (Active Xerneas), Hunger Switch and Battle Bond;
+  - Crowned Zacian and Zamazenta, and Pirouette Meloetta (Relic Song).
+- **Result: all 137 cases ok; no new game bugs.** The first run's 3 failures were test setup:
+  - Tackle can't hit a Ghost-type Mimikyu, so the foe now uses Bullet Punch;
+  - the Crowned form is taken outside the battle form change the hook watched, so it's now recorded where it's taken.
+- Hero Palafin isn't covered: Zero to Hero needs a switch.
+- **Test-build hooks** (`include/sovereign_test.h`):
+  - `gSovereignTestLead` takes the lead's moves, HP and hidden ability.
+  - `gSovereignTestWild` takes a single foe move.
+  - New `gSovereignTestFoeSurvivesTurns` keeps the foe from fainting for the first turn(s) in god mode.
+- The shipping ROM is unchanged (byte-identical to main's).
+
+**Files modified:**
+- Test hooks: `decomp/include/sovereign_test.h`, `decomp/include/encounter.h`, `decomp/src/encounter.c`,
+  `decomp/src/script_manager.c`, `decomp/src/overlay005/field_control.c`, `decomp/src/battle/battle_script.c`,
+  `decomp/src/battle/battle_main.c`
+- Tools: `tools/test/battle_form_changes.py` (new), `tools/test/battle_all_megas.py` (removed),
+  `tools/test/build_test_rom.sh`
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR once both checks are green.
+2. The out-of-battle form changes in the same style: the key items used from the bag (Reveal Glass, DNA Splicers, the
+   other fusions, Prison Bottle, Zygarde Cube), the held-item forms (Ogerpon's masks, Origin Dialga and Palkia, Arceus,
+   Silvally, Genesect), and the form evolutions.
+3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.

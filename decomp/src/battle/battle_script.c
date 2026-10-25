@@ -1733,7 +1733,7 @@ static BOOL BtlCmd_UpdateHealthBarValue(BattleSystem *battleSys, BattleContext *
     // (include/sovereign_test.h).
     if (gSovereignTestGodMode && battleCtx->hpCalcTemp < 0) {
         if (BattleSystem_GetBattlerSide(battleSys, battler) == BATTLE_SIDE_ENEMY) {
-            battleCtx->hpCalcTemp = battleCtx->battleMons[battler].curHP * -1;
+            battleCtx->hpCalcTemp = battleCtx->totalTurns < gSovereignTestFoeSurvivesTurns ? 0 : battleCtx->battleMons[battler].curHP * -1;
         } else {
             battleCtx->hpCalcTemp = 0;
         }

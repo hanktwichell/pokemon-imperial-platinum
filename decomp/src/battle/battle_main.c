@@ -69,6 +69,7 @@
 #include "screen_fade.h"
 #include "sound.h"
 #include "sound_playback.h"
+#include "sovereign_test.h"
 #include "sprite_system.h"
 #include "sprite_util.h"
 #include "string_gf.h"
@@ -1380,6 +1381,15 @@ static void BattleSys_New(BattleSystem *battleSys, FieldBattleDTO *dto)
             Pokemon_SovereignSetBattleItemForm(Party_GetPokemonBySlotIndex(battleSys->parties[i], slot));
         }
     }
+
+#ifdef SOVEREIGN_TEST
+    // Test build only: a party Pokémon is never in a battle form before the battle, so one the lead is in now is the
+    // Crowned form it just took (include/sovereign_test.h).
+    mon = Party_GetPokemonBySlotIndex(battleSys->parties[BATTLER_PLAYER_1], 0);
+    if (Pokemon_IsSovereignBattleForm(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), Pokemon_GetValue(mon, MON_DATA_FORM, NULL))) {
+        gSovereignTestPlayerBattleForm = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+    }
+#endif
 
     if (battleSys->battleType & BATTLE_TYPE_PAL_PARK) {
         mon = Party_GetPokemonBySlotIndex(battleSys->parties[BATTLER_ENEMY_1], 0);
