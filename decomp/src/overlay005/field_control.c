@@ -578,7 +578,7 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
 #ifdef SOVEREIGN_TEST
     // Test build only: SELECT starts a wild battle, SELECT+R a trainer battle, SELECT+B+R the next Totem trial,
     // SELECT+L breeds and hatches an egg, SELECT+B opens Easy Chat, SELECT+L+R warps to the next test location
-    // (script_manager.c).
+    // (script_manager.c) or runs a wild encounter survey (wild_encounters.c).
     if ((input->pressedKeys & PAD_BUTTON_SELECT) && input->menu == FALSE) {
         int moveState = PlayerAvatar_GetPlayerMoveState(fieldSystem->playerAvatar);
 
@@ -593,7 +593,12 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
         }
 
         if ((input->heldKeys & PAD_BUTTON_L) && (input->heldKeys & PAD_BUTTON_R) && (moveState == PLAYER_MOVE_STATE_END || moveState == PLAYER_MOVE_STATE_NONE)) {
-            SovereignTest_WarpNext(fieldSystem);
+            if (gSovereignTestWildSurvey.wanted != 0) {
+                SovereignTest_WildSurvey(fieldSystem);
+            } else {
+                SovereignTest_WarpNext(fieldSystem);
+            }
+
             return TRUE;
         }
 

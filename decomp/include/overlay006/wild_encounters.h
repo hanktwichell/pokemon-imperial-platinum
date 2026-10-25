@@ -60,5 +60,8 @@ void CreateWildMon_HoneyTree(FieldSystem *fieldSystem, FieldBattleDTO *param1);
 void CreateWildMon_Scripted(FieldSystem *fieldSystem, u16 param1, u8 param2, FieldBattleDTO *param3);
 void CreateWildMon_SovereignScriptedForm(FieldSystem *fieldSystem, u16 species, u8 form, u8 level, FieldBattleDTO *battleParams);
 BOOL WildEncounters_TileHasEncounterRate(FieldSystem *fieldSystem, u8 param1);
+#ifdef SOVEREIGN_TEST
+void SovereignTest_WildSurvey(FieldSystem *fieldSystem);
+#endif
 
 #endif // POKEPLATINUM_WILD_ENCOUNTERS_H

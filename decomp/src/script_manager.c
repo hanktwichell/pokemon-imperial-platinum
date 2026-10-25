@@ -872,6 +872,7 @@ static u8 sSovereignTestWarpIndex;
 struct SovereignTestWarpTarget gSovereignTestWarpTarget;
 struct SovereignTestVar gSovereignTestVar;
 struct SovereignTestScripts gSovereignTestScripts;
+struct SovereignTestWildSurvey gSovereignTestWildSurvey;
 u16 gSovereignTestBattleTrainer;
 struct SovereignTestWild gSovereignTestWild;
 struct SovereignTestLead gSovereignTestLead;

@@ -24,6 +24,32 @@ struct SovereignTestScripts {
     u16 first;
 };
 
+// A survey of the wild Pokémon the real encounter code makes (SovereignTest_WildSurvey, wild_encounters.c).
+#define SOVEREIGN_TEST_SURVEY_MAX 64
+
+enum SovereignTestSurveyTerrain {
+    SOVEREIGN_TEST_SURVEY_LAND = 0, // the map's grass or cave encounters
+    SOVEREIGN_TEST_SURVEY_SURF,
+    SOVEREIGN_TEST_SURVEY_OLD_ROD,
+    SOVEREIGN_TEST_SURVEY_GOOD_ROD,
+    SOVEREIGN_TEST_SURVEY_SUPER_ROD,
+};
+
+struct SovereignTestWildMon {
+    u32 personality;
+    u16 species;
+    u8 form;
+    u8 level;
+};
+
+struct SovereignTestWildSurvey {
+    u8 wanted; // when set, the encounters to run
+    u8 terrain; // enum SovereignTestSurveyTerrain
+    u8 count; // the Pokémon made
+    u8 active; // while it runs
+    struct SovereignTestWildMon mons[SOVEREIGN_TEST_SURVEY_MAX];
+};
+
 struct SovereignTestWild {
     u16 species;
     u8 form;
@@ -102,6 +128,10 @@ struct SovereignTestItemUse {
 
 // When mapHeaderID is set, the next SELECT+L+R warps here instead of to the next test location (script_manager.c).
 extern struct SovereignTestWarpTarget gSovereignTestWarpTarget;
+// When wanted is set, the next SELECT+L+R runs the map's wild encounter of that terrain that many times instead, with no
+// encounter roll and no battle, and records each Pokémon made (its species, form, level and personality), so a harness
+// can check the forms the real encounter code gives on that map and tile.
+extern struct SovereignTestWildSurvey gSovereignTestWildSurvey;
 // When var is set, the next SELECT+L+R sets it first, and only that with no warp target (see struct SovereignTestVar).
 extern struct SovereignTestVar gSovereignTestVar;
 // When set, the next SELECT+R battles this trainer instead of TRAINER_SOVEREIGN_TEST (field_control.c).
