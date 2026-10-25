@@ -1,5 +1,4 @@
 #include "macros/scrcmd.inc"
-#include "generated/distribution_events.h"
 #include "generated/hidden_locations.h"
 #include "res/text/bank/route_224.h"
 #include "res/field/events/events_route_224.h"
@@ -27,9 +26,8 @@ Route224_OnTransition:
     GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, Route224_DontHideProfOak
     GetNationalDexEnabled VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, Route224_DontHideProfOak
+    @ Sovereign (E10, Renegade): no Shaymin distribution check; Oak gives his letter in Eterna City.
     CheckItem ITEM_OAKS_LETTER, 1, VAR_MAP_LOCAL_0x00
-    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, Route224_DontHideProfOak
-    CheckDistributionEvent DISTRIBUTION_EVENT_SHAYMIN, VAR_MAP_LOCAL_0x00
     GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, Route224_DontHideProfOak
     ClearFlag FLAG_HIDE_ROUTE_224_PROF_OAK
 Route224_DontHideProfOak:

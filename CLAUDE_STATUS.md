@@ -5433,3 +5433,36 @@ is merged. Part 36 is committed and pushed to the branch as work in progress. No
    `scripts_flower_paradise.s`. Check how part 30's Route 224 battle flag fits.
 3. Arceus (part 38): the Foreign Building elder's Plates and Pokédex tasks, the Azure Flute, then Spear Pillar at
    Lv. 80. The Pokédex condition needs an owner call, because the National Dex has over 1,000 species.
+
+## CB-0113 — 2026-10-24, 9:45 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: E10 part 37, Renegade's Shaymin.** PR #127 (part 36, Darkrai) is merged.
+- **Oak in Eterna City's south house** gives Oak's Letter (Renegade's lines) once the Route 224 counterpart battle
+  (part 30) is won. Having the letter, a key item, marks it done, so no new flag is needed.
+- **The letter sets `VAR_SHAYMIN_EVENT_STATE` to 1**, as vanilla's distribution did. That starts vanilla's Route 224
+  chain: Marley's scene, then Oak's tablet, then Shaymin's flight and the Seabreak Path.
+- **The Shaymin distribution checks are removed** from Route 224 and Flower Paradise. Shaymin stays Lv. 30.
+- **Tested in full in a test build:** the letter; then Marley, the tablet and naming, and the Shaymin scene; then
+  the catch, after which Shaymin is gone.
+- **Harness notes:**
+  - The test warp is ignored while a scene still waits for button presses. Retry the warp after pressing A.
+  - Oak's first talk is long. Use a seq limit of 200.
+  - `Driver(rom, state)` can start from any saved state, such as `b52/r2/r224.st` or `b52/r4/tablet.st`.
+
+**Files modified:**
+- Scripts: `scripts_eterna_city_south_house.s`, `scripts_route_224.s` and `scripts_flower_paradise.s`
+- `decomp/res/text/eterna_city_south_house.json`
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `docs/LegendaryTriggers.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge the part 37 PR once both checks are green.
+2. Arceus (part 38), per Renegade:
+   - The Foreign Building elder (Renegade's texts 24–30) asks for all 16 Plates. The Type Masters already give them
+     (part 20).
+   - Then she asks for a Pokédex worthy of the National diploma, and gives the Azure Flute.
+   - The flute is played at Spear Pillar, and the Hall of Origin has Arceus at Lv. 80.
+   - Remove the Arceus distribution checks in `scripts_hall_of_origin.s` and `scripts_common.s`.
+   - **Owner question:** Sovereign's National Dex has more than 1,000 species. The vanilla diploma rule may be far
+     harder than Renegade's (493), so the owner should decide whether to keep it.
+3. Then the rest of the E10 map-script audit (`$S/ren_text_missing2.txt`). Candidates: the summary-screen nature
+   hints, Palmer, the Floaroma Flying club, and Oak's flavor lines.

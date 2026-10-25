@@ -10,6 +10,18 @@ EternaCitySouthHouse_ProfOak:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
     FacePlayer
+    @ Sovereign (E10, Renegade): once the counterpart has been beaten by Route 224's tablet (part 30), Oak gives Oak's
+    @ Letter and asks to meet there (Shaymin's event, without the distribution). The letter is a key item, so having it
+    @ marks this done.
+    CheckItem ITEM_OAKS_LETTER, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, EternaCitySouthHouse_SovereignAfterOaksLetter
+    GoToIfDefeated TRAINER_SOVEREIGN_DAWN_ROUTE_224_CHIMCHAR, EternaCitySouthHouse_SovereignOaksLetter
+    GoToIfDefeated TRAINER_SOVEREIGN_DAWN_ROUTE_224_PIPLUP, EternaCitySouthHouse_SovereignOaksLetter
+    GoToIfDefeated TRAINER_SOVEREIGN_DAWN_ROUTE_224_TURTWIG, EternaCitySouthHouse_SovereignOaksLetter
+    GoToIfDefeated TRAINER_SOVEREIGN_LUCAS_ROUTE_224_CHIMCHAR, EternaCitySouthHouse_SovereignOaksLetter
+    GoToIfDefeated TRAINER_SOVEREIGN_LUCAS_ROUTE_224_PIPLUP, EternaCitySouthHouse_SovereignOaksLetter
+    GoToIfDefeated TRAINER_SOVEREIGN_LUCAS_ROUTE_224_TURTWIG, EternaCitySouthHouse_SovereignOaksLetter
+EternaCitySouthHouse_SovereignAfterOaksLetter:
     GoToIfSet FLAG_CAUGHT_ROAMING_LEGENDARY_BIRDS, EternaCitySouthHouse_SovereignQuests
     Call EternaCitySouthHouse_CheckCaughtAllRoamingLegendaryBirds
     GoToIfEq VAR_RESULT, TRUE, EternaCitySouthHouse_CaughtAllRoamingLegendaryBirds
@@ -32,6 +44,20 @@ EternaCitySouthHouse_ProfOak:
 
 EternaCitySouthHouse_PokedexRatingsCheckOak:
     CallCommonScript 0x26E0
+    End
+
+@ VAR_SHAYMIN_EVENT_STATE 1 is what the distribution set in vanilla: Route 224 then brings Marley and Oak to the tablet.
+EternaCitySouthHouse_SovereignOaksLetter:
+    BufferPlayerName 0
+    Message EternaCitySouthHouse_Text_SovereignOaksLetter
+    SetVar VAR_0x8004, ITEM_OAKS_LETTER
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    Message EternaCitySouthHouse_Text_SovereignMeetMeOnRoute224
+    SetVar VAR_SHAYMIN_EVENT_STATE, 1
+    WaitButton
+    CloseMessage
+    ReleaseAll
     End
 
 EternaCitySouthHouse_BagIsFull:

@@ -173,11 +173,11 @@ dealer a present-day Pokémon gives its Paradox Pokémon at the shown Pokémon's
 | Cresselia | static | Fullmoon Island's clearing (16, 15) | 68 (Renegade's; vanilla 50, a roamer) | after the Lunar Wing quest | caught; it's back on the next visit until then. The catch leaves the Lunar Wing where it stood |
 | Articuno, Zapdos, Moltres | no longer roam (E10 part 27, decision 33) | they stand where Renegade put its portals; see Renegade's events below. Professor Oak in Eterna City's south house now only hints at the places with the Up-Grade, and praises the catch as before | — | — | — |
 | Darkrai | static | Newmoon Island Forest | 68 (Renegade's; vanilla 50) | post-game, with the National Dex and the Canalave boy woken, and the Member Card from the woman in Route 217's north-east house (the Lunar Wing wakes her; E10 part 36). The Harbor Inn's dream then takes the player to Newmoon Island. No distribution | caught; until then the dream can be repeated (vanilla's reset on waking) |
-| Shaymin | static | Flower Paradise | 30 | Oak's Letter and the distribution | — |
+| Shaymin | static | Flower Paradise | 30 | post-game: once the counterpart has been beaten by Route 224's tablet (E10 part 30), Oak in Eterna City's south house gives Oak's Letter (E10 part 37). On Route 224 Marley's scene plays, then Oak's tablet scene opens the Seabreak Path. No distribution | caught; until then it's back on the next visit |
 | Arceus | static | Hall of Origin | 80 | Azure Flute and the distribution | — |
 | Rotom | static | Old Chateau, the TV room | 20 | night | — |
 
-Shaymin and Arceus still need vanilla's distribution events, so they can't be met in normal play yet.
+Arceus still needs vanilla's distribution event, so it can't be met in normal play yet.
 
 ## Renegade Platinum's events, ported (E10)
 
@@ -221,7 +221,6 @@ against the Chronicles':
 
 | Pokémon | Renegade's place | Lv. | Chronicle encounter nearby |
 |---|---|---|---|
-| Shaymin | Flower Paradise, near Route 224's tablet | 30 | Enamorus, Pecharunt (Route 224) |
 | Arceus | Azure Flute from Hearthome's Foreign Building | 80 | — |
 
 ## Open issues
