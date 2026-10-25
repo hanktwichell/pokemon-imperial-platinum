@@ -4,6 +4,20 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E14 (part) — the Infinite Repel's ON tag in the bag (QoL #3)
+
+The last open piece of QoL #3 (the approved list's "a bag icon shows its state"):
+- While the Infinite Repel is on, its row in the Key Items pocket shows **ON** at the right end, where other pockets
+  show the item count. The tag appears or goes as soon as the item is used, without closing the bag.
+- The Infinite Repel can't be registered to SELECT, so the tag never meets the registered-item icon.
+- The tag text is `Bag_Text_SovereignInfiniteRepelOnTag` in the bag's archive. The list's print callback draws it
+  (`BagUI_PrintInfiniteRepelOnTag`), and the in-bag use task redraws the list after the toggle.
+
+Verified in a test build:
+- Turning it on shows ON on its row once the message closes.
+- Closing the bag and opening it again still shows ON.
+- Turning it off removes the tag at once, and it stays gone after reopening the bag.
+
 ## E14 (part) — the Ability Capsule NPC in the Battle Tower lobby (QoL #11)
 
 A researcher (scientist) now stands in the Battle Tower lobby, at (6, 7) below the reception desks. She switches a

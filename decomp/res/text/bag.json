@@ -526,6 +526,10 @@
         "{STRVAR_1 3, 0, 0} turned off the\n",
         "{STRVAR_1 8, 1, 0}."
       ]
+    },
+    {
+      "id": "Bag_Text_SovereignInfiniteRepelOnTag",
+      "en_US": "ON"
     }
   ]
 }

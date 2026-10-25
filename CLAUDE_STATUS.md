@@ -5675,3 +5675,24 @@ vanilla's post-game guard.
 3. Owner questions, both in `docs/ProjectStatus.md`:
    - Route 224 before the Elite Four;
    - the Tea and Route 218's gate.
+
+## CB-0120 — 2026-10-24, 11:50 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: QoL #3's last piece, the Infinite Repel's ON tag in the bag.** E14 is now done: 7 of 8, and the 8th
+(the type-effectiveness indicator) is shelved by the owner.
+- While the Infinite Repel is on, its Key Items row shows **ON** at the right end. Using it redraws the list, so the
+  tag follows at once.
+- Tested in a test build: on, close and reopen the bag, off, reopen again.
+
+**Files modified:**
+- Engine: `decomp/src/applications/bag/main.c`, `decomp/src/applications/bag/windows.c`,
+  `decomp/include/applications/bag/windows.h`, `decomp/res/text/bag.json`
+- Docs: `docs/EngineChangelog.md`, `docs/QualityOfLife.md`, `docs/EngineRoadmap.md`, `docs/ProjectStatus.md`,
+  `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR once both checks are green.
+2. Owner questions, both in `docs/ProjectStatus.md`:
+   - Route 224 before the Elite Four;
+   - the Tea and Route 218's gate.
+3. Pick the next open roadmap item (`docs/EngineRoadmap.md`). E10's audit is finished and E14 is done.

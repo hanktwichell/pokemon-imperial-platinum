@@ -1149,6 +1149,11 @@ static void ItemListMenuPrintCB(ListMenu *menu, u32 index, u8 yOffset)
             if (Bag_GetRegisteredItem(controller->bag) == pocket->items[index].item) {
                 BagUI_DrawRegisteredIcon(controller, yOffset);
             }
+
+            if (pocket->items[index].item == ITEM_INFINITE_REPEL
+                && VarsFlags_CheckFlag(SaveData_GetVarsFlags(controller->bagCtx->saveData), FLAG_SOVEREIGN_INFINITE_REPEL)) {
+                BagUI_PrintInfiniteRepelOnTag(controller, yOffset);
+            }
         }
     } else if (pocket->pocketType == POCKET_TMHMS) {
         if (index == MENU_CANCEL) {
@@ -2323,6 +2328,8 @@ static int InBagItemUseTask(BagController *controller)
     case 2:
         if (controller->selectedItemCount != 0) {
             TrashSelectedItem(controller);
+        } else if (controller->bagCtx->selectedItem == ITEM_INFINITE_REPEL) {
+            ListMenu_Draw(controller->itemList);
         }
 
         Window_ScheduleCopyToVRAM(&controller->windows[BAG_UI_WINDOW_ITEM_DESCRIPTION]);
