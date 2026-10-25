@@ -4,8 +4,9 @@
 For each trainer (decomp/generated/trainers.txt; TRAINER_X is decomp/res/trainers/data/x.json) this loads a save
 state in the overworld and sets two test-build hooks (include/sovereign_test.h):
 - gSovereignTestBattleTrainer, so SELECT+R battles that trainer (doubles if its data says so).
-- God mode: a foe that loses any HP loses all of it, the player's Pokémon lose none, no EXP is gained and the battle
-  style is Set.
+- God mode: a foe that loses any HP loses all of it, the player's Pokémon lose none, the player's moves ignore the
+  foes' abilities, no EXP is gained, the battle style is Set and the text is fast. (A few moves set HP directly, such
+  as Pain Split; the player's Pokémon can still lose HP to those.)
 Every 20 frames it then taps the touch screen, or every third time presses A. The tap is FIGHT in the command menu,
 and in the move menu the second move or, every other 2,000 frames, the third: the test party's Garchomp has Dazzling
 Gleam (which hits both foes) and Play Rough there, Fairy moves that no type is immune to. Switching between them gets
@@ -20,6 +21,7 @@ Each trainer gets one result:
 - **HANG:** the main loop stopped (gSystem's vblankCounter didn't move for 120 frames), which is a crash.
 - **STUCK:** the battle didn't end in time: a prompt the taps don't answer, or a soft lock. See its screenshot.
 - **ok:** the battle ended and the field runs again.
+- **NO-RESULT:** (with --jobs) the worker for it stopped first, e.g. killed by a time limit.
 
 Needs the test build (tools/test/build_test_rom.sh), its symbol map (decomp/build_test/main.nef.xMAP), a save state
 in the overworld made with that build (tools/test/new_game.sh), py-desmume and Pillow. From the repo root:
@@ -27,7 +29,7 @@ in the overworld made with that build (tools/test/new_game.sh), py-desmume and P
         decomp/build_test/pokeplatinum.us.nds STATE OUT_DIR [--jobs N] [--shots] [TRAINER ...]
 TRAINER is a constant (TRAINER_LEADER_ROARK) or an index range (100-199); the default is every trainer. Each result
 is a line in OUT_DIR/results.txt, with a screenshot for any that isn't ok; --shots also saves a screen every 600
-frames. All 1,039 take a few hours with 3 jobs.
+frames. All 1,039 take a little over 2 hours with 4 jobs, so give a background run more time than that.
 """
 import json
 import os
@@ -163,6 +165,8 @@ def main():
             lines += open(path).read().splitlines()
             os.remove(path)
         lines.sort(key=lambda line: int(line.split()[0]))
+        done = {int(line.split()[0]) for line in lines}
+        lines += [f'{index} {name} NO-RESULT 0 (its worker stopped)' for index, name in trainers if index not in done]
         open(os.path.join(out, 'results.txt'), 'w').write('\n'.join(lines) + '\n')
         bad = [line for line in lines if line.split()[2] != 'ok']
         print('\n'.join(bad))
