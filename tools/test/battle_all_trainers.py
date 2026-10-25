@@ -6,9 +6,10 @@ state in the overworld and sets two test-build hooks (include/sovereign_test.h):
 - gSovereignTestBattleTrainer, so SELECT+R battles that trainer (doubles if its data says so).
 - God mode: a foe that loses any HP loses all of it, the player's Pokémon lose none, no EXP is gained and the battle
   style is Set.
-Every 20 frames it then taps the touch screen's top right, or every third time presses A. The tap is FIGHT in the
-command menu and the second move in the move menu: the test party's Garchomp has Dazzling Gleam there, a Fairy move
-that hits both foes and that no type is immune to. A pages through the messages that wait for a button and, in a
+Every 20 frames it then taps the touch screen, or every third time presses A. The tap is FIGHT in the command menu,
+and in the move menu the second move or, every other 2,000 frames, the third: the test party's Garchomp has Dazzling
+Gleam (which hits both foes) and Play Rough there, Fairy moves that no type is immune to. Switching between them gets
+past Torment, Disable and a move out of PP. A pages through the messages that wait for a button and, in a
 double battle, confirms the move's target. (B would undo the first Pokémon's choice there.) When A lands in the move
 menu it picks the first move instead, which costs at most a turn. So every Pokémon the trainer has is sent out, and
 those faster than Garchomp use a move first.
@@ -39,7 +40,11 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from check_trainer_party import compare_party  # noqa: E402
 
 DECOMP = 'decomp'
-TAP = (190, 60)  # FIGHT in the command menu; the second move in the move menu
+# Both are FIGHT in the command menu; in the move menu the second move and the third (the test Garchomp's Dazzling
+# Gleam and Play Rough, both Fairy). The tap switches between them every SWITCH_FRAMES, so Torment, Disable or a move
+# out of PP can't hold the battle up.
+TAPS = ((190, 60), (64, 112))
+SWITCH_FRAMES = 2000
 FRAME_LIMIT = 4000, 2400  # the frames a battle may take: a base, and more for each of the trainer's Pokémon
 HANG_FRAMES = 120
 STEP = 20  # frames between inputs
@@ -110,7 +115,7 @@ def battle(d, sym, state, index, name, out, shots=False):
         if u32(sym['gSovereignTestIdleFrames']) == before:
             started, idle = True, 0
             if frames % (3 * STEP):
-                d.touch(*TAP, frames=4, after=0)
+                d.touch(*TAPS[frames // SWITCH_FRAMES % len(TAPS)], frames=4, after=0)
             else:  # A every third step: messages that wait for a button, and a doubles move's target
                 d.press('A', frames=4, after=0)
         elif started:
