@@ -19,6 +19,8 @@
     ScriptEntry PalParkLobby_PoketchAppLady
     ScriptEntry PalParkLobby_OnFrame_ExitPalPark
     ScriptEntry PalParkLobby_GBASlotGiftLady
+    ScriptEntry PalParkLobby_SovereignDarach
+    ScriptEntry PalParkLobby_SovereignCaitlin
     ScriptEntryEnd
 
 PalParkLobby_OnTransition:
@@ -600,5 +602,200 @@ PalParkLobby_SetPrize_GrepaBerry:
 PalParkLobby_SetPrize_TamatoBerry:
     SetVar VAR_0x8006, ITEM_TAMATO_BERRY
     Return
+
+    
+
+@ Sovereign (E10, Renegade): Darach and Lady Caitlin of the Battle Castle watch the park from the window. Darach battles
+@ in her place (Renegade's trainer 969), win or lose, then her psychic powers flare until he serves Tea, and they leave.
+@ The scene always starts with the player below Darach. His trainer flag marks it done (and hides them both).
+PalParkLobby_SovereignDarach:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    GetPlayerDir VAR_RESULT
+    CallIfEq VAR_RESULT, DIR_EAST, PalParkLobby_SovereignStepBelowDarachFromWest
+    GoTo PalParkLobby_SovereignDarachScene
+
+PalParkLobby_SovereignCaitlin:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    GetPlayerDir VAR_RESULT
+    CallIfEq VAR_RESULT, DIR_NORTH, PalParkLobby_SovereignStepBelowDarachFromCaitlin
+    CallIfEq VAR_RESULT, DIR_WEST, PalParkLobby_SovereignStepBelowDarachFromEast
+    GoTo PalParkLobby_SovereignDarachScene
+
+PalParkLobby_SovereignStepBelowDarachFromWest:
+    ApplyMovement LOCALID_PLAYER, PalParkLobby_SovereignMovement_FromWest
+    WaitMovement
+    Return
+
+PalParkLobby_SovereignStepBelowDarachFromCaitlin:
+    ApplyMovement LOCALID_PLAYER, PalParkLobby_SovereignMovement_FromCaitlin
+    WaitMovement
+    Return
+
+PalParkLobby_SovereignStepBelowDarachFromEast:
+    ApplyMovement LOCALID_PLAYER, PalParkLobby_SovereignMovement_FromEast
+    WaitMovement
+    Return
+
+PalParkLobby_SovereignDarachScene:
+    ApplyMovement LOCALID_DARACH, PalParkLobby_SovereignMovement_FaceSouth
+    ApplyMovement LOCALID_CAITLIN, PalParkLobby_SovereignMovement_FaceSouth
+    WaitMovement
+    GoToIfEq VAR_MAP_LOCAL_0x05, 1, PalParkLobby_SovereignDarachRequest
+    Message PalParkLobby_Text_SovereignDarachGreeting
+    CloseMessage
+    ApplyMovement LOCALID_CAITLIN, PalParkLobby_SovereignMovement_OnSpotSouth
+    WaitMovement
+    Message PalParkLobby_Text_SovereignCaitlinIsTrainer
+    CloseMessage
+    ApplyMovement LOCALID_DARACH, PalParkLobby_SovereignMovement_OnSpotEast
+    WaitMovement
+    Message PalParkLobby_Text_SovereignDarachYesMyLady
+    CloseMessage
+    ApplyMovement LOCALID_DARACH, PalParkLobby_SovereignMovement_OnSpotSouth
+    WaitMovement
+    Message PalParkLobby_Text_SovereignDarachBattleCastle
+    SetVar VAR_MAP_LOCAL_0x05, 1
+PalParkLobby_SovereignDarachRequest:
+    Message PalParkLobby_Text_SovereignDarachRequestBattle
+    ShowYesNoMenu VAR_RESULT
+    GoToIfEq VAR_RESULT, MENU_NO, PalParkLobby_SovereignDarachDeclined
+    Message PalParkLobby_Text_SovereignDarachEnGarde
+    CloseMessage
+    StartTrainerBattle TRAINER_SOVEREIGN_DARACH_PAL_PARK
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, PalParkLobby_SovereignDarachLost
+    LockAll
+    Message PalParkLobby_Text_SovereignDarachWon
+    GoTo PalParkLobby_SovereignCaitlinFit
+
+@ As in Renegade, a loss doesn't black out: the scene goes on with the party healed.
+PalParkLobby_SovereignDarachLost:
+    ReturnToField
+    LockAll
+    FadeScreenIn
+    WaitFadeScreen
+    HealParty
+    Message PalParkLobby_Text_SovereignDarachLost
+    GoTo PalParkLobby_SovereignCaitlinFit
+
+PalParkLobby_SovereignDarachDeclined:
+    Message PalParkLobby_Text_SovereignDarachDeclined
+    WaitButton
+    CloseMessage
+    ApplyMovement LOCALID_DARACH, PalParkLobby_SovereignMovement_FaceNorth
+    ApplyMovement LOCALID_CAITLIN, PalParkLobby_SovereignMovement_FaceNorth
+    WaitMovement
+    ReleaseAll
+    End
+
+PalParkLobby_SovereignCaitlinFit:
+    CloseMessage
+    ApplyMovement LOCALID_DARACH, PalParkLobby_SovereignMovement_OnSpotEast
+    WaitMovement
+    Message PalParkLobby_Text_SovereignDarachEnjoyable
+    CloseMessage
+    WaitTime 15, VAR_RESULT
+    Message PalParkLobby_Text_SovereignCaitlinFight
+    CloseMessage
+    WaitTime 15, VAR_RESULT
+    Message PalParkLobby_Text_SovereignDarachMyLady
+    CloseMessage
+    WaitTime 15, VAR_RESULT
+    PlayFanfare SEQ_EYE_MYS_sseq
+    Message PalParkLobby_Text_SovereignCaitlinFightFight
+    CloseMessage
+    WaitTime 15, VAR_RESULT
+    Message PalParkLobby_Text_SovereignDarachPsychic
+    CloseMessage
+    ApplyMovement LOCALID_DARACH, PalParkLobby_SovereignMovement_OnSpotSouth
+    WaitMovement
+    Message PalParkLobby_Text_SovereignDarachTea
+    CloseMessage
+    ApplyMovement LOCALID_DARACH, PalParkLobby_SovereignMovement_OnSpotEast
+    WaitMovement
+    Message PalParkLobby_Text_SovereignCaitlinFightAgain
+    CloseMessage
+    WaitTime 15, VAR_RESULT
+    Message PalParkLobby_Text_SovereignDarachBrewedTea
+    CloseMessage
+    WaitTime 15, VAR_RESULT
+    Message PalParkLobby_Text_SovereignCaitlinSilence2
+    CloseMessage
+    WaitFanfare
+    PlayFanfare SEQ_ASA_sseq
+    WaitFanfare
+    Message PalParkLobby_Text_SovereignCaitlinSilence
+    CloseMessage
+    ApplyMovement LOCALID_CAITLIN, PalParkLobby_SovereignMovement_OnSpotWest
+    WaitMovement
+    Message PalParkLobby_Text_SovereignCaitlinThankYou
+    CloseMessage
+    ApplyMovement LOCALID_CAITLIN, PalParkLobby_SovereignMovement_OnSpotSouth
+    WaitMovement
+    ApplyMovement LOCALID_DARACH, PalParkLobby_SovereignMovement_OnSpotSouth
+    WaitMovement
+    Message PalParkLobby_Text_SovereignDarachTeaForYou
+    SetVar VAR_0x8004, ITEM_TEA
+    SetVar VAR_0x8005, 1
+    Common_GiveItemQuantity
+    Message PalParkLobby_Text_SovereignDarachGoodbye
+    CloseMessage
+    FadeScreenOut
+    WaitFadeScreen
+    RemoveObject LOCALID_DARACH
+    RemoveObject LOCALID_CAITLIN
+    SetTrainerFlag TRAINER_SOVEREIGN_DARACH_PAL_PARK
+    WaitTime 15, VAR_RESULT
+    FadeScreenIn
+    WaitFadeScreen
+    ReleaseAll
+    End
+
+    .balign 4, 0
+PalParkLobby_SovereignMovement_FromWest:
+    WalkNormalSouth
+    WalkNormalEast
+    WalkOnSpotNormalNorth
+    EndMovement
+
+    .balign 4, 0
+PalParkLobby_SovereignMovement_FromCaitlin:
+    WalkNormalWest
+    WalkOnSpotNormalNorth
+    EndMovement
+
+    .balign 4, 0
+PalParkLobby_SovereignMovement_FromEast:
+    WalkNormalSouth
+    WalkNormalWest 2
+    WalkOnSpotNormalNorth
+    EndMovement
+
+    .balign 4, 0
+PalParkLobby_SovereignMovement_FaceSouth:
+    FaceSouth
+    EndMovement
+
+    .balign 4, 0
+PalParkLobby_SovereignMovement_FaceNorth:
+    FaceNorth
+    EndMovement
+
+    .balign 4, 0
+PalParkLobby_SovereignMovement_OnSpotSouth:
+    WalkOnSpotNormalSouth
+    EndMovement
+
+    .balign 4, 0
+PalParkLobby_SovereignMovement_OnSpotEast:
+    WalkOnSpotNormalEast
+    EndMovement
+
+    .balign 4, 0
+PalParkLobby_SovereignMovement_OnSpotWest:
+    WalkOnSpotNormalWest
+    EndMovement
 
     .balign 4, 0

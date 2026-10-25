@@ -1,0 +1,109 @@
+{
+    "name": "Darach",
+    "class": "TRAINER_CLASS_CASTLE_VALET",
+    "items": [
+        "ITEM_FULL_RESTORE",
+        "ITEM_FULL_RESTORE"
+    ],
+    "ai_flags": [
+        "AI_FLAG_BASIC",
+        "AI_FLAG_EVAL_ATTACK",
+        "AI_FLAG_EXPERT"
+    ],
+    "double_battle": false,
+    "party": [
+        {
+            "species": "SPECIES_GALLADE",
+            "form": 0,
+            "level": 48,
+            "item": "ITEM_SCOPE_LENS",
+            "moves": [
+                "MOVE_PSYCHO_CUT",
+                "MOVE_NIGHT_SLASH",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_LEAF_BLADE"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_EMPOLEON",
+            "form": 0,
+            "level": 48,
+            "item": "ITEM_SITRUS_BERRY",
+            "moves": [
+                "MOVE_HYDRO_PUMP",
+                "MOVE_FLASH_CANNON",
+                "MOVE_ICE_BEAM",
+                "MOVE_AQUA_JET"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ALAKAZAM",
+            "form": 0,
+            "level": 48,
+            "item": "ITEM_EXPERT_BELT",
+            "moves": [
+                "MOVE_PSYCHIC",
+                "MOVE_DAZZLING_GLEAM",
+                "MOVE_FOCUS_BLAST",
+                "MOVE_ENERGY_BALL"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_METAGROSS",
+            "form": 0,
+            "level": 48,
+            "item": "ITEM_LIFE_ORB",
+            "moves": [
+                "MOVE_METEOR_MASH",
+                "MOVE_ZEN_HEADBUTT",
+                "MOVE_EARTHQUAKE",
+                "MOVE_HAMMER_ARM"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_STARAPTOR",
+            "form": 0,
+            "level": 48,
+            "item": "ITEM_KINGS_ROCK",
+            "moves": [
+                "MOVE_RETURN",
+                "MOVE_BRAVE_BIRD",
+                "MOVE_CLOSE_COMBAT",
+                "MOVE_ROOST"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        },
+        {
+            "species": "SPECIES_ENTEI",
+            "form": 0,
+            "level": 48,
+            "item": "ITEM_SHUCA_BERRY",
+            "moves": [
+                "MOVE_SACRED_FIRE",
+                "MOVE_STONE_EDGE",
+                "MOVE_EXTREME_SPEED",
+                "MOVE_IRON_HEAD"
+            ],
+            "iv_scale": 255,
+            "ball_seal": 0
+        }
+    ],
+    "messages": [
+        {
+            "type": "TRMSG_DEFEAT",
+            "en_US": [
+                "Your skills are superlative!\n",
+                "My admiration knows no bounds."
+            ]
+        }
+    ]
+}
