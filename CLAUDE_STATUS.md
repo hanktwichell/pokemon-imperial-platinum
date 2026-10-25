@@ -6269,3 +6269,30 @@ is merged.
 2. The gift test (row 18, in progress): receive each event-form gift from the Fight Area deliveryman and Battle Bond
    Greninja through the real menus, then check species, form, level, ability and moves. More gifts after that.
 3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
+
+## CB-0138 — 2026-10-25, 2:33 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: the gift test.** PR #149 (wild form test) is merged.
+- **`tools/test/gift_pokemon.py`** receives every Pokémon gift Sovereign added, through the real scripts and menus:
+  - the deliveryman's 21 event forms and Battle Bond Greninja;
+  - the eight Interviewers: quiz (answers read from the scripts), battle, then the prize;
+  - Lapras, Steven's Beldum, Porygon, the Twinleaf Eevee and Rowan's briefcase.
+- Each gift must arrive with its species, form, level, ability (not Hidden), held item and moves.
+- **Result: 35 of 35 gifts (47 Pokémon) arrive as they should; no game bugs found.**
+- **Test-build hooks:**
+  - `gSovereignTestPartyKeep` and `gSovereignTestBadges`, applied by the next test warp;
+  - `gSovereignTestParty`, the party on request;
+  - `gSovereignTestMenu`, the menus scripts show, counted before they read input.
+- The shipping ROM is unchanged: the same bytes with and without the hooks.
+
+**Files modified:**
+- Test hooks: `decomp/include/sovereign_test.h`, `decomp/src/field_system.c`, `decomp/src/scrcmd.c`,
+  `decomp/src/script_manager.c`
+- Tools: `tools/test/gift_pokemon.py` (new), `tools/test/talk_to_objects.py` (`arrive` takes a setup step)
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR once both checks are green.
+2. More gift coverage (row 18): the Mining Museum's Paradox dealers and the deliveryman's Mythical restyles need a
+   given Pokémon in the party (a test hook to set a party slot), and the Trainers' School Egg.
+3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.

@@ -182,6 +182,7 @@
 #include "screen_fade.h"
 #include "script_manager.h"
 #include "sound.h"
+#include "sovereign_test.h"
 #include "special_encounter.h"
 #include "string_gf.h"
 #include "string_template.h"
@@ -223,6 +224,17 @@
 
 #include "res/text/bank/mystery_gift_phrase.h"
 #include "res/text/bank/tough_words.h"
+
+#ifdef SOVEREIGN_TEST
+// Test build only (include/sovereign_test.h): a script starts waiting on a menu of this kind.
+#define SOVEREIGN_TEST_NOTE_MENU(menuKind)  \
+    do {                                    \
+        gSovereignTestMenu.shown++;         \
+        gSovereignTestMenu.kind = menuKind; \
+    } while (0)
+#else
+#define SOVEREIGN_TEST_NOTE_MENU(menuKind)
+#endif
 
 typedef struct {
     SysTask *unk_00;
@@ -1772,6 +1784,7 @@ static BOOL ScrCmd_ShowYesNoMenu(ScriptContext *ctx)
     *menu = Menu_MakeYesNoChoice(fieldSystem->bgConfig, &sYesNoWindowTemplate, 1024 - (18 + 12) - 9, 11, 4);
     ctx->data[0] = destVarID;
 
+    SOVEREIGN_TEST_NOTE_MENU(SOVEREIGN_TEST_MENU_YES_NO);
     ScriptContext_Pause(ctx, ScriptContext_WaitForYesNoResult);
 
     return TRUE;
@@ -1880,6 +1893,7 @@ static BOOL ScrCmd_ShowMenu(ScriptContext *ctx)
     FieldMenuManager **fieldMenuMan = FieldSystem_GetScriptMemberPtr(fieldSystem, SCRIPT_MANAGER_FIELD_MENU_MANAGER);
 
     FieldMenuManager_ShowSingleColumnMenu(*fieldMenuMan);
+    SOVEREIGN_TEST_NOTE_MENU(SOVEREIGN_TEST_MENU_LIST);
     ScriptContext_Pause(ctx, ResumeOnMenuSelection);
 
     return TRUE;
@@ -1979,6 +1993,7 @@ static BOOL ScrCmd_ShowListMenu(ScriptContext *ctx)
 
     FieldMenuManager_ShowListMenu(*fieldMenuMan);
 
+    SOVEREIGN_TEST_NOTE_MENU(SOVEREIGN_TEST_MENU_LIST);
     ScriptContext_Pause(ctx, ResumeOnMenuSelection);
     return TRUE;
 }
@@ -1990,6 +2005,7 @@ static BOOL ScrCmd_ShowListMenuSetWidth(ScriptContext *ctx)
     u16 width = ScriptContext_GetVar(ctx);
 
     FieldMenuManager_ShowListMenuWithWidth(*fieldMenuMan, width);
+    SOVEREIGN_TEST_NOTE_MENU(SOVEREIGN_TEST_MENU_LIST);
     ScriptContext_Pause(ctx, ResumeOnMenuSelection);
 
     return TRUE;
@@ -2003,6 +2019,7 @@ static BOOL ScrCmd_ShowListMenuRememberCursor(ScriptContext *ctx)
     u16 *rememberedCursorPos = ScriptContext_GetVarPointer(ctx);
 
     FieldMenuManager_ShowListMenuWithCursorPosition(*fieldMenuMan, rememberedListOffset, rememberedCursorPos);
+    SOVEREIGN_TEST_NOTE_MENU(SOVEREIGN_TEST_MENU_LIST);
     ScriptContext_Pause(ctx, ResumeOnMenuSelection);
 
     return TRUE;
@@ -2015,6 +2032,7 @@ static BOOL ScrCmd_ShowMenuMultiColumn(ScriptContext *ctx)
     u8 columnCount = ScriptContext_ReadByte(ctx);
 
     FieldMenuManager_ShowMultiColumnMenu(*fieldMenuMan, columnCount);
+    SOVEREIGN_TEST_NOTE_MENU(SOVEREIGN_TEST_MENU_LIST);
     ScriptContext_Pause(ctx, ResumeOnMenuSelection);
 
     return TRUE;

@@ -873,6 +873,9 @@ struct SovereignTestWarpTarget gSovereignTestWarpTarget;
 struct SovereignTestVar gSovereignTestVar;
 struct SovereignTestScripts gSovereignTestScripts;
 struct SovereignTestWildSurvey gSovereignTestWildSurvey;
+u8 gSovereignTestPartyKeep;
+u8 gSovereignTestBadges;
+struct SovereignTestMenu gSovereignTestMenu;
 u16 gSovereignTestBattleTrainer;
 struct SovereignTestWild gSovereignTestWild;
 struct SovereignTestLead gSovereignTestLead;
@@ -888,6 +891,24 @@ u8 gSovereignTestFoeSurvivesTurns;
 
 void SovereignTest_WarpNext(FieldSystem *fieldSystem)
 {
+    if (gSovereignTestPartyKeep != 0) {
+        Party *party = SaveData_GetParty(fieldSystem->saveData);
+
+        while (Party_GetCurrentCount(party) > gSovereignTestPartyKeep) {
+            Party_RemovePokemonBySlotIndex(party, Party_GetCurrentCount(party) - 1);
+        }
+
+        gSovereignTestPartyKeep = 0;
+    }
+
+    for (int i = 0; i < 8; i++) {
+        if (gSovereignTestBadges & (1 << i)) {
+            TrainerInfo_SetBadge(SaveData_GetTrainerInfo(fieldSystem->saveData), i);
+        }
+    }
+
+    gSovereignTestBadges = 0;
+
     if (gSovereignTestVar.var != 0) {
         *FieldSystem_GetVarPointer(fieldSystem, gSovereignTestVar.var) = gSovereignTestVar.value;
         gSovereignTestVar.var = 0;

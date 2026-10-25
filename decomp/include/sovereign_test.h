@@ -19,6 +19,38 @@ struct SovereignTestVar {
     u16 value;
 };
 
+// The player's party, written down on request while the field is free (field_system.c).
+struct SovereignTestPartyMon {
+    u16 species;
+    u16 ability;
+    u16 heldItem;
+    u16 moves[4];
+    u8 form;
+    u8 level;
+    u8 hasHiddenAbility;
+    u8 padding;
+};
+
+struct SovereignTestParty {
+    u8 wanted; // set by a harness: the field's next free frame writes the party down and clears it
+    u8 count;
+    u16 padding;
+    struct SovereignTestPartyMon mons[6];
+};
+
+// The menus scripts have shown for the player's choice, and the last one's kind (scrcmd.c), so a harness can tell when
+// to choose. It is counted as the script starts waiting, before the menu reads any input, so a harness that checks
+// it before pressing a button never presses into a menu it hasn't seen.
+enum SovereignTestMenuKind {
+    SOVEREIGN_TEST_MENU_LIST = 1, // a list or multiple-choice menu: the cursor moves down the entries, A picks one
+    SOVEREIGN_TEST_MENU_YES_NO, // A picks Yes, B No
+};
+
+struct SovereignTestMenu {
+    u32 shown;
+    u32 kind;
+};
+
 struct SovereignTestScripts {
     u16 count;
     u16 first;
@@ -170,6 +202,15 @@ extern u8 gSovereignTestFoeSurvivesTurns;
 // The frames the field map has run with no task (no script, warp or battle), and the map it was on (field_system.c).
 extern u32 gSovereignTestIdleFrames;
 extern u32 gSovereignTestIdleMapHeaderID;
+// The party, written down when a harness asks (see struct SovereignTestParty), so it can check a gift.
+extern struct SovereignTestParty gSovereignTestParty;
+// When set, the next SELECT+L+R first leaves only this many Pokémon in the party (the first ones), to make room for
+// gifts.
+extern u8 gSovereignTestPartyKeep;
+// When set, the next SELECT+L+R first gives the player these badges (bit 0 the Coal Badge... bit 7 the Beacon Badge).
+extern u8 gSovereignTestBadges;
+// The menus scripts have shown, and the last one's kind (see struct SovereignTestMenu).
+extern struct SovereignTestMenu gSovereignTestMenu;
 // The scripts the field has started (ScriptManager_Set: an object's, a sign's, a trigger's...) since a harness cleared
 // count, and the ID of the first, so it can tell that a script that ends at once ran.
 extern struct SovereignTestScripts gSovereignTestScripts;

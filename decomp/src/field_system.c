@@ -32,8 +32,10 @@
 #include "map_header_data.h"
 #include "map_matrix.h"
 #include "overlay_manager.h"
+#include "party.h"
 #include "player_move.h"
 #include "pokedex_memory.h"
+#include "pokemon.h"
 #include "pokeradar.h"
 #include "savedata.h"
 #include "sovereign_test.h"
@@ -208,6 +210,32 @@ static void ExecuteAndCleanupIfDone(ApplicationManager **appManPtr)
 // battle) and the map it was on; test harnesses read them to tell when the player is free to move.
 u32 gSovereignTestIdleFrames;
 u32 gSovereignTestIdleMapHeaderID;
+struct SovereignTestParty gSovereignTestParty;
+
+static void SovereignTest_NoteParty(FieldSystem *fieldSystem)
+{
+    Party *party = SaveData_GetParty(fieldSystem->saveData);
+
+    gSovereignTestParty.count = Party_GetCurrentCount(party);
+
+    for (int i = 0; i < gSovereignTestParty.count; i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
+        struct SovereignTestPartyMon *noted = &gSovereignTestParty.mons[i];
+
+        noted->species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+        noted->form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+        noted->level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
+        noted->ability = Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL);
+        noted->hasHiddenAbility = Pokemon_GetValue(mon, MON_DATA_HAS_HIDDEN_ABILITY, NULL);
+        noted->heldItem = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
+
+        for (int j = 0; j < 4; j++) {
+            noted->moves[j] = Pokemon_GetValue(mon, MON_DATA_MOVE1 + j, NULL);
+        }
+    }
+
+    gSovereignTestParty.wanted = FALSE;
+}
 #endif
 
 static BOOL HandleInputsEventsAndProcesses(FieldSystem *fieldSystem)
@@ -216,6 +244,10 @@ static BOOL HandleInputsEventsAndProcesses(FieldSystem *fieldSystem)
     if (fieldSystem->runningFieldMap && FieldSystem_IsRunningTask(fieldSystem) == FALSE) {
         gSovereignTestIdleFrames++;
         gSovereignTestIdleMapHeaderID = fieldSystem->location->mapHeaderID;
+
+        if (gSovereignTestParty.wanted) {
+            SovereignTest_NoteParty(fieldSystem);
+        }
     }
 #endif
 
