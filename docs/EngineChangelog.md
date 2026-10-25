@@ -4,6 +4,32 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Playtest checks — map events name scripts that exist
+
+New check `tools/test/check_event_scripts.py`, run in CI (rom job). It catches the mistake behind the silent Battle
+Tower Ability researcher (QoL #11): her object named script 26 of a 25-entry table.
+- It reads every map header in `decomp/include/data/map_headers.h`.
+- For each map's objects, signs and coord triggers, and each entry of its init scripts, it checks that the script
+  number is within the map's `ScriptEntry` table (1–1999). Common script numbers (2000 up) must name an entry of
+  `scripts_common.s`.
+- All 544 map headers pass. Vanilla Platinum already has one out-of-range number, an Oreburgh City sign at
+  (256, 808) naming script 45 of 22. It's listed in the check and kept as it is.
+- Verified by putting the researcher's old number back, and by breaking an Elite Four room's init script: the check
+  reported both.
+
+A second check, `tools/test/check_map_links.py`, also runs in CI:
+- **Warps:** every warp's destination warp index must exist in the destination map's events. A missing one drops the
+  player at a wrong or garbage position. Index 0x100 ("back to the saved position") is skipped. All 1213 warps pass.
+- **Map texts:** a map's scripts look their texts up in the map header's text bank (`msgArchiveID`). A text from
+  another map's bank assembles fine, but the game shows the line at the same index of its own bank. Every message,
+  sign and menu-entry text in 491 script files is in its map's bank (menu entries may also use the shared menu bank).
+- Verified by pointing a Route 207 warp at warp 40, and by using a Jubilife City text in Route 207's scripts: the check
+  reported both.
+
+Docs:
+- `docs/AIReview.md` #9 (when trainers Mega Evolve) is marked done: the AI has Mega Evolved as soon as it can since E8.
+- `docs/ProjectStatus.md`'s opening summary now says where things stand.
+
 ## E11 (part) — the Elite Four format: two singles, two doubles, and the rematch menu
 
 `docs/EliteFourFormat.md` is now in the game:

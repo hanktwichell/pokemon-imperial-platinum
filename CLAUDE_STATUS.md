@@ -5743,3 +5743,44 @@ vanilla's post-game guard.
 2. T1 (owner-deferred): load the Sovereign singles and doubles League teams from `data/trainers_sovereign.yaml` into
    the twenty League trainers.
 3. Owner questions in `docs/ProjectStatus.md`: Route 224 before the Elite Four, and the Tea and Route 218's gate.
+
+## CB-0122 — 2026-10-25, 12:27 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: a playtest check, `tools/test/check_event_scripts.py`.** PR #135 (the Elite Four format) is merged.
+- It checks that every map object, sign, coord trigger and init-script entry names a script that exists in its
+  map's `ScriptEntry` table, or in `scripts_common.s` for numbers from 2000.
+- It runs in CI (rom job). All 544 map headers pass. The one vanilla out-of-range number, an Oreburgh City sign, is
+  allowlisted.
+- Mutation-tested: the researcher's old script 26, and a broken League init entry, are both reported.
+- Docs:
+  - `docs/AIReview.md` #9 (Mega timing) is marked done with E8.
+  - `docs/ProjectStatus.md`'s summary is brought up to date.
+
+**Files modified:** `tools/test/check_event_scripts.py` (new), `.github/workflows/build.yml`,
+`docs/EngineChangelog.md`, `docs/AIReview.md`, `docs/ProjectStatus.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR once both checks are green.
+2. More playtest checks in the same spirit, for example flags set or checked by scripts but never named in
+   `vars_flags.txt`, or warps that lead to a missing warp index.
+3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
+
+## CB-0123 — 2026-10-25, 1:25 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: a second playtest check, `tools/test/check_map_links.py`,** added to PR #136 (still open, green).
+- **Warps:** every warp's destination warp index exists in the destination map's events (0x100, "back to the saved
+  position", is skipped). All 1213 warps pass.
+- **Map texts:** every message, sign and menu-entry text a map's scripts show is in that map header's text bank
+  (`msgArchiveID`); menu entries may also use `TEXT_BANK_MENU_ENTRIES`. All 491 script files pass.
+- It runs in CI (rom job) after the event-script check.
+- Mutation-tested: a Route 207 warp pointed at warp 40, and a Jubilife City text used in Route 207's scripts, were
+  both reported. Both files were restored.
+
+**Files modified:** `tools/test/check_map_links.py` (new), `.github/workflows/build.yml`, `docs/EngineChangelog.md`,
+`CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge PR #136 once both checks are green.
+2. More checks in the same spirit: flags and vars that scripts use but `vars_flags.txt` doesn't name, or trainers
+   that scripts start but `generated/trainers.txt` doesn't list.
+3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
