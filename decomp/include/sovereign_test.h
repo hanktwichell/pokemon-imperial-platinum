@@ -12,6 +12,12 @@ struct SovereignTestWarpTarget {
     u16 dir; // when set, the way the player faces + 1 (FACE_UP + 1...); else down
 };
 
+// A var the next test warp sets first, so a harness can mark a story scene as seen.
+struct SovereignTestVar {
+    u16 var; // when set
+    u16 value;
+};
+
 struct SovereignTestWild {
     u16 species;
     u8 form;
@@ -90,6 +96,8 @@ struct SovereignTestItemUse {
 
 // When mapHeaderID is set, the next SELECT+L+R warps here instead of to the next test location (script_manager.c).
 extern struct SovereignTestWarpTarget gSovereignTestWarpTarget;
+// When var is set, the next SELECT+L+R sets it first (see struct SovereignTestVar).
+extern struct SovereignTestVar gSovereignTestVar;
 // When set, the next SELECT+R battles this trainer instead of TRAINER_SOVEREIGN_TEST (field_control.c).
 extern u16 gSovereignTestBattleTrainer;
 // When species is set, the next SELECT battles this wild Pokémon instead of a Chansey (field_control.c).

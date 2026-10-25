@@ -6,8 +6,10 @@ with a script. For each one this finds a tile next to it that the player can rea
 facing it (gSovereignTestWarpTarget, include/sovereign_test.h: the map, the tile and the direction) and presses A.
 Then it plays the script out: A pages through text and answers prompts, taps on the touch screen pick moves in a
 battle (god mode is on, so a trainer's battle ends at once, as in battle_all_trainers.py), and B now and then backs
-out of a menu. A scene on entering the map is played out the same way, and then it warps again, as the scene may have
-moved the player. The script has ended when the field is idle again (gSovereignTestIdleFrames).
+out of a menu. It first comes into the map by its way in (the tile a player steps onto from its first warp), and plays
+out any scene on entering it the same way, as such a scene expects the player there; then it warps to the object. A
+scene that needs the story's own way in (SCENES_SEEN) is marked as seen first. The script has ended when the field is
+idle again (gSovereignTestIdleFrames).
 
 Each object gets a result:
 - ok: a script ran and ended;
@@ -15,8 +17,8 @@ Each object gets a result:
   the story) or something else stands in the way;
 - NOTILE: no reachable tile next to it (check_object_tiles.py reports these too);
 - HANG (the game stopped running) or STUCK (still busy at the time limit), with a screenshot. A STUCK can be a menu
-  the inputs don't get out of; the screenshot shows which. NOWARP HANG or NOWARP STUCK: the same on the way in, as
-  a scene on entering the map plays out (it may move the player off the tile).
+  the inputs don't get out of; the screenshot shows which. NOWARP HANG or NOWARP STUCK: the same on the way in, while
+  a scene on entering the map plays out.
 
 The test save is a new game with the test party (src/script_manager.c), so a script follows its early-game branch:
 an NPC whose gift waits on badges says so, and that is what runs.
@@ -36,21 +38,49 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from battle_all_trainers import DECOMP, HANG_FRAMES, STEP, SWITCH_FRAMES, TAPS, VBLANK_COUNTER, symbols  # noqa: E402
-from check_object_tiles import DIRS, TABLE, WINDOW, Maps, can_turn, explore, vanilla_events  # noqa: E402
+from check_object_tiles import (DIRS, TABLE, WINDOW, Maps, can_turn, explore, vanilla_events,  # noqa: E402
+                                walkable)
 
 FRAME_LIMIT = 20000  # a six-Pokémon trainer battle with its text takes about 8000
 START_FRAMES = 90  # a script that hasn't started by then never will
-SCENE_FRAMES = 600  # a warp that took longer had a scene on the way in
+# Scenes on entering a map that need the story's own way in, marked as seen first (gSovereignTestVar): events -> (var,
+# the value the scene leaves it at). Every other map's scene plays out on the way in.
+SCENES_SEEN = {
+    'events_sunyshore_city': ('VAR_SUNYSHORE_CITY_STATE', 1),  # Flint at the gate, as the player comes from Route 222
+    'events_stark_mountain_room_1': ('VAR_STARK_MOUNTAIN_ROOM_1_STATE', 1),  # Mars and Jupiter, with Buck along
+}
+# Scripts that run longer: the Battleground's Battle Marathon is 24 battles in a row.
+LONG_SCRIPTS = {('events_battleground', 'LOCALID_SOVEREIGN_MARATHON_GUIDE'): 300000}
 WARP = {'header': 0, 'x': 2, 'z': 4, 'dir': 6}  # struct SovereignTestWarpTarget
 FACE = {(0, -1): 0, (0, 1): 1, (-1, 0): 2, (1, 0): 3}  # enum FaceDirection: the step from the player to the object
+
+
+def var_ids():
+    """{var or flag name: its number}, from the build's generated enum."""
+    text = open(os.path.join(DECOMP, 'build_test', 'generated', 'vars_flags.py'), encoding='utf-8').read()
+    return {name: int(value) for name, value in re.findall(r'^\s+(\w+)\s+=\s+(\d+)$', text, re.M)}
 
 
 def header_names():
     return [line.strip() for line in open(os.path.join(DECOMP, 'generated', 'map_headers.txt')) if line.strip()]
 
 
+def way_in(maps, matrix, warps, taken):
+    """Where a player coming in by the map's first warp stands: the walkable tile next to it with the most walkable
+    tiles around (the one inward, as the game steps the player off a door), or None."""
+    def free(p):
+        return p not in taken and walkable(maps.tile(matrix, *p))
+
+    for wx, wz in warps[:1]:
+        steps = [(wx + dx, wz + dz) for dx, dz in DIRS if free((wx + dx, wz + dz))]
+        if steps:
+            return max(steps, key=lambda p: sum(free((p[0] + dx, p[1] + dz)) for dx, dz in DIRS))
+    return None
+
+
 def cases():
-    """[(events, object id, header ID, x, z, facing, or None when no tile)] for each added or moved object."""
+    """[(events, object id, header ID, (x, z) of the map's way in, x, z, facing, or None when no tile)] for each added
+    or moved object."""
     maps = Maps(DECOMP)
     ids = header_names()
     headers = open(os.path.join(DECOMP, 'include', 'data', 'map_headers.h'), encoding='utf-8').read()
@@ -101,20 +131,23 @@ def cases():
                 stand = stand or next(((x - 2 * d[0], z - 2 * d[1], FACE[d]) for d in DIRS
                                        if (maps.tile(matrix, x - d[0], z - d[1]) or 0) & 0xff == TABLE
                                        and (x - 2 * d[0], z - 2 * d[1], False) in seen), None)
-            out.append((events, o['id'], ids.index(header)) + (stand or (x, z, None)))
+            own = [(w['x'], w['z']) for w in cur.get('warp_events', []) if not grid.get('headers')
+                   or grid['headers'][w['z'] // 32][w['x'] // 32] == header]
+            stand = stand or (x, z, None)
+            out.append((events, o['id'], ids.index(header), way_in(maps, matrix, own, taken) or stand[:2]) + stand)
     return out
 
 
 def play_out(d, sym, limit, header=None, press_a=True):
-    """Play out what runs now (a script, a scene on entering a map, a battle) until the field is idle (on header, if
-    given). With press_a, A is pressed first, to talk. Returns ('ok', 'NOSCRIPT' (nothing ran), 'HANG' or 'STUCK',
-    frames run)."""
+    """Play out what starts now (a script, a warp and any scene on entering the map, a battle) until the field is idle
+    again (on header, if given). With press_a, A is pressed first, to talk. Returns ('ok', 'NOSCRIPT' (nothing
+    started), 'HANG' or 'STUCK', frames run)."""
     def u32(addr):
         return struct.unpack('<I', bytes(d.emu.memory.unsigned[addr:addr + 4]))[0]
 
     if press_a:
         d.press('A', frames=4, after=0)
-    frames, stalled, started, idle, step = 0, 0, not press_a, 0, 0
+    frames, stalled, started, idle, step = 0, 0, False, 0, 0
     vblank = u32(sym['gSystem'] + VBLANK_COUNTER)
     while frames < limit:
         before = u32(sym['gSovereignTestIdleFrames'])
@@ -155,40 +188,54 @@ def main():
     rom, state, out = args[:3]
     only = set(args[3:])
     os.makedirs(out, exist_ok=True)
-    sym = symbols(('gSovereignTestWarpTarget', 'gSovereignTestIdleFrames', 'gSovereignTestIdleMapHeaderID',
-                   'gSovereignTestGodMode', 'gSystem'))
+    sym = symbols(('gSovereignTestWarpTarget', 'gSovereignTestVar', 'gSovereignTestIdleFrames',
+                   'gSovereignTestIdleMapHeaderID', 'gSovereignTestGodMode', 'gSystem'))
+    variables = var_ids()
     chosen = [(i, c) for i, c in enumerate(cases()) if (not only or c[0] in only) and i % parts == part]
     d = Driver(rom, state)
     d.added, d.armed = [], False
     mem = d.emu.memory
 
+    def u32(addr):
+        return struct.unpack('<I', bytes(mem.unsigned[addr:addr + 4]))[0]
+
     bad = 0
     with open(os.path.join(out, 'results.txt'), 'w') as f:
-        for index, (events, oid, header, x, z, face) in chosen:
+        for index, (events, oid, header, way_in, x, z, face) in chosen:
             if face is None:
                 result, frames = 'NOTILE', 0
             else:
                 d.emu.savestate.load_file(state)
                 d.run(30)
 
-                def write_target():
+                def warp(tx, tz, dir):
                     target = sym['gSovereignTestWarpTarget']
-                    mem.write_short(target + WARP['x'], x)
-                    mem.write_short(target + WARP['z'], z)
-                    mem.write_short(target + WARP['dir'], face + 1)
+                    mem.write_short(target + WARP['x'], tx)
+                    mem.write_short(target + WARP['z'], tz)
+                    mem.write_short(target + WARP['dir'], dir)
                     mem.write_short(target + WARP['header'], header)
+                    # A busy outdoor map runs the field every other frame and can miss the frame SELECT goes down
+                    # on, so it tries again an odd number of frames later.
+                    for attempt in range(10):
+                        before = u32(sym['gSovereignTestIdleFrames'])
+                        d.press('SELECT+L+R', frames=4, after=0)
+                        d.run(10 + attempt % 2)
+                        if u32(sym['gSovereignTestIdleFrames']) - before < 10:
+                            break
+                    return play_out(d, sym, FRAME_LIMIT, header, press_a=False)
 
-                write_target()
                 mem.write_byte(sym['gSovereignTestGodMode'], 1)
-                d.press('SELECT+L+R')
-                # Until the field runs on the map, past any scene on the way in. A scene may move the player, so then
-                # it warps again (the scene has run, so it doesn't run twice).
-                arrived, waited = play_out(d, sym, FRAME_LIMIT, header, press_a=False)
-                if arrived == 'ok' and waited > SCENE_FRAMES:
-                    write_target()
-                    d.press('SELECT+L+R')
-                    arrived, waited = play_out(d, sym, FRAME_LIMIT, header, press_a=False)
-                result, frames = play_out(d, sym, FRAME_LIMIT) if arrived == 'ok' else ('NOWARP ' + arrived, waited)
+                if events in SCENES_SEEN:
+                    var, value = SCENES_SEEN[events]
+                    mem.write_short(sym['gSovereignTestVar'], variables[var])
+                    mem.write_short(sym['gSovereignTestVar'] + 2, value)
+                # In by the map's way in first, as a player comes, so a scene on entering it plays out where it
+                # expects the player (it may walk them about), then to the object.
+                arrived, waited = warp(*way_in, 0)
+                if arrived == 'ok':
+                    arrived, waited = warp(x, z, face + 1)  # a warp on the same map runs too, so it waits for it
+                result, frames = play_out(d, sym, LONG_SCRIPTS.get((events, oid), FRAME_LIMIT)) if arrived == 'ok' \
+                    else ('NOWARP ' + arrived, waited)
             if result not in ('ok', 'NOSCRIPT'):
                 bad += 1
                 if face is not None:
