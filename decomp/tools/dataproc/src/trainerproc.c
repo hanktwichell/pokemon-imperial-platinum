@@ -122,6 +122,19 @@ static void EmitTrainerScripts(void)
     TextFile_Printf(F_TRAINER_SCRIPTS, "    ScriptEntryEnd\n");
 }
 
+// Sovereign: whether any party member gives the field. Platinum read only the first member's, as its teams give items
+// (and moves) to every member or none; Renegade's give items to some members only, and the others' items were dropped.
+static bool AnyMemberHas(dp_node party, size_t size, const char *field, enum dp_type type)
+{
+    for (size_t i = 0; i < size; i++) {
+        if (dp_type_of(dp_try(dp_arr_at(party, i), field)) == type) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 // Party members are packed as TrainerMonWithMovesAndItem, minus the fields that
 // the party's data type leaves out.
 static void PackParty(dp_node party, size_t size, bool hasItems, bool hasMoves)
@@ -140,8 +153,15 @@ static void PackParty(dp_node party, size_t size, bool hasItems, bool hasMoves)
             .cbSeal  = dp_u16_at(member, ".ball_seal"),
         };
 
-        if (hasItems) mon.item = dp_u16(dp_lookup_at(member, ".item", L_ITEM));
-        if (hasMoves) {
+        if (hasItems) {
+            const dp_node item = dp_try(member, ".item");
+            if (dp_type_of(item) == DP_STRING) mon.item = dp_u16(dp_lookup(item, L_ITEM)); // else it holds nothing
+        }
+
+        if (hasMoves && dp_type_of(dp_try(member, ".moves")) != DP_ARRAY) {
+            // MOVE_NONE in every slot would leave it with no moves at all.
+            dp_error(member, "this party member has no moves, but another has; give every member its moves, or none");
+        } else if (hasMoves) {
             const dp_node moves = dp_at(member, ".moves");
             if (dp_arr_len(moves) > LEARNED_MOVES_MAX) {
                 dp_warn(moves, "more than %d moves defined for party member; the rest will be ignored!", LEARNED_MOVES_MAX);
@@ -305,9 +325,9 @@ static TrainerHeader ProcTrainer(dp_node root, size_t index)
         size = MAX_PARTY_SIZE;
     }
 
-    // The first party member decides which fields every member has.
-    const bool hasItems = dp_type_of(dp_try(party, ".[0].item")) == DP_STRING;
-    const bool hasMoves = dp_type_of(dp_try(party, ".[0].moves")) == DP_ARRAY;
+    // Every member has the fields that any member gives.
+    const bool hasItems = AnyMemberHas(party, size, ".item", DP_STRING);
+    const bool hasMoves = AnyMemberHas(party, size, ".moves", DP_ARRAY);
 
     const bool sovereign = UsesSovereignFormat(party, size);
 
