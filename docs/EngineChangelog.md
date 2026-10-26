@@ -4,6 +4,25 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E12 — the Gen 5–9 battle sprites are in the game
+
+For players: #494–1025 show their real front, back and shiny sprites in battle instead of the Unown placeholder.
+
+- The owner's relabelled pack (`Gen5-9_Sprites_relabeled`, 2026-10-26) replaces `assets/sprites/packs/gen5_9_part1`:
+  all four sprites for all 532 species. 152 of them were edited by hand by the owner's artist, Nolan Herkomer
+  (`CITATIONS.md`).
+- `tools/sprites/convert_battle_sprites.py` writes each species' `{male,female}_{front,back}.png`, `normal.pal`,
+  `shiny.pal` and `sprite_data.json`:
+  - Front and back share one palette of 15 colours plus transparency; the shiny palette takes, for each colour,
+    what the shiny sprite has in the same place.
+  - Each frame is 80×80, centred on the art and keeping the source's space under the feet. Art bigger than that is
+    scaled down (40 species) and 14 had their colours reduced; `docs/BattleSpriteImport.md` lists them.
+  - The y offsets are the empty rows under the art, as in Platinum's own data. Flying types and Levitate users
+    hover (`addl_y_offset` 16). The shadow size follows the front's width.
+  - #1–493 (Renegade Platinum's sprites) aren't touched. Female sprites are copies of the male ones for now.
+- Verification: the release build and the boot smoke test pass; a contact sheet of 24 converted species (normal and
+  shiny, front and back) looked right. Not yet seen in a battle.
+
 ## Playtest pass — the object test checks it ran the object's own script
 
 The last object run showed that `tools/test/talk_to_objects.py` counted any script as the object's. Now:
