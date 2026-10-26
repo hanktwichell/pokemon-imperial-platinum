@@ -3436,7 +3436,8 @@ BOOL Battler_IsTrappedMsg(BattleSystem *battleSys, BattleContext *battleCtx, int
 
     if (itemEffect == HOLD_EFFECT_FLEE
         || (battleType & BATTLE_TYPE_NO_EXPERIENCE)
-        || Battler_Ability(battleCtx, battler) == ABILITY_RUN_AWAY) {
+        || Battler_Ability(battleCtx, battler) == ABILITY_RUN_AWAY
+        || MON_HAS_TYPE(battler, TYPE_GHOST)) { // Sovereign (item 11): since Gen VI, nothing traps a Ghost type
         return FALSE;
     }
 
@@ -4163,13 +4164,14 @@ BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem *battleSys, BattleContext *
         }
         break;
 
-    // Sovereign (item 11): Healer has a 30% chance each turn to cure its ally's status condition.
+    // Sovereign (item 11): Healer has a 50% chance each turn to cure its ally's status condition (Pokemon Champions;
+    // 30% in Gen V-IX).
     case ABILITY_HEALER:
         if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES)
             && battleCtx->battleMons[battler].curHP
             && battleCtx->battleMons[battler ^ 2].curHP
             && (battleCtx->battleMons[battler ^ 2].status & MON_CONDITION_ANY)
-            && BattleSystem_RandNext(battleSys) % 10 < 3) {
+            && BattleSystem_RandNext(battleSys) % 10 < 5) {
             battleCtx->msgBattlerTemp = battler ^ 2;
             battleCtx->sideEffectMon = battler;
             subscript = subscript_sovereign_healer;
@@ -6734,6 +6736,51 @@ BOOL Battler_MovedThisTurn(BattleContext *battleCtx, int battler)
     return battleCtx->battlerActions[battler][BATTLE_ACTION_PICK_COMMAND] == BATTLE_CONTROL_MOVE_END;
 }
 
+// Sovereign (item 11): the held items that raise their holder's stats once when a damaging move hits it, then are
+// used up: Weakness Policy (a super-effective hit: Attack and Sp. Atk +2), Absorb Bulb (Water: Sp. Atk +1), Cell Battery
+// (Electric: Attack +1), Luminous Moss (Water: Sp. Def +1) and Snowball (Ice: Attack +1). Not while the stats are
+// already at +6, nor once the holder has fainted. Sets up subscript_sovereign_item_stat_up.
+static BOOL Sovereign_ItemStatUpOnHit(BattleContext *battleCtx)
+{
+    int item = Battler_HeldItem(battleCtx, battleCtx->defender);
+    int hitType = battleCtx->moveType ? battleCtx->moveType : CURRENT_MOVE_DATA.type;
+    int stat = -1, stat2 = -1, stages = 1;
+
+    if (DEFENDING_MON.curHP == 0
+        || battleCtx->attacker == battleCtx->defender
+        || (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken == 0 && DEFENDER_SELF_TURN_FLAGS.specialDamageTaken == 0)) {
+        return FALSE;
+    }
+
+    if (item == ITEM_WEAKNESS_POLICY && (battleCtx->moveStatusFlags & MOVE_STATUS_SUPER_EFFECTIVE)) {
+        stat = BATTLE_STAT_ATTACK;
+        stat2 = BATTLE_STAT_SP_ATTACK;
+        stages = 2;
+    } else if (item == ITEM_ABSORB_BULB && hitType == TYPE_WATER) {
+        stat = BATTLE_STAT_SP_ATTACK;
+    } else if (item == ITEM_CELL_BATTERY && hitType == TYPE_ELECTRIC) {
+        stat = BATTLE_STAT_ATTACK;
+    } else if (item == ITEM_LUMINOUS_MOSS && hitType == TYPE_WATER) {
+        stat = BATTLE_STAT_SP_DEFENSE;
+    } else if (item == ITEM_SNOWBALL && hitType == TYPE_ICE) {
+        stat = BATTLE_STAT_ATTACK;
+    }
+
+    if (stat < 0
+        || (DEFENDING_MON.statBoosts[stat] == 12 && (stat2 < 0 || DEFENDING_MON.statBoosts[stat2] == 12))) { // MAX_STAT_STAGE
+        return FALSE;
+    }
+
+    int first = stages == 2 ? MOVE_SUBSCRIPT_PTR_ATTACK_UP_2_STAGES : MOVE_SUBSCRIPT_PTR_ATTACK_UP_1_STAGE;
+
+    battleCtx->msgBattlerTemp = battleCtx->defender;
+    battleCtx->msgItemTemp = item;
+    battleCtx->sideEffectParam = first + (stat - BATTLE_STAT_ATTACK);
+    battleCtx->msgTemp = stat2 < 0 ? 0 : first + (stat2 - BATTLE_STAT_ATTACK);
+
+    return TRUE;
+}
+
 BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript)
 {
     BOOL result = FALSE;
@@ -6753,6 +6800,11 @@ BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *b
     int itemEffect = Battler_HeldItemEffect(battleCtx, battleCtx->defender);
     int itemPower = Battler_HeldItemPower(battleCtx, battleCtx->defender, 0);
     int side = BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker);
+
+    if (Sovereign_ItemStatUpOnHit(battleCtx)) { // Sovereign (item 11)
+        *subscript = subscript_sovereign_item_stat_up;
+        return TRUE;
+    }
 
     switch (itemEffect) {
     case HOLD_EFFECT_DMG_USER_CONTACT_XFR:
@@ -6924,7 +6976,8 @@ BOOL Battler_IsTrapped(BattleSystem *battleSys, BattleContext *battleCtx, int ba
 {
     int result = FALSE;
 
-    if (Battler_HeldItemEffect(battleCtx, battler) == HOLD_EFFECT_SWITCH) {
+    if (Battler_HeldItemEffect(battleCtx, battler) == HOLD_EFFECT_SWITCH
+        || MON_HAS_TYPE(battler, TYPE_GHOST)) { // Sovereign (item 11): since Gen VI, nothing traps a Ghost type
         return FALSE;
     }
 
@@ -8368,7 +8421,7 @@ static u32 Sovereign_StagedSpeed(BattleContext *battleCtx, int battler)
     return battleCtx->battleMons[battler].speed * sStatStageBoosts[stage].numerator / sStatStageBoosts[stage].denominator;
 }
 
-// Sovereign (item 11): a battler's weight, with Heavy Metal and Light Metal.
+// Sovereign (item 11): a battler's weight, with Heavy Metal, Light Metal and Float Stone.
 static u32 Sovereign_Weight(BattleContext *battleCtx, int attacker, int battler)
 {
     u32 weight = battleCtx->battleMons[battler].weight;
@@ -8376,6 +8429,10 @@ static u32 Sovereign_Weight(BattleContext *battleCtx, int attacker, int battler)
     if (Battler_IgnorableAbility(battleCtx, attacker, battler, ABILITY_HEAVY_METAL) == TRUE) {
         weight *= 2;
     } else if (Battler_IgnorableAbility(battleCtx, attacker, battler, ABILITY_LIGHT_METAL) == TRUE) {
+        weight /= 2;
+    }
+
+    if (Battler_HeldItem(battleCtx, battler) == ITEM_FLOAT_STONE) {
         weight /= 2;
     }
 

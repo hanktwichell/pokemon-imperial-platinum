@@ -1665,7 +1665,10 @@ static void BattleControllerPlayer_CheckMonConditions(BattleSystem *battleSys, B
                 battleCtx->battleMons[battler].statusVolatile -= (1 << VOLATILE_CONDITION_BIND_SHIFT);
 
                 if (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_BIND) {
-                    battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1, 16);
+                    // Sovereign (item 11): twice as much if the Pokemon that bound it holds a Binding Band.
+                    int binder = battleCtx->battleMons[battler].moveEffectsData.bindTarget;
+                    battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1,
+                        Battler_HeldItem(battleCtx, binder) == ITEM_BINDING_BAND ? 8 : 16);
                     LOAD_SUBSEQ(subscript_bind_effect);
                 } else {
                     LOAD_SUBSEQ(subscript_bind_end);
@@ -5463,6 +5466,7 @@ enum AfterMoveHitState {
     AFTER_MOVE_HIT_STATE_LIFE_ORB,
     AFTER_MOVE_HIT_STATE_KNOCKOUT_ABILITY, // Sovereign (item 11)
     AFTER_MOVE_HIT_STATE_DEFIANT, // Sovereign (item 11)
+    AFTER_MOVE_HIT_STATE_SOVEREIGN_ITEMS, // Sovereign (item 11)
 
     AFTER_MOVE_HIT_STATE_END
 };
@@ -5656,6 +5660,40 @@ static BOOL BattleControllerPlayer_TriggerAfterMoveHitEffects(BattleSystem *batt
             }
 
             battleCtx->afterMoveHitCheckState++;
+            break;
+        }
+
+        case AFTER_MOVE_HIT_STATE_SOVEREIGN_ITEMS: {
+            // Sovereign (item 11): the attacker's held items that act after its move, then are used up: Throat Spray
+            // (Sp. Atk +1 after a sound move that worked) and Blunder Policy (Speed +2 after a move that missed).
+            int item = Battler_HeldItem(battleCtx, battleCtx->attacker);
+            int stat = -1;
+            int param = MOVE_SUBSCRIPT_PTR_ATTACK_UP_1_STAGE;
+
+            if (item == ITEM_THROAT_SPRAY
+                && Move_IsSound(battleCtx->moveCur)
+                && (battleCtx->battleStatusMask2 & SYSCTL_ATTACK_MESSAGE_SHOWN)
+                && (battleCtx->moveStatusFlags & MOVE_STATUS_DID_NOT_HIT) == FALSE) {
+                stat = BATTLE_STAT_SP_ATTACK;
+            } else if (item == ITEM_BLUNDER_POLICY && (battleCtx->moveStatusFlags & MOVE_STATUS_MISSED)) {
+                stat = BATTLE_STAT_SPEED;
+                param = MOVE_SUBSCRIPT_PTR_ATTACK_UP_2_STAGES;
+            }
+
+            battleCtx->afterMoveHitCheckState++;
+
+            if (stat >= 0 && ATTACKING_MON.curHP && ATTACKING_MON.statBoosts[stat] < 12) { // MAX_STAT_STAGE
+                battleCtx->msgBattlerTemp = battleCtx->attacker;
+                battleCtx->msgItemTemp = item;
+                battleCtx->sideEffectParam = param + (stat - BATTLE_STAT_ATTACK);
+                battleCtx->msgTemp = 0;
+
+                LOAD_SUBSEQ(subscript_sovereign_item_stat_up);
+                battleCtx->commandNext = battleCtx->command;
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+                machineState = STATE_BREAK_OUT;
+            }
             break;
         }
 
