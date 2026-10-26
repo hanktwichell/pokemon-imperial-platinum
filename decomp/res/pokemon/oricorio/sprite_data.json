@@ -1,8 +1,8 @@
 {
     "front": {
         "y_offset": {
-            "female": 0,
-            "male": 23
+            "female": 10,
+            "male": 10
         },
         "addl_y_offset": 16,
         "animation": 13,
@@ -73,8 +73,8 @@
     },
     "back": {
         "y_offset": {
-            "female": 0,
-            "male": 16
+            "female": 4,
+            "male": 4
         },
         "animation": 0,
         "cry_delay": 0,
@@ -144,6 +144,6 @@
     },
     "shadow": {
         "x_offset": 0,
-        "size": "SHADOW_SIZE_SMALL"
+        "size": "SHADOW_SIZE_MEDIUM"
     }
 }

@@ -6436,3 +6436,35 @@ worker fix) is merged.
 2. Run `battle_all_trainers.py` (1,039 trainers in 4 parts; the SDL fix lets each worker go past 250),
    `battle_evolutions.py` and `battle_eggs.py` with the heap check.
 3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
+
+## CA-0056 (Claude A, 2026-10-26): the Gen 5–9 battle sprites are in the game
+
+**For Claude B (owner's request): the new sprites have been added.** The owner's relabelled pack
+(`Gen5-9_Sprites_relabeled`) replaced `assets/sprites/packs/gen5_9_part1`, and #494–1025 now show their real front,
+back and shiny sprites in battle instead of the Unown placeholder. Please pull main before touching
+`decomp/res/pokemon/<species>/` for any species from #494 on: their `{male,female}_{front,back}.png`, `normal.pal`,
+`shiny.pal` and `sprite_data.json` (y offsets, hover, shadow) were rewritten. #1–493 weren't touched.
+- If one of your harness checks compares sprite data or palettes, expect changes for #494–1025.
+- Not yet seen in a battle. Worth a look on your next battle run: the 40 species scaled to fit 80×80 and Zeraora's
+  shiny front (it doesn't line up with the normal front), all listed in `docs/BattleSpriteImport.md`.
+
+**Implemented:**
+- `tools/sprites/convert_battle_sprites.py`: pack → DS format. Front and back share 15 colours plus transparency;
+  the shiny palette comes from the shiny sprites pixel by pixel; 80×80 frames centred on the art; y offsets from the
+  empty rows under the art; Flying types and Levitate users hover; shadow size from the front's width. 532 converted,
+  40 scaled down, 14 reduced to 15 colours. Female sprites are copies of the male ones for now.
+- `CITATIONS.md`: the relabelled pack, and the 152 sprites the owner's artist **Nolan Herkomer** edited by hand
+  (files dated after the relabelling script's 4:37 am, 22 October stamp).
+- `docs/SpriteChecklist.xlsx` regenerated: every #494–1025 species now has all four battle sprites.
+- Owner: every overworld sprite not in vanilla Platinum is to be redone (the legendary and Totem placeholders). They
+  stay in the game until replaced; the roadmap page marks them as needed.
+- Release build and boot smoke test pass.
+
+**Files modified:** `assets/sprites/packs/gen5_9_part1/` (pack replaced), `decomp/res/pokemon/<#494–1025>/`,
+`tools/sprites/convert_battle_sprites.py` (new), `docs/BattleSpriteImport.md` (new), `docs/SpriteChecklist.xlsx`,
+`docs/EngineRoadmap.md` (E12), `docs/EngineChangelog.md`, `CITATIONS.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. See the new sprites in battle (the scaled ones and Zeraora first) and fix any that sit wrong.
+2. Female fronts for Unfezant, Frillish, Jellicent, Pyroar and Hisuian Sneasel; the forms' own sprites and Megas.
+3. New overworld sprites to replace every non-Platinum placeholder, as the art arrives.
