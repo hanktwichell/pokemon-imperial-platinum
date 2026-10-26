@@ -68,7 +68,8 @@ typedef struct TurnFlags {
     u32 sovereignStatsLowered : 1; // Sovereign (item 11): a stat fell this turn (Lash Out)
     u32 sovereignUsedRound : 1; // Sovereign (item 11): used Round this turn (its partner's Round doubles)
     u32 sovereignSwitchedIn : 1; // Sovereign (item 11): switched in during this turn (Core Enforcer)
-    u32 padding00_0A : 18;
+    u32 sovereignElectrified : 1; // Sovereign (item 11): Electrify makes its moves Electric this turn
+    u32 padding00_0A : 17;
 
     int physicalDamageTakenFrom[MAX_BATTLERS];
     int physicalDamageLastAttacker;
@@ -376,6 +377,13 @@ struct BattleContext {
     u8 sovereignSyrupBomb[MAX_BATTLERS]; // Sovereign (item 11): Syrup Bomb's Speed drops left on each battler
     u8 sovereignSyrupBombSource[MAX_BATTLERS]; // Sovereign (item 11): the battler whose Syrup Bomb it was
     u8 sovereignSyrupBombSourceSlot[MAX_BATTLERS]; // Sovereign (item 11): that battler's party slot (it must stay in)
+    u8 sovereignOctolock[MAX_BATTLERS]; // Sovereign (item 11): Octolock holds the battler (Defense and Sp. Def fall each turn)
+    u8 sovereignOctolockSource[MAX_BATTLERS]; // Sovereign (item 11): the battler whose Octolock it is
+    u8 sovereignOctolockSourceSlot[MAX_BATTLERS]; // Sovereign (item 11): that battler's party slot (it must stay in)
+    u8 sovereignIonDeluge; // Sovereign (item 11): Ion Deluge (or Plasma Fists) makes Normal moves Electric this turn
+    u8 sovereignFairyLock; // Sovereign (item 11): turns of Fairy Lock left (no one can escape)
+    u8 sovereignTeatimeNext; // Sovereign (item 11): the next battler Teatime checks for a Berry
+    u8 sovereignTeatimeUser; // Sovereign (item 11): Teatime's user, while the others eat
     u8 sovereignTimesHit[MAX_BATTLERS][MAX_PARTY_SIZE]; // Sovereign (item 11): hits each party slot has taken since it came in (Rage Fist)
     u8 sovereignTarShot; // Sovereign (item 11): battlers Tar Shot made weaker to Fire, until they switch out (flags by battler)
     u8 sovereignHappyHour; // Sovereign (item 11): the player's side used Happy Hour (double prize money)

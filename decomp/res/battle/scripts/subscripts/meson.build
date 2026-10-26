@@ -455,4 +455,12 @@ subscript_files = files(
     'subscript_sovereign_chilly_reception.s',
     'subscript_sovereign_doodle.s',
     'subscript_sovereign_core_enforcer.s',
+    'subscript_sovereign_electrify.s',
+    'subscript_sovereign_ion_deluge.s',
+    'subscript_sovereign_plasma_fists.s',
+    'subscript_sovereign_fairy_lock.s',
+    'subscript_sovereign_octolock.s',
+    'subscript_sovereign_octolock_drop.s',
+    'subscript_sovereign_spotlight.s',
+    'subscript_sovereign_teatime.s',
 )

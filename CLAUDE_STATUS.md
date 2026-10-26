@@ -7719,3 +7719,33 @@ PR #190 (Berry fixes, Hospitality, Costar, Curious Medicine) is merged.
    - Spotlight (Follow Me on the target) and Teatime (every Pokémon eats its Berry).
 2. Skill Swap and Simple Beam/Worry Seed still use the vanilla ability lists. Move them to the new helpers (Showdown's `failskillswap` list for Skill Swap).
 3. The doubles moves (Round, Expanding Force, Dragon Darts, Parabolic Charge), with the doubles harness. Burn Up and Double Shock wait on the owner (CB-0158).
+
+## CB-0175 — 2026-10-26, 1:12 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: moves batch 11b, Electrify, Ion Deluge, Plasma Fists, Fairy Lock, Octolock, Spotlight and Teatime.**
+PR #191 (batch 11a) is merged.
+- **Electrify, Ion Deluge, Plasma Fists:** `Sovereign_ElectrifyType` applies after the ability's type change everywhere the move's type is read.
+- **Fairy Lock:** handled by `Battler_IsTrapped` and `Battler_IsTrappedMsg`.
+- **Octolock:** a Mean Look-style trap, plus an end-of-turn Def/Sp. Def drop (new state after Syrup Bomb's).
+- **Spotlight:** Follow Me on the target's side.
+- **Teatime:** each Berry holder becomes the attacker while it eats.
+- All seven were verified in the harness (see the changelog entry). The batch 11 placeholders are all done.
+
+**Files modified:**
+- `decomp/src/battle/battle_lib.c`: the helpers, Fairy Lock in the trap checks, the type sites, and the per-turn resets in `BattleSystem_SetupNextTurn`.
+- `decomp/src/battle/battle_controller_player.c`: the two move-type helpers and Octolock's end-of-turn state.
+- `decomp/src/battle/battle_script.c`: 7 read-only vars.
+- `decomp/include/battle/battle_context.h`, `decomp/include/battle/battle_lib.h`.
+- 8 new subscripts: `subscript_sovereign_electrify`, `_ion_deluge`, `_plasma_fists`, `_fairy_lock`, `_octolock`, `_octolock_drop`, `_spotlight` and `_teatime`.
+- 7 new effect scripts: `effect_script_0382.s` to `0388.s`.
+- The registration files; `decomp/res/text/battle_strings.json` (6 messages).
+- Move data for the 7 moves; Teatime's range is now `RANGE_FIELD`.
+- `tools/engine/gen9_move_fixes.py`, `docs/MoveChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Skill Swap, Simple Beam and Worry Seed still use the vanilla ability lists. Move them to the Gen IX helpers (Showdown's `failskillswap` list for Skill Swap).
+2. The doubles moves: Round, Expanding Force, Dragon Darts and Parabolic Charge. The doubles harness now runs moves like Spotlight and Teatime.
+3. The remaining placeholder moves:
+   - Spectral Thief: it needs a boost steal around `CalcDamage`.
+   - Also Powder, Pollen Puff, Shed Tail, Beak Blast, Shell Trap and Instruct.
+   - Burn Up and Double Shock wait on the owner (CB-0158).

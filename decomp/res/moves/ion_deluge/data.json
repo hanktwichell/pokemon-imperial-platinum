@@ -10,7 +10,7 @@
     "accuracy": 0,
     "pp": 25,
     "effect": {
-        "type": "BATTLE_EFFECT_DO_NOTHING",
+        "type": "BATTLE_EFFECT_SOVEREIGN_ION_DELUGE",
         "chance": 0
     },
     "range": "RANGE_FIELD",
