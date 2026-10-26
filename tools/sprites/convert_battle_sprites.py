@@ -13,7 +13,10 @@ The PNG holds two 80x80 frames side by side; both get the same picture.
 Writes docs/BattleSpriteImport.md: what was scaled, how many colours each species had, and shinies that
 didn't line up.
 
-Usage: python3 -I tools/sprites/convert_battle_sprites.py assets/sprites/packs/gen5_9_part1
+With --fronts DIR, front.png and shiny_front.png come from DIR (same NNNN-Name layout) instead.
+
+Usage: python3 -I tools/sprites/convert_battle_sprites.py assets/sprites/packs/gen5_9_part1 \
+           [--fronts assets/sprites/packs/pokeapi_fronts]
 """
 import csv
 import json
@@ -137,7 +140,13 @@ def bottom_blank(indexed):
 
 
 def main():
-    pack = sys.argv[1]
+    args = sys.argv[1:]
+    fronts = None
+    if "--fronts" in args:
+        i = args.index("--fronts")
+        fronts = args[i + 1]
+        del args[i:i + 2]
+    pack = args[0]
     dirs = species_dirs()
     rows = {int(r["dex"]): r for r in csv.DictReader(open(os.path.join(ROOT, "data", "species.csv"), encoding="utf-8"))}
     folders = {int(d[:4]): os.path.join(pack, d) for d in os.listdir(pack) if d[:4].isdigit()}
@@ -149,6 +158,11 @@ def main():
         dst = os.path.join(POKEMON, dirs[dex])
         ims = {k: Image.open(os.path.join(src, f"{k}.png")).convert("RGBA")
                for k in ("front", "back", "shiny_front", "shiny_back") if os.path.exists(os.path.join(src, f"{k}.png"))}
+        if fronts:
+            fsrc = os.path.join(fronts, os.path.basename(src))
+            for k in ("front", "shiny_front"):
+                if os.path.exists(os.path.join(fsrc, f"{k}.png")):
+                    ims[k] = Image.open(os.path.join(fsrc, f"{k}.png")).convert("RGBA")
         if "front" not in ims or "back" not in ims:
             report.append((dex, rows[dex]["name"], "skipped: no front or back", "", "", ""))
             continue
@@ -199,7 +213,8 @@ def main():
 
     with open(os.path.join(ROOT, "docs", "BattleSpriteImport.md"), "w", encoding="utf-8") as f:
         f.write("# Battle sprite import (#494–1025)\n\n"
-                "Written by `tools/sprites/convert_battle_sprites.py` from `" + os.path.relpath(pack, ROOT) + "`. "
+                "Written by `tools/sprites/convert_battle_sprites.py` from `" + os.path.relpath(pack, ROOT) + "`" +
+                ((", with fronts from `" + os.path.relpath(fronts, ROOT) + "`") if fronts else "") + ". "
                 "Each species' front and back now share one 15-colour palette; **Colours** is how many the source "
                 "had (more than 15 were reduced). Notes list art scaled down to fit 80×80 and shinies that didn't "
                 "line up. These are the sprites to look at first in game.\n\n"
