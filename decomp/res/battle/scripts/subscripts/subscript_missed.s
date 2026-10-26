@@ -27,6 +27,20 @@ _058:
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_FAILED, _097
 
 _063:
+    // Sovereign (item 11): a side guard names itself.
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_GUARD_BLOCK, MOVE_NONE, _sovereign_protected
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_GUARD_BLOCK, MOVE_MAT_BLOCK, _sovereign_mat_block
+    UpdateVarFromVar OPCODE_SET, BTLVAR_MSG_MOVE_TEMP, BTLVAR_SOVEREIGN_GUARD_BLOCK
+    // {1} protected {0}!
+    PrintMessage BattleStrings_Text_SovereignGuardProtectedPokemon_Ally, TAG_NICKNAME_MOVE, BTLSCR_DEFENDER, BTLSCR_MSG_TEMP
+    GoTo _179
+
+_sovereign_mat_block:
+    // {0} was blocked by the kicked-up mat!
+    PrintMessage BattleStrings_Text_SovereignBlockedByMat, TAG_MOVE, BTLSCR_ATTACKER
+    GoTo _179
+
+_sovereign_protected:
     // {0} protected itself!
     PrintMessage BattleStrings_Text_PokemonProtectedItself_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
     GoTo _179
@@ -90,6 +104,11 @@ _175:
 _179:
     Wait 
     WaitButtonABTime 30
+    // Sovereign (item 11): King's Shield, Spiky Shield and the like punish the contact move they blocked.
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_SHIELD_CONTACT, MOVE_NONE, _sovereign_no_shield
+    Call BATTLE_SUBSCRIPT_SOVEREIGN_SHIELD_CONTACT
+
+_sovereign_no_shield:
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_BATTLE_CTX_STATUS, SYSCTL_MESSAGE_AFTER_MISS, _189
     Call BATTLE_SUBSCRIPT_SHOW_PREPARED_MESSAGE
 

@@ -281,6 +281,16 @@ MOVES = {
     "court_change": ("SOVEREIGN_COURT_CHANGE", 0, "swaps the two sides' screens, Tailwind, Mist, Safeguard, Lucky Chant and hazards"),
     "flower_shield": ("SOVEREIGN_FLOWER_SHIELD", 0, "Defense +1 for every Grass type on the field"),
     "tidy_up": ("SOVEREIGN_TIDY_UP", 0, "clears the hazards on both sides and every Substitute; user Attack and Speed +1"),
+    # Moves batch 6: protection moves.
+    "kings_shield": (None, 0, "protects like Protect, but not from status moves; a contact move it blocks: Attack -1"),
+    "spiky_shield": (None, 0, "protects like Protect; a contact move it blocks costs the attacker 1/8 of its max HP"),
+    "baneful_bunker": (None, 0, "protects like Protect; a contact move it blocks poisons the attacker"),
+    "obstruct": (None, 0, "protects like Protect, but not from status moves; a contact move it blocks: Defense -2"),
+    "silk_trap": (None, 0, "protects like Protect, but not from status moves; a contact move it blocks: Speed -1"),
+    "burning_bulwark": (None, 0, "protects like Protect, but not from status moves; a contact move it blocks burns the attacker"),
+    "mat_block": ("SOVEREIGN_MAT_BLOCK", 0, "user's first turn only: protects its side from damaging moves this turn"),
+    "crafty_shield": ("SOVEREIGN_CRAFTY_SHIELD", 0, "protects the user's side from status moves aimed at it this turn"),
+    "first_impression": ("SOVEREIGN_FIRST_IMPRESSION", 0, "fails unless it's the user's first turn in battle"),
 }
 
 # Gen IX values the move data got wrong (not the Champions changes in tools/engine/apply_champions_moves.py).

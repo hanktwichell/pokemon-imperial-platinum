@@ -8423,6 +8423,42 @@ BOOL Sovereign_MakesContact(BattleContext *battleCtx, int attacker, int move)
     return TRUE;
 }
 
+// Sovereign (item 11): the moves that share Protect's chain of falling success chances (Gen VI+).
+BOOL Sovereign_IsProtectionMove(int move)
+{
+    switch (move) {
+    case MOVE_PROTECT:
+    case MOVE_DETECT:
+    case MOVE_ENDURE:
+    case MOVE_KINGS_SHIELD:
+    case MOVE_SPIKY_SHIELD:
+    case MOVE_BANEFUL_BUNKER:
+    case MOVE_OBSTRUCT:
+    case MOVE_SILK_TRAP:
+    case MOVE_BURNING_BULWARK:
+    case MOVE_WIDE_GUARD:
+    case MOVE_QUICK_GUARD:
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
+// Sovereign (item 11): King's Shield, Obstruct, Silk Trap and Burning Bulwark let status moves through.
+BOOL Sovereign_ShieldBlocksStatusMoves(int shield)
+{
+    return shield != MOVE_KINGS_SHIELD && shield != MOVE_OBSTRUCT && shield != MOVE_SILK_TRAP
+        && shield != MOVE_BURNING_BULWARK;
+}
+
+// Sovereign (item 11): the shields that punish a Pokemon whose contact move they block
+// (subscript_sovereign_shield_contact).
+BOOL Sovereign_ShieldHasContactPenalty(int shield)
+{
+    return shield == MOVE_KINGS_SHIELD || shield == MOVE_SPIKY_SHIELD || shield == MOVE_BANEFUL_BUNKER
+        || shield == MOVE_OBSTRUCT || shield == MOVE_SILK_TRAP || shield == MOVE_BURNING_BULWARK;
+}
+
 // Sovereign (item 11): ball and bomb moves, which Bulletproof blocks.
 static const u16 sBallAndBombMoves[] = {
     MOVE_ACID_SPRAY, MOVE_AURA_SPHERE, MOVE_BARRAGE, MOVE_BEAK_BLAST, MOVE_BULLET_SEED, MOVE_EGG_BOMB,

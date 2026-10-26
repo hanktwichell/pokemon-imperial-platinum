@@ -7378,3 +7378,44 @@ and approximate moves from 37 to 35.
    - Powder, Electrify, Ion Deluge, Plasma Fists.
    - Pollen Puff, Core Enforcer, Instruct, Beak Blast, Shell Trap.
 3. Owner decision pinned in CB-0158: Burn Up and Double Shock (typeless).
+
+## CB-0164 — 2026-10-26, 9:01 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: item 11 moves, batch 6 (protection).** PR #180 (batch 5) is merged. The checklist is now 323 exact,
+28 approximate, 29 placeholders.
+- **The six shields** punish a contact move they block:
+  - King's Shield: Attack -1. Obstruct: Defense -2. Silk Trap: Speed -1.
+  - Spiky Shield: 1/8 of max HP. Baneful Bunker: poison. Burning Bulwark: burn.
+  - King's Shield, Obstruct, Silk Trap and Burning Bulwark let status moves through.
+- **The protection chain:** every protection move now shares Protect's falling success chance. Before, King's Shield
+  and the others could be used in a row without ever failing.
+- **Mat Block and Crafty Shield** work. First Impression fails after the first turn.
+- **Guard messages:** a blocked move shows which guard blocked it ("Wide Guard protected X!", "...blocked by the
+  kicked-up mat!").
+- Every case was checked in a harness battle. That includes Clear Body, Mirror Armor, Immunity and Long Reach.
+
+**Files modified:**
+- `decomp/src/battle/battle_controller_player.c` (hit overrides: shields, guards, contact penalty).
+- `decomp/src/battle/battle_script.c` (shared chain, vars, stat-drop exception).
+- `decomp/src/battle/battle_lib.c` (`Sovereign_IsProtectionMove`, `Sovereign_ShieldBlocksStatusMoves`,
+  `Sovereign_ShieldHasContactPenalty`).
+- `decomp/include/battle/battle_context.h`, `decomp/include/battle/battle_lib.h`,
+  `decomp/include/data/move_side_effect_subscripts.h`.
+- The generated lists: `battle_script_vars.txt`, `battle_subscripts.txt`, `battle_move_subscript_ptrs.txt`,
+  `move_battle_effects.txt`.
+- New scripts:
+  - Effect scripts `effect_script_0365`–`0367.s`.
+  - Subscripts `subscript_sovereign_{mat_block,crafty_shield,shield_contact}.s`.
+- Changed scripts: `subscript_missed.s`, `subscript_poison.s`, `subscript_burn.s`,
+  `subscript_sovereign_{wide,quick}_guard.s`, the scripts' `meson.build` and `sub_seq.order`.
+- `decomp/res/text/battle_strings.json` (13 messages).
+- `decomp/res/moves/{mat_block,crafty_shield,first_impression}/data.json`.
+- `tools/engine/gen9_move_fixes.py`, `docs/MoveChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. The switching items (Eject Button, Eject Pack, Red Card) with Shed Tail and Chilly Reception, plus a switching case
+   in the harness.
+2. More approximate moves:
+   - V-create, Rototiller, Gear Up, Magnetic Flux, Decorate, Aromatic Mist, Shore Up, Stuff Cheeks.
+   - The charge moves Geomancy, Freeze Shock and Ice Burn.
+3. Owner decision pinned in CB-0158: Burn Up and Double Shock (typeless).

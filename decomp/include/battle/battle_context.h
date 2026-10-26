@@ -346,7 +346,8 @@ struct BattleContext {
     int sovereignLaserFocus[MAX_BATTLERS]; // Sovereign (item 11): turns of Laser Focus left (its moves always crit)
     int sovereignThroatChop[MAX_BATTLERS]; // Sovereign (item 11): turns it can't use sound moves (Throat Chop)
     int sovereignSmackedDown[MAX_BATTLERS]; // Sovereign (item 11): grounded by Smack Down
-    int sovereignSideGuards[2]; // Sovereign (item 11): this turn's Wide Guard (1) and Quick Guard (2) for each side
+    int sovereignSideGuards[2]; // Sovereign (item 11): this turn's Wide Guard (1), Quick Guard (2), Mat Block (4) and
+    // Crafty Shield (8) for each side
     int sovereignSideFaintTurn[2]; // Sovereign (item 11): totalTurns + 1 when a Pokemon on the side last fainted (Retaliate)
     int sovereignAuroraVeilTurns[2]; // Sovereign (item 11)
     int sovereignEchoedVoiceTurn; // Sovereign (item 11): totalTurns + 1 of the last Echoed Voice (0 = none yet)
@@ -374,6 +375,9 @@ struct BattleContext {
     u8 sovereignTimesHit[MAX_BATTLERS][MAX_PARTY_SIZE]; // Sovereign (item 11): hits each party slot has taken (Rage Fist)
     u8 sovereignTarShot; // Sovereign (item 11): battlers Tar Shot made weaker to Fire, until they switch out (flags by battler)
     u8 sovereignHappyHour; // Sovereign (item 11): the player's side used Happy Hour (double prize money)
+    u16 sovereignShieldMove[MAX_BATTLERS]; // Sovereign (item 11): the Protect-like move protecting each battler this turn
+    int sovereignShieldContact; // Sovereign (item 11): the shield whose contact penalty is due (subscript_missed)
+    int sovereignGuardBlock; // Sovereign (item 11): the side guard that blocked the move (Wide Guard, Mat Block, ...)
 };
 
 #endif // POKEPLATINUM_BATTLE_BATTLE_CONTEXT_H

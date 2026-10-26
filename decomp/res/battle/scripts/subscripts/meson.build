@@ -428,4 +428,7 @@ subscript_files = files(
     'subscript_sovereign_court_change.s',
     'subscript_sovereign_flower_shield.s',
     'subscript_sovereign_tidy_up.s',
+    'subscript_sovereign_mat_block.s',
+    'subscript_sovereign_crafty_shield.s',
+    'subscript_sovereign_shield_contact.s',
 )

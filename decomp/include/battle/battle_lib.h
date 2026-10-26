@@ -553,6 +553,9 @@ BOOL Move_IsBallOrBomb(int move);
 BOOL Move_IsPowder(int move);
 int Item_SovereignGemType(u16 item);
 BOOL Sovereign_MakesContact(BattleContext *battleCtx, int attacker, int move);
+BOOL Sovereign_IsProtectionMove(int move);
+BOOL Sovereign_ShieldBlocksStatusMoves(int shield);
+BOOL Sovereign_ShieldHasContactPenalty(int shield);
 BOOL Battler_SovereignPowderImmune(BattleContext *battleCtx, int attacker, int battler);
 
 // Sovereign (item 11): whether a standing foe with Unnerve stops this battler from eating its Berry.
