@@ -6782,7 +6782,8 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
             }
 
             if (i != LEARNED_MOVES_MAX) {
-                BattleMon_AddVal(&battleCtx->battleMons[battler], BATTLEMON_CUR_PP_1 + i, itemPower);
+                // Sovereign (item 11): Ripen doubles the PP a Leppa Berry restores.
+                BattleMon_AddVal(&battleCtx->battleMons[battler], BATTLEMON_CUR_PP_1 + i, Battler_Ability(battleCtx, battler) == ABILITY_RIPEN ? itemPower * 2 : itemPower);
                 BattleMon_CopyToParty(battleSys, battleCtx, battler);
                 battleCtx->msgMoveTemp = battleCtx->battleMons[battler].moves[i];
                 subscript = subscript_held_item_pp_restore;
@@ -7177,7 +7178,8 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
             }
 
             if (i != LEARNED_MOVES_MAX) {
-                BattleMon_AddVal(&battleCtx->battleMons[battler], BATTLEMON_CUR_PP_1 + i, itemPower);
+                // Sovereign (item 11): Ripen doubles the PP a Leppa Berry restores.
+                BattleMon_AddVal(&battleCtx->battleMons[battler], BATTLEMON_CUR_PP_1 + i, Battler_Ability(battleCtx, battler) == ABILITY_RIPEN ? itemPower * 2 : itemPower);
                 BattleMon_CopyToParty(battleSys, battleCtx, battler);
                 battleCtx->msgMoveTemp = battleCtx->battleMons[battler].moves[i];
                 *subscript = subscript_held_item_pp_restore;
@@ -7650,7 +7652,8 @@ BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *b
             && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_MAGIC_GUARD
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
             && DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken) {
-            battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * -1, itemPower);
+            // Sovereign (item 11): a Ripen holder's Jaboca and Rowap Berries take 1/4 of the attacker's max HP.
+            battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * -1, Battler_Ability(battleCtx, battleCtx->defender) == ABILITY_RIPEN ? itemPower / 2 : itemPower);
             *subscript = subscript_held_item_recoil_when_hit;
             result = TRUE;
         }
@@ -7660,7 +7663,7 @@ BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *b
         if (ATTACKING_MON.curHP
             && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_MAGIC_GUARD
             && DEFENDER_SELF_TURN_FLAGS.specialDamageTaken) {
-            battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * -1, itemPower);
+            battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * -1, Battler_Ability(battleCtx, battleCtx->defender) == ABILITY_RIPEN ? itemPower / 2 : itemPower);
             *subscript = subscript_held_item_recoil_when_hit;
             result = TRUE;
         }
@@ -7670,6 +7673,7 @@ BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *b
         if (DEFENDING_MON.curHP && (battleCtx->moveStatusFlags & MOVE_STATUS_SUPER_EFFECTIVE)) {
             battleCtx->hpCalcTemp = BattleSystem_Divide(DEFENDING_MON.maxHP, itemPower);
             *subscript = subscript_held_item_hp_restore;
+            Sovereign_RipenBerryHP(battleCtx, battleCtx->defender, *subscript); // Sovereign (item 11): Enigma Berry
             battleCtx->msgBattlerTemp = battleCtx->defender;
             battleCtx->msgItemTemp = battleCtx->battleMons[battleCtx->defender].heldItem;
             result = TRUE;
@@ -7780,6 +7784,22 @@ static u32 Sovereign_UmbrellaWeather(BattleContext *battleCtx, int battler, u32 
 u32 Sovereign_BattlerWeather(BattleContext *battleCtx, int battler)
 {
     return Sovereign_UmbrellaWeather(battleCtx, battler, battleCtx->fieldConditionsMask);
+}
+
+// Sovereign (item 11): the field conditions as the weather acts on one battler's own moves. A Mega Sol user's moves
+// act as if the sunlight were harsh, whatever the weather and even beside Cloud Nine or Air Lock (Mega Sol changes no
+// weather). Otherwise Cloud Nine and Air Lock clear the weather, and a Utility Umbrella keeps rain and sunlight off.
+u32 Sovereign_MoveWeather(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
+{
+    if (Battler_Ability(battleCtx, battler) == ABILITY_MEGA_SOL) {
+        return (battleCtx->fieldConditionsMask & ~FIELD_CONDITION_WEATHER) | FIELD_CONDITION_SUNNY_TEMP;
+    }
+
+    if (NO_CLOUD_NINE == FALSE) {
+        return battleCtx->fieldConditionsMask & ~FIELD_CONDITION_WEATHER;
+    }
+
+    return Sovereign_BattlerWeather(battleCtx, battler);
 }
 
 // Sovereign (item 11): Terrain Pulse takes the type of the terrain under a grounded user.
@@ -10717,12 +10737,13 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         damage = damage * 3 / 4;
     }
 
-    // Sovereign (item 11): Mega Sol's moves work as if the sunlight were harsh, whatever the weather.
+    // Sovereign (item 11): Mega Sol's moves work as if the sunlight were harsh, whatever the weather, even beside
+    // Cloud Nine or Air Lock.
     if (attackerParams.ability == ABILITY_MEGA_SOL) {
         fieldConditions = (fieldConditions & ~FIELD_CONDITION_WEATHER) | FIELD_CONDITION_SUNNY_TEMP;
     }
 
-    if (NO_CLOUD_NINE) {
+    if (NO_CLOUD_NINE || attackerParams.ability == ABILITY_MEGA_SOL) {
         // Sovereign (item 11): a Utility Umbrella keeps rain and sunlight off the Fire and Water moves hitting its
         // holder (not off Mega Sol's), and off its holder's Solar Beam and Hydro Steam.
         u32 attackerWeather = attackerParams.ability == ABILITY_MEGA_SOL ? fieldConditions : Sovereign_UmbrellaWeather(battleCtx, attacker, fieldConditions);
@@ -11562,6 +11583,7 @@ int Sovereign_AuraWheelType(u16 species, int form)
 static int CalcMoveType(BattleSystem *battleSys, BattleContext *battleCtx, int item, int move)
 {
     int type;
+    u32 weather;
 
     // Sovereign (FM): Judgment with the Pixie Plate, Multi-Attack with a Memory, Techno Blast with a Drive. (item is
     // the battler; Klutz and Embargo leave Battler_HeldItem empty.)
@@ -11657,24 +11679,24 @@ static int CalcMoveType(BattleSystem *battleSys, BattleContext *battleCtx, int i
         type = Sovereign_RagingBullType(battleCtx->battleMons[item].species, battleCtx->battleMons[item].formNum);
         break;
 
-    case MOVE_WEATHER_BALL: // Sovereign (item 11): a Utility Umbrella holder's is Normal type in rain and sunlight
-        if (NO_CLOUD_NINE
-            && Sovereign_BattlerWeather(battleCtx, item) & FIELD_CONDITION_WEATHER) {
-            if (Sovereign_BattlerWeather(battleCtx, item) & FIELD_CONDITION_RAINING) {
-                type = TYPE_WATER;
-            }
+    case MOVE_WEATHER_BALL: // Sovereign (item 11): the weather as it acts on the user's moves (Utility Umbrella, Mega Sol)
+        weather = Sovereign_MoveWeather(battleSys, battleCtx, item);
+        type = TYPE_NORMAL;
 
-            if (WEATHER_IS_SAND) {
-                type = TYPE_ROCK;
-            }
+        if (weather & FIELD_CONDITION_RAINING) {
+            type = TYPE_WATER;
+        }
 
-            if (Sovereign_BattlerWeather(battleCtx, item) & FIELD_CONDITION_SUNNY) {
-                type = TYPE_FIRE;
-            }
+        if (weather & FIELD_CONDITION_SANDSTORM) {
+            type = TYPE_ROCK;
+        }
 
-            if (WEATHER_IS_HAIL) {
-                type = TYPE_ICE;
-            }
+        if (weather & FIELD_CONDITION_SUNNY) {
+            type = TYPE_FIRE;
+        }
+
+        if (weather & FIELD_CONDITION_HAILING) {
+            type = TYPE_ICE;
         }
         break;
 
