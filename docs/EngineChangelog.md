@@ -4,6 +4,66 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 — Darach mid-game, and the Tea for Route 218's gate (decision 47, as in Renegade)
+
+For players: the Regional Forms Park's lobby on Route 221 is open as soon as the player can Surf there. Darach and Lady
+Caitlin wait in it, and Darach's battle (Lv. 48) ends with the Tea. Route 218's gate to Canalave City is closed until
+the player brings the thirsty policeman that Tea. The park itself still opens after the Hall of Fame.
+
+- **Route 221:** the two workers no longer stand at the lobby door. Renegade opens the lobby with an early National
+  Dex; in Sovereign that check means the Hall of Fame (decision 21), so the workers are simply gone.
+- **The lobby:**
+  - Before the Hall of Fame, the worker says the park isn't open yet. Oak's first visit (his scene on entering, with
+    the Trainer Counter app) waits for the Hall of Fame too.
+  - Darach and Caitlin's scene is as before (E10 part 33). It's now hidden by a map-local flag, worked out on entering:
+    they're there until the scene is done, and back after the Hall of Fame. Each then has a line of their own.
+  - Darach's greeting, about the park's Pokémon seen from the window, fits both times.
+  - The other visitors are there from the start, as in Renegade.
+- **Route 218's gate to Canalave City:**
+  - The policeman moves up a tile, to (2, 4), as in Renegade.
+  - A step onto the gate's west column gets his "!". Without the Tea, he gives Renegade's "the road's closed" line,
+    which now points to the park on Route 221, and the player steps back.
+  - With the Tea, he drinks it (the Tea is used up) and lets the player through. After that he talks about how good
+    it was.
+  - No new save data: the gate's own var, which the scientist's Pokédex upgrade sets from 0 to 1, becomes 2 once he's
+    had the Tea. The trigger waits on 0 and 1.
+- `docs/RegionalFormsPark.md` (and its generator) says when the lobby and the park open.
+- **Verification** in a test build:
+  - From Route 221, the player walks north into the lobby. Before the Hall of Fame: no Oak, and the worker says the
+    park isn't open.
+  - Without the Tea, the gate's policeman stops the player, and further steps west are stopped again.
+  - Darach's scene, then the gate: the policeman takes the Tea and the player walks on into Canalave City.
+  - After the Hall of Fame, Oak's first visit plays on entering, Darach is back with his line, and the worker offers
+    the park.
+  - The CI checks pass.
+
+
+## E10 — Route 224 before the Elite Four (decision 46, as in Renegade)
+
+For players: Victory Road's back area and Route 224 now come before the League. The counterpart's battle by Route
+224's tablet (Lv. 69–70) is the last step before it.
+
+- **Victory Road 1F:**
+  - The collector no longer blocks the back area until the post-game.
+  - He stands by the way out to the League, at (38, 18), Renegade's spot.
+  - Stepping beside him gets "Hold it!", then Renegade's line: "You're not quite ready yet. Have you been to Route
+    224? It's through a passage to the east." The player steps back. Talking to him gives the same line.
+  - Once any of the six Route 224 counterpart teams has been beaten, he's gone and his trigger is off. The map's
+    on-transition script checks the trainer flags, so no new save flag is needed.
+- **Level cap:** the Route 224 battle is a step of its own (Lv. 70), between Volkner (62) and Barry at the League
+  (71). `tools/engine/gen_level_caps.py` now sizes a step's trainer list from the longest one: six here, three before.
+- **Still post-game:** Shaymin's tablet (Oak gives his letter in Eterna only after the Hall of Fame), Enamorus (after
+  Landorus) and Pecharunt (after the Loyal Three).
+- `tools/test/check_object_tiles.py` lists the collector as known: he stands on the middle tile of his own trigger, as
+  in Renegade.
+- **Verification** in a test build:
+  - Stepping beside him from the west and from the east: he turns with "!", the lines play, and the player steps
+    back. A second step north stops the player again.
+  - Talking to him gives his line.
+  - With the counterpart beaten, he's gone and the player walks on north.
+  - The CI checks pass, the object tile check included.
+
+
 ## Battle sprites: no more scrambled sprites
 
 For players: Samurott's front, Hisuian Samurott's front and Talonflame's back no longer come out as noise in battle.

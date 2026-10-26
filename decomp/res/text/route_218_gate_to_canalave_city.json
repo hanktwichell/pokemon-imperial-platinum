@@ -66,6 +66,45 @@
         "It’s probably nothing to worry over!\n",
         "I’ll be on my way now.\r"
       ]
+    },
+    {
+      "id": "Route218GateToCanalaveCity_Text_SovereignRoadClosed",
+      "en_US": [
+        "I’m on guard duty.\n",
+        "Gee, I’m thirsty, though!\r",
+        "Oh, wait there, the road’s closed.\r",
+        "If you’re bored, why don’t you take a\n",
+        "look at that fancy park on Route 221?\r",
+        "Go south from Sandgem Town."
+      ]
+    },
+    {
+      "id": "Route218GateToCanalaveCity_Text_SovereignThatTea",
+      "en_US": [
+        "Oh, that Tea...\n",
+        "It looks awfully tasty...\r",
+        "Huh? I can have this drink?\n",
+        "Gee, thanks!\f",
+        "... ...\f",
+        "Glug, glug...\f",
+        "...\f",
+        "Gulp...\r",
+        "If you want to go to Canalave City...\n",
+        "...\f",
+        "You can go on through.\r",
+        "I’ll have this Tea all to myself!\n",
+        "Thanks again!"
+      ]
+    },
+    {
+      "id": "Route218GateToCanalaveCity_Text_SovereignLovelyTea",
+      "en_US": [
+        "That Tea had a lovely flavour.\n",
+        "Never have I felt so satisfied!\r",
+        "Did you get it from somebody who was\n",
+        "fabulously wealthy?\r",
+        "It would explain the delicious taste."
+      ]
     }
   ]
 }

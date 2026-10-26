@@ -5,6 +5,7 @@
 
     ScriptEntry Route218GateToCanalaveCity_Policeman
     ScriptEntry Route218GateToCanalaveCity_CoordEvent_ScientistM
+    ScriptEntry Route218GateToCanalaveCity_SovereignCoordEvent_Policeman
     ScriptEntryEnd
 
 Route218GateToCanalaveCity_CoordEvent_ScientistM:
@@ -178,7 +179,57 @@ Route218GateToCanalaveCity_Movement_ScientistMLeaveZ9:
     EndMovement
 
 Route218GateToCanalaveCity_Policeman:
+    GoToIfEq VAR_ROUTE_218_GATE_TO_CANALAVE_CITY_STATE, 2, Route218GateToCanalaveCity_SovereignPolicemanHadTea
     NPCMessage Route218GateToCanalaveCity_Text_ISureAmThirsty
     End
+
+Route218GateToCanalaveCity_SovereignPolicemanHadTea:
+    NPCMessage Route218GateToCanalaveCity_Text_SovereignLovelyTea
+    End
+
+@ Sovereign (E10, decision 47, as in Renegade): the thirsty policeman closes the road to Canalave City until the player
+@ brings him Tea (Darach's, in the Regional Forms Park lobby). VAR_ROUTE_218_GATE_TO_CANALAVE_CITY_STATE 2: he had it.
+@ The trigger waits on 0 and 1 (before and after the scientist's Pokédex upgrade).
+Route218GateToCanalaveCity_SovereignCoordEvent_Policeman:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    ApplyMovement LOCALID_POLICEMAN, Route218GateToCanalaveCity_SovereignMovement_PolicemanNotice
+    WaitMovement
+    ApplyMovement LOCALID_PLAYER, Route218GateToCanalaveCity_SovereignMovement_PlayerFaceNorth
+    WaitMovement
+    CheckItem ITEM_TEA, 1, VAR_RESULT
+    GoToIfEq VAR_RESULT, TRUE, Route218GateToCanalaveCity_SovereignGiveTea
+    Message Route218GateToCanalaveCity_Text_SovereignRoadClosed
+    WaitButton
+    CloseMessage
+    ApplyMovement LOCALID_PLAYER, Route218GateToCanalaveCity_SovereignMovement_PlayerStepBack
+    WaitMovement
+    ReleaseAll
+    End
+
+Route218GateToCanalaveCity_SovereignGiveTea:
+    Message Route218GateToCanalaveCity_Text_SovereignThatTea
+    WaitButton
+    CloseMessage
+    RemoveItem ITEM_TEA, 1, VAR_RESULT
+    SetVar VAR_ROUTE_218_GATE_TO_CANALAVE_CITY_STATE, 2
+    ReleaseAll
+    End
+
+    .balign 4, 0
+Route218GateToCanalaveCity_SovereignMovement_PolicemanNotice:
+    FaceSouth
+    EmoteExclamationMark
+    EndMovement
+
+    .balign 4, 0
+Route218GateToCanalaveCity_SovereignMovement_PlayerFaceNorth:
+    FaceNorth
+    EndMovement
+
+    .balign 4, 0
+Route218GateToCanalaveCity_SovereignMovement_PlayerStepBack:
+    WalkNormalEast
+    EndMovement
 
     .balign 4, 0

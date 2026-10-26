@@ -28,7 +28,9 @@ palettes of their own). A sample of every 8th species of #1–493 was checked to
 | 669 | Flabébé | shiny front | Patchy: white holes, parts missing | no | see "Shinies drawn apart" |
 | 670 | Floette | shiny front | Patchy: white holes, a black outline in places | no | see "Shinies drawn apart" |
 | 671 | Florges | shiny front | Washed out: the head is a flat pink | no | see "Shinies drawn apart" |
-| 668 | Pyroar | shiny front | A black patch on a back leg | no | lining the shiny up first fixes it (see "The converter patch") |
+| 668 | Pyroar | shiny front | A black patch on a back leg | no | lining the shiny up first helps (see "The converter patch") |
+| 807 | Zeraora | shiny front | Teal claws: PokeAPI's shiny is drawn 1 pixel off its front | yes (the pack's was too) | lining the shiny up fixes it |
+| 1023 | Iron Crown | shiny front | Wrong colours throughout: the shiny is drawn 1 pixel off | no | lining the shiny up fixes it |
 
 ### Scrambled sprites (Samurott, Talonflame)
 
@@ -68,6 +70,24 @@ recolour. The game can only recolour the front, so these shinies can only be app
 Floette's PokeAPI front is also an odd drawing, with a flat flower at another angle (see the image above). It may be
 worth replacing too.
 
+## Forms (PR #159's fronts)
+
+`sprite_check.py --forms` battled each of the 368 forms with a front of its own (736 battles, none hung).
+- **Fronts:** they all look right and sit right. The one exception was Hisuian Samurott's front, which was scrambled
+  like Samurott's; it is fixed now (#162).
+- **Backs:** a form's back is still its species' back. That's known: there's no back art for forms yet. It shows
+  most where a form looks different from behind, such as the Galarian birds, Galarian Rapidash, the Vivillon
+  patterns and the regional forms.
+- **Fronts not seen here:** some forms change back when the battle starts, as in the games, so their own fronts
+  didn't show in this check:
+  - Minior's cores show the Meteor shell (Shields Down).
+  - Hangry Morpeko shows Full Belly.
+  - Gulping and Gorging Cramorant show plain Cramorant.
+  - Blade Aegislash shows its Shield Forme.
+  - Busted Mimikyu shows its disguise.
+
+`battle_form_changes.py` covers those changes in battle.
+
 ## Likely wrong, worth a look
 
 | # | Pokémon | Sprite | What I see |
@@ -86,11 +106,31 @@ leans toward the shiny colours. So the estimates look sound, but they are estima
 - **#1–493:** the sample looks as before. Their back palettes are copies of the front ones (#157).
 - **Female sprites:** Unfezant, Frillish, Jellicent and Pyroar show their male sprite when female. This is known.
 - **Long names:** names over 10 characters are cut short (BLACEPHALN). This is by design (`docs/NewSpecies.md`).
-- **Zeraora:** on main its shiny front has teal claws, because the pack's shiny was drawn 1 pixel off. PR #157
-  replaces that front, and its PokeAPI pair lines up.
 
-## The converter patch (still to come)
+## The converter patch: lining shinies up (after PR #161)
 
-The rest of the patch waits for PR #161 (Claude A), which picks shiny palettes from (normal, shiny) colour pairs; that
-covers my split entries and rounding fix. What it adds on top: lining each shiny up on its front before its colours
-are read, which fixes 4 of PokeAPI's 11 shinies that don't line up, Pyroar's among them.
+PR #161 (Claude A) picks shiny palettes from (normal, shiny) colour pairs. That covers my split entries and rounding
+fix. What the patch adds on top: before a shiny's colours are read, the shiny is moved by up to 3 pixels to best cover
+its front's shape (`line_up`), so a shiny drawn a pixel off no longer swaps outline and body colours.
+
+Measured on #161's sprites: the share of each shiny's pixels that come out in their source colour.
+
+| | Exact | Under 90% | Mean |
+|---|---|---|---|
+| Fronts (532), before → after | 505 → 506 | 12 → 9 | 98.1% → 98.7% |
+| Form fronts (414), before → after | 351 → 352 | 35 → 34 | 95.6% → 95.8% |
+| Backs (532) | unchanged | | |
+
+- **Fixed or much better:**
+  - Iron Crown: 0% → 100%.
+  - Zeraora: 18% → 100%.
+  - Galarian Darumaka: 25% → 100%.
+  - Furfrou: 57% → 99%.
+  - Ting-Lu: 34% → 81%.
+  - Pyroar: 10% → 40%.
+  - Female Meowstic: 20% → 38%.
+- **Not helped:**
+  - The shinies drawn apart (above).
+  - The forms with more than 15 colours (Furfrou's trims, several new Megas). Their colour pairs are grouped by
+    k-means, so few pixels keep their exact colour. They look right; the measure is strict.
+- **When:** it ships once #161 is merged. 13 sprite folders change.

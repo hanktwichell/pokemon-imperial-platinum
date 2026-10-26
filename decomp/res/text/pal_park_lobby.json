@@ -847,6 +847,36 @@
     {
       "id": "PalParkLobby_Text_SovereignCaitlinThankYou",
       "en_US": "Caitlin: Ah. Thank you, Darach.\r"
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignNotOpenYet",
+      "en_US": [
+        "Welcome to the Regional Forms Park!\r",
+        "I’m sorry, but the park isn’t open yet.\n",
+        "Some very odd Pokémon are still\f",
+        "wandering in from far-off regions.\r",
+        "We’ll open the gates to Trainers who\n",
+        "have entered the Hall of Fame.\r",
+        "Please come again then!"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignDarachBack",
+      "en_US": [
+        "Darach: Ah, we meet again!\r",
+        "Now that the park is open, Lady Caitlin\n",
+        "wished to see its Pokémon up close.\r",
+        "Our invitation still stands: do look\n",
+        "for us in the Battle Castle!"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignCaitlinBack",
+      "en_US": [
+        "Caitlin: ...Ah, it is you.\r",
+        "The Pokémon here are lovely.\n",
+        "I am quite composed today."
+      ]
     }
   ]
 }

@@ -4,8 +4,10 @@
 # fight in this list the player hasn't won yet. The list is the required story order of Platinum's
 # big fights, including rival Barry (owner request). A step lists `trainers` (all must be beaten,
 # e.g. a double boss) or `any` (beating one is enough — Barry's three starter variants).
-# Optional Renegade fights (Route 208 Aaron, Route 212 Saturn, Darach, Dawn/Lucas) are left
-# out; their aces are never higher than the next required boss. The Elite Four aren't listed: their
+# Optional Renegade fights (Route 208 Aaron, Route 212 Saturn, Darach, Dawn/Lucas on Routes 202,
+# 207 and 210) are left out; their aces are never higher than the next required boss. Dawn/Lucas by
+# Route 224's tablet is listed: Victory Road's collector lets the player on to the League only once
+# they've won it (decision 46, as in Renegade). The Elite Four aren't listed: their
 # cap is the Champion's ace, as the owner asked.
 #
 # `level` is the ace's level in Sovereign's teams. tools/engine/gen_level_caps.py checks it against
@@ -31,6 +33,7 @@ caps:
   - {label: Mars and Jupiter (Spear Pillar), trainers: [TRAINER_COMMANDER_MARS_SPEAR_PILLAR, TRAINER_COMMANDER_JUPITER_SPEAR_PILLAR], level: 58, check: [Commander Mars, Spear Pillar]}
   - {label: Galactic Boss Cyrus (Distortion World), trainers: [TRAINER_GALACTIC_BOSS_CYRUS_DISTORTION_WORLD], level: 60, check: [Galactic Boss Cyrus, Distortion World]}
   - {label: Leader Volkner,               trainers: [TRAINER_LEADER_VOLKNER],                                level: 62, check: [Leader Volkner, Sunyshore Gym]}
+  - {label: Dawn or Lucas (Route 224),    any: [TRAINER_SOVEREIGN_DAWN_ROUTE_224_TURTWIG, TRAINER_SOVEREIGN_DAWN_ROUTE_224_CHIMCHAR, TRAINER_SOVEREIGN_DAWN_ROUTE_224_PIPLUP, TRAINER_SOVEREIGN_LUCAS_ROUTE_224_TURTWIG, TRAINER_SOVEREIGN_LUCAS_ROUTE_224_CHIMCHAR, TRAINER_SOVEREIGN_LUCAS_ROUTE_224_PIPLUP], level: 70, source: "Renegade (the starter, Lv. 70)"}
   - {label: Rival Barry (Pokémon League), any: [TRAINER_RIVAL_POKEMON_LEAGUE_TURTWIG, TRAINER_RIVAL_POKEMON_LEAGUE_CHIMCHAR, TRAINER_RIVAL_POKEMON_LEAGUE_PIPLUP], level: 71, check: [PKMN Trainer Barry, "Pokémon League (before the Elite Four) — Turtwig"]}
   - {label: Elite Four + Champion Cynthia, any: [TRAINER_CHAMPION_CYNTHIA, TRAINER_SOVEREIGN_CHAMPION_CYNTHIA_DOUBLES],                    level: 78, check: [Champion Cynthia, round 1]}
   - {label: Champion rematch (post-game),  any: [TRAINER_CHAMPION_CYNTHIA_REMATCH, TRAINER_SOVEREIGN_CHAMPION_CYNTHIA_REMATCH_DOUBLES],    level: 89, check: [Champion Cynthia, round 2]}
