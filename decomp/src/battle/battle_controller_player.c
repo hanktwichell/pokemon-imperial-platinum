@@ -742,6 +742,8 @@ static void BattleControllerPlayer_CalcTurnOrder(BattleSystem *battleSys, Battle
     u32 battleType = BattleSystem_GetBattleType(battleSys);
     int order = 0;
 
+    battleCtx->sovereignQuickDraw = 0; // Sovereign (item 11): this turn's order sets it again (Quick Draw)
+
     if (battleType & (BATTLE_TYPE_SAFARI | BATTLE_TYPE_PAL_PARK)) {
         // The player always acts before a wild mon encountered in the Safari Zone or the Pal Park.
         for (battler = 0; battler < maxBattlers; battler++) {
@@ -884,8 +886,6 @@ static void BattleControllerPlayer_CheckPreMoveActions(BattleSystem *battleSys, 
             for (battler = 0; battler < MAX_BATTLERS; battler++) {
                 battleCtx->speedRand[battler] = BattleSystem_RandNext(battleSys);
             }
-
-            battleCtx->sovereignQuickDraw = 0; // Sovereign (item 11)
 
             battleCtx->turnStartCheckState++;
             break;
