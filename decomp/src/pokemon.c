@@ -4533,6 +4533,18 @@ int Pokemon_SovereignItemMoveType(u16 move, u16 item)
         return driveTypes[item - ITEM_DOUSE_DRIVE];
     }
 
+    // Sovereign (item 11): Ivy Cudgel takes the type of Ogerpon's mask.
+    if (move == MOVE_IVY_CUDGEL) {
+        switch (item) {
+        case ITEM_WELLSPRING_MASK:
+            return TYPE_WATER;
+        case ITEM_HEARTHFLAME_MASK:
+            return TYPE_FIRE;
+        case ITEM_CORNERSTONE_MASK:
+            return TYPE_ROCK;
+        }
+    }
+
     return -1;
 }
 

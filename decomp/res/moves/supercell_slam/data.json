@@ -12,7 +12,7 @@
     "accuracy": 95,
     "pp": 15,
     "effect": {
-        "type": "BATTLE_EFFECT_HIT",
+        "type": "BATTLE_EFFECT_CRASH_ON_MISS",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

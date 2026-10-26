@@ -9695,6 +9695,27 @@
         "Ability Shield protects\f",
         "its Ability!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCantUseMoveTwiceInARow_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} can’t use\n",
+        "{STRVAR_1 6, 1, 0} twice in a row!\r"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCantUseMoveTwiceInARow_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} can’t use\n",
+        "{STRVAR_1 6, 1, 0} twice in a row!\r"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCantUseMoveTwiceInARow_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} can’t use\n",
+        "{STRVAR_1 6, 1, 0} twice in a row!\r"
+      ]
     }
   ]
 }

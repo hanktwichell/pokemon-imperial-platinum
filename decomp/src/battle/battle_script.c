@@ -1348,6 +1348,11 @@ static void BattleScript_CalcMoveDamage(BattleSystem *battleSys, BattleContext *
         battleCtx->moveType = Sovereign_AuraWheelType(ATTACKING_MON.species, ATTACKING_MON.formNum);
     }
 
+    // Sovereign (item 11): Raging Bull takes the type of a Paldean Tauros's breed.
+    if (battleCtx->moveCur == MOVE_RAGING_BULL) {
+        battleCtx->moveType = Sovereign_RagingBullType(ATTACKING_MON.species, ATTACKING_MON.formNum);
+    }
+
     // Sovereign (FM): Judgment with the Pixie Plate, Multi-Attack with a Memory, Techno Blast with a Drive.
     if (Pokemon_SovereignItemMoveType(battleCtx->moveCur, Battler_HeldItem(battleCtx, battleCtx->attacker)) >= 0) {
         battleCtx->moveType = Pokemon_SovereignItemMoveType(battleCtx->moveCur, Battler_HeldItem(battleCtx, battleCtx->attacker));

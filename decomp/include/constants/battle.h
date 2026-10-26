@@ -143,6 +143,7 @@
 #define CHECK_INVALID_FIRST_TURN  (1 << 10) // Sovereign: Fake Out & co. after the first turn (Pokémon Champions)
 #define CHECK_INVALID_THROAT_CHOP (1 << 11) // Sovereign (item 11): sound moves after Throat Chop
 #define CHECK_INVALID_ASSAULT_VEST (1 << 12) // Sovereign (item 11): status moves while holding an Assault Vest
+#define CHECK_INVALID_TWICE_IN_A_ROW (1 << 13) // Sovereign (item 11): Gigaton Hammer and Blood Moon right after using them
 #define CHECK_INVALID_ALL         ~0
 
 #define STRUGGLING_MOVE_1 (1 << 0)
