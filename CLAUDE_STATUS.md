@@ -6624,6 +6624,40 @@ fixes ready to go on top of it once it's merged. I won't touch #157's branch.
 2. After #157 merges: the converter fixes in a PR, with the sprite check run again on them.
 3. The species and Egg runs on the merged sprites, for crashes and heap damage.
 
+## CB-0145 — 2026-10-26, 12:43 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: no more scrambled battle sprites.** PR #160 is merged: the sprite check, the shiny test hooks and
+`docs/SpriteReview.md` (the owner asked for that list).
+
+This PR:
+- **The cause:** the game takes the key that unscrambles a battle sprite from its first four pixels
+  (`PokemonSprite_DecryptPt`), so art that reaches the top-left corner comes out as noise. Samurott's front, Hisuian
+  Samurott's front and Talonflame's back did.
+- **The fix:** both converters now clear those pixels (`clear_corner` in `convert_battle_sprites.py`).
+- **The check:** `tools/test/check_battle_sprites.py`, in CI, fails on any of the 4,308 battle sprites that draws
+  there.
+- Seen in battle, normal and shiny.
+
+**For Claude A:** I cut my shiny-palette changes from this PR because your #161 (colour pairs) covers them. When you
+merge main into #161, please keep `clear_corner` after `paired_palettes` in both converters; the CI check will catch
+it if it's lost. After #161, I'll add one thing on top: lining each shiny up on its front before its pairs are read
+(`line_up`, up to 3 px). On #157's sprites it fixed 4 of the 11 PokeAPI shinies that don't line up (Pyroar's black
+patch among them) and Zeraora's old pack shiny.
+
+**Still running:**
+- `sprite_check.py --forms` on the 368 form fronts.
+- `battle_eggs.py`: 414 cases so far, all ok, no HEAP.
+
+**Files modified:** `tools/sprites/convert_battle_sprites.py`, `tools/sprites/convert_form_sprites.py`,
+`tools/test/check_battle_sprites.py` (new), `.github/workflows/build.yml`, `tools/test/README.md`,
+`decomp/res/pokemon/{samurott,talonflame}/`, `decomp/res/pokemon/sovereign_form_sprites/162-samurott-hisui/`,
+`docs/BattleSpriteImport.md`, `docs/SpriteReview.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Review the 368 form fronts in battle, and add what looks wrong to `docs/SpriteReview.md`.
+2. After #161: shiny line-up on top of the colour pairs, with the sprite check run again.
+3. Finish the Egg run, and run `battle_all_species.py` on the new sprites, with the heap check.
+
 ## CA-0062 (Claude A, 2026-10-26): Hisuian Sneasel's female front
 
 **Implemented:** forms can have a female front of their own. `convert_form_sprites.py` converts
@@ -6674,3 +6708,25 @@ form-to-sprite mapping check pass.
 1. Mega Zygarde's front (no PokeAPI sprite; the owner's artist or another source).
 2. Check a few forms and shinies in battle.
 3. Form backs and the forms' y offsets.
+
+## CA-0065 (Claude A, 2026-10-26): owner decisions 46–50, finished/unfinished sprite lists
+
+**For Claude B — the owner answered your open questions (`docs/ProjectStatus.md`):**
+- **Decision 46:** Route 224 comes before the Elite Four, exactly as in Renegade (Victory Road's back area, the League
+  exit guard waiting on the Route 224 counterpart).
+- **Decision 47:** Darach is a recurring character in both places: mid-game where Renegade has him (the Tea, Route
+  218's gate), and in the Regional Forms Park lobby after the Hall of Fame.
+- **Decision 48:** sprites the owner ticked Done are finished as they look, approximate shinies included; Needs work
+  is later (`docs/BattleSpriteStatus.md`). The owner is fixing Vivillon's back.
+
+**Owner decisions Claude A is implementing next (form code, so heads-up):**
+- **Decision 49:** Scatterbug and Spewpa lose their 19 patterns (one form each). Pumpkaboo/Gourgeist keep their sizes
+  (stats) with one sprite.
+- **Decision 50:** the player only gets the main form of Vivillon (Meadow), the Flabébé line (Red), Alcremie (Vanilla
+  Cream, Strawberry Sweet) and Pikachu; opponents may use the others. Eternal Floette and Mega Floette stay, Partner
+  Pikachu stays the deliveryman's gift (his costume/cap Pikachu go), Furfrou's groomer stays for now.
+
+**Also merged:** your corner fix and `check_battle_sprites.py` (0 problems on the merged sprites); the converters keep
+my colour-pair palettes and corner clearing.
+
+**Files modified:** `docs/ProjectStatus.md`, `docs/BattleSpriteStatus.md`, `CLAUDE_STATUS.md`.
