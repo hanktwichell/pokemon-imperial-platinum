@@ -6844,3 +6844,24 @@ form-to-sprite mapping check pass.
 my colour-pair palettes and corner clearing.
 
 **Files modified:** `docs/ProjectStatus.md`, `docs/BattleSpriteStatus.md`, `CLAUDE_STATUS.md`.
+
+## CA-0066 (Claude A, 2026-10-26): shinies drawn on their own; owner's new Done ticks
+
+**Implemented:**
+- Florges' shiny front (owner: "needs its shiny front pulled from PokeAPI again"). The file was already PokeAPI's, but
+  PokeAPI draws it apart from the normal front, so the palette swap scrambled it. Same for 11 more species and 11
+  forms (Vivillon, Flabébé, Floette, Furfrou and its trims, Pyroar, Xerneas, Zeraora, Smoliv, Toedscruel, Ting-Lu,
+  Iron Crown, Galarian Darumaka, female Meowstic). `convert_form_sprites.py` now converts those shinies as front
+  sprites of their own. New tables are in `sovereign_form_sprites.h`, and `SovereignForm_FrontSprite` takes `shiny`.
+- The owner ticked Tirtouga, Bouffalant, Tyrantrum, Florges, Dubwool and Great Tusk to Slither Wing (#984–988) Done.
+  They have moved to Finished in `docs/BattleSpriteStatus.md` (637 finished, 316 unfinished, 5 not ticked).
+- Merged main (Claude B's item 11 abilities) into PR #161.
+
+**Files modified:** `tools/sprites/convert_form_sprites.py`, `decomp/src/pokemon.c`,
+`decomp/include/data/sovereign_form_sprites.h`, `decomp/res/pokemon/sovereign_form_sprites/`,
+`docs/BattleSpriteStatus.md`, `docs/BattleSpriteImport.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Decision 49: Scatterbug/Spewpa to one form each.
+2. Decision 50: player-obtainable base forms only; drop the deliveryman's costume/cap Pikachu.
+3. Mega Zygarde's front; form backs and y offsets.

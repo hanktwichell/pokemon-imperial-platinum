@@ -13,6 +13,14 @@ convert_battle_sprites.py does (80x80, its own 15-colour palette, the shiny pale
 
 The back sprite stays the base species' (no back art for these forms yet).
 
+Some of PokeAPI's shiny fronts are drawn apart from the normal front (Florges, Vivillon, the Furfrou trims...), so a
+palette swap of the normal front can't show them. Where more than 10% of the pixels don't follow one normal-to-shiny
+colour mapping, the shiny front is converted as a sprite of its own (both its palettes are the shiny colours), for
+species (pokeapi_fronts/NNNN-Name) and for forms alike:
+
+  sSpeciesShinyFront[]                 {species, female (0 male, 1 female, 2 either), sprite number + 1}
+  sSovereignFormShinySprite[i], sSovereignFormFemaleShinySprite[i]
+
 Usage: python3 -I tools/sprites/convert_form_sprites.py
 """
 import os
@@ -22,11 +30,14 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from convert_battle_sprites import cut, paired_palettes, two_frames, window, write_pal  # noqa: E402
+from collections import Counter  # noqa: E402
+
 from PIL import Image  # noqa: E402
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 DECOMP = os.path.join(ROOT, "decomp")
-SRC = os.path.join(ROOT, "assets", "sprites", "packs", "pokeapi_fronts", "forms")
+FRONTS = os.path.join(ROOT, "assets", "sprites", "packs", "pokeapi_fronts")
+SRC = os.path.join(FRONTS, "forms")
 OUT = os.path.join(DECOMP, "res", "pokemon", "sovereign_form_sprites")
 KEY = os.path.join(DECOMP, "res", "pokemon", "venusaur", "male_front.png.key")  # any key file works (a scramble seed)
 
@@ -41,19 +52,39 @@ def forms():
     return [(i, stem, d, kinds[i], name) for i, ((stem, d, name), _) in enumerate(zip(dirs, kinds))]
 
 
+def misaligned(front_png, shiny_png):
+    """The share of the front's pixels that don't follow one normal-to-shiny colour mapping (0: a palette swap)."""
+    a, b = Image.open(front_png).convert("RGBA"), Image.open(shiny_png).convert("RGBA")
+    if a.size != b.size:
+        return 1.0
+    pairs, off, total = Counter(), 0, 0
+    for p, q in zip(a.get_flattened_data(), b.get_flattened_data()):
+        if (p[3] > 0) != (q[3] > 0):
+            off += 1
+        elif p[3]:
+            pairs[(p[:3], q[:3])] += 1
+            total += 1
+    best = Counter()
+    for (n, _), c in pairs.items():
+        best[n] = max(best[n], c)
+    return (off + total - sum(best.values())) / max(total, 1)
+
+
 def main():
     if os.path.isdir(OUT):
         shutil.rmtree(OUT)
     os.makedirs(OUT)
-    table, female, order, report = {}, {}, [], []
+    table, female, shiny_of, female_shiny, species_shiny, order, report = {}, {}, {}, {}, [], [], []
 
     def convert(front_png, shiny_png, folder, name):
-        """Convert one front (and its shiny) into sovereign_form_sprites/<number>-<folder>; its number + 1."""
+        """Convert one front (and its shiny) into sovereign_form_sprites/<number>-<folder>; its number + 1.
+
+        With shiny_png None, the front is a shiny drawn on its own and both palettes are its colours."""
         im = Image.open(front_png).convert("RGBA")
         box, scale = window(im)
         front = cut(im, box, scale)
         shiny = None
-        if os.path.exists(shiny_png):
+        if shiny_png and os.path.exists(shiny_png):
             sh = Image.open(shiny_png).convert("RGBA")
             if sh.size == im.size:
                 shiny = cut(sh, box, scale)
@@ -71,6 +102,12 @@ def main():
             report.append(f"{name}: " + ", ".join(n for n in notes if n))
         return len(order)
 
+    def own_shiny(front_png, shiny_png, folder, name):
+        """The shiny's own sprite number + 1 where it isn't a palette swap of the front, else 0."""
+        if not (os.path.exists(front_png) and os.path.exists(shiny_png)) or misaligned(front_png, shiny_png) <= 0.1:
+            return 0
+        return convert(shiny_png, None, folder + "-shiny", name + " (shiny)")
+
     for i, stem, d, kind, name in forms():
         src = os.path.join(SRC, f"{stem}-{d}")
         if not os.path.exists(os.path.join(src, "front.png")):
@@ -82,6 +119,25 @@ def main():
         if os.path.exists(os.path.join(src, "female_front.png")):
             female[i] = convert(os.path.join(src, "female_front.png"), os.path.join(src, "female_shiny_front.png"),
                                 f"{stem}-{d}-female", name + " (female)")
+        sh = own_shiny(os.path.join(src, "front.png"), os.path.join(src, "shiny_front.png"), f"{stem}-{d}", name)
+        if sh:
+            shiny_of[i] = sh
+        if os.path.exists(os.path.join(src, "female_front.png")):
+            sh = own_shiny(os.path.join(src, "female_front.png"), os.path.join(src, "female_shiny_front.png"),
+                           f"{stem}-{d}-female", name + " (female)")
+            if sh:
+                female_shiny[i] = sh
+    for d in sorted(os.listdir(FRONTS)):
+        m = re.match(r"(\d{4})-", d)
+        if not m:
+            continue
+        for female_flag, prefix in ((0, ""), (1, "female_")):
+            sh = own_shiny(os.path.join(FRONTS, d, f"{prefix}front.png"),
+                           os.path.join(FRONTS, d, f"{prefix}shiny_front.png"), d + ("-female" if female_flag else ""), d)
+            if sh:
+                # 2: either gender (the species has no female front of its own, e.g. Florges, all female).
+                both = not female_flag and not os.path.exists(os.path.join(FRONTS, d, "female_front.png"))
+                species_shiny.append((int(m.group(1)), 2 if both else female_flag, sh))
     with open(os.path.join(OUT, "order.txt"), "w") as f:
         f.write("".join(o + "\n" for o in order))
     with open(os.path.join(OUT, "meson.build"), "w") as f:
@@ -104,6 +160,20 @@ def main():
         for i in range(n):
             if i in female:
                 f.write(f"    [{i}] = {female[i]},\n")
+        f.write("};\n\n// A form's shiny front where PokeAPI draws it apart from the normal front (not a palette swap); 0 for none.\n"
+                "static const u16 sSovereignFormShinySprite[SOVEREIGN_FORM_COUNT] = {\n")
+        for i in sorted(shiny_of):
+            f.write(f"    [{i}] = {shiny_of[i]},\n")
+        f.write("};\n\nstatic const u16 sSovereignFormFemaleShinySprite[SOVEREIGN_FORM_COUNT] = {\n")
+        for i in sorted(female_shiny):
+            f.write(f"    [{i}] = {female_shiny[i]},\n")
+        if not female_shiny:
+            f.write("    0,  // (none yet; the compiler wants an initializer)\n")
+        f.write("};\n\n// The same for species (their base form): the shiny front's sprite number + 1, for males (female 0), females\n"
+                "// (1) or either (2, a species without a female front of its own).\n"
+                "static const struct {\n    u16 species;\n    u16 female;\n    u16 sprite;\n} sSpeciesShinyFront[] = {\n")
+        for sp, fem, sh in species_shiny:
+            f.write(f"    {{ {sp}, {fem}, {sh} }},\n")
         f.write("};\n\n#define SOVEREIGN_FORM_SPRITE_COUNT " + str(len(order)) + "\n\n#endif\n")
     print(f"{len(order)} form sprites")
     for r in report:

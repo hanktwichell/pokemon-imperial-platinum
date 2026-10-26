@@ -1,10 +1,10 @@
 # Battle sprite status
 
-From the owner's ticks on the roadmap page's sprite table (read 2026-10-26). Every sprite below is in the game
+From the owner's ticks on the roadmap page's sprite table (read 2026-10-26, updated with the owner's later ticks the same day). Every sprite below is in the game
 (species #494–1025: PokeAPI front and shiny front with the owner's pack's back and shiny back; forms: PokeAPI front
 and shiny front). **Notes** say where a Pokémon has no back sprite of its own or uses another form's sprite.
 
-## Finished (627)
+## Finished (637)
 
 Ticked **Done**.
 
@@ -74,6 +74,7 @@ Ticked **Done**.
 | 561 | Sigilyph |  |
 | 562 | Yamask |  |
 | 563 | Cofagrigus |  |
+| 564 | Tirtouga |  |
 | 566 | Archen |  |
 | 568 | Trubbish |  |
 | 570 | Zorua |  |
@@ -122,6 +123,7 @@ Ticked **Done**.
 | 623 | Golurk |  |
 | 624 | Pawniard |  |
 | 625 | Bisharp |  |
+| 626 | Bouffalant |  |
 | 627 | Rufflet |  |
 | 630 | Mandibuzz |  |
 | 631 | Heatmor |  |
@@ -156,6 +158,7 @@ Ticked **Done**.
 | 667 | Litleo |  |
 | 668 | Pyroar |  |
 | 670 | Floette |  |
+| 671 | Florges | shiny front: PokeAPI's own shiny drawing (not a palette swap of the front) |
 | 672 | Skiddo |  |
 | 673 | Gogoat |  |
 | 674 | Pancham |  |
@@ -181,6 +184,7 @@ Ticked **Done**.
 | 694 | Helioptile |  |
 | 695 | Heliolisk |  |
 | 696 | Tyrunt |  |
+| 697 | Tyrantrum |  |
 | 698 | Amaura |  |
 | 699 | Aurorus |  |
 | 700 | Sylveon |  |
@@ -315,6 +319,7 @@ Ticked **Done**.
 | 829 | Gossifleur |  |
 | 830 | Eldegoss |  |
 | 831 | Wooloo |  |
+| 832 | Dubwool |  |
 | 833 | Chewtle |  |
 | 834 | Drednaw |  |
 | 835 | Yamper |  |
@@ -457,6 +462,11 @@ Ticked **Done**.
 | 981 | Farigiraf |  |
 | 982 | Dudunsparce |  |
 | 983 | Kingambit |  |
+| 984 | Great Tusk |  |
+| 985 | Scream Tail |  |
+| 986 | Brute Bonnet |  |
+| 987 | Flutter Mane |  |
+| 988 | Slither Wing |  |
 | 994 | Iron Moth |  |
 | 995 | Iron Thorns |  |
 | 996 | Frigibax |  |
@@ -638,9 +648,9 @@ Ticked **Done**.
 | 869 | Alcremie (Vanilla Cream Ribbon Sweet) | no back of its own: uses its species' back |
 | 869 | Alcremie (Vanilla Cream Star Sweet) | no back of its own: uses its species' back |
 
-## Unfinished (320)
+## Unfinished (316)
 
-Ticked **Needs work** (Dubwool was ticked both; it's here). Their fronts are in the game.
+Ticked **Needs work**. Their fronts are in the game.
 
 | # | Pokémon | Notes |
 |---|---|---|
@@ -650,7 +660,6 @@ Ticked **Needs work** (Dubwool was ticked both; it's here). Their fronts are in 
 | 553 | Krookodile |  |
 | 555 | Darmanitan |  |
 | 558 | Crustle |  |
-| 564 | Tirtouga |  |
 | 565 | Carracosta |  |
 | 567 | Archeops |  |
 | 569 | Garbodor |  |
@@ -664,7 +673,6 @@ Ticked **Needs work** (Dubwool was ticked both; it's here). Their fronts are in 
 | 611 | Fraxure |  |
 | 612 | Haxorus |  |
 | 617 | Accelgor |  |
-| 626 | Bouffalant |  |
 | 628 | Braviary |  |
 | 629 | Vullaby |  |
 | 637 | Volcarona |  |
@@ -675,8 +683,6 @@ Ticked **Needs work** (Dubwool was ticked both; it's here). Their fronts are in 
 | 645 | Landorus |  |
 | 666 | Vivillon |  |
 | 669 | Flabébé |  |
-| 671 | Florges |  |
-| 832 | Dubwool |  |
 | 920 | Lokix |  |
 | 921 | Pawmi |  |
 | 922 | Pawmo |  |
@@ -965,7 +971,7 @@ Ticked **Needs work** (Dubwool was ticked both; it's here). Their fronts are in 
 | 593 | Jellicent (Female) | no back of its own: uses the male back |
 | 668 | Pyroar (Female) | no back of its own: uses the male back |
 
-## Not ticked yet (11)
+## Not ticked yet (5)
 
-Tyrantrum (#697), Great Tusk (#984), Scream Tail (#985), Brute Bonnet (#986), Flutter Mane (#987), Slither Wing (#988), Sandy Shocks (#989), Iron Treads (#990), Gimmighoul (Roaming) (#999), Poltchageist (Artisan) (#1012), Sinistcha (Masterpiece) (#1013)
+Sandy Shocks (#989), Iron Treads (#990), Gimmighoul (Roaming) (#999), Poltchageist (Artisan) (#1012), Sinistcha (Masterpiece) (#1013)
 

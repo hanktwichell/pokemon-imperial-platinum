@@ -1,6 +1,6 @@
 # Battle sprite import (#494–1025)
 
-Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/gen5_9_part1`, with fronts from `assets/sprites/packs/pokeapi_fronts`. Each species' front and back have palettes of their own, 15 colours each (`normal.pal`/`shiny.pal` for the front, `back_normal.pal`/`back_shiny.pal` for the back); **Colours** is how many the source front / back had (more than 15 were reduced). Notes list art scaled down to fit 80×80 and shinies that didn't line up. These are the sprites to look at first in game.
+Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/gen5_9_part1`, with fronts from `assets/sprites/packs/pokeapi_fronts`. Each species' front and back have palettes of their own, 15 colours each (`normal.pal`/`shiny.pal` for the front, `back_normal.pal`/`back_shiny.pal` for the back); **Colours** is how many the source front / back had (more than 15 were reduced). Notes list art scaled down to fit 80×80 and shinies that didn't line up; where more than 10% of the pixels don't, the game shows PokeAPI's shiny front as a sprite of its own (`convert_form_sprites.py`). These are the sprites to look at first in game.
 
 | Dex | Pokémon | Result | Colours | Shiny | Notes |
 |---|---|---|---|---|---|

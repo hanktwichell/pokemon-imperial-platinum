@@ -4,6 +4,22 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E12 — shinies drawn on their own (Florges, Vivillon, the Furfrou trims)
+
+For players: shiny Florges, Vivillon, Flabébé, Floette, Furfrou (and its trims), Pyroar, Xerneas, Zeraora, Smoliv,
+Toedscruel, Ting-Lu, Iron Crown, Galarian Darumaka and female Meowstic show PokeAPI's shiny front as drawn, not a
+scrambled recolour.
+
+- PokeAPI draws some shiny fronts apart from the normal front, so no palette swap of the normal front can show them.
+  `tools/sprites/convert_form_sprites.py` now finds them (more than 10% of the pixels don't follow one normal-to-shiny
+  colour mapping) and converts the shiny as a front sprite of its own, both palettes its colours: 12 species and 11
+  forms (438 form-area sprites, from 415).
+- `sovereign_form_sprites.h` gains `sSovereignFormShinySprite`, `sSovereignFormFemaleShinySprite` and
+  `sSpeciesShinyFront` (species, gender 0/1/2 = male/female/either, sprite). `SovereignForm_FrontSprite`
+  (`src/pokemon.c`) takes `shiny` and returns them for a shiny's front; backs are unchanged.
+- Verified: `make rom`, boot smoke test PASS, `check_battle_sprites.py` 4,378 sprites 0 problems; the four shown to
+  the owner (Florges, Vivillon, Kabuki Furfrou, Xerneas) rendered from the converted files.
+
 ## Item 11 (effect fidelity): seven more abilities
 
 For players: As One, Toxic Chain, Poison Puppeteer, Supersweet Syrup and Comatose now work. Pastel Veil and Sweet Veil
