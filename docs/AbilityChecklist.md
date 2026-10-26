@@ -49,7 +49,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 164 | Teravolt | Gen 5 | yes: ignores the target's ability, like Mold Breaker |
 | 165 | Aroma Veil | Gen 6 | not yet (no battle effect) |
 | 166 | Flower Veil | Gen 6 | not yet (no battle effect) |
-| 167 | Cheek Pouch | Gen 6 | not yet (no battle effect) |
+| 167 | Cheek Pouch | Gen 6 | partly: when it eats its own held Berry, it also restores a third of its max HP (not yet for a Berry taken by Bug Bite or Pluck, nor a damage-halving Berry) |
 | 168 | Protean | Gen 6 | yes: becomes its move's type, once per switch-in |
 | 169 | Fur Coat | Gen 6 | yes: Defense doubled |
 | 170 | Magician | Gen 6 | not yet (no battle effect) |
