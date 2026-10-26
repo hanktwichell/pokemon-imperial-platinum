@@ -59,6 +59,9 @@ BOOL WildEncounters_TryMudEncounter(FieldSystem *fieldSystem, FieldBattleDTO **p
 void CreateWildMon_HoneyTree(FieldSystem *fieldSystem, FieldBattleDTO *param1);
 void CreateWildMon_Scripted(FieldSystem *fieldSystem, u16 param1, u8 param2, FieldBattleDTO *param3);
 void CreateWildMon_SovereignScriptedForm(FieldSystem *fieldSystem, u16 species, u8 form, u8 level, FieldBattleDTO *battleParams);
+#ifdef SOVEREIGN_TEST
+void CreateWildMon_SovereignTestShinyForm(FieldSystem *fieldSystem, u16 species, u8 form, u8 level, FieldBattleDTO *battleParams);
+#endif
 BOOL WildEncounters_TileHasEncounterRate(FieldSystem *fieldSystem, u8 param1);
 #ifdef SOVEREIGN_TEST
 void SovereignTest_WildSurvey(FieldSystem *fieldSystem);
