@@ -4,6 +4,38 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): held items, part 5 (Mirror Herb, Ability Shield)
+
+For players: the Mirror Herb and the Ability Shield from the Veilstone Dept. Store now work in battle. Every held item
+the store sells now works, except the three that switch Pokémon out (Eject Button, Eject Pack, Red Card).
+
+- **Mirror Herb:** copies the stat rises the holder's foes get, then is used up. "The Mirror Herb raised {Pokémon}'s
+  {stat}!" for each stat.
+  - The stat-change code notes each foe's rise (`Sovereign_NoteMirrorHerbRise`), as the actual change after the +6
+    cap.
+  - The herb copies them on the next switch-in check, which runs on entry, after Mega Evolution and after every move.
+    It copies two stages at a time (`subscript_sovereign_mirror_herb`, `BTLVAR_SOVEREIGN_MIRROR_HERB_NEXT`).
+  - A rise at the end of a turn (Speed Boost) is copied after the next move; Showdown copies it at once.
+  - The herb never copies a rise it made itself, so two herbs don't copy each other.
+- **Ability Shield:** the holder's Ability can't be changed, suppressed or ignored (`Sovereign_HasAbilityShield`).
+  - Worry Seed, Gastro Acid, Simple Beam and Entrainment on the holder, Role Play by the holder, and Skill Swap with it
+    on either side: "{Pokémon} used {move}!", then "{Pokémon}'s Ability Shield protects its Ability!"
+    (`subscript_sovereign_ability_shield`).
+  - Mummy, Lingering Aroma and Wandering Spirit leave the holder's Ability alone, and a holder with Trace doesn't trace
+    (as in Showdown).
+  - Mold Breaker, Turboblaze, Teravolt and Mycelium Might don't ignore the holder's Ability (`Battler_IgnorableAbility`).
+  - Klutz doesn't stop the shield; Magic Room and Embargo do.
+- `docs/HeldItemChecklist.md` is updated.
+
+**Verification:** `tools/test/check_battle_scripts.py` passes. Harness wild battles against a Ninjask:
+- **Mirror Herb:** the wild Ninjask's Dragon Dance. Snorlax: "The Mirror Herb raised SNORLAX's Attack!", then Speed.
+  The next Dragon Dance does nothing more.
+- **Ability Shield:** the wild Ninjask's Worry Seed, then Skill Swap. Both times: "SNORLAX's Ability Shield protects
+  its Ability!". Without the shield: "SNORLAX acquired Insomnia!".
+- **Ability Shield against Mold Breaker:** a wild Rampardos (Mold Breaker) uses Earthquake on Bronzong (Levitate)
+  holding a shield: "BRONZONG makes Ground moves miss by using Levitate!". Without the shield, Earthquake hits and is
+  super effective.
+
 ## Item 11 (effect fidelity): held items, part 4 (Room Service, Adrenaline Orb, Utility Umbrella)
 
 For players: three more Veilstone Dept. Store items now work in battle.

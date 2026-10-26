@@ -18,6 +18,8 @@ _000:
     CompareVarToValue OPCODE_EQU, BTLVAR_CALC_TEMP, ABILITY_IMPOSTER, _fail
     CompareVarToValue OPCODE_EQU, BTLVAR_CALC_TEMP, ABILITY_STANCE_CHANGE, _fail
     CompareVarToValue OPCODE_EQU, BTLVAR_CALC_TEMP, ABILITY_DISGUISE, _fail
+    // Sovereign (item 11): an Ability Shield keeps its holder's Ability
+    CompareVarToValue OPCODE_NEQ, BTLVAR_SOVEREIGN_ABILITY_SHIELD_DEFENDER, 0, _sovereign_ability_shield
     Call BATTLE_SUBSCRIPT_ATTACK_MESSAGE_AND_ANIMATION
     UpdateMonDataFromVar OPCODE_SET, BTLSCR_DEFENDER, BATTLEMON_ABILITY, BTLVAR_CALC_TEMP
     // {0} acquired {1}!
@@ -28,4 +30,8 @@ _000:
 
 _fail:
     UpdateVar OPCODE_FLAG_ON, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_FAILED
+    End 
+
+_sovereign_ability_shield:
+    Call BATTLE_SUBSCRIPT_SOVEREIGN_ABILITY_SHIELD
     End 

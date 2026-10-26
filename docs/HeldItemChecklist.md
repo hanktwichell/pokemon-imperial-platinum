@@ -38,9 +38,9 @@ The new items have no hold effect constant (`HOLD_EFFECT_NONE`). The battle code
 | Room Service | yes: Speed -1 under Trick Room, on entry or as Trick Room starts, used up |
 | Utility Umbrella | yes: rain and harsh sunlight don't act on the holder. Fire and Water moves hitting it take no weather change, and its Abilities (Swift Swim, Chlorophyll, Rain Dish, Dry Skin, Hydration, Solar Power, Leaf Guard, Flower Gift, Forecast, Orichalcum Pulse) and moves (Solar Beam, Solar Blade, Electro Shot, Synthesis, Weather Ball, Hydro Steam) act as if there were none. Thunder and Hurricane aimed at it, and freezing, ignore the weather too. Its own Fire and Water moves are still boosted, Protosynthesis still works, and a primal weather's Fire or Water moves still fail |
 | Booster Energy | yes: starts Protosynthesis or Quark Drive |
-| Ability Shield | not yet |
+| Ability Shield | yes: the holder's Ability can't be changed or suppressed (Worry Seed, Gastro Acid, Simple Beam, Entrainment, Role Play, Skill Swap: "{0}'s Ability Shield protects its Ability!"; Mummy, Lingering Aroma, Wandering Spirit and Trace do nothing), and Mold Breaker, Turboblaze and Teravolt don't ignore it. Klutz doesn't stop it; Magic Room and Embargo do |
 | Clear Amulet | yes: other Pokémon's moves and Abilities can't lower the holder's stats ("{0}'s Clear Amulet prevents stat loss!") |
-| Mirror Herb | not yet |
+| Mirror Herb | yes: copies the stat rises the holder's foes get (moves, Abilities, items) after the move, switch-in or Mega Evolution that gave them, then is used up ("The Mirror Herb raised {0}'s Attack!"). A rise at the end of a turn (Speed Boost) is copied after the next move. Not its own copied rises |
 | Punching Glove | yes: punching moves ×1.1 and make no contact |
 | Covert Cloak | yes: other Pokémon's moves' chance effects don't affect the holder |
 | Loaded Dice | yes: the holder's 2-5 hit moves hit 4 or 5 times |

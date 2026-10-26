@@ -2995,12 +2995,18 @@ static BOOL ChangeStatStage(BattleSystem *battleSys, BattleContext *battleCtx)
                     statOffset);
             }
 
+            int raisedFrom = mon->statBoosts[BATTLE_STAT_ATTACK + statOffset]; // Sovereign (item 11)
+
             mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] += stageChange;
             battleCtx->turnFlags[battleCtx->sideEffectMon].sovereignStatsRaised = TRUE; // Sovereign (item 11)
 
             if (mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] > MAX_STAT_STAGE) {
                 mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] = MAX_STAT_STAGE;
             }
+
+            // Sovereign (item 11): a foe's Mirror Herb will copy the rise.
+            Sovereign_NoteMirrorHerbRise(battleSys, battleCtx, battleCtx->sideEffectMon, BATTLE_STAT_ATTACK + statOffset,
+                mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] - raisedFrom);
         }
     } else {
         if ((battleCtx->sideEffectFlags & MOVE_SIDE_EFFECT_CANNOT_PREVENT) == FALSE) {
@@ -9863,6 +9869,37 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         battleCtx->sovereignTerrainTemp = (battleCtx->sideConditionsMask[BattleSystem_GetBattlerSide(battleSys, battleCtx->switchedMon)] & SIDE_CONDITION_SOVEREIGN_STICKY_WEB)
             && Sovereign_IsGrounded(battleCtx, battleCtx->switchedMon)
             && Battler_HeldItem(battleCtx, battleCtx->switchedMon) != ITEM_HEAVY_DUTY_BOOTS;
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_MIRROR_HERB_NEXT: // Sovereign (item 11): read-only, sets up the Mirror Herb holder's next copied
+        // rise (2 stages at most at a time) as the side effect; 0 once all are copied
+        battleCtx->sovereignTerrainTemp = FALSE;
+
+        for (int stat = BATTLE_STAT_ATTACK; stat < BATTLE_STAT_MAX; stat++) {
+            u8 *rise = &battleCtx->sovereignMirrorHerbRises[battleCtx->sovereignMirrorHerbHolder][stat];
+
+            if (*rise) {
+                int stages = *rise >= 2 ? 2 : 1;
+
+                *rise -= stages;
+                battleCtx->sideEffectParam = (stages == 2 ? MOVE_SUBSCRIPT_PTR_ATTACK_UP_2_STAGES : MOVE_SUBSCRIPT_PTR_ATTACK_UP_1_STAGE)
+                    + (stat - BATTLE_STAT_ATTACK);
+                battleCtx->sovereignTerrainTemp = TRUE;
+                break;
+            }
+        }
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_ABILITY_SHIELD_ATTACKER: // Sovereign (item 11): read-only, the attacker holds an Ability Shield
+        // (then it's BTLVAR_MSG_BATTLER_TEMP, for subscript_sovereign_ability_shield)
+        battleCtx->sovereignTerrainTemp = Sovereign_HasAbilityShield(battleCtx, battleCtx->attacker);
+        if (battleCtx->sovereignTerrainTemp) {
+            battleCtx->msgBattlerTemp = battleCtx->attacker;
+        }
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_ABILITY_SHIELD_DEFENDER: // Sovereign (item 11): read-only, the same for the defender
+        battleCtx->sovereignTerrainTemp = Sovereign_HasAbilityShield(battleCtx, battleCtx->defender);
+        if (battleCtx->sovereignTerrainTemp) {
+            battleCtx->msgBattlerTemp = battleCtx->defender;
+        }
         return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_ADRENALINE_ORB_CHECK: // Sovereign (item 11): read-only, always 0; marks an Intimidate's target
         // that holds an Adrenaline Orb, while its Attack can still drop (rise, with Contrary)

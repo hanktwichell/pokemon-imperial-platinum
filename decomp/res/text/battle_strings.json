@@ -9672,6 +9672,29 @@
         "The foe’s {STRVAR_1 1, 0, 0} floats\n",
         "in the air with its Air Balloon!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAbilityShieldProtects_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s Ability Shield\n",
+        "protects its Ability!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAbilityShieldProtects_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}’s\n",
+        "Ability Shield protects\f",
+        "its Ability!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAbilityShieldProtects_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}’s\n",
+        "Ability Shield protects\f",
+        "its Ability!"
+      ]
     }
   ]
 }
