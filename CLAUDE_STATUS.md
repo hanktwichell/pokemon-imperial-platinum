@@ -8027,3 +8027,24 @@ PR #201 (Mega Sol, Growth, Ripen) is merged.
 2. Instruct and Sky Drop. Both need a move run outside its user's own action: `BtlCmd_GoToMoveScript` keeps the same
    attacker, so they need a controller change.
 3. Burn Up and Double Shock still wait on the owner (CB-0158).
+
+## CB-0187 — 2026-10-26, 5:26 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: Instruct (9 placeholder moves left).** PR #203 (Ball Fetch) is merged.
+- The target uses its last move again as an extra action once Instruct is over: `BattleControllerPlayer_MoveEnd`
+  starts it (BEFORE_MOVE) without moving on in the turn order. The extra use costs PP, and its own action still comes.
+- Gen IX's list of moves that can't be instructed: `Sovereign_CanInstruct`.
+- Verified with a Ninjask's Growl before and after the Instruct user moved (see the changelog).
+
+**Files modified:**
+- `decomp/src/battle/battle_controller_player.c` (MoveEnd hook, TurnEnd clear), `decomp/src/battle/battle_lib.c` (`Sovereign_CanInstruct`).
+- `decomp/src/battle/battle_script.c` (var), `decomp/include/battle/battle_context.h`, `decomp/include/battle/battle_lib.h`.
+- New subscript `subscript_sovereign_instruct` and effect `effect_script_0397.s`. The registration files.
+- `decomp/res/text/battle_strings.json` (7 messages), `decomp/res/moves/instruct/data.json`.
+- `tools/engine/gen9_move_fixes.py`, `docs/MoveChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Dancer can reuse the same extra-action hook. When another Pokémon uses a dance move that works, each Dancer (slowest
+   first) uses it too, at no PP cost.
+2. Sky Drop, then the abilities Illusion, Symbiosis and Commander.
+3. Burn Up and Double Shock still wait on the owner (CB-0158).

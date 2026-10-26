@@ -3,6 +3,36 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Item 11 (effect fidelity): Instruct (an extra action)
+
+For players:
+- **Instruct:** right after it, the target uses the move it last used again ("{0} followed {1}'s instructions!").
+  - It's an extra action. If the target hasn't acted yet this turn, its own action still comes later.
+  - The extra use costs PP as usual.
+  - It fails when the target hasn't used a move since it came in, no longer knows that move, or has no PP left for it.
+  - It also fails when that move charges, recharges, locks its user in or calls another move: Gen IX's list, with
+    Assist, Beak Blast, Belch, Bide, Copycat, Focus Punch, Instruct, King's Shield, Me First, Metronome, Mimic, Mirror
+    Move, Nature Power, Obstruct, Outrage and the like, Rollout and Ice Ball, Shell Trap, Sketch, Sky Drop, Sleep Talk,
+    Struggle, Transform and Uproar.
+- **Code:**
+  - `BTLVAR_SOVEREIGN_INSTRUCT` checks the target (`Sovereign_CanInstruct`) and sets
+    `BattleContext.sovereignInstructed`.
+  - `BattleControllerPlayer_MoveEnd` then sets the target up as the attacker with its last move
+    (`movePrevByBattler`) and goes to BEFORE_MOVE without moving on in the turn order.
+  - The target's turn flag `ppDecremented` is set aside meanwhile, so both the extra use and its own action cost PP.
+  - The target is the one it chose this turn (`BattleSystem_Defender`).
+  - `TurnEnd` clears any instruction left over.
+
+**Verification:** test and release ROMs built; the battle-script size check, the message check and the docs check pass.
+Wild battles of a Lv. 50 Meganium using Instruct against a Ninjask using Growl (its PP read from the battle data):
+- **Lv. 100 Ninjask (it moves first):** each turn it uses Growl, then "The wild NINJASK followed MEGANIUM's
+  instructions!" and Growl again.
+  - Attack −2 per turn, down to −6.
+  - The Growl PP goes 40 → 39 → 38 in the first turn, two per turn.
+- **Lv. 5 Ninjask (it moves second):**
+  - Turn 1: "MEGANIUM used Instruct!", "But it failed!" (no move yet), then its Growl (PP 40 → 39).
+  - Turn 2: the instructed Growl (PP 38, Attack −2), then its own Growl (PP 37, Attack −3).
+
 ## Item 11 (effect fidelity): Ball Fetch
 
 For players:

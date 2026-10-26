@@ -331,6 +331,8 @@ MOVES = {
     "fairy_lock": ("SOVEREIGN_FAIRY_LOCK", 0, "no one can flee or switch out this turn and the next (Ghost types can)"),
     "octolock": ("SOVEREIGN_OCTOLOCK", 0, "the target can't escape while the user stays in, and its Defense and Sp. Def"
                  " fall at the end of each turn"),
+    "instruct": ("SOVEREIGN_INSTRUCT", 0, "the target uses its last move again right after, as an extra action (not a move"
+                 " that charges, recharges, locks it in or calls another move)"),
     "spotlight": ("SOVEREIGN_SPOTLIGHT", 0, "+3 priority; the target's foes aim at it this turn (fails in a single battle)"),
     "teatime": ("SOVEREIGN_TEATIME", 0, "every Pokémon on the field eats its Berry (fails if none holds one)"),
     # Moves batch 12.

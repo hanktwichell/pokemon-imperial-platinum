@@ -2162,6 +2162,8 @@ static void BattleControllerPlayer_TurnEnd(BattleSystem *battleSys, BattleContex
 
     battleCtx->totalTurns++;
     battleCtx->meFirstTurnOrder++;
+    battleCtx->sovereignInstructed = 0; // Sovereign (item 11): an instruction never outlasts its turn
+    battleCtx->sovereignInstructing = 0;
 
     BattleContext_Init(battleCtx);
     BattleSystem_SetupNextTurn(battleSys, battleCtx);
@@ -5120,6 +5122,35 @@ static void BattleControllerPlayer_MoveEnd(BattleSystem *battleSys, BattleContex
     }
 
     battleCtx->battlerActions[battleCtx->battlerActionOrder[battleCtx->turnOrderCounter]][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_MOVE_END;
+
+    // Sovereign (item 11): Instruct. Once the move that instructed it is over, the target uses its last move again as an
+    // extra action; then the turn goes on as before (its own action, if it hasn't acted yet, still comes). The extra use
+    // costs PP of its own, so its turn flag ppDecremented is set aside meanwhile.
+    if (battleCtx->sovereignInstructing) {
+        battleCtx->turnFlags[battleCtx->sovereignInstructing - 1].ppDecremented = battleCtx->sovereignInstructedPP;
+        battleCtx->sovereignInstructing = 0;
+    }
+
+    if (battleCtx->sovereignInstructed) {
+        int battler = battleCtx->sovereignInstructed - 1;
+
+        battleCtx->sovereignInstructed = 0;
+
+        if (Sovereign_CanInstruct(battleCtx, battler)) {
+            BattleContext_Init(battleCtx);
+            battleCtx->sovereignInstructing = battler + 1;
+            battleCtx->sovereignInstructedPP = battleCtx->turnFlags[battler].ppDecremented;
+            battleCtx->turnFlags[battler].ppDecremented = FALSE;
+            battleCtx->attacker = battler;
+            battleCtx->moveTemp = battleCtx->movePrevByBattler[battler];
+            battleCtx->moveCur = battleCtx->moveTemp;
+            battleCtx->defender = BattleSystem_Defender(battleSys, battleCtx, battler, battleCtx->moveTemp, FALSE, 0);
+            battleCtx->command = BATTLE_CONTROL_BEFORE_MOVE;
+            BattleController_EmitClearMessageBox(battleSys);
+            return;
+        }
+    }
+
     if (ATTACKER_SELF_TURN_FLAGS.trickRoomActivated) {
         BattleSystem_SortMonActionOrder(battleSys, battleCtx);
         BattleSystem_SortMonSpeedOrder(battleSys, battleCtx);

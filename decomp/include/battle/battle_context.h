@@ -399,6 +399,9 @@ struct BattleContext {
     u8 sovereignGasActive; // Sovereign (item 11): Neutralizing Gas was in effect at the last switch-in check
     u8 sovereignBallFetched; // Sovereign (item 11): a Ball Fetch Pokémon has fetched this battle's first ball
     u16 sovereignBallFetchBall; // Sovereign (item 11): the first ball thrown in this wild battle (Ball Fetch)
+    u8 sovereignInstructed; // Sovereign (item 11): 1 + the battler Instruct told to use its last move again (0 for none)
+    u8 sovereignInstructing; // Sovereign (item 11): 1 + the battler using its move again for Instruct now (0 for none)
+    u8 sovereignInstructedPP; // Sovereign (item 11): that battler's turn flag ppDecremented before it did
     u16 sovereignShieldMove[MAX_BATTLERS]; // Sovereign (item 11): the Protect-like move protecting each battler this turn
     int sovereignShieldContact; // Sovereign (item 11): the shield whose contact penalty is due (subscript_missed)
     int sovereignGuardBlock; // Sovereign (item 11): the side guard that blocked the move (Wide Guard, Mat Block, ...)

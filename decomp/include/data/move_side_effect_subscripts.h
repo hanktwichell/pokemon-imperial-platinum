@@ -247,5 +247,6 @@ static const int sSideEffectSubscripts[] = {
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_SHED_TAIL] = subscript_sovereign_shed_tail,
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_ADD_TYPE] = subscript_sovereign_add_type,
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_GROWTH] = subscript_sovereign_stats_growth,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_INSTRUCT] = subscript_sovereign_instruct,
 };
 // clang-format on
