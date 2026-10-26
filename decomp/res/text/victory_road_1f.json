@@ -76,6 +76,22 @@
         "Good luck with your challenge!\n",
         "You can do it!"
       ]
+    },
+    {
+      "id": "VictoryRoad1F_Text_SovereignHoldIt",
+      "en_US": "Hold it!"
+    },
+    {
+      "id": "VictoryRoad1F_Text_SovereignNotReadyYet",
+      "en_US": [
+        "Let me size you up...\r",
+        "...\n",
+        "...\r",
+        "You’re not quite ready yet.\r",
+        "Have you been to Route 224?\n",
+        "It’s through a passage to the east.\f",
+        "You can hone your skills there."
+      ]
     }
   ]
 }

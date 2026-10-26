@@ -54,6 +54,9 @@ KNOWN = {
     ('events_route_201', 'LOCALID_SOVEREIGN_MEW_PACHIRISU'): 'turns into Mew: the two never show at once',
     ('events_route_201', 'LOCALID_LEGENDARY_MEW'): 'appears in the Pachirisu\'s place',
     ('events_route_224', 'LOCALID_SOVEREIGN_COUNTERPART'): 'blocks the tablet until beaten, as in Renegade',
+    ('events_victory_road_1f', 'LOCALID_COLLECTOR'):
+        'Renegade\'s gate to the League: his trigger covers the tiles beside him until the Route 224 counterpart is '
+        'beaten',
     ('events_wayward_cave_1f', 'LOCALID_MIRA'):
         'Renegade\'s gate at the hidden entrance: she battles the player, then follows until her quest ends',
 }

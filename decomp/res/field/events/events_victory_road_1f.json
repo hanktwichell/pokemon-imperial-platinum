@@ -210,12 +210,12 @@
             "trainer_type": "TRAINER_TYPE_NONE",
             "hidden_flag": "FLAG_HIDE_VICTORY_ROAD_1F_COLLECTOR",
             "script": 2,
-            "initial_dir": 2,
+            "initial_dir": 1,
             "data": [],
             "movement_range_x": 0,
             "movement_range_z": 0,
-            "x": 45,
-            "z": 33,
+            "x": 38,
+            "z": 18,
             "y": 0
         },
         {
@@ -329,5 +329,16 @@
             "dest_warp_id": 3
         }
     ],
-    "coord_events": []
+    "coord_events": [
+        {
+            "script": 4,
+            "x": 37,
+            "z": 18,
+            "y": 0,
+            "width": 3,
+            "length": 1,
+            "var": "VAR_MAP_LOCAL_0x01",
+            "value": 0
+        }
+    ]
 }
