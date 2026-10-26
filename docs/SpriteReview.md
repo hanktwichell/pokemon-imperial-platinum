@@ -68,6 +68,24 @@ recolour. The game can only recolour the front, so these shinies can only be app
 Floette's PokeAPI front is also an odd drawing, with a flat flower at another angle (see the image above). It may be
 worth replacing too.
 
+## Forms (PR #159's fronts)
+
+`sprite_check.py --forms` battled each of the 368 forms with a front of its own (736 battles, none hung).
+- **Fronts:** they all look right and sit right. The one exception was Hisuian Samurott's front, which was scrambled
+  like Samurott's; it is fixed now (#162).
+- **Backs:** a form's back is still its species' back. That's known: there's no back art for forms yet. It shows
+  most where a form looks different from behind, such as the Galarian birds, Galarian Rapidash, the Vivillon
+  patterns and the regional forms.
+- **Fronts not seen here:** some forms change back when the battle starts, as in the games, so their own fronts
+  didn't show in this check:
+  - Minior's cores show the Meteor shell (Shields Down).
+  - Hangry Morpeko shows Full Belly.
+  - Gulping and Gorging Cramorant show plain Cramorant.
+  - Blade Aegislash shows its Shield Forme.
+  - Busted Mimikyu shows its disguise.
+
+`battle_form_changes.py` covers those changes in battle.
+
 ## Likely wrong, worth a look
 
 | # | Pokémon | Sprite | What I see |
