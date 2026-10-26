@@ -7180,3 +7180,38 @@ and Red Card.
    Rush, Salt Cure, Mortal Spin, Matcha Gotcha, Syrup Bomb, Triple Dive, Population Bomb, Rage Fist.
 3. The switching items (Eject Button, Eject Pack, Red Card) with Shed Tail and Chilly Reception, plus a switching case
    in the harness.
+
+## CB-0159 — 2026-10-26, 6:22 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Merged:** PR #175, moves batch 1.
+
+**Implemented: item 11 moves, batch 2 (status moves).** Placeholders went from 68 to 58.
+- **Through `gen_stat_moves.py`:** Spicy Extract, Fillet Away and Take Heart, plus Clangorous Soul's HP cost (now
+  exact). The generator has two new options, `hp_cost_N` and `cure`.
+- **Hand-written subscripts:** Topsy-Turvy, Reflect Type, Magic Powder, Purify, Strength Sap, and Lunar Blessing /
+  Jungle Healing (one shared effect).
+- Every move above was checked in a harness battle.
+
+**Files modified:**
+- `tools/engine/gen_stat_moves.py`, `tools/engine/gen9_move_fixes.py`, `tools/engine/gen_moves.py`.
+- `decomp/src/battle/battle_lib.c`, `decomp/src/battle/battle_script.c`.
+- `decomp/include/battle/battle_context.h`, `decomp/include/battle/battle_lib.h`,
+  `decomp/include/data/move_side_effect_subscripts.h`.
+- The generated lists: `battle_script_vars.txt`, `battle_subscripts.txt`, `battle_move_subscript_ptrs.txt`,
+  `move_battle_effects.txt`.
+- New scripts:
+  - Effect scripts `effect_script_0333`–`0341.s`.
+  - Subscripts `subscript_sovereign_{topsy_turvy,reflect_type,magic_powder,purify,strength_sap,lunar_blessing}.s` and
+    `subscript_sovereign_stats_{spicy_extract,fillet_away,take_heart}.s`.
+- Changed: `subscript_sovereign_stats_clangorous_soul.s`, the scripts' `meson.build` and `sub_seq.order`, and
+  `decomp/res/text/battle_strings.json`.
+- `decomp/res/moves/*/data.json` for the 11 moves.
+- `docs/MoveChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Moves batch 3, damage plus a side effect:
+   - Dire Claw, Triple Arrows, Ceaseless Edge, Stone Axe, Axe Kick, Mortal Spin, Matcha Gotcha.
+   - Glaive Rush, Salt Cure, Syrup Bomb, Triple Dive, Population Bomb, Rage Fist.
+2. The switching items (Eject Button, Eject Pack, Red Card) with Shed Tail and Chilly Reception, plus a switching case
+   in the harness.
+3. Owner decision pinned in CB-0158: Burn Up and Double Shock (typeless).

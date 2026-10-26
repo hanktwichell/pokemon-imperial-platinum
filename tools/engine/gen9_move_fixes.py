@@ -182,7 +182,7 @@ MOVES = {
     "retaliate": (None, None, "power doubles if a Pokémon on the user's side fainted last turn"),
     # Stat moves from tools/engine/gen_stat_moves.py whose extra rule isn't reproduced yet.
     "no_retreat": (None, None, "all stats +1 (the user isn't trapped yet)", "approximate"),
-    "clangorous_soul": (None, None, "all stats +1 (doesn't cost 1/3 of the user's HP yet)", "approximate"),
+    "clangorous_soul": (None, None, "all stats +1; costs 1/3 of the user's max HP"),
     "shelter": ("DEF_UP_2", 0, "user Defense +2"),
     "heal_pulse": ("SOVEREIGN_HEAL_TARGET", 0, "heals the target by 1/2 (3/4 with Mega Launcher)"),
     "floral_healing": ("SOVEREIGN_HEAL_TARGET", 0, "heals the target by 1/2 (2/3 in Grassy Terrain)"),
@@ -239,6 +239,14 @@ MOVES = {
     "power_shift": ("SWAP_ATK_DEF", 0, "swaps the user's Attack and Defense"),
     "chloroblast": ("SOVEREIGN_HALF_HP_COST_HIT", 0, "the user loses half its max HP (only when it hits, so far)", "approximate"),
     "mind_blown": ("SOVEREIGN_HALF_HP_COST_HIT", 0, "the user loses half its max HP (only when it hits, so far; a single target)", "approximate"),
+    # Moves batch 2 (hand-written subscripts subscript_sovereign_<move>.s).
+    "topsy_turvy": ("SOVEREIGN_TOPSY_TURVY", 0, "inverts the target's stat stages (fails if they're all neutral)"),
+    "reflect_type": ("SOVEREIGN_REFLECT_TYPE", 0, "the user takes the target's types (not Arceus or Silvally)"),
+    "magic_powder": ("SOVEREIGN_MAGIC_POWDER", 0, "the target becomes pure Psychic-type (a powder move)"),
+    "purify": ("SOVEREIGN_PURIFY", 0, "heals the target's status condition, then the user regains 1/2 of its max HP"),
+    "strength_sap": ("SOVEREIGN_STRENGTH_SAP", 0, "target Attack -1; the user regains HP equal to the target's Attack (with its stage)"),
+    "lunar_blessing": ("SOVEREIGN_LUNAR_BLESSING", 0, "the user and its ally regain 1/4 of their max HP and are cured of status conditions"),
+    "jungle_healing": ("SOVEREIGN_LUNAR_BLESSING", 0, "the user and its ally regain 1/4 of their max HP and are cured of status conditions"),
 }
 
 

@@ -9875,6 +9875,24 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
             && Sovereign_IsGrounded(battleCtx, battleCtx->switchedMon)
             && Battler_HeldItem(battleCtx, battleCtx->switchedMon) != ITEM_HEAVY_DUTY_BOOTS;
         return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_TOPSY_TURVY_DEFENDER: // Sovereign (item 11): read-only, inverts the defender's stat stages;
+        // 0 when they're all neutral (Topsy-Turvy fails)
+        battleCtx->sovereignTerrainTemp = FALSE;
+
+        for (int stat = BATTLE_STAT_ATTACK; stat < BATTLE_STAT_MAX; stat++) {
+            s8 *stage = &battleCtx->battleMons[battleCtx->defender].statBoosts[stat];
+
+            if (*stage != DEFAULT_STAT_STAGE) {
+                *stage = MAX_STAT_STAGE - *stage;
+                battleCtx->sovereignTerrainTemp = TRUE;
+            }
+        }
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_STRENGTH_SAP: // Sovereign (item 11): read-only, the defender's Attack with its stage
+        battleCtx->sovereignTerrainTemp = Sovereign_StagedAttack(battleCtx, battleCtx->defender);
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_STRENGTH_SAP_SAVED: // Sovereign (item 11): Strength Sap's healing, kept across the Attack drop
+        return &battleCtx->sovereignStrengthSapHeal;
     case BTLVAR_SOVEREIGN_MIRROR_HERB_NEXT: // Sovereign (item 11): read-only, sets up the Mirror Herb holder's next copied
         // rise (2 stages at most at a time) as the side effect; 0 once all are copied
         battleCtx->sovereignTerrainTemp = FALSE;

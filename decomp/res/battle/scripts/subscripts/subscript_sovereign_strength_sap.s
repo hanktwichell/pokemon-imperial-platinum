@@ -1,0 +1,35 @@
+#include "macros/btlcmd.inc"
+
+// Sovereign (item 11): Strength Sap lowers the target's Attack 1 stage, and the user regains HP equal to the target's
+// Attack (with its stage) from before the drop. Fails when the target's Attack is already at -6.
+
+_000:
+    CompareVarToValue OPCODE_FLAG_SET, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_MISSED|MOVE_STATUS_SEMI_INVULNERABLE, _fail
+    CheckSubstitute BTLSCR_DEFENDER, _fail
+    CompareMonDataToValue OPCODE_EQU, BTLSCR_DEFENDER, BATTLEMON_ATTACK_STAGE, 0, _fail
+    UpdateVarFromVar OPCODE_SET, BTLVAR_SOVEREIGN_STRENGTH_SAP_SAVED, BTLVAR_SOVEREIGN_STRENGTH_SAP
+    Call BATTLE_SUBSCRIPT_ATTACK_MESSAGE_AND_ANIMATION
+    UpdateVar OPCODE_FLAG_ON, BTLVAR_BATTLE_CTX_STATUS, SYSCTL_SKIP_ATTACK_MESSAGE|SYSCTL_PLAYED_MOVE_ANIMATION
+    UpdateVarFromVar OPCODE_SET, BTLVAR_SIDE_EFFECT_MON, BTLVAR_DEFENDER
+    UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_PARAM, MOVE_SUBSCRIPT_PTR_ATTACK_DOWN_1_STAGE
+    Call BATTLE_SUBSCRIPT_UPDATE_STAT_STAGE
+    UpdateVarFromVar OPCODE_SET, BTLVAR_HP_CALC_TEMP, BTLVAR_SOVEREIGN_STRENGTH_SAP_SAVED
+    // the user regains the HP in BTLVAR_HP_CALC_TEMP, unless it's full
+    UpdateVarFromVar OPCODE_SET, BTLVAR_MSG_BATTLER_TEMP, BTLVAR_ATTACKER
+    UpdateMonDataFromVar OPCODE_GET, BTLSCR_ATTACKER, BATTLEMON_MAX_HP, BTLVAR_CALC_TEMP
+    CompareMonDataToVar OPCODE_EQU, BTLSCR_ATTACKER, BATTLEMON_CUR_HP, BTLVAR_CALC_TEMP, _end
+    UpdateVar OPCODE_FLAG_ON, BTLVAR_BATTLE_CTX_STATUS, SYSCTL_SKIP_SPRITE_BLINK
+    PlayBattleAnimation BTLSCR_ATTACKER, BATTLE_ANIMATION_RESTORE_HP
+    Wait 
+    Call BATTLE_SUBSCRIPT_UPDATE_HP
+    // {0} regained health!
+    PrintMessage BattleStrings_Text_PokemonRegainedHealth_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
+    Wait 
+    WaitButtonABTime 30
+
+_end:
+    End 
+
+_fail:
+    UpdateVar OPCODE_FLAG_ON, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_FAILED
+    End 

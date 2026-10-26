@@ -13,7 +13,7 @@
     "accuracy": 0,
     "pp": 20,
     "effect": {
-        "type": "BATTLE_EFFECT_DO_NOTHING",
+        "type": "BATTLE_EFFECT_SOVEREIGN_TOPSY_TURVY",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",
