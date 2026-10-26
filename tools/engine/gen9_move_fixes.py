@@ -157,6 +157,7 @@ MOVES = {
     "oblivion_wing": (None, None, "drains 3/4 of the damage dealt"),
     "round": (None, None, "the next Pokémon (either side) that chose Round moves right after the user, with double"
               " power"),
+    "shed_tail": ("SOVEREIGN_SHED_TAIL", 0, "the user pays half its max HP (rounded up) for a substitute and switches out; the Pokémon that comes in gets the substitute and nothing else"),
     "beak_blast": (None, None, "-3 priority; from the start of the turn until it moves, the user burns Pokémon whose contact moves hit it"),
     "shell_trap": (None, None, "-3 priority; sets a trap at the start of the turn: a foe's physical hit springs it and the user moves right after; otherwise it fails"),
     "spectral_thief": ("SOVEREIGN_SPECTRAL_THIEF", 0, "before it hits, the user takes the target's stat rises (the damage uses them)"),

@@ -7901,3 +7901,28 @@ PR #197 (Powder) is merged.
    - Burn Up and Double Shock wait on the owner (CB-0158).
 2. Abilities still to do: Illusion, Symbiosis, Dancer, Receiver/Power of Alchemy, Neutralizing Gas, Commander, Ball Fetch.
 3. Check the heavy-rain fizzle with Primal Kyogre and a spread Fire move in doubles (fixed in CB-0180 by reading the code).
+
+## CB-0182 — 2026-10-26, 3:59 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: Shed Tail (12 placeholder moves left), plus the Receiver and Power of Alchemy abilities.**
+PR #198 (Spectral Thief, Beak Blast, Shell Trap) is merged.
+- **Shed Tail:** costs half the user's HP. It makes a substitute, and the user switches out as with Baton Pass. Only the substitute is passed on.
+- **Receiver / Power of Alchemy:** the holder takes over a fainted ally's ability (Showdown's noreceiver list applies, and an Ability Shield blocks it).
+- Both were verified in the harness (see the changelog).
+
+**Files modified:**
+- `decomp/src/battle/battle_lib.c`, `decomp/src/battle/battle_script.c` (2 vars).
+- `decomp/include/battle/battle_context.h`, `decomp/include/battle/battle_lib.h`.
+- `decomp/res/battle/scripts/subscripts/subscript_faint_mon.s`.
+- New subscript `subscript_sovereign_shed_tail` and effect `effect_script_0394.s`. The registration files.
+- `decomp/res/text/battle_strings.json` (6 messages), `decomp/res/moves/shed_tail/data.json`.
+- `tools/engine/gen9_move_fixes.py`, `tools/engine/gen_abilities.py`, `docs/MoveChecklist.md`, `docs/AbilityChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Placeholders still open:
+   - Instruct and Sky Drop.
+   - Trick-or-Treat and Forest's Curse: they need a third type.
+   - Burn Up and Double Shock wait on the owner (CB-0158).
+   - The rest are in `docs/MoveChecklist.md`.
+2. Abilities still to do: Illusion, Symbiosis, Dancer, Neutralizing Gas, Commander, Ball Fetch.
+3. Check the heavy-rain fizzle with Primal Kyogre and a spread Fire move in doubles (fixed in CB-0180 by reading the code).

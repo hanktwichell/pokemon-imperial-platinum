@@ -472,4 +472,5 @@ subscript_files = files(
     'subscript_sovereign_shell_trap_set.s',
     'subscript_sovereign_shell_trap_fail.s',
     'subscript_sovereign_beak_blast_burn.s',
+    'subscript_sovereign_shed_tail.s',
 )

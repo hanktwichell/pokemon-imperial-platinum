@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 367 |
+| exact | 368 |
 | approximate | 0 |
-| placeholder | 13 |
+| placeholder | 12 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -427,7 +427,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 877 | Ruination | Dark | `HALVE_HP` | exact | Sovereign effect: halves the target's HP |
 | 878 | CollisionCours | Fighting | `HIT` | exact | Sovereign effect: 1.33x when super effective |
 | 879 | Electro Drift | Electric | `HIT` | exact | Sovereign effect: 1.33x when super effective |
-| 880 | Shed Tail | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 880 | Shed Tail | Normal | `SOVEREIGN_SHED_TAIL` | exact | Sovereign effect: the user pays half its max HP (rounded up) for a substitute and switches out; the Pokémon that comes in gets the substitute and nothing else |
 | 881 | ChillyReceptn | Ice | `SOVEREIGN_CHILLY_RECEPTION` | exact | Sovereign effect: starts snow for 5 turns, then the user switches out (it still switches when it can't start snow) |
 | 882 | Tidy Up | Normal | `SOVEREIGN_TIDY_UP` | exact | Sovereign effect: clears the hazards on both sides and every Substitute; user Attack and Speed +1 |
 | 883 | Snowscape | Ice | `WEATHER_HAIL` | exact | set by `apply_champions_moves.py`: Hail now works as Snow (Gen IX), so Snowscape shares its effect and animation |
