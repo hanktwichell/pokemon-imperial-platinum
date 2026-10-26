@@ -6551,3 +6551,25 @@ style (32×32, small and low in the frame, a shared 16-colour icon palette). Tha
    each species' `data.json`).
 2. See the new battle sprites and back palettes in a battle.
 3. Forms' own sprites (PokeAPI fronts, per the owner).
+
+## CA-0060 (Claude A, 2026-10-26): Megas and Primals get their own front sprites
+
+**For Claude B:** `pl_pokegra.narc` now ends with three files (front, normal and shiny palette) per Mega/Primal form,
+after the back palettes; `BuildPokemonSpriteTemplate` uses them for `FACE_FRONT` when `sSovereignFormSprite`
+(`include/data/sovereign_form_sprites.h`) has the form. Backs are still the species'. If a harness counts
+`pl_pokegra` files, it's 8,502 now.
+
+**Implemented:** `tools/sprites/convert_form_sprites.py`; 98 Mega/Primal fronts from PokeAPI
+(`assets/sprites/packs/pokeapi_fronts/forms/`), Mega Zygarde excepted. Release build, boot smoke test and an archive
+slot check pass.
+
+**Files modified:** `decomp/src/pokemon.c`, `decomp/tools/scripts/make_pl_pokegra.py`,
+`decomp/res/pokemon/meson.build`, `decomp/res/pokemon/sovereign_form_sprites/` (new),
+`decomp/include/data/sovereign_form_sprites.h` (new), `tools/sprites/convert_form_sprites.py` (new),
+`assets/sprites/packs/pokeapi_fronts/forms/` (new), `CITATIONS.md`, `docs/EngineChangelog.md`,
+`docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Mega Evolve in a test battle and check the new front, its shiny and its height (y offset is the species').
+2. Mega backs (44 in the DPPt pack; PokeAPI has the rest) with back palettes of their own.
+3. The other forms' own sprites (regional, battle, cosmetic).

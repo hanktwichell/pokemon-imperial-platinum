@@ -214,6 +214,10 @@ PokeAPI collects the sprites; the art is © Nintendo / Game Freak / The Pokémon
 drawn by the sprite communities PokeAPI credits in its repository. Converted to DS format by
 `tools/sprites/convert_battle_sprites.py --fronts`.
 
+The same goes for 98 Mega and Primal forms' fronts and shiny fronts (`pokeapi_fronts/forms/`, PokeAPI's
+`sprites/pokemon/<form id>.png`; converted by `tools/sprites/convert_form_sprites.py`). Mega Zygarde has none on
+PokeAPI yet and keeps Zygarde's sprite.
+
 ### Placeholder box/party icons for #494–1025
 Location: `assets/sprites/icons_placeholder/` (converted by `tools/sprites/make_placeholder_icons.py`; per-file source URL in
 `data/icon_placeholders.csv`). Source: **PokeAPI sprites** — https://github.com/PokeAPI/sprites (Gen VII USUM icons for

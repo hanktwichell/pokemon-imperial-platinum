@@ -53,6 +53,7 @@
 #include "unk_02017038.h"
 #include "unk_02092494.h"
 
+#include "data/sovereign_form_sprites.h"
 #include "data/sovereign_forms.h"
 
 #include "res/pokemon/regional_pokedex_size.h"
@@ -2906,6 +2907,24 @@ void BoxPokemon_BuildSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, BoxPo
 // Sovereign: pl_pokegra holds six files for each species from SPECIES_NONE to the last one (the Egg and Bad Egg have
 // none), then two back palettes (normal, shiny) for each species in the same order.
 #define POKEGRA_BACK_PALETTE_BASE ((NATIONAL_DEX_COUNT + 1) * 6)
+// Then three files (front image, normal and shiny palette) for each Mega and Primal form with a front of its own.
+#define POKEGRA_FORM_SPRITE_BASE  (POKEGRA_BACK_PALETTE_BASE + (NATIONAL_DEX_COUNT + 1) * 2)
+
+// Sovereign: the number (plus 1) of a form's own front sprite in pl_pokegra, or 0 if it uses its species' sprite.
+static u8 SovereignForm_FrontSprite(u16 species, u8 form)
+{
+    if (form == 0) {
+        return 0;
+    }
+
+    for (int i = 0; i < SOVEREIGN_FORM_COUNT; i++) {
+        if (sSovereignForms[i].species == species && sSovereignForms[i].form == form) {
+            return sSovereignFormSprite[i];
+        }
+    }
+
+    return 0;
+}
 
 void BuildPokemonSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 species, u8 gender, u8 face, u8 shiny, u8 form, u32 personality)
 {
@@ -3008,6 +3027,13 @@ void BuildPokemonSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 speci
             spriteTemplate->palette = POKEGRA_BACK_PALETTE_BASE + species * 2 + shiny;
         } else {
             spriteTemplate->palette = species * 6 + 4 + shiny;
+        }
+
+        // Sovereign: a Mega or Primal form with a front of its own (its back is still the species').
+        u8 formSprite = SovereignForm_FrontSprite(species, form);
+        if (formSprite != 0 && face == FACE_FRONT) {
+            spriteTemplate->character = POKEGRA_FORM_SPRITE_BASE + (formSprite - 1) * 3;
+            spriteTemplate->palette = POKEGRA_FORM_SPRITE_BASE + (formSprite - 1) * 3 + 1 + shiny;
         }
 
         if (species == SPECIES_SPINDA && face == FACE_FRONT) {

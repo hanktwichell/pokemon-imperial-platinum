@@ -18,6 +18,22 @@ players and the verification that was run.
   through `tools/sprites/smogon_credits.py`, which `tools/regenerate_docs.sh` runs. `CITATIONS.md` names the 36
   spriters.
 
+## E12 — Megas and Primals get their own front sprites
+
+For players: the 98 Mega Evolutions and Primal Reversions show their own front and shiny front (PokeAPI's, owner
+2026-10-26) instead of the base species'. Their backs are still the species' (no back art yet); Mega Zygarde keeps
+Zygarde's sprite (PokeAPI has none).
+
+- `tools/sprites/convert_form_sprites.py` converts `assets/sprites/packs/pokeapi_fronts/forms/` into
+  `decomp/res/pokemon/sovereign_form_sprites/` (front, normal and shiny palette per form; `order.txt`, `meson.build`)
+  and writes `include/data/sovereign_form_sprites.h` (`sSovereignFormSprite`, by `sSovereignForms` entry).
+- `make_pl_pokegra.py` packs them after the back palettes (`zform-*`), and `BuildPokemonSpriteTemplate` uses them for
+  a front at `POKEGRA_FORM_SPRITE_BASE + sprite * 3` when the form has one.
+- Most Megas are bigger than 80×80 and were scaled (83–99%); 39 had more than 15 colours (the Legends: Z-A Megas
+  most). The form's y offset is still the species' (`sprite_data.json`), so a few may sit a little high or low.
+- Verification: release build and boot smoke test pass; the archive has 8,502 files and every form's front and
+  palettes sit in the slots the game reads. Not yet seen in a battle.
+
 ## E12 — front and back sprites get palettes of their own
 
 For players: the new species' sprites keep their colours. Platinum gave a Pokémon's front and back sprite one shared
