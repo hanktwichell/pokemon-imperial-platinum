@@ -846,6 +846,7 @@ void Pokemon_CalcAbility(Pokemon *mon);
 int Pokemon_SovereignBattleForm(u16 species, int monForm, u16 heldItem, const u16 *moves, BOOL primal);
 BOOL Pokemon_IsSovereignBattleForm(u16 species, int form);
 BOOL Pokemon_IsSovereignMegaForm(u16 species, int form);
+BOOL Pokemon_SovereignCanEvolve(u16 species, int form);
 int Pokemon_SovereignUltraBurstForm(u16 species, int form, u16 heldItem);
 int Pokemon_SovereignDisguiseBustedForm(u16 species, int form);
 int Pokemon_SovereignBattleFormBase(u16 species, int form);

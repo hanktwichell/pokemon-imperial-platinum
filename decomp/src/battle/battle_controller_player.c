@@ -4093,6 +4093,26 @@ static void BattleControllerPlayer_UpdateHP(BattleSystem *battleSys, BattleConte
     }
 }
 
+// Sovereign (item 11): TRUE when the attacker's contact move hit a Rocky Helmet holder (not its Substitute): the
+// attacker loses 1/6 of its max HP (hpCalcTemp), each hit, even as the holder faints. Magic Guard stops it.
+static BOOL Sovereign_RockyHelmetHurts(BattleContext *battleCtx)
+{
+    if (battleCtx->defender == BATTLER_NONE
+        || battleCtx->defender == battleCtx->attacker
+        || Battler_HeldItem(battleCtx, battleCtx->defender) != ITEM_ROCKY_HELMET
+        || Battler_SubstituteWasHit(battleCtx, battleCtx->defender)
+        || ATTACKING_MON.curHP == 0
+        || Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_MAGIC_GUARD
+        || (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS)
+        || (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken == 0 && DEFENDER_SELF_TURN_FLAGS.specialDamageTaken == 0)
+        || Sovereign_MakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur) == FALSE) {
+        return FALSE;
+    }
+
+    battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * -1, 6);
+    return TRUE;
+}
+
 enum AfterMoveMessageState {
     AFTER_MOVE_MESSAGE_START = 0,
 
@@ -4102,6 +4122,7 @@ enum AfterMoveMessageState {
     ONE_HIT_FORM_CHANGE,
     ONE_HIT_RAGE,
     ONE_HIT_TRIGGER_ABILITY,
+    ONE_HIT_SOVEREIGN_ROCKY_HELMET, // Sovereign (item 11)
     ONE_HIT_EXTRA_FLINCH,
 
     MULTI_HIT_CRITICAL = 0,
@@ -4109,6 +4130,7 @@ enum AfterMoveMessageState {
     MULTI_HIT_FORM_CHANGE,
     MULTI_HIT_RAGE,
     MULTI_HIT_TRIGGER_ABILITY,
+    MULTI_HIT_SOVEREIGN_ROCKY_HELMET, // Sovereign (item 11)
     MULTI_HIT_STATUS,
     MULTI_HIT_EXTRA_FLINCH,
 };
@@ -4171,6 +4193,16 @@ static void BattleControllerPlayer_AfterMoveMessage(BattleSystem *battleSys, Bat
                 return;
             }
 
+        case ONE_HIT_SOVEREIGN_ROCKY_HELMET:
+            battleCtx->afterMoveMessageState++;
+            if (Sovereign_RockyHelmetHurts(battleCtx)) {
+                LOAD_SUBSEQ(subscript_sovereign_rocky_helmet);
+                battleCtx->commandNext = battleCtx->command;
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+                return;
+            }
+
         case ONE_HIT_EXTRA_FLINCH:
             battleCtx->afterMoveMessageState++;
             if (BattleControllerPlayer_CheckExtraFlinch(battleSys, battleCtx) == TRUE) {
@@ -4225,6 +4257,16 @@ static void BattleControllerPlayer_AfterMoveMessage(BattleSystem *battleSys, Bat
             battleCtx->afterMoveMessageState++;
             if (BattleSystem_TriggerAbilityOnHit(battleSys, battleCtx, &abilitySeq) == TRUE) {
                 LOAD_SUBSEQ(abilitySeq);
+                battleCtx->commandNext = battleCtx->command;
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+                return;
+            }
+
+        case MULTI_HIT_SOVEREIGN_ROCKY_HELMET:
+            battleCtx->afterMoveMessageState++;
+            if (Sovereign_RockyHelmetHurts(battleCtx)) {
+                LOAD_SUBSEQ(subscript_sovereign_rocky_helmet);
                 battleCtx->commandNext = battleCtx->command;
                 battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
 

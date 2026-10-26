@@ -66,7 +66,7 @@ static int ChooseTraceTarget(BattleSystem *battleSys, BattleContext *battleCtx, 
 static BOOL MoveCannotTriggerAnticipation(BattleContext *battleCtx, int move);
 static int CalcMoveType(BattleSystem *battleSys, BattleContext *battleCtx, int item, int move);
 static BOOL Sovereign_ProtosynthesisHasSun(BattleSystem *battleSys, BattleContext *battleCtx);
-static BOOL Sovereign_MakesContact(BattleContext *battleCtx, int attacker, int move);
+BOOL Sovereign_MakesContact(BattleContext *battleCtx, int attacker, int move);
 
 static const Fraction sStatStageBoosts[];
 
@@ -1577,6 +1577,13 @@ static inline void SetupSideEffect(BattleContext *battleCtx, int *effect, int so
     battleCtx->sideEffectIndirectFlags = 0;
 }
 
+// Sovereign (item 11): TRUE when Covert Cloak keeps a move's chance effect off its holder (another Pokemon's move).
+static BOOL Sovereign_CovertCloakBlocks(BattleContext *battleCtx)
+{
+    return battleCtx->sideEffectMon != battleCtx->attacker
+        && Battler_HeldItem(battleCtx, battleCtx->sideEffectMon) == ITEM_COVERT_CLOAK;
+}
+
 BOOL BattleSystem_TriggerSecondaryEffect(BattleSystem *battleSys, BattleContext *battleCtx, int *effect)
 {
     BOOL result = FALSE;
@@ -1638,7 +1645,8 @@ BOOL BattleSystem_TriggerSecondaryEffect(BattleSystem *battleSys, BattleContext 
         }
 
         SetupSideEffect(battleCtx, effect, SIDE_EFFECT_TYPE_INDIRECT);
-        if (battleCtx->battleMons[battleCtx->sideEffectMon].curHP == 0) {
+        if (battleCtx->battleMons[battleCtx->sideEffectMon].curHP == 0
+            || Sovereign_CovertCloakBlocks(battleCtx)) { // Sovereign (item 11)
             battleCtx->battleStatusMask &= ~SYSCTL_APPLY_SECONDARY_EFFECT;
         }
 
@@ -1657,6 +1665,7 @@ BOOL BattleSystem_TriggerSecondaryEffect(BattleSystem *battleSys, BattleContext 
 
             if (battleCtx->battleMons[battleCtx->sideEffectMon].curHP
                 && Battler_SubstituteWasHit(battleCtx, battleCtx->sideEffectMon) == FALSE
+                && Sovereign_CovertCloakBlocks(battleCtx) == FALSE // Sovereign (item 11)
                 && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE) {
                 result = TRUE;
             }
@@ -2412,6 +2421,12 @@ int BattleSystem_CheckInvalidMoves(BattleSystem *battleSys, BattleContext *battl
             invalidMoves |= FlagIndex(i);
         }
 
+        if (Battler_HeldItem(battleCtx, battler) == ITEM_ASSAULT_VEST
+            && MOVE_DATA(battleCtx->battleMons[battler].moves[i]).class == CLASS_STATUS
+            && (opMask & CHECK_INVALID_ASSAULT_VEST)) {
+            invalidMoves |= FlagIndex(i);
+        }
+
         // Sovereign (Pokémon Champions): first-turn-only moves can't even be selected after the user's first turn.
         if (battleCtx->sovereignThroatChop[battler]
             && Move_IsSound(battleCtx->battleMons[battler].moves[i])
@@ -2493,6 +2508,12 @@ BOOL BattleSystem_CanUseMove(BattleSystem *battleSys, BattleContext *battleCtx, 
         msgOut->id = BattleStrings_Text_TheItemAllowsTheUseOfOnlyMove; // "The {0} allows the use of only {1}!"
         msgOut->params[0] = battleCtx->battleMons[battler].heldItem;
         msgOut->params[1] = battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove;
+        result = FALSE;
+    } else if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_ASSAULT_VEST) & FlagIndex(moveSlot)) {
+        // Sovereign (item 11)
+        msgOut->tags = TAG_ITEM;
+        msgOut->id = BattleStrings_Text_SovereignItemPreventsStatusMoves; // "The {0} prevents status moves from being used!"
+        msgOut->params[0] = ITEM_ASSAULT_VEST;
         result = FALSE;
     } else if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_THROAT_CHOP) & FlagIndex(moveSlot)) {
         msgOut->tags = TAG_NICKNAME_MOVE_MOVE;
@@ -8177,7 +8198,7 @@ static const u16 sPunchingMoves[] = {
 
 // Sovereign (item 11): whether a move counts as making contact for the target's contact abilities and items. Long
 // Reach and Protective Pads remove contact; Punching Glove removes it from punching moves.
-static BOOL Sovereign_MakesContact(BattleContext *battleCtx, int attacker, int move)
+BOOL Sovereign_MakesContact(BattleContext *battleCtx, int attacker, int move)
 {
     if ((MOVE_DATA(move).flags & MOVE_FLAG_MAKES_CONTACT) == FALSE
         || Battler_Ability(battleCtx, attacker) == ABILITY_LONG_REACH
@@ -8233,11 +8254,12 @@ BOOL Move_IsPowder(int move)
     return FALSE;
 }
 
-// Sovereign (item 11): TRUE when powder (powder moves, Effect Spore) can't affect the battler: a Grass type, or
-// Overcoat (which Mold Breaker gets past when attacker uses the powder move).
+// Sovereign (item 11): TRUE when powder (powder moves, Effect Spore) can't affect the battler: a Grass type, Safety
+// Goggles, or Overcoat (which Mold Breaker gets past when attacker uses the powder move).
 BOOL Battler_SovereignPowderImmune(BattleContext *battleCtx, int attacker, int battler)
 {
     return MON_HAS_TYPE(battler, TYPE_GRASS)
+        || Battler_HeldItem(battleCtx, battler) == ITEM_SAFETY_GOGGLES
         || Battler_IgnorableAbility(battleCtx, attacker, battler, ABILITY_OVERCOAT) == TRUE;
 }
 
@@ -8826,6 +8848,16 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
     if (defenderParams.heldItemEffect == HOLD_EFFECT_DITTO_DEF_UP
         && defenderParams.species == SPECIES_DITTO) {
         defenseStat *= 2;
+    }
+    // Sovereign (item 11): Eviolite raises Defense and Sp. Def by half for a Pokemon that can still evolve, Assault Vest
+    // Sp. Def by half.
+    if (Battler_HeldItem(battleCtx, defender) == ITEM_EVIOLITE
+        && Pokemon_SovereignCanEvolve(defenderParams.species, BattleMon_Get(battleCtx, defender, BATTLEMON_FORM_NUM, NULL))) {
+        defenseStat = defenseStat * 150 / 100;
+        spDefenseStat = spDefenseStat * 150 / 100;
+    }
+    if (Battler_HeldItem(battleCtx, defender) == ITEM_ASSAULT_VEST) {
+        spDefenseStat = spDefenseStat * 150 / 100;
     }
     if (attackerParams.heldItemEffect == HOLD_EFFECT_CUBONE_ATK_UP
         && (attackerParams.species == SPECIES_CUBONE || attackerParams.species == SPECIES_MAROWAK)) {
