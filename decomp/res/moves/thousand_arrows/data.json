@@ -13,7 +13,7 @@
     "accuracy": 100,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_HIT",
+        "type": "BATTLE_EFFECT_SOVEREIGN_SMACK_DOWN",
         "chance": 0
     },
     "range": "RANGE_ADJACENT_OPPONENTS",

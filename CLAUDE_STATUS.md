@@ -7336,3 +7336,45 @@ and approximate moves from 37 to 35.
    - Court Change, Flower Shield, Sparkling Aria.
    - Jaw Lock, Octolock, Thousand Arrows / Thousand Waves.
 3. Owner decision pinned in CB-0158: Burn Up and Double Shock (typeless).
+
+## CB-0163 — 2026-10-26, 8:20 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: item 11 moves, batch 5.** PR #179 (batch 4) is merged. Placeholders went from 38 to 31.
+- **Jaw Lock:** after the hit, the user and the target trap each other.
+- **Thousand Waves:** after the hit, the target can't escape. It reuses Spirit Shackle's subscript, which now stops at
+  a Substitute.
+- **Thousand Arrows:**
+  - Hits Flying types and levitating Pokémon.
+  - It's neutral on Flying types.
+  - It grounds the target.
+- **Sparkling Aria:** heals the target's burn.
+- **Court Change:** swaps the two sides' screens, Tailwind, Mist, Safeguard, Lucky Chant and hazards.
+- **Flower Shield:** Defense +1 for every Grass type on the field.
+- **Tidy Up:** clears hazards and Substitutes, then the user's Attack +1 and Speed +1.
+- Each move was checked in a harness battle. `check_type_chart.py` and the docs regeneration pass.
+
+**Files modified:**
+- `tools/engine/gen9_move_fixes.py`.
+- `decomp/src/battle/battle_lib.c` (Thousand Arrows in the type chart, `Sovereign_CourtChange`,
+  `Sovereign_TidyUpHazards`) and `decomp/src/battle/battle_script.c` (two vars).
+- `decomp/include/battle/battle_lib.h`, `decomp/include/data/move_side_effect_subscripts.h`.
+- The generated lists: `battle_script_vars.txt`, `battle_subscripts.txt`, `battle_move_subscript_ptrs.txt`,
+  `move_battle_effects.txt`.
+- New scripts:
+  - Effect scripts `effect_script_0359`–`0364.s`.
+  - Subscripts `subscript_sovereign_{jaw_lock,sparkling_aria,court_change,flower_shield,tidy_up}.s`.
+- Changed:
+  - `subscript_sovereign_trap_target.s` (the Substitute check).
+  - The scripts' `meson.build` and `sub_seq.order`.
+  - `decomp/res/text/battle_strings.json`.
+- `decomp/res/moves/*/data.json` for the 7 moves.
+- `docs/MoveChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. The switching items (Eject Button, Eject Pack, Red Card) with Shed Tail and Chilly Reception, plus a switching case
+   in the harness.
+2. More placeholders (31 left), e.g.:
+   - Spectral Thief (steals boosts before the damage), Octolock.
+   - Powder, Electrify, Ion Deluge, Plasma Fists.
+   - Pollen Puff, Core Enforcer, Instruct, Beak Blast, Shell Trap.
+3. Owner decision pinned in CB-0158: Burn Up and Double Shock (typeless).
