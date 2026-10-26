@@ -282,6 +282,3 @@ Open:
   - Source to check for E12 (owner, 2026-10-23): **thesonicgameryt** on DeviantArt,
     https://www.deviantart.com/thesonicgameryt. It has good custom sprites for a lot of the new Megas, including the
     Mega Garchomp Z the owner supplied. Credit every sprite used in `CITATIONS.md`.
-- hg-engine and Smogon credit lists: Claude compiles them (owner, 2026-10-22). hg-engine's is in `CITATIONS.md`
-  (2026-10-25); it credits its sprite artists as a group. So is the Smogon Sprite Project's lead credit. Smogon's
-  per-sprite lists are in its forum threads, which need a browser; they're still to copy.

@@ -94,8 +94,14 @@ Compiled and supplied by the project owner from two sources (per the pack's READ
   #650 on): the Smogon Sprite Project contributors — https://www.smogon.com/forums/forums/smeargles-laptop.325/.
   Pokémon Showdown's credits (https://pokemonshowdown.com/credits, read 2026-10-25) name the leads: the **X/Y and
   Sun/Moon Sprite Projects**, led by **Ian Clail (Layell)**, and the **Sun/Moon and Sword/Shield Sprite Projects**, led
-  by **leparagon**. The per-sprite artist lists are in the projects' Smogon forum threads, which need a browser to
-  read; they're still to be copied here. Which files came from which set is by size, 80×80 or 96×96.
+  by **leparagon**. The per-sprite credits are in `docs/SmogonSpriteCredits.md`, from each project's sheet of
+  finished sprites (X/Y, Sun/Moon, Gen 8 and Gen 9; snapshots in `assets/sprites/credits/smogon/`, read 2026-10-26).
+  The spriters of our 197 species are: arinoelle, Arkeis, aXl, Blaquaza, Branflakes325, Bynine, Corson, Cynda,
+  Espeon Scientist, fishbowlsoul90, G.E.Z., Galifia, GeoisEvil, HealnDeal, KingOfThe-X-Roads, Layell, Legitimate
+  Username, leParagon, Mega-Pokebattlerz, MyMarshlands, N-Kin, paintseagull, princessofmusic, Quanyails,
+  RadicalCharizard, RedRooster, Siiilver, Sleet, Spook, The Cynical Poet, TheAetherPlayer, Wobblebuns, Wyverii,
+  Z-nogyroP, Zermonious and Zerudez, with the QC (quality checkers) listed per species. Which files came from which
+  set is by size, 80×80 or 96×96.
 
 The owner's README notes a part 2 (257 shiny sprites from the Smogon links) that hasn't been added yet.
 
