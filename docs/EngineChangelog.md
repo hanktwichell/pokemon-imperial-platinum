@@ -4,6 +4,27 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): Soul-Heart
+
+For players: Magearna's Soul-Heart now works.
+
+- **Soul-Heart:** each time another Pokémon faints, the holder's Sp. Atk rises 1 stage: "{0}'s Soul-Heart raised its
+  Sp. Atk!". This happens for every faint, whatever caused it, and also after the last foe faints.
+  - The check is at the end of `subscript_faint_mon`, which every faint goes through: knockouts, Explosion, Destiny
+    Bond, weather, entry hazards, Healing Wish.
+  - Reading `BTLVAR_SOVEREIGN_SOUL_HEART_MON` makes the next holder the side-effect target, in speed order. A holder
+    counts when it is on the field, isn't the Pokémon that fainted, has HP left and has Sp. Atk below +6.
+  - The first read saves the side-effect battler, type and param; the last read gives them back. The script that
+    called the faint subscript gets them unchanged.
+- `docs/AbilityChecklist.md`: 170 of the 191 new abilities have a battle effect, counting partial ones (169 before).
+
+**Verification:** `tools/test/check_battle_scripts.py` passes. Harness wild battles, with Magearna (Lv. 50) as the
+lead:
+- Its Flash Cannon knocks out a Lv. 5 Ninjask: "The wild NINJASK fainted!", then the stat-rise animation and
+  "MAGEARNA's Soul-Heart raised its Sp. Atk!".
+- A Lv. 100 Ninjask uses Explosion: the same message after it faints.
+- Garchomp knocking out the same Ninjask: no message.
+
 ## Item 11 (effect fidelity): Harvest, Quick Draw, Magician and Pickpocket
 
 For players: Harvest, Quick Draw, Magician and Pickpocket now work.

@@ -6792,7 +6792,7 @@ open questions. The shiny line-up patch is ready for when #161 is merged.
 3. Soul-Heart; Ripen and Cheek Pouch for damage-halving Berries and Bug Bite/Pluck.
 
 
-## CB-0150 — 2026-10-26, 4:30 am US Central (session on `claude/sweet-wright-rk4wl1`)
+## CB-0150 — 2026-10-26, 3:44 am US Central (session on `claude/sweet-wright-rk4wl1`)
 
 **Implemented: Harvest, Quick Draw, Magician and Pickpocket (item 11).** PR #166 (CB-0149, Cheek Pouch and Ripen) is
 merged.
@@ -6909,3 +6909,30 @@ my colour-pair palettes and corner clearing.
 1. Decision 49: Scatterbug/Spewpa to one form each.
 2. Decision 50: player-obtainable base forms only; drop the deliveryman's costume/cap Pikachu.
 3. Mega Zygarde's front; form backs and y offsets.
+
+## CB-0151 — 2026-10-26, 4:00 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: Soul-Heart (item 11).**
+- Each time another Pokémon faints, every Soul-Heart holder on the field gets Sp. Atk +1, in speed order: "{0}'s
+  Soul-Heart raised its Sp. Atk!".
+- The check is a loop at the end of `subscript_faint_mon`, so it runs for every faint.
+- The loop reads `BTLVAR_SOVEREIGN_SOUL_HEART_MON`, which saves and restores the side-effect battler, type and param.
+- Harness checks: Magearna's knockout and a foe's Explosion both show the message; a Garchomp control doesn't.
+- Also: merged main (Claude A's #161) into PR #167. Both conflicts were entries added at the same place in
+  `CLAUDE_STATUS.md` and the changelog, and both sides were kept.
+- CB-0150's time was wrong (it read 4:30 am); it is now 3:44 am.
+
+**Harness note:** `ninja -C build_test` with no target now also builds NitroSDK for the build machine, with gcc, and
+fails. Build `ninja -C build_test pokeplatinum.us.nds` instead. After a rebuild, make a new bedroom state with
+`tools/test/new_game.sh`.
+
+**Files modified:** `decomp/src/battle/battle_script.c`, `decomp/include/battle/battle_context.h`,
+`decomp/generated/battle_script_vars.txt`, `decomp/res/battle/scripts/subscripts/subscript_faint_mon.s`,
+`tools/engine/gen_abilities.py`, `docs/AbilityChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. The shiny line-up PR (Claude A's #161 is merged now): measure the 13 sprite folders and run the sprite check on
+   them.
+2. Item 11's double-battle abilities (the Veils' ally half, Hospitality, Costar, Curious Medicine), with a doubles case
+   in the test harness.
+3. The rest of item 11's list, by how common the ability is on boss teams.
