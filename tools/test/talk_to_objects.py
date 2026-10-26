@@ -236,7 +236,7 @@ def arrive(d, sym, state, variables, events, header, way_in, x, z, face, setup=N
     it plays out where it expects the player (it may walk them about), then to the tile (x, z) facing face. setup, if
     given, runs once the state is loaded (to set test hooks the first warp applies). Returns ('ok', frames) or
     ('NOWARP ' + play_out's result, frames)."""
-    d.emu.savestate.load_file(state)
+    d.load_state(state)
     d.run(30)
     d.emu.memory.write_byte(sym['gSovereignTestGodMode'], 1)
     if setup:

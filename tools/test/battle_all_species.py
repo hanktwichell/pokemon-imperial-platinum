@@ -135,7 +135,7 @@ def check(raw, name, form, personality_forms):
 
 
 def battle(d, sym, state, index, name, form, out, personality_forms, shots=False):
-    d.emu.savestate.load_file(state)
+    d.load_state(state)
     d.run(30)
     d.emu.memory.write_short(sym['gSovereignTestWild'], consts('species.txt').index(name))
     d.emu.memory.write_byte(sym['gSovereignTestWild'] + 2, form)

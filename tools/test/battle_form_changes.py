@@ -316,7 +316,7 @@ def main():
     bad = 0
     with open(os.path.join(out, 'results.txt'), 'w') as f:
         for index, c in chosen:
-            d.emu.savestate.load_file(state)
+            d.load_state(state)
             d.run(30)
             lead, wild = sym['gSovereignTestLead'], sym['gSovereignTestWild']
             mem.write_short(lead + LEAD['species'], species_ids.index(c['species']))

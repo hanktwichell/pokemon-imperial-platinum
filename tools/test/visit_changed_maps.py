@@ -104,7 +104,7 @@ def main():
     for i, (header, name, x, z) in enumerate(changed_maps()):
         if only and i not in only:
             continue
-        d.emu.savestate.load_file(state)
+        d.load_state(state)
         d.run(30)
         d.emu.memory.write_short(target_addr, header)
         d.emu.memory.write_short(target_addr + 2, x)

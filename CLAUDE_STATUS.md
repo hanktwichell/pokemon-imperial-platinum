@@ -6360,3 +6360,47 @@ is merged.
    flag, then the test checks the Egg's species is on the list.
 3. Run the heap check in the other battle harnesses (`battle_all_trainers.py`, `battle_form_changes.py`) to look for
    more heap breaks.
+
+## CB-0141 — 2026-10-25, 7:42 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: the Trainers' School Egg in the gift test, heap checks in every playtest harness, and the fix for
+harness workers dying after 250 cases.** PR #152 (Elite Four runs and the lone-Pokémon heap fix) is merged.
+- **The Trainers' School Egg:** `tools/test/gift_pokemon.py` now covers 59 runs. The Cowgirl's Egg must be one of the
+  18 babies her script picks from, at Lv. 1, with its species' moves. The party hook notes `isEgg`, so no other gift
+  may be an Egg. **All 59 pass** (this run's Egg: Wynaut).
+- **Heap checks everywhere:** a broken heap only shows later, so the harnesses check the heaps (`heap_check.py`) at
+  each point where the field is free again, and report **HEAP**:
+  - `battle_all_trainers.fight()`, shared by the trainer, species, form-change, evolution and Egg tests;
+  - `talk_to_objects.play_out` and `gift_pokemon.talk_and_answer`, shared by the object, sign and trigger, gift and
+    Elite Four tests;
+  - `visit_changed_maps.py`, on each map.
+- **Fix: the workers that died after 250 cases.** Each `savestate.load_file` reopens desmume's SDL sound, which takes
+  one more hold on SDL's audio subsystem and on its events subsystem (`SDL_InitSubSystem(SDL_INIT_AUDIO)` with no
+  quit; found with an `LD_PRELOAD` shim). At 255 holds SDL 2.0.22 asserts and the process exits (code 42).
+  `Driver.load_state` in `tools/test/drive.py` calls `SDL_QuitSubSystem(SDL_INIT_AUDIO | SDL_INIT_EVENTS)` after
+  each load, and all eight harnesses that load per case use it. A process now loads 400 states with no abort.
+- **Results with the checks, all with no HEAP:** gifts 59/59, species 1,510/1,510, form changes 211/211, signs 84/84,
+  objects 252/252 (142 ran, 110 nothing), maps 182 (174 idle, 8 scenes as before).
+- **Found in the object test (harness, not game):** it counts any script as the object's.
+  - Route 212's night policemen (trainer scripts 3088 and 3089) "ran" for Stake 1 and Grunt 3, which are hidden on a
+    new game.
+  - An A press during the warp can talk to the object early. At Snowpoint that fights the temple guards, so Aran is
+    removed before the test's own A press.
+  - The test clock is the host's.
+- The shipping ROM is unchanged (sha1 `cffefd95…`): only test hooks and tools changed.
+
+**Files modified:**
+- Test hooks: `decomp/include/sovereign_test.h`, `decomp/src/field_system.c`
+- Tools: `tools/test/drive.py`, `tools/test/gift_pokemon.py`, `tools/test/battle_all_trainers.py`,
+  `tools/test/battle_all_species.py`, `tools/test/talk_to_objects.py`, `tools/test/visit_changed_maps.py`,
+  `tools/test/battle_eggs.py`, `tools/test/battle_evolutions.py`, `tools/test/battle_form_changes.py`,
+  `tools/test/elite_four_runs.py`
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Make the object test exact. During a warp, press keys only once a script has started (`gSovereignTestScripts`).
+   After the talk, report OTHER when the first script isn't the object's own, as `signs_and_triggers.py` does. Pin
+   the clock (`gSovereignTestClock`) so the time of day can't change results.
+2. Run `battle_all_trainers.py` (1,039 trainers), `battle_evolutions.py` and `battle_eggs.py` with the heap check.
+   With the SDL fix the workers no longer stop at 250.
+3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.

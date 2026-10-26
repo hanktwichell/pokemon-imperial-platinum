@@ -138,7 +138,7 @@ def heap_info():
 
 def battle(d, sym, state, index, name, out, shots=False):
     trainer = json.load(open(os.path.join(DECOMP, 'res', 'trainers', 'data', name[len('TRAINER_'):].lower() + '.json')))
-    d.emu.savestate.load_file(state)
+    d.load_state(state)
     d.run(30)
     d.emu.memory.write_short(sym['gSovereignTestBattleTrainer'], index)
     d.emu.memory.write_byte(sym['gSovereignTestGodMode'], 1)
