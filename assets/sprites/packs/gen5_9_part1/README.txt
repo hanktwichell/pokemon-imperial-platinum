@@ -1,3 +1,12 @@
+=== RELABELING NOTE (added by shinify.py relabel) ===
+In the original download, every folder WITHOUT a shiny_back.png had a back.png that was really the shiny back.
+In those 364 folders: the old back.png is now shiny_back.png (byte-identical), back.png is a newly generated normal back,
+and shiny_front.png is either the real sprite (28 folders) or newly generated from front.png (336 folders).
+The 168 folders that already had all four files were left untouched.
+Generated sprites are estimates; see relabel_manifest.csv (confidence column) for which ones to review.
+The "Missing sprites" list below is out of date for the generated files.
+======================================================
+
 Gen 5-9 Sprites (#0494 Victini to #1025 Pecharunt), 532 folders
 Each folder: front.png, back.png, shiny_front.png, shiny_back.png where a sprite exists.
 
