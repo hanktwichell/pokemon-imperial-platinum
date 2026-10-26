@@ -6744,3 +6744,30 @@ open questions. The shiny line-up patch is ready for when #161 is merged.
 1. After Claude A's #161 merges: the shiny line-up PR (13 sprite folders), with the sprite check run on them.
 2. More item 11 abilities, by how common they are on boss teams (`docs/AbilityChecklist.md` lists the 36 left).
 3. Playtest the Renegade ports in story order, Route 218's gate and the Victory Road collector first.
+
+
+## CB-0148 — 2026-10-26, 3:00 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: seven more item 11 abilities.** PR #164 (CB-0147's work) is merged.
+- **As One:** Unnerve's Berry block (it was already in `Battler_UnnerveBlocksBerry`), plus Chilling Neigh's or Grim
+  Neigh's knockout boost.
+- **Toxic Chain:** 30% to badly poison on a damaging hit, as an added effect (Shield Dust stops it).
+- **Poison Puppeteer:** a Pokémon its move poisons becomes confused too.
+- **Supersweet Syrup:** foes' evasiveness −1, once per battle on entry (Intimidate's loop).
+- **Comatose:** no status at all (`Battler_SovereignStatusImmune`). Moves that need a sleeping target don't see it as
+  asleep yet.
+- **Pastel Veil, Sweet Veil:** the holder only; the allies' half isn't done.
+- **Tested:** a wild battle per case (12 cases, `$S/test_item11b.py`), message boxes checked.
+
+**Files modified:**
+- `decomp/src/battle/{battle_lib.c,battle_script.c,battle_controller_player.c,trainer_ai/script.s}`
+- `decomp/res/battle/scripts/subscripts/`: `meson.build`, `sub_seq.order`, `subscript_{poison,badly_poison,fall_asleep,yawn,rest}.s`,
+  new `subscript_sovereign_{supersweet_syrup,poison_puppeteer}.s`
+- `decomp/generated/battle_subscripts.txt`, `tools/engine/gen_abilities.py`, `docs/AbilityChecklist.md`,
+  `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. After Claude A's #161 merges: the shiny line-up PR (13 sprite folders), with the sprite check run on them.
+2. Item 11's double-battle abilities (the Veils' ally half, Hospitality, Costar, Curious Medicine), with a doubles case
+   in the test harness.
+3. Comatose as "asleep" for Dream Eater, Hex, Sleep Talk and Snore; then Soul-Heart and Cheek Pouch.

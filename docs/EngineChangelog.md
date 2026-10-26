@@ -4,6 +4,41 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): seven more abilities
+
+For players: As One, Toxic Chain, Poison Puppeteer, Supersweet Syrup and Comatose now work. Pastel Veil and Sweet Veil
+protect their holder.
+
+- **As One** (Ice and Shadow Calyrex): as Unnerve, foes can't eat their Berries (Unnerve's own limits apply). Each foe
+  its move knocks out raises its Attack (Ice) or Sp. Atk (Shadow) 1 stage, as Chilling Neigh and Grim Neigh do.
+- **Toxic Chain:** its damaging moves have a 30% chance to badly poison the target. It counts as a move's added effect
+  (`subscript_badly_poison` with `SIDE_EFFECT_TYPE_INDIRECT`), so Shield Dust and a Substitute stop it, as in Gen IX.
+- **Poison Puppeteer** (Pecharunt): a Pokémon its move poisons or badly poisons becomes confused too, unless it has
+  Own Tempo or is already confused (`subscript_sovereign_poison_puppeteer`, called from both poison subscripts).
+- **Supersweet Syrup:** the first time the holder enters the battle, each foe's evasiveness drops 1 stage, as with
+  Intimidate (`subscript_sovereign_supersweet_syrup`). Mirror Armor and Clear Body stop it; Defiant and Competitive
+  respond.
+- **Comatose:** nothing gives the holder a status condition or makes it drowsy, not even through Mold Breaker, and
+  Rest fails (`Battler_SovereignStatusImmune`). It never naps out of disobedience.
+  - Not yet: moves that need a sleeping target (Dream Eater, Hex's double power, Sleep Talk) don't count it as asleep.
+- **Pastel Veil and Sweet Veil:** the holder can't be poisoned (Pastel Veil), or fall asleep or become drowsy (Sweet
+  Veil), as with Immunity and Insomnia. Not yet: their allies' protection.
+- **AI:** Comatose counts as Purifying Salt, Pastel Veil as Immunity and Sweet Veil as Insomnia.
+- `docs/AbilityChecklist.md`: 163 of the 191 new abilities have a battle effect, counting partial ones (155 before).
+
+**Verification:** `tools/test/check_battle_scripts.py` passes (the largest script is 1,748 of 2,048 bytes). A harness
+wild battle per case, with each message box looked at:
+- **As One:** Ice Calyrex knocks out the foe, then "CALYREX's As One raised its Attack!"; Shadow Calyrex, "…raised its
+  Sp. Atk!".
+- **Toxic Chain** (Okidogi): "The wild NINJASK was badly poisoned!" after its hit.
+- **Poison Puppeteer:** Pecharunt's Toxic, then "The wild NINJASK was badly poisoned!" and "…became confused!".
+- **Supersweet Syrup** (Hydrapple): "HYDRAPPLE's SupersweetSyrup cuts the wild NINJASK's evasiveness!" on entry.
+- **Comatose** (Komala) against Toxic, Spore and Will-O-Wisp: "…prevents poisoning!", "KOMALA stayed awake because of
+  its Comatose!", "…prevents burns!".
+- **Pastel Veil** (Galarian Rapidash) against Toxic, and **Sweet Veil** (Slurpuff) against Spore and Yawn: "…prevents
+  poisoning!", "…stayed awake because of its Sweet Veil!", "…made it ineffective!".
+
+
 ## Item 11 (effect fidelity): eight more abilities
 
 For players: Purifying Salt, Water Bubble and Thermal Exchange keep status conditions off as in Gen IX. Mirror Armor
