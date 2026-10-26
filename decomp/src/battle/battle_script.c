@@ -158,6 +158,8 @@ static BOOL BtlCmd_SetHealthBoxStatusIcon(BattleSystem *battleSys, BattleContext
 static BOOL BtlCmd_SovereignRefreshHealthBox(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_SovereignMarkAteBerry(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_SovereignEatOwnBerry(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_SovereignTransform(BattleSystem *battleSys, BattleContext *battleCtx);
+static void Sovereign_TransformInto(BattleContext *battleCtx, int user, int target);
 static BOOL BtlCmd_PrintTrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PayPrizeMoney(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PlayBattleAnimation(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -5618,44 +5620,66 @@ static BOOL BtlCmd_TryWhirlwind(BattleSystem *battleSys, BattleContext *battleCt
 static BOOL BtlCmd_Transform(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     BattleScript_Iter(battleCtx, 1);
+    Sovereign_TransformInto(battleCtx, battleCtx->attacker, battleCtx->defender);
 
-    ATTACKING_MON.statusVolatile |= VOLATILE_CONDITION_TRANSFORM;
-    ATTACKING_MON.moveEffectsData.disabledMove = MOVE_NONE;
-    ATTACKING_MON.moveEffectsData.disabledTurns = 0;
-    ATTACKING_MON.moveEffectsData.transformedPID = DEFENDING_MON.personality;
-    ATTACKING_MON.moveEffectsData.transformedGender = DEFENDING_MON.gender;
-    ATTACKING_MON.moveEffectsData.mimickedMoveSlot = 0;
-    ATTACKING_MON.moveEffectsData.lastResortCount = 0;
+    return FALSE;
+}
 
-    u8 *attackerData = (u8 *)&ATTACKING_MON;
-    u8 *defenderData = (u8 *)&DEFENDING_MON;
+// Sovereign (item 11): Transform's effect, from BtlCmd_Transform, for any user and target (Imposter's too).
+static void Sovereign_TransformInto(BattleContext *battleCtx, int user, int target)
+{
+    BattleMon *userMon = &battleCtx->battleMons[user];
+    BattleMon *targetMon = &battleCtx->battleMons[target];
 
-    int i; // does not match if this is declared outside the individual loops' scopes
-    for (i = 0; i < XtOffset(BattleMon *, ability) + (int)sizeof(ATTACKING_MON.ability); i++) { // Sovereign: ability is a u16
+    userMon->statusVolatile |= VOLATILE_CONDITION_TRANSFORM;
+    userMon->moveEffectsData.disabledMove = MOVE_NONE;
+    userMon->moveEffectsData.disabledTurns = 0;
+    userMon->moveEffectsData.transformedPID = targetMon->personality;
+    userMon->moveEffectsData.transformedGender = targetMon->gender;
+    userMon->moveEffectsData.mimickedMoveSlot = 0;
+    userMon->moveEffectsData.lastResortCount = 0;
+
+    u8 *attackerData = (u8 *)userMon;
+    u8 *defenderData = (u8 *)targetMon;
+
+    int i;
+    for (i = 0; i < XtOffset(BattleMon *, ability) + (int)sizeof(userMon->ability); i++) { // Sovereign: ability is a u16
         attackerData[i] = defenderData[i];
     }
 
-    ATTACKING_MON.weatherAbilityAnnounced = FALSE;
-    ATTACKING_MON.intimidateAnnounced = FALSE;
-    ATTACKING_MON.traceAnnounced = FALSE;
-    ATTACKING_MON.downloadAnnounced = FALSE;
-    ATTACKING_MON.anticipationAnnounced = FALSE;
-    ATTACKING_MON.forewarnAnnounced = FALSE;
-    ATTACKING_MON.friskAnnounced = FALSE;
-    ATTACKING_MON.moldBreakerAnnounced = FALSE;
-    ATTACKING_MON.pressureAnnounced = FALSE;
-    ATTACKING_MON.moveEffectsData.truant = battleCtx->totalTurns & 1;
-    ATTACKING_MON.moveEffectsData.slowStartTurnNumber = battleCtx->totalTurns + 1;
-    ATTACKING_MON.slowStartAnnounced = FALSE;
-    ATTACKING_MON.slowStartFinished = FALSE;
+    userMon->weatherAbilityAnnounced = FALSE;
+    userMon->intimidateAnnounced = FALSE;
+    userMon->traceAnnounced = FALSE;
+    userMon->downloadAnnounced = FALSE;
+    userMon->anticipationAnnounced = FALSE;
+    userMon->forewarnAnnounced = FALSE;
+    userMon->friskAnnounced = FALSE;
+    userMon->moldBreakerAnnounced = FALSE;
+    userMon->pressureAnnounced = FALSE;
+    userMon->moveEffectsData.truant = battleCtx->totalTurns & 1;
+    userMon->moveEffectsData.slowStartTurnNumber = battleCtx->totalTurns + 1;
+    userMon->slowStartAnnounced = FALSE;
+    userMon->slowStartFinished = FALSE;
 
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
-        if (MOVE_DATA(ATTACKING_MON.moves[i]).pp < 5) {
-            ATTACKING_MON.ppCur[i] = MOVE_DATA(ATTACKING_MON.moves[i]).pp;
+        if (MOVE_DATA(userMon->moves[i]).pp < 5) {
+            userMon->ppCur[i] = MOVE_DATA(userMon->moves[i]).pp;
         } else {
-            ATTACKING_MON.ppCur[i] = 5;
+            userMon->ppCur[i] = 5;
         }
     }
+}
+
+// Sovereign (item 11): Imposter. The first battler transforms into the second, as by Transform.
+static BOOL BtlCmd_SovereignTransform(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int inUser = BattleScript_Read(battleCtx);
+    int inTarget = BattleScript_Read(battleCtx);
+
+    Sovereign_TransformInto(battleCtx,
+        BattleScript_Battler(battleSys, battleCtx, inUser),
+        BattleScript_Battler(battleSys, battleCtx, inTarget));
 
     return FALSE;
 }
@@ -9338,6 +9362,13 @@ static BOOL BtlCmd_RemoveItem(BattleSystem *battleSys, BattleContext *battleCtx)
 
         if (eater != BATTLER_NONE) {
             battleCtx->sovereignAteBerry[eater] |= FlagIndex(battleCtx->selectedPartySlot[eater]);
+        }
+
+        // Sovereign (item 11): Cud Chew eats its own Berry again later (not one taken by Bug Bite or Pluck, nor the
+        // second time: BattleSystem_TriggerTurnEndAbility feeds it without RemoveItem).
+        if (eater == battler && Battler_Ability(battleCtx, battler) == ABILITY_CUD_CHEW) {
+            battleCtx->sovereignCudChewBerry[battler] = battleCtx->battleMons[battler].heldItem;
+            battleCtx->sovereignCudChewTurn[battler] = battleCtx->totalTurns;
         }
     }
 

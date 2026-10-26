@@ -445,4 +445,8 @@ subscript_files = files(
     'subscript_sovereign_eject_button.s',
     'subscript_sovereign_emergency_exit.s',
     'subscript_sovereign_veil.s',
+    'subscript_sovereign_imposter.s',
+    'subscript_sovereign_mimicry.s',
+    'subscript_sovereign_opportunist.s',
+    'subscript_sovereign_cud_chew.s',
 )

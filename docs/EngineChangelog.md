@@ -4,6 +4,45 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): Imposter, Mimicry, Opportunist, Cud Chew
+
+For players: four more abilities work.
+- **Imposter (Ditto's hidden ability):** as the holder enters, it transforms into the foe facing it, as by Transform.
+  - The game plays Transform's animation and shows "{0} transformed into {1}!".
+  - It takes the foe's sprite, types, stats, stat stages, moves (5 PP each) and ability.
+  - Not into a Pokémon behind a Substitute or already transformed.
+  - As in Showdown, the copied ability's entry effect then runs (a copied Intimidate fires).
+- **Mimicry (Galarian Stunfisk):** when a terrain starts, the holder takes its type: Electric, Grass, Fairy or Psychic.
+  - "{0}'s Mimicry made it the {1} type!"
+  - When the terrain ends, "{0} returned to its original type!".
+  - It acts only when the terrain changes or as it enters, so a type a move gave it (Soak...) stays until then.
+- **Opportunist (Espathra):** the holder copies every stat rise its foes get, as a Mirror Herb does but each time ("{0}'s Opportunist raised its {1}!"). It doesn't copy a rise that Opportunist or a Mirror Herb made.
+- **Cud Chew (Farigiraf, Paldean Tauros):** the holder eats again, at the end of the next turn, a Berry it ate.
+  - "{0}'s Cud Chew activated!", "{0} ate its {1}!", then the Berry's effect, as for Stuff Cheeks.
+  - Not for a Berry taken by Bug Bite or Pluck, and only once.
+  - A Berry eaten as the battle starts comes back at the end of turn 2, since the turn count can't tell the opening switch-in from turn 1.
+- **Code:**
+  - Transform's effect is now `Sovereign_TransformInto`, which the new `SovereignTransform` command also uses (`subscript_sovereign_imposter`, from the Trace step of `BattleSystem_TriggerEffectOnSwitch`).
+  - Mimicry sits beside the Terrain Seeds, which run after every move. `BattleMon.sovereignMimicryTerrain` remembers the terrain it last saw.
+  - Opportunist shares Mirror Herb's queue of copied rises.
+  - `BtlCmd_RemoveItem` arms Cud Chew, and `BattleSystem_TriggerTurnEndAbility` feeds the Berry back with `BattleSystem_FeedBerryToAttacker`.
+
+**Verification:** test and release ROMs built. Harness wild battles against a Lv. 100 Ninjask:
+- **Imposter, Ditto:**
+  - "DITTO transformed into NINJASK!". Its sprite became Ninjask's back sprite, it used Ninjask's Tackle, and "DITTO's Speed Boost raised its Speed!".
+  - Against a Staraptor: "DITTO transformed into STARAPTOR!", then both Intimidates fired.
+  - Without Imposter, Ditto stayed Ditto.
+- **Mimicry, Galarian Stunfisk:**
+  - The wild Pokémon's Electric Terrain gave "STUNFISK's Mimicry made it the ELECTRIC type!".
+  - When the terrain ended, "STUNFISK returned to its original type!".
+  - Psychic Terrain was checked too.
+- **Opportunist, Espathra:**
+  - Swords Dance gave "The wild NINJASK's Attack sharply rose!", then "ESPATHRA's Opportunist raised its Attack!".
+  - Ninjask's Speed Boost was copied too.
+- **Cud Chew, Farigiraf:**
+  - With a Sitrus Berry at 30% HP: 55 → 101/184 as it entered.
+  - At the end of turn 2: "FARIGIRAF's Cud Chew activated!" and "FARIGIRAF ate its Sitrus Berry!", then 101 → 147.
+
 ## Item 11 (effect fidelity): the veils (Flower Veil, Aroma Veil, Sweet Veil, Pastel Veil)
 
 For players: the four veil abilities guard their holder's partner too, as since Gen VI.

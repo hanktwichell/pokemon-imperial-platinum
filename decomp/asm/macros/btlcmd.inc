@@ -1254,6 +1254,13 @@
     .long (\jumpNoBerry-.) / 4 - 1
     .endm
 
+    // Sovereign (item 11): Imposter. The user transforms into the target, as by Transform.
+    .macro SovereignTransform user, target
+    .long BTLCMD_SOVEREIGNTRANSFORM
+    .long \user
+    .long \target
+    .endm
+
     .text
     .globl _start
 _start:

@@ -10375,6 +10375,27 @@
         "The foe’s {STRVAR_1 1, 0, 0} is protected\n",
         "by an aromatic veil!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignReturnedToOriginalType_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} returned\n",
+        "to its original type!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignReturnedToOriginalType_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} returned\n",
+        "to its original type!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignReturnedToOriginalType_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} returned\n",
+        "to its original type!"
+      ]
     }
   ]
 }
