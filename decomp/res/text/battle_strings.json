@@ -10596,6 +10596,31 @@
         "The bursting flame hit\n",
         "the foe’s {STRVAR_1 1, 0, 0}!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCoveredInPowder_Ally",
+      "en_US": "{STRVAR_1 1, 0, 0} is covered in powder!"
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCoveredInPowder_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}\n",
+        "is covered in powder!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCoveredInPowder_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}\n",
+        "is covered in powder!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignPowderExploded",
+      "en_US": [
+        "When the flame touched the powder\n",
+        "on the Pokémon, it exploded!"
+      ]
     }
   ]
 }

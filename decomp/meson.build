@@ -190,9 +190,12 @@ trainer_ai_o = custom_target(
         '@INPUT@',
     ],
     depfile: '@BASENAME@.d',
+    # Sovereign: the script includes generated headers (move_battle_effects.h...); without this, a build that
+    # regenerates one can assemble the script while the header is half written.
+    depends: c_consts_generators,
 )
 
-libmslc = fs.copyfile('tools/metroskrew/lib/metroskrew/sdk/ds/2.0/sp2/msl/MSL_C/MSL_ARM/Lib/MSL_C_NITRO_Ai_LE.a')
+libmslc =fs.copyfile('tools/metroskrew/lib/metroskrew/sdk/ds/2.0/sp2/msl/MSL_C/MSL_ARM/Lib/MSL_C_NITRO_Ai_LE.a')
 libmslcpp = fs.copyfile('tools/metroskrew/lib/metroskrew/sdk/ds/2.0/sp2/msl/MSL_C++/MSL_ARM/Lib/MSL_CPP_NITRO_Ai_LE.a')
 
 main = executable('main',

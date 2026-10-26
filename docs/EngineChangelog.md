@@ -4,6 +4,39 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): Powder; a build race fixed
+
+For players:
+- **Powder** (+1 priority) covers the target in powder for the rest of the turn ("{0} is covered in powder!").
+  - It fails on a target already covered.
+  - Like the other powder moves, it doesn't affect Grass types, Overcoat or Safety Goggles.
+- **When a powdered Pokémon uses a Fire move**, the move explodes after its attack message: "When the flame touched the
+  powder on the Pokémon, it exploded!".
+  - The move fails, and the user loses 1/4 of its max HP (rounded, at least 1).
+  - Magic Guard prevents the damage, but the move still fails.
+  - The move's type is checked as it's used, so Weather Ball in sun explodes, and a Fire move turned Normal by Normalize
+    doesn't.
+  - In heavy rain, the rain's fizzle comes first and there is no explosion.
+  - A spread Fire move (Heat Wave) explodes once.
+- **Heavy rain / extremely harsh sunlight:** a spread Fire or Water move now fizzles out once. Before, the spread loop
+  could start it again on the next target.
+- **Build fix:** the trainer AI script now depends on the generated constant headers. Before, a build that regenerated
+  `move_battle_effects.h` could assemble the script while the header was half written. That gave an "unterminated
+  #ifdef" error, or a link error on every `BATTLE_EFFECT_*` name, until the object was deleted.
+- **Code:**
+  - Powder is the `sovereignPowdered` turn flag, set through the read-only var `BTLVAR_SOVEREIGN_POWDER`.
+  - The new subscripts are `subscript_sovereign_powder` and `subscript_sovereign_powder_explode`.
+  - The explosion check sits in `BattleControllerPlayer_BeforeMove`, right after the heavy-rain fizzle.
+
+**Verification:** test and release ROMs built; the battle-script size check, the message check and the docs check pass.
+- Single battles in the test build: a Vivillon used Powder on a Lv. 60 wild Pokémon using Flamethrower.
+  - **Charizard:** "The wild CHARIZARD is covered in powder!", then "The wild CHARIZARD used Flamethrower!" and the
+    explosion. It lost 44 HP each time (174 → 130 → 86 → 42, 1/4 of 174 rounded), and Vivillon took no damage.
+  - **Clefable with Magic Guard:** it exploded twice with no HP lost.
+  - **Venusaur:** "It doesn't affect the wild VENUSAUR...", then its Flamethrower hit.
+- **Double battle:** Vivillon powdered its partner Snorlax, which used Heat Wave. The explosion came once per turn
+  (233 → 150 HP lost 58, 1/4 of 233), and the foes took no damage.
+
 ## Item 11 (effect fidelity): Dragon Darts in double battles
 
 For players:

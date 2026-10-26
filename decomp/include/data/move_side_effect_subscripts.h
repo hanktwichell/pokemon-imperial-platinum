@@ -242,5 +242,6 @@ static const int sSideEffectSubscripts[] = {
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_TEATIME] = subscript_sovereign_teatime,
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_AUTOTOMIZE] = subscript_sovereign_autotomize,
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_FLAME_BURST] = subscript_sovereign_flame_burst,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_POWDER] = subscript_sovereign_powder,
 };
 // clang-format on

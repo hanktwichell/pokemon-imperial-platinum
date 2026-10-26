@@ -3910,11 +3910,25 @@ static void BattleControllerPlayer_BeforeMove(BattleSystem *battleSys, BattleCon
             || ((battleCtx->fieldConditionsMask & FIELD_CONDITION_SUNNY) && moveType == TYPE_WATER)) {
             battleCtx->msgTemp = (battleCtx->fieldConditionsMask & FIELD_CONDITION_SUNNY) ? 1 : 0;
             battleCtx->moveStatusFlags |= MOVE_STATUS_NO_MORE_WORK;
+            battleCtx->battleStatusMask |= SYSCTL_CHECK_LOOP_ONLY_ONCE; // a spread move fizzles out once
             LOAD_SUBSEQ(subscript_sovereign_primal_fizzle);
             battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
             battleCtx->commandNext = BATTLE_CONTROL_MOVE_FAILED;
             return;
         }
+    }
+
+    // Sovereign (item 11): Powder. A Fire move used by a Pokemon covered in powder explodes: it fails and hurts the
+    // user. Heavy rain, above, comes first.
+    if ((battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+        && battleCtx->turnFlags[battleCtx->attacker].sovereignPowdered
+        && CalcMoveType(battleCtx, battleCtx->attacker, battleCtx->moveCur) == TYPE_FIRE) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_NO_MORE_WORK;
+        battleCtx->battleStatusMask |= SYSCTL_CHECK_LOOP_ONLY_ONCE;
+        LOAD_SUBSEQ(subscript_sovereign_powder_explode);
+        battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+        battleCtx->commandNext = BATTLE_CONTROL_LOOP_FAINTED; // the explosion can make the user faint
+        return;
     }
 
     if (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) {
