@@ -2903,6 +2903,10 @@ void BoxPokemon_BuildSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, BoxPo
     BoxPokemon_ExitDecryptionContext(mon, reencrypt);
 }
 
+// Sovereign: pl_pokegra holds six files for each species from SPECIES_NONE to the last one (the Egg and Bad Egg have
+// none), then two back palettes (normal, shiny) for each species in the same order.
+#define POKEGRA_BACK_PALETTE_BASE ((NATIONAL_DEX_COUNT + 1) * 6)
+
 void BuildPokemonSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 species, u8 gender, u8 face, u8 shiny, u8 form, u32 personality)
 {
     spriteTemplate->spindaSpots = 0;
@@ -2998,7 +3002,13 @@ void BuildPokemonSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 speci
     default:
         spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_POKEGRA;
         spriteTemplate->character = species * 6 + face + (gender != GENDER_FEMALE ? 1 : 0); // ternary must remain to match
-        spriteTemplate->palette = species * 6 + 4 + shiny;
+        // Sovereign: back sprites have palettes of their own, after every species' six files
+        // (tools/scripts/make_pl_pokegra.py), so a front and a back can each use 15 colours.
+        if (face == FACE_BACK) {
+            spriteTemplate->palette = POKEGRA_BACK_PALETTE_BASE + species * 2 + shiny;
+        } else {
+            spriteTemplate->palette = species * 6 + 4 + shiny;
+        }
 
         if (species == SPECIES_SPINDA && face == FACE_FRONT) {
             spriteTemplate->spindaSpots = SPECIES_SPINDA;

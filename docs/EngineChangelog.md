@@ -18,6 +18,23 @@ players and the verification that was run.
   through `tools/sprites/smogon_credits.py`, which `tools/regenerate_docs.sh` runs. `CITATIONS.md` names the 36
   spriters.
 
+## E12 — front and back sprites get palettes of their own
+
+For players: the new species' sprites keep their colours. Platinum gave a Pokémon's front and back sprite one shared
+palette of 15 colours; now each has its own (owner, 2026-10-26), so only 7 of the 532 new species still lose a few
+colours, down from 165.
+
+- `pl_pokegra.narc` keeps each species' six files where they were, then adds two back palettes (normal, shiny) per
+  species at the end (`tools/scripts/make_pl_pokegra.py`, files named `zback-*` so they sort last).
+  `BuildPokemonSpriteTemplate` (`src/pokemon.c`) loads a back sprite's palette from
+  `POKEGRA_BACK_PALETTE_BASE + species * 2 + shiny`.
+- A species with no `back_normal.pal`/`back_shiny.pal` (#1–493) gets copies of its front palettes, so it looks as
+  before. The Diamond/Pearl sprite path and Platinum's own form archive aren't touched.
+- `tools/sprites/convert_battle_sprites.py` writes `back_normal.pal` and `back_shiny.pal` for #494–1025.
+- Verification: release build and boot smoke test pass; the archive has 8,208 files (1,026 × 6 + 1,026 × 2), and for
+  #494–1025 every front and back palette sits in the slot the game reads; #1–493's back slots equal their front
+  palettes. Not yet seen in a battle.
+
 ## E12 — PokeAPI fronts for #494–1025
 
 For players: the new species' front and shiny front sprites are PokeAPI's (owner, 2026-10-26); their backs and shiny

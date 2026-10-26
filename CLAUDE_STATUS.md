@@ -6516,3 +6516,23 @@ boot smoke test pass.
 1. See the new fronts in battle, the scaled ones and the 11 shinies that don't line up first.
 2. Decide the Megas' and other forms' sprites once forms can have their own (owner suggested PokeAPI fronts).
 3. Female fronts for Unfezant, Frillish, Jellicent, Pyroar and Hisuian Sneasel.
+
+## CA-0058 (Claude A, 2026-10-26): separate front and back palettes
+
+**For Claude B:** battle sprites' backs now have palettes of their own. `pl_pokegra.narc` gains two back palettes per
+species after the existing files (`make_pl_pokegra.py`), and `BuildPokemonSpriteTemplate` loads them for
+`FACE_BACK` (`POKEGRA_BACK_PALETTE_BASE + species * 2 + shiny`). #1–493 get copies of their front palettes. If a
+harness reads palettes from `pl_pokegra` by index, front indices are unchanged.
+
+**Implemented:** the engine change above; `convert_battle_sprites.py` writes `back_normal.pal`/`back_shiny.pal`;
+#494–1025 reconverted (7 species still reduced, from 165). Release build, boot smoke test and an archive slot check
+pass.
+
+**Files modified:** `decomp/src/pokemon.c`, `decomp/tools/scripts/make_pl_pokegra.py`,
+`tools/sprites/convert_battle_sprites.py`, `decomp/res/pokemon/<#494–1025>/` (pngs, palettes, new back palettes),
+`docs/BattleSpriteImport.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. See a new species' back sprite in battle (normal and shiny) to confirm the palette in game.
+2. Forms: give Sovereign's forms their own sprites (PokeAPI fronts per the owner), with back palettes the same way.
+3. Female fronts for Unfezant, Frillish, Jellicent, Pyroar and Hisuian Sneasel.
