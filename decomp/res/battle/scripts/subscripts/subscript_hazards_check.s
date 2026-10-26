@@ -2,6 +2,8 @@
 
 
 _000:
+    // Sovereign (item 11): Infiltrator doesn't get past Safeguard or Mist for entry hazards (Sovereign_Infiltrates).
+    UpdateVar OPCODE_SET, BTLVAR_SOVEREIGN_IN_HAZARDS, TRUE
     // Sovereign (item 11): Sticky Web (Magic Guard doesn't stop it).
     CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_STICKY_WEB_SWITCHED_MON, 0, _sovereign_no_web
     // {0} was caught in a sticky web!
@@ -70,4 +72,5 @@ _085:
     WaitButtonABTime 30
 
 _105:
+    UpdateVar OPCODE_SET, BTLVAR_SOVEREIGN_IN_HAZARDS, FALSE
     End 

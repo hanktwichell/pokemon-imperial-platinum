@@ -357,6 +357,7 @@ struct BattleContext {
     u8 sovereignQuickDraw; // Sovereign (item 11): battlers Quick Draw lets move first this turn (for its message)
     u8 sovereignSoulHeartDone; // Sovereign (item 11): Soul-Heart holders whose Sp. Atk already rose for this faint
     int sovereignSoulHeartSaved[3]; // Sovereign (item 11): the side-effect battler, type and param Soul-Heart borrows
+    int sovereignInHazards; // Sovereign (item 11): TRUE while subscript_hazards_check runs (Infiltrator)
 };
 
 #endif // POKEPLATINUM_BATTLE_BATTLE_CONTEXT_H

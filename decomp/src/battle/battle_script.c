@@ -3003,7 +3003,8 @@ static BOOL ChangeStatStage(BattleSystem *battleSys, BattleContext *battleCtx)
     } else {
         if ((battleCtx->sideEffectFlags & MOVE_SIDE_EFFECT_CANNOT_PREVENT) == FALSE) {
             if (battleCtx->attacker != battleCtx->sideEffectMon) {
-                if (battleCtx->sideConditions[BattleSystem_GetBattlerSide(battleSys, battleCtx->sideEffectMon)].mistTurns) {
+                if (battleCtx->sideConditions[BattleSystem_GetBattlerSide(battleSys, battleCtx->sideEffectMon)].mistTurns
+                    && Sovereign_Infiltrates(battleSys, battleCtx, battleCtx->sideEffectMon) == FALSE) { // Sovereign (item 11)
                     battleCtx->msgBuffer.id = BattleStrings_Text_PokemonIsProtectedByMist_Ally; // "{0} is protected by Mist!"
                     battleCtx->msgBuffer.tags = TAG_NICKNAME;
                     battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->sideEffectMon);
@@ -7166,9 +7167,7 @@ static BOOL BtlCmd_TryPursuit(BattleSystem *battleSys, BattleContext *battleCtx)
         int effect = Battler_HeldItemEffect(battleCtx, battleCtx->attacker);
         int power = Battler_HeldItemPower(battleCtx, battleCtx->attacker, 0);
 
-        if (effect == HOLD_EFFECT_CHOICE_ATK
-            || effect == HOLD_EFFECT_CHOICE_SPEED
-            || effect == HOLD_EFFECT_CHOICE_SPATK) {
+        if (Battler_SovereignChoiceLocks(battleCtx, battleCtx->attacker)) { // Sovereign (item 11): Gorilla Tactics too
             ATTACKING_MON.moveEffectsData.choiceLockedMove = move;
         }
     }
@@ -9826,6 +9825,13 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
     case BTLVAR_SIDE_CONDITIONS_DEFENDER:
         return &battleCtx->sideConditionsMask[BattleSystem_GetBattlerSide(battleSys, battleCtx->defender)];
     case BTLVAR_SIDE_CONDITIONS_EFFECT_MON:
+        // Sovereign (item 11): read-only for Infiltrator's moves, which get past Safeguard
+        if (Sovereign_Infiltrates(battleSys, battleCtx, battleCtx->sideEffectMon)) {
+            battleCtx->sovereignTerrainTemp = battleCtx->sideConditionsMask[BattleSystem_GetBattlerSide(battleSys, battleCtx->sideEffectMon)]
+                & ~SIDE_CONDITION_SAFEGUARD;
+            return &battleCtx->sovereignTerrainTemp;
+        }
+
         return &battleCtx->sideConditionsMask[BattleSystem_GetBattlerSide(battleSys, battleCtx->sideEffectMon)];
     case BTLVAR_SOVEREIGN_AURORA_VEIL_TURNS_ATTACKER: // Sovereign (item 11)
         return &battleCtx->sovereignAuroraVeilTurns[BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker)];
@@ -9863,6 +9869,8 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_MIRROR_ARMOR_HOLDER: // Sovereign (item 11): BtlCmd_ChangeStatStage
         return &battleCtx->sovereignMirrorArmorHolder;
+    case BTLVAR_SOVEREIGN_IN_HAZARDS: // Sovereign (item 11): Sovereign_Infiltrates
+        return &battleCtx->sovereignInHazards;
     case BTLVAR_SOVEREIGN_SOUL_HEART_MON: { // Sovereign (item 11): read-only, for subscript_faint_mon. TRUE when another
         // Soul-Heart holder on the field (in speed order) has yet to gain Sp. Atk for this faint: it becomes the
         // side-effect target. The first read saves the side-effect battler, type and param; the last gives them back.

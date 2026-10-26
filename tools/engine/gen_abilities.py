@@ -123,7 +123,7 @@ IMPLEMENTED = {
     207: "yes: Speed doubled in Electric Terrain",
     179: "yes: Defense ×1.5 in Grassy Terrain",
     282: "yes: in Electric Terrain or after using a Booster Energy, its highest stat ×1.3 (Speed ×1.5)",
-    275: "partly: Intimidate raises its Attack instead (immunity to Roar and Whirlwind not yet)",
+    275: "yes: Intimidate raises its Attack instead; Roar, Whirlwind, Dragon Tail and Circle Throw can't force it out",
     181: "yes: contact moves ×1.3",
     178: "yes: pulse moves ×1.5",
     292: "yes: slicing moves ×1.5",
@@ -155,7 +155,7 @@ IMPLEMENTED = {
     199: "yes: its Water moves ×2, Fire damage taken halved, can't be burned",
     137: "yes: Attack ×1.5 while poisoned",
     138: "yes: Sp. Atk ×1.5 while burned",
-    255: "partly: Attack ×1.5 (the move lock not yet)",
+    255: "yes: Attack ×1.5, but it can only use the first move it picked, as with a Choice item, until it switches out",
     129: "yes: Attack and Sp. Atk halved at half HP or less",
     148: "yes: moves ×1.3 when it moves last",
     252: "yes: Steel moves of the holder and its ally ×1.5",
@@ -207,11 +207,11 @@ IMPLEMENTED = {
     134: "yes: weight doubled (Low Kick, Grass Knot)",  # Heavy Metal
     135: "yes: weight halved (Low Kick, Grass Knot)",  # Light Metal
     140: "yes: avoids its partner's damaging moves",  # Telepathy
-    151: "partly: ignores Reflect, Light Screen and Substitute (Safeguard and Mist not yet)",  # Infiltrator
+    151: "yes: its moves ignore a foe's Reflect, Light Screen, Substitute, Safeguard and Mist",  # Infiltrator
     171: "yes: immune to ball and bomb moves",  # Bulletproof
     218: "yes: contact damage halved, Fire damage doubled",  # Fluffy
     133: "yes: Defense −1 and Speed +2 when hit by a physical move",  # Weak Armor
-    142: "partly: no sandstorm damage (powder-move immunity not yet)",  # Overcoat
+    142: "yes: no sandstorm damage; powder moves and Effect Spore don't affect it (nor, since Gen VI, Grass types)",  # Overcoat
     144: "yes: restores 1/3 of max HP on switching out",  # Regenerator
     145: "yes: Defense can't be lowered by others",  # Big Pecks
     146: "yes: Speed ×2 in a sandstorm; no sandstorm damage",  # Sand Rush
@@ -240,7 +240,7 @@ IMPLEMENTED = {
     269: "yes: getting hit sets Grassy Terrain",
     283: "yes: immune to other Pokémon's status moves",
     293: "yes: 10% more power per fainted party member (up to 5)",
-    298: "partly: its status moves ignore abilities (moving last not yet)",
+    298: "yes: its status moves ignore abilities, and it uses them last in their priority bracket",
     299: "yes: hits Ghost types with Normal and Fighting moves, ignores evasion, accuracy can't be lowered",
     198: "yes: double power against a target that switched in this turn",
     203: "yes: its moves make no contact",

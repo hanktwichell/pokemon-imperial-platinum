@@ -3391,6 +3391,11 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
         battleCtx->moveStatusFlags |= MOVE_STATUS_INEFFECTIVE;
     }
 
+    // Sovereign (item 11): powder moves don't affect Grass types or Overcoat (Gen VI+).
+    if (attacker != defender && Move_IsPowder(move) && Battler_SovereignPowderImmune(battleCtx, attacker, defender)) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_INEFFECTIVE;
+    }
+
     // Sovereign (item 11): Wide Guard blocks spread moves aimed at its side, Quick Guard foes' priority moves.
     if (attacker != defender
         && unseenFist == FALSE
@@ -4572,13 +4577,9 @@ static void BattleControllerPlayer_LeftoverState37(BattleSystem *battleSys, Batt
 
 static void BattleControllerPlayer_UpdateMoveBuffers(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    u8 itemEffect = Battler_HeldItemEffect(battleCtx, battleCtx->attacker);
-
     if ((battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN)
         || (battleCtx->battleStatusMask2 & SYSCTL_ATTACK_MESSAGE_SHOWN)) {
-        if (itemEffect == HOLD_EFFECT_CHOICE_ATK
-            || itemEffect == HOLD_EFFECT_CHOICE_SPEED
-            || itemEffect == HOLD_EFFECT_CHOICE_SPATK) {
+        if (Battler_SovereignChoiceLocks(battleCtx, battleCtx->attacker)) { // Sovereign (item 11): Gorilla Tactics too
             if (battleCtx->moveTemp != MOVE_STRUGGLE
                 && (battleCtx->moveTemp != MOVE_U_TURN || (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE)
                 && (battleCtx->moveTemp != MOVE_BATON_PASS || (battleCtx->battleStatusMask2 & SYSCTL_MOVE_SUCCEEDED) == FALSE)) {
@@ -5211,12 +5212,9 @@ static void BattleControllerPlayer_UpdateFlagsWhenHit(BattleSystem *battleSys, B
     }
 
     if (battleCtx->defender != BATTLER_NONE) {
-        u8 itemEffect = Battler_HeldItemEffect(battleCtx, battleCtx->defender);
         if (((battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN)
                 || (battleCtx->battleStatusMask2 & SYSCTL_ATTACK_MESSAGE_SHOWN))
-            && (itemEffect != HOLD_EFFECT_CHOICE_ATK
-                && itemEffect != HOLD_EFFECT_CHOICE_SPEED
-                && itemEffect != HOLD_EFFECT_CHOICE_SPATK)) {
+            && Battler_SovereignChoiceLocks(battleCtx, battleCtx->defender) == FALSE) { // Sovereign (item 11)
             DEFENDING_MON.moveEffectsData.choiceLockedMove = MOVE_NONE;
         }
 

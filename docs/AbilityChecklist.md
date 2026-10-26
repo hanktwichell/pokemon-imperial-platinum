@@ -24,7 +24,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 139 | Harvest | Gen 5 | yes: at the end of a turn, regrows the Berry it used up, half the time (every time in harsh sunlight) |
 | 140 | Telepathy | Gen 5 | yes: avoids its partner's damaging moves |
 | 141 | Moody | Gen 5 | yes: each turn, one stat +2 and another −1 (no accuracy/evasion, as in Gen VIII+) |
-| 142 | Overcoat | Gen 5 | partly: no sandstorm damage (powder-move immunity not yet) |
+| 142 | Overcoat | Gen 5 | yes: no sandstorm damage; powder moves and Effect Spore don't affect it (nor, since Gen VI, Grass types) |
 | 143 | Poison Touch | Gen 5 | yes: its contact moves have a 30% chance to poison |
 | 144 | Regenerator | Gen 5 | yes: restores 1/3 of max HP on switching out |
 | 145 | Big Pecks | Gen 5 | yes: Defense can't be lowered by others |
@@ -33,7 +33,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 148 | Analytic | Gen 5 | yes: moves ×1.3 when it moves last |
 | 149 | Illusion | Gen 5 | not yet (no battle effect) |
 | 150 | Imposter | Gen 5 | not yet (no battle effect) |
-| 151 | Infiltrator | Gen 5 | partly: ignores Reflect, Light Screen and Substitute (Safeguard and Mist not yet) |
+| 151 | Infiltrator | Gen 5 | yes: its moves ignore a foe's Reflect, Light Screen, Substitute, Safeguard and Mist |
 | 152 | Mummy | Gen 5 | yes: an attacker that makes contact gets Mummy |
 | 153 | Moxie | Gen 5 | yes: Attack +1 for each foe its move knocks out |
 | 154 | Justified | Gen 5 | yes: Attack +1 when hit by a Dark move |
@@ -137,7 +137,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 252 | Steely Spirit | Gen 8 | yes: Steel moves of the holder and its ally ×1.5 |
 | 253 | Perish Body | Gen 8 | yes: contact gives it and the attacker a Perish Song count of 3 |
 | 254 | WanderingSpirit | Gen 8 | yes: swaps abilities with an attacker that makes contact |
-| 255 | Gorilla Tactics | Gen 8 | partly: Attack ×1.5 (the move lock not yet) |
+| 255 | Gorilla Tactics | Gen 8 | yes: Attack ×1.5, but it can only use the first move it picked, as with a Choice item, until it switches out |
 | 256 | NeutralizingGas | Gen 8 | not yet (no battle effect) |
 | 257 | Pastel Veil | Gen 8 | partly: it can't be poisoned, and a poisoning is healed (its allies' protection not yet) |
 | 258 | Hunger Switch | Gen 8 | yes: switches between Full Belly and Hangry Mode at the end of each turn |
@@ -157,7 +157,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 272 | Purifying Salt | Gen 9 | yes: Ghost damage halved; no status conditions or drowsiness (Mold Breaker gets past it) |
 | 273 | Well-Baked Body | Gen 9 | yes: absorbs Fire moves, Defense +2 (`BattleSystem_TriggerImmunityAbility`) |
 | 274 | Wind Rider | Gen 9 | yes: wind moves aimed at it do nothing and raise its Attack instead; a tailwind on its side raises its Attack (on entry too) |
-| 275 | Guard Dog | Gen 9 | partly: Intimidate raises its Attack instead (immunity to Roar and Whirlwind not yet) |
+| 275 | Guard Dog | Gen 9 | yes: Intimidate raises its Attack instead; Roar, Whirlwind, Dragon Tail and Circle Throw can't force it out |
 | 276 | Rocky Payload | Gen 9 | yes: Rock moves ×1.5 |
 | 277 | Wind Power | Gen 9 | yes: charged when a wind move hits it or a tailwind starts on its side |
 | 278 | Zero to Hero | Gen 9 | yes: Hero Form once it switches out, until the battle ends |
@@ -180,7 +180,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 295 | Toxic Debris | Gen 9 | yes: physical hits scatter Toxic Spikes on the attacker's side |
 | 296 | Armor Tail | Gen 9 | yes: foes' priority moves can't hit its side |
 | 297 | Earth Eater | Gen 9 | yes: absorbs Ground moves, restores 1/4 of max HP (`BattleSystem_TriggerImmunityAbility`) |
-| 298 | Mycelium Might | Gen 9 | partly: its status moves ignore abilities (moving last not yet) |
+| 298 | Mycelium Might | Gen 9 | yes: its status moves ignore abilities, and it uses them last in their priority bracket |
 | 299 | Mind’s Eye | Gen 9 | yes: hits Ghost types with Normal and Fighting moves, ignores evasion, accuracy can't be lowered |
 | 300 | SupersweetSyrup | Gen 9 | yes: the first time it enters the battle, each foe's evasiveness −1 |
 | 301 | Hospitality | Gen 9 | not yet (no battle effect) |

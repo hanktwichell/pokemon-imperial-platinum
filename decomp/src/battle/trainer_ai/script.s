@@ -519,6 +519,7 @@ Basic_CheckCanForceSwitch:
     IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckCanForceSwitch_Terminate
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_SUCTION_CUPS, ScoreMinus10
+    IfLoadedEqualTo ABILITY_GUARD_DOG, ScoreMinus10 // Sovereign (item 11)
 
 Basic_CheckCanForceSwitch_Terminate:
     PopOrEnd 
