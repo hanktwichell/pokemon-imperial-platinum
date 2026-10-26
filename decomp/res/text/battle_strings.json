@@ -10502,27 +10502,6 @@
       ]
     },
     {
-      "id": "BattleStrings_Text_SovereignStatChangesRemoved_Ally",
-      "en_US": [
-        "{STRVAR_1 1, 0, 0}’s stat changes\n",
-        "were removed!"
-      ]
-    },
-    {
-      "id": "BattleStrings_Text_SovereignStatChangesRemoved_Wild",
-      "en_US": [
-        "The wild {STRVAR_1 1, 0, 0}’s stat changes\n",
-        "were removed!"
-      ]
-    },
-    {
-      "id": "BattleStrings_Text_SovereignStatChangesRemoved_Foe",
-      "en_US": [
-        "The foe’s {STRVAR_1 1, 0, 0}’s stat changes\n",
-        "were removed!"
-      ]
-    },
-    {
       "id": "BattleStrings_Text_SovereignChillingJoke_Ally",
       "en_US": [
         "{STRVAR_1 1, 0, 0} is preparing to tell\n",

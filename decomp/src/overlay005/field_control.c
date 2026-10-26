@@ -260,6 +260,14 @@ static void SovereignTest_SetLead(FieldSystem *fieldSystem)
         Pokemon_SetValue(partner, MON_DATA_FORM, &form);
         Pokemon_CalcAbility(partner);
         Pokemon_CalcLevelAndStats(partner);
+
+        for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+            if (gSovereignTestPartner.moves[i] != MOVE_NONE) {
+                Pokemon_ResetMoveSlot(partner, gSovereignTestPartner.moves[i], i);
+                gSovereignTestPartner.moves[i] = MOVE_NONE;
+            }
+        }
+
         gSovereignTestPartner.species = SPECIES_NONE;
     }
 }

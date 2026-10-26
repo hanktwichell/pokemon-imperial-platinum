@@ -16,7 +16,8 @@ pixels) wide, the other kinds 27 tiles. Vanilla's widest map or arrow sign line 
 
 This reads every text that a field script shows through a message or sign command (Message, NPCMessage, ShowMapSign
 and the like), splits it into boxes at \\r and \\f, and reports each box with more than two lines, and each line wider
-than its window. A trailing \\n doesn't count. Exits 1 if it finds any.
+than its window. A trailing \\n doesn't count. It also reports a message ID defined twice in one text bank (the
+generated header then defines the ID's macro twice, and the second number wins). Exits 1 if it finds any.
 
 Usage: python3 tools/test/check_message_box_lines.py decomp
 """
@@ -76,9 +77,14 @@ def text_of(message):
 def main():
     decomp = sys.argv[1]
     texts = {}
+    twice = []
     for path in sorted(glob.glob(os.path.join(decomp, 'res', 'text', '*.json'))):
         with open(path, encoding='utf-8') as f:
+            ids = set()
             for m in json.load(f).get('messages', []):
+                if m['id'] in ids:
+                    twice.append((os.path.basename(path), m['id']))
+                ids.add(m['id'])
                 text = text_of(m)
                 if isinstance(text, str):
                     texts.setdefault(m['id'], text)
@@ -102,6 +108,8 @@ def main():
             width = line_width(line, width_of, sequences)
             if width > used[text_id]:
                 wide.append((text_id, width, used[text_id], line))
+    for bank, text_id in twice:
+        print(f'{bank}: {text_id} is defined twice')
     for text_id, lines, box in bad:
         print(f'{text_id}: {lines} lines in one box: {box!r}')
     for text_id, width, limit, line in wide:
@@ -110,9 +118,10 @@ def main():
         print(f'{len(bad)} message(s) have a line the player can\'t see; split the box with \\r')
     if wide:
         print(f'{len(wide)} line(s) are cut off at the window\'s right edge; reword or move a line break')
-    if bad or wide:
+    if bad or wide or twice:
         sys.exit(1)
-    print(f'ok: all {len(used)} field messages and signs fit their boxes, in lines and in width')
+    print(f'ok: all {len(used)} field messages and signs fit their boxes, in lines and in width; no message ID is'
+          ' defined twice')
 
 
 if __name__ == '__main__':

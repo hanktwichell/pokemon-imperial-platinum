@@ -155,15 +155,15 @@ MOVES = {
     "alluring_voice": ("CONFUSE_HIT", 100, "confuses a target whose stats rose this turn"),
     "draining_kiss": (None, None, "drains 3/4 of the damage dealt"),
     "oblivion_wing": (None, None, "drains 3/4 of the damage dealt"),
-    "round": (None, None, "power doubles after its ally's Round this turn (the ally doesn't move up in turn order)",
-              "approximate"),
+    "round": (None, None, "the next Pokémon (either side) that chose Round moves right after the user, with double"
+              " power"),
     # Terrains (5 turns, 8 with a Terrain Extender; the Seeds aren't reproduced yet).
     "electric_terrain": ("SOVEREIGN_ELECTRIC_TERRAIN", 0, "Electric Terrain: grounded Electric moves x1.3, grounded Pokémon can't fall asleep"),
     "grassy_terrain": ("SOVEREIGN_GRASSY_TERRAIN", 0, "Grassy Terrain: grounded Grass moves x1.3, heals 1/16 each turn, halves Earthquake"),
     "misty_terrain": ("SOVEREIGN_MISTY_TERRAIN", 0, "Misty Terrain: halves Dragon moves, grounded Pokémon can't be statused or confused"),
     "psychic_terrain": ("SOVEREIGN_PSYCHIC_TERRAIN", 0, "Psychic Terrain: grounded Psychic moves x1.3, blocks priority moves"),
     "rising_voltage": (None, None, "power doubles in Electric Terrain against a grounded target"),
-    "expanding_force": (None, None, "1.5x in Psychic Terrain (doesn't spread to both foes yet)", "approximate"),
+    "expanding_force": (None, None, "from a grounded user in Psychic Terrain: 1.5x and it hits both foes"),
     "misty_explosion": ("HALVE_DEFENSE", 0, "user faints; 1.5x in Misty Terrain; Damp stops it (Explosion's effect, which no"
                         " longer halves Defense)"),
     "psyblade": (None, None, "1.5x in Electric Terrain"),

@@ -66,10 +66,12 @@ typedef struct TurnFlags {
     u32 enduring : 1;
     u32 sovereignStatsRaised : 1; // Sovereign (item 11): a stat rose this turn (Burning Jealousy, Alluring Voice)
     u32 sovereignStatsLowered : 1; // Sovereign (item 11): a stat fell this turn (Lash Out)
-    u32 sovereignUsedRound : 1; // Sovereign (item 11): used Round this turn (its partner's Round doubles)
+    u32 sovereignRoundCalled : 1; // Sovereign (item 11): another Pokemon's Round called its Round up (double power)
     u32 sovereignSwitchedIn : 1; // Sovereign (item 11): switched in during this turn (Core Enforcer)
     u32 sovereignElectrified : 1; // Sovereign (item 11): Electrify makes its moves Electric this turn
-    u32 padding00_0A : 17;
+    u32 sovereignMovedUp : 1; // Sovereign (item 11): After You or Round moved it up this turn (dynamic speed keeps it there)
+    u32 sovereignQuashed : 1; // Sovereign (item 11): Quash moved it last this turn (dynamic speed keeps it there)
+    u32 padding00_0A : 15;
 
     int physicalDamageTakenFrom[MAX_BATTLERS];
     int physicalDamageLastAttacker;

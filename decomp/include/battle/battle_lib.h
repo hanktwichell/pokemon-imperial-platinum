@@ -1277,6 +1277,7 @@ BOOL Sovereign_AbilityCantBeSwapped(int ability);
 int Sovereign_Doodle(BattleSystem *battleSys, BattleContext *battleCtx);
 BOOL Sovereign_CoreEnforcer(BattleContext *battleCtx, int battler);
 int Sovereign_ElectrifyType(BattleContext *battleCtx, int battler, int move, int type);
+int Sovereign_MoveRange(BattleContext *battleCtx, int attacker, int move);
 BOOL Sovereign_Electrify(BattleContext *battleCtx, int battler);
 BOOL Sovereign_StartIonDeluge(BattleContext *battleCtx);
 BOOL Sovereign_StartFairyLock(BattleContext *battleCtx);

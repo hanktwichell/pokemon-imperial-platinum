@@ -4,6 +4,39 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): Round and Expanding Force in double battles; turn order after After You and Quash
+
+For players:
+- **Round:** once a Pokémon uses Round, the next Pokémon this turn that chose Round moves right after it, on either side.
+  That Round has double power. Each Round calls up the next, so a chain of Rounds goes one after another.
+  - Before, Round doubled only after the user's ally's Round, and the ally didn't move up in turn order.
+- **Expanding Force:** used by a grounded Pokémon in Psychic Terrain, it hits both foes (0.75× each, as a spread move), on
+  top of its 1.5× power.
+- **Turn order fix (doubles):** a Pokémon that After You or Round moved up, or that Quash moved last, now stays there.
+  - Before, the speed re-sort before each action (Gen VIII+ dynamic speed) could put it back by Speed, and undo After You
+    or Quash in a double battle.
+  - The re-sort now compares Speed only within the same group: moved up, normal, or quashed (Showdown's action order).
+- **Fix:** three battle messages ("...'s stat changes were removed!", from Clear Smog and Curious Medicine) were defined
+  twice in `battle_strings.json`. The second copy is gone (same text).
+  - `tools/test/check_message_box_lines.py` now also fails when a text bank defines a message ID twice.
+- **Code:**
+  - `Sovereign_CallNextRound` (battle controller) moves the next Round user up and sets its `sovereignRoundCalled` turn flag.
+  - `Sovereign_ReorderTurn` sets `sovereignMovedUp` or `sovereignQuashed`. `Sovereign_TurnOrderClass` reads them.
+  - `Sovereign_MoveRange` gives a move's range as used. Target selection, the spread-move loop and the 0.75× spread
+    damage use it.
+  - Test harness: the test partner (`SovereignTestPartner.moves`) can be given moves.
+- Dragon Darts stays approximate: switching targets between its two hits needs per-hit Protect and accuracy handling.
+
+**Verification:** test and release ROMs built; the battle-script size check, the message check and the docs check pass.
+- All cases below were double battles in the test build. The partner was a Snorlax, except where noted.
+- **Round** against Belle & Pa's Tauros and Miltank:
+  - "JOLTEON used Round!", then "SNORLAX used Round!" right after it, before the faster Tauros and Miltank.
+  - Shuckle's Round on Tauros did 9–10 damage per hit when Snorlax used Growl.
+  - When Snorlax's Round came first and called Shuckle's up, Shuckle's Round did 18.
+- **Expanding Force:** in Psychic Terrain set by the partner (an Espeon), one use KO'd both Minun and Plusle (the Twins
+  Liv & Liz).
+- **After You** on the partner: "SNORLAX took the kind offer!", then Snorlax's Headbutt came before Tauros, which is faster.
+
 ## Item 11 (effect fidelity): moves, batch 12 (Shell Side Arm, Autotomize, Flame Burst, Pollen Puff, Parabolic Charge)
 
 For players:
