@@ -407,6 +407,9 @@ struct BattleContext {
     u8 sovereignDanceUser; // Sovereign (item 11): the battler whose dance move the Dancers copy
     u8 sovereignDanceTarget; // Sovereign (item 11): that move's target
     u16 sovereignDanceMove; // Sovereign (item 11): that move
+    u8 sovereignSymbiosisGiver; // Sovereign (item 11): the Symbiosis Pokémon that last passed its item
+    u8 sovereignSymbiosisReceiver; // Sovereign (item 11): its ally that got it
+    u8 sovereignSymbiosisPending; // Sovereign (item 11): that pass is still to be announced (BattleSystem_TriggerEffectOnSwitch)
     u16 sovereignShieldMove[MAX_BATTLERS]; // Sovereign (item 11): the Protect-like move protecting each battler this turn
     int sovereignShieldContact; // Sovereign (item 11): the shield whose contact penalty is due (subscript_missed)
     int sovereignGuardBlock; // Sovereign (item 11): the side guard that blocked the move (Wide Guard, Mat Block, ...)

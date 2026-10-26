@@ -3,6 +3,37 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Item 11 (effect fidelity): Symbiosis
+
+For players:
+- **Symbiosis** (Florges, Oranguru): when its ally uses up its held item, it passes the ally its own: "{0} shared its
+  {1} with {2}!".
+  - Any item used up counts: a Berry eaten, a Gem, a popped Air Balloon, a herb, Weakness Policy, Red Card... and the
+    item a Natural Gift or Fling uses (as in Showdown).
+  - Not when Bug Bite or Pluck eats the ally's Berry, Knock Off, Thief or Incinerate takes it, or its Eject Button
+    switches it out.
+  - It doesn't pass an item locked to its holder (a Mega Stone, a Plate...) or Mail.
+  - The ally can use up the new item later the same way, and Unburden's Speed boost stops while it holds it.
+- **Code:**
+  - `BtlCmd_RemoveItem` does the swap. The message is a nested subscript (`subscript_sovereign_symbiosis`) when the
+    script stack has room; otherwise `sovereignSymbiosisPending` prints it at the next switch-in check
+    (`SWITCH_IN_CHECK_STATE_SOVEREIGN_SYMBIOSIS`).
+  - New battler IDs `BTLSCR_SOVEREIGN_SYMBIOSIS_GIVER`/`RECEIVER`, with the item tag for the receiver.
+  - The wild and foe versions scroll to a third line for "the foe's {2}!", as the widest names
+    ("Strawberry Sweet with the foe's WISHIWASHI!", 243 px) don't fit the 216-px battle box.
+
+**Verification:** test and release ROMs built; the battle-script size check, the message check and the docs check pass.
+Doubles against Belle & Pa (trainer 290), Meganium with Florges (Lv. 50, Leftovers, ability set to Symbiosis):
+- **Meganium holds an Air Balloon:** "MEGANIUM's Air Balloon popped!", then "FLORGES shared its Leftovers with
+  MEGANIUM!". "MEGANIUM restored a little HP using its Leftovers!" follows each turn.
+- **Control (Florges with Flower Veil):** the Balloon pops and nothing is shared. Florges keeps its Leftovers.
+- **Meganium flings an Iron Ball:** "MEGANIUM flung its Iron Ball!", then the share message. Leftovers heals it at the
+  end of the turn. Next turn it flings the Leftovers, and Florges has nothing left to share.
+- **Meganium holds an Eject Button:** "MEGANIUM is switched out with the Eject Button!", "Go! ARCHALUDON!", and nothing
+  is shared.
+- **The foe's side (Tauros with a Normal Gem, Miltank with Leftovers and Symbiosis):** "The Normal Gem strengthened Horn
+  Attack's power!", then "The foe's MILTANK shared its / Leftovers with", scrolling to "the foe's TAUROS!".
+
 ## Item 11 (effect fidelity): Dancer
 
 For players:

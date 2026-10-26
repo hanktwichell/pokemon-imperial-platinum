@@ -4593,6 +4593,7 @@ enum SwitchInCheckState {
 
     SWITCH_IN_CHECK_STATE_FIELD_WEATHER = SWITCH_IN_CHECK_STATE_START,
     SWITCH_IN_CHECK_STATE_SOVEREIGN_NEUTRALIZING_GAS, // Sovereign (item 11)
+    SWITCH_IN_CHECK_STATE_SOVEREIGN_SYMBIOSIS, // Sovereign (item 11)
     SWITCH_IN_CHECK_STATE_SOVEREIGN_PRIMAL, // Sovereign (E8)
     SWITCH_IN_CHECK_STATE_SOVEREIGN_TOTEM_AURA, // Sovereign (decision 18)
     SWITCH_IN_CHECK_STATE_TRACE,
@@ -4714,6 +4715,17 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                 }
 
                 battleCtx->switchInCheckState++;
+            }
+            break;
+
+        case SWITCH_IN_CHECK_STATE_SOVEREIGN_SYMBIOSIS:
+            // Sovereign (item 11): a Symbiosis pass made while the script stack was full (BtlCmd_RemoveItem).
+            battleCtx->switchInCheckState++;
+
+            if (battleCtx->sovereignSymbiosisPending) {
+                battleCtx->sovereignSymbiosisPending = FALSE;
+                subscript = subscript_sovereign_symbiosis;
+                result = SWITCH_IN_CHECK_RESULT_BREAK;
             }
             break;
 
