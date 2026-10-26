@@ -18,6 +18,36 @@ players and the verification that was run.
   through `tools/sprites/smogon_credits.py`, which `tools/regenerate_docs.sh` runs. `CITATIONS.md` names the 36
   spriters.
 
+## E12 — front and back sprites get palettes of their own
+
+For players: the new species' sprites keep their colours. Platinum gave a Pokémon's front and back sprite one shared
+palette of 15 colours; now each has its own (owner, 2026-10-26), so only 7 of the 532 new species still lose a few
+colours, down from 165.
+
+- `pl_pokegra.narc` keeps each species' six files where they were, then adds two back palettes (normal, shiny) per
+  species at the end (`tools/scripts/make_pl_pokegra.py`, files named `zback-*` so they sort last).
+  `BuildPokemonSpriteTemplate` (`src/pokemon.c`) loads a back sprite's palette from
+  `POKEGRA_BACK_PALETTE_BASE + species * 2 + shiny`.
+- A species with no `back_normal.pal`/`back_shiny.pal` (#1–493) gets copies of its front palettes, so it looks as
+  before. The Diamond/Pearl sprite path and Platinum's own form archive aren't touched.
+- `tools/sprites/convert_battle_sprites.py` writes `back_normal.pal` and `back_shiny.pal` for #494–1025.
+- Verification: release build and boot smoke test pass; the archive has 8,208 files (1,026 × 6 + 1,026 × 2), and for
+  #494–1025 every front and back palette sits in the slot the game reads; #1–493's back slots equal their front
+  palettes. Not yet seen in a battle.
+
+## E12 — PokeAPI fronts for #494–1025
+
+For players: the new species' front and shiny front sprites are PokeAPI's (owner, 2026-10-26); their backs and shiny
+backs stay those from the owner's pack.
+
+- `assets/sprites/packs/pokeapi_fronts/` holds PokeAPI's front and shiny front for #494–1025.
+  `tools/sprites/convert_battle_sprites.py --fronts DIR` takes the fronts from there and the backs from the pack.
+- Front and back still share one 15-colour palette, so 165 species had colours reduced, and 107 PokeAPI fronts are
+  bigger than 80×80 and were scaled down. 11 PokeAPI shiny fronts don't line up with their fronts (Vivillon,
+  Flabébé, Floette, Florges, Toedscruel and others), so their shiny palette is approximate; the owner chose PokeAPI
+  fronts for these too. `docs/BattleSpriteImport.md` lists every species.
+- Megas and other forms are left for when forms get sprites of their own.
+- Verification: release build and boot smoke test pass; a contact sheet of 24 species looked right.
 
 ## E12 — the Gen 5–9 battle sprites are in the game
 
