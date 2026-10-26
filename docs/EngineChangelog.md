@@ -4,6 +4,32 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): Dragon Darts in double battles
+
+For players:
+- **Dragon Darts** in a double battle, aimed at a foe, throws one dart at that foe and one at its ally. This is
+  Showdown's smart targeting.
+  - When the first dart can't hit its target (a miss, Protect, an immunity such as a Fairy type), both darts go to the
+    ally.
+  - When the second dart can't hit the ally, it goes back to the first target.
+  - When the darts split, there is no "Hit 2 time(s)!" message. When both hit one Pokémon, the message stays.
+  - In a single battle, or with no ally to aim at, it hits its target twice as before.
+- With this, no move is approximate any more in `docs/MoveChecklist.md` (363 exact).
+- **Code:**
+  - Each dart is a pass of the move at one target.
+  - `Sovereign_DragonDartsNext`, called from the spread-move loop, sends the next dart.
+  - `BattleContext.sovereignDarts` and `sovereignDartsTargets` hold the state for the current move.
+
+**Verification:** test and release ROMs built; the battle-script size check, the message check and the docs check pass.
+- All cases below were double battles in the test build. The lead was a Lv. 50 Dragapult using Dragon Darts, with a
+  Snorlax partner using Growl.
+- **Against Belle & Pa (Tauros and Miltank):** each foe took one dart per use (Tauros 96 → 35, Miltank 109 → 58).
+- **Against Interviewers Roxy & Oli (Magneton and Kirlia, which is Fairy-type):**
+  - Aimed at Kirlia: "It doesn't affect the foe's KIRLIA...", then both darts hit Magneton (73 → 43 → 10) and "Hit 2
+    time(s)!" appeared.
+  - Aimed at Magneton: the first dart hit it (73 → 39), then "It doesn't affect the foe's KIRLIA...", then the second
+    dart came back to Magneton (39 → 6).
+
 ## Item 11 (effect fidelity): Round and Expanding Force in double battles; turn order after After You and Quash
 
 For players:

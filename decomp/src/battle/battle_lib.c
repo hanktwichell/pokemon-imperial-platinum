@@ -2087,6 +2087,7 @@ void BattleContext_Init(BattleContext *battleCtx)
     battleCtx->multiHitCounter = 0;
     battleCtx->multiHitNumHits = 0;
     battleCtx->sovereignParentalBond = FALSE;
+    battleCtx->sovereignDarts = 0; // SOVEREIGN_DARTS_NONE
     battleCtx->sovereignThroughProtect = FALSE;
     battleCtx->battlerCounter = 0;
     battleCtx->multiHitLoop = 0;
