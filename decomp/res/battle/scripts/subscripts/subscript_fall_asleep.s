@@ -9,6 +9,9 @@ _000:
     CheckAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_SWEET_VEIL, _202 // Sovereign (item 11)
     // Sovereign (FM, item 11): Shields Down (a Meteor Minior) and Purifying Salt keep every status condition off.
     CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_STATUS_IMMUNE_EFFECT_MON, TRUE, _202
+    // Sovereign (item 11): Sweet Veil, its own or its partner's, and Flower Veil for a Grass type.
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_SWEET_VEIL_EFFECT_MON, TRUE, _sovereign_sweet_veil
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_FLOWER_VEIL_EFFECT_MON, TRUE, _sovereign_flower_veil
     CheckIgnoreWeather _031
     // Sovereign (item 11): sunlight as it acts on the target (not on a Utility Umbrella holder)
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_SOVEREIGN_SIDE_EFFECT_MON_WEATHER, FIELD_CONDITION_SUNNY, _031
@@ -29,6 +32,9 @@ _055:
     CheckIgnorableAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_SWEET_VEIL, _202 // Sovereign (item 11)
     // Sovereign (FM, item 11): Shields Down (a Meteor Minior) and Purifying Salt keep every status condition off.
     CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_STATUS_IMMUNE_EFFECT_MON, TRUE, _202
+    // Sovereign (item 11): Sweet Veil, its own or its partner's, and Flower Veil for a Grass type.
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_SWEET_VEIL_EFFECT_MON, TRUE, _sovereign_sweet_veil
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_FLOWER_VEIL_EFFECT_MON, TRUE, _sovereign_flower_veil
     CheckIgnoreWeather _077
     // Sovereign (item 11): sunlight as it acts on the target (not on a Utility Umbrella holder)
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_SOVEREIGN_SIDE_EFFECT_MON_WEATHER, FIELD_CONDITION_SUNNY, _077
@@ -180,3 +186,13 @@ _sovereign_electric_1:
     // Sovereign (item 11): {0} surrounds itself with ...
     PrintMessage BattleStrings_Text_SovereignProtectedByElectricTerrain_Ally, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
     GoTo _330
+
+_sovereign_sweet_veil:
+    UpdateVar OPCODE_SET, BTLVAR_CALC_TEMP, ABILITY_SWEET_VEIL
+    Call BATTLE_SUBSCRIPT_SOVEREIGN_VEIL
+    End 
+
+_sovereign_flower_veil:
+    UpdateVar OPCODE_SET, BTLVAR_CALC_TEMP, ABILITY_FLOWER_VEIL
+    Call BATTLE_SUBSCRIPT_SOVEREIGN_VEIL
+    End 

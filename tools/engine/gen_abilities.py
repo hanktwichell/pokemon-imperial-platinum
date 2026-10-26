@@ -134,8 +134,8 @@ IMPLEMENTED = {
     302: "yes: its damaging moves have a 30% chance to badly poison (Shield Dust stops it)",
     307: "yes: a Pokémon its move poisons or badly poisons becomes confused too",
     213: "yes: no status condition, no drowsiness, Rest fails; counts as asleep for Dream Eater, Nightmare, Hex, Wake-Up Slap, Bad Dreams, Sleep Talk and Snore",
-    257: "partly: it can't be poisoned, and a poisoning is healed (its allies' protection not yet)",
-    175: "partly: it can't fall asleep or become drowsy, and Rest fails (its allies' protection not yet)",
+    257: "yes: it and its partner can't be poisoned, and its own poisoning is healed (\"…is protected by a pastel veil!\" for its partner)",
+    175: "yes: it and its partner can't fall asleep or become drowsy, and Rest fails (\"…can't fall asleep due to a veil of sweetness!\" for its partner)",
     167: "partly: when it eats its own held Berry, it also restores a third of its max HP (not yet for a Berry taken by Bug Bite or Pluck, nor a damage-halving Berry)",
     247: "partly: Berries that restore HP restore twice as much, and stat-raising Berries raise 2 stages (damage-halving and other Berries not yet)",
     139: "yes: at the end of a turn, regrows the Berry it used up, half the time (every time in harsh sunlight)",
@@ -225,6 +225,8 @@ IMPLEMENTED = {
     270: "yes: Attack +1 when hit by a Fire move, can't be burned",  # ThermalExchange
     157: "yes: absorbs Grass moves, Attack +1 (`BattleSystem_TriggerImmunityAbility`)",  # Sap Sipper
     192: "yes: Defense +1 stage each time a damaging move hits (`BattleSystem_TriggerAbilityOnHit`)",  # Stamina
+    165: "yes: Attract, Disable, Encore, Heal Block, Taunt and Torment don't affect it or its partner, nor does Cursed Body or Cute Charm (\"…is protected by an aromatic veil!\")",  # Aroma Veil
+    166: "yes: other Pokémon can't lower the stats of, give a status condition to or make drowsy a Grass type on its side, itself or its partner (\"…surrounded itself with a veil of petals!\")",  # Flower Veil
     193: "yes: switches out (a wild one flees) when another Pokémon's damaging move drops it to half its HP or less (`BattleSystem_TriggerHeldItemOnHit`); not yet after indirect damage",  # Wimp Out
     194: "yes: switches out (a wild one flees) when another Pokémon's damaging move drops it to half its HP or less (`BattleSystem_TriggerHeldItemOnHit`); not yet after indirect damage",  # Emergency Exit
     273: "yes: absorbs Fire moves, Defense +2 (`BattleSystem_TriggerImmunityAbility`)",  # Well-Baked Body

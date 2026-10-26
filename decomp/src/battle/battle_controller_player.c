@@ -2458,7 +2458,7 @@ static int BattleControllerPlayer_CheckObedience(BattleSystem *battleSys, Battle
     if ((rand1 < maxLevel && (ATTACKING_MON.status & MON_CONDITION_ANY) == FALSE)
         && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_VITAL_SPIRIT
         && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_INSOMNIA
-        && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_SWEET_VEIL // Sovereign (item 11)
+        && Sovereign_VeilHolder(battleSys, battleCtx, BATTLER_NONE, battleCtx->attacker, ABILITY_SWEET_VEIL) == BATTLER_NONE // Sovereign (item 11): its own or its partner's Sweet Veil
         && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_COMATOSE // Sovereign (item 11)
         && (battleCtx->fieldConditionsMask & FIELD_CONDITION_UPROAR) == FALSE) {
         *nextSeq = subscript_disobey_sleep;
@@ -3496,6 +3496,12 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
             || MOVE_DATA(move).range == RANGE_ALL_ADJACENT
             || MOVE_DATA(move).range == RANGE_ALLY)
         && Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_GOOD_AS_GOLD) == TRUE) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_INEFFECTIVE;
+    }
+
+    // Sovereign (item 11): Aroma Veil, the target's own or its partner's, keeps Attract, Disable, Encore, Heal Block,
+    // Taunt and Torment off it. subscript_missed names the veil.
+    if (Sovereign_AromaVeilBlocks(battleSys, battleCtx, attacker, defender, move)) {
         battleCtx->moveStatusFlags |= MOVE_STATUS_INEFFECTIVE;
     }
 

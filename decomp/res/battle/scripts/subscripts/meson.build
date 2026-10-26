@@ -444,4 +444,5 @@ subscript_files = files(
     'subscript_sovereign_red_card.s',
     'subscript_sovereign_eject_button.s',
     'subscript_sovereign_emergency_exit.s',
+    'subscript_sovereign_veil.s',
 )

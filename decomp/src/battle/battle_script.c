@@ -3073,6 +3073,15 @@ static BOOL ChangeStatStage(BattleSystem *battleSys, BattleContext *battleCtx)
                     }
 
                     result = 1;
+                } else if (MON_HAS_TYPE(battleCtx->sideEffectMon, TYPE_GRASS)
+                    && Sovereign_VeilHolder(battleSys, battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, ABILITY_FLOWER_VEIL) != BATTLER_NONE) {
+                    // Sovereign (item 11): Flower Veil, its own or its partner's, keeps another Pokemon's stat drops off a
+                    // Grass type.
+                    battleCtx->msgBuffer.id = BattleStrings_Text_SovereignVeilOfPetals_Ally; // "{0} surrounded itself with a veil of petals!"
+                    battleCtx->msgBuffer.tags = TAG_NICKNAME;
+                    battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->sideEffectMon);
+
+                    result = 1;
                 } else if (AbilityBlocksSpecificStatReduction(battleCtx, statOffset, ABILITY_KEEN_EYE, BATTLE_STAT_ACCURACY)
                     || AbilityBlocksSpecificStatReduction(battleCtx, statOffset, ABILITY_MINDS_EYE, BATTLE_STAT_ACCURACY)
                     || AbilityBlocksSpecificStatReduction(battleCtx, statOffset, ABILITY_HYPER_CUTTER, BATTLE_STAT_ATTACK)
@@ -10013,6 +10022,23 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_HALF_HP_PAID: // Sovereign (item 11): subscript_sovereign_half_hp_cost
         return &battleCtx->sovereignHalfHPPaid;
+    case BTLVAR_SOVEREIGN_SWEET_VEIL_EFFECT_MON: // Sovereign (item 11): read-only, TRUE when Sweet Veil (its own or its
+        // partner's) keeps the side-effect target from falling asleep
+        battleCtx->sovereignTerrainTemp = Sovereign_SideEffectVeil(battleSys, battleCtx, ABILITY_SWEET_VEIL);
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_PASTEL_VEIL_EFFECT_MON: // Sovereign (item 11): read-only, TRUE when Pastel Veil (its own or its
+        // partner's) keeps the side-effect target from being poisoned
+        battleCtx->sovereignTerrainTemp = Sovereign_SideEffectVeil(battleSys, battleCtx, ABILITY_PASTEL_VEIL);
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_FLOWER_VEIL_EFFECT_MON: // Sovereign (item 11): read-only, TRUE when Flower Veil keeps another
+        // Pokemon from giving the side-effect target (a Grass type) a status condition
+        battleCtx->sovereignTerrainTemp = Sovereign_FlowerVeilGuards(battleSys, battleCtx);
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_AROMA_VEIL_DEFENDER: // Sovereign (item 11): read-only, TRUE when Aroma Veil keeps the
+        // attacker's move off the defender (subscript_missed)
+        battleCtx->sovereignTerrainTemp = Sovereign_AromaVeilBlocks(battleSys, battleCtx, battleCtx->attacker,
+            battleCtx->defender, battleCtx->moveCur);
+        return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_SIDE_EFFECT_MON_GROUNDED: // Sovereign (item 11): read-only, TRUE when the side-effect target
         // is grounded (Rototiller)
         battleCtx->sovereignTerrainTemp = Sovereign_IsGrounded(battleCtx, battleCtx->sideEffectMon);

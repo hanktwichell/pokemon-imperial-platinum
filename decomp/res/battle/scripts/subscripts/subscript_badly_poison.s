@@ -7,6 +7,9 @@ _000:
     CheckAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_PASTEL_VEIL, _249 // Sovereign (item 11)
     // Sovereign (FM, item 11): Shields Down (a Meteor Minior) and Purifying Salt keep every status condition off.
     CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_STATUS_IMMUNE_EFFECT_MON, TRUE, _249
+    // Sovereign (item 11): Pastel Veil, its own or its partner's, and Flower Veil for a Grass type.
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_PASTEL_VEIL_EFFECT_MON, TRUE, _sovereign_pastel_veil
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_FLOWER_VEIL_EFFECT_MON, TRUE, _sovereign_flower_veil
     CheckIgnoreWeather _121
     // Sovereign (item 11): sunlight as it acts on the target (not on a Utility Umbrella holder)
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_SOVEREIGN_SIDE_EFFECT_MON_WEATHER, FIELD_CONDITION_SUNNY, _121
@@ -19,6 +22,9 @@ _023:
     CheckAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_PASTEL_VEIL, _248 // Sovereign (item 11)
     // Sovereign (FM, item 11): Shields Down (a Meteor Minior) and Purifying Salt keep every status condition off.
     CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_STATUS_IMMUNE_EFFECT_MON, TRUE, _248
+    // Sovereign (item 11): Pastel Veil, its own or its partner's, and Flower Veil for a Grass type.
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_PASTEL_VEIL_EFFECT_MON, TRUE, _sovereign_pastel_veil
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_FLOWER_VEIL_EFFECT_MON, TRUE, _sovereign_flower_veil
     CheckIgnoreWeather _045
     // Sovereign (item 11): sunlight as it acts on the target (not on a Utility Umbrella holder)
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_SOVEREIGN_SIDE_EFFECT_MON_WEATHER, FIELD_CONDITION_SUNNY, _045
@@ -48,6 +54,9 @@ _094:
     CheckIgnorableAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_PASTEL_VEIL, _249 // Sovereign (item 11)
     // Sovereign (FM, item 11): Shields Down (a Meteor Minior) and Purifying Salt keep every status condition off.
     CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_STATUS_IMMUNE_EFFECT_MON, TRUE, _249
+    // Sovereign (item 11): Pastel Veil, its own or its partner's, and Flower Veil for a Grass type.
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_PASTEL_VEIL_EFFECT_MON, TRUE, _sovereign_pastel_veil
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_FLOWER_VEIL_EFFECT_MON, TRUE, _sovereign_flower_veil
     CheckIgnoreWeather _111
     // Sovereign (item 11): sunlight as it acts on the target (not on a Utility Umbrella holder)
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_SOVEREIGN_SIDE_EFFECT_MON_WEATHER, FIELD_CONDITION_SUNNY, _111
@@ -178,3 +187,13 @@ _sovereign_misty_2:
     // Sovereign (item 11): {0} surrounds itself with ...
     PrintMessage BattleStrings_Text_SovereignProtectedByMistyTerrain_Ally, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
     GoTo _348
+
+_sovereign_pastel_veil:
+    UpdateVar OPCODE_SET, BTLVAR_CALC_TEMP, ABILITY_PASTEL_VEIL
+    Call BATTLE_SUBSCRIPT_SOVEREIGN_VEIL
+    End 
+
+_sovereign_flower_veil:
+    UpdateVar OPCODE_SET, BTLVAR_CALC_TEMP, ABILITY_FLOWER_VEIL
+    Call BATTLE_SUBSCRIPT_SOVEREIGN_VEIL
+    End 

@@ -72,9 +72,16 @@ _107:
 
 _119:
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_INEFFECTIVE, _134
+    // Sovereign (item 11): Aroma Veil names itself.
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_AROMA_VEIL_DEFENDER, TRUE, _sovereign_aroma_veil
     IncrementGameRecord BTLSCR_ATTACKER, BATTLER_TYPE_SOLO_PLAYER, RECORD_USED_INEFFECTIVE_MOVE
     // It doesn’t affect {0}...
     PrintMessage BattleStrings_Text_ItDoesntAffectPokemon_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
+    GoTo _179
+
+_sovereign_aroma_veil:
+    // {0} is protected by an aromatic veil!
+    PrintMessage BattleStrings_Text_SovereignAromaticVeil_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
     GoTo _179
 
 _134:

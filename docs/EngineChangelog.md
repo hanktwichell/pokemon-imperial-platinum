@@ -4,6 +4,34 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): the veils (Flower Veil, Aroma Veil, Sweet Veil, Pastel Veil)
+
+For players: the four veil abilities guard their holder's partner too, as since Gen VI.
+- **Flower Veil:** other Pokémon can't lower the stats of a Grass type on its side, give it a status condition, or make
+  it drowsy. Its own Flame Orb or Rest still works. A status move or Yawn shows "{0} surrounded itself with a veil of
+  petals!"; a move's chance effect is stopped without a word.
+- **Aroma Veil:** Attract, Disable, Encore, Heal Block, Taunt and Torment don't affect the holder or its partner ("{0} is
+  protected by an aromatic veil!"). Neither do Cursed Body's disable and Cute Charm's infatuation.
+- **Sweet Veil:** its partner can't fall asleep or become drowsy either, and its partner's Rest fails ("{0} can't fall
+  asleep due to a veil of sweetness!"). A disobedient partner doesn't nap.
+- **Pastel Veil:** its partner can't be poisoned either ("{0} is protected by a pastel veil!").
+- Mold Breaker gets past all four. The holder's own Sweet Veil and Pastel Veil keep their old messages.
+- Code: `Sovereign_VeilHolder` (`battle_lib.c`) finds the holder, the battler itself or its partner while it's in. Three
+  read-only script vars feed the status subscripts, which call the new `subscript_sovereign_veil` for the message.
+  Flower Veil's stat-drop check sits beside Clear Body's in `BtlCmd_ChangeStatStage`. Aroma Veil's check sits beside
+  Good as Gold's in `CheckMoveHitOverrides`, and `subscript_missed` names it.
+
+**Verification:** test ROM built; `subscript_badly_poison`, the largest battle script, is 1,924 of 2,048 bytes. Harness
+wild battles: a Lv. 100 Ninjask used one move against the lead, which was given the ability in battle:
+- **Flower Veil, Sceptile:** Thunder Wave, Growl and Yawn each showed "SCEPTILE surrounded itself with a veil of
+  petals!" on every turn. Sceptile was never paralyzed or drowsy, and its Attack never fell.
+- **Flower Veil, Snorlax (not Grass):** Thunder Wave paralyzed it.
+- **Aroma Veil, Snorlax:** Taunt and Torment each showed "SNORLAX is protected by an aromatic veil!". Without the
+  ability, "SNORLAX fell for the taunt!".
+- **Sweet Veil, Snorlax:** Spore still showed "SNORLAX stayed awake because of its Sweet Veil!".
+- The partner cases (Sweet Veil, Pastel Veil, a partner's Flower Veil or Aroma Veil) need a double battle, which the
+  harness doesn't have; they use the same code with the partner's slot.
+
 ## Item 11 (effect fidelity): Emergency Exit and Wimp Out
 
 For players: Emergency Exit (Golisopod) and Wimp Out (Wimpod) work.
