@@ -10179,6 +10179,27 @@
         "The foe’s {STRVAR_1 1, 0, 0} can no longer\n",
         "escape because it used No Retreat!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAttackedByItsItem_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is about to be\n",
+        "attacked by its {STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAttackedByItsItem_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} is about to be\n",
+        "attacked by its {STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAttackedByItsItem_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} is about to be\n",
+        "attacked by its {STRVAR_1 8, 1, 0}!"
+      ]
     }
   ]
 }

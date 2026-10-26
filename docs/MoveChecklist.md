@@ -6,8 +6,8 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 338 |
-| approximate | 13 |
+| exact | 345 |
+| approximate | 6 |
 | placeholder | 29 |
 | removed | 72 |
 
@@ -267,7 +267,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 717 | Nature’sMadness | Fairy | `HALVE_HP` | exact |  |
 | 718 | Multi-Attack | Normal | `JUDGEMENT` | exact |  |
 | 719 | (10-000-000-volt-thunderbolt) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
-| 720 | Mind Blown | Fire | `SOVEREIGN_HALF_HP_COST_HIT` | approximate | Sovereign effect: the user loses half its max HP (only when it hits, so far; a single target) |
+| 720 | Mind Blown | Fire | `SOVEREIGN_HALF_HP_COST_HIT` | exact | Sovereign effect: hits all adjacent Pokémon; the user loses half its max HP once, hit or miss; Damp stops it |
 | 721 | Plasma Fists | Electric | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 722 | Photon Geyser | Psychic | `HIT` | exact | Sovereign effect: physical when the user's Attack is higher than its Sp. Atk (with their stages); ignores the target's ability |
 | 723 | (light-that-burns-the-sky) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
@@ -343,20 +343,20 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 793 | False Surrender | Dark | `BYPASS_ACCURACY` | exact |  |
 | 794 | Meteor Assault | Fighting | `RECHARGE_AFTER` | exact |  |
 | 795 | Eternabeam | Dragon | `RECHARGE_AFTER` | exact |  |
-| 796 | Steel Beam | Steel | `SOVEREIGN_HALF_HP_COST_HIT` | approximate | Sovereign effect: the user loses half its max HP (only when it hits, so far) |
+| 796 | Steel Beam | Steel | `SOVEREIGN_HALF_HP_COST_HIT` | exact | Sovereign effect: the user loses half its max HP, hit or miss |
 | 797 | Expanding Force | Psychic | `HIT` | approximate | Sovereign effect: 1.5x in Psychic Terrain (doesn't spread to both foes yet) |
-| 798 | Steel Roller | Steel | `HIT` | approximate | Sovereign effect: fails without a terrain, then removes it (no message yet) |
+| 798 | Steel Roller | Steel | `SOVEREIGN_FLATTEN_TERRAIN_HIT` | exact | Sovereign effect: fails without a terrain; after the hit, the terrain ends |
 | 799 | Scale Shot | Dragon | `MULTI_HIT` | exact | Sovereign effect: hits 2-5 times, then user Defense -1 and Speed +1 |
 | 800 | Meteor Beam | Rock | `ELECTRO_SHOT` | exact | Sovereign effect: charge turn raises Sp. Atk 1 stage, attacks next turn (Power Herb skips it) |
 | 801 | Shell Side Arm | Poison | `POISON_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
-| 802 | Misty Explosion | Fairy | `HALVE_DEFENSE` | approximate | Sovereign effect: user faints; 1.5x in Misty Terrain (uses Explosion's effect) |
+| 802 | Misty Explosion | Fairy | `HALVE_DEFENSE` | exact | Sovereign effect: user faints; 1.5x in Misty Terrain; Damp stops it (Explosion's effect, which no longer halves Defense) |
 | 803 | Grassy Glide | Grass | `HIT` | exact | Sovereign effect: +1 priority in Grassy Terrain |
 | 804 | Rising Voltage | Electric | `HIT` | exact | Sovereign effect: power doubles in Electric Terrain against a grounded target |
 | 805 | Terrain Pulse | Normal | `HIT` | exact | Sovereign effect: type follows the terrain, double power in one |
 | 806 | Skitter Smack | Bug | `LOWER_SP_ATK_HIT` | exact | Sovereign effect: target Sp. Atk -1 (100%) |
 | 807 | BurnJealousy | Fire | `BURN_HIT` | exact | Sovereign effect: burns a target whose stats rose this turn |
 | 808 | Lash Out | Dark | `HIT` | exact | Sovereign effect: power doubles if the user's stats were lowered this turn |
-| 809 | Poltergeist | Ghost | `HIT` | approximate | Sovereign effect: fails against a target holding no item (no item message yet) |
+| 809 | Poltergeist | Ghost | `SOVEREIGN_POLTERGEIST` | exact | Sovereign effect: fails against a target holding no item; "...is about to be attacked by its <item>!" before the hit |
 | 810 | Corrosive Gas | Poison | `SOVEREIGN_CORROSIVE_GAS` | exact | Sovereign effect: takes away the held items of all adjacent Pokémon |
 | 811 | Coaching | Fighting | `SOVEREIGN_COACHING` | exact | Sovereign effect: the user's ally gets Attack and Defense +1 (fails without one) |
 | 812 | Flip Turn | Water | `SWITCH_HIT` | exact |  |
@@ -382,7 +382,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 832 | Mystical Power | Psychic | `RAISE_SP_ATK_HIT` | exact | Sovereign effect: user Sp. Atk +1 (100%) |
 | 833 | Raging Fury | Fire | `CONTINUE_AND_CONFUSE_SELF` | exact | Sovereign effect: rampages 2-3 turns, then confuses the user |
 | 834 | Wave Crash | Water | `RECOIL_THIRD` | exact | Sovereign effect: 1/3 recoil |
-| 835 | Chloroblast | Grass | `SOVEREIGN_HALF_HP_COST_HIT` | approximate | Sovereign effect: the user loses half its max HP (only when it hits, so far) |
+| 835 | Chloroblast | Grass | `SOVEREIGN_HALF_HP_COST_HIT` | exact | Sovereign effect: the user loses half its max HP, hit or miss |
 | 836 | Mountain Gale | Ice | `FLINCH_HIT` | exact | Sovereign effect: 30% flinch |
 | 837 | Victory Dance | Fighting | `SOVEREIGN_VICTORY_DANCE` | exact | Sovereign effect: user Attack +1, user Defense +1, user Speed +1 |
 | 838 | Headlong Rush | Ground | `DEF_SPD_DOWN_HIT` | exact | Sovereign effect: user Defense and Sp. Def -1 |
@@ -408,7 +408,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 858 | Spicy Extract | Grass | `SOVEREIGN_SPICY_EXTRACT` | exact | Sovereign effect: target Attack +2, target Defense -2 |
 | 859 | Spin Out | Steel | `SOVEREIGN_LOWER_OWN_SPEED_2_HIT` | exact | Sovereign effect: user Speed -2 |
 | 860 | Population Bomb | Normal | `SOVEREIGN_POPULATION_BOMB` | exact | Sovereign effect: hits up to 10 times, checking accuracy each hit (Skill Link: 10 hits, Loaded Dice: 4-10) |
-| 861 | Ice Spinner | Ice | `HIT` | approximate | Sovereign effect: removes the terrain (no message yet) |
+| 861 | Ice Spinner | Ice | `SOVEREIGN_FLATTEN_TERRAIN_HIT` | exact | Sovereign effect: after the hit, the terrain ends |
 | 862 | Glaive Rush | Dragon | `HIT` | exact | Sovereign effect: until the user's next move, moves against it never miss and deal double damage |
 | 863 | RevivlBlessing | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 864 | Salt Cure | Rock | `SOVEREIGN_SALT_CURE` | exact | Sovereign effect: the target loses 1/16 of its max HP each turn (1/8 if Water or Steel; Champions) until it switches out |

@@ -4,6 +4,37 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): moves, batch 10 (Explosion, terrain removers, Poltergeist, Steel Beam)
+
+For players:
+- **Explosion and Self-Destruct** no longer halve the target's Defense, which was the Gen IV rule. Their power was
+  already Gen V+'s 250 and 200, so they had been hitting as if at 500 and 400. Misty Explosion uses the same effect, so
+  it's fixed too.
+- **Steel Roller and Ice Spinner** now end the terrain with its message ("The electricity disappeared from the
+  battlefield."), after the hit, if the user is still standing. Before, the terrain vanished silently.
+  - New effect `SOVEREIGN_FLATTEN_TERRAIN_HIT` and `subscript_sovereign_flatten_terrain`.
+  - The silent clear in `UpdateMoveBuffers` is gone.
+- **Poltergeist** says "...is about to be attacked by its <item>!" before the hit, as Brick Break shows its barrier
+  message. New effect `SOVEREIGN_POLTERGEIST` and `subscript_sovereign_poltergeist`.
+- **Steel Beam, Mind Blown and Chloroblast** cost half the user's max HP when they miss or are blocked, too
+  (`subscript_missed`).
+  - The cost is paid once per move (`sovereignHalfHPPaid`), so Mind Blown hits all adjacent Pokémon for one payment.
+  - Damp stops Mind Blown, as it stops Explosion.
+- Checklist: 345 exact, 6 approximate, 29 placeholders. The six left are Autotomize, Round, Parabolic Charge, Dragon
+  Darts, Expanding Force and Shell Side Arm.
+
+**Verification:** test ROM built. Harness wild battles:
+- **Explosion:** Snorlax's Self-Destruct did 144 to Ninjask, and its Strength did 46–58. That ratio of about 2.7 is
+  200/80 = 2.5 within the damage roll; with the halving it would have been about 5.
+- **Steel Roller and Ice Spinner:** after the foe's Electric Terrain, the hit, then "The electricity disappeared from
+  the battlefield.". Steel Roller with no terrain: "But it failed!".
+- **Poltergeist:** "The wild NINJASK is about to be attacked by its Leftovers!", then the hit. Against a foe with no
+  item: "But it failed!".
+- **Steel Beam:**
+  - Into Protect: Snorlax 224 → 112.
+  - On a hit: 224 → 112, once.
+- **Mind Blown:** from a Damp Psyduck, "PSYDUCK's Damp prevents PSYDUCK from using Mind Blown!" and no HP lost.
+
 ## Item 11 (effect fidelity): moves, batch 9 (Champions corrections, Stuff Cheeks, No Retreat)
 
 For players: Dire Claw, Make It Rain, Toxic Thread, Salt Cure, Rage Fist, First Impression, Belch and the Unseen Fist

@@ -115,4 +115,13 @@ _sovereign_no_shield:
 _189:
     UnlockMoveChoice BTLSCR_ATTACKER
     Call BATTLE_SUBSCRIPT_CRASH_ON_MISS
+    // Sovereign (item 11): Steel Beam, Mind Blown and Chloroblast cost half the user's HP even when they miss.
+    CompareVarToValue OPCODE_EQU, BTLVAR_CURRENT_MOVE, MOVE_STEEL_BEAM, _sovereign_half_hp
+    CompareVarToValue OPCODE_EQU, BTLVAR_CURRENT_MOVE, MOVE_MIND_BLOWN, _sovereign_half_hp
+    CompareVarToValue OPCODE_NEQ, BTLVAR_CURRENT_MOVE, MOVE_CHLOROBLAST, _sovereign_end
+
+_sovereign_half_hp:
+    Call BATTLE_SUBSCRIPT_SOVEREIGN_HALF_HP_COST
+
+_sovereign_end:
     End 

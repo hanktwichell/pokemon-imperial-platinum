@@ -7533,3 +7533,39 @@ The checklist is now 338 exact, 13 approximate, 29 placeholders.
    in the harness.
 3. Owner decision pinned in CB-0158: Burn Up and Double Shock (typeless). The rest of the approximate list (Autotomize,
    Round, Parabolic Charge, Dragon Darts, Expanding Force, Shell Side Arm) after that.
+
+## CB-0168 — 2026-10-26, 10:29 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: item 11 moves, batch 10.** PR #184 (batch 9) is merged. The checklist is now 345 exact, 6 approximate,
+29 placeholders.
+- **Explosion and Self-Destruct:** no longer halve Defense (Gen V+). Their 250/200 power had been hitting as if at
+  500/400. Misty Explosion shares the fix.
+- **Steel Roller and Ice Spinner:** end the terrain with its message.
+- **Poltergeist:** "...is about to be attacked by its <item>!" before the hit.
+- **Steel Beam, Mind Blown and Chloroblast:** cost half the HP on a miss too, once per move. Damp stops Mind Blown.
+- `docs/BattleMechanics.md`: the stale Terrains row is fixed and an Explosion row added.
+- Each case was checked in harness battles (docs/EngineChangelog.md).
+
+**Files modified:**
+- `decomp/src/battle/battle_lib.c` (no Defense halving).
+- `decomp/src/battle/battle_controller_player.c` (removed the silent terrain clear; per-move reset of the half-HP
+  flag).
+- `decomp/src/battle/battle_script.c` (var), `decomp/include/battle/battle_context.h`.
+- The generated lists: `battle_script_vars.txt`, `battle_subscripts.txt`, `battle_move_subscript_ptrs.txt`,
+  `move_battle_effects.txt`. Also `decomp/include/data/move_side_effect_subscripts.h`.
+- Scripts:
+  - New: `effect_script_0377.s`, `effect_script_0378.s`, `subscript_sovereign_flatten_terrain.s`,
+    `subscript_sovereign_poltergeist.s`.
+  - Changed: `effect_script_0314.s`, `subscript_sovereign_half_hp_cost.s`, `subscript_missed.s`, the scripts'
+    `meson.build` and `sub_seq.order`.
+- `decomp/res/text/battle_strings.json` (3 messages).
+- `decomp/res/moves/{steel_roller,ice_spinner,poltergeist}/data.json`.
+- `tools/engine/gen9_move_fixes.py`.
+- `docs/MoveChecklist.md`, `docs/BattleMechanics.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. The switching items (Eject Button, Eject Pack, Red Card) with Shed Tail and Chilly Reception, plus a switching case
+   in the harness.
+2. The last approximate moves: Round, Expanding Force, Dragon Darts and Parabolic Charge (doubles), Shell Side Arm
+   (physical/special pick), Autotomize (weight).
+3. Owner decision pinned in CB-0158: Burn Up and Double Shock (typeless).
