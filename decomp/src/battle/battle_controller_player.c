@@ -5492,14 +5492,14 @@ static BOOL BattleControllerPlayer_TriggerAfterMoveHitEffects(BattleSystem *batt
             break;
 
         case AFTER_MOVE_HIT_STATE_KNOCKOUT_ABILITY: {
-            // Sovereign (item 11): Moxie, Chilling Neigh, Grim Neigh and Beast Boost raise a stat for each foe the move
-            // knocked out. afterMoveHitCheckTemp marks the foes already counted.
+            // Sovereign (item 11): Moxie, Chilling Neigh, Grim Neigh (and As One, which has one of them) and Beast Boost
+            // raise a stat for each foe the move knocked out. afterMoveHitCheckTemp marks the foes already counted.
             int ability = Battler_Ability(battleCtx, battleCtx->attacker);
             int foe, stat = -1;
             BOOL fellStinger = battleCtx->moveCur == MOVE_FELL_STINGER; // Sovereign (item 11): Attack +3 on a knockout
 
             if ((ability == ABILITY_MOXIE || ability == ABILITY_CHILLING_NEIGH || ability == ABILITY_GRIM_NEIGH || ability == ABILITY_BEAST_BOOST
-                    || ability == ABILITY_EELEVATE || ability == ABILITY_BATTLE_BOND
+                    || ability == ABILITY_AS_ONE_GLASTRIER || ability == ABILITY_AS_ONE_SPECTRIER || ability == ABILITY_EELEVATE || ability == ABILITY_BATTLE_BOND
                     || fellStinger)
                 && ATTACKING_MON.curHP) {
                 for (foe = 0; foe < maxBattlers; foe++) {
@@ -5543,9 +5543,9 @@ static BOOL BattleControllerPlayer_TriggerAfterMoveHitEffects(BattleSystem *batt
                     }
                     break; // stay in this state to look for another knocked-out foe
                 } else if (foe < maxBattlers) {
-                    if (ability == ABILITY_MOXIE || ability == ABILITY_CHILLING_NEIGH) {
+                    if (ability == ABILITY_MOXIE || ability == ABILITY_CHILLING_NEIGH || ability == ABILITY_AS_ONE_GLASTRIER) {
                         stat = BATTLE_STAT_ATTACK;
-                    } else if (ability == ABILITY_GRIM_NEIGH) {
+                    } else if (ability == ABILITY_GRIM_NEIGH || ability == ABILITY_AS_ONE_SPECTRIER) {
                         stat = BATTLE_STAT_SP_ATTACK;
                     } else {
                         // Beast Boost: the highest of Attack, Defense, Sp. Atk, Sp. Def and Speed (ties go to the first).

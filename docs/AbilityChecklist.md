@@ -148,8 +148,8 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 263 | Dragon’s Maw | Gen 8 | yes: Dragon moves ×1.5 |
 | 264 | Chilling Neigh | Gen 8 | yes: Attack +1 for each foe its move knocks out |
 | 265 | Grim Neigh | Gen 8 | yes: Sp. Atk +1 for each foe its move knocks out |
-| 266 | As One | Gen 8 | not yet (no battle effect) |
-| 267 | As One | Gen 8 | not yet (no battle effect) |
+| 266 | As One | Gen 8 | partly: foes can't eat Berries that heal, cure or trigger on a hit, as with Unnerve (damage-halving Berries not yet); Attack +1 for each foe its move knocks out |
+| 267 | As One | Gen 8 | partly: foes can't eat Berries that heal, cure or trigger on a hit, as with Unnerve (damage-halving Berries not yet); Sp. Atk +1 for each foe its move knocks out |
 | 268 | Lingering Aroma | Gen 9 | yes: an attacker that makes contact gets Lingering Aroma |
 | 269 | Seed Sower | Gen 9 | yes: getting hit sets Grassy Terrain |
 | 270 | ThermalExchange | Gen 9 | yes: Attack +1 when hit by a Fire move, can't be burned |
@@ -182,14 +182,14 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 297 | Earth Eater | Gen 9 | yes: absorbs Ground moves, restores 1/4 of max HP (`BattleSystem_TriggerImmunityAbility`) |
 | 298 | Mycelium Might | Gen 9 | partly: its status moves ignore abilities (moving last not yet) |
 | 299 | Mind’s Eye | Gen 9 | yes: hits Ghost types with Normal and Fighting moves, ignores evasion, accuracy can't be lowered |
-| 300 | SupersweetSyrup | Gen 9 | not yet (no battle effect) |
+| 300 | SupersweetSyrup | Gen 9 | yes: the first time it enters the battle, each foe's evasiveness −1 |
 | 301 | Hospitality | Gen 9 | not yet (no battle effect) |
-| 302 | Toxic Chain | Gen 9 | not yet (no battle effect) |
+| 302 | Toxic Chain | Gen 9 | yes: its damaging moves have a 30% chance to badly poison (Shield Dust stops it) |
 | 303 | Embody Aspect | Gen 9 | not yet (no battle effect) |
 | 304 | Tera Shift | Gen 9 | yes: Terastal Form as it enters battle, until the battle ends |
 | 305 | Tera Shell | Gen 9 | yes: at full HP, damaging moves are not very effective on it |
 | 306 | Teraform Zero | Gen 9 | not yet (no battle effect) |
-| 307 | PoisonPuppeteer | Gen 9 | not yet (no battle effect) |
+| 307 | PoisonPuppeteer | Gen 9 | yes: a Pokémon its move poisons or badly poisons becomes confused too |
 | 308 | Piercing Drill | Gen 9 | yes: contact moves go through protection at 1/4 damage |
 | 309 | Dragonize | Gen 9 | yes: Normal moves become Dragon-type, ×1.2 |
 | 310 | Mega Sol | Gen 9 | partly: its moves work as in harsh sunlight (damage, Solar Beam without charging; Weather Ball, Growth, Synthesis not yet) |

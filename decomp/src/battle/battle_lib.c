@@ -4442,6 +4442,22 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                     result = TRUE;
                     break;
                 }
+
+                // Sovereign (item 11): Supersweet Syrup lowers the foes' evasiveness 1 stage, the first time the holder
+                // enters the battle.
+                if (battleCtx->battleMons[battler].intimidateAnnounced == FALSE
+                    && battleCtx->battleMons[battler].curHP
+                    && Battler_Ability(battleCtx, battler) == ABILITY_SUPERSWEET_SYRUP) {
+                    battleCtx->battleMons[battler].intimidateAnnounced = TRUE;
+
+                    if ((battleCtx->sovereignOncePerBattle[battler] & FlagIndex(battleCtx->selectedPartySlot[battler])) == FALSE) {
+                        battleCtx->sovereignOncePerBattle[battler] |= FlagIndex(battleCtx->selectedPartySlot[battler]);
+                        battleCtx->msgBattlerTemp = battler;
+                        subscript = subscript_sovereign_supersweet_syrup;
+                        result = TRUE;
+                        break;
+                    }
+                }
             }
 
             if (i == maxBattlers) {
@@ -5019,6 +5035,22 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
 
     if (Battler_SubstituteWasHit(battleCtx, battleCtx->defender) == TRUE) {
         return result;
+    }
+
+    // Sovereign (item 11): Toxic Chain (the attacker's ability) has a 30% chance to badly poison a Pokemon its
+    // damaging move hits. subscript_badly_poison treats it as a move's added effect, so Shield Dust stops it too.
+    if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_TOXIC_CHAIN
+        && DEFENDING_MON.curHP
+        && DEFENDING_MON.status == MON_CONDITION_NONE
+        && battleCtx->attacker != battleCtx->defender
+        && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+        && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+        && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+        && BattleSystem_RandNext(battleSys) % 10 < 3) {
+        battleCtx->sideEffectType = SIDE_EFFECT_TYPE_INDIRECT;
+        battleCtx->sideEffectMon = battleCtx->defender;
+        *subscript = subscript_badly_poison;
+        return TRUE;
     }
 
     // Sovereign (item 11): Poison Touch (the attacker's ability) has a 30% chance to poison a Pokemon it hits with a

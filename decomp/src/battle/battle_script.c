@@ -3113,11 +3113,12 @@ static BOOL ChangeStatStage(BattleSystem *battleSys, BattleContext *battleCtx)
             mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] = MIN_STAT_STAGE;
         }
 
-        // Sovereign (item 11): a foe's move or Intimidate (or Cotton Down, or Mirror Armor) lowered a stat: Defiant and
-        // Competitive respond after the move (or the switch-in), and Rattled to Intimidate.
+        // Sovereign (item 11): a foe's move or Intimidate (or Cotton Down, Supersweet Syrup or Mirror Armor) lowered a
+        // stat: Defiant and Competitive respond after the move (or the switch-in), and Rattled to Intimidate.
         if ((battleCtx->sideEffectType != SIDE_EFFECT_TYPE_ABILITY || Sovereign_IsIntimidateDrop(battleCtx)
                 || battleCtx->sovereignMirrorArmorHolder
-                || Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_COTTON_DOWN)
+                || Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_COTTON_DOWN
+                || Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_SUPERSWEET_SYRUP)
             && BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker) != BattleSystem_GetBattlerSide(battleSys, battleCtx->sideEffectMon)
             && (Battler_Ability(battleCtx, battleCtx->sideEffectMon) == ABILITY_DEFIANT
                 || Battler_Ability(battleCtx, battleCtx->sideEffectMon) == ABILITY_COMPETITIVE
