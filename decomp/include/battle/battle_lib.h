@@ -1256,6 +1256,10 @@ int BattleSystem_SovereignMegaForm(BattleSystem *battleSys, BattleContext *battl
 void BattleSystem_SovereignChangeBattleForm(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int form);
 BOOL Battler_SovereignShieldsUp(BattleContext *battleCtx, int battler);
 BOOL Battler_SovereignStatusImmune(BattleContext *battleCtx, int battler);
+int Sovereign_VeilHolder(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int battler, int ability);
+BOOL Sovereign_SideEffectVeil(BattleSystem *battleSys, BattleContext *battleCtx, int ability);
+BOOL Sovereign_FlowerVeilGuards(BattleSystem *battleSys, BattleContext *battleCtx);
+BOOL Sovereign_AromaVeilBlocks(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move);
 BOOL Battler_SovereignChoiceLocks(BattleContext *battleCtx, int battler);
 BOOL Sovereign_Infiltrates(BattleSystem *battleSys, BattleContext *battleCtx, int target);
 int Sovereign_AuraWheelType(u16 species, int form);

@@ -47,8 +47,8 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 162 | Victory Star | Gen 5 | yes: accuracy ×1.1 for it and its ally |
 | 163 | Turboblaze | Gen 5 | yes: ignores the target's ability, like Mold Breaker |
 | 164 | Teravolt | Gen 5 | yes: ignores the target's ability, like Mold Breaker |
-| 165 | Aroma Veil | Gen 6 | not yet (no battle effect) |
-| 166 | Flower Veil | Gen 6 | not yet (no battle effect) |
+| 165 | Aroma Veil | Gen 6 | yes: Attract, Disable, Encore, Heal Block, Taunt and Torment don't affect it or its partner, nor does Cursed Body or Cute Charm ("…is protected by an aromatic veil!") |
+| 166 | Flower Veil | Gen 6 | yes: other Pokémon can't lower the stats of, give a status condition to or make drowsy a Grass type on its side, itself or its partner ("…surrounded itself with a veil of petals!") |
 | 167 | Cheek Pouch | Gen 6 | partly: when it eats its own held Berry, it also restores a third of its max HP (not yet for a Berry taken by Bug Bite or Pluck, nor a damage-halving Berry) |
 | 168 | Protean | Gen 6 | yes: becomes its move's type, once per switch-in |
 | 169 | Fur Coat | Gen 6 | yes: Defense doubled |
@@ -57,7 +57,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 172 | Competitive | Gen 6 | yes: Sp. Atk +2 when a foe's move or Intimidate lowers its stats |
 | 173 | Strong Jaw | Gen 6 | yes: biting moves ×1.5 |
 | 174 | Refrigerate | Gen 6 | yes: Normal moves become Ice-type, ×1.2 |
-| 175 | Sweet Veil | Gen 6 | partly: it can't fall asleep or become drowsy, and Rest fails (its allies' protection not yet) |
+| 175 | Sweet Veil | Gen 6 | yes: it and its partner can't fall asleep or become drowsy, and Rest fails ("…can't fall asleep due to a veil of sweetness!" for its partner) |
 | 176 | Stance Change | Gen 6 | yes: Blade Forme before a damaging move, Shield Forme before King's Shield |
 | 177 | Gale Wings | Gen 6 | yes: Flying moves +1 priority at full HP |
 | 178 | Mega Launcher | Gen 6 | yes: pulse moves ×1.5 |
@@ -139,7 +139,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 254 | WanderingSpirit | Gen 8 | yes: swaps abilities with an attacker that makes contact |
 | 255 | Gorilla Tactics | Gen 8 | yes: Attack ×1.5, but it can only use the first move it picked, as with a Choice item, until it switches out |
 | 256 | NeutralizingGas | Gen 8 | not yet (no battle effect) |
-| 257 | Pastel Veil | Gen 8 | partly: it can't be poisoned, and a poisoning is healed (its allies' protection not yet) |
+| 257 | Pastel Veil | Gen 8 | yes: it and its partner can't be poisoned, and its own poisoning is healed ("…is protected by a pastel veil!" for its partner) |
 | 258 | Hunger Switch | Gen 8 | yes: switches between Full Belly and Hangry Mode at the end of each turn |
 | 259 | Quick Draw | Gen 8 | yes: 30% of the time it uses a damaging move, it moves first in its priority bracket |
 | 260 | Unseen Fist | Gen 8 | yes: contact moves go through protection |

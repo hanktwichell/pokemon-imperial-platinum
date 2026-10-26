@@ -5,6 +5,8 @@ _000:
     CheckIgnorableAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_LIMBER, _170
     // Sovereign (FM, item 11): Shields Down (a Meteor Minior) and Purifying Salt keep every status condition off.
     CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_STATUS_IMMUNE_EFFECT_MON, TRUE, _170
+    // Sovereign (item 11): Flower Veil, its own or its partner's (for a Grass type).
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_FLOWER_VEIL_EFFECT_MON, TRUE, _sovereign_flower_veil
     CheckIgnoreWeather _016
     // Sovereign (item 11): sunlight as it acts on the target (not on a Utility Umbrella holder)
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_SOVEREIGN_SIDE_EFFECT_MON_WEATHER, FIELD_CONDITION_SUNNY, _016
@@ -118,3 +120,8 @@ _sovereign_misty_1:
     // Sovereign (item 11): {0} surrounds itself with ...
     PrintMessage BattleStrings_Text_SovereignProtectedByMistyTerrain_Ally, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
     GoTo _211
+
+_sovereign_flower_veil:
+    UpdateVar OPCODE_SET, BTLVAR_CALC_TEMP, ABILITY_FLOWER_VEIL
+    Call BATTLE_SUBSCRIPT_SOVEREIGN_VEIL
+    End 

@@ -10,6 +10,8 @@ _000:
     CheckAbility CHECK_HAVE, BTLSCR_ATTACKER, ABILITY_INSOMNIA, _098
     CheckAbility CHECK_HAVE, BTLSCR_ATTACKER, ABILITY_VITAL_SPIRIT, _098
     CheckAbility CHECK_HAVE, BTLSCR_ATTACKER, ABILITY_SWEET_VEIL, _098 // Sovereign (item 11)
+    // Sovereign (item 11): its partner's Sweet Veil keeps it awake too.
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_SWEET_VEIL_EFFECT_MON, TRUE, _sovereign_sweet_veil
     CompareMonDataToValue OPCODE_FLAG_SET, BTLSCR_ATTACKER, BATTLEMON_STATUS, MON_CONDITION_SLEEP, _107
     CheckAbility CHECK_HAVE, BTLSCR_ATTACKER, ABILITY_SOUNDPROOF, _027
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_FIELD_CONDITIONS, FIELD_CONDITION_UPROAR, _115
@@ -47,6 +49,12 @@ _098:
     WaitButtonABTime 30
     // {0} stayed awake because of its {1}!
     PrintMessage BattleStrings_Text_PokemonStayedAwakeBecauseOfItsAbility_Ally, TAG_NICKNAME_ABILITY, BTLSCR_ATTACKER, BTLSCR_ATTACKER
+    GoTo _143
+
+_sovereign_sweet_veil:
+    WaitButtonABTime 30
+    // {0} can’t fall asleep due to a veil of sweetness!
+    PrintMessage BattleStrings_Text_SovereignVeilOfSweetness_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
     GoTo _143
 
 _107:

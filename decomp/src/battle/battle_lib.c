@@ -4083,6 +4083,70 @@ BOOL Battler_SovereignStatusImmune(BattleContext *battleCtx, int battler)
     return Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battler, ABILITY_PURIFYING_SALT);
 }
 
+// Sovereign (item 11): the Pokemon whose veil (Sweet Veil, Pastel Veil, Flower Veil or Aroma Veil) guards the battler:
+// the battler itself or, in a double battle, its partner while it's in. BATTLER_NONE when neither has it. The
+// attacker's Mold Breaker gets past it (BATTLER_NONE when no move is what would harm the battler).
+int Sovereign_VeilHolder(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int battler, int ability)
+{
+    int partner = BattleSystem_GetPartner(battleSys, battler);
+
+    if (attacker == BATTLER_NONE ? Battler_Ability(battleCtx, battler) == ability
+                                 : Battler_IgnorableAbility(battleCtx, attacker, battler, ability) == TRUE) {
+        return battler;
+    }
+
+    if (partner != battler
+        && battleCtx->battleMons[partner].curHP
+        && (attacker == BATTLER_NONE ? Battler_Ability(battleCtx, partner) == ability
+                                     : Battler_IgnorableAbility(battleCtx, attacker, partner, ability) == TRUE)) {
+        return partner;
+    }
+
+    return BATTLER_NONE;
+}
+
+// Sovereign (item 11): for the status subscripts, the veil (Sovereign_VeilHolder) guarding the side-effect target, with
+// the attacker's Mold Breaker getting past it when the attacker's move gives the condition.
+BOOL Sovereign_SideEffectVeil(BattleSystem *battleSys, BattleContext *battleCtx, int ability)
+{
+    int attacker = battleCtx->sideEffectType == SIDE_EFFECT_TYPE_DIRECT || battleCtx->sideEffectType == SIDE_EFFECT_TYPE_INDIRECT
+        ? battleCtx->attacker
+        : BATTLER_NONE;
+
+    return Sovereign_VeilHolder(battleSys, battleCtx, attacker, battleCtx->sideEffectMon, ability) != BATTLER_NONE;
+}
+
+// Sovereign (item 11): TRUE when Flower Veil keeps another Pokemon from giving the side-effect target, a Grass type, a
+// status condition or drowsiness: not one it gives itself (Rest, a Flame Orb).
+BOOL Sovereign_FlowerVeilGuards(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    int battler = battleCtx->sideEffectMon;
+
+    if (MON_IS_NOT_TYPE(battler, TYPE_GRASS)
+        || battleCtx->sideEffectType == SIDE_EFFECT_TYPE_HELD_ITEM
+        || ((battleCtx->sideEffectType == SIDE_EFFECT_TYPE_DIRECT || battleCtx->sideEffectType == SIDE_EFFECT_TYPE_INDIRECT)
+            && battleCtx->attacker == battler)) {
+        return FALSE;
+    }
+
+    return Sovereign_SideEffectVeil(battleSys, battleCtx, ABILITY_FLOWER_VEIL);
+}
+
+// Sovereign (item 11): TRUE when Aroma Veil keeps the attacker's move off the defender: Attract, Disable, Encore, Heal
+// Block, Taunt or Torment.
+BOOL Sovereign_AromaVeilBlocks(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move)
+{
+    return attacker != defender
+        && defender != BATTLER_NONE
+        && (move == MOVE_ATTRACT
+            || move == MOVE_DISABLE
+            || move == MOVE_ENCORE
+            || move == MOVE_HEAL_BLOCK
+            || move == MOVE_TAUNT
+            || move == MOVE_TORMENT)
+        && Sovereign_VeilHolder(battleSys, battleCtx, attacker, defender, ABILITY_AROMA_VEIL) != BATTLER_NONE;
+}
+
 BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
     BOOL result = FALSE;
@@ -5504,7 +5568,8 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
         }
         break;
 
-    // Sovereign (item 11): Cursed Body has a 30% chance to disable the move that hit it (for 4 turns).
+    // Sovereign (item 11): Cursed Body has a 30% chance to disable the move that hit it (for 4 turns), unless Aroma Veil
+    // guards the attacker.
     case ABILITY_CURSED_BODY:
         if (ATTACKING_MON.curHP
             && battleCtx->attacker != battleCtx->defender
@@ -5513,6 +5578,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && ATTACKING_MON.moveEffectsData.disabledMove == MOVE_NONE
             && battleCtx->moveCur != MOVE_STRUGGLE
             && Battler_SlotForMove(&ATTACKING_MON, battleCtx->moveCur) != LEARNED_MOVES_MAX
+            && Sovereign_VeilHolder(battleSys, battleCtx, BATTLER_NONE, battleCtx->attacker, ABILITY_AROMA_VEIL) == BATTLER_NONE
             && BattleSystem_RandNext(battleSys) % 10 < 3) {
             ATTACKING_MON.moveEffectsData.disabledMove = battleCtx->moveCur;
             ATTACKING_MON.moveEffectsData.disabledTurns = 4;
@@ -5789,6 +5855,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
             && Sovereign_MakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)
             && DEFENDING_MON.curHP
+            && Sovereign_VeilHolder(battleSys, battleCtx, BATTLER_NONE, battleCtx->attacker, ABILITY_AROMA_VEIL) == BATTLER_NONE // Sovereign (item 11)
             && BattleSystem_RandNext(battleSys) % 10 < 3) {
             battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
             battleCtx->sideEffectMon = battleCtx->attacker;

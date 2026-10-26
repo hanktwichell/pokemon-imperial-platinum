@@ -10291,6 +10291,90 @@
         "The foe’s {STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\n",
         "activated!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignVeilOfSweetness_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} can’t fall asleep\n",
+        "due to a veil of sweetness!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignVeilOfSweetness_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} can’t fall asleep\n",
+        "due to a veil of sweetness!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignVeilOfSweetness_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} can’t fall asleep\n",
+        "due to a veil of sweetness!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignVeilOfPetals_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} surrounded itself\n",
+        "with a veil of petals!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignVeilOfPetals_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} surrounded itself\n",
+        "with a veil of petals!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignVeilOfPetals_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} surrounded itself\n",
+        "with a veil of petals!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignPastelVeil_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is protected\n",
+        "by a pastel veil!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignPastelVeil_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} is protected\n",
+        "by a pastel veil!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignPastelVeil_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} is protected\n",
+        "by a pastel veil!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAromaticVeil_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is protected\n",
+        "by an aromatic veil!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAromaticVeil_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} is protected\n",
+        "by an aromatic veil!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAromaticVeil_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} is protected\n",
+        "by an aromatic veil!"
+      ]
     }
   ]
 }

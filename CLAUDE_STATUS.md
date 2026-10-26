@@ -7614,3 +7614,30 @@ The checklist is now 338 exact, 13 approximate, 29 placeholders.
 2. The last approximate moves: Round, Expanding Force, Dragon Darts and Parabolic Charge (doubles), Shell Side Arm,
    Autotomize.
 3. Owner decision pinned in CB-0158: Burn Up and Double Shock (typeless).
+
+## CB-0171 — 2026-10-26, 11:13 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: the veils guard partners.** PR #187 (Emergency Exit, Wimp Out) is merged.
+- Flower Veil works: Grass types on its side are safe from other Pokémon's stat drops, status conditions and Yawn.
+- Aroma Veil works: Attract, Disable, Encore, Heal Block, Taunt, Torment, Cursed Body and Cute Charm are blocked.
+- Sweet Veil and Pastel Veil now guard the holder's partner too.
+- Checked in harness battles (docs/EngineChangelog.md). The partner cases need a double battle, which the harness
+  doesn't have.
+
+**Files modified:**
+- `decomp/src/battle/battle_lib.c` (`Sovereign_VeilHolder` and helpers; Cursed Body, Cute Charm),
+  `decomp/include/battle/battle_lib.h`.
+- `decomp/src/battle/battle_script.c` (3 vars, Flower Veil in `BtlCmd_ChangeStatStage`),
+  `decomp/src/battle/battle_controller_player.c` (Aroma Veil, a disobedient nap),
+  `decomp/generated/battle_script_vars.txt`.
+- New: `subscript_sovereign_veil.s`. Changed: `subscript_fall_asleep`, `_yawn`, `_rest`, `_poison`, `_badly_poison`,
+  `_paralyze`, `_burn`, `_freeze`, `_missed`; the subscripts' `meson.build`, `sub_seq.order` and
+  `decomp/generated/battle_subscripts.txt`.
+- `decomp/res/text/battle_strings.json` (12 messages).
+- `tools/engine/gen_abilities.py`, `docs/AbilityChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Imposter (transform into the foe on entry), Mimicry, Cud Chew and Opportunist.
+2. The last approximate moves: Round, Expanding Force, Dragon Darts and Parabolic Charge (doubles), Shell Side Arm,
+   Autotomize.
+3. Owner decision pinned in CB-0158: Burn Up and Double Shock (typeless).
