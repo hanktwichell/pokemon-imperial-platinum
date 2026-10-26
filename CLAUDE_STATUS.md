@@ -7456,3 +7456,34 @@ and approximate moves from 37 to 35.
    - Stuff Cheeks, Autotomize (weight).
    - Shell Side Arm, Dragon Darts (doubles), Parabolic Charge.
 3. Owner decision pinned in CB-0158: Burn Up and Double Shock (typeless).
+
+## CB-0166 — 2026-10-26, 9:34 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: item 11 moves, batch 8 (charge moves).** PR #182 (batch 7) is merged. The checklist is now 335 exact,
+16 approximate, 29 placeholders.
+- **Freeze Shock and Ice Burn:** charge for a turn, then hit (30% paralysis or burn).
+- **Geomancy:** charges for a turn, then Sp. Atk, Sp. Def and Speed +2.
+- A Power Herb skips the charge for all three.
+- Each case was checked in a harness battle.
+
+**Files modified:**
+- `decomp/src/battle/battle_lib.c` (charge-move lists), `decomp/src/battle/trainer_ai/trainer_ai.c`,
+  `decomp/src/battle/trainer_ai/script.s`.
+- `decomp/include/data/move_side_effect_subscripts.h`.
+- The generated lists: `battle_subscripts.txt`, `battle_move_subscript_ptrs.txt`, `move_battle_effects.txt`.
+- New scripts:
+  - Effect scripts `effect_script_0374.s` and `0375.s`.
+  - `subscript_sovereign_geomancy.s`.
+- Changed:
+  - The scripts' `meson.build` and `sub_seq.order`.
+  - `decomp/res/moves/{freeze_shock,ice_burn,geomancy}/script.s` and their `data.json`.
+- `decomp/res/text/battle_strings.json` (9 messages).
+- `tools/engine/gen9_move_fixes.py`, `docs/MoveChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. The switching items (Eject Button, Eject Pack, Red Card) with Shed Tail and Chilly Reception, plus a switching case
+   in the harness.
+2. The remaining approximate moves: Stuff Cheeks, Autotomize (weight), Shell Side Arm, Dragon Darts and Parabolic
+   Charge (doubles), Round, Belch, Mind Blown, No Retreat, Steel Beam, Expanding Force, Steel Roller, Misty Explosion,
+   Poltergeist, Chloroblast, Ice Spinner.
+3. Owner decision pinned in CB-0158: Burn Up and Double Shock (typeless).

@@ -437,4 +437,5 @@ subscript_files = files(
     'subscript_sovereign_gear_up.s',
     'subscript_sovereign_magnetic_flux.s',
     'subscript_sovereign_aromatic_mist.s',
+    'subscript_sovereign_geomancy.s',
 )

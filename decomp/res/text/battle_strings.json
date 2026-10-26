@@ -10074,6 +10074,69 @@
         "Crafty Shield protected\n",
         "the opposing team!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCloakedInFreezingLight_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} became\n",
+        "cloaked in a freezing light!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCloakedInFreezingLight_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} became\n",
+        "cloaked in a freezing light!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCloakedInFreezingLight_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} became\n",
+        "cloaked in a freezing light!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCloakedInFreezingAir_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} became\n",
+        "cloaked in freezing air!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCloakedInFreezingAir_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} became\n",
+        "cloaked in freezing air!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCloakedInFreezingAir_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} became\n",
+        "cloaked in freezing air!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAbsorbingPower_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is\n",
+        "absorbing power!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAbsorbingPower_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} is\n",
+        "absorbing power!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAbsorbingPower_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} is\n",
+        "absorbing power!"
+      ]
     }
   ]
 }

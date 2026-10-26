@@ -4,6 +4,32 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): moves, batch 8 (charge moves)
+
+For players: Freeze Shock, Ice Burn and Geomancy now charge for a turn first, as in the main games. All three were
+approximate: Freeze Shock and Ice Burn hit at once, and Geomancy raised two stats by 1.
+
+- **Freeze Shock and Ice Burn:**
+  - Turn 1: "...became cloaked in a freezing light!" (Freeze Shock) or "...became cloaked in freezing air!" (Ice Burn).
+  - Turn 2: the hit, with a 30% chance of paralysis (Freeze Shock) or a burn (Ice Burn).
+  - A Power Herb skips the charge turn.
+  - New effect `SOVEREIGN_CHARGE_TURN_HIT`, modelled on Razor Wind's. Each move's `script.s` buffers its message.
+- **Geomancy:**
+  - Turn 1: "...is absorbing power!".
+  - Turn 2: the user's Sp. Atk, Sp. Def and Speed +2 each. A Power Herb skips the charge turn.
+  - New effect `SOVEREIGN_GEOMANCY` and `subscript_sovereign_geomancy`.
+- Both effects join the engine's charge-move lists: `Move_IsMultiTurn`, the damaging-turn check, and the AI's
+  charge-turn handling.
+- Checklist: 335 exact, 16 approximate, 29 placeholders.
+
+**Verification:** `check_battle_scripts.py` passes. Harness wild battles:
+- **Freeze Shock:** turn 1, "SNORLAX became cloaked in a freezing light!"; turn 2, "SNORLAX used Freeze Shock!" and
+  "It's super effective!".
+- **Ice Burn:** turn 1, "...cloaked in freezing air!"; turn 2, the hit and (this run) "The wild NINJASK was burned!".
+- **With a Power Herb:** "SNORLAX became fully charged due to its Power Herb!", then the hit in the same turn.
+- **Geomancy:** turn 1, "SNORLAX is absorbing power!"; turn 2, "SNORLAX's Sp. Atk sharply rose!", then Sp. Def,
+  then Speed. With a Power Herb, all of it in one turn.
+
 ## Item 11 (effect fidelity): moves, batch 7 (stat changes)
 
 For players: nine more moves work as in the main games. All nine were approximate.
