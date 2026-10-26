@@ -264,7 +264,7 @@ IMPLEMENTED = {
     312: "yes: Levitate, and a knockout raises its highest stat (from one source; check against official data)",
     313: "yes: Fire moves ×1.5",
     314: "yes: contact damage taken halved",
-    131: "yes: 30% chance each turn to cure its ally's status",
+    131: "yes: 50% chance each turn to cure its ally's status (Pokémon Champions; 30% in Gen V-IX)",
     152: "yes: an attacker that makes contact gets Mummy",
     268: "yes: an attacker that makes contact gets Lingering Aroma",
     254: "yes: swaps abilities with an attacker that makes contact",

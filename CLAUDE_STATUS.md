@@ -7028,3 +7028,27 @@ all of them are above CA-0066's 10% mismatch threshold.
 2. Held items, part 3, the ones that switch Pokémon: Eject Button, Eject Pack, Red Card. Also a two-Pokémon case in
    the harness, which would test Heavy-Duty Boots too.
 3. Item 11's double-battle abilities, with a doubles case in the harness.
+
+## CB-0154 — 2026-10-26, 4:55 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Merged:** PR #170, held items part 1.
+
+**Implemented: held items, part 2.**
+- Weakness Policy, Absorb Bulb, Cell Battery, Luminous Moss, Snowball, Throat Spray and Blunder Policy. They share one
+  stat-raising subscript and are used up once they act.
+- Float Stone, Binding Band (1/8, since Sovereign's bind base is Platinum's 1/16), Loaded Dice.
+- Ghost types escape trapping when switching and fleeing. Healer is 50% (Champions).
+- Each item was checked in a harness battle, the damage ones against a control case.
+- Not run in the harness: the Ghost-type and Healer changes.
+
+**Files modified:** `decomp/src/battle/battle_lib.c`, `decomp/src/battle/battle_controller_player.c`,
+`decomp/src/battle/battle_script.c`, `decomp/res/battle/scripts/subscripts/subscript_sovereign_item_stat_up.s` (new)
+and its three registrations, `tools/engine/gen_abilities.py`, `docs/AbilityChecklist.md`,
+`docs/HeldItemChecklist.md`, `docs/BattleMechanics.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Held items, part 3: the Gems, Air Balloon, Room Service, Adrenaline Orb, Ring Target, Mirror Herb, Ability Shield,
+   Utility Umbrella.
+2. Held items that switch Pokémon (Eject Button, Eject Pack, Red Card). Also a two-Pokémon case in the harness, which
+   would test Heavy-Duty Boots and the Ghost-type escape too.
+3. Item 11's double-battle abilities, with a doubles case in the harness (Healer too).

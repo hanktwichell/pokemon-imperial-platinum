@@ -13,7 +13,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 128 | Defiant | Gen 5 | yes: Attack +2 when a foe's move or Intimidate lowers its stats |
 | 129 | Defeatist | Gen 5 | yes: Attack and Sp. Atk halved at half HP or less |
 | 130 | Cursed Body | Gen 5 | yes: 30% chance to disable the move that hit it, for 4 turns |
-| 131 | Healer | Gen 5 | yes: 30% chance each turn to cure its ally's status |
+| 131 | Healer | Gen 5 | yes: 50% chance each turn to cure its ally's status (Pokémon Champions; 30% in Gen V-IX) |
 | 132 | Friend Guard | Gen 5 | yes: the partner takes 25% less damage |
 | 133 | Weak Armor | Gen 5 | yes: Defense −1 and Speed +2 when hit by a physical move |
 | 134 | Heavy Metal | Gen 5 | yes: weight doubled (Low Kick, Grass Knot) |

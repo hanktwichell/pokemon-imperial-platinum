@@ -2702,6 +2702,8 @@ static BOOL BtlCmd_SetMultiHit(BattleSystem *battleSys, BattleContext *battleCtx
                 hits = 3;
             } else if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_SKILL_LINK) {
                 hits = 5;
+            } else if (Battler_HeldItem(battleCtx, battleCtx->attacker) == ITEM_LOADED_DICE) {
+                hits = 4 + BattleSystem_RandNext(battleSys) % 2; // Sovereign (item 11): Loaded Dice, 4 or 5 hits
             } else {
                 // Sovereign: Gen V+ / Champions odds, 35% 2 hits, 35% 3, 15% 4, 15% 5
                 // (Gen IV: 37.5 / 37.5 / 12.5 / 12.5).
@@ -7039,10 +7041,14 @@ static BOOL BtlCmd_CalcWeightBasedPower(BattleSystem *battleSys, BattleContext *
     int i = 0;
     int monWeight = DEFENDING_MON.weight;
 
-    // Sovereign (item 11): Heavy Metal doubles the holder's weight and Light Metal halves it.
+    // Sovereign (item 11): Heavy Metal doubles the holder's weight and Light Metal halves it, as does a Float Stone.
     if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->defender, ABILITY_HEAVY_METAL) == TRUE) {
         monWeight *= 2;
     } else if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->defender, ABILITY_LIGHT_METAL) == TRUE) {
+        monWeight /= 2;
+    }
+
+    if (Battler_HeldItem(battleCtx, battleCtx->defender) == ITEM_FLOAT_STONE) {
         monWeight /= 2;
     }
 
