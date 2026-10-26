@@ -7829,3 +7829,24 @@ PR #194 (moves batch 12) is merged.
    - Trick-or-Treat and Forest's Curse: they need a third type.
    - Burn Up and Double Shock wait on the owner (CB-0158).
 3. Abilities still to do: Illusion, Symbiosis, Dancer, Receiver/Power of Alchemy, Neutralizing Gas, Commander, Ball Fetch.
+
+## CB-0179 — 2026-10-26, 2:39 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: Dragon Darts works fully in double battles, so no move is approximate any more (363 exact).**
+PR #195 (Round, Expanding Force, turn order, duplicate strings) is merged.
+- One dart hits the target and one hits its ally.
+- When one of them can't be hit (a miss, Protect, an immunity), both darts go to the other.
+- This was verified in the doubles harness against Tauros and Miltank, and against Magneton and Kirlia (Fairy). See the changelog.
+
+**Files modified:**
+- `decomp/src/battle/battle_controller_player.c`, `decomp/src/battle/battle_lib.c`.
+- `decomp/include/battle/battle_context.h`.
+- `tools/engine/gen9_move_fixes.py`, `docs/MoveChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Powder (a placeholder): needs a hook just before the move runs. Fire moves then fail and hurt the user for 1/4 of its max HP.
+2. Placeholders still open:
+   - Spectral Thief, Shed Tail, Beak Blast, Shell Trap, Instruct, Sky Drop.
+   - Trick-or-Treat and Forest's Curse: they need a third type.
+   - Burn Up and Double Shock wait on the owner (CB-0158).
+3. Abilities still to do: Illusion, Symbiosis, Dancer, Receiver/Power of Alchemy, Neutralizing Gas, Commander, Ball Fetch.

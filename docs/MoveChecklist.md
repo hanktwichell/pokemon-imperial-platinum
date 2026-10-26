@@ -6,8 +6,8 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 362 |
-| approximate | 1 |
+| exact | 363 |
+| approximate | 0 |
 | placeholder | 17 |
 | removed | 72 |
 
@@ -298,7 +298,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 748 | No Retreat | Fighting | `SOVEREIGN_NO_RETREAT` | exact | Sovereign effect: all stats +1; the user can't switch out (a Ghost type can); fails while that trap holds |
 | 749 | Tar Shot | Rock | `SOVEREIGN_TAR_SHOT` | exact | Sovereign effect: target Speed -1; Fire moves are twice as effective against it until it switches out |
 | 750 | Magic Powder | Psychic | `SOVEREIGN_MAGIC_POWDER` | exact | Sovereign effect: the target becomes pure Psychic-type (a powder move) |
-| 751 | Dragon Darts | Dragon | `HIT_TWICE` | approximate | has its own mechanic in Gen IX; closest effect |
+| 751 | Dragon Darts | Dragon | `HIT_TWICE` | exact | Sovereign effect: hits twice; in a double battle, once the target and once its ally (both darts at one when the other can't be hit) |
 | 752 | Teatime | Normal | `SOVEREIGN_TEATIME` | exact | Sovereign effect: every Pokémon on the field eats its Berry (fails if none holds one) |
 | 753 | Octolock | Fighting | `SOVEREIGN_OCTOLOCK` | exact | Sovereign effect: the target can't escape while the user stays in, and its Defense and Sp. Def fall at the end of each turn |
 | 754 | Bolt Beak | Electric | `HIT` | exact | Sovereign effect: power doubles if the target hasn't moved yet |

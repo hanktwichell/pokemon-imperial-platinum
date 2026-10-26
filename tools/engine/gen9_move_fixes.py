@@ -157,6 +157,8 @@ MOVES = {
     "oblivion_wing": (None, None, "drains 3/4 of the damage dealt"),
     "round": (None, None, "the next Pokémon (either side) that chose Round moves right after the user, with double"
               " power"),
+    "dragon_darts": (None, None, "hits twice; in a double battle, once the target and once its ally (both darts at one"
+                     " when the other can't be hit)"),
     # Terrains (5 turns, 8 with a Terrain Extender; the Seeds aren't reproduced yet).
     "electric_terrain": ("SOVEREIGN_ELECTRIC_TERRAIN", 0, "Electric Terrain: grounded Electric moves x1.3, grounded Pokémon can't fall asleep"),
     "grassy_terrain": ("SOVEREIGN_GRASSY_TERRAIN", 0, "Grassy Terrain: grounded Grass moves x1.3, heals 1/16 each turn, halves Earthquake"),

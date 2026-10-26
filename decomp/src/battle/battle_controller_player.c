@@ -64,6 +64,15 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
 static void BattleControllerPlayer_CalcTurnOrder(BattleSystem *battleSys, BattleContext *battleCtx);
 static void BattleControllerPlayer_CheckPreMoveActions(BattleSystem *battleSys, BattleContext *battleCtx);
 static int Sovereign_TurnOrderClass(BattleContext *battleCtx, int battler);
+static BOOL Sovereign_DragonDartsNext(BattleSystem *battleSys, BattleContext *battleCtx);
+
+// Sovereign (item 11): Dragon Darts in a double battle. Each dart is a pass of the move at one target.
+enum SovereignDarts {
+    SOVEREIGN_DARTS_NONE = 0, // the darts don't split (a single battle, or no ally to aim at)
+    SOVEREIGN_DARTS_FIRST, // the first dart is at the target
+    SOVEREIGN_DARTS_SECOND, // the second dart is at the target's ally
+    SOVEREIGN_DARTS_DONE, // the darts that are left go to one target
+};
 static void BattleControllerPlayer_BranchActions(BattleSystem *battleSys, BattleContext *battleCtx);
 static void BattleControllerPlayer_CheckFieldConditions(BattleSystem *battleSys, BattleContext *battleCtx);
 static void BattleControllerPlayer_CheckMonConditions(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -3420,6 +3429,61 @@ static void Sovereign_CallNextRound(BattleSystem *battleSys, BattleContext *batt
     }
 }
 
+// Sovereign (item 11): sends Dragon Darts' next dart, once a dart is done, as Showdown's smart targeting does. The second
+// dart goes to the target's ally. When the first can't hit the target (a miss, Protect, an immunity), both go to the
+// ally; when the second can't hit the ally, or the ally has fainted, it goes back to the target. TRUE when a dart is on
+// its way.
+static BOOL Sovereign_DragonDartsNext(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    // An immunity ability (Volt Absorb on an Electrified dart) ends the pass with MOVE_STATUS_NO_MORE_WORK.
+    BOOL missed = (battleCtx->moveStatusFlags & (MOVE_STATUS_DID_NOT_HIT | MOVE_STATUS_NO_MORE_WORK)) != FALSE;
+    int target = battleCtx->sovereignDartsTargets[0];
+    int hits = 1;
+    int checks = SYSCTL_MULTI_HIT_MOVE; // back at the target the first dart hit: no checks again
+
+    switch (battleCtx->sovereignDarts) {
+    case SOVEREIGN_DARTS_FIRST:
+        battleCtx->sovereignDarts = SOVEREIGN_DARTS_DONE;
+
+        if (missed) {
+            // Both darts at the ally.
+            target = battleCtx->sovereignDartsTargets[1];
+            hits = 0; // the move's script sets 2
+            checks = SYSCTL_HIT_MULTIPLE_TARGETS;
+        } else if (battleCtx->battleMons[battleCtx->sovereignDartsTargets[1]].curHP) {
+            battleCtx->sovereignDarts = SOVEREIGN_DARTS_SECOND;
+            target = battleCtx->sovereignDartsTargets[1];
+            checks = SYSCTL_HIT_MULTIPLE_TARGETS;
+        }
+        break;
+
+    case SOVEREIGN_DARTS_SECOND:
+        battleCtx->sovereignDarts = SOVEREIGN_DARTS_DONE;
+
+        if (missed == FALSE) {
+            return FALSE;
+        }
+        break;
+
+    default:
+        return FALSE;
+    }
+
+    if (battleCtx->battleMons[target].curHP == 0) {
+        return FALSE;
+    }
+
+    BattleSystem_SetupLoop(battleSys, battleCtx);
+    battleCtx->defender = target;
+    battleCtx->multiHitCheckFlags = checks;
+    battleCtx->multiHitCounter = hits;
+    battleCtx->multiHitNumHits = hits;
+    battleCtx->battleStatusMask &= ~SYSCTL_PLAYED_MOVE_ANIMATION; // each dart plays the animation
+    battleCtx->command = BATTLE_CONTROL_BEFORE_MOVE;
+
+    return TRUE;
+}
+
 static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move)
 {
     battleCtx->sovereignShieldContact = MOVE_NONE; // Sovereign (item 11)
@@ -3857,6 +3921,26 @@ static void BattleControllerPlayer_BeforeMove(BattleSystem *battleSys, BattleCon
         battleCtx->command = BATTLE_CONTROL_MOVE_FAILED;
     } else {
         battleCtx->battleStatusMask2 |= SYSCTL_MOVE_SUCCEEDED;
+
+        // Sovereign (item 11): in a double battle, Dragon Darts aimed at a foe throws one dart at it and one at its
+        // ally, each a pass of the move at one target (Sovereign_DragonDartsNext).
+        if (battleCtx->moveCur == MOVE_DRAGON_DARTS
+            && battleCtx->sovereignDarts == SOVEREIGN_DARTS_NONE
+            && battleCtx->multiHitNumHits == 0
+            && (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES)
+            && battleCtx->defender != BATTLER_NONE
+            && BattleSystem_GetBattlerSide(battleSys, battleCtx->defender) != BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker)) {
+            int ally = BattleSystem_GetPartner(battleSys, battleCtx->defender);
+
+            if (ally != battleCtx->defender && battleCtx->battleMons[ally].curHP) {
+                battleCtx->sovereignDarts = SOVEREIGN_DARTS_FIRST;
+                battleCtx->sovereignDartsTargets[0] = battleCtx->defender;
+                battleCtx->sovereignDartsTargets[1] = ally;
+                battleCtx->multiHitCounter = 1;
+                battleCtx->multiHitNumHits = 1;
+                battleCtx->multiHitAccuracyCheck = SYSCTL_MULTI_HIT_MOVE;
+            }
+        }
 
         // Sovereign (item 11): Parental Bond makes a single-target damaging move hit twice, the second hit at 1/4
         // power (BtlCmd_CalcDamage). Multi-hit, charging, self-KO and fixed-damage moves are left alone.
@@ -4635,6 +4719,12 @@ static int Sovereign_HitXTimesSubscript(BattleContext *battleCtx)
 
 static void BattleControllerPlayer_LoopMultiHit(BattleSystem *battleSys, BattleContext *battleCtx)
 {
+    // Sovereign (item 11): a Dragon Darts dart on a target of its own shows no hit count.
+    if (battleCtx->sovereignDarts != SOVEREIGN_DARTS_NONE && battleCtx->multiHitNumHits == 1) {
+        battleCtx->command = BATTLE_CONTROL_LOOP_FAINTED;
+        return;
+    }
+
     if (battleCtx->multiHitNumHits) {
         if (battleCtx->faintedMon == BATTLER_NONE
             && (ATTACKING_MON.status & MON_CONDITION_SLEEP) == FALSE // e.g., Effect Spore
@@ -4701,7 +4791,9 @@ static void BattleControllerPlayer_LoopSpreadMoves(BattleSystem *battleSys, Batt
         battleCtx->sovereignMoveFormBattler = battleCtx->attacker + 1;
     }
 
-    if (Sovereign_MoveRange(battleCtx, battleCtx->attacker, battleCtx->moveCur) == RANGE_ADJACENT_OPPONENTS // Sovereign (item 11)
+    if (Sovereign_DragonDartsNext(battleSys, battleCtx)) { // Sovereign (item 11)
+        BattleController_EmitClearMessageBox(battleSys);
+    } else if (Sovereign_MoveRange(battleCtx, battleCtx->attacker, battleCtx->moveCur) == RANGE_ADJACENT_OPPONENTS // Sovereign (item 11)
         && (battleCtx->battleStatusMask & SYSCTL_CHECK_LOOP_ONLY_ONCE) == FALSE
         && battleCtx->battlerCounter < BattleSystem_GetMaxBattlers(battleSys)) {
         battleCtx->multiHitCheckFlags = SYSCTL_HIT_MULTIPLE_TARGETS;

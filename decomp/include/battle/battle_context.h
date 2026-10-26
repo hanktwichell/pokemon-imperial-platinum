@@ -358,6 +358,8 @@ struct BattleContext {
     int sovereignEchoedVoiceCount; // Sovereign (item 11): consecutive turns of Echoed Voice, up to 5
     u8 sovereignOncePerBattle[MAX_BATTLERS]; // Sovereign (item 11): party slots whose Intrepid Sword or Dauntless Shield has triggered
     u8 sovereignParentalBond; // Sovereign (item 11): the current move hits a second time through Parental Bond
+    u8 sovereignDarts; // Sovereign (item 11): where Dragon Darts' darts go in a double battle (SOVEREIGN_DARTS_*)
+    u8 sovereignDartsTargets[2]; // Sovereign (item 11): Dragon Darts' target and its ally
     u8 sovereignThroughProtect; // Sovereign (item 11): the current hit goes through protection with Unseen Fist or Piercing Drill
     int sovereignHPBeforeHit[MAX_BATTLERS]; // Sovereign (item 11): each battler's HP before the last hit it took (Berserk, Innards Out)
     int sovereignDragonCheer[MAX_BATTLERS]; // Sovereign (item 11): Dragon Cheer's crit stages (1, or 2 for a Dragon type)
