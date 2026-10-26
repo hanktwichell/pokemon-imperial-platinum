@@ -2223,6 +2223,7 @@ void BattleSystem_UpdateAfterSwitch(BattleSystem *battleSys, BattleContext *batt
     battleCtx->sovereignTelekinesis[battler] = 0;
     battleCtx->sovereignThroatChop[battler] = 0;
     battleCtx->sovereignSmackedDown[battler] = 0;
+    MI_CpuClear8(battleCtx->sovereignMirrorHerbRises[battler], sizeof(battleCtx->sovereignMirrorHerbRises[battler])); // Sovereign (item 11)
     battleCtx->moveCopied[battler] = MOVE_NONE;
     battleCtx->moveCopiedHit[battler][0] = MOVE_NONE;
     battleCtx->moveCopiedHit[battler][1] = MOVE_NONE;
@@ -2307,6 +2308,7 @@ void BattleSystem_CleanupFaintedMon(BattleSystem *battleSys, BattleContext *batt
     battleCtx->sovereignTelekinesis[battler] = 0;
     battleCtx->sovereignThroatChop[battler] = 0;
     battleCtx->sovereignSmackedDown[battler] = 0;
+    MI_CpuClear8(battleCtx->sovereignMirrorHerbRises[battler], sizeof(battleCtx->sovereignMirrorHerbRises[battler])); // Sovereign (item 11)
     battleCtx->moveCopied[battler] = MOVE_NONE;
     battleCtx->moveCopiedHit[battler][0] = MOVE_NONE;
     battleCtx->moveCopiedHit[battler][1] = MOVE_NONE;
@@ -3355,6 +3357,15 @@ BOOL Sovereign_IsMoldBreaker(BattleContext *battleCtx, int battler)
         && MOVE_DATA(battleCtx->moveCur).class == CLASS_STATUS;
 }
 
+// Sovereign (item 11): TRUE while the battler holds an Ability Shield: its Ability can't be changed, suppressed or
+// ignored (Mold Breaker). Klutz doesn't stop it; Magic Room and Embargo do.
+BOOL Sovereign_HasAbilityShield(BattleContext *battleCtx, int battler)
+{
+    return battleCtx->battleMons[battler].heldItem == ITEM_ABILITY_SHIELD
+        && battleCtx->sovereignMagicRoomTurns == 0
+        && battleCtx->battleMons[battler].moveEffectsData.embargoTurns == 0;
+}
+
 BOOL Battler_IgnorableAbility(BattleContext *battleCtx, int attacker, int defender, int ability)
 {
     BOOL result = FALSE;
@@ -3367,7 +3378,8 @@ BOOL Battler_IgnorableAbility(BattleContext *battleCtx, int attacker, int defend
     }
 #endif
 
-    if (Sovereign_IsMoldBreaker(battleCtx, attacker) == FALSE) {
+    if (Sovereign_IsMoldBreaker(battleCtx, attacker) == FALSE
+        || Sovereign_HasAbilityShield(battleCtx, defender)) { // Sovereign (item 11)
         if (Battler_Ability(battleCtx, defender) == ability) {
             result = TRUE;
         }
@@ -4402,6 +4414,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                     && battleCtx->battleMons[battler].curHP
                     && battleCtx->battleMons[battler].heldItem != ITEM_GRISEOUS_ORB
                     && battleCtx->battleMons[battleCtx->msgDefender].curHP
+                    && Sovereign_HasAbilityShield(battleCtx, battler) == FALSE // Sovereign (item 11)
                     && Battler_Ability(battleCtx, battler) == ABILITY_TRACE) {
                     battleCtx->battleMons[battler].traceAnnounced = TRUE;
                     battleCtx->msgBattlerTemp = battler;
@@ -4674,6 +4687,13 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                         result = TRUE;
                         break;
                     }
+                }
+
+                // Sovereign (item 11): a Mirror Herb copies the foes' stat rises (checked after every move too).
+                if (Sovereign_SetupMirrorHerb(battleCtx, battler)) {
+                    subscript = subscript_sovereign_mirror_herb;
+                    result = TRUE;
+                    break;
                 }
             }
 
@@ -5559,9 +5579,11 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
             && Sovereign_MakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)
             && ATTACKING_MON.ability != DEFENDING_MON.ability
-            && Sovereign_AbilityIsFixed(ATTACKING_MON.ability) == FALSE) {
+            && Sovereign_AbilityIsFixed(ATTACKING_MON.ability) == FALSE
+            && Sovereign_HasAbilityShield(battleCtx, battleCtx->attacker) == FALSE) {
             if (DEFENDING_MON.ability == ABILITY_WANDERING_SPIRIT) {
-                if (DEFENDING_MON.curHP == 0) {
+                // An Ability Shield on the Wandering Spirit holder keeps both Abilities where they are.
+                if (DEFENDING_MON.curHP == 0 || Sovereign_HasAbilityShield(battleCtx, battleCtx->defender)) {
                     break;
                 }
 
@@ -8512,6 +8534,53 @@ BOOL Sovereign_SetupAdrenalineOrb(BattleContext *battleCtx, int battler)
     battleCtx->msgItemTemp = ITEM_ADRENALINE_ORB;
     battleCtx->sideEffectParam = MOVE_SUBSCRIPT_PTR_SPEED_UP_1_STAGE;
     battleCtx->msgTemp = 0;
+    return TRUE;
+}
+
+// Sovereign (item 11): notes a battler's stat rise for the Mirror Herb holders on the other side, which copy it once the
+// move (or the switch-in) is over. Not a rise a Mirror Herb made itself.
+void Sovereign_NoteMirrorHerbRise(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int stat, int stages)
+{
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
+
+    if (stages <= 0
+        || (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_HELD_ITEM && battleCtx->battleMons[battler].heldItem == ITEM_MIRROR_HERB)) {
+        return;
+    }
+
+    for (int i = 0; i < maxBattlers; i++) {
+        if (BattleSystem_GetBattlerSide(battleSys, i) != BattleSystem_GetBattlerSide(battleSys, battler)
+            && battleCtx->battleMons[i].curHP
+            && Battler_HeldItem(battleCtx, i) == ITEM_MIRROR_HERB) {
+            battleCtx->sovereignMirrorHerbRises[i][stat] += stages;
+        }
+    }
+}
+
+// Sovereign (item 11): TRUE when a Mirror Herb holder has foes' stat rises to copy (Sovereign_NoteMirrorHerbRise). Sets
+// up subscript_sovereign_mirror_herb, which copies them (BTLVAR_SOVEREIGN_MIRROR_HERB_NEXT) and uses the herb up.
+BOOL Sovereign_SetupMirrorHerb(BattleContext *battleCtx, int battler)
+{
+    int stat;
+
+    for (stat = BATTLE_STAT_ATTACK; stat < BATTLE_STAT_MAX; stat++) {
+        if (battleCtx->sovereignMirrorHerbRises[battler][stat]) {
+            break;
+        }
+    }
+
+    if (stat == BATTLE_STAT_MAX) {
+        return FALSE;
+    }
+
+    if (battleCtx->battleMons[battler].curHP == 0 || Battler_HeldItem(battleCtx, battler) != ITEM_MIRROR_HERB) {
+        MI_CpuClear8(battleCtx->sovereignMirrorHerbRises[battler], sizeof(battleCtx->sovereignMirrorHerbRises[battler]));
+        return FALSE;
+    }
+
+    battleCtx->msgBattlerTemp = battler;
+    battleCtx->msgItemTemp = ITEM_MIRROR_HERB;
+    battleCtx->sovereignMirrorHerbHolder = battler;
     return TRUE;
 }
 

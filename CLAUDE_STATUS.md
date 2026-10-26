@@ -7115,3 +7115,32 @@ and its three registrations, `tools/engine/gen_abilities.py`, `docs/AbilityCheck
 2. Held items that switch Pokémon: Eject Button, Eject Pack, Red Card. Also a switching case in the harness, which
    would test Heavy-Duty Boots, the Air Balloon on hazards and the Ghost-type escape too.
 3. Item 11's double-battle abilities, with a doubles case in the harness (Healer too).
+
+## CB-0157 — 2026-10-26, 5:51 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Merged:** PR #173, held items part 4.
+
+**Implemented: held items, part 5.**
+- **Mirror Herb:** copies foes' stat rises after the move, switch-in or Mega Evolution that gave them. Used up.
+- **Ability Shield:** the holder's Ability can't be changed or suppressed. Six moves, the contact Abilities and Trace
+  are covered, and Mold Breaker doesn't ignore it.
+- Every held item the store sells now works, except Eject Button, Eject Pack and Red Card.
+- Harness battles with controls: Mirror Herb vs Dragon Dance; Ability Shield vs Worry Seed and Skill Swap; Mold
+  Breaker's Earthquake vs a shielded Levitate Bronzong.
+
+**Files modified:**
+- `decomp/src/battle/battle_lib.c`, `decomp/src/battle/battle_script.c`.
+- `decomp/include/battle/battle_context.h`, `decomp/include/battle/battle_lib.h`.
+- `decomp/generated/battle_script_vars.txt`, `decomp/res/text/battle_strings.json`.
+- New: `subscript_sovereign_mirror_herb.s` and `subscript_sovereign_ability_shield.s`, each with its three
+  registrations.
+- The Ability-changing move subscripts: `subscript_give_target_insomnia.s`, `subscript_suppress_target_ability.s`,
+  `subscript_sovereign_simple_beam.s`, `subscript_sovereign_entrainment.s`, `subscript_copy_ability.s` and
+  `subscript_exchange_abilities.s`.
+- `docs/HeldItemChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. The held items that switch Pokémon: Eject Button, Eject Pack, Red Card. Also a switching case in the harness, which
+   would test Heavy-Duty Boots, the Air Balloon on hazards and the Ghost-type escape too.
+2. Item 11's double-battle abilities, with a doubles case in the harness (Healer too).
+3. Mirror Herb at the end of the turn (Speed Boost, Moody), as in Showdown.
