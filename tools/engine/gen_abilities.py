@@ -128,6 +128,7 @@ IMPLEMENTED = {
     178: "yes: pulse moves ×1.5",
     292: "yes: slicing moves ×1.5",
     238: "yes: when a damaging move hits it, every other Pokémon's Speed −1, its ally's too, even as it faints",
+    240: "yes: a stat drop from another Pokémon's move or Ability goes back to that Pokémon (Sticky Web's is only blocked)",
     244: "yes: its sound moves ×1.3, sound damage taken halved",
     274: "partly: wind moves aimed at it do nothing and raise its Attack instead (the Tailwind boost not yet)",
     277: "partly: charged when a wind move hits it (Tailwind not yet)",

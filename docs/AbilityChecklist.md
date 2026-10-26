@@ -122,7 +122,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 237 | Ball Fetch | Gen 8 | not yet (no battle effect) |
 | 238 | Cotton Down | Gen 8 | yes: when a damaging move hits it, every other Pokémon's Speed −1, its ally's too, even as it faints |
 | 239 | Propeller Tail | Gen 8 | yes: ignores moves and abilities that draw in attacks |
-| 240 | Mirror Armor | Gen 8 | not yet (no battle effect) |
+| 240 | Mirror Armor | Gen 8 | yes: a stat drop from another Pokémon's move or Ability goes back to that Pokémon (Sticky Web's is only blocked) |
 | 241 | Gulp Missile | Gen 8 | yes: Surf or Dive catches prey; a hit spits it for 1/4 HP and Defense -1 or paralysis |
 | 242 | Stalwart | Gen 8 | yes: ignores moves and abilities that draw in attacks |
 | 243 | Steam Engine | Gen 8 | yes: Fire or Water hits raise Speed 6 stages |

@@ -482,6 +482,7 @@ Basic_CheckClearBodyEffect:
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_CLEAR_BODY, ScoreMinus10
     IfLoadedEqualTo ABILITY_WHITE_SMOKE, ScoreMinus10
+    IfLoadedEqualTo ABILITY_MIRROR_ARMOR, ScoreMinus10 // Sovereign (item 11)
     PopOrEnd 
 
 Basic_CheckStatStageImbalance:
@@ -779,6 +780,7 @@ Basic_CheckMemento:
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_CLEAR_BODY, ScoreMinus10
     IfLoadedEqualTo ABILITY_WHITE_SMOKE, ScoreMinus10
+    IfLoadedEqualTo ABILITY_MIRROR_ARMOR, ScoreMinus10 // Sovereign (item 11)
 
 Basic_CheckMemento_CheckStatStages:
     // If the target's Attack is already at -6, score -10.
@@ -956,6 +958,7 @@ Basic_CheckTickle:
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_CLEAR_BODY, ScoreMinus10
     IfLoadedEqualTo ABILITY_WHITE_SMOKE, ScoreMinus10
+    IfLoadedEqualTo ABILITY_MIRROR_ARMOR, ScoreMinus10 // Sovereign (item 11)
 
 Basic_CheckTickle_CheckStatStages:
     // If the target's Attack is at -6, score -10.
@@ -1547,6 +1550,7 @@ Basic_CheckCaptivate:
     IfLoadedEqualTo ABILITY_OBLIVIOUS, ScoreMinus10
     IfLoadedEqualTo ABILITY_CLEAR_BODY, ScoreMinus10
     IfLoadedEqualTo ABILITY_WHITE_SMOKE, ScoreMinus10
+    IfLoadedEqualTo ABILITY_MIRROR_ARMOR, ScoreMinus10 // Sovereign (item 11)
 
 Basic_CheckCaptivate_CheckGender:
     // If the target and the attacker share gender or the target has no gender, score -10.

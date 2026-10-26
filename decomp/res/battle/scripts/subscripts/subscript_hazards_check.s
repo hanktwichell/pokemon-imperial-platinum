@@ -8,6 +8,15 @@ _000:
     PrintMessage BattleStrings_Text_SovereignCaughtInStickyWeb_Ally, TAG_NICKNAME, BTLSCR_SWITCHED_MON
     Wait 
     WaitButtonABTime 30
+    // Mirror Armor keeps the web's drop off (it would go back to the web's setter, which isn't tracked)
+    CheckAbility CHECK_NOT_HAVE, BTLSCR_SWITCHED_MON, ABILITY_MIRROR_ARMOR, _sovereign_web_drop
+    // {0}’s {1} prevents stat loss!
+    PrintMessage BattleStrings_Text_PokemonsAbilityPreventsStatLoss_Ally, TAG_NICKNAME_ABILITY, BTLSCR_SWITCHED_MON, BTLSCR_SWITCHED_MON
+    Wait 
+    WaitButtonABTime 30
+    GoTo _sovereign_no_web
+
+_sovereign_web_drop:
     UpdateVarFromVar OPCODE_SET, BTLVAR_SIDE_EFFECT_MON, BTLVAR_SWITCHED_MON
     UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_PARAM, MOVE_SUBSCRIPT_PTR_SPEED_DOWN_1_STAGE
     UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_INDIRECT

@@ -2878,7 +2878,37 @@ static BOOL Sovereign_IsIntimidateDrop(BattleContext *battleCtx)
         && Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_INTIMIDATE;
 }
 
+// Sovereign (item 11): Mirror Armor sends a stat drop from another Pokemon's move or Ability back to that Pokemon. Not
+// when the holder's stat is already at its lowest, or when its Substitute keeps the drop off anyway.
+static BOOL Sovereign_MirrorArmorReflects(BattleContext *battleCtx, int statOffset)
+{
+    int holder = battleCtx->sideEffectMon;
+    int source = battleCtx->attacker;
+
+    return (battleCtx->sideEffectFlags & MOVE_SIDE_EFFECT_CANNOT_PREVENT) == FALSE
+        && battleCtx->sovereignMirrorArmorHolder == 0
+        && source != holder
+        && source < MAX_BATTLERS
+        && battleCtx->battleMons[source].curHP
+        && Battler_IgnorableAbility(battleCtx, source, holder, ABILITY_MIRROR_ARMOR) == TRUE
+        && battleCtx->battleMons[holder].statBoosts[BATTLE_STAT_ATTACK + statOffset] > MIN_STAT_STAGE
+        && ((battleCtx->battleMons[holder].statusVolatile & VOLATILE_CONDITION_SUBSTITUTE) == FALSE
+            || Sovereign_BypassesSubstitute(battleCtx, source, holder, battleCtx->moveCur));
+}
+
+static BOOL ChangeStatStage(BattleSystem *battleSys, BattleContext *battleCtx);
+
 static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    int attacker = battleCtx->attacker;
+
+    ChangeStatStage(battleSys, battleCtx);
+    battleCtx->attacker = attacker; // Sovereign (item 11): Mirror Armor swaps the roles while a drop goes back
+
+    return FALSE;
+}
+
+static BOOL ChangeStatStage(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int jumpNoChange;
     int jumpBlocked;
@@ -2913,6 +2943,15 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
         statOffset = battleCtx->sideEffectParam - MOVE_SUBSCRIPT_PTR_ATTACK_UP_1_STAGE;
         stageChange = 1;
         battleCtx->scriptTemp = BATTLE_ANIMATION_STAT_BOOST;
+    }
+
+    // Sovereign (item 11): Mirror Armor: the source takes the drop instead, as if the holder had caused it with its
+    // Ability ("{0}'s {1} cuts {2}'s {3}!"). The subscript gives the holder its side-effect role back.
+    if (stageChange < 0 && Sovereign_MirrorArmorReflects(battleCtx, statOffset)) {
+        battleCtx->sovereignMirrorArmorHolder = battleCtx->sideEffectMon + 1;
+        battleCtx->sideEffectMon = battleCtx->attacker;
+        battleCtx->attacker = battleCtx->sovereignMirrorArmorHolder - 1;
+        mon = &battleCtx->battleMons[battleCtx->sideEffectMon];
     }
 
     // Sovereign (item 11): Contrary turns stat rises into drops and drops into rises.
@@ -3013,6 +3052,8 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
 
                         return FALSE;
                     }
+                } else if (battleCtx->sovereignMirrorArmorHolder) {
+                    // Sovereign (item 11): neither Shield Dust nor a Substitute stops a drop Mirror Armor sent back
                 } else if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, ABILITY_SHIELD_DUST) == TRUE
                     && battleCtx->sideEffectType == SIDE_EFFECT_TYPE_INDIRECT) {
                     result = 1;
@@ -3051,7 +3092,7 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
             }
         }
 
-        if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY) {
+        if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY || battleCtx->sovereignMirrorArmorHolder) {
             battleCtx->msgBuffer.id = BattleStrings_Text_PokemonsAbilityCutsPokemonsStat_AllyAlly; // "{0}'s {1} cuts {2}'s {3}!"
             battleCtx->msgBuffer.tags = TAG_NICKNAME_ABILITY_NICKNAME_STAT;
             battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->attacker);
@@ -3072,9 +3113,11 @@ static BOOL BtlCmd_ChangeStatStage(BattleSystem *battleSys, BattleContext *battl
             mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] = MIN_STAT_STAGE;
         }
 
-        // Sovereign (item 11): a foe's move or Intimidate lowered a stat: Defiant and Competitive respond after the
-        // move (or the switch-in), and Rattled to Intimidate.
-        if ((battleCtx->sideEffectType != SIDE_EFFECT_TYPE_ABILITY || Sovereign_IsIntimidateDrop(battleCtx))
+        // Sovereign (item 11): a foe's move or Intimidate (or Cotton Down, or Mirror Armor) lowered a stat: Defiant and
+        // Competitive respond after the move (or the switch-in), and Rattled to Intimidate.
+        if ((battleCtx->sideEffectType != SIDE_EFFECT_TYPE_ABILITY || Sovereign_IsIntimidateDrop(battleCtx)
+                || battleCtx->sovereignMirrorArmorHolder
+                || Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_COTTON_DOWN)
             && BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker) != BattleSystem_GetBattlerSide(battleSys, battleCtx->sideEffectMon)
             && (Battler_Ability(battleCtx, battleCtx->sideEffectMon) == ABILITY_DEFIANT
                 || Battler_Ability(battleCtx, battleCtx->sideEffectMon) == ABILITY_COMPETITIVE
@@ -9817,6 +9860,8 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         // side-effect target a status condition: a Meteor Minior (Shields Down), or Purifying Salt
         battleCtx->sovereignTerrainTemp = Battler_SovereignStatusImmune(battleCtx, battleCtx->sideEffectMon);
         return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_MIRROR_ARMOR_HOLDER: // Sovereign (item 11): BtlCmd_ChangeStatStage
+        return &battleCtx->sovereignMirrorArmorHolder;
     case BTLVAR_DAMAGE:
         return &battleCtx->damage;
     case BTLVAR_ATTACKER:
