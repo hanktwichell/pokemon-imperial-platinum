@@ -324,6 +324,14 @@ MOVES = {
                  " fall at the end of each turn"),
     "spotlight": ("SOVEREIGN_SPOTLIGHT", 0, "+3 priority; the target's foes aim at it this turn (fails in a single battle)"),
     "teatime": ("SOVEREIGN_TEATIME", 0, "every Pokémon on the field eats its Berry (fails if none holds one)"),
+    # Moves batch 12.
+    "shell_side_arm": ("POISON_HIT", 20, "20% poison; physical (and contact) when that would do more damage (with the stat"
+                       " stages)"),
+    "autotomize": ("SOVEREIGN_AUTOTOMIZE", 0, "user Speed +2, and it gets 100 kg lighter"),
+    "flame_burst": ("SOVEREIGN_FLAME_BURST", 0, "the target's ally takes 1/16 of its max HP"),
+    "pollen_puff": ("SOVEREIGN_POLLEN_PUFF", 0, "damages a foe; restores half an ally's max HP instead"),
+    "parabolic_charge": ("RECOVER_HALF_DAMAGE_DEALT", 0, "hits all adjacent Pokémon (its ally too); drains half the"
+                         " damage dealt"),
 }
 
 # Gen IX values the move data got wrong (not the Champions changes in tools/engine/apply_champions_moves.py).

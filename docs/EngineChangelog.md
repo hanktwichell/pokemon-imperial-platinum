@@ -4,6 +4,32 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): moves, batch 12 (Shell Side Arm, Autotomize, Flame Burst, Pollen Puff, Parabolic Charge)
+
+For players:
+- **Shell Side Arm** is physical, and makes contact, when Showdown's formula says a physical hit would do more damage. The formula compares the user's Attack against the target's Defense, and its Sp. Atk against the target's Sp. Def, with their stat stages. A tie stays special: Showdown picks at random, and the damage code here can't roll.
+- **Autotomize:** user Speed +2, then it gets 100 kg lighter, down to 0.1 kg ("{0} became nimble!"). The new weight counts for Low Kick, Grass Knot, Heavy Slam and Heat Crash until it switches out.
+- **Flame Burst:** the bursting flame also hits the target's ally for 1/16 of its max HP ("The bursting flame hit {0}!"), even when the target faints. Magic Guard blocks it.
+- **Pollen Puff:** damages a foe, or restores half of an ally's max HP instead. Heal Block stops the healing (Present's healing path).
+- **Parabolic Charge** was already right: it hits all adjacent Pokémon, its ally too, and drains half the damage dealt. The checklist now says so.
+- **Code:**
+  - `Sovereign_ShellSideArmPhysical` is used by the damage calculation and by `Sovereign_MakesContact`.
+  - `Sovereign_Autotomize` changes `BattleMon.weight`; `Sovereign_FlameBurstSplash` handles the splash.
+  - Two read-only vars: `BTLVAR_SOVEREIGN_AUTOTOMIZE` and `_FLAME_BURST`.
+
+**Verification:** test and release ROMs built; the battle-script size check, the message check and the docs check pass.
+- **Shell Side Arm** against a Ninjask holding a Rocky Helmet:
+  - A Snorlax's hit was physical: the Ninjask lost 52 HP and the Rocky Helmet hurt Snorlax for 37 (1/6).
+  - An Alakazam's hits were special: no Rocky Helmet damage. The only Rocky Helmet hit in that battle came from its Play Rough.
+- **Autotomize:** "SNORLAX's Speed sharply rose!", then "SNORLAX became nimble!". Its weight read from memory went 4600 → 3600 → 2600 (in 0.1 kg) over two uses.
+- **Flame Burst:**
+  - In a single battle, a plain hit.
+  - In a double battle against the Twins Liv & Liz: "The bursting flame hit the foe's PLUSLE!" as its target, Minun, fainted.
+- **Pollen Puff:**
+  - In a double battle, aimed at the partner Snorlax (112/224 HP): 112 → 224.
+  - Aimed at a foe, it dealt damage.
+- **Parabolic Charge** in a double battle: it hit the partner (224 → 211), and the user at half HP drained 112 → 118 → 130.
+
 ## Item 11 (effect fidelity): Skill Swap, Simple Beam and Worry Seed use Gen IX's ability lists
 
 For players:

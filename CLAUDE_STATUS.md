@@ -7773,3 +7773,32 @@ PR #192 (batch 11b) is merged.
    - Spectral Thief: it needs a boost steal around `CalcDamage`.
    - Also Powder, Pollen Puff, Shed Tail, Beak Blast, Shell Trap and Instruct.
 3. Abilities still to do: Illusion, Symbiosis, Dancer, Receiver/Power of Alchemy, Neutralizing Gas, Commander, Ball Fetch. Burn Up and Double Shock wait on the owner (CB-0158).
+
+## CB-0177 — 2026-10-26, 1:42 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: moves batch 12: Shell Side Arm, Autotomize, Flame Burst and Pollen Puff. Parabolic Charge was checked and marked exact.**
+PR #193 (Skill Swap lists) is merged.
+- **Shell Side Arm** is physical and makes contact by Showdown's damage comparison.
+- **Autotomize** takes 100 kg off the user's weight.
+- **Flame Burst** splashes the target's ally for 1/16 of its max HP.
+- **Pollen Puff** heals an ally by half instead of hitting it.
+- All were verified in the singles and doubles harness (see the changelog).
+- The doubles harness now takes a `taps` option. Tapping (190,112) picks the ally as the target.
+
+**Files modified:**
+- `decomp/src/battle/battle_lib.c`, `decomp/src/battle/battle_script.c` (2 vars), `decomp/include/battle/battle_lib.h`.
+- New subscripts `subscript_sovereign_autotomize` and `_flame_burst`. New effect scripts `effect_script_0389.s` to `0391.s`. The registration files.
+- `decomp/res/text/battle_strings.json` (6 messages); move data for Autotomize, Flame Burst and Pollen Puff.
+- `tools/engine/gen9_move_fixes.py`, `docs/MoveChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Still approximate: Round, Expanding Force, Dragon Darts.
+   - Round: allies' Round moves come right after.
+   - Expanding Force: spreads to both foes in Psychic Terrain.
+   - Dragon Darts: one hit on each foe in doubles.
+2. Placeholders still open:
+   - Powder: needs a hook just before the move runs.
+   - Spectral Thief, Shed Tail, Beak Blast, Shell Trap, Instruct, Sky Drop.
+   - Trick-or-Treat and Forest's Curse: they need a third type.
+   - Burn Up and Double Shock wait on the owner (CB-0158).
+3. Abilities still to do: Illusion, Symbiosis, Dancer, Receiver/Power of Alchemy, Neutralizing Gas, Commander, Ball Fetch.

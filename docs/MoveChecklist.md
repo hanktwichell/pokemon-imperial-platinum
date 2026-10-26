@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 355 |
-| approximate | 6 |
-| placeholder | 19 |
+| exact | 360 |
+| approximate | 3 |
+| placeholder | 17 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -22,13 +22,13 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 472 | Wonder Room | Psychic | `SOVEREIGN_WONDER_ROOM` | exact | Sovereign effect: Defense and Sp. Def are swapped for 5 turns; using it again ends it |
 | 473 | Psyshock | Psychic | `HIT` | exact | Sovereign effect: special damage against the target's Defense |
 | 474 | Venoshock | Poison | `HIT` | exact | Sovereign effect: target is poisoned: power doubles |
-| 475 | Autotomize | Steel | `SPEED_UP_2` | approximate | has its own mechanic in Gen IX; closest effect |
+| 475 | Autotomize | Steel | `SOVEREIGN_AUTOTOMIZE` | exact | Sovereign effect: user Speed +2, and it gets 100 kg lighter |
 | 476 | Rage Powder | Bug | `MAKE_GLOBAL_TARGET` | exact |  |
 | 477 | Telekinesis | Psychic | `SOVEREIGN_TELEKINESIS` | exact | Sovereign effect: for 3 turns the target is immune to Ground moves and other moves always hit it |
 | 478 | Magic Room | Psychic | `SOVEREIGN_MAGIC_ROOM` | exact | Sovereign effect: held items have no effect for 5 turns; using it again ends it |
 | 479 | Smack Down | Rock | `SOVEREIGN_SMACK_DOWN` | exact | Sovereign effect: grounds the target until it switches out |
 | 480 | Storm Throw | Fighting | `HIT` | exact | Sovereign effect: always a critical hit |
-| 481 | Flame Burst | Fire | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 481 | Flame Burst | Fire | `SOVEREIGN_FLAME_BURST` | exact | Sovereign effect: the target's ally takes 1/16 of its max HP |
 | 482 | Sludge Wave | Poison | `POISON_HIT` | exact |  |
 | 483 | Quiver Dance | Bug | `SOVEREIGN_QUIVER_DANCE` | exact | Sovereign effect: user Sp. Atk +1, user Sp. Def +1, user Speed +1 |
 | 484 | Heavy Slam | Steel | `HIT` | exact | Sovereign effect: power from the user/target weight ratio (40-120) |
@@ -117,7 +117,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 567 | Trick-or-Treat | Ghost | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 568 | Noble Roar | Normal | `SOVEREIGN_NOBLE_ROAR` | exact | Sovereign effect: target Attack -1, target Sp. Atk -1 |
 | 569 | Ion Deluge | Electric | `SOVEREIGN_ION_DELUGE` | exact | Sovereign effect: +1 priority; Normal moves are Electric this turn |
-| 570 | ParabolcCharge | Electric | `RECOVER_HALF_DAMAGE_DEALT` | approximate | has its own mechanic in Gen IX; closest effect |
+| 570 | ParabolcCharge | Electric | `RECOVER_HALF_DAMAGE_DEALT` | exact | Sovereign effect: hits all adjacent Pokémon (its ally too); drains half the damage dealt |
 | 571 | Forest’s Curse | Grass | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 572 | Petal Blizzard | Grass | `HIT` | exact | Sovereign effect: hits all adjacent Pokémon |
 | 573 | Freeze-Dry | Ice | `FREEZE_HIT` | exact | Sovereign effect: super effective against Water; 10% freeze |
@@ -223,7 +223,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 673 | Laser Focus | Normal | `SOVEREIGN_LASER_FOCUS` | exact | Sovereign effect: the user's moves always crit this turn and the next |
 | 674 | Gear Up | Steel | `SOVEREIGN_GEAR_UP` | exact | Sovereign effect: Attack and Sp. Atk +1 for the user and its ally if they have Plus or Minus |
 | 675 | Throat Chop | Dark | `SOVEREIGN_THROAT_CHOP` | exact | Sovereign effect: the target can't use sound moves for two turns |
-| 676 | Pollen Puff | Bug | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 676 | Pollen Puff | Bug | `SOVEREIGN_POLLEN_PUFF` | exact | Sovereign effect: damages a foe; restores half an ally's max HP instead |
 | 677 | Anchor Shot | Steel | `SOVEREIGN_TRAP_HIT` | exact | Sovereign effect: the target can't escape while the user is in battle |
 | 678 | Psychic Terrain | Psychic | `SOVEREIGN_PSYCHIC_TERRAIN` | exact | Sovereign effect: Psychic Terrain: grounded Psychic moves x1.3, blocks priority moves |
 | 679 | Lunge | Bug | `LOWER_ATTACK_HIT` | exact | Sovereign effect: target Attack -1 (100%) |
@@ -348,7 +348,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 798 | Steel Roller | Steel | `SOVEREIGN_FLATTEN_TERRAIN_HIT` | exact | Sovereign effect: fails without a terrain; after the hit, the terrain ends |
 | 799 | Scale Shot | Dragon | `MULTI_HIT` | exact | Sovereign effect: hits 2-5 times, then user Defense -1 and Speed +1 |
 | 800 | Meteor Beam | Rock | `ELECTRO_SHOT` | exact | Sovereign effect: charge turn raises Sp. Atk 1 stage, attacks next turn (Power Herb skips it) |
-| 801 | Shell Side Arm | Poison | `POISON_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
+| 801 | Shell Side Arm | Poison | `POISON_HIT` | exact | Sovereign effect: 20% poison; physical (and contact) when that would do more damage (with the stat stages) |
 | 802 | Misty Explosion | Fairy | `HALVE_DEFENSE` | exact | Sovereign effect: user faints; 1.5x in Misty Terrain; Damp stops it (Explosion's effect, which no longer halves Defense) |
 | 803 | Grassy Glide | Grass | `HIT` | exact | Sovereign effect: +1 priority in Grassy Terrain |
 | 804 | Rising Voltage | Electric | `HIT` | exact | Sovereign effect: power doubles in Electric Terrain against a grounded target |

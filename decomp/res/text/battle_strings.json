@@ -10584,6 +10584,39 @@
         "It’s teatime! Everyone dug in\n",
         "to their Berries!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignBecameNimble_Ally",
+      "en_US": "{STRVAR_1 1, 0, 0} became nimble!"
+    },
+    {
+      "id": "BattleStrings_Text_SovereignBecameNimble_Wild",
+      "en_US": "The wild {STRVAR_1 1, 0, 0} became nimble!"
+    },
+    {
+      "id": "BattleStrings_Text_SovereignBecameNimble_Foe",
+      "en_US": "The foe’s {STRVAR_1 1, 0, 0} became nimble!"
+    },
+    {
+      "id": "BattleStrings_Text_SovereignBurstingFlame_Ally",
+      "en_US": [
+        "The bursting flame hit\n",
+        "{STRVAR_1 1, 0, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignBurstingFlame_Wild",
+      "en_US": [
+        "The bursting flame hit\n",
+        "the wild {STRVAR_1 1, 0, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignBurstingFlame_Foe",
+      "en_US": [
+        "The bursting flame hit\n",
+        "the foe’s {STRVAR_1 1, 0, 0}!"
+      ]
     }
   ]
 }
