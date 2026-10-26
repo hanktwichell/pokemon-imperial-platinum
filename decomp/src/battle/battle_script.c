@@ -6227,6 +6227,17 @@ static BOOL BtlCmd_WeatherHPRecovery(BattleSystem *battleSys, BattleContext *bat
 {
     BattleScript_Iter(battleCtx, 1);
 
+    // Sovereign (item 11): Shore Up heals 2/3 of the user's max HP in a sandstorm, and 1/2 otherwise.
+    if (battleCtx->moveCur == MOVE_SHORE_UP) {
+        if (NO_WEATHER == FALSE && (battleCtx->fieldConditionsMask & FIELD_CONDITION_SANDSTORM)) {
+            battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * 20, 30);
+        } else {
+            battleCtx->hpCalcTemp = ATTACKING_MON.maxHP / 2;
+        }
+
+        return FALSE;
+    }
+
     // Sovereign (item 11): a Utility Umbrella holder heals as if there were no rain or sunlight.
     if (NO_WEATHER || (Sovereign_BattlerWeather(battleCtx, battleCtx->attacker) & FIELD_CONDITION_WEATHER) == FALSE) {
         battleCtx->hpCalcTemp = ATTACKING_MON.maxHP / 2;
@@ -9954,6 +9965,10 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
     case BTLVAR_SOVEREIGN_TIDY_UP_HAZARDS: // Sovereign (item 11): read-only, Tidy Up clears the entry hazards (0 when
         // there were none)
         battleCtx->sovereignTerrainTemp = Sovereign_TidyUpHazards(battleCtx);
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_SIDE_EFFECT_MON_GROUNDED: // Sovereign (item 11): read-only, TRUE when the side-effect target
+        // is grounded (Rototiller)
+        battleCtx->sovereignTerrainTemp = Sovereign_IsGrounded(battleCtx, battleCtx->sideEffectMon);
         return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_SHIELD_CONTACT: // Sovereign (item 11): BattleControllerPlayer_CheckMoveHitOverrides
         return &battleCtx->sovereignShieldContact;

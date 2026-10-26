@@ -7419,3 +7419,40 @@ and approximate moves from 37 to 35.
    - V-create, Rototiller, Gear Up, Magnetic Flux, Decorate, Aromatic Mist, Shore Up, Stuff Cheeks.
    - The charge moves Geomancy, Freeze Shock and Ice Burn.
 3. Owner decision pinned in CB-0158: Burn Up and Double Shock (typeless).
+
+## CB-0165 — 2026-10-26, 9:24 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: item 11 moves, batch 7 (stat changes).** PR #181 (batch 6, protection) is merged. The checklist is now
+332 exact, 19 approximate, 29 placeholders.
+- **V-create:** the user's Defense, Sp. Def and Speed -1 after the hit.
+- **Decorate:** the target's Attack +2 and Sp. Atk +2. `gen_stat_moves.py` now also handles moves that only raise a
+  target's stats.
+- **Rototiller:** Attack and Sp. Atk +1 for grounded Grass types; "It doesn't affect..." for Pokémon off the ground.
+- **Gear Up / Magnetic Flux:** the user and its ally, if they have Plus or Minus.
+- **Aromatic Mist:** the ally's Sp. Def +1.
+- **Shore Up:** heals 2/3 in a sandstorm.
+- **Snipe Shot and Water Shuriken:** already worked in the engine; their checklist rows were stale.
+- Each move was checked in a harness battle.
+
+**Files modified:**
+- `decomp/src/battle/battle_script.c` (Shore Up in `BtlCmd_WeatherHPRecovery`, the grounded var).
+- `decomp/include/data/move_side_effect_subscripts.h`.
+- The generated lists: `battle_script_vars.txt`, `battle_subscripts.txt`, `battle_move_subscript_ptrs.txt`,
+  `move_battle_effects.txt`.
+- New scripts:
+  - Effect scripts `effect_script_0368`–`0373.s`.
+  - Subscripts `subscript_sovereign_stats_decorate.s` and
+    `subscript_sovereign_{v_create,rototiller,gear_up,magnetic_flux,aromatic_mist}.s`.
+- Changed: the scripts' `meson.build` and `sub_seq.order`.
+- `decomp/res/moves/*/data.json` for the moves whose effect or range changed.
+- `tools/engine/gen_stat_moves.py`, `tools/engine/gen_moves.py`, `tools/engine/gen9_move_fixes.py`.
+- `docs/MoveChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. The switching items (Eject Button, Eject Pack, Red Card) with Shed Tail and Chilly Reception, plus a switching case
+   in the harness.
+2. The remaining approximate moves:
+   - The charge moves Geomancy, Freeze Shock and Ice Burn.
+   - Stuff Cheeks, Autotomize (weight).
+   - Shell Side Arm, Dragon Darts (doubles), Parabolic Charge.
+3. Owner decision pinned in CB-0158: Burn Up and Double Shock (typeless).

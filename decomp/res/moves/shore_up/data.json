@@ -13,7 +13,7 @@
     "accuracy": 0,
     "pp": 5,
     "effect": {
-        "type": "BATTLE_EFFECT_RESTORE_HALF_HP",
+        "type": "BATTLE_EFFECT_HEAL_HALF_MORE_IN_SUN",
         "chance": 0
     },
     "range": "RANGE_USER",

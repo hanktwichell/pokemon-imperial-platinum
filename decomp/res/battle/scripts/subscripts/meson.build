@@ -431,4 +431,10 @@ subscript_files = files(
     'subscript_sovereign_mat_block.s',
     'subscript_sovereign_crafty_shield.s',
     'subscript_sovereign_shield_contact.s',
+    'subscript_sovereign_stats_decorate.s',
+    'subscript_sovereign_v_create.s',
+    'subscript_sovereign_rototiller.s',
+    'subscript_sovereign_gear_up.s',
+    'subscript_sovereign_magnetic_flux.s',
+    'subscript_sovereign_aromatic_mist.s',
 )

@@ -291,6 +291,15 @@ MOVES = {
     "mat_block": ("SOVEREIGN_MAT_BLOCK", 0, "user's first turn only: protects its side from damaging moves this turn"),
     "crafty_shield": ("SOVEREIGN_CRAFTY_SHIELD", 0, "protects the user's side from status moves aimed at it this turn"),
     "first_impression": ("SOVEREIGN_FIRST_IMPRESSION", 0, "fails unless it's the user's first turn in battle"),
+    # Moves batch 7.
+    "v_create": ("SOVEREIGN_V_CREATE", 0, "user Defense, Sp. Def and Speed -1 after the hit"),
+    "rototiller": ("SOVEREIGN_ROTOTILLER", 0, "Attack and Sp. Atk +1 for every grounded Grass type on the field"),
+    "gear_up": ("SOVEREIGN_GEAR_UP", 0, "Attack and Sp. Atk +1 for the user and its ally if they have Plus or Minus"),
+    "magnetic_flux": ("SOVEREIGN_MAGNETIC_FLUX", 0, "Defense and Sp. Def +1 for the user and its ally if they have Plus or Minus"),
+    "aromatic_mist": ("SOVEREIGN_AROMATIC_MIST", 0, "the user's ally's Sp. Def +1; fails without an ally"),
+    "shore_up": ("HEAL_HALF_MORE_IN_SUN", 0, "heals 1/2 of the user's max HP, 2/3 in a sandstorm"),
+    "snipe_shot": (None, 0, "high critical-hit ratio; ignores Follow Me, Lightning Rod and Storm Drain"),
+    "water_shuriken": (None, 0, "hits 2-5 times; Ash-Greninja's hits 3 times at 20 power"),
 }
 
 # Gen IX values the move data got wrong (not the Champions changes in tools/engine/apply_champions_moves.py).
@@ -303,6 +312,7 @@ VALUE_FIXES = {
     "whirlwind": {"accuracy": 0},
     # The engine has no "every Pokemon" range; Flower Shield runs once, as a field move, and finds the Grass types itself.
     "flower_shield": {"range": "RANGE_FIELD"},
+    "rototiller": {"range": "RANGE_FIELD"},
 }
 
 

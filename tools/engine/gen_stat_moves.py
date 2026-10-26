@@ -41,6 +41,7 @@ STAT_MOVES = {
     "spicy_extract": ("target", [("ATTACK", 2), ("DEFENSE", -2)]),
     "fillet_away": ("user", [("ATTACK", 2), ("SP_ATTACK", 2), ("SPEED", 2)], "hp_cost_2"),
     "take_heart": ("user", [("SP_ATTACK", 1), ("SP_DEFENSE", 1)], "cure"),
+    "decorate": ("target", [("ATTACK", 2), ("SP_ATTACK", 2)]),
 }
 # Optional further elements: "poisoned" = fails unless the target is poisoned (Venom Drench); "hp_cost_N" = the user
 # first loses 1/N of its max HP, and the move fails at 1/N or less (Clangorous Soul, Fillet Away); "cure" = the user's
@@ -124,12 +125,15 @@ _no_change:
     UpdateVar OPCODE_FLAG_ON, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_NO_MORE_WORK
     End
 '''
+    # The move fails when none of the target's stats can move: the lowered ones (or, for a move that only raises
+    # stats, the raised ones) all at their limit.
     lowered = [s for s, n in changes if n < 0]
+    limited, limit, way = (lowered, 0, "lower") if lowered else ([s for s, n in changes if n > 0], 12, "higher")
     checks = ""
     if "poisoned" in opts:
         checks += "    CompareMonDataToValue OPCODE_FLAG_NOT, BTLSCR_SIDE_EFFECT_MON, BATTLEMON_STATUS, MON_CONDITION_ANY_POISON, _failed\n"
-    checks += "".join(f"    CompareMonDataToValue OPCODE_NEQ, BTLSCR_SIDE_EFFECT_MON, {STAGE_FIELD[s]}, 0, _change\n" for s in lowered[:-1])
-    checks += f"    CompareMonDataToValue OPCODE_EQU, BTLSCR_SIDE_EFFECT_MON, {STAGE_FIELD[lowered[-1]]}, 0, _no_change\n"
+    checks += "".join(f"    CompareMonDataToValue OPCODE_NEQ, BTLSCR_SIDE_EFFECT_MON, {STAGE_FIELD[s]}, {limit}, _change\n" for s in limited[:-1])
+    checks += f"    CompareMonDataToValue OPCODE_EQU, BTLSCR_SIDE_EFFECT_MON, {STAGE_FIELD[limited[-1]]}, {limit}, _no_change\n"
     first, rest = calls.split("    Call BATTLE_SUBSCRIPT_UPDATE_STAT_STAGE\n", 1)
     return f'''#include "macros/btlcmd.inc"
 
@@ -154,8 +158,8 @@ _no_change:
     PrintAttackMessage
     Wait
     WaitButtonABTime 30
-    // {{0}}’s stats won’t go any lower!
-    PrintMessage BattleStrings_Text_PokemonsStatsWontGoAnyLower_Ally, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
+    // {{0}}’s stats won’t go any {way}!
+    PrintMessage BattleStrings_Text_PokemonsStatsWontGoAny{way.title()}_Ally, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON
     Wait
     WaitButtonABTime 30
     UpdateVar OPCODE_FLAG_ON, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_NO_MORE_WORK
