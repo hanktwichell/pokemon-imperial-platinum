@@ -31,7 +31,7 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 518 | Musharna | converted | 12 / 10 | yes |  |
 | 519 | Pidove | converted | 15 / 15 | yes |  |
 | 520 | Tranquill | converted | 15 / 11 | yes |  |
-| 521 | Unfezant | converted | 14 / 14 | yes |  |
+| 521 | Unfezant | converted | 15 / 14 | yes |  |
 | 522 | Blitzle | converted | 13 / 13 | yes |  |
 | 523 | Zebstrika | converted | 14 / 11 | yes |  |
 | 524 | Roggenrola | converted | 10 / 7 | yes |  |
@@ -102,8 +102,8 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 589 | Escavalier | converted | 14 / 12 | yes |  |
 | 590 | Foongus | converted | 11 / 8 | yes |  |
 | 591 | Amoonguss | converted | 13 / 9 | yes |  |
-| 592 | Frillish | converted | 9 / 7 | yes |  |
-| 593 | Jellicent | converted | 9 / 7 | yes |  |
+| 592 | Frillish | converted | 15 / 7 | yes |  |
+| 593 | Jellicent | converted | 14 / 7 | yes |  |
 | 594 | Alomomola | converted | 15 / 12 | yes |  |
 | 595 | Joltik | converted | 9 / 4 | yes |  |
 | 596 | Galvantula | converted | 12 / 11 | yes |  |
@@ -178,7 +178,7 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 665 | Spewpa | converted | 15 / 12 | yes |  |
 | 666 | Vivillon | converted | 19 / 14 | yes | shiny front doesn't line up (43% of pixels) |
 | 667 | Litleo | converted | 11 / 9 | yes |  |
-| 668 | Pyroar | converted | 14 / 13 | yes | shiny front doesn't line up (28% of pixels) |
+| 668 | Pyroar | converted | 27 / 13 | yes | shiny front doesn't line up (28% of pixels) |
 | 669 | Flabébé | converted | 13 / 14 | yes | shiny front doesn't line up (47% of pixels) |
 | 670 | Floette | converted | 13 / 14 | yes | shiny front doesn't line up (75% of pixels) |
 | 671 | Florges | converted | 15 / 15 | yes | shiny front doesn't line up (48% of pixels) |

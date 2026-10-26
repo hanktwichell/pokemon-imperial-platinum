@@ -38,8 +38,8 @@ The game unscrambles each battle sprite with a key it takes from the sprite's ow
 - Talonflame's back: a wing tip. It was scaled to 88% to fit 80×80.
 
 Either comes out as noise. Clearing those few pixels (1 for Samurott, 2 for Talonflame) fixes both. The converter
-fix and a CI check (`tools/test/check_battle_sprites.py`) are ready. They wait for PR #159, which changes the same
-converter. On main (#157 merged) the check finds both; on #159 it also finds Hisuian Samurott's new front.
+fix and a CI check (`tools/test/check_battle_sprites.py`) are ready for the next PR. On main the check finds both,
+and Hisuian Samurott's new front (PR #159) too.
 
 ### Bulbasaur's back (9 species)
 
@@ -89,7 +89,7 @@ leans toward the shiny colours. So the estimates look sound, but they are estima
 - **Zeraora:** on main its shiny front has teal claws, because the pack's shiny was drawn 1 pixel off. PR #157
   replaces that front, and its PokeAPI pair lines up.
 
-## The converter patch (after PR #159 merges)
+## The converter patch (the next PR)
 
 The patch is ready. It changes `tools/sprites/convert_battle_sprites.py` and adds the CI check:
 - **Corner:** clears the top-left corner (Samurott, Talonflame).

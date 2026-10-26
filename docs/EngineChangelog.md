@@ -21,7 +21,7 @@ players and the verification that was run.
   - Flabébé's and Floette's PokeAPI shiny fronts are other drawings than their fronts.
   - A sample of #1–493 looks as before.
 
-The fixes come in a follow-up, once PR #159 (Claude A) is merged.
+The fixes come in the next PR.
 
 
 ## CI: the object tile and double-close checks; the Smogon sprite credits
@@ -37,6 +37,26 @@ The fixes come in a follow-up, once PR #159 (Claude A) is merged.
   project's sheet of finished sprites (X/Y, Sun/Moon, Gen 8 and Gen 9; snapshots in `assets/sprites/credits/smogon/`),
   through `tools/sprites/smogon_credits.py`, which `tools/regenerate_docs.sh` runs. `CITATIONS.md` names the 36
   spriters.
+
+## E12 — Sovereign's forms get their own front sprites
+
+For players: 368 forms (the 98 Megas and Primals, and the regional, battle, item, fusion, cosmetic and female forms)
+show their own front and shiny front (PokeAPI's, owner 2026-10-26) instead of the base species'. 52 forms whose
+PokeAPI front is the species' own (the Totems, Scatterbug's and Spewpa's patterns) keep the species' sprite. Unfezant,
+Frillish, Jellicent and Pyroar get PokeAPI's female front, sharing the front palette with the male one. Their backs are still the species' (no back art yet); Mega Zygarde keeps
+Zygarde's sprite (PokeAPI has none).
+
+- `tools/sprites/convert_form_sprites.py` converts `assets/sprites/packs/pokeapi_fronts/forms/` into
+  `decomp/res/pokemon/sovereign_form_sprites/` (front, normal and shiny palette per form; `order.txt`, `meson.build`)
+  and writes `include/data/sovereign_form_sprites.h` (`sSovereignFormSprite`, by `sSovereignForms` entry).
+- `make_pl_pokegra.py` packs them after the back palettes (`zform-*`), and `BuildPokemonSpriteTemplate` uses them for
+  a front at `POKEGRA_FORM_SPRITE_BASE + sprite * 3` when the form has one.
+- Most Megas are bigger than 80×80 and were scaled (83–99%); 39 had more than 15 colours (the Legends: Z-A Megas
+  most). The form's y offset is still the species' (`sprite_data.json`), so a few may sit a little high or low.
+- The lookup runs after the species' own cases and before the form is sanitized, so Fairy Arceus and the like are
+  covered too. Hisuian Sneasel's female front isn't done (forms have no female image yet).
+- Verification: release build and boot smoke test pass; the archive has 9,312 files and every form's front and
+  palettes sit in the slots the game reads. Not yet seen in a battle.
 
 ## E12 — front and back sprites get palettes of their own
 
