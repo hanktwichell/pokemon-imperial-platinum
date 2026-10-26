@@ -7260,3 +7260,40 @@ and Red Card.
 2. The switching items (Eject Button, Eject Pack, Red Card) with Shed Tail and Chilly Reception, plus a switching case
    in the harness.
 3. Owner decision pinned in CB-0158: Burn Up and Double Shock (typeless).
+
+## CB-0161 — 2026-10-26, 7:38 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: item 11 moves, batch 3, second half.** PR #177 (first half) is merged. Placeholders went from 48 to 44.
+- **Glaive Rush:** until the user's next move, moves never miss it and do double damage.
+- **Salt Cure:** 1/8 of the max HP each turn, or 1/4 for Water and Steel types, until the target switches out.
+- **Syrup Bomb:** Speed -1 at the end of each of the next 3 turns, while the user stays in.
+- **Rage Fist:** +50 power per hit taken this battle, up to 350. It survives switching.
+- Salt Cure and Syrup Bomb each have a new end-of-turn step.
+- **Checked in the harness**, reading both Pokémon's HP from memory:
+  - Glaive Rush: 39 damage before, then 78 the turn after.
+  - Salt Cure: exactly 1/8, and 1/4 against Steelix.
+  - Rage Fist: its power grows with each hit.
+  - Syrup Bomb: its messages show.
+
+**Files modified:**
+- `tools/engine/gen9_move_fixes.py`.
+- `decomp/src/battle/battle_lib.c`, `decomp/src/battle/battle_script.c`, `decomp/src/battle/battle_controller_player.c`.
+- `decomp/include/battle/battle_context.h`, `decomp/include/battle/battle_lib.h`,
+  `decomp/include/data/move_side_effect_subscripts.h`.
+- The generated lists: `battle_script_vars.txt`, `battle_subscripts.txt`, `battle_move_subscript_ptrs.txt`,
+  `move_battle_effects.txt`.
+- New scripts:
+  - Effect scripts `effect_script_0350`–`0351.s`.
+  - Subscripts `subscript_sovereign_{salt_cure,syrup_bomb,salt_cure_damage,syrup_bomb_drop}.s`.
+- Changed: the scripts' `meson.build` and `sub_seq.order`, and `decomp/res/text/battle_strings.json` (3 messages).
+- `decomp/res/moves/{salt_cure,syrup_bomb}/data.json`.
+- `docs/MoveChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. The switching items (Eject Button, Eject Pack, Red Card) with Shed Tail and Chilly Reception, plus a switching case
+   in the harness.
+2. More placeholders (44 left). Candidates:
+   - Thunderclap (works like Sucker Punch).
+   - Toxic Thread (poison plus Speed -1).
+   - Tidy Up, Corrosive Gas, Tar Shot, Octolock, Jaw Lock, Spectral Thief.
+3. Owner decision pinned in CB-0158: Burn Up and Double Shock (typeless).

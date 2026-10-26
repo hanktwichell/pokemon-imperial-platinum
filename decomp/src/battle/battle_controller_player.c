@@ -1450,6 +1450,8 @@ enum MonCondCheckState {
     MON_COND_CHECK_STATE_NIGHTMARE,
     MON_COND_CHECK_STATE_CURSE,
     MON_COND_CHECK_STATE_BIND,
+    MON_COND_CHECK_STATE_SOVEREIGN_SALT_CURE,
+    MON_COND_CHECK_STATE_SOVEREIGN_SYRUP_BOMB,
     MON_COND_CHECK_STATE_BAD_DREAMS,
     MON_COND_CHECK_STATE_UPROAR,
     MON_COND_CHECK_STATE_THRASH,
@@ -1680,6 +1682,43 @@ static void BattleControllerPlayer_CheckMonConditions(BattleSystem *battleSys, B
                 battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
 
                 state = STATE_BREAK_OUT;
+            }
+
+            battleCtx->monConditionCheckState++;
+            break;
+
+        case MON_COND_CHECK_STATE_SOVEREIGN_SALT_CURE: // Sovereign (item 11): 1/8 of the max HP, 1/4 for Water and Steel
+            if ((battleCtx->sovereignSaltCure & FlagIndex(battler))
+                && battleCtx->battleMons[battler].curHP
+                && Battler_Ability(battleCtx, battler) != ABILITY_MAGIC_GUARD) {
+                battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1,
+                    (MON_HAS_TYPE(battler, TYPE_WATER) || MON_HAS_TYPE(battler, TYPE_STEEL)) ? 4 : 8);
+                battleCtx->msgBattlerTemp = battler;
+
+                PrepareSubroutineSequence(battleCtx, subscript_sovereign_salt_cure_damage);
+                state = STATE_BREAK_OUT;
+            }
+
+            battleCtx->monConditionCheckState++;
+            break;
+
+        case MON_COND_CHECK_STATE_SOVEREIGN_SYRUP_BOMB: // Sovereign (item 11): Speed -1, while the Syrup Bomb's user stays in
+            if (battleCtx->sovereignSyrupBomb[battler] && battleCtx->battleMons[battler].curHP) {
+                int source = battleCtx->sovereignSyrupBombSource[battler];
+
+                if (battleCtx->battleMons[source].curHP == 0
+                    || battleCtx->selectedPartySlot[source] != battleCtx->sovereignSyrupBombSourceSlot[battler]) {
+                    battleCtx->sovereignSyrupBomb[battler] = 0;
+                } else {
+                    battleCtx->sovereignSyrupBomb[battler]--;
+                    battleCtx->attacker = source; // the drop's source, for Mirror Armor
+                    battleCtx->sideEffectMon = battler;
+                    battleCtx->sideEffectParam = MOVE_SUBSCRIPT_PTR_SPEED_DOWN_1_STAGE;
+                    battleCtx->sideEffectType = SIDE_EFFECT_TYPE_INDIRECT;
+
+                    PrepareSubroutineSequence(battleCtx, subscript_sovereign_syrup_bomb_drop);
+                    state = STATE_BREAK_OUT;
+                }
             }
 
             battleCtx->monConditionCheckState++;
@@ -2653,6 +2692,7 @@ static BOOL BattleControllerPlayer_CheckStatusDisruption(BattleSystem *battleSys
         case CHECK_STATUS_START:
             ATTACKING_MON.statusVolatile &= ~VOLATILE_CONDITION_DESTINY_BOND;
             ATTACKING_MON.moveEffectsMask &= ~MOVE_EFFECT_GRUDGE;
+            battleCtx->sovereignGlaiveRush &= ~FlagIndex(battleCtx->attacker); // Sovereign (item 11): its next move
             battleCtx->statusCheckState++;
             break;
 
@@ -3351,6 +3391,7 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
     if ((battleCtx->battleStatusMask & SYSCTL_NONSTANDARD_ACC_CHECK) == FALSE
         && (MON_IS_LOCKED_ONTO(attacker, defender)
             || (battleCtx->sovereignTelekinesis[defender] && MOVE_DATA(move).effect != BATTLE_EFFECT_ONE_HIT_KO) // Sovereign (item 11)
+            || (battleCtx->sovereignGlaiveRush & FlagIndex(defender)) // Sovereign (item 11)
             || Battler_Ability(battleCtx, attacker) == ABILITY_NO_GUARD
             || Battler_Ability(battleCtx, defender) == ABILITY_NO_GUARD)) {
         battleCtx->moveStatusFlags &= ~MOVE_STATUS_MISSED;
@@ -4058,6 +4099,12 @@ static void BattleControllerPlayer_UpdateHP(BattleSystem *battleSys, BattleConte
         }
 
         battleCtx->sovereignHPBeforeHit[battleCtx->defender] = DEFENDING_MON.curHP; // Sovereign (item 11)
+
+        // Sovereign (item 11): Rage Fist counts the hits a Pokemon takes from other Pokemon's moves, through switching.
+        if (battleCtx->defender != battleCtx->attacker
+            && battleCtx->sovereignTimesHit[battleCtx->defender][battleCtx->selectedPartySlot[battleCtx->defender]] < 6) {
+            battleCtx->sovereignTimesHit[battleCtx->defender][battleCtx->selectedPartySlot[battleCtx->defender]]++;
+        }
         battleCtx->storedDamage[battleCtx->defender] += battleCtx->damage;
 
         if (battleCtx->battleMons[battleCtx->defender].timesDamaged < 0xFF) {
@@ -4666,6 +4713,10 @@ static void BattleControllerPlayer_UpdateMoveBuffers(BattleSystem *battleSys, Ba
         }
         if (battleCtx->battleStatusMask2 & SYSCTL_ATTACK_MESSAGE_SHOWN) {
             battleCtx->sovereignLastMoveUsed[battleCtx->attacker] = battleCtx->moveTemp;
+        }
+        // Sovereign (item 11): until the user's next move, moves never miss it and deal double damage.
+        if (battleCtx->moveTemp == MOVE_GLAIVE_RUSH && (battleCtx->battleStatusMask2 & SYSCTL_MOVE_SUCCEEDED)) {
+            battleCtx->sovereignGlaiveRush |= FlagIndex(battleCtx->attacker);
         }
         if (battleCtx->moveTemp == MOVE_ROUND) {
             battleCtx->turnFlags[battleCtx->attacker].sovereignUsedRound = TRUE;

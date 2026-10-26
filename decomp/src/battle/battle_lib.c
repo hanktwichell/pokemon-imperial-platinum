@@ -2224,6 +2224,9 @@ void BattleSystem_UpdateAfterSwitch(BattleSystem *battleSys, BattleContext *batt
     battleCtx->sovereignTelekinesis[battler] = 0;
     battleCtx->sovereignThroatChop[battler] = 0;
     battleCtx->sovereignSmackedDown[battler] = 0;
+    battleCtx->sovereignGlaiveRush &= ~FlagIndex(battler); // Sovereign (item 11)
+    battleCtx->sovereignSaltCure &= ~FlagIndex(battler);
+    battleCtx->sovereignSyrupBomb[battler] = 0;
     MI_CpuClear8(battleCtx->sovereignMirrorHerbRises[battler], sizeof(battleCtx->sovereignMirrorHerbRises[battler])); // Sovereign (item 11)
     battleCtx->moveCopied[battler] = MOVE_NONE;
     battleCtx->moveCopiedHit[battler][0] = MOVE_NONE;
@@ -2310,6 +2313,9 @@ void BattleSystem_CleanupFaintedMon(BattleSystem *battleSys, BattleContext *batt
     battleCtx->sovereignTelekinesis[battler] = 0;
     battleCtx->sovereignThroatChop[battler] = 0;
     battleCtx->sovereignSmackedDown[battler] = 0;
+    battleCtx->sovereignGlaiveRush &= ~FlagIndex(battler); // Sovereign (item 11)
+    battleCtx->sovereignSaltCure &= ~FlagIndex(battler);
+    battleCtx->sovereignSyrupBomb[battler] = 0;
     MI_CpuClear8(battleCtx->sovereignMirrorHerbRises[battler], sizeof(battleCtx->sovereignMirrorHerbRises[battler])); // Sovereign (item 11)
     battleCtx->moveCopied[battler] = MOVE_NONE;
     battleCtx->moveCopiedHit[battler][0] = MOVE_NONE;
@@ -8675,6 +8681,33 @@ BOOL Sovereign_RollSecondEffect(BattleSystem *battleSys, BattleContext *battleCt
     return BattleSystem_RandNext(battleSys) % 100 < chance;
 }
 
+// Sovereign (item 11): Salt Cure takes hold of the side-effect battler. FALSE if it already had.
+BOOL Sovereign_StartSaltCure(BattleContext *battleCtx)
+{
+    if (battleCtx->sovereignSaltCure & FlagIndex(battleCtx->sideEffectMon)) {
+        return FALSE;
+    }
+
+    battleCtx->sovereignSaltCure |= FlagIndex(battleCtx->sideEffectMon);
+    return TRUE;
+}
+
+// Sovereign (item 11): Syrup Bomb covers the side-effect battler: its Speed falls at the end of the next 3 turns, for
+// as long as the attacker stays in. FALSE if it was already covered.
+BOOL Sovereign_StartSyrupBomb(BattleContext *battleCtx)
+{
+    int battler = battleCtx->sideEffectMon;
+
+    if (battleCtx->sovereignSyrupBomb[battler]) {
+        return FALSE;
+    }
+
+    battleCtx->sovereignSyrupBomb[battler] = 3;
+    battleCtx->sovereignSyrupBombSource[battler] = battleCtx->attacker;
+    battleCtx->sovereignSyrupBombSourceSlot[battler] = battleCtx->selectedPartySlot[battleCtx->attacker];
+    return TRUE;
+}
+
 // Sovereign (item 11): a battler's Attack with its stat stage applied (Strength Sap).
 u32 Sovereign_StagedAttack(BattleContext *battleCtx, int battler)
 {
@@ -8880,6 +8913,10 @@ int Sovereign_MovePower(BattleSystem *battleSys, BattleContext *battleCtx, int m
         }
         break;
     }
+
+    case MOVE_RAGE_FIST: // 50 more power for each hit the user has taken this battle, up to 350
+        power += 50 * battleCtx->sovereignTimesHit[attacker][battleCtx->selectedPartySlot[attacker]];
+        break;
 
     case MOVE_FUSION_FLARE: // double right after a Fusion Bolt worked this turn, and the other way round
     case MOVE_FUSION_BOLT:

@@ -260,6 +260,10 @@ MOVES = {
     "population_bomb": ("SOVEREIGN_POPULATION_BOMB", 0, "hits up to 10 times, checking accuracy each hit (Skill Link: 10 hits, Loaded Dice: 4-10)"),
     "surging_strikes": (None, None, "always hits 3 times, each a critical hit"),
     "triple_dive": ("MULTI_HIT", 0, "always hits 3 times"),
+    "glaive_rush": (None, None, "until the user's next move, moves against it never miss and deal double damage"),
+    "salt_cure": ("SOVEREIGN_SALT_CURE", 100, "the target loses 1/8 of its max HP each turn (1/4 if Water or Steel) until it switches out"),
+    "syrup_bomb": ("SOVEREIGN_SYRUP_BOMB", 100, "target Speed -1 at the end of each of the next 3 turns, while the user stays in"),
+    "rage_fist": (None, None, "50 more power for each hit the user has taken this battle, up to 350"),
 }
 
 # Gen IX values the move data got wrong (not the Champions changes in tools/engine/apply_champions_moves.py).

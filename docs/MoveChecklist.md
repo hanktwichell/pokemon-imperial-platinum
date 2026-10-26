@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 295 |
+| exact | 299 |
 | approximate | 37 |
-| placeholder | 48 |
+| placeholder | 44 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -409,9 +409,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 859 | Spin Out | Steel | `SOVEREIGN_LOWER_OWN_SPEED_2_HIT` | exact | Sovereign effect: user Speed -2 |
 | 860 | Population Bomb | Normal | `SOVEREIGN_POPULATION_BOMB` | exact | Sovereign effect: hits up to 10 times, checking accuracy each hit (Skill Link: 10 hits, Loaded Dice: 4-10) |
 | 861 | Ice Spinner | Ice | `HIT` | approximate | Sovereign effect: removes the terrain (no message yet) |
-| 862 | Glaive Rush | Dragon | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 862 | Glaive Rush | Dragon | `HIT` | exact | Sovereign effect: until the user's next move, moves against it never miss and deal double damage |
 | 863 | RevivlBlessing | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
-| 864 | Salt Cure | Rock | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 864 | Salt Cure | Rock | `SOVEREIGN_SALT_CURE` | exact | Sovereign effect: the target loses 1/8 of its max HP each turn (1/4 if Water or Steel) until it switches out |
 | 865 | Triple Dive | Water | `MULTI_HIT` | exact | Sovereign effect: always hits 3 times |
 | 866 | Mortal Spin | Poison | `SOVEREIGN_MORTAL_SPIN` | exact | Sovereign effect: poisons the foes, then frees the user from binding, Leech Seed and its side's hazards |
 | 867 | Doodle | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
@@ -436,7 +436,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 886 | Chilling Water | Water | `LOWER_ATTACK_HIT` | exact | Sovereign effect: target Attack -1 (100%) |
 | 887 | Hyper Drill | Normal | `HIT` | exact | Sovereign effect: ignores Protect |
 | 888 | Twin Beam | Psychic | `HIT_TWICE` | exact | Sovereign effect: hits twice |
-| 889 | Rage Fist | Ghost | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 889 | Rage Fist | Ghost | `HIT` | exact | Sovereign effect: 50 more power for each hit the user has taken this battle, up to 350 |
 | 890 | Armor Cannon | Fire | `DEF_SPD_DOWN_HIT` | exact | Sovereign effect: user Defense and Sp. Def -1 |
 | 891 | Bitter Blade | Fire | `RECOVER_HALF_DAMAGE_DEALT` | exact | Sovereign effect: drains half the damage dealt |
 | 892 | Double Shock | Electric | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
@@ -450,7 +450,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 900 | Magical Torque | Fairy | `CONFUSE_HIT` | exact | Sovereign effect: 30% confusion |
 | 901 | Blood Moon | Normal | `HIT` | exact | Sovereign effect: can't be used twice in a row |
 | 902 | Matcha Gotcha | Grass | `SOVEREIGN_MATCHA_GOTCHA` | exact | Sovereign effect: hits both foes, drains half the damage dealt, 20% burn; thaws the user out |
-| 903 | Syrup Bomb | Grass | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 903 | Syrup Bomb | Grass | `SOVEREIGN_SYRUP_BOMB` | exact | Sovereign effect: target Speed -1 at the end of each of the next 3 turns, while the user stays in |
 | 904 | Ivy Cudgel | Grass | `HIT` | exact | Sovereign effect: type follows Ogerpon's mask; high critical-hit ratio |
 | 905 | Electro Shot | Electric | `ELECTRO_SHOT` | exact | Sovereign effect: charge turn raises Sp. Atk; no charge turn in rain |
 | 906 | Tera Starstorm | Normal | `HIT` | exact | Sovereign effect: plain hit (no Terastallization in Sovereign) |
