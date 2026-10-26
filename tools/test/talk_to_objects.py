@@ -13,7 +13,7 @@ script has started, so an A press meant for a scene can't talk to the object as 
 when the field is idle again (gSovereignTestIdleFrames). The clock reads noon (HOUR).
 
 Each object gets a result:
-- ok: a script ran and ended;
+- ok: its own script ran and ended (for a trainer, its battle);
 - NOSCRIPT: nothing ran when A was pressed, so the object isn't there on a new game (a flag hides it until later in
   the story) or something else stands in the way;
 - STANDIN: another object answered from its tile, standing in for it while it's hidden (Pokémon Mansion's maids on

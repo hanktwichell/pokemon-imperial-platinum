@@ -24,7 +24,17 @@ The last object run showed that `tools/test/talk_to_objects.py` counted any scri
   and trigger, gift and wild-form tests. Results no longer change with the time of day, as when Route 212's
   policemen came out at night and saw the player.
 
-**Results:** RESULTS
+**Results:** everything passes, with no **HEAP**.
+- **Objects:** all 252. 136 run their own script to its end, 112 are hidden on a new game, and 4 have a stand-in.
+  The last run's 142 objects that "ran" a script were 135 objects' own scripts and 7 others':
+  - Route 212 North's Stake 1, Grunt 2 and Grunt 3 are hidden on a new game. At Stake 1 and Grunt 3 the
+    policemen, out at night, had answered. At Grunt 2's tile a trainer sees the player even by day, so the test
+    now fights them and talks again.
+  - The Mansion grunt trio and east grunt, the Lati rock and Zamazenta are hidden, with their stand-ins (above).
+  - Aran, whom the last run's early A press removed, now runs his own script too.
+- **Signs, hidden items and triggers:** all 84.
+- **Gifts:** all 59.
+- **Wild Pokémon's forms:** all 153 map headers. 19,104 Pokémon were made, with no problems.
 
 
 ## Playtest pass — the Trainers' School Egg, and heap checks in every harness

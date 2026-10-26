@@ -6404,3 +6404,35 @@ harness workers dying after 250 cases.** PR #152 (Elite Four runs and the lone-P
 2. Run `battle_all_trainers.py` (1,039 trainers), `battle_evolutions.py` and `battle_eggs.py` with the heap check.
    With the SDL fix the workers no longer stop at 250.
 3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
+
+## CB-0142 — 2026-10-25, 9:28 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: the object test checks it ran the object's own script.** PR #153 (the School Egg, heap checks, the SDL
+worker fix) is merged.
+- **The fix:** `tools/test/talk_to_objects.py`'s `talk()` now does the following.
+  - After the A press, the first script the field started (`gSovereignTestScripts`) must be the object's own:
+    `script_id()` gives its script, or for a trainer 3000/5000 + ID − 1 (jsoncnv `from_script`).
+  - Another script first (a trainer who sees the player): it plays out, the test warps back, and it talks once more.
+  - **STANDIN** (passes): another object answered from the object's tile. That is an object placed on the same tile,
+    or any object of the map the second time.
+  - **OTHER** (fails): a different script twice in a row.
+- **Warps:** `play_out(wait_for_script=True)` presses nothing until a script starts. Before this, an A press meant for
+  a scene could talk to the object as the warp ended: Snowpoint's temple guards were fought early and Aran removed.
+- **Clock:** `arrive()` sets `gSovereignTestClock` to noon (`HOUR`) for the object, sign, gift and wild-form tests.
+  Route 212's policemen are out at night and had answered for hidden objects.
+- **Results (all pass, no HEAP):**
+  - Objects: 252, of which 136 ran their own script, 112 are hidden and 4 are STANDIN. The four are the Mansion's
+    two maids, Cresselia on the Lati rock's tile, and the Double Team on Zamazenta's.
+  - Signs: 84. Gifts: 59.
+  - Wild forms: 153 headers, 19,104 Pokémon, 0 problems.
+- No game change; the shipping ROM is unchanged (`cffefd95…`).
+
+**Files modified:**
+- Tools: `tools/test/talk_to_objects.py`, `tools/test/signs_and_triggers.py`, `tools/test/wild_forms.py`
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR once both checks are green.
+2. Run `battle_all_trainers.py` (1,039 trainers in 4 parts; the SDL fix lets each worker go past 250),
+   `battle_evolutions.py` and `battle_eggs.py` with the heap check.
+3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
