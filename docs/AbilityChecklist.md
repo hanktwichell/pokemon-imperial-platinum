@@ -156,10 +156,10 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 271 | Anger Shell | Gen 9 | yes: Attack, Sp. Atk, Speed +1 and Defense, Sp. Def -1 when a hit drops it to half HP or less |
 | 272 | Purifying Salt | Gen 9 | yes: Ghost damage halved; no status conditions or drowsiness (Mold Breaker gets past it) |
 | 273 | Well-Baked Body | Gen 9 | yes: absorbs Fire moves, Defense +2 (`BattleSystem_TriggerImmunityAbility`) |
-| 274 | Wind Rider | Gen 9 | partly: wind moves aimed at it do nothing and raise its Attack instead (the Tailwind boost not yet) |
+| 274 | Wind Rider | Gen 9 | yes: wind moves aimed at it do nothing and raise its Attack instead; a tailwind on its side raises its Attack (on entry too) |
 | 275 | Guard Dog | Gen 9 | partly: Intimidate raises its Attack instead (immunity to Roar and Whirlwind not yet) |
 | 276 | Rocky Payload | Gen 9 | yes: Rock moves ×1.5 |
-| 277 | Wind Power | Gen 9 | partly: charged when a wind move hits it (Tailwind not yet) |
+| 277 | Wind Power | Gen 9 | yes: charged when a wind move hits it or a tailwind starts on its side |
 | 278 | Zero to Hero | Gen 9 | yes: Hero Form once it switches out, until the battle ends |
 | 279 | Commander | Gen 9 | not yet (no battle effect) |
 | 280 | Electromorphsis | Gen 9 | yes: charged when a damaging move hits it (its next Electric move ×2 before the end of next turn, as Platinum's Charge) |

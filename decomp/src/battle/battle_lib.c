@@ -4579,7 +4579,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
 
         case SWITCH_IN_CHECK_STATE_SOVEREIGN_ENTRY_BOOSTS:
             // Sovereign (item 11): Intrepid Sword raises Attack and Dauntless Shield Defense by 1 stage, the first time
-            // the holder enters the battle; Screen Cleaner clears the screens.
+            // the holder enters the battle; Wind Rider raises Attack in a tailwind; Screen Cleaner clears the screens.
             for (i = 0; i < maxBattlers; i++) {
                 int ability;
 
@@ -4596,6 +4596,22 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                     subscript = subscript_update_stat_stage;
                     result = SWITCH_IN_CHECK_RESULT_BREAK;
                     break;
+                }
+
+                // Wind Rider raises its Attack 1 stage on entry when a tailwind blows on its side.
+                if (battleCtx->battleMons[battler].curHP
+                    && ability == ABILITY_WIND_RIDER
+                    && battleCtx->battleMons[battler].sovereignEntryAnnounced == FALSE) {
+                    battleCtx->battleMons[battler].sovereignEntryAnnounced = TRUE;
+
+                    if (battleCtx->sideConditionsMask[BattleSystem_GetBattlerSide(battleSys, battler)] & SIDE_CONDITION_TAILWIND) {
+                        battleCtx->sideEffectParam = MOVE_SUBSCRIPT_PTR_ATTACK_UP_1_STAGE;
+                        battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
+                        battleCtx->sideEffectMon = battler;
+                        subscript = subscript_update_stat_stage;
+                        result = SWITCH_IN_CHECK_RESULT_BREAK;
+                        break;
+                    }
                 }
 
                 // Screen Cleaner removes Reflect, Light Screen and Aurora Veil from both sides on entry.
@@ -5226,6 +5242,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
             && (Battler_Ability(battleCtx, battleCtx->defender) == ABILITY_ELECTROMORPHOSIS || Move_IsWind(battleCtx->moveCur))) {
+            battleCtx->msgBattlerTemp = battleCtx->defender;
             *subscript = subscript_sovereign_charged_by_hit;
             result = TRUE;
         }
