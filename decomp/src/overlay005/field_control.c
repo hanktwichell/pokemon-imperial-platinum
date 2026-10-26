@@ -207,8 +207,12 @@ static void SovereignTest_SetLead(FieldSystem *fieldSystem)
 
     u32 personality = gSovereignTestLead.personality;
 
+    if (gSovereignTestLead.shiny) {
+        personality = Pokemon_FindShinyPersonality(TrainerInfo_ID(SaveData_GetTrainerInfo(fieldSystem->saveData)));
+    }
+
     while (personality == 0
-        || (gSovereignTestLead.personality == 0 && gSovereignTestLead.gender != 0
+        || (gSovereignTestLead.personality == 0 && !gSovereignTestLead.shiny && gSovereignTestLead.gender != 0
             && Pokemon_GetGenderOf(gSovereignTestLead.species, personality) != gSovereignTestLead.gender - 1)) {
         personality = LCRNG_Next() | (LCRNG_Next() << 16);
     }
@@ -245,6 +249,7 @@ static void SovereignTest_SetLead(FieldSystem *fieldSystem)
     }
 
     gSovereignTestLead.species = SPECIES_NONE;
+    gSovereignTestLead.shiny = FALSE;
 
     if (gSovereignTestPartner.species != SPECIES_NONE) {
         Pokemon *partner = Party_GetPokemonBySlotIndex(SaveData_GetParty(fieldSystem->saveData), 1);
@@ -390,8 +395,9 @@ static BOOL SovereignTest_BattleTask(FieldTask *task)
             gSovereignTestBattleTrainer = TRAINER_NONE;
             Encounter_NewVsTrainer(task, trainer, TRAINER_NONE, TRAINER_NONE, HEAP_ID_FIELD2, &sSovereignTestBattleResult);
         } else if (gSovereignTestWild.species != SPECIES_NONE) {
-            Encounter_SovereignTestNewVsWildForm(task, gSovereignTestWild.species, gSovereignTestWild.form, gSovereignTestWild.level, gSovereignTestWild.move, &sSovereignTestBattleResult);
+            Encounter_SovereignTestNewVsWildForm(task, gSovereignTestWild.species, gSovereignTestWild.form, gSovereignTestWild.level, gSovereignTestWild.move, gSovereignTestWild.shiny, &sSovereignTestBattleResult);
             gSovereignTestWild.species = SPECIES_NONE;
+            gSovereignTestWild.shiny = FALSE;
         } else {
             Encounter_NewVsSpeciesAtLevel(task, SPECIES_CHANSEY, 30, &sSovereignTestBattleResult, FALSE);
         }
