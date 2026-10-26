@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 368 |
+| exact | 370 |
 | approximate | 0 |
-| placeholder | 12 |
+| placeholder | 10 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -114,11 +114,11 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 564 | Sticky Web | Bug | `SOVEREIGN_STICKY_WEB` | exact | Sovereign effect: grounded foes switching in lose 1 Speed stage (Rapid Spin clears it) |
 | 565 | Fell Stinger | Bug | `HIT` | exact | Sovereign effect: user Attack +3 if it knocks out the target |
 | 566 | Phantom Force | Ghost | `SHADOW_FORCE` | exact |  |
-| 567 | Trick-or-Treat | Ghost | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 567 | Trick-or-Treat | Ghost | `SOVEREIGN_ADD_TYPE` | exact | Sovereign effect: adds the Ghost type to the target as a third type (in place of an added one); fails if it's a Ghost type already |
 | 568 | Noble Roar | Normal | `SOVEREIGN_NOBLE_ROAR` | exact | Sovereign effect: target Attack -1, target Sp. Atk -1 |
 | 569 | Ion Deluge | Electric | `SOVEREIGN_ION_DELUGE` | exact | Sovereign effect: +1 priority; Normal moves are Electric this turn |
 | 570 | ParabolcCharge | Electric | `RECOVER_HALF_DAMAGE_DEALT` | exact | Sovereign effect: hits all adjacent Pokémon (its ally too); drains half the damage dealt |
-| 571 | Forest’s Curse | Grass | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 571 | Forest’s Curse | Grass | `SOVEREIGN_ADD_TYPE` | exact | Sovereign effect: adds the Grass type to the target as a third type (in place of an added one); fails if it's a Grass type already |
 | 572 | Petal Blizzard | Grass | `HIT` | exact | Sovereign effect: hits all adjacent Pokémon |
 | 573 | Freeze-Dry | Ice | `FREEZE_HIT` | exact | Sovereign effect: super effective against Water; 10% freeze |
 | 574 | Disarming Voice | Fairy | `HIT` | exact | Sovereign effect: never misses, hits both foes |

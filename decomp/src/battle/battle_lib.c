@@ -127,6 +127,7 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
     battleCtx->battleMons[battler].sovereignIceFaceHail = FALSE;
     battleCtx->battleMons[battler].type1 = Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
     battleCtx->battleMons[battler].type2 = Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
+    battleCtx->battleMons[battler].sovereignAddedType = 0; // Sovereign (item 11): a new type replaces an added one
     battleCtx->battleMons[battler].gender = Pokemon_GetGender(mon);
     battleCtx->battleMons[battler].isShiny = Pokemon_IsShiny(mon);
 
@@ -692,10 +693,12 @@ void BattleMon_Set(BattleContext *battleCtx, int battler, enum BattleMonParam pa
 
     case BATTLEMON_TYPE_1:
         mon->type1 = *(u8 *)buf;
+        mon->sovereignAddedType = 0; // Sovereign (item 11): a new type replaces an added one
         break;
 
     case BATTLEMON_TYPE_2:
         mon->type2 = *(u8 *)buf;
+        mon->sovereignAddedType = 0; // Sovereign (item 11): a new type replaces an added one
         break;
 
     case BATTLEMON_GENDER:
@@ -2901,6 +2904,18 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
                         totalMul *= 2;
                     }
                 }
+
+                // Sovereign (item 11): the type Trick-or-Treat or Forest's Curse added.
+                if (battleCtx->battleMons[defender].sovereignAddedType == sTypeMatchupMultipliers[chartEntry][1] + 1
+                    && BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_1, NULL) != sTypeMatchupMultipliers[chartEntry][1]
+                    && BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_2, NULL) != sTypeMatchupMultipliers[chartEntry][1]
+                    && BasicTypeMulApplies(battleCtx, attacker, defender, chartEntry) == TRUE) {
+                    damage = ApplyTypeMultiplier(battleCtx, attacker, Sovereign_ChartMul(battleCtx, move, chartEntry), damage, movePower, moveStatusMask);
+
+                    if (Sovereign_ChartMul(battleCtx, move, chartEntry) == TYPE_MULTI_SUPER_EFF) {
+                        totalMul *= 2;
+                    }
+                }
             }
 
             chartEntry++;
@@ -4839,6 +4854,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                         if (battleCtx->battleMons[battler].type1 != type1 || battleCtx->battleMons[battler].type2 != type2) {
                             battleCtx->battleMons[battler].type1 = type1;
                             battleCtx->battleMons[battler].type2 = type2;
+                            battleCtx->battleMons[battler].sovereignAddedType = 0; // Sovereign (item 11): a new type replaces an added one
                             battleCtx->msgBattlerTemp = battler;
                             battleCtx->msgTemp = seen ? type1 : 0xFF; // 0xFF: back to its own types
                             subscript = subscript_sovereign_mimicry;
@@ -8707,6 +8723,7 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
                     && battleCtx->battleMons[battleCtx->msgBattlerTemp].type2 != TYPE_NORMAL) {
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].type1 = TYPE_NORMAL;
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].type2 = TYPE_NORMAL;
+                    battleCtx->battleMons[battleCtx->msgBattlerTemp].sovereignAddedType = 0; // Sovereign (item 11): a new type replaces an added one
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = CASTFORM_FORM_NORMAL;
                     *subscript = subscript_form_change;
                     result = TRUE;
@@ -8716,6 +8733,7 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
                     && battleCtx->battleMons[battleCtx->msgBattlerTemp].type2 != TYPE_FIRE) {
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].type1 = TYPE_FIRE;
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].type2 = TYPE_FIRE;
+                    battleCtx->battleMons[battleCtx->msgBattlerTemp].sovereignAddedType = 0; // Sovereign (item 11): a new type replaces an added one
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = CASTFORM_FORM_SUNNY;
                     *subscript = subscript_form_change;
                     result = TRUE;
@@ -8725,6 +8743,7 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
                     && battleCtx->battleMons[battleCtx->msgBattlerTemp].type2 != TYPE_WATER) {
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].type1 = TYPE_WATER;
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].type2 = TYPE_WATER;
+                    battleCtx->battleMons[battleCtx->msgBattlerTemp].sovereignAddedType = 0; // Sovereign (item 11): a new type replaces an added one
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = CASTFORM_FORM_RAINY;
                     *subscript = subscript_form_change;
                     result = TRUE;
@@ -8734,6 +8753,7 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
                     && battleCtx->battleMons[battleCtx->msgBattlerTemp].type2 != TYPE_ICE) {
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].type1 = TYPE_ICE;
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].type2 = TYPE_ICE;
+                    battleCtx->battleMons[battleCtx->msgBattlerTemp].sovereignAddedType = 0; // Sovereign (item 11): a new type replaces an added one
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = CASTFORM_FORM_SNOWY;
                     *subscript = subscript_form_change;
                     result = TRUE;
@@ -8743,6 +8763,7 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
                 && battleCtx->battleMons[battleCtx->msgBattlerTemp].type2 != TYPE_NORMAL) {
                 battleCtx->battleMons[battleCtx->msgBattlerTemp].type1 = TYPE_NORMAL;
                 battleCtx->battleMons[battleCtx->msgBattlerTemp].type2 = TYPE_NORMAL;
+                battleCtx->battleMons[battleCtx->msgBattlerTemp].sovereignAddedType = 0; // Sovereign (item 11): a new type replaces an added one
                 battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = CASTFORM_FORM_NORMAL;
                 *subscript = subscript_form_change;
                 result = TRUE;
@@ -8920,6 +8941,7 @@ void BattleSystem_SovereignChangeBattleForm(BattleSystem *battleSys, BattleConte
     mon->spDefense = Pokemon_GetValue(tmp, MON_DATA_SP_DEF, NULL);
     mon->type1 = SpeciesData_GetFormValue(mon->species, form, SPECIES_DATA_TYPE_1);
     mon->type2 = SpeciesData_GetFormValue(mon->species, form, SPECIES_DATA_TYPE_2);
+    mon->sovereignAddedType = 0; // Sovereign (item 11): a new type replaces an added one
     mon->formNum = form;
     // A form with more HP (Complete Zygarde) raises its max HP; the caller raises its HP to match.
     mon->maxHP = Pokemon_GetValue(tmp, MON_DATA_MAX_HP, NULL);

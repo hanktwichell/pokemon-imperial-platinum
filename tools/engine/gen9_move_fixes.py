@@ -157,6 +157,8 @@ MOVES = {
     "oblivion_wing": (None, None, "drains 3/4 of the damage dealt"),
     "round": (None, None, "the next Pokémon (either side) that chose Round moves right after the user, with double"
               " power"),
+    "trick_or_treat": ("SOVEREIGN_ADD_TYPE", 0, "adds the Ghost type to the target as a third type (in place of an added one); fails if it's a Ghost type already"),
+    "forests_curse": ("SOVEREIGN_ADD_TYPE", 0, "adds the Grass type to the target as a third type (in place of an added one); fails if it's a Grass type already"),
     "shed_tail": ("SOVEREIGN_SHED_TAIL", 0, "the user pays half its max HP (rounded up) for a substitute and switches out; the Pokémon that comes in gets the substitute and nothing else"),
     "beak_blast": (None, None, "-3 priority; from the start of the turn until it moves, the user burns Pokémon whose contact moves hit it"),
     "shell_trap": (None, None, "-3 priority; sets a trap at the start of the turn: a foe's physical hit springs it and the user moves right after; otherwise it fails"),

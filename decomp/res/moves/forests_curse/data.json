@@ -13,7 +13,7 @@
     "accuracy": 100,
     "pp": 20,
     "effect": {
-        "type": "BATTLE_EFFECT_DO_NOTHING",
+        "type": "BATTLE_EFFECT_SOVEREIGN_ADD_TYPE",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

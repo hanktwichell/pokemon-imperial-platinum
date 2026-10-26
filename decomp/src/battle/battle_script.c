@@ -4301,6 +4301,7 @@ static BOOL BtlCmd_TryConversion(BattleSystem *battleSys, BattleContext *battleC
 
         ATTACKING_MON.type1 = moveType;
         ATTACKING_MON.type2 = moveType;
+        ATTACKING_MON.sovereignAddedType = 0; // Sovereign (item 11): a new type replaces an added one
         battleCtx->msgTemp = moveType;
     }
 
@@ -5646,6 +5647,8 @@ static void Sovereign_TransformInto(BattleContext *battleCtx, int user, int targ
     for (i = 0; i < XtOffset(BattleMon *, ability) + (int)sizeof(userMon->ability); i++) { // Sovereign: ability is a u16
         attackerData[i] = defenderData[i];
     }
+
+    userMon->sovereignAddedType = targetMon->sovereignAddedType; // Sovereign (item 11): an added type is copied too
 
     userMon->weatherAbilityAnnounced = FALSE;
     userMon->intimidateAnnounced = FALSE;
@@ -10103,6 +10106,14 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
     case BTLVAR_SOVEREIGN_ELECTRIFY: // Sovereign (item 11): read-only, Electrify electrifies the defender (FALSE when it
         // fails)
         battleCtx->sovereignTerrainTemp = Sovereign_Electrify(battleCtx, battleCtx->defender);
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_ADD_TYPE: // Sovereign (item 11): read-only, Trick-or-Treat adds the Ghost type to the defender
+        // and Forest's Curse the Grass type, replacing a type added before (FALSE when it has that type already)
+        battleCtx->msgTemp = battleCtx->moveCur == MOVE_FORESTS_CURSE ? TYPE_GRASS : TYPE_GHOST;
+        battleCtx->sovereignTerrainTemp = MON_HAS_TYPE(battleCtx->defender, battleCtx->msgTemp) == FALSE;
+        if (battleCtx->sovereignTerrainTemp) {
+            DEFENDING_MON.sovereignAddedType = battleCtx->msgTemp + 1;
+        }
         return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_RECEIVER: // Sovereign (item 11): read-only, for subscript_faint_mon. TRUE when the fainted
         // Pokemon's ally took over its ability with Receiver or Power of Alchemy (it's then msgBattlerTemp)
