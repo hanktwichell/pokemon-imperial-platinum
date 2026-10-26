@@ -8644,6 +8644,13 @@ int Move_SovereignCritStage(int move)
     return 0;
 }
 
+// Sovereign (item 11): a battler's Attack with its stat stage applied (Strength Sap).
+u32 Sovereign_StagedAttack(BattleContext *battleCtx, int battler)
+{
+    int stage = battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_ATTACK];
+    return battleCtx->battleMons[battler].attack * sStatStageBoosts[stage].numerator / sStatStageBoosts[stage].denominator;
+}
+
 // Sovereign (item 11): a battler's Speed with its stat stage applied.
 static u32 Sovereign_StagedSpeed(BattleContext *battleCtx, int battler)
 {

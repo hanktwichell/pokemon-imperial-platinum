@@ -13,7 +13,7 @@
     "accuracy": 0,
     "pp": 15,
     "effect": {
-        "type": "BATTLE_EFFECT_DO_NOTHING",
+        "type": "BATTLE_EFFECT_SOVEREIGN_SPICY_EXTRACT",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

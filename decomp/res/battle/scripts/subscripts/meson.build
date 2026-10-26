@@ -399,4 +399,13 @@ subscript_files = files(
     'subscript_sovereign_air_balloon.s',
     'subscript_sovereign_ability_shield.s',
     'subscript_sovereign_mirror_herb.s',
+    'subscript_sovereign_stats_spicy_extract.s',
+    'subscript_sovereign_stats_fillet_away.s',
+    'subscript_sovereign_stats_take_heart.s',
+    'subscript_sovereign_topsy_turvy.s',
+    'subscript_sovereign_reflect_type.s',
+    'subscript_sovereign_magic_powder.s',
+    'subscript_sovereign_purify.s',
+    'subscript_sovereign_strength_sap.s',
+    'subscript_sovereign_lunar_blessing.s',
 )

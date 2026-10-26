@@ -9716,6 +9716,69 @@
         "The foe’s {STRVAR_1 1, 0, 0} can’t use\n",
         "{STRVAR_1 6, 1, 0} twice in a row!\r"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignStatChangesInverted_Ally",
+      "en_US": [
+        "All stat changes on\n",
+        "{STRVAR_1 1, 0, 0} were inverted!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignStatChangesInverted_Wild",
+      "en_US": [
+        "All stat changes on the\n",
+        "wild {STRVAR_1 1, 0, 0} were inverted!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignStatChangesInverted_Foe",
+      "en_US": [
+        "All stat changes on the\n",
+        "foe’s {STRVAR_1 1, 0, 0} were inverted!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTypeChangedToMatchTarget_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s type changed\n",
+        "to match the target’s!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTypeChangedToMatchTarget_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}’s type\n",
+        "changed to match the target’s!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTypeChangedToMatchTarget_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}’s type\n",
+        "changed to match the target’s!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTransformedIntoPsychicType_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} transformed\n",
+        "into the Psychic type!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTransformedIntoPsychicType_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} transformed\n",
+        "into the Psychic type!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTransformedIntoPsychicType_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} transformed\n",
+        "into the Psychic type!"
+      ]
     }
   ]
 }

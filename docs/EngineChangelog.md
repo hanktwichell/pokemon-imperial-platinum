@@ -4,6 +4,43 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): moves, batch 2 (status moves)
+
+For players: 11 more status moves work as in the main games. Ten of them did nothing before; Clangorous Soul now
+costs HP.
+
+- **Through `tools/engine/gen_stat_moves.py`:**
+  - **Spicy Extract:** the target's Attack +2 and Defense -2.
+  - **Fillet Away:** the user's Attack, Sp. Atk and Speed +2, for 1/2 of its max HP. It fails at 1/2 or less.
+  - **Take Heart:** the user's Sp. Atk and Sp. Def +1, and its status condition is healed.
+  - **Clangorous Soul:** now costs 1/3 of the user's max HP, and fails at 1/3 or less. It was approximate.
+  - The generator has two new options: `hp_cost_N` and `cure`.
+- **Hand-written subscripts** (`subscript_sovereign_<move>.s`):
+  - **Topsy-Turvy:** inverts the target's stat stages. It fails when they're all neutral.
+  - **Reflect Type:** the user takes the target's types. It fails for Arceus and Silvally.
+  - **Magic Powder:** the target becomes pure Psychic-type. It fails if the target is already Psychic.
+  - **Purify:** heals the target's status condition, then the user regains 1/2 of its max HP. It fails against a
+    target without one.
+  - **Strength Sap:** the target's Attack -1, and the user regains HP equal to the target's Attack, with its stage,
+    from before the drop. It fails at -6 Attack.
+  - **Lunar Blessing, Jungle Healing:** the user and its ally regain 1/4 of their max HP, and their status conditions
+    are healed.
+- Checklist: 283 exact, 39 approximate, 58 placeholders.
+
+**Verification:** `tools/test/check_battle_scripts.py` passes. Harness wild battles against a Ninjask:
+- **Spicy Extract:** "The wild NINJASK's Attack sharply rose!", then "...Defense harshly fell!".
+- **Fillet Away:** Attack, Sp. Atk and Speed sharply rose. Used again at half HP: "But it failed!".
+- **Take Heart:** Chansey, badly poisoned by Toxic: Sp. Atk and Sp. Def rose, then "CHANSEY's status returned to
+  normal!".
+- **Topsy-Turvy:** after the Ninjask's Swords Dance: "All stat changes on the wild NINJASK were inverted!".
+- **Reflect Type:** "SNORLAX's type changed to match the target's!".
+- **Magic Powder:** "The wild NINJASK transformed into the Psychic type!". Used again: "But it failed!".
+- **Purify:** fails while the Ninjask has no status. After its Flame Orb burns it: "The wild NINJASK's status
+  returned to normal!".
+- **Strength Sap:** after a Tackle, "The wild NINJASK's Attack fell!", then "SNORLAX regained health!".
+- **Lunar Blessing:** badly poisoned Cresselia: "CRESSELIA's HP is full!", then "CRESSELIA's status returned to
+  normal!".
+
 ## Item 11 (effect fidelity): moves, batch 1
 
 For players: 16 more Gen V-IX moves work as in the main games. Most were plain hits or did nothing before.
