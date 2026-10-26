@@ -1247,15 +1247,15 @@ u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *batt
 
     if (NO_CLOUD_NINE) {
         // Sovereign (item 11): Sand Rush and Slush Rush double Speed in sandstorm and snow.
-        if ((battler1Ability == ABILITY_SWIFT_SWIM && WEATHER_IS_RAIN)
-            || (battler1Ability == ABILITY_CHLOROPHYLL && WEATHER_IS_SUN)
+        if ((battler1Ability == ABILITY_SWIFT_SWIM && (Sovereign_BattlerWeather(battleCtx, battler1) & FIELD_CONDITION_RAINING))
+            || (battler1Ability == ABILITY_CHLOROPHYLL && (Sovereign_BattlerWeather(battleCtx, battler1) & FIELD_CONDITION_SUNNY))
             || (battler1Ability == ABILITY_SAND_RUSH && WEATHER_IS_SAND)
             || (battler1Ability == ABILITY_SLUSH_RUSH && WEATHER_IS_HAIL)) {
             battler1Speed *= 2;
         }
 
-        if ((battler2Ability == ABILITY_SWIFT_SWIM && WEATHER_IS_RAIN)
-            || (battler2Ability == ABILITY_CHLOROPHYLL && WEATHER_IS_SUN)
+        if ((battler2Ability == ABILITY_SWIFT_SWIM && (Sovereign_BattlerWeather(battleCtx, battler2) & FIELD_CONDITION_RAINING))
+            || (battler2Ability == ABILITY_CHLOROPHYLL && (Sovereign_BattlerWeather(battleCtx, battler2) & FIELD_CONDITION_SUNNY))
             || (battler2Ability == ABILITY_SAND_RUSH && WEATHER_IS_SAND)
             || (battler2Ability == ABILITY_SLUSH_RUSH && WEATHER_IS_HAIL)) {
             battler2Speed *= 2;
@@ -4603,7 +4603,8 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
 
         case SWITCH_IN_CHECK_STATE_SOVEREIGN_TERRAIN_SEED:
             // Sovereign (item 11): the Electric and Grassy Seeds raise Defense, the Misty and Psychic Seeds Sp. Def, in
-            // their terrain. Checked after every move too, so a terrain set mid-turn triggers them.
+            // their terrain. Checked after every move too, so a terrain set mid-turn triggers them. Room Service lowers
+            // Speed under Trick Room the same way.
             for (i = 0; i < maxBattlers; i++) {
                 u16 item;
                 u32 terrain;
@@ -4613,6 +4614,20 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                 item = battleCtx->battleMons[battler].heldItem;
                 terrain = battleCtx->fieldConditionsMask & FIELD_CONDITION_TERRAIN;
                 stat = (item == ITEM_ELECTRIC_SEED || item == ITEM_GRASSY_SEED) ? BATTLE_STAT_DEFENSE : BATTLE_STAT_SP_DEFENSE;
+
+                if (battleCtx->battleMons[battler].curHP
+                    && item == ITEM_ROOM_SERVICE
+                    && (battleCtx->fieldConditionsMask & FIELD_CONDITION_TRICK_ROOM)
+                    && battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_SPEED] > 0) {
+                    battleCtx->msgBattlerTemp = battler;
+                    battleCtx->msgItemTemp = item;
+                    battleCtx->sideEffectParam = MOVE_SUBSCRIPT_PTR_SPEED_DOWN_1_STAGE;
+                    battleCtx->sideEffectType = SIDE_EFFECT_TYPE_HELD_ITEM;
+                    battleCtx->sideEffectMon = battler;
+                    subscript = subscript_sovereign_terrain_seed;
+                    result = TRUE;
+                    break;
+                }
 
                 if (battleCtx->battleMons[battler].curHP
                     && ((item == ITEM_ELECTRIC_SEED && (terrain & FIELD_CONDITION_TERRAIN_ELECTRIC))
@@ -4637,7 +4652,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
             break;
 
         case SWITCH_IN_CHECK_STATE_SOVEREIGN_STAT_DROP_REACTION:
-            // Sovereign (item 11): Defiant, Competitive and Rattled answer Intimidate.
+            // Sovereign (item 11): Defiant, Competitive, Rattled and the Adrenaline Orb answer Intimidate.
             for (i = 0; i < maxBattlers; i++) {
                 battler = battleCtx->monSpeedOrder[i];
 
@@ -4646,6 +4661,16 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
 
                     if (Sovereign_SetupStatDropReaction(battleCtx, battler)) {
                         subscript = subscript_update_stat_stage;
+                        result = TRUE;
+                        break;
+                    }
+                }
+
+                if (battleCtx->sovereignAdrenalinePending & FlagIndex(battler)) {
+                    battleCtx->sovereignAdrenalinePending &= ~FlagIndex(battler);
+
+                    if (Sovereign_SetupAdrenalineOrb(battleCtx, battler)) {
+                        subscript = subscript_sovereign_item_stat_up;
                         result = TRUE;
                         break;
                     }
@@ -6973,6 +6998,24 @@ BOOL Sovereign_IsGrounded(BattleContext *battleCtx, int battler)
     return BattlerIsGrounded(battleCtx, battler);
 }
 
+// Sovereign (item 11): field conditions as the weather acts on one battler. A Utility Umbrella holder ignores rain and
+// harsh sunlight (its Abilities and moves, and Fire and Water moves hitting it), though not a primal weather's failed
+// Fire or Water moves.
+static u32 Sovereign_UmbrellaWeather(BattleContext *battleCtx, int battler, u32 fieldConditions)
+{
+    if (Battler_HeldItem(battleCtx, battler) == ITEM_UTILITY_UMBRELLA) {
+        return fieldConditions & ~(FIELD_CONDITION_RAINING | FIELD_CONDITION_SUNNY);
+    }
+
+    return fieldConditions;
+}
+
+// Sovereign (item 11): the field conditions as the weather acts on one battler (Sovereign_UmbrellaWeather).
+u32 Sovereign_BattlerWeather(BattleContext *battleCtx, int battler)
+{
+    return Sovereign_UmbrellaWeather(battleCtx, battler, battleCtx->fieldConditionsMask);
+}
+
 // Sovereign (item 11): Terrain Pulse takes the type of the terrain under a grounded user.
 int Sovereign_TerrainPulseType(BattleContext *battleCtx, int battler)
 {
@@ -7891,7 +7934,7 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
             && battleCtx->battleMons[battleCtx->msgBattlerTemp].curHP
             && Battler_Ability(battleCtx, battleCtx->msgBattlerTemp) == ABILITY_FORECAST) {
             if (NO_CLOUD_NINE) {
-                if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_CASTFORM) == FALSE
+                if ((Sovereign_BattlerWeather(battleCtx, battleCtx->msgBattlerTemp) & FIELD_CONDITION_CASTFORM) == FALSE // Sovereign (item 11)
                     && battleCtx->battleMons[battleCtx->msgBattlerTemp].type1 != TYPE_NORMAL
                     && battleCtx->battleMons[battleCtx->msgBattlerTemp].type2 != TYPE_NORMAL) {
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].type1 = TYPE_NORMAL;
@@ -7900,7 +7943,7 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
                     *subscript = subscript_form_change;
                     result = TRUE;
                     break;
-                } else if (WEATHER_IS_SUN
+                } else if ((Sovereign_BattlerWeather(battleCtx, battleCtx->msgBattlerTemp) & FIELD_CONDITION_SUNNY)
                     && battleCtx->battleMons[battleCtx->msgBattlerTemp].type1 != TYPE_FIRE
                     && battleCtx->battleMons[battleCtx->msgBattlerTemp].type2 != TYPE_FIRE) {
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].type1 = TYPE_FIRE;
@@ -7909,7 +7952,7 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
                     *subscript = subscript_form_change;
                     result = TRUE;
                     break;
-                } else if (WEATHER_IS_RAIN
+                } else if ((Sovereign_BattlerWeather(battleCtx, battleCtx->msgBattlerTemp) & FIELD_CONDITION_RAINING)
                     && battleCtx->battleMons[battleCtx->msgBattlerTemp].type1 != TYPE_WATER
                     && battleCtx->battleMons[battleCtx->msgBattlerTemp].type2 != TYPE_WATER) {
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].type1 = TYPE_WATER;
@@ -7942,13 +7985,14 @@ BOOL BattleSystem_TriggerFormChange(BattleSystem *battleSys, BattleContext *batt
         if (battleCtx->battleMons[battleCtx->msgBattlerTemp].species == SPECIES_CHERRIM
             && battleCtx->battleMons[battleCtx->msgBattlerTemp].curHP) {
             if (NO_CLOUD_NINE) {
-                if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_CASTFORM) == FALSE
+                if ((Sovereign_BattlerWeather(battleCtx, battleCtx->msgBattlerTemp) & FIELD_CONDITION_CASTFORM) == FALSE // Sovereign (item 11)
                     && battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum == CHERRIM_FORM_SUNSHINE) {
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = CHERRIM_FORM_OVERCAST;
                     *subscript = subscript_form_change;
                     result = TRUE;
                     break;
-                } else if (WEATHER_IS_SUN && battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum == CHERRIM_FORM_OVERCAST) {
+                } else if ((Sovereign_BattlerWeather(battleCtx, battleCtx->msgBattlerTemp) & FIELD_CONDITION_SUNNY)
+                    && battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum == CHERRIM_FORM_OVERCAST) {
                     battleCtx->battleMons[battleCtx->msgBattlerTemp].formNum = CHERRIM_FORM_SUNSHINE;
                     *subscript = subscript_form_change;
                     result = TRUE;
@@ -8450,6 +8494,24 @@ BOOL Sovereign_SetupStatDropReaction(BattleContext *battleCtx, int battler)
     battleCtx->sideEffectParam = param;
     battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
     battleCtx->sideEffectMon = battler;
+    return TRUE;
+}
+
+// Sovereign (item 11): the Adrenaline Orb raises its holder's Speed after an Intimidate that targeted it (even one an
+// Ability kept off; not one that found its Attack already at -6) and is used up. Sets up
+// subscript_sovereign_item_stat_up.
+BOOL Sovereign_SetupAdrenalineOrb(BattleContext *battleCtx, int battler)
+{
+    if (battleCtx->battleMons[battler].curHP == 0
+        || Battler_HeldItem(battleCtx, battler) != ITEM_ADRENALINE_ORB
+        || battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_SPEED] >= MAX_STAT_STAGE) {
+        return FALSE;
+    }
+
+    battleCtx->msgBattlerTemp = battler;
+    battleCtx->msgItemTemp = ITEM_ADRENALINE_ORB;
+    battleCtx->sideEffectParam = MOVE_SUBSCRIPT_PTR_SPEED_UP_1_STAGE;
+    battleCtx->msgTemp = 0;
     return TRUE;
 }
 
@@ -9380,7 +9442,7 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
     if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_TERRAIN_ELECTRIC) && attackerParams.ability == ABILITY_HADRON_ENGINE) {
         spAttackStat = spAttackStat * 4 / 3;
     }
-    if (NO_CLOUD_NINE && (fieldConditions & FIELD_CONDITION_SUNNY) && attackerParams.ability == ABILITY_ORICHALCUM_PULSE) {
+    if (NO_CLOUD_NINE && (Sovereign_UmbrellaWeather(battleCtx, attacker, fieldConditions) & FIELD_CONDITION_SUNNY) && attackerParams.ability == ABILITY_ORICHALCUM_PULSE) {
         attackStat = attackStat * 4 / 3;
     }
 
@@ -9445,7 +9507,7 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
     }
 
     if (NO_CLOUD_NINE) {
-        if ((fieldConditions & FIELD_CONDITION_SUNNY) && attackerParams.ability == ABILITY_SOLAR_POWER) {
+        if ((Sovereign_UmbrellaWeather(battleCtx, attacker, fieldConditions) & FIELD_CONDITION_SUNNY) && attackerParams.ability == ABILITY_SOLAR_POWER) {
             spAttackStat = spAttackStat * 15 / 10;
         }
 
@@ -9467,12 +9529,12 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
             defenseStat = defenseStat * 15 / 10;
         }
 
-        if ((fieldConditions & FIELD_CONDITION_SUNNY)
+        if ((Sovereign_UmbrellaWeather(battleCtx, attacker, fieldConditions) & FIELD_CONDITION_SUNNY)
             && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_OUR_SIDE, attacker, ABILITY_FLOWER_GIFT)) {
             attackStat = attackStat * 15 / 10;
         }
 
-        if ((fieldConditions & FIELD_CONDITION_SUNNY)
+        if ((Sovereign_UmbrellaWeather(battleCtx, defender, fieldConditions) & FIELD_CONDITION_SUNNY)
             && Sovereign_IsMoldBreaker(battleCtx, attacker) == FALSE
             && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_OUR_SIDE, defender, ABILITY_FLOWER_GIFT)) {
             spDefenseStat = spDefenseStat * 15 / 10;
@@ -9597,7 +9659,12 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
     }
 
     if (NO_CLOUD_NINE) {
-        if (fieldConditions & FIELD_CONDITION_RAINING) {
+        // Sovereign (item 11): a Utility Umbrella keeps rain and sunlight off the Fire and Water moves hitting its
+        // holder (not off Mega Sol's), and off its holder's Solar Beam and Hydro Steam.
+        u32 attackerWeather = attackerParams.ability == ABILITY_MEGA_SOL ? fieldConditions : Sovereign_UmbrellaWeather(battleCtx, attacker, fieldConditions);
+        u32 defenderWeather = attackerParams.ability == ABILITY_MEGA_SOL ? fieldConditions : Sovereign_UmbrellaWeather(battleCtx, defender, fieldConditions);
+
+        if (defenderWeather & FIELD_CONDITION_RAINING) {
             switch (moveType) {
             case TYPE_FIRE:
                 damage /= 2;
@@ -9608,22 +9675,20 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
             }
         }
 
-        if ((fieldConditions & FIELD_CONDITION_SOLAR_DOWN) && move == MOVE_SOLAR_BEAM) {
+        if ((attackerWeather & FIELD_CONDITION_SOLAR_DOWN) && (move == MOVE_SOLAR_BEAM || move == MOVE_SOLAR_BLADE)) { // Sovereign (item 11): Solar Blade too
             damage /= 2;
         }
 
-        if (fieldConditions & FIELD_CONDITION_SUNNY) {
+        // Sovereign (item 11): Hydro Steam is boosted, not weakened, in harsh sunlight (the user's).
+        if (moveType == TYPE_WATER && move == MOVE_HYDRO_STEAM && (attackerWeather & FIELD_CONDITION_SUNNY)) {
+            damage = damage * 15 / 10;
+        } else if (defenderWeather & FIELD_CONDITION_SUNNY) {
             switch (moveType) {
             case TYPE_FIRE:
                 damage = damage * 15 / 10;
                 break;
             case TYPE_WATER:
-                // Sovereign (item 11): Hydro Steam is boosted, not weakened, in harsh sunlight.
-                if (move == MOVE_HYDRO_STEAM) {
-                    damage = damage * 15 / 10;
-                } else {
-                    damage /= 2;
-                }
+                damage /= 2;
                 break;
             }
         }
@@ -10519,10 +10584,10 @@ static int CalcMoveType(BattleSystem *battleSys, BattleContext *battleCtx, int i
         type = Sovereign_AuraWheelType(battleCtx->battleMons[item].species, battleCtx->battleMons[item].formNum);
         break;
 
-    case MOVE_WEATHER_BALL:
+    case MOVE_WEATHER_BALL: // Sovereign (item 11): a Utility Umbrella holder's is Normal type in rain and sunlight
         if (NO_CLOUD_NINE
-            && battleCtx->fieldConditionsMask & FIELD_CONDITION_WEATHER) {
-            if (WEATHER_IS_RAIN) {
+            && Sovereign_BattlerWeather(battleCtx, item) & FIELD_CONDITION_WEATHER) {
+            if (Sovereign_BattlerWeather(battleCtx, item) & FIELD_CONDITION_RAINING) {
                 type = TYPE_WATER;
             }
 
@@ -10530,7 +10595,7 @@ static int CalcMoveType(BattleSystem *battleSys, BattleContext *battleCtx, int i
                 type = TYPE_ROCK;
             }
 
-            if (WEATHER_IS_SUN) {
+            if (Sovereign_BattlerWeather(battleCtx, item) & FIELD_CONDITION_SUNNY) {
                 type = TYPE_FIRE;
             }
 

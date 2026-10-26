@@ -12,6 +12,9 @@ _013:
     IfSameSide BTLSCR_ATTACKER, BTLSCR_SIDE_EFFECT_MON, _038
     CheckSubstitute BTLSCR_SIDE_EFFECT_MON, _038
     CompareMonDataToValue OPCODE_EQU, BTLSCR_SIDE_EFFECT_MON, BATTLEMON_CUR_HP, 0, _038
+    // Sovereign (item 11): marks an Adrenaline Orb holder (the var is always 0), which raises its Speed once the
+    // Intimidate is over, even if an Ability keeps the Attack drop off
+    CompareVarToValue OPCODE_NEQ, BTLVAR_SOVEREIGN_ADRENALINE_ORB_CHECK, 0, _038
     UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_PARAM, MOVE_SUBSCRIPT_PTR_ATTACK_DOWN_1_STAGE
     UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_ABILITY
     Call BATTLE_SUBSCRIPT_UPDATE_STAT_STAGE

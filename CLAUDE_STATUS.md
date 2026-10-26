@@ -7084,3 +7084,34 @@ and its three registrations, `tools/engine/gen_abilities.py`, `docs/AbilityCheck
    (`gSovereignTestPartner` gives a second Pokémon), to test Heavy-Duty Boots, the Air Balloon on hazards and the
    Ghost-type escape too.
 3. Item 11's double-battle abilities, with a doubles case in the harness (Healer too).
+
+## CB-0156 — 2026-10-26, 5:39 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Merged:** PR #172, held items part 3.
+
+**Implemented: held items, part 4.**
+- **Room Service:** Speed -1 under Trick Room, used up.
+- **Adrenaline Orb:** Speed +1 after an Intimidate that targets the holder, even when an Ability blocks the drop. Used
+  up.
+- **Utility Umbrella:** rain and sun don't act on the holder (`Sovereign_BattlerWeather`). That covers damage taken,
+  its weather Abilities, its weather moves, Thunder and Hurricane accuracy, and freezing.
+- **Solar Blade** is now halved in bad weather, like Solar Beam.
+- Harness battles with controls: Room Service, Adrenaline Orb (with Hyper Cutter too), and Utility Umbrella damage in
+  rain (28 vs 46, god mode off).
+
+**Files modified:**
+- `decomp/src/battle/battle_lib.c`, `decomp/src/battle/battle_script.c`, `decomp/src/battle/battle_controller_player.c`.
+- `decomp/include/battle/battle_context.h`, `decomp/include/battle/battle_lib.h`.
+- `decomp/generated/battle_script_vars.txt`.
+- Effect scripts `effect_script_0151.s` (Solar Beam) and `effect_script_0279.s` (Electro Shot).
+- Subscripts `subscript_intimidate.s`, `subscript_sovereign_item_stat_up.s`, `subscript_sovereign_terrain_seed.s`.
+- The Leaf Guard and freeze checks in `subscript_burn.s`, `subscript_poison.s`, `subscript_badly_poison.s`,
+  `subscript_paralyze.s`, `subscript_fall_asleep.s`, `subscript_yawn.s` and `subscript_freeze.s`.
+- `docs/HeldItemChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Held items, part 5: Mirror Herb (copies a foe's stat rises) and Ability Shield (no Ability changes, Neutralizing Gas
+   or Mold Breaker against the holder).
+2. Held items that switch Pokémon: Eject Button, Eject Pack, Red Card. Also a switching case in the harness, which
+   would test Heavy-Duty Boots, the Air Balloon on hazards and the Ghost-type escape too.
+3. Item 11's double-battle abilities, with a doubles case in the harness (Healer too).

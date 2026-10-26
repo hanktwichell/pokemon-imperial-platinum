@@ -5798,7 +5798,8 @@ static BOOL BtlCmd_EndOfTurnWeatherEffect(BattleSystem *battleSys, BattleContext
             battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1, 16);
         }
 
-        if (WEATHER_IS_SUN
+        // Sovereign (item 11): a Utility Umbrella keeps rain and sunlight off its holder's Abilities.
+        if ((Sovereign_BattlerWeather(battleCtx, battler) & FIELD_CONDITION_SUNNY)
             && battleCtx->battleMons[battler].curHP
             && (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_NO_WEATHER_DAMAGE) == FALSE) {
             if (Battler_Ability(battleCtx, battler) == ABILITY_DRY_SKIN
@@ -5822,7 +5823,7 @@ static BOOL BtlCmd_EndOfTurnWeatherEffect(BattleSystem *battleSys, BattleContext
             // Sovereign: Snow (Gen IX / Pokémon Champions) replaces Hail, so it does no chip damage.
         }
 
-        if (WEATHER_IS_RAIN) {
+        if (Sovereign_BattlerWeather(battleCtx, battler) & FIELD_CONDITION_RAINING) {
             if (battleCtx->battleMons[battler].curHP
                 && battleCtx->battleMons[battler].curHP < battleCtx->battleMons[battler].maxHP
                 && Battler_Ability(battleCtx, battler) == ABILITY_RAIN_DISH) {
@@ -6187,9 +6188,10 @@ static BOOL BtlCmd_WeatherHPRecovery(BattleSystem *battleSys, BattleContext *bat
 {
     BattleScript_Iter(battleCtx, 1);
 
-    if (NO_WEATHER) {
+    // Sovereign (item 11): a Utility Umbrella holder heals as if there were no rain or sunlight.
+    if (NO_WEATHER || (Sovereign_BattlerWeather(battleCtx, battleCtx->attacker) & FIELD_CONDITION_WEATHER) == FALSE) {
         battleCtx->hpCalcTemp = ATTACKING_MON.maxHP / 2;
-    } else if (WEATHER_IS_SUN) {
+    } else if (Sovereign_BattlerWeather(battleCtx, battleCtx->attacker) & FIELD_CONDITION_SUNNY) {
         battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * 20, 30);
     } else {
         battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP, 4);
@@ -7084,11 +7086,12 @@ static BOOL BtlCmd_CalcWeatherBallParams(BattleSystem *battleSys, BattleContext 
 {
     BattleScript_Iter(battleCtx, 1);
 
+    // Sovereign (item 11): a Utility Umbrella holder's Weather Ball ignores rain and sunlight.
     if (NO_CLOUD_NINE) {
-        if (battleCtx->fieldConditionsMask & FIELD_CONDITION_WEATHER) {
+        if (Sovereign_BattlerWeather(battleCtx, battleCtx->attacker) & FIELD_CONDITION_WEATHER) {
             battleCtx->movePower = CURRENT_MOVE_DATA.power * 2;
 
-            if (WEATHER_IS_RAIN) {
+            if (Sovereign_BattlerWeather(battleCtx, battleCtx->attacker) & FIELD_CONDITION_RAINING) {
                 battleCtx->moveType = TYPE_WATER;
             }
 
@@ -7096,7 +7099,7 @@ static BOOL BtlCmd_CalcWeatherBallParams(BattleSystem *battleSys, BattleContext 
                 battleCtx->moveType = TYPE_ROCK;
             }
 
-            if (WEATHER_IS_SUN) {
+            if (Sovereign_BattlerWeather(battleCtx, battleCtx->attacker) & FIELD_CONDITION_SUNNY) {
                 battleCtx->moveType = TYPE_FIRE;
             }
 
@@ -9860,6 +9863,22 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         battleCtx->sovereignTerrainTemp = (battleCtx->sideConditionsMask[BattleSystem_GetBattlerSide(battleSys, battleCtx->switchedMon)] & SIDE_CONDITION_SOVEREIGN_STICKY_WEB)
             && Sovereign_IsGrounded(battleCtx, battleCtx->switchedMon)
             && Battler_HeldItem(battleCtx, battleCtx->switchedMon) != ITEM_HEAVY_DUTY_BOOTS;
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_ADRENALINE_ORB_CHECK: // Sovereign (item 11): read-only, always 0; marks an Intimidate's target
+        // that holds an Adrenaline Orb, while its Attack can still drop (rise, with Contrary)
+        if (Battler_HeldItem(battleCtx, battleCtx->sideEffectMon) == ITEM_ADRENALINE_ORB
+            && (Battler_Ability(battleCtx, battleCtx->sideEffectMon) == ABILITY_CONTRARY
+                    ? battleCtx->battleMons[battleCtx->sideEffectMon].statBoosts[BATTLE_STAT_ATTACK] < MAX_STAT_STAGE
+                    : battleCtx->battleMons[battleCtx->sideEffectMon].statBoosts[BATTLE_STAT_ATTACK] > MIN_STAT_STAGE)) {
+            battleCtx->sovereignAdrenalinePending |= FlagIndex(battleCtx->sideEffectMon);
+        }
+        battleCtx->sovereignTerrainTemp = 0;
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_ATTACKER_WEATHER: // Sovereign (item 11): read-only, the field conditions as they act on the attacker (Utility Umbrella)
+        battleCtx->sovereignTerrainTemp = Sovereign_BattlerWeather(battleCtx, battleCtx->attacker);
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_SIDE_EFFECT_MON_WEATHER: // Sovereign (item 11): read-only, the same for the side effect's target
+        battleCtx->sovereignTerrainTemp = Sovereign_BattlerWeather(battleCtx, battleCtx->sideEffectMon);
         return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_SWITCHED_MON_GROUNDED: // Sovereign (item 11): read-only, for Spikes and Toxic Spikes (Air Balloon)
         battleCtx->sovereignTerrainTemp = Sovereign_IsGrounded(battleCtx, battleCtx->switchedMon);

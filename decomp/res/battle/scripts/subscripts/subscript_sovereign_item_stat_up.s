@@ -1,7 +1,8 @@
 #include "macros/btlcmd.inc"
 
 // Sovereign (item 11): a held item that raises its holder's stats once and is used up (Weakness Policy, Absorb Bulb,
-// Cell Battery, Luminous Moss, Snowball; BattleSystem_TriggerHeldItemOnHit). The holder is BTLVAR_MSG_BATTLER_TEMP,
+// Cell Battery, Luminous Moss, Snowball; BattleSystem_TriggerHeldItemOnHit; the Throat Spray and Blunder Policy after
+// a move; the Adrenaline Orb after an Intimidate). The holder is BTLVAR_MSG_BATTLER_TEMP,
 // the item BTLVAR_MSG_ITEM_TEMP; BTLVAR_SIDE_EFFECT_PARAM is the first stat change, BTLVAR_MSG_TEMP a second one or 0.
 
 _000:

@@ -27,7 +27,7 @@ The new items have no hold effect constant (`HOLD_EFFECT_NONE`). The battle code
 | Luminous Moss | yes: Sp. Def +1 when a Water move hits the holder, used up |
 | Snowball | yes: Attack +1 when an Ice move hits the holder, used up |
 | Safety Goggles | yes: powder moves and Effect Spore don't affect the holder, nor does sandstorm damage (Snow does none) |
-| Adrenaline Orb | not yet |
+| Adrenaline Orb | yes: Speed +1 after an Intimidate that targets the holder, even one an Ability keeps off (Hyper Cutter...); not when its Attack is already at -6. Used up |
 | Terrain Extender | yes: terrain lasts 8 turns |
 | Protective Pads | yes: the holder's moves make no contact |
 | Electric Seed, Psychic Seed, Misty Seed, Grassy Seed | yes: Defense or Sp. Def +1 in their terrain, used up |
@@ -35,8 +35,8 @@ The new items have no hold effect constant (`HOLD_EFFECT_NONE`). The battle code
 | Eject Pack | not yet |
 | Heavy-Duty Boots | yes: no Stealth Rock, Spikes, Toxic Spikes or Sticky Web on entry (a grounded Poison type still takes the Toxic Spikes away) |
 | Blunder Policy | yes: Speed +2 after the holder's move misses, used up |
-| Room Service | not yet |
-| Utility Umbrella | not yet |
+| Room Service | yes: Speed -1 under Trick Room, on entry or as Trick Room starts, used up |
+| Utility Umbrella | yes: rain and harsh sunlight don't act on the holder. Fire and Water moves hitting it take no weather change, and its Abilities (Swift Swim, Chlorophyll, Rain Dish, Dry Skin, Hydration, Solar Power, Leaf Guard, Flower Gift, Forecast, Orichalcum Pulse) and moves (Solar Beam, Solar Blade, Electro Shot, Synthesis, Weather Ball, Hydro Steam) act as if there were none. Thunder and Hurricane aimed at it, and freezing, ignore the weather too. Its own Fire and Water moves are still boosted, Protosynthesis still works, and a primal weather's Fire or Water moves still fail |
 | Booster Energy | yes: starts Protosynthesis or Quark Drive |
 | Ability Shield | not yet |
 | Clear Amulet | yes: other Pokémon's moves and Abilities can't lower the holder's stats ("{0}'s Clear Amulet prevents stat loss!") |
