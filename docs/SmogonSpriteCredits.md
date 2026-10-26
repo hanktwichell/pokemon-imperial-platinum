@@ -11,6 +11,8 @@ The "Gen5-9 Sprites" part 1 pack's 96×96 sprites (727 files, for 197 species) c
 
 Snapshots of the sheets are in `assets/sprites/credits/smogon/`. A spriter's note such as "(shiny)" or "(back)" is the sheet's own.
 
+Left out: the 96×96 files that the owner's relabel tool generated from Smogon's sprites (estimated backs and shinies, listed in the pack's `relabel_manifest.csv`), which aren't Smogon's art: 1 in all.
+
 | # | Species | Our sprites | Spriter | QC |
 |---|---|---|---|---|
 | 650 | Chespin | front, back, shiny front, shiny back | GeoisEvil | aXl, Kyleo, princessofmusic, leParagon |

@@ -5,7 +5,9 @@ The pack's 96x96 files (CITATIONS.md) come from the Smogon Sprite Project. The p
 in a sheet of finished sprites, linked from each project's Smogon thread: X/Y (Gen 6), Sun/Moon (Gen 7), and the
 Smogon Sprite Project's Gen 8 and Gen 9 sheets. Snapshots of those sheets are in assets/sprites/credits/smogon/ (CSV,
 as Google Sheets exports them). For each species with a 96x96 file in the pack, the doc lists the files and the
-spriters and QC that its sheet gives for the species' base form (the first row with its dex number).
+spriters and QC that its sheet gives for the species' base form (the first row with its dex number). The pack's
+relabel_manifest.csv marks the sprites the owner's relabel tool generated from others (estimates, not Smogon's art);
+those are left out.
 
 Usage: python3 tools/sprites/smogon_credits.py [--fetch]
 --fetch downloads the sheets again first (needs the network).
@@ -19,6 +21,7 @@ from PIL import Image
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 PACK = os.path.join(ROOT, "assets", "sprites", "packs", "gen5_9_part1")
+MANIFEST = os.path.join(PACK, "relabel_manifest.csv")
 CREDITS = os.path.join(ROOT, "assets", "sprites", "credits", "smogon")
 OUT = os.path.join(ROOT, "docs", "SmogonSpriteCredits.md")
 # (snapshot, the project, its thread, the sheet's ID, the first dex number it covers)
@@ -62,18 +65,34 @@ def credits():
     return out
 
 
+def generated():
+    """{(folder, file)} of the sprites the relabel tool generated (relabel_manifest.csv)."""
+    if not os.path.exists(MANIFEST):
+        return set()
+    return {(r["folder"], r["file"]) for r in csv.DictReader(open(MANIFEST, encoding="utf-8"))
+            if r["action"].startswith("generated")}
+
+
 def smogon_files():
-    """[(dex, species name, [the kinds of its 96x96 files])] in the pack."""
-    out = []
+    """([(dex, species name, [the kinds of its 96x96 files])] in the pack, the number of generated 96x96 files left
+    out)."""
+    made = generated()
+    out, skipped = [], 0
     for d in sorted(os.listdir(PACK)):
         dex, _, name = d.partition("-")
         if not dex.isdigit():
             continue
-        kinds = [label for fn, label in KINDS if os.path.exists(os.path.join(PACK, d, fn + ".png"))
-                 and Image.open(os.path.join(PACK, d, fn + ".png")).size == SIZE]
+        kinds = []
+        for fn, label in KINDS:
+            path = os.path.join(PACK, d, fn + ".png")
+            if os.path.exists(path) and Image.open(path).size == SIZE:
+                if (d, fn) in made:
+                    skipped += 1
+                else:
+                    kinds.append(label)
         if kinds:
             out.append((int(dex), name, kinds))
-    return out
+    return out, skipped
 
 
 def cell(text):
@@ -84,7 +103,7 @@ def main():
     if "--fetch" in sys.argv[1:]:
         fetch()
     by_dex = credits()
-    files = smogon_files()
+    files, skipped = smogon_files()
     lines = [
         "# Smogon Sprite Project credits",
         "",
@@ -102,6 +121,9 @@ def main():
         "",
         "Snapshots of the sheets are in `assets/sprites/credits/smogon/`. A spriter's note such as \"(shiny)\" or "
         "\"(back)\" is the sheet's own.",
+        "",
+        "Left out: the 96×96 files that the owner's relabel tool generated from Smogon's sprites (estimated backs "
+        f"and shinies, listed in the pack's `relabel_manifest.csv`), which aren't Smogon's art: {skipped} in all.",
         "",
         "| # | Species | Our sprites | Spriter | QC |",
         "|---|---|---|---|---|",

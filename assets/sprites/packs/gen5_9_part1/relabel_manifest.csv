@@ -1,0 +1,1261 @@
+folder,file,action,confidence,note
+0494-Victini,shiny_back,relabeled from back.png,,
+0494-Victini,back,generated from shiny back,0.67,estimated
+0494-Victini,shiny_front,generated from front,0.67,estimated
+0495-Snivy,shiny_back,relabeled from back.png,,
+0495-Snivy,back,generated from shiny back,0.41,"estimated - LOW confidence, please review"
+0495-Snivy,shiny_front,generated from front,0.41,"estimated - LOW confidence, please review"
+0496-Servine,shiny_back,relabeled from back.png,,
+0496-Servine,back,generated from shiny back,0.43,"estimated - LOW confidence, please review"
+0496-Servine,shiny_front,generated from front,0.43,"estimated - LOW confidence, please review"
+0497-Serperior,shiny_back,relabeled from back.png,,
+0497-Serperior,back,generated from shiny back,0.38,"estimated - LOW confidence, please review"
+0497-Serperior,shiny_front,generated from front,0.38,"estimated - LOW confidence, please review"
+0498-Tepig,shiny_back,relabeled from back.png,,
+0498-Tepig,back,generated from shiny back,0.66,estimated
+0498-Tepig,shiny_front,generated from front,0.66,estimated
+0499-Pignite,shiny_back,relabeled from back.png,,
+0499-Pignite,back,generated from shiny back,0.33,"estimated - LOW confidence, please review"
+0499-Pignite,shiny_front,generated from front,0.33,"estimated - LOW confidence, please review"
+0500-Emboar,shiny_back,relabeled from back.png,,
+0500-Emboar,back,generated from shiny back,0.42,"estimated - LOW confidence, please review"
+0500-Emboar,shiny_front,generated from front,0.42,"estimated - LOW confidence, please review"
+0501-Oshawott,shiny_back,relabeled from back.png,,
+0501-Oshawott,back,generated from shiny back,0.27,"estimated - LOW confidence, please review"
+0501-Oshawott,shiny_front,generated from front,0.27,"estimated - LOW confidence, please review"
+0502-Dewott,shiny_back,relabeled from back.png,,
+0502-Dewott,back,generated from shiny back,0.57,estimated
+0502-Dewott,shiny_front,generated from front,0.57,estimated
+0503-Samurott,shiny_back,relabeled from back.png,,
+0503-Samurott,back,generated from shiny back,0.49,"estimated - LOW confidence, please review"
+0503-Samurott,shiny_front,generated from front,0.49,"estimated - LOW confidence, please review"
+0504-Patrat,shiny_back,relabeled from back.png,,
+0504-Patrat,back,generated from shiny back,0.75,estimated
+0504-Patrat,shiny_front,generated from front,0.75,estimated
+0505-Watchog,shiny_back,relabeled from back.png,,
+0505-Watchog,back,generated from shiny back,0.67,estimated
+0505-Watchog,shiny_front,generated from front,0.67,estimated
+0506-Lillipup,shiny_back,relabeled from back.png,,
+0506-Lillipup,back,generated from shiny back,0.41,"estimated - LOW confidence, please review"
+0506-Lillipup,shiny_front,generated from front,0.41,"estimated - LOW confidence, please review"
+0507-Herdier,shiny_back,relabeled from back.png,,
+0507-Herdier,back,generated from shiny back,0.51,estimated
+0507-Herdier,shiny_front,generated from front,0.51,estimated
+0508-Stoutland,shiny_back,relabeled from back.png,,
+0508-Stoutland,back,generated from shiny back,0.46,"estimated - LOW confidence, please review"
+0508-Stoutland,shiny_front,generated from front,0.46,"estimated - LOW confidence, please review"
+0509-Purrloin,shiny_back,relabeled from back.png,,
+0509-Purrloin,back,generated from shiny back,0.33,"estimated - LOW confidence, please review"
+0509-Purrloin,shiny_front,generated from front,0.33,"estimated - LOW confidence, please review"
+0510-Liepard,shiny_back,relabeled from back.png,,
+0510-Liepard,back,generated from shiny back,0.42,"estimated - LOW confidence, please review"
+0510-Liepard,shiny_front,generated from front,0.42,"estimated - LOW confidence, please review"
+0511-Pansage,shiny_back,relabeled from back.png,,
+0511-Pansage,back,generated from shiny back,0.51,estimated
+0511-Pansage,shiny_front,generated from front,0.51,estimated
+0512-Simisage,shiny_back,relabeled from back.png,,
+0512-Simisage,back,generated from shiny back,0.54,estimated
+0512-Simisage,shiny_front,generated from front,0.54,estimated
+0513-Pansear,shiny_back,relabeled from back.png,,
+0513-Pansear,back,generated from shiny back,0.58,estimated
+0513-Pansear,shiny_front,generated from front,0.58,estimated
+0514-Simisear,shiny_back,relabeled from back.png,,
+0514-Simisear,back,generated from shiny back,0.43,"estimated - LOW confidence, please review"
+0514-Simisear,shiny_front,generated from front,0.43,"estimated - LOW confidence, please review"
+0515-Panpour,shiny_back,relabeled from back.png,,
+0515-Panpour,back,generated from shiny back,0.39,"estimated - LOW confidence, please review"
+0515-Panpour,shiny_front,generated from front,0.39,"estimated - LOW confidence, please review"
+0516-Simipour,shiny_back,relabeled from back.png,,
+0516-Simipour,back,generated from shiny back,0.43,"estimated - LOW confidence, please review"
+0516-Simipour,shiny_front,generated from front,0.43,"estimated - LOW confidence, please review"
+0517-Munna,shiny_back,relabeled from back.png,,
+0517-Munna,back,generated from shiny back,0.49,"estimated - LOW confidence, please review"
+0517-Munna,shiny_front,generated from front,0.49,"estimated - LOW confidence, please review"
+0518-Musharna,shiny_back,relabeled from back.png,,
+0518-Musharna,back,generated from shiny back,0.31,"estimated - LOW confidence, please review"
+0518-Musharna,shiny_front,generated from front,0.31,"estimated - LOW confidence, please review"
+0519-Pidove,shiny_back,relabeled from back.png,,
+0519-Pidove,back,generated from shiny back,0.40,"estimated - LOW confidence, please review"
+0519-Pidove,shiny_front,generated from front,0.40,"estimated - LOW confidence, please review"
+0520-Tranquill,shiny_back,relabeled from back.png,,
+0520-Tranquill,back,generated from shiny back,0.23,"estimated - LOW confidence, please review"
+0520-Tranquill,shiny_front,generated from front,0.23,"estimated - LOW confidence, please review"
+0521-Unfezant,shiny_back,relabeled from back.png,,
+0521-Unfezant,back,generated from shiny back,0.49,"estimated - LOW confidence, please review"
+0521-Unfezant,shiny_front,generated from front,0.49,"estimated - LOW confidence, please review"
+0522-Blitzle,shiny_back,relabeled from back.png,,
+0522-Blitzle,back,generated from shiny back,0.44,"estimated - LOW confidence, please review"
+0522-Blitzle,shiny_front,generated from front,0.44,"estimated - LOW confidence, please review"
+0523-Zebstrika,shiny_back,relabeled from back.png,,
+0523-Zebstrika,back,generated from shiny back,0.74,estimated
+0523-Zebstrika,shiny_front,generated from front,0.74,estimated
+0524-Roggenrola,shiny_back,relabeled from back.png,,
+0524-Roggenrola,back,generated from shiny back,0.66,estimated
+0524-Roggenrola,shiny_front,generated from front,0.66,estimated
+0525-Boldore,shiny_back,relabeled from back.png,,
+0525-Boldore,back,generated from shiny back,0.29,"estimated - LOW confidence, please review"
+0525-Boldore,shiny_front,generated from front,0.29,"estimated - LOW confidence, please review"
+0526-Gigalith,shiny_back,relabeled from back.png,,
+0526-Gigalith,back,generated from shiny back,0.63,estimated
+0526-Gigalith,shiny_front,generated from front,0.63,estimated
+0527-Woobat,shiny_back,relabeled from back.png,,
+0527-Woobat,back,generated from shiny back,0.60,estimated
+0527-Woobat,shiny_front,generated from front,0.60,estimated
+0528-Swoobat,shiny_back,relabeled from back.png,,
+0528-Swoobat,back,generated from shiny back,0.26,"estimated - LOW confidence, please review"
+0528-Swoobat,shiny_front,generated from front,0.26,"estimated - LOW confidence, please review"
+0529-Drilbur,shiny_back,relabeled from back.png,,
+0529-Drilbur,back,generated from shiny back,0.77,estimated
+0529-Drilbur,shiny_front,generated from front,0.77,estimated
+0530-Excadrill,shiny_back,relabeled from back.png,,
+0530-Excadrill,back,generated from shiny back,0.33,"estimated - LOW confidence, please review"
+0530-Excadrill,shiny_front,generated from front,0.33,"estimated - LOW confidence, please review"
+0531-Audino,shiny_back,relabeled from back.png,,
+0531-Audino,back,generated from shiny back,0.40,"estimated - LOW confidence, please review"
+0531-Audino,shiny_front,generated from front,0.40,"estimated - LOW confidence, please review"
+0532-Timburr,shiny_back,relabeled from back.png,,
+0532-Timburr,back,generated from shiny back,0.73,estimated
+0532-Timburr,shiny_front,generated from front,0.73,estimated
+0533-Gurdurr,shiny_back,relabeled from back.png,,
+0533-Gurdurr,back,generated from shiny back,0.65,estimated
+0533-Gurdurr,shiny_front,generated from front,0.65,estimated
+0534-Conkeldurr,shiny_back,relabeled from back.png,,
+0534-Conkeldurr,back,generated from shiny back,0.46,"estimated - LOW confidence, please review"
+0534-Conkeldurr,shiny_front,generated from front,0.46,"estimated - LOW confidence, please review"
+0535-Tympole,shiny_back,relabeled from back.png,,
+0535-Tympole,back,generated from shiny back,0.80,estimated
+0535-Tympole,shiny_front,generated from front,0.80,estimated
+0536-Palpitoad,shiny_back,relabeled from back.png,,
+0536-Palpitoad,back,generated from shiny back,0.47,"estimated - LOW confidence, please review"
+0536-Palpitoad,shiny_front,generated from front,0.47,"estimated - LOW confidence, please review"
+0537-Seismitoad,shiny_back,relabeled from back.png,,
+0537-Seismitoad,back,generated from shiny back,0.70,estimated
+0537-Seismitoad,shiny_front,generated from front,0.70,estimated
+0538-Throh,shiny_back,relabeled from back.png,,
+0538-Throh,back,generated from shiny back,0.68,estimated
+0538-Throh,shiny_front,generated from front,0.68,estimated
+0539-Sawk,shiny_back,relabeled from back.png,,
+0539-Sawk,back,generated from shiny back,0.52,estimated
+0539-Sawk,shiny_front,generated from front,0.52,estimated
+0540-Sewaddle,shiny_back,relabeled from back.png,,
+0540-Sewaddle,back,generated from shiny back,0.46,"estimated - LOW confidence, please review"
+0540-Sewaddle,shiny_front,generated from front,0.46,"estimated - LOW confidence, please review"
+0541-Swadloon,shiny_back,relabeled from back.png,,
+0541-Swadloon,back,generated from shiny back,0.77,estimated
+0541-Swadloon,shiny_front,generated from front,0.77,estimated
+0542-Leavanny,shiny_back,relabeled from back.png,,
+0542-Leavanny,back,generated from shiny back,0.37,"estimated - LOW confidence, please review"
+0542-Leavanny,shiny_front,generated from front,0.37,"estimated - LOW confidence, please review"
+0543-Venipede,shiny_back,relabeled from back.png,,
+0543-Venipede,back,generated from shiny back,0.45,"estimated - LOW confidence, please review"
+0543-Venipede,shiny_front,generated from front,0.45,"estimated - LOW confidence, please review"
+0544-Whirlipede,shiny_back,relabeled from back.png,,
+0544-Whirlipede,back,generated from shiny back,0.48,"estimated - LOW confidence, please review"
+0544-Whirlipede,shiny_front,generated from front,0.48,"estimated - LOW confidence, please review"
+0545-Scolipede,shiny_back,relabeled from back.png,,
+0545-Scolipede,back,generated from shiny back,0.45,"estimated - LOW confidence, please review"
+0545-Scolipede,shiny_front,generated from front,0.45,"estimated - LOW confidence, please review"
+0546-Cottonee,shiny_back,relabeled from back.png,,
+0546-Cottonee,back,generated from shiny back,0.57,estimated
+0546-Cottonee,shiny_front,generated from front,0.57,estimated
+0547-Whimsicott,shiny_back,relabeled from back.png,,
+0547-Whimsicott,back,generated from shiny back,0.34,"estimated - LOW confidence, please review"
+0547-Whimsicott,shiny_front,generated from front,0.34,"estimated - LOW confidence, please review"
+0548-Petilil,shiny_back,relabeled from back.png,,
+0548-Petilil,back,generated from shiny back,0.70,estimated
+0548-Petilil,shiny_front,generated from front,0.70,estimated
+0549-Lilligant,shiny_back,relabeled from back.png,,
+0549-Lilligant,back,generated from shiny back,0.75,estimated
+0549-Lilligant,shiny_front,generated from front,0.75,estimated
+0550-Basculin,shiny_back,relabeled from back.png,,
+0550-Basculin,back,generated from shiny back,0.35,"estimated - LOW confidence, please review"
+0550-Basculin,shiny_front,generated from front,0.35,"estimated - LOW confidence, please review"
+0551-Sandile,shiny_back,relabeled from back.png,,
+0551-Sandile,back,generated from shiny back,0.42,"estimated - LOW confidence, please review"
+0551-Sandile,shiny_front,generated from front,0.42,"estimated - LOW confidence, please review"
+0552-Krokorok,shiny_back,relabeled from back.png,,
+0552-Krokorok,back,generated from shiny back,0.39,"estimated - LOW confidence, please review"
+0552-Krokorok,shiny_front,generated from front,0.39,"estimated - LOW confidence, please review"
+0553-Krookodile,shiny_back,relabeled from back.png,,
+0553-Krookodile,back,generated from shiny back,0.31,"estimated - LOW confidence, please review"
+0553-Krookodile,shiny_front,generated from front,0.31,"estimated - LOW confidence, please review"
+0554-Darumaka,shiny_back,relabeled from back.png,,
+0554-Darumaka,back,generated from shiny back,0.47,"estimated - LOW confidence, please review"
+0554-Darumaka,shiny_front,generated from front,0.47,"estimated - LOW confidence, please review"
+0555-Darmanitan,shiny_back,relabeled from back.png,,
+0555-Darmanitan,back,generated from shiny back,0.51,estimated
+0555-Darmanitan,shiny_front,generated from front,0.51,estimated
+0556-Maractus,shiny_back,relabeled from back.png,,
+0556-Maractus,back,generated from shiny back,0.69,estimated
+0556-Maractus,shiny_front,generated from front,0.69,estimated
+0557-Dwebble,shiny_back,relabeled from back.png,,
+0557-Dwebble,back,generated from shiny back,0.28,"estimated - LOW confidence, please review"
+0557-Dwebble,shiny_front,generated from front,0.28,"estimated - LOW confidence, please review"
+0558-Crustle,shiny_back,relabeled from back.png,,
+0558-Crustle,back,generated from shiny back,0.52,estimated
+0558-Crustle,shiny_front,generated from front,0.52,estimated
+0559-Scraggy,shiny_back,relabeled from back.png,,
+0559-Scraggy,back,generated from shiny back,0.55,estimated
+0559-Scraggy,shiny_front,generated from front,0.55,estimated
+0560-Scrafty,shiny_back,relabeled from back.png,,
+0560-Scrafty,back,generated from shiny back,0.56,estimated
+0560-Scrafty,shiny_front,generated from front,0.56,estimated
+0561-Sigilyph,shiny_back,relabeled from back.png,,
+0561-Sigilyph,back,generated from shiny back,0.74,estimated
+0561-Sigilyph,shiny_front,generated from front,0.74,estimated
+0562-Yamask,shiny_back,relabeled from back.png,,
+0562-Yamask,back,generated from shiny back,0.75,estimated
+0562-Yamask,shiny_front,generated from front,0.75,estimated
+0563-Cofagrigus,shiny_back,relabeled from back.png,,
+0563-Cofagrigus,back,generated from shiny back,0.32,"estimated - LOW confidence, please review"
+0563-Cofagrigus,shiny_front,generated from front,0.32,"estimated - LOW confidence, please review"
+0564-Tirtouga,shiny_back,relabeled from back.png,,
+0564-Tirtouga,back,generated from shiny back,0.58,estimated
+0564-Tirtouga,shiny_front,generated from front,0.58,estimated
+0565-Carracosta,shiny_back,relabeled from back.png,,
+0565-Carracosta,back,generated from shiny back,0.24,"estimated - LOW confidence, please review"
+0565-Carracosta,shiny_front,generated from front,0.24,"estimated - LOW confidence, please review"
+0566-Archen,shiny_back,relabeled from back.png,,
+0566-Archen,back,generated from shiny back,0.64,estimated
+0566-Archen,shiny_front,generated from front,0.64,estimated
+0567-Archeops,shiny_back,relabeled from back.png,,
+0567-Archeops,back,generated from shiny back,0.39,"estimated - LOW confidence, please review"
+0567-Archeops,shiny_front,generated from front,0.39,"estimated - LOW confidence, please review"
+0568-Trubbish,shiny_back,relabeled from back.png,,
+0568-Trubbish,back,generated from shiny back,0.39,"estimated - LOW confidence, please review"
+0568-Trubbish,shiny_front,generated from front,0.39,"estimated - LOW confidence, please review"
+0569-Garbodor,shiny_back,relabeled from back.png,,
+0569-Garbodor,back,generated from shiny back,0.53,estimated
+0569-Garbodor,shiny_front,generated from front,0.53,estimated
+0570-Zorua,shiny_back,relabeled from back.png,,
+0570-Zorua,back,generated from shiny back,0.80,estimated
+0570-Zorua,shiny_front,generated from front,0.80,estimated
+0571-Zoroark,shiny_back,relabeled from back.png,,
+0571-Zoroark,back,generated from shiny back,0.60,estimated
+0571-Zoroark,shiny_front,generated from front,0.60,estimated
+0572-Minccino,shiny_back,relabeled from back.png,,
+0572-Minccino,back,generated from shiny back,0.31,"estimated - LOW confidence, please review"
+0572-Minccino,shiny_front,generated from front,0.31,"estimated - LOW confidence, please review"
+0573-Cinccino,shiny_back,relabeled from back.png,,
+0573-Cinccino,back,generated from shiny back,0.54,estimated
+0573-Cinccino,shiny_front,generated from front,0.54,estimated
+0574-Gothita,shiny_back,relabeled from back.png,,
+0574-Gothita,back,generated from shiny back,0.74,estimated
+0574-Gothita,shiny_front,generated from front,0.74,estimated
+0575-Gothorita,shiny_back,relabeled from back.png,,
+0575-Gothorita,back,generated from shiny back,0.76,estimated
+0575-Gothorita,shiny_front,generated from front,0.76,estimated
+0576-Gothitelle,shiny_back,relabeled from back.png,,
+0576-Gothitelle,back,generated from shiny back,0.31,"estimated - LOW confidence, please review"
+0576-Gothitelle,shiny_front,generated from front,0.31,"estimated - LOW confidence, please review"
+0577-Solosis,shiny_back,relabeled from back.png,,
+0577-Solosis,back,generated from shiny back,0.66,estimated
+0577-Solosis,shiny_front,generated from front,0.66,estimated
+0578-Duosion,shiny_back,relabeled from back.png,,
+0578-Duosion,back,generated from shiny back,0.77,estimated
+0578-Duosion,shiny_front,generated from front,0.77,estimated
+0579-Reuniclus,shiny_back,relabeled from back.png,,
+0579-Reuniclus,back,generated from shiny back,0.53,estimated
+0579-Reuniclus,shiny_front,generated from front,0.53,estimated
+0580-Ducklett,shiny_back,relabeled from back.png,,
+0580-Ducklett,back,generated from shiny back,0.62,estimated
+0580-Ducklett,shiny_front,generated from front,0.62,estimated
+0581-Swanna,shiny_back,relabeled from back.png,,
+0581-Swanna,back,generated from shiny back,0.67,estimated
+0581-Swanna,shiny_front,generated from front,0.67,estimated
+0582-Vanillite,shiny_back,relabeled from back.png,,
+0582-Vanillite,back,generated from shiny back,0.83,estimated
+0582-Vanillite,shiny_front,generated from front,0.83,estimated
+0583-Vanillish,shiny_back,relabeled from back.png,,
+0583-Vanillish,back,generated from shiny back,0.79,estimated
+0583-Vanillish,shiny_front,generated from front,0.79,estimated
+0584-Vanilluxe,shiny_back,relabeled from back.png,,
+0584-Vanilluxe,back,generated from shiny back,0.90,estimated
+0584-Vanilluxe,shiny_front,generated from front,0.90,estimated
+0585-Deerling,shiny_back,relabeled from back.png,,
+0585-Deerling,back,generated from shiny back,0.74,estimated
+0585-Deerling,shiny_front,generated from front,0.74,estimated
+0586-Sawsbuck,shiny_back,relabeled from back.png,,
+0586-Sawsbuck,back,generated from shiny back,0.56,estimated
+0586-Sawsbuck,shiny_front,generated from front,0.56,estimated
+0587-Emolga,shiny_back,relabeled from back.png,,
+0587-Emolga,back,generated from shiny back,0.32,"estimated - LOW confidence, please review"
+0587-Emolga,shiny_front,generated from front,0.32,"estimated - LOW confidence, please review"
+0588-Karrablast,shiny_back,relabeled from back.png,,
+0588-Karrablast,back,generated from shiny back,0.28,"estimated - LOW confidence, please review"
+0588-Karrablast,shiny_front,generated from front,0.28,"estimated - LOW confidence, please review"
+0589-Escavalier,shiny_back,relabeled from back.png,,
+0589-Escavalier,back,generated from shiny back,0.65,estimated
+0589-Escavalier,shiny_front,generated from front,0.65,estimated
+0590-Foongus,shiny_back,relabeled from back.png,,
+0590-Foongus,back,generated from shiny back,0.55,estimated
+0590-Foongus,shiny_front,generated from front,0.55,estimated
+0591-Amoonguss,shiny_back,relabeled from back.png,,
+0591-Amoonguss,back,generated from shiny back,0.47,"estimated - LOW confidence, please review"
+0591-Amoonguss,shiny_front,generated from front,0.47,"estimated - LOW confidence, please review"
+0592-Frillish,shiny_back,relabeled from back.png,,
+0592-Frillish,back,generated from shiny back,0.58,estimated
+0592-Frillish,shiny_front,generated from front,0.58,estimated
+0593-Jellicent,shiny_back,relabeled from back.png,,
+0593-Jellicent,back,generated from shiny back,0.25,"estimated - LOW confidence, please review"
+0593-Jellicent,shiny_front,generated from front,0.25,"estimated - LOW confidence, please review"
+0594-Alomomola,shiny_back,relabeled from back.png,,
+0594-Alomomola,back,generated from shiny back,0.46,"estimated - LOW confidence, please review"
+0594-Alomomola,shiny_front,generated from front,0.46,"estimated - LOW confidence, please review"
+0595-Joltik,shiny_back,relabeled from back.png,,
+0595-Joltik,back,generated from shiny back,0.58,estimated
+0595-Joltik,shiny_front,generated from front,0.58,estimated
+0596-Galvantula,shiny_back,relabeled from back.png,,
+0596-Galvantula,back,generated from shiny back,0.45,"estimated - LOW confidence, please review"
+0596-Galvantula,shiny_front,generated from front,0.45,"estimated - LOW confidence, please review"
+0597-Ferroseed,shiny_back,relabeled from back.png,,
+0597-Ferroseed,back,generated from shiny back,0.55,estimated
+0597-Ferroseed,shiny_front,generated from front,0.55,estimated
+0598-Ferrothorn,shiny_back,relabeled from back.png,,
+0598-Ferrothorn,back,generated from shiny back,0.59,estimated
+0598-Ferrothorn,shiny_front,generated from front,0.59,estimated
+0599-Klink,shiny_back,relabeled from back.png,,
+0599-Klink,back,generated from shiny back,0.68,estimated
+0599-Klink,shiny_front,generated from front,0.68,estimated
+0600-Klang,shiny_back,relabeled from back.png,,
+0600-Klang,back,generated from shiny back,0.35,"estimated - LOW confidence, please review"
+0600-Klang,shiny_front,generated from front,0.35,"estimated - LOW confidence, please review"
+0601-Klinklang,shiny_back,relabeled from back.png,,
+0601-Klinklang,back,generated from shiny back,0.37,"estimated - LOW confidence, please review"
+0601-Klinklang,shiny_front,generated from front,0.37,"estimated - LOW confidence, please review"
+0602-Tynamo,shiny_back,relabeled from back.png,,
+0602-Tynamo,back,generated from shiny back,0.80,estimated
+0602-Tynamo,shiny_front,generated from front,0.80,estimated
+0603-Eelektrik,shiny_back,relabeled from back.png,,
+0603-Eelektrik,back,generated from shiny back,0.43,"estimated - LOW confidence, please review"
+0603-Eelektrik,shiny_front,generated from front,0.43,"estimated - LOW confidence, please review"
+0604-Eelektross,shiny_back,relabeled from back.png,,
+0604-Eelektross,back,generated from shiny back,0.26,"estimated - LOW confidence, please review"
+0604-Eelektross,shiny_front,generated from front,0.26,"estimated - LOW confidence, please review"
+0605-Elgyem,shiny_back,relabeled from back.png,,
+0605-Elgyem,back,generated from shiny back,0.68,estimated
+0605-Elgyem,shiny_front,generated from front,0.68,estimated
+0606-Beheeyem,shiny_back,relabeled from back.png,,
+0606-Beheeyem,back,generated from shiny back,0.70,estimated
+0606-Beheeyem,shiny_front,generated from front,0.70,estimated
+0607-Litwick,shiny_back,relabeled from back.png,,
+0607-Litwick,back,generated from shiny back,0.65,estimated
+0607-Litwick,shiny_front,generated from front,0.65,estimated
+0608-Lampent,shiny_back,relabeled from back.png,,
+0608-Lampent,back,generated from shiny back,0.47,"estimated - LOW confidence, please review"
+0608-Lampent,shiny_front,generated from front,0.47,"estimated - LOW confidence, please review"
+0609-Chandelure,shiny_back,relabeled from back.png,,
+0609-Chandelure,back,generated from shiny back,0.64,estimated
+0609-Chandelure,shiny_front,generated from front,0.64,estimated
+0610-Axew,shiny_back,relabeled from back.png,,
+0610-Axew,back,generated from shiny back,0.82,estimated
+0610-Axew,shiny_front,generated from front,0.82,estimated
+0611-Fraxure,shiny_back,relabeled from back.png,,
+0611-Fraxure,back,generated from shiny back,0.47,"estimated - LOW confidence, please review"
+0611-Fraxure,shiny_front,generated from front,0.47,"estimated - LOW confidence, please review"
+0612-Haxorus,shiny_back,relabeled from back.png,,
+0612-Haxorus,back,generated from shiny back,0.76,estimated
+0612-Haxorus,shiny_front,generated from front,0.76,estimated
+0613-Cubchoo,shiny_back,relabeled from back.png,,
+0613-Cubchoo,back,generated from shiny back,0.50,"estimated - LOW confidence, please review"
+0613-Cubchoo,shiny_front,generated from front,0.50,"estimated - LOW confidence, please review"
+0614-Beartic,shiny_back,relabeled from back.png,,
+0614-Beartic,back,generated from shiny back,0.52,estimated
+0614-Beartic,shiny_front,generated from front,0.52,estimated
+0615-Cryogonal,shiny_back,relabeled from back.png,,
+0615-Cryogonal,back,generated from shiny back,0.51,estimated
+0615-Cryogonal,shiny_front,generated from front,0.51,estimated
+0616-Shelmet,shiny_back,relabeled from back.png,,
+0616-Shelmet,back,generated from shiny back,0.72,estimated
+0616-Shelmet,shiny_front,generated from front,0.72,estimated
+0617-Accelgor,shiny_back,relabeled from back.png,,
+0617-Accelgor,back,generated from shiny back,0.43,"estimated - LOW confidence, please review"
+0617-Accelgor,shiny_front,generated from front,0.43,"estimated - LOW confidence, please review"
+0618-Stunfisk,shiny_back,relabeled from back.png,,
+0618-Stunfisk,back,generated from shiny back,0.36,"estimated - LOW confidence, please review"
+0618-Stunfisk,shiny_front,generated from front,0.36,"estimated - LOW confidence, please review"
+0619-Mienfoo,shiny_back,relabeled from back.png,,
+0619-Mienfoo,back,generated from shiny back,0.31,"estimated - LOW confidence, please review"
+0619-Mienfoo,shiny_front,generated from front,0.31,"estimated - LOW confidence, please review"
+0620-Mienshao,shiny_back,relabeled from back.png,,
+0620-Mienshao,back,generated from shiny back,0.51,estimated
+0620-Mienshao,shiny_front,generated from front,0.51,estimated
+0621-Druddigon,shiny_back,relabeled from back.png,,
+0621-Druddigon,back,generated from shiny back,0.59,estimated
+0621-Druddigon,shiny_front,generated from front,0.59,estimated
+0622-Golett,shiny_back,relabeled from back.png,,
+0622-Golett,back,generated from shiny back,0.45,"estimated - LOW confidence, please review"
+0622-Golett,shiny_front,generated from front,0.45,"estimated - LOW confidence, please review"
+0623-Golurk,shiny_back,relabeled from back.png,,
+0623-Golurk,back,generated from shiny back,0.18,"estimated - LOW confidence, please review"
+0623-Golurk,shiny_front,generated from front,0.18,"estimated - LOW confidence, please review"
+0624-Pawniard,shiny_back,relabeled from back.png,,
+0624-Pawniard,back,generated from shiny back,0.78,estimated
+0624-Pawniard,shiny_front,generated from front,0.78,estimated
+0625-Bisharp,shiny_back,relabeled from back.png,,
+0625-Bisharp,back,generated from shiny back,0.42,"estimated - LOW confidence, please review"
+0625-Bisharp,shiny_front,generated from front,0.42,"estimated - LOW confidence, please review"
+0626-Bouffalant,shiny_back,relabeled from back.png,,
+0626-Bouffalant,back,generated from shiny back,0.59,estimated
+0626-Bouffalant,shiny_front,generated from front,0.59,estimated
+0627-Rufflet,shiny_back,relabeled from back.png,,
+0627-Rufflet,back,generated from shiny back,0.87,estimated
+0627-Rufflet,shiny_front,generated from front,0.87,estimated
+0628-Braviary,shiny_back,relabeled from back.png,,
+0628-Braviary,back,generated from shiny back,0.44,"estimated - LOW confidence, please review"
+0628-Braviary,shiny_front,generated from front,0.44,"estimated - LOW confidence, please review"
+0629-Vullaby,shiny_back,relabeled from back.png,,
+0629-Vullaby,back,generated from shiny back,0.47,"estimated - LOW confidence, please review"
+0629-Vullaby,shiny_front,generated from front,0.47,"estimated - LOW confidence, please review"
+0630-Mandibuzz,shiny_back,relabeled from back.png,,
+0630-Mandibuzz,back,generated from shiny back,0.53,estimated
+0630-Mandibuzz,shiny_front,generated from front,0.53,estimated
+0631-Heatmor,shiny_back,relabeled from back.png,,
+0631-Heatmor,back,generated from shiny back,0.32,"estimated - LOW confidence, please review"
+0631-Heatmor,shiny_front,generated from front,0.32,"estimated - LOW confidence, please review"
+0632-Durant,shiny_back,relabeled from back.png,,
+0632-Durant,back,generated from shiny back,0.36,"estimated - LOW confidence, please review"
+0632-Durant,shiny_front,generated from front,0.36,"estimated - LOW confidence, please review"
+0633-Deino,shiny_back,relabeled from back.png,,
+0633-Deino,back,generated from shiny back,0.71,estimated
+0633-Deino,shiny_front,generated from front,0.71,estimated
+0634-Zweilous,shiny_back,relabeled from back.png,,
+0634-Zweilous,back,generated from shiny back,0.71,estimated
+0634-Zweilous,shiny_front,generated from front,0.71,estimated
+0635-Hydreigon,shiny_back,relabeled from back.png,,
+0635-Hydreigon,back,generated from shiny back,0.41,"estimated - LOW confidence, please review"
+0635-Hydreigon,shiny_front,generated from front,0.41,"estimated - LOW confidence, please review"
+0636-Larvesta,shiny_back,relabeled from back.png,,
+0636-Larvesta,back,generated from shiny back,0.75,estimated
+0636-Larvesta,shiny_front,generated from front,0.75,estimated
+0637-Volcarona,shiny_back,relabeled from back.png,,
+0637-Volcarona,back,generated from shiny back,0.26,"estimated - LOW confidence, please review"
+0637-Volcarona,shiny_front,generated from front,0.26,"estimated - LOW confidence, please review"
+0638-Cobalion,shiny_back,relabeled from back.png,,
+0638-Cobalion,back,generated from shiny back,0.42,"estimated - LOW confidence, please review"
+0638-Cobalion,shiny_front,generated from front,0.42,"estimated - LOW confidence, please review"
+0639-Terrakion,shiny_back,relabeled from back.png,,
+0639-Terrakion,back,generated from shiny back,0.32,"estimated - LOW confidence, please review"
+0639-Terrakion,shiny_front,generated from front,0.32,"estimated - LOW confidence, please review"
+0640-Virizion,shiny_back,relabeled from back.png,,
+0640-Virizion,back,generated from shiny back,0.26,"estimated - LOW confidence, please review"
+0640-Virizion,shiny_front,generated from front,0.26,"estimated - LOW confidence, please review"
+0641-Tornadus,shiny_back,relabeled from back.png,,
+0641-Tornadus,back,generated from shiny back,0.39,"estimated - LOW confidence, please review"
+0641-Tornadus,shiny_front,generated from front,0.39,"estimated - LOW confidence, please review"
+0642-Thundurus,shiny_back,relabeled from back.png,,
+0642-Thundurus,back,generated from shiny back,0.57,estimated
+0642-Thundurus,shiny_front,generated from front,0.57,estimated
+0643-Reshiram,shiny_back,relabeled from back.png,,
+0643-Reshiram,back,generated from shiny back,0.98,estimated
+0643-Reshiram,shiny_front,generated from front,0.98,estimated
+0644-Zekrom,shiny_back,relabeled from back.png,,
+0644-Zekrom,back,generated from shiny back,0.75,estimated
+0644-Zekrom,shiny_front,generated from front,0.75,estimated
+0645-Landorus,shiny_back,relabeled from back.png,,
+0645-Landorus,back,generated from shiny back,0.64,estimated
+0645-Landorus,shiny_front,generated from front,0.64,estimated
+0646-Kyurem,shiny_back,relabeled from back.png,,
+0646-Kyurem,back,generated from shiny back,0.43,"estimated - LOW confidence, please review"
+0646-Kyurem,shiny_front,generated from front,0.43,"estimated - LOW confidence, please review"
+0647-Keldeo,shiny_back,relabeled from back.png,,
+0647-Keldeo,back,generated from shiny back,0.48,"estimated - LOW confidence, please review"
+0647-Keldeo,shiny_front,generated from front,0.48,"estimated - LOW confidence, please review"
+0648-Meloetta,shiny_back,relabeled from back.png,,
+0648-Meloetta,back,generated from shiny back,0.65,estimated
+0648-Meloetta,shiny_front,generated from front,0.65,estimated
+0649-Genesect,shiny_back,relabeled from back.png,,
+0649-Genesect,back,generated from shiny back,0.86,estimated
+0649-Genesect,shiny_front,generated from front,0.86,estimated
+0650-Chespin,all,kept as-is,,labels already correct
+0651-Quilladin,all,kept as-is,,labels already correct
+0652-Chesnaught,shiny_back,relabeled from back.png,,
+0652-Chesnaught,shiny_front,kept (real sprite),,
+0652-Chesnaught,back,generated from shiny back,0.17,estimated using the real front/shiny_front colour pair
+0653-Fennekin,all,kept as-is,,labels already correct
+0654-Braixen,shiny_back,relabeled from back.png,,
+0654-Braixen,shiny_front,kept (real sprite),,
+0654-Braixen,back,generated from shiny back,0.38,estimated using the real front/shiny_front colour pair
+0655-Delphox,shiny_back,relabeled from back.png,,
+0655-Delphox,shiny_front,kept (real sprite),,
+0655-Delphox,back,generated from shiny back,0.35,estimated using the real front/shiny_front colour pair
+0656-Froakie,all,kept as-is,,labels already correct
+0657-Frogadier,shiny_back,relabeled from back.png,,
+0657-Frogadier,shiny_front,kept (real sprite),,
+0657-Frogadier,back,generated from shiny back,0.31,estimated using the real front/shiny_front colour pair
+0658-Greninja,all,kept as-is,,labels already correct
+0659-Bunnelby,all,kept as-is,,labels already correct
+0660-Diggersby,shiny_back,relabeled from back.png,,
+0660-Diggersby,shiny_front,kept (real sprite),,
+0660-Diggersby,back,generated from shiny back,0.23,estimated using the real front/shiny_front colour pair
+0661-Fletchling,shiny_back,relabeled from back.png,,
+0661-Fletchling,shiny_front,kept (real sprite),,
+0661-Fletchling,back,generated from shiny back,0.39,estimated using the real front/shiny_front colour pair
+0662-Fletchinder,shiny_back,relabeled from back.png,,
+0662-Fletchinder,shiny_front,kept (real sprite),,
+0662-Fletchinder,back,generated from shiny back,0.45,estimated using the real front/shiny_front colour pair
+0663-Talonflame,all,kept as-is,,labels already correct
+0664-Scatterbug,shiny_back,relabeled from back.png,,
+0664-Scatterbug,shiny_front,kept (real sprite),,
+0664-Scatterbug,back,generated from shiny back,0.13,estimated using the real front/shiny_front colour pair
+0665-Spewpa,all,kept as-is,,labels already correct
+0666-Vivillon,shiny_back,relabeled from back.png,,
+0666-Vivillon,back,generated from shiny back,0.86,estimated
+0666-Vivillon,shiny_front,generated from front,0.86,estimated
+0667-Litleo,all,kept as-is,,labels already correct
+0668-Pyroar,shiny_back,relabeled from back.png,,
+0668-Pyroar,shiny_front,kept (real sprite),,
+0668-Pyroar,back,generated from shiny back,0.34,estimated using the real front/shiny_front colour pair
+0669-Flabebe,shiny_back,relabeled from back.png,,
+0669-Flabebe,back,generated from shiny back,0.95,estimated
+0669-Flabebe,shiny_front,generated from front,0.95,estimated
+0670-Floette,shiny_back,relabeled from back.png,,
+0670-Floette,back,generated from shiny back,0.95,estimated
+0670-Floette,shiny_front,generated from front,0.95,estimated
+0671-Florges,shiny_back,relabeled from back.png,,
+0671-Florges,back,generated from shiny back,0.70,estimated
+0671-Florges,shiny_front,generated from front,0.70,estimated
+0672-Skiddo,all,kept as-is,,labels already correct
+0673-Gogoat,shiny_back,relabeled from back.png,,
+0673-Gogoat,shiny_front,kept (real sprite),,
+0673-Gogoat,back,generated from shiny back,0.17,estimated using the real front/shiny_front colour pair
+0674-Pancham,all,kept as-is,,labels already correct
+0675-Pangoro,shiny_back,relabeled from back.png,,
+0675-Pangoro,shiny_front,kept (real sprite),,
+0675-Pangoro,back,generated from shiny back,0.32,estimated using the real front/shiny_front colour pair
+0676-Furfrou,shiny_back,relabeled from back.png,,
+0676-Furfrou,back,generated from shiny back,0.37,"estimated - LOW confidence, please review"
+0676-Furfrou,shiny_front,generated from front,0.37,"estimated - LOW confidence, please review"
+0677-Espurr,all,kept as-is,,labels already correct
+0678-Meowstic,all,kept as-is,,labels already correct
+0679-Honedge,shiny_back,relabeled from back.png,,
+0679-Honedge,back,generated from shiny back,0.26,"estimated - LOW confidence, please review"
+0679-Honedge,shiny_front,generated from front,0.26,"estimated - LOW confidence, please review"
+0680-Doublade,shiny_back,relabeled from back.png,,
+0680-Doublade,back,generated from shiny back,0.53,estimated
+0680-Doublade,shiny_front,generated from front,0.53,estimated
+0681-Aegislash,shiny_back,relabeled from back.png,,
+0681-Aegislash,back,generated from shiny back,0.42,"estimated - LOW confidence, please review"
+0681-Aegislash,shiny_front,generated from front,0.42,"estimated - LOW confidence, please review"
+0682-Spritzee,all,kept as-is,,labels already correct
+0683-Aromatisse,all,kept as-is,,labels already correct
+0684-Swirlix,all,kept as-is,,labels already correct
+0685-Slurpuff,all,kept as-is,,labels already correct
+0686-Inkay,shiny_back,relabeled from back.png,,
+0686-Inkay,shiny_front,kept (real sprite),,
+0686-Inkay,back,generated from shiny back,0.32,estimated using the real front/shiny_front colour pair
+0687-Malamar,shiny_back,relabeled from back.png,,
+0687-Malamar,shiny_front,kept (real sprite),,
+0687-Malamar,back,generated from shiny back,0.19,estimated using the real front/shiny_front colour pair
+0688-Binacle,all,kept as-is,,labels already correct
+0689-Barbaracle,shiny_back,relabeled from back.png,,
+0689-Barbaracle,shiny_front,kept (real sprite),,
+0689-Barbaracle,back,generated from shiny back,0.47,estimated using the real front/shiny_front colour pair
+0690-Skrelp,all,kept as-is,,labels already correct
+0691-Dragalge,shiny_back,relabeled from back.png,,
+0691-Dragalge,shiny_front,kept (real sprite),,
+0691-Dragalge,back,generated from shiny back,0.41,estimated using the real front/shiny_front colour pair
+0692-Clauncher,all,kept as-is,,labels already correct
+0693-Clawitzer,shiny_back,relabeled from back.png,,
+0693-Clawitzer,back,generated from shiny back,0.41,"estimated - LOW confidence, please review"
+0693-Clawitzer,shiny_front,generated from front,0.41,"estimated - LOW confidence, please review"
+0694-Helioptile,all,kept as-is,,labels already correct
+0695-Heliolisk,shiny_back,relabeled from back.png,,
+0695-Heliolisk,shiny_front,kept (real sprite),,
+0695-Heliolisk,back,generated from shiny back,0.36,estimated using the real front/shiny_front colour pair
+0696-Tyrunt,shiny_back,relabeled from back.png,,
+0696-Tyrunt,shiny_front,kept (real sprite),,
+0696-Tyrunt,back,generated from shiny back,0.42,estimated using the real front/shiny_front colour pair
+0697-Tyrantrum,all,kept as-is,,labels already correct
+0698-Amaura,shiny_back,relabeled from back.png,,
+0698-Amaura,shiny_front,kept (real sprite),,
+0698-Amaura,back,generated from shiny back,0.34,estimated using the real front/shiny_front colour pair
+0699-Aurorus,shiny_back,relabeled from back.png,,
+0699-Aurorus,shiny_front,kept (real sprite),,
+0699-Aurorus,back,generated from shiny back,0.08,estimated using the real front/shiny_front colour pair
+0700-Sylveon,shiny_back,relabeled from back.png,,
+0700-Sylveon,shiny_front,kept (real sprite),,
+0700-Sylveon,back,generated from shiny back,0.55,estimated using the real front/shiny_front colour pair
+0701-Hawlucha,all,kept as-is,,labels already correct
+0702-Dedenne,all,kept as-is,,labels already correct
+0703-Carbink,all,kept as-is,,labels already correct
+0704-Goomy,all,kept as-is,,labels already correct
+0705-Sliggoo,shiny_back,relabeled from back.png,,
+0705-Sliggoo,shiny_front,kept (real sprite),,
+0705-Sliggoo,back,generated from shiny back,0.18,estimated using the real front/shiny_front colour pair
+0706-Goodra,shiny_back,relabeled from back.png,,
+0706-Goodra,shiny_front,kept (real sprite),,
+0706-Goodra,back,generated from shiny back,0.39,estimated using the real front/shiny_front colour pair
+0707-Klefki,all,kept as-is,,labels already correct
+0708-Phantump,all,kept as-is,,labels already correct
+0709-Trevenant,shiny_back,relabeled from back.png,,
+0709-Trevenant,shiny_front,kept (real sprite),,
+0709-Trevenant,back,generated from shiny back,0.38,estimated using the real front/shiny_front colour pair
+0710-Pumpkaboo,shiny_back,relabeled from back.png,,
+0710-Pumpkaboo,back,generated from shiny back,0.13,"estimated - LOW confidence, please review"
+0710-Pumpkaboo,shiny_front,generated from front,0.13,"estimated - LOW confidence, please review"
+0711-Gourgeist,shiny_back,relabeled from back.png,,
+0711-Gourgeist,back,generated from shiny back,0.31,"estimated - LOW confidence, please review"
+0711-Gourgeist,shiny_front,generated from front,0.31,"estimated - LOW confidence, please review"
+0712-Bergmite,all,kept as-is,,labels already correct
+0713-Avalugg,shiny_back,relabeled from back.png,,
+0713-Avalugg,shiny_front,kept (real sprite),,
+0713-Avalugg,back,generated from shiny back,0.38,estimated using the real front/shiny_front colour pair
+0714-Noibat,shiny_back,relabeled from back.png,,
+0714-Noibat,shiny_front,kept (real sprite),,
+0714-Noibat,back,generated from shiny back,0.20,estimated using the real front/shiny_front colour pair
+0715-Noivern,shiny_back,relabeled from back.png,,
+0715-Noivern,shiny_front,kept (real sprite),,
+0715-Noivern,back,generated from shiny back,0.14,estimated using the real front/shiny_front colour pair
+0716-Xerneas,shiny_back,relabeled from back.png,,
+0716-Xerneas,back,generated from shiny back,0.65,estimated
+0716-Xerneas,shiny_front,generated from front,0.65,estimated
+0717-Yveltal,shiny_back,relabeled from back.png,,
+0717-Yveltal,shiny_front,kept (real sprite),,
+0717-Yveltal,back,generated from shiny back,0.08,estimated using the real front/shiny_front colour pair
+0718-Zygarde,shiny_back,relabeled from back.png,,
+0718-Zygarde,back,generated from shiny back,0.22,"estimated - LOW confidence, please review"
+0718-Zygarde,shiny_front,generated from front,0.22,"estimated - LOW confidence, please review"
+0719-Diancie,shiny_back,relabeled from back.png,,
+0719-Diancie,back,generated from shiny back,0.43,"estimated - LOW confidence, please review"
+0719-Diancie,shiny_front,generated from front,0.43,"estimated - LOW confidence, please review"
+0720-Hoopa,shiny_back,relabeled from back.png,,
+0720-Hoopa,back,generated from shiny back,0.47,"estimated - LOW confidence, please review"
+0720-Hoopa,shiny_front,generated from front,0.47,"estimated - LOW confidence, please review"
+0721-Volcanion,shiny_back,relabeled from back.png,,
+0721-Volcanion,shiny_front,kept (real sprite),,
+0721-Volcanion,back,generated from shiny back,0.34,estimated using the real front/shiny_front colour pair
+0722-Rowlet,all,kept as-is,,labels already correct
+0723-Dartrix,all,kept as-is,,labels already correct
+0724-Decidueye,all,kept as-is,,labels already correct
+0725-Litten,all,kept as-is,,labels already correct
+0726-Torracat,all,kept as-is,,labels already correct
+0727-Incineroar,all,kept as-is,,labels already correct
+0728-Popplio,all,kept as-is,,labels already correct
+0729-Brionne,all,kept as-is,,labels already correct
+0730-Primarina,all,kept as-is,,labels already correct
+0731-Pikipek,all,kept as-is,,labels already correct
+0732-Trumbeak,all,kept as-is,,labels already correct
+0733-Toucannon,all,kept as-is,,labels already correct
+0734-Yungoos,all,kept as-is,,labels already correct
+0735-Gumshoos,all,kept as-is,,labels already correct
+0736-Grubbin,all,kept as-is,,labels already correct
+0737-Charjabug,all,kept as-is,,labels already correct
+0738-Vikavolt,all,kept as-is,,labels already correct
+0739-Crabrawler,all,kept as-is,,labels already correct
+0740-Crabominable,all,kept as-is,,labels already correct
+0741-Oricorio,shiny_back,relabeled from back.png,,
+0741-Oricorio,back,generated from shiny back,0.67,estimated
+0741-Oricorio,shiny_front,generated from front,0.67,estimated
+0742-Cutiefly,all,kept as-is,,labels already correct
+0743-Ribombee,all,kept as-is,,labels already correct
+0744-Rockruff,all,kept as-is,,labels already correct
+0745-Lycanroc,shiny_back,relabeled from back.png,,
+0745-Lycanroc,back,generated from shiny back,0.82,estimated
+0745-Lycanroc,shiny_front,generated from front,0.82,estimated
+0746-Wishiwashi,shiny_back,relabeled from back.png,,
+0746-Wishiwashi,back,generated from shiny back,0.59,estimated
+0746-Wishiwashi,shiny_front,generated from front,0.59,estimated
+0747-Mareanie,all,kept as-is,,labels already correct
+0748-Toxapex,all,kept as-is,,labels already correct
+0749-Mudbray,all,kept as-is,,labels already correct
+0750-Mudsdale,all,kept as-is,,labels already correct
+0751-Dewpider,all,kept as-is,,labels already correct
+0752-Araquanid,all,kept as-is,,labels already correct
+0753-Fomantis,all,kept as-is,,labels already correct
+0754-Lurantis,all,kept as-is,,labels already correct
+0755-Morelull,all,kept as-is,,labels already correct
+0756-Shiinotic,all,kept as-is,,labels already correct
+0757-Salandit,all,kept as-is,,labels already correct
+0758-Salazzle,all,kept as-is,,labels already correct
+0759-Stufful,all,kept as-is,,labels already correct
+0760-Bewear,all,kept as-is,,labels already correct
+0761-Bounsweet,all,kept as-is,,labels already correct
+0762-Steenee,all,kept as-is,,labels already correct
+0763-Tsareena,all,kept as-is,,labels already correct
+0764-Comfey,all,kept as-is,,labels already correct
+0765-Oranguru,all,kept as-is,,labels already correct
+0766-Passimian,all,kept as-is,,labels already correct
+0767-Wimpod,all,kept as-is,,labels already correct
+0768-Golisopod,all,kept as-is,,labels already correct
+0769-Sandygast,all,kept as-is,,labels already correct
+0770-Palossand,all,kept as-is,,labels already correct
+0771-Pyukumuku,all,kept as-is,,labels already correct
+0772-Type Null,all,kept as-is,,labels already correct
+0773-Silvally,shiny_back,relabeled from back.png,,
+0773-Silvally,back,generated from shiny back,0.30,"estimated - LOW confidence, please review"
+0773-Silvally,shiny_front,generated from front,0.30,"estimated - LOW confidence, please review"
+0774-Minior,shiny_back,relabeled from back.png,,
+0774-Minior,back,generated from shiny back,0.95,estimated
+0774-Minior,shiny_front,generated from front,0.95,estimated
+0775-Komala,all,kept as-is,,labels already correct
+0776-Turtonator,all,kept as-is,,labels already correct
+0777-Togedemaru,all,kept as-is,,labels already correct
+0778-Mimikyu,shiny_back,relabeled from back.png,,
+0778-Mimikyu,back,generated from shiny back,0.62,estimated
+0778-Mimikyu,shiny_front,generated from front,0.62,estimated
+0779-Bruxish,all,kept as-is,,labels already correct
+0780-Drampa,all,kept as-is,,labels already correct
+0781-Dhelmise,all,kept as-is,,labels already correct
+0782-Jangmo-o,all,kept as-is,,labels already correct
+0783-Hakamo-o,all,kept as-is,,labels already correct
+0784-Kommo-o,all,kept as-is,,labels already correct
+0785-Tapu Koko,all,kept as-is,,labels already correct
+0786-Tapu Lele,all,kept as-is,,labels already correct
+0787-Tapu Bulu,all,kept as-is,,labels already correct
+0788-Tapu Fini,all,kept as-is,,labels already correct
+0789-Cosmog,all,kept as-is,,labels already correct
+0790-Cosmoem,all,kept as-is,,labels already correct
+0791-Solgaleo,shiny_back,relabeled from back.png,,
+0791-Solgaleo,back,generated from shiny back,0.25,"estimated - LOW confidence, please review"
+0791-Solgaleo,shiny_front,generated from front,0.25,"estimated - LOW confidence, please review"
+0792-Lunala,shiny_back,relabeled from back.png,,
+0792-Lunala,back,generated from shiny back,0.41,"estimated - LOW confidence, please review"
+0792-Lunala,shiny_front,generated from front,0.41,"estimated - LOW confidence, please review"
+0793-Nihilego,all,kept as-is,,labels already correct
+0794-Buzzwole,all,kept as-is,,labels already correct
+0795-Pheromosa,all,kept as-is,,labels already correct
+0796-Xurkitree,all,kept as-is,,labels already correct
+0797-Celesteela,all,kept as-is,,labels already correct
+0798-Kartana,all,kept as-is,,labels already correct
+0799-Guzzlord,all,kept as-is,,labels already correct
+0800-Necrozma,shiny_back,relabeled from back.png,,
+0800-Necrozma,back,generated from shiny back,0.42,"estimated - LOW confidence, please review"
+0800-Necrozma,shiny_front,generated from front,0.42,"estimated - LOW confidence, please review"
+0801-Magearna,shiny_back,relabeled from back.png,,
+0801-Magearna,back,generated from shiny back,0.49,"estimated - LOW confidence, please review"
+0801-Magearna,shiny_front,generated from front,0.49,"estimated - LOW confidence, please review"
+0802-Marshadow,shiny_back,relabeled from back.png,,
+0802-Marshadow,back,generated from shiny back,0.96,estimated
+0802-Marshadow,shiny_front,generated from front,0.96,estimated
+0803-Poipole,all,kept as-is,,labels already correct
+0804-Naganadel,all,kept as-is,,labels already correct
+0805-Stakataka,all,kept as-is,,labels already correct
+0806-Blacephalon,all,kept as-is,,labels already correct
+0807-Zeraora,all,kept as-is,,labels already correct
+0808-Meltan,all,kept as-is,,labels already correct
+0809-Melmetal,shiny_back,relabeled from back.png,,
+0809-Melmetal,back,generated from shiny back,0.13,"estimated - LOW confidence, please review"
+0809-Melmetal,shiny_front,generated from front,0.13,"estimated - LOW confidence, please review"
+0810-Grookey,all,kept as-is,,labels already correct
+0811-Thwackey,all,kept as-is,,labels already correct
+0812-Rillaboom,shiny_back,relabeled from back.png,,
+0812-Rillaboom,back,generated from shiny back,0.48,"estimated - LOW confidence, please review"
+0812-Rillaboom,shiny_front,generated from front,0.48,"estimated - LOW confidence, please review"
+0813-Scorbunny,all,kept as-is,,labels already correct
+0814-Raboot,all,kept as-is,,labels already correct
+0815-Cinderace,shiny_back,relabeled from back.png,,
+0815-Cinderace,back,generated from shiny back,0.36,"estimated - LOW confidence, please review"
+0815-Cinderace,shiny_front,generated from front,0.36,"estimated - LOW confidence, please review"
+0816-Sobble,all,kept as-is,,labels already correct
+0817-Drizzile,all,kept as-is,,labels already correct
+0818-Inteleon,shiny_back,relabeled from back.png,,
+0818-Inteleon,back,generated from shiny back,0.39,"estimated - LOW confidence, please review"
+0818-Inteleon,shiny_front,generated from front,0.39,"estimated - LOW confidence, please review"
+0819-Skwovet,all,kept as-is,,labels already correct
+0820-Greedent,all,kept as-is,,labels already correct
+0821-Rookidee,all,kept as-is,,labels already correct
+0822-Corvisquire,all,kept as-is,,labels already correct
+0823-Corviknight,shiny_back,relabeled from back.png,,
+0823-Corviknight,back,generated from shiny back,0.26,"estimated - LOW confidence, please review"
+0823-Corviknight,shiny_front,generated from front,0.26,"estimated - LOW confidence, please review"
+0824-Blipbug,all,kept as-is,,labels already correct
+0825-Dottler,all,kept as-is,,labels already correct
+0826-Orbeetle,shiny_back,relabeled from back.png,,
+0826-Orbeetle,back,generated from shiny back,0.75,estimated
+0826-Orbeetle,shiny_front,generated from front,0.75,estimated
+0827-Nickit,all,kept as-is,,labels already correct
+0828-Thievul,all,kept as-is,,labels already correct
+0829-Gossifleur,all,kept as-is,,labels already correct
+0830-Eldegoss,all,kept as-is,,labels already correct
+0831-Wooloo,all,kept as-is,,labels already correct
+0832-Dubwool,all,kept as-is,,labels already correct
+0833-Chewtle,all,kept as-is,,labels already correct
+0834-Drednaw,shiny_back,relabeled from back.png,,
+0834-Drednaw,back,generated from shiny back,0.34,"estimated - LOW confidence, please review"
+0834-Drednaw,shiny_front,generated from front,0.34,"estimated - LOW confidence, please review"
+0835-Yamper,all,kept as-is,,labels already correct
+0836-Boltund,all,kept as-is,,labels already correct
+0837-Rolycoly,all,kept as-is,,labels already correct
+0838-Carkol,all,kept as-is,,labels already correct
+0839-Coalossal,shiny_back,relabeled from back.png,,
+0839-Coalossal,back,generated from shiny back,0.77,estimated
+0839-Coalossal,shiny_front,generated from front,0.77,estimated
+0840-Applin,all,kept as-is,,labels already correct
+0841-Flapple,shiny_back,relabeled from back.png,,
+0841-Flapple,back,generated from shiny back,0.63,estimated
+0841-Flapple,shiny_front,generated from front,0.63,estimated
+0842-Appletun,shiny_back,relabeled from back.png,,
+0842-Appletun,back,generated from shiny back,0.67,estimated
+0842-Appletun,shiny_front,generated from front,0.67,estimated
+0843-Silicobra,all,kept as-is,,labels already correct
+0844-Sandaconda,shiny_back,relabeled from back.png,,
+0844-Sandaconda,back,generated from shiny back,0.60,estimated
+0844-Sandaconda,shiny_front,generated from front,0.60,estimated
+0845-Cramorant,shiny_back,relabeled from back.png,,
+0845-Cramorant,back,generated from shiny back,0.85,estimated
+0845-Cramorant,shiny_front,generated from front,0.85,estimated
+0846-Arrokuda,all,kept as-is,,labels already correct
+0847-Barraskewda,all,kept as-is,,labels already correct
+0848-Toxel,all,kept as-is,,labels already correct
+0849-Toxtricity,shiny_back,relabeled from back.png,,
+0849-Toxtricity,back,generated from shiny back,0.78,estimated
+0849-Toxtricity,shiny_front,generated from front,0.78,estimated
+0850-Sizzlipede,all,kept as-is,,labels already correct
+0851-Centiskorch,shiny_back,relabeled from back.png,,
+0851-Centiskorch,back,generated from shiny back,0.72,estimated
+0851-Centiskorch,shiny_front,generated from front,0.72,estimated
+0852-Clobbopus,all,kept as-is,,labels already correct
+0853-Grapploct,all,kept as-is,,labels already correct
+0854-Sinistea,all,kept as-is,,labels already correct
+0855-Polteageist,all,kept as-is,,labels already correct
+0856-Hatenna,all,kept as-is,,labels already correct
+0857-Hattrem,all,kept as-is,,labels already correct
+0858-Hatterene,shiny_back,relabeled from back.png,,
+0858-Hatterene,back,generated from shiny back,0.64,estimated
+0858-Hatterene,shiny_front,generated from front,0.64,estimated
+0859-Impidimp,all,kept as-is,,labels already correct
+0860-Morgrem,all,kept as-is,,labels already correct
+0861-Grimmsnarl,shiny_back,relabeled from back.png,,
+0861-Grimmsnarl,back,generated from shiny back,0.14,"estimated - LOW confidence, please review"
+0861-Grimmsnarl,shiny_front,generated from front,0.14,"estimated - LOW confidence, please review"
+0862-Obstagoon,all,kept as-is,,labels already correct
+0863-Perrserker,all,kept as-is,,labels already correct
+0864-Cursola,all,kept as-is,,labels already correct
+0865-Sirfetch'd,all,kept as-is,,labels already correct
+0866-Mr. Rime,all,kept as-is,,labels already correct
+0867-Runerigus,all,kept as-is,,labels already correct
+0868-Milcery,all,kept as-is,,labels already correct
+0869-Alcremie,shiny_back,relabeled from back.png,,
+0869-Alcremie,back,generated from shiny back,0.25,"estimated - LOW confidence, please review"
+0869-Alcremie,shiny_front,generated from front,0.25,"estimated - LOW confidence, please review"
+0870-Falinks,all,kept as-is,,labels already correct
+0871-Pincurchin,all,kept as-is,,labels already correct
+0872-Snom,all,kept as-is,,labels already correct
+0873-Frosmoth,all,kept as-is,,labels already correct
+0874-Stonjourner,all,kept as-is,,labels already correct
+0875-Eiscue,shiny_back,relabeled from back.png,,
+0875-Eiscue,back,generated from shiny back,0.17,"estimated - LOW confidence, please review"
+0875-Eiscue,shiny_front,generated from front,0.17,"estimated - LOW confidence, please review"
+0876-Indeedee,all,kept as-is,,labels already correct
+0877-Morpeko,shiny_back,relabeled from back.png,,
+0877-Morpeko,back,generated from shiny back,0.67,estimated
+0877-Morpeko,shiny_front,generated from front,0.67,estimated
+0878-Cufant,all,kept as-is,,labels already correct
+0879-Copperajah,shiny_back,relabeled from back.png,,
+0879-Copperajah,back,generated from shiny back,0.53,estimated
+0879-Copperajah,shiny_front,generated from front,0.53,estimated
+0880-Dracozolt,all,kept as-is,,labels already correct
+0881-Arctozolt,all,kept as-is,,labels already correct
+0882-Dracovish,all,kept as-is,,labels already correct
+0883-Arctovish,all,kept as-is,,labels already correct
+0884-Duraludon,shiny_back,relabeled from back.png,,
+0884-Duraludon,back,generated from shiny back,0.76,estimated
+0884-Duraludon,shiny_front,generated from front,0.76,estimated
+0885-Dreepy,all,kept as-is,,labels already correct
+0886-Drakloak,all,kept as-is,,labels already correct
+0887-Dragapult,all,kept as-is,,labels already correct
+0888-Zacian,shiny_back,relabeled from back.png,,
+0888-Zacian,back,generated from shiny back,0.42,"estimated - LOW confidence, please review"
+0888-Zacian,shiny_front,generated from front,0.42,"estimated - LOW confidence, please review"
+0889-Zamazenta,shiny_back,relabeled from back.png,,
+0889-Zamazenta,back,generated from shiny back,0.42,"estimated - LOW confidence, please review"
+0889-Zamazenta,shiny_front,generated from front,0.42,"estimated - LOW confidence, please review"
+0890-Eternatus,shiny_back,relabeled from back.png,,
+0890-Eternatus,back,generated from shiny back,0.96,estimated
+0890-Eternatus,shiny_front,generated from front,0.96,estimated
+0891-Kubfu,all,kept as-is,,labels already correct
+0892-Urshifu,shiny_back,relabeled from back.png,,
+0892-Urshifu,back,generated from shiny back,0.85,estimated
+0892-Urshifu,shiny_front,generated from front,0.85,estimated
+0893-Zarude,shiny_back,relabeled from back.png,,
+0893-Zarude,back,generated from shiny back,0.84,estimated
+0893-Zarude,shiny_front,generated from front,0.84,estimated
+0894-Regieleki,all,kept as-is,,labels already correct
+0895-Regidrago,all,kept as-is,,labels already correct
+0896-Glastrier,all,kept as-is,,labels already correct
+0897-Spectrier,all,kept as-is,,labels already correct
+0898-Calyrex,shiny_back,relabeled from back.png,,
+0898-Calyrex,back,generated from shiny back,0.89,estimated
+0898-Calyrex,shiny_front,generated from front,0.89,estimated
+0899-Wyrdeer,shiny_back,relabeled from back.png,,
+0899-Wyrdeer,back,generated from shiny back,0.31,"estimated - LOW confidence, please review"
+0899-Wyrdeer,shiny_front,generated from front,0.31,"estimated - LOW confidence, please review"
+0900-Kleavor,shiny_back,relabeled from back.png,,
+0900-Kleavor,back,generated from shiny back,0.70,estimated
+0900-Kleavor,shiny_front,generated from front,0.70,estimated
+0901-Ursaluna,shiny_back,relabeled from back.png,,
+0901-Ursaluna,back,generated from shiny back,0.32,"estimated - LOW confidence, please review"
+0901-Ursaluna,shiny_front,generated from front,0.32,"estimated - LOW confidence, please review"
+0902-Basculegion,shiny_back,relabeled from back.png,,
+0902-Basculegion,back,generated from shiny back,0.51,estimated
+0902-Basculegion,shiny_front,generated from front,0.51,estimated
+0903-Sneasler,shiny_back,relabeled from back.png,,
+0903-Sneasler,back,generated from shiny back,0.27,"estimated - LOW confidence, please review"
+0903-Sneasler,shiny_front,generated from front,0.27,"estimated - LOW confidence, please review"
+0904-Overqwil,shiny_back,relabeled from back.png,,
+0904-Overqwil,back,generated from shiny back,0.25,"estimated - LOW confidence, please review"
+0904-Overqwil,shiny_front,generated from front,0.25,"estimated - LOW confidence, please review"
+0905-Enamorus,shiny_back,relabeled from back.png,,
+0905-Enamorus,back,generated from shiny back,0.44,"estimated - LOW confidence, please review"
+0905-Enamorus,shiny_front,generated from front,0.44,"estimated - LOW confidence, please review"
+0906-Sprigatito,shiny_back,relabeled from back.png,,
+0906-Sprigatito,back,generated from shiny back,0.80,estimated
+0906-Sprigatito,shiny_front,generated from front,0.80,estimated
+0907-Floragato,shiny_back,relabeled from back.png,,
+0907-Floragato,back,generated from shiny back,0.57,estimated
+0907-Floragato,shiny_front,generated from front,0.57,estimated
+0908-Meowscarada,shiny_back,relabeled from back.png,,
+0908-Meowscarada,back,generated from shiny back,0.41,"estimated - LOW confidence, please review"
+0908-Meowscarada,shiny_front,generated from front,0.41,"estimated - LOW confidence, please review"
+0909-Fuecoco,shiny_back,relabeled from back.png,,
+0909-Fuecoco,back,generated from shiny back,0.63,estimated
+0909-Fuecoco,shiny_front,generated from front,0.63,estimated
+0910-Crocalor,shiny_back,relabeled from back.png,,
+0910-Crocalor,back,generated from shiny back,0.93,estimated
+0910-Crocalor,shiny_front,generated from front,0.93,estimated
+0911-Skeledirge,shiny_back,relabeled from back.png,,
+0911-Skeledirge,back,generated from shiny back,0.78,estimated
+0911-Skeledirge,shiny_front,generated from front,0.78,estimated
+0912-Quaxly,shiny_back,relabeled from back.png,,
+0912-Quaxly,back,generated from shiny back,0.88,estimated
+0912-Quaxly,shiny_front,generated from front,0.88,estimated
+0913-Quaxwell,shiny_back,relabeled from back.png,,
+0913-Quaxwell,back,generated from shiny back,0.47,"estimated - LOW confidence, please review"
+0913-Quaxwell,shiny_front,generated from front,0.47,"estimated - LOW confidence, please review"
+0914-Quaquaval,shiny_back,relabeled from back.png,,
+0914-Quaquaval,back,generated from shiny back,0.29,"estimated - LOW confidence, please review"
+0914-Quaquaval,shiny_front,generated from front,0.29,"estimated - LOW confidence, please review"
+0915-Lechonk,shiny_back,relabeled from back.png,,
+0915-Lechonk,back,generated from shiny back,0.18,"estimated - LOW confidence, please review"
+0915-Lechonk,shiny_front,generated from front,0.18,"estimated - LOW confidence, please review"
+0916-Oinkologne,shiny_back,relabeled from back.png,,
+0916-Oinkologne,back,generated from shiny back,0.15,"estimated - LOW confidence, please review"
+0916-Oinkologne,shiny_front,generated from front,0.15,"estimated - LOW confidence, please review"
+0917-Tarountula,shiny_back,relabeled from back.png,,
+0917-Tarountula,back,generated from shiny back,0.15,"estimated - LOW confidence, please review"
+0917-Tarountula,shiny_front,generated from front,0.15,"estimated - LOW confidence, please review"
+0918-Spidops,shiny_back,relabeled from back.png,,
+0918-Spidops,back,generated from shiny back,0.22,"estimated - LOW confidence, please review"
+0918-Spidops,shiny_front,generated from front,0.22,"estimated - LOW confidence, please review"
+0919-Nymble,shiny_back,relabeled from back.png,,
+0919-Nymble,back,generated from shiny back,0.35,"estimated - LOW confidence, please review"
+0919-Nymble,shiny_front,generated from front,0.35,"estimated - LOW confidence, please review"
+0920-Lokix,shiny_back,relabeled from back.png,,
+0920-Lokix,back,generated from shiny back,0.27,"estimated - LOW confidence, please review"
+0920-Lokix,shiny_front,generated from front,0.27,"estimated - LOW confidence, please review"
+0921-Pawmi,shiny_back,relabeled from back.png,,
+0921-Pawmi,back,generated from shiny back,0.65,estimated
+0921-Pawmi,shiny_front,generated from front,0.65,estimated
+0922-Pawmo,shiny_back,relabeled from back.png,,
+0922-Pawmo,back,generated from shiny back,0.73,estimated
+0922-Pawmo,shiny_front,generated from front,0.73,estimated
+0923-Pawmot,shiny_back,relabeled from back.png,,
+0923-Pawmot,back,generated from shiny back,0.70,estimated
+0923-Pawmot,shiny_front,generated from front,0.70,estimated
+0924-Tandemaus,shiny_back,relabeled from back.png,,
+0924-Tandemaus,back,generated from shiny back,0.95,estimated
+0924-Tandemaus,shiny_front,generated from front,0.95,estimated
+0925-Maushold,shiny_back,relabeled from back.png,,
+0925-Maushold,back,generated from shiny back,0.95,estimated
+0925-Maushold,shiny_front,generated from front,0.95,estimated
+0926-Fidough,shiny_back,relabeled from back.png,,
+0926-Fidough,back,generated from shiny back,0.53,estimated
+0926-Fidough,shiny_front,generated from front,0.53,estimated
+0927-Dachsbun,shiny_back,relabeled from back.png,,
+0927-Dachsbun,back,generated from shiny back,0.49,"estimated - LOW confidence, please review"
+0927-Dachsbun,shiny_front,generated from front,0.49,"estimated - LOW confidence, please review"
+0928-Smoliv,shiny_back,relabeled from back.png,,
+0928-Smoliv,back,generated from shiny back,0.76,estimated
+0928-Smoliv,shiny_front,generated from front,0.76,estimated
+0929-Dolliv,shiny_back,relabeled from back.png,,
+0929-Dolliv,back,generated from shiny back,0.70,estimated
+0929-Dolliv,shiny_front,generated from front,0.70,estimated
+0930-Arboliva,shiny_back,relabeled from back.png,,
+0930-Arboliva,back,generated from shiny back,0.29,"estimated - LOW confidence, please review"
+0930-Arboliva,shiny_front,generated from front,0.29,"estimated - LOW confidence, please review"
+0931-Squawkabilly,shiny_back,relabeled from back.png,,
+0931-Squawkabilly,back,generated from shiny back,0.77,estimated
+0931-Squawkabilly,shiny_front,generated from front,0.77,estimated
+0932-Nacli,shiny_back,relabeled from back.png,,
+0932-Nacli,back,generated from shiny back,0.56,estimated
+0932-Nacli,shiny_front,generated from front,0.56,estimated
+0933-Naclstack,shiny_back,relabeled from back.png,,
+0933-Naclstack,back,generated from shiny back,0.36,"estimated - LOW confidence, please review"
+0933-Naclstack,shiny_front,generated from front,0.36,"estimated - LOW confidence, please review"
+0934-Garganacl,shiny_back,relabeled from back.png,,
+0934-Garganacl,back,generated from shiny back,0.29,"estimated - LOW confidence, please review"
+0934-Garganacl,shiny_front,generated from front,0.29,"estimated - LOW confidence, please review"
+0935-Charcadet,shiny_back,relabeled from back.png,,
+0935-Charcadet,back,generated from shiny back,0.95,estimated
+0935-Charcadet,shiny_front,generated from front,0.95,estimated
+0936-Armarouge,shiny_back,relabeled from back.png,,
+0936-Armarouge,back,generated from shiny back,0.91,estimated
+0936-Armarouge,shiny_front,generated from front,0.91,estimated
+0937-Ceruledge,shiny_back,relabeled from back.png,,
+0937-Ceruledge,back,generated from shiny back,0.91,estimated
+0937-Ceruledge,shiny_front,generated from front,0.91,estimated
+0938-Tadbulb,shiny_back,relabeled from back.png,,
+0938-Tadbulb,back,generated from shiny back,0.63,estimated
+0938-Tadbulb,shiny_front,generated from front,0.63,estimated
+0939-Bellibolt,shiny_back,relabeled from back.png,,
+0939-Bellibolt,back,generated from shiny back,0.58,estimated
+0939-Bellibolt,shiny_front,generated from front,0.58,estimated
+0940-Wattrel,shiny_back,relabeled from back.png,,
+0940-Wattrel,back,generated from shiny back,0.32,"estimated - LOW confidence, please review"
+0940-Wattrel,shiny_front,generated from front,0.32,"estimated - LOW confidence, please review"
+0941-Kilowattrel,shiny_back,relabeled from back.png,,
+0941-Kilowattrel,back,generated from shiny back,0.40,"estimated - LOW confidence, please review"
+0941-Kilowattrel,shiny_front,generated from front,0.40,"estimated - LOW confidence, please review"
+0942-Maschiff,shiny_back,relabeled from back.png,,
+0942-Maschiff,back,generated from shiny back,0.54,estimated
+0942-Maschiff,shiny_front,generated from front,0.54,estimated
+0943-Mabosstiff,shiny_back,relabeled from back.png,,
+0943-Mabosstiff,back,generated from shiny back,0.42,"estimated - LOW confidence, please review"
+0943-Mabosstiff,shiny_front,generated from front,0.42,"estimated - LOW confidence, please review"
+0944-Shroodle,shiny_back,relabeled from back.png,,
+0944-Shroodle,back,generated from shiny back,0.53,estimated
+0944-Shroodle,shiny_front,generated from front,0.53,estimated
+0945-Grafaiai,shiny_back,relabeled from back.png,,
+0945-Grafaiai,back,generated from shiny back,0.37,"estimated - LOW confidence, please review"
+0945-Grafaiai,shiny_front,generated from front,0.37,"estimated - LOW confidence, please review"
+0946-Bramblin,shiny_back,relabeled from back.png,,
+0946-Bramblin,back,generated from shiny back,0.36,"estimated - LOW confidence, please review"
+0946-Bramblin,shiny_front,generated from front,0.36,"estimated - LOW confidence, please review"
+0947-Brambleghast,shiny_back,relabeled from back.png,,
+0947-Brambleghast,back,generated from shiny back,0.36,"estimated - LOW confidence, please review"
+0947-Brambleghast,shiny_front,generated from front,0.36,"estimated - LOW confidence, please review"
+0948-Toedscool,shiny_back,relabeled from back.png,,
+0948-Toedscool,back,generated from shiny back,0.39,"estimated - LOW confidence, please review"
+0948-Toedscool,shiny_front,generated from front,0.39,"estimated - LOW confidence, please review"
+0949-Toedscruel,shiny_back,relabeled from back.png,,
+0949-Toedscruel,back,generated from shiny back,0.36,"estimated - LOW confidence, please review"
+0949-Toedscruel,shiny_front,generated from front,0.36,"estimated - LOW confidence, please review"
+0950-Klawf,shiny_back,relabeled from back.png,,
+0950-Klawf,back,generated from shiny back,0.52,estimated
+0950-Klawf,shiny_front,generated from front,0.52,estimated
+0951-Capsakid,shiny_back,relabeled from back.png,,
+0951-Capsakid,back,generated from shiny back,0.53,estimated
+0951-Capsakid,shiny_front,generated from front,0.53,estimated
+0952-Scovillain,shiny_back,relabeled from back.png,,
+0952-Scovillain,back,generated from shiny back,0.68,estimated
+0952-Scovillain,shiny_front,generated from front,0.68,estimated
+0953-Rellor,shiny_back,relabeled from back.png,,
+0953-Rellor,back,generated from shiny back,0.96,estimated
+0953-Rellor,shiny_front,generated from front,0.96,estimated
+0954-Rabsca,shiny_back,relabeled from back.png,,
+0954-Rabsca,back,generated from shiny back,0.81,estimated
+0954-Rabsca,shiny_front,generated from front,0.81,estimated
+0955-Flittle,shiny_back,relabeled from back.png,,
+0955-Flittle,back,generated from shiny back,0.84,estimated
+0955-Flittle,shiny_front,generated from front,0.84,estimated
+0956-Espathra,shiny_back,relabeled from back.png,,
+0956-Espathra,back,generated from shiny back,0.43,"estimated - LOW confidence, please review"
+0956-Espathra,shiny_front,generated from front,0.43,"estimated - LOW confidence, please review"
+0957-Tinkatink,shiny_back,relabeled from back.png,,
+0957-Tinkatink,back,generated from shiny back,0.84,estimated
+0957-Tinkatink,shiny_front,generated from front,0.84,estimated
+0958-Tinkatuff,shiny_back,relabeled from back.png,,
+0958-Tinkatuff,back,generated from shiny back,0.70,estimated
+0958-Tinkatuff,shiny_front,generated from front,0.70,estimated
+0959-Tinkaton,shiny_back,relabeled from back.png,,
+0959-Tinkaton,back,generated from shiny back,0.84,estimated
+0959-Tinkaton,shiny_front,generated from front,0.84,estimated
+0960-Wiglett,shiny_back,relabeled from back.png,,
+0960-Wiglett,back,generated from shiny back,0.14,"estimated - LOW confidence, please review"
+0960-Wiglett,shiny_front,generated from front,0.14,"estimated - LOW confidence, please review"
+0961-Wugtrio,shiny_back,relabeled from back.png,,
+0961-Wugtrio,back,generated from shiny back,0.84,estimated
+0961-Wugtrio,shiny_front,generated from front,0.84,estimated
+0962-Bombirdier,shiny_back,relabeled from back.png,,
+0962-Bombirdier,back,generated from shiny back,0.81,estimated
+0962-Bombirdier,shiny_front,generated from front,0.81,estimated
+0963-Finizen,shiny_back,relabeled from back.png,,
+0963-Finizen,back,generated from shiny back,0.63,estimated
+0963-Finizen,shiny_front,generated from front,0.63,estimated
+0964-Palafin,shiny_back,relabeled from back.png,,
+0964-Palafin,back,generated from shiny back,0.54,estimated
+0964-Palafin,shiny_front,generated from front,0.54,estimated
+0965-Varoom,shiny_back,relabeled from back.png,,
+0965-Varoom,back,generated from shiny back,0.71,estimated
+0965-Varoom,shiny_front,generated from front,0.71,estimated
+0966-Revavroom,shiny_back,relabeled from back.png,,
+0966-Revavroom,back,generated from shiny back,0.46,"estimated - LOW confidence, please review"
+0966-Revavroom,shiny_front,generated from front,0.46,"estimated - LOW confidence, please review"
+0967-Cyclizar,shiny_back,relabeled from back.png,,
+0967-Cyclizar,back,generated from shiny back,0.49,"estimated - LOW confidence, please review"
+0967-Cyclizar,shiny_front,generated from front,0.49,"estimated - LOW confidence, please review"
+0968-Orthworm,shiny_back,relabeled from back.png,,
+0968-Orthworm,back,generated from shiny back,0.66,estimated
+0968-Orthworm,shiny_front,generated from front,0.66,estimated
+0969-Glimmet,shiny_back,relabeled from back.png,,
+0969-Glimmet,back,generated from shiny back,0.57,estimated
+0969-Glimmet,shiny_front,generated from front,0.57,estimated
+0970-Glimmora,shiny_back,relabeled from back.png,,
+0970-Glimmora,back,generated from shiny back,0.35,"estimated - LOW confidence, please review"
+0970-Glimmora,shiny_front,generated from front,0.35,"estimated - LOW confidence, please review"
+0971-Greavard,shiny_back,relabeled from back.png,,
+0971-Greavard,back,generated from shiny back,0.66,estimated
+0971-Greavard,shiny_front,generated from front,0.66,estimated
+0972-Houndstone,shiny_back,relabeled from back.png,,
+0972-Houndstone,back,generated from shiny back,0.30,"estimated - LOW confidence, please review"
+0972-Houndstone,shiny_front,generated from front,0.30,"estimated - LOW confidence, please review"
+0973-Flamigo,shiny_back,relabeled from back.png,,
+0973-Flamigo,back,generated from shiny back,0.36,"estimated - LOW confidence, please review"
+0973-Flamigo,shiny_front,generated from front,0.36,"estimated - LOW confidence, please review"
+0974-Cetoddle,shiny_back,relabeled from back.png,,
+0974-Cetoddle,back,generated from shiny back,0.24,"estimated - LOW confidence, please review"
+0974-Cetoddle,shiny_front,generated from front,0.24,"estimated - LOW confidence, please review"
+0975-Cetitan,shiny_back,relabeled from back.png,,
+0975-Cetitan,back,generated from shiny back,0.17,"estimated - LOW confidence, please review"
+0975-Cetitan,shiny_front,generated from front,0.17,"estimated - LOW confidence, please review"
+0976-Veluza,shiny_back,relabeled from back.png,,
+0976-Veluza,back,generated from shiny back,0.86,estimated
+0976-Veluza,shiny_front,generated from front,0.86,estimated
+0977-Dondozo,shiny_back,relabeled from back.png,,
+0977-Dondozo,back,generated from shiny back,0.31,"estimated - LOW confidence, please review"
+0977-Dondozo,shiny_front,generated from front,0.31,"estimated - LOW confidence, please review"
+0978-Tatsugiri,shiny_back,relabeled from back.png,,
+0978-Tatsugiri,back,generated from shiny back,0.29,"estimated - LOW confidence, please review"
+0978-Tatsugiri,shiny_front,generated from front,0.29,"estimated - LOW confidence, please review"
+0979-Annihilape,shiny_back,relabeled from back.png,,
+0979-Annihilape,back,generated from shiny back,0.32,"estimated - LOW confidence, please review"
+0979-Annihilape,shiny_front,generated from front,0.32,"estimated - LOW confidence, please review"
+0980-Clodsire,shiny_back,relabeled from back.png,,
+0980-Clodsire,back,generated from shiny back,0.22,"estimated - LOW confidence, please review"
+0980-Clodsire,shiny_front,generated from front,0.22,"estimated - LOW confidence, please review"
+0981-Farigiraf,shiny_back,relabeled from back.png,,
+0981-Farigiraf,back,generated from shiny back,0.60,estimated
+0981-Farigiraf,shiny_front,generated from front,0.60,estimated
+0982-Dudunsparce,shiny_back,relabeled from back.png,,
+0982-Dudunsparce,back,generated from shiny back,0.77,estimated
+0982-Dudunsparce,shiny_front,generated from front,0.77,estimated
+0983-Kingambit,shiny_back,relabeled from back.png,,
+0983-Kingambit,back,generated from shiny back,0.89,estimated
+0983-Kingambit,shiny_front,generated from front,0.89,estimated
+0984-Great Tusk,shiny_back,relabeled from back.png,,
+0984-Great Tusk,back,generated from shiny back,0.52,estimated
+0984-Great Tusk,shiny_front,generated from front,0.52,estimated
+0985-Scream Tail,shiny_back,relabeled from back.png,,
+0985-Scream Tail,back,generated from shiny back,0.53,estimated
+0985-Scream Tail,shiny_front,generated from front,0.53,estimated
+0986-Brute Bonnet,shiny_back,relabeled from back.png,,
+0986-Brute Bonnet,back,generated from shiny back,0.60,estimated
+0986-Brute Bonnet,shiny_front,generated from front,0.60,estimated
+0987-Flutter Mane,shiny_back,relabeled from back.png,,
+0987-Flutter Mane,back,generated from shiny back,0.30,"estimated - LOW confidence, please review"
+0987-Flutter Mane,shiny_front,generated from front,0.30,"estimated - LOW confidence, please review"
+0988-Slither Wing,shiny_back,relabeled from back.png,,
+0988-Slither Wing,back,generated from shiny back,0.45,"estimated - LOW confidence, please review"
+0988-Slither Wing,shiny_front,generated from front,0.45,"estimated - LOW confidence, please review"
+0989-Sandy Shocks,shiny_back,relabeled from back.png,,
+0989-Sandy Shocks,back,generated from shiny back,0.36,"estimated - LOW confidence, please review"
+0989-Sandy Shocks,shiny_front,generated from front,0.36,"estimated - LOW confidence, please review"
+0990-Iron Treads,shiny_back,relabeled from back.png,,
+0990-Iron Treads,back,generated from shiny back,0.54,estimated
+0990-Iron Treads,shiny_front,generated from front,0.54,estimated
+0991-Iron Bundle,shiny_back,relabeled from back.png,,
+0991-Iron Bundle,back,generated from shiny back,0.37,"estimated - LOW confidence, please review"
+0991-Iron Bundle,shiny_front,generated from front,0.37,"estimated - LOW confidence, please review"
+0992-Iron Hands,shiny_back,relabeled from back.png,,
+0992-Iron Hands,back,generated from shiny back,0.36,"estimated - LOW confidence, please review"
+0992-Iron Hands,shiny_front,generated from front,0.36,"estimated - LOW confidence, please review"
+0993-Iron Jugulis,shiny_back,relabeled from back.png,,
+0993-Iron Jugulis,back,generated from shiny back,0.26,"estimated - LOW confidence, please review"
+0993-Iron Jugulis,shiny_front,generated from front,0.26,"estimated - LOW confidence, please review"
+0994-Iron Moth,shiny_back,relabeled from back.png,,
+0994-Iron Moth,back,generated from shiny back,0.69,estimated
+0994-Iron Moth,shiny_front,generated from front,0.69,estimated
+0995-Iron Thorns,shiny_back,relabeled from back.png,,
+0995-Iron Thorns,back,generated from shiny back,0.62,estimated
+0995-Iron Thorns,shiny_front,generated from front,0.62,estimated
+0996-Frigibax,shiny_back,relabeled from back.png,,
+0996-Frigibax,back,generated from shiny back,0.29,"estimated - LOW confidence, please review"
+0996-Frigibax,shiny_front,generated from front,0.29,"estimated - LOW confidence, please review"
+0997-Arctibax,shiny_back,relabeled from back.png,,
+0997-Arctibax,back,generated from shiny back,0.57,estimated
+0997-Arctibax,shiny_front,generated from front,0.57,estimated
+0998-Baxcalibur,shiny_back,relabeled from back.png,,
+0998-Baxcalibur,back,generated from shiny back,0.57,estimated
+0998-Baxcalibur,shiny_front,generated from front,0.57,estimated
+0999-Gimmighoul,shiny_back,relabeled from back.png,,
+0999-Gimmighoul,back,generated from shiny back,0.96,estimated
+0999-Gimmighoul,shiny_front,generated from front,0.96,estimated
+1000-Gholdengo,shiny_back,relabeled from back.png,,
+1000-Gholdengo,back,generated from shiny back,0.86,estimated
+1000-Gholdengo,shiny_front,generated from front,0.86,estimated
+1001-Wo-Chien,shiny_back,relabeled from back.png,,
+1001-Wo-Chien,back,generated from shiny back,0.70,estimated
+1001-Wo-Chien,shiny_front,generated from front,0.70,estimated
+1002-Chien-Pao,shiny_back,relabeled from back.png,,
+1002-Chien-Pao,back,generated from shiny back,0.44,"estimated - LOW confidence, please review"
+1002-Chien-Pao,shiny_front,generated from front,0.44,"estimated - LOW confidence, please review"
+1003-Ting-Lu,shiny_back,relabeled from back.png,,
+1003-Ting-Lu,back,generated from shiny back,0.69,estimated
+1003-Ting-Lu,shiny_front,generated from front,0.69,estimated
+1004-Chi-Yu,shiny_back,relabeled from back.png,,
+1004-Chi-Yu,back,generated from shiny back,0.44,"estimated - LOW confidence, please review"
+1004-Chi-Yu,shiny_front,generated from front,0.44,"estimated - LOW confidence, please review"
+1005-Roaring Moon,shiny_back,relabeled from back.png,,
+1005-Roaring Moon,back,generated from shiny back,0.74,estimated
+1005-Roaring Moon,shiny_front,generated from front,0.74,estimated
+1006-Iron Valiant,shiny_back,relabeled from back.png,,
+1006-Iron Valiant,back,generated from shiny back,0.46,"estimated - LOW confidence, please review"
+1006-Iron Valiant,shiny_front,generated from front,0.46,"estimated - LOW confidence, please review"
+1007-Koraidon,shiny_back,relabeled from back.png,,
+1007-Koraidon,back,generated from shiny back,0.63,estimated
+1007-Koraidon,shiny_front,generated from front,0.63,estimated
+1008-Miraidon,shiny_back,relabeled from back.png,,
+1008-Miraidon,back,generated from shiny back,0.75,estimated
+1008-Miraidon,shiny_front,generated from front,0.75,estimated
+1009-Walking Wake,shiny_back,relabeled from back.png,,
+1009-Walking Wake,back,generated from shiny back,0.26,"estimated - LOW confidence, please review"
+1009-Walking Wake,shiny_front,generated from front,0.26,"estimated - LOW confidence, please review"
+1010-Iron Leaves,shiny_back,relabeled from back.png,,
+1010-Iron Leaves,back,generated from shiny back,0.36,"estimated - LOW confidence, please review"
+1010-Iron Leaves,shiny_front,generated from front,0.36,"estimated - LOW confidence, please review"
+1011-Dipplin,shiny_back,relabeled from back.png,,
+1011-Dipplin,back,generated from shiny back,0.71,estimated
+1011-Dipplin,shiny_front,generated from front,0.71,estimated
+1012-Poltchageist,shiny_back,relabeled from back.png,,
+1012-Poltchageist,back,generated from shiny back,0.74,estimated
+1012-Poltchageist,shiny_front,generated from front,0.74,estimated
+1013-Sinistcha,shiny_back,relabeled from back.png,,
+1013-Sinistcha,back,generated from shiny back,0.61,estimated
+1013-Sinistcha,shiny_front,generated from front,0.61,estimated
+1014-Okidogi,shiny_back,relabeled from back.png,,
+1014-Okidogi,back,generated from shiny back,0.43,"estimated - LOW confidence, please review"
+1014-Okidogi,shiny_front,generated from front,0.43,"estimated - LOW confidence, please review"
+1015-Munkidori,shiny_back,relabeled from back.png,,
+1015-Munkidori,back,generated from shiny back,0.36,"estimated - LOW confidence, please review"
+1015-Munkidori,shiny_front,generated from front,0.36,"estimated - LOW confidence, please review"
+1016-Fezandipiti,shiny_back,relabeled from back.png,,
+1016-Fezandipiti,back,generated from shiny back,0.61,estimated
+1016-Fezandipiti,shiny_front,generated from front,0.61,estimated
+1017-Ogerpon,shiny_back,relabeled from back.png,,
+1017-Ogerpon,back,generated from shiny back,0.80,estimated
+1017-Ogerpon,shiny_front,generated from front,0.80,estimated
+1018-Archaludon,shiny_back,relabeled from back.png,,
+1018-Archaludon,back,generated from shiny back,0.37,"estimated - LOW confidence, please review"
+1018-Archaludon,shiny_front,generated from front,0.37,"estimated - LOW confidence, please review"
+1019-Hydrapple,shiny_back,relabeled from back.png,,
+1019-Hydrapple,back,generated from shiny back,0.91,estimated
+1019-Hydrapple,shiny_front,generated from front,0.91,estimated
+1020-Gouging Fire,shiny_back,relabeled from back.png,,
+1020-Gouging Fire,back,generated from shiny back,0.62,estimated
+1020-Gouging Fire,shiny_front,generated from front,0.62,estimated
+1021-Raging Bolt,shiny_back,relabeled from back.png,,
+1021-Raging Bolt,back,generated from shiny back,0.48,"estimated - LOW confidence, please review"
+1021-Raging Bolt,shiny_front,generated from front,0.48,"estimated - LOW confidence, please review"
+1022-Iron Boulder,shiny_back,relabeled from back.png,,
+1022-Iron Boulder,back,generated from shiny back,0.39,"estimated - LOW confidence, please review"
+1022-Iron Boulder,shiny_front,generated from front,0.39,"estimated - LOW confidence, please review"
+1023-Iron Crown,shiny_back,relabeled from back.png,,
+1023-Iron Crown,back,generated from shiny back,0.36,"estimated - LOW confidence, please review"
+1023-Iron Crown,shiny_front,generated from front,0.36,"estimated - LOW confidence, please review"
+1024-Terapagos,shiny_back,relabeled from back.png,,
+1024-Terapagos,back,generated from shiny back,0.36,"estimated - LOW confidence, please review"
+1024-Terapagos,shiny_front,generated from front,0.36,"estimated - LOW confidence, please review"
+1025-Pecharunt,shiny_back,relabeled from back.png,,
+1025-Pecharunt,back,generated from shiny back,0.60,estimated
+1025-Pecharunt,shiny_front,generated from front,0.60,estimated
