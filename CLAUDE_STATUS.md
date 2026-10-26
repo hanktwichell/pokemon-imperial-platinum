@@ -7978,3 +7978,29 @@ PR #200 (Trick-or-Treat, Forest's Curse) is merged.
    - Burn Up and Double Shock wait on the owner (CB-0158).
    - Order Up needs Commander. Revival Blessing is left out.
 3. Abilities still to do: Illusion, Symbiosis, Dancer, Neutralizing Gas, Commander, Ball Fetch.
+
+## CB-0185 — 2026-10-26, 4:54 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: Neutralizing Gas; the trainer AI sees a type added by Trick-or-Treat or Forest's Curse.**
+PR #201 (Mega Sol, Growth, Ripen) is merged.
+- **Neutralizing Gas:**
+  - It suppresses every other ability in battle, through a check in `Battler_Ability`.
+  - The entry and "wore off" messages come from a new first switch-in state.
+  - The entry abilities it held back run when it ends.
+  - It was verified with Levitate and with Intimidate after Gastro Acid (see the changelog).
+- **Trainer AI:** its switch checks go through `Sovereign_CalcEffectivenessAgainst`, which counts the added type.
+
+**Files modified:**
+- `decomp/src/battle/battle_lib.c` (helper, `Battler_Ability`, switch-in state, effectiveness wrapper), `decomp/src/battle/trainer_ai/trainer_ai.c`.
+- `decomp/include/battle/battle_lib.h`, `battle_context.h`, `battle_mon.h`.
+- New subscripts `subscript_sovereign_neutralizing_gas(_end).s`. The registration files.
+- `decomp/res/text/battle_strings.json` (2 messages).
+- `tools/engine/gen_abilities.py`, `docs/AbilityChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Abilities still to do: Illusion, Symbiosis, Dancer, Commander, Ball Fetch.
+2. Placeholders still open:
+   - Instruct and Sky Drop.
+   - Burn Up and Double Shock wait on the owner (CB-0158).
+   - Order Up needs Commander. Revival Blessing is left out.
+3. The AI scripts' own type loads (`AICmd_LoadTypeFrom`) still read two types only. They could gain an added-type load if it matters.

@@ -475,4 +475,6 @@ subscript_files = files(
     'subscript_sovereign_shed_tail.s',
     'subscript_sovereign_add_type.s',
     'subscript_sovereign_stats_growth.s',
+    'subscript_sovereign_neutralizing_gas.s',
+    'subscript_sovereign_neutralizing_gas_end.s',
 )

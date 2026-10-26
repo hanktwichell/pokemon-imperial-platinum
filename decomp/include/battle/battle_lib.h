@@ -572,6 +572,7 @@ BOOL Sovereign_SetupMirrorHerb(BattleContext *battleCtx, int battler);
 BOOL Sovereign_IsGrounded(BattleContext *battleCtx, int battler);
 u32 Sovereign_BattlerWeather(BattleContext *battleCtx, int battler);
 u32 Sovereign_MoveWeather(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
+void Sovereign_CalcEffectivenessAgainst(BattleContext *battleCtx, int move, int inType, int attackerAbility, int defender, u32 *moveStatusMask);
 u32 Sovereign_TerrainUnder(BattleContext *battleCtx, int battler);
 int Sovereign_TerrainPulseType(BattleContext *battleCtx, int battler);
 BOOL Sovereign_BypassesSubstitute(BattleContext *battleCtx, int attacker, int defender, int move);

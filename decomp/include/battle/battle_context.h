@@ -396,6 +396,7 @@ struct BattleContext {
     u8 sovereignTimesHit[MAX_BATTLERS][MAX_PARTY_SIZE]; // Sovereign (item 11): hits each party slot has taken since it came in (Rage Fist)
     u8 sovereignTarShot; // Sovereign (item 11): battlers Tar Shot made weaker to Fire, until they switch out (flags by battler)
     u8 sovereignHappyHour; // Sovereign (item 11): the player's side used Happy Hour (double prize money)
+    u8 sovereignGasActive; // Sovereign (item 11): Neutralizing Gas was in effect at the last switch-in check
     u16 sovereignShieldMove[MAX_BATTLERS]; // Sovereign (item 11): the Protect-like move protecting each battler this turn
     int sovereignShieldContact; // Sovereign (item 11): the shield whose contact penalty is due (subscript_missed)
     int sovereignGuardBlock; // Sovereign (item 11): the side guard that blocked the move (Wide Guard, Mat Block, ...)

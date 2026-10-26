@@ -3,6 +3,40 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Item 11 (effect fidelity): Neutralizing Gas; the AI sees an added type
+
+For players:
+- **Neutralizing Gas** (Weezing, Galarian Weezing):
+  - On entry: "Neutralizing gas filled the area!", before any other entry ability.
+  - While it's in, every other ability in battle has no effect. That includes entry abilities like Intimidate and
+    held-back weather setters.
+  - Abilities that can't be suppressed (Multitype, Stance Change, Disguise and the rest), another Neutralizing Gas and
+    an Ability Shield holder's ability keep working.
+  - When its last user leaves, faints or has it suppressed (Gastro Acid): "The effects of the neutralizing gas wore
+    off!". The entry abilities it held back then run (Intimidate, Drought, terrain setters...).
+- **Trainer AI:** its switch checks now count a type added by Trick-or-Treat or Forest's Curse. That covers "do my
+  party's moves hit the foe super effectively" and "are my moves all ineffective". The damage estimates already did.
+- **Code:**
+  - `Sovereign_NeutralizingGasActive` and a check in `Battler_Ability`.
+  - A new first switch-in state, `SWITCH_IN_CHECK_STATE_SOVEREIGN_NEUTRALIZING_GAS`, uses
+    `BattleMon.sovereignGasAnnounced` and `BattleContext.sovereignGasActive`.
+  - The other entry abilities mark themselves announced only when they run, so nothing else had to change for them to
+    run later.
+  - `Sovereign_CalcEffectivenessAgainst` is `BattleSystem_CalcEffectiveness` against a battler in play, with its added
+    type. The AI's six battler checks and the post-KO switch-in check use it.
+
+**Verification:** test and release ROMs built; the battle-script size check, the message check and the docs check pass.
+Wild battles of a Lv. 50 Meganium against a Lv. 100 Weezing, the abilities set in battle:
+- **Levitate Meganium, Weezing with Neutralizing Gas using Earthquake:** "Neutralizing gas filled the area!", then
+  Earthquake hits: 147 → 77 → 11 → 0. With the Weezing's ability set to Levitate instead (control), Earthquake doesn't
+  affect the Meganium.
+- **Intimidate Meganium using Gastro Acid** on a Neutralizing Gas Weezing:
+  - The gas is announced on entry, and Intimidate doesn't run.
+  - After "The wild WEEZING's ability was suppressed!": "The effects of the neutralizing gas wore off!", then
+    "MEGANIUM's Intimidate cuts the wild WEEZING's Attack!" (Attack −1).
+  - A second Gastro Acid fails.
+- The AI change was built, not run: no trainer battle in the harness reaches it with an added type.
+
 ## Item 11 (effect fidelity): Mega Sol's weather moves, Gen IX Growth, Ripen's last Berries
 
 For players:
