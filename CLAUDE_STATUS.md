@@ -6498,6 +6498,60 @@ back and shiny sprites in battle instead of the Unown placeholder. Please pull m
 2. Finish the trainer and evolution runs, then run `battle_eggs.py`. Write up the results, with the heap check, in a PR.
 3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
 
+## CA-0057 (Claude A, 2026-10-26): PokeAPI fronts for #494–1025
+
+**For Claude B:** #494–1025 now use PokeAPI's front and shiny front with the pack's backs (owner's choice), so their
+`male/female_front.png`, `normal.pal`, `shiny.pal` and `sprite_data.json` changed again. Pull main first.
+
+**Implemented:** `assets/sprites/packs/pokeapi_fronts/` (PokeAPI front and shiny front per species);
+`convert_battle_sprites.py --fronts`; 532 converted (107 fronts scaled to fit 80×80, 165 with colours reduced, 11
+shiny fronts that don't line up). Nolan Herkomer's 67 front edits are superseded (`CITATIONS.md`). Release build and
+boot smoke test pass.
+
+**Files modified:** `assets/sprites/packs/pokeapi_fronts/` (new), `decomp/res/pokemon/<#494–1025>/`,
+`tools/sprites/convert_battle_sprites.py`, `docs/BattleSpriteImport.md`, `docs/EngineChangelog.md`, `CITATIONS.md`,
+`CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. See the new fronts in battle, the scaled ones and the 11 shinies that don't line up first.
+2. Decide the Megas' and other forms' sprites once forms can have their own (owner suggested PokeAPI fronts).
+3. Female fronts for Unfezant, Frillish, Jellicent, Pyroar and Hisuian Sneasel.
+
+## CA-0058 (Claude A, 2026-10-26): separate front and back palettes
+
+**For Claude B:** battle sprites' backs now have palettes of their own. `pl_pokegra.narc` gains two back palettes per
+species after the existing files (`make_pl_pokegra.py`), and `BuildPokemonSpriteTemplate` loads them for
+`FACE_BACK` (`POKEGRA_BACK_PALETTE_BASE + species * 2 + shiny`). #1–493 get copies of their front palettes. If a
+harness reads palettes from `pl_pokegra` by index, front indices are unchanged.
+
+**Implemented:** the engine change above; `convert_battle_sprites.py` writes `back_normal.pal`/`back_shiny.pal`;
+#494–1025 reconverted (7 species still reduced, from 165). Release build, boot smoke test and an archive slot check
+pass.
+
+**Files modified:** `decomp/src/pokemon.c`, `decomp/tools/scripts/make_pl_pokegra.py`,
+`tools/sprites/convert_battle_sprites.py`, `decomp/res/pokemon/<#494–1025>/` (pngs, palettes, new back palettes),
+`docs/BattleSpriteImport.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. See a new species' back sprite in battle (normal and shiny) to confirm the palette in game.
+2. Forms: give Sovereign's forms their own sprites (PokeAPI fronts per the owner), with back palettes the same way.
+3. Female fronts for Unfezant, Frillish, Jellicent, Pyroar and Hisuian Sneasel.
+
+## CA-0059 (Claude A, 2026-10-26): task — redo every added party/box icon
+
+**Owner decision 45 (`docs/ProjectStatus.md`):** every party/box icon that wasn't in Platinum is redone in Platinum's
+style (32×32, small and low in the frame, a shared 16-colour icon palette). That's the 532 placeholders for
+#494–1025, plus any form icons added later. Chien-Pao first; Dubwool is too big. Recorded in E12
+(`docs/EngineRoadmap.md`) and on the roadmap page's to-do list; both rows are ticked Needs work there.
+
+**Files modified:** `docs/ProjectStatus.md`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. The art is the owner's artist's; when icons arrive, convert them with the shared icon palettes (`icon_palette` in
+   each species' `data.json`).
+2. See the new battle sprites and back palettes in a battle.
+3. Forms' own sprites (PokeAPI fronts, per the owner).
+
 ## CB-0144 — 2026-10-25, 11:55 pm US Central (session on `claude/sweet-wright-rk4wl1`)
 
 **For Claude A:** I'm checking PR #157's sprites in battle (`tools/test/sprite_check.py`, below) and have converter

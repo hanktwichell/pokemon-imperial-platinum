@@ -84,6 +84,32 @@ for i, subdir in enumerate(SPECIES_DIRS):
         '-comp', '10'
     ])
 
+# Sovereign: two back palettes (normal, shiny) for each species, after all the species' six files. The archive packs
+# files in name order, so the "zback" names sort last; BuildPokemonSpriteTemplate (src/pokemon.c) reads them at
+# POKEGRA_BACK_PALETTE_BASE + species * 2 + shiny. A species without back_normal.pal/back_shiny.pal uses its front
+# palettes for its back, as in Platinum.
+for i, subdir in enumerate(SPECIES_DIRS):
+    if subdir in ['egg', 'bad_egg']:
+        continue
+
+    for shiny, name in enumerate(['normal', 'shiny']):
+        target = private_dir / f'zback-{i:04}-{shiny}.NCLR'
+        if i == 0:
+            shutil.copy(source_dir / f'none/{name}_pal.NCLR', target)
+            continue
+
+        back_src = source_dir / subdir / f'back_{name}.pal'
+        if not back_src.exists():
+            back_src = source_dir / subdir / f'{name}.pal'
+        subprocess.run([
+            args.nitrogfx,
+            back_src,
+            target,
+            '-bitdepth', '8',
+            '-nopad',
+            '-comp', '10'
+        ])
+
 subprocess.run([
     args.narc,
     '--create',
