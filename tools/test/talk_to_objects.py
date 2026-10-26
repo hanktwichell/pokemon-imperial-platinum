@@ -16,6 +16,8 @@ Each object gets a result:
 - ok: a script ran and ended;
 - NOSCRIPT: nothing ran when A was pressed, so the object isn't there on a new game (a flag hides it until later in
   the story) or something else stands in the way;
+- STANDIN: another object on its tile answered, standing in for it while it's hidden (Pokémon Mansion's west maid,
+  until Team Galactic's grunts take her place);
 - OTHER and the script that ran instead (gSovereignTestScripts: the first script the field started), twice in a row:
   a trainer who sees the player walks up and battles first, as for a player, and then the test warps back to the
   tile and talks again;
@@ -174,16 +176,23 @@ def cases():
     return out
 
 
-def object_script(events, oid):
-    """The script the field starts when the player talks to the object: its script, or for a trainer the battle's
+def script_id(obj):
+    """The script the field starts when the player talks to an object: its script, or for a trainer the battle's
     (from_script in decomp/tools/jsoncnv/convert.py)."""
-    path = os.path.join('decomp', 'res', 'field', 'events', events + '.json')
-    obj = next(o for o in json.load(open(path))['object_events'] if o['id'] == oid)
     script = str(obj['script'])
     if not script.startswith('TRAINER_'):
         return int(script)
     trainers = [line.strip() for line in open(os.path.join(DECOMP, 'generated', 'trainers.txt')) if line.strip()]
     return trainers.index(script) - 1 + (5000 if obj.get('double_battle_id', 1) == 2 else 3000)
+
+
+def object_scripts(events, oid):
+    """(the object's script, the scripts of the other objects on its tile): one of them stands there when it's
+    hidden, as Pokémon Mansion's west maid does until Team Galactic's grunts take her place."""
+    path = os.path.join('decomp', 'res', 'field', 'events', events + '.json')
+    objs = json.load(open(path))['object_events']
+    obj = next(o for o in objs if o['id'] == oid)
+    return script_id(obj), {script_id(o) for o in objs if o['id'] != oid and (o['x'], o['z']) == (obj['x'], obj['z'])}
 
 
 def u32(d, addr):
@@ -278,7 +287,9 @@ def arrive(d, sym, state, variables, events, header, way_in, x, z, face, setup=N
 def talk(d, sym, events, oid, header, x, z, face):
     """Press A to talk to the object from the tile (x, z) and play its script out. Another script can run first (a
     trainer who sees the player walks up and battles): then, as a player would, the test warps back to the tile facing
-    the object and talks once more. Returns play_out's result, or ('OTHER ' + the script that ran instead, frames)."""
+    the object and talks once more. Returns play_out's result, 'STANDIN' (the script of another object on its tile ran:
+    it stands in for this one, which is hidden), or ('OTHER ' + the script that ran instead, frames)."""
+    own, standins = object_scripts(events, oid)
     for again in (False, True):
         if again:
             result, frames = warp(d, sym, header, x, z, face + 1)
@@ -287,10 +298,12 @@ def talk(d, sym, events, oid, header, x, z, face):
         d.emu.memory.write_short(sym['gSovereignTestScripts'], 0)
         result, frames = play_out(d, sym, LONG_SCRIPTS.get((events, oid), FRAME_LIMIT))
         started = u32(d, sym['gSovereignTestScripts'])
-        if not started & 0xffff or started >> 16 == object_script(events, oid):
+        if not started & 0xffff or started >> 16 == own:
             return ('ok' if started & 0xffff and result == 'NOSCRIPT' else result), frames  # NOSCRIPT: it ended at once
         if result != 'ok':
             return result, frames
+        if started >> 16 in standins:
+            return 'STANDIN', frames
     return f'OTHER {started >> 16}', frames
 
 
@@ -328,7 +341,7 @@ def main():
                 result, frames = arrive(d, sym, state, variables, events, header, way_in, x, z, face)
                 if result == 'ok':
                     result, frames = talk(d, sym, events, oid, header, x, z, face)
-            if result not in ('ok', 'NOSCRIPT'):
+            if result not in ('ok', 'NOSCRIPT', 'STANDIN'):
                 bad += 1
                 if face is not None:
                     d.screenshot().save(os.path.join(out, f'{index:03d}_{events}_{result}.png'))
