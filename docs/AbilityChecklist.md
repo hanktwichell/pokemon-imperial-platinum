@@ -75,8 +75,8 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 190 | Desolate Land | Gen 6 | yes: extremely harsh sun while it's in battle; Water moves evaporate, other weather can't start |
 | 191 | Delta Stream | Gen 6 | yes: strong winds while it's in battle; no move is super effective on Flying types |
 | 192 | Stamina | Gen 7 | yes: Defense +1 stage each time a damaging move hits (`BattleSystem_TriggerAbilityOnHit`) |
-| 193 | Wimp Out | Gen 7 | not yet (no battle effect) |
-| 194 | Emergency Exit | Gen 7 | not yet (no battle effect) |
+| 193 | Wimp Out | Gen 7 | yes: switches out (a wild one flees) when another Pokémon's damaging move drops it to half its HP or less (`BattleSystem_TriggerHeldItemOnHit`); not yet after indirect damage |
+| 194 | Emergency Exit | Gen 7 | yes: switches out (a wild one flees) when another Pokémon's damaging move drops it to half its HP or less (`BattleSystem_TriggerHeldItemOnHit`); not yet after indirect damage |
 | 195 | WaterCompaction | Gen 7 | yes: Defense +2 when hit by a Water move |
 | 196 | Merciless | Gen 7 | yes: always a critical hit on a poisoned target |
 | 197 | Shields Down | Gen 7 | yes: Core at half HP or less; the Meteor Form blocks status and Yawn |

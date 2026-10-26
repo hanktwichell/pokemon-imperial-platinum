@@ -225,6 +225,8 @@ IMPLEMENTED = {
     270: "yes: Attack +1 when hit by a Fire move, can't be burned",  # ThermalExchange
     157: "yes: absorbs Grass moves, Attack +1 (`BattleSystem_TriggerImmunityAbility`)",  # Sap Sipper
     192: "yes: Defense +1 stage each time a damaging move hits (`BattleSystem_TriggerAbilityOnHit`)",  # Stamina
+    193: "yes: switches out (a wild one flees) when another Pokémon's damaging move drops it to half its HP or less (`BattleSystem_TriggerHeldItemOnHit`); not yet after indirect damage",  # Wimp Out
+    194: "yes: switches out (a wild one flees) when another Pokémon's damaging move drops it to half its HP or less (`BattleSystem_TriggerHeldItemOnHit`); not yet after indirect damage",  # Emergency Exit
     273: "yes: absorbs Fire moves, Defense +2 (`BattleSystem_TriggerImmunityAbility`)",  # Well-Baked Body
     297: "yes: absorbs Ground moves, restores 1/4 of max HP (`BattleSystem_TriggerImmunityAbility`)",  # Earth Eater
     156: "yes: reflects status moves aimed at it",

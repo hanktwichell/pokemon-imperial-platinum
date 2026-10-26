@@ -4,6 +4,26 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): Emergency Exit and Wimp Out
+
+For players: Emergency Exit (Golisopod) and Wimp Out (Wimpod) work.
+- They trigger when another Pokémon's damaging move drops the holder from above half its HP to half or less:
+  - "{0}'s Emergency Exit activated!" and "{0} went back to {1}!". The holder then switches out to a Pokémon its
+    trainer picks, as with an Eject Button.
+  - A wild one flees, as by Teleport ("...fled from battle!").
+  - Not when Sheer Force powered the move up.
+- As in Champions, a U-turn user that triggers it still switches out too.
+- Indirect damage (weather, status, hazards, recoil) doesn't trigger them yet.
+- The check sits beside Red Card and Eject Button in `BattleSystem_TriggerHeldItemOnHit`, with
+  `subscript_sovereign_emergency_exit` and a new generic message, "{0}'s {1} activated!".
+
+**Verification:** test ROM built. Harness wild battles, without god mode:
+- **Golisopod:** at 76/139 HP, a Lv. 40 Ninjask's Tackle left it at 68. "GOLISOPOD's Emergency Exit activated!",
+  "GOLISOPOD went back to A!", then "Go! GALLADE!".
+- **Wimpod:** 48 → 15/89, then the same with Wimp Out.
+- **Wild Golisopod:** Snorlax's Tackles took it 141 → 119 → 97 → 75 → 53. "The wild GOLISOPOD's Emergency Exit
+  activated!", "The wild GOLISOPOD fled from battle!", and the battle ended.
+
 ## Item 11 (effect fidelity): held items part 6 (Red Card, Eject Button)
 
 For players: Red Card and Eject Button work.
