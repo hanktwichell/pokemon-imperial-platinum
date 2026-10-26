@@ -2412,6 +2412,8 @@ static int BattleControllerPlayer_CheckObedience(BattleSystem *battleSys, Battle
     if ((rand1 < maxLevel && (ATTACKING_MON.status & MON_CONDITION_ANY) == FALSE)
         && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_VITAL_SPIRIT
         && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_INSOMNIA
+        && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_SWEET_VEIL // Sovereign (item 11)
+        && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_COMATOSE // Sovereign (item 11)
         && (battleCtx->fieldConditionsMask & FIELD_CONDITION_UPROAR) == FALSE) {
         *nextSeq = subscript_disobey_sleep;
         return OBEY_CHECK_DO_NOTHING;

@@ -3906,11 +3906,13 @@ BOOL Battler_SovereignShieldsUp(BattleContext *battleCtx, int battler)
 }
 
 // Sovereign (item 11): TRUE when nothing can give the battler a status condition (nor make it drowsy): Shields Down's
-// shell, or Purifying Salt. Mold Breaker gets past Purifying Salt when another battler's move would give the status;
+// shell, Comatose, or Purifying Salt. Mold Breaker gets past Purifying Salt when another battler's move would give the status;
 // a held item (Flame Orb) or the battler's own move (Rest) never does.
 BOOL Battler_SovereignStatusImmune(BattleContext *battleCtx, int battler)
 {
-    if (Battler_SovereignShieldsUp(battleCtx, battler)) {
+    // Comatose: the holder is always as if asleep, so nothing gives it a status condition (not even through Mold
+    // Breaker).
+    if (Battler_SovereignShieldsUp(battleCtx, battler) || Battler_Ability(battleCtx, battler) == ABILITY_COMATOSE) {
         return TRUE;
     }
 
@@ -5549,6 +5551,7 @@ BOOL BattleSystem_RecoverStatusByAbility(BattleSystem *battleSys, BattleContext 
 
     switch (Battler_Ability(battleCtx, battler)) {
     case ABILITY_IMMUNITY:
+    case ABILITY_PASTEL_VEIL: // Sovereign (item 11)
         if (battleCtx->battleMons[battler].status & MON_CONDITION_ANY_POISON) {
             battleCtx->msgTemp = MSGCOND_POISON;
             result = TRUE;
@@ -5571,6 +5574,7 @@ BOOL BattleSystem_RecoverStatusByAbility(BattleSystem *battleSys, BattleContext 
 
     case ABILITY_INSOMNIA:
     case ABILITY_VITAL_SPIRIT:
+    case ABILITY_SWEET_VEIL: // Sovereign (item 11)
         if (battleCtx->battleMons[battler].status & MON_CONDITION_SLEEP) {
             battleCtx->msgTemp = MSGCOND_SLEEP;
             result = TRUE;
@@ -5627,6 +5631,7 @@ BOOL Ability_ForbidsStatus(BattleContext *battleSys, int ability, int status)
 
     switch (ability) {
     case ABILITY_IMMUNITY:
+    case ABILITY_PASTEL_VEIL: // Sovereign (item 11)
         if (status & MON_CONDITION_ANY_POISON) {
             result = TRUE;
         }
@@ -5640,6 +5645,7 @@ BOOL Ability_ForbidsStatus(BattleContext *battleSys, int ability, int status)
 
     case ABILITY_INSOMNIA:
     case ABILITY_VITAL_SPIRIT:
+    case ABILITY_SWEET_VEIL: // Sovereign (item 11)
         if (status & MON_CONDITION_SLEEP) {
             result = TRUE;
         }

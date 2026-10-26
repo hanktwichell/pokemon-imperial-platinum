@@ -57,7 +57,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 172 | Competitive | Gen 6 | yes: Sp. Atk +2 when a foe's move or Intimidate lowers its stats |
 | 173 | Strong Jaw | Gen 6 | yes: biting moves ×1.5 |
 | 174 | Refrigerate | Gen 6 | yes: Normal moves become Ice-type, ×1.2 |
-| 175 | Sweet Veil | Gen 6 | not yet (no battle effect) |
+| 175 | Sweet Veil | Gen 6 | partly: it can't fall asleep or become drowsy, and Rest fails (its allies' protection not yet) |
 | 176 | Stance Change | Gen 6 | yes: Blade Forme before a damaging move, Shield Forme before King's Shield |
 | 177 | Gale Wings | Gen 6 | yes: Flying moves +1 priority at full HP |
 | 178 | Mega Launcher | Gen 6 | yes: pulse moves ×1.5 |
@@ -95,7 +95,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 210 | Battle Bond | Gen 7 | yes: Ash-Greninja after its move knocks out a foe, until the battle ends |
 | 211 | Power Construct | Gen 7 | yes: Complete Forme at half HP or less, with its higher max HP |
 | 212 | Corrosion | Gen 7 | yes: can poison Steel and Poison types |
-| 213 | Comatose | Gen 7 | not yet (no battle effect) |
+| 213 | Comatose | Gen 7 | partly: no status condition, no drowsiness, and Rest fails (moves that need a sleeping target don't count it as asleep yet) |
 | 214 | Queenly Majesty | Gen 7 | yes: foes' priority moves can't hit its side |
 | 215 | Innards Out | Gen 7 | yes: when knocked out by a hit, the attacker loses the HP it had left |
 | 216 | Dancer | Gen 7 | not yet (no battle effect) |
@@ -139,7 +139,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 254 | WanderingSpirit | Gen 8 | yes: swaps abilities with an attacker that makes contact |
 | 255 | Gorilla Tactics | Gen 8 | partly: Attack ×1.5 (the move lock not yet) |
 | 256 | NeutralizingGas | Gen 8 | not yet (no battle effect) |
-| 257 | Pastel Veil | Gen 8 | not yet (no battle effect) |
+| 257 | Pastel Veil | Gen 8 | partly: it can't be poisoned, and a poisoning is healed (its allies' protection not yet) |
 | 258 | Hunger Switch | Gen 8 | yes: switches between Full Belly and Hangry Mode at the end of each turn |
 | 259 | Quick Draw | Gen 8 | not yet (no battle effect) |
 | 260 | Unseen Fist | Gen 8 | yes: contact moves go through protection |
