@@ -264,6 +264,13 @@ Made by the owner (2026-10-22):
     for a Pokédex worthy of the National diploma. In Sovereign that's over 1,000 species, so that task is dropped. With
     all sixteen Type Masters' Plates in the bag, the elder gives the Azure Flute (E10 part 38).
 
+45. **Every box and party icon added since Platinum gets redone** (owner, 2026-10-26: "we're going to have to redo all
+    of the box sprites that weren't already in platinum"). The 532 icons for #494–1025 (and any form icons added
+    later) are placeholders shrunk from PokeAPI's 3DS/Switch icons. Next to Platinum's they're bigger, busier,
+    heavier-outlined and some lose colour to the shared icon palettes. Each is redrawn in Platinum's style: 32×32,
+    small and low in the frame, one of the game's shared 16-colour icon palettes. Chien-Pao first; Dubwool is too
+    big. #1–493 keep Platinum's icons. Tracked in E12 (`docs/EngineRoadmap.md`) and on the roadmap page.
+
 Open:
 - **Route 224 before the Elite Four?** In Renegade, Victory Road's back area and Route 224 come before the League. A
   guard by the League exit waits until the counterpart by Route 224's tablet (Lv. 69–70) is beaten. Sovereign keeps

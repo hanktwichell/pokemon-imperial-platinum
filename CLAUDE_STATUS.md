@@ -6536,3 +6536,18 @@ pass.
 1. See a new species' back sprite in battle (normal and shiny) to confirm the palette in game.
 2. Forms: give Sovereign's forms their own sprites (PokeAPI fronts per the owner), with back palettes the same way.
 3. Female fronts for Unfezant, Frillish, Jellicent, Pyroar and Hisuian Sneasel.
+
+## CA-0059 (Claude A, 2026-10-26): task — redo every added party/box icon
+
+**Owner decision 45 (`docs/ProjectStatus.md`):** every party/box icon that wasn't in Platinum is redone in Platinum's
+style (32×32, small and low in the frame, a shared 16-colour icon palette). That's the 532 placeholders for
+#494–1025, plus any form icons added later. Chien-Pao first; Dubwool is too big. Recorded in E12
+(`docs/EngineRoadmap.md`) and on the roadmap page's to-do list; both rows are ticked Needs work there.
+
+**Files modified:** `docs/ProjectStatus.md`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. The art is the owner's artist's; when icons arrive, convert them with the shared icon palettes (`icon_palette` in
+   each species' `data.json`).
+2. See the new battle sprites and back palettes in a battle.
+3. Forms' own sprites (PokeAPI fronts, per the owner).
