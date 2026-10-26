@@ -7569,3 +7569,27 @@ The checklist is now 338 exact, 13 approximate, 29 placeholders.
 2. The last approximate moves: Round, Expanding Force, Dragon Darts and Parabolic Charge (doubles), Shell Side Arm
    (physical/special pick), Autotomize (weight).
 3. Owner decision pinned in CB-0158: Burn Up and Double Shock (typeless).
+
+## CB-0169 — 2026-10-26, 10:43 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: held items part 6 (Red Card, Eject Button).** PR #185 (moves batch 10) is merged.
+- **Red Card:** drags out the Pokémon that hit its holder, as Dragon Tail does; a wild attacker flees.
+- **Eject Button:** switches its holder out to a Pokémon its trainer picks.
+- After a U-turn, the Eject Button holder switches out as well as the U-turn user (Champions).
+- Both were checked in harness battles; the Eject Button case is the harness's first mid-turn switch through the party
+  list.
+- Eject Pack isn't in Champions; it stays not yet.
+
+**Files modified:**
+- `decomp/src/battle/battle_lib.c` (`BattleSystem_TriggerHeldItemOnHit`).
+- New: `subscript_sovereign_red_card.s`, `subscript_sovereign_eject_button.s`. Changed: the subscripts' `meson.build`,
+  `sub_seq.order` and `decomp/generated/battle_subscripts.txt`.
+- `decomp/res/text/battle_strings.json` (10 messages).
+- `docs/HeldItemChecklist.md`, `docs/BattleMechanics.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Emergency Exit and Wimp Out: the same mid-turn switch, at half HP (`subscript_sovereign_eject_button` can be
+   reused).
+2. The last approximate moves: Round, Expanding Force, Dragon Darts and Parabolic Charge (doubles), Shell Side Arm,
+   Autotomize.
+3. Owner decision pinned in CB-0158: Burn Up and Double Shock (typeless).

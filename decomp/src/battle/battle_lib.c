@@ -6944,6 +6944,23 @@ BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *b
         return TRUE;
     }
 
+    // Sovereign (item 11): a Red Card drags out the Pokemon that hit its holder with a damaging move; an Eject Button
+    // switches its holder out. After a U-turn or the like, an Eject Button still works (Champions: both switch out) but
+    // a Red Card doesn't (the user switched out already). Neither works against a Pokemon already switching out
+    // (Pursuit), or when Sheer Force powered the move up.
+    u16 item = Battler_HeldItem(battleCtx, battleCtx->defender);
+    if ((item == ITEM_RED_CARD || item == ITEM_EJECT_BUTTON)
+        && battleCtx->attacker != battleCtx->defender
+        && DEFENDING_MON.curHP
+        && (item == ITEM_EJECT_BUTTON || ATTACKING_MON.curHP)
+        && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+        && (item == ITEM_EJECT_BUTTON || (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE)
+        && (battleCtx->battlersSwitchingMask & FlagIndex(battleCtx->defender)) == FALSE
+        && Move_SheerForceApplies(battleCtx, battleCtx->attacker, battleCtx->moveCur) == FALSE) {
+        *subscript = item == ITEM_RED_CARD ? subscript_sovereign_red_card : subscript_sovereign_eject_button;
+        return TRUE;
+    }
+
     switch (itemEffect) {
     case HOLD_EFFECT_DMG_USER_CONTACT_XFR:
         if (ATTACKING_MON.curHP

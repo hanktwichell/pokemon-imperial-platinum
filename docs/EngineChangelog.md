@@ -4,6 +4,32 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): held items part 6 (Red Card, Eject Button)
+
+For players: Red Card and Eject Button work.
+- **Red Card:**
+  - When a damaging move hits the holder: "{0} held up its Red Card against {1}!". The attacker is then dragged out as
+    by Dragon Tail: a random replacement comes in, or a wild Pokémon flees.
+  - The card is used up even when Suction Cups, Ingrain or Guard Dog keep the attacker in.
+  - It doesn't work after U-turn and the like, whose user has already switched out.
+  - `subscript_sovereign_red_card` swaps the attacker and the defender around `subscript_sovereign_drag_out`.
+- **Eject Button:**
+  - When a damaging move hits the holder: "{0} is switched out with the Eject Button!". The holder then switches out
+    to a Pokémon its trainer picks, through U-turn's party list.
+  - Nothing happens if it has no Pokémon to switch to, such as a wild holder.
+  - After a U-turn or the like, both Pokémon switch out, as in Champions. `docs/BattleMechanics.md` marks that row done.
+- Neither item works through a Substitute, against a Pokémon already switching out (Pursuit), or when Sheer Force
+  powered the move up. Both are checked in `BattleSystem_TriggerHeldItemOnHit`.
+- Eject Pack isn't in Champions and stays undone.
+
+**Verification:** test ROM built. Harness wild battles, without god mode:
+- **Red Card:** a Lv. 10 wild Ninjask's Tackle hit Snorlax, then "SNORLAX held up its Red Card against the wild
+  NINJASK!", and the wild Ninjask was dragged out, ending the battle.
+- **Eject Button:**
+  - On the player's Snorlax: Ninjask's Tackle, then "SNORLAX is switched out with the Eject Button!", the party list
+    and "Go! GALLADE!". The battle went on normally.
+  - On a wild holder: nothing happened.
+
 ## Item 11 (effect fidelity): moves, batch 10 (Explosion, terrain removers, Poltergeist, Steel Beam)
 
 For players:

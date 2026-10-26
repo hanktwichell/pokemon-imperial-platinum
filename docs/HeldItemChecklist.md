@@ -16,12 +16,12 @@ The new items have no hold effect constant (`HOLD_EFFECT_NONE`). The battle code
 | Float Stone | yes: the holder's weight is halved (Low Kick, Grass Knot, Heavy Slam, Heat Crash), on top of Light Metal |
 | Rocky Helmet | yes: an attacker that makes contact loses 1/6 of its max HP, each hit, even as the holder faints (not through a Substitute, Magic Guard or Protective Pads) |
 | Air Balloon | yes: Ground moves don't affect the holder ("It doesn't affect {0}…"), and it isn't grounded (terrain, Spikes, Toxic Spikes, Sticky Web). Shown on entry; pops when a damaging move hits the holder. Gravity, Ingrain and Smack Down ground it as they ground Magnet Rise |
-| Red Card | not yet |
+| Red Card | yes: when a damaging move hits the holder, the attacker is dragged out as by Dragon Tail ("{0} held up its Red Card against {1}!"), used up even if Suction Cups or Ingrain keep it in; a wild attacker flees. Not after U-turn and the like, through a Substitute, or when Sheer Force powered the move |
 | Ring Target | yes: the holder's type immunities don't apply (a Ghost type takes Normal and Fighting moves, a Flying type Ground moves...); its Abilities still do (Levitate, Volt Absorb...) |
 | Binding Band | yes: a binding move the holder used costs its target twice as much at the end of each turn (1/8 of its max HP; Sovereign keeps Platinum's 1/16) |
 | Absorb Bulb | yes: Sp. Atk +1 when a Water move hits the holder, used up |
 | Cell Battery | yes: Attack +1 when an Electric move hits the holder, used up |
-| Eject Button | not yet |
+| Eject Button | yes: when a damaging move hits the holder, it switches out to a Pokémon its trainer picks ("{0} is switched out with the Eject Button!"), used up. Nothing happens with no Pokémon to switch to (a wild holder). After U-turn and the like, both switch out (Champions). Not through a Substitute, or when Sheer Force powered the move |
 | Weakness Policy | yes: Attack and Sp. Atk +2 when a super-effective move hits the holder, used up |
 | Assault Vest | yes: Sp. Def ×1.5; status moves can't be selected ("The Assault Vest prevents status moves from being used!") |
 | Luminous Moss | yes: Sp. Def +1 when a Water move hits the holder, used up |
@@ -32,7 +32,7 @@ The new items have no hold effect constant (`HOLD_EFFECT_NONE`). The battle code
 | Protective Pads | yes: the holder's moves make no contact |
 | Electric Seed, Psychic Seed, Misty Seed, Grassy Seed | yes: Defense or Sp. Def +1 in their terrain, used up |
 | Throat Spray | yes: Sp. Atk +1 after the holder uses a sound move that works, used up |
-| Eject Pack | not yet |
+| Eject Pack | not yet (not in Champions) |
 | Heavy-Duty Boots | yes: no Stealth Rock, Spikes, Toxic Spikes or Sticky Web on entry (a grounded Poison type still takes the Toxic Spikes away) |
 | Blunder Policy | yes: Speed +2 after the holder's move misses, used up |
 | Room Service | yes: Speed -1 under Trick Room, on entry or as Trick Room starts, used up |

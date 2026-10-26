@@ -441,4 +441,6 @@ subscript_files = files(
     'subscript_sovereign_stuff_cheeks.s',
     'subscript_sovereign_flatten_terrain.s',
     'subscript_sovereign_poltergeist.s',
+    'subscript_sovereign_red_card.s',
+    'subscript_sovereign_eject_button.s',
 )
