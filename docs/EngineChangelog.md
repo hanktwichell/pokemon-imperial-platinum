@@ -4,6 +4,42 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Playtest pass — the Trainers' School Egg, and heap checks in every harness
+
+- **The Trainers' School Egg:** the gift test (`tools/test/gift_pokemon.py`) now also covers the Cowgirl's Egg, for
+  59 runs. It must be an Egg of one of the 18 babies her script picks from at random, at Lv. 1, knowing its species'
+  moves at that level. The party hook (`gSovereignTestParty`) now notes whether each Pokémon is an Egg, so every other
+  gift must not be one.
+- **Heap checks in every playtest harness:** a broken heap shows up only later, as a crash or memory written over, so
+  the harnesses now check the heaps (`heap_check.py`) where they find the field free again. A step that leaves them
+  broken gets the result **HEAP**.
+  - The battle tests: `fight()` in `tools/test/battle_all_trainers.py` checks at each battle's end. The trainer,
+    species, form-change, evolution and Egg tests all fight through it.
+  - The field tests: `talk_to_objects.play_out` and `gift_pokemon.talk_and_answer` check when a script or warp ends,
+    for the object, sign and trigger, gift and Elite Four tests. `visit_changed_maps.py` checks on each map.
+- **Fix: long harness runs no longer die after 250 cases.** Each save state load reopens desmume's SDL sound. That
+  takes one more hold on SDL's audio subsystem, and on its events subsystem, which audio brings up, and the hold is
+  never given back. At 255 holds SDL aborts the process. That is why the species test's workers stopped after 250
+  cases each. `Driver.load_state` (`tools/test/drive.py`) now gives the holds back after each load, and every harness
+  loads its states through it. One process loaded a state 400 times with no abort.
+
+**Results:** the heap checks found no broken heap in any harness (no **HEAP**), and everything else passes as before.
+- **Gifts:** all 59 runs, the Trainers' School Egg included (this run's Egg was a Wynaut).
+- **Species and forms as wild Pokémon:** all 1,510.
+- **Battle form changes and form-change items:** all 211.
+- **Signs, hidden items and triggers:** all 84.
+- **Objects:** all 252 end with no hang: 142 ran a script, and for 110 nothing ran. The run showed that the test
+  can't yet tell an object's own script from another one, so four results differ from the last run:
+  - A trainer who sees the player counts as the object's script. Route 212's policemen come out at night, and the
+    test's clock is the real one, so Stake 1 and Grunt 3 there (hidden on a new game) "ran" tonight.
+  - An A press meant for a scene at the end of the warp can talk to the object first. At Snowpoint's temple that
+    starts the guards' challenge, and their battle removes Aran, so the test's own A press finds no one.
+  - The Sandgem lab's briefcase ran this time.
+- **Changed maps:** all 182 load. 174 are idle at once, and 8 open on the scenes listed under "every changed map
+  loads" below.
+- **Not rerun yet with the checks:** the trainer, evolution and Egg tests.
+
+
 ## Playtest pass — Elite Four runs
 
 A new test, `tools/test/elite_four_runs.py`, plays the Elite Four and the Champion in the test build. It takes each

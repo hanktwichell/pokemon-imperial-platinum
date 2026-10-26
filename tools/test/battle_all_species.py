@@ -20,6 +20,7 @@ must be the one its moves give it (Resolute while it knows Secret Sword).
 Each one gets a result:
 - **DATA:** the Pokémon differs from its form's data (the line says how).
 - **HANG:** the main loop stopped (gSystem's vblankCounter didn't move for 120 frames), which is a crash.
+- **HEAP:** the battle left a heap's block lists broken (battle_all_trainers.fight, heap_check.py).
 - **STUCK:** the battle didn't end in time: a prompt the taps don't answer, or a soft lock. See its screenshot.
 - **ok:** the battle ended and the field runs again.
 - **NO-RESULT:** (with --jobs) the worker for it stopped first, e.g. killed by a time limit.
@@ -134,7 +135,7 @@ def check(raw, name, form, personality_forms):
 
 
 def battle(d, sym, state, index, name, form, out, personality_forms, shots=False):
-    d.emu.savestate.load_file(state)
+    d.load_state(state)
     d.run(30)
     d.emu.memory.write_short(sym['gSovereignTestWild'], consts('species.txt').index(name))
     d.emu.memory.write_byte(sym['gSovereignTestWild'] + 2, form)
@@ -151,6 +152,8 @@ def battle(d, sym, state, index, name, form, out, personality_forms, shots=False
         else [f'{len(d.added)} Pokémon made']
     if problems:
         result = 'DATA' if result == 'ok' else result + '+DATA'
+    if result.startswith('HEAP'):
+        problems += [f'heap {heap_id}: {problem}' for heap_id, problem in d.heap_problems]
     if result != 'ok':
         d.screenshot().save(os.path.join(out, f'{index:04d}_{name}_{form}_{result}.png'))
     return f'{index} {name} {form} {result} {frames}' + (' | ' + '; '.join(problems) if problems else '')

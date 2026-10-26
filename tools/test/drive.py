@@ -36,6 +36,7 @@ KEYS = {"A": Keys.KEY_A, "B": Keys.KEY_B, "X": Keys.KEY_X, "Y": Keys.KEY_Y, "L":
 # position (e.g. a map's arrival warp) before and after a one-tile step.
 PLAYER_X_ADDR = 0x021C6026
 PLAYER_Z_ADDR = 0x021C602E
+SDL_INIT_AUDIO, SDL_INIT_EVENTS = 0x10, 0x4000
 
 
 class Driver:
@@ -53,7 +54,14 @@ class Driver:
             self.emu.backup.import_file(battery)
             self.emu.reset()
         if state:
-            self.emu.savestate.load_file(state)
+            self.load_state(state)
+
+    def load_state(self, state):
+        # Each load reopens desmume's SDL sound, which takes one more hold on SDL's audio subsystem (and on its events
+        # subsystem, which audio brings up) and never lets go. At 255 SDL aborts the process, so a test that loads a
+        # state for each case died after 250 cases. Let go of both.
+        self.emu.savestate.load_file(state)
+        self.emu.lib.SDL_QuitSubSystem(SDL_INIT_AUDIO | SDL_INIT_EVENTS)
 
     def run(self, frames):
         for _ in range(frames):

@@ -218,7 +218,7 @@ def main():
     bad = 0
     with open(os.path.join(out, 'results.txt'), 'w') as f:
         for index, c in chosen:
-            d.emu.savestate.load_file(state)
+            d.load_state(state)
             mem.write_byte(sym['gSovereignTestClock'] + CLOCK['month'], MONTH)
             d.run(30)  # the game reads the clock every 10 frames (rtc.c)
             breed, wild = sym['gSovereignTestBreed'], sym['gSovereignTestWild']

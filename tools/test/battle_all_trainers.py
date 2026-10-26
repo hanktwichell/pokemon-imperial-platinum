@@ -19,6 +19,8 @@ Each trainer gets one result:
 - **PARTY:** the Pokémon the game built (caught with a hook on Party_AddPokemon) differ from the JSON
   (check_trainer_party.compare_party: species, form, level, item, moves, nature, ability, IVs, EVs, stats...).
 - **HANG:** the main loop stopped (gSystem's vblankCounter didn't move for 120 frames), which is a crash.
+- **HEAP:** the battle ended, but it left a heap's block lists broken (heap_check.py), which crashes the game or
+  writes over memory later. The other battle harnesses share this check through fight().
 - **STUCK:** the battle didn't end in time: a prompt the taps don't answer, or a soft lock. See its screenshot.
 - **ok:** the battle ended and the field runs again.
 - **NO-RESULT:** (with --jobs) the worker for it stopped first, e.g. killed by a time limit.
@@ -40,6 +42,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from check_trainer_party import compare_party  # noqa: E402
+from heap_check import heap_info_address, heap_problems  # noqa: E402
 
 DECOMP = 'decomp'
 # Both are FIGHT in the command menu; in the move menu the second move and the third (the test Garchomp's Dazzling
@@ -86,7 +89,8 @@ def pick(args):
 def fight(d, sym, limit, shot=None):
     """Play the battle just started (with SELECT or SELECT+R) to its end, as the docstring says: taps and A presses
     while the field is busy, until the field runs again. d.armed is cleared after 400 frames, when both parties are
-    built. shot(frames), if given, is called every 600 frames. Returns ('ok', 'HANG' or 'STUCK', frames run)."""
+    built. shot(frames), if given, is called every 600 frames. Returns ('ok', 'HANG', 'STUCK' or 'HEAP' (the heaps
+    were left broken: d.heap_problems says how), frames run)."""
     def u32(addr):
         return struct.unpack('<I', bytes(d.emu.memory.unsigned[addr:addr + 4]))[0]
 
@@ -118,12 +122,23 @@ def fight(d, sym, limit, shot=None):
                 result = 'ok'
                 break
 
+    if result == 'ok':
+        d.heap_problems = heap_problems(d.emu.memory, heap_info())
+        if d.heap_problems:
+            result = 'HEAP'
     return result, frames
+
+
+def heap_info():
+    """sHeapInfo's address, read from the build's map once."""
+    if not hasattr(heap_info, 'address'):
+        heap_info.address = heap_info_address()
+    return heap_info.address
 
 
 def battle(d, sym, state, index, name, out, shots=False):
     trainer = json.load(open(os.path.join(DECOMP, 'res', 'trainers', 'data', name[len('TRAINER_'):].lower() + '.json')))
-    d.emu.savestate.load_file(state)
+    d.load_state(state)
     d.run(30)
     d.emu.memory.write_short(sym['gSovereignTestBattleTrainer'], index)
     d.emu.memory.write_byte(sym['gSovereignTestGodMode'], 1)
@@ -139,7 +154,8 @@ def battle(d, sym, state, index, name, out, shots=False):
         result = 'PARTY' if result == 'ok' else result + '+PARTY'
     if result != 'ok':
         d.screenshot().save(os.path.join(out, f'{index:04d}_{name}_{result}.png'))
-    detail = ' | '.join(line.strip() for line in report if line.startswith(('FAIL', ' ')))
+    detail = ' | '.join([line.strip() for line in report if line.startswith(('FAIL', ' '))]
+                        + [f'heap {heap_id}: {problem}' for heap_id, problem in getattr(d, 'heap_problems', [])])
     return f'{index} {name} {result} {frames}' + (f' {detail}' if detail else '')
 
 

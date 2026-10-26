@@ -228,6 +228,7 @@ static void SovereignTest_NoteParty(FieldSystem *fieldSystem)
         noted->ability = Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL);
         noted->hasHiddenAbility = Pokemon_GetValue(mon, MON_DATA_HAS_HIDDEN_ABILITY, NULL);
         noted->heldItem = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
+        noted->isEgg = Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
 
         for (int j = 0; j < 4; j++) {
             noted->moves[j] = Pokemon_GetValue(mon, MON_DATA_MOVE1 + j, NULL);

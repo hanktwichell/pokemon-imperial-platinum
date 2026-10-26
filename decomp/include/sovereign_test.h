@@ -38,7 +38,7 @@ struct SovereignTestPartyMon {
     u8 form;
     u8 level;
     u8 hasHiddenAbility;
-    u8 padding;
+    u8 isEgg;
 };
 
 struct SovereignTestParty {

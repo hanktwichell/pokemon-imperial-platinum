@@ -18,7 +18,9 @@ Each object gets a result:
 - NOTILE: no reachable tile next to it (check_object_tiles.py reports these too);
 - HANG (the game stopped running) or STUCK (still busy at the time limit), with a screenshot. A STUCK can be a menu
   the inputs don't get out of; the screenshot shows which. NOWARP HANG or NOWARP STUCK: the same on the way in, while
-  a scene on entering the map plays out.
+  a scene on entering the map plays out;
+- HEAP: the script ended, but a heap's block lists are broken (heap_check.py), as after a failed load is freed. The
+  game would crash or write over memory later.
 
 The test save is a new game with the test party (src/script_manager.c), so a script follows its early-game branch:
 an NPC whose gift waits on badges says so, and that is what runs.
@@ -37,7 +39,9 @@ import struct
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from battle_all_trainers import DECOMP, HANG_FRAMES, STEP, SWITCH_FRAMES, TAPS, VBLANK_COUNTER, symbols  # noqa: E402
+from battle_all_trainers import (DECOMP, HANG_FRAMES, STEP, SWITCH_FRAMES, TAPS, VBLANK_COUNTER,  # noqa: E402
+                                 heap_info, symbols)
+from heap_check import heap_problems  # noqa: E402
 from check_object_tiles import (DIRS, TABLE, WINDOW, Maps, can_turn, explore, vanilla_events,  # noqa: E402
                                 walkable)
 
@@ -170,7 +174,8 @@ def u32(d, addr):
 def play_out(d, sym, limit, header=None, press_a=True):
     """Play out what starts now (a script, a warp and any scene on entering the map, a battle) until the field is idle
     again (on header, if given). With press_a, A is pressed first, to talk. Returns ('ok', 'NOSCRIPT' (nothing
-    started), 'HANG' or 'STUCK', frames run)."""
+    started), 'HANG', 'STUCK' or 'HEAP' (it ended, but a heap's block lists are broken: heap_check.py), frames
+    run)."""
     if press_a:
         d.press('A', frames=4, after=0)
     frames, stalled, started, idle, step = 0, 0, False, 0, 0
@@ -196,7 +201,7 @@ def play_out(d, sym, limit, header=None, press_a=True):
         elif started and (header is None or u32(d, sym['gSovereignTestIdleMapHeaderID']) == header):
             idle += 1
             if idle >= 2:
-                return 'ok', frames
+                return ('HEAP' if heap_problems(d.emu.memory, heap_info()) else 'ok'), frames
         elif frames >= START_FRAMES:
             return 'NOSCRIPT', frames
     return 'STUCK', frames
@@ -231,7 +236,7 @@ def arrive(d, sym, state, variables, events, header, way_in, x, z, face, setup=N
     it plays out where it expects the player (it may walk them about), then to the tile (x, z) facing face. setup, if
     given, runs once the state is loaded (to set test hooks the first warp applies). Returns ('ok', frames) or
     ('NOWARP ' + play_out's result, frames)."""
-    d.emu.savestate.load_file(state)
+    d.load_state(state)
     d.run(30)
     d.emu.memory.write_byte(sym['gSovereignTestGodMode'], 1)
     if setup:

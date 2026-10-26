@@ -162,7 +162,7 @@ def run_league(d, sym, state, variables, places, run, heaps):
     mem = d.emu.memory
     answers, formats = plan(run)
     names = dict(trainer_ids())
-    d.emu.savestate.load_file(state)
+    d.load_state(state)
     d.run(30)
     mem.write_byte(sym['gSovereignTestGodMode'], 1)
     mem.write_long(sym['gSovereignTestTrainerBattles'], 0)

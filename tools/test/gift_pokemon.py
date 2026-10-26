@@ -13,7 +13,9 @@ The gifts:
 - the other gifts Sovereign added: Lapras, Steven's Beldum, Porygon, the Twinleaf Eevee (Mom's state set to after the
   Journal) and Rowan's briefcase (the two starters the player didn't pick; Rowan back in his lab);
 - the Mining Museum's Paradox dealers (all eight badges): each pair of their list (sParadoxForms), the Paradox
-  Pokémon of a present-day one shown to them, at its level.
+  Pokémon of a present-day one shown to them, at its level;
+- the Trainers' School Cowgirl's Egg: one of the 18 babies her script picks from at random, an Egg at Lv. 1 knowing
+  its species' moves at that level.
 For a gift that needs a Pokémon shown, the next test warp adds it to the party (gSovereignTestPartyAdd, Lv. 50), and
 the script's party screen is answered like its other menus.
 
@@ -23,7 +25,7 @@ the gift takes. Each script plays out on the real menus: when it waits on one (g
 cursor down to the entry it wants and presses A, or answers a yes/no question (no nickname); A pages through the text
 and fights a battle otherwise (god mode). Then the party's last Pokémon (gSovereignTestParty) must be the gifts: each
 one's species, form, level, an ability of its form's (not its Hidden Ability), held item and moves (its form's
-level-up moves at its level, unless the gift sets them).
+level-up moves at its level, unless the gift sets them), and whether it's an Egg.
 
 Needs what talk_to_objects.py needs. From the repo root:
     SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 tools/test/gift_pokemon.py \\
@@ -36,8 +38,9 @@ import struct
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from battle_all_trainers import HANG_FRAMES, SWITCH_FRAMES, TAPS, VBLANK_COUNTER  # noqa: E402
+from battle_all_trainers import HANG_FRAMES, SWITCH_FRAMES, TAPS, VBLANK_COUNTER, heap_info  # noqa: E402
 from battle_evolutions import data_of  # noqa: E402
+from heap_check import heap_problems  # noqa: E402
 from talk_to_objects import (DECOMP, FRAME_LIMIT, START_FRAMES, SYMBOLS, arrive, cases as talk_cases,  # noqa: E402
                              parse_args, symbols, u32, var_ids)
 
@@ -46,8 +49,8 @@ DELIVERYMAN = 'LOCALID_FIGHT_AREA_SOVEREIGN_EVENT_DELIVERYMAN'
 GRENINJA_TRAINER = 'LOCALID_FIGHT_AREA_SOVEREIGN_GRENINJA_TRAINER'
 MENU_LIST, MENU_YES_NO, MENU_PARTY = 1, 2, 3  # enum SovereignTestMenuKind
 PARTY = {'wanted': 0, 'count': 1, 'mons': 4}  # struct SovereignTestParty
-# struct SovereignTestPartyMon: species, ability, held item, moves, form, level, hasHiddenAbility.
-MON = '<HHH4HBBBx'
+# struct SovereignTestPartyMon: species, ability, held item, moves, form, level, hasHiddenAbility, isEgg.
+MON = '<HHH4HBBBB'
 ALL_BADGES = 0xff
 STEP = 10
 MENU_SETTLE = 10
@@ -121,6 +124,13 @@ SIMPLE = [
 ]
 
 
+def school_egg():
+    """The species the Trainers' School Cowgirl's Egg can be: those her script picks from at random."""
+    script = open(os.path.join(DECOMP, 'res', 'field', 'scripts', 'scripts_trainers_school.s'), encoding='utf-8').read()
+    body = re.search(r'^TrainersSchool_SovereignCowgirl:\n(.*?)^TrainersSchool_SovereignGiveEgg:', script, re.M | re.S)
+    return tuple(re.findall(r'SetVar VAR_0x8004, (SPECIES_\w+)', body.group(1)))
+
+
 def paradox_dealers():
     """[(era, dealer, present species, Paradox species)] from sParadoxForms (src/scrcmd.c): the Mining Museum's fossil
     maniac gives the ancient ones, the futuristic scientist the future ones."""
@@ -165,6 +175,9 @@ def cases():
     for name, events, giver, var, talks, gifts in SIMPLE:
         out.append(Gift(name, events, giver, 0, var, talks,
                         [(sp, 0, lv, it, default_moves(sp, 0, lv)) for sp, lv, it in gifts]))
+    # An Egg of one of these at random, at Lv. 1 (Egg_CreateEgg), knowing its species' moves at that level.
+    out.append(Gift("Trainers' School Egg", 'events_trainers_school', 'LOCALID_COWGIRL', 0, None, [[True]],
+                    [(school_egg(), 0, 1, 'ITEM_NONE', None)]))
     return out
 
 
@@ -175,8 +188,8 @@ def talk_and_answer(d, sym, answers, limit=FRAME_LIMIT, press_a=True, done=None)
     counted as the script shows it, before it reads any input, so A is never pressed into one the test hasn't seen.
     Without press_a, it plays out a script that starts on its own (a scene on entering a map); with done, it stops as
     soon as done() is true, with all the answers given, even if the script goes on.
-    Returns ('ok', 'NOSCRIPT', 'HANG', 'STUCK' or 'MENU ...' (a menu with no answer, or of the wrong kind, or answers
-    left over), frames)."""
+    Returns ('ok', 'NOSCRIPT', 'HANG', 'STUCK', 'HEAP' (as in talk_to_objects.play_out) or 'MENU ...' (a menu with no
+    answer, or of the wrong kind, or answers left over), frames)."""
     answers = list(answers)
     menu = sym['gSovereignTestMenu']
     seen = u32(d, menu)
@@ -194,12 +207,12 @@ def talk_and_answer(d, sym, answers, limit=FRAME_LIMIT, press_a=True, done=None)
         if stalled >= HANG_FRAMES:
             return 'HANG', frames
         if done and not answers and done():
-            return 'ok', frames
+            return heap_result(d), frames
         if u32(d, sym['gSovereignTestIdleFrames']) != before:
             if started:
                 idle += 1
                 if idle >= 2:
-                    return ('ok' if not answers else f'MENU {len(answers)} answers left'), frames
+                    return (heap_result(d) if not answers else f'MENU {len(answers)} answers left'), frames
             elif frames >= START_FRAMES:
                 return 'NOSCRIPT', frames
             continue
@@ -234,8 +247,14 @@ def talk_and_answer(d, sym, answers, limit=FRAME_LIMIT, press_a=True, done=None)
     return 'STUCK', frames
 
 
+def heap_result(d):
+    """'ok', or 'HEAP' when a heap's block lists are broken (heap_check.py)."""
+    return 'HEAP' if heap_problems(d.emu.memory, heap_info()) else 'ok'
+
+
 def note_party(d, sym):
-    """[(species, ability, held item, [moves], form, level, has Hidden Ability)] of the party, from the game."""
+    """[(species, ability, held item, [moves], form, level, has Hidden Ability, is an Egg)] of the party, from the
+    game."""
     mem, at = d.emu.memory, sym['gSovereignTestParty']
     mem.write_byte(at + PARTY['wanted'], 1)
     for _ in range(60):
@@ -247,7 +266,7 @@ def note_party(d, sym):
     for i in range(mem.unsigned[at + PARTY['count']]):
         species, ability, item, *rest = struct.unpack(MON, bytes(mem.unsigned[at + PARTY['mons'] + i * size:
                                                                            at + PARTY['mons'] + (i + 1) * size]))
-        party.append((species, ability, item, rest[:4], rest[4], rest[5], rest[6]))
+        party.append((species, ability, item, rest[:4], rest[4], rest[5], rest[6], rest[7]))
     return party
 
 
@@ -289,17 +308,25 @@ def main():
                     break
                 d.press(['UP', 'DOWN', 'LEFT', 'RIGHT'][face], frames=2, after=10)  # face the giver again
                 result, frames = talk_and_answer(d, sym, answers)
-            wrong = []
+            wrong, hatches = [], None
             if result == 'ok':
                 party = note_party(d, sym)
                 if len(party) != 1 + len(gifts):
                     wrong.append(f'party size {len(party)} (want {1 + len(gifts)})')
                 for got, (species, form, level, item, moves) in zip(party[1:], gifts):
-                    got_species, ability, got_item, got_moves, got_form, got_level, hidden = got
-                    abilities = data_of(species, form)['abilities'][:2]  # the third is its Hidden Ability
+                    got_species, ability, got_item, got_moves, got_form, got_level, hidden, egg = got
+                    want_egg = type(species) is tuple  # an Egg of one of these species
+                    if want_egg:
+                        hatches = species_names[got_species][8:].lower()
+                        species = species_names[got_species] if species_names[got_species] in species \
+                            else ' or '.join(species)
+                        moves = default_moves(species, form, level) if species in species_names else None
+                    # The third ability is its Hidden Ability.
+                    abilities = data_of(species, form)['abilities'][:2] if species in species_names else []
                     checks = [('species', species_names[got_species], species), ('form', got_form, form),
                               ('level', got_level, level), ('held item', item_names[got_item], item),
-                              ('moves', [move_names[m] for m in got_moves], moves), ('Hidden Ability', hidden, 0)]
+                              ('moves', [move_names[m] for m in got_moves], moves), ('Hidden Ability', hidden, 0),
+                              ('Egg', egg, int(want_egg))]
                     wrong += [f'{species[8:].lower()} {what} {g} (want {w})' for what, g, w in checks if g != w]
                     if ability_names[ability] not in abilities:
                         wrong.append(f'{species[8:].lower()} ability {ability_names[ability]} (want '
@@ -307,7 +334,8 @@ def main():
             if result != 'ok' or wrong:
                 bad += 1
                 d.screenshot().save(os.path.join(out, f'{name.replace(" ", "_")}.png'))
-            what = ', '.join(f'{sp[8:].lower()}{f" form {fo}" if fo else ""} Lv. {lv}' for sp, fo, lv, _, _ in gifts)
+            what = ', '.join(f'{f"an Egg ({hatches})" if type(sp) is tuple else sp[8:].lower()}'
+                             f'{f" form {fo}" if fo else ""} Lv. {lv}' for sp, fo, lv, _, _ in gifts)
             line = f'{name}: {what}: {result} {frames}' + ''.join(f'\n    WRONG {w}' for w in wrong)
             print(line, file=f, flush=True)
             print(line, flush=True)
