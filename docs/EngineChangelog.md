@@ -20,6 +20,28 @@ scrambled recolour.
 - Verified: `make rom`, boot smoke test PASS, `check_battle_sprites.py` 4,378 sprites 0 problems; the four shown to
   the owner (Florges, Vivillon, Kabuki Furfrou, Xerneas) rendered from the converted files.
 
+## Item 11 (effect fidelity): Cheek Pouch and Ripen
+
+For players: Cheek Pouch and Ripen now work with the Berries they matter most for.
+
+- **Cheek Pouch:** when the holder eats its own held Berry, it also restores a third of its max HP: "{0} restored HP
+  using its Cheek Pouch!". It's checked where every Berry is used up (`subscript_pluck_check`, with the read-only
+  `BTLVAR_SOVEREIGN_CHEEK_POUCH_MSG_TEMP` and `subscript_sovereign_cheek_pouch`), so items that aren't Berries (Berry
+  Juice) don't count.
+  - Not yet: a Berry taken by Bug Bite or Pluck, or a damage-halving Berry.
+- **Ripen:** Berries that restore HP restore twice as much (`Sovereign_RipenBerryHP`), and Berries that raise a stat
+  raise it 2 stages (`subscript_held_item_raise_stat`).
+  - Not yet: damage-halving Berries, and the other kinds.
+- `docs/AbilityChecklist.md`: 165 of the 191 new abilities have a battle effect, counting partial ones (163 before).
+
+**Verification:** `tools/test/check_battle_scripts.py` passes. Harness wild battles, with each message box and HP bar
+looked at:
+- **Cheek Pouch** (Greedent, Lv. 50, 180 HP, at 40%): its Sitrus Berry heals it to 117, then "GREEDENT restored HP
+  using its Cheek Pouch!" takes it to 177 (+60). An Oran Berry: 82, then 142. Berry Juice: no Cheek Pouch.
+- **Ripen** (Appletun, 170 HP, at 40%): its Sitrus Berry heals 84, twice a quarter, from 68 to 152. A Liechi Berry
+  at 20%: "The Liechi Berry raised APPLETUN's Attack!" (the message is the same for 2 stages).
+
+
 ## Item 11 (effect fidelity): seven more abilities
 
 For players: As One, Toxic Chain, Poison Puppeteer, Supersweet Syrup and Comatose now work. Pastel Veil and Sweet Veil
