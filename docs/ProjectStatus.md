@@ -282,12 +282,13 @@ Made by the owner (2026-10-22):
     (`docs/BattleSpriteStatus.md`). The owner is fixing Vivillon's back (the pack's back is another pattern).
 49. **Scatterbug and Spewpa have one form each** (owner, 2026-10-26: "I don't want to deal with them again"): their
     19 patterns are removed. Pumpkaboo and Gourgeist keep their four sizes for the stats, but every size uses the
-    Average Size sprite (PokeAPI's).
+    Average Size sprite (PokeAPI's). Done (CA-0067).
 50. **The player gets only the main form of the cosmetic Pokémon** (owner, 2026-10-26): Vivillon (Meadow), Flabébé,
     Floette and Florges (Red Flower), Alcremie (Vanilla Cream, Strawberry Sweet) and Pikachu. Opponents' teams may use
     their other forms, so those need no back sprites. Kept: Eternal Floette and Mega Floette as they are (owner:
     "mandatory"), Partner Pikachu as the deliveryman's gift (his costume and cap Pikachu go), and Furfrou's trims at
-    the Hearthome groomer for now.
+    the Hearthome groomer for now. Done (CA-0067): those forms are set only by trainer data, Milcery always
+    evolves into the base Alcremie, and the deliveryman's list is down to nine.
 
 Open:
 - **Overworld sprites for the legendaries:** the owner draws them and sorts the rest of the sizes (decision 40,

@@ -4,7 +4,7 @@ From the owner's ticks on the roadmap page's sprite table (read 2026-10-26, upda
 (species #494–1025: PokeAPI front and shiny front with the owner's pack's back and shiny back; forms: PokeAPI front
 and shiny front). **Notes** say where a Pokémon has no back sprite of its own or uses another form's sprite.
 
-## Finished (637)
+## Finished (599)
 
 Ticked **Done**.
 
@@ -505,44 +505,6 @@ Ticked **Done**.
 | 25 | Pikachu (Starter) | no back of its own: uses its species' back |
 | 25 | Pikachu (Unova Cap) | no back of its own: uses its species' back |
 | 25 | Pikachu (World Cap) | no back of its own: uses its species' back |
-| 664 | Scatterbug (Archipelago) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 664 | Scatterbug (Continental) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 664 | Scatterbug (Elegant) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 664 | Scatterbug (Fancy) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 664 | Scatterbug (Garden) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 664 | Scatterbug (High Plains) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 664 | Scatterbug (Jungle) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 664 | Scatterbug (Marine) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 664 | Scatterbug (Meadow) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 664 | Scatterbug (Modern) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 664 | Scatterbug (Monsoon) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 664 | Scatterbug (Ocean) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 664 | Scatterbug (Poke Ball) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 664 | Scatterbug (Polar) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 664 | Scatterbug (River) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 664 | Scatterbug (Sandstorm) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 664 | Scatterbug (Savanna) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 664 | Scatterbug (Sun) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 664 | Scatterbug (Tundra) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 665 | Spewpa (Archipelago) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 665 | Spewpa (Continental) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 665 | Spewpa (Elegant) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 665 | Spewpa (Fancy) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 665 | Spewpa (Garden) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 665 | Spewpa (High Plains) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 665 | Spewpa (Jungle) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 665 | Spewpa (Marine) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 665 | Spewpa (Meadow) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 665 | Spewpa (Modern) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 665 | Spewpa (Monsoon) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 665 | Spewpa (Ocean) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 665 | Spewpa (Poke Ball) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 665 | Spewpa (Polar) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 665 | Spewpa (River) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 665 | Spewpa (Sandstorm) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 665 | Spewpa (Savanna) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 665 | Spewpa (Sun) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
-| 665 | Spewpa (Tundra) | no back of its own: uses its species' back; PokeAPI draws it like the base species (form to be removed, decision 46) |
 | 666 | Vivillon (Archipelago) | no back of its own: uses its species' back |
 | 666 | Vivillon (Continental) | no back of its own: uses its species' back |
 | 666 | Vivillon (Elegant) | no back of its own: uses its species' back |

@@ -128,5 +128,11 @@
             "MOVE_SWIFT"
         ]
     },
-    "evolutions": []
+    "evolutions": [
+        [
+            "EVO_LEVEL",
+            19,
+            "SPECIES_FLOETTE"
+        ]
+    ]
 }

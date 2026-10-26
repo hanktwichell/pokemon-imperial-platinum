@@ -130,5 +130,11 @@
             "MOVE_SWIFT"
         ]
     },
-    "evolutions": []
+    "evolutions": [
+        [
+            "EVO_USE_ITEM",
+            "ITEM_SHINY_STONE",
+            "SPECIES_FLORGES"
+        ]
+    ]
 }

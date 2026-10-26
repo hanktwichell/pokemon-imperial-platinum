@@ -56,6 +56,22 @@ looked at:
 - **Test harness note:** god mode keeps the player's Pokémon's real HP while its HP bar still shows the hit. A Berry
   test that needs real damage has to turn god mode off (Recycle's Sitrus Berry looked unused for that reason).
 
+## FM — decisions 49 and 50: one Scatterbug, one Spewpa, base cosmetic forms for the player
+
+For players: Scatterbug and Spewpa have no patterns. Vivillon is always Meadow and the Flabébé line always Red Flower
+when caught, hatched or evolved. Milcery always evolves into Vanilla Cream Strawberry Sweet Alcremie. The Fight Area
+deliveryman no longer hands out the costume and cap Pikachu; Partner Pikachu stays. Trainers' teams can still use the
+other Vivillon patterns, flower colors, Alcremie and Pikachu.
+
+- `tools/engine/gen_forms.py`: Scatterbug's and Spewpa's 38 pattern forms are gone (421 forms now 383). The Vivillon
+  patterns and the Flabébé line's colors are `SOVEREIGN_FORM_REGIONAL` (set only by trainer data), not personality forms.
+  Their form folders, meson blocks and PokeAPI fronts are removed.
+- `src/pokemon.c`: no Vivillon case in `Pokemon_SovereignPersonalityForm`; `Pokemon_SovereignAlcremieForm` is gone.
+- `src/scrcmd.c` `sSovereignEventGifts`, `scripts_fight_area_pokecenter_1f.s` and its text: 23 entries down to 9.
+  Spiky-eared Pichu is now entry 8, so its given-bit moved (old test saves may show it as given or not).
+- Verified: `make rom`, boot smoke test PASS, `check_battle_sprites.py` (4,340 sprites, 0 problems),
+  `check_event_scripts.py`, `check_menus.py`, `check_byte_text_ids.py`, `check_battle_scripts.py`.
+
 ## E12 — shinies drawn on their own (Florges, Vivillon, the Furfrou trims)
 
 For players: shiny Florges, Vivillon, Flabébé, Floette, Furfrou (and its trims), Pyroar, Xerneas, Zeraora, Smoliv,

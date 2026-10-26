@@ -293,7 +293,6 @@ static int Pokemon_GetFormNarcIndex(int monSpecies, int monForm);
 static BOOL Pokemon_IsSovereignRegionalForm(u16 species, int form);
 static const SovereignForm *Pokemon_FindSovereignForm(u16 species, int form);
 static u16 Pokemon_SovereignEvolutionItem(u16 species, int form, u16 item);
-static int Pokemon_SovereignAlcremieForm(u16 sweet, u32 personality);
 static inline int Pokemon_Face(int clientType);
 
 void Pokemon_Init(Pokemon *mon)
@@ -3893,8 +3892,6 @@ u16 Pokemon_GetEvolutionTargetSpecies(Party *party, Pokemon *mon, u8 evoClass, u
 
     case EVO_CLASS_UNUSED_02:
     case EVO_CLASS_BY_ITEM: {
-        u16 usedItem = evoParam;
-
         evoParam = Pokemon_SovereignEvolutionItem(monSpecies, monForm, evoParam); // Sovereign (FM): the Antique teapots, Sweets
 
         for (i = 0; i < MAX_EVOLUTIONS; i++) {
@@ -3932,11 +3929,6 @@ u16 Pokemon_GetEvolutionTargetSpecies(Party *party, Pokemon *mon, u8 evoClass, u
                 && sSovereignItemEvolutionForms[i].targetSpecies == targetSpecies) {
                 *evoTypeResult = EVO_TYPE_SOVEREIGN_FORM | sSovereignItemEvolutionForms[i].targetForm;
             }
-        }
-
-        // Sovereign (FM): Milcery's Sweet picks its Alcremie.
-        if (monSpecies == SPECIES_MILCERY && targetSpecies == SPECIES_ALCREMIE) {
-            *evoTypeResult = EVO_TYPE_SOVEREIGN_FORM | Pokemon_SovereignAlcremieForm(usedItem, Pokemon_GetValue(mon, MON_DATA_PERSONALITY, NULL));
         }
         break;
     }
@@ -5419,13 +5411,6 @@ int Pokemon_SovereignPersonalityForm(u16 species, u32 personality)
         GetCurrentDate(&date);
         return (date.month - 1) % 4;
     }
-    case SPECIES_VIVILLON: {
-        // Its pattern in the official order (Icy Snow 0 ... Poké Ball 19, as for Scatterbug and Spewpa, so it keeps
-        // theirs); Meadow (6) is Vivillon's base form here, and the patterns before it are one form number up.
-        int pattern = personality % 20;
-
-        return pattern == 6 ? 0 : (pattern < 6 ? pattern + 1 : pattern);
-    }
     }
 
     for (int i = 0; i < SOVEREIGN_FORM_COUNT; i++) {
@@ -5455,36 +5440,13 @@ int Pokemon_SovereignPersonalityForm(u16 species, u32 personality)
     return 0;
 }
 
-// Sovereign (FM): the Alcremie a Milcery evolves into with this Sweet. Its decoration is the Sweet's. Its cream comes
-// from the time of day and the personality, as Platinum can't tell how Milcery is spun (Sword and Shield use the
-// spin's direction and length and the time): Rainbow Swirl at twilight; by day Vanilla, Ruby Cream, Mint or Lemon
-// Cream; at night Matcha Cream, Salted Cream, Ruby Swirl or Caramel Swirl. Forms run sweet by sweet (Strawberry,
-// Berry, Love, Star, Clover, Flower, Ribbon), nine creams each (Vanilla Cream ... Rainbow Swirl).
-static int Pokemon_SovereignAlcremieForm(u16 sweet, u32 personality)
-{
-    // Item order Strawberry, Love, Berry, Clover, Flower, Star, Ribbon -> the forms' sweet order.
-    static const u8 sweetIndex[] = { 0, 2, 1, 4, 5, 3, 6 };
-    static const u8 dayCreams[] = { 0, 1, 3, 4 };
-    static const u8 nightCreams[] = { 2, 5, 6, 7 };
-    int cream;
-
-    if (GetTimeOfDay() == TIMEOFDAY_TWILIGHT) {
-        cream = 8;
-    } else if (IsNight()) {
-        cream = nightCreams[personality % 4];
-    } else {
-        cream = dayCreams[personality % 4];
-    }
-
-    return sweetIndex[sweet - ITEM_STRAWBERRY_SWEET] * 9 + cream;
-}
-
 // Sovereign (FM): the item an evolution by item takes for this species and form: an Antique Sinistea evolves with a
 // Chipped Pot and an Artisan Poltchageist with a Masterpiece Teacup, not the usual Cracked Pot and Unremarkable
 // Teacup, as in the official games. Returns the item the species' evolution data names, or ITEM_NONE.
 static u16 Pokemon_SovereignEvolutionItem(u16 species, int form, u16 item)
 {
-    // Any Sweet evolves Milcery (its evolution data names the Strawberry Sweet).
+    // Any Sweet evolves Milcery (its evolution data names the Strawberry Sweet), always into Vanilla Cream Strawberry
+    // Sweet Alcremie: the player only gets the base form (owner, decision 50).
     if (species == SPECIES_MILCERY && item >= ITEM_STRAWBERRY_SWEET && item <= ITEM_RIBBON_SWEET) {
         return ITEM_STRAWBERRY_SWEET;
     }

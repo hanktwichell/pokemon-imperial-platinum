@@ -6930,9 +6930,43 @@ fails. Build `ninja -C build_test pokeplatinum.us.nds` instead. After a rebuild,
 `decomp/generated/battle_script_vars.txt`, `decomp/res/battle/scripts/subscripts/subscript_faint_mon.s`,
 `tools/engine/gen_abilities.py`, `docs/AbilityChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
 
+**Shiny line-up dropped:** the patch is no longer needed. Claude A's CA-0066 already gives each of the 14 shinies a
+sprite of its own. Those are the shinies that PokeAPI and the gen5_9 pack draw 1–3 px away from the normal front, and
+all of them are above CA-0066's 10% mismatch threshold.
+
 **Next 3 steps:**
-1. The shiny line-up PR (Claude A's #161 is merged now): measure the 13 sprite folders and run the sprite check on
-   them.
-2. Item 11's double-battle abilities (the Veils' ally half, Hospitality, Costar, Curious Medicine), with a doubles case
+1. Item 11's double-battle abilities (the Veils' ally half, Hospitality, Costar, Curious Medicine), with a doubles case
    in the test harness.
+2. Ripen and Cheek Pouch for damage-halving Berries; Cheek Pouch for a Berry eaten with Bug Bite or Pluck.
 3. The rest of item 11's list, by how common the ability is on boss teams.
+
+## CA-0067 (Claude A, 2026-10-26): decisions 49 and 50 implemented
+
+**Implemented:**
+- **Decision 49:** Scatterbug and Spewpa have one form each. Their 38 patterns are removed from `gen_forms.py`, along with
+  their form folders and sprites (421 Sovereign forms → 383). Pumpkaboo/Gourgeist were already done.
+- **Decision 50:**
+  - The Vivillon patterns and the Flabébé line's flower colors are `SOVEREIGN_FORM_REGIONAL` now: only trainer data
+    sets them, so the player's are Meadow and Red.
+  - Milcery always evolves into the base Alcremie (`Pokemon_SovereignAlcremieForm` removed).
+  - The Fight Area deliveryman's list is down to 9: the costume and cap Pikachu are gone; Partner Pikachu, Eternal
+    Floette and the rest stay. The Furfrou groomer stays.
+
+**For Claude B:**
+- `sSovereignForms` indices shifted, because forms were removed, so regenerate anything that stores an index.
+- Spiky-eared Pichu's event-gift bit moved from 22 to 8.
+- A trainer can still use any Vivillon/Flabébé-line/Alcremie/Pikachu form via its party's form field.
+- Not on item 11's Pledges/Ally Switch yet.
+
+**Files modified:** `tools/engine/gen_forms.py`, `decomp/src/pokemon.c`, `decomp/src/scrcmd.c`,
+`decomp/res/field/scripts/scripts_fight_area_pokecenter_1f.s`, `decomp/res/text/fight_area_pokecenter_1f.json`,
+`decomp/include/constants/sovereign_forms.h`, `decomp/include/data/sovereign_forms.h`,
+`decomp/include/data/sovereign_form_sprites.h`, `decomp/tools/dataproc/src/sovereign_forms.inc`,
+`decomp/res/pokemon/{scatterbug,spewpa}/` (forms removed), `decomp/res/pokemon/{flabebe,floette}/forms/*/data.json`,
+`decomp/res/pokemon/sovereign_form_sprites/`, `assets/sprites/packs/pokeapi_fronts/forms/` (38 removed),
+`docs/ProjectStatus.md`, `docs/BattleSpriteStatus.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Mega Zygarde's front (no PokeAPI sprite).
+2. Form backs and the forms' y offsets.
+3. Redo the party/box icons (decision 45), Chien-Pao first.
