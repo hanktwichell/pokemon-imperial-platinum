@@ -7000,3 +7000,31 @@ all of them are above CA-0066's 10% mismatch threshold.
 2. Item 11's double-battle abilities (the Veils' ally half, Hospitality, Costar, Curious Medicine), with a doubles case
    in the test harness.
 3. Ripen and Cheek Pouch for damage-halving Berries; Cheek Pouch for a Berry eaten with Bug Bite or Pluck.
+
+## CB-0153 — 2026-10-26, 4:35 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Merged:** PR #169: Gorilla Tactics, Guard Dog, Mycelium Might, Overcoat and Infiltrator in full.
+
+**Implemented: held items, part 1.** The Veilstone store sold 38 Gen V+ held items, and most did nothing in battle.
+- New `docs/HeldItemChecklist.md`: each of those items and whether it works yet.
+- Now working: Eviolite, Assault Vest, Rocky Helmet, Heavy-Duty Boots, Safety Goggles, Covert Cloak, Clear Amulet.
+- The new items have no hold effect constant, so the code checks the item ID with `Battler_HeldItem`. That respects
+  Klutz, Embargo and Magic Room.
+- Checked in harness battles with control cases (damage compared from the same save state).
+- Heavy-Duty Boots wasn't run: the harness player has one Pokémon, so it never switches in onto hazards.
+
+**Files modified:** `decomp/src/battle/battle_lib.c`, `decomp/src/battle/battle_controller_player.c`,
+`decomp/src/battle/battle_script.c`, `decomp/src/pokemon.c`, `decomp/include/pokemon.h`,
+`decomp/include/battle/battle_lib.h`, `decomp/include/constants/battle.h`, `decomp/res/text/battle_strings.json`,
+`decomp/res/battle/scripts/subscripts/subscript_sovereign_rocky_helmet.s` (new) and its three registrations
+(`meson.build`, `sub_seq.order`, `generated/battle_subscripts.txt`), `docs/HeldItemChecklist.md` (new),
+`docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Held items, part 2:
+   - Weakness Policy, Air Balloon, Throat Spray, Blunder Policy.
+   - Absorb Bulb, Cell Battery, Luminous Moss and Snowball.
+   - Room Service, Adrenaline Orb, Float Stone, Binding Band, Loaded Dice, Ring Target, Utility Umbrella, the Gems.
+2. Held items, part 3, the ones that switch Pokémon: Eject Button, Eject Pack, Red Card. Also a two-Pokémon case in
+   the harness, which would test Heavy-Duty Boots too.
+3. Item 11's double-battle abilities, with a doubles case in the harness.

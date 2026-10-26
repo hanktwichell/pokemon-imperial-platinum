@@ -4,6 +4,49 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): held items, part 1
+
+For players: Eviolite, Assault Vest, Rocky Helmet, Heavy-Duty Boots, Safety Goggles, Covert Cloak and Clear Amulet now
+work. The Veilstone Dept. Store sells them. Before this, they did nothing. The new
+`docs/HeldItemChecklist.md` lists every held item the store sells and whether it works yet.
+
+- **Eviolite:** the holder's Defense and Sp. Def ×1.5 while it can still evolve.
+  - `Pokemon_SovereignCanEvolve` reads the species' evolutions. A regional form uses its own (as
+    `Pokemon_GetEvolutionTargetSpecies` does). Megas and other battle forms never evolve.
+- **Assault Vest:**
+  - Sp. Def ×1.5.
+  - Status moves can't be selected: "The Assault Vest prevents status moves from being used!"
+    (`CHECK_INVALID_ASSAULT_VEST`). The trainer AI uses the same check.
+- **Rocky Helmet:** an attacker that makes contact loses 1/6 of its max HP.
+  - It happens after each hit, after the target's on-hit Ability (Iron Barbs, Rough Skin), and even as the holder
+    faints. It is a new step after each hit: `ONE_HIT_`/`MULTI_HIT_SOVEREIGN_ROCKY_HELMET`, with
+    `subscript_sovereign_rocky_helmet`.
+  - Not through a Substitute, not with Magic Guard, and not with Protective Pads, which makes the move non-contact.
+- **Heavy-Duty Boots:** no Stealth Rock, Spikes, Toxic Spikes or Sticky Web on entry. A grounded Poison type wearing
+  them still takes the Toxic Spikes away.
+- **Safety Goggles:** powder moves and Effect Spore don't affect the holder (`Battler_SovereignPowderImmune`), and
+  neither does sandstorm damage.
+- **Covert Cloak:** another Pokémon's move can't give the holder its chance effect, as with Shield Dust
+  (`BattleSystem_TriggerSecondaryEffect`).
+- **Clear Amulet:** another Pokémon's move or Ability (Intimidate) can't lower the holder's stats: "{0}'s Clear Amulet
+  prevents stat loss!".
+- **Gorilla Tactics:** its message now waits for a button, as the Choice item one does.
+- `Sovereign_MakesContact` is no longer static, so the controller can use it.
+
+**Verification:** `tools/test/check_battle_scripts.py` passes. Harness wild battles against a Lv. 100 Ninjask, each
+with a control case. Damage is compared from the same save state, so the random rolls are the same:
+- **Eviolite:** Porygon2 takes 40 from Tackle with it, 58 without. Porygon-Z, fully evolved, takes 67 either way.
+- **Assault Vest:** Snorlax takes 85 from Bug Buzz with it, 127 without. Picking Swords Dance shows the message, and
+  it uses Play Rough instead.
+- **Rocky Helmet:** Ferrothorn is hit by Tackle: "FERROTHORN's Iron Barbs hurt the wild NINJASK!", then "The wild
+  NINJASK is hurt by FERROTHORN's Rocky Helmet!". When Iron Barbs knocks the Ninjask out, the Helmet stays quiet.
+  Double Hit on a Snorlax: the Helmet message after each hit.
+- **Safety Goggles:** Spore: "It doesn't affect GARCHOMP…". In a sandstorm, only the Ninjask is buffeted; without the
+  goggles, Pikachu is too.
+- **Covert Cloak:** Nuzzle never paralyzes Snorlax; without the cloak, "SNORLAX is paralyzed!".
+- **Clear Amulet:** Screech: "SNORLAX's Clear Amulet prevents stat loss!"; without it, "Defense harshly fell!".
+- **Heavy-Duty Boots:** not run. The harness's player has one Pokémon, so it never switches in onto hazards.
+
 ## Item 11 (effect fidelity): Gorilla Tactics, Guard Dog, Mycelium Might, Overcoat and Infiltrator in full
 
 For players: five abilities that only partly worked now work fully. Since Gen VI, Grass types also can't be affected by
