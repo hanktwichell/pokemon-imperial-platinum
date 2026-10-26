@@ -4,6 +4,35 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Battle sprites: no more scrambled sprites; truer shinies
+
+For players: Samurott's front, Hisuian Samurott's front and Talonflame's back no longer come out as noise in battle.
+Shiny Pokémon #494–1025 look more like their real shinies.
+
+- **Scrambled sprites:**
+  - The game unscrambles each battle sprite with a key it reads from its first four pixels
+    (`PokemonSprite_DecryptPt`), which works only if they're clear. Art that reached the top-left corner made the
+    whole sprite noise.
+  - `tools/sprites/convert_battle_sprites.py` and `convert_form_sprites.py` now clear those pixels: 1 for each
+    Samurott, 2 for Talonflame.
+  - The new CI check `tools/test/check_battle_sprites.py` keeps it that way. It checks all 4,308 battle sprites,
+    forms included.
+- **Shiny palettes**, in both converters:
+  - **Line-up:** a shiny drawn a pixel or two off from its normal sprite is lined up before its colours are read.
+  - **Split colours:** where one normal colour becomes two shiny colours, a spare palette entry, if the palette has
+    one, takes the second. Scatterbug's antennae, for example.
+  - **Rounding:** colours are matched and counted as the DS stores them, 5 bits a channel. A pixel used to go to
+    the nearest colour by its 8-bit value, which could be one DS step off; Heliolisk's back had a band of the wrong
+    yellow.
+- **Results:**
+  - Shiny fronts that match their source exactly went from 437 of 532 to 504, and shiny backs from 446 to 526. None
+    got worse.
+  - Every normal sprite that wasn't scaled now matches its source exactly, except 4 that have more than 15 colours.
+  - `docs/BattleSpriteImport.md` gives each shiny's match (**Shiny**).
+- **Still approximate:** the shinies that PokeAPI draws apart from their fronts (Flabébé, Floette, Florges, Vivillon,
+  Smoliv, Toedscruel). See `docs/SpriteReview.md`.
+
+
 ## Playtest pass — the new battle sprites seen in battle
 
 - **`tools/test/sprite_check.py`:** a wild battle against each of #494–1025, with the same species as the player's
