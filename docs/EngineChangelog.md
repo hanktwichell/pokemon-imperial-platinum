@@ -4,6 +4,29 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Playtest pass — the object test checks it ran the object's own script
+
+The last object run showed that `tools/test/talk_to_objects.py` counted any script as the object's. Now:
+- **The object's own script:** after the A press, the first script the field starts (`gSovereignTestScripts`) must
+  be the object's own: its script, or for a trainer its battle's.
+- **A trainer who sees the player first** walks up and battles, as for a player. Then the test warps back to the
+  tile, facing the object, and talks once more.
+- **STANDIN:** another object answered from the object's tile, so the object is hidden on a new game. That passes,
+  as NOSCRIPT does. It is an object placed on the same tile, or any object the second time. On a new game:
+  - Pokémon Mansion's west and far-east maids stand on the tiles of two of Team Galactic's grunts until the siege.
+  - Cresselia stands on the Lati rock's tile until she's caught. The rock comes after that, with the Lunar Wing.
+  - Route 210 North's Double Team walk onto hidden Zamazenta's tile.
+- **OTHER:** any other script, twice in a row. It fails, with a screenshot.
+- **No input on a warp until a script starts:** an A press meant for a scene on entering the map could talk to the
+  object as the warp ended. At Snowpoint's temple that started the guards' challenge, and their battle removed Aran
+  before the test's own A press.
+- **The clock reads noon** (`gSovereignTestClock`) in every test that comes in through `arrive()`: the object, sign
+  and trigger, gift and wild-form tests. Results no longer change with the time of day, as when Route 212's
+  policemen came out at night and saw the player.
+
+**Results:** RESULTS
+
+
 ## Playtest pass — the Trainers' School Egg, and heap checks in every harness
 
 - **The Trainers' School Egg:** the gift test (`tools/test/gift_pokemon.py`) now also covers the Cowgirl's Egg, for
