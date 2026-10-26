@@ -76,47 +76,53 @@ def opaque(im):
     return [p[:3] for p in im.get_flattened_data() if p[3] >= 128]
 
 
-def build_palette(images):
-    """15 colours for the opaque pixels of every image (front and back share the palette)."""
-    px = []
-    for im in images:
-        px += opaque(im)
-    colours = Counter(px)
-    if len(colours) <= 15:
-        pal = [c for c, _ in colours.most_common()]
-    else:
-        strip = Image.new("RGB", (len(px), 1))
-        strip.putdata(px)
-        q = strip.quantize(15, method=Image.Quantize.MEDIANCUT)
-        flat = q.getpalette()[:45]
-        pal = [tuple(flat[i:i + 3]) for i in range(0, 45, 3)]
-    pal = [(r & 0xF8, g & 0xF8, b & 0xF8) for r, g, b in pal]  # the DS stores 5 bits per channel
-    while len(pal) < 15:
-        pal.append((0, 0, 0))
-    return pal, len(colours)
+def paired_palettes(pairs):
+    """One 15-colour palette and its shiny for a set of (normal, shiny or None) frames, chosen from the colour pairs.
 
+    Each opaque pixel is a pair (its normal colour, its shiny colour), so two places that share a normal colour but
+    differ in the shiny (Alolan Meowth's eyes and body) get colour slots of their own. With more than 15 pairs, they
+    are grouped by k-means. Returns (palette, shiny palette, indexed frames, number of normal colours).
+    """
+    def five(p):
+        return (p[0] & 0xF8, p[1] & 0xF8, p[2] & 0xF8)
 
-def nearest(c, pal, cache):
-    if c not in cache:
-        cache[c] = 1 + min(range(15), key=lambda i: sum((a - b) ** 2 for a, b in zip(c, pal[i])))
-    return cache[c]
+    keyed, counts = [], Counter()
+    for normal, shiny in pairs:
+        sh = shiny.get_flattened_data() if shiny is not None else None
+        keys = []
+        for j, p in enumerate(normal.get_flattened_data()):
+            if p[3] < 128:
+                keys.append(None)
+                continue
+            n = five(p)
+            s = five(sh[j]) if sh is not None and sh[j][3] >= 128 else n
+            keys.append(n + s)
+            counts[n + s] += 1
+        keyed.append(keys)
+    ncol = len({k[:3] for k in counts})
 
+    def dist(a, b):
+        return 2 * sum((x - y) ** 2 for x, y in zip(a[:3], b[:3])) + sum((x - y) ** 2 for x, y in zip(a[3:], b[3:]))
 
-def index_image(im, pal):
-    cache = {}
-    out = Image.new("P", (80, 80), 0)
-    out.putdata([0 if p[3] < 128 else nearest(p[:3], pal, cache) for p in im.get_flattened_data()])
-    return out
-
-
-def shiny_palette(indexed, shinies, pal):
-    """Each index's shiny colour: what the shiny sprite most often has where the normal sprite uses it."""
-    votes = defaultdict(Counter)
-    for idx_im, sh in zip(indexed, shinies):
-        for i, p in zip(idx_im.get_flattened_data(), sh.get_flattened_data()):
-            if i and p[3] >= 128:
-                votes[i][(p[0] & 0xF8, p[1] & 0xF8, p[2] & 0xF8)] += 1
-    return [votes[i].most_common(1)[0][0] if votes[i] else pal[i - 1] for i in range(1, 16)]
+    centers = [k for k, _ in counts.most_common(15)]
+    if len(counts) > 15:
+        for _ in range(12):
+            groups = defaultdict(list)
+            for k, c in counts.items():
+                groups[min(range(len(centers)), key=lambda i: dist(k, centers[i]))].append((k, c))
+            for i, members in groups.items():
+                w = sum(c for _, c in members)
+                centers[i] = tuple(round(sum(k[d] * c for k, c in members) / w) for d in range(6))
+        centers = [tuple(v & 0xF8 for v in c) for c in centers]
+    slot = {k: 1 + min(range(len(centers)), key=lambda i: dist(k, centers[i])) for k in counts}
+    indexed = []
+    for keys in keyed:
+        out = Image.new("P", (80, 80), 0)
+        out.putdata([0 if k is None else slot[k] for k in keys])
+        indexed.append(out)
+    pal = [c[:3] for c in centers] + [(0, 0, 0)] * (15 - len(centers))
+    spal = [c[3:] for c in centers] + [(0, 0, 0)] * (15 - len(centers))
+    return pal, spal, indexed, ncol
 
 
 def write_pal(path, transparent, pal):
@@ -186,12 +192,10 @@ def main():
         pals, spals, indexed, ncol = {}, {}, {}, {}
         for face in ("front", "back"):
             group = [face] + (["female_front"] if face == "front" and "female_front" in frames else [])
-            pals[face], ncol[face] = build_palette([frames[g] for g in group])
-            for g in group:
-                indexed[g] = index_image(frames[g], pals[face])
-            pairs = [(indexed[g], frames[k]) for g, k in ((face, f"shiny_{face}"), ("female_front", "female_shiny_front"))
-                     if g in group and k in frames]
-            spals[face] = shiny_palette([a for a, _ in pairs], [b for _, b in pairs], pals[face]) if pairs else list(pals[face])
+            shiny_of = {face: f"shiny_{face}", "female_front": "female_shiny_front"}
+            pals[face], spals[face], images, ncol[face] = paired_palettes(
+                [(frames[g], frames.get(shiny_of[g])) for g in group])
+            indexed.update(zip(group, images))
             if f"shiny_{face}" not in frames:
                 notes.append(f"no shiny {face}")
         # Shiny sprites whose shape doesn't match the normal one (a different pose or crop).

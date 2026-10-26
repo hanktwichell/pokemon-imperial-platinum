@@ -162,7 +162,7 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 649 | Genesect | converted | 14 / 13 | yes |  |
 | 650 | Chespin | converted | 11 / 10 | yes |  |
 | 651 | Quilladin | converted | 14 / 12 | yes |  |
-| 652 | Chesnaught | converted | 15 / 14 | yes | front scaled to 89% |
+| 652 | Chesnaught | converted | 14 / 13 | yes | front scaled to 89% |
 | 653 | Fennekin | converted | 11 / 10 | yes |  |
 | 654 | Braixen | converted | 13 / 12 | yes |  |
 | 655 | Delphox | converted | 15 / 14 | yes | front scaled to 90% |
@@ -174,16 +174,16 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 661 | Fletchling | converted | 11 / 13 | yes |  |
 | 662 | Fletchinder | converted | 14 / 13 | yes |  |
 | 663 | Talonflame | converted | 11 / 11 | yes | front scaled to 89%; back scaled to 88% |
-| 664 | Scatterbug | converted | 12 / 10 | yes |  |
-| 665 | Spewpa | converted | 15 / 12 | yes |  |
+| 664 | Scatterbug | converted | 10 / 8 | yes |  |
+| 665 | Spewpa | converted | 13 / 12 | yes |  |
 | 666 | Vivillon | converted | 19 / 14 | yes | shiny front doesn't line up (43% of pixels) |
 | 667 | Litleo | converted | 11 / 9 | yes |  |
-| 668 | Pyroar | converted | 27 / 13 | yes | shiny front doesn't line up (28% of pixels) |
+| 668 | Pyroar | converted | 26 / 13 | yes | shiny front doesn't line up (28% of pixels) |
 | 669 | Flabébé | converted | 13 / 14 | yes | shiny front doesn't line up (47% of pixels) |
 | 670 | Floette | converted | 13 / 14 | yes | shiny front doesn't line up (75% of pixels) |
 | 671 | Florges | converted | 15 / 15 | yes | shiny front doesn't line up (48% of pixels) |
 | 672 | Skiddo | converted | 14 / 14 | yes |  |
-| 673 | Gogoat | converted | 14 / 15 | yes |  |
+| 673 | Gogoat | converted | 14 / 14 | yes |  |
 | 674 | Pancham | converted | 10 / 8 | yes |  |
 | 675 | Pangoro | converted | 10 / 9 | yes |  |
 | 676 | Furfrou | converted | 9 / 9 | yes | shiny front doesn't line up (16% of pixels) |
@@ -208,7 +208,7 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 695 | Heliolisk | converted | 15 / 13 | yes |  |
 | 696 | Tyrunt | converted | 10 / 10 | yes |  |
 | 697 | Tyrantrum | converted | 12 / 12 | yes | front scaled to 87%; back scaled to 87% |
-| 698 | Amaura | converted | 13 / 12 | yes |  |
+| 698 | Amaura | converted | 12 / 12 | yes |  |
 | 699 | Aurorus | converted | 15 / 18 | yes | front scaled to 93% |
 | 700 | Sylveon | converted | 12 / 11 | yes |  |
 | 701 | Hawlucha | converted | 15 / 15 | yes |  |
@@ -227,7 +227,7 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 714 | Noibat | converted | 12 / 11 | yes |  |
 | 715 | Noivern | converted | 15 / 13 | yes | front scaled to 83% |
 | 716 | Xerneas | converted | 9 / 8 | yes | front scaled to 83% |
-| 717 | Yveltal | converted | 14 / 12 | yes | front scaled to 83% |
+| 717 | Yveltal | converted | 13 / 12 | yes | front scaled to 83% |
 | 718 | Zygarde | converted | 10 / 9 | yes | front scaled to 91% |
 | 719 | Diancie | converted | 14 / 12 | yes |  |
 | 720 | Hoopa | converted | 15 / 14 | yes |  |
@@ -244,7 +244,7 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 731 | Pikipek | converted | 8 / 7 | yes |  |
 | 732 | Trumbeak | converted | 14 / 14 | yes |  |
 | 733 | Toucannon | converted | 12 / 12 | yes |  |
-| 734 | Yungoos | converted | 13 / 8 | yes |  |
+| 734 | Yungoos | converted | 12 / 8 | yes |  |
 | 735 | Gumshoos | converted | 13 / 9 | yes |  |
 | 736 | Grubbin | converted | 12 / 10 | yes |  |
 | 737 | Charjabug | converted | 13 / 8 | yes |  |
@@ -272,11 +272,11 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 759 | Stufful | converted | 12 / 11 | yes |  |
 | 760 | Bewear | converted | 10 / 10 | yes |  |
 | 761 | Bounsweet | converted | 11 / 10 | yes |  |
-| 762 | Steenee | converted | 14 / 12 | yes |  |
-| 763 | Tsareena | converted | 15 / 13 | yes |  |
+| 762 | Steenee | converted | 13 / 12 | yes |  |
+| 763 | Tsareena | converted | 14 / 13 | yes |  |
 | 764 | Comfey | converted | 15 / 14 | yes |  |
-| 765 | Oranguru | converted | 15 / 14 | yes |  |
-| 766 | Passimian | converted | 15 / 12 | yes |  |
+| 765 | Oranguru | converted | 14 / 14 | yes |  |
+| 766 | Passimian | converted | 13 / 10 | yes |  |
 | 767 | Wimpod | converted | 11 / 9 | yes |  |
 | 768 | Golisopod | converted | 13 / 14 | yes | front scaled to 99% |
 | 769 | Sandygast | converted | 10 / 10 | yes |  |
@@ -302,33 +302,33 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 789 | Cosmog | converted | 15 / 14 | yes |  |
 | 790 | Cosmoem | converted | 14 / 13 | yes |  |
 | 791 | Solgaleo | converted | 15 / 14 | yes | front scaled to 94% |
-| 792 | Lunala | converted | 15 / 12 | yes | front scaled to 91% |
+| 792 | Lunala | converted | 14 / 12 | yes | front scaled to 91% |
 | 793 | Nihilego | converted | 9 / 9 | yes |  |
 | 794 | Buzzwole | converted | 15 / 15 | yes | front scaled to 83%; back scaled to 83% |
 | 795 | Pheromosa | converted | 15 / 11 | yes | front scaled to 87%; back scaled to 87% |
 | 796 | Xurkitree | converted | 14 / 15 | yes | front scaled to 83%; back scaled to 84% |
 | 797 | Celesteela | converted | 12 / 12 | yes | front scaled to 83%; back scaled to 83% |
-| 798 | Kartana | converted | 14 / 12 | yes |  |
-| 799 | Guzzlord | converted | 13 / 8 | yes | front scaled to 83%; back scaled to 83% |
+| 798 | Kartana | converted | 13 / 12 | yes |  |
+| 799 | Guzzlord | converted | 13 / 7 | yes | front scaled to 83%; back scaled to 83% |
 | 800 | Necrozma | converted | 11 / 8 | yes | front scaled to 92% |
 | 801 | Magearna | converted | 15 / 13 | yes |  |
 | 802 | Marshadow | converted | 10 / 4 | yes |  |
 | 803 | Poipole | converted | 13 / 10 | yes |  |
 | 804 | Naganadel | converted | 14 / 14 | yes | front scaled to 92%; back scaled to 92% |
-| 805 | Stakataka | converted | 12 / 10 | yes | front scaled to 85%; back scaled to 85% |
+| 805 | Stakataka | converted | 11 / 9 | yes | front scaled to 85%; back scaled to 85% |
 | 806 | Blacephalon | converted | 13 / 14 | yes |  |
 | 807 | Zeraora | converted | 12 / 12 | yes | shiny front doesn't line up (18% of pixels) |
 | 808 | Meltan | converted | 15 / 14 | yes |  |
 | 809 | Melmetal | converted | 14 / 9 | yes | front scaled to 83% |
 | 810 | Grookey | converted | 15 / 10 | yes |  |
 | 811 | Thwackey | converted | 15 / 12 | yes |  |
-| 812 | Rillaboom | converted | 15 / 32 | yes | front scaled to 99% |
+| 812 | Rillaboom | converted | 15 / 13 | yes | front scaled to 99% |
 | 813 | Scorbunny | converted | 12 / 8 | yes |  |
 | 814 | Raboot | converted | 13 / 10 | yes |  |
-| 815 | Cinderace | converted | 14 / 13 | yes |  |
+| 815 | Cinderace | converted | 13 / 13 | yes |  |
 | 816 | Sobble | converted | 14 / 9 | yes |  |
 | 817 | Drizzile | converted | 14 / 14 | yes |  |
-| 818 | Inteleon | converted | 15 / 13 | yes |  |
+| 818 | Inteleon | converted | 14 / 13 | yes |  |
 | 819 | Skwovet | converted | 12 / 9 | yes |  |
 | 820 | Greedent | converted | 14 / 7 | yes |  |
 | 821 | Rookidee | converted | 15 / 10 | yes |  |
@@ -339,13 +339,13 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 826 | Orbeetle | converted | 15 / 8 | yes |  |
 | 827 | Nickit | converted | 10 / 8 | yes |  |
 | 828 | Thievul | converted | 12 / 11 | yes | front scaled to 99%; back scaled to 99% |
-| 829 | Gossifleur | converted | 15 / 11 | yes |  |
+| 829 | Gossifleur | converted | 14 / 11 | yes |  |
 | 830 | Eldegoss | converted | 14 / 8 | yes |  |
 | 831 | Wooloo | converted | 15 / 14 | yes |  |
 | 832 | Dubwool | converted | 15 / 12 | yes |  |
 | 833 | Chewtle | converted | 15 / 14 | yes |  |
 | 834 | Drednaw | converted | 15 / 15 | yes |  |
-| 835 | Yamper | converted | 15 / 12 | yes |  |
+| 835 | Yamper | converted | 14 / 12 | yes |  |
 | 836 | Boltund | converted | 15 / 12 | yes |  |
 | 837 | Rolycoly | converted | 13 / 8 | yes |  |
 | 838 | Carkol | converted | 13 / 10 | yes |  |
@@ -374,12 +374,12 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 861 | Grimmsnarl | converted | 14 / 8 | yes | front scaled to 96% |
 | 862 | Obstagoon | converted | 13 / 13 | yes |  |
 | 863 | Perrserker | converted | 14 / 10 | yes |  |
-| 864 | Cursola | converted | 15 / 10 | yes | front scaled to 92%; back scaled to 93% |
-| 865 | Sirfetch’d | converted | 15 / 14 | yes | front scaled to 85%; back scaled to 86% |
+| 864 | Cursola | converted | 14 / 9 | yes | front scaled to 92%; back scaled to 93% |
+| 865 | Sirfetch’d | converted | 14 / 13 | yes | front scaled to 85%; back scaled to 86% |
 | 866 | Mr. Rime | converted | 15 / 9 | yes |  |
 | 867 | Runerigus | converted | 9 / 6 | yes | front scaled to 86%; back scaled to 90% |
 | 868 | Milcery | converted | 7 / 5 | yes |  |
-| 869 | Alcremie | converted | 14 / 12 | yes |  |
+| 869 | Alcremie | converted | 11 / 10 | yes |  |
 | 870 | Falinks | converted | 12 / 11 | yes | front scaled to 99% |
 | 871 | Pincurchin | converted | 11 / 11 | yes |  |
 | 872 | Snom | converted | 9 / 8 | yes |  |
@@ -392,7 +392,7 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 879 | Copperajah | converted | 14 / 13 | yes |  |
 | 880 | Dracozolt | converted | 15 / 12 | yes | back scaled to 89% |
 | 881 | Arctozolt | converted | 14 / 13 | yes | front scaled to 99% |
-| 882 | Dracovish | converted | 15 / 13 | yes | front scaled to 98% |
+| 882 | Dracovish | converted | 14 / 13 | yes | front scaled to 98% |
 | 883 | Arctovish | converted | 13 / 12 | yes |  |
 | 884 | Duraludon | converted | 14 / 13 | yes |  |
 | 885 | Dreepy | converted | 13 / 11 | yes |  |
@@ -401,8 +401,8 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 888 | Zacian | converted | 12 / 13 | yes | front scaled to 98% |
 | 889 | Zamazenta | converted | 12 / 12 | yes | front scaled to 89% |
 | 890 | Eternatus | converted | 15 / 8 | yes | front scaled to 89% |
-| 891 | Kubfu | converted | 14 / 9 | yes |  |
-| 892 | Urshifu | converted | 14 / 13 | yes | front scaled to 98% |
+| 891 | Kubfu | converted | 13 / 9 | yes |  |
+| 892 | Urshifu | converted | 13 / 13 | yes | front scaled to 98% |
 | 893 | Zarude | converted | 15 / 8 | yes | front scaled to 92% |
 | 894 | Regieleki | converted | 11 / 10 | yes | front scaled to 86%; back scaled to 86% |
 | 895 | Regidrago | converted | 14 / 11 | yes |  |
@@ -426,13 +426,13 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 913 | Quaxwell | converted | 15 / 15 | yes |  |
 | 914 | Quaquaval | converted | 15 / 15 | yes |  |
 | 915 | Lechonk | converted | 13 / 14 | yes |  |
-| 916 | Oinkologne | converted | 15 / 11 | yes |  |
+| 916 | Oinkologne | converted | 13 / 11 | yes |  |
 | 917 | Tarountula | converted | 14 / 12 | yes |  |
 | 918 | Spidops | converted | 15 / 10 | yes |  |
 | 919 | Nymble | converted | 10 / 10 | yes |  |
 | 920 | Lokix | converted | 13 / 13 | yes |  |
 | 921 | Pawmi | converted | 14 / 10 | yes |  |
-| 922 | Pawmo | converted | 14 / 9 | yes |  |
+| 922 | Pawmo | converted | 13 / 9 | yes |  |
 | 923 | Pawmot | converted | 12 / 7 | yes |  |
 | 924 | Tandemaus | converted | 8 / 8 | yes |  |
 | 925 | Maushold | converted | 8 / 8 | yes |  |
@@ -469,13 +469,13 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 956 | Espathra | converted | 15 / 12 | yes |  |
 | 957 | Tinkatink | converted | 15 / 12 | yes |  |
 | 958 | Tinkatuff | converted | 15 / 14 | yes |  |
-| 959 | Tinkaton | converted | 15 / 12 | yes |  |
+| 959 | Tinkaton | converted | 14 / 12 | yes |  |
 | 960 | Wiglett | converted | 12 / 9 | yes |  |
-| 961 | Wugtrio | converted | 15 / 10 | yes |  |
+| 961 | Wugtrio | converted | 14 / 10 | yes |  |
 | 962 | Bombirdier | converted | 14 / 11 | yes |  |
 | 963 | Finizen | converted | 14 / 9 | yes |  |
 | 964 | Palafin | converted | 15 / 10 | yes |  |
-| 965 | Varoom | converted | 14 / 15 | yes |  |
+| 965 | Varoom | converted | 14 / 14 | yes |  |
 | 966 | Revavroom | converted | 14 / 10 | yes |  |
 | 967 | Cyclizar | converted | 15 / 13 | yes |  |
 | 968 | Orthworm | converted | 13 / 13 | yes |  |
@@ -488,8 +488,8 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 975 | Cetitan | converted | 12 / 10 | yes | front scaled to 85% |
 | 976 | Veluza | converted | 14 / 13 | yes |  |
 | 977 | Dondozo | converted | 14 / 9 | yes | front scaled to 91% |
-| 978 | Tatsugiri | converted | 14 / 11 | yes |  |
-| 979 | Annihilape | converted | 15 / 9 | yes |  |
+| 978 | Tatsugiri | converted | 13 / 11 | yes |  |
+| 979 | Annihilape | converted | 14 / 8 | yes |  |
 | 980 | Clodsire | converted | 8 / 8 | yes |  |
 | 981 | Farigiraf | converted | 15 / 13 | yes | front scaled to 94% |
 | 982 | Dudunsparce | converted | 14 / 12 | yes |  |
@@ -500,12 +500,12 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 987 | Flutter Mane | converted | 14 / 14 | yes |  |
 | 988 | Slither Wing | converted | 15 / 14 | yes | front scaled to 94% |
 | 989 | Sandy Shocks | converted | 15 / 14 | yes | front scaled to 99% |
-| 990 | Iron Treads | converted | 15 / 11 | yes |  |
+| 990 | Iron Treads | converted | 13 / 11 | yes |  |
 | 991 | Iron Bundle | converted | 15 / 14 | yes |  |
 | 992 | Iron Hands | converted | 15 / 14 | yes | front scaled to 90% |
 | 993 | Iron Jugulis | converted | 15 / 6 | yes | front scaled to 99% |
 | 994 | Iron Moth | converted | 15 / 10 | yes | front scaled to 87% |
-| 995 | Iron Thorns | converted | 13 / 10 | yes |  |
+| 995 | Iron Thorns | converted | 12 / 10 | yes |  |
 | 996 | Frigibax | converted | 14 / 12 | yes |  |
 | 997 | Arctibax | converted | 14 / 10 | yes |  |
 | 998 | Baxcalibur | converted | 12 / 9 | yes |  |

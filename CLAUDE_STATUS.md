@@ -6608,3 +6608,20 @@ forms still map to their own sprite.
 1. Check a female Hisuian Sneasel and a few forms in battle.
 2. Form backs (Megas first) and the forms' y offsets.
 3. Redo the added party/box icons (decision 45) as art arrives.
+
+## CA-0063 (Claude A, 2026-10-26): shiny palettes from colour pairs
+
+**Implemented (owner: Alolan Meowth's shiny front looked wrong):** `paired_palettes` in
+`tools/sprites/convert_battle_sprites.py` picks the 15 slots from (normal, shiny) colour pairs, used by both
+converters; #494–1025 and all 369 form sprites were reconverted. Alolan Meowth's shiny now matches PokeAPI's. Release
+build and boot smoke test pass.
+
+**Files modified:** `tools/sprites/convert_battle_sprites.py`, `tools/sprites/convert_form_sprites.py`,
+`decomp/res/pokemon/` (palettes and pngs of #494–1025 and `sovereign_form_sprites/`), `docs/BattleSpriteImport.md`,
+`docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Shinies PokeAPI draws differently from the front (Galarian Darumaka, Pumpkaboo/Gourgeist sizes, Vivillon, the
+   Flabébé line) need a matching shiny drawn, or the owner's call.
+2. Check a few shinies in battle.
+3. Form backs and the forms' y offsets.

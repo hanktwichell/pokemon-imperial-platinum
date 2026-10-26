@@ -21,7 +21,7 @@ import shutil
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from convert_battle_sprites import build_palette, cut, index_image, shiny_palette, two_frames, window, write_pal  # noqa: E402
+from convert_battle_sprites import cut, paired_palettes, two_frames, window, write_pal  # noqa: E402
 from PIL import Image  # noqa: E402
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
@@ -52,13 +52,12 @@ def main():
         im = Image.open(front_png).convert("RGBA")
         box, scale = window(im)
         front = cut(im, box, scale)
-        pal, ncol = build_palette([front])
-        indexed = index_image(front, pal)
-        spal = list(pal)
+        shiny = None
         if os.path.exists(shiny_png):
             sh = Image.open(shiny_png).convert("RGBA")
             if sh.size == im.size:
-                spal = shiny_palette([indexed], [cut(sh, box, scale)], pal)
+                shiny = cut(sh, box, scale)
+        pal, spal, (indexed,), ncol = paired_palettes([(front, shiny)])
         folder = f"{len(order):03}-{folder}"
         out = os.path.join(OUT, folder)
         os.makedirs(out)

@@ -18,6 +18,19 @@ players and the verification that was run.
   through `tools/sprites/smogon_credits.py`, which `tools/regenerate_docs.sh` runs. `CITATIONS.md` names the 36
   spriters.
 
+## E12 — shiny colours chosen with the normal ones
+
+For players: shinies of the new species and forms match their source more closely (Alolan Meowth's blue eyes, for
+one, had come out purple).
+
+- `convert_battle_sprites.paired_palettes` chooses each sprite's 15 colour slots from the (normal, shiny) colour
+  pairs of its pixels, so two places with one normal colour but different shiny colours get slots of their own;
+  more than 15 pairs are grouped by k-means. Before, the slots came from the normal colours alone and each slot's
+  shiny colour was a majority vote. Both converters use it.
+- Still approximate: PokeAPI shinies that don't line up with their fronts (Galarian Darumaka, Pumpkaboo and Gourgeist
+  sizes, Vivillon and the Flabébé line) and art with far more than 15 colour pairs (Kabuki Furfrou).
+- Verification: release build and boot smoke test pass; Alolan Meowth's shiny now matches PokeAPI's pixel for pixel.
+
 ## E12 — Sovereign's forms get their own front sprites
 
 For players: 368 forms (the 98 Megas and Primals, and the regional, battle, item, fusion, cosmetic and female forms)
