@@ -35,6 +35,21 @@ looked at:
 - **Test harness note:** god mode keeps the player's Pokémon's real HP while its HP bar still shows the hit. A Berry
   test that needs real damage has to turn god mode off (Recycle's Sitrus Berry looked unused for that reason).
 
+## E12 — shinies drawn on their own (Florges, Vivillon, the Furfrou trims)
+
+For players: shiny Florges, Vivillon, Flabébé, Floette, Furfrou (and its trims), Pyroar, Xerneas, Zeraora, Smoliv,
+Toedscruel, Ting-Lu, Iron Crown, Galarian Darumaka and female Meowstic show PokeAPI's shiny front as drawn, not a
+scrambled recolour.
+
+- PokeAPI draws some shiny fronts apart from the normal front, so no palette swap of the normal front can show them.
+  `tools/sprites/convert_form_sprites.py` now finds them (more than 10% of the pixels don't follow one normal-to-shiny
+  colour mapping) and converts the shiny as a front sprite of its own, both palettes its colours: 12 species and 11
+  forms (438 form-area sprites, from 415).
+- `sovereign_form_sprites.h` gains `sSovereignFormShinySprite`, `sSovereignFormFemaleShinySprite` and
+  `sSpeciesShinyFront` (species, gender 0/1/2 = male/female/either, sprite). `SovereignForm_FrontSprite`
+  (`src/pokemon.c`) takes `shiny` and returns them for a shiny's front; backs are unchanged.
+- Verified: `make rom`, boot smoke test PASS, `check_battle_sprites.py` 4,378 sprites 0 problems; the four shown to
+  the owner (Florges, Vivillon, Kabuki Furfrou, Xerneas) rendered from the converted files.
 
 ## Item 11 (effect fidelity): Cheek Pouch and Ripen
 
@@ -273,11 +288,35 @@ The fixes come in the next PR.
   through `tools/sprites/smogon_credits.py`, which `tools/regenerate_docs.sh` runs. `CITATIONS.md` names the 36
   spriters.
 
+## E12 — no scrambled battle sprites; one Pumpkaboo and Gourgeist sprite
+
+- The game unscrambles a battle sprite with a key read from its first four pixels (`PokemonSprite_DecryptPt`), so a
+  sprite drawing into that corner comes out as noise (Claude B's review, `docs/SpriteReview.md`: Samurott's PokeAPI
+  front, Talonflame's back, Hisuian Samurott's front). `two_frames` (`convert_battle_sprites.py`) now keeps those four
+  pixels transparent for every converted sprite; none has them set now.
+- Pumpkaboo and Gourgeist keep their four sizes (owner: their stats differ), but every size uses the Average Size
+  sprite: the sizes' own form sprites are removed (`pokeapi_fronts/forms/{pumpkaboo,gourgeist}-*`).
+- Verification: release build and boot smoke test pass; 414 forms map to their own sprite.
+
+## E12 — shiny colours chosen with the normal ones
+
+For players: shinies of the new species and forms match their source more closely (Alolan Meowth's blue eyes, for
+one, had come out purple).
+
+- `convert_battle_sprites.paired_palettes` chooses each sprite's 15 colour slots from the (normal, shiny) colour
+  pairs of its pixels, so two places with one normal colour but different shiny colours get slots of their own;
+  more than 15 pairs are grouped by k-means. Before, the slots came from the normal colours alone and each slot's
+  shiny colour was a majority vote. Both converters use it.
+- Still approximate: PokeAPI shinies that don't line up with their fronts (Galarian Darumaka, Pumpkaboo and Gourgeist
+  sizes, Vivillon and the Flabébé line) and art with far more than 15 colour pairs (Kabuki Furfrou).
+- Verification: release build and boot smoke test pass; Alolan Meowth's shiny now matches PokeAPI's pixel for pixel.
+
 ## E12 — Sovereign's forms get their own front sprites
 
 For players: 368 forms (the 98 Megas and Primals, and the regional, battle, item, fusion, cosmetic and female forms)
-show their own front and shiny front (PokeAPI's, owner 2026-10-26) instead of the base species'. 52 forms whose
-PokeAPI front is the species' own (the Totems, Scatterbug's and Spewpa's patterns) keep the species' sprite. Unfezant,
+show their own front and shiny front (PokeAPI's, owner 2026-10-26) instead of the base species'. Every form has one
+(420 of 421; owner: "ensure they all have PokeAPI front and shiny front"), including the 52 that PokeAPI draws like
+their species (the Totems, Scatterbug's and Spewpa's patterns); only Mega Zygarde, which PokeAPI lacks, keeps Zygarde's. Unfezant,
 Frillish, Jellicent and Pyroar get PokeAPI's female front, sharing the front palette with the male one. Their backs are still the species' (no back art yet); Mega Zygarde keeps
 Zygarde's sprite (PokeAPI has none).
 
@@ -289,8 +328,9 @@ Zygarde's sprite (PokeAPI has none).
 - Most Megas are bigger than 80×80 and were scaled (83–99%); 39 had more than 15 colours (the Legends: Z-A Megas
   most). The form's y offset is still the species' (`sprite_data.json`), so a few may sit a little high or low.
 - The lookup runs after the species' own cases and before the form is sanitized, so Fairy Arceus and the like are
-  covered too. Hisuian Sneasel's female front isn't done (forms have no female image yet).
-- Verification: release build and boot smoke test pass; the archive has 9,312 files and every form's front and
+  covered too. A form can also have a female front (`sSovereignFormFemaleSprite`; Hisuian Sneasel), used for a
+  female Pokémon in that form.
+- Verification: release build and boot smoke test pass; the archive has 9,315 files and every form's front and
   palettes sit in the slots the game reads. Not yet seen in a battle.
 
 ## E12 — front and back sprites get palettes of their own

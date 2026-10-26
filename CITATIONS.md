@@ -216,8 +216,9 @@ drawn by the sprite communities PokeAPI credits in its repository. Converted to 
 
 The same goes for 368 forms' fronts and shiny fronts: Megas, Primals, regional, battle, item, fusion, cosmetic and
 female forms (`pokeapi_fronts/forms/`, PokeAPI's `sprites/pokemon/<form id>.png` or `<dex>-<form>.png`; converted by
-`tools/sprites/convert_form_sprites.py`), and the female fronts of Unfezant, Frillish, Jellicent and Pyroar
-(`pokeapi_fronts/<species>/female_*.png`, PokeAPI's `sprites/pokemon/female/<dex>.png`). Mega Zygarde has none on
+`tools/sprites/convert_form_sprites.py`), and the female fronts of Unfezant, Frillish, Jellicent, Pyroar and Hisuian Sneasel
+(`pokeapi_fronts/<species>/female_*.png` and `pokeapi_fronts/forms/sneasel-hisui/female_*.png`, PokeAPI's
+`sprites/pokemon/female/<id>.png`). Mega Zygarde has none on
 PokeAPI yet and keeps Zygarde's sprite.
 
 ### Placeholder box/party icons for #494–1025

@@ -2911,15 +2911,43 @@ void BoxPokemon_BuildSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, BoxPo
 #define POKEGRA_FORM_SPRITE_BASE  (POKEGRA_BACK_PALETTE_BASE + (NATIONAL_DEX_COUNT + 1) * 2)
 
 // Sovereign: the number (plus 1) of a form's own front sprite in pl_pokegra, or 0 if it uses its species' sprite.
-static u16 SovereignForm_FrontSprite(u16 species, u8 form)
+// A female gets the form's female front where it has one (Hisuian Sneasel). A shiny gets a shiny drawn apart from
+// the normal front where PokeAPI has one (Florges, the Furfrou trims), for forms and base species alike.
+static u16 SovereignForm_FrontSprite(u16 species, u8 form, u8 gender, u8 shiny)
 {
-    if (form == 0) {
-        return 0;
+    BOOL female = gender == GENDER_FEMALE;
+
+    if (form != 0) {
+        for (int i = 0; i < SOVEREIGN_FORM_COUNT; i++) {
+            if (sSovereignForms[i].species == species && sSovereignForms[i].form == form) {
+                if (shiny && female && sSovereignFormFemaleShinySprite[i] != 0) {
+                    return sSovereignFormFemaleShinySprite[i];
+                }
+
+                if (shiny && !(female && sSovereignFormFemaleSprite[i] != 0) && sSovereignFormShinySprite[i] != 0) {
+                    return sSovereignFormShinySprite[i];
+                }
+
+                if (female && sSovereignFormFemaleSprite[i] != 0) {
+                    return sSovereignFormFemaleSprite[i];
+                }
+
+                if (sSovereignFormSprite[i] != 0) {
+                    return sSovereignFormSprite[i];
+                }
+
+                break;
+            }
+        }
     }
 
-    for (int i = 0; i < SOVEREIGN_FORM_COUNT; i++) {
-        if (sSovereignForms[i].species == species && sSovereignForms[i].form == form) {
-            return sSovereignFormSprite[i];
+    // A form without a front of its own shows its species' front, so the species' shiny applies to it too.
+    if (shiny) {
+        for (int i = 0; i < NELEMS(sSpeciesShinyFront); i++) {
+            if (sSpeciesShinyFront[i].species == species
+                && (sSpeciesShinyFront[i].female == 2 || sSpeciesShinyFront[i].female == female)) {
+                return sSpeciesShinyFront[i].sprite;
+            }
         }
     }
 
@@ -2931,7 +2959,7 @@ void BuildPokemonSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 speci
     spriteTemplate->spindaSpots = 0;
     spriteTemplate->dummy = 0;
     spriteTemplate->personality = 0;
-    u16 formSprite = SovereignForm_FrontSprite(species, form);
+    u16 formSprite = SovereignForm_FrontSprite(species, form, gender, shiny);
     form = Pokemon_SanitizeFormId(species, form);
 
     switch (species) {

@@ -271,14 +271,25 @@ Made by the owner (2026-10-22):
     small and low in the frame, one of the game's shared 16-colour icon palettes. Chien-Pao first; Dubwool is too
     big. #1–493 keep Platinum's icons. Tracked in E12 (`docs/EngineRoadmap.md`) and on the roadmap page.
 
+46. **Route 224 comes before the Elite Four, as in Renegade** (owner, 2026-10-26: "Yes. Do what Renegade does").
+    Victory Road's back area and Route 224 come before the League, and the guard by the League exit waits until the
+    counterpart by Route 224's tablet (Lv. 69–70) is beaten. For Claude B (E10).
+47. **Darach is a recurring character, in both places** (owner, 2026-10-26). He appears mid-game where Renegade puts
+    him, gives the Tea, and Route 218's gate guard opens the road for it, as in Renegade; he is also in the Regional
+    Forms Park lobby after the Hall of Fame, as now. For Claude B (E10).
+48. **Battle sprites: the owner's ticks decide** (owner, 2026-10-26). Sprites ticked Done on the roadmap page are
+    finished as they look, approximate shinies included; those ticked Needs work are for later
+    (`docs/BattleSpriteStatus.md`). The owner is fixing Vivillon's back (the pack's back is another pattern).
+49. **Scatterbug and Spewpa have one form each** (owner, 2026-10-26: "I don't want to deal with them again"): their
+    19 patterns are removed. Pumpkaboo and Gourgeist keep their four sizes for the stats, but every size uses the
+    Average Size sprite (PokeAPI's).
+50. **The player gets only the main form of the cosmetic Pokémon** (owner, 2026-10-26): Vivillon (Meadow), Flabébé,
+    Floette and Florges (Red Flower), Alcremie (Vanilla Cream, Strawberry Sweet) and Pikachu. Opponents' teams may use
+    their other forms, so those need no back sprites. Kept: Eternal Floette and Mega Floette as they are (owner:
+    "mandatory"), Partner Pikachu as the deliveryman's gift (his costume and cap Pikachu go), and Furfrou's trims at
+    the Hearthome groomer for now.
+
 Open:
-- **Route 224 before the Elite Four?** In Renegade, Victory Road's back area and Route 224 come before the League. A
-  guard by the League exit waits until the counterpart by Route 224's tablet (Lv. 69–70) is beaten. Sovereign keeps
-  vanilla's post-game guard (E10 part 39 notes).
-- **The Tea and Route 218's gate?** In Renegade, Darach (Lv. 48, the Pal Park lobby) gives the Tea mid-game, and
-  Route 218's gate guard opens the road to Canalave City for it. Sovereign's Regional Forms Park lobby opens after
-  the Hall of Fame, so Darach is post-game and the Tea has no use yet (E10 part 41 notes). This ties in with when the
-  park opens.
 - **Overworld sprites for the legendaries:** the owner draws them and sorts the rest of the sizes (decision 40,
   `docs/OverworldSpriteSizes.md`). Until then each is a placeholder from its PokeAPI front sprite.
 - Regional Forms Park: when it opens (now after the Hall of Fame; `Story.md` suggests Oak's visit). The zones and
