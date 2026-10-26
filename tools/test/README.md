@@ -16,6 +16,7 @@ These read the decomp's files. CI runs the ones marked **CI** on every PR.
 | `check_menus.py` **CI** | script menus fit on the screen, clear of the message box |
 | `check_object_tiles.py` **CI** | every added or moved object can be reached and blocks nothing (needs vanilla's import commit) |
 | `check_double_close.py` **CI** | no script path closes a message twice (that hangs the game) |
+| `check_battle_sprites.py` **CI** | every battle sprite is a 160×80 indexed image with its first four pixels clear (else the game can't unscramble it) |
 | `check_type_chart.py` **CI** | the type charts match the official chart (needs PokeAPI's CSVs) |
 | `find_tiles.py` | prints a map's tiles, to find spots for warps and new objects |
 

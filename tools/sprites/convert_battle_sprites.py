@@ -7,11 +7,16 @@ sprite_data.json. Species #1-493 (Renegade Platinum's sprites) are never touched
 
 DS rules: each frame is 80x80; front and back share one palette of 15 colours plus transparency (index 0); the
 shiny sprite is the same pixels with a second palette, so each shiny colour is the one the shiny sprite has
-where the normal sprite uses that index. Art bigger than 80x80 is scaled down (nearest neighbour) and reported.
+where the normal sprite uses that index. A shiny drawn a pixel or two off from the normal sprite is moved to line up
+first. Where one normal colour becomes two shiny colours (Scatterbug's white antennae turn dark, its white eyes
+don't), a spare palette entry, if the palette has one, repeats the normal colour with the second shiny colour (not
+for a shiny that is another drawing, whose pixels don't match one for one). Colours are matched as the DS stores them
+(5 bits a channel). Art bigger than 80x80 is scaled down (nearest neighbour) and reported. The first four pixels are
+left clear: the game takes the key that unscrambles a sprite from them (PokemonSprite_DecryptPt).
 The PNG holds two 80x80 frames side by side; both get the same picture.
 
-Writes docs/BattleSpriteImport.md: what was scaled, how many colours each species had, and shinies that
-didn't line up.
+Writes docs/BattleSpriteImport.md: what was scaled, how many colours each species had, how much of each shiny the
+shiny palette gets right, and shinies that didn't line up.
 
 With --fronts DIR, front.png and shiny_front.png come from DIR (same NNNN-Name layout) instead.
 
@@ -24,7 +29,7 @@ import os
 import sys
 from collections import Counter, defaultdict
 
-from PIL import Image
+from PIL import Image, ImageChops
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 POKEMON = os.path.join(ROOT, "decomp", "res", "pokemon")
@@ -72,16 +77,48 @@ def cut(im, box, scale):
     return out
 
 
+def mask(im):
+    return im.getchannel("A").point(lambda v: 255 if v >= 128 else 0)
+
+
+def line_up(im, shiny, reach=3):
+    """The shiny moved by the (dx, dy), up to reach pixels each way, that best lines its shape up on the normal
+    sprite's (no move unless one is better), and that move."""
+    want = mask(im)
+    best = None
+    for dx in range(-reach, reach + 1):
+        for dy in range(-reach, reach + 1):
+            moved = Image.new("RGBA", shiny.size, (0, 0, 0, 0))
+            moved.paste(shiny, (dx, dy))
+            off = ImageChops.difference(want, mask(moved)).histogram()[255]
+            key = (off, abs(dx) + abs(dy))
+            if best is None or key < best[0]:
+                best = (key, moved, (dx, dy))
+    return best[1], best[2]
+
+
+def misfit(im, shiny):
+    """The share of the sprite's pixels where the shiny's shape differs (opaque in one, clear in the other)."""
+    a = [p[3] >= 128 for p in im.get_flattened_data()]
+    b = [p[3] >= 128 for p in shiny.get_flattened_data()]
+    return sum(x != y for x, y in zip(a, b)) / max(1, sum(a))
+
+
+def ds_colour(c):
+    return (c[0] & 0xF8, c[1] & 0xF8, c[2] & 0xF8)  # the DS stores 5 bits per channel
+
+
 def opaque(im):
     return [p[:3] for p in im.get_flattened_data() if p[3] >= 128]
 
 
 def build_palette(images):
-    """15 colours for the opaque pixels of every image (front and back share the palette)."""
+    """15 colours for the opaque pixels of every image, how many colours the DS sees in them (two colours a DS can't
+    tell apart are one), and how many entries the palette uses."""
     px = []
     for im in images:
         px += opaque(im)
-    colours = Counter(px)
+    colours = Counter(ds_colour(c) for c in px)
     if len(colours) <= 15:
         pal = [c for c, _ in colours.most_common()]
     else:
@@ -90,10 +127,11 @@ def build_palette(images):
         q = strip.quantize(15, method=Image.Quantize.MEDIANCUT)
         flat = q.getpalette()[:45]
         pal = [tuple(flat[i:i + 3]) for i in range(0, 45, 3)]
-    pal = [(r & 0xF8, g & 0xF8, b & 0xF8) for r, g, b in pal]  # the DS stores 5 bits per channel
+    pal = [ds_colour(c) for c in pal]
+    used = len(pal)
     while len(pal) < 15:
         pal.append((0, 0, 0))
-    return pal, len(colours)
+    return pal, len(colours), used
 
 
 def nearest(c, pal, cache):
@@ -105,7 +143,7 @@ def nearest(c, pal, cache):
 def index_image(im, pal):
     cache = {}
     out = Image.new("P", (80, 80), 0)
-    out.putdata([0 if p[3] < 128 else nearest(p[:3], pal, cache) for p in im.get_flattened_data()])
+    out.putdata([0 if p[3] < 128 else nearest(ds_colour(p), pal, cache) for p in im.get_flattened_data()])
     return out
 
 
@@ -115,8 +153,48 @@ def shiny_palette(indexed, shinies, pal):
     for idx_im, sh in zip(indexed, shinies):
         for i, p in zip(idx_im.get_flattened_data(), sh.get_flattened_data()):
             if i and p[3] >= 128:
-                votes[i][(p[0] & 0xF8, p[1] & 0xF8, p[2] & 0xF8)] += 1
+                votes[i][ds_colour(p)] += 1
     return [votes[i].most_common(1)[0][0] if votes[i] else pal[i - 1] for i in range(1, 16)]
+
+
+def split_entries(indexed, shinies, pal, spal, used):
+    """Give the palette entries no colour uses (from used on) to the commonest (index, shiny colour) pairs whose
+    shiny colour isn't the index's own: each new entry repeats the index's normal colour with that shiny colour, and
+    those pixels move to it. Changes the indexed images, pal and spal in place."""
+    pairs = Counter()
+    for idx_im, sh in zip(indexed, shinies):
+        for i, p in zip(idx_im.get_flattened_data(), sh.get_flattened_data()):
+            if i and p[3] >= 128 and ds_colour(p) != spal[i - 1]:
+                pairs[(i, ds_colour(p))] += 1
+    moved = {}
+    for (i, colour), _ in pairs.most_common(15 - used):
+        pal[used], spal[used] = pal[i - 1], colour
+        moved[(i, colour)] = used + 1
+        used += 1
+    if moved:
+        for idx_im, sh in zip(indexed, shinies):
+            idx_im.putdata([moved.get((i, ds_colour(p)), i) if p[3] >= 128 else i
+                            for i, p in zip(idx_im.get_flattened_data(), sh.get_flattened_data())])
+
+
+def shiny_match(indexed, shinies, spal):
+    """The share of pixels, opaque in both, that the shiny palette colours as the shiny sprites have them."""
+    good = total = 0
+    for idx_im, sh in zip(indexed, shinies):
+        for i, p in zip(idx_im.get_flattened_data(), sh.get_flattened_data()):
+            if i and p[3] >= 128:
+                total += 1
+                good += spal[i - 1] == ds_colour(p)
+    return good / max(1, total)
+
+
+def clear_corner(idx_im):
+    """Clears the first four pixels, which the game reads as the key that unscrambles the sprite
+    (PokemonSprite_DecryptPt): art that reaches the top-left corner would come out as noise. How many were set."""
+    corner = sum(1 for x in range(4) if idx_im.getpixel((x, 0)))
+    for x in range(4):
+        idx_im.putpixel((x, 0), 0)
+    return corner
 
 
 def write_pal(path, transparent, pal):
@@ -166,13 +244,19 @@ def main():
         if "front" not in ims or "back" not in ims:
             report.append((dex, rows[dex]["name"], "skipped: no front or back", "", "", ""))
             continue
-        frames, notes = {}, []
+        frames, notes, off = {}, [], {}
         for face in ("front", "back"):
             box, scale = window(ims[face])
             frames[face] = cut(ims[face], box, scale)
             sh = ims.get(f"shiny_{face}")
             if sh is not None and sh.size == ims[face].size:
+                sh, (dx, dy) = line_up(ims[face], sh)
                 frames[f"shiny_{face}"] = cut(sh, box, scale)
+                off[face] = misfit(frames[face], frames[f"shiny_{face}"])
+                if off[face] > 0.05:
+                    notes.append(f"shiny {face} doesn't line up ({round(off[face] * 100)}% of pixels)")
+                elif (dx, dy) != (0, 0):
+                    notes.append(f"shiny {face} moved ({dx:+d}, {dy:+d}) to line up")
             if scale < 1.0:
                 notes.append(f"{face} scaled to {round(scale * 100)}%")
         # A female front of its own (a visible gender difference) shares the front palette with the male one.
@@ -181,29 +265,29 @@ def main():
             frames["female_front"] = cut(ims["female_front"], box, scale)
             sh = ims.get("female_shiny_front")
             if sh is not None and sh.size == ims["female_front"].size:
+                sh, _ = line_up(ims["female_front"], sh)
                 frames["female_shiny_front"] = cut(sh, box, scale)
+                off["female_front"] = misfit(frames["female_front"], frames["female_shiny_front"])
         # Front and back each get their own 15 colours (back_*.pal; make_pl_pokegra.py packs them separately).
-        pals, spals, indexed, ncol = {}, {}, {}, {}
+        pals, spals, indexed, ncol, match = {}, {}, {}, {}, {}
         for face in ("front", "back"):
             group = [face] + (["female_front"] if face == "front" and "female_front" in frames else [])
-            pals[face], ncol[face] = build_palette([frames[g] for g in group])
+            pals[face], ncol[face], used = build_palette([frames[g] for g in group])
             for g in group:
                 indexed[g] = index_image(frames[g], pals[face])
-            pairs = [(indexed[g], frames[k]) for g, k in ((face, f"shiny_{face}"), ("female_front", "female_shiny_front"))
-                     if g in group and k in frames]
-            spals[face] = shiny_palette([a for a, _ in pairs], [b for _, b in pairs], pals[face]) if pairs else list(pals[face])
+                corner = clear_corner(indexed[g])
+                if corner:
+                    notes.append(f"{g.replace('_', ' ')}: {corner} pixel(s) in the top-left corner cleared")
+            shiny_of = {face: f"shiny_{face}", "female_front": "female_shiny_front"}
+            group = [g for g in group if shiny_of[g] in frames]
+            idx_ims, shinies = [indexed[g] for g in group], [frames[shiny_of[g]] for g in group]
+            spals[face] = shiny_palette(idx_ims, shinies, pals[face]) if group else list(pals[face])
+            if group and all(off[g] <= 0.05 for g in group):
+                split_entries(idx_ims, shinies, pals[face], spals[face], used)
+            if group:
+                match[face] = f"{shiny_match(idx_ims, shinies, spals[face]):.0%}"
             if f"shiny_{face}" not in frames:
                 notes.append(f"no shiny {face}")
-        # Shiny sprites whose shape doesn't match the normal one (a different pose or crop).
-        for face in ("front", "back"):
-            sh = frames.get(f"shiny_{face}")
-            if sh is None:
-                continue
-            a = [p[3] >= 128 for p in frames[face].get_flattened_data()]
-            b = [p[3] >= 128 for p in sh.get_flattened_data()]
-            off = sum(x != y for x, y in zip(a, b)) / max(1, sum(a))
-            if off > 0.05:
-                notes.append(f"shiny {face} doesn't line up ({round(off * 100)}% of pixels)")
         for face in ("front", "back"):
             img = two_frames(indexed[face], pals[face])
             img.save(os.path.join(dst, f"male_{face}.png"))
@@ -228,10 +312,8 @@ def main():
         with open(sd_path, "w", encoding="utf-8") as f:
             json.dump(sd, f, indent=4, ensure_ascii=False)
             f.write("\n")
-        has_shiny = "shiny_front" in frames and "shiny_back" in frames
         report.append((dex, rows[dex]["name"], "converted", f"{ncol['front']} / {ncol['back']}",
-                       "yes" if has_shiny else "partly" if ("shiny_front" in frames or "shiny_back" in frames) else "no",
-                       "; ".join(notes)))
+                       f"{match.get('front', '—')} / {match.get('back', '—')}", "; ".join(notes)))
 
     with open(os.path.join(ROOT, "docs", "BattleSpriteImport.md"), "w", encoding="utf-8") as f:
         f.write("# Battle sprite import (#494–1025)\n\n"
@@ -239,8 +321,12 @@ def main():
                 ((", with fronts from `" + os.path.relpath(fronts, ROOT) + "`") if fronts else "") + ". "
                 "Each species' front and back have palettes of their own, 15 colours each (`normal.pal`/`shiny.pal` "
                 "for the front, `back_normal.pal`/`back_shiny.pal` for the back); **Colours** is how many the "
-                "source front / back had (more than 15 were reduced). Notes list art scaled down to fit 80×80 and "
-                "shinies that didn't line up. These are the sprites to look at first in game.\n\n"
+                "source front / back had, as the DS stores them (5 bits a channel; more than 15 were reduced). A "
+                "shiny sprite is the same picture with a second palette; **Shiny** is the share of the shiny front "
+                "/ back that the shiny palette colours as the source has it (a shiny that is more than a change of "
+                "colours can't all fit, nor one drawn apart from its front). Notes list art scaled down to fit "
+                "80×80, art cleared from the top-left corner and shinies that didn't line up. These are the sprites "
+                "to look at first in game.\n\n"
                 "| Dex | Pokémon | Result | Colours | Shiny | Notes |\n|---|---|---|---|---|---|\n")
         for r in report:
             f.write("| " + " | ".join(str(x) for x in r) + " |\n")

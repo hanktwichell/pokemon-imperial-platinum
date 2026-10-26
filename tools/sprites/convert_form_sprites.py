@@ -4,7 +4,8 @@
 Reads assets/sprites/packs/pokeapi_fronts/forms/<stem>-<form dir>/{front,shiny_front}.png for every entry of
 sSovereignForms that has one (Megas, Primals, regional, battle, item, Totem, cosmetic and female forms) (include/data/sovereign_forms.h, with the folder names from
 tools/dataproc/src/sovereign_forms.inc, in the same order), converts each to DS format the way
-convert_battle_sprites.py does (80x80, its own 15-colour palette, the shiny palette taken pixel by pixel), and writes:
+convert_battle_sprites.py does (80x80, its own 15-colour palette, the shiny lined up and its palette taken pixel by
+pixel, the top-left corner left clear), and writes:
 
   decomp/res/pokemon/sovereign_form_sprites/<k>-<stem>-<dir>/{front.png, front.png.key, normal.pal, shiny.pal}
   decomp/res/pokemon/sovereign_form_sprites/order.txt      one folder per line; make_pl_pokegra.py packs them in order
@@ -21,7 +22,9 @@ import shutil
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from convert_battle_sprites import build_palette, cut, index_image, shiny_palette, two_frames, window, write_pal  # noqa: E402
+from convert_battle_sprites import (  # noqa: E402
+    build_palette, clear_corner, cut, index_image, line_up, misfit, shiny_palette, split_entries, two_frames, window,
+    write_pal)
 from PIL import Image  # noqa: E402
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
@@ -55,13 +58,17 @@ def main():
         im = Image.open(os.path.join(src, "front.png")).convert("RGBA")
         box, scale = window(im)
         front = cut(im, box, scale)
-        pal, ncol = build_palette([front])
+        pal, ncol, used = build_palette([front])
         indexed = index_image(front, pal)
+        corner = clear_corner(indexed)
         spal = list(pal)
         if os.path.exists(os.path.join(src, "shiny_front.png")):
             sh = Image.open(os.path.join(src, "shiny_front.png")).convert("RGBA")
             if sh.size == im.size:
-                spal = shiny_palette([indexed], [cut(sh, box, scale)], pal)
+                sh = cut(line_up(im, sh)[0], box, scale)
+                spal = shiny_palette([indexed], [sh], pal)
+                if misfit(front, sh) <= 0.05:
+                    split_entries([indexed], [sh], pal, spal, used)
         folder = f"{len(order):03}-{stem}-{d}"
         out = os.path.join(OUT, folder)
         os.makedirs(out)
@@ -71,7 +78,8 @@ def main():
         write_pal(os.path.join(out, "shiny.pal"), (0, 0, 0), spal)
         table[i] = len(order) + 1
         order.append(folder)
-        notes = [f"{ncol} colours" if ncol > 15 else "", f"scaled to {round(scale * 100)}%" if scale < 1 else ""]
+        notes = [f"{ncol} colours" if ncol > 15 else "", f"scaled to {round(scale * 100)}%" if scale < 1 else "",
+                 f"{corner} pixel(s) in the top-left corner cleared" if corner else ""]
         if any(notes):
             report.append(f"{name}: " + ", ".join(n for n in notes if n))
     with open(os.path.join(OUT, "order.txt"), "w") as f:

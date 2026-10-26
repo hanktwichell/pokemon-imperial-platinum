@@ -118,6 +118,8 @@ jobs:
           python3 tools/test/check_object_tiles.py decomp
       - name: No script path closes a message twice
         run: python3 tools/test/check_double_close.py decomp
+      - name: Battle sprites can be unscrambled (their first four pixels are clear)
+        run: python3 tools/test/check_battle_sprites.py decomp
       - name: Regenerate and validate docs
         run: tools/regenerate_docs.sh /tmp/pokeapi/data/v2/csv decomp
       - name: Generated files are up to date
