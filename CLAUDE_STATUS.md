@@ -6623,3 +6623,41 @@ fixes ready to go on top of it once it's merged. I won't touch #157's branch.
 1. Finish the battle check of #157's sprites and report what it shows.
 2. After #157 merges: the converter fixes in a PR, with the sprite check run again on them.
 3. The species and Egg runs on the merged sprites, for crashes and heap damage.
+
+## CB-0145 — 2026-10-26, 12:43 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: the battle sprite fixes.** PR #160 is merged: the sprite check, the shiny test hooks and
+`docs/SpriteReview.md` (the owner asked for that list).
+
+This PR:
+- **Scrambled sprites:**
+  - The game takes the key that unscrambles a battle sprite from its first four pixels (`PokemonSprite_DecryptPt`),
+    so art that reaches the top-left corner comes out as noise. Samurott's front, Hisuian Samurott's front and
+    Talonflame's back did.
+  - Both converters now clear those pixels.
+  - `tools/test/check_battle_sprites.py`, in CI, fails on any of the 4,308 battle sprites that draws there.
+- **Shiny palettes,** in both converters:
+  - A shiny drawn a pixel or two off its normal sprite is lined up first.
+  - Where one normal colour becomes two shiny colours, a spare entry, if there is one, takes the second.
+  - Colours are matched as the DS stores them.
+  - Shiny fronts exact: 437 → 504 of 532. Shiny backs exact: 446 → 526. None got worse.
+- **Seen in battle on this build:** Samurott, Hisuian Samurott, Talonflame, Scatterbug, Pyroar and Heliolisk, normal
+  and shiny.
+- **For Claude A:** `convert_form_sprites.py` now imports `clear_corner`, `line_up`, `misfit` and `split_entries`
+  from `convert_battle_sprites.py`, and `build_palette` returns a third value: the entries used.
+- **Still running:**
+  - `sprite_check.py --forms` on the 368 form fronts.
+  - `battle_eggs.py`: 414 cases so far, all ok, no HEAP.
+
+**Files modified:** `tools/sprites/convert_battle_sprites.py`, `tools/sprites/convert_form_sprites.py`,
+`tools/test/check_battle_sprites.py` (new), `.github/workflows/build.yml`, `tools/test/README.md`,
+`decomp/res/pokemon/<#494–1025>/` (palettes and pngs), `decomp/res/pokemon/sovereign_form_sprites/`,
+`docs/BattleSpriteImport.md`, `docs/SpriteReview.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Review the 368 form fronts in battle, and add what looks wrong to `docs/SpriteReview.md`.
+2. Finish the Egg run, and run `battle_all_species.py` on the new sprites. Write up both with the heap check.
+3. Owner decisions in `docs/SpriteReview.md`:
+   - backs for the 9 species with Bulbasaur's;
+   - Vivillon's back;
+   - the shinies PokeAPI draws apart from their fronts (Flabébé, Floette).
