@@ -11,7 +11,7 @@
     "accuracy": 100,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_DO_NOTHING",
+        "type": "BATTLE_EFFECT_SOVEREIGN_DOODLE",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",

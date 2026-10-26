@@ -4,6 +4,43 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): moves, batch 11a (Chilly Reception, Doodle, Core Enforcer; Gen IX ability lists)
+
+For players:
+- **Chilly Reception:** "{0} is preparing to tell a chillingly bad joke!", then it starts snow for 5 turns (8 with an Icy Rock) and the user switches out, as after U-turn.
+  - When it can't start snow (it's already snowing, or a primal weather holds), it still switches out.
+  - It fails only when it can do neither.
+- **Doodle:** the user and its ally take the target's ability, by Role Play's rules ("{0} copied {1}'s {2}!" for each).
+  - It skips a Pokémon that already has that ability or whose ability can't be overwritten.
+  - An Ability Shield keeps its holder's ability.
+- **Core Enforcer:** after the hit, it suppresses the ability of a target that has already acted this turn ("{0}'s ability was suppressed!").
+  - It doesn't affect a target that switched in during the turn, an ability that can't be suppressed, or an Ability Shield holder.
+- **Gen IX ability lists for the older ability moves:**
+  - **Role Play** fails when it can't copy the target's ability: Wonder Guard, Trace, Imposter, Illusion, the form abilities and the rest. It also fails when the user's ability can't be overwritten, or when both have the same ability.
+  - **Entrainment** uses the same lists, and still fails against Truant.
+  - **Trace** can't take abilities from that list either. Wonder Guard is the exception: Trace can take it.
+  - **Gastro Acid** (and any suppression) spares Gen IX's "can't be suppressed" abilities: As One, Battle Bond, Comatose, Disguise, Gulp Missile, Ice Face, Multitype, Power Construct, RKS System, Schooling, Shields Down, Stance Change, Tera Shift, Zen Mode and Zero to Hero. Before, only Multitype was spared.
+- **Code:**
+  - `Sovereign_AbilityCantBeSuppressed` and `Sovereign_AbilityCantBeCopied` hold the two lists (Showdown's `cantsuppress` and `failroleplay` flags).
+  - New read-only vars give the scripts each rule: `BTLVAR_SOVEREIGN_ROLE_PLAY_FAILS`, `_ENTRAINMENT_FAILS`, `_GASTRO_ACID_FAILS`, `_CORE_ENFORCER` and `_DOODLE`. Reading `_DOODLE` also changes the abilities.
+  - A new turn flag, `sovereignSwitchedIn`, marks a battler that switched in during the turn. It is set in `BattleSystem_UpdateAfterSwitch`, so a turn-1 lead doesn't count.
+
+**Verification:** test and release ROMs built; the battle-script size check, the message check and the docs check pass.
+- Every case below was a wild battle against a Lv. 100 Ninjask (or the species named) that moves first.
+- **Chilly Reception (Cetitan):**
+  - Joke message, "CETITAN used Chilly Reception!", "It started to snow!", "CETITAN went back to A!", then "Go! GALLADE!".
+  - When the Ninjask's Hail had already started snow, there was no snow message and Cetitan still switched out.
+- **Doodle (Smeargle):**
+  - "SMEARGLE copied the wild NINJASK's Speed Boost!", then "SMEARGLE's Speed Boost raised its Speed!" at the end of the turn.
+  - Used again (same ability): "But it failed!". Against Shedinja's Wonder Guard: "But it failed!".
+- **Role Play:** copies Speed Boost, fails on a second use, and fails against Shedinja (Wonder Guard).
+- **Core Enforcer (Zygarde):**
+  - On turn 1, after the Ninjask moved: "The wild NINJASK's ability was suppressed!", and Speed Boost no longer raised its Speed.
+  - Against a Lv. 5 Ninjask that moves after Zygarde: no suppression, and Speed Boost still worked.
+- **Gastro Acid:** suppresses Speed Boost, fails the second time, and fails against Mimikyu (Disguise).
+- **Entrainment:** with Intimidate, "The wild NINJASK acquired Intimidate!", and the Intimidate activated. A second use (same ability) failed.
+- **Trace** still copies Speed Boost on entry.
+
 ## Item 11 (effect fidelity): damage-halving Berries with Unnerve, Ripen and Cheek Pouch; Hospitality, Costar, Curious Medicine
 
 For players:

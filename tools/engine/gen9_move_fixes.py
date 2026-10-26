@@ -310,6 +310,12 @@ MOVES = {
     "freeze_shock": ("SOVEREIGN_CHARGE_TURN_HIT", 30, "charges for a turn (a Power Herb skips it), then hits; 30% paralysis"),
     "ice_burn": ("SOVEREIGN_CHARGE_TURN_HIT", 30, "charges for a turn (a Power Herb skips it), then hits; 30% burn"),
     "geomancy": ("SOVEREIGN_GEOMANCY", 0, "charges for a turn (a Power Herb skips it), then user Sp. Atk, Sp. Def and Speed +2"),
+    # Moves batch 11.
+    "chilly_reception": ("SOVEREIGN_CHILLY_RECEPTION", 0, "starts snow for 5 turns, then the user switches out (it still"
+                         " switches when it can't start snow)"),
+    "doodle": ("SOVEREIGN_DOODLE", 0, "the user and its ally take the target's ability (Role Play's rules)"),
+    "core_enforcer": ("SOVEREIGN_CORE_ENFORCER", 0, "hits both foes; suppresses the ability of a target that has already"
+                      " acted this turn"),
 }
 
 # Gen IX values the move data got wrong (not the Champions changes in tools/engine/apply_champions_moves.py).

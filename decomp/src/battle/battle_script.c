@@ -10069,6 +10069,32 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         // msgBattlerTemp from eating its Berry (subscript_type_resist_berry)
         battleCtx->sovereignTerrainTemp = Battler_UnnerveBlocksBerry(battleSys, battleCtx, battleCtx->msgBattlerTemp);
         return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_DOODLE: // Sovereign (item 11): read-only, Doodle gives the user and its ally the defender's
+        // ability (Sovereign_Doodle: who took it; 0 when it fails)
+        battleCtx->sovereignTerrainTemp = Sovereign_Doodle(battleSys, battleCtx);
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_ROLE_PLAY_FAILS: // Sovereign (item 11): read-only, TRUE when Role Play fails by Gen IX's
+        // rules (the defender's ability can't be copied, the attacker's can't be overwritten, or they're the same)
+        battleCtx->sovereignTerrainTemp = Sovereign_AbilityCantBeCopied(DEFENDING_MON.ability)
+            || Sovereign_AbilityCantBeSuppressed(ATTACKING_MON.ability)
+            || DEFENDING_MON.ability == ATTACKING_MON.ability;
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_ENTRAINMENT_FAILS: // Sovereign (item 11): read-only, TRUE when Entrainment fails by Gen
+        // IX's rules (the attacker's ability can't be passed on, the defender's can't be overwritten or is Truant, or
+        // they're the same)
+        battleCtx->sovereignTerrainTemp = Sovereign_AbilityCantBeCopied(ATTACKING_MON.ability)
+            || Sovereign_AbilityCantBeSuppressed(DEFENDING_MON.ability)
+            || DEFENDING_MON.ability == ABILITY_TRUANT
+            || DEFENDING_MON.ability == ATTACKING_MON.ability;
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_GASTRO_ACID_FAILS: // Sovereign (item 11): read-only, TRUE when the defender's ability can't
+        // be suppressed (Gen IX's list)
+        battleCtx->sovereignTerrainTemp = Sovereign_AbilityCantBeSuppressed(DEFENDING_MON.ability);
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_CORE_ENFORCER: // Sovereign (item 11): read-only, TRUE when Core Enforcer suppresses the
+        // side-effect target's ability
+        battleCtx->sovereignTerrainTemp = Sovereign_CoreEnforcer(battleCtx, battleCtx->sideEffectMon);
+        return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_AROMA_VEIL_DEFENDER: // Sovereign (item 11): read-only, TRUE when Aroma Veil keeps the
         // attacker's move off the defender (subscript_missed)
         battleCtx->sovereignTerrainTemp = Sovereign_AromaVeilBlocks(battleSys, battleCtx, battleCtx->attacker,

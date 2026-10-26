@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 345 |
+| exact | 348 |
 | approximate | 6 |
-| placeholder | 29 |
+| placeholder | 26 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -234,7 +234,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 684 | Smart Strike | Steel | `BYPASS_ACCURACY` | exact |  |
 | 685 | Purify | Poison | `SOVEREIGN_PURIFY` | exact | Sovereign effect: heals the target's status condition, then the user regains 1/2 of its max HP |
 | 686 | RevelatnDance | Normal | `HIT` | exact | Sovereign effect: takes the user's primary type |
-| 687 | Core Enforcer | Dragon | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 687 | Core Enforcer | Dragon | `SOVEREIGN_CORE_ENFORCER` | exact | Sovereign effect: hits both foes; suppresses the ability of a target that has already acted this turn |
 | 688 | Trop Kick | Grass | `LOWER_ATTACK_HIT` | exact | Sovereign effect: target Attack -1 (100%) |
 | 689 | Instruct | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 690 | Beak Blast | Flying | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
@@ -414,7 +414,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 864 | Salt Cure | Rock | `SOVEREIGN_SALT_CURE` | exact | Sovereign effect: the target loses 1/16 of its max HP each turn (1/8 if Water or Steel; Champions) until it switches out |
 | 865 | Triple Dive | Water | `MULTI_HIT` | exact | Sovereign effect: always hits 3 times |
 | 866 | Mortal Spin | Poison | `SOVEREIGN_MORTAL_SPIN` | exact | Sovereign effect: poisons the foes, then frees the user from binding, Leech Seed and its side's hazards |
-| 867 | Doodle | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 867 | Doodle | Normal | `SOVEREIGN_DOODLE` | exact | Sovereign effect: the user and its ally take the target's ability (Role Play's rules) |
 | 868 | Fillet Away | Normal | `SOVEREIGN_FILLET_AWAY` | exact | Sovereign effect: user Attack +2, user Sp. Atk +2, user Speed +2; costs 1/2 of the user's max HP |
 | 869 | Kowtow Cleave | Dark | `HIT` | exact | Sovereign effect: never misses |
 | 870 | Flower Trick | Grass | `HIT` | exact | Sovereign effect: always a critical hit, never misses |
@@ -428,7 +428,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 878 | CollisionCours | Fighting | `HIT` | exact | Sovereign effect: 1.33x when super effective |
 | 879 | Electro Drift | Electric | `HIT` | exact | Sovereign effect: 1.33x when super effective |
 | 880 | Shed Tail | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
-| 881 | ChillyReceptn | Ice | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 881 | ChillyReceptn | Ice | `SOVEREIGN_CHILLY_RECEPTION` | exact | Sovereign effect: starts snow for 5 turns, then the user switches out (it still switches when it can't start snow) |
 | 882 | Tidy Up | Normal | `SOVEREIGN_TIDY_UP` | exact | Sovereign effect: clears the hazards on both sides and every Substitute; user Attack and Speed +1 |
 | 883 | Snowscape | Ice | `WEATHER_HAIL` | exact | set by `apply_champions_moves.py`: Hail now works as Snow (Gen IX), so Snowscape shares its effect and animation |
 | 884 | Pounce | Bug | `LOWER_SPEED_HIT` | exact | Sovereign effect: target Speed -1 (100%) |

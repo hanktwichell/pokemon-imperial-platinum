@@ -2214,6 +2214,7 @@ void BattleSystem_UpdateAfterSwitch(BattleSystem *battleSys, BattleContext *batt
     battleCtx->battleMons[battler].moveEffectsData.fakeOutTurnNumber = battleCtx->totalTurns + 1;
     battleCtx->battleMons[battler].moveEffectsData.slowStartTurnNumber = battleCtx->totalTurns + 1;
     battleCtx->battleMons[battler].moveEffectsData.truant = (battleCtx->totalTurns + 1) & 1;
+    battleCtx->turnFlags[battler].sovereignSwitchedIn = TRUE; // Sovereign (item 11): Core Enforcer
     battleCtx->moveProtect[battler] = MOVE_NONE;
     battleCtx->moveHit[battler] = MOVE_NONE;
     battleCtx->moveHitBattler[battler] = BATTLER_NONE;
@@ -3377,7 +3378,7 @@ BOOL BattleSystem_CanWhirlwind(BattleSystem *battleSys, BattleContext *battleCtx
 u16 Battler_Ability(BattleContext *battleCtx, int battler)
 {
     if ((battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_ABILITY_SUPPRESSED)
-        && battleCtx->battleMons[battler].ability != ABILITY_MULTITYPE) {
+        && Sovereign_AbilityCantBeSuppressed(battleCtx->battleMons[battler].ability) == FALSE) { // Sovereign (item 11)
         return ABILITY_NONE;
     }
 
@@ -5430,6 +5431,140 @@ static BOOL Sovereign_AbilityIsFixed(int ability)
     }
 
     return FALSE;
+}
+
+// Sovereign (item 11): abilities that can't be suppressed (Gastro Acid, Core Enforcer) or overwritten (Role Play,
+// Doodle, Entrainment's target). Gen IX's list.
+BOOL Sovereign_AbilityCantBeSuppressed(int ability)
+{
+    switch (ability) {
+    case ABILITY_AS_ONE_GLASTRIER:
+    case ABILITY_AS_ONE_SPECTRIER:
+    case ABILITY_BATTLE_BOND:
+    case ABILITY_COMATOSE:
+    case ABILITY_DISGUISE:
+    case ABILITY_GULP_MISSILE:
+    case ABILITY_ICE_FACE:
+    case ABILITY_MULTITYPE:
+    case ABILITY_POWER_CONSTRUCT:
+    case ABILITY_RKS_SYSTEM:
+    case ABILITY_SCHOOLING:
+    case ABILITY_SHIELDS_DOWN:
+    case ABILITY_STANCE_CHANGE:
+    case ABILITY_TERA_SHIFT:
+    case ABILITY_ZEN_MODE:
+    case ABILITY_ZERO_TO_HERO:
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
+// Sovereign (item 11): abilities Role Play and Doodle can't copy, Entrainment can't pass on and Trace can't take (Trace
+// can take Wonder Guard). Gen IX's list.
+BOOL Sovereign_AbilityCantBeCopied(int ability)
+{
+    if (ability == ABILITY_NONE || Sovereign_AbilityCantBeSuppressed(ability)) {
+        return TRUE;
+    }
+
+    switch (ability) {
+    case ABILITY_COMMANDER:
+    case ABILITY_EMBODY_ASPECT:
+    case ABILITY_FLOWER_GIFT:
+    case ABILITY_FORECAST:
+    case ABILITY_HUNGER_SWITCH:
+    case ABILITY_ILLUSION:
+    case ABILITY_IMPOSTER:
+    case ABILITY_NEUTRALIZING_GAS:
+    case ABILITY_POISON_PUPPETEER:
+    case ABILITY_POWER_OF_ALCHEMY:
+    case ABILITY_PROTOSYNTHESIS:
+    case ABILITY_QUARK_DRIVE:
+    case ABILITY_RECEIVER:
+    case ABILITY_TERAFORM_ZERO:
+    case ABILITY_TERA_SHELL:
+    case ABILITY_TRACE:
+    case ABILITY_WONDER_GUARD:
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
+// Sovereign (item 11): gives a battler a new ability, as Role Play does: Truant starts on the right foot and Slow Start
+// starts over.
+static void Sovereign_SetAbility(BattleContext *battleCtx, int battler, int ability)
+{
+    BattleMon *mon = &battleCtx->battleMons[battler];
+
+    mon->ability = ability;
+    mon->moveEffectsData.truant = battleCtx->totalTurns & 1;
+
+    if (ability == ABILITY_SLOW_START) {
+        mon->moveEffectsData.slowStartTurnNumber = battleCtx->totalTurns + 1;
+        mon->slowStartAnnounced = FALSE;
+        mon->slowStartFinished = FALSE;
+    }
+}
+
+// Sovereign (item 11): Doodle gives the user and its ally the target's ability, by Role Play's rules, and returns who
+// took it (1: the user, 2: its ally), plus 4 when an Ability Shield kept one's own (that one is then msgBattlerTemp).
+// 0: it fails.
+int Sovereign_Doodle(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    int ability = battleCtx->battleMons[battleCtx->defender].ability;
+    int result = 0;
+
+    if (Sovereign_AbilityCantBeCopied(ability)) {
+        return 0;
+    }
+
+    for (int i = 0; i < 2; i++) {
+        int battler = battleCtx->attacker;
+
+        if (i == 1) {
+            if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES) == FALSE) {
+                break;
+            }
+            battler = BattleSystem_GetPartner(battleSys, battleCtx->attacker);
+            if (battleCtx->battleMons[battler].curHP == 0) {
+                break;
+            }
+        }
+
+        if (battleCtx->battleMons[battler].ability == ability
+            || Sovereign_AbilityCantBeSuppressed(battleCtx->battleMons[battler].ability)) {
+            continue;
+        }
+
+        if (Sovereign_HasAbilityShield(battleCtx, battler)) {
+            if ((result & 4) == FALSE) {
+                result |= 4;
+                battleCtx->msgBattlerTemp = battler;
+            }
+            continue;
+        }
+
+        Sovereign_SetAbility(battleCtx, battler, ability);
+        result |= 1 << i;
+    }
+
+    return result;
+}
+
+// Sovereign (item 11): Core Enforcer suppresses the ability of a target that has already acted this turn and didn't
+// switch in during it (not one that can't be suppressed, nor through an Ability Shield). TRUE when it does.
+BOOL Sovereign_CoreEnforcer(BattleContext *battleCtx, int battler)
+{
+    BattleMon *mon = &battleCtx->battleMons[battler];
+
+    return mon->curHP
+        && Battler_MovedThisTurn(battleCtx, battler)
+        && battleCtx->turnFlags[battler].sovereignSwitchedIn == FALSE
+        && (mon->moveEffectsMask & MOVE_EFFECT_ABILITY_SUPPRESSED) == FALSE
+        && Sovereign_AbilityCantBeSuppressed(mon->ability) == FALSE
+        && Sovereign_HasAbilityShield(battleCtx, battler) == FALSE;
 }
 
 // Sovereign (item 11): TRUE when the thief can take the victim's held item by Thief's rules (BtlCmd_TryStealItem), for
@@ -10987,31 +11122,25 @@ static int ChooseTraceTarget(BattleSystem *battleSys, BattleContext *battleCtx, 
 {
     int trace = BATTLER_NONE;
 
-    if (battleCtx->battleMons[defender1].ability != ABILITY_FORECAST
-        && battleCtx->battleMons[defender1].ability != ABILITY_TRACE
-        && battleCtx->battleMons[defender1].ability != ABILITY_MULTITYPE
-        && battleCtx->battleMons[defender1].curHP
-        && battleCtx->battleMons[defender2].curHP
-        && battleCtx->battleMons[defender2].ability != ABILITY_FORECAST
-        && battleCtx->battleMons[defender2].ability != ABILITY_TRACE
-        && battleCtx->battleMons[defender2].ability != ABILITY_MULTITYPE) {
+    // Sovereign (item 11): Gen IX's list of abilities Trace can't take (Wonder Guard it can).
+#define SOVEREIGN_TRACEABLE(battler) (battleCtx->battleMons[battler].curHP \
+    && (Sovereign_AbilityCantBeCopied(battleCtx->battleMons[battler].ability) == FALSE \
+        || battleCtx->battleMons[battler].ability == ABILITY_WONDER_GUARD))
+
+    if (SOVEREIGN_TRACEABLE(defender1) && SOVEREIGN_TRACEABLE(defender2)) {
         // Both targets are eligible; choose randomly
         if (BattleSystem_RandNext(battleSys) & 1) {
             trace = defender2;
         } else {
             trace = defender1;
         }
-    } else if (battleCtx->battleMons[defender1].ability != ABILITY_FORECAST
-        && battleCtx->battleMons[defender1].ability != ABILITY_TRACE
-        && battleCtx->battleMons[defender1].curHP
-        && battleCtx->battleMons[defender1].ability != ABILITY_MULTITYPE) {
+    } else if (SOVEREIGN_TRACEABLE(defender1)) {
         trace = defender1;
-    } else if (battleCtx->battleMons[defender2].ability != ABILITY_FORECAST
-        && battleCtx->battleMons[defender2].ability != ABILITY_TRACE
-        && battleCtx->battleMons[defender2].curHP
-        && battleCtx->battleMons[defender2].ability != ABILITY_MULTITYPE) {
+    } else if (SOVEREIGN_TRACEABLE(defender2)) {
         trace = defender2;
     }
+
+#undef SOVEREIGN_TRACEABLE
 
     return trace;
 }

@@ -7689,3 +7689,33 @@ PR #189 (Imposter, Mimicry, Opportunist, Cud Chew) is merged.
 1. Abilities still to do: Illusion, Symbiosis, Dancer, Receiver/Power of Alchemy, Neutralizing Gas, Commander, Ball Fetch, and Ripen with Jaboca, Rowap and Leppa. Embody Aspect and Teraform Zero need Terastallization, which the game doesn't have.
 2. The last approximate moves: Round, Expanding Force, Dragon Darts and Parabolic Charge (doubles, now testable), Shell Side Arm, Autotomize.
 3. Owner decision pinned in CB-0158: Burn Up and Double Shock (typeless).
+
+## CB-0174 — 2026-10-26, 12:53 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: moves batch 11a, Chilly Reception, Doodle and Core Enforcer, plus Gen IX ability lists for Role Play, Entrainment, Trace and Gastro Acid.**
+PR #190 (Berry fixes, Hospitality, Costar, Curious Medicine) is merged.
+- **Chilly Reception:** the joke message, snow (Icy Rock: 8 turns), then a U-turn-style switch. It still switches when it can't start snow.
+- **Doodle:** the user and its ally take the target's ability. Ability Shield applies.
+- **Core Enforcer:** suppresses the ability of a target that already acted this turn, but not one that switched in during the turn. A new `sovereignSwitchedIn` turn flag tracks this.
+- **Ability lists:** two helpers, `Sovereign_AbilityCantBeSuppressed` and `Sovereign_AbilityCantBeCopied`, hold Showdown's `cantsuppress` and `failroleplay` lists. Role Play, Entrainment, Trace, Gastro Acid and `Battler_Ability`'s suppression check now use them.
+- All of these were verified in the harness (see the changelog entry).
+
+**Files modified:**
+- `decomp/src/battle/battle_lib.c`: the helpers, Doodle, Core Enforcer, the switched-in flag, `Battler_Ability` and `ChooseTraceTarget`.
+- `decomp/src/battle/battle_script.c`: 5 read-only vars.
+- `decomp/include/battle/battle_lib.h`, `decomp/include/battle/battle_context.h`.
+- New subscripts `subscript_sovereign_chilly_reception`, `_doodle` and `_core_enforcer`. New effect scripts `effect_script_0379.s` to `0381.s`.
+- Registration files: both `meson.build` files, `sub_seq.order`, `decomp/generated/battle_subscripts.txt`, `battle_move_subscript_ptrs.txt`, `move_battle_effects.txt`, `battle_script_vars.txt`, and `decomp/include/data/move_side_effect_subscripts.h`.
+- Changed subscripts: `subscript_copy_ability.s`, `subscript_sovereign_entrainment.s`, `subscript_suppress_target_ability.s`.
+- `decomp/res/text/battle_strings.json`: 3 messages.
+- Move data for `chilly_reception`, `doodle` and `core_enforcer`.
+- `tools/engine/gen9_move_fixes.py`, `docs/MoveChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Moves batch 11b:
+   - Electrify, Ion Deluge and Plasma Fists, as a type override applied after the ability's.
+   - Fairy Lock, through the trap checks.
+   - Octolock: a trap plus a Syrup Bomb-style end-of-turn Def/Sp. Def drop.
+   - Spotlight (Follow Me on the target) and Teatime (every Pokémon eats its Berry).
+2. Skill Swap and Simple Beam/Worry Seed still use the vanilla ability lists. Move them to the new helpers (Showdown's `failskillswap` list for Skill Swap).
+3. The doubles moves (Round, Expanding Force, Dragon Darts, Parabolic Charge), with the doubles harness. Burn Up and Double Shock wait on the owner (CB-0158).
