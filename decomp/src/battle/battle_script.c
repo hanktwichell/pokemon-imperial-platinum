@@ -3096,8 +3096,9 @@ static BOOL ChangeStatStage(BattleSystem *battleSys, BattleContext *battleCtx)
 
                         return FALSE;
                     }
-                } else if (battleCtx->sovereignMirrorArmorHolder) {
-                    // Sovereign (item 11): neither Shield Dust nor a Substitute stops a drop Mirror Armor sent back
+                } else if (battleCtx->sovereignMirrorArmorHolder || battleCtx->sovereignShieldContact) {
+                    // Sovereign (item 11): neither Shield Dust nor a Substitute stops a drop Mirror Armor sent back, or
+                    // a shield's contact penalty (subscript_sovereign_shield_contact)
                 } else if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, ABILITY_SHIELD_DUST) == TRUE
                     && battleCtx->sideEffectType == SIDE_EFFECT_TYPE_INDIRECT) {
                     result = 1;
@@ -5398,9 +5399,8 @@ static BOOL BtlCmd_TryProtection(BattleSystem *battleSys, BattleContext *battleC
     BattleScript_Iter(battleCtx, 1);
     int jumpOnFail = BattleScript_Read(battleCtx);
 
-    if (battleCtx->moveProtect[battleCtx->attacker] != MOVE_PROTECT
-        && battleCtx->moveProtect[battleCtx->attacker] != MOVE_DETECT
-        && battleCtx->moveProtect[battleCtx->attacker] != MOVE_ENDURE) {
+    // Sovereign (item 11): every protection move shares the chain (Gen VI+), not only Protect, Detect and Endure.
+    if (Sovereign_IsProtectionMove(battleCtx->moveProtect[battleCtx->attacker]) == FALSE) {
         battleCtx->battleMons[battleCtx->attacker].moveEffectsData.protectSuccessTurns = 0;
     }
 
@@ -5415,6 +5415,7 @@ static BOOL BtlCmd_TryProtection(BattleSystem *battleSys, BattleContext *battleC
         && moreBattlersThisTurn) {
         if (CURRENT_MOVE_DATA.effect == BATTLE_EFFECT_PROTECT) {
             ATTACKER_TURN_FLAGS.protecting = TRUE;
+            battleCtx->sovereignShieldMove[battleCtx->attacker] = battleCtx->moveCur; // Sovereign (item 11)
             battleCtx->msgBuffer.id = BattleStrings_Text_PokemonProtectedItself2_Ally; // "{0} protected itself!"
         }
 
@@ -9953,6 +9954,18 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
     case BTLVAR_SOVEREIGN_TIDY_UP_HAZARDS: // Sovereign (item 11): read-only, Tidy Up clears the entry hazards (0 when
         // there were none)
         battleCtx->sovereignTerrainTemp = Sovereign_TidyUpHazards(battleCtx);
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_SHIELD_CONTACT: // Sovereign (item 11): BattleControllerPlayer_CheckMoveHitOverrides
+        return &battleCtx->sovereignShieldContact;
+    case BTLVAR_SOVEREIGN_GUARD_BLOCK: // Sovereign (item 11): BattleControllerPlayer_CheckMoveHitOverrides
+        return &battleCtx->sovereignGuardBlock;
+    case BTLVAR_SOVEREIGN_SWAP_SHIELD_ROLES: // Sovereign (item 11): read-only, swaps the attacker and the defender, so
+        // that a shield's user causes its contact penalty (subscript_sovereign_shield_contact; always 1)
+        battleCtx->sovereignTerrainTemp = battleCtx->attacker;
+        battleCtx->attacker = battleCtx->defender;
+        battleCtx->defender = battleCtx->sovereignTerrainTemp;
+        battleCtx->sideEffectFlags = 0;
+        battleCtx->sovereignTerrainTemp = 1;
         return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_HAPPY_HOUR: // Sovereign (item 11): read-only, Happy Hour doubles the prize money when the
         // player's side uses it (always 1)

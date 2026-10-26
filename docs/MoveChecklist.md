@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 314 |
-| approximate | 35 |
-| placeholder | 31 |
+| exact | 323 |
+| approximate | 28 |
+| placeholder | 29 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -108,7 +108,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 558 | Fusion Flare | Fire | `HIT` | exact | Sovereign effect: double power right after a Fusion Bolt worked this turn |
 | 559 | Fusion Bolt | Electric | `HIT` | exact | Sovereign effect: double power right after a Fusion Flare worked this turn |
 | 560 | Flying Press | Fighting | `HIT` | exact | Sovereign effect: Fighting and Flying type at once for its effectiveness |
-| 561 | Mat Block | Fighting | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 561 | Mat Block | Fighting | `SOVEREIGN_MAT_BLOCK` | exact | Sovereign effect: user's first turn only: protects its side from damaging moves this turn |
 | 562 | Belch | Poison | `HIT` | approximate | Sovereign effect: fails unless the user has eaten a Berry this battle (Bug Bite and Pluck don't count yet) |
 | 563 | Rototiller | Ground | `ATK_UP_2` | approximate | raises [('atk', 1), ('spa', 1)] in the original |
 | 564 | Sticky Web | Bug | `SOVEREIGN_STICKY_WEB` | exact | Sovereign effect: grounded foes switching in lose 1 Speed stage (Rapid Spin clears it) |
@@ -125,7 +125,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 575 | Parting Shot | Dark | `SOVEREIGN_PARTING_SHOT` | exact | Sovereign effect: target Attack and Sp. Atk -1, then the user switches out (stays if no stat fell) |
 | 576 | Topsy-Turvy | Dark | `SOVEREIGN_TOPSY_TURVY` | exact | Sovereign effect: inverts the target's stat stages (fails if they're all neutral) |
 | 577 | Draining Kiss | Fairy | `RECOVER_HALF_DAMAGE_DEALT` | exact | Sovereign effect: drains 3/4 of the damage dealt |
-| 578 | Crafty Shield | Fairy | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 578 | Crafty Shield | Fairy | `SOVEREIGN_CRAFTY_SHIELD` | exact | Sovereign effect: protects the user's side from status moves aimed at it this turn |
 | 579 | Flower Shield | Fairy | `SOVEREIGN_FLOWER_SHIELD` | exact | Sovereign effect: Defense +1 for every Grass type on the field |
 | 580 | Grassy Terrain | Grass | `SOVEREIGN_GRASSY_TERRAIN` | exact | Sovereign effect: Grassy Terrain: grounded Grass moves x1.3, heals 1/16 each turn, halves Earthquake |
 | 581 | Misty Terrain | Fairy | `SOVEREIGN_MISTY_TERRAIN` | exact | Sovereign effect: Misty Terrain: halves Dragon moves, grounded Pokémon can't be statused or confused |
@@ -135,7 +135,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 585 | Moonblast | Fairy | `LOWER_SP_ATK_HIT` | exact |  |
 | 586 | Boomburst | Normal | `HIT` | exact | Sovereign effect: hits all adjacent Pokémon |
 | 587 | Fairy Lock | Fairy | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
-| 588 | King’s Shield | Steel | `PROTECT` | approximate | protects like Protect; the contact penalty is missing |
+| 588 | King’s Shield | Steel | `PROTECT` | exact | Sovereign effect: protects like Protect, but not from status moves; a contact move it blocks: Attack -1 |
 | 589 | Play Nice | Normal | `ATK_DOWN` | exact | Sovereign effect: never misses, ignores Protect, target Attack -1 |
 | 590 | Confide | Normal | `SP_ATK_DOWN` | exact | Sovereign effect: target Sp. Atk -1; as a sound move it gets past Substitute |
 | 591 | Diamond Storm | Rock | `SOVEREIGN_RAISE_DEF_2_HIT` | exact | Sovereign effect: user Defense +2 (50%) |
@@ -143,7 +143,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 593 | Hyperspace Hole | Psychic | `HIT` | exact | Sovereign effect: never misses, ignores Protect |
 | 594 | Water Shuriken | Water | `MULTI_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
 | 595 | Mystical Fire | Fire | `LOWER_SP_ATK_HIT` | exact |  |
-| 596 | Spiky Shield | Grass | `PROTECT` | approximate | protects like Protect; the contact penalty is missing |
+| 596 | Spiky Shield | Grass | `PROTECT` | exact | Sovereign effect: protects like Protect; a contact move it blocks costs the attacker 1/8 of its max HP |
 | 597 | Aromatic Mist | Fairy | `SP_DEF_UP` | approximate | has its own mechanic in Gen IX; closest effect |
 | 598 | Eerie Impulse | Electric | `SP_ATK_DOWN_2` | exact |  |
 | 599 | Venom Drench | Poison | `SOVEREIGN_VENOM_DRENCH` | exact | Sovereign effect: target Attack -1, target Sp. Atk -1, target Speed -1 |
@@ -207,8 +207,8 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 657 | (twinkle-tackle--special) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
 | 658 | (catastropika) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
 | 659 | Shore Up | Ground | `RESTORE_HALF_HP` | approximate | has its own mechanic in Gen IX; closest effect |
-| 660 | FirstImpressn | Bug | `PRIORITY_1` | approximate | has its own mechanic in Gen IX; closest effect |
-| 661 | Baneful Bunker | Poison | `PROTECT` | approximate | protects like Protect; the contact penalty is missing |
+| 660 | FirstImpressn | Bug | `SOVEREIGN_FIRST_IMPRESSION` | exact | Sovereign effect: fails unless it's the user's first turn in battle |
+| 661 | Baneful Bunker | Poison | `PROTECT` | exact | Sovereign effect: protects like Protect; a contact move it blocks poisons the attacker |
 | 662 | Spirit Shackle | Ghost | `SOVEREIGN_TRAP_HIT` | exact | Sovereign effect: the target can't escape while the user is in battle |
 | 663 | Darkest Lariat | Dark | `HIT` | exact | Sovereign effect: ignores the target's stat changes |
 | 664 | Sparkling Aria | Water | `SOVEREIGN_SPARKLING_ARIA` | exact | Sovereign effect: hits all adjacent Pokémon and heals their burns |
@@ -339,7 +339,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 789 | Spirit Break | Fairy | `LOWER_SP_ATK_HIT` | exact |  |
 | 790 | Strange Steam | Fairy | `CONFUSE_HIT` | exact |  |
 | 791 | Life Dew | Water | `SOVEREIGN_LIFE_DEW` | exact | Sovereign effect: heals the user and its ally by 1/4 |
-| 792 | Obstruct | Dark | `PROTECT` | approximate | protects like Protect; the contact penalty is missing |
+| 792 | Obstruct | Dark | `PROTECT` | exact | Sovereign effect: protects like Protect, but not from status moves; a contact move it blocks: Defense -2 |
 | 793 | False Surrender | Dark | `BYPASS_ACCURACY` | exact |  |
 | 794 | Meteor Assault | Fighting | `RECHARGE_AFTER` | exact |  |
 | 795 | Eternabeam | Dragon | `RECHARGE_AFTER` | exact |  |
@@ -399,7 +399,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 849 | Lunar Blessing | Psychic | `SOVEREIGN_LUNAR_BLESSING` | exact | Sovereign effect: the user and its ally regain 1/4 of their max HP and are cured of status conditions |
 | 850 | Take Heart | Psychic | `SOVEREIGN_TAKE_HEART` | exact | Sovereign effect: user Sp. Atk +1, user Sp. Def +1; heals the user's status condition |
 | 851 | Tera Blast | Normal | `HIT` | exact | Sovereign effect: plain hit (no Terastallization in Sovereign) |
-| 852 | Silk Trap | Bug | `PROTECT` | approximate | protects like Protect; the contact penalty is missing |
+| 852 | Silk Trap | Bug | `PROTECT` | exact | Sovereign effect: protects like Protect, but not from status moves; a contact move it blocks: Speed -1 |
 | 853 | Axe Kick | Fighting | `SOVEREIGN_AXE_KICK` | exact | Sovereign effect: 30% confusion; the user loses half its max HP if it misses |
 | 854 | Last Respects | Ghost | `HIT` | exact | Sovereign effect: 50 more power for each fainted Pokémon in the user's party |
 | 855 | Lumina Crash | Psychic | `LOWER_SP_DEF_2_HIT` | exact | Sovereign effect: target Sp. Def -2 (100%) |
@@ -455,7 +455,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 905 | Electro Shot | Electric | `ELECTRO_SHOT` | exact | Sovereign effect: charge turn raises Sp. Atk; no charge turn in rain |
 | 906 | Tera Starstorm | Normal | `HIT` | exact | Sovereign effect: plain hit (no Terastallization in Sovereign) |
 | 907 | Fickle Beam | Dragon | `HIT` | exact | Sovereign effect: 30% chance of double power |
-| 908 | Burning Bulwark | Fire | `PROTECT` | approximate | protects like Protect; the contact penalty is missing |
+| 908 | Burning Bulwark | Fire | `PROTECT` | exact | Sovereign effect: protects like Protect, but not from status moves; a contact move it blocks burns the attacker |
 | 909 | Thunderclap | Electric | `HIT_FIRST_IF_TARGET_ATTACKING` | exact | Sovereign effect: +1 priority; fails unless the target is about to use a damaging move (Sucker Punch's effect) |
 | 910 | Mighty Cleave | Rock | `HIT` | exact | Sovereign effect: ignores Protect |
 | 911 | Tachyon Cutter | Steel | `HIT_TWICE` | exact | Sovereign effect: hits twice, never misses |

@@ -4,6 +4,57 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): moves, batch 6 (protection)
+
+For players: the protection moves work as in the main games. Six were approximate (Protect without their extra
+effects); Mat Block and Crafty Shield were placeholders, and First Impression was approximate.
+
+- **The shields:** King's Shield, Obstruct, Silk Trap and Burning Bulwark let status moves through, as in Gen IX.
+  Spiky Shield and Baneful Bunker block them, as Protect does.
+- **Their contact penalty:** a contact move a shield blocks punishes the attacker, after "...protected itself!":
+  - King's Shield: Attack -1. Obstruct: Defense -2. Silk Trap: Speed -1.
+  - Spiky Shield: the attacker loses 1/8 of its max HP ("...was hurt!"). Magic Guard prevents it.
+  - Baneful Bunker poisons the attacker; Burning Bulwark burns it.
+  - Long Reach, Protective Pads and a Punching Glove (on a punching move) mean no contact, so no penalty.
+  - The shield's user causes the penalty, so Clear Body, Mirror Armor, Corrosion and Synchronize work as with a move.
+    Neither Shield Dust nor a Substitute stops it, and it fails silently when it can't apply.
+  - New `subscript_sovereign_shield_contact`, called from `subscript_missed`; the battle context remembers each
+    battler's shield this turn (`sovereignShieldMove`) and the penalty due (`sovereignShieldContact`).
+- **The shared chain:** every protection move (Protect, Detect, Endure, the six shields, Wide Guard, Quick Guard) now
+  keeps the chain of falling success chances going. Before, only Protect, Detect and Endure did, so King's Shield and
+  the others never lost their chance when used in a row.
+- **Mat Block:** on the user's first turn in battle, its side is protected from damaging moves this turn. Messages:
+  "...intends to flip up a mat and block incoming attacks!", then "(move) was blocked by the kicked-up mat!".
+- **Crafty Shield:** protects the user's side from status moves aimed at a Pokémon there this turn. Message:
+  "Crafty Shield protected (team)!", then "Crafty Shield protected (Pokémon)!".
+- **Wide Guard and Quick Guard:** a blocked move now shows "Wide Guard protected (Pokémon)!" (or Quick Guard),
+  instead of "...protected itself!".
+- Mat Block, Crafty Shield, Wide Guard and Quick Guard fail when the user moves last.
+- **First Impression:** fails unless it's the user's first turn in battle since it came in, as Fake Out (no flinch).
+- Checklist: 323 exact, 28 approximate, 29 placeholders.
+
+**Verification:** `check_battle_scripts.py`, `check_byte_text_ids.py` and the docs regeneration pass. Harness wild
+battles against a fast Ninjask that uses the shield:
+- **Protect:** "The wild NINJASK protected itself!", no penalty.
+- **King's Shield:**
+  - Tackle: "protected itself!", then "SNORLAX's Attack fell!".
+  - Growl goes through. The third shield in a row: "But it failed!".
+  - Clear Body (Metagross): no drop. Mirror Armor (Corviknight): "CORVIKNIGHT's Mirror Armor cuts the wild NINJASK's
+    Attack!".
+- **Spiky Shield:**
+  - Tackle: "SNORLAX was hurt!", HP 223 to 196 (1/8).
+  - Water Gun: no damage.
+  - Long Reach (Decidueye): no damage.
+- **Baneful Bunker:** "SNORLAX was poisoned!" (Thick Fat). With Immunity, nothing.
+- **Obstruct:** "SNORLAX's Defense harshly fell!". **Silk Trap:** "SNORLAX's Speed fell!". **Burning Bulwark:**
+  "SNORLAX was burned!".
+- **Mat Block** (Jolteon, against Slowpoke):
+  - Turn 1: "...intends to flip up a mat...", then "Tackle was blocked by the kicked-up mat!".
+  - Turn 2: "But it failed!".
+- **Crafty Shield, Wide Guard** (Growl) and **Quick Guard** (Quick Attack): "(guard) protected your team!", then
+  "(guard) protected JOLTEON!".
+- **First Impression:** hits on turn 1; "But it failed!" on turn 2.
+
 ## Item 11 (effect fidelity): moves, batch 5
 
 For players: seven more moves work as in the main games. All seven were placeholders.

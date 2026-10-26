@@ -37,6 +37,8 @@ _052:
 
 _069:
     CompareVarToValue OPCODE_NEQ, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_INDIRECT, _079
+    // Sovereign (item 11): Burning Bulwark's burn isn't a chance effect (subscript_sovereign_shield_contact)
+    CompareVarToValue OPCODE_NEQ, BTLVAR_SOVEREIGN_SHIELD_CONTACT, MOVE_NONE, _079
     CheckIgnorableAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_SHIELD_DUST, _212
 
 _079:
@@ -46,6 +48,7 @@ _079:
 
 _086:
     CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_ABILITY, _094
+    CompareVarToValue OPCODE_NEQ, BTLVAR_SOVEREIGN_SHIELD_CONTACT, MOVE_NONE, _094 // Sovereign (item 11): Burning Bulwark
     CheckSubstitute BTLSCR_SIDE_EFFECT_MON, _212
 
 _094:

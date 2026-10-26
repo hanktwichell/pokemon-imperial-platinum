@@ -3361,6 +3361,9 @@ static void Sovereign_ReorderTurn(BattleSystem *battleSys, BattleContext *battle
 
 static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int defender, int move)
 {
+    battleCtx->sovereignShieldContact = MOVE_NONE; // Sovereign (item 11)
+    battleCtx->sovereignGuardBlock = MOVE_NONE;
+
     if (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) {
         return 0;
     }
@@ -3381,10 +3384,19 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
     if (battleCtx->turnFlags[defender].protecting
         && unseenFist == FALSE
         && (MOVE_DATA(move).flags & MOVE_FLAG_CAN_PROTECT)
+        && (MOVE_DATA(move).class != CLASS_STATUS || Sovereign_ShieldBlocksStatusMoves(battleCtx->sovereignShieldMove[defender])) // Sovereign (item 11)
         && (move != MOVE_CURSE || Move_IsGhostCurse(battleCtx, move, attacker) == TRUE) // Ghost-Curse can be Protected
         && (Move_IsMultiTurn(battleCtx, move) == FALSE || (battleCtx->battleStatusMask & SYSCTL_LAST_OF_MULTI_TURN))) {
         Battler_UnlockMoveChoice(battleSys, battleCtx, attacker);
         battleCtx->moveStatusFlags |= MOVE_STATUS_PROTECTED;
+
+        // Sovereign (item 11): King's Shield, Spiky Shield and the like punish a contact move they block
+        // (subscript_missed).
+        if (Sovereign_ShieldHasContactPenalty(battleCtx->sovereignShieldMove[defender])
+            && Sovereign_MakesContact(battleCtx, attacker, move)) {
+            battleCtx->sovereignShieldContact = battleCtx->sovereignShieldMove[defender];
+        }
+
         return 0;
     }
 
@@ -3440,15 +3452,34 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
         battleCtx->moveStatusFlags |= MOVE_STATUS_INEFFECTIVE;
     }
 
-    // Sovereign (item 11): Wide Guard blocks spread moves aimed at its side, Quick Guard foes' priority moves.
-    if (attacker != defender
-        && unseenFist == FALSE
-        && (((battleCtx->sovereignSideGuards[BattleSystem_GetBattlerSide(battleSys, defender)] & 1)
-                && (MOVE_DATA(move).range == RANGE_ADJACENT_OPPONENTS || MOVE_DATA(move).range == RANGE_ALL_ADJACENT))
-            || ((battleCtx->sovereignSideGuards[BattleSystem_GetBattlerSide(battleSys, defender)] & 2)
-                && BattleSystem_GetBattlerSide(battleSys, attacker) != BattleSystem_GetBattlerSide(battleSys, defender)
-                && Sovereign_MovePriority(battleCtx, attacker, move) > 0))) {
-        battleCtx->moveStatusFlags |= MOVE_STATUS_PROTECTED;
+    // Sovereign (item 11): Wide Guard blocks spread moves aimed at its side, Quick Guard foes' priority moves, Mat Block
+    // damaging moves and Crafty Shield status moves aimed at a Pokemon there. subscript_missed names the guard.
+    if (attacker != defender && unseenFist == FALSE) {
+        int guards = battleCtx->sovereignSideGuards[BattleSystem_GetBattlerSide(battleSys, defender)];
+
+        if ((guards & 1)
+            && (MOVE_DATA(move).range == RANGE_ADJACENT_OPPONENTS || MOVE_DATA(move).range == RANGE_ALL_ADJACENT)) {
+            battleCtx->sovereignGuardBlock = MOVE_WIDE_GUARD;
+        } else if ((guards & 2)
+            && BattleSystem_GetBattlerSide(battleSys, attacker) != BattleSystem_GetBattlerSide(battleSys, defender)
+            && Sovereign_MovePriority(battleCtx, attacker, move) > 0) {
+            battleCtx->sovereignGuardBlock = MOVE_QUICK_GUARD;
+        } else if ((guards & 4)
+            && MOVE_DATA(move).class != CLASS_STATUS
+            && (MOVE_DATA(move).flags & MOVE_FLAG_CAN_PROTECT)) {
+            battleCtx->sovereignGuardBlock = MOVE_MAT_BLOCK;
+        } else if ((guards & 8)
+            && MOVE_DATA(move).class == CLASS_STATUS
+            && (MOVE_DATA(move).range == RANGE_SINGLE_TARGET
+                || MOVE_DATA(move).range == RANGE_ADJACENT_OPPONENTS
+                || MOVE_DATA(move).range == RANGE_ALL_ADJACENT
+                || MOVE_DATA(move).range == RANGE_ALLY)) {
+            battleCtx->sovereignGuardBlock = MOVE_CRAFTY_SHIELD;
+        }
+
+        if (battleCtx->sovereignGuardBlock) {
+            battleCtx->moveStatusFlags |= MOVE_STATUS_PROTECTED;
+        }
     }
 
     // Sovereign (item 11): Good as Gold makes the holder immune to other Pokemon's status moves aimed at it.

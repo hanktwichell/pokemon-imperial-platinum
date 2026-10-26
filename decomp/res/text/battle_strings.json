@@ -9983,6 +9983,97 @@
       "en_US": [
         "Tidying up complete!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignPokemonWasHurt_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} was hurt!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignPokemonWasHurt_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} was hurt!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignPokemonWasHurt_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} was hurt!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignGuardProtectedPokemon_Ally",
+      "en_US": [
+        "{STRVAR_1 6, 1, 0} protected\n",
+        "{STRVAR_1 1, 0, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignGuardProtectedPokemon_Wild",
+      "en_US": [
+        "{STRVAR_1 6, 1, 0} protected\n",
+        "the wild {STRVAR_1 1, 0, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignGuardProtectedPokemon_Foe",
+      "en_US": [
+        "{STRVAR_1 6, 1, 0} protected\n",
+        "the foe’s {STRVAR_1 1, 0, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignBlockedByMat",
+      "en_US": [
+        "{STRVAR_1 6, 0, 0} was blocked\n",
+        "by the kicked-up mat!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignMatBlock_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} intends to flip up\n",
+        "a mat and block incoming\f",
+        "attacks!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignMatBlock_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} intends to\n",
+        "flip up a mat and block\f",
+        "incoming attacks!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignMatBlock_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} intends to\n",
+        "flip up a mat and block\f",
+        "incoming attacks!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCraftyShieldProtectedTeam_Ally",
+      "en_US": [
+        "Crafty Shield protected\n",
+        "your team!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCraftyShieldProtectedTeam_Wild",
+      "en_US": [
+        "Crafty Shield protected\n",
+        "the wild team!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCraftyShieldProtectedTeam_Foe",
+      "en_US": [
+        "Crafty Shield protected\n",
+        "the opposing team!"
+      ]
     }
   ]
 }

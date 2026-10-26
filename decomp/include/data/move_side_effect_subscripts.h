@@ -218,5 +218,7 @@ static const int sSideEffectSubscripts[] = {
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_COURT_CHANGE] = subscript_sovereign_court_change,
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_FLOWER_SHIELD] = subscript_sovereign_flower_shield,
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_TIDY_UP] = subscript_sovereign_tidy_up,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_MAT_BLOCK] = subscript_sovereign_mat_block,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_CRAFTY_SHIELD] = subscript_sovereign_crafty_shield,
 };
 // clang-format on
