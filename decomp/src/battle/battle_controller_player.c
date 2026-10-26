@@ -2162,8 +2162,10 @@ static void BattleControllerPlayer_TurnEnd(BattleSystem *battleSys, BattleContex
 
     battleCtx->totalTurns++;
     battleCtx->meFirstTurnOrder++;
-    battleCtx->sovereignInstructed = 0; // Sovereign (item 11): an instruction never outlasts its turn
-    battleCtx->sovereignInstructing = 0;
+    battleCtx->sovereignInstructed = 0; // Sovereign (item 11): no extra action outlasts its turn
+    battleCtx->sovereignExtraActor = 0;
+    battleCtx->sovereignDancers = 0;
+    battleCtx->sovereignDancing = FALSE;
 
     BattleContext_Init(battleCtx);
     BattleSystem_SetupNextTurn(battleSys, battleCtx);
@@ -5090,6 +5092,109 @@ static BOOL BattleControllerPlayer_SovereignMoveFormChange(BattleSystem *battleS
     return TRUE;
 }
 
+// Sovereign (item 11): sets a battler up to use a move now as an extra action (BattleControllerPlayer_SovereignExtraAction).
+// Its turn flag ppDecremented is set aside meanwhile: noPP spares the move's PP.
+static void BattleControllerPlayer_SovereignStartExtraAction(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int move, BOOL noPP)
+{
+    BattleContext_Init(battleCtx);
+    battleCtx->sovereignExtraActor = battler + 1;
+    battleCtx->sovereignExtraActorPP = battleCtx->turnFlags[battler].ppDecremented;
+    battleCtx->turnFlags[battler].ppDecremented = noPP;
+    battleCtx->attacker = battler;
+    battleCtx->moveTemp = move;
+    battleCtx->moveCur = move;
+    battleCtx->command = BATTLE_CONTROL_BEFORE_MOVE;
+    BattleController_EmitClearMessageBox(battleSys);
+}
+
+// Sovereign (item 11): extra actions, run as a move is over and before the turn goes on (BattleControllerPlayer_MoveEnd);
+// a battler that hasn't acted yet this turn still gets its own action. Returns TRUE when one starts.
+// - Instruct: its target uses its last move again (the target it chose this turn), at its own PP cost.
+// - Dancer: when another Pokémon's dance move works, each Dancer in battle copies it, the slowest first, at no PP cost.
+//   A copy aims at the move's target when that's a foe of the Dancer's and the Dancer's ally used it, and otherwise at
+//   the move's user. A copy sets off no other Dancer.
+static BOOL BattleControllerPlayer_SovereignExtraAction(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
+    int battler, i;
+
+    if (battleCtx->sovereignExtraActor) {
+        battleCtx->turnFlags[battleCtx->sovereignExtraActor - 1].ppDecremented = battleCtx->sovereignExtraActorPP;
+        battleCtx->sovereignExtraActor = 0;
+    }
+
+    if (battleCtx->sovereignDancing == FALSE
+        && Sovereign_IsDanceMove(battleCtx->moveCur)
+        && (battleCtx->battleStatusMask2 & SYSCTL_MOVE_SUCCEEDED)) {
+        battleCtx->sovereignDancers = 0;
+        battleCtx->sovereignDanceMove = battleCtx->moveCur;
+        battleCtx->sovereignDanceUser = battleCtx->attacker;
+        battleCtx->sovereignDanceTarget = battleCtx->defender;
+
+        for (i = 0; i < maxBattlers; i++) {
+            if (i != battleCtx->attacker
+                && battleCtx->battleMons[i].curHP
+                && Battler_Ability(battleCtx, i) == ABILITY_DANCER
+                && (battleCtx->battleMons[i].moveEffectsMask & MOVE_EFFECT_SEMI_INVULNERABLE) == FALSE) {
+                battleCtx->sovereignDancers |= FlagIndex(i);
+            }
+        }
+    }
+
+    battleCtx->sovereignDancing = FALSE;
+
+    if (battleCtx->sovereignInstructed) {
+        battler = battleCtx->sovereignInstructed - 1;
+        battleCtx->sovereignInstructed = 0;
+
+        if (Sovereign_CanInstruct(battleCtx, battler)) {
+            BattleControllerPlayer_SovereignStartExtraAction(battleSys, battleCtx, battler, battleCtx->movePrevByBattler[battler], FALSE);
+            battleCtx->defender = BattleSystem_Defender(battleSys, battleCtx, battler, battleCtx->moveTemp, FALSE, 0);
+            return TRUE;
+        }
+    }
+
+    while (battleCtx->sovereignDancers) {
+        battler = BATTLER_NONE;
+
+        for (i = 0; i < maxBattlers; i++) {
+            if ((battleCtx->sovereignDancers & FlagIndex(i))
+                && (battler == BATTLER_NONE || battleCtx->battleMons[i].speed < battleCtx->battleMons[battler].speed)) {
+                battler = i;
+            }
+        }
+
+        battleCtx->sovereignDancers &= ~FlagIndex(battler);
+
+        if (battleCtx->battleMons[battler].curHP && Battler_Ability(battleCtx, battler) == ABILITY_DANCER) {
+            int user = battleCtx->sovereignDanceUser;
+            int target = battleCtx->sovereignDanceTarget;
+            int side = BattleSystem_GetBattlerSide(battleSys, battler);
+
+            BattleControllerPlayer_SovereignStartExtraAction(battleSys, battleCtx, battler, battleCtx->sovereignDanceMove, TRUE);
+            battleCtx->sovereignDancing = TRUE;
+
+            if (MOVE_DATA(battleCtx->moveTemp).range == RANGE_SINGLE_TARGET) {
+                battleCtx->defender = (target != BATTLER_NONE
+                                          && BattleSystem_GetBattlerSide(battleSys, target) != side
+                                          && BattleSystem_GetBattlerSide(battleSys, user) == side)
+                    ? target
+                    : user;
+
+                if (battleCtx->battleMons[battleCtx->defender].curHP == 0) {
+                    battleCtx->defender = BattleSystem_Defender(battleSys, battleCtx, battler, battleCtx->moveTemp, TRUE, 0);
+                }
+            } else {
+                battleCtx->defender = BattleSystem_Defender(battleSys, battleCtx, battler, battleCtx->moveTemp, FALSE, 0);
+            }
+
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
 static void BattleControllerPlayer_MoveEnd(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_NO_MOVES) == FALSE) {
@@ -5123,32 +5228,8 @@ static void BattleControllerPlayer_MoveEnd(BattleSystem *battleSys, BattleContex
 
     battleCtx->battlerActions[battleCtx->battlerActionOrder[battleCtx->turnOrderCounter]][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_MOVE_END;
 
-    // Sovereign (item 11): Instruct. Once the move that instructed it is over, the target uses its last move again as an
-    // extra action; then the turn goes on as before (its own action, if it hasn't acted yet, still comes). The extra use
-    // costs PP of its own, so its turn flag ppDecremented is set aside meanwhile.
-    if (battleCtx->sovereignInstructing) {
-        battleCtx->turnFlags[battleCtx->sovereignInstructing - 1].ppDecremented = battleCtx->sovereignInstructedPP;
-        battleCtx->sovereignInstructing = 0;
-    }
-
-    if (battleCtx->sovereignInstructed) {
-        int battler = battleCtx->sovereignInstructed - 1;
-
-        battleCtx->sovereignInstructed = 0;
-
-        if (Sovereign_CanInstruct(battleCtx, battler)) {
-            BattleContext_Init(battleCtx);
-            battleCtx->sovereignInstructing = battler + 1;
-            battleCtx->sovereignInstructedPP = battleCtx->turnFlags[battler].ppDecremented;
-            battleCtx->turnFlags[battler].ppDecremented = FALSE;
-            battleCtx->attacker = battler;
-            battleCtx->moveTemp = battleCtx->movePrevByBattler[battler];
-            battleCtx->moveCur = battleCtx->moveTemp;
-            battleCtx->defender = BattleSystem_Defender(battleSys, battleCtx, battler, battleCtx->moveTemp, FALSE, 0);
-            battleCtx->command = BATTLE_CONTROL_BEFORE_MOVE;
-            BattleController_EmitClearMessageBox(battleSys);
-            return;
-        }
+    if (BattleControllerPlayer_SovereignExtraAction(battleSys, battleCtx) == TRUE) { // Sovereign (item 11)
+        return;
     }
 
     if (ATTACKER_SELF_TURN_FLAGS.trickRoomActivated) {

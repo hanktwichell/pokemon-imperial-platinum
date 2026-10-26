@@ -98,7 +98,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 213 | Comatose | Gen 7 | yes: no status condition, no drowsiness, Rest fails; counts as asleep for Dream Eater, Nightmare, Hex, Wake-Up Slap, Bad Dreams, Sleep Talk and Snore |
 | 214 | Queenly Majesty | Gen 7 | yes: foes' priority moves can't hit its side |
 | 215 | Innards Out | Gen 7 | yes: when knocked out by a hit, the attacker loses the HP it had left |
-| 216 | Dancer | Gen 7 | not yet (no battle effect) |
+| 216 | Dancer | Gen 7 | yes: when another Pokémon's dance move works, it uses the move too right after (the slowest Dancer first; no PP; a copy sets off no other Dancer) |
 | 217 | Battery | Gen 7 | yes: its ally's special moves ×1.3 |
 | 218 | Fluffy | Gen 7 | yes: contact damage halved, Fire damage doubled |
 | 219 | Dazzling | Gen 7 | yes: foes' priority moves can't hit its side |

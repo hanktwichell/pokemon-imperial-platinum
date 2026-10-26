@@ -3391,6 +3391,28 @@ BOOL Sovereign_CanInstruct(BattleContext *battleCtx, int target)
     return TRUE;
 }
 
+// Sovereign (item 11): the dance moves a Dancer copies (Gen IX's dance flag).
+BOOL Sovereign_IsDanceMove(int move)
+{
+    switch (move) {
+    case MOVE_AQUA_STEP:
+    case MOVE_CLANGOROUS_SOUL:
+    case MOVE_DRAGON_DANCE:
+    case MOVE_FEATHER_DANCE:
+    case MOVE_FIERY_DANCE:
+    case MOVE_LUNAR_DANCE:
+    case MOVE_PETAL_DANCE:
+    case MOVE_QUIVER_DANCE:
+    case MOVE_REVELATION_DANCE:
+    case MOVE_SWORDS_DANCE:
+    case MOVE_TEETER_DANCE:
+    case MOVE_VICTORY_DANCE:
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
 BOOL BattleSystem_TypeMatchup(BattleSystem *battleSys, int idx, u8 *moveType, u8 *vsType, u8 *multi)
 {
     BOOL result = TRUE;

@@ -8048,3 +8048,22 @@ PR #201 (Mega Sol, Growth, Ripen) is merged.
    first) uses it too, at no PP cost.
 2. Sky Drop, then the abilities Illusion, Symbiosis and Commander.
 3. Burn Up and Double Shock still wait on the owner (CB-0158).
+
+## CB-0188 — 2026-10-26, 5:39 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: Dancer.** PR #204 (Instruct) is merged.
+- When another Pokémon's dance move works, each Dancer copies it right after: the slowest first, no PP cost, and no
+  chain. The copy aims at the original target when it's the Dancer's foe and the Dancer's ally used the move, and at
+  the user otherwise.
+- Instruct and Dancer now share `BattleControllerPlayer_SovereignExtraAction` (MoveEnd).
+- Verified with Swords Dance and Feather Dance both ways (see the changelog). Instruct was rechecked.
+
+**Files modified:**
+- `decomp/src/battle/battle_controller_player.c` (extra-action helpers, TurnEnd), `decomp/src/battle/battle_lib.c` (`Sovereign_IsDanceMove`).
+- `decomp/include/battle/battle_context.h`, `decomp/include/battle/battle_lib.h`.
+- `tools/engine/gen_abilities.py`, `docs/AbilityChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Abilities still to do: Illusion, Symbiosis, Commander (Embody Aspect and Teraform Zero need Terastallization).
+2. Sky Drop (placeholder).
+3. Burn Up and Double Shock still wait on the owner (CB-0158).
