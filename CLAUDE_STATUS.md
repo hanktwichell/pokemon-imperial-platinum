@@ -6790,3 +6790,97 @@ open questions. The shiny line-up patch is ready for when #161 is merged.
 2. Item 11's double-battle abilities (the Veils' ally half, Hospitality, Costar, Curious Medicine), with a doubles case
    in the test harness.
 3. Soul-Heart; Ripen and Cheek Pouch for damage-halving Berries and Bug Bite/Pluck.
+
+## CA-0062 (Claude A, 2026-10-26): Hisuian Sneasel's female front
+
+**Implemented:** forms can have a female front of their own. `convert_form_sprites.py` converts
+`pokeapi_fronts/forms/<form>/female_front.png` (and its shiny) as an extra form sprite and writes
+`sSovereignFormFemaleSprite`; `SovereignForm_FrontSprite` (`src/pokemon.c`) returns it for a female. Hisuian Sneasel
+is the only one. `pl_pokegra.narc` has 9,315 files; release build, boot smoke test and a slot check pass, and all 368
+forms still map to their own sprite.
+
+**Files modified:** `decomp/src/pokemon.c`, `tools/sprites/convert_form_sprites.py`,
+`decomp/res/pokemon/sovereign_form_sprites/`, `decomp/include/data/sovereign_form_sprites.h`,
+`assets/sprites/packs/pokeapi_fronts/forms/sneasel-hisui/`, `CITATIONS.md`, `docs/EngineChangelog.md`,
+`CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Check a female Hisuian Sneasel and a few forms in battle.
+2. Form backs (Megas first) and the forms' y offsets.
+3. Redo the added party/box icons (decision 45) as art arrives.
+
+## CA-0063 (Claude A, 2026-10-26): shiny palettes from colour pairs
+
+**Implemented (owner: Alolan Meowth's shiny front looked wrong):** `paired_palettes` in
+`tools/sprites/convert_battle_sprites.py` picks the 15 slots from (normal, shiny) colour pairs, used by both
+converters; #494–1025 and all 369 form sprites were reconverted. Alolan Meowth's shiny now matches PokeAPI's. Release
+build and boot smoke test pass.
+
+**Files modified:** `tools/sprites/convert_battle_sprites.py`, `tools/sprites/convert_form_sprites.py`,
+`decomp/res/pokemon/` (palettes and pngs of #494–1025 and `sovereign_form_sprites/`), `docs/BattleSpriteImport.md`,
+`docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Shinies PokeAPI draws differently from the front (Galarian Darumaka, Pumpkaboo/Gourgeist sizes, Vivillon, the
+   Flabébé line) need a matching shiny drawn, or the owner's call.
+2. Check a few shinies in battle.
+3. Form backs and the forms' y offsets.
+
+## CA-0064 (Claude A, 2026-10-26): every form has its own PokeAPI front
+
+**Implemented (owner: "ensure they all have PokeAPI front and shiny front"):** the 52 forms that PokeAPI draws like
+their species (Totems, Scatterbug's and Spewpa's patterns, 50% Zygarde, Battle Bond Greninja, Own Tempo Rockruff,
+Artisan Poltchageist, Masterpiece Sinistcha) now have their own entries too: 420 of 421 forms (Mega Zygarde has none on
+PokeAPI) plus Hisuian Sneasel's female front. `pl_pokegra.narc` has 9,471 files; release build, boot smoke test and the
+form-to-sprite mapping check pass.
+
+**Files modified:** `assets/sprites/packs/pokeapi_fronts/forms/` (52 new), `decomp/res/pokemon/sovereign_form_sprites/`,
+`decomp/include/data/sovereign_form_sprites.h`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Mega Zygarde's front (no PokeAPI sprite; the owner's artist or another source).
+2. Check a few forms and shinies in battle.
+3. Form backs and the forms' y offsets.
+
+## CA-0065 (Claude A, 2026-10-26): owner decisions 46–50, finished/unfinished sprite lists
+
+**For Claude B — the owner answered your open questions (`docs/ProjectStatus.md`):**
+- **Decision 46:** Route 224 comes before the Elite Four, exactly as in Renegade (Victory Road's back area, the League
+  exit guard waiting on the Route 224 counterpart).
+- **Decision 47:** Darach is a recurring character in both places: mid-game where Renegade has him (the Tea, Route
+  218's gate), and in the Regional Forms Park lobby after the Hall of Fame.
+- **Decision 48:** sprites the owner ticked Done are finished as they look, approximate shinies included; Needs work
+  is later (`docs/BattleSpriteStatus.md`). The owner is fixing Vivillon's back.
+
+**Owner decisions Claude A is implementing next (form code, so heads-up):**
+- **Decision 49:** Scatterbug and Spewpa lose their 19 patterns (one form each). Pumpkaboo/Gourgeist keep their sizes
+  (stats) with one sprite.
+- **Decision 50:** the player only gets the main form of Vivillon (Meadow), the Flabébé line (Red), Alcremie (Vanilla
+  Cream, Strawberry Sweet) and Pikachu; opponents may use the others. Eternal Floette and Mega Floette stay, Partner
+  Pikachu stays the deliveryman's gift (his costume/cap Pikachu go), Furfrou's groomer stays for now.
+
+**Also merged:** your corner fix and `check_battle_sprites.py` (0 problems on the merged sprites); the converters keep
+my colour-pair palettes and corner clearing.
+
+**Files modified:** `docs/ProjectStatus.md`, `docs/BattleSpriteStatus.md`, `CLAUDE_STATUS.md`.
+
+## CA-0066 (Claude A, 2026-10-26): shinies drawn on their own; owner's new Done ticks
+
+**Implemented:**
+- Florges' shiny front (owner: "needs its shiny front pulled from PokeAPI again"). The file was already PokeAPI's, but
+  PokeAPI draws it apart from the normal front, so the palette swap scrambled it. Same for 11 more species and 11
+  forms (Vivillon, Flabébé, Floette, Furfrou and its trims, Pyroar, Xerneas, Zeraora, Smoliv, Toedscruel, Ting-Lu,
+  Iron Crown, Galarian Darumaka, female Meowstic). `convert_form_sprites.py` now converts those shinies as front
+  sprites of their own. New tables are in `sovereign_form_sprites.h`, and `SovereignForm_FrontSprite` takes `shiny`.
+- The owner ticked Tirtouga, Bouffalant, Tyrantrum, Florges, Dubwool and Great Tusk to Slither Wing (#984–988) Done.
+  They have moved to Finished in `docs/BattleSpriteStatus.md` (637 finished, 316 unfinished, 5 not ticked).
+- Merged main (Claude B's item 11 abilities) into PR #161.
+
+**Files modified:** `tools/sprites/convert_form_sprites.py`, `decomp/src/pokemon.c`,
+`decomp/include/data/sovereign_form_sprites.h`, `decomp/res/pokemon/sovereign_form_sprites/`,
+`docs/BattleSpriteStatus.md`, `docs/BattleSpriteImport.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Decision 49: Scatterbug/Spewpa to one form each.
+2. Decision 50: player-obtainable base forms only; drop the deliveryman's costume/cap Pikachu.
+3. Mega Zygarde's front; form backs and y offsets.
