@@ -10702,6 +10702,48 @@
         "The foe’s {STRVAR_1 1, 0, 0}’s\n",
         "shell trap didn’t work!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignShedTail_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} shed its tail\n",
+        "to create a decoy!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignShedTail_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} shed its tail\n",
+        "to create a decoy!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignShedTail_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} shed its tail\n",
+        "to create a decoy!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAbilityTakenOver_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\n",
+        "was taken over!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAbilityTakenOver_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\n",
+        "was taken over!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAbilityTakenOver_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\n",
+        "was taken over!"
+      ]
     }
   ]
 }

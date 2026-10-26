@@ -104,8 +104,8 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 219 | Dazzling | Gen 7 | yes: foes' priority moves can't hit its side |
 | 220 | Soul-Heart | Gen 7 | yes: Sp. Atk +1 each time another Pokémon faints |
 | 221 | Tangling Hair | Gen 7 | yes: a contact move lowers the attacker's Speed 1 stage |
-| 222 | Receiver | Gen 7 | not yet (no battle effect) |
-| 223 | PowerOfAlchemy | Gen 7 | not yet (no battle effect) |
+| 222 | Receiver | Gen 7 | yes: it takes over the ability of its ally that faints (not one that can't be copied) |
+| 223 | PowerOfAlchemy | Gen 7 | yes: it takes over the ability of its ally that faints (not one that can't be copied) |
 | 224 | Beast Boost | Gen 7 | yes: its highest stat +1 for each foe its move knocks out |
 | 225 | RKS System | Gen 7 | yes: Silvally takes its held Memory's type (and form) |
 | 226 | Electric Surge | Gen 7 | yes: sets Electric Terrain on entry |

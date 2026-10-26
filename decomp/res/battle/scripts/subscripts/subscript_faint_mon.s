@@ -24,4 +24,12 @@ _023:
     GoTo _023
 
 _sovereign_end:
+    // Sovereign (item 11): Receiver and Power of Alchemy. The fainted Pokémon's ally takes over its ability.
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_RECEIVER, 0, _sovereign_done
+    // {0}’s {1} was taken over!
+    PrintMessage BattleStrings_Text_SovereignAbilityTakenOver_Ally, TAG_NICKNAME_ABILITY, BTLSCR_FAINTED_MON, BTLSCR_FAINTED_MON
+    Wait
+    WaitButtonABTime 30
+
+_sovereign_done:
     End 

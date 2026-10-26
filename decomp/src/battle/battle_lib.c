@@ -99,7 +99,8 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
     battleCtx->battleMons[battler].isEgg = Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL);
     battleCtx->battleMons[battler].hasNickname = Pokemon_GetValue(mon, MON_DATA_HAS_NICKNAME, NULL);
 
-    if ((battleCtx->battleStatusMask & SYSCTL_BATON_PASS) == FALSE) {
+    // Sovereign (item 11): Shed Tail passes on no stat stages.
+    if ((battleCtx->battleStatusMask & SYSCTL_BATON_PASS) == FALSE || battleCtx->sovereignShedTail) {
         for (i = 0; i < BATTLE_STAT_MAX; i++) {
             battleCtx->battleMons[battler].statBoosts[i] = DEFAULT_STAT_STAGE;
         }
@@ -2143,15 +2144,20 @@ void BattleSystem_UpdateAfterSwitch(BattleSystem *battleSys, BattleContext *batt
     u32 battleType;
     u8 *addr;
     MoveEffectsData moveEffects;
+    BOOL shedTail; // Sovereign (item 11): Shed Tail switches as Baton Pass does, but passes on the substitute only
+    u32 substitute;
 
     moveEffects = battleCtx->battleMons[battler].moveEffectsData;
+    shedTail = (battleCtx->battleStatusMask & SYSCTL_BATON_PASS) && battleCtx->sovereignShedTail;
+    substitute = battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_SUBSTITUTE;
+    battleCtx->sovereignShedTail = FALSE;
     maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
     battleType = BattleSystem_GetBattleType(battleSys);
 
     // Forcefully end the battler's turn after the replacement
     battleCtx->battlerActions[battler][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_MOVE_END;
 
-    if ((battleCtx->battleStatusMask & SYSCTL_BATON_PASS) == FALSE) {
+    if ((battleCtx->battleStatusMask & SYSCTL_BATON_PASS) == FALSE || shedTail) {
         // Clear any Mean Look or Lock On effects from other active battlers
         for (i = 0; i < maxBattlers; i++) {
             if ((battleCtx->battleMons[i].statusVolatile & VOLATILE_CONDITION_MEAN_LOOK)
@@ -2166,7 +2172,7 @@ void BattleSystem_UpdateAfterSwitch(BattleSystem *battleSys, BattleContext *batt
             }
         }
 
-        battleCtx->battleMons[battler].statusVolatile = VOLATILE_CONDITION_NONE;
+        battleCtx->battleMons[battler].statusVolatile = shedTail ? substitute : VOLATILE_CONDITION_NONE;
         battleCtx->battleMons[battler].moveEffectsMask = MOVE_EFFECT_NONE;
     } else {
         // Baton Pass maintains Focus Energy, Mean Look, Confusion, Curse, Substitute,
@@ -2203,7 +2209,9 @@ void BattleSystem_UpdateAfterSwitch(BattleSystem *battleSys, BattleContext *batt
     }
 
     // Update the move effects for Baton Pass, if applicable
-    if (battleCtx->battleStatusMask & SYSCTL_BATON_PASS) {
+    if (shedTail) {
+        battleCtx->battleMons[battler].moveEffectsData.substituteHP = moveEffects.substituteHP;
+    } else if (battleCtx->battleStatusMask & SYSCTL_BATON_PASS) {
         battleCtx->battleMons[battler].moveEffectsData.substituteHP = moveEffects.substituteHP;
         battleCtx->battleMons[battler].moveEffectsData.lockOnTarget = moveEffects.lockOnTarget;
         battleCtx->battleMons[battler].moveEffectsData.perishSongTurns = moveEffects.perishSongTurns;
@@ -5607,6 +5615,33 @@ BOOL Sovereign_CoreEnforcer(BattleContext *battleCtx, int battler)
         && (mon->moveEffectsMask & MOVE_EFFECT_ABILITY_SUPPRESSED) == FALSE
         && Sovereign_AbilityCantBeSuppressed(mon->ability) == FALSE
         && Sovereign_HasAbilityShield(battleCtx, battler) == FALSE;
+}
+
+// Sovereign (item 11): Receiver and Power of Alchemy. When a Pokemon faints, its ally with one of them takes over its
+// ability, unless that ability can't be copied (Showdown's noreceiver list) or an Ability Shield keeps the ally's own.
+// Returns the ally, or BATTLER_NONE.
+int Sovereign_Receiver(BattleSystem *battleSys, BattleContext *battleCtx, int fainted)
+{
+    int ally;
+    int ability;
+
+    if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES) == FALSE || fainted == BATTLER_NONE) {
+        return BATTLER_NONE;
+    }
+
+    ally = BattleSystem_GetPartner(battleSys, fainted);
+    ability = battleCtx->battleMons[fainted].ability;
+
+    if (ally == fainted
+        || battleCtx->battleMons[ally].curHP == 0
+        || (Battler_Ability(battleCtx, ally) != ABILITY_RECEIVER && Battler_Ability(battleCtx, ally) != ABILITY_POWER_OF_ALCHEMY)
+        || Sovereign_AbilityCantBeCopied(ability)
+        || Sovereign_HasAbilityShield(battleCtx, ally)) {
+        return BATTLER_NONE;
+    }
+
+    Sovereign_SetAbility(battleCtx, ally, ability);
+    return ally;
 }
 
 // Sovereign (item 11): after the ability's type change (Normalize, the -ate abilities, Liquid Voice), Electrify makes all

@@ -1276,6 +1276,7 @@ BOOL Sovereign_AbilityCantBeCopied(int ability);
 BOOL Sovereign_AbilityCantBeSwapped(int ability);
 int Sovereign_Doodle(BattleSystem *battleSys, BattleContext *battleCtx);
 BOOL Sovereign_CoreEnforcer(BattleContext *battleCtx, int battler);
+int Sovereign_Receiver(BattleSystem *battleSys, BattleContext *battleCtx, int fainted);
 int Sovereign_ElectrifyType(BattleContext *battleCtx, int battler, int move, int type);
 int Sovereign_MoveRange(BattleContext *battleCtx, int attacker, int move);
 BOOL Sovereign_Electrify(BattleContext *battleCtx, int battler);

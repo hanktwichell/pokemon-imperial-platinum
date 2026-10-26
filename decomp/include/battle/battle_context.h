@@ -380,6 +380,7 @@ struct BattleContext {
     int sovereignInHazards; // Sovereign (item 11): TRUE while subscript_hazards_check runs (Infiltrator)
     u8 sovereignGemBoost; // Sovereign (item 11): 1 + the attacker whose Gem powered up its current move's damage
     int sovereignHalfHPPaid; // Sovereign (item 11): the current move's user paid Steel Beam's half-HP cost already
+    u8 sovereignShedTail; // Sovereign (item 11): the coming Baton Pass switch is Shed Tail's (it passes the substitute only)
     u8 sovereignGlaiveRush; // Sovereign (item 11): battlers that used Glaive Rush, until their next move (flags by battler)
     u8 sovereignSaltCure; // Sovereign (item 11): battlers hurt by Salt Cure at the end of each turn (flags by battler)
     u8 sovereignSyrupBomb[MAX_BATTLERS]; // Sovereign (item 11): Syrup Bomb's Speed drops left on each battler

@@ -4,6 +4,33 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): Shed Tail; Receiver and Power of Alchemy
+
+For players:
+- **Shed Tail:** the user pays half its max HP (rounded up) for a substitute of 1/4 of its max HP, then switches out as
+  with Baton Pass ("{0} shed its tail to create a decoy!").
+  - The Pokémon that comes in gets the substitute and nothing else: no stat stages and no other effects.
+  - It fails with no Pokémon to switch to, or when the user already has a substitute.
+  - With half its HP or less, "It was too weak to make a substitute!".
+- **Receiver and Power of Alchemy:** when the holder's ally faints in a double battle, the holder takes over the ally's
+  ability ("{0}'s {1} was taken over!").
+  - It doesn't take an ability that can't be copied. That is Showdown's noreceiver list, the same as Role Play's:
+    Wonder Guard, Trace, Illusion, the form abilities and the rest.
+  - An Ability Shield keeps the holder's own ability.
+- **Code:**
+  - Shed Tail sets `sovereignShedTail` for the coming Baton Pass switch. `BattleSystem_InitBattleMon` then resets the
+    stat stages, and `BattleSystem_UpdateAfterSwitch` keeps only the substitute.
+  - Receiver is `Sovereign_Receiver`, read through `BTLVAR_SOVEREIGN_RECEIVER` in `subscript_faint_mon`, after
+    Soul-Heart.
+
+**Verification:** test and release ROMs built; the battle-script size check, the message check and the docs check pass.
+- **Shed Tail:** Cyclizar (136 HP) used it against a wild Ninjask.
+  - It dropped to 68 and Gallade came in.
+  - Ninjask's Tackle then showed "The substitute took damage for GALLADE!", and Gallade's HP didn't change.
+- **Receiver:** in a double battle against Belle & Pa, a Passimian led with a Lv. 5 Pikachu partner.
+  - "PIKACHU fainted!", then "PIKACHU's Static was taken over!".
+  - Passimian's ability read from memory was Static.
+
 ## Item 11 (effect fidelity): Spectral Thief, Beak Blast, Shell Trap
 
 For players, three more placeholder moves now work (13 left):

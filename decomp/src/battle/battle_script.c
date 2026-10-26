@@ -10104,6 +10104,22 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         // fails)
         battleCtx->sovereignTerrainTemp = Sovereign_Electrify(battleCtx, battleCtx->defender);
         return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_RECEIVER: // Sovereign (item 11): read-only, for subscript_faint_mon. TRUE when the fainted
+        // Pokemon's ally took over its ability with Receiver or Power of Alchemy (it's then msgBattlerTemp)
+        battleCtx->msgBattlerTemp = Sovereign_Receiver(battleSys, battleCtx, battleCtx->faintedMon);
+        battleCtx->sovereignTerrainTemp = battleCtx->msgBattlerTemp != BATTLER_NONE;
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_SHED_TAIL: // Sovereign (item 11): read-only, Shed Tail's user pays half its max HP (rounded up,
+        // in BTLVAR_HP_CALC_TEMP) for a substitute of 1/4 (FALSE, and nothing happens, when it has too little HP)
+        battleCtx->sovereignTerrainTemp = ATTACKING_MON.curHP > (ATTACKING_MON.maxHP + 1) / 2;
+        if (battleCtx->sovereignTerrainTemp) {
+            battleCtx->hpCalcTemp = -((ATTACKING_MON.maxHP + 1) / 2);
+            ATTACKING_MON.moveEffectsData.substituteHP = BattleSystem_Divide(ATTACKING_MON.maxHP, 4);
+            ATTACKING_MON.statusVolatile |= VOLATILE_CONDITION_SUBSTITUTE;
+            ATTACKING_MON.statusVolatile &= ~VOLATILE_CONDITION_BIND;
+            battleCtx->sovereignShedTail = TRUE;
+        }
+        return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_SPECTRAL_THIEF: // Sovereign (item 11): read-only, the attacker steals the defender's stat
         // rises (FALSE when it has none)
         battleCtx->sovereignTerrainTemp = Sovereign_SpectralThief(battleCtx, battleCtx->attacker, battleCtx->defender);
