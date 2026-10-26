@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 307 |
+| exact | 314 |
 | approximate | 35 |
-| placeholder | 38 |
+| placeholder | 31 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -126,7 +126,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 576 | Topsy-Turvy | Dark | `SOVEREIGN_TOPSY_TURVY` | exact | Sovereign effect: inverts the target's stat stages (fails if they're all neutral) |
 | 577 | Draining Kiss | Fairy | `RECOVER_HALF_DAMAGE_DEALT` | exact | Sovereign effect: drains 3/4 of the damage dealt |
 | 578 | Crafty Shield | Fairy | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
-| 579 | Flower Shield | Fairy | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 579 | Flower Shield | Fairy | `SOVEREIGN_FLOWER_SHIELD` | exact | Sovereign effect: Defense +1 for every Grass type on the field |
 | 580 | Grassy Terrain | Grass | `SOVEREIGN_GRASSY_TERRAIN` | exact | Sovereign effect: Grassy Terrain: grounded Grass moves x1.3, heals 1/16 each turn, halves Earthquake |
 | 581 | Misty Terrain | Fairy | `SOVEREIGN_MISTY_TERRAIN` | exact | Sovereign effect: Misty Terrain: halves Dragon moves, grounded Pokémon can't be statused or confused |
 | 582 | Electrify | Electric | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
@@ -161,8 +161,8 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 611 | Infestation | Bug | `BIND_HIT` | exact |  |
 | 612 | Power-Up Punch | Fighting | `RAISE_ATTACK_HIT` | exact | Sovereign effect: user Attack +1 (100%) |
 | 613 | Oblivion Wing | Flying | `RECOVER_HALF_DAMAGE_DEALT` | exact | Sovereign effect: drains 3/4 of the damage dealt |
-| 614 | Thousand Arrows | Ground | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
-| 615 | Thousand Waves | Ground | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 614 | Thousand Arrows | Ground | `SOVEREIGN_SMACK_DOWN` | exact | Sovereign effect: hits both foes, airborne ones too (neutral on a Flying type), and grounds them |
+| 615 | Thousand Waves | Ground | `SOVEREIGN_TRAP_ON_HIT` | exact | Sovereign effect: hits both foes; they can't escape while the user stays in |
 | 616 | Land’s Wrath | Ground | `HIT` | exact |  |
 | 617 | Light of Ruin | Fairy | `RECOIL_HALF` | exact |  |
 | 618 | Origin Pulse | Water | `HIT` | exact |  |
@@ -211,7 +211,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 661 | Baneful Bunker | Poison | `PROTECT` | approximate | protects like Protect; the contact penalty is missing |
 | 662 | Spirit Shackle | Ghost | `SOVEREIGN_TRAP_HIT` | exact | Sovereign effect: the target can't escape while the user is in battle |
 | 663 | Darkest Lariat | Dark | `HIT` | exact | Sovereign effect: ignores the target's stat changes |
-| 664 | Sparkling Aria | Water | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 664 | Sparkling Aria | Water | `SOVEREIGN_SPARKLING_ARIA` | exact | Sovereign effect: hits all adjacent Pokémon and heals their burns |
 | 665 | Ice Hammer | Ice | `SPEED_DOWN_HIT` | exact |  |
 | 666 | Floral Healing | Fairy | `SOVEREIGN_HEAL_TARGET` | exact | Sovereign effect: heals the target by 1/2 (2/3 in Grassy Terrain) |
 | 667 | High Horsepower | Ground | `HIT` | exact |  |
@@ -293,7 +293,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 743 | (max-guard) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
 | 744 | Dynamax Cannon | Dragon | `HIT` | exact | Sovereign effect: plain hit (no Dynamax in Sovereign) |
 | 745 | Snipe Shot | Water | `HIGH_CRITICAL` | approximate | has its own mechanic in Gen IX; closest effect |
-| 746 | Jaw Lock | Dark | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 746 | Jaw Lock | Dark | `SOVEREIGN_JAW_LOCK` | exact | Sovereign effect: the user and the target can't escape while both stay in |
 | 747 | Stuff Cheeks | Normal | `DEF_UP_2` | approximate | has its own mechanic in Gen IX; closest effect |
 | 748 | No Retreat | Fighting | `SOVEREIGN_NO_RETREAT` | approximate | Sovereign effect: all stats +1 (the user isn't trapped yet) |
 | 749 | Tar Shot | Rock | `SOVEREIGN_TAR_SHOT` | exact | Sovereign effect: target Speed -1; Fire moves are twice as effective against it until it switches out |
@@ -303,7 +303,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 753 | Octolock | Fighting | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 754 | Bolt Beak | Electric | `HIT` | exact | Sovereign effect: power doubles if the target hasn't moved yet |
 | 755 | Fishious Rend | Water | `HIT` | exact | Sovereign effect: power doubles if the target hasn't moved yet |
-| 756 | Court Change | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 756 | Court Change | Normal | `SOVEREIGN_COURT_CHANGE` | exact | Sovereign effect: swaps the two sides' screens, Tailwind, Mist, Safeguard, Lucky Chant and hazards |
 | 757 | (max-flare) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
 | 758 | (max-flutterby) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
 | 759 | (max-lightning) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
@@ -429,7 +429,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 879 | Electro Drift | Electric | `HIT` | exact | Sovereign effect: 1.33x when super effective |
 | 880 | Shed Tail | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 881 | ChillyReceptn | Ice | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
-| 882 | Tidy Up | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 882 | Tidy Up | Normal | `SOVEREIGN_TIDY_UP` | exact | Sovereign effect: clears the hazards on both sides and every Substitute; user Attack and Speed +1 |
 | 883 | Snowscape | Ice | `WEATHER_HAIL` | exact | set by `apply_champions_moves.py`: Hail now works as Snow (Gen IX), so Snowscape shares its effect and animation |
 | 884 | Pounce | Bug | `LOWER_SPEED_HIT` | exact | Sovereign effect: target Speed -1 (100%) |
 | 885 | Trailblaze | Grass | `SOVEREIGN_RAISE_SPEED_HIT` | exact | Sovereign effect: user Speed +1 (100%) |

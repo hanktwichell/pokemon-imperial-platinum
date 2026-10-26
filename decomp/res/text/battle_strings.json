@@ -9926,6 +9926,63 @@
         "the foe’s {STRVAR_1 1, 1, 0}’s\f",
         "{STRVAR_1 8, 2, 0}!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignNeitherCanRunAway",
+      "en_US": [
+        "Neither Pokémon can run away!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignBurnHealed_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s burn\n",
+        "was healed!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignBurnHealed_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}’s burn\n",
+        "was healed!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignBurnHealed_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}’s burn\n",
+        "was healed!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCourtChange_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} swapped the\n",
+        "battle effects affecting each\f",
+        "side of the field!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCourtChange_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} swapped the\n",
+        "battle effects affecting each\f",
+        "side of the field!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCourtChange_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} swapped the\n",
+        "battle effects affecting each\f",
+        "side of the field!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTidyingUpComplete",
+      "en_US": [
+        "Tidying up complete!"
+      ]
     }
   ]
 }

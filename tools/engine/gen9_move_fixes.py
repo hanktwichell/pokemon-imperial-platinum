@@ -273,6 +273,14 @@ MOVES = {
     "celebrate": ("SOVEREIGN_CELEBRATE", 0, "no effect in battle; congratulates the player"),
     "happy_hour": ("SOVEREIGN_HAPPY_HOUR", 0, "doubles the prize money (on top of an Amulet Coin)"),
     "hold_hands": ("SOVEREIGN_HOLD_HANDS", 0, "no effect in battle; fails without an ally"),
+    # Moves batch 5.
+    "jaw_lock": ("SOVEREIGN_JAW_LOCK", 0, "the user and the target can't escape while both stay in"),
+    "thousand_waves": ("SOVEREIGN_TRAP_ON_HIT", 0, "hits both foes; they can't escape while the user stays in"),
+    "thousand_arrows": ("SOVEREIGN_SMACK_DOWN", 0, "hits both foes, airborne ones too (neutral on a Flying type), and grounds them"),
+    "sparkling_aria": ("SOVEREIGN_SPARKLING_ARIA", 100, "hits all adjacent Pokémon and heals their burns"),
+    "court_change": ("SOVEREIGN_COURT_CHANGE", 0, "swaps the two sides' screens, Tailwind, Mist, Safeguard, Lucky Chant and hazards"),
+    "flower_shield": ("SOVEREIGN_FLOWER_SHIELD", 0, "Defense +1 for every Grass type on the field"),
+    "tidy_up": ("SOVEREIGN_TIDY_UP", 0, "clears the hazards on both sides and every Substitute; user Attack and Speed +1"),
 }
 
 # Gen IX values the move data got wrong (not the Champions changes in tools/engine/apply_champions_moves.py).
@@ -283,6 +291,8 @@ VALUE_FIXES = {
     "take_heart": {"pp": 15},
     "roar": {"accuracy": 0},
     "whirlwind": {"accuracy": 0},
+    # The engine has no "every Pokemon" range; Flower Shield runs once, as a field move, and finds the Grass types itself.
+    "flower_shield": {"range": "RANGE_FIELD"},
 }
 
 

@@ -423,4 +423,9 @@ subscript_files = files(
     'subscript_sovereign_celebrate.s',
     'subscript_sovereign_happy_hour.s',
     'subscript_sovereign_hold_hands.s',
+    'subscript_sovereign_jaw_lock.s',
+    'subscript_sovereign_sparkling_aria.s',
+    'subscript_sovereign_court_change.s',
+    'subscript_sovereign_flower_shield.s',
+    'subscript_sovereign_tidy_up.s',
 )

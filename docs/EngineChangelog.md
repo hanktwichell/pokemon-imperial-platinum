@@ -4,6 +4,48 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): moves, batch 5
+
+For players: seven more moves work as in the main games. All seven were placeholders.
+
+- **Jaw Lock:** after the hit, the user and the target are each trapped by the other (as Mean Look), until one of them
+  leaves the field. Message: "Neither Pokémon can run away!". Not through a Substitute.
+- **Thousand Waves:** after the hit, the target can't escape while the user is in battle. It reuses Spirit Shackle's
+  subscript, but always applies, as a hit effect rather than a chance effect. That subscript now also stops at a
+  Substitute.
+- **Thousand Arrows:**
+  - Hits Pokémon that Ground moves can't: Flying types, Levitate, an Air Balloon, Magnet Rise and Telekinesis.
+  - It's neutral on a Flying type. The type chart skips the Ground-on-Flying entry for it.
+  - It grounds the target, with Smack Down's effect.
+- **Sparkling Aria:** a chance effect at 100%: the target's burn is healed ("...'s burn was healed!"). Shield Dust and
+  Sheer Force keep it off.
+- **Court Change:**
+  - Swaps the two sides' field effects, with their turn counts: Reflect, Light Screen, Aurora Veil, Mist, Safeguard,
+    Tailwind, Lucky Chant and the entry hazards (Spikes, Toxic Spikes, Stealth Rock, Sticky Web).
+  - Message: "...swapped the battle effects affecting each side of the field!".
+  - It fails when neither side has any.
+- **Flower Shield:** raises the Defense of every Grass-type Pokémon on the field by 1 stage. It fails when there is
+  none. Its range is now the whole field.
+- **Tidy Up:**
+  - Clears the entry hazards from both sides and every Substitute ("...'s substitute faded!").
+  - Then "Tidying up complete!" if anything was cleared.
+  - Then the user's Attack +1 and Speed +1.
+- Checklist: 314 exact, 35 approximate, 31 placeholders.
+
+**Verification:** `tools/test/check_battle_scripts.py` and `check_message_box_lines.py` pass. Harness wild battles:
+- **Jaw Lock:** "Neither Pokémon can run away!".
+- **Thousand Waves:** against a Slowpoke, "The wild SLOWPOKE can no longer escape!". Against a Ninjask, it doesn't
+  affect the Flying type.
+- **Thousand Arrows:**
+  - Against a Ninjask (Bug/Flying): "It's not very effective...", then "The wild NINJASK fell straight down!".
+  - Against a Gastly (Levitate): "It's super effective!", then "The wild GASTLY fell straight down!".
+- **Sparkling Aria:** the wild Ninjask holds a Flame Orb. Once it's burned: "The wild NINJASK's burn was healed!".
+- **Court Change:** after the wild Ninjask's Spikes, the swap message. With nothing to swap: "But it failed!".
+- **Flower Shield:** "VENUSAUR's Defense rose!". With no Grass type: "But it failed!".
+- **Tidy Up:**
+  - After the wild Ninjask's Spikes: "Tidying up complete!", then Attack and Speed rose.
+  - After the wild Ninjask's Substitute: "The wild NINJASK's substitute faded!".
+
 ## Item 11 (effect fidelity): moves, batch 4
 
 For players: eight more moves work as in the main games. Six of them were placeholders, and Thunderclap and Toxic

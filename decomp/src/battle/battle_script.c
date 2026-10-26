@@ -9946,6 +9946,14 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         // to Fire (0 if it already was)
         battleCtx->sovereignTerrainTemp = Sovereign_StartTarShot(battleCtx);
         return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_COURT_CHANGE: // Sovereign (item 11): read-only, Court Change swaps the sides' field effects (0
+        // when there are none)
+        battleCtx->sovereignTerrainTemp = Sovereign_CourtChange(battleCtx);
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_TIDY_UP_HAZARDS: // Sovereign (item 11): read-only, Tidy Up clears the entry hazards (0 when
+        // there were none)
+        battleCtx->sovereignTerrainTemp = Sovereign_TidyUpHazards(battleCtx);
+        return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_HAPPY_HOUR: // Sovereign (item 11): read-only, Happy Hour doubles the prize money when the
         // player's side uses it (always 1)
         if (BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker) == BATTLE_SIDE_PLAYER) {

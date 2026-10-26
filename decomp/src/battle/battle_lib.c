@@ -2817,13 +2817,16 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
 
     int sovereignDamageBeforeChart = damage;
 
+    // Sovereign (item 11): Thousand Arrows hits Pokemon that Ground moves can't (a Flying type's immunity too, below).
     if ((Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_LEVITATE) == TRUE
             || Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_EELEVATE) == TRUE) // Sovereign (item 11)
         && moveType == TYPE_GROUND
+        && move != MOVE_THOUSAND_ARROWS
         && defenderItemEffect != HOLD_EFFECT_SPEED_DOWN_GROUNDED) {
         *moveStatusMask |= MOVE_STATUS_LEVITATED;
     } else if (Battler_HeldItem(battleCtx, defender) == ITEM_AIR_BALLOON // Sovereign (item 11): "It doesn't affect {0}…"
         && moveType == TYPE_GROUND
+        && move != MOVE_THOUSAND_ARROWS
         && (battleCtx->battleMons[defender].moveEffectsMask & MOVE_EFFECT_INGRAIN) == FALSE
         && (battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) == FALSE
         && battleCtx->sovereignSmackedDown[defender] == 0) {
@@ -2831,6 +2834,7 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
     } else if ((battleCtx->battleMons[defender].moveEffectsData.magnetRiseTurns || battleCtx->sovereignTelekinesis[defender]) // Sovereign (item 11)
         && (battleCtx->battleMons[defender].moveEffectsMask & MOVE_EFFECT_INGRAIN) == FALSE
         && moveType == TYPE_GROUND
+        && move != MOVE_THOUSAND_ARROWS
         && defenderItemEffect != HOLD_EFFECT_SPEED_DOWN_GROUNDED) {
         *moveStatusMask |= MOVE_STATUS_MAGNET_RISE;
     } else {
@@ -2849,9 +2853,11 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
                 }
             }
 
-            // Sovereign (item 11): Flying Press is Flying type too, for its effectiveness.
-            if (sTypeMatchupMultipliers[chartEntry][0] == moveType
-                || (move == MOVE_FLYING_PRESS && sTypeMatchupMultipliers[chartEntry][0] == TYPE_FLYING)) {
+            // Sovereign (item 11): Flying Press is Flying type too, for its effectiveness. Thousand Arrows is neutral on a
+            // Flying type.
+            if ((sTypeMatchupMultipliers[chartEntry][0] == moveType
+                    || (move == MOVE_FLYING_PRESS && sTypeMatchupMultipliers[chartEntry][0] == TYPE_FLYING))
+                && (move != MOVE_THOUSAND_ARROWS || sTypeMatchupMultipliers[chartEntry][1] != TYPE_FLYING)) {
                 if (sTypeMatchupMultipliers[chartEntry][1] == BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_1, NULL)
                     && BasicTypeMulApplies(battleCtx, attacker, defender, chartEntry) == TRUE) {
                     damage = ApplyTypeMultiplier(battleCtx, attacker, Sovereign_ChartMul(battleCtx, move, chartEntry), damage, movePower, moveStatusMask);
@@ -8727,6 +8733,76 @@ BOOL Sovereign_StartTarShot(BattleContext *battleCtx)
 
     battleCtx->sovereignTarShot |= FlagIndex(battleCtx->sideEffectMon);
     return TRUE;
+}
+
+// Sovereign (item 11): Court Change swaps the two sides' field effects (Reflect, Light Screen, Aurora Veil, Mist,
+// Safeguard, Tailwind, Lucky Chant and the entry hazards). FALSE when neither side has any.
+BOOL Sovereign_CourtChange(BattleContext *battleCtx)
+{
+    u32 swapMask = SIDE_CONDITION_REFLECT | SIDE_CONDITION_LIGHT_SCREEN | SIDE_CONDITION_SOVEREIGN_AURORA_VEIL
+        | SIDE_CONDITION_MIST | SIDE_CONDITION_SAFEGUARD | SIDE_CONDITION_TAILWIND | SIDE_CONDITION_LUCKY_CHANT
+        | SIDE_CONDITION_SPIKES | SIDE_CONDITION_TOXIC_SPIKES | SIDE_CONDITION_STEALTH_ROCK
+        | SIDE_CONDITION_SOVEREIGN_STICKY_WEB;
+    u32 mask0 = battleCtx->sideConditionsMask[0] & swapMask;
+    u32 mask1 = battleCtx->sideConditionsMask[1] & swapMask;
+
+    if (mask0 == 0 && mask1 == 0) {
+        return FALSE;
+    }
+
+    battleCtx->sideConditionsMask[0] = (battleCtx->sideConditionsMask[0] & ~swapMask) | mask1;
+    battleCtx->sideConditionsMask[1] = (battleCtx->sideConditionsMask[1] & ~swapMask) | mask0;
+
+    // Follow Me and the knocked-off items stay with their side.
+    SideConditions *side0 = &battleCtx->sideConditions[0];
+    SideConditions *side1 = &battleCtx->sideConditions[1];
+    SideConditions temp = *side0;
+
+    side0->reflectUser = side1->reflectUser;
+    side0->reflectTurns = side1->reflectTurns;
+    side0->lightScreenUser = side1->lightScreenUser;
+    side0->lightScreenTurns = side1->lightScreenTurns;
+    side0->mistUser = side1->mistUser;
+    side0->mistTurns = side1->mistTurns;
+    side0->safeguardUser = side1->safeguardUser;
+    side0->safeguardTurns = side1->safeguardTurns;
+    side0->spikesLayers = side1->spikesLayers;
+    side0->toxicSpikesLayers = side1->toxicSpikesLayers;
+    side1->reflectUser = temp.reflectUser;
+    side1->reflectTurns = temp.reflectTurns;
+    side1->lightScreenUser = temp.lightScreenUser;
+    side1->lightScreenTurns = temp.lightScreenTurns;
+    side1->mistUser = temp.mistUser;
+    side1->mistTurns = temp.mistTurns;
+    side1->safeguardUser = temp.safeguardUser;
+    side1->safeguardTurns = temp.safeguardTurns;
+    side1->spikesLayers = temp.spikesLayers;
+    side1->toxicSpikesLayers = temp.toxicSpikesLayers;
+
+    int veilTurns = battleCtx->sovereignAuroraVeilTurns[0];
+    battleCtx->sovereignAuroraVeilTurns[0] = battleCtx->sovereignAuroraVeilTurns[1];
+    battleCtx->sovereignAuroraVeilTurns[1] = veilTurns;
+    return TRUE;
+}
+
+// Sovereign (item 11): Tidy Up clears the entry hazards from both sides. FALSE when there were none.
+BOOL Sovereign_TidyUpHazards(BattleContext *battleCtx)
+{
+    u32 hazards = SIDE_CONDITION_SPIKES | SIDE_CONDITION_TOXIC_SPIKES | SIDE_CONDITION_STEALTH_ROCK
+        | SIDE_CONDITION_SOVEREIGN_STICKY_WEB;
+    BOOL cleared = FALSE;
+
+    for (int side = 0; side < NUM_BATTLE_SIDES; side++) {
+        if (battleCtx->sideConditionsMask[side] & hazards) {
+            cleared = TRUE;
+        }
+
+        battleCtx->sideConditionsMask[side] &= ~hazards;
+        battleCtx->sideConditions[side].spikesLayers = 0;
+        battleCtx->sideConditions[side].toxicSpikesLayers = 0;
+    }
+
+    return cleared;
 }
 
 // Sovereign (item 11): a battler's Attack with its stat stage applied (Strength Sap).
