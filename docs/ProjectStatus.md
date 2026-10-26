@@ -38,12 +38,12 @@ and T2 only. See `EngineRoadmap.md` for the per-milestone breakdown.
 | E5 | Gen IX stats, types and learnsets for #1–493 and forms; 32-bit learnset entries | ✅ done (PR #9); tested in battle |
 | E2/E4 | All 314 abilities, ID = official number (191 new, no battle effect yet: `AbilityChecklist.md`); Hidden Ability slot and flag | ✅ done; tested on the summary screen |
 | 10b | Battle mechanics → Pokémon Champions (IVs/EVs unchanged); rules in `BattleMechanics.md` | 🟡 core rules built (status, dynamic speed, crits, weather, Snow, Fake Out, move values); ability/move behaviour with item 11 |
-| E6 | Species expansion to 1025 | ✅ done: all 532 Gen V–IX species (`NewSpecies.md`) with placeholder sprites, Easy Chat words, English-only Pokédex; tested in battle and on the summary screen. No cries for the new species yet (last step). 16 evolutions wait on E7 items |
+| E6 | Species expansion to 1025 | ✅ done: all 532 Gen V–IX species (`NewSpecies.md`) with placeholder sprites, Easy Chat words, English-only Pokédex; tested in battle and on the summary screen. No cries for the new species yet (last step). The 16 evolutions that needed E7 items are in |
 | E7 | Items (Mega Stones, new held/evolution items) | ✅ done: 245 items with icons, evolution items, Mints, Ability Capsule/Patch, the Infinite Repel (see `EngineRoadmap.md` row 9) |
 | E8 | Mega Evolution / Primal Reversion | ✅ done: 99 forms, battle flow, MEGA button, Primal Reversion, animation and symbols (row 10) |
 | E9 | Extended trainer data (natures, EVs, abilities, forms) | ✅ done: `docs/TrainerFormat.md` |
 | E10 / E11 | Renegade port; Sovereign content (encounters, E4 format, gifts, post-game) | 🟡 E10: Renegade's encounters, trainers, items, NPCs, gifts and legendary events are ported (41 parts); two owner questions remain (Open list). E11: the Totem trials, the story beats, the Chronicles post-game legendaries and the Elite Four format are in; the doubles teams wait on T1 (rows 14 and 15) |
-| E12 | Graphics (convert sprites, icons) | waiting on the owner's front sprites |
+| E12 | Graphics (convert sprites, icons) | 🟡 the battle sprites of #494–1025 are in (the owner's relabelled pack, `docs/BattleSpriteImport.md`); female, form and Mega sprites and real icons still to come (`EngineRoadmap.md` row 17) |
 | T1 | Boss team compositions with the owner's Mega picks; revise all boss teams | deferred by the owner until the engine features are done |
 | T2 | Developer final battle (Red-style double battle) | team received (`DeveloperBattle.md`); waiting on trainer text, sprites and level |
 
@@ -282,6 +282,3 @@ Open:
   - Source to check for E12 (owner, 2026-10-23): **thesonicgameryt** on DeviantArt,
     https://www.deviantart.com/thesonicgameryt. It has good custom sprites for a lot of the new Megas, including the
     Mega Garchomp Z the owner supplied. Credit every sprite used in `CITATIONS.md`.
-- hg-engine and Smogon credit lists: Claude compiles them (owner, 2026-10-22). hg-engine's is in `CITATIONS.md`
-  (2026-10-25); it credits its sprite artists as a group. So is the Smogon Sprite Project's lead credit. Smogon's
-  per-sprite lists are in its forum threads, which need a browser; they're still to copy.

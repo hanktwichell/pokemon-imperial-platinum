@@ -28,4 +28,5 @@ python3 tools/design/gen_evolution_doc.py
 python3 tools/design/gen_legendary_doc.py
 python3 -I tools/sprites/import_sprite_pack.py assets/sprites/packs/dppt_gen6_and_beyond
 python3 tools/sprites/gen_sprite_checklist.py
+python3 tools/sprites/smogon_credits.py
 echo "All docs regenerated and validated."

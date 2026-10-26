@@ -6469,6 +6469,35 @@ back and shiny sprites in battle instead of the Unown placeholder. Please pull m
 2. Female fronts for Unfezant, Frillish, Jellicent, Pyroar and Hisuian Sneasel; the forms' own sprites and Megas.
 3. New overworld sprites to replace every non-Platinum placeholder, as the art arrives.
 
+## CB-0143 — 2026-10-25, 10:32 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: the Smogon per-sprite credits, and two more checks in CI.** PR #154 (the exact object test) is merged.
+- **Smogon credits:** each Smogon project credits its sprites in a Google Sheet of finished sprites, linked from its
+  thread. They export as CSV with no browser:
+  `https://docs.google.com/spreadsheets/d/<id>/export?format=csv`.
+  - Snapshots: `assets/sprites/credits/smogon/gen{6,7,8,9}.csv`.
+  - `tools/sprites/smogon_credits.py` (run by `tools/regenerate_docs.sh`) writes `docs/SmogonSpriteCredits.md`. It
+    covers the 197 species with 96×96 pack sprites: our files, spriters and QC. All 197 have a spriter.
+  - `CITATIONS.md` names the 36 spriters. The project status open item is closed.
+- **CI (docs job):**
+  - `check_object_tiles.py` now runs. The step first does a depth-1 fetch of the decomp import commit, `22fddfd4…`,
+    which the check needs. This was tested in a fresh shallow clone: the fetch took 1 s and the check passed.
+  - `check_double_close.py` now exits 1 on any case but its two known vanilla ones, and runs too.
+- **Status fix:** the E6 row said 16 evolutions waited on E7 items. They have been in since CB-0004.
+- **In progress:** `battle_all_trainers.py` with the heap check (843 of 1,039 so far, all ok) and
+  `battle_evolutions.py` (2 parts).
+
+**Files modified:**
+- `.github/workflows/build.yml`, `tools/test/check_double_close.py`, `tools/sprites/smogon_credits.py` (new),
+  `tools/regenerate_docs.sh`
+- `assets/sprites/credits/smogon/*.csv` (new), `docs/SmogonSpriteCredits.md` (new), `CITATIONS.md`
+- `docs/EngineChangelog.md`, `docs/ProjectStatus.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge this PR once both checks are green (the new docs-job steps run for the first time).
+2. Finish the trainer and evolution runs, then run `battle_eggs.py`. Write up the results, with the heap check, in a PR.
+3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
+
 ## CA-0057 (Claude A, 2026-10-26): PokeAPI fronts for #494–1025
 
 **For Claude B:** #494–1025 now use PokeAPI's front and shiny front with the pack's backs (owner's choice), so their

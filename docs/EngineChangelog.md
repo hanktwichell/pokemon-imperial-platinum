@@ -4,6 +4,20 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## CI: the object tile and double-close checks; the Smogon sprite credits
+
+- **Two more checks run in CI** (the docs job), so a change can't undo them:
+  - `tools/test/check_object_tiles.py`: every object Sovereign added or moved can be reached and blocks nothing. It
+    tells added objects from vanilla's by the decomp's import commit, so the step fetches that one commit into the
+    shallow checkout.
+  - `tools/test/check_double_close.py`: no script path runs CloseMessage twice with no message in between, which
+    hangs the game (E10 part 28). It now fails on any case but vanilla's two harmless ones.
+- **The Smogon Sprite Project's per-sprite credits** are in `docs/SmogonSpriteCredits.md`, for the 197 species whose
+  96×96 sprites come from it: the sprites we have, and the spriters and QC the project credits. They come from each
+  project's sheet of finished sprites (X/Y, Sun/Moon, Gen 8 and Gen 9; snapshots in `assets/sprites/credits/smogon/`),
+  through `tools/sprites/smogon_credits.py`, which `tools/regenerate_docs.sh` runs. `CITATIONS.md` names the 36
+  spriters.
+
 ## E12 — PokeAPI fronts for #494–1025
 
 For players: the new species' front and shiny front sprites are PokeAPI's (owner, 2026-10-26); their backs and shiny
@@ -36,6 +50,8 @@ For players: #494–1025 show their real front, back and shiny sprites in battle
   - #1–493 (Renegade Platinum's sprites) aren't touched. Female sprites are copies of the male ones for now.
 - Verification: the release build and the boot smoke test pass; a contact sheet of 24 converted species (normal and
   shiny, front and back) looked right. Not yet seen in a battle.
+
+
 
 ## Playtest pass — the object test checks it ran the object's own script
 

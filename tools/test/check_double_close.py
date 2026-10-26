@@ -5,7 +5,8 @@ ScrCmd_CloseMessage erases and removes the message window each time; a second Cl
 removed window, and the game hangs with the last message still on screen (found in E10 part 28). This walks every
 script in decomp/res/field/scripts along its GoTo/GoToIf/Call branches and reports each pair (first close, second
 close) as label+instruction index. A Call, CallIf or any message-like command resets the state, so it only reports
-definite cases. Vanilla has two, both harmless: a link-contest error path and unused Route 201 scripts.
+definite cases. Vanilla has two, both harmless: a link-contest error path and unused Route 201 scripts (VANILLA,
+shown as known). Any other case fails the check (CI runs it).
 
 Usage: python3 tools/test/check_double_close.py decomp
 """
@@ -58,8 +59,13 @@ def check(path):
         if 'Movement' in l: continue
         run(l, 0, None, set())
     return out
+VANILLA = {'scripts_contests.s', 'scripts_route_201.s'}  # the two harmless vanilla cases
 if __name__ == '__main__':
+    bad = 0
     for f in sorted(glob.glob(sys.argv[1] + '/res/field/scripts/scripts_*.s')):
         r = check(f)
         if r:
-            print(f.split('/')[-1], sorted(r)[:4])
+            name = f.split('/')[-1]
+            print(('known: ' if name in VANILLA else '') + name, sorted(r)[:4])
+            bad += name not in VANILLA
+    sys.exit(1 if bad else 0)
