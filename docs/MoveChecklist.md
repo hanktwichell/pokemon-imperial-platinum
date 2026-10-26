@@ -6,8 +6,8 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 323 |
-| approximate | 28 |
+| exact | 332 |
+| approximate | 19 |
 | placeholder | 29 |
 | removed | 72 |
 
@@ -104,13 +104,13 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 554 | Ice Burn | Ice | `BURN_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
 | 555 | Snarl | Dark | `LOWER_SP_ATK_HIT` | exact |  |
 | 556 | Icicle Crash | Ice | `FLINCH_HIT` | exact |  |
-| 557 | V-create | Fire | `LOWER_OWN_ATK_AND_DEF` | approximate | user's stats change by [('def', -1), ('spd', -1), ('spe', -1)] in the original |
+| 557 | V-create | Fire | `SOVEREIGN_V_CREATE` | exact | Sovereign effect: user Defense, Sp. Def and Speed -1 after the hit |
 | 558 | Fusion Flare | Fire | `HIT` | exact | Sovereign effect: double power right after a Fusion Bolt worked this turn |
 | 559 | Fusion Bolt | Electric | `HIT` | exact | Sovereign effect: double power right after a Fusion Flare worked this turn |
 | 560 | Flying Press | Fighting | `HIT` | exact | Sovereign effect: Fighting and Flying type at once for its effectiveness |
 | 561 | Mat Block | Fighting | `SOVEREIGN_MAT_BLOCK` | exact | Sovereign effect: user's first turn only: protects its side from damaging moves this turn |
 | 562 | Belch | Poison | `HIT` | approximate | Sovereign effect: fails unless the user has eaten a Berry this battle (Bug Bite and Pluck don't count yet) |
-| 563 | Rototiller | Ground | `ATK_UP_2` | approximate | raises [('atk', 1), ('spa', 1)] in the original |
+| 563 | Rototiller | Ground | `SOVEREIGN_ROTOTILLER` | exact | Sovereign effect: Attack and Sp. Atk +1 for every grounded Grass type on the field |
 | 564 | Sticky Web | Bug | `SOVEREIGN_STICKY_WEB` | exact | Sovereign effect: grounded foes switching in lose 1 Speed stage (Rapid Spin clears it) |
 | 565 | Fell Stinger | Bug | `HIT` | exact | Sovereign effect: user Attack +3 if it knocks out the target |
 | 566 | Phantom Force | Ghost | `SHADOW_FORCE` | exact |  |
@@ -141,15 +141,15 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 591 | Diamond Storm | Rock | `SOVEREIGN_RAISE_DEF_2_HIT` | exact | Sovereign effect: user Defense +2 (50%) |
 | 592 | Steam Eruption | Water | `BURN_HIT` | exact |  |
 | 593 | Hyperspace Hole | Psychic | `HIT` | exact | Sovereign effect: never misses, ignores Protect |
-| 594 | Water Shuriken | Water | `MULTI_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
+| 594 | Water Shuriken | Water | `MULTI_HIT` | exact | Sovereign effect: hits 2-5 times; Ash-Greninja's hits 3 times at 20 power |
 | 595 | Mystical Fire | Fire | `LOWER_SP_ATK_HIT` | exact |  |
 | 596 | Spiky Shield | Grass | `PROTECT` | exact | Sovereign effect: protects like Protect; a contact move it blocks costs the attacker 1/8 of its max HP |
-| 597 | Aromatic Mist | Fairy | `SP_DEF_UP` | approximate | has its own mechanic in Gen IX; closest effect |
+| 597 | Aromatic Mist | Fairy | `SOVEREIGN_AROMATIC_MIST` | exact | Sovereign effect: the user's ally's Sp. Def +1; fails without an ally |
 | 598 | Eerie Impulse | Electric | `SP_ATK_DOWN_2` | exact |  |
 | 599 | Venom Drench | Poison | `SOVEREIGN_VENOM_DRENCH` | exact | Sovereign effect: target Attack -1, target Sp. Atk -1, target Speed -1 |
 | 600 | Powder | Bug | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 601 | Geomancy | Fairy | `SP_ATK_SP_DEF_UP` | approximate | raises [('spa', 2), ('spd', 2), ('spe', 2)] in the original |
-| 602 | Magnetic Flux | Electric | `DEF_SPD_UP` | approximate | has its own mechanic in Gen IX; closest effect |
+| 602 | Magnetic Flux | Electric | `SOVEREIGN_MAGNETIC_FLUX` | exact | Sovereign effect: Defense and Sp. Def +1 for the user and its ally if they have Plus or Minus |
 | 603 | Happy Hour | Normal | `SOVEREIGN_HAPPY_HOUR` | exact | Sovereign effect: doubles the prize money (on top of an Amulet Coin) |
 | 604 | ElectrcTerrain | Electric | `SOVEREIGN_ELECTRIC_TERRAIN` | exact | Sovereign effect: Electric Terrain: grounded Electric moves x1.3, grounded Pokémon can't fall asleep |
 | 605 | Dazzling Gleam | Fairy | `HIT` | exact |  |
@@ -206,7 +206,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 656 | (twinkle-tackle--physical) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
 | 657 | (twinkle-tackle--special) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
 | 658 | (catastropika) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
-| 659 | Shore Up | Ground | `RESTORE_HALF_HP` | approximate | has its own mechanic in Gen IX; closest effect |
+| 659 | Shore Up | Ground | `HEAL_HALF_MORE_IN_SUN` | exact | Sovereign effect: heals 1/2 of the user's max HP, 2/3 in a sandstorm |
 | 660 | FirstImpressn | Bug | `SOVEREIGN_FIRST_IMPRESSION` | exact | Sovereign effect: fails unless it's the user's first turn in battle |
 | 661 | Baneful Bunker | Poison | `PROTECT` | exact | Sovereign effect: protects like Protect; a contact move it blocks poisons the attacker |
 | 662 | Spirit Shackle | Ghost | `SOVEREIGN_TRAP_HIT` | exact | Sovereign effect: the target can't escape while the user is in battle |
@@ -221,7 +221,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 671 | Spotlight | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 672 | Toxic Thread | Poison | `SOVEREIGN_TOXIC_THREAD` | exact | Sovereign effect: target Speed -1, then poisons it |
 | 673 | Laser Focus | Normal | `SOVEREIGN_LASER_FOCUS` | exact | Sovereign effect: the user's moves always crit this turn and the next |
-| 674 | Gear Up | Steel | `ATK_UP_2` | approximate | raises [('atk', 1), ('spa', 1)] in the original |
+| 674 | Gear Up | Steel | `SOVEREIGN_GEAR_UP` | exact | Sovereign effect: Attack and Sp. Atk +1 for the user and its ally if they have Plus or Minus |
 | 675 | Throat Chop | Dark | `SOVEREIGN_THROAT_CHOP` | exact | Sovereign effect: the target can't use sound moves for two turns |
 | 676 | Pollen Puff | Bug | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 677 | Anchor Shot | Steel | `SOVEREIGN_TRAP_HIT` | exact | Sovereign effect: the target can't escape while the user is in battle |
@@ -292,7 +292,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 742 | DoubleIronBash | Steel | `HIT_TWICE` | exact |  |
 | 743 | (max-guard) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
 | 744 | Dynamax Cannon | Dragon | `HIT` | exact | Sovereign effect: plain hit (no Dynamax in Sovereign) |
-| 745 | Snipe Shot | Water | `HIGH_CRITICAL` | approximate | has its own mechanic in Gen IX; closest effect |
+| 745 | Snipe Shot | Water | `HIGH_CRITICAL` | exact | Sovereign effect: high critical-hit ratio; ignores Follow Me, Lightning Rod and Storm Drain |
 | 746 | Jaw Lock | Dark | `SOVEREIGN_JAW_LOCK` | exact | Sovereign effect: the user and the target can't escape while both stay in |
 | 747 | Stuff Cheeks | Normal | `DEF_UP_2` | approximate | has its own mechanic in Gen IX; closest effect |
 | 748 | No Retreat | Fighting | `SOVEREIGN_NO_RETREAT` | approximate | Sovereign effect: all stats +1 (the user isn't trapped yet) |
@@ -324,7 +324,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 774 | (max-steelspike) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
 | 775 | Clangorous Soul | Dragon | `SOVEREIGN_CLANGOROUS_SOUL` | exact | Sovereign effect: all stats +1; costs 1/3 of the user's max HP |
 | 776 | Body Press | Fighting | `BODY_PRESS` | exact | Sovereign effect: damage uses the user's Defense and Defense stage |
-| 777 | Decorate | Fairy | `ATK_UP_2` | approximate | raises [('atk', 2), ('spa', 2)] in the original |
+| 777 | Decorate | Fairy | `SOVEREIGN_DECORATE` | exact | Sovereign effect: target Attack +2, target Sp. Atk +2 |
 | 778 | Drum Beating | Grass | `LOWER_SPEED_HIT` | exact |  |
 | 779 | Snap Trap | Grass | `BIND_HIT` | exact |  |
 | 780 | Pyro Ball | Fire | `BURN_HIT` | exact |  |

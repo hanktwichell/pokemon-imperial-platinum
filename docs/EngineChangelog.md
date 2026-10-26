@@ -4,6 +4,37 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): moves, batch 7 (stat changes)
+
+For players: nine more moves work as in the main games. All nine were approximate.
+
+- **V-create:** after the hit, the user's Defense, Sp. Def and Speed -1 each. Before, it lowered Attack and Defense.
+- **Decorate:** the target's Attack +2 and Sp. Atk +2.
+  - `tools/engine/gen_stat_moves.py` now also builds a move that only raises a target's stats.
+  - When both stats are already at +6: "...stats won't go any higher!".
+- **Rototiller:**
+  - Attack +1 and Sp. Atk +1 for every grounded Grass-type Pokémon on the field.
+  - "It doesn't affect (Pokémon)..." for each Pokémon off the ground.
+  - It fails when there is neither. Its range is now the whole field.
+- **Gear Up and Magnetic Flux:** Attack and Sp. Atk +1 (Gear Up), or Defense and Sp. Def +1 (Magnetic Flux), for the
+  user and its ally if they have Plus or Minus. They fail when neither does.
+- **Aromatic Mist:** the ally's Sp. Def +1. It fails without an ally.
+- **Shore Up:** heals 2/3 of the user's max HP in a sandstorm, 1/2 otherwise.
+- **Snipe Shot and Water Shuriken:** already worked as in Gen IX; their checklist rows were out of date.
+  - Snipe Shot ignores Follow Me and the redirecting Abilities.
+  - Ash-Greninja's Water Shuriken hits 3 times at 20 power.
+- Checklist: 332 exact, 19 approximate, 29 placeholders.
+
+**Verification:** `check_battle_scripts.py` passes. Harness wild battles:
+- **V-create:** "SNORLAX's Defense fell!", then "Sp. Def fell!", then "Speed fell!".
+- **Decorate:** "The wild NINJASK's Attack sharply rose!", then "Sp. Atk sharply rose!".
+- **Rototiller** (Venusaur, against a Ninjask): "It doesn't affect the wild NINJASK...", then "VENUSAUR's Attack rose!",
+  then "Sp. Atk rose!". Snorlax against a Slowpoke: "But it failed!".
+- **Gear Up:** Minun (Minus): "MINUN's Attack rose!", then "Sp. Atk rose!". Snorlax: "But it failed!".
+- **Magnetic Flux:** Plusle (Plus): "PLUSLE's Defense rose!", then "Sp. Def rose!".
+- **Aromatic Mist:** "But it failed!" in a single battle.
+- **Shore Up** from 22/223 HP: 133 (1/2) without weather, 170 (2/3) after the wild Ninjask's Sandstorm.
+
 ## Item 11 (effect fidelity): moves, batch 6 (protection)
 
 For players: the protection moves work as in the main games. Six were approximate (Protect without their extra

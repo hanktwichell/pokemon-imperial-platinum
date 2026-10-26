@@ -220,5 +220,11 @@ static const int sSideEffectSubscripts[] = {
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_TIDY_UP] = subscript_sovereign_tidy_up,
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_MAT_BLOCK] = subscript_sovereign_mat_block,
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_CRAFTY_SHIELD] = subscript_sovereign_crafty_shield,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_DECORATE] = subscript_sovereign_stats_decorate,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_V_CREATE] = subscript_sovereign_v_create,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_ROTOTILLER] = subscript_sovereign_rototiller,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_GEAR_UP] = subscript_sovereign_gear_up,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_MAGNETIC_FLUX] = subscript_sovereign_magnetic_flux,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_AROMATIC_MIST] = subscript_sovereign_aromatic_mist,
 };
 // clang-format on

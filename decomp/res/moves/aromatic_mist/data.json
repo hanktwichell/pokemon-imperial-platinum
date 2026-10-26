@@ -12,7 +12,7 @@
     "accuracy": 0,
     "pp": 20,
     "effect": {
-        "type": "BATTLE_EFFECT_SP_DEF_UP",
+        "type": "BATTLE_EFFECT_SOVEREIGN_AROMATIC_MIST",
         "chance": 0
     },
     "range": "RANGE_ALLY",

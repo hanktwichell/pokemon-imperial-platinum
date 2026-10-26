@@ -84,6 +84,7 @@ E = lambda name: "BATTLE_EFFECT_" + name
 # Battle effects Sovereign adds for a move's exact Gen IX behaviour (item 11), after Platinum's 277: identifier ->
 # (effect, chance, note). These win over the PokeAPI mapping below.
 SOVEREIGN_EFFECTS = {
+    "decorate": ("SOVEREIGN_DECORATE", 0, "Sovereign effect: target Attack +2, target Sp. Atk +2"),
     "take-heart": ("SOVEREIGN_TAKE_HEART", 0, "Sovereign effect: user Sp. Atk +1, user Sp. Def +1; heals the user's status condition"),
     "fillet-away": ("SOVEREIGN_FILLET_AWAY", 0, "Sovereign effect: user Attack +2, user Sp. Atk +2, user Speed +2; costs 1/2 of the user's max HP"),
     "spicy-extract": ("SOVEREIGN_SPICY_EXTRACT", 0, "Sovereign effect: target Attack +2, target Defense -2"),

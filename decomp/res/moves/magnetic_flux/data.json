@@ -12,7 +12,7 @@
     "accuracy": 0,
     "pp": 20,
     "effect": {
-        "type": "BATTLE_EFFECT_DEF_SPD_UP",
+        "type": "BATTLE_EFFECT_SOVEREIGN_MAGNETIC_FLUX",
         "chance": 0
     },
     "range": "RANGE_USER_SIDE",
