@@ -2587,6 +2587,7 @@ static BOOL BtlCmd_SwitchAndUpdateMon(BattleSystem *battleSys, BattleContext *ba
 
     BattleSystem_InitBattleMon(battleSys, battleCtx, battler, battleCtx->selectedPartySlot[battler]);
     BattleSystem_SwitchSlots(battleSys, battleCtx, battler, battleCtx->selectedPartySlot[battler]);
+    Sovereign_SetIllusion(battleSys, battleCtx, battler); // Sovereign (item 11)
 
     // cache the enemy's current HP (used for force-out moves like Whirlwind?)
     battleCtx->hpTemp = battleCtx->battleMons[BATTLER_ENEMY_1].curHP;
@@ -12566,7 +12567,7 @@ static int BattleMessage_NameTag(BattleSystem *battleSys, BattleContext *battleC
     if (battlerIn == BTLSCR_SWITCHED_MON_AFTER) {
         tag |= battleCtx->switchedPartySlot[battler] << 8;
     } else {
-        tag |= battleCtx->selectedPartySlot[battler] << 8;
+        tag |= Battler_SovereignShownPartySlot(battleCtx, battler) << 8; // Sovereign (item 11): Illusion
     }
 
     return tag;
@@ -12750,7 +12751,7 @@ static int BattleMessage_PokeTag(BattleSystem *battleSys, BattleContext *battleC
 {
     int battler = BattleScript_Battler(battleSys, battleCtx, battlerIn);
     int tag = battler;
-    tag |= battleCtx->selectedPartySlot[battler] << 8;
+    tag |= Battler_SovereignShownPartySlot(battleCtx, battler) << 8; // Sovereign (item 11): Illusion
 
     return tag;
 }

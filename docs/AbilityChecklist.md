@@ -31,7 +31,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 146 | Sand Rush | Gen 5 | yes: Speed ×2 in a sandstorm; no sandstorm damage |
 | 147 | Wonder Skin | Gen 5 | yes: status moves aimed at it are at most 50% accurate |
 | 148 | Analytic | Gen 5 | yes: moves ×1.3 when it moves last |
-| 149 | Illusion | Gen 5 | not yet (no battle effect) |
+| 149 | Illusion | Gen 5 | yes: comes in disguised as the last Pokémon in its party's battle order that isn't fainted (name, sprite, cry, HP bar); a damaging move's hit or losing the ability ends it |
 | 150 | Imposter | Gen 5 | yes: as it enters, it transforms into the foe facing it, as by Transform (not into one behind a Substitute or already transformed); the copied ability's entry effect follows (Intimidate...) |
 | 151 | Infiltrator | Gen 5 | yes: its moves ignore a foe's Reflect, Light Screen, Substitute, Safeguard and Mist |
 | 152 | Mummy | Gen 5 | yes: an attacker that makes contact gets Mummy |

@@ -30,6 +30,34 @@
 #include "unk_0202F1D4.h"
 #include "unk_0207A6DC.h"
 
+// Sovereign (item 11): Illusion. The party Pokémon a battler is disguised as (Sovereign_SetIllusion), or NULL. A
+// transformed battler shows its Transform target instead.
+static Pokemon *BattleController_SovereignIllusionMon(BattleSystem *battleSys, int battler)
+{
+    BattleContext *battleCtx = battleSys->battleCtx;
+
+    if (battleCtx->sovereignIllusion[battler] == 0
+        || (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_TRANSFORM)) {
+        return NULL;
+    }
+
+    return BattleSystem_GetPartyPokemon(battleSys, battler, battleCtx->sovereignIllusion[battler] - 1);
+}
+
+// Sovereign (item 11): Illusion. A disguised battler shows its disguise's look in every message that builds its sprite
+// (sending out, vanishing, fainting, move animations).
+#define SOVEREIGN_ILLUSION_LOOK(battleSys, battler, species, isShiny, form, gender, personality)       \
+    do {                                                                                             \
+        Pokemon *illusionMon_ = BattleController_SovereignIllusionMon(battleSys, battler);           \
+        if (illusionMon_ != NULL) {                                                                  \
+            species = Pokemon_GetValue(illusionMon_, MON_DATA_SPECIES, NULL);                        \
+            isShiny = Pokemon_IsShiny(illusionMon_);                                                 \
+            form = Pokemon_GetValue(illusionMon_, MON_DATA_FORM, NULL);                              \
+            gender = Pokemon_GetGender(illusionMon_);                                                \
+            personality = Pokemon_GetValue(illusionMon_, MON_DATA_PERSONALITY, NULL);                \
+        }                                                                                            \
+    } while (0)
+
 static void BattleController_SendLocalMessage(BattleSystem *battleSys, int recipient, int battler, void *message, u8 size);
 static void SendMessage(BattleSystem *battleSys, int recipient, int battler, void *message, u8 size);
 static void PartyGaugeData_New(BattleSystem *battleSys, BattleContext *battleCtx, PartyGaugeData *partyGauge, int command, int battler);
@@ -280,6 +308,7 @@ void BattleController_EmitShowEncounter(BattleSystem *battleSys, int battler)
     message.formNum = battleSys->battleCtx->battleMons[battler].formNum;
     message.capturedBall = battleSys->battleCtx->battleMons[battler].capturedBall;
     message.partnerPartySlot = battleSys->battleCtx->selectedPartySlot[BattleSystem_GetPartner(battleSys, battler)];
+    SOVEREIGN_ILLUSION_LOOK(battleSys, battler, message.species, message.isShiny, message.formNum, message.gender, message.personality);
 
     BattleSystem_GetBattleParticipantMask(battleSys, battler, message.selectedPartySlot);
 
@@ -330,6 +359,7 @@ void BattleController_EmitShowPokemon(BattleSystem *battleSys, int battler, int 
 
     message.isQuickSendOut = quickSendOut;
     message.isSubstitute = (battleSys->battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_SUBSTITUTE) != 0;
+    SOVEREIGN_ILLUSION_LOOK(battleSys, battler, message.species, message.isShiny, message.formNum, message.gender, message.personality);
 
     BattleSystem_GetBattleParticipantMask(battleSys, battler, message.selectedPartySlot);
 
@@ -353,6 +383,7 @@ void BattleController_EmitShowPokemon(BattleSystem *battleSys, int battler, int 
             message.battleMonGenders[i] = battleSys->battleCtx->battleMons[i].gender;
             message.battleMonPersonalities[i] = battleSys->battleCtx->battleMons[i].personality;
         }
+        SOVEREIGN_ILLUSION_LOOK(battleSys, i, message.battleMonSpecies[i], message.battleMonIsShiny[i], message.battleMonFormNums[i], message.battleMonGenders[i], message.battleMonPersonalities[i]);
     }
 
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(MonShowMessage));
@@ -402,6 +433,7 @@ void BattleController_EmitReturnPokemon(BattleSystem *battleSys, BattleContext *
             message.battleMonGenders[i] = battleCtx->battleMons[i].gender;
             message.battleMonPersonalities[i] = battleCtx->battleMons[i].personality;
         }
+        SOVEREIGN_ILLUSION_LOOK(battleSys, i, message.battleMonSpecies[i], message.battleMonIsShiny[i], message.battleMonFormNums[i], message.battleMonGenders[i], message.battleMonPersonalities[i]);
     }
 
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(MonReturnMessage));
@@ -538,7 +570,7 @@ void BattleController_EmitSlideHealthBoxIn(BattleSystem *battleSys, BattleContex
     healthboxData.level = battleCtx->battleMons[battler].level;
     healthboxData.curHP = battleCtx->battleMons[battler].curHP;
     healthboxData.maxHP = battleCtx->battleMons[battler].maxHP;
-    healthboxData.selectedPartySlot = battleCtx->selectedPartySlot[battler];
+    healthboxData.selectedPartySlot = Battler_SovereignShownPartySlot(battleCtx, battler); // Sovereign (item 11): Illusion
     healthboxData.status = Battler_StatusCondition(battleCtx, battler);
 
     if ((battleCtx->battleMons[battler].species == SPECIES_NIDORAN_F || battleCtx->battleMons[battler].species == SPECIES_NIDORAN_M)
@@ -546,6 +578,10 @@ void BattleController_EmitSlideHealthBoxIn(BattleSystem *battleSys, BattleContex
         healthboxData.gender = GENDER_NONE; // don't show the Gender marker for base-Nidoran forms
     } else {
         healthboxData.gender = battleCtx->battleMons[battler].gender;
+    }
+
+    if (BattleController_SovereignIllusionMon(battleSys, battler) != NULL) {
+        healthboxData.gender = Pokemon_GetGender(BattleController_SovereignIllusionMon(battleSys, battler));
     }
 
     healthboxData.expFromLastLevel = battleCtx->battleMons[battler].exp - Pokemon_GetSpeciesBaseExpAt(species, level);
@@ -833,7 +869,11 @@ void BattleCommand_EmitShowTargetSelectMenu(BattleSystem *battleSys, BattleConte
                 message.targetMon[i].gender = battleCtx->battleMons[i].gender;
             }
 
-            message.targetMon[i].partySlot = battleCtx->selectedPartySlot[i];
+            message.targetMon[i].partySlot = Battler_SovereignShownPartySlot(battleCtx, i); // Sovereign (item 11): Illusion
+
+            if (BattleController_SovereignIllusionMon(battleSys, i) != NULL) {
+                message.targetMon[i].gender = Pokemon_GetGender(BattleController_SovereignIllusionMon(battleSys, i));
+            }
 
             if (battleCtx->battleMons[i].status) {
                 message.targetMon[i].stockStatus = STOCK_STATUS_HAS_STATUS_CONDITION;
@@ -1018,7 +1058,7 @@ void BattleController_EmitPrintAttackMessage(BattleSystem *battleSys, BattleCont
     AttackMsgMessage message;
 
     message.command = BATTLE_COMMAND_PRINT_ATTACK_MESSAGE;
-    message.partySlot = battleCtx->selectedPartySlot[battleCtx->attacker];
+    message.partySlot = Battler_SovereignShownPartySlot(battleCtx, battleCtx->attacker); // Sovereign (item 11): Illusion
     message.move = battleCtx->moveCur;
 
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battleCtx->attacker, &message, sizeof(AttackMsgMessage));
@@ -1164,6 +1204,9 @@ void BattleController_EmitPlayFaintingSequence(BattleSystem *battleSys, BattleCo
         message.personality = battleCtx->battleMons[battler].personality;
     }
 
+    u8 isShiny = battleCtx->battleMons[battler].isShiny;
+    SOVEREIGN_ILLUSION_LOOK(battleSys, battler, message.species, isShiny, message.form, message.gender, message.personality);
+
     for (i = 0; i < MAX_BATTLERS; i++) {
         message.monSpecies[i] = battleCtx->battleMons[i].species;
         message.monShiny[i] = battleCtx->battleMons[i].isShiny;
@@ -1176,6 +1219,7 @@ void BattleController_EmitPlayFaintingSequence(BattleSystem *battleSys, BattleCo
             message.monGenders[i] = battleCtx->battleMons[i].gender;
             message.monPersonalities[i] = battleCtx->battleMons[i].personality;
         }
+        SOVEREIGN_ILLUSION_LOOK(battleSys, i, message.monSpecies[i], message.monShiny[i], message.monFormNums[i], message.monGenders[i], message.monPersonalities[i]);
     }
 
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(FaintingSequenceMessage));
@@ -1240,6 +1284,7 @@ void BattleController_EmitToggleVanish(BattleSystem *battleSys, int battler, int
             message.gender[i] = battleSys->battleCtx->battleMons[i].gender;
             message.personality[i] = battleSys->battleCtx->battleMons[i].personality;
         }
+        SOVEREIGN_ILLUSION_LOOK(battleSys, i, message.species[i], message.isShiny[i], message.formNum[i], message.gender[i], message.personality[i]);
     }
 
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(ToggleVanishMessage));
@@ -1325,7 +1370,7 @@ void BattleController_EmitRecallMessage(BattleSystem *battleSys, BattleContext *
     RecallMsgMessage message;
 
     message.command = BATTLE_COMMAND_PRINT_RECALL_MESSAGE;
-    message.partySlot = partySlot;
+    message.partySlot = partySlot == battleCtx->selectedPartySlot[battler] ? Battler_SovereignShownPartySlot(battleCtx, battler) : partySlot;
     message.hpPercent = (battleCtx->hpTemp - battleCtx->battleMons[1].curHP) * 100 / battleCtx->hpTemp;
 
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(RecallMsgMessage));
@@ -1344,7 +1389,7 @@ void BattleController_EmitSendOutMessage(BattleSystem *battleSys, BattleContext 
     SendOutMsgMessage message;
 
     message.command = BATTLE_COMMAND_PRINT_SEND_OUT_MESSAGE;
-    message.partySlot = partySlot;
+    message.partySlot = partySlot == battleCtx->selectedPartySlot[battler] ? Battler_SovereignShownPartySlot(battleCtx, battler) : partySlot;
 
     if (battleCtx->battleMons[1].curHP == 0) {
         message.hpPercent = 1000;
@@ -1384,7 +1429,7 @@ void BattleController_EmitLeadMonMessage(BattleSystem *battleSys, BattleContext 
     message.command = BATTLE_COMMAND_PRINT_LEAD_MON_MESSAGE;
 
     for (i = 0; i < BattleSystem_GetMaxBattlers(battleSys); i++) {
-        message.partySlot[i] = battleCtx->selectedPartySlot[i];
+        message.partySlot[i] = Battler_SovereignShownPartySlot(battleCtx, i); // Sovereign (item 11): Illusion
     }
 
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(LeadMonMsgMessage));
@@ -1449,7 +1494,7 @@ void BattleController_EmitRefreshHPGauge(BattleSystem *battleSys, BattleContext 
     message.level = battleCtx->battleMons[battler].level;
     message.curHP = battleCtx->battleMons[battler].curHP;
     message.maxHP = battleCtx->battleMons[battler].maxHP;
-    message.partySlot = battleCtx->selectedPartySlot[battler];
+    message.partySlot = Battler_SovereignShownPartySlot(battleCtx, battler); // Sovereign (item 11): Illusion
     message.status = Battler_StatusCondition(battleCtx, battler);
 
     if ((battleCtx->battleMons[battler].species == SPECIES_NIDORAN_F || battleCtx->battleMons[battler].species == SPECIES_NIDORAN_M)
@@ -1457,6 +1502,10 @@ void BattleController_EmitRefreshHPGauge(BattleSystem *battleSys, BattleContext 
         message.gender = GENDER_NONE;
     } else {
         message.gender = battleCtx->battleMons[battler].gender;
+    }
+
+    if (BattleController_SovereignIllusionMon(battleSys, battler) != NULL) {
+        message.gender = Pokemon_GetGender(BattleController_SovereignIllusionMon(battleSys, battler));
     }
 
     message.curExp = battleCtx->battleMons[battler].exp - Pokemon_GetSpeciesBaseExpAt(species, level);
@@ -1787,6 +1836,7 @@ void BattleController_EmitRestoreSprite(BattleSystem *battleSys, BattleContext *
             animation.genders[i] = battleCtx->battleMons[i].gender;
             animation.personalities[i] = battleCtx->battleMons[i].personality;
         }
+        SOVEREIGN_ILLUSION_LOOK(battleSys, i, animation.species[i], animation.isShiny[i], animation.formNums[i], animation.genders[i], animation.personalities[i]);
     }
 
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &animation, sizeof(MoveAnimation));
@@ -1904,6 +1954,7 @@ void BattleController_EmitRefreshSprite(BattleSystem *battleSys, BattleContext *
             animation.genders[i] = battleCtx->battleMons[i].gender;
             animation.personalities[i] = battleCtx->battleMons[i].personality;
         }
+        SOVEREIGN_ILLUSION_LOOK(battleSys, i, animation.species[i], animation.isShiny[i], animation.formNums[i], animation.genders[i], animation.personalities[i]);
     }
 
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &animation, sizeof(MoveAnimation));
@@ -2108,6 +2159,7 @@ void BattleController_SetMoveAnimation(BattleSystem *battleSys, BattleContext *b
                 animation->genders[i] = battleCtx->battleMons[i].gender;
                 animation->personalities[i] = battleCtx->battleMons[i].personality;
             }
+            SOVEREIGN_ILLUSION_LOOK(battleSys, i, animation->species[i], animation->isShiny[i], animation->formNums[i], animation->genders[i], animation->personalities[i]);
         }
     }
 }

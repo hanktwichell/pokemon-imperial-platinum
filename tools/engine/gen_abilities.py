@@ -264,6 +264,7 @@ IMPLEMENTED = {
     245: "yes: getting hit whips up a sandstorm",
     249: "yes: its ally's moves ×1.3",
     216: "yes: when another Pokémon's dance move works, it uses the move too right after (the slowest Dancer first; no PP; a copy sets off no other Dancer)",
+    149: "yes: comes in disguised as the last Pokémon in its party's battle order that isn't fainted (name, sprite, cry, HP bar); a damaging move's hit or losing the ability ends it",
     180: "yes: when its ally uses up its held item (a Berry, a Gem, an Air Balloon, Natural Gift or Fling...), it passes the ally its own (not a locked item or Mail; not to an ally leaving with an Eject Button)",
     237: "yes: in a wild battle, picks up the first ball thrown (which failed) at the end of a turn while it holds nothing; once per battle",
     256: "yes: every other ability in battle has no effect while it's in (not abilities that can't be suppressed or an Ability Shield holder's); entry abilities run when it leaves",

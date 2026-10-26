@@ -512,6 +512,11 @@ u8 BattleSystem_CountAliveBattlers(BattleSystem *battleSys, BattleContext *battl
  */
 int BattleSystem_NicknameTag(BattleContext *battleSys, int battler);
 
+// Sovereign (item 11): Illusion. Sovereign_SetIllusion picks a switching-in battler's disguise; the shown party slot is
+// the disguise's while it lasts, and the battler's own otherwise (names, sprite, health box).
+void Sovereign_SetIllusion(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
+int Battler_SovereignShownPartySlot(BattleContext *battleCtx, int battler);
+
 /**
  * @brief Get a battler's selected move for the turn, if any.
  *

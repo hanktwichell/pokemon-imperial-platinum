@@ -247,6 +247,13 @@ static void BattleControllerPlayer_InitBattleMons(BattleSystem *battleSys, Battl
         BattleSystem_InitBattleMon(battleSys, battleCtx, i, battleCtx->selectedPartySlot[i]);
     }
 
+    // Sovereign (item 11): Illusion picks its disguise once every lead is in place.
+    for (int i = 0; i < maxBattlers; i++) {
+        if (battleCtx->selectedPartySlot[i] != MAX_PARTY_SIZE) {
+            Sovereign_SetIllusion(battleSys, battleCtx, i);
+        }
+    }
+
     battleCtx->hpTemp = battleCtx->battleMons[BATTLER_THEM].curHP;
     battleCtx->command = BATTLE_CONTROL_START_ENCOUNTER;
 }
@@ -4447,6 +4454,26 @@ static BOOL Sovereign_RockyHelmetHurts(BattleContext *battleCtx)
     return TRUE;
 }
 
+// Sovereign (item 11): a damaging move that hit an Illusion Pokémon (not its substitute) ends the illusion, after the
+// move's added effects, as in Showdown (subscript_sovereign_illusion_end).
+static BOOL Sovereign_IllusionBroken(BattleContext *battleCtx)
+{
+    int defender = battleCtx->defender;
+
+    if (defender == BATTLER_NONE
+        || battleCtx->sovereignIllusion[defender] == 0
+        || Battler_SubstituteWasHit(battleCtx, defender)
+        || (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS)
+        || CURRENT_MOVE_DATA.class == CLASS_STATUS
+        || (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken == 0 && DEFENDER_SELF_TURN_FLAGS.specialDamageTaken == 0)) {
+        return FALSE;
+    }
+
+    battleCtx->sovereignIllusion[defender] = 0;
+    battleCtx->msgBattlerTemp = defender;
+    return TRUE;
+}
+
 enum AfterMoveMessageState {
     AFTER_MOVE_MESSAGE_START = 0,
 
@@ -4455,6 +4482,7 @@ enum AfterMoveMessageState {
     ONE_HIT_TRIGGER_SECONDARY,
     ONE_HIT_FORM_CHANGE,
     ONE_HIT_RAGE,
+    ONE_HIT_SOVEREIGN_ILLUSION, // Sovereign (item 11)
     ONE_HIT_TRIGGER_ABILITY,
     ONE_HIT_SOVEREIGN_ROCKY_HELMET, // Sovereign (item 11)
     ONE_HIT_SOVEREIGN_BEAK_BLAST, // Sovereign (item 11): and Shell Trap
@@ -4464,6 +4492,7 @@ enum AfterMoveMessageState {
     MULTI_HIT_TRIGGER_SECONDARY,
     MULTI_HIT_FORM_CHANGE,
     MULTI_HIT_RAGE,
+    MULTI_HIT_SOVEREIGN_ILLUSION, // Sovereign (item 11)
     MULTI_HIT_TRIGGER_ABILITY,
     MULTI_HIT_SOVEREIGN_ROCKY_HELMET, // Sovereign (item 11)
     MULTI_HIT_SOVEREIGN_BEAK_BLAST, // Sovereign (item 11): and Shell Trap
@@ -4514,6 +4543,16 @@ static void BattleControllerPlayer_AfterMoveMessage(BattleSystem *battleSys, Bat
         case ONE_HIT_RAGE:
             battleCtx->afterMoveMessageState++;
             if (BattleControllerPlayer_RageBuilding(battleSys, battleCtx) == TRUE) {
+                return;
+            }
+
+        case ONE_HIT_SOVEREIGN_ILLUSION:
+            battleCtx->afterMoveMessageState++;
+            if (Sovereign_IllusionBroken(battleCtx)) {
+                LOAD_SUBSEQ(subscript_sovereign_illusion_end);
+                battleCtx->commandNext = battleCtx->command;
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
                 return;
             }
 
@@ -4596,6 +4635,16 @@ static void BattleControllerPlayer_AfterMoveMessage(BattleSystem *battleSys, Bat
         case MULTI_HIT_RAGE:
             battleCtx->afterMoveMessageState++;
             if (BattleControllerPlayer_RageBuilding(battleSys, battleCtx) == TRUE) {
+                return;
+            }
+
+        case MULTI_HIT_SOVEREIGN_ILLUSION:
+            battleCtx->afterMoveMessageState++;
+            if (Sovereign_IllusionBroken(battleCtx)) {
+                LOAD_SUBSEQ(subscript_sovereign_illusion_end);
+                battleCtx->commandNext = battleCtx->command;
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
                 return;
             }
 

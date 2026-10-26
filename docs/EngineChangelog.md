@@ -3,6 +3,45 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Item 11 (effect fidelity): Illusion
+
+For players:
+- **Illusion** (Zorua, Zoroark and their Hisuian forms): the Pokémon comes in disguised as the last Pokémon in its
+  party's battle order that hasn't fainted. Only Pokémon after its own position count (Showdown's rule), so in doubles
+  the left one can disguise as its ally on the right.
+  - The disguise covers its name in every message ("Go! DITTO!", "DITTO used Splash!", "Belle & Pa sent out TAUROS
+    and MILTANK!"), its sprite, cry and HP bar (name and gender). Its level and HP stay its own.
+  - Move animations that copy sprites and sprite reloads (Fly, Dig, Substitute) also use the disguise.
+  - **Breaking:** a damaging move that hits it (not its substitute) ends the illusion after the move's added effects, as
+    in Showdown. The sprite swaps to the real Pokémon through a mosaic, the HP bar redraws, and "{0}'s illusion wore
+    off!" prints. Losing the ability (Gastro Acid, Worry Seed, Mummy, Neutralizing Gas...) ends it the same way after
+    that move.
+  - Fainting or switching out drops the disguise without a reveal. With no Pokémon to disguise as, there's no illusion.
+  - Not covered: the player's own "What will {0} do?" prompt and the party menu show the real Pokémon. The trainer AI
+    knows what it faces.
+- **Code:**
+  - `Sovereign_SetIllusion` picks the disguise (`sovereignIllusion`, 1 + its party slot) once the battler's slot is in
+    place: at battle start (BattleControllerPlayer_InitBattleMons) and in `BtlCmd_SwitchAndUpdateMon`.
+  - `Battler_SovereignShownPartySlot` gives the slot shown for a battler. The name tags (`BattleSystem_NicknameTag`,
+    `BattleMessage_NameTag`/`PokeTag`) and the controller's party-slot messages use it: send-out, recall, lead, attack,
+    target menu and HP bar.
+  - `SOVEREIGN_ILLUSION_LOOK` (battle_controller.c) puts the disguise's species, form, shininess, gender and
+    personality into every message that builds a sprite: show encounter/Pokémon, return, fainting, vanish, restore and
+    refresh sprite, and move animations.
+  - The break: a new after-hit state (`Sovereign_IllusionBroken`, before the on-hit abilities) and a switch-in check
+    state (`SWITCH_IN_CHECK_STATE_SOVEREIGN_ILLUSION`), both running `subscript_sovereign_illusion_end`.
+
+**Verification:** test and release ROMs built; the battle-script size check, the message check and the docs check pass.
+- **Player side** (Lv. 50 Zoroark lead, wild Lv. 20 Ninjask using Tackle): "Go! DITTO!" with Ditto's sprite and HP bar
+  (no gender sign), then "DITTO used Splash!". Tackle hits it (128 → 123 HP). The mosaic swaps in Zoroark, the HP bar
+  reads ZOROARK ♂, and "ZOROARK's illusion wore off!" prints.
+- **Ability loss** (the Ninjask uses Gastro Acid): "DITTO's ability was suppressed!", then the same reveal.
+- **Foe side** (a test-only copy of trainer 290 with Zoroark, Miltank, Tauros; Meganium uses Icy Wind):
+  - "Belle & Pa Ava & Matt sent out TAUROS and MILTANK!" with a Tauros sprite and HP bar, then "The foe's TAUROS used
+    Fake Tears!".
+  - Icy Wind: "The foe's TAUROS's Speed fell!", the reveal, then "The foe's ZOROARK's illusion wore off!".
+  - Later "The foe's ZOROARK fainted!", and the real Tauros comes in.
+
 ## Item 11 (effect fidelity): Symbiosis
 
 For players:
