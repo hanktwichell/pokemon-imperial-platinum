@@ -177,7 +177,7 @@ def main():
     from drive import Driver
 
     rom, state, out, only, part, parts = parse_args(sys.argv[1:])
-    sym = symbols(SYMBOLS + ('gSovereignTestWildSurvey', 'gSovereignTestClock'))
+    sym = symbols(SYMBOLS + ('gSovereignTestWildSurvey',))
     variables = var_ids()
     names = species_names()
     forms = Forms()

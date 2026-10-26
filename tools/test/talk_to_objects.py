@@ -8,13 +8,17 @@ Then it plays the script out: A pages through text and answers prompts, taps on 
 battle (god mode is on, so a trainer's battle ends at once, as in battle_all_trainers.py), and B now and then backs
 out of a menu. It first comes into the map by its way in (the tile a player steps onto from its first warp), and plays
 out any scene on entering it the same way, as such a scene expects the player there; then it warps to the object. A
-scene that needs the story's own way in (SCENES_SEEN) is marked as seen first. The script has ended when the field is
-idle again (gSovereignTestIdleFrames).
+scene that needs the story's own way in (SCENES_SEEN) is marked as seen first. On a warp the inputs wait until a
+script has started, so an A press meant for a scene can't talk to the object as the warp ends. The script has ended
+when the field is idle again (gSovereignTestIdleFrames). The clock reads noon (HOUR).
 
 Each object gets a result:
 - ok: a script ran and ended;
 - NOSCRIPT: nothing ran when A was pressed, so the object isn't there on a new game (a flag hides it until later in
   the story) or something else stands in the way;
+- OTHER and the script that ran instead (gSovereignTestScripts: the first script the field started), twice in a row:
+  a trainer who sees the player walks up and battles first, as for a player, and then the test warps back to the
+  tile and talks again;
 - NOTILE: no reachable tile next to it (check_object_tiles.py reports these too);
 - HANG (the game stopped running) or STUCK (still busy at the time limit), with a screenshot. A STUCK can be a menu
   the inputs don't get out of; the screenshot shows which. NOWARP HANG or NOWARP STUCK: the same on the way in, while
@@ -57,6 +61,9 @@ SCENES_SEEN = {
 LONG_SCRIPTS = {('events_battleground', 'LOCALID_SOVEREIGN_MARATHON_GUIDE'): 300000}
 WARP = {'header': 0, 'x': 2, 'z': 4, 'dir': 6}  # struct SovereignTestWarpTarget
 FACE = {(0, -1): 0, (0, 1): 1, (-1, 0): 2, (1, 0): 3}  # enum FaceDirection: the step from the player to the object
+# The hour the clock reads (gSovereignTestClock, which takes the hour + 1): the day, so a result doesn't change with
+# the time the test runs at (Route 212's policemen are out only at night).
+HOUR = 12
 
 
 def var_ids():
@@ -167,15 +174,28 @@ def cases():
     return out
 
 
+def object_script(events, oid):
+    """The script the field starts when the player talks to the object: its script, or for a trainer the battle's
+    (from_script in decomp/tools/jsoncnv/convert.py)."""
+    path = os.path.join('decomp', 'res', 'field', 'events', events + '.json')
+    obj = next(o for o in json.load(open(path))['object_events'] if o['id'] == oid)
+    script = str(obj['script'])
+    if not script.startswith('TRAINER_'):
+        return int(script)
+    trainers = [line.strip() for line in open(os.path.join(DECOMP, 'generated', 'trainers.txt')) if line.strip()]
+    return trainers.index(script) - 1 + (5000 if obj.get('double_battle_id', 1) == 2 else 3000)
+
+
 def u32(d, addr):
     return struct.unpack('<I', bytes(d.emu.memory.unsigned[addr:addr + 4]))[0]
 
 
-def play_out(d, sym, limit, header=None, press_a=True):
+def play_out(d, sym, limit, header=None, press_a=True, wait_for_script=False):
     """Play out what starts now (a script, a warp and any scene on entering the map, a battle) until the field is idle
-    again (on header, if given). With press_a, A is pressed first, to talk. Returns ('ok', 'NOSCRIPT' (nothing
-    started), 'HANG', 'STUCK' or 'HEAP' (it ended, but a heap's block lists are broken: heap_check.py), frames
-    run)."""
+    again (on header, if given). With press_a, A is pressed first, to talk. With wait_for_script, no input goes in
+    until a script has started (gSovereignTestScripts, cleared by the caller): a warp needs none, and an A press as it
+    ends would talk to what the player faces. Returns ('ok', 'NOSCRIPT' (nothing started), 'HANG', 'STUCK' or 'HEAP'
+    (it ended, but a heap's block lists are broken: heap_check.py), frames run)."""
     if press_a:
         d.press('A', frames=4, after=0)
     frames, stalled, started, idle, step = 0, 0, False, 0, 0
@@ -191,6 +211,8 @@ def play_out(d, sym, limit, header=None, press_a=True):
             return 'HANG', frames
         if u32(d, sym['gSovereignTestIdleFrames']) == before:
             started, idle = True, 0
+            if wait_for_script and not u32(d, sym['gSovereignTestScripts']) & 0xffff:
+                continue
             step += 1
             if step % 7 == 0:  # backs out of a menu the other inputs keep open (a shop, the party screen)
                 d.press('B', frames=4, after=0)
@@ -210,8 +232,9 @@ def play_out(d, sym, limit, header=None, press_a=True):
 def warp(d, sym, header, x, z, dir):
     """Warp to the tile on the header's map facing dir (enum FaceDirection + 1, or 0 for down) and play out what
     starts on the way in. Returns play_out's result."""
+    d.emu.memory.write_short(sym['gSovereignTestScripts'], 0)
     start_warp(d, sym, header, x, z, dir)
-    return play_out(d, sym, FRAME_LIMIT, header, press_a=False)
+    return play_out(d, sym, FRAME_LIMIT, header, press_a=False, wait_for_script=True)
 
 
 def start_warp(d, sym, header, x, z, dir):
@@ -237,7 +260,8 @@ def arrive(d, sym, state, variables, events, header, way_in, x, z, face, setup=N
     given, runs once the state is loaded (to set test hooks the first warp applies). Returns ('ok', frames) or
     ('NOWARP ' + play_out's result, frames)."""
     d.load_state(state)
-    d.run(30)
+    d.emu.memory.write_byte(sym['gSovereignTestClock'], HOUR + 1)
+    d.run(30)  # the game reads the clock every 11 frames (UpdateRTC)
     d.emu.memory.write_byte(sym['gSovereignTestGodMode'], 1)
     if setup:
         setup()
@@ -249,6 +273,25 @@ def arrive(d, sym, state, variables, events, header, way_in, x, z, face, setup=N
     if arrived == 'ok':
         arrived, waited = warp(d, sym, header, x, z, face + 1)  # a warp on the same map runs too, so it waits for it
     return (arrived, waited) if arrived == 'ok' else ('NOWARP ' + arrived, waited)
+
+
+def talk(d, sym, events, oid, header, x, z, face):
+    """Press A to talk to the object from the tile (x, z) and play its script out. Another script can run first (a
+    trainer who sees the player walks up and battles): then, as a player would, the test warps back to the tile facing
+    the object and talks once more. Returns play_out's result, or ('OTHER ' + the script that ran instead, frames)."""
+    for again in (False, True):
+        if again:
+            result, frames = warp(d, sym, header, x, z, face + 1)
+            if result != 'ok':
+                return 'NOWARP ' + result, frames
+        d.emu.memory.write_short(sym['gSovereignTestScripts'], 0)
+        result, frames = play_out(d, sym, LONG_SCRIPTS.get((events, oid), FRAME_LIMIT))
+        started = u32(d, sym['gSovereignTestScripts'])
+        if not started & 0xffff or started >> 16 == object_script(events, oid):
+            return ('ok' if started & 0xffff and result == 'NOSCRIPT' else result), frames  # NOSCRIPT: it ended at once
+        if result != 'ok':
+            return result, frames
+    return f'OTHER {started >> 16}', frames
 
 
 def parse_args(args):
@@ -263,7 +306,7 @@ def parse_args(args):
 
 
 SYMBOLS = ('gSovereignTestWarpTarget', 'gSovereignTestVar', 'gSovereignTestIdleFrames', 'gSovereignTestIdleMapHeaderID',
-           'gSovereignTestGodMode', 'gSystem')
+           'gSovereignTestGodMode', 'gSovereignTestScripts', 'gSovereignTestClock', 'gSystem')
 
 
 def main():
@@ -284,7 +327,7 @@ def main():
             else:
                 result, frames = arrive(d, sym, state, variables, events, header, way_in, x, z, face)
                 if result == 'ok':
-                    result, frames = play_out(d, sym, LONG_SCRIPTS.get((events, oid), FRAME_LIMIT))
+                    result, frames = talk(d, sym, events, oid, header, x, z, face)
             if result not in ('ok', 'NOSCRIPT'):
                 bad += 1
                 if face is not None:

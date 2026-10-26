@@ -121,7 +121,7 @@ def main():
     from drive import Driver
 
     rom, state, out, only, part, parts = parse_args(sys.argv[1:])
-    sym = symbols(SYMBOLS + ('gSovereignTestScripts',))
+    sym = symbols(SYMBOLS)
     variables = var_ids()
     chosen = [(i, c) for i, c in enumerate(cases()) if (not only or c[0] in only) and i % parts == part]
     d = Driver(rom, state)
