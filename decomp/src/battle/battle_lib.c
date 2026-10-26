@@ -5771,6 +5771,17 @@ BOOL Battler_UnnerveBlocksBerry(BattleSystem *battleSys, BattleContext *battleCt
     return FALSE;
 }
 
+// Sovereign (item 11): Ripen doubles the HP a Berry restores. (subscript_held_item_raise_stat doubles a Berry's stat
+// rise.)
+static void Sovereign_RipenBerryHP(BattleContext *battleCtx, int battler, int subscript)
+{
+    if (Battler_Ability(battleCtx, battler) == ABILITY_RIPEN
+        && Item_IsBerry(battleCtx->battleMons[battler].heldItem)
+        && (subscript == subscript_held_item_hp_restore || subscript == subscript_held_item_dislike_flavor)) {
+        battleCtx->hpCalcTemp *= 2;
+    }
+}
+
 BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
     BOOL result = FALSE;
@@ -6111,6 +6122,7 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
         if (result == TRUE) {
             battleCtx->msgBattlerTemp = battler;
             battleCtx->msgItemTemp = Battler_HeldItem(battleCtx, battler);
+            Sovereign_RipenBerryHP(battleCtx, battler, subscript); // Sovereign (item 11)
 
             LOAD_SUBSEQ(subscript);
             battleCtx->commandNext = battleCtx->command;
@@ -6504,6 +6516,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
 
         if (result == TRUE) {
             battleCtx->msgItemTemp = Battler_HeldItem(battleCtx, battler);
+            Sovereign_RipenBerryHP(battleCtx, battler, *subscript); // Sovereign (item 11)
         }
     }
 

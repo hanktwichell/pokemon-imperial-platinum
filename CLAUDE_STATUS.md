@@ -6771,3 +6771,22 @@ open questions. The shiny line-up patch is ready for when #161 is merged.
 2. Item 11's double-battle abilities (the Veils' ally half, Hospitality, Costar, Curious Medicine), with a doubles case
    in the test harness.
 3. Soul-Heart, Cheek Pouch and Ripen.
+
+
+## CB-0149 — 2026-10-26, 3:40 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: Cheek Pouch and Ripen (item 11).** PR #165 (CB-0148, with Comatose as asleep) is merged.
+- **Cheek Pouch:** a third of max HP after eating its own Berry. One hook where every Berry is used up
+  (`subscript_pluck_check`).
+- **Ripen:** HP Berries heal double, stat Berries +2. Damage-halving Berries not yet.
+- **Tested:** harness battles with Greedent and Appletun at set HP (`$S/test_item11b.py`), HP bars and messages checked.
+
+**Files modified:** `decomp/src/battle/{battle_lib.c,battle_script.c}`, `decomp/generated/{battle_script_vars.txt,battle_subscripts.txt}`,
+`decomp/res/battle/scripts/subscripts/{meson.build,sub_seq.order,subscript_pluck_check.s,subscript_held_item_raise_stat.s,subscript_sovereign_cheek_pouch.s}`,
+`tools/engine/gen_abilities.py`, `docs/AbilityChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. After Claude A's #161 merges: the shiny line-up PR (13 sprite folders), with the sprite check run on them.
+2. Item 11's double-battle abilities (the Veils' ally half, Hospitality, Costar, Curious Medicine), with a doubles case
+   in the test harness.
+3. Soul-Heart; Ripen and Cheek Pouch for damage-halving Berries and Bug Bite/Pluck.

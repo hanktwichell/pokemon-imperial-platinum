@@ -9863,6 +9863,21 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_MIRROR_ARMOR_HOLDER: // Sovereign (item 11): BtlCmd_ChangeStatStage
         return &battleCtx->sovereignMirrorArmorHolder;
+    case BTLVAR_SOVEREIGN_CHEEK_POUCH_MSG_TEMP: { // Sovereign (item 11): read-only, TRUE when the Pokemon about to use up
+        // its Berry (msgBattlerTemp) has Cheek Pouch and HP to restore; then hpCalcTemp is a third of its max HP
+        BattleMon *eater = &battleCtx->battleMons[battleCtx->msgBattlerTemp];
+
+        battleCtx->sovereignTerrainTemp = Battler_Ability(battleCtx, battleCtx->msgBattlerTemp) == ABILITY_CHEEK_POUCH
+            && Item_IsBerry(eater->heldItem)
+            && eater->curHP
+            && eater->curHP < eater->maxHP;
+
+        if (battleCtx->sovereignTerrainTemp) {
+            battleCtx->hpCalcTemp = BattleSystem_Divide(eater->maxHP, 3);
+        }
+
+        return &battleCtx->sovereignTerrainTemp;
+    }
     case BTLVAR_DAMAGE:
         return &battleCtx->damage;
     case BTLVAR_ATTACKER:
