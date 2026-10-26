@@ -9,7 +9,8 @@ _000:
     // Meteor Beam shares this effect but has no rain shortcut.
     CompareVarToValue OPCODE_EQU, BTLVAR_CURRENT_MOVE, MOVE_METEOR_BEAM, _check_herb
     CheckIgnoreWeather _check_herb
-    CompareVarToValue OPCODE_FLAG_SET, BTLVAR_FIELD_CONDITIONS, FIELD_CONDITION_RAINING, _rain
+    // Sovereign (item 11): the weather as it acts on the attacker (not on a Utility Umbrella holder)
+    CompareVarToValue OPCODE_FLAG_SET, BTLVAR_SOVEREIGN_ATTACKER_WEATHER, FIELD_CONDITION_RAINING, _rain
 
 _check_herb:
     CheckItemHoldEffect CHECK_HAVE, BTLSCR_ATTACKER, HOLD_EFFECT_CHARGE_SKIP, _herb

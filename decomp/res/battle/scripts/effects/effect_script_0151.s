@@ -5,7 +5,8 @@ _000:
     // Sovereign (item 11): Mega Sol needs no charge turn either.
     CheckAbility CHECK_HAVE, BTLSCR_ATTACKER, ABILITY_MEGA_SOL, _028
     CheckIgnoreWeather _006
-    CompareVarToValue OPCODE_FLAG_SET, BTLVAR_FIELD_CONDITIONS, FIELD_CONDITION_SUNNY, _028
+    // Sovereign (item 11): the weather as it acts on the attacker (not on a Utility Umbrella holder)
+    CompareVarToValue OPCODE_FLAG_SET, BTLVAR_SOVEREIGN_ATTACKER_WEATHER, FIELD_CONDITION_SUNNY, _028
 
 _006:
     CompareMonDataToValue OPCODE_FLAG_SET, BTLSCR_ATTACKER, BATTLEMON_VOLATILE_STATUS, VOLATILE_CONDITION_MOVE_LOCKED, _033

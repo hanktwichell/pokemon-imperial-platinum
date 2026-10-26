@@ -4,6 +4,50 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): held items, part 4 (Room Service, Adrenaline Orb, Utility Umbrella)
+
+For players: three more Veilstone Dept. Store items now work in battle.
+
+- **Room Service:** Speed -1 under Trick Room, when the holder enters or when Trick Room starts. Used up.
+  - It shares the terrain Seeds' check, which runs on entry and after every move.
+- **Adrenaline Orb:** Speed +1 after an Intimidate that targets the holder. Used up. "The Adrenaline Orb raised
+  {Pokémon}'s Speed!"
+  - As in Gen VIII+, it works even when an Ability (Hyper Cutter, Clear Body...) keeps the Attack drop off. It doesn't
+    work when the holder's Attack is already at -6, or behind a Substitute.
+  - `subscript_intimidate` marks the holder (`BTLVAR_SOVEREIGN_ADRENALINE_ORB_CHECK`). The orb then acts where
+    Defiant and Rattled answer Intimidate, on switch-in and mid-turn.
+- **Utility Umbrella:** rain and harsh sunlight don't act on the holder (`Sovereign_BattlerWeather`).
+  - Fire and Water moves that hit the holder take no weather change. The holder's own Fire and Water moves are still
+    boosted or weakened, as in the main games.
+  - Abilities that need the weather don't work for the holder: Swift Swim, Chlorophyll, Rain Dish, Dry Skin,
+    Hydration, Solar Power, Leaf Guard, Flower Gift, Orichalcum Pulse. Castform and Cherrim keep their base form.
+  - Moves act as if there were no weather:
+    - Solar Beam and Solar Blade need their charge turn in sun, and lose no power in rain.
+    - Electro Shot needs its charge turn in rain.
+    - Synthesis, Morning Sun and Moonlight heal 1/2.
+    - Weather Ball stays a 50-power Normal move.
+    - Hydro Steam isn't boosted.
+  - Thunder and Hurricane aimed at the holder use its weather (no sure hit in rain, no 50% in sun). The sun doesn't
+    stop the holder from being frozen.
+  - Protosynthesis still works, and a primal weather's Fire or Water moves still fail (Showdown's rules).
+  - The battle scripts read the holder's weather through two new vars: `BTLVAR_SOVEREIGN_ATTACKER_WEATHER` and
+    `BTLVAR_SOVEREIGN_SIDE_EFFECT_MON_WEATHER`.
+- **Solar Blade** now loses half its power in rain, sand and snow, as Solar Beam does.
+- `docs/HeldItemChecklist.md` is updated.
+
+**Verification:** `tools/test/check_battle_scripts.py` passes. Harness wild battles:
+- **Room Service:** Snorlax holding one: the wild Ninjask's Trick Room, the held-item animation, then "SNORLAX's Speed
+  fell!". It happens once.
+- **Adrenaline Orb:** a wild Gyarados's Intimidate cuts Snorlax's Attack, then "The Adrenaline Orb raised SNORLAX's
+  Speed!".
+  - Kingler's Hyper Cutter keeps the drop off, and the orb still raises Speed.
+  - Without the orb, Intimidate alone.
+- **Utility Umbrella:** Snorlax uses Rain Dance while a wild Ninjask uses Water Gun on it, with god mode off.
+  - Before the rain both cases take 31.
+  - In rain, the umbrella holder takes 28 (no boost); the control takes 46.
+- Not run in the harness: the Ability and move cases (Swift Swim, Solar Beam, Synthesis, Weather Ball...). They use
+  the same `Sovereign_BattlerWeather` check.
+
 ## Item 11 (effect fidelity): held items, part 3 (the Gems, Air Balloon, Ring Target)
 
 For players: the 18 Gems, the Air Balloon and the Ring Target from the Veilstone Dept. Store now work in battle.

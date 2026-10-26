@@ -2547,7 +2547,7 @@ static BOOL BattleControllerPlayer_HasNoTarget(BattleSystem *battleSys, BattleCo
     // need this if-statement to match, even though it's a single assignment
     if (NO_CLOUD_NINE
         && CURRENT_MOVE_DATA.effect == BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN
-        && (battleCtx->fieldConditionsMask & FIELD_CONDITION_SUNNY)) {
+        && (Sovereign_BattlerWeather(battleCtx, battleCtx->attacker) & FIELD_CONDITION_SUNNY)) { // Sovereign (item 11): Utility Umbrella
         solarMove = TRUE;
     }
 
@@ -3189,8 +3189,8 @@ static int BattleControllerPlayer_CheckMoveHitAccuracy(BattleSystem *battleSys, 
         hitRate = 50;
     }
 
-    // Sovereign (item 11): Hurricane shares Thunder's weather accuracy.
-    if (NO_CLOUD_NINE && WEATHER_IS_SUN
+    // Sovereign (item 11): Hurricane shares Thunder's weather accuracy. A target holding a Utility Umbrella feels no sun.
+    if (NO_CLOUD_NINE && (Sovereign_BattlerWeather(battleCtx, defender) & FIELD_CONDITION_SUNNY)
         && (MOVE_DATA(move).effect == BATTLE_EFFECT_THUNDER || MOVE_DATA(move).effect == BATTLE_EFFECT_HURRICANE)) {
         hitRate = 50;
     }
@@ -3359,8 +3359,9 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
     }
 
     if (NO_CLOUD_NINE) {
-        // Sovereign (item 11): the Forces of Nature's storms never miss in rain either.
-        if (WEATHER_IS_RAIN
+        // Sovereign (item 11): the Forces of Nature's storms never miss in rain either, unless the target holds a Utility
+        // Umbrella.
+        if ((Sovereign_BattlerWeather(battleCtx, defender) & FIELD_CONDITION_RAINING)
             && (MOVE_DATA(move).effect == BATTLE_EFFECT_THUNDER || MOVE_DATA(move).effect == BATTLE_EFFECT_HURRICANE
                 || move == MOVE_BLEAKWIND_STORM || move == MOVE_WILDBOLT_STORM || move == MOVE_SANDSEAR_STORM)) {
             battleCtx->moveStatusFlags &= ~MOVE_STATUS_MISSED;
@@ -5652,6 +5653,26 @@ static BOOL BattleControllerPlayer_TriggerAfterMoveHitEffects(BattleSystem *batt
 
                 if (Sovereign_SetupStatDropReaction(battleCtx, battler)) {
                     LOAD_SUBSEQ(subscript_update_stat_stage);
+                    battleCtx->commandNext = battleCtx->command;
+                    battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+                    machineState = STATE_BREAK_OUT;
+                }
+                break; // stay in this state for any other pending battler
+            }
+
+            // Sovereign (item 11): the Adrenaline Orb after an Intimidate mid-turn.
+            for (battler = 0; battler < maxBattlers; battler++) {
+                if (battleCtx->sovereignAdrenalinePending & FlagIndex(battler)) {
+                    break;
+                }
+            }
+
+            if (battler < maxBattlers) {
+                battleCtx->sovereignAdrenalinePending &= ~FlagIndex(battler);
+
+                if (Sovereign_SetupAdrenalineOrb(battleCtx, battler)) {
+                    LOAD_SUBSEQ(subscript_sovereign_item_stat_up);
                     battleCtx->commandNext = battleCtx->command;
                     battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
 

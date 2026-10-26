@@ -333,6 +333,7 @@ struct BattleContext {
     // Sovereign (item 11): battlers whose Defiant or Competitive was triggered by a foe's move lowering their stats;
     // the boost is applied after the move (BattleControllerPlayer_TriggerAfterMoveHitEffects).
     u8 sovereignDefiantPending;
+    u8 sovereignAdrenalinePending; // Sovereign (item 11): Intimidate targeted these Adrenaline Orb holders (flags by battler)
     u8 sovereignLastMoveFailed[MAX_BATTLERS]; // Sovereign (item 11): Stomping Tantrum and Temper Flare
     u32 sovereignTerrainTemp; // Sovereign (item 11): BTLVAR_SOVEREIGN_TERRAIN_EFFECT_MON
     u32 sovereignHeroPending; // Sovereign (FM): a Palafin that became Hero and hasn't come back in (BattleSystem_SovereignHeroBit)
