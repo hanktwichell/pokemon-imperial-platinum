@@ -157,6 +157,9 @@ MOVES = {
     "oblivion_wing": (None, None, "drains 3/4 of the damage dealt"),
     "round": (None, None, "the next Pokémon (either side) that chose Round moves right after the user, with double"
               " power"),
+    "beak_blast": (None, None, "-3 priority; from the start of the turn until it moves, the user burns Pokémon whose contact moves hit it"),
+    "shell_trap": (None, None, "-3 priority; sets a trap at the start of the turn: a foe's physical hit springs it and the user moves right after; otherwise it fails"),
+    "spectral_thief": ("SOVEREIGN_SPECTRAL_THIEF", 0, "before it hits, the user takes the target's stat rises (the damage uses them)"),
     "powder": ("SOVEREIGN_POWDER", 0, "the target's Fire moves this turn explode: they fail and it loses 1/4 of its max HP (not through Magic Guard; heavy rain fizzles them first)"),
     "dragon_darts": (None, None, "hits twice; in a double battle, once the target and once its ally (both darts at one"
                      " when the other can't be hit)"),

@@ -72,7 +72,10 @@ typedef struct TurnFlags {
     u32 sovereignMovedUp : 1; // Sovereign (item 11): After You or Round moved it up this turn (dynamic speed keeps it there)
     u32 sovereignQuashed : 1; // Sovereign (item 11): Quash moved it last this turn (dynamic speed keeps it there)
     u32 sovereignPowdered : 1; // Sovereign (item 11): Powder covers it this turn (its Fire moves explode)
-    u32 padding00_0A : 14;
+    u32 sovereignBeakBlast : 1; // Sovereign (item 11): it's heating up its beak (burns on contact) until Beak Blast
+    u32 sovereignShellTrap : 1; // Sovereign (item 11): it set a shell trap this turn
+    u32 sovereignShellTrapHit : 1; // Sovereign (item 11): a foe's physical move sprang its shell trap
+    u32 padding00_0A : 11;
 
     int physicalDamageTakenFrom[MAX_BATTLERS];
     int physicalDamageLastAttacker;

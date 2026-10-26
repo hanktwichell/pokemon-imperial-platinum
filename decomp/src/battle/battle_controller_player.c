@@ -874,6 +874,30 @@ static void BattleControllerPlayer_CheckPreMoveActions(BattleSystem *battleSys, 
 
                     return;
                 }
+
+                // Sovereign (item 11): Beak Blast heats up the user's beak, and Shell Trap sets its trap, before anyone
+                // moves (Showdown's priority charge, which doesn't check for sleep).
+                int sovereignMove = Battler_SelectedMove(battleCtx, battler);
+
+                if ((sovereignMove == MOVE_BEAK_BLAST || sovereignMove == MOVE_SHELL_TRAP)
+                    && battleCtx->battlerActions[battler][BATTLE_ACTION_SELECTED_COMMAND] == PLAYER_INPUT_FIGHT
+                    && battleCtx->battleMons[battler].curHP
+                    && battleCtx->turnFlags[battler].struggling == FALSE) {
+                    if (sovereignMove == MOVE_BEAK_BLAST) {
+                        battleCtx->turnFlags[battler].sovereignBeakBlast = TRUE;
+                        LOAD_SUBSEQ(subscript_sovereign_beak_blast_charge);
+                    } else {
+                        battleCtx->turnFlags[battler].sovereignShellTrap = TRUE;
+                        LOAD_SUBSEQ(subscript_sovereign_shell_trap_set);
+                    }
+
+                    BattleController_EmitClearMessageBox(battleSys);
+                    battleCtx->msgBattlerTemp = battler;
+                    battleCtx->commandNext = battleCtx->command;
+                    battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+                    return;
+                }
             }
 
             battleCtx->turnStartCheckTemp = 0;
@@ -3898,6 +3922,18 @@ static void BattleControllerPlayer_BeforeMove(BattleSystem *battleSys, BattleCon
         battleCtx->beforeMoveCheckState = BEFORE_MOVE_START;
     }
 
+    // Sovereign (item 11): Shell Trap fails, with no attack message, unless a foe's physical move sprang it this turn.
+    if ((battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+        && battleCtx->moveCur == MOVE_SHELL_TRAP
+        && battleCtx->turnFlags[battleCtx->attacker].sovereignShellTrapHit == FALSE) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_NO_MORE_WORK;
+        battleCtx->battleStatusMask |= SYSCTL_CHECK_LOOP_ONLY_ONCE;
+        LOAD_SUBSEQ(subscript_sovereign_shell_trap_fail);
+        battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+        battleCtx->commandNext = BATTLE_CONTROL_MOVE_FAILED;
+        return;
+    }
+
     // Sovereign (item 11): damaging Fire moves fizzle out in heavy rain, Water moves evaporate in extremely harsh
     // sunlight.
     if ((battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
@@ -4352,6 +4388,41 @@ static void BattleControllerPlayer_UpdateHP(BattleSystem *battleSys, BattleConte
 
 // Sovereign (item 11): TRUE when the attacker's contact move hit a Rocky Helmet holder (not its Substitute): the
 // attacker loses 1/6 of its max HP (hpCalcTemp), each hit, even as the holder faints. Magic Guard stops it.
+// Sovereign (item 11): a Pokemon heating up its beak (Beak Blast) burns a Pokemon whose contact move hits it.
+static BOOL Sovereign_BeakBlastBurns(BattleContext *battleCtx)
+{
+    return battleCtx->defender != BATTLER_NONE
+        && battleCtx->defender != battleCtx->attacker
+        && battleCtx->turnFlags[battleCtx->defender].sovereignBeakBlast
+        && Battler_SubstituteWasHit(battleCtx, battleCtx->defender) == FALSE
+        && ATTACKING_MON.curHP
+        && ATTACKING_MON.status == MON_CONDITION_NONE
+        && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+        && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+        && Sovereign_MakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur);
+}
+
+// Sovereign (item 11): a foe's physical move that hits a Pokemon that set a shell trap springs it: that Pokemon moves
+// right after (if it hasn't moved yet), and its Shell Trap works.
+static void Sovereign_SpringShellTrap(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    int trapper = battleCtx->defender;
+
+    if (trapper == BATTLER_NONE
+        || battleCtx->turnFlags[trapper].sovereignShellTrap == FALSE
+        || battleCtx->turnFlags[trapper].sovereignShellTrapHit
+        || BattleSystem_GetBattlerSide(battleSys, trapper) == BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker)
+        || Battler_SubstituteWasHit(battleCtx, trapper)
+        || (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS)
+        || (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken == 0 && DEFENDER_SELF_TURN_FLAGS.specialDamageTaken == 0)
+        || Sovereign_HitsPhysically(battleCtx, battleCtx->attacker, trapper, battleCtx->moveCur) == FALSE) {
+        return;
+    }
+
+    battleCtx->turnFlags[trapper].sovereignShellTrapHit = TRUE;
+    Sovereign_ReorderTurn(battleSys, battleCtx, trapper, FALSE);
+}
+
 static BOOL Sovereign_RockyHelmetHurts(BattleContext *battleCtx)
 {
     if (battleCtx->defender == BATTLER_NONE
@@ -4380,6 +4451,7 @@ enum AfterMoveMessageState {
     ONE_HIT_RAGE,
     ONE_HIT_TRIGGER_ABILITY,
     ONE_HIT_SOVEREIGN_ROCKY_HELMET, // Sovereign (item 11)
+    ONE_HIT_SOVEREIGN_BEAK_BLAST, // Sovereign (item 11): and Shell Trap
     ONE_HIT_EXTRA_FLINCH,
 
     MULTI_HIT_CRITICAL = 0,
@@ -4388,6 +4460,7 @@ enum AfterMoveMessageState {
     MULTI_HIT_RAGE,
     MULTI_HIT_TRIGGER_ABILITY,
     MULTI_HIT_SOVEREIGN_ROCKY_HELMET, // Sovereign (item 11)
+    MULTI_HIT_SOVEREIGN_BEAK_BLAST, // Sovereign (item 11): and Shell Trap
     MULTI_HIT_STATUS,
     MULTI_HIT_EXTRA_FLINCH,
 };
@@ -4460,6 +4533,18 @@ static void BattleControllerPlayer_AfterMoveMessage(BattleSystem *battleSys, Bat
                 return;
             }
 
+        case ONE_HIT_SOVEREIGN_BEAK_BLAST:
+            battleCtx->afterMoveMessageState++;
+            Sovereign_SpringShellTrap(battleSys, battleCtx);
+
+            if (Sovereign_BeakBlastBurns(battleCtx)) {
+                LOAD_SUBSEQ(subscript_sovereign_beak_blast_burn);
+                battleCtx->commandNext = battleCtx->command;
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+                return;
+            }
+
         case ONE_HIT_EXTRA_FLINCH:
             battleCtx->afterMoveMessageState++;
             if (BattleControllerPlayer_CheckExtraFlinch(battleSys, battleCtx) == TRUE) {
@@ -4524,6 +4609,18 @@ static void BattleControllerPlayer_AfterMoveMessage(BattleSystem *battleSys, Bat
             battleCtx->afterMoveMessageState++;
             if (Sovereign_RockyHelmetHurts(battleCtx)) {
                 LOAD_SUBSEQ(subscript_sovereign_rocky_helmet);
+                battleCtx->commandNext = battleCtx->command;
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+                return;
+            }
+
+        case MULTI_HIT_SOVEREIGN_BEAK_BLAST:
+            battleCtx->afterMoveMessageState++;
+            Sovereign_SpringShellTrap(battleSys, battleCtx);
+
+            if (Sovereign_BeakBlastBurns(battleCtx)) {
+                LOAD_SUBSEQ(subscript_sovereign_beak_blast_burn);
                 battleCtx->commandNext = battleCtx->command;
                 battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
 
@@ -4931,6 +5028,9 @@ static void BattleControllerPlayer_UpdateMoveBuffers(BattleSystem *battleSys, Ba
         // Sovereign (item 11): until the user's next move, moves never miss it and deal double damage.
         if (battleCtx->moveTemp == MOVE_GLAIVE_RUSH && (battleCtx->battleStatusMask2 & SYSCTL_MOVE_SUCCEEDED)) {
             battleCtx->sovereignGlaiveRush |= FlagIndex(battleCtx->attacker);
+        }
+        if (battleCtx->moveTemp == MOVE_BEAK_BLAST) {
+            battleCtx->turnFlags[battleCtx->attacker].sovereignBeakBlast = FALSE; // Sovereign (item 11)
         }
         if (battleCtx->moveTemp == MOVE_ROUND && (battleCtx->battleStatusMask2 & SYSCTL_ATTACK_MESSAGE_SHOWN)) {
             Sovereign_CallNextRound(battleSys, battleCtx);

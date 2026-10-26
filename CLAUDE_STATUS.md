@@ -7876,3 +7876,28 @@ PR #196 (Dragon Darts) is merged.
    - Burn Up and Double Shock wait on the owner (CB-0158).
 2. Abilities still to do: Illusion, Symbiosis, Dancer, Receiver/Power of Alchemy, Neutralizing Gas, Commander, Ball Fetch.
 3. Check the heavy-rain fizzle with Primal Kyogre and a spread Fire move in doubles. It was fixed by reading the code, but not run.
+
+## CB-0181 — 2026-10-26, 3:36 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: Spectral Thief, Beak Blast and Shell Trap (13 placeholder moves left).**
+PR #197 (Powder) is merged.
+- **Spectral Thief:** steals the target's stat rises before it hits, and the hit uses them. Contrary inverts the stolen rises.
+- **Beak Blast:** heats up at the start of the turn. Until it moves, contact burns the attacker.
+- **Shell Trap:** sets a trap at the start of the turn. A foe's physical hit springs it, and the user moves next. Otherwise "the shell trap didn't work!".
+- All were verified in the singles and doubles harness (see the changelog).
+
+**Files modified:**
+- `decomp/src/battle/battle_controller_player.c`, `decomp/src/battle/battle_lib.c`, `decomp/src/battle/battle_script.c` (var).
+- `decomp/include/battle/battle_context.h` (turn flags), `decomp/include/battle/battle_lib.h`.
+- New subscripts `sovereign_spectral_thief`, `_beak_blast_charge`, `_beak_blast_burn`, `_shell_trap_set` and `_shell_trap_fail`. New effect `effect_script_0393.s`. The registration files.
+- `decomp/res/text/battle_strings.json` (12 messages), move data for Spectral Thief.
+- `tools/engine/gen9_move_fixes.py`, `docs/MoveChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Placeholders still open:
+   - Shed Tail: a 1/2-HP substitute passed to the switch-in, via the Baton Pass code.
+   - Instruct and Sky Drop.
+   - Trick-or-Treat and Forest's Curse: they need a third type.
+   - Burn Up and Double Shock wait on the owner (CB-0158).
+2. Abilities still to do: Illusion, Symbiosis, Dancer, Receiver/Power of Alchemy, Neutralizing Gas, Commander, Ball Fetch.
+3. Check the heavy-rain fizzle with Primal Kyogre and a spread Fire move in doubles (fixed in CB-0180 by reading the code).
