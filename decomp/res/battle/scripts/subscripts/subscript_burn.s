@@ -4,8 +4,11 @@
 _000:
     CompareVarToValue OPCODE_NEQ, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_HELD_ITEM, _052
     CheckAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_WATER_VEIL, _211
-    // Sovereign (FM): Shields Down keeps every status condition off a Meteor Minior.
-    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_SHIELDS_UP_EFFECT_MON, TRUE, _211
+    // Sovereign (item 11): Water Bubble and Thermal Exchange keep burns off too.
+    CheckAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_WATER_BUBBLE, _211
+    CheckAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_THERMAL_EXCHANGE, _211
+    // Sovereign (FM, item 11): Shields Down (a Meteor Minior) and Purifying Salt keep every status condition off.
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_STATUS_IMMUNE_EFFECT_MON, TRUE, _211
     CheckIgnoreWeather _021
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_FIELD_CONDITIONS, FIELD_CONDITION_SUNNY, _021
     CheckAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_LEAF_GUARD, _211
@@ -21,8 +24,11 @@ _021:
 
 _052:
     CheckIgnorableAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_WATER_VEIL, _264
-    // Sovereign (FM): Shields Down keeps every status condition off a Meteor Minior.
-    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_SHIELDS_UP_EFFECT_MON, TRUE, _264
+    // Sovereign (item 11): Water Bubble and Thermal Exchange keep burns off too.
+    CheckIgnorableAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_WATER_BUBBLE, _264
+    CheckIgnorableAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_THERMAL_EXCHANGE, _264
+    // Sovereign (FM, item 11): Shields Down (a Meteor Minior) and Purifying Salt keep every status condition off.
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_STATUS_IMMUNE_EFFECT_MON, TRUE, _264
     CheckIgnoreWeather _069
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_FIELD_CONDITIONS, FIELD_CONDITION_SUNNY, _069
     CheckIgnorableAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_LEAF_GUARD, _264

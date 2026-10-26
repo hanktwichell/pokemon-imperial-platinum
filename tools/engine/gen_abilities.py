@@ -127,12 +127,16 @@ IMPLEMENTED = {
     181: "yes: contact moves ×1.3",
     178: "yes: pulse moves ×1.5",
     292: "yes: slicing moves ×1.5",
+    238: "yes: when a damaging move hits it, every other Pokémon's Speed −1, its ally's too, even as it faints",
     244: "yes: its sound moves ×1.3, sound damage taken halved",
+    274: "partly: wind moves aimed at it do nothing and raise its Attack instead (the Tailwind boost not yet)",
+    277: "partly: charged when a wind move hits it (Tailwind not yet)",
+    280: "yes: charged when a damaging move hits it (its next Electric move ×2 before the end of next turn, as Platinum's Charge)",
     262: "yes: Electric moves ×1.3",
     263: "yes: Dragon moves ×1.5",
     276: "yes: Rock moves ×1.5",
     200: "yes: Steel moves ×1.5",
-    199: "partly: its Water moves ×2, Fire damage taken halved (burn immunity not yet)",
+    199: "yes: its Water moves ×2, Fire damage taken halved, can't be burned",
     137: "yes: Attack ×1.5 while poisoned",
     138: "yes: Sp. Atk ×1.5 while burned",
     255: "partly: Attack ×1.5 (the move lock not yet)",
@@ -144,7 +148,7 @@ IMPLEMENTED = {
     231: "yes: damage halved at full HP (not ignored by Mold Breaker)",
     169: "yes: Defense doubled",
     246: "yes: special damage halved",
-    272: "partly: Ghost damage halved (status immunity not yet)",
+    272: "yes: Ghost damage halved; no status conditions or drowsiness (Mold Breaker gets past it)",
     284: "yes: Sp. Atk of every other Pokémon ×0.75",
     285: "yes: Defense of every other Pokémon ×0.75",
     286: "yes: Attack of every other Pokémon ×0.75",
@@ -202,7 +206,7 @@ IMPLEMENTED = {
     173: "yes: biting moves ×1.5",  # Strong Jaw
     195: "yes: Defense +2 when hit by a Water move",  # WaterCompaction
     202: "yes: Speed ×2 in snow",  # Slush Rush
-    270: "partly: Attack +1 when hit by a Fire move (burn immunity not yet)",  # ThermalExchange
+    270: "yes: Attack +1 when hit by a Fire move, can't be burned",  # ThermalExchange
     157: "yes: absorbs Grass moves, Attack +1 (`BattleSystem_TriggerImmunityAbility`)",  # Sap Sipper
     192: "yes: Defense +1 stage each time a damaging move hits (`BattleSystem_TriggerAbilityOnHit`)",  # Stamina
     273: "yes: absorbs Fire moves, Defense +2 (`BattleSystem_TriggerImmunityAbility`)",  # Well-Baked Body
