@@ -4654,6 +4654,16 @@ static void BattleControllerPlayer_UpdateMoveBuffers(BattleSystem *battleSys, Ba
 
         // Sovereign (item 11): Stomping Tantrum and Temper Flare remember a failed move; Round tells its partner's.
         battleCtx->sovereignLastMoveFailed[battleCtx->attacker] = (battleCtx->battleStatusMask2 & SYSCTL_MOVE_SUCCEEDED) == FALSE;
+
+        // Sovereign (item 11): Fusion Flare and Fusion Bolt look at the last move that worked this turn; Gigaton Hammer
+        // and Blood Moon at the user's last move.
+        if (battleCtx->battleStatusMask2 & SYSCTL_MOVE_SUCCEEDED) {
+            battleCtx->sovereignLastMoveThisTurn = battleCtx->moveTemp;
+            battleCtx->sovereignLastMoveTurn = battleCtx->totalTurns + 1;
+        }
+        if (battleCtx->battleStatusMask2 & SYSCTL_ATTACK_MESSAGE_SHOWN) {
+            battleCtx->sovereignLastMoveUsed[battleCtx->attacker] = battleCtx->moveTemp;
+        }
         if (battleCtx->moveTemp == MOVE_ROUND) {
             battleCtx->turnFlags[battleCtx->attacker].sovereignUsedRound = TRUE;
         }

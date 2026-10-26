@@ -4,6 +4,43 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): moves, batch 1
+
+For players: 16 more Gen V-IX moves work as in the main games. Most were plain hits or did nothing before.
+
+- **Flying Press:** Fighting and Flying type at once for its effectiveness (the type chart is applied for both).
+- **Collision Course, Electro Drift:** 1.33x when super effective.
+- **Last Respects:** 50 more power for each fainted Pokémon in the user's party.
+- **Fusion Flare, Fusion Bolt:** double power right after the other one worked this turn
+  (`sovereignLastMoveThisTurn`).
+- **Sunsteel Strike, Moongeist Beam, Photon Geyser:** ignore the target's Ability, as Mold Breaker does.
+  - Photon Geyser is also physical when the user's Attack, with its stage, is higher than its Sp. Atk.
+- **Ivy Cudgel:** takes the type of Ogerpon's mask (Water, Fire or Rock), with a high critical-hit ratio.
+- **Raging Bull:** takes the type of a Paldean Tauros's breed (Fighting, Fire or Water), and breaks Reflect, Light
+  Screen and Aurora Veil (Brick Break's effect).
+- **Gigaton Hammer, Blood Moon:** can't be selected right after the user used them: "{Pokémon} can't use {move}
+  twice in a row!" (`CHECK_INVALID_TWICE_IN_A_ROW`; the AI follows it too).
+- **Supercell Slam:** the user loses half its max HP if it misses (Hi Jump Kick's effect).
+- **Power Shift:** swaps the user's Attack and Defense (Power Trick's effect).
+- **Chloroblast, Mind Blown:** the user loses half its max HP, so far only when the move hits (Steel Beam's effect).
+  They're listed as approximate.
+- The move checklist is updated through `tools/engine/gen9_move_fixes.py`: 272 exact, 40 approximate, 68 placeholders
+  (84 before).
+- Burn Up and Double Shock wait for an owner decision. In the main games a pure Fire or Electric user becomes typeless
+  ("???"), and Sovereign's Fairy type took that slot.
+
+**Verification:** `tools/test/check_battle_scripts.py` passes. Harness wild battles:
+- **Flying Press:** Hawlucha against a Breloom: "It's super effective!" (Fighting alone is neutral on Grass/Fighting).
+- **Gigaton Hammer:** Tinkaton uses it, then the next turn's pick of it: "TINKATON can't use Gigaton Hammer twice in a
+  row!". It then uses another move.
+- **Sunsteel Strike:** Solgaleo knocks out a Shedinja through Wonder Guard (god mode off). Iron Head: "The wild
+  SHEDINJA avoided damage by using Wonder Guard!".
+- **Ivy Cudgel:** Ogerpon with the Wellspring Mask against a Charizard: "It's super effective!".
+- **Raging Bull:** an Aqua Breed Tauros against a Charizard: "It's super effective!".
+- **Power Shift:** "SNORLAX switched its Attack and Defense!".
+- Not run in the harness: Collision Course, Electro Drift, Last Respects, the Fusion moves, Moongeist Beam, Photon
+  Geyser and Supercell Slam.
+
 ## Item 11 (effect fidelity): held items, part 5 (Mirror Herb, Ability Shield)
 
 For players: the Mirror Herb and the Ability Shield from the Veilstone Dept. Store now work in battle. Every held item

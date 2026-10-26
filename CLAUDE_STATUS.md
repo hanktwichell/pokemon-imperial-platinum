@@ -7144,3 +7144,39 @@ and its three registrations, `tools/engine/gen_abilities.py`, `docs/AbilityCheck
    would test Heavy-Duty Boots, the Air Balloon on hazards and the Ghost-type escape too.
 2. Item 11's double-battle abilities, with a doubles case in the harness (Healer too).
 3. Mirror Herb at the end of the turn (Speed Boost, Moody), as in Showdown.
+
+## CB-0158 — 2026-10-26, 6:08 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Merged:** PR #174, held items part 5. Every held item the store sells now works, except Eject Button, Eject Pack
+and Red Card.
+
+**Implemented: item 11 moves, batch 1.** Placeholders went from 84 to 68.
+- Exact now:
+  - Flying Press, Collision Course, Electro Drift, Last Respects.
+  - Fusion Flare, Fusion Bolt.
+  - Sunsteel Strike, Moongeist Beam, Photon Geyser (also its physical/special choice).
+  - Ivy Cudgel, Raging Bull.
+  - Gigaton Hammer, Blood Moon (not twice in a row).
+  - Supercell Slam, Power Shift.
+- Approximate: Chloroblast and Mind Blown (half HP, only on a hit).
+- Harness checks: Flying Press, Gigaton Hammer, Sunsteel Strike vs Wonder Guard, Ivy Cudgel, Raging Bull, Power Shift.
+- **Pinned for the owner:** Burn Up and Double Shock. The main games make a pure Fire or Electric user typeless
+  ("???"), but Sovereign's Fairy type uses that slot. The options are a new typeless value, or Normal type as Gen IV's
+  Roost did.
+
+**Files modified:**
+- `decomp/src/battle/battle_lib.c`, `decomp/src/battle/battle_script.c`, `decomp/src/battle/battle_controller_player.c`.
+- `decomp/src/pokemon.c`.
+- `decomp/include/battle/battle_context.h`, `decomp/include/battle/battle_lib.h`, `decomp/include/constants/battle.h`.
+- `decomp/res/text/battle_strings.json`.
+- `decomp/res/moves/{chloroblast,mind_blown,power_shift,raging_bull,supercell_slam}/data.json`.
+- `tools/engine/gen9_move_fixes.py`, `docs/MoveChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Moves batch 2, the status moves:
+   - Spicy Extract, Take Heart, Fillet Away, Strength Sap.
+   - Topsy-Turvy, Reflect Type, Magic Powder, Purify, Lunar Blessing, Jungle Healing.
+2. Moves batch 3, damage and side effects: Dire Claw, Triple Arrows, Ceaseless Edge, Stone Axe, Axe Kick, Glaive
+   Rush, Salt Cure, Mortal Spin, Matcha Gotcha, Syrup Bomb, Triple Dive, Population Bomb, Rage Fist.
+3. The switching items (Eject Button, Eject Pack, Red Card) with Shed Tail and Chilly Reception, plus a switching case
+   in the harness.

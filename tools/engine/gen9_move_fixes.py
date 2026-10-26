@@ -221,6 +221,24 @@ MOVES = {
     "wonder_room": ("SOVEREIGN_WONDER_ROOM", 0, "Defense and Sp. Def are swapped for 5 turns; using it again ends it"),
     "telekinesis": ("SOVEREIGN_TELEKINESIS", 0, "for 3 turns the target is immune to Ground moves and other moves always hit it"),
     "parting_shot": ("SOVEREIGN_PARTING_SHOT", 0, "target Attack and Sp. Atk -1, then the user switches out (stays if no stat fell)"),
+    # Moves batch 1 (engine rules in battle_lib.c and battle_controller_player.c).
+    "flying_press": (None, None, "Fighting and Flying type at once for its effectiveness"),
+    "collision_course": (None, None, "1.33x when super effective"),
+    "electro_drift": (None, None, "1.33x when super effective"),
+    "last_respects": (None, None, "50 more power for each fainted Pokémon in the user's party"),
+    "fusion_flare": (None, None, "double power right after a Fusion Bolt worked this turn"),
+    "fusion_bolt": (None, None, "double power right after a Fusion Flare worked this turn"),
+    "sunsteel_strike": (None, None, "ignores the target's ability"),
+    "moongeist_beam": (None, None, "ignores the target's ability"),
+    "photon_geyser": (None, None, "physical when the user's Attack is higher than its Sp. Atk (with their stages); ignores the target's ability"),
+    "ivy_cudgel": (None, None, "type follows Ogerpon's mask; high critical-hit ratio"),
+    "raging_bull": ("REMOVE_SCREENS", 0, "breaks Reflect, Light Screen and Aurora Veil; type follows a Paldean Tauros's breed"),
+    "gigaton_hammer": (None, None, "can't be used twice in a row"),
+    "blood_moon": (None, None, "can't be used twice in a row"),
+    "supercell_slam": ("CRASH_ON_MISS", 0, "the user loses half its max HP if it misses"),
+    "power_shift": ("SWAP_ATK_DEF", 0, "swaps the user's Attack and Defense"),
+    "chloroblast": ("SOVEREIGN_HALF_HP_COST_HIT", 0, "the user loses half its max HP (only when it hits, so far)", "approximate"),
+    "mind_blown": ("SOVEREIGN_HALF_HP_COST_HIT", 0, "the user loses half its max HP (only when it hits, so far; a single target)", "approximate"),
 }
 
 

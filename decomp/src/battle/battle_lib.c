@@ -2218,6 +2218,7 @@ void BattleSystem_UpdateAfterSwitch(BattleSystem *battleSys, BattleContext *batt
     battleCtx->moveHitType[battler] = MOVE_NONE;
     battleCtx->movePrevByBattler[battler] = MOVE_NONE;
     battleCtx->sovereignLastMoveFailed[battler] = FALSE;
+    battleCtx->sovereignLastMoveUsed[battler] = MOVE_NONE; // Sovereign (item 11)
     battleCtx->sovereignLaserFocus[battler] = 0;
     battleCtx->sovereignDragonCheer[battler] = 0;
     battleCtx->sovereignTelekinesis[battler] = 0;
@@ -2303,6 +2304,7 @@ void BattleSystem_CleanupFaintedMon(BattleSystem *battleSys, BattleContext *batt
     battleCtx->moveHitType[battler] = MOVE_NONE;
     battleCtx->movePrevByBattler[battler] = MOVE_NONE;
     battleCtx->sovereignLastMoveFailed[battler] = FALSE;
+    battleCtx->sovereignLastMoveUsed[battler] = MOVE_NONE; // Sovereign (item 11)
     battleCtx->sovereignLaserFocus[battler] = 0;
     battleCtx->sovereignDragonCheer[battler] = 0;
     battleCtx->sovereignTelekinesis[battler] = 0;
@@ -2430,6 +2432,13 @@ int BattleSystem_CheckInvalidMoves(BattleSystem *battleSys, BattleContext *battl
             invalidMoves |= FlagIndex(i);
         }
 
+        // Sovereign (item 11): Gigaton Hammer and Blood Moon can't be used twice in a row.
+        if ((battleCtx->battleMons[battler].moves[i] == MOVE_GIGATON_HAMMER || battleCtx->battleMons[battler].moves[i] == MOVE_BLOOD_MOON)
+            && battleCtx->battleMons[battler].moves[i] == battleCtx->sovereignLastMoveUsed[battler]
+            && (opMask & CHECK_INVALID_TWICE_IN_A_ROW)) {
+            invalidMoves |= FlagIndex(i);
+        }
+
         // Sovereign (Pokémon Champions): first-turn-only moves can't even be selected after the user's first turn.
         if (battleCtx->sovereignThroatChop[battler]
             && Move_IsSound(battleCtx->battleMons[battler].moves[i])
@@ -2517,6 +2526,13 @@ BOOL BattleSystem_CanUseMove(BattleSystem *battleSys, BattleContext *battleCtx, 
         msgOut->tags = TAG_ITEM;
         msgOut->id = BattleStrings_Text_SovereignItemPreventsStatusMoves; // "The {0} prevents status moves from being used!"
         msgOut->params[0] = ITEM_ASSAULT_VEST;
+        result = FALSE;
+    } else if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_TWICE_IN_A_ROW) & FlagIndex(moveSlot)) {
+        // Sovereign (item 11)
+        msgOut->tags = TAG_NICKNAME_MOVE;
+        msgOut->id = BattleStrings_Text_SovereignCantUseMoveTwiceInARow_Ally; // "{0} can't use {1} twice in a row!"
+        msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, battler);
+        msgOut->params[1] = battleCtx->battleMons[battler].moves[moveSlot];
         result = FALSE;
     } else if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_THROAT_CHOP) & FlagIndex(moveSlot)) {
         msgOut->tags = TAG_NICKNAME_MOVE_MOVE;
@@ -2825,7 +2841,9 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
                 }
             }
 
-            if (sTypeMatchupMultipliers[chartEntry][0] == moveType) {
+            // Sovereign (item 11): Flying Press is Flying type too, for its effectiveness.
+            if (sTypeMatchupMultipliers[chartEntry][0] == moveType
+                || (move == MOVE_FLYING_PRESS && sTypeMatchupMultipliers[chartEntry][0] == TYPE_FLYING)) {
                 if (sTypeMatchupMultipliers[chartEntry][1] == BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_1, NULL)
                     && BasicTypeMulApplies(battleCtx, attacker, defender, chartEntry) == TRUE) {
                     damage = ApplyTypeMultiplier(battleCtx, attacker, Sovereign_ChartMul(battleCtx, move, chartEntry), damage, movePower, moveStatusMask);
@@ -2893,6 +2911,11 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
             // Sovereign (item 11): Neuroforce powers up super-effective moves by 25%.
             if (Battler_Ability(battleCtx, attacker) == ABILITY_NEUROFORCE) {
                 damage = damage * 5 / 4;
+            }
+
+            // Sovereign (item 11): Collision Course and Electro Drift are 1.33x when super effective.
+            if (move == MOVE_COLLISION_COURSE || move == MOVE_ELECTRO_DRIFT) {
+                damage = damage * 5461 / 4096;
             }
 
             if (attackerItemEffect == HOLD_EFFECT_POWER_UP_SE) {
@@ -3349,6 +3372,13 @@ BOOL Sovereign_IsMoldBreaker(BattleContext *battleCtx, int battler)
     int ability = Battler_Ability(battleCtx, battler);
 
     if (ability == ABILITY_MOLD_BREAKER || ability == ABILITY_TURBOBLAZE || ability == ABILITY_TERAVOLT) {
+        return TRUE;
+    }
+
+    // Sunsteel Strike, Moongeist Beam and Photon Geyser ignore the target's ability too.
+    if (battleCtx->attacker == battler
+        && (battleCtx->moveCur == MOVE_SUNSTEEL_STRIKE || battleCtx->moveCur == MOVE_MOONGEIST_BEAM
+            || battleCtx->moveCur == MOVE_PHOTON_GEYSER)) {
         return TRUE;
     }
 
@@ -8607,6 +8637,7 @@ int Move_SovereignCritStage(int move)
     case MOVE_FLOWER_TRICK:
         return 3;
     case MOVE_ESPER_WING:
+    case MOVE_IVY_CUDGEL:
         return 1;
     }
 
@@ -8794,6 +8825,29 @@ int Sovereign_MovePower(BattleSystem *battleSys, BattleContext *battleCtx, int m
     case MOVE_GRAV_APPLE: // 1.5x under Gravity
         if (battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) {
             power = power * 15 / 10;
+        }
+        break;
+
+    case MOVE_LAST_RESPECTS: { // 50 more power for each fainted Pokemon in the user's party
+        int partyCount = BattleSystem_GetPartyCount(battleSys, attacker);
+
+        for (i = 0; i < partyCount; i++) {
+            Pokemon *mon = BattleSystem_GetPartyPokemon(battleSys, attacker, i);
+
+            if (Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
+                && Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG
+                && Pokemon_GetValue(mon, MON_DATA_HP, NULL) == 0) {
+                power += 50;
+            }
+        }
+        break;
+    }
+
+    case MOVE_FUSION_FLARE: // double right after a Fusion Bolt worked this turn, and the other way round
+    case MOVE_FUSION_BOLT:
+        if (battleCtx->sovereignLastMoveTurn == battleCtx->totalTurns + 1
+            && battleCtx->sovereignLastMoveThisTurn == (move == MOVE_FUSION_FLARE ? MOVE_FUSION_BOLT : MOVE_FUSION_FLARE)) {
+            power *= 2;
         }
         break;
     }
@@ -9229,6 +9283,15 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
     if (move == MOVE_FOUL_PLAY) {
         attackStat = BattleMon_Get(battleCtx, defender, BATTLEMON_ATTACK, NULL);
         attackStage = BattleMon_Get(battleCtx, defender, BATTLEMON_ATTACK_STAGE, NULL) - DEFAULT_STAT_STAGE;
+    }
+
+    // Sovereign (item 11): Photon Geyser is physical when the user's Attack is higher than its Sp. Atk (with their stages).
+    if (move == MOVE_PHOTON_GEYSER
+        && BattleMon_Get(battleCtx, attacker, BATTLEMON_ATTACK, NULL) * sStatStageBoosts[attackStage + DEFAULT_STAT_STAGE].numerator
+                / sStatStageBoosts[attackStage + DEFAULT_STAT_STAGE].denominator
+            > BattleMon_Get(battleCtx, attacker, BATTLEMON_SP_ATTACK, NULL) * sStatStageBoosts[spAttackStage + DEFAULT_STAT_STAGE].numerator
+                / sStatStageBoosts[spAttackStage + DEFAULT_STAT_STAGE].denominator) {
+        moveClass = CLASS_PHYSICAL;
     }
 
     // Sovereign (item 11): Psyshock, Psystrike and Secret Sword are special moves that hit the target's Defense.
@@ -10554,6 +10617,15 @@ BOOL Sovereign_IsAshGreninja(BattleMon *mon)
 }
 
 // Sovereign (FM): Aura Wheel is Dark-type when a Hangry Morpeko uses it, else Electric.
+// Sovereign (item 11): Raging Bull's type: Fighting, Fire or Water from a Paldean Tauros (Combat, Blaze or Aqua Breed),
+// Normal otherwise.
+int Sovereign_RagingBullType(u16 species, int form)
+{
+    static const u8 breedTypes[] = { TYPE_NORMAL, TYPE_FIGHTING, TYPE_FIRE, TYPE_WATER };
+
+    return species == SPECIES_TAUROS && form < NELEMS(breedTypes) ? breedTypes[form] : TYPE_NORMAL;
+}
+
 int Sovereign_AuraWheelType(u16 species, int form)
 {
     return species == SPECIES_MORPEKO && form != 0 ? TYPE_DARK : TYPE_ELECTRIC;
@@ -10651,6 +10723,10 @@ static int CalcMoveType(BattleSystem *battleSys, BattleContext *battleCtx, int i
 
     case MOVE_AURA_WHEEL: // Sovereign (FM): Dark-type from a Hangry Morpeko (the parameter is the battler)
         type = Sovereign_AuraWheelType(battleCtx->battleMons[item].species, battleCtx->battleMons[item].formNum);
+        break;
+
+    case MOVE_RAGING_BULL: // Sovereign (item 11): the type of a Paldean Tauros's breed
+        type = Sovereign_RagingBullType(battleCtx->battleMons[item].species, battleCtx->battleMons[item].formNum);
         break;
 
     case MOVE_WEATHER_BALL: // Sovereign (item 11): a Utility Umbrella holder's is Normal type in rain and sunlight
@@ -10868,6 +10944,10 @@ int Move_CalcVariableType(BattleSystem *battleSys, BattleContext *battleCtx, Pok
     switch (move) {
     case MOVE_AURA_WHEEL: // Sovereign (FM)
         type = Sovereign_AuraWheelType(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), Pokemon_GetValue(mon, MON_DATA_FORM, NULL));
+        break;
+
+    case MOVE_RAGING_BULL: // Sovereign (item 11)
+        type = Sovereign_RagingBullType(Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL), Pokemon_GetValue(mon, MON_DATA_FORM, NULL));
         break;
 
     case MOVE_NATURAL_GIFT:

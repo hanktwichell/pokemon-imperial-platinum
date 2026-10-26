@@ -1255,6 +1255,7 @@ BOOL Battler_SovereignStatusImmune(BattleContext *battleCtx, int battler);
 BOOL Battler_SovereignChoiceLocks(BattleContext *battleCtx, int battler);
 BOOL Sovereign_Infiltrates(BattleSystem *battleSys, BattleContext *battleCtx, int target);
 int Sovereign_AuraWheelType(u16 species, int form);
+int Sovereign_RagingBullType(u16 species, int form);
 u32 BattleSystem_SovereignHeroBit(BattleSystem *battleSys, int battler, int slot);
 BOOL Sovereign_IsAshGreninja(BattleMon *mon);
 BOOL BattleSystem_SovereignApplyTotemAura(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
