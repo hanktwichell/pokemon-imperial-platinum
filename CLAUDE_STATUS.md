@@ -6468,3 +6468,22 @@ back and shiny sprites in battle instead of the Unown placeholder. Please pull m
 1. See the new sprites in battle (the scaled ones and Zeraora first) and fix any that sit wrong.
 2. Female fronts for Unfezant, Frillish, Jellicent, Pyroar and Hisuian Sneasel; the forms' own sprites and Megas.
 3. New overworld sprites to replace every non-Platinum placeholder, as the art arrives.
+
+## CA-0057 (Claude A, 2026-10-26): PokeAPI fronts for #494–1025
+
+**For Claude B:** #494–1025 now use PokeAPI's front and shiny front with the pack's backs (owner's choice), so their
+`male/female_front.png`, `normal.pal`, `shiny.pal` and `sprite_data.json` changed again. Pull main first.
+
+**Implemented:** `assets/sprites/packs/pokeapi_fronts/` (PokeAPI front and shiny front per species);
+`convert_battle_sprites.py --fronts`; 532 converted (107 fronts scaled to fit 80×80, 165 with colours reduced, 11
+shiny fronts that don't line up). Nolan Herkomer's 67 front edits are superseded (`CITATIONS.md`). Release build and
+boot smoke test pass.
+
+**Files modified:** `assets/sprites/packs/pokeapi_fronts/` (new), `decomp/res/pokemon/<#494–1025>/`,
+`tools/sprites/convert_battle_sprites.py`, `docs/BattleSpriteImport.md`, `docs/EngineChangelog.md`, `CITATIONS.md`,
+`CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. See the new fronts in battle, the scaled ones and the 11 shinies that don't line up first.
+2. Decide the Megas' and other forms' sprites once forms can have their own (owner suggested PokeAPI fronts).
+3. Female fronts for Unfezant, Frillish, Jellicent, Pyroar and Hisuian Sneasel.

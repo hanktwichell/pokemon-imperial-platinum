@@ -4,6 +4,20 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E12 — PokeAPI fronts for #494–1025
+
+For players: the new species' front and shiny front sprites are PokeAPI's (owner, 2026-10-26); their backs and shiny
+backs stay those from the owner's pack.
+
+- `assets/sprites/packs/pokeapi_fronts/` holds PokeAPI's front and shiny front for #494–1025.
+  `tools/sprites/convert_battle_sprites.py --fronts DIR` takes the fronts from there and the backs from the pack.
+- Front and back still share one 15-colour palette, so 165 species had colours reduced, and 107 PokeAPI fronts are
+  bigger than 80×80 and were scaled down. 11 PokeAPI shiny fronts don't line up with their fronts (Vivillon,
+  Flabébé, Floette, Florges, Toedscruel and others), so their shiny palette is approximate; the owner chose PokeAPI
+  fronts for these too. `docs/BattleSpriteImport.md` lists every species.
+- Megas and other forms are left for when forms get sprites of their own.
+- Verification: release build and boot smoke test pass; a contact sheet of 24 species looked right.
+
 ## E12 — the Gen 5–9 battle sprites are in the game
 
 For players: #494–1025 show their real front, back and shiny sprites in battle instead of the Unown placeholder.
