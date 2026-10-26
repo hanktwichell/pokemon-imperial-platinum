@@ -113,6 +113,7 @@ struct SovereignTestWild {
     u8 form;
     u8 level;
     u16 move; // when set, the only move it knows
+    u8 shiny; // when set, it's shiny
 };
 
 // In SovereignTestLead.moves: the slot is empty.
@@ -130,6 +131,7 @@ struct SovereignTestLead {
     u8 gender; // when set, GENDER_MALE + 1 or GENDER_FEMALE + 1: its personality gives it that gender
     u8 friendship; // when set, its friendship
     u32 personality; // when set, its personality (over gender)
+    u8 shiny; // when set, a personality that makes it shiny (over personality and gender)
 };
 
 // Evolves the lead before the battle, as the evolution screen does: Pokemon_GetEvolutionTargetSpecies with this class

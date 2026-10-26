@@ -4,6 +4,26 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Playtest pass — the new battle sprites seen in battle
+
+- **`tools/test/sprite_check.py`:** a wild battle against each of #494–1025, with the same species as the player's
+  lead, first normal and then shiny. It saves a shot of the top screen once both Pokémon are out, and makes contact
+  sheets of the shots. It takes about 40 minutes in 4 parts.
+- **Test hooks:**
+  - `gSovereignTestWild.shiny` makes the wild Pokémon shiny, through the Poké Radar's own shiny code.
+  - `gSovereignTestLead.shiny` gives the lead a shiny personality.
+- **Results** on the build of PR #157 (PokeAPI fronts, front and back palettes of their own): 1,064 battles, and none
+  hung. `docs/SpriteReview.md` lists what looks wrong:
+  - Samurott's front and Talonflame's back are scrambled in battle. The game takes the key that unscrambles a sprite
+    from its first four pixels, and both draw there.
+  - Nine species show Bulbasaur's back: the pack's placeholder.
+  - Vivillon's back is another wing pattern than its front.
+  - Flabébé's and Floette's PokeAPI shiny fronts are other drawings than their fronts.
+  - A sample of #1–493 looks as before.
+
+The fixes come in the next PR.
+
+
 ## CI: the object tile and double-close checks; the Smogon sprite credits
 
 - **Two more checks run in CI** (the docs job), so a change can't undo them:

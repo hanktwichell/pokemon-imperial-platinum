@@ -1455,6 +1455,20 @@ void CreateWildMon_SovereignScriptedForm(FieldSystem *fieldSystem, u16 species, 
     CreateWildMon(WILD_SLOT(species, form), level, 1, &encounterFieldParams, firstPartyMon, battleParams);
 }
 
+#ifdef SOVEREIGN_TEST
+// Test build only: the same, but shiny, as the Poke Radar makes a shiny (tools/test/sprite_check.py).
+void CreateWildMon_SovereignTestShinyForm(FieldSystem *fieldSystem, u16 species, u8 form, u8 level, FieldBattleDTO *battleParams)
+{
+    Party *playerParty = SaveData_GetParty(fieldSystem->saveData);
+    Pokemon *firstPartyMon = Party_GetPokemonBySlotIndex(playerParty, 0);
+
+    WildEncounters_FieldParams encounterFieldParams;
+    InitEncounterFieldParams(fieldSystem, firstPartyMon, NULL, &encounterFieldParams);
+
+    CreateWildMonShinyWithGenderOrNature(WILD_SLOT(species, form), level, 1, encounterFieldParams.trainerID, &encounterFieldParams, firstPartyMon, battleParams);
+}
+#endif
+
 void CreateWildMon_Scripted(FieldSystem *fieldSystem, u16 species, u8 level, FieldBattleDTO *battleParams)
 {
     Party *playerParty = SaveData_GetParty(fieldSystem->saveData);
