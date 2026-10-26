@@ -143,6 +143,7 @@ IMPLEMENTED = {
     124: "yes: when it holds no item, it takes the item of a Pokémon that makes contact with it (by Thief's rules: a foe's takes nothing outside the Battle Frontier)",
     170: "yes: when it holds no item, its damaging move takes the target's item (by Thief's rules: a foe's takes nothing outside the Battle Frontier)",
     240: "yes: a stat drop from another Pokémon's move or Ability goes back to that Pokémon (Sticky Web's is only blocked)",
+    220: "yes: Sp. Atk +1 each time another Pokémon faints",
     244: "yes: its sound moves ×1.3, sound damage taken halved",
     274: "yes: wind moves aimed at it do nothing and raise its Attack instead; a tailwind on its side raises its Attack (on entry too)",
     277: "yes: charged when a wind move hits it or a tailwind starts on its side",

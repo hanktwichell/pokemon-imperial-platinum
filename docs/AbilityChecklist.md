@@ -102,7 +102,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 217 | Battery | Gen 7 | yes: its ally's special moves ×1.3 |
 | 218 | Fluffy | Gen 7 | yes: contact damage halved, Fire damage doubled |
 | 219 | Dazzling | Gen 7 | yes: foes' priority moves can't hit its side |
-| 220 | Soul-Heart | Gen 7 | not yet (no battle effect) |
+| 220 | Soul-Heart | Gen 7 | yes: Sp. Atk +1 each time another Pokémon faints |
 | 221 | Tangling Hair | Gen 7 | yes: a contact move lowers the attacker's Speed 1 stage |
 | 222 | Receiver | Gen 7 | not yet (no battle effect) |
 | 223 | PowerOfAlchemy | Gen 7 | not yet (no battle effect) |
