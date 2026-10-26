@@ -1452,6 +1452,7 @@ enum MonCondCheckState {
     MON_COND_CHECK_STATE_BIND,
     MON_COND_CHECK_STATE_SOVEREIGN_SALT_CURE,
     MON_COND_CHECK_STATE_SOVEREIGN_SYRUP_BOMB,
+    MON_COND_CHECK_STATE_SOVEREIGN_OCTOLOCK,
     MON_COND_CHECK_STATE_BAD_DREAMS,
     MON_COND_CHECK_STATE_UPROAR,
     MON_COND_CHECK_STATE_THRASH,
@@ -1717,6 +1718,26 @@ static void BattleControllerPlayer_CheckMonConditions(BattleSystem *battleSys, B
                     battleCtx->sideEffectType = SIDE_EFFECT_TYPE_INDIRECT;
 
                     PrepareSubroutineSequence(battleCtx, subscript_sovereign_syrup_bomb_drop);
+                    state = STATE_BREAK_OUT;
+                }
+            }
+
+            battleCtx->monConditionCheckState++;
+            break;
+
+        case MON_COND_CHECK_STATE_SOVEREIGN_OCTOLOCK: // Sovereign (item 11): Defense and Sp. Def -1, while the Octolock's user stays in
+            if (battleCtx->sovereignOctolock[battler] && battleCtx->battleMons[battler].curHP) {
+                int source = battleCtx->sovereignOctolockSource[battler];
+
+                if (battleCtx->battleMons[source].curHP == 0
+                    || battleCtx->selectedPartySlot[source] != battleCtx->sovereignOctolockSourceSlot[battler]) {
+                    battleCtx->sovereignOctolock[battler] = 0;
+                } else {
+                    battleCtx->attacker = source; // the drops' source, for Clear Body and Mirror Armor
+                    battleCtx->sideEffectMon = battler;
+                    battleCtx->sideEffectType = SIDE_EFFECT_TYPE_INDIRECT;
+
+                    PrepareSubroutineSequence(battleCtx, subscript_sovereign_octolock_drop);
                     state = STATE_BREAK_OUT;
                 }
             }
@@ -3142,7 +3163,8 @@ static BOOL BattleControllerPlayer_LoadQuickClawCheck(BattleSystem *battleSys, B
 static inline int CalcMoveType(BattleContext *battleCtx, int attacker, int move)
 {
     // Sovereign (item 11): Normalize, the -ate abilities and Liquid Voice.
-    return Sovereign_AbilityMoveType(Battler_Ability(battleCtx, attacker), move, battleCtx->moveType ? battleCtx->moveType : MOVE_DATA(move).type);
+    return Sovereign_ElectrifyType(battleCtx, attacker, move,
+        Sovereign_AbilityMoveType(Battler_Ability(battleCtx, attacker), move, battleCtx->moveType ? battleCtx->moveType : MOVE_DATA(move).type));
 }
 
 /**
@@ -4401,7 +4423,8 @@ static void BattleControllerPlayer_LeftoverState29(BattleSystem *battleSys, Batt
 static inline int CalcCurrentMoveType(BattleContext *battleCtx)
 {
     // Sovereign (item 11): Normalize, the -ate abilities and Liquid Voice.
-    return Sovereign_AbilityMoveType(Battler_Ability(battleCtx, battleCtx->attacker), battleCtx->moveCur, battleCtx->moveType ? battleCtx->moveType : CURRENT_MOVE_DATA.type);
+    return Sovereign_ElectrifyType(battleCtx, battleCtx->attacker, battleCtx->moveCur,
+        Sovereign_AbilityMoveType(Battler_Ability(battleCtx, battleCtx->attacker), battleCtx->moveCur, battleCtx->moveType ? battleCtx->moveType : CURRENT_MOVE_DATA.type));
 }
 
 enum AfterMoveEffectState {

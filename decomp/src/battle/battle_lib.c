@@ -1843,6 +1843,7 @@ void BattleSystem_CheckRedirectionAbilities(BattleSystem *battleSys, BattleConte
         moveType = MOVE_DATA(move).type;
     }
     moveType = Sovereign_AbilityMoveType(Battler_Ability(battleCtx, attacker), move, moveType); // Sovereign (item 11)
+    moveType = Sovereign_ElectrifyType(battleCtx, attacker, move, moveType);
 
     int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
     if (moveType == TYPE_ELECTRIC
@@ -2230,6 +2231,7 @@ void BattleSystem_UpdateAfterSwitch(BattleSystem *battleSys, BattleContext *batt
     battleCtx->sovereignGlaiveRush &= ~FlagIndex(battler); // Sovereign (item 11)
     battleCtx->sovereignSaltCure &= ~FlagIndex(battler);
     battleCtx->sovereignSyrupBomb[battler] = 0;
+    battleCtx->sovereignOctolock[battler] = 0;
     battleCtx->sovereignTarShot &= ~FlagIndex(battler);
     MI_CpuClear8(battleCtx->sovereignMirrorHerbRises[battler], sizeof(battleCtx->sovereignMirrorHerbRises[battler])); // Sovereign (item 11)
     MI_CpuClear8(battleCtx->sovereignTimesHit[battler], sizeof(battleCtx->sovereignTimesHit[battler])); // Rage Fist (Champions)
@@ -2321,6 +2323,7 @@ void BattleSystem_CleanupFaintedMon(BattleSystem *battleSys, BattleContext *batt
     battleCtx->sovereignGlaiveRush &= ~FlagIndex(battler); // Sovereign (item 11)
     battleCtx->sovereignSaltCure &= ~FlagIndex(battler);
     battleCtx->sovereignSyrupBomb[battler] = 0;
+    battleCtx->sovereignOctolock[battler] = 0;
     battleCtx->sovereignTarShot &= ~FlagIndex(battler);
     MI_CpuClear8(battleCtx->sovereignMirrorHerbRises[battler], sizeof(battleCtx->sovereignMirrorHerbRises[battler])); // Sovereign (item 11)
     MI_CpuClear8(battleCtx->sovereignTimesHit[battler], sizeof(battleCtx->sovereignTimesHit[battler])); // Rage Fist (Champions)
@@ -2385,6 +2388,12 @@ void BattleSystem_SetupNextTurn(BattleSystem *battleSys, BattleContext *battleCt
 
     battleCtx->sideConditions[BATTLER_US].followMe = FALSE;
     battleCtx->sideConditions[BATTLER_THEM].followMe = FALSE;
+
+    // Sovereign (item 11): Ion Deluge lasts one turn; Fairy Lock, the turn it was used and the next.
+    battleCtx->sovereignIonDeluge = FALSE;
+    if (battleCtx->sovereignFairyLock) {
+        battleCtx->sovereignFairyLock--;
+    }
 }
 
 int BattleSystem_CheckInvalidMoves(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int invalidMoves, int opMask)
@@ -2810,6 +2819,7 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
     defenderItemPower = Battler_HeldItemPower(battleCtx, defender, ITEM_POWER_CHECK_ALL);
 
     moveType = Sovereign_AbilityMoveType(Battler_Ability(battleCtx, attacker), move, inType ? inType : MOVE_DATA(move).type); // Sovereign (item 11)
+    moveType = Sovereign_ElectrifyType(battleCtx, attacker, move, moveType);
 
     movePower = MOVE_DATA(move).power;
 
@@ -3587,7 +3597,8 @@ BOOL Battler_IsTrappedMsg(BattleSystem *battleSys, BattleContext *battleCtx, int
     }
 
     if ((battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_TRAPPED)
-        || (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_INGRAIN)) {
+        || (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_INGRAIN)
+        || battleCtx->sovereignFairyLock) { // Sovereign (item 11)
         if (msgOut == NULL) {
             return TRUE;
         }
@@ -3922,6 +3933,7 @@ int BattleSystem_TriggerImmunityAbility(BattleContext *battleCtx, int attacker, 
     int subscript = NULL, moveType;
 
     moveType = Sovereign_AbilityMoveType(Battler_Ability(battleCtx, attacker), battleCtx->moveCur, battleCtx->moveType ? battleCtx->moveType : CURRENT_MOVE_DATA.type); // Sovereign (item 11)
+    moveType = Sovereign_ElectrifyType(battleCtx, attacker, battleCtx->moveCur, moveType);
 
     if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_VOLT_ABSORB) == TRUE
         && moveType == TYPE_ELECTRIC
@@ -5567,6 +5579,119 @@ BOOL Sovereign_CoreEnforcer(BattleContext *battleCtx, int battler)
         && Sovereign_HasAbilityShield(battleCtx, battler) == FALSE;
 }
 
+// Sovereign (item 11): after the ability's type change (Normalize, the -ate abilities, Liquid Voice), Electrify makes all
+// of an electrified battler's moves Electric, and Ion Deluge makes Normal moves Electric, for the rest of the turn.
+int Sovereign_ElectrifyType(BattleContext *battleCtx, int battler, int move, int type)
+{
+    if (move == MOVE_STRUGGLE) {
+        return type;
+    }
+
+    if (battleCtx->turnFlags[battler].sovereignElectrified
+        || (battleCtx->sovereignIonDeluge && type == TYPE_NORMAL)) {
+        return TYPE_ELECTRIC;
+    }
+
+    return type;
+}
+
+// Sovereign (item 11): Electrify works on a target that hasn't acted yet this turn and isn't electrified already.
+BOOL Sovereign_Electrify(BattleContext *battleCtx, int battler)
+{
+    if (Battler_MovedThisTurn(battleCtx, battler) || battleCtx->turnFlags[battler].sovereignElectrified) {
+        return FALSE;
+    }
+
+    battleCtx->turnFlags[battler].sovereignElectrified = TRUE;
+    return TRUE;
+}
+
+// Sovereign (item 11): Ion Deluge and Plasma Fists start the deluge of ions for this turn. FALSE if it's already on.
+BOOL Sovereign_StartIonDeluge(BattleContext *battleCtx)
+{
+    if (battleCtx->sovereignIonDeluge) {
+        return FALSE;
+    }
+
+    battleCtx->sovereignIonDeluge = TRUE;
+    return TRUE;
+}
+
+// Sovereign (item 11): Fairy Lock keeps everyone from escaping this turn and the next. FALSE if it's already on.
+BOOL Sovereign_StartFairyLock(BattleContext *battleCtx)
+{
+    if (battleCtx->sovereignFairyLock) {
+        return FALSE;
+    }
+
+    battleCtx->sovereignFairyLock = 2;
+    return TRUE;
+}
+
+// Sovereign (item 11): Octolock holds the defender: it can't escape while the attacker stays in, and its Defense and
+// Sp. Def fall at the end of each turn. FALSE if it's already held, or a Ghost type (nothing traps a Ghost type).
+BOOL Sovereign_StartOctolock(BattleContext *battleCtx)
+{
+    int battler = battleCtx->defender;
+
+    if (battleCtx->sovereignOctolock[battler] || MON_HAS_TYPE(battler, TYPE_GHOST)) {
+        return FALSE;
+    }
+
+    battleCtx->sovereignOctolock[battler] = TRUE;
+    battleCtx->sovereignOctolockSource[battler] = battleCtx->attacker;
+    battleCtx->sovereignOctolockSourceSlot[battler] = battleCtx->selectedPartySlot[battleCtx->attacker];
+    return TRUE;
+}
+
+// Sovereign (item 11): Spotlight makes the defender the center of attention for its foes this turn, as if it had used
+// Follow Me. Double battles only.
+BOOL Sovereign_Spotlight(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES) == FALSE) {
+        return FALSE;
+    }
+
+    int side = BattleSystem_GetBattlerSide(battleSys, battleCtx->defender);
+    battleCtx->sideConditions[side].followMe = TRUE;
+    FOLLOW_ME_USER(side) = battleCtx->defender;
+    return TRUE;
+}
+
+// Sovereign (item 11): Teatime. How many battlers on the field hold a Berry; it saves the user, since each eater takes
+// the attacker's place in turn (Sovereign_TeatimeNext).
+int Sovereign_TeatimeStart(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    int count = 0;
+
+    for (int i = 0; i < BattleSystem_GetMaxBattlers(battleSys); i++) {
+        if (battleCtx->battleMons[i].curHP && Item_IsBerry(battleCtx->battleMons[i].heldItem)) {
+            count++;
+        }
+    }
+
+    battleCtx->sovereignTeatimeNext = 0;
+    battleCtx->sovereignTeatimeUser = battleCtx->attacker;
+    return count;
+}
+
+// Sovereign (item 11): Teatime makes the next battler holding a Berry the attacker (who eats it), and returns TRUE; when
+// none is left, the user is the attacker again and it returns FALSE.
+BOOL Sovereign_TeatimeNext(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    while (battleCtx->sovereignTeatimeNext < BattleSystem_GetMaxBattlers(battleSys)) {
+        int battler = battleCtx->sovereignTeatimeNext++;
+
+        if (battleCtx->battleMons[battler].curHP && Item_IsBerry(battleCtx->battleMons[battler].heldItem)) {
+            battleCtx->attacker = battler;
+            return TRUE;
+        }
+    }
+
+    battleCtx->attacker = battleCtx->sovereignTeatimeUser;
+    return FALSE;
+}
+
 // Sovereign (item 11): TRUE when the thief can take the victim's held item by Thief's rules (BtlCmd_TryStealItem), for
 // Magician and Pickpocket. A Pokemon on the foe's side can't, outside the Battle Frontier, so the player loses no item.
 static BOOL Sovereign_CanTakeItem(BattleSystem *battleSys, BattleContext *battleCtx, int thief, int victim)
@@ -5671,6 +5796,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
         u8 moveType;
 
         moveType = Sovereign_AbilityMoveType(Battler_Ability(battleCtx, battleCtx->attacker), battleCtx->moveCur, battleCtx->moveType ? battleCtx->moveType : CURRENT_MOVE_DATA.type); // Sovereign (item 11)
+        moveType = Sovereign_ElectrifyType(battleCtx, battleCtx->attacker, battleCtx->moveCur, moveType);
 
         if (DEFENDING_MON.curHP
             && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
@@ -7496,7 +7622,8 @@ BOOL Battler_IsTrapped(BattleSystem *battleSys, BattleContext *battleCtx, int ba
     }
 
     if ((battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_TRAPPED)
-        || (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_INGRAIN)) {
+        || (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_INGRAIN)
+        || battleCtx->sovereignFairyLock) { // Sovereign (item 11)
         result = TRUE;
     }
 
@@ -9673,6 +9800,7 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         && moveType != TYPE_NORMAL) {
         movePower = movePower * 12 / 10;
     }
+    moveType = Sovereign_ElectrifyType(battleCtx, attacker, move, moveType); // Sovereign (item 11)
 
     GF_ASSERT(battleCtx->powerMul >= 10);
     movePower = movePower * battleCtx->powerMul / 10;

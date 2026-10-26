@@ -10095,6 +10095,30 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         // side-effect target's ability
         battleCtx->sovereignTerrainTemp = Sovereign_CoreEnforcer(battleCtx, battleCtx->sideEffectMon);
         return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_ELECTRIFY: // Sovereign (item 11): read-only, Electrify electrifies the defender (FALSE when it
+        // fails)
+        battleCtx->sovereignTerrainTemp = Sovereign_Electrify(battleCtx, battleCtx->defender);
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_ION_DELUGE: // Sovereign (item 11): read-only, starts the deluge of ions (FALSE when it's on)
+        battleCtx->sovereignTerrainTemp = Sovereign_StartIonDeluge(battleCtx);
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_FAIRY_LOCK: // Sovereign (item 11): read-only, starts Fairy Lock (FALSE when it's on)
+        battleCtx->sovereignTerrainTemp = Sovereign_StartFairyLock(battleCtx);
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_OCTOLOCK: // Sovereign (item 11): read-only, Octolock holds the defender (FALSE when it fails)
+        battleCtx->sovereignTerrainTemp = Sovereign_StartOctolock(battleCtx);
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_SPOTLIGHT: // Sovereign (item 11): read-only, Spotlight shines on the defender (FALSE in a
+        // single battle)
+        battleCtx->sovereignTerrainTemp = Sovereign_Spotlight(battleSys, battleCtx);
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_TEATIME_START: // Sovereign (item 11): read-only, how many battlers hold a Berry (Teatime)
+        battleCtx->sovereignTerrainTemp = Sovereign_TeatimeStart(battleSys, battleCtx);
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_TEATIME_NEXT: // Sovereign (item 11): read-only, the next Berry holder becomes the attacker
+        // (FALSE, and the user is the attacker again, when none is left)
+        battleCtx->sovereignTerrainTemp = Sovereign_TeatimeNext(battleSys, battleCtx);
+        return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_AROMA_VEIL_DEFENDER: // Sovereign (item 11): read-only, TRUE when Aroma Veil keeps the
         // attacker's move off the defender (subscript_missed)
         battleCtx->sovereignTerrainTemp = Sovereign_AromaVeilBlocks(battleSys, battleCtx, battleCtx->attacker,

@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 348 |
+| exact | 355 |
 | approximate | 6 |
-| placeholder | 26 |
+| placeholder | 19 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -116,7 +116,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 566 | Phantom Force | Ghost | `SHADOW_FORCE` | exact |  |
 | 567 | Trick-or-Treat | Ghost | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 568 | Noble Roar | Normal | `SOVEREIGN_NOBLE_ROAR` | exact | Sovereign effect: target Attack -1, target Sp. Atk -1 |
-| 569 | Ion Deluge | Electric | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 569 | Ion Deluge | Electric | `SOVEREIGN_ION_DELUGE` | exact | Sovereign effect: +1 priority; Normal moves are Electric this turn |
 | 570 | ParabolcCharge | Electric | `RECOVER_HALF_DAMAGE_DEALT` | approximate | has its own mechanic in Gen IX; closest effect |
 | 571 | Forest’s Curse | Grass | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 572 | Petal Blizzard | Grass | `HIT` | exact | Sovereign effect: hits all adjacent Pokémon |
@@ -129,12 +129,12 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 579 | Flower Shield | Fairy | `SOVEREIGN_FLOWER_SHIELD` | exact | Sovereign effect: Defense +1 for every Grass type on the field |
 | 580 | Grassy Terrain | Grass | `SOVEREIGN_GRASSY_TERRAIN` | exact | Sovereign effect: Grassy Terrain: grounded Grass moves x1.3, heals 1/16 each turn, halves Earthquake |
 | 581 | Misty Terrain | Fairy | `SOVEREIGN_MISTY_TERRAIN` | exact | Sovereign effect: Misty Terrain: halves Dragon moves, grounded Pokémon can't be statused or confused |
-| 582 | Electrify | Electric | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 582 | Electrify | Electric | `SOVEREIGN_ELECTRIFY` | exact | Sovereign effect: the target's moves are Electric this turn (fails if it has already acted) |
 | 583 | Play Rough | Fairy | `LOWER_ATTACK_HIT` | exact |  |
 | 584 | Fairy Wind | Fairy | `HIT` | exact |  |
 | 585 | Moonblast | Fairy | `LOWER_SP_ATK_HIT` | exact |  |
 | 586 | Boomburst | Normal | `HIT` | exact | Sovereign effect: hits all adjacent Pokémon |
-| 587 | Fairy Lock | Fairy | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 587 | Fairy Lock | Fairy | `SOVEREIGN_FAIRY_LOCK` | exact | Sovereign effect: no one can flee or switch out this turn and the next (Ghost types can) |
 | 588 | King’s Shield | Steel | `PROTECT` | exact | Sovereign effect: protects like Protect, but not from status moves; a contact move it blocks: Attack -1 |
 | 589 | Play Nice | Normal | `ATK_DOWN` | exact | Sovereign effect: never misses, ignores Protect, target Attack -1 |
 | 590 | Confide | Normal | `SP_ATK_DOWN` | exact | Sovereign effect: target Sp. Atk -1; as a sound move it gets past Substitute |
@@ -218,7 +218,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 668 | Strength Sap | Grass | `SOVEREIGN_STRENGTH_SAP` | exact | Sovereign effect: target Attack -1; the user regains HP equal to the target's Attack (with its stage) |
 | 669 | Solar Blade | Grass | `SKIP_CHARGE_TURN_IN_SUN` | exact |  |
 | 670 | Leafage | Grass | `HIT` | exact |  |
-| 671 | Spotlight | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 671 | Spotlight | Normal | `SOVEREIGN_SPOTLIGHT` | exact | Sovereign effect: +3 priority; the target's foes aim at it this turn (fails in a single battle) |
 | 672 | Toxic Thread | Poison | `SOVEREIGN_TOXIC_THREAD` | exact | Sovereign effect: target Speed -2 (Champions), then poisons it |
 | 673 | Laser Focus | Normal | `SOVEREIGN_LASER_FOCUS` | exact | Sovereign effect: the user's moves always crit this turn and the next |
 | 674 | Gear Up | Steel | `SOVEREIGN_GEAR_UP` | exact | Sovereign effect: Attack and Sp. Atk +1 for the user and its ally if they have Plus or Minus |
@@ -268,7 +268,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 718 | Multi-Attack | Normal | `JUDGEMENT` | exact |  |
 | 719 | (10-000-000-volt-thunderbolt) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
 | 720 | Mind Blown | Fire | `SOVEREIGN_HALF_HP_COST_HIT` | exact | Sovereign effect: hits all adjacent Pokémon; the user loses half its max HP once, hit or miss; Damp stops it |
-| 721 | Plasma Fists | Electric | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 721 | Plasma Fists | Electric | `SOVEREIGN_PLASMA_FISTS` | exact | Sovereign effect: after the hit, Normal moves are Electric this turn |
 | 722 | Photon Geyser | Psychic | `HIT` | exact | Sovereign effect: physical when the user's Attack is higher than its Sp. Atk (with their stages); ignores the target's ability |
 | 723 | (light-that-burns-the-sky) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
 | 724 | (searing-sunraze-smash) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
@@ -299,8 +299,8 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 749 | Tar Shot | Rock | `SOVEREIGN_TAR_SHOT` | exact | Sovereign effect: target Speed -1; Fire moves are twice as effective against it until it switches out |
 | 750 | Magic Powder | Psychic | `SOVEREIGN_MAGIC_POWDER` | exact | Sovereign effect: the target becomes pure Psychic-type (a powder move) |
 | 751 | Dragon Darts | Dragon | `HIT_TWICE` | approximate | has its own mechanic in Gen IX; closest effect |
-| 752 | Teatime | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
-| 753 | Octolock | Fighting | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 752 | Teatime | Normal | `SOVEREIGN_TEATIME` | exact | Sovereign effect: every Pokémon on the field eats its Berry (fails if none holds one) |
+| 753 | Octolock | Fighting | `SOVEREIGN_OCTOLOCK` | exact | Sovereign effect: the target can't escape while the user stays in, and its Defense and Sp. Def fall at the end of each turn |
 | 754 | Bolt Beak | Electric | `HIT` | exact | Sovereign effect: power doubles if the target hasn't moved yet |
 | 755 | Fishious Rend | Water | `HIT` | exact | Sovereign effect: power doubles if the target hasn't moved yet |
 | 756 | Court Change | Normal | `SOVEREIGN_COURT_CHANGE` | exact | Sovereign effect: swaps the two sides' screens, Tailwind, Mist, Safeguard, Lucky Chant and hazards |

@@ -10542,6 +10542,48 @@
         "The foe’s {STRVAR_1 1, 0, 0} is preparing\n",
         "to tell a chillingly bad joke!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignElectrified_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s moves have been\n",
+        "electrified!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignElectrified_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}’s moves\n",
+        "have been electrified!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignElectrified_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}’s moves\n",
+        "have been electrified!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignIonDeluge",
+      "en_US": [
+        "A deluge of ions showers\n",
+        "the battlefield!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFairyLock",
+      "en_US": [
+        "No one will be able to run away\n",
+        "during the next turn!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTeatime",
+      "en_US": [
+        "It’s teatime! Everyone dug in\n",
+        "to their Berries!"
+      ]
     }
   ]
 }

@@ -4,6 +4,50 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): moves, batch 11b (Electrify, Ion Deluge, Plasma Fists, Fairy Lock, Octolock, Spotlight, Teatime)
+
+For players, seven more placeholder moves now work:
+- **Electrify:** the target's moves are Electric for the rest of the turn ("{0}'s moves have been electrified!"). It fails if the target has already acted.
+- **Ion Deluge** (+1 priority): Normal moves are Electric for the rest of the turn ("A deluge of ions showers the battlefield!").
+- **Plasma Fists:** starts the same deluge after the hit.
+- **Type order:** both changes come after the ability's (Normalize, the -ate abilities, Liquid Voice), as in Gen IX.
+  - The -ate abilities' 1.2× boost is decided before them.
+  - Volt Absorb, Lightning Rod, Motor Drive, Color Change, type effectiveness and STAB all see the new type.
+- **Fairy Lock:** no one can flee or switch out this turn and the next ("No one will be able to run away during the next turn!").
+  - A Ghost type, Shed Shell, a Smoke Ball and Run Away still get away.
+  - It fails while it's in effect.
+- **Octolock:**
+  - The target can't escape while the user stays in. At the end of each turn, its Defense and Sp. Def fall by 1 stage; Clear Body and Mirror Armor apply.
+  - It fails against a target already held, a Ghost type, or a Substitute.
+- **Spotlight** (+3 priority): the target's foes aim their moves at it this turn, as if it had used Follow Me ("{0} became the center of attention!"). It fails in a single battle.
+- **Teatime:**
+  - Every Pokémon on the field holding a Berry eats it ("It's teatime! Everyone dug in to their Berries!", then "{0} ate its {1}!"), with the Berry's effect.
+  - Unnerve doesn't stop it. It fails when no one holds a Berry.
+- **Code:**
+  - `Sovereign_ElectrifyType` runs after every `Sovereign_AbilityMoveType` call that knows the attacker.
+  - New state: a `sovereignElectrified` turn flag, plus `sovereignIonDeluge`, `sovereignFairyLock` and the Octolock arrays in the battle context.
+  - Octolock's drops are a new end-of-turn state after Syrup Bomb's.
+  - Teatime makes each eater the attacker in turn, then gives the user its place back.
+
+**Verification:** test and release ROMs built; the battle-script size check, the message check and the docs check pass.
+- Every case below was a wild battle against Ninjask unless another species is named. The god mode was off for the damage cases.
+- **Electrify:** Garchomp electrified a slower Lv. 5 Ninjask ("The wild NINJASK's moves have been electrified!"), and its Tackle then didn't affect Garchomp. Against a faster Ninjask that had already moved: "But it failed!".
+- **Ion Deluge:**
+  - Turn 1: "A deluge of ions showers the battlefield!", and the faster Ninjask's Tackle didn't affect Garchomp.
+  - On a later turn without Ion Deluge, Tackle hit normally.
+- **Plasma Fists:** the deluge message came after the hit.
+- **Fairy Lock:** the message showed. Used again the next turn: "But it failed!".
+- **Octolock:**
+  - "The wild NINJASK can no longer escape!", then "Defense fell!" and "Sp. Def fell!" at the end of each turn.
+  - A second Octolock failed. Against Gengar it failed.
+- **Spotlight:**
+  - In a single battle: "But it failed!".
+  - In a double battle against the Twins Liv & Liz: "The foe's MINUN became the center of attention!".
+- **Teatime:**
+  - In a single battle, the wild Ninjask ate its Oran Berry, and a second Teatime (no Berries left) failed.
+  - In a double battle, a Snorlax at 135/225 HP ate its Sitrus Berry: 135 → 191.
+- **Not exercised:** the harness can't choose to flee or switch, so Fairy Lock's block on fleeing and switching wasn't run in the game.
+
 ## Item 11 (effect fidelity): moves, batch 11a (Chilly Reception, Doodle, Core Enforcer; Gen IX ability lists)
 
 For players:

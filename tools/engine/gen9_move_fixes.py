@@ -316,6 +316,14 @@ MOVES = {
     "doodle": ("SOVEREIGN_DOODLE", 0, "the user and its ally take the target's ability (Role Play's rules)"),
     "core_enforcer": ("SOVEREIGN_CORE_ENFORCER", 0, "hits both foes; suppresses the ability of a target that has already"
                       " acted this turn"),
+    "electrify": ("SOVEREIGN_ELECTRIFY", 0, "the target's moves are Electric this turn (fails if it has already acted)"),
+    "ion_deluge": ("SOVEREIGN_ION_DELUGE", 0, "+1 priority; Normal moves are Electric this turn"),
+    "plasma_fists": ("SOVEREIGN_PLASMA_FISTS", 0, "after the hit, Normal moves are Electric this turn"),
+    "fairy_lock": ("SOVEREIGN_FAIRY_LOCK", 0, "no one can flee or switch out this turn and the next (Ghost types can)"),
+    "octolock": ("SOVEREIGN_OCTOLOCK", 0, "the target can't escape while the user stays in, and its Defense and Sp. Def"
+                 " fall at the end of each turn"),
+    "spotlight": ("SOVEREIGN_SPOTLIGHT", 0, "+3 priority; the target's foes aim at it this turn (fails in a single battle)"),
+    "teatime": ("SOVEREIGN_TEATIME", 0, "every Pokémon on the field eats its Berry (fails if none holds one)"),
 }
 
 # Gen IX values the move data got wrong (not the Champions changes in tools/engine/apply_champions_moves.py).
@@ -329,6 +337,7 @@ VALUE_FIXES = {
     # The engine has no "every Pokemon" range; Flower Shield runs once, as a field move, and finds the Grass types itself.
     "flower_shield": {"range": "RANGE_FIELD"},
     "rototiller": {"range": "RANGE_FIELD"},
+    "teatime": {"range": "RANGE_FIELD"},
 }
 
 
