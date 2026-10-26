@@ -384,4 +384,6 @@ subscript_files = files(
     'subscript_sovereign_gulp_missile.s',
     'subscript_sovereign_gulp_missile_catch.s',
     'subscript_sovereign_tera_shift.s',
+    'subscript_sovereign_cotton_down.s',
+    'subscript_sovereign_charged_by_hit.s',
 )

@@ -25,3 +25,10 @@ shelved for now (no Terastallization). Totem forms come only from
 Totem trials along the story (`data/totem_trials.yaml`), never wild. If a form seems impossible on the engine, find a way or
 ask the owner how it should work. Don't drop it. See decision 16 in `docs/ProjectStatus.md` and milestone FM in
 `docs/EngineRoadmap.md`.
+
+## Commit credit (owner rule, 2026-10-26)
+
+Every commit, from any session, credits the owner as a co-author. End each commit message with this line next to
+Claude's own trailer:
+
+`Co-authored-by: Hank Twichell <78049692+hanktwichell@users.noreply.github.com>`

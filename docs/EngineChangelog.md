@@ -4,6 +4,73 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): eight more abilities
+
+For players: Purifying Salt, Water Bubble and Thermal Exchange keep status conditions off as in Gen IX. Mirror Armor
+sends stat drops back. Cotton Down, Electromorphosis, Wind Power and Wind Rider now work.
+
+- **Purifying Salt:** no status condition of any kind, and no drowsiness from Yawn. Rest fails. Mold Breaker gets
+  past it when another Pokémon's move would give the status; a held Flame Orb or Toxic Orb never does.
+  - It uses the same check as Shields Down's shell. `BTLVAR_SOVEREIGN_SHIELDS_UP_EFFECT_MON` became
+    `BTLVAR_SOVEREIGN_STATUS_IMMUNE_EFFECT_MON` (`Battler_SovereignStatusImmune`), so the burn, poison, bad poison,
+    paralysis, sleep, freeze, Yawn and Rest subscripts all cover it.
+- **Water Bubble and Thermal Exchange:** no burns, as with Water Veil, and a burn is healed (Skill Swap).
+- **Mirror Armor:** a stat drop from another Pokémon's move or Ability (Intimidate, Cotton Down) goes back to that
+  Pokémon: "{holder}'s Mirror Armor cuts {source}'s {stat}!". Mold Breaker gets past it.
+  - Not when the holder's stat is already at −6, or when its Substitute stops the drop anyway.
+  - The source's own Clear Body, Mist and so on can still stop it; its Substitute and Shield Dust can't. Contrary
+    turns it into a rise, and Defiant and Competitive respond.
+  - `BtlCmd_ChangeStatStage` swaps the two Pokémon's roles for the drop. `subscript_update_stat_stage` gives the holder
+    its side-effect role back afterwards (`BTLVAR_SOVEREIGN_MIRROR_ARMOR_HOLDER`).
+  - Sticky Web's drop would go back to the Pokémon that set the web. The engine doesn't track who that was, so Mirror
+    Armor only blocks it: "{holder}'s Mirror Armor prevents stat loss!".
+- **Cotton Down:** when a damaging move hits the holder, every other Pokémon's Speed drops 1 stage, its ally's too,
+  even as the holder faints (`subscript_sovereign_cotton_down`, Intimidate's loop). Defiant and Competitive respond.
+- **Electromorphosis and Wind Power:** a damaging hit (any for Electromorphosis, a wind move for Wind Power) charges
+  the holder: "{0}'s {1} charged it with power!". Its next Electric move before the end of next turn has double power,
+  as after Platinum's Charge. A tailwind starting on its side charges a Wind Power holder too.
+- **Wind Rider:** wind moves aimed at it do nothing, and its Attack rises 1 stage, as with Sap Sipper. A tailwind
+  starting on its side raises its Attack 1 stage, and so does entering the battle while one blows.
+- **Wind moves:** `Move_IsWind` lists Gen IX's 17.
+- **AI:** the trainer AI knows Purifying Salt blocks every status move. It also knows Water Bubble and Thermal
+  Exchange block burns, wherever it checked Immunity, Limber, Insomnia or Water Veil. It treats Mirror Armor as Clear
+  Body when it weighs a stat-lowering move.
+- `docs/AbilityChecklist.md`: 155 of the 191 new abilities have a battle effect, counting partial ones (150 before).
+- **CI:** `tools/test/check_battle_scripts.py` now also checks that `subscripts/sub_seq.order` lists every subscript in
+  `meson.build`, in the order of `generated/battle_subscripts.txt`. A subscript missing from the order still builds,
+  at the end of the NARC in another order, so a script's `Call` of it runs a different subscript. That happened here:
+  the tailwind's call of the charge subscript ran Cotton Down.
+
+**Verification:** `tools/test/check_battle_scripts.py` (the largest script is 1,680 of 2,048 bytes) and the docs
+check pass. A harness wild battle per case, with each message box looked at:
+- **Purifying Salt** (Garganacl) against Will-O-Wisp, Toxic, Thunder Wave, Spore and Yawn: "…prevents burns!",
+  "…prevents poisoning!", "…prevents paralysis!", "…stayed awake because of its Purifying Salt!", "…made it
+  ineffective!".
+- **Water Bubble** (Araquanid) and **Thermal Exchange** (Arctibax) against Will-O-Wisp: "…prevents burns!". A
+  Flame Orb never burns Araquanid. Garchomp, the control, is burned.
+- **Cotton Down** (Eldegoss) hit by Tackle: "ELDEGOSS's Cotton Down cuts the wild NINJASK's Speed!".
+- **Electromorphosis** (Bellibolt) hit by Tackle, and **Wind Power** (Kilowattrel) hit by Gust: "…charged it with
+  power!".
+- **Wind Rider** (Brambleghast) against Gust: "BRAMBLGHST's Wind Rider raised its Attack!".
+- **Tailwind:** Kilowattrel's own Tailwind charges it, and Brambleghast's raises its Attack.
+- **Mirror Armor** (Corviknight) against Growl, Screech, Icy Wind, Lunge and Struggle Bug: "CORVIKNIGHT's Mirror Armor
+  cuts the wild NINJASK's Attack!" (and Defense, Speed, Attack, Sp. Atk). With Pressure instead, its own Attack falls.
+
+
+## Playtest pass — the trainer, evolution, Egg and species tests with the heap checks
+
+The heap checks (`heap_check.py`) went into every harness in the Trainers' School Egg pass below, but the trainer,
+evolution and Egg tests hadn't been rerun with them. Now all four battle tests have, on the test build of `main` (the
+species test on the build with decisions 46 and 47).
+
+**Results:** no broken heap (no **HEAP**), and nothing else fails.
+- **Trainers:** all 1,039.
+- **Evolutions:** all 336.
+- **Eggs:** all 874.
+- **Species and forms as wild Pokémon:** all 1,510. The run was split three ways when a worker restart stopped the
+  first one, and the last two cases ran on their own.
+
+
 ## E10 — Darach mid-game, and the Tea for Route 218's gate (decision 47, as in Renegade)
 
 For players: the Regional Forms Park's lobby on Route 221 is open as soon as the player can Surf there. Darach and Lady

@@ -23,7 +23,7 @@ _036:
     PrintBufferedMessage 
     Wait 
     WaitButtonABTime 30
-    End 
+    GoTo _059
 
 _041:
     CompareVarToValue OPCODE_NEQ, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_DIRECT, _048
@@ -38,6 +38,14 @@ _048:
     WaitButtonABTime 30
 
 _059:
+    // Sovereign (item 11): after Mirror Armor sent a drop back to its source, the holder is the side-effect target
+    // again (BtlCmd_ChangeStatStage).
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_MIRROR_ARMOR_HOLDER, 0, _sovereign_end
+    UpdateVarFromVar OPCODE_SET, BTLVAR_SIDE_EFFECT_MON, BTLVAR_SOVEREIGN_MIRROR_ARMOR_HOLDER
+    UpdateVar OPCODE_SUB, BTLVAR_SIDE_EFFECT_MON, 1
+    UpdateVar OPCODE_SET, BTLVAR_SOVEREIGN_MIRROR_ARMOR_HOLDER, 0
+
+_sovereign_end:
     End 
 
 _060:

@@ -302,6 +302,7 @@ Basic_CheckCannotSleep:
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, ScoreMinus10
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_INSOMNIA, ScoreMinus10
+    IfLoadedEqualTo ABILITY_PURIFYING_SALT, ScoreMinus10 // Sovereign (item 11)
     IfLoadedEqualTo ABILITY_VITAL_SPIRIT, ScoreMinus10
     PopOrEnd 
 
@@ -481,6 +482,7 @@ Basic_CheckClearBodyEffect:
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_CLEAR_BODY, ScoreMinus10
     IfLoadedEqualTo ABILITY_WHITE_SMOKE, ScoreMinus10
+    IfLoadedEqualTo ABILITY_MIRROR_ARMOR, ScoreMinus10 // Sovereign (item 11)
     PopOrEnd 
 
 Basic_CheckStatStageImbalance:
@@ -539,6 +541,7 @@ Basic_CheckCannotPoison:
     // Check for immunity by ability
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_IMMUNITY, ScoreMinus10
+    IfLoadedEqualTo ABILITY_PURIFYING_SALT, ScoreMinus10 // Sovereign (item 11)
     IfLoadedEqualTo ABILITY_MAGIC_GUARD, ScoreMinus10
     IfLoadedEqualTo ABILITY_POISON_HEAL, ScoreMinus10
 
@@ -625,6 +628,7 @@ Basic_CheckCannotParalyze:
     IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, ScoreMinus10
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_LIMBER, ScoreMinus10
+    IfLoadedEqualTo ABILITY_PURIFYING_SALT, ScoreMinus10 // Sovereign (item 11)
     IfLoadedEqualTo ABILITY_MAGIC_GUARD, ScoreMinus10
     LoadBattlerAbility AI_BATTLER_ATTACKER
     IfLoadedEqualTo ABILITY_MOLD_BREAKER, Basic_CheckCannotParalyze_ImmuneToStatus
@@ -776,6 +780,7 @@ Basic_CheckMemento:
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_CLEAR_BODY, ScoreMinus10
     IfLoadedEqualTo ABILITY_WHITE_SMOKE, ScoreMinus10
+    IfLoadedEqualTo ABILITY_MIRROR_ARMOR, ScoreMinus10 // Sovereign (item 11)
 
 Basic_CheckMemento_CheckStatStages:
     // If the target's Attack is already at -6, score -10.
@@ -892,6 +897,9 @@ Basic_CheckCannotBurn:
     // If the target cannot be burned for any reason, score -10.
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_WATER_VEIL, ScoreMinus10
+    IfLoadedEqualTo ABILITY_WATER_BUBBLE, ScoreMinus10 // Sovereign (item 11)
+    IfLoadedEqualTo ABILITY_THERMAL_EXCHANGE, ScoreMinus10 // Sovereign (item 11)
+    IfLoadedEqualTo ABILITY_PURIFYING_SALT, ScoreMinus10 // Sovereign (item 11)
     IfLoadedEqualTo ABILITY_MAGIC_GUARD, ScoreMinus10
     IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, ScoreMinus10
     LoadTypeFrom LOAD_DEFENDER_TYPE_1
@@ -950,6 +958,7 @@ Basic_CheckTickle:
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_CLEAR_BODY, ScoreMinus10
     IfLoadedEqualTo ABILITY_WHITE_SMOKE, ScoreMinus10
+    IfLoadedEqualTo ABILITY_MIRROR_ARMOR, ScoreMinus10 // Sovereign (item 11)
 
 Basic_CheckTickle_CheckStatStages:
     // If the target's Attack is at -6, score -10.
@@ -1240,6 +1249,7 @@ Basic_FlingPoison:
     IfLoadedEqualTo TYPE_STEEL, Basic_FlingPoison_AttackerChecks
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_IMMUNITY, Basic_FlingPoison_AttackerChecks
+    IfLoadedEqualTo ABILITY_PURIFYING_SALT, Basic_FlingPoison_AttackerChecks // Sovereign (item 11)
     IfLoadedEqualTo ABILITY_POISON_HEAL, Basic_FlingPoison_AttackerChecks
     IfLoadedEqualTo ABILITY_MAGIC_GUARD, Basic_FlingPoison_AttackerChecks
     PopOrEnd 
@@ -1256,6 +1266,7 @@ Basic_FlingPoison_AttackerChecks:
     LoadBattlerAbility AI_BATTLER_ATTACKER
     IfLoadedEqualTo ABILITY_KLUTZ, ScoreMinus5
     IfLoadedEqualTo ABILITY_IMMUNITY, ScoreMinus5
+    IfLoadedEqualTo ABILITY_PURIFYING_SALT, ScoreMinus5 // Sovereign (item 11)
     IfLoadedEqualTo ABILITY_POISON_HEAL, ScoreMinus5
     IfLoadedEqualTo ABILITY_MAGIC_GUARD, ScoreMinus5
     IfLoadedEqualTo ABILITY_GUTS, ScoreMinus5
@@ -1272,6 +1283,9 @@ Basic_FlingBurn:
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_MAGIC_GUARD, Basic_FlingBurn_AttackerChecks
     IfLoadedEqualTo ABILITY_WATER_VEIL, Basic_FlingBurn_AttackerChecks
+    IfLoadedEqualTo ABILITY_WATER_BUBBLE, Basic_FlingBurn_AttackerChecks // Sovereign (item 11)
+    IfLoadedEqualTo ABILITY_THERMAL_EXCHANGE, Basic_FlingBurn_AttackerChecks // Sovereign (item 11)
+    IfLoadedEqualTo ABILITY_PURIFYING_SALT, Basic_FlingBurn_AttackerChecks // Sovereign (item 11)
     PopOrEnd 
 
 Basic_FlingBurn_AttackerChecks:
@@ -1285,6 +1299,9 @@ Basic_FlingBurn_AttackerChecks:
     IfLoadedEqualTo ABILITY_KLUTZ, ScoreMinus5
     IfLoadedEqualTo ABILITY_MAGIC_GUARD, ScoreMinus5
     IfLoadedEqualTo ABILITY_WATER_VEIL, ScoreMinus5
+    IfLoadedEqualTo ABILITY_WATER_BUBBLE, ScoreMinus5 // Sovereign (item 11)
+    IfLoadedEqualTo ABILITY_THERMAL_EXCHANGE, ScoreMinus5 // Sovereign (item 11)
+    IfLoadedEqualTo ABILITY_PURIFYING_SALT, ScoreMinus5 // Sovereign (item 11)
     IfLoadedEqualTo ABILITY_GUTS, ScoreMinus5
     AddToMoveScore 3
     PopOrEnd 
@@ -1295,6 +1312,7 @@ Basic_FlingParalyze:
     IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, ScoreMinus5
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_LIMBER, ScoreMinus5
+    IfLoadedEqualTo ABILITY_PURIFYING_SALT, ScoreMinus5 // Sovereign (item 11)
     PopOrEnd 
 
 Basic_FlingItems_Poison:
@@ -1339,6 +1357,7 @@ Basic_PsychoShift_Poison:
     IfLoadedEqualTo TYPE_STEEL, ScoreMinus10
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_IMMUNITY, ScoreMinus10
+    IfLoadedEqualTo ABILITY_PURIFYING_SALT, ScoreMinus10 // Sovereign (item 11)
     IfLoadedEqualTo ABILITY_POISON_HEAL, ScoreMinus10
     IfLoadedEqualTo ABILITY_MAGIC_GUARD, ScoreMinus10
     GoTo Basic_PsychoShift_Terminate
@@ -1352,12 +1371,16 @@ Basic_PsychoShift_Burn:
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_MAGIC_GUARD, ScoreMinus10
     IfLoadedEqualTo ABILITY_WATER_VEIL, ScoreMinus10
+    IfLoadedEqualTo ABILITY_WATER_BUBBLE, ScoreMinus10 // Sovereign (item 11)
+    IfLoadedEqualTo ABILITY_THERMAL_EXCHANGE, ScoreMinus10 // Sovereign (item 11)
+    IfLoadedEqualTo ABILITY_PURIFYING_SALT, ScoreMinus10 // Sovereign (item 11)
     GoTo Basic_PsychoShift_Terminate
 
 Basic_PsychoShift_Paralysis:
     // If the target's ability is Limber, score -10.
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_LIMBER, ScoreMinus10
+    IfLoadedEqualTo ABILITY_PURIFYING_SALT, ScoreMinus10 // Sovereign (item 11)
 
 Basic_PsychoShift_Terminate:
     PopOrEnd 
@@ -1442,6 +1465,7 @@ Basic_CheckWorrySeed:
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_TRUANT, ScoreMinus10
     IfLoadedEqualTo ABILITY_INSOMNIA, ScoreMinus10
+    IfLoadedEqualTo ABILITY_PURIFYING_SALT, ScoreMinus10 // Sovereign (item 11)
     IfLoadedEqualTo ABILITY_VITAL_SPIRIT, ScoreMinus10
     IfLoadedEqualTo ABILITY_MULTITYPE, ScoreMinus10
 
@@ -1526,6 +1550,7 @@ Basic_CheckCaptivate:
     IfLoadedEqualTo ABILITY_OBLIVIOUS, ScoreMinus10
     IfLoadedEqualTo ABILITY_CLEAR_BODY, ScoreMinus10
     IfLoadedEqualTo ABILITY_WHITE_SMOKE, ScoreMinus10
+    IfLoadedEqualTo ABILITY_MIRROR_ARMOR, ScoreMinus10 // Sovereign (item 11)
 
 Basic_CheckCaptivate_CheckGender:
     // If the target and the attacker share gender or the target has no gender, score -10.
@@ -4272,6 +4297,7 @@ Expert_Trick_CheckOpponentForPoison:
     IfLoadedEqualTo TYPE_POISON, Expert_Trick_CheckAttackerForPoison
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_IMMUNITY, Expert_Trick_CheckAttackerForPoison
+    IfLoadedEqualTo ABILITY_PURIFYING_SALT, Expert_Trick_CheckAttackerForPoison // Sovereign (item 11)
     IfLoadedEqualTo ABILITY_MAGIC_GUARD, Expert_Trick_CheckAttackerForPoison
     IfLoadedEqualTo ABILITY_POISON_HEAL, Expert_Trick_CheckAttackerForPoison
     AddToMoveScore 5
@@ -4288,6 +4314,7 @@ Expert_Trick_CheckAttackerForPoison:
     IfLoadedEqualTo TYPE_POISON, Expert_Trick_ScoreMinus3
     LoadBattlerAbility AI_BATTLER_ATTACKER
     IfLoadedEqualTo ABILITY_IMMUNITY, Expert_Trick_ScoreMinus3
+    IfLoadedEqualTo ABILITY_PURIFYING_SALT, Expert_Trick_ScoreMinus3 // Sovereign (item 11)
     IfLoadedEqualTo ABILITY_MAGIC_GUARD, Expert_Trick_ScoreMinus3
     IfLoadedEqualTo ABILITY_POISON_HEAL, Expert_Trick_ScoreMinus3
     IfLoadedEqualTo ABILITY_KLUTZ, Expert_Trick_ScoreMinus3
@@ -4299,6 +4326,9 @@ Expert_Trick_CheckOpponentForBurn:
     IfLoadedInTable Expert_Trick_BadOpponentItems, Expert_Trick_ScoreMinus3
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_WATER_VEIL, Expert_Trick_CheckAttackerForBurn
+    IfLoadedEqualTo ABILITY_WATER_BUBBLE, Expert_Trick_CheckAttackerForBurn // Sovereign (item 11)
+    IfLoadedEqualTo ABILITY_THERMAL_EXCHANGE, Expert_Trick_CheckAttackerForBurn // Sovereign (item 11)
+    IfLoadedEqualTo ABILITY_PURIFYING_SALT, Expert_Trick_CheckAttackerForBurn // Sovereign (item 11)
     IfLoadedEqualTo ABILITY_MAGIC_GUARD, Expert_Trick_CheckAttackerForBurn
     IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, Expert_Trick_CheckAttackerForBurn
     IfSideCondition AI_BATTLER_DEFENDER, SIDE_CONDITION_SAFEGUARD, Expert_Trick_CheckAttackerForBurn
@@ -4312,6 +4342,9 @@ Expert_Trick_CheckOpponentForBurn:
 Expert_Trick_CheckAttackerForBurn:
     LoadBattlerAbility AI_BATTLER_ATTACKER
     IfLoadedEqualTo ABILITY_WATER_VEIL, Expert_Trick_ScoreMinus3
+    IfLoadedEqualTo ABILITY_WATER_BUBBLE, Expert_Trick_ScoreMinus3 // Sovereign (item 11)
+    IfLoadedEqualTo ABILITY_THERMAL_EXCHANGE, Expert_Trick_ScoreMinus3 // Sovereign (item 11)
+    IfLoadedEqualTo ABILITY_PURIFYING_SALT, Expert_Trick_ScoreMinus3 // Sovereign (item 11)
     IfLoadedEqualTo ABILITY_MAGIC_GUARD, Expert_Trick_ScoreMinus3
     IfLoadedEqualTo ABILITY_KLUTZ, ScoreMinus5
     IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, Expert_Trick_ScoreMinus3

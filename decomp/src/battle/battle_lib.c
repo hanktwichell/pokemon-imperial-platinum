@@ -3712,6 +3712,38 @@ BOOL Move_IsSound(int move)
     return FALSE;
 }
 
+// Sovereign (item 11): wind moves (Wind Rider, Wind Power), as Gen IX flags them.
+static const u16 sWindMoves[] = {
+    MOVE_AEROBLAST,
+    MOVE_AIR_CUTTER,
+    MOVE_BLEAKWIND_STORM,
+    MOVE_BLIZZARD,
+    MOVE_FAIRY_WIND,
+    MOVE_GUST,
+    MOVE_HEAT_WAVE,
+    MOVE_HURRICANE,
+    MOVE_ICY_WIND,
+    MOVE_PETAL_BLIZZARD,
+    MOVE_SANDSEAR_STORM,
+    MOVE_SANDSTORM,
+    MOVE_SPRINGTIDE_STORM,
+    MOVE_TAILWIND,
+    MOVE_TWISTER,
+    MOVE_WHIRLWIND,
+    MOVE_WILDBOLT_STORM,
+};
+
+BOOL Move_IsWind(int move)
+{
+    for (int i = 0; i < NELEMS(sWindMoves); i++) {
+        if (sWindMoves[i] == move) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
 // Sovereign (item 11): sound moves (Gen VI+) and Infiltrator get past a Substitute.
 BOOL Sovereign_BypassesSubstitute(BattleContext *battleCtx, int attacker, int defender, int move)
 {
@@ -3813,6 +3845,11 @@ int BattleSystem_TriggerImmunityAbility(BattleContext *battleCtx, int attacker, 
             subscript = subscript_sovereign_absorb_and_atk_up_1_stage;
         }
 
+        // Wind Rider takes no harm from wind moves aimed at it, and its Attack rises instead.
+        if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_WIND_RIDER) == TRUE && Move_IsWind(battleCtx->moveCur)) {
+            subscript = subscript_sovereign_absorb_and_atk_up_1_stage;
+        }
+
         if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_WELL_BAKED_BODY) == TRUE && moveType == TYPE_FIRE) {
             subscript = subscript_sovereign_absorb_and_def_up_2_stages;
         }
@@ -3866,6 +3903,26 @@ BOOL Battler_SovereignShieldsUp(BattleContext *battleCtx, int battler)
         && (mon->statusVolatile & VOLATILE_CONDITION_TRANSFORM) == FALSE
         && Battler_Ability(battleCtx, battler) == ABILITY_SHIELDS_DOWN
         && Pokemon_SovereignAbilityForm(mon->species, mon->formNum, ABILITY_SHIELDS_DOWN) >= 0;
+}
+
+// Sovereign (item 11): TRUE when nothing can give the battler a status condition (nor make it drowsy): Shields Down's
+// shell, or Purifying Salt. Mold Breaker gets past Purifying Salt when another battler's move would give the status;
+// a held item (Flame Orb) or the battler's own move (Rest) never does.
+BOOL Battler_SovereignStatusImmune(BattleContext *battleCtx, int battler)
+{
+    if (Battler_SovereignShieldsUp(battleCtx, battler)) {
+        return TRUE;
+    }
+
+    if (Battler_Ability(battleCtx, battler) != ABILITY_PURIFYING_SALT) {
+        return FALSE;
+    }
+
+    if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_HELD_ITEM || battleCtx->attacker == battler) {
+        return TRUE;
+    }
+
+    return Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battler, ABILITY_PURIFYING_SALT);
 }
 
 BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
@@ -4522,7 +4579,7 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
 
         case SWITCH_IN_CHECK_STATE_SOVEREIGN_ENTRY_BOOSTS:
             // Sovereign (item 11): Intrepid Sword raises Attack and Dauntless Shield Defense by 1 stage, the first time
-            // the holder enters the battle; Screen Cleaner clears the screens.
+            // the holder enters the battle; Wind Rider raises Attack in a tailwind; Screen Cleaner clears the screens.
             for (i = 0; i < maxBattlers; i++) {
                 int ability;
 
@@ -4539,6 +4596,22 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                     subscript = subscript_update_stat_stage;
                     result = SWITCH_IN_CHECK_RESULT_BREAK;
                     break;
+                }
+
+                // Wind Rider raises its Attack 1 stage on entry when a tailwind blows on its side.
+                if (battleCtx->battleMons[battler].curHP
+                    && ability == ABILITY_WIND_RIDER
+                    && battleCtx->battleMons[battler].sovereignEntryAnnounced == FALSE) {
+                    battleCtx->battleMons[battler].sovereignEntryAnnounced = TRUE;
+
+                    if (battleCtx->sideConditionsMask[BattleSystem_GetBattlerSide(battleSys, battler)] & SIDE_CONDITION_TAILWIND) {
+                        battleCtx->sideEffectParam = MOVE_SUBSCRIPT_PTR_ATTACK_UP_1_STAGE;
+                        battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
+                        battleCtx->sideEffectMon = battler;
+                        subscript = subscript_update_stat_stage;
+                        result = SWITCH_IN_CHECK_RESULT_BREAK;
+                        break;
+                    }
                 }
 
                 // Screen Cleaner removes Reflect, Light Screen and Aurora Veil from both sides on entry.
@@ -5160,6 +5233,33 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
         }
         break;
 
+    // Sovereign (item 11): Electromorphosis (any damaging hit) and Wind Power (a wind move's hit) charge the holder: its
+    // next Electric move before the end of next turn has double power, as after Charge.
+    case ABILITY_ELECTROMORPHOSIS:
+    case ABILITY_WIND_POWER:
+        if (DEFENDING_MON.curHP
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+            && (Battler_Ability(battleCtx, battleCtx->defender) == ABILITY_ELECTROMORPHOSIS || Move_IsWind(battleCtx->moveCur))) {
+            battleCtx->msgBattlerTemp = battleCtx->defender;
+            *subscript = subscript_sovereign_charged_by_hit;
+            result = TRUE;
+        }
+        break;
+
+    // Sovereign (item 11): Cotton Down lowers the Speed of every other Pokemon on the field when a damaging move hits
+    // the holder, even as it faints.
+    case ABILITY_COTTON_DOWN:
+        if ((battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)) {
+            battleCtx->msgBattlerTemp = battleCtx->defender;
+            *subscript = subscript_sovereign_cotton_down;
+            result = TRUE;
+        }
+        break;
+
     // Sovereign (item 11): Gooey and Tangling Hair lower the Speed of a Pokemon that makes contact.
     case ABILITY_GOOEY:
     case ABILITY_TANGLING_HAIR:
@@ -5446,6 +5546,8 @@ BOOL BattleSystem_RecoverStatusByAbility(BattleSystem *battleSys, BattleContext 
         break;
 
     case ABILITY_WATER_VEIL:
+    case ABILITY_WATER_BUBBLE: // Sovereign (item 11)
+    case ABILITY_THERMAL_EXCHANGE: // Sovereign (item 11)
         if (battleCtx->battleMons[battler].status & MON_CONDITION_BURN) {
             battleCtx->msgTemp = MSGCOND_BURN;
             result = TRUE;
@@ -5512,6 +5614,8 @@ BOOL Ability_ForbidsStatus(BattleContext *battleSys, int ability, int status)
         break;
 
     case ABILITY_WATER_VEIL:
+    case ABILITY_WATER_BUBBLE: // Sovereign (item 11)
+    case ABILITY_THERMAL_EXCHANGE: // Sovereign (item 11)
         if (status & MON_CONDITION_BURN) {
             result = TRUE;
         }

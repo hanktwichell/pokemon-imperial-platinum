@@ -81,7 +81,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 196 | Merciless | Gen 7 | yes: always a critical hit on a poisoned target |
 | 197 | Shields Down | Gen 7 | yes: Core at half HP or less; the Meteor Form blocks status and Yawn |
 | 198 | Stakeout | Gen 7 | yes: double power against a target that switched in this turn |
-| 199 | Water Bubble | Gen 7 | partly: its Water moves ×2, Fire damage taken halved (burn immunity not yet) |
+| 199 | Water Bubble | Gen 7 | yes: its Water moves ×2, Fire damage taken halved, can't be burned |
 | 200 | Steelworker | Gen 7 | yes: Steel moves ×1.5 |
 | 201 | Berserk | Gen 7 | yes: Sp. Atk +1 when a hit drops it to half HP or less |
 | 202 | Slush Rush | Gen 7 | yes: Speed ×2 in snow |
@@ -120,9 +120,9 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 235 | DauntlessShield | Gen 8 | yes: Defense +1 the first time it enters battle |
 | 236 | Libero | Gen 8 | yes: becomes its move's type, once per switch-in |
 | 237 | Ball Fetch | Gen 8 | not yet (no battle effect) |
-| 238 | Cotton Down | Gen 8 | not yet (no battle effect) |
+| 238 | Cotton Down | Gen 8 | yes: when a damaging move hits it, every other Pokémon's Speed −1, its ally's too, even as it faints |
 | 239 | Propeller Tail | Gen 8 | yes: ignores moves and abilities that draw in attacks |
-| 240 | Mirror Armor | Gen 8 | not yet (no battle effect) |
+| 240 | Mirror Armor | Gen 8 | yes: a stat drop from another Pokémon's move or Ability goes back to that Pokémon (Sticky Web's is only blocked) |
 | 241 | Gulp Missile | Gen 8 | yes: Surf or Dive catches prey; a hit spits it for 1/4 HP and Defense -1 or paralysis |
 | 242 | Stalwart | Gen 8 | yes: ignores moves and abilities that draw in attacks |
 | 243 | Steam Engine | Gen 8 | yes: Fire or Water hits raise Speed 6 stages |
@@ -152,17 +152,17 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 267 | As One | Gen 8 | not yet (no battle effect) |
 | 268 | Lingering Aroma | Gen 9 | yes: an attacker that makes contact gets Lingering Aroma |
 | 269 | Seed Sower | Gen 9 | yes: getting hit sets Grassy Terrain |
-| 270 | ThermalExchange | Gen 9 | partly: Attack +1 when hit by a Fire move (burn immunity not yet) |
+| 270 | ThermalExchange | Gen 9 | yes: Attack +1 when hit by a Fire move, can't be burned |
 | 271 | Anger Shell | Gen 9 | yes: Attack, Sp. Atk, Speed +1 and Defense, Sp. Def -1 when a hit drops it to half HP or less |
-| 272 | Purifying Salt | Gen 9 | partly: Ghost damage halved (status immunity not yet) |
+| 272 | Purifying Salt | Gen 9 | yes: Ghost damage halved; no status conditions or drowsiness (Mold Breaker gets past it) |
 | 273 | Well-Baked Body | Gen 9 | yes: absorbs Fire moves, Defense +2 (`BattleSystem_TriggerImmunityAbility`) |
-| 274 | Wind Rider | Gen 9 | not yet (no battle effect) |
+| 274 | Wind Rider | Gen 9 | yes: wind moves aimed at it do nothing and raise its Attack instead; a tailwind on its side raises its Attack (on entry too) |
 | 275 | Guard Dog | Gen 9 | partly: Intimidate raises its Attack instead (immunity to Roar and Whirlwind not yet) |
 | 276 | Rocky Payload | Gen 9 | yes: Rock moves ×1.5 |
-| 277 | Wind Power | Gen 9 | not yet (no battle effect) |
+| 277 | Wind Power | Gen 9 | yes: charged when a wind move hits it or a tailwind starts on its side |
 | 278 | Zero to Hero | Gen 9 | yes: Hero Form once it switches out, until the battle ends |
 | 279 | Commander | Gen 9 | not yet (no battle effect) |
-| 280 | Electromorphsis | Gen 9 | not yet (no battle effect) |
+| 280 | Electromorphsis | Gen 9 | yes: charged when a damaging move hits it (its next Electric move ×2 before the end of next turn, as Platinum's Charge) |
 | 281 | Protosynthesis | Gen 9 | yes: in harsh sunlight or after using a Booster Energy, its highest stat ×1.3 (Speed ×1.5) |
 | 282 | Quark Drive | Gen 9 | yes: in Electric Terrain or after using a Booster Energy, its highest stat ×1.3 (Speed ×1.5) |
 | 283 | Good as Gold | Gen 9 | yes: immune to other Pokémon's status moves |
