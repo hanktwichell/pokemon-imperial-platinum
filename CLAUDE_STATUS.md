@@ -7145,7 +7145,7 @@ and its three registrations, `tools/engine/gen_abilities.py`, `docs/AbilityCheck
 2. Item 11's double-battle abilities, with a doubles case in the harness (Healer too).
 3. Mirror Herb at the end of the turn (Speed Boost, Moody), as in Showdown.
 
-## CB-0158 — 2026-10-26, 6:28 am US Central (session on `claude/sweet-wright-rk4wl1`)
+## CB-0158 — 2026-10-26, 6:08 am US Central (session on `claude/sweet-wright-rk4wl1`)
 
 **Merged:** PR #174, held items part 5. Every held item the store sells now works, except Eject Button, Eject Pack
 and Red Card.
