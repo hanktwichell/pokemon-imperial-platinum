@@ -34,8 +34,9 @@ one, had come out purple).
 ## E12 — Sovereign's forms get their own front sprites
 
 For players: 368 forms (the 98 Megas and Primals, and the regional, battle, item, fusion, cosmetic and female forms)
-show their own front and shiny front (PokeAPI's, owner 2026-10-26) instead of the base species'. 52 forms whose
-PokeAPI front is the species' own (the Totems, Scatterbug's and Spewpa's patterns) keep the species' sprite. Unfezant,
+show their own front and shiny front (PokeAPI's, owner 2026-10-26) instead of the base species'. Every form has one
+(420 of 421; owner: "ensure they all have PokeAPI front and shiny front"), including the 52 that PokeAPI draws like
+their species (the Totems, Scatterbug's and Spewpa's patterns); only Mega Zygarde, which PokeAPI lacks, keeps Zygarde's. Unfezant,
 Frillish, Jellicent and Pyroar get PokeAPI's female front, sharing the front palette with the male one. Their backs are still the species' (no back art yet); Mega Zygarde keeps
 Zygarde's sprite (PokeAPI has none).
 

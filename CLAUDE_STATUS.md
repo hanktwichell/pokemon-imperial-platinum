@@ -6625,3 +6625,19 @@ build and boot smoke test pass.
    Flabébé line) need a matching shiny drawn, or the owner's call.
 2. Check a few shinies in battle.
 3. Form backs and the forms' y offsets.
+
+## CA-0064 (Claude A, 2026-10-26): every form has its own PokeAPI front
+
+**Implemented (owner: "ensure they all have PokeAPI front and shiny front"):** the 52 forms that PokeAPI draws like
+their species (Totems, Scatterbug's and Spewpa's patterns, 50% Zygarde, Battle Bond Greninja, Own Tempo Rockruff,
+Artisan Poltchageist, Masterpiece Sinistcha) now have their own entries too: 420 of 421 forms (Mega Zygarde has none on
+PokeAPI) plus Hisuian Sneasel's female front. `pl_pokegra.narc` has 9,471 files; release build, boot smoke test and the
+form-to-sprite mapping check pass.
+
+**Files modified:** `assets/sprites/packs/pokeapi_fronts/forms/` (52 new), `decomp/res/pokemon/sovereign_form_sprites/`,
+`decomp/include/data/sovereign_form_sprites.h`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Mega Zygarde's front (no PokeAPI sprite; the owner's artist or another source).
+2. Check a few forms and shinies in battle.
+3. Form backs and the forms' y offsets.
