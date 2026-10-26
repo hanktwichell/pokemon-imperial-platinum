@@ -20,7 +20,9 @@ protect their holder.
   respond.
 - **Comatose:** nothing gives the holder a status condition or makes it drowsy, not even through Mold Breaker, and
   Rest fails (`Battler_SovereignStatusImmune`). It never naps out of disobedience.
-  - Not yet: moves that need a sleeping target (Dream Eater, Hex's double power, Sleep Talk) don't count it as asleep.
+  - It counts as asleep: Dream Eater and Nightmare work on it, Hex and Wake-Up Slap have double power against it (Wake-Up
+    Slap has nothing to wake), Bad Dreams hurts it, and it can use Sleep Talk and Snore (with no "fast asleep"
+    message).
 - **Pastel Veil and Sweet Veil:** the holder can't be poisoned (Pastel Veil), or fall asleep or become drowsy (Sweet
   Veil), as with Immunity and Insomnia. Not yet: their allies' protection.
 - **AI:** Comatose counts as Purifying Salt, Pastel Veil as Immunity and Sweet Veil as Insomnia.
@@ -35,6 +37,9 @@ wild battle per case, with each message box looked at:
 - **Supersweet Syrup** (Hydrapple): "HYDRAPPLE's SupersweetSyrup cuts the wild NINJASK's evasiveness!" on entry.
 - **Comatose** (Komala) against Toxic, Spore and Will-O-Wisp: "…prevents poisoning!", "KOMALA stayed awake because of
   its Comatose!", "…prevents burns!".
+- **Comatose as asleep:** the foe's Dream Eater ("KOMALA's dream was eaten!") and Nightmare ("KOMALA began having a
+  nightmare!", then "…is locked in a nightmare!" at the turn's end); Komala's Snore hits, and its Sleep Talk uses
+  Moonblast.
 - **Pastel Veil** (Galarian Rapidash) against Toxic, and **Sweet Veil** (Slurpuff) against Spore and Yawn: "…prevents
   poisoning!", "…stayed awake because of its Sweet Veil!", "…made it ineffective!".
 

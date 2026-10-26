@@ -6754,10 +6754,10 @@ open questions. The shiny line-up patch is ready for when #161 is merged.
 - **Toxic Chain:** 30% to badly poison on a damaging hit, as an added effect (Shield Dust stops it).
 - **Poison Puppeteer:** a Pokémon its move poisons becomes confused too.
 - **Supersweet Syrup:** foes' evasiveness −1, once per battle on entry (Intimidate's loop).
-- **Comatose:** no status at all (`Battler_SovereignStatusImmune`). Moves that need a sleeping target don't see it as
-  asleep yet.
+- **Comatose:** no status at all (`Battler_SovereignStatusImmune`), and it counts as asleep for Dream Eater,
+  Nightmare, Hex, Wake-Up Slap, Bad Dreams, Sleep Talk and Snore.
 - **Pastel Veil, Sweet Veil:** the holder only; the allies' half isn't done.
-- **Tested:** a wild battle per case (12 cases, `$S/test_item11b.py`), message boxes checked.
+- **Tested:** a wild battle per case (16 cases, `$S/test_item11b.py`), message boxes checked.
 
 **Files modified:**
 - `decomp/src/battle/{battle_lib.c,battle_script.c,battle_controller_player.c,trainer_ai/script.s}`
@@ -6770,4 +6770,4 @@ open questions. The shiny line-up patch is ready for when #161 is merged.
 1. After Claude A's #161 merges: the shiny line-up PR (13 sprite folders), with the sprite check run on them.
 2. Item 11's double-battle abilities (the Veils' ally half, Hospitality, Costar, Curious Medicine), with a doubles case
    in the test harness.
-3. Comatose as "asleep" for Dream Eater, Hex, Sleep Talk and Snore; then Soul-Heart and Cheek Pouch.
+3. Soul-Heart, Cheek Pouch and Ripen.
