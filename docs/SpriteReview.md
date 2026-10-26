@@ -13,8 +13,8 @@ palettes of their own). A sample of every 8th species of #1–493 was checked to
 
 | # | Pokémon | Sprite | Problem | Before #157 too? | Fix |
 |---|---|---|---|---|---|
-| 503 | Samurott | front, both shinies | **Scrambled in battle**: noise over the whole sprite | no: PR #157's PokeAPI front | ready (see "Scrambled sprites") |
-| 663 | Talonflame | back, both shinies | **Scrambled in battle** | **yes** | ready |
+| 503 | Samurott | front, both shinies | **Scrambled in battle**: noise over the whole sprite | no: PR #157's PokeAPI front | **fixed** (see "Scrambled sprites") |
+| 663 | Talonflame | back, both shinies | **Scrambled in battle** | **yes** | **fixed** |
 | 933 | Naclstack | back, shiny back | **Bulbasaur's back** (the pack's placeholder) | yes, the front too | needs art |
 | 946 | Bramblin | back, shiny back | **Bulbasaur's back** | yes, the front too | needs art |
 | 947 | Brambleghast | back, shiny back | **Bulbasaur's back** | yes, the front too | needs art |
@@ -28,7 +28,7 @@ palettes of their own). A sample of every 8th species of #1–493 was checked to
 | 669 | Flabébé | shiny front | Patchy: white holes, parts missing | no | see "Shinies drawn apart" |
 | 670 | Floette | shiny front | Patchy: white holes, a black outline in places | no | see "Shinies drawn apart" |
 | 671 | Florges | shiny front | Washed out: the head is a flat pink | no | see "Shinies drawn apart" |
-| 668 | Pyroar | shiny front | A black patch on a back leg | no | fixed by the converter patch |
+| 668 | Pyroar | shiny front | A black patch on a back leg | no | **fixed** (the shiny is lined up first) |
 
 ### Scrambled sprites (Samurott, Talonflame)
 
@@ -38,8 +38,8 @@ The game unscrambles each battle sprite with a key it takes from the sprite's ow
 - Talonflame's back: a wing tip. It was scaled to 88% to fit 80×80.
 
 Either comes out as noise. Clearing those few pixels (1 for Samurott, 2 for Talonflame) fixes both. The converter
-fix and a CI check (`tools/test/check_battle_sprites.py`) are ready for the next PR. On main the check finds both,
-and Hisuian Samurott's new front (PR #159) too.
+fix and a CI check (`tools/test/check_battle_sprites.py`) are in: the converters clear those pixels (Hisuian
+Samurott's front, from PR #159, needed it too), and CI fails on any battle sprite that draws there.
 
 ### Bulbasaur's back (9 species)
 
@@ -89,9 +89,9 @@ leans toward the shiny colours. So the estimates look sound, but they are estima
 - **Zeraora:** on main its shiny front has teal claws, because the pack's shiny was drawn 1 pixel off. PR #157
   replaces that front, and its PokeAPI pair lines up.
 
-## The converter patch (the next PR)
+## The converter fixes (in)
 
-The patch is ready. It changes `tools/sprites/convert_battle_sprites.py` and adds the CI check:
+They are in `tools/sprites/convert_battle_sprites.py` and `convert_form_sprites.py`, with the CI check:
 - **Corner:** clears the top-left corner (Samurott, Talonflame).
 - **Alignment:** lines each shiny up on its front before reading its colours.
 - **Split colours:** where one normal colour becomes two shiny colours, a spare palette entry, if there is one,
