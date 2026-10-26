@@ -7,7 +7,8 @@ _000:
     CheckSubstitute BTLSCR_DEFENDER, _fail
     CompareMonDataToValue OPCODE_EQU, BTLSCR_DEFENDER, BATTLEMON_ABILITY, ABILITY_SIMPLE, _fail
     CompareMonDataToValue OPCODE_EQU, BTLSCR_DEFENDER, BATTLEMON_ABILITY, ABILITY_TRUANT, _fail
-    CompareMonDataToValue OPCODE_EQU, BTLSCR_DEFENDER, BATTLEMON_ABILITY, ABILITY_MULTITYPE, _fail
+    // Gen IX's list of abilities that can't be overwritten
+    CompareVarToValue OPCODE_NEQ, BTLVAR_SOVEREIGN_CANT_SUPPRESS_DEFENDER, 0, _fail
     // Sovereign (item 11): an Ability Shield keeps its holder's Ability
     CompareVarToValue OPCODE_NEQ, BTLVAR_SOVEREIGN_ABILITY_SHIELD_DEFENDER, 0, _sovereign_ability_shield
     Call BATTLE_SUBSCRIPT_ATTACK_MESSAGE_AND_ANIMATION

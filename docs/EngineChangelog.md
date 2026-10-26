@@ -4,6 +4,24 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): Skill Swap, Simple Beam and Worry Seed use Gen IX's ability lists
+
+For players:
+- **Skill Swap** fails when either Pokémon's ability can't be swapped. That is Showdown's `failskillswap` list: Wonder Guard, Illusion, Neutralizing Gas, Protosynthesis, Quark Drive, Commander, Hunger Switch, the form abilities and the rest.
+  - Gulp Missile can be swapped.
+  - The vanilla Griseous Orb check is gone.
+- **Simple Beam** fails against an ability that can't be overwritten, Gen IX's list (Disguise, Schooling, Zen Mode...). Before, only Multitype was blocked.
+- **Worry Seed** fails against the same list, against Truant, and against a target that already has Insomnia. The vanilla Griseous Orb check is gone.
+- **Code:**
+  - `Sovereign_AbilityCantBeSwapped` holds the Skill Swap list. A new read-only var gives it to the script: `BTLVAR_SOVEREIGN_SKILL_SWAP_FAILS`.
+  - Gastro Acid's var was renamed `BTLVAR_SOVEREIGN_CANT_SUPPRESS_DEFENDER`. Simple Beam and Worry Seed now use it too.
+
+**Verification:** test and release ROMs built; the battle-script size check passes.
+- Every case below was a wild battle in which Smeargle used the move.
+- **Skill Swap:** against a Ninjask with Speed Boost, "SMEARGLE swapped abilities with its target!". Against Shedinja (Wonder Guard): "But it failed!".
+- **Simple Beam:** against Mimikyu (Disguise): "But it failed!".
+- **Worry Seed:** against Ninjask, "The wild NINJASK acquired Insomnia!". Against a Ninjask that already had Insomnia: "But it failed!".
+
 ## Item 11 (effect fidelity): moves, batch 11b (Electrify, Ion Deluge, Plasma Fists, Fairy Lock, Octolock, Spotlight, Teatime)
 
 For players, seven more placeholder moves now work:

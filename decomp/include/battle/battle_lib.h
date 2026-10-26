@@ -1273,6 +1273,7 @@ BOOL Sovereign_CourtChange(BattleContext *battleCtx);
 BOOL Sovereign_TidyUpHazards(BattleContext *battleCtx);
 BOOL Sovereign_AbilityCantBeSuppressed(int ability);
 BOOL Sovereign_AbilityCantBeCopied(int ability);
+BOOL Sovereign_AbilityCantBeSwapped(int ability);
 int Sovereign_Doodle(BattleSystem *battleSys, BattleContext *battleCtx);
 BOOL Sovereign_CoreEnforcer(BattleContext *battleCtx, int battler);
 int Sovereign_ElectrifyType(BattleContext *battleCtx, int battler, int move, int type);

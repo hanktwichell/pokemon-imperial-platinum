@@ -5504,6 +5504,35 @@ BOOL Sovereign_AbilityCantBeCopied(int ability)
     return FALSE;
 }
 
+// Sovereign (item 11): abilities Skill Swap can't swap, on either side. Gen IX's list.
+BOOL Sovereign_AbilityCantBeSwapped(int ability)
+{
+    if (ability == ABILITY_GULP_MISSILE) {
+        return FALSE;
+    }
+
+    if (Sovereign_AbilityCantBeSuppressed(ability)) {
+        return TRUE;
+    }
+
+    switch (ability) {
+    case ABILITY_COMMANDER:
+    case ABILITY_EMBODY_ASPECT:
+    case ABILITY_HUNGER_SWITCH:
+    case ABILITY_ILLUSION:
+    case ABILITY_NEUTRALIZING_GAS:
+    case ABILITY_POISON_PUPPETEER:
+    case ABILITY_PROTOSYNTHESIS:
+    case ABILITY_QUARK_DRIVE:
+    case ABILITY_TERAFORM_ZERO:
+    case ABILITY_TERA_SHELL:
+    case ABILITY_WONDER_GUARD:
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
 // Sovereign (item 11): gives a battler a new ability, as Role Play does: Truant starts on the right foot and Slow Start
 // starts over.
 static void Sovereign_SetAbility(BattleContext *battleCtx, int battler, int ability)
