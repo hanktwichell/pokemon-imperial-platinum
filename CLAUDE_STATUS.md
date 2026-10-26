@@ -6657,3 +6657,49 @@ patch among them) and Zeraora's old pack shiny.
 1. Review the 368 form fronts in battle, and add what looks wrong to `docs/SpriteReview.md`.
 2. After #161: shiny line-up on top of the colour pairs, with the sprite check run again.
 3. Finish the Egg run, and run `battle_all_species.py` on the new sprites, with the heap check.
+
+## CB-0146 — 2026-10-26, 2:00 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: owner decisions 46 and 47 (E10), from Claude A's CA-0065 notes.** PR #162 is merged.
+
+- **Decision 46, Route 224 before the Elite Four (as in Renegade):**
+  - Victory Road 1F's collector no longer blocks the back area post-game. He stands by the way out to the League
+    (38, 18), and a trigger beside him sends the player back to Route 224.
+  - Once the counterpart by Route 224's tablet is beaten, he's gone. The on-transition script checks the six trainer
+    flags, so no new save data is needed.
+  - The level cap gets a Route 224 step (Lv. 70, before Barry's 71). The cap table's trainer lists are sized from
+    the longest step (6).
+  - Shaymin, Enamorus and Pecharunt stay post-game.
+- **Decision 47, Darach mid-game:**
+  - Asked the owner how, since Sovereign's lobby was post-game; they chose "open the lobby mid-game".
+  - Route 221's workers are gone, so the lobby opens once the player can Surf there.
+  - The park worker and Oak's first visit wait for the Hall of Fame.
+  - Darach and Caitlin wait until their scene is done, and are back after the Hall of Fame with a line each.
+  - Route 218's gate to Canalave City wants the Tea, as in Renegade. Its existing var becomes 2 once the policeman
+    has had it, so there's no new flag.
+- **Tested** in a test build, with scripted runs (`$S/test46.py`, `$S/test47.py`, `$S/test47b.py`):
+  - The collector stops the player from both sides, and is gone once the counterpart is beaten.
+  - The lobby works before and after the Hall of Fame.
+  - The gate stops the player without the Tea, and lets them on into Canalave City with it.
+  - The CI checks pass.
+- `docs/SpriteReview.md` has the shiny line-up's measured results on #161's sprites. The patch waits for #161.
+
+**Files modified:**
+- Decision 46: `decomp/res/field/{events/events_victory_road_1f.json,scripts/scripts_victory_road_1f.s}`,
+  `decomp/res/text/victory_road_1f.json`, `data/level_caps.yaml`, `decomp/include/data/level_caps.h`,
+  `tools/engine/gen_level_caps.py`, `tools/test/check_object_tiles.py`, `docs/QualityOfLife.md`,
+  `docs/BossFights_MegaPicks.md`
+- Decision 47: `decomp/res/field/scripts/scripts_{route_221,pal_park_lobby,init_pal_park_lobby,route_218_gate_to_canalave_city}.s`,
+  `decomp/res/field/events/events_{pal_park_lobby,route_218_gate_to_canalave_city}.json`,
+  `decomp/res/text/{pal_park_lobby,route_218_gate_to_canalave_city}.json`, `tools/engine/gen_regional_forms_park.py`,
+  `docs/RegionalFormsPark.md`
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `docs/SpriteReview.md`, `CLAUDE_STATUS.md`
+
+**For Claude A:** `docs/ProjectStatus.md` isn't touched here; your #161 records decisions 46–50 and removes the two
+open questions. The shiny line-up patch is ready for when #161 is merged.
+
+**Next 3 steps:**
+1. After #161 merges: the shiny line-up PR (13 sprite folders), with the sprite check run on them.
+2. Finish `battle_all_species.py` on this build (the worker restart cut the first run at 696 of 1,510, all ok so
+   far), and write up the trainer, evolution, Egg and species runs with the heap check.
+3. Playtest the Renegade ports in story order, Route 218's gate and the Victory Road collector first.

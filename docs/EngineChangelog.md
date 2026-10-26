@@ -4,6 +4,40 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## E10 — Darach mid-game, and the Tea for Route 218's gate (decision 47, as in Renegade)
+
+For players: the Regional Forms Park's lobby on Route 221 is open as soon as the player can Surf there. Darach and Lady
+Caitlin wait in it, and Darach's battle (Lv. 48) ends with the Tea. Route 218's gate to Canalave City is closed until
+the player brings the thirsty policeman that Tea. The park itself still opens after the Hall of Fame.
+
+- **Route 221:** the two workers no longer stand at the lobby door. Renegade opens the lobby with an early National
+  Dex; in Sovereign that check means the Hall of Fame (decision 21), so the workers are simply gone.
+- **The lobby:**
+  - Before the Hall of Fame, the worker says the park isn't open yet. Oak's first visit (his scene on entering, with
+    the Trainer Counter app) waits for the Hall of Fame too.
+  - Darach and Caitlin's scene is as before (E10 part 33). It's now hidden by a map-local flag, worked out on entering:
+    they're there until the scene is done, and back after the Hall of Fame. Each then has a line of their own.
+  - Darach's greeting, about the park's Pokémon seen from the window, fits both times.
+  - The other visitors are there from the start, as in Renegade.
+- **Route 218's gate to Canalave City:**
+  - The policeman moves up a tile, to (2, 4), as in Renegade.
+  - A step onto the gate's west column gets his "!". Without the Tea, he gives Renegade's "the road's closed" line,
+    which now points to the park on Route 221, and the player steps back.
+  - With the Tea, he drinks it (the Tea is used up) and lets the player through. After that he talks about how good
+    it was.
+  - No new save data: the gate's own var, which the scientist's Pokédex upgrade sets from 0 to 1, becomes 2 once he's
+    had the Tea. The trigger waits on 0 and 1.
+- `docs/RegionalFormsPark.md` (and its generator) says when the lobby and the park open.
+- **Verification** in a test build:
+  - From Route 221, the player walks north into the lobby. Before the Hall of Fame: no Oak, and the worker says the
+    park isn't open.
+  - Without the Tea, the gate's policeman stops the player, and further steps west are stopped again.
+  - Darach's scene, then the gate: the policeman takes the Tea and the player walks on into Canalave City.
+  - After the Hall of Fame, Oak's first visit plays on entering, Darach is back with his line, and the worker offers
+    the park.
+  - The CI checks pass.
+
+
 ## E10 — Route 224 before the Elite Four (decision 46, as in Renegade)
 
 For players: Victory Road's back area and Route 224 now come before the League. The counterpart's battle by Route
