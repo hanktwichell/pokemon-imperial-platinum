@@ -4225,7 +4225,8 @@ static BOOL ScrCmd_SovereignCheckParadoxEraComplete(ScriptContext *ctx)
 // Fight Area Pokémon Center, once each (temporary placement, owner 2026-10-24): { species, form, level, signature move
 // (MOVE_NONE for none) }, in the order of his list. Given ones are bits 0-15 of VAR_SOVEREIGN_EVENT_GIFTS_1 and 16-31
 // of _2. A Mythical's event form (level 0) isn't a gift, as Mythicals never are (owner, 2026-10-23): he restyles one
-// the player caught instead, as often as asked (SovereignRestyleEventForm).
+// the player caught instead, as often as asked (SovereignRestyleEventForm). Partner Pikachu is his only Pikachu: the
+// costume and cap Pikachu are for opponents only (owner, decision 50).
 enum SovereignEventGiftField {
     EVENT_GIFT_SPECIES = 0,
     EVENT_GIFT_FORM,
@@ -4242,20 +4243,6 @@ static const u16 sSovereignEventGifts[][4] = {
     { SPECIES_GIMMIGHOUL, 1, 20, MOVE_NONE }, // Roaming Form Gimmighoul
     { SPECIES_PIKACHU, 14, 5, MOVE_ZIPPY_ZAP }, // Partner Pikachu
     { SPECIES_EEVEE, 1, 5, MOVE_VEEVEE_VOLLEY }, // Partner Eevee
-    { SPECIES_PIKACHU, 6, 20, MOVE_NONE }, // Cosplay Pikachu
-    { SPECIES_PIKACHU, 1, 20, MOVE_METEOR_MASH }, // Pikachu Rock Star
-    { SPECIES_PIKACHU, 2, 20, MOVE_ICICLE_CRASH }, // Pikachu Belle
-    { SPECIES_PIKACHU, 3, 20, MOVE_DRAINING_KISS }, // Pikachu Pop Star
-    { SPECIES_PIKACHU, 4, 20, MOVE_ELECTRIC_TERRAIN }, // Pikachu Ph.D.
-    { SPECIES_PIKACHU, 5, 20, MOVE_FLYING_PRESS }, // Pikachu Libre
-    { SPECIES_PIKACHU, 7, 25, MOVE_NONE }, // Original Cap Pikachu
-    { SPECIES_PIKACHU, 8, 25, MOVE_NONE }, // Hoenn Cap Pikachu
-    { SPECIES_PIKACHU, 9, 25, MOVE_NONE }, // Sinnoh Cap Pikachu
-    { SPECIES_PIKACHU, 10, 25, MOVE_NONE }, // Unova Cap Pikachu
-    { SPECIES_PIKACHU, 11, 25, MOVE_NONE }, // Kalos Cap Pikachu
-    { SPECIES_PIKACHU, 12, 25, MOVE_NONE }, // Alola Cap Pikachu
-    { SPECIES_PIKACHU, 13, 25, MOVE_NONE }, // Partner Cap Pikachu
-    { SPECIES_PIKACHU, 15, 25, MOVE_NONE }, // World Cap Pikachu
     { SPECIES_PICHU, 1, 30, MOVE_NONE }, // Spiky-eared Pichu
 };
 
