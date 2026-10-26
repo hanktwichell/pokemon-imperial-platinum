@@ -4,6 +4,34 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): damage-halving Berries with Unnerve, Ripen and Cheek Pouch; Hospitality, Costar, Curious Medicine
+
+For players:
+- **The damage-halving Berries** (Occa, Passho and the rest) now work with three abilities, which already worked with the other Berries:
+  - A foe's Unnerve (or As One) keeps the holder from eating them.
+  - Ripen quarters the damage instead of halving it.
+  - Cheek Pouch restores a third of the holder's max HP once it eats one. As in Showdown, the heal comes before the hit's damage.
+- **Hospitality (Poltchageist, Sinistcha):** as the holder enters, its partner restores a quarter of its max HP ("{0} drank down all the matcha that {1} made!").
+- **Costar (Flamigo):** as the holder enters, it copies its partner's stat stages, Focus Energy, Dragon Cheer and Laser Focus ("{0} copied {1}'s stat changes!").
+- **Curious Medicine (Galarian Slowking):** as the holder enters, its partner's stat stages are reset ("{0}'s stat changes were removed!").
+- These three only work in double battles.
+- **Code:**
+  - `subscript_type_resist_berry` has the Berry checks. A new read-only var, `BTLVAR_SOVEREIGN_UNNERVED_MSG_TEMP`, reports Unnerve.
+  - The Cheek Pouch heal reuses `BTLVAR_HP_CALC_TEMP`, so the hit's damage waits in `BTLVAR_CALC_TEMP`.
+  - The three entry abilities sit beside Screen Cleaner in `BattleSystem_TriggerEffectOnSwitch`.
+
+**Verification:** test and release ROMs built.
+- **Berries:** a Lv. 50 Scizor (134 HP) was hit by a Lv. 100 Ninjask's Ember (4× effective), without god mode:
+  - With an Occa Berry: 134 → 52 (82 damage). Without the Berry: knocked out.
+  - Against Unnerve: knocked out, and the Berry stayed uneaten.
+  - With Ripen: 134 → 93 (41 damage).
+  - With Cheek Pouch at 60% HP: 80 → 124 ("SCIZOR restored HP using its Cheek Pouch!"), then 124 → 42.
+- **Entry abilities**, in a double battle against the Twins Liv & Liz:
+  - **Hospitality:** with Snorlax at 112/225 HP and Sinistcha: "SNORLAX drank down all the matcha that SINISTCHA made!", 112 → 168. At full HP, no message.
+  - **Costar:** a Flamigo with Costar showed "FLAMIGO copied SNORLAX's stat changes!".
+  - **Curious Medicine:** a Galarian Slowking showed "SNORLAX's stat changes were removed!".
+  - In these battles both sides start with no stat changes, so only the messages were checked, not the copying or the reset.
+
 ## Item 11 (effect fidelity): Imposter, Mimicry, Opportunist, Cud Chew
 
 For players: four more abilities work.

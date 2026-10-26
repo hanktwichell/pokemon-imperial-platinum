@@ -7669,3 +7669,23 @@ The checklist is now 338 exact, 13 approximate, 29 placeholders.
 1. Abilities still not done: Illusion, Symbiosis, Dancer, Receiver/Power of Alchemy, Neutralizing Gas, Curious Medicine, Commander, Costar, Hospitality, Embody Aspect, Teraform Zero, Ball Fetch. Of these, Curious Medicine, Hospitality, Costar and Embody Aspect are the simplest.
 2. The last approximate moves: Round, Expanding Force, Dragon Darts and Parabolic Charge (doubles), Shell Side Arm, Autotomize.
 3. Owner decision pinned in CB-0158: Burn Up and Double Shock (typeless).
+
+## CB-0173 — 2026-10-26, 12:09 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: damage-halving Berries with Unnerve, Ripen and Cheek Pouch; Hospitality, Costar and Curious Medicine.**
+PR #189 (Imposter, Mimicry, Opportunist, Cud Chew) is merged.
+- Unnerve and As One now block the damage-halving Berries (Occa...). Ripen quarters their damage, and Cheek Pouch heals when one is eaten. Unnerve, both As One forms and Cheek Pouch are now marked "yes" in the ability checklist.
+- Hospitality, Costar and Curious Medicine work on entry in double battles.
+- The test harness can now run double battles (a test script in this session's scratchpad: SELECT+R against a doubles trainer, with the lead and partner set through the test hooks).
+
+**Files modified:**
+- `decomp/res/battle/scripts/subscripts/subscript_type_resist_berry.s`, `decomp/src/battle/battle_script.c` (a new var), `decomp/generated/battle_script_vars.txt`.
+- `decomp/src/battle/battle_lib.c` (the three entry abilities).
+- New: `subscript_sovereign_hospitality`, `_costar`, `_curious_medicine`. Also changed: the subscripts' `meson.build`, `sub_seq.order` and `decomp/generated/battle_subscripts.txt`.
+- `decomp/res/text/battle_strings.json` (17 messages).
+- `tools/engine/gen_abilities.py`, `docs/AbilityChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Abilities still to do: Illusion, Symbiosis, Dancer, Receiver/Power of Alchemy, Neutralizing Gas, Commander, Ball Fetch, and Ripen with Jaboca, Rowap and Leppa. Embody Aspect and Teraform Zero need Terastallization, which the game doesn't have.
+2. The last approximate moves: Round, Expanding Force, Dragon Darts and Parabolic Charge (doubles, now testable), Shell Side Arm, Autotomize.
+3. Owner decision pinned in CB-0158: Burn Up and Double Shock (typeless).

@@ -106,13 +106,31 @@ _240:
     CompareVarToValue OPCODE_NEQ, BTLVAR_CALC_TEMP, 0x00000008, _262
 
 _245:
+    // Sovereign (item 11): a foe's Unnerve (or As One) keeps the holder from eating it.
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_UNNERVED_MSG_TEMP, TRUE, _262
     PlayBattleAnimation BTLSCR_MSG_TEMP, BATTLE_ANIMATION_HELD_ITEM
     Wait 
     DivideVarByValue BTLVAR_HP_CALC_TEMP, 2
+    // Sovereign (item 11): Ripen doubles the Berry's effect: a quarter of the damage.
+    CheckAbility CHECK_NOT_HAVE, BTLSCR_MSG_TEMP, ABILITY_RIPEN, _sovereign_not_ripen
+    DivideVarByValue BTLVAR_HP_CALC_TEMP, 2
+
+_sovereign_not_ripen:
     // The {0} weakened {1}’s power!
     PrintMessage BattleStrings_Text_TheItemWeakenedMovesPower, TAG_ITEM_MOVE, BTLSCR_MSG_BATTLER_TEMP, BTLSCR_ATTACKER
     Wait 
     WaitButtonABTime 30
+    // Sovereign (item 11): Cheek Pouch restores a third of its max HP once the Berry is eaten, before the hit's damage
+    // (as in Showdown). Its heal uses BTLVAR_HP_CALC_TEMP, so the damage waits in BTLVAR_CALC_TEMP.
+    UpdateVarFromVar OPCODE_SET, BTLVAR_CALC_TEMP, BTLVAR_HP_CALC_TEMP
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_CHEEK_POUCH_MSG_TEMP, FALSE, _sovereign_no_pouch
+    RemoveItem BTLSCR_MSG_TEMP
+    Call BATTLE_SUBSCRIPT_SOVEREIGN_CHEEK_POUCH
+    UpdateVarFromVar OPCODE_SET, BTLVAR_HP_CALC_TEMP, BTLVAR_CALC_TEMP
+    End 
+
+_sovereign_no_pouch:
+    UpdateVarFromVar OPCODE_SET, BTLVAR_HP_CALC_TEMP, BTLVAR_CALC_TEMP
     RemoveItem BTLSCR_MSG_TEMP
 
 _262:
