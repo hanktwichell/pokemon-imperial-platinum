@@ -10200,6 +10200,76 @@
         "The foe’s {STRVAR_1 1, 0, 0} is about to be\n",
         "attacked by its {STRVAR_1 8, 1, 0}!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignHeldUpRedCard_AllyAlly",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} held up its Red Card\n",
+        "against {STRVAR_1 1, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignHeldUpRedCard_AllyWild",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} held up its Red Card\n",
+        "against the wild {STRVAR_1 1, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignHeldUpRedCard_AllyFoe",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} held up its Red Card\n",
+        "against the foe’s {STRVAR_1 1, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignHeldUpRedCard_WildAlly",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} held up its\n",
+        "Red Card against {STRVAR_1 1, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignHeldUpRedCard_WildWild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} held up its\n",
+        "Red Card against the wild {STRVAR_1 1, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignHeldUpRedCard_FoeAlly",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} held up its\n",
+        "Red Card against {STRVAR_1 1, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignHeldUpRedCard_FoeFoe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} held up its\n",
+        "Red Card against the foe’s {STRVAR_1 1, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignSwitchedOutWithEjectButton_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is switched out\n",
+        "with the Eject Button!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignSwitchedOutWithEjectButton_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} is switched out\n",
+        "with the Eject Button!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignSwitchedOutWithEjectButton_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} is switched out\n",
+        "with the Eject Button!"
+      ]
     }
   ]
 }
