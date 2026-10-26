@@ -7641,3 +7641,31 @@ The checklist is now 338 exact, 13 approximate, 29 placeholders.
 2. The last approximate moves: Round, Expanding Force, Dragon Darts and Parabolic Charge (doubles), Shell Side Arm,
    Autotomize.
 3. Owner decision pinned in CB-0158: Burn Up and Double Shock (typeless).
+
+## CB-0172 — 2026-10-26, 11:46 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: Imposter, Mimicry, Opportunist and Cud Chew.** PR #188 (the veils) is merged.
+- Imposter transforms Ditto into the foe facing it as it enters.
+- Mimicry gives the holder the terrain's type, and its own types back when the terrain ends.
+- Opportunist copies foes' stat rises every time.
+- Cud Chew eats a Berry again at the end of the next turn.
+- All four were checked in harness battles (docs/EngineChangelog.md).
+
+**Files modified:**
+- `decomp/src/battle/battle_script.c`:
+  - `Sovereign_TransformInto` and the new `SovereignTransform` command.
+  - `BtlCmd_RemoveItem` arms Cud Chew.
+- `decomp/include/data/scripts/btlcmd.h`, `decomp/asm/macros/btlcmd.inc`.
+- `decomp/src/battle/battle_lib.c`:
+  - Imposter in the Trace step, Mimicry beside the Terrain Seeds.
+  - Cud Chew in `BattleSystem_TriggerTurnEndAbility`.
+  - Opportunist in the Mirror Herb helpers.
+- `decomp/include/battle/battle_mon.h` (`sovereignMimicryTerrain`), `decomp/include/battle/battle_context.h` (Cud Chew's Berry and turn).
+- New subscripts: `subscript_sovereign_imposter`, `_mimicry`, `_opportunist`, `_cud_chew`. Also changed: the subscripts' `meson.build`, `sub_seq.order` and `decomp/generated/battle_subscripts.txt`.
+- `decomp/res/text/battle_strings.json` (3 messages: "{0} returned to its original type!").
+- `tools/engine/gen_abilities.py`, `docs/AbilityChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Abilities still not done: Illusion, Symbiosis, Dancer, Receiver/Power of Alchemy, Neutralizing Gas, Curious Medicine, Commander, Costar, Hospitality, Embody Aspect, Teraform Zero, Ball Fetch. Of these, Curious Medicine, Hospitality, Costar and Embody Aspect are the simplest.
+2. The last approximate moves: Round, Expanding Force, Dragon Darts and Parabolic Charge (doubles), Shell Side Arm, Autotomize.
+3. Owner decision pinned in CB-0158: Burn Up and Double Shock (typeless).

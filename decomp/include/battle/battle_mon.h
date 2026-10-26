@@ -54,6 +54,9 @@ typedef struct MoveEffectsData {
     int itemHPRecovery;
 } MoveEffectsData;
 
+// Sovereign (item 11): BattleMon.sovereignMimicryTerrain before Mimicry has looked at the terrain.
+#define SOVEREIGN_MIMICRY_UNSEEN 7
+
 typedef struct BattleMon {
     u16 species;
     u16 attack;
@@ -101,6 +104,7 @@ typedef struct BattleMon {
     u32 sovereignIceFaceHail : 1; // Sovereign (FM): Ice Face has seen this snow (it restores the ice once per snow)
     u32 sovereignTeraShell : 1; // Sovereign (FM): Tera Shell works on the move hitting it now (it had full HP at its first hit)
     u32 sovereignBalloonAnnounced : 1; // Sovereign (item 11): its Air Balloon has been announced since it switched in
+    u32 sovereignMimicryTerrain : 3; // Sovereign (item 11): the terrain Mimicry last saw (Sovereign_MimicryTerrain), 7 for none yet
 
     u8 ppCur[LEARNED_MOVES_MAX];
     u8 ppUps[LEARNED_MOVES_MAX];

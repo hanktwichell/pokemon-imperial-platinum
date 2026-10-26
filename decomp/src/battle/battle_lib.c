@@ -119,6 +119,8 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
     battleCtx->battleMons[battler].sovereignBoosterEnergy = FALSE;
     battleCtx->battleMons[battler].sovereignProteanUsed = FALSE;
     battleCtx->battleMons[battler].sovereignBalloonAnnounced = FALSE; // Sovereign (item 11)
+    battleCtx->battleMons[battler].sovereignMimicryTerrain = SOVEREIGN_MIMICRY_UNSEEN; // Sovereign (item 11)
+    battleCtx->sovereignCudChewBerry[battler] = ITEM_NONE; // Sovereign (item 11)
     battleCtx->battleMons[battler].sovereignEntryAnnounced = FALSE;
     battleCtx->battleMons[battler].sovereignHPFormChecked = FALSE;
     battleCtx->battleMons[battler].sovereignIceFaceHail = FALSE;
@@ -4147,6 +4149,8 @@ BOOL Sovereign_AromaVeilBlocks(BattleSystem *battleSys, BattleContext *battleCtx
         && Sovereign_VeilHolder(battleSys, battleCtx, attacker, defender, ABILITY_AROMA_VEIL) != BATTLER_NONE;
 }
 
+static BOOL BattleSystem_FeedBerryToAttacker(BattleSystem *battleSys, BattleContext *battleCtx, int battler, BOOL stuffCheeks);
+
 BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
     BOOL result = FALSE;
@@ -4203,6 +4207,27 @@ BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem *battleSys, BattleContext *
             battleCtx->msgBattlerTemp = battler;
             battleCtx->msgItemTemp = battleCtx->battleMons[battler].heldItem;
             subscript = subscript_sovereign_harvest;
+            result = TRUE;
+        }
+        break;
+
+    // Sovereign (item 11): Cud Chew eats the Berry its holder ate (BtlCmd_RemoveItem) again, at the end of the next
+    // turn: the end of a later turn than the one it was eaten in. It eats it as Stuff Cheeks does, with the holder as the
+    // eater, whatever it holds now.
+    case ABILITY_CUD_CHEW:
+        if (battleCtx->battleMons[battler].curHP
+            && battleCtx->sovereignCudChewBerry[battler] != ITEM_NONE
+            && battleCtx->sovereignCudChewTurn[battler] < battleCtx->totalTurns) {
+            u16 heldItem = battleCtx->battleMons[battler].heldItem;
+
+            battleCtx->battleMons[battler].heldItem = battleCtx->sovereignCudChewBerry[battler];
+            battleCtx->sovereignCudChewBerry[battler] = ITEM_NONE;
+            battleCtx->attacker = battler;
+            BattleSystem_FeedBerryToAttacker(battleSys, battleCtx, battler, TRUE);
+            battleCtx->battleMons[battler].heldItem = heldItem;
+            BattleMon_CopyToParty(battleSys, battleCtx, battler);
+            battleCtx->msgBattlerTemp = battler;
+            subscript = subscript_sovereign_cud_chew;
             result = TRUE;
         }
         break;
@@ -4530,6 +4555,28 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
 
                 battleCtx->msgDefender = ChooseTraceTarget(battleSys, battleCtx, defender1, defender2);
 
+                // Sovereign (item 11): Imposter transforms the holder into the foe facing it as it enters, by
+                // Transform's rules: not into a Pokemon behind a Substitute or already transformed. It checks once per
+                // entry (traceAnnounced: no holder has Trace). The copied ability's entry effect (Intimidate...) follows.
+                if (battleCtx->battleMons[battler].traceAnnounced == FALSE
+                    && battleCtx->battleMons[battler].curHP
+                    && Battler_Ability(battleCtx, battler) == ABILITY_IMPOSTER) {
+                    int target = BattleSystem_GetEnemyInSlot(battleSys, battler, (BattleSystem_GetBattlerType(battleSys, battler) & 2) ^ 2);
+
+                    battleCtx->battleMons[battler].traceAnnounced = TRUE;
+
+                    if (target < maxBattlers
+                        && battleCtx->battleMons[target].curHP
+                        && (battleCtx->battleMons[target].statusVolatile & (VOLATILE_CONDITION_SUBSTITUTE | VOLATILE_CONDITION_TRANSFORM)) == FALSE
+                        && (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_TRANSFORM) == FALSE) {
+                        battleCtx->msgBattlerTemp = battler;
+                        battleCtx->msgDefender = target;
+                        subscript = subscript_sovereign_imposter;
+                        result = SWITCH_IN_CHECK_RESULT_BREAK;
+                        break;
+                    }
+                }
+
                 if (battleCtx->battleMons[battler].traceAnnounced == FALSE
                     && battleCtx->msgDefender != BATTLER_NONE
                     && battleCtx->battleMons[battler].curHP
@@ -4749,6 +4796,36 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                 terrain = battleCtx->fieldConditionsMask & FIELD_CONDITION_TERRAIN;
                 stat = (item == ITEM_ELECTRIC_SEED || item == ITEM_GRASSY_SEED) ? BATTLE_STAT_DEFENSE : BATTLE_STAT_SP_DEFENSE;
 
+                // Sovereign (item 11): Mimicry gives its holder the type of a terrain that starts (Electric, Grass,
+                // Fairy, Psychic) and its own types back when the terrain ends. It acts only when the terrain changes
+                // (or as it enters), so a type a move gave it (Soak...) stays until then.
+                if (battleCtx->battleMons[battler].curHP && Battler_Ability(battleCtx, battler) == ABILITY_MIMICRY) {
+                    int seen = (terrain & FIELD_CONDITION_TERRAIN_ELECTRIC) ? 1
+                        : (terrain & FIELD_CONDITION_TERRAIN_GRASSY)        ? 2
+                        : (terrain & FIELD_CONDITION_TERRAIN_MISTY)         ? 3
+                        : (terrain & FIELD_CONDITION_TERRAIN_PSYCHIC)       ? 4
+                                                                            : 0;
+
+                    if (battleCtx->battleMons[battler].sovereignMimicryTerrain != seen) {
+                        static const u8 sMimicryTypes[] = { TYPE_NORMAL, TYPE_ELECTRIC, TYPE_GRASS, TYPE_FAIRY, TYPE_PSYCHIC };
+                        Pokemon *mon = BattleSystem_GetPartyPokemon(battleSys, battler, battleCtx->selectedPartySlot[battler]);
+                        int type1 = seen ? sMimicryTypes[seen] : Pokemon_GetValue(mon, MON_DATA_TYPE_1, NULL);
+                        int type2 = seen ? sMimicryTypes[seen] : Pokemon_GetValue(mon, MON_DATA_TYPE_2, NULL);
+
+                        battleCtx->battleMons[battler].sovereignMimicryTerrain = seen;
+
+                        if (battleCtx->battleMons[battler].type1 != type1 || battleCtx->battleMons[battler].type2 != type2) {
+                            battleCtx->battleMons[battler].type1 = type1;
+                            battleCtx->battleMons[battler].type2 = type2;
+                            battleCtx->msgBattlerTemp = battler;
+                            battleCtx->msgTemp = seen ? type1 : 0xFF; // 0xFF: back to its own types
+                            subscript = subscript_sovereign_mimicry;
+                            result = TRUE;
+                            break;
+                        }
+                    }
+                }
+
                 if (battleCtx->battleMons[battler].curHP
                     && item == ITEM_ROOM_SERVICE
                     && (battleCtx->fieldConditionsMask & FIELD_CONDITION_TRICK_ROOM)
@@ -4810,9 +4887,10 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                     }
                 }
 
-                // Sovereign (item 11): a Mirror Herb copies the foes' stat rises (checked after every move too).
+                // Sovereign (item 11): a Mirror Herb or Opportunist copies the foes' stat rises (checked after every move
+                // too).
                 if (Sovereign_SetupMirrorHerb(battleCtx, battler)) {
-                    subscript = subscript_sovereign_mirror_herb;
+                    subscript = Battler_HeldItem(battleCtx, battler) == ITEM_MIRROR_HERB ? subscript_sovereign_mirror_herb : subscript_sovereign_opportunist;
                     result = TRUE;
                     break;
                 }
@@ -8748,28 +8826,30 @@ BOOL Sovereign_SetupAdrenalineOrb(BattleContext *battleCtx, int battler)
     return TRUE;
 }
 
-// Sovereign (item 11): notes a battler's stat rise for the Mirror Herb holders on the other side, which copy it once the
-// move (or the switch-in) is over. Not a rise a Mirror Herb made itself.
+// Sovereign (item 11): notes a battler's stat rise for the Mirror Herb holders and Opportunist Pokemon on the other side,
+// which copy it once the move (or the switch-in) is over. Not a rise a Mirror Herb or Opportunist made itself.
 void Sovereign_NoteMirrorHerbRise(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int stat, int stages)
 {
     int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
 
     if (stages <= 0
-        || (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_HELD_ITEM && battleCtx->battleMons[battler].heldItem == ITEM_MIRROR_HERB)) {
+        || (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_HELD_ITEM && battleCtx->battleMons[battler].heldItem == ITEM_MIRROR_HERB)
+        || (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY && Battler_Ability(battleCtx, battler) == ABILITY_OPPORTUNIST)) {
         return;
     }
 
     for (int i = 0; i < maxBattlers; i++) {
         if (BattleSystem_GetBattlerSide(battleSys, i) != BattleSystem_GetBattlerSide(battleSys, battler)
             && battleCtx->battleMons[i].curHP
-            && Battler_HeldItem(battleCtx, i) == ITEM_MIRROR_HERB) {
+            && (Battler_HeldItem(battleCtx, i) == ITEM_MIRROR_HERB || Battler_Ability(battleCtx, i) == ABILITY_OPPORTUNIST)) {
             battleCtx->sovereignMirrorHerbRises[i][stat] += stages;
         }
     }
 }
 
-// Sovereign (item 11): TRUE when a Mirror Herb holder has foes' stat rises to copy (Sovereign_NoteMirrorHerbRise). Sets
-// up subscript_sovereign_mirror_herb, which copies them (BTLVAR_SOVEREIGN_MIRROR_HERB_NEXT) and uses the herb up.
+// Sovereign (item 11): TRUE when a Mirror Herb holder or an Opportunist Pokemon has foes' stat rises to copy
+// (Sovereign_NoteMirrorHerbRise). Sets up subscript_sovereign_mirror_herb, which copies them
+// (BTLVAR_SOVEREIGN_MIRROR_HERB_NEXT) and uses the herb up, or subscript_sovereign_opportunist.
 BOOL Sovereign_SetupMirrorHerb(BattleContext *battleCtx, int battler)
 {
     int stat;
@@ -8784,7 +8864,8 @@ BOOL Sovereign_SetupMirrorHerb(BattleContext *battleCtx, int battler)
         return FALSE;
     }
 
-    if (battleCtx->battleMons[battler].curHP == 0 || Battler_HeldItem(battleCtx, battler) != ITEM_MIRROR_HERB) {
+    if (battleCtx->battleMons[battler].curHP == 0
+        || (Battler_HeldItem(battleCtx, battler) != ITEM_MIRROR_HERB && Battler_Ability(battleCtx, battler) != ABILITY_OPPORTUNIST)) {
         MI_CpuClear8(battleCtx->sovereignMirrorHerbRises[battler], sizeof(battleCtx->sovereignMirrorHerbRises[battler]));
         return FALSE;
     }

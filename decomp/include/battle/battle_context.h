@@ -358,6 +358,8 @@ struct BattleContext {
     int sovereignHPBeforeHit[MAX_BATTLERS]; // Sovereign (item 11): each battler's HP before the last hit it took (Berserk, Innards Out)
     int sovereignDragonCheer[MAX_BATTLERS]; // Sovereign (item 11): Dragon Cheer's crit stages (1, or 2 for a Dragon type)
     u8 sovereignAteBerry[MAX_BATTLERS]; // Sovereign (item 11): party slots that have eaten a Berry this battle (Belch)
+    u16 sovereignCudChewBerry[MAX_BATTLERS]; // Sovereign (item 11): the Berry Cud Chew will eat again (ITEM_NONE for none)
+    int sovereignCudChewTurn[MAX_BATTLERS]; // Sovereign (item 11): the turn it was eaten; Cud Chew eats it at the end of a later one
     int sovereignMagicRoomTurns; // Sovereign (item 11): turns of Magic Room left (held items have no effect)
     int sovereignWonderRoomTurns; // Sovereign (item 11): turns of Wonder Room left (Defense and Sp. Def swapped)
     int sovereignTelekinesis[MAX_BATTLERS]; // Sovereign (item 11): turns of Telekinesis left on each battler

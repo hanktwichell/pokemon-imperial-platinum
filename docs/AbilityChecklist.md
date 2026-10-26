@@ -32,7 +32,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 147 | Wonder Skin | Gen 5 | yes: status moves aimed at it are at most 50% accurate |
 | 148 | Analytic | Gen 5 | yes: moves ×1.3 when it moves last |
 | 149 | Illusion | Gen 5 | not yet (no battle effect) |
-| 150 | Imposter | Gen 5 | not yet (no battle effect) |
+| 150 | Imposter | Gen 5 | yes: as it enters, it transforms into the foe facing it, as by Transform (not into one behind a Substitute or already transformed); the copied ability's entry effect follows (Intimidate...) |
 | 151 | Infiltrator | Gen 5 | yes: its moves ignore a foe's Reflect, Light Screen, Substitute, Safeguard and Mist |
 | 152 | Mummy | Gen 5 | yes: an attacker that makes contact gets Mummy |
 | 153 | Moxie | Gen 5 | yes: Attack +1 for each foe its move knocks out |
@@ -132,7 +132,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 247 | Ripen | Gen 8 | partly: Berries that restore HP restore twice as much, and stat-raising Berries raise 2 stages (damage-halving and other Berries not yet) |
 | 248 | Ice Face | Gen 8 | yes: takes one physical hit; snow brings the ice back |
 | 249 | Power Spot | Gen 8 | yes: its ally's moves ×1.3 |
-| 250 | Mimicry | Gen 8 | not yet (no battle effect) |
+| 250 | Mimicry | Gen 8 | yes: its type becomes the terrain's when one starts (Electric, Grass, Fairy, Psychic), and its own types come back when the terrain ends ("…returned to its original type!") |
 | 251 | Screen Cleaner | Gen 8 | yes: removes Reflect, Light Screen and Aurora Veil on entry |
 | 252 | Steely Spirit | Gen 8 | yes: Steel moves of the holder and its ally ×1.5 |
 | 253 | Perish Body | Gen 8 | yes: contact gives it and the attacker a Perish Song count of 3 |
@@ -172,8 +172,8 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 287 | Beads of Ruin | Gen 9 | yes: Sp. Def of every other Pokémon ×0.75 |
 | 288 | OrichalcumPulse | Gen 9 | yes: sets harsh sunlight on entry; Attack ×1.33 in it |
 | 289 | Hadron Engine | Gen 9 | yes: sets Electric Terrain on entry; Sp. Atk ×1.33 in it |
-| 290 | Opportunist | Gen 9 | not yet (no battle effect) |
-| 291 | Cud Chew | Gen 9 | not yet (no battle effect) |
+| 290 | Opportunist | Gen 9 | yes: copies the stat rises its foes get, as a Mirror Herb does but every time (not a rise Opportunist or a Mirror Herb made) |
+| 291 | Cud Chew | Gen 9 | yes: it eats again the Berry it ate (not one taken by Bug Bite or Pluck), at the end of the next turn (turn 2 for a Berry eaten as the battle starts) |
 | 292 | Sharpness | Gen 9 | yes: slicing moves ×1.5 |
 | 293 | SupremeOverlord | Gen 9 | yes: 10% more power per fainted party member (up to 5) |
 | 294 | Costar | Gen 9 | not yet (no battle effect) |

@@ -225,6 +225,10 @@ IMPLEMENTED = {
     270: "yes: Attack +1 when hit by a Fire move, can't be burned",  # ThermalExchange
     157: "yes: absorbs Grass moves, Attack +1 (`BattleSystem_TriggerImmunityAbility`)",  # Sap Sipper
     192: "yes: Defense +1 stage each time a damaging move hits (`BattleSystem_TriggerAbilityOnHit`)",  # Stamina
+    150: "yes: as it enters, it transforms into the foe facing it, as by Transform (not into one behind a Substitute or already transformed); the copied ability's entry effect follows (Intimidate...)",  # Imposter
+    250: "yes: its type becomes the terrain's when one starts (Electric, Grass, Fairy, Psychic), and its own types come back when the terrain ends (\"…returned to its original type!\")",  # Mimicry
+    290: "yes: copies the stat rises its foes get, as a Mirror Herb does but every time (not a rise Opportunist or a Mirror Herb made)",  # Opportunist
+    291: "yes: it eats again the Berry it ate (not one taken by Bug Bite or Pluck), at the end of the next turn (turn 2 for a Berry eaten as the battle starts)",  # Cud Chew
     165: "yes: Attract, Disable, Encore, Heal Block, Taunt and Torment don't affect it or its partner, nor does Cursed Body or Cute Charm (\"…is protected by an aromatic veil!\")",  # Aroma Veil
     166: "yes: other Pokémon can't lower the stats of, give a status condition to or make drowsy a Grass type on its side, itself or its partner (\"…surrounded itself with a veil of petals!\")",  # Flower Veil
     193: "yes: switches out (a wild one flees) when another Pokémon's damaging move drops it to half its HP or less (`BattleSystem_TriggerHeldItemOnHit`); not yet after indirect damage",  # Wimp Out
