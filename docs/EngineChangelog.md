@@ -4,6 +4,37 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): held items, part 3 (the Gems, Air Balloon, Ring Target)
+
+For players: the 18 Gems, the Air Balloon and the Ring Target from the Veilstone Dept. Store now work in battle.
+
+- **The Gems:** the holder's first damaging move of the Gem's type is ×1.3 (Gen VI+; ×1.5 in Gen V). The Gem is
+  used up as the hit lands: after "{Pokémon} used {move}!", "The {item} strengthened {move}'s power!" shows before the
+  HP bar drops.
+  - Status moves and fixed-damage moves don't use it (`Item_SovereignGemType`).
+  - The damage calculation powers up the move and marks the attacker (`sovereignGemBoost`). `subscript_update_hp`
+    then shows the message and takes the Gem (`BTLVAR_SOVEREIGN_GEM_USED`, `subscript_sovereign_gem`).
+  - A multi-hit move is powered up on its first hit only.
+- **Air Balloon:**
+  - On entry: "{Pokémon} floats in the air with its Air Balloon!".
+  - Ground moves don't affect the holder ("It doesn't affect {Pokémon}…").
+  - The holder isn't grounded: terrain, Spikes, Toxic Spikes, Sticky Web and Arena Trap leave it alone. Spikes and
+    Toxic Spikes now go through `Sovereign_IsGrounded` (`BTLVAR_SOVEREIGN_SWITCHED_MON_GROUNDED`), as Sticky Web does.
+  - A damaging move that hits the holder pops it ("{Pokémon}'s Air Balloon popped!").
+  - Gravity, Ingrain and Smack Down still ground the holder.
+- **Ring Target:** the holder's type immunities don't apply. A Ghost type takes Normal and Fighting moves; a Flying
+  type takes Ground moves. Abilities such as Levitate still protect it (`BasicTypeMulApplies`).
+- `docs/HeldItemChecklist.md` is updated.
+
+**Verification:** `tools/test/check_battle_scripts.py` passes. Harness wild battles against a Ninjask:
+- **Normal Gem:** a wild Ninjask holding one hits Snorlax with Tackle for 106. The same battle without the Gem does
+  82. The message shows after "The wild NINJASK used Tackle!" and before the HP drop, and only once.
+- **Air Balloon:** Garchomp holding one shows the entry message. The wild Ninjask's Earthquake: "It doesn't affect
+  GARCHOMP…". The wild Ninjask's Tackle: "GARCHOMP's Air Balloon popped!", and its next Tackles hit as usual.
+- **Ring Target:** Gengar holding one takes the wild Ninjask's Tackle. Without it, Tackle doesn't affect Gengar.
+- Not run in the harness: Air Balloon against entry hazards and Arena Trap. The test player has only one Pokémon, so
+  it never switches in onto hazards.
+
 ## Item 11 (effect fidelity): held items, part 2; Ghost types escape trapping; Healer 50%
 
 For players: ten more held items from the Veilstone Dept. Store now work. A Ghost type can always switch out or run

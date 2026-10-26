@@ -26,13 +26,9 @@ _sovereign_web_drop:
 
 _sovereign_no_web:
     CheckAbility CHECK_HAVE, BTLSCR_SWITCHED_MON, ABILITY_MAGIC_GUARD, _105
-    CompareVarToValue OPCODE_FLAG_SET, BTLVAR_FIELD_CONDITIONS, FIELD_CONDITION_GRAVITY, _037
-    CheckItemHoldEffect CHECK_HAVE, BTLSCR_SWITCHED_MON, HOLD_EFFECT_SPEED_DOWN_GROUNDED, _037
-    CheckAbility CHECK_HAVE, BTLSCR_SWITCHED_MON, ABILITY_LEVITATE, _085
-    CheckAbility CHECK_HAVE, BTLSCR_SWITCHED_MON, ABILITY_EELEVATE, _085 // Sovereign (item 11)
-    CompareMonDataToValue OPCODE_EQU, BTLSCR_SWITCHED_MON, BATTLEMON_TYPE_1, TYPE_FLYING, _085
-    CompareMonDataToValue OPCODE_EQU, BTLSCR_SWITCHED_MON, BATTLEMON_TYPE_2, TYPE_FLYING, _085
-    CompareMonDataToValue OPCODE_FLAG_SET, BTLSCR_SWITCHED_MON, BATTLEMON_MOVE_EFFECTS_MASK, MOVE_EFFECT_MAGNET_RISE, _085
+    // Sovereign (item 11): Sovereign_IsGrounded, Platinum's checks (Gravity, Iron Ball, Levitate, Flying type, Magnet
+    // Rise) plus the Air Balloon, Telekinesis and Smack Down
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_SWITCHED_MON_GROUNDED, 0, _085
 
 _037:
     CheckToxicSpikes BTLSCR_SWITCHED_MON, _065

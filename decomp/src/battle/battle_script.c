@@ -9861,6 +9861,9 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
             && Sovereign_IsGrounded(battleCtx, battleCtx->switchedMon)
             && Battler_HeldItem(battleCtx, battleCtx->switchedMon) != ITEM_HEAVY_DUTY_BOOTS;
         return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_SWITCHED_MON_GROUNDED: // Sovereign (item 11): read-only, for Spikes and Toxic Spikes (Air Balloon)
+        battleCtx->sovereignTerrainTemp = Sovereign_IsGrounded(battleCtx, battleCtx->switchedMon);
+        return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_SIDE_EFFECT_MON_HOLDS_BERRY: // Sovereign (item 11): read-only, for Incinerate
         battleCtx->sovereignTerrainTemp = Item_IsBerry(battleCtx->battleMons[battleCtx->sideEffectMon].heldItem) ? 1 : 0;
         return &battleCtx->sovereignTerrainTemp;
@@ -9891,6 +9894,21 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         return &battleCtx->sovereignMirrorArmorHolder;
     case BTLVAR_SOVEREIGN_IN_HAZARDS: // Sovereign (item 11): Sovereign_Infiltrates
         return &battleCtx->sovereignInHazards;
+    case BTLVAR_SOVEREIGN_GEM_USED: // Sovereign (item 11): read-only, for subscript_update_hp. TRUE when the attacker's
+        // Gem powered up the hit about to land on another Pokemon (BattleSystem_CalcBaseDamage); then the Gem and the
+        // move are the message's item and move, and the Gem won't be shown again for this move.
+        battleCtx->sovereignTerrainTemp = battleCtx->sovereignGemBoost == battleCtx->attacker + 1
+            && battleCtx->msgBattlerTemp != battleCtx->attacker
+            && battleCtx->hpCalcTemp < 0
+            && Item_SovereignGemType(Battler_HeldItem(battleCtx, battleCtx->attacker)) >= 0;
+
+        if (battleCtx->sovereignTerrainTemp) {
+            battleCtx->msgItemTemp = ATTACKING_MON.heldItem;
+            battleCtx->msgMoveTemp = battleCtx->moveCur;
+            battleCtx->sovereignGemBoost = 0;
+        }
+
+        return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_SOUL_HEART_MON: { // Sovereign (item 11): read-only, for subscript_faint_mon. TRUE when another
         // Soul-Heart holder on the field (in speed order) has yet to gain Sp. Atk for this faint: it becomes the
         // side-effect target. The first read saves the side-effect battler, type and param; the last gives them back.

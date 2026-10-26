@@ -3619,6 +3619,7 @@ static void BattleControllerPlayer_BeforeMove(BattleSystem *battleSys, BattleCon
 {
     switch (battleCtx->beforeMoveCheckState) {
     case BEFORE_MOVE_STATE_QUICK_CLAW:
+        battleCtx->sovereignGemBoost = 0; // Sovereign (item 11): a Gem powers up only the move it was used for
         BattleControllerPlayer_LoadQuickClawCheck(battleSys, battleCtx);
         battleCtx->beforeMoveCheckState++;
         return;

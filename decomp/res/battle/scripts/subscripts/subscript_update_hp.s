@@ -8,6 +8,9 @@ _000:
     Wait 
     CompareVarToValue OPCODE_EQU, BTLVAR_WAITING_BATTLERS, 0, _016
     Call BATTLE_SUBSCRIPT_TYPE_RESIST_BERRY
+    // Sovereign (item 11): the attacker's Gem, used up as the hit it powered up lands
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_GEM_USED, 0, _016
+    Call BATTLE_SUBSCRIPT_SOVEREIGN_GEM
 
 _016:
     UpdateVar OPCODE_FLAG_OFF, BTLVAR_BATTLE_CTX_STATUS, SYSCTL_SKIP_SPRITE_BLINK

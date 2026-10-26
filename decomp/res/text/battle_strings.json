@@ -9623,6 +9623,55 @@
         "The foe’s {STRVAR_1 1, 0, 0}’s\n",
         "{STRVAR_1 8, 1, 0} prevents stat loss!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignGemStrengthenedMove",
+      "en_US": [
+        "The {STRVAR_1 8, 0, 0} strengthened\n",
+        "{STRVAR_1 6, 1, 0}’s power!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAirBalloonPopped_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s Air Balloon\n",
+        "popped!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAirBalloonPopped_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}’s\n",
+        "Air Balloon popped!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAirBalloonPopped_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}’s\n",
+        "Air Balloon popped!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFloatsWithAirBalloon_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} floats in the air\n",
+        "with its Air Balloon!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFloatsWithAirBalloon_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} floats\n",
+        "in the air with its Air Balloon!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFloatsWithAirBalloon_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} floats\n",
+        "in the air with its Air Balloon!"
+      ]
     }
   ]
 }

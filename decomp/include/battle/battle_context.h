@@ -358,6 +358,7 @@ struct BattleContext {
     u8 sovereignSoulHeartDone; // Sovereign (item 11): Soul-Heart holders whose Sp. Atk already rose for this faint
     int sovereignSoulHeartSaved[3]; // Sovereign (item 11): the side-effect battler, type and param Soul-Heart borrows
     int sovereignInHazards; // Sovereign (item 11): TRUE while subscript_hazards_check runs (Infiltrator)
+    u8 sovereignGemBoost; // Sovereign (item 11): 1 + the attacker whose Gem powered up its current move's damage
 };
 
 #endif // POKEPLATINUM_BATTLE_BATTLE_CONTEXT_H
