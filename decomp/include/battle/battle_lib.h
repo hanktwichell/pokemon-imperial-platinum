@@ -1260,6 +1260,7 @@ u32 Sovereign_StagedAttack(BattleContext *battleCtx, int battler);
 BOOL Sovereign_RollSecondEffect(BattleSystem *battleSys, BattleContext *battleCtx);
 BOOL Sovereign_StartSaltCure(BattleContext *battleCtx);
 BOOL Sovereign_StartSyrupBomb(BattleContext *battleCtx);
+BOOL Sovereign_StartTarShot(BattleContext *battleCtx);
 u32 BattleSystem_SovereignHeroBit(BattleSystem *battleSys, int battler, int slot);
 BOOL Sovereign_IsAshGreninja(BattleMon *mon);
 BOOL BattleSystem_SovereignApplyTotemAura(BattleSystem *battleSys, BattleContext *battleCtx, int battler);

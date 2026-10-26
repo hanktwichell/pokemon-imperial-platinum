@@ -3904,6 +3904,11 @@ static u32 BattleScript_CalcPrizeMoney(BattleSystem *battleSys, BattleContext *b
         prize = lastLevel * 4 * battleCtx->prizeMoneyMul * sTrainerClassPrizeMul[trainer.header.trainerType];
     }
 
+    // Sovereign (item 11): Happy Hour doubles it (on top of the Amulet Coin).
+    if (battleCtx->sovereignHappyHour) {
+        prize *= 2;
+    }
+
     Heap_Free(rawParty);
     return prize;
 }
@@ -5238,7 +5243,7 @@ static BOOL BtlCmd_TrySpite(BattleSystem *battleSys, BattleContext *battleCtx)
         if (moveSlot == LEARNED_MOVES_MAX || DEFENDING_MON.ppCur[moveSlot] == 0) {
             BattleScript_Iter(battleCtx, jumpOnFail);
         } else {
-            int dec = 4;
+            int dec = battleCtx->moveCur == MOVE_EERIE_SPELL ? 3 : 4; // Sovereign (item 11): Eerie Spell takes 3
             if (DEFENDING_MON.ppCur[moveSlot] < dec) {
                 dec = DEFENDING_MON.ppCur[moveSlot];
             }
@@ -6882,7 +6887,9 @@ static BOOL BtlCmd_TryKnockOff(BattleSystem *battleSys, BattleContext *battleCtx
         battleCtx->msgBuffer.params[2] = battleCtx->moveCur;
     } else if (DEFENDING_MON.heldItem && Battler_SovereignHeldItemLocked(battleCtx, battleCtx->defender) == FALSE) {
         // Sovereign: an item that changes the defender's form stays.
-        battleCtx->msgBuffer.id = BattleStrings_Text_PokemonKnockedOffPokemonsItem_AllyAlly; // "{0} knocked off {1}'s {2}!"
+        battleCtx->msgBuffer.id = battleCtx->moveCur == MOVE_CORROSIVE_GAS // Sovereign (item 11)
+            ? BattleStrings_Text_SovereignCorrodedItem_AllyAlly // "{0} corroded {1}'s {2}!"
+            : BattleStrings_Text_PokemonKnockedOffPokemonsItem_AllyAlly; // "{0} knocked off {1}'s {2}!"
         battleCtx->msgBuffer.tags = TAG_NICKNAME_NICKNAME_ITEM;
         battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->attacker);
         battleCtx->msgBuffer.params[1] = BattleSystem_NicknameTag(battleCtx, battleCtx->defender);
@@ -9934,6 +9941,17 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
     case BTLVAR_SOVEREIGN_SYRUP_BOMB_START: // Sovereign (item 11): read-only, Syrup Bomb covers the side-effect battler
         // (0 if it already was)
         battleCtx->sovereignTerrainTemp = Sovereign_StartSyrupBomb(battleCtx);
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_TAR_SHOT_START: // Sovereign (item 11): read-only, Tar Shot makes the side-effect battler weaker
+        // to Fire (0 if it already was)
+        battleCtx->sovereignTerrainTemp = Sovereign_StartTarShot(battleCtx);
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_HAPPY_HOUR: // Sovereign (item 11): read-only, Happy Hour doubles the prize money when the
+        // player's side uses it (always 1)
+        if (BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker) == BATTLE_SIDE_PLAYER) {
+            battleCtx->sovereignHappyHour = TRUE;
+        }
+        battleCtx->sovereignTerrainTemp = TRUE;
         return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_MIRROR_HERB_NEXT: // Sovereign (item 11): read-only, sets up the Mirror Herb holder's next copied
         // rise (2 stages at most at a time) as the side effect; 0 once all are copied

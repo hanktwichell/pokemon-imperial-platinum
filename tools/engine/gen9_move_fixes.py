@@ -264,6 +264,15 @@ MOVES = {
     "salt_cure": ("SOVEREIGN_SALT_CURE", 100, "the target loses 1/8 of its max HP each turn (1/4 if Water or Steel) until it switches out"),
     "syrup_bomb": ("SOVEREIGN_SYRUP_BOMB", 100, "target Speed -1 at the end of each of the next 3 turns, while the user stays in"),
     "rage_fist": (None, None, "50 more power for each hit the user has taken this battle, up to 350"),
+    # Moves batch 4.
+    "thunderclap": ("HIT_FIRST_IF_TARGET_ATTACKING", 0, "+1 priority; fails unless the target is about to use a damaging move (Sucker Punch's effect)"),
+    "toxic_thread": ("SOVEREIGN_TOXIC_THREAD", 0, "target Speed -1, then poisons it"),
+    "tar_shot": ("SOVEREIGN_TAR_SHOT", 0, "target Speed -1; Fire moves are twice as effective against it until it switches out"),
+    "eerie_spell": ("SOVEREIGN_EERIE_SPELL", 100, "the target's last move loses 3 PP"),
+    "corrosive_gas": ("SOVEREIGN_CORROSIVE_GAS", 0, "takes away the held items of all adjacent Pokémon"),
+    "celebrate": ("SOVEREIGN_CELEBRATE", 0, "no effect in battle; congratulates the player"),
+    "happy_hour": ("SOVEREIGN_HAPPY_HOUR", 0, "doubles the prize money (on top of an Amulet Coin)"),
+    "hold_hands": ("SOVEREIGN_HOLD_HANDS", 0, "no effect in battle; fails without an ally"),
 }
 
 # Gen IX values the move data got wrong (not the Champions changes in tools/engine/apply_champions_moves.py).

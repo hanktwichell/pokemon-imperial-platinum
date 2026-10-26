@@ -4,6 +4,41 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): moves, batch 4
+
+For players: eight more moves work as in the main games. Six of them were placeholders, and Thunderclap and Toxic
+Thread were approximate.
+
+- **Thunderclap:** uses Sucker Punch's effect. It fails unless the target is about to use a damaging move.
+- **Toxic Thread:** the target's Speed -1, then it's poisoned, as Swagger chains its two effects. A Substitute blocks
+  it.
+- **Tar Shot:** the target's Speed -1. Fire moves are then super effective once more against it, until it switches
+  out.
+  - The type chart reads the new `sovereignTarShot` flags.
+  - Message: "...became weaker to fire!".
+- **Eerie Spell:** a chance effect at 100%: the target's last move loses 3 PP. `TrySpite` takes 3 for it and 4 for Spite.
+- **Corrosive Gas:** takes away the held items of all adjacent Pokémon. It uses `TryKnockOff`, with its own message,
+  "...corroded ...'s ...!". Sticky Hold keeps the item.
+- **Celebrate:** "Congratulations, (player)!". No effect in battle.
+- **Happy Hour:** "Everyone is caught up in the happy atmosphere!". When the player's side uses it, the trainer's prize
+  money doubles, on top of an Amulet Coin.
+- **Hold Hands:** no effect in battle. It fails without an ally.
+- Checklist: 307 exact, 35 approximate, 38 placeholders.
+
+**Verification:** `tools/test/check_battle_scripts.py` and `check_message_box_lines.py` pass. Harness wild battles:
+- **Thunderclap:** against Splash, "But it failed!". Against a slower Slowpoke's Tackle, it hits first.
+- **Toxic Thread:** "The wild NINJASK's Speed fell!", then "The wild NINJASK was poisoned!".
+- **Tar Shot:**
+  - "The wild SNORLAX's Speed fell!", then "The wild SNORLAX became weaker to fire!".
+  - Flamethrower is then "super effective" on the Normal-type Snorlax.
+  - Damage rose from 7 per hit in an all-Flamethrower control run to 12-14 per hit.
+- **Eerie Spell:** "It reduced the PP of the wild NINJASK's Tackle by 3!".
+- **Corrosive Gas:** "SNORLAX corroded the wild NINJASK's Leftovers!". Used again with no item: "But it failed!".
+- **Celebrate:** "Congratulations, A!".
+- **Happy Hour:** "Everyone is caught up in the happy atmosphere!". The prize doubling isn't covered, since the
+  harness runs wild battles only.
+- **Hold Hands:** "But it failed!" in a single battle.
+
 ## Item 11 (effect fidelity): moves, batch 3, second half (Glaive Rush, Salt Cure, Syrup Bomb, Rage Fist)
 
 For players: four more moves work as in the main games. Each needed state kept per Pokémon.

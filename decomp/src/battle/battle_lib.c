@@ -2227,6 +2227,7 @@ void BattleSystem_UpdateAfterSwitch(BattleSystem *battleSys, BattleContext *batt
     battleCtx->sovereignGlaiveRush &= ~FlagIndex(battler); // Sovereign (item 11)
     battleCtx->sovereignSaltCure &= ~FlagIndex(battler);
     battleCtx->sovereignSyrupBomb[battler] = 0;
+    battleCtx->sovereignTarShot &= ~FlagIndex(battler);
     MI_CpuClear8(battleCtx->sovereignMirrorHerbRises[battler], sizeof(battleCtx->sovereignMirrorHerbRises[battler])); // Sovereign (item 11)
     battleCtx->moveCopied[battler] = MOVE_NONE;
     battleCtx->moveCopiedHit[battler][0] = MOVE_NONE;
@@ -2316,6 +2317,7 @@ void BattleSystem_CleanupFaintedMon(BattleSystem *battleSys, BattleContext *batt
     battleCtx->sovereignGlaiveRush &= ~FlagIndex(battler); // Sovereign (item 11)
     battleCtx->sovereignSaltCure &= ~FlagIndex(battler);
     battleCtx->sovereignSyrupBomb[battler] = 0;
+    battleCtx->sovereignTarShot &= ~FlagIndex(battler);
     MI_CpuClear8(battleCtx->sovereignMirrorHerbRises[battler], sizeof(battleCtx->sovereignMirrorHerbRises[battler])); // Sovereign (item 11)
     battleCtx->moveCopied[battler] = MOVE_NONE;
     battleCtx->moveCopiedHit[battler][0] = MOVE_NONE;
@@ -2871,6 +2873,14 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
             }
 
             chartEntry++;
+        }
+
+        // Sovereign (item 11): Tar Shot makes Fire moves super effective once more against its target.
+        if (moveType == TYPE_FIRE
+            && (battleCtx->sovereignTarShot & FlagIndex(defender))
+            && (*moveStatusMask & MOVE_STATUS_INEFFECTIVE) == FALSE) {
+            damage = ApplyTypeMultiplier(battleCtx, attacker, TYPE_MULTI_SUPER_EFF, damage, movePower, moveStatusMask);
+            totalMul *= 2;
         }
 
         // Sovereign (FM): Tera Shell. At full HP, a damaging move it isn't immune to is not very effective on it, for
@@ -8705,6 +8715,17 @@ BOOL Sovereign_StartSyrupBomb(BattleContext *battleCtx)
     battleCtx->sovereignSyrupBomb[battler] = 3;
     battleCtx->sovereignSyrupBombSource[battler] = battleCtx->attacker;
     battleCtx->sovereignSyrupBombSourceSlot[battler] = battleCtx->selectedPartySlot[battleCtx->attacker];
+    return TRUE;
+}
+
+// Sovereign (item 11): Tar Shot makes the side-effect battler weaker to Fire. FALSE if it already was.
+BOOL Sovereign_StartTarShot(BattleContext *battleCtx)
+{
+    if (battleCtx->sovereignTarShot & FlagIndex(battleCtx->sideEffectMon)) {
+        return FALSE;
+    }
+
+    battleCtx->sovereignTarShot |= FlagIndex(battleCtx->sideEffectMon);
     return TRUE;
 }
 
