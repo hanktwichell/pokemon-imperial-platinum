@@ -6703,3 +6703,44 @@ open questions. The shiny line-up patch is ready for when #161 is merged.
 2. Finish `battle_all_species.py` on this build (the worker restart cut the first run at 696 of 1,510, all ok so
    far), and write up the trainer, evolution, Egg and species runs with the heap check.
 3. Playtest the Renegade ports in story order, Route 218's gate and the Victory Road collector first.
+
+
+## CB-0147 — 2026-10-26, 2:50 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: eight more item 11 abilities, and the battle tests rerun with the heap checks.**
+- **Owner rule:** `CLAUDE.md` now says every commit, from any session, credits the owner as co-author
+  (`Co-authored-by: Hank Twichell <78049692+hanktwichell@users.noreply.github.com>`).
+- **Purifying Salt:** no status of any kind, no Yawn, Rest fails. It shares Shields Down's check:
+  `BTLVAR_SOVEREIGN_SHIELDS_UP_EFFECT_MON` became `BTLVAR_SOVEREIGN_STATUS_IMMUNE_EFFECT_MON`
+  (`Battler_SovereignStatusImmune`). Mold Breaker gets past it for moves, never for Flame/Toxic Orb.
+- **Water Bubble and Thermal Exchange:** no burns, as with Water Veil.
+- **Mirror Armor:** a stat drop from another Pokémon's move or Ability goes back to it ("{holder}'s Mirror Armor cuts
+  {source}'s {stat}!").
+  - `BtlCmd_ChangeStatStage` swaps the roles for the drop, and `subscript_update_stat_stage` gives the holder back
+    its side-effect role (`BTLVAR_SOVEREIGN_MIRROR_ARMOR_HOLDER`).
+  - Sticky Web's drop is only blocked, since the engine doesn't track the web's setter.
+- **Cotton Down, Electromorphosis, Wind Power, Wind Rider:** as in Gen IX. A tailwind charges Wind Power and raises
+  Wind Rider's Attack, on entry too.
+- **AI:** knows Purifying Salt, Water Bubble and Thermal Exchange block status, and treats Mirror Armor as Clear Body.
+- **Bug found and fixed:** new subscripts must also go in `subscripts/sub_seq.order`, or a script's
+  `Call BATTLE_SUBSCRIPT_...` of them runs another subscript. `check_battle_scripts.py` now checks the order in CI.
+- **Tested:** a wild battle per case (23 cases, `$S/test_item11.py`), each message box checked. Results are in
+  `docs/EngineChangelog.md`.
+- **Battle tests with the heap checks:** trainers 1,039/1,039, evolutions 336/336, Eggs 874/874, species and forms
+  1,510/1,510. No **HEAP**, nothing failed.
+- **Answered the owner:** dynamic speed is in (`BattleControllerPlayer_BranchActions`, `docs/BattleMechanics.md`).
+
+**Files modified:**
+- `CLAUDE.md`, `CLAUDE_STATUS.md`, `docs/EngineChangelog.md`, `docs/AbilityChecklist.md`, `tools/engine/gen_abilities.py`,
+  `tools/test/check_battle_scripts.py`
+- `decomp/src/battle/{battle_lib.c,battle_script.c,trainer_ai/script.s}`, `decomp/include/battle/{battle_lib.h,battle_context.h}`
+- `decomp/generated/{battle_script_vars.txt,battle_subscripts.txt}`, `decomp/res/text/battle_strings.json`
+- `decomp/res/battle/scripts/subscripts/`: `meson.build`, `sub_seq.order`, the 8 status subscripts (burn, poison,
+  badly_poison, paralyze, fall_asleep, yawn, freeze, rest), `subscript_update_stat_stage.s`,
+  `subscript_hazards_check.s`, `subscript_tailwind_start.s`, and the new `subscript_sovereign_cotton_down.s` and
+  `subscript_sovereign_charged_by_hit.s`
+
+**Next 3 steps:**
+1. After Claude A's #161 merges: the shiny line-up PR (13 sprite folders), with the sprite check run on them.
+2. More item 11 abilities, by how common they are on boss teams (`docs/AbilityChecklist.md` lists the 36 left).
+3. Playtest the Renegade ports in story order, Route 218's gate and the Victory Road collector first.
