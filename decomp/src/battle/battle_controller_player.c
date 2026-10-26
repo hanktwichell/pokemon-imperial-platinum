@@ -2711,8 +2711,7 @@ static BOOL BattleControllerPlayer_CheckStatusDisruption(BattleSystem *battleSys
                 if (ATTACKING_MON.freezeTurns < 2 && BattleSystem_RandNext(battleSys) % 4 != 0) {
                     ATTACKING_MON.freezeTurns++;
 
-                    if (moveEffect != BATTLE_EFFECT_THAW_AND_BURN_HIT
-                        && moveEffect != BATTLE_EFFECT_RECOIL_BURN_HIT) {
+                    if (Sovereign_MoveThawsUser(battleCtx->moveCur, moveEffect) == FALSE) {
                         LOAD_SUBSEQ(subscript_frozen);
                         battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
                         battleCtx->commandNext = BATTLE_CONTROL_UPDATE_MOVE_BUFFERS;
@@ -2989,7 +2988,7 @@ static BOOL BattleControllerPlayer_CheckStatusDisruption(BattleSystem *battleSys
 
         case CHECK_STATUS_STATE_SELF_THAW:
             if ((ATTACKING_MON.status & MON_CONDITION_FREEZE)
-                && (moveEffect == BATTLE_EFFECT_THAW_AND_BURN_HIT || moveEffect == BATTLE_EFFECT_RECOIL_BURN_HIT)) {
+                && Sovereign_MoveThawsUser(battleCtx->moveCur, moveEffect)) {
                 LOAD_SUBSEQ(subscript_defrosted_by_move);
                 battleCtx->commandNext = battleCtx->command;
                 battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
@@ -3725,6 +3724,7 @@ static void BattleControllerPlayer_BeforeMove(BattleSystem *battleSys, BattleCon
             && CURRENT_MOVE_DATA.effect != BATTLE_EFFECT_HIT_TWICE
             && CURRENT_MOVE_DATA.effect != BATTLE_EFFECT_POISON_MULTI_HIT
             && CURRENT_MOVE_DATA.effect != BATTLE_EFFECT_HIT_THREE_TIMES
+            && CURRENT_MOVE_DATA.effect != BATTLE_EFFECT_SOVEREIGN_POPULATION_BOMB
             && CURRENT_MOVE_DATA.effect != BATTLE_EFFECT_HALVE_DEFENSE
             && CURRENT_MOVE_DATA.effect != BATTLE_EFFECT_UPROAR
             && CURRENT_MOVE_DATA.effect != BATTLE_EFFECT_FLING
@@ -4408,7 +4408,10 @@ static void BattleControllerPlayer_AfterMoveEffects(BattleSystem *battleSys, Bat
             && battleCtx->defender != battleCtx->attacker
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
             && DEFENDING_MON.curHP
-            && moveType == TYPE_FIRE) {
+            && (moveType == TYPE_FIRE // Sovereign (item 11): Scald, Steam Eruption and Scorching Sands thaw it too
+                || battleCtx->moveCur == MOVE_SCALD
+                || battleCtx->moveCur == MOVE_STEAM_ERUPTION
+                || battleCtx->moveCur == MOVE_SCORCHING_SANDS)) {
             battleCtx->msgBattlerTemp = battleCtx->defender;
 
             LOAD_SUBSEQ(subscript_thaw_out);
@@ -5819,4 +5822,21 @@ static void BattleSystem_RecordCommand(BattleSystem *battleSys, BattleContext *b
             }
         }
     }
+}// Sovereign (item 11): moves that thaw out a frozen user (Gen IX's defrost moves).
+static BOOL Sovereign_MoveThawsUser(int move, int moveEffect)
+{
+    switch (move) {
+    case MOVE_FUSION_FLARE:
+    case MOVE_SCALD:
+    case MOVE_STEAM_ERUPTION:
+    case MOVE_BURN_UP:
+    case MOVE_SCORCHING_SANDS:
+    case MOVE_PYRO_BALL:
+    case MOVE_MATCHA_GOTCHA:
+        return TRUE;
+    }
+
+    return moveEffect == BATTLE_EFFECT_THAW_AND_BURN_HIT || moveEffect == BATTLE_EFFECT_RECOIL_BURN_HIT;
 }
+
+

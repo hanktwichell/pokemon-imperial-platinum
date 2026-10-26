@@ -25,6 +25,8 @@ _023:
 
 _040:
     CompareVarToValue OPCODE_NEQ, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_INDIRECT, _050
+    // Sovereign (item 11): Mortal Spin's poison isn't a chance effect, so Shield Dust doesn't stop it
+    CompareVarToValue OPCODE_EQU, BTLVAR_CURRENT_MOVE, MOVE_MORTAL_SPIN, _050
     CheckIgnorableAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_SHIELD_DUST, _217
 
 _050:

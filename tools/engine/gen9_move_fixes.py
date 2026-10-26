@@ -247,6 +247,29 @@ MOVES = {
     "strength_sap": ("SOVEREIGN_STRENGTH_SAP", 0, "target Attack -1; the user regains HP equal to the target's Attack (with its stage)"),
     "lunar_blessing": ("SOVEREIGN_LUNAR_BLESSING", 0, "the user and its ally regain 1/4 of their max HP and are cured of status conditions"),
     "jungle_healing": ("SOVEREIGN_LUNAR_BLESSING", 0, "the user and its ally regain 1/4 of their max HP and are cured of status conditions"),
+    # Moves batch 3 (effect scripts and subscripts by hand; multi-hit rules in BtlCmd_SetMultiHit).
+    "relic_song": ("SOVEREIGN_SLEEP_HIT", 10, "10% sleep; Meloetta changes Forme after using it"),
+    "wicked_torque": ("SOVEREIGN_SLEEP_HIT", 10, "10% sleep"),
+    "dire_claw": ("SOVEREIGN_DIRE_CLAW", 50, "50% chance of sleep, poison or paralysis (one of the three, equally likely); high critical-hit ratio"),
+    "triple_arrows": ("SOVEREIGN_TRIPLE_ARROWS", 50, "50% target Defense -1, 30% flinch; high critical-hit ratio"),
+    "ceaseless_edge": ("SOVEREIGN_HAZARD_HIT", 100, "lays a layer of Spikes on the foes' side; high critical-hit ratio"),
+    "stone_axe": ("SOVEREIGN_HAZARD_HIT", 100, "sets Stealth Rock on the foes' side; high critical-hit ratio"),
+    "axe_kick": ("SOVEREIGN_AXE_KICK", 30, "30% confusion; the user loses half its max HP if it misses"),
+    "mortal_spin": ("SOVEREIGN_MORTAL_SPIN", 0, "poisons the foes, then frees the user from binding, Leech Seed and its side's hazards"),
+    "matcha_gotcha": ("SOVEREIGN_MATCHA_GOTCHA", 20, "hits both foes, drains half the damage dealt, 20% burn; thaws the user out"),
+    "population_bomb": ("SOVEREIGN_POPULATION_BOMB", 0, "hits up to 10 times, checking accuracy each hit (Skill Link: 10 hits, Loaded Dice: 4-10)"),
+    "surging_strikes": (None, None, "always hits 3 times, each a critical hit"),
+    "triple_dive": ("MULTI_HIT", 0, "always hits 3 times"),
+}
+
+# Gen IX values the move data got wrong (not the Champions changes in tools/engine/apply_champions_moves.py).
+VALUE_FIXES = {
+    "matcha_gotcha": {"range": "RANGE_ADJACENT_OPPONENTS"},
+    "cotton_spore": {"range": "RANGE_ADJACENT_OPPONENTS"},
+    "poison_gas": {"range": "RANGE_ADJACENT_OPPONENTS"},
+    "take_heart": {"pp": 15},
+    "roar": {"accuracy": 0},
+    "whirlwind": {"accuracy": 0},
 }
 
 
@@ -277,7 +300,7 @@ def update_effects():
 
 
 def update_moves():
-    for move in sorted(set(FLAGS) | set(MOVES)):
+    for move in sorted(set(FLAGS) | set(MOVES) | set(VALUE_FIXES)):
         path = os.path.join(MOVES_DIR, move, "data.json")
         data = json.load(open(path, encoding="utf-8"))
         if move in FLAGS:
@@ -285,6 +308,7 @@ def update_moves():
             data["flags"] = [f for f in OWN_FLAGS if f in FLAGS[move]] + keep
         if move in MOVES and MOVES[move][0] is not None:
             data["effect"] = {"type": "BATTLE_EFFECT_" + MOVES[move][0], "chance": MOVES[move][1]}
+        data.update(VALUE_FIXES.get(move, {}))
         with open(path, "w", encoding="utf-8") as f:
             json.dump(data, f, indent=4, ensure_ascii=False)
             f.write("\n")

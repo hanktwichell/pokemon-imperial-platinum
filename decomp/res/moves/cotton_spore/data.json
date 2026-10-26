@@ -16,7 +16,7 @@
         "type": "BATTLE_EFFECT_SPEED_DOWN_2",
         "chance": 0
     },
-    "range": "RANGE_SINGLE_TARGET",
+    "range": "RANGE_ADJACENT_OPPONENTS",
     "priority": 0,
     "flags": [
         "MOVE_FLAG_CAN_PROTECT",

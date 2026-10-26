@@ -333,13 +333,13 @@ struct BattleContext {
     // Sovereign (item 11): battlers whose Defiant or Competitive was triggered by a foe's move lowering their stats;
     // the boost is applied after the move (BattleControllerPlayer_TriggerAfterMoveHitEffects).
     u8 sovereignDefiantPending;
-    u8 sovereignAdrenalinePending;
+    u8 sovereignAdrenalinePending; // Sovereign (item 11): Intimidate targeted these Adrenaline Orb holders (flags by battler)
     u8 sovereignMirrorHerbRises[MAX_BATTLERS][NUM_BOOSTABLE_STATS]; // Sovereign (item 11): the foes' stat rises a Mirror Herb holder will copy, by stat
-    u8 sovereignMirrorHerbHolder;
+    u8 sovereignMirrorHerbHolder; // Sovereign (item 11): the holder copying them (BTLVAR_SOVEREIGN_MIRROR_HERB_NEXT)
     u16 sovereignLastMoveThisTurn; // Sovereign (item 11): the last move that worked this turn (Fusion Flare and Fusion Bolt)
     u16 sovereignLastMoveTurn; // Sovereign (item 11): totalTurns + 1 when it worked
-    u16 sovereignLastMoveUsed[MAX_BATTLERS];
-    int sovereignStrengthSapHeal; // Sovereign (item 11): Strength Sap's healing, the target's Attack before its drop // Sovereign (item 11): each battler's last move used (Gigaton Hammer, Blood Moon) // Sovereign (item 11): the holder copying them (BTLVAR_SOVEREIGN_MIRROR_HERB_NEXT) // Sovereign (item 11): Intimidate targeted these Adrenaline Orb holders (flags by battler)
+    u16 sovereignLastMoveUsed[MAX_BATTLERS]; // Sovereign (item 11): each battler's last move used (Gigaton Hammer, Blood Moon)
+    int sovereignStrengthSapHeal; // Sovereign (item 11): Strength Sap's healing, the target's Attack before its drop
     u8 sovereignLastMoveFailed[MAX_BATTLERS]; // Sovereign (item 11): Stomping Tantrum and Temper Flare
     u32 sovereignTerrainTemp; // Sovereign (item 11): BTLVAR_SOVEREIGN_TERRAIN_EFFECT_MON
     u32 sovereignHeroPending; // Sovereign (FM): a Palafin that became Hero and hasn't come back in (BattleSystem_SovereignHeroBit)

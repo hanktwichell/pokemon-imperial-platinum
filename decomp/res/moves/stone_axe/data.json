@@ -11,8 +11,8 @@
     "accuracy": 90,
     "pp": 15,
     "effect": {
-        "type": "BATTLE_EFFECT_HIT",
-        "chance": 0
+        "type": "BATTLE_EFFECT_SOVEREIGN_HAZARD_HIT",
+        "chance": 100
     },
     "range": "RANGE_SINGLE_TARGET",
     "priority": 0,
