@@ -9358,11 +9358,22 @@ static BOOL BtlCmd_RemoveItem(BattleSystem *battleSys, BattleContext *battleCtx)
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
     battleCtx->recycleItem[battler] = battleCtx->battleMons[battler].heldItem;
 
+    // Sovereign (item 11): the holder used up its own item (Natural Gift and Fling included) and stays in, for Symbiosis
+    // below. Not when Bug Bite or Pluck ate its Berry, nor its Eject Button (it switches out).
+    int effect = MOVE_DATA(battleCtx->moveCur).effect;
+    BOOL usedUp = battleCtx->battleMons[battler].heldItem != ITEM_EJECT_BUTTON;
+
+    if (battler == battleCtx->defender
+        && battler != battleCtx->attacker
+        && effect != BATTLE_EFFECT_FLING
+        && (ATTACKER_SELF_TURN_FLAGS.statusFlags & SELF_TURN_FLAG_PLUCK_BERRY)) {
+        usedUp = FALSE;
+    }
+
     // Sovereign (item 11): remember who ate a Berry, for Belch. Bug Bite and Pluck feed the target's Berry to the
     // attacker; Natural Gift and Fling use the attacker's up without eating it (Fling's target eats it:
     // subscript_pluck_check).
     if (Item_IsBerry(battleCtx->battleMons[battler].heldItem)) {
-        int effect = MOVE_DATA(battleCtx->moveCur).effect;
         int eater = battler;
 
         if (battler == battleCtx->attacker && (effect == BATTLE_EFFECT_NATURAL_GIFT || effect == BATTLE_EFFECT_FLING)) {
@@ -9389,6 +9400,33 @@ static BOOL BtlCmd_RemoveItem(BattleSystem *battleSys, BattleContext *battleCtx)
     battleCtx->battleMons[battler].heldItem = ITEM_NONE;
 
     BattleMon_CopyToParty(battleSys, battleCtx, battler);
+
+    // Sovereign (item 11): Symbiosis. When a battler uses up its own held item, its ally with Symbiosis passes it its own
+    // (not one locked to its holder, like a Mega Stone, nor Mail). The message comes at once, as a nested subscript, when
+    // the script stack has room, and otherwise with the next switch-in check (BattleSystem_TriggerEffectOnSwitch).
+    int ally = BattleSystem_GetPartner(battleSys, battler);
+
+    if (usedUp
+        && ally != battler
+        && battleCtx->battleMons[battler].curHP
+        && battleCtx->battleMons[ally].curHP
+        && battleCtx->battleMons[ally].heldItem != ITEM_NONE
+        && Battler_Ability(battleCtx, ally) == ABILITY_SYMBIOSIS
+        && Battler_SovereignHeldItemLocked(battleCtx, ally) == FALSE
+        && Item_IsMail(battleCtx->battleMons[ally].heldItem) == FALSE) {
+        battleCtx->battleMons[battler].heldItem = battleCtx->battleMons[ally].heldItem;
+        battleCtx->battleMons[ally].heldItem = ITEM_NONE;
+        BattleMon_CopyToParty(battleSys, battleCtx, battler);
+        BattleMon_CopyToParty(battleSys, battleCtx, ally);
+        battleCtx->sovereignSymbiosisGiver = ally;
+        battleCtx->sovereignSymbiosisReceiver = battler;
+
+        if (battleCtx->scriptStackPointer < BATTLE_SCRIPT_STACK_MAX) {
+            BattleScript_Call(battleCtx, NARC_INDEX_BATTLE__SKILL__SUB_SEQ, subscript_sovereign_symbiosis);
+        } else {
+            battleCtx->sovereignSymbiosisPending = TRUE;
+        }
+    }
 
     return FALSE;
 }
@@ -11896,6 +11934,14 @@ static int BattleScript_Battler(BattleSystem *battleSys, BattleContext *battleCt
         battlerOut = battleCtx->abilityMon;
         break;
 
+    case BTLSCR_SOVEREIGN_SYMBIOSIS_GIVER: // Sovereign (item 11)
+        battlerOut = battleCtx->sovereignSymbiosisGiver;
+        break;
+
+    case BTLSCR_SOVEREIGN_SYMBIOSIS_RECEIVER: // Sovereign (item 11)
+        battlerOut = battleCtx->sovereignSymbiosisReceiver;
+        break;
+
     case BTLSCR_ENEMY:
         maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
         for (battlerOut = 0; battlerOut < maxBattlers; battlerOut++) {
@@ -12580,6 +12626,11 @@ static int BattleMessage_ItemTag(BattleContext *battleCtx, int battlerIn)
 
     case BTLSCR_MSG_TEMP:
         item = battleCtx->msgItemTemp;
+        break;
+
+    case BTLSCR_SOVEREIGN_SYMBIOSIS_RECEIVER: // Sovereign (item 11): the item Symbiosis passed
+        item = battleCtx->battleMons[battleCtx->sovereignSymbiosisReceiver].heldItem;
+        BattleAI_SetHeldItem(battleCtx, battleCtx->sovereignSymbiosisReceiver, item);
         break;
 
     case BTLSCR_SIDE_EFFECT_MON: // Sovereign (item 11): Incinerate

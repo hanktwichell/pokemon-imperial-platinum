@@ -10853,6 +10853,59 @@
         "The foe’s {STRVAR_1 1, 0, 0} followed\n",
         "the foe’s {STRVAR_1 1, 1, 0}’s instructions!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignSymbiosis_AllyAlly",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} shared its\n",
+        "{STRVAR_1 8, 1, 0} with {STRVAR_1 1, 2, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignSymbiosis_AllyWild",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} shared its\n",
+        "{STRVAR_1 8, 1, 0} with\r",
+        "the wild {STRVAR_1 1, 2, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignSymbiosis_AllyFoe",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} shared its\n",
+        "{STRVAR_1 8, 1, 0} with\r",
+        "the foe’s {STRVAR_1 1, 2, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignSymbiosis_WildAlly",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} shared its\n",
+        "{STRVAR_1 8, 1, 0} with {STRVAR_1 1, 2, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignSymbiosis_WildWild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} shared its\n",
+        "{STRVAR_1 8, 1, 0} with\r",
+        "the wild {STRVAR_1 1, 2, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignSymbiosis_FoeAlly",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} shared its\n",
+        "{STRVAR_1 8, 1, 0} with {STRVAR_1 1, 2, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignSymbiosis_FoeFoe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} shared its\n",
+        "{STRVAR_1 8, 1, 0} with\r",
+        "the foe’s {STRVAR_1 1, 2, 0}!"
+      ]
     }
   ]
 }

@@ -8067,3 +8067,23 @@ PR #201 (Mega Sol, Growth, Ripen) is merged.
 1. Abilities still to do: Illusion, Symbiosis, Commander (Embody Aspect and Teraform Zero need Terastallization).
 2. Sky Drop (placeholder).
 3. Burn Up and Double Shock still wait on the owner (CB-0158).
+
+## CB-0189 — 2026-10-26, 6:06 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: Symbiosis.** PR #205 (Dancer) is merged.
+- When a battler uses up its own held item, its ally with Symbiosis passes it its own item: "{0} shared its {1} with
+  {2}!". This includes the item Natural Gift or Fling uses, as in Showdown.
+- It doesn't pass after Bug Bite or Pluck, or an Eject Button switch-out. It doesn't pass a locked item or Mail.
+- Verified in doubles with an Air Balloon, Fling (Iron Ball, then the passed Leftovers), Eject Button and a foe-side
+  Normal Gem, plus a Flower Veil control (see the changelog). The foe and wild messages scroll to a third line to fit.
+
+**Files modified:**
+- `decomp/src/battle/battle_script.c` (`BtlCmd_RemoveItem`, the battler and item tags), `decomp/src/battle/battle_lib.c` (switch-in state).
+- `decomp/include/battle/battle_context.h`, `decomp/generated/battle_script_battlers.txt`, `decomp/generated/battle_subscripts.txt`.
+- `decomp/res/battle/scripts/subscripts/subscript_sovereign_symbiosis.s`, `meson.build`, `sub_seq.order`, `decomp/res/text/battle_strings.json`.
+- `tools/engine/gen_abilities.py`, `docs/AbilityChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Illusion (disguise as the last party member until hit) or Commander. Embody Aspect and Teraform Zero need Terastallization.
+2. Sky Drop (placeholder).
+3. Burn Up and Double Shock still wait on the owner (CB-0158).

@@ -62,7 +62,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 177 | Gale Wings | Gen 6 | yes: Flying moves +1 priority at full HP |
 | 178 | Mega Launcher | Gen 6 | yes: pulse moves ×1.5 |
 | 179 | Grass Pelt | Gen 6 | yes: Defense ×1.5 in Grassy Terrain |
-| 180 | Symbiosis | Gen 6 | not yet (no battle effect) |
+| 180 | Symbiosis | Gen 6 | yes: when its ally uses up its held item (a Berry, a Gem, an Air Balloon, Natural Gift or Fling...), it passes the ally its own (not a locked item or Mail; not to an ally leaving with an Eject Button) |
 | 181 | Tough Claws | Gen 6 | yes: contact moves ×1.3 |
 | 182 | Pixilate | Gen 6 | yes: Normal moves become Fairy-type, ×1.2 |
 | 183 | Gooey | Gen 6 | yes: a contact move lowers the attacker's Speed 1 stage |

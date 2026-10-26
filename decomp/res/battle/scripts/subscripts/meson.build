@@ -479,4 +479,5 @@ subscript_files = files(
     'subscript_sovereign_neutralizing_gas_end.s',
     'subscript_sovereign_ball_fetch.s',
     'subscript_sovereign_instruct.s',
+    'subscript_sovereign_symbiosis.s',
 )
