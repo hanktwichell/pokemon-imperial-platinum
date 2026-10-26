@@ -7593,3 +7593,24 @@ The checklist is now 338 exact, 13 approximate, 29 placeholders.
 2. The last approximate moves: Round, Expanding Force, Dragon Darts and Parabolic Charge (doubles), Shell Side Arm,
    Autotomize.
 3. Owner decision pinned in CB-0158: Burn Up and Double Shock (typeless).
+
+## CB-0170 — 2026-10-26, 10:53 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: Emergency Exit and Wimp Out.** PR #186 (Red Card, Eject Button) is merged.
+- When another Pokémon's damaging move drops the holder to half its HP or less, it switches out to a Pokémon its
+  trainer picks; a wild one flees.
+- Not when Sheer Force powered the move up, and not yet after indirect damage.
+- Golisopod, Wimpod and a wild Golisopod were checked in harness battles (docs/EngineChangelog.md).
+
+**Files modified:**
+- `decomp/src/battle/battle_lib.c` (`BattleSystem_TriggerHeldItemOnHit`).
+- New: `subscript_sovereign_emergency_exit.s`. Changed: the subscripts' `meson.build`, `sub_seq.order` and
+  `decomp/generated/battle_subscripts.txt`.
+- `decomp/res/text/battle_strings.json` (3 messages: "{0}'s {1} activated!").
+- `tools/engine/gen_abilities.py`, `docs/AbilityChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. More abilities that work in single battles: Cud Chew, Mimicry, Opportunist, Imposter, Flower Veil, Aroma Veil.
+2. The last approximate moves: Round, Expanding Force, Dragon Darts and Parabolic Charge (doubles), Shell Side Arm,
+   Autotomize.
+3. Owner decision pinned in CB-0158: Burn Up and Double Shock (typeless).

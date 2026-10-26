@@ -6922,6 +6922,23 @@ BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *b
         return result;
     }
 
+    // Sovereign (item 11): Emergency Exit and Wimp Out switch their holder out (a wild one flees) when another Pokemon's
+    // damaging move drops it from above half its HP to half or less, as an Eject Button does; not when Sheer Force
+    // powered the move up. As in Champions, a U-turn user still switches out too.
+    if ((Battler_Ability(battleCtx, battleCtx->defender) == ABILITY_EMERGENCY_EXIT
+            || Battler_Ability(battleCtx, battleCtx->defender) == ABILITY_WIMP_OUT)
+        && battleCtx->attacker != battleCtx->defender
+        && DEFENDING_MON.curHP
+        && DEFENDING_MON.curHP <= DEFENDING_MON.maxHP / 2
+        && battleCtx->sovereignHPBeforeHit[battleCtx->defender] > DEFENDING_MON.maxHP / 2
+        && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+        && (battleCtx->battlersSwitchingMask & FlagIndex(battleCtx->defender)) == FALSE
+        && Move_SheerForceApplies(battleCtx, battleCtx->attacker, battleCtx->moveCur) == FALSE) {
+        battleCtx->sovereignHPBeforeHit[battleCtx->defender] = DEFENDING_MON.curHP; // once per hit
+        *subscript = subscript_sovereign_emergency_exit;
+        return TRUE;
+    }
+
     if (Battler_UnnerveBlocksBerry(battleSys, battleCtx, battleCtx->defender)) { // Sovereign (item 11)
         return result;
     }

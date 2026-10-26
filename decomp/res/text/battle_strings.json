@@ -10270,6 +10270,27 @@
         "The foe’s {STRVAR_1 1, 0, 0} is switched out\n",
         "with the Eject Button!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAbilityActivated_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\n",
+        "activated!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAbilityActivated_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\n",
+        "activated!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAbilityActivated_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\n",
+        "activated!"
+      ]
     }
   ]
 }
