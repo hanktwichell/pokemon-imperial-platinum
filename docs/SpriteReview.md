@@ -11,9 +11,9 @@ palettes of their own). A sample of every 8th species of #1–493 was checked to
 
 ## Wrong in game
 
-| # | Pokémon | Sprite | Problem | On main? | Fix |
+| # | Pokémon | Sprite | Problem | Before #157 too? | Fix |
 |---|---|---|---|---|---|
-| 503 | Samurott | front, both shinies | **Scrambled in battle**: noise over the whole sprite | no (PR #157's PokeAPI front) | ready (see "Scrambled sprites") |
+| 503 | Samurott | front, both shinies | **Scrambled in battle**: noise over the whole sprite | no: PR #157's PokeAPI front | ready (see "Scrambled sprites") |
 | 663 | Talonflame | back, both shinies | **Scrambled in battle** | **yes** | ready |
 | 933 | Naclstack | back, shiny back | **Bulbasaur's back** (the pack's placeholder) | yes, the front too | needs art |
 | 946 | Bramblin | back, shiny back | **Bulbasaur's back** | yes, the front too | needs art |
@@ -38,8 +38,8 @@ The game unscrambles each battle sprite with a key it takes from the sprite's ow
 - Talonflame's back: a wing tip. It was scaled to 88% to fit 80×80.
 
 Either comes out as noise. Clearing those few pixels (1 for Samurott, 2 for Talonflame) fixes both. The converter
-fix and a CI check (`tools/test/check_battle_sprites.py`) are ready; they wait for PR #157 to merge. On main the
-check finds Talonflame; on #157, Samurott as well.
+fix and a CI check (`tools/test/check_battle_sprites.py`) are ready. They wait for PR #159, which changes the same
+converter. On main (#157 merged) the check finds both; on #159 it also finds Hisuian Samurott's new front.
 
 ### Bulbasaur's back (9 species)
 
@@ -89,7 +89,7 @@ leans toward the shiny colours. So the estimates look sound, but they are estima
 - **Zeraora:** on main its shiny front has teal claws, because the pack's shiny was drawn 1 pixel off. PR #157
   replaces that front, and its PokeAPI pair lines up.
 
-## The converter patch (after PR #157 merges)
+## The converter patch (after PR #159 merges)
 
 The patch is ready. It changes `tools/sprites/convert_battle_sprites.py` and adds the CI check:
 - **Corner:** clears the top-left corner (Samurott, Talonflame).
