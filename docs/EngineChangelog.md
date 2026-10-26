@@ -4,6 +4,48 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): held items, part 2; Ghost types escape trapping; Healer 50%
+
+For players: ten more held items from the Veilstone Dept. Store now work. A Ghost type can always switch out or run
+away, and Healer cures its ally half the time, as in Pokémon Champions.
+
+- **Weakness Policy:** Attack and Sp. Atk +2 when a super-effective move hits the holder.
+- **Absorb Bulb, Cell Battery, Luminous Moss, Snowball:** a +1 stat rise when a move of their type hits the holder:
+  - Absorb Bulb: Sp. Atk, from a Water move.
+  - Cell Battery: Attack, from an Electric move.
+  - Luminous Moss: Sp. Def, from a Water move.
+  - Snowball: Attack, from an Ice move.
+- **Throat Spray:** Sp. Atk +1 after the holder uses a sound move that works.
+- **Blunder Policy:** Speed +2 after the holder's move misses.
+- All seven of these are used up once they act. They don't act while the stats they raise are already at +6.
+  - They share one subscript, `subscript_sovereign_item_stat_up`, which shows "The {item} raised {Pokémon}'s {stat}!".
+  - On-hit items: `Sovereign_ItemStatUpOnHit`, in `BattleSystem_TriggerHeldItemOnHit`.
+  - After-move items: a new step, `AFTER_MOVE_HIT_STATE_SOVEREIGN_ITEMS`.
+- **Float Stone:** the holder's weight is halved for Low Kick, Grass Knot, Heavy Slam and Heat Crash. This stacks
+  with Light Metal.
+- **Binding Band:** a binding move its holder used costs the target 1/8 of its max HP at the end of each turn, not
+  1/16. Sovereign keeps Platinum's 1/16 base, so the band doubles it, as in Gen V.
+- **Loaded Dice:** the holder's 2-5 hit moves hit 4 or 5 times.
+- **Ghost types and trapping:** since Gen VI, nothing traps a Ghost type. It can switch out or flee past Mean Look,
+  Block, binding moves, Ingrain, Shadow Tag, Arena Trap and Magnet Pull (`Battler_IsTrapped`, `Battler_IsTrappedMsg`).
+- **Healer:** 50% a turn, as in Pokémon Champions (30% in Gen V-IX).
+- `docs/HeldItemChecklist.md` and `docs/BattleMechanics.md` are updated. The Gen V-IX rules Champions inherits
+  (Prankster vs Dark types, Intimidate blockers, Ghost types and trapping, Grass types and powder) are all done.
+
+**Verification:** `tools/test/check_battle_scripts.py` passes. Harness wild battles against a Ninjask:
+- **Weakness Policy:** Snorlax hit by Mach Punch: "The Weakness Policy raised SNORLAX's Attack!", then Sp. Atk. It
+  happens once; the next super-effective hit does nothing, and Tackle never sets it off.
+- **The type items:** Absorb Bulb (Water Gun), Cell Battery (ThunderShock), Luminous Moss (Water Gun) and Snowball
+  (Powder Snow) each raise their stat once.
+- **Throat Spray:** after Hyper Voice, "The Throat Spray raised SNORLAX's Sp. Atk!", once.
+- **Blunder Policy:** Zap Cannon misses: "The Blunder Policy raised SNORLAX's Speed!".
+- **Float Stone:** Lucario takes 44 from a Lv. 40 Ninjask's Low Kick with it, 58 without (80 base power at 54 kg, 60
+  at 27 kg).
+- **Binding Band:** a wild Ninjask holding one wraps Snorlax: 27 at the end of the turn (221/8), 13 without (221/16),
+  with the test's god mode off.
+- **Loaded Dice:** a wild Ninjask holding them: Bullet Seed hits 4, then 5 times.
+- Ghost types and trapping, and Healer, weren't run (the harness has no trapping case or double battle yet).
+
 ## Item 11 (effect fidelity): held items, part 1
 
 For players: Eviolite, Assault Vest, Rocky Helmet, Heavy-Duty Boots, Safety Goggles, Covert Cloak and Clear Amulet now
