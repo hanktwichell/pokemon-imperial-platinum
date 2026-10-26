@@ -16,8 +16,8 @@ Each object gets a result:
 - ok: a script ran and ended;
 - NOSCRIPT: nothing ran when A was pressed, so the object isn't there on a new game (a flag hides it until later in
   the story) or something else stands in the way;
-- STANDIN: another object on its tile answered, standing in for it while it's hidden (Pokémon Mansion's west maid,
-  until Team Galactic's grunts take her place);
+- STANDIN: another object answered from its tile, standing in for it while it's hidden (Pokémon Mansion's west maid
+  on the grunt trio's tile until Team Galactic's siege; Route 210's Double Team, who walk onto Zamazenta's);
 - OTHER and the script that ran instead (gSovereignTestScripts: the first script the field started), twice in a row:
   a trainer who sees the player walks up and battles first, as for a player, and then the test warps back to the
   tile and talks again;
@@ -187,12 +187,10 @@ def script_id(obj):
 
 
 def object_scripts(events, oid):
-    """(the object's script, the scripts of the other objects on its tile): one of them stands there when it's
-    hidden, as Pokémon Mansion's west maid does until Team Galactic's grunts take her place."""
+    """(the object's script, the scripts of the map's other objects)."""
     path = os.path.join('decomp', 'res', 'field', 'events', events + '.json')
     objs = json.load(open(path))['object_events']
-    obj = next(o for o in objs if o['id'] == oid)
-    return script_id(obj), {script_id(o) for o in objs if o['id'] != oid and (o['x'], o['z']) == (obj['x'], obj['z'])}
+    return script_id(next(o for o in objs if o['id'] == oid)), {script_id(o) for o in objs if o['id'] != oid}
 
 
 def u32(d, addr):
@@ -287,9 +285,9 @@ def arrive(d, sym, state, variables, events, header, way_in, x, z, face, setup=N
 def talk(d, sym, events, oid, header, x, z, face):
     """Press A to talk to the object from the tile (x, z) and play its script out. Another script can run first (a
     trainer who sees the player walks up and battles): then, as a player would, the test warps back to the tile facing
-    the object and talks once more. Returns play_out's result, 'STANDIN' (the script of another object on its tile ran:
-    it stands in for this one, which is hidden), or ('OTHER ' + the script that ran instead, frames)."""
-    own, standins = object_scripts(events, oid)
+    the object and talks once more. Returns play_out's result, 'STANDIN' (the second time, another object answered: it
+    stands on the object's tile, so the object is hidden), or ('OTHER ' + the script that ran instead, frames)."""
+    own, others = object_scripts(events, oid)
     for again in (False, True):
         if again:
             result, frames = warp(d, sym, header, x, z, face + 1)
@@ -302,7 +300,7 @@ def talk(d, sym, events, oid, header, x, z, face):
             return ('ok' if started & 0xffff and result == 'NOSCRIPT' else result), frames  # NOSCRIPT: it ended at once
         if result != 'ok':
             return result, frames
-        if started >> 16 in standins:
+        if again and started >> 16 in others:
             return 'STANDIN', frames
     return f'OTHER {started >> 16}', frames
 
