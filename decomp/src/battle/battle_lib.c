@@ -5721,6 +5721,58 @@ BOOL Sovereign_TeatimeNext(BattleSystem *battleSys, BattleContext *battleCtx)
     return FALSE;
 }
 
+// Sovereign (item 11): Shell Side Arm is physical, and makes contact, when Showdown's formula (with the stat stages, the
+// target's Defense against its Sp. Def) says a physical hit would do more damage than a special one.
+BOOL Sovereign_ShellSideArmPhysical(BattleContext *battleCtx, int attacker, int defender)
+{
+    BattleMon *user = &battleCtx->battleMons[attacker];
+    BattleMon *target = &battleCtx->battleMons[defender];
+    u32 base = 2 * user->level / 5 + 2;
+    u32 attack = user->attack * sStatStageBoosts[user->statBoosts[BATTLE_STAT_ATTACK]].numerator
+        / sStatStageBoosts[user->statBoosts[BATTLE_STAT_ATTACK]].denominator;
+    u32 spAttack = user->spAttack * sStatStageBoosts[user->statBoosts[BATTLE_STAT_SP_ATTACK]].numerator
+        / sStatStageBoosts[user->statBoosts[BATTLE_STAT_SP_ATTACK]].denominator;
+    u32 defense = target->defense * sStatStageBoosts[target->statBoosts[BATTLE_STAT_DEFENSE]].numerator
+        / sStatStageBoosts[target->statBoosts[BATTLE_STAT_DEFENSE]].denominator;
+    u32 spDefense = target->spDefense * sStatStageBoosts[target->statBoosts[BATTLE_STAT_SP_DEFENSE]].numerator
+        / sStatStageBoosts[target->statBoosts[BATTLE_STAT_SP_DEFENSE]].denominator;
+
+    return base * 90 * attack / (defense ? defense : 1) / 50 > base * 90 * spAttack / (spDefense ? spDefense : 1) / 50;
+}
+
+// Sovereign (item 11): Autotomize makes the side-effect battler 100 kg lighter, down to 0.1 kg. FALSE if it was already
+// that light.
+BOOL Sovereign_Autotomize(BattleContext *battleCtx)
+{
+    BattleMon *mon = &battleCtx->battleMons[battleCtx->sideEffectMon];
+
+    if (mon->weight <= 1) {
+        return FALSE;
+    }
+
+    mon->weight = mon->weight > 1001 ? mon->weight - 1000 : 1;
+    return TRUE;
+}
+
+// Sovereign (item 11): Flame Burst's bursting flame hits the defender's ally for 1/16 of its max HP (not through Magic
+// Guard). FALSE when there's none to hit; otherwise the ally is msgBattlerTemp and the damage is in hpCalcTemp.
+BOOL Sovereign_FlameBurstSplash(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES) == FALSE) {
+        return FALSE;
+    }
+
+    int ally = BattleSystem_GetPartner(battleSys, battleCtx->defender);
+
+    if (battleCtx->battleMons[ally].curHP == 0 || Battler_Ability(battleCtx, ally) == ABILITY_MAGIC_GUARD) {
+        return FALSE;
+    }
+
+    battleCtx->msgBattlerTemp = ally;
+    battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[ally].maxHP * -1, 16);
+    return TRUE;
+}
+
 // Sovereign (item 11): TRUE when the thief can take the victim's held item by Thief's rules (BtlCmd_TryStealItem), for
 // Magician and Pickpocket. A Pokemon on the foe's side can't, outside the Battle Frontier, so the player loses no item.
 static BOOL Sovereign_CanTakeItem(BattleSystem *battleSys, BattleContext *battleCtx, int thief, int victim)
@@ -8941,7 +8993,8 @@ static const u16 sPunchingMoves[] = {
 // Reach and Protective Pads remove contact; Punching Glove removes it from punching moves.
 BOOL Sovereign_MakesContact(BattleContext *battleCtx, int attacker, int move)
 {
-    if ((MOVE_DATA(move).flags & MOVE_FLAG_MAKES_CONTACT) == FALSE
+    if (((MOVE_DATA(move).flags & MOVE_FLAG_MAKES_CONTACT) == FALSE
+            && (move != MOVE_SHELL_SIDE_ARM || Sovereign_ShellSideArmPhysical(battleCtx, attacker, battleCtx->defender) == FALSE))
         || Battler_Ability(battleCtx, attacker) == ABILITY_LONG_REACH
         || battleCtx->battleMons[attacker].heldItem == ITEM_PROTECTIVE_PADS) {
         return FALSE;
@@ -10038,6 +10091,11 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
                 / sStatStageBoosts[attackStage + DEFAULT_STAT_STAGE].denominator
             > BattleMon_Get(battleCtx, attacker, BATTLEMON_SP_ATTACK, NULL) * sStatStageBoosts[spAttackStage + DEFAULT_STAT_STAGE].numerator
                 / sStatStageBoosts[spAttackStage + DEFAULT_STAT_STAGE].denominator) {
+        moveClass = CLASS_PHYSICAL;
+    }
+
+    // Sovereign (item 11): Shell Side Arm is physical when a physical hit would do more damage.
+    if (move == MOVE_SHELL_SIDE_ARM && Sovereign_ShellSideArmPhysical(battleCtx, attacker, defender)) {
         moveClass = CLASS_PHYSICAL;
     }
 

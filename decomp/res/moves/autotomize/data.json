@@ -13,7 +13,7 @@
     "accuracy": 0,
     "pp": 15,
     "effect": {
-        "type": "BATTLE_EFFECT_SPEED_UP_2",
+        "type": "BATTLE_EFFECT_SOVEREIGN_AUTOTOMIZE",
         "chance": 0
     },
     "range": "RANGE_USER",

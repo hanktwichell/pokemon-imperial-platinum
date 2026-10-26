@@ -463,4 +463,6 @@ subscript_files = files(
     'subscript_sovereign_octolock_drop.s',
     'subscript_sovereign_spotlight.s',
     'subscript_sovereign_teatime.s',
+    'subscript_sovereign_autotomize.s',
+    'subscript_sovereign_flame_burst.s',
 )

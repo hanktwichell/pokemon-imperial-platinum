@@ -10117,6 +10117,14 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         // single battle)
         battleCtx->sovereignTerrainTemp = Sovereign_Spotlight(battleSys, battleCtx);
         return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_AUTOTOMIZE: // Sovereign (item 11): read-only, Autotomize lightens the side-effect battler
+        // (FALSE when it can't get lighter)
+        battleCtx->sovereignTerrainTemp = Sovereign_Autotomize(battleCtx);
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_FLAME_BURST: // Sovereign (item 11): read-only, the bursting flame has an ally of the defender to
+        // hit (BTLVAR_MSG_BATTLER_TEMP, with the damage in BTLVAR_HP_CALC_TEMP)
+        battleCtx->sovereignTerrainTemp = Sovereign_FlameBurstSplash(battleSys, battleCtx);
+        return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_TEATIME_START: // Sovereign (item 11): read-only, how many battlers hold a Berry (Teatime)
         battleCtx->sovereignTerrainTemp = Sovereign_TeatimeStart(battleSys, battleCtx);
         return &battleCtx->sovereignTerrainTemp;
