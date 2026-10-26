@@ -7850,3 +7850,29 @@ PR #195 (Round, Expanding Force, turn order, duplicate strings) is merged.
    - Trick-or-Treat and Forest's Curse: they need a third type.
    - Burn Up and Double Shock wait on the owner (CB-0158).
 3. Abilities still to do: Illusion, Symbiosis, Dancer, Receiver/Power of Alchemy, Neutralizing Gas, Commander, Ball Fetch.
+
+## CB-0180 — 2026-10-26, 3:02 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: Powder, plus two fixes (a spread move fizzling in heavy rain, and a build race).**
+PR #196 (Dragon Darts) is merged.
+- **Powder:** a powdered Pokémon's Fire move explodes. The move fails and the user loses 1/4 of its max HP.
+  - Magic Guard prevents the damage. Grass types, Overcoat and Safety Goggles are immune to Powder.
+  - In heavy rain the fizzle comes first. A spread Fire move explodes once.
+- **Fizzle fix:** a spread Fire or Water move now fizzles out once in heavy rain or harsh sunlight.
+- **Build fix:** the trainer AI script depends on the generated headers. This ends the "unterminated #ifdef" errors, and the link errors on `BATTLE_EFFECT_*` names, after a header changed.
+- This was verified in the singles and doubles harness (see the changelog). There are 16 placeholder moves left.
+
+**Files modified:**
+- `decomp/src/battle/battle_controller_player.c`, `decomp/src/battle/battle_script.c` (var), `decomp/include/battle/battle_context.h` (turn flag).
+- New subscripts `subscript_sovereign_powder` and `_powder_explode`. New effect script `effect_script_0392.s`. The registration files.
+- `decomp/res/text/battle_strings.json` (4 messages), `decomp/res/moves/powder/data.json`.
+- `decomp/meson.build` (the AI script's dependency).
+- `tools/engine/gen9_move_fixes.py`, `docs/MoveChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Placeholders still open:
+   - Spectral Thief, Shed Tail, Beak Blast, Shell Trap, Instruct, Sky Drop.
+   - Trick-or-Treat and Forest's Curse: they need a third type.
+   - Burn Up and Double Shock wait on the owner (CB-0158).
+2. Abilities still to do: Illusion, Symbiosis, Dancer, Receiver/Power of Alchemy, Neutralizing Gas, Commander, Ball Fetch.
+3. Check the heavy-rain fizzle with Primal Kyogre and a spread Fire move in doubles. It was fixed by reading the code, but not run.

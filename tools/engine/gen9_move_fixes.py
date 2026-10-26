@@ -157,6 +157,7 @@ MOVES = {
     "oblivion_wing": (None, None, "drains 3/4 of the damage dealt"),
     "round": (None, None, "the next Pokémon (either side) that chose Round moves right after the user, with double"
               " power"),
+    "powder": ("SOVEREIGN_POWDER", 0, "the target's Fire moves this turn explode: they fail and it loses 1/4 of its max HP (not through Magic Guard; heavy rain fizzles them first)"),
     "dragon_darts": (None, None, "hits twice; in a double battle, once the target and once its ally (both darts at one"
                      " when the other can't be hit)"),
     # Terrains (5 turns, 8 with a Terrain Extender; the Seeds aren't reproduced yet).

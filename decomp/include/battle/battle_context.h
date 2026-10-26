@@ -71,7 +71,8 @@ typedef struct TurnFlags {
     u32 sovereignElectrified : 1; // Sovereign (item 11): Electrify makes its moves Electric this turn
     u32 sovereignMovedUp : 1; // Sovereign (item 11): After You or Round moved it up this turn (dynamic speed keeps it there)
     u32 sovereignQuashed : 1; // Sovereign (item 11): Quash moved it last this turn (dynamic speed keeps it there)
-    u32 padding00_0A : 15;
+    u32 sovereignPowdered : 1; // Sovereign (item 11): Powder covers it this turn (its Fire moves explode)
+    u32 padding00_0A : 14;
 
     int physicalDamageTakenFrom[MAX_BATTLERS];
     int physicalDamageLastAttacker;

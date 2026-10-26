@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 363 |
+| exact | 364 |
 | approximate | 0 |
-| placeholder | 17 |
+| placeholder | 16 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -147,7 +147,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 597 | Aromatic Mist | Fairy | `SOVEREIGN_AROMATIC_MIST` | exact | Sovereign effect: the user's ally's Sp. Def +1; fails without an ally |
 | 598 | Eerie Impulse | Electric | `SP_ATK_DOWN_2` | exact |  |
 | 599 | Venom Drench | Poison | `SOVEREIGN_VENOM_DRENCH` | exact | Sovereign effect: target Attack -1, target Sp. Atk -1, target Speed -1 |
-| 600 | Powder | Bug | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 600 | Powder | Bug | `SOVEREIGN_POWDER` | exact | Sovereign effect: the target's Fire moves this turn explode: they fail and it loses 1/4 of its max HP (not through Magic Guard; heavy rain fizzles them first) |
 | 601 | Geomancy | Fairy | `SOVEREIGN_GEOMANCY` | exact | Sovereign effect: charges for a turn (a Power Herb skips it), then user Sp. Atk, Sp. Def and Speed +2 |
 | 602 | Magnetic Flux | Electric | `SOVEREIGN_MAGNETIC_FLUX` | exact | Sovereign effect: Defense and Sp. Def +1 for the user and its ally if they have Plus or Minus |
 | 603 | Happy Hour | Normal | `SOVEREIGN_HAPPY_HOUR` | exact | Sovereign effect: doubles the prize money (on top of an Amulet Coin) |
