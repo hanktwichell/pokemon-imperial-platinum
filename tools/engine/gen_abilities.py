@@ -263,6 +263,7 @@ IMPLEMENTED = {
     242: "yes: ignores moves and abilities that draw in attacks",
     245: "yes: getting hit whips up a sandstorm",
     249: "yes: its ally's moves ×1.3",
+    256: "yes: every other ability in battle has no effect while it's in (not abilities that can't be suppressed or an Ability Shield holder's); entry abilities run when it leaves",
     251: "yes: removes Reflect, Light Screen and Aurora Veil on entry",
     189: "yes: heavy rain while it's in battle; Fire moves fizzle, other weather can't start",
     190: "yes: extremely harsh sun while it's in battle; Water moves evaporate, other weather can't start",

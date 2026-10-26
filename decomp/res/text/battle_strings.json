@@ -10786,6 +10786,17 @@
         "Grass type was added\n",
         "to the foe’s {STRVAR_1 1, 0, 0}!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignNeutralizingGas",
+      "en_US": "Neutralizing gas filled the area!"
+    },
+    {
+      "id": "BattleStrings_Text_SovereignNeutralizingGasEnd",
+      "en_US": [
+        "The effects of the neutralizing\n",
+        "gas wore off!"
+      ]
     }
   ]
 }

@@ -138,7 +138,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 253 | Perish Body | Gen 8 | yes: contact gives it and the attacker a Perish Song count of 3 |
 | 254 | WanderingSpirit | Gen 8 | yes: swaps abilities with an attacker that makes contact |
 | 255 | Gorilla Tactics | Gen 8 | yes: Attack ×1.5, but it can only use the first move it picked, as with a Choice item, until it switches out |
-| 256 | NeutralizingGas | Gen 8 | not yet (no battle effect) |
+| 256 | NeutralizingGas | Gen 8 | yes: every other ability in battle has no effect while it's in (not abilities that can't be suppressed or an Ability Shield holder's); entry abilities run when it leaves |
 | 257 | Pastel Veil | Gen 8 | yes: it and its partner can't be poisoned, and its own poisoning is healed ("…is protected by a pastel veil!" for its partner) |
 | 258 | Hunger Switch | Gen 8 | yes: switches between Full Belly and Hangry Mode at the end of each turn |
 | 259 | Quick Draw | Gen 8 | yes: 30% of the time it uses a damaging move, it moves first in its priority bracket |

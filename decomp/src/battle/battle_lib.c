@@ -120,6 +120,7 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
     battleCtx->battleMons[battler].sovereignBoosterEnergy = FALSE;
     battleCtx->battleMons[battler].sovereignProteanUsed = FALSE;
     battleCtx->battleMons[battler].sovereignBalloonAnnounced = FALSE; // Sovereign (item 11)
+    battleCtx->battleMons[battler].sovereignGasAnnounced = FALSE; // Sovereign (item 11)
     battleCtx->battleMons[battler].sovereignMimicryTerrain = SOVEREIGN_MIMICRY_UNSEEN; // Sovereign (item 11)
     battleCtx->sovereignCudChewBerry[battler] = ITEM_NONE; // Sovereign (item 11)
     battleCtx->battleMons[battler].sovereignEntryAnnounced = FALSE;
@@ -2998,7 +2999,8 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
     return damage;
 }
 
-void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inType, int attackerAbility, int defenderAbility, int defenderItemEffect, int defenderType1, int defenderType2, u32 *moveStatusMask)
+// Sovereign (item 11): addedType is a type added by Trick-or-Treat or Forest's Curse, plus 1 (0 for none).
+static void CalcEffectiveness(BattleContext *battleCtx, int move, int inType, int attackerAbility, int defenderAbility, int defenderItemEffect, int defenderType1, int defenderType2, int addedType, u32 *moveStatusMask)
 {
     int chartEntry;
     u8 moveType;
@@ -3039,6 +3041,14 @@ void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inTy
                     && NoImmunityOverrides(battleCtx, defenderItemEffect, chartEntry) == TRUE) {
                     UpateMoveStatusForTypeMul(Sovereign_ChartMul(battleCtx, move, chartEntry), moveStatusMask);
                 }
+
+                // Sovereign (item 11): the added type.
+                if (addedType == sTypeMatchupMultipliers[chartEntry][1] + 1
+                    && defenderType1 != sTypeMatchupMultipliers[chartEntry][1]
+                    && defenderType2 != sTypeMatchupMultipliers[chartEntry][1]
+                    && NoImmunityOverrides(battleCtx, defenderItemEffect, chartEntry) == TRUE) {
+                    UpateMoveStatusForTypeMul(Sovereign_ChartMul(battleCtx, move, chartEntry), moveStatusMask);
+                }
             }
 
             chartEntry++;
@@ -3054,6 +3064,27 @@ void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inTy
     }
 
     return;
+}
+
+void BattleSystem_CalcEffectiveness(BattleContext *battleCtx, int move, int inType, int attackerAbility, int defenderAbility, int defenderItemEffect, int defenderType1, int defenderType2, u32 *moveStatusMask)
+{
+    CalcEffectiveness(battleCtx, move, inType, attackerAbility, defenderAbility, defenderItemEffect, defenderType1, defenderType2, 0, moveStatusMask);
+}
+
+// Sovereign (item 11): BattleSystem_CalcEffectiveness against a battler in play, with its ability, held item and types,
+// a type added by Trick-or-Treat or Forest's Curse included.
+void Sovereign_CalcEffectivenessAgainst(BattleContext *battleCtx, int move, int inType, int attackerAbility, int defender, u32 *moveStatusMask)
+{
+    CalcEffectiveness(battleCtx,
+        move,
+        inType,
+        attackerAbility,
+        Battler_Ability(battleCtx, defender),
+        Battler_HeldItemEffect(battleCtx, defender),
+        BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_1, NULL),
+        BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_2, NULL),
+        battleCtx->battleMons[defender].sovereignAddedType,
+        moveStatusMask);
 }
 
 /**
@@ -3409,10 +3440,33 @@ BOOL BattleSystem_CanWhirlwind(BattleSystem *battleSys, BattleContext *battleCtx
     return result;
 }
 
+// Sovereign (item 11): TRUE while a Pokémon in battle has Neutralizing Gas, not itself suppressed (Gastro Acid).
+BOOL Sovereign_NeutralizingGasActive(BattleContext *battleCtx)
+{
+    for (int i = 0; i < MAX_BATTLERS; i++) {
+        if (battleCtx->battleMons[i].curHP
+            && battleCtx->battleMons[i].ability == ABILITY_NEUTRALIZING_GAS
+            && (battleCtx->battleMons[i].moveEffectsMask & MOVE_EFFECT_ABILITY_SUPPRESSED) == FALSE) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
 u16 Battler_Ability(BattleContext *battleCtx, int battler)
 {
     if ((battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_ABILITY_SUPPRESSED)
         && Sovereign_AbilityCantBeSuppressed(battleCtx->battleMons[battler].ability) == FALSE) { // Sovereign (item 11)
+        return ABILITY_NONE;
+    }
+
+    // Sovereign (item 11): Neutralizing Gas suppresses every other ability in battle, but not another Neutralizing Gas,
+    // an ability that can't be suppressed or an Ability Shield holder's. (Empty battler slots have no HP.)
+    if (battleCtx->battleMons[battler].ability != ABILITY_NEUTRALIZING_GAS
+        && Sovereign_AbilityCantBeSuppressed(battleCtx->battleMons[battler].ability) == FALSE
+        && Sovereign_HasAbilityShield(battleCtx, battler) == FALSE
+        && Sovereign_NeutralizingGasActive(battleCtx)) {
         return ABILITY_NONE;
     }
 
@@ -4446,6 +4500,7 @@ enum SwitchInCheckState {
     SWITCH_IN_CHECK_STATE_START = 0,
 
     SWITCH_IN_CHECK_STATE_FIELD_WEATHER = SWITCH_IN_CHECK_STATE_START,
+    SWITCH_IN_CHECK_STATE_SOVEREIGN_NEUTRALIZING_GAS, // Sovereign (item 11)
     SWITCH_IN_CHECK_STATE_SOVEREIGN_PRIMAL, // Sovereign (E8)
     SWITCH_IN_CHECK_STATE_SOVEREIGN_TOTEM_AURA, // Sovereign (decision 18)
     SWITCH_IN_CHECK_STATE_TRACE,
@@ -4538,6 +4593,36 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
             }
 
             battleCtx->switchInCheckState++;
+            break;
+
+        case SWITCH_IN_CHECK_STATE_SOVEREIGN_NEUTRALIZING_GAS:
+            // Sovereign (item 11): Neutralizing Gas is announced as its user comes in, before any other entry ability.
+            // When the last one leaves, faints or loses it, its end is announced, and the states below then run the
+            // entry abilities it held back (they only mark themselves announced once they run).
+            for (i = 0; i < maxBattlers; i++) {
+                battler = battleCtx->monSpeedOrder[i];
+
+                if (battleCtx->battleMons[battler].sovereignGasAnnounced == FALSE
+                    && battleCtx->battleMons[battler].curHP
+                    && Battler_Ability(battleCtx, battler) == ABILITY_NEUTRALIZING_GAS) {
+                    battleCtx->battleMons[battler].sovereignGasAnnounced = TRUE;
+                    battleCtx->sovereignGasActive = TRUE;
+                    battleCtx->msgBattlerTemp = battler;
+                    subscript = subscript_sovereign_neutralizing_gas;
+                    result = SWITCH_IN_CHECK_RESULT_BREAK;
+                    break;
+                }
+            }
+
+            if (i == maxBattlers) {
+                if (battleCtx->sovereignGasActive && Sovereign_NeutralizingGasActive(battleCtx) == FALSE) {
+                    battleCtx->sovereignGasActive = FALSE;
+                    subscript = subscript_sovereign_neutralizing_gas_end;
+                    result = SWITCH_IN_CHECK_RESULT_BREAK;
+                }
+
+                battleCtx->switchInCheckState++;
+            }
             break;
 
         case SWITCH_IN_CHECK_STATE_SOVEREIGN_PRIMAL:
@@ -11787,14 +11872,11 @@ int BattleAI_PostKOSwitchIn(BattleSystem *battleSys, int battler)
 
                 if (move) {
                     moveStatusFlags = 0;
-                    BattleSystem_CalcEffectiveness(battleCtx,
+                    Sovereign_CalcEffectivenessAgainst(battleCtx,
                         move,
                         moveType,
                         Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL),
-                        Battler_Ability(battleCtx, defender),
-                        Battler_HeldItemEffect(battleCtx, defender),
-                        BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_1, NULL),
-                        BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_2, NULL),
+                        defender,
                         &moveStatusFlags);
 
                     if (moveStatusFlags & MOVE_STATUS_SUPER_EFFECTIVE) {
