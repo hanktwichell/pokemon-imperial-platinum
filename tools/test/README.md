@@ -40,7 +40,7 @@ one and reports **HEAP**. The times are rough.
 | `battle_form_changes.py` | Megas, Primals, Ultra Burst, in-battle forms, form-change items | ~1 h |
 | `battle_evolutions.py` | every evolution that involves a form | ~25 min in 4 parts |
 | `battle_eggs.py` | every form bred in the Day Care and hatched | ~1 h in 4 parts |
-| `sprite_check.py` | contact sheets of #494–1025's battle sprites in a battle (front and back, normal and shiny), to check by eye | ~2 h, or in parts |
+| `sprite_check.py` | contact sheets of #494–1025's battle sprites in a battle (front and back, normal and shiny), to check by eye | ~40 min in 4 parts |
 | `wild_forms.py` | wild Pokémon's forms on every map, through the real encounter code | ~20 min in 4 parts |
 | `talk_to_objects.py` | every added or moved object runs its own script to its end | ~1 h in 4 parts |
 | `signs_and_triggers.py` | every added sign, hidden item and coord trigger | ~10 min in 4 parts |
