@@ -1691,7 +1691,7 @@ int BattleSystem_Defender(BattleSystem *battleSys, BattleContext *battleCtx, int
 
     int range;
     if (move) {
-        range = MOVE_DATA(move).range;
+        range = Sovereign_MoveRange(battleCtx, attacker, move); // Sovereign (item 11)
     } else {
         range = inRange;
     }
@@ -5622,6 +5622,17 @@ int Sovereign_ElectrifyType(BattleContext *battleCtx, int battler, int move, int
     }
 
     return type;
+}
+
+// Sovereign (item 11): a move's range as it's used: Expanding Force from a grounded user in Psychic Terrain hits both
+// foes.
+int Sovereign_MoveRange(BattleContext *battleCtx, int attacker, int move)
+{
+    if (move == MOVE_EXPANDING_FORCE && (Sovereign_TerrainUnder(battleCtx, attacker) & FIELD_CONDITION_TERRAIN_PSYCHIC)) {
+        return RANGE_ADJACENT_OPPONENTS;
+    }
+
+    return MOVE_DATA(move).range;
 }
 
 // Sovereign (item 11): Electrify works on a target that hasn't acted yet this turn and isn't electrified already.
@@ -9563,7 +9574,7 @@ int Sovereign_MovePower(BattleSystem *battleSys, BattleContext *battleCtx, int m
         }
         break;
 
-    case MOVE_EXPANDING_FORCE: // 1.5x from a grounded user in Psychic Terrain
+    case MOVE_EXPANDING_FORCE: // 1.5x from a grounded user in Psychic Terrain (and it hits both foes: Sovereign_MoveRange)
         if (Sovereign_TerrainUnder(battleCtx, attacker) & FIELD_CONDITION_TERRAIN_PSYCHIC) {
             power = power * 15 / 10;
         }
@@ -9610,9 +9621,8 @@ int Sovereign_MovePower(BattleSystem *battleSys, BattleContext *battleCtx, int m
         }
         break;
 
-    case MOVE_ROUND: // double if the user's ally used Round earlier this turn
-        if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES)
-            && battleCtx->turnFlags[attacker ^ 2].sovereignUsedRound) {
+    case MOVE_ROUND: // double when another Pokemon's Round called this one up (Sovereign_CallNextRound)
+        if (battleCtx->turnFlags[attacker].sovereignRoundCalled) {
             power *= 2;
         }
         break;
@@ -10572,7 +10582,7 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
     }
 
     if ((battleType & BATTLE_TYPE_DOUBLES)
-        && MOVE_DATA(move).range == RANGE_ADJACENT_OPPONENTS
+        && Sovereign_MoveRange(battleCtx, attacker, move) == RANGE_ADJACENT_OPPONENTS // Sovereign (item 11)
         && BattleSystem_CountAliveBattlers(battleSys, battleCtx, TRUE, defender) == 2) {
         damage = damage * 3 / 4;
     }

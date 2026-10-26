@@ -6,8 +6,8 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 360 |
-| approximate | 3 |
+| exact | 362 |
+| approximate | 1 |
 | placeholder | 17 |
 | removed | 72 |
 
@@ -43,7 +43,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 493 | Simple Beam | Normal | `SOVEREIGN_SIMPLE_BEAM` | exact | Sovereign effect: the target's ability becomes Simple |
 | 494 | Entrainment | Normal | `SOVEREIGN_ENTRAINMENT` | exact | Sovereign effect: the target's ability becomes the user's |
 | 495 | After You | Normal | `SOVEREIGN_AFTER_YOU` | exact | Sovereign effect: the target moves right after the user |
-| 496 | Round | Normal | `HIT` | approximate | Sovereign effect: power doubles after its ally's Round this turn (the ally doesn't move up in turn order) |
+| 496 | Round | Normal | `HIT` | exact | Sovereign effect: the next Pokémon (either side) that chose Round moves right after the user, with double power |
 | 497 | Echoed Voice | Normal | `HIT` | exact | Sovereign effect: 40 more power for each consecutive turn it's used, up to 200 |
 | 498 | Chip Away | Normal | `HIT` | exact | Sovereign effect: ignores the target's stat changes |
 | 499 | Clear Smog | Poison | `SOVEREIGN_CLEAR_SMOG` | exact | Sovereign effect: resets the target's stat stages |
@@ -344,7 +344,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 794 | Meteor Assault | Fighting | `RECHARGE_AFTER` | exact |  |
 | 795 | Eternabeam | Dragon | `RECHARGE_AFTER` | exact |  |
 | 796 | Steel Beam | Steel | `SOVEREIGN_HALF_HP_COST_HIT` | exact | Sovereign effect: the user loses half its max HP, hit or miss |
-| 797 | Expanding Force | Psychic | `HIT` | approximate | Sovereign effect: 1.5x in Psychic Terrain (doesn't spread to both foes yet) |
+| 797 | Expanding Force | Psychic | `HIT` | exact | Sovereign effect: from a grounded user in Psychic Terrain: 1.5x and it hits both foes |
 | 798 | Steel Roller | Steel | `SOVEREIGN_FLATTEN_TERRAIN_HIT` | exact | Sovereign effect: fails without a terrain; after the hit, the terrain ends |
 | 799 | Scale Shot | Dragon | `MULTI_HIT` | exact | Sovereign effect: hits 2-5 times, then user Defense -1 and Speed +1 |
 | 800 | Meteor Beam | Rock | `ELECTRO_SHOT` | exact | Sovereign effect: charge turn raises Sp. Atk 1 stage, attacks next turn (Power Herb skips it) |

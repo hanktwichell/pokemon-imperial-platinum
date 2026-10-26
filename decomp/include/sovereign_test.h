@@ -173,6 +173,7 @@ struct SovereignTestPartner {
     u16 species;
     u8 form;
     u8 level;
+    u16 moves[4]; // a move set here replaces that slot's move
 };
 
 // A form-change key item used on the lead from the bag (SovereignFormItem_Use, as the party menu does), before the

@@ -7802,3 +7802,30 @@ PR #193 (Skill Swap lists) is merged.
    - Trick-or-Treat and Forest's Curse: they need a third type.
    - Burn Up and Double Shock wait on the owner (CB-0158).
 3. Abilities still to do: Illusion, Symbiosis, Dancer, Receiver/Power of Alchemy, Neutralizing Gas, Commander, Ball Fetch.
+
+## CB-0178 — 2026-10-26, 2:17 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: Round and Expanding Force now work fully in double battles, and the turn order keeps After You, Quash and Round moves in place.**
+PR #194 (moves batch 12) is merged.
+- **Round:** the next Pokémon that chose Round (either side) moves right after the user, with double power.
+- **Expanding Force:** from a grounded user in Psychic Terrain, it hits both foes.
+- **Turn order fix:** the dynamic-speed re-sort no longer undoes After You, Quash or Round in doubles.
+- **Duplicate strings fixed:** three battle messages were defined twice. The message check now catches a duplicate message ID.
+- **Test partner:** it can be given moves in the test build.
+- All were verified in the doubles harness (see the changelog). Dragon Darts is the only approximate move left.
+
+**Files modified:**
+- `decomp/src/battle/battle_controller_player.c`, `decomp/src/battle/battle_lib.c`.
+- `decomp/include/battle/battle_context.h` (turn flags), `decomp/include/battle/battle_lib.h`.
+- `decomp/include/sovereign_test.h`, `decomp/src/overlay005/field_control.c` (test partner moves).
+- `decomp/res/text/battle_strings.json`, `tools/test/check_message_box_lines.py`.
+- `tools/engine/gen9_move_fixes.py`, `docs/MoveChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Dragon Darts: in doubles, one hit on each foe, and the second hit moves on if the first target is protected or immune.
+2. Placeholders still open:
+   - Powder: needs a hook just before the move runs.
+   - Spectral Thief, Shed Tail, Beak Blast, Shell Trap, Instruct, Sky Drop.
+   - Trick-or-Treat and Forest's Curse: they need a third type.
+   - Burn Up and Double Shock wait on the owner (CB-0158).
+3. Abilities still to do: Illusion, Symbiosis, Dancer, Receiver/Power of Alchemy, Neutralizing Gas, Commander, Ball Fetch.

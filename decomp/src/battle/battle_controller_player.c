@@ -63,6 +63,7 @@ static void BattleControllerPlayer_InitCommandSelection(BattleSystem *battleSys,
 static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys, BattleContext *battleCtx);
 static void BattleControllerPlayer_CalcTurnOrder(BattleSystem *battleSys, BattleContext *battleCtx);
 static void BattleControllerPlayer_CheckPreMoveActions(BattleSystem *battleSys, BattleContext *battleCtx);
+static int Sovereign_TurnOrderClass(BattleContext *battleCtx, int battler);
 static void BattleControllerPlayer_BranchActions(BattleSystem *battleSys, BattleContext *battleCtx);
 static void BattleControllerPlayer_CheckFieldConditions(BattleSystem *battleSys, BattleContext *battleCtx);
 static void BattleControllerPlayer_CheckMonConditions(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -998,6 +999,7 @@ static void BattleControllerPlayer_BranchActions(BattleSystem *battleSys, Battle
                     && battleCtx->battlerActions[battler2][BATTLE_ACTION_SELECTED_COMMAND] == PLAYER_INPUT_FIGHT
                     && battleCtx->battlerActions[battler1][BATTLE_ACTION_PICK_COMMAND] != BATTLE_CONTROL_MOVE_END
                     && battleCtx->battlerActions[battler2][BATTLE_ACTION_PICK_COMMAND] != BATTLE_CONTROL_MOVE_END
+                    && Sovereign_TurnOrderClass(battleCtx, battler1) == Sovereign_TurnOrderClass(battleCtx, battler2)
                     && BattleSystem_CompareBattlerSpeed(battleSys, battleCtx, battler1, battler2, FALSE)) {
                     battleCtx->battlerActionOrder[i] = battler2;
                     battleCtx->battlerActionOrder[j] = battler1;
@@ -3357,6 +3359,17 @@ static int Sovereign_TurnOrderIndex(BattleSystem *battleSys, BattleContext *batt
     return -1;
 }
 
+// Sovereign (item 11): where a battler's action stays in the rest of the turn's order, as Showdown's action order: 0 when
+// After You or Round moved it up, 2 when Quash moved it last, 1 otherwise. Dynamic speed re-sorts only within a class.
+static int Sovereign_TurnOrderClass(BattleContext *battleCtx, int battler)
+{
+    if (battleCtx->turnFlags[battler].sovereignMovedUp) {
+        return 0;
+    }
+
+    return battleCtx->turnFlags[battler].sovereignQuashed ? 2 : 1;
+}
+
 // Sovereign (item 11): After You moves the target up to act next; Quash moves it to act last.
 static void Sovereign_ReorderTurn(BattleSystem *battleSys, BattleContext *battleCtx, int battler, BOOL toLast)
 {
@@ -3366,6 +3379,13 @@ static void Sovereign_ReorderTurn(BattleSystem *battleSys, BattleContext *battle
 
     if (pos < 0) {
         return;
+    }
+
+    // The dynamic-speed re-sort before each action keeps the battler where this puts it (Sovereign_TurnOrderClass).
+    if (toLast) {
+        battleCtx->turnFlags[battler].sovereignQuashed = TRUE;
+    } else {
+        battleCtx->turnFlags[battler].sovereignMovedUp = TRUE;
     }
 
     if (toLast) {
@@ -3378,6 +3398,25 @@ static void Sovereign_ReorderTurn(BattleSystem *battleSys, BattleContext *battle
             battleCtx->battlerActionOrder[i] = battleCtx->battlerActionOrder[i - 1];
         }
         battleCtx->battlerActionOrder[battleCtx->turnOrderCounter + 1] = battler;
+    }
+}
+
+// Sovereign (item 11): after a Round, the first Pokemon still to act this turn that chose Round (on either side) moves
+// right after it, and its Round has double power.
+static void Sovereign_CallNextRound(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
+
+    for (int i = battleCtx->turnOrderCounter + 1; i < maxBattlers; i++) {
+        int battler = battleCtx->battlerActionOrder[i];
+
+        if (battleCtx->battlerActions[battler][BATTLE_ACTION_SELECTED_COMMAND] == PLAYER_INPUT_FIGHT
+            && battleCtx->moveSelected[battler] == MOVE_ROUND
+            && battleCtx->battleMons[battler].curHP) {
+            Sovereign_ReorderTurn(battleSys, battleCtx, battler, FALSE);
+            battleCtx->turnFlags[battler].sovereignRoundCalled = TRUE;
+            return;
+        }
     }
 }
 
@@ -4662,7 +4701,7 @@ static void BattleControllerPlayer_LoopSpreadMoves(BattleSystem *battleSys, Batt
         battleCtx->sovereignMoveFormBattler = battleCtx->attacker + 1;
     }
 
-    if (CURRENT_MOVE_DATA.range == RANGE_ADJACENT_OPPONENTS
+    if (Sovereign_MoveRange(battleCtx, battleCtx->attacker, battleCtx->moveCur) == RANGE_ADJACENT_OPPONENTS // Sovereign (item 11)
         && (battleCtx->battleStatusMask & SYSCTL_CHECK_LOOP_ONLY_ONCE) == FALSE
         && battleCtx->battlerCounter < BattleSystem_GetMaxBattlers(battleSys)) {
         battleCtx->multiHitCheckFlags = SYSCTL_HIT_MULTIPLE_TARGETS;
@@ -4787,8 +4826,8 @@ static void BattleControllerPlayer_UpdateMoveBuffers(BattleSystem *battleSys, Ba
         if (battleCtx->moveTemp == MOVE_GLAIVE_RUSH && (battleCtx->battleStatusMask2 & SYSCTL_MOVE_SUCCEEDED)) {
             battleCtx->sovereignGlaiveRush |= FlagIndex(battleCtx->attacker);
         }
-        if (battleCtx->moveTemp == MOVE_ROUND) {
-            battleCtx->turnFlags[battleCtx->attacker].sovereignUsedRound = TRUE;
+        if (battleCtx->moveTemp == MOVE_ROUND && (battleCtx->battleStatusMask2 & SYSCTL_ATTACK_MESSAGE_SHOWN)) {
+            Sovereign_CallNextRound(battleSys, battleCtx);
         }
 
         // Echoed Voice remembers its streak.
