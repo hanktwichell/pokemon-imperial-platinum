@@ -43,7 +43,7 @@ and T2 only. See `EngineRoadmap.md` for the per-milestone breakdown.
 | E8 | Mega Evolution / Primal Reversion | ✅ done: 99 forms, battle flow, MEGA button, Primal Reversion, animation and symbols (row 10) |
 | E9 | Extended trainer data (natures, EVs, abilities, forms) | ✅ done: `docs/TrainerFormat.md` |
 | E10 / E11 | Renegade port; Sovereign content (encounters, E4 format, gifts, post-game) | 🟡 E10: Renegade's encounters, trainers, items, NPCs, gifts and legendary events are ported (41 parts); two owner questions remain (Open list). E11: the Totem trials, the story beats, the Chronicles post-game legendaries and the Elite Four format are in; the doubles teams wait on T1 (rows 14 and 15) |
-| E12 | Graphics (convert sprites, icons) | waiting on the owner's front sprites |
+| E12 | Graphics (convert sprites, icons) | 🟡 the battle sprites of #494–1025 are in (the owner's relabelled pack, `docs/BattleSpriteImport.md`); female, form and Mega sprites and real icons still to come (`EngineRoadmap.md` row 17) |
 | T1 | Boss team compositions with the owner's Mega picks; revise all boss teams | deferred by the owner until the engine features are done |
 | T2 | Developer final battle (Red-style double battle) | team received (`DeveloperBattle.md`); waiting on trainer text, sprites and level |
 

@@ -19,6 +19,8 @@ jobs:
         with:
           path: ~/apt-cache
           key: apt-v1-ubuntu-24.04-${{ hashFiles('.github/workflows/build.yml') }}
+          # Any change to this file changes the key; then the newest cache still serves the offline install below.
+          restore-keys: apt-v1-ubuntu-24.04-
       - name: Install dependencies
         timeout-minutes: 10
         run: |
