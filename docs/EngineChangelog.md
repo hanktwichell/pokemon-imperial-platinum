@@ -4,6 +4,69 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): moves, batch 9 (Champions corrections, Stuff Cheeks, No Retreat)
+
+For players: Dire Claw, Make It Rain, Toxic Thread, Salt Cure, Rage Fist, First Impression, Belch and the Unseen Fist
+ability now follow Pokémon Champions (Showdown's Champions mod). Earlier batches had used Gen IX values for some of
+them. Stuff Cheeks and No Retreat now work as in the main games.
+
+- **Value changes (Champions):**
+  - Dire Claw's status chance is 30% (was 50%).
+  - Make It Rain lowers the user's Sp. Atk 2 stages (was 1). The effect is renamed `SOVEREIGN_LOWER_OWN_SP_ATK_2_HIT`.
+  - Toxic Thread lowers the target's Speed 2 stages (was 1).
+  - Salt Cure deals 1/16 of the max HP each turn, 1/8 to Water and Steel types (was 1/8 and 1/4).
+- **Rage Fist:** the hit counter resets when the user switches out or faints (`BattleSystem_UpdateAfterSwitch`,
+  `BattleSystem_CleanupFaintedMon`).
+- **First Impression:** can't be selected after the user's first turn, like Fake Out ("...can use First Impression only
+  on its first turn!").
+- **Unseen Fist:** its contact moves now do 1/4 damage through Protect and its kin, Wide Guard, Quick Guard and Mat
+  Block, as Piercing Drill's already did. Both abilities are stopped by Crafty Shield. The flag is renamed
+  `sovereignThroughProtect`.
+- **No Retreat:**
+  - All stats +1, then "...can no longer escape because it used No Retreat!": Mean Look's trap, aimed at the user.
+  - It fails while that trap holds. A Pokémon trapped by something else can still use it for the stat boosts.
+  - A Ghost type escapes any trap, so it gets no message. `gen_stat_moves.py` builds this from a new `no_retreat` option.
+- **Stuff Cheeks:**
+  - Defense +2 (Showdown's order), then "...ate its <Berry>!" and the Berry's effect. Klutz, Embargo and Magic Room
+    don't stop it.
+  - It fails without a Berry, and at +6 Defense it keeps the Berry. Champions lets it be chosen anyway.
+  - New effect `SOVEREIGN_STUFF_CHEEKS` and `subscript_sovereign_stuff_cheeks`. The Berry-feeding half of
+    `BattleSystem_PluckBerry` is now shared as `Sovereign_EatOwnBerry`.
+- **Belch:** Champions keeps its failure but lets it be chosen, which Sovereign already did. What changes is what counts
+  as eating a Berry:
+  - Bug Bite and Pluck now count for the attacker; before, they counted for the target.
+  - Stuff Cheeks and a flung Berry (for Fling's target) now count.
+  - Natural Gift, the Fling user's loss and Incinerate no longer count.
+  - New script commands `SovereignMarkAteBerry` and `SovereignEatOwnBerry`.
+- **Cheek Pouch** now works with Bug Bite, Pluck, Fling and Stuff Cheeks (`subscript_pluck_check`).
+- **Incinerate:**
+  - Its message names the Berry ("...'s Sitrus Berry was burnt up!"). Before, it was blank: `BattleMessage_ItemTag` now
+    reads `BTLSCR_SIDE_EFFECT_MON`.
+  - A burnt Berry can't be brought back with Recycle.
+- Checklist: 338 exact, 13 approximate, 29 placeholders.
+
+**Verification:** `check_battle_scripts.py` passes, and `regenerate_docs.sh` leaves no diff. Harness wild battles:
+- **Stuff Cheeks:**
+  - With a Sitrus Berry at 60% HP: "SNORLAX's Defense sharply rose!", "SNORLAX ate its Sitrus Berry!", HP 134 → 190
+    (+1/4).
+  - Greedent (Cheek Pouch) with a Lum Berry: "ate its Lum Berry!", then the Cheek Pouch heal, HP 55 → 116 (+1/3).
+  - With no Berry, or with the Berry already eaten: "But it failed!".
+- **Belch:**
+  - With no Berry eaten: "But it failed!".
+  - After Stuff Cheeks, or after Bug Bite: it hits. The Bug Bite case also showed "GREEDENT stole and ate its foe's
+    Sitrus Berry!", the Sitrus heal and "GREEDENT restored HP using its Cheek Pouch!".
+- **No Retreat:** five stat rises, then "SNORLAX can no longer escape because it used No Retreat!", then "But it
+  failed!" on the second use. Gengar got the stat rises without the message, and its second use failed too.
+- **Unseen Fist:** Urshifu's Iron Head did 13–15 through Ninjask's Protect, against 49–60 without it. A failed
+  consecutive Protect let a full 61 through.
+- **Salt Cure:** 15 per turn on Ninjask (251/16) and 32 on Skarmory (259/8).
+- **Messages:**
+  - Toxic Thread: "Speed harshly fell!" and "was poisoned!".
+  - Make It Rain: "SNORLAX's Sp. Atk harshly fell!".
+  - First Impression: it hit on turn 1; on turn 2, "SNORLAX can use FirstImpressn only on its first turn!".
+  - Incinerate: "The wild NINJASK's Sitrus Berry was burnt up!".
+  - Fling with a Sitrus Berry: the target ate it.
+
 ## Item 11 (effect fidelity): moves, batch 8 (charge moves)
 
 For players: Freeze Shock, Ice Burn and Geomancy now charge for a turn first, as in the main games. All three were

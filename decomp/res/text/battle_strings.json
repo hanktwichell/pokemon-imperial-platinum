@@ -10137,6 +10137,48 @@
         "The foe’s {STRVAR_1 1, 0, 0} is\n",
         "absorbing power!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignPokemonAteItsItem_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} ate its\n",
+        "{STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignPokemonAteItsItem_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} ate its\n",
+        "{STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignPokemonAteItsItem_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} ate its\n",
+        "{STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignNoRetreat_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} can no longer escape\n",
+        "because it used No Retreat!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignNoRetreat_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} can no longer\n",
+        "escape because it used No Retreat!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignNoRetreat_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} can no longer\n",
+        "escape because it used No Retreat!"
+      ]
     }
   ]
 }

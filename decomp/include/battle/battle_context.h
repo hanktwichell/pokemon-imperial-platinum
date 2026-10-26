@@ -354,7 +354,7 @@ struct BattleContext {
     int sovereignEchoedVoiceCount; // Sovereign (item 11): consecutive turns of Echoed Voice, up to 5
     u8 sovereignOncePerBattle[MAX_BATTLERS]; // Sovereign (item 11): party slots whose Intrepid Sword or Dauntless Shield has triggered
     u8 sovereignParentalBond; // Sovereign (item 11): the current move hits a second time through Parental Bond
-    u8 sovereignPiercingDrill; // Sovereign (item 11): the current hit goes through protection with Piercing Drill
+    u8 sovereignThroughProtect; // Sovereign (item 11): the current hit goes through protection with Unseen Fist or Piercing Drill
     int sovereignHPBeforeHit[MAX_BATTLERS]; // Sovereign (item 11): each battler's HP before the last hit it took (Berserk, Innards Out)
     int sovereignDragonCheer[MAX_BATTLERS]; // Sovereign (item 11): Dragon Cheer's crit stages (1, or 2 for a Dragon type)
     u8 sovereignAteBerry[MAX_BATTLERS]; // Sovereign (item 11): party slots that have eaten a Berry this battle (Belch)
@@ -372,7 +372,7 @@ struct BattleContext {
     u8 sovereignSyrupBomb[MAX_BATTLERS]; // Sovereign (item 11): Syrup Bomb's Speed drops left on each battler
     u8 sovereignSyrupBombSource[MAX_BATTLERS]; // Sovereign (item 11): the battler whose Syrup Bomb it was
     u8 sovereignSyrupBombSourceSlot[MAX_BATTLERS]; // Sovereign (item 11): that battler's party slot (it must stay in)
-    u8 sovereignTimesHit[MAX_BATTLERS][MAX_PARTY_SIZE]; // Sovereign (item 11): hits each party slot has taken (Rage Fist)
+    u8 sovereignTimesHit[MAX_BATTLERS][MAX_PARTY_SIZE]; // Sovereign (item 11): hits each party slot has taken since it came in (Rage Fist)
     u8 sovereignTarShot; // Sovereign (item 11): battlers Tar Shot made weaker to Fire, until they switch out (flags by battler)
     u8 sovereignHappyHour; // Sovereign (item 11): the player's side used Happy Hour (double prize money)
     u16 sovereignShieldMove[MAX_BATTLERS]; // Sovereign (item 11): the Protect-like move protecting each battler this turn

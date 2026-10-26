@@ -1241,6 +1241,19 @@
     .long \battler
     .endm
 
+    // Sovereign (item 11): remembers that the battler ate a Berry this battle (Belch).
+    .macro SovereignMarkAteBerry battler
+    .long BTLCMD_SOVEREIGNMARKATEBERRY
+    .long \battler
+    .endm
+
+    // Sovereign (item 11): Stuff Cheeks. The attacker eats its own Berry (effect subscript in BTLVAR_SCRIPT_TEMP, the
+    // Berry as the message item); jumps if it holds none.
+    .macro SovereignEatOwnBerry jumpNoBerry
+    .long BTLCMD_SOVEREIGNEATOWNBERRY
+    .long (\jumpNoBerry-.) / 4 - 1
+    .endm
+
     .text
     .globl _start
 _start:

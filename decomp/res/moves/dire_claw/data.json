@@ -12,7 +12,7 @@
     "pp": 15,
     "effect": {
         "type": "BATTLE_EFFECT_SOVEREIGN_DIRE_CLAW",
-        "chance": 50
+        "chance": 30
     },
     "range": "RANGE_SINGLE_TARGET",
     "priority": 0,

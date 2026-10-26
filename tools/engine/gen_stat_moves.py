@@ -36,7 +36,7 @@ STAT_MOVES = {
     "noble_roar": ("target", [("ATTACK", -1), ("SP_ATTACK", -1)]),
     "tearful_look": ("target", [("ATTACK", -1), ("SP_ATTACK", -1)]),
     "venom_drench": ("target", [("ATTACK", -1), ("SP_ATTACK", -1), ("SPEED", -1)], "poisoned"),
-    "no_retreat": ("user", [("ATTACK", 1), ("DEFENSE", 1), ("SP_ATTACK", 1), ("SP_DEFENSE", 1), ("SPEED", 1)]),
+    "no_retreat": ("user", [("ATTACK", 1), ("DEFENSE", 1), ("SP_ATTACK", 1), ("SP_DEFENSE", 1), ("SPEED", 1)], "no_retreat"),
     "clangorous_soul": ("user", [("ATTACK", 1), ("DEFENSE", 1), ("SP_ATTACK", 1), ("SP_DEFENSE", 1), ("SPEED", 1)], "hp_cost_3"),
     "spicy_extract": ("target", [("ATTACK", 2), ("DEFENSE", -2)]),
     "fillet_away": ("user", [("ATTACK", 2), ("SP_ATTACK", 2), ("SPEED", 2)], "hp_cost_2"),
@@ -89,6 +89,29 @@ def subscript_text(stem, target, changes, opts=()):
                    "    UpdateVar OPCODE_FLAG_ON, BTLVAR_BATTLE_CTX_STATUS, SYSCTL_SKIP_SPRITE_BLINK\n"
                    "    Call BATTLE_SUBSCRIPT_UPDATE_HP\n")
             fail = "\n_failed:\n    UpdateVar OPCODE_FLAG_ON, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_FAILED\n    End\n"
+        trap = end = ""
+        if "no_retreat" in opts:
+            # Champions: the user traps itself (Mean Look's trap, aimed at itself), unless something already traps it;
+            # the move fails while its own trap holds. A Ghost type is never trapped (Battler_CanEscape), so it gets no
+            # message.
+            checks = ("    // No Retreat fails while its own trap holds the user.\n"
+                      "    CompareMonDataToValue OPCODE_FLAG_NOT, BTLSCR_SIDE_EFFECT_MON, BATTLEMON_VOLATILE_STATUS, VOLATILE_CONDITION_MEAN_LOOK, _stats\n"
+                      "    CompareMonDataToVar OPCODE_EQU, BTLSCR_SIDE_EFFECT_MON, BATTLEMON_MEAN_LOOK_TARGET, BTLVAR_SIDE_EFFECT_MON, _failed\n\n"
+                      "_stats:\n") + checks
+            fail = "\n_failed:\n    UpdateVar OPCODE_FLAG_ON, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_FAILED\n    End\n"
+            trap = ("    UpdateVar OPCODE_FLAG_OFF, BTLVAR_BATTLE_CTX_STATUS, SYSCTL_TURN_OFF_MESSAGES\n\n"
+                    "_trap:\n"
+                    "    CompareMonDataToValue OPCODE_FLAG_SET, BTLSCR_SIDE_EFFECT_MON, BATTLEMON_VOLATILE_STATUS, VOLATILE_CONDITION_MEAN_LOOK, _end\n"
+                    "    UpdateMonData OPCODE_FLAG_ON, BTLSCR_SIDE_EFFECT_MON, BATTLEMON_VOLATILE_STATUS, VOLATILE_CONDITION_MEAN_LOOK\n"
+                    "    UpdateMonDataFromVar OPCODE_SET, BTLSCR_SIDE_EFFECT_MON, BATTLEMON_MEAN_LOOK_TARGET, BTLVAR_SIDE_EFFECT_MON\n"
+                    "    CompareMonDataToValue OPCODE_EQU, BTLSCR_SIDE_EFFECT_MON, BATTLEMON_TYPE_1, TYPE_GHOST, _end\n"
+                    "    CompareMonDataToValue OPCODE_EQU, BTLSCR_SIDE_EFFECT_MON, BATTLEMON_TYPE_2, TYPE_GHOST, _end\n"
+                    "    // {0} can no longer escape because it used No Retreat!\n"
+                    "    PrintMessage BattleStrings_Text_SovereignNoRetreat_Ally, TAG_NICKNAME, BTLSCR_SIDE_EFFECT_MON\n"
+                    "    Wait\n"
+                    "    WaitButtonABTime 30\n\n"
+                    "_end:\n")
+            end = "    GoTo _trap\n"
         if "cure" in opts:
             cure = ("    UpdateVar OPCODE_FLAG_OFF, BTLVAR_BATTLE_CTX_STATUS, SYSCTL_TURN_OFF_MESSAGES\n"
                     "    CompareMonDataToValue OPCODE_EQU, BTLSCR_SIDE_EFFECT_MON, BATTLEMON_STATUS, MON_CONDITION_NONE, _end\n"
@@ -112,7 +135,7 @@ _change:
     UpdateVar OPCODE_FLAG_ON, BTLVAR_BATTLE_CTX_STATUS_2, SYSCTL_STAT_STAGE_CHANGE_SHOWN
 {calls}    UpdateVar OPCODE_FLAG_OFF, BTLVAR_BATTLE_CTX_STATUS_2, SYSCTL_UPDATE_STAT_STAGES
     UpdateVar OPCODE_FLAG_OFF, BTLVAR_BATTLE_CTX_STATUS_2, SYSCTL_STAT_STAGE_CHANGE_SHOWN
-{cure}    End
+{cure}{trap}    End
 {fail}
 _no_change:
     PrintAttackMessage
@@ -123,7 +146,7 @@ _no_change:
     Wait
     WaitButtonABTime 30
     UpdateVar OPCODE_FLAG_ON, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_NO_MORE_WORK
-    End
+{end}    End
 '''
     # The move fails when none of the target's stats can move: the lowered ones (or, for a move that only raises
     # stats, the raised ones) all at their limit.

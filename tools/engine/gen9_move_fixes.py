@@ -58,7 +58,7 @@ HIT_EFFECTS = {
     "SOVEREIGN_RAISE_SPEED_HIT": ("MOVE_SUBSCRIPT_PTR_SPEED_UP_1_STAGE", "user Speed +1"),
     "SOVEREIGN_RAISE_DEF_2_HIT": ("MOVE_SUBSCRIPT_PTR_DEFENSE_UP_2_STAGES", "user Defense +2"),
     "SOVEREIGN_LOWER_OWN_DEF_HIT": ("MOVE_SUBSCRIPT_PTR_DEFENSE_DOWN_1_STAGE", "user Defense -1"),
-    "SOVEREIGN_LOWER_OWN_SP_ATK_HIT": ("MOVE_SUBSCRIPT_PTR_SP_ATTACK_DOWN_1_STAGE", "user Sp. Atk -1"),
+    "SOVEREIGN_LOWER_OWN_SP_ATK_2_HIT": ("MOVE_SUBSCRIPT_PTR_SP_ATTACK_DOWN_2_STAGES", "user Sp. Atk -2"),
     "SOVEREIGN_LOWER_OWN_SPEED_2_HIT": ("MOVE_SUBSCRIPT_PTR_SPEED_DOWN_2_STAGES", "user Speed -2"),
 }
 
@@ -142,7 +142,7 @@ MOVES = {
     "diamond_storm": ("SOVEREIGN_RAISE_DEF_2_HIT", 50, "user Defense +2 (50%)"),
     "clanging_scales": ("SOVEREIGN_LOWER_OWN_DEF_HIT", 100, "user Defense -1"),
     "hyperspace_fury": ("SOVEREIGN_LOWER_OWN_DEF_HIT", 100, "user Defense -1, ignores Protect"),
-    "make_it_rain": ("SOVEREIGN_LOWER_OWN_SP_ATK_HIT", 100, "user Sp. Atk -1"),
+    "make_it_rain": ("SOVEREIGN_LOWER_OWN_SP_ATK_2_HIT", 100, "user Sp. Atk -2 (Champions)"),
     "spin_out": ("SOVEREIGN_LOWER_OWN_SPEED_2_HIT", 100, "user Speed -2"),
     # Engine rules (battle_lib.c, battle_script.c, battle_controller_player.c, the drain subscript).
     "sacred_sword": (None, None, "ignores the target's stat changes"),
@@ -181,7 +181,7 @@ MOVES = {
     "poltergeist": (None, None, "fails against a target holding no item (no item message yet)", "approximate"),
     "retaliate": (None, None, "power doubles if a Pokémon on the user's side fainted last turn"),
     # Stat moves from tools/engine/gen_stat_moves.py whose extra rule isn't reproduced yet.
-    "no_retreat": (None, None, "all stats +1 (the user isn't trapped yet)", "approximate"),
+    "no_retreat": (None, None, "all stats +1; the user can't switch out (a Ghost type can); fails while that trap holds"),
     "clangorous_soul": (None, None, "all stats +1; costs 1/3 of the user's max HP"),
     "shelter": ("DEF_UP_2", 0, "user Defense +2"),
     "heal_pulse": ("SOVEREIGN_HEAL_TARGET", 0, "heals the target by 1/2 (3/4 with Mega Launcher)"),
@@ -216,7 +216,10 @@ MOVES = {
     "coaching": ("SOVEREIGN_COACHING", 0, "the user's ally gets Attack and Defense +1 (fails without one)"),
     "dragon_cheer": ("SOVEREIGN_DRAGON_CHEER", 0, "the user's ally gets +1 crit stage, +2 if Dragon type (fails without one)"),
     "bestow": ("SOVEREIGN_BESTOW", 0, "gives the user's held item to a target holding none"),
-    "belch": (None, None, "fails unless the user has eaten a Berry this battle (Bug Bite and Pluck don't count yet)", "approximate"),
+    "belch": (None, None, "fails unless the user has eaten a Berry this battle (Bug Bite, Pluck, Stuff Cheeks and a flung"
+              " Berry count); it can be chosen anyway (Champions)"),
+    "stuff_cheeks": ("SOVEREIGN_STUFF_CHEEKS", 0, "user Defense +2, then it eats its Berry (Klutz, Embargo and Magic Room"
+                     " don't stop it); fails without one; it can be chosen anyway (Champions)"),
     "magic_room": ("SOVEREIGN_MAGIC_ROOM", 0, "held items have no effect for 5 turns; using it again ends it"),
     "wonder_room": ("SOVEREIGN_WONDER_ROOM", 0, "Defense and Sp. Def are swapped for 5 turns; using it again ends it"),
     "telekinesis": ("SOVEREIGN_TELEKINESIS", 0, "for 3 turns the target is immune to Ground moves and other moves always hit it"),
@@ -250,7 +253,7 @@ MOVES = {
     # Moves batch 3 (effect scripts and subscripts by hand; multi-hit rules in BtlCmd_SetMultiHit).
     "relic_song": ("SOVEREIGN_SLEEP_HIT", 10, "10% sleep; Meloetta changes Forme after using it"),
     "wicked_torque": ("SOVEREIGN_SLEEP_HIT", 10, "10% sleep"),
-    "dire_claw": ("SOVEREIGN_DIRE_CLAW", 50, "50% chance of sleep, poison or paralysis (one of the three, equally likely); high critical-hit ratio"),
+    "dire_claw": ("SOVEREIGN_DIRE_CLAW", 30, "30% chance (Champions) of sleep, poison or paralysis (one of the three, equally likely); high critical-hit ratio"),
     "triple_arrows": ("SOVEREIGN_TRIPLE_ARROWS", 50, "50% target Defense -1, 30% flinch; high critical-hit ratio"),
     "ceaseless_edge": ("SOVEREIGN_HAZARD_HIT", 100, "lays a layer of Spikes on the foes' side; high critical-hit ratio"),
     "stone_axe": ("SOVEREIGN_HAZARD_HIT", 100, "sets Stealth Rock on the foes' side; high critical-hit ratio"),
@@ -261,12 +264,12 @@ MOVES = {
     "surging_strikes": (None, None, "always hits 3 times, each a critical hit"),
     "triple_dive": ("MULTI_HIT", 0, "always hits 3 times"),
     "glaive_rush": (None, None, "until the user's next move, moves against it never miss and deal double damage"),
-    "salt_cure": ("SOVEREIGN_SALT_CURE", 100, "the target loses 1/8 of its max HP each turn (1/4 if Water or Steel) until it switches out"),
+    "salt_cure": ("SOVEREIGN_SALT_CURE", 100, "the target loses 1/16 of its max HP each turn (1/8 if Water or Steel; Champions) until it switches out"),
     "syrup_bomb": ("SOVEREIGN_SYRUP_BOMB", 100, "target Speed -1 at the end of each of the next 3 turns, while the user stays in"),
-    "rage_fist": (None, None, "50 more power for each hit the user has taken this battle, up to 350"),
+    "rage_fist": (None, None, "50 more power for each hit the user has taken since it came in (Champions), up to 350"),
     # Moves batch 4.
     "thunderclap": ("HIT_FIRST_IF_TARGET_ATTACKING", 0, "+1 priority; fails unless the target is about to use a damaging move (Sucker Punch's effect)"),
-    "toxic_thread": ("SOVEREIGN_TOXIC_THREAD", 0, "target Speed -1, then poisons it"),
+    "toxic_thread": ("SOVEREIGN_TOXIC_THREAD", 0, "target Speed -2 (Champions), then poisons it"),
     "tar_shot": ("SOVEREIGN_TAR_SHOT", 0, "target Speed -1; Fire moves are twice as effective against it until it switches out"),
     "eerie_spell": ("SOVEREIGN_EERIE_SPELL", 100, "the target's last move loses 3 PP"),
     "corrosive_gas": ("SOVEREIGN_CORROSIVE_GAS", 0, "takes away the held items of all adjacent Pokémon"),
@@ -290,7 +293,7 @@ MOVES = {
     "burning_bulwark": (None, 0, "protects like Protect, but not from status moves; a contact move it blocks burns the attacker"),
     "mat_block": ("SOVEREIGN_MAT_BLOCK", 0, "user's first turn only: protects its side from damaging moves this turn"),
     "crafty_shield": ("SOVEREIGN_CRAFTY_SHIELD", 0, "protects the user's side from status moves aimed at it this turn"),
-    "first_impression": ("SOVEREIGN_FIRST_IMPRESSION", 0, "fails unless it's the user's first turn in battle"),
+    "first_impression": ("SOVEREIGN_FIRST_IMPRESSION", 0, "fails unless it's the user's first turn in battle; can't be chosen after it"),
     # Moves batch 7.
     "v_create": ("SOVEREIGN_V_CREATE", 0, "user Defense, Sp. Def and Speed -1 after the hit"),
     "rototiller": ("SOVEREIGN_ROTOTILLER", 0, "Attack and Sp. Atk +1 for every grounded Grass type on the field"),

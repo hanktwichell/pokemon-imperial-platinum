@@ -1687,12 +1687,12 @@ static void BattleControllerPlayer_CheckMonConditions(BattleSystem *battleSys, B
             battleCtx->monConditionCheckState++;
             break;
 
-        case MON_COND_CHECK_STATE_SOVEREIGN_SALT_CURE: // Sovereign (item 11): 1/8 of the max HP, 1/4 for Water and Steel
+        case MON_COND_CHECK_STATE_SOVEREIGN_SALT_CURE: // Sovereign (item 11): 1/16 of the max HP, 1/8 for Water and Steel (Champions)
             if ((battleCtx->sovereignSaltCure & FlagIndex(battler))
                 && battleCtx->battleMons[battler].curHP
                 && Battler_Ability(battleCtx, battler) != ABILITY_MAGIC_GUARD) {
                 battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1,
-                    (MON_HAS_TYPE(battler, TYPE_WATER) || MON_HAS_TYPE(battler, TYPE_STEEL)) ? 4 : 8);
+                    (MON_HAS_TYPE(battler, TYPE_WATER) || MON_HAS_TYPE(battler, TYPE_STEEL)) ? 8 : 16);
                 battleCtx->msgBattlerTemp = battler;
 
                 PrepareSubroutineSequence(battleCtx, subscript_sovereign_salt_cure_damage);
@@ -3368,17 +3368,17 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
         return 0;
     }
 
-    // Sovereign (item 11): Unseen Fist's contact moves go through protection.
-    BOOL unseenFist = Battler_Ability(battleCtx, attacker) == ABILITY_UNSEEN_FIST && (MOVE_DATA(move).flags & MOVE_FLAG_MAKES_CONTACT);
+    // Sovereign (item 11): Unseen Fist's and Piercing Drill's contact moves go through protection, at 1/4 damage
+    // (Champions).
+    BOOL unseenFist = (Battler_Ability(battleCtx, attacker) == ABILITY_UNSEEN_FIST || Battler_Ability(battleCtx, attacker) == ABILITY_PIERCING_DRILL)
+        && (MOVE_DATA(move).flags & MOVE_FLAG_MAKES_CONTACT);
+    battleCtx->sovereignThroughProtect = FALSE;
 
-    // Sovereign (item 11): Piercing Drill's contact moves also go through it, at 1/4 damage.
-    battleCtx->sovereignPiercingDrill = FALSE;
-    if (Battler_Ability(battleCtx, attacker) == ABILITY_PIERCING_DRILL && (MOVE_DATA(move).flags & MOVE_FLAG_MAKES_CONTACT)) {
-        if (battleCtx->turnFlags[defender].protecting
-            || (battleCtx->sovereignSideGuards[BattleSystem_GetBattlerSide(battleSys, defender)] & 3)) {
-            battleCtx->sovereignPiercingDrill = TRUE;
-        }
-        unseenFist = TRUE;
+    if (battleCtx->turnFlags[defender].protecting
+        && unseenFist
+        && (MOVE_DATA(move).flags & MOVE_FLAG_CAN_PROTECT)
+        && MOVE_DATA(move).class != CLASS_STATUS) {
+        battleCtx->sovereignThroughProtect = TRUE;
     }
 
     if (battleCtx->turnFlags[defender].protecting
@@ -3453,8 +3453,9 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
     }
 
     // Sovereign (item 11): Wide Guard blocks spread moves aimed at its side, Quick Guard foes' priority moves, Mat Block
-    // damaging moves and Crafty Shield status moves aimed at a Pokemon there. subscript_missed names the guard.
-    if (attacker != defender && unseenFist == FALSE) {
+    // damaging moves and Crafty Shield status moves aimed at a Pokemon there. subscript_missed names the guard. Unseen
+    // Fist gets through all but Crafty Shield, at 1/4 damage.
+    if (attacker != defender) {
         int guards = battleCtx->sovereignSideGuards[BattleSystem_GetBattlerSide(battleSys, defender)];
 
         if ((guards & 1)
@@ -3475,6 +3476,11 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
                 || MOVE_DATA(move).range == RANGE_ALL_ADJACENT
                 || MOVE_DATA(move).range == RANGE_ALLY)) {
             battleCtx->sovereignGuardBlock = MOVE_CRAFTY_SHIELD;
+        }
+
+        if (unseenFist && battleCtx->sovereignGuardBlock && battleCtx->sovereignGuardBlock != MOVE_CRAFTY_SHIELD) {
+            battleCtx->sovereignGuardBlock = MOVE_NONE;
+            battleCtx->sovereignThroughProtect = TRUE;
         }
 
         if (battleCtx->sovereignGuardBlock) {
@@ -4023,8 +4029,9 @@ static void BattleControllerPlayer_UpdateHP(BattleSystem *battleSys, BattleConte
 
         GF_ASSERT(battleCtx->damage < 0);
 
-        // Sovereign (item 11): a contact move that goes through protection with Piercing Drill does 1/4 damage.
-        if (battleCtx->sovereignPiercingDrill && battleCtx->damage < -1) {
+        // Sovereign (item 11): a contact move that goes through protection with Unseen Fist or Piercing Drill does 1/4
+        // damage.
+        if (battleCtx->sovereignThroughProtect && battleCtx->damage < -1) {
             battleCtx->damage /= 4;
         }
 
@@ -4131,7 +4138,8 @@ static void BattleControllerPlayer_UpdateHP(BattleSystem *battleSys, BattleConte
 
         battleCtx->sovereignHPBeforeHit[battleCtx->defender] = DEFENDING_MON.curHP; // Sovereign (item 11)
 
-        // Sovereign (item 11): Rage Fist counts the hits a Pokemon takes from other Pokemon's moves, through switching.
+        // Sovereign (item 11): Rage Fist counts the hits a Pokemon takes from other Pokemon's moves since it came in
+        // (Champions; BattleSystem_UpdateAfterSwitch resets it).
         if (battleCtx->defender != battleCtx->attacker
             && battleCtx->sovereignTimesHit[battleCtx->defender][battleCtx->selectedPartySlot[battleCtx->defender]] < 6) {
             battleCtx->sovereignTimesHit[battleCtx->defender][battleCtx->selectedPartySlot[battleCtx->defender]]++;

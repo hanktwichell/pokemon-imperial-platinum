@@ -8,7 +8,8 @@ _000:
     PrintMessage BattleStrings_Text_SovereignItemBurntUp_Ally, TAG_NICKNAME_ITEM, BTLSCR_SIDE_EFFECT_MON, BTLSCR_SIDE_EFFECT_MON
     Wait 
     WaitButtonABTime 30
-    RemoveItem BTLSCR_SIDE_EFFECT_MON
+    // Not RemoveItem: nobody ate it, and Recycle can't bring it back.
+    UpdateMonData OPCODE_SET, BTLSCR_SIDE_EFFECT_MON, BATTLEMON_HELD_ITEM, ITEM_NONE
 
 _end:
     End 

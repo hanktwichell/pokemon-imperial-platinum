@@ -7487,3 +7487,49 @@ and approximate moves from 37 to 35.
    Charge (doubles), Round, Belch, Mind Blown, No Retreat, Steel Beam, Expanding Force, Steel Roller, Misty Explosion,
    Poltergeist, Chloroblast, Ice Spinner.
 3. Owner decision pinned in CB-0158: Burn Up and Double Shock (typeless).
+
+## CB-0167 — 2026-10-26, 10:14 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: item 11 moves, batch 9 (Champions corrections, Stuff Cheeks, No Retreat).** PR #183 (batch 8) is merged.
+The checklist is now 338 exact, 13 approximate, 29 placeholders.
+- **Champions values:** Dire Claw 30%, Make It Rain −2 Sp. Atk, Toxic Thread −2 Speed, Salt Cure 1/16 (1/8 vs Water
+  and Steel).
+- **Champions rules:**
+  - Rage Fist's counter resets on switching.
+  - First Impression can't be selected after the first turn.
+  - Unseen Fist does ×0.25 through Protect (as Piercing Drill).
+- **No Retreat:** traps its user and fails while it's trapped that way. Ghost types escape.
+- **Stuff Cheeks:** Defense +2, then the user eats its Berry. It fails without one.
+- **Belch:** the Berry check is fixed. Bug Bite and Pluck count for the attacker, and so do Stuff Cheeks and a flung
+  Berry; Natural Gift and Incinerate don't count.
+- **Cheek Pouch:** now works after Bug Bite, Pluck, Fling and Stuff Cheeks.
+- **Incinerate:** its message names the Berry, which was a blank before. Recycle can't restore an incinerated Berry.
+- All of it was checked in harness battles (docs/EngineChangelog.md).
+
+**Files modified:**
+- `decomp/src/battle/battle_controller_player.c` (Unseen Fist, Salt Cure, Rage Fist comment).
+- `decomp/src/battle/battle_lib.c` (First Impression lock, Rage Fist reset, `Sovereign_EatOwnBerry`).
+- `decomp/src/battle/battle_script.c` (two new commands, `RemoveItem`'s Berry eater, Cheek Pouch var, item tag).
+- Headers: `decomp/include/battle/battle_context.h`, `decomp/include/battle/battle_lib.h`,
+  `decomp/include/data/scripts/btlcmd.h`, `decomp/asm/macros/btlcmd.inc`,
+  `decomp/include/data/move_side_effect_subscripts.h`.
+- The generated lists: `battle_subscripts.txt`, `battle_move_subscript_ptrs.txt`, `move_battle_effects.txt`.
+- Scripts:
+  - New: `effect_script_0376.s`, `subscript_sovereign_stuff_cheeks.s`.
+  - Changed: `subscript_pluck_check.s`, `subscript_sovereign_incinerate.s`, `subscript_sovereign_toxic_thread.s`,
+    `subscript_sovereign_stats_no_retreat.s`, `effect_script_0293.s`, the scripts' `meson.build` and `sub_seq.order`.
+- `decomp/src/battle/trainer_ai/script.s`, `decomp/res/text/battle_strings.json` (6 messages).
+- `decomp/res/moves/{dire_claw,make_it_rain,stuff_cheeks}/data.json`.
+- `tools/engine/gen_stat_moves.py`, `tools/engine/gen9_move_fixes.py`.
+- `docs/MoveChecklist.md`, `docs/BattleMechanics.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Moves batch 10:
+   - Steel Roller and Ice Spinner: the terrain-end message.
+   - Poltergeist: its item message.
+   - Steel Beam, Mind Blown and Chloroblast: lose half HP even on a miss.
+   - Explosion, Self-Destruct and Misty Explosion: stop halving Defense (Gen V+).
+2. The switching items (Eject Button, Eject Pack, Red Card) with Shed Tail and Chilly Reception, plus a switching case
+   in the harness.
+3. Owner decision pinned in CB-0158: Burn Up and Double Shock (typeless). The rest of the approximate list (Autotomize,
+   Round, Parabolic Charge, Dragon Darts, Expanding Force, Shell Side Arm) after that.

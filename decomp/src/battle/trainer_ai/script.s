@@ -1834,7 +1834,7 @@ Expert_Main:
     // Sovereign (item 11): self-lowering hits score like Close Combat and Overheat; always-crit moves like high-crit ones.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_LOWER_OWN_DEF_HIT, Expert_CloseCombat
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_LOWER_OWN_SPEED_2_HIT, Expert_CloseCombat
-    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_LOWER_OWN_SP_ATK_HIT, Expert_Overheat
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_LOWER_OWN_SP_ATK_2_HIT, Expert_Overheat
     IfMoveEqualTo MOVE_STORM_THROW, Expert_HighCritical
     IfMoveEqualTo MOVE_FROST_BREATH, Expert_HighCritical
     IfMoveEqualTo MOVE_WICKED_BLOW, Expert_HighCritical

@@ -1135,6 +1135,7 @@ BOOL Battler_IsTrapped(BattleSystem *battleSys, BattleContext *battleCtx, int ba
  * Pluck effect; FALSE if no such follow-up is needed.
  */
 BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
+BOOL Sovereign_EatOwnBerry(BattleSystem *battleSys, BattleContext *battleCtx);
 
 /**
  * @brief Try to Fling the attacker's item at the given battler.
