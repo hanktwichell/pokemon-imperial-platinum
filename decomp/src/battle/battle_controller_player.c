@@ -2639,10 +2639,9 @@ static BOOL BattleControllerPlayer_HasNoTarget(BattleSystem *battleSys, BattleCo
         result = TRUE;
     }
 
-    // need this if-statement to match, even though it's a single assignment
-    if (NO_CLOUD_NINE
-        && CURRENT_MOVE_DATA.effect == BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN
-        && (Sovereign_BattlerWeather(battleCtx, battleCtx->attacker) & FIELD_CONDITION_SUNNY)) { // Sovereign (item 11): Utility Umbrella
+    // Sovereign (item 11): the weather as it acts on the user's moves (Utility Umbrella, Mega Sol)
+    if (CURRENT_MOVE_DATA.effect == BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN
+        && (Sovereign_MoveWeather(battleSys, battleCtx, battleCtx->attacker) & FIELD_CONDITION_SUNNY)) {
         solarMove = TRUE;
     }
 
@@ -3285,8 +3284,10 @@ static int BattleControllerPlayer_CheckMoveHitAccuracy(BattleSystem *battleSys, 
         hitRate = 50;
     }
 
-    // Sovereign (item 11): Hurricane shares Thunder's weather accuracy. A target holding a Utility Umbrella feels no sun.
-    if (NO_CLOUD_NINE && (Sovereign_BattlerWeather(battleCtx, defender) & FIELD_CONDITION_SUNNY)
+    // Sovereign (item 11): Hurricane shares Thunder's weather accuracy. A target holding a Utility Umbrella feels no sun,
+    // but a Mega Sol user's moves always act as in harsh sunlight.
+    if (((NO_CLOUD_NINE && (Sovereign_BattlerWeather(battleCtx, defender) & FIELD_CONDITION_SUNNY))
+            || Battler_Ability(battleCtx, attacker) == ABILITY_MEGA_SOL)
         && (MOVE_DATA(move).effect == BATTLE_EFFECT_THUNDER || MOVE_DATA(move).effect == BATTLE_EFFECT_HURRICANE)) {
         hitRate = 50;
     }
@@ -3559,7 +3560,8 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
         return 0;
     }
 
-    if (NO_CLOUD_NINE) {
+    // Sovereign (item 11): a Mega Sol user's moves act as in harsh sunlight, never in rain or snow.
+    if (NO_CLOUD_NINE && Battler_Ability(battleCtx, attacker) != ABILITY_MEGA_SOL) {
         // Sovereign (item 11): the Forces of Nature's storms never miss in rain either, unless the target holds a Utility
         // Umbrella.
         if ((Sovereign_BattlerWeather(battleCtx, defender) & FIELD_CONDITION_RAINING)

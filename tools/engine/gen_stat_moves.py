@@ -42,10 +42,12 @@ STAT_MOVES = {
     "fillet_away": ("user", [("ATTACK", 2), ("SP_ATTACK", 2), ("SPEED", 2)], "hp_cost_2"),
     "take_heart": ("user", [("SP_ATTACK", 1), ("SP_DEFENSE", 1)], "cure"),
     "decorate": ("target", [("ATTACK", 2), ("SP_ATTACK", 2)]),
+    "growth": ("user", [("ATTACK", 1), ("SP_ATTACK", 1)], "sun"),
 }
 # Optional further elements: "poisoned" = fails unless the target is poisoned (Venom Drench); "hp_cost_N" = the user
 # first loses 1/N of its max HP, and the move fails at 1/N or less (Clangorous Soul, Fillet Away); "cure" = the user's
-# status condition is healed after the stat changes (Take Heart).
+# status condition is healed after the stat changes (Take Heart); "sun" = the changes are doubled in harsh sunlight, as
+# the weather acts on the user's moves (Growth).
 
 STAGE_FIELD = {s: f"BATTLEMON_{s}_STAGE" for s in ("ATTACK", "DEFENSE", "SPEED", "SP_ATTACK", "SP_DEFENSE", "ACCURACY", "EVASION")}
 STAT_NAME = {"ATTACK": "Attack", "DEFENSE": "Defense", "SPEED": "Speed", "SP_ATTACK": "Sp. Atk", "SP_DEFENSE": "Sp. Def",
@@ -72,6 +74,12 @@ def subscript_text(stem, target, changes, opts=()):
     calls = "".join(f"    UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_PARAM, {ptr(s, n)}\n    Call BATTLE_SUBSCRIPT_UPDATE_STAT_STAGE\n"
                     for s, n in steps(changes))
     if target == "user":
+        if "sun" in opts:
+            sun_calls = "".join(f"    UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_PARAM, {ptr(s, n)}\n    Call BATTLE_SUBSCRIPT_UPDATE_STAT_STAGE\n"
+                                for s, n in steps([(s, n * 2) for s, n in changes]))
+            calls = ("    // In harsh sunlight, as it acts on the user's moves (Mega Sol, Utility Umbrella, Cloud Nine), the changes double.\n"
+                     "    CompareVarToValue OPCODE_FLAG_SET, BTLVAR_SOVEREIGN_ATTACKER_WEATHER, FIELD_CONDITION_SUNNY, _sun\n"
+                     f"{calls}    GoTo _changed\n\n_sun:\n{sun_calls}\n_changed:\n")
         raised = [s for s, n in changes if n > 0]
         checks = "".join(f"    CompareMonDataToValue OPCODE_NEQ, BTLSCR_SIDE_EFFECT_MON, {STAGE_FIELD[s]}, 12, _change\n" for s in raised[:-1])
         checks += f"    CompareMonDataToValue OPCODE_EQU, BTLSCR_SIDE_EFFECT_MON, {STAGE_FIELD[raised[-1]]}, 12, _no_change\n"
@@ -209,6 +217,8 @@ def main():
     table_h = os.path.join(DECOMP, "include", "data", "move_side_effect_subscripts.h")
     checklist = os.path.join(ROOT, "docs", "MoveChecklist.md")
     gen_moves = os.path.join(ROOT, "tools", "engine", "gen_moves.py")
+    # Platinum's own moves (#1-467) keep their data in res/moves; gen_moves.py and the checklist only list new moves.
+    vanilla = set([l for l in lines(os.path.join(DECOMP, "generated", "moves.txt")) if l.startswith("MOVE_")][:468])
 
     for stem, (target, changes, *opts) in STAT_MOVES.items():
         sub = f"subscript_sovereign_stats_{stem}"
@@ -262,6 +272,11 @@ def main():
             note += f"; costs 1/{cost} of the user's max HP"
         if "cure" in opts:
             note += "; heals the user's status condition"
+        if "sun" in opts:
+            note += "; doubled in harsh sunlight"
+        if f"MOVE_{stem.upper()}" in vanilla:
+            print(f"{stem}: {eff} = {index}")
+            continue
         s = open(gen_moves).read()
         ident = stem.replace("_", "-")
         if f'"{ident}":' not in s:

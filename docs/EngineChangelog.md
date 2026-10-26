@@ -3,6 +3,52 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Item 11 (effect fidelity): Mega Sol's weather moves, Gen IX Growth, Ripen's last Berries
+
+For players:
+- **Mega Sol** (Mega Meganium): its moves now act as in harsh sunlight everywhere, not only in the damage formula.
+  - **Weather Ball** is a Fire-type move of double power (100) in any weather.
+  - **Synthesis, Morning Sun and Moonlight** heal 2/3 of its max HP.
+  - **Growth** raises Attack and Sp. Atk 2 stages each.
+  - **Solar Beam and Solar Blade** need no charge turn (already) and aren't weakened by rain, sand or snow (already).
+  - **Thunder and Hurricane** are 50% accurate, and never sure hits in rain. **Blizzard** isn't a sure hit in snow.
+  - **Electro Shot** doesn't skip its charge turn in rain.
+  - **Cloud Nine and Air Lock** don't stop any of this: Mega Sol changes no weather. (Before, they stopped its damage
+    changes.)
+- **Growth** now works as in Gen V-IX: Attack and Sp. Atk +1 each, +2 each in harsh sunlight. Before, it raised Sp. Atk
+  by 1 (Gen IV). Its description is updated. Cloud Nine, Air Lock and a Utility Umbrella keep the sun's bonus away, as
+  with Weather Ball.
+- **Ripen** now covers every Berry:
+  - Jaboca and Rowap Berries take 1/4 of the attacker's max HP instead of 1/8.
+  - A Leppa Berry restores 20 PP instead of 10.
+  - An Enigma Berry heals 1/2 of the holder's max HP instead of 1/4.
+- **Code:**
+  - `Sovereign_MoveWeather(battleSys, battleCtx, battler)` gives the field conditions as the weather acts on one
+    battler's own moves: always harsh sun for a Mega Sol user, no weather beside Cloud Nine or Air Lock, and no rain or
+    sun for a Utility Umbrella holder.
+  - Weather Ball (type and power), the weather healing moves, Shore Up, `BTLVAR_SOVEREIGN_ATTACKER_WEATHER` (Solar
+    Beam, Electro Shot and now Growth) and the charge-move targeting all read it.
+  - Growth's effect is `BATTLE_EFFECT_SOVEREIGN_GROWTH` from `tools/engine/gen_stat_moves.py`, which has a new `sun`
+    option (the changes double in harsh sunlight). Platinum's own moves get no `gen_moves.py` entry or checklist row.
+  - Weather Ball's type for Lightning Rod and Storm Drain no longer reads an unset value when there's no weather.
+
+**Verification:** test and release ROMs built; the battle-script size check, the message check and the docs check pass.
+Wild battles of a Lv. 50 Meganium (147 HP) against a Lv. 100 Ninjask (239 HP), the ability set in battle:
+- **Weather Ball:**
+  - With Mega Sol, after the Ninjask's Rain Dance: "It's super effective!", 92 and 94 damage (Fire, ×1.5 sun, ×2).
+  - Without Mega Sol, in the same rain: 46 and 47 damage (Water, ×1.5 rain). Half, as expected.
+  - With Mega Sol against a Cloud Nine Ninjask: 92 and 90 damage, so Cloud Nine doesn't stop it.
+- **Growth:**
+  - With Mega Sol: Attack and Sp. Atk 0 → +2 → +4 → +6.
+  - Without: +1 each per use.
+  - Without Mega Sol, after the Ninjask's Sunny Day: +2 each per use.
+- **Synthesis** at 29 HP: with Mega Sol it heals 98 (2/3), without it 73 (1/2).
+- **Jaboca Berry** on the Ninjask, hit by Tackle: with Ripen the Meganium loses 36 (1/4 of 147), without 18 (1/8).
+- **Enigma Berry** on the Ninjask, hit by Rock Throw for 72: with Ripen it heals back to full (1/2 is 119), without
+  it heals 59 (1/4 of 239).
+- Not run in the emulator: Thunder and Hurricane accuracy, Electro Shot and Blizzard beside Mega Sol, and the Leppa
+  Berry (each a one-line change).
+
 
 ## Item 11 (effect fidelity): Trick-or-Treat and Forest's Curse (an added third type)
 

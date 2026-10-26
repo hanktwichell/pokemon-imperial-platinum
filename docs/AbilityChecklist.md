@@ -129,7 +129,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 244 | Punk Rock | Gen 8 | yes: its sound moves ×1.3, sound damage taken halved |
 | 245 | Sand Spit | Gen 8 | yes: getting hit whips up a sandstorm |
 | 246 | Ice Scales | Gen 8 | yes: special damage halved |
-| 247 | Ripen | Gen 8 | partly: Berries that restore HP restore twice as much, stat-raising Berries raise 2 stages, and damage-halving Berries quarter the damage (Jaboca, Rowap and Leppa Berries not yet) |
+| 247 | Ripen | Gen 8 | yes: Berries that restore HP restore twice as much, stat-raising Berries raise 2 stages, damage-halving Berries quarter the damage, Jaboca and Rowap take 1/4, and a Leppa Berry restores 20 PP |
 | 248 | Ice Face | Gen 8 | yes: takes one physical hit; snow brings the ice back |
 | 249 | Power Spot | Gen 8 | yes: its ally's moves ×1.3 |
 | 250 | Mimicry | Gen 8 | yes: its type becomes the terrain's when one starts (Electric, Grass, Fairy, Psychic), and its own types come back when the terrain ends ("…returned to its original type!") |
@@ -192,7 +192,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 307 | PoisonPuppeteer | Gen 9 | yes: a Pokémon its move poisons or badly poisons becomes confused too |
 | 308 | Piercing Drill | Gen 9 | yes: contact moves go through protection at 1/4 damage |
 | 309 | Dragonize | Gen 9 | yes: Normal moves become Dragon-type, ×1.2 |
-| 310 | Mega Sol | Gen 9 | partly: its moves work as in harsh sunlight (damage, Solar Beam without charging; Weather Ball, Growth, Synthesis not yet) |
+| 310 | Mega Sol | Gen 9 | yes: its moves work as in harsh sunlight, even beside Cloud Nine (damage, Solar Beam, Weather Ball, Growth, Synthesis, Thunder's accuracy) |
 | 311 | Spicy Spray | Gen 9 | yes: burns the attacker whenever a damaging move hits it |
 | 312 | Eelevate | Gen 9 | yes: Levitate, and a knockout raises its highest stat (from one source; check against official data) |
 | 313 | Fire Mane | Gen 9 | yes: Fire moves ×1.5 |

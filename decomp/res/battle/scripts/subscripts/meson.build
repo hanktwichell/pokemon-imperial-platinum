@@ -474,4 +474,5 @@ subscript_files = files(
     'subscript_sovereign_beak_blast_burn.s',
     'subscript_sovereign_shed_tail.s',
     'subscript_sovereign_add_type.s',
+    'subscript_sovereign_stats_growth.s',
 )

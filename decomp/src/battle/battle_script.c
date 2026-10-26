@@ -6292,9 +6292,13 @@ static BOOL BtlCmd_WeatherHPRecovery(BattleSystem *battleSys, BattleContext *bat
 {
     BattleScript_Iter(battleCtx, 1);
 
+    // Sovereign (item 11): the weather as it acts on the user's moves: a Utility Umbrella holder heals as if there were
+    // no rain or sunlight, and a Mega Sol user as if the sunlight were harsh.
+    u32 weather = Sovereign_MoveWeather(battleSys, battleCtx, battleCtx->attacker);
+
     // Sovereign (item 11): Shore Up heals 2/3 of the user's max HP in a sandstorm, and 1/2 otherwise.
     if (battleCtx->moveCur == MOVE_SHORE_UP) {
-        if (NO_WEATHER == FALSE && (battleCtx->fieldConditionsMask & FIELD_CONDITION_SANDSTORM)) {
+        if (weather & FIELD_CONDITION_SANDSTORM) {
             battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * 20, 30);
         } else {
             battleCtx->hpCalcTemp = ATTACKING_MON.maxHP / 2;
@@ -6303,10 +6307,9 @@ static BOOL BtlCmd_WeatherHPRecovery(BattleSystem *battleSys, BattleContext *bat
         return FALSE;
     }
 
-    // Sovereign (item 11): a Utility Umbrella holder heals as if there were no rain or sunlight.
-    if (NO_WEATHER || (Sovereign_BattlerWeather(battleCtx, battleCtx->attacker) & FIELD_CONDITION_WEATHER) == FALSE) {
+    if ((weather & FIELD_CONDITION_WEATHER) == FALSE) {
         battleCtx->hpCalcTemp = ATTACKING_MON.maxHP / 2;
-    } else if (Sovereign_BattlerWeather(battleCtx, battleCtx->attacker) & FIELD_CONDITION_SUNNY) {
+    } else if (weather & FIELD_CONDITION_SUNNY) {
         battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP * 20, 30);
     } else {
         battleCtx->hpCalcTemp = BattleSystem_Divide(ATTACKING_MON.maxHP, 4);
@@ -7203,29 +7206,30 @@ static BOOL BtlCmd_CalcWeatherBallParams(BattleSystem *battleSys, BattleContext 
 {
     BattleScript_Iter(battleCtx, 1);
 
-    // Sovereign (item 11): a Utility Umbrella holder's Weather Ball ignores rain and sunlight.
-    if (NO_CLOUD_NINE) {
-        if (Sovereign_BattlerWeather(battleCtx, battleCtx->attacker) & FIELD_CONDITION_WEATHER) {
-            battleCtx->movePower = CURRENT_MOVE_DATA.power * 2;
+    // Sovereign (item 11): the weather as it acts on the user's moves. A Utility Umbrella holder's Weather Ball ignores
+    // rain and sunlight, and a Mega Sol user's is a Fire-type move of double power in any weather.
+    u32 weather = Sovereign_MoveWeather(battleSys, battleCtx, battleCtx->attacker);
 
-            if (Sovereign_BattlerWeather(battleCtx, battleCtx->attacker) & FIELD_CONDITION_RAINING) {
-                battleCtx->moveType = TYPE_WATER;
-            }
+    if (weather & FIELD_CONDITION_WEATHER) {
+        battleCtx->movePower = CURRENT_MOVE_DATA.power * 2;
 
-            if (WEATHER_IS_SAND) {
-                battleCtx->moveType = TYPE_ROCK;
-            }
-
-            if (Sovereign_BattlerWeather(battleCtx, battleCtx->attacker) & FIELD_CONDITION_SUNNY) {
-                battleCtx->moveType = TYPE_FIRE;
-            }
-
-            if (WEATHER_IS_HAIL) {
-                battleCtx->moveType = TYPE_ICE;
-            }
-        } else {
-            battleCtx->movePower = CURRENT_MOVE_DATA.power;
+        if (weather & FIELD_CONDITION_RAINING) {
+            battleCtx->moveType = TYPE_WATER;
         }
+
+        if (weather & FIELD_CONDITION_SANDSTORM) {
+            battleCtx->moveType = TYPE_ROCK;
+        }
+
+        if (weather & FIELD_CONDITION_SUNNY) {
+            battleCtx->moveType = TYPE_FIRE;
+        }
+
+        if (weather & FIELD_CONDITION_HAILING) {
+            battleCtx->moveType = TYPE_ICE;
+        }
+    } else {
+        battleCtx->movePower = CURRENT_MOVE_DATA.power;
     }
 
     return FALSE;
@@ -10237,8 +10241,8 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         }
         battleCtx->sovereignTerrainTemp = 0;
         return &battleCtx->sovereignTerrainTemp;
-    case BTLVAR_SOVEREIGN_ATTACKER_WEATHER: // Sovereign (item 11): read-only, the field conditions as they act on the attacker (Utility Umbrella)
-        battleCtx->sovereignTerrainTemp = Sovereign_BattlerWeather(battleCtx, battleCtx->attacker);
+    case BTLVAR_SOVEREIGN_ATTACKER_WEATHER: // Sovereign (item 11): read-only, the field conditions as they act on the attacker's moves (Utility Umbrella, Mega Sol, Cloud Nine)
+        battleCtx->sovereignTerrainTemp = Sovereign_MoveWeather(battleSys, battleCtx, battleCtx->attacker);
         return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_SIDE_EFFECT_MON_WEATHER: // Sovereign (item 11): read-only, the same for the side effect's target
         battleCtx->sovereignTerrainTemp = Sovereign_BattlerWeather(battleCtx, battleCtx->sideEffectMon);
