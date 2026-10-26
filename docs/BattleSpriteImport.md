@@ -13,7 +13,7 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 500 | Emboar | converted | 15 / 13 | yes |  |
 | 501 | Oshawott | converted | 14 / 11 | yes |  |
 | 502 | Dewott | converted | 14 / 12 | yes |  |
-| 503 | Samurott | converted | 14 / 11 | yes |  |
+| 503 | Samurott | converted | 14 / 11 | yes | front: 1 pixel(s) in the top-left corner cleared |
 | 504 | Patrat | converted | 15 / 8 | yes |  |
 | 505 | Watchog | converted | 15 / 9 | yes |  |
 | 506 | Lillipup | converted | 13 / 9 | yes |  |
@@ -173,7 +173,7 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 660 | Diggersby | converted | 12 / 9 | yes |  |
 | 661 | Fletchling | converted | 11 / 13 | yes |  |
 | 662 | Fletchinder | converted | 14 / 13 | yes |  |
-| 663 | Talonflame | converted | 11 / 11 | yes | front scaled to 89%; back scaled to 88% |
+| 663 | Talonflame | converted | 11 / 11 | yes | front scaled to 89%; back scaled to 88%; back: 2 pixel(s) in the top-left corner cleared |
 | 664 | Scatterbug | converted | 12 / 10 | yes |  |
 | 665 | Spewpa | converted | 15 / 12 | yes |  |
 | 666 | Vivillon | converted | 19 / 14 | yes | shiny front doesn't line up (43% of pixels) |

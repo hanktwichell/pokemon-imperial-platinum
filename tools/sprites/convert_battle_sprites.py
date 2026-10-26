@@ -7,7 +7,8 @@ sprite_data.json. Species #1-493 (Renegade Platinum's sprites) are never touched
 
 DS rules: each frame is 80x80; front and back share one palette of 15 colours plus transparency (index 0); the
 shiny sprite is the same pixels with a second palette, so each shiny colour is the one the shiny sprite has
-where the normal sprite uses that index. Art bigger than 80x80 is scaled down (nearest neighbour) and reported.
+where the normal sprite uses that index. Art bigger than 80x80 is scaled down (nearest neighbour) and reported. The
+first four pixels are left clear: the game takes the key that unscrambles a sprite from them (PokemonSprite_DecryptPt).
 The PNG holds two 80x80 frames side by side; both get the same picture.
 
 Writes docs/BattleSpriteImport.md: what was scaled, how many colours each species had, and shinies that
@@ -119,6 +120,15 @@ def shiny_palette(indexed, shinies, pal):
     return [votes[i].most_common(1)[0][0] if votes[i] else pal[i - 1] for i in range(1, 16)]
 
 
+def clear_corner(idx_im):
+    """Clears the first four pixels, which the game reads as the key that unscrambles the sprite
+    (PokemonSprite_DecryptPt): art that reaches the top-left corner would come out as noise. How many were set."""
+    corner = sum(1 for x in range(4) if idx_im.getpixel((x, 0)))
+    for x in range(4):
+        idx_im.putpixel((x, 0), 0)
+    return corner
+
+
 def write_pal(path, transparent, pal):
     with open(path, "w", newline="\r\n") as f:
         f.write("JASC-PAL\n0100\n16\n")
@@ -189,6 +199,9 @@ def main():
             pals[face], ncol[face] = build_palette([frames[g] for g in group])
             for g in group:
                 indexed[g] = index_image(frames[g], pals[face])
+                corner = clear_corner(indexed[g])
+                if corner:
+                    notes.append(f"{g.replace('_', ' ')}: {corner} pixel(s) in the top-left corner cleared")
             pairs = [(indexed[g], frames[k]) for g, k in ((face, f"shiny_{face}"), ("female_front", "female_shiny_front"))
                      if g in group and k in frames]
             spals[face] = shiny_palette([a for a, _ in pairs], [b for _, b in pairs], pals[face]) if pairs else list(pals[face])

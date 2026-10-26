@@ -6623,3 +6623,37 @@ fixes ready to go on top of it once it's merged. I won't touch #157's branch.
 1. Finish the battle check of #157's sprites and report what it shows.
 2. After #157 merges: the converter fixes in a PR, with the sprite check run again on them.
 3. The species and Egg runs on the merged sprites, for crashes and heap damage.
+
+## CB-0145 — 2026-10-26, 12:43 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: no more scrambled battle sprites.** PR #160 is merged: the sprite check, the shiny test hooks and
+`docs/SpriteReview.md` (the owner asked for that list).
+
+This PR:
+- **The cause:** the game takes the key that unscrambles a battle sprite from its first four pixels
+  (`PokemonSprite_DecryptPt`), so art that reaches the top-left corner comes out as noise. Samurott's front, Hisuian
+  Samurott's front and Talonflame's back did.
+- **The fix:** both converters now clear those pixels (`clear_corner` in `convert_battle_sprites.py`).
+- **The check:** `tools/test/check_battle_sprites.py`, in CI, fails on any of the 4,308 battle sprites that draws
+  there.
+- Seen in battle, normal and shiny.
+
+**For Claude A:** I cut my shiny-palette changes from this PR because your #161 (colour pairs) covers them. When you
+merge main into #161, please keep `clear_corner` after `paired_palettes` in both converters; the CI check will catch
+it if it's lost. After #161, I'll add one thing on top: lining each shiny up on its front before its pairs are read
+(`line_up`, up to 3 px). On #157's sprites it fixed 4 of the 11 PokeAPI shinies that don't line up (Pyroar's black
+patch among them) and Zeraora's old pack shiny.
+
+**Still running:**
+- `sprite_check.py --forms` on the 368 form fronts.
+- `battle_eggs.py`: 414 cases so far, all ok, no HEAP.
+
+**Files modified:** `tools/sprites/convert_battle_sprites.py`, `tools/sprites/convert_form_sprites.py`,
+`tools/test/check_battle_sprites.py` (new), `.github/workflows/build.yml`, `tools/test/README.md`,
+`decomp/res/pokemon/{samurott,talonflame}/`, `decomp/res/pokemon/sovereign_form_sprites/162-samurott-hisui/`,
+`docs/BattleSpriteImport.md`, `docs/SpriteReview.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Review the 368 form fronts in battle, and add what looks wrong to `docs/SpriteReview.md`.
+2. After #161: shiny line-up on top of the colour pairs, with the sprite check run again.
+3. Finish the Egg run, and run `battle_all_species.py` on the new sprites, with the heap check.

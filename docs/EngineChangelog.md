@@ -4,6 +4,20 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Battle sprites: no more scrambled sprites
+
+For players: Samurott's front, Hisuian Samurott's front and Talonflame's back no longer come out as noise in battle.
+
+- **The cause:** the game unscrambles each battle sprite with a key it reads from its first four pixels
+  (`PokemonSprite_DecryptPt`), which works only if they're clear. Art that reached the top-left corner made the whole
+  sprite noise.
+- **The fix:** `tools/sprites/convert_battle_sprites.py` and `convert_form_sprites.py` now clear those pixels: 1 for
+  each Samurott, 2 for Talonflame.
+- **The check:** `tools/test/check_battle_sprites.py`, a new CI check, keeps it that way. It checks all 4,308 battle
+  sprites, forms included.
+- **Verification:** the three sprites were seen in battle, normal and shiny.
+
+
 ## Playtest pass — the new battle sprites seen in battle
 
 - **`tools/test/sprite_check.py`:** a wild battle against each of #494–1025, with the same species as the player's
