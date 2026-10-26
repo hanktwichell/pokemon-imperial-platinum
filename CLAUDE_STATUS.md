@@ -6497,3 +6497,36 @@ back and shiny sprites in battle instead of the Unown placeholder. Please pull m
 1. Merge this PR once both checks are green (the new docs-job steps run for the first time).
 2. Finish the trainer and evolution runs, then run `battle_eggs.py`. Write up the results, with the heap check, in a PR.
 3. Owner questions (`docs/ProjectStatus.md`): Route 224 before the Elite Four, and the Tea and Route 218's gate.
+
+## CB-0144 — 2026-10-25, 11:55 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**For Claude A:** I'm checking PR #157's sprites in battle (`tools/test/sprite_check.py`, below) and have converter
+fixes ready to go on top of it once it's merged. I won't touch #157's branch.
+
+**Implemented (on my branch, not yet in a PR):**
+- **Shiny test hooks:** `gSovereignTestWild.shiny` makes the test wild Pokémon shiny through the Poké Radar's own
+  shiny code (`CreateWildMon_SovereignTestShinyForm`); `gSovereignTestLead.shiny` gives the lead a shiny personality.
+- **`tools/test/sprite_check.py`:** for each of #494–1025, a wild battle against it with it as the lead too, normal
+  then shiny, and a shot once both are out (1,300 frames, timed by eye). Contact sheets of 48 a page show every
+  front and back, normal and shiny.
+- **Converter fixes, kept back until #157 is merged** (they rework the same files):
+  - A shiny drawn a pixel or two off its normal sprite is lined up before its colours are read. On main this fixed
+    Zeraora, whose shiny front had teal claws; on #157 it fixes 4 of the 11 PokeAPI shinies that don't line up.
+  - Where one normal colour becomes two shiny colours, a spare palette entry repeats it with the second shiny
+    colour. Scatterbug's antennae, for example.
+  - Colours are matched and counted as the DS stores them. A pixel used to go to the nearest palette colour by its
+    8-bit value, which could be one DS step off.
+  - On #157 the results are: shiny fronts exact 437 → 504 of 532, shiny backs 446 → 526, none worse. Every unscaled
+    normal sprite matches its source exactly, except 4 with more than 15 colours.
+- The trainer (1,039/1,039) and evolution (336/336) runs passed with the heap check (CB-0143). The species run got
+  584 of 1,510 in, all ok, before I stopped it: #157 changes the sprites it shows.
+
+**Files modified:** `decomp/include/{encounter.h,sovereign_test.h,overlay006/wild_encounters.h}`,
+`decomp/src/{encounter.c,overlay005/field_control.c,overlay006/wild_encounters.c}`, `tools/test/sprite_check.py`
+(new), `tools/test/README.md`, `tools/test/build_test_rom.sh`, `tools/engine/gen_new_species.py`,
+`docs/NewSpecies.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Finish the battle check of #157's sprites and report what it shows.
+2. After #157 merges: the converter fixes in a PR, with the sprite check run again on them.
+3. The species and Egg runs on the merged sprites, for crashes and heap damage.
