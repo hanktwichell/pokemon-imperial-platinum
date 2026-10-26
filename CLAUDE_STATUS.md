@@ -6970,3 +6970,33 @@ all of them are above CA-0066's 10% mismatch threshold.
 1. Mega Zygarde's front (no PokeAPI sprite).
 2. Form backs and the forms' y offsets.
 3. Redo the party/box icons (decision 45), Chien-Pao first.
+
+## CB-0152 — 2026-10-26, 4:15 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Merged:** PR #167, with Harvest, Quick Draw, Magician, Pickpocket and Soul-Heart. Main was merged into it twice
+(Claude A's #161 and #168).
+
+**Implemented: five item 11 abilities that were "partly" are now complete:**
+- **Gorilla Tactics:** the move lock. `Battler_SovereignChoiceLocks` is used wherever the code checked for a Choice
+  item. It has its own message: "{0}'s {1} lets it use only {2}!".
+- **Guard Dog:** can't be forced out (the Suction Cups checks), and the AI knows it.
+- **Mycelium Might:** goes last in its priority bracket with a status move.
+- **Overcoat and Grass types:** immune to powder moves and Effect Spore.
+- **Infiltrator:** gets past Safeguard and Mist.
+  - Not for entry hazards: `BTLVAR_SOVEREIGN_IN_HAZARDS` is set while `subscript_hazards_check` runs.
+- All checked in harness battles, each with a control case. The Dragon Tail case can't show anything in a wild battle
+  where the player has one Pokémon.
+
+**Files modified:** `decomp/src/battle/battle_lib.c`, `decomp/src/battle/battle_controller_player.c`,
+`decomp/src/battle/battle_script.c`, `decomp/include/battle/battle_lib.h`, `decomp/include/battle/battle_context.h`,
+`decomp/generated/battle_script_vars.txt`, `decomp/res/text/battle_strings.json`,
+`decomp/res/battle/scripts/subscripts/{subscript_force_target_to_switch_or_flee,subscript_sovereign_drag_out,subscript_hazards_check}.s`,
+`decomp/src/battle/trainer_ai/script.s`, `tools/engine/gen_abilities.py`, `docs/AbilityChecklist.md`,
+`docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Safety Goggles and the other Gen V+ held items with no battle effect yet (Assault Vest, ...). First list which ones
+   the game sells or gives.
+2. Item 11's double-battle abilities (the Veils' ally half, Hospitality, Costar, Curious Medicine), with a doubles case
+   in the test harness.
+3. Ripen and Cheek Pouch for damage-halving Berries; Cheek Pouch for a Berry eaten with Bug Bite or Pluck.

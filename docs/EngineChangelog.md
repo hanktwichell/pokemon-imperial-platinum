@@ -4,6 +4,40 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): Gorilla Tactics, Guard Dog, Mycelium Might, Overcoat and Infiltrator in full
+
+For players: five abilities that only partly worked now work fully. Since Gen VI, Grass types also can't be affected by
+powder moves.
+
+- **Gorilla Tactics:** the holder can only use the first move it picked, as with a Choice item, until it switches out.
+  Picking another move shows "{0}'s Gorilla Tactics lets it use only {2}!".
+  - `Battler_SovereignChoiceLocks` (a Choice item, or Gorilla Tactics) now covers the lock. It is used for move
+    selection, for setting the lock after a move and keeping it when the holder is hit, and for Pursuit.
+- **Guard Dog:** Roar and Whirlwind (and Dragon Tail and Circle Throw) can't force it out: "{0} anchors itself with
+  Guard Dog!", as for Suction Cups. Mold Breaker gets past it, and the trainer AI knows about it.
+- **Mycelium Might:** when the holder uses a status move, it goes last in its priority bracket, as with Stall.
+- **Powder moves** (Cotton Spore, Magic Powder, Poison Powder, Powder, Rage Powder, Sleep Powder, Spore, Stun Spore):
+  - They don't affect Grass types or Overcoat: "It doesn't affect {0}…" (`Move_IsPowder`,
+    `Battler_SovereignPowderImmune`). Mold Breaker gets past Overcoat.
+  - Effect Spore doesn't affect them either.
+  - Safety Goggles still has no effect; held items are their own task.
+- **Infiltrator:** its moves now also get past a foe's Safeguard and Mist (`Sovereign_Infiltrates`).
+  - Not for an Ability's or item's effect.
+  - Not for entry hazards, whose attacker is whoever moved last. `subscript_hazards_check` sets
+    `BTLVAR_SOVEREIGN_IN_HAZARDS` while it runs.
+- `docs/AbilityChecklist.md`: five "partly" entries are now "yes" (170 of 191 still have an effect).
+
+**Verification:** `tools/test/check_battle_scripts.py` passes. Harness wild battles against a Ninjask:
+- **Gorilla Tactics:** Galarian Darmanitan uses Dazzling Gleam. Picking another move later gives "DARMANITAN's
+  Gorilla Tactics lets it use only Dazzling Gleam!", and it uses Dazzling Gleam again.
+- **Guard Dog:** Mabosstiff is hit by Roar: "MABOSSTIFF anchors itself with Guard Dog!".
+- **Mycelium Might:** Toedscruel against a Lv. 5 Ninjask. Its Spore comes after the Ninjask's Splash, while its Mega
+  Drain comes first.
+- **Spore:** "It doesn't affect FORRETRESS…" (Overcoat) and "It doesn't affect VENUSAUR…". Garchomp falls asleep.
+- **Infiltrator:** after the Ninjask's Safeguard, Crobat (Infiltrator) badly poisons it with Toxic. Without
+  Infiltrator: "The wild NINJASK is protected by Safeguard!". After Mist, Infiltrator Crobat's Screech: "The wild
+  NINJASK's Defense harshly fell!". Without Infiltrator: "…is protected by Mist!".
+
 ## Item 11 (effect fidelity): Soul-Heart
 
 For players: Magearna's Soul-Heart now works.

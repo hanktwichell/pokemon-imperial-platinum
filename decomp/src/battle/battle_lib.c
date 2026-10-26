@@ -1453,6 +1453,12 @@ u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *batt
         }
     }
 
+    // Sovereign (item 11): Mycelium Might moves last in its priority bracket when it uses a status move, as Stall does.
+    BOOL battler1Stall = battler1Ability == ABILITY_STALL
+        || (battler1Ability == ABILITY_MYCELIUM_MIGHT && battler1Move && MOVE_DATA(battler1Move).class == CLASS_STATUS);
+    BOOL battler2Stall = battler2Ability == ABILITY_STALL
+        || (battler2Ability == ABILITY_MYCELIUM_MIGHT && battler2Move && MOVE_DATA(battler2Move).class == CLASS_STATUS);
+
     if (battler1Priority == battler2Priority) {
         if (battler1QuickClaw && battler2QuickClaw) {
             if (battler1Speed < battler2Speed) {
@@ -1474,15 +1480,15 @@ u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *batt
             result = COMPARE_SPEED_SLOWER;
         } else if (battler1LaggingTail == FALSE && battler2LaggingTail) {
             result = COMPARE_SPEED_FASTER;
-        } else if (battler1Ability == ABILITY_STALL && battler2Ability == ABILITY_STALL) {
+        } else if (battler1Stall && battler2Stall) {
             if (battler1Speed > battler2Speed) {
                 result = COMPARE_SPEED_SLOWER;
             } else if (battler1Speed == battler2Speed && (BattleSystem_RandNext(battleSys) & 1)) {
                 result = COMPARE_SPEED_TIE;
             }
-        } else if (battler1Ability == ABILITY_STALL && battler2Ability != ABILITY_STALL) {
+        } else if (battler1Stall && battler2Stall == FALSE) {
             result = COMPARE_SPEED_SLOWER;
-        } else if (battler1Ability != ABILITY_STALL && battler2Ability == ABILITY_STALL) {
+        } else if (battler1Stall == FALSE && battler2Stall) {
             result = COMPARE_SPEED_FASTER;
         } else if (battleCtx->fieldConditionsMask & FIELD_CONDITION_TRICK_ROOM) {
             if (battler1Speed > battler2Speed) {
@@ -2419,7 +2425,7 @@ int BattleSystem_CheckInvalidMoves(BattleSystem *battleSys, BattleContext *battl
             invalidMoves |= FlagIndex(i);
         }
 
-        if ((itemEffect == HOLD_EFFECT_CHOICE_ATK || itemEffect == HOLD_EFFECT_CHOICE_SPEED || itemEffect == HOLD_EFFECT_CHOICE_SPATK)
+        if (Battler_SovereignChoiceLocks(battleCtx, battler) // Sovereign (item 11): Gorilla Tactics too
             && (opMask & CHECK_INVALID_CHOICE_ITEM)) {
             if (Battler_SlotForMove(&battleCtx->battleMons[battler], battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove) == LEARNED_MOVES_MAX) {
                 battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove = MOVE_NONE;
@@ -2472,6 +2478,15 @@ BOOL BattleSystem_CanUseMove(BattleSystem *battleSys, BattleContext *battleCtx, 
         msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, battler);
         msgOut->params[1] = MOVE_HEAL_BLOCK;
         msgOut->params[2] = battleCtx->battleMons[battler].moves[moveSlot];
+        result = FALSE;
+    } else if ((BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_CHOICE_ITEM) & FlagIndex(moveSlot))
+        && Battler_Ability(battleCtx, battler) == ABILITY_GORILLA_TACTICS) {
+        // Sovereign (item 11)
+        msgOut->tags = TAG_NICKNAME_ABILITY_MOVE;
+        msgOut->id = BattleStrings_Text_SovereignAbilityLetsItUseOnlyMove_Ally; // "{0}'s {1} lets it use only {2}!"
+        msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, battler);
+        msgOut->params[1] = ABILITY_GORILLA_TACTICS;
+        msgOut->params[2] = battleCtx->battleMons[battler].moveEffectsData.choiceLockedMove;
         result = FALSE;
     } else if (BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battler, 0, CHECK_INVALID_CHOICE_ITEM) & FlagIndex(moveSlot)) {
         msgOut->tags = TAG_ITEM_MOVE;
@@ -3917,6 +3932,28 @@ BOOL Battler_SovereignShieldsUp(BattleContext *battleCtx, int battler)
         && (mon->statusVolatile & VOLATILE_CONDITION_TRANSFORM) == FALSE
         && Battler_Ability(battleCtx, battler) == ABILITY_SHIELDS_DOWN
         && Pokemon_SovereignAbilityForm(mon->species, mon->formNum, ABILITY_SHIELDS_DOWN) >= 0;
+}
+
+// Sovereign (item 11): TRUE when the attacker's move gets past the target side's Safeguard and Mist: Infiltrator,
+// against a foe. Not for an Ability's or item's effect, nor for entry hazards (whose attacker is whoever moved last).
+BOOL Sovereign_Infiltrates(BattleSystem *battleSys, BattleContext *battleCtx, int target)
+{
+    return battleCtx->sovereignInHazards == FALSE
+        && (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_DIRECT || battleCtx->sideEffectType == SIDE_EFFECT_TYPE_INDIRECT)
+        && Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_INFILTRATOR
+        && BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker) != BattleSystem_GetBattlerSide(battleSys, target);
+}
+
+// Sovereign (item 11): TRUE when the battler's moves lock it into the first one it uses, as long as it stays in: a
+// Choice item, or Gorilla Tactics.
+BOOL Battler_SovereignChoiceLocks(BattleContext *battleCtx, int battler)
+{
+    int itemEffect = Battler_HeldItemEffect(battleCtx, battler);
+
+    return itemEffect == HOLD_EFFECT_CHOICE_ATK
+        || itemEffect == HOLD_EFFECT_CHOICE_SPEED
+        || itemEffect == HOLD_EFFECT_CHOICE_SPATK
+        || Battler_Ability(battleCtx, battler) == ABILITY_GORILLA_TACTICS;
 }
 
 // Sovereign (item 11): TRUE when nothing can give the battler a status condition (nor make it drowsy): Shields Down's
@@ -5510,6 +5547,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
     case ABILITY_EFFECT_SPORE:
         if (ATTACKING_MON.curHP
             && ATTACKING_MON.status == MON_CONDITION_NONE
+            && Battler_SovereignPowderImmune(battleCtx, battleCtx->defender, battleCtx->attacker) == FALSE // Sovereign (item 11)
             && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
             && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
@@ -8176,6 +8214,31 @@ BOOL Move_IsBallOrBomb(int move)
     }
 
     return FALSE;
+}
+
+// Sovereign (item 11): powder moves, which don't affect Grass types or Overcoat (Gen VI+).
+static const u16 sPowderMoves[] = {
+    MOVE_COTTON_SPORE, MOVE_MAGIC_POWDER, MOVE_POISON_POWDER, MOVE_POWDER, MOVE_RAGE_POWDER, MOVE_SLEEP_POWDER,
+    MOVE_SPORE, MOVE_STUN_SPORE,
+};
+
+BOOL Move_IsPowder(int move)
+{
+    for (int i = 0; i < NELEMS(sPowderMoves); i++) {
+        if (sPowderMoves[i] == move) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
+// Sovereign (item 11): TRUE when powder (powder moves, Effect Spore) can't affect the battler: a Grass type, or
+// Overcoat (which Mold Breaker gets past when attacker uses the powder move).
+BOOL Battler_SovereignPowderImmune(BattleContext *battleCtx, int attacker, int battler)
+{
+    return MON_HAS_TYPE(battler, TYPE_GRASS)
+        || Battler_IgnorableAbility(battleCtx, attacker, battler, ABILITY_OVERCOAT) == TRUE;
 }
 
 // Sovereign (item 11): healing moves, given +3 priority by Triage.

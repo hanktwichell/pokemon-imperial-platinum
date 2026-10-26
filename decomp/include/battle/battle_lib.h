@@ -550,6 +550,8 @@ BOOL Move_SheerForceApplies(BattleContext *battleCtx, int attacker, int move);
 
 // Sovereign (item 11): whether the move is a ball or bomb move (blocked by Bulletproof).
 BOOL Move_IsBallOrBomb(int move);
+BOOL Move_IsPowder(int move);
+BOOL Battler_SovereignPowderImmune(BattleContext *battleCtx, int attacker, int battler);
 
 // Sovereign (item 11): whether a standing foe with Unnerve stops this battler from eating its Berry.
 BOOL Battler_UnnerveBlocksBerry(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
@@ -1243,6 +1245,8 @@ int BattleSystem_SovereignMegaForm(BattleSystem *battleSys, BattleContext *battl
 void BattleSystem_SovereignChangeBattleForm(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int form);
 BOOL Battler_SovereignShieldsUp(BattleContext *battleCtx, int battler);
 BOOL Battler_SovereignStatusImmune(BattleContext *battleCtx, int battler);
+BOOL Battler_SovereignChoiceLocks(BattleContext *battleCtx, int battler);
+BOOL Sovereign_Infiltrates(BattleSystem *battleSys, BattleContext *battleCtx, int target);
 int Sovereign_AuraWheelType(u16 species, int form);
 u32 BattleSystem_SovereignHeroBit(BattleSystem *battleSys, int battler, int slot);
 BOOL Sovereign_IsAshGreninja(BattleMon *mon);
