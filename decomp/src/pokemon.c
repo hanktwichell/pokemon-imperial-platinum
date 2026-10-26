@@ -5524,6 +5524,27 @@ static BOOL Pokemon_IsSovereignRegionalForm(u16 species, int form)
     return entry != NULL && entry->kind == SOVEREIGN_FORM_REGIONAL;
 }
 
+// Sovereign (item 11): TRUE when the species, in this form, has an evolution (Eviolite). A regional form has its own
+// evolutions, as in Pokemon_GetEvolutionTargetSpecies; a Mega or other battle form never evolves.
+BOOL Pokemon_SovereignCanEvolve(u16 species, int form)
+{
+    SpeciesEvolution evolutions[MAX_EVOLUTIONS];
+
+    if (Pokemon_IsSovereignBattleForm(species, form) || Pokemon_IsSovereignMegaForm(species, form)) {
+        return FALSE;
+    }
+
+    LoadSpeciesEvolutions(Pokemon_IsSovereignRegionalForm(species, form) ? Pokemon_GetFormNarcIndex(species, form) : species, evolutions);
+
+    for (int i = 0; i < MAX_EVOLUTIONS; i++) {
+        if (evolutions[i].method != EVO_NONE) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
 // Sovereign (FM): evolves mon into targetSpecies, with evoType the evolution type Pokemon_GetEvolutionTargetSpecies
 // gave. An item evolution into a form takes that form (Scroll of Waters: Rapid Strike Urshifu). A regional form
 // evolves into the target's form of the same region (Galarian Darumaka: Galarian Darmanitan), or its base form if it

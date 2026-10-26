@@ -9579,21 +9579,49 @@
       "id": "BattleStrings_Text_SovereignAbilityLetsItUseOnlyMove_Ally",
       "en_US": [
         "{STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\n",
-        "lets it use only {STRVAR_1 6, 2, 0}!"
+        "lets it use only {STRVAR_1 6, 2, 0}!\r"
       ]
     },
     {
       "id": "BattleStrings_Text_SovereignAbilityLetsItUseOnlyMove_Wild",
       "en_US": [
         "The wild {STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\n",
-        "lets it use only {STRVAR_1 6, 2, 0}!"
+        "lets it use only {STRVAR_1 6, 2, 0}!\r"
       ]
     },
     {
       "id": "BattleStrings_Text_SovereignAbilityLetsItUseOnlyMove_Foe",
       "en_US": [
         "The foe’s {STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\n",
-        "lets it use only {STRVAR_1 6, 2, 0}!"
+        "lets it use only {STRVAR_1 6, 2, 0}!\r"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignItemPreventsStatusMoves",
+      "en_US": [
+        "The {STRVAR_1 8, 0, 0} prevents status\n",
+        "moves from being used!\r"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignItemPreventsStatLoss_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s {STRVAR_1 8, 1, 0}\n",
+        "prevents stat loss!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignItemPreventsStatLoss_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}’s\n",
+        "{STRVAR_1 8, 1, 0} prevents stat loss!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignItemPreventsStatLoss_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}’s\n",
+        "{STRVAR_1 8, 1, 0} prevents stat loss!"
       ]
     }
   ]

@@ -392,4 +392,5 @@ subscript_files = files(
     'subscript_sovereign_harvest.s',
     'subscript_sovereign_quick_draw.s',
     'subscript_sovereign_take_item.s',
+    'subscript_sovereign_rocky_helmet.s',
 )

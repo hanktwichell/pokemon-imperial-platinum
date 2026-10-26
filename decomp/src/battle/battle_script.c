@@ -3010,6 +3010,14 @@ static BOOL ChangeStatStage(BattleSystem *battleSys, BattleContext *battleCtx)
                     battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->sideEffectMon);
 
                     result = 1;
+                } else if (Battler_HeldItem(battleCtx, battleCtx->sideEffectMon) == ITEM_CLEAR_AMULET) {
+                    // Sovereign (item 11): Clear Amulet keeps another Pokemon's stat drops off its holder.
+                    battleCtx->msgBuffer.id = BattleStrings_Text_SovereignItemPreventsStatLoss_Ally; // "{0}'s {1} prevents stat loss!"
+                    battleCtx->msgBuffer.tags = TAG_NICKNAME_ITEM;
+                    battleCtx->msgBuffer.params[0] = BattleSystem_NicknameTag(battleCtx, battleCtx->sideEffectMon);
+                    battleCtx->msgBuffer.params[1] = ITEM_CLEAR_AMULET;
+
+                    result = 1;
                 } else if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, ABILITY_CLEAR_BODY) == TRUE
                     || Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, ABILITY_WHITE_SMOKE) == TRUE
                     || Battler_Ability(battleCtx, battleCtx->sideEffectMon) == ABILITY_FULL_METAL_BODY // Sovereign (item 11)
@@ -5632,7 +5640,8 @@ static BOOL BtlCmd_CheckSpikes(BattleSystem *battleSys, BattleContext *battleCtx
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
     int side = BattleSystem_GetBattlerSide(battleSys, battler);
 
-    if (battleCtx->sideConditions[side].spikesLayers && battleCtx->battleMons[battler].curHP) {
+    if (battleCtx->sideConditions[side].spikesLayers && battleCtx->battleMons[battler].curHP
+        && Battler_HeldItem(battleCtx, battler) != ITEM_HEAVY_DUTY_BOOTS) { // Sovereign (item 11)
         battleCtx->hpCalcTemp = (5 - battleCtx->sideConditions[side].spikesLayers) * 2;
         battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1, battleCtx->hpCalcTemp);
     } else {
@@ -5781,6 +5790,7 @@ static BOOL BtlCmd_EndOfTurnWeatherEffect(BattleSystem *battleSys, BattleContext
             && Battler_Ability(battleCtx, battler) != ABILITY_SAND_FORCE // Sovereign (item 11)
             && Battler_Ability(battleCtx, battler) != ABILITY_SAND_RUSH
             && Battler_Ability(battleCtx, battler) != ABILITY_OVERCOAT
+            && Battler_HeldItem(battleCtx, battler) != ITEM_SAFETY_GOGGLES // Sovereign (item 11)
             && (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_NO_WEATHER_DAMAGE) == FALSE) {
             battleCtx->msgMoveTemp = MOVE_SANDSTORM;
             battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1, 16);
@@ -7857,7 +7867,9 @@ static BOOL BtlCmd_CheckToxicSpikes(BattleSystem *battleSys, BattleContext *batt
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
     int side = BattleSystem_GetBattlerSide(battleSys, battler);
 
-    if (battleCtx->sideConditions[side].toxicSpikesLayers) {
+    // Sovereign (item 11): Heavy-Duty Boots keep the poison off, though a Poison type still takes the spikes away.
+    if (battleCtx->sideConditions[side].toxicSpikesLayers
+        && (MON_HAS_TYPE(battleCtx->switchedMon, TYPE_POISON) || Battler_HeldItem(battleCtx, battler) != ITEM_HEAVY_DUTY_BOOTS)) {
         battleCtx->calcTemp = battleCtx->sideConditions[side].toxicSpikesLayers;
         battleCtx->sideEffectType = SIDE_EFFECT_TYPE_TOXIC_SPIKES;
         battleCtx->sideEffectMon = battler;
@@ -8534,7 +8546,8 @@ static BOOL BtlCmd_CheckStealthRock(BattleSystem *battleSys, BattleContext *batt
     int type2 = BattleMon_Get(battleCtx, battler, BATTLEMON_TYPE_2, NULL);
 
     if ((battleCtx->sideConditionsMask[side] & SIDE_CONDITION_STEALTH_ROCK)
-        && battleCtx->battleMons[battler].curHP) {
+        && battleCtx->battleMons[battler].curHP
+        && Battler_HeldItem(battleCtx, battler) != ITEM_HEAVY_DUTY_BOOTS) { // Sovereign (item 11)
         switch (BattleSystem_TypeMatchupMultiplier(TYPE_ROCK, type1, type2)) {
         case TYPE_MULTI_QUADRUPLE_DAMAGE:
             battleCtx->hpCalcTemp = 2;
@@ -9839,7 +9852,8 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         return &battleCtx->sideConditionsMask[BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker) ^ 1];
     case BTLVAR_SOVEREIGN_STICKY_WEB_SWITCHED_MON: // Sovereign (item 11): read-only, a grounded Pokemon entering a web
         battleCtx->sovereignTerrainTemp = (battleCtx->sideConditionsMask[BattleSystem_GetBattlerSide(battleSys, battleCtx->switchedMon)] & SIDE_CONDITION_SOVEREIGN_STICKY_WEB)
-            && Sovereign_IsGrounded(battleCtx, battleCtx->switchedMon);
+            && Sovereign_IsGrounded(battleCtx, battleCtx->switchedMon)
+            && Battler_HeldItem(battleCtx, battleCtx->switchedMon) != ITEM_HEAVY_DUTY_BOOTS;
         return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_SIDE_EFFECT_MON_HOLDS_BERRY: // Sovereign (item 11): read-only, for Incinerate
         battleCtx->sovereignTerrainTemp = Item_IsBerry(battleCtx->battleMons[battleCtx->sideEffectMon].heldItem) ? 1 : 0;
