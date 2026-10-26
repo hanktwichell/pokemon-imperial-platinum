@@ -9903,9 +9903,8 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         }
     }
 
-    if (MOVE_DATA(move).effect == BATTLE_EFFECT_HALVE_DEFENSE) {
-        defenseStat = defenseStat / 2;
-    }
+    // Sovereign (item 11): Explosion, Self-Destruct and Misty Explosion no longer halve the target's Defense (Gen V+,
+    // Champions); their power is already Gen V+'s.
 
     if (moveClass == CLASS_PHYSICAL) {
         if (criticalMul > 1) {

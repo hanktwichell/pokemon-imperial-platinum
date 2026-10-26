@@ -3698,6 +3698,7 @@ static void BattleControllerPlayer_BeforeMove(BattleSystem *battleSys, BattleCon
     switch (battleCtx->beforeMoveCheckState) {
     case BEFORE_MOVE_STATE_QUICK_CLAW:
         battleCtx->sovereignGemBoost = 0; // Sovereign (item 11): a Gem powers up only the move it was used for
+        battleCtx->sovereignHalfHPPaid = FALSE; // Sovereign (item 11): Steel Beam & co. cost half the HP once per move
         BattleControllerPlayer_LoadQuickClawCheck(battleSys, battleCtx);
         battleCtx->beforeMoveCheckState++;
         return;
@@ -4772,12 +4773,6 @@ static void BattleControllerPlayer_UpdateMoveBuffers(BattleSystem *battleSys, Ba
             && (battleCtx->battleStatusMask2 & SYSCTL_MOVE_SUCCEEDED)
             && battleCtx->defender != BATTLER_NONE) {
             Sovereign_ReorderTurn(battleSys, battleCtx, battleCtx->defender, battleCtx->moveTemp == MOVE_QUASH);
-        }
-
-        // Steel Roller and Ice Spinner flatten the terrain (no message yet).
-        if ((battleCtx->moveTemp == MOVE_STEEL_ROLLER || battleCtx->moveTemp == MOVE_ICE_SPINNER)
-            && (battleCtx->battleStatusMask2 & SYSCTL_MOVE_SUCCEEDED)) {
-            battleCtx->fieldConditionsMask &= ~(FIELD_CONDITION_TERRAIN | FIELD_CONDITION_TERRAIN_TURNS);
         }
     }
 

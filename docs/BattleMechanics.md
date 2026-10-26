@@ -65,7 +65,7 @@ The full research notes, with confidence levels and URLs, are in the [research n
 | Weather from a move | 5 turns (8 with rock) | same | ✅ |
 | Hail | 1/16 chip to non-Ice | **replaced by Snow**: no chip damage; Ice types get ×1.5 Defense | ✅ no chip (`battle_script.c`), Defense boost (`battle_lib.c`), messages, Hail/Snowscape set Snow. The weather graphic is still Platinum's hail (no graphics changes). |
 | Sandstorm | 1/16 chip; Rock ×1.5 Sp. Def | same | ✅ |
-| Terrains | — | Gen VIII+ terrains | ⏳ item 11 (terrain moves and abilities are placeholders) |
+| Terrains | — | Gen VIII+ terrains | ✅ item 11: the four terrains (5 turns, 8 with a Terrain Extender), the Surge abilities, the Seeds, and the moves that use or end a terrain. Only Expanding Force's spread to both foes is still missing. |
 | Overworld weather (rain, snow, fog on routes) | permanent | — | kept permanent (it's map weather, not a battle effect) |
 
 ## Moves
@@ -79,6 +79,7 @@ The full research notes, with confidence levels and URLs, are in the [research n
 | Make It Rain −2 Sp. Atk; Dire Claw 30%; Toxic Thread −2 Speed; Salt Cure 1/16 (1/8 vs Water/Steel); Rage Fist counter resets on switch; Unseen Fist ×0.25 through Protect | — | changed | ✅ moves batch 9 (`gen9_move_fixes.py`; Salt Cure and Unseen Fist in `battle_controller_player.c`, Rage Fist in `BattleSystem_UpdateAfterSwitch`). Unseen Fist, like Piercing Drill, gets through Protect and its kin, Wide Guard, Quick Guard and Mat Block, not Crafty Shield. |
 | No Retreat traps its user ('trapped', so a Ghost type escapes; fails while that holds) | the No Retreat volatile traps | plain trap | ✅ moves batch 9 (`gen_stat_moves.py`: Mean Look's trap aimed at the user) |
 | Belch and Stuff Cheeks without a Berry eaten / held | can't be selected | **can be selected**, then fail | ✅ moves batch 9. Belch counts Bug Bite, Pluck, Stuff Cheeks and a flung Berry, not Natural Gift, Fling's user or Incinerate; Stuff Cheeks raises Defense 2 stages, then eats the Berry (Klutz, Embargo and Magic Room don't stop it). |
+| Explosion, Self-Destruct (and Misty Explosion, which uses their effect) halve the target's Defense | yes (Gen IV) | no (Gen V+) | ✅ moves batch 10 (`battle_lib.c`): their power was already Gen V+'s 250/200, so the halving made them hit as if at 500/400 |
 | Slicing/punch/sound flag changes (Crush Claw, Dragon Claw, Metal Claw, Shadow Claw, Dire Claw slicing; Double Shock punching; Howl, Dragon Cheer sound) | — | changed | ⏳ item 11, with Sharpness/Iron Fist |
 | Protect & co. at 8 PP, and every move's PP on Champions' fixed scale (5→8, 10→12, 15→16, 20+→20; no PP Ups) | Gen IX PP + PP Ups | fixed PP | ➖ **not adopted** (owner, 2026-10-22): Sovereign keeps main-series PP and PP Ups ("a fun part of the game"). |
 | Moves removed from Champions (Pursuit, Return, Frustration, Hidden Power, Teleport, Hail, Snatch, Magic Coat…) | — | not available | ➖ kept in Sovereign: Champions removes them from its roster, not as a battle rule. Hail now summons Snow. |

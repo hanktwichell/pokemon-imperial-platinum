@@ -10011,6 +10011,8 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         // there were none)
         battleCtx->sovereignTerrainTemp = Sovereign_TidyUpHazards(battleCtx);
         return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_HALF_HP_PAID: // Sovereign (item 11): subscript_sovereign_half_hp_cost
+        return &battleCtx->sovereignHalfHPPaid;
     case BTLVAR_SOVEREIGN_SIDE_EFFECT_MON_GROUNDED: // Sovereign (item 11): read-only, TRUE when the side-effect target
         // is grounded (Rototiller)
         battleCtx->sovereignTerrainTemp = Sovereign_IsGrounded(battleCtx, battleCtx->sideEffectMon);

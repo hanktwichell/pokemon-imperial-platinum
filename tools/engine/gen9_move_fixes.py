@@ -164,12 +164,13 @@ MOVES = {
     "psychic_terrain": ("SOVEREIGN_PSYCHIC_TERRAIN", 0, "Psychic Terrain: grounded Psychic moves x1.3, blocks priority moves"),
     "rising_voltage": (None, None, "power doubles in Electric Terrain against a grounded target"),
     "expanding_force": (None, None, "1.5x in Psychic Terrain (doesn't spread to both foes yet)", "approximate"),
-    "misty_explosion": ("HALVE_DEFENSE", 0, "user faints; 1.5x in Misty Terrain (uses Explosion's effect)", "approximate"),
+    "misty_explosion": ("HALVE_DEFENSE", 0, "user faints; 1.5x in Misty Terrain; Damp stops it (Explosion's effect, which no"
+                        " longer halves Defense)"),
     "psyblade": (None, None, "1.5x in Electric Terrain"),
     "terrain_pulse": (None, None, "type follows the terrain, double power in one"),
     "grassy_glide": (None, None, "+1 priority in Grassy Terrain"),
-    "steel_roller": (None, None, "fails without a terrain, then removes it (no message yet)", "approximate"),
-    "ice_spinner": (None, None, "removes the terrain (no message yet)", "approximate"),
+    "steel_roller": ("SOVEREIGN_FLATTEN_TERRAIN_HIT", 0, "fails without a terrain; after the hit, the terrain ends"),
+    "ice_spinner": ("SOVEREIGN_FLATTEN_TERRAIN_HIT", 0, "after the hit, the terrain ends"),
     "laser_focus": ("SOVEREIGN_LASER_FOCUS", 0, "the user's moves always crit this turn and the next"),
     "throat_chop": ("SOVEREIGN_THROAT_CHOP", 100, "the target can't use sound moves for two turns"),
     "dragon_tail": ("SOVEREIGN_DRAG_OUT_HIT", 0, "drags the target out after the hit"),
@@ -178,7 +179,8 @@ MOVES = {
     "soak": ("SOVEREIGN_SOAK", 0, "the target becomes pure Water-type"),
     "wide_guard": ("SOVEREIGN_WIDE_GUARD", 0, "protects the user's side from spread moves this turn"),
     "quick_guard": ("SOVEREIGN_QUICK_GUARD", 0, "protects the user's side from foes' priority moves this turn"),
-    "poltergeist": (None, None, "fails against a target holding no item (no item message yet)", "approximate"),
+    "poltergeist": ("SOVEREIGN_POLTERGEIST", 0, "fails against a target holding no item; \"...is about to be attacked by its"
+                    " <item>!\" before the hit"),
     "retaliate": (None, None, "power doubles if a Pokémon on the user's side fainted last turn"),
     # Stat moves from tools/engine/gen_stat_moves.py whose extra rule isn't reproduced yet.
     "no_retreat": (None, None, "all stats +1; the user can't switch out (a Ghost type can); fails while that trap holds"),
@@ -191,7 +193,7 @@ MOVES = {
     "after_you": ("SOVEREIGN_AFTER_YOU", 0, "the target moves right after the user"),
     "quash": ("SOVEREIGN_QUASH", 0, "the target moves last this turn"),
     "psychic_noise": ("SOVEREIGN_PSYCHIC_NOISE", 100, "the target can't heal for two turns"),
-    "steel_beam": ("SOVEREIGN_HALF_HP_COST_HIT", 0, "the user loses half its max HP (only when it hits, so far)", "approximate"),
+    "steel_beam": ("SOVEREIGN_HALF_HP_COST_HIT", 0, "the user loses half its max HP, hit or miss"),
     "freeze_dry": ("FREEZE_HIT", 10, "super effective against Water; 10% freeze"),
     "confide": (None, None, "target Sp. Atk -1; as a sound move it gets past Substitute"),
     "psyshield_bash": ("RAISE_DEF_HIT", 100, "user Defense +1 (100%)"),
@@ -240,8 +242,9 @@ MOVES = {
     "blood_moon": (None, None, "can't be used twice in a row"),
     "supercell_slam": ("CRASH_ON_MISS", 0, "the user loses half its max HP if it misses"),
     "power_shift": ("SWAP_ATK_DEF", 0, "swaps the user's Attack and Defense"),
-    "chloroblast": ("SOVEREIGN_HALF_HP_COST_HIT", 0, "the user loses half its max HP (only when it hits, so far)", "approximate"),
-    "mind_blown": ("SOVEREIGN_HALF_HP_COST_HIT", 0, "the user loses half its max HP (only when it hits, so far; a single target)", "approximate"),
+    "chloroblast": ("SOVEREIGN_HALF_HP_COST_HIT", 0, "the user loses half its max HP, hit or miss"),
+    "mind_blown": ("SOVEREIGN_HALF_HP_COST_HIT", 0, "hits all adjacent Pokémon; the user loses half its max HP once, hit or"
+                   " miss; Damp stops it"),
     # Moves batch 2 (hand-written subscripts subscript_sovereign_<move>.s).
     "topsy_turvy": ("SOVEREIGN_TOPSY_TURVY", 0, "inverts the target's stat stages (fails if they're all neutral)"),
     "reflect_type": ("SOVEREIGN_REFLECT_TYPE", 0, "the user takes the target's types (not Arceus or Silvally)"),
