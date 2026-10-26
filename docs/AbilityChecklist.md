@@ -129,7 +129,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 244 | Punk Rock | Gen 8 | yes: its sound moves ×1.3, sound damage taken halved |
 | 245 | Sand Spit | Gen 8 | yes: getting hit whips up a sandstorm |
 | 246 | Ice Scales | Gen 8 | yes: special damage halved |
-| 247 | Ripen | Gen 8 | not yet (no battle effect) |
+| 247 | Ripen | Gen 8 | partly: Berries that restore HP restore twice as much, and stat-raising Berries raise 2 stages (damage-halving and other Berries not yet) |
 | 248 | Ice Face | Gen 8 | yes: takes one physical hit; snow brings the ice back |
 | 249 | Power Spot | Gen 8 | yes: its ally's moves ×1.3 |
 | 250 | Mimicry | Gen 8 | not yet (no battle effect) |
