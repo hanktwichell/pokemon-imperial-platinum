@@ -300,6 +300,10 @@ MOVES = {
     "shore_up": ("HEAL_HALF_MORE_IN_SUN", 0, "heals 1/2 of the user's max HP, 2/3 in a sandstorm"),
     "snipe_shot": (None, 0, "high critical-hit ratio; ignores Follow Me, Lightning Rod and Storm Drain"),
     "water_shuriken": (None, 0, "hits 2-5 times; Ash-Greninja's hits 3 times at 20 power"),
+    # Moves batch 8: charge moves.
+    "freeze_shock": ("SOVEREIGN_CHARGE_TURN_HIT", 30, "charges for a turn (a Power Herb skips it), then hits; 30% paralysis"),
+    "ice_burn": ("SOVEREIGN_CHARGE_TURN_HIT", 30, "charges for a turn (a Power Herb skips it), then hits; 30% burn"),
+    "geomancy": ("SOVEREIGN_GEOMANCY", 0, "charges for a turn (a Power Herb skips it), then user Sp. Atk, Sp. Def and Speed +2"),
 }
 
 # Gen IX values the move data got wrong (not the Champions changes in tools/engine/apply_champions_moves.py).

@@ -6,8 +6,8 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 332 |
-| approximate | 19 |
+| exact | 335 |
+| approximate | 16 |
 | placeholder | 29 |
 | removed | 72 |
 
@@ -100,8 +100,8 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 550 | Bolt Strike | Electric | `PARALYZE_HIT` | exact |  |
 | 551 | Blue Flare | Fire | `BURN_HIT` | exact |  |
 | 552 | Fiery Dance | Fire | `RAISE_SP_ATK_HIT` | exact |  |
-| 553 | Freeze Shock | Ice | `PARALYZE_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
-| 554 | Ice Burn | Ice | `BURN_HIT` | approximate | has its own mechanic in Gen IX; closest effect |
+| 553 | Freeze Shock | Ice | `SOVEREIGN_CHARGE_TURN_HIT` | exact | Sovereign effect: charges for a turn (a Power Herb skips it), then hits; 30% paralysis |
+| 554 | Ice Burn | Ice | `SOVEREIGN_CHARGE_TURN_HIT` | exact | Sovereign effect: charges for a turn (a Power Herb skips it), then hits; 30% burn |
 | 555 | Snarl | Dark | `LOWER_SP_ATK_HIT` | exact |  |
 | 556 | Icicle Crash | Ice | `FLINCH_HIT` | exact |  |
 | 557 | V-create | Fire | `SOVEREIGN_V_CREATE` | exact | Sovereign effect: user Defense, Sp. Def and Speed -1 after the hit |
@@ -148,7 +148,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 598 | Eerie Impulse | Electric | `SP_ATK_DOWN_2` | exact |  |
 | 599 | Venom Drench | Poison | `SOVEREIGN_VENOM_DRENCH` | exact | Sovereign effect: target Attack -1, target Sp. Atk -1, target Speed -1 |
 | 600 | Powder | Bug | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
-| 601 | Geomancy | Fairy | `SP_ATK_SP_DEF_UP` | approximate | raises [('spa', 2), ('spd', 2), ('spe', 2)] in the original |
+| 601 | Geomancy | Fairy | `SOVEREIGN_GEOMANCY` | exact | Sovereign effect: charges for a turn (a Power Herb skips it), then user Sp. Atk, Sp. Def and Speed +2 |
 | 602 | Magnetic Flux | Electric | `SOVEREIGN_MAGNETIC_FLUX` | exact | Sovereign effect: Defense and Sp. Def +1 for the user and its ally if they have Plus or Minus |
 | 603 | Happy Hour | Normal | `SOVEREIGN_HAPPY_HOUR` | exact | Sovereign effect: doubles the prize money (on top of an Amulet Coin) |
 | 604 | ElectrcTerrain | Electric | `SOVEREIGN_ELECTRIC_TERRAIN` | exact | Sovereign effect: Electric Terrain: grounded Electric moves x1.3, grounded Pokémon can't fall asleep |
