@@ -5060,6 +5060,25 @@ static BOOL Sovereign_AbilityIsFixed(int ability)
     return FALSE;
 }
 
+// Sovereign (item 11): TRUE when the thief can take the victim's held item by Thief's rules (BtlCmd_TryStealItem), for
+// Magician and Pickpocket. A Pokemon on the foe's side can't, outside the Battle Frontier, so the player loses no item.
+static BOOL Sovereign_CanTakeItem(BattleSystem *battleSys, BattleContext *battleCtx, int thief, int victim)
+{
+    int thiefSide = BattleSystem_GetBattlerSide(battleSys, thief);
+
+    return (thiefSide == BATTLE_SIDE_PLAYER || (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_FRONTIER_LINK))
+        && battleCtx->battleMons[thief].heldItem == ITEM_NONE
+        && (battleCtx->sideConditions[thiefSide].knockedOffItemsMask & FlagIndex(battleCtx->selectedPartySlot[thief])) == FALSE
+        && Battler_Ability(battleCtx, thief) != ABILITY_MULTITYPE
+        && Battler_Ability(battleCtx, victim) != ABILITY_MULTITYPE
+        && Battler_Ability(battleCtx, victim) != ABILITY_STICKY_HOLD
+        && battleCtx->battleMons[victim].heldItem != ITEM_GRISEOUS_ORB
+        && Battler_SovereignHeldItemLocked(battleCtx, victim) == FALSE
+        && battleCtx->battleMons[victim].moveEffectsData.custapBerry == FALSE
+        && battleCtx->battleMons[victim].moveEffectsData.quickClaw == FALSE
+        && BattleSystem_CanStealItem(battleSys, battleCtx, victim);
+}
+
 BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *battleCtx, int *subscript)
 {
     BOOL result = FALSE;
@@ -5071,6 +5090,21 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
 
     if (Battler_SubstituteWasHit(battleCtx, battleCtx->defender) == TRUE) {
         return result;
+    }
+
+    // Sovereign (item 11): Magician (the attacker's ability) takes the held item of a Pokemon its damaging move hits.
+    if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_MAGICIAN
+        && ATTACKING_MON.curHP
+        && battleCtx->attacker != battleCtx->defender
+        && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+        && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+        && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+        && Sovereign_CanTakeItem(battleSys, battleCtx, battleCtx->attacker, battleCtx->defender)) {
+        battleCtx->msgBattlerTemp = battleCtx->attacker;
+        battleCtx->sideEffectMon = battleCtx->defender;
+        battleCtx->msgItemTemp = DEFENDING_MON.heldItem;
+        *subscript = subscript_sovereign_take_item;
+        return TRUE;
     }
 
     // Sovereign (item 11): Toxic Chain (the attacker's ability) has a 30% chance to badly poison a Pokemon its
@@ -5312,6 +5346,22 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (Battler_Ability(battleCtx, battleCtx->defender) == ABILITY_ELECTROMORPHOSIS || Move_IsWind(battleCtx->moveCur))) {
             battleCtx->msgBattlerTemp = battleCtx->defender;
             *subscript = subscript_sovereign_charged_by_hit;
+            result = TRUE;
+        }
+        break;
+
+    // Sovereign (item 11): Pickpocket takes the held item of a Pokemon that makes contact with the holder.
+    case ABILITY_PICKPOCKET:
+        if (DEFENDING_MON.curHP
+            && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
+            && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+            && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
+            && Sovereign_MakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)
+            && Sovereign_CanTakeItem(battleSys, battleCtx, battleCtx->defender, battleCtx->attacker)) {
+            battleCtx->msgBattlerTemp = battleCtx->defender;
+            battleCtx->sideEffectMon = battleCtx->attacker;
+            battleCtx->msgItemTemp = ATTACKING_MON.heldItem;
+            *subscript = subscript_sovereign_take_item;
             result = TRUE;
         }
         break;
