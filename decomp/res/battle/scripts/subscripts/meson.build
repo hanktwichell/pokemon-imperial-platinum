@@ -449,4 +449,7 @@ subscript_files = files(
     'subscript_sovereign_mimicry.s',
     'subscript_sovereign_opportunist.s',
     'subscript_sovereign_cud_chew.s',
+    'subscript_sovereign_hospitality.s',
+    'subscript_sovereign_costar.s',
+    'subscript_sovereign_curious_medicine.s',
 )

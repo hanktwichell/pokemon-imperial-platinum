@@ -128,16 +128,16 @@ IMPLEMENTED = {
     178: "yes: pulse moves ×1.5",
     292: "yes: slicing moves ×1.5",
     238: "yes: when a damaging move hits it, every other Pokémon's Speed −1, its ally's too, even as it faints",
-    266: "partly: foes can't eat Berries that heal, cure or trigger on a hit, as with Unnerve (damage-halving Berries not yet); Attack +1 for each foe its move knocks out",
-    267: "partly: foes can't eat Berries that heal, cure or trigger on a hit, as with Unnerve (damage-halving Berries not yet); Sp. Atk +1 for each foe its move knocks out",
+    266: "yes: foes can't eat Berries, as with Unnerve; Attack +1 for each foe its move knocks out",
+    267: "yes: foes can't eat Berries, as with Unnerve; Sp. Atk +1 for each foe its move knocks out",
     300: "yes: the first time it enters the battle, each foe's evasiveness −1",
     302: "yes: its damaging moves have a 30% chance to badly poison (Shield Dust stops it)",
     307: "yes: a Pokémon its move poisons or badly poisons becomes confused too",
     213: "yes: no status condition, no drowsiness, Rest fails; counts as asleep for Dream Eater, Nightmare, Hex, Wake-Up Slap, Bad Dreams, Sleep Talk and Snore",
     257: "yes: it and its partner can't be poisoned, and its own poisoning is healed (\"…is protected by a pastel veil!\" for its partner)",
     175: "yes: it and its partner can't fall asleep or become drowsy, and Rest fails (\"…can't fall asleep due to a veil of sweetness!\" for its partner)",
-    167: "partly: when it eats its own held Berry, it also restores a third of its max HP (not yet for a Berry taken by Bug Bite or Pluck, nor a damage-halving Berry)",
-    247: "partly: Berries that restore HP restore twice as much, and stat-raising Berries raise 2 stages (damage-halving and other Berries not yet)",
+    167: "yes: when it eats a Berry (its own, a damage-halving one too, or one taken by Bug Bite, Pluck, Fling or Stuff Cheeks), it also restores a third of its max HP",
+    247: "partly: Berries that restore HP restore twice as much, stat-raising Berries raise 2 stages, and damage-halving Berries quarter the damage (Jaboca, Rowap and Leppa Berries not yet)",
     139: "yes: at the end of a turn, regrows the Berry it used up, half the time (every time in harsh sunlight)",
     259: "yes: 30% of the time it uses a damaging move, it moves first in its priority bracket",
     124: "yes: when it holds no item, it takes the item of a Pokémon that makes contact with it (by Thief's rules: a foe's takes nothing outside the Battle Frontier)",
@@ -191,7 +191,7 @@ IMPLEMENTED = {
     130: "yes: 30% chance to disable the move that hit it, for 4 turns",  # Cursed Body
     141: "yes: each turn, one stat +2 and another −1 (no accuracy/evasion, as in Gen VIII+)",  # Moody
     143: "yes: its contact moves have a 30% chance to poison",  # Poison Touch
-    127: "partly: foes can't eat Berries that heal, cure or trigger on a hit (damage-halving Berries not yet)",  # Unnerve
+    127: "yes: foes can't eat Berries (that heal, cure, trigger on a hit or halve a hit's damage)",  # Unnerve
     128: "yes: Attack +2 when a foe's move or Intimidate lowers its stats",  # Defiant
     172: "yes: Sp. Atk +2 when a foe's move or Intimidate lowers its stats",  # Competitive
     160: "yes: contact costs the attacker 1/8 of its max HP (as Rough Skin)",  # Iron Barbs
@@ -225,6 +225,9 @@ IMPLEMENTED = {
     270: "yes: Attack +1 when hit by a Fire move, can't be burned",  # ThermalExchange
     157: "yes: absorbs Grass moves, Attack +1 (`BattleSystem_TriggerImmunityAbility`)",  # Sap Sipper
     192: "yes: Defense +1 stage each time a damaging move hits (`BattleSystem_TriggerAbilityOnHit`)",  # Stamina
+    261: "yes: as it enters, its partner's stat stages are reset (\"…'s stat changes were removed!\"; double battles)",  # Curious Medicine
+    294: "yes: as it enters, it copies its partner's stat stages, and Focus Energy, Dragon Cheer and Laser Focus (double battles)",  # Costar
+    301: "yes: as it enters, its partner restores a quarter of its max HP (\"…drank down all the matcha that … made!\"; double battles)",  # Hospitality
     150: "yes: as it enters, it transforms into the foe facing it, as by Transform (not into one behind a Substitute or already transformed); the copied ability's entry effect follows (Intimidate...)",  # Imposter
     250: "yes: its type becomes the terrain's when one starts (Electric, Grass, Fairy, Psychic), and its own types come back when the terrain ends (\"…returned to its original type!\")",  # Mimicry
     290: "yes: copies the stat rises its foes get, as a Mirror Herb does but every time (not a rise Opportunist or a Mirror Herb made)",  # Opportunist

@@ -10065,6 +10065,10 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         // Pokemon from giving the side-effect target (a Grass type) a status condition
         battleCtx->sovereignTerrainTemp = Sovereign_FlowerVeilGuards(battleSys, battleCtx);
         return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_UNNERVED_MSG_TEMP: // Sovereign (item 11): read-only, TRUE when a foe's Unnerve keeps
+        // msgBattlerTemp from eating its Berry (subscript_type_resist_berry)
+        battleCtx->sovereignTerrainTemp = Battler_UnnerveBlocksBerry(battleSys, battleCtx, battleCtx->msgBattlerTemp);
+        return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_AROMA_VEIL_DEFENDER: // Sovereign (item 11): read-only, TRUE when Aroma Veil keeps the
         // attacker's move off the defender (subscript_missed)
         battleCtx->sovereignTerrainTemp = Sovereign_AromaVeilBlocks(battleSys, battleCtx, battleCtx->attacker,

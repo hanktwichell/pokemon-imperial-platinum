@@ -10396,6 +10396,131 @@
         "The foe’s {STRVAR_1 1, 0, 0} returned\n",
         "to its original type!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignDrankMatcha_AllyAlly",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} drank down all the\n",
+        "matcha that {STRVAR_1 1, 1, 0} made!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignDrankMatcha_AllyWild",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} drank down\n",
+        "all the matcha that\f",
+        "the wild {STRVAR_1 1, 1, 0} made!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignDrankMatcha_AllyFoe",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} drank down\n",
+        "all the matcha that\f",
+        "the foe’s {STRVAR_1 1, 1, 0} made!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignDrankMatcha_WildAlly",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} drank down\n",
+        "all the matcha that\f",
+        "{STRVAR_1 1, 1, 0} made!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignDrankMatcha_WildWild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} drank down\n",
+        "all the matcha that\f",
+        "the wild {STRVAR_1 1, 1, 0} made!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignDrankMatcha_FoeAlly",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} drank down\n",
+        "all the matcha that\f",
+        "{STRVAR_1 1, 1, 0} made!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignDrankMatcha_FoeFoe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} drank down\n",
+        "all the matcha that\f",
+        "the foe’s {STRVAR_1 1, 1, 0} made!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCopiedStatChanges_AllyAlly",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} copied\n",
+        "{STRVAR_1 1, 1, 0}’s stat changes!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCopiedStatChanges_AllyWild",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} copied\n",
+        "the wild {STRVAR_1 1, 1, 0}’s stat changes!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCopiedStatChanges_AllyFoe",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} copied\n",
+        "the foe’s {STRVAR_1 1, 1, 0}’s stat changes!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCopiedStatChanges_WildAlly",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} copied\n",
+        "{STRVAR_1 1, 1, 0}’s stat changes!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCopiedStatChanges_WildWild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} copied\n",
+        "the wild {STRVAR_1 1, 1, 0}’s stat changes!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCopiedStatChanges_FoeAlly",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} copied\n",
+        "{STRVAR_1 1, 1, 0}’s stat changes!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCopiedStatChanges_FoeFoe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} copied\n",
+        "the foe’s {STRVAR_1 1, 1, 0}’s stat changes!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignStatChangesRemoved_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s stat changes\n",
+        "were removed!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignStatChangesRemoved_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}’s stat changes\n",
+        "were removed!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignStatChangesRemoved_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}’s stat changes\n",
+        "were removed!"
+      ]
     }
   ]
 }

@@ -9,7 +9,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 124 | Pickpocket | Gen 5 | yes: when it holds no item, it takes the item of a Pokémon that makes contact with it (by Thief's rules: a foe's takes nothing outside the Battle Frontier) |
 | 125 | Sheer Force | Gen 5 | yes: moves with a chance effect ×1.3, without the effect (or Life Orb recoil) |
 | 126 | Contrary | Gen 5 | yes: stat rises and drops are reversed |
-| 127 | Unnerve | Gen 5 | partly: foes can't eat Berries that heal, cure or trigger on a hit (damage-halving Berries not yet) |
+| 127 | Unnerve | Gen 5 | yes: foes can't eat Berries (that heal, cure, trigger on a hit or halve a hit's damage) |
 | 128 | Defiant | Gen 5 | yes: Attack +2 when a foe's move or Intimidate lowers its stats |
 | 129 | Defeatist | Gen 5 | yes: Attack and Sp. Atk halved at half HP or less |
 | 130 | Cursed Body | Gen 5 | yes: 30% chance to disable the move that hit it, for 4 turns |
@@ -49,7 +49,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 164 | Teravolt | Gen 5 | yes: ignores the target's ability, like Mold Breaker |
 | 165 | Aroma Veil | Gen 6 | yes: Attract, Disable, Encore, Heal Block, Taunt and Torment don't affect it or its partner, nor does Cursed Body or Cute Charm ("…is protected by an aromatic veil!") |
 | 166 | Flower Veil | Gen 6 | yes: other Pokémon can't lower the stats of, give a status condition to or make drowsy a Grass type on its side, itself or its partner ("…surrounded itself with a veil of petals!") |
-| 167 | Cheek Pouch | Gen 6 | partly: when it eats its own held Berry, it also restores a third of its max HP (not yet for a Berry taken by Bug Bite or Pluck, nor a damage-halving Berry) |
+| 167 | Cheek Pouch | Gen 6 | yes: when it eats a Berry (its own, a damage-halving one too, or one taken by Bug Bite, Pluck, Fling or Stuff Cheeks), it also restores a third of its max HP |
 | 168 | Protean | Gen 6 | yes: becomes its move's type, once per switch-in |
 | 169 | Fur Coat | Gen 6 | yes: Defense doubled |
 | 170 | Magician | Gen 6 | yes: when it holds no item, its damaging move takes the target's item (by Thief's rules: a foe's takes nothing outside the Battle Frontier) |
@@ -129,7 +129,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 244 | Punk Rock | Gen 8 | yes: its sound moves ×1.3, sound damage taken halved |
 | 245 | Sand Spit | Gen 8 | yes: getting hit whips up a sandstorm |
 | 246 | Ice Scales | Gen 8 | yes: special damage halved |
-| 247 | Ripen | Gen 8 | partly: Berries that restore HP restore twice as much, and stat-raising Berries raise 2 stages (damage-halving and other Berries not yet) |
+| 247 | Ripen | Gen 8 | partly: Berries that restore HP restore twice as much, stat-raising Berries raise 2 stages, and damage-halving Berries quarter the damage (Jaboca, Rowap and Leppa Berries not yet) |
 | 248 | Ice Face | Gen 8 | yes: takes one physical hit; snow brings the ice back |
 | 249 | Power Spot | Gen 8 | yes: its ally's moves ×1.3 |
 | 250 | Mimicry | Gen 8 | yes: its type becomes the terrain's when one starts (Electric, Grass, Fairy, Psychic), and its own types come back when the terrain ends ("…returned to its original type!") |
@@ -143,13 +143,13 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 258 | Hunger Switch | Gen 8 | yes: switches between Full Belly and Hangry Mode at the end of each turn |
 | 259 | Quick Draw | Gen 8 | yes: 30% of the time it uses a damaging move, it moves first in its priority bracket |
 | 260 | Unseen Fist | Gen 8 | yes: contact moves go through protection |
-| 261 | CuriousMedicine | Gen 8 | not yet (no battle effect) |
+| 261 | CuriousMedicine | Gen 8 | yes: as it enters, its partner's stat stages are reset ("…'s stat changes were removed!"; double battles) |
 | 262 | Transistor | Gen 8 | yes: Electric moves ×1.3 |
 | 263 | Dragon’s Maw | Gen 8 | yes: Dragon moves ×1.5 |
 | 264 | Chilling Neigh | Gen 8 | yes: Attack +1 for each foe its move knocks out |
 | 265 | Grim Neigh | Gen 8 | yes: Sp. Atk +1 for each foe its move knocks out |
-| 266 | As One | Gen 8 | partly: foes can't eat Berries that heal, cure or trigger on a hit, as with Unnerve (damage-halving Berries not yet); Attack +1 for each foe its move knocks out |
-| 267 | As One | Gen 8 | partly: foes can't eat Berries that heal, cure or trigger on a hit, as with Unnerve (damage-halving Berries not yet); Sp. Atk +1 for each foe its move knocks out |
+| 266 | As One | Gen 8 | yes: foes can't eat Berries, as with Unnerve; Attack +1 for each foe its move knocks out |
+| 267 | As One | Gen 8 | yes: foes can't eat Berries, as with Unnerve; Sp. Atk +1 for each foe its move knocks out |
 | 268 | Lingering Aroma | Gen 9 | yes: an attacker that makes contact gets Lingering Aroma |
 | 269 | Seed Sower | Gen 9 | yes: getting hit sets Grassy Terrain |
 | 270 | ThermalExchange | Gen 9 | yes: Attack +1 when hit by a Fire move, can't be burned |
@@ -176,14 +176,14 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 291 | Cud Chew | Gen 9 | yes: it eats again the Berry it ate (not one taken by Bug Bite or Pluck), at the end of the next turn (turn 2 for a Berry eaten as the battle starts) |
 | 292 | Sharpness | Gen 9 | yes: slicing moves ×1.5 |
 | 293 | SupremeOverlord | Gen 9 | yes: 10% more power per fainted party member (up to 5) |
-| 294 | Costar | Gen 9 | not yet (no battle effect) |
+| 294 | Costar | Gen 9 | yes: as it enters, it copies its partner's stat stages, and Focus Energy, Dragon Cheer and Laser Focus (double battles) |
 | 295 | Toxic Debris | Gen 9 | yes: physical hits scatter Toxic Spikes on the attacker's side |
 | 296 | Armor Tail | Gen 9 | yes: foes' priority moves can't hit its side |
 | 297 | Earth Eater | Gen 9 | yes: absorbs Ground moves, restores 1/4 of max HP (`BattleSystem_TriggerImmunityAbility`) |
 | 298 | Mycelium Might | Gen 9 | yes: its status moves ignore abilities, and it uses them last in their priority bracket |
 | 299 | Mind’s Eye | Gen 9 | yes: hits Ghost types with Normal and Fighting moves, ignores evasion, accuracy can't be lowered |
 | 300 | SupersweetSyrup | Gen 9 | yes: the first time it enters the battle, each foe's evasiveness −1 |
-| 301 | Hospitality | Gen 9 | not yet (no battle effect) |
+| 301 | Hospitality | Gen 9 | yes: as it enters, its partner restores a quarter of its max HP ("…drank down all the matcha that … made!"; double battles) |
 | 302 | Toxic Chain | Gen 9 | yes: its damaging moves have a 30% chance to badly poison (Shield Dust stops it) |
 | 303 | Embody Aspect | Gen 9 | not yet (no battle effect) |
 | 304 | Tera Shift | Gen 9 | yes: Terastal Form as it enters battle, until the battle ends |

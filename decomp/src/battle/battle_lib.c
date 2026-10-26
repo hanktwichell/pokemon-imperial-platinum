@@ -4995,6 +4995,49 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                     break;
                 }
 
+                // Hospitality restores a quarter of its partner's max HP, Costar copies its partner's stat stages (and
+                // Focus Energy, Dragon Cheer, Laser Focus), and Curious Medicine resets its partner's, on entry (double
+                // battles).
+                if (battleCtx->battleMons[battler].curHP
+                    && (ability == ABILITY_HOSPITALITY || ability == ABILITY_COSTAR || ability == ABILITY_CURIOUS_MEDICINE)
+                    && battleCtx->battleMons[battler].sovereignEntryAnnounced == FALSE) {
+                    int partner = BattleSystem_GetPartner(battleSys, battler);
+                    BattleMon *ally = &battleCtx->battleMons[partner];
+
+                    battleCtx->battleMons[battler].sovereignEntryAnnounced = TRUE;
+
+                    if (partner != battler && ally->curHP && (ability != ABILITY_HOSPITALITY || ally->curHP < ally->maxHP)) {
+                        battleCtx->msgBattlerTemp = partner;
+                        battleCtx->msgAttacker = battler;
+
+                        if (ability == ABILITY_HOSPITALITY) {
+                            battleCtx->hpCalcTemp = ally->maxHP / 4;
+                            subscript = subscript_sovereign_hospitality;
+                        } else if (ability == ABILITY_COSTAR) {
+                            BattleMon *mon = &battleCtx->battleMons[battler];
+
+                            for (int stat = BATTLE_STAT_HP; stat < BATTLE_STAT_MAX; stat++) {
+                                mon->statBoosts[stat] = ally->statBoosts[stat];
+                            }
+
+                            mon->statusVolatile = (mon->statusVolatile & ~VOLATILE_CONDITION_FOCUS_ENERGY)
+                                | (ally->statusVolatile & VOLATILE_CONDITION_FOCUS_ENERGY);
+                            battleCtx->sovereignDragonCheer[battler] = battleCtx->sovereignDragonCheer[partner];
+                            battleCtx->sovereignLaserFocus[battler] = battleCtx->sovereignLaserFocus[partner];
+                            subscript = subscript_sovereign_costar;
+                        } else {
+                            for (int stat = BATTLE_STAT_HP; stat < BATTLE_STAT_MAX; stat++) {
+                                ally->statBoosts[stat] = DEFAULT_STAT_STAGE;
+                            }
+
+                            subscript = subscript_sovereign_curious_medicine;
+                        }
+
+                        result = SWITCH_IN_CHECK_RESULT_BREAK;
+                        break;
+                    }
+                }
+
                 // Screen Cleaner removes Reflect, Light Screen and Aurora Veil from both sides on entry.
                 if (battleCtx->battleMons[battler].curHP
                     && ability == ABILITY_SCREEN_CLEANER
