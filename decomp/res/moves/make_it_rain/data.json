@@ -11,7 +11,7 @@
     "accuracy": 95,
     "pp": 5,
     "effect": {
-        "type": "BATTLE_EFFECT_SOVEREIGN_LOWER_OWN_SP_ATK_HIT",
+        "type": "BATTLE_EFFECT_SOVEREIGN_LOWER_OWN_SP_ATK_2_HIT",
         "chance": 100
     },
     "range": "RANGE_ADJACENT_OPPONENTS",

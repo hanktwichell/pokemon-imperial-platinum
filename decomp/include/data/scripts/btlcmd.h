@@ -229,6 +229,8 @@ ScriptCommand(BTLCMD_LOADARCHIVEDMONDATA,         BtlCmd_LoadArchivedMonData)
 ScriptCommand(BTLCMD_REFRESHMONDATA,              BtlCmd_RefreshMonData)
 ScriptCommand(BTLCMD_END,                         BtlCmd_End)
 ScriptCommand(BTLCMD_SOVEREIGNREFRESHHEALTHBOX,    BtlCmd_SovereignRefreshHealthBox) // Sovereign (E8)
+ScriptCommand(BTLCMD_SOVEREIGNMARKATEBERRY,        BtlCmd_SovereignMarkAteBerry) // Sovereign (item 11)
+ScriptCommand(BTLCMD_SOVEREIGNEATOWNBERRY,         BtlCmd_SovereignEatOwnBerry) // Sovereign (item 11)
 
 // clang-format on
 

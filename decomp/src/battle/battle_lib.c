@@ -2084,7 +2084,7 @@ void BattleContext_Init(BattleContext *battleCtx)
     battleCtx->multiHitCounter = 0;
     battleCtx->multiHitNumHits = 0;
     battleCtx->sovereignParentalBond = FALSE;
-    battleCtx->sovereignPiercingDrill = FALSE;
+    battleCtx->sovereignThroughProtect = FALSE;
     battleCtx->battlerCounter = 0;
     battleCtx->multiHitLoop = 0;
     battleCtx->afterMoveMessageType = 0;
@@ -2229,6 +2229,7 @@ void BattleSystem_UpdateAfterSwitch(BattleSystem *battleSys, BattleContext *batt
     battleCtx->sovereignSyrupBomb[battler] = 0;
     battleCtx->sovereignTarShot &= ~FlagIndex(battler);
     MI_CpuClear8(battleCtx->sovereignMirrorHerbRises[battler], sizeof(battleCtx->sovereignMirrorHerbRises[battler])); // Sovereign (item 11)
+    MI_CpuClear8(battleCtx->sovereignTimesHit[battler], sizeof(battleCtx->sovereignTimesHit[battler])); // Rage Fist (Champions)
     battleCtx->moveCopied[battler] = MOVE_NONE;
     battleCtx->moveCopiedHit[battler][0] = MOVE_NONE;
     battleCtx->moveCopiedHit[battler][1] = MOVE_NONE;
@@ -2319,6 +2320,7 @@ void BattleSystem_CleanupFaintedMon(BattleSystem *battleSys, BattleContext *batt
     battleCtx->sovereignSyrupBomb[battler] = 0;
     battleCtx->sovereignTarShot &= ~FlagIndex(battler);
     MI_CpuClear8(battleCtx->sovereignMirrorHerbRises[battler], sizeof(battleCtx->sovereignMirrorHerbRises[battler])); // Sovereign (item 11)
+    MI_CpuClear8(battleCtx->sovereignTimesHit[battler], sizeof(battleCtx->sovereignTimesHit[battler])); // Rage Fist (Champions)
     battleCtx->moveCopied[battler] = MOVE_NONE;
     battleCtx->moveCopiedHit[battler][0] = MOVE_NONE;
     battleCtx->moveCopiedHit[battler][1] = MOVE_NONE;
@@ -2454,7 +2456,8 @@ int BattleSystem_CheckInvalidMoves(BattleSystem *battleSys, BattleContext *battl
             invalidMoves |= FlagIndex(i);
         }
 
-        if (MOVE_DATA(battleCtx->battleMons[battler].moves[i]).effect == BATTLE_EFFECT_ALWAYS_FLINCH_FIRST_TURN_ONLY
+        if ((MOVE_DATA(battleCtx->battleMons[battler].moves[i]).effect == BATTLE_EFFECT_ALWAYS_FLINCH_FIRST_TURN_ONLY
+                || MOVE_DATA(battleCtx->battleMons[battler].moves[i]).effect == BATTLE_EFFECT_SOVEREIGN_FIRST_IMPRESSION)
             && battleCtx->battleMons[battler].moveEffectsData.fakeOutTurnNumber != battleCtx->totalTurns
             && (opMask & CHECK_INVALID_FIRST_TURN)) {
             invalidMoves |= FlagIndex(i);
@@ -7152,16 +7155,32 @@ BOOL Battler_IsTrapped(BattleSystem *battleSys, BattleContext *battleCtx, int ba
     return result;
 }
 
+static BOOL BattleSystem_FeedBerryToAttacker(BattleSystem *battleSys, BattleContext *battleCtx, int battler, BOOL stuffCheeks);
+
 BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
+{
+    if (Battler_SubstituteWasHit(battleCtx, battleCtx->defender) == TRUE) {
+        return FALSE;
+    }
+
+    return BattleSystem_FeedBerryToAttacker(battleSys, battleCtx, battler, FALSE);
+}
+
+// Sovereign (item 11): Stuff Cheeks. The attacker eats its own Berry; Klutz and Embargo don't stop it. TRUE if it holds
+// one.
+BOOL Sovereign_EatOwnBerry(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    return BattleSystem_FeedBerryToAttacker(battleSys, battleCtx, battleCtx->attacker, TRUE);
+}
+
+// The attacker eats the Berry held by battler (Bug Bite, Pluck and Stuff Cheeks): its effect subscript goes in scriptTemp,
+// the Berry in msgItemTemp. TRUE if battler holds a Berry.
+static BOOL BattleSystem_FeedBerryToAttacker(BattleSystem *battleSys, BattleContext *battleCtx, int battler, BOOL stuffCheeks)
 {
     BOOL result = FALSE;
     int nextSeq = 0;
     int effect = Battler_ItemPluckEffect(battleCtx, battler);
     int power = Battler_HeldItemPower(battleCtx, battler, 1);
-
-    if (Battler_SubstituteWasHit(battleCtx, battleCtx->defender) == TRUE) {
-        return result;
-    }
 
     switch (effect) {
     case PLUCK_EFFECT_HP_RESTORE:
@@ -7453,8 +7472,9 @@ BOOL BattleSystem_PluckBerry(BattleSystem *battleSys, BattleContext *battleCtx, 
     }
 
     if (result == TRUE) {
-        if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_KLUTZ
-            || (ATTACKING_MON.moveEffectsMask & MOVE_EFFECT_EMBARGO)) {
+        if (stuffCheeks == FALSE
+            && (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_KLUTZ
+                || (ATTACKING_MON.moveEffectsMask & MOVE_EFFECT_EMBARGO))) {
             battleCtx->scriptTemp = 0;
         } else {
             battleCtx->scriptTemp = nextSeq;

@@ -156,6 +156,8 @@ static BOOL BtlCmd_LockMoveChoice(BattleSystem *battleSys, BattleContext *battle
 static BOOL BtlCmd_UnlockMoveChoice(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_SetHealthBoxStatusIcon(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_SovereignRefreshHealthBox(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_SovereignMarkAteBerry(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_SovereignEatOwnBerry(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PrintTrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PayPrizeMoney(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PlayBattleAnimation(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -3813,6 +3815,33 @@ static BOOL BtlCmd_SovereignRefreshHealthBox(BattleSystem *battleSys, BattleCont
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
 
     BattleController_EmitRefreshHPGauge(battleSys, battleCtx, battler);
+
+    return FALSE;
+}
+
+// Sovereign (item 11): remember that a battler ate a Berry this battle, for Belch (subscript_pluck_check, after a Berry
+// eaten off another Pokemon: Fling's target).
+static BOOL BtlCmd_SovereignMarkAteBerry(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
+
+    battleCtx->sovereignAteBerry[battler] |= FlagIndex(battleCtx->selectedPartySlot[battler]);
+
+    return FALSE;
+}
+
+// Sovereign (item 11): Stuff Cheeks. The attacker eats its own Berry: its effect subscript goes in scriptTemp (0 for
+// none), the Berry in msgItemTemp. Jumps if the attacker holds no Berry.
+static BOOL BtlCmd_SovereignEatOwnBerry(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int jumpNoBerry = BattleScript_Read(battleCtx);
+
+    if (Item_IsBerry(ATTACKING_MON.heldItem) == FALSE || Sovereign_EatOwnBerry(battleSys, battleCtx) == FALSE) {
+        BattleScript_Iter(battleCtx, jumpNoBerry);
+    }
 
     return FALSE;
 }
@@ -9282,9 +9311,25 @@ static BOOL BtlCmd_RemoveItem(BattleSystem *battleSys, BattleContext *battleCtx)
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
     battleCtx->recycleItem[battler] = battleCtx->battleMons[battler].heldItem;
 
-    // Sovereign (item 11): remember a Berry it used up, for Belch.
+    // Sovereign (item 11): remember who ate a Berry, for Belch. Bug Bite and Pluck feed the target's Berry to the
+    // attacker; Natural Gift and Fling use the attacker's up without eating it (Fling's target eats it:
+    // subscript_pluck_check).
     if (Item_IsBerry(battleCtx->battleMons[battler].heldItem)) {
-        battleCtx->sovereignAteBerry[battler] |= FlagIndex(battleCtx->selectedPartySlot[battler]);
+        int effect = MOVE_DATA(battleCtx->moveCur).effect;
+        int eater = battler;
+
+        if (battler == battleCtx->attacker && (effect == BATTLE_EFFECT_NATURAL_GIFT || effect == BATTLE_EFFECT_FLING)) {
+            eater = BATTLER_NONE;
+        } else if (battler == battleCtx->defender
+            && battler != battleCtx->attacker
+            && effect != BATTLE_EFFECT_FLING
+            && (ATTACKER_SELF_TURN_FLAGS.statusFlags & SELF_TURN_FLAG_PLUCK_BERRY)) {
+            eater = battleCtx->attacker;
+        }
+
+        if (eater != BATTLER_NONE) {
+            battleCtx->sovereignAteBerry[eater] |= FlagIndex(battleCtx->selectedPartySlot[eater]);
+        }
     }
 
     battleCtx->battleMons[battler].heldItem = ITEM_NONE;
@@ -10124,11 +10169,13 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         return &battleCtx->sovereignTerrainTemp;
     }
     case BTLVAR_SOVEREIGN_CHEEK_POUCH_MSG_TEMP: { // Sovereign (item 11): read-only, TRUE when the Pokemon about to use up
-        // its Berry (msgBattlerTemp) has Cheek Pouch and HP to restore; then hpCalcTemp is a third of its max HP
+        // its Berry (msgBattlerTemp) has Cheek Pouch and HP to restore; then hpCalcTemp is a third of its max HP. Bug
+        // Bite, Pluck, Fling and Stuff Cheeks took the Berry (msgItemTemp) already.
         BattleMon *eater = &battleCtx->battleMons[battleCtx->msgBattlerTemp];
 
         battleCtx->sovereignTerrainTemp = Battler_Ability(battleCtx, battleCtx->msgBattlerTemp) == ABILITY_CHEEK_POUCH
-            && Item_IsBerry(eater->heldItem)
+            && (Item_IsBerry(eater->heldItem)
+                || ((ATTACKER_SELF_TURN_FLAGS.statusFlags & SELF_TURN_FLAG_PLUCK_BERRY) && Item_IsBerry(battleCtx->msgItemTemp)))
             && eater->curHP
             && eater->curHP < eater->maxHP;
 
@@ -12353,6 +12400,11 @@ static int BattleMessage_ItemTag(BattleContext *battleCtx, int battlerIn)
 
     case BTLSCR_MSG_TEMP:
         item = battleCtx->msgItemTemp;
+        break;
+
+    case BTLSCR_SIDE_EFFECT_MON: // Sovereign (item 11): Incinerate
+        item = battleCtx->battleMons[battleCtx->sideEffectMon].heldItem;
+        BattleAI_SetHeldItem(battleCtx, battleCtx->sideEffectMon, item);
         break;
 
     default:
