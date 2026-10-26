@@ -366,6 +366,12 @@ struct BattleContext {
     int sovereignSoulHeartSaved[3]; // Sovereign (item 11): the side-effect battler, type and param Soul-Heart borrows
     int sovereignInHazards; // Sovereign (item 11): TRUE while subscript_hazards_check runs (Infiltrator)
     u8 sovereignGemBoost; // Sovereign (item 11): 1 + the attacker whose Gem powered up its current move's damage
+    u8 sovereignGlaiveRush; // Sovereign (item 11): battlers that used Glaive Rush, until their next move (flags by battler)
+    u8 sovereignSaltCure; // Sovereign (item 11): battlers hurt by Salt Cure at the end of each turn (flags by battler)
+    u8 sovereignSyrupBomb[MAX_BATTLERS]; // Sovereign (item 11): Syrup Bomb's Speed drops left on each battler
+    u8 sovereignSyrupBombSource[MAX_BATTLERS]; // Sovereign (item 11): the battler whose Syrup Bomb it was
+    u8 sovereignSyrupBombSourceSlot[MAX_BATTLERS]; // Sovereign (item 11): that battler's party slot (it must stay in)
+    u8 sovereignTimesHit[MAX_BATTLERS][MAX_PARTY_SIZE]; // Sovereign (item 11): hits each party slot has taken (Rage Fist)
 };
 
 #endif // POKEPLATINUM_BATTLE_BATTLE_CONTEXT_H

@@ -412,4 +412,8 @@ subscript_files = files(
     'subscript_sovereign_hazard_hit.s',
     'subscript_sovereign_mortal_spin.s',
     'subscript_sovereign_matcha_gotcha.s',
+    'subscript_sovereign_salt_cure.s',
+    'subscript_sovereign_syrup_bomb.s',
+    'subscript_sovereign_salt_cure_damage.s',
+    'subscript_sovereign_syrup_bomb_drop.s',
 )

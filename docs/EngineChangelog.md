@@ -4,6 +4,41 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): moves, batch 3, second half (Glaive Rush, Salt Cure, Syrup Bomb, Rage Fist)
+
+For players: four more moves work as in the main games. Each needed state kept per Pokémon.
+
+- **Glaive Rush:** after a hit, until the user's next move, moves against it never miss and do double damage. The
+  effect also ends when the user switches out. The new `sovereignGlaiveRush` flags hold it:
+  - The accuracy check reads it, next to Telekinesis and Lock-On.
+  - `BtlCmd_CalcDamage` doubles the damage.
+  - The status check at the start of the user's next move clears it.
+- **Salt Cure:** the target loses 1/8 of its max HP at the end of each turn, or 1/4 if it's Water or Steel type, until
+  it switches out.
+  - Messages: "...is being salt cured!" and "...is hurt by Salt Cure!".
+  - Magic Guard prevents the damage. Sheer Force, Shield Dust, Covert Cloak and a Substitute keep the effect off, as
+    for any chance effect.
+- **Syrup Bomb:** the target's Speed falls 1 stage at the end of each of the next 3 turns, while the user stays in.
+  - Message: "...got covered in sticky candy syrup!".
+  - A Mirror Armor holder sends the drop back to the Syrup Bomb's user.
+- **Rage Fist:** 50 more power for each hit the user has taken from other Pokémon's moves this battle, up to 350.
+  - The count is kept per party slot, so it survives switching.
+  - Hits on a Substitute don't count.
+- Two new end-of-turn steps, after binding: Salt Cure and Syrup Bomb.
+- Checklist: 299 exact, 37 approximate, 44 placeholders.
+
+**Verification:** `tools/test/check_battle_scripts.py` passes. Harness wild battles, reading both Pokémon's HP from
+memory each turn:
+- **Glaive Rush:** a Lv. 60 Ninjask's Tackle did 39 damage to Snorlax before it, and exactly 78 the turn after.
+- **Salt Cure:**
+  - A wild Snorlax with 448 HP loses 56 (1/8) at the end of each turn.
+  - A Steelix with 278 HP loses 69 (1/4).
+  - Both messages show.
+- **Syrup Bomb:** "The wild SLOWPOKE got covered in sticky candy syrup!", then "The wild SLOWPOKE's Speed fell!" at
+  the end of the turn.
+- **Rage Fist:** against a Slowpoke, 64 damage with no hits taken. After one hit it did at least 124 (a KO). Without
+  the count, it could do at most about 75.
+
 ## Item 11 (effect fidelity): moves, batch 3 (damage plus an effect)
 
 For players: 13 more moves work as in the main games, along with a few related rules.

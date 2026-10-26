@@ -1417,6 +1417,11 @@ static BOOL BtlCmd_CalcDamage(BattleSystem *battleSys, BattleContext *battleCtx)
         battleCtx->damage /= 4;
     }
 
+    // Sovereign (item 11): a Pokemon that used Glaive Rush takes double damage until its next move.
+    if (battleCtx->sovereignGlaiveRush & FlagIndex(battleCtx->defender)) {
+        battleCtx->damage *= 2;
+    }
+
     battleCtx->damage *= -1;
 
     return FALSE;
@@ -9921,6 +9926,14 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
     case BTLVAR_SOVEREIGN_SECOND_EFFECT: // Sovereign (item 11): read-only, rolls the move's second chance effect (1 when
         // it happens)
         battleCtx->sovereignTerrainTemp = Sovereign_RollSecondEffect(battleSys, battleCtx);
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_SALT_CURE_START: // Sovereign (item 11): read-only, Salt Cure takes hold of the side-effect
+        // battler (0 if it already had)
+        battleCtx->sovereignTerrainTemp = Sovereign_StartSaltCure(battleCtx);
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_SYRUP_BOMB_START: // Sovereign (item 11): read-only, Syrup Bomb covers the side-effect battler
+        // (0 if it already was)
+        battleCtx->sovereignTerrainTemp = Sovereign_StartSyrupBomb(battleCtx);
         return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_MIRROR_HERB_NEXT: // Sovereign (item 11): read-only, sets up the Mirror Herb holder's next copied
         // rise (2 stages at most at a time) as the side effect; 0 once all are copied

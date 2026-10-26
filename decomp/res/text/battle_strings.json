@@ -9779,6 +9779,69 @@
         "The foe’s {STRVAR_1 1, 0, 0} transformed\n",
         "into the Psychic type!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignBeingSaltCured_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is being\n",
+        "salt cured!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignBeingSaltCured_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} is being\n",
+        "salt cured!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignBeingSaltCured_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} is being\n",
+        "salt cured!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignHurtBySaltCure_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is hurt\n",
+        "by Salt Cure!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignHurtBySaltCure_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} is hurt\n",
+        "by Salt Cure!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignHurtBySaltCure_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} is hurt\n",
+        "by Salt Cure!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCoveredInSyrup_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} got covered\n",
+        "in sticky candy syrup!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCoveredInSyrup_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} got covered\n",
+        "in sticky candy syrup!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCoveredInSyrup_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} got covered\n",
+        "in sticky candy syrup!"
+      ]
     }
   ]
 }
