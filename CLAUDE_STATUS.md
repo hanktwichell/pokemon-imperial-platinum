@@ -7215,3 +7215,48 @@ and Red Card.
 2. The switching items (Eject Button, Eject Pack, Red Card) with Shed Tail and Chilly Reception, plus a switching case
    in the harness.
 3. Owner decision pinned in CB-0158: Burn Up and Double Shock (typeless).
+
+## CB-0160 — 2026-10-26, 6:55 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: item 11 moves, batch 3, first half (damage plus an effect).** Placeholders went from 58 to 48. PR #176
+(batch 2) is merged.
+- **New effects:** Dire Claw, Triple Arrows, Ceaseless Edge / Stone Axe (one shared effect), Axe Kick, Mortal Spin,
+  Matcha Gotcha, Population Bomb, and a sleep hit for Relic Song and Wicked Torque.
+- **Multi-hit:** Surging Strikes and Triple Dive always hit 3 times. Skill Link and Loaded Dice give Triple Kick,
+  Triple Axel and Population Bomb a single accuracy check.
+- **Rules these moves needed:**
+  - Sheer Force and Covert Cloak now stop the Fang moves' chance effects.
+  - Gen IX's defrost moves thaw out the user. Scald, Steam Eruption and Scorching Sands also thaw the target.
+  - Rapid Spin raises the user's Speed.
+- **Gen IX data fixes** (new `VALUE_FIXES` in `gen9_move_fixes.py`):
+  - Cotton Spore, Poison Gas and Matcha Gotcha hit both foes.
+  - Take Heart has 15 PP.
+  - Roar and Whirlwind never miss.
+- **Audit:** I compared every move's values with Showdown's. The other differences are the deliberate Champions
+  values listed in `docs/BattleMechanics.md`, such as Triple Dive's 35 power, so they stay.
+- Every move above was checked in a harness battle. The chance effects were checked with a Serene Grace lead.
+- Fixed garbled field comments in `battle_context.h` from batch 1 and 2.
+
+**Files modified:**
+- `tools/engine/gen9_move_fixes.py`.
+- `decomp/src/battle/battle_lib.c`, `decomp/src/battle/battle_script.c`, `decomp/src/battle/battle_controller_player.c`.
+- `decomp/include/battle/battle_context.h`, `decomp/include/battle/battle_lib.h`,
+  `decomp/include/data/move_side_effect_subscripts.h`.
+- The generated lists: `battle_script_vars.txt`, `battle_subscripts.txt`, `battle_move_subscript_ptrs.txt`,
+  `move_battle_effects.txt`.
+- New scripts:
+  - Effect scripts `effect_script_0342`–`0349.s`.
+  - Subscripts `subscript_sovereign_{triple_arrows,hazard_hit,mortal_spin,matcha_gotcha}.s`.
+- Changed: `subscript_poison.s`, `subscript_rapid_spin.s`, and the scripts' `meson.build` and `sub_seq.order`.
+- `decomp/res/moves/*/data.json` for 17 moves.
+- `docs/MoveChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Moves batch 3, second half. These need per-battler state:
+   - Glaive Rush: no misses and double damage against the user until its next move.
+   - Salt Cure: 1/8 damage each turn, 1/4 for Water and Steel types.
+   - Syrup Bomb: Speed -1 for 3 turns while the user stays in.
+   - Rage Fist: +50 power per hit taken, which survives switching.
+2. The switching items (Eject Button, Eject Pack, Red Card) with Shed Tail and Chilly Reception, plus a switching case
+   in the harness.
+3. Owner decision pinned in CB-0158: Burn Up and Double Shock (typeless).

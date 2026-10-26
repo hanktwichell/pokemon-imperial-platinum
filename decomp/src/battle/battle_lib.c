@@ -8638,10 +8638,41 @@ int Move_SovereignCritStage(int move)
         return 3;
     case MOVE_ESPER_WING:
     case MOVE_IVY_CUDGEL:
+    case MOVE_DIRE_CLAW:
+    case MOVE_TRIPLE_ARROWS:
+    case MOVE_CEASELESS_EDGE:
+    case MOVE_STONE_AXE:
         return 1;
     }
 
     return 0;
+}
+
+// Sovereign (item 11): rolls a move's second chance effect, whose chance isn't the one in its data (Triple Arrows' 30%
+// flinch next to its 50% Defense drop). Serene Grace doubles it; Sheer Force and Covert Cloak keep it off.
+BOOL Sovereign_RollSecondEffect(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    int chance;
+
+    switch (battleCtx->moveCur) {
+    case MOVE_TRIPLE_ARROWS:
+        chance = 30;
+        break;
+    default:
+        return FALSE;
+    }
+
+    if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_SERENE_GRACE) {
+        chance *= 2;
+    }
+
+    if (Move_SheerForceApplies(battleCtx, battleCtx->attacker, battleCtx->moveCur)
+        || Sovereign_CovertCloakBlocks(battleCtx)
+        || battleCtx->battleMons[battleCtx->sideEffectMon].curHP == 0) {
+        return FALSE;
+    }
+
+    return BattleSystem_RandNext(battleSys) % 100 < chance;
 }
 
 // Sovereign (item 11): a battler's Attack with its stat stage applied (Strength Sap).

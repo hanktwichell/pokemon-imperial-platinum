@@ -11,10 +11,10 @@
     "accuracy": 90,
     "pp": 15,
     "effect": {
-        "type": "BATTLE_EFFECT_HIT",
-        "chance": 0
+        "type": "BATTLE_EFFECT_SOVEREIGN_MATCHA_GOTCHA",
+        "chance": 20
     },
-    "range": "RANGE_SINGLE_TARGET",
+    "range": "RANGE_ADJACENT_OPPONENTS",
     "priority": 0,
     "flags": [
         "MOVE_FLAG_CAN_PROTECT",

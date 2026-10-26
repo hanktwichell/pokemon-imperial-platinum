@@ -2701,6 +2701,23 @@ static BOOL BtlCmd_SetMultiHit(BattleSystem *battleSys, BattleContext *battleCtx
     int flags = BattleScript_Read(battleCtx);
 
     if (battleCtx->multiHitNumHits == 0) {
+        // Sovereign (item 11): Surging Strikes and Triple Dive always hit 3 times.
+        if (battleCtx->moveCur == MOVE_SURGING_STRIKES || battleCtx->moveCur == MOVE_TRIPLE_DIVE) {
+            hits = 3;
+        }
+
+        // Sovereign (item 11): Skill Link and Loaded Dice make Triple Kick, Triple Axel and Population Bomb check
+        // accuracy once, and Loaded Dice makes Population Bomb hit 4-10 times.
+        if (flags == SYSCTL_TRIPLE_KICK
+            && (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_SKILL_LINK
+                || Battler_HeldItem(battleCtx, battleCtx->attacker) == ITEM_LOADED_DICE)) {
+            if (hits == 10 && Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_SKILL_LINK) {
+                hits -= BattleSystem_RandNext(battleSys) % 7;
+            }
+
+            flags = SYSCTL_MULTI_HIT_MOVE;
+        }
+
         if (hits == 0) {
             // Sovereign (FM): Ash-Greninja's Water Shuriken always hits 3 times.
             if (battleCtx->moveCur == MOVE_WATER_SHURIKEN && Sovereign_IsAshGreninja(&ATTACKING_MON)) {
@@ -8621,6 +8638,14 @@ static BOOL BtlCmd_CheckEffectActivation(BattleSystem *battleSys, BattleContext 
     BattleScript_Iter(battleCtx, 1);
     int jumpNoEffect = BattleScript_Read(battleCtx);
 
+    // Sovereign (item 11): Sheer Force removes the chance effect, and Covert Cloak keeps it off its holder.
+    if (Move_SheerForceApplies(battleCtx, battleCtx->attacker, battleCtx->moveCur)
+        || (battleCtx->sideEffectMon != battleCtx->attacker
+            && Battler_HeldItem(battleCtx, battleCtx->sideEffectMon) == ITEM_COVERT_CLOAK)) {
+        BattleScript_Iter(battleCtx, jumpNoEffect);
+        return FALSE;
+    }
+
     u16 effectChance;
     if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_SERENE_GRACE) {
         effectChance = CURRENT_MOVE_DATA.effectChance * 2;
@@ -9893,6 +9918,10 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_STRENGTH_SAP_SAVED: // Sovereign (item 11): Strength Sap's healing, kept across the Attack drop
         return &battleCtx->sovereignStrengthSapHeal;
+    case BTLVAR_SOVEREIGN_SECOND_EFFECT: // Sovereign (item 11): read-only, rolls the move's second chance effect (1 when
+        // it happens)
+        battleCtx->sovereignTerrainTemp = Sovereign_RollSecondEffect(battleSys, battleCtx);
+        return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_MIRROR_HERB_NEXT: // Sovereign (item 11): read-only, sets up the Mirror Herb holder's next copied
         // rise (2 stages at most at a time) as the side effect; 0 once all are copied
         battleCtx->sovereignTerrainTemp = FALSE;

@@ -4,6 +4,59 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): moves, batch 3 (damage plus an effect)
+
+For players: 13 more moves work as in the main games, along with a few related rules.
+
+- **New effect scripts and subscripts:**
+  - **Dire Claw:** 50% chance of sleep, poison or paralysis (one of the three, equally likely). High critical-hit
+    ratio.
+  - **Triple Arrows:** 50% chance of target Defense -1, then a separate 30% chance of a flinch. High critical-hit
+    ratio. The second chance is a new read-only battle var, `BTLVAR_SOVEREIGN_SECOND_EFFECT`.
+  - **Ceaseless Edge, Stone Axe:** after the hit, lay a layer of Spikes or set Stealth Rock on the foes' side, even
+    through a Substitute. Not with Sheer Force, which powers them up instead. High critical-hit ratio.
+  - **Axe Kick:** 30% confusion, and Hi Jump Kick's crash damage on a miss.
+  - **Mortal Spin:** poisons the foes (Shield Dust doesn't stop it), then frees the user from binding, Leech Seed and
+    its side's hazards.
+  - **Matcha Gotcha:** hits both foes, drains half the damage dealt, and has a 20% burn chance. It thaws out a frozen
+    user.
+  - **Relic Song, Wicked Torque:** 10% sleep. Relic Song still changes Meloetta's Forme.
+- **Multi-hit moves:**
+  - **Surging Strikes, Triple Dive:** always hit 3 times. Surging Strikes rolled 2-5 before.
+  - **Population Bomb:** hits up to 10 times and checks accuracy on each hit. With Loaded Dice it hits 4-10 times;
+    with Skill Link, 10 times.
+  - Skill Link and Loaded Dice now make Triple Kick, Triple Axel and Population Bomb check accuracy only once.
+- **Rules these moves needed:**
+  - **Fang moves:** Sheer Force now removes the Fire, Ice and Thunder Fangs' chance effects (it already powered them
+    up). Covert Cloak now blocks them too.
+  - **Thawing out:** Fusion Flare, Scald, Steam Eruption, Burn Up, Scorching Sands, Pyro Ball and Matcha Gotcha thaw
+    out a frozen user. Scald, Steam Eruption and Scorching Sands thaw out a frozen target too.
+  - **Rapid Spin:** now also raises the user's Speed 1 stage, as since Gen VIII.
+- **Gen IX values the move data had wrong:**
+  - Cotton Spore and Poison Gas hit both foes.
+  - Take Heart has 15 PP.
+  - Roar and Whirlwind never miss.
+  - The new `VALUE_FIXES` table in `tools/engine/gen9_move_fixes.py` holds them. The other differences from Showdown
+    are the Champions values in `docs/BattleMechanics.md`, and they stay.
+- Checklist: 295 exact, 37 approximate, 48 placeholders.
+
+**Verification:** `tools/test/check_battle_scripts.py` passes. Harness wild battles against a Ninjask (a Slowpoke
+for Triple Arrows, so the user moves first). For the chance effects, the lead is a Serene Grace Togekiss:
+- **Dire Claw:** "The wild NINJASK is paralyzed!".
+- **Triple Arrows:** "The wild SLOWPOKE's Defense fell!", then "The wild SLOWPOKE flinched!".
+- **Ceaseless Edge:** "Spikes were scattered all around the feet of the foe's team!" on each hit.
+- **Stone Axe:** "Pointed stones float in the air around your foe's team!". A miss sets nothing.
+- **Axe Kick:** "The wild NINJASK became confused!". Into Protect: "SNORLAX kept going and crashed!".
+- **Mortal Spin:** after the Ninjask's Spikes, "The wild NINJASK was poisoned!", then "SNORLAX blew away Spikes!".
+- **Matcha Gotcha:** "The wild NINJASK had its energy drained!", then "The wild NINJASK was burned!".
+- **Wicked Torque:** "The wild NINJASK fell asleep!".
+- **Relic Song:** "MELOETTA transformed!".
+- **Multi-hit moves:**
+  - Population Bomb: "Hit 10 time(s)!"; with Loaded Dice, "Hit 9 time(s)!".
+  - Triple Dive: "Hit 3 time(s)!".
+  - Surging Strikes: a critical hit, "Hit 3 time(s)!".
+- **Rapid Spin:** "SNORLAX blew away Spikes!", then "SNORLAX's Speed rose!".
+
 ## Item 11 (effect fidelity): moves, batch 2 (status moves)
 
 For players: 11 more status moves work as in the main games. Ten of them did nothing before; Clangorous Soul now

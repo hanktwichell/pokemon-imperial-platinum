@@ -408,4 +408,8 @@ subscript_files = files(
     'subscript_sovereign_purify.s',
     'subscript_sovereign_strength_sap.s',
     'subscript_sovereign_lunar_blessing.s',
+    'subscript_sovereign_triple_arrows.s',
+    'subscript_sovereign_hazard_hit.s',
+    'subscript_sovereign_mortal_spin.s',
+    'subscript_sovereign_matcha_gotcha.s',
 )

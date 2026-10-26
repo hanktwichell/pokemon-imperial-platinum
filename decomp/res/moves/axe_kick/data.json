@@ -13,8 +13,8 @@
     "accuracy": 90,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_HIT",
-        "chance": 0
+        "type": "BATTLE_EFFECT_SOVEREIGN_AXE_KICK",
+        "chance": 30
     },
     "range": "RANGE_SINGLE_TARGET",
     "priority": 0,

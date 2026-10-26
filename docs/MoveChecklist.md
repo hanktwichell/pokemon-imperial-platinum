@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 283 |
-| approximate | 39 |
-| placeholder | 58 |
+| exact | 295 |
+| approximate | 37 |
+| placeholder | 48 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -94,7 +94,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 544 | Gear Grind | Steel | `HIT_TWICE` | exact |  |
 | 545 | Searing Shot | Fire | `BURN_HIT` | exact |  |
 | 546 | Techno Blast | Normal | `JUDGEMENT` | exact |  |
-| 547 | Relic Song | Normal | `HIT` | approximate | secondary ailment 2 not reproduced |
+| 547 | Relic Song | Normal | `SOVEREIGN_SLEEP_HIT` | exact | Sovereign effect: 10% sleep; Meloetta changes Forme after using it |
 | 548 | Secret Sword | Fighting | `HIT` | exact | Sovereign effect: special damage against the target's Defense |
 | 549 | Glaciate | Ice | `LOWER_SPEED_HIT` | exact | Sovereign effect: foes' Speed -1 (100%) |
 | 550 | Bolt Strike | Electric | `PARALYZE_HIT` | exact |  |
@@ -365,7 +365,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 815 | Scorching Sands | Ground | `BURN_HIT` | exact |  |
 | 816 | Jungle Healing | Grass | `SOVEREIGN_LUNAR_BLESSING` | exact | Sovereign effect: the user and its ally regain 1/4 of their max HP and are cured of status conditions |
 | 817 | Wicked Blow | Dark | `HIT` | exact | Sovereign effect: always a critical hit |
-| 818 | Surging Strikes | Water | `MULTI_HIT` | approximate | hits 3-3 times in the original |
+| 818 | Surging Strikes | Water | `MULTI_HIT` | exact | Sovereign effect: always hits 3 times, each a critical hit |
 | 819 | Thunder Cage | Electric | `BIND_HIT` | exact |  |
 | 820 | Dragon Energy | Dragon | `DECREASE_POWER_WITH_LESS_USER_HP` | exact |  |
 | 821 | Freezing Glare | Psychic | `BLIZZARD` | exact |  |
@@ -374,10 +374,10 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 824 | Glacial Lance | Ice | `HIT` | exact |  |
 | 825 | Astral Barrage | Ghost | `HIT` | exact |  |
 | 826 | Eerie Spell | Psychic | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
-| 827 | Dire Claw | Poison | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 827 | Dire Claw | Poison | `SOVEREIGN_DIRE_CLAW` | exact | Sovereign effect: 50% chance of sleep, poison or paralysis (one of the three, equally likely); high critical-hit ratio |
 | 828 | Psyshield Bash | Psychic | `RAISE_DEF_HIT` | exact | Sovereign effect: user Defense +1 (100%) |
 | 829 | Power Shift | Normal | `SWAP_ATK_DEF` | exact | Sovereign effect: swaps the user's Attack and Defense |
-| 830 | Stone Axe | Rock | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 830 | Stone Axe | Rock | `SOVEREIGN_HAZARD_HIT` | exact | Sovereign effect: sets Stealth Rock on the foes' side; high critical-hit ratio |
 | 831 | SpringtideStrm | Fairy | `LOWER_ATTACK_HIT` | exact | Sovereign effect: foes' Attack -1 (30%) |
 | 832 | Mystical Power | Psychic | `RAISE_SP_ATK_HIT` | exact | Sovereign effect: user Sp. Atk +1 (100%) |
 | 833 | Raging Fury | Fire | `CONTINUE_AND_CONFUSE_SELF` | exact | Sovereign effect: rampages 2-3 turns, then confuses the user |
@@ -390,9 +390,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 840 | Esper Wing | Psychic | `SOVEREIGN_RAISE_SPEED_HIT` | exact | Sovereign effect: user Speed +1 (100%); high critical-hit ratio |
 | 841 | Bitter Malice | Ghost | `LOWER_ATTACK_HIT` | exact | Sovereign effect: target Attack -1 (100%) |
 | 842 | Shelter | Steel | `DEF_UP_2` | exact | Sovereign effect: user Defense +2 |
-| 843 | Triple Arrows | Fighting | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 843 | Triple Arrows | Fighting | `SOVEREIGN_TRIPLE_ARROWS` | exact | Sovereign effect: 50% target Defense -1, 30% flinch; high critical-hit ratio |
 | 844 | Infernal Parade | Ghost | `BURN_HIT` | exact | Sovereign effect: 30% burn; power doubles if the target has a status condition |
-| 845 | Ceaseless Edge | Dark | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 845 | Ceaseless Edge | Dark | `SOVEREIGN_HAZARD_HIT` | exact | Sovereign effect: lays a layer of Spikes on the foes' side; high critical-hit ratio |
 | 846 | Bleakwind Storm | Flying | `LOWER_SPEED_HIT` | exact | Sovereign effect: foes' Speed -1 (30%); never misses in rain |
 | 847 | Wildbolt Storm | Electric | `PARALYZE_HIT` | exact | Sovereign effect: 20% paralysis; never misses in rain |
 | 848 | Sandsear Storm | Ground | `BURN_HIT` | exact | Sovereign effect: 20% burn; never misses in rain |
@@ -400,20 +400,20 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 850 | Take Heart | Psychic | `SOVEREIGN_TAKE_HEART` | exact | Sovereign effect: user Sp. Atk +1, user Sp. Def +1; heals the user's status condition |
 | 851 | Tera Blast | Normal | `HIT` | exact | Sovereign effect: plain hit (no Terastallization in Sovereign) |
 | 852 | Silk Trap | Bug | `PROTECT` | approximate | protects like Protect; the contact penalty is missing |
-| 853 | Axe Kick | Fighting | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 853 | Axe Kick | Fighting | `SOVEREIGN_AXE_KICK` | exact | Sovereign effect: 30% confusion; the user loses half its max HP if it misses |
 | 854 | Last Respects | Ghost | `HIT` | exact | Sovereign effect: 50 more power for each fainted Pokémon in the user's party |
 | 855 | Lumina Crash | Psychic | `LOWER_SP_DEF_2_HIT` | exact | Sovereign effect: target Sp. Def -2 (100%) |
 | 856 | Order Up | Dragon | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 857 | Jet Punch | Water | `PRIORITY_1` | exact | Sovereign effect: +1 priority punch |
 | 858 | Spicy Extract | Grass | `SOVEREIGN_SPICY_EXTRACT` | exact | Sovereign effect: target Attack +2, target Defense -2 |
 | 859 | Spin Out | Steel | `SOVEREIGN_LOWER_OWN_SPEED_2_HIT` | exact | Sovereign effect: user Speed -2 |
-| 860 | Population Bomb | Normal | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 860 | Population Bomb | Normal | `SOVEREIGN_POPULATION_BOMB` | exact | Sovereign effect: hits up to 10 times, checking accuracy each hit (Skill Link: 10 hits, Loaded Dice: 4-10) |
 | 861 | Ice Spinner | Ice | `HIT` | approximate | Sovereign effect: removes the terrain (no message yet) |
 | 862 | Glaive Rush | Dragon | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 863 | RevivlBlessing | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 864 | Salt Cure | Rock | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 865 | Triple Dive | Water | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
-| 866 | Mortal Spin | Poison | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 865 | Triple Dive | Water | `MULTI_HIT` | exact | Sovereign effect: always hits 3 times |
+| 866 | Mortal Spin | Poison | `SOVEREIGN_MORTAL_SPIN` | exact | Sovereign effect: poisons the foes, then frees the user from binding, Leech Seed and its side's hazards |
 | 867 | Doodle | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 868 | Fillet Away | Normal | `SOVEREIGN_FILLET_AWAY` | exact | Sovereign effect: user Attack +2, user Sp. Atk +2, user Speed +2; costs 1/2 of the user's max HP |
 | 869 | Kowtow Cleave | Dark | `HIT` | exact | Sovereign effect: never misses |
@@ -444,12 +444,12 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 894 | Comeuppance | Dark | `METAL_BURST` | exact | Sovereign effect: returns 1.5x the damage taken |
 | 895 | Aqua Cutter | Water | `HIGH_CRITICAL` | exact | Sovereign effect: high critical-hit ratio |
 | 896 | Blazing Torque | Fire | `BURN_HIT` | exact | Sovereign effect: 30% burn |
-| 897 | Wicked Torque | Dark | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 897 | Wicked Torque | Dark | `SOVEREIGN_SLEEP_HIT` | exact | Sovereign effect: 10% sleep |
 | 898 | Noxious Torque | Poison | `POISON_HIT` | exact | Sovereign effect: 30% poison |
 | 899 | Combat Torque | Fighting | `PARALYZE_HIT` | exact | Sovereign effect: 30% paralysis |
 | 900 | Magical Torque | Fairy | `CONFUSE_HIT` | exact | Sovereign effect: 30% confusion |
 | 901 | Blood Moon | Normal | `HIT` | exact | Sovereign effect: can't be used twice in a row |
-| 902 | Matcha Gotcha | Grass | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 902 | Matcha Gotcha | Grass | `SOVEREIGN_MATCHA_GOTCHA` | exact | Sovereign effect: hits both foes, drains half the damage dealt, 20% burn; thaws the user out |
 | 903 | Syrup Bomb | Grass | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
 | 904 | Ivy Cudgel | Grass | `HIT` | exact | Sovereign effect: type follows Ogerpon's mask; high critical-hit ratio |
 | 905 | Electro Shot | Electric | `ELECTRO_SHOT` | exact | Sovereign effect: charge turn raises Sp. Atk; no charge turn in rain |
