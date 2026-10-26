@@ -4,6 +4,173 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): seven more abilities
+
+For players: As One, Toxic Chain, Poison Puppeteer, Supersweet Syrup and Comatose now work. Pastel Veil and Sweet Veil
+protect their holder.
+
+- **As One** (Ice and Shadow Calyrex): as Unnerve, foes can't eat their Berries (Unnerve's own limits apply). Each foe
+  its move knocks out raises its Attack (Ice) or Sp. Atk (Shadow) 1 stage, as Chilling Neigh and Grim Neigh do.
+- **Toxic Chain:** its damaging moves have a 30% chance to badly poison the target. It counts as a move's added effect
+  (`subscript_badly_poison` with `SIDE_EFFECT_TYPE_INDIRECT`), so Shield Dust and a Substitute stop it, as in Gen IX.
+- **Poison Puppeteer** (Pecharunt): a Pokémon its move poisons or badly poisons becomes confused too, unless it has
+  Own Tempo or is already confused (`subscript_sovereign_poison_puppeteer`, called from both poison subscripts).
+- **Supersweet Syrup:** the first time the holder enters the battle, each foe's evasiveness drops 1 stage, as with
+  Intimidate (`subscript_sovereign_supersweet_syrup`). Mirror Armor and Clear Body stop it; Defiant and Competitive
+  respond.
+- **Comatose:** nothing gives the holder a status condition or makes it drowsy, not even through Mold Breaker, and
+  Rest fails (`Battler_SovereignStatusImmune`). It never naps out of disobedience.
+  - It counts as asleep: Dream Eater and Nightmare work on it, Hex and Wake-Up Slap have double power against it (Wake-Up
+    Slap has nothing to wake), Bad Dreams hurts it, and it can use Sleep Talk and Snore (with no "fast asleep"
+    message).
+- **Pastel Veil and Sweet Veil:** the holder can't be poisoned (Pastel Veil), or fall asleep or become drowsy (Sweet
+  Veil), as with Immunity and Insomnia. Not yet: their allies' protection.
+- **AI:** Comatose counts as Purifying Salt, Pastel Veil as Immunity and Sweet Veil as Insomnia.
+- `docs/AbilityChecklist.md`: 163 of the 191 new abilities have a battle effect, counting partial ones (155 before).
+
+**Verification:** `tools/test/check_battle_scripts.py` passes (the largest script is 1,748 of 2,048 bytes). A harness
+wild battle per case, with each message box looked at:
+- **As One:** Ice Calyrex knocks out the foe, then "CALYREX's As One raised its Attack!"; Shadow Calyrex, "…raised its
+  Sp. Atk!".
+- **Toxic Chain** (Okidogi): "The wild NINJASK was badly poisoned!" after its hit.
+- **Poison Puppeteer:** Pecharunt's Toxic, then "The wild NINJASK was badly poisoned!" and "…became confused!".
+- **Supersweet Syrup** (Hydrapple): "HYDRAPPLE's SupersweetSyrup cuts the wild NINJASK's evasiveness!" on entry.
+- **Comatose** (Komala) against Toxic, Spore and Will-O-Wisp: "…prevents poisoning!", "KOMALA stayed awake because of
+  its Comatose!", "…prevents burns!".
+- **Comatose as asleep:** the foe's Dream Eater ("KOMALA's dream was eaten!") and Nightmare ("KOMALA began having a
+  nightmare!", then "…is locked in a nightmare!" at the turn's end); Komala's Snore hits, and its Sleep Talk uses
+  Moonblast.
+- **Pastel Veil** (Galarian Rapidash) against Toxic, and **Sweet Veil** (Slurpuff) against Spore and Yawn: "…prevents
+  poisoning!", "…stayed awake because of its Sweet Veil!", "…made it ineffective!".
+
+
+## Item 11 (effect fidelity): eight more abilities
+
+For players: Purifying Salt, Water Bubble and Thermal Exchange keep status conditions off as in Gen IX. Mirror Armor
+sends stat drops back. Cotton Down, Electromorphosis, Wind Power and Wind Rider now work.
+
+- **Purifying Salt:** no status condition of any kind, and no drowsiness from Yawn. Rest fails. Mold Breaker gets
+  past it when another Pokémon's move would give the status; a held Flame Orb or Toxic Orb never does.
+  - It uses the same check as Shields Down's shell. `BTLVAR_SOVEREIGN_SHIELDS_UP_EFFECT_MON` became
+    `BTLVAR_SOVEREIGN_STATUS_IMMUNE_EFFECT_MON` (`Battler_SovereignStatusImmune`), so the burn, poison, bad poison,
+    paralysis, sleep, freeze, Yawn and Rest subscripts all cover it.
+- **Water Bubble and Thermal Exchange:** no burns, as with Water Veil, and a burn is healed (Skill Swap).
+- **Mirror Armor:** a stat drop from another Pokémon's move or Ability (Intimidate, Cotton Down) goes back to that
+  Pokémon: "{holder}'s Mirror Armor cuts {source}'s {stat}!". Mold Breaker gets past it.
+  - Not when the holder's stat is already at −6, or when its Substitute stops the drop anyway.
+  - The source's own Clear Body, Mist and so on can still stop it; its Substitute and Shield Dust can't. Contrary
+    turns it into a rise, and Defiant and Competitive respond.
+  - `BtlCmd_ChangeStatStage` swaps the two Pokémon's roles for the drop. `subscript_update_stat_stage` gives the holder
+    its side-effect role back afterwards (`BTLVAR_SOVEREIGN_MIRROR_ARMOR_HOLDER`).
+  - Sticky Web's drop would go back to the Pokémon that set the web. The engine doesn't track who that was, so Mirror
+    Armor only blocks it: "{holder}'s Mirror Armor prevents stat loss!".
+- **Cotton Down:** when a damaging move hits the holder, every other Pokémon's Speed drops 1 stage, its ally's too,
+  even as the holder faints (`subscript_sovereign_cotton_down`, Intimidate's loop). Defiant and Competitive respond.
+- **Electromorphosis and Wind Power:** a damaging hit (any for Electromorphosis, a wind move for Wind Power) charges
+  the holder: "{0}'s {1} charged it with power!". Its next Electric move before the end of next turn has double power,
+  as after Platinum's Charge. A tailwind starting on its side charges a Wind Power holder too.
+- **Wind Rider:** wind moves aimed at it do nothing, and its Attack rises 1 stage, as with Sap Sipper. A tailwind
+  starting on its side raises its Attack 1 stage, and so does entering the battle while one blows.
+- **Wind moves:** `Move_IsWind` lists Gen IX's 17.
+- **AI:** the trainer AI knows Purifying Salt blocks every status move. It also knows Water Bubble and Thermal
+  Exchange block burns, wherever it checked Immunity, Limber, Insomnia or Water Veil. It treats Mirror Armor as Clear
+  Body when it weighs a stat-lowering move.
+- `docs/AbilityChecklist.md`: 155 of the 191 new abilities have a battle effect, counting partial ones (150 before).
+- **CI:** `tools/test/check_battle_scripts.py` now also checks that `subscripts/sub_seq.order` lists every subscript in
+  `meson.build`, in the order of `generated/battle_subscripts.txt`. A subscript missing from the order still builds,
+  at the end of the NARC in another order, so a script's `Call` of it runs a different subscript. That happened here:
+  the tailwind's call of the charge subscript ran Cotton Down.
+
+**Verification:** `tools/test/check_battle_scripts.py` (the largest script is 1,680 of 2,048 bytes) and the docs
+check pass. A harness wild battle per case, with each message box looked at:
+- **Purifying Salt** (Garganacl) against Will-O-Wisp, Toxic, Thunder Wave, Spore and Yawn: "…prevents burns!",
+  "…prevents poisoning!", "…prevents paralysis!", "…stayed awake because of its Purifying Salt!", "…made it
+  ineffective!".
+- **Water Bubble** (Araquanid) and **Thermal Exchange** (Arctibax) against Will-O-Wisp: "…prevents burns!". A
+  Flame Orb never burns Araquanid. Garchomp, the control, is burned.
+- **Cotton Down** (Eldegoss) hit by Tackle: "ELDEGOSS's Cotton Down cuts the wild NINJASK's Speed!".
+- **Electromorphosis** (Bellibolt) hit by Tackle, and **Wind Power** (Kilowattrel) hit by Gust: "…charged it with
+  power!".
+- **Wind Rider** (Brambleghast) against Gust: "BRAMBLGHST's Wind Rider raised its Attack!".
+- **Tailwind:** Kilowattrel's own Tailwind charges it, and Brambleghast's raises its Attack.
+- **Mirror Armor** (Corviknight) against Growl, Screech, Icy Wind, Lunge and Struggle Bug: "CORVIKNIGHT's Mirror Armor
+  cuts the wild NINJASK's Attack!" (and Defense, Speed, Attack, Sp. Atk). With Pressure instead, its own Attack falls.
+
+
+## Playtest pass — the trainer, evolution, Egg and species tests with the heap checks
+
+The heap checks (`heap_check.py`) went into every harness in the Trainers' School Egg pass below, but the trainer,
+evolution and Egg tests hadn't been rerun with them. Now all four battle tests have, on the test build of `main` (the
+species test on the build with decisions 46 and 47).
+
+**Results:** no broken heap (no **HEAP**), and nothing else fails.
+- **Trainers:** all 1,039.
+- **Evolutions:** all 336.
+- **Eggs:** all 874.
+- **Species and forms as wild Pokémon:** all 1,510. The run was split three ways when a worker restart stopped the
+  first one, and the last two cases ran on their own.
+
+
+## E10 — Darach mid-game, and the Tea for Route 218's gate (decision 47, as in Renegade)
+
+For players: the Regional Forms Park's lobby on Route 221 is open as soon as the player can Surf there. Darach and Lady
+Caitlin wait in it, and Darach's battle (Lv. 48) ends with the Tea. Route 218's gate to Canalave City is closed until
+the player brings the thirsty policeman that Tea. The park itself still opens after the Hall of Fame.
+
+- **Route 221:** the two workers no longer stand at the lobby door. Renegade opens the lobby with an early National
+  Dex; in Sovereign that check means the Hall of Fame (decision 21), so the workers are simply gone.
+- **The lobby:**
+  - Before the Hall of Fame, the worker says the park isn't open yet. Oak's first visit (his scene on entering, with
+    the Trainer Counter app) waits for the Hall of Fame too.
+  - Darach and Caitlin's scene is as before (E10 part 33). It's now hidden by a map-local flag, worked out on entering:
+    they're there until the scene is done, and back after the Hall of Fame. Each then has a line of their own.
+  - Darach's greeting, about the park's Pokémon seen from the window, fits both times.
+  - The other visitors are there from the start, as in Renegade.
+- **Route 218's gate to Canalave City:**
+  - The policeman moves up a tile, to (2, 4), as in Renegade.
+  - A step onto the gate's west column gets his "!". Without the Tea, he gives Renegade's "the road's closed" line,
+    which now points to the park on Route 221, and the player steps back.
+  - With the Tea, he drinks it (the Tea is used up) and lets the player through. After that he talks about how good
+    it was.
+  - No new save data: the gate's own var, which the scientist's Pokédex upgrade sets from 0 to 1, becomes 2 once he's
+    had the Tea. The trigger waits on 0 and 1.
+- `docs/RegionalFormsPark.md` (and its generator) says when the lobby and the park open.
+- **Verification** in a test build:
+  - From Route 221, the player walks north into the lobby. Before the Hall of Fame: no Oak, and the worker says the
+    park isn't open.
+  - Without the Tea, the gate's policeman stops the player, and further steps west are stopped again.
+  - Darach's scene, then the gate: the policeman takes the Tea and the player walks on into Canalave City.
+  - After the Hall of Fame, Oak's first visit plays on entering, Darach is back with his line, and the worker offers
+    the park.
+  - The CI checks pass.
+
+
+## E10 — Route 224 before the Elite Four (decision 46, as in Renegade)
+
+For players: Victory Road's back area and Route 224 now come before the League. The counterpart's battle by Route
+224's tablet (Lv. 69–70) is the last step before it.
+
+- **Victory Road 1F:**
+  - The collector no longer blocks the back area until the post-game.
+  - He stands by the way out to the League, at (38, 18), Renegade's spot.
+  - Stepping beside him gets "Hold it!", then Renegade's line: "You're not quite ready yet. Have you been to Route
+    224? It's through a passage to the east." The player steps back. Talking to him gives the same line.
+  - Once any of the six Route 224 counterpart teams has been beaten, he's gone and his trigger is off. The map's
+    on-transition script checks the trainer flags, so no new save flag is needed.
+- **Level cap:** the Route 224 battle is a step of its own (Lv. 70), between Volkner (62) and Barry at the League
+  (71). `tools/engine/gen_level_caps.py` now sizes a step's trainer list from the longest one: six here, three before.
+- **Still post-game:** Shaymin's tablet (Oak gives his letter in Eterna only after the Hall of Fame), Enamorus (after
+  Landorus) and Pecharunt (after the Loyal Three).
+- `tools/test/check_object_tiles.py` lists the collector as known: he stands on the middle tile of his own trigger, as
+  in Renegade.
+- **Verification** in a test build:
+  - Stepping beside him from the west and from the east: he turns with "!", the lines play, and the player steps
+    back. A second step north stops the player again.
+  - Talking to him gives his line.
+  - With the counterpart beaten, he's gone and the player walks on north.
+  - The CI checks pass, the object tile check included.
+
+
 ## Battle sprites: no more scrambled sprites
 
 For players: Samurott's front, Hisuian Samurott's front and Talonflame's back no longer come out as noise in battle.

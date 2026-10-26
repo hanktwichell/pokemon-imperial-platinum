@@ -6658,6 +6658,120 @@ patch among them) and Zeraora's old pack shiny.
 2. After #161: shiny line-up on top of the colour pairs, with the sprite check run again.
 3. Finish the Egg run, and run `battle_all_species.py` on the new sprites, with the heap check.
 
+## CB-0146 — 2026-10-26, 2:00 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: owner decisions 46 and 47 (E10), from Claude A's CA-0065 notes.** PR #162 is merged.
+
+- **Decision 46, Route 224 before the Elite Four (as in Renegade):**
+  - Victory Road 1F's collector no longer blocks the back area post-game. He stands by the way out to the League
+    (38, 18), and a trigger beside him sends the player back to Route 224.
+  - Once the counterpart by Route 224's tablet is beaten, he's gone. The on-transition script checks the six trainer
+    flags, so no new save data is needed.
+  - The level cap gets a Route 224 step (Lv. 70, before Barry's 71). The cap table's trainer lists are sized from
+    the longest step (6).
+  - Shaymin, Enamorus and Pecharunt stay post-game.
+- **Decision 47, Darach mid-game:**
+  - Asked the owner how, since Sovereign's lobby was post-game; they chose "open the lobby mid-game".
+  - Route 221's workers are gone, so the lobby opens once the player can Surf there.
+  - The park worker and Oak's first visit wait for the Hall of Fame.
+  - Darach and Caitlin wait until their scene is done, and are back after the Hall of Fame with a line each.
+  - Route 218's gate to Canalave City wants the Tea, as in Renegade. Its existing var becomes 2 once the policeman
+    has had it, so there's no new flag.
+- **Tested** in a test build, with scripted runs (`$S/test46.py`, `$S/test47.py`, `$S/test47b.py`):
+  - The collector stops the player from both sides, and is gone once the counterpart is beaten.
+  - The lobby works before and after the Hall of Fame.
+  - The gate stops the player without the Tea, and lets them on into Canalave City with it.
+  - The CI checks pass.
+- `docs/SpriteReview.md` has the shiny line-up's measured results on #161's sprites. The patch waits for #161.
+
+**Files modified:**
+- Decision 46: `decomp/res/field/{events/events_victory_road_1f.json,scripts/scripts_victory_road_1f.s}`,
+  `decomp/res/text/victory_road_1f.json`, `data/level_caps.yaml`, `decomp/include/data/level_caps.h`,
+  `tools/engine/gen_level_caps.py`, `tools/test/check_object_tiles.py`, `docs/QualityOfLife.md`,
+  `docs/BossFights_MegaPicks.md`
+- Decision 47: `decomp/res/field/scripts/scripts_{route_221,pal_park_lobby,init_pal_park_lobby,route_218_gate_to_canalave_city}.s`,
+  `decomp/res/field/events/events_{pal_park_lobby,route_218_gate_to_canalave_city}.json`,
+  `decomp/res/text/{pal_park_lobby,route_218_gate_to_canalave_city}.json`, `tools/engine/gen_regional_forms_park.py`,
+  `docs/RegionalFormsPark.md`
+- Docs: `docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `docs/SpriteReview.md`, `CLAUDE_STATUS.md`
+
+**For Claude A:** `docs/ProjectStatus.md` isn't touched here; your #161 records decisions 46–50 and removes the two
+open questions. The shiny line-up patch is ready for when #161 is merged.
+
+**Next 3 steps:**
+1. After #161 merges: the shiny line-up PR (13 sprite folders), with the sprite check run on them.
+2. Finish `battle_all_species.py` on this build (the worker restart cut the first run at 696 of 1,510, all ok so
+   far), and write up the trainer, evolution, Egg and species runs with the heap check.
+3. Playtest the Renegade ports in story order, Route 218's gate and the Victory Road collector first.
+
+
+## CB-0147 — 2026-10-26, 2:50 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: eight more item 11 abilities, and the battle tests rerun with the heap checks.**
+- **Owner rule:** `CLAUDE.md` now says every commit, from any session, credits the owner as co-author
+  (`Co-authored-by: Hank Twichell <78049692+hanktwichell@users.noreply.github.com>`).
+- **Purifying Salt:** no status of any kind, no Yawn, Rest fails. It shares Shields Down's check:
+  `BTLVAR_SOVEREIGN_SHIELDS_UP_EFFECT_MON` became `BTLVAR_SOVEREIGN_STATUS_IMMUNE_EFFECT_MON`
+  (`Battler_SovereignStatusImmune`). Mold Breaker gets past it for moves, never for Flame/Toxic Orb.
+- **Water Bubble and Thermal Exchange:** no burns, as with Water Veil.
+- **Mirror Armor:** a stat drop from another Pokémon's move or Ability goes back to it ("{holder}'s Mirror Armor cuts
+  {source}'s {stat}!").
+  - `BtlCmd_ChangeStatStage` swaps the roles for the drop, and `subscript_update_stat_stage` gives the holder back
+    its side-effect role (`BTLVAR_SOVEREIGN_MIRROR_ARMOR_HOLDER`).
+  - Sticky Web's drop is only blocked, since the engine doesn't track the web's setter.
+- **Cotton Down, Electromorphosis, Wind Power, Wind Rider:** as in Gen IX. A tailwind charges Wind Power and raises
+  Wind Rider's Attack, on entry too.
+- **AI:** knows Purifying Salt, Water Bubble and Thermal Exchange block status, and treats Mirror Armor as Clear Body.
+- **Bug found and fixed:** new subscripts must also go in `subscripts/sub_seq.order`, or a script's
+  `Call BATTLE_SUBSCRIPT_...` of them runs another subscript. `check_battle_scripts.py` now checks the order in CI.
+- **Tested:** a wild battle per case (23 cases, `$S/test_item11.py`), each message box checked. Results are in
+  `docs/EngineChangelog.md`.
+- **Battle tests with the heap checks:** trainers 1,039/1,039, evolutions 336/336, Eggs 874/874, species and forms
+  1,510/1,510. No **HEAP**, nothing failed.
+- **Answered the owner:** dynamic speed is in (`BattleControllerPlayer_BranchActions`, `docs/BattleMechanics.md`).
+
+**Files modified:**
+- `CLAUDE.md`, `CLAUDE_STATUS.md`, `docs/EngineChangelog.md`, `docs/AbilityChecklist.md`, `tools/engine/gen_abilities.py`,
+  `tools/test/check_battle_scripts.py`
+- `decomp/src/battle/{battle_lib.c,battle_script.c,trainer_ai/script.s}`, `decomp/include/battle/{battle_lib.h,battle_context.h}`
+- `decomp/generated/{battle_script_vars.txt,battle_subscripts.txt}`, `decomp/res/text/battle_strings.json`
+- `decomp/res/battle/scripts/subscripts/`: `meson.build`, `sub_seq.order`, the 8 status subscripts (burn, poison,
+  badly_poison, paralyze, fall_asleep, yawn, freeze, rest), `subscript_update_stat_stage.s`,
+  `subscript_hazards_check.s`, `subscript_tailwind_start.s`, and the new `subscript_sovereign_cotton_down.s` and
+  `subscript_sovereign_charged_by_hit.s`
+
+**Next 3 steps:**
+1. After Claude A's #161 merges: the shiny line-up PR (13 sprite folders), with the sprite check run on them.
+2. More item 11 abilities, by how common they are on boss teams (`docs/AbilityChecklist.md` lists the 36 left).
+3. Playtest the Renegade ports in story order, Route 218's gate and the Victory Road collector first.
+
+
+## CB-0148 — 2026-10-26, 3:00 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: seven more item 11 abilities.** PR #164 (CB-0147's work) is merged.
+- **As One:** Unnerve's Berry block (it was already in `Battler_UnnerveBlocksBerry`), plus Chilling Neigh's or Grim
+  Neigh's knockout boost.
+- **Toxic Chain:** 30% to badly poison on a damaging hit, as an added effect (Shield Dust stops it).
+- **Poison Puppeteer:** a Pokémon its move poisons becomes confused too.
+- **Supersweet Syrup:** foes' evasiveness −1, once per battle on entry (Intimidate's loop).
+- **Comatose:** no status at all (`Battler_SovereignStatusImmune`), and it counts as asleep for Dream Eater,
+  Nightmare, Hex, Wake-Up Slap, Bad Dreams, Sleep Talk and Snore.
+- **Pastel Veil, Sweet Veil:** the holder only; the allies' half isn't done.
+- **Tested:** a wild battle per case (16 cases, `$S/test_item11b.py`), message boxes checked.
+
+**Files modified:**
+- `decomp/src/battle/{battle_lib.c,battle_script.c,battle_controller_player.c,trainer_ai/script.s}`
+- `decomp/res/battle/scripts/subscripts/`: `meson.build`, `sub_seq.order`, `subscript_{poison,badly_poison,fall_asleep,yawn,rest}.s`,
+  new `subscript_sovereign_{supersweet_syrup,poison_puppeteer}.s`
+- `decomp/generated/battle_subscripts.txt`, `tools/engine/gen_abilities.py`, `docs/AbilityChecklist.md`,
+  `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. After Claude A's #161 merges: the shiny line-up PR (13 sprite folders), with the sprite check run on them.
+2. Item 11's double-battle abilities (the Veils' ally half, Hospitality, Costar, Curious Medicine), with a doubles case
+   in the test harness.
+3. Soul-Heart, Cheek Pouch and Ripen.
+
 ## CA-0062 (Claude A, 2026-10-26): Hisuian Sneasel's female front
 
 **Implemented:** forms can have a female front of their own. `convert_form_sprites.py` converts

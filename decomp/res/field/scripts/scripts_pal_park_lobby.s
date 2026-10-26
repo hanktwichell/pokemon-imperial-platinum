@@ -26,8 +26,32 @@
 PalParkLobby_OnTransition:
     ClearFlag FLAG_ALT_MUSIC_PAL_PARK
     SetFlag FLAG_FIRST_ARRIVAL_POKE_PARK_FRONT_GATE
+    Call PalParkLobby_SovereignSetDarachVisibility
+    Call PalParkLobby_SovereignSetProfOak
     GoToIfNe VAR_PAL_PARK_STATE, 0, PalParkLobby_SetWorkerPosAndDir
     End
+
+@ Sovereign (decision 47): the lobby opens mid-game, when the player can Surf to Route 221. Oak's first visit (his scene
+@ on entering, VAR_MAP_LOCAL_0x01 1) waits for the Hall of Fame, like the park.
+PalParkLobby_SovereignSetProfOak:
+    SetFlag FLAG_HIDE_PAL_PARK_LOBBY_PROF_OAK
+    CheckGameCompleted VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, FALSE, PalParkLobby_SovereignSetProfOakEnd
+    GoToIfNe VAR_PAL_PARK_LOBBY_STATE, 0, PalParkLobby_SovereignSetProfOakEnd
+    ClearFlag FLAG_HIDE_PAL_PARK_LOBBY_PROF_OAK
+    SetVar VAR_MAP_LOCAL_0x01, 1
+PalParkLobby_SovereignSetProfOakEnd:
+    Return
+
+@ Darach and Caitlin wait in the lobby until their scene is done (his trainer flag), and are back after the Hall of Fame.
+PalParkLobby_SovereignSetDarachVisibility:
+    ClearFlag FLAG_MAP_LOCAL_HIDE_SOVEREIGN_NPC
+    GoToIfNotDefeated TRAINER_SOVEREIGN_DARACH_PAL_PARK, PalParkLobby_SovereignSetDarachVisibilityEnd
+    CheckGameCompleted VAR_MAP_LOCAL_0x00
+    GoToIfEq VAR_MAP_LOCAL_0x00, TRUE, PalParkLobby_SovereignSetDarachVisibilityEnd
+    SetFlag FLAG_MAP_LOCAL_HIDE_SOVEREIGN_NPC
+PalParkLobby_SovereignSetDarachVisibilityEnd:
+    Return
 
 PalParkLobby_SetWorkerPosAndDir:
     SetObjectEventPos LOCALID_WORKER, 8, 9
@@ -50,7 +74,10 @@ PalParkLobby_Worker:
     LockAll
     FacePlayer
     // Sovereign (decision 22): the Regional Forms Park replaces Pal Park. There's no Catching Show: the park is a
-    // free-roaming wild area (data/regional_forms_park.yaml), and VAR_PAL_PARK_STATE 3 marks a visit.
+    // free-roaming wild area (data/regional_forms_park.yaml), and VAR_PAL_PARK_STATE 3 marks a visit. The lobby opens
+    // mid-game (decision 47), the park after the Hall of Fame.
+    CheckGameCompleted VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, PalParkLobby_Worker_SovereignNotOpenYet
     Message PalParkLobby_Text_SovereignWelcome
     ShowYesNoMenu VAR_RESULT
     GoToIfEq VAR_RESULT, MENU_NO, PalParkLobby_Worker_SovereignComeAgain
@@ -61,6 +88,13 @@ PalParkLobby_Worker:
 
 PalParkLobby_Worker_SovereignComeAgain:
     Message PalParkLobby_Text_SovereignComeAgain
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+PalParkLobby_Worker_SovereignNotOpenYet:
+    Message PalParkLobby_Text_SovereignNotOpenYet
     WaitButton
     CloseMessage
     ReleaseAll
@@ -253,6 +287,7 @@ PalParkLobby_PokemonFromAroundTheCountry:
     RemoveObject LOCALID_PROF_OAK
     WaitSE SEQ_SE_DP_KAIDAN2_sseq
     SetVar VAR_PAL_PARK_LOBBY_STATE, 1
+    SetVar VAR_MAP_LOCAL_0x01, 0
     ReleaseAll
     End
 
@@ -607,10 +642,12 @@ PalParkLobby_SetPrize_TamatoBerry:
 
 @ Sovereign (E10, Renegade): Darach and Lady Caitlin of the Battle Castle watch the park from the window. Darach battles
 @ in her place (Renegade's trainer 969), win or lose, then her psychic powers flare until he serves Tea, and they leave.
-@ The scene always starts with the player below Darach. His trainer flag marks it done (and hides them both).
+@ The scene always starts with the player below Darach. His trainer flag marks it done (and hides them both until the
+@ Hall of Fame, when they're back with a line each: decision 47).
 PalParkLobby_SovereignDarach:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
+    GoToIfDefeated TRAINER_SOVEREIGN_DARACH_PAL_PARK, PalParkLobby_SovereignDarachBack
     GetPlayerDir VAR_RESULT
     CallIfEq VAR_RESULT, DIR_EAST, PalParkLobby_SovereignStepBelowDarachFromWest
     GoTo PalParkLobby_SovereignDarachScene
@@ -618,10 +655,27 @@ PalParkLobby_SovereignDarach:
 PalParkLobby_SovereignCaitlin:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
+    GoToIfDefeated TRAINER_SOVEREIGN_DARACH_PAL_PARK, PalParkLobby_SovereignCaitlinBack
     GetPlayerDir VAR_RESULT
     CallIfEq VAR_RESULT, DIR_NORTH, PalParkLobby_SovereignStepBelowDarachFromCaitlin
     CallIfEq VAR_RESULT, DIR_WEST, PalParkLobby_SovereignStepBelowDarachFromEast
     GoTo PalParkLobby_SovereignDarachScene
+
+PalParkLobby_SovereignDarachBack:
+    FacePlayer
+    Message PalParkLobby_Text_SovereignDarachBack
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
+
+PalParkLobby_SovereignCaitlinBack:
+    FacePlayer
+    Message PalParkLobby_Text_SovereignCaitlinBack
+    WaitButton
+    CloseMessage
+    ReleaseAll
+    End
 
 PalParkLobby_SovereignStepBelowDarachFromWest:
     ApplyMovement LOCALID_PLAYER, PalParkLobby_SovereignMovement_FromWest

@@ -2,6 +2,8 @@
 
 
 _000:
+    // Sovereign (item 11): a Comatose user is as if asleep, without the "fast asleep" message.
+    CheckAbility CHECK_HAVE, BTLSCR_ATTACKER, ABILITY_COMATOSE, _012
     CompareMonDataToValue OPCODE_FLAG_NOT, BTLSCR_ATTACKER, BATTLEMON_STATUS, MON_CONDITION_SLEEP, _019
     CompareVarToValue OPCODE_EQU, BTLVAR_MOVE_TEMP, MOVE_SLEEP_TALK, _012
     Call BATTLE_SUBSCRIPT_SLEEPING

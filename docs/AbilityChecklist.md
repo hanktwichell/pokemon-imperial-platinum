@@ -57,7 +57,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 172 | Competitive | Gen 6 | yes: Sp. Atk +2 when a foe's move or Intimidate lowers its stats |
 | 173 | Strong Jaw | Gen 6 | yes: biting moves ×1.5 |
 | 174 | Refrigerate | Gen 6 | yes: Normal moves become Ice-type, ×1.2 |
-| 175 | Sweet Veil | Gen 6 | not yet (no battle effect) |
+| 175 | Sweet Veil | Gen 6 | partly: it can't fall asleep or become drowsy, and Rest fails (its allies' protection not yet) |
 | 176 | Stance Change | Gen 6 | yes: Blade Forme before a damaging move, Shield Forme before King's Shield |
 | 177 | Gale Wings | Gen 6 | yes: Flying moves +1 priority at full HP |
 | 178 | Mega Launcher | Gen 6 | yes: pulse moves ×1.5 |
@@ -81,7 +81,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 196 | Merciless | Gen 7 | yes: always a critical hit on a poisoned target |
 | 197 | Shields Down | Gen 7 | yes: Core at half HP or less; the Meteor Form blocks status and Yawn |
 | 198 | Stakeout | Gen 7 | yes: double power against a target that switched in this turn |
-| 199 | Water Bubble | Gen 7 | partly: its Water moves ×2, Fire damage taken halved (burn immunity not yet) |
+| 199 | Water Bubble | Gen 7 | yes: its Water moves ×2, Fire damage taken halved, can't be burned |
 | 200 | Steelworker | Gen 7 | yes: Steel moves ×1.5 |
 | 201 | Berserk | Gen 7 | yes: Sp. Atk +1 when a hit drops it to half HP or less |
 | 202 | Slush Rush | Gen 7 | yes: Speed ×2 in snow |
@@ -95,7 +95,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 210 | Battle Bond | Gen 7 | yes: Ash-Greninja after its move knocks out a foe, until the battle ends |
 | 211 | Power Construct | Gen 7 | yes: Complete Forme at half HP or less, with its higher max HP |
 | 212 | Corrosion | Gen 7 | yes: can poison Steel and Poison types |
-| 213 | Comatose | Gen 7 | not yet (no battle effect) |
+| 213 | Comatose | Gen 7 | yes: no status condition, no drowsiness, Rest fails; counts as asleep for Dream Eater, Nightmare, Hex, Wake-Up Slap, Bad Dreams, Sleep Talk and Snore |
 | 214 | Queenly Majesty | Gen 7 | yes: foes' priority moves can't hit its side |
 | 215 | Innards Out | Gen 7 | yes: when knocked out by a hit, the attacker loses the HP it had left |
 | 216 | Dancer | Gen 7 | not yet (no battle effect) |
@@ -120,9 +120,9 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 235 | DauntlessShield | Gen 8 | yes: Defense +1 the first time it enters battle |
 | 236 | Libero | Gen 8 | yes: becomes its move's type, once per switch-in |
 | 237 | Ball Fetch | Gen 8 | not yet (no battle effect) |
-| 238 | Cotton Down | Gen 8 | not yet (no battle effect) |
+| 238 | Cotton Down | Gen 8 | yes: when a damaging move hits it, every other Pokémon's Speed −1, its ally's too, even as it faints |
 | 239 | Propeller Tail | Gen 8 | yes: ignores moves and abilities that draw in attacks |
-| 240 | Mirror Armor | Gen 8 | not yet (no battle effect) |
+| 240 | Mirror Armor | Gen 8 | yes: a stat drop from another Pokémon's move or Ability goes back to that Pokémon (Sticky Web's is only blocked) |
 | 241 | Gulp Missile | Gen 8 | yes: Surf or Dive catches prey; a hit spits it for 1/4 HP and Defense -1 or paralysis |
 | 242 | Stalwart | Gen 8 | yes: ignores moves and abilities that draw in attacks |
 | 243 | Steam Engine | Gen 8 | yes: Fire or Water hits raise Speed 6 stages |
@@ -139,7 +139,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 254 | WanderingSpirit | Gen 8 | yes: swaps abilities with an attacker that makes contact |
 | 255 | Gorilla Tactics | Gen 8 | partly: Attack ×1.5 (the move lock not yet) |
 | 256 | NeutralizingGas | Gen 8 | not yet (no battle effect) |
-| 257 | Pastel Veil | Gen 8 | not yet (no battle effect) |
+| 257 | Pastel Veil | Gen 8 | partly: it can't be poisoned, and a poisoning is healed (its allies' protection not yet) |
 | 258 | Hunger Switch | Gen 8 | yes: switches between Full Belly and Hangry Mode at the end of each turn |
 | 259 | Quick Draw | Gen 8 | not yet (no battle effect) |
 | 260 | Unseen Fist | Gen 8 | yes: contact moves go through protection |
@@ -148,21 +148,21 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 263 | Dragon’s Maw | Gen 8 | yes: Dragon moves ×1.5 |
 | 264 | Chilling Neigh | Gen 8 | yes: Attack +1 for each foe its move knocks out |
 | 265 | Grim Neigh | Gen 8 | yes: Sp. Atk +1 for each foe its move knocks out |
-| 266 | As One | Gen 8 | not yet (no battle effect) |
-| 267 | As One | Gen 8 | not yet (no battle effect) |
+| 266 | As One | Gen 8 | partly: foes can't eat Berries that heal, cure or trigger on a hit, as with Unnerve (damage-halving Berries not yet); Attack +1 for each foe its move knocks out |
+| 267 | As One | Gen 8 | partly: foes can't eat Berries that heal, cure or trigger on a hit, as with Unnerve (damage-halving Berries not yet); Sp. Atk +1 for each foe its move knocks out |
 | 268 | Lingering Aroma | Gen 9 | yes: an attacker that makes contact gets Lingering Aroma |
 | 269 | Seed Sower | Gen 9 | yes: getting hit sets Grassy Terrain |
-| 270 | ThermalExchange | Gen 9 | partly: Attack +1 when hit by a Fire move (burn immunity not yet) |
+| 270 | ThermalExchange | Gen 9 | yes: Attack +1 when hit by a Fire move, can't be burned |
 | 271 | Anger Shell | Gen 9 | yes: Attack, Sp. Atk, Speed +1 and Defense, Sp. Def -1 when a hit drops it to half HP or less |
-| 272 | Purifying Salt | Gen 9 | partly: Ghost damage halved (status immunity not yet) |
+| 272 | Purifying Salt | Gen 9 | yes: Ghost damage halved; no status conditions or drowsiness (Mold Breaker gets past it) |
 | 273 | Well-Baked Body | Gen 9 | yes: absorbs Fire moves, Defense +2 (`BattleSystem_TriggerImmunityAbility`) |
-| 274 | Wind Rider | Gen 9 | not yet (no battle effect) |
+| 274 | Wind Rider | Gen 9 | yes: wind moves aimed at it do nothing and raise its Attack instead; a tailwind on its side raises its Attack (on entry too) |
 | 275 | Guard Dog | Gen 9 | partly: Intimidate raises its Attack instead (immunity to Roar and Whirlwind not yet) |
 | 276 | Rocky Payload | Gen 9 | yes: Rock moves ×1.5 |
-| 277 | Wind Power | Gen 9 | not yet (no battle effect) |
+| 277 | Wind Power | Gen 9 | yes: charged when a wind move hits it or a tailwind starts on its side |
 | 278 | Zero to Hero | Gen 9 | yes: Hero Form once it switches out, until the battle ends |
 | 279 | Commander | Gen 9 | not yet (no battle effect) |
-| 280 | Electromorphsis | Gen 9 | not yet (no battle effect) |
+| 280 | Electromorphsis | Gen 9 | yes: charged when a damaging move hits it (its next Electric move ×2 before the end of next turn, as Platinum's Charge) |
 | 281 | Protosynthesis | Gen 9 | yes: in harsh sunlight or after using a Booster Energy, its highest stat ×1.3 (Speed ×1.5) |
 | 282 | Quark Drive | Gen 9 | yes: in Electric Terrain or after using a Booster Energy, its highest stat ×1.3 (Speed ×1.5) |
 | 283 | Good as Gold | Gen 9 | yes: immune to other Pokémon's status moves |
@@ -182,14 +182,14 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 297 | Earth Eater | Gen 9 | yes: absorbs Ground moves, restores 1/4 of max HP (`BattleSystem_TriggerImmunityAbility`) |
 | 298 | Mycelium Might | Gen 9 | partly: its status moves ignore abilities (moving last not yet) |
 | 299 | Mind’s Eye | Gen 9 | yes: hits Ghost types with Normal and Fighting moves, ignores evasion, accuracy can't be lowered |
-| 300 | SupersweetSyrup | Gen 9 | not yet (no battle effect) |
+| 300 | SupersweetSyrup | Gen 9 | yes: the first time it enters the battle, each foe's evasiveness −1 |
 | 301 | Hospitality | Gen 9 | not yet (no battle effect) |
-| 302 | Toxic Chain | Gen 9 | not yet (no battle effect) |
+| 302 | Toxic Chain | Gen 9 | yes: its damaging moves have a 30% chance to badly poison (Shield Dust stops it) |
 | 303 | Embody Aspect | Gen 9 | not yet (no battle effect) |
 | 304 | Tera Shift | Gen 9 | yes: Terastal Form as it enters battle, until the battle ends |
 | 305 | Tera Shell | Gen 9 | yes: at full HP, damaging moves are not very effective on it |
 | 306 | Teraform Zero | Gen 9 | not yet (no battle effect) |
-| 307 | PoisonPuppeteer | Gen 9 | not yet (no battle effect) |
+| 307 | PoisonPuppeteer | Gen 9 | yes: a Pokémon its move poisons or badly poisons becomes confused too |
 | 308 | Piercing Drill | Gen 9 | yes: contact moves go through protection at 1/4 damage |
 | 309 | Dragonize | Gen 9 | yes: Normal moves become Dragon-type, ×1.2 |
 | 310 | Mega Sol | Gen 9 | partly: its moves work as in harsh sunlight (damage, Solar Beam without charging; Weather Ball, Growth, Synthesis not yet) |

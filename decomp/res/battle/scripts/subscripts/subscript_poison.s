@@ -4,8 +4,9 @@
 _000:
     CompareVarToValue OPCODE_NEQ, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_TOXIC_SPIKES, _023
     CheckAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_IMMUNITY, _177
-    // Sovereign (FM): Shields Down keeps every status condition off a Meteor Minior.
-    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_SHIELDS_UP_EFFECT_MON, TRUE, _177
+    CheckAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_PASTEL_VEIL, _177 // Sovereign (item 11)
+    // Sovereign (FM, item 11): Shields Down (a Meteor Minior) and Purifying Salt keep every status condition off.
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_STATUS_IMMUNE_EFFECT_MON, TRUE, _177
     CheckIgnoreWeather _050
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_FIELD_CONDITIONS, FIELD_CONDITION_SUNNY, _050
     CheckAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_LEAF_GUARD, _177
@@ -13,8 +14,9 @@ _000:
 
 _023:
     CheckIgnorableAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_IMMUNITY, _177
-    // Sovereign (FM): Shields Down keeps every status condition off a Meteor Minior.
-    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_SHIELDS_UP_EFFECT_MON, TRUE, _177
+    CheckIgnorableAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_PASTEL_VEIL, _177 // Sovereign (item 11)
+    // Sovereign (FM, item 11): Shields Down (a Meteor Minior) and Purifying Salt keep every status condition off.
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_STATUS_IMMUNE_EFFECT_MON, TRUE, _177
     CheckIgnoreWeather _040
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_FIELD_CONDITIONS, FIELD_CONDITION_SUNNY, _040
     CheckIgnorableAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_LEAF_GUARD, _177
@@ -72,6 +74,7 @@ _156:
     Wait 
     SetHealthBoxStatusIcon BTLSCR_SIDE_EFFECT_MON, BATTLE_ANIMATION_POISONED
     WaitButtonABTime 30
+    Call BATTLE_SUBSCRIPT_SOVEREIGN_POISON_PUPPETEER // Sovereign (item 11)
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_BATTLE_CTX_STATUS, SYSCTL_TRY_SYNCHRONIZE_STATUS, _172
     UpdateVar OPCODE_FLAG_ON, BTLVAR_BATTLE_CTX_STATUS, SYSCTL_TRY_SYNCHRONIZE_STATUS
     End 

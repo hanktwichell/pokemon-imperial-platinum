@@ -4,11 +4,12 @@
 _000:
     PrintAttackMessage 
     Wait 
-    // Sovereign (FM): a Meteor Minior can't fall asleep (Shields Down), so Rest fails.
+    // Sovereign (FM, item 11): a Meteor Minior (Shields Down) or Purifying Salt can't fall asleep, so Rest fails.
     UpdateVarFromVar OPCODE_SET, BTLVAR_SIDE_EFFECT_MON, BTLVAR_ATTACKER
-    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_SHIELDS_UP_EFFECT_MON, TRUE, _sovereignShieldsUp
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_STATUS_IMMUNE_EFFECT_MON, TRUE, _sovereignShieldsUp
     CheckAbility CHECK_HAVE, BTLSCR_ATTACKER, ABILITY_INSOMNIA, _098
     CheckAbility CHECK_HAVE, BTLSCR_ATTACKER, ABILITY_VITAL_SPIRIT, _098
+    CheckAbility CHECK_HAVE, BTLSCR_ATTACKER, ABILITY_SWEET_VEIL, _098 // Sovereign (item 11)
     CompareMonDataToValue OPCODE_FLAG_SET, BTLSCR_ATTACKER, BATTLEMON_STATUS, MON_CONDITION_SLEEP, _107
     CheckAbility CHECK_HAVE, BTLSCR_ATTACKER, ABILITY_SOUNDPROOF, _027
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_FIELD_CONDITIONS, FIELD_CONDITION_UPROAR, _115

@@ -4,8 +4,9 @@
 _000:
     CompareVarToValue OPCODE_NEQ, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_TOXIC_SPIKES, _023
     CheckAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_IMMUNITY, _249
-    // Sovereign (FM): Shields Down keeps every status condition off a Meteor Minior.
-    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_SHIELDS_UP_EFFECT_MON, TRUE, _249
+    CheckAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_PASTEL_VEIL, _249 // Sovereign (item 11)
+    // Sovereign (FM, item 11): Shields Down (a Meteor Minior) and Purifying Salt keep every status condition off.
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_STATUS_IMMUNE_EFFECT_MON, TRUE, _249
     CheckIgnoreWeather _121
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_FIELD_CONDITIONS, FIELD_CONDITION_SUNNY, _121
     CheckAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_LEAF_GUARD, _249
@@ -14,8 +15,9 @@ _000:
 _023:
     CompareVarToValue OPCODE_NEQ, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_HELD_ITEM, _094
     CheckAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_IMMUNITY, _248
-    // Sovereign (FM): Shields Down keeps every status condition off a Meteor Minior.
-    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_SHIELDS_UP_EFFECT_MON, TRUE, _248
+    CheckAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_PASTEL_VEIL, _248 // Sovereign (item 11)
+    // Sovereign (FM, item 11): Shields Down (a Meteor Minior) and Purifying Salt keep every status condition off.
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_STATUS_IMMUNE_EFFECT_MON, TRUE, _248
     CheckIgnoreWeather _045
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_FIELD_CONDITIONS, FIELD_CONDITION_SUNNY, _045
     CheckAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_LEAF_GUARD, _248
@@ -41,8 +43,9 @@ _corrosionSkip1:
 
 _094:
     CheckIgnorableAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_IMMUNITY, _249
-    // Sovereign (FM): Shields Down keeps every status condition off a Meteor Minior.
-    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_SHIELDS_UP_EFFECT_MON, TRUE, _249
+    CheckIgnorableAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_PASTEL_VEIL, _249 // Sovereign (item 11)
+    // Sovereign (FM, item 11): Shields Down (a Meteor Minior) and Purifying Salt keep every status condition off.
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_STATUS_IMMUNE_EFFECT_MON, TRUE, _249
     CheckIgnoreWeather _111
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_FIELD_CONDITIONS, FIELD_CONDITION_SUNNY, _111
     CheckIgnorableAbility CHECK_HAVE, BTLSCR_SIDE_EFFECT_MON, ABILITY_LEAF_GUARD, _249
@@ -102,6 +105,7 @@ _227:
     Wait 
     SetHealthBoxStatusIcon BTLSCR_SIDE_EFFECT_MON, BATTLE_ANIMATION_POISONED
     WaitButtonABTime 30
+    Call BATTLE_SUBSCRIPT_SOVEREIGN_POISON_PUPPETEER // Sovereign (item 11)
     CompareVarToValue OPCODE_FLAG_SET, BTLVAR_BATTLE_CTX_STATUS, SYSCTL_TRY_SYNCHRONIZE_STATUS, _244
     UpdateVar OPCODE_FLAG_ON, BTLVAR_BATTLE_CTX_STATUS, SYSCTL_TRY_SYNCHRONIZE_STATUS
     GoTo _248
