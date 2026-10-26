@@ -10104,6 +10104,10 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         // fails)
         battleCtx->sovereignTerrainTemp = Sovereign_Electrify(battleCtx, battleCtx->defender);
         return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_SPECTRAL_THIEF: // Sovereign (item 11): read-only, the attacker steals the defender's stat
+        // rises (FALSE when it has none)
+        battleCtx->sovereignTerrainTemp = Sovereign_SpectralThief(battleCtx, battleCtx->attacker, battleCtx->defender);
+        return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_POWDER: // Sovereign (item 11): read-only, Powder covers the defender for the rest of the turn
         // (FALSE when it already is)
         battleCtx->sovereignTerrainTemp = battleCtx->turnFlags[battleCtx->defender].sovereignPowdered == FALSE;

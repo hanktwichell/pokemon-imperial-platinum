@@ -467,4 +467,9 @@ subscript_files = files(
     'subscript_sovereign_flame_burst.s',
     'subscript_sovereign_powder.s',
     'subscript_sovereign_powder_explode.s',
+    'subscript_sovereign_spectral_thief.s',
+    'subscript_sovereign_beak_blast_charge.s',
+    'subscript_sovereign_shell_trap_set.s',
+    'subscript_sovereign_shell_trap_fail.s',
+    'subscript_sovereign_beak_blast_burn.s',
 )

@@ -4,6 +4,43 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): Spectral Thief, Beak Blast, Shell Trap
+
+For players, three more placeholder moves now work (13 left):
+- **Spectral Thief:** before it hits, the user takes the target's stat rises ("{0} stole the target's boosted stats!").
+  - The rises are added to the user's stages (up to +6), and the target's go back to 0. The hit's damage uses the new
+    stages.
+  - Contrary turns the stolen rises into drops.
+  - Nothing is stolen when the move misses, is blocked, or doesn't affect the target.
+- **Beak Blast** (-3 priority): before anyone moves, "{0} started heating up its beak!".
+  - Until it uses Beak Blast, any Pokémon whose contact move hits it is burned. This is Burning Bulwark's burn: Shield
+    Dust doesn't stop it.
+- **Shell Trap** (-3 priority): before anyone moves, "{0} set a shell trap!".
+  - A foe's physical move that hits it springs the trap, and the user moves right after, hitting both foes.
+  - If no physical hit comes, the move fails: "{0}'s shell trap didn't work!".
+  - Physical includes Photon Geyser and Shell Side Arm when they hit physically.
+- **Code:**
+  - `Sovereign_SpectralThief` is a direct side effect that runs once the move gets past accuracy, protection and
+    immunities. Its subscript runs `CalcDamage` again, keeping the critical-hit roll.
+  - Beak Blast and Shell Trap set turn flags in `BattleControllerPlayer_CheckPreMoveActions`, next to Focus Punch.
+  - New after-hit state `*_SOVEREIGN_BEAK_BLAST`. It burns the attacker (`Sovereign_BeakBlastBurns`) and springs the trap
+    (`Sovereign_SpringShellTrap`, which uses After You's reorder).
+  - `Sovereign_HitsPhysically` tells whether a move hits physically.
+
+**Verification:** test and release ROMs built; the battle-script size check, the message check and the docs check pass.
+- **Spectral Thief** (Gengar against a wild Ninjask using Swords Dance; stages read from memory):
+  - Gengar took Ninjask's +2 Attack and Ninjask went back to 0. The hit did 63, and 99 the next turn at +4.
+  - With Contrary, Gengar's Attack went to -2 and the hit did 16.
+  - Messages: "GENGAR used Spectral Thief!", then "GENGAR stole the target's boosted stats!".
+- **Beak Blast** (Toucannon):
+  - "TOUCANNON started heating up its beak!", then the wild Ninjask's Tackle.
+  - The Ninjask was burned and lost 15 HP (1/16) at the end of the turn.
+- **Shell Trap** (Turtonator):
+  - Against Tackle it hit for 168.
+  - Against Water Gun (special): "TURTONATOR's shell trap didn't work!".
+  - In a double battle against Belle & Pa, Miltank's Stomp sprang it. Shell Trap hit both foes right after, before the
+    partner Snorlax's Growl, which otherwise comes before the -3 Shell Trap.
+
 ## Item 11 (effect fidelity): Powder; a build race fixed
 
 For players:

@@ -5636,6 +5636,46 @@ int Sovereign_MoveRange(BattleContext *battleCtx, int attacker, int move)
     return MOVE_DATA(move).range;
 }
 
+// Sovereign (item 11): Spectral Thief takes the target's stat rises and adds them to the user's stages (up to +6;
+// Contrary turns them into drops), before it hits. TRUE when it takes any.
+BOOL Sovereign_SpectralThief(BattleContext *battleCtx, int attacker, int defender)
+{
+    BattleMon *user = &battleCtx->battleMons[attacker];
+    BattleMon *target = &battleCtx->battleMons[defender];
+    BOOL contrary = Battler_Ability(battleCtx, attacker) == ABILITY_CONTRARY;
+    BOOL stole = FALSE;
+
+    for (int stat = BATTLE_STAT_ATTACK; stat < BATTLE_STAT_MAX; stat++) {
+        int rise = target->statBoosts[stat] - DEFAULT_STAT_STAGE;
+
+        if (rise <= 0) {
+            continue;
+        }
+
+        int stage = user->statBoosts[stat] + (contrary ? -rise : rise);
+
+        if (stage < 0) {
+            stage = 0;
+        } else if (stage > MAX_STAT_STAGE) {
+            stage = MAX_STAT_STAGE;
+        }
+
+        user->statBoosts[stat] = stage;
+        target->statBoosts[stat] = DEFAULT_STAT_STAGE;
+        stole = TRUE;
+    }
+
+    if (stole) {
+        if (contrary) {
+            battleCtx->turnFlags[attacker].sovereignStatsLowered = TRUE;
+        } else {
+            battleCtx->turnFlags[attacker].sovereignStatsRaised = TRUE;
+        }
+    }
+
+    return stole;
+}
+
 // Sovereign (item 11): Electrify works on a target that hasn't acted yet this turn and isn't electrified already.
 BOOL Sovereign_Electrify(BattleContext *battleCtx, int battler)
 {
@@ -5750,6 +5790,26 @@ BOOL Sovereign_ShellSideArmPhysical(BattleContext *battleCtx, int attacker, int 
         / sStatStageBoosts[target->statBoosts[BATTLE_STAT_SP_DEFENSE]].denominator;
 
     return base * 90 * attack / (defense ? defense : 1) / 50 > base * 90 * spAttack / (spDefense ? spDefense : 1) / 50;
+}
+
+// Sovereign (item 11): TRUE when a move hits as a physical one, Photon Geyser and Shell Side Arm as they choose
+// (BattleSystem_CalcMoveDamage). Shell Trap springs on these.
+BOOL Sovereign_HitsPhysically(BattleContext *battleCtx, int attacker, int defender, int move)
+{
+    BattleMon *user = &battleCtx->battleMons[attacker];
+
+    if (move == MOVE_SHELL_SIDE_ARM) {
+        return Sovereign_ShellSideArmPhysical(battleCtx, attacker, defender);
+    }
+
+    if (move == MOVE_PHOTON_GEYSER) {
+        return user->attack * sStatStageBoosts[user->statBoosts[BATTLE_STAT_ATTACK]].numerator
+                / sStatStageBoosts[user->statBoosts[BATTLE_STAT_ATTACK]].denominator
+            > user->spAttack * sStatStageBoosts[user->statBoosts[BATTLE_STAT_SP_ATTACK]].numerator
+                / sStatStageBoosts[user->statBoosts[BATTLE_STAT_SP_ATTACK]].denominator;
+    }
+
+    return MOVE_DATA(move).class == CLASS_PHYSICAL;
 }
 
 // Sovereign (item 11): Autotomize makes the side-effect battler 100 kg lighter, down to 0.1 kg. FALSE if it was already

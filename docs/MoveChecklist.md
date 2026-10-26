@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 364 |
+| exact | 367 |
 | approximate | 0 |
-| placeholder | 16 |
+| placeholder | 13 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -237,7 +237,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 687 | Core Enforcer | Dragon | `SOVEREIGN_CORE_ENFORCER` | exact | Sovereign effect: hits both foes; suppresses the ability of a target that has already acted this turn |
 | 688 | Trop Kick | Grass | `LOWER_ATTACK_HIT` | exact | Sovereign effect: target Attack -1 (100%) |
 | 689 | Instruct | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
-| 690 | Beak Blast | Flying | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 690 | Beak Blast | Flying | `HIT` | exact | Sovereign effect: -3 priority; from the start of the turn until it moves, the user burns Pokémon whose contact moves hit it |
 | 691 | Clanging Scales | Dragon | `SOVEREIGN_LOWER_OWN_DEF_HIT` | exact | Sovereign effect: user Defense -1 |
 | 692 | Dragon Hammer | Dragon | `HIT` | exact |  |
 | 693 | Brutal Swing | Dark | `HIT` | exact | Sovereign effect: hits all adjacent Pokémon |
@@ -251,7 +251,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 701 | (pulverizing-pancake) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
 | 702 | (extreme-evoboost) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
 | 703 | (genesis-supernova) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
-| 704 | Shell Trap | Fire | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 704 | Shell Trap | Fire | `HIT` | exact | Sovereign effect: -3 priority; sets a trap at the start of the turn: a foe's physical hit springs it and the user moves right after; otherwise it fails |
 | 705 | Fleur Cannon | Fairy | `USER_SP_ATK_DOWN_2` | exact |  |
 | 706 | Psychic Fangs | Psychic | `REMOVE_SCREENS` | exact |  |
 | 707 | StompngTantrum | Ground | `HIT` | exact | Sovereign effect: power doubles if the user's last move failed |
@@ -259,7 +259,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 709 | Accelerock | Rock | `PRIORITY_1` | exact |  |
 | 710 | Liquidation | Water | `LOWER_DEFENSE_HIT` | exact |  |
 | 711 | Prismatic Laser | Psychic | `RECHARGE_AFTER` | exact |  |
-| 712 | Spectral Thief | Ghost | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 712 | Spectral Thief | Ghost | `SOVEREIGN_SPECTRAL_THIEF` | exact | Sovereign effect: before it hits, the user takes the target's stat rises (the damage uses them) |
 | 713 | Sunsteel Strike | Steel | `HIT` | exact | Sovereign effect: ignores the target's ability |
 | 714 | Moongeist Beam | Ghost | `HIT` | exact | Sovereign effect: ignores the target's ability |
 | 715 | Tearful Look | Normal | `SOVEREIGN_TEARFUL_LOOK` | exact | Sovereign effect: target Attack -1, target Sp. Atk -1 |

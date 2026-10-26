@@ -10621,6 +10621,87 @@
         "When the flame touched the powder\n",
         "on the Pokémon, it exploded!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignStoleBoosts_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} stole the target’s\n",
+        "boosted stats!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignStoleBoosts_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} stole\n",
+        "the target’s boosted stats!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignStoleBoosts_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} stole\n",
+        "the target’s boosted stats!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignHeatingUpBeak_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} started\n",
+        "heating up its beak!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignHeatingUpBeak_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} started\n",
+        "heating up its beak!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignHeatingUpBeak_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} started\n",
+        "heating up its beak!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignSetShellTrap_Ally",
+      "en_US": "{STRVAR_1 1, 0, 0} set a shell trap!"
+    },
+    {
+      "id": "BattleStrings_Text_SovereignSetShellTrap_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}\n",
+        "set a shell trap!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignSetShellTrap_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}\n",
+        "set a shell trap!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignShellTrapFailed_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s\n",
+        "shell trap didn’t work!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignShellTrapFailed_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}’s\n",
+        "shell trap didn’t work!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignShellTrapFailed_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}’s\n",
+        "shell trap didn’t work!"
+      ]
     }
   ]
 }
