@@ -1286,6 +1286,7 @@ BOOL Sovereign_SpectralThief(BattleContext *battleCtx, int attacker, int defende
 BOOL Sovereign_StartIonDeluge(BattleContext *battleCtx);
 BOOL Sovereign_StartFairyLock(BattleContext *battleCtx);
 BOOL Sovereign_CanInstruct(BattleContext *battleCtx, int target);
+BOOL Sovereign_IsDanceMove(int move);
 BOOL Sovereign_StartOctolock(BattleContext *battleCtx);
 BOOL Sovereign_Spotlight(BattleSystem *battleSys, BattleContext *battleCtx);
 int Sovereign_TeatimeStart(BattleSystem *battleSys, BattleContext *battleCtx);

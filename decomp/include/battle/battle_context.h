@@ -400,8 +400,13 @@ struct BattleContext {
     u8 sovereignBallFetched; // Sovereign (item 11): a Ball Fetch Pokémon has fetched this battle's first ball
     u16 sovereignBallFetchBall; // Sovereign (item 11): the first ball thrown in this wild battle (Ball Fetch)
     u8 sovereignInstructed; // Sovereign (item 11): 1 + the battler Instruct told to use its last move again (0 for none)
-    u8 sovereignInstructing; // Sovereign (item 11): 1 + the battler using its move again for Instruct now (0 for none)
-    u8 sovereignInstructedPP; // Sovereign (item 11): that battler's turn flag ppDecremented before it did
+    u8 sovereignExtraActor; // Sovereign (item 11): 1 + the battler taking an extra action now (Instruct, Dancer; 0 for none)
+    u8 sovereignExtraActorPP; // Sovereign (item 11): that battler's turn flag ppDecremented before it did
+    u8 sovereignDancers; // Sovereign (item 11): Dancers still to copy the last dance move (flags by battler)
+    u8 sovereignDancing; // Sovereign (item 11): the extra action now is a Dancer's copy (it sets off no other Dancer)
+    u8 sovereignDanceUser; // Sovereign (item 11): the battler whose dance move the Dancers copy
+    u8 sovereignDanceTarget; // Sovereign (item 11): that move's target
+    u16 sovereignDanceMove; // Sovereign (item 11): that move
     u16 sovereignShieldMove[MAX_BATTLERS]; // Sovereign (item 11): the Protect-like move protecting each battler this turn
     int sovereignShieldContact; // Sovereign (item 11): the shield whose contact penalty is due (subscript_missed)
     int sovereignGuardBlock; // Sovereign (item 11): the side guard that blocked the move (Wide Guard, Mat Block, ...)

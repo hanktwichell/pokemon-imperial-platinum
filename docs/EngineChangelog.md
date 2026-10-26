@@ -3,6 +3,37 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Item 11 (effect fidelity): Dancer
+
+For players:
+- **Dancer** (Oricorio): when another Pokémon uses a dance move and it works, each Dancer in battle uses the same move
+  right after, the slowest first.
+  - The dance moves (Gen IX's list): Aqua Step, Clangorous Soul, Dragon Dance, Feather Dance, Fiery Dance, Lunar Dance,
+    Petal Dance, Quiver Dance, Revelation Dance, Swords Dance, Teeter Dance and Victory Dance.
+  - The copy costs no PP, and a copy sets off no other Dancer. A Dancer that's semi-invulnerable (Fly, Dig...) doesn't
+    dance.
+  - **Target:** the copy aims at the move's target when that's a foe of the Dancer's and the Dancer's ally used the
+    move. Otherwise it aims at the move's user (a foe's Feather Dance comes back at it).
+  - Platinum has no ability pop-up, so the copy shows only as "{0} used {1}!".
+- **Code:**
+  - Instruct's extra action now lives in `BattleControllerPlayer_SovereignExtraAction` (called from MoveEnd), with
+    Dancer.
+  - `BattleControllerPlayer_SovereignStartExtraAction` sets a battler up and sets its `ppDecremented` turn flag
+    aside: TRUE for a Dancer's copy (no PP), FALSE for an instructed move.
+  - The fields are now `sovereignExtraActor`/`sovereignExtraActorPP`, plus `sovereignDancers` (flags),
+    `sovereignDancing`, `sovereignDanceMove/User/Target`.
+  - `Sovereign_IsDanceMove` holds the list.
+
+**Verification:** test and release ROMs built; the battle-script size check, the message check and the docs check pass.
+Wild battles of a Lv. 50 Oricorio (Dancer) against a Lv. 100 Ninjask, the Ninjask's PP read from the battle data:
+- **The Ninjask uses Swords Dance (Attack +2):** Oricorio copies it each turn: Attack +2, +4, +6. The Ninjask's PP drops
+  by one a turn, its own use only.
+- **The Ninjask uses Feather Dance on Oricorio:** "ORICORIO's Attack harshly fell!", then "ORICORIO used FeatherDance!"
+  and "The wild NINJASK's Attack harshly fell!": the copy goes back at the user.
+- **Oricorio (ability set to Own Tempo) uses Swords Dance against a Dancer Ninjask:** the Ninjask copies it each turn
+  (Attack +2, +4, +6).
+- **Instruct** (the same harness case as before): unchanged, two Growls a turn with their PP.
+
 ## Item 11 (effect fidelity): Instruct (an extra action)
 
 For players:
