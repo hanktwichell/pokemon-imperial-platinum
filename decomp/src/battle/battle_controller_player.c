@@ -885,6 +885,8 @@ static void BattleControllerPlayer_CheckPreMoveActions(BattleSystem *battleSys, 
                 battleCtx->speedRand[battler] = BattleSystem_RandNext(battleSys);
             }
 
+            battleCtx->sovereignQuickDraw = 0; // Sovereign (item 11)
+
             battleCtx->turnStartCheckState++;
             break;
 
@@ -3079,7 +3081,13 @@ static BOOL BattleControllerPlayer_TriggerImmunityAbilities(BattleSystem *battle
  */
 static BOOL BattleControllerPlayer_LoadQuickClawCheck(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    LOAD_SUBSEQ(subscript_check_quick_claw);
+    // Sovereign (item 11): Quick Draw's message instead, when it let the Pokemon move first.
+    if (battleCtx->sovereignQuickDraw & FlagIndex(battleCtx->attacker)) {
+        battleCtx->sovereignQuickDraw &= ~FlagIndex(battleCtx->attacker);
+        LOAD_SUBSEQ(subscript_sovereign_quick_draw);
+    } else {
+        LOAD_SUBSEQ(subscript_check_quick_claw);
+    }
 
     battleCtx->commandNext = battleCtx->command;
     battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;

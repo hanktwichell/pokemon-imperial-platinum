@@ -354,6 +354,7 @@ struct BattleContext {
     int sovereignWonderRoomTurns; // Sovereign (item 11): turns of Wonder Room left (Defense and Sp. Def swapped)
     int sovereignTelekinesis[MAX_BATTLERS]; // Sovereign (item 11): turns of Telekinesis left on each battler
     int sovereignMirrorArmorHolder; // Sovereign (item 11): 1 + the Mirror Armor holder while a drop goes back to its source
+    u8 sovereignQuickDraw; // Sovereign (item 11): battlers Quick Draw lets move first this turn (for its message)
 };
 
 #endif // POKEPLATINUM_BATTLE_BATTLE_CONTEXT_H

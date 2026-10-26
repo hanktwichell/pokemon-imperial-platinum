@@ -21,7 +21,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 136 | Multiscale | Gen 5 | yes: damage halved at full HP |
 | 137 | Toxic Boost | Gen 5 | yes: Attack ×1.5 while poisoned |
 | 138 | Flare Boost | Gen 5 | yes: Sp. Atk ×1.5 while burned |
-| 139 | Harvest | Gen 5 | not yet (no battle effect) |
+| 139 | Harvest | Gen 5 | yes: at the end of a turn, regrows the Berry it used up, half the time (every time in harsh sunlight) |
 | 140 | Telepathy | Gen 5 | yes: avoids its partner's damaging moves |
 | 141 | Moody | Gen 5 | yes: each turn, one stat +2 and another −1 (no accuracy/evasion, as in Gen VIII+) |
 | 142 | Overcoat | Gen 5 | partly: no sandstorm damage (powder-move immunity not yet) |
@@ -141,7 +141,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 256 | NeutralizingGas | Gen 8 | not yet (no battle effect) |
 | 257 | Pastel Veil | Gen 8 | partly: it can't be poisoned, and a poisoning is healed (its allies' protection not yet) |
 | 258 | Hunger Switch | Gen 8 | yes: switches between Full Belly and Hangry Mode at the end of each turn |
-| 259 | Quick Draw | Gen 8 | not yet (no battle effect) |
+| 259 | Quick Draw | Gen 8 | yes: 30% of the time it uses a damaging move, it moves first in its priority bracket |
 | 260 | Unseen Fist | Gen 8 | yes: contact moves go through protection |
 | 261 | CuriousMedicine | Gen 8 | not yet (no battle effect) |
 | 262 | Transistor | Gen 8 | yes: Electric moves ×1.3 |

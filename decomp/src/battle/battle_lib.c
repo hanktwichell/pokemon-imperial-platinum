@@ -1437,6 +1437,20 @@ u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *batt
         // Sovereign (item 11): priority with Prankster, Gale Wings and Triage.
         battler1Priority = Sovereign_MovePriority(battleCtx, battler1, battler1Move);
         battler2Priority = Sovereign_MovePriority(battleCtx, battler2, battler2Move);
+
+        // Sovereign (item 11): Quick Draw lets a Pokemon using a damaging move go first in its priority bracket, 30% of
+        // the time (one roll a turn, as Quick Claw's).
+        if (battler1Ability == ABILITY_QUICK_DRAW && battler1Move && MOVE_DATA(battler1Move).class != CLASS_STATUS
+            && battleCtx->speedRand[battler1] % 10 < 3) {
+            battler1QuickClaw = 1;
+            battleCtx->sovereignQuickDraw |= FlagIndex(battler1);
+        }
+
+        if (battler2Ability == ABILITY_QUICK_DRAW && battler2Move && MOVE_DATA(battler2Move).class != CLASS_STATUS
+            && battleCtx->speedRand[battler2] % 10 < 3) {
+            battler2QuickClaw = 1;
+            battleCtx->sovereignQuickDraw |= FlagIndex(battler2);
+        }
     }
 
     if (battler1Priority == battler2Priority) {
@@ -3966,6 +3980,26 @@ BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem *battleSys, BattleContext *
         }
         break;
     }
+
+    // Sovereign (item 11): Harvest grows back the Berry the holder used up, at the end of half the turns (of every turn
+    // in harsh sunlight).
+    case ABILITY_HARVEST:
+        if (battleCtx->battleMons[battler].curHP
+            && battleCtx->battleMons[battler].heldItem == ITEM_NONE
+            && Item_IsBerry(battleCtx->recycleItem[battler])
+            && (((battleCtx->fieldConditionsMask & FIELD_CONDITION_SUNNY)
+                    && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALL_BATTLERS, 0, ABILITY_CLOUD_NINE) == 0
+                    && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALL_BATTLERS, 0, ABILITY_AIR_LOCK) == 0)
+                || BattleSystem_RandNext(battleSys) % 2 == 0)) {
+            battleCtx->battleMons[battler].heldItem = battleCtx->recycleItem[battler];
+            battleCtx->recycleItem[battler] = ITEM_NONE;
+            BattleMon_CopyToParty(battleSys, battleCtx, battler);
+            battleCtx->msgBattlerTemp = battler;
+            battleCtx->msgItemTemp = battleCtx->battleMons[battler].heldItem;
+            subscript = subscript_sovereign_harvest;
+            result = TRUE;
+        }
+        break;
 
     // Sovereign (FM): Hunger Switch takes Morpeko between its Full Belly and Hangry Modes at the end of each turn.
     case ABILITY_HUNGER_SWITCH: {

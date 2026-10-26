@@ -138,6 +138,8 @@ IMPLEMENTED = {
     175: "partly: it can't fall asleep or become drowsy, and Rest fails (its allies' protection not yet)",
     167: "partly: when it eats its own held Berry, it also restores a third of its max HP (not yet for a Berry taken by Bug Bite or Pluck, nor a damage-halving Berry)",
     247: "partly: Berries that restore HP restore twice as much, and stat-raising Berries raise 2 stages (damage-halving and other Berries not yet)",
+    139: "yes: at the end of a turn, regrows the Berry it used up, half the time (every time in harsh sunlight)",
+    259: "yes: 30% of the time it uses a damaging move, it moves first in its priority bracket",
     240: "yes: a stat drop from another Pokémon's move or Ability goes back to that Pokémon (Sticky Web's is only blocked)",
     244: "yes: its sound moves ×1.3, sound damage taken halved",
     274: "yes: wind moves aimed at it do nothing and raise its Attack instead; a tailwind on its side raises its Attack (on entry too)",
