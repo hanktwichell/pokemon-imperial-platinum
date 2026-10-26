@@ -6791,6 +6791,31 @@ open questions. The shiny line-up patch is ready for when #161 is merged.
    in the test harness.
 3. Soul-Heart; Ripen and Cheek Pouch for damage-halving Berries and Bug Bite/Pluck.
 
+
+## CB-0150 — 2026-10-26, 3:44 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: Harvest, Quick Draw, Magician and Pickpocket (item 11).** PR #166 (CB-0149, Cheek Pouch and Ripen) is
+merged.
+- **Harvest:** regrows the used-up Berry at turn end (50%, 100% in sun); the turn-end item check eats it right after.
+- **Quick Draw:** 30% to move first in its bracket with a damaging move, with its own message.
+  - Bug found and fixed in testing: the turn order is worked out before the turn's speed roll step, so the flag for
+    the message is cleared at the start of `BattleControllerPlayer_CalcTurnOrder`.
+- **Magician and Pickpocket:** take the other Pokémon's item by Thief's rules (a foe's never takes the player's).
+- **Test build:** `gSovereignTestWild.item` gives the test hook's wild Pokémon a held item.
+- **Harness note for both sessions:** in god mode the player's real HP doesn't drop (only the bar shows the hit).
+  Turn god mode off (`gSovereignTestGodMode = 0`) for anything that needs real damage, such as an HP Berry.
+
+**Files modified:** `decomp/src/battle/{battle_lib.c,battle_controller_player.c}`, `decomp/include/battle/battle_context.h`,
+`decomp/res/text/battle_strings.json`, `decomp/generated/battle_subscripts.txt`,
+`decomp/res/battle/scripts/subscripts/{meson.build,sub_seq.order,subscript_sovereign_harvest.s,subscript_sovereign_quick_draw.s}`,
+`tools/engine/gen_abilities.py`, `docs/AbilityChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. After Claude A's #161 merges: the shiny line-up PR (13 sprite folders), with the sprite check run on them.
+2. Item 11's double-battle abilities (the Veils' ally half, Hospitality, Costar, Curious Medicine), with a doubles case
+   in the test harness.
+3. Soul-Heart, then the rest of item 11's list by how common the ability is on boss teams.
+
 ## CA-0062 (Claude A, 2026-10-26): Hisuian Sneasel's female front
 
 **Implemented:** forms can have a female front of their own. `convert_form_sprites.py` converts
@@ -6884,6 +6909,36 @@ my colour-pair palettes and corner clearing.
 1. Decision 49: Scatterbug/Spewpa to one form each.
 2. Decision 50: player-obtainable base forms only; drop the deliveryman's costume/cap Pikachu.
 3. Mega Zygarde's front; form backs and y offsets.
+
+## CB-0151 — 2026-10-26, 4:00 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: Soul-Heart (item 11).**
+- Each time another Pokémon faints, every Soul-Heart holder on the field gets Sp. Atk +1, in speed order: "{0}'s
+  Soul-Heart raised its Sp. Atk!".
+- The check is a loop at the end of `subscript_faint_mon`, so it runs for every faint.
+- The loop reads `BTLVAR_SOVEREIGN_SOUL_HEART_MON`, which saves and restores the side-effect battler, type and param.
+- Harness checks: Magearna's knockout and a foe's Explosion both show the message; a Garchomp control doesn't.
+- Also: merged main (Claude A's #161) into PR #167. Both conflicts were entries added at the same place in
+  `CLAUDE_STATUS.md` and the changelog, and both sides were kept.
+- CB-0150's time was wrong (it read 4:30 am); it is now 3:44 am.
+
+**Harness note:** `ninja -C build_test` with no target now also builds NitroSDK for the build machine, with gcc, and
+fails. Build `ninja -C build_test pokeplatinum.us.nds` instead. After a rebuild, make a new bedroom state with
+`tools/test/new_game.sh`.
+
+**Files modified:** `decomp/src/battle/battle_script.c`, `decomp/include/battle/battle_context.h`,
+`decomp/generated/battle_script_vars.txt`, `decomp/res/battle/scripts/subscripts/subscript_faint_mon.s`,
+`tools/engine/gen_abilities.py`, `docs/AbilityChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Shiny line-up dropped:** the patch is no longer needed. Claude A's CA-0066 already gives each of the 14 shinies a
+sprite of its own. Those are the shinies that PokeAPI and the gen5_9 pack draw 1–3 px away from the normal front, and
+all of them are above CA-0066's 10% mismatch threshold.
+
+**Next 3 steps:**
+1. Item 11's double-battle abilities (the Veils' ally half, Hospitality, Costar, Curious Medicine), with a doubles case
+   in the test harness.
+2. Ripen and Cheek Pouch for damage-halving Berries; Cheek Pouch for a Berry eaten with Bug Bite or Pluck.
+3. The rest of item 11's list, by how common the ability is on boss teams.
 
 ## CA-0067 (Claude A, 2026-10-26): decisions 49 and 50 implemented
 

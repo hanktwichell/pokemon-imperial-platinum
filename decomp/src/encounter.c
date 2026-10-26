@@ -1109,6 +1109,12 @@ void Encounter_SovereignTestNewVsWildForm(FieldTask *task, u16 species, u8 form,
             Pokemon_ResetMoveSlot(mon, i == 0 ? move : MOVE_NONE, i);
         }
     }
+
+    if (gSovereignTestWild.item != ITEM_NONE) {
+        u32 item = gSovereignTestWild.item;
+
+        Pokemon_SetValue(Party_GetPokemonBySlotIndex(dto->parties[BATTLER_ENEMY_1], 0), MON_DATA_HELD_ITEM, &item);
+    }
     StartEncounter(task, dto, EncEffects_CutInEffect(dto), EncEffects_BGM(dto), resultMaskPtr);
 }
 #endif

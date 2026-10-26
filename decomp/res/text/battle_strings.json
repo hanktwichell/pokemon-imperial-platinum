@@ -9532,6 +9532,48 @@
         "The foe’s {STRVAR_1 1, 0, 0}’s\n",
         "{STRVAR_1 5, 1, 0} charged it with power!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignHarvestedBerry_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} harvested one\n",
+        "{STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignHarvestedBerry_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} harvested\n",
+        "one {STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignHarvestedBerry_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} harvested\n",
+        "one {STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAbilityLetItMoveFirst_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\n",
+        "let it move first!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAbilityLetItMoveFirst_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}’s\n",
+        "{STRVAR_1 5, 1, 0} let it move first!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAbilityLetItMoveFirst_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}’s\n",
+        "{STRVAR_1 5, 1, 0} let it move first!"
+      ]
     }
   ]
 }

@@ -398,6 +398,7 @@ static BOOL SovereignTest_BattleTask(FieldTask *task)
             Encounter_SovereignTestNewVsWildForm(task, gSovereignTestWild.species, gSovereignTestWild.form, gSovereignTestWild.level, gSovereignTestWild.move, gSovereignTestWild.shiny, &sSovereignTestBattleResult);
             gSovereignTestWild.species = SPECIES_NONE;
             gSovereignTestWild.shiny = FALSE;
+            gSovereignTestWild.item = ITEM_NONE;
         } else {
             Encounter_NewVsSpeciesAtLevel(task, SPECIES_CHANSEY, 30, &sSovereignTestBattleResult, FALSE);
         }

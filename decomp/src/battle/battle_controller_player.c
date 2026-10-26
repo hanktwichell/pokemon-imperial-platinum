@@ -742,6 +742,8 @@ static void BattleControllerPlayer_CalcTurnOrder(BattleSystem *battleSys, Battle
     u32 battleType = BattleSystem_GetBattleType(battleSys);
     int order = 0;
 
+    battleCtx->sovereignQuickDraw = 0; // Sovereign (item 11): this turn's order sets it again (Quick Draw)
+
     if (battleType & (BATTLE_TYPE_SAFARI | BATTLE_TYPE_PAL_PARK)) {
         // The player always acts before a wild mon encountered in the Safari Zone or the Pal Park.
         for (battler = 0; battler < maxBattlers; battler++) {
@@ -3079,7 +3081,13 @@ static BOOL BattleControllerPlayer_TriggerImmunityAbilities(BattleSystem *battle
  */
 static BOOL BattleControllerPlayer_LoadQuickClawCheck(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    LOAD_SUBSEQ(subscript_check_quick_claw);
+    // Sovereign (item 11): Quick Draw's message instead, when it let the Pokemon move first.
+    if (battleCtx->sovereignQuickDraw & FlagIndex(battleCtx->attacker)) {
+        battleCtx->sovereignQuickDraw &= ~FlagIndex(battleCtx->attacker);
+        LOAD_SUBSEQ(subscript_sovereign_quick_draw);
+    } else {
+        LOAD_SUBSEQ(subscript_check_quick_claw);
+    }
 
     battleCtx->commandNext = battleCtx->command;
     battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;

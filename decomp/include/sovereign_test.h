@@ -114,6 +114,7 @@ struct SovereignTestWild {
     u8 level;
     u16 move; // when set, the only move it knows
     u8 shiny; // when set, it's shiny
+    u16 item; // when set, it holds this item
 };
 
 // In SovereignTestLead.moves: the slot is empty.

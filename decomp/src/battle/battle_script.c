@@ -9863,6 +9863,45 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_MIRROR_ARMOR_HOLDER: // Sovereign (item 11): BtlCmd_ChangeStatStage
         return &battleCtx->sovereignMirrorArmorHolder;
+    case BTLVAR_SOVEREIGN_SOUL_HEART_MON: { // Sovereign (item 11): read-only, for subscript_faint_mon. TRUE when another
+        // Soul-Heart holder on the field (in speed order) has yet to gain Sp. Atk for this faint: it becomes the
+        // side-effect target. The first read saves the side-effect battler, type and param; the last gives them back.
+        int maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
+        int i, battler;
+
+        battleCtx->sovereignTerrainTemp = FALSE;
+
+        for (i = 0; i < maxBattlers; i++) {
+            battler = battleCtx->monSpeedOrder[i];
+
+            if ((battleCtx->sovereignSoulHeartDone & FlagIndex(battler)) == FALSE
+                && battler != battleCtx->faintedMon
+                && battleCtx->battleMons[battler].curHP
+                && Battler_Ability(battleCtx, battler) == ABILITY_SOUL_HEART
+                && battleCtx->battleMons[battler].statBoosts[BATTLE_STAT_SP_ATTACK] < MAX_STAT_STAGE) {
+                break;
+            }
+        }
+
+        if (i < maxBattlers) {
+            if (battleCtx->sovereignSoulHeartDone == 0) {
+                battleCtx->sovereignSoulHeartSaved[0] = battleCtx->sideEffectMon;
+                battleCtx->sovereignSoulHeartSaved[1] = battleCtx->sideEffectType;
+                battleCtx->sovereignSoulHeartSaved[2] = battleCtx->sideEffectParam;
+            }
+
+            battleCtx->sovereignSoulHeartDone |= FlagIndex(battler);
+            battleCtx->sideEffectMon = battler;
+            battleCtx->sovereignTerrainTemp = TRUE;
+        } else if (battleCtx->sovereignSoulHeartDone) {
+            battleCtx->sovereignSoulHeartDone = 0;
+            battleCtx->sideEffectMon = battleCtx->sovereignSoulHeartSaved[0];
+            battleCtx->sideEffectType = battleCtx->sovereignSoulHeartSaved[1];
+            battleCtx->sideEffectParam = battleCtx->sovereignSoulHeartSaved[2];
+        }
+
+        return &battleCtx->sovereignTerrainTemp;
+    }
     case BTLVAR_SOVEREIGN_CHEEK_POUCH_MSG_TEMP: { // Sovereign (item 11): read-only, TRUE when the Pokemon about to use up
         // its Berry (msgBattlerTemp) has Cheek Pouch and HP to restore; then hpCalcTemp is a third of its max HP
         BattleMon *eater = &battleCtx->battleMons[battleCtx->msgBattlerTemp];

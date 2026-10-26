@@ -6,7 +6,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 
 | # | Ability | Introduced | Battle effect |
 |---|---|---|---|
-| 124 | Pickpocket | Gen 5 | not yet (no battle effect) |
+| 124 | Pickpocket | Gen 5 | yes: when it holds no item, it takes the item of a Pokémon that makes contact with it (by Thief's rules: a foe's takes nothing outside the Battle Frontier) |
 | 125 | Sheer Force | Gen 5 | yes: moves with a chance effect ×1.3, without the effect (or Life Orb recoil) |
 | 126 | Contrary | Gen 5 | yes: stat rises and drops are reversed |
 | 127 | Unnerve | Gen 5 | partly: foes can't eat Berries that heal, cure or trigger on a hit (damage-halving Berries not yet) |
@@ -21,7 +21,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 136 | Multiscale | Gen 5 | yes: damage halved at full HP |
 | 137 | Toxic Boost | Gen 5 | yes: Attack ×1.5 while poisoned |
 | 138 | Flare Boost | Gen 5 | yes: Sp. Atk ×1.5 while burned |
-| 139 | Harvest | Gen 5 | not yet (no battle effect) |
+| 139 | Harvest | Gen 5 | yes: at the end of a turn, regrows the Berry it used up, half the time (every time in harsh sunlight) |
 | 140 | Telepathy | Gen 5 | yes: avoids its partner's damaging moves |
 | 141 | Moody | Gen 5 | yes: each turn, one stat +2 and another −1 (no accuracy/evasion, as in Gen VIII+) |
 | 142 | Overcoat | Gen 5 | partly: no sandstorm damage (powder-move immunity not yet) |
@@ -52,7 +52,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 167 | Cheek Pouch | Gen 6 | partly: when it eats its own held Berry, it also restores a third of its max HP (not yet for a Berry taken by Bug Bite or Pluck, nor a damage-halving Berry) |
 | 168 | Protean | Gen 6 | yes: becomes its move's type, once per switch-in |
 | 169 | Fur Coat | Gen 6 | yes: Defense doubled |
-| 170 | Magician | Gen 6 | not yet (no battle effect) |
+| 170 | Magician | Gen 6 | yes: when it holds no item, its damaging move takes the target's item (by Thief's rules: a foe's takes nothing outside the Battle Frontier) |
 | 171 | Bulletproof | Gen 6 | yes: immune to ball and bomb moves |
 | 172 | Competitive | Gen 6 | yes: Sp. Atk +2 when a foe's move or Intimidate lowers its stats |
 | 173 | Strong Jaw | Gen 6 | yes: biting moves ×1.5 |
@@ -102,7 +102,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 217 | Battery | Gen 7 | yes: its ally's special moves ×1.3 |
 | 218 | Fluffy | Gen 7 | yes: contact damage halved, Fire damage doubled |
 | 219 | Dazzling | Gen 7 | yes: foes' priority moves can't hit its side |
-| 220 | Soul-Heart | Gen 7 | not yet (no battle effect) |
+| 220 | Soul-Heart | Gen 7 | yes: Sp. Atk +1 each time another Pokémon faints |
 | 221 | Tangling Hair | Gen 7 | yes: a contact move lowers the attacker's Speed 1 stage |
 | 222 | Receiver | Gen 7 | not yet (no battle effect) |
 | 223 | PowerOfAlchemy | Gen 7 | not yet (no battle effect) |
@@ -141,7 +141,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 256 | NeutralizingGas | Gen 8 | not yet (no battle effect) |
 | 257 | Pastel Veil | Gen 8 | partly: it can't be poisoned, and a poisoning is healed (its allies' protection not yet) |
 | 258 | Hunger Switch | Gen 8 | yes: switches between Full Belly and Hangry Mode at the end of each turn |
-| 259 | Quick Draw | Gen 8 | not yet (no battle effect) |
+| 259 | Quick Draw | Gen 8 | yes: 30% of the time it uses a damaging move, it moves first in its priority bracket |
 | 260 | Unseen Fist | Gen 8 | yes: contact moves go through protection |
 | 261 | CuriousMedicine | Gen 8 | not yet (no battle effect) |
 | 262 | Transistor | Gen 8 | yes: Electric moves ×1.3 |

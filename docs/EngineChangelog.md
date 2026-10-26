@@ -4,6 +4,58 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): Soul-Heart
+
+For players: Magearna's Soul-Heart now works.
+
+- **Soul-Heart:** each time another Pokémon faints, the holder's Sp. Atk rises 1 stage: "{0}'s Soul-Heart raised its
+  Sp. Atk!". This happens for every faint, whatever caused it, and also after the last foe faints.
+  - The check is at the end of `subscript_faint_mon`, which every faint goes through: knockouts, Explosion, Destiny
+    Bond, weather, entry hazards, Healing Wish.
+  - Reading `BTLVAR_SOVEREIGN_SOUL_HEART_MON` makes the next holder the side-effect target, in speed order. A holder
+    counts when it is on the field, isn't the Pokémon that fainted, has HP left and has Sp. Atk below +6.
+  - The first read saves the side-effect battler, type and param; the last read gives them back. The script that
+    called the faint subscript gets them unchanged.
+- `docs/AbilityChecklist.md`: 170 of the 191 new abilities have a battle effect, counting partial ones (169 before).
+
+**Verification:** `tools/test/check_battle_scripts.py` passes. Harness wild battles, with Magearna (Lv. 50) as the
+lead:
+- Its Flash Cannon knocks out a Lv. 5 Ninjask: "The wild NINJASK fainted!", then the stat-rise animation and
+  "MAGEARNA's Soul-Heart raised its Sp. Atk!".
+- A Lv. 100 Ninjask uses Explosion: the same message after it faints.
+- Garchomp knocking out the same Ninjask: no message.
+
+## Item 11 (effect fidelity): Harvest, Quick Draw, Magician and Pickpocket
+
+For players: Harvest, Quick Draw, Magician and Pickpocket now work.
+
+- **Harvest:** at the end of a turn, the holder grows back the Berry it used up, half the time (every time in harsh
+  sunlight): "{0} harvested one {1}!" (`BattleSystem_TriggerTurnEndAbility`, `subscript_sovereign_harvest`). The
+  turn-end item check comes right after, so a Sitrus Berry grown back at low HP is eaten at once.
+- **Quick Draw:** 30% of the time it uses a damaging move, the holder goes first in its priority bracket, with one
+  roll a turn as for Quick Claw: "{0}'s Quick Draw let it move first!" (`BattleSystem_CompareBattlerSpeed`,
+  `subscript_sovereign_quick_draw`, which runs in place of Quick Claw's check).
+- **Magician:** when the holder has no item, its damaging move takes the item of the Pokémon it hits. **Pickpocket:**
+  when the holder has no item, it takes the item of a Pokémon that makes contact with it. "{0} stole {1}'s {2}!"
+  (`subscript_sovereign_take_item`).
+  - Both follow Thief's rules (`Sovereign_CanTakeItem`, as `BtlCmd_TryStealItem`): not through Sticky Hold or
+    Multitype, not an item that sets a form, and a foe's Magician or Pickpocket takes nothing outside the Battle
+    Frontier, so the player never loses an item.
+- **Test build:** the test hook's wild Pokémon can hold an item (`gSovereignTestWild.item`).
+- `docs/AbilityChecklist.md`: 169 of the 191 new abilities have a battle effect, counting partial ones (165 before).
+
+**Verification:** `tools/test/check_battle_scripts.py` passes. Harness wild battles, with each message box and HP bar
+looked at:
+- **Harvest** (Tropius, Lv. 50, 159 HP, holding a Sitrus Berry), with the test's god mode off: the Berry heals it at
+  once, a Tackle takes it to 27, then "TROPIUS harvested one Sitrus Berry!" and the Berry heals it to 66.
+- **Quick Draw** (Galarian Slowbro, Lv. 50) against a Lv. 100 Ninjask: "SLOWBRO's Quick Draw let it move first!",
+  then Slowbro's move before Ninjask's, twice in ten turns.
+- **Magician** (Delphox) hits a wild Ninjask holding Leftovers: "DELPHOX stole the wild NINJASK's Leftovers!".
+  **Pickpocket** (Weavile) is hit by Tackle: "WEAVILE stole the wild NINJASK's Leftovers!"; by Swift, which makes no
+  contact, nothing.
+- **Test harness note:** god mode keeps the player's Pokémon's real HP while its HP bar still shows the hit. A Berry
+  test that needs real damage has to turn god mode off (Recycle's Sitrus Berry looked unused for that reason).
+
 ## FM — decisions 49 and 50: one Scatterbug, one Spewpa, base cosmetic forms for the player
 
 For players: Scatterbug and Spewpa have no patterns. Vivillon is always Meadow and the Flabébé line always Red Flower
