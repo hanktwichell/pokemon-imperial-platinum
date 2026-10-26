@@ -118,6 +118,7 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
     battleCtx->battleMons[battler].pressureAnnounced = FALSE;
     battleCtx->battleMons[battler].sovereignBoosterEnergy = FALSE;
     battleCtx->battleMons[battler].sovereignProteanUsed = FALSE;
+    battleCtx->battleMons[battler].sovereignBalloonAnnounced = FALSE; // Sovereign (item 11)
     battleCtx->battleMons[battler].sovereignEntryAnnounced = FALSE;
     battleCtx->battleMons[battler].sovereignHPFormChecked = FALSE;
     battleCtx->battleMons[battler].sovereignIceFaceHail = FALSE;
@@ -2728,6 +2729,12 @@ static BOOL BasicTypeMulApplies(BattleContext *battleCtx, int attacker, int defe
         result = FALSE;
     }
 
+    // Sovereign (item 11): Ring Target takes away its holder's type immunities.
+    if (Battler_HeldItem(battleCtx, defender) == ITEM_RING_TARGET
+        && sTypeMatchupMultipliers[chartEntry][2] == TYPE_MULTI_IMMUNE) {
+        result = FALSE;
+    }
+
     return result;
 }
 
@@ -2789,6 +2796,12 @@ int BattleSystem_ApplyTypeChart(BattleSystem *battleSys, BattleContext *battleCt
         && moveType == TYPE_GROUND
         && defenderItemEffect != HOLD_EFFECT_SPEED_DOWN_GROUNDED) {
         *moveStatusMask |= MOVE_STATUS_LEVITATED;
+    } else if (Battler_HeldItem(battleCtx, defender) == ITEM_AIR_BALLOON // Sovereign (item 11): "It doesn't affect {0}…"
+        && moveType == TYPE_GROUND
+        && (battleCtx->battleMons[defender].moveEffectsMask & MOVE_EFFECT_INGRAIN) == FALSE
+        && (battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) == FALSE
+        && battleCtx->sovereignSmackedDown[defender] == 0) {
+        *moveStatusMask |= MOVE_STATUS_INEFFECTIVE;
     } else if ((battleCtx->battleMons[defender].moveEffectsData.magnetRiseTurns || battleCtx->sovereignTelekinesis[defender]) // Sovereign (item 11)
         && (battleCtx->battleMons[defender].moveEffectsMask & MOVE_EFFECT_INGRAIN) == FALSE
         && moveType == TYPE_GROUND
@@ -3463,6 +3476,7 @@ BOOL Battler_IsTrappedMsg(BattleSystem *battleSys, BattleContext *battleCtx, int
                 && Battler_Ability(battleCtx, battler) != ABILITY_EELEVATE // Sovereign (item 11)
                 && battleCtx->battleMons[battler].moveEffectsData.magnetRiseTurns == 0
                 && battleCtx->sovereignTelekinesis[battler] == 0 // Sovereign (item 11)
+                && Battler_HeldItem(battleCtx, battler) != ITEM_AIR_BALLOON // Sovereign (item 11)
                 && MON_IS_NOT_TYPE(battler, TYPE_FLYING)) {
                 if (msgOut == NULL) {
                     return TRUE;
@@ -4724,6 +4738,17 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                         result = SWITCH_IN_CHECK_RESULT_BREAK;
                         break;
                     }
+                }
+
+                // An Air Balloon is announced as its holder enters the battle.
+                if (battleCtx->battleMons[battler].curHP
+                    && Battler_HeldItem(battleCtx, battler) == ITEM_AIR_BALLOON
+                    && battleCtx->battleMons[battler].sovereignBalloonAnnounced == FALSE) {
+                    battleCtx->battleMons[battler].sovereignBalloonAnnounced = TRUE;
+                    battleCtx->msgBattlerTemp = battler;
+                    subscript = subscript_sovereign_air_balloon;
+                    result = SWITCH_IN_CHECK_RESULT_BREAK;
+                    break;
                 }
 
                 // Screen Cleaner removes Reflect, Light Screen and Aurora Veil from both sides on entry.
@@ -6801,6 +6826,15 @@ BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *b
     int itemPower = Battler_HeldItemPower(battleCtx, battleCtx->defender, 0);
     int side = BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker);
 
+    // Sovereign (item 11): an Air Balloon pops when a damaging move hits its holder.
+    if (Battler_HeldItem(battleCtx, battleCtx->defender) == ITEM_AIR_BALLOON
+        && battleCtx->attacker != battleCtx->defender
+        && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)) {
+        battleCtx->msgBattlerTemp = battleCtx->defender;
+        *subscript = subscript_sovereign_air_balloon_popped;
+        return TRUE;
+    }
+
     if (Sovereign_ItemStatUpOnHit(battleCtx)) { // Sovereign (item 11)
         *subscript = subscript_sovereign_item_stat_up;
         return TRUE;
@@ -6924,6 +6958,7 @@ static inline BOOL BattlerIsGrounded(BattleContext *battleCtx, int battler)
 {
     return (Battler_Ability(battleCtx, battler) != ABILITY_LEVITATE
                && Battler_Ability(battleCtx, battler) != ABILITY_EELEVATE // Sovereign (item 11)
+               && Battler_HeldItem(battleCtx, battler) != ITEM_AIR_BALLOON // Sovereign (item 11)
                && battleCtx->battleMons[battler].moveEffectsData.magnetRiseTurns == 0
                && battleCtx->sovereignTelekinesis[battler] == 0 // Sovereign (item 11)
                && MON_IS_NOT_TYPE(battler, TYPE_FLYING))
@@ -8290,6 +8325,39 @@ BOOL Move_IsBallOrBomb(int move)
     return FALSE;
 }
 
+// Sovereign (item 11): the type a Gem powers up, or -1 for any other item.
+static const u16 sGemTypes[][2] = {
+    { ITEM_NORMAL_GEM, TYPE_NORMAL },
+    { ITEM_FIRE_GEM, TYPE_FIRE },
+    { ITEM_WATER_GEM, TYPE_WATER },
+    { ITEM_ELECTRIC_GEM, TYPE_ELECTRIC },
+    { ITEM_GRASS_GEM, TYPE_GRASS },
+    { ITEM_ICE_GEM, TYPE_ICE },
+    { ITEM_FIGHTING_GEM, TYPE_FIGHTING },
+    { ITEM_POISON_GEM, TYPE_POISON },
+    { ITEM_GROUND_GEM, TYPE_GROUND },
+    { ITEM_FLYING_GEM, TYPE_FLYING },
+    { ITEM_PSYCHIC_GEM, TYPE_PSYCHIC },
+    { ITEM_BUG_GEM, TYPE_BUG },
+    { ITEM_ROCK_GEM, TYPE_ROCK },
+    { ITEM_GHOST_GEM, TYPE_GHOST },
+    { ITEM_DRAGON_GEM, TYPE_DRAGON },
+    { ITEM_DARK_GEM, TYPE_DARK },
+    { ITEM_STEEL_GEM, TYPE_STEEL },
+    { ITEM_FAIRY_GEM, TYPE_FAIRY },
+};
+
+int Item_SovereignGemType(u16 item)
+{
+    for (int i = 0; i < NELEMS(sGemTypes); i++) {
+        if (sGemTypes[i][0] == item) {
+            return sGemTypes[i][1];
+        }
+    }
+
+    return -1;
+}
+
 // Sovereign (item 11): powder moves, which don't affect Grass types or Overcoat (Gen VI+).
 static const u16 sPowderMoves[] = {
     MOVE_COTTON_SPORE, MOVE_MAGIC_POWDER, MOVE_POISON_POWDER, MOVE_POWDER, MOVE_RAGE_POWDER, MOVE_SLEEP_POWDER,
@@ -8905,6 +8973,15 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
     if (defenderParams.heldItemEffect == HOLD_EFFECT_DITTO_DEF_UP
         && defenderParams.species == SPECIES_DITTO) {
         defenseStat *= 2;
+    }
+    // Sovereign (item 11): a Gem of the move's type powers up the attacker's damaging move ×1.3, and is used up as the
+    // hit lands (BTLVAR_SOVEREIGN_GEM_USED, subscript_update_hp), so only a multi-hit move's first hit.
+    if (Item_SovereignGemType(Battler_HeldItem(battleCtx, attacker)) == moveType
+        && attacker == battleCtx->attacker
+        && move == battleCtx->moveCur
+        && MOVE_DATA(move).power > 1) {
+        movePower = movePower * 13 / 10;
+        battleCtx->sovereignGemBoost = attacker + 1;
     }
     // Sovereign (item 11): Eviolite raises Defense and Sp. Def by half for a Pokemon that can still evolve, Assault Vest
     // Sp. Def by half.

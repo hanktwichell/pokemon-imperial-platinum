@@ -15,9 +15,9 @@ The new items have no hold effect constant (`HOLD_EFFECT_NONE`). The battle code
 | Eviolite | yes: Defense and Sp. Def ×1.5 while the holder can still evolve (`Pokemon_SovereignCanEvolve`; regional forms have their own evolutions, Megas and other battle forms never evolve) |
 | Float Stone | yes: the holder's weight is halved (Low Kick, Grass Knot, Heavy Slam, Heat Crash), on top of Light Metal |
 | Rocky Helmet | yes: an attacker that makes contact loses 1/6 of its max HP, each hit, even as the holder faints (not through a Substitute, Magic Guard or Protective Pads) |
-| Air Balloon | not yet |
+| Air Balloon | yes: Ground moves don't affect the holder ("It doesn't affect {0}…"), and it isn't grounded (terrain, Spikes, Toxic Spikes, Sticky Web). Shown on entry; pops when a damaging move hits the holder. Gravity, Ingrain and Smack Down ground it as they ground Magnet Rise |
 | Red Card | not yet |
-| Ring Target | not yet |
+| Ring Target | yes: the holder's type immunities don't apply (a Ghost type takes Normal and Fighting moves, a Flying type Ground moves...); its Abilities still do (Levitate, Volt Absorb...) |
 | Binding Band | yes: a binding move the holder used costs its target twice as much at the end of each turn (1/8 of its max HP; Sovereign keeps Platinum's 1/16) |
 | Absorb Bulb | yes: Sp. Atk +1 when a Water move hits the holder, used up |
 | Cell Battery | yes: Attack +1 when an Electric move hits the holder, used up |
@@ -47,4 +47,4 @@ The new items have no hold effect constant (`HOLD_EFFECT_NONE`). The battle code
 | Fairy Feather | yes: Fairy moves ×1.2 |
 | Pixie Plate | yes: Fairy moves ×1.2; Arceus becomes Fairy type |
 | Pass Orb | no battle effect (none in the main games either) |
-| The 18 Gems | not yet |
+| The 18 Gems | yes: the holder's first damaging move of the Gem's type is ×1.3 (Gen VI+), and the Gem is used up as it hits ("The Normal Gem strengthened Tackle's power!", after "used"). Status moves and fixed-damage moves don't use it |

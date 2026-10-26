@@ -7052,3 +7052,35 @@ and its three registrations, `tools/engine/gen_abilities.py`, `docs/AbilityCheck
 2. Held items that switch Pokémon (Eject Button, Eject Pack, Red Card). Also a two-Pokémon case in the harness, which
    would test Heavy-Duty Boots and the Ghost-type escape too.
 3. Item 11's double-battle abilities, with a doubles case in the harness (Healer too).
+
+## CB-0155 — 2026-10-26, 5:21 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Merged:** PR #171, held items part 2.
+
+**Implemented: held items, part 3.**
+- **The 18 Gems:** ×1.3 on the holder's first damaging move of the Gem's type. The Gem is used up, with its message
+  after "used" and before the HP drop (shown from `subscript_update_hp`).
+- **Air Balloon:**
+  - The entry message, Ground immunity ("It doesn't affect…"), and it pops when a damaging move hits the holder.
+  - The holder isn't grounded for terrain, Arena Trap or the entry hazards.
+  - Spikes and Toxic Spikes now use `Sovereign_IsGrounded`, as Sticky Web already did.
+- **Ring Target:** the holder loses its type immunities.
+- Harness battles with controls: Gem 106 vs 82, the balloon's entry and Earthquake immunity, the balloon popping,
+  Ring Target vs Gengar.
+- Not run: the balloon against hazards (the harness player has only one Pokémon).
+
+**Files modified:**
+- `decomp/src/battle/battle_lib.c`, `decomp/src/battle/battle_script.c`, `decomp/src/battle/battle_controller_player.c`.
+- `decomp/include/battle/battle_context.h`, `decomp/include/battle/battle_mon.h`, `decomp/include/battle/battle_lib.h`.
+- `decomp/generated/battle_script_vars.txt`, `decomp/res/text/battle_strings.json`.
+- `decomp/res/battle/scripts/subscripts/subscript_update_hp.s`, `subscript_hazards_check.s`.
+- New: `subscript_sovereign_gem.s`, `subscript_sovereign_air_balloon.s` and `subscript_sovereign_air_balloon_popped.s`,
+  each with its three registrations.
+- `docs/HeldItemChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Held items, part 4: Room Service, Adrenaline Orb, Mirror Herb, Ability Shield, Utility Umbrella.
+2. Held items that switch Pokémon: Eject Button, Eject Pack, Red Card. Also a switching case in the harness
+   (`gSovereignTestPartner` gives a second Pokémon), to test Heavy-Duty Boots, the Air Balloon on hazards and the
+   Ghost-type escape too.
+3. Item 11's double-battle abilities, with a doubles case in the harness (Healer too).

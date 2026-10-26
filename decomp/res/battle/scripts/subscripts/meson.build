@@ -394,4 +394,7 @@ subscript_files = files(
     'subscript_sovereign_take_item.s',
     'subscript_sovereign_rocky_helmet.s',
     'subscript_sovereign_item_stat_up.s',
+    'subscript_sovereign_gem.s',
+    'subscript_sovereign_air_balloon_popped.s',
+    'subscript_sovereign_air_balloon.s',
 )
