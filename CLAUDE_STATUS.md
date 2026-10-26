@@ -6573,3 +6573,20 @@ slot check pass.
 1. Mega Evolve in a test battle and check the new front, its shiny and its height (y offset is the species').
 2. Mega backs (44 in the DPPt pack; PokeAPI has the rest) with back palettes of their own.
 3. The other forms' own sprites (regional, battle, cosmetic).
+
+## CA-0061 (Claude A, 2026-10-26): every form's own front, and the female fronts
+
+**For Claude B:** the form fronts now cover 368 forms (every `sSovereignForms` entry whose PokeAPI front differs from
+the species'), not only Megas: `sSovereignFormSprite` is `u16` and `BuildPokemonSpriteTemplate` applies it after the
+species switch, from the unsanitized form. `pl_pokegra.narc` has 9,312 files. Unfezant, Frillish, Jellicent and Pyroar
+have PokeAPI female fronts (`female_front.png`, front palette shared with the male).
+
+**Files modified:** `decomp/src/pokemon.c`, `tools/sprites/convert_form_sprites.py`,
+`tools/sprites/convert_battle_sprites.py`, `decomp/res/pokemon/sovereign_form_sprites/`,
+`decomp/include/data/sovereign_form_sprites.h`, `decomp/res/pokemon/{unfezant,frillish,jellicent,pyroar}/`,
+`assets/sprites/packs/pokeapi_fronts/`, `CITATIONS.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Check a few forms in battle (a Mega, an Alolan form, Fairy Arceus, a female Pyroar).
+2. Hisuian Sneasel's female front (forms need a female image).
+3. Form backs and the y offsets of forms.

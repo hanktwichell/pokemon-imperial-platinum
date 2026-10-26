@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Give Sovereign's Mega and Primal forms front sprites of their own (PokeAPI's front and shiny front).
+"""Give Sovereign's forms front sprites of their own (PokeAPI's front and shiny front).
 
-Reads assets/sprites/packs/pokeapi_fronts/forms/<stem>-<form dir>/{front,shiny_front}.png for every Mega, Primal and
-Mega Rayquaza entry of sSovereignForms (include/data/sovereign_forms.h, with the folder names from
+Reads assets/sprites/packs/pokeapi_fronts/forms/<stem>-<form dir>/{front,shiny_front}.png for every entry of
+sSovereignForms that has one (Megas, Primals, regional, battle, item, Totem, cosmetic and female forms) (include/data/sovereign_forms.h, with the folder names from
 tools/dataproc/src/sovereign_forms.inc, in the same order), converts each to DS format the way
 convert_battle_sprites.py does (80x80, its own 15-colour palette, the shiny palette taken pixel by pixel), and writes:
 
@@ -28,7 +28,6 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 DECOMP = os.path.join(ROOT, "decomp")
 SRC = os.path.join(ROOT, "assets", "sprites", "packs", "pokeapi_fronts", "forms")
 OUT = os.path.join(DECOMP, "res", "pokemon", "sovereign_form_sprites")
-KINDS = ("SOVEREIGN_FORM_MEGA", "SOVEREIGN_FORM_PRIMAL", "SOVEREIGN_FORM_MEGA_BY_MOVE")
 KEY = os.path.join(DECOMP, "res", "pokemon", "venusaur", "male_front.png.key")  # any key file works (a scramble seed)
 
 
@@ -48,11 +47,10 @@ def main():
     os.makedirs(OUT)
     table, order, report = {}, [], []
     for i, stem, d, kind, name in forms():
-        if kind not in KINDS:
-            continue
         src = os.path.join(SRC, f"{stem}-{d}")
         if not os.path.exists(os.path.join(src, "front.png")):
-            report.append(f"{name}: no PokeAPI front, keeps the base sprite")
+            if kind.startswith("SOVEREIGN_FORM_MEGA"):
+                report.append(f"{name}: no PokeAPI front, keeps the base sprite")
             continue
         im = Image.open(os.path.join(src, "front.png")).convert("RGBA")
         box, scale = window(im)
@@ -89,7 +87,7 @@ def main():
                 "#include \"constants/sovereign_forms.h\"\n\n"
                 "// For each sSovereignForms entry: its front sprite's number in pl_pokegra's form sprites, plus 1; 0 when\n"
                 "// the form uses its base species' sprite.\n"
-                "static const u8 sSovereignFormSprite[SOVEREIGN_FORM_COUNT] = {\n")
+                "static const u16 sSovereignFormSprite[SOVEREIGN_FORM_COUNT] = {\n")
         for i in range(n):
             if i in table:
                 f.write(f"    [{i}] = {table[i]},\n")

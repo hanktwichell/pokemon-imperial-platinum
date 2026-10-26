@@ -160,7 +160,7 @@ def main():
                for k in ("front", "back", "shiny_front", "shiny_back") if os.path.exists(os.path.join(src, f"{k}.png"))}
         if fronts:
             fsrc = os.path.join(fronts, os.path.basename(src))
-            for k in ("front", "shiny_front"):
+            for k in ("front", "shiny_front", "female_front", "female_shiny_front"):
                 if os.path.exists(os.path.join(fsrc, f"{k}.png")):
                     ims[k] = Image.open(os.path.join(fsrc, f"{k}.png")).convert("RGBA")
         if "front" not in ims or "back" not in ims:
@@ -175,14 +175,24 @@ def main():
                 frames[f"shiny_{face}"] = cut(sh, box, scale)
             if scale < 1.0:
                 notes.append(f"{face} scaled to {round(scale * 100)}%")
+        # A female front of its own (a visible gender difference) shares the front palette with the male one.
+        if "female_front" in ims:
+            box, scale = window(ims["female_front"])
+            frames["female_front"] = cut(ims["female_front"], box, scale)
+            sh = ims.get("female_shiny_front")
+            if sh is not None and sh.size == ims["female_front"].size:
+                frames["female_shiny_front"] = cut(sh, box, scale)
         # Front and back each get their own 15 colours (back_*.pal; make_pl_pokegra.py packs them separately).
         pals, spals, indexed, ncol = {}, {}, {}, {}
         for face in ("front", "back"):
-            pals[face], ncol[face] = build_palette([frames[face]])
-            indexed[face] = index_image(frames[face], pals[face])
-            sh = frames.get(f"shiny_{face}")
-            spals[face] = shiny_palette([indexed[face]], [sh], pals[face]) if sh is not None else list(pals[face])
-            if sh is None:
+            group = [face] + (["female_front"] if face == "front" and "female_front" in frames else [])
+            pals[face], ncol[face] = build_palette([frames[g] for g in group])
+            for g in group:
+                indexed[g] = index_image(frames[g], pals[face])
+            pairs = [(indexed[g], frames[k]) for g, k in ((face, f"shiny_{face}"), ("female_front", "female_shiny_front"))
+                     if g in group and k in frames]
+            spals[face] = shiny_palette([a for a, _ in pairs], [b for _, b in pairs], pals[face]) if pairs else list(pals[face])
+            if f"shiny_{face}" not in frames:
                 notes.append(f"no shiny {face}")
         # Shiny sprites whose shape doesn't match the normal one (a different pose or crop).
         for face in ("front", "back"):
@@ -196,8 +206,11 @@ def main():
                 notes.append(f"shiny {face} doesn't line up ({round(off * 100)}% of pixels)")
         for face in ("front", "back"):
             img = two_frames(indexed[face], pals[face])
-            for gender in ("male", "female"):
-                img.save(os.path.join(dst, f"{gender}_{face}.png"))
+            img.save(os.path.join(dst, f"male_{face}.png"))
+            if face == "front" and "female_front" in indexed:
+                two_frames(indexed["female_front"], pals[face]).save(os.path.join(dst, "female_front.png"))
+            else:
+                img.save(os.path.join(dst, f"female_{face}.png"))
         write_pal(os.path.join(dst, "normal.pal"), (0, 0, 0), pals["front"])
         write_pal(os.path.join(dst, "shiny.pal"), (0, 0, 0), spals["front"])
         write_pal(os.path.join(dst, "back_normal.pal"), (0, 0, 0), pals["back"])
@@ -206,7 +219,8 @@ def main():
         sd = json.load(open(sd_path, encoding="utf-8"))
         for face in ("front", "back"):
             off = bottom_blank(indexed[face])
-            sd[face]["y_offset"] = {"female": off, "male": off}
+            female = bottom_blank(indexed["female_front"]) if face == "front" and "female_front" in indexed else off
+            sd[face]["y_offset"] = {"female": female, "male": off}
         sd["front"]["addl_y_offset"] = 16 if floats(dex, rows) else 0
         width = indexed["front"].getbbox()
         width = (width[2] - width[0]) if width else 0

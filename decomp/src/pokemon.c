@@ -2907,11 +2907,11 @@ void BoxPokemon_BuildSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, BoxPo
 // Sovereign: pl_pokegra holds six files for each species from SPECIES_NONE to the last one (the Egg and Bad Egg have
 // none), then two back palettes (normal, shiny) for each species in the same order.
 #define POKEGRA_BACK_PALETTE_BASE ((NATIONAL_DEX_COUNT + 1) * 6)
-// Then three files (front image, normal and shiny palette) for each Mega and Primal form with a front of its own.
+// Then three files (front image, normal and shiny palette) for each Sovereign form with a front of its own.
 #define POKEGRA_FORM_SPRITE_BASE  (POKEGRA_BACK_PALETTE_BASE + (NATIONAL_DEX_COUNT + 1) * 2)
 
 // Sovereign: the number (plus 1) of a form's own front sprite in pl_pokegra, or 0 if it uses its species' sprite.
-static u8 SovereignForm_FrontSprite(u16 species, u8 form)
+static u16 SovereignForm_FrontSprite(u16 species, u8 form)
 {
     if (form == 0) {
         return 0;
@@ -2931,6 +2931,7 @@ void BuildPokemonSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 speci
     spriteTemplate->spindaSpots = 0;
     spriteTemplate->dummy = 0;
     spriteTemplate->personality = 0;
+    u16 formSprite = SovereignForm_FrontSprite(species, form);
     form = Pokemon_SanitizeFormId(species, form);
 
     switch (species) {
@@ -3029,18 +3030,19 @@ void BuildPokemonSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 speci
             spriteTemplate->palette = species * 6 + 4 + shiny;
         }
 
-        // Sovereign: a Mega or Primal form with a front of its own (its back is still the species').
-        u8 formSprite = SovereignForm_FrontSprite(species, form);
-        if (formSprite != 0 && face == FACE_FRONT) {
-            spriteTemplate->character = POKEGRA_FORM_SPRITE_BASE + (formSprite - 1) * 3;
-            spriteTemplate->palette = POKEGRA_FORM_SPRITE_BASE + (formSprite - 1) * 3 + 1 + shiny;
-        }
-
         if (species == SPECIES_SPINDA && face == FACE_FRONT) {
             spriteTemplate->spindaSpots = SPECIES_SPINDA;
             spriteTemplate->dummy = 0;
             spriteTemplate->personality = personality;
         }
+    }
+
+    // Sovereign: a form with a front of its own (convert_form_sprites.py); its back is still the species'.
+    if (formSprite != 0 && face == FACE_FRONT) {
+        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_POKEGRA;
+        spriteTemplate->character = POKEGRA_FORM_SPRITE_BASE + (formSprite - 1) * 3;
+        spriteTemplate->palette = POKEGRA_FORM_SPRITE_BASE + (formSprite - 1) * 3 + 1 + shiny;
+        spriteTemplate->spindaSpots = 0;
     }
 }
 
