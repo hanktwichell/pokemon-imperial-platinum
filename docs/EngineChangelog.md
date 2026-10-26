@@ -4,9 +4,9 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
-## Item 11 (effect fidelity): Harvest and Quick Draw
+## Item 11 (effect fidelity): Harvest, Quick Draw, Magician and Pickpocket
 
-For players: Harvest and Quick Draw now work.
+For players: Harvest, Quick Draw, Magician and Pickpocket now work.
 
 - **Harvest:** at the end of a turn, the holder grows back the Berry it used up, half the time (every time in harsh
   sunlight): "{0} harvested one {1}!" (`BattleSystem_TriggerTurnEndAbility`, `subscript_sovereign_harvest`). The
@@ -14,7 +14,14 @@ For players: Harvest and Quick Draw now work.
 - **Quick Draw:** 30% of the time it uses a damaging move, the holder goes first in its priority bracket, with one
   roll a turn as for Quick Claw: "{0}'s Quick Draw let it move first!" (`BattleSystem_CompareBattlerSpeed`,
   `subscript_sovereign_quick_draw`, which runs in place of Quick Claw's check).
-- `docs/AbilityChecklist.md`: 167 of the 191 new abilities have a battle effect, counting partial ones (165 before).
+- **Magician:** when the holder has no item, its damaging move takes the item of the Pokémon it hits. **Pickpocket:**
+  when the holder has no item, it takes the item of a Pokémon that makes contact with it. "{0} stole {1}'s {2}!"
+  (`subscript_sovereign_take_item`).
+  - Both follow Thief's rules (`Sovereign_CanTakeItem`, as `BtlCmd_TryStealItem`): not through Sticky Hold or
+    Multitype, not an item that sets a form, and a foe's Magician or Pickpocket takes nothing outside the Battle
+    Frontier, so the player never loses an item.
+- **Test build:** the test hook's wild Pokémon can hold an item (`gSovereignTestWild.item`).
+- `docs/AbilityChecklist.md`: 169 of the 191 new abilities have a battle effect, counting partial ones (165 before).
 
 **Verification:** `tools/test/check_battle_scripts.py` passes. Harness wild battles, with each message box and HP bar
 looked at:
@@ -22,6 +29,9 @@ looked at:
   once, a Tackle takes it to 27, then "TROPIUS harvested one Sitrus Berry!" and the Berry heals it to 66.
 - **Quick Draw** (Galarian Slowbro, Lv. 50) against a Lv. 100 Ninjask: "SLOWBRO's Quick Draw let it move first!",
   then Slowbro's move before Ninjask's, twice in ten turns.
+- **Magician** (Delphox) hits a wild Ninjask holding Leftovers: "DELPHOX stole the wild NINJASK's Leftovers!".
+  **Pickpocket** (Weavile) is hit by Tackle: "WEAVILE stole the wild NINJASK's Leftovers!"; by Swift, which makes no
+  contact, nothing.
 - **Test harness note:** god mode keeps the player's Pokémon's real HP while its HP bar still shows the hit. A Berry
   test that needs real damage has to turn god mode off (Recycle's Sitrus Berry looked unused for that reason).
 
