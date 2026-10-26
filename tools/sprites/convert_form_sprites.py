@@ -45,35 +45,44 @@ def main():
     if os.path.isdir(OUT):
         shutil.rmtree(OUT)
     os.makedirs(OUT)
-    table, order, report = {}, [], []
-    for i, stem, d, kind, name in forms():
-        src = os.path.join(SRC, f"{stem}-{d}")
-        if not os.path.exists(os.path.join(src, "front.png")):
-            if kind.startswith("SOVEREIGN_FORM_MEGA"):
-                report.append(f"{name}: no PokeAPI front, keeps the base sprite")
-            continue
-        im = Image.open(os.path.join(src, "front.png")).convert("RGBA")
+    table, female, order, report = {}, {}, [], []
+
+    def convert(front_png, shiny_png, folder, name):
+        """Convert one front (and its shiny) into sovereign_form_sprites/<number>-<folder>; its number + 1."""
+        im = Image.open(front_png).convert("RGBA")
         box, scale = window(im)
         front = cut(im, box, scale)
         pal, ncol = build_palette([front])
         indexed = index_image(front, pal)
         spal = list(pal)
-        if os.path.exists(os.path.join(src, "shiny_front.png")):
-            sh = Image.open(os.path.join(src, "shiny_front.png")).convert("RGBA")
+        if os.path.exists(shiny_png):
+            sh = Image.open(shiny_png).convert("RGBA")
             if sh.size == im.size:
                 spal = shiny_palette([indexed], [cut(sh, box, scale)], pal)
-        folder = f"{len(order):03}-{stem}-{d}"
+        folder = f"{len(order):03}-{folder}"
         out = os.path.join(OUT, folder)
         os.makedirs(out)
         two_frames(indexed, pal).save(os.path.join(out, "front.png"))
         shutil.copyfile(KEY, os.path.join(out, "front.png.key"))
         write_pal(os.path.join(out, "normal.pal"), (0, 0, 0), pal)
         write_pal(os.path.join(out, "shiny.pal"), (0, 0, 0), spal)
-        table[i] = len(order) + 1
         order.append(folder)
         notes = [f"{ncol} colours" if ncol > 15 else "", f"scaled to {round(scale * 100)}%" if scale < 1 else ""]
         if any(notes):
             report.append(f"{name}: " + ", ".join(n for n in notes if n))
+        return len(order)
+
+    for i, stem, d, kind, name in forms():
+        src = os.path.join(SRC, f"{stem}-{d}")
+        if not os.path.exists(os.path.join(src, "front.png")):
+            if kind.startswith("SOVEREIGN_FORM_MEGA"):
+                report.append(f"{name}: no PokeAPI front, keeps the base sprite")
+            continue
+        table[i] = convert(os.path.join(src, "front.png"), os.path.join(src, "shiny_front.png"), f"{stem}-{d}", name)
+        # A female front of its own (a visible gender difference in this form, e.g. Hisuian Sneasel).
+        if os.path.exists(os.path.join(src, "female_front.png")):
+            female[i] = convert(os.path.join(src, "female_front.png"), os.path.join(src, "female_shiny_front.png"),
+                                f"{stem}-{d}-female", name + " (female)")
     with open(os.path.join(OUT, "order.txt"), "w") as f:
         f.write("".join(o + "\n" for o in order))
     with open(os.path.join(OUT, "meson.build"), "w") as f:
@@ -91,6 +100,11 @@ def main():
         for i in range(n):
             if i in table:
                 f.write(f"    [{i}] = {table[i]},\n")
+        f.write("};\n\n// The same for a female's front, where the form looks different as a female; 0 means the same as the male.\n"
+                "static const u16 sSovereignFormFemaleSprite[SOVEREIGN_FORM_COUNT] = {\n")
+        for i in range(n):
+            if i in female:
+                f.write(f"    [{i}] = {female[i]},\n")
         f.write("};\n\n#define SOVEREIGN_FORM_SPRITE_COUNT " + str(len(order)) + "\n\n#endif\n")
     print(f"{len(order)} form sprites")
     for r in report:

@@ -6590,3 +6590,21 @@ have PokeAPI female fronts (`female_front.png`, front palette shared with the ma
 1. Check a few forms in battle (a Mega, an Alolan form, Fairy Arceus, a female Pyroar).
 2. Hisuian Sneasel's female front (forms need a female image).
 3. Form backs and the y offsets of forms.
+
+## CA-0062 (Claude A, 2026-10-26): Hisuian Sneasel's female front
+
+**Implemented:** forms can have a female front of their own. `convert_form_sprites.py` converts
+`pokeapi_fronts/forms/<form>/female_front.png` (and its shiny) as an extra form sprite and writes
+`sSovereignFormFemaleSprite`; `SovereignForm_FrontSprite` (`src/pokemon.c`) returns it for a female. Hisuian Sneasel
+is the only one. `pl_pokegra.narc` has 9,315 files; release build, boot smoke test and a slot check pass, and all 368
+forms still map to their own sprite.
+
+**Files modified:** `decomp/src/pokemon.c`, `tools/sprites/convert_form_sprites.py`,
+`decomp/res/pokemon/sovereign_form_sprites/`, `decomp/include/data/sovereign_form_sprites.h`,
+`assets/sprites/packs/pokeapi_fronts/forms/sneasel-hisui/`, `CITATIONS.md`, `docs/EngineChangelog.md`,
+`CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Check a female Hisuian Sneasel and a few forms in battle.
+2. Form backs (Megas first) and the forms' y offsets.
+3. Redo the added party/box icons (decision 45) as art arrives.

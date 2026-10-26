@@ -2911,7 +2911,8 @@ void BoxPokemon_BuildSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, BoxPo
 #define POKEGRA_FORM_SPRITE_BASE  (POKEGRA_BACK_PALETTE_BASE + (NATIONAL_DEX_COUNT + 1) * 2)
 
 // Sovereign: the number (plus 1) of a form's own front sprite in pl_pokegra, or 0 if it uses its species' sprite.
-static u16 SovereignForm_FrontSprite(u16 species, u8 form)
+// A female gets the form's female front where it has one (Hisuian Sneasel).
+static u16 SovereignForm_FrontSprite(u16 species, u8 form, u8 gender)
 {
     if (form == 0) {
         return 0;
@@ -2919,6 +2920,10 @@ static u16 SovereignForm_FrontSprite(u16 species, u8 form)
 
     for (int i = 0; i < SOVEREIGN_FORM_COUNT; i++) {
         if (sSovereignForms[i].species == species && sSovereignForms[i].form == form) {
+            if (gender == GENDER_FEMALE && sSovereignFormFemaleSprite[i] != 0) {
+                return sSovereignFormFemaleSprite[i];
+            }
+
             return sSovereignFormSprite[i];
         }
     }
@@ -2931,7 +2936,7 @@ void BuildPokemonSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 speci
     spriteTemplate->spindaSpots = 0;
     spriteTemplate->dummy = 0;
     spriteTemplate->personality = 0;
-    u16 formSprite = SovereignForm_FrontSprite(species, form);
+    u16 formSprite = SovereignForm_FrontSprite(species, form, gender);
     form = Pokemon_SanitizeFormId(species, form);
 
     switch (species) {

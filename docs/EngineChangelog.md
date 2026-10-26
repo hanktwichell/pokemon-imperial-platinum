@@ -34,8 +34,9 @@ Zygarde's sprite (PokeAPI has none).
 - Most Megas are bigger than 80×80 and were scaled (83–99%); 39 had more than 15 colours (the Legends: Z-A Megas
   most). The form's y offset is still the species' (`sprite_data.json`), so a few may sit a little high or low.
 - The lookup runs after the species' own cases and before the form is sanitized, so Fairy Arceus and the like are
-  covered too. Hisuian Sneasel's female front isn't done (forms have no female image yet).
-- Verification: release build and boot smoke test pass; the archive has 9,312 files and every form's front and
+  covered too. A form can also have a female front (`sSovereignFormFemaleSprite`; Hisuian Sneasel), used for a
+  female Pokémon in that form.
+- Verification: release build and boot smoke test pass; the archive has 9,315 files and every form's front and
   palettes sit in the slots the game reads. Not yet seen in a battle.
 
 ## E12 — front and back sprites get palettes of their own
