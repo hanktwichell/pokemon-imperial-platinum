@@ -6790,3 +6790,25 @@ open questions. The shiny line-up patch is ready for when #161 is merged.
 2. Item 11's double-battle abilities (the Veils' ally half, Hospitality, Costar, Curious Medicine), with a doubles case
    in the test harness.
 3. Soul-Heart; Ripen and Cheek Pouch for damage-halving Berries and Bug Bite/Pluck.
+
+
+## CB-0150 — 2026-10-26, 4:30 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: Harvest and Quick Draw (item 11).** PR #166 (CB-0149, Cheek Pouch and Ripen) is merged.
+- **Harvest:** regrows the used-up Berry at turn end (50%, 100% in sun); the turn-end item check eats it right after.
+- **Quick Draw:** 30% to move first in its bracket with a damaging move, with its own message.
+  - Bug found and fixed in testing: the turn order is worked out before the turn's speed roll step, so the flag for
+    the message is cleared at the start of `BattleControllerPlayer_CalcTurnOrder`.
+- **Harness note for both sessions:** in god mode the player's real HP doesn't drop (only the bar shows the hit).
+  Turn god mode off (`gSovereignTestGodMode = 0`) for anything that needs real damage, such as an HP Berry.
+
+**Files modified:** `decomp/src/battle/{battle_lib.c,battle_controller_player.c}`, `decomp/include/battle/battle_context.h`,
+`decomp/res/text/battle_strings.json`, `decomp/generated/battle_subscripts.txt`,
+`decomp/res/battle/scripts/subscripts/{meson.build,sub_seq.order,subscript_sovereign_harvest.s,subscript_sovereign_quick_draw.s}`,
+`tools/engine/gen_abilities.py`, `docs/AbilityChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. After Claude A's #161 merges: the shiny line-up PR (13 sprite folders), with the sprite check run on them.
+2. Item 11's double-battle abilities (the Veils' ally half, Hospitality, Costar, Curious Medicine), with a doubles case
+   in the test harness.
+3. Pickpocket and Magician (item theft on contact / on hit), then Soul-Heart.
