@@ -12,7 +12,7 @@
     "accuracy": 0,
     "pp": 30,
     "effect": {
-        "type": "BATTLE_EFFECT_DO_NOTHING",
+        "type": "BATTLE_EFFECT_SOVEREIGN_HAPPY_HOUR",
         "chance": 0
     },
     "range": "RANGE_USER_SIDE",

@@ -9842,6 +9842,90 @@
         "The foe’s {STRVAR_1 1, 0, 0} got covered\n",
         "in sticky candy syrup!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignWeakerToFire_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} became\n",
+        "weaker to fire!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignWeakerToFire_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} became\n",
+        "weaker to fire!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignWeakerToFire_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} became\n",
+        "weaker to fire!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCongratulations",
+      "en_US": [
+        "Congratulations, {STRVAR_1 3, 0, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignHappyAtmosphere",
+      "en_US": [
+        "Everyone is caught up in\n",
+        "the happy atmosphere!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCorrodedItem_AllyAlly",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} corroded\n",
+        "{STRVAR_1 1, 1, 0}’s {STRVAR_1 8, 2, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCorrodedItem_AllyWild",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} corroded the wild\n",
+        "{STRVAR_1 1, 1, 0}’s {STRVAR_1 8, 2, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCorrodedItem_AllyFoe",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} corroded the foe’s\n",
+        "{STRVAR_1 1, 1, 0}’s {STRVAR_1 8, 2, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCorrodedItem_WildAlly",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} corroded\n",
+        "{STRVAR_1 1, 1, 0}’s {STRVAR_1 8, 2, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCorrodedItem_WildWild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} corroded the\n",
+        "wild {STRVAR_1 1, 1, 0}’s {STRVAR_1 8, 2, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCorrodedItem_FoeAlly",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} corroded\n",
+        "{STRVAR_1 1, 1, 0}’s {STRVAR_1 8, 2, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCorrodedItem_FoeFoe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} corroded\n",
+        "the foe’s {STRVAR_1 1, 1, 0}’s\f",
+        "{STRVAR_1 8, 2, 0}!"
+      ]
     }
   ]
 }

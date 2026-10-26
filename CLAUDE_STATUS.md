@@ -7297,3 +7297,42 @@ and Red Card.
    - Toxic Thread (poison plus Speed -1).
    - Tidy Up, Corrosive Gas, Tar Shot, Octolock, Jaw Lock, Spectral Thief.
 3. Owner decision pinned in CB-0158: Burn Up and Double Shock (typeless).
+
+## CB-0162 — 2026-10-26, 7:53 am US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: item 11 moves, batch 4.** PR #178 (batch 3, second half) is merged. Placeholders went from 44 to 38,
+and approximate moves from 37 to 35.
+- **Thunderclap:** uses Sucker Punch's effect.
+- **Toxic Thread:** Speed -1, then poison.
+- **Tar Shot:** Speed -1, and the target is weaker to Fire until it switches out.
+- **Eerie Spell:** the target's last move loses 3 PP.
+- **Corrosive Gas:** takes away held items.
+- **Celebrate:** a message only.
+- **Happy Hour:** doubles the prize money.
+- **Hold Hands:** fails without an ally.
+- Each move was checked in a harness battle. For Tar Shot I compared damage against an all-Flamethrower control run.
+
+**Files modified:**
+- `tools/engine/gen9_move_fixes.py`.
+- `decomp/src/battle/battle_lib.c` (Tar Shot in the type chart) and `decomp/src/battle/battle_script.c` (vars, Eerie
+  Spell's PP, Corrosive Gas's message, Happy Hour's prize).
+- `decomp/include/battle/battle_context.h`, `decomp/include/battle/battle_lib.h`,
+  `decomp/include/data/move_side_effect_subscripts.h`.
+- The generated lists: `battle_script_vars.txt`, `battle_subscripts.txt`, `battle_move_subscript_ptrs.txt`,
+  `move_battle_effects.txt`.
+- New scripts:
+  - Effect scripts `effect_script_0352`–`0358.s`.
+  - Subscripts `subscript_sovereign_{toxic_thread,tar_shot,eerie_spell,corrosive_gas,celebrate,happy_hour,hold_hands}.s`.
+- Changed: the scripts' `meson.build` and `sub_seq.order`, and `decomp/res/text/battle_strings.json` (13 messages).
+- `decomp/res/moves/*/data.json` for the 8 moves.
+- `docs/MoveChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. The switching items (Eject Button, Eject Pack, Red Card) with Shed Tail and Chilly Reception, plus a switching case
+   in the harness.
+2. More placeholders (38 left):
+   - Tidy Up (clears hazards and Substitutes).
+   - Spectral Thief (steals boosts before the damage).
+   - Court Change, Flower Shield, Sparkling Aria.
+   - Jaw Lock, Octolock, Thousand Arrows / Thousand Waves.
+3. Owner decision pinned in CB-0158: Burn Up and Double Shock (typeless).

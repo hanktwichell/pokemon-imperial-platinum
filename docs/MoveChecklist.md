@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 299 |
-| approximate | 37 |
-| placeholder | 44 |
+| exact | 307 |
+| approximate | 35 |
+| placeholder | 38 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -150,11 +150,11 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 600 | Powder | Bug | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
 | 601 | Geomancy | Fairy | `SP_ATK_SP_DEF_UP` | approximate | raises [('spa', 2), ('spd', 2), ('spe', 2)] in the original |
 | 602 | Magnetic Flux | Electric | `DEF_SPD_UP` | approximate | has its own mechanic in Gen IX; closest effect |
-| 603 | Happy Hour | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 603 | Happy Hour | Normal | `SOVEREIGN_HAPPY_HOUR` | exact | Sovereign effect: doubles the prize money (on top of an Amulet Coin) |
 | 604 | ElectrcTerrain | Electric | `SOVEREIGN_ELECTRIC_TERRAIN` | exact | Sovereign effect: Electric Terrain: grounded Electric moves x1.3, grounded Pokémon can't fall asleep |
 | 605 | Dazzling Gleam | Fairy | `HIT` | exact |  |
-| 606 | Celebrate | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
-| 607 | Hold Hands | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 606 | Celebrate | Normal | `SOVEREIGN_CELEBRATE` | exact | Sovereign effect: no effect in battle; congratulates the player |
+| 607 | Hold Hands | Normal | `SOVEREIGN_HOLD_HANDS` | exact | Sovereign effect: no effect in battle; fails without an ally |
 | 608 | Baby-Doll Eyes | Fairy | `ATK_DOWN` | exact | Sovereign effect: +1 priority, target Attack -1 |
 | 609 | Nuzzle | Electric | `PARALYZE_HIT` | exact | Sovereign effect: paralyzes (100%) |
 | 610 | Hold Back | Normal | `LEAVE_WITH_1_HP` | exact |  |
@@ -219,7 +219,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 669 | Solar Blade | Grass | `SKIP_CHARGE_TURN_IN_SUN` | exact |  |
 | 670 | Leafage | Grass | `HIT` | exact |  |
 | 671 | Spotlight | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
-| 672 | Toxic Thread | Poison | `STATUS_POISON` | approximate | also changes stats [('spe', -1)] in the original |
+| 672 | Toxic Thread | Poison | `SOVEREIGN_TOXIC_THREAD` | exact | Sovereign effect: target Speed -1, then poisons it |
 | 673 | Laser Focus | Normal | `SOVEREIGN_LASER_FOCUS` | exact | Sovereign effect: the user's moves always crit this turn and the next |
 | 674 | Gear Up | Steel | `ATK_UP_2` | approximate | raises [('atk', 1), ('spa', 1)] in the original |
 | 675 | Throat Chop | Dark | `SOVEREIGN_THROAT_CHOP` | exact | Sovereign effect: the target can't use sound moves for two turns |
@@ -296,7 +296,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 746 | Jaw Lock | Dark | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
 | 747 | Stuff Cheeks | Normal | `DEF_UP_2` | approximate | has its own mechanic in Gen IX; closest effect |
 | 748 | No Retreat | Fighting | `SOVEREIGN_NO_RETREAT` | approximate | Sovereign effect: all stats +1 (the user isn't trapped yet) |
-| 749 | Tar Shot | Rock | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 749 | Tar Shot | Rock | `SOVEREIGN_TAR_SHOT` | exact | Sovereign effect: target Speed -1; Fire moves are twice as effective against it until it switches out |
 | 750 | Magic Powder | Psychic | `SOVEREIGN_MAGIC_POWDER` | exact | Sovereign effect: the target becomes pure Psychic-type (a powder move) |
 | 751 | Dragon Darts | Dragon | `HIT_TWICE` | approximate | has its own mechanic in Gen IX; closest effect |
 | 752 | Teatime | Normal | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
@@ -357,7 +357,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 807 | BurnJealousy | Fire | `BURN_HIT` | exact | Sovereign effect: burns a target whose stats rose this turn |
 | 808 | Lash Out | Dark | `HIT` | exact | Sovereign effect: power doubles if the user's stats were lowered this turn |
 | 809 | Poltergeist | Ghost | `HIT` | approximate | Sovereign effect: fails against a target holding no item (no item message yet) |
-| 810 | Corrosive Gas | Poison | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 810 | Corrosive Gas | Poison | `SOVEREIGN_CORROSIVE_GAS` | exact | Sovereign effect: takes away the held items of all adjacent Pokémon |
 | 811 | Coaching | Fighting | `SOVEREIGN_COACHING` | exact | Sovereign effect: the user's ally gets Attack and Defense +1 (fails without one) |
 | 812 | Flip Turn | Water | `SWITCH_HIT` | exact |  |
 | 813 | Triple Axel | Ice | `HIT_THREE_TIMES` | exact |  |
@@ -373,7 +373,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 823 | Thunderous Kick | Fighting | `LOWER_DEFENSE_HIT` | exact | Sovereign effect: target Defense -1 (100%) |
 | 824 | Glacial Lance | Ice | `HIT` | exact |  |
 | 825 | Astral Barrage | Ghost | `HIT` | exact |  |
-| 826 | Eerie Spell | Psychic | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 826 | Eerie Spell | Psychic | `SOVEREIGN_EERIE_SPELL` | exact | Sovereign effect: the target's last move loses 3 PP |
 | 827 | Dire Claw | Poison | `SOVEREIGN_DIRE_CLAW` | exact | Sovereign effect: 50% chance of sleep, poison or paralysis (one of the three, equally likely); high critical-hit ratio |
 | 828 | Psyshield Bash | Psychic | `RAISE_DEF_HIT` | exact | Sovereign effect: user Defense +1 (100%) |
 | 829 | Power Shift | Normal | `SWAP_ATK_DEF` | exact | Sovereign effect: swaps the user's Attack and Defense |
@@ -456,7 +456,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 906 | Tera Starstorm | Normal | `HIT` | exact | Sovereign effect: plain hit (no Terastallization in Sovereign) |
 | 907 | Fickle Beam | Dragon | `HIT` | exact | Sovereign effect: 30% chance of double power |
 | 908 | Burning Bulwark | Fire | `PROTECT` | approximate | protects like Protect; the contact penalty is missing |
-| 909 | Thunderclap | Electric | `PRIORITY_1` | approximate | extra effect not reproduced |
+| 909 | Thunderclap | Electric | `HIT_FIRST_IF_TARGET_ATTACKING` | exact | Sovereign effect: +1 priority; fails unless the target is about to use a damaging move (Sucker Punch's effect) |
 | 910 | Mighty Cleave | Rock | `HIT` | exact | Sovereign effect: ignores Protect |
 | 911 | Tachyon Cutter | Steel | `HIT_TWICE` | exact | Sovereign effect: hits twice, never misses |
 | 912 | Hard Press | Steel | `HIT` | exact | Sovereign effect: power 1-100 from the target's remaining HP |

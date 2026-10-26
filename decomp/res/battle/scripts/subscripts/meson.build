@@ -416,4 +416,11 @@ subscript_files = files(
     'subscript_sovereign_syrup_bomb.s',
     'subscript_sovereign_salt_cure_damage.s',
     'subscript_sovereign_syrup_bomb_drop.s',
+    'subscript_sovereign_toxic_thread.s',
+    'subscript_sovereign_tar_shot.s',
+    'subscript_sovereign_eerie_spell.s',
+    'subscript_sovereign_corrosive_gas.s',
+    'subscript_sovereign_celebrate.s',
+    'subscript_sovereign_happy_hour.s',
+    'subscript_sovereign_hold_hands.s',
 )

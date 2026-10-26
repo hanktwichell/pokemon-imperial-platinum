@@ -11,7 +11,7 @@
     "accuracy": 0,
     "pp": 40,
     "effect": {
-        "type": "BATTLE_EFFECT_DO_NOTHING",
+        "type": "BATTLE_EFFECT_SOVEREIGN_CELEBRATE",
         "chance": 0
     },
     "range": "RANGE_USER",
