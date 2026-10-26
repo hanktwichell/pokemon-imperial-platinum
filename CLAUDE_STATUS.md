@@ -7749,3 +7749,27 @@ PR #191 (batch 11a) is merged.
    - Spectral Thief: it needs a boost steal around `CalcDamage`.
    - Also Powder, Pollen Puff, Shed Tail, Beak Blast, Shell Trap and Instruct.
    - Burn Up and Double Shock wait on the owner (CB-0158).
+
+## CB-0176 — 2026-10-26, 1:22 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: Skill Swap, Simple Beam and Worry Seed now use Gen IX's ability lists.**
+PR #192 (batch 11b) is merged.
+- **Skill Swap:** a new list, `Sovereign_AbilityCantBeSwapped` (Showdown's `failskillswap`).
+- **Simple Beam and Worry Seed:** the "can't be overwritten" list. Worry Seed also fails against Insomnia.
+- **Rename:** `BTLVAR_SOVEREIGN_GASTRO_ACID_FAILS` is now `BTLVAR_SOVEREIGN_CANT_SUPPRESS_DEFENDER`.
+- **Verified in the harness:**
+  - Skill Swap swaps with Speed Boost and fails against Wonder Guard.
+  - Simple Beam fails against Disguise.
+  - Worry Seed gives Insomnia, and fails against Insomnia.
+
+**Files modified:**
+- `decomp/src/battle/battle_lib.c`, `decomp/src/battle/battle_script.c`, `decomp/include/battle/battle_lib.h`, `decomp/generated/battle_script_vars.txt`.
+- Subscripts `subscript_exchange_abilities.s`, `subscript_sovereign_simple_beam.s`, `subscript_give_target_insomnia.s`, `subscript_suppress_target_ability.s`.
+- `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. The doubles moves: Round, Expanding Force, Dragon Darts and Parabolic Charge, with the doubles harness.
+2. The remaining placeholder moves:
+   - Spectral Thief: it needs a boost steal around `CalcDamage`.
+   - Also Powder, Pollen Puff, Shed Tail, Beak Blast, Shell Trap and Instruct.
+3. Abilities still to do: Illusion, Symbiosis, Dancer, Receiver/Power of Alchemy, Neutralizing Gas, Commander, Ball Fetch. Burn Up and Double Shock wait on the owner (CB-0158).

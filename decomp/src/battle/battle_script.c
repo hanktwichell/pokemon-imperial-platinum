@@ -10087,9 +10087,14 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
             || DEFENDING_MON.ability == ABILITY_TRUANT
             || DEFENDING_MON.ability == ATTACKING_MON.ability;
         return &battleCtx->sovereignTerrainTemp;
-    case BTLVAR_SOVEREIGN_GASTRO_ACID_FAILS: // Sovereign (item 11): read-only, TRUE when the defender's ability can't
-        // be suppressed (Gen IX's list)
+    case BTLVAR_SOVEREIGN_CANT_SUPPRESS_DEFENDER: // Sovereign (item 11): read-only, TRUE when the defender's ability
+        // can't be suppressed or overwritten (Gen IX's list: Gastro Acid, Simple Beam, Worry Seed)
         battleCtx->sovereignTerrainTemp = Sovereign_AbilityCantBeSuppressed(DEFENDING_MON.ability);
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_SKILL_SWAP_FAILS: // Sovereign (item 11): read-only, TRUE when Skill Swap fails by Gen IX's
+        // rules (either ability can't be swapped)
+        battleCtx->sovereignTerrainTemp = Sovereign_AbilityCantBeSwapped(ATTACKING_MON.ability)
+            || Sovereign_AbilityCantBeSwapped(DEFENDING_MON.ability);
         return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_CORE_ENFORCER: // Sovereign (item 11): read-only, TRUE when Core Enforcer suppresses the
         // side-effect target's ability
