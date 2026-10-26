@@ -136,6 +136,10 @@ def two_frames(indexed, pal):
     out = Image.new("P", (160, 80), 0)
     out.paste(indexed, (0, 0))
     out.paste(indexed, (80, 0))
+    # The game unscrambles a battle sprite with a key read from its first four pixels (PokemonSprite_DecryptPt), so
+    # they must stay transparent or the sprite comes out as noise (Samurott's horn tip, Talonflame's wing tip).
+    for x in range(4):
+        out.putpixel((x, 0), 0)
     out.putpalette([0, 0, 0] + [v for c in pal for v in c])
     return out
 

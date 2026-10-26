@@ -38,6 +38,16 @@ The fixes come in the next PR.
   through `tools/sprites/smogon_credits.py`, which `tools/regenerate_docs.sh` runs. `CITATIONS.md` names the 36
   spriters.
 
+## E12 — no scrambled battle sprites; one Pumpkaboo and Gourgeist sprite
+
+- The game unscrambles a battle sprite with a key read from its first four pixels (`PokemonSprite_DecryptPt`), so a
+  sprite drawing into that corner comes out as noise (Claude B's review, `docs/SpriteReview.md`: Samurott's PokeAPI
+  front, Talonflame's back, Hisuian Samurott's front). `two_frames` (`convert_battle_sprites.py`) now keeps those four
+  pixels transparent for every converted sprite; none has them set now.
+- Pumpkaboo and Gourgeist keep their four sizes (owner: their stats differ), but every size uses the Average Size
+  sprite: the sizes' own form sprites are removed (`pokeapi_fronts/forms/{pumpkaboo,gourgeist}-*`).
+- Verification: release build and boot smoke test pass; 414 forms map to their own sprite.
+
 ## E12 — shiny colours chosen with the normal ones
 
 For players: shinies of the new species and forms match their source more closely (Alolan Meowth's blue eyes, for
