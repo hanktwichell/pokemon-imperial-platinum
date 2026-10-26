@@ -67,7 +67,8 @@ typedef struct TurnFlags {
     u32 sovereignStatsRaised : 1; // Sovereign (item 11): a stat rose this turn (Burning Jealousy, Alluring Voice)
     u32 sovereignStatsLowered : 1; // Sovereign (item 11): a stat fell this turn (Lash Out)
     u32 sovereignUsedRound : 1; // Sovereign (item 11): used Round this turn (its partner's Round doubles)
-    u32 padding00_0A : 19;
+    u32 sovereignSwitchedIn : 1; // Sovereign (item 11): switched in during this turn (Core Enforcer)
+    u32 padding00_0A : 18;
 
     int physicalDamageTakenFrom[MAX_BATTLERS];
     int physicalDamageLastAttacker;

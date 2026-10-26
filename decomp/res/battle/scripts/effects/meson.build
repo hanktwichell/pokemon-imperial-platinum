@@ -377,5 +377,8 @@ effect_script_files = files(
     'effect_script_0375.s',
     'effect_script_0376.s',
     'effect_script_0377.s',
-    'effect_script_0378.s'
+    'effect_script_0378.s',
+    'effect_script_0379.s',
+    'effect_script_0380.s',
+    'effect_script_0381.s'
 )
