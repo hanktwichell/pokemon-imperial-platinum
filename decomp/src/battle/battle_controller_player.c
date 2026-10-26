@@ -1633,7 +1633,8 @@ static void BattleControllerPlayer_CheckMonConditions(BattleSystem *battleSys, B
 
         case MON_COND_CHECK_STATE_NIGHTMARE:
             if ((battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_NIGHTMARE) && battleCtx->battleMons[battler].curHP) {
-                if (battleCtx->battleMons[battler].status & MON_CONDITION_SLEEP) {
+                if ((battleCtx->battleMons[battler].status & MON_CONDITION_SLEEP)
+                    || Battler_Ability(battleCtx, battler) == ABILITY_COMATOSE) { // Sovereign (item 11): as if asleep
                     battleCtx->msgBattlerTemp = battler;
 
                     PrepareSubroutineSequence(battleCtx, subscript_nightmare_effect);
@@ -1682,7 +1683,8 @@ static void BattleControllerPlayer_CheckMonConditions(BattleSystem *battleSys, B
         case MON_COND_CHECK_STATE_BAD_DREAMS:
             battleCtx->scriptTemp = BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_THEIR_SIDE_FLAG, battler, ABILITY_BAD_DREAMS);
 
-            if ((battleCtx->battleMons[battler].status & MON_CONDITION_SLEEP)
+            if (((battleCtx->battleMons[battler].status & MON_CONDITION_SLEEP)
+                    || Battler_Ability(battleCtx, battler) == ABILITY_COMATOSE) // Sovereign (item 11): as if asleep
                 && Battler_Ability(battleCtx, battler) != ABILITY_MAGIC_GUARD
                 && battleCtx->battleMons[battler].curHP
                 && battleCtx->scriptTemp) {

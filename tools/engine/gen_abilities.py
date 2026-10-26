@@ -133,7 +133,7 @@ IMPLEMENTED = {
     300: "yes: the first time it enters the battle, each foe's evasiveness −1",
     302: "yes: its damaging moves have a 30% chance to badly poison (Shield Dust stops it)",
     307: "yes: a Pokémon its move poisons or badly poisons becomes confused too",
-    213: "partly: no status condition, no drowsiness, and Rest fails (moves that need a sleeping target don't count it as asleep yet)",
+    213: "yes: no status condition, no drowsiness, Rest fails; counts as asleep for Dream Eater, Nightmare, Hex, Wake-Up Slap, Bad Dreams, Sleep Talk and Snore",
     257: "partly: it can't be poisoned, and a poisoning is healed (its allies' protection not yet)",
     175: "partly: it can't fall asleep or become drowsy, and Rest fails (its allies' protection not yet)",
     240: "yes: a stat drop from another Pokémon's move or Ability goes back to that Pokémon (Sticky Web's is only blocked)",

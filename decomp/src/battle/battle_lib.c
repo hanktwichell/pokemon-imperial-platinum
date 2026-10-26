@@ -8226,7 +8226,8 @@ int Sovereign_MovePower(BattleSystem *battleSys, BattleContext *battleCtx, int m
     switch (move) {
     case MOVE_HEX: // double against a Pokemon with a status condition
     case MOVE_INFERNAL_PARADE:
-        if (battleCtx->battleMons[defender].status & MON_CONDITION_ANY) {
+        if ((battleCtx->battleMons[defender].status & MON_CONDITION_ANY)
+            || Battler_Ability(battleCtx, defender) == ABILITY_COMATOSE) { // Sovereign (item 11): as if asleep
             power *= 2;
         }
         break;

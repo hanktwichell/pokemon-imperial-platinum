@@ -95,7 +95,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 210 | Battle Bond | Gen 7 | yes: Ash-Greninja after its move knocks out a foe, until the battle ends |
 | 211 | Power Construct | Gen 7 | yes: Complete Forme at half HP or less, with its higher max HP |
 | 212 | Corrosion | Gen 7 | yes: can poison Steel and Poison types |
-| 213 | Comatose | Gen 7 | partly: no status condition, no drowsiness, and Rest fails (moves that need a sleeping target don't count it as asleep yet) |
+| 213 | Comatose | Gen 7 | yes: no status condition, no drowsiness, Rest fails; counts as asleep for Dream Eater, Nightmare, Hex, Wake-Up Slap, Bad Dreams, Sleep Talk and Snore |
 | 214 | Queenly Majesty | Gen 7 | yes: foes' priority moves can't hit its side |
 | 215 | Innards Out | Gen 7 | yes: when knocked out by a hit, the attacker loses the HP it had left |
 | 216 | Dancer | Gen 7 | not yet (no battle effect) |
