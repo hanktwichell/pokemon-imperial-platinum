@@ -8004,3 +8004,26 @@ PR #201 (Mega Sol, Growth, Ripen) is merged.
    - Burn Up and Double Shock wait on the owner (CB-0158).
    - Order Up needs Commander. Revival Blessing is left out.
 3. The AI scripts' own type loads (`AICmd_LoadTypeFrom`) still read two types only. They could gain an added-type load if it matters.
+
+## CB-0186 — 2026-10-26, 5:12 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: Ball Fetch.** PR #202 (Neutralizing Gas, AI added type) is merged.
+- In a wild battle, the first ball thrown is noted. If it fails, a Ball Fetch Pokémon on the player's side picks it up at
+  the end of a turn while it holds nothing ("{0} found a {1}!"), once per battle. The wording is ours: no source quotes
+  the official message.
+- **Test build:** `SovereignTestWild.balls` gives the player Poké Balls before the test battle. The harness throws one
+  through the bag (taps in the changelog entry).
+- Verified with a Yamper against a wild Mewtwo, with a no-Ball-Fetch control.
+
+**Files modified:**
+- `decomp/src/battle/battle_lib.c` (turn-end ability), `decomp/src/battle/battle_script.c` (first ball noted).
+- `decomp/include/battle/battle_context.h`, `decomp/include/sovereign_test.h`, `decomp/src/overlay005/field_control.c` (test hook).
+- New subscript `subscript_sovereign_ball_fetch.s`. The registration files.
+- `decomp/res/text/battle_strings.json` (1 message).
+- `tools/engine/gen_abilities.py`, `docs/AbilityChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Abilities still to do: Illusion, Symbiosis, Dancer, Commander.
+2. Instruct and Sky Drop. Both need a move run outside its user's own action: `BtlCmd_GoToMoveScript` keeps the same
+   attacker, so they need a controller change.
+3. Burn Up and Double Shock still wait on the owner (CB-0158).

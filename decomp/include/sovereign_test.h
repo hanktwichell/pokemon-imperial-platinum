@@ -115,6 +115,7 @@ struct SovereignTestWild {
     u16 move; // when set, the only move it knows
     u8 shiny; // when set, it's shiny
     u16 item; // when set, it holds this item
+    u8 balls; // when set, the player first gets this many Poké Balls (Ball Fetch)
 };
 
 // In SovereignTestLead.moves: the slot is empty.

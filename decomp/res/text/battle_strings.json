@@ -10797,6 +10797,13 @@
         "The effects of the neutralizing\n",
         "gas wore off!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignBallFetch_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} found\n",
+        "a {STRVAR_1 8, 1, 0}!"
+      ]
     }
   ]
 }

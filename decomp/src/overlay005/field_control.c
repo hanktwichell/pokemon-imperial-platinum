@@ -29,6 +29,7 @@
 #include "overlay009/ov9_02249960.h"
 #include "underground/manager.h"
 
+#include "bag.h"
 #include "catching_show.h"
 #include "comm_manager.h"
 #include "comm_player_manager.h"
@@ -403,6 +404,11 @@ static BOOL SovereignTest_BattleTask(FieldTask *task)
             gSovereignTestBattleTrainer = TRAINER_NONE;
             Encounter_NewVsTrainer(task, trainer, TRAINER_NONE, TRAINER_NONE, HEAP_ID_FIELD2, &sSovereignTestBattleResult);
         } else if (gSovereignTestWild.species != SPECIES_NONE) {
+            if (gSovereignTestWild.balls) {
+                Bag_TryAddItem(SaveData_GetBag(FieldTask_GetFieldSystem(task)->saveData), ITEM_POKE_BALL, gSovereignTestWild.balls, HEAP_ID_FIELD2);
+                gSovereignTestWild.balls = 0;
+            }
+
             Encounter_SovereignTestNewVsWildForm(task, gSovereignTestWild.species, gSovereignTestWild.form, gSovereignTestWild.level, gSovereignTestWild.move, gSovereignTestWild.shiny, &sSovereignTestBattleResult);
             gSovereignTestWild.species = SPECIES_NONE;
             gSovereignTestWild.shiny = FALSE;

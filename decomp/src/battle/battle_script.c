@@ -2651,6 +2651,13 @@ static BOOL BtlCmd_StartCatchMonTask(BattleSystem *battleSys, BattleContext *bat
     battleCtx->taskData->flag = safariCapture;
     battleCtx->taskData->ball = battleCtx->msgItemTemp;
 
+    // Sovereign (item 11): Ball Fetch can fetch the first ball thrown in a wild battle, once it fails.
+    if (safariCapture == FALSE
+        && (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_TRAINER) == FALSE
+        && battleCtx->sovereignBallFetchBall == ITEM_NONE) {
+        battleCtx->sovereignBallFetchBall = battleCtx->msgItemTemp;
+    }
+
     SysTask_Start(BattleScript_CatchMonTask, battleCtx->taskData, NULL);
 
     return FALSE;
