@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 370 |
+| exact | 371 |
 | approximate | 0 |
-| placeholder | 10 |
+| placeholder | 9 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -236,7 +236,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 686 | RevelatnDance | Normal | `HIT` | exact | Sovereign effect: takes the user's primary type |
 | 687 | Core Enforcer | Dragon | `SOVEREIGN_CORE_ENFORCER` | exact | Sovereign effect: hits both foes; suppresses the ability of a target that has already acted this turn |
 | 688 | Trop Kick | Grass | `LOWER_ATTACK_HIT` | exact | Sovereign effect: target Attack -1 (100%) |
-| 689 | Instruct | Psychic | `DO_NOTHING` | placeholder | status effect not reproduced yet; does nothing |
+| 689 | Instruct | Psychic | `SOVEREIGN_INSTRUCT` | exact | Sovereign effect: the target uses its last move again right after, as an extra action (not a move that charges, recharges, locks it in or calls another move) |
 | 690 | Beak Blast | Flying | `HIT` | exact | Sovereign effect: -3 priority; from the start of the turn until it moves, the user burns Pokémon whose contact moves hit it |
 | 691 | Clanging Scales | Dragon | `SOVEREIGN_LOWER_OWN_DEF_HIT` | exact | Sovereign effect: user Defense -1 |
 | 692 | Dragon Hammer | Dragon | `HIT` | exact |  |

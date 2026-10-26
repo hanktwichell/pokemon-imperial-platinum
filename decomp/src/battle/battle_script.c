@@ -10151,6 +10151,13 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         battleCtx->sovereignTerrainTemp = battleCtx->turnFlags[battleCtx->defender].sovereignPowdered == FALSE;
         battleCtx->turnFlags[battleCtx->defender].sovereignPowdered = TRUE;
         return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_INSTRUCT: // Sovereign (item 11): read-only, the defender will use its last move again once
+        // this move is over (BattleControllerPlayer_MoveEnd; FALSE when it can't: Sovereign_CanInstruct)
+        battleCtx->sovereignTerrainTemp = Sovereign_CanInstruct(battleCtx, battleCtx->defender);
+        if (battleCtx->sovereignTerrainTemp) {
+            battleCtx->sovereignInstructed = battleCtx->defender + 1;
+        }
+        return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_ION_DELUGE: // Sovereign (item 11): read-only, starts the deluge of ions (FALSE when it's on)
         battleCtx->sovereignTerrainTemp = Sovereign_StartIonDeluge(battleCtx);
         return &battleCtx->sovereignTerrainTemp;

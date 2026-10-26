@@ -3339,6 +3339,58 @@ BOOL Move_IsMultiTurn(BattleContext *battleCtx, int move)
     return FALSE;
 }
 
+// Sovereign (item 11): Instruct works when the target's last move since it came in can be used again now: a move it
+// still knows with PP left, and not one that charges, recharges, locks its user in, calls another move or the like
+// (Gen IX's list).
+BOOL Sovereign_CanInstruct(BattleContext *battleCtx, int target)
+{
+    int move = battleCtx->movePrevByBattler[target];
+    int slot;
+
+    if (move == MOVE_NONE || battleCtx->battleMons[target].curHP == 0) {
+        return FALSE;
+    }
+
+    slot = Battler_SlotForMove(&battleCtx->battleMons[target], move);
+
+    if (slot >= LEARNED_MOVES_MAX || battleCtx->battleMons[target].ppCur[slot] == 0 || Move_IsMultiTurn(battleCtx, move)) {
+        return FALSE;
+    }
+
+    switch (MOVE_DATA(move).effect) {
+    case BATTLE_EFFECT_RECHARGE_AFTER:
+    case BATTLE_EFFECT_CONTINUE_AND_CONFUSE_SELF:
+    case BATTLE_EFFECT_DOUBLE_POWER_EACH_TURN_LOCK_INTO:
+    case BATTLE_EFFECT_UPROAR:
+    case BATTLE_EFFECT_HIT_LAST_WHIFF_IF_HIT:
+        return FALSE;
+    }
+
+    switch (move) {
+    case MOVE_ASSIST:
+    case MOVE_BEAK_BLAST:
+    case MOVE_BELCH:
+    case MOVE_COPYCAT:
+    case MOVE_INSTRUCT:
+    case MOVE_KINGS_SHIELD:
+    case MOVE_ME_FIRST:
+    case MOVE_METRONOME:
+    case MOVE_MIMIC:
+    case MOVE_MIRROR_MOVE:
+    case MOVE_NATURE_POWER:
+    case MOVE_OBSTRUCT:
+    case MOVE_SHELL_TRAP:
+    case MOVE_SKETCH:
+    case MOVE_SKY_DROP:
+    case MOVE_SLEEP_TALK:
+    case MOVE_STRUGGLE:
+    case MOVE_TRANSFORM:
+        return FALSE;
+    }
+
+    return TRUE;
+}
+
 BOOL BattleSystem_TypeMatchup(BattleSystem *battleSys, int idx, u8 *moveType, u8 *vsType, u8 *multi)
 {
     BOOL result = TRUE;

@@ -10804,6 +10804,55 @@
         "{STRVAR_1 1, 0, 0} found\n",
         "a {STRVAR_1 8, 1, 0}!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFollowedInstructions_AllyAlly",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} followed\n",
+        "{STRVAR_1 1, 1, 0}’s instructions!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFollowedInstructions_AllyWild",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} followed\n",
+        "the wild {STRVAR_1 1, 1, 0}’s instructions!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFollowedInstructions_AllyFoe",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} followed\n",
+        "the foe’s {STRVAR_1 1, 1, 0}’s instructions!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFollowedInstructions_WildAlly",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} followed\n",
+        "{STRVAR_1 1, 1, 0}’s instructions!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFollowedInstructions_WildWild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} followed\n",
+        "the wild {STRVAR_1 1, 1, 0}’s instructions!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFollowedInstructions_FoeAlly",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} followed\n",
+        "{STRVAR_1 1, 1, 0}’s instructions!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFollowedInstructions_FoeFoe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} followed\n",
+        "the foe’s {STRVAR_1 1, 1, 0}’s instructions!"
+      ]
     }
   ]
 }
