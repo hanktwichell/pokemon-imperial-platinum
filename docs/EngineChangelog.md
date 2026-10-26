@@ -4,6 +4,39 @@ Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. 
 players and the verification that was run.
 
 
+## Item 11 (effect fidelity): Trick-or-Treat and Forest's Curse (an added third type)
+
+For players:
+- **Trick-or-Treat** adds the Ghost type to the target, and **Forest's Curse** adds the Grass type, as a third type
+  ("Ghost type was added to {0}!").
+  - A second use replaces the added type.
+  - It fails on a target that already has that type.
+- **The added type counts like the target's own types:**
+  - Type effectiveness: a Normal move doesn't affect a Pokémon with Ghost added.
+  - STAB.
+  - Every type check that uses `MON_HAS_TYPE`: powder moves, trapping, weather damage and the rest.
+- **When it goes away:**
+  - Any type change clears it: Soak, Magic Powder, Reflect Type, Protean, Color Change, Conversion, Mimicry, Forecast
+    and form changes.
+  - So does switching out.
+  - Transform copies it.
+- The trainer AI's own type matchups don't see an added type yet.
+- **Code:**
+  - `BattleMon.sovereignAddedType` holds 1 + the added type (0 for none). The type chart loop in
+    `BattleSystem_ApplyTypeChart` and the `MON_HAS_TYPE` macro read it.
+  - The new var `BTLVAR_SOVEREIGN_ADD_TYPE` sets it.
+
+**Verification:** test and release ROMs built; the battle-script size check, the message check and the docs check pass.
+- Wild battles against a Ninjask.
+- **Trick-or-Treat (Gourgeist):**
+  - "Ghost type was added to the wild NINJASK!".
+  - Then Tackle: "It doesn't affect the wild NINJASK...".
+  - A second Trick-or-Treat: "But it failed!".
+- **Forest's Curse (Trevenant):**
+  - "Grass type was added to the wild NINJASK!".
+  - Then Sleep Powder: "It doesn't affect the wild NINJASK...".
+  - A second use: "But it failed!".
+
 ## Item 11 (effect fidelity): Shed Tail; Receiver and Power of Alchemy
 
 For players:

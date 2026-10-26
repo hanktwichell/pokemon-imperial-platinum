@@ -50,8 +50,10 @@
 
 #define MON_IS_LOCKED_ONTO(mon1, mon2) ((battleCtx->battleMons[mon2].moveEffectsMask & MOVE_EFFECT_LOCK_ON) && battleCtx->battleMons[mon2].moveEffectsData.lockOnTarget == mon1)
 
-#define MON_HAS_TYPE(mon, type)    (BattleMon_Get(battleCtx, mon, BATTLEMON_TYPE_1, NULL) == type || BattleMon_Get(battleCtx, mon, BATTLEMON_TYPE_2, NULL) == type)
-#define MON_IS_NOT_TYPE(mon, type) (BattleMon_Get(battleCtx, mon, BATTLEMON_TYPE_1, NULL) != type && BattleMon_Get(battleCtx, mon, BATTLEMON_TYPE_2, NULL) != type)
+// Sovereign (item 11): with the type Trick-or-Treat or Forest's Curse added (BattleMon.sovereignAddedType).
+#define MON_HAS_TYPE(mon, type)    (BattleMon_Get(battleCtx, mon, BATTLEMON_TYPE_1, NULL) == type || BattleMon_Get(battleCtx, mon, BATTLEMON_TYPE_2, NULL) == type \
+    || battleCtx->battleMons[mon].sovereignAddedType == (type) + 1)
+#define MON_IS_NOT_TYPE(mon, type) (MON_HAS_TYPE(mon, type) == FALSE)
 
 #define NO_TARGET_SINGLE_TURN (battleCtx->defender == BATTLER_NONE && Move_IsMultiTurn(battleCtx, battleCtx->moveCur) == FALSE)
 #define NO_TARGET_MULTI_TURN  (battleCtx->defender == BATTLER_NONE      \

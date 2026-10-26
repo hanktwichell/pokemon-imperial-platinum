@@ -10744,6 +10744,48 @@
         "The foe’s {STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\n",
         "was taken over!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignGhostTypeAdded_Ally",
+      "en_US": [
+        "Ghost type was added\n",
+        "to {STRVAR_1 1, 0, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignGhostTypeAdded_Wild",
+      "en_US": [
+        "Ghost type was added\n",
+        "to the wild {STRVAR_1 1, 0, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignGhostTypeAdded_Foe",
+      "en_US": [
+        "Ghost type was added\n",
+        "to the foe’s {STRVAR_1 1, 0, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignGrassTypeAdded_Ally",
+      "en_US": [
+        "Grass type was added\n",
+        "to {STRVAR_1 1, 0, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignGrassTypeAdded_Wild",
+      "en_US": [
+        "Grass type was added\n",
+        "to the wild {STRVAR_1 1, 0, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignGrassTypeAdded_Foe",
+      "en_US": [
+        "Grass type was added\n",
+        "to the foe’s {STRVAR_1 1, 0, 0}!"
+      ]
     }
   ]
 }

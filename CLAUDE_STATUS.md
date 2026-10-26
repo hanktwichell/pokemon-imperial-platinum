@@ -7926,3 +7926,27 @@ PR #198 (Spectral Thief, Beak Blast, Shell Trap) is merged.
    - The rest are in `docs/MoveChecklist.md`.
 2. Abilities still to do: Illusion, Symbiosis, Dancer, Neutralizing Gas, Commander, Ball Fetch.
 3. Check the heavy-rain fizzle with Primal Kyogre and a spread Fire move in doubles (fixed in CB-0180 by reading the code).
+
+## CB-0183 — 2026-10-26, 4:17 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: Trick-or-Treat and Forest's Curse, which add a third type (10 placeholder moves left).**
+PR #199 (Shed Tail, Receiver) is merged.
+- The added type (`BattleMon.sovereignAddedType`) counts for effectiveness, STAB and `MON_HAS_TYPE`.
+- Any type change or switching out clears it, and Transform copies it.
+- This was verified in the harness (see the changelog).
+
+**Files modified:**
+- `decomp/include/battle/battle_mon.h` (the field), `decomp/include/battle/common.h` (`MON_HAS_TYPE`).
+- `decomp/src/battle/battle_lib.c` (type chart, init, type writes), `decomp/src/battle/battle_script.c` (var, Conversion, Transform).
+- New subscript `subscript_sovereign_add_type` and effect `effect_script_0395.s`. The registration files.
+- `decomp/res/text/battle_strings.json` (6 messages), move data for both moves.
+- `tools/engine/gen9_move_fixes.py`, `docs/MoveChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Teach the trainer AI's type matchups about the added type (`trainer_ai.c`).
+2. Placeholders still open:
+   - Instruct and Sky Drop.
+   - Burn Up and Double Shock wait on the owner (CB-0158).
+   - Order Up needs Commander. Revival Blessing is left out.
+   - Ally Switch and the Pledges are Claude A's.
+3. Abilities still to do: Illusion, Symbiosis, Dancer, Neutralizing Gas, Commander, Ball Fetch.
