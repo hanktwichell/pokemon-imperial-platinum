@@ -477,4 +477,5 @@ subscript_files = files(
     'subscript_sovereign_stats_growth.s',
     'subscript_sovereign_neutralizing_gas.s',
     'subscript_sovereign_neutralizing_gas_end.s',
+    'subscript_sovereign_ball_fetch.s',
 )

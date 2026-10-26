@@ -3,6 +3,28 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Item 11 (effect fidelity): Ball Fetch
+
+For players:
+- **Ball Fetch** (Yamper): in a wild battle, if the first ball you throw fails, a Ball Fetch Pokémon of yours in battle
+  picks it up at the end of a turn while it holds nothing: "{0} found a {1}!". Once per battle; it keeps the ball after
+  the battle as its held item.
+  - The wording is ours: no source we found quotes the official message.
+- **Code:**
+  - `BtlCmd_StartCatchMonTask` notes the first ball thrown in a wild battle (`BattleContext.sovereignBallFetchBall`;
+    not Safari Balls).
+  - `BattleSystem_TriggerTurnEndAbility` hands it over once (`sovereignBallFetched`), and
+    `subscript_sovereign_ball_fetch` prints the message.
+- **Test build:** `SovereignTestWild.balls` gives the player that many Poké Balls before the test battle. A harness can
+  throw one through the battle bag: BAG (35, 165), POKé BALLS (190, 50), the first ball (64, 30), USE (100, 170). Tap
+  once the BAG button's orange shows.
+
+**Verification:** test and release ROMs built; the battle-script size check, the message check and the docs check pass.
+A Lv. 50 Yamper against a wild Lv. 100 Mewtwo (both using Splash), with a Poké Ball thrown on the first turn:
+- With Ball Fetch: "A used one Poké Ball!", "Oh, no! The Pokémon broke free!", then at the end of the turn "YAMPER found
+  a Poké Ball!". No second message in the turns after.
+- With Rattled instead (control): no message.
+
 ## Item 11 (effect fidelity): Neutralizing Gas; the AI sees an added type
 
 For players:

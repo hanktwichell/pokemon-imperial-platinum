@@ -4302,6 +4302,24 @@ BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem *battleSys, BattleContext *
         }
         break;
 
+    // Sovereign (item 11): Ball Fetch picks up the first ball thrown in a wild battle, which failed to catch (the battle
+    // would be over otherwise), at the end of a turn while it holds nothing. Once per battle; the player's side only.
+    case ABILITY_BALL_FETCH:
+        if (battleCtx->battleMons[battler].curHP
+            && battleCtx->battleMons[battler].heldItem == ITEM_NONE
+            && battleCtx->sovereignBallFetchBall != ITEM_NONE
+            && battleCtx->sovereignBallFetched == FALSE
+            && BattleSystem_GetBattlerSide(battleSys, battler) == BATTLE_SIDE_PLAYER) {
+            battleCtx->sovereignBallFetched = TRUE;
+            battleCtx->battleMons[battler].heldItem = battleCtx->sovereignBallFetchBall;
+            BattleMon_CopyToParty(battleSys, battleCtx, battler);
+            battleCtx->msgBattlerTemp = battler;
+            battleCtx->msgItemTemp = battleCtx->sovereignBallFetchBall;
+            subscript = subscript_sovereign_ball_fetch;
+            result = TRUE;
+        }
+        break;
+
     // Sovereign (item 11): Cud Chew eats the Berry its holder ate (BtlCmd_RemoveItem) again, at the end of the next
     // turn: the end of a later turn than the one it was eaten in. It eats it as Stuff Cheeks does, with the holder as the
     // eater, whatever it holds now.

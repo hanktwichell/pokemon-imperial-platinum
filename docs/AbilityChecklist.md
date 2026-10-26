@@ -119,7 +119,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 234 | Intrepid Sword | Gen 8 | yes: Attack +1 the first time it enters battle |
 | 235 | DauntlessShield | Gen 8 | yes: Defense +1 the first time it enters battle |
 | 236 | Libero | Gen 8 | yes: becomes its move's type, once per switch-in |
-| 237 | Ball Fetch | Gen 8 | not yet (no battle effect) |
+| 237 | Ball Fetch | Gen 8 | yes: in a wild battle, picks up the first ball thrown (which failed) at the end of a turn while it holds nothing; once per battle |
 | 238 | Cotton Down | Gen 8 | yes: when a damaging move hits it, every other Pokémon's Speed −1, its ally's too, even as it faints |
 | 239 | Propeller Tail | Gen 8 | yes: ignores moves and abilities that draw in attacks |
 | 240 | Mirror Armor | Gen 8 | yes: a stat drop from another Pokémon's move or Ability goes back to that Pokémon (Sticky Web's is only blocked) |
