@@ -19,6 +19,8 @@ jobs:
         with:
           path: ~/apt-cache
           key: apt-v1-ubuntu-24.04-${{ hashFiles('.github/workflows/build.yml') }}
+          # Any change to this file changes the key; then the newest cache still serves the offline install below.
+          restore-keys: apt-v1-ubuntu-24.04-
       - name: Install dependencies
         timeout-minutes: 10
         run: |
@@ -108,6 +110,14 @@ jobs:
           git -C /tmp/pokeapi checkout -q FETCH_HEAD
       - name: Type chart matches the official chart
         run: python3 tools/test/check_type_chart.py /tmp/pokeapi/data/v2/csv decomp
+      - name: Added objects are reachable and block nothing
+        # The check finds Sovereign's objects by comparing with vanilla's events, so it needs the decomp's import
+        # commit (VANILLA_REF), which the shallow checkout doesn't have.
+        run: |
+          git fetch -q --no-tags --depth=1 origin 22fddfd4c8d3ce161f1e1a47f1c81634b396f240
+          python3 tools/test/check_object_tiles.py decomp
+      - name: No script path closes a message twice
+        run: python3 tools/test/check_double_close.py decomp
       - name: Regenerate and validate docs
         run: tools/regenerate_docs.sh /tmp/pokeapi/data/v2/csv decomp
       - name: Generated files are up to date
