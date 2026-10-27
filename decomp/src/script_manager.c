@@ -874,7 +874,8 @@ struct SovereignTestVar gSovereignTestVar[SOVEREIGN_TEST_VARS];
 struct SovereignTestScripts gSovereignTestScripts;
 struct SovereignTestWildSurvey gSovereignTestWildSurvey;
 u8 gSovereignTestPartyKeep;
-struct SovereignTestPartyAdd gSovereignTestPartyAdd;
+struct SovereignTestPartyAdd gSovereignTestPartyAdd[SOVEREIGN_TEST_PARTY_ADDS];
+u16 gSovereignTestBagItem;
 u8 gSovereignTestBadges;
 struct SovereignTestMenu gSovereignTestMenu;
 u16 gSovereignTestBattleTrainer;
@@ -903,17 +904,28 @@ void SovereignTest_WarpNext(FieldSystem *fieldSystem)
         gSovereignTestPartyKeep = 0;
     }
 
-    if (gSovereignTestPartyAdd.species != SPECIES_NONE) {
-        Pokemon *mon = Pokemon_New(HEAP_ID_FIELD2);
-        int form = gSovereignTestPartyAdd.form;
+    for (int i = 0; i < SOVEREIGN_TEST_PARTY_ADDS; i++) {
+        struct SovereignTestPartyAdd *add = &gSovereignTestPartyAdd[i];
 
-        Pokemon_InitWith(mon, gSovereignTestPartyAdd.species, gSovereignTestPartyAdd.level, INIT_IVS_RANDOM, FALSE, 0, OTID_NOT_SET, 0);
+        if (add->species == SPECIES_NONE) {
+            continue;
+        }
+
+        Pokemon *mon = Pokemon_New(HEAP_ID_FIELD2);
+        int form = add->form;
+
+        Pokemon_InitWith(mon, add->species, add->level, INIT_IVS_RANDOM, FALSE, 0, OTID_NOT_SET, 0);
         Pokemon_SetValue(mon, MON_DATA_FORM, &form);
         Pokemon_CalcAbility(mon);
         Pokemon_CalcLevelAndStats(mon);
         Party_AddPokemon(SaveData_GetParty(fieldSystem->saveData), mon);
         Heap_Free(mon);
-        gSovereignTestPartyAdd.species = SPECIES_NONE;
+        add->species = SPECIES_NONE;
+    }
+
+    if (gSovereignTestBagItem != ITEM_NONE) {
+        Bag_TryAddItem(SaveData_GetBag(fieldSystem->saveData), gSovereignTestBagItem, 1, HEAP_ID_FIELD2);
+        gSovereignTestBagItem = ITEM_NONE;
     }
 
     for (int i = 0; i < 8; i++) {

@@ -52,9 +52,10 @@ the Archivist's last), so the Chronicles' legendaries, stakes and rifts are on t
 --unhide clears each object's own hidden_flag on the way in, so an object that a flag hides on this save (until a
 story event, a Chronicle or a catch) is there to talk to, and its script runs. For a legendary (LOCALID_LEGENDARY_X),
 scripts also count every other species as caught (gSovereignTestCaughtAllBut), as a static waits on others being
-caught and on its own not being caught. A map's own scripts can still hide it as the map loads (a map-local flag, set
-from the story's state); then it's still NOSCRIPT. The rest of the story's flags are as before, so this checks that
-the script runs to its end, not the story around it.
+caught and on its own not being caught. Most are hidden by a map-local flag instead, which the map's OnTransition
+script sets from the story as the map loads: STORY gives what each of those needs (flags and vars, an item in the bag,
+Pokémon in the party, the hour). The rest of the story is as before, so this checks that the script runs to its end,
+not the story around it. Use it with --chronicles.
 """
 import json
 import os
@@ -93,10 +94,62 @@ WANDER_TRIES = 4
 CHRONICLES = False
 # --unhide (parse_args): each object's own hidden_flag cleared on the way in (main).
 UNHIDE = False
-# With --unhide, the story's flags and vars that put an object on its map when its map's own scripts set its map-local
-# hide flag from them as the map loads: (events, object id) -> [(flag or var, value)], at most four
-# (gSovereignTestVar[4] to [7]).
-STORY = {}
+# With --unhide, what puts an object on its map when its map's own scripts set its map-local hide flag from the story
+# as the map loads (its OnTransition script): (events, object id) -> [(name, value)]. A name is a flag or var to set
+# (at most twelve: gSovereignTestVar[4] to [15]), an item to put in the bag (ITEM_*, at most one), a Pokémon to add to
+# the party at that level (SPECIES_*, at most three, after the party is cut to make room) or HOUR (the clock's hour).
+# Totems are left out: their trials have test warps of their own (sSovereignTestWarps).
+SIEGE = 'VAR_SOVEREIGN_MANSION_SIEGE_STATE'  # 3: at the Mansion's door; 4: the grunt trio beaten
+ORBS = [('FLAG_SOVEREIGN_STEVEN_GAVE_ORBS', 1)]
+CYRUS = [('FLAG_DEFEATED_TRAINER_GALACTIC_BOSS_CYRUS_DISTORTION_WORLD', 1)]
+STORY = {
+    ('events_acuity_lakefront', 'LOCALID_LEGENDARY_CHIEN_PAO'): [('FLAG_SOVEREIGN_PULLED_STAKE_3', 1),
+                                                                 ('FLAG_SOVEREIGN_PULLED_STAKE_4', 1)],
+    ('events_battleground', 'LOCALID_SOVEREIGN_COUNTERPART'): [
+        ('FLAG_DEFEATED_TRAINER_SOVEREIGN_DAWN_ROUTE_224_CHIMCHAR', 1)],
+    ('events_contest_hall_stage_no_contest', 'LOCALID_LEGENDARY_MELOETTA'): [('FLAG_SOVEREIGN_MELOETTA_SONG', 1)],
+    ('events_eterna_forest', 'LOCALID_LEGENDARY_CELEBI'): [('VAR_SOVEREIGN_CELEBI_STATE', 2)] + [
+        (f'FLAG_DEFEATED_TRAINER_SOVEREIGN_{leader}_MEMORY', 1)
+        for leader in ('FALKNER', 'BUGSY', 'WHITNEY', 'MORTY', 'CHUCK', 'JASMINE', 'PRYCE', 'CLAIR')],
+    **{('events_eterna_forest', f'LOCALID_SOVEREIGN_TIME_PORTAL_{i}'): [('VAR_SOVEREIGN_CELEBI_STATE', 2)]
+       for i in range(1, 9)},
+    ('events_fuego_ironworks_building', 'LOCALID_LEGENDARY_RESHIRAM'): [('ITEM_LIGHT_STONE', 1)],
+    ('events_fuego_ironworks_outside', 'LOCALID_LEGENDARY_CHI_YU'): [('FLAG_SOVEREIGN_PULLED_STAKE_7', 1),
+                                                                     ('FLAG_SOVEREIGN_PULLED_STAKE_8', 1)],
+    ('events_galactic_hq_laboratory', 'LOCALID_LEGENDARY_GENESECT'): [('FLAG_SOVEREIGN_GENESECT_FREED', 1)],
+    ('events_lake_valor', 'LOCALID_LEGENDARY_KELDEO'): [('SPECIES_COBALION', 50), ('SPECIES_TERRAKION', 50),
+                                                         ('SPECIES_VIRIZION', 50)],
+    ('events_mt_coronet_b1f', 'LOCALID_LEGENDARY_KYOGRE'): ORBS,
+    ('events_mt_coronet_outside_north', 'LOCALID_LEGENDARY_ARTICUNO'): CYRUS,
+    ('events_oreburgh_mine_b2f', 'LOCALID_LEGENDARY_DIANCIE'): [('SPECIES_CARBINK', 50)],
+    ('events_pokemon_league', 'LOCALID_LEGENDARY_RAYQUAZA'): ORBS,
+    ('events_pokemon_mansion', 'LOCALID_SOVEREIGN_CLEFAIRY_1'): [(SIEGE, 4)],
+    ('events_pokemon_mansion', 'LOCALID_SOVEREIGN_CLEFAIRY_2'): [
+        (SIEGE, 4), ('FLAG_DEFEATED_TRAINER_SOVEREIGN_GRUNT_MANSION_ROOM_1', 1)],
+    ('events_pokemon_mansion', 'LOCALID_SOVEREIGN_CLEFAIRY_4'): [
+        (SIEGE, 4), ('FLAG_DEFEATED_TRAINER_SOVEREIGN_GRUNT_MANSION_OFFICE', 1)],
+    ('events_pokemon_mansion', 'LOCALID_SOVEREIGN_HAPPINY'): [
+        (SIEGE, 4), ('FLAG_DEFEATED_TRAINER_SOVEREIGN_GRUNT_MANSION_ROOM_3', 1)],
+    **{('events_pokemon_mansion', f'LOCALID_SOVEREIGN_{who}'): [(SIEGE, 3)]
+       for who in ('GRUNT_OFFICE', 'GRUNT_ROOM_1', 'GRUNT_ROOM_3', 'GRUNT_TRIO', 'RIVAL')},
+    ('events_pokemon_mansion_office', 'LOCALID_LEGENDARY_MANAPHY'): [(SIEGE, 7)],
+    ('events_route_211_east', 'LOCALID_LEGENDARY_ENTEI'): CYRUS,
+    ('events_route_212_north', 'LOCALID_SOVEREIGN_GRUNT_2'): [(SIEGE, 3)],
+    ('events_route_212_north', 'LOCALID_SOVEREIGN_GRUNT_3'): [(SIEGE, 3)],
+    ('events_route_214', 'LOCALID_LEGENDARY_TING_LU'): [('FLAG_SOVEREIGN_PULLED_STAKE_5', 1),
+                                                        ('FLAG_SOVEREIGN_PULLED_STAKE_6', 1)],
+    ('events_route_215', 'LOCALID_LEGENDARY_ZEKROM'): [('ITEM_DARK_STONE', 1), ('HOUR', 22)],
+    ('events_route_220', 'LOCALID_LEGENDARY_LUGIA'): [('ITEM_SILVER_WING', 1)],
+    ('events_route_228', 'LOCALID_LEGENDARY_LANDORUS'): [('SPECIES_TORNADUS', 50), ('SPECIES_THUNDURUS', 50)],
+    ('events_sendoff_spring', 'LOCALID_LEGENDARY_KORAIDON'): [('VAR_SOVEREIGN_PARADOX_ANCIENT', 0x3ff)],
+    ('events_solaceon_ruins_room_6_northwest_dead_end', 'LOCALID_LEGENDARY_HOOPA'): [('ITEM_PRISON_BOTTLE', 1)],
+    ('events_solaceon_ruins_room_7', 'LOCALID_LEGENDARY_JIRACHI'): [('FLAG_SOVEREIGN_JIRACHI_SIGN_CHANGED', 1)],
+    ('events_stark_mountain_room_1', 'LOCALID_LEGENDARY_GROUDON'): ORBS,
+    ('events_valley_windworks_building', 'LOCALID_LEGENDARY_REGIELEKI'): [
+        ('SPECIES_REGIROCK', 50), ('SPECIES_REGICE', 50), ('SPECIES_REGISTEEL', 50)],
+    ('events_veilstone_city', 'LOCALID_LEGENDARY_DEOXYS'): [('FLAG_SOVEREIGN_DEOXYS_SENSED', 1)],
+}
+PARTY = 6  # the test save's party
 
 
 def var_ids():
@@ -377,7 +430,8 @@ def parse_args(args):
 
 SYMBOLS = ('gSovereignTestWarpTarget', 'gSovereignTestVar', 'gSovereignTestIdleFrames', 'gSovereignTestIdleMapHeaderID',
            'gSovereignTestGodMode', 'gSovereignTestScripts', 'gSovereignTestClock', 'gSovereignTestBadges',
-           'gSovereignTestCaughtAllBut', 'gSystem')
+           'gSovereignTestCaughtAllBut', 'gSovereignTestPartyKeep', 'gSovereignTestPartyAdd', 'gSovereignTestBagItem',
+           'gSystem')
 
 
 def main():
@@ -387,6 +441,7 @@ def main():
     sym = symbols(SYMBOLS)
     variables = var_ids()
     species = [line.strip() for line in open(os.path.join(DECOMP, 'generated', 'species.txt')) if line.strip()]
+    items = [line.strip() for line in open(os.path.join(DECOMP, 'generated', 'items.txt')) if line.strip()]
     chosen = [(i, c) for i, c in enumerate(cases()) if (not only or c[0] in only) and i % parts == part]
     d = Driver(rom, state)
     d.added, d.armed = [], False
@@ -405,9 +460,21 @@ def main():
                         d.emu.memory.write_short(sym['gSovereignTestVar'] + 14, 0)
                     if UNHIDE and own in species:
                         d.emu.memory.write_short(sym['gSovereignTestCaughtAllBut'], species.index(own))
-                    for i, (name, value) in enumerate(STORY.get((events, oid), []) if UNHIDE else []):
+                    story = STORY.get((events, oid), []) if UNHIDE else []
+                    for i, (name, value) in enumerate((n, v) for n, v in story if n in variables):
                         d.emu.memory.write_short(sym['gSovereignTestVar'] + 16 + 4 * i, variables[name])
                         d.emu.memory.write_short(sym['gSovereignTestVar'] + 18 + 4 * i, value)
+                    party = [(n, v) for n, v in story if n.startswith('SPECIES_')]
+                    if party:
+                        d.emu.memory.write_byte(sym['gSovereignTestPartyKeep'], PARTY - len(party))
+                    for i, (name, level) in enumerate(party):
+                        d.emu.memory.write_short(sym['gSovereignTestPartyAdd'] + 4 * i, species.index(name))
+                        d.emu.memory.write_byte(sym['gSovereignTestPartyAdd'] + 4 * i + 3, level)
+                    for name, value in story:
+                        if name.startswith('ITEM_'):
+                            d.emu.memory.write_short(sym['gSovereignTestBagItem'], items.index(name))
+                        elif name == 'HOUR':
+                            d.emu.memory.write_byte(sym['gSovereignTestClock'], value + 1)
 
                 result, frames = arrive(d, sym, state, variables, events, header, way_in, x, z, face, unhide)
                 if result == 'ok':
