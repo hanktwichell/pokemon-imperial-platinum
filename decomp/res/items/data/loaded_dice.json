@@ -17,7 +17,7 @@
   "holdEffect": "HOLD_EFFECT_NONE",
   "pluckEffect": "PLUCK_EFFECT_NONE",
   "flingEffect": "FLING_EFFECT_NONE",
-  "flingPower": 0,
+  "flingPower": 30,
   "naturalGiftPower": 0,
   "naturalGiftType": null,
   "preventToss": false,

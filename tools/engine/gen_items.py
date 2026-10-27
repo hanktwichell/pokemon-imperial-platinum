@@ -42,6 +42,11 @@ ICON_MESON = os.path.join(ICON_DIR, "meson.build")
 MART_HEADER = os.path.join(DECOMP, "include", "data", "sovereign_mart_items.h")
 # Prices for shop items that have none in PokeAPI (they aren't sold in the official games).
 PRICES = {"Booster Energy": 10000}
+# Fling power for items that have none in PokeAPI (Scarlet/Violet's items; Bulbapedia, Showdown). Without it Fling fails.
+FLING_POWERS = {"Ability Shield": 30, "Auspicious Armor": 30, "Malicious Armor": 30, "Booster Energy": 30,
+                "Clear Amulet": 30, "Covert Cloak": 30, "Loaded Dice": 30, "Mirror Herb": 30, "Punching Glove": 30,
+                "Syrupy Apple": 30, "Fairy Feather": 10, "Cornerstone Mask": 60, "Hearthflame Mask": 60,
+                "Wellspring Mask": 60}
 # Mega Stone vendors (data/mega_stones.yaml "vendors"): their stones cost what the vendor charges (no official price).
 VENDORS = yaml.safe_load(open(os.path.join(ROOT, "data", "mega_stones.yaml"), encoding="utf-8"))["vendors"]
 VENDOR_PRICES = {stone: vendor["price"] for vendor in VENDORS for stone in vendor["stock"]}
@@ -309,7 +314,7 @@ def main():
             "holdEffect": "HOLD_EFFECT_NONE",
             "pluckEffect": "PLUCK_EFFECT_NONE",
             "flingEffect": "FLING_EFFECT_NONE",
-            "flingPower": int(row.get("fling_power") or 0),
+            "flingPower": FLING_POWERS.get(name) or int(row.get("fling_power") or 0),
             "naturalGiftPower": 0,
             "naturalGiftType": None,
             "preventToss": is_key,

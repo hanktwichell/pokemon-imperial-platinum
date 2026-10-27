@@ -18,7 +18,7 @@
   "pluckEffect": "PLUCK_EFFECT_SPDEF_UP",
   "flingEffect": "FLING_EFFECT_SPDEF_UP",
   "flingPower": 10,
-  "naturalGiftPower": 80,
+  "naturalGiftPower": 100,
   "naturalGiftType": "TYPE_GROUND",
   "preventToss": false,
   "canRegister": false,

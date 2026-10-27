@@ -491,7 +491,8 @@ def main():
     L += ["", "## New moves (#468–919)", "", "| # | Move | Type | Effect used | Fidelity | Note |", "|---|---|---|---|---|---|"]
     L += [f"| {a} | {b} | {c} | `{d}` | {e} | {g} |" for a, b, c, d, e, g in rows]
     L += ["", "## Platinum's moves updated to Gen IX numbers", "",
-          "Battle effects are unchanged; only these values changed.", "", "| # | Move | Changes |", "|---|---|---|"]
+          "These values changed. Which battle effects still follow Gen IV, and which are updated, is in",
+          "`docs/PlatinumMoveAudit.md`.", "", "| # | Move | Changes |", "|---|---|---|"]
     L += [f"| {a} | {b} | {c} |" for a, b, c in changed]
     with open(os.path.join(ROOT, "docs", "MoveChecklist.md"), "w", encoding="utf-8") as f:
         f.write("\n".join(L) + "\n")

@@ -7,9 +7,11 @@ _000:
     PrintBufferedMessage 
     Wait 
     WaitButtonABTime 30
-    Random 3, 3
+    // Sovereign: 4 or 5 turns of damage, 7 with a Grip Claw (Gen V+). Platinum's were 2 to 5, and 5.
+    Random 1, 5
     CheckItemHoldEffect CHECK_NOT_HAVE, BTLSCR_ATTACKER, HOLD_EFFECT_EXTEND_TRAPPING, _024
-    UpdateVar OPCODE_SET, BTLVAR_CALC_TEMP, 0x00000006
+    UpdateVar OPCODE_SET, BTLVAR_CALC_TEMP, 7
+    UpdateMonData OPCODE_FLAG_ON, BTLSCR_DEFENDER, BATTLEMON_VOLATILE_STATUS, VOLATILE_CONDITION_SOVEREIGN_GRIP_CLAW
 
 _024:
     UpdateVar OPCODE_LEFT_SHIFT, BTLVAR_CALC_TEMP, 0x0000000D

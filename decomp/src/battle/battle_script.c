@@ -1380,8 +1380,10 @@ static void BattleScript_CalcMoveDamage(BattleSystem *battleSys, BattleContext *
         battleCtx->damage = battleCtx->damage * (100 + Battler_HeldItemPower(battleCtx, battleCtx->attacker, 0)) / 100;
     }
 
+    // Sovereign: the Metronome item gives ×1.2 for each use of the same move in a row, up to ×2 (Gen V+). Platinum
+    // gave ×1.1, up to ×2.
     if (Battler_HeldItemEffect(battleCtx, battleCtx->attacker) == HOLD_EFFECT_BOOST_REPEATED) {
-        battleCtx->damage = battleCtx->damage * (10 + ATTACKING_MON.moveEffectsData.metronomeTurns) / 10;
+        battleCtx->damage = battleCtx->damage * (10 + 2 * ATTACKING_MON.moveEffectsData.metronomeTurns) / 10;
     }
 
     if (ATTACKING_MON.moveEffectsData.meFirst) {

@@ -18,7 +18,7 @@
   "pluckEffect": "PLUCK_EFFECT_TEMP_ACC_UP",
   "flingEffect": "FLING_EFFECT_TEMP_ACC_UP",
   "flingPower": 10,
-  "naturalGiftPower": 80,
+  "naturalGiftPower": 100,
   "naturalGiftType": "TYPE_ROCK",
   "preventToss": false,
   "canRegister": false,

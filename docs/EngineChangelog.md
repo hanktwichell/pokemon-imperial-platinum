@@ -3,6 +3,57 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Item 11: Platinum's held items under the later games' rules
+
+Platinum's own held items still followed Gen IV. These now follow the later games (`docs/HeldItemChecklist.md`):
+
+For players:
+- **Mental Herb** (Gen V+) cures infatuation, Taunt, Encore, Torment, Disable and Heal Block, all at once, with one
+  message for each: "GEODUDE's Taunt wore off!", "GEODUDE is no longer tormented!"... It only cured infatuation. A
+  flung Mental Herb does the same.
+- **Metronome** (Gen V+): ×1.2 for each use of the same move in a row, up to ×2 after five (×1.1 up to ×2 after ten).
+- **Soul Dew** (Gen VII+): Latios's and Latias's Psychic and Dragon moves ×1.2, in any battle. It raised their Sp. Atk
+  and Sp. Def ×1.5, outside the Battle Frontier.
+- **Binding moves** (Bind, Wrap, Fire Spin, Clamp, Whirlpool, Sand Tomb, Magma Storm, Infestation...) last 4 or 5 turns
+  and take 1/8 of the max HP each turn (Gen VI+; 2 to 5 turns, 1/16). **Grip Claw** makes them last 7 turns (5), and
+  **Binding Band** makes them take 1/6 (1/8).
+- **Figy, Wiki, Mago, Aguav and Iapapa Berries** (Gen VIII+): eaten at 1/4 of the max HP (1/2 with Gluttony), and
+  restore 1/3. They were eaten at 1/2 and restored 1/8. They still confuse a Pokémon that dislikes the flavour.
+- **Natural Gift** (Gen VI+) is 20 stronger with every Berry: 80, 90 or 100.
+- **Leek** (Gen VIII+) also raises Sirfetch'd's critical-hit ratio.
+- **Shell Bell** (Gen V+) doesn't heal after a move Sheer Force powered, as Life Orb doesn't hurt.
+- **Fling** works with Scarlet/Violet's items (Ability Shield, Covert Cloak, Loaded Dice, Mirror Herb, Punching Glove,
+  Booster Energy, Clear Amulet, the masks...). PokeAPI has no Fling power for them, so Fling failed.
+
+Code:
+- `battle_lib.c`: `Sovereign_PinchBerryHP` (the pinch Berries' 1/4), `Sovereign_MentalHerbCures` (in
+  `BattleSystem_TriggerHeldItem`, `BattleSystem_TriggerHeldItemOnStatus` and Fling), the Metronome counter (up to 5),
+  Soul Dew in the damage calculation, Leek in `BattleSystem_CalcCriticalMulti`.
+- `battle_script.c`: the Metronome item's ×(1 + 0.2n).
+- `battle_controller_player.c`: binding damage 1/8 (Binding Band 1/6), Grip Claw's 7th turn, Shell Bell and Sheer
+  Force.
+- `subscript_bind_start.s`: 4 or 5 turns, 7 with a Grip Claw. The 3-bit counter holds 7, so a Grip Claw binding also
+  sets `VOLATILE_CONDITION_SOVEREIGN_GRIP_CLAW` (Platinum's unused bit 7, part of `VOLATILE_CONDITION_BIND`): its first
+  end of turn uses up that bit, not the counter.
+- New `subscript_sovereign_mental_herb.s` and 3 messages ("{0} is no longer tormented!").
+- New `tools/engine/platinum_item_updates.py` (Natural Gift powers, the pinch Berries' 1/3), run by CI after
+  `gen_items.py`. `gen_items.py` has the new `FLING_POWERS`.
+
+Verified (test build, emulator, wild battles; the old ROM for comparison):
+- **Figy Berry:** a Geodude at 27 of 115 HP ate it at the end of the turn and went to 65 (+38, 1/3). At 46 HP it
+  didn't eat it.
+- **Mental Herb:** a wild Ninjask's Taunt, Encore, Disable, Torment and Heal Block each ended at once, with the
+  messages above, and Geodude used Splash. The next Taunt stuck (the herb was used up).
+- **Metronome:** a wild Ninjask's Tackles did 84, 90, 117 and 121 (×1, 1.2, 1.4, 1.6). On the old ROM they did 54, 53,
+  64, 63, 64, 74, 77 (×0.1 steps).
+- **Soul Dew:** the same wild Latios's Dragon Pulse did 52, 46, 52, 46 to a Lv. 80 Blissey with it and 45, 40, 45, 40
+  without (×1.2; the formula gives 52 and 45 at the top roll).
+- **Binding:** a wild Ninjask's Fire Spin took 65 (1/8 of Blissey's 522 HP) for 5 turns, 7 turns with a Grip Claw;
+  with a Binding Band, 87 (1/6) for 4 turns.
+- **Fling:** "GARCHOMP flung its Covert Cloak!" (the old ROM: "But it failed!").
+- **Builds:** the test and release builds pass. Every battle script fits its buffer (`check_battle_scripts.py`, both
+  builds; the largest is 1,924 bytes).
+
 ## Item 11: Platinum's abilities under the later games' rules
 
 Battles follow Pokémon Champions, and Gen IX where Champions changes nothing (`docs/BattleMechanics.md`). Many of

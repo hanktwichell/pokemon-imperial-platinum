@@ -9,12 +9,29 @@ Platinum's own held items keep their Gen IV behaviour, with these exceptions (Ge
   Serene Grace), not only with the moves Gen IV listed. Stench does the same, and doesn't add to them.
 - **Focus Band and Focus Sash** are checked for each hit. Platinum kept the first hit's result for the rest of the
   move, so a Focus Sash at full HP held through a multi-hit move's later hits too. Sturdy works before either.
+- **Mental Herb** cures infatuation, Taunt, Encore, Torment, Disable and Heal Block, all at once, with a message for
+  each (`subscript_sovereign_mental_herb`). Platinum's only cured infatuation. A flung Mental Herb does the same.
+- **Metronome** gives ×1.2 for each use of the same move in a row, up to ×2 after five. Platinum's gave ×1.1, up to
+  ×2 after ten.
+- **Soul Dew** powers up Latios's and Latias's Psychic and Dragon moves ×1.2, in any battle (Gen VII+). Platinum's
+  raised their Sp. Atk and Sp. Def ×1.5, outside the Battle Frontier.
+- **Grip Claw** makes a binding move last 7 turns (Gen V+; Platinum's 5). Binding moves themselves last 4 or 5 turns
+  and take 1/8 of the max HP each turn (Gen VI+; Platinum's 2 to 5 turns, 1/16).
+- **Leek** works for Sirfetch'd too (Gen VIII+).
+- **Shell Bell** doesn't heal after a move Sheer Force powered (Gen V+), like Life Orb.
+- **Figy, Wiki, Mago, Aguav and Iapapa Berries** are eaten at 1/4 of the max HP (1/2 with Gluttony) and restore 1/3
+  (Gen VIII+; Platinum's at 1/2, restoring 1/8). They still confuse a Pokémon that dislikes the flavour.
+- **Natural Gift** is 20 stronger with every Berry (Gen VI+: 80, 90 or 100).
+
+The item data changes (Natural Gift, the pinch Berries) are written by `tools/engine/platinum_item_updates.py`.
 
 Mega Stones, Orbs, Plates, Drives, Memories and other
 form-setting items work through the form tables (milestone FM), so they aren't listed here.
 
 The new items have no hold effect constant (`HOLD_EFFECT_NONE`). The battle code checks the item itself, with
 `Battler_HeldItem`, which already gives `ITEM_NONE` under Klutz, Embargo and Magic Room.
+Their Fling power comes from PokeAPI. Scarlet/Violet's items (Ability Shield, Covert Cloak, Loaded Dice, the masks...),
+which PokeAPI lacks, take theirs from `FLING_POWERS` in `tools/engine/gen_items.py`; Fling failed with them before.
 
 | Item | Battle effect |
 |---|---|
@@ -24,7 +41,7 @@ The new items have no hold effect constant (`HOLD_EFFECT_NONE`). The battle code
 | Air Balloon | yes: Ground moves don't affect the holder ("It doesn't affect {0}…"), and it isn't grounded (terrain, Spikes, Toxic Spikes, Sticky Web). Shown on entry; pops when a damaging move hits the holder. Gravity, Ingrain and Smack Down ground it as they ground Magnet Rise |
 | Red Card | yes: when a damaging move hits the holder, the attacker is dragged out as by Dragon Tail ("{0} held up its Red Card against {1}!"), used up even if Suction Cups or Ingrain keep it in; a wild attacker flees. Not after U-turn and the like, through a Substitute, or when Sheer Force powered the move |
 | Ring Target | yes: the holder's type immunities don't apply (a Ghost type takes Normal and Fighting moves, a Flying type Ground moves...); its Abilities still do (Levitate, Volt Absorb...) |
-| Binding Band | yes: a binding move the holder used costs its target twice as much at the end of each turn (1/8 of its max HP; Sovereign keeps Platinum's 1/16) |
+| Binding Band | yes: a binding move the holder used costs its target 1/6 of its max HP at the end of each turn, not 1/8 |
 | Absorb Bulb | yes: Sp. Atk +1 when a Water move hits the holder, used up |
 | Cell Battery | yes: Attack +1 when an Electric move hits the holder, used up |
 | Eject Button | yes: when a damaging move hits the holder, it switches out to a Pokémon its trainer picks ("{0} is switched out with the Eject Button!"), used up. Nothing happens with no Pokémon to switch to (a wild holder). After U-turn and the like, both switch out (Champions). Not through a Substitute, or when Sheer Force powered the move |

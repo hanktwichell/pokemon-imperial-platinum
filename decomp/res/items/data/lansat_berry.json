@@ -18,7 +18,7 @@
   "pluckEffect": "PLUCK_EFFECT_CRIT_UP",
   "flingEffect": "FLING_EFFECT_CRIT_UP",
   "flingPower": 10,
-  "naturalGiftPower": 80,
+  "naturalGiftPower": 100,
   "naturalGiftType": "TYPE_FLYING",
   "preventToss": false,
   "canRegister": false,

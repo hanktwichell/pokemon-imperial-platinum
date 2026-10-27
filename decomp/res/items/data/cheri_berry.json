@@ -18,7 +18,7 @@
   "pluckEffect": "PLUCK_EFFECT_PRZ_RESTORE",
   "flingEffect": "FLING_EFFECT_PRZ_RESTORE",
   "flingPower": 10,
-  "naturalGiftPower": 60,
+  "naturalGiftPower": 80,
   "naturalGiftType": "TYPE_FIRE",
   "preventToss": false,
   "canRegister": false,

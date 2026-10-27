@@ -18,7 +18,7 @@
   "pluckEffect": "PLUCK_EFFECT_ALL_RESTORE",
   "flingEffect": "FLING_EFFECT_ALL_RESTORE",
   "flingPower": 10,
-  "naturalGiftPower": 60,
+  "naturalGiftPower": 80,
   "naturalGiftType": "TYPE_FLYING",
   "preventToss": false,
   "canRegister": false,

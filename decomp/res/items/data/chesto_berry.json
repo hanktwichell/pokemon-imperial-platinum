@@ -18,7 +18,7 @@
   "pluckEffect": "PLUCK_EFFECT_SLP_RESTORE",
   "flingEffect": "FLING_EFFECT_SLP_RESTORE",
   "flingPower": 10,
-  "naturalGiftPower": 60,
+  "naturalGiftPower": 80,
   "naturalGiftType": "TYPE_WATER",
   "preventToss": false,
   "canRegister": false,

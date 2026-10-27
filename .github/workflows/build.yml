@@ -130,6 +130,7 @@ jobs:
           python3 tools/engine/gen_stat_moves.py
           python3 tools/engine/gen_abilities.py /tmp/pokeapi/data/v2/csv
           python3 tools/engine/gen_items.py /tmp/pokeapi/data/v2/csv
+          python3 tools/engine/platinum_item_updates.py
           python3 tools/engine/gen_species_gen9.py /tmp/pokeapi/data/v2/csv
           python3 tools/engine/gen_forms.py /tmp/pokeapi/data/v2/csv
           python3 tools/engine/gen_easy_chat_species.py

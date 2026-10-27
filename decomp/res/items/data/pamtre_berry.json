@@ -18,7 +18,7 @@
   "pluckEffect": "PLUCK_EFFECT_NONE",
   "flingEffect": "FLING_EFFECT_NONE",
   "flingPower": 10,
-  "naturalGiftPower": 70,
+  "naturalGiftPower": 90,
   "naturalGiftType": "TYPE_STEEL",
   "preventToss": false,
   "canRegister": false,
