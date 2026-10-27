@@ -133,6 +133,7 @@ STORY = {
     **{('events_pokemon_mansion', f'LOCALID_SOVEREIGN_{who}'): [(SIEGE, 3)]
        for who in ('GRUNT_OFFICE', 'GRUNT_ROOM_1', 'GRUNT_ROOM_3', 'GRUNT_TRIO', 'RIVAL')},
     ('events_pokemon_mansion_office', 'LOCALID_LEGENDARY_MANAPHY'): [(SIEGE, 7)],
+    ('events_pokemon_mansion_office', 'LOCALID_SOVEREIGN_MAID'): [(SIEGE, 6)],
     ('events_route_211_east', 'LOCALID_LEGENDARY_ENTEI'): CYRUS,
     ('events_route_212_north', 'LOCALID_SOVEREIGN_GRUNT_2'): [(SIEGE, 3)],
     ('events_route_212_north', 'LOCALID_SOVEREIGN_GRUNT_3'): [(SIEGE, 3)],
@@ -142,6 +143,7 @@ STORY = {
     ('events_route_220', 'LOCALID_LEGENDARY_LUGIA'): [('ITEM_SILVER_WING', 1)],
     ('events_route_228', 'LOCALID_LEGENDARY_LANDORUS'): [('SPECIES_TORNADUS', 50), ('SPECIES_THUNDURUS', 50)],
     ('events_sendoff_spring', 'LOCALID_LEGENDARY_KORAIDON'): [('VAR_SOVEREIGN_PARADOX_ANCIENT', 0x3ff)],
+    ('events_sendoff_spring', 'LOCALID_LEGENDARY_MIRAIDON'): [('VAR_SOVEREIGN_PARADOX_FUTURE', 0x3ff)],
     ('events_solaceon_ruins_room_6_northwest_dead_end', 'LOCALID_LEGENDARY_HOOPA'): [('ITEM_PRISON_BOTTLE', 1)],
     ('events_solaceon_ruins_room_7', 'LOCALID_LEGENDARY_JIRACHI'): [('FLAG_SOVEREIGN_JIRACHI_SIGN_CHANGED', 1)],
     ('events_stark_mountain_room_1', 'LOCALID_LEGENDARY_GROUDON'): ORBS,
