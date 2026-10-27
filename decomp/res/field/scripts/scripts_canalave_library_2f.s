@@ -171,7 +171,8 @@ CanalaveLibrary2F_Movement_PlayerMoveAside:
 @ until the player is done. Once Kyurem, the Unova Chronicle's key, is caught, he opens the Kalos Chronicle
 @ (VAR_SOVEREIGN_CHRONICLE 2) and first asks which Chronicle to read from. Xerneas and Yveltal, the Kalos key, open
 @ the Alola Chronicle (3), Solgaleo or Lunala the Galar Chronicle (4), and Zacian and Zamazenta the Paldea
-@ Chronicle (5).
+@ Chronicle (5). As each Chronicle opens, he works a little more out (Story.md): someone opened the way for these
+@ legends on purpose, and the crown on the Galar tome points to the Sovereign.
 CanalaveLibrary2F_SovereignArchivist:
     PlaySE SE_CONFIRM_sseq_3
     LockAll
@@ -190,6 +191,7 @@ CanalaveLibrary2F_SovereignArchivistRead:
     GoToIfEq VAR_RESULT, FALSE, CanalaveLibrary2F_SovereignArchivistUnova
     SetVar VAR_SOVEREIGN_CHRONICLE, 2
     Message CanalaveLibrary2F_Text_SovereignArchivistKalosOpens
+    Message CanalaveLibrary2F_Text_SovereignArchivistHintKalos
 CanalaveLibrary2F_SovereignArchivistTryAlola:
     SovereignCheckSpeciesCaught SPECIES_XERNEAS, VAR_0x8004
     SovereignCheckSpeciesCaught SPECIES_YVELTAL, VAR_0x8005
@@ -197,6 +199,7 @@ CanalaveLibrary2F_SovereignArchivistTryAlola:
     GoToIfEq VAR_0x8005, FALSE, CanalaveLibrary2F_SovereignArchivistChapters
     SetVar VAR_SOVEREIGN_CHRONICLE, 3
     Message CanalaveLibrary2F_Text_SovereignArchivistAlolaOpens
+    Message CanalaveLibrary2F_Text_SovereignArchivistHintAlola
 CanalaveLibrary2F_SovereignArchivistTryGalar:
     SovereignCheckSpeciesCaught SPECIES_SOLGALEO, VAR_0x8004
     SovereignCheckSpeciesCaught SPECIES_LUNALA, VAR_0x8005
@@ -205,6 +208,7 @@ CanalaveLibrary2F_SovereignArchivistTryGalar:
 CanalaveLibrary2F_SovereignArchivistOpenGalar:
     SetVar VAR_SOVEREIGN_CHRONICLE, 4
     Message CanalaveLibrary2F_Text_SovereignArchivistGalarOpens
+    Message CanalaveLibrary2F_Text_SovereignArchivistHintGalar
 CanalaveLibrary2F_SovereignArchivistTryPaldea:
     SovereignCheckSpeciesCaught SPECIES_ZACIAN, VAR_0x8004
     SovereignCheckSpeciesCaught SPECIES_ZAMAZENTA, VAR_0x8005
@@ -212,6 +216,7 @@ CanalaveLibrary2F_SovereignArchivistTryPaldea:
     GoToIfEq VAR_0x8005, FALSE, CanalaveLibrary2F_SovereignArchivistChapters
     SetVar VAR_SOVEREIGN_CHRONICLE, 5
     Message CanalaveLibrary2F_Text_SovereignArchivistPaldeaOpens
+    Message CanalaveLibrary2F_Text_SovereignArchivistHintPaldea
 CanalaveLibrary2F_SovereignArchivistChapters:
     Message CanalaveLibrary2F_Text_SovereignArchivistWhichChronicle
     InitLocalTextMenu 31, 3, 0, VAR_RESULT

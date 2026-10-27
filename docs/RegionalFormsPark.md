@@ -12,6 +12,9 @@ wild area where the regional forms live.
 - **Encounters.** Each quadrant of the map is one region's zone. An encounter works like any route's (same step rates,
   Repel, abilities), but the Pokémon is picked from the zone's list by its odds, at a random level in its range.
 - **Pokédex.** The area map shows the park's Pokémon at Route 221, from the start like the other post-game areas.
+- **The keeper's log.** A logbook on the lobby counter, beside the worker, has a page for each zone: where its
+  forms came through, with a few of them described. Its last page says each one came through a seam in the air
+  (`docs/Story.md`).
 
 **Approved** by the owner (2026-10-24):
 - each region's forms live in their own zone, with a sign at the way in;

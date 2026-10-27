@@ -37,6 +37,8 @@ def main():
          ""]
     if hub.get("built"):
         L[-1:] = [f"- **Built:** {hub['built']}", ""]
+    if hub.get("sovereign"):
+        L[-1:] = [f"- **The Sovereign:** {hub['sovereign']}", ""]
     L.append(f"Covers **{len(seen)}** species.\n")
     chapter = None
     for q in data["quests"]:

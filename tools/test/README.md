@@ -19,6 +19,7 @@ These read the decomp's files. CI runs the ones marked **CI** on every PR.
 | `check_battle_sprites.py` **CI** | every battle sprite is a 160×80 indexed image with its first four pixels clear (else the game can't unscramble it) |
 | `check_type_chart.py` **CI** | the type charts match the official chart (needs PokeAPI's CSVs) |
 | `find_tiles.py` | prints a map's tiles, to find spots for warps and new objects |
+| `rom_space.py` | prints the ROM's free space and what the cries take (needs a built ROM) |
 
 ## The test build
 

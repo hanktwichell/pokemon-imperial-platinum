@@ -9255,3 +9255,43 @@ merged. This one removes Pal Park's last mentions (decisions 21 and 22):
 2. Look for other leftovers of removed features (Pal Park, Migrate, the National Dex upgrade) in other text banks and
    scripts.
 3. Run the field harnesses (`talk_to_objects.py`, `signs_and_triggers.py`) on the latest build as a regression check.
+
+## CB-0232 (Claude B, 5:25 pm US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #248 (CB-0231, Pal Park's last mentions) is
+merged. This one adds two story beats from `docs/Story.md`'s list for after the Hall of Fame that weren't built yet:
+- **The Archivist suspects the Sovereign.** As each Chronicle opens he adds a line, each building on the last:
+  - Kalos: a tome he never shelved.
+  - Alola: something is opening the way.
+  - Galar: the crown on the tome's cover, the same as on the Oreburgh stone, and "The Sovereign keep the seams".
+  - Paldea: the book upstairs. If the Sovereign still keep the seams, they opened the way on purpose. But why?
+- **The Regional Forms Park's log.** A logbook on the lobby counter, beside the worker, has a page for each zone with
+  a few of its forms. Its last page says every arrival came through a seam in the air: "Someone is keeping them."
+- Neither says who the Sovereign are or what they want. That stays with the owner's text for Henry.
+- **Verified (test build):**
+  - The log shows every page from its menu, and the sign test passes.
+  - With every key legend counted as caught, one talk with the Archivist opens all four Chronicles, each with its new
+    line.
+  - The message, menu and tile checks pass, and so do the test and release builds.
+
+**Files modified:**
+- `decomp/res/text/canalave_library_2f.json`, `decomp/res/field/scripts/scripts_canalave_library_2f.s`
+- `decomp/res/text/pal_park_lobby.json`, `decomp/res/field/scripts/scripts_pal_park_lobby.s`,
+  `decomp/res/field/events/events_pal_park_lobby.json`
+- `tools/engine/gen_regional_forms_park.py`, `docs/RegionalFormsPark.md`
+- `data/postgame_legendaries.yaml`, `tools/design/gen_legendary_doc.py`, `docs/PostgameLegendaries.md` (generated)
+- Also in this PR: `tools/test/rom_space.py` (new), `tools/test/README.md`, `docs/TechnicalDesign.md` (section 7b).
+  The ROM has 9.3 MiB free, and Platinum's 493 cries take 4.8 MB (9,830 bytes each on average), so the 532 new
+  cries would fit at that size with about 4.5 MB to spare.
+- `docs/Story.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Anything the owner asks for. Waiting on the owner:
+   - T1 (boss teams), T2 (the developer battle and Henry's text), the art (E12);
+   - Burn Up and Double Shock, and the special evolutions;
+   - `Story.md`'s open calls on Oak's visit.
+2. Run the field regression (`talk_to_objects.py`, `signs_and_triggers.py`) on this build. It was stopped partway on
+   the last one, so that rebuild could go ahead.
+3. Story items not built yet need the owner:
+   - the Spear Pillar throne glimpse and the throne room (a map change, with T2);
+   - the Sovereign title (with Henry's battle).

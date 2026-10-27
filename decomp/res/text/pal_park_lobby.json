@@ -877,6 +877,95 @@
         "The Pokémon here are lovely.\n",
         "I am quite composed today."
       ]
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignLogIntro",
+      "en_US": [
+        "A logbook lies open on the counter.\n",
+        "Its cover reads “Arrivals.”\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignLogWhichPage",
+      "en_US": "Which page will you read?"
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignLogMenuAlola",
+      "en_US": "Alola"
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignLogMenuGalar",
+      "en_US": "Galar"
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignLogMenuHisui",
+      "en_US": "Hisui"
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignLogMenuPaldea",
+      "en_US": "Paldea"
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignLogMenuLastPage",
+      "en_US": "Last page"
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignLogMenuClose",
+      "en_US": "Close it"
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignLogAlola",
+      "en_US": [
+        "“ALOLA: in the field, south-west,\n",
+        "by the tall grass.\r",
+        "A Vulpix white with frost, on a warm\n",
+        "night. A Grimer of every color.\r",
+        "An Exeggutor so tall it brushed the\n",
+        "treetops. All stepped out of thin air.”\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignLogGalar",
+      "en_US": [
+        "“GALAR: in the forest, north-west,\n",
+        "among the trees.\r",
+        "A Ponyta with a mane like mist. A\n",
+        "Slowpoke with a yellow-tipped head.\r",
+        "One night, three great birds. None of\n",
+        "them looked like the birds of Kanto.”\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignLogHisui",
+      "en_US": [
+        "“HISUI: on the mountain, north-east,\n",
+        "and in the lake below it.\r",
+        "A Growlithe with a mane of stone.\n",
+        "A Qwilfish bristling with dark spikes.\r",
+        "Hisui is no faraway land. It is Sinnoh,\n",
+        "long ago. These came from the past.”\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignLogPaldea",
+      "en_US": [
+        "“PALDEA: at sea, south-east, past\n",
+        "the shore.\r",
+        "A brown Wooper that stings. A Tauros\n",
+        "that charged out of the waves.\r",
+        "It shook off the water and stood\n",
+        "there, as if it had always lived here.”\r"
+      ]
+    },
+    {
+      "id": "PalParkLobby_Text_SovereignLogLastPage",
+      "en_US": [
+        "The last entry is underlined twice:\r",
+        "“Every arrival is the same: a seam\n",
+        "opens in the air and closes behind it.\r",
+        "Seams don’t open by themselves.\n",
+        "Someone is keeping them.”\r"
+      ]
     }
   ]
 }
