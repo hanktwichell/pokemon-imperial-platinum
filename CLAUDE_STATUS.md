@@ -8381,7 +8381,7 @@ the game:
 2. 12b #7 (weather) waits for T2. Emergency Exit after entry hazards is still open.
 3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.
 
-## CB-0201 (Claude B, 10:35 pm US Central, 2026-10-26)
+## CB-0201 (Claude B, 10:31 pm US Central, 2026-10-26)
 
 **Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #217 (Acid Rain, Fire Fang through Wonder Guard,
 Rage, eight AI bugs) is merged. This PR: 12b #15, absorbing abilities in the AI's switch checks.
@@ -8403,5 +8403,31 @@ Rage, eight AI bugs) is merged. This PR: 12b #15, absorbing abilities in the AI'
 **Next 3 steps:**
 1. `TrainerAI_ShouldUseItem` (when trainers use potions, status cures and X items) hasn't been checked against the
    Champions rules and the Gen V+ statuses yet.
+2. 12b #7 (weather) waits for T2. Emergency Exit after entry hazards is still open.
+3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.
+
+## CB-0202 (Claude B, 10:42 pm US Central, 2026-10-26)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #218 (absorbing abilities in the AI's switch
+checks) is merged. This PR: 12b #16, trainer items.
+- `TrainerAI_ShouldUseItem` kept looking after it picked an item, and `result` stayed TRUE, so every later item it could
+  reach was spent too, and the last one was the one announced. With two or more items and few Pokémon left, a trainer
+  lost them all in one turn. 84 trainers have two or more items, Gym Leaders, the Elite Four and Cynthia among them.
+  It now stops at the first item that qualifies.
+- A Full Heal was only ever used on sleep: the status checks were a chain with one condition per item. Status items are
+  now checked against every condition they cure. The status-cure subscript also clears confusion on its "normalized its
+  status" path.
+- Verified in the test build: a trainer with Hyper Potion ×2 and a Full Heal (one burned Slowbro at 10% HP) used them
+  over three turns, and the Full Heal healed the burn. A build without the fix said "used one Full Heal" on turn 1,
+  healed nothing, and had no items left. Release and test builds pass.
+- Also corrected CB-0201's time (10:31 pm, not 10:35).
+
+**Files modified:** `decomp/src/battle/trainer_ai/trainer_ai.c`,
+`decomp/res/battle/scripts/subscripts/subscript_use_status_recovery.s`, `docs/AIReview.md`, `docs/EngineChangelog.md`,
+`CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. The other vanilla `BUG` comments outside battle (`decomp/docs/bugs_and_glitches.md`: fishing encounter rate with
+   Sticky Hold/Suction Cups, Magnet Pull in water, the Defog HM palette) are worth a look.
 2. 12b #7 (weather) waits for T2. Emergency Exit after entry hazards is still open.
 3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.

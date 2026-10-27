@@ -3,6 +3,28 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## 12b (trainer AI): trainer items, one per turn, and Full Heal for any condition
+
+For players:
+- Trainers no longer waste items. In Platinum, a trainer with two or more items and few Pokémon left could spend all of
+  them in one turn while only one took effect. That could be the wrong one: "used one Full Heal" on a Pokémon that
+  needed a potion. Now a trainer uses one item per turn. This matters for the 84 trainers with two or more items, the
+  Gym Leaders, Elite Four, Cynthia and rivals among them.
+- A trainer's Full Heal is now used for any condition it cures (burn, poison, paralysis, freeze, sleep, confusion), not
+  only sleep (`docs/AIReview.md` #16).
+
+Code:
+- `trainer_ai.c` (`TrainerAI_ShouldUseItem`):
+  - It stops at the first item that qualifies.
+  - Status items are checked by every condition they cure (`AI_ItemCuredConditions`, `AI_BattlerConditions`).
+- `subscript_use_status_recovery.s`: the "normalized its status" path (a status condition and confusion at once) also
+  clears confusion.
+
+Verified in the test build:
+- Setup: a trainer holding Hyper Potion ×2 and a Full Heal, with one burned Slowbro kept at 10% HP.
+- With the fix: Hyper Potion on turn 1, Hyper Potion on turn 2, Full Heal on turn 3 (burn healed).
+- Without it: one "Full Heal" on turn 1 that healed nothing, and no items left.
+
 ## 12b (trainer AI): absorbing abilities in the switch checks and the post-KO replacement
 
 For players:

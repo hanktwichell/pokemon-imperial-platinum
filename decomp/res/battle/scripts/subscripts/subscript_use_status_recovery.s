@@ -15,6 +15,8 @@ _000:
     CompareVarToValue OPCODE_EQU, BTLVAR_MSG_TEMP, 3, _078
     CompareVarToValue OPCODE_EQU, BTLVAR_MSG_TEMP, 4, _085
     CompareVarToValue OPCODE_EQU, BTLVAR_MSG_TEMP, 5, _092
+    // Sovereign (12b): a status condition and confusion (a Full Heal): cure the confusion too.
+    UpdateMonData OPCODE_FLAG_OFF, BTLSCR_ATTACKER, BATTLEMON_VOLATILE_STATUS, VOLATILE_CONDITION_CONFUSION
     // {0} normalized its status using its {1}!
     PrintMessage BattleStrings_Text_PokemonNormalizedItsStatusUsingItsItem_Ally, TAG_NICKNAME_ITEM, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP
     GoTo _099
