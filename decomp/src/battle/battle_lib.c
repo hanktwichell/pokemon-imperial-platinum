@@ -85,6 +85,7 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
     battleCtx->sovereignSkyDropHolder[battler] = 0;
     battleCtx->sovereignHPBeforeAction[battler] = 0; // and has lost no HP yet (Emergency Exit)
     battleCtx->sovereignHPBeforeTurnEnd[battler] = 0;
+    battleCtx->sovereignEjectPackPending &= ~FlagIndex(battler); // nor had a stat lowered (Eject Pack)
 
     battleCtx->battleMons[battler].species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     battleCtx->battleMons[battler].attack = Pokemon_GetValue(mon, MON_DATA_ATK, NULL);
@@ -4809,6 +4810,7 @@ enum SwitchInCheckState {
     SWITCH_IN_CHECK_STATE_FORBIDDEN_STATUS,
     SWITCH_IN_CHECK_STATE_HELD_ITEM_STATUS,
     SWITCH_IN_CHECK_STATE_SOVEREIGN_EMERGENCY_EXIT, // Sovereign (item 11)
+    SWITCH_IN_CHECK_STATE_SOVEREIGN_EJECT_PACK, // Sovereign (item 11)
 
     SWITCH_IN_CHECK_STATE_DONE,
 };
@@ -5931,6 +5933,22 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
             }
 
             if (i == maxBattlers) {
+                battleCtx->switchInCheckState++;
+            }
+            break;
+
+        case SWITCH_IN_CHECK_STATE_SOVEREIGN_EJECT_PACK:
+            // Sovereign (item 11): an Eject Pack whose holder had a stat lowered by a switch-in (Intimidate, Sticky
+            // Web...). Last, as Showdown's ejectpack (onAnySwitchIn, priority -4); the checks start over after it, for
+            // the Pokemon that comes in instead.
+            battler = Sovereign_EjectPackHolder(battleSys, battleCtx);
+
+            if (battler != BATTLER_NONE) {
+                battleCtx->switchedMon = battler;
+                battleCtx->switchInCheckState = SWITCH_IN_CHECK_STATE_START;
+                subscript = subscript_sovereign_eject_pack;
+                result = SWITCH_IN_CHECK_RESULT_BREAK;
+            } else {
                 battleCtx->switchInCheckState++;
             }
             break;
@@ -10282,6 +10300,32 @@ BOOL Sovereign_EmergencyExitDue(BattleContext *battleCtx, int battler, int hpBef
         && mon->curHP <= mon->maxHP / 2
         && hpBefore > mon->maxHP / 2
         && (battleCtx->battlersSwitchingMask & FlagIndex(battler)) == FALSE;
+}
+
+// Sovereign (item 11): the next Eject Pack holder (fastest first) that had a stat lowered and switches out now, or
+// BATTLER_NONE. Checked after a move, after the switch-in effects and at the end of the turn (Showdown's ejectpack:
+// AfterMove, SwitchIn, Residual). A holder that has fainted, lost its Eject Pack or is in a Commander pair since is
+// dropped; subscript_sovereign_eject_pack leaves the pack with one that has no Pokemon to switch to.
+int Sovereign_EjectPackHolder(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    for (int i = 0; i < BattleSystem_GetMaxBattlers(battleSys); i++) {
+        int battler = battleCtx->monSpeedOrder[i];
+
+        if ((battleCtx->sovereignEjectPackPending & FlagIndex(battler)) == FALSE) {
+            continue;
+        }
+
+        battleCtx->sovereignEjectPackPending &= ~FlagIndex(battler);
+
+        if (battleCtx->battleMons[battler].curHP
+            && Battler_HeldItem(battleCtx, battler) == ITEM_EJECT_PACK
+            && ((battleCtx->sovereignCommanding | battleCtx->sovereignCommanded) & FlagIndex(battler)) == FALSE
+            && (battleCtx->battlersSwitchingMask & FlagIndex(battler)) == FALSE) {
+            return battler;
+        }
+    }
+
+    return BATTLER_NONE;
 }
 
 // Sovereign (item 11): how many consecutive turns Echoed Voice will have been used if used now (1-5).

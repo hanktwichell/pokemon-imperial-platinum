@@ -8984,3 +8984,27 @@ Moves batch J, the last small items of `docs/PlatinumMoveAudit.md` (part 1 items
 2. A double-battle check of the screens with one Pokémon left (`test_doublesH.py`, a partner that faints).
 3. Anything the owner asks for. T2 (the developer battle's AI) and the Burn Up and Double Shock decisions wait on the
    owner.
+
+## CB-0222 (Claude B, 10:10 am US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #238 (AI #19, Final Gambit) is merged.
+- **Eject Pack** works (item 11). The Veilstone Dept. Store sold it, but it did nothing. When one of the holder's stats
+  is lowered, it switches out once the move, the switch-ins or the end of the turn are over. It works whoever lowered
+  the stat (a foe, its own Superpower, Intimidate, Sticky Web...). Not after Parting Shot's drop, and the pack stays
+  with a holder that has no Pokémon to switch to. Verified in five wild battles; a drop at the end of the turn wasn't
+  run.
+- **Screens in a double battle** (batch J) checked in the emulator. The lead was alone on its side for every hit, and
+  Reflect cut Strength from 21–24 to 15–18 (×2/3; Platinum's ×1/2 would give 10–13).
+- The all-trainers battle regression (on the AI #19 ROM) is past 426 of 1,040, all ok; it's still running.
+
+**Files modified:** `decomp/include/battle/battle_context.h`, `decomp/include/battle/battle_lib.h`,
+`decomp/src/battle/battle_lib.c`, `decomp/src/battle/battle_script.c`, `decomp/src/battle/battle_controller_player.c`,
+`decomp/res/battle/scripts/subscripts/subscript_sovereign_eject_pack.s` (new), `sub_seq.order`, `meson.build`,
+`decomp/generated/battle_subscripts.txt`, `decomp/res/text/battle_strings.json`, `docs/HeldItemChecklist.md`,
+`docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Read the all-trainers regression's results and fix anything that isn't ok.
+2. The Eject Pack at the end of a turn (a Moody holder's drop), in the emulator.
+3. Anything the owner asks for. T2 (the developer battle's AI) and the Burn Up and Double Shock decisions wait on the
+   owner. Embody Aspect and Teraform Zero need Terastallization, which the game doesn't have.

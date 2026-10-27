@@ -55,7 +55,7 @@ which PokeAPI lacks, take theirs from `FLING_POWERS` in `tools/engine/gen_items.
 | Protective Pads | yes: the holder's moves make no contact |
 | Electric Seed, Psychic Seed, Misty Seed, Grassy Seed | yes: Defense or Sp. Def +1 in their terrain, used up |
 | Throat Spray | yes: Sp. Atk +1 after the holder uses a sound move that works, used up |
-| Eject Pack | not yet (not in Champions) |
+| Eject Pack | yes: when one of the holder's stats is lowered (by a foe, its own move, Intimidate, Sticky Web...), it switches out to a Pokémon its trainer picks once the move, the switch-ins or the end of the turn are over, used up ("{0} is switched out with the Eject Pack!"). Not after Parting Shot's drop, and nothing happens (it keeps the pack) with no Pokémon to switch to |
 | Heavy-Duty Boots | yes: no Stealth Rock, Spikes, Toxic Spikes or Sticky Web on entry (a grounded Poison type still takes the Toxic Spikes away) |
 | Blunder Policy | yes: Speed +2 after the holder's move misses, used up |
 | Room Service | yes: Speed -1 under Trick Room, on entry or as Trick Room starts, used up |

@@ -3,6 +3,40 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Item 11 (effect fidelity): Eject Pack
+
+For players: the Eject Pack from the Veilstone Dept. Store now works. Before, it did nothing.
+- When one of the holder's stats is lowered, it switches out to a Pokémon its trainer picks: "SNORLAX is switched out
+  with the Eject Pack!", then the party list. The pack is used up.
+- It works whoever lowered the stat: a foe's move, the holder's own move (Superpower, Close Combat, Overheat...),
+  Intimidate, Sticky Web, Moody.
+- It waits until the move is over, or the switch-ins, or the end of the turn, as in Gen IX.
+- Not after Parting Shot's drop, whose user switches out instead.
+- With no Pokémon to switch to (a wild holder, a trainer's last Pokémon), nothing happens and it keeps the pack.
+
+Code:
+- `ChangeStatStage` (`battle_script.c`) marks a holder whose stat it lowered (`sovereignEjectPackPending`).
+  `BattleSystem_InitBattleMon` clears the mark for a Pokémon coming in.
+- `Sovereign_EjectPackHolder` (`battle_lib.c`) picks the next holder, fastest first. It drops a holder that has
+  fainted, lost the pack or is in a Commander pair.
+- It's checked in three places: at the end of a move (`BattleControllerPlayer_MoveEnd`), in a new switch-in state
+  after Emergency Exit's (`SWITCH_IN_CHECK_STATE_SOVEREIGN_EJECT_PACK`), and at the end of the turn
+  (`BattleControllerPlayer_TurnEnd`).
+- `subscript_sovereign_eject_pack` switches the holder out as the Eject Button does. Like the Eject Button, a used
+  Eject Pack sets off no Symbiosis.
+
+Verified (test build; wild battles against a fast Lv. 100 Ninjask, the player's Snorlax holding the pack):
+- **Growl:** "SNORLAX's Attack fell!", "SNORLAX is switched out with the Eject Pack!", the party list and "Go!
+  GALLADE!". Gallade, without a pack, then took Growls normally.
+- **Its own Superpower:** its Attack and Defense fell, and it switched out after the move.
+- **Intimidate:** against a wild Gyarados, "Intimidate cuts SNORLAX's Attack!", and it switched out before the first
+  turn.
+- **Parting Shot:** its Attack and Sp. Atk fell, and it stayed in.
+- **A wild holder:** after Snorlax's Growl, nothing happened.
+- **Moody (the end of the turn):** Snorlax given Moody: "SNORLAX's Moody..." at the end of turn 1, then "SNORLAX is
+  switched out with the Eject Pack!" and "Go! ARCHALUDON!" before turn 2.
+- **Builds:** the test and release builds pass, and every battle script fits its buffer.
+
 ## AI review #19: Final Gambit
 
 For players:
@@ -87,7 +121,9 @@ Verified (test build, emulator, wild battles against a Lv. 100 Ninjask unless no
   Karate Chop, Cud Chew ate it again at the end of the turn (156 → 210), once.
 - **Crush Grip, Wring Out, Hard Press:** the C formula gives Showdown's power for every HP and max HP up to 999
   (checked off the game); it differs from Platinum's in 495,759 of those 499,500 cases, mostly by 1.
-- **Screens in a double battle:** not run in the emulator; the change is the one multiplier.
+- **Screens in a double battle:** checked afterwards (CB-0222). In a double battle against Tauros and Miltank, the lead
+  was alone on its side for every hit (its partner fainted first each turn). Strength did 21–24 to it without Reflect
+  and 15–18 with Reflect: about ×2/3. Platinum's ×1/2 for a lone Pokémon would have given 10–13.
 - **Builds:** the test and release builds pass, and every battle script fits its buffer.
 
 ## Item 11: Platinum's moves under the later games' rules, batch I
