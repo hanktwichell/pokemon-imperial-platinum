@@ -8128,3 +8128,40 @@ PR #201 (Mega Sol, Growth, Ripen) is merged.
 1. Sky Drop (placeholder in the move checklist).
 2. Wimp Out/Emergency Exit after indirect damage (weather, poison, recoil).
 3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.
+
+## CB-0192 (Claude B, 7:53 pm US Central, 2026-10-26)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** Sky Drop, and Smack Down against Pokémon in the air.
+PR #208 (Commander and Order Up) was merged first.
+- Sky Drop (Showdown's rules). First turn: "{0} took {1} into the sky!", and both vanish. Protect blocks it and an
+  out-of-reach target dodges it, but it never misses otherwise. It fails on an ally or a substitute, and a target of
+  200 kg or more is too heavy.
+- While up there, both avoid most moves. The target's move is lost and it can't switch or flee. Neither can be forced
+  out.
+- Second turn: the drop, then "{0} was freed from the Sky Drop!". It does no damage to Flying types.
+- The target is let go if the user faints or comes down early, via the new switch-in check state.
+- Smack Down and Thousand Arrows now hit Pokémon in the air and bring Fly/Bounce users down, cancelling the move. They
+  no longer ground a fainted target or through a substitute.
+- Sky Drop has a hand-written two-part animation (Fly's, with the target carried along).
+- Verified in the singles harness (see the changelog). The move checklist now has 7 placeholders left.
+
+**Files modified:**
+- `decomp/src/battle/battle_lib.c` (Sky Drop helpers, switch-in state, trap checks, InitBattleMon, multi-turn lists,
+  Gravity list, `Sovereign_SmackDownFlyer`).
+- `decomp/src/battle/battle_controller_player.c` (FightCommand, BeforeMove, CheckMoveHitOverrides).
+- `decomp/src/battle/battle_script.c` (`BtlCmd_SovereignSkyDropLift`, TryWhirlwind, the Smack Down var).
+- `decomp/include/battle/battle_context.h`, `decomp/include/battle/battle_lib.h`, `decomp/include/data/scripts/btlcmd.h`,
+  `decomp/asm/macros/btlcmd.inc`, `decomp/include/data/move_side_effect_subscripts.h`.
+- `decomp/generated/{move_battle_effects,battle_subscripts,battle_move_subscript_ptrs,battle_script_vars}.txt`.
+- `decomp/res/battle/scripts/effects/effect_script_0398.s` (new), `effect_script_0302.s`, `effects/meson.build`.
+- `subscript_sovereign_sky_drop_lift.s`, `subscript_sovereign_sky_drop_freed.s` (new), `subscript_sovereign_smack_down.s`,
+  `subscripts/meson.build`, `sub_seq.order`.
+- `decomp/res/moves/sky_drop/{data.json,anim.s}`, `decomp/res/text/battle_strings.json`.
+- `tools/engine/gen9_move_fixes.py`, `tools/engine/gen_moves.py`, `docs/MoveChecklist.md`, `docs/EngineChangelog.md`,
+  `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Move descriptions: 24 moves cut from Scarlet/Violet (Sky Drop, Spotlight, Bestow, Synchronoise, ...) read "This move
+   can't be used." Use the previous game's flavor text (`tools/engine/gen_moves.py`).
+2. Wimp Out/Emergency Exit after indirect damage (weather, poison, recoil).
+3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.

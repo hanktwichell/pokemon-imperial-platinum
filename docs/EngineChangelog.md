@@ -3,6 +3,55 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Item 11 (effect fidelity): Sky Drop, and Smack Down against Pokémon in the air
+
+For players:
+- **Sky Drop** (Showdown's rules):
+  - **First turn:** "{0} used Sky Drop!", then "{0} took {1} into the sky!". Both Pokémon vanish (Fly's animation, with
+    the target carried along). It never misses on this turn, but Protect and the like block it, and a target already
+    out of reach (Fly, Dig, ...) dodges it.
+  - It fails on the user's ally and on a substitute ("But it failed!"). A target of 200 kg or more is "too heavy to be
+    lifted!", counting Heavy Metal, Light Metal, Float Stone and Autotomize.
+  - **While up there,** both avoid every move but Gust, Twister, Sky Uppercut, Thunder, Hurricane, Smack Down and
+    Thousand Arrows; Gust and Twister do double damage. The target loses its move that turn without a word and uses no
+    PP. It can't switch out or flee ("Sky Drop won't let {0} go!"), even a Ghost type or with Shed Shell. Neither of
+    them can be forced out.
+  - **Second turn:** the user drops the target for 60 power, then "{0} was freed from the Sky Drop!". A Flying type
+    takes no damage ("It doesn't affect {0}..."). If the target is slower, it still moves that turn.
+  - **Let go early:** if the user faints, or comes down without dropping it (full paralysis, Gravity), the target is
+    freed and reappears. If the target faints up there, the user lands on its turn.
+  - Gravity stops Sky Drop from being used, as with Fly and Bounce.
+- **Smack Down and Thousand Arrows** reach a Pokémon in the air (Fly, Bounce, Sky Drop). A Fly or Bounce user comes
+  down ("{0} fell straight down!") and its move ends; if its turn is still to come, it's lost. They no longer ground a
+  target that fainted or whose substitute took the hit.
+- **Code:**
+  - `sovereignSkyDropTarget`/`sovereignSkyDropHolder` per battler.
+  - The effect `BATTLE_EFFECT_SOVEREIGN_SKY_DROP` (`effect_script_0398`) and the lift `subscript_sovereign_sky_drop_lift`,
+    with the new script command `SovereignSkyDropLift` (`Sovereign_SkyDropTryLift`).
+  - `BattleControllerPlayer_FightCommand` skips the target's move and aims the drop; `BeforeMove` lets the target go
+    (`Sovereign_SkyDropLetGo`). The switch-in check state `SWITCH_IN_CHECK_STATE_SOVEREIGN_SKY_DROP` frees a target
+    whose user is gone (`subscript_sovereign_sky_drop_freed`).
+  - `CheckMoveHitOverrides`: Protect and semi-invulnerability apply to the lift, and the drop doesn't hurt a Flying
+    type. Also `Battler_IsTrapped`/`Battler_IsTrappedMsg` and `TryWhirlwind`.
+  - Smack Down: `SYSCTL_HIT_DURING_FLY`, `Sovereign_SmackDownFlyer` (`BTLVAR_SOVEREIGN_SMACK_DOWN_FLYER`).
+  - The move's hand-written animation is `res/moves/sky_drop/anim.s` (`HANDWRITTEN_SCRIPTS` in
+    `tools/engine/gen_moves.py`).
+
+**Verification:** test and release ROMs built; the battle-script size check, the message check and the docs check pass.
+Wild battles with a Lv. 50 Braviary using Sky Drop:
+- **Geodude (Lv. 20):** "BRAVIARY took the wild GEODUDE into the sky!", and both sprites vanish. Geodude's Tackle is
+  lost. Next turn Geodude falls back into view, then "It's not very effective...", "The wild GEODUDE was freed from
+  the Sky Drop!", and Geodude acts. On a KO drop, no freed message.
+- **Snorlax:** "The wild SNORLAX is too heavy to be lifted!", and Braviary isn't locked in.
+- **Pidgey:** "It doesn't affect the wild PIDGEY...". **Lv. 100 Jolteon (faster):** its second-turn move is skipped
+  while it's held; after the drop it moves again normally.
+- **Jolteon's Protect:** "The wild JOLTEON protected itself!" stops the lift. **Jolteon's Fly:** "BRAVIARY's attack
+  missed!" while Jolteon is up, then it's lifted on landing.
+- **Jolteon's Sandstorm with Braviary at 1 HP:** Braviary faints at the end of the turn. Gallade comes in, then "The
+  wild JOLTEON was freed from the Sky Drop!", and Jolteon reappears.
+- **Smack Down against Fly:** the faster Jolteon's Smack Down hits the airborne Braviary, "BRAVIARY fell straight
+  down!", and Braviary's Fly is cancelled.
+
 ## Item 11 (effect fidelity): Commander and Order Up
 
 For players:

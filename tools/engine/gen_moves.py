@@ -119,7 +119,9 @@ SOVEREIGN_EFFECTS = {
 }
 # Moves whose script.s (battle message) and anim.s (two-part charge/attack animation) are written by hand; the
 # generator leaves both files alone.
-HANDWRITTEN_SCRIPTS = {"electro_shot", "meteor_beam"}
+HANDWRITTEN_SCRIPTS = {"electro_shot", "meteor_beam", "sky_drop"}
+# Animation flags of the hand-written animations (Sky Drop's is Fly's, with the target carried along).
+HANDWRITTEN_ANIM_FLAGS = {"sky_drop": ["MOVE_FLAG_HIDES_SHADOWS"]}
 
 # Status stat-drop effects -> the damaging "lower X on hit" effect, for damaging moves PokeAPI files under the former.
 STATUS_TO_HIT = {E("ATK_DOWN"): "LOWER_ATTACK_HIT", E("DEF_DOWN"): "LOWER_DEFENSE_HIT", E("SPEED_DOWN"): "LOWER_SPEED_HIT",
@@ -420,6 +422,7 @@ def main():
             anim = anim_template(r, type_ident, eff, stats, rng)
             tmpl = json.load(open(os.path.join(MOVES_DIR, anim, "data.json"), encoding="utf-8"))
             fl += [x for x in tmpl["flags"] if x in ("MOVE_FLAG_HIDES_HP_GAUGES", "MOVE_FLAG_HIDES_SHADOWS")]
+            fl += [x for x in HANDWRITTEN_ANIM_FLAGS.get(stem, []) if x not in fl]
             name = names[mid]
             name = SHORT_NAMES.get(name, name)
             assert len(name) <= 15, name

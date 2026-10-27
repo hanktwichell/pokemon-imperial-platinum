@@ -11004,6 +11004,118 @@
         "The foe’s {STRVAR_1 1, 0, 0}’s\n",
         "stats sharply rose!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTookIntoTheSky_AllyAlly",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} took\n",
+        "{STRVAR_1 1, 1, 0} into the sky!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTookIntoTheSky_AllyWild",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} took the wild\n",
+        "{STRVAR_1 1, 1, 0} into the sky!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTookIntoTheSky_AllyFoe",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} took the foe’s\n",
+        "{STRVAR_1 1, 1, 0} into the sky!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTookIntoTheSky_WildAlly",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} took\n",
+        "{STRVAR_1 1, 1, 0} into the sky!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTookIntoTheSky_WildWild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} took the\n",
+        "wild {STRVAR_1 1, 1, 0} into the sky!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTookIntoTheSky_FoeAlly",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} took\n",
+        "{STRVAR_1 1, 1, 0} into the sky!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTookIntoTheSky_FoeFoe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} took the\n",
+        "foe’s {STRVAR_1 1, 1, 0} into the sky!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFreedFromSkyDrop_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} was freed\n",
+        "from the Sky Drop!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFreedFromSkyDrop_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} was\n",
+        "freed from the Sky Drop!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFreedFromSkyDrop_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} was\n",
+        "freed from the Sky Drop!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTooHeavyToLift_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is too heavy\n",
+        "to be lifted!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTooHeavyToLift_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} is\n",
+        "too heavy to be lifted!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignTooHeavyToLift_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} is\n",
+        "too heavy to be lifted!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignSkyDropWontLetGo_Ally",
+      "en_US": [
+        "Sky Drop won’t let\n",
+        "{STRVAR_1 1, 0, 0} go!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignSkyDropWontLetGo_Wild",
+      "en_US": [
+        "Sky Drop won’t let\n",
+        "the wild {STRVAR_1 1, 0, 0} go!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignSkyDropWontLetGo_Foe",
+      "en_US": [
+        "Sky Drop won’t let\n",
+        "the foe’s {STRVAR_1 1, 0, 0} go!"
+      ]
     }
   ]
 }

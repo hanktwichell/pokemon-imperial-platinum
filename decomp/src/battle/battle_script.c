@@ -159,6 +159,7 @@ static BOOL BtlCmd_SovereignRefreshHealthBox(BattleSystem *battleSys, BattleCont
 static BOOL BtlCmd_SovereignMarkAteBerry(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_SovereignEatOwnBerry(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_SovereignTransform(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_SovereignSkyDropLift(BattleSystem *battleSys, BattleContext *battleCtx);
 static void Sovereign_TransformInto(BattleContext *battleCtx, int user, int target);
 static BOOL BtlCmd_PrintTrainerMessage(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_PayPrizeMoney(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -5542,7 +5543,10 @@ static BOOL BtlCmd_TryWhirlwind(BattleSystem *battleSys, BattleContext *battleCt
     u32 battleType = BattleSystem_GetBattleType(battleSys);
 
     // Sovereign (item 11): Commander. Neither a Tatsugiri in its ally Dondozo's mouth nor that Dondozo can be forced out.
-    if ((battleCtx->sovereignCommanding | battleCtx->sovereignCommanded) & FlagIndex(battleCtx->defender)) {
+    // Nor can a Pokemon that carries or is carried up by Sky Drop.
+    if (((battleCtx->sovereignCommanding | battleCtx->sovereignCommanded) & FlagIndex(battleCtx->defender))
+        || battleCtx->sovereignSkyDropTarget[battleCtx->defender]
+        || battleCtx->sovereignSkyDropHolder[battleCtx->defender]) {
         BattleScript_Iter(battleCtx, jumpOnFail);
         return FALSE;
     }
@@ -5697,6 +5701,27 @@ static BOOL BtlCmd_SovereignTransform(BattleSystem *battleSys, BattleContext *ba
     Sovereign_TransformInto(battleCtx,
         BattleScript_Battler(battleSys, battleCtx, inUser),
         BattleScript_Battler(battleSys, battleCtx, inTarget));
+
+    return FALSE;
+}
+
+// Sovereign (item 11): Sky Drop's first turn, Sovereign_SkyDropTryLift. Jumps if the move fails or the target is too
+// heavy to lift.
+static BOOL BtlCmd_SovereignSkyDropLift(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int jumpOnFail = BattleScript_Read(battleCtx);
+    int jumpTooHeavy = BattleScript_Read(battleCtx);
+
+    switch (Sovereign_SkyDropTryLift(battleSys, battleCtx, battleCtx->attacker, battleCtx->defender)) {
+    case 1:
+        BattleScript_Iter(battleCtx, jumpOnFail);
+        break;
+
+    case 2:
+        BattleScript_Iter(battleCtx, jumpTooHeavy);
+        break;
+    }
 
     return FALSE;
 }
@@ -10317,6 +10342,10 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_SMACKED_DOWN_SIDE_EFFECT_MON: // Sovereign (item 11)
         return &battleCtx->sovereignSmackedDown[battleCtx->sideEffectMon];
+    case BTLVAR_SOVEREIGN_SMACK_DOWN_FLYER: // Sovereign (item 11): read-only, Smack Down brought the side effect's target
+        // down from Fly or Bounce (Sovereign_SmackDownFlyer)
+        battleCtx->sovereignTerrainTemp = Sovereign_SmackDownFlyer(battleCtx, battleCtx->sideEffectMon);
+        return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_SIDE_GUARDS_ATTACKER: // Sovereign (item 11)
         return &battleCtx->sovereignSideGuards[BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker)];
     case BTLVAR_SOVEREIGN_TELEKINESIS_SIDE_EFFECT_MON: // Sovereign (item 11)

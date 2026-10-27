@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 372 |
+| exact | 373 |
 | approximate | 0 |
-| placeholder | 8 |
+| placeholder | 7 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -26,7 +26,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 476 | Rage Powder | Bug | `MAKE_GLOBAL_TARGET` | exact |  |
 | 477 | Telekinesis | Psychic | `SOVEREIGN_TELEKINESIS` | exact | Sovereign effect: for 3 turns the target is immune to Ground moves and other moves always hit it |
 | 478 | Magic Room | Psychic | `SOVEREIGN_MAGIC_ROOM` | exact | Sovereign effect: held items have no effect for 5 turns; using it again ends it |
-| 479 | Smack Down | Rock | `SOVEREIGN_SMACK_DOWN` | exact | Sovereign effect: grounds the target until it switches out |
+| 479 | Smack Down | Rock | `SOVEREIGN_SMACK_DOWN` | exact | Sovereign effect: grounds the target until it switches out; reaches a Pokémon in the air and stops its Fly or Bounce |
 | 480 | Storm Throw | Fighting | `HIT` | exact | Sovereign effect: always a critical hit |
 | 481 | Flame Burst | Fire | `SOVEREIGN_FLAME_BURST` | exact | Sovereign effect: the target's ally takes 1/16 of its max HP |
 | 482 | Sludge Wave | Poison | `POISON_HIT` | exact |  |
@@ -54,7 +54,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 504 | Shell Smash | Normal | `SOVEREIGN_SHELL_SMASH` | exact | Sovereign effect: user Defense -1, user Sp. Def -1, user Attack +2, user Sp. Atk +2, user Speed +2 |
 | 505 | Heal Pulse | Psychic | `SOVEREIGN_HEAL_TARGET` | exact | Sovereign effect: heals the target by 1/2 (3/4 with Mega Launcher) |
 | 506 | Hex | Ghost | `HIT` | exact | Sovereign effect: target has a status condition: power doubles |
-| 507 | Sky Drop | Flying | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 507 | Sky Drop | Flying | `SOVEREIGN_SKY_DROP` | exact | Sovereign effect: carries the target up for a turn (out of reach, can't move or switch), then drops it; fails on 200 kg or more, no damage to Flying types |
 | 508 | Shift Gear | Steel | `SOVEREIGN_SHIFT_GEAR` | exact | Sovereign effect: user Attack +1, user Speed +2 |
 | 509 | Circle Throw | Fighting | `SOVEREIGN_DRAG_OUT_HIT` | exact | Sovereign effect: drags the target out after the hit |
 | 510 | Incinerate | Fire | `SOVEREIGN_INCINERATE` | exact | Sovereign effect: burns up the target's Berry |
@@ -161,7 +161,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 611 | Infestation | Bug | `BIND_HIT` | exact |  |
 | 612 | Power-Up Punch | Fighting | `RAISE_ATTACK_HIT` | exact | Sovereign effect: user Attack +1 (100%) |
 | 613 | Oblivion Wing | Flying | `RECOVER_HALF_DAMAGE_DEALT` | exact | Sovereign effect: drains 3/4 of the damage dealt |
-| 614 | Thousand Arrows | Ground | `SOVEREIGN_SMACK_DOWN` | exact | Sovereign effect: hits both foes, airborne ones too (neutral on a Flying type), and grounds them |
+| 614 | Thousand Arrows | Ground | `SOVEREIGN_SMACK_DOWN` | exact | Sovereign effect: hits both foes, airborne ones too (neutral on a Flying type; up in the air by Fly, Bounce or Sky Drop too), and grounds them |
 | 615 | Thousand Waves | Ground | `SOVEREIGN_TRAP_ON_HIT` | exact | Sovereign effect: hits both foes; they can't escape while the user stays in |
 | 616 | Land’s Wrath | Ground | `HIT` | exact |  |
 | 617 | Light of Ruin | Fairy | `RECOIL_HALF` | exact |  |

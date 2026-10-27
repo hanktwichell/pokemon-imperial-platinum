@@ -184,7 +184,8 @@ MOVES = {
     "throat_chop": ("SOVEREIGN_THROAT_CHOP", 100, "the target can't use sound moves for two turns"),
     "dragon_tail": ("SOVEREIGN_DRAG_OUT_HIT", 0, "drags the target out after the hit"),
     "circle_throw": ("SOVEREIGN_DRAG_OUT_HIT", 0, "drags the target out after the hit"),
-    "smack_down": ("SOVEREIGN_SMACK_DOWN", 0, "grounds the target until it switches out"),
+    "smack_down": ("SOVEREIGN_SMACK_DOWN", 0, "grounds the target until it switches out; reaches a Pokémon in the air and"
+                   " stops its Fly or Bounce"),
     "soak": ("SOVEREIGN_SOAK", 0, "the target becomes pure Water-type"),
     "wide_guard": ("SOVEREIGN_WIDE_GUARD", 0, "protects the user's side from spread moves this turn"),
     "quick_guard": ("SOVEREIGN_QUICK_GUARD", 0, "protects the user's side from foes' priority moves this turn"),
@@ -291,7 +292,8 @@ MOVES = {
     # Moves batch 5.
     "jaw_lock": ("SOVEREIGN_JAW_LOCK", 0, "the user and the target can't escape while both stay in"),
     "thousand_waves": ("SOVEREIGN_TRAP_ON_HIT", 0, "hits both foes; they can't escape while the user stays in"),
-    "thousand_arrows": ("SOVEREIGN_SMACK_DOWN", 0, "hits both foes, airborne ones too (neutral on a Flying type), and grounds them"),
+    "thousand_arrows": ("SOVEREIGN_SMACK_DOWN", 0, "hits both foes, airborne ones too (neutral on a Flying type; up in the air"
+                         " by Fly, Bounce or Sky Drop too), and grounds them"),
     "sparkling_aria": ("SOVEREIGN_SPARKLING_ARIA", 100, "hits all adjacent Pokémon and heals their burns"),
     "court_change": ("SOVEREIGN_COURT_CHANGE", 0, "swaps the two sides' screens, Tailwind, Mist, Safeguard, Lucky Chant and hazards"),
     "flower_shield": ("SOVEREIGN_FLOWER_SHIELD", 0, "Defense +1 for every Grass type on the field"),
@@ -343,6 +345,8 @@ MOVES = {
     "pollen_puff": ("SOVEREIGN_POLLEN_PUFF", 0, "damages a foe; restores half an ally's max HP instead"),
     "parabolic_charge": ("RECOVER_HALF_DAMAGE_DEALT", 0, "hits all adjacent Pokémon (its ally too); drains half the"
                          " damage dealt"),
+    "sky_drop": ("SOVEREIGN_SKY_DROP", 0, "carries the target up for a turn (out of reach, can't move or switch), then"
+                 " drops it; fails on 200 kg or more, no damage to Flying types"),
     # Commander.
     "order_up": (None, 0, "with a Tatsugiri in the user's mouth (Commander), the user's Attack (Curly Form), Defense"
                  " (Droopy) or Speed (Stretchy) +1 after the hit"),
