@@ -1299,6 +1299,46 @@
         "Ultra Burst in battle and regain\n",
         "its true power!\r"
       ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistHintKalos",
+      "en_US": [
+        "Strange... I never shelved that tome.\r",
+        "It was waiting behind the first one,\n",
+        "as if someone left it for us to find.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistHintAlola",
+      "en_US": [
+        "Each tome opens just as you catch\n",
+        "the last one’s key legends.\r",
+        "These legends aren’t wandering in by\n",
+        "chance. Something is opening the way.\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistHintGalar",
+      "en_US": [
+        "Look at the cover. A crown is pressed\n",
+        "into the leather.\r",
+        "The stone in Oreburgh’s Mining Museum\n",
+        "bears the same crown, and the words\f",
+        "“The Sovereign keep the seams.”\r",
+        "Seams... Like seams between worlds?\r"
+      ]
+    },
+    {
+      "id": "CanalaveLibrary2F_Text_SovereignArchivistHintPaldea",
+      "en_US": [
+        "The crown again... There’s an old book\n",
+        "upstairs called “The Sovereign.”\r",
+        "It tells of rulers who sat upon the\n",
+        "Spear Pillar and kept Sinnoh’s seams.\r",
+        "If the Sovereign still keep them, then\n",
+        "they opened the way for these legends.\r",
+        "On purpose. But why?\r"
+      ]
     }
   ]
 }

@@ -3,6 +3,40 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Story beats: the Archivist suspects the Sovereign, and the park keeper's log
+
+These are two beats from `docs/Story.md`'s list for after the Hall of Fame that weren't built yet.
+
+For players:
+- **The Archivist** (Canalave Library 2F) adds a line as each Chronicle opens. Each one builds on the last:
+  - **Kalos:** he never shelved that tome; someone left it for them to find.
+  - **Alola:** each tome opens just as the last one's key legends are caught, so something is opening the way.
+  - **Galar:** a crown is pressed into the cover. It's the same crown as on the Oreburgh Mining Museum's stone, with
+    "The Sovereign keep the seams". Seams between worlds?
+  - **Paldea:** the old book upstairs, "The Sovereign", tells of rulers who sat upon the Spear Pillar and kept Sinnoh's
+    seams. If they still keep them, they opened the way for these legends, on purpose. But why?
+- **The Regional Forms Park's log.** A logbook lies open on the lobby counter, beside the worker.
+  - It has a page for each zone (Alola, Galar, Hisui, Paldea): where its forms came through, and a few of them. For
+    one, the Hisui page notes that Hisui is Sinnoh, long ago.
+  - Its last page: every arrival came through a seam in the air. "Seams don't open by themselves. Someone is keeping
+    them."
+  - It can be read at any time, from a menu, until the player closes it.
+
+None of this says who the Sovereign are or what they want. That stays with the owner's text for Henry.
+
+Code:
+- `scripts_canalave_library_2f.s`: a new message after each Chronicle's opening one.
+- `scripts_pal_park_lobby.s`: `PalParkLobby_SovereignParkLog`, a sign event at (9, 11) on the counter, read from
+  below.
+- `docs/RegionalFormsPark.md`, through its generator, describes the log.
+
+Verified (test build):
+- **The log:** in the lobby, read from below the counter, every page and the menu show in turn, and "Close it" ends it.
+- **The Archivist:** VAR_SOVEREIGN_CHRONICLE was set to 1, and a hook made every Chronicle's key legends count as
+  caught. One talk then opens all four Chronicles, each followed by its new line, and then the Chronicle menu.
+- **Checks:** every field message fits its box, the new menu fits above the message box, and every added object and
+  sign is reachable.
+
 ## Pal Park's last mentions: Oak's visit, Oak's rating, the TV and the park's name
 
 Pal Park is gone (decision 22), and the National Dex comes with the Pokédex (decision 21), but a few texts still said

@@ -21,6 +21,7 @@
     ScriptEntry PalParkLobby_GBASlotGiftLady
     ScriptEntry PalParkLobby_SovereignDarach
     ScriptEntry PalParkLobby_SovereignCaitlin
+    ScriptEntry PalParkLobby_SovereignParkLog
     ScriptEntryEnd
 
 PalParkLobby_OnTransition:
@@ -853,3 +854,49 @@ PalParkLobby_SovereignMovement_OnSpotWest:
     EndMovement
 
     .balign 4, 0
+
+@ Sovereign (Story.md, the Regional Forms Park): the park keeper's log of where the regional forms came through, open
+@ on the counter beside the worker. A page for each zone and a last page, until the player closes it.
+PalParkLobby_SovereignParkLog:
+    PlaySE SE_CONFIRM_sseq_3
+    LockAll
+    Message PalParkLobby_Text_SovereignLogIntro
+PalParkLobby_SovereignParkLogMenu:
+    Message PalParkLobby_Text_SovereignLogWhichPage
+    InitLocalTextMenu 31, 3, 0, VAR_RESULT
+    SetMenuXOriginToRight
+    AddMenuEntryImm PalParkLobby_Text_SovereignLogMenuAlola, 0
+    AddMenuEntryImm PalParkLobby_Text_SovereignLogMenuGalar, 1
+    AddMenuEntryImm PalParkLobby_Text_SovereignLogMenuHisui, 2
+    AddMenuEntryImm PalParkLobby_Text_SovereignLogMenuPaldea, 3
+    AddMenuEntryImm PalParkLobby_Text_SovereignLogMenuLastPage, 4
+    AddMenuEntryImm PalParkLobby_Text_SovereignLogMenuClose, 5
+    ShowMenu
+    GoToIfEq VAR_RESULT, 0, PalParkLobby_SovereignParkLogAlola
+    GoToIfEq VAR_RESULT, 1, PalParkLobby_SovereignParkLogGalar
+    GoToIfEq VAR_RESULT, 2, PalParkLobby_SovereignParkLogHisui
+    GoToIfEq VAR_RESULT, 3, PalParkLobby_SovereignParkLogPaldea
+    GoToIfEq VAR_RESULT, 4, PalParkLobby_SovereignParkLogLastPage
+    CloseMessage
+    ReleaseAll
+    End
+
+PalParkLobby_SovereignParkLogAlola:
+    Message PalParkLobby_Text_SovereignLogAlola
+    GoTo PalParkLobby_SovereignParkLogMenu
+
+PalParkLobby_SovereignParkLogGalar:
+    Message PalParkLobby_Text_SovereignLogGalar
+    GoTo PalParkLobby_SovereignParkLogMenu
+
+PalParkLobby_SovereignParkLogHisui:
+    Message PalParkLobby_Text_SovereignLogHisui
+    GoTo PalParkLobby_SovereignParkLogMenu
+
+PalParkLobby_SovereignParkLogPaldea:
+    Message PalParkLobby_Text_SovereignLogPaldea
+    GoTo PalParkLobby_SovereignParkLogMenu
+
+PalParkLobby_SovereignParkLogLastPage:
+    Message PalParkLobby_Text_SovereignLogLastPage
+    GoTo PalParkLobby_SovereignParkLogMenu

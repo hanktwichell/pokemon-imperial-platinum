@@ -70,8 +70,16 @@ The player learns about the Sovereign passively, without ever meeting one before
 
 Alongside these, after the first Hall of Fame:
 - **The Chronicles** (Archivist): each chapter's legendaries arrive from another world. The Archivist works out that
-  someone opened the way on purpose, and starts to suspect the Sovereign.
-- **Regional Forms Park:** its owner keeps a log of where each regional form "came through".
+  someone opened the way on purpose, and starts to suspect the Sovereign. Built (CB-0232): a line as each Chronicle
+  opens.
+  - Kalos: a tome he never shelved.
+  - Alola: something is opening the way.
+  - Galar: the crown pressed into its cover, the same as on the Oreburgh stone, with "The Sovereign keep the seams".
+  - Paldea: the book upstairs, and if the Sovereign still keep the seams, they opened the way on purpose.
+- **Regional Forms Park:** its owner keeps a log of where each regional form "came through". Built (CB-0232): a
+  logbook on the lobby counter.
+  - It has a page for each zone, with a few of its forms.
+  - Its last page: every arrival came through a seam in the air, and "Someone is keeping them."
 
 ### The final battle: Sovereign Henry at the throne
 - **Before the battle,** Henry refers to the Totem trials: the player has passed all **11** of his trials, so they're
