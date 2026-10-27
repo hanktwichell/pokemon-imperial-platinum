@@ -8716,3 +8716,28 @@ batch A, the ten most visible Gen IV leftovers in `docs/PlatinumMoveAudit.md` (n
    Future Sight/Doom Desire typed at hit time, Beat Up Gen V+, Defog on both sides.
 3. Moves batch E: the Heal Block list (drain moves) and all-recovery block, Metronome/Assist/Copycat Gen IX lists,
    Encore's list, Me First through Taunt, Sleep Talk with Choice/Encore, the snatch flags (Wish, Healing Wish...).
+
+## CB-0212 (Claude B, 4:47 am US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #228 (moves batch B) is merged. Moves batch C, the
+flags and Whirlwind rule from `docs/PlatinumMoveAudit.md` (marked ✅ there), with every Platinum move's flags checked
+against Showdown's `data/moves.ts`:
+- Magic Coat/Magic Bounce reflect Whirlwind, Roar, Disable, Spite, Spikes, Foresight, Encore, Torment, Taunt, Odor
+  Sleuth, Miracle Eye, Embargo, Heal Block, Toxic Spikes, Defog and Stealth Rock.
+- Whirlwind, Roar, Mean Look and Block go through Protect; Protect blocks Counter, Mirror Coat and Metal Burst.
+- Whirlwind/Roar (and Dragon Tail/Circle Throw): no level check in trainer battles, and in wild ones they fail only when
+  the user's level is lower (`BattleSystem_CanWhirlwind`), with no random roll.
+- Gen V+ Snatch list; Mirror Move copies Feint and Chatter.
+- New `FLAG_FIXES` in `tools/engine/gen9_move_fixes.py`; the move pipeline reproduces the data.
+- Verified in the emulator (see `docs/EngineChangelog.md`). Test and release builds pass.
+
+**Files modified:** `tools/engine/gen9_move_fixes.py`, 36 `decomp/res/moves/*/data.json` (flags),
+`decomp/src/battle/battle_lib.c`, `decomp/include/battle/battle_lib.h`, `docs/PlatinumMoveAudit.md`,
+`docs/BattleMechanics.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps (from `docs/PlatinumMoveAudit.md`):**
+1. Moves batch D: the Minimize punishers (Body Slam, Stomp, Dragon Rush, Heat Crash, Heavy Slam, Shadow Force...),
+   Future Sight/Doom Desire typed at hit time, Beat Up Gen V+, Defog clearing both sides and the terrain.
+2. Moves batch E: Heal Block (drain moves, every kind of recovery), Metronome/Assist/Copycat Gen IX lists, Encore's
+   list, Me First through Taunt, Sleep Talk with Choice/Encore, Mimic/Sketch through Substitute.
+3. The audit's remaining PARTIAL/UNSURE rows (Payback against a switch-in, Endure vs Future Sight, Mirror Move's target).

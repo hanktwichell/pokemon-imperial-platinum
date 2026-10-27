@@ -3582,18 +3582,13 @@ BOOL BattleSystem_NotHoldingMail(BattleContext *battleCtx, int battler)
 
 BOOL BattleSystem_CanWhirlwind(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    BOOL result = FALSE;
-
-    if (ATTACKING_MON.level >= DEFENDING_MON.level) {
-        result = TRUE;
-    } else {
-        int tmp = (((BattleSystem_RandNext(battleSys) & 0xFF) * (ATTACKING_MON.level + DEFENDING_MON.level)) >> 8) + 1;
-        if (tmp > battleCtx->battleMons[battleCtx->defender].level / 4) {
-            result = TRUE;
-        }
+    // Sovereign: no level check in a trainer battle, and in a wild one it fails only when the user's level is lower
+    // (Gen V+). Platinum rolled a random chance to fail in both whenever the user's level was lower.
+    if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_TRAINER) {
+        return TRUE;
     }
 
-    return result;
+    return ATTACKING_MON.level >= DEFENDING_MON.level;
 }
 
 // Sovereign (item 11): TRUE while a Pokémon in battle has Neutralizing Gas, not itself suppressed (Gastro Acid).

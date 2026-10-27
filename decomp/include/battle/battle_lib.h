@@ -672,13 +672,9 @@ BOOL BattleSystem_NotHoldingMail(BattleContext *battleCtx, int battler);
 /**
  * @brief Determine if a target can be Whirlwinded away by an attacker.
  *
- * If the attacker is of a lesser level than the target, then this routine has
- * a random chance to return FALSE. Given a random integer R between 0 and 255,
- * Whirlwind will fail if the following condition holds:
- *
- *     R * (attackerLevel + defenderLevel)       defenderLevel
- *     ----------------------------------- + 1 ≤ -------------
- *                   256                               4
+ * Sovereign: always in a trainer battle; in a wild one, only if the attacker's
+ * level is at least the target's (Gen V+). Platinum gave a lower-level attacker
+ * a random chance to fail in both.
  *
  * @param battleSys
  * @param battleCtx

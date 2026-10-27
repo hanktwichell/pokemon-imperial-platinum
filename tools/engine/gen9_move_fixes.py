@@ -53,6 +53,25 @@ FLAGS = {
 }
 OWN_FLAGS = (C, P, M, MC, SN)
 
+# Platinum's own moves whose flags changed in the later games (docs/PlatinumMoveAudit.md; Showdown's data/moves.ts):
+# move -> (flags added, flags removed).
+FLAG_FIXES = {
+    # Magic Coat and Magic Bounce reflect them (Gen V+).
+    **{m: ((MC,), ()) for m in ("disable", "spite", "spikes", "foresight", "encore", "torment", "taunt", "odor_sleuth",
+                                "miracle_eye", "embargo", "heal_block", "toxic_spikes", "defog", "stealth_rock")},
+    # They go through Protect (Gen VI+); Whirlwind and Roar are also reflected (Gen V+).
+    "whirlwind": ((MC,), (P,)), "roar": ((MC,), (P,)), "mean_look": ((), (P,)), "block": ((), (P,)),
+    "hail": ((), (P,)),
+    # Protect blocks them.
+    "counter": ((P,), ()), "mirror_coat": ((P,), ()), "metal_burst": ((P,), ()),
+    # Snatch steals them (Gen V+), and no longer Psych Up and Acupressure.
+    **{m: ((SN,), ()) for m in ("conversion", "wish", "recycle", "imprison", "healing_wish", "power_trick",
+                                "lucky_chant", "aqua_ring", "magnet_rise", "lunar_dance")},
+    "psych_up": ((), (SN,)), "acupressure": ((), (SN,)),
+    # Mirror Move copies them.
+    "feint": ((M,), ()), "chatter": ((M,), ()),
+}
+
 # New battle effects: damage, then (effect chance) a stat change on the user.
 HIT_EFFECTS = {
     "SOVEREIGN_RAISE_SPEED_HIT": ("MOVE_SUBSCRIPT_PTR_SPEED_UP_1_STAGE", "user Speed +1"),
@@ -407,12 +426,16 @@ def update_effects():
 
 
 def update_moves():
-    for move in sorted(set(FLAGS) | set(MOVES) | set(VALUE_FIXES)):
+    for move in sorted(set(FLAGS) | set(FLAG_FIXES) | set(MOVES) | set(VALUE_FIXES)):
         path = os.path.join(MOVES_DIR, move, "data.json")
         data = json.load(open(path, encoding="utf-8"))
         if move in FLAGS:
             keep = [f for f in data["flags"] if f not in OWN_FLAGS]
             data["flags"] = [f for f in OWN_FLAGS if f in FLAGS[move]] + keep
+        if move in FLAG_FIXES:
+            add, remove = FLAG_FIXES[move]
+            flags = [f for f in data["flags"] if f not in remove] + [f for f in add if f not in data["flags"]]
+            data["flags"] = [f for f in OWN_FLAGS if f in flags] + [f for f in flags if f not in OWN_FLAGS]
         if move in MOVES and MOVES[move][0] is not None:
             data["effect"] = {"type": "BATTLE_EFFECT_" + MOVES[move][0], "chance": MOVES[move][1]}
         data.update(VALUE_FIXES.get(move, {}))

@@ -3,6 +3,39 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Item 11: Platinum's moves under the later games' rules, batch C
+
+Platinum's own moves whose flags or Whirlwind rule changed in the later games (`docs/PlatinumMoveAudit.md`; the flags
+checked against Showdown's `data/moves.ts` for every move up to #467):
+
+For players:
+- **Magic Coat and Magic Bounce** (Gen V+) also reflect Whirlwind, Roar, Disable, Spite, Spikes, Foresight, Encore,
+  Torment, Taunt, Odor Sleuth, Miracle Eye, Embargo, Heal Block, Toxic Spikes, Defog and Stealth Rock.
+- **Whirlwind and Roar** (Gen VI+) go through Protect. In a trainer battle they never fail for level; in a wild battle
+  they fail when the user's level is lower than the target's (Gen V+). Platinum gave a lower-level user a random
+  chance to fail in both. Dragon Tail and Circle Throw follow the same rule.
+- **Mean Look and Block** (Gen VI+) go through Protect.
+- **Counter, Mirror Coat and Metal Burst**: Protect blocks them, as in Gen IX.
+- **Snatch** (Gen V+) also steals Conversion, Wish, Recycle, Imprison, Healing Wish, Power Trick, Lucky Chant, Aqua Ring,
+  Magnet Rise and Lunar Dance, and no longer Psych Up or Acupressure.
+- **Mirror Move** copies Feint and Chatter.
+
+Code: `FLAG_FIXES` in `tools/engine/gen9_move_fixes.py` (the flags, through the move pipeline);
+`BattleSystem_CanWhirlwind` (`battle_lib.c`).
+
+Verified (test build, emulator, wild battles):
+- **Whirlwind through Protect:** Geodude protected itself, then the wild Ninjask's Whirlwind ended the battle.
+- **Magic Coat:** a wild Ninjask's Roar "was bounced back by Magic Coat!" and blew the Ninjask away (Geodude Lv. 100,
+  Ninjask Lv. 50). Its Spikes were bounced back: "Spikes were scattered all around the feet of the foe's team!".
+- **Magic Bounce:** a wild Ninjask's Taunt "was bounced back by Magic Bounce!"; the Ninjask fell for the taunt and had to
+  Struggle.
+- **Level rule:** in a wild battle a Lv. 50 Geodude's Whirlwind failed against a Lv. 100 Ninjask on all 16 turns (no
+  random success); a Lv. 100 Geodude's blew a Lv. 50 Ninjask away at once.
+- **Mean Look through Protect:** "GEODUDE can no longer escape!" on the turn Geodude protected itself.
+- **Snatch:** "GEODUDE snatched the wild NINJASK's move!" on Wish; Geodude's wish came true the next turn.
+- **Builds:** the test and release builds pass, and every battle script fits its buffer. The move data pipeline
+  reproduces the move files.
+
 ## Item 11: Platinum's moves under the later games' rules, batch B
 
 The next eight Gen IV leftovers in `docs/PlatinumMoveAudit.md`:

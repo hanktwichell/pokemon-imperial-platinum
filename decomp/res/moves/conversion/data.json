@@ -18,6 +18,7 @@
     "range": "RANGE_USER",
     "priority": 0,
     "flags": [
+        "MOVE_FLAG_CAN_SNATCH",
         "MOVE_FLAG_HIDES_HP_GAUGES"
     ],
     "contest": {
