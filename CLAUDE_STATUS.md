@@ -8087,3 +8087,25 @@ PR #201 (Mega Sol, Growth, Ripen) is merged.
 1. Illusion (disguise as the last party member until hit) or Commander. Embody Aspect and Teraform Zero need Terastallization.
 2. Sky Drop (placeholder).
 3. Burn Up and Double Shock still wait on the owner (CB-0158).
+
+## CB-0190 — 2026-10-26, 6:40 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: Illusion.** PR #206 (Symbiosis) is merged.
+- Zorua and Zoroark come in disguised as the last unfainted Pokémon after them in the party's battle order. The disguise
+  covers the name in messages, the sprite, cry and HP bar, and sprite copies in move animations.
+- A damaging hit (after the move's added effects) or losing the ability ends it, with a mosaic swap and "{0}'s illusion
+  wore off!".
+- Verified on the player side (Tackle, Gastro Acid) and the foe side (a test-only trainer edit, Icy Wind). See the
+  changelog.
+
+**Files modified:**
+- `decomp/src/battle/battle_lib.c` (`Sovereign_SetIllusion`, `Battler_SovereignShownPartySlot`, the nickname tag, a switch-in state).
+- `decomp/src/battle/battle_controller.c` (`SOVEREIGN_ILLUSION_LOOK`, party-slot messages), `decomp/src/battle/battle_controller_player.c` (battle start, after-hit state).
+- `decomp/src/battle/battle_script.c` (switch, name tags), `decomp/include/battle/battle_context.h`, `decomp/include/battle/battle_lib.h`.
+- `decomp/res/battle/scripts/subscripts/subscript_sovereign_illusion_end.s`, `meson.build`, `sub_seq.order`, `decomp/generated/battle_subscripts.txt`, `decomp/res/text/battle_strings.json`.
+- `tools/engine/gen_abilities.py`, `docs/AbilityChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Commander (Tatsugiri in Dondozo) and Order Up. Embody Aspect and Teraform Zero need Terastallization.
+2. Sky Drop (placeholder), and Wimp Out/Emergency Exit after indirect damage.
+3. Burn Up and Double Shock still wait on the owner (CB-0158).

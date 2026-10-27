@@ -3197,7 +3197,66 @@ u8 BattleSystem_CountAliveBattlers(BattleSystem *battleSys, BattleContext *battl
 
 int BattleSystem_NicknameTag(BattleContext *battleSys, int battler)
 {
-    return battler | (battleSys->selectedPartySlot[battler] << 8);
+    return battler | (Battler_SovereignShownPartySlot(battleSys, battler) << 8); // Sovereign (item 11): Illusion
+}
+
+// Sovereign (item 11): Illusion. A Pokémon with Illusion comes in disguised as the last Pokémon in its party's battle
+// order (after its own position, as in Showdown) that isn't fainted. It shows that Pokémon's name, look and cry until a
+// damaging move hits it or it loses the ability (BattleSystem_TriggerEffectOnSwitch). Called once the battler's party
+// slot is in place (BattleSystem_SwitchSlots).
+void Sovereign_SetIllusion(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
+{
+    battleCtx->sovereignIllusion[battler] = 0;
+
+    if (Battler_Ability(battleCtx, battler) != ABILITY_ILLUSION) {
+        return;
+    }
+
+    // The same battle order and position as BattleSystem_SwitchSlots.
+    u32 battleType = BattleSystem_GetBattleType(battleSys);
+    int orderBattler = battler;
+    int position = 0;
+
+    if (((battleType & BATTLE_TYPE_DOUBLES) && (battleType & BATTLE_TYPE_2vs2_TAG) == FALSE)
+        || ((battleType & BATTLE_TYPE_TAG) && (BattleSystem_GetBattlerType(battleSys, battler) & BATTLER_TYPE_SOLO_ENEMY) == FALSE)) {
+        if (BattleSystem_GetBattlerType(battleSys, battler) == BATTLER_TYPE_PLAYER_SIDE_SLOT_2
+            || BattleSystem_GetBattlerType(battleSys, battler) == BATTLER_TYPE_ENEMY_SIDE_SLOT_2) {
+            position = 1;
+        }
+
+        orderBattler &= 1;
+    }
+
+    int count = BattleSystem_GetPartyCount(battleSys, battler);
+
+    for (int i = MAX_PARTY_SIZE - 1; i > position; i--) {
+        int slot = battleCtx->partyOrder[orderBattler][i];
+
+        if (slot >= count) {
+            continue;
+        }
+
+        Pokemon *mon = BattleSystem_GetPartyPokemon(battleSys, battler, slot);
+
+        if (Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL) != SPECIES_NONE
+            && Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL) == FALSE
+            && Pokemon_GetValue(mon, MON_DATA_HP, NULL)) {
+            if (slot != battleCtx->selectedPartySlot[battler]) {
+                battleCtx->sovereignIllusion[battler] = slot + 1;
+            }
+
+            break;
+        }
+    }
+}
+
+int Battler_SovereignShownPartySlot(BattleContext *battleCtx, int battler)
+{
+    if (battleCtx->sovereignIllusion[battler]) {
+        return battleCtx->sovereignIllusion[battler] - 1;
+    }
+
+    return battleCtx->selectedPartySlot[battler];
 }
 
 u16 Battler_SelectedMove(BattleContext *battleCtx, int battler)
@@ -4594,6 +4653,7 @@ enum SwitchInCheckState {
     SWITCH_IN_CHECK_STATE_FIELD_WEATHER = SWITCH_IN_CHECK_STATE_START,
     SWITCH_IN_CHECK_STATE_SOVEREIGN_NEUTRALIZING_GAS, // Sovereign (item 11)
     SWITCH_IN_CHECK_STATE_SOVEREIGN_SYMBIOSIS, // Sovereign (item 11)
+    SWITCH_IN_CHECK_STATE_SOVEREIGN_ILLUSION, // Sovereign (item 11)
     SWITCH_IN_CHECK_STATE_SOVEREIGN_PRIMAL, // Sovereign (E8)
     SWITCH_IN_CHECK_STATE_SOVEREIGN_TOTEM_AURA, // Sovereign (decision 18)
     SWITCH_IN_CHECK_STATE_TRACE,
@@ -4726,6 +4786,28 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                 battleCtx->sovereignSymbiosisPending = FALSE;
                 subscript = subscript_sovereign_symbiosis;
                 result = SWITCH_IN_CHECK_RESULT_BREAK;
+            }
+            break;
+
+        case SWITCH_IN_CHECK_STATE_SOVEREIGN_ILLUSION:
+            // Sovereign (item 11): an Illusion Pokémon that lost the ability (Gastro Acid, Worry Seed, Mummy, Neutralizing
+            // Gas...) shows as itself again (subscript_sovereign_illusion_end). A fainted one keeps its look to the end.
+            for (i = 0; i < maxBattlers; i++) {
+                battler = battleCtx->monSpeedOrder[i];
+
+                if (battleCtx->sovereignIllusion[battler]
+                    && battleCtx->battleMons[battler].curHP
+                    && Battler_Ability(battleCtx, battler) != ABILITY_ILLUSION) {
+                    battleCtx->sovereignIllusion[battler] = 0;
+                    battleCtx->msgBattlerTemp = battler;
+                    subscript = subscript_sovereign_illusion_end;
+                    result = SWITCH_IN_CHECK_RESULT_BREAK;
+                    break;
+                }
+            }
+
+            if (i == maxBattlers) {
+                battleCtx->switchInCheckState++;
             }
             break;
 

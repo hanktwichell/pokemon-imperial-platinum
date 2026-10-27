@@ -10906,6 +10906,27 @@
         "{STRVAR_1 8, 1, 0} with\r",
         "the foe’s {STRVAR_1 1, 2, 0}!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignIllusionWoreOff_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s illusion\n",
+        "wore off!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignIllusionWoreOff_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}’s\n",
+        "illusion wore off!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignIllusionWoreOff_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}’s\n",
+        "illusion wore off!"
+      ]
     }
   ]
 }
