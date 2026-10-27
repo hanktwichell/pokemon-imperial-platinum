@@ -223,12 +223,14 @@ static const AICommandFunc sAICommandTable[] = {
  * A double battle against one trainer that a script starts with a single trainer ID (the Elite Four's and Cynthia's
  * double battles: StartTrainerBattle with one argument) has no trainer in the second enemy slot. Its Pokemon are the
  * first enemy trainer's, so it thinks with that trainer's AI flags and shares its items. Two trainer objects with the
- * same ID (twins) fill both slots and keep their own items, as in Platinum.
+ * same ID (twins) fill both slots and keep their own items, as in Platinum; battles against two trainers (2vs2, such
+ * as the Battle Tower's multi battles) keep each slot's own.
  */
 static int AI_TrainerSlot(BattleSystem *battleSys, int battler)
 {
     if (battler == BATTLER_ENEMY_2
         && (battleSys->battleType & BATTLE_TYPE_DOUBLES)
+        && (battleSys->battleType & BATTLE_TYPE_2vs2) == FALSE
         && battleSys->trainerIDs[BATTLER_ENEMY_2] == TRAINER_NONE) {
         return BATTLER_ENEMY_1;
     }
