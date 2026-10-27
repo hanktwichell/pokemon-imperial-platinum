@@ -55,9 +55,18 @@ _sovereign_not_very:
 _sovereign_sturdy:
     UpdateVar OPCODE_FLAG_OFF, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_SUPER_EFFECTIVE|MOVE_STATUS_NOT_VERY_EFFECTIVE
     // Sovereign: Sturdy (Gen V+) left it with 1 HP.
-    CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_ENDURED_ABILITY, _sovereign_item
+    CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_ENDURED_ABILITY, _sovereign_endure
     // {0}’s {1} let it endure the hit!
     PrintMessage BattleStrings_Text_SovereignAbilityLetItEndure_Ally, TAG_NICKNAME_ABILITY, BTLSCR_MSG_BATTLER_TEMP, BTLSCR_MSG_BATTLER_TEMP
+    Wait 
+    WaitButtonABTime 30
+    End 
+
+_sovereign_endure:
+    // Sovereign: Endure held (Gen V+; BtlCmd_CheckHoldOnWith1HP).
+    CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_ENDURED, _sovereign_item
+    // {0} endured the hit!
+    PrintMessage BattleStrings_Text_PokemonEnduredTheHit_Ally, TAG_NICKNAME, BTLSCR_MSG_TEMP
     Wait 
     WaitButtonABTime 30
     End 

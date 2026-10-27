@@ -3865,6 +3865,15 @@ static BOOL BtlCmd_SovereignMarkAteBerry(BattleSystem *battleSys, BattleContext 
 
     battleCtx->sovereignAteBerry[battler] |= FlagIndex(battleCtx->selectedPartySlot[battler]);
 
+    // Sovereign (item 11): Cud Chew eats a flung Berry again later, as its own (not one taken by Bug Bite or Pluck).
+    if (MOVE_DATA(battleCtx->moveCur).effect == BATTLE_EFFECT_FLING
+        && battler != battleCtx->attacker
+        && Item_IsBerry(battleCtx->msgItemTemp)
+        && Battler_Ability(battleCtx, battler) == ABILITY_CUD_CHEW) {
+        battleCtx->sovereignCudChewBerry[battler] = battleCtx->msgItemTemp;
+        battleCtx->sovereignCudChewTurn[battler] = battleCtx->totalTurns;
+    }
+
     return FALSE;
 }
 
@@ -7628,14 +7637,11 @@ static BOOL BtlCmd_CalcTrumpCardPower(BattleSystem *battleSys, BattleContext *ba
 }
 
 /**
- * @brief Calculates the base power of Wring Out.
+ * @brief Calculates the base power of Wring Out and Crush Grip.
  *
- * Wring Out's base power scales according to the defender's remaining HP.
- * Specifically, it computes the following formula:
- *
- *         120 * currentHP
- *     1 + ---------------
- *              maxHP
+ * Their base power scales according to the defender's remaining HP.
+ * Sovereign: the Gen V+ formula (Showdown), 120 * currentHP / maxHP through a
+ * 4096ths ratio, at least 1. Platinum added 1 to 120 * currentHP / maxHP.
  *
  * @param battleSys
  * @param battleCtx
@@ -7645,7 +7651,10 @@ static BOOL BtlCmd_CalcWringOutPower(BattleSystem *battleSys, BattleContext *bat
 {
     BattleScript_Iter(battleCtx, 1);
 
-    battleCtx->movePower = 1 + (120 * DEFENDING_MON.curHP) / DEFENDING_MON.maxHP;
+    int hpRatio = DEFENDING_MON.curHP * 4096 / DEFENDING_MON.maxHP;
+    int power = (120 * 100 * hpRatio + 4096 / 2 - 1) / 4096 / 100;
+
+    battleCtx->movePower = power ? power : 1;
 
     return FALSE;
 }
@@ -9421,8 +9430,10 @@ static BOOL BtlCmd_RemoveItem(BattleSystem *battleSys, BattleContext *battleCtx)
         }
 
         // Sovereign (item 11): Cud Chew eats its own Berry again later (not one taken by Bug Bite or Pluck, nor the
-        // second time: BattleSystem_TriggerTurnEndAbility feeds it without RemoveItem).
-        if (eater == battler && Battler_Ability(battleCtx, battler) == ABILITY_CUD_CHEW) {
+        // second time: BattleSystem_TriggerTurnEndAbility feeds it without RemoveItem). A Pokemon that flings its Berry
+        // eats it again too (Gen IX), and so does the target that ate it (BtlCmd_SovereignMarkAteBerry).
+        if ((eater == battler || (battler == battleCtx->attacker && effect == BATTLE_EFFECT_FLING))
+            && Battler_Ability(battleCtx, battler) == ABILITY_CUD_CHEW) {
             battleCtx->sovereignCudChewBerry[battler] = battleCtx->battleMons[battler].heldItem;
             battleCtx->sovereignCudChewTurn[battler] = battleCtx->totalTurns;
         }
@@ -9595,14 +9606,24 @@ static BOOL BtlCmd_CheckHoldOnWith1HP(BattleSystem *battleSys, BattleContext *ba
         endure = TRUE;
     }
 
+    // Sovereign: Endure holds against Future Sight and Doom Desire too, when they hit on the turn it was used (Gen V+;
+    // subscript_future_sight_damage). Then neither Sturdy nor the item is used, as for a hit (BattleControllerPlayer).
+    BOOL enduring = battleCtx->turnFlags[battler].enduring;
+
     // Sovereign: Sturdy (Gen V+) at full HP, before the item, for confusion damage, Future Sight and Pursuit too.
-    BOOL sturdy = battleCtx->battleMons[battler].curHP == battleCtx->battleMons[battler].maxHP
+    BOOL sturdy = enduring == FALSE
+        && battleCtx->battleMons[battler].curHP == battleCtx->battleMons[battler].maxHP
         && battleCtx->battleMons[battler].curHP + battleCtx->hpCalcTemp <= 0
         && Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battler, ABILITY_STURDY) == TRUE;
 
-    if ((endure || sturdy) && battleCtx->battleMons[battler].curHP + battleCtx->hpCalcTemp <= 0) {
+    if ((enduring || endure || sturdy) && battleCtx->battleMons[battler].curHP + battleCtx->hpCalcTemp <= 0) {
         battleCtx->hpCalcTemp = (battleCtx->battleMons[battler].curHP - 1) * -1;
-        battleCtx->moveStatusFlags |= sturdy ? MOVE_STATUS_ENDURED_ABILITY : MOVE_STATUS_ENDURED_ITEM;
+
+        if (enduring) {
+            battleCtx->moveStatusFlags |= MOVE_STATUS_ENDURED;
+        } else {
+            battleCtx->moveStatusFlags |= sturdy ? MOVE_STATUS_ENDURED_ABILITY : MOVE_STATUS_ENDURED_ITEM;
+        }
     }
 
     return FALSE;

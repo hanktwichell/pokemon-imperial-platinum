@@ -3,6 +3,39 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Item 11: Platinum's moves under the later games' rules, batch J
+
+For players:
+- **Reflect, Light Screen and Aurora Veil** (Gen V+) cut damage by ×2732/4096 in any double battle, even when only one
+  Pokémon is left on the side. Platinum used ×2/3 only while both were in, and ×1/2 otherwise.
+- **Endure** (Gen V+) holds against Future Sight and Doom Desire when they land on the turn it was used ("…endured
+  the hit!").
+- **Recoil** of Double-Edge, Brave Bird, Wood Hammer, Flare Blitz, Volt Tackle and Wave Crash is 33/100 of the damage,
+  rounded (Gen V+), not 1/3.
+- **Crush Grip and Wring Out** use the Gen V+ formula: 120 × the target's HP ratio (taken in 4096ths), at least 1.
+  Platinum added 1. Hard Press uses the same formula with 100.
+- **Fling** with a Berry primes Cud Chew (Gen IX): the flinger eats it again at the end of the next turn, and so does a
+  target with Cud Chew that ate it.
+- Left as Platinum has them: Pursuit doesn't react for an asleep, frozen or loafing user, and Snatch's Pressure
+  accounting.
+
+Code: the screens in `BattleSystem_CalcMoveDamage` (`battle_lib.c`); `BtlCmd_CheckHoldOnWith1HP` and
+`subscript_future_sight_damage.s` (Endure); `subscript_recoil_1_3.s`; `BtlCmd_CalcWringOutPower` and Hard Press in
+`battle_lib.c`; Cud Chew in `BtlCmd_RemoveItem` and `BtlCmd_SovereignMarkAteBerry` (`battle_script.c`).
+
+Verified (test build, emulator, wild battles against a Lv. 100 Ninjask unless noted):
+- **Recoil:** Staraptor's Brave Bird took the Ninjask from 241 to 1 HP (240 damage) and Staraptor took 79 recoil
+  (Platinum's 1/3 would be 80); a 1-damage hit cost 1. Tauros's Double-Edge: 102 damage, 34 recoil; 139, 46.
+- **Endure:** the Ninjask's Future Sight landed on the turn Geodude (5 HP) used Endure: "GEODUDE braced itself!", then
+  "GEODUDE took the Future Sight attack!" and "GEODUDE endured the hit!", at 1 HP. Without Endure it fainted.
+- **Fling and Cud Chew:** Farigiraf flung its Sitrus Berry, and at the end of the next turn Cud Chew restored 45 HP
+  (109 → 154). Machamp flung a Sitrus Berry at a wild Farigiraf with Cud Chew: it ate it (201 → 219), and after a
+  Karate Chop, Cud Chew ate it again at the end of the turn (156 → 210), once.
+- **Crush Grip, Wring Out, Hard Press:** the C formula gives Showdown's power for every HP and max HP up to 999
+  (checked off the game); it differs from Platinum's in 495,759 of those 499,500 cases, mostly by 1.
+- **Screens in a double battle:** not run in the emulator; the change is the one multiplier.
+- **Builds:** the test and release builds pass, and every battle script fits its buffer.
+
 ## Item 11: Platinum's moves under the later games' rules, batch I
 
 For players:

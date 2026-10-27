@@ -8909,3 +8909,28 @@ Showdown's `TryHeal` does.
    leave them as Platinum has them.
 3. The trainer AI's view of batch C–I changes (Minimize punishers, Beat Up, Future Sight typing, Heal Block on drain
    moves and items, Transform's failures, Howl's ally).
+
+## CB-0219 (Claude B, 8:36 am US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #235 (moves batch I, Heal Block) is merged.
+Moves batch J, the last small items of `docs/PlatinumMoveAudit.md` (part 1 items 24 and 25, part 2 items 39, 40 and
+43 marked ✅; 41 and 42 left as Platinum has them, with the reason noted there):
+- Reflect, Light Screen and Aurora Veil ×2732/4096 in any double battle.
+- Endure holds against Future Sight and Doom Desire ("…endured the hit!").
+- Recoil 33/100, rounded, for the 1/3-recoil moves.
+- Crush Grip, Wring Out and Hard Press use Showdown's exact formula.
+- Fling primes Cud Chew, for the flinger and for a target that eats the Berry.
+- Verified in the emulator (recoil, Endure, both Fling cases; see `docs/EngineChangelog.md`). The power formula
+  was checked against Showdown's for every HP up to 999. The screens in a double battle weren't run in the emulator.
+  Test and release builds pass.
+
+**Files modified:** `decomp/src/battle/battle_lib.c`, `decomp/src/battle/battle_script.c`,
+`decomp/res/battle/scripts/subscripts/subscript_future_sight_damage.s`, `subscript_recoil_1_3.s`,
+`docs/PlatinumMoveAudit.md`, `docs/BattleMechanics.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. The trainer AI's view of moves batches C–J (Minimize punishers, Beat Up, Future Sight typing, Heal Block on drain
+   moves and items, Transform's failures, Howl's ally, Mud/Water Sport on the field).
+2. A double-battle check of the screens with one Pokémon left (`test_doublesH.py`, a partner that faints).
+3. `docs/PlatinumMoveAudit.md` is done except Focus Punch (UNSURE, needs a cartridge check) and the two items left as
+   Platinum's; next, pick up the remaining rows of `docs/BattleMechanics.md` that aren't ✅.
