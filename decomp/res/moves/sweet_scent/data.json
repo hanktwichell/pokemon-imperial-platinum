@@ -2,10 +2,10 @@
     "name": "Sweet Scent",
     "description": [
         "A sweet scent that\n",
-        "lowers the foe’s\n",
-        "evasiveness. It also\n",
-        "lures wild Pokémon\n",
-        "if used in grass, etc."
+        "harshly lowers the\n",
+        "foe’s evasiveness. It\n",
+        "also lures wild\n",
+        "Pokémon in grass."
     ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
@@ -13,7 +13,7 @@
     "accuracy": 100,
     "pp": 20,
     "effect": {
-        "type": "BATTLE_EFFECT_EVA_DOWN",
+        "type": "BATTLE_EFFECT_EVA_DOWN_2",
         "chance": 0
     },
     "range": "RANGE_ADJACENT_OPPONENTS",

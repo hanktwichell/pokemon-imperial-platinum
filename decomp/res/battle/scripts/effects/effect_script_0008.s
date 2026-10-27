@@ -2,7 +2,7 @@
 
 
 _000:
-    CheckSubstitute BTLSCR_DEFENDER, _015
+    // Sovereign: a substitute takes the hit (Gen V+); Platinum's Dream Eater failed against one.
     CheckAbility CHECK_HAVE, BTLSCR_DEFENDER, ABILITY_COMATOSE, _sovereign_asleep // Sovereign (item 11): Comatose is as if asleep
     CompareMonDataToValue OPCODE_FLAG_NOT, BTLSCR_DEFENDER, BATTLEMON_STATUS, MON_CONDITION_SLEEP, _015
 

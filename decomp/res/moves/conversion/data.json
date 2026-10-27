@@ -3,8 +3,9 @@
     "description": [
         "The user changes its\n",
         "type to become the\n",
-        "same type as one of\n",
-        "its moves.\n"
+        "same type as the move\n",
+        "in its first move\n",
+        "slot."
     ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",

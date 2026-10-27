@@ -3,6 +3,62 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Item 11: Platinum's moves under the later games' rules, batch E
+
+For players:
+- **Flail and Reversal** (Gen V+) read the HP out of 48, not the HP bar's 64 pixels, so they hit a little harder at low
+  HP (150 power at about a tenth of the user's HP, where Platinum gave 100).
+- **Haze** (Gen V+) leaves Focus Energy alone. **Baton Pass** (Gen V+) no longer passes Lock-On or Mind Reader.
+- **Dream Eater, a Ghost's Curse, Mimic and Sketch** (Gen V+) go through a substitute. **Mimic** gives the copied move
+  its full PP (Platinum: at most 5) and can't copy Gen IX's `failmimic` moves (Transform, Mirror Move, Sleep Talk,
+  Assist, Copycat, Me First, Nature Power, Belch, the Torques...). **Sketch** can't copy Gen IX's `nosketch` moves (Dark
+  Void, Hyperspace Fury, Revival Blessing, the Torques, Tera Starstorm) but can copy Chatter.
+- **Conversion** (Gen VI+) takes the type of the move in the user's first slot, and fails if the user has that type
+  already. **Conversion 2** (Gen V+) is aimed at a foe and picks a type that resists the foe's last move (Platinum: the
+  last move that hit the user).
+- **Sweet Scent** (Gen VI+) lowers evasion by 2. **Tail Glow** (Gen V+) raises Sp. Atk by 3.
+- **Chatter** (Gen VI+) always confuses, whoever uses it. Platinum confused only for Chatot, at 0–30% from its recorded
+  cry.
+- **Uproar** (Gen V+) lasts 3 turns (Platinum: 3 to 6).
+- **Dark Void** (Gen VII+) fails unless the user is Darkrai; reflected by Magic Coat or Magic Bounce it still works.
+- **Imprison** (Gen V+) works even when no foe knows one of the user's moves.
+- **Magnet Rise** (Gen V+) works for a Levitate (or Eelevate) Pokémon and fails on a Pokémon Smack Down grounded.
+- **Acupressure** (Gen V+) works on the user behind its own substitute (an ally's substitute still stops it).
+- **Psych Up** (Gen VI+) copies Focus Energy, Dragon Cheer and Laser Focus in place of the user's own, as well as the
+  stat stages.
+- A Pokémon given the Ghost type by **Trick-or-Treat** uses a Ghost's **Curse**, as Protect already treated it.
+- New move texts for Sweet Scent, Tail Glow, Chatter, Conversion, Conversion 2, Uproar and Dark Void.
+
+Code: `BtlCmd_CalcFlailPower`, `BtlCmd_ResetAllStatChanges`, `BtlCmd_TryMimic`, `BtlCmd_TrySketch`,
+`BtlCmd_TryConversion`, `BtlCmd_TryConversion2`, `BtlCmd_CopyStatStages`, `BtlCmd_TryImprison` and
+`BtlCmd_CheckChatterActivation` (`battle_script.c`); `sCannotMimicMoves`/`Move_CanBeMimicked` and
+`sCannotSketchMoves`/`Move_CanBeSketched` (`battle_lib.c`); `MOVE_EFFECT_BATON_PASSED` (`moves.h`); the effect scripts
+0001 (Dark Void), 0008 (Dream Eater), 0063 (evasion −2), 0109 (Curse), 0226 (Acupressure) and 0252 (Magnet Rise);
+`subscript_curse_ghost.s`, `subscript_sketch.s` and `subscript_uproar.s`; Tail Glow's `SOVEREIGN_TAIL_GLOW` from
+`tools/engine/gen_stat_moves.py`; the move data in `tools/engine/gen9_move_fixes.py`; two read-only script variables
+(`BTLVAR_SOVEREIGN_SMACKED_DOWN_ATTACKER`, `BTLVAR_SOVEREIGN_ATTACKER_GHOST`). The trainer AI scores Tail Glow as a
+Sp. Atk rise and Dark Void as useless for anyone but Darkrai.
+
+Verified (test build, emulator, wild battles against a fast Lv. 100 Ninjask):
+- **Sweet Scent:** the Ninjask's evasion went 0 → −2 → −4. **Tail Glow:** Geodude's Sp. Atk 0 → +3 → +6.
+- **Chatter:** Geodude's first Chatter: "The wild NINJASK became confused!".
+- **Uproar:** "GEODUDE caused an uproar!", "is making an uproar!" twice, "GEODUDE calmed down." at the end of turn 3.
+- **Dark Void:** Geodude's: "But it failed!"; Darkrai's put the Ninjask to sleep. Bounced back by the Ninjask's Magic
+  Coat it still worked: "DARKRAI fell asleep!" (after one miss).
+- **Imprison:** with no shared move, "GEODUDE sealed the opponent's move(s)!"; the second use failed.
+- **Magnet Rise:** a Levitate Bronzong "levitated on electromagnetism!"; a Magnezone hit by Smack Down first: "But it
+  failed!".
+- **Acupressure:** behind Geodude's own substitute it raised a stat by 2 every turn.
+- **Psych Up:** after the Ninjask's Focus Energy, Geodude had Focus Energy too. **Haze:** after Geodude's Focus Energy,
+  each Haze ("All stat changes were eliminated!") was followed by "GEODUDE used Focus Energy! But it failed!".
+- **Conversion:** Porygon with Thunderbolt first became Electric. **Conversion 2:** after the Ninjask's Ember, Porygon
+  became Dragon, Fire or Rock (each resists Fire).
+- **Mimic / Sketch:** behind the Ninjask's substitute, Geodude's Mimic and Smeargle's Sketch both copied Substitute,
+  with its full 10 PP. Smeargle's Sketch of Dark Void failed.
+- **Curse:** after the Ninjask's Trick-or-Treat, Geodude "cut its own HP and laid a curse on the wild NINJASK!".
+- **Flail:** Geodude at 10/101 HP hit a Lv. 100 Blissey for 99–123 a hit (150 power); at 11/101 HP for 74–87 (100).
+- **Builds:** the test and release builds pass, and every battle script fits its buffer.
+
 ## Item 11: Platinum's moves under the later games' rules, batch D
 
 For players:

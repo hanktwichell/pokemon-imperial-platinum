@@ -251,5 +251,6 @@ static const int sSideEffectSubscripts[] = {
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_SKY_DROP_LIFT] = subscript_sovereign_sky_drop_lift,
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_SKY_DROP_FREED] = subscript_sovereign_sky_drop_freed,
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_TELEPORT_SWITCH] = subscript_sovereign_teleport_switch,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_TAIL_GLOW] = subscript_sovereign_stats_tail_glow,
 };
 // clang-format on

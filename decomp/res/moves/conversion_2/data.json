@@ -4,8 +4,8 @@
         "The user changes its\n",
         "type to make itself\n",
         "resistant to the type\n",
-        "of the attack it\n",
-        "last took."
+        "of the move the foe\n",
+        "used last."
     ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
@@ -16,7 +16,7 @@
         "type": "BATTLE_EFFECT_CONVERSION2",
         "chance": 0
     },
-    "range": "RANGE_USER",
+    "range": "RANGE_SINGLE_TARGET",
     "priority": 0,
     "flags": [],
     "contest": {
