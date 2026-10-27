@@ -9188,3 +9188,23 @@ confirms the Gen V change, which the audit had left as unsure):
 2. The Platinum move audit and the AI review (outside T2) have no open items left. Look for other non-owner work in
    `docs/EngineRoadmap.md`.
 3. Embody Aspect and Teraform Zero need Terastallization, which the game doesn't have; they stay without an effect.
+
+## CB-0230 (Claude B, 4:36 pm US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #246 (CB-0229, Focus Punch) is merged. A docs
+update to `docs/EngineRoadmap.md` for two rows that were finished but still had an empty status:
+- **Row 11 (E2b/E3b, effect fidelity):** 🟡. Every move and ability on the checklists has its exact effect, and the
+  Platinum move audit and Platinum's abilities and held items follow the Gen V–IX rules. The only exceptions: the Pledges
+  and Ally Switch (Claude A), Burn Up and Double Shock (waiting on the owner), Revival Blessing (left out), and Embody
+  Aspect and Teraform Zero (no Terastallization).
+- **Row 12b (AI review):** ✅. Every item in `docs/AIReview.md` is done. The developer battle's custom weather AI is
+  part of T2.
+
+**Files modified:** `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Anything the owner asks for. T1 (boss teams), T2 (the developer battle and Henry at Spear Pillar), the art (E12),
+   Burn Up and Double Shock, and the special evolutions (decision 20) wait on the owner.
+2. Look for non-owner work: run the regression harnesses on the latest main (Focus Punch and the AI changes touched the
+   battle code), and check `docs/BattleMechanics.md` and the checklists for anything still marked approximate.
+3. Embody Aspect and Teraform Zero need Terastallization, which the game doesn't have; they stay without an effect.
