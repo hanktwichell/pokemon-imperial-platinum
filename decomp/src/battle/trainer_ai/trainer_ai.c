@@ -68,6 +68,9 @@ static const u16 sAltPowerMoveEffects[] = {
     BATTLE_EFFECT_INCREASE_POWER_WITH_MORE_STAT_UP,
     BATTLE_EFFECT_HIGHER_POWER_WHEN_LOW_PP,
     BATTLE_EFFECT_DECREASE_POWER_WITH_LESS_USER_HP,
+    // Sovereign (12b): Final Gambit deals damage equal to the user's HP, as Seismic Toss deals its level. It's left out
+    // of the damage comparisons (TrainerAI_CalcAllDamage).
+    BATTLE_EFFECT_SOVEREIGN_FINAL_GAMBIT,
     0xFFFF
 };
 
@@ -3580,8 +3583,12 @@ static s32 TrainerAI_CalcAllDamage(BattleSystem *battleSys, BattleContext *battl
             altPowerIdx++;
         }
 
-        if (sAltPowerMoveEffects[altPowerIdx] != 0xFFFF
-            || (moves[i] != MOVE_NONE && sNoDamageCalcMoveEffects[noCalcIdx] == 0xFFFF && TrainerAI_HasDamagingPower(battleCtx, moves[i]))) {
+        // Sovereign (12b): Final Gambit's damage is the user's HP, and the user faints. It doesn't count when moves or
+        // party members are compared by damage; its knockout checks (AICmd_IfCurrentMoveKills) call
+        // TrainerAI_CalcDamage directly.
+        if (moves[i] != MOVE_FINAL_GAMBIT
+            && (sAltPowerMoveEffects[altPowerIdx] != 0xFFFF
+                || (moves[i] != MOVE_NONE && sNoDamageCalcMoveEffects[noCalcIdx] == 0xFFFF && TrainerAI_HasDamagingPower(battleCtx, moves[i])))) {
             if (varyDamage == TRUE) {
                 damageRoll = AI_CONTEXT.moveDamageRolls[i];
             } else {
@@ -3770,6 +3777,10 @@ static s32 TrainerAI_CalcDamage(BattleSystem *battleSys, BattleContext *battleCt
 
     case MOVE_PSYWAVE:
         damage = battleCtx->battleMons[attacker].level * (BattleSystem_RandNext(battleSys) % 11 + 5) / 10;
+        break;
+
+    case MOVE_FINAL_GAMBIT: // Sovereign (12b)
+        damage = battleCtx->battleMons[attacker].curHP;
         break;
 
     case MOVE_RETURN:

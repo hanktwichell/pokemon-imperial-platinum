@@ -50,6 +50,7 @@ opponent for checking these in game.
 | 16 | Trainer items | `TrainerAI_ShouldUseItem` kept looking after it picked an item, and its result stayed TRUE, so every later item it could reach was spent too, and the last one was the one used. A Full Heal was only ever used on sleep | a trainer with two or more items and few Pokémon left lost them all in one turn; Cynthia's four Full Restores could go at once | **done:** one item per turn; a Full Heal is used for any condition it cures (section *#16*) | ✅ |
 | 17 | Can it switch? | `TrainerAI_ShouldSwitch` had its own trap check. pret's notes call it naive: it didn't know that Shed Shell, its own Shadow Tag or being a Flying type (against Arena Trap) lets a Pokémon switch, nor the Gen V+ rules (nothing traps a Ghost type; Run Away under Champions; Fairy Lock; Levitate, Magnet Rise and the Air Balloon against Arena Trap) | the AI didn't switch out a Pokémon it could switch, or tried to switch one it couldn't | **done:** it asks the battle's own check, `Battler_IsTrapped` | ✅ |
 | 18 | Damage estimates for moves with a worked-out power | The AI's damage estimates (`TrainerAI_CalcAllDamage`, `FlagMoveDamageScore`, the knockout and partner checks) skip a move listed at power 1 unless its effect is in `sAltPowerMoveEffects`. Platinum's Flail, Reversal, Wring Out, Crush Grip, Punishment and Trump Card were skipped, Eruption and Water Spout were left out on purpose, and Sovereign's Electro Ball, Heavy Slam, Heat Crash and Hard Press (power set in `Sovereign_MovePower`) were never seen as damaging | a trainer with Flail at low HP, or Electro Ball, Heavy Slam or Crush Grip, didn't rate them as its strongest move | **done:** the AI works out their power with the battle's own formulas (section *#18*) | ✅ |
+| 19 | Final Gambit | Final Gambit (Gen V; damage equal to the user's HP, then the user faints) had no AI handling. Listed at power 1 and not in `sAltPowerMoveEffects`, it skipped `FlagMoveDamageScore`, so `Basic_Main` jumped past its type immunity check, and Eval Attack and Expert never scored it. The other Gen V+ fixed-damage moves use Platinum's handlers: Ruination and Nature's Madness have Super Fang's effect, Comeuppance has Metal Burst's | five trainers' default moves include it (Primeape, Staraptor; Ace Trainer Keenan, Bird Keeper Krystal, Black Belt Davon and his rematch, Youngster Tristan's third rematch), and it scored like their best attack, even against a Ghost type | **done:** its immunity and last-Pokémon checks as Explosion's, and an Expert handler that scores the knockout (section *#19*) | ✅ |
 
 ## Order of work
 
@@ -64,6 +65,7 @@ opponent for checking these in game.
 9. ✅ #16 (trainer items).
 10. ✅ #17 (the AI's trap check).
 11. ✅ #18 (damage estimates for the moves whose power is worked out in battle).
+12. ✅ #19 (Final Gambit).
 
 Each fix gets a scenario in the test build. The developer team has Heat Wave and Rock Slide as spread moves, Water
 Spout and Origin Pulse with Kyogre, and Venusaur/Charizard sharing the field.
@@ -301,3 +303,47 @@ Verified in the test build's trainer battle (a double battle; the player's Poké
 - Pika Papow from a Pikachu with friendship 255 did 56 per hit to the Ninjask (Thunderbolt: 44–50); with friendship 0
   it did 2, as it did at any friendship before.
 
+## #19: Final Gambit (done 2026-10-27)
+
+Final Gambit deals damage equal to the user's HP, and the user faints. Its data list power 1 and a Sovereign effect
+(`BATTLE_EFFECT_SOVEREIGN_FINAL_GAMBIT`), so the AI had nothing for it:
+- `FlagMoveDamageScore` made no comparison for it, so `Basic_Main` skipped `Basic_CheckForImmunity`: it scored 100
+  against a Ghost type.
+- Eval Attack couldn't tell whether it knocks out, and Expert had no handler: it scored like the trainer's best attack
+  whatever the HPs.
+
+It matters because five trainers get it in their default moves (the last four level-up moves): Ace Trainer Keenan's
+and Black Belt Davon's Primeape (Lv. 75–78), Bird Keeper Krystal's and Youngster Tristan's (third rematch) Staraptor.
+
+The other Gen V+ moves with a fixed or counter damage already go to Platinum's handlers: Ruination and Nature's
+Madness have Super Fang's effect (`BATTLE_EFFECT_HALVE_HP`, `Basic_CheckNonStandardDamageOrChargeTurn` and
+`Expert_SuperFang`), Comeuppance has Metal Burst's.
+
+The fix:
+- **Damage estimate:** `TrainerAI_CalcDamage` estimates Final Gambit as the user's current HP, as it does Seismic Toss
+  from the level, and its effect is in `sAltPowerMoveEffects`. So `Basic_Main` checks its type immunity, and Eval
+  Attack and Expert can tell whether it knocks out.
+- **Left out of comparisons:** `TrainerAI_CalcAllDamage` leaves it out, so it never counts as the strongest attack when
+  moves or party members are compared. A full-HP user's Final Gambit would otherwise outdo its real attacks, and those
+  would lose Eval Attack's "strongest move" standing.
+- **Basic:** the last-Pokémon check as for Explosion. When the AI is on its last Pokémon and the player isn't, it scores
+  −10; when both are, −1.
+- **Eval Attack:** no knockout bonus, as for Explosion. When it doesn't knock out, it can get Explosion's −2.
+- **Expert (`Expert_FinalGambit`):**
+  - No knockout: −2.
+  - Knockout, the user faster: +1.
+  - Knockout, the user slower: −1, since the target hits first and lowers the user's HP, which is the damage.
+
+  A move that knocks out without the user fainting still gets Eval Attack's +4 and wins.
+
+Verified in the test build's trainer battle (a double battle; the player's Pokémon used Splash). The AI's first Pokémon
+had Final Gambit, Tackle and two Splash; battler 0 was made a Ghost type at 50 HP. The final scores (100 is neutral):
+
+| Case | Final Gambit vs the Ghost type | Final Gambit vs the other foe | Tackle vs the other foe |
+|---|---|---|---|
+| User 200 HP, faster; foe 150 HP (knocked out) | 86 (immune −10, −2, no knockout −2) | 101 (+1) | 104 (knocks out, +4) |
+| User 100 HP, faster; foe 300 HP | 86 | 97 (not the strongest −1, no knockout −2) | 100 |
+| User 200 HP, slower; foe 150 HP | 86 | 99 (slower −1) | 104 |
+
+Before the fix no check reached Final Gambit, so it stayed at 100 against every target (worked out from the script,
+not traced).

@@ -8959,3 +8959,28 @@ Moves batch J, the last small items of `docs/PlatinumMoveAudit.md` (part 1 items
 2. A double-battle check of the screens with one Pokémon left (`test_doublesH.py`, a partner that faints).
 3. Anything the owner asks for. T2 (the developer battle's AI) and the Burn Up and Double Shock decisions wait on the
    owner.
+
+## CB-0221 (Claude B, 9:23 am US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #237 (AI #18) is merged. AI review #19
+(`docs/AIReview.md`): Final Gambit.
+- The trainer AI had no handling for Final Gambit. Five trainers know it from their level-up moves: the Primeape of
+  Ace Trainer Keenan and Black Belt Davon (and his rematch), and the Staraptor of Bird Keeper Krystal and of Youngster
+  Tristan's third rematch. It scored like their best attack, even against a Ghost type.
+- Now the AI estimates its damage as the user's HP, which brings back its immunity check. It gets Explosion's
+  last-Pokémon check and no knockout bonus. A new Expert handler scores the knockout and who moves first. It is left out
+  of the "strongest move" and party comparisons.
+- Ruination, Nature's Madness and Comeuppance were checked: they use Super Fang's and Metal Burst's handlers already.
+- Verified in the test build with a trace of the AI's final move scores (three cases). Test and release builds pass.
+- The all-trainers battle regression was stopped at 165 of 1,040 (all ok); it was competing with builds for the CPUs and
+  would have hit its timeout. It is running again on this build (batches A–K + #19), from a copy of the ROM.
+
+**Files modified:** `decomp/src/battle/trainer_ai/trainer_ai.c`, `decomp/src/battle/trainer_ai/script.s`,
+`docs/AIReview.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Read the all-trainers regression's results (`battle_all_trainers.py`, 1,040 trainers) and fix anything that isn't
+   ok.
+2. A double-battle check of the screens with one Pokémon left (`test_doublesH.py`, a partner that faints).
+3. Anything the owner asks for. T2 (the developer battle's AI) and the Burn Up and Double Shock decisions wait on the
+   owner.

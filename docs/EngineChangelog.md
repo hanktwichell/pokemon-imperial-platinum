@@ -3,6 +3,31 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## AI review #19: Final Gambit
+
+For players:
+- **Trainers' AI and Final Gambit.** Five trainers' Primeape and Staraptor know Final Gambit from their level-up moves.
+  The AI used it as freely as its best attack, even against a Ghost type, which is immune. Now:
+  - It doesn't use it on a Ghost type.
+  - It uses it when it knocks the target out and moves first. A move that knocks out without costing the user still
+    comes first.
+  - It avoids it when it wouldn't knock out, or on its last Pokémon.
+
+Code (`trainer_ai.c`, `trainer_ai/script.s`):
+- `TrainerAI_CalcDamage` estimates Final Gambit as the user's HP, and its effect is in `sAltPowerMoveEffects`.
+  `TrainerAI_CalcAllDamage` leaves it out of the damage comparisons.
+- Basic gives it Explosion's last-Pokémon check. Eval Attack gives it no knockout bonus, as for Explosion. The new
+  `Expert_FinalGambit` scores the knockout and who moves first.
+- Ruination and Nature's Madness (Super Fang's effect) and Comeuppance (Metal Burst's) were checked: Platinum's handlers
+  already score them.
+
+Verified (test build; details in `docs/AIReview.md`, section *#19*):
+- **AI trace:** a trace of the AI's final move scores in the test trainer battle:
+  - Final Gambit scored 86 against a Ghost type.
+  - Against a foe it knocks out: 101 when faster, 99 when slower. Tackle, which also knocked it out, scored 104.
+  - Against a foe it doesn't knock out: 97.
+- **Builds:** the test and release builds pass, and every battle script fits its buffer.
+
 ## AI review #18: damage estimates for moves whose power is worked out in battle; Pika Papow and Veevee Volley
 
 For players:
