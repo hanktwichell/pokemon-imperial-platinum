@@ -3,6 +3,32 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Item 11 and 12b: Champions' Run Away and Sheer Force, and the AI's trap check
+
+These follow Showdown's Champions mod (`data/mods/champions/abilities.ts` and `scripts.ts`).
+
+For players:
+- **Run Away** now lets its holder switch out past any trap: Mean Look, Block, Shadow Tag, Arena Trap, Bind and the
+  like, Ingrain, Fairy Lock. Before, it only let a wild battle be fled.
+- **Sheer Force** no longer stops the target's after-hit effects. A Pokémon hit by a Sheer Force move still switches
+  out with Emergency Exit, Wimp Out or an Eject Button, and its Red Card still drags the attacker out. In Gen IX it
+  stopped all of them. Berserk, Anger Shell, Pickpocket and Color Change already worked.
+- **Trainers switch more sensibly (12b #17).** The AI now uses the battle's own check to decide whether a Pokémon can
+  switch out. Platinum's check was naive. It thought a Pokémon holding Shed Shell was trapped, and a Flying type trapped
+  by Arena Trap. It also didn't know that nothing traps a Ghost type, and didn't count Fairy Lock.
+
+Code: `src/battle/battle_lib.c` (`Battler_IsTrapped`; the Emergency Exit, Red Card and Eject Button checks in
+`BattleSystem_TriggerHeldItemOnHit`) and `src/battle/trainer_ai/trainer_ai.c` (`TrainerAI_ShouldSwitch`).
+
+Verified, in the test build:
+- **Run Away:** a wild Lv. 100 Ninjask used Mean Look ("RATICATE can no longer escape!"). On turn 2 the Raticate with
+  Run Away switched to Golisopod. The same Raticate with Guts stayed in.
+- **Eject Button:** a wild Nidoking with Sheer Force used Ember on the player's Snorlax. "SNORLAX is switched out with
+  the Eject Button!", then Gallade came in.
+- **Emergency Exit:** a Nidoking with Sheer Force took a wild Golisopod from 58 to 28 of 88 with Ember. Its Emergency
+  Exit activated and it fled.
+- The test and release builds pass.
+
 ## Item 11: Champions' move flags, Gen IX's sound moves, Soundproof and Heal Bell
 
 For players:

@@ -203,7 +203,7 @@ IMPLEMENTED = {
     224: "yes: its highest stat +1 for each foe its move knocks out",  # Beast Boost
     264: "yes: Attack +1 for each foe its move knocks out",  # Chilling Neigh
     265: "yes: Sp. Atk +1 for each foe its move knocks out",  # Grim Neigh
-    125: "yes: moves with a chance effect ×1.3, without the effect (or Life Orb recoil)",  # Sheer Force
+    125: "yes: moves with a chance effect ×1.3, without the effect (or Life Orb recoil). As in Champions, the target's Emergency Exit, Wimp Out, Eject Button and Red Card still work",  # Sheer Force
     126: "yes: stat rises and drops are reversed",  # Contrary
     132: "yes: the partner takes 25% less damage",  # Friend Guard
     134: "yes: weight doubled (Low Kick, Grass Knot)",  # Heavy Metal

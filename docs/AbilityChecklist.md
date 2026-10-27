@@ -7,7 +7,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | # | Ability | Introduced | Battle effect |
 |---|---|---|---|
 | 124 | Pickpocket | Gen 5 | yes: when it holds no item, it takes the item of a Pokémon that makes contact with it (by Thief's rules: a foe's takes nothing outside the Battle Frontier) |
-| 125 | Sheer Force | Gen 5 | yes: moves with a chance effect ×1.3, without the effect (or Life Orb recoil) |
+| 125 | Sheer Force | Gen 5 | yes: moves with a chance effect ×1.3, without the effect (or Life Orb recoil). As in Champions, the target's Emergency Exit, Wimp Out, Eject Button and Red Card still work |
 | 126 | Contrary | Gen 5 | yes: stat rises and drops are reversed |
 | 127 | Unnerve | Gen 5 | yes: foes can't eat Berries (that heal, cure, trigger on a hit or halve a hit's damage) |
 | 128 | Defiant | Gen 5 | yes: Attack +2 when a foe's move or Intimidate lowers its stats |

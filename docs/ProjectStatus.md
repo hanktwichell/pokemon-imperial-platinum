@@ -37,7 +37,7 @@ and T2 only. See `EngineRoadmap.md` for the per-milestone breakdown.
 | E3 | All 919 moves, ID = official number; 93 new moves exact, 76 approximate, 211 placeholder (`MoveChecklist.md`) | ✅ done (PR #9); tested in battle |
 | E5 | Gen IX stats, types and learnsets for #1–493 and forms; 32-bit learnset entries | ✅ done (PR #9); tested in battle |
 | E2/E4 | All 314 abilities, ID = official number (191 new, no battle effect yet: `AbilityChecklist.md`); Hidden Ability slot and flag | ✅ done; tested on the summary screen |
-| 10b | Battle mechanics → Pokémon Champions (IVs/EVs unchanged); rules in `BattleMechanics.md` | 🟡 core rules built (status, dynamic speed, crits, weather, Snow, Fake Out, move values); ability/move behaviour with item 11 |
+| 10b | Battle mechanics → Pokémon Champions (IVs/EVs unchanged); rules in `BattleMechanics.md` | ✅ every rule built or marked not adopted: the core rules (status, dynamic speed, crits, weather, Snow, Fake Out, move values) and the ability, item and move changes (item 11; the last, Run Away and Sheer Force, CB-0207) |
 | E6 | Species expansion to 1025 | ✅ done: all 532 Gen V–IX species (`NewSpecies.md`) with placeholder sprites, Easy Chat words, English-only Pokédex; tested in battle and on the summary screen. No cries for the new species yet (last step). The 16 evolutions that needed E7 items are in |
 | E7 | Items (Mega Stones, new held/evolution items) | ✅ done: 245 items with icons, evolution items, Mints, Ability Capsule/Patch, the Infinite Repel (see `EngineRoadmap.md` row 9) |
 | E8 | Mega Evolution / Primal Reversion | ✅ done: 99 forms, battle flow, MEGA button, Primal Reversion, animation and symbols (row 10) |
