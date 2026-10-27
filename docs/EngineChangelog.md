@@ -3,6 +3,38 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Item 11: Platinum's moves under the later games' rules, batch H
+
+For players:
+- **Mud Sport and Water Sport** (Gen VI+) are field effects for 5 turns, not tied to the user staying in. Electric
+  (Fire) moves get ×1352/4096 power (about a third; Platinum halved it), using the move again while it lasts fails, and
+  "The effects of Mud Sport have faded." (Water Sport) shows when it ends. New descriptions.
+- **Howl** (Gen VIII+) raises the Attack of the user's ally too in a double battle. It's a sound move, so an ally with
+  Soundproof blocks it ("…'s Soundproof blocks Howl!"). New description.
+- **Nature Power, Secret Power and Camouflage** (Gen VI+) go by the terrain on the field before the battle's location:
+  Nature Power becomes Thunderbolt, Energy Ball, Moonblast or Psychic; Secret Power's added effect becomes
+  paralysis, sleep, Sp. Atk −1 or Speed −1; Camouflage gives the Electric, Grass, Fairy or Psychic type. Platinum's
+  location tables are still used with no terrain.
+
+Code: `sovereignMudSportTurns`/`sovereignWaterSportTurns` (`battle_context.h`) with their BTLVARs,
+`effect_script_0201.s`/`0210.s`, the power check in `battle_lib.c`, the new `FIELD_COND_CHECK_STATE_SOVEREIGN_SPORTS`
+and `subscript_sovereign_room_end.s`, and the trainer AI's `IfMoveEffect` (it reads the field now); Howl in
+`effect_script_0010.s` and `subscript_sovereign_howl.s`; `Sovereign_FieldTerrainIndex` in `BtlCmd_TryCamouflage`,
+`BtlCmd_GetTerrainMove` and `BtlCmd_GetTerrainSecondaryEffect` (`battle_script.c`); descriptions in
+`tools/engine/gen9_move_fixes.py`.
+
+Verified (test build, emulator, wild battles against a Lv. 100 Ninjask unless noted):
+- **Mud Sport:** the Ninjask's Thunder Shock did 90 to Machop, then 29 after Machop's Mud Sport (29/90 ≈ 1352/4096).
+  Against Blissey: 28, then about 10 on turns 2–5, "But it failed!" for Mud Sport while it lasted, "The effects of Mud
+  Sport have faded." at the end of turn 5, and full damage again on turn 6. **Water Sport:** Ember 90, then 29.
+- **Howl** (a double battle, Meganium and Florges against a trainer's Tauros and Miltank): "MEGANIUM used Howl!
+  MEGANIUM's Attack rose! FLORGES's Attack rose!", each turn. With Soundproof on Florges: "FLORGES's Soundproof blocks
+  Howl!", and only Meganium's Attack rose. In a single battle Howl still raises the user's Attack.
+- **Nature Power:** after the Ninjask's Electric Terrain, "Nature Power turned into Thunderbolt!"; with no terrain it
+  turned into Tri Attack (the location's move). **Secret Power** under Grassy Terrain put the Ninjask to sleep (twice
+  in six hits). **Camouflage** made Geodude Psychic type under Psychic Terrain and Fairy type under Misty Terrain.
+- **Builds:** the test and release builds pass, and every battle script fits its buffer.
+
 ## Item 11: Platinum's moves under the later games' rules, batch G
 
 For players:

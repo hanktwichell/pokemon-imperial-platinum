@@ -11234,6 +11234,20 @@
         "The foe’s {STRVAR_1 1, 0, 0} is no\n",
         "longer tormented!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignMudSportEnd",
+      "en_US": [
+        "The effects of Mud Sport\n",
+        "have faded."
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignWaterSportEnd",
+      "en_US": [
+        "The effects of Water Sport\n",
+        "have faded."
+      ]
     }
   ]
 }

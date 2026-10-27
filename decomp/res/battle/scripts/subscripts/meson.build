@@ -491,4 +491,5 @@ subscript_files = files(
     'subscript_sovereign_teleport_switch.s',
     'subscript_sovereign_future_sight_immune.s',
     'subscript_sovereign_stats_tail_glow.s',
+    'subscript_sovereign_howl.s',
 )

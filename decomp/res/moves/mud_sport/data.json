@@ -1,11 +1,11 @@
 {
     "name": "Mud Sport",
     "description": [
-        "The user covers\n",
-        "itself with mud. It\n",
-        "weakens Electric-\n",
-        "type moves while the\n",
-        "user is in the battle."
+        "The user kicks up\n",
+        "mud on the field.\n",
+        "This weakens\n",
+        "Electric-type moves\n",
+        "for five turns."
     ],
     "class": "CLASS_STATUS",
     "type": "TYPE_GROUND",

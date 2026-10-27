@@ -8855,3 +8855,31 @@ and 30):
 2. Heal Block's third point (Leftovers, Black Sludge, Berries, Shell Bell, healing abilities).
 3. The trainer AI's view of batch C–G changes (Minimize punishers, Beat Up, Future Sight typing, Heal Block on drain
    moves, Transform's failures).
+
+## CB-0217 (Claude B, 6:54 am US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #233 (moves batch G) is merged. Moves batch H from
+`docs/PlatinumMoveAudit.md` (marked ✅ there, part 2 items 24, 28 and 29):
+- Mud Sport and Water Sport are 5-turn field effects (×1352/4096 power; fail while active; end message), with new
+  descriptions; the trainer AI's "already active" check reads the field.
+- Howl raises the ally's Attack too in doubles; an ally's Soundproof blocks it.
+- Nature Power, Secret Power and Camouflage use the field's terrain first, the location tables otherwise.
+- Verified in the emulator (see `docs/EngineChangelog.md`). Test and release builds pass.
+
+**Files modified:** `decomp/include/battle/battle_context.h`, `decomp/generated/battle_script_vars.txt`,
+`decomp/generated/battle_subscripts.txt`, `decomp/generated/battle_move_subscript_ptrs.txt`,
+`decomp/include/data/move_side_effect_subscripts.h`, `decomp/src/battle/battle_script.c`,
+`decomp/src/battle/battle_lib.c`, `decomp/src/battle/battle_controller_player.c`,
+`decomp/src/battle/trainer_ai/trainer_ai.c`, `decomp/res/battle/scripts/effects/effect_script_0010.s`, `0201.s`,
+`0210.s`, `decomp/res/battle/scripts/subscripts/subscript_sovereign_howl.s` (new), `subscript_sovereign_room_end.s`,
+`meson.build`, `sub_seq.order`, `decomp/res/text/battle_strings.json`, `decomp/res/moves/{howl,mud_sport,water_sport}/data.json`,
+`tools/engine/gen9_move_fixes.py`, `docs/PlatinumMoveAudit.md`, `docs/BattleMechanics.md`, `docs/EngineChangelog.md`,
+`CLAUDE_STATUS.md`.
+
+**Next 3 steps (from `docs/PlatinumMoveAudit.md`):**
+1. Moves batch I: Heal Block stops item and ability healing (Leftovers, Black Sludge, HP Berries, Shell Bell, Enigma
+   Berry, Rain Dish, Ice Body, Dry Skin, Poison Heal, the absorbing abilities), as Showdown's `TryHeal` does.
+2. The negligible ones: recoil 33/100, Wring Out/Crush Grip without the `1 +`, Pursuit against a sleeping user,
+   Fling priming Cud Chew.
+3. The trainer AI's view of batch C–H changes (Minimize punishers, Beat Up, Future Sight typing, Heal Block on drain
+   moves, Transform's failures, Howl's ally).

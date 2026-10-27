@@ -1084,6 +1084,7 @@ enum FieldCondCheckState {
     FIELD_COND_CHECK_STATE_GRAVITY,
     FIELD_COND_CHECK_STATE_SOVEREIGN_TERRAIN,
     FIELD_COND_CHECK_STATE_SOVEREIGN_ROOMS,
+    FIELD_COND_CHECK_STATE_SOVEREIGN_SPORTS,
 
     FIELD_COND_CHECK_END
 };
@@ -1464,6 +1465,24 @@ static void BattleControllerPlayer_CheckFieldConditions(BattleSystem *battleSys,
 
             if (battleCtx->sovereignWonderRoomTurns && --battleCtx->sovereignWonderRoomTurns == 0) {
                 battleCtx->msgTemp = 1;
+                PrepareSubroutineSequence(battleCtx, subscript_sovereign_room_end);
+                state = STATE_BREAK_OUT;
+            }
+
+            battleCtx->fieldConditionCheckState++;
+            break;
+
+        case FIELD_COND_CHECK_STATE_SOVEREIGN_SPORTS:
+            // Sovereign: Mud Sport and Water Sport, field effects since Gen VI, wear off as the rooms do.
+            if (battleCtx->sovereignMudSportTurns && --battleCtx->sovereignMudSportTurns == 0) {
+                battleCtx->msgTemp = 2;
+                PrepareSubroutineSequence(battleCtx, subscript_sovereign_room_end);
+                state = STATE_BREAK_OUT;
+                break; // Water Sport is checked on the next pass
+            }
+
+            if (battleCtx->sovereignWaterSportTurns && --battleCtx->sovereignWaterSportTurns == 0) {
+                battleCtx->msgTemp = 3;
                 PrepareSubroutineSequence(battleCtx, subscript_sovereign_room_end);
                 state = STATE_BREAK_OUT;
             }
