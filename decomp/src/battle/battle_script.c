@@ -10338,6 +10338,27 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
     case BTLVAR_SOVEREIGN_SIDE_EFFECT_MON_WEATHER: // Sovereign (item 11): read-only, the same for the side effect's target
         battleCtx->sovereignTerrainTemp = Sovereign_BattlerWeather(battleCtx, battleCtx->sideEffectMon);
         return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_HEALING_WISH_ATTACKER: // Sovereign (item 11): set by Healing Wish and Lunar Dance
+        return &battleCtx->sovereignHealingWish[battleCtx->attacker];
+    case BTLVAR_SOVEREIGN_HEALING_WISH_SWITCHED_MON: { // Sovereign (item 11): read-only, for subscript_hazards_check. The
+        // wish waiting in the switched Pokemon's slot, used up now if the Pokemon needs it: HP below its max, a status
+        // condition, or (Lunar Dance) a move short of PP. 0 if none, or if it doesn't need it (the wish waits, Gen VIII+).
+        BattleMon *mon = &battleCtx->battleMons[battleCtx->switchedMon];
+        u8 *wish = &battleCtx->sovereignHealingWish[battleCtx->switchedMon];
+        BOOL needed = mon->curHP < mon->maxHP || (mon->status & MON_CONDITION_ANY);
+
+        for (int i = 0; i < LEARNED_MOVES_MAX && *wish == SOVEREIGN_WISH_LUNAR_DANCE && needed == FALSE; i++) {
+            needed = mon->moves[i] != MOVE_NONE && mon->ppCur[i] < MoveTable_CalcMaxPP(mon->moves[i], mon->ppUps[i]);
+        }
+
+        battleCtx->sovereignTerrainTemp = mon->curHP && needed ? *wish : 0;
+
+        if (battleCtx->sovereignTerrainTemp) {
+            *wish = 0;
+        }
+
+        return &battleCtx->sovereignTerrainTemp;
+    }
     case BTLVAR_SOVEREIGN_SWITCHED_MON_GROUNDED: // Sovereign (item 11): read-only, for Spikes and Toxic Spikes (Air Balloon)
         battleCtx->sovereignTerrainTemp = Sovereign_IsGrounded(battleCtx, battleCtx->switchedMon);
         return &battleCtx->sovereignTerrainTemp;

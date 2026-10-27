@@ -1,5 +1,9 @@
 #include "macros/btlcmd.inc"
 
+// Sovereign (item 11): Healing Wish as in Gen IX. The user faints and leaves the wish in its slot. The Pokémon that
+// comes into the slot (at the end of the turn, or later) is healed before the entry hazards hit it, if it needs it
+// (subscript_hazards_check); one that doesn't leaves the wish for the next (Gen VIII+). Platinum switched the
+// replacement in at once and healed it after the hazards.
 
 _000:
     UpdateMonData OPCODE_SET, BTLSCR_ATTACKER, BATTLEMON_CUR_HP, 0
@@ -11,34 +15,5 @@ _000:
     Call BATTLE_SUBSCRIPT_FAINT_MON
     UpdateVar OPCODE_FLAG_OFF, BTLVAR_BATTLE_CTX_STATUS_2, SYSCTL_PAYOUT_EXP
     Call BATTLE_SUBSCRIPT_GRANT_EXP
-
-_026:
-    TryReplaceFaintedMon BTLSCR_ATTACKER, TRUE, _087
-    ShowParty 
-    WaitMonSelection 
-    SwitchAndUpdateMon BTLSCR_SWITCHED_MON
-    PrintSendOutMessage BTLSCR_SWITCHED_MON
-    Wait 
-    PokemonSendOut BTLSCR_SWITCHED_MON
-    WaitTime 72
-    HealthBoxSlideIn BTLSCR_SWITCHED_MON
-    Wait 
-    Call BATTLE_SUBSCRIPT_HAZARDS_CHECK
-    CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_BATTLE_CTX_STATUS, SYSCTL_MON_FAINTED, _065
-    Call BATTLE_SUBSCRIPT_FAINT_MON
-    UpdateVar OPCODE_FLAG_OFF, BTLVAR_BATTLE_CTX_STATUS_2, SYSCTL_PAYOUT_EXP
-    Call BATTLE_SUBSCRIPT_GRANT_EXP
-    TryReplaceFaintedMon BTLSCR_ATTACKER, TRUE, _087
-    GoTo _026
-
-_065:
-    UpdateMonData OPCODE_SET, BTLSCR_ATTACKER, BATTLEMON_STATUS, MON_CONDITION_NONE
-    SetHealthBoxStatusIcon BTLSCR_ATTACKER, BATTLE_ANIMATION_NONE
-    UpdateMonDataFromVar OPCODE_GET, BTLSCR_ATTACKER, BATTLEMON_MAX_HP, BTLVAR_HP_CALC_TEMP
-    UpdateVarFromVar OPCODE_SET, BTLVAR_MSG_BATTLER_TEMP, BTLVAR_ATTACKER
-    // The healing wish came true!
-    BufferMessage BattleStrings_Text_TheHealingWishCameTrue, TAG_NONE
-    Call BATTLE_SUBSCRIPT_WISH_HEAL
-
-_087:
+    UpdateVar OPCODE_SET, BTLVAR_SOVEREIGN_HEALING_WISH_ATTACKER, SOVEREIGN_WISH_HEALING_WISH
     End 

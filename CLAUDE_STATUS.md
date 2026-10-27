@@ -8487,3 +8487,34 @@ the rest are visual, so they're left as is. This PR adds **Emergency Exit and Wi
 2. 12b #7 (weather) waits for T2. `docs/BattleMechanics.md` still lists Champions' Sheer Force tweaks as not done,
    and no source found says what they are.
 3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.
+
+## CB-0205 (Claude B, 12:08 am US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #221 (Emergency Exit and Wimp Out after the
+entry hazards) is merged. This PR makes **Healing Wish and Lunar Dance work as in Gen IX** (CB-0204's next step 1):
+- **The moves:** the user faints and leaves the wish in its slot (`sovereignHealingWish`). The replacement comes in at
+  the end of the turn, not at once.
+- **The heal:** the Pokémon that comes into the slot is healed before the entry hazards, at the top of
+  `subscript_hazards_check`: full HP, its status cured, and its PP too with Lunar Dance.
+- **The wait:** a Pokémon that needs none of it leaves the wish for the next one (Gen VIII+). That's
+  `BTLVAR_SOVEREIGN_HEALING_WISH_SWITCHED_MON`, which uses the wish up only when it's needed.
+- **Why inline:** the heal is written out in the hazard check, not called from `subscript_wish_heal`, because after
+  a U-turn the check already runs two calls deep (the script stack holds four).
+- **Verified in the test build:** with Stealth Rock up, Golisopod at 40% came in at 59, was healed to 148, then took
+  the rocks (111). Lunar Dance gave the same result. At full HP there was no heal. The wish waited through two full
+  Pokémon and healed Golisopod when it came back at 66. Test and release builds pass.
+
+**Files modified:** `decomp/res/battle/scripts/subscripts/subscript_healing_wish.s`,
+`decomp/res/battle/scripts/subscripts/subscript_lunar_dance.s`,
+`decomp/res/battle/scripts/subscripts/subscript_hazards_check.s`,
+`decomp/res/battle/scripts/effects/effect_script_0220.s`, `decomp/res/battle/scripts/effects/effect_script_0270.s`,
+`decomp/src/battle/battle_script.c`, `decomp/include/battle/battle_context.h`, `decomp/include/constants/battle.h`,
+`decomp/generated/battle_script_vars.txt`, `docs/BattleMechanics.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Other Gen IV switch-in timings worth checking against Gen IX: Baton Pass and U-turn replacements already come in
+   mid-turn as in Gen IX. Look at the order of entry abilities after a double faint.
+2. 12b #7 (weather) waits for T2. `docs/BattleMechanics.md` still lists Champions' Sheer Force tweaks as not done,
+   and no source found says what they are.
+3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.
+
