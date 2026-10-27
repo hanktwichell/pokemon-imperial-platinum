@@ -8,11 +8,14 @@ this twice changes nothing. Sources: Pokémon Showdown's Champions mod (data/mod
 Only changes Platinum's data format can hold are applied here (type, power, accuracy, effect chance). Behaviour
 changes (e.g. Make It Rain's -2 Sp. Atk, Salt Cure's damage) are listed in docs/BattleMechanics.md for roadmap item 11.
 
+It also writes the checklist rows of the moves it makes exact (Snowscape) and recounts the checklist's totals.
+
 Usage: python3 tools/engine/apply_champions_moves.py
 """
 import filecmp
 import json
 import os
+import re
 import shutil
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
@@ -62,6 +65,9 @@ CHAMPIONS = {
 }
 # stem -> move whose animation it uses instead of the one gen_moves.py borrowed.
 ANIMATIONS = {"snowscape": "hail"}
+# docs/MoveChecklist.md rows this tool makes exact: stem -> (effect, note).
+CHECKLIST = {"snowscape": ("WEATHER_HAIL", "set by `apply_champions_moves.py`: Hail now works as Snow (Gen IX), so "
+                                           "Snowscape shares its effect and animation")}
 
 
 def main():
@@ -87,6 +93,18 @@ def main():
             with open(path, "w", encoding="utf-8") as f:
                 json.dump(new, f, indent=4, ensure_ascii=False)
                 f.write("\n")
+    path = os.path.join(ROOT, "docs", "MoveChecklist.md")
+    text = open(path, encoding="utf-8").read()
+    for stem, (effect, note) in CHECKLIST.items():
+        name = json.load(open(os.path.join(MOVES_DIR, stem, "data.json"), encoding="utf-8"))["name"]
+        pat = re.compile(r"^(\| \d+ \| " + re.escape(name) + r" \| [^|]+ \| )`[^`]*` \| \w+ \| [^|]*\|$", re.M)
+        text, n = pat.subn(lambda m: f"{m.group(1)}`{effect}` | exact | {note} |", text)
+        assert n == 1, (stem, n)
+    rows = re.findall(r"^\| \d+ \| .* \| (exact|approximate|placeholder|removed) \| .*\|$", text, re.M)
+    for status in ("exact", "approximate", "placeholder", "removed"):
+        text = re.sub(rf"^\| {status} \| \d+ \|$", f"| {status} | {rows.count(status)} |", text, count=1, flags=re.M)
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(text)
     print(f"Champions move changes: {len(CHAMPIONS)} moves, {changed} files updated")
 
 

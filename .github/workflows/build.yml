@@ -120,6 +120,12 @@ jobs:
         run: python3 tools/test/check_double_close.py decomp
       - name: Battle sprites can be unscrambled (their first four pixels are clear)
         run: python3 tools/test/check_battle_sprites.py decomp
+      - name: Move data regenerates unchanged (gen_moves, gen9_move_fixes, apply_champions_moves)
+        run: |
+          python3 tools/engine/gen_moves.py /tmp/pokeapi/data/v2/csv
+          python3 tools/engine/gen9_move_fixes.py
+          python3 tools/engine/apply_champions_moves.py
+          git diff --stat --exit-code -- decomp/res/moves decomp/generated decomp/res/battle/scripts/effects docs/MoveChecklist.md
       - name: Regenerate and validate docs
         run: tools/regenerate_docs.sh /tmp/pokeapi/data/v2/csv decomp
       - name: Generated files are up to date

@@ -48,7 +48,7 @@ FLAGS = {
     "blazing_torque": HIT, "wicked_torque": HIT, "noxious_torque": HIT, "combat_torque": HIT,
     "magical_torque": HIT, "blood_moon": HIT, "matcha_gotcha": HIT, "syrup_bomb": HIT, "ivy_cudgel": HIT,
     "tera_starstorm": HIT, "fickle_beam": HIT, "thunderclap": HIT, "mighty_cleave": (C, M), "tachyon_cutter": HIT,
-    "hard_press": CONTACT, "alluring_voice": HIT, "temper_flare": CONTACT, "supercell_slam": CONTACT,
+    "hard_press": CONTACT, "electro_shot": HIT, "alluring_voice": HIT, "temper_flare": CONTACT, "supercell_slam": CONTACT,
     "psychic_noise": HIT, "upper_hand": CONTACT, "malignant_chain": HIT,
 }
 OWN_FLAGS = (C, P, M, MC, SN)
@@ -204,7 +204,7 @@ MOVES = {
     "quash": ("SOVEREIGN_QUASH", 0, "the target moves last this turn"),
     "psychic_noise": ("SOVEREIGN_PSYCHIC_NOISE", 100, "the target can't heal for two turns"),
     "steel_beam": ("SOVEREIGN_HALF_HP_COST_HIT", 0, "the user loses half its max HP, hit or miss"),
-    "freeze_dry": ("FREEZE_HIT", 10, "super effective against Water; 10% freeze"),
+    "freeze_dry": ("HIT", 0, "super effective against Water; it can't freeze (Champions)"),
     "confide": (None, None, "target Sp. Atk -1; as a sound move it gets past Substitute"),
     "psyshield_bash": ("RAISE_DEF_HIT", 100, "user Defense +1 (100%)"),
     "spirit_shackle": ("SOVEREIGN_TRAP_HIT", 100, "the target can't escape while the user is in battle"),

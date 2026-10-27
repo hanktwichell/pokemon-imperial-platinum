@@ -8194,3 +8194,31 @@ descriptions.
 2. Wimp Out/Emergency Exit after indirect damage. Showdown also checks after the user's own recoil, crash damage and
    Life Orb, after end-of-turn damage and after entry hazards.
 3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.
+
+## CB-0194 (Claude B, 8:08 pm US Central, 2026-10-26)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #210 (move descriptions) is merged. This PR makes
+the move generators reproducible and fixes Freeze-Dry.
+- **Freeze-Dry can't freeze again**, as in Champions (docs/BattleMechanics.md). A `gen9_move_fixes.py` entry had put
+  its 10% freeze back.
+- **Running `gen_moves.py`, then `gen9_move_fixes.py`, then `apply_champions_moves.py` now rebuilds the move data and
+  `docs/MoveChecklist.md` exactly.** Checked in a scratch worktree: every move file came out identical. The changes:
+  - New in `gen_moves.py`: the `EXTRA_FLAGS` table (Sky Drop, Body Press, Electro Shot), Electro Shot's hand-written
+    description, and three more hand-written scripts (Freeze Shock, Ice Burn, Geomancy).
+  - The "Platinum's moves updated" table is now counted against Platinum's own values in
+    `tools/engine/platinum_moves.json`, saved from the decomp import 22fddfd4. Curse's ???→Ghost row was missing and is
+    now in.
+  - `apply_champions_moves.py` writes the Snowscape checklist row itself.
+- The CI docs job now reruns the three tools and fails on any diff.
+
+**Files modified:** `tools/engine/gen_moves.py`, `tools/engine/gen9_move_fixes.py`,
+`tools/engine/apply_champions_moves.py`, `tools/engine/platinum_moves.json` (new),
+`decomp/res/moves/{freeze_dry,electro_shot}/data.json`, `docs/MoveChecklist.md`, `docs/EngineChangelog.md`,
+`.github/workflows/build.yml`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Wimp Out/Emergency Exit after indirect damage. Showdown checks after the user's own recoil, crash damage and Life
+   Orb (at the end of its move), after end-of-turn damage, and after entry hazards.
+2. Look for other generators that no longer reproduce their files: abilities, items, species. Give each a CI rerun
+   check like this one.
+3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.

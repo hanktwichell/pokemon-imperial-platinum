@@ -120,7 +120,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 570 | ParabolcCharge | Electric | `RECOVER_HALF_DAMAGE_DEALT` | exact | Sovereign effect: hits all adjacent Pokémon (its ally too); drains half the damage dealt |
 | 571 | Forest’s Curse | Grass | `SOVEREIGN_ADD_TYPE` | exact | Sovereign effect: adds the Grass type to the target as a third type (in place of an added one); fails if it's a Grass type already |
 | 572 | Petal Blizzard | Grass | `HIT` | exact | Sovereign effect: hits all adjacent Pokémon |
-| 573 | Freeze-Dry | Ice | `FREEZE_HIT` | exact | Sovereign effect: super effective against Water; 10% freeze |
+| 573 | Freeze-Dry | Ice | `HIT` | exact | Sovereign effect: super effective against Water; it can't freeze (Champions) |
 | 574 | Disarming Voice | Fairy | `HIT` | exact | Sovereign effect: never misses, hits both foes |
 | 575 | Parting Shot | Dark | `SOVEREIGN_PARTING_SHOT` | exact | Sovereign effect: target Attack and Sp. Atk -1, then the user switches out (stays if no stat fell) |
 | 576 | Topsy-Turvy | Dark | `SOVEREIGN_TOPSY_TURVY` | exact | Sovereign effect: inverts the target's stat stages (fails if they're all neutral) |
@@ -517,6 +517,7 @@ Battle effects are unchanged; only these values changed.
 | 156 | Rest | pp 10→5 |
 | 168 | Thief | power 40→60, pp 10→25 |
 | 173 | Snore | power 40→50 |
+| 174 | Curse | type TYPE_MYSTERY→TYPE_GHOST |
 | 178 | Cotton Spore | accuracy 85→100 |
 | 182 | Protect | priority 3→4 |
 | 184 | Scary Face | accuracy 90→100 |

@@ -20,7 +20,7 @@ Usage: python3 tools/engine/gen_moves.py /path/to/pokeapi/data/v2/csv
 
 Then run tools/engine/gen9_move_fixes.py: it restores the hand-written Gen IX flags and effects that PokeAPI lacks.
 Then run tools/engine/apply_champions_moves.py, which applies Pokémon Champions' changes on top (and turns Snowscape
-into the Snow effect; its checklist row is edited by hand to match).
+into the Snow effect). Run in that order, the three reproduce the move data and docs/MoveChecklist.md exactly.
 """
 import csv
 import json
@@ -119,14 +119,17 @@ SOVEREIGN_EFFECTS = {
 }
 # Moves whose script.s (battle message) and anim.s (two-part charge/attack animation) are written by hand; the
 # generator leaves both files alone.
-HANDWRITTEN_SCRIPTS = {"electro_shot", "meteor_beam", "sky_drop"}
-# Moves whose every flavor text is too long for the 5-line description box: shortened by hand.
+HANDWRITTEN_SCRIPTS = {"electro_shot", "meteor_beam", "sky_drop", "freeze_shock", "ice_burn", "geomancy"}
+# Descriptions written by hand: every flavor text is too long for the 5-line box, or says less than the move does.
 DESCRIPTIONS = {
+    "electro_shot": "The user gathers electricity, raising its Sp. Atk, then attacks next turn.",
     "ion_deluge": "The user disperses charged particles that make Normal-type moves Electric-type.",
     "spotlight": "The user shines a spotlight on the target so only the target will be attacked this turn.",
 }
-# Animation flags of the hand-written animations (Sky Drop's is Fly's, with the target carried along).
-HANDWRITTEN_ANIM_FLAGS = {"sky_drop": ["MOVE_FLAG_HIDES_SHADOWS"]}
+# Flags added by hand: the hand-written animations' (Sky Drop's is Fly's, with the target carried along), and King's
+# Rock for moves that kept it when they got their own Sovereign effect.
+EXTRA_FLAGS = {"sky_drop": ["MOVE_FLAG_HIDES_SHADOWS"], "body_press": ["MOVE_FLAG_TRIGGERS_KINGS_ROCK"],
+               "electro_shot": ["MOVE_FLAG_TRIGGERS_KINGS_ROCK"]}
 
 # Status stat-drop effects -> the damaging "lower X on hit" effect, for damaging moves PokeAPI files under the former.
 STATUS_TO_HIT = {E("ATK_DOWN"): "LOWER_ATTACK_HIT", E("DEF_DOWN"): "LOWER_DEFENSE_HIT", E("SPEED_DOWN"): "LOWER_SPEED_HIT",
@@ -348,23 +351,30 @@ def main():
     out_consts = list(vanilla)
     changed, rows = [], []
 
-    # 1. Platinum's moves: Gen IX numbers, same effect.
+    # 1. Platinum's moves: Gen IX numbers, same effect. The changes are counted against Platinum's own values
+    # (platinum_moves.json, from the pret decompilation), so a rerun over data already updated gives the same table.
+    platinum = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "platinum_moves.json"),
+                              encoding="utf-8"))
+    keys = ("type", "power", "accuracy", "pp", "priority")
     for mid in range(1, LAST_VANILLA + 1):
         stem = vanilla[mid][5:].lower()
         p = os.path.join(MOVES_DIR, stem, "data.json")
         d = json.load(open(p, encoding="utf-8"))
+        base = platinum[stem]
         r = moves[mid]
         new = dict(d)
+        new.update(base)
         new["type"] = TYPES[types[r["type_id"]]]
         new["pp"] = int(r["pp"])
         new["priority"] = int(r["priority"])
-        if r["power"] and d["power"] > 1:
+        if r["power"] and base["power"] > 1:
             new["power"] = int(r["power"])
-        if r["accuracy"] and d["accuracy"] > 0:
+        if r["accuracy"] and base["accuracy"] > 0:
             new["accuracy"] = int(r["accuracy"])
-        diff = [k for k in ("type", "power", "accuracy", "pp", "priority") if new[k] != d[k]]
+        diff = [k for k in keys if new[k] != base[k]]
         if diff:
-            changed.append((mid, d["name"], ", ".join(f"{k} {d[k]}→{new[k]}" for k in diff)))
+            changed.append((mid, d["name"], ", ".join(f"{k} {base[k]}→{new[k]}" for k in diff)))
+        if any(new[k] != d[k] for k in keys):
             with open(p, "w", encoding="utf-8") as f:
                 json.dump(new, f, indent=4, ensure_ascii=False)
                 f.write("\n")
@@ -427,7 +437,7 @@ def main():
             anim = anim_template(r, type_ident, eff, stats, rng)
             tmpl = json.load(open(os.path.join(MOVES_DIR, anim, "data.json"), encoding="utf-8"))
             fl += [x for x in tmpl["flags"] if x in ("MOVE_FLAG_HIDES_HP_GAUGES", "MOVE_FLAG_HIDES_SHADOWS")]
-            fl += [x for x in HANDWRITTEN_ANIM_FLAGS.get(stem, []) if x not in fl]
+            fl += [x for x in EXTRA_FLAGS.get(stem, []) if x not in fl]
             name = names[mid]
             name = SHORT_NAMES.get(name, name)
             assert len(name) <= 15, name
