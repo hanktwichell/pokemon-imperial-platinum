@@ -126,7 +126,7 @@ IMPLEMENTED = {
     275: "yes: Intimidate raises its Attack instead; Roar, Whirlwind, Dragon Tail and Circle Throw can't force it out",
     181: "yes: contact moves ×1.3",
     178: "yes: pulse moves ×1.5",
-    292: "yes: slicing moves ×1.5",
+    292: "yes: slicing moves ×1.5 (Gen IX's, and the claws Champions makes slicing: Crush, Dire, Dragon, Metal and Shadow Claw)",
     238: "yes: when a damaging move hits it, every other Pokémon's Speed −1, its ally's too, even as it faints",
     266: "yes: foes can't eat Berries, as with Unnerve; Attack +1 for each foe its move knocks out",
     267: "yes: foes can't eat Berries, as with Unnerve; Sp. Atk +1 for each foe its move knocks out",

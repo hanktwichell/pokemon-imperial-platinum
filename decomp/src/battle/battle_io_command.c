@@ -648,7 +648,11 @@ static void BtlIOCmd_RefreshPartyStatus(BattleSystem *battleSys, BattlerData *ba
             ability = Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL);
         }
 
-        if (message->move != MOVE_HEAL_BELL || (message->move == MOVE_HEAL_BELL && ability != ABILITY_SOUNDPROOF)) {
+        // Sovereign (item 11): Heal Bell as in Gen IX. It always cures its user; it doesn't cure the others with
+        // Soundproof or Good as Gold.
+        if (message->move != MOVE_HEAL_BELL
+            || i == message->userSlot
+            || (ability != ABILITY_SOUNDPROOF && ability != ABILITY_GOOD_AS_GOLD)) {
             Pokemon_SetValue(mon, MON_DATA_STATUS, (u8 *)&clearedStatus);
         }
     }

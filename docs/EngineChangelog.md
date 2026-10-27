@@ -3,6 +3,31 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Item 11: Champions' move flags, Gen IX's sound moves, Soundproof and Heal Bell
+
+For players:
+- **Slicing (Champions):** Crush Claw, Dire Claw, Dragon Claw, Metal Claw and Shadow Claw count as slicing moves, so
+  Sharpness powers them up 1.5×.
+- **Punching (Champions):** Double Shock counts as a punching move (Iron Fist, Punching Glove).
+- **Sound moves:** Howl and Dragon Cheer (Champions), and Heal Bell and Perish Song (Gen IX), count as sound moves.
+  Throat Chop now stops them, and Throat Spray and Liquid Voice now work with them.
+- **Soundproof no longer blocks its holder's own moves.** A Kommo-o with Soundproof failed when it used Clangorous Soul.
+  It now works, as do Howl, Heal Bell and Perish Song.
+- **Heal Bell (Gen VIII+):** it always cures its user, even one with Soundproof. It still doesn't cure a partner or
+  party Pokémon with Soundproof, and now not one with Good as Gold either. Platinum left a Soundproof user poisoned.
+
+Code: `src/battle/battle_lib.c` (`sSlicingMoves`, `sPunchingMoves`, `sSoundMoves`, the Soundproof check in
+`BattleSystem_TriggerImmunityAbility`), `src/battle/battle_script.c` (`BtlCmd_TryPartyStatusRefresh`), and
+`src/battle/battle_io_command.c` with `battle_controller.c` (`RefreshPartyStatusMessage.userSlot`: the party is
+cured except for the others with Soundproof or Good as Gold).
+
+Verified, in the test build:
+- **Clangorous Soul:** a Kommo-o with Soundproof used it, paid a third of its HP (150 to 100), and its stats rose.
+- **Heal Bell:** an Exploud with Soundproof was badly poisoned by a wild Ninjask's Toxic and used Heal Bell. "A bell
+  chimed!" showed with no "blocks" message, and the next Toxic poisoned it again, so it had been cured. Its HP stayed at
+  179 between the turns.
+- The test and release builds pass, and every battle script fits.
+
 ## Item 11: Healing Wish and Lunar Dance as in Gen IX
 
 For players:

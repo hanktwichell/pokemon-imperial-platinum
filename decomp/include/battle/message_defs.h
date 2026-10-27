@@ -326,6 +326,7 @@ typedef struct RefreshPartyStatusMessage {
     u8 command;
     u16 ability; // Sovereign: u16
     u16 move;
+    u8 userSlot; // Sovereign (item 11): the user's party slot (Heal Bell cures it even with Soundproof, Gen VIII+)
 } RefreshPartyStatusMessage;
 
 typedef struct ForgetMoveMessage {

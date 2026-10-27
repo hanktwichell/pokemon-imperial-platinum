@@ -174,7 +174,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 289 | Hadron Engine | Gen 9 | yes: sets Electric Terrain on entry; Sp. Atk ×1.33 in it |
 | 290 | Opportunist | Gen 9 | yes: copies the stat rises its foes get, as a Mirror Herb does but every time (not a rise Opportunist or a Mirror Herb made) |
 | 291 | Cud Chew | Gen 9 | yes: it eats again the Berry it ate (not one taken by Bug Bite or Pluck), at the end of the next turn (turn 2 for a Berry eaten as the battle starts) |
-| 292 | Sharpness | Gen 9 | yes: slicing moves ×1.5 |
+| 292 | Sharpness | Gen 9 | yes: slicing moves ×1.5 (Gen IX's, and the claws Champions makes slicing: Crush, Dire, Dragon, Metal and Shadow Claw) |
 | 293 | SupremeOverlord | Gen 9 | yes: 10% more power per fainted party member (up to 5) |
 | 294 | Costar | Gen 9 | yes: as it enters, it copies its partner's stat stages, and Focus Energy, Dragon Cheer and Laser Focus (double battles) |
 | 295 | Toxic Debris | Gen 9 | yes: physical hits scatter Toxic Spikes on the attacker's side |

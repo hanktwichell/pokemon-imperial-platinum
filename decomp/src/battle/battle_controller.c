@@ -1601,6 +1601,7 @@ void BattleController_EmitRefreshPartyStatus(BattleSystem *battleSys, BattleCont
     message.command = BATTLE_COMMAND_REFRESH_PARTY_STATUS;
     message.move = move;
     message.ability = battleCtx->battleMons[battler].ability;
+    message.userSlot = battleCtx->selectedPartySlot[battler];
 
     SendMessage(battleSys, COMM_RECIPIENT_CLIENT, battler, &message, sizeof(RefreshPartyStatusMessage));
 }
