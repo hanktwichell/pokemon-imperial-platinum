@@ -23,10 +23,11 @@ worked out as the game does it (Daycare_GiveEggFromDaycare, Pokemon_SovereignBab
 - a form parent in sSovereignBabyForms gives its baby's form (its region's, or 0);
 - a form parent in any other Sovereign form (a Totem, a female's form, Low Key Toxtricity) gives 0;
 - a Platinum form (Burmy's cloak, Shellos's sea) comes from the mother slot, as in Platinum;
-- an Egg species whose form comes from its personality (the Flabébé line's colors, the Vivillon line's patterns)
-  takes that one, and a Deerling the season (the test sets the clock to March: autumn).
+- an Egg species whose form comes from its personality (Pumpkaboo's size, Antique Sinistea) takes that one, and a
+  Deerling the season (the test sets the clock to March: autumn).
 The names cross-check it when the Egg is another species: a regional parent's Egg must be the baby's form of the same
-name (Alolan Raichu: Pichu, with no Alolan form; Galarian Rapidash: Galarian Ponyta), or its base form.
+name (Alolan Raichu: Pichu, with no Alolan form; Galarian Rapidash: Galarian Ponyta), or its base form. Not for decision
+50's flower colors, which only trainers' Pokémon have: a Yellow Flower Floette's Egg is the base Flabébé.
 
 Each case gets a result: ok, EGG (wrong Egg species or form), HATCH (the hatched Pokémon isn't the Egg's species and
 form), NAMES (the form isn't the one the names give), FORM (its form changed in the battle; a Burmy takes the Trash
@@ -46,7 +47,8 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from battle_all_species import entries  # noqa: E402
 from battle_all_trainers import DECOMP, fight, symbols  # noqa: E402
-from battle_evolutions import BATTLE_KINDS, CLOCK, GENDER_FEMALE, GENDER_MALE, Forms, data_of, qualifier  # noqa: E402
+from battle_evolutions import (BASE_FORM_ONLY, BATTLE_KINDS, CLOCK, GENDER_FEMALE, GENDER_MALE, Forms,  # noqa: E402
+                                data_of, qualifier)
 from battle_form_changes import FOE  # noqa: E402
 from check_trainer_party import consts  # noqa: E402
 
@@ -118,7 +120,7 @@ def egg_form(forms, parents, egg, personality):
 def names_form(forms, form_parent, egg, forms_of):
     """The Egg's form the names give, or None when they don't say."""
     if form_parent['species'] == egg or forms.kind(form_parent['species'], form_parent['form']) in (
-            'SOVEREIGN_FORM_GENDER', None) or forms.forms_of(egg):
+            'SOVEREIGN_FORM_GENDER', None) or forms.forms_of(egg) or egg in BASE_FORM_ONLY:
         return None
     q = qualifier(form_parent['species'], form_parent['form'])
     if q is None:
