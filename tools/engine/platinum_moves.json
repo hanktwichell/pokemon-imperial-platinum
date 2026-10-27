@@ -1,0 +1,3271 @@
+{
+ "pound": {
+  "type": "TYPE_NORMAL",
+  "power": 40,
+  "accuracy": 100,
+  "pp": 35,
+  "priority": 0
+ },
+ "karate_chop": {
+  "type": "TYPE_FIGHTING",
+  "power": 50,
+  "accuracy": 100,
+  "pp": 25,
+  "priority": 0
+ },
+ "double_slap": {
+  "type": "TYPE_NORMAL",
+  "power": 15,
+  "accuracy": 85,
+  "pp": 10,
+  "priority": 0
+ },
+ "comet_punch": {
+  "type": "TYPE_NORMAL",
+  "power": 18,
+  "accuracy": 85,
+  "pp": 15,
+  "priority": 0
+ },
+ "mega_punch": {
+  "type": "TYPE_NORMAL",
+  "power": 80,
+  "accuracy": 85,
+  "pp": 20,
+  "priority": 0
+ },
+ "pay_day": {
+  "type": "TYPE_NORMAL",
+  "power": 40,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "fire_punch": {
+  "type": "TYPE_FIRE",
+  "power": 75,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "ice_punch": {
+  "type": "TYPE_ICE",
+  "power": 75,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "thunder_punch": {
+  "type": "TYPE_ELECTRIC",
+  "power": 75,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "scratch": {
+  "type": "TYPE_NORMAL",
+  "power": 40,
+  "accuracy": 100,
+  "pp": 35,
+  "priority": 0
+ },
+ "vice_grip": {
+  "type": "TYPE_NORMAL",
+  "power": 55,
+  "accuracy": 100,
+  "pp": 30,
+  "priority": 0
+ },
+ "guillotine": {
+  "type": "TYPE_NORMAL",
+  "power": 1,
+  "accuracy": 30,
+  "pp": 5,
+  "priority": 0
+ },
+ "razor_wind": {
+  "type": "TYPE_NORMAL",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "swords_dance": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 30,
+  "priority": 0
+ },
+ "cut": {
+  "type": "TYPE_NORMAL",
+  "power": 50,
+  "accuracy": 95,
+  "pp": 30,
+  "priority": 0
+ },
+ "gust": {
+  "type": "TYPE_FLYING",
+  "power": 40,
+  "accuracy": 100,
+  "pp": 35,
+  "priority": 0
+ },
+ "wing_attack": {
+  "type": "TYPE_FLYING",
+  "power": 60,
+  "accuracy": 100,
+  "pp": 35,
+  "priority": 0
+ },
+ "whirlwind": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": -6
+ },
+ "fly": {
+  "type": "TYPE_FLYING",
+  "power": 90,
+  "accuracy": 95,
+  "pp": 15,
+  "priority": 0
+ },
+ "bind": {
+  "type": "TYPE_NORMAL",
+  "power": 15,
+  "accuracy": 75,
+  "pp": 20,
+  "priority": 0
+ },
+ "slam": {
+  "type": "TYPE_NORMAL",
+  "power": 80,
+  "accuracy": 75,
+  "pp": 20,
+  "priority": 0
+ },
+ "vine_whip": {
+  "type": "TYPE_GRASS",
+  "power": 35,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "stomp": {
+  "type": "TYPE_NORMAL",
+  "power": 65,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "double_kick": {
+  "type": "TYPE_FIGHTING",
+  "power": 30,
+  "accuracy": 100,
+  "pp": 30,
+  "priority": 0
+ },
+ "mega_kick": {
+  "type": "TYPE_NORMAL",
+  "power": 120,
+  "accuracy": 75,
+  "pp": 5,
+  "priority": 0
+ },
+ "jump_kick": {
+  "type": "TYPE_FIGHTING",
+  "power": 85,
+  "accuracy": 95,
+  "pp": 25,
+  "priority": 0
+ },
+ "rolling_kick": {
+  "type": "TYPE_FIGHTING",
+  "power": 60,
+  "accuracy": 85,
+  "pp": 15,
+  "priority": 0
+ },
+ "sand_attack": {
+  "type": "TYPE_GROUND",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "headbutt": {
+  "type": "TYPE_NORMAL",
+  "power": 70,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "horn_attack": {
+  "type": "TYPE_NORMAL",
+  "power": 65,
+  "accuracy": 100,
+  "pp": 25,
+  "priority": 0
+ },
+ "fury_attack": {
+  "type": "TYPE_NORMAL",
+  "power": 15,
+  "accuracy": 85,
+  "pp": 20,
+  "priority": 0
+ },
+ "horn_drill": {
+  "type": "TYPE_NORMAL",
+  "power": 1,
+  "accuracy": 30,
+  "pp": 5,
+  "priority": 0
+ },
+ "tackle": {
+  "type": "TYPE_NORMAL",
+  "power": 35,
+  "accuracy": 95,
+  "pp": 35,
+  "priority": 0
+ },
+ "body_slam": {
+  "type": "TYPE_NORMAL",
+  "power": 85,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "wrap": {
+  "type": "TYPE_NORMAL",
+  "power": 15,
+  "accuracy": 85,
+  "pp": 20,
+  "priority": 0
+ },
+ "take_down": {
+  "type": "TYPE_NORMAL",
+  "power": 90,
+  "accuracy": 85,
+  "pp": 20,
+  "priority": 0
+ },
+ "thrash": {
+  "type": "TYPE_NORMAL",
+  "power": 90,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "double_edge": {
+  "type": "TYPE_NORMAL",
+  "power": 120,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "tail_whip": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 30,
+  "priority": 0
+ },
+ "poison_sting": {
+  "type": "TYPE_POISON",
+  "power": 15,
+  "accuracy": 100,
+  "pp": 35,
+  "priority": 0
+ },
+ "twineedle": {
+  "type": "TYPE_BUG",
+  "power": 25,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "pin_missile": {
+  "type": "TYPE_BUG",
+  "power": 14,
+  "accuracy": 85,
+  "pp": 20,
+  "priority": 0
+ },
+ "leer": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 30,
+  "priority": 0
+ },
+ "bite": {
+  "type": "TYPE_DARK",
+  "power": 60,
+  "accuracy": 100,
+  "pp": 25,
+  "priority": 0
+ },
+ "growl": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 40,
+  "priority": 0
+ },
+ "roar": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": -6
+ },
+ "sing": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 55,
+  "pp": 15,
+  "priority": 0
+ },
+ "supersonic": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 55,
+  "pp": 20,
+  "priority": 0
+ },
+ "sonic_boom": {
+  "type": "TYPE_NORMAL",
+  "power": 1,
+  "accuracy": 90,
+  "pp": 20,
+  "priority": 0
+ },
+ "disable": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 80,
+  "pp": 20,
+  "priority": 0
+ },
+ "acid": {
+  "type": "TYPE_POISON",
+  "power": 40,
+  "accuracy": 100,
+  "pp": 30,
+  "priority": 0
+ },
+ "ember": {
+  "type": "TYPE_FIRE",
+  "power": 40,
+  "accuracy": 100,
+  "pp": 25,
+  "priority": 0
+ },
+ "flamethrower": {
+  "type": "TYPE_FIRE",
+  "power": 95,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "mist": {
+  "type": "TYPE_ICE",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 30,
+  "priority": 0
+ },
+ "water_gun": {
+  "type": "TYPE_WATER",
+  "power": 40,
+  "accuracy": 100,
+  "pp": 25,
+  "priority": 0
+ },
+ "hydro_pump": {
+  "type": "TYPE_WATER",
+  "power": 120,
+  "accuracy": 80,
+  "pp": 5,
+  "priority": 0
+ },
+ "surf": {
+  "type": "TYPE_WATER",
+  "power": 95,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "ice_beam": {
+  "type": "TYPE_ICE",
+  "power": 95,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "blizzard": {
+  "type": "TYPE_ICE",
+  "power": 120,
+  "accuracy": 70,
+  "pp": 5,
+  "priority": 0
+ },
+ "psybeam": {
+  "type": "TYPE_PSYCHIC",
+  "power": 65,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "bubble_beam": {
+  "type": "TYPE_WATER",
+  "power": 65,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "aurora_beam": {
+  "type": "TYPE_ICE",
+  "power": 65,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "hyper_beam": {
+  "type": "TYPE_NORMAL",
+  "power": 150,
+  "accuracy": 90,
+  "pp": 5,
+  "priority": 0
+ },
+ "peck": {
+  "type": "TYPE_FLYING",
+  "power": 35,
+  "accuracy": 100,
+  "pp": 35,
+  "priority": 0
+ },
+ "drill_peck": {
+  "type": "TYPE_FLYING",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "submission": {
+  "type": "TYPE_FIGHTING",
+  "power": 80,
+  "accuracy": 80,
+  "pp": 25,
+  "priority": 0
+ },
+ "low_kick": {
+  "type": "TYPE_FIGHTING",
+  "power": 1,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "counter": {
+  "type": "TYPE_FIGHTING",
+  "power": 1,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": -5
+ },
+ "seismic_toss": {
+  "type": "TYPE_FIGHTING",
+  "power": 1,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "strength": {
+  "type": "TYPE_NORMAL",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "absorb": {
+  "type": "TYPE_GRASS",
+  "power": 20,
+  "accuracy": 100,
+  "pp": 25,
+  "priority": 0
+ },
+ "mega_drain": {
+  "type": "TYPE_GRASS",
+  "power": 40,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "leech_seed": {
+  "type": "TYPE_GRASS",
+  "power": 0,
+  "accuracy": 90,
+  "pp": 10,
+  "priority": 0
+ },
+ "growth": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 40,
+  "priority": 0
+ },
+ "razor_leaf": {
+  "type": "TYPE_GRASS",
+  "power": 55,
+  "accuracy": 95,
+  "pp": 25,
+  "priority": 0
+ },
+ "solar_beam": {
+  "type": "TYPE_GRASS",
+  "power": 120,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "poison_powder": {
+  "type": "TYPE_POISON",
+  "power": 0,
+  "accuracy": 75,
+  "pp": 35,
+  "priority": 0
+ },
+ "stun_spore": {
+  "type": "TYPE_GRASS",
+  "power": 0,
+  "accuracy": 75,
+  "pp": 30,
+  "priority": 0
+ },
+ "sleep_powder": {
+  "type": "TYPE_GRASS",
+  "power": 0,
+  "accuracy": 75,
+  "pp": 15,
+  "priority": 0
+ },
+ "petal_dance": {
+  "type": "TYPE_GRASS",
+  "power": 90,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "string_shot": {
+  "type": "TYPE_BUG",
+  "power": 0,
+  "accuracy": 95,
+  "pp": 40,
+  "priority": 0
+ },
+ "dragon_rage": {
+  "type": "TYPE_DRAGON",
+  "power": 1,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "fire_spin": {
+  "type": "TYPE_FIRE",
+  "power": 15,
+  "accuracy": 70,
+  "pp": 15,
+  "priority": 0
+ },
+ "thunder_shock": {
+  "type": "TYPE_ELECTRIC",
+  "power": 40,
+  "accuracy": 100,
+  "pp": 30,
+  "priority": 0
+ },
+ "thunderbolt": {
+  "type": "TYPE_ELECTRIC",
+  "power": 95,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "thunder_wave": {
+  "type": "TYPE_ELECTRIC",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "thunder": {
+  "type": "TYPE_ELECTRIC",
+  "power": 120,
+  "accuracy": 70,
+  "pp": 10,
+  "priority": 0
+ },
+ "rock_throw": {
+  "type": "TYPE_ROCK",
+  "power": 50,
+  "accuracy": 90,
+  "pp": 15,
+  "priority": 0
+ },
+ "earthquake": {
+  "type": "TYPE_GROUND",
+  "power": 100,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "fissure": {
+  "type": "TYPE_GROUND",
+  "power": 1,
+  "accuracy": 30,
+  "pp": 5,
+  "priority": 0
+ },
+ "dig": {
+  "type": "TYPE_GROUND",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "toxic": {
+  "type": "TYPE_POISON",
+  "power": 0,
+  "accuracy": 85,
+  "pp": 10,
+  "priority": 0
+ },
+ "confusion": {
+  "type": "TYPE_PSYCHIC",
+  "power": 50,
+  "accuracy": 100,
+  "pp": 25,
+  "priority": 0
+ },
+ "psychic": {
+  "type": "TYPE_PSYCHIC",
+  "power": 90,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "hypnosis": {
+  "type": "TYPE_PSYCHIC",
+  "power": 0,
+  "accuracy": 60,
+  "pp": 20,
+  "priority": 0
+ },
+ "meditate": {
+  "type": "TYPE_PSYCHIC",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 40,
+  "priority": 0
+ },
+ "agility": {
+  "type": "TYPE_PSYCHIC",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 30,
+  "priority": 0
+ },
+ "quick_attack": {
+  "type": "TYPE_NORMAL",
+  "power": 40,
+  "accuracy": 100,
+  "pp": 30,
+  "priority": 1
+ },
+ "rage": {
+  "type": "TYPE_NORMAL",
+  "power": 20,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "teleport": {
+  "type": "TYPE_PSYCHIC",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "night_shade": {
+  "type": "TYPE_GHOST",
+  "power": 1,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "mimic": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "screech": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 85,
+  "pp": 40,
+  "priority": 0
+ },
+ "double_team": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 15,
+  "priority": 0
+ },
+ "recover": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "harden": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 30,
+  "priority": 0
+ },
+ "minimize": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "smoke_screen": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "confuse_ray": {
+  "type": "TYPE_GHOST",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "withdraw": {
+  "type": "TYPE_WATER",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 40,
+  "priority": 0
+ },
+ "defense_curl": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 40,
+  "priority": 0
+ },
+ "barrier": {
+  "type": "TYPE_PSYCHIC",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 30,
+  "priority": 0
+ },
+ "light_screen": {
+  "type": "TYPE_PSYCHIC",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 30,
+  "priority": 0
+ },
+ "haze": {
+  "type": "TYPE_ICE",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 30,
+  "priority": 0
+ },
+ "reflect": {
+  "type": "TYPE_PSYCHIC",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "focus_energy": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 30,
+  "priority": 0
+ },
+ "bide": {
+  "type": "TYPE_NORMAL",
+  "power": 1,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 1
+ },
+ "metronome": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "mirror_move": {
+  "type": "TYPE_FLYING",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "selfdestruct": {
+  "type": "TYPE_NORMAL",
+  "power": 200,
+  "accuracy": 100,
+  "pp": 5,
+  "priority": 0
+ },
+ "egg_bomb": {
+  "type": "TYPE_NORMAL",
+  "power": 100,
+  "accuracy": 75,
+  "pp": 10,
+  "priority": 0
+ },
+ "lick": {
+  "type": "TYPE_GHOST",
+  "power": 20,
+  "accuracy": 100,
+  "pp": 30,
+  "priority": 0
+ },
+ "smog": {
+  "type": "TYPE_POISON",
+  "power": 20,
+  "accuracy": 70,
+  "pp": 20,
+  "priority": 0
+ },
+ "sludge": {
+  "type": "TYPE_POISON",
+  "power": 65,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "bone_club": {
+  "type": "TYPE_GROUND",
+  "power": 65,
+  "accuracy": 85,
+  "pp": 20,
+  "priority": 0
+ },
+ "fire_blast": {
+  "type": "TYPE_FIRE",
+  "power": 120,
+  "accuracy": 85,
+  "pp": 5,
+  "priority": 0
+ },
+ "waterfall": {
+  "type": "TYPE_WATER",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "clamp": {
+  "type": "TYPE_WATER",
+  "power": 35,
+  "accuracy": 75,
+  "pp": 10,
+  "priority": 0
+ },
+ "swift": {
+  "type": "TYPE_NORMAL",
+  "power": 60,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "skull_bash": {
+  "type": "TYPE_NORMAL",
+  "power": 100,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "spike_cannon": {
+  "type": "TYPE_NORMAL",
+  "power": 20,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "constrict": {
+  "type": "TYPE_NORMAL",
+  "power": 10,
+  "accuracy": 100,
+  "pp": 35,
+  "priority": 0
+ },
+ "amnesia": {
+  "type": "TYPE_PSYCHIC",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "kinesis": {
+  "type": "TYPE_PSYCHIC",
+  "power": 0,
+  "accuracy": 80,
+  "pp": 15,
+  "priority": 0
+ },
+ "softboiled": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "hi_jump_kick": {
+  "type": "TYPE_FIGHTING",
+  "power": 100,
+  "accuracy": 90,
+  "pp": 20,
+  "priority": 0
+ },
+ "glare": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 75,
+  "pp": 30,
+  "priority": 0
+ },
+ "dream_eater": {
+  "type": "TYPE_PSYCHIC",
+  "power": 100,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "poison_gas": {
+  "type": "TYPE_POISON",
+  "power": 0,
+  "accuracy": 55,
+  "pp": 40,
+  "priority": 0
+ },
+ "barrage": {
+  "type": "TYPE_NORMAL",
+  "power": 15,
+  "accuracy": 85,
+  "pp": 20,
+  "priority": 0
+ },
+ "leech_life": {
+  "type": "TYPE_BUG",
+  "power": 20,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "lovely_kiss": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 75,
+  "pp": 10,
+  "priority": 0
+ },
+ "sky_attack": {
+  "type": "TYPE_FLYING",
+  "power": 140,
+  "accuracy": 90,
+  "pp": 5,
+  "priority": 0
+ },
+ "transform": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "bubble": {
+  "type": "TYPE_WATER",
+  "power": 20,
+  "accuracy": 100,
+  "pp": 30,
+  "priority": 0
+ },
+ "dizzy_punch": {
+  "type": "TYPE_NORMAL",
+  "power": 70,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "spore": {
+  "type": "TYPE_GRASS",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "flash": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "psywave": {
+  "type": "TYPE_PSYCHIC",
+  "power": 1,
+  "accuracy": 80,
+  "pp": 15,
+  "priority": 0
+ },
+ "splash": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 40,
+  "priority": 0
+ },
+ "acid_armor": {
+  "type": "TYPE_POISON",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 40,
+  "priority": 0
+ },
+ "crabhammer": {
+  "type": "TYPE_WATER",
+  "power": 90,
+  "accuracy": 85,
+  "pp": 10,
+  "priority": 0
+ },
+ "explosion": {
+  "type": "TYPE_NORMAL",
+  "power": 250,
+  "accuracy": 100,
+  "pp": 5,
+  "priority": 0
+ },
+ "fury_swipes": {
+  "type": "TYPE_NORMAL",
+  "power": 18,
+  "accuracy": 80,
+  "pp": 15,
+  "priority": 0
+ },
+ "bonemerang": {
+  "type": "TYPE_GROUND",
+  "power": 50,
+  "accuracy": 90,
+  "pp": 10,
+  "priority": 0
+ },
+ "rest": {
+  "type": "TYPE_PSYCHIC",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "rock_slide": {
+  "type": "TYPE_ROCK",
+  "power": 75,
+  "accuracy": 90,
+  "pp": 10,
+  "priority": 0
+ },
+ "hyper_fang": {
+  "type": "TYPE_NORMAL",
+  "power": 80,
+  "accuracy": 90,
+  "pp": 15,
+  "priority": 0
+ },
+ "sharpen": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 30,
+  "priority": 0
+ },
+ "conversion": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 30,
+  "priority": 0
+ },
+ "tri_attack": {
+  "type": "TYPE_NORMAL",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "super_fang": {
+  "type": "TYPE_NORMAL",
+  "power": 1,
+  "accuracy": 90,
+  "pp": 10,
+  "priority": 0
+ },
+ "slash": {
+  "type": "TYPE_NORMAL",
+  "power": 70,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "substitute": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "struggle": {
+  "type": "TYPE_NORMAL",
+  "power": 50,
+  "accuracy": 0,
+  "pp": 1,
+  "priority": 0
+ },
+ "sketch": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 1,
+  "priority": 0
+ },
+ "triple_kick": {
+  "type": "TYPE_FIGHTING",
+  "power": 10,
+  "accuracy": 90,
+  "pp": 10,
+  "priority": 0
+ },
+ "thief": {
+  "type": "TYPE_DARK",
+  "power": 40,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "spider_web": {
+  "type": "TYPE_BUG",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "mind_reader": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 5,
+  "priority": 0
+ },
+ "nightmare": {
+  "type": "TYPE_GHOST",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "flame_wheel": {
+  "type": "TYPE_FIRE",
+  "power": 60,
+  "accuracy": 100,
+  "pp": 25,
+  "priority": 0
+ },
+ "snore": {
+  "type": "TYPE_NORMAL",
+  "power": 40,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "curse": {
+  "type": "TYPE_MYSTERY",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "flail": {
+  "type": "TYPE_NORMAL",
+  "power": 1,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "conversion_2": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 30,
+  "priority": 0
+ },
+ "aeroblast": {
+  "type": "TYPE_FLYING",
+  "power": 100,
+  "accuracy": 95,
+  "pp": 5,
+  "priority": 0
+ },
+ "cotton_spore": {
+  "type": "TYPE_GRASS",
+  "power": 0,
+  "accuracy": 85,
+  "pp": 40,
+  "priority": 0
+ },
+ "reversal": {
+  "type": "TYPE_FIGHTING",
+  "power": 1,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "spite": {
+  "type": "TYPE_GHOST",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "powder_snow": {
+  "type": "TYPE_ICE",
+  "power": 40,
+  "accuracy": 100,
+  "pp": 25,
+  "priority": 0
+ },
+ "protect": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 3
+ },
+ "mach_punch": {
+  "type": "TYPE_FIGHTING",
+  "power": 40,
+  "accuracy": 100,
+  "pp": 30,
+  "priority": 1
+ },
+ "scary_face": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 90,
+  "pp": 10,
+  "priority": 0
+ },
+ "faint_attack": {
+  "type": "TYPE_DARK",
+  "power": 60,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "sweet_kiss": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 75,
+  "pp": 10,
+  "priority": 0
+ },
+ "belly_drum": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "sludge_bomb": {
+  "type": "TYPE_POISON",
+  "power": 90,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "mud_slap": {
+  "type": "TYPE_GROUND",
+  "power": 20,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "octazooka": {
+  "type": "TYPE_WATER",
+  "power": 65,
+  "accuracy": 85,
+  "pp": 10,
+  "priority": 0
+ },
+ "spikes": {
+  "type": "TYPE_GROUND",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "zap_cannon": {
+  "type": "TYPE_ELECTRIC",
+  "power": 120,
+  "accuracy": 50,
+  "pp": 5,
+  "priority": 0
+ },
+ "foresight": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 40,
+  "priority": 0
+ },
+ "destiny_bond": {
+  "type": "TYPE_GHOST",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 5,
+  "priority": 0
+ },
+ "perish_song": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 5,
+  "priority": 0
+ },
+ "icy_wind": {
+  "type": "TYPE_ICE",
+  "power": 55,
+  "accuracy": 95,
+  "pp": 15,
+  "priority": 0
+ },
+ "detect": {
+  "type": "TYPE_FIGHTING",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 5,
+  "priority": 3
+ },
+ "bone_rush": {
+  "type": "TYPE_GROUND",
+  "power": 25,
+  "accuracy": 80,
+  "pp": 10,
+  "priority": 0
+ },
+ "lock_on": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 5,
+  "priority": 0
+ },
+ "outrage": {
+  "type": "TYPE_DRAGON",
+  "power": 120,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "sandstorm": {
+  "type": "TYPE_ROCK",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "giga_drain": {
+  "type": "TYPE_GRASS",
+  "power": 60,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "endure": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 3
+ },
+ "charm": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "rollout": {
+  "type": "TYPE_ROCK",
+  "power": 30,
+  "accuracy": 90,
+  "pp": 20,
+  "priority": 0
+ },
+ "false_swipe": {
+  "type": "TYPE_NORMAL",
+  "power": 40,
+  "accuracy": 100,
+  "pp": 40,
+  "priority": 0
+ },
+ "swagger": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 90,
+  "pp": 15,
+  "priority": 0
+ },
+ "milk_drink": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "spark": {
+  "type": "TYPE_ELECTRIC",
+  "power": 65,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "fury_cutter": {
+  "type": "TYPE_BUG",
+  "power": 10,
+  "accuracy": 95,
+  "pp": 20,
+  "priority": 0
+ },
+ "steel_wing": {
+  "type": "TYPE_STEEL",
+  "power": 70,
+  "accuracy": 90,
+  "pp": 25,
+  "priority": 0
+ },
+ "mean_look": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 5,
+  "priority": 0
+ },
+ "attract": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "sleep_talk": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "heal_bell": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 5,
+  "priority": 0
+ },
+ "return": {
+  "type": "TYPE_NORMAL",
+  "power": 1,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "present": {
+  "type": "TYPE_NORMAL",
+  "power": 1,
+  "accuracy": 90,
+  "pp": 15,
+  "priority": 0
+ },
+ "frustration": {
+  "type": "TYPE_NORMAL",
+  "power": 1,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "safeguard": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 25,
+  "priority": 0
+ },
+ "pain_split": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "sacred_fire": {
+  "type": "TYPE_FIRE",
+  "power": 100,
+  "accuracy": 95,
+  "pp": 5,
+  "priority": 0
+ },
+ "magnitude": {
+  "type": "TYPE_GROUND",
+  "power": 1,
+  "accuracy": 100,
+  "pp": 30,
+  "priority": 0
+ },
+ "dynamic_punch": {
+  "type": "TYPE_FIGHTING",
+  "power": 100,
+  "accuracy": 50,
+  "pp": 5,
+  "priority": 0
+ },
+ "megahorn": {
+  "type": "TYPE_BUG",
+  "power": 120,
+  "accuracy": 85,
+  "pp": 10,
+  "priority": 0
+ },
+ "dragon_breath": {
+  "type": "TYPE_DRAGON",
+  "power": 60,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "baton_pass": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 40,
+  "priority": 0
+ },
+ "encore": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 5,
+  "priority": 0
+ },
+ "pursuit": {
+  "type": "TYPE_DARK",
+  "power": 40,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "rapid_spin": {
+  "type": "TYPE_NORMAL",
+  "power": 20,
+  "accuracy": 100,
+  "pp": 40,
+  "priority": 0
+ },
+ "sweet_scent": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "iron_tail": {
+  "type": "TYPE_STEEL",
+  "power": 100,
+  "accuracy": 75,
+  "pp": 15,
+  "priority": 0
+ },
+ "metal_claw": {
+  "type": "TYPE_STEEL",
+  "power": 50,
+  "accuracy": 95,
+  "pp": 35,
+  "priority": 0
+ },
+ "vital_throw": {
+  "type": "TYPE_FIGHTING",
+  "power": 70,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": -1
+ },
+ "morning_sun": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 5,
+  "priority": 0
+ },
+ "synthesis": {
+  "type": "TYPE_GRASS",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 5,
+  "priority": 0
+ },
+ "moonlight": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 5,
+  "priority": 0
+ },
+ "hidden_power": {
+  "type": "TYPE_NORMAL",
+  "power": 1,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "cross_chop": {
+  "type": "TYPE_FIGHTING",
+  "power": 100,
+  "accuracy": 80,
+  "pp": 5,
+  "priority": 0
+ },
+ "twister": {
+  "type": "TYPE_DRAGON",
+  "power": 40,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "rain_dance": {
+  "type": "TYPE_WATER",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 5,
+  "priority": 0
+ },
+ "sunny_day": {
+  "type": "TYPE_FIRE",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 5,
+  "priority": 0
+ },
+ "crunch": {
+  "type": "TYPE_DARK",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "mirror_coat": {
+  "type": "TYPE_PSYCHIC",
+  "power": 1,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": -5
+ },
+ "psych_up": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "extreme_speed": {
+  "type": "TYPE_NORMAL",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 5,
+  "priority": 1
+ },
+ "ancient_power": {
+  "type": "TYPE_ROCK",
+  "power": 60,
+  "accuracy": 100,
+  "pp": 5,
+  "priority": 0
+ },
+ "shadow_ball": {
+  "type": "TYPE_GHOST",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "future_sight": {
+  "type": "TYPE_PSYCHIC",
+  "power": 80,
+  "accuracy": 90,
+  "pp": 15,
+  "priority": 0
+ },
+ "rock_smash": {
+  "type": "TYPE_FIGHTING",
+  "power": 40,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "whirlpool": {
+  "type": "TYPE_WATER",
+  "power": 15,
+  "accuracy": 70,
+  "pp": 15,
+  "priority": 0
+ },
+ "beat_up": {
+  "type": "TYPE_DARK",
+  "power": 10,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "fake_out": {
+  "type": "TYPE_NORMAL",
+  "power": 40,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 1
+ },
+ "uproar": {
+  "type": "TYPE_NORMAL",
+  "power": 50,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "stockpile": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "spit_up": {
+  "type": "TYPE_NORMAL",
+  "power": 1,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "swallow": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "heat_wave": {
+  "type": "TYPE_FIRE",
+  "power": 100,
+  "accuracy": 90,
+  "pp": 10,
+  "priority": 0
+ },
+ "hail": {
+  "type": "TYPE_ICE",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "torment": {
+  "type": "TYPE_DARK",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "flatter": {
+  "type": "TYPE_DARK",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "will_o_wisp": {
+  "type": "TYPE_FIRE",
+  "power": 0,
+  "accuracy": 75,
+  "pp": 15,
+  "priority": 0
+ },
+ "memento": {
+  "type": "TYPE_DARK",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "facade": {
+  "type": "TYPE_NORMAL",
+  "power": 70,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "focus_punch": {
+  "type": "TYPE_FIGHTING",
+  "power": 150,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": -3
+ },
+ "smelling_salt": {
+  "type": "TYPE_NORMAL",
+  "power": 60,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "follow_me": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 3
+ },
+ "nature_power": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "charge": {
+  "type": "TYPE_ELECTRIC",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "taunt": {
+  "type": "TYPE_DARK",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "helping_hand": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 5
+ },
+ "trick": {
+  "type": "TYPE_PSYCHIC",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "role_play": {
+  "type": "TYPE_PSYCHIC",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "wish": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "assist": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "ingrain": {
+  "type": "TYPE_GRASS",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "superpower": {
+  "type": "TYPE_FIGHTING",
+  "power": 120,
+  "accuracy": 100,
+  "pp": 5,
+  "priority": 0
+ },
+ "magic_coat": {
+  "type": "TYPE_PSYCHIC",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 15,
+  "priority": 4
+ },
+ "recycle": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "revenge": {
+  "type": "TYPE_FIGHTING",
+  "power": 60,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": -4
+ },
+ "brick_break": {
+  "type": "TYPE_FIGHTING",
+  "power": 75,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "yawn": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "knock_off": {
+  "type": "TYPE_DARK",
+  "power": 20,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "endeavor": {
+  "type": "TYPE_NORMAL",
+  "power": 1,
+  "accuracy": 100,
+  "pp": 5,
+  "priority": 0
+ },
+ "eruption": {
+  "type": "TYPE_FIRE",
+  "power": 150,
+  "accuracy": 100,
+  "pp": 5,
+  "priority": 0
+ },
+ "skill_swap": {
+  "type": "TYPE_PSYCHIC",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "imprison": {
+  "type": "TYPE_PSYCHIC",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "refresh": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "grudge": {
+  "type": "TYPE_GHOST",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 5,
+  "priority": 0
+ },
+ "snatch": {
+  "type": "TYPE_DARK",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 4
+ },
+ "secret_power": {
+  "type": "TYPE_NORMAL",
+  "power": 70,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "dive": {
+  "type": "TYPE_WATER",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "arm_thrust": {
+  "type": "TYPE_FIGHTING",
+  "power": 15,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "camouflage": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "tail_glow": {
+  "type": "TYPE_BUG",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "luster_purge": {
+  "type": "TYPE_PSYCHIC",
+  "power": 70,
+  "accuracy": 100,
+  "pp": 5,
+  "priority": 0
+ },
+ "mist_ball": {
+  "type": "TYPE_PSYCHIC",
+  "power": 70,
+  "accuracy": 100,
+  "pp": 5,
+  "priority": 0
+ },
+ "feather_dance": {
+  "type": "TYPE_FLYING",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "teeter_dance": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "blaze_kick": {
+  "type": "TYPE_FIRE",
+  "power": 85,
+  "accuracy": 90,
+  "pp": 10,
+  "priority": 0
+ },
+ "mud_sport": {
+  "type": "TYPE_GROUND",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 15,
+  "priority": 0
+ },
+ "ice_ball": {
+  "type": "TYPE_ICE",
+  "power": 30,
+  "accuracy": 90,
+  "pp": 20,
+  "priority": 0
+ },
+ "needle_arm": {
+  "type": "TYPE_GRASS",
+  "power": 60,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "slack_off": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "hyper_voice": {
+  "type": "TYPE_NORMAL",
+  "power": 90,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "poison_fang": {
+  "type": "TYPE_POISON",
+  "power": 50,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "crush_claw": {
+  "type": "TYPE_NORMAL",
+  "power": 75,
+  "accuracy": 95,
+  "pp": 10,
+  "priority": 0
+ },
+ "blast_burn": {
+  "type": "TYPE_FIRE",
+  "power": 150,
+  "accuracy": 90,
+  "pp": 5,
+  "priority": 0
+ },
+ "hydro_cannon": {
+  "type": "TYPE_WATER",
+  "power": 150,
+  "accuracy": 90,
+  "pp": 5,
+  "priority": 0
+ },
+ "meteor_mash": {
+  "type": "TYPE_STEEL",
+  "power": 100,
+  "accuracy": 85,
+  "pp": 10,
+  "priority": 0
+ },
+ "astonish": {
+  "type": "TYPE_GHOST",
+  "power": 30,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "weather_ball": {
+  "type": "TYPE_NORMAL",
+  "power": 50,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "aromatherapy": {
+  "type": "TYPE_GRASS",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 5,
+  "priority": 0
+ },
+ "fake_tears": {
+  "type": "TYPE_DARK",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "air_cutter": {
+  "type": "TYPE_FLYING",
+  "power": 55,
+  "accuracy": 95,
+  "pp": 25,
+  "priority": 0
+ },
+ "overheat": {
+  "type": "TYPE_FIRE",
+  "power": 140,
+  "accuracy": 90,
+  "pp": 5,
+  "priority": 0
+ },
+ "odor_sleuth": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 40,
+  "priority": 0
+ },
+ "rock_tomb": {
+  "type": "TYPE_ROCK",
+  "power": 50,
+  "accuracy": 80,
+  "pp": 10,
+  "priority": 0
+ },
+ "silver_wind": {
+  "type": "TYPE_BUG",
+  "power": 60,
+  "accuracy": 100,
+  "pp": 5,
+  "priority": 0
+ },
+ "metal_sound": {
+  "type": "TYPE_STEEL",
+  "power": 0,
+  "accuracy": 85,
+  "pp": 40,
+  "priority": 0
+ },
+ "grass_whistle": {
+  "type": "TYPE_GRASS",
+  "power": 0,
+  "accuracy": 55,
+  "pp": 15,
+  "priority": 0
+ },
+ "tickle": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "cosmic_power": {
+  "type": "TYPE_PSYCHIC",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "water_spout": {
+  "type": "TYPE_WATER",
+  "power": 150,
+  "accuracy": 100,
+  "pp": 5,
+  "priority": 0
+ },
+ "signal_beam": {
+  "type": "TYPE_BUG",
+  "power": 75,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "shadow_punch": {
+  "type": "TYPE_GHOST",
+  "power": 60,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "extrasensory": {
+  "type": "TYPE_PSYCHIC",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 30,
+  "priority": 0
+ },
+ "sky_uppercut": {
+  "type": "TYPE_FIGHTING",
+  "power": 85,
+  "accuracy": 90,
+  "pp": 15,
+  "priority": 0
+ },
+ "sand_tomb": {
+  "type": "TYPE_GROUND",
+  "power": 15,
+  "accuracy": 70,
+  "pp": 15,
+  "priority": 0
+ },
+ "sheer_cold": {
+  "type": "TYPE_ICE",
+  "power": 1,
+  "accuracy": 30,
+  "pp": 5,
+  "priority": 0
+ },
+ "muddy_water": {
+  "type": "TYPE_WATER",
+  "power": 95,
+  "accuracy": 85,
+  "pp": 10,
+  "priority": 0
+ },
+ "bullet_seed": {
+  "type": "TYPE_GRASS",
+  "power": 10,
+  "accuracy": 100,
+  "pp": 30,
+  "priority": 0
+ },
+ "aerial_ace": {
+  "type": "TYPE_FLYING",
+  "power": 60,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "icicle_spear": {
+  "type": "TYPE_ICE",
+  "power": 10,
+  "accuracy": 100,
+  "pp": 30,
+  "priority": 0
+ },
+ "iron_defense": {
+  "type": "TYPE_STEEL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 15,
+  "priority": 0
+ },
+ "block": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 5,
+  "priority": 0
+ },
+ "howl": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 40,
+  "priority": 0
+ },
+ "dragon_claw": {
+  "type": "TYPE_DRAGON",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "frenzy_plant": {
+  "type": "TYPE_GRASS",
+  "power": 150,
+  "accuracy": 90,
+  "pp": 5,
+  "priority": 0
+ },
+ "bulk_up": {
+  "type": "TYPE_FIGHTING",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "bounce": {
+  "type": "TYPE_FLYING",
+  "power": 85,
+  "accuracy": 85,
+  "pp": 5,
+  "priority": 0
+ },
+ "mud_shot": {
+  "type": "TYPE_GROUND",
+  "power": 55,
+  "accuracy": 95,
+  "pp": 15,
+  "priority": 0
+ },
+ "poison_tail": {
+  "type": "TYPE_POISON",
+  "power": 50,
+  "accuracy": 100,
+  "pp": 25,
+  "priority": 0
+ },
+ "covet": {
+  "type": "TYPE_NORMAL",
+  "power": 40,
+  "accuracy": 100,
+  "pp": 40,
+  "priority": 0
+ },
+ "volt_tackle": {
+  "type": "TYPE_ELECTRIC",
+  "power": 120,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "magical_leaf": {
+  "type": "TYPE_GRASS",
+  "power": 60,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "water_sport": {
+  "type": "TYPE_WATER",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 15,
+  "priority": 0
+ },
+ "calm_mind": {
+  "type": "TYPE_PSYCHIC",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "leaf_blade": {
+  "type": "TYPE_GRASS",
+  "power": 90,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "dragon_dance": {
+  "type": "TYPE_DRAGON",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "rock_blast": {
+  "type": "TYPE_ROCK",
+  "power": 25,
+  "accuracy": 80,
+  "pp": 10,
+  "priority": 0
+ },
+ "shock_wave": {
+  "type": "TYPE_ELECTRIC",
+  "power": 60,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "water_pulse": {
+  "type": "TYPE_WATER",
+  "power": 60,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "doom_desire": {
+  "type": "TYPE_STEEL",
+  "power": 120,
+  "accuracy": 85,
+  "pp": 5,
+  "priority": 0
+ },
+ "psycho_boost": {
+  "type": "TYPE_PSYCHIC",
+  "power": 140,
+  "accuracy": 90,
+  "pp": 5,
+  "priority": 0
+ },
+ "roost": {
+  "type": "TYPE_FLYING",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "gravity": {
+  "type": "TYPE_PSYCHIC",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 5,
+  "priority": 0
+ },
+ "miracle_eye": {
+  "type": "TYPE_PSYCHIC",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 40,
+  "priority": 0
+ },
+ "wake_up_slap": {
+  "type": "TYPE_FIGHTING",
+  "power": 60,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "hammer_arm": {
+  "type": "TYPE_FIGHTING",
+  "power": 100,
+  "accuracy": 90,
+  "pp": 10,
+  "priority": 0
+ },
+ "gyro_ball": {
+  "type": "TYPE_STEEL",
+  "power": 1,
+  "accuracy": 100,
+  "pp": 5,
+  "priority": 0
+ },
+ "healing_wish": {
+  "type": "TYPE_PSYCHIC",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "brine": {
+  "type": "TYPE_WATER",
+  "power": 65,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "natural_gift": {
+  "type": "TYPE_NORMAL",
+  "power": 1,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "feint": {
+  "type": "TYPE_NORMAL",
+  "power": 50,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 2
+ },
+ "pluck": {
+  "type": "TYPE_FLYING",
+  "power": 60,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "tailwind": {
+  "type": "TYPE_FLYING",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 30,
+  "priority": 0
+ },
+ "acupressure": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 30,
+  "priority": 0
+ },
+ "metal_burst": {
+  "type": "TYPE_STEEL",
+  "power": 1,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "u_turn": {
+  "type": "TYPE_BUG",
+  "power": 70,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "close_combat": {
+  "type": "TYPE_FIGHTING",
+  "power": 120,
+  "accuracy": 100,
+  "pp": 5,
+  "priority": 0
+ },
+ "payback": {
+  "type": "TYPE_DARK",
+  "power": 50,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "assurance": {
+  "type": "TYPE_DARK",
+  "power": 50,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "embargo": {
+  "type": "TYPE_DARK",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "fling": {
+  "type": "TYPE_DARK",
+  "power": 1,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "psycho_shift": {
+  "type": "TYPE_PSYCHIC",
+  "power": 0,
+  "accuracy": 90,
+  "pp": 10,
+  "priority": 0
+ },
+ "trump_card": {
+  "type": "TYPE_NORMAL",
+  "power": 1,
+  "accuracy": 0,
+  "pp": 5,
+  "priority": 0
+ },
+ "heal_block": {
+  "type": "TYPE_PSYCHIC",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "wring_out": {
+  "type": "TYPE_NORMAL",
+  "power": 1,
+  "accuracy": 100,
+  "pp": 5,
+  "priority": 0
+ },
+ "power_trick": {
+  "type": "TYPE_PSYCHIC",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "gastro_acid": {
+  "type": "TYPE_POISON",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "lucky_chant": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 30,
+  "priority": 0
+ },
+ "me_first": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "copycat": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "power_swap": {
+  "type": "TYPE_PSYCHIC",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "guard_swap": {
+  "type": "TYPE_PSYCHIC",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "punishment": {
+  "type": "TYPE_DARK",
+  "power": 1,
+  "accuracy": 100,
+  "pp": 5,
+  "priority": 0
+ },
+ "last_resort": {
+  "type": "TYPE_NORMAL",
+  "power": 130,
+  "accuracy": 100,
+  "pp": 5,
+  "priority": 0
+ },
+ "worry_seed": {
+  "type": "TYPE_GRASS",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "sucker_punch": {
+  "type": "TYPE_DARK",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 5,
+  "priority": 1
+ },
+ "toxic_spikes": {
+  "type": "TYPE_POISON",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "heart_swap": {
+  "type": "TYPE_PSYCHIC",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "aqua_ring": {
+  "type": "TYPE_WATER",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "magnet_rise": {
+  "type": "TYPE_ELECTRIC",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "flare_blitz": {
+  "type": "TYPE_FIRE",
+  "power": 120,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "force_palm": {
+  "type": "TYPE_FIGHTING",
+  "power": 60,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "aura_sphere": {
+  "type": "TYPE_FIGHTING",
+  "power": 90,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "rock_polish": {
+  "type": "TYPE_ROCK",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "poison_jab": {
+  "type": "TYPE_POISON",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "dark_pulse": {
+  "type": "TYPE_DARK",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "night_slash": {
+  "type": "TYPE_DARK",
+  "power": 70,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "aqua_tail": {
+  "type": "TYPE_WATER",
+  "power": 90,
+  "accuracy": 90,
+  "pp": 10,
+  "priority": 0
+ },
+ "seed_bomb": {
+  "type": "TYPE_GRASS",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "air_slash": {
+  "type": "TYPE_FLYING",
+  "power": 75,
+  "accuracy": 95,
+  "pp": 20,
+  "priority": 0
+ },
+ "x_scissor": {
+  "type": "TYPE_BUG",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "bug_buzz": {
+  "type": "TYPE_BUG",
+  "power": 90,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "dragon_pulse": {
+  "type": "TYPE_DRAGON",
+  "power": 90,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "dragon_rush": {
+  "type": "TYPE_DRAGON",
+  "power": 100,
+  "accuracy": 75,
+  "pp": 10,
+  "priority": 0
+ },
+ "power_gem": {
+  "type": "TYPE_ROCK",
+  "power": 70,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "drain_punch": {
+  "type": "TYPE_FIGHTING",
+  "power": 60,
+  "accuracy": 100,
+  "pp": 5,
+  "priority": 0
+ },
+ "vacuum_wave": {
+  "type": "TYPE_FIGHTING",
+  "power": 40,
+  "accuracy": 100,
+  "pp": 30,
+  "priority": 1
+ },
+ "focus_blast": {
+  "type": "TYPE_FIGHTING",
+  "power": 120,
+  "accuracy": 70,
+  "pp": 5,
+  "priority": 0
+ },
+ "energy_ball": {
+  "type": "TYPE_GRASS",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "brave_bird": {
+  "type": "TYPE_FLYING",
+  "power": 120,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "earth_power": {
+  "type": "TYPE_GROUND",
+  "power": 90,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "switcheroo": {
+  "type": "TYPE_DARK",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "giga_impact": {
+  "type": "TYPE_NORMAL",
+  "power": 150,
+  "accuracy": 90,
+  "pp": 5,
+  "priority": 0
+ },
+ "nasty_plot": {
+  "type": "TYPE_DARK",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "bullet_punch": {
+  "type": "TYPE_STEEL",
+  "power": 40,
+  "accuracy": 100,
+  "pp": 30,
+  "priority": 1
+ },
+ "avalanche": {
+  "type": "TYPE_ICE",
+  "power": 60,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": -4
+ },
+ "ice_shard": {
+  "type": "TYPE_ICE",
+  "power": 40,
+  "accuracy": 100,
+  "pp": 30,
+  "priority": 1
+ },
+ "shadow_claw": {
+  "type": "TYPE_GHOST",
+  "power": 70,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "thunder_fang": {
+  "type": "TYPE_ELECTRIC",
+  "power": 65,
+  "accuracy": 95,
+  "pp": 15,
+  "priority": 0
+ },
+ "ice_fang": {
+  "type": "TYPE_ICE",
+  "power": 65,
+  "accuracy": 95,
+  "pp": 15,
+  "priority": 0
+ },
+ "fire_fang": {
+  "type": "TYPE_FIRE",
+  "power": 65,
+  "accuracy": 95,
+  "pp": 15,
+  "priority": 0
+ },
+ "shadow_sneak": {
+  "type": "TYPE_GHOST",
+  "power": 40,
+  "accuracy": 100,
+  "pp": 30,
+  "priority": 1
+ },
+ "mud_bomb": {
+  "type": "TYPE_GROUND",
+  "power": 65,
+  "accuracy": 85,
+  "pp": 10,
+  "priority": 0
+ },
+ "psycho_cut": {
+  "type": "TYPE_PSYCHIC",
+  "power": 70,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "zen_headbutt": {
+  "type": "TYPE_PSYCHIC",
+  "power": 80,
+  "accuracy": 90,
+  "pp": 15,
+  "priority": 0
+ },
+ "mirror_shot": {
+  "type": "TYPE_STEEL",
+  "power": 65,
+  "accuracy": 85,
+  "pp": 10,
+  "priority": 0
+ },
+ "flash_cannon": {
+  "type": "TYPE_STEEL",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "rock_climb": {
+  "type": "TYPE_NORMAL",
+  "power": 90,
+  "accuracy": 85,
+  "pp": 20,
+  "priority": 0
+ },
+ "defog": {
+  "type": "TYPE_FLYING",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 15,
+  "priority": 0
+ },
+ "trick_room": {
+  "type": "TYPE_PSYCHIC",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 5,
+  "priority": -7
+ },
+ "draco_meteor": {
+  "type": "TYPE_DRAGON",
+  "power": 140,
+  "accuracy": 90,
+  "pp": 5,
+  "priority": 0
+ },
+ "discharge": {
+  "type": "TYPE_ELECTRIC",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "lava_plume": {
+  "type": "TYPE_FIRE",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "leaf_storm": {
+  "type": "TYPE_GRASS",
+  "power": 140,
+  "accuracy": 90,
+  "pp": 5,
+  "priority": 0
+ },
+ "power_whip": {
+  "type": "TYPE_GRASS",
+  "power": 120,
+  "accuracy": 85,
+  "pp": 10,
+  "priority": 0
+ },
+ "rock_wrecker": {
+  "type": "TYPE_ROCK",
+  "power": 150,
+  "accuracy": 90,
+  "pp": 5,
+  "priority": 0
+ },
+ "cross_poison": {
+  "type": "TYPE_POISON",
+  "power": 70,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "gunk_shot": {
+  "type": "TYPE_POISON",
+  "power": 120,
+  "accuracy": 70,
+  "pp": 5,
+  "priority": 0
+ },
+ "iron_head": {
+  "type": "TYPE_STEEL",
+  "power": 80,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "magnet_bomb": {
+  "type": "TYPE_STEEL",
+  "power": 60,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "stone_edge": {
+  "type": "TYPE_ROCK",
+  "power": 100,
+  "accuracy": 80,
+  "pp": 5,
+  "priority": 0
+ },
+ "captivate": {
+  "type": "TYPE_NORMAL",
+  "power": 0,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "stealth_rock": {
+  "type": "TYPE_ROCK",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 20,
+  "priority": 0
+ },
+ "grass_knot": {
+  "type": "TYPE_GRASS",
+  "power": 1,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "chatter": {
+  "type": "TYPE_FLYING",
+  "power": 60,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "judgment": {
+  "type": "TYPE_NORMAL",
+  "power": 100,
+  "accuracy": 100,
+  "pp": 10,
+  "priority": 0
+ },
+ "bug_bite": {
+  "type": "TYPE_BUG",
+  "power": 60,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 0
+ },
+ "charge_beam": {
+  "type": "TYPE_ELECTRIC",
+  "power": 50,
+  "accuracy": 90,
+  "pp": 10,
+  "priority": 0
+ },
+ "wood_hammer": {
+  "type": "TYPE_GRASS",
+  "power": 120,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "aqua_jet": {
+  "type": "TYPE_WATER",
+  "power": 40,
+  "accuracy": 100,
+  "pp": 20,
+  "priority": 1
+ },
+ "attack_order": {
+  "type": "TYPE_BUG",
+  "power": 90,
+  "accuracy": 100,
+  "pp": 15,
+  "priority": 0
+ },
+ "defend_order": {
+  "type": "TYPE_BUG",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "heal_order": {
+  "type": "TYPE_BUG",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "head_smash": {
+  "type": "TYPE_ROCK",
+  "power": 150,
+  "accuracy": 80,
+  "pp": 5,
+  "priority": 0
+ },
+ "double_hit": {
+  "type": "TYPE_NORMAL",
+  "power": 35,
+  "accuracy": 90,
+  "pp": 10,
+  "priority": 0
+ },
+ "roar_of_time": {
+  "type": "TYPE_DRAGON",
+  "power": 150,
+  "accuracy": 90,
+  "pp": 5,
+  "priority": 0
+ },
+ "spacial_rend": {
+  "type": "TYPE_DRAGON",
+  "power": 100,
+  "accuracy": 95,
+  "pp": 5,
+  "priority": 0
+ },
+ "lunar_dance": {
+  "type": "TYPE_PSYCHIC",
+  "power": 0,
+  "accuracy": 0,
+  "pp": 10,
+  "priority": 0
+ },
+ "crush_grip": {
+  "type": "TYPE_NORMAL",
+  "power": 1,
+  "accuracy": 100,
+  "pp": 5,
+  "priority": 0
+ },
+ "magma_storm": {
+  "type": "TYPE_FIRE",
+  "power": 120,
+  "accuracy": 70,
+  "pp": 5,
+  "priority": 0
+ },
+ "dark_void": {
+  "type": "TYPE_DARK",
+  "power": 0,
+  "accuracy": 80,
+  "pp": 10,
+  "priority": 0
+ },
+ "seed_flare": {
+  "type": "TYPE_GRASS",
+  "power": 120,
+  "accuracy": 85,
+  "pp": 5,
+  "priority": 0
+ },
+ "ominous_wind": {
+  "type": "TYPE_GHOST",
+  "power": 60,
+  "accuracy": 100,
+  "pp": 5,
+  "priority": 0
+ },
+ "shadow_force": {
+  "type": "TYPE_GHOST",
+  "power": 120,
+  "accuracy": 100,
+  "pp": 5,
+  "priority": 0
+ }
+}

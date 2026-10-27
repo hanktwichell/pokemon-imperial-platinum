@@ -3,6 +3,27 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Move data: Freeze-Dry can't freeze again, and the move generators reproduce the data
+
+For players:
+- **Freeze-Dry** no longer has a 10% chance to freeze, as in Champions (docs/BattleMechanics.md). A later Gen IX fix had
+  put the freeze back. It's still super effective against Water.
+
+For the project:
+- `gen_moves.py`, then `gen9_move_fixes.py`, then `apply_champions_moves.py` now rebuild the move data and
+  `docs/MoveChecklist.md` exactly. Before, a rerun undid hand edits:
+  - Freeze Shock's, Ice Burn's and Geomancy's charge messages (now hand-written scripts).
+  - Body Press's and Electro Shot's King's Rock flag (`EXTRA_FLAGS`), and Electro Shot's flags and description.
+  - The Snowscape checklist row (`apply_champions_moves.py` writes it now).
+  - The "Platinum's moves updated" table. `gen_moves.py` counted changes against the current files, which already
+    hold the Gen IX and Champions values, so a rerun dropped real rows and added bogus ones ("Slash power 80→70").
+    It now compares against Platinum's own values, saved from the decompilation's import in
+    `tools/engine/platinum_moves.json`. Curse's type change (??? to Ghost) joins the table.
+- The CI docs job reruns the three tools and fails if anything changes.
+
+**Verification:** I copied the current data into a scratch worktree and ran the three tools on it. Every
+`res/moves/*` file came out identical; the checklist differed only by the new Curse row.
+
 ## Move descriptions: no more "This move can't be used."
 
 For players:
