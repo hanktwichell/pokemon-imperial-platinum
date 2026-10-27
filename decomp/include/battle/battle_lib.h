@@ -1306,6 +1306,7 @@ int Sovereign_SkyDropTryLift(BattleSystem *battleSys, BattleContext *battleCtx, 
 void Sovereign_SkyDropLetGo(BattleContext *battleCtx, int holder, int target);
 BOOL Sovereign_SmackDownFlyer(BattleContext *battleCtx, int battler);
 BOOL Sovereign_EmergencyExitDue(BattleContext *battleCtx, int battler, int hpBefore);
+int Sovereign_EjectPackHolder(BattleSystem *battleSys, BattleContext *battleCtx);
 BOOL Sovereign_IsDanceMove(int move);
 BOOL Sovereign_StartOctolock(BattleContext *battleCtx);
 BOOL Sovereign_Spotlight(BattleSystem *battleSys, BattleContext *battleCtx);

@@ -3202,6 +3202,13 @@ static BOOL ChangeStatStage(BattleSystem *battleSys, BattleContext *battleCtx)
         mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] += stageChange;
         battleCtx->turnFlags[battleCtx->sideEffectMon].sovereignStatsLowered = TRUE; // Sovereign (item 11)
 
+        // Sovereign (item 11): an Eject Pack switches its holder out once the move, the switch-in or the end of the turn
+        // is over (Sovereign_EjectPackHolder). Not on Parting Shot's own drop: its user switches out instead.
+        if (Battler_HeldItem(battleCtx, battleCtx->sideEffectMon) == ITEM_EJECT_PACK
+            && (battleCtx->moveCur != MOVE_PARTING_SHOT || battleCtx->sideEffectType != SIDE_EFFECT_TYPE_DIRECT)) {
+            battleCtx->sovereignEjectPackPending |= FlagIndex(battleCtx->sideEffectMon);
+        }
+
         if (mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] < MIN_STAT_STAGE) {
             mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] = MIN_STAT_STAGE;
         }
@@ -9341,9 +9348,10 @@ static BOOL BtlCmd_RemoveItem(BattleSystem *battleSys, BattleContext *battleCtx)
     battleCtx->recycleItem[battler] = battleCtx->battleMons[battler].heldItem;
 
     // Sovereign (item 11): the holder used up its own item (Natural Gift and Fling included) and stays in, for Symbiosis
-    // below. Not when Bug Bite or Pluck ate its Berry, nor its Eject Button (it switches out).
+    // below. Not when Bug Bite or Pluck ate its Berry, nor its Eject Button or Eject Pack (it switches out).
     int effect = MOVE_DATA(battleCtx->moveCur).effect;
-    BOOL usedUp = battleCtx->battleMons[battler].heldItem != ITEM_EJECT_BUTTON;
+    BOOL usedUp = battleCtx->battleMons[battler].heldItem != ITEM_EJECT_BUTTON
+        && battleCtx->battleMons[battler].heldItem != ITEM_EJECT_PACK;
 
     if (battler == battleCtx->defender
         && battler != battleCtx->attacker

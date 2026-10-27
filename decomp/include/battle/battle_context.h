@@ -343,6 +343,7 @@ struct BattleContext {
     // the boost is applied after the move (BattleControllerPlayer_TriggerAfterMoveHitEffects).
     u8 sovereignDefiantPending;
     u8 sovereignAdrenalinePending; // Sovereign (item 11): Intimidate targeted these Adrenaline Orb holders (flags by battler)
+    u8 sovereignEjectPackPending; // Sovereign (item 11): Eject Pack holders whose stats fell (flags by battler)
     u8 sovereignMirrorHerbRises[MAX_BATTLERS][NUM_BOOSTABLE_STATS]; // Sovereign (item 11): the foes' stat rises a Mirror Herb holder will copy, by stat
     u8 sovereignMirrorHerbHolder; // Sovereign (item 11): the holder copying them (BTLVAR_SOVEREIGN_MIRROR_HERB_NEXT)
     u16 sovereignLastMoveThisTurn; // Sovereign (item 11): the last move that worked this turn (Fusion Flare and Fusion Bolt)

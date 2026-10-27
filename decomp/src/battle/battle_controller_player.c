@@ -2236,6 +2236,17 @@ static void BattleControllerPlayer_TurnEnd(BattleSystem *battleSys, BattleContex
         }
     }
 
+    // Sovereign (item 11): an Eject Pack whose holder had a stat lowered at the end of the turn (Moody, Octolock...).
+    int ejectPackHolder = Sovereign_EjectPackHolder(battleSys, battleCtx);
+
+    if (ejectPackHolder != BATTLER_NONE) {
+        battleCtx->switchedMon = ejectPackHolder;
+        LOAD_SUBSEQ(subscript_sovereign_eject_pack);
+        battleCtx->commandNext = battleCtx->command;
+        battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+        return;
+    }
+
     if (BattleControllerPlayer_ReplaceFainted(battleSys, battleCtx) == TRUE) {
         return;
     }
@@ -5488,6 +5499,17 @@ static void BattleControllerPlayer_MoveEnd(BattleSystem *battleSys, BattleContex
             battleCtx->sovereignHPBeforeAction[user] = 0;
             battleCtx->switchedMon = user;
             LOAD_SUBSEQ(subscript_sovereign_emergency_exit);
+            battleCtx->commandNext = battleCtx->command;
+            battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+            return;
+        }
+
+        // Sovereign (item 11): an Eject Pack whose holder had a stat lowered by this move, its own or a foe's.
+        int ejectPackHolder = Sovereign_EjectPackHolder(battleSys, battleCtx);
+
+        if (ejectPackHolder != BATTLER_NONE) {
+            battleCtx->switchedMon = ejectPackHolder;
+            LOAD_SUBSEQ(subscript_sovereign_eject_pack);
             battleCtx->commandNext = battleCtx->command;
             battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
             return;

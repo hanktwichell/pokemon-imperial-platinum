@@ -11248,6 +11248,27 @@
         "The effects of Water Sport\n",
         "have faded."
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignSwitchedOutWithEjectPack_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is switched out\n",
+        "with the Eject Pack!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignSwitchedOutWithEjectPack_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} is switched out\n",
+        "with the Eject Pack!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignSwitchedOutWithEjectPack_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} is switched out\n",
+        "with the Eject Pack!"
+      ]
     }
   ]
 }
