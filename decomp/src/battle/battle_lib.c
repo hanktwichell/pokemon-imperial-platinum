@@ -9756,6 +9756,24 @@ BOOL Move_IsBallOrBomb(int move)
     return FALSE;
 }
 
+// Sovereign: the moves that never miss a Minimized target and deal it double damage (Gen VI+). Platinum had only
+// Stomp's double damage (effect_script_0150.s).
+static const u16 sMinimizePunishMoves[] = {
+    MOVE_BODY_SLAM, MOVE_STOMP, MOVE_STEAMROLLER, MOVE_DRAGON_RUSH, MOVE_HEAT_CRASH, MOVE_HEAVY_SLAM, MOVE_FLYING_PRESS,
+    MOVE_SUPERCELL_SLAM,
+};
+
+BOOL Move_PunishesMinimize(int move)
+{
+    for (int i = 0; i < NELEMS(sMinimizePunishMoves); i++) {
+        if (sMinimizePunishMoves[i] == move) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
 // Sovereign (item 11): the type a Gem powers up, or -1 for any other item.
 static const u16 sGemTypes[][2] = {
     { ITEM_NORMAL_GEM, TYPE_NORMAL },
@@ -10427,6 +10445,11 @@ int Sovereign_MovePower(BattleSystem *battleSys, BattleContext *battleCtx, int m
             power *= 2;
         }
         break;
+    }
+
+    // Sovereign: double against a Minimized target (Gen VI+; Move_PunishesMinimize).
+    if (Move_PunishesMinimize(move) && (battleCtx->battleMons[defender].moveEffectsMask & MOVE_EFFECT_MINIMIZE)) {
+        power *= 2;
     }
 
     return power;

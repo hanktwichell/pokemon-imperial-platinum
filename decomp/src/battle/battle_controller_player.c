@@ -2111,6 +2111,28 @@ static void BattleControllerPlayer_CheckSideConditions(BattleSystem *battleSys, 
                 battleCtx->msgMoveTemp = battleCtx->fieldConditions.futureSightMove[battler];
                 battleCtx->hpCalcTemp = battleCtx->fieldConditions.futureSightDamage[battler];
 
+                // Sovereign: Future Sight and Doom Desire are typed when they hit (Gen V+): STAB, and the weaknesses and
+                // immunities of the Pokemon in the slot then (a Dark type takes no Future Sight). Platinum's damage was
+                // typeless. The damage itself is still worked out when the move is used (BtlCmd_TryFutureSight).
+                u32 sovereignTypeStatus = 0;
+                int sovereignDamage = BattleSystem_ApplyTypeChart(battleSys,
+                    battleCtx,
+                    battleCtx->msgMoveTemp,
+                    0,
+                    battleCtx->msgAttacker,
+                    battler,
+                    -battleCtx->hpCalcTemp,
+                    &sovereignTypeStatus);
+
+                if (sovereignTypeStatus & (MOVE_STATUS_INEFFECTIVE | MOVE_STATUS_WONDER_GUARD | MOVE_STATUS_LEVITATED | MOVE_STATUS_MAGNET_RISE)) {
+                    battleCtx->hpCalcTemp = 0;
+                    PrepareSubroutineSequence(battleCtx, subscript_sovereign_future_sight_immune);
+                    return;
+                }
+
+                battleCtx->hpCalcTemp = -(sovereignDamage ? sovereignDamage : 1);
+                battleCtx->moveStatusFlags = sovereignTypeStatus & (MOVE_STATUS_SUPER_EFFECTIVE | MOVE_STATUS_NOT_VERY_EFFECTIVE);
+
                 PrepareSubroutineSequence(battleCtx, subscript_future_sight_damage);
                 return;
             }
@@ -3655,6 +3677,12 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
         if (WEATHER_IS_HAIL && MOVE_DATA(move).effect == BATTLE_EFFECT_BLIZZARD) {
             battleCtx->moveStatusFlags &= ~MOVE_STATUS_MISSED;
         }
+    }
+
+    // Sovereign: Body Slam, Stomp and the like never miss a Minimized target (Gen VI+); one out of reach still avoids
+    // them, as below.
+    if ((battleCtx->battleMons[defender].moveEffectsMask & MOVE_EFFECT_MINIMIZE) && Move_PunishesMinimize(move)) {
+        battleCtx->moveStatusFlags &= ~MOVE_STATUS_MISSED;
     }
 
     if ((battleCtx->moveStatusFlags & MOVE_STATUS_BYPASSED_ACCURACY) == FALSE

@@ -489,4 +489,5 @@ subscript_files = files(
     'subscript_sovereign_synchronize_toxic.s',
     'subscript_sovereign_mental_herb.s',
     'subscript_sovereign_teleport_switch.s',
+    'subscript_sovereign_future_sight_immune.s',
 )

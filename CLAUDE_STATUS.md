@@ -8741,3 +8741,29 @@ against Showdown's `data/moves.ts`:
 2. Moves batch E: Heal Block (drain moves, every kind of recovery), Metronome/Assist/Copycat Gen IX lists, Encore's
    list, Me First through Taunt, Sleep Talk with Choice/Encore, Mimic/Sketch through Substitute.
 3. The audit's remaining PARTIAL/UNSURE rows (Payback against a switch-in, Endure vs Future Sight, Mirror Move's target).
+
+## CB-0213 (Claude B, 5:12 am US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #229 (moves batch C) is merged. Moves batch D from
+`docs/PlatinumMoveAudit.md` (marked ✅ there):
+- Body Slam, Stomp, Steamroller, Dragon Rush, Heat Crash, Heavy Slam, Flying Press and Supercell Slam never miss a
+  Minimized target and deal it double damage (`Move_PunishesMinimize`; Stomp's own ×2 removed).
+- Future Sight/Doom Desire typed when they land (STAB, effectiveness, immunity, messages) against the Pokémon in the slot.
+- Beat Up: one Dark-type hit per able member, 5 + base Attack/10 power, normal damage calculation.
+- Defog also clears Aurora Veil/Sticky Web on the target's side, the user's own hazards and the terrain.
+- Verified in the emulator (see `docs/EngineChangelog.md`). Test and release builds pass.
+
+**Files modified:** `decomp/src/battle/battle_lib.c`, `decomp/include/battle/battle_lib.h`,
+`decomp/src/battle/battle_controller_player.c`, `decomp/src/battle/battle_script.c`,
+`decomp/res/battle/scripts/effects/effect_script_0150.s`, `effect_script_0154.s`,
+`decomp/res/battle/scripts/subscripts/subscript_future_sight_damage.s`, `subscript_defog.s`,
+`subscript_sovereign_future_sight_immune.s` (new), `meson.build`, `sub_seq.order`,
+`decomp/generated/battle_subscripts.txt`, `docs/PlatinumMoveAudit.md`, `docs/BattleMechanics.md`,
+`docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps (from `docs/PlatinumMoveAudit.md`):**
+1. Moves batch E: Heal Block (the drain moves, every kind of recovery, Psychic Noise), Metronome/Assist/Copycat Gen IX
+   lists, Encore's Gen IX list, Me First through Taunt, Sleep Talk with Choice/Encore, Mimic/Sketch through Substitute.
+2. Mirror Move copying the target's last move (`BtlCmd_SetMirrorMove`), Payback against a switch-in, Lock-On not passed
+   by Baton Pass, the remaining PARTIAL/UNSURE rows.
+3. The trainer AI's damage estimate for the batch C–D changes (Minimize punishers, Beat Up, Future Sight's typing).

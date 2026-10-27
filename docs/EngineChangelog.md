@@ -3,6 +3,37 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Item 11: Platinum's moves under the later games' rules, batch D
+
+For players:
+- **Body Slam, Stomp, Steamroller, Dragon Rush, Heat Crash, Heavy Slam, Flying Press and Supercell Slam** (Gen VI+)
+  never miss a Minimized target and deal it double damage. Platinum doubled only Stomp's and Steamroller's damage and
+  let every one of them miss.
+- **Future Sight and Doom Desire** (Gen V+) are Psychic- and Steel-typed when they land: STAB, the weaknesses and
+  resistances of the Pokémon in the slot then, and its immunity ("It doesn't affect UMBREON…"), with the effectiveness
+  messages. Platinum's were typeless. The damage is still worked out when the move is used, and can't be a critical hit.
+- **Beat Up** (Gen V+) is one Dark-type hit per able party member, of 5 + that member's base Attack / 10 power, with
+  the user's Attack against the target's Defense, STAB and the type chart. Platinum used each member's base Attack
+  against the target's base Defense, typeless.
+- **Defog** (Gen VI+) also clears Aurora Veil and Sticky Web on the target's side, Spikes, Toxic Spikes, Stealth Rock and
+  Sticky Web on the user's own side, and the terrain (Gen VIII+).
+
+Code: `Move_PunishesMinimize` (`battle_lib.c`; the accuracy in `BattleControllerPlayer_CheckMoveHitOverrides`, the
+damage in `Sovereign_MovePower`; `effect_script_0150.s` no longer doubles); Future Sight's hit in
+`BattleControllerPlayer_CheckSideConditions` (`BattleSystem_ApplyTypeChart`), `subscript_future_sight_damage.s` and the
+new `subscript_sovereign_future_sight_immune.s`; `BtlCmd_BeatUp` and `effect_script_0154.s`; `subscript_defog.s`.
+
+Verified (test build, emulator, wild battles):
+- **Minimize:** a Lv. 60 Ninjask's Stomp did 173 to a Lv. 100 Blissey, then 357 once Blissey had Minimized (×2, not
+  ×4), and hit at +4 evasion too. Its Body Slam did 224, then took the 399 HP left at +2 evasion. Its Tackle missed the
+  Minimized Blissey again and again and did normal damage when it hit.
+- **Future Sight:** "UMBREON took the Future Sight attack!" then "It doesn't affect UMBREON…"; against a Machamp, "It's
+  super effective!".
+- **Beat Up:** Geodude's party hit a Lv. 50 Alakazam for 20, 20 and 18 (super effective) and a Lv. 50 Machamp for 3 or
+  4 a hit (not very effective).
+- **Defog:** after a wild Ninjask's Stealth Rock, Geodude's Defog: "GEODUDE blew away Stealth Rock!" on its own side.
+- **Builds:** the test and release builds pass, and every battle script fits its buffer.
+
 ## Item 11: Platinum's moves under the later games' rules, batch C
 
 Platinum's own moves whose flags or Whirlwind rule changed in the later games (`docs/PlatinumMoveAudit.md`; the flags

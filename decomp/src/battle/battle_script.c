@@ -6599,7 +6599,6 @@ static BOOL BtlCmd_BeatUp(BattleSystem *battleSys, BattleContext *battleCtx)
     int partyCount;
     int species;
     int form;
-    int level;
     Pokemon *mon;
 
     BattleScript_Iter(battleCtx, 1);
@@ -6625,21 +6624,19 @@ static BOOL BtlCmd_BeatUp(BattleSystem *battleSys, BattleContext *battleCtx)
     mon = BattleSystem_GetPartyPokemon(battleSys, battleCtx->attacker, battleCtx->beatUpCounter);
     species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
-    level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
 
-    battleCtx->damage = SpeciesData_GetFormValue(species, form, SPECIES_DATA_BASE_ATK);
-    battleCtx->damage *= CURRENT_MOVE_DATA.power;
-    battleCtx->damage *= (level * 2 / 5) + 2;
-    battleCtx->damage /= SpeciesData_GetFormValue(DEFENDING_MON.species, DEFENDING_MON.formNum, SPECIES_DATA_BASE_DEF);
-    battleCtx->damage /= 50;
-    battleCtx->damage += 2;
-    battleCtx->damage = BattleSystem_ApplyCriticalMul(battleCtx->damage, battleCtx->criticalMul);
+    // Sovereign: each hit is the user's own Dark-type attack (Gen V+), of 5 + the party member's base Attack / 10
+    // power, through the usual damage calculation (the user's Attack, the target's Defense, then STAB and the type chart
+    // in BattleControllerPlayer_CheckTypeChart). Platinum used the member's base Attack and level against the target's
+    // base Defense, typeless.
+    battleCtx->movePower = 5 + SpeciesData_GetFormValue(species, form, SPECIES_DATA_BASE_ATK) / 10;
+    BattleScript_CalcMoveDamage(battleSys, battleCtx);
+    battleCtx->damage = BattleSystem_CalcDamageVariance(battleSys, battleCtx, battleCtx->damage);
 
-    if (battleCtx->turnFlags[battleCtx->attacker].helpingHand) {
-        battleCtx->damage = battleCtx->damage * 15 / 10;
+    if (battleCtx->sovereignGlaiveRush & FlagIndex(battleCtx->defender)) { // Sovereign (item 11), as BtlCmd_CalcDamage
+        battleCtx->damage *= 2;
     }
 
-    battleCtx->damage = BattleSystem_CalcDamageVariance(battleSys, battleCtx, battleCtx->damage);
     battleCtx->damage *= -1;
 
     battleCtx->msgBuffer.id = BattleStrings_Text_PokemonsBeatUpAttack_Ally; // "{0}'s attack!"
