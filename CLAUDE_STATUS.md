@@ -9057,3 +9057,28 @@ Pokédex area map) is merged.
 2. Look at the Pokédex area page in the emulator (a park species and a Honey Tree species) to check the map draws them.
 3. Anything the owner asks for. T2 (the developer battle's AI) and the Burn Up and Double Shock decisions wait on the
    owner. Embody Aspect and Teraform Zero need Terastallization, which the game doesn't have.
+
+## CB-0225 (Claude B, 12:28 pm US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #241 (the Regional Forms Park on the Pokédex
+area map, and `tools/test/pokedex_area.py`) is merged. This entry records a full battle regression after today's
+engine changes (AI #18 and #19, the Eject Pack, moves batches A–J):
+- **All trainers** (`battle_all_trainers.py`, the AI #19 ROM): **1,039 of 1,039 ok**. Every party matched its JSON,
+  and every battle ended with the heaps intact.
+- **All species and forms** (`battle_all_species.py`, the test build of main at PR #241, which has the Eject Pack):
+  **1,472 of 1,472 ok**. Every wild Pokémon was built from its form's data (moves, stats, ability, item), and every
+  battle ended with the heaps intact.
+- **Battle form changes** (`battle_form_changes.py`, same build, run in four parts by species): **211 of 211 ok**.
+  Every Mega, Primal, Ultra Burst, in-battle form change and form-change item works from the player's side.
+- Also checked: every species in a wild encounter file is on the area map at its file's spot, and the Pokédex pages of
+  species past #493 (Greninja, Archaludon, Pecharunt) work. Oak's visit to Rowan's lab, which `Story.md` warns could
+  never play, already has its own flag (`FLAG_SOVEREIGN_SHOWED_ROWAN_SINNOH_DEX`), so the Fight Area still opens.
+
+**Files modified:** `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Run the other harnesses on this build: `battle_evolutions.py`, `battle_eggs.py`, `gift_pokemon.py`,
+   `elite_four_runs.py`.
+2. Anything the owner asks for. T1 (boss teams), T2 (the developer battle and Henry at Spear Pillar), the art (E12),
+   Burn Up and Double Shock, and the special evolutions (decision 20) wait on the owner.
+3. Embody Aspect and Teraform Zero need Terastallization, which the game doesn't have; they stay without an effect.
