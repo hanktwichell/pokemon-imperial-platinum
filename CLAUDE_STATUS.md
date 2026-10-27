@@ -8684,3 +8684,35 @@ batch A, the ten most visible Gen IV leftovers in `docs/PlatinumMoveAudit.md` (n
    sides.
 3. Moves batch D: the Minimize punishers (Body Slam, Stomp, Dragon Rush, Heat Crash, Heavy Slam, Shadow Force...), Future
    Sight/Doom Desire typed at hit time, Beat Up Gen V+, the Heal Block list (drain moves), Metronome/Assist/Copycat lists.
+
+## CB-0211 (Claude B, 4:40 am US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #227 (moves batch A) is merged. Moves batch B from
+`docs/PlatinumMoveAudit.md` (marked ✅ there):
+- Taunt 3 turns, Encore 3, Disable 4, each counting the turn they land unless the target already moved (Gen V+).
+- Tailwind 4 turns: `SIDE_CONDITION_SOVEREIGN_TAILWIND_EXTRA` holds the 4th turn the 2-bit counter can't.
+- Wish heals half the user's max HP (`BattleContext.sovereignWishHP`).
+- Teleport switches the user out in trainer battles and for the player's Pokémon (new
+  `subscript_sovereign_teleport_switch.s`); a wild Pokémon still flees. New text for Teleport, Tailwind, Taunt, Encore.
+- Destiny Bond fails right after a Destiny Bond still active; Charge (and Electromorphosis/Wind Power) lasts until an
+  Electric move.
+- Verified in the emulator (see `docs/EngineChangelog.md`). Test and release builds pass; the move pipeline reproduces.
+
+**Files modified:** `decomp/src/battle/battle_script.c`, `decomp/src/battle/battle_controller_player.c`,
+`decomp/include/battle/battle_context.h`, `decomp/include/constants/battle/condition.h`,
+`decomp/include/constants/battle/turn_flags.h`, `decomp/include/data/move_side_effect_subscripts.h`,
+`decomp/generated/battle_subscripts.txt`, `decomp/generated/battle_move_subscript_ptrs.txt`,
+`decomp/res/battle/scripts/effects/effect_script_0098.s`, `effect_script_0153.s`,
+`decomp/res/battle/scripts/subscripts/subscript_taunt_start.s`, `subscript_sovereign_charged_by_hit.s`,
+`subscript_sovereign_teleport_switch.s` (new), `meson.build`, `sub_seq.order`, `tools/engine/gen9_move_fixes.py`,
+`decomp/res/moves/{teleport,tailwind,taunt,encore}/data.json`, `docs/PlatinumMoveAudit.md`, `docs/BattleMechanics.md`,
+`docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps (from `docs/PlatinumMoveAudit.md`):**
+1. Moves batch C: the missing Magic Coat flags (Disable, Encore, Taunt, Torment, Embargo, Heal Block, Odor Sleuth,
+   Miracle Eye, Toxic Spikes, Stealth Rock, Defog), Whirlwind/Roar through Protect and reflectable with the level check
+   only in wild battles, Mean Look/Block through Protect.
+2. Moves batch D: the Minimize punishers (Body Slam, Stomp, Dragon Rush, Heat Crash, Heavy Slam, Shadow Force...),
+   Future Sight/Doom Desire typed at hit time, Beat Up Gen V+, Defog on both sides.
+3. Moves batch E: the Heal Block list (drain moves) and all-recovery block, Metronome/Assist/Copycat Gen IX lists,
+   Encore's list, Me First through Taunt, Sleep Talk with Choice/Encore, the snatch flags (Wish, Healing Wish...).

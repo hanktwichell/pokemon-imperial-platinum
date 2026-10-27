@@ -1238,7 +1238,12 @@ static void BattleControllerPlayer_CheckFieldConditions(BattleSystem *battleSys,
                 side = battleCtx->fieldConditionCheckTemp;
 
                 if (battleCtx->sideConditionsMask[side] & SIDE_CONDITION_TAILWIND) {
-                    battleCtx->sideConditionsMask[side] -= SIDE_CONDITION_TAILWIND_SHIFT;
+                    // Sovereign: 4 turns (Gen V+). The first end of turn uses up the extra flag, not the counter.
+                    if (battleCtx->sideConditionsMask[side] & SIDE_CONDITION_SOVEREIGN_TAILWIND_EXTRA) {
+                        battleCtx->sideConditionsMask[side] &= ~SIDE_CONDITION_SOVEREIGN_TAILWIND_EXTRA;
+                    } else {
+                        battleCtx->sideConditionsMask[side] -= SIDE_CONDITION_TAILWIND_SHIFT;
+                    }
 
                     if ((battleCtx->sideConditionsMask[side] & SIDE_CONDITION_TAILWIND) == FALSE) {
                         PrepareSubroutineSequence(battleCtx, subscript_tailwind_end);
@@ -1292,7 +1297,7 @@ static void BattleControllerPlayer_CheckFieldConditions(BattleSystem *battleSys,
                     battleCtx->msgBuffer.id = 533; // "{0}'s wish came true!"
                     battleCtx->msgBuffer.params[0] = side | (battleCtx->fieldConditions.wishTarget[side] << 8);
 
-                    battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[side].maxHP, 2);
+                    battleCtx->hpCalcTemp = battleCtx->sovereignWishHP[side]; // Sovereign: the user's (BtlCmd_TryWish)
 
                     PrepareSubroutineSequence(battleCtx, subscript_wish_heal);
                     state = STATE_BREAK_OUT;
@@ -1943,11 +1948,8 @@ static void BattleControllerPlayer_CheckMonConditions(BattleSystem *battleSys, B
             break;
 
         case MON_COND_CHECK_STATE_CHARGE:
-            if (battleCtx->battleMons[battler].moveEffectsData.chargedTurns
-                && --battleCtx->battleMons[battler].moveEffectsData.chargedTurns == 0) {
-                battleCtx->battleMons[battler].moveEffectsMask &= ~MOVE_EFFECT_CHARGE;
-            }
-
+            // Sovereign: the charge lasts until the user's next Electric move (Gen IX; BattleControllerPlayer
+            // UpdateMoveBuffers), not until the end of next turn.
             battleCtx->monConditionCheckState++;
             break;
 
@@ -2801,6 +2803,11 @@ static BOOL BattleControllerPlayer_CheckStatusDisruption(BattleSystem *battleSys
     do {
         switch (battleCtx->statusCheckState) {
         case CHECK_STATUS_START:
+            // Sovereign: Destiny Bond fails if the user's last move was a Destiny Bond still active (Gen VII+).
+            if (battleCtx->moveCur == MOVE_DESTINY_BOND && (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_DESTINY_BOND)) {
+                ATTACKER_SELF_TURN_FLAGS.statusFlags |= SELF_TURN_FLAG_SOVEREIGN_DESTINY_BOND_AGAIN;
+            }
+
             ATTACKING_MON.statusVolatile &= ~VOLATILE_CONDITION_DESTINY_BOND;
             ATTACKING_MON.moveEffectsMask &= ~MOVE_EFFECT_GRUDGE;
             battleCtx->sovereignGlaiveRush &= ~FlagIndex(battleCtx->attacker); // Sovereign (item 11): its next move
@@ -5220,6 +5227,13 @@ static void BattleControllerPlayer_UpdateMoveBuffers(BattleSystem *battleSys, Ba
         }
         if (battleCtx->battleStatusMask2 & SYSCTL_ATTACK_MESSAGE_SHOWN) {
             battleCtx->sovereignLastMoveUsed[battleCtx->attacker] = battleCtx->moveTemp;
+        }
+        // Sovereign: Charge (and Wind Power's and Electromorphosis's charge) ends once the user has used an Electric move
+        // other than Charge (Gen IX).
+        if ((battleCtx->battleStatusMask2 & SYSCTL_ATTACK_MESSAGE_SHOWN)
+            && battleCtx->moveTemp != MOVE_CHARGE
+            && MOVE_DATA(battleCtx->moveTemp).type == TYPE_ELECTRIC) {
+            ATTACKING_MON.moveEffectsMask &= ~MOVE_EFFECT_CHARGE;
         }
         // Sovereign (item 11): until the user's next move, moves never miss it and deal double damage.
         if (battleCtx->moveTemp == MOVE_GLAIVE_RUSH && (battleCtx->battleStatusMask2 & SYSCTL_MOVE_SUCCEEDED)) {

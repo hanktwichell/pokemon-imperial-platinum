@@ -1,7 +1,7 @@
 #include "macros/btlcmd.inc"
 
 // Sovereign (item 11): Electromorphosis and Wind Power. A hit (or a tailwind, for Wind Power) charges the holder,
-// BTLVAR_MSG_BATTLER_TEMP: its next Electric move before the end of next turn has double power, as after Charge
+// BTLVAR_MSG_BATTLER_TEMP: its next Electric move has double power, as after Charge
 // (BattleSystem_TriggerAbilityOnHit, subscript_tailwind_start).
 
 _000:

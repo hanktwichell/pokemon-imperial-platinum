@@ -96,7 +96,7 @@ this engine models) · **GEN_IV** (still Gen IV, needs a change) · **PARTIAL** 
    `subscript_crash_on_miss.s`, set the crash to the **attacker's** max HP / 2 (`UpdateMonDataFromVar OPCODE_GET,
    BTLSCR_ATTACKER, BATTLEMON_MAX_HP` → ÷2 → negate) in place of damage/2 capped by the defender. This also fixes
    Supercell Slam and Axe Kick. The `MoveChecklist.md` row for Supercell Slam ("half its max HP") is wrong today.
-3. **Teleport (#100).** Abra's only move; a trainer's Abra gets "But it failed!". Give it a new effect: switch the
+3. ✅ *Done in moves batch B (CB-0211): a trainer's Pokémon, or the player's in any battle, switches out; a wild one flees.* **Teleport (#100).** Abra's only move; a trainer's Abra gets "But it failed!". Give it a new effect: switch the
    user out, as Parting Shot does but with no stat drop (`SOVEREIGN_PARTING_SHOT`, effect 328), and fail when there's
    no Pokémon to switch in. A wild Pokémon keeps fleeing (`effect_script_0153.s`).
 4. ✅ *Done in moves batch A (CB-0210).* **Minimize (#107).** `subscript_minimize.s:6` → `MOVE_SUBSCRIPT_PTR_EVASION_UP_2_STAGES`.
@@ -110,10 +110,10 @@ this engine models) · **GEN_IV** (still Gen IV, needs a change) · **PARTIAL** 
 7. **Whirlwind / Roar (#18, #46).** Remove `MOVE_FLAG_CAN_PROTECT` and add `MOVE_FLAG_CAN_MAGIC_COAT` in both
    `data.json`. In `BtlCmd_TryWhirlwind`, drop the `BattleSystem_CanWhirlwind` roll in trainer battles, and for wild
    battles make it a plain `attacker level < defender level` → fail.
-8. **Disable (#50).** In `BtlCmd_TryDisable` set a fixed length: `disabledTurns = 4` if the target has already acted
+8. ✅ *Length done in moves batch B (CB-0211); not reflectable yet (14 below).* **Disable (#50).** In `BtlCmd_TryDisable` set a fixed length: `disabledTurns = 4` if the target has already acted
    this turn, else 3. That gives 4 blocked turns with Platinum's countdown; Cursed Body already uses 4. Add
    `CAN_MAGIC_COAT`.
-9. **Destiny Bond (#194).** At `CHECK_STATUS_START` (`battle_controller_player.c:2804`), if `moveCur ==
+9. ✅ *Done in moves batch B (CB-0211).* **Destiny Bond (#194).** At `CHECK_STATUS_START` (`battle_controller_player.c:2804`), if `moveCur ==
    MOVE_DESTINY_BOND` and the flag is still set, record it (for example, a `sovereignDestinyBondRepeat` bit) before
    clearing. Then make `effect_script_0098.s` fail with "But it failed!".
 10. **Metronome (#118).** Remove the "already known" loop in `BtlCmd_Metronome` and the Gravity/Heal Block filter.
@@ -274,11 +274,11 @@ Sovereign, Magic Coat and Magic Bounce both use this flag (bcp:~3847, bcp:~3871)
 3. ✅ *Done in moves batch A (CB-0210), in the trainer AI's damage estimate too.* **Hidden Power (237)**: set `movePower = 60` in `BtlCmd_CalcHiddenPowerParams` (bs:6429) and keep the type calculation.
 4. **Defog (432)**: extend sub defog to clear Sticky Web and Aurora Veil on the target's side, Spikes, Toxic Spikes, Stealth Rock and Sticky Web on the user's side, and the terrain. Add `CAN_MAGIC_COAT`.
 5. ✅ *Done in moves batch A (CB-0210): always hits, and lifts Protect, Wide Guard, Quick Guard, Mat Block and Crafty Shield; still not in Mirror Move's list.* **Feint (364)**: drop the `TryFeint` failure jump (eff 0223:5, bs:7949) so it always hits. Keep lifting Protect and also lift Wide Guard, Quick Guard and Mat Block. Add `CAN_MIRROR_MOVE`.
-6. **Wish (273)**: at bs:6790 store the user's `maxHP / 2` (new `wishHP[battler]`) and heal that amount at bcp:1295. Add `CAN_SNATCH`.
+6. ✅ *Heal done in moves batch B (CB-0211); not snatchable yet (38 below).* **Wish (273)**: at bs:6790 store the user's `maxHP / 2` (new `wishHP[battler]`) and heal that amount at bcp:1295. Add `CAN_SNATCH`.
 7. **Future Sight / Doom Desire (248, 353)**: work the damage out when the attack lands (or at least apply type effectiveness and immunity: Psychic, so Dark is immune; Steel), with crits allowed, instead of the typeless amount stored at bs:6482.
 8. ✅ *Done in moves batch A (CB-0210).* **Sheer Cold (329)**: in `TryOHKOMove` (bs:4654), make Ice types immune and use 20 base accuracy when the user isn't Ice-type.
-9. **Tailwind (366)**: give Tailwind a 3-bit or separate per-side counter (the 2-bit field at `condition.h` TAILWIND_0/1 can't hold 4) and set it to 4.
-10. **Encore (227) and Taunt (269)**:
+9. ✅ *Done in moves batch B (CB-0211): a third bit marks the 4th turn.* **Tailwind (366)**: give Tailwind a 3-bit or separate per-side counter (the 2-bit field at `condition.h` TAILWIND_0/1 can't hold 4) and set it to 4.
+10. ✅ *Lengths done in moves batch B (CB-0211); the reflect flags, Encore's list and Me First are still to do.* **Encore (227) and Taunt (269)**:
     - Encore: `encoredTurns` = 2 if the target hasn't moved yet this turn, else 3 (bs:5062).
     - Taunt: 3, or 4 if the target already moved (replace `Random 2, 3`).
     - Both: add `CAN_MAGIC_COAT`.
@@ -286,7 +286,7 @@ Sovereign, Magic Coat and Magic Bounce both use this flag (bcp:~3847, bcp:~3871)
     - Taunt: let Me First through.
 11. **Beat Up (251)**: per hit, power = 5 + that member's base Attack/10, then the normal damage calculation: user's Attack, target's Defense, Dark type, STAB and effectiveness. Drop `SYSCTL_IGNORE_IMMUNITIES` (eff 0154, bs:6612).
 12. ✅ *Done in moves batch A (CB-0210).* **Poison Fang (305)**: effect chance 30 → 50 in its data.json.
-13. **Charge (268)**: don't expire it after a turn (bcp:1946). Clear `MOVE_EFFECT_CHARGE` when the user uses an Electric move other than Charge, or switches out.
+13. ✅ *Done in moves batch B (CB-0211); Electromorphosis's and Wind Power's charge last the same way.* **Charge (268)**: don't expire it after a turn (bcp:1946). Clear `MOVE_EFFECT_CHARGE` when the user uses an Electric move other than Charge, or switches out.
 14. **Moves that should be reflectable (259 Torment, 316 Odor Sleuth, 357 Miracle Eye, 373 Embargo, 377 Heal Block, 390 Toxic Spikes, 432 Defog, 446 Stealth Rock, and Encore/Taunt above)**: add `MOVE_FLAG_CAN_MAGIC_COAT`. Check that side moves bounce as Sticky Web's does. Stealth Rock against Magic Bounce is the case players will notice most.
 15. **Payback (371)**: at bs:7628, don't double against a target that switched in this turn.
 16. **Sleep Talk (214)**: in `TrySleepTalk` don't let Choice lock or Encore mark the slots invalid; pass a mask without `CHECK_INVALID_CHOICE_ITEM`, and bypass the Encore check that runs regardless of the mask (bl:2452). Also exclude Belch, Beak Blast, Shell Trap, Mimic, Sketch and Nature Power.

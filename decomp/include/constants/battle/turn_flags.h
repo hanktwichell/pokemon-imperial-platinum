@@ -2,7 +2,7 @@
 #define POKEPLATINUM_CONSTANTS_BATTLE_TURN_FLAGS_H
 
 #define SELF_TURN_FLAG_CLEAR 0
-// unused: 1 << 0
+#define SELF_TURN_FLAG_SOVEREIGN_DESTINY_BOND_AGAIN (1 << 0) // Sovereign: Destiny Bond used while its last one was active
 #define SELF_TURN_FLAG_PLUCK_BERRY    (1 << 1)
 #define SELF_TURN_FLAG_INFATUATED     (1 << 2)
 #define SELF_TURN_FLAG_SUBSTITUTE_HIT (1 << 3)

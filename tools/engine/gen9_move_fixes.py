@@ -368,6 +368,15 @@ VALUE_FIXES = {
     # Poison Fang 50% (Gen VI+).
     "string_shot": {"effect": {"type": "BATTLE_EFFECT_SPEED_DOWN_2", "chance": 0}},
     "poison_fang": {"effect": {"type": "BATTLE_EFFECT_BADLY_POISON_HIT", "chance": 50}},
+    # Their texts, for the later games' turn counts (Tailwind 4, Taunt and Encore 3) and Teleport's switch (Gen VIII+).
+    "tailwind": {"description": ["The user whips up a\n", "turbulent whirlwind\n", "that ups the Speed\n",
+                                 "of all party Pokémon\n", "for four turns."]},
+    "taunt": {"description": ["The foe is taunted\n", "into a rage that\n", "allows it to use only\n",
+                              "attack moves for\n", "three turns."]},
+    "encore": {"description": ["The user compels the\n", "foe to keep using\n", "only the move it last\n",
+                               "used for three\n", "turns."]},
+    "teleport": {"description": ["The user switches\n", "out. A wild Pokémon\n", "flees. It also warps\n",
+                                 "to the last Poké\n", "Center visited."]},
 }
 
 

@@ -359,6 +359,7 @@ struct BattleContext {
     // Crafty Shield (8) for each side
     int sovereignSideFaintTurn[2]; // Sovereign (item 11): totalTurns + 1 when a Pokemon on the side last fainted (Retaliate)
     int sovereignAuroraVeilTurns[2]; // Sovereign (item 11)
+    int sovereignWishHP[MAX_BATTLERS]; // Sovereign: half the max HP of the Pokemon that used Wish from this slot
     int sovereignEchoedVoiceTurn; // Sovereign (item 11): totalTurns + 1 of the last Echoed Voice (0 = none yet)
     int sovereignEchoedVoiceCount; // Sovereign (item 11): consecutive turns of Echoed Voice, up to 5
     u8 sovereignOncePerBattle[MAX_BATTLERS]; // Sovereign (item 11): party slots whose Intrepid Sword or Dauntless Shield has triggered

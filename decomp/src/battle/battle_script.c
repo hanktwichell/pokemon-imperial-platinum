@@ -4925,7 +4925,8 @@ static BOOL BtlCmd_TryDisable(BattleSystem *battleSys, BattleContext *battleCtx)
         && DEFENDER_LAST_MOVE) {
         battleCtx->msgMoveTemp = DEFENDER_LAST_MOVE;
         DEFENDING_MON.moveEffectsData.disabledMove = battleCtx->msgMoveTemp;
-        DEFENDING_MON.moveEffectsData.disabledTurns = BattleSystem_RandNext(battleSys) % 4 + 3; // range: [3-6]
+        // Sovereign: 4 turns (Gen V+), counting this one if the target hasn't moved yet. Platinum's lasted 4 to 7.
+        DEFENDING_MON.moveEffectsData.disabledTurns = Battler_MovedThisTurn(battleCtx, battleCtx->defender) ? 4 : 3;
     } else {
         BattleScript_Iter(battleCtx, jumpOnFail);
     }
@@ -5073,7 +5074,8 @@ static BOOL BtlCmd_TryEncore(BattleSystem *battleSys, BattleContext *battleCtx)
         battleCtx->msgMoveTemp = DEFENDER_LAST_MOVE;
         DEFENDING_MON.moveEffectsData.encoredMove = battleCtx->msgMoveTemp;
         DEFENDING_MON.moveEffectsData.encoredMoveSlot = moveSlot;
-        DEFENDING_MON.moveEffectsData.encoredTurns = BattleSystem_RandNext(battleSys) % 5 + 3; // range: [3-7]
+        // Sovereign: 3 turns (Gen V+), counting this one if the target hasn't moved yet. Platinum's lasted 4 to 8.
+        DEFENDING_MON.moveEffectsData.encoredTurns = Battler_MovedThisTurn(battleCtx, battleCtx->defender) ? 3 : 2;
     } else {
         battleCtx->moveStatusFlags |= MOVE_STATUS_FAILED;
         BattleScript_Iter(battleCtx, jumpOnFail);
@@ -6805,6 +6807,8 @@ static BOOL BtlCmd_TryWish(BattleSystem *battleSys, BattleContext *battleCtx)
     } else {
         battleCtx->fieldConditions.wishTurns[battleCtx->attacker] = 2;
         battleCtx->fieldConditions.wishTarget[battleCtx->attacker] = battleCtx->selectedPartySlot[battleCtx->attacker];
+        // Sovereign: it heals half the user's max HP (Gen V+), not half the max HP of the Pokemon in the slot then.
+        battleCtx->sovereignWishHP[battleCtx->attacker] = BattleSystem_Divide(ATTACKING_MON.maxHP, 2);
     }
 
     return FALSE;
