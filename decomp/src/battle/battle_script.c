@@ -5541,6 +5541,12 @@ static BOOL BtlCmd_TryWhirlwind(BattleSystem *battleSys, BattleContext *battleCt
     int jumpOnFail = BattleScript_Read(battleCtx);
     u32 battleType = BattleSystem_GetBattleType(battleSys);
 
+    // Sovereign (item 11): Commander. Neither a Tatsugiri in its ally Dondozo's mouth nor that Dondozo can be forced out.
+    if ((battleCtx->sovereignCommanding | battleCtx->sovereignCommanded) & FlagIndex(battleCtx->defender)) {
+        BattleScript_Iter(battleCtx, jumpOnFail);
+        return FALSE;
+    }
+
     if (battleType & BATTLE_TYPE_TRAINER) {
         Party *defenderParty;
         Pokemon *mon;
@@ -6198,7 +6204,10 @@ static BOOL BtlCmd_TryReplaceFaintedMon(BattleSystem *battleSys, BattleContext *
 
     int battler = BattleScript_Battler(battleSys, battleCtx, inBattler);
 
-    if (BattleSystem_AnyReplacementMons(battleSys, battleCtx, battler) == FALSE) {
+    // Sovereign (item 11): Commander. A Tatsugiri in its ally Dondozo's mouth and that Dondozo can't switch out (U-turn,
+    // Baton Pass, an Eject Button...) while they're in battle.
+    if (BattleSystem_AnyReplacementMons(battleSys, battleCtx, battler) == FALSE
+        || (battleCtx->battleMons[battler].curHP && ((battleCtx->sovereignCommanding | battleCtx->sovereignCommanded) & FlagIndex(battler)))) {
         BattleScript_Iter(battleCtx, jumpOnFail);
     } else if (openPartyList == TRUE) {
         battleCtx->battlerStatusFlags[battler] |= BATTLER_STATUS_SWITCHING;

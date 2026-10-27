@@ -161,7 +161,7 @@ Ability ID = official ability number. Platinum's 123 abilities keep their Gen IV
 | 276 | Rocky Payload | Gen 9 | yes: Rock moves ×1.5 |
 | 277 | Wind Power | Gen 9 | yes: charged when a wind move hits it or a tailwind starts on its side |
 | 278 | Zero to Hero | Gen 9 | yes: Hero Form once it switches out, until the battle ends |
-| 279 | Commander | Gen 9 | not yet (no battle effect) |
+| 279 | Commander | Gen 9 | yes: in a double battle, it goes into its ally Dondozo's mouth: it can't act or be hit, neither can switch out, and the Dondozo's stats rise by 2 (Order Up gets a stat too); it comes out when the Dondozo faints |
 | 280 | Electromorphsis | Gen 9 | yes: charged when a damaging move hits it (its next Electric move ×2 before the end of next turn, as Platinum's Charge) |
 | 281 | Protosynthesis | Gen 9 | yes: in harsh sunlight or after using a Booster Energy, its highest stat ×1.3 (Speed ×1.5) |
 | 282 | Quark Drive | Gen 9 | yes: in Electric Terrain or after using a Booster Energy, its highest stat ×1.3 (Speed ×1.5) |
