@@ -9134,3 +9134,31 @@ merged. The field harnesses were run on the same build (main at PR #241):
    Burn Up and Double Shock, and the special evolutions (decision 20) wait on the owner.
 2. Look for engine or QoL work in `docs/EngineRoadmap.md` that doesn't wait on the owner.
 3. Embody Aspect and Teraform Zero need Terastallization, which the game doesn't have; they stay without an effect.
+
+## CB-0228 (Claude B, 4:20 pm US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #244 (CB-0227's field results) is merged. AI
+review #7, the general part: the trainer AI now knows the primal weathers (Primordial Sea, Desolate Land, Delta
+Stream). Before, it read them as plain rain or sun, so it used weather moves that fail and Fire or Water moves that
+fizzle out.
+- **Weather moves:** Basic scores Rain Dance, Sunny Day, Sandstorm, Hail and Snowscape −10 while a primal weather is up.
+- **Fizzling moves:** a damaging Fire move in heavy rain or a Water move in extremely harsh sunlight counts as doing no
+  damage (`TrainerAI_CalcDamage`) and as having no effect (`IfMoveEffectivenessEquals`, `CalcMaxEffectiveness` and every
+  switch check). Cloud Nine or Air Lock on the field turns this off, as in battle.
+- **Verified:** a trace of the AI's final scores in the test trainer battle. Under Primordial Sea, before the fix,
+  Flamethrower scored 105 (the AI's pick) and Sunny Day 101. Now they score 89 and 91, and Surf (105) is the pick.
+  Desolate Land is the mirror image, Delta Stream lowers only the weather moves, and with no weather the scores are as
+  before.
+- **Battles:** the test trainer (with a Blue Orb Kyogre), both Cynthia rematches and trainers 1–150 battle cleanly
+  (`battle_all_trainers.py`, 153 of 153 ok). The test and release builds pass.
+- The custom weather AI for the developer battle stays with T2.
+
+**Files modified:** `decomp/src/battle/trainer_ai/trainer_ai.c`, `decomp/src/battle/trainer_ai/script.s`,
+`docs/AIReview.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Anything the owner asks for. T1 (boss teams), T2 (the developer battle and Henry at Spear Pillar), the art (E12),
+   Burn Up and Double Shock, and the special evolutions (decision 20) wait on the owner.
+2. Focus Punch (the move audit's last item): Bulbapedia confirms the Gen V change, so a lost focus should cost no PP
+   and show no "used Focus Punch!". In progress for the next PR. The AI review has no item left outside T2.
+3. Embody Aspect and Teraform Zero need Terastallization, which the game doesn't have; they stay without an effect.
