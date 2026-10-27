@@ -485,4 +485,6 @@ subscript_files = files(
     'subscript_sovereign_commander_end.s',
     'subscript_sovereign_sky_drop_lift.s',
     'subscript_sovereign_sky_drop_freed.s',
+    'subscript_sovereign_pickup.s',
+    'subscript_sovereign_synchronize_toxic.s',
 )

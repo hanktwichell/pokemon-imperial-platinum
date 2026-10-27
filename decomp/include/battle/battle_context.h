@@ -75,7 +75,8 @@ typedef struct TurnFlags {
     u32 sovereignBeakBlast : 1; // Sovereign (item 11): it's heating up its beak (burns on contact) until Beak Blast
     u32 sovereignShellTrap : 1; // Sovereign (item 11): it set a shell trap this turn
     u32 sovereignShellTrapHit : 1; // Sovereign (item 11): a foe's physical move sprang its shell trap
-    u32 padding00_0A : 11;
+    u32 sovereignItemUsed : 1; // Sovereign: it used up its held item this turn (Pickup)
+    u32 padding00_0A : 10;
 
     int physicalDamageTakenFrom[MAX_BATTLERS];
     int physicalDamageLastAttacker;

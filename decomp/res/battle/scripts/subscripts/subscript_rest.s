@@ -19,6 +19,15 @@ _000:
 _027:
     UpdateMonDataFromVar OPCODE_GET, BTLSCR_ATTACKER, BATTLEMON_MAX_HP, BTLVAR_HP_CALC_TEMP
     CompareMonDataToVar OPCODE_EQU, BTLSCR_ATTACKER, BATTLEMON_CUR_HP, BTLVAR_HP_CALC_TEMP, _137
+    // Sovereign: Leaf Guard in harsh sunlight (Gen V+), and Electric or Misty Terrain under a grounded user, keep it
+    // awake, as they keep any other sleep off.
+    CheckIgnoreWeather _sovereign_terrain
+    CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_SOVEREIGN_SIDE_EFFECT_MON_WEATHER, FIELD_CONDITION_SUNNY, _sovereign_terrain
+    CheckAbility CHECK_HAVE, BTLSCR_ATTACKER, ABILITY_LEAF_GUARD, _sovereignShieldsUp
+
+_sovereign_terrain:
+    CompareVarToValue OPCODE_FLAG_SET, BTLVAR_SOVEREIGN_TERRAIN_EFFECT_MON, FIELD_CONDITION_TERRAIN_ELECTRIC, _sovereign_electric
+    CompareVarToValue OPCODE_FLAG_SET, BTLVAR_SOVEREIGN_TERRAIN_EFFECT_MON, FIELD_CONDITION_TERRAIN_MISTY, _sovereign_misty
     PlayMoveAnimation BTLSCR_ATTACKER
     Wait 
     CompareMonDataToValue OPCODE_FLAG_SET, BTLSCR_ATTACKER, BATTLEMON_STATUS, MON_CONDITION_NOT_SLEEP, _053
@@ -92,4 +101,16 @@ _147:
 _sovereignShieldsUp:
     WaitButtonABTime 30
     Call BATTLE_SUBSCRIPT_BUT_IT_FAILED
+    GoTo _143
+
+_sovereign_electric:
+    WaitButtonABTime 30
+    // Sovereign (item 11): {0} surrounds itself with electrified terrain!
+    PrintMessage BattleStrings_Text_SovereignProtectedByElectricTerrain_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
+    GoTo _143
+
+_sovereign_misty:
+    WaitButtonABTime 30
+    // Sovereign (item 11): {0} surrounds itself with a protective mist!
+    PrintMessage BattleStrings_Text_SovereignProtectedByMistyTerrain_Ally, TAG_NICKNAME, BTLSCR_ATTACKER
     GoTo _143

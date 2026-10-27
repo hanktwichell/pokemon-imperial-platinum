@@ -37,6 +37,15 @@ _058:
     WaitButtonABTime 30
 
 _092:
+    // Sovereign: Sturdy (Gen V+) left it with 1 HP.
+    CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_ENDURED_ABILITY, _sovereign_item
+    // {0}’s {1} let it endure the hit!
+    PrintMessage BattleStrings_Text_SovereignAbilityLetItEndure_Ally, TAG_NICKNAME_ABILITY, BTLSCR_MSG_BATTLER_TEMP, BTLSCR_MSG_BATTLER_TEMP
+    Wait 
+    WaitButtonABTime 30
+    End 
+
+_sovereign_item:
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_ENDURED_ITEM, _116
     PlayBattleAnimation BTLSCR_MSG_TEMP, BATTLE_ANIMATION_HELD_ITEM
     Wait 

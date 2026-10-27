@@ -8574,3 +8574,50 @@ Bell) is merged. This PR does the last open `docs/BattleMechanics.md` ability ro
 2. 12b #7 (weather) waits for T2.
 3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.
 
+
+## CB-0208 (Claude B, 1:30 am US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #224 (Run Away, Sheer Force, AI trap check) is
+merged. Battles follow Champions, and Gen IX where Champions is silent, but many of Platinum's own abilities still had
+Gen IV's rules. This PR moves them to the later games' rules:
+- **Sturdy** survives a hit at full HP with 1 HP (hits, confusion, Future Sight, Pursuit; new
+  `MOVE_STATUS_ENDURED_ABILITY` and "X's Sturdy let it endure the hit!").
+- **Stench** and **King's Rock/Razor Fang**: 10% flinch on any damaging move without its own flinch chance
+  (`Sovereign_MoveHasFlinchChance`), doubled by Serene Grace.
+- **Focus Sash/Focus Band** are checked for each hit. Platinum held through a multi-hit move after a full-HP first
+  hit. The old ROM confirms it.
+- **Keen Eye** and **Illuminate** ignore raised evasion. Illuminate also blocks accuracy drops.
+- **Frisk** names every foe's item (new 7-way message, `subscript_frisk` loops over the foes).
+- **Oblivious** blocks Taunt.
+- **Synchronize** passes on bad poisoning, through the new `subscript_sovereign_synchronize_toxic`. The first try
+  overflowed `subscript_badly_poison` past the 2048-byte buffer and wiped the lead's moves.
+- **Pickup** picks up items used up that turn (`turnFlags.sovereignItemUsed`, `subscript_sovereign_pickup`).
+- **Simple** doubles the change when it happens, not the stage in the calculations.
+- **Normalize** ×1.2, and the moves that set their own type (`Sovereign_MoveSetsOwnType`) keep it.
+- **Other rates:** Plus/Minus with either partner, Shed Skin 33%, Effect Spore 11/10/9%.
+- **Rest** fails with Leaf Guard in sun or on Electric/Misty Terrain.
+- **Docs:** `gen_abilities.py` now writes a "Platinum's abilities updated" section in `docs/AbilityChecklist.md`.
+- **Verified in the test build:** all of the above, with the messages; see `docs/EngineChangelog.md`. Test and
+  release builds pass, and every script fits its buffer.
+
+**Lesson:** `tools/test/check_battle_scripts.py decomp` reads the release build. After a test build, pass
+`decomp/build_test` too, or it measures stale scripts.
+
+**Files modified:** `decomp/src/battle/battle_controller_player.c`, `decomp/src/battle/battle_lib.c`,
+`decomp/src/battle/battle_script.c`, `decomp/include/battle/battle_lib.h`, `decomp/include/battle/battle_context.h`,
+`decomp/include/constants/battle/moves.h`, `decomp/res/battle/scripts/subscripts/subscript_frisk.s`,
+`subscript_rest.s`, `subscript_move_followup_message.s`, `subscript_future_sight_damage.s`, new
+`subscript_sovereign_pickup.s` and `subscript_sovereign_synchronize_toxic.s`, `subscripts/meson.build`,
+`subscripts/sub_seq.order`, `decomp/generated/battle_subscripts.txt`, `decomp/res/text/battle_strings.json`,
+`tools/engine/gen_abilities.py`, `docs/AbilityChecklist.md`, `docs/BattleMechanics.md`, `docs/HeldItemChecklist.md`,
+`docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Platinum's own moves still have Gen IV battle effects (`docs/MoveChecklist.md` says "Battle effects are
+   unchanged"). Audit them against Gen IX: Taunt 3 turns, Encore 3, Disable 4, binding 4–5 turns at 1/8, Tailwind 4,
+   Wish half the user's HP, Knock Off ×1.5, Rapid Spin's Speed rise, Defog both sides, Fury Cutter, Spite, Beat Up,
+   Destiny Bond failing in a row, Charge. Then fix them in batches, with tests.
+2. Platinum's own held items: the rest of their Gen V+ changes (Metronome item, Quick Claw 20%, Mental Herb's wider
+   cure, Big Root ×1.3, Grip Claw 7 turns, pinch Berries at 1/4 HP, Gen VII+ confusion Berries).
+3. Double Iron Bash is listed as "exact" with `HIT_TWICE`, but it has a 30% flinch chance. Give it a
+   double-hit-with-flinch effect.
