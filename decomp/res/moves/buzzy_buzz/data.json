@@ -1,8 +1,9 @@
 {
     "name": "Buzzy Buzz",
     "description": [
-        "This move can’t be\n",
-        "used."
+        "The user shoots a\n",
+        "jolt of electricity\n",
+        "to attack the target."
     ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_ELECTRIC",

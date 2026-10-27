@@ -1,8 +1,9 @@
 {
     "name": "Glitzy Glow",
     "description": [
-        "This move can’t be\n",
-        "used."
+        "The user bombards the\n",
+        "target with\n",
+        "telekinetic force."
     ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_PSYCHIC",

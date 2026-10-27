@@ -1,8 +1,9 @@
 {
     "name": "Chip Away",
     "description": [
-        "This move can’t be\n",
-        "used."
+        "Looking for an\n",
+        "opening, the user\n",
+        "strikes consistently."
     ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",

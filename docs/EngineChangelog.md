@@ -3,6 +3,21 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Move descriptions: no more "This move can't be used."
+
+For players:
+- 24 moves that Scarlet/Violet cut showed "This move can't be used." as their description in the summary and when
+  learning them. They now use the description from the game before.
+  - The moves: Sky Drop, Spotlight, Bestow, Synchronoise, Chip Away, Ion Deluge, Telekinesis, Steamroller, Rototiller,
+    Flame Burst and Heart Stamp, plus the Let's Go partner moves (Zippy Zap, Splishy Splash, Floaty Fall, Pika Papow,
+    Bouncy Bubble, Buzzy Buzz, Sizzly Slide, Glitzy Glow, Baddy Bad, Sappy Seed, Freezy Frost, Sparkly Swirl, Veevee
+    Volley).
+- Ion Deluge's and Spotlight's texts don't fit the 5-line box in any game, so they're shortened by hand.
+- **Code:** `tools/engine/gen_moves.py` skips Scarlet/Violet's "can't be used" text, and its new `DESCRIPTIONS` table
+  holds the two hand-shortened ones. Only the descriptions in the 24 `data.json` files changed.
+
+**Verification:** test ROM built. No line is wider than the widest vanilla description line (120 pixels).
+
 ## Item 11 (effect fidelity): Sky Drop, and Smack Down against Pokémon in the air
 
 For players:

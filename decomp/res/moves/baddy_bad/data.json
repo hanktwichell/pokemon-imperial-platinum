@@ -1,8 +1,8 @@
 {
     "name": "Baddy Bad",
     "description": [
-        "This move can’t be\n",
-        "used."
+        "The user acts bad and\n",
+        "attacks the target."
     ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_DARK",

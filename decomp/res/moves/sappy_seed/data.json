@@ -1,8 +1,10 @@
 {
     "name": "Sappy Seed",
     "description": [
-        "This move can’t be\n",
-        "used."
+        "The user grows a\n",
+        "gigantic stalk that\n",
+        "scatters seeds to\n",
+        "attack the target."
     ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_GRASS",

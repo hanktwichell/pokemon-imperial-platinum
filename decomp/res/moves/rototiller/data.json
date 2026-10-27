@@ -1,8 +1,9 @@
 {
     "name": "Rototiller",
     "description": [
-        "This move can’t be\n",
-        "used."
+        "Tilling the soil, the\n",
+        "user makes it easier\n",
+        "for plants to grow."
     ],
     "class": "CLASS_STATUS",
     "type": "TYPE_GROUND",

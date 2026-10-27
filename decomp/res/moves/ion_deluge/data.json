@@ -1,8 +1,10 @@
 {
     "name": "Ion Deluge",
     "description": [
-        "This move can’t be\n",
-        "used."
+        "The user disperses\n",
+        "charged particles\n",
+        "that make Normal-type\n",
+        "moves Electric-type."
     ],
     "class": "CLASS_STATUS",
     "type": "TYPE_ELECTRIC",

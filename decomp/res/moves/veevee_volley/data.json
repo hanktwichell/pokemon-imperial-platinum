@@ -1,8 +1,11 @@
 {
     "name": "Veevee Volley",
     "description": [
-        "This move can’t be\n",
-        "used."
+        "The more Eevee loves\n",
+        "its Trainer, the\n",
+        "greater the move’s\n",
+        "power. It never\n",
+        "misses."
     ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_NORMAL",

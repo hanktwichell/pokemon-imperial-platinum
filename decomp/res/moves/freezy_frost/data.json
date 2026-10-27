@@ -1,8 +1,9 @@
 {
     "name": "Freezy Frost",
     "description": [
-        "This move can’t be\n",
-        "used."
+        "The user attacks with\n",
+        "a crystal made of\n",
+        "cold frozen haze."
     ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_ICE",

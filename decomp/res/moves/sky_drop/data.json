@@ -1,8 +1,10 @@
 {
     "name": "Sky Drop",
     "description": [
-        "This move can’t be\n",
-        "used."
+        "The user takes the\n",
+        "target into the sky,\n",
+        "then drops it during\n",
+        "the next turn."
     ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FLYING",

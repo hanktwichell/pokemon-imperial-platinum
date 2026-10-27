@@ -1,8 +1,11 @@
 {
     "name": "Synchronoise",
     "description": [
-        "This move can’t be\n",
-        "used."
+        "Using an odd shock\n",
+        "wave, the user\n",
+        "inflicts damage on\n",
+        "any Pokémon of the\n",
+        "same type in the area."
     ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_PSYCHIC",

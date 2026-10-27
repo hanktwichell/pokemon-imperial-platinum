@@ -1,8 +1,10 @@
 {
     "name": "Bouncy Bubble",
     "description": [
-        "This move can’t be\n",
-        "used."
+        "The user attacks by\n",
+        "shooting water\n",
+        "bubbles at the\n",
+        "target."
     ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_WATER",

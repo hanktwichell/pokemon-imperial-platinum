@@ -1,8 +1,11 @@
 {
     "name": "Floaty Fall",
     "description": [
-        "This move can’t be\n",
-        "used."
+        "The user floats in\n",
+        "the air, and then\n",
+        "dives at a steep\n",
+        "angle to attack the\n",
+        "target."
     ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FLYING",

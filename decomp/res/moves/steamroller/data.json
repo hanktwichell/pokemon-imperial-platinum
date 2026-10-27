@@ -1,8 +1,10 @@
 {
     "name": "Steamroller",
     "description": [
-        "This move can’t be\n",
-        "used."
+        "The user crushes its\n",
+        "target by rolling\n",
+        "over the target with\n",
+        "its rolled-up body."
     ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_BUG",

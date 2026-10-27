@@ -1,8 +1,10 @@
 {
     "name": "Sizzly Slide",
     "description": [
-        "This move can’t be\n",
-        "used."
+        "The user cloaks\n",
+        "itself in fire and\n",
+        "charges at the\n",
+        "target."
     ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_FIRE",
