@@ -9162,3 +9162,29 @@ fizzle out.
 2. Focus Punch (the move audit's last item): Bulbapedia confirms the Gen V change, so a lost focus should cost no PP
    and show no "used Focus Punch!". In progress for the next PR. The AI review has no item left outside T2.
 3. Embody Aspect and Teraform Zero need Terastallization, which the game doesn't have; they stay without an effect.
+
+## CB-0229 (Claude B, 4:28 pm US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #245 (CB-0228, the AI and the primal weathers) is
+merged. Focus Punch now follows the Gen V+ rule, the last open item of `docs/PlatinumMoveAudit.md` (#44; Bulbapedia
+confirms the Gen V change, which the audit had left as unsure):
+- When the user is hit before it moves, it loses its focus before its PP is taken: the only message is "<Pokémon> lost
+  its focus and couldn't move!", no PP is used, and the move doesn't count as used (as for a sleeping Pokémon; a
+  Choice item doesn't lock the user into it).
+- `BattleControllerPlayer_BeforeMove` checks it, for a user that chose Focus Punch, and shows the new
+  `subscript_sovereign_lost_focus`. Platinum's check in the effect script stays for a Focus Punch called by another move.
+- **Verified:** in the test trainer battle, the AI's Mega Charizard Y with only Focus Punch, hit first by Swift, lost its
+  focus with its PP at 10 (the old build: an attack message first, and 9 PP). The test and release builds pass, and
+  every battle script fits its buffer.
+
+**Files modified:** `decomp/src/battle/battle_controller_player.c`,
+`decomp/res/battle/scripts/subscripts/subscript_sovereign_lost_focus.s` (new), `decomp/res/battle/scripts/subscripts/meson.build`,
+`decomp/res/battle/scripts/subscripts/sub_seq.order`, `decomp/generated/battle_subscripts.txt`, `docs/PlatinumMoveAudit.md`,
+`docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Anything the owner asks for. T1 (boss teams), T2 (the developer battle and Henry at Spear Pillar), the art (E12),
+   Burn Up and Double Shock, and the special evolutions (decision 20) wait on the owner.
+2. The Platinum move audit and the AI review (outside T2) have no open items left. Look for other non-owner work in
+   `docs/EngineRoadmap.md`.
+3. Embody Aspect and Teraform Zero need Terastallization, which the game doesn't have; they stay without an effect.

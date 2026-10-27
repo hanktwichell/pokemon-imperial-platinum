@@ -4052,6 +4052,19 @@ static void BattleControllerPlayer_BeforeMove(BattleSystem *battleSys, BattleCon
         battleCtx->beforeMoveCheckState++;
 
     case BEFORE_MOVE_STATE_DECREMENT_PP:
+        // Sovereign: a Focus Punch user hit by a damaging move this turn loses its focus before it uses the move (Gen
+        // V+): no attack message, no PP spent, and the move doesn't count as used (UpdateMoveBuffers sees no attack
+        // message, as for a sleeping Pokemon).
+        if (battleCtx->moveCur == MOVE_FOCUS_PUNCH
+            && Battler_SelectedMove(battleCtx, battleCtx->attacker) == MOVE_FOCUS_PUNCH
+            && (battleCtx->turnFlags[battleCtx->attacker].physicalDamageAttackerMask
+                || battleCtx->turnFlags[battleCtx->attacker].specialDamageAttackerMask)) {
+            LOAD_SUBSEQ(subscript_sovereign_lost_focus);
+            battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+            battleCtx->commandNext = BATTLE_CONTROL_UPDATE_MOVE_BUFFERS;
+            return;
+        }
+
         if ((battleCtx->multiHitCheckFlags & SYSCTL_SKIP_PP_DECREMENT) == FALSE
             && BattleControllerPlayer_DecrementPP(battleSys, battleCtx) == TRUE) {
             return;

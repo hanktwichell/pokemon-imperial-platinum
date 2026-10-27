@@ -325,7 +325,7 @@ Sovereign, Magic Coat and Magic Bounce both use this flag (bcp:~3847, bcp:~3871)
 41. *Left as Platinum has it (CB-0219): an asleep or loafing user's turn is spent either way; only a frozen user that thaws hits a different Pokémon (the one coming in).* **Pursuit (228)**: let an asleep, frozen or loafing user react to a switch (bs:7330). Negligible.
 42. *Left as Platinum has it (CB-0219).* **Snatch (289)**: Gen V+ Pressure accounting. Negligible.
 43. ✅ *Done in moves batch J (CB-0219); a target with Cud Chew that eats the flung Berry eats it again too.* **Fling (374)**: prime Cud Chew when its holder flings a Berry (bs:9442). Negligible.
-44. **Focus Punch (264, UNSURE)**: Showdown's Gen V+ model doesn't use PP when focus is lost. Check against the cartridge before changing anything.
+44. ✅ *Done (CB-0229): Bulbapedia confirms the Gen V change (no PP is used, and no "used Focus Punch!" before the lost-focus message). The user loses its focus before its PP is taken, and the move doesn't count as used.* **Focus Punch (264, UNSURE)**: Showdown's Gen V+ model doesn't use PP when focus is lost. Check against the cartridge before changing anything.
 
 ### Side observations (outside the Gen IV→IX overrides)
 

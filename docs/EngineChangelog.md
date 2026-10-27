@@ -3,6 +3,28 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Focus Punch: losing focus costs no PP (Gen V+)
+
+For players:
+- **Focus Punch.** When the user is hit before it moves, it loses its focus as before, but now as since Gen V:
+  - The message is only "<Pokémon> lost its focus and couldn't move!", with no "used Focus Punch!" before it.
+  - No PP is used.
+  - The move doesn't count as used, as for a Pokémon that's asleep. For one, a Choice item doesn't lock the user into
+    it.
+
+Code:
+- `BattleControllerPlayer_BeforeMove` checks for a lost focus before it takes the PP, when the user chose Focus Punch
+  and a damaging move hit it this turn. It shows the new `subscript_sovereign_lost_focus` and goes on as for a sleeping
+  Pokémon, so `UpdateMoveBuffers` sees no attack message.
+- Platinum's own check in Focus Punch's effect script stays for a Focus Punch called by another move.
+
+Verified (test build, the test trainer battle): the AI's Mega Charizard Y knows only Focus Punch, and both of the
+player's Pokémon use Swift, which hits it first.
+- **Before:** an attack message came first (Platinum's `subscript_missed` prints it before "lost its focus"), and its PP
+  went from 10 to 9.
+- **Now:** only "The foe's CHARIZARD lost its focus and couldn't move!", and its PP stays at 10.
+- **Builds:** the test and release builds pass, and every battle script fits its buffer.
+
 ## AI review #7: the primal weathers
 
 For players:
