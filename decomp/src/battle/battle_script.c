@@ -5347,6 +5347,7 @@ static BOOL BtlCmd_TryPartyStatusRefresh(BattleSystem *battleSys, BattleContext 
             battleCtx->calcTemp |= NO_PARTNER_SLOT_2;
         }
     } else {
+        battleCtx->msgMoveTemp = battleCtx->moveCur;
         ATTACKING_MON.status = MON_CONDITION_NONE;
         ATTACKING_MON.statusVolatile &= ~VOLATILE_CONDITION_NIGHTMARE;
 
@@ -5354,8 +5355,17 @@ static BOOL BtlCmd_TryPartyStatusRefresh(BattleSystem *battleSys, BattleContext 
             int partner = BattleScript_Battler(battleSys, battleCtx, BTLSCR_ATTACKER_PARTNER);
 
             if ((battleCtx->battlersSwitchingMask & FlagIndex(partner)) == FALSE) {
-                battleCtx->battleMons[partner].status = MON_CONDITION_NONE;
-                battleCtx->battleMons[partner].statusVolatile &= ~VOLATILE_CONDITION_NIGHTMARE;
+                // Sovereign: Aromatherapy as in Gen IX. It doesn't cure a partner with Sap Sipper or Good as Gold
+                // (it says so), nor one behind a substitute.
+                if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, partner, ABILITY_SAP_SIPPER) == TRUE
+                    || Battler_IgnorableAbility(battleCtx, battleCtx->attacker, partner, ABILITY_GOOD_AS_GOLD) == TRUE) {
+                    battleCtx->calcTemp |= (SOUNDPROOF_SLOT_2 | NO_PARTNER_SLOT_2);
+                } else if (battleCtx->battleMons[partner].statusVolatile & VOLATILE_CONDITION_SUBSTITUTE) {
+                    battleCtx->calcTemp |= NO_PARTNER_SLOT_2;
+                } else {
+                    battleCtx->battleMons[partner].status = MON_CONDITION_NONE;
+                    battleCtx->battleMons[partner].statusVolatile &= ~VOLATILE_CONDITION_NIGHTMARE;
+                }
             }
         } else {
             battleCtx->calcTemp |= NO_PARTNER_SLOT_2;
@@ -7556,8 +7566,9 @@ static BOOL BtlCmd_TryMetalBurst(BattleSystem *battleSys, BattleContext *battleC
 /**
  * @brief Calculates the power for Payback.
  *
- * Payback has doubled power if the user moves after the target, if the target
- * switches out, or if the opponent uses an item.
+ * Payback has doubled power if the user moves after the target, or if the
+ * opponent uses an item. Sovereign: not against a Pokemon that switched in this
+ * turn (Gen V+); Platinum doubled it then too.
  *
  * @param battleSys
  * @param battleCtx
@@ -7567,7 +7578,8 @@ static BOOL BtlCmd_CalcPaybackPower(BattleSystem *battleSys, BattleContext *batt
 {
     BattleScript_Iter(battleCtx, 1);
 
-    if (DEFENDER_ACTION[BATTLE_ACTION_PICK_COMMAND] == BATTLE_CONTROL_MOVE_END) {
+    if (DEFENDER_ACTION[BATTLE_ACTION_PICK_COMMAND] == BATTLE_CONTROL_MOVE_END
+        && DEFENDER_TURN_FLAGS.sovereignSwitchedIn == FALSE) {
         battleCtx->movePower = CURRENT_MOVE_DATA.power * 2;
     } else {
         battleCtx->movePower = CURRENT_MOVE_DATA.power;
@@ -10314,6 +10326,10 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
     case BTLVAR_SOVEREIGN_ATTACKER_GHOST: // Sovereign: read-only, the attacker is a Ghost type, counting a type
         // Trick-or-Treat added (Curse, as Move_IsGhostCurse)
         battleCtx->sovereignTerrainTemp = MON_HAS_TYPE(battleCtx->attacker, TYPE_GHOST);
+        return &battleCtx->sovereignTerrainTemp;
+    case BTLVAR_SOVEREIGN_ILLUSION_ACTIVE: // Sovereign: read-only, the attacker's or the defender's Illusion is up
+        // (Transform fails)
+        battleCtx->sovereignTerrainTemp = battleCtx->sovereignIllusion[battleCtx->attacker] || battleCtx->sovereignIllusion[battleCtx->defender];
         return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_SMACK_DOWN_FLYER: // Sovereign (item 11): read-only, Smack Down brought the side effect's target
         // down from Fly or Bounce (Sovereign_SmackDownFlyer)

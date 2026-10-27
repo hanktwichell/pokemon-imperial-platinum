@@ -8829,3 +8829,29 @@ and 30):
    turn, Toxic Spikes vs Magic Guard, Aromatherapy's Sap Sipper/substitute skips, Howl for the partner.
 3. Nature Power/Secret Power/Camouflage by terrain; the trainer AI's view of batch C–F changes (Minimize punishers,
    Beat Up, Future Sight typing, Heal Block on drain moves).
+
+## CB-0216 (Claude B, 6:34 am US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #232 (moves batch F) is merged. Moves batch G from
+`docs/PlatinumMoveAudit.md` (marked ✅ there, part 1 item 19 and part 2 items 15, 26, 27, 32 and 33):
+- Transform fails against a substitute, from a transformed user, and while either side's Illusion is up.
+- Payback doesn't double against a Pokémon that switched in this turn (`turnFlags.sovereignSwitchedIn`).
+- Gravity stops Flying Press and Telekinesis and ends Telekinesis.
+- Magic Coat lasts the whole turn; a reflected move isn't reflected back; not while semi-invulnerable.
+- Toxic Spikes poison through Magic Guard and behind a Shed Tail/Baton Pass substitute.
+- Aromatherapy skips Sap Sipper/Good as Gold Pokémon and a partner behind a substitute.
+- Verified in the emulator (see `docs/EngineChangelog.md`). Test and release builds pass.
+
+**Files modified:** `decomp/src/battle/battle_script.c`, `decomp/src/battle/battle_lib.c`,
+`decomp/src/battle/battle_controller_player.c`, `decomp/src/battle/battle_io_command.c`,
+`decomp/generated/battle_script_vars.txt`, `decomp/res/battle/scripts/subscripts/` (`subscript_transform_into_target.s`,
+`subscript_gravity_start.s`, `subscript_hazards_check.s`, `subscript_poison.s`, `subscript_badly_poison.s`,
+`subscript_heal_bell.s`), `docs/PlatinumMoveAudit.md`, `docs/BattleMechanics.md`, `docs/EngineChangelog.md`,
+`CLAUDE_STATUS.md`.
+
+**Next 3 steps (from `docs/PlatinumMoveAudit.md`):**
+1. Moves batch H: Mud Sport/Water Sport as 5-turn field conditions (×1352/4096), Howl raising the partner's Attack,
+   Nature Power/Secret Power/Camouflage by terrain.
+2. Heal Block's third point (Leftovers, Black Sludge, Berries, Shell Bell, healing abilities).
+3. The trainer AI's view of batch C–G changes (Minimize punishers, Beat Up, Future Sight typing, Heal Block on drain
+   moves, Transform's failures).
