@@ -8934,3 +8934,28 @@ Moves batch J, the last small items of `docs/PlatinumMoveAudit.md` (part 1 items
 2. A double-battle check of the screens with one Pokémon left (`test_doublesH.py`, a partner that faints).
 3. `docs/PlatinumMoveAudit.md` is done except Focus Punch (UNSURE, needs a cartridge check) and the two items left as
    Platinum's; next, pick up the remaining rows of `docs/BattleMechanics.md` that aren't ✅.
+
+## CB-0220 (Claude B, 9:02 am US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #236 (moves batch J) is merged. AI review #18
+(`docs/AIReview.md`):
+- The trainer AI's damage estimates now include the moves whose power is worked out in battle. Flail, Reversal, Wring
+  Out, Crush Grip, Eruption, Water Spout, Dragon Energy, Punishment and Trump Card use the battle's own formulas, now
+  shared helpers in `battle_lib.c`. Sovereign's Electro Ball, Heavy Slam, Heat Crash and Hard Press now count as
+  damaging. All were skipped before.
+- Found on the way: Pika Papow and Veevee Volley hit with power 1. They now take Return's effect (power from
+  friendship), through `tools/engine/gen9_move_fixes.py`.
+- Verified in the test build: a trace of the AI's "strongest move" check, and Pika Papow's damage. Test and release
+  builds pass.
+
+**Files modified:** `decomp/include/battle/battle_lib.h`, `decomp/src/battle/battle_lib.c`,
+`decomp/src/battle/battle_script.c`, `decomp/src/battle/trainer_ai/trainer_ai.c`,
+`decomp/res/moves/{pika_papow,veevee_volley}/data.json`, `tools/engine/gen9_move_fixes.py`, `docs/MoveChecklist.md`,
+`docs/AIReview.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Check the other moves the AI can't estimate: fixed-damage Gen V+ moves (Final Gambit, Ruination, Nature's Madness,
+   Comeuppance) against Platinum's Super Fang and Endeavor handling in the AI scripts.
+2. A double-battle check of the screens with one Pokémon left (`test_doublesH.py`, a partner that faints).
+3. Anything the owner asks for. T2 (the developer battle's AI) and the Burn Up and Double Shock decisions wait on the
+   owner.

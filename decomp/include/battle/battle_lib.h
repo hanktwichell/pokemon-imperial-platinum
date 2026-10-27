@@ -591,6 +591,11 @@ BOOL Move_IsSound(int move);
 BOOL Move_IsWind(int move);
 int Sovereign_ProtosynthesisStat(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 int Move_SovereignCritStage(int move);
+int Sovereign_FlailPower(BattleMon *mon);
+int Sovereign_HPRatioPower(BattleMon *mon, int maxPower);
+int Sovereign_HPFalloffPower(BattleMon *mon, int power);
+int Sovereign_PunishmentPower(BattleMon *mon);
+int Sovereign_TrumpCardPower(int ppLeft);
 int Sovereign_MovePower(BattleSystem *battleSys, BattleContext *battleCtx, int move, int attacker, int defender, int power);
 
 /**

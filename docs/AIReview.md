@@ -49,6 +49,7 @@ opponent for checking these in game.
 | 15 | Absorbing abilities in the switch checks | the checks behind switching (does a benched Pokémon have a super-effective move? is it immune to the move that just hit?) and the choice of a replacement after a knockout use the AI's own type check, which knew Levitate and Wonder Guard but none of the absorbing abilities | after a knockout the AI sent in the Pokémon whose strongest move the foe absorbs (Hydro Pump into Water Absorb), and it counted a super-effective move into an absorber as a reason to switch to that Pokémon | **done:** the type check (`CalcEffectiveness`, used only by the AI) treats a move the target's ability absorbs as having no effect, and the post-KO damage estimate scores it 0 (section *#15*) | ✅ |
 | 16 | Trainer items | `TrainerAI_ShouldUseItem` kept looking after it picked an item, and its result stayed TRUE, so every later item it could reach was spent too, and the last one was the one used. A Full Heal was only ever used on sleep | a trainer with two or more items and few Pokémon left lost them all in one turn; Cynthia's four Full Restores could go at once | **done:** one item per turn; a Full Heal is used for any condition it cures (section *#16*) | ✅ |
 | 17 | Can it switch? | `TrainerAI_ShouldSwitch` had its own trap check. pret's notes call it naive: it didn't know that Shed Shell, its own Shadow Tag or being a Flying type (against Arena Trap) lets a Pokémon switch, nor the Gen V+ rules (nothing traps a Ghost type; Run Away under Champions; Fairy Lock; Levitate, Magnet Rise and the Air Balloon against Arena Trap) | the AI didn't switch out a Pokémon it could switch, or tried to switch one it couldn't | **done:** it asks the battle's own check, `Battler_IsTrapped` | ✅ |
+| 18 | Damage estimates for moves with a worked-out power | The AI's damage estimates (`TrainerAI_CalcAllDamage`, `FlagMoveDamageScore`, the knockout and partner checks) skip a move listed at power 1 unless its effect is in `sAltPowerMoveEffects`. Platinum's Flail, Reversal, Wring Out, Crush Grip, Punishment and Trump Card were skipped, Eruption and Water Spout were left out on purpose, and Sovereign's Electro Ball, Heavy Slam, Heat Crash and Hard Press (power set in `Sovereign_MovePower`) were never seen as damaging | a trainer with Flail at low HP, or Electro Ball, Heavy Slam or Crush Grip, didn't rate them as its strongest move | **done:** the AI works out their power with the battle's own formulas (section *#18*) | ✅ |
 
 ## Order of work
 
@@ -62,6 +63,7 @@ opponent for checking these in game.
 8. ✅ #15 (absorbing abilities in the switch checks).
 9. ✅ #16 (trainer items).
 10. ✅ #17 (the AI's trap check).
+11. ✅ #18 (damage estimates for the moves whose power is worked out in battle).
 
 Each fix gets a scenario in the test build. The developer team has Heat Wave and Rock Slide as spread moves, Water
 Spout and Origin Pulse with Kyogre, and Venusaur/Charizard sharing the field.
@@ -267,3 +269,35 @@ Verified in the test build, against a build without the fix:
   SLOWBRO's Full Heal healed its burn!").
 - Without it: "Ace Trainer Henry used one Full Heal" on turn 1, with no healing and no cure. Slowbro then fainted to
   its burn.
+
+## #18: damage estimates for moves with a worked-out power (done 2026-10-27)
+
+The AI's damage estimates skipped every move listed at power 1 (the data's mark of a variable power) unless its effect
+was in `sAltPowerMoveEffects`, which had Hidden Power, Gyro Ball, Natural Gift, Judgment, Low Kick and Grass Knot,
+Return and Frustration, and the fixed-damage moves. So:
+- Platinum's Flail and Reversal, Wring Out and Crush Grip, Punishment and Trump Card were never estimated, and Eruption
+  and Water Spout (and Dragon Energy) were left out on purpose (`sNoDamageCalcMoveEffects`): the AI couldn't work out
+  their power.
+- Sovereign's Electro Ball, Heavy Slam, Heat Crash and Hard Press, whose power `Sovereign_MovePower` sets inside
+  `BattleSystem_CalcMoveDamage`, were never seen as damaging moves at all.
+
+The fix:
+- `TrainerAI_CalcDamage` works out the power of Flail/Reversal, Wring Out/Crush Grip, Eruption/Water Spout/Dragon Energy,
+  Punishment and Trump Card (by the PP it will have left) with the same functions as the moves' battle scripts
+  (`Sovereign_FlailPower`, `Sovereign_HPRatioPower`, `Sovereign_HPFalloffPower`, `Sovereign_PunishmentPower`,
+  `Sovereign_TrumpCardPower` in `battle_lib.c`), and their effects are in `sAltPowerMoveEffects`.
+- `TrainerAI_HasDamagingPower` counts the four Sovereign moves as damaging at every place the AI decides whether to
+  estimate a move.
+- Pika Papow and Veevee Volley also had power 1 in battle (a plain hit); they now take Return's effect (power from
+  friendship, up to 102), and the AI estimates them as Return.
+
+Verified in the test build's trainer battle (a double battle; the player's Pokémon used Splash), logging
+`FlagMoveDamageScore`'s result for each of the AI's moves:
+- At 5% HP with Flail, Tackle, Eruption and Punishment: Flail rated the strongest against every target, the other three
+  "not the strongest". Before, Flail, Eruption and Punishment weren't compared at all.
+- At full HP with Electro Ball, Heavy Slam, Hard Press and Crush Grip: all four were compared; Crush Grip (120) rated
+  the strongest against two targets and Electro Ball against the third.
+- With Trump Card on its last PP (200 after use), Tackle, Pika Papow and Water Spout: Trump Card rated the strongest.
+- Pika Papow from a Pikachu with friendship 255 did 56 per hit to the Ninjask (Thunderbolt: 44–50); with friendship 0
+  it did 2, as it did at any friendship before.
+

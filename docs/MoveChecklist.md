@@ -279,7 +279,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 729 | Zippy Zap | Electric | `HIT` | exact |  |
 | 730 | Splishy Splash | Water | `HIT` | exact |  |
 | 731 | Floaty Fall | Flying | `HIT` | exact |  |
-| 732 | Pika Papow | Electric | `HIT` | exact |  |
+| 732 | Pika Papow | Electric | `POWER_BASED_ON_FRIENDSHIP` | exact | Sovereign effect: power from friendship (up to 102), as Return |
 | 733 | Bouncy Bubble | Water | `HIT` | exact |  |
 | 734 | Buzzy Buzz | Electric | `HIT` | exact |  |
 | 735 | Sizzly Slide | Fire | `HIT` | exact |  |
@@ -288,7 +288,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 738 | Sappy Seed | Grass | `HIT` | exact |  |
 | 739 | Freezy Frost | Ice | `HIT` | exact |  |
 | 740 | Sparkly Swirl | Fairy | `HIT` | exact |  |
-| 741 | Veevee Volley | Normal | `HIT` | exact |  |
+| 741 | Veevee Volley | Normal | `POWER_BASED_ON_FRIENDSHIP` | exact | Sovereign effect: power from friendship (up to 102), as Return |
 | 742 | DoubleIronBash | Steel | `HIT_TWICE` | exact |  |
 | 743 | (max-guard) | — | `—` | removed | Z-Move / Max Move: empty slot, unobtainable |
 | 744 | Dynamax Cannon | Dragon | `HIT` | exact | Sovereign effect: plain hit (no Dynamax in Sovereign) |
@@ -381,7 +381,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 831 | SpringtideStrm | Fairy | `LOWER_ATTACK_HIT` | exact | Sovereign effect: foes' Attack -1 (30%) |
 | 832 | Mystical Power | Psychic | `RAISE_SP_ATK_HIT` | exact | Sovereign effect: user Sp. Atk +1 (100%) |
 | 833 | Raging Fury | Fire | `CONTINUE_AND_CONFUSE_SELF` | exact | Sovereign effect: rampages 2-3 turns, then confuses the user |
-| 834 | Wave Crash | Water | `RECOIL_THIRD` | exact | Sovereign effect: 1/3 recoil |
+| 834 | Wave Crash | Water | `RECOIL_THIRD` | exact | Sovereign effect: 33/100 recoil |
 | 835 | Chloroblast | Grass | `SOVEREIGN_HALF_HP_COST_HIT` | exact | Sovereign effect: the user loses half its max HP, hit or miss |
 | 836 | Mountain Gale | Ice | `FLINCH_HIT` | exact | Sovereign effect: 30% flinch |
 | 837 | Victory Dance | Fighting | `SOVEREIGN_VICTORY_DANCE` | exact | Sovereign effect: user Attack +1, user Defense +1, user Speed +1 |
