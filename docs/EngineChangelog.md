@@ -17,9 +17,14 @@ Code:
 - `make_pokedex_enc_platinum.py` adds them to that spot's special encounters (`--sovereign-park-file`), as it does for
   the Honey Trees.
 
-Verified (release build output): all 55 park species have Route 221 (field 36) in their special encounters, Sneasel
-and Articuno among them. Other species are unchanged (Starly only at its Honey Tree, Bidoof none). The release build
-passes.
+Verified:
+- **Release build output:** all 55 park species have Route 221 (field 36) in their special encounters, Sneasel and
+  Articuno among them. Other species are unchanged (Starly only at its Honey Tree, Bidoof none).
+- **In the game** (test build, `tools/test/pokedex_area.py`, new): the Pokédex's Area page, with the Pokédex given and
+  one species seen. On the ROM before these changes, Metapod (only at Honey Trees) and Raichu (only in the park) read
+  "Area Unknown". Now Metapod and Beedrill light up their Honey Trees' routes (Beedrill's include the outside of
+  Eterna Forest), Raichu and Articuno light up Route 221, and Munchlax and Bidoof light up their routes.
+- The test and release builds pass.
 
 ## Pokédex area map: each Honey Tree's own species
 
