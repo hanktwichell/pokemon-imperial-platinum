@@ -3,6 +3,23 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## 12b (trainer AI): Expert scoring for the Gen V+ moves
+
+For players:
+- Trainers with the Expert AI flag now score Gen V+ setup and support moves the way they score the Gen IV moves that
+  do the same job. Examples:
+  - Quiver Dance, Shell Smash and Shift Gear are scored like Dragon Dance: favoured when the user is slower than its
+    foe, avoided at half HP or less.
+  - Sticky Web is scored like Spikes, Aurora Veil like Reflect, Strength Sap like Recover, and Shed Tail like
+    Substitute.
+  - The full list is in `docs/AIReview.md` #12.
+
+Code:
+- `script.s` (`Expert_Main`): one dispatch line per Gen V+ effect, to the matching Gen IV handler.
+
+Verified with a command trace in the test build: with the test trainer's Charizard given Quiver Dance, Shell Smash,
+Sticky Web and Strength Sap, Expert ran the Dragon Dance, Spikes and Recovery handlers for them.
+
 ## 12b (trainer AI): the Gen V+ moves, and the second Pokémon in one-trainer double battles
 
 For players:
