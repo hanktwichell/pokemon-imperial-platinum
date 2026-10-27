@@ -9107,3 +9107,28 @@ The rest of the harnesses were run on the same build (main at PR #241: the Eject
 2. Anything the owner asks for. T1 (boss teams), T2 (the developer battle and Henry at Spear Pillar), the art (E12),
    Burn Up and Double Shock, and the special evolutions (decision 20) wait on the owner.
 3. Embody Aspect and Teraform Zero need Terastallization, which the game doesn't have; they stay without an effect.
+
+## CB-0227 (Claude B, 3:42 pm US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #243 (CB-0226's evolution and Egg test fixes) is
+merged. The field harnesses were run on the same build (main at PR #241):
+- **Signs and triggers** (`signs_and_triggers.py`): **87 of 87 ok** after a fix to the test. The first run couldn't
+  find a tile to stand on for Victory Road 1F's coord trigger 0, which sits on the bike bridge's level. The game only
+  compares a coord trigger's x and z (`sub_0203CC14`), never the elevation, so `stand_next_to` in
+  `talk_to_objects.py` now counts a trigger's tiles as reached at either level.
+- **Objects** (`talk_to_objects.py`): **254 of 254 ok**.
+- **Wild forms** (`wild_forms.py`): **406 surveys, 0 problems**.
+- **Map visits** (`visit_changed_maps.py`): all **182 maps load**. 175 are idle at once; the Contest Hall lobby,
+  Sandgem's lab and the Battleground play a first-visit scene and pass with `--scene`. The other four (the Champion
+  room, the Hall of Fame, Stark Mountain rooms 1 and 3) are the long scenes the 2026-10-25 changelog notes list: the
+  screenshots show Cynthia's battle, the Hall of Fame and credits, the Galactic grunt's battle and Charon talking to
+  Looker. They run; none hangs.
+- With CB-0225 and CB-0226, every battle and field harness passes on today's build.
+
+**Files modified:** `tools/test/talk_to_objects.py`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Anything the owner asks for. T1 (boss teams), T2 (the developer battle and Henry at Spear Pillar), the art (E12),
+   Burn Up and Double Shock, and the special evolutions (decision 20) wait on the owner.
+2. Look for engine or QoL work in `docs/EngineRoadmap.md` that doesn't wait on the owner.
+3. Embody Aspect and Teraform Zero need Terastallization, which the game doesn't have; they stay without an effect.
