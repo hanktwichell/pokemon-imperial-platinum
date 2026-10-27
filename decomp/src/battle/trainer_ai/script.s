@@ -294,6 +294,9 @@ Basic_ScoreMoveEffect:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_DOWN_2_OPPOSITE_GENDER, Basic_CheckCaptivate
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STEALTH_ROCK, Basic_CheckStealthRock
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FAINT_FULL_RESTORE_NEXT_MON, Basic_CheckLunarDance
+    // Sovereign (12b): Final Gambit makes the user faint, as Explosion does. Now that it has a damage estimate, its type
+    // immunity was checked above (Basic_CheckForImmunity).
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_FINAL_GAMBIT, Basic_CheckLastMon
 
     // Sovereign (12b): the Gen V+ moves the checks above don't know. A move that would fail now, does nothing in a
     // trainer battle, only helps the foe it's aimed at (Heal Pulse, Decorate, Instruct...) or only works on the
@@ -1840,6 +1843,7 @@ Expert_Main:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_LOWER_OWN_DEF_HIT, Expert_CloseCombat
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_LOWER_OWN_SPEED_2_HIT, Expert_CloseCombat
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_LOWER_OWN_SP_ATK_2_HIT, Expert_Overheat
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_FINAL_GAMBIT, Expert_FinalGambit // Sovereign (12b)
     // Sovereign (12b): Gen V+ moves score with the Gen IV handler for the same job, as Platinum scores its own
     // multi-stat moves (Bulk Up as a Defense rise, Calm Mind as a Sp. Def rise). A move that would fail already scored
     // -10 in Basic_Main.
@@ -1988,6 +1992,21 @@ Expert_Explosion_TryScoreMinus1:
     AddToMoveScore -1
 
 Expert_Explosion_End:
+    PopOrEnd 
+
+Expert_FinalGambit:
+    // Sovereign (12b): Final Gambit deals damage equal to the user's HP, and the user faints.
+    //
+    // | Knocks the target out | Additional Qualifier | Modifier |
+    // | --------------------- | -------------------- | -------- |
+    // | No                    | N/A                  | score -2 |
+    // | Yes                   | Faster than target   | score +1 |
+    // | Yes                   | Slower than target   | score -1 |
+    //
+    // When slower, the target hits first and lowers the user's HP, which is the damage.
+    IfCurrentMoveDoesNotKill USE_MAX_DAMAGE, ScoreMinus2
+    IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, ScoreMinus1
+    AddToMoveScore 1
     PopOrEnd 
 
 Expert_DreamEater:
@@ -6485,6 +6504,7 @@ EvalAttack_Main:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HALVE_DEFENSE, EvalAttack_MaybeDeprioritize
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_LAST_WHIFF_IF_HIT, EvalAttack_MaybeDeprioritize
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HIT_FIRST_IF_TARGET_ATTACKING, EvalAttack_MaybeDeprioritize
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_FINAL_GAMBIT, EvalAttack_MaybeDeprioritize // Sovereign (12b)
 
     // Check for quad-effectiveness.
     GoTo EvalAttack_CheckQuadEffective
@@ -6507,6 +6527,7 @@ EvalAttack_TryScorePlus2:
 EvalAttack_ApplyKillBonuses:
     // Do not evaluate kills with Explosion or Self-Destruct for this routine.
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_HALVE_DEFENSE, EvalAttack_Terminate
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_FINAL_GAMBIT, EvalAttack_Terminate // Sovereign (12b): nor Final Gambit
 
     // Moves like Focus Punch, Sucker Punch, and Future Sight *may* get +4 score for a kill.
     // NOTE: Focus Punch and Sucker Punch can never actually reach this state, because the AI never
