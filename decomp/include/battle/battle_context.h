@@ -366,6 +366,8 @@ struct BattleContext {
     u8 sovereignDartsTargets[2]; // Sovereign (item 11): Dragon Darts' target and its ally
     u8 sovereignThroughProtect; // Sovereign (item 11): the current hit goes through protection with Unseen Fist or Piercing Drill
     int sovereignHPBeforeHit[MAX_BATTLERS]; // Sovereign (item 11): each battler's HP before the last hit it took (Berserk, Innards Out)
+    int sovereignHPBeforeAction[MAX_BATTLERS]; // Sovereign (item 11): each battler's HP as its last move began (Emergency Exit)
+    int sovereignHPBeforeTurnEnd[MAX_BATTLERS]; // Sovereign (item 11): each battler's HP as the end-of-turn effects began
     int sovereignDragonCheer[MAX_BATTLERS]; // Sovereign (item 11): Dragon Cheer's crit stages (1, or 2 for a Dragon type)
     u8 sovereignAteBerry[MAX_BATTLERS]; // Sovereign (item 11): party slots that have eaten a Berry this battle (Belch)
     u16 sovereignCudChewBerry[MAX_BATTLERS]; // Sovereign (item 11): the Berry Cud Chew will eat again (ITEM_NONE for none)

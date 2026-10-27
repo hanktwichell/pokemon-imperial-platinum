@@ -236,8 +236,8 @@ IMPLEMENTED = {
     291: "yes: it eats again the Berry it ate (not one taken by Bug Bite or Pluck), at the end of the next turn (turn 2 for a Berry eaten as the battle starts)",  # Cud Chew
     165: "yes: Attract, Disable, Encore, Heal Block, Taunt and Torment don't affect it or its partner, nor does Cursed Body or Cute Charm (\"…is protected by an aromatic veil!\")",  # Aroma Veil
     166: "yes: other Pokémon can't lower the stats of, give a status condition to or make drowsy a Grass type on its side, itself or its partner (\"…surrounded itself with a veil of petals!\")",  # Flower Veil
-    193: "yes: switches out (a wild one flees) when another Pokémon's damaging move drops it to half its HP or less (`BattleSystem_TriggerHeldItemOnHit`); not yet after indirect damage",  # Wimp Out
-    194: "yes: switches out (a wild one flees) when another Pokémon's damaging move drops it to half its HP or less (`BattleSystem_TriggerHeldItemOnHit`); not yet after indirect damage",  # Emergency Exit
+    193: "yes: switches out (a wild one flees) when its HP falls from above half to half or less: by another Pokémon's damaging move (`BattleSystem_TriggerHeldItemOnHit`), its own damaging move's recoil, crash or Life Orb (`BattleControllerPlayer_MoveEnd`), or the end-of-turn damage (`BattleControllerPlayer_TurnEnd`); not after entry hazards",  # Wimp Out
+    194: "yes: switches out (a wild one flees) when its HP falls from above half to half or less: by another Pokémon's damaging move (`BattleSystem_TriggerHeldItemOnHit`), its own damaging move's recoil, crash or Life Orb (`BattleControllerPlayer_MoveEnd`), or the end-of-turn damage (`BattleControllerPlayer_TurnEnd`); not after entry hazards",  # Emergency Exit
     273: "yes: absorbs Fire moves, Defense +2 (`BattleSystem_TriggerImmunityAbility`)",  # Well-Baked Body
     297: "yes: absorbs Ground moves, restores 1/4 of max HP (`BattleSystem_TriggerImmunityAbility`)",  # Earth Eater
     156: "yes: reflects status moves aimed at it",

@@ -1055,6 +1055,11 @@ static void BattleControllerPlayer_BranchActions(BattleSystem *battleSys, Battle
         battleCtx->turnOrderCounter = 0;
         battleCtx->sovereignMegaPending = 0;
         battleCtx->command = BATTLE_CONTROL_CHECK_FIELD_CONDITIONS;
+
+        // Sovereign (item 11): the HP before the end-of-turn damage, for Emergency Exit (BattleControllerPlayer_TurnEnd).
+        for (int i = 0; i < maxBattlers; i++) {
+            battleCtx->sovereignHPBeforeTurnEnd[i] = battleCtx->battleMons[i].curHP;
+        }
     } else {
         battleCtx->command = battleCtx->battlerActions[battleCtx->battlerActionOrder[battleCtx->turnOrderCounter]][BATTLE_ACTION_PICK_COMMAND];
     }
@@ -2163,8 +2168,26 @@ static void BattleControllerPlayer_CheckSideConditions(BattleSystem *battleSys, 
 static void BattleControllerPlayer_TurnEnd(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     if (BattleControllerPlayer_AnyExpPayout(battleCtx, battleCtx->command, battleCtx->command) == TRUE
-        || BattleControllerPlayer_CheckBattleOver(battleSys, battleCtx) == TRUE
-        || BattleControllerPlayer_ReplaceFainted(battleSys, battleCtx) == TRUE) {
+        || BattleControllerPlayer_CheckBattleOver(battleSys, battleCtx) == TRUE) {
+        return;
+    }
+
+    // Sovereign (item 11): Emergency Exit and Wimp Out after the end-of-turn damage took the holder's HP above half
+    // (weather, poison, a burn, Leech Seed, ...), fastest first, before the fainted are replaced.
+    for (int i = 0; i < BattleSystem_GetMaxBattlers(battleSys); i++) {
+        int battler = battleCtx->monSpeedOrder[i];
+
+        if (Sovereign_EmergencyExitDue(battleCtx, battler, battleCtx->sovereignHPBeforeTurnEnd[battler])) {
+            battleCtx->sovereignHPBeforeTurnEnd[battler] = 0;
+            battleCtx->defender = battler;
+            LOAD_SUBSEQ(subscript_sovereign_emergency_exit);
+            battleCtx->commandNext = battleCtx->command;
+            battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+            return;
+        }
+    }
+
+    if (BattleControllerPlayer_ReplaceFainted(battleSys, battleCtx) == TRUE) {
         return;
     }
 
@@ -2193,6 +2216,8 @@ static void BattleControllerPlayer_FightCommand(BattleSystem *battleSys, BattleC
         battleCtx->command = BATTLE_CONTROL_MOVE_END;
         return;
     }
+
+    battleCtx->sovereignHPBeforeAction[battleCtx->attacker] = ATTACKING_MON.curHP; // Sovereign (item 11): Emergency Exit
 
     if (ATTACKER_TURN_FLAGS.struggling) {
         battleCtx->moveTemp = MOVE_STRUGGLE;
@@ -5238,6 +5263,7 @@ static void BattleControllerPlayer_SovereignStartExtraAction(BattleSystem *battl
     battleCtx->attacker = battler;
     battleCtx->moveTemp = move;
     battleCtx->moveCur = move;
+    battleCtx->sovereignHPBeforeAction[battler] = battleCtx->battleMons[battler].curHP; // Emergency Exit
     battleCtx->command = BATTLE_CONTROL_BEFORE_MOVE;
     BattleController_EmitClearMessageBox(battleSys);
 }
@@ -5355,6 +5381,21 @@ static void BattleControllerPlayer_MoveEnd(BattleSystem *battleSys, BattleContex
         }
 
         if (BattleControllerPlayer_SovereignMoveFormChange(battleSys, battleCtx) == TRUE) {
+            return;
+        }
+
+        // Sovereign (item 11): Emergency Exit and Wimp Out after the user's own damaging move cost it its HP above half
+        // (recoil, crash, Life Orb, a Rocky Helmet; not a hit on itself in confusion).
+        int user = battleCtx->attacker;
+
+        if ((battleCtx->battleStatusMask2 & SYSCTL_MOVE_SUCCEEDED)
+            && CURRENT_MOVE_DATA.class != CLASS_STATUS
+            && Sovereign_EmergencyExitDue(battleCtx, user, battleCtx->sovereignHPBeforeAction[user])) {
+            battleCtx->sovereignHPBeforeAction[user] = 0;
+            battleCtx->defender = user;
+            LOAD_SUBSEQ(subscript_sovereign_emergency_exit);
+            battleCtx->commandNext = battleCtx->command;
+            battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
             return;
         }
 

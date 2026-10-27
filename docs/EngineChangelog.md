@@ -3,6 +3,30 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Item 11 (effect fidelity): Emergency Exit and Wimp Out after indirect damage
+
+For players:
+- **Emergency Exit and Wimp Out** used to switch their holder out only when another Pokémon's hit took its HP from
+  above half to half or less. They now also do it, as in Showdown, when that happens through:
+  - **The holder's own damaging move:** recoil, crash damage from a missed High Jump Kick, Life Orb, or a Rocky Helmet
+    or Rough Skin it hit. A hit on itself in confusion doesn't count, nor do status moves (Substitute, Belly Drum).
+  - **The end-of-turn damage:** weather, poison, a burn, Leech Seed and the like. The fastest goes first, before
+    fainted Pokémon are replaced.
+- Either way the holder switches to a Pokémon its trainer picks, as before; a wild one flees. Entry hazards on switch-in
+  still don't set it off.
+- **Code:**
+  - `sovereignHPBeforeAction` is saved as each move begins (`FightCommand`, extra actions) and
+    `sovereignHPBeforeTurnEnd` as the end of the turn begins (`BranchActions`).
+  - `BattleControllerPlayer_MoveEnd` and `BattleControllerPlayer_TurnEnd` check `Sovereign_EmergencyExitDue` and run
+    `subscript_sovereign_emergency_exit`.
+
+**Verification:** test and release ROMs built; the battle-script size check passes. Wild battles with a Lv. 50
+Golisopod (148 HP):
+- **55% HP, Life Orb, Tackle:** "GOLISOPOD's Emergency Exit activated!", "GOLISOPOD went back to A!", the party
+  screen, "Go for it, GALLADE!", then the wild Geodude still takes its turn.
+- **60% HP, badly poisoned by Geodude's Toxic:** at the end of the second turn, "GOLISOPOD is hurt by poison!", then
+  Emergency Exit, and Archaludon comes in. The battle goes on.
+
 ## Move data: Freeze-Dry can't freeze again, and the move generators reproduce the data
 
 For players:
