@@ -8544,3 +8544,30 @@ is merged. This PR does the `docs/BattleMechanics.md` row on **Champions' move f
 2. 12b #7 (weather) waits for T2. Champions' Sheer Force tweaks: no source found says what they are.
 3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.
 
+## CB-0207 (Claude B, 12:37 am US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #223 (move flags, sound moves, Soundproof, Heal
+Bell) is merged. This PR does the last open `docs/BattleMechanics.md` ability row, from Showdown's Champions mod:
+- **Run Away:** its holder can switch out past any trap (`Battler_IsTrapped`). Before, it could only flee.
+- **Sheer Force:** it no longer stops the target's Emergency Exit, Wimp Out, Eject Button or Red Card. Gen IX skips
+  the target's after-hit events for a Sheer Force move; Champions doesn't. Berserk, Anger Shell, Pickpocket and Color
+  Change already didn't check it.
+- **12b #17:** `TrainerAI_ShouldSwitch` now asks `Battler_IsTrapped` instead of its own naive check. It now knows
+  Shed Shell, the Ghost type, Run Away, Fairy Lock and the Arena Trap exceptions.
+- **The Emergency Exit tweak:** Champions only drops the line that cancels other Pokémon's switches. Ours already
+  didn't cancel them.
+- **Verified in the test build:**
+  - Run Away: the Raticate switched out under Mean Look, and with Guts it stayed in.
+  - Sheer Force Ember: the Eject Button switched Snorlax out, and a wild Golisopod's Emergency Exit made it flee.
+  - Test and release builds pass.
+
+**Files modified:** `decomp/src/battle/battle_lib.c`, `decomp/src/battle/trainer_ai/trainer_ai.c`,
+`tools/engine/gen_abilities.py`, `docs/AbilityChecklist.md`, `docs/BattleMechanics.md`, `docs/AIReview.md`,
+`docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. `docs/BattleMechanics.md` has no ⏳ or 🟡 rows left, so look at its "Not verifiable yet" section for anything
+   now checkable.
+2. 12b #7 (weather) waits for T2.
+3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.
+

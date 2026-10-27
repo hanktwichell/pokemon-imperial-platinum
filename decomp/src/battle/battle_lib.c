@@ -8056,8 +8056,9 @@ BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *b
     }
 
     // Sovereign (item 11): Emergency Exit and Wimp Out switch their holder out (a wild one flees) when another Pokemon's
-    // damaging move drops it from above half its HP to half or less, as an Eject Button does; not when Sheer Force
-    // powered the move up. As in Champions, a U-turn user still switches out too.
+    // damaging move drops it from above half its HP to half or less, as an Eject Button does. As in Champions, a U-turn
+    // user still switches out too, and Sheer Force doesn't stop it (Showdown's Champions mod runs the target's
+    // after-hit effects for a Sheer Force move: Gen IX skips them).
     if ((Battler_Ability(battleCtx, battleCtx->defender) == ABILITY_EMERGENCY_EXIT
             || Battler_Ability(battleCtx, battleCtx->defender) == ABILITY_WIMP_OUT)
         && battleCtx->attacker != battleCtx->defender
@@ -8065,8 +8066,7 @@ BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *b
         && DEFENDING_MON.curHP <= DEFENDING_MON.maxHP / 2
         && battleCtx->sovereignHPBeforeHit[battleCtx->defender] > DEFENDING_MON.maxHP / 2
         && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
-        && (battleCtx->battlersSwitchingMask & FlagIndex(battleCtx->defender)) == FALSE
-        && Move_SheerForceApplies(battleCtx, battleCtx->attacker, battleCtx->moveCur) == FALSE) {
+        && (battleCtx->battlersSwitchingMask & FlagIndex(battleCtx->defender)) == FALSE) {
         battleCtx->sovereignHPBeforeHit[battleCtx->defender] = DEFENDING_MON.curHP; // once per hit
         battleCtx->switchedMon = battleCtx->defender;
         *subscript = subscript_sovereign_emergency_exit;
@@ -8098,7 +8098,7 @@ BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *b
     // Sovereign (item 11): a Red Card drags out the Pokemon that hit its holder with a damaging move; an Eject Button
     // switches its holder out. After a U-turn or the like, an Eject Button still works (Champions: both switch out) but
     // a Red Card doesn't (the user switched out already). Neither works against a Pokemon already switching out
-    // (Pursuit), or when Sheer Force powered the move up.
+    // (Pursuit). As in Champions, both work after a Sheer Force move too (Gen IX: neither).
     u16 item = Battler_HeldItem(battleCtx, battleCtx->defender);
     if ((item == ITEM_RED_CARD || item == ITEM_EJECT_BUTTON)
         && battleCtx->attacker != battleCtx->defender
@@ -8106,8 +8106,7 @@ BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *b
         && (item == ITEM_EJECT_BUTTON || ATTACKING_MON.curHP)
         && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
         && (item == ITEM_EJECT_BUTTON || (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE)
-        && (battleCtx->battlersSwitchingMask & FlagIndex(battleCtx->defender)) == FALSE
-        && Move_SheerForceApplies(battleCtx, battleCtx->attacker, battleCtx->moveCur) == FALSE) {
+        && (battleCtx->battlersSwitchingMask & FlagIndex(battleCtx->defender)) == FALSE) {
         *subscript = item == ITEM_RED_CARD ? subscript_sovereign_red_card : subscript_sovereign_eject_button;
         return TRUE;
     }
@@ -8326,7 +8325,8 @@ BOOL Battler_IsTrapped(BattleSystem *battleSys, BattleContext *battleCtx, int ba
     }
 
     if (Battler_HeldItemEffect(battleCtx, battler) == HOLD_EFFECT_SWITCH
-        || MON_HAS_TYPE(battler, TYPE_GHOST)) { // Sovereign (item 11): since Gen VI, nothing traps a Ghost type
+        || MON_HAS_TYPE(battler, TYPE_GHOST) // Sovereign (item 11): since Gen VI, nothing traps a Ghost type
+        || Battler_Ability(battleCtx, battler) == ABILITY_RUN_AWAY) { // Sovereign (Pokémon Champions): nor Run Away
         return FALSE;
     }
 

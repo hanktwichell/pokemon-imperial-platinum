@@ -48,6 +48,7 @@ opponent for checking these in game.
 | 14 | Platinum's own AI bugs | pret's decompilation marks eight mistakes in the AI: seven in the script and one in the choice of a replacement after a knockout (`docs/bugs_and_glitches.md` in `decomp/`). Examples: Facade was scored by the foe's status, Water Spout and Eruption by the foe's HP, and the replacement's score overflowed past 255 | the AI scored these moves on the wrong Pokémon, and Lv. 100 bosses picked the wrong replacement | **done:** all eight fixed (section *#14*) | ✅ |
 | 15 | Absorbing abilities in the switch checks | the checks behind switching (does a benched Pokémon have a super-effective move? is it immune to the move that just hit?) and the choice of a replacement after a knockout use the AI's own type check, which knew Levitate and Wonder Guard but none of the absorbing abilities | after a knockout the AI sent in the Pokémon whose strongest move the foe absorbs (Hydro Pump into Water Absorb), and it counted a super-effective move into an absorber as a reason to switch to that Pokémon | **done:** the type check (`CalcEffectiveness`, used only by the AI) treats a move the target's ability absorbs as having no effect, and the post-KO damage estimate scores it 0 (section *#15*) | ✅ |
 | 16 | Trainer items | `TrainerAI_ShouldUseItem` kept looking after it picked an item, and its result stayed TRUE, so every later item it could reach was spent too, and the last one was the one used. A Full Heal was only ever used on sleep | a trainer with two or more items and few Pokémon left lost them all in one turn; Cynthia's four Full Restores could go at once | **done:** one item per turn; a Full Heal is used for any condition it cures (section *#16*) | ✅ |
+| 17 | Can it switch? | `TrainerAI_ShouldSwitch` had its own trap check. pret's notes call it naive: it didn't know that Shed Shell, its own Shadow Tag or being a Flying type (against Arena Trap) lets a Pokémon switch, nor the Gen V+ rules (nothing traps a Ghost type; Run Away under Champions; Fairy Lock; Levitate, Magnet Rise and the Air Balloon against Arena Trap) | the AI didn't switch out a Pokémon it could switch, or tried to switch one it couldn't | **done:** it asks the battle's own check, `Battler_IsTrapped` | ✅ |
 
 ## Order of work
 
@@ -60,6 +61,7 @@ opponent for checking these in game.
 7. ✅ #14 (Platinum's own AI bugs).
 8. ✅ #15 (absorbing abilities in the switch checks).
 9. ✅ #16 (trainer items).
+10. ✅ #17 (the AI's trap check).
 
 Each fix gets a scenario in the test build. The developer team has Heat Wave and Rock Slide as spread moves, Water
 Spout and Origin Pulse with Kyogre, and Venusaur/Charizard sharing the field.
