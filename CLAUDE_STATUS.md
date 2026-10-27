@@ -8326,3 +8326,24 @@ one-trainer double battles) is merged. This PR: 12b #12, Expert scoring for the 
    logic).
 2. 12b #7 (weather) waits for T2. Emergency Exit after entry hazards is still open.
 3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.
+
+## CB-0199 (Claude B, 9:30 pm US Central, 2026-10-26)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #215 (Expert scoring for the Gen V+ moves) is
+merged. This PR: 12b #13. The trainer AI's "switch to a Pokémon that absorbs the foe's move" logic
+(`AI_HasAbsorbAbilityInParty`) only knew Flash Fire, Water Absorb and Volt Absorb. It now uses the full ability list
+the partner checks use (`AI_AbilityAbsorbsMoveType`): Motor Drive, Dry Skin, Storm Drain, Lightning Rod, Sap Sipper,
+Well-Baked Body and Earth Eater too.
+- Verified in the test build: a Tyranitar hit by Mud-Slap was switched out for a benched Pokémon given Earth Eater,
+  which then absorbed Mud-Slap.
+- Found while testing (Platinum's behaviour, left as is): the AI only counts a hit that landed after its own Pokémon
+  moved, because the record of the last hit is cleared when that Pokémon moves.
+
+**Files modified:** `decomp/src/battle/trainer_ai/trainer_ai.c`, `docs/AIReview.md`, `docs/EngineChangelog.md`,
+`CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. `TrainerAI_ShouldUseItem` and the post-KO switch-in choice (`BattleAI_PostKOSwitchIn`) don't know Gen V+ items and
+   abilities. Check them against the added type (Trick-or-Treat) and the Gen V+ immunities.
+2. 12b #7 (weather) waits for T2. Emergency Exit after entry hazards is still open.
+3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.

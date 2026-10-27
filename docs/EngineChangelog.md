@@ -3,6 +3,22 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## 12b (trainer AI): switching to any Pokémon that absorbs the foe's move
+
+For players:
+- When a trainer's Pokémon is hit by a move that a benched Pokémon's ability would absorb, the trainer may switch to
+  that Pokémon (half the time, as in Platinum). Platinum only looked for Flash Fire, Water Absorb and Volt Absorb. It
+  now also knows Motor Drive and Dry Skin, and the Gen V+ absorbers: Storm Drain, Lightning Rod, Sap Sipper,
+  Well-Baked Body and Earth Eater (`docs/AIReview.md` #13).
+
+Code:
+- `trainer_ai.c`: `AI_HasAbsorbAbilityInParty` uses `AI_AbilityAbsorbsMoveType`, the ability list the partner checks
+  already used (`AI_PartnerAbsorbsMoveType` now calls it).
+
+Verified in the test build:
+- Setup: the test trainer's Tyranitar led, with Venusaur given Earth Eater on the bench.
+- Result: hit by Mud-Slap, the trainer switched to Venusaur on turn 2, and Earth Eater absorbed the next Mud-Slap.
+
 ## 12b (trainer AI): Expert scoring for the Gen V+ moves
 
 For players:
