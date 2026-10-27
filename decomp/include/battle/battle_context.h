@@ -368,6 +368,7 @@ struct BattleContext {
     int sovereignHPBeforeHit[MAX_BATTLERS]; // Sovereign (item 11): each battler's HP before the last hit it took (Berserk, Innards Out)
     int sovereignHPBeforeAction[MAX_BATTLERS]; // Sovereign (item 11): each battler's HP as its last move began (Emergency Exit)
     int sovereignHPBeforeTurnEnd[MAX_BATTLERS]; // Sovereign (item 11): each battler's HP as the end-of-turn effects began
+    u8 sovereignHealingWish[MAX_BATTLERS]; // Sovereign (item 11): the SOVEREIGN_WISH_* waiting in each battler's slot for a Pokemon that needs it (Gen VIII+)
     int sovereignHPOnEntry[MAX_BATTLERS]; // Sovereign (item 11): each battler's HP as it was switched in (not dragged in), until the switch-in effects check it (Emergency Exit)
     int sovereignDragonCheer[MAX_BATTLERS]; // Sovereign (item 11): Dragon Cheer's crit stages (1, or 2 for a Dragon type)
     u8 sovereignAteBerry[MAX_BATTLERS]; // Sovereign (item 11): party slots that have eaten a Berry this battle (Belch)

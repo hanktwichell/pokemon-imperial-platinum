@@ -3,6 +3,36 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Item 11: Healing Wish and Lunar Dance as in Gen IX
+
+For players:
+- **When the replacement comes in:** the user faints as before, but its replacement comes in at the end of the turn,
+  like any fainted Pokémon's. In Platinum it came in at once, in the middle of the turn.
+- **Before the entry hazards:** the Pokémon that comes into the slot is healed first. It gets full HP and loses its
+  status condition. With Lunar Dance it also gets its PP back. In Platinum the heal came after Stealth Rock and Spikes,
+  so the newcomer still lost HP to them.
+- **The wish waits:** if the Pokémon coming in needs none of it (full HP, no status, and for Lunar Dance full PP),
+  the wish stays in the slot for the next Pokémon to come in (Gen VIII+). That can be a switch, a U-turn, a faint
+  replacement or a Pokémon dragged in by Roar.
+
+Code:
+- The moves' subscripts (`subscript_healing_wish`, `subscript_lunar_dance`) now only faint the user and set
+  `BattleContext.sovereignHealingWish` for its slot. `BTLVAR_SOVEREIGN_HEALING_WISH_ATTACKER` holds that slot's wish.
+- The effect scripts still fail the move when no Pokémon can come in, without opening the party list.
+- `subscript_hazards_check` heals first. `BTLVAR_SOVEREIGN_HEALING_WISH_SWITCHED_MON` gives the wish waiting in the
+  slot and uses it up if the Pokémon needs it.
+- The heal is written out in `subscript_hazards_check`, not called from `subscript_wish_heal`. After a U-turn, the
+  hazard check already runs two calls deep, and the battle script stack holds four.
+
+Verified, in the test build: a Blissey used the move after a wild Lv. 100 Ninjask laid Stealth Rock.
+- **Healing Wish, Golisopod at 40%:** it came in at the end of the turn at 59/148. "The healing wish came true!",
+  then it was healed to 148/148, then the rocks took it to 111.
+- **Lunar Dance, same setup:** same result, with "It became cloaked in mystical moonlight!".
+- **Healing Wish, Golisopod at full HP:** no heal, and the rocks took it to 111.
+- **A later Pokémon:** the wish waited through two Pokémon at full HP, Golisopod and then Starly. Golisopod came back
+  after Starly fainted, at 66/148, and was healed before the rocks.
+- The test and release builds pass, and every battle script fits.
+
 ## Item 11: Emergency Exit and Wimp Out after the entry hazards
 
 For players:

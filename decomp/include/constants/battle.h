@@ -68,6 +68,10 @@
 #define BATTLE_SCRIPT_SIZE_MAX  512
 #define BATTLE_SCRIPT_STACK_MAX 4
 
+// Sovereign (item 11): the wish waiting in a battler's slot (BattleContext.sovereignHealingWish).
+#define SOVEREIGN_WISH_HEALING_WISH 1
+#define SOVEREIGN_WISH_LUNAR_DANCE  2
+
 #define MAX_OPPONENTS     2
 #define MAX_TRAINER_ITEMS 4
 
