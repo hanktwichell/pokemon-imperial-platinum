@@ -3,6 +3,30 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Pokédex area map: each Honey Tree's own species
+
+For players: the Pokédex area map ("Area" on a species' page) shows a Honey Tree Pokémon only at the trees where it
+can appear. Sovereign gives each of the 21 trees its area's own table (as in Renegade), but the map still used
+Platinum's single table, shared by every tree. So the map showed Platinum's honey species (Combee, Wurmple, Burmy,
+Cherubi, Aipom, Heracross) at every tree, and none of Sovereign's. Every species a tree can give is now shown, its
+rare one too (Platinum left Munchlax off the map).
+
+Code:
+- `tools/engine/gen_wild_encounters.py` also writes `decomp/res/field/encounters/sovereign_honey_trees.json`: each
+  tree's species and its spot on the area map. A tree's spot comes from its area's encounter file (`map_category`).
+  The two areas with only a Honey Tree have Platinum's honey spots: Floaroma Meadow (dungeon 21) and the outside of
+  Eterna Forest (field 50).
+- `make_pokedex_enc_platinum.py` takes it with `--sovereign-honey-file` and adds each tree's species to that tree's
+  spot only. Without the option it keeps Platinum's behavior.
+- CI's "Engine data regenerates unchanged" step runs `gen_wild_encounters.py`, so the file can't go stale when the
+  encounter plan changes.
+
+Verified (release build output, the honey spots of each species' area data):
+- Starly only at Route 205 North's tree (field 18), Wurmple only at Route 205 South's (field 17).
+- Munchlax and Aipom at fields 6, 20, 26, 30 and 31, Snorlax at field 37, Beedrill at fields 30 and 50.
+- Heracross at fields 7, 17, 19, 23, 34 and 37, Combee at the same trees but 37.
+- Re-running the generator changes nothing. The test and release builds pass.
+
 ## Item 11 (effect fidelity): Eject Pack
 
 For players: the Eject Pack from the Veilstone Dept. Store now works. Before, it did nothing.

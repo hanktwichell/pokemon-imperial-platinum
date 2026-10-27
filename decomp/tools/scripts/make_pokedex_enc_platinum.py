@@ -37,6 +37,9 @@ argparser.add_argument('-t', '--honey-file',
 argparser.add_argument('-g', '--trophy-file',
                        required=True,
                        help='encounter file for the Trophy Garden')
+argparser.add_argument('--sovereign-honey-file',
+                       help='Sovereign: each Honey Tree\'s own species and map spot (sovereign_honey_trees.json); '
+                            'replaces the honey file\'s one table shared by every tree')
 argparser.add_argument('-m', '--marsh-file',
                        required=True,
                        help='encounter file for the Great Marsh Lookout')
@@ -306,7 +309,19 @@ for file in args.src_files:
         print(f"{ANSI_BOLD_WHITE}{file}:{e.lineno}:{e.colno}: {ANSI_BOLD_RED}error: {ANSI_BOLD_WHITE}{e.msg}{ANSI_CLEAR}\n{error_out}", file=sys.stderr)
         continue
 
-    if (file == args.honey_file):
+    if (file == args.honey_file and args.sovereign_honey_file):
+        # Sovereign: each tree has its own table (gen_wild_encounters.py); its species go on that tree's spot only.
+        with open(args.sovereign_honey_file, encoding='utf-8') as sovereign_file:
+            for tree in json.load(sovereign_file)['trees']:
+                for species in tree['species']:
+                    if tree['map_type'] == 'dungeon':
+                        dungeon_special[Species[species].value].add(tree['map_number'])
+                        dungeon_special_natdex[Species[species].value].add(tree['map_number'])
+                    else:
+                        field_special[Species[species].value].add(tree['map_number'])
+                        field_special_natdex[Species[species].value].add(tree['map_number'])
+
+    elif (file == args.honey_file):
         for species in enc_data['common']:
             for map_num in honey_tree_dungeons:
                 dungeon_special[Species[species].value].add(map_num)
