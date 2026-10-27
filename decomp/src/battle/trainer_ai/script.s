@@ -1841,6 +1841,38 @@ Expert_Main:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_LOWER_OWN_DEF_HIT, Expert_CloseCombat
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_LOWER_OWN_SPEED_2_HIT, Expert_CloseCombat
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_LOWER_OWN_SP_ATK_2_HIT, Expert_Overheat
+    // Sovereign (12b): Gen V+ moves score with the Gen IV handler for the same job, as Platinum scores its own
+    // multi-stat moves (Bulk Up as a Defense rise, Calm Mind as a Sp. Def rise). A move that would fail already scored
+    // -10 in Basic_Main.
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_HONE_CLAWS, Expert_StatusAttackUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_WORK_UP, Expert_StatusAttackUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_GROWTH, Expert_StatusAttackUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_COIL, Expert_StatusDefenseUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_COTTON_GUARD, Expert_StatusDefenseUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_STUFF_CHEEKS, Expert_StatusDefenseUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_TAKE_HEART, Expert_StatusSpDefenseUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_GEOMANCY, Expert_StatusSpDefenseUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_AUTOTOMIZE, Expert_StatusSpeedUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_QUIVER_DANCE, Expert_DragonDance
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_SHIFT_GEAR, Expert_DragonDance
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_SHELL_SMASH, Expert_DragonDance
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_VICTORY_DANCE, Expert_DragonDance
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_NO_RETREAT, Expert_DragonDance
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_CLANGOROUS_SOUL, Expert_DragonDance
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_FILLET_AWAY, Expert_DragonDance
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_TIDY_UP, Expert_DragonDance
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_NOBLE_ROAR, Expert_StatusAttackDown
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_TEARFUL_LOOK, Expert_StatusAttackDown
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_VENOM_DRENCH, Expert_StatusAttackDown
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_SPICY_EXTRACT, Expert_StatusDefenseDown
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_TOXIC_THREAD, Expert_StatusSpeedDown
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_TAR_SHOT, Expert_StatusSpeedDown
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_STRENGTH_SAP, Expert_Recovery
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_STICKY_WEB, Expert_Spikes
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_AURORA_VEIL, Expert_Reflect
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_SHED_TAIL, Expert_Substitute
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_OCTOLOCK, Expert_BindingMove
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_TRAP_HIT, Expert_BindingMove
     IfMoveEqualTo MOVE_STORM_THROW, Expert_HighCritical
     IfMoveEqualTo MOVE_FROST_BREATH, Expert_HighCritical
     IfMoveEqualTo MOVE_WICKED_BLOW, Expert_HighCritical

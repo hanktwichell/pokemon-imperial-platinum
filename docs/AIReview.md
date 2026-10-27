@@ -43,6 +43,7 @@ opponent for checking these in game.
 | 9 | Mega Evolution timing | none (E8 adds Mega Evolution) | — | **done with E8:** the AI Mega Evolves as soon as it can, so on its first turn with the stone (`docs/EngineChangelog.md`, E8 step 2) | ✅ |
 | 10 | The second Pokémon in a double battle against one trainer | A script that starts a double battle with one trainer ID (`StartTrainerBattle` with one argument: the Elite Four's and Cynthia's double battles, Cyrus in the Distortion World) leaves the second enemy slot without a trainer. `TrainerAI_Init` read that empty slot's AI flags, so the second Pokémon ran only the doubles routine (no Basic, Eval Attack or Expert), and it couldn't use the trainer's items. Trainers that walk up as a pair (twins) fill both slots and were fine | the toughest double battles had a much weaker second Pokémon | **done:** `AI_TrainerSlot` gives that slot the first enemy trainer's AI flags, and both Pokémon share its items | ✅ |
 | 11 | Gen V+ moves the script doesn't know | `Basic_Main` scores moves by their Gen IV effect. The 80 Gen V+ status effects (item 11) got no checks, so the AI could heal or boost the player's Pokémon (Heal Pulse, Decorate, Purify, Instruct, After You) or pick a move that fails (Life Dew at full HP, Stuff Cheeks without a Berry, Coaching in a single battle, a terrain that's already up, Poltergeist on a target without an item...) | wasted turns, or turns that help the player | **done:** `LoadSovereignMoveRating` (`trainer_ai.c`) rates them; a move that would fail now, does nothing in a trainer battle, only helps the foe it's aimed at or only works on the partner scores −10 | ✅ |
+| 12 | Expert scoring for Gen V+ moves | `Expert_Main` scores moves by their Gen IV effect too, so Gen V+ setup moves, hazards and the like got none of its scoring (Platinum scores Bulk Up as a Defense rise, Calm Mind as a Sp. Def rise, Dragon Dance with its own handler) | Quiver Dance, Shell Smash or Sticky Web were never favoured, Strength Sap at full HP never discouraged | **done:** each Gen V+ move goes to the Gen IV handler for the same job (table in the *#12* section) | ✅ |
 
 ## Order of work
 
@@ -50,6 +51,7 @@ opponent for checking these in game.
 2. ✅ #3 (spread credit). ✅ #4–#5 (absorbing abilities and redirection).
 3. ✅ #8 (partner scoring with the moves' exact effects). ✅ #9 (with E8). #7 waits for T2.
 4. ✅ #10 (the second Pokémon's AI flags and items) and #11 (the Gen V+ moves).
+5. ✅ #12 (Expert scoring for the Gen V+ moves).
 
 Each fix gets a scenario in the test build. The developer team has Heat Wave and Rock Slide as spread moves, Water
 Spout and Origin Pulse with Kyogre, and Venusaur/Charizard sharing the field.
@@ -143,3 +145,28 @@ The test trainer's Charizard and Venusaur were given support moves temporarily:
   - At Lv. 100 it knocked out a foe instead: Expert's bonus for a knockout outscores the heal.
 - **A single battle (Life Dew, Stuff Cheeks, Coaching, Ember):** the first three read USELESS. Charizard used Ember
   both turns.
+
+## #12: Expert scoring for the Gen V+ moves (done 2026-10-26)
+
+`Expert_Main` sends each Gen V+ move to the Gen IV handler for the same job, as Platinum does for its own multi-stat
+moves. A move that would fail already scored −10 in `Basic_Main` (#11).
+
+| Handler | Moves |
+|---|---|
+| Attack rise (`Expert_StatusAttackUp`) | Hone Claws, Work Up, Growth |
+| Defense rise | Coil, Cotton Guard, Stuff Cheeks |
+| Sp. Def rise (as Calm Mind) | Take Heart, Geomancy |
+| Speed rise | Autotomize |
+| Dragon Dance (+1 when slower than the foe, −1 at half HP or less) | Quiver Dance, Shift Gear, Shell Smash, Victory Dance, No Retreat, Clangorous Soul, Fillet Away, Tidy Up |
+| Attack drop | Noble Roar, Tearful Look, Venom Drench |
+| Defense drop | Spicy Extract |
+| Speed drop | Toxic Thread, Tar Shot |
+| Recovery | Strength Sap |
+| Spikes | Sticky Web |
+| Reflect | Aurora Veil |
+| Substitute | Shed Tail |
+| Binding moves | Octolock, Anchor Shot, Spirit Shackle |
+
+Verified with a command trace in the test build: with the test trainer's Charizard given Quiver Dance, Shell Smash,
+Sticky Web and Strength Sap, Expert ran the Dragon Dance handler for the first two (the speed and HP checks), the Spikes
+handler for Sticky Web, and the Recovery handler for Strength Sap (−3 at full HP).

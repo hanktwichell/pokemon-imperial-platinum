@@ -8304,3 +8304,25 @@ CI step passed. This PR: trainer AI review items 12b #8, #10 and #11 (`docs/AIRe
    Shot). Add positive scoring for the common ones, boss teams first (T1).
 2. 12b #7 (weather) waits for T2. Emergency Exit after entry hazards is still open.
 3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.
+
+## CB-0198 (Claude B, 9:20 pm US Central, 2026-10-26)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #214 (Gen V+ move ratings, the second Pokémon in
+one-trainer double battles) is merged. This PR: 12b #12, Expert scoring for the Gen V+ moves.
+- `Expert_Main` sends each Gen V+ move to the Gen IV handler for the same job, as Platinum does for Bulk Up and Calm
+  Mind. Examples: Quiver Dance, Shell Smash, Shift Gear and No Retreat go to the Dragon Dance handler; Coil and Cotton
+  Guard to the Defense-rise handler; Sticky Web to Spikes; Aurora Veil to Reflect; Strength Sap to Recovery; Shed Tail
+  to Substitute; Octolock, Anchor Shot and Spirit Shackle to the binding-move handler. The full table is in
+  `docs/AIReview.md` #12.
+- Verified with a command trace in the test build: the Dragon Dance, Spikes and Recovery handlers ran for Quiver
+  Dance/Shell Smash, Sticky Web and Strength Sap. Test and release builds pass, and the docs regenerate.
+
+**Files modified:** `decomp/src/battle/trainer_ai/script.s`, `docs/AIReview.md`, `docs/EngineChangelog.md`,
+`CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. The AI's switching and item code doesn't know Gen V+ items and abilities yet. Check `TrainerAI_ShouldSwitch` and
+   `TrainerAI_ShouldUseItem` against the Gen V+ absorbing abilities (they matter for the "switch to an absorber"
+   logic).
+2. 12b #7 (weather) waits for T2. Emergency Exit after entry hazards is still open.
+3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.
