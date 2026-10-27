@@ -3,6 +3,55 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Platinum's battle bugs: Acid Rain, Fire Fang through Wonder Guard, Rage; and Platinum's AI bugs (12b #14)
+
+pret's decompilation documents these bugs in `decomp/docs/bugs_and_glitches.md`. All of them were still in the game.
+
+For players:
+- **Acid Rain.** If Pursuit knocked out a Pokémon that was switching out while any weather, Trick Room, Gravity or an
+  uproar was up, the field conditions broke. Usually every weather came on at once, and turn-limited weather never
+  ended. The battle now goes on normally.
+- **Fire Fang** always went through Wonder Guard. It is now stopped like any other move that isn't super effective.
+- **Rage.** A Pokémon that had used Rage and then picked another move lost all its other volatile conditions:
+  confusion, infatuation, Focus Energy, its Substitute, Torment and the rest. Now only Rage ends.
+- **The trainer AI** scored some moves on the wrong Pokémon:
+  - Facade by the foe's status.
+  - Water Spout and Eruption by the foe's HP.
+  - Foresight by the user's type.
+  - Leaf Guard with Sunny Day backwards.
+  - Metal Burst against the wrong item.
+  - Toxic on a Poison Heal partner without checking its type.
+
+  After a knockout, it could also pick the wrong replacement: its score overflowed past 255, and Lv. 100 damage
+  usually does. All eight are fixed (`docs/AIReview.md` #14).
+
+Code:
+- `subscript_pursuit.s`: restores the fainted battler (`OPCODE_SET, BTLVAR_FAINTED_MON, BTLVAR_SCRIPT_TEMP`). Platinum
+  subtracted it from the field conditions instead (`OPCODE_SUB_TO_ZERO, BTLVAR_FIELD_CONDITIONS, ...`).
+- `battle_lib.c`:
+  - `MoveIsOnDamagingTurn` lists Shadow Force's effect (Shadow Force, Phantom Force) where Platinum had Fire Fang's,
+    one off.
+  - `BattleAI_PostKOSwitchIn` scores with `u32`.
+- `battle_controller_player.c`: the Rage check clears with `&= ~VOLATILE_CONDITION_RAGE` (Platinum had
+  `&= VOLATILE_CONDITION_RAGE`).
+- `script.s`: the seven AI script fixes (table in `docs/AIReview.md` #14).
+
+Verified in the test build. Each scenario was run on this build and on one without the fix:
+- Acid Rain:
+  - Setup: the test trainer's Tyranitar (Sand Stream, only Ghost moves, 40 HP) faced a Lv. 100 Snorlax using
+    Pursuit. The AI withdrew it, and Pursuit knocked it out on the way.
+  - Without the fix: once Machamp came in, "Rain continues to fall." appeared every turn, and the sandstorm did no
+    more damage.
+  - With the fix: "The sandstorm rages." appeared, both Pokémon were buffeted, and the battle went on to the end.
+- Fire Fang: a Growlithe's Fire Fang against a Wonder Guard Geodude.
+  - Without the fix: 202 → 194 HP.
+  - With the fix: no damage.
+- Shadow Force: Giratina's Shadow Force against a Wonder Guard Geodude. It still vanishes on the first turn and is
+  stopped by Wonder Guard on the second, as before.
+- Rage: a Snorlax given Rage, confusion and Focus Energy used Tackle.
+  - Without the fix: its volatile conditions went from 0x900003 to 0x800000 (only Rage left, then nothing).
+  - With the fix: 0x100003. Rage ended, and confusion (it counted down) and Focus Energy stayed.
+
 ## 12b (trainer AI): switching to any Pokémon that absorbs the foe's move
 
 For players:

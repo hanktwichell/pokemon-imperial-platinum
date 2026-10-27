@@ -8347,3 +8347,36 @@ Well-Baked Body and Earth Eater too.
    abilities. Check them against the added type (Trick-or-Treat) and the Gen V+ immunities.
 2. 12b #7 (weather) waits for T2. Emergency Exit after entry hazards is still open.
 3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.
+
+## CB-0200 (Claude B, 9:55 pm US Central, 2026-10-26)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #216 (switching to any absorber) is merged. This
+PR fixes the battle bugs pret's decompilation documents (`decomp/docs/bugs_and_glitches.md`). All of them were still in
+the game:
+- **Acid Rain.** If Pursuit knocked out a Pokémon that was switching out, it broke the field conditions (usually
+  every weather at once). The Pursuit subscript now restores the fainted battler, as pret's fix says.
+- **Fire Fang** always went through Wonder Guard. `MoveIsOnDamagingTurn` had Fire Fang's effect where Shadow Force's
+  belongs.
+- **Rage.** Picking another move after Rage cleared every other volatile condition (confusion, Substitute...). Now
+  only Rage ends.
+- **The AI (12b #14).**
+  - The post-KO replacement score overflowed (`u8` → `u32`).
+  - Seven script mistakes: Metal Burst checked for a Shiny Stone instead of the Lagging Tail; Foresight, Facade and
+    Water Spout/Eruption checked the wrong Pokémon; Sunny Day had Leaf Guard backwards; Trick's list was missing the
+    Macho Brace; and Toxic on a Poison Heal partner didn't check its type.
+- Verified in the test build, each against a build without the fix:
+  - Acid Rain: without the fix, the sandstorm turned into rain after the KO. With it, the sandstorm went on and the
+    battle ran to the end.
+  - Fire Fang: without the fix it took a Wonder Guard Geodude from 202 to 194 HP. With it, no damage.
+  - Rage: without the fix, the volatile conditions went from 0x900003 to 0x800000. With it, they went to 0x100003.
+  - Release and test builds pass.
+
+**Files modified:** `decomp/res/battle/scripts/subscripts/subscript_pursuit.s`, `decomp/src/battle/battle_lib.c`,
+`decomp/src/battle/battle_controller_player.c`, `decomp/src/battle/trainer_ai/script.s`, `docs/AIReview.md`,
+`docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. `TrainerAI_ShouldUseItem` and `BattleAI_PostKOSwitchIn` don't know the Gen V+ immunities yet (Levitate-like
+   abilities, the absorbers, Air Balloon). Check them against `AI_AbilityAbsorbsMoveType`.
+2. 12b #7 (weather) waits for T2. Emergency Exit after entry hazards is still open.
+3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.
