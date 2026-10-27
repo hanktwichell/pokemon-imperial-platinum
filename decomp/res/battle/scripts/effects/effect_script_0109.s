@@ -2,8 +2,8 @@
 
 
 _000:
-    CompareMonDataToValue OPCODE_EQU, BTLSCR_ATTACKER, BATTLEMON_TYPE_1, TYPE_GHOST, _016
-    CompareMonDataToValue OPCODE_EQU, BTLSCR_ATTACKER, BATTLEMON_TYPE_2, TYPE_GHOST, _016
+    // Sovereign: a Ghost type Trick-or-Treat added counts too, as for Protect (Move_IsGhostCurse).
+    CompareVarToValue OPCODE_NEQ, BTLVAR_SOVEREIGN_ATTACKER_GHOST, 0, _016
     UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_FLAGS_DIRECT, MOVE_SIDE_EFFECT_TO_ATTACKER|MOVE_SUBSCRIPT_PTR_CURSE_NORMAL
     End 
 

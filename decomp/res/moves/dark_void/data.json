@@ -1,10 +1,11 @@
 {
     "name": "Dark Void",
     "description": [
-        "The foe is dragged\n",
-        "into a world of total\n",
-        "darkness that puts it\n",
-        "to sleep.\n"
+        "The foes are dragged\n",
+        "into total darkness\n",
+        "that puts them to\n",
+        "sleep. Only Darkrai\n",
+        "can use it."
     ],
     "class": "CLASS_STATUS",
     "type": "TYPE_DARK",

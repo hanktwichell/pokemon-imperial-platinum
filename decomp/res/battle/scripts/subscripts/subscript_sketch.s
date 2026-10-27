@@ -2,7 +2,7 @@
 
 
 _000:
-    CheckSubstitute BTLSCR_DEFENDER, _015
+    // Sovereign: it goes through a substitute (Gen V+).
     TrySketch _015
     Call BATTLE_SUBSCRIPT_ATTACK_MESSAGE_AND_ANIMATION
     // {0} sketched {1}!

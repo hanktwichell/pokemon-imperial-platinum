@@ -8767,3 +8767,38 @@ against Showdown's `data/moves.ts`:
 2. Mirror Move copying the target's last move (`BtlCmd_SetMirrorMove`), Payback against a switch-in, Lock-On not passed
    by Baton Pass, the remaining PARTIAL/UNSURE rows.
 3. The trainer AI's damage estimate for the batch C–D changes (Minimize punishers, Beat Up, Future Sight's typing).
+
+## CB-0214 (Claude B, 5:50 am US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #230 (moves batch D) is merged. Moves batch E from
+`docs/PlatinumMoveAudit.md` (marked ✅ there, part 1 items 13–16, 18, 20–23 and part 2 items 18, 20, 22, 23, 25, 31,
+34–37):
+- Flail/Reversal on the 48-point HP scale; Haze keeps Focus Energy; Baton Pass doesn't pass Lock-On.
+- Dream Eater, a Ghost's Curse, Mimic and Sketch go through a substitute; Mimic gives full PP; Gen IX `failmimic` and
+  `nosketch` lists (`sCannotMimicMoves`, `sCannotSketchMoves`).
+- Conversion from the first slot, Conversion 2 from the target's last move (range single target).
+- Sweet Scent −2 evasion (effect 63, was a stub); Tail Glow +3 (`SOVEREIGN_TAIL_GLOW`, `gen_stat_moves.py`).
+- Chatter always confuses (chance 100, any user); Uproar 3 turns; Dark Void only for Darkrai (+ trainer AI);
+  Imprison needs no shared move; Magnet Rise works with Levitate, fails after Smack Down; Acupressure through the
+  user's own substitute; Psych Up copies Focus Energy/Dragon Cheer/Laser Focus; Curse counts an added Ghost type.
+- Verified in the emulator (see `docs/EngineChangelog.md`). Test and release builds pass.
+
+**Files modified:** `decomp/src/battle/battle_script.c`, `decomp/src/battle/battle_lib.c`,
+`decomp/include/battle/battle_lib.h`, `decomp/include/constants/battle/moves.h`,
+`decomp/src/battle/trainer_ai/trainer_ai.c`, `decomp/src/battle/trainer_ai/script.s`,
+`decomp/res/battle/scripts/effects/effect_script_0001.s`, `0008`, `0063`, `0109`, `0226`, `0252`, `0399` (new),
+`meson.build`, `decomp/res/battle/scripts/subscripts/subscript_curse_ghost.s`, `subscript_sketch.s`,
+`subscript_uproar.s`, `subscript_sovereign_stats_tail_glow.s` (new), `meson.build`, `sub_seq.order`,
+`decomp/generated/battle_subscripts.txt`, `battle_move_subscript_ptrs.txt`, `move_battle_effects.txt`,
+`battle_script_vars.txt`, `decomp/include/data/move_side_effect_subscripts.h`, `decomp/res/moves/{chatter,conversion,
+conversion_2,dark_void,sweet_scent,tail_glow,uproar}/data.json`, `tools/engine/gen9_move_fixes.py`,
+`tools/engine/gen_stat_moves.py`, `docs/PlatinumMoveAudit.md`, `docs/BattleMechanics.md`, `docs/EngineChangelog.md`,
+`CLAUDE_STATUS.md`.
+
+**Next 3 steps (from `docs/PlatinumMoveAudit.md`):**
+1. Moves batch F: Metronome (Gen IX list, no "already known" loop), Assist/Copycat Gen IX lists, Encore's Gen IX list,
+   Me First (×1.5 power, list, through Taunt), Sleep Talk with Choice/Encore and its exclusions.
+2. Heal Block on the drain moves and every kind of recovery (`sHealingMoves`), Mirror Move copying the target's last
+   move, Transform's failures (substitute, already transformed, Illusion), Payback against a switch-in.
+3. Gravity (Flying Press, Telekinesis), Mud Sport/Water Sport as 5-turn field conditions, Magic Coat for the whole turn,
+   Toxic Spikes vs Magic Guard, Aromatherapy's Sap Sipper/substitute skips.

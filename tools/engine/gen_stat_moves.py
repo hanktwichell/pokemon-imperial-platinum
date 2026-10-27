@@ -43,6 +43,7 @@ STAT_MOVES = {
     "take_heart": ("user", [("SP_ATTACK", 1), ("SP_DEFENSE", 1)], "cure"),
     "decorate": ("target", [("ATTACK", 2), ("SP_ATTACK", 2)]),
     "growth": ("user", [("ATTACK", 1), ("SP_ATTACK", 1)], "sun"),
+    "tail_glow": ("user", [("SP_ATTACK", 3)]),
 }
 # Optional further elements: "poisoned" = fails unless the target is poisoned (Venom Drench); "hp_cost_N" = the user
 # first loses 1/N of its max HP, and the move fails at 1/N or less (Clangorous Soul, Fillet Away); "cure" = the user's

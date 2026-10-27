@@ -11527,16 +11527,40 @@ static const u16 sCannotMetronomeMoves[] = {
     FORBIDDEN_BY_METRONOME_DELIM,
 };
 
+// Sovereign: the moves Mimic can't copy (Gen IX's failmimic moves). Platinum shared Metronome's first five.
+static const u16 sCannotMimicMoves[] = {
+    MOVE_MIMIC, MOVE_METRONOME, MOVE_MIRROR_MOVE, MOVE_TRANSFORM, MOVE_STRUGGLE, MOVE_SKETCH, MOVE_SLEEP_TALK,
+    MOVE_NATURE_POWER, MOVE_ASSIST, MOVE_ME_FIRST, MOVE_COPYCAT, MOVE_CHATTER, MOVE_BELCH, MOVE_CELEBRATE,
+    MOVE_HOLD_HANDS, MOVE_DYNAMAX_CANNON, MOVE_BEHEMOTH_BLADE, MOVE_BEHEMOTH_BASH, MOVE_BLAZING_TORQUE,
+    MOVE_WICKED_TORQUE, MOVE_NOXIOUS_TORQUE, MOVE_COMBAT_TORQUE, MOVE_MAGICAL_TORQUE, MOVE_TERA_STARSTORM,
+};
+
 BOOL Move_CanBeMimicked(u16 move)
 {
-    int i;
-    for (i = 0; sCannotMetronomeMoves[i] != FORBIDDEN_BY_MIMIC_DELIM; i++) {
-        if (sCannotMetronomeMoves[i] == move) {
-            break;
+    for (int i = 0; i < NELEMS(sCannotMimicMoves); i++) {
+        if (sCannotMimicMoves[i] == move) {
+            return FALSE;
         }
     }
 
-    return sCannotMetronomeMoves[i] == FORBIDDEN_BY_MIMIC_DELIM;
+    return TRUE;
+}
+
+// Sovereign: the moves Sketch can't copy (Gen IX's nosketch moves). Platinum's were Struggle, Sketch and Chatter.
+static const u16 sCannotSketchMoves[] = {
+    MOVE_STRUGGLE, MOVE_SKETCH, MOVE_DARK_VOID, MOVE_HYPERSPACE_FURY, MOVE_REVIVAL_BLESSING, MOVE_BLAZING_TORQUE,
+    MOVE_WICKED_TORQUE, MOVE_NOXIOUS_TORQUE, MOVE_COMBAT_TORQUE, MOVE_MAGICAL_TORQUE, MOVE_TERA_STARSTORM,
+};
+
+BOOL Move_CanBeSketched(u16 move)
+{
+    for (int i = 0; i < NELEMS(sCannotSketchMoves); i++) {
+        if (sCannotSketchMoves[i] == move) {
+            return FALSE;
+        }
+    }
+
+    return TRUE;
 }
 
 BOOL Move_CanBeMetronomed(BattleSystem *battleSys, BattleContext *battleCtx, int battler, u16 move)

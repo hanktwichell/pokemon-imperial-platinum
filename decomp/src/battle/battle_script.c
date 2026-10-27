@@ -3785,7 +3785,7 @@ static BOOL BtlCmd_ResetAllStatChanges(BattleSystem *battleSys, BattleContext *b
             battleCtx->battleMons[i].statBoosts[j] = DEFAULT_STAT_STAGE;
         }
 
-        battleCtx->battleMons[i].statusVolatile &= ~VOLATILE_CONDITION_FOCUS_ENERGY;
+        // Sovereign: Haze leaves Focus Energy alone (Gen V+).
     }
 
     return FALSE;
@@ -4288,7 +4288,7 @@ static BOOL BtlCmd_PrintBufferedTrainerMessage(BattleSystem *battleSys, BattleCo
  */
 static BOOL BtlCmd_TryConversion(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    int numMoves, i, moveType; // must declare these here to match
+    int moveType;
 
     BattleScript_Iter(battleCtx, 1);
     int jumpOnFail = BattleScript_Read(battleCtx);
@@ -4298,39 +4298,13 @@ static BOOL BtlCmd_TryConversion(BattleSystem *battleSys, BattleContext *battleC
         return FALSE;
     }
 
-    for (numMoves = 0; numMoves < LEARNED_MOVES_MAX; numMoves++) {
-        if (ATTACKING_MON.moves[numMoves] == MOVE_NONE) {
-            break;
-        }
-    }
+    // Sovereign: the user takes the type of the move in its first slot, and fails if it already has it (Gen VI+).
+    // Platinum picked a random move of a type the user didn't have.
+    moveType = MOVE_DATA(ATTACKING_MON.moves[0]).type;
 
-    // First, check if there are any non-Conversion moves which have a type different from the
-    // source Pokemon's types.
-    for (i = 0; i < numMoves; i++) {
-        if (ATTACKING_MON.moves[i] == MOVE_CONVERSION) {
-            continue;
-        }
-
-        moveType = MOVE_DATA(ATTACKING_MON.moves[i]).type;
-
-        if (MON_IS_NOT_TYPE(battleCtx->attacker, moveType)) {
-            break;
-        }
-    }
-
-    if (i == numMoves) { // no such moves
+    if (MON_HAS_TYPE(battleCtx->attacker, moveType)) {
         BattleScript_Iter(battleCtx, jumpOnFail);
     } else {
-        do {
-            // Get a random non-Conversion move
-            do {
-                i = BattleSystem_RandNext(battleSys) % numMoves;
-            } while (ATTACKING_MON.moves[i] == MOVE_CONVERSION);
-
-            moveType = MOVE_DATA(ATTACKING_MON.moves[i]).type;
-
-        } while (MON_HAS_TYPE(battleCtx->attacker, moveType));
-
         ATTACKING_MON.type1 = moveType;
         ATTACKING_MON.type2 = moveType;
         ATTACKING_MON.sovereignAddedType = 0; // Sovereign (item 11): a new type replaces an added one
@@ -4812,9 +4786,9 @@ static BOOL BtlCmd_TryMimic(BattleSystem *battleSys, BattleContext *battleCtx)
     BattleScript_Iter(battleCtx, 1);
     int jumpOnFail = BattleScript_Read(battleCtx);
 
+    // Sovereign: it goes through a substitute (Gen V+).
     if (Move_CanBeMimicked(DEFENDER_LAST_MOVE) == FALSE
         || (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_TRANSFORM)
-        || (DEFENDING_MON.statusVolatile & VOLATILE_CONDITION_SUBSTITUTE)
         || DEFENDER_LAST_MOVE == MOVE_NONE) {
         BattleScript_Iter(battleCtx, jumpOnFail);
     } else {
@@ -4836,12 +4810,8 @@ static BOOL BtlCmd_TryMimic(BattleSystem *battleSys, BattleContext *battleCtx)
             battleCtx->msgMoveTemp = DEFENDER_LAST_MOVE;
             ATTACKING_MON.moves[j] = battleCtx->msgMoveTemp;
 
-            // Max out the current PP at 5
-            if (MOVE_DATA(battleCtx->msgMoveTemp).pp < 5) {
-                ATTACKING_MON.ppCur[j] = MOVE_DATA(battleCtx->msgMoveTemp).pp;
-            } else {
-                ATTACKING_MON.ppCur[j] = 5;
-            }
+            // Sovereign: the move's full PP (Gen V+), not at most 5
+            ATTACKING_MON.ppCur[j] = MOVE_DATA(battleCtx->msgMoveTemp).pp;
 
             ATTACKING_MON.moveEffectsData.mimickedMoveSlot |= FlagIndex(j);
 
@@ -5108,17 +5078,10 @@ static BOOL BtlCmd_TryConversion2(BattleSystem *battleSys, BattleContext *battle
         return FALSE;
     }
 
-    if (battleCtx->conversion2Move[battleCtx->attacker]
-        && battleCtx->conversion2Battler[battleCtx->attacker] != BATTLER_NONE) {
-        // Fail to execute if the source move's owner is locked into the first turn of a multi-turn move
-        if (Move_IsMultiTurn(battleCtx, battleCtx->conversion2Move[battleCtx->attacker])
-            && (battleCtx->battleMons[battleCtx->conversion2Battler[battleCtx->attacker]].statusVolatile & VOLATILE_CONDITION_MOVE_LOCKED)) {
-            BattleScript_Iter(battleCtx, jumpOnFail);
-            return FALSE;
-        }
-
+    // Sovereign: the type comes from the target's last move (Gen V+), not from the last move that hit the user.
+    if (DEFENDER_LAST_MOVE != MOVE_NONE && DEFENDER_LAST_MOVE != MOVE_STRUGGLE) {
         u8 atkType, defType, typeMulti;
-        int i, moveType = battleCtx->conversion2Type[battleCtx->attacker];
+        int i, moveType = MOVE_DATA(DEFENDER_LAST_MOVE).type;
         for (i = 0; i < 1000; i++) {
             // Get a random entry from the type matchup table
             BattleSystem_TypeMatchup(battleSys, 0xFFFF, &atkType, &defType, &typeMulti);
@@ -5130,6 +5093,7 @@ static BOOL BtlCmd_TryConversion2(BattleSystem *battleSys, BattleContext *battle
                 && MON_IS_NOT_TYPE(battleCtx->attacker, defType)) {
                 ATTACKING_MON.type1 = defType;
                 ATTACKING_MON.type2 = defType;
+                ATTACKING_MON.sovereignAddedType = 0; // Sovereign: as Conversion
                 battleCtx->msgTemp = defType;
                 return FALSE;
             }
@@ -5143,6 +5107,7 @@ static BOOL BtlCmd_TryConversion2(BattleSystem *battleSys, BattleContext *battle
                 && MON_IS_NOT_TYPE(battleCtx->attacker, defType)) {
                 ATTACKING_MON.type1 = defType;
                 ATTACKING_MON.type2 = defType;
+                ATTACKING_MON.sovereignAddedType = 0; // Sovereign: as Conversion
                 battleCtx->msgTemp = defType;
                 return FALSE;
             }
@@ -5179,11 +5144,9 @@ static BOOL BtlCmd_TrySketch(BattleSystem *battleSys, BattleContext *battleCtx)
     BattleScript_Iter(battleCtx, 1);
     int jumpOnFail = BattleScript_Read(battleCtx);
 
-    // Don't allow Sketch while Transformed or against any of Struggle, Chatter, or Sketch itself
+    // Don't allow Sketch while Transformed or against the moves it can't copy (Sovereign: Gen IX's list)
     if ((ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_TRANSFORM)
-        || battleCtx->moveSketched[battleCtx->defender] == MOVE_STRUGGLE
-        || battleCtx->moveSketched[battleCtx->defender] == MOVE_SKETCH
-        || battleCtx->moveSketched[battleCtx->defender] == MOVE_CHATTER
+        || Move_CanBeSketched(battleCtx->moveSketched[battleCtx->defender]) == FALSE
         || battleCtx->moveSketched[battleCtx->defender] == MOVE_NONE) {
         BattleScript_Iter(battleCtx, jumpOnFail);
     } else {
@@ -5274,13 +5237,14 @@ static BOOL BtlCmd_TrySleepTalk(BattleSystem *battleSys, BattleContext *battleCt
     return FALSE;
 }
 
+// Sovereign: the HP out of 48 (Gen V+), not the HP bar's 64 pixels; Flail and Reversal hit a little harder at low HP.
 static const u8 sHPPixelsToFlailPower[][2] = {
     { 1, 200 },
-    { 5, 150 },
-    { 12, 100 },
-    { 21, 80 },
-    { 42, 40 },
-    { 64, 20 },
+    { 4, 150 },
+    { 9, 100 },
+    { 16, 80 },
+    { 32, 40 },
+    { 48, 20 },
 };
 
 /**
@@ -5295,7 +5259,12 @@ static BOOL BtlCmd_CalcFlailPower(BattleSystem *battleSys, BattleContext *battle
 {
     BattleScript_Iter(battleCtx, 1);
 
-    int i, curHPPixels = App_PixelCount(ATTACKING_MON.curHP, ATTACKING_MON.maxHP, 64);
+    int i, curHPPixels = ATTACKING_MON.curHP * 48 / ATTACKING_MON.maxHP; // Sovereign: Gen V+ (at least 1)
+
+    if (curHPPixels < 1) {
+        curHPPixels = 1;
+    }
+
     for (i = 0; i < NELEMS(sHPPixelsToFlailPower); i++) {
         if (curHPPixels <= sHPPixelsToFlailPower[i][0]) {
             break;
@@ -6470,7 +6439,12 @@ static BOOL BtlCmd_CopyStatStages(BattleSystem *battleSys, BattleContext *battle
         ATTACKING_MON.statBoosts[i] = DEFENDING_MON.statBoosts[i];
     }
 
+    // Sovereign: the target's critical-hit boosts replace the user's own, Dragon Cheer's and Laser Focus's with Focus
+    // Energy's (Gen VI+). A copied Laser Focus starts afresh.
+    ATTACKING_MON.statusVolatile &= ~VOLATILE_CONDITION_FOCUS_ENERGY;
     ATTACKING_MON.statusVolatile |= (DEFENDING_MON.statusVolatile & VOLATILE_CONDITION_FOCUS_ENERGY);
+    battleCtx->sovereignDragonCheer[battleCtx->attacker] = battleCtx->sovereignDragonCheer[battleCtx->defender];
+    battleCtx->sovereignLaserFocus[battleCtx->attacker] = battleCtx->sovereignLaserFocus[battleCtx->defender] ? 2 : 0;
 
     return FALSE;
 }
@@ -7092,12 +7066,11 @@ static BOOL BtlCmd_CalcHPFalloffPower(BattleSystem *battleSys, BattleContext *ba
 /**
  * @brief Try to apply the Imprison effect.
  *
- * This command will fail if the battler using Imprison does not know at least
- * one move that is also known by either of the defending battlers.
+ * Sovereign: this fails only if the user has already Imprisoned; it no longer needs a move the foes also know
+ * (Gen V+).
  *
  * Inputs:
- * 1. The distance to jump if Imprison is already set or the Imprisoning battler
- * does not know a move that the defenders know.
+ * 1. The distance to jump if Imprison is already set.
  *
  * @param battleSys
  * @param battleCtx
@@ -7105,11 +7078,7 @@ static BOOL BtlCmd_CalcHPFalloffPower(BattleSystem *battleSys, BattleContext *ba
  */
 static BOOL BtlCmd_TryImprison(BattleSystem *battleSys, BattleContext *battleCtx)
 {
-    // must declare C89-style to match
     int jumpOnFail;
-    int attackingSide;
-    int i, j;
-    int battler, maxBattlers;
     int defender1, defender2;
 
     BattleScript_Iter(battleCtx, 1);
@@ -7124,37 +7093,7 @@ static BOOL BtlCmd_TryImprison(BattleSystem *battleSys, BattleContext *battleCtx
     if (ATTACKING_MON.moveEffectsMask & MOVE_EFFECT_IMPRISON) {
         BattleScript_Iter(battleCtx, jumpOnFail);
     } else {
-        attackingSide = BattleSystem_GetBattlerSide(battleSys, battleCtx->attacker);
-        maxBattlers = BattleSystem_GetMaxBattlers(battleSys);
-
-        // Check that the Imprisoning mon knows at least 1 move that the active defenders know
-        for (battler = 0; battler < maxBattlers; battler++) {
-            if (attackingSide != BattleSystem_GetBattlerSide(battleSys, battler)) {
-                for (i = 0; i < LEARNED_MOVES_MAX; i++) {
-                    for (j = 0; j < LEARNED_MOVES_MAX; j++) {
-                        if (ATTACKING_MON.moves[i] == battleCtx->battleMons[battler].moves[j]
-                            && ATTACKING_MON.moves[i]
-                            && battleCtx->battleMons[battler].moves[j]) {
-                            break;
-                        }
-                    }
-
-                    if (j != LEARNED_MOVES_MAX) {
-                        break;
-                    }
-                }
-
-                if (j != LEARNED_MOVES_MAX) {
-                    break;
-                }
-            }
-        }
-
-        if (battler == maxBattlers) {
-            BattleScript_Iter(battleCtx, jumpOnFail);
-        } else {
-            ATTACKING_MON.moveEffectsMask |= MOVE_EFFECT_IMPRISON;
-        }
+        ATTACKING_MON.moveEffectsMask |= MOVE_EFFECT_IMPRISON;
     }
 
     return FALSE;
@@ -8839,8 +8778,10 @@ static BOOL BtlCmd_CheckEffectActivation(BattleSystem *battleSys, BattleContext 
 }
 
 /**
- * @brief Check if Chatter's secondary effect should activate based on Chatot's
- * sound data.
+ * @brief Check if Chatter's secondary effect should activate.
+ *
+ * Sovereign: it always confuses a target that is still standing, whoever uses it (Gen VI+). Platinum confused only
+ * for Chatot, at a chance set by its recorded cry.
  *
  * Inputs:
  * 1. The distance to jump ahead if the secondary effect should NOT activate.
@@ -8854,36 +8795,7 @@ static BOOL BtlCmd_CheckChatterActivation(BattleSystem *battleSys, BattleContext
     BattleScript_Iter(battleCtx, 1);
     int jumpNoEffect = BattleScript_Read(battleCtx);
 
-    if (ATTACKING_MON.species == SPECIES_CHATOT
-        && DEFENDING_MON.curHP
-        && (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_TRANSFORM) == FALSE) {
-        int chatter;
-        if ((BattleSystem_GetBattleStatusMask(battleSys) & BATTLE_STATUS_RECORDING) == FALSE) {
-            chatter = Sound_GetChatterActivationParameter(BattleSystem_GetChatotCry(battleSys, battleCtx->attacker));
-        } else {
-            chatter = BattleSystem_GetRecordedChatter(battleSys, battleCtx->attacker);
-        }
-
-        u16 effectChance;
-        switch (chatter) {
-        default:
-        case 0:
-            effectChance = 0;
-            break;
-
-        case 1:
-            effectChance = 10;
-            break;
-
-        case 2:
-            effectChance = 30;
-            break;
-        }
-
-        if (BattleSystem_RandNext(battleSys) % 100 > effectChance) {
-            BattleScript_Iter(battleCtx, jumpNoEffect);
-        }
-    } else {
+    if (DEFENDING_MON.curHP == 0) {
         BattleScript_Iter(battleCtx, jumpNoEffect);
     }
 
@@ -10412,6 +10324,12 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_SMACKED_DOWN_SIDE_EFFECT_MON: // Sovereign (item 11)
         return &battleCtx->sovereignSmackedDown[battleCtx->sideEffectMon];
+    case BTLVAR_SOVEREIGN_SMACKED_DOWN_ATTACKER: // Sovereign: Magnet Rise fails on a Pokemon Smack Down grounded
+        return &battleCtx->sovereignSmackedDown[battleCtx->attacker];
+    case BTLVAR_SOVEREIGN_ATTACKER_GHOST: // Sovereign: read-only, the attacker is a Ghost type, counting a type
+        // Trick-or-Treat added (Curse, as Move_IsGhostCurse)
+        battleCtx->sovereignTerrainTemp = MON_HAS_TYPE(battleCtx->attacker, TYPE_GHOST);
+        return &battleCtx->sovereignTerrainTemp;
     case BTLVAR_SOVEREIGN_SMACK_DOWN_FLYER: // Sovereign (item 11): read-only, Smack Down brought the side effect's target
         // down from Fly or Bounce (Sovereign_SmackDownFlyer)
         battleCtx->sovereignTerrainTemp = Sovereign_SmackDownFlyer(battleCtx, battleCtx->sideEffectMon);

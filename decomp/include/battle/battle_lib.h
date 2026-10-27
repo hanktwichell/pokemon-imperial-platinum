@@ -1407,6 +1407,8 @@ int BattleSystem_ApplyCriticalMul(int damage, int criticalMul);
  * @return TRUE if the move can be copied by Mimic, FALSE if not.
  */
 BOOL Move_CanBeMimicked(u16 move);
+// Sovereign: FALSE for the moves Sketch can't copy (Gen IX's list).
+BOOL Move_CanBeSketched(u16 move);
 
 /**
  * @brief Check if a move can be invoked by Metronome.

@@ -396,6 +396,26 @@ VALUE_FIXES = {
                                "used for three\n", "turns."]},
     "teleport": {"description": ["The user switches\n", "out. A wild Pokémon\n", "flees. It also warps\n",
                                  "to the last Poké\n", "Center visited."]},
+    # Batch E: Sweet Scent -2 evasion (Gen VI+), Chatter's sure confusion (Gen VI+), Conversion 2 aimed at the foe's
+    # last move (Gen V+), and the texts for them, Tail Glow +3 (Gen V+, effect from gen_stat_moves.py), Conversion's
+    # first slot (Gen VI+), Uproar's three turns (Gen V+) and Dark Void for Darkrai only (Gen VII+).
+    "sweet_scent": {"effect": {"type": "BATTLE_EFFECT_EVA_DOWN_2", "chance": 0},
+                    "description": ["A sweet scent that\n", "harshly lowers the\n", "foe’s evasiveness. It\n",
+                                    "also lures wild\n", "Pokémon in grass."]},
+    "chatter": {"effect": {"type": "BATTLE_EFFECT_CHATTER", "chance": 100},
+                "description": ["The user attacks\n", "using a sound wave\n", "based on words it has\n",
+                                "learned. It also\n", "confuses the foe."]},
+    "conversion_2": {"range": "RANGE_SINGLE_TARGET",
+                     "description": ["The user changes its\n", "type to make itself\n", "resistant to the type\n",
+                                     "of the move the foe\n", "used last."]},
+    "tail_glow": {"description": ["The user stares at\n", "flashing lights to\n", "focus its mind,\n",
+                                  "drastically raising\n", "its Sp. Atk stat."]},
+    "conversion": {"description": ["The user changes its\n", "type to become the\n", "same type as the move\n",
+                                   "in its first move\n", "slot."]},
+    "uproar": {"description": ["The user attacks in\n", "an uproar for three\n", "turns. Over that\n",
+                               "time, no one can fall\n", "asleep."]},
+    "dark_void": {"description": ["The foes are dragged\n", "into total darkness\n", "that puts them to\n",
+                                  "sleep. Only Darkrai\n", "can use it."]},
 }
 
 

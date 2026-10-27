@@ -1848,6 +1848,7 @@ Expert_Main:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_GROWTH, Expert_StatusAttackUp
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_COIL, Expert_StatusDefenseUp
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_COTTON_GUARD, Expert_StatusDefenseUp
+    IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_TAIL_GLOW, Expert_StatusSpAttackUp
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_STUFF_CHEEKS, Expert_StatusDefenseUp
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_TAKE_HEART, Expert_StatusSpDefenseUp
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SOVEREIGN_GEOMANCY, Expert_StatusSpDefenseUp
@@ -6575,6 +6576,7 @@ SetupFirstTurn_SetupEffects:
     TableEntry BATTLE_EFFECT_DEF_UP_2
     TableEntry BATTLE_EFFECT_SPEED_UP_2
     TableEntry BATTLE_EFFECT_SP_ATK_UP_2
+    TableEntry BATTLE_EFFECT_SOVEREIGN_TAIL_GLOW
     TableEntry BATTLE_EFFECT_SP_DEF_UP_2
     TableEntry BATTLE_EFFECT_ACC_UP_2
     TableEntry BATTLE_EFFECT_EVA_UP_2
@@ -7893,6 +7895,7 @@ CheckHP_DiscourageAtMediumHP:
     TableEntry BATTLE_EFFECT_DEF_UP_2
     TableEntry BATTLE_EFFECT_SPEED_UP_2
     TableEntry BATTLE_EFFECT_SP_ATK_UP_2
+    TableEntry BATTLE_EFFECT_SOVEREIGN_TAIL_GLOW
     TableEntry BATTLE_EFFECT_SP_DEF_UP_2
     TableEntry BATTLE_EFFECT_ACC_UP_2
     TableEntry BATTLE_EFFECT_EVA_UP_2
@@ -7941,6 +7944,7 @@ CheckHP_DiscourageAtLowHP:
     TableEntry BATTLE_EFFECT_DEF_UP_2
     TableEntry BATTLE_EFFECT_SPEED_UP_2
     TableEntry BATTLE_EFFECT_SP_ATK_UP_2
+    TableEntry BATTLE_EFFECT_SOVEREIGN_TAIL_GLOW
     TableEntry BATTLE_EFFECT_SP_DEF_UP_2
     TableEntry BATTLE_EFFECT_ACC_UP_2
     TableEntry BATTLE_EFFECT_EVA_UP_2
@@ -7995,6 +7999,7 @@ CheckHP_Target_DiscourageAtMediumHP:
     TableEntry BATTLE_EFFECT_DEF_UP_2
     TableEntry BATTLE_EFFECT_SPEED_UP_2
     TableEntry BATTLE_EFFECT_SP_ATK_UP_2
+    TableEntry BATTLE_EFFECT_SOVEREIGN_TAIL_GLOW
     TableEntry BATTLE_EFFECT_SP_DEF_UP_2
     TableEntry BATTLE_EFFECT_ACC_UP_2
     TableEntry BATTLE_EFFECT_EVA_UP_2
@@ -8050,6 +8055,7 @@ CheckHP_Target_DiscourageAtLowHP:
     TableEntry BATTLE_EFFECT_DEF_UP_2
     TableEntry BATTLE_EFFECT_SPEED_UP_2
     TableEntry BATTLE_EFFECT_SP_ATK_UP_2
+    TableEntry BATTLE_EFFECT_SOVEREIGN_TAIL_GLOW
     TableEntry BATTLE_EFFECT_SP_DEF_UP_2
     TableEntry BATTLE_EFFECT_ACC_UP_2
     TableEntry BATTLE_EFFECT_EVA_UP_2
