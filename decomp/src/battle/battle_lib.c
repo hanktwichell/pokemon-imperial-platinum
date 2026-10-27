@@ -2429,7 +2429,8 @@ int BattleSystem_CheckInvalidMoves(BattleSystem *battleSys, BattleContext *battl
 
         if (battleCtx->battleMons[battler].moveEffectsData.tauntedTurns
             && (opMask & CHECK_INVALID_TAUNTED)
-            && MOVE_DATA(battleCtx->battleMons[battler].moves[i]).power == 0) {
+            && MOVE_DATA(battleCtx->battleMons[battler].moves[i]).power == 0
+            && battleCtx->battleMons[battler].moves[i] != MOVE_ME_FIRST) { // Sovereign: Taunt lets Me First through (Gen V+)
             invalidMoves |= FlagIndex(i);
         }
 
@@ -4004,21 +4005,15 @@ BOOL Move_FailsInHighGravity(BattleSystem *battleSys, BattleContext *battleCtx, 
     return result;
 }
 
-static const u16 sMovesAffectedByHealBlock[] = {
-    MOVE_RECOVER,
-    MOVE_SOFTBOILED,
-    MOVE_REST,
-    MOVE_MILK_DRINK,
-    MOVE_MORNING_SUN,
-    MOVE_SYNTHESIS,
-    MOVE_MOONLIGHT,
-    MOVE_SWALLOW,
-    MOVE_HEAL_ORDER,
-    MOVE_SLACK_OFF,
-    MOVE_ROOST,
-    MOVE_LUNAR_DANCE,
-    MOVE_HEALING_WISH,
-    MOVE_WISH,
+// Sovereign (item 11): healing moves (Gen IX's heal flag), given +3 priority by Triage and blocked by Heal Block (Gen VI+:
+// the drain moves and the later healing moves too).
+static const u16 sHealingMoves[] = {
+    MOVE_ABSORB, MOVE_MEGA_DRAIN, MOVE_GIGA_DRAIN, MOVE_DRAIN_PUNCH, MOVE_DRAINING_KISS, MOVE_HORN_LEECH,
+    MOVE_LEECH_LIFE, MOVE_OBLIVION_WING, MOVE_PARABOLIC_CHARGE, MOVE_DREAM_EATER, MOVE_BITTER_BLADE,
+    MOVE_MATCHA_GOTCHA, MOVE_RECOVER, MOVE_ROOST, MOVE_REST, MOVE_SLACK_OFF, MOVE_SOFTBOILED, MOVE_MILK_DRINK,
+    MOVE_MOONLIGHT, MOVE_MORNING_SUN, MOVE_SYNTHESIS, MOVE_HEAL_ORDER, MOVE_WISH, MOVE_SWALLOW, MOVE_HEAL_PULSE,
+    MOVE_FLORAL_HEALING, MOVE_SHORE_UP, MOVE_STRENGTH_SAP, MOVE_LIFE_DEW, MOVE_JUNGLE_HEALING, MOVE_LUNAR_BLESSING,
+    MOVE_HEALING_WISH, MOVE_LUNAR_DANCE, MOVE_PURIFY, MOVE_BOUNCY_BUBBLE,
 };
 
 BOOL Move_HealBlocked(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int move)
@@ -4026,8 +4021,8 @@ BOOL Move_HealBlocked(BattleSystem *battleSys, BattleContext *battleCtx, int bat
     BOOL result = FALSE;
 
     if (battleCtx->battleMons[battler].moveEffectsData.healBlockTurns) {
-        for (int i = 0; i < NELEMS(sMovesAffectedByHealBlock); i++) {
-            if (sMovesAffectedByHealBlock[i] == move) {
+        for (int i = 0; i < NELEMS(sHealingMoves); i++) {
+            if (sHealingMoves[i] == move) {
                 result = TRUE;
                 break;
             }
@@ -9833,16 +9828,6 @@ BOOL Battler_SovereignPowderImmune(BattleContext *battleCtx, int attacker, int b
         || Battler_IgnorableAbility(battleCtx, attacker, battler, ABILITY_OVERCOAT) == TRUE;
 }
 
-// Sovereign (item 11): healing moves, given +3 priority by Triage.
-static const u16 sHealingMoves[] = {
-    MOVE_ABSORB, MOVE_MEGA_DRAIN, MOVE_GIGA_DRAIN, MOVE_DRAIN_PUNCH, MOVE_DRAINING_KISS, MOVE_HORN_LEECH,
-    MOVE_LEECH_LIFE, MOVE_OBLIVION_WING, MOVE_PARABOLIC_CHARGE, MOVE_DREAM_EATER, MOVE_BITTER_BLADE,
-    MOVE_MATCHA_GOTCHA, MOVE_RECOVER, MOVE_ROOST, MOVE_REST, MOVE_SLACK_OFF, MOVE_SOFTBOILED, MOVE_MILK_DRINK,
-    MOVE_MOONLIGHT, MOVE_MORNING_SUN, MOVE_SYNTHESIS, MOVE_HEAL_ORDER, MOVE_WISH, MOVE_SWALLOW, MOVE_HEAL_PULSE,
-    MOVE_FLORAL_HEALING, MOVE_SHORE_UP, MOVE_STRENGTH_SAP, MOVE_LIFE_DEW, MOVE_JUNGLE_HEALING, MOVE_LUNAR_BLESSING,
-    MOVE_HEALING_WISH, MOVE_LUNAR_DANCE, MOVE_PURIFY,
-};
-
 // Sovereign (item 11): a move's priority for this battler, with Prankster (status moves +1), Gale Wings (Flying moves
 // +1 at full HP) and Triage (healing moves +3).
 int Sovereign_MovePriority(BattleContext *battleCtx, int battler, int move)
@@ -11494,37 +11479,60 @@ int BattleSystem_ApplyCriticalMul(int damage, int criticalMul)
     }
 }
 
-#define FORBIDDEN_BY_MIMIC_DELIM     0xFFFE
-#define FORBIDDEN_BY_METRONOME_DELIM 0xFFFF
-
+// Sovereign: the lists of moves Metronome, Assist, Copycat, Encore, Me First and Sleep Talk can't call, copy or lock in:
+// Gen IX's (Showdown's metronome, noassist, failcopycat, failencore, failmefirst and nosleeptalk flags) for every move
+// in the game. Platinum shared one short list between Metronome, Assist, Copycat and Mimic, and matched Encore's and
+// Me First's by battle effect.
 static const u16 sCannotMetronomeMoves[] = {
-    MOVE_METRONOME,
-    MOVE_STRUGGLE,
-    MOVE_SKETCH,
-    MOVE_MIMIC,
-    MOVE_CHATTER,
-    FORBIDDEN_BY_MIMIC_DELIM,
-    MOVE_SLEEP_TALK,
-    MOVE_ASSIST,
-    MOVE_MIRROR_MOVE,
-    MOVE_COUNTER,
-    MOVE_MIRROR_COAT,
-    MOVE_PROTECT,
-    MOVE_DETECT,
-    MOVE_ENDURE,
-    MOVE_DESTINY_BOND,
-    MOVE_THIEF,
-    MOVE_FOLLOW_ME,
-    MOVE_SNATCH,
-    MOVE_HELPING_HAND,
-    MOVE_COVET,
-    MOVE_TRICK,
-    MOVE_FOCUS_PUNCH,
-    MOVE_FEINT,
-    MOVE_COPYCAT,
-    MOVE_ME_FIRST,
-    MOVE_SWITCHEROO,
-    FORBIDDEN_BY_METRONOME_DELIM,
+    MOVE_COUNTER, MOVE_MIMIC, MOVE_METRONOME, MOVE_MIRROR_MOVE, MOVE_TRANSFORM, MOVE_STRUGGLE, MOVE_SKETCH, MOVE_THIEF,
+    MOVE_SNORE, MOVE_PROTECT, MOVE_DESTINY_BOND, MOVE_DETECT, MOVE_ENDURE, MOVE_SLEEP_TALK, MOVE_MIRROR_COAT,
+    MOVE_FOCUS_PUNCH, MOVE_FOLLOW_ME, MOVE_NATURE_POWER, MOVE_HELPING_HAND, MOVE_TRICK, MOVE_ASSIST, MOVE_SNATCH,
+    MOVE_COVET, MOVE_FEINT, MOVE_ME_FIRST, MOVE_COPYCAT, MOVE_SWITCHEROO, MOVE_CHATTER, MOVE_WIDE_GUARD,
+    MOVE_RAGE_POWDER, MOVE_AFTER_YOU, MOVE_QUICK_GUARD, MOVE_QUASH, MOVE_BESTOW, MOVE_TECHNO_BLAST, MOVE_RELIC_SONG,
+    MOVE_SECRET_SWORD, MOVE_FREEZE_SHOCK, MOVE_ICE_BURN, MOVE_SNARL, MOVE_V_CREATE, MOVE_MAT_BLOCK, MOVE_BELCH,
+    MOVE_CRAFTY_SHIELD, MOVE_KINGS_SHIELD, MOVE_DIAMOND_STORM, MOVE_STEAM_ERUPTION, MOVE_HYPERSPACE_HOLE,
+    MOVE_SPIKY_SHIELD, MOVE_CELEBRATE, MOVE_HOLD_HANDS, MOVE_THOUSAND_ARROWS, MOVE_THOUSAND_WAVES, MOVE_LIGHT_OF_RUIN,
+    MOVE_ORIGIN_PULSE, MOVE_PRECIPICE_BLADES, MOVE_DRAGON_ASCENT, MOVE_HYPERSPACE_FURY, MOVE_BANEFUL_BUNKER,
+    MOVE_SPOTLIGHT, MOVE_INSTRUCT, MOVE_BEAK_BLAST, MOVE_SHELL_TRAP, MOVE_FLEUR_CANNON, MOVE_SPECTRAL_THIEF,
+    MOVE_SUNSTEEL_STRIKE, MOVE_MOONGEIST_BEAM, MOVE_NATURES_MADNESS, MOVE_MIND_BLOWN, MOVE_PLASMA_FISTS,
+    MOVE_PHOTON_GEYSER, MOVE_ZIPPY_ZAP, MOVE_SPLISHY_SPLASH, MOVE_FLOATY_FALL, MOVE_PIKA_PAPOW, MOVE_BOUNCY_BUBBLE,
+    MOVE_BUZZY_BUZZ, MOVE_SIZZLY_SLIDE, MOVE_GLITZY_GLOW, MOVE_BADDY_BAD, MOVE_SAPPY_SEED, MOVE_FREEZY_FROST,
+    MOVE_SPARKLY_SWIRL, MOVE_VEEVEE_VOLLEY, MOVE_DOUBLE_IRON_BASH, MOVE_DYNAMAX_CANNON, MOVE_CLANGOROUS_SOUL,
+    MOVE_BODY_PRESS, MOVE_DECORATE, MOVE_DRUM_BEATING, MOVE_SNAP_TRAP, MOVE_PYRO_BALL, MOVE_BEHEMOTH_BLADE,
+    MOVE_BEHEMOTH_BASH, MOVE_AURA_WHEEL, MOVE_BREAKING_SWIPE, MOVE_BRANCH_POKE, MOVE_OVERDRIVE, MOVE_APPLE_ACID,
+    MOVE_GRAV_APPLE, MOVE_SPIRIT_BREAK, MOVE_STRANGE_STEAM, MOVE_LIFE_DEW, MOVE_OBSTRUCT, MOVE_FALSE_SURRENDER,
+    MOVE_METEOR_ASSAULT, MOVE_ETERNABEAM, MOVE_STEEL_BEAM, MOVE_JUNGLE_HEALING, MOVE_WICKED_BLOW, MOVE_SURGING_STRIKES,
+    MOVE_THUNDER_CAGE, MOVE_DRAGON_ENERGY, MOVE_FREEZING_GLARE, MOVE_FIERY_WRATH, MOVE_THUNDEROUS_KICK,
+    MOVE_GLACIAL_LANCE, MOVE_ASTRAL_BARRAGE, MOVE_POWER_SHIFT, MOVE_SPRINGTIDE_STORM, MOVE_RAGING_FURY, MOVE_SILK_TRAP,
+    MOVE_ORDER_UP, MOVE_JET_PUNCH, MOVE_SPICY_EXTRACT, MOVE_POPULATION_BOMB, MOVE_REVIVAL_BLESSING, MOVE_SALT_CURE,
+    MOVE_DOODLE, MOVE_FILLET_AWAY, MOVE_RAGING_BULL, MOVE_MAKE_IT_RAIN, MOVE_RUINATION, MOVE_COLLISION_COURSE,
+    MOVE_ELECTRO_DRIFT, MOVE_SHED_TAIL, MOVE_CHILLY_RECEPTION, MOVE_TIDY_UP, MOVE_SNOWSCAPE, MOVE_POUNCE,
+    MOVE_TRAILBLAZE, MOVE_CHILLING_WATER, MOVE_HYPER_DRILL, MOVE_TWIN_BEAM, MOVE_RAGE_FIST, MOVE_ARMOR_CANNON,
+    MOVE_DOUBLE_SHOCK, MOVE_COMEUPPANCE, MOVE_BLAZING_TORQUE, MOVE_WICKED_TORQUE, MOVE_NOXIOUS_TORQUE,
+    MOVE_COMBAT_TORQUE, MOVE_MAGICAL_TORQUE, MOVE_TERA_STARSTORM
+};
+
+static const u16 sCannotAssistMoves[] = {
+    MOVE_WHIRLWIND, MOVE_FLY, MOVE_ROAR, MOVE_COUNTER, MOVE_DIG, MOVE_MIMIC, MOVE_METRONOME, MOVE_MIRROR_MOVE,
+    MOVE_TRANSFORM, MOVE_STRUGGLE, MOVE_SKETCH, MOVE_THIEF, MOVE_PROTECT, MOVE_DESTINY_BOND, MOVE_DETECT, MOVE_ENDURE,
+    MOVE_SLEEP_TALK, MOVE_MIRROR_COAT, MOVE_FOCUS_PUNCH, MOVE_FOLLOW_ME, MOVE_NATURE_POWER, MOVE_HELPING_HAND,
+    MOVE_TRICK, MOVE_ASSIST, MOVE_SNATCH, MOVE_DIVE, MOVE_BOUNCE, MOVE_COVET, MOVE_FEINT, MOVE_ME_FIRST, MOVE_COPYCAT,
+    MOVE_SWITCHEROO, MOVE_CHATTER, MOVE_SHADOW_FORCE, MOVE_RAGE_POWDER, MOVE_SKY_DROP, MOVE_CIRCLE_THROW, MOVE_BESTOW,
+    MOVE_DRAGON_TAIL, MOVE_MAT_BLOCK, MOVE_BELCH, MOVE_PHANTOM_FORCE, MOVE_KINGS_SHIELD, MOVE_SPIKY_SHIELD,
+    MOVE_CELEBRATE, MOVE_HOLD_HANDS, MOVE_BANEFUL_BUNKER, MOVE_SPOTLIGHT, MOVE_BEAK_BLAST, MOVE_SHELL_TRAP,
+    MOVE_BLAZING_TORQUE, MOVE_WICKED_TORQUE, MOVE_NOXIOUS_TORQUE, MOVE_COMBAT_TORQUE, MOVE_MAGICAL_TORQUE,
+    MOVE_TERA_STARSTORM, MOVE_BURNING_BULWARK
+};
+
+static const u16 sCannotCopycatMoves[] = {
+    MOVE_WHIRLWIND, MOVE_ROAR, MOVE_COUNTER, MOVE_MIMIC, MOVE_METRONOME, MOVE_MIRROR_MOVE, MOVE_TRANSFORM,
+    MOVE_STRUGGLE, MOVE_SKETCH, MOVE_THIEF, MOVE_PROTECT, MOVE_DESTINY_BOND, MOVE_DETECT, MOVE_ENDURE, MOVE_SLEEP_TALK,
+    MOVE_FOCUS_PUNCH, MOVE_FOLLOW_ME, MOVE_NATURE_POWER, MOVE_HELPING_HAND, MOVE_TRICK, MOVE_ASSIST, MOVE_SNATCH,
+    MOVE_COVET, MOVE_FEINT, MOVE_ME_FIRST, MOVE_COPYCAT, MOVE_SWITCHEROO, MOVE_CHATTER, MOVE_RAGE_POWDER,
+    MOVE_CIRCLE_THROW, MOVE_BESTOW, MOVE_DRAGON_TAIL, MOVE_MAT_BLOCK, MOVE_BELCH, MOVE_KINGS_SHIELD, MOVE_SPIKY_SHIELD,
+    MOVE_CELEBRATE, MOVE_HOLD_HANDS, MOVE_BANEFUL_BUNKER, MOVE_SPOTLIGHT, MOVE_BEAK_BLAST, MOVE_SHELL_TRAP,
+    MOVE_DYNAMAX_CANNON, MOVE_BEHEMOTH_BLADE, MOVE_BEHEMOTH_BASH, MOVE_BLAZING_TORQUE, MOVE_WICKED_TORQUE,
+    MOVE_NOXIOUS_TORQUE, MOVE_COMBAT_TORQUE, MOVE_MAGICAL_TORQUE, MOVE_TERA_STARSTORM, MOVE_BURNING_BULWARK
 };
 
 // Sovereign: the moves Mimic can't copy (Gen IX's failmimic moves). Platinum shared Metronome's first five.
@@ -11537,13 +11545,7 @@ static const u16 sCannotMimicMoves[] = {
 
 BOOL Move_CanBeMimicked(u16 move)
 {
-    for (int i = 0; i < NELEMS(sCannotMimicMoves); i++) {
-        if (sCannotMimicMoves[i] == move) {
-            return FALSE;
-        }
-    }
-
-    return TRUE;
+    return Sovereign_MoveInList(sCannotMimicMoves, NELEMS(sCannotMimicMoves), move) == FALSE;
 }
 
 // Sovereign: the moves Sketch can't copy (Gen IX's nosketch moves). Platinum's were Struggle, Sketch and Chatter.
@@ -11554,78 +11556,61 @@ static const u16 sCannotSketchMoves[] = {
 
 BOOL Move_CanBeSketched(u16 move)
 {
-    for (int i = 0; i < NELEMS(sCannotSketchMoves); i++) {
-        if (sCannotSketchMoves[i] == move) {
-            return FALSE;
-        }
-    }
-
-    return TRUE;
+    return Sovereign_MoveInList(sCannotSketchMoves, NELEMS(sCannotSketchMoves), move) == FALSE;
 }
 
 BOOL Move_CanBeMetronomed(BattleSystem *battleSys, BattleContext *battleCtx, int battler, u16 move)
 {
-    int i = 0;
-
     // Sovereign: empty move slots (the official numbers of Z-Moves and Max Moves, which aren't in the game) have 0 PP.
-    if (MOVE_DATA(move).pp == 0) {
-        return FALSE;
-    }
+    // A move Gravity or Heal Block stops can be called, and then fails (Gen V+).
+    return MOVE_DATA(move).pp != 0 && Sovereign_MoveInList(sCannotMetronomeMoves, NELEMS(sCannotMetronomeMoves), move) == FALSE;
+}
 
-    if (Move_FailsInHighGravity(battleSys, battleCtx, battler, move) == TRUE
-        || Move_HealBlocked(battleSys, battleCtx, battler, move) == TRUE) {
-        return FALSE;
-    }
+// Sovereign: Assist's and Copycat's own lists (Gen V+); Platinum used Metronome's.
+BOOL Move_CanBeAssisted(u16 move)
+{
+    return Sovereign_MoveInList(sCannotAssistMoves, NELEMS(sCannotAssistMoves), move) == FALSE;
+}
 
-    for (; sCannotMetronomeMoves[i] != FORBIDDEN_BY_METRONOME_DELIM; i++) {
-        if (sCannotMetronomeMoves[i] == move) {
-            break;
-        }
-    }
-
-    return sCannotMetronomeMoves[i] == FORBIDDEN_BY_METRONOME_DELIM;
+BOOL Move_CanBeCopycatted(u16 move)
+{
+    return Sovereign_MoveInList(sCannotCopycatMoves, NELEMS(sCannotCopycatMoves), move) == FALSE;
 }
 
 static const u16 sCannotEncoreMoves[] = {
-    MOVE_TRANSFORM,
-    MOVE_MIMIC,
-    MOVE_SKETCH,
-    MOVE_MIRROR_MOVE,
-    MOVE_ENCORE,
-    MOVE_STRUGGLE,
+    MOVE_MIMIC, MOVE_METRONOME, MOVE_MIRROR_MOVE, MOVE_TRANSFORM, MOVE_STRUGGLE, MOVE_SKETCH, MOVE_SLEEP_TALK,
+    MOVE_ENCORE, MOVE_NATURE_POWER, MOVE_ASSIST, MOVE_ME_FIRST, MOVE_COPYCAT, MOVE_DYNAMAX_CANNON, MOVE_BLAZING_TORQUE,
+    MOVE_WICKED_TORQUE, MOVE_NOXIOUS_TORQUE, MOVE_COMBAT_TORQUE, MOVE_MAGICAL_TORQUE
 };
 
 BOOL Move_CanBeEncored(BattleContext *battleCtx, u16 move)
 {
-    int i;
-    for (i = 0; i < NELEMS(sCannotEncoreMoves); i++) {
-        if (MOVE_DATA(sCannotEncoreMoves[i]).effect == MOVE_DATA(move).effect) {
-            break;
-        }
-    }
-
-    return i == NELEMS(sCannotEncoreMoves);
+    return Sovereign_MoveInList(sCannotEncoreMoves, NELEMS(sCannotEncoreMoves), move) == FALSE;
 }
 
 static const u16 sCannotMeFirstMoves[] = {
-    MOVE_COUNTER,
-    MOVE_MIRROR_COAT,
-    MOVE_THIEF,
-    MOVE_COVET,
-    MOVE_FOCUS_PUNCH,
-    MOVE_CHATTER,
+    MOVE_COUNTER, MOVE_STRUGGLE, MOVE_THIEF, MOVE_MIRROR_COAT, MOVE_FOCUS_PUNCH, MOVE_COVET, MOVE_METAL_BURST,
+    MOVE_ME_FIRST, MOVE_BELCH, MOVE_BEAK_BLAST, MOVE_SHELL_TRAP, MOVE_COMEUPPANCE, MOVE_BLAZING_TORQUE,
+    MOVE_WICKED_TORQUE, MOVE_NOXIOUS_TORQUE, MOVE_COMBAT_TORQUE, MOVE_MAGICAL_TORQUE
 };
 
 BOOL Move_MeFirstCanCopy(BattleContext *battleCtx, u16 move)
 {
-    int i;
-    for (i = 0; i < NELEMS(sCannotMeFirstMoves); i++) {
-        if (MOVE_DATA(sCannotMeFirstMoves[i]).effect == MOVE_DATA(move).effect) {
-            break;
-        }
-    }
+    return Sovereign_MoveInList(sCannotMeFirstMoves, NELEMS(sCannotMeFirstMoves), move) == FALSE;
+}
 
-    return i == NELEMS(sCannotMeFirstMoves);
+static const u16 sCannotSleepTalkMoves[] = {
+    MOVE_RAZOR_WIND, MOVE_FLY, MOVE_SOLAR_BEAM, MOVE_DIG, MOVE_MIMIC, MOVE_BIDE, MOVE_METRONOME, MOVE_MIRROR_MOVE,
+    MOVE_SKULL_BASH, MOVE_SKY_ATTACK, MOVE_STRUGGLE, MOVE_SKETCH, MOVE_SLEEP_TALK, MOVE_UPROAR, MOVE_FOCUS_PUNCH,
+    MOVE_NATURE_POWER, MOVE_ASSIST, MOVE_DIVE, MOVE_BOUNCE, MOVE_ME_FIRST, MOVE_COPYCAT, MOVE_CHATTER,
+    MOVE_SHADOW_FORCE, MOVE_SKY_DROP, MOVE_FREEZE_SHOCK, MOVE_ICE_BURN, MOVE_BELCH, MOVE_PHANTOM_FORCE, MOVE_GEOMANCY,
+    MOVE_CELEBRATE, MOVE_HOLD_HANDS, MOVE_SOLAR_BLADE, MOVE_BEAK_BLAST, MOVE_SHELL_TRAP, MOVE_DYNAMAX_CANNON,
+    MOVE_BLAZING_TORQUE, MOVE_WICKED_TORQUE, MOVE_NOXIOUS_TORQUE, MOVE_COMBAT_TORQUE, MOVE_MAGICAL_TORQUE
+};
+
+BOOL Move_CanBeSleepTalked(u16 move)
+{
+    return Sovereign_MoveInList(sCannotSleepTalkMoves, NELEMS(sCannotSleepTalkMoves), move) == FALSE;
 }
 
 s32 BattleSystem_GetItemData(BattleContext *battleCtx, u16 item, enum ItemDataParam paramID)

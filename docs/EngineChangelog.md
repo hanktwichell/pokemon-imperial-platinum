@@ -3,6 +3,44 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Item 11: Platinum's moves under the later games' rules, batch F
+
+For players:
+- **Metronome, Assist and Copycat** (Gen V+) each have Gen IX's own list of moves they can't call (Showdown's
+  `metronome`, `noassist` and `failcopycat` flags: 154, 57 and 52 moves in this game). Platinum shared one list of 25.
+  Metronome can now call a move the user knows, and a move Gravity or Heal Block stops can be called (it then fails).
+- **Encore and Me First** use Gen IX's lists (`failencore`, `failmefirst`), by move rather than by battle effect.
+- **Mirror Move** (Gen V+) is aimed at a foe and copies that foe's last move, if it can be mirrored. Platinum copied
+  the last move that hit the user.
+- **Sleep Talk** (Gen V+) works through a Choice item's lock, Encore, Disable, Torment, Taunt and Imprison, and uses
+  Gen IX's `nosleeptalk` list (Belch, Beak Blast, Shell Trap, Mimic, Sketch, Nature Power, the charge moves...).
+  Platinum failed once the user was Choice-locked or Encored into it.
+- **Me First** (Gen V+) multiplies the copied move's power by 1.5 (Platinum: the damage), and Taunt lets it through.
+- **Heal Block** (Gen VI+) stops every healing move, the drain moves (Absorb, Giga Drain, Drain Punch, Dream Eater,
+  Leech Life, Horn Leech, Draining Kiss...) and the later healing moves included. Platinum's list had 14 moves.
+- **Hard Press** has power 1 in its data, as Platinum's variable-power moves do (it was 0, so Taunt and the trainer AI
+  took it for a status move).
+
+Code: `sCannotMetronomeMoves`, `sCannotAssistMoves`, `sCannotCopycatMoves`, `sCannotEncoreMoves`,
+`sCannotMeFirstMoves` and `sCannotSleepTalkMoves` with `Move_CanBeAssisted`, `Move_CanBeCopycatted` and
+`Move_CanBeSleepTalked` (`battle_lib.c`); `BtlCmd_Metronome`, `BtlCmd_TryAssist`, `BtlCmd_TryCopycat`,
+`BtlCmd_SetMirrorMove`, `BtlCmd_TrySleepTalk` and `BattleScript_CalcMoveDamage` (`battle_script.c`); Taunt in
+`BattleSystem_CheckInvalidMoves` and `CHECK_STATUS_STATE_TAUNT`; Heal Block's `Move_HealBlocked` on `sHealingMoves`
+(Bouncy Bubble added); Mirror Move's range and Hard Press's power in `tools/engine/gen9_move_fixes.py`.
+
+Verified (test build, emulator, wild battles against a Lv. 100 Ninjask unless noted):
+- **Heal Block:** after the Ninjask's Heal Block, "GEODUDE can't use Giga Drain because of Heal Block!", and with only
+  Giga Drain known, Geodude Struggled.
+- **Hard Press under Taunt:** "GEODUDE fell for the taunt!", then Hard Press hit for 45, 37, 29 (less as the target's
+  HP fell).
+- **Sleep Talk:** Geodude with a Choice Band, asleep from Spore, used Sleep Talk → Tackle on every turn it slept.
+- **Mirror Move / Copycat:** after the Ninjask's Growl, "GEODUDE used Growl! The wild NINJASK's Attack fell!" both ways.
+- **Metronome:** called Flame Burst, Spacial Rend, Submission, Drill Peck, AncientPower. **Assist:** called the
+  party's Iron Defense, Aerial Ace, Tackle and Teleport (which switched Geodude out).
+- **Me First:** against a slower Lv. 50 Slowpoke using Tackle, Geodude's Me First Tackle did 39–40 a hit, its own
+  Tackle 26–27 (×1.5).
+- **Builds:** the test and release builds pass, and every battle script fits its buffer.
+
 ## Item 11: Platinum's moves under the later games' rules, batch E
 
 For players:
