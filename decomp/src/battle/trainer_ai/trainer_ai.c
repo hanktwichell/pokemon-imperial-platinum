@@ -212,6 +212,8 @@ static BOOL AI_IsAsleepWithNaturalCure(BattleSystem *battleSys, BattleContext *b
 static BOOL AI_IsHeavilyStatBoosted(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 static BOOL TrainerAI_ShouldSwitch(BattleSystem *battleSys, BattleContext *battleCtx, int battler);
 static BOOL TrainerAI_ShouldUseItem(BattleSystem *battleSys, int battler);
+static u8 AI_ItemCuredConditions(BattleContext *battleCtx, u16 item);
+static u8 AI_BattlerConditions(BattleContext *battleCtx, int battler);
 
 static const AICommandFunc sAICommandTable[] = {
 #include "data/scripts/aicmd.h"
@@ -4762,6 +4764,7 @@ static BOOL TrainerAI_ShouldUseItem(BattleSystem *battleSys, int battler)
     u8 aliveMons = 0;
     u16 item;
     u8 hpRestore;
+    u8 cured;
     BOOL result;
     Party *party;
     Pokemon *mon;
@@ -4819,40 +4822,13 @@ static BOOL TrainerAI_ShouldUseItem(BattleSystem *battleSys, int battler)
                         result = TRUE;
                     }
                 }
-            } else if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HEAL_SLEEP)) {
-                if (battleCtx->battleMons[battler].status & MON_CONDITION_SLEEP) {
-                    AI_CONTEXT.usedItemCondition[battler >> 1] |= FlagIndex(5);
-                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_AI_CATEGORY_RECOVER_STATUS;
-                    result = TRUE;
-                }
-            } else if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HEAL_POISON)) {
-                if ((battleCtx->battleMons[battler].status & MON_CONDITION_POISON)
-                    || (battleCtx->battleMons[battler].status & MON_CONDITION_TOXIC)) {
-                    AI_CONTEXT.usedItemCondition[battler >> 1] |= FlagIndex(4);
-                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_AI_CATEGORY_RECOVER_STATUS;
-                    result = TRUE;
-                }
-            } else if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HEAL_BURN)) {
-                if (battleCtx->battleMons[battler].status & MON_CONDITION_BURN) {
-                    AI_CONTEXT.usedItemCondition[battler >> 1] |= FlagIndex(3);
-                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_AI_CATEGORY_RECOVER_STATUS;
-                    result = TRUE;
-                }
-            } else if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HEAL_FREEZE)) {
-                if (battleCtx->battleMons[battler].status & MON_CONDITION_FREEZE) {
-                    AI_CONTEXT.usedItemCondition[battler >> 1] |= FlagIndex(2);
-                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_AI_CATEGORY_RECOVER_STATUS;
-                    result = TRUE;
-                }
-            } else if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HEAL_PARALYSIS)) {
-                if (battleCtx->battleMons[battler].status & MON_CONDITION_PARALYSIS) {
-                    AI_CONTEXT.usedItemCondition[battler >> 1] |= FlagIndex(1);
-                    AI_CONTEXT.usedItemType[battler >> 1] = ITEM_AI_CATEGORY_RECOVER_STATUS;
-                    result = TRUE;
-                }
-            } else if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HEAL_CONFUSION)) {
-                if (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_CONFUSION) {
-                    AI_CONTEXT.usedItemCondition[battler >> 1] |= FlagIndex(0);
+            } else if (AI_ItemCuredConditions(battleCtx, item)) {
+                // Sovereign (12b): an item that cures several conditions (Full Heal) is used for any of them. Platinum
+                // checked one condition per item, the first one the item cures, so a Full Heal was only used on sleep.
+                cured = AI_ItemCuredConditions(battleCtx, item) & AI_BattlerConditions(battleCtx, battler);
+
+                if (cured) {
+                    AI_CONTEXT.usedItemCondition[battler >> 1] = cured;
                     AI_CONTEXT.usedItemType[battler >> 1] = ITEM_AI_CATEGORY_RECOVER_STATUS;
                     result = TRUE;
                 }
@@ -4892,12 +4868,81 @@ static BOOL TrainerAI_ShouldUseItem(BattleSystem *battleSys, int battler)
                 AI_CONTEXT.usedItemType[battler >> 1] = ITEM_AI_CATEGORY_MAX;
             }
 
+            // Sovereign (12b): one item per turn. Platinum kept looking once it had picked one, and result stayed TRUE,
+            // so every later item it could reach was spent too, and the last one was the one used (with two or more
+            // items and few Pokemon left, a trainer could lose all its Full Restores in one turn).
             if (result == TRUE) {
                 AI_CONTEXT.usedItem[battler >> 1] = item;
                 AI_CONTEXT.trainerItems[pool][i] = 0;
+                break;
             }
         }
     }
 
     return result;
+}
+
+// Sovereign (12b): the conditions an item cures, as ITEM_RECOVER_* flags.
+static u8 AI_ItemCuredConditions(BattleContext *battleCtx, u16 item)
+{
+    u8 cured = 0;
+
+    if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HEAL_SLEEP)) {
+        cured |= ITEM_RECOVER_SLEEP;
+    }
+
+    if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HEAL_POISON)) {
+        cured |= ITEM_RECOVER_POISON;
+    }
+
+    if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HEAL_BURN)) {
+        cured |= ITEM_RECOVER_BURN;
+    }
+
+    if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HEAL_FREEZE)) {
+        cured |= ITEM_RECOVER_FREEZE;
+    }
+
+    if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HEAL_PARALYSIS)) {
+        cured |= ITEM_RECOVER_PARALYSIS;
+    }
+
+    if (BattleSystem_GetItemData(battleCtx, item, ITEM_PARAM_HEAL_CONFUSION)) {
+        cured |= ITEM_RECOVER_CONFUSION;
+    }
+
+    return cured;
+}
+
+// Sovereign (12b): the battler's conditions an item could cure, as ITEM_RECOVER_* flags.
+static u8 AI_BattlerConditions(BattleContext *battleCtx, int battler)
+{
+    u8 conditions = 0;
+    u32 status = battleCtx->battleMons[battler].status;
+
+    if (status & MON_CONDITION_SLEEP) {
+        conditions |= ITEM_RECOVER_SLEEP;
+    }
+
+    if (status & (MON_CONDITION_POISON | MON_CONDITION_TOXIC)) {
+        conditions |= ITEM_RECOVER_POISON;
+    }
+
+    if (status & MON_CONDITION_BURN) {
+        conditions |= ITEM_RECOVER_BURN;
+    }
+
+    if (status & MON_CONDITION_FREEZE) {
+        conditions |= ITEM_RECOVER_FREEZE;
+    }
+
+    if (status & MON_CONDITION_PARALYSIS) {
+        conditions |= ITEM_RECOVER_PARALYSIS;
+    }
+
+    if (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_CONFUSION) {
+        conditions |= ITEM_RECOVER_CONFUSION;
+    }
+
+    return conditions;
 }

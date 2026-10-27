@@ -47,6 +47,7 @@ opponent for checking these in game.
 | 13 | Switching to a Pokémon that absorbs the foe's move | `TrainerAI_ShouldSwitch` (via `AI_HasAbsorbAbilityInParty`) switches out, half the time, to a party Pokémon whose ability absorbs the type of the move that just hit it. It looked for Flash Fire, Water Absorb and Volt Absorb only | it never switched to Motor Drive, Dry Skin (Platinum's own), Storm Drain, Lightning Rod, Sap Sipper, Well-Baked Body or Earth Eater | **done:** the check uses the same ability list as the partner checks (`AI_AbilityAbsorbsMoveType`) | ✅ |
 | 14 | Platinum's own AI bugs | pret's decompilation marks eight mistakes in the AI: seven in the script and one in the choice of a replacement after a knockout (`docs/bugs_and_glitches.md` in `decomp/`). Examples: Facade was scored by the foe's status, Water Spout and Eruption by the foe's HP, and the replacement's score overflowed past 255 | the AI scored these moves on the wrong Pokémon, and Lv. 100 bosses picked the wrong replacement | **done:** all eight fixed (section *#14*) | ✅ |
 | 15 | Absorbing abilities in the switch checks | the checks behind switching (does a benched Pokémon have a super-effective move? is it immune to the move that just hit?) and the choice of a replacement after a knockout use the AI's own type check, which knew Levitate and Wonder Guard but none of the absorbing abilities | after a knockout the AI sent in the Pokémon whose strongest move the foe absorbs (Hydro Pump into Water Absorb), and it counted a super-effective move into an absorber as a reason to switch to that Pokémon | **done:** the type check (`CalcEffectiveness`, used only by the AI) treats a move the target's ability absorbs as having no effect, and the post-KO damage estimate scores it 0 (section *#15*) | ✅ |
+| 16 | Trainer items | `TrainerAI_ShouldUseItem` kept looking after it picked an item, and its result stayed TRUE, so every later item it could reach was spent too, and the last one was the one used. A Full Heal was only ever used on sleep | a trainer with two or more items and few Pokémon left lost them all in one turn; Cynthia's four Full Restores could go at once | **done:** one item per turn; a Full Heal is used for any condition it cures (section *#16*) | ✅ |
 
 ## Order of work
 
@@ -58,6 +59,7 @@ opponent for checking these in game.
 6. ✅ #13 (switching to any absorbing ability).
 7. ✅ #14 (Platinum's own AI bugs).
 8. ✅ #15 (absorbing abilities in the switch checks).
+9. ✅ #16 (trainer items).
 
 Each fix gets a scenario in the test build. The developer team has Heat Wave and Rock Slide as spread moves, Water
 Spout and Origin Pulse with Kyogre, and Venusaur/Charizard sharing the field.
@@ -234,3 +236,32 @@ Verified in the test build, against a build without the change:
 - Without the change: "Ace Trainer Henry is about to send in BLASTOISE."
 - With the change: "...about to send in GOLEM."
 - Control: the same battle without Water Absorb still sends in Blastoise.
+
+## #16: trainer items (done 2026-10-26)
+
+How Platinum decides (`TrainerAI_ShouldUseItem`): a trainer's items unlock as its party shrinks. The first item is
+always available, and with n items, item i becomes available when at most n − i + 1 of its Pokémon are left. On each
+turn the AI looks through the available items in order.
+
+The bugs (Platinum's own, not marked by pret):
+- **Several items per turn.** Once an item qualified, the loop went on, and `result` stayed TRUE. Every later
+  available item was then marked used, whether it qualified or not, and the last one became the item announced.
+  - Example: a trainer with Hyper Potion, Hyper Potion and Full Heal, down to one Pokémon at 10% HP: "used one Full
+    Heal". That healed nothing, and all three items were gone.
+  - 84 trainers have two or more items, mostly Full Restores (Gym Leaders, the Elite Four, Cynthia, the rivals).
+- **Full Heal only on sleep.** The status checks were a chain with one condition per item, so an item that cures
+  everything stopped at the first test, sleep.
+
+The fix:
+- The AI stops at the first item that qualifies.
+- A status item is used when the Pokémon has any condition the item cures, and all of them are cured.
+- `subscript_use_status_recovery` also clears confusion on its "normalized its status" path, which a Full Heal on a
+  confused and statused Pokémon takes.
+
+Verified in the test build, against a build without the fix:
+- Setup: the test trainer held two Hyper Potions and a Full Heal, with one Slowbro, burned and at 10% HP (set again
+  after each heal). The player's Pokémon used Splash.
+- With the fix: a Hyper Potion on turn 1, the second Hyper Potion on turn 2, and the Full Heal on turn 3 ("The foe's
+  SLOWBRO's Full Heal healed its burn!").
+- Without it: "Ace Trainer Henry used one Full Heal" on turn 1, with no healing and no cure. Slowbro then fainted to
+  its burn.
