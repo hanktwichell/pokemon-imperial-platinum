@@ -568,6 +568,8 @@ BOOL Battler_UnnerveBlocksBerry(BattleSystem *battleSys, BattleContext *battleCt
 
 // Sovereign (item 11): the power of Gen V+ moves whose power depends on the battle (Hex, Electro Ball, Heavy Slam...).
 int Sovereign_MovePriority(BattleContext *battleCtx, int battler, int move);
+BOOL Sovereign_MoveHasFlinchChance(BattleContext *battleCtx, int move);
+BOOL Sovereign_MoveSetsOwnType(int move);
 int Sovereign_AbilityMoveType(int ability, int move, int type);
 BOOL Sovereign_SetupStatDropReaction(BattleContext *battleCtx, int battler);
 BOOL Sovereign_SetupAdrenalineOrb(BattleContext *battleCtx, int battler);

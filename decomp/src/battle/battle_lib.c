@@ -1205,23 +1205,6 @@ static const u8 sSpeedHalvingItemEffects[] = {
     HOLD_EFFECT_LVLUP_SPDEF_EV_UP
 };
 
-static inline int CompareSpeed_ApplySimple(BattleContext *battleCtx, int battler, int stage)
-{
-    if (Battler_Ability(battleCtx, battler) == ABILITY_SIMPLE) {
-        stage = DEFAULT_STAT_STAGE + ((stage - DEFAULT_STAT_STAGE) * 2);
-
-        if (stage > MAX_STAT_STAGE) {
-            stage = MAX_STAT_STAGE;
-        }
-
-        if (stage < MIN_STAT_STAGE) {
-            stage = MIN_STAT_STAGE;
-        }
-    }
-
-    return stage;
-}
-
 u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *battleCtx, int battler1, int battler2, BOOL ignoreQuickClaw)
 {
     u8 result = COMPARE_SPEED_FASTER;
@@ -1256,8 +1239,7 @@ u8 BattleSystem_CompareBattlerSpeed(BattleSystem *battleSys, BattleContext *batt
     battler1SpeedStage = battleCtx->battleMons[battler1].statBoosts[BATTLE_STAT_SPEED];
     battler2SpeedStage = battleCtx->battleMons[battler2].statBoosts[BATTLE_STAT_SPEED];
 
-    battler1SpeedStage = CompareSpeed_ApplySimple(battleCtx, battler1, battler1SpeedStage);
-    battler2SpeedStage = CompareSpeed_ApplySimple(battleCtx, battler2, battler2SpeedStage);
+    // Sovereign: Simple doubles a stat change as it happens (Gen V+, BtlCmd_ChangeStatStage), not the stage here.
 
     battler1Speed = battleCtx->battleMons[battler1].speed * sStatStageBoosts[battler1SpeedStage].numerator / sStatStageBoosts[battler1SpeedStage].denominator;
     battler2Speed = battleCtx->battleMons[battler2].speed * sStatStageBoosts[battler2SpeedStage].numerator / sStatStageBoosts[battler2SpeedStage].denominator;
@@ -4177,12 +4159,52 @@ BOOL Sovereign_BypassesSubstitute(BattleContext *battleCtx, int attacker, int de
     return attacker != defender && (Move_IsSound(move) || Battler_Ability(battleCtx, attacker) == ABILITY_INFILTRATOR);
 }
 
-// Sovereign (item 11): a move's type after its user's ability. Normalize makes every move Normal-type (as in Gen IV);
-// Pixilate, Refrigerate, Aerilate, Galvanize and Dragonize turn Normal-type moves into their type; Liquid Voice makes
-// sound moves Water-type.
+// Sovereign: TRUE for a move that has a flinch chance of its own, which King's Rock, Razor Fang and Stench don't add to.
+BOOL Sovereign_MoveHasFlinchChance(BattleContext *battleCtx, int move)
+{
+    switch (MOVE_DATA(move).effect) {
+    case BATTLE_EFFECT_FLINCH_HIT:
+    case BATTLE_EFFECT_CHARGE_TURN_HIGH_CRIT_FLINCH:
+    case BATTLE_EFFECT_DAMAGE_WHILE_ASLEEP:
+    case BATTLE_EFFECT_ALWAYS_FLINCH_FIRST_TURN_ONLY:
+    case BATTLE_EFFECT_FLINCH_DOUBLE_DAMAGE_FLY_OR_BOUNCE:
+    case BATTLE_EFFECT_FLINCH_MINIMIZE_DOUBLE_HIT:
+    case BATTLE_EFFECT_FLINCH_BURN_HIT:
+    case BATTLE_EFFECT_FLINCH_FREEZE_HIT:
+    case BATTLE_EFFECT_FLINCH_PARALYZE_HIT:
+    case BATTLE_EFFECT_SOVEREIGN_TRIPLE_ARROWS:
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
+// Sovereign: moves whose own rule sets their type. Normalize and the -ate abilities leave them alone (Gen VII+).
+BOOL Sovereign_MoveSetsOwnType(int move)
+{
+    switch (move) {
+    case MOVE_STRUGGLE:
+    case MOVE_HIDDEN_POWER:
+    case MOVE_WEATHER_BALL:
+    case MOVE_NATURAL_GIFT:
+    case MOVE_JUDGMENT:
+    case MOVE_TECHNO_BLAST:
+    case MOVE_REVELATION_DANCE:
+    case MOVE_MULTI_ATTACK:
+    case MOVE_TERRAIN_PULSE:
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
+// Sovereign (item 11): a move's type after its user's ability. Normalize makes every move Normal-type; Pixilate,
+// Refrigerate, Aerilate, Galvanize and Dragonize turn Normal-type moves into their type; Liquid Voice makes sound moves
+// Water-type. Struggle and the moves that set their own type (Weather Ball, Judgment...) keep it, except for Liquid
+// Voice (as in Gen VII+).
 int Sovereign_AbilityMoveType(int ability, int move, int type)
 {
-    if (move == MOVE_STRUGGLE) {
+    if (move == MOVE_STRUGGLE || (ability != ABILITY_LIQUID_VOICE && Sovereign_MoveSetsOwnType(move))) {
         return type;
     }
 
@@ -4504,6 +4526,38 @@ BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem *battleSys, BattleContext *
         }
         break;
 
+    // Sovereign: Pickup picks up an item another Pokemon on the field used up this turn, at the end of the turn while it
+    // holds nothing (Gen V+); a random one when there are more. That item can't be Recycled any more. Platinum's Pickup
+    // did nothing in battle.
+    case ABILITY_PICKUP:
+        if (battleCtx->battleMons[battler].curHP && battleCtx->battleMons[battler].heldItem == ITEM_NONE) {
+            int found[MAX_BATTLERS];
+            int count = 0;
+
+            for (int i = 0; i < BattleSystem_GetMaxBattlers(battleSys); i++) {
+                if (i != battler
+                    && battleCtx->battleMons[i].curHP
+                    && battleCtx->turnFlags[i].sovereignItemUsed
+                    && battleCtx->recycleItem[i] != ITEM_NONE) {
+                    found[count++] = i;
+                }
+            }
+
+            if (count) {
+                int from = found[BattleSystem_RandNext(battleSys) % count];
+
+                battleCtx->battleMons[battler].heldItem = battleCtx->recycleItem[from];
+                battleCtx->recycleItem[from] = ITEM_NONE;
+                battleCtx->turnFlags[from].sovereignItemUsed = FALSE;
+                BattleMon_CopyToParty(battleSys, battleCtx, battler);
+                battleCtx->msgBattlerTemp = battler;
+                battleCtx->msgItemTemp = battleCtx->battleMons[battler].heldItem;
+                subscript = subscript_sovereign_pickup;
+                result = TRUE;
+            }
+        }
+        break;
+
     // Sovereign (item 11): Ball Fetch picks up the first ball thrown in a wild battle, which failed to catch (the battle
     // would be over otherwise), at the end of a turn while it holds nothing. Once per battle; the player's side only.
     case ABILITY_BALL_FETCH:
@@ -4665,7 +4719,7 @@ BOOL BattleSystem_TriggerTurnEndAbility(BattleSystem *battleSys, BattleContext *
     case ABILITY_SHED_SKIN:
         if ((battleCtx->battleMons[battler].status & MON_CONDITION_ANY)
             && battleCtx->battleMons[battler].curHP
-            && BattleSystem_RandNext(battleSys) % 10 < 3) {
+            && BattleSystem_RandNext(battleSys) % 100 < 33) { // Sovereign: 33% (Gen V+), was 30%
             if (battleCtx->battleMons[battler].status & MON_CONDITION_SLEEP) {
                 battleCtx->msgTemp = MSGCOND_SLEEP;
             } else if (battleCtx->battleMons[battler].status & MON_CONDITION_ANY_POISON) {
@@ -5698,30 +5752,14 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                     && Battler_Ability(battleCtx, battler) == ABILITY_FRISK) {
                     battleCtx->battleMons[battler].friskAnnounced = TRUE;
 
-                    if (BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES) {
-                        int enemies[] = {
-                            BattleSystem_GetEnemyInSlot(battleSys, battler, ENEMY_IN_SLOT_RIGHT),
-                            BattleSystem_GetEnemyInSlot(battleSys, battler, ENEMY_IN_SLOT_LEFT),
-                        };
-
-                        if (battleCtx->battleMons[enemies[0]].curHP
-                            && battleCtx->battleMons[enemies[0]].heldItem
-                            && battleCtx->battleMons[enemies[1]].curHP
-                            && battleCtx->battleMons[enemies[1]].heldItem) {
-                            battleCtx->msgItemTemp = battleCtx->battleMons[enemies[BattleSystem_RandNext(battleSys) & 1]].heldItem;
-                            result = SWITCH_IN_CHECK_RESULT_BREAK;
-                        } else if (battleCtx->battleMons[enemies[0]].curHP
-                            && battleCtx->battleMons[enemies[0]].heldItem) {
-                            battleCtx->msgItemTemp = battleCtx->battleMons[enemies[0]].heldItem;
-                            result = SWITCH_IN_CHECK_RESULT_BREAK;
-                        } else if (battleCtx->battleMons[enemies[1]].curHP
-                            && battleCtx->battleMons[enemies[1]].heldItem) {
-                            battleCtx->msgItemTemp = battleCtx->battleMons[enemies[1]].heldItem;
+                    // Sovereign: Frisk finds every foe's item, each with its own message (Gen VI+). Platinum named
+                    // one item, a random foe's in a double battle. subscript_frisk goes through the foes.
+                    for (int j = 0; j < maxBattlers; j++) {
+                        if (BattleSystem_GetBattlerSide(battleSys, j) != BattleSystem_GetBattlerSide(battleSys, battler)
+                            && battleCtx->battleMons[j].curHP
+                            && battleCtx->battleMons[j].heldItem) {
                             result = SWITCH_IN_CHECK_RESULT_BREAK;
                         }
-                    } else if (battleCtx->battleMons[battler ^ 1].curHP && battleCtx->battleMons[battler ^ 1].heldItem) {
-                        battleCtx->msgItemTemp = battleCtx->battleMons[battler ^ 1].heldItem;
-                        result = SWITCH_IN_CHECK_RESULT_BREAK;
                     }
                 }
 
@@ -6826,7 +6864,8 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
         break;
     }
 
-    case ABILITY_EFFECT_SPORE:
+    case ABILITY_EFFECT_SPORE: {
+        int roll;
         if (ATTACKING_MON.curHP
             && ATTACKING_MON.status == MON_CONDITION_NONE
             && Battler_SovereignPowderImmune(battleCtx, battleCtx->defender, battleCtx->attacker) == FALSE // Sovereign (item 11)
@@ -6835,18 +6874,14 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
             && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
             && Sovereign_MakesContact(battleCtx, battleCtx->attacker, battleCtx->moveCur)
-            && BattleSystem_RandNext(battleSys) % 10 < 3) {
-            switch (BattleSystem_RandNext(battleSys) % 3) {
-            case 0:
-            default:
-                *subscript = subscript_poison;
-                break;
-            case 1:
-                *subscript = subscript_paralyze;
-                break;
-            case 2:
+            && (roll = BattleSystem_RandNext(battleSys) % 100) < 30) {
+            // Sovereign: 11% sleep, 10% paralysis, 9% poison (Gen V+). Platinum gave each 10%.
+            if (roll < 11) {
                 *subscript = subscript_fall_asleep;
-                break;
+            } else if (roll < 21) {
+                *subscript = subscript_paralyze;
+            } else {
+                *subscript = subscript_poison;
             }
 
             battleCtx->sideEffectType = SIDE_EFFECT_TYPE_ABILITY;
@@ -6856,6 +6891,7 @@ BOOL BattleSystem_TriggerAbilityOnHit(BattleSystem *battleSys, BattleContext *ba
             result = TRUE;
         }
         break;
+    }
 
     case ABILITY_POISON_POINT:
         if (ATTACKING_MON.curHP
@@ -7097,7 +7133,10 @@ BOOL BattleSystem_SynchronizeStatus(BattleSystem *battleSys, BattleContext *batt
     }
 
     if (result == TRUE) {
-        if (battleCtx->battleMons[battleCtx->msgBattlerTemp].status & MON_CONDITION_ANY_POISON) {
+        // Sovereign: bad poisoning is passed on as bad poisoning (Gen V+), not as plain poison.
+        if (battleCtx->battleMons[battleCtx->msgBattlerTemp].status & MON_CONDITION_TOXIC) {
+            nextSeq = subscript_sovereign_synchronize_toxic;
+        } else if (battleCtx->battleMons[battleCtx->msgBattlerTemp].status & MON_CONDITION_ANY_POISON) {
             nextSeq = subscript_poison;
         } else if (battleCtx->battleMons[battleCtx->msgBattlerTemp].status & MON_CONDITION_BURN) {
             nextSeq = subscript_burn;
@@ -10605,6 +10644,10 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         && moveType != TYPE_NORMAL) {
         movePower = movePower * 12 / 10;
     }
+    // Sovereign: Normalize also powers up the moves it makes Normal-type by 1.2x, Normal-type ones too (Gen VII+).
+    if (attackerParams.ability == ABILITY_NORMALIZE && Sovereign_MoveSetsOwnType(move) == FALSE) {
+        movePower = movePower * 12 / 10;
+    }
     moveType = Sovereign_ElectrifyType(battleCtx, attacker, move, moveType); // Sovereign (item 11)
 
     GF_ASSERT(battleCtx->powerMul >= 10);
@@ -10747,12 +10790,12 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         defenseStat = defenseStat * 150 / 100;
     }
 
-    if (attackerParams.ability == ABILITY_PLUS
-        && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_OUR_SIDE, attacker, ABILITY_MINUS)) {
-        spAttackStat = spAttackStat * 150 / 100;
-    }
-    if (attackerParams.ability == ABILITY_MINUS
-        && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_OUR_SIDE, attacker, ABILITY_PLUS)) {
+    // Sovereign: Plus and Minus work with a partner that has either of them (Gen V+), not only the other one.
+    // Counting the user's own side, a lone Plus counts once and a Plus with a Plus partner twice.
+    if ((attackerParams.ability == ABILITY_PLUS || attackerParams.ability == ABILITY_MINUS)
+        && BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_OUR_SIDE, attacker, ABILITY_PLUS)
+                + BattleSystem_CountAbility(battleSys, battleCtx, COUNT_ALIVE_BATTLERS_OUR_SIDE, attacker, ABILITY_MINUS)
+            > 1) {
         spAttackStat = spAttackStat * 150 / 100;
     }
 
@@ -10834,41 +10877,7 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         spDefenseStage = 0;
     }
 
-    if (attackerParams.ability == ABILITY_SIMPLE) {
-        attackStage *= 2;
-        if (attackStage < MIN_STAT_STAGE - DEFAULT_STAT_STAGE) {
-            attackStage = MIN_STAT_STAGE - DEFAULT_STAT_STAGE;
-        }
-        if (attackStage > MAX_STAT_STAGE - DEFAULT_STAT_STAGE) {
-            attackStage = MAX_STAT_STAGE - DEFAULT_STAT_STAGE;
-        }
-
-        spAttackStage *= 2;
-        if (spAttackStage < MIN_STAT_STAGE - DEFAULT_STAT_STAGE) {
-            spAttackStage = MIN_STAT_STAGE - DEFAULT_STAT_STAGE;
-        }
-        if (spAttackStage > MAX_STAT_STAGE - DEFAULT_STAT_STAGE) {
-            spAttackStage = MAX_STAT_STAGE - DEFAULT_STAT_STAGE;
-        }
-    }
-
-    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_SIMPLE) == TRUE) {
-        defenseStage *= 2;
-        if (defenseStage < MIN_STAT_STAGE - DEFAULT_STAT_STAGE) {
-            defenseStage = MIN_STAT_STAGE - DEFAULT_STAT_STAGE;
-        }
-        if (defenseStage > MAX_STAT_STAGE - DEFAULT_STAT_STAGE) {
-            defenseStage = MAX_STAT_STAGE - DEFAULT_STAT_STAGE;
-        }
-
-        spDefenseStage *= 2;
-        if (spDefenseStage < MIN_STAT_STAGE - DEFAULT_STAT_STAGE) {
-            spDefenseStage = MIN_STAT_STAGE - DEFAULT_STAT_STAGE;
-        }
-        if (spDefenseStage > MAX_STAT_STAGE - DEFAULT_STAT_STAGE) {
-            spDefenseStage = MAX_STAT_STAGE - DEFAULT_STAT_STAGE;
-        }
-    }
+    // Sovereign: Simple doubles a stat change as it happens (Gen V+, BtlCmd_ChangeStatStage), not the stages here.
 
     if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_UNAWARE) == TRUE) {
         attackStage = 0;

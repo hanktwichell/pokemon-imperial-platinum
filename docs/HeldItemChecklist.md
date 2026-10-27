@@ -4,7 +4,13 @@ The Gen V+ held items that Sovereign sells: Veilstone Dept. Store 2F, held items
 (`data/items_sovereign.yaml`, `include/data/sovereign_mart_items.h`). This list says which items already work in
 battle (roadmap item 11).
 
-Platinum's own held items keep their Gen IV behaviour. Mega Stones, Orbs, Plates, Drives, Memories and other
+Platinum's own held items keep their Gen IV behaviour, with these exceptions (Gen V+):
+- **King's Rock and Razor Fang** work with every damaging move that has no flinch chance of its own (10%, doubled by
+  Serene Grace), not only with the moves Gen IV listed. Stench does the same, and doesn't add to them.
+- **Focus Band and Focus Sash** are checked for each hit. Platinum kept the first hit's result for the rest of the
+  move, so a Focus Sash at full HP held through a multi-hit move's later hits too. Sturdy works before either.
+
+Mega Stones, Orbs, Plates, Drives, Memories and other
 form-setting items work through the form tables (milestone FM), so they aren't listed here.
 
 The new items have no hold effect constant (`HOLD_EFFECT_NONE`). The battle code checks the item itself, with

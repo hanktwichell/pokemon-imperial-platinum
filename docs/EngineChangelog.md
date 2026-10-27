@@ -3,6 +3,65 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Item 11: Platinum's abilities under the later games' rules
+
+Battles follow Pokémon Champions, and Gen IX where Champions changes nothing (`docs/BattleMechanics.md`). Many of
+Platinum's own abilities still worked as in Gen IV. These now follow the later games (`docs/AbilityChecklist.md`,
+"Platinum's abilities updated"):
+
+For players:
+- **Sturdy** (Gen V+): at full HP, a Pokémon survives a hit that would knock it out, with 1 HP ("GEODUDE's Sturdy let
+  it endure the hit!"). This includes confusion damage, Future Sight and Pursuit. It works before a Focus Sash or Focus
+  Band, which are then not used, and Mold Breaker ignores it. It still blocks one-hit KO moves.
+- **Stench** (Gen V+): 10% chance to make the target flinch with any damaging move that has no flinch chance of its
+  own. It did nothing in battle.
+- **King's Rock and Razor Fang** (Gen V+) work the same way, with every such move, not only the moves Gen IV listed.
+  The item and Stench don't add up. Serene Grace doubles the chance.
+- **Focus Sash and Focus Band** are checked for each hit. Platinum kept the first hit's result for the rest of the move,
+  so a Focus Sash at full HP also held through a multi-hit move's later hits. Tested before and after.
+- **Keen Eye** (Gen VI+) and **Illuminate** (Gen IX): the holder's moves ignore the target's raised evasion.
+  Illuminate also stops accuracy drops ("STARYU's Illuminate prevents accuracy loss!"). It did nothing in battle.
+- **Frisk** (Gen VI+) names every foe's held item: "GOTHITELLE frisked the wild NINJASK and found its Leftovers!". It
+  named one item, a random foe's in a double battle.
+- **Oblivious** (Gen VI+) keeps Taunt off its holder, as it keeps Attract off.
+- **Synchronize** (Gen V+) passes bad poisoning on as bad poisoning, not as plain poison.
+- **Pickup** (Gen V+): at the end of a turn, a holder with no item picks up an item another Pokémon used up that turn
+  ("ZIGZAGOON found one Sitrus Berry!"). That item can't be Recycled after that. It did nothing in battle.
+- **Simple** (Gen V+) doubles each stat change as it happens, so the stage itself is doubled: one Defense Curl gives
+  +2. Baton Pass, Psych Up and Stored Power see the doubled stage. Gen IV doubled the stage when it worked out a stat.
+- **Normalize** (Gen VII+) also powers its moves up 1.2×. Weather Ball, Judgment, Hidden Power, Natural Gift, Techno
+  Blast, Revelation Dance, Multi-Attack and Terrain Pulse keep their own type, also under Pixilate and the other
+  -ate abilities.
+- **Plus and Minus** (Gen V+) work with a partner that has either of them.
+- **Shed Skin** cures 33% of the time (Gen V+), was 30%. **Effect Spore** gives sleep 11%, paralysis 10% and poison 9%
+  (Gen V+); each was 10%.
+- **Leaf Guard** (Gen V+): Rest fails in harsh sunlight. Rest also fails on Electric Terrain or Misty Terrain under a
+  grounded user ("CHIKORITA surrounds itself with electrified terrain!").
+
+Code: `src/battle/battle_controller_player.c` (Sturdy and the focus items with the damage, the extra flinch, Keen Eye
+and Illuminate in the accuracy check, Oblivious against Taunt), `src/battle/battle_script.c` (Sturdy in
+`BtlCmd_CheckHoldOnWith1HP`, Illuminate's stat-drop check, Simple in `BtlCmd_ChangeStatStage`, Pickup's used-item
+mark in `BtlCmd_RemoveItem`), `src/battle/battle_lib.c` (Frisk, Plus and Minus, Normalize, Shed Skin, Effect Spore,
+Synchronize, Pickup; Simple out of the speed and damage calculations), new `MOVE_STATUS_ENDURED_ABILITY`, the
+subscripts `subscript_frisk`, `subscript_rest`, `subscript_move_followup_message`, `subscript_future_sight_damage`,
+new `subscript_sovereign_pickup` and `subscript_sovereign_synchronize_toxic`, and 13 battle messages.
+
+Verified, in the test build (wild battles):
+- **Sturdy:** a Lv. 100 Ninjask's Hydro Pump took a Lv. 50 Geodude from 115 HP to 1 ("GEODUDE's Sturdy let it endure
+  the hit!"); the next one knocked it out. With Mold Breaker, 115 to 0. Against Bullet Seed it held only while at full
+  HP: 115, 63, 15, 0 in one move.
+- **Focus Sash:** a Geodude without Sturdy took Bullet Seed: 115, 39, 0. On the previous ROM it hung on at 1 HP after
+  the second hit.
+- **Frisk, Oblivious, Illuminate, Pickup, Simple, Rest:** the messages above. Simple: three Defense Curls gave +2, +4,
+  +6. Slowpoke kept using Splash after the Taunt. Rest failed with Leaf Guard after Sunny Day and on Electric Terrain.
+- **Synchronize:** a wild Ninjask's Toxic badly poisoned Espeon, and "ESPEON's Synchronize poisoned the wild NINJASK!".
+  The Ninjask then lost 14, 28, 42 and 56 HP at the ends of turns, as bad poisoning does.
+- **Stench:** a Ninjask with Stench used Tackle on a wild Snorlax for about 20 turns, and the Snorlax flinched three
+  times.
+- A first version put Synchronize's case into `subscript_badly_poison`, which made it 2,116 bytes, past the 2,048-byte
+  script buffer: the player's Pokémon lost its moves. Synchronize now has its own small subscript.
+- The test and release builds pass, and every battle script fits its buffer (`tools/test/check_battle_scripts.py`).
+
 ## Item 11 and 12b: Champions' Run Away and Sheer Force, and the AI's trap check
 
 These follow Showdown's Champions mod (`data/mods/champions/abilities.ts` and `scripts.ts`).

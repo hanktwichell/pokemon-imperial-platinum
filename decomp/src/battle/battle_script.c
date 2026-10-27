@@ -3012,6 +3012,22 @@ static BOOL ChangeStatStage(BattleSystem *battleSys, BattleContext *battleCtx)
         battleCtx->scriptTemp = BATTLE_ANIMATION_STAT_BOOST;
     }
 
+    // Sovereign: Simple doubles a stat change as it happens (Gen V+), so the stage itself is doubled (Baton Pass, Psych
+    // Up and Stored Power see it). Platinum doubled the stage when it worked out the stats instead. Mold Breaker ignores
+    // a foe's Simple when its move changes the stat.
+    BOOL simple;
+    if (battleCtx->attacker != battleCtx->sideEffectMon
+        && (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_DIRECT
+            || battleCtx->sideEffectType == SIDE_EFFECT_TYPE_INDIRECT
+            || battleCtx->sideEffectType == SIDE_EFFECT_TYPE_MOVE_EFFECT)) {
+        simple = Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->sideEffectMon, ABILITY_SIMPLE) == TRUE;
+    } else {
+        simple = Battler_Ability(battleCtx, battleCtx->sideEffectMon) == ABILITY_SIMPLE;
+    }
+    if (simple) {
+        stageChange *= 2;
+    }
+
     if (stageChange > 0) {
         if (mon->statBoosts[BATTLE_STAT_ATTACK + statOffset] == MAX_STAT_STAGE) {
             battleCtx->battleStatusMask |= SYSCTL_FAIL_STAT_STAGE_CHANGE;
@@ -3099,6 +3115,7 @@ static BOOL ChangeStatStage(BattleSystem *battleSys, BattleContext *battleCtx)
                     result = 1;
                 } else if (AbilityBlocksSpecificStatReduction(battleCtx, statOffset, ABILITY_KEEN_EYE, BATTLE_STAT_ACCURACY)
                     || AbilityBlocksSpecificStatReduction(battleCtx, statOffset, ABILITY_MINDS_EYE, BATTLE_STAT_ACCURACY)
+                    || AbilityBlocksSpecificStatReduction(battleCtx, statOffset, ABILITY_ILLUMINATE, BATTLE_STAT_ACCURACY) // Sovereign: Gen IX
                     || AbilityBlocksSpecificStatReduction(battleCtx, statOffset, ABILITY_HYPER_CUTTER, BATTLE_STAT_ATTACK)
                     || AbilityBlocksSpecificStatReduction(battleCtx, statOffset, ABILITY_BIG_PECKS, BATTLE_STAT_DEFENSE)) { // Sovereign (item 11)
                     if (battleCtx->sideEffectType == SIDE_EFFECT_TYPE_ABILITY) {
@@ -9408,6 +9425,11 @@ static BOOL BtlCmd_RemoveItem(BattleSystem *battleSys, BattleContext *battleCtx)
         usedUp = FALSE;
     }
 
+    // Sovereign: another Pokemon's Pickup can pick the item up at the end of this turn (Gen V+).
+    if (usedUp) {
+        battleCtx->turnFlags[battler].sovereignItemUsed = TRUE;
+    }
+
     // Sovereign (item 11): remember who ate a Berry, for Belch. Bug Bite and Pluck feed the target's Berry to the
     // attacker; Natural Gift and Fling use the attacker's up without eating it (Fling's target eats it:
     // subscript_pluck_check).
@@ -9602,9 +9624,14 @@ static BOOL BtlCmd_CheckHoldOnWith1HP(BattleSystem *battleSys, BattleContext *ba
         endure = TRUE;
     }
 
-    if (endure && battleCtx->battleMons[battler].curHP + battleCtx->hpCalcTemp <= 0) {
+    // Sovereign: Sturdy (Gen V+) at full HP, before the item, for confusion damage, Future Sight and Pursuit too.
+    BOOL sturdy = battleCtx->battleMons[battler].curHP == battleCtx->battleMons[battler].maxHP
+        && battleCtx->battleMons[battler].curHP + battleCtx->hpCalcTemp <= 0
+        && Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battler, ABILITY_STURDY) == TRUE;
+
+    if ((endure || sturdy) && battleCtx->battleMons[battler].curHP + battleCtx->hpCalcTemp <= 0) {
         battleCtx->hpCalcTemp = (battleCtx->battleMons[battler].curHP - 1) * -1;
-        battleCtx->moveStatusFlags |= MOVE_STATUS_ENDURED_ITEM;
+        battleCtx->moveStatusFlags |= sturdy ? MOVE_STATUS_ENDURED_ABILITY : MOVE_STATUS_ENDURED_ITEM;
     }
 
     return FALSE;

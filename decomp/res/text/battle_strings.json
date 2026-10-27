@@ -11116,6 +11116,103 @@
         "Sky Drop won’t let\n",
         "the foe’s {STRVAR_1 1, 0, 0} go!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAbilityLetItEndure_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\n",
+        "let it endure the hit!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAbilityLetItEndure_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\n",
+        "let it endure the hit!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignAbilityLetItEndure_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}’s {STRVAR_1 5, 1, 0}\n",
+        "let it endure the hit!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFriskedItem_AllyAlly",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} frisked {STRVAR_1 1, 1, 0}\n",
+        "and found its {STRVAR_1 8, 2, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFriskedItem_AllyWild",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} frisked\n",
+        "the wild {STRVAR_1 1, 1, 0}\r",
+        "and found its {STRVAR_1 8, 2, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFriskedItem_AllyFoe",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} frisked\n",
+        "the foe’s {STRVAR_1 1, 1, 0}\r",
+        "and found its {STRVAR_1 8, 2, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFriskedItem_WildAlly",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}\n",
+        "frisked {STRVAR_1 1, 1, 0}\r",
+        "and found its {STRVAR_1 8, 2, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFriskedItem_WildWild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} frisked\n",
+        "the wild {STRVAR_1 1, 1, 0}\r",
+        "and found its {STRVAR_1 8, 2, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFriskedItem_FoeAlly",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}\n",
+        "frisked {STRVAR_1 1, 1, 0}\r",
+        "and found its {STRVAR_1 8, 2, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFriskedItem_FoeFoe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} frisked\n",
+        "the foe’s {STRVAR_1 1, 1, 0}\r",
+        "and found its {STRVAR_1 8, 2, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFoundOneItem_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} found\n",
+        "one {STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFoundOneItem_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} found\n",
+        "one {STRVAR_1 8, 1, 0}!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignFoundOneItem_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} found\n",
+        "one {STRVAR_1 8, 1, 0}!"
+      ]
     }
   ]
 }

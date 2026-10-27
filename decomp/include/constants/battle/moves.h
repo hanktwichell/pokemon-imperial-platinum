@@ -75,6 +75,7 @@
 #define MOVE_STATUS_WONDER_GUARD        (1 << 18)
 #define MOVE_STATUS_STURDY              (1 << 19)
 #define MOVE_STATUS_MAGNET_RISE         (1 << 20)
+#define MOVE_STATUS_ENDURED_ABILITY     (1 << 21) // Sovereign: Sturdy held on with 1 HP
 
 #define MOVE_STATUS_NO_MORE_WORK (1 << 31)
 

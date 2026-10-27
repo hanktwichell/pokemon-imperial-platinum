@@ -3281,12 +3281,7 @@ static int BattleControllerPlayer_CheckMoveHitAccuracy(BattleSystem *battleSys, 
     s8 accStages = battleCtx->battleMons[attacker].statBoosts[BATTLE_STAT_ACCURACY] - 6;
     s8 evaStages = 6 - battleCtx->battleMons[defender].statBoosts[BATTLE_STAT_EVASION];
 
-    if (Battler_Ability(battleCtx, attacker) == ABILITY_SIMPLE) {
-        accStages *= 2;
-    }
-    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_SIMPLE) == TRUE) {
-        evaStages *= 2;
-    }
+    // Sovereign: Simple doubles a stat change as it happens (Gen V+, BtlCmd_ChangeStatStage), not the stages here.
     if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_UNAWARE) == TRUE) {
         accStages = 0;
     }
@@ -3296,8 +3291,11 @@ static int BattleControllerPlayer_CheckMoveHitAccuracy(BattleSystem *battleSys, 
     if (MON_IS_IDENTIFIED(defender) && evaStages < 0) {
         evaStages = 0;
     }
-    // Sovereign (item 11): Mind's Eye ignores the target's raised evasion.
-    if (Battler_Ability(battleCtx, attacker) == ABILITY_MINDS_EYE && evaStages < 0) {
+    // Sovereign (item 11): Mind's Eye, Keen Eye (Gen VI+) and Illuminate (Gen IX) ignore the target's raised evasion.
+    if ((Battler_Ability(battleCtx, attacker) == ABILITY_MINDS_EYE
+            || Battler_Ability(battleCtx, attacker) == ABILITY_KEEN_EYE
+            || Battler_Ability(battleCtx, attacker) == ABILITY_ILLUMINATE)
+        && evaStages < 0) {
         evaStages = 0;
     }
     // Sovereign (item 11): Sacred Sword, Chip Away and Darkest Lariat ignore the target's evasion stage.
@@ -3723,6 +3721,13 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
     // Sovereign (item 11): Aroma Veil, the target's own or its partner's, keeps Attract, Disable, Encore, Heal Block,
     // Taunt and Torment off it. subscript_missed names the veil.
     if (Sovereign_AromaVeilBlocks(battleSys, battleCtx, attacker, defender, move)) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_INEFFECTIVE;
+    }
+
+    // Sovereign: Oblivious keeps Taunt off its holder (Gen VI+), as it keeps Attract and Captivate off.
+    if (move == MOVE_TAUNT
+        && attacker != defender
+        && Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_OBLIVIOUS) == TRUE) {
         battleCtx->moveStatusFlags |= MOVE_STATUS_INEFFECTIVE;
     }
 
@@ -4398,6 +4403,10 @@ static void BattleControllerPlayer_UpdateHP(BattleSystem *battleSys, BattleConte
             battleCtx->damage = (DEFENDING_MON.curHP - 1) * -1;
         }
 
+        // Sovereign: the Focus Band and Focus Sash are checked for each hit (Gen V+). Platinum kept the first hit's
+        // result for the rest of the move, so a Focus Sash at full HP also held through a multi-hit move's later hits.
+        DEFENDER_SELF_TURN_FLAGS.focusItemActivated = FALSE;
+
         if (DEFENDER_TURN_FLAGS.enduring == 0) {
             if (itemEffect == HOLD_EFFECT_MAYBE_ENDURE && (BattleSystem_RandNext(battleSys) % 100) < itemPower) {
                 DEFENDER_SELF_TURN_FLAGS.focusItemActivated = TRUE;
@@ -4408,12 +4417,21 @@ static void BattleControllerPlayer_UpdateHP(BattleSystem *battleSys, BattleConte
             }
         }
 
-        if ((DEFENDER_TURN_FLAGS.enduring || DEFENDER_SELF_TURN_FLAGS.focusItemActivated)
+        // Sovereign: Sturdy (Gen V+) leaves a Pokemon at full HP with 1 HP after a hit that would knock it out. It
+        // works before the Focus Sash or Focus Band, which are then not used. Mold Breaker ignores it.
+        BOOL sturdy = DEFENDER_TURN_FLAGS.enduring == 0
+            && DEFENDING_MON.curHP == DEFENDING_MON.maxHP
+            && DEFENDING_MON.curHP + battleCtx->damage <= 0
+            && Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->defender, ABILITY_STURDY) == TRUE;
+
+        if ((DEFENDER_TURN_FLAGS.enduring || DEFENDER_SELF_TURN_FLAGS.focusItemActivated || sturdy)
             && DEFENDING_MON.curHP + battleCtx->damage <= 0) {
             battleCtx->damage = (DEFENDING_MON.curHP - 1) * -1;
 
             if (DEFENDER_TURN_FLAGS.enduring) {
                 battleCtx->moveStatusFlags |= MOVE_STATUS_ENDURED;
+            } else if (sturdy) {
+                battleCtx->moveStatusFlags |= MOVE_STATUS_ENDURED_ABILITY;
             } else {
                 battleCtx->moveStatusFlags |= MOVE_STATUS_ENDURED_ITEM;
             }
@@ -6065,12 +6083,27 @@ static BOOL BattleControllerPlayer_CheckExtraFlinch(BattleSystem *battleSys, Bat
     int itemEffect = Battler_HeldItemEffect(battleCtx, battleCtx->attacker);
     int itemPower = Battler_HeldItemPower(battleCtx, battleCtx->attacker, 0);
 
+    // Sovereign: King's Rock, Razor Fang and Stench give each damaging move that has no flinch chance of its own a 10%
+    // chance to make the target flinch, doubled by Serene Grace (Gen V+). The item and the ability don't add up.
+    // Platinum's King's Rock worked only with the moves Gen IV listed (MOVE_FLAG_TRIGGERS_KINGS_ROCK), and Stench did
+    // nothing in battle.
+    int chance = 0;
+    if (itemEffect == HOLD_EFFECT_SOMETIMES_FLINCH) {
+        chance = itemPower;
+    } else if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_STENCH) {
+        chance = 10;
+    }
+    if (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_SERENE_GRACE) {
+        chance *= 2;
+    }
+
     if (battleCtx->defender != BATTLER_NONE
-        && itemEffect == HOLD_EFFECT_SOMETIMES_FLINCH
+        && chance
         && (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
         && (DEFENDER_SELF_TURN_FLAGS.physicalDamageTaken || DEFENDER_SELF_TURN_FLAGS.specialDamageTaken)
-        && (BattleSystem_RandNext(battleSys) % 100) < itemPower
-        && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_TRIGGERS_KINGS_ROCK)
+        && CURRENT_MOVE_DATA.class != CLASS_STATUS
+        && Sovereign_MoveHasFlinchChance(battleCtx, battleCtx->moveCur) == FALSE
+        && (BattleSystem_RandNext(battleSys) % 100) < chance
         && DEFENDING_MON.curHP) {
         battleCtx->sideEffectMon = battleCtx->defender;
         battleCtx->sideEffectType = SIDE_EFFECT_TYPE_INDIRECT;
