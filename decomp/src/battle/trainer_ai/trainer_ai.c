@@ -225,6 +225,8 @@ static u8 AIScript_Battler(BattleContext *battleCtx, u8 inBattler);
 static s32 TrainerAI_CalcAllDamage(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, u16 *moves, s32 *damageVals, u16 heldItem, u8 *ivs, int ability, BOOL embargo, BOOL varyDamage);
 static s32 TrainerAI_CalcDamage(BattleSystem *battleSys, BattleContext *battleCtx, u16 move, u16 heldItem, u8 *ivs, int attacker, int ability, BOOL embargo, u8 variance);
 static int TrainerAI_MoveType(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int move);
+static BOOL AI_PrimalWeatherStopsMove(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int ability, int move, int type);
+static void AI_PrimalWeatherEffectiveness(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int ability, int move, int type, u32 *effectiveness);
 static void TrainerAI_GetStats(BattleContext *battleCtx, int battler, int *buf1, int *buf2, int stat);
 
 static BOOL AI_PerishSongKO(BattleContext *battleCtx, int battler);
@@ -1347,6 +1349,7 @@ static void AICmd_CalcMaxEffectiveness(BattleSystem *battleSys, BattleContext *b
                 AI_CONTEXT.defender,
                 damage,
                 &effectiveness);
+            AI_PrimalWeatherEffectiveness(battleSys, battleCtx, AI_CONTEXT.attacker, Battler_Ability(battleCtx, AI_CONTEXT.attacker), move, moveType, &effectiveness);
 
             if (damage == TYPE_MULTI_STAB_DAMAGE * 2) {
                 damage = TYPE_MULTI_DOUBLE_DAMAGE;
@@ -1385,6 +1388,13 @@ static void AICmd_IfMoveEffectivenessEquals(BattleSystem *battleSys, BattleConte
         AI_CONTEXT.attacker,
         AI_CONTEXT.defender,
         damage,
+        &effectiveness);
+    AI_PrimalWeatherEffectiveness(battleSys,
+        battleCtx,
+        AI_CONTEXT.attacker,
+        Battler_Ability(battleCtx, AI_CONTEXT.attacker),
+        AI_CONTEXT.move,
+        TrainerAI_MoveType(battleSys, battleCtx, AI_CONTEXT.attacker, AI_CONTEXT.move),
         &effectiveness);
 
     if (damage == TYPE_MULTI_STAB_DAMAGE * 2) {
@@ -3911,7 +3921,48 @@ static s32 TrainerAI_CalcDamage(BattleSystem *battleSys, BattleContext *battleCt
         damage = BattleSystem_Divide(damage * variance, 100);
     }
 
+    // Sovereign (AI #7): a move the primal weather stops does no damage.
+    if (damage && AI_PrimalWeatherStopsMove(battleSys, battleCtx, attacker, ability, move, type)) {
+        damage = 0;
+    }
+
     return damage;
+}
+
+/**
+ * @brief Sovereign (AI #7): whether a move fizzles out in the primal weather: a damaging Fire move in heavy rain, a
+ * Water move in extremely harsh sunlight (BattleControllerPlayer_BeforeMove).
+ *
+ * @param attacker  The battler using the move (for a party Pokemon, the AI's battler it would come in for).
+ * @param ability   The user's ability.
+ * @param type      The move's variable type, TYPE_NORMAL for its own, as the damage calculation takes it. The user's
+ *                  ability and Electrify change it as there.
+ * @return TRUE if the move is stopped.
+ */
+static BOOL AI_PrimalWeatherStopsMove(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int ability, int move, int type)
+{
+    if ((battleCtx->fieldConditionsMask & FIELD_CONDITION_SOVEREIGN_PRIMAL) == FALSE || MOVE_DATA(move).class == CLASS_STATUS) {
+        return FALSE;
+    }
+
+    if (NO_CLOUD_NINE) {
+        type = Sovereign_ElectrifyType(battleCtx, attacker, move,
+            Sovereign_AbilityMoveType(ability, move, type == TYPE_NORMAL ? MOVE_DATA(move).type : (type & 0x3F)));
+
+        return (WEATHER_IS_RAIN && type == TYPE_FIRE) || (WEATHER_IS_SUN && type == TYPE_WATER);
+    }
+
+    return FALSE;
+}
+
+/**
+ * @brief Sovereign (AI #7): a move the primal weather stops has no effect, whatever the type chart says.
+ */
+static void AI_PrimalWeatherEffectiveness(BattleSystem *battleSys, BattleContext *battleCtx, int attacker, int ability, int move, int type, u32 *effectiveness)
+{
+    if (AI_PrimalWeatherStopsMove(battleSys, battleCtx, attacker, ability, move, type)) {
+        *effectiveness = (*effectiveness & ~MOVE_STATUS_BASIC_EFFECTIVENESS) | MOVE_STATUS_INEFFECTIVE;
+    }
 }
 
 /**
@@ -4107,6 +4158,7 @@ static BOOL AI_CannotDamageWonderGuard(BattleSystem *battleSys, BattleContext *b
             if (move) {
                 effectiveness = 0;
                 BattleSystem_ApplyTypeChart(battleSys, battleCtx, move, moveType, battler, BATTLER_OPP(battler), 0, &effectiveness);
+                AI_PrimalWeatherEffectiveness(battleSys, battleCtx, battler, Battler_Ability(battleCtx, battler), move, moveType, &effectiveness);
 
                 if (effectiveness & MOVE_STATUS_SUPER_EFFECTIVE) {
                     return FALSE;
@@ -4134,6 +4186,7 @@ static BOOL AI_CannotDamageWonderGuard(BattleSystem *battleSys, BattleContext *b
                             Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL),
                             BATTLER_OPP(battler),
                             &effectiveness);
+                        AI_PrimalWeatherEffectiveness(battleSys, battleCtx, battler, Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL), move, moveType, &effectiveness);
 
                         // If this party member has a super-effective move, switch 2/3 of the time
                         if ((effectiveness & MOVE_STATUS_SUPER_EFFECTIVE) && BattleSystem_RandNext(battleSys) % 3 < 2) {
@@ -4192,6 +4245,7 @@ static BOOL AI_OnlyIneffectiveMoves(BattleSystem *battleSys, BattleContext *batt
             effectiveness = 0;
             if (battleCtx->battleMons[defender1].curHP) {
                 BattleSystem_ApplyTypeChart(battleSys, battleCtx, move, type, battler, defender1, 0, &effectiveness);
+                AI_PrimalWeatherEffectiveness(battleSys, battleCtx, battler, Battler_Ability(battleCtx, battler), move, type, &effectiveness);
             }
 
             if ((effectiveness & MOVE_STATUS_INEFFECTIVE) == FALSE) {
@@ -4201,6 +4255,7 @@ static BOOL AI_OnlyIneffectiveMoves(BattleSystem *battleSys, BattleContext *batt
             effectiveness = 0;
             if (battleCtx->battleMons[defender2].curHP) {
                 BattleSystem_ApplyTypeChart(battleSys, battleCtx, move, type, battler, defender2, 0, &effectiveness);
+                AI_PrimalWeatherEffectiveness(battleSys, battleCtx, battler, Battler_Ability(battleCtx, battler), move, type, &effectiveness);
             }
 
             if ((effectiveness & MOVE_STATUS_INEFFECTIVE) == FALSE) {
@@ -4251,6 +4306,7 @@ static BOOL AI_OnlyIneffectiveMoves(BattleSystem *battleSys, BattleContext *batt
                             Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL),
                             defender1,
                             &effectiveness);
+                        AI_PrimalWeatherEffectiveness(battleSys, battleCtx, battler, Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL), move, type, &effectiveness);
                     }
 
                     if ((effectiveness & MOVE_STATUS_SUPER_EFFECTIVE) && BattleSystem_RandNext(battleSys) % 3 < 2) {
@@ -4266,6 +4322,7 @@ static BOOL AI_OnlyIneffectiveMoves(BattleSystem *battleSys, BattleContext *batt
                             Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL),
                             defender2,
                             &effectiveness);
+                        AI_PrimalWeatherEffectiveness(battleSys, battleCtx, battler, Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL), move, type, &effectiveness);
                     }
 
                     if ((effectiveness & MOVE_STATUS_SUPER_EFFECTIVE) && BattleSystem_RandNext(battleSys) % 3 < 2) {
@@ -4304,6 +4361,7 @@ static BOOL AI_OnlyIneffectiveMoves(BattleSystem *battleSys, BattleContext *batt
                             Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL),
                             defender1,
                             &effectiveness);
+                        AI_PrimalWeatherEffectiveness(battleSys, battleCtx, battler, Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL), move, type, &effectiveness);
                     }
 
                     if (effectiveness == 0 && BattleSystem_RandNext(battleSys) % 2 == 0) {
@@ -4319,6 +4377,7 @@ static BOOL AI_OnlyIneffectiveMoves(BattleSystem *battleSys, BattleContext *batt
                             Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL),
                             defender2,
                             &effectiveness);
+                        AI_PrimalWeatherEffectiveness(battleSys, battleCtx, battler, Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL), move, type, &effectiveness);
                     }
 
                     if (effectiveness == 0 && BattleSystem_RandNext(battleSys) % 2 == 0) {
@@ -4368,6 +4427,7 @@ static BOOL AI_HasSuperEffectiveMove(BattleSystem *battleSys, BattleContext *bat
             if (move) {
                 effectiveness = 0;
                 BattleSystem_ApplyTypeChart(battleSys, battleCtx, move, type, battler, defender, 0, &effectiveness);
+                AI_PrimalWeatherEffectiveness(battleSys, battleCtx, battler, Battler_Ability(battleCtx, battler), move, type, &effectiveness);
 
                 // If the defending mon is weak to our move, return TRUE 90-100% of the time.
                 if (effectiveness & MOVE_STATUS_SUPER_EFFECTIVE) {
@@ -4395,6 +4455,7 @@ static BOOL AI_HasSuperEffectiveMove(BattleSystem *battleSys, BattleContext *bat
             if (move) {
                 effectiveness = 0;
                 BattleSystem_ApplyTypeChart(battleSys, battleCtx, move, type, battler, defender, 0, &effectiveness);
+                AI_PrimalWeatherEffectiveness(battleSys, battleCtx, battler, Battler_Ability(battleCtx, battler), move, type, &effectiveness);
 
                 // If the defending mon is weak to our move, return TRUE 90-100% of the time.
                 if (effectiveness & MOVE_STATUS_SUPER_EFFECTIVE) {
@@ -4570,6 +4631,7 @@ static BOOL AI_HasPartyMemberWithSuperEffectiveMove(BattleSystem *battleSys, Bat
                             Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL),
                             battleCtx->moveHitBattler[battler],
                             &effectiveness);
+                        AI_PrimalWeatherEffectiveness(battleSys, battleCtx, battler, Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL), move, moveType, &effectiveness);
 
                         if ((effectiveness & MOVE_STATUS_SUPER_EFFECTIVE) && BattleSystem_RandNext(battleSys) % rand == 0) {
                             battleCtx->aiSwitchedPartySlot[battler] = i;

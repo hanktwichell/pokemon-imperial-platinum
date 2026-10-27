@@ -38,7 +38,7 @@ opponent for checking these in game.
 | 4 | Gen V+ absorbing abilities | the basic immunity check knows Platinum's abilities only: Volt Absorb, Water Absorb, Flash Fire, Wonder Guard, Levitate, Dry Skin, Motor Drive | the AI attacks into Storm Drain, Lightning Rod, Sap Sipper, Earth Eater, Well-Baked Body and similar, which do nothing or boost the foe (these abilities' effects come with item 11) | **done:** Sap Sipper, Storm Drain, Lightning Rod, Well-Baked Body and Earth Eater now absorb (item 11), and the AI's basic immunity check, its Thunder Wave check and the partner/other-foe estimates know them. Also fixes Platinum's Dry Skin check, which tested Levitate twice | ✅ |
 | 5 | Redirection | single-target Electric and Water moves aimed at a foe whose partner has Lightning Rod or Storm Drain get redirected (Gen V+) | wasted moves in doubles | **done:** new AI command `LoadTargetPartnerRedirects`. A single-target Electric or Water move aimed at a foe whose partner has Lightning Rod or Storm Drain scores −10 (unless the attacker has Mold Breaker) | ✅ |
 | 6 | Moves that can't be selected | Champions rules make Fake Out selectable only on the first turn (`CHECK_INVALID_FIRST_TURN`) | if the AI still picks it later, it wastes a turn | checked: the AI drops every move the player couldn't select (`TrainerAI_Init` filters with `CHECK_INVALID_ALL`, which includes Sovereign's first-turn check), so it never picks Fake Out after the first turn | ➖ |
-| 7 | Weather | weather moves are scored by name. Weather from abilities on switch-in (5 turns under Champions rules) isn't part of switching decisions | this matters most for the developer battle's weather control | general part here; the custom weather AI is T2 | 🔧 / T2 |
+| 7 | Weather | weather moves are scored by name. Weather from abilities on switch-in (5 turns under Champions rules) isn't part of switching decisions | this matters most for the developer battle's weather control | **general part done:** the AI knows the primal weathers: no weather move works under them, and a Fire move in heavy rain or a Water move in extremely harsh sunlight does nothing (section *#7*). The custom weather AI is T2 | ✅ / T2 |
 | 8 | Ally-targeted support moves | moves on the partner need a score of 100 or more. Gen V+ ally moves are mapped to the closest Gen IV effects (E3), so whether they ever target the partner depends on that effect's scoring | e.g. Pollen Puff, Heal Pulse, Coaching, Decorate, After You, Instruct, Ally Switch | **done** (2026-10-26, with their exact effects): `LoadSovereignMoveRating` scores Pollen Puff, Heal Pulse, Floral Healing, Decorate, Purify, Instruct, After You and Aromatic Mist on the partner (section *#8, #10 and #11* below) | ✅ |
 | 9 | Mega Evolution timing | none (E8 adds Mega Evolution) | — | **done with E8:** the AI Mega Evolves as soon as it can, so on its first turn with the stone (`docs/EngineChangelog.md`, E8 step 2) | ✅ |
 | 10 | The second Pokémon in a double battle against one trainer | A script that starts a double battle with one trainer ID (`StartTrainerBattle` with one argument: the Elite Four's and Cynthia's double battles, Cyrus in the Distortion World) leaves the second enemy slot without a trainer. `TrainerAI_Init` read that empty slot's AI flags, so the second Pokémon ran only the doubles routine (no Basic, Eval Attack or Expert), and it couldn't use the trainer's items. Trainers that walk up as a pair (twins) fill both slots and were fine | the toughest double battles had a much weaker second Pokémon | **done:** `AI_TrainerSlot` gives that slot the first enemy trainer's AI flags, and both Pokémon share its items | ✅ |
@@ -347,3 +347,45 @@ had Final Gambit, Tackle and two Splash; battler 0 was made a Ghost type at 50 H
 
 Before the fix no check reached Final Gambit, so it stayed at 100 against every target (worked out from the script,
 not traced).
+
+## #7: the primal weathers (done 2026-10-27)
+
+Primordial Sea (heavy rain), Desolate Land (extremely harsh sunlight) and Delta Stream (strong winds) have worked in
+battle since item 11:
+- No weather move works while one is up.
+- A damaging Fire move fizzles out in heavy rain, and a Water move evaporates in extremely harsh sunlight
+  (`BattleControllerPlayer_BeforeMove`).
+
+The AI knew none of it. It read Primordial Sea as plain rain and Desolate Land as plain sun:
+- **Weather moves.** It scored them as in plain weather. Under Primordial Sea it even gave Sunny Day Expert's +1 for
+  replacing the rain.
+- **Damage.** Its estimate took a Fire move in heavy rain at half power, so a Fire move against a foe weak to it could
+  still be its best attack. Cynthia's rematch Rayquaza, for one, knows Overheat, and the player's Primal Kyogre brings
+  heavy rain.
+- **Switching.** Its switch checks counted the Fire moves of a Pokémon on the bench as super-effective in heavy rain.
+
+The fix (`trainer_ai.c`, `trainer_ai/script.s`):
+- **Basic:** Rain Dance, Sunny Day, Sandstorm, Hail and Snowscape score −10 while a primal weather is up
+  (`IfFieldConditionsMask FIELD_CONDITION_SOVEREIGN_PRIMAL`).
+- **`AI_PrimalWeatherStopsMove`:** whether the primal weather stops a damaging move. It uses the move's type as the
+  damage calculation does (the user's ability and Electrify included), and Cloud Nine or Air Lock on the field turns
+  it off, as in battle.
+- **Damage:** `TrainerAI_CalcDamage` gives such a move 0, so the knockout checks, the "strongest move" comparisons and
+  the post-KO pick of a replacement don't count it.
+- **Effectiveness:** `AI_PrimalWeatherEffectiveness` makes such a move count as having no effect in
+  `IfMoveEffectivenessEquals` (so Basic's immunity check gives it −10), in `CalcMaxEffectiveness`, and in every switch
+  check: Wonder Guard, only ineffective moves, a super-effective move, and party members with a super-effective move.
+
+Verified in the test build's trainer battle (a double battle; the player's Pokémon used Splash). The AI's first Pokémon
+had Flamethrower, Surf, Sunny Day and Rain Dance, and the weather was set by the trace. The final scores against
+battler 2 (100 is neutral):
+
+| Weather | Flamethrower | Surf | Sunny Day | Rain Dance |
+|---|---|---|---|---|
+| None | 105 | 104 | 100 | 100 |
+| Primordial Sea, before the fix | 105 | 104 | 101 | 92 |
+| Primordial Sea | 89 | 105 | 91 | 90 |
+| Desolate Land | 105 | 91 | 90 | 91 |
+| Delta Stream | 105 | 104 | 90 | 90 |
+
+Under Primordial Sea, Weather Ball (Water-type in rain) kept its score (104), Fire Blast scored 89 and Snowscape 91.
