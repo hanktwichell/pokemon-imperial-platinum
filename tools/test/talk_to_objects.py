@@ -121,7 +121,8 @@ def stand_next_to(maps, matrix, grid, warps, taken, x, z, dirs=DIRS, enter=False
     """Where the player stands to face the tile (x, z): (x, z, facing) of a reachable tile next to it (or across a
     counter), or (x, z, None) when there is none. dirs: the steps from that tile to (x, z) allowed (a sign is read
     facing north). With enter (a coord trigger) the player steps onto (x, z), so it must be reachable itself and the
-    tile stood on not one of inside (the trigger's other tiles)."""
+    tile stood on not one of inside (the trigger's other tiles). A coord trigger doesn't look at the elevation (the
+    game compares only x and z), so its tiles count reached on a bike bridge's level too (Victory Road 1F's)."""
     rows = grid['maps']
     if len(rows) * len(rows[0]) <= 16:  # an indoor or small map: all of it
         box, edge = (0, 0, len(rows[0]) * 32 - 1, len(rows) * 32 - 1), []
@@ -132,12 +133,13 @@ def stand_next_to(maps, matrix, grid, warps, taken, x, z, dirs=DIRS, enter=False
     # Past the objects if it can (some may be hidden by a flag, so then through them).
     for blocked in (set(taken) | ({(x, z)} if not enter else set()), set() if enter else {(x, z)}):
         seen = explore(maps, matrix, box, edge, warps, blocked)
-        if enter and (x, z, False) not in seen:
+        levels = (False, True) if enter else (False,)
+        if enter and not any((x, z, e) in seen for e in levels):
             continue
         for d in dirs:
             p = (x - d[0], z - d[1])
-            if p not in blocked and p not in inside and (p + (False,)) in seen \
-                    and can_turn(maps, matrix, p[0], p[1], False, d):
+            if p not in blocked and p not in inside and any((p + (e,)) in seen
+                                                            and can_turn(maps, matrix, p[0], p[1], e, d) for e in levels):
                 return p + (FACE[d],)
         for d in () if enter else dirs:
             if (maps.tile(matrix, x - d[0], z - d[1]) or 0) & 0xff == TABLE \
