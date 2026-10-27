@@ -8,8 +8,8 @@ but the battle forms (Mega, Primal, Zen Mode...):
   none of its own (a cap Pikachu, Partner Eevee, Eternal Floette, Spiky-eared Pichu) must not evolve by its species';
 - each base form of a species with forms, or that evolves into one (Pikachu into Raichu, Espurr into Meowstic);
 - once for each form the evolution can give: each gender for a species with a female's form, a personality for each
-  of a species' personality forms (Pumpkaboo's sizes, Low Key Toxtricity, the flower colors), each item for an item
-  evolution into a form (the Scroll of Waters), each Sweet and cream for Milcery, and day, night and twilight for
+  of a species' personality forms (Pumpkaboo's sizes, Low Key Toxtricity), each item for an item evolution into a
+  form (the Scroll of Waters), each Sweet for Milcery, and day, night and twilight for
   Rockruff;
 - the teapots both ways: only an Antique Sinistea evolves with the Chipped Pot, and only an ordinary one with the
   Cracked Pot (Poltchageist's teacups the same).
@@ -27,10 +27,12 @@ it battles a wild Chansey in its new form as in battle_form_changes.py.
 The evolved form it must have is worked out as src/pokemon.c does: an item evolution into a form takes that form
 (sSovereignItemEvolutionForms); a regional form takes its region's form of the target (sSovereignFormEvolutions), or
 0; any other form is kept (a Deerling keeps its season); a target whose form comes from the personality takes that
-one (Pokemon_SovereignPersonalityForm, mirrored in personality_form below); and Rockruff's and Milcery's come from the
-time (and the Sweet). The names cross-check it: an evolved form must be the target's form named as the start form is
-(Galarian Darumaka: Galarian Darmanitan; Flabébé (Yellow Flower): Floette (Yellow Flower)), or its base form when the
-target has none so named, and Alcremie's must be named for the Sweet and the cream the time gives.
+one (Pokemon_SovereignPersonalityForm, mirrored in personality_form below); and Rockruff's comes from the time. The
+player gets only the base form of the cosmetic Pokémon (decision 50, docs/ProjectStatus.md): Milcery always evolves into
+Vanilla Cream Strawberry Sweet Alcremie, whatever the Sweet and the time, and Spewpa into Meadow Vivillon. The names
+cross-check it: an evolved form must be the target's form named as the start form is (Galarian Darumaka: Galarian
+Darmanitan), or its base form when the target has none so named. Not for decision 50's flower colors and patterns,
+which only trainers' Pokémon have: a Yellow Flower Flabébé evolves into the base Floette.
 
 Each case gets a result: ok, EVOLVE (it didn't evolve, or into the wrong species or form, or it evolved when it
 mustn't), NAMES (the form isn't the one the names give), FORM (its form changed in the battle), HANG or STUCK. Needs
@@ -78,6 +80,9 @@ SWEETS = ['ITEM_STRAWBERRY_SWEET', 'ITEM_LOVE_SWEET', 'ITEM_BERRY_SWEET', 'ITEM_
 # Words a form's name differs by that don't make it another form: the official names of the Artisan Poltchageist's
 # line say Masterpiece for Sinistcha, and Standard Galarian Darmanitan is named for its Zen Mode.
 QUALIFIER_ALIASES = {'artisan': 'masterpiece', 'standard': ''}
+# Decision 50: the player gets only these species' base forms; their other forms (flower colors, patterns, creams) are
+# for trainers' Pokémon and don't carry over as they evolve.
+BASE_FORM_ONLY = {'SPECIES_FLABEBE', 'SPECIES_FLOETTE', 'SPECIES_FLORGES', 'SPECIES_VIVILLON', 'SPECIES_ALCREMIE'}
 
 
 @functools.lru_cache(maxsize=None)
@@ -147,9 +152,6 @@ class Forms:
             return int(p % 10 == 0)
         if species in ('SPECIES_DEERLING', 'SPECIES_SAWSBUCK'):
             return -1  # the month's season, not the personality's: a Deerling keeps its own as it evolves
-        if species == 'SPECIES_VIVILLON':
-            pattern = p % 20
-            return 0 if pattern == 6 else pattern + 1 if pattern < 6 else pattern
         gender, personality = self.kinds(species)
         if gender is not None:
             return gender if self.gender_of(species, p) == GENDER_FEMALE else 0
@@ -200,21 +202,6 @@ def lycanroc_form(form, hour):
     """Pokemon_SovereignSetEvolvedSpecies: Own Tempo Rockruff at twilight (17:00 to 19:59) gives Dusk Lycanroc, 6:00 to
     17:59 Midday, other hours Midnight."""
     return 2 if form == 1 and 17 <= hour <= 19 else 0 if 6 <= hour < 18 else 1
-
-
-def alcremie_form(sweet, hour, p):
-    """The Alcremie form whose name has the Sweet's decoration and the cream the time gives (by its name, as
-    Pokemon_SovereignAlcremieForm's comment gives the rule)."""
-    if 17 <= hour <= 19:
-        cream = 'Rainbow Swirl'
-    elif hour >= 20 or hour < 4:
-        cream = ('Matcha Cream', 'Salted Cream', 'Ruby Swirl', 'Caramel Swirl')[p % 4]
-    else:
-        cream = ('Vanilla Cream', 'Ruby Cream', 'Mint Cream', 'Lemon Cream')[p % 4]
-    name = f'Alcremie ({cream}, {sweet[5:].replace("_", " ").title()})'
-    if name == 'Alcremie (Vanilla Cream, Strawberry Sweet)':
-        return 0
-    return next(f for (s, f), n in form_names().items() if s == 'SPECIES_ALCREMIE' and n == name)
 
 
 def setup_for(method, params):
@@ -269,7 +256,7 @@ def cases(forms, verbose=False):
         q = qualifier(species, form)
         c['names_want'] = None
         if q is not None and target != 'SPECIES_NONE' and forms.kinds(target)[0] is None \
-                and species != 'SPECIES_ROCKRUFF':
+                and species != 'SPECIES_ROCKRUFF' and species not in BASE_FORM_ONLY:
             c['names_want'] = next((f for f in forms_of.get(target, []) if qualifier(target, f) == q), 0)
         out.append(c)
 
@@ -309,7 +296,7 @@ def cases(forms, verbose=False):
                     variants = sorted(forms.forms_of(target) | {0}) if forms.forms_of(target) and not never \
                         and species != 'SPECIES_DEERLING' else [None]
                     if species == 'SPECIES_MILCERY':
-                        variants = [0] if hour == TWILIGHT else [0, 1, 2, 3]
+                        variants = [None]
                     found = 0
                     for variant in variants:
                         def ok(p, variant=variant):
@@ -318,8 +305,6 @@ def cases(forms, verbose=False):
                             mine = forms.personality_form(species, p)
                             if mine >= 0 and mine != form and kind != 'SOVEREIGN_FORM_REGIONAL':
                                 return False  # the start form is the one its personality gives (not Eternal Floette's)
-                            if species == 'SPECIES_MILCERY':
-                                return p % 4 == variant
                             return variant is None or forms.personality_form(target, p) == variant
                         p = find_personality(rng, ok)
                         if p is None:
@@ -355,7 +340,7 @@ def expected(forms, regional, item_forms, species, form, target, run, p):
     if species == 'SPECIES_ROCKRUFF':
         return lycanroc_form(form, run['hour'])
     if species == 'SPECIES_MILCERY':
-        return alcremie_form(run['param'], run['hour'], p)
+        return 0  # decision 50: Vanilla Cream Strawberry Sweet, whatever the Sweet and the time
     if run['class'] == EVO_CLASS_BY_ITEM and (species, run['param']) in item_forms:
         want = item_forms[(species, run['param'])][1]
     elif forms.kind(species, form) == 'SOVEREIGN_FORM_REGIONAL':

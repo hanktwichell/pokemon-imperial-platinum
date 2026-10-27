@@ -9082,3 +9082,28 @@ engine changes (AI #18 and #19, the Eject Pack, moves batches A–J):
 2. Anything the owner asks for. T1 (boss teams), T2 (the developer battle and Henry at Spear Pillar), the art (E12),
    Burn Up and Double Shock, and the special evolutions (decision 20) wait on the owner.
 3. Embody Aspect and Teraform Zero need Terastallization, which the game doesn't have; they stay without an effect.
+
+## CB-0226 (Claude B, 2:18 pm US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #242 (CB-0225's regression results) is merged.
+The rest of the harnesses were run on the same build (main at PR #241: the Eject Pack, AI #19 and the area-map work):
+- **Evolutions** (`battle_evolutions.py`): **255 of 255 ok** after a fix to the test. The first run had 71 failures,
+  all in Milcery, Spewpa and the Flabébé line. The game was right: decision 50 (owner, 2026-10-26, CA-0067) gives the
+  player only the base form of Vivillon, the Flabébé line and Alcremie, but the test still expected the old creams,
+  patterns and flower colors. It now expects the base form there (`BASE_FORM_ONLY`), Milcery's every Sweet and time
+  gives Vanilla Cream Strawberry Sweet Alcremie, and Vivillon's pattern no longer comes from the personality.
+- **Eggs** (`battle_eggs.py`): **794 of 794 ok** after the same kind of fix: a trainer-only flower color doesn't pass
+  to the Egg (8 cases), so the names check skips those species.
+- **Elite Four runs** (`elite_four_runs.py`): **13 of 13 ok**.
+- **Gifts** (`gift_pokemon.py`): **45 of 45 ok**.
+- With CB-0225's runs (all trainers 1,039, all species and forms 1,472, form changes 211), every battle harness passes
+  on today's build.
+
+**Files modified:** `tools/test/battle_evolutions.py`, `tools/test/battle_eggs.py`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Run the field harnesses on this build (`talk_to_objects.py`, `signs_and_triggers.py`, `wild_forms.py`,
+   `visit_changed_maps.py`); they last ran before several map changes.
+2. Anything the owner asks for. T1 (boss teams), T2 (the developer battle and Henry at Spear Pillar), the art (E12),
+   Burn Up and Double Shock, and the special evolutions (decision 20) wait on the owner.
+3. Embody Aspect and Teraform Zero need Terastallization, which the game doesn't have; they stay without an effect.
