@@ -742,7 +742,10 @@ static void AICmd_IfMoveEffect(BattleSystem *battleSys, BattleContext *battleCtx
     int jump = AIScript_Read(battleCtx);
     u8 battler = AIScript_Battler(battleCtx, inBattler);
 
-    if (battleCtx->battleMons[battler].moveEffectsMask & mask) {
+    // Sovereign: Mud Sport and Water Sport are field effects (Gen VI+), not the user's.
+    if ((battleCtx->battleMons[battler].moveEffectsMask & mask)
+        || ((mask & MOVE_EFFECT_MUD_SPORT) && battleCtx->sovereignMudSportTurns)
+        || ((mask & MOVE_EFFECT_WATER_SPORT) && battleCtx->sovereignWaterSportTurns)) {
         AIScript_Iter(battleCtx, jump);
     }
 }

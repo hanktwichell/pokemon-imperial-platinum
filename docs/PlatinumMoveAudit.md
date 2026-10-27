@@ -301,12 +301,12 @@ Sovereign, Magic Coat and Magic Bounce both use this flag (bcp:~3847, bcp:~3871)
 21. ✅ *Done in moves batch F (CB-0215).* **Assist, Copycat (274, 383)**: give them Gen IX's lists of moves they can't call (separate from Metronome's Gen IV list at bl:11475) and remove the Gravity and Heal Block filter (bl:11526).
 22. ✅ *Done in moves batch E (CB-0214).* **Sweet Scent (230)**: a new evasion −2 effect using `MOVE_SUBSCRIPT_PTR_EVASION_DOWN_2_STAGES` (the old EVA_DOWN_2 effect 63 is an unused stub).
 23. ✅ *Done in moves batch E (CB-0214): `SOVEREIGN_TAIL_GLOW` from `gen_stat_moves.py`.* **Tail Glow (294)**: a user Sp. Atk +3 effect, like Cotton Guard's `SOVEREIGN_COTTON_GUARD`.
-24. **Mud Sport, Water Sport (300, 346)**: turn each into a 5-turn field condition that fails while active, with Electric (Fire) power ×1352/4096 (bl:10820, bl:10824).
+24. ✅ *Done in moves batch H (CB-0217): "The effects of Mud Sport have faded." when it ends.* **Mud Sport, Water Sport (300, 346)**: turn each into a 5-turn field condition that fails while active, with Electric (Fire) power ×1352/4096 (bl:10820, bl:10824).
 25. ✅ *Done in moves batch E (CB-0214).* **Uproar (253, PARTIAL)**: fixed counter of 3 instead of `Random 3, 3` (sub uproar:6).
 26. ✅ *Done in moves batch G (CB-0216).* **Toxic Spikes (390, PARTIAL)**: in sub hazards_check:68, don't let Magic Guard skip Toxic Spikes (it should only skip the damage), and drop the Substitute check for `SIDE_EFFECT_TYPE_TOXIC_SPIKES`.
 27. ✅ *Done in moves batch G (CB-0216); a move it reflected isn't reflected back again (Magic Bounce's rule).* **Magic Coat (277)**: keep `magicCoat` set for the whole turn (bcp:3848), don't reflect while the user is semi-invulnerable, and bounce side-targeting moves.
-28. **Howl (336, PARTIAL)**: also raise the partner's Attack in doubles (Soundproof blocks it), as Gen VIII+ does.
-29. **Nature Power, Secret Power, Camouflage (267, 290, 293)**: check the active terrain first.
+28. ✅ *Done in moves batch H (CB-0217).* **Howl (336, PARTIAL)**: also raise the partner's Attack in doubles (Soundproof blocks it), as Gen VIII+ does.
+29. ✅ *Done in moves batch H (CB-0217).* **Nature Power, Secret Power, Camouflage (267, 290, 293)**: check the active terrain first.
     - Nature Power: Thunderbolt, Energy Ball, Moonblast or Psychic.
     - Secret Power: 30% paralysis, sleep, Sp. Atk −1 or Speed −1.
     - Camouflage: Electric, Grass, Fairy or Psychic.

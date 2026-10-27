@@ -8364,6 +8364,28 @@ static BOOL BtlCmd_GetItemEffectParam(BattleSystem *battleSys, BattleContext *ba
 
 #include "data/terrain/to_type.h"
 
+// Sovereign: which terrain is on the field, for Camouflage, Nature Power and Secret Power, which go by it before the
+// battle's location (Gen VI+): 0 Electric, 1 Grassy, 2 Misty, 3 Psychic, or -1 for none.
+static int Sovereign_FieldTerrainIndex(BattleContext *battleCtx)
+{
+    u32 terrain = battleCtx->fieldConditionsMask & FIELD_CONDITION_TERRAIN;
+
+    return (terrain & FIELD_CONDITION_TERRAIN_ELECTRIC) ? 0
+        : (terrain & FIELD_CONDITION_TERRAIN_GRASSY)    ? 1
+        : (terrain & FIELD_CONDITION_TERRAIN_MISTY)     ? 2
+        : (terrain & FIELD_CONDITION_TERRAIN_PSYCHIC)   ? 3
+                                                        : -1;
+}
+
+static const u8 sSovereignFieldTerrainCamouflageType[] = { TYPE_ELECTRIC, TYPE_GRASS, TYPE_FAIRY, TYPE_PSYCHIC };
+static const u16 sSovereignFieldTerrainMove[] = { MOVE_THUNDERBOLT, MOVE_ENERGY_BALL, MOVE_MOONBLAST, MOVE_PSYCHIC };
+static const u32 sSovereignFieldTerrainSideEffect[] = {
+    MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SUBSCRIPT_PTR_PARALYZE,
+    MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SUBSCRIPT_PTR_SLEEP,
+    MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SUBSCRIPT_PTR_SP_ATTACK_DOWN_1_STAGE,
+    MOVE_SIDE_EFFECT_TO_DEFENDER | MOVE_SUBSCRIPT_PTR_SPEED_DOWN_1_STAGE,
+};
+
 /**
  * @brief Try to change the battler's type to one according to the battle
  * terrain.
@@ -8392,6 +8414,12 @@ static BOOL BtlCmd_TryCamouflage(BattleSystem *battleSys, BattleContext *battleC
     }
 
     int type = sTerrainCamouflageType[terrain];
+    int fieldTerrain = Sovereign_FieldTerrainIndex(battleCtx);
+
+    if (fieldTerrain >= 0) {
+        type = sSovereignFieldTerrainCamouflageType[fieldTerrain];
+    }
+
     if (MON_IS_NOT_TYPE(battleCtx->attacker, type)) {
         ATTACKING_MON.type1 = type;
         ATTACKING_MON.type2 = type;
@@ -8426,6 +8454,12 @@ static BOOL BtlCmd_GetTerrainMove(BattleSystem *battleSys, BattleContext *battle
 
     battleCtx->msgMoveTemp = sTerrainMove[terrain];
 
+    int fieldTerrain = Sovereign_FieldTerrainIndex(battleCtx);
+
+    if (fieldTerrain >= 0) {
+        battleCtx->msgMoveTemp = sSovereignFieldTerrainMove[fieldTerrain];
+    }
+
     return FALSE;
 }
 
@@ -8452,6 +8486,12 @@ static BOOL BtlCmd_GetTerrainSecondaryEffect(BattleSystem *battleSys, BattleCont
     }
 
     battleCtx->sideEffectIndirectFlags = sTerrainSideEffect[terrain];
+
+    int fieldTerrain = Sovereign_FieldTerrainIndex(battleCtx);
+
+    if (fieldTerrain >= 0) {
+        battleCtx->sideEffectIndirectFlags = sSovereignFieldTerrainSideEffect[fieldTerrain];
+    }
 
     return FALSE;
 }
@@ -10343,6 +10383,10 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         return &battleCtx->sovereignMagicRoomTurns;
     case BTLVAR_SOVEREIGN_WONDER_ROOM_TURNS: // Sovereign (item 11)
         return &battleCtx->sovereignWonderRoomTurns;
+    case BTLVAR_SOVEREIGN_MUD_SPORT_TURNS: // Sovereign
+        return &battleCtx->sovereignMudSportTurns;
+    case BTLVAR_SOVEREIGN_WATER_SPORT_TURNS: // Sovereign
+        return &battleCtx->sovereignWaterSportTurns;
     case BTLVAR_SOVEREIGN_DRAGON_CHEER_SIDE_EFFECT_MON: // Sovereign (item 11)
         return &battleCtx->sovereignDragonCheer[battleCtx->sideEffectMon];
     case BTLVAR_SOVEREIGN_LASER_FOCUS_SIDE_EFFECT_MON: // Sovereign (item 11)

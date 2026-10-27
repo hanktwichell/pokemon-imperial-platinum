@@ -10828,13 +10828,13 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
         spAttackStat = spAttackStat * 150 / 100;
     }
 
-    if (moveType == TYPE_ELECTRIC
-        && BattleSystem_AnyBattlersWithMoveEffect(battleSys, battleCtx, MOVE_EFFECT_MUD_SPORT)) {
-        movePower /= 2;
+    // Sovereign: Mud Sport and Water Sport are 5-turn field effects with a 1352/4096 power modifier (Gen VI+); Platinum
+    // halved the power while their user stayed in.
+    if (moveType == TYPE_ELECTRIC && battleCtx->sovereignMudSportTurns) {
+        movePower = movePower * 1352 / 4096;
     }
-    if (moveType == TYPE_FIRE
-        && BattleSystem_AnyBattlersWithMoveEffect(battleSys, battleCtx, MOVE_EFFECT_WATER_SPORT)) {
-        movePower /= 2;
+    if (moveType == TYPE_FIRE && battleCtx->sovereignWaterSportTurns) {
+        movePower = movePower * 1352 / 4096;
     }
 
     if (moveType == TYPE_GRASS

@@ -421,6 +421,14 @@ VALUE_FIXES = {
     "hard_press": {"power": 1},
     # Mirror Move is aimed at a foe and copies that foe's last move (Gen V+).
     "mirror_move": {"range": "RANGE_SINGLE_TARGET"},
+    # Batch H: Mud Sport and Water Sport are 5-turn field effects (Gen VI+), and Howl raises the ally's Attack too
+    # (Gen VIII+).
+    "mud_sport": {"description": ["The user kicks up\n", "mud on the field.\n", "This weakens\n",
+                                  "Electric-type moves\n", "for five turns."]},
+    "water_sport": {"description": ["The user soaks the\n", "field with water.\n", "This weakens\n",
+                                    "Fire-type moves for\n", "five turns."]},
+    "howl": {"description": ["The user howls to\n", "raise its spirit\n", "and its ally’s,\n",
+                             "boosting their\n", "Attack stats."]},
 }
 
 

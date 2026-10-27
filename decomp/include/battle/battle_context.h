@@ -378,6 +378,8 @@ struct BattleContext {
     int sovereignCudChewTurn[MAX_BATTLERS]; // Sovereign (item 11): the turn it was eaten; Cud Chew eats it at the end of a later one
     int sovereignMagicRoomTurns; // Sovereign (item 11): turns of Magic Room left (held items have no effect)
     int sovereignWonderRoomTurns; // Sovereign (item 11): turns of Wonder Room left (Defense and Sp. Def swapped)
+    int sovereignMudSportTurns; // Sovereign: turns of Mud Sport left (Electric moves weakened, a field effect since Gen VI)
+    int sovereignWaterSportTurns; // Sovereign: turns of Water Sport left (Fire moves weakened, a field effect since Gen VI)
     int sovereignTelekinesis[MAX_BATTLERS]; // Sovereign (item 11): turns of Telekinesis left on each battler
     int sovereignMirrorArmorHolder; // Sovereign (item 11): 1 + the Mirror Armor holder while a drop goes back to its source
     u8 sovereignQuickDraw; // Sovereign (item 11): battlers Quick Draw lets move first this turn (for its message)
