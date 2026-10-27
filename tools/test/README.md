@@ -48,6 +48,7 @@ one and reports **HEAP**. The times are rough.
 | `gift_pokemon.py` | every Pokémon gift: species, form, level, moves, ability | ~20 min |
 | `elite_four_runs.py` | every path through the Elite Four's battle formats (13 runs) | ~40 min in 4 parts |
 | `visit_changed_maps.py` | every changed map loads and the field runs | ~1 h |
+| `pokedex_area.py` | the Pokédex's area map for the species given, as screenshots to check by eye | ~15 s a species |
 
 Most take `--part I/N` (`battle_all_trainers.py` and `battle_all_species.py` take `--jobs N`) to split a run
 across processes, one per core.

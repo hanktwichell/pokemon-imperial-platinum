@@ -277,13 +277,15 @@ zukan_enc_platinum_srcs += encdata_ex_trophy_garden_src
 zukan_enc_platinum_srcs += encdata_ex_great_marsh_src
 zukan_enc_platinum_srcs += pl_enc_data_srcs
 
-# Sovereign: each Honey Tree's own species, from tools/engine/gen_wild_encounters.py.
+# Sovereign: each Honey Tree's own species, from tools/engine/gen_wild_encounters.py, and the Regional Forms Park's,
+# from tools/engine/gen_regional_forms_park.py.
 sovereign_honey_trees_src = files('sovereign_honey_trees.json')
+sovereign_park_src = files('sovereign_regional_forms_park.json')
 
 pokedex_enc_platinum_narc = custom_target('zukan_enc_platinum.narc',
     output: 'zukan_enc_platinum.narc',
     input: zukan_enc_platinum_srcs,
-    depend_files: sovereign_honey_trees_src,
+    depend_files: [sovereign_honey_trees_src, sovereign_park_src],
     env: jsoncnv_env,
     depends: [ py_consts_generators ],
     command: [
@@ -295,6 +297,7 @@ pokedex_enc_platinum_narc = custom_target('zukan_enc_platinum.narc',
         '--coronet-file', '@INPUT0@',
         '--honey-file', '@INPUT1@',
         '--sovereign-honey-file', sovereign_honey_trees_src,
+        '--sovereign-park-file', sovereign_park_src,
         '--trophy-file', '@INPUT2@',
         '--marsh-file', '@INPUT3@',
         zukan_enc_platinum_srcs

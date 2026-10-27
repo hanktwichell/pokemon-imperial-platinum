@@ -40,6 +40,8 @@ argparser.add_argument('-g', '--trophy-file',
 argparser.add_argument('--sovereign-honey-file',
                        help='Sovereign: each Honey Tree\'s own species and map spot (sovereign_honey_trees.json); '
                             'replaces the honey file\'s one table shared by every tree')
+argparser.add_argument('--sovereign-park-file',
+                       help='Sovereign: the Regional Forms Park\'s species and map spot (sovereign_regional_forms_park.json)')
 argparser.add_argument('-m', '--marsh-file',
                        required=True,
                        help='encounter file for the Great Marsh Lookout')
@@ -448,6 +450,18 @@ for file in args.src_files:
 if errors:
     print(errors, file=sys.stderr)
     sys.exit(1)
+
+if args.sovereign_park_file:
+    # Sovereign: the Regional Forms Park has no encounter file of its own (gen_regional_forms_park.py).
+    with open(args.sovereign_park_file, encoding='utf-8') as park_file:
+        park = json.load(park_file)
+    for species in park['species']:
+        if park['map_type'] == 'dungeon':
+            dungeon_special[Species[species].value].add(park['map_number'])
+            dungeon_special_natdex[Species[species].value].add(park['map_number'])
+        else:
+            field_special[Species[species].value].add(park['map_number'])
+            field_special_natdex[Species[species].value].add(park['map_number'])
 
 for species in range(NUM_POKEMON):
     speciesSets = [dungeon_morning[species],
