@@ -4,6 +4,8 @@
 _000:
     CheckAbility CHECK_HAVE, BTLSCR_MSG_TEMP, ABILITY_MAGIC_GUARD, _055
     CheckAbility CHECK_NOT_HAVE, BTLSCR_MSG_TEMP, ABILITY_POISON_HEAL, _038
+    // Sovereign: under Heal Block, Poison Heal restores nothing, and the poison still does no damage (Gen V+).
+    CompareMonDataToValue OPCODE_NEQ, BTLSCR_MSG_TEMP, BATTLEMON_HEAL_BLOCK_TURNS, 0, _055
     UpdateMonDataFromVar OPCODE_GET, BTLSCR_MSG_TEMP, BATTLEMON_MAX_HP, BTLVAR_HP_CALC_TEMP
     CompareMonDataToVar OPCODE_EQU, BTLSCR_MSG_TEMP, BATTLEMON_CUR_HP, BTLVAR_HP_CALC_TEMP, _055
     DivideVarByValue BTLVAR_HP_CALC_TEMP, 8

@@ -4018,6 +4018,22 @@ static const u16 sHealingMoves[] = {
     MOVE_HEALING_WISH, MOVE_LUNAR_DANCE, MOVE_PURIFY, MOVE_BOUNCY_BUBBLE,
 };
 
+// Sovereign: Heal Block stops every way a Pokemon restores HP (Gen V+; Showdown's TryHeal event), not only the healing
+// moves: its HP Berries aren't eaten, Leftovers, Black Sludge and Shell Bell restore nothing, and healing abilities
+// don't heal.
+BOOL Sovereign_HealBlocked(BattleContext *battleCtx, int battler)
+{
+    return battleCtx->battleMons[battler].moveEffectsData.healBlockTurns != 0;
+}
+
+// Sovereign: the subscripts by which a Berry or held item restores HP.
+static BOOL Sovereign_IsHPRestoreSubscript(int subscript)
+{
+    return subscript == subscript_held_item_hp_restore
+        || subscript == subscript_held_item_dislike_flavor
+        || subscript == subscript_restore_a_little_hp;
+}
+
 BOOL Move_HealBlocked(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int move)
 {
     BOOL result = FALSE;
@@ -5544,7 +5560,9 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
 
                     battleCtx->battleMons[battler].sovereignEntryAnnounced = TRUE;
 
-                    if (partner != battler && ally->curHP && (ability != ABILITY_HOSPITALITY || ally->curHP < ally->maxHP)) {
+                    if (partner != battler && ally->curHP
+                        && (ability != ABILITY_HOSPITALITY
+                            || (ally->curHP < ally->maxHP && Sovereign_HealBlocked(battleCtx, partner) == FALSE))) { // Sovereign: Heal Block
                         battleCtx->msgBattlerTemp = partner;
                         battleCtx->msgAttacker = battler;
 
@@ -7576,6 +7594,11 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
             break;
         }
 
+        // Sovereign: under Heal Block an HP Berry isn't eaten (Gen V+).
+        if (result == TRUE && Sovereign_IsHPRestoreSubscript(subscript) && Sovereign_HealBlocked(battleCtx, battler)) {
+            result = FALSE;
+        }
+
         if (result == TRUE) {
             battleCtx->msgBattlerTemp = battler;
             battleCtx->msgItemTemp = Battler_HeldItem(battleCtx, battler);
@@ -7620,6 +7643,11 @@ BOOL BattleSystem_TriggerLeftovers(BattleSystem *battleSys, BattleContext *battl
                 result = TRUE;
             }
             break;
+        }
+
+        // Sovereign: under Heal Block, Leftovers and Black Sludge restore nothing (Gen V+). Black Sludge still hurts.
+        if (result == TRUE && subscript == subscript_restore_a_little_hp && Sovereign_HealBlocked(battleCtx, battler)) {
+            result = FALSE;
         }
 
         if (result == TRUE) {
@@ -7972,6 +8000,13 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
             break;
         }
 
+        // Sovereign: under Heal Block an HP Berry isn't eaten (Gen V+). BattleSystem_TriggerEffectOnSwitch returns
+        // *subscript as it stands, so clear it too.
+        if (result == TRUE && Sovereign_IsHPRestoreSubscript(*subscript) && Sovereign_HealBlocked(battleCtx, battler)) {
+            *subscript = 0;
+            result = FALSE;
+        }
+
         if (result == TRUE) {
             battleCtx->msgItemTemp = Battler_HeldItem(battleCtx, battler);
             Sovereign_RipenBerryHP(battleCtx, battler, *subscript); // Sovereign (item 11)
@@ -8199,7 +8234,8 @@ BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *b
         break;
 
     case HOLD_EFFECT_HP_RESTORE_SE:
-        if (DEFENDING_MON.curHP && (battleCtx->moveStatusFlags & MOVE_STATUS_SUPER_EFFECTIVE)) {
+        if (DEFENDING_MON.curHP && (battleCtx->moveStatusFlags & MOVE_STATUS_SUPER_EFFECTIVE)
+            && Sovereign_HealBlocked(battleCtx, battleCtx->defender) == FALSE) { // Sovereign: Heal Block (Gen V+)
             battleCtx->hpCalcTemp = BattleSystem_Divide(DEFENDING_MON.maxHP, itemPower);
             *subscript = subscript_held_item_hp_restore;
             Sovereign_RipenBerryHP(battleCtx, battleCtx->defender, *subscript); // Sovereign (item 11): Enigma Berry
@@ -8720,6 +8756,8 @@ static BOOL BattleSystem_FeedBerryToAttacker(BattleSystem *battleSys, BattleCont
             && (Battler_Ability(battleCtx, battleCtx->attacker) == ABILITY_KLUTZ
                 || (ATTACKING_MON.moveEffectsMask & MOVE_EFFECT_EMBARGO))) {
             battleCtx->scriptTemp = 0;
+        } else if (Sovereign_IsHPRestoreSubscript(nextSeq) && Sovereign_HealBlocked(battleCtx, battleCtx->attacker)) {
+            battleCtx->scriptTemp = 0; // Sovereign: under Heal Block the Berry is eaten for nothing (Gen V+)
         } else {
             battleCtx->scriptTemp = nextSeq;
         }
@@ -9020,6 +9058,11 @@ BOOL BattleSystem_FlingItem(BattleSystem *battleSys, BattleContext *battleCtx, i
 
     default:
         break;
+    }
+
+    // Sovereign: a flung HP Berry restores nothing to a target under Heal Block (Gen V+).
+    if (Sovereign_IsHPRestoreSubscript(battleCtx->flingScript) && Sovereign_HealBlocked(battleCtx, battleCtx->defender)) {
+        battleCtx->flingScript = 0;
     }
 
     if (DEFENDING_MON.moveEffectsMask & MOVE_EFFECT_EMBARGO) {
@@ -11708,6 +11751,7 @@ BOOL BattleSystem_TriggerHeldItemOnPivotMove(BattleSystem *battleSys, BattleCont
 
     if (attackerItemEffect == HOLD_EFFECT_HP_RESTORE_ON_DMG
         && (battleCtx->battleStatusMask & SYSCTL_MOVE_HIT)
+        && Sovereign_HealBlocked(battleCtx, battleCtx->attacker) == FALSE // Sovereign: Heal Block (Gen V+)
         && ATTACKER_SELF_TURN_FLAGS.shellBellDamageDealt
         && battleCtx->attacker != battleCtx->defender
         && ATTACKING_MON.curHP < ATTACKING_MON.maxHP

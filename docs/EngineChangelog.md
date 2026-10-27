@@ -3,6 +3,43 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Item 11: Platinum's moves under the later games' rules, batch I
+
+For players:
+- **Heal Block** (and Psychic Noise's two turns of it) stops every way a Pokémon restores HP, as in Gen V+, not only
+  the healing moves:
+  - HP Berries (Sitrus, Oran, Berry Juice, the pinch Berries, Enigma) aren't eaten. One eaten through Bug Bite, Pluck,
+    Fling or Cud Chew restores nothing.
+  - Leftovers, Black Sludge and Shell Bell restore nothing. Black Sludge still hurts a Pokémon that isn't Poison type.
+  - Rain Dish, Ice Body, Dry Skin (in rain), Poison Heal, Cheek Pouch and Hospitality don't heal. Poison Heal still
+    keeps the poison from doing damage.
+  - Water Absorb, Volt Absorb, Dry Skin and Earth Eater still take the move ("…'s Water Absorb made Water Gun
+    useless!") but restore nothing.
+- When Heal Block wears off, a held HP Berry is eaten at once if the holder's HP is low enough.
+
+Code: `Sovereign_HealBlocked` (`battle_lib.c`) and its checks in `BattleSystem_TriggerHeldItem`,
+`BattleSystem_TriggerLeftovers`, `BattleSystem_TriggerHeldItemOnStatus`, the Enigma Berry in
+`BattleSystem_TriggerHeldItemOnHit`, `BattleSystem_FeedBerryToAttacker`, `BattleSystem_FlingItem`, Shell Bell
+(`BattleControllerPlayer_TriggerAfterMoveHitEffects`, `BattleSystem_TriggerHeldItemOnPivotMove`) and Hospitality
+(`BattleSystem_TriggerEffectOnSwitch`); Ice Body, Rain Dish and Dry Skin in `BtlCmd_EndOfTurnWeatherEffect`; Cheek
+Pouch's var in `BattleScript_VarAddress`; `subscript_ability_restores_hp.s` and `subscript_poison_damage.s`.
+
+Verified (test build, emulator, wild battles against a Lv. 100 Ninjask using Heal Block, Psychic Noise or a control
+move):
+- **Leftovers:** Geodude stayed at 51 HP through two Heal Blocks (ten turns); without Heal Block it healed 6 a turn.
+- **Sitrus Berry:** after Psychic Noise took Snorlax to 78 and then 26 HP, the Berry stayed held; at the end of the
+  second turn "SNORLAX's Heal Block wore off!", then "SNORLAX restored its health using its Sitrus Berry!" (26 → 81).
+  Without Heal Block it was eaten after the first hit (96 → 151). A first try ate it under Heal Block with "…using its
+  None!": `BattleSystem_TriggerEffectOnSwitch` returned the HP subscript `TriggerHeldItemOnStatus` had left behind, so
+  the Heal Block check clears it now.
+- **Water Absorb:** under Heal Block, Vaporeon took four Water Guns at 96 HP; on the sixth turn, once Heal Block had
+  worn off, Water Gun healed it to 144. Without Heal Block the first one healed it.
+- **Shell Bell:** Geodude stayed at 51 HP through four Tackles under Heal Block, the last one a KO. Without Heal Block
+  each Tackle healed it by 2 (51 → 59).
+- **Poison Heal:** Geodude healed 51 → 63 at the end of the turn it was badly poisoned, then under Heal Block (twice in
+  a row) neither healed nor took poison damage for nine turns.
+- **Builds:** the test and release builds pass, and every battle script fits its buffer.
+
 ## Item 11: Platinum's moves under the later games' rules, batch H
 
 For players:

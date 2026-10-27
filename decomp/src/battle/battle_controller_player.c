@@ -6281,6 +6281,7 @@ static BOOL BattleControllerPlayer_TriggerAfterMoveHitEffects(BattleSystem *batt
             if (battleCtx->defender != BATTLER_NONE
                 && itemEffect == HOLD_EFFECT_HP_RESTORE_ON_DMG
                 && Move_SheerForceApplies(battleCtx, battleCtx->attacker, battleCtx->moveCur) == FALSE // Sovereign (Gen V+)
+                && Sovereign_HealBlocked(battleCtx, battleCtx->attacker) == FALSE // Sovereign: Heal Block (Gen V+)
                 && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
                 && (battleCtx->battleStatusMask & SYSCTL_MOVE_HIT)
                 && ATTACKER_SELF_TURN_FLAGS.shellBellDamageDealt
