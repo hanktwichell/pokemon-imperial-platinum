@@ -349,7 +349,7 @@
       ]
     },
     {
-      "id": "SandgemTownLab_Text_LetMeUpgradeYourPokedex",
+      "id": "SandgemTownLab_Text_SovereignOakYouAlreadyCarryNationalDex",
       "en_US": [
         "Oak: Ah, well, very glad to meet you!\n",
         "As you’ve heard, my name is Oak.\r",
@@ -359,73 +359,43 @@
         "a fantastic young Trainer.\r",
         "I see that you live up to--no--that\n",
         "you’ve surpassed his praise.\r",
-        "You’ve also got an impeccable sense\n",
-        "of timing.\r",
-        "You see, I had an errand to run for\n",
-        "Professor Rowan on my visit here.\r",
-        "He’d asked me to bring the data\n",
-        "for the National Pokédex, you see.\r",
-        "So, since you’re here, let me upgrade\n",
-        "your Pokédex with the National Mode.\r",
-        "After all, there are many kinds of\n",
-        "Pokémon in this world of ours!\r"
+        "And I see you already carry a\n",
+        "National Pokédex.\r",
+        "Rowan was ahead of us all, it seems!\r",
+        "In truth, that’s why I’ve come.\r",
+        "Pokémon from Kanto, from every\n",
+        "region, have been turning up here\f",
+        "in Sinnoh, and no one can say how\n",
+        "they got here.\r"
       ]
     },
     {
-      "id": "SandgemTownLab_Text_PokedexUpgradedWithNationalMode",
+      "id": "SandgemTownLab_Text_SovereignRowanRightToWorry",
       "en_US": [
-        "{STRVAR_1 3, 0, 0}’s Pokédex was upgraded\n",
-        "with the National Mode!\r"
+        "Rowan: Then I was right to worry.\r",
+        "I’d hoped it was a quirk of this\n",
+        "region alone.\r"
       ]
     },
     {
-      "id": "SandgemTownLab_Text_WontBeEasyToComplete",
+      "id": "SandgemTownLab_Text_SovereignOakOddOnesGatherOnRoute221",
       "en_US": [
-        "Oak: I’m afraid it won’t be easy to\n",
-        "complete the National Pokédex.\r",
-        "However, I’m sure you will make an\n",
-        "honest attempt on our behalf!\r"
+        "Oak: Stranger still, some of them\n",
+        "look like no Pokémon I know.\r",
+        "A Vulpix as white as snow...\n",
+        "A Meowth from Galar...\r",
+        "The odd ones keep gathering on the\n",
+        "old grounds at the end of Route 221.\r",
+        "They’ve been made into a park just\n",
+        "for them: the Regional Forms Park.\r"
       ]
     },
     {
-      "id": "SandgemTownLab_Text_PlayerWillGetTheJobDone",
+      "id": "SandgemTownLab_Text_SovereignOakYouShouldTakeALook",
       "en_US": [
-        "Rowan: Have no fear, {STRVAR_1 3, 0, 0}\n",
-        "will get the job done.\r",
-        "By the way, Professor Oak, what\n",
-        "compelled you to visit this region?\r"
-      ]
-    },
-    {
-      "id": "SandgemTownLab_Text_PalParkIsNowOpen",
-      "en_US": [
-        "Oak: Ah, yes. I’ve heard that the\n",
-        "Pal Park is now open.\r",
-        "If I remember correctly, it’s at the\n",
-        "end of Route 221.\r",
-        "The Pal Park has a special system\n",
-        "that attracts every imaginable kind\f",
-        "of Pokémon from every region.\r",
-        "I’ve come to make certain that\n",
-        "system is operating properly.\r"
-      ]
-    },
-    {
-      "id": "SandgemTownLab_Text_VisitThePalParkMale",
-      "en_US": [
-        "{STRVAR_1 3, 0, 0}, you should make an\n",
-        "effort to visit the Pal Park, too.\r",
-        "Oops! I’ll be late for my meeting if\n",
-        "I don’t get going!\r",
-        "OK, it was a pleasure seeing the both\n",
-        "of you! Bye, now!\r"
-      ]
-    },
-    {
-      "id": "SandgemTownLab_Text_VisitThePalParkFemale",
-      "en_US": [
-        "{STRVAR_1 3, 0, 0}, you should make an\n",
-        "effort to visit the Pal Park, too.\r",
+        "{STRVAR_1 3, 0, 0}, you should take a look.\r",
+        "Whatever is bringing them here,\n",
+        "someone ought to keep a record.\r",
         "Oops! I’ll be late for my meeting if\n",
         "I don’t get going!\r",
         "OK, it was a pleasure seeing the both\n",

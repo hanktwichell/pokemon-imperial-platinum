@@ -537,22 +537,19 @@ SandgemTownLab_EnableNationalDex:
     ApplyMovement LOCALID_PROF_OAK, SandgemTownLab_Movement_ProfOakWalkToPlayer
     ApplyMovement LOCALID_PLAYER, SandgemTownLab_Movement_PlayerFaceProfOak
     WaitMovement
-    Message SandgemTownLab_Text_LetMeUpgradeYourPokedex
+    // Sovereign (docs/Story.md, Oak's visit): the player has carried the National Dex since Rowan gave the Pokédex
+    // (decision 21) and Pal Park is gone (decision 22), so Oak brings no upgrade (no fanfare) and doesn't send the
+    // player to Pal Park. He has come about the Pokémon turning up from every region, and tells of the Regional Forms
+    // Park on Route 221.
+    Message SandgemTownLab_Text_SovereignOakYouAlreadyCarryNationalDex
     CallIfSet FLAG_GAME_COMPLETED, SandgemTownLab_GameCompletedReturn
     CallIfGe VAR_FIGHT_AREA_STATE, 2, SandgemTownLab_HideFightAreaBlockade
     SetFlag FLAG_SOVEREIGN_SHOWED_ROWAN_SINNOH_DEX
     SetNationalDexEnabled
+    Message SandgemTownLab_Text_SovereignRowanRightToWorry
+    Message SandgemTownLab_Text_SovereignOakOddOnesGatherOnRoute221
     BufferPlayerName 0
-    PlayFanfare SEQ_FANFA4_sseq
-    Message SandgemTownLab_Text_PokedexUpgradedWithNationalMode
-    WaitFanfare
-    Message SandgemTownLab_Text_WontBeEasyToComplete
-    Message SandgemTownLab_Text_PlayerWillGetTheJobDone
-    Message SandgemTownLab_Text_PalParkIsNowOpen
-    BufferPlayerName 0
-    GetPlayerGender VAR_0x8004
-    CallIfEq VAR_0x8004, GENDER_MALE, SandgemTownLab_VisitThePalParkMale
-    CallIfEq VAR_0x8004, GENDER_FEMALE, SandgemTownLab_VisitThePalParkFemale
+    Message SandgemTownLab_Text_SovereignOakYouShouldTakeALook
     CloseMessage
     ApplyMovement LOCALID_PROF_OAK, SandgemTownLab_Movement_ProfOakLeave
     WaitMovement
@@ -585,14 +582,6 @@ SandgemTownLab_HideFightAreaBlockade:
     Return
 
 SandgemTownLab_GameCompletedReturn:
-    Return
-
-SandgemTownLab_VisitThePalParkMale:
-    Message SandgemTownLab_Text_VisitThePalParkMale
-    Return
-
-SandgemTownLab_VisitThePalParkFemale:
-    Message SandgemTownLab_Text_VisitThePalParkFemale
     Return
 
 SandgemTownLab_ManyMorePokemon:

@@ -114,6 +114,23 @@ static int SaveInfoWindow_Height(const SaveInfo *saveInfo)
     }
 }
 
+// Sovereign: the window grows to fit the location name, for the Regional Forms Park (105 pixels; the window is 104 and
+// vanilla's longest name, Sunyshore Market, is 94). Up to 17 tiles, which stays clear of the field message box's tiles
+// and of the start menu.
+static int SaveInfoWindow_Width(const SaveInfoWindow *saveInfoWin)
+{
+    String *mapName = MessageUtil_ExpandedString(saveInfoWin->strTemplate, saveInfoWin->msgLoader, sSaveInfoLabels[0], saveInfoWin->heapID);
+    int width = (Font_CalcStringWidth(FONT_SYSTEM, mapName, Font_GetAttribute(FONT_SYSTEM, FONTATTR_LETTER_SPACING)) + 7) / 8;
+
+    String_Free(mapName);
+
+    if (width < SAVE_INFO_WINDOW_WIDTH) {
+        return SAVE_INFO_WINDOW_WIDTH;
+    }
+
+    return width > SAVE_INFO_WINDOW_MAX_WIDTH ? SAVE_INFO_WINDOW_MAX_WIDTH : width;
+}
+
 static void SaveInfoWindow_PrintText(const SaveInfoWindow *saveInfoWin)
 {
     int fontSpacing = Font_GetAttribute(FONT_SYSTEM, FONTATTR_MAX_LETTER_HEIGHT) + Font_GetAttribute(FONT_SYSTEM, FONTATTR_LINE_SPACING);
@@ -137,7 +154,7 @@ static void SaveInfoWindow_PrintText(const SaveInfoWindow *saveInfoWin)
         String_Free(buf);
 
         buf = MessageUtil_ExpandedString(saveInfoWin->strTemplate, saveInfoWin->msgLoader, sSaveInfoValues[i - 1], saveInfoWin->heapID);
-        xOffset = SAVE_INFO_WINDOW_WIDTH * 8 - Font_CalcStringWidth(FONT_SYSTEM, buf, Font_GetAttribute(FONT_SYSTEM, FONTATTR_LETTER_SPACING));
+        xOffset = saveInfoWin->width * 8 - Font_CalcStringWidth(FONT_SYSTEM, buf, Font_GetAttribute(FONT_SYSTEM, FONTATTR_LETTER_SPACING));
 
         Text_AddPrinterWithParams(saveInfoWin->window, FONT_SYSTEM, buf, xOffset, yOffset, TEXT_SPEED_NO_TRANSFER, NULL);
         String_Free(buf);
@@ -177,7 +194,7 @@ SaveInfoWindow *SaveInfoWindow_New(FieldSystem *fieldSystem, enum HeapID heapID,
     SaveInfo_SetValues(&saveInfoWin->saveInfo, saveInfoWin->fieldSystem);
     SaveInfoWindow_SetStrings(saveInfoWin->strTemplate, &saveInfoWin->saveInfo);
 
-    saveInfoWin->width = SAVE_INFO_WINDOW_WIDTH;
+    saveInfoWin->width = SaveInfoWindow_Width(saveInfoWin);
     saveInfoWin->height = SaveInfoWindow_Height(&saveInfoWin->saveInfo);
 
     return saveInfoWin;

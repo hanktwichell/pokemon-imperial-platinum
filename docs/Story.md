@@ -203,6 +203,16 @@ Draft text (new lines in **bold**; the greetings stay as in Platinum):
 Removed: "Let me upgrade your Pokédex", "…was upgraded with the National Mode!" and its fanfare, "It won't be easy
 to complete the National Pokédex", and both Pal Park lines. Rowan still gives the Poké Radar afterwards.
 
+**Built (CB-0231):** the scene now plays this draft (`EngineChangelog.md`).
+- Oak keeps Platinum's longer greeting to the player before the new lines.
+- Until the owner decides the three calls below, the game keeps what it does now: the trigger is a complete Sinnoh
+  Pokédex, the park opens after the Hall of Fame, and Oak gives nothing. Oak's lines fit that: he says where the park
+  is, not that it's open.
+- With it:
+  - Oak's PC rating at 410 caught asks about the Regional Forms Park;
+  - the TV commercial advertises the park once it opens;
+  - the map's name reads "Regional Forms Park".
+
 **Engineering:** the scene's check changes from "National Dex off" to a new "Oak's visit seen" flag. The Fight Area
 blockade it lifts and the `FLAG_GAME_COMPLETED` step stay. If the Regional Forms Park opens with this scene, it
 sets that flag too.
@@ -223,7 +233,8 @@ sets that flag too.
 
 **Other lines:** Dawn/Lucas, Bebe (Hearthome) and the woman in the counterpart's house mention the National Pokédex
 as something newly earned. They still read fine with the National Dex from the start, but they'd appear from early
-on. Pal Park's lobby, the GBA Migrate text and the Pal Park TV commercial go with Pal Park (decision 22).
+on. Pal Park's lobby and the GBA Migrate text go with Pal Park (decision 22); the Pal Park TV commercial now
+advertises the Regional Forms Park (CB-0231).
 
 Owner's call:
 1. Keep the trigger at a complete Sinnoh Pokédex, or move it (e.g. the first Hall of Fame)?
