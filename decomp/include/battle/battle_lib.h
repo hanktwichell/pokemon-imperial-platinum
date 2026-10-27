@@ -811,6 +811,9 @@ void BattleSystem_SortMonSpeedOrder(BattleSystem *battleSys, BattleContext *batt
  */
 BOOL Move_FailsInHighGravity(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int move);
 
+// Sovereign: TRUE if the battler is under Heal Block (or Psychic Noise), which stops all its HP recovery (Gen V+).
+BOOL Sovereign_HealBlocked(BattleContext *battleCtx, int battler);
+
 /**
  * @brief Check if a given move should fail due to the battler being afflicted
  * by Heal Block.

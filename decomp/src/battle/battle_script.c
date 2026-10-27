@@ -5960,7 +5960,8 @@ static BOOL BtlCmd_EndOfTurnWeatherEffect(BattleSystem *battleSys, BattleContext
             && battleCtx->battleMons[battler].curHP
             && (battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_NO_WEATHER_DAMAGE) == FALSE) {
             if (Battler_Ability(battleCtx, battler) == ABILITY_ICE_BODY) {
-                if (battleCtx->battleMons[battler].curHP < battleCtx->battleMons[battler].maxHP) {
+                if (battleCtx->battleMons[battler].curHP < battleCtx->battleMons[battler].maxHP
+                    && Sovereign_HealBlocked(battleCtx, battler) == FALSE) { // Sovereign: Heal Block (Gen V+)
                     battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP, 16);
                 }
             }
@@ -5970,12 +5971,14 @@ static BOOL BtlCmd_EndOfTurnWeatherEffect(BattleSystem *battleSys, BattleContext
         if (Sovereign_BattlerWeather(battleCtx, battler) & FIELD_CONDITION_RAINING) {
             if (battleCtx->battleMons[battler].curHP
                 && battleCtx->battleMons[battler].curHP < battleCtx->battleMons[battler].maxHP
+                && Sovereign_HealBlocked(battleCtx, battler) == FALSE // Sovereign: Heal Block (Gen V+)
                 && Battler_Ability(battleCtx, battler) == ABILITY_RAIN_DISH) {
                 battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP, 16);
             }
 
             if (battleCtx->battleMons[battler].curHP
                 && battleCtx->battleMons[battler].curHP < battleCtx->battleMons[battler].maxHP
+                && Sovereign_HealBlocked(battleCtx, battler) == FALSE // Sovereign: Heal Block (Gen V+)
                 && Battler_Ability(battleCtx, battler) == ABILITY_DRY_SKIN) {
                 battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP, 8);
             }
@@ -10464,6 +10467,7 @@ static void *BattleScript_VarAddress(BattleSystem *battleSys, BattleContext *bat
         BattleMon *eater = &battleCtx->battleMons[battleCtx->msgBattlerTemp];
 
         battleCtx->sovereignTerrainTemp = Battler_Ability(battleCtx, battleCtx->msgBattlerTemp) == ABILITY_CHEEK_POUCH
+            && Sovereign_HealBlocked(battleCtx, battleCtx->msgBattlerTemp) == FALSE // Sovereign: Heal Block (Gen V+)
             && (Item_IsBerry(eater->heldItem)
                 || ((ATTACKER_SELF_TURN_FLAGS.statusFlags & SELF_TURN_FLAG_PLUCK_BERRY) && Item_IsBerry(battleCtx->msgItemTemp)))
             && eater->curHP

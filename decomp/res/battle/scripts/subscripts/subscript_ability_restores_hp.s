@@ -5,6 +5,8 @@ _000:
     PrintAttackMessage 
     Wait 
     WaitButtonABTime 15
+    // Sovereign: under Heal Block the ability still takes the move but restores nothing (Gen V+).
+    CompareMonDataToValue OPCODE_NEQ, BTLSCR_DEFENDER, BATTLEMON_HEAL_BLOCK_TURNS, 0, _033
     UpdateMonDataFromVar OPCODE_GET, BTLSCR_DEFENDER, BATTLEMON_MAX_HP, BTLVAR_CALC_TEMP
     CompareMonDataToVar OPCODE_EQU, BTLSCR_DEFENDER, BATTLEMON_CUR_HP, BTLVAR_CALC_TEMP, _033
     UpdateVarFromVar OPCODE_SET, BTLVAR_MSG_BATTLER_TEMP, BTLVAR_DEFENDER

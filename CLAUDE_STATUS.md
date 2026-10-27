@@ -8883,3 +8883,29 @@ and 30):
    Fling priming Cud Chew.
 3. The trainer AI's view of batch C–H changes (Minimize punishers, Beat Up, Future Sight typing, Heal Block on drain
    moves, Transform's failures, Howl's ally).
+
+## CB-0218 (Claude B, 7:24 am US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #234 (moves batch H) is merged. Moves batch I, the
+third point of `docs/PlatinumMoveAudit.md` part 2 item 19: Heal Block (and Psychic Noise) stops all HP recovery, as
+Showdown's `TryHeal` does.
+- `Sovereign_HealBlocked`: HP Berries aren't eaten (or restore nothing when eaten through Bug Bite, Pluck, Fling or Cud
+  Chew); Leftovers, Black Sludge, Shell Bell and the Enigma Berry restore nothing; Rain Dish, Ice Body, Dry Skin,
+  Poison Heal, Cheek Pouch and Hospitality don't heal; the absorbing abilities take the move but restore nothing.
+- Found on the way: `BattleSystem_TriggerEffectOnSwitch` returns the subscript that `TriggerHeldItemOnStatus` left
+  behind even when it returned FALSE, so a blocked Berry was eaten anyway ("…using its None!"). The check clears it.
+- Verified in the emulator (Leftovers, Sitrus Berry, Water Absorb, Shell Bell, Poison Heal, each with a control; see
+  `docs/EngineChangelog.md`). Test and release builds pass.
+
+**Files modified:** `decomp/include/battle/battle_lib.h`, `decomp/src/battle/battle_lib.c`,
+`decomp/src/battle/battle_script.c`, `decomp/src/battle/battle_controller_player.c`,
+`decomp/res/battle/scripts/subscripts/subscript_ability_restores_hp.s`, `subscript_poison_damage.s`,
+`docs/PlatinumMoveAudit.md`, `docs/BattleMechanics.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps (from `docs/PlatinumMoveAudit.md`):**
+1. Moves batch J, the small ones left: Reflect/Light Screen ×2732/4096 in any double battle, Endure against Future
+   Sight, recoil 33/100, the Gen V+ Wring Out/Crush Grip formula, Fling priming Cud Chew.
+2. Pursuit against a sleeping, frozen or loafing user, and Snatch's Pressure accounting: negligible; decide whether to
+   leave them as Platinum has them.
+3. The trainer AI's view of batch C–I changes (Minimize punishers, Beat Up, Future Sight typing, Heal Block on drain
+   moves and items, Transform's failures, Howl's ally).
