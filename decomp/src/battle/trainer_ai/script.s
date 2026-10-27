@@ -754,6 +754,9 @@ Basic_CheckPerishSong:
     PopOrEnd 
 
 Basic_CheckSandstorm:
+    // Sovereign (AI #7): no weather move works while a primal weather is up (Primordial Sea, Desolate Land or
+    // Delta Stream), score -10.
+    IfFieldConditionsMask FIELD_CONDITION_SOVEREIGN_PRIMAL, ScoreMinus10
     // If the current weather is Sand, score -8.
     LoadCurrentWeather 
     IfLoadedEqualTo AI_WEATHER_SANDSTORM, ScoreMinus8
@@ -816,6 +819,9 @@ Basic_CheckBatonPass:
     PopOrEnd 
 
 Basic_CheckRainDance:
+    // Sovereign (AI #7): no weather move works while a primal weather is up (Primordial Sea, Desolate Land or
+    // Delta Stream), score -10.
+    IfFieldConditionsMask FIELD_CONDITION_SOVEREIGN_PRIMAL, ScoreMinus10
     // If the attacker's ability is Swift Swim or Hydration, skip the defender-Hydration check below.
     LoadBattlerAbility AI_BATTLER_ATTACKER
     IfLoadedEqualTo ABILITY_SWIFT_SWIM, Basic_CheckCurrentWeatherIsRain
@@ -833,6 +839,9 @@ Basic_CheckCurrentWeatherIsRain:
     PopOrEnd 
 
 Basic_CheckSunnyDay:
+    // Sovereign (AI #7): no weather move works while a primal weather is up (Primordial Sea, Desolate Land or
+    // Delta Stream), score -10.
+    IfFieldConditionsMask FIELD_CONDITION_SOVEREIGN_PRIMAL, ScoreMinus10
     // If the attacker's ability is any of Flower Gift, Leaf Guard, or Solar Power, skip the defender-
     // Hydration check below.
     LoadBattlerAbility AI_BATTLER_ATTACKER
@@ -883,6 +892,9 @@ Basic_CheckCanSpitUpOrSwallow:
     PopOrEnd 
 
 Basic_CheckHail:
+    // Sovereign (AI #7): no weather move works while a primal weather is up (Primordial Sea, Desolate Land or
+    // Delta Stream), score -10.
+    IfFieldConditionsMask FIELD_CONDITION_SOVEREIGN_PRIMAL, ScoreMinus10
     // If the current weather is Hail, score -8.
     LoadCurrentWeather 
     IfLoadedEqualTo AI_WEATHER_HAILING, ScoreMinus8

@@ -3,6 +3,36 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## AI review #7: the primal weathers
+
+For players:
+- **Trainers' AI in Primordial Sea, Desolate Land and Delta Stream.** These weathers come from Primal Kyogre and
+  Groudon and Mega Rayquaza. The AI took them for plain rain or sun:
+  - It used weather moves, which fail while they're up.
+  - It used Fire moves in heavy rain and Water moves in extremely harsh sunlight, which fizzle out. A Fire move against
+    a Pokémon weak to it could still be its best attack.
+
+  Now it scores weather moves −10 under a primal weather, and treats a Fire move in heavy rain or a Water move in
+  extremely harsh sunlight as having no effect. That holds for its choice of move, its damage estimates and its
+  switching. With Cloud Nine or Air Lock on the field, the weather counts for nothing, as in battle.
+
+Code (`trainer_ai.c`, `trainer_ai/script.s`):
+- Basic's weather-move checks score −10 under `FIELD_CONDITION_SOVEREIGN_PRIMAL`.
+- `AI_PrimalWeatherStopsMove` tells whether the primal weather stops a damaging move, with the type the damage
+  calculation uses. `TrainerAI_CalcDamage` gives such a move 0 damage. `AI_PrimalWeatherEffectiveness` makes it count
+  as having no effect in `IfMoveEffectivenessEquals`, `CalcMaxEffectiveness` and the switch checks.
+
+Verified (test build; details in `docs/AIReview.md`, section *#7*):
+- **AI trace:** a trace of the AI's final move scores in the test trainer battle, with Flamethrower, Surf, Sunny Day and
+  Rain Dance:
+  - Under Primordial Sea, before the fix, Flamethrower scored 105 (the AI's pick) and Sunny Day 101.
+  - Now Flamethrower scores 89, Sunny Day 91 and Rain Dance 90, and Surf (105) is the pick.
+  - Desolate Land is the mirror image, and Delta Stream lowers only the weather moves.
+  - With no weather, the scores are as before.
+- **Battles:** the test trainer (with a Blue Orb Kyogre), both Cynthia rematches and trainers 1–150 battle cleanly
+  (`battle_all_trainers.py`).
+- **Builds:** the test and release builds pass.
+
 ## Pokédex area map: the Regional Forms Park
 
 For players: the Pokédex area map shows the Regional Forms Park's Pokémon at Route 221, where the park is. Before,
