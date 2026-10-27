@@ -294,6 +294,12 @@ Basic_ScoreMoveEffect:
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_SP_ATK_DOWN_2_OPPOSITE_GENDER, Basic_CheckCaptivate
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_STEALTH_ROCK, Basic_CheckStealthRock
     IfCurrentMoveEffectEqualTo BATTLE_EFFECT_FAINT_FULL_RESTORE_NEXT_MON, Basic_CheckLunarDance
+
+    // Sovereign (12b): the Gen V+ moves the checks above don't know. A move that would fail now, does nothing in a
+    // trainer battle, only helps the foe it's aimed at (Heal Pulse, Decorate, Instruct...) or only works on the
+    // partner scores -10.
+    LoadSovereignMoveRating
+    IfLoadedEqualTo AI_SOVEREIGN_MOVE_USELESS, ScoreMinus10
     PopOrEnd 
 
 Basic_CheckCannotSleep:
@@ -7396,6 +7402,13 @@ TagStrategy_CheckFire_End:
 
 TagStrategy_Partner:
     IfBattlerFainted AI_BATTLER_ATTACKER_PARTNER, TagStrategy_PartnerScoreMinus30
+
+    // Sovereign (12b): the Gen V+ moves made for the partner (Pollen Puff, Heal Pulse, Floral Healing, Decorate,
+    // Purify, Instruct, After You, Aromatic Mist). Worth using now, score +3; of some use, score +1; otherwise -30.
+    LoadSovereignMoveRating
+    IfLoadedEqualTo AI_SOVEREIGN_MOVE_GOOD, ScorePlus3
+    IfLoadedEqualTo AI_SOVEREIGN_MOVE_FAIR, ScorePlus1
+    IfLoadedEqualTo AI_SOVEREIGN_MOVE_USELESS, TagStrategy_PartnerScoreMinus30
     FlagMoveDamageScore USE_MAX_DAMAGE
     IfLoadedEqualTo AI_NO_COMPARISON_MADE, TagStrategy_PartnerStatusMove
     LoadTypeFrom LOAD_MOVE_TYPE

@@ -4,9 +4,11 @@
 #include <string.h>
 
 #include "constants/battle.h"
+#include "constants/battle/battle_script.h"
 #include "constants/items.h"
 #include "constants/species.h"
 #include "generated/abilities.h"
+#include "generated/trainers.h"
 
 #include "struct_decls/battle_system.h"
 #include "struct_defs/battle_system.h"
@@ -22,6 +24,7 @@
 
 #include "assert.h"
 #include "flags.h"
+#include "item.h"
 #include "party.h"
 #include "pokemon.h"
 
@@ -182,6 +185,7 @@ static void AICmd_LoadAbility(BattleSystem *battleSys, BattleContext *battleCtx)
 static void AICmd_LoadPartnerDamagePercent(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_LoadOtherFoeDamagePercent(BattleSystem *battleSys, BattleContext *battleCtx);
 static void AICmd_LoadTargetPartnerRedirects(BattleSystem *battleSys, BattleContext *battleCtx);
+static void AICmd_LoadSovereignMoveRating(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static u8 TrainerAI_MainSingles(BattleSystem *battleSys, BattleContext *battleCtx);
 static u8 TrainerAI_MainDoubles(BattleSystem *battleSys, BattleContext *battleCtx);
@@ -212,6 +216,27 @@ static BOOL TrainerAI_ShouldUseItem(BattleSystem *battleSys, int battler);
 static const AICommandFunc sAICommandTable[] = {
 #include "data/scripts/aicmd.h"
 };
+
+/**
+ * @brief Sovereign (12b): the enemy slot whose trainer data (AI flags and items) the battler uses.
+ *
+ * A double battle against one trainer that a script starts with a single trainer ID (the Elite Four's and Cynthia's
+ * double battles: StartTrainerBattle with one argument) has no trainer in the second enemy slot. Its Pokemon are the
+ * first enemy trainer's, so it thinks with that trainer's AI flags and shares its items. Two trainer objects with the
+ * same ID (twins) fill both slots and keep their own items, as in Platinum; battles against two trainers (2vs2, such
+ * as the Battle Tower's multi battles) keep each slot's own.
+ */
+static int AI_TrainerSlot(BattleSystem *battleSys, int battler)
+{
+    if (battler == BATTLER_ENEMY_2
+        && (battleSys->battleType & BATTLE_TYPE_DOUBLES)
+        && (battleSys->battleType & BATTLE_TYPE_2vs2) == FALSE
+        && battleSys->trainerIDs[BATTLER_ENEMY_2] == TRAINER_NONE) {
+        return BATTLER_ENEMY_1;
+    }
+
+    return battler;
+}
 
 void TrainerAI_Init(BattleSystem *battleSys, BattleContext *battleCtx, u8 battler, u8 initScore)
 {
@@ -251,7 +276,7 @@ void TrainerAI_Init(BattleSystem *battleSys, BattleContext *battleCtx, u8 battle
     if (battleSys->battleType & BATTLE_TYPE_ROAMER) {
         AI_CONTEXT.thinkingMask = AI_FLAG_ROAMING_POKEMON;
     } else {
-        AI_CONTEXT.thinkingMask = battleSys->trainers[battler].header.aiMask;
+        AI_CONTEXT.thinkingMask = battleSys->trainers[AI_TrainerSlot(battleSys, battler)].header.aiMask;
     }
 
     // force double-battle strategies, if applicable
@@ -2839,6 +2864,544 @@ static void AICmd_LoadTargetPartnerRedirects(BattleSystem *battleSys, BattleCont
     }
 }
 
+// Sovereign (12b): the stats each of Sovereign's stat moves changes (gen_stat_moves.py's STAT_MOVES, and the others
+// built by hand): the user's rises, or the drops on its target. Shell Smash's own drops and Spicy Extract's Attack
+// rise are left out: the move is useless only once the stats listed can't change.
+#define AI_STAT(stat) (1 << BATTLE_STAT_##stat)
+
+static const struct {
+    u16 effect;
+    u8 onTarget;
+    u8 stats;
+} sSovereignStatMoves[] = {
+    { BATTLE_EFFECT_SOVEREIGN_HONE_CLAWS, FALSE, AI_STAT(ATTACK) | AI_STAT(ACCURACY) },
+    { BATTLE_EFFECT_SOVEREIGN_WORK_UP, FALSE, AI_STAT(ATTACK) | AI_STAT(SP_ATTACK) },
+    { BATTLE_EFFECT_SOVEREIGN_GROWTH, FALSE, AI_STAT(ATTACK) | AI_STAT(SP_ATTACK) },
+    { BATTLE_EFFECT_SOVEREIGN_COIL, FALSE, AI_STAT(ATTACK) | AI_STAT(DEFENSE) | AI_STAT(ACCURACY) },
+    { BATTLE_EFFECT_SOVEREIGN_QUIVER_DANCE, FALSE, AI_STAT(SP_ATTACK) | AI_STAT(SP_DEFENSE) | AI_STAT(SPEED) },
+    { BATTLE_EFFECT_SOVEREIGN_SHELL_SMASH, FALSE, AI_STAT(ATTACK) | AI_STAT(SP_ATTACK) | AI_STAT(SPEED) },
+    { BATTLE_EFFECT_SOVEREIGN_COTTON_GUARD, FALSE, AI_STAT(DEFENSE) },
+    { BATTLE_EFFECT_SOVEREIGN_SHIFT_GEAR, FALSE, AI_STAT(ATTACK) | AI_STAT(SPEED) },
+    { BATTLE_EFFECT_SOVEREIGN_VICTORY_DANCE, FALSE, AI_STAT(ATTACK) | AI_STAT(DEFENSE) | AI_STAT(SPEED) },
+    { BATTLE_EFFECT_SOVEREIGN_NO_RETREAT, FALSE, AI_STAT(ATTACK) | AI_STAT(DEFENSE) | AI_STAT(SP_ATTACK) | AI_STAT(SP_DEFENSE) | AI_STAT(SPEED) },
+    { BATTLE_EFFECT_SOVEREIGN_CLANGOROUS_SOUL, FALSE, AI_STAT(ATTACK) | AI_STAT(DEFENSE) | AI_STAT(SP_ATTACK) | AI_STAT(SP_DEFENSE) | AI_STAT(SPEED) },
+    { BATTLE_EFFECT_SOVEREIGN_FILLET_AWAY, FALSE, AI_STAT(ATTACK) | AI_STAT(SP_ATTACK) | AI_STAT(SPEED) },
+    { BATTLE_EFFECT_SOVEREIGN_GEOMANCY, FALSE, AI_STAT(SP_ATTACK) | AI_STAT(SP_DEFENSE) | AI_STAT(SPEED) },
+    { BATTLE_EFFECT_SOVEREIGN_AUTOTOMIZE, FALSE, AI_STAT(SPEED) },
+    { BATTLE_EFFECT_SOVEREIGN_TIDY_UP, FALSE, AI_STAT(ATTACK) | AI_STAT(SPEED) },
+    { BATTLE_EFFECT_SOVEREIGN_NOBLE_ROAR, TRUE, AI_STAT(ATTACK) | AI_STAT(SP_ATTACK) },
+    { BATTLE_EFFECT_SOVEREIGN_TEARFUL_LOOK, TRUE, AI_STAT(ATTACK) | AI_STAT(SP_ATTACK) },
+    { BATTLE_EFFECT_SOVEREIGN_VENOM_DRENCH, TRUE, AI_STAT(ATTACK) | AI_STAT(SP_ATTACK) | AI_STAT(SPEED) },
+    { BATTLE_EFFECT_SOVEREIGN_SPICY_EXTRACT, TRUE, AI_STAT(DEFENSE) },
+};
+
+// Sovereign (12b): whether every stat in `stats` (AI_STAT flags) is at `stage`.
+static BOOL AI_StatsAllAt(BattleContext *battleCtx, int battler, u8 stats, int stage)
+{
+    for (int stat = BATTLE_STAT_ATTACK; stat < BATTLE_STAT_MAX; stat++) {
+        if ((stats & (1 << stat)) && battleCtx->battleMons[battler].statBoosts[stat] != stage) {
+            return FALSE;
+        }
+    }
+
+    return TRUE;
+}
+
+// Sovereign (12b): whether any of the battler's stat stages is raised.
+static BOOL AI_AnyStatRaised(BattleContext *battleCtx, int battler)
+{
+    for (int stat = BATTLE_STAT_ATTACK; stat < BATTLE_STAT_MAX; stat++) {
+        if (battleCtx->battleMons[battler].statBoosts[stat] > 6) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
+// Sovereign (12b): the battler's partner if it's a double battle and the partner is standing, otherwise BATTLER_NONE.
+static int AI_StandingPartner(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
+{
+    int partner = BattleSystem_GetPartner(battleSys, battler);
+
+    if (partner == battler || battleCtx->battleMons[partner].curHP == 0) {
+        return BATTLER_NONE;
+    }
+
+    return partner;
+}
+
+// Sovereign (12b): whether the battler can't be healed: full HP, or under Heal Block.
+static BOOL AI_CantBeHealed(BattleContext *battleCtx, int battler)
+{
+    return battleCtx->battleMons[battler].curHP >= battleCtx->battleMons[battler].maxHP
+        || battleCtx->battleMons[battler].moveEffectsData.healBlockTurns;
+}
+
+// Sovereign (12b): whether the battler and its standing partner (if any) are at full HP and, with `orStatus`, have no
+// status condition either: nothing for Life Dew, Jungle Healing or Lunar Blessing to do.
+static BOOL AI_SideHealthy(BattleSystem *battleSys, BattleContext *battleCtx, int battler, BOOL orStatus)
+{
+    int partner = AI_StandingPartner(battleSys, battleCtx, battler);
+    int mons[2] = { battler, partner };
+
+    for (int i = 0; i < 2; i++) {
+        if (mons[i] == BATTLER_NONE) {
+            continue;
+        }
+
+        BattleMon *mon = &battleCtx->battleMons[mons[i]];
+        if (mon->curHP < mon->maxHP || (orStatus && (mon->status & MON_CONDITION_ANY))) {
+            return FALSE;
+        }
+    }
+
+    return TRUE;
+}
+
+// Sovereign (12b): whether the battler or its standing partner holds a Berry (Teatime).
+static BOOL AI_SideHoldsBerry(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
+{
+    int partner = AI_StandingPartner(battleSys, battleCtx, battler);
+
+    return Item_IsBerry(battleCtx->battleMons[battler].heldItem)
+        || (partner != BATTLER_NONE && Item_IsBerry(battleCtx->battleMons[partner].heldItem));
+}
+
+// Sovereign (12b): whether the battler's side has a Pokemon with Plus or Minus whose stats in `stats` can still rise
+// (Magnetic Flux, Gear Up).
+static BOOL AI_SidePlusMinusCanRise(BattleSystem *battleSys, BattleContext *battleCtx, int battler, u8 stats)
+{
+    int mons[2] = { battler, AI_StandingPartner(battleSys, battleCtx, battler) };
+
+    for (int i = 0; i < 2; i++) {
+        if (mons[i] != BATTLER_NONE
+            && (Battler_Ability(battleCtx, mons[i]) == ABILITY_PLUS || Battler_Ability(battleCtx, mons[i]) == ABILITY_MINUS)
+            && AI_StatsAllAt(battleCtx, mons[i], stats, MAX_STAT_STAGE) == FALSE) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
+// Sovereign (12b): whether the battler's side has a Grass type that Flower Shield (Defense) or Rototiller (Attack and
+// Sp. Atk, grounded only) would raise.
+static BOOL AI_SideGrassCanRise(BattleSystem *battleSys, BattleContext *battleCtx, int battler, BOOL rototiller)
+{
+    int mons[2] = { battler, AI_StandingPartner(battleSys, battleCtx, battler) };
+    u8 stats = rototiller ? (AI_STAT(ATTACK) | AI_STAT(SP_ATTACK)) : AI_STAT(DEFENSE);
+
+    for (int i = 0; i < 2; i++) {
+        if (mons[i] != BATTLER_NONE
+            && MON_HAS_TYPE(mons[i], TYPE_GRASS)
+            && (rototiller == FALSE || Sovereign_IsGrounded(battleCtx, mons[i]))
+            && AI_StatsAllAt(battleCtx, mons[i], stats, MAX_STAT_STAGE) == FALSE) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
+// Sovereign (12b): whether the battler's trainer has a Pokemon in the party, not in battle, that could switch in.
+static BOOL AI_HasBenchMon(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
+{
+    Party *party = BattleSystem_GetParty(battleSys, battler);
+    u8 battlerSlot = battleCtx->selectedPartySlot[battler];
+    u8 partnerSlot = battleCtx->selectedPartySlot[BattleSystem_GetPartner(battleSys, battler)];
+
+    for (int i = 0; i < BattleSystem_GetPartyCount(battleSys, battler); i++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, i);
+
+        if (i != battlerSlot
+            && i != partnerSlot
+            && Pokemon_GetValue(mon, MON_DATA_HP, NULL) != 0
+            && Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_NONE
+            && Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG) {
+            return TRUE;
+        }
+    }
+
+    return FALSE;
+}
+
+// Sovereign (12b): whether the battler is the only one of its types: a pure `type` Pokemon (Soak, Magic Powder).
+static BOOL AI_IsPureType(BattleContext *battleCtx, int battler, int type)
+{
+    return BattleMon_Get(battleCtx, battler, BATTLEMON_TYPE_1, NULL) == type
+        && BattleMon_Get(battleCtx, battler, BATTLEMON_TYPE_2, NULL) == type
+        && battleCtx->battleMons[battler].sovereignAddedType == 0;
+}
+
+// Sovereign (12b): items that hurt their holder, worth giving away with Bestow.
+static BOOL AI_IsHarmfulItem(u16 item)
+{
+    switch (item) {
+    case ITEM_FLAME_ORB:
+    case ITEM_TOXIC_ORB:
+    case ITEM_STICKY_BARB:
+    case ITEM_IRON_BALL:
+    case ITEM_LAGGING_TAIL:
+    case ITEM_RING_TARGET:
+    case ITEM_FULL_INCENSE:
+        return TRUE;
+    }
+
+    return FALSE;
+}
+
+/**
+ * @brief Sovereign (12b): rate the current move when it's aimed at a foe.
+ *
+ * Basic_Main scores moves by their effect, and knows only Platinum's effects. This covers the Gen V+ moves (item 11).
+ *
+ * @return AI_SOVEREIGN_MOVE_USELESS if the move would fail now, has no effect in a trainer battle, only helps the
+ * Pokemon it hits (Heal Pulse, Decorate, Instruct...), or only works on the user's partner; otherwise
+ * AI_SOVEREIGN_MOVE_NO_RATING
+ */
+static int AI_RateSovereignMoveOnFoe(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    int attacker = AI_CONTEXT.attacker;
+    int defender = AI_CONTEXT.defender;
+    int move = AI_CONTEXT.move;
+    int effect = MOVE_DATA(move).effect;
+    int partner = AI_StandingPartner(battleSys, battleCtx, attacker);
+    BattleMon *user = &battleCtx->battleMons[attacker];
+    BattleMon *target = &battleCtx->battleMons[defender];
+    int targetSide = BattleSystem_GetBattlerSide(battleSys, defender);
+    int userSide = BattleSystem_GetBattlerSide(battleSys, attacker);
+    BOOL useless = FALSE;
+
+    // Damaging moves that fail (battle_controller_player.c).
+    switch (move) {
+    case MOVE_POLTERGEIST:
+        return target->heldItem == ITEM_NONE ? AI_SOVEREIGN_MOVE_USELESS : AI_SOVEREIGN_MOVE_NO_RATING;
+    case MOVE_STEEL_ROLLER:
+        return (battleCtx->fieldConditionsMask & FIELD_CONDITION_TERRAIN) == FALSE ? AI_SOVEREIGN_MOVE_USELESS : AI_SOVEREIGN_MOVE_NO_RATING;
+    case MOVE_BELCH:
+        return (battleCtx->sovereignAteBerry[attacker] & FlagIndex(battleCtx->selectedPartySlot[attacker])) == FALSE
+            ? AI_SOVEREIGN_MOVE_USELESS
+            : AI_SOVEREIGN_MOVE_NO_RATING;
+    }
+
+    for (int i = 0; i < NELEMS(sSovereignStatMoves); i++) {
+        if (sSovereignStatMoves[i].effect != effect) {
+            continue;
+        }
+
+        if (sSovereignStatMoves[i].onTarget) {
+            useless = AI_StatsAllAt(battleCtx, defender, sSovereignStatMoves[i].stats, MIN_STAT_STAGE)
+                || (battleCtx->sideConditionsMask[targetSide] & SIDE_CONDITION_MIST)
+                || Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_CLEAR_BODY) == TRUE
+                || Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_WHITE_SMOKE) == TRUE
+                || Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_FULL_METAL_BODY) == TRUE;
+        } else {
+            useless = AI_StatsAllAt(battleCtx, attacker, sSovereignStatMoves[i].stats, MAX_STAT_STAGE);
+        }
+
+        break;
+    }
+
+    switch (effect) {
+    // Moves that only help the Pokemon they hit, and moves that only work on the user's partner (or nobody).
+    case BATTLE_EFFECT_SOVEREIGN_HEAL_TARGET:
+    case BATTLE_EFFECT_SOVEREIGN_DECORATE:
+    case BATTLE_EFFECT_SOVEREIGN_PURIFY:
+    case BATTLE_EFFECT_SOVEREIGN_INSTRUCT:
+    case BATTLE_EFFECT_SOVEREIGN_AFTER_YOU:
+    case BATTLE_EFFECT_SOVEREIGN_AROMATIC_MIST:
+    case BATTLE_EFFECT_SOVEREIGN_HOLD_HANDS:
+    case BATTLE_EFFECT_SOVEREIGN_CELEBRATE:
+    case BATTLE_EFFECT_SOVEREIGN_HAPPY_HOUR:
+        useless = TRUE;
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_BESTOW:
+        useless = user->heldItem == ITEM_NONE
+            || target->heldItem != ITEM_NONE
+            || Battler_SovereignHeldItemLocked(battleCtx, attacker)
+            || AI_IsHarmfulItem(user->heldItem) == FALSE;
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_COACHING:
+        useless = partner == BATTLER_NONE || AI_StatsAllAt(battleCtx, partner, AI_STAT(ATTACK) | AI_STAT(DEFENSE), MAX_STAT_STAGE);
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_DRAGON_CHEER:
+        useless = partner == BATTLER_NONE || battleCtx->sovereignDragonCheer[partner];
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_MAGNETIC_FLUX:
+        useless = AI_SidePlusMinusCanRise(battleSys, battleCtx, attacker, AI_STAT(DEFENSE) | AI_STAT(SP_DEFENSE)) == FALSE;
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_GEAR_UP:
+        useless = AI_SidePlusMinusCanRise(battleSys, battleCtx, attacker, AI_STAT(ATTACK) | AI_STAT(SP_ATTACK)) == FALSE;
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_LIFE_DEW:
+        useless = AI_SideHealthy(battleSys, battleCtx, attacker, FALSE);
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_LUNAR_BLESSING:
+        useless = AI_SideHealthy(battleSys, battleCtx, attacker, TRUE);
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_TAKE_HEART:
+        useless = AI_StatsAllAt(battleCtx, attacker, AI_STAT(SP_ATTACK) | AI_STAT(SP_DEFENSE), MAX_STAT_STAGE)
+            && (user->status & MON_CONDITION_ANY) == FALSE;
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_NO_RETREAT:
+        useless |= (user->statusVolatile & VOLATILE_CONDITION_MEAN_LOOK) && user->moveEffectsData.meanLookTarget == attacker;
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_CLANGOROUS_SOUL:
+        useless |= user->curHP <= user->maxHP / 3;
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_FILLET_AWAY:
+        useless |= user->curHP <= user->maxHP / 2;
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_STUFF_CHEEKS:
+        useless = Item_IsBerry(user->heldItem) == FALSE;
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_TEATIME:
+        // Every Pokemon on the field eats its Berry: no use unless one on the user's side has one.
+        useless = AI_SideHoldsBerry(battleSys, battleCtx, attacker) == FALSE;
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_LASER_FOCUS:
+        useless = battleCtx->sovereignLaserFocus[attacker] > 0;
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_SHED_TAIL:
+        useless = user->curHP <= user->maxHP / 2
+            || (user->statusVolatile & VOLATILE_CONDITION_SUBSTITUTE)
+            || AI_HasBenchMon(battleSys, battleCtx, attacker) == FALSE;
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_MAT_BLOCK:
+        // Only on the user's first turn out, like Fake Out.
+        useless = user->moveEffectsData.fakeOutTurnNumber != battleCtx->totalTurns;
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_ELECTRIC_TERRAIN:
+        useless = (battleCtx->fieldConditionsMask & FIELD_CONDITION_TERRAIN_ELECTRIC) != 0;
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_GRASSY_TERRAIN:
+        useless = (battleCtx->fieldConditionsMask & FIELD_CONDITION_TERRAIN_GRASSY) != 0;
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_MISTY_TERRAIN:
+        useless = (battleCtx->fieldConditionsMask & FIELD_CONDITION_TERRAIN_MISTY) != 0;
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_PSYCHIC_TERRAIN:
+        useless = (battleCtx->fieldConditionsMask & FIELD_CONDITION_TERRAIN_PSYCHIC) != 0;
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_AURORA_VEIL:
+        useless = (battleCtx->fieldConditionsMask & FIELD_CONDITION_HAILING) == FALSE
+            || (battleCtx->sideConditionsMask[userSide] & SIDE_CONDITION_SOVEREIGN_AURORA_VEIL);
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_STICKY_WEB:
+        useless = (battleCtx->sideConditionsMask[targetSide] & SIDE_CONDITION_SOVEREIGN_STICKY_WEB) != 0;
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_FAIRY_LOCK:
+        useless = battleCtx->sovereignFairyLock > 0;
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_COURT_CHANGE:
+        // Worth it only to send the user's side's hazards over, or to take the foes' screens and the like.
+        useless = (battleCtx->sideConditionsMask[userSide] & (SIDE_CONDITION_SPIKES | SIDE_CONDITION_TOXIC_SPIKES | SIDE_CONDITION_STEALTH_ROCK | SIDE_CONDITION_SOVEREIGN_STICKY_WEB)) == FALSE
+            && (battleCtx->sideConditionsMask[targetSide] & (SIDE_CONDITION_REFLECT | SIDE_CONDITION_LIGHT_SCREEN | SIDE_CONDITION_SOVEREIGN_AURORA_VEIL | SIDE_CONDITION_MIST | SIDE_CONDITION_SAFEGUARD | SIDE_CONDITION_TAILWIND | SIDE_CONDITION_LUCKY_CHANT)) == FALSE;
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_FLOWER_SHIELD:
+        useless = AI_SideGrassCanRise(battleSys, battleCtx, attacker, FALSE) == FALSE;
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_ROTOTILLER:
+        useless = AI_SideGrassCanRise(battleSys, battleCtx, attacker, TRUE) == FALSE;
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_SPOTLIGHT:
+        useless = (battleSys->battleType & BATTLE_TYPE_DOUBLES) == FALSE;
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_SOAK:
+        useless = AI_IsPureType(battleCtx, defender, TYPE_WATER);
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_MAGIC_POWDER:
+        useless = AI_IsPureType(battleCtx, defender, TYPE_PSYCHIC);
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_ADD_TYPE:
+        useless = MON_HAS_TYPE(defender, move == MOVE_FORESTS_CURSE ? TYPE_GRASS : TYPE_GHOST);
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_SPEED_SWAP:
+        useless = target->speed <= user->speed;
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_TOPSY_TURVY:
+        // Turning only drops around would help the target.
+        useless = AI_AnyStatRaised(battleCtx, defender) == FALSE;
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_SIMPLE_BEAM:
+        // Simple would double the target's own boosts.
+        useless = Battler_Ability(battleCtx, defender) == ABILITY_SIMPLE || AI_AnyStatRaised(battleCtx, defender);
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_ENTRAINMENT:
+    case BATTLE_EFFECT_SOVEREIGN_DOODLE:
+        useless = Battler_Ability(battleCtx, attacker) == Battler_Ability(battleCtx, defender);
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_REFLECT_TYPE:
+        useless = BattleMon_Get(battleCtx, attacker, BATTLEMON_TYPE_1, NULL) == BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_1, NULL)
+            && BattleMon_Get(battleCtx, attacker, BATTLEMON_TYPE_2, NULL) == BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_2, NULL);
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_OCTOLOCK:
+        useless = battleCtx->sovereignOctolock[defender] != 0;
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_TAR_SHOT:
+        useless = (battleCtx->sovereignTarShot & FlagIndex(defender)) && target->statBoosts[BATTLE_STAT_SPEED] == MIN_STAT_STAGE;
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_TELEKINESIS:
+        useless = battleCtx->sovereignTelekinesis[defender] > 0 || (battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY);
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_STRENGTH_SAP:
+        // It heals even when Mist or Clear Body stops the drop; it fails only at -6 Attack.
+        useless = target->statBoosts[BATTLE_STAT_ATTACK] == MIN_STAT_STAGE;
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_TOXIC_THREAD:
+        useless = (target->status & MON_CONDITION_ANY) && target->statBoosts[BATTLE_STAT_SPEED] == MIN_STAT_STAGE;
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_VENOM_DRENCH:
+        useless |= (target->status & MON_CONDITION_ANY_POISON) == FALSE;
+        break;
+
+    case BATTLE_EFFECT_SOVEREIGN_CORROSIVE_GAS:
+        // It also melts the user's partner's item.
+        useless = target->heldItem == ITEM_NONE || (partner != BATTLER_NONE && battleCtx->battleMons[partner].heldItem != ITEM_NONE);
+        break;
+    }
+
+    return useless ? AI_SOVEREIGN_MOVE_USELESS : AI_SOVEREIGN_MOVE_NO_RATING;
+}
+
+/**
+ * @brief Sovereign (12b): rate the current move when it's aimed at the attacker's partner.
+ *
+ * TagStrategy_Partner scores any move it doesn't know -30 on the partner, so the AI never uses it there. These Gen V+
+ * moves are made for the partner (docs/AIReview.md, #8).
+ *
+ * @return AI_SOVEREIGN_MOVE_GOOD or AI_SOVEREIGN_MOVE_FAIR when it's worth using on the partner now,
+ * AI_SOVEREIGN_MOVE_USELESS when it isn't, AI_SOVEREIGN_MOVE_NO_RATING for any other move
+ */
+static int AI_RateSovereignMoveOnPartner(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    int attacker = AI_CONTEXT.attacker;
+    int partner = AI_CONTEXT.defender;
+    int move = AI_CONTEXT.move;
+    BattleMon *mon = &battleCtx->battleMons[partner];
+    int i;
+
+    if (move == MOVE_POLLEN_PUFF) {
+        // It heals an ally by half its max HP instead of hitting it.
+        return AI_CantBeHealed(battleCtx, partner) == FALSE && mon->curHP <= mon->maxHP / 2
+            ? AI_SOVEREIGN_MOVE_GOOD
+            : AI_SOVEREIGN_MOVE_USELESS;
+    }
+
+    switch (MOVE_DATA(move).effect) {
+    case BATTLE_EFFECT_SOVEREIGN_HEAL_TARGET:
+        if (AI_CantBeHealed(battleCtx, partner) || mon->curHP > mon->maxHP * 3 / 4) {
+            return AI_SOVEREIGN_MOVE_USELESS;
+        }
+
+        return mon->curHP <= mon->maxHP / 2 ? AI_SOVEREIGN_MOVE_GOOD : AI_SOVEREIGN_MOVE_FAIR;
+
+    case BATTLE_EFFECT_SOVEREIGN_DECORATE:
+        if (AI_StatsAllAt(battleCtx, partner, AI_STAT(ATTACK) | AI_STAT(SP_ATTACK), MAX_STAT_STAGE) == FALSE) {
+            for (i = 0; i < LEARNED_MOVES_MAX; i++) {
+                if (mon->moves[i] && MOVE_DATA(mon->moves[i]).power > 1) {
+                    return AI_SOVEREIGN_MOVE_GOOD;
+                }
+            }
+        }
+
+        return AI_SOVEREIGN_MOVE_USELESS;
+
+    case BATTLE_EFFECT_SOVEREIGN_PURIFY:
+        return (mon->status & MON_CONDITION_ANY) ? AI_SOVEREIGN_MOVE_GOOD : AI_SOVEREIGN_MOVE_USELESS;
+
+    case BATTLE_EFFECT_SOVEREIGN_INSTRUCT:
+        // Worth it when the partner's last move was a hit.
+        return Sovereign_CanInstruct(battleCtx, partner) && MOVE_DATA(battleCtx->movePrevByBattler[partner]).power > 1
+            ? AI_SOVEREIGN_MOVE_GOOD
+            : AI_SOVEREIGN_MOVE_USELESS;
+
+    case BATTLE_EFFECT_SOVEREIGN_AFTER_YOU:
+        // Worth it when the partner is slower than a foe.
+        for (i = 0; i < BattleSystem_GetMaxBattlers(battleSys); i++) {
+            if (BattleSystem_GetBattlerSide(battleSys, i) != BattleSystem_GetBattlerSide(battleSys, attacker)
+                && battleCtx->battleMons[i].curHP
+                && battleCtx->battleMons[i].speed > mon->speed) {
+                return AI_SOVEREIGN_MOVE_FAIR;
+            }
+        }
+
+        return AI_SOVEREIGN_MOVE_USELESS;
+
+    case BATTLE_EFFECT_SOVEREIGN_AROMATIC_MIST:
+        return mon->statBoosts[BATTLE_STAT_SP_DEFENSE] < MAX_STAT_STAGE ? AI_SOVEREIGN_MOVE_FAIR : AI_SOVEREIGN_MOVE_USELESS;
+
+    case BATTLE_EFFECT_SOVEREIGN_HOLD_HANDS:
+        return AI_SOVEREIGN_MOVE_USELESS;
+    }
+
+    return AI_SOVEREIGN_MOVE_NO_RATING;
+}
+
+/**
+ * @brief Sovereign (12b): load how the AI should rate the current move against its target, for the Gen V+ moves
+ * Platinum's script doesn't know.
+ *
+ * Aimed at a foe (Basic_Main): AI_SOVEREIGN_MOVE_USELESS if it would fail now, has no effect in a trainer battle, only
+ * helps the Pokemon it hits, or only works on the user's partner. Aimed at the partner (TagStrategy_Partner):
+ * AI_SOVEREIGN_MOVE_GOOD, _FAIR or _USELESS for the moves made for an ally (Pollen Puff, Heal Pulse, Decorate...).
+ * Otherwise AI_SOVEREIGN_MOVE_NO_RATING: the script's own rules apply.
+ */
+static void AICmd_LoadSovereignMoveRating(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    AIScript_Iter(battleCtx, 1);
+
+    if (AI_CONTEXT.move == MOVE_NONE) {
+        AI_CONTEXT.calcTemp = AI_SOVEREIGN_MOVE_NO_RATING;
+    } else if (AI_CONTEXT.defender == AI_StandingPartner(battleSys, battleCtx, AI_CONTEXT.attacker)) {
+        AI_CONTEXT.calcTemp = AI_RateSovereignMoveOnPartner(battleSys, battleCtx);
+    } else {
+        AI_CONTEXT.calcTemp = AI_RateSovereignMoveOnFoe(battleSys, battleCtx);
+    }
+}
+
 /**
  * @brief Push an address for the AI script onto the cursor stack.
  *
@@ -4225,6 +4788,7 @@ static BOOL TrainerAI_ShouldUseItem(BattleSystem *battleSys, int battler)
     Party *party;
     Pokemon *mon;
     BattleContext *battleCtx = battleSys->battleCtx;
+    int pool = AI_TrainerSlot(battleSys, battler) >> 1; // Sovereign (12b): the trainer's items it can use
     AI_CONTEXT.usedItemCondition[battler >> 1] = 0;
     result = FALSE;
 
@@ -4251,8 +4815,8 @@ static BOOL TrainerAI_ShouldUseItem(BattleSystem *battleSys, int battler)
     }
 
     for (i = 0; i < MAX_TRAINER_ITEMS; i++) {
-        if (i == 0 || aliveMons <= AI_CONTEXT.trainerItemCounts[battler >> 1] - i + 1) {
-            item = AI_CONTEXT.trainerItems[battler >> 1][i];
+        if (i == 0 || aliveMons <= AI_CONTEXT.trainerItemCounts[pool] - i + 1) {
+            item = AI_CONTEXT.trainerItems[pool][i];
 
             if (item == ITEM_NONE) {
                 continue;
@@ -4352,7 +4916,7 @@ static BOOL TrainerAI_ShouldUseItem(BattleSystem *battleSys, int battler)
 
             if (result == TRUE) {
                 AI_CONTEXT.usedItem[battler >> 1] = item;
-                AI_CONTEXT.trainerItems[battler >> 1][i] = 0;
+                AI_CONTEXT.trainerItems[pool][i] = 0;
             }
         }
     }

@@ -648,6 +648,12 @@
     .long AICMD_LOADTARGETPARTNERREDIRECTS
     .endm
 
+    // Sovereign (12b): load how to rate the current move against its target, for the Gen V+ moves the script doesn't
+    // know: AI_SOVEREIGN_MOVE_USELESS, _GOOD or _FAIR (aimed at the partner), or AI_SOVEREIGN_MOVE_NO_RATING.
+    .macro LoadSovereignMoveRating
+    .long AICMD_LOADSOVEREIGNMOVERATING
+    .endm
+
     .equ TABLE_END, 0xFFFFFFFF
 
     .macro TableEntry entry:req

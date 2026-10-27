@@ -60,4 +60,10 @@
 #define AI_SPREAD_NOT_HIT  255
 #define AI_SPREAD_ABSORBED 254
 
+// Sovereign (12b): LoadSovereignMoveRating's results for the Gen V+ moves Platinum's script doesn't know.
+#define AI_SOVEREIGN_MOVE_NO_RATING 0 // not a move it rates: the script's own rules apply
+#define AI_SOVEREIGN_MOVE_USELESS   1 // it would fail now, does nothing here, or only helps the foe it's aimed at
+#define AI_SOVEREIGN_MOVE_GOOD      2 // aimed at the partner: worth using now (score +3)
+#define AI_SOVEREIGN_MOVE_FAIR      3 // aimed at the partner: of some use now (score +1)
+
 #endif

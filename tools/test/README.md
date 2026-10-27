@@ -56,3 +56,4 @@ across processes, one per core.
 
 - `check_trainer_party.py`: one trainer's party in game against its JSON (used by `battle_all_trainers.py`).
 - `log_ai_partner_damage.py`: logs the doubles AI's estimates of its spread moves' damage to its partner (item 12b).
+- `log_ai_move_rating.py`: logs the trainer AI's ratings of the Gen V+ moves Platinum's AI script doesn't know (item 12b, `docs/AIReview.md` #11).

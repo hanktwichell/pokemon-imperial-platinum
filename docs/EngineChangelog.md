@@ -3,6 +3,37 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## 12b (trainer AI): the Gen V+ moves, and the second Pokémon in one-trainer double battles
+
+For players:
+- **Trainers no longer help you with Gen V+ moves.** The AI used to rate every Gen V+ status move like a neutral move,
+  so it could aim Heal Pulse, Decorate, Purify, Instruct or After You at your Pokémon. It also picked moves that would
+  fail: Life Dew at full HP, Stuff Cheeks without a Berry, Coaching in a single battle, a terrain that's already up,
+  Poltergeist on a Pokémon without an item, and the like. Those now score −10 against a foe (`docs/AIReview.md` #11).
+- **Support moves on the partner.** In double battles the AI now uses Pollen Puff, Heal Pulse or Floral Healing on a
+  partner at half HP or less, Decorate on a partner that attacks, Purify on a statused partner, Instruct after a
+  partner's hit, After You for a slower partner and Aromatic Mist (#8).
+- **The Elite Four's and Cynthia's double battles** (and Cyrus in the Distortion World) start with one trainer ID,
+  which left the second enemy slot empty. The trainer's second Pokémon thought with only the doubles routine (no
+  Basic, Eval Attack or Expert flags) and couldn't use the trainer's items. It now uses the trainer's flags and
+  shares its items (#10). Pairs of trainers who walk up together (twins) were already fine.
+
+Code:
+- `trainer_ai.c`: new AI command `LoadSovereignMoveRating` (`AI_RateSovereignMoveOnFoe`,
+  `AI_RateSovereignMoveOnPartner`, a stat table for Sovereign's stat moves). `Basic_Main` scores USELESS −10, and
+  `TagStrategy_Partner` scores GOOD +3, FAIR +1 and USELESS −30 (`script.s`, results in
+  `constants/battle/trainer_ai.h`). `AI_TrainerSlot` maps the empty second enemy slot to the first trainer for
+  `TrainerAI_Init`'s AI flags and `TrainerAI_ShouldUseItem`'s items.
+- New tool `tools/test/log_ai_move_rating.py` logs the ratings in the test build's trainer battle.
+
+Verified in the test build with the test trainer's Charizard and Venusaur given support moves:
+- Venusaur now scores its moves with the Basic routine.
+- On turn 1 Venusaur used Aromatic Mist on Charizard, and Charizard used Pollen Puff on a foe; Heal Pulse, Decorate
+  and Purify were never aimed at a foe.
+- With Venusaur at 30% HP, Charizard used Heal Pulse on it.
+- In a single battle, Charizard used Ember over Life Dew, Stuff Cheeks and Coaching.
+- Test and release builds pass.
+
 ## Item 11 (effect fidelity): Emergency Exit and Wimp Out after indirect damage
 
 For players:

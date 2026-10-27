@@ -117,6 +117,7 @@ ScriptCommand(AICMD_LOADABILITY,                     AICmd_LoadAbility)
 ScriptCommand(AICMD_LOADPARTNERDAMAGEPERCENT,         AICmd_LoadPartnerDamagePercent) // Sovereign (12b)
 ScriptCommand(AICMD_LOADOTHERFOEDAMAGEPERCENT,        AICmd_LoadOtherFoeDamagePercent) // Sovereign (12b)
 ScriptCommand(AICMD_LOADTARGETPARTNERREDIRECTS,       AICmd_LoadTargetPartnerRedirects) // Sovereign (12b)
+ScriptCommand(AICMD_LOADSOVEREIGNMOVERATING,         AICmd_LoadSovereignMoveRating) // Sovereign (12b)
 
 // clang-format on
 
