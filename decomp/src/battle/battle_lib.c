@@ -4741,6 +4741,7 @@ enum SwitchInCheckState {
     SWITCH_IN_CHECK_STATE_AMULET_COIN,
     SWITCH_IN_CHECK_STATE_FORBIDDEN_STATUS,
     SWITCH_IN_CHECK_STATE_HELD_ITEM_STATUS,
+    SWITCH_IN_CHECK_STATE_SOVEREIGN_EMERGENCY_EXIT, // Sovereign (item 11)
 
     SWITCH_IN_CHECK_STATE_DONE,
 };
@@ -5847,6 +5848,30 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
 
                 if (BattleSystem_TriggerHeldItemOnStatus(battleSys, battleCtx, battler, &subscript) == TRUE) {
                     battleCtx->msgBattlerTemp = battler;
+                    result = SWITCH_IN_CHECK_RESULT_BREAK;
+                    break;
+                }
+            }
+
+            if (i == maxBattlers) {
+                battleCtx->switchInCheckState++;
+            }
+            break;
+
+        case SWITCH_IN_CHECK_STATE_SOVEREIGN_EMERGENCY_EXIT:
+            // Sovereign (item 11): Emergency Exit and Wimp Out after the entry hazards took a Pokemon switched in from above
+            // half its HP to half or less, and no Berry has healed it back above half since. Last, after its other switch-in
+            // effects, as in Showdown's runSwitch. The checks start over after it, for the Pokemon that comes in instead.
+            for (i = 0; i < maxBattlers; i++) {
+                battler = battleCtx->monSpeedOrder[i];
+                int hpOnEntry = battleCtx->sovereignHPOnEntry[battler];
+
+                battleCtx->sovereignHPOnEntry[battler] = 0;
+
+                if (hpOnEntry && Sovereign_EmergencyExitDue(battleCtx, battler, hpOnEntry)) {
+                    battleCtx->switchedMon = battler;
+                    battleCtx->switchInCheckState = SWITCH_IN_CHECK_STATE_START;
+                    subscript = subscript_sovereign_emergency_exit;
                     result = SWITCH_IN_CHECK_RESULT_BREAK;
                     break;
                 }
@@ -8038,6 +8063,7 @@ BOOL BattleSystem_TriggerHeldItemOnHit(BattleSystem *battleSys, BattleContext *b
         && (battleCtx->battlersSwitchingMask & FlagIndex(battleCtx->defender)) == FALSE
         && Move_SheerForceApplies(battleCtx, battleCtx->attacker, battleCtx->moveCur) == FALSE) {
         battleCtx->sovereignHPBeforeHit[battleCtx->defender] = DEFENDING_MON.curHP; // once per hit
+        battleCtx->switchedMon = battleCtx->defender;
         *subscript = subscript_sovereign_emergency_exit;
         return TRUE;
     }

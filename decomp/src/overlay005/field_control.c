@@ -269,6 +269,14 @@ static void SovereignTest_SetLead(FieldSystem *fieldSystem)
             }
         }
 
+        if (gSovereignTestPartner.hpPercent) {
+            u32 hp = Pokemon_GetValue(partner, MON_DATA_MAX_HP, NULL) * gSovereignTestPartner.hpPercent / 100;
+
+            hp = hp ? hp : 1;
+            Pokemon_SetValue(partner, MON_DATA_HP, &hp);
+            gSovereignTestPartner.hpPercent = 0;
+        }
+
         gSovereignTestPartner.species = SPECIES_NONE;
     }
 }

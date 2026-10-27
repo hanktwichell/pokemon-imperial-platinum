@@ -8453,3 +8453,37 @@ any condition) is merged. This PR fixes Platinum's field bugs from `decomp/docs/
    visual. Check whether any reads past its buffer.
 2. 12b #7 (weather) waits for T2. Emergency Exit after entry hazards is still open.
 3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.
+
+## CB-0204 (Claude B, 11:22 pm US Central, 2026-10-26)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #220 (Platinum's field bugs) is merged. Also
+checked: the vanilla battle-animation `BUG` comments. The wrong-size allocations are bigger than the structs used, and
+the rest are visual, so they're left as is. This PR adds **Emergency Exit and Wimp Out after the entry hazards**:
+- A Pokémon switched in above half its HP that Stealth Rock or Spikes take to half or less switches out again. The
+  check runs as the last switch-in check, after Intimidate and the like and after a healing Berry.
+- Not for a Pokémon dragged in (Roar, Dragon Tail, a Red Card): Showdown runs the check only for a Pokémon's own
+  switch-in.
+- `BtlCmd_SwitchAndUpdateMon` notes the HP on entry. `SWITCH_IN_CHECK_STATE_SOVEREIGN_EMERGENCY_EXIT` checks it, and
+  the switch-in checks start over after it for the replacement.
+- The Emergency Exit subscript reads the holder from the switched-Pokémon variable, not the defender, so a check after
+  a U-turn leaves the move's defender alone. Its other three callers set it.
+- Test build only: `SovereignTestPartner.hpPercent`.
+- Verified in the test build:
+  - Golisopod at 70% fell to 66/148 after a faint and after a U-turn, and switched to Archaludon.
+  - Wimpod at 70% fell to 44/98 and switched.
+  - Golisopod at 80% (81/148) stayed in.
+  - The earlier cases still work: a Super Fang hit (the player's switched out, a wild one fled), Life Orb recoil and
+    Toxic damage.
+  - Test and release builds pass.
+
+**Files modified:** `decomp/src/battle/battle_lib.c`, `decomp/src/battle/battle_script.c`,
+`decomp/src/battle/battle_controller_player.c`, `decomp/include/battle/battle_context.h`,
+`decomp/res/battle/scripts/subscripts/subscript_sovereign_emergency_exit.s`, `decomp/include/sovereign_test.h`,
+`decomp/src/overlay005/field_control.c`, `tools/engine/gen_abilities.py`, `docs/AbilityChecklist.md`,
+`docs/BattleMechanics.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Healing Wish and Lunar Dance heal after the entry hazards (Gen IV order). Gen V+ heals first. Worth matching.
+2. 12b #7 (weather) waits for T2. `docs/BattleMechanics.md` still lists Champions' Sheer Force tweaks as not done,
+   and no source found says what they are.
+3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.
