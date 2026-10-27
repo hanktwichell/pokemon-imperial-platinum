@@ -3,6 +3,32 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Item 11: Emergency Exit and Wimp Out after the entry hazards
+
+For players:
+- A Pokémon with Emergency Exit (Golisopod) or Wimp Out (Wimpod) that switches in above half its HP and is taken to
+  half or less by Stealth Rock or Spikes now switches out again at once, as in Gen IX. This works for a switch, a faint
+  replacement, a U-turn or Volt Switch replacement, an Eject Button and Emergency Exit itself. It doesn't happen to a
+  Pokémon dragged in by Roar, Whirlwind, Dragon Tail, Circle Throw or a Red Card, as in Showdown.
+- A Berry that heals it back above half first (a Sitrus Berry after the hazards) stops it. Its other switch-in effects,
+  such as Intimidate, come first. The Pokémon that comes in instead gets its own switch-in effects and hazards.
+
+Code: `src/battle/battle_script.c` (`BtlCmd_SwitchAndUpdateMon` notes the HP on entry, `sovereignHPOnEntry`) and
+`src/battle/battle_lib.c` (`SWITCH_IN_CHECK_STATE_SOVEREIGN_EMERGENCY_EXIT`, the last switch-in check, which starts
+the checks over after it). `subscript_sovereign_emergency_exit` now reads the holder from the switched-Pokémon
+variable, not the defender, so a check made after a U-turn doesn't change the move's defender. Test build only: the
+test partner can start at a set HP (`SovereignTestPartner.hpPercent`).
+
+Verified, in the test build: a Lv. 100 Ninjask laid Stealth Rock, then the lead fainted by Memento or switched out by
+U-turn.
+- A Golisopod sent in at 70% HP fell to 66/148 (at or below half). Emergency Exit activated and it went back for
+  Archaludon, which took the rocks in turn. A Wimpod at 70% did the same at 44/98.
+- At 80% (81/148), Golisopod stayed in, after a faint and after a U-turn.
+- The earlier cases still work with the changed subscript. Super Fang took the player's Golisopod from 75 to 38, and
+  it switched out. Super Fang took a wild one to 46/92, and it fled. Life Orb recoil and Toxic damage still switch it
+  out.
+- The test and release builds pass.
+
 ## Platinum's field bugs: fishing with Sticky Hold or Suction Cups, Magnet Pull in water, the Defog HM icon
 
 pret's decompilation documents these in `decomp/docs/bugs_and_glitches.md`.

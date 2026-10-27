@@ -175,6 +175,7 @@ struct SovereignTestPartner {
     u8 form;
     u8 level;
     u16 moves[4]; // a move set here replaces that slot's move
+    u8 hpPercent; // when set, its HP starts at this percentage of its max (Emergency Exit after the entry hazards)
 };
 
 // A form-change key item used on the lead from the bag (SovereignFormItem_Use, as the party menu does), before the

@@ -88,7 +88,7 @@ The full research notes, with confidence levels and URLs, are in the [research n
 
 | Rule | Champions | Sovereign |
 |---|---|---|
-| Healer 50% (was 30%), Run Away ignores trapping, Emergency Exit/Wimp Out and Sheer Force tweaks | changed | 🟡 item 11: Healer 50% ✅. Run Away flees past Shadow Tag, Mean Look and the like, as in Platinum, but doesn't yet switch out of them. Emergency Exit/Wimp Out and the Sheer Force tweaks not yet |
+| Healer 50% (was 30%), Run Away ignores trapping, Emergency Exit/Wimp Out and Sheer Force tweaks | changed | 🟡 item 11: Healer 50% ✅. Run Away flees past Shadow Tag, Mean Look and the like, as in Platinum, but doesn't yet switch out of them. Emergency Exit/Wimp Out ✅ with the Gen IX rules: they switch out after a hit, the holder's own move, the end-of-turn damage or the entry hazards, not after a Sheer Force move (`docs/AbilityChecklist.md`). No source found says what Champions changed in them. The Sheer Force tweaks not yet |
 | Gen V–IX rules Champions inherits: Prankster fails on Dark types, Intimidate blocked by Inner Focus/Oblivious/Own Tempo/Scrappy, Ghost types escape trapping, Grass types immune to powder moves | Gen IX | ✅ item 11 (a Ghost type can always switch out or flee: `Battler_IsTrapped`, `Battler_IsTrappedMsg`; powder: `Battler_SovereignPowderImmune`) |
 | Eject Button after U-turn/Volt Switch: the attacker also switches | changed | ✅ item 11 (`BattleSystem_TriggerHeldItemOnHit`): the U-turn user switches out first, then the Eject Button holder |
 | Item pool (no Choice Band/Specs, Assault Vest, etc.) | regulation-dependent | ➖ not adopted: Champions limits items per regulation; Sovereign is an RPG with Platinum's + Renegade's items |

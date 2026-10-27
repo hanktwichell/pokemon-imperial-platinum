@@ -2588,6 +2588,10 @@ static BOOL BtlCmd_SwitchAndUpdateMon(BattleSystem *battleSys, BattleContext *ba
 
     BattleSystem_InitBattleMon(battleSys, battleCtx, battler, battleCtx->selectedPartySlot[battler]);
     BattleSystem_SwitchSlots(battleSys, battleCtx, battler, battleCtx->selectedPartySlot[battler]);
+
+    // Sovereign (item 11): Emergency Exit and Wimp Out after the entry hazards (SWITCH_IN_CHECK_STATE_SOVEREIGN_EMERGENCY_EXIT).
+    // Not for a Pokemon dragged in by Roar, Dragon Tail or a Red Card (Showdown: only a switch-in of its own runs the check).
+    battleCtx->sovereignHPOnEntry[battler] = inBattler == BTLSCR_FORCED_OUT ? 0 : battleCtx->battleMons[battler].curHP;
     Sovereign_SetIllusion(battleSys, battleCtx, battler); // Sovereign (item 11)
 
     // cache the enemy's current HP (used for force-out moves like Whirlwind?)

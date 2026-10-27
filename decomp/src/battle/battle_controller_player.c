@@ -2179,7 +2179,7 @@ static void BattleControllerPlayer_TurnEnd(BattleSystem *battleSys, BattleContex
 
         if (Sovereign_EmergencyExitDue(battleCtx, battler, battleCtx->sovereignHPBeforeTurnEnd[battler])) {
             battleCtx->sovereignHPBeforeTurnEnd[battler] = 0;
-            battleCtx->defender = battler;
+            battleCtx->switchedMon = battler;
             LOAD_SUBSEQ(subscript_sovereign_emergency_exit);
             battleCtx->commandNext = battleCtx->command;
             battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
@@ -5392,7 +5392,7 @@ static void BattleControllerPlayer_MoveEnd(BattleSystem *battleSys, BattleContex
             && CURRENT_MOVE_DATA.class != CLASS_STATUS
             && Sovereign_EmergencyExitDue(battleCtx, user, battleCtx->sovereignHPBeforeAction[user])) {
             battleCtx->sovereignHPBeforeAction[user] = 0;
-            battleCtx->defender = user;
+            battleCtx->switchedMon = user;
             LOAD_SUBSEQ(subscript_sovereign_emergency_exit);
             battleCtx->commandNext = battleCtx->command;
             battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
