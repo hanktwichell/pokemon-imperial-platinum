@@ -33,7 +33,8 @@ Verified (test build; wild battles against a fast Lv. 100 Ninjask, the player's 
   turn.
 - **Parting Shot:** its Attack and Sp. Atk fell, and it stayed in.
 - **A wild holder:** after Snorlax's Growl, nothing happened.
-- **Not run:** a drop at the end of the turn (Moody, Octolock).
+- **Moody (the end of the turn):** Snorlax given Moody: "SNORLAX's Moody..." at the end of turn 1, then "SNORLAX is
+  switched out with the Eject Pack!" and "Go! ARCHALUDON!" before turn 2.
 - **Builds:** the test and release builds pass, and every battle script fits its buffer.
 
 ## AI review #19: Final Gambit
