@@ -19,8 +19,8 @@
 - **Cheaper Poké Balls** (Poké $50, Great $150, Ultra $300).
 - **Super Rod** available in Snowpoint City.
 - **Pokédex area data** is accurate. *Sovereign builds the area map from its own encounter tables, so it follows the
-  new wild tables, and each Honey Tree shows its own species (CB-0223). The rare wild encounters
-  (`RareWildEncounters.md`) stay off the map: they're gated surprises.*
+  new wild tables, each Honey Tree shows its own species (CB-0223), and the Regional Forms Park's Pokémon show at
+  Route 221 (CB-0224). The rare wild encounters (`RareWildEncounters.md`) stay off the map: they're gated surprises.*
 - **Starters from every region** via Pokémon Center Interviewers. *Sovereign extends this to Gen V–IX; see `GiftPokemon_Sovereign.md`.*
 - **Optional patches** (Speed Up, 1/4096 and 1/8192 shiny rates, Classic Version) should be rebuilt against the Sovereign ROM.
 

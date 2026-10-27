@@ -9032,3 +9032,28 @@ Moves batch J, the last small items of `docs/PlatinumMoveAudit.md` (part 1 items
    map shows.
 3. Anything the owner asks for. T2 (the developer battle's AI) and the Burn Up and Double Shock decisions wait on the
    owner. Embody Aspect and Teraform Zero need Terastallization, which the game doesn't have.
+
+## CB-0224 (Claude B, 10:25 am US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #240 (each Honey Tree's own species on the
+Pokédex area map) is merged.
+- **The Regional Forms Park is on the Pokédex area map.** The park has no encounter file, so its 55 species (the
+  species of its regional forms, the Galarian birds included) weren't on the map. `gen_regional_forms_park.py` now also
+  writes `sovereign_regional_forms_park.json` (the species and Route 221's map spot), and
+  `make_pokedex_enc_platinum.py` adds them to Route 221's special encounters. They show from the start, like the
+  other post-game areas: Sovereign's National Dex comes with the Pokédex, so it can't gate them. Checked in the
+  release build's area data: all 55 species have Route 221.
+- I looked for other gaps. The Pokédex has no roamer display, and the Ultra Beasts and Paradox Pokémon are left off
+  the map on purpose (rare encounters and gifts). With the Honey Trees and the park, every wild table is on the map.
+- The all-trainers battle regression (AI #19 ROM) is at 607 of 1,040, all ok. It's still running.
+
+**Files modified:** `tools/engine/gen_regional_forms_park.py`,
+`decomp/res/field/encounters/sovereign_regional_forms_park.json` (new, generated),
+`decomp/tools/scripts/make_pokedex_enc_platinum.py`, `decomp/res/field/encounters/meson.build`,
+`docs/RegionalFormsPark.md`, `docs/QualityOfLife.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Read the all-trainers regression's results and fix anything that isn't ok.
+2. Look at the Pokédex area page in the emulator (a park species and a Honey Tree species) to check the map draws them.
+3. Anything the owner asks for. T2 (the developer battle's AI) and the Burn Up and Double Shock decisions wait on the
+   owner. Embody Aspect and Teraform Zero need Terastallization, which the game doesn't have.

@@ -3,6 +3,24 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Pokédex area map: the Regional Forms Park
+
+For players: the Pokédex area map shows the Regional Forms Park's Pokémon at Route 221, where the park is. Before,
+the park's 55 species (its regional forms' species, the Galarian birds included) weren't on the map at all, since the
+park has no encounter file. As with the post-game routes, they show from the start (Sovereign's National Dex comes
+with the Pokédex).
+
+Code:
+- `tools/engine/gen_regional_forms_park.py` also writes `decomp/res/field/encounters/sovereign_regional_forms_park.json`:
+  the park's species and Route 221's spot on the area map (from `encounters_route_221.json`'s `map_category`). CI's
+  docs regeneration already runs it, so the file can't go stale.
+- `make_pokedex_enc_platinum.py` adds them to that spot's special encounters (`--sovereign-park-file`), as it does for
+  the Honey Trees.
+
+Verified (release build output): all 55 park species have Route 221 (field 36) in their special encounters, Sneasel
+and Articuno among them. Other species are unchanged (Starly only at its Honey Tree, Bidoof none). The release build
+passes.
+
 ## Pokédex area map: each Honey Tree's own species
 
 For players: the Pokédex area map ("Area" on a species' page) shows a Honey Tree Pokémon only at the trees where it

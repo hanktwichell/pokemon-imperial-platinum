@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 """Write the Regional Forms Park's encounter tables (decision 22) from data/regional_forms_park.yaml:
 decomp/include/data/regional_forms_park.h, read by src/overlay006/wild_encounters.c, and docs/RegionalFormsPark.md.
+decomp/res/field/encounters/sovereign_regional_forms_park.json puts the park's species on the Pokédex area map, at
+Route 221's spot (decomp/tools/scripts/make_pokedex_enc_platinum.py).
 
 Form numbers come from tools/engine/gen_forms.py, so a form named in the YAML must be one it builds.
 
 Usage: python3 tools/engine/gen_regional_forms_park.py
 """
+import json
 import os
 import sys
 
@@ -16,6 +19,10 @@ import gen_forms  # noqa: E402
 from gen_items import DECOMP, ROOT  # noqa: E402
 
 OUT = os.path.join(DECOMP, "include", "data", "regional_forms_park.h")
+ENC = os.path.join(DECOMP, "res", "field", "encounters")
+AREA_OUT = os.path.join(ENC, "sovereign_regional_forms_park.json")
+# The park is Pal Park's grounds, at the end of Route 221: its species go on Route 221's spot of the area map.
+AREA_ENCOUNTERS = os.path.join(ENC, "encounters_route_221.json")
 DOC = os.path.join(ROOT, "docs", "RegionalFormsPark.md")
 QUADRANTS = 4
 PLACES = {
@@ -38,6 +45,7 @@ wild area where the regional forms live.
   Poké Balls. The worker inside the gate, or stepping into the gate, takes the player back out.
 - **Encounters.** Each quadrant of the map is one region's zone. An encounter works like any route's (same step rates,
   Repel, abilities), but the Pokémon is picked from the zone's list by its odds, at a random level in its range.
+- **Pokédex.** The area map shows the park's Pokémon at Route 221, from the start like the other post-game areas.
 
 **Approved** by the owner (2026-10-24):
 - each region's forms live in their own zone, with a sign at the way in;
@@ -104,6 +112,14 @@ static const RegionalFormsParkZone sRegionalFormsParkZones[{QUADRANTS}] = {{
 """
     with open(OUT, "w", encoding="utf-8") as f:
         f.write(text)
+
+    category = json.load(open(AREA_ENCOUNTERS, encoding="utf-8"))["map_category"]
+    species = [forms[e[0]]["species"] for z in zones for terrain in ("grass", "water") for e in z[terrain] or []]
+    with open(AREA_OUT, "w", encoding="utf-8") as f:
+        json.dump({"generated": "by tools/engine/gen_regional_forms_park.py from data/regional_forms_park.yaml; do not edit",
+                   "map_type": category["map_type"], "map_number": category["map_number"],
+                   "species": list(dict.fromkeys(species))}, f, indent=4, ensure_ascii=False)
+        f.write("\n")
 
     doc = [DOC_INTRO]
     for zone in sorted(zones, key=lambda z: z["name"]):
