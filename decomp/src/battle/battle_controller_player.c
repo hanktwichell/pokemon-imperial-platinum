@@ -916,8 +916,8 @@ static void BattleControllerPlayer_CheckPreMoveActions(BattleSystem *battleSys, 
             for (battler = 0; battler < maxBattlers; battler++) {
                 if (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_RAGE
                     && Battler_SelectedMove(battleCtx, battler) != MOVE_RAGE) {
-                    // bug: clears every volatile status except rage
-                    battleCtx->battleMons[battler].statusVolatile &= VOLATILE_CONDITION_RAGE;
+                    // Sovereign: Platinum used &= VOLATILE_CONDITION_RAGE, which cleared every volatile status except Rage
+                    battleCtx->battleMons[battler].statusVolatile &= ~VOLATILE_CONDITION_RAGE;
                 }
             }
 

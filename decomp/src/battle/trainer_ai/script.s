@@ -1195,19 +1195,18 @@ Basic_CheckMetalBurst:
     // If the target is immune to Metal Burst due to its typing (?), score -10.
     IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, ScoreMinus10
 
-    // If the target's ability is Stall or they are holding a Shiny Stone, score -10.
-    // BUG: This should use the command LoadHeldItemEffect to check for the Lagging Tail
-    // effect.
+    // If the target's ability is Stall or they are holding a Lagging Tail or Full Incense, score -10.
+    // Sovereign (12b): Platinum checked for a Shiny Stone here instead of the Lagging Tail's hold effect.
     LoadBattlerAbility AI_BATTLER_DEFENDER
     IfLoadedEqualTo ABILITY_STALL, ScoreMinus10
-    IfHeldItemEqualTo AI_BATTLER_DEFENDER, ITEM_SHINY_STONE, ScoreMinus10
+    LoadHeldItemEffect AI_BATTLER_DEFENDER
+    IfLoadedEqualTo HOLD_EFFECT_PRIORITY_DOWN, ScoreMinus10
 
-    // If the attacker's ability is Stall or they are holding a Shiny Stone, terminate.
-    // BUG: This should use the command LoadHeldItemEffect to check for the Lagging Tail
-    // effect.
+    // If the attacker's ability is Stall or they are holding a Lagging Tail or Full Incense, terminate.
     LoadBattlerAbility AI_BATTLER_ATTACKER
     IfLoadedEqualTo ABILITY_STALL, Basic_CheckMetalBurst_Terminate
-    IfHeldItemEqualTo AI_BATTLER_ATTACKER, ITEM_SHINY_STONE, Basic_CheckMetalBurst_Terminate
+    LoadHeldItemEffect AI_BATTLER_ATTACKER
+    IfLoadedEqualTo HOLD_EFFECT_PRIORITY_DOWN, Basic_CheckMetalBurst_Terminate
 
     // If the attacker is faster than the target, score -10.
     IfSpeedCompareEqualTo COMPARE_SPEED_FASTER, ScoreMinus10
@@ -3713,15 +3712,15 @@ Expert_Spikes_End:
     PopOrEnd 
 
 Expert_Foresight:
-    // If the attacker has a Ghost typing, 47.3% chance of score +2.
-    // BUG: This should instead check the opponent's typing.
+    // If the target has a Ghost typing, 47.3% chance of score +2.
+    // Sovereign (12b): Platinum checked the attacker's typing.
     //
     // If the target's Evasion stat stage is at +3 or higher, 68.75% chance of score +2.
     //
     // Otherwise, score -2.
-    LoadTypeFrom LOAD_ATTACKER_TYPE_1
+    LoadTypeFrom LOAD_DEFENDER_TYPE_1
     IfLoadedEqualTo TYPE_GHOST, Expert_Foresight_FirstRoll
-    LoadTypeFrom LOAD_ATTACKER_TYPE_2
+    LoadTypeFrom LOAD_DEFENDER_TYPE_2
     IfLoadedEqualTo TYPE_GHOST, Expert_Foresight_FirstRoll
     IfStatStageGreaterThan AI_BATTLER_DEFENDER, BATTLE_STAT_EVASION, 8, Expert_Foresight_SecondRoll
     AddToMoveScore -2
@@ -3882,10 +3881,9 @@ Expert_SunnyDay:
     //
     // If the current weather is Hail, Rain, or Sandstorm, score +1.
     //
-    // If the attacker has the ability Flower Gift or is statused and has the ability Leaf Guard,
+    // If the attacker has the ability Flower Gift or is not statused and has the ability Leaf Guard,
     // score +1.
-    // BUG: This should check instead if the attacker is NOT statused, as Leaf Guard has no
-    // effect on existing status conditions.
+    // Sovereign (12b): Platinum gave the +1 to a statused Leaf Guard Pokémon, which Leaf Guard can't help.
     IfHPPercentLessThan AI_BATTLER_ATTACKER, 40, Expert_SunnyDay_ScoreMinus1
     LoadCurrentWeather 
     IfLoadedEqualTo AI_WEATHER_HAILING, Expert_SunnyDay_ScorePlus1
@@ -3894,7 +3892,7 @@ Expert_SunnyDay:
     LoadBattlerAbility AI_BATTLER_ATTACKER
     IfLoadedEqualTo ABILITY_FLOWER_GIFT, Expert_SunnyDay_ScorePlus1
     IfLoadedNotEqualTo ABILITY_LEAF_GUARD, Expert_SunnyDay_End
-    IfStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, Expert_SunnyDay_ScorePlus1
+    IfNotStatus AI_BATTLER_ATTACKER, MON_CONDITION_ANY, Expert_SunnyDay_ScorePlus1
     GoTo Expert_SunnyDay_End
 
 Expert_SunnyDay_ScorePlus1:
@@ -4225,9 +4223,9 @@ Expert_Hail_End:
     PopOrEnd 
 
 Expert_Facade:
-    // If the opponent has a status condition which would boost Facade, score +1.
-    // BUG: This should instead check if the attacker has such a status condition.
-    IfNotStatus AI_BATTLER_DEFENDER, MON_CONDITION_FACADE_BOOST, Expert_Facade_End
+    // If the attacker has a status condition which would boost Facade, score +1.
+    // Sovereign (12b): Platinum checked the opponent's status.
+    IfNotStatus AI_BATTLER_ATTACKER, MON_CONDITION_FACADE_BOOST, Expert_Facade_End
     AddToMoveScore 1
 
 Expert_Facade_End:
@@ -4462,7 +4460,8 @@ Expert_Trick_FlavorBerries:
     TableEntry TABLE_END
 
 Expert_Trick_DisruptiveItems:
-    // BUG: This list does not include Macho Brace.
+    // Sovereign (12b): Platinum left out the Macho Brace and listed the Power Belt twice.
+    TableEntry HOLD_EFFECT_EVS_UP_SPEED_DOWN
     TableEntry HOLD_EFFECT_CHOICE_ATK
     TableEntry HOLD_EFFECT_CHOICE_SPATK
     TableEntry HOLD_EFFECT_CHOICE_SPEED
@@ -4472,7 +4471,6 @@ Expert_Trick_DisruptiveItems:
     TableEntry HOLD_EFFECT_LVLUP_ATK_EV_UP
     TableEntry HOLD_EFFECT_LVLUP_DEF_EV_UP
     TableEntry HOLD_EFFECT_LVLUP_SPATK_EV_UP
-    TableEntry HOLD_EFFECT_LVLUP_DEF_EV_UP
     TableEntry HOLD_EFFECT_LVLUP_SPDEF_EV_UP
     TableEntry HOLD_EFFECT_LVLUP_SPEED_EV_UP
     TableEntry HOLD_EFFECT_LVLUP_HP_EV_UP
@@ -4731,20 +4729,20 @@ Expert_Endeavor_End:
 Expert_WaterSpout:
     // If the opponent resists or is immune to the move, score -1.
     //
-    // If the attacker is slower than its opponent and the opponent's HP <= 70%, score -1.
+    // If the attacker is slower than its opponent and the attacker's HP <= 70%, score -1.
     //
-    // If the attacker is faster than its opponent and the opponent's HP <= 50%, score -1.
+    // If the attacker is faster than its opponent and the attacker's HP <= 50%, score -1.
     //
-    // BUG: This should instead check for the user's HP.
+    // Sovereign (12b): Platinum checked the opponent's HP, but the move's power comes from the user's.
     IfMoveEffectivenessEquals TYPE_MULTI_IMMUNE, Expert_WaterSpout_ScoreMinus1
     IfMoveEffectivenessEquals TYPE_MULTI_QUARTER_DAMAGE, Expert_WaterSpout_ScoreMinus1
     IfMoveEffectivenessEquals TYPE_MULTI_HALF_DAMAGE, Expert_WaterSpout_ScoreMinus1
     IfSpeedCompareEqualTo COMPARE_SPEED_SLOWER, Expert_WaterSpout_SlowerCheckHP
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 50, Expert_WaterSpout_End
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 50, Expert_WaterSpout_End
     GoTo Expert_WaterSpout_ScoreMinus1
 
 Expert_WaterSpout_SlowerCheckHP:
-    IfHPPercentGreaterThan AI_BATTLER_DEFENDER, 70, Expert_WaterSpout_End
+    IfHPPercentGreaterThan AI_BATTLER_ATTACKER, 70, Expert_WaterSpout_End
 
 Expert_WaterSpout_ScoreMinus1:
     AddToMoveScore -1
@@ -7670,9 +7668,16 @@ TagStrategy_PartnerPoisonStatus:
     //
     // Otherwise, score -30
     //
-    // BUG: This routine should also consider if the partner has a Poison or Steel typing.
+    // Sovereign (12b): a Poison or Steel partner can't be poisoned, so score -30 (Platinum didn't check).
     CheckBattlerAbility AI_BATTLER_ATTACKER_PARTNER, ABILITY_POISON_HEAL
     IfLoadedNotEqualTo AI_HAVE, TagStrategy_PartnerScoreMinus30
+
+    LoadTypeFrom LOAD_DEFENDER_TYPE_1
+    IfLoadedEqualTo TYPE_POISON, TagStrategy_PartnerScoreMinus30
+    IfLoadedEqualTo TYPE_STEEL, TagStrategy_PartnerScoreMinus30
+    LoadTypeFrom LOAD_DEFENDER_TYPE_2
+    IfLoadedEqualTo TYPE_POISON, TagStrategy_PartnerScoreMinus30
+    IfLoadedEqualTo TYPE_STEEL, TagStrategy_PartnerScoreMinus30
 
     IfStatus AI_BATTLER_DEFENDER, MON_CONDITION_ANY, TagStrategy_PartnerScoreMinus30
 

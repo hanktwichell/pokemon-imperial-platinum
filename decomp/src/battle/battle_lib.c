@@ -11834,7 +11834,7 @@ static BOOL MoveIsOnDamagingTurn(BattleContext *battleCtx, int move)
     case BATTLE_EFFECT_DIVE:
     case BATTLE_EFFECT_DIG:
     case BATTLE_EFFECT_BOUNCE:
-    case BATTLE_EFFECT_FLINCH_BURN_HIT: // BUG: Fire Fang Always Bypasses Wonder Guard (see docs/bugs_and_glitches.md)
+    case BATTLE_EFFECT_SHADOW_FORCE: // Sovereign: BATTLE_EFFECT_FLINCH_BURN_HIT in Platinum, so Fire Fang always bypassed Wonder Guard (docs/bugs_and_glitches.md)
         return battleCtx->battleStatusMask & SYSCTL_LAST_OF_MULTI_TURN;
         break;
     }
@@ -12225,7 +12225,7 @@ int BattleAI_PostKOSwitchIn(BattleSystem *battleSys, int battler)
     u16 move;
     int moveType;
     u8 battlersDisregarded;
-    u8 score, maxScore; // BUG: Post-KO Switch-In AI Scoring Overflow (see docs/bugs_and_glitches.md)
+    u32 score, maxScore; // Sovereign (12b): u8 in Platinum, which overflowed (Post-KO Switch-In AI Scoring Overflow, docs/bugs_and_glitches.md)
     u8 picked = 6;
     u8 slot1, slot2;
     u32 moveStatusFlags;

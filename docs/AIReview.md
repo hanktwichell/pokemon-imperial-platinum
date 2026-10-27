@@ -45,6 +45,7 @@ opponent for checking these in game.
 | 11 | Gen V+ moves the script doesn't know | `Basic_Main` scores moves by their Gen IV effect. The 80 Gen V+ status effects (item 11) got no checks, so the AI could heal or boost the player's Pokémon (Heal Pulse, Decorate, Purify, Instruct, After You) or pick a move that fails (Life Dew at full HP, Stuff Cheeks without a Berry, Coaching in a single battle, a terrain that's already up, Poltergeist on a target without an item...) | wasted turns, or turns that help the player | **done:** `LoadSovereignMoveRating` (`trainer_ai.c`) rates them; a move that would fail now, does nothing in a trainer battle, only helps the foe it's aimed at or only works on the partner scores −10 | ✅ |
 | 12 | Expert scoring for Gen V+ moves | `Expert_Main` scores moves by their Gen IV effect too, so Gen V+ setup moves, hazards and the like got none of its scoring (Platinum scores Bulk Up as a Defense rise, Calm Mind as a Sp. Def rise, Dragon Dance with its own handler) | Quiver Dance, Shell Smash or Sticky Web were never favoured, Strength Sap at full HP never discouraged | **done:** each Gen V+ move goes to the Gen IV handler for the same job (table in the *#12* section) | ✅ |
 | 13 | Switching to a Pokémon that absorbs the foe's move | `TrainerAI_ShouldSwitch` (via `AI_HasAbsorbAbilityInParty`) switches out, half the time, to a party Pokémon whose ability absorbs the type of the move that just hit it. It looked for Flash Fire, Water Absorb and Volt Absorb only | it never switched to Motor Drive, Dry Skin (Platinum's own), Storm Drain, Lightning Rod, Sap Sipper, Well-Baked Body or Earth Eater | **done:** the check uses the same ability list as the partner checks (`AI_AbilityAbsorbsMoveType`) | ✅ |
+| 14 | Platinum's own AI bugs | pret's decompilation marks eight mistakes in the AI: seven in the script and one in the choice of a replacement after a knockout (`docs/bugs_and_glitches.md` in `decomp/`). Examples: Facade was scored by the foe's status, Water Spout and Eruption by the foe's HP, and the replacement's score overflowed past 255 | the AI scored these moves on the wrong Pokémon, and Lv. 100 bosses picked the wrong replacement | **done:** all eight fixed (section *#14*) | ✅ |
 
 ## Order of work
 
@@ -54,6 +55,7 @@ opponent for checking these in game.
 4. ✅ #10 (the second Pokémon's AI flags and items) and #11 (the Gen V+ moves).
 5. ✅ #12 (Expert scoring for the Gen V+ moves).
 6. ✅ #13 (switching to any absorbing ability).
+7. ✅ #14 (Platinum's own AI bugs).
 
 Each fix gets a scenario in the test build. The developer team has Heat Wave and Rock Slide as spread moves, Water
 Spout and Origin Pulse with Kyogre, and Venusaur/Charizard sharing the field.
@@ -186,3 +188,23 @@ Verified in the test build (a single battle):
 - Against a Lv. 100 Snorlax using Mud-Slap, the trainer withdrew Tyranitar on turn 2 and sent out Venusaur: "The
   foe's VENUSAUR's Earth Eater made Mud-Slap useless!"
 - Platinum's list has no Earth Eater, so before this change it never switched there.
+
+## #14: Platinum's own AI bugs (done 2026-10-26)
+
+pret marks these in the decompilation with `BUG` comments. Each one now carries a `Sovereign (12b)` comment that says
+what Platinum did.
+
+| Where | Platinum | Now |
+|---|---|---|
+| `Basic_CheckMetalBurst` (`script.s`) | Metal Burst fails if the user moves first. To check that the target always moves last, the script looked for a Shiny Stone instead of the Lagging Tail | it checks the hold effect, so the Lagging Tail and the Full Incense count, on the target and on the user |
+| `Expert_Foresight` | +2 (47% of the time) when the *user* is a Ghost type | when the *target* is a Ghost type |
+| `Expert_SunnyDay` | +1 for a Leaf Guard user that already has a status condition | +1 for a Leaf Guard user without one (Leaf Guard only prevents new ones) |
+| `Expert_Facade` | +1 when the *foe* is burned, poisoned or paralysed | when the *user* is |
+| `Expert_Trick_DisruptiveItems` | the list of items worth giving away left out the Macho Brace and listed the Power Belt twice | the Macho Brace replaces the second Power Belt |
+| `Expert_WaterSpout` (Water Spout, Eruption) | −1 at low HP, but it checked the *foe's* HP | the *user's* HP, which sets the move's power |
+| `TagStrategy_PartnerPoisonStatus` | poisoning a Poison Heal partner was scored without checking whether the partner can be poisoned | a Poison or Steel partner scores −30, like any other partner that can't use it |
+| `BattleAI_PostKOSwitchIn` (`battle_lib.c`) | the replacement's score was a `u8`: a 4× type matchup scored 65 instead of 320, and damage above 255 wrapped | `u32` |
+
+Verified: the test and release builds assemble the script. A full trainer battle against the test trainer (Expert AI,
+with a switch, a knockout and a replacement) ran to the end in the test build. These are score changes of ±1 to ±2,
+so they weren't each set up in a battle.
