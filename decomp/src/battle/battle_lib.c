@@ -58,6 +58,7 @@ static int ApplyTypeMultiplier(BattleContext *battleCtx, int attacker, int mul, 
 static BOOL NoImmunityOverrides(BattleContext *battleCtx, int itemEffect, int chartEntry);
 static void UpateMoveStatusForTypeMul(int mul, u32 *moveStatusMask);
 static BOOL MoveIsOnDamagingTurn(BattleContext *battleCtx, int move);
+static BOOL AbilityAbsorbsMove(int attackerAbility, int defenderAbility, int moveType);
 static u8 Battler_MonType(BattleContext *battleCtx, int battler, enum BattleMonParam paramID);
 static void BattleAI_ClearKnownMoves(BattleContext *battleCtx, u8 battler);
 static void BattleAI_ClearKnownAbility(BattleContext *battleCtx, u8 battler);
@@ -3026,6 +3027,9 @@ static void CalcEffectiveness(BattleContext *battleCtx, int move, int inType, in
         && (battleCtx->fieldConditionsMask & FIELD_CONDITION_GRAVITY) == FALSE
         && defenderItemEffect != HOLD_EFFECT_SPEED_DOWN_GROUNDED) {
         *moveStatusMask |= MOVE_STATUS_INEFFECTIVE;
+    } else if (AbilityAbsorbsMove(attackerAbility, defenderAbility, moveType)) {
+        // Sovereign (12b): the trainer AI's switch checks treat a move the target's ability absorbs as having no effect.
+        *moveStatusMask |= MOVE_STATUS_INEFFECTIVE;
     } else {
         chartEntry = 0;
 
@@ -3094,6 +3098,33 @@ void Sovereign_CalcEffectivenessAgainst(BattleContext *battleCtx, int move, int 
         BattleMon_Get(battleCtx, defender, BATTLEMON_TYPE_2, NULL),
         battleCtx->battleMons[defender].sovereignAddedType,
         moveStatusMask);
+}
+
+// Sovereign (12b): whether an ability absorbs moves of this type (it heals, gets a boost or draws them in, and takes
+// no damage). The trainer AI's checks use it.
+BOOL Sovereign_AbilityAbsorbsMoveType(int ability, int moveType)
+{
+    switch (moveType) {
+    case TYPE_ELECTRIC:
+        return ability == ABILITY_VOLT_ABSORB || ability == ABILITY_MOTOR_DRIVE || ability == ABILITY_LIGHTNING_ROD;
+    case TYPE_WATER:
+        return ability == ABILITY_WATER_ABSORB || ability == ABILITY_DRY_SKIN || ability == ABILITY_STORM_DRAIN;
+    case TYPE_FIRE:
+        return ability == ABILITY_FLASH_FIRE || ability == ABILITY_WELL_BAKED_BODY;
+    case TYPE_GRASS:
+        return ability == ABILITY_SAP_SIPPER;
+    case TYPE_GROUND:
+        return ability == ABILITY_EARTH_EATER;
+    }
+
+    return FALSE;
+}
+
+// Sovereign (12b): the same, unless the attacker's Mold Breaker (or Turboblaze, Teravolt) ignores the ability.
+static BOOL AbilityAbsorbsMove(int attackerAbility, int defenderAbility, int moveType)
+{
+    return attackerAbility != ABILITY_MOLD_BREAKER && attackerAbility != ABILITY_TURBOBLAZE && attackerAbility != ABILITY_TERAVOLT
+        && Sovereign_AbilityAbsorbsMoveType(defenderAbility, moveType);
 }
 
 /**
@@ -12230,6 +12261,7 @@ int BattleAI_PostKOSwitchIn(BattleSystem *battleSys, int battler)
     u8 slot1, slot2;
     u32 moveStatusFlags;
     int partySize;
+    int monAbility;
     Pokemon *mon;
     BattleContext *battleCtx = BattleSystem_GetBattleContext(battleSys);
 
@@ -12365,6 +12397,12 @@ int BattleAI_PostKOSwitchIn(BattleSystem *battleSys, int battler)
                         &moveStatusFlags);
 
                     if (moveStatusFlags & MOVE_STATUS_IMMUNE) {
+                        score = 0;
+                    }
+
+                    // Sovereign (12b): so is a move the target's ability absorbs (Water Absorb, Lightning Rod...).
+                    monAbility = Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL);
+                    if (AbilityAbsorbsMove(monAbility, Battler_Ability(battleCtx, defender), Sovereign_AbilityMoveType(monAbility, move, moveType ? moveType : MOVE_DATA(move).type))) {
                         score = 0;
                     }
                 }

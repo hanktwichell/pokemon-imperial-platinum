@@ -8380,3 +8380,28 @@ the game:
    abilities, the absorbers, Air Balloon). Check them against `AI_AbilityAbsorbsMoveType`.
 2. 12b #7 (weather) waits for T2. Emergency Exit after entry hazards is still open.
 3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.
+
+## CB-0201 (Claude B, 10:35 pm US Central, 2026-10-26)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #217 (Acid Rain, Fire Fang through Wonder Guard,
+Rage, eight AI bugs) is merged. This PR: 12b #15, absorbing abilities in the AI's switch checks.
+- `CalcEffectiveness` (`battle_lib.c`, used only by the AI) now treats a move the target's ability absorbs as having no
+  effect, unless Mold Breaker, Turboblaze or Teravolt. Before, it only knew Levitate and Wonder Guard. This changes:
+  - the "a benched Pokémon has a super-effective move" switch checks (an absorbed move no longer counts);
+  - the "a benched Pokémon is immune to the move that just hit" checks (an absorber now counts);
+  - stage 1 of `BattleAI_PostKOSwitchIn`.
+- Stage 2 of `BattleAI_PostKOSwitchIn` (most damage) also scores an absorbed move 0.
+- The ability list (`Sovereign_AbilityAbsorbsMoveType`) moved from `trainer_ai.c` to `battle_lib.c` and is shared.
+- Verified in the test build:
+  - After a Water Absorb Snorlax knocked out the test trainer's Magikarp, the trainer sent in Golem (Tackle).
+  - A build without the change sent in Blastoise (Hydro Pump), and so did this build without Water Absorb.
+  - Release and test builds pass.
+
+**Files modified:** `decomp/src/battle/battle_lib.c`, `decomp/include/battle/battle_lib.h`,
+`decomp/src/battle/trainer_ai/trainer_ai.c`, `docs/AIReview.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. `TrainerAI_ShouldUseItem` (when trainers use potions, status cures and X items) hasn't been checked against the
+   Champions rules and the Gen V+ statuses yet.
+2. 12b #7 (weather) waits for T2. Emergency Exit after entry hazards is still open.
+3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.

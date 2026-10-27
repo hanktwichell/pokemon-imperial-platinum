@@ -46,6 +46,7 @@ opponent for checking these in game.
 | 12 | Expert scoring for Gen V+ moves | `Expert_Main` scores moves by their Gen IV effect too, so Gen V+ setup moves, hazards and the like got none of its scoring (Platinum scores Bulk Up as a Defense rise, Calm Mind as a Sp. Def rise, Dragon Dance with its own handler) | Quiver Dance, Shell Smash or Sticky Web were never favoured, Strength Sap at full HP never discouraged | **done:** each Gen V+ move goes to the Gen IV handler for the same job (table in the *#12* section) | ✅ |
 | 13 | Switching to a Pokémon that absorbs the foe's move | `TrainerAI_ShouldSwitch` (via `AI_HasAbsorbAbilityInParty`) switches out, half the time, to a party Pokémon whose ability absorbs the type of the move that just hit it. It looked for Flash Fire, Water Absorb and Volt Absorb only | it never switched to Motor Drive, Dry Skin (Platinum's own), Storm Drain, Lightning Rod, Sap Sipper, Well-Baked Body or Earth Eater | **done:** the check uses the same ability list as the partner checks (`AI_AbilityAbsorbsMoveType`) | ✅ |
 | 14 | Platinum's own AI bugs | pret's decompilation marks eight mistakes in the AI: seven in the script and one in the choice of a replacement after a knockout (`docs/bugs_and_glitches.md` in `decomp/`). Examples: Facade was scored by the foe's status, Water Spout and Eruption by the foe's HP, and the replacement's score overflowed past 255 | the AI scored these moves on the wrong Pokémon, and Lv. 100 bosses picked the wrong replacement | **done:** all eight fixed (section *#14*) | ✅ |
+| 15 | Absorbing abilities in the switch checks | the checks behind switching (does a benched Pokémon have a super-effective move? is it immune to the move that just hit?) and the choice of a replacement after a knockout use the AI's own type check, which knew Levitate and Wonder Guard but none of the absorbing abilities | after a knockout the AI sent in the Pokémon whose strongest move the foe absorbs (Hydro Pump into Water Absorb), and it counted a super-effective move into an absorber as a reason to switch to that Pokémon | **done:** the type check (`CalcEffectiveness`, used only by the AI) treats a move the target's ability absorbs as having no effect, and the post-KO damage estimate scores it 0 (section *#15*) | ✅ |
 
 ## Order of work
 
@@ -56,6 +57,7 @@ opponent for checking these in game.
 5. ✅ #12 (Expert scoring for the Gen V+ moves).
 6. ✅ #13 (switching to any absorbing ability).
 7. ✅ #14 (Platinum's own AI bugs).
+8. ✅ #15 (absorbing abilities in the switch checks).
 
 Each fix gets a scenario in the test build. The developer team has Heat Wave and Rock Slide as spread moves, Water
 Spout and Origin Pulse with Kyogre, and Venusaur/Charizard sharing the field.
@@ -208,3 +210,27 @@ what Platinum did.
 Verified: the test and release builds assemble the script. A full trainer battle against the test trainer (Expert AI,
 with a switch, a knockout and a replacement) ran to the end in the test build. These are score changes of ±1 to ±2,
 so they weren't each set up in a battle.
+
+## #15: absorbing abilities in the switch checks (done 2026-10-26)
+
+`CalcEffectiveness` (`battle_lib.c`) is Platinum's type check without damage; only the AI calls it. It now marks a
+move as having no effect when the target's ability absorbs its type: Volt Absorb, Motor Drive and Lightning Rod;
+Water Absorb, Dry Skin and Storm Drain; Flash Fire and Well-Baked Body; Sap Sipper; Earth Eater. Mold Breaker,
+Turboblaze and Teravolt ignore the ability, as they do for Levitate. The list is `Sovereign_AbilityAbsorbsMoveType`,
+now shared with the partner checks (#4) and the switch to an absorber (#13).
+
+What uses it:
+- `TrainerAI_ShouldSwitch`:
+  - "a benched Pokémon has a super-effective move": a move the foe absorbs no longer counts.
+  - "a benched Pokémon is immune to the move that just hit": an absorber now counts.
+- `BattleAI_PostKOSwitchIn`:
+  - Stage 1 (best type matchup with a super-effective move) skips a move the foe absorbs.
+  - Stage 2 (most damage) scores such a move 0. Its damage estimate (`BattleSystem_ApplyTypeChart`) didn't know the
+    absorbers either.
+
+Verified in the test build, against a build without the change:
+- Setup: the test trainer led with a Magikarp, with a Blastoise (Hydro Pump) and a Golem (Tackle) on the bench. A
+  Lv. 100 Snorlax given Water Absorb knocked out the Magikarp.
+- Without the change: "Ace Trainer Henry is about to send in BLASTOISE."
+- With the change: "...about to send in GOLEM."
+- Control: the same battle without Water Absorb still sends in Blastoise.
