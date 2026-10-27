@@ -1,8 +1,8 @@
 # Sovereign Platinum — Progress Report
 
-_Last updated: 2026-10-25 (milestone table)_
+_Last updated: 2026-10-27 (summary and milestone table)_
 
-**Where we are (2026-10-25):** the engine work on the pret/pokeplatinum decompilation is well along, and the ROM builds
+**Where we are (2026-10-27):** the engine work on the pret/pokeplatinum decompilation is well along, and the ROM builds
 in CI on every PR.
 - **Done:**
   - all 1025 species and the Gen IX data;
@@ -10,19 +10,22 @@ in CI on every PR.
   - every Pokémon form;
   - the approved QoL list (E14);
   - the Renegade port (E10), apart from two owner questions;
-  - the Sovereign story, Totem trials, post-game legendaries and Elite Four format (E11).
-- **In progress:**
-  - the exact Gen IX move and ability effects (item 11);
-  - the Pokémon Champions battle rules (10b).
+  - the Sovereign story, Totem trials, post-game legendaries and Elite Four format (E11);
+  - the Pokémon Champions battle rules (10b);
+  - the exact Gen IX move and ability effects (item 11), apart from the few listed in `EngineRoadmap.md` row 11;
+  - the trainer AI review (12b);
+  - the automated playtest (row 18): every trainer, species, form, gift, map, object and trigger checked in the test
+    build.
 - **Waiting on the owner:**
   - the boss team compositions (T1);
   - the art (E12);
-  - the developer battle (T2).
+  - the developer battle (T2);
+  - Burn Up and Double Shock, and the special evolutions (decision 20);
+  - the playthrough.
 
-**Estimate to a first playable version:** about 25–40 more working sessions, roughly 3–6 weeks at one or two sessions
-a day. The two biggest uncertainties are fitting 1025 species into the DS engine (E6) and how exactly the Gen IX move
-and ability effects behave (the long tail after E2–E5). The owner's sprites and the developer-battle team gate graphics
-and T2 only. See `EngineRoadmap.md` for the per-milestone breakdown.
+**To a first playable version:** the engine work that doesn't wait on the owner is done. What's left waits on the
+owner (the list above): the boss teams, the art, the developer battle's text and sprites, then the playthrough. See
+`EngineRoadmap.md` for the per-milestone breakdown.
 
 ## Engine milestones
 
@@ -34,9 +37,9 @@ and T2 only. See `EngineRoadmap.md` for the per-milestone breakdown.
 | E1 | Own save signature, ROM title/banner "Pokémon Sovereign Platinum" | ✅ done (PR #7) |
 | E14 | Approved QoL | ✅ 7 of 8 done (IV/EV viewer, Repel prompt, HM-free field moves, Gen VI+ breeding, Mints sold on Route 208, the Battle Tower Ability researcher with the Ability Capsule/Patch items, the Infinite Repel with its ON tag in the bag; all tested in-game). The 8th, the type-effectiveness indicator, is shelved by the owner |
 | — | Test build (`tools/test/build_test_rom.sh`): test party at new game, SELECT = wild battle, SELECT+R = trainer battle | ✅ working |
-| E3 | All 919 moves, ID = official number; 93 new moves exact, 76 approximate, 211 placeholder (`MoveChecklist.md`) | ✅ done (PR #9); tested in battle |
+| E3 | All 919 moves, ID = official number; 373 new moves exact, 0 approximate, 7 placeholder (`MoveChecklist.md`; Platinum's own moves follow Gen V–IX, `PlatinumMoveAudit.md`) | ✅ done (PR #9); tested in battle. The 7 placeholders: the Pledges and Ally Switch (Claude A), Burn Up and Double Shock (owner), Revival Blessing (left out) |
 | E5 | Gen IX stats, types and learnsets for #1–493 and forms; 32-bit learnset entries | ✅ done (PR #9); tested in battle |
-| E2/E4 | All 314 abilities, ID = official number (191 new, no battle effect yet: `AbilityChecklist.md`); Hidden Ability slot and flag | ✅ done; tested on the summary screen |
+| E2/E4 | All 314 abilities, ID = official number (191 new: `AbilityChecklist.md`); Hidden Ability slot and flag | ✅ done; tested on the summary screen. Every new ability works in battle except Embody Aspect and Teraform Zero (they need Terastallization) |
 | 10b | Battle mechanics → Pokémon Champions (IVs/EVs unchanged); rules in `BattleMechanics.md` | ✅ every rule built or marked not adopted: the core rules (status, dynamic speed, crits, weather, Snow, Fake Out, move values) and the ability, item and move changes (item 11; the last, Run Away and Sheer Force, CB-0207) |
 | E6 | Species expansion to 1025 | ✅ done: all 532 Gen V–IX species (`NewSpecies.md`) with placeholder sprites, Easy Chat words, English-only Pokédex; tested in battle and on the summary screen. No cries for the new species yet (last step). The 16 evolutions that needed E7 items are in |
 | E7 | Items (Mega Stones, new held/evolution items) | ✅ done: 245 items with icons, evolution items, Mints, Ability Capsule/Patch, the Infinite Repel (see `EngineRoadmap.md` row 9) |

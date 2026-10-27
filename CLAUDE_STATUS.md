@@ -9199,8 +9199,12 @@ update to `docs/EngineRoadmap.md` for two rows that were finished but still had 
   Aspect and Teraform Zero (no Terastallization).
 - **Row 12b (AI review):** ✅. Every item in `docs/AIReview.md` is done. The developer battle's custom weather AI is
   part of T2.
+- **`docs/ProjectStatus.md`:** the summary and the milestone table, last updated 2026-10-25, now say what's done (the
+  Champions rules, the move and ability effects, the AI review, the automated playtest) and what waits on the owner.
+  The move and ability rows give today's counts (373 new moves exact, 7 placeholders, 0 approximate), and the old
+  session estimate is replaced by what's left.
 
-**Files modified:** `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`.
+**Files modified:** `docs/EngineRoadmap.md`, `docs/ProjectStatus.md`, `CLAUDE_STATUS.md`.
 
 **Next 3 steps:**
 1. Anything the owner asks for. T1 (boss teams), T2 (the developer battle and Henry at Spear Pillar), the art (E12),
