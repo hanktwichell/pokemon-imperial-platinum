@@ -3,6 +3,55 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Item 11: Platinum's moves under the later games' rules, batch B
+
+The next eight Gen IV leftovers in `docs/PlatinumMoveAudit.md`:
+
+For players:
+- **Taunt** (Gen V+) lasts 3 turns, counting the turn it lands if the target hasn't moved yet (4 if it has). It lasted
+  3 to 5 turns at random.
+- **Encore** (Gen V+) lasts 3 turns, the same way (4 if the target has moved). It lasted 4 to 8.
+- **Disable** (Gen V+) lasts 4 turns, the same way (5 if the target has moved: it can't use the move for the next 4).
+  It lasted 4 to 7.
+- **Tailwind** (Gen V+) lasts 4 turns, counting the turn it's used. It lasted 3.
+- **Wish** (Gen V+) heals half the max HP of the Pokémon that made the wish, not of the one in the slot when it comes
+  true.
+- **Teleport** (Gen VIII+) switches the user out to a Pokémon its trainer picks, in a trainer battle or when the
+  player's Pokémon uses it, and fails with nothing to switch to. A wild Pokémon still flees. Platinum's failed in
+  trainer battles and let the player run from wild ones. It also has a new description.
+- **Destiny Bond** (Gen VII+) fails when the user's last move was a Destiny Bond that's still active, so it works every
+  other turn when used over and over.
+- **Charge** (Gen IX) lasts until the user uses an Electric move, not just until the end of the next turn. The charge
+  from Electromorphosis and Wind Power lasts the same way.
+- The texts of Tailwind, Taunt and Encore give the new lengths.
+
+Code: `BtlCmd_TryDisable`, `BtlCmd_TryEncore`, `subscript_taunt_start.s` (lengths); `SIDE_CONDITION_SOVEREIGN_TAILWIND_EXTRA`
+in `condition.h` (a 4th turn the 2-bit counter can't hold) and its countdown in
+`BattleControllerPlayer_CheckFieldConditions`; `BattleContext.sovereignWishHP` (`BtlCmd_TryWish`, the wish heal);
+`effect_script_0153.s` and the new `subscript_sovereign_teleport_switch.s`; `SELF_TURN_FLAG_SOVEREIGN_DESTINY_BOND_AGAIN`
+(`BattleControllerPlayer_CheckStatusDisruption`, `effect_script_0098.s`); Charge's end in
+`BattleControllerPlayer_UpdateMoveBuffers`; the texts in `gen9_move_fixes.py`.
+
+Verified (test build, emulator, wild battles; each case counts the turns from the messages):
+- **Taunt:** a faster Ninjask taunted Geodude on turn 1; it wore off at the end of turn 3. A slower Geodude taunted
+  Ninjask after it moved on turn 1; it wore off at the end of turn 4.
+- **Encore:** Ninjask encored Geodude's Tackle on turn 2, before Geodude moved; it ended at the end of turn 4.
+- **Disable:** Ninjask disabled Blissey's Tackle on turn 2, before Blissey moved: Blissey struggled on turns 3–5 (on
+  turn 2 its Tackle was "disabled!") and it ended at the end of turn 5. A slower Geodude disabled Ninjask's Tackle after
+  it moved on turn 1: Ninjask struggled on turns 2–5, and it ended at the end of turn 5.
+- **Wish:** Blissey (622 max HP) wished at 522 HP; before the wish came true its max HP was set to 999 in memory. The
+  wish healed 311 (422 → 733), half the max HP it had when it wished.
+- **Tailwind:** used every turn, it blew on turns 1, 5, 9 and 13, failed on the turns between, and petered out at the
+  end of turns 4, 8 and 12.
+- **Destiny Bond:** used every turn, it worked on turns 1, 3, 5... and failed ("But it failed!") on turns 2, 4, 6...
+- **Charge:** Pikachu used Charge, then Tackle twice, then Thunder Shock: 15 damage to a Snorlax, against 9 for every
+  later Thunder Shock and for the same Thunder Shock in a run without Charge.
+- **Teleport:** a wild Ninjask's Teleport, after Geodude's Tackle (priority −6), ended the battle. The player's Geodude
+  used Teleport: "GEODUDE went back to A!", then the party's next Pokémon came in. Teleport with nothing to switch to
+  goes through the same check as Shed Tail and wasn't tried (the test save has a full party).
+- **Builds:** the test and release builds pass, and every battle script fits its buffer. The move data pipeline
+  reproduces the move files.
+
 ## Item 11: Platinum's moves under the later games' rules, batch A
 
 `docs/PlatinumMoveAudit.md` lists the Platinum moves that still followed Gen IV, most visible first. This batch fixes
