@@ -76,6 +76,10 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
 
     Pokemon_SovereignRevertSwitchOutForm(mon); // Sovereign (FM): Pirouette Meloetta switches back in as Aria
 
+    // Sovereign (item 11): a Pokemon coming in commands no Dondozo and is commanded by no Tatsugiri yet.
+    battleCtx->sovereignCommanding &= ~FlagIndex(battler);
+    battleCtx->sovereignCommanded &= ~FlagIndex(battler);
+
     battleCtx->battleMons[battler].species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     battleCtx->battleMons[battler].attack = Pokemon_GetValue(mon, MON_DATA_ATK, NULL);
     battleCtx->battleMons[battler].defense = Pokemon_GetValue(mon, MON_DATA_DEF, NULL);
@@ -3740,6 +3744,17 @@ BOOL Battler_IsTrappedMsg(BattleSystem *battleSys, BattleContext *battleCtx, int
     u32 battleType = BattleSystem_GetBattleType(battleSys);
     itemEffect = Battler_HeldItemEffect(battleCtx, battler);
 
+    // Sovereign (item 11): Commander. The Tatsugiri in its ally Dondozo's mouth and that Dondozo can't leave at all
+    // (Shed Shell, Run Away or a Ghost type doesn't help).
+    if ((battleCtx->sovereignCommanding | battleCtx->sovereignCommanded) & FlagIndex(battler)) {
+        if (msgOut != NULL) {
+            msgOut->tags = TAG_NONE;
+            msgOut->id = BattleStrings_Text_CantEscape2; // "Can't escape!"
+        }
+
+        return TRUE;
+    }
+
     if (itemEffect == HOLD_EFFECT_FLEE
         || (battleType & BATTLE_TYPE_NO_EXPERIENCE)
         || Battler_Ability(battleCtx, battler) == ABILITY_RUN_AWAY
@@ -4654,6 +4669,7 @@ enum SwitchInCheckState {
     SWITCH_IN_CHECK_STATE_SOVEREIGN_NEUTRALIZING_GAS, // Sovereign (item 11)
     SWITCH_IN_CHECK_STATE_SOVEREIGN_SYMBIOSIS, // Sovereign (item 11)
     SWITCH_IN_CHECK_STATE_SOVEREIGN_ILLUSION, // Sovereign (item 11)
+    SWITCH_IN_CHECK_STATE_SOVEREIGN_COMMANDER, // Sovereign (item 11)
     SWITCH_IN_CHECK_STATE_SOVEREIGN_PRIMAL, // Sovereign (E8)
     SWITCH_IN_CHECK_STATE_SOVEREIGN_TOTEM_AURA, // Sovereign (decision 18)
     SWITCH_IN_CHECK_STATE_TRACE,
@@ -4684,6 +4700,54 @@ enum SwitchInCheckResult {
     SWITCH_IN_CHECK_RESULT_BREAK,
     SWITCH_IN_CHECK_RESULT_DONE,
 };
+
+// Sovereign (item 11): Commander. TRUE when a Tatsugiri with Commander, in a double battle, has a Dondozo for an ally
+// that no Tatsugiri commands yet, neither of them switching (not a Pokemon transformed into either).
+static BOOL Sovereign_CanCommand(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
+{
+    int dondozo = BattleSystem_GetPartner(battleSys, battler);
+
+    if ((BattleSystem_GetBattleType(battleSys) & BATTLE_TYPE_DOUBLES) == FALSE
+        || dondozo == battler
+        || battleCtx->battleMons[battler].curHP == 0
+        || battleCtx->battleMons[dondozo].curHP == 0
+        || ((battleCtx->battlersSwitchingMask | battleCtx->sovereignCommanded) & FlagIndex(dondozo))
+        || (battleCtx->battlersSwitchingMask & FlagIndex(battler))
+        || Battler_Ability(battleCtx, battler) != ABILITY_COMMANDER
+        || battleCtx->battleMons[battler].species != SPECIES_TATSUGIRI
+        || battleCtx->battleMons[dondozo].species != SPECIES_DONDOZO
+        || (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_TRANSFORM)
+        || (battleCtx->battleMons[dondozo].statusVolatile & VOLATILE_CONDITION_TRANSFORM)) {
+        return FALSE;
+    }
+
+    return TRUE;
+}
+
+// Sovereign (item 11): Commander. The Tatsugiri goes into its ally Dondozo's mouth: it can't act or be hit (it still takes
+// indirect damage), and neither can leave. The Dondozo's Attack, Defense, Sp. Atk, Sp. Def and Speed rise by 2, and
+// Order Up raises its Attack (Curly Form), Defense (Droopy) or Speed (Stretchy). The Tatsugiri's action this turn, if
+// still to come, is cancelled. subscript_sovereign_commander shows it (MSG_BATTLER_TEMP, SIDE_EFFECT_MON).
+static void Sovereign_StartCommander(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
+{
+    static const u8 sOrderUpStats[] = { BATTLE_STAT_ATTACK, BATTLE_STAT_DEFENSE, BATTLE_STAT_SPEED };
+    static const u8 sBoostedStats[] = { BATTLE_STAT_ATTACK, BATTLE_STAT_DEFENSE, BATTLE_STAT_SP_ATTACK, BATTLE_STAT_SP_DEFENSE, BATTLE_STAT_SPEED };
+    int dondozo = BattleSystem_GetPartner(battleSys, battler);
+
+    battleCtx->sovereignCommanding |= FlagIndex(battler);
+    battleCtx->sovereignCommanded |= FlagIndex(dondozo);
+    battleCtx->sovereignOrderUpStat[dondozo] = sOrderUpStats[battleCtx->battleMons[battler].formNum % 3];
+    battleCtx->battlerActions[battler][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_MOVE_END;
+
+    for (int i = 0; i < NELEMS(sBoostedStats); i++) {
+        s8 *boost = &battleCtx->battleMons[dondozo].statBoosts[sBoostedStats[i]];
+
+        *boost = (*boost + 2 > MAX_STAT_STAGE) ? MAX_STAT_STAGE : *boost + 2;
+    }
+
+    battleCtx->msgBattlerTemp = battler;
+    battleCtx->sideEffectMon = dondozo;
+}
 
 int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *battleCtx)
 {
@@ -4801,6 +4865,38 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                     battleCtx->sovereignIllusion[battler] = 0;
                     battleCtx->msgBattlerTemp = battler;
                     subscript = subscript_sovereign_illusion_end;
+                    result = SWITCH_IN_CHECK_RESULT_BREAK;
+                    break;
+                }
+            }
+
+            if (i == maxBattlers) {
+                battleCtx->switchInCheckState++;
+            }
+            break;
+
+        case SWITCH_IN_CHECK_STATE_SOVEREIGN_COMMANDER:
+            // Sovereign (item 11): Commander, in a double battle. A Tatsugiri whose ally is a Dondozo goes into its mouth
+            // (Sovereign_StartCommander). It comes back out when that Dondozo faints.
+            for (i = 0; i < maxBattlers; i++) {
+                battler = battleCtx->monSpeedOrder[i];
+
+                if (battleCtx->sovereignCommanding & FlagIndex(battler)) {
+                    int dondozo = BattleSystem_GetPartner(battleSys, battler);
+
+                    if (battleCtx->battleMons[battler].curHP == 0) {
+                        battleCtx->sovereignCommanding &= ~FlagIndex(battler);
+                    } else if (battleCtx->battleMons[dondozo].curHP == 0
+                        || (battleCtx->sovereignCommanded & FlagIndex(dondozo)) == FALSE) { // fainted, maybe replaced already
+                        battleCtx->sovereignCommanding &= ~FlagIndex(battler);
+                        battleCtx->msgBattlerTemp = battler;
+                        subscript = subscript_sovereign_commander_end;
+                        result = SWITCH_IN_CHECK_RESULT_BREAK;
+                        break;
+                    }
+                } else if (Sovereign_CanCommand(battleSys, battleCtx, battler)) {
+                    Sovereign_StartCommander(battleSys, battleCtx, battler);
+                    subscript = subscript_sovereign_commander;
                     result = SWITCH_IN_CHECK_RESULT_BREAK;
                     break;
                 }
@@ -8110,6 +8206,11 @@ static inline int CountAbilityTheirSide(BattleSystem *battleSys, BattleContext *
 BOOL Battler_IsTrapped(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
     int result = FALSE;
+
+    // Sovereign (item 11): Commander (Battler_IsTrappedMsg).
+    if ((battleCtx->sovereignCommanding | battleCtx->sovereignCommanded) & FlagIndex(battler)) {
+        return TRUE;
+    }
 
     if (Battler_HeldItemEffect(battleCtx, battler) == HOLD_EFFECT_SWITCH
         || MON_HAS_TYPE(battler, TYPE_GHOST)) { // Sovereign (item 11): since Gen VI, nothing traps a Ghost type

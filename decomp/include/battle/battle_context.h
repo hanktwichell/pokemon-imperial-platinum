@@ -411,6 +411,9 @@ struct BattleContext {
     u8 sovereignSymbiosisReceiver; // Sovereign (item 11): its ally that got it
     u8 sovereignSymbiosisPending; // Sovereign (item 11): that pass is still to be announced (BattleSystem_TriggerEffectOnSwitch)
     u8 sovereignIllusion[MAX_BATTLERS]; // Sovereign (item 11): 1 + the party slot an Illusion Pokémon is disguised as (0 for none)
+    u8 sovereignCommanding; // Sovereign (item 11): flags, the Tatsugiri inside their ally Dondozo's mouth (Commander)
+    u8 sovereignCommanded; // Sovereign (item 11): flags, the Dondozo a Tatsugiri commands
+    u8 sovereignOrderUpStat[MAX_BATTLERS]; // Sovereign (item 11): the stat Order Up raises for each commanded Dondozo
     u16 sovereignShieldMove[MAX_BATTLERS]; // Sovereign (item 11): the Protect-like move protecting each battler this turn
     int sovereignShieldContact; // Sovereign (item 11): the shield whose contact penalty is due (subscript_missed)
     int sovereignGuardBlock; // Sovereign (item 11): the side guard that blocked the move (Wide Guard, Mat Block, ...)

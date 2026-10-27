@@ -3,6 +3,40 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Item 11 (effect fidelity): Commander and Order Up
+
+For players:
+- **Commander** (Tatsugiri), in a double battle: when Tatsugiri's ally is a Dondozo, it goes into the Dondozo's mouth:
+  "{0} was swallowed by {1} and became {1}'s commander!". It disappears from the field, and the Dondozo's Attack,
+  Defense, Sp. Atk, Sp. Def and Speed rise by 2 ("{0}'s stats sharply rose!").
+  - While inside, the Tatsugiri isn't asked for a move, and every move aimed at it misses (even No Guard's and
+    Lock-On's). It still takes indirect damage.
+  - Neither of them can switch out, flee or be forced out: Shed Shell, Run Away and a Ghost type don't help. Roar,
+    Dragon Tail and Red Card fail, and U-turn, Baton Pass, Chilly Reception, Shed Tail and an Eject Button don't switch
+    them.
+  - When the Dondozo faints, the Tatsugiri comes back out and acts again. If the Tatsugiri faints first, the Dondozo
+    stays trapped and can't take another commander (as in Showdown).
+  - A transformed Pokémon doesn't count, and a Dondozo can have only one commander.
+- **Order Up** (Dondozo's move): with a Tatsugiri in its mouth, the user's Attack (Curly Form), Defense (Droopy) or
+  Speed (Stretchy) rises by 1 after the hit.
+- **Code:**
+  - `sovereignCommanding`/`sovereignCommanded` (flags) and `sovereignOrderUpStat` per battler.
+  - The switch-in check state `SWITCH_IN_CHECK_STATE_SOVEREIGN_COMMANDER` starts it (`Sovereign_CanCommand`,
+    `Sovereign_StartCommander`) and ends it (`subscript_sovereign_commander_end`).
+  - The hooks: command selection skips the Tatsugiri, `CheckMoveHitOverrides` makes moves miss it,
+    `Battler_IsTrapped`/`Battler_IsTrappedMsg`, `TryWhirlwind`, `TryReplaceFaintedMon`, and the after-hit state
+    `Sovereign_OrderUpBoosts`.
+
+**Verification:** test and release ROMs built; the battle-script size check, the message check and the docs check pass.
+Doubles against Belle & Pa (Tauros, Miltank), a Lv. 50 Tatsugiri (Curly) lead with a Lv. 50 Dondozo using Order Up:
+- **Battle start:** "TATSUGIRI was swallowed by DONDOZO and became / DONDOZO's commander!". Tatsugiri's sprite goes,
+  the stat-up animation plays on Dondozo, and "DONDOZO's stats sharply rose!" prints.
+- **Each turn** only "What will DONDOZO do?" is asked. "DONDOZO used Order Up!" is followed by "DONDOZO's Attack
+  rose!".
+- Moves aimed at Tatsugiri miss ("The attack of the foe's TAUROS missed!"). Tatsugiri stays hidden over the turns.
+- **Dondozo at 1 HP:** "DONDOZO fainted!", and Tatsugiri reappears at once. Miltank's Headbutt then hits it, Archaludon
+  comes in, and next turn "TATSUGIRI used Water Gun!".
+
 ## Item 11 (effect fidelity): Illusion
 
 For players:

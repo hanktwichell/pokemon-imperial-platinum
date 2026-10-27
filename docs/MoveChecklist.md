@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 371 |
+| exact | 372 |
 | approximate | 0 |
-| placeholder | 9 |
+| placeholder | 8 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -403,7 +403,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 853 | Axe Kick | Fighting | `SOVEREIGN_AXE_KICK` | exact | Sovereign effect: 30% confusion; the user loses half its max HP if it misses |
 | 854 | Last Respects | Ghost | `HIT` | exact | Sovereign effect: 50 more power for each fainted Pokémon in the user's party |
 | 855 | Lumina Crash | Psychic | `LOWER_SP_DEF_2_HIT` | exact | Sovereign effect: target Sp. Def -2 (100%) |
-| 856 | Order Up | Dragon | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 856 | Order Up | Dragon | `HIT` | exact | Sovereign effect: with a Tatsugiri in the user's mouth (Commander), the user's Attack (Curly Form), Defense (Droopy) or Speed (Stretchy) +1 after the hit |
 | 857 | Jet Punch | Water | `PRIORITY_1` | exact | Sovereign effect: +1 priority punch |
 | 858 | Spicy Extract | Grass | `SOVEREIGN_SPICY_EXTRACT` | exact | Sovereign effect: target Attack +2, target Defense -2 |
 | 859 | Spin Out | Steel | `SOVEREIGN_LOWER_OWN_SPEED_2_HIT` | exact | Sovereign effect: user Speed -2 |

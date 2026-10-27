@@ -343,6 +343,9 @@ MOVES = {
     "pollen_puff": ("SOVEREIGN_POLLEN_PUFF", 0, "damages a foe; restores half an ally's max HP instead"),
     "parabolic_charge": ("RECOVER_HALF_DAMAGE_DEALT", 0, "hits all adjacent Pokémon (its ally too); drains half the"
                          " damage dealt"),
+    # Commander.
+    "order_up": (None, 0, "with a Tatsugiri in the user's mouth (Commander), the user's Attack (Curly Form), Defense"
+                 " (Droopy) or Speed (Stretchy) +1 after the hit"),
 }
 
 # Gen IX values the move data got wrong (not the Champions changes in tools/engine/apply_champions_moves.py).

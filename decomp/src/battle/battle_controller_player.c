@@ -356,7 +356,8 @@ static void BattleControllerPlayer_CommandSelectionInput(BattleSystem *battleSys
                 break;
             }
 
-            if (battleCtx->battlersSwitchingMask & FlagIndex(i)) {
+            // Sovereign (item 11): a Tatsugiri in its ally Dondozo's mouth (Commander) can't act.
+            if ((battleCtx->battlersSwitchingMask | battleCtx->sovereignCommanding) & FlagIndex(i)) {
                 battleCtx->curCommandState[i] = COMMAND_SELECTION_WAIT;
                 battleCtx->battlerActions[i][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_MOVE_END;
                 break;
@@ -3529,6 +3530,13 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
         return 0;
     }
 
+    // Sovereign (item 11): a Tatsugiri in its ally Dondozo's mouth (Commander) avoids every move aimed at it, No Guard's
+    // and Lock-On's too (Showdown checks it before any other effect).
+    if (attacker != defender && (battleCtx->sovereignCommanding & FlagIndex(defender))) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_SEMI_INVULNERABLE;
+        return 0;
+    }
+
     // Sovereign (item 11): Unseen Fist's and Piercing Drill's contact moves go through protection, at 1/4 damage
     // (Champions).
     BOOL unseenFist = (Battler_Ability(battleCtx, attacker) == ABILITY_UNSEEN_FIST || Battler_Ability(battleCtx, attacker) == ABILITY_PIERCING_DRILL)
@@ -4454,6 +4462,27 @@ static BOOL Sovereign_RockyHelmetHurts(BattleContext *battleCtx)
     return TRUE;
 }
 
+// Sovereign (item 11): Order Up. When a Dondozo that a Tatsugiri commands (Commander) hits with it, its Attack, Defense
+// or Speed rises by 1, by the Tatsugiri's form, after the move's damage.
+static BOOL Sovereign_OrderUpBoosts(BattleContext *battleCtx)
+{
+    int attacker = battleCtx->attacker;
+    int stat = battleCtx->sovereignOrderUpStat[attacker];
+
+    if (battleCtx->moveCur != MOVE_ORDER_UP
+        || (battleCtx->sovereignCommanded & FlagIndex(attacker)) == FALSE
+        || ATTACKING_MON.curHP == 0
+        || (battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS)
+        || ATTACKING_MON.statBoosts[stat] >= 12) { // MAX_STAT_STAGE
+        return FALSE;
+    }
+
+    battleCtx->sideEffectParam = MOVE_SUBSCRIPT_PTR_ATTACK_UP_1_STAGE + (stat - BATTLE_STAT_ATTACK);
+    battleCtx->sideEffectType = SIDE_EFFECT_TYPE_INDIRECT;
+    battleCtx->sideEffectMon = attacker;
+    return TRUE;
+}
+
 // Sovereign (item 11): a damaging move that hit an Illusion Pokémon (not its substitute) ends the illusion, after the
 // move's added effects, as in Showdown (subscript_sovereign_illusion_end).
 static BOOL Sovereign_IllusionBroken(BattleContext *battleCtx)
@@ -4480,6 +4509,7 @@ enum AfterMoveMessageState {
     ONE_HIT_CRITICAL = 0,
     ONE_HIT_STATUS,
     ONE_HIT_TRIGGER_SECONDARY,
+    ONE_HIT_SOVEREIGN_ORDER_UP, // Sovereign (item 11)
     ONE_HIT_FORM_CHANGE,
     ONE_HIT_RAGE,
     ONE_HIT_SOVEREIGN_ILLUSION, // Sovereign (item 11)
@@ -4490,6 +4520,7 @@ enum AfterMoveMessageState {
 
     MULTI_HIT_CRITICAL = 0,
     MULTI_HIT_TRIGGER_SECONDARY,
+    MULTI_HIT_SOVEREIGN_ORDER_UP, // Sovereign (item 11)
     MULTI_HIT_FORM_CHANGE,
     MULTI_HIT_RAGE,
     MULTI_HIT_SOVEREIGN_ILLUSION, // Sovereign (item 11)
@@ -4524,6 +4555,16 @@ static void BattleControllerPlayer_AfterMoveMessage(BattleSystem *battleSys, Bat
             if (BattleSystem_TriggerSecondaryEffect(battleSys, battleCtx, &secondaryEffSeq) == TRUE
                 && (battleCtx->moveStatusFlags & MOVE_STATUS_DID_NOT_HIT) == FALSE) {
                 LOAD_SUBSEQ(secondaryEffSeq);
+                battleCtx->commandNext = battleCtx->command;
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+                return;
+            }
+
+        case ONE_HIT_SOVEREIGN_ORDER_UP:
+            battleCtx->afterMoveMessageState++;
+            if (Sovereign_OrderUpBoosts(battleCtx)) {
+                LOAD_SUBSEQ(subscript_update_stat_stage);
                 battleCtx->commandNext = battleCtx->command;
                 battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
 
@@ -4616,6 +4657,16 @@ static void BattleControllerPlayer_AfterMoveMessage(BattleSystem *battleSys, Bat
             if (BattleSystem_TriggerSecondaryEffect(battleSys, battleCtx, &secondaryEffSeq) == TRUE
                 && (battleCtx->moveStatusFlags & MOVE_STATUS_DID_NOT_HIT) == FALSE) {
                 LOAD_SUBSEQ(secondaryEffSeq);
+                battleCtx->commandNext = battleCtx->command;
+                battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
+
+                return;
+            }
+
+        case MULTI_HIT_SOVEREIGN_ORDER_UP:
+            battleCtx->afterMoveMessageState++;
+            if (Sovereign_OrderUpBoosts(battleCtx)) {
+                LOAD_SUBSEQ(subscript_update_stat_stage);
                 battleCtx->commandNext = battleCtx->command;
                 battleCtx->command = BATTLE_CONTROL_EXEC_SCRIPT;
 

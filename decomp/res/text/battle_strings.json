@@ -10927,6 +10927,83 @@
         "The foe’s {STRVAR_1 1, 0, 0}’s\n",
         "illusion wore off!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCommander_AllyAlly",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} was swallowed\n",
+        "by {STRVAR_1 1, 1, 0} and became\r",
+        "{STRVAR_1 1, 1, 0}’s commander!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCommander_AllyWild",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} was swallowed\n",
+        "by the wild {STRVAR_1 1, 1, 0} and became\r",
+        "the wild {STRVAR_1 1, 1, 0}’s commander!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCommander_AllyFoe",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} was swallowed\n",
+        "by the foe’s {STRVAR_1 1, 1, 0} and became\r",
+        "the foe’s {STRVAR_1 1, 1, 0}’s commander!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCommander_WildAlly",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} was swallowed\n",
+        "by {STRVAR_1 1, 1, 0} and became\r",
+        "{STRVAR_1 1, 1, 0}’s commander!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCommander_WildWild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} was swallowed\n",
+        "by the wild {STRVAR_1 1, 1, 0} and became\r",
+        "the wild {STRVAR_1 1, 1, 0}’s commander!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCommander_FoeAlly",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} was swallowed\n",
+        "by {STRVAR_1 1, 1, 0} and became\r",
+        "{STRVAR_1 1, 1, 0}’s commander!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignCommander_FoeFoe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} was swallowed\n",
+        "by the foe’s {STRVAR_1 1, 1, 0} and became\r",
+        "the foe’s {STRVAR_1 1, 1, 0}’s commander!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignStatsSharplyRose_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0}’s stats\n",
+        "sharply rose!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignStatsSharplyRose_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}’s\n",
+        "stats sharply rose!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignStatsSharplyRose_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}’s\n",
+        "stats sharply rose!"
+      ]
     }
   ]
 }

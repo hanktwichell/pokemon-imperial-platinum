@@ -8109,3 +8109,22 @@ PR #201 (Mega Sol, Growth, Ripen) is merged.
 1. Commander (Tatsugiri in Dondozo) and Order Up. Embody Aspect and Teraform Zero need Terastallization.
 2. Sky Drop (placeholder), and Wimp Out/Emergency Exit after indirect damage.
 3. Burn Up and Double Shock still wait on the owner (CB-0158).
+
+## CB-0191 — 2026-10-26, 7:03 pm US Central (session on `claude/sweet-wright-rk4wl1`)
+
+**Implemented: Commander and Order Up.** PR #207 (Illusion) is merged.
+- In a double battle, a Tatsugiri with Commander goes into its ally Dondozo's mouth: hidden, not asked for a move,
+  missed by every move aimed at it. Neither can leave. Dondozo gets +2 Attack, Defense, Sp. Atk, Sp. Def and Speed.
+- Order Up adds Attack, Defense or Speed by Tatsugiri's form. Tatsugiri comes back out when Dondozo faints.
+- Verified in the doubles harness (see the changelog). The ability checklist's last non-Tera ability is done.
+
+**Files modified:**
+- `decomp/src/battle/battle_lib.c` (switch-in state, `Sovereign_CanCommand`/`Sovereign_StartCommander`, trap checks, InitBattleMon).
+- `decomp/src/battle/battle_controller_player.c` (command skip, miss, Order Up), `decomp/src/battle/battle_script.c` (TryWhirlwind, TryReplaceFaintedMon).
+- `decomp/include/battle/battle_context.h`, the two subscripts, `meson.build`, `sub_seq.order`, `decomp/generated/battle_subscripts.txt`, `decomp/res/text/battle_strings.json`.
+- `tools/engine/gen_abilities.py`, `tools/engine/gen9_move_fixes.py`, `docs/AbilityChecklist.md`, `docs/MoveChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Sky Drop (placeholder in the move checklist).
+2. Wimp Out/Emergency Exit after indirect damage (weather, poison, recoil).
+3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.

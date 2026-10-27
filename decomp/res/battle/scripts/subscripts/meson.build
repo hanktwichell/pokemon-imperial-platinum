@@ -481,4 +481,6 @@ subscript_files = files(
     'subscript_sovereign_instruct.s',
     'subscript_sovereign_symbiosis.s',
     'subscript_sovereign_illusion_end.s',
+    'subscript_sovereign_commander.s',
+    'subscript_sovereign_commander_end.s',
 )
