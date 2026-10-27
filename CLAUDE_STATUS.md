@@ -8518,3 +8518,29 @@ entry hazards) is merged. This PR makes **Healing Wish and Lunar Dance work as i
    and no source found says what they are.
 3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.
 
+## CB-0206 (Claude B, 12:22 am US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #222 (Healing Wish and Lunar Dance as in Gen IX)
+is merged. This PR does the `docs/BattleMechanics.md` row on **Champions' move flags**, and some Gen IX sound-move rules:
+- **Flags:**
+  - Slicing (Sharpness): Crush Claw, Dire Claw, Dragon Claw, Metal Claw, Shadow Claw.
+  - Punching: Double Shock.
+  - Sound: Howl and Dragon Cheer, plus Gen IX's Heal Bell and Perish Song.
+- **Soundproof bug:** Soundproof no longer blocks its holder's own moves. A Soundproof Kommo-o's Clangorous Soul
+  failed, since a self move's defender is the user.
+- **Heal Bell (Gen VIII+):** it always cures its user. It still doesn't cure a partner or party Pokémon with Soundproof,
+  and now not one with Good as Gold either. That's `RefreshPartyStatusMessage.userSlot`.
+- **Verified in the test build:** the Soundproof Kommo-o's Clangorous Soul worked. The Soundproof Exploud's Heal Bell
+  cured its Toxic (the next Toxic poisoned it again). Test and release builds pass.
+
+**Files modified:** `decomp/src/battle/battle_lib.c`, `decomp/src/battle/battle_script.c`,
+`decomp/src/battle/battle_io_command.c`, `decomp/src/battle/battle_controller.c`,
+`decomp/include/battle/message_defs.h`, `tools/engine/gen_abilities.py`, `docs/AbilityChecklist.md`,
+`docs/BattleMechanics.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Run Away (Champions): `docs/BattleMechanics.md` says it doesn't yet let its holder switch out of trapping. Check the
+   Champions mod and do it.
+2. 12b #7 (weather) waits for T2. Champions' Sheer Force tweaks: no source found says what they are.
+3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.
+

@@ -5337,18 +5337,17 @@ static BOOL BtlCmd_TryPartyStatusRefresh(BattleSystem *battleSys, BattleContext 
     if (battleCtx->moveCur == MOVE_HEAL_BELL) {
         battleCtx->msgMoveTemp = battleCtx->moveCur;
 
-        if (Battler_Ability(battleCtx, battleCtx->attacker) != ABILITY_SOUNDPROOF) {
-            ATTACKING_MON.status = MON_CONDITION_NONE;
-            ATTACKING_MON.statusVolatile &= ~VOLATILE_CONDITION_NIGHTMARE;
-        } else {
-            battleCtx->calcTemp |= (SOUNDPROOF_SLOT_1 | NO_PARTNER_SLOT_1);
-        }
+        // Sovereign (item 11): Heal Bell as in Gen IX. It cures its user even with Soundproof (Platinum didn't), but not
+        // a partner with Soundproof or Good as Gold.
+        ATTACKING_MON.status = MON_CONDITION_NONE;
+        ATTACKING_MON.statusVolatile &= ~VOLATILE_CONDITION_NIGHTMARE;
 
         if (battleType & BATTLE_TYPE_DOUBLES) {
             int partner = BattleScript_Battler(battleSys, battleCtx, BTLSCR_ATTACKER_PARTNER);
 
             if ((battleCtx->battlersSwitchingMask & FlagIndex(partner)) == FALSE) {
-                if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, partner, ABILITY_SOUNDPROOF) == FALSE) {
+                if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, partner, ABILITY_SOUNDPROOF) == FALSE
+                    && Battler_IgnorableAbility(battleCtx, battleCtx->attacker, partner, ABILITY_GOOD_AS_GOLD) == FALSE) {
                     battleCtx->battleMons[partner].status = MON_CONDITION_NONE;
                     battleCtx->battleMons[partner].statusVolatile &= ~VOLATILE_CONDITION_NIGHTMARE;
                 } else {

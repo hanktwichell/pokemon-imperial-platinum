@@ -4121,6 +4121,10 @@ static u16 sSoundMoves[] = {
     MOVE_TORCH_SONG,
     MOVE_ALLURING_VOICE,
     MOVE_PSYCHIC_NOISE,
+    MOVE_HEAL_BELL, // Gen IX counts these three too (Throat Chop, Throat Spray, Liquid Voice)
+    MOVE_HOWL,
+    MOVE_PERISH_SONG,
+    MOVE_DRAGON_CHEER, // Pokémon Champions
 };
 
 // Sovereign (item 11): sound moves (Soundproof, Punk Rock).
@@ -4233,7 +4237,8 @@ int BattleSystem_TriggerImmunityAbility(BattleContext *battleCtx, int attacker, 
         subscript = subscript_absorb_and_boost_fire_type_moves;
     }
 
-    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_SOUNDPROOF) == TRUE) {
+    // Sovereign (item 11): not the user's own moves (Clangorous Soul, Howl, Heal Bell, Perish Song), as in Gen V+
+    if (Battler_IgnorableAbility(battleCtx, attacker, defender, ABILITY_SOUNDPROOF) == TRUE && attacker != defender) {
         for (int i = 0; i < NELEMS(sSoundMoves); i++) {
             if (sSoundMoves[i] == battleCtx->moveCur) {
                 subscript = subscript_blocked_by_soundproof;
@@ -9616,6 +9621,7 @@ static const u16 sPunchingMoves[] = {
     MOVE_RAGE_FIST,
     MOVE_HEADLONG_RUSH,
     MOVE_PLASMA_FISTS,
+    MOVE_DOUBLE_SHOCK, // Pokémon Champions
 };
 
 // Sovereign (item 11): whether a move counts as making contact for the target's contact abilities and items. Long
@@ -10375,7 +10381,8 @@ static const u16 sPulseMoves[] = {
     MOVE_TERRAIN_PULSE,
 };
 
-// Sovereign (item 11): slicing moves, boosted by Sharpness.
+// Sovereign (item 11): slicing moves, boosted by Sharpness. Pokémon Champions adds the claws (Crush Claw, Dire Claw,
+// Dragon Claw, Metal Claw, Shadow Claw).
 static const u16 sSlicingMoves[] = {
     MOVE_AERIAL_ACE,
     MOVE_AIR_CUTTER,
@@ -10385,10 +10392,14 @@ static const u16 sSlicingMoves[] = {
     MOVE_BITTER_BLADE,
     MOVE_CEASELESS_EDGE,
     MOVE_CROSS_POISON,
+    MOVE_CRUSH_CLAW,
     MOVE_CUT,
+    MOVE_DIRE_CLAW,
+    MOVE_DRAGON_CLAW,
     MOVE_FURY_CUTTER,
     MOVE_KOWTOW_CLEAVE,
     MOVE_LEAF_BLADE,
+    MOVE_METAL_CLAW,
     MOVE_MIGHTY_CLEAVE,
     MOVE_NIGHT_SLASH,
     MOVE_POPULATION_BOMB,
@@ -10398,6 +10409,7 @@ static const u16 sSlicingMoves[] = {
     MOVE_RAZOR_SHELL,
     MOVE_SACRED_SWORD,
     MOVE_SECRET_SWORD,
+    MOVE_SHADOW_CLAW,
     MOVE_SLASH,
     MOVE_SOLAR_BLADE,
     MOVE_STONE_AXE,
