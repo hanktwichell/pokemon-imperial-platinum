@@ -90,21 +90,21 @@ this engine models) · **GEN_IV** (still Gen IV, needs a change) · **PARTIAL** 
 
 ### GEN_IV / PARTIAL moves, most to least visible to a player
 
-1. **String Shot (#81).** Early-game Bugs and trainers use it a lot. Set `string_shot/data.json` effect to
+1. ✅ *Done in moves batch A (CB-0210).* **String Shot (#81).** Early-game Bugs and trainers use it a lot. Set `string_shot/data.json` effect to
    `BATTLE_EFFECT_SPEED_DOWN_2` (Cotton Spore's and Scary Face's).
-2. **Hi Jump Kick / Jump Kick (#136, #26).** Every miss shows it (Buneary/Lopunny, Hitmonlee, Medicham). In
+2. ✅ *Done in moves batch A (CB-0210).* **Hi Jump Kick / Jump Kick (#136, #26).** Every miss shows it (Buneary/Lopunny, Hitmonlee, Medicham). In
    `subscript_crash_on_miss.s`, set the crash to the **attacker's** max HP / 2 (`UpdateMonDataFromVar OPCODE_GET,
    BTLSCR_ATTACKER, BATTLEMON_MAX_HP` → ÷2 → negate) in place of damage/2 capped by the defender. This also fixes
    Supercell Slam and Axe Kick. The `MoveChecklist.md` row for Supercell Slam ("half its max HP") is wrong today.
 3. **Teleport (#100).** Abra's only move; a trainer's Abra gets "But it failed!". Give it a new effect: switch the
    user out, as Parting Shot does but with no stat drop (`SOVEREIGN_PARTING_SHOT`, effect 328), and fail when there's
    no Pokémon to switch in. A wild Pokémon keeps fleeing (`effect_script_0153.s`).
-4. **Minimize (#107).** `subscript_minimize.s:6` → `MOVE_SUBSCRIPT_PTR_EVASION_UP_2_STAGES`.
+4. ✅ *Done in moves batch A (CB-0210).* **Minimize (#107).** `subscript_minimize.s:6` → `MOVE_SUBSCRIPT_PTR_EVASION_UP_2_STAGES`.
 5. **Body Slam (#34) and the other `minimize` moves.** Add a `sMinimizeMoves` list (Body Slam, Stomp, Steamroller,
    Dragon Rush, Heat Crash, Heavy Slam, Flying Press, Malicious Moonsault, Supercell Slam). Use it in
    `BattleControllerPlayer_CheckMoveHitOverrides` for a sure hit when the target has `MOVE_EFFECT_MINIMIZE`, and in
    the damage code for ×2. Then remove the ×2 from `effect_script_0150.s`, or Stomp doubles twice.
-6. **Toxic (#92).** In `BattleControllerPlayer_CheckMoveHitOverrides` (`battle_controller_player.c` ~3626), add
+6. ✅ *Done in moves batch A (CB-0210).* **Toxic (#92).** In `BattleControllerPlayer_CheckMoveHitOverrides` (`battle_controller_player.c` ~3626), add
    `move == MOVE_TOXIC && MON_HAS_TYPE(attacker, TYPE_POISON)` to the sure-hit list. Put it before the
    semi-invulnerable check so it also hits Fly/Dig users, as Lock-On does.
 7. **Whirlwind / Roar (#18, #46).** Remove `MOVE_FLAG_CAN_PROTECT` and add `MOVE_FLAG_CAN_MAGIC_COAT` in both
@@ -269,14 +269,14 @@ Sovereign, Magic Coat and Magic Bounce both use this flag (bcp:~3847, bcp:~3871)
 
 ### GEN_IV and PARTIAL moves, most to least player-visible, with the suggested change
 
-1. **Fury Cutter (210)**: in `BtlCmd_CalcFuryCutterPower` (bs:6082), cap `furyCutterCount` at 3 (`< 3`), so 40→80→160 and no more. At present the 4th and 5th hits do 320 and 640 power.
-2. **Knock Off (282)**: in the power step (a `CalcKnockOffPower` in eff 0188, or `BattleScript_CalcMoveDamage`), give ×1.5 when the target holds an item it could lose (not form-locked, not a Griseous Orb on Giratina; Sticky Hold doesn't cancel the boost). Stop `knockedOffItemsMask` from barring a new item.
-3. **Hidden Power (237)**: set `movePower = 60` in `BtlCmd_CalcHiddenPowerParams` (bs:6429) and keep the type calculation.
+1. ✅ *Done in moves batch A (CB-0210).* **Fury Cutter (210)**: in `BtlCmd_CalcFuryCutterPower` (bs:6082), cap `furyCutterCount` at 3 (`< 3`), so 40→80→160 and no more. At present the 4th and 5th hits do 320 and 640 power.
+2. ✅ *×1.5 done in moves batch A (CB-0210); a Pokémon whose item was knocked off still can't get a new one.* **Knock Off (282)**: in the power step (a `CalcKnockOffPower` in eff 0188, or `BattleScript_CalcMoveDamage`), give ×1.5 when the target holds an item it could lose (not form-locked, not a Griseous Orb on Giratina; Sticky Hold doesn't cancel the boost). Stop `knockedOffItemsMask` from barring a new item.
+3. ✅ *Done in moves batch A (CB-0210), in the trainer AI's damage estimate too.* **Hidden Power (237)**: set `movePower = 60` in `BtlCmd_CalcHiddenPowerParams` (bs:6429) and keep the type calculation.
 4. **Defog (432)**: extend sub defog to clear Sticky Web and Aurora Veil on the target's side, Spikes, Toxic Spikes, Stealth Rock and Sticky Web on the user's side, and the terrain. Add `CAN_MAGIC_COAT`.
-5. **Feint (364)**: drop the `TryFeint` failure jump (eff 0223:5, bs:7949) so it always hits. Keep lifting Protect and also lift Wide Guard, Quick Guard and Mat Block. Add `CAN_MIRROR_MOVE`.
+5. ✅ *Done in moves batch A (CB-0210): always hits, and lifts Protect, Wide Guard, Quick Guard, Mat Block and Crafty Shield; still not in Mirror Move's list.* **Feint (364)**: drop the `TryFeint` failure jump (eff 0223:5, bs:7949) so it always hits. Keep lifting Protect and also lift Wide Guard, Quick Guard and Mat Block. Add `CAN_MIRROR_MOVE`.
 6. **Wish (273)**: at bs:6790 store the user's `maxHP / 2` (new `wishHP[battler]`) and heal that amount at bcp:1295. Add `CAN_SNATCH`.
 7. **Future Sight / Doom Desire (248, 353)**: work the damage out when the attack lands (or at least apply type effectiveness and immunity: Psychic, so Dark is immune; Steel), with crits allowed, instead of the typeless amount stored at bs:6482.
-8. **Sheer Cold (329)**: in `TryOHKOMove` (bs:4654), make Ice types immune and use 20 base accuracy when the user isn't Ice-type.
+8. ✅ *Done in moves batch A (CB-0210).* **Sheer Cold (329)**: in `TryOHKOMove` (bs:4654), make Ice types immune and use 20 base accuracy when the user isn't Ice-type.
 9. **Tailwind (366)**: give Tailwind a 3-bit or separate per-side counter (the 2-bit field at `condition.h` TAILWIND_0/1 can't hold 4) and set it to 4.
 10. **Encore (227) and Taunt (269)**:
     - Encore: `encoredTurns` = 2 if the target hasn't moved yet this turn, else 3 (bs:5062).
@@ -285,7 +285,7 @@ Sovereign, Magic Coat and Magic Bounce both use this flag (bcp:~3847, bcp:~3871)
     - Encore: add Gen IX's moves to `sCannotEncoreMoves` (bl:11540).
     - Taunt: let Me First through.
 11. **Beat Up (251)**: per hit, power = 5 + that member's base Attack/10, then the normal damage calculation: user's Attack, target's Defense, Dark type, STAB and effectiveness. Drop `SYSCTL_IGNORE_IMMUNITIES` (eff 0154, bs:6612).
-12. **Poison Fang (305)**: effect chance 30 → 50 in its data.json.
+12. ✅ *Done in moves batch A (CB-0210).* **Poison Fang (305)**: effect chance 30 → 50 in its data.json.
 13. **Charge (268)**: don't expire it after a turn (bcp:1946). Clear `MOVE_EFFECT_CHARGE` when the user uses an Electric move other than Charge, or switches out.
 14. **Moves that should be reflectable (259 Torment, 316 Odor Sleuth, 357 Miracle Eye, 373 Embargo, 377 Heal Block, 390 Toxic Spikes, 432 Defog, 446 Stealth Rock, and Encore/Taunt above)**: add `MOVE_FLAG_CAN_MAGIC_COAT`. Check that side moves bounce as Sticky Web's does. Stealth Rock against Magic Bounce is the case players will notice most.
 15. **Payback (371)**: at bs:7628, don't double against a target that switched in this turn.

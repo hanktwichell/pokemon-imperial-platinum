@@ -13,7 +13,7 @@
     "accuracy": 95,
     "pp": 40,
     "effect": {
-        "type": "BATTLE_EFFECT_SPEED_DOWN",
+        "type": "BATTLE_EFFECT_SPEED_DOWN_2",
         "chance": 0
     },
     "range": "RANGE_ADJACENT_OPPONENTS",

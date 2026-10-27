@@ -3712,7 +3712,7 @@ static s32 TrainerAI_CalcDamage(BattleSystem *battleSys, BattleContext *battleCt
             | ((ivs[STAT_SPECIAL_ATTACK] & 1) << 4)
             | ((ivs[STAT_SPECIAL_DEFENSE] & 1) << 5);
 
-        power = power * 40 / 63 + 30;
+        power = 60; // Sovereign: Hidden Power's power is 60 (Gen VI+)
         type = (type * 15 / 63) + 1;
 
         // Hidden Power is never Fairy-type; skip over it.

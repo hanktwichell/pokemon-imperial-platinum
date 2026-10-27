@@ -364,6 +364,10 @@ VALUE_FIXES = {
     "flower_shield": {"range": "RANGE_FIELD"},
     "rototiller": {"range": "RANGE_FIELD"},
     "teatime": {"range": "RANGE_FIELD"},
+    # Platinum's own moves under the later games' rules (docs/PlatinumMoveAudit.md): String Shot -2 Speed (Gen VI+),
+    # Poison Fang 50% (Gen VI+).
+    "string_shot": {"effect": {"type": "BATTLE_EFFECT_SPEED_DOWN_2", "chance": 0}},
+    "poison_fang": {"effect": {"type": "BATTLE_EFFECT_BADLY_POISON_HIT", "chance": 50}},
 }
 
 

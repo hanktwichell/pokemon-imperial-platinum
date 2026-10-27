@@ -9,6 +9,8 @@ _000:
     GoTo _019
 
 _015:
+    // Sovereign: only when it lifted a Protect.
+    IfTurnFlag BTLSCR_DEFENDER, TURN_FLAG_PROTECTING, 0, _022
     // {0} fell for the feint!
     PrintMessage BattleStrings_Text_PokemonFellForTheFeint_Ally, TAG_NICKNAME, BTLSCR_DEFENDER
 

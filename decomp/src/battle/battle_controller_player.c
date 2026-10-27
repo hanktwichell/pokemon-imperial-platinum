@@ -3628,6 +3628,7 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
         && (MON_IS_LOCKED_ONTO(attacker, defender)
             || (battleCtx->sovereignTelekinesis[defender] && MOVE_DATA(move).effect != BATTLE_EFFECT_ONE_HIT_KO) // Sovereign (item 11)
             || (battleCtx->sovereignGlaiveRush & FlagIndex(defender)) // Sovereign (item 11)
+            || (move == MOVE_TOXIC && MON_HAS_TYPE(attacker, TYPE_POISON)) // Sovereign: Gen VI+
             || Battler_Ability(battleCtx, attacker) == ABILITY_NO_GUARD
             || Battler_Ability(battleCtx, defender) == ABILITY_NO_GUARD)) {
         battleCtx->moveStatusFlags &= ~MOVE_STATUS_MISSED;
@@ -3681,6 +3682,11 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
     // damaging moves and Crafty Shield status moves aimed at a Pokemon there. subscript_missed names the guard. Unseen
     // Fist gets through all but Crafty Shield, at 1/4 damage.
     if (attacker != defender) {
+        // Sovereign: Feint lifts them first (Gen VI+), as it lifts Protect.
+        if (move == MOVE_FEINT) {
+            battleCtx->sovereignSideGuards[BattleSystem_GetBattlerSide(battleSys, defender)] = 0;
+        }
+
         int guards = battleCtx->sovereignSideGuards[BattleSystem_GetBattlerSide(battleSys, defender)];
 
         if ((guards & 1)
