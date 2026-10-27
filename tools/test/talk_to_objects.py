@@ -15,7 +15,8 @@ when the field is idle again (gSovereignTestIdleFrames). The clock reads noon (H
 Each object gets a result:
 - ok: its own script ran and ended (for a trainer, its battle);
 - NOSCRIPT: nothing ran when A was pressed, so the object isn't there on a new game (a flag hides it until later in
-  the story) or something else stands in the way;
+  the story) or something else stands in the way. A wandering object gets WANDER_TRIES more tries first, as it can
+  step off its tile;
 - STANDIN: another object answered from its tile, standing in for it while it's hidden (Pokémon Mansion's maids on
   two of Team Galactic's grunts' tiles until the siege, Cresselia on the Lati rock's until she's caught, Route 210's
   Double Team, who walk onto Zamazenta's);
@@ -34,10 +35,26 @@ an NPC whose gift waits on badges says so, and that is what runs.
 
 Needs what battle_all_trainers.py needs. From the repo root:
     SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 tools/test/talk_to_objects.py \\
-        decomp/build_test/pokeplatinum.us.nds STATE OUT_DIR [--part I/N] [EVENTS ...]
+        decomp/build_test/pokeplatinum.us.nds STATE OUT_DIR [--part I/N] [--postgame | --chronicles] [--unhide] \\
+        [EVENTS ...]
 EVENTS (an events file's name, e.g. events_route_201) limits the list to those maps, and --part I/N to every Nth
 object from the Ith (from 0; to run N at once, each with its own OUT_DIR). Each result is a line in
 OUT_DIR/results.txt.
+
+--postgame gives the player all eight Badges and sets FLAG_GAME_COMPLETED (the Hall of Fame) on the way in, so the
+objects that wait for the post-game are there and the scripts take their later branches: gifts that wait on Badges,
+the Archivist, the Battle Zone's people. The story's other flags stay as on a new game, so a scene that expects the
+story's own way there can still play out oddly; read such a result against the story.
+
+--chronicles goes further into the post-game: as --postgame, with every Chronicle open (VAR_SOVEREIGN_CHRONICLE 5,
+the Archivist's last), so the Chronicles' legendaries, stakes and rifts are on their maps.
+
+--unhide clears each object's own hidden_flag on the way in, so an object that a flag hides on this save (until a
+story event, a Chronicle or a catch) is there to talk to, and its script runs. For a legendary (LOCALID_LEGENDARY_X),
+scripts also count every other species as caught (gSovereignTestCaughtAllBut), as a static waits on others being
+caught and on its own not being caught. A map's own scripts can still hide it as the map loads (a map-local flag, set
+from the story's state); then it's still NOSCRIPT. The rest of the story's flags are as before, so this checks that
+the script runs to its end, not the story around it.
 """
 import json
 import os
@@ -67,6 +84,19 @@ FACE = {(0, -1): 0, (0, 1): 1, (-1, 0): 2, (1, 0): 3}  # enum FaceDirection: the
 # The hour the clock reads (gSovereignTestClock, which takes the hour + 1): the day, so a result doesn't change with
 # the time the test runs at (Route 212's policemen are out only at night).
 HOUR = 12
+# --postgame (parse_args): all eight Badges and the Hall of Fame on the way in (arrive).
+POSTGAME = False
+# A wandering object (MOVEMENT_TYPE_WANDER_*) can step off its tile before the test talks to it: it gets this many more
+# tries from a fresh warp before it counts as NOSCRIPT.
+WANDER_TRIES = 4
+# --chronicles (parse_args): --postgame, and every Chronicle open (arrive).
+CHRONICLES = False
+# --unhide (parse_args): each object's own hidden_flag cleared on the way in (main).
+UNHIDE = False
+# With --unhide, the story's flags and vars that put an object on its map when its map's own scripts set its map-local
+# hide flag from them as the map loads: (events, object id) -> [(flag or var, value)], at most four
+# (gSovereignTestVar[4] to [7]).
+STORY = {}
 
 
 def var_ids():
@@ -199,6 +229,17 @@ def object_scripts(events, oid):
             {script_id(o) for o in others})
 
 
+def object_event(events, oid):
+    path = os.path.join('decomp', 'res', 'field', 'events', events + '.json')
+    return next(o for o in json.load(open(path))['object_events'] if o['id'] == oid)
+
+
+def hidden_flag(events, oid):
+    """The flag that hides the object (its hidden_flag; a few objects hold a map header there instead), or None."""
+    flag = object_event(events, oid)['hidden_flag']
+    return None if str(flag) == '0' else flag
+
+
 def u32(d, addr):
     return struct.unpack('<I', bytes(d.emu.memory.unsigned[addr:addr + 4]))[0]
 
@@ -276,6 +317,14 @@ def arrive(d, sym, state, variables, events, header, way_in, x, z, face, setup=N
     d.emu.memory.write_byte(sym['gSovereignTestClock'], HOUR + 1)
     d.run(30)  # the game reads the clock every 11 frames (UpdateRTC)
     d.emu.memory.write_byte(sym['gSovereignTestGodMode'], 1)
+    if POSTGAME or CHRONICLES:
+        d.emu.memory.write_byte(sym['gSovereignTestBadges'], 0xff)
+        # [1]; [0] is SCENES_SEEN's
+        d.emu.memory.write_short(sym['gSovereignTestVar'] + 4, variables['FLAG_GAME_COMPLETED'])
+        d.emu.memory.write_short(sym['gSovereignTestVar'] + 6, 1)
+    if CHRONICLES:
+        d.emu.memory.write_short(sym['gSovereignTestVar'] + 8, variables['VAR_SOVEREIGN_CHRONICLE'])  # [2]
+        d.emu.memory.write_short(sym['gSovereignTestVar'] + 10, 5)
     if setup:
         setup()
     if events in SCENES_SEEN:
@@ -314,7 +363,10 @@ def talk(d, sym, events, oid, header, x, z, face):
 
 def parse_args(args):
     """(rom, state, out dir, the events files to limit to, part, parts) from the command line."""
+    global POSTGAME, CHRONICLES, UNHIDE
     part, parts = 0, 1
+    POSTGAME, CHRONICLES, UNHIDE = '--postgame' in args, '--chronicles' in args, '--unhide' in args
+    args = [a for a in args if a not in ('--postgame', '--chronicles', '--unhide')]
     if '--part' in args:
         at = args.index('--part')
         part, parts = map(int, args[at + 1].split('/'))
@@ -324,7 +376,8 @@ def parse_args(args):
 
 
 SYMBOLS = ('gSovereignTestWarpTarget', 'gSovereignTestVar', 'gSovereignTestIdleFrames', 'gSovereignTestIdleMapHeaderID',
-           'gSovereignTestGodMode', 'gSovereignTestScripts', 'gSovereignTestClock', 'gSystem')
+           'gSovereignTestGodMode', 'gSovereignTestScripts', 'gSovereignTestClock', 'gSovereignTestBadges',
+           'gSovereignTestCaughtAllBut', 'gSystem')
 
 
 def main():
@@ -333,6 +386,7 @@ def main():
     rom, state, out, only, part, parts = parse_args(sys.argv[1:])
     sym = symbols(SYMBOLS)
     variables = var_ids()
+    species = [line.strip() for line in open(os.path.join(DECOMP, 'generated', 'species.txt')) if line.strip()]
     chosen = [(i, c) for i, c in enumerate(cases()) if (not only or c[0] in only) and i % parts == part]
     d = Driver(rom, state)
     d.added, d.armed = [], False
@@ -343,9 +397,27 @@ def main():
             if face is None:
                 result, frames = 'NOTILE', 0
             else:
-                result, frames = arrive(d, sym, state, variables, events, header, way_in, x, z, face)
+                flag = hidden_flag(events, oid) if UNHIDE else None
+
+                def unhide(flag=flag, own=oid.replace('LOCALID_LEGENDARY_', 'SPECIES_'), events=events, oid=oid):
+                    if flag in variables:  # [3]: [0] is SCENES_SEEN's, [1] --postgame's and [2] --chronicles'
+                        d.emu.memory.write_short(sym['gSovereignTestVar'] + 12, variables[flag])
+                        d.emu.memory.write_short(sym['gSovereignTestVar'] + 14, 0)
+                    if UNHIDE and own in species:
+                        d.emu.memory.write_short(sym['gSovereignTestCaughtAllBut'], species.index(own))
+                    for i, (name, value) in enumerate(STORY.get((events, oid), []) if UNHIDE else []):
+                        d.emu.memory.write_short(sym['gSovereignTestVar'] + 16 + 4 * i, variables[name])
+                        d.emu.memory.write_short(sym['gSovereignTestVar'] + 18 + 4 * i, value)
+
+                result, frames = arrive(d, sym, state, variables, events, header, way_in, x, z, face, unhide)
                 if result == 'ok':
                     result, frames = talk(d, sym, events, oid, header, x, z, face)
+                tries = WANDER_TRIES if 'WANDER' in object_event(events, oid)['movement_type'] else 0
+                while result == 'NOSCRIPT' and tries:  # it may have stepped off its tile: warp back and try again
+                    tries -= 1
+                    result, frames = warp(d, sym, header, x, z, face + 1)
+                    result, frames = talk(d, sym, events, oid, header, x, z, face) if result == 'ok' else (
+                        'NOWARP ' + result, frames)
             if result not in ('ok', 'NOSCRIPT', 'STANDIN'):
                 bad += 1
                 if face is not None:

@@ -44,8 +44,8 @@ one and reports **HEAP**. The times are rough.
 | `battle_eggs.py` | every form bred in the Day Care and hatched | ~1 h in 4 parts |
 | `sprite_check.py` | contact sheets of #494–1025's battle sprites in a battle (front and back, normal and shiny), to check by eye | ~40 min in 4 parts |
 | `wild_forms.py` | wild Pokémon's forms on every map, through the real encounter code | ~20 min in 4 parts |
-| `talk_to_objects.py` | every added or moved object runs its own script to its end | ~1 h in 4 parts |
-| `signs_and_triggers.py` | every added sign, hidden item and coord trigger | ~10 min in 4 parts |
+| `talk_to_objects.py` | every added or moved object runs its own script to its end (on a new game; `--postgame` after the Hall of Fame, `--chronicles` with every Chronicle open too, `--unhide` with the object's own hide flag cleared) | ~1 h in 4 parts |
+| `signs_and_triggers.py` | every added sign, hidden item and coord trigger (`--postgame` and `--chronicles` as above) | ~10 min in 4 parts |
 | `gift_pokemon.py` | every Pokémon gift: species, form, level, moves, ability | ~20 min |
 | `elite_four_runs.py` | every path through the Elite Four's battle formats (13 runs) | ~40 min in 4 parts |
 | `visit_changed_maps.py` | every changed map loads and the field runs | ~1 h |

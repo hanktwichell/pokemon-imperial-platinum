@@ -4106,6 +4106,11 @@ static BOOL ScrCmd_SovereignCheckSpeciesCaught(ScriptContext *ctx)
     u16 *destVar = ScriptContext_GetVarPointer(ctx);
 
     *destVar = Pokedex_HasCaughtSpecies(SaveData_GetPokedex(ctx->fieldSystem->saveData), species);
+#ifdef SOVEREIGN_TEST
+    if (gSovereignTestCaughtAllBut != SPECIES_NONE) {
+        *destVar = species != gSovereignTestCaughtAllBut;
+    }
+#endif
     return FALSE;
 }
 

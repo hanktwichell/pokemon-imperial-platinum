@@ -15,7 +15,7 @@ struct SovereignTestWarpTarget {
 // Vars and flags the next test warp sets first, so a harness can mark a story scene as seen or a part of the story as
 // done. With no warp target set, the SELECT+L+R only sets them (a map's own local vars are cleared as the player comes
 // in, so they are set after).
-#define SOVEREIGN_TEST_VARS 4
+#define SOVEREIGN_TEST_VARS 8
 
 struct SovereignTestVar {
     u16 var; // when set: a var, or a flag (below VARS_START), which a value of 0 clears and any other sets
@@ -251,6 +251,9 @@ extern struct SovereignTestMenu gSovereignTestMenu;
 extern struct SovereignTestScripts gSovereignTestScripts;
 // The trainer battles started, and how each ended (see struct SovereignTestTrainerBattles).
 extern struct SovereignTestTrainerBattles gSovereignTestTrainerBattles;
+// When set, scripts count every species but this one as caught (SovereignCheckSpeciesCaught), so a legendary whose
+// static encounter waits on others being caught (and on its own not being caught) is on its map.
+extern u16 gSovereignTestCaughtAllBut;
 #endif
 
 #endif // POKEPLATINUM_SOVEREIGN_TEST_H
