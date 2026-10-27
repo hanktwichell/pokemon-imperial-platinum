@@ -2692,29 +2692,11 @@ static void AICmd_LoadAbility(BattleSystem *battleSys, BattleContext *battleCtx)
     AI_CONTEXT.calcTemp = Battler_Ability(battleCtx, battler);
 }
 
-// Sovereign (12b): abilities that stop a Pokemon from being hurt by a move of this type. Only abilities whose effect
-// the battle engine has; Levitate is handled by the type chart. Add each Gen V+ immunity as item 11 builds it.
-static BOOL AI_AbilityAbsorbsMoveType(int ability, int moveType)
-{
-    switch (moveType) {
-    case TYPE_ELECTRIC:
-        return ability == ABILITY_VOLT_ABSORB || ability == ABILITY_MOTOR_DRIVE || ability == ABILITY_LIGHTNING_ROD;
-    case TYPE_WATER:
-        return ability == ABILITY_WATER_ABSORB || ability == ABILITY_DRY_SKIN || ability == ABILITY_STORM_DRAIN;
-    case TYPE_FIRE:
-        return ability == ABILITY_FLASH_FIRE || ability == ABILITY_WELL_BAKED_BODY;
-    case TYPE_GRASS:
-        return ability == ABILITY_SAP_SIPPER;
-    case TYPE_GROUND:
-        return ability == ABILITY_EARTH_EATER;
-    }
-
-    return FALSE;
-}
-
+// Sovereign (12b): whether the partner's ability absorbs moves of this type (Sovereign_AbilityAbsorbsMoveType, in
+// battle_lib.c; Levitate is handled by the type chart).
 static BOOL AI_PartnerAbsorbsMoveType(BattleContext *battleCtx, int partner, int moveType)
 {
-    return AI_AbilityAbsorbsMoveType(Battler_Ability(battleCtx, partner), moveType);
+    return Sovereign_AbilityAbsorbsMoveType(Battler_Ability(battleCtx, partner), moveType);
 }
 
 // Sovereign (12b): whether the current move deals direct damage the AI's damage calc can estimate.
@@ -4398,7 +4380,7 @@ static BOOL AI_HasAbsorbAbilityInParty(BattleSystem *battleSys, BattleContext *b
     moveType = MOVE_DATA(battleCtx->moveHit[battler]).type;
 
     // If our ability absorbs the type of the last move that hit us, do not switch.
-    if (AI_AbilityAbsorbsMoveType(Battler_Ability(battleCtx, battler), moveType)) {
+    if (Sovereign_AbilityAbsorbsMoveType(Battler_Ability(battleCtx, battler), moveType)) {
         return FALSE;
     }
 
@@ -4427,7 +4409,7 @@ static BOOL AI_HasAbsorbAbilityInParty(BattleSystem *battleSys, BattleContext *b
             ability = Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL);
 
             // Switch to a matching Pokemon 50% of the time.
-            if (AI_AbilityAbsorbsMoveType(ability, moveType) && (BattleSystem_RandNext(battleSys) & 1)) {
+            if (Sovereign_AbilityAbsorbsMoveType(ability, moveType) && (BattleSystem_RandNext(battleSys) & 1)) {
                 battleCtx->aiSwitchedPartySlot[battler] = i;
                 return TRUE;
             }

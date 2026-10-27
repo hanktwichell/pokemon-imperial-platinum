@@ -3,6 +3,26 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## 12b (trainer AI): absorbing abilities in the switch checks and the post-KO replacement
+
+For players:
+- After a knockout, a trainer no longer sends in a Pokémon whose best move your Pokémon's ability absorbs. Example: it
+  won't send in a Hydro Pump user against Water Absorb.
+- When the AI decides whether to switch, a move the foe absorbs no longer counts as a super-effective threat, and a
+  benched absorber counts as immune to the move that just hit (`docs/AIReview.md` #15).
+
+Code:
+- `battle_lib.c`:
+  - `CalcEffectiveness` (used only by the AI) marks a move the target's ability absorbs as having no effect, unless
+    Mold Breaker, Turboblaze or Teravolt.
+  - `BattleAI_PostKOSwitchIn` scores such a move 0 in its damage stage.
+  - `Sovereign_AbilityAbsorbsMoveType` holds the ability list. It moved there from `trainer_ai.c` and is shared with
+    the AI's partner checks.
+
+Verified in the test build: a trainer whose Magikarp was knocked out by a Water Absorb Snorlax sent in Golem (Tackle)
+instead of Blastoise (Hydro Pump). A build without the change sent in Blastoise, and so did this build without Water
+Absorb.
+
 ## Platinum's battle bugs: Acid Rain, Fire Fang through Wonder Guard, Rage; and Platinum's AI bugs (12b #14)
 
 pret's decompilation documents these bugs in `decomp/docs/bugs_and_glitches.md`. All of them were still in the game.
