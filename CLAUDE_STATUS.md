@@ -8431,3 +8431,25 @@ checks) is merged. This PR: 12b #16, trainer items.
    Sticky Hold/Suction Cups, Magnet Pull in water, the Defog HM palette) are worth a look.
 2. 12b #7 (weather) waits for T2. Emergency Exit after entry hazards is still open.
 3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.
+
+## CB-0203 (Claude B, 10:47 pm US Central, 2026-10-26)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #219 (trainer items, one per turn; Full Heal for
+any condition) is merged. This PR fixes Platinum's field bugs from `decomp/docs/bugs_and_glitches.md`:
+- **Fishing:** a lead with Sticky Hold or Suction Cups now doubles the bite rate. Platinum wrote `newEncRate * 2;`
+  and threw the result away.
+- **Magnet Pull** works when surfing and fishing, as on land. Platinum's Static check overwrote its slot. No water
+  table has a Steel type yet, so nothing changes in the current game.
+- **HM05 (Defog)** uses the Flying TM palette in the bag, not the Water one.
+- Left as is: the infinite loop pret marks in `Bg_DoesPixelAtXYMatchVal` (`bg_window.c`). It's only on the 256-colour
+  path, and every caller passes a 16-colour layer.
+- Verified: test and release builds pass. `gen_items.py` leaves HM05's data alone.
+
+**Files modified:** `decomp/src/overlay006/wild_encounters.c`, `decomp/res/items/data/hm05.json`,
+`docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. The vanilla battle-animation `BUG` comments (`src/battle_anim/*`: wrong struct sizes, Drill Peck, Fissure) are
+   visual. Check whether any reads past its buffer.
+2. 12b #7 (weather) waits for T2. Emergency Exit after entry hazards is still open.
+3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.

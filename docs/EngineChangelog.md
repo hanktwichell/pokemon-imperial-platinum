@@ -3,6 +3,24 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Platinum's field bugs: fishing with Sticky Hold or Suction Cups, Magnet Pull in water, the Defog HM icon
+
+pret's decompilation documents these in `decomp/docs/bugs_and_glitches.md`.
+
+For players:
+- **Fishing:** a lead Pokémon with Sticky Hold or Suction Cups now doubles the chance of a bite, as intended. Platinum
+  computed the doubled rate and threw it away (`newEncRate * 2;`).
+- **Magnet Pull** now works when surfing and fishing, as it does on land: half the time, the encounter is a Steel type
+  if the table has one. Platinum ran the Static check right after it and overwrote Magnet Pull's slot. No water table
+  in the game has a Steel type yet, so this only matters if one is added. Static was unaffected.
+- **HM05 (Defog)** shows the Flying-type TM palette in the bag, not the Water one.
+
+Code: `src/overlay006/wild_encounters.c` (`ModifyEncounterRateWithFieldParams`, the surf and fishing cases of the slot
+choice) and `res/items/data/hm05.json`.
+
+Verified: the test and release builds pass. `gen_items.py` leaves HM05's data alone, so the CI regeneration check is
+unaffected.
+
 ## 12b (trainer AI): trainer items, one per turn, and Full Heal for any condition
 
 For players:
