@@ -44,6 +44,7 @@ opponent for checking these in game.
 | 10 | The second Pokémon in a double battle against one trainer | A script that starts a double battle with one trainer ID (`StartTrainerBattle` with one argument: the Elite Four's and Cynthia's double battles, Cyrus in the Distortion World) leaves the second enemy slot without a trainer. `TrainerAI_Init` read that empty slot's AI flags, so the second Pokémon ran only the doubles routine (no Basic, Eval Attack or Expert), and it couldn't use the trainer's items. Trainers that walk up as a pair (twins) fill both slots and were fine | the toughest double battles had a much weaker second Pokémon | **done:** `AI_TrainerSlot` gives that slot the first enemy trainer's AI flags, and both Pokémon share its items | ✅ |
 | 11 | Gen V+ moves the script doesn't know | `Basic_Main` scores moves by their Gen IV effect. The 80 Gen V+ status effects (item 11) got no checks, so the AI could heal or boost the player's Pokémon (Heal Pulse, Decorate, Purify, Instruct, After You) or pick a move that fails (Life Dew at full HP, Stuff Cheeks without a Berry, Coaching in a single battle, a terrain that's already up, Poltergeist on a target without an item...) | wasted turns, or turns that help the player | **done:** `LoadSovereignMoveRating` (`trainer_ai.c`) rates them; a move that would fail now, does nothing in a trainer battle, only helps the foe it's aimed at or only works on the partner scores −10 | ✅ |
 | 12 | Expert scoring for Gen V+ moves | `Expert_Main` scores moves by their Gen IV effect too, so Gen V+ setup moves, hazards and the like got none of its scoring (Platinum scores Bulk Up as a Defense rise, Calm Mind as a Sp. Def rise, Dragon Dance with its own handler) | Quiver Dance, Shell Smash or Sticky Web were never favoured, Strength Sap at full HP never discouraged | **done:** each Gen V+ move goes to the Gen IV handler for the same job (table in the *#12* section) | ✅ |
+| 13 | Switching to a Pokémon that absorbs the foe's move | `TrainerAI_ShouldSwitch` (via `AI_HasAbsorbAbilityInParty`) switches out, half the time, to a party Pokémon whose ability absorbs the type of the move that just hit it. It looked for Flash Fire, Water Absorb and Volt Absorb only | it never switched to Motor Drive, Dry Skin (Platinum's own), Storm Drain, Lightning Rod, Sap Sipper, Well-Baked Body or Earth Eater | **done:** the check uses the same ability list as the partner checks (`AI_AbilityAbsorbsMoveType`) | ✅ |
 
 ## Order of work
 
@@ -52,6 +53,7 @@ opponent for checking these in game.
 3. ✅ #8 (partner scoring with the moves' exact effects). ✅ #9 (with E8). #7 waits for T2.
 4. ✅ #10 (the second Pokémon's AI flags and items) and #11 (the Gen V+ moves).
 5. ✅ #12 (Expert scoring for the Gen V+ moves).
+6. ✅ #13 (switching to any absorbing ability).
 
 Each fix gets a scenario in the test build. The developer team has Heat Wave and Rock Slide as spread moves, Water
 Spout and Origin Pulse with Kyogre, and Venusaur/Charizard sharing the field.
@@ -170,3 +172,17 @@ moves. A move that would fail already scored −10 in `Basic_Main` (#11).
 Verified with a command trace in the test build: with the test trainer's Charizard given Quiver Dance, Shell Smash,
 Sticky Web and Strength Sap, Expert ran the Dragon Dance handler for the first two (the speed and HP checks), the Spikes
 handler for Sticky Web, and the Recovery handler for Strength Sap (−3 at full HP).
+
+## #13: switching to an absorber (done 2026-10-26)
+
+Platinum's rule is unchanged otherwise:
+- It considers a switch only when the move that hit the AI's Pokémon landed after that Pokémon moved. The record of
+  that move is cleared when the Pokémon uses its own move, so a faster foe's hit never counts.
+- It switches only half the time.
+- It does not switch, two times in three, when it has a super-effective move.
+
+Verified in the test build (a single battle):
+- The test trainer had Tyranitar (Crunch) leading, and Venusaur given Earth Eater on the bench, for the test.
+- Against a Lv. 100 Snorlax using Mud-Slap, the trainer withdrew Tyranitar on turn 2 and sent out Venusaur: "The
+  foe's VENUSAUR's Earth Eater made Mud-Slap useless!"
+- Platinum's list has no Earth Eater, so before this change it never switched there.

@@ -2694,10 +2694,8 @@ static void AICmd_LoadAbility(BattleSystem *battleSys, BattleContext *battleCtx)
 
 // Sovereign (12b): abilities that stop a Pokemon from being hurt by a move of this type. Only abilities whose effect
 // the battle engine has; Levitate is handled by the type chart. Add each Gen V+ immunity as item 11 builds it.
-static BOOL AI_PartnerAbsorbsMoveType(BattleContext *battleCtx, int partner, int moveType)
+static BOOL AI_AbilityAbsorbsMoveType(int ability, int moveType)
 {
-    int ability = Battler_Ability(battleCtx, partner);
-
     switch (moveType) {
     case TYPE_ELECTRIC:
         return ability == ABILITY_VOLT_ABSORB || ability == ABILITY_MOTOR_DRIVE || ability == ABILITY_LIGHTNING_ROD;
@@ -2712,6 +2710,11 @@ static BOOL AI_PartnerAbsorbsMoveType(BattleContext *battleCtx, int partner, int
     }
 
     return FALSE;
+}
+
+static BOOL AI_PartnerAbsorbsMoveType(BattleContext *battleCtx, int partner, int moveType)
+{
+    return AI_AbilityAbsorbsMoveType(Battler_Ability(battleCtx, partner), moveType);
 }
 
 // Sovereign (12b): whether the current move deals direct damage the AI's damage calc can estimate.
@@ -4371,7 +4374,6 @@ static BOOL AI_HasAbsorbAbilityInParty(BattleSystem *battleSys, BattleContext *b
     u8 aiSlot1, aiSlot2;
     u8 moveType;
     u16 ability;
-    u16 checkAbility;
     int start, end;
     Pokemon *mon;
 
@@ -4390,19 +4392,13 @@ static BOOL AI_HasAbsorbAbilityInParty(BattleSystem *battleSys, BattleContext *b
         return FALSE;
     }
 
+    // Sovereign (12b): Platinum looked for Flash Fire, Water Absorb and Volt Absorb only. Every ability that absorbs
+    // the type counts: also Motor Drive, Dry Skin, Storm Drain, Lightning Rod, Sap Sipper, Well-Baked Body and Earth
+    // Eater.
     moveType = MOVE_DATA(battleCtx->moveHit[battler]).type;
-    if (moveType == TYPE_FIRE) {
-        checkAbility = ABILITY_FLASH_FIRE;
-    } else if (moveType == TYPE_WATER) {
-        checkAbility = ABILITY_WATER_ABSORB;
-    } else if (moveType == TYPE_ELECTRIC) {
-        checkAbility = ABILITY_VOLT_ABSORB;
-    } else {
-        return ABILITY_NONE;
-    }
 
     // If our ability absorbs the type of the last move that hit us, do not switch.
-    if (Battler_Ability(battleCtx, battler) == checkAbility) {
+    if (AI_AbilityAbsorbsMoveType(Battler_Ability(battleCtx, battler), moveType)) {
         return FALSE;
     }
 
@@ -4431,7 +4427,7 @@ static BOOL AI_HasAbsorbAbilityInParty(BattleSystem *battleSys, BattleContext *b
             ability = Pokemon_GetValue(mon, MON_DATA_ABILITY, NULL);
 
             // Switch to a matching Pokemon 50% of the time.
-            if (checkAbility == ability && (BattleSystem_RandNext(battleSys) & 1)) {
+            if (AI_AbilityAbsorbsMoveType(ability, moveType) && (BattleSystem_RandNext(battleSys) & 1)) {
                 battleCtx->aiSwitchedPartySlot[battler] = i;
                 return TRUE;
             }
