@@ -483,4 +483,6 @@ subscript_files = files(
     'subscript_sovereign_illusion_end.s',
     'subscript_sovereign_commander.s',
     'subscript_sovereign_commander_end.s',
+    'subscript_sovereign_sky_drop_lift.s',
+    'subscript_sovereign_sky_drop_freed.s',
 )

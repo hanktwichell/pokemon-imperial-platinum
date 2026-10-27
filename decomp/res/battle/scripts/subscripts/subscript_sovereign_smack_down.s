@@ -4,6 +4,13 @@
 
 _000:
     UpdateVar OPCODE_SET, BTLVAR_SOVEREIGN_SMACKED_DOWN_SIDE_EFFECT_MON, 1
+    // A Pokemon up in the air by Fly or Bounce comes down, and its move ends (Sovereign_SmackDownFlyer).
+    CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_SMACK_DOWN_FLYER, 0, _grounded
+    ToggleVanish BTLSCR_SIDE_EFFECT_MON, FALSE
+    Wait 
+    GoTo _fell
+
+_grounded:
     CompareMonDataToValue OPCODE_NEQ, BTLSCR_SIDE_EFFECT_MON, BATTLEMON_MAGNET_RISE_TURNS, 0, _fell
     CompareMonDataToValue OPCODE_EQU, BTLSCR_SIDE_EFFECT_MON, BATTLEMON_TYPE_1, TYPE_FLYING, _fell
     CompareMonDataToValue OPCODE_EQU, BTLSCR_SIDE_EFFECT_MON, BATTLEMON_TYPE_2, TYPE_FLYING, _fell

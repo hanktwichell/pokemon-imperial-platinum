@@ -414,6 +414,8 @@ struct BattleContext {
     u8 sovereignCommanding; // Sovereign (item 11): flags, the Tatsugiri inside their ally Dondozo's mouth (Commander)
     u8 sovereignCommanded; // Sovereign (item 11): flags, the Dondozo a Tatsugiri commands
     u8 sovereignOrderUpStat[MAX_BATTLERS]; // Sovereign (item 11): the stat Order Up raises for each commanded Dondozo
+    u8 sovereignSkyDropTarget[MAX_BATTLERS]; // Sovereign (item 11): 1 + the Pokémon each battler carries up by Sky Drop
+    u8 sovereignSkyDropHolder[MAX_BATTLERS]; // Sovereign (item 11): 1 + the Pokémon carrying each battler up by Sky Drop
     u16 sovereignShieldMove[MAX_BATTLERS]; // Sovereign (item 11): the Protect-like move protecting each battler this turn
     int sovereignShieldContact; // Sovereign (item 11): the shield whose contact penalty is due (subscript_missed)
     int sovereignGuardBlock; // Sovereign (item 11): the side guard that blocked the move (Wide Guard, Mat Block, ...)

@@ -232,6 +232,7 @@ ScriptCommand(BTLCMD_SOVEREIGNREFRESHHEALTHBOX,    BtlCmd_SovereignRefreshHealth
 ScriptCommand(BTLCMD_SOVEREIGNMARKATEBERRY,        BtlCmd_SovereignMarkAteBerry) // Sovereign (item 11)
 ScriptCommand(BTLCMD_SOVEREIGNEATOWNBERRY,         BtlCmd_SovereignEatOwnBerry) // Sovereign (item 11)
 ScriptCommand(BTLCMD_SOVEREIGNTRANSFORM,           BtlCmd_SovereignTransform) // Sovereign (item 11)
+ScriptCommand(BTLCMD_SOVEREIGNSKYDROPLIFT,         BtlCmd_SovereignSkyDropLift) // Sovereign (item 11)
 
 // clang-format on
 

@@ -1,35 +1,64 @@
 #include "macros/btlanimcmd.inc"
 
+// Sovereign (item 11): Sky Drop. Fly's animation, with the target carried along: it vanishes with the user on the first
+// turn (L_1) and falls back into view as the user swoops down on the second (L_2).
 L_0:
-    LoadParticleResource 0, aerial_ace_spa
-    InitPokemonSpriteManager
-    LoadPokemonSpriteDummyResources 0
-    LoadPokemonSpriteDummyResources 1
-    Func_FadeBg FADE_BG_TYPE_BASE, 0, 0, 8, BATTLE_COLOR_BLACK
-    Delay 15
-    PlaySoundEffectR SEQ_SE_DP_W013B_sseq
-    PlayDelayedSoundEffectR SEQ_SE_DP_W013_sseq, 10
-    AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_0, 0
-    AddPokemonSprite BATTLER_ROLE_ATTACKER, FALSE, BATTLE_ANIM_MON_SPRITE_1, 1
-    LoadPokemonSpriteDummyResources 4
-    AddPokemonSprite BATTLER_ROLE_ATTACKER_PARTNER, FALSE, BATTLE_ANIM_MON_SPRITE_4, 4
-    BtlAnimCmd_082 2, 0, 4
-    Func_QuickAttack
-    CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
-    CreateEmitter 0, 2, EMITTER_CB_SET_POS_TO_DEFENDER
-    CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_DEFENDER
-    CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
+    LoadParticleResource 0, fly_spa
+    LoadParticleResource 1, bounce_spa
+    JumpIfEffectChanceOdd L_1, L_2
+    End
+
+L_1:
+    ResetVars
+    SetVar BATTLE_ANIM_VAR_BG_FADE_TYPE, 1
+    SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, 0
+    SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 32
+    SwitchBg 55, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
+    PlaySoundEffectL SEQ_SE_DP_W327_sseq
+    WaitForBgSwitch
+    CreateEmitter 1, 1, EMITTER_CB_SET_POS_TO_ATTACKER
+    CreateEmitter 1, 3, EMITTER_CB_SET_POS_TO_ATTACKER
     Delay 10
-    SetPokemonSpriteVisible BATTLE_ANIM_MON_SPRITE_4, FALSE
-    Func_Shake 2, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
+    PlaySoundEffectL SEQ_SE_DP_W019_sseq
+    Func_HideBattler BATTLE_ANIM_ATTACKER, TRUE
+    Func_HideBattler BATTLE_ANIM_DEFENDER, TRUE
     WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0
-    RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_0
-    RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_1
-    FreePokemonSpriteManager
-    BtlAnimCmd_083 0
-    RemovePokemonSprite BATTLE_ANIM_MON_SPRITE_4
-    Func_FadeBg FADE_BG_TYPE_BASE, 0, 8, 0, BATTLE_COLOR_BLACK
-    WaitForAnimTasks
+    UnloadParticleSystem 1
+    ResetVars
+    SetVar BATTLE_ANIM_VAR_BG_FADE_TYPE, 1
+    SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, 0
+    SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, 32
+    RestoreBg 55, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_STOP
+    WaitForBgSwitch
+    End
+
+L_2:
+    Func_HideBattler BATTLE_ANIM_DEFENDER, FALSE
+    ResetVars
+    SetVar BATTLE_ANIM_VAR_BG_FADE_TYPE, 1
+    SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, 0
+    SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, -32
+    SwitchBg 55, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_MOVE
+    PlaySoundEffectR SEQ_SE_DP_W327_sseq
+    WaitForBgSwitch
+    CreateEmitter 0, 3, EMITTER_CB_SET_POS_TO_ATTACKER
+    Func_MoveEmitterViewportTop 0, EMITTER_ANIMATION_MODE_DEF_TO_ATK, EMITTER_ANIMATION_FROM_TOP, 10, 4
+    Delay 10
+    PlaySoundEffectR SEQ_SE_DP_W019_sseq
+    PlayDelayedSoundEffectR SEQ_SE_DP_030_sseq, 10
+    CreateEmitter 0, 7, EMITTER_CB_SET_POS_TO_DEFENDER
+    CreateEmitter 0, 8, EMITTER_CB_SET_POS_TO_DEFENDER
+    Func_Shake 1, 0, 1, 2, BATTLE_ANIM_BATTLER_SPRITE_DEFENDER
+    WaitForAllEmitters
+    UnloadParticleSystem 0
+    UnloadParticleSystem 1
+    Func_HideBattler BATTLE_ANIM_ATTACKER, FALSE
+    ResetVars
+    SetVar BATTLE_ANIM_VAR_BG_FADE_TYPE, 1
+    SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_X, 0
+    SetVar BATTLE_ANIM_VAR_BG_MOVE_STEP_Y, -32
+    RestoreBg 55, BATTLE_BG_SWITCH_MODE_FADE | BATTLE_BG_SWITCH_FLAG_STOP
+    WaitForBgSwitch
     End

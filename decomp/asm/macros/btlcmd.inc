@@ -1261,6 +1261,14 @@
     .long \target
     .endm
 
+    // Sovereign (item 11): Sky Drop's first turn. The attacker carries the defender up (Sovereign_SkyDropTryLift);
+    // jumps if the move fails (an ally, a substitute) or the defender weighs 200 kg or more.
+    .macro SovereignSkyDropLift jumpFail, jumpTooHeavy
+    .long BTLCMD_SOVEREIGNSKYDROPLIFT
+    .long (\jumpFail-.) / 4 - 2
+    .long (\jumpTooHeavy-.) / 4 - 1
+    .endm
+
     .text
     .globl _start
 _start:

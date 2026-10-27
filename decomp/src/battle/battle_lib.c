@@ -79,6 +79,9 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
     // Sovereign (item 11): a Pokemon coming in commands no Dondozo and is commanded by no Tatsugiri yet.
     battleCtx->sovereignCommanding &= ~FlagIndex(battler);
     battleCtx->sovereignCommanded &= ~FlagIndex(battler);
+    // Nor does it carry or get carried by Sky Drop; BattleSystem_TriggerEffectOnSwitch lets the other Pokemon go.
+    battleCtx->sovereignSkyDropTarget[battler] = 0;
+    battleCtx->sovereignSkyDropHolder[battler] = 0;
 
     battleCtx->battleMons[battler].species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     battleCtx->battleMons[battler].attack = Pokemon_GetValue(mon, MON_DATA_ATK, NULL);
@@ -3390,6 +3393,7 @@ BOOL Move_IsMultiTurn(BattleContext *battleCtx, int move)
     case BATTLE_EFFECT_ELECTRO_SHOT: // Sovereign (item 11)
     case BATTLE_EFFECT_SOVEREIGN_CHARGE_TURN_HIT:
     case BATTLE_EFFECT_SOVEREIGN_GEOMANCY:
+    case BATTLE_EFFECT_SOVEREIGN_SKY_DROP:
     case BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN:
     case BATTLE_EFFECT_FLY:
     case BATTLE_EFFECT_DIVE:
@@ -3755,6 +3759,17 @@ BOOL Battler_IsTrappedMsg(BattleSystem *battleSys, BattleContext *battleCtx, int
         return TRUE;
     }
 
+    // Sovereign (item 11): a Pokemon carried up by Sky Drop can't leave either (Showdown traps it outright).
+    if (Sovereign_SkyDropHolder(battleCtx, battler) != BATTLER_NONE) {
+        if (msgOut != NULL) {
+            msgOut->tags = TAG_NICKNAME;
+            msgOut->id = BattleStrings_Text_SovereignSkyDropWontLetGo_Ally; // "Sky Drop won't let {0} go!"
+            msgOut->params[0] = BattleSystem_NicknameTag(battleCtx, battler);
+        }
+
+        return TRUE;
+    }
+
     if (itemEffect == HOLD_EFFECT_FLEE
         || (battleType & BATTLE_TYPE_NO_EXPERIENCE)
         || Battler_Ability(battleCtx, battler) == ABILITY_RUN_AWAY
@@ -3956,6 +3971,7 @@ void BattleSystem_SortMonSpeedOrder(BattleSystem *battleSys, BattleContext *batt
 static const u16 sMovesAffectedByGravity[] = {
     MOVE_FLY,
     MOVE_BOUNCE,
+    MOVE_SKY_DROP, // Sovereign (item 11)
     MOVE_JUMP_KICK,
     MOVE_HI_JUMP_KICK,
     MOVE_SPLASH,
@@ -4670,6 +4686,7 @@ enum SwitchInCheckState {
     SWITCH_IN_CHECK_STATE_SOVEREIGN_SYMBIOSIS, // Sovereign (item 11)
     SWITCH_IN_CHECK_STATE_SOVEREIGN_ILLUSION, // Sovereign (item 11)
     SWITCH_IN_CHECK_STATE_SOVEREIGN_COMMANDER, // Sovereign (item 11)
+    SWITCH_IN_CHECK_STATE_SOVEREIGN_SKY_DROP, // Sovereign (item 11)
     SWITCH_IN_CHECK_STATE_SOVEREIGN_PRIMAL, // Sovereign (E8)
     SWITCH_IN_CHECK_STATE_SOVEREIGN_TOTEM_AURA, // Sovereign (decision 18)
     SWITCH_IN_CHECK_STATE_TRACE,
@@ -4897,6 +4914,37 @@ int BattleSystem_TriggerEffectOnSwitch(BattleSystem *battleSys, BattleContext *b
                 } else if (Sovereign_CanCommand(battleSys, battleCtx, battler)) {
                     Sovereign_StartCommander(battleSys, battleCtx, battler);
                     subscript = subscript_sovereign_commander;
+                    result = SWITCH_IN_CHECK_RESULT_BREAK;
+                    break;
+                }
+            }
+
+            if (i == maxBattlers) {
+                battleCtx->switchInCheckState++;
+            }
+            break;
+
+        case SWITCH_IN_CHECK_STATE_SOVEREIGN_SKY_DROP:
+            // Sovereign (item 11): a Pokemon carried up by Sky Drop is let go when the user faints, leaves or comes down
+            // without dropping it (full paralysis, Gravity), as in Showdown. One that fainted up there just leaves the
+            // user to land on its turn.
+            for (i = 0; i < maxBattlers; i++) {
+                battler = battleCtx->monSpeedOrder[i];
+                int holder = battleCtx->sovereignSkyDropHolder[battler] - 1;
+
+                if (holder < 0) {
+                    continue;
+                }
+
+                if (battleCtx->battleMons[battler].curHP == 0) {
+                    Sovereign_SkyDropLetGo(battleCtx, holder, battler);
+                } else if (Sovereign_SkyDropHolder(battleCtx, battler) == BATTLER_NONE
+                    || battleCtx->battleMons[holder].curHP == 0
+                    || (battleCtx->battleMons[holder].moveEffectsMask & MOVE_EFFECT_AIRBORNE) == FALSE) {
+                    Sovereign_SkyDropLetGo(battleCtx, holder, battler);
+                    battleCtx->battleMons[battler].moveEffectsTemp &= ~MOVE_EFFECT_SEMI_INVULNERABLE;
+                    battleCtx->sideEffectMon = battler;
+                    subscript = subscript_sovereign_sky_drop_freed;
                     result = SWITCH_IN_CHECK_RESULT_BREAK;
                     break;
                 }
@@ -8207,8 +8255,9 @@ BOOL Battler_IsTrapped(BattleSystem *battleSys, BattleContext *battleCtx, int ba
 {
     int result = FALSE;
 
-    // Sovereign (item 11): Commander (Battler_IsTrappedMsg).
-    if ((battleCtx->sovereignCommanding | battleCtx->sovereignCommanded) & FlagIndex(battler)) {
+    // Sovereign (item 11): Commander and Sky Drop (Battler_IsTrappedMsg).
+    if (((battleCtx->sovereignCommanding | battleCtx->sovereignCommanded) & FlagIndex(battler))
+        || Sovereign_SkyDropHolder(battleCtx, battler) != BATTLER_NONE) {
         return TRUE;
     }
 
@@ -9985,6 +10034,74 @@ static u32 Sovereign_Weight(BattleContext *battleCtx, int attacker, int battler)
     return weight ? weight : 1;
 }
 
+// Sovereign (item 11): the Pokemon the holder carries up by Sky Drop, BATTLER_NONE for none.
+int Sovereign_SkyDropTarget(BattleContext *battleCtx, int holder)
+{
+    int target = battleCtx->sovereignSkyDropTarget[holder] - 1;
+
+    if (target < 0 || battleCtx->sovereignSkyDropHolder[target] != holder + 1) {
+        return BATTLER_NONE;
+    }
+
+    return target;
+}
+
+// Sovereign (item 11): the Pokemon carrying the target up by Sky Drop, BATTLER_NONE for none.
+int Sovereign_SkyDropHolder(BattleContext *battleCtx, int target)
+{
+    int holder = battleCtx->sovereignSkyDropHolder[target] - 1;
+
+    if (holder < 0 || battleCtx->sovereignSkyDropTarget[holder] != target + 1) {
+        return BATTLER_NONE;
+    }
+
+    return holder;
+}
+
+// Sovereign (item 11): Sky Drop's first turn, past Protect and the like (Showdown's onTryHit). 1: it fails on the
+// user's ally and on a substitute. 2: a target of 200 kg or more is too heavy. 0: the user carries the target up; both
+// are in the air (out of reach of most moves), and the target can't move or switch out until it's dropped or let go.
+int Sovereign_SkyDropTryLift(BattleSystem *battleSys, BattleContext *battleCtx, int holder, int target)
+{
+    if (BattleSystem_GetBattlerSide(battleSys, holder) == BattleSystem_GetBattlerSide(battleSys, target)
+        || (battleCtx->battleMons[target].statusVolatile & VOLATILE_CONDITION_SUBSTITUTE)) {
+        return 1;
+    }
+
+    if (Sovereign_Weight(battleCtx, holder, target) >= 2000) {
+        return 2;
+    }
+
+    battleCtx->sovereignSkyDropTarget[holder] = target + 1;
+    battleCtx->sovereignSkyDropHolder[target] = holder + 1;
+    battleCtx->battleMons[holder].moveEffectsMask |= MOVE_EFFECT_AIRBORNE;
+    battleCtx->battleMons[target].moveEffectsMask |= MOVE_EFFECT_AIRBORNE;
+    return 0;
+}
+
+// Sovereign (item 11): the holder lets its Sky Drop target go; the target is back on the ground.
+void Sovereign_SkyDropLetGo(BattleContext *battleCtx, int holder, int target)
+{
+    battleCtx->sovereignSkyDropTarget[holder] = 0;
+    battleCtx->sovereignSkyDropHolder[target] = 0;
+    battleCtx->battleMons[target].moveEffectsMask &= ~MOVE_EFFECT_AIRBORNE;
+}
+
+// Sovereign (item 11): Smack Down and Thousand Arrows bring a Pokemon in the air by Fly or Bounce down: its move ends,
+// and if its turn is still to come, it's lost (Showdown). Sky Drop's pair stays up. TRUE if the battler came down.
+BOOL Sovereign_SmackDownFlyer(BattleContext *battleCtx, int battler)
+{
+    if ((battleCtx->battleMons[battler].moveEffectsMask & MOVE_EFFECT_AIRBORNE) == FALSE
+        || battleCtx->sovereignSkyDropTarget[battler]
+        || battleCtx->sovereignSkyDropHolder[battler]) {
+        return FALSE;
+    }
+
+    Battler_UnlockMoveChoice(NULL, battleCtx, battler);
+    battleCtx->battlerActions[battler][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_MOVE_END;
+    return TRUE;
+}
+
 // Sovereign (item 11): how many consecutive turns Echoed Voice will have been used if used now (1-5).
 int Sovereign_EchoedVoiceCount(BattleContext *battleCtx)
 {
@@ -11694,6 +11811,7 @@ static BOOL MoveIsOnDamagingTurn(BattleContext *battleCtx, int move)
     case BATTLE_EFFECT_ELECTRO_SHOT: // Sovereign (item 11)
     case BATTLE_EFFECT_SOVEREIGN_CHARGE_TURN_HIT:
     case BATTLE_EFFECT_SOVEREIGN_GEOMANCY:
+    case BATTLE_EFFECT_SOVEREIGN_SKY_DROP:
     case BATTLE_EFFECT_SKIP_CHARGE_TURN_IN_SUN:
     case BATTLE_EFFECT_FLY:
     case BATTLE_EFFECT_DIVE:

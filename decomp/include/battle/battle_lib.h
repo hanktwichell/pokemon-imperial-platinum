@@ -1291,6 +1291,11 @@ BOOL Sovereign_SpectralThief(BattleContext *battleCtx, int attacker, int defende
 BOOL Sovereign_StartIonDeluge(BattleContext *battleCtx);
 BOOL Sovereign_StartFairyLock(BattleContext *battleCtx);
 BOOL Sovereign_CanInstruct(BattleContext *battleCtx, int target);
+int Sovereign_SkyDropTarget(BattleContext *battleCtx, int holder);
+int Sovereign_SkyDropHolder(BattleContext *battleCtx, int target);
+int Sovereign_SkyDropTryLift(BattleSystem *battleSys, BattleContext *battleCtx, int holder, int target);
+void Sovereign_SkyDropLetGo(BattleContext *battleCtx, int holder, int target);
+BOOL Sovereign_SmackDownFlyer(BattleContext *battleCtx, int battler);
 BOOL Sovereign_IsDanceMove(int move);
 BOOL Sovereign_StartOctolock(BattleContext *battleCtx);
 BOOL Sovereign_Spotlight(BattleSystem *battleSys, BattleContext *battleCtx);

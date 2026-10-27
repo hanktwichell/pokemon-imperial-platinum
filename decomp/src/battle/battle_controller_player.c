@@ -2186,6 +2186,14 @@ static void BattleControllerPlayer_FightCommand(BattleSystem *battleSys, BattleC
     BOOL randomizeTarget = FALSE;
     battleCtx->attacker = battleCtx->battlerActionOrder[battleCtx->turnOrderCounter];
 
+    // Sovereign (item 11): a Pokemon carried up by Sky Drop can't move; its move is lost without a word or any PP
+    // (Showdown).
+    if (Sovereign_SkyDropHolder(battleCtx, battleCtx->attacker) != BATTLER_NONE) {
+        battleCtx->defender = BATTLER_NONE;
+        battleCtx->command = BATTLE_CONTROL_MOVE_END;
+        return;
+    }
+
     if (ATTACKER_TURN_FLAGS.struggling) {
         battleCtx->moveTemp = MOVE_STRUGGLE;
         randomizeTarget = TRUE;
@@ -2221,6 +2229,11 @@ static void BattleControllerPlayer_FightCommand(BattleSystem *battleSys, BattleC
     battleCtx->moveCur = battleCtx->moveTemp;
     battleCtx->command = BATTLE_CONTROL_BEFORE_MOVE;
     battleCtx->defender = BattleSystem_Defender(battleSys, battleCtx, battleCtx->attacker, battleCtx->moveTemp, randomizeTarget, 0);
+
+    // Sovereign (item 11): Sky Drop's second turn drops the Pokemon the user carries, if it's still up there.
+    if (battleCtx->moveCur == MOVE_SKY_DROP && (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_MOVE_LOCKED)) {
+        battleCtx->defender = Sovereign_SkyDropTarget(battleCtx, battleCtx->attacker);
+    }
 
     BattleController_EmitClearMessageBox(battleSys);
 }
@@ -3526,7 +3539,18 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
     battleCtx->sovereignShieldContact = MOVE_NONE; // Sovereign (item 11)
     battleCtx->sovereignGuardBlock = MOVE_NONE;
 
-    if (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) {
+    // Sovereign (item 11): unlike other charge turns, Sky Drop's first can be blocked by Protect and the like and dodged
+    // by a Pokemon out of reach (Showdown); it ignores accuracy all the same (BattleControllerPlayer_CheckMoveHitAccuracy).
+    if ((battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) && move != MOVE_SKY_DROP) {
+        return 0;
+    }
+
+    // Sovereign (item 11): Sky Drop's drop doesn't hurt a Flying type.
+    if (move == MOVE_SKY_DROP
+        && (battleCtx->battleStatusMask & SYSCTL_FIRST_OF_MULTI_TURN) == FALSE
+        && attacker != defender
+        && MON_HAS_TYPE(defender, TYPE_FLYING)) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_INEFFECTIVE;
         return 0;
     }
 
@@ -3555,7 +3579,9 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
         && (MOVE_DATA(move).flags & MOVE_FLAG_CAN_PROTECT)
         && (MOVE_DATA(move).class != CLASS_STATUS || Sovereign_ShieldBlocksStatusMoves(battleCtx->sovereignShieldMove[defender])) // Sovereign (item 11)
         && (move != MOVE_CURSE || Move_IsGhostCurse(battleCtx, move, attacker) == TRUE) // Ghost-Curse can be Protected
-        && (Move_IsMultiTurn(battleCtx, move) == FALSE || (battleCtx->battleStatusMask & SYSCTL_LAST_OF_MULTI_TURN))) {
+        && (Move_IsMultiTurn(battleCtx, move) == FALSE
+            || (battleCtx->battleStatusMask & SYSCTL_LAST_OF_MULTI_TURN)
+            || move == MOVE_SKY_DROP)) { // Sovereign (item 11): Protect stops Sky Drop's lift
         Battler_UnlockMoveChoice(battleSys, battleCtx, attacker);
         battleCtx->moveStatusFlags |= MOVE_STATUS_PROTECTED;
 
@@ -3992,6 +4018,15 @@ static void BattleControllerPlayer_BeforeMove(BattleSystem *battleSys, BattleCon
         battleCtx->command = BATTLE_CONTROL_MOVE_FAILED;
     } else {
         battleCtx->battleStatusMask2 |= SYSCTL_MOVE_SUCCEEDED;
+
+        // Sovereign (item 11): Sky Drop's second turn, past full paralysis and the like: the user lets its target go
+        // (BattleControllerPlayer_FightCommand aimed the drop at it).
+        if (battleCtx->moveCur == MOVE_SKY_DROP
+            && (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_MOVE_LOCKED)
+            && battleCtx->defender != BATTLER_NONE
+            && Sovereign_SkyDropTarget(battleCtx, battleCtx->attacker) == battleCtx->defender) {
+            Sovereign_SkyDropLetGo(battleCtx, battleCtx->attacker, battleCtx->defender);
+        }
 
         // Sovereign (item 11): in a double battle, Dragon Darts aimed at a foe throws one dart at it and one at its
         // ally, each a pass of the move at one target (Sovereign_DragonDartsNext).

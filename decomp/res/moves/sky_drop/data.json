@@ -10,7 +10,7 @@
     "accuracy": 100,
     "pp": 10,
     "effect": {
-        "type": "BATTLE_EFFECT_HIT",
+        "type": "BATTLE_EFFECT_SOVEREIGN_SKY_DROP",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",
@@ -19,7 +19,8 @@
         "MOVE_FLAG_MAKES_CONTACT",
         "MOVE_FLAG_CAN_PROTECT",
         "MOVE_FLAG_CAN_MIRROR_MOVE",
-        "MOVE_FLAG_TRIGGERS_KINGS_ROCK"
+        "MOVE_FLAG_TRIGGERS_KINGS_ROCK",
+        "MOVE_FLAG_HIDES_SHADOWS"
     ],
     "contest": {
         "effect": "CONTEST_EFFECT_BASIC",
