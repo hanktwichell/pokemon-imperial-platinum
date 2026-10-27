@@ -416,6 +416,11 @@ VALUE_FIXES = {
                                "time, no one can fall\n", "asleep."]},
     "dark_void": {"description": ["The foes are dragged\n", "into total darkness\n", "that puts them to\n",
                                   "sleep. Only Darkrai\n", "can use it."]},
+    # Batch F: a variable-power move has power 1 in the data, as Platinum's have (Taunt, Me First and the trainer AI take
+    # a move with power 0 for a status move); Sovereign_MovePower works out Hard Press's.
+    "hard_press": {"power": 1},
+    # Mirror Move is aimed at a foe and copies that foe's last move (Gen V+).
+    "mirror_move": {"range": "RANGE_SINGLE_TARGET"},
 }
 
 

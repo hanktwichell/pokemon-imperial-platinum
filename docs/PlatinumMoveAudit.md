@@ -116,16 +116,16 @@ this engine models) · **GEN_IV** (still Gen IV, needs a change) · **PARTIAL** 
 9. ✅ *Done in moves batch B (CB-0211).* **Destiny Bond (#194).** At `CHECK_STATUS_START` (`battle_controller_player.c:2804`), if `moveCur ==
    MOVE_DESTINY_BOND` and the flag is still set, record it (for example, a `sovereignDestinyBondRepeat` bit) before
    clearing. Then make `effect_script_0098.s` fail with "But it failed!".
-10. **Metronome (#118).** Remove the "already known" loop in `BtlCmd_Metronome` and the Gravity/Heal Block filter.
+10. ✅ *Done in moves batch F (CB-0215): `sCannotMetronomeMoves` is every move Gen IX doesn't flag `metronome` (154 here); Mimic has its own list since batch E.* **Metronome (#118).** Remove the "already known" loop in `BtlCmd_Metronome` and the Gravity/Heal Block filter.
     Grow `sCannotMetronomeMoves` to every move Gen IX doesn't flag `metronome` (the list is in this audit's script
     output: Transform, Snore, Nature Power and the Gen V–IX ones). Keep the Mimic part of the list separate (see 18).
-11. **Mirror Move (#119).** Rewrite `BtlCmd_SetMirrorMove` to take the chosen target's last move
+11. ✅ *Done in moves batch F (CB-0215).* **Mirror Move (#119).** Rewrite `BtlCmd_SetMirrorMove` to take the chosen target's last move
     (`movePrevByBattler[defender]`) when it has `MOVE_FLAG_CAN_MIRROR_MOVE`, and change its range to
     `RANGE_SINGLE_TARGET`.
-12. **Absorb, Mega Drain, Giga Drain, Leech Life (#71, #72, #202, #141), and Dream Eater's Heal Block half.** Make
+12. ✅ *Done in moves batch F (CB-0215).* **Absorb, Mega Drain, Giga Drain, Leech Life (#71, #72, #202, #141), and Dream Eater's Heal Block half.** Make
     `Move_HealBlocked` use the `heal` list `sHealingMoves` (`battle_lib.c:9824`, already used for Triage) in place of
     `sMovesAffectedByHealBlock`. Then Heal Block and Psychic Noise block the drain moves, as in Gen VI+.
-13. ✅ *Substitute half done in moves batch E (CB-0214); Heal Block waits on 12.* **Dream Eater (#138).** Remove `CheckSubstitute` from `effect_script_0008.s` so the hit goes to the substitute
+13. ✅ *Substitute half done in moves batch E (CB-0214), Heal Block half in moves batch F (CB-0215).* **Dream Eater (#138).** Remove `CheckSubstitute` from `effect_script_0008.s` so the hit goes to the substitute
     (it drains from it). Heal Block: see 12.
 14. ✅ *Done in moves batch E (CB-0214).* **Curse (#174).** Remove `CheckSubstitute` from `subscript_curse_ghost.s` (Ghost Curse has `bypasssub`). Make
     `effect_script_0109.s` test Ghost with the third type too, as `Move_IsGhostCurse` does.
@@ -279,7 +279,7 @@ Sovereign, Magic Coat and Magic Bounce both use this flag (bcp:~3847, bcp:~3871)
 7. ✅ *Typed when it lands in moves batch D (CB-0213): STAB, effectiveness and immunity against the Pokémon then in the slot, with the messages. The damage is still worked out when used, and can't crit.* **Future Sight / Doom Desire (248, 353)**: work the damage out when the attack lands (or at least apply type effectiveness and immunity: Psychic, so Dark is immune; Steel), with crits allowed, instead of the typeless amount stored at bs:6482.
 8. ✅ *Done in moves batch A (CB-0210).* **Sheer Cold (329)**: in `TryOHKOMove` (bs:4654), make Ice types immune and use 20 base accuracy when the user isn't Ice-type.
 9. ✅ *Done in moves batch B (CB-0211): a third bit marks the 4th turn.* **Tailwind (366)**: give Tailwind a 3-bit or separate per-side counter (the 2-bit field at `condition.h` TAILWIND_0/1 can't hold 4) and set it to 4.
-10. ✅ *Lengths done in moves batch B (CB-0211), the reflect flags in moves batch C (CB-0212); Encore's list and Me First are still to do.* **Encore (227) and Taunt (269)**:
+10. ✅ *Lengths done in moves batch B (CB-0211), the reflect flags in moves batch C (CB-0212), Encore's list and Me First through Taunt in moves batch F (CB-0215).* **Encore (227) and Taunt (269)**:
     - Encore: `encoredTurns` = 2 if the target hasn't moved yet this turn, else 3 (bs:5062).
     - Taunt: 3, or 4 if the target already moved (replace `Random 2, 3`).
     - Both: add `CAN_MAGIC_COAT`.
@@ -290,15 +290,15 @@ Sovereign, Magic Coat and Magic Bounce both use this flag (bcp:~3847, bcp:~3871)
 13. ✅ *Done in moves batch B (CB-0211); Electromorphosis's and Wind Power's charge last the same way.* **Charge (268)**: don't expire it after a turn (bcp:1946). Clear `MOVE_EFFECT_CHARGE` when the user uses an Electric move other than Charge, or switches out.
 14. ✅ *Done in moves batch C (CB-0212), Disable, Spite, Spikes and Foresight too.* **Moves that should be reflectable (259 Torment, 316 Odor Sleuth, 357 Miracle Eye, 373 Embargo, 377 Heal Block, 390 Toxic Spikes, 432 Defog, 446 Stealth Rock, and Encore/Taunt above)**: add `MOVE_FLAG_CAN_MAGIC_COAT`. Check that side moves bounce as Sticky Web's does. Stealth Rock against Magic Bounce is the case players will notice most.
 15. **Payback (371)**: at bs:7628, don't double against a target that switched in this turn.
-16. **Sleep Talk (214)**: in `TrySleepTalk` don't let Choice lock or Encore mark the slots invalid; pass a mask without `CHECK_INVALID_CHOICE_ITEM`, and bypass the Encore check that runs regardless of the mask (bl:2452). Also exclude Belch, Beak Blast, Shell Trap, Mimic, Sketch and Nature Power.
+16. ✅ *Done in moves batch F (CB-0215): Gen IX's `nosleeptalk` list; Disable, Torment, Taunt and Imprison don't limit it either (Showdown), while a move Gravity, Heal Block or Throat Chop stops is left out.* **Sleep Talk (214)**: in `TrySleepTalk` don't let Choice lock or Encore mark the slots invalid; pass a mask without `CHECK_INVALID_CHOICE_ITEM`, and bypass the Encore check that runs regardless of the mask (bl:2452). Also exclude Belch, Beak Blast, Shell Trap, Mimic, Sketch and Nature Power.
 17. ✅ *Done in moves batch C (CB-0212).* **Mean Look, Block (212, 335)**: remove `MOVE_FLAG_CAN_PROTECT` from both data files.
 18. ✅ *Done in moves batch D (CB-0213): Dragon Rush is on `Move_PunishesMinimize`'s Gen IX list; Shadow Force was only on Gen VI's.* **Dragon Rush, Shadow Force (407, 467)**: double damage and a sure hit against a Minimized target (a Gen VI+ list of Minimize punishers). Stomp, Body Slam and Steamroller should get the sure hit too; those are part 1's range.
-19. **Heal Block (377) and Drain Punch (409)**:
+19. ✅ *First two points done in moves batch F (CB-0215): Heal Block uses `sHealingMoves`, the `heal` list; blocking Leftovers, Berries and abilities is still to do.* **Heal Block (377) and Drain Punch (409)**:
     - Add the drain moves (Absorb, Mega Drain, Giga Drain, Drain Punch, Dream Eater, Leech Life, Horn Leech, Draining Kiss, Parabolic Charge, Oblivion Wing, Bitter Blade, Matcha Gotcha, Bouncy Bubble) to `sMovesAffectedByHealBlock` (bl:4012).
     - Add the Gen V+ healing moves too (Heal Pulse, Floral Healing, Shore Up, Strength Sap, Purify, Life Dew, Jungle Healing, Lunar Blessing).
     - Block Leftovers, Black Sludge, Berries, Shell Bell and healing abilities while Heal Block is active.
 20. ✅ *Done in moves batch E (CB-0214); `CAN_MIRROR_MOVE` came in moves batch C.* **Chatter (448)**: 100% confusion for any user, replacing the cry-volume roll at bs:8835. Add `CAN_MIRROR_MOVE`.
-21. **Assist, Copycat (274, 383)**: give them Gen IX's lists of moves they can't call (separate from Metronome's Gen IV list at bl:11475) and remove the Gravity and Heal Block filter (bl:11526).
+21. ✅ *Done in moves batch F (CB-0215).* **Assist, Copycat (274, 383)**: give them Gen IX's lists of moves they can't call (separate from Metronome's Gen IV list at bl:11475) and remove the Gravity and Heal Block filter (bl:11526).
 22. ✅ *Done in moves batch E (CB-0214).* **Sweet Scent (230)**: a new evasion −2 effect using `MOVE_SUBSCRIPT_PTR_EVASION_DOWN_2_STAGES` (the old EVA_DOWN_2 effect 63 is an unused stub).
 23. ✅ *Done in moves batch E (CB-0214): `SOVEREIGN_TAIL_GLOW` from `gen_stat_moves.py`.* **Tail Glow (294)**: a user Sp. Atk +3 effect, like Cotton Guard's `SOVEREIGN_COTTON_GUARD`.
 24. **Mud Sport, Water Sport (300, 346)**: turn each into a 5-turn field condition that fails while active, with Electric (Fire) power ×1352/4096 (bl:10820, bl:10824).
@@ -311,7 +311,7 @@ Sovereign, Magic Coat and Magic Bounce both use this flag (bcp:~3847, bcp:~3871)
     - Secret Power: 30% paralysis, sleep, Sp. Atk −1 or Speed −1.
     - Camouflage: Electric, Grass, Fairy or Psychic.
     - Keep Platinum's location tables as the fallback.
-30. **Me First (382)**: apply the ×1.5 to power instead of final damage (bs:1389). Add Metal Burst, Comeuppance, Belch, Beak Blast and Shell Trap to `sCannotMeFirstMoves`.
+30. ✅ *Done in moves batch F (CB-0215): Gen IX's `failmefirst` list, which also has Struggle and the Torques.* **Me First (382)**: apply the ×1.5 to power instead of final damage (bs:1389). Add Metal Burst, Comeuppance, Belch, Beak Blast and Shell Trap to `sCannotMeFirstMoves`.
 31. ✅ *Done in moves batch E (CB-0214), Laser Focus too; `CAN_SNATCH` went in moves batch C.* **Psych Up (244, PARTIAL)**: remove `CAN_SNATCH`. Clear the user's Focus Energy and `sovereignDragonCheer`, then copy the target's (bs:6455).
 32. **Gravity (356, PARTIAL)**: add Flying Press and Telekinesis to `sMovesAffectedByGravity` (bl:3986). End Telekinesis in sub gravity_start. Make Gravity override the Telekinesis Ground immunity (bl:2855).
 33. **Aromatherapy (312)**: skip the partner or bench Pokémon with Sap Sipper or Good as Gold, and a partner behind a Substitute, as Heal Bell's Sovereign code does.

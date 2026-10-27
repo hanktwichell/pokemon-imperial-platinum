@@ -1421,6 +1421,11 @@ BOOL Move_CanBeSketched(u16 move);
  */
 BOOL Move_CanBeMetronomed(BattleSystem *battleSys, BattleContext *battleCtx, int battler, u16 move);
 
+// Sovereign: Gen IX's lists of moves Assist, Copycat and Sleep Talk can't call (battle_lib.c).
+BOOL Move_CanBeAssisted(u16 move);
+BOOL Move_CanBeCopycatted(u16 move);
+BOOL Move_CanBeSleepTalked(u16 move);
+
 /**
  * @brief Check if a move can be Encored.
  *

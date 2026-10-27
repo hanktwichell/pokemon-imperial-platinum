@@ -2971,7 +2971,8 @@ static BOOL BattleControllerPlayer_CheckStatusDisruption(BattleSystem *battleSys
 
         case CHECK_STATUS_STATE_TAUNT:
             if (ATTACKING_MON.moveEffectsData.tauntedTurns
-                && battleCtx->aiContext.moveTable[battleCtx->moveCur].power == 0) {
+                && battleCtx->aiContext.moveTable[battleCtx->moveCur].power == 0
+                && battleCtx->moveCur != MOVE_ME_FIRST) { // Sovereign: Taunt lets Me First through (Gen V+)
                 battleCtx->moveFailFlags[battleCtx->attacker].taunted = TRUE;
 
                 LOAD_SUBSEQ(subscript_move_fail_taunted);

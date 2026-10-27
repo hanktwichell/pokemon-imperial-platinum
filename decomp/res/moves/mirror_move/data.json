@@ -15,7 +15,7 @@
         "type": "BATTLE_EFFECT_COPY_MOVE",
         "chance": 0
     },
-    "range": "RANGE_SINGLE_TARGET_SPECIAL",
+    "range": "RANGE_SINGLE_TARGET",
     "priority": 0,
     "flags": [],
     "contest": {

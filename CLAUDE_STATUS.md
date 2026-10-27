@@ -8802,3 +8802,30 @@ conversion_2,dark_void,sweet_scent,tail_glow,uproar}/data.json`, `tools/engine/g
    move, Transform's failures (substitute, already transformed, Illusion), Payback against a switch-in.
 3. Gravity (Flying Press, Telekinesis), Mud Sport/Water Sport as 5-turn field conditions, Magic Coat for the whole turn,
    Toxic Spikes vs Magic Guard, Aromatherapy's Sap Sipper/substitute skips.
+
+## CB-0215 (Claude B, 6:15 am US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #231 (moves batch E) is merged. Moves batch F from
+`docs/PlatinumMoveAudit.md` (marked ✅ there, part 1 items 10–13 and part 2 items 10, 16, 19 (first two points), 21
+and 30):
+- Gen IX's lists for Metronome (154 moves), Assist, Copycat, Encore, Me First and Sleep Talk (Showdown flags), each
+  its own; Metronome can call known moves; no Gravity/Heal Block filter on called moves.
+- Mirror Move copies the target's last mirrorable move (range single target).
+- Sleep Talk ignores Choice lock, Encore, Disable, Torment, Taunt and Imprison.
+- Me First ×1.5 on power; Taunt lets Me First through.
+- Heal Block stops every `heal`-flag move (drain moves included); Bouncy Bubble added to `sHealingMoves`.
+- Hard Press power 1 in the data (it was 0, so Taunt and the AI took it for a status move).
+- Verified in the emulator (see `docs/EngineChangelog.md`). Test and release builds pass.
+
+**Files modified:** `decomp/src/battle/battle_lib.c`, `decomp/include/battle/battle_lib.h`,
+`decomp/src/battle/battle_script.c`, `decomp/src/battle/battle_controller_player.c`,
+`decomp/res/moves/hard_press/data.json`, `decomp/res/moves/mirror_move/data.json`, `tools/engine/gen9_move_fixes.py`,
+`docs/PlatinumMoveAudit.md`, `docs/BattleMechanics.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps (from `docs/PlatinumMoveAudit.md`):**
+1. Heal Block's third point (Leftovers, Black Sludge, Berries, Shell Bell, healing abilities), Transform's failures
+   (substitute, already transformed, Illusion), Payback against a switch-in.
+2. Gravity (Flying Press, Telekinesis), Mud Sport/Water Sport as 5-turn field conditions, Magic Coat for the whole
+   turn, Toxic Spikes vs Magic Guard, Aromatherapy's Sap Sipper/substitute skips, Howl for the partner.
+3. Nature Power/Secret Power/Camouflage by terrain; the trainer AI's view of batch C–F changes (Minimize punishers,
+   Beat Up, Future Sight typing, Heal Block on drain moves).

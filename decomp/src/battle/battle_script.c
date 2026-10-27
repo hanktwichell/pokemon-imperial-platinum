@@ -1364,12 +1364,28 @@ static void BattleScript_CalcMoveDamage(BattleSystem *battleSys, BattleContext *
     }
     moveType = Sovereign_AbilityMoveType(Battler_Ability(battleCtx, battleCtx->attacker), battleCtx->moveCur, battleCtx->moveType ? battleCtx->moveType : CURRENT_MOVE_DATA.type); // Sovereign (item 11)
 
+    int power = battleCtx->movePower;
+
+    // Sovereign: Me First's ×1.5 goes on the copied move's power (Gen V+), not on the final damage.
+    if (ATTACKING_MON.moveEffectsData.meFirst) {
+        // TODO: Document how this works after documenting the Me First behavior.
+        if (battleCtx->meFirstTurnOrder == ATTACKING_MON.moveEffectsData.meFirstTurnNumber) {
+            ATTACKING_MON.moveEffectsData.meFirstTurnNumber--;
+        }
+
+        if (battleCtx->meFirstTurnOrder - ATTACKING_MON.moveEffectsData.meFirstTurnNumber < 2) {
+            power = (power ? power : CURRENT_MOVE_DATA.power) * 15 / 10;
+        } else {
+            ATTACKING_MON.moveEffectsData.meFirst = 0;
+        }
+    }
+
     battleCtx->damage = BattleSystem_CalcMoveDamage(battleSys,
         battleCtx,
         battleCtx->moveCur,
         battleCtx->sideConditionsMask[BattleSystem_GetBattlerSide(battleSys, battleCtx->defender)],
         battleCtx->fieldConditionsMask,
-        battleCtx->movePower,
+        power,
         moveType,
         battleCtx->attacker,
         battleCtx->defender,
@@ -1384,19 +1400,6 @@ static void BattleScript_CalcMoveDamage(BattleSystem *battleSys, BattleContext *
     // gave ×1.1, up to ×2.
     if (Battler_HeldItemEffect(battleCtx, battleCtx->attacker) == HOLD_EFFECT_BOOST_REPEATED) {
         battleCtx->damage = battleCtx->damage * (10 + 2 * ATTACKING_MON.moveEffectsData.metronomeTurns) / 10;
-    }
-
-    if (ATTACKING_MON.moveEffectsData.meFirst) {
-        // TODO: Document how this works after documenting the Me First behavior.
-        if (battleCtx->meFirstTurnOrder == ATTACKING_MON.moveEffectsData.meFirstTurnNumber) {
-            ATTACKING_MON.moveEffectsData.meFirstTurnNumber--;
-        }
-
-        if (battleCtx->meFirstTurnOrder - ATTACKING_MON.moveEffectsData.meFirstTurnNumber < 2) {
-            battleCtx->damage = battleCtx->damage * 15 / 10;
-        } else {
-            ATTACKING_MON.moveEffectsData.meFirst = 0;
-        }
     }
 }
 
@@ -3720,6 +3723,10 @@ static BOOL BtlCmd_CallFromVar(BattleSystem *battleSys, BattleContext *battleCtx
 /**
  * @brief Set the move to be copied by Mirror Move.
  *
+ * Sovereign: the target's last move, if it can be mirrored (Gen V+). Platinum
+ * copied the last mirrorable move that hit the user (in doubles, one of them at
+ * random).
+ *
  * @param battleSys
  * @param battleCtx
  * @return FALSE
@@ -3727,28 +3734,14 @@ static BOOL BtlCmd_CallFromVar(BattleSystem *battleSys, BattleContext *battleCtx
 static BOOL BtlCmd_SetMirrorMove(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     int move = MOVE_NONE;
-    int battleType = BattleSystem_GetBattleType(battleSys);
 
     BattleScript_Iter(battleCtx, 1);
 
-    if (battleCtx->moveCopied[battleCtx->attacker]) {
-        move = battleCtx->moveCopied[battleCtx->attacker];
-    } else if (battleType & BATTLE_TYPE_DOUBLES) {
-        // In double battles, choose randomly.
-        move = battleCtx->moveCopiedHit[battleCtx->attacker][0]
-            + battleCtx->moveCopiedHit[battleCtx->attacker][1]
-            + battleCtx->moveCopiedHit[battleCtx->attacker][2]
-            + battleCtx->moveCopiedHit[battleCtx->attacker][3];
-
-        if (move) {
-            do {
-                move = battleCtx->moveCopiedHit[battleCtx->attacker][BattleSystem_RandNext(battleSys) % 4];
-            } while (move == MOVE_NONE);
-        }
+    if (battleCtx->defender != BATTLER_NONE && (MOVE_DATA(DEFENDER_LAST_MOVE).flags & MOVE_FLAG_CAN_MIRROR_MOVE)) {
+        move = DEFENDER_LAST_MOVE;
     }
 
-    // Mirror Move shares a legality table with Encore
-    if (move && Move_CanBeEncored(battleCtx, move) == TRUE) {
+    if (move) {
         battleCtx->battleStatusMask &= ~SYSCTL_SKIP_ATTACK_MESSAGE;
         battleCtx->battleStatusMask &= ~SYSCTL_PLAYED_MOVE_ANIMATION;
         battleCtx->moveCur = move;
@@ -4841,20 +4834,10 @@ static BOOL BtlCmd_Metronome(BattleSystem *battleSys, BattleContext *battleCtx)
     BattleScript_Iter(battleCtx, 1);
 
     while (TRUE) {
-        int i;
         u16 move = (BattleSystem_RandNext(battleSys) % NUM_VALID_MOVES) + 1;
 
-        // Do not try to invoke a move that we already know.
-        for (i = 0; i < LEARNED_MOVES_MAX; i++) {
-            if (ATTACKING_MON.moves[i] == move) {
-                break;
-            }
-        }
-        if (i != LEARNED_MOVES_MAX) {
-            continue;
-        }
-
-        // Check if the move is allowed to be Metronomed globally
+        // Check if the move is allowed to be Metronomed globally. Sovereign: a move the user knows can be called
+        // too (Gen V+).
         if (Move_CanBeMetronomed(battleSys, battleCtx, battleCtx->attacker, move) == FALSE) {
             continue;
         }
@@ -5187,14 +5170,13 @@ static BOOL BtlCmd_TrySketch(BattleSystem *battleSys, BattleContext *battleCtx)
  * @brief Try to execute the Sleep Talk effect.
  *
  * Sleep Talk will try to invoke another move that the attacker knows, barring:
- * - other invoker-class moves (see Move_IsInvoker)
- * - Focus Punch
- * - Uproar
- * - Chatter
+ * - Sovereign: the moves on Gen IX's list (see Move_CanBeSleepTalked)
  * - Multi-turn moves
  *
  * It will permit invocation of any other move, including those which have had
- * their PP wholly depleted.
+ * their PP wholly depleted. Sovereign: a Choice item's lock, Encore, Disable,
+ * Torment, Taunt and Imprison don't limit it (Gen V+); a move Gravity, Heal
+ * Block or Throat Chop would stop is still left out.
  *
  * Inputs:
  * 1. The distance to jump if the effect fails to execute.
@@ -5213,17 +5195,19 @@ static BOOL BtlCmd_TrySleepTalk(BattleSystem *battleSys, BattleContext *battleCt
 
     // Check for invalid moves for the random selection
     for (i = 0; i < LEARNED_MOVES_MAX; i++) {
-        if (Move_IsInvoker(ATTACKING_MON.moves[i])
-            || ATTACKING_MON.moves[i] == MOVE_FOCUS_PUNCH
-            || ATTACKING_MON.moves[i] == MOVE_UPROAR
-            || ATTACKING_MON.moves[i] == MOVE_CHATTER
+        if (Move_CanBeSleepTalked(ATTACKING_MON.moves[i]) == FALSE
             || Move_IsMultiTurn(battleCtx, ATTACKING_MON.moves[i])) {
             invalidMovesMask |= FlagIndex(i);
         }
     }
 
-    // Check for other invalid moves (only skip the PP check)
-    invalidMovesMask = BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battleCtx->attacker, invalidMovesMask, ~CHECK_INVALID_NO_PP);
+    // Check for other invalid moves. Sovereign: only empty slots and what Gravity, Heal Block and Throat Chop stop;
+    // Encore's lock, which BattleSystem_CheckInvalidMoves always applies, is lifted for the check.
+    u16 encoredMove = ATTACKING_MON.moveEffectsData.encoredMove;
+    ATTACKING_MON.moveEffectsData.encoredMove = MOVE_NONE;
+    invalidMovesMask = BattleSystem_CheckInvalidMoves(battleSys, battleCtx, battleCtx->attacker, invalidMovesMask,
+        CHECK_INVALID_NO_MOVE | CHECK_INVALID_GRAVITY | CHECK_INVALID_HEAL_BLOCK | CHECK_INVALID_THROAT_CHOP);
+    ATTACKING_MON.moveEffectsData.encoredMove = encoredMove;
     if (invalidMovesMask == STRUGGLING_ALL) {
         BattleScript_Iter(battleCtx, jumpOnFail);
     } else {
@@ -6827,7 +6811,9 @@ static BOOL BtlCmd_TryAssist(BattleSystem *battleSys, BattleContext *battleCtx)
             && Pokemon_GetValue(mon, MON_DATA_SPECIES_OR_EGG, NULL) != SPECIES_EGG) {
             for (j = 0; j < LEARNED_MOVES_MAX; j++) {
                 move = Pokemon_GetValue(mon, MON_DATA_MOVE1 + j, NULL);
-                if (Move_IsInvoker(move) == FALSE && Move_CanBeMetronomed(battleSys, battleCtx, battleCtx->attacker, move) == TRUE) {
+                // Sovereign: Assist's own list (Gen V+), not Metronome's; a move Gravity or Heal Block stops can be
+                // called, and then fails.
+                if (move != MOVE_NONE && Move_CanBeAssisted(move) == TRUE) {
                     moves[numMoves] = move;
                     numMoves++;
                 }
@@ -7696,9 +7682,9 @@ static BOOL BtlCmd_TryMeFirst(BattleSystem *battleSys, BattleContext *battleCtx)
  * @brief Try to execute Copycat.
  *
  * Inputs:
- * 1. The distace to jump if the move to be copied is invoker-class, if a move
- * has yet to be used this turn, or if the move to be copied cannot be invoked
- * by Metronome.
+ * 1. The distace to jump if a move has yet to be used, or if the move to be
+ * copied is one Copycat can't call (Sovereign: Gen IX's list, see
+ * Move_CanBeCopycatted).
  *
  * Side effects:
  * - battleCtx->msgMoveTemp will be set to the most-recently used move.
@@ -7712,9 +7698,8 @@ static BOOL BtlCmd_TryCopycat(BattleSystem *battleSys, BattleContext *battleCtx)
     BattleScript_Iter(battleCtx, 1);
     int jumpOnFail = BattleScript_Read(battleCtx);
 
-    if (Move_IsInvoker(battleCtx->movePrev) == FALSE
-        && battleCtx->movePrev
-        && Move_CanBeMetronomed(battleSys, battleCtx, battleCtx->attacker, battleCtx->movePrev) == TRUE) {
+    // Sovereign: Copycat's own list (Gen V+), not Metronome's.
+    if (battleCtx->movePrev && Move_CanBeCopycatted(battleCtx->movePrev) == TRUE) {
         battleCtx->msgMoveTemp = battleCtx->movePrev;
     } else {
         BattleScript_Iter(battleCtx, jumpOnFail);
