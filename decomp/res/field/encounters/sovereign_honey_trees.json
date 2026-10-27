@@ -1,0 +1,261 @@
+{
+    "generated": "by tools/engine/gen_wild_encounters.py from data/encounters_sovereign.json; do not edit",
+    "trees": [
+        {
+            "tree": "MAP_HEADER_ROUTE_205_SOUTH",
+            "map_type": "field",
+            "map_number": 17,
+            "species": [
+                "SPECIES_COMBEE",
+                "SPECIES_BURMY",
+                "SPECIES_PINECO",
+                "SPECIES_WURMPLE",
+                "SPECIES_HERACROSS"
+            ]
+        },
+        {
+            "tree": "MAP_HEADER_ROUTE_205_NORTH",
+            "map_type": "field",
+            "map_number": 18,
+            "species": [
+                "SPECIES_STARLY",
+                "SPECIES_PIDGEY",
+                "SPECIES_HOOTHOOT",
+                "SPECIES_TAILLOW",
+                "SPECIES_FARFETCHD"
+            ]
+        },
+        {
+            "tree": "MAP_HEADER_ROUTE_206",
+            "map_type": "field",
+            "map_number": 19,
+            "species": [
+                "SPECIES_COMBEE",
+                "SPECIES_BURMY",
+                "SPECIES_PINECO",
+                "SPECIES_SILCOON",
+                "SPECIES_CASCOON",
+                "SPECIES_HERACROSS"
+            ]
+        },
+        {
+            "tree": "MAP_HEADER_ROUTE_207",
+            "map_type": "field",
+            "map_number": 20,
+            "species": [
+                "SPECIES_AIPOM",
+                "SPECIES_SLAKOTH",
+                "SPECIES_METAPOD",
+                "SPECIES_KAKUNA",
+                "SPECIES_MUNCHLAX"
+            ]
+        },
+        {
+            "tree": "MAP_HEADER_ROUTE_208",
+            "map_type": "field",
+            "map_number": 21,
+            "species": [
+                "SPECIES_CHERUBI",
+                "SPECIES_SHROOMISH",
+                "SPECIES_EXEGGCUTE",
+                "SPECIES_SEEDOT",
+                "SPECIES_TANGELA"
+            ]
+        },
+        {
+            "tree": "MAP_HEADER_ROUTE_209",
+            "map_type": "field",
+            "map_number": 22,
+            "species": [
+                "SPECIES_STARAVIA",
+                "SPECIES_PIDGEOTTO",
+                "SPECIES_NOCTOWL",
+                "SPECIES_SWELLOW",
+                "SPECIES_FARFETCHD"
+            ]
+        },
+        {
+            "tree": "MAP_HEADER_ROUTE_210_SOUTH",
+            "map_type": "field",
+            "map_number": 23,
+            "species": [
+                "SPECIES_COMBEE",
+                "SPECIES_PINECO",
+                "SPECIES_SILCOON",
+                "SPECIES_CASCOON",
+                "SPECIES_WORMADAM",
+                "SPECIES_MOTHIM",
+                "SPECIES_HERACROSS"
+            ]
+        },
+        {
+            "tree": "MAP_HEADER_ROUTE_210_NORTH",
+            "map_type": "field",
+            "map_number": 24,
+            "species": [
+                "SPECIES_STARAVIA",
+                "SPECIES_PIDGEOTTO",
+                "SPECIES_NOCTOWL",
+                "SPECIES_SWELLOW",
+                "SPECIES_FARFETCHD"
+            ]
+        },
+        {
+            "tree": "MAP_HEADER_ROUTE_211_EAST",
+            "map_type": "field",
+            "map_number": 26,
+            "species": [
+                "SPECIES_AIPOM",
+                "SPECIES_SLAKOTH",
+                "SPECIES_METAPOD",
+                "SPECIES_KAKUNA",
+                "SPECIES_MUNCHLAX"
+            ]
+        },
+        {
+            "tree": "MAP_HEADER_ROUTE_212_NORTH",
+            "map_type": "field",
+            "map_number": 27,
+            "species": [
+                "SPECIES_CHERUBI",
+                "SPECIES_SHROOMISH",
+                "SPECIES_EXEGGCUTE",
+                "SPECIES_NUZLEAF",
+                "SPECIES_TANGELA"
+            ]
+        },
+        {
+            "tree": "MAP_HEADER_ROUTE_212_SOUTH",
+            "map_type": "field",
+            "map_number": 28,
+            "species": [
+                "SPECIES_CHERRIM",
+                "SPECIES_SHROOMISH",
+                "SPECIES_EXEGGCUTE",
+                "SPECIES_NUZLEAF",
+                "SPECIES_TANGELA"
+            ]
+        },
+        {
+            "tree": "MAP_HEADER_ROUTE_213",
+            "map_type": "field",
+            "map_number": 29,
+            "species": [
+                "SPECIES_STARAVIA",
+                "SPECIES_PIDGEOTTO",
+                "SPECIES_NOCTOWL",
+                "SPECIES_SWELLOW",
+                "SPECIES_FARFETCHD"
+            ]
+        },
+        {
+            "tree": "MAP_HEADER_ROUTE_214",
+            "map_type": "field",
+            "map_number": 30,
+            "species": [
+                "SPECIES_AIPOM",
+                "SPECIES_VIGOROTH",
+                "SPECIES_BUTTERFREE",
+                "SPECIES_BEEDRILL",
+                "SPECIES_MUNCHLAX"
+            ]
+        },
+        {
+            "tree": "MAP_HEADER_ROUTE_215",
+            "map_type": "field",
+            "map_number": 31,
+            "species": [
+                "SPECIES_AIPOM",
+                "SPECIES_VIGOROTH",
+                "SPECIES_METAPOD",
+                "SPECIES_KAKUNA",
+                "SPECIES_MUNCHLAX"
+            ]
+        },
+        {
+            "tree": "MAP_HEADER_ROUTE_218",
+            "map_type": "field",
+            "map_number": 34,
+            "species": [
+                "SPECIES_COMBEE",
+                "SPECIES_FORRETRESS",
+                "SPECIES_WORMADAM",
+                "SPECIES_MOTHIM",
+                "SPECIES_BEAUTIFLY",
+                "SPECIES_DUSTOX",
+                "SPECIES_HERACROSS",
+                "SPECIES_VESPIQUEN"
+            ]
+        },
+        {
+            "tree": "MAP_HEADER_ROUTE_221",
+            "map_type": "field",
+            "map_number": 36,
+            "species": [
+                "SPECIES_CHERRIM",
+                "SPECIES_SHROOMISH",
+                "SPECIES_EXEGGCUTE",
+                "SPECIES_NUZLEAF",
+                "SPECIES_TANGELA"
+            ]
+        },
+        {
+            "tree": "MAP_HEADER_ROUTE_222",
+            "map_type": "field",
+            "map_number": 37,
+            "species": [
+                "SPECIES_TANGELA",
+                "SPECIES_HERACROSS",
+                "SPECIES_FARFETCHD",
+                "SPECIES_SNORLAX"
+            ]
+        },
+        {
+            "tree": "MAP_HEADER_VALLEY_WINDWORKS_OUTSIDE",
+            "map_type": "field",
+            "map_number": 6,
+            "species": [
+                "SPECIES_AIPOM",
+                "SPECIES_SLAKOTH",
+                "SPECIES_CATERPIE",
+                "SPECIES_WEEDLE",
+                "SPECIES_MUNCHLAX"
+            ]
+        },
+        {
+            "tree": "MAP_HEADER_ETERNA_FOREST_OUTSIDE",
+            "map_type": "field",
+            "map_number": 50,
+            "species": [
+                "SPECIES_BEEDRILL"
+            ]
+        },
+        {
+            "tree": "MAP_HEADER_FUEGO_IRONWORKS_OUTSIDE",
+            "map_type": "field",
+            "map_number": 7,
+            "species": [
+                "SPECIES_COMBEE",
+                "SPECIES_FORRETRESS",
+                "SPECIES_WORMADAM",
+                "SPECIES_MOTHIM",
+                "SPECIES_BEAUTIFLY",
+                "SPECIES_DUSTOX",
+                "SPECIES_HERACROSS",
+                "SPECIES_VESPIQUEN"
+            ]
+        },
+        {
+            "tree": "MAP_HEADER_FLOAROMA_MEADOW",
+            "map_type": "dungeon",
+            "map_number": 21,
+            "species": [
+                "SPECIES_CHERUBI",
+                "SPECIES_SHROOMISH",
+                "SPECIES_EXEGGCUTE",
+                "SPECIES_SEEDOT",
+                "SPECIES_TANGELA"
+            ]
+        }
+    ]
+}
