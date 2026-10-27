@@ -8274,7 +8274,7 @@ damage) is merged. This PR: the engine data generators all reproduce their files
    work in singles, and make them exact.
 3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.
 
-## CB-0197 (Claude B, 9:25 pm US Central, 2026-10-26)
+## CB-0197 (Claude B, 9:10 pm US Central, 2026-10-26)
 
 **Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #213 (the generator checks) is merged; its new
 CI step passed. This PR: trainer AI review items 12b #8, #10 and #11 (`docs/AIReview.md`).
