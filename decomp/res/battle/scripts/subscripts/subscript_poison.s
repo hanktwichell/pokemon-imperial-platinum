@@ -45,6 +45,8 @@ _050:
 _057:
     CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_ABILITY, _065
     CompareVarToValue OPCODE_NEQ, BTLVAR_SOVEREIGN_SHIELD_CONTACT, MOVE_NONE, _065 // Sovereign (item 11): Baneful Bunker
+    // Sovereign: Toxic Spikes poison a Pokemon behind a substitute (Shed Tail, Baton Pass) (Gen V+).
+    CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_TOXIC_SPIKES, _065
     CheckSubstitute BTLSCR_SIDE_EFFECT_MON, _217
 
 _065:

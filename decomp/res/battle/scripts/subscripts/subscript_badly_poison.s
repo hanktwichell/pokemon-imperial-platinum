@@ -72,7 +72,11 @@ _121:
     Wait 
 
 _128:
+    // Sovereign: Toxic Spikes poison a Pokemon behind a substitute (Shed Tail, Baton Pass) (Gen V+).
+    CompareVarToValue OPCODE_EQU, BTLVAR_SIDE_EFFECT_TYPE, SIDE_EFFECT_TYPE_TOXIC_SPIKES, _sovereign_past_sub
     CheckSubstitute BTLSCR_SIDE_EFFECT_MON, _275
+
+_sovereign_past_sub:
     CompareMonDataToValue OPCODE_FLAG_SET, BTLSCR_SIDE_EFFECT_MON, BATTLEMON_STATUS, MON_CONDITION_POISON, _296
     CompareMonDataToValue OPCODE_FLAG_SET, BTLSCR_SIDE_EFFECT_MON, BATTLEMON_STATUS, MON_CONDITION_TOXIC, _296
     // Sovereign (item 11): Corrosion poisons Poison and Steel types.

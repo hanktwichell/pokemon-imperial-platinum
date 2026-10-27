@@ -65,7 +65,7 @@ _sovereign_web_drop:
     Call BATTLE_SUBSCRIPT_UPDATE_STAT_STAGE
 
 _sovereign_no_web:
-    CheckAbility CHECK_HAVE, BTLSCR_SWITCHED_MON, ABILITY_MAGIC_GUARD, _105
+    // Sovereign: Magic Guard keeps off the damage of Spikes and Stealth Rock, not Toxic Spikes' poison (Gen V+).
     // Sovereign (item 11): Sovereign_IsGrounded, Platinum's checks (Gravity, Iron Ball, Levitate, Flying type, Magnet
     // Rise) plus the Air Balloon, Telekinesis and Smack Down
     CompareVarToValue OPCODE_EQU, BTLVAR_SOVEREIGN_SWITCHED_MON_GROUNDED, 0, _085
@@ -88,6 +88,7 @@ _063:
     Call BATTLE_SUBSCRIPT_BADLY_POISON
 
 _065:
+    CheckAbility CHECK_HAVE, BTLSCR_SWITCHED_MON, ABILITY_MAGIC_GUARD, _105
     CheckSpikes BTLSCR_SWITCHED_MON, _085
     UpdateVarFromVar OPCODE_SET, BTLVAR_MSG_BATTLER_TEMP, BTLVAR_SWITCHED_MON
     UpdateVar OPCODE_FLAG_ON, BTLVAR_BATTLE_CTX_STATUS, SYSCTL_SKIP_SPRITE_BLINK
@@ -98,6 +99,7 @@ _065:
     WaitButtonABTime 30
 
 _085:
+    CheckAbility CHECK_HAVE, BTLSCR_SWITCHED_MON, ABILITY_MAGIC_GUARD, _105
     CheckStealthRock BTLSCR_SWITCHED_MON, _105
     UpdateVarFromVar OPCODE_SET, BTLVAR_MSG_BATTLER_TEMP, BTLVAR_SWITCHED_MON
     UpdateVar OPCODE_FLAG_ON, BTLVAR_BATTLE_CTX_STATUS, SYSCTL_SKIP_SPRITE_BLINK

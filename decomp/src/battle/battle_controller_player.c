@@ -3884,11 +3884,13 @@ static BOOL BattleControllerPlayer_MoveStolen(BattleSystem *battleSys, BattleCon
         return FALSE;
     }
 
+    // Sovereign: Magic Coat reflects every reflectable move for the rest of the turn (Gen V+), not only the first. A
+    // move it has already reflected is not reflected again, and it doesn't reflect while its user is semi-invulnerable.
     if ((battleCtx->moveStatusFlags & MOVE_STATUS_NO_EFFECTS) == FALSE
         && DEFENDER_TURN_FLAGS.magicCoat
+        && (battleCtx->battleStatusMask & SYSCTL_REUSE_LAST_MOVE) == FALSE
+        && (DEFENDING_MON.moveEffectsMask & MOVE_EFFECT_SEMI_INVULNERABLE) == FALSE
         && (CURRENT_MOVE_DATA.flags & MOVE_FLAG_CAN_MAGIC_COAT)) {
-        DEFENDER_TURN_FLAGS.magicCoat = FALSE;
-
         battleCtx->moveProtect[battleCtx->attacker] = FALSE;
         battleCtx->movePrevByBattler[battleCtx->attacker] = battleCtx->moveTemp;
         battleCtx->movePrev = battleCtx->moveTemp;

@@ -137,7 +137,7 @@ this engine models) · **GEN_IV** (still Gen IV, needs a change) · **PARTIAL** 
 18. ✅ *Done in moves batch E (CB-0214): `sCannotMimicMoves` is Gen IX's `failmimic` list; Metronome's list keeps its old Mimic part until 10.* **Mimic (#102).** In `BtlCmd_TryMimic`, drop the Substitute check and give the copied move `MOVE_DATA(move).pp`.
     Add Transform, Mirror Move, Sleep Talk, Assist, Copycat, Me First and Nature Power (and the Gen V+ `failmimic`
     moves) to the moves Mimic can't copy.
-19. **Transform (#144).** In `subscript_transform_into_target.s`, fail when the defender has a substitute
+19. ✅ *Done in moves batch G (CB-0216).* **Transform (#144).** In `subscript_transform_into_target.s`, fail when the defender has a substitute
     (`CheckSubstitute`), when the attacker is already transformed, or when either has an active Illusion.
 20. ✅ *Done in moves batch E (CB-0214).* **Conversion (#160).** Rewrite `BtlCmd_TryConversion`: type = `MOVE_DATA(moves[0]).type`; fail if
     `MON_HAS_TYPE`. Add `CAN_SNATCH`.
@@ -289,7 +289,7 @@ Sovereign, Magic Coat and Magic Bounce both use this flag (bcp:~3847, bcp:~3871)
 12. ✅ *Done in moves batch A (CB-0210).* **Poison Fang (305)**: effect chance 30 → 50 in its data.json.
 13. ✅ *Done in moves batch B (CB-0211); Electromorphosis's and Wind Power's charge last the same way.* **Charge (268)**: don't expire it after a turn (bcp:1946). Clear `MOVE_EFFECT_CHARGE` when the user uses an Electric move other than Charge, or switches out.
 14. ✅ *Done in moves batch C (CB-0212), Disable, Spite, Spikes and Foresight too.* **Moves that should be reflectable (259 Torment, 316 Odor Sleuth, 357 Miracle Eye, 373 Embargo, 377 Heal Block, 390 Toxic Spikes, 432 Defog, 446 Stealth Rock, and Encore/Taunt above)**: add `MOVE_FLAG_CAN_MAGIC_COAT`. Check that side moves bounce as Sticky Web's does. Stealth Rock against Magic Bounce is the case players will notice most.
-15. **Payback (371)**: at bs:7628, don't double against a target that switched in this turn.
+15. ✅ *Done in moves batch G (CB-0216): `turnFlags.sovereignSwitchedIn`, as Core Enforcer uses.* **Payback (371)**: at bs:7628, don't double against a target that switched in this turn.
 16. ✅ *Done in moves batch F (CB-0215): Gen IX's `nosleeptalk` list; Disable, Torment, Taunt and Imprison don't limit it either (Showdown), while a move Gravity, Heal Block or Throat Chop stops is left out.* **Sleep Talk (214)**: in `TrySleepTalk` don't let Choice lock or Encore mark the slots invalid; pass a mask without `CHECK_INVALID_CHOICE_ITEM`, and bypass the Encore check that runs regardless of the mask (bl:2452). Also exclude Belch, Beak Blast, Shell Trap, Mimic, Sketch and Nature Power.
 17. ✅ *Done in moves batch C (CB-0212).* **Mean Look, Block (212, 335)**: remove `MOVE_FLAG_CAN_PROTECT` from both data files.
 18. ✅ *Done in moves batch D (CB-0213): Dragon Rush is on `Move_PunishesMinimize`'s Gen IX list; Shadow Force was only on Gen VI's.* **Dragon Rush, Shadow Force (407, 467)**: double damage and a sure hit against a Minimized target (a Gen VI+ list of Minimize punishers). Stomp, Body Slam and Steamroller should get the sure hit too; those are part 1's range.
@@ -303,8 +303,8 @@ Sovereign, Magic Coat and Magic Bounce both use this flag (bcp:~3847, bcp:~3871)
 23. ✅ *Done in moves batch E (CB-0214): `SOVEREIGN_TAIL_GLOW` from `gen_stat_moves.py`.* **Tail Glow (294)**: a user Sp. Atk +3 effect, like Cotton Guard's `SOVEREIGN_COTTON_GUARD`.
 24. **Mud Sport, Water Sport (300, 346)**: turn each into a 5-turn field condition that fails while active, with Electric (Fire) power ×1352/4096 (bl:10820, bl:10824).
 25. ✅ *Done in moves batch E (CB-0214).* **Uproar (253, PARTIAL)**: fixed counter of 3 instead of `Random 3, 3` (sub uproar:6).
-26. **Toxic Spikes (390, PARTIAL)**: in sub hazards_check:68, don't let Magic Guard skip Toxic Spikes (it should only skip the damage), and drop the Substitute check for `SIDE_EFFECT_TYPE_TOXIC_SPIKES`.
-27. **Magic Coat (277)**: keep `magicCoat` set for the whole turn (bcp:3848), don't reflect while the user is semi-invulnerable, and bounce side-targeting moves.
+26. ✅ *Done in moves batch G (CB-0216).* **Toxic Spikes (390, PARTIAL)**: in sub hazards_check:68, don't let Magic Guard skip Toxic Spikes (it should only skip the damage), and drop the Substitute check for `SIDE_EFFECT_TYPE_TOXIC_SPIKES`.
+27. ✅ *Done in moves batch G (CB-0216); a move it reflected isn't reflected back again (Magic Bounce's rule).* **Magic Coat (277)**: keep `magicCoat` set for the whole turn (bcp:3848), don't reflect while the user is semi-invulnerable, and bounce side-targeting moves.
 28. **Howl (336, PARTIAL)**: also raise the partner's Attack in doubles (Soundproof blocks it), as Gen VIII+ does.
 29. **Nature Power, Secret Power, Camouflage (267, 290, 293)**: check the active terrain first.
     - Nature Power: Thunderbolt, Energy Ball, Moonblast or Psychic.
@@ -313,8 +313,8 @@ Sovereign, Magic Coat and Magic Bounce both use this flag (bcp:~3847, bcp:~3871)
     - Keep Platinum's location tables as the fallback.
 30. ✅ *Done in moves batch F (CB-0215): Gen IX's `failmefirst` list, which also has Struggle and the Torques.* **Me First (382)**: apply the ×1.5 to power instead of final damage (bs:1389). Add Metal Burst, Comeuppance, Belch, Beak Blast and Shell Trap to `sCannotMeFirstMoves`.
 31. ✅ *Done in moves batch E (CB-0214), Laser Focus too; `CAN_SNATCH` went in moves batch C.* **Psych Up (244, PARTIAL)**: remove `CAN_SNATCH`. Clear the user's Focus Energy and `sovereignDragonCheer`, then copy the target's (bs:6455).
-32. **Gravity (356, PARTIAL)**: add Flying Press and Telekinesis to `sMovesAffectedByGravity` (bl:3986). End Telekinesis in sub gravity_start. Make Gravity override the Telekinesis Ground immunity (bl:2855).
-33. **Aromatherapy (312)**: skip the partner or bench Pokémon with Sap Sipper or Good as Gold, and a partner behind a Substitute, as Heal Bell's Sovereign code does.
+32. ✅ *Done in moves batch G (CB-0216); with Telekinesis ended and blocked under Gravity, its Ground immunity can't outlast it.* **Gravity (356, PARTIAL)**: add Flying Press and Telekinesis to `sMovesAffectedByGravity` (bl:3986). End Telekinesis in sub gravity_start. Make Gravity override the Telekinesis Ground immunity (bl:2855).
+33. ✅ *Done in moves batch G (CB-0216), with the "blocks" message for the partner.* **Aromatherapy (312)**: skip the partner or bench Pokémon with Sap Sipper or Good as Gold, and a partner behind a Substitute, as Heal Bell's Sovereign code does.
 34. ✅ *Done in moves batch E (CB-0214); `CAN_SNATCH` came in moves batch C.* **Magnet Rise (393)**: don't fail on Levitate or Eelevate. Fail on Smack Down (`sovereignSmackedDown`). Add `CAN_SNATCH`.
 35. ✅ *Done in moves batch E (CB-0214); `CAN_SNATCH` came in moves batch C.* **Imprison (286)**: remove the "no shared move" failure (bs:7136) and add `CAN_SNATCH`.
 36. ✅ *Done in moves batch E (CB-0214); `CAN_SNATCH` went in moves batch C.* **Acupressure (367)**: skip the Substitute check when the target is the user (eff 0226:5) and remove `CAN_SNATCH`.

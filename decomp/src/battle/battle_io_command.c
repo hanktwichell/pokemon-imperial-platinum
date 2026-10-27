@@ -649,10 +649,10 @@ static void BtlIOCmd_RefreshPartyStatus(BattleSystem *battleSys, BattlerData *ba
         }
 
         // Sovereign (item 11): Heal Bell as in Gen IX. It always cures its user; it doesn't cure the others with
-        // Soundproof or Good as Gold.
-        if (message->move != MOVE_HEAL_BELL
-            || i == message->userSlot
-            || (ability != ABILITY_SOUNDPROOF && ability != ABILITY_GOOD_AS_GOLD)) {
+        // Soundproof or Good as Gold. Sovereign: nor does Aromatherapy those with Sap Sipper or Good as Gold.
+        if (i == message->userSlot
+            || (message->move == MOVE_HEAL_BELL && ability != ABILITY_SOUNDPROOF && ability != ABILITY_GOOD_AS_GOLD)
+            || (message->move != MOVE_HEAL_BELL && ability != ABILITY_SAP_SIPPER && ability != ABILITY_GOOD_AS_GOLD)) {
             Pokemon_SetValue(mon, MON_DATA_STATUS, (u8 *)&clearedStatus);
         }
     }

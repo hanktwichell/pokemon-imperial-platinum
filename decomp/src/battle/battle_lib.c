@@ -3987,6 +3987,8 @@ static const u16 sMovesAffectedByGravity[] = {
     MOVE_HI_JUMP_KICK,
     MOVE_SPLASH,
     MOVE_MAGNET_RISE,
+    MOVE_FLYING_PRESS, // Sovereign: Gen VI+
+    MOVE_TELEKINESIS, // Sovereign: Gen V+
 };
 
 BOOL Move_FailsInHighGravity(BattleSystem *battleSys, BattleContext *battleCtx, int battler, int move)

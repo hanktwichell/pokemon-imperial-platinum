@@ -3,6 +3,47 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Item 11: Platinum's moves under the later games' rules, batch G
+
+For players:
+- **Transform** (Gen V+) fails against a substitute, when the user has already transformed, and while the user's or
+  the target's Illusion is up. Platinum transformed through a substitute and let a transformed Pokémon transform again.
+- **Payback** (Gen V+) doesn't double its power against a Pokémon that switched in this turn. Platinum doubled it
+  whenever the target's action was done, a switch included.
+- **Gravity** (Gen V+) also stops Flying Press and Telekinesis, and brings down a Pokémon lifted by Telekinesis
+  ("…couldn't stay airborne because of gravity!"), as it does one under Magnet Rise.
+- **Magic Coat** (Gen V+) reflects every reflectable move aimed at its user for the rest of the turn, not only the
+  first. A move it reflected isn't reflected back again (Magic Bounce's rule), and it doesn't reflect while its user
+  is semi-invulnerable.
+- **Toxic Spikes** (Gen V+) poison a Pokémon with Magic Guard (which still keeps off the poison damage, and Spikes' and
+  Stealth Rock's) and one that comes in behind a substitute from Shed Tail or Baton Pass.
+- **Aromatherapy** (Gen V+) doesn't cure a partner or benched Pokémon with Sap Sipper or Good as Gold ("…'s Sap Sipper
+  blocks Aromatherapy!" for the partner), nor a partner behind a substitute. The user is always cured.
+
+Code: `subscript_transform_into_target.s` with `BTLVAR_SOVEREIGN_ILLUSION_ACTIVE`; `BtlCmd_CalcPaybackPower` checks
+`turnFlags.sovereignSwitchedIn` (Core Enforcer's flag); `sMovesAffectedByGravity` (`battle_lib.c`) and
+`subscript_gravity_start.s`; `BattleControllerPlayer_MoveStolen` keeps `magicCoat` set; `subscript_hazards_check.s`
+checks Magic Guard only before Spikes and Stealth Rock, and `subscript_poison.s`/`subscript_badly_poison.s` skip the
+substitute check for `SIDE_EFFECT_TYPE_TOXIC_SPIKES`; `BtlCmd_TryPartyStatusRefresh`, `BtlIOCmd_RefreshPartyStatus`
+and `subscript_heal_bell.s` for Aromatherapy.
+
+Verified (test build, emulator, wild battles against a Lv. 100 Ninjask unless noted):
+- **Transform:** after the Ninjask's Substitute, "GEODUDE used Transform! But it failed!". Against a Ninjask that had
+  transformed into Geodude, the Ninjask's second Transform failed too.
+- **Payback:** a Lv. 50 Slowpoke's Payback did 43 to a faster Jolteon on each of turns 1–3, so turn 1 counted as the
+  target having moved (no false switch-in).
+- **Gravity:** after the Ninjask's Gravity, "GEODUDE can't use Flying Press because of gravity!", and the same for
+  Telekinesis; Geodude then had no usable moves and Struggled. Jolteon's Telekinesis lifted a Slowpoke, whose Gravity
+  then brought it down ("The wild SLOWPOKE couldn't stay airborne because of gravity!"); once Gravity ended,
+  Telekinesis worked again.
+- **Magic Coat:** Geodude's Magic Coat bounced the Ninjask's Toxic (the Ninjask was badly poisoned) and its Stealth
+  Rock ("Pointed stones float in the air around your foe's team!").
+- **Toxic Spikes:** a Magic Guard Clefable came back in on two layers ("CLEFABLE was badly poisoned!") and lost no HP
+  to it. After Geodude's Shed Tail, the Pokémon that came in behind the substitute was poisoned on entry.
+- **Aromatherapy:** cured Geodude's bad poison from the Ninjask's Toxic on each turn.
+- **Builds:** the test and release builds pass, and every battle script fits its buffer (the largest,
+  `subscript_badly_poison`, is 1944 of 2048 bytes).
+
 ## Item 11: Platinum's moves under the later games' rules, batch F
 
 For players:

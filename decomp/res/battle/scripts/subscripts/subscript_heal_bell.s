@@ -15,7 +15,7 @@ _010:
 _013:
     Wait 
     WaitButtonABTime 30
-    CompareVarToValue OPCODE_EQU, BTLVAR_CURRENT_MOVE, MOVE_AROMATHERAPY, _049
+    // Sovereign: Aromatherapy's partner can be blocked too (Sap Sipper, Good as Gold).
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_CALC_TEMP, 0x00000001, _035
     // {0}’s {1} blocks {2}!
     PrintMessage BattleStrings_Text_PokemonsAbilityBlocksMove_Ally, TAG_NICKNAME_ABILITY_MOVE, BTLSCR_ATTACKER, BTLSCR_ATTACKER, BTLSCR_MSG_TEMP
