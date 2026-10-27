@@ -293,7 +293,7 @@
       "id": "PokedexRatings_Text_OakPokemonCaught410_Male",
       "en_US": [
         "{STRVAR_1 3, 0, 0}, have you visited\n",
-        "the Pal Park recently?\r",
+        "the Regional Forms Park lately?\r",
         "There still may be Pokémon that are\n",
         "rarely seen in Sinnoh."
       ]
@@ -302,7 +302,7 @@
       "id": "PokedexRatings_Text_OakPokemonCaught410_Female",
       "en_US": [
         "{STRVAR_1 3, 0, 0}, have you visited\n",
-        "the Pal Park recently?\r",
+        "the Regional Forms Park lately?\r",
         "There still may be Pokémon that are\n",
         "rarely seen in Sinnoh."
       ]

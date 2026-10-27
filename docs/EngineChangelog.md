@@ -3,6 +3,55 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Pal Park's last mentions: Oak's visit, Oak's rating, the TV and the park's name
+
+Pal Park is gone (decision 22), and the National Dex comes with the Pokédex (decision 21), but a few texts still said
+otherwise.
+
+For players:
+- **Oak's visit to Rowan's lab.** This is the scene for showing Rowan a complete Sinnoh Pokédex. It follows the draft
+  in `docs/Story.md`:
+  - Oak no longer upgrades the Pokédex with the National Mode. The fanfare, "…was upgraded with the National Mode!" and
+    "It won't be easy to complete the National Pokédex" are gone.
+  - Oak sees that the player already carries a National Pokédex, and says he has come because Pokémon from every
+    region are turning up in Sinnoh.
+  - Rowan answers that he was right to worry.
+  - Oak tells of the odd forms gathering at the end of Route 221, in the Regional Forms Park, and asks the player to
+    take a look.
+  - The greetings, the Poké Radar, the trigger and the Fight Area unlock are unchanged. The owner's three open calls
+    in `Story.md` are kept at what the game does now.
+- **Oak's Pokédex rating** at 410 caught asks about "the Regional Forms Park" instead of "the Pal Park".
+- **The TV commercial** for Pal Park now advertises the Regional Forms Park on Route 221. It airs once the park is
+  open, after the Hall of Fame. Platinum aired it for a complete Sinnoh dex.
+- **The park's name.** The park and its lobby are called "Regional Forms Park":
+  - on entering, in the location popup;
+  - in the save window;
+  - in a caught Pokémon's met location;
+  - on the Town Map.
+- **The save window** grows by a tile when the location name needs it. "Regional Forms Park" is 105 pixels wide. The
+  window is 104 pixels, and Platinum's longest name, Sunyshore Market, is 94.
+
+Code:
+- `sandgem_town_pokemon_research_lab.json`:
+  - three of the scene's messages are rewritten (the third replaces the male and female versions of the farewell);
+  - one message is new;
+  - the upgrade and "won't be easy" messages are removed.
+- The lab script drops the fanfare and the gender branch.
+- `TVCommercial_Text_RegionalFormsPark` is unlocked by `TV_COMMERCIAL_UNLOCK_GAME_COMPLETED`.
+- `LocationNames_Text_PalPark` (the ID is kept) reads "Regional Forms Park".
+- `SaveInfoWindow_Width` (`save_info_window.c`) measures the location name. The window is 13 tiles by default and up
+  to 17, which stays clear of the field message box's tiles and of the start menu. The right-aligned values follow the
+  width.
+
+Verified (test build):
+- **Oak's visit:** Rowan, talked to with hooks that make the Sinnoh dex count as complete and Eterna City as visited,
+  plays the whole scene with the new lines and no fanfare, then gives the Poké Radar.
+- **The save window:** in the park's lobby it is one tile wider, "Regional Forms Park" fits, and the values stay
+  right-aligned.
+- **Checks:** every field message fits its box (`check_message_box_lines.py`), and every event script number is in
+  range.
+- **Builds:** the test and release builds pass.
+
 ## Focus Punch: losing focus costs no PP (Gen V+)
 
 For players:

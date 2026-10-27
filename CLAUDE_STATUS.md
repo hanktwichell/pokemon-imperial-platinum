@@ -9212,3 +9212,46 @@ update to `docs/EngineRoadmap.md` for two rows that were finished but still had 
 2. Look for non-owner work: run the regression harnesses on the latest main (Focus Punch and the AI changes touched the
    battle code), and check `docs/BattleMechanics.md` and the checklists for anything still marked approximate.
 3. Embody Aspect and Teraform Zero need Terastallization, which the game doesn't have; they stay without an effect.
+
+## CB-0231 (Claude B, 4:57 pm US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #247 (CB-0230, the roadmap and ProjectStatus) is
+merged. This one removes Pal Park's last mentions (decisions 21 and 22):
+- **Oak's visit to Rowan's lab** (a complete Sinnoh Pokédex) plays the draft in `docs/Story.md`.
+  - It has no National Mode upgrade and no fanfare.
+  - Oak sees the player's National Pokédex, says Pokémon from every region are turning up in Sinnoh, and points to the
+    Regional Forms Park at the end of Route 221.
+  - The owner's three open calls there are kept at what the game does now: the trigger, the park opening after the
+    Hall of Fame, and no gift.
+- **Oak's PC rating** at 410 caught asks about the Regional Forms Park.
+- **The TV commercial** for Pal Park advertises the Regional Forms Park, once it opens after the Hall of Fame.
+- **The location name** reads "Regional Forms Park": on entering, in the save window, as the met location and on the
+  Town Map.
+- **The save window** grows a tile when the name needs it. The name is 105 pixels and the window 104.
+- **Verified (test build):**
+  - Rowan, with hooks for a complete Sinnoh dex, plays the whole new scene and gives the Poké Radar.
+  - In the lobby, the save window fits the name.
+  - The message, script and menu checks pass, and so do the test and release builds.
+
+**Files modified:**
+- `decomp/res/text/sandgem_town_pokemon_research_lab.json`
+- `decomp/res/field/scripts/scripts_sandgem_town_pokemon_research_lab.s`
+- `decomp/res/text/pokedex_ratings.json`
+- `decomp/res/text/tv_commercials.json`
+- `decomp/src/overlay006/tv_commercials.c`
+- `decomp/res/text/location_names.json`
+- `decomp/src/overlay005/save_info_window.c`
+- `decomp/include/overlay005/save_info_window.h`
+- `docs/EngineChangelog.md`, `docs/Story.md`, `docs/ProjectStatus.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Anything the owner asks for. Waiting on the owner:
+   - T1 (boss teams);
+   - T2 (the developer battle);
+   - the art (E12);
+   - Burn Up and Double Shock;
+   - the special evolutions;
+   - `Story.md`'s open calls on Oak's visit.
+2. Look for other leftovers of removed features (Pal Park, Migrate, the National Dex upgrade) in other text banks and
+   scripts.
+3. Run the field harnesses (`talk_to_objects.py`, `signs_and_triggers.py`) on the latest build as a regression check.

@@ -23,6 +23,7 @@ enum SaveInfoText {
 };
 
 #define SAVE_INFO_WINDOW_WIDTH  13
+#define SAVE_INFO_WINDOW_MAX_WIDTH 17 // Sovereign: SaveInfoWindow_Width
 #define SAVE_INFO_WINDOW_HEIGHT 10
 
 #define SAVE_INFO_MESSAGE_BASE_TILE 0x189
