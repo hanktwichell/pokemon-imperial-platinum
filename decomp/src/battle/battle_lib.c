@@ -10371,12 +10371,15 @@ int Sovereign_MovePower(BattleSystem *battleSys, BattleContext *battleCtx, int m
         }
         break;
 
-    case MOVE_HARD_PRESS: // up to 100 power, by the target's remaining HP
-        power = 100 * battleCtx->battleMons[defender].curHP / battleCtx->battleMons[defender].maxHP;
+    case MOVE_HARD_PRESS: { // up to 100 power, by the target's remaining HP (Showdown's formula, as Crush Grip's)
+        int hpRatio = battleCtx->battleMons[defender].curHP * 4096 / battleCtx->battleMons[defender].maxHP;
+
+        power = (100 * 100 * hpRatio + 4096 / 2 - 1) / 4096 / 100;
         if (power < 1) {
             power = 1;
         }
         break;
+    }
 
     case MOVE_FICKLE_BEAM: // 30% chance of double power
         if (BattleSystem_RandNext(battleSys) % 10 < 3) {
@@ -11324,9 +11327,10 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
             && criticalMul == 1
             && attackerParams.ability != ABILITY_INFILTRATOR // Sovereign (item 11)
             && MOVE_DATA(move).effect != BATTLE_EFFECT_REMOVE_SCREENS) {
-            if ((battleType & BATTLE_TYPE_DOUBLES)
-                && BattleSystem_CountAliveBattlers(battleSys, battleCtx, TRUE, defender) == 2) {
-                damage = damage * 2 / 3;
+            // Sovereign: x2732/4096 in any double battle (Gen V+). Platinum used x2/3, and only while both Pokemon on the
+            // side were in.
+            if (battleType & BATTLE_TYPE_DOUBLES) {
+                damage = damage * 2732 / 4096;
             } else {
                 damage /= 2;
             }
@@ -11366,9 +11370,10 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
             && criticalMul == 1
             && attackerParams.ability != ABILITY_INFILTRATOR // Sovereign (item 11)
             && MOVE_DATA(move).effect != BATTLE_EFFECT_REMOVE_SCREENS) {
-            if ((battleType & BATTLE_TYPE_DOUBLES)
-                && BattleSystem_CountAliveBattlers(battleSys, battleCtx, TRUE, defender) == 2) {
-                damage = damage * 2 / 3;
+            // Sovereign: x2732/4096 in any double battle (Gen V+). Platinum used x2/3, and only while both Pokemon on the
+            // side were in.
+            if (battleType & BATTLE_TYPE_DOUBLES) {
+                damage = damage * 2732 / 4096;
             } else {
                 damage /= 2;
             }

@@ -7,7 +7,10 @@ _000:
     UpdateVarFromVar OPCODE_SET, BTLVAR_MSG_BATTLER_TEMP, BTLVAR_ATTACKER
     UpdateVarFromVar OPCODE_SET, BTLVAR_HP_CALC_TEMP, BTLVAR_HIT_DAMAGE
     CompareVarToValue OPCODE_EQU, BTLVAR_HP_CALC_TEMP, 0, _025
-    DivideVarByValue BTLVAR_HP_CALC_TEMP, 3
+    // Sovereign: 33/100 of the damage, rounded (Gen V+). Platinum took 1/3. The damage is negative here.
+    UpdateVar OPCODE_MUL, BTLVAR_HP_CALC_TEMP, 33
+    UpdateVar OPCODE_ADD, BTLVAR_HP_CALC_TEMP, -50
+    DivideVarByValue BTLVAR_HP_CALC_TEMP, 100
 
 _025:
     UpdateVar OPCODE_FLAG_ON, BTLVAR_BATTLE_CTX_STATUS, SYSCTL_SKIP_SPRITE_BLINK

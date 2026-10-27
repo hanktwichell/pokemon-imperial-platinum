@@ -146,9 +146,9 @@ this engine models) · **GEN_IV** (still Gen IV, needs a change) · **PARTIAL** 
 22. ✅ *Done in moves batch E (CB-0214).* **Sketch (#166).** Remove `CheckSubstitute` from `subscript_sketch.s`. Swap the Gen IV ban list
     (Struggle/Sketch/Chatter) for Gen IX's.
 23. ✅ *Baton Pass part done in moves batch E (CB-0214).* **Lock-On / Mind Reader (#199).** Remove `MOVE_EFFECT_LOCK_ON` from `MOVE_EFFECT_BATON_PASSED` (`moves.h:46`).
-24. **Reflect / Light Screen (#115, #113)** (negligible). Use `battleType & BATTLE_TYPE_DOUBLES` alone, with ×2732/4096
+24. ✅ *Done in moves batch J (CB-0219), Aurora Veil too.* **Reflect / Light Screen (#115, #113)** (negligible). Use `battleType & BATTLE_TYPE_DOUBLES` alone, with ×2732/4096
     in place of the "both alive" ×2/3.
-25. **Endure (#203)** (UNSURE). Let `BtlCmd_CheckHoldOnWith1HP` also honour `turnFlags[battler].enduring`, so Endure
+25. ✅ *Done in moves batch J (CB-0219): "…endured the hit!" after Future Sight.* **Endure (#203)** (UNSURE). Let `BtlCmd_CheckHoldOnWith1HP` also honour `turnFlags[battler].enduring`, so Endure
     holds against Future Sight/Doom Desire as in Showdown's gen 5+.
 
 ### Outside the prepared list (moves 1–203)
@@ -320,11 +320,11 @@ Sovereign, Magic Coat and Magic Bounce both use this flag (bcp:~3847, bcp:~3871)
 36. ✅ *Done in moves batch E (CB-0214); `CAN_SNATCH` went in moves batch C.* **Acupressure (367)**: skip the Substitute check when the target is the user (eff 0226:5) and remove `CAN_SNATCH`.
 37. ✅ *Done in moves batch E (CB-0214).* **Dark Void (464)**: fail unless the user is Darkrai.
 38. ✅ *Done in moves batch C (CB-0212), with Conversion, Wish, Imprison and Magnet Rise.* **Snatch flags (278 Recycle, 379 Power Trick, 381 Lucky Chant, 392 Aqua Ring)**: add `CAN_SNATCH`. Healing Wish and Lunar Dance (361, 461) also gain `CAN_SNATCH` in Gen V+; Psych Up and Acupressure lose it.
-39. **Recoil 1/3 → 33/100 (344 Volt Tackle, 394 Flare Blitz, 413 Brave Bird, 452 Wood Hammer)**: a difference of at most about 1% of the damage. Optional.
-40. **Wring Out, Crush Grip (378, 462)**: drop the `1 +` at bs:7691 (minimum 1). This changes power by 1.
-41. **Pursuit (228)**: let an asleep, frozen or loafing user react to a switch (bs:7330). Negligible.
-42. **Snatch (289)**: Gen V+ Pressure accounting. Negligible.
-43. **Fling (374)**: prime Cud Chew when its holder flings a Berry (bs:9442). Negligible.
+39. ✅ *Done in moves batch J (CB-0219), rounded as Showdown does, for Double-Edge and Wave Crash too.* **Recoil 1/3 → 33/100 (344 Volt Tackle, 394 Flare Blitz, 413 Brave Bird, 452 Wood Hammer)**: a difference of at most about 1% of the damage. Optional.
+40. ✅ *Done in moves batch J (CB-0219) with Showdown's exact formula (through a 4096ths ratio), and for Hard Press (100).* **Wring Out, Crush Grip (378, 462)**: drop the `1 +` at bs:7691 (minimum 1). This changes power by 1.
+41. *Left as Platinum has it (CB-0219): an asleep or loafing user's turn is spent either way; only a frozen user that thaws hits a different Pokémon (the one coming in).* **Pursuit (228)**: let an asleep, frozen or loafing user react to a switch (bs:7330). Negligible.
+42. *Left as Platinum has it (CB-0219).* **Snatch (289)**: Gen V+ Pressure accounting. Negligible.
+43. ✅ *Done in moves batch J (CB-0219); a target with Cud Chew that eats the flung Berry eats it again too.* **Fling (374)**: prime Cud Chew when its holder flings a Berry (bs:9442). Negligible.
 44. **Focus Punch (264, UNSURE)**: Showdown's Gen V+ model doesn't use PP when focus is lost. Check against the cartridge before changing anything.
 
 ### Side observations (outside the Gen IV→IX overrides)
