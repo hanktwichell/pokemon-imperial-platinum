@@ -9280,6 +9280,9 @@ merged. This one adds two story beats from `docs/Story.md`'s list for after the 
   `decomp/res/field/events/events_pal_park_lobby.json`
 - `tools/engine/gen_regional_forms_park.py`, `docs/RegionalFormsPark.md`
 - `data/postgame_legendaries.yaml`, `tools/design/gen_legendary_doc.py`, `docs/PostgameLegendaries.md` (generated)
+- Also in this PR: `tools/test/rom_space.py` (new), `tools/test/README.md`, `docs/TechnicalDesign.md` (section 7b).
+  The ROM has 9.3 MiB free, and Platinum's 493 cries take 4.8 MB (9,830 bytes each on average), so the 532 new
+  cries would fit at that size with about 4.5 MB to spare.
 - `docs/Story.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`
 
 **Next 3 steps:**
