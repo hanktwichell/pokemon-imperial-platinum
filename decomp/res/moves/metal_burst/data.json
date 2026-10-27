@@ -19,6 +19,7 @@
     "range": "RANGE_SINGLE_TARGET_SPECIAL",
     "priority": 0,
     "flags": [
+        "MOVE_FLAG_CAN_PROTECT",
         "MOVE_FLAG_CAN_MIRROR_MOVE"
     ],
     "contest": {

@@ -18,7 +18,9 @@
     },
     "range": "RANGE_USER",
     "priority": 0,
-    "flags": [],
+    "flags": [
+        "MOVE_FLAG_CAN_SNATCH"
+    ],
     "contest": {
         "effect": "CONTEST_EFFECT_TWO_VOLTAGE_IN_A_ROW_ADVANTAGE",
         "type": "CONTEST_TYPE_SMART"

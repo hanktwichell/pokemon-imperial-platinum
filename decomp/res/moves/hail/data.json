@@ -18,9 +18,7 @@
     },
     "range": "RANGE_FIELD",
     "priority": 0,
-    "flags": [
-        "MOVE_FLAG_CAN_PROTECT"
-    ],
+    "flags": [],
     "contest": {
         "effect": "CONTEST_EFFECT_SUPPRESS_VOLTAGE",
         "type": "CONTEST_TYPE_BEAUTY"

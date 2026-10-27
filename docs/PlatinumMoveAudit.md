@@ -107,10 +107,10 @@ this engine models) · **GEN_IV** (still Gen IV, needs a change) · **PARTIAL** 
 6. ✅ *Done in moves batch A (CB-0210).* **Toxic (#92).** In `BattleControllerPlayer_CheckMoveHitOverrides` (`battle_controller_player.c` ~3626), add
    `move == MOVE_TOXIC && MON_HAS_TYPE(attacker, TYPE_POISON)` to the sure-hit list. Put it before the
    semi-invulnerable check so it also hits Fly/Dig users, as Lock-On does.
-7. **Whirlwind / Roar (#18, #46).** Remove `MOVE_FLAG_CAN_PROTECT` and add `MOVE_FLAG_CAN_MAGIC_COAT` in both
+7. ✅ *Done in moves batch C (CB-0212).* **Whirlwind / Roar (#18, #46).** Remove `MOVE_FLAG_CAN_PROTECT` and add `MOVE_FLAG_CAN_MAGIC_COAT` in both
    `data.json`. In `BtlCmd_TryWhirlwind`, drop the `BattleSystem_CanWhirlwind` roll in trainer battles, and for wild
    battles make it a plain `attacker level < defender level` → fail.
-8. ✅ *Length done in moves batch B (CB-0211); not reflectable yet (14 below).* **Disable (#50).** In `BtlCmd_TryDisable` set a fixed length: `disabledTurns = 4` if the target has already acted
+8. ✅ *Length done in moves batch B (CB-0211); reflectable since moves batch C (CB-0212).* **Disable (#50).** In `BtlCmd_TryDisable` set a fixed length: `disabledTurns = 4` if the target has already acted
    this turn, else 3. That gives 4 blocked turns with Platinum's countdown; Cursed Body already uses 4. Add
    `CAN_MAGIC_COAT`.
 9. ✅ *Done in moves batch B (CB-0211).* **Destiny Bond (#194).** At `CHECK_STATUS_START` (`battle_controller_player.c:2804`), if `moveCur ==
@@ -132,7 +132,7 @@ this engine models) · **GEN_IV** (still Gen IV, needs a change) · **PARTIAL** 
 15. **Flail / Reversal (#175, #179).** Use `curHP*48/maxHP` (min 1) and thresholds {1,200},{4,150},{9,100},
     {16,80},{32,40},{48,20} in `BtlCmd_CalcFlailPower`.
 16. **Haze (#114).** Delete the Focus Energy line in `BtlCmd_ResetAllStatChanges` (`battle_script.c:3788`).
-17. **Spikes, Spite, Foresight (#191, #180, #193).** Add `MOVE_FLAG_CAN_MAGIC_COAT`, as Sticky Web has. Stealth Rock
+17. ✅ *Done in moves batch C (CB-0212), with Stealth Rock and Toxic Spikes.* **Spikes, Spite, Foresight (#191, #180, #193).** Add `MOVE_FLAG_CAN_MAGIC_COAT`, as Sticky Web has. Stealth Rock
     and Toxic Spikes (outside this range) lack it too.
 18. **Mimic (#102).** In `BtlCmd_TryMimic`, drop the Substitute check and give the copied move `MOVE_DATA(move).pp`.
     Add Transform, Mirror Move, Sleep Talk, Assist, Copycat, Me First and Nature Power (and the Gen V+ `failmimic`
@@ -157,7 +157,8 @@ this engine models) · **GEN_IV** (still Gen IV, needs a change) · **PARTIAL** 
   Showdown keeps their rules in `conditions.ts`. They were Gen IV (2–5 turns, 1/16 per turn, Grip Claw 5). ✅ Done in
   the held-items PR (CB-0209): 4–5 turns, 1/8 (Binding Band 1/6), Grip Claw 7.
 - **Counter (#68)** has no `MOVE_FLAG_CAN_PROTECT`, while Gen IX flags it `protect`. That's vanilla Platinum data;
-  whether Gen IV differed here is UNSURE.
+  whether Gen IV differed here is UNSURE. ✅ Moves batch C (CB-0212) gives Counter, Mirror Coat and Metal Burst the
+  flag, as Gen IX has it.
 
 ## Part 2: moves #204–467
 
@@ -273,12 +274,12 @@ Sovereign, Magic Coat and Magic Bounce both use this flag (bcp:~3847, bcp:~3871)
 2. ✅ *×1.5 done in moves batch A (CB-0210); a Pokémon whose item was knocked off still can't get a new one.* **Knock Off (282)**: in the power step (a `CalcKnockOffPower` in eff 0188, or `BattleScript_CalcMoveDamage`), give ×1.5 when the target holds an item it could lose (not form-locked, not a Griseous Orb on Giratina; Sticky Hold doesn't cancel the boost). Stop `knockedOffItemsMask` from barring a new item.
 3. ✅ *Done in moves batch A (CB-0210), in the trainer AI's damage estimate too.* **Hidden Power (237)**: set `movePower = 60` in `BtlCmd_CalcHiddenPowerParams` (bs:6429) and keep the type calculation.
 4. **Defog (432)**: extend sub defog to clear Sticky Web and Aurora Veil on the target's side, Spikes, Toxic Spikes, Stealth Rock and Sticky Web on the user's side, and the terrain. Add `CAN_MAGIC_COAT`.
-5. ✅ *Done in moves batch A (CB-0210): always hits, and lifts Protect, Wide Guard, Quick Guard, Mat Block and Crafty Shield; still not in Mirror Move's list.* **Feint (364)**: drop the `TryFeint` failure jump (eff 0223:5, bs:7949) so it always hits. Keep lifting Protect and also lift Wide Guard, Quick Guard and Mat Block. Add `CAN_MIRROR_MOVE`.
-6. ✅ *Heal done in moves batch B (CB-0211); not snatchable yet (38 below).* **Wish (273)**: at bs:6790 store the user's `maxHP / 2` (new `wishHP[battler]`) and heal that amount at bcp:1295. Add `CAN_SNATCH`.
+5. ✅ *Done in moves batch A (CB-0210): always hits, and lifts Protect, Wide Guard, Quick Guard, Mat Block and Crafty Shield. Mirror Move copies it since moves batch C (CB-0212).* **Feint (364)**: drop the `TryFeint` failure jump (eff 0223:5, bs:7949) so it always hits. Keep lifting Protect and also lift Wide Guard, Quick Guard and Mat Block. Add `CAN_MIRROR_MOVE`.
+6. ✅ *Heal done in moves batch B (CB-0211); snatchable since moves batch C (CB-0212).* **Wish (273)**: at bs:6790 store the user's `maxHP / 2` (new `wishHP[battler]`) and heal that amount at bcp:1295. Add `CAN_SNATCH`.
 7. **Future Sight / Doom Desire (248, 353)**: work the damage out when the attack lands (or at least apply type effectiveness and immunity: Psychic, so Dark is immune; Steel), with crits allowed, instead of the typeless amount stored at bs:6482.
 8. ✅ *Done in moves batch A (CB-0210).* **Sheer Cold (329)**: in `TryOHKOMove` (bs:4654), make Ice types immune and use 20 base accuracy when the user isn't Ice-type.
 9. ✅ *Done in moves batch B (CB-0211): a third bit marks the 4th turn.* **Tailwind (366)**: give Tailwind a 3-bit or separate per-side counter (the 2-bit field at `condition.h` TAILWIND_0/1 can't hold 4) and set it to 4.
-10. ✅ *Lengths done in moves batch B (CB-0211); the reflect flags, Encore's list and Me First are still to do.* **Encore (227) and Taunt (269)**:
+10. ✅ *Lengths done in moves batch B (CB-0211), the reflect flags in moves batch C (CB-0212); Encore's list and Me First are still to do.* **Encore (227) and Taunt (269)**:
     - Encore: `encoredTurns` = 2 if the target hasn't moved yet this turn, else 3 (bs:5062).
     - Taunt: 3, or 4 if the target already moved (replace `Random 2, 3`).
     - Both: add `CAN_MAGIC_COAT`.
@@ -287,10 +288,10 @@ Sovereign, Magic Coat and Magic Bounce both use this flag (bcp:~3847, bcp:~3871)
 11. **Beat Up (251)**: per hit, power = 5 + that member's base Attack/10, then the normal damage calculation: user's Attack, target's Defense, Dark type, STAB and effectiveness. Drop `SYSCTL_IGNORE_IMMUNITIES` (eff 0154, bs:6612).
 12. ✅ *Done in moves batch A (CB-0210).* **Poison Fang (305)**: effect chance 30 → 50 in its data.json.
 13. ✅ *Done in moves batch B (CB-0211); Electromorphosis's and Wind Power's charge last the same way.* **Charge (268)**: don't expire it after a turn (bcp:1946). Clear `MOVE_EFFECT_CHARGE` when the user uses an Electric move other than Charge, or switches out.
-14. **Moves that should be reflectable (259 Torment, 316 Odor Sleuth, 357 Miracle Eye, 373 Embargo, 377 Heal Block, 390 Toxic Spikes, 432 Defog, 446 Stealth Rock, and Encore/Taunt above)**: add `MOVE_FLAG_CAN_MAGIC_COAT`. Check that side moves bounce as Sticky Web's does. Stealth Rock against Magic Bounce is the case players will notice most.
+14. ✅ *Done in moves batch C (CB-0212), Disable, Spite, Spikes and Foresight too.* **Moves that should be reflectable (259 Torment, 316 Odor Sleuth, 357 Miracle Eye, 373 Embargo, 377 Heal Block, 390 Toxic Spikes, 432 Defog, 446 Stealth Rock, and Encore/Taunt above)**: add `MOVE_FLAG_CAN_MAGIC_COAT`. Check that side moves bounce as Sticky Web's does. Stealth Rock against Magic Bounce is the case players will notice most.
 15. **Payback (371)**: at bs:7628, don't double against a target that switched in this turn.
 16. **Sleep Talk (214)**: in `TrySleepTalk` don't let Choice lock or Encore mark the slots invalid; pass a mask without `CHECK_INVALID_CHOICE_ITEM`, and bypass the Encore check that runs regardless of the mask (bl:2452). Also exclude Belch, Beak Blast, Shell Trap, Mimic, Sketch and Nature Power.
-17. **Mean Look, Block (212, 335)**: remove `MOVE_FLAG_CAN_PROTECT` from both data files.
+17. ✅ *Done in moves batch C (CB-0212).* **Mean Look, Block (212, 335)**: remove `MOVE_FLAG_CAN_PROTECT` from both data files.
 18. **Dragon Rush, Shadow Force (407, 467)**: double damage and a sure hit against a Minimized target (a Gen VI+ list of Minimize punishers). Stomp, Body Slam and Steamroller should get the sure hit too; those are part 1's range.
 19. **Heal Block (377) and Drain Punch (409)**:
     - Add the drain moves (Absorb, Mega Drain, Giga Drain, Drain Punch, Dream Eater, Leech Life, Horn Leech, Draining Kiss, Parabolic Charge, Oblivion Wing, Bitter Blade, Matcha Gotcha, Bouncy Bubble) to `sMovesAffectedByHealBlock` (bl:4012).
@@ -318,7 +319,7 @@ Sovereign, Magic Coat and Magic Bounce both use this flag (bcp:~3847, bcp:~3871)
 35. **Imprison (286)**: remove the "no shared move" failure (bs:7136) and add `CAN_SNATCH`.
 36. **Acupressure (367)**: skip the Substitute check when the target is the user (eff 0226:5) and remove `CAN_SNATCH`.
 37. **Dark Void (464)**: fail unless the user is Darkrai.
-38. **Snatch flags (278 Recycle, 379 Power Trick, 381 Lucky Chant, 392 Aqua Ring)**: add `CAN_SNATCH`. Healing Wish and Lunar Dance (361, 461) also gain `CAN_SNATCH` in Gen V+; Psych Up and Acupressure lose it.
+38. ✅ *Done in moves batch C (CB-0212), with Conversion, Wish, Imprison and Magnet Rise.* **Snatch flags (278 Recycle, 379 Power Trick, 381 Lucky Chant, 392 Aqua Ring)**: add `CAN_SNATCH`. Healing Wish and Lunar Dance (361, 461) also gain `CAN_SNATCH` in Gen V+; Psych Up and Acupressure lose it.
 39. **Recoil 1/3 → 33/100 (344 Volt Tackle, 394 Flare Blitz, 413 Brave Bird, 452 Wood Hammer)**: a difference of at most about 1% of the damage. Optional.
 40. **Wring Out, Crush Grip (378, 462)**: drop the `1 +` at bs:7691 (minimum 1). This changes power by 1.
 41. **Pursuit (228)**: let an asleep, frozen or loafing user react to a switch (bs:7330). Negligible.
