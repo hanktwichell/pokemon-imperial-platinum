@@ -555,6 +555,8 @@ BOOL Move_SheerForceApplies(BattleContext *battleCtx, int attacker, int move);
 
 // Sovereign (item 11): whether the move is a ball or bomb move (blocked by Bulletproof).
 BOOL Move_IsBallOrBomb(int move);
+// Sovereign: Body Slam, Stomp and the other moves that never miss a Minimized target and deal it double damage.
+BOOL Move_PunishesMinimize(int move);
 BOOL Move_IsPowder(int move);
 int Item_SovereignGemType(u16 item);
 BOOL Sovereign_MakesContact(BattleContext *battleCtx, int attacker, int move);

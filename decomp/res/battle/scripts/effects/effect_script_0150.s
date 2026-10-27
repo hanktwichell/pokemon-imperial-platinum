@@ -3,11 +3,9 @@
 
 _000:
     UpdateVar OPCODE_SET, BTLVAR_SIDE_EFFECT_FLAGS_INDIRECT, MOVE_SIDE_EFFECT_TO_DEFENDER|MOVE_SUBSCRIPT_PTR_FLINCH
+    // Sovereign: the double damage against a Minimized target is in Sovereign_MovePower, with the other moves that have
+    // it (Gen VI+).
     UpdateVar OPCODE_SET, BTLVAR_POWER_MULTI, 10
-    CompareMonDataToValue OPCODE_FLAG_NOT, BTLSCR_DEFENDER, BATTLEMON_MOVE_EFFECTS_MASK, MOVE_EFFECT_MINIMIZE, _017
-    UpdateVar OPCODE_SET, BTLVAR_POWER_MULTI, 20
-
-_017:
     CalcCrit 
     CalcDamage 
     End 

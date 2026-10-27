@@ -37,6 +37,23 @@ _058:
     WaitButtonABTime 30
 
 _092:
+    // Sovereign: how effective it was, as it's typed when it hits (Gen V+; BattleControllerPlayer_CheckSideConditions).
+    CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_SUPER_EFFECTIVE, _sovereign_not_very
+    // It’s super effective!
+    PrintMessage BattleStrings_Text_ItsSuperEffective, TAG_NONE
+    Wait 
+    WaitButtonABTime 30
+    GoTo _sovereign_sturdy
+
+_sovereign_not_very:
+    CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_NOT_VERY_EFFECTIVE, _sovereign_sturdy
+    // It’s not very effective…
+    PrintMessage BattleStrings_Text_ItsNotVeryEffective, TAG_NONE
+    Wait 
+    WaitButtonABTime 30
+
+_sovereign_sturdy:
+    UpdateVar OPCODE_FLAG_OFF, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_SUPER_EFFECTIVE|MOVE_STATUS_NOT_VERY_EFFECTIVE
     // Sovereign: Sturdy (Gen V+) left it with 1 HP.
     CompareVarToValue OPCODE_FLAG_NOT, BTLVAR_MOVE_STATUS_FLAGS, MOVE_STATUS_ENDURED_ABILITY, _sovereign_item
     // {0}’s {1} let it endure the hit!
