@@ -9279,7 +9279,8 @@ merged. This one adds two story beats from `docs/Story.md`'s list for after the 
 - `decomp/res/text/pal_park_lobby.json`, `decomp/res/field/scripts/scripts_pal_park_lobby.s`,
   `decomp/res/field/events/events_pal_park_lobby.json`
 - `tools/engine/gen_regional_forms_park.py`, `docs/RegionalFormsPark.md`
-- `docs/Story.md`, `docs/PostgameLegendaries.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`
+- `data/postgame_legendaries.yaml`, `tools/design/gen_legendary_doc.py`, `docs/PostgameLegendaries.md` (generated)
+- `docs/Story.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`
 
 **Next 3 steps:**
 1. Anything the owner asks for. Waiting on the owner:

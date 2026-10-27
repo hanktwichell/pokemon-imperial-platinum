@@ -26,6 +26,10 @@ hub:
     CommonScript_SovereignLegendaryEncounter: each stays on the map until the Pokédex has it as caught, and vanishes
     after it's knocked out until the next visit. The player can run, as from any wild battle in Platinum; a run ends
     like a knock-out.
+  sovereign: >-
+    As each Chronicle opens, the Archivist adds a line that builds on the last (CB-0232, docs/Story.md): a tome he never
+    shelved, then something opening the way, then the crown on the Galar tome's cover, the same as on the Oreburgh
+    stone, until with Paldea he decides that the Sovereign opened the way on purpose.
 
 quests:
   # ---------------------------------------------------------------- Unova Chronicle
