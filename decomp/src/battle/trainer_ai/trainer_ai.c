@@ -44,7 +44,6 @@ static const u16 sNoDamageCalcMoveEffects[] = {
     BATTLE_EFFECT_SPIT_UP,
     BATTLE_EFFECT_HIT_LAST_WHIFF_IF_HIT,
     BATTLE_EFFECT_LOWER_OWN_ATK_AND_DEF,
-    BATTLE_EFFECT_DECREASE_POWER_WITH_LESS_USER_HP,
     BATTLE_EFFECT_HIT_FIRST_IF_TARGET_ATTACKING,
     BATTLE_EFFECT_RECOIL_HALF,
     0xFFFF
@@ -62,8 +61,31 @@ static const u16 sAltPowerMoveEffects[] = {
     BATTLE_EFFECT_POWER_BASED_ON_LOW_FRIENDSHIP,
     BATTLE_EFFECT_20_DAMAGE_FLAT,
     BATTLE_EFFECT_INCREASE_POWER_WITH_WEIGHT,
+    // Sovereign (12b): TrainerAI_CalcDamage works out these moves' power as their battle scripts do. Platinum left them
+    // out of its damage estimates (Eruption and Water Spout were taken as not worth estimating).
+    BATTLE_EFFECT_INCREASE_POWER_WITH_LESS_HP,
+    BATTLE_EFFECT_INCREASE_POWER_WITH_MORE_HP,
+    BATTLE_EFFECT_INCREASE_POWER_WITH_MORE_STAT_UP,
+    BATTLE_EFFECT_HIGHER_POWER_WHEN_LOW_PP,
+    BATTLE_EFFECT_DECREASE_POWER_WITH_LESS_USER_HP,
     0xFFFF
 };
+
+// Sovereign (12b): moves with the plain hit effect whose power BattleSystem_CalcMoveDamage works out
+// (Sovereign_MovePower). Their data keep power 1, the mark of a variable power, which kept them out of the AI's
+// damage estimates.
+static BOOL TrainerAI_HasDamagingPower(BattleContext *battleCtx, u16 move)
+{
+    switch (move) {
+    case MOVE_ELECTRO_BALL:
+    case MOVE_HEAVY_SLAM:
+    case MOVE_HEAT_CRASH:
+    case MOVE_HARD_PRESS:
+        return TRUE;
+    }
+
+    return MOVE_DATA(move).power > 1;
+}
 
 typedef void (*AICommandFunc)(BattleSystem *, BattleContext *);
 
@@ -1069,7 +1091,7 @@ static void AICmd_FlagMoveDamageScore(BattleSystem *battleSys, BattleContext *ba
     }
 
     if (sAltPowerMoveEffects[altPowerIdx] != 0xFFFF
-        || (MOVE_DATA(AI_CONTEXT.move).power > 1 && sNoDamageCalcMoveEffects[noCalcIdx] == 0xFFFF)) {
+        || (TrainerAI_HasDamagingPower(battleCtx, AI_CONTEXT.move) && sNoDamageCalcMoveEffects[noCalcIdx] == 0xFFFF)) {
         for (i = 0; i < STAT_MAX; i++) {
             ivs[i] = BattleMon_Get(battleCtx, AI_CONTEXT.attacker, BATTLEMON_HP_IV + i, NULL);
         }
@@ -1587,7 +1609,7 @@ static void AICmd_IfCurrentMoveKills(BattleSystem *battleSys, BattleContext *bat
     }
 
     if (sAltPowerMoveEffects[altPowerIdx] != 0xFFFF
-        || (MOVE_DATA(AI_CONTEXT.move).power > 1 && sNoDamageCalcMoveEffects[noCalcIdx] == 0xFFFF)) {
+        || (TrainerAI_HasDamagingPower(battleCtx, AI_CONTEXT.move) && sNoDamageCalcMoveEffects[noCalcIdx] == 0xFFFF)) {
         u8 ivs[STAT_MAX];
         for (int stat = STAT_HP; stat < STAT_MAX; stat++) {
             ivs[stat] = BattleMon_Get(battleCtx, AI_CONTEXT.attacker, BATTLEMON_HP_IV + stat, NULL);
@@ -1638,7 +1660,7 @@ static void AICmd_IfCurrentMoveDoesNotKill(BattleSystem *battleSys, BattleContex
     }
 
     if (sAltPowerMoveEffects[altPowerIdx] != 0xFFFF
-        || (MOVE_DATA(AI_CONTEXT.move).power > 1 && sNoDamageCalcMoveEffects[noCalcIdx] == 0xFFFF)) {
+        || (TrainerAI_HasDamagingPower(battleCtx, AI_CONTEXT.move) && sNoDamageCalcMoveEffects[noCalcIdx] == 0xFFFF)) {
         u8 ivs[STAT_MAX];
         for (int stat = STAT_HP; stat < STAT_MAX; stat++) {
             ivs[stat] = BattleMon_Get(battleCtx, AI_CONTEXT.attacker, BATTLEMON_HP_IV + stat, NULL);
@@ -2427,7 +2449,7 @@ static void AICmd_CheckIfHighestDamageWithPartner(BattleSystem *battleSys, Battl
     }
 
     if (sAltPowerMoveEffects[k] != 0xFFFF
-        || (MOVE_DATA(AI_CONTEXT.move).power > 1 && sNoDamageCalcMoveEffects[j] == 0xFFFF)) {
+        || (TrainerAI_HasDamagingPower(battleCtx, AI_CONTEXT.move) && sNoDamageCalcMoveEffects[j] == 0xFFFF)) {
         battler = AI_CONTEXT.attacker;
 
         for (j = 0; j < MAX_BATTLERS_PER_SIDE; j++) {
@@ -2722,7 +2744,7 @@ static BOOL AI_MoveDealsDamage(BattleContext *battleCtx)
     }
 
     return sAltPowerMoveEffects[altPowerIdx] != 0xFFFF
-        || (MOVE_DATA(AI_CONTEXT.move).power > 1 && sNoDamageCalcMoveEffects[noCalcIdx] == 0xFFFF);
+        || (TrainerAI_HasDamagingPower(battleCtx, AI_CONTEXT.move) && sNoDamageCalcMoveEffects[noCalcIdx] == 0xFFFF);
 }
 
 /**
@@ -3559,7 +3581,7 @@ static s32 TrainerAI_CalcAllDamage(BattleSystem *battleSys, BattleContext *battl
         }
 
         if (sAltPowerMoveEffects[altPowerIdx] != 0xFFFF
-            || (moves[i] != MOVE_NONE && sNoDamageCalcMoveEffects[noCalcIdx] == 0xFFFF && MOVE_DATA(moves[i]).power > 1)) {
+            || (moves[i] != MOVE_NONE && sNoDamageCalcMoveEffects[noCalcIdx] == 0xFFFF && TrainerAI_HasDamagingPower(battleCtx, moves[i]))) {
             if (varyDamage == TRUE) {
                 damageRoll = AI_CONTEXT.moveDamageRolls[i];
             } else {
@@ -3754,6 +3776,40 @@ static s32 TrainerAI_CalcDamage(BattleSystem *battleSys, BattleContext *battleCt
         power = battleCtx->battleMons[attacker].friendship * 10 / 25;
         type = TYPE_NORMAL;
         break;
+
+    case MOVE_PIKA_PAPOW: // Sovereign (12b): as Return, in their own types
+    case MOVE_VEEVEE_VOLLEY:
+        power = battleCtx->battleMons[attacker].friendship * 10 / 25;
+        break;
+
+    // Sovereign (12b): the moves whose battle script works out their power (sAltPowerMoveEffects).
+    case MOVE_FLAIL:
+    case MOVE_REVERSAL:
+        power = Sovereign_FlailPower(&battleCtx->battleMons[attacker]);
+        break;
+
+    case MOVE_WRING_OUT:
+    case MOVE_CRUSH_GRIP:
+        power = Sovereign_HPRatioPower(&battleCtx->battleMons[AI_CONTEXT.defender], 120);
+        break;
+
+    case MOVE_ERUPTION:
+    case MOVE_WATER_SPOUT:
+    case MOVE_DRAGON_ENERGY:
+        power = Sovereign_HPFalloffPower(&battleCtx->battleMons[attacker], MOVE_DATA(move).power);
+        break;
+
+    case MOVE_PUNISHMENT:
+        power = Sovereign_PunishmentPower(&battleCtx->battleMons[AI_CONTEXT.defender]);
+        break;
+
+    case MOVE_TRUMP_CARD: { // by the PP left once it's used
+        BattleMon *mon = &battleCtx->battleMons[attacker];
+        int slot = Battler_SlotForMove(mon, move);
+
+        power = Sovereign_TrumpCardPower(slot < LEARNED_MOVES_MAX && mon->ppCur[slot] ? mon->ppCur[slot] - 1 : 0);
+        break;
+    }
 
     case MOVE_FRUSTRATION:
         power = (255 - battleCtx->battleMons[attacker].friendship) * 10 / 25;

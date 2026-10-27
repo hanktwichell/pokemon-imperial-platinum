@@ -10300,6 +10300,76 @@ int Sovereign_EchoedVoiceCount(BattleContext *battleCtx)
     return count > 5 ? 5 : count;
 }
 
+// Sovereign (12b): the power of the moves whose battle script works it out (BtlCmd_CalcFlailPower and the like), here
+// so the trainer AI's damage estimates (TrainerAI_CalcDamage) use the same numbers as the moves.
+
+// Flail and Reversal: by the user's HP out of 48 (Gen V+), not the HP bar's 64 pixels.
+static const u8 sHPOutOf48ToFlailPower[][2] = {
+    { 1, 200 },
+    { 4, 150 },
+    { 9, 100 },
+    { 16, 80 },
+    { 32, 40 },
+    { 48, 20 },
+};
+
+int Sovereign_FlailPower(BattleMon *mon)
+{
+    int i, hp = mon->curHP * 48 / mon->maxHP;
+
+    if (hp < 1) {
+        hp = 1;
+    }
+
+    for (i = 0; i < NELEMS(sHPOutOf48ToFlailPower) - 1; i++) {
+        if (hp <= sHPOutOf48ToFlailPower[i][0]) {
+            break;
+        }
+    }
+
+    return sHPOutOf48ToFlailPower[i][1];
+}
+
+// Crush Grip and Wring Out (maxPower 120), Hard Press (100): by the target's HP, through a 4096ths ratio as in Showdown,
+// at least 1.
+int Sovereign_HPRatioPower(BattleMon *mon, int maxPower)
+{
+    int hpRatio = mon->curHP * 4096 / mon->maxHP;
+    int power = (maxPower * 100 * hpRatio + 4096 / 2 - 1) / 4096 / 100;
+
+    return power ? power : 1;
+}
+
+// Eruption, Water Spout and Dragon Energy: their power scaled by the user's HP, at least 1.
+int Sovereign_HPFalloffPower(BattleMon *mon, int power)
+{
+    power = power * mon->curHP / mon->maxHP;
+
+    return power ? power : 1;
+}
+
+// Punishment: 60, and 20 more for each stage the target's stats are raised, up to 200.
+int Sovereign_PunishmentPower(BattleMon *mon)
+{
+    int i, sumBoosts = 0;
+
+    for (i = BATTLE_STAT_HP; i < BATTLE_STAT_MAX; i++) {
+        if (mon->statBoosts[i] > DEFAULT_STAT_STAGE) {
+            sumBoosts += mon->statBoosts[i] - DEFAULT_STAT_STAGE;
+        }
+    }
+
+    return 60 + 20 * sumBoosts > 200 ? 200 : 60 + 20 * sumBoosts;
+}
+
+// Trump Card: by the PP it has left once used (0: 200, 1: 80, 2: 60, 3: 50, 4 or more: 40).
+int Sovereign_TrumpCardPower(int ppLeft)
+{
+    static const u8 sPPLeftToPower[] = { 200, 80, 60, 50, 40 };
+
+    return sPPLeftToPower[ppLeft > 4 ? 4 : ppLeft];
+}
+
 // Sovereign (item 11): the power of Gen V+ moves whose power depends on the battle (the move keeps the plain hit
 // effect; BattleSystem_CalcMoveDamage asks here). Returns the power unchanged for every other move.
 int Sovereign_MovePower(BattleSystem *battleSys, BattleContext *battleCtx, int move, int attacker, int defender, int power)
@@ -10371,15 +10441,9 @@ int Sovereign_MovePower(BattleSystem *battleSys, BattleContext *battleCtx, int m
         }
         break;
 
-    case MOVE_HARD_PRESS: { // up to 100 power, by the target's remaining HP (Showdown's formula, as Crush Grip's)
-        int hpRatio = battleCtx->battleMons[defender].curHP * 4096 / battleCtx->battleMons[defender].maxHP;
-
-        power = (100 * 100 * hpRatio + 4096 / 2 - 1) / 4096 / 100;
-        if (power < 1) {
-            power = 1;
-        }
+    case MOVE_HARD_PRESS: // up to 100 power, by the target's remaining HP (as Crush Grip's, up to 120)
+        power = Sovereign_HPRatioPower(&battleCtx->battleMons[defender], 100);
         break;
-    }
 
     case MOVE_FICKLE_BEAM: // 30% chance of double power
         if (BattleSystem_RandNext(battleSys) % 10 < 3) {

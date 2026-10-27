@@ -3,6 +3,35 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## AI review #18: damage estimates for moves whose power is worked out in battle; Pika Papow and Veevee Volley
+
+For players:
+- **Pika Papow and Veevee Volley** take their power from friendship, as Return does (up to 102). They hit with power 1
+  before.
+- **Trainers' AI** now sees how strong these moves are:
+  - Flail, Reversal, Wring Out, Crush Grip, Eruption, Water Spout, Dragon Energy, Punishment and Trump Card. It used to
+    skip them when it looked for its strongest move.
+  - Electro Ball, Heavy Slam, Heat Crash and Hard Press. It never counted them as damaging moves at all.
+  - A trainer at low HP with Flail now goes for it, for example.
+
+Code:
+- `Sovereign_FlailPower`, `Sovereign_HPRatioPower`, `Sovereign_HPFalloffPower`, `Sovereign_PunishmentPower` and
+  `Sovereign_TrumpCardPower` (`battle_lib.c`) are shared by the moves' battle-script commands and the AI's
+  `TrainerAI_CalcDamage`.
+- `sAltPowerMoveEffects` and `TrainerAI_HasDamagingPower` are in `trainer_ai.c`.
+- Pika Papow and Veevee Volley's data come from `tools/engine/gen9_move_fixes.py`, and the pipeline reproduces the move
+  data and `docs/MoveChecklist.md`.
+
+Verified (test build; details in `docs/AIReview.md`, section *#18*):
+- **AI trace:** in the test trainer battle, a trace of the AI's "strongest move" check showed:
+  - At 5% HP: Flail rated strongest.
+  - At full HP: Crush Grip and Electro Ball, each against some targets.
+  - On its last PP: Trump Card.
+  - Every one of these moves was compared. Before, they weren't.
+- **Pika Papow:** from a Pikachu with friendship 255 it did 56 per hit to a Lv. 100 Ninjask (Thunderbolt: 44–50). With
+  friendship 0 it did 2.
+- **Builds:** the test and release builds pass.
+
 ## Item 11: Platinum's moves under the later games' rules, batch J
 
 For players:

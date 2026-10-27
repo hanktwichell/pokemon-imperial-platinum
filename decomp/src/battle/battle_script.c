@@ -5230,16 +5230,6 @@ static BOOL BtlCmd_TrySleepTalk(BattleSystem *battleSys, BattleContext *battleCt
     return FALSE;
 }
 
-// Sovereign: the HP out of 48 (Gen V+), not the HP bar's 64 pixels; Flail and Reversal hit a little harder at low HP.
-static const u8 sHPPixelsToFlailPower[][2] = {
-    { 1, 200 },
-    { 4, 150 },
-    { 9, 100 },
-    { 16, 80 },
-    { 32, 40 },
-    { 48, 20 },
-};
-
 /**
  * @brief Calculate the power for Flail-type moves according to the attacker's
  * current HP.
@@ -5252,19 +5242,7 @@ static BOOL BtlCmd_CalcFlailPower(BattleSystem *battleSys, BattleContext *battle
 {
     BattleScript_Iter(battleCtx, 1);
 
-    int i, curHPPixels = ATTACKING_MON.curHP * 48 / ATTACKING_MON.maxHP; // Sovereign: Gen V+ (at least 1)
-
-    if (curHPPixels < 1) {
-        curHPPixels = 1;
-    }
-
-    for (i = 0; i < NELEMS(sHPPixelsToFlailPower); i++) {
-        if (curHPPixels <= sHPPixelsToFlailPower[i][0]) {
-            break;
-        }
-    }
-
-    battleCtx->movePower = sHPPixelsToFlailPower[i][1];
+    battleCtx->movePower = Sovereign_FlailPower(&ATTACKING_MON); // Sovereign: Gen V+, by the HP out of 48
 
     return FALSE;
 }
@@ -7061,11 +7039,7 @@ static BOOL BtlCmd_CalcHPFalloffPower(BattleSystem *battleSys, BattleContext *ba
     BattleScript_Iter(battleCtx, 1);
 
     if (battleCtx->movePower == 0) {
-        battleCtx->movePower = CURRENT_MOVE_DATA.power * ATTACKING_MON.curHP / ATTACKING_MON.maxHP;
-
-        if (battleCtx->movePower == 0) {
-            battleCtx->movePower = 1;
-        }
+        battleCtx->movePower = Sovereign_HPFalloffPower(&ATTACKING_MON, CURRENT_MOVE_DATA.power);
     }
 
     return FALSE;
@@ -7600,14 +7574,6 @@ static BOOL BtlCmd_CalcPaybackPower(BattleSystem *battleSys, BattleContext *batt
     return FALSE;
 }
 
-static const u8 sCurrentPPScaledPower[] = {
-    200,
-    80,
-    60,
-    50,
-    40,
-};
-
 /**
  * @brief Calculates the base power of Trump Card.
  *
@@ -7626,12 +7592,7 @@ static BOOL BtlCmd_CalcTrumpCardPower(BattleSystem *battleSys, BattleContext *ba
 {
     BattleScript_Iter(battleCtx, 1);
 
-    u8 ppCur = ATTACKING_MON.ppCur[ATTACKER_MOVE_SLOT];
-    if (ppCur > 4) {
-        ppCur = 4;
-    }
-
-    battleCtx->movePower = sCurrentPPScaledPower[ppCur];
+    battleCtx->movePower = Sovereign_TrumpCardPower(ATTACKING_MON.ppCur[ATTACKER_MOVE_SLOT]);
 
     return FALSE;
 }
@@ -7651,10 +7612,7 @@ static BOOL BtlCmd_CalcWringOutPower(BattleSystem *battleSys, BattleContext *bat
 {
     BattleScript_Iter(battleCtx, 1);
 
-    int hpRatio = DEFENDING_MON.curHP * 4096 / DEFENDING_MON.maxHP;
-    int power = (120 * 100 * hpRatio + 4096 / 2 - 1) / 4096 / 100;
-
-    battleCtx->movePower = power ? power : 1;
+    battleCtx->movePower = Sovereign_HPRatioPower(&DEFENDING_MON, 120);
 
     return FALSE;
 }
@@ -7746,18 +7704,7 @@ static BOOL BtlCmd_CalcPunishmentPower(BattleSystem *battleSys, BattleContext *b
 {
     BattleScript_Iter(battleCtx, 1);
 
-    // must declare i first to match
-    int i, sumBoosts = 0;
-    for (i = BATTLE_STAT_HP; i < BATTLE_STAT_MAX; i++) {
-        if (DEFENDING_MON.statBoosts[i] > DEFAULT_STAT_STAGE) {
-            sumBoosts += DEFENDING_MON.statBoosts[i] - DEFAULT_STAT_STAGE;
-        }
-    }
-
-    battleCtx->movePower = 60 + 20 * sumBoosts;
-    if (battleCtx->movePower > 200) {
-        battleCtx->movePower = 200;
-    }
+    battleCtx->movePower = Sovereign_PunishmentPower(&DEFENDING_MON);
 
     return FALSE;
 }

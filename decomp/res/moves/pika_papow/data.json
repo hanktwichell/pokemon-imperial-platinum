@@ -13,7 +13,7 @@
     "accuracy": 0,
     "pp": 20,
     "effect": {
-        "type": "BATTLE_EFFECT_HIT",
+        "type": "BATTLE_EFFECT_POWER_BASED_ON_FRIENDSHIP",
         "chance": 0
     },
     "range": "RANGE_SINGLE_TARGET",
