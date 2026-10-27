@@ -8273,3 +8273,34 @@ damage) is merged. This PR: the engine data generators all reproduce their files
 2. Look for item 11 effects still marked approximate in `docs/MoveChecklist.md` and `docs/AbilityChecklist.md` that
    work in singles, and make them exact.
 3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.
+
+## CB-0197 (Claude B, 9:25 pm US Central, 2026-10-26)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #213 (the generator checks) is merged; its new
+CI step passed. This PR: trainer AI review items 12b #8, #10 and #11 (`docs/AIReview.md`).
+- **#11, Gen V+ moves:** a new AI command `LoadSovereignMoveRating` (`trainer_ai.c`) rates the 80 Gen V+ status
+  effects the AI script didn't know. Aimed at a foe (end of `Basic_Main`), a move scores −10 if it would fail now,
+  does nothing in a trainer battle, only helps the Pokémon it hits (Heal Pulse, Decorate, Purify, Instruct, After You)
+  or only works on the partner. Three damaging moves that fail also score −10: Poltergeist, Steel Roller and Belch.
+- **#8, on the partner** (start of `TagStrategy_Partner`): Pollen Puff, Heal Pulse, Floral Healing, Decorate, Purify,
+  Instruct, After You and Aromatic Mist score +3, +1 or −30 by the partner's state.
+- **#10, a bug found while testing:** a double battle that a script starts with one trainer ID left the second enemy
+  slot without a trainer. That covers the Elite Four's and Cynthia's double battles and Cyrus in the Distortion World.
+  The second Pokémon ran without the Basic, Eval Attack and Expert flags and couldn't use the trainer's items.
+  `AI_TrainerSlot` gives it the first trainer's flags and items.
+- Verified with the new `tools/test/log_ai_move_rating.py`, with the test trainer given support moves for the test:
+  - Aromatic Mist on the partner; Pollen Puff on a foe.
+  - Heal Pulse on a partner at 30% HP ("regained health").
+  - In a single battle, Ember over Life Dew, Stuff Cheeks and Coaching.
+  - Test and release builds pass, and the docs regenerate.
+
+**Files modified:** `decomp/src/battle/trainer_ai/trainer_ai.c`, `decomp/src/battle/trainer_ai/script.s`,
+`decomp/include/constants/battle/trainer_ai.h`, `decomp/include/data/scripts/aicmd.h`, `decomp/asm/macros/aicmd.inc`,
+`tools/test/log_ai_move_rating.py` (new), `tools/test/README.md`, `docs/AIReview.md`, `docs/EngineChangelog.md`,
+`CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. The Expert routine's Gen IV move handlers have no Gen V+ counterparts (setup moves, hazards, pivots such as Parting
+   Shot). Add positive scoring for the common ones, boss teams first (T1).
+2. 12b #7 (weather) waits for T2. Emergency Exit after entry hazards is still open.
+3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.

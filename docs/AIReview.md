@@ -39,14 +39,17 @@ opponent for checking these in game.
 | 5 | Redirection | single-target Electric and Water moves aimed at a foe whose partner has Lightning Rod or Storm Drain get redirected (Gen V+) | wasted moves in doubles | **done:** new AI command `LoadTargetPartnerRedirects`. A single-target Electric or Water move aimed at a foe whose partner has Lightning Rod or Storm Drain scores −10 (unless the attacker has Mold Breaker) | ✅ |
 | 6 | Moves that can't be selected | Champions rules make Fake Out selectable only on the first turn (`CHECK_INVALID_FIRST_TURN`) | if the AI still picks it later, it wastes a turn | checked: the AI drops every move the player couldn't select (`TrainerAI_Init` filters with `CHECK_INVALID_ALL`, which includes Sovereign's first-turn check), so it never picks Fake Out after the first turn | ➖ |
 | 7 | Weather | weather moves are scored by name. Weather from abilities on switch-in (5 turns under Champions rules) isn't part of switching decisions | this matters most for the developer battle's weather control | general part here; the custom weather AI is T2 | 🔧 / T2 |
-| 8 | Ally-targeted support moves | moves on the partner need a score of 100 or more. Gen V+ ally moves are mapped to the closest Gen IV effects (E3), so whether they ever target the partner depends on that effect's scoring | e.g. Pollen Puff, Heal Pulse, Coaching, Decorate, After You, Instruct, Ally Switch | **checked** (table below): today nothing can hurt the AI's side. Each move gets its partner scoring as item 11 gives it its exact effect | ➖ now / with item 11 |
+| 8 | Ally-targeted support moves | moves on the partner need a score of 100 or more. Gen V+ ally moves are mapped to the closest Gen IV effects (E3), so whether they ever target the partner depends on that effect's scoring | e.g. Pollen Puff, Heal Pulse, Coaching, Decorate, After You, Instruct, Ally Switch | **done** (2026-10-26, with their exact effects): `LoadSovereignMoveRating` scores Pollen Puff, Heal Pulse, Floral Healing, Decorate, Purify, Instruct, After You and Aromatic Mist on the partner (section *#8, #10 and #11* below) | ✅ |
 | 9 | Mega Evolution timing | none (E8 adds Mega Evolution) | — | **done with E8:** the AI Mega Evolves as soon as it can, so on its first turn with the stone (`docs/EngineChangelog.md`, E8 step 2) | ✅ |
+| 10 | The second Pokémon in a double battle against one trainer | A script that starts a double battle with one trainer ID (`StartTrainerBattle` with one argument: the Elite Four's and Cynthia's double battles, Cyrus in the Distortion World) leaves the second enemy slot without a trainer. `TrainerAI_Init` read that empty slot's AI flags, so the second Pokémon ran only the doubles routine (no Basic, Eval Attack or Expert), and it couldn't use the trainer's items. Trainers that walk up as a pair (twins) fill both slots and were fine | the toughest double battles had a much weaker second Pokémon | **done:** `AI_TrainerSlot` gives that slot the first enemy trainer's AI flags, and both Pokémon share its items | ✅ |
+| 11 | Gen V+ moves the script doesn't know | `Basic_Main` scores moves by their Gen IV effect. The 80 Gen V+ status effects (item 11) got no checks, so the AI could heal or boost the player's Pokémon (Heal Pulse, Decorate, Purify, Instruct, After You) or pick a move that fails (Life Dew at full HP, Stuff Cheeks without a Berry, Coaching in a single battle, a terrain that's already up, Poltergeist on a target without an item...) | wasted turns, or turns that help the player | **done:** `LoadSovereignMoveRating` (`trainer_ai.c`) rates them; a move that would fail now, does nothing in a trainer battle, only helps the foe it's aimed at or only works on the partner scores −10 | ✅ |
 
 ## Order of work
 
 1. ✅ #1–#2 (partner safety). (#6 checked: nothing to fix.)
 2. ✅ #3 (spread credit). ✅ #4–#5 (absorbing abilities and redirection).
-3. ✅ #8 checked (scoring added per move with item 11). ✅ #9 (with E8). #7 waits for T2.
+3. ✅ #8 (partner scoring with the moves' exact effects). ✅ #9 (with E8). #7 waits for T2.
+4. ✅ #10 (the second Pokémon's AI flags and items) and #11 (the Gen V+ moves).
 
 Each fix gets a scenario in the test build. The developer team has Heat Wave and Rock Slide as spread moves, Water
 Spout and Origin Pulse with Kyogre, and Venusaur/Charizard sharing the field.
@@ -70,7 +73,7 @@ Moves that hit only the opponents (Heat Wave, Hurricane…) read as not hitting 
 - **With a Flash Fire Heatran swapped in temporarily:** when Heat Wave targets Garchomp, the other foe (Heatran) reads "absorbs" (254); when it targets Heatran, Garchomp reads 100%.
 - **Single-target moves:** read as not hitting a second foe.
 
-## #8: moves aimed at the partner (checked 2026-10-23)
+## #8: moves aimed at the partner (checked 2026-10-23; scored 2026-10-26, see the next section)
 
 **How the AI treats a move aimed at its partner** (`TagStrategy_Partner`, `script.s`):
 - A damaging move scores −30 unless the partner absorbs its type (Flash Fire, Volt Absorb, Motor Drive, Water
@@ -98,3 +101,45 @@ none of these is ever aimed at the partner, and none can hurt the AI's side:
 | Purify, Spotlight, Quash, Entrainment, Simple Beam | single target | none | nothing | Purify: partner has a status condition +2. Others: per their exact effect |
 
 Platinum's own ally moves keep their rules: Helping Hand, Acupressure, Skill Swap, Swagger, Trick and so on.
+
+## #8, #10 and #11: the Gen V+ moves and the second Pokémon (done 2026-10-26)
+
+**`LoadSovereignMoveRating`** (`trainer_ai.c`) rates a Gen V+ move against the target the AI is scoring:
+- **Aimed at a foe** (end of `Basic_Main`): USELESS, score −10, when the move:
+  - only helps the Pokémon it hits: Heal Pulse, Floral Healing, Decorate, Purify, Instruct, After You;
+  - only works on the partner, or does nothing in a trainer battle: Aromatic Mist, Hold Hands, Celebrate, Happy Hour;
+  - would fail now. Examples: a stat move whose stats are all at +6 (or the target's at −6, or blocked by Mist or
+    Clear Body); Coaching or Dragon Cheer without a partner; Life Dew or Lunar Blessing with nothing to heal; Stuff
+    Cheeks without a Berry; Teatime when the AI's side holds no Berry; Shed Tail at half HP or less; Mat Block after
+    the first turn; a terrain that's already up; Aurora Veil without snow; Sticky Web already set; Soak on a pure Water
+    type; Speed Swap against a slower target; Topsy-Turvy or Simple Beam on a foe with no boosts to turn or with boosts
+    to double; Corrosive Gas that would also melt the partner's item; Poltergeist on a target without an item; Steel
+    Roller without a terrain; Belch before the user has eaten a Berry.
+- **Aimed at the partner** (start of `TagStrategy_Partner`):
+  - GOOD, +3: Pollen Puff or Heal Pulse/Floral Healing on a partner at half HP or less (no Heal Block); Decorate on a
+    partner with a damaging move; Purify on a partner with a status condition; Instruct when the partner's last move
+    was a hit.
+  - FAIR, +1: Heal Pulse/Floral Healing above half HP and up to 3/4; After You when the partner is slower than a foe;
+    Aromatic Mist while the partner's Sp. Def can rise.
+  - USELESS, −30: those moves when none of that holds, and Hold Hands.
+- Any other move: NO_RATING, so Platinum's rules apply.
+
+**#10:** `AI_TrainerSlot` gives the empty second enemy slot of a one-ID double battle the first trainer's AI flags,
+and points its item use at that trainer's items.
+
+**Verification** with `tools/test/log_ai_move_rating.py`, which logs the ratings in the test build's trainer battle.
+The test trainer's Charizard and Venusaur were given support moves temporarily:
+- **Before the fix:** Venusaur (battler 3) only ran the doubles routine. After it, the Basic ratings show for both
+  Pokémon against both foes.
+- **Turn 1, Charizard (Heal Pulse, Decorate, Pollen Puff, Purify) and Venusaur (Aromatic Mist, Instruct, After You,
+  Celebrate):**
+  - Against the foes: every move is USELESS except Pollen Puff.
+  - On the partner: Aromatic Mist is FAIR. Heal Pulse and Pollen Puff are USELESS at full HP.
+  - In battle, Venusaur used Aromatic Mist on Charizard and Charizard used Pollen Puff on a foe.
+- **Venusaur at 30% HP:**
+  - Heal Pulse and Pollen Puff on the partner read GOOD.
+  - With the AI team at Lv. 10 and the player using Splash, Charizard used Heal Pulse: "The foe's VENUSAUR regained
+    health!"
+  - At Lv. 100 it knocked out a foe instead: Expert's bonus for a knockout outscores the heal.
+- **A single battle (Life Dew, Stuff Cheeks, Coaching, Ember):** the first three read USELESS. Charizard used Ember
+  both turns.
