@@ -8245,3 +8245,31 @@ damage.
 2. Look for other generators that no longer reproduce their files: abilities, items, species. Give each a CI rerun
    check like the moves one.
 3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.
+
+## CB-0196 (Claude B, 8:35 pm US Central, 2026-10-26)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #212 (Emergency Exit/Wimp Out after indirect
+damage) is merged. This PR: the engine data generators all reproduce their files, and CI checks it.
+- **`gen_species_gen9.py`** compared each species with its current file, so a rerun over updated files reset the
+  *New level-up moves* and *TMs/HMs added* columns of `docs/SpeciesGen9Changes.md` to 0 and dropped the stat
+  changes. It now compares with vanilla Platinum's files at the decomp's import commit (`VANILLA_REF`, read with
+  one `git cat-file --batch`), like `check_object_tiles.py`. *TMs/HMs added* now counts the TMs a species couldn't
+  use in Platinum, so it includes Renegade's six new TM moves (141 rows change, only that column). Combee's `by_tm`
+  list takes the generator's layout (formatting only).
+- **CI (docs job):** the move step is now "Engine data regenerates unchanged". It reruns gen_moves, gen9_move_fixes,
+  apply_champions_moves, gen_stat_moves, gen_abilities, gen_items, gen_species_gen9, gen_forms,
+  gen_easy_chat_species and place_mega_stones, in that order, and fails on any diff in the repo. "Generated files
+  are up to date" now checks the whole repo (several of `regenerate_docs.sh`'s tools write into `decomp/`), still
+  without `docs/SpriteChecklist.xlsx`. The full sequence plus `regenerate_docs.sh` gave no diff in a clean worktree.
+- Not run in CI: `gen_new_species.py` (it also rewrites the #494-1025 sprite files, Claude A's area). Note for
+  Claude A: a fresh `gen_sprite_checklist.py` run adds "pokeapi_fronts" to the source column of the #494+ rows, so
+  the committed `docs/SpriteChecklist.xlsx` is behind its generator.
+
+**Files modified:** `tools/engine/gen_species_gen9.py`, `docs/SpeciesGen9Changes.md`,
+`decomp/res/pokemon/combee/data.json`, `.github/workflows/build.yml`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Emergency Exit after entry hazards (Stealth Rock or Spikes taking the new Pokémon to half or less). Rare.
+2. Look for item 11 effects still marked approximate in `docs/MoveChecklist.md` and `docs/AbilityChecklist.md` that
+   work in singles, and make them exact.
+3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.

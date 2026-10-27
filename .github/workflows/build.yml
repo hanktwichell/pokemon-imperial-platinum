@@ -120,13 +120,24 @@ jobs:
         run: python3 tools/test/check_double_close.py decomp
       - name: Battle sprites can be unscrambled (their first four pixels are clear)
         run: python3 tools/test/check_battle_sprites.py decomp
-      - name: Move data regenerates unchanged (gen_moves, gen9_move_fixes, apply_champions_moves)
+      - name: Engine data regenerates unchanged (moves, abilities, items, species, forms)
+        # In this order: each step reads what the ones before it write. gen_species_gen9 compares with vanilla's species
+        # files (VANILLA_REF, fetched above). gen_new_species isn't run: it also rewrites the #494-1025 sprites.
         run: |
           python3 tools/engine/gen_moves.py /tmp/pokeapi/data/v2/csv
           python3 tools/engine/gen9_move_fixes.py
           python3 tools/engine/apply_champions_moves.py
-          git diff --stat --exit-code -- decomp/res/moves decomp/generated decomp/res/battle/scripts/effects docs/MoveChecklist.md
+          python3 tools/engine/gen_stat_moves.py
+          python3 tools/engine/gen_abilities.py /tmp/pokeapi/data/v2/csv
+          python3 tools/engine/gen_items.py /tmp/pokeapi/data/v2/csv
+          python3 tools/engine/gen_species_gen9.py /tmp/pokeapi/data/v2/csv
+          python3 tools/engine/gen_forms.py /tmp/pokeapi/data/v2/csv
+          python3 tools/engine/gen_easy_chat_species.py
+          python3 tools/engine/place_mega_stones.py
+          git diff --stat --exit-code
       - name: Regenerate and validate docs
         run: tools/regenerate_docs.sh /tmp/pokeapi/data/v2/csv decomp
       - name: Generated files are up to date
-        run: git diff --stat --exit-code -- data docs ':!docs/SpriteChecklist.xlsx'
+        # Anywhere in the repo: several of the generators write into decomp/. The sprite checklist workbook differs on
+        # every run (it stores its save time).
+        run: git diff --stat --exit-code -- . ':!docs/SpriteChecklist.xlsx'
