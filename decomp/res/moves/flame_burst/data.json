@@ -1,8 +1,9 @@
 {
     "name": "Flame Burst",
     "description": [
-        "This move can’t be\n",
-        "used."
+        "The user attacks the\n",
+        "target with a\n",
+        "bursting flame."
     ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_FIRE",

@@ -1,8 +1,11 @@
 {
     "name": "Bestow",
     "description": [
-        "This move can’t be\n",
-        "used."
+        "The user passes its\n",
+        "held item to the\n",
+        "target when the\n",
+        "target isn’t holding\n",
+        "an item."
     ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",

@@ -1,8 +1,10 @@
 {
     "name": "Zippy Zap",
     "description": [
-        "This move can’t be\n",
-        "used."
+        "The user attacks the\n",
+        "target with bursts of\n",
+        "electricity at high\n",
+        "speed."
     ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_ELECTRIC",

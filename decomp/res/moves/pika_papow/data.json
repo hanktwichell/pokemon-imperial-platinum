@@ -1,8 +1,11 @@
 {
     "name": "Pika Papow",
     "description": [
-        "This move can’t be\n",
-        "used."
+        "The more Pikachu\n",
+        "loves its Trainer,\n",
+        "the greater the\n",
+        "move’s power. It\n",
+        "never misses."
     ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_ELECTRIC",

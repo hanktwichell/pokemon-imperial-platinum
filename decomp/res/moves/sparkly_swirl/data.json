@@ -1,8 +1,11 @@
 {
     "name": "Sparkly Swirl",
     "description": [
-        "This move can’t be\n",
-        "used."
+        "The user attacks the\n",
+        "target by wrapping it\n",
+        "with a whirlwind of\n",
+        "an overpowering\n",
+        "scent."
     ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_FAIRY",

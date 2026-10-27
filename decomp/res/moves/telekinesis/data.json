@@ -1,8 +1,11 @@
 {
     "name": "Telekinesis",
     "description": [
-        "This move can’t be\n",
-        "used."
+        "The user makes the\n",
+        "target float with its\n",
+        "psychic power. The\n",
+        "target is easier to\n",
+        "hit for three turns."
     ],
     "class": "CLASS_STATUS",
     "type": "TYPE_PSYCHIC",

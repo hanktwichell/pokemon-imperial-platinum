@@ -8165,3 +8165,32 @@ PR #208 (Commander and Order Up) was merged first.
    can't be used." Use the previous game's flavor text (`tools/engine/gen_moves.py`).
 2. Wimp Out/Emergency Exit after indirect damage (weather, poison, recoil).
 3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.
+
+## CB-0193 (Claude B, 8:00 pm US Central, 2026-10-26)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #209 (Sky Drop) is merged. This PR fixes 24 move
+descriptions.
+- The 24 moves Scarlet/Violet cut (Sky Drop, Spotlight, Bestow, Synchronoise, the Let's Go partner moves, ...) read
+  "This move can't be used.". They now use the previous game's text; Ion Deluge and Spotlight are shortened by hand.
+- **Found while doing it: `tools/engine/gen_moves.py` can't be rerun as is.** Rerunning it with
+  `gen9_move_fixes.py` and `apply_champions_moves.py` would undo hand edits:
+  - Freeze-Dry's freeze chance (back to a plain hit).
+  - Body Press's and Electro Shot's flags, and Electro Shot's description.
+  - The charge messages in the `script.s` of Freeze Shock, Ice Burn and Geomancy.
+  - The Snowscape checklist row and the Champions value-change table in `docs/MoveChecklist.md`.
+
+  So I edited only the 24 `data.json` descriptions, matching what the generator now writes for them.
+
+**Files modified:**
+- `tools/engine/gen_moves.py`.
+- `decomp/res/moves/{sky_drop,spotlight,bestow,synchronoise,chip_away,ion_deluge,telekinesis,steamroller,rototiller,
+  flame_burst,heart_stamp,zippy_zap,splishy_splash,floaty_fall,pika_papow,bouncy_bubble,buzzy_buzz,sizzly_slide,
+  glitzy_glow,baddy_bad,sappy_seed,freezy_frost,sparkly_swirl,veevee_volley}/data.json`.
+- `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Make `gen_moves.py` → `gen9_move_fixes.py` → `apply_champions_moves.py` reproduce the current move data (the
+   drift above), so a rerun is safe.
+2. Wimp Out/Emergency Exit after indirect damage. Showdown also checks after the user's own recoil, crash damage and
+   Life Orb, after end-of-turn damage and after entry hazards.
+3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.

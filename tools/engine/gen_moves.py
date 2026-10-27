@@ -120,6 +120,11 @@ SOVEREIGN_EFFECTS = {
 # Moves whose script.s (battle message) and anim.s (two-part charge/attack animation) are written by hand; the
 # generator leaves both files alone.
 HANDWRITTEN_SCRIPTS = {"electro_shot", "meteor_beam", "sky_drop"}
+# Moves whose every flavor text is too long for the 5-line description box: shortened by hand.
+DESCRIPTIONS = {
+    "ion_deluge": "The user disperses charged particles that make Normal-type moves Electric-type.",
+    "spotlight": "The user shines a spotlight on the target so only the target will be attacked this turn.",
+}
 # Animation flags of the hand-written animations (Sky Drop's is Fly's, with the target carried along).
 HANDWRITTEN_ANIM_FLAGS = {"sky_drop": ["MOVE_FLAG_HIDES_SHADOWS"]}
 
@@ -426,7 +431,11 @@ def main():
             name = names[mid]
             name = SHORT_NAMES.get(name, name)
             assert len(name) <= 15, name
-            texts = [flavor[mid][g] for g in sorted(flavor[mid], reverse=True)] or [name + "."]
+            # Scarlet/Violet's text for a move it cut is "This move can't be used..."; the game before it describes it.
+            texts = [flavor[mid][g] for g in sorted(flavor[mid], reverse=True)
+                     if not flavor[mid][g].startswith("This move can’t be used")] or [name + "."]
+            if stem in DESCRIPTIONS:
+                texts = [DESCRIPTIONS[stem]]
             data = {
                 "name": name,
                 "description": description_json(wrap_description(texts)),

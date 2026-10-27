@@ -1,8 +1,11 @@
 {
     "name": "Splishy Splash",
     "description": [
-        "This move can’t be\n",
-        "used."
+        "The user charges a\n",
+        "huge wave with\n",
+        "electricity and hits\n",
+        "the opposing Pokémon\n",
+        "with the wave."
     ],
     "class": "CLASS_SPECIAL",
     "type": "TYPE_WATER",

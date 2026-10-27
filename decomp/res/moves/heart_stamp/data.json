@@ -1,8 +1,10 @@
 {
     "name": "Heart Stamp",
     "description": [
-        "This move can’t be\n",
-        "used."
+        "The user unleashes a\n",
+        "vicious blow after\n",
+        "its cute act makes\n",
+        "the target less wary."
     ],
     "class": "CLASS_PHYSICAL",
     "type": "TYPE_PSYCHIC",

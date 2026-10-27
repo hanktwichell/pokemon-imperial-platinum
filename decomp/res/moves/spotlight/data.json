@@ -1,8 +1,11 @@
 {
     "name": "Spotlight",
     "description": [
-        "This move can’t be\n",
-        "used."
+        "The user shines a\n",
+        "spotlight on the\n",
+        "target so only the\n",
+        "target will be\n",
+        "attacked this turn."
     ],
     "class": "CLASS_STATUS",
     "type": "TYPE_NORMAL",
