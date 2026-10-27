@@ -8561,9 +8561,12 @@ Bell) is merged. This PR does the last open `docs/BattleMechanics.md` ability ro
   - Sheer Force Ember: the Eject Button switched Snorlax out, and a wild Golisopod's Emergency Exit made it flee.
   - Test and release builds pass.
 
+- **Roadmap:** item 10b (battle rules, Champions) is now ✅ in `docs/EngineRoadmap.md` and `docs/ProjectStatus.md`.
+  Every row in `docs/BattleMechanics.md` is built or marked not adopted.
+
 **Files modified:** `decomp/src/battle/battle_lib.c`, `decomp/src/battle/trainer_ai/trainer_ai.c`,
 `tools/engine/gen_abilities.py`, `docs/AbilityChecklist.md`, `docs/BattleMechanics.md`, `docs/AIReview.md`,
-`docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+`docs/EngineChangelog.md`, `docs/EngineRoadmap.md`, `docs/ProjectStatus.md`, `CLAUDE_STATUS.md`.
 
 **Next 3 steps:**
 1. `docs/BattleMechanics.md` has no ⏳ or 🟡 rows left, so look at its "Not verifiable yet" section for anything
