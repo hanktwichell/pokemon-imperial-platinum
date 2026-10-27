@@ -8222,3 +8222,26 @@ the move generators reproducible and fixes Freeze-Dry.
 2. Look for other generators that no longer reproduce their files: abilities, items, species. Give each a CI rerun
    check like this one.
 3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.
+
+## CB-0195 (Claude B, 8:25 pm US Central, 2026-10-26)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #211 (Freeze-Dry, reproducible move generators)
+is merged. Its new CI step passed: the rerun gives no diff. This PR: Emergency Exit and Wimp Out after indirect
+damage.
+- **The holder's own damaging move:** recoil, crash damage, Life Orb, or a Rocky Helmet/Rough Skin it hit. Checked in
+  `BattleControllerPlayer_MoveEnd` against its HP as the move began. Not after a confusion self-hit or a status move.
+- **The end-of-turn damage:** checked in `BattleControllerPlayer_TurnEnd` against the HP as the end of turn began,
+  fastest first, before fainted Pokémon are replaced.
+- Both reuse `subscript_sovereign_emergency_exit`. Verified with Golisopod (Life Orb Tackle; Toxic at the end of the
+  turn).
+
+**Files modified:** `decomp/src/battle/battle_controller_player.c`, `decomp/src/battle/battle_lib.c`,
+`decomp/include/battle/battle_context.h`, `decomp/include/battle/battle_lib.h`, `tools/engine/gen_abilities.py`,
+`docs/AbilityChecklist.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps:**
+1. Emergency Exit after entry hazards (Stealth Rock or Spikes taking the new Pokémon to half or less). Rare; it would
+   switch out again at once.
+2. Look for other generators that no longer reproduce their files: abilities, items, species. Give each a CI rerun
+   check like the moves one.
+3. Burn Up and Double Shock still wait on the owner (CB-0158). Embody Aspect and Teraform Zero need Terastallization.

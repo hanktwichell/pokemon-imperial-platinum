@@ -82,6 +82,8 @@ void BattleSystem_InitBattleMon(BattleSystem *battleSys, BattleContext *battleCt
     // Nor does it carry or get carried by Sky Drop; BattleSystem_TriggerEffectOnSwitch lets the other Pokemon go.
     battleCtx->sovereignSkyDropTarget[battler] = 0;
     battleCtx->sovereignSkyDropHolder[battler] = 0;
+    battleCtx->sovereignHPBeforeAction[battler] = 0; // and has lost no HP yet (Emergency Exit)
+    battleCtx->sovereignHPBeforeTurnEnd[battler] = 0;
 
     battleCtx->battleMons[battler].species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
     battleCtx->battleMons[battler].attack = Pokemon_GetValue(mon, MON_DATA_ATK, NULL);
@@ -10100,6 +10102,21 @@ BOOL Sovereign_SmackDownFlyer(BattleContext *battleCtx, int battler)
     Battler_UnlockMoveChoice(NULL, battleCtx, battler);
     battleCtx->battlerActions[battler][BATTLE_ACTION_PICK_COMMAND] = BATTLE_CONTROL_MOVE_END;
     return TRUE;
+}
+
+// Sovereign (item 11): Emergency Exit and Wimp Out also switch their holder out when its HP fell from above half to
+// half or less by something other than another Pokemon's hit (BattleSystem_TriggerHeldItemOnHit): its own damaging
+// move's recoil, crash or Life Orb, a Rocky Helmet, or the end-of-turn damage (Showdown's EmergencyExit events).
+// hpBefore is its HP before that; TRUE if it switches (or a wild one flees).
+BOOL Sovereign_EmergencyExitDue(BattleContext *battleCtx, int battler, int hpBefore)
+{
+    BattleMon *mon = &battleCtx->battleMons[battler];
+
+    return (Battler_Ability(battleCtx, battler) == ABILITY_EMERGENCY_EXIT || Battler_Ability(battleCtx, battler) == ABILITY_WIMP_OUT)
+        && mon->curHP
+        && mon->curHP <= mon->maxHP / 2
+        && hpBefore > mon->maxHP / 2
+        && (battleCtx->battlersSwitchingMask & FlagIndex(battler)) == FALSE;
 }
 
 // Sovereign (item 11): how many consecutive turns Echoed Voice will have been used if used now (1-5).
