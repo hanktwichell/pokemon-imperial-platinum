@@ -8658,3 +8658,29 @@ follow Gen IV and 12 are partly updated, each with the rule, the code location a
    Rock, Toxic Spikes, Encore, Taunt, Torment, Embargo, Heal Block, Defog, Whirlwind, Roar...).
 3. Moves batch C: Defog (both sides, Sticky Web, screens, terrain), Future Sight/Doom Desire typed at hit time, Beat Up
    Gen V+, Body Slam and the rest doubling against Minimize, Metronome's Gen IX ban list (also Assist and Copycat).
+
+## CB-0210 (Claude B, 3:55 am US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #226 (Platinum's held items) is merged. Moves
+batch A, the ten most visible Gen IV leftovers in `docs/PlatinumMoveAudit.md` (now marked ✅ there):
+- String Shot −2 Speed, Minimize +2 evasion, Poison Fang 50% (data through `gen9_move_fixes.py` VALUE_FIXES).
+- Fury Cutter up to 160, Hidden Power 60 (also in the AI's damage estimate), Knock Off ×1.5 against a removable item.
+- Feint always hits and lifts Protect and the guards; Sheer Cold Gen VII+; a Poison type's Toxic never misses.
+- Jump Kick, Hi Jump Kick, Supercell Slam and Axe Kick crash for half the user's max HP.
+- Verified in the emulator against the previous ROM (see `docs/EngineChangelog.md`). Test and release builds pass.
+
+**Files modified:** `tools/engine/gen9_move_fixes.py`, `decomp/res/moves/string_shot/data.json`,
+`decomp/res/moves/poison_fang/data.json`, `decomp/res/battle/scripts/subscripts/subscript_minimize.s`,
+`subscript_crash_on_miss.s`, `subscript_feint.s`, `decomp/res/battle/scripts/effects/effect_script_0223.s`,
+`decomp/src/battle/battle_script.c`, `decomp/src/battle/battle_lib.c`, `decomp/src/battle/battle_controller_player.c`,
+`decomp/src/battle/trainer_ai/trainer_ai.c`, `docs/PlatinumMoveAudit.md`, `docs/BattleMechanics.md`,
+`docs/EngineChangelog.md`, `CLAUDE_STATUS.md`.
+
+**Next 3 steps (from `docs/PlatinumMoveAudit.md`):**
+1. Moves batch B: Taunt 3 turns, Encore 3, Disable 4, Tailwind 4 (needs a wider counter), Wish half the user's HP,
+   Teleport switching out, Destiny Bond failing in a row, Charge lasting until an Electric move.
+2. Moves batch C: the missing Magic Coat flags (Spikes, Stealth Rock, Toxic Spikes, Whirlwind, Roar, Encore, Taunt,
+   Torment, Embargo, Heal Block, Defog...), Whirlwind/Roar through Protect, Mean Look/Block through Protect, Defog both
+   sides.
+3. Moves batch D: the Minimize punishers (Body Slam, Stomp, Dragon Rush, Heat Crash, Heavy Slam, Shadow Force...), Future
+   Sight/Doom Desire typed at hit time, Beat Up Gen V+, the Heal Block list (drain moves), Metronome/Assist/Copycat lists.

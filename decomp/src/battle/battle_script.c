@@ -4657,6 +4657,20 @@ static BOOL BtlCmd_TryOHKOMove(BattleSystem *battleSys, BattleContext *battleCtx
     BattleScript_Iter(battleCtx, 1);
     battleCtx->battleStatusMask |= SYSCTL_NONSTANDARD_ACC_CHECK;
 
+    // Sovereign: Sheer Cold doesn't affect Ice types, and has 20 base accuracy when the user isn't one (Gen VII+).
+    int accuracy = CURRENT_MOVE_DATA.accuracy;
+
+    if (battleCtx->moveCur == MOVE_SHEER_COLD) {
+        if (MON_HAS_TYPE(battleCtx->defender, TYPE_ICE)) {
+            battleCtx->moveStatusFlags |= MOVE_STATUS_INEFFECTIVE;
+            return FALSE;
+        }
+
+        if (MON_HAS_TYPE(battleCtx->attacker, TYPE_ICE) == FALSE) {
+            accuracy = 20;
+        }
+    }
+
     if (Battler_IgnorableAbility(battleCtx, battleCtx->attacker, battleCtx->defender, ABILITY_STURDY) == TRUE) {
         battleCtx->moveStatusFlags |= MOVE_STATUS_STURDY;
     } else {
@@ -4665,7 +4679,7 @@ static BOOL BtlCmd_TryOHKOMove(BattleSystem *battleSys, BattleContext *battleCtx
             && Battler_Ability(battleCtx, battleCtx->defender) != ABILITY_NO_GUARD) {
             // Use the usual OHKO accuracy check: scale upwards with the difference between the attacker and
             // defender's levels.
-            hit = CURRENT_MOVE_DATA.accuracy + (ATTACKING_MON.level - DEFENDING_MON.level);
+            hit = accuracy + (ATTACKING_MON.level - DEFENDING_MON.level);
 
             if ((BattleSystem_RandNext(battleSys) % 100) < hit && ATTACKING_MON.level >= DEFENDING_MON.level) {
                 hit = TRUE;
@@ -4682,7 +4696,7 @@ static BOOL BtlCmd_TryOHKOMove(BattleSystem *battleSys, BattleContext *battleCtx
                 hit = TRUE;
             } else {
                 // Fallback to the usual OHKO accuracy check, for some reason.
-                hit = CURRENT_MOVE_DATA.accuracy + (ATTACKING_MON.level - DEFENDING_MON.level);
+                hit = accuracy + (ATTACKING_MON.level - DEFENDING_MON.level);
 
                 if ((BattleSystem_RandNext(battleSys) % 100) < hit && ATTACKING_MON.level >= DEFENDING_MON.level) {
                     hit = TRUE;
@@ -6079,7 +6093,8 @@ static BOOL BtlCmd_CalcFuryCutterPower(BattleSystem *battleSys, BattleContext *b
 {
     BattleScript_Iter(battleCtx, 1);
 
-    if (ATTACKING_MON.moveEffectsData.furyCutterCount < 5) {
+    // Sovereign: the power doubles up to 160 (Gen VI+). Platinum's doubled up to 640.
+    if (ATTACKING_MON.moveEffectsData.furyCutterCount < 3) {
         ATTACKING_MON.moveEffectsData.furyCutterCount++;
     }
 
@@ -6426,7 +6441,8 @@ static BOOL BtlCmd_CalcHiddenPowerParams(BattleSystem *battleSys, BattleContext 
         | ((ATTACKING_MON.spAttackIV & 1) << 4)
         | ((ATTACKING_MON.spDefenseIV & 1) << 5);
 
-    battleCtx->movePower = battleCtx->movePower * 40 / 63 + 30;
+    // Sovereign: Hidden Power's power is 60 (Gen VI+). Platinum's was 30 to 70, from the IVs.
+    battleCtx->movePower = 60;
     battleCtx->moveType = battleCtx->moveType * 15 / 63 + 1;
 
     // Hidden Power is never Fairy-type; skip over it.

@@ -10292,6 +10292,13 @@ int Sovereign_MovePower(BattleSystem *battleSys, BattleContext *battleCtx, int m
         }
         break;
 
+    case MOVE_KNOCK_OFF: // ×1.5 against a target holding an item it can lose (Gen VI+), Sticky Hold or not
+        if (battleCtx->battleMons[defender].heldItem != ITEM_NONE
+            && Battler_SovereignHeldItemLocked(battleCtx, defender) == FALSE) {
+            power = power * 3 / 2;
+        }
+        break;
+
     case MOVE_ELECTRO_BALL: // the faster the user is than the target, the stronger
         ratio = Sovereign_StagedSpeed(battleCtx, attacker) / (Sovereign_StagedSpeed(battleCtx, defender) ? Sovereign_StagedSpeed(battleCtx, defender) : 1);
         power = ratio >= 4 ? 150 : ratio >= 3 ? 120 : ratio >= 2 ? 80 : ratio >= 1 ? 60 : 40;

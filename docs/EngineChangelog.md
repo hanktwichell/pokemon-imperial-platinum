@@ -3,6 +3,43 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Item 11: Platinum's moves under the later games' rules, batch A
+
+`docs/PlatinumMoveAudit.md` lists the Platinum moves that still followed Gen IV, most visible first. This batch fixes
+the first ten:
+
+For players:
+- **String Shot** (Gen VI+) lowers Speed by 2, not 1.
+- **Minimize** (Gen V+) raises evasion by 2, not 1.
+- **Fury Cutter** (Gen VI+) doubles up to 160 power (40, 80, 160, 160...). It doubled up to 640.
+- **Knock Off** (Gen VI+) is ×1.5 against a target holding an item it can lose (not a form's item), Sticky Hold or
+  not.
+- **Hidden Power** (Gen VI+) has 60 power. Its type still comes from the IVs.
+- **Feint** (Gen V+) hits whether the target protects or not ("fell for the feint!" only when it lifts a Protect). It
+  also lifts Wide Guard, Quick Guard, Mat Block and Crafty Shield (Gen VI+). It failed unless the target protected.
+- **Sheer Cold** (Gen VII+) doesn't affect Ice types, and its base accuracy is 20 when the user isn't Ice-type.
+- **Poison Fang** (Gen VI+) badly poisons 50% of the time (30%).
+- **Toxic** (Gen VI+) never misses when a Poison type uses it, even against a Pokémon underground or in the air.
+- **Jump Kick, Hi Jump Kick, Supercell Slam and Axe Kick** (Gen V+): a miss costs the user half its max HP. It cost half
+  the damage the move would have dealt, at most half the target's max HP.
+
+Code: `gen9_move_fixes.py` (String Shot's effect, Poison Fang's chance), `subscript_minimize.s`,
+`subscript_crash_on_miss.s`, `effect_script_0223.s` and `subscript_feint.s` (Feint), `BtlCmd_CalcFuryCutterPower`,
+`BtlCmd_CalcHiddenPowerParams` and the trainer AI's Hidden Power, `BtlCmd_TryOHKOMove` (Sheer Cold),
+`Sovereign_MovePower` (Knock Off), `BattleControllerPlayer_CheckMoveHitOverrides` (Toxic, Feint and the guards).
+
+Verified (test build, emulator, wild battles; the previous ROM for comparison):
+- **String Shot:** the lead's Speed went −2, −4, −6 (old ROM: −1, −2, −3...). **Minimize:** evasion +2, +4 (old: +1).
+- **Fury Cutter:** a wild Scizor's hits on a Lv. 100 Blissey did 28, 52, 108, 99, 102, 108 (old ROM: 39, 72, 150, 274).
+- **Knock Off:** 126 against a Blissey holding Leftovers, 85 against the same Blissey without (×1.5); the next hits did
+  83 each, once the Leftovers were gone.
+- **Feint:** it hit a Geodude that used Splash (old ROM: "But it failed!"). Against a Ninjask's Protect: "NINJASK fell
+  for the feint!" and the hit.
+- **Sheer Cold:** "It doesn't affect GLALIE...".
+- **Toxic:** a wild Gengar's Toxic badly poisoned a Ninjask underground (Dig).
+- **Hi Jump Kick:** against a Ghost type, Hitmonlee (110 HP) lost 55, then 55 again. On the old ROM it lost 66 of 125.
+- **Builds:** the test and release builds pass, and every battle script fits its buffer.
+
 ## Item 11: Platinum's held items under the later games' rules
 
 Platinum's own held items still followed Gen IV. These now follow the later games (`docs/HeldItemChecklist.md`):
