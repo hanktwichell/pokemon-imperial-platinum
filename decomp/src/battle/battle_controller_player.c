@@ -1713,13 +1713,19 @@ static void BattleControllerPlayer_CheckMonConditions(BattleSystem *battleSys, B
 
         case MON_COND_CHECK_STATE_BIND:
             if ((battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_BIND) && battleCtx->battleMons[battler].curHP) {
-                battleCtx->battleMons[battler].statusVolatile -= (1 << VOLATILE_CONDITION_BIND_SHIFT);
+                // Sovereign: a Grip Claw binding's first turn uses up its extra flag, not the counter.
+                if (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_SOVEREIGN_GRIP_CLAW) {
+                    battleCtx->battleMons[battler].statusVolatile &= ~VOLATILE_CONDITION_SOVEREIGN_GRIP_CLAW;
+                } else {
+                    battleCtx->battleMons[battler].statusVolatile -= (1 << VOLATILE_CONDITION_BIND_SHIFT);
+                }
 
                 if (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_BIND) {
-                    // Sovereign (item 11): twice as much if the Pokemon that bound it holds a Binding Band.
+                    // Sovereign: 1/8 of the max HP, 1/6 if the Pokemon that bound it holds a Binding Band (Gen VI+).
+                    // Platinum's was 1/16.
                     int binder = battleCtx->battleMons[battler].moveEffectsData.bindTarget;
                     battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP * -1,
-                        Battler_HeldItem(battleCtx, binder) == ITEM_BINDING_BAND ? 8 : 16);
+                        Battler_HeldItem(battleCtx, binder) == ITEM_BINDING_BAND ? 6 : 8);
                     LOAD_SUBSEQ(subscript_bind_effect);
                 } else {
                     LOAD_SUBSEQ(subscript_bind_end);
@@ -6204,6 +6210,7 @@ static BOOL BattleControllerPlayer_TriggerAfterMoveHitEffects(BattleSystem *batt
         case AFTER_MOVE_HIT_STATE_SHELL_BELL:
             if (battleCtx->defender != BATTLER_NONE
                 && itemEffect == HOLD_EFFECT_HP_RESTORE_ON_DMG
+                && Move_SheerForceApplies(battleCtx, battleCtx->attacker, battleCtx->moveCur) == FALSE // Sovereign (Gen V+)
                 && (battleCtx->battleStatusMask2 & SYSCTL_UTURN_ACTIVE) == FALSE
                 && (battleCtx->battleStatusMask & SYSCTL_MOVE_HIT)
                 && ATTACKER_SELF_TURN_FLAGS.shellBellDamageDealt

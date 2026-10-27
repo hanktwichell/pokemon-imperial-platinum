@@ -18,7 +18,7 @@
   "pluckEffect": "PLUCK_EFFECT_RANDOM_UP2",
   "flingEffect": "FLING_EFFECT_RANDOM_UP2",
   "flingPower": 10,
-  "naturalGiftPower": 80,
+  "naturalGiftPower": 100,
   "naturalGiftType": "TYPE_PSYCHIC",
   "preventToss": false,
   "canRegister": false,

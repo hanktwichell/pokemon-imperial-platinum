@@ -7226,6 +7226,26 @@ static void Sovereign_RipenBerryHP(BattleContext *battleCtx, int battler, int su
     }
 }
 
+// Sovereign: Figy, Wiki, Mago, Aguav and Iapapa Berries are eaten at 1/4 of the holder's max HP, or 1/2 with Gluttony
+// (Gen VII+), and restore 1/3 (the item data). Platinum ate them at 1/2 and restored 1/8.
+static BOOL Sovereign_PinchBerryHP(BattleContext *battleCtx, int battler)
+{
+    int divisor = Battler_Ability(battleCtx, battler) == ABILITY_GLUTTONY ? 2 : 4;
+
+    return battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / divisor;
+}
+
+// Sovereign: the Mental Herb cures infatuation, Taunt, Encore, Torment, Disable and Heal Block (Gen V+;
+// subscript_sovereign_mental_herb). Platinum's only cured infatuation.
+static BOOL Sovereign_MentalHerbCures(BattleMon *mon)
+{
+    return (mon->statusVolatile & (VOLATILE_CONDITION_ATTRACT | VOLATILE_CONDITION_TORMENT))
+        || mon->moveEffectsData.tauntedTurns
+        || mon->moveEffectsData.encoredMove
+        || mon->moveEffectsData.disabledMove
+        || mon->moveEffectsData.healBlockTurns;
+}
+
 BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battleCtx, int battler)
 {
     BOOL result = FALSE;
@@ -7354,7 +7374,7 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
             break;
 
         case HOLD_EFFECT_HP_RESTORE_SPICY:
-            if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / 2) {
+            if (Sovereign_PinchBerryHP(battleCtx, battler)) {
                 battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP, itemPower);
                 battleCtx->msgTemp = FLAVOR_SPICY;
 
@@ -7369,7 +7389,7 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
             break;
 
         case HOLD_EFFECT_HP_RESTORE_DRY:
-            if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / 2) {
+            if (Sovereign_PinchBerryHP(battleCtx, battler)) {
                 battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP, itemPower);
                 battleCtx->msgTemp = FLAVOR_DRY;
 
@@ -7384,7 +7404,7 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
             break;
 
         case HOLD_EFFECT_HP_RESTORE_SWEET:
-            if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / 2) {
+            if (Sovereign_PinchBerryHP(battleCtx, battler)) {
                 battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP, itemPower);
                 battleCtx->msgTemp = FLAVOR_SWEET;
 
@@ -7399,7 +7419,7 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
             break;
 
         case HOLD_EFFECT_HP_RESTORE_BITTER:
-            if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / 2) {
+            if (Sovereign_PinchBerryHP(battleCtx, battler)) {
                 battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP, itemPower);
                 battleCtx->msgTemp = FLAVOR_BITTER;
 
@@ -7414,7 +7434,7 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
             break;
 
         case HOLD_EFFECT_HP_RESTORE_SOUR:
-            if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / 2) {
+            if (Sovereign_PinchBerryHP(battleCtx, battler)) {
                 battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP, itemPower);
                 battleCtx->msgTemp = FLAVOR_SOUR;
 
@@ -7545,9 +7565,9 @@ BOOL BattleSystem_TriggerHeldItem(BattleSystem *battleSys, BattleContext *battle
         }
 
         case HOLD_EFFECT_HEAL_INFATUATION:
-            if (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_ATTRACT) {
+            if (Sovereign_MentalHerbCures(&battleCtx->battleMons[battler])) {
                 battleCtx->msgTemp = MSGCOND_INFATUATION;
-                subscript = subscript_held_item_heal_infatuation;
+                subscript = subscript_sovereign_mental_herb;
                 result = TRUE;
             }
             break;
@@ -7764,9 +7784,9 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
         }
 
         case HOLD_EFFECT_HEAL_INFATUATION:
-            if (battleCtx->battleMons[battler].statusVolatile & VOLATILE_CONDITION_ATTRACT) {
+            if (Sovereign_MentalHerbCures(&battleCtx->battleMons[battler])) {
                 battleCtx->msgTemp = MSGCOND_INFATUATION;
-                *subscript = subscript_held_item_heal_infatuation;
+                *subscript = subscript_sovereign_mental_herb;
                 result = TRUE;
             }
             break;
@@ -7783,7 +7803,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
             break;
 
         case HOLD_EFFECT_HP_RESTORE_SPICY:
-            if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / 2) {
+            if (Sovereign_PinchBerryHP(battleCtx, battler)) {
                 battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP, itemPower);
                 battleCtx->msgTemp = FLAVOR_SPICY;
 
@@ -7798,7 +7818,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
             break;
 
         case HOLD_EFFECT_HP_RESTORE_DRY:
-            if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / 2) {
+            if (Sovereign_PinchBerryHP(battleCtx, battler)) {
                 battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP, itemPower);
                 battleCtx->msgTemp = FLAVOR_DRY;
 
@@ -7813,7 +7833,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
             break;
 
         case HOLD_EFFECT_HP_RESTORE_SWEET:
-            if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / 2) {
+            if (Sovereign_PinchBerryHP(battleCtx, battler)) {
                 battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP, itemPower);
                 battleCtx->msgTemp = FLAVOR_SWEET;
 
@@ -7828,7 +7848,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
             break;
 
         case HOLD_EFFECT_HP_RESTORE_BITTER:
-            if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / 2) {
+            if (Sovereign_PinchBerryHP(battleCtx, battler)) {
                 battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP, itemPower);
                 battleCtx->msgTemp = FLAVOR_BITTER;
 
@@ -7843,7 +7863,7 @@ BOOL BattleSystem_TriggerHeldItemOnStatus(BattleSystem *battleSys, BattleContext
             break;
 
         case HOLD_EFFECT_HP_RESTORE_SOUR:
-            if (battleCtx->battleMons[battler].curHP <= battleCtx->battleMons[battler].maxHP / 2) {
+            if (Sovereign_PinchBerryHP(battleCtx, battler)) {
                 battleCtx->hpCalcTemp = BattleSystem_Divide(battleCtx->battleMons[battler].maxHP, itemPower);
                 battleCtx->msgTemp = FLAVOR_SOUR;
 
@@ -8904,9 +8924,9 @@ BOOL BattleSystem_FlingItem(BattleSystem *battleSys, BattleContext *battleCtx, i
         break;
 
     case FLING_EFFECT_HEAL_INFATUATION:
-        if (DEFENDING_MON.statusVolatile & VOLATILE_CONDITION_ATTRACT) {
+        if (Sovereign_MentalHerbCures(&DEFENDING_MON)) {
             battleCtx->msgTemp = MSGCOND_INFATUATION;
-            battleCtx->flingScript = subscript_held_item_heal_infatuation;
+            battleCtx->flingScript = subscript_sovereign_mental_herb;
         }
         break;
 
@@ -9033,7 +9053,7 @@ void BattleSystem_UpdateMetronomeCount(BattleSystem *battleSys, BattleContext *b
             && (battleCtx->battleStatusMask & SYSCTL_LAST_OF_MULTI_TURN) == FALSE
             && (ATTACKING_MON.statusVolatile & VOLATILE_CONDITION_MOVE_LOCKED) == FALSE) {
             if (battleCtx->metronomeMove[battleCtx->attacker] == battleCtx->moveTemp) {
-                if (ATTACKING_MON.moveEffectsData.metronomeTurns < 10) {
+                if (ATTACKING_MON.moveEffectsData.metronomeTurns < 5) { // Sovereign: ×2 after 5 (Gen V+)
                     ATTACKING_MON.moveEffectsData.metronomeTurns++;
                 }
             } else {
@@ -10699,15 +10719,12 @@ int BattleSystem_CalcMoveDamage(BattleSystem *battleSys,
     if (attackerParams.heldItemEffect == HOLD_EFFECT_CHOICE_SPATK) {
         spAttackStat = spAttackStat * 150 / 100;
     }
+    // Sovereign: the Soul Dew powers up Latios's and Latias's Psychic and Dragon moves ×1.2, in any battle (Gen VII+).
+    // Platinum raised their Sp. Atk and Sp. Def ×1.5, outside the Battle Frontier.
     if (attackerParams.heldItemEffect == HOLD_EFFECT_LATI_SPECIAL
-        && (battleType & BATTLE_TYPE_FRONTIER) == FALSE
-        && (attackerParams.species == SPECIES_LATIOS || attackerParams.species == SPECIES_LATIAS)) {
-        spAttackStat = spAttackStat * 150 / 100;
-    }
-    if (defenderParams.heldItemEffect == HOLD_EFFECT_LATI_SPECIAL
-        && (battleType & BATTLE_TYPE_FRONTIER) == FALSE
-        && (defenderParams.species == SPECIES_LATIOS || defenderParams.species == SPECIES_LATIAS)) {
-        spDefenseStat = spDefenseStat * 150 / 100;
+        && (attackerParams.species == SPECIES_LATIOS || attackerParams.species == SPECIES_LATIAS)
+        && (moveType == TYPE_PSYCHIC || moveType == TYPE_DRAGON)) {
+        movePower = movePower * 120 / 100;
     }
     if (attackerParams.heldItemEffect == HOLD_EFFECT_CLAMPERL_SPATK
         && attackerParams.species == SPECIES_CLAMPERL) {
@@ -11417,7 +11434,7 @@ int BattleSystem_CalcCriticalMulti(BattleSystem *battleSys, BattleContext *battl
         + criticalStage
         + (attackerAbility == ABILITY_SUPER_LUCK)
         + (2 * (itemEffect == HOLD_EFFECT_CHANSEY_CRITRATE_UP && attackerSpecies == SPECIES_CHANSEY))
-        + (2 * (itemEffect == HOLD_EFFECT_FARFETCHD_CRITRATE_UP && attackerSpecies == SPECIES_FARFETCHD));
+        + (2 * (itemEffect == HOLD_EFFECT_FARFETCHD_CRITRATE_UP && (attackerSpecies == SPECIES_FARFETCHD || attackerSpecies == SPECIES_SIRFETCHD))); // Sovereign: Sirfetch'd too (Gen VIII+)
 
     if (effectiveCritStage > NELEMS(sCriticalStageRates) - 1) {
         effectiveCritStage = NELEMS(sCriticalStageRates) - 1;

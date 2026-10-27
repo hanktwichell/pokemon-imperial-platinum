@@ -18,7 +18,7 @@
   "pluckEffect": "PLUCK_EFFECT_BRN_RESTORE",
   "flingEffect": "FLING_EFFECT_BRN_RESTORE",
   "flingPower": 10,
-  "naturalGiftPower": 60,
+  "naturalGiftPower": 80,
   "naturalGiftType": "TYPE_GRASS",
   "preventToss": false,
   "canRegister": false,

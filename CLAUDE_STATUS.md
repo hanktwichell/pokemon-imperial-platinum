@@ -8621,3 +8621,40 @@ Gen IV's rules. This PR moves them to the later games' rules:
    cure, Big Root ×1.3, Grip Claw 7 turns, pinch Berries at 1/4 HP, Gen VII+ confusion Berries).
 3. Double Iron Bash is listed as "exact" with `HIT_TWICE`, but it has a 30% flinch chance. Give it a
    double-hit-with-flinch effect.
+
+## CB-0209 (Claude B, 3:25 am US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #225 (Platinum's abilities) is merged. This PR
+moves Platinum's own held items to the later games' rules:
+- **Mental Herb** cures infatuation, Taunt, Encore, Torment, Disable and Heal Block, with a message for each (new
+  `subscript_sovereign_mental_herb`).
+- **Metronome** ×1.2 per use, up to ×2 after five. **Soul Dew** ×1.2 to Latios's and Latias's Psychic and Dragon moves.
+- **Binding moves** 4–5 turns at 1/8; **Grip Claw** 7 turns (a new flag in Platinum's unused volatile bit 7, since the
+  3-bit counter stops at 7); **Binding Band** 1/6.
+- **Pinch Berries** (Figy and the rest) at 1/4 HP, restoring 1/3. **Natural Gift** +20 for every Berry (new
+  `tools/engine/platinum_item_updates.py`, run in CI).
+- **Leek** for Sirfetch'd. **Shell Bell** stopped by Sheer Force.
+- **Fling** works with Scarlet/Violet's items (`FLING_POWERS` in `gen_items.py`).
+- **Verified in the emulator** (see `docs/EngineChangelog.md`). Test and release builds pass, and every script fits.
+
+An audit of Platinum's own moves (#1–467) against Gen IX is in the new `docs/PlatinumMoveAudit.md`: 84 moves still
+follow Gen IV and 12 are partly updated, each with the rule, the code location and a suggested fix, most visible first.
+
+**Files modified:** `decomp/src/battle/battle_lib.c`, `decomp/src/battle/battle_script.c`,
+`decomp/src/battle/battle_controller_player.c`, `decomp/include/constants/battle/condition.h`,
+`decomp/res/battle/scripts/subscripts/subscript_bind_start.s`, new `subscript_sovereign_mental_herb.s`,
+`subscripts/meson.build`, `subscripts/sub_seq.order`, `decomp/generated/battle_subscripts.txt`,
+`decomp/res/text/battle_strings.json`, 64 Berries' and 14 items' `decomp/res/items/data/*.json`,
+`tools/engine/gen_items.py`, new `tools/engine/platinum_item_updates.py`, `.github/workflows/build.yml`,
+`docs/HeldItemChecklist.md`, `docs/BattleMechanics.md`, `docs/EngineChangelog.md`, new `docs/PlatinumMoveAudit.md`,
+`CLAUDE_STATUS.md`.
+
+**Next 3 steps (from `docs/PlatinumMoveAudit.md`, most visible first):**
+1. Moves batch A: String Shot −2 Speed, Minimize +2 evasion, Fury Cutter capped at 160, Knock Off ×1.5, Hidden Power
+   60, Feint always hits, Sheer Cold (Ice immune, 20% for non-Ice users), Poison Fang 50%, Toxic sure-hit for Poison
+   types, Jump Kick/Hi Jump Kick (and Supercell Slam, Axe Kick) crash for 1/2 of the user's max HP.
+2. Moves batch B: Taunt 3 turns, Encore 3, Disable 4, Tailwind 4, Wish half the user's HP, Teleport switching out,
+   Destiny Bond failing in a row, Charge lasting until an Electric move, the missing Magic Coat flags (Spikes, Stealth
+   Rock, Toxic Spikes, Encore, Taunt, Torment, Embargo, Heal Block, Defog, Whirlwind, Roar...).
+3. Moves batch C: Defog (both sides, Sticky Web, screens, terrain), Future Sight/Doom Desire typed at hit time, Beat Up
+   Gen V+, Body Slam and the rest doubling against Minimize, Metronome's Gen IX ban list (also Assist and Copycat).

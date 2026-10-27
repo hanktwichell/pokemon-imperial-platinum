@@ -18,7 +18,7 @@
   "pluckEffect": "PLUCK_EFFECT_NONE",
   "flingEffect": "FLING_EFFECT_NONE",
   "flingPower": 10,
-  "naturalGiftPower": 60,
+  "naturalGiftPower": 80,
   "naturalGiftType": "TYPE_FIGHTING",
   "preventToss": false,
   "canRegister": false,

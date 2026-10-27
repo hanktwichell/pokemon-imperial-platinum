@@ -470,7 +470,8 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 ## Platinum's moves updated to Gen IX numbers
 
-Battle effects are unchanged; only these values changed.
+These values changed. Which battle effects still follow Gen IV, and which are updated, is in
+`docs/PlatinumMoveAudit.md`.
 
 | # | Move | Changes |
 |---|---|---|

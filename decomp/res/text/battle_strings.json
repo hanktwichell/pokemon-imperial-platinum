@@ -11213,6 +11213,27 @@
         "The foe’s {STRVAR_1 1, 0, 0} found\n",
         "one {STRVAR_1 8, 1, 0}!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignNoLongerTormented_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} is no\n",
+        "longer tormented!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignNoLongerTormented_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0} is no\n",
+        "longer tormented!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignNoLongerTormented_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0} is no\n",
+        "longer tormented!"
+      ]
     }
   ]
 }
