@@ -9123,9 +9123,11 @@ merged. The field harnesses were run on the same build (main at PR #241):
   room, the Hall of Fame, Stark Mountain rooms 1 and 3) are the long scenes the 2026-10-25 changelog notes list: the
   screenshots show Cynthia's battle, the Hall of Fame and credits, the Galactic grunt's battle and Charon talking to
   Looker. They run; none hangs.
-- With CB-0225 and CB-0226, every battle and field harness passes on today's build.
+- With CB-0225 and CB-0226, every battle and field harness passes on today's build. `EngineRoadmap.md`'s counts are
+  updated: 254 objects, 87 events, and 45 gift runs (decision 50 took the deliveryman's 14 cap and costume Pikachu,
+  so the gift test has 14 fewer runs than its 59; none is skipped).
 
-**Files modified:** `tools/test/talk_to_objects.py`, `CLAUDE_STATUS.md`.
+**Files modified:** `tools/test/talk_to_objects.py`, `docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`.
 
 **Next 3 steps:**
 1. Anything the owner asks for. T1 (boss teams), T2 (the developer battle and Henry at Spear Pillar), the art (E12),
