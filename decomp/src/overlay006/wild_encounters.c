@@ -402,6 +402,7 @@ BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
 #ifdef SOVEREIGN_TEST
     // Test build only (SovereignTest_WildSurvey): the terrain asked for, on whatever tile the player stands.
     BOOL surveying = gSovereignTestWildSurvey.active;
+    BOOL surveyRoamers = surveying && gSovereignTestSurveyRoamers;
 
     if (surveying) {
         encounterType = gSovereignTestWildSurvey.terrain == SOVEREIGN_TEST_SURVEY_SURF ? ENCOUNTER_TYPE_SURF : ENCOUNTER_TYPE_GRASS;
@@ -409,6 +410,7 @@ BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
     }
 #else
     BOOL surveying = FALSE;
+    BOOL surveyRoamers = FALSE;
 #endif
 
     if (encounterRate == 0) {
@@ -472,7 +474,7 @@ BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
     }
 
     // Roamers can't appear in Poke Radar patches or double battles.
-    if (!withPartner && !radarData.isRadarEncounter && !surveying) {
+    if (!withPartner && !radarData.isRadarEncounter && (!surveying || surveyRoamers)) {
         Roamer *roamer;
 
         if (TryEncounterRoamer(fieldSystem, &roamer)) {
@@ -481,6 +483,13 @@ BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
 
                 FieldBattleDTO_Init(battleParams, fieldSystem);
                 AddRoamerToEnemyParty(encounterFieldParams.trainerID, roamer, battleParams);
+#ifdef SOVEREIGN_TEST
+                if (surveyRoamers) { // a survey with the roamers (tools/test/roamers.py) writes it down, with no battle
+                    SovereignTest_RecordWildParty(battleParams);
+                    FieldBattleDTO_Free(battleParams);
+                    return FALSE;
+                }
+#endif
                 RadarChain_Clear(fieldSystem->chain);
                 Encounter_NewVsWild(fieldSystem, battleParams);
                 return TRUE;

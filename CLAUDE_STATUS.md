@@ -9372,3 +9372,37 @@ caught, or a Chronicle) are never met on a new game, and their roll is 2–5%.
 2. The roamers (the Archivist's releases) have no test either: check they move between maps and that each meeting
    is the right Pokémon.
 3. Run the other harnesses (trainers, species, gifts, Elite Four) again on the next build that changes battle code.
+
+## CB-0235 (Claude B, 8:11 pm US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #251 (CB-0234, the rare wild test) is merged.
+This one adds a test for the roamers the scripts release: Zeraora, Tornadus, Thundurus, the Loyal Three and
+Calyrex's steeds. No test had followed them, as the wild survey skipped roamers.
+- **`tools/test/roamers.py`:**
+  - **Release:** it releases every slot a script releases and checks each one's species, level and HP. No other slot
+    roams.
+  - **Flying:** each flight moves every roamer to another of the 29 routes, never to the one the player left.
+  - **Meeting:** with roamers on the player's map, the survey (with roamers, test build only) meets a roamer about half
+    the time, and each is that roamer: species, level, personality.
+  - **Walking:** each crossing of Route 212's middle border moves every roamer next door, or about one time in 16
+    anywhere, never to the route the player left.
+- **Test-build hooks:** `gSovereignTestRoamers` (each slot as the field writes it down), `gSovereignTestRoamerRelease`
+  and `gSovereignTestSurveyRoamers`.
+- **Result:** all 8 slots right; 133 flights, 36 surveys with roamers (each met in 2 to 8), 40 crossings (309 moves
+  next door, 11 elsewhere). No problems. It takes about 8 minutes.
+- Test and release builds pass.
+
+**Files modified:**
+- `tools/test/roamers.py` (new), `tools/test/README.md`
+- `decomp/include/sovereign_test.h`, `decomp/src/field_system.c`, `decomp/src/script_manager.c`,
+  `decomp/src/overlay006/wild_encounters.c` (test build hooks)
+- `docs/EngineChangelog.md`, `docs/EngineRoadmap.md` (row 18), `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Anything the owner asks for. Waiting on the owner:
+   - T1 (boss teams), T2 (the developer battle and Henry's text), the art (E12);
+   - Burn Up and Double Shock, and the special evolutions;
+   - `Story.md`'s open calls on Oak's visit.
+2. A roamer battle has no test: after a battle, a roamer that was caught or fainted should stop roaming, and one that
+   fled should keep its HP (`roamer_after_battle.c`). The Pokétch's Marking Map should show all 8 too.
+3. Run the other harnesses (trainers, species, gifts, Elite Four) again on the next build that changes battle code.
