@@ -114,7 +114,7 @@ for i, subdir in enumerate(SPECIES_DIRS):
 # its own, in sovereign_form_sprites/order.txt's order (tools/sprites/convert_form_sprites.py); "zform" sorts after
 # "zback". BuildPokemonSpriteTemplate reads them at POKEGRA_FORM_SPRITE_BASE + sprite * 3.
 form_dir = source_dir / 'sovereign_form_sprites'
-for k, folder in enumerate((form_dir / 'order.txt').read_text().split()):
+for k, folder in enumerate((form_dir / 'order.txt').read_text().splitlines()):
     subprocess.run([
         args.nitrogfx,
         form_dir / folder / 'front.png',
@@ -127,6 +127,28 @@ for k, folder in enumerate((form_dir / 'order.txt').read_text().split()):
             args.nitrogfx,
             form_dir / folder / f'{name}.pal',
             private_dir / f'zform-{k:03}-{n}.NCLR',
+            '-bitdepth', '8',
+            '-nopad',
+            '-comp', '10'
+        ])
+
+# Sovereign: then three files (back image, normal and shiny palette) for each Mega and Primal form with a back of its
+# own, in sovereign_form_backs/order.txt's order (tools/sprites/convert_form_backs.py); "zformback" sorts after
+# "zform-". BuildPokemonSpriteTemplate reads them at POKEGRA_FORM_BACK_BASE + back * 3.
+back_dir = source_dir / 'sovereign_form_backs'
+for k, folder in enumerate((back_dir / 'order.txt').read_text().splitlines()):
+    subprocess.run([
+        args.nitrogfx,
+        back_dir / folder / 'back.png',
+        private_dir / f'zformback-{k:03}-0.NCGR',
+        '-encodefronttoback',
+        '-scan',
+    ])
+    for n, name in enumerate(['normal', 'shiny'], start=1):
+        subprocess.run([
+            args.nitrogfx,
+            back_dir / folder / f'{name}.pal',
+            private_dir / f'zformback-{k:03}-{n}.NCLR',
             '-bitdepth', '8',
             '-nopad',
             '-comp', '10'

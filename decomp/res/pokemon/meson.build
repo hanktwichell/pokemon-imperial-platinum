@@ -102,8 +102,10 @@ form_sprites_order = form_registry[2]
 
 
 # 3. Walk species subdirectories; `species_dirnames` is the authority.
-# Sovereign: the Mega and Primal forms' own front sprites (tools/sprites/convert_form_sprites.py).
+# Sovereign: the Mega and Primal forms' own front sprites (tools/sprites/convert_form_sprites.py) and back sprites
+# (tools/sprites/convert_form_backs.py).
 subdir('sovereign_form_sprites')
+subdir('sovereign_form_backs')
 
 foreach species : species_dirnames
     subdir(species)

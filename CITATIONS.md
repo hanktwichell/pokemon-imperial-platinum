@@ -44,7 +44,9 @@ Creating and modifying many of the shiny sprites:
 ### "DPPt Style Gen VI and Beyond" sprite pack (back sprites, normal + shiny)
 Location: `assets/sprites/packs/dppt_gen6_and_beyond/` (Pokémon Essentials v19+ layout, kept unmodified).
 Supplied by the project owner. The pack's own `Credits.txt` is kept verbatim next to the sprites. Per-file artist
-attribution is in `data/sprite_index.csv` and `docs/SpriteLog.md`.
+attribution is in `data/sprite_index.csv` and `docs/SpriteLog.md`. In the ROM (owner, 2026-10-28): the backs and shiny
+backs of 41 Mega Evolutions and both Primal Reversions, halved back to DS size by `tools/sprites/convert_form_backs.py`
+(`decomp/res/pokemon/sovereign_form_backs/`).
 
 Contributors named in the pack (please thank and credit them):
 
