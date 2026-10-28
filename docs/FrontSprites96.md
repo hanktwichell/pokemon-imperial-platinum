@@ -6,9 +6,8 @@ to 80×80 (the shrink broke the outlines of 113 form fronts and 103 species fron
 second animation frame). Back sprites stay 80×80. The cartridge grows to 256 MB when the data passes 128 MB
 (`tools/nitrorom` picks the size from the content; nothing to force).
 
-Status: done in the test build (2026-10-28); one question for the owner is open (the Pokédex's and the PC boxes'
-frames, under **Where it stands** at the end). This file began as the map of what had to change, from a read-through of
-every place that loads or draws a battle sprite; line numbers are as of that day.
+Status: done in the test build (2026-10-28); **Where it stands** is at the end. This file began as the map of what had
+to change, from a read-through of every place that loads or draws a battle sprite; line numbers are as of that day.
 
 ## The sprite as stored and drawn today
 
@@ -139,13 +138,12 @@ Checked in the test build (2026-10-28):
   bytes free at the lowest (64,884).
 - The Pokédex: the list, the entry and the size page (Turtwig, Garchomp; the height check's silhouette is the 96×96
   front, at about the same height against the player's as Platinum's). Its frame (the list's and the entry's) is
-  80×80 inside, Platinum's sprite size, with a 7-pixel border: a front whose art reaches past the middle 80×80 is
-  drawn over that border, by up to 8 pixels (Ho-Oh's wings and tail). That is 420 of the 2,402 96×96 front images
-  (32 of the 541 for #1–493 and their forms: Lugia, Kyogre, Ho-Oh, Zapdos, Tentacruel...; and many of #494+: Zekrom,
-  Yveltal, Xerneas).
-  The PC boxes' Pokémon panel is the same kind of frame (Garchomp, Turtwig and Starly checked, inside it).
-  **Open question for the owner:** keep the art whole over these frames' borders (as now), or clip it to the frame
-  (`PokemonSprite_SetPartialDraw`, the art past the middle 80×80 cut, like the 2D screens below)?
+  80×80 inside, Platinum's sprite size, with a 7-pixel border, and the PC boxes' Pokémon panel is the same kind of
+  frame. 420 of the 2,402 96×96 front images have art past the middle 80×80 (Ho-Oh, Lugia, Zekrom, Yveltal...), up to
+  8 pixels over such a border. **Owner, 2026-10-28: clip it to the frame.** `PokemonSprite_ClipToFrame` draws only what
+  lies in the frame (the Pokédex's sprites, its "registered" screen and the PC boxes' panel); a scaled sprite is drawn
+  whole, so the height check's silhouette keeps all its art. Checked with Ho-Oh in the Pokédex's list and entry, its
+  "registered" screen after a catch, and the PC boxes' panel.
 
 Show the middle 80×80 of a 96×96 front (the old 2D functions; safe, art past it is cut): the script's Pokémon preview
 window (an 80×80 frame; Mom's Eevee checked), the GTS listing, the Union Room trade card, the Mystery Gift card, the

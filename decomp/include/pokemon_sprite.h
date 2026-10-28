@@ -44,7 +44,8 @@ struct PokemonSpriteTransforms {
     u16 rotationX;
     u16 rotationY;
     u16 rotationZ;
-    u16 padding_1A;
+    s8 clipFrameY; // Sovereign: with clipToFrame, how far below the sprite's centre the frame's is
+    u8 padding_1B;
     s16 xPivot;
     s16 yPivot;
     u8 drawXOffset; // Offset from the sprite origin to begin drawing in partial mode.
@@ -72,7 +73,8 @@ struct PokemonSpriteTransforms {
     u32 hide2 : 1; // It's unclear why there are 2 members that do the same thing.
     u32 fadeActive : 1;
     u32 mosaicIntensity : 4;
-    u32 padding_30_17 : 15;
+    u32 clipToFrame : 1; // Sovereign: only an 80x80 frame is drawn, unless scaled (PokemonSprite_ClipToFrame)
+    u32 padding_30_18 : 14;
 };
 
 typedef struct PokemonSpriteShadow {
@@ -161,6 +163,9 @@ void PokemonSprite_SetAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttr
 int PokemonSprite_GetAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttribute attribute);
 void PokemonSprite_AddAttribute(PokemonSprite *monSprite, enum PokemonSpriteAttribute attribute, int delta);
 void PokemonSprite_SetPartialDraw(PokemonSprite *monSprite, int xOffset, int yOffset, int width, int height);
+// Sovereign: draws only what lies in the 80x80 frame centred frameY pixels below the sprite's centre (a frame drawn for
+// Platinum's 80x80 sprites: the Pokédex's, the PC boxes'), unless the sprite is scaled.
+void PokemonSprite_ClipToFrame(PokemonSprite *monSprite, int frameY);
 void PokemonSprite_StartFade(PokemonSprite *monSprite, int initAlpha, int targetAlpha, int delay, int color);
 void PokemonSpriteManager_StartFadeAll(PokemonSpriteManager *monSpriteMan, int initAlpha, int targetAlpha, int delay, int color);
 void PokemonSprite_ClearFade(PokemonSprite *monSprite);

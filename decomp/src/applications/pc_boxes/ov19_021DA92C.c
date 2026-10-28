@@ -155,6 +155,7 @@ void ov19_021DAA90(UnkStruct_ov19_021DA9E0 *param0)
 
     BuildPokemonSpriteTemplate(&v0, 1, 0, 0, 0, 0, 0);
     param0->unk_24 = PokemonSpriteManager_CreateSprite(param0->unk_20, &v0, 44, 84, 0, 0, NULL, NULL);
+    PokemonSprite_ClipToFrame(param0->unk_24, 0); // Sovereign: a 96x96 front is cut at the panel's 80x80 frame
 }
 
 BOOL ov19_021DAAC4(UnkStruct_ov19_021DA9E0 *param0)
@@ -544,6 +545,7 @@ static void ov19_021DB0E4(UnkStruct_ov19_021DA9E0 *param0)
 
     BoxPokemon_BuildSpriteTemplate(&v0, preview->mon, 2, 0);
     param0->unk_24 = PokemonSpriteManager_CreateSprite(param0->unk_20, &v0, 44, 84, 0, 0, NULL, NULL);
+    PokemonSprite_ClipToFrame(param0->unk_24, 0); // Sovereign: a 96x96 front is cut at the panel's 80x80 frame
     ov19_021DB24C(param0, preview->markings);
 }
 

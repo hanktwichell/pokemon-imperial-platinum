@@ -158,6 +158,9 @@ void PokedexGraphics_LoadPokemonSprite(PokedexGraphicData *pokedexGraphicData, e
     }
 
     pokedexGraphicData->pokemonSprite[spriteIndex] = PokemonSpriteManager_CreateSprite(pokedexGraphicData->spriteMan, &spriteTemplate, x, y + yOffset, 0, 0, NULL, NULL);
+    // Sovereign: a 96x96 front is cut at the 80x80 frame, centred at y (owner, 2026-10-28); the height check's scaled
+    // silhouette is drawn whole.
+    PokemonSprite_ClipToFrame(pokedexGraphicData->pokemonSprite[spriteIndex], -yOffset);
 }
 
 void PokemonGraphics_SetSpriteCenterXY(PokedexGraphicData *pokedexGraphicData, int x, int y, int spriteIndex)

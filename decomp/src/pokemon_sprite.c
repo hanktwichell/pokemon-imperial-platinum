@@ -339,6 +339,7 @@ static void PokemonSprite_TickAnim(PokemonSprite *monSprite);
 static u8 SwapNybbles(u8 value);
 static void TryDrawSpindaSpots(PokemonSprite *monSprite, u8 *rawCharData);
 static void PokemonSprite_WidenPartialDraw(int *offset, int *length);
+static BOOL IsUnscaled(int scale);
 
 // Sovereign: a manager of numSlots sprites keeps a texture of numSlots slots (96 rows each), so one that shows a single
 // sprite (PokemonSpriteManager_NewOneSlot) takes 12 KB instead of 48.
@@ -447,7 +448,12 @@ void PokemonSpriteManager_DrawSprites(PokemonSpriteManager *monSpriteMan)
             G3_MaterialColorSpecEmi(GX_RGB(16, 16, 16), GX_RGB(0, 0, 0), FALSE);
             G3_PolygonAttr(GX_LIGHTMASK_NONE, GX_POLYGONMODE_MODULATE, GX_CULL_NONE, monSpriteMan->sprites[i].polygonID, monSpriteMan->sprites[i].transforms.alpha, 0);
 
-            if (monSpriteMan->sprites[i].transforms.partialDraw) {
+            BOOL clipped = monSpriteMan->sprites[i].transforms.clipToFrame
+                && monSpriteMan->sprites[i].transforms.partialDraw == FALSE
+                && IsUnscaled(monSpriteMan->sprites[i].transforms.scaleX)
+                && IsUnscaled(monSpriteMan->sprites[i].transforms.scaleY);
+
+            if (monSpriteMan->sprites[i].transforms.partialDraw || clipped) {
                 // The drawn part is given in the 80x80 box centred in the slot; a side of it on the box's edge stands
                 // for the slot's edge, so a 96x96 sprite keeps the parts outside the box.
                 int drawX = monSpriteMan->sprites[i].transforms.drawXOffset;
@@ -455,8 +461,27 @@ void PokemonSpriteManager_DrawSprites(PokemonSpriteManager *monSpriteMan)
                 int drawW = monSpriteMan->sprites[i].transforms.drawWidth;
                 int drawH = monSpriteMan->sprites[i].transforms.drawHeight;
 
-                PokemonSprite_WidenPartialDraw(&drawX, &drawW);
-                PokemonSprite_WidenPartialDraw(&drawY, &drawH);
+                if (clipped) {
+                    // The frame's rows, clipFrameY down in the box (within the slot), and the box's columns.
+                    int top = monSpriteMan->sprites[i].transforms.clipFrameY;
+                    int bottom = top + MON_SPRITE_FRAME_HEIGHT;
+
+                    if (top < -MON_SPRITE_SLOT_MARGIN) {
+                        top = -MON_SPRITE_SLOT_MARGIN;
+                    }
+
+                    if (bottom > MON_SPRITE_FRAME_HEIGHT + MON_SPRITE_SLOT_MARGIN) {
+                        bottom = MON_SPRITE_FRAME_HEIGHT + MON_SPRITE_SLOT_MARGIN;
+                    }
+
+                    drawX = 0;
+                    drawW = MON_SPRITE_FRAME_WIDTH;
+                    drawY = top;
+                    drawH = bottom - top;
+                } else {
+                    PokemonSprite_WidenPartialDraw(&drawX, &drawW);
+                    PokemonSprite_WidenPartialDraw(&drawY, &drawH);
+                }
 
                 u0 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][0] + MON_SPRITE_SLOT_MARGIN + drawX;
                 u1 = u0 + drawW;
@@ -1055,6 +1080,12 @@ void PokemonSprite_SetPartialDraw(PokemonSprite *monSprite, int xOffset, int yOf
     monSprite->transforms.drawHeight = height;
 }
 
+void PokemonSprite_ClipToFrame(PokemonSprite *monSprite, int frameY)
+{
+    monSprite->transforms.clipToFrame = TRUE;
+    monSprite->transforms.clipFrameY = frameY;
+}
+
 void PokemonSprite_StartFade(PokemonSprite *monSprite, int initAlpha, int targetAlpha, int delay, int color)
 {
     monSprite->transforms.fadeActive = TRUE;
@@ -1284,6 +1315,12 @@ void PokemonSpriteManager_ClearHideShadows(PokemonSpriteManager *monSpriteMan, u
 
 // Sovereign: one side of a partial draw (offset and length in the 80x80 box): an end on the box's edge moves out to the
 // edge of the 96x96 slot. A partial draw that would show nothing still shows nothing.
+// Sovereign: a scale of 1, flipped or not (PokemonSprite_ClipToFrame clips only such a sprite).
+static BOOL IsUnscaled(int scale)
+{
+    return scale == MON_AFFINE_SCALE(1) || scale == -MON_AFFINE_SCALE(1);
+}
+
 static void PokemonSprite_WidenPartialDraw(int *offset, int *length)
 {
     int start = *offset;

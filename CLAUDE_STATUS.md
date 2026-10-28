@@ -9665,3 +9665,25 @@ from a second state.
    fronts PR (all its screens checked; `docs/FrontSprites96.md`).
 2. Waiting on the owner: the Pokédex/PC frame question (CB-0242).
 3. Waiting on the owner: whether Oak gives something at his visit (`Story.md`), T1, T2, the art (E12).
+
+## CB-0244 (Claude B, 12:45 pm US Central, 2026-10-28)
+
+**Done (PR next): 96×96 front sprites** (owner, 2026-10-28; `docs/FrontSprites96.md`, `EngineChangelog.md`). Every
+front is drawn at 96×96 (#1–493 with PokeAPI's Black/White fronts; `-Dplatinum_fronts=true` goes back to Platinum's),
+backs stay 80×80. All screens with a Pokémon sprite were checked in the game or by their heaps, and fixed where needed:
+one-slot sprite managers for the summary screen, the PC boxes, the dress-up, the poffin cutscene (its heap would have
+run out) and the preview window; the dress-up's signed margins (Zekrom off-screen); the acting stand-in's clear.
+**Owner's choice (2026-10-28): clip to the frame** in the Pokédex and the PC boxes (`PokemonSprite_ClipToFrame`).
+Verified on this build: the battle suite matches main in all 526 battles; `battle_all_species.py` 1472 of 1472.
+
+**Files modified:** `decomp/src/pokemon_sprite.c`, `include/pokemon_sprite.h`, `src/character_sprite.c` and
+`include/character_sprite.h`, `src/pokemon.c`, the screens listed in `docs/FrontSprites96.md`, `res/pokemon/` (the
+96×96 fronts), `tools/sprites/` (fetch, convert, pack), `tools/test/check_battle_sprites.py`,
+`tools/test/heap_check.py`, `docs/FrontSprites96.md`, `docs/EngineChangelog.md`, `docs/TechnicalDesign.md`,
+`docs/EngineRoadmap.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. PR and merge the 96×96 fronts.
+2. The PC's Hall of Fame records were not reached in the game (the emulator keeps no in-game saves in these runs):
+   look again if a harness can make the battery keep them.
+3. Waiting on the owner: whether Oak gives something at his visit (`Story.md`), T1, T2, the art (E12).

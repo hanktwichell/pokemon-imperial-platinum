@@ -28,6 +28,8 @@ Code:
   Fame, the trade cutscene, the HM cut-in and the Battle Hall's banner. The other 2D screens (the preview window, the
   GTS, the Union Room, Mystery Gift, the Great Marsh binoculars, Rowan's intro) show the middle 80×80.
 - Texture reservations of 0x8000 become 0xC000; 3,200-byte copy buffers become 4,608.
+- The Pokédex's and the PC boxes' frames are 80×80 inside: a front is cut at the frame (`PokemonSprite_ClipToFrame`,
+  the owner's choice); the Pokédex's scaled height-check silhouette is drawn whole.
 - The dress-up keeps a front's y offset signed (Zekrom was drawn below the screen in a visual competition), and the
   acting competition's stand-in sprite is cleared whole.
 - Tools: `tools/sprites/fetch_pokeapi_fronts.py`, `convert_fronts96.py`; `convert_battle_sprites.py`,
@@ -42,7 +44,10 @@ Verified (test build), with each screen's heap against the 80×80 build:
 - `battle_mechanics.py`: all 526 battles match the main build's recording (a full run from a new game; the five cases
   the timing fix changed, and the two whose HP logs had split, from a second state too). Before that fix, 520 of 526
   matched: the same mechanics, with the harness's taps landing on another move or target.
-- ALL_SPECIES
+- `battle_all_species.py --jobs 4`: 1472 of 1472 species and forms ok. Both runs were on the build before the clip
+  below, which changes only the Pokédex's and the PC boxes' drawing.
+- The clip: Ho-Oh in the Pokédex's list and entry, in its "registered" screen after a catch, and in the PC boxes'
+  panel, each cut at its frame's inner edge.
 
 ## Battle mechanics suite: steadier against a build's timing
 
