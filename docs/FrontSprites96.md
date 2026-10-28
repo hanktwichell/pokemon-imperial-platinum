@@ -144,17 +144,20 @@ Checked in the test build (2026-10-28):
   lies in the frame (the Pokédex's sprites, its "registered" screen and the PC boxes' panel); a scaled sprite is drawn
   whole, so the height check's silhouette keeps all its art. Checked with Ho-Oh in the Pokédex's list and entry, its
   "registered" screen after a catch, and the PC boxes' panel.
+- The PC's Hall of Fame records (2026-10-28): an Elite Four run into the Hall of Fame and its save, the credits,
+  CONTINUE, then Jubilife's Pokémon Center PC. Record No. 1 shows the six 96×96 fronts, with each Pokémon's page and
+  its moves. The first try said the records were corrupted: another harness running at the same time had blanked the
+  shared emulator battery (`tools/test/drive.py` now gives each process its own). The six places are fixed centres,
+  as in Platinum: 80 pixels apart in a row, the rows at y 56 and 112. An 80×80 front there already reached the title
+  bar (it ends at y 27) and the move box (it starts at y 145); a 96×96 box reaches 8 pixels further each way, so a
+  tall Pokémon in the bottom row (Stonjourner) covers up to 8 more pixels of the move box's frame. Boxes overlap a
+  neighbour's by up to 16 pixels across (Platinum's 80×80 boxes touched), and art at the right edge of the box placed
+  at x 216 is cut by up to 8 pixels at the screen's edge.
 
 Show the middle 80×80 of a 96×96 front (the old 2D functions; safe, art past it is cut): the script's Pokémon preview
 window (an 80×80 frame; Mom's Eevee checked), the GTS listing, the Union Room trade card, the Mystery Gift card, the
 Great Marsh binoculars, Rowan's intro, `ov64`.
 
 Not run in the game:
-- The PC's Hall of Fame records: an Elite Four run into the Hall of Fame and its save, then the PC, which said the
-  records were corrupted. The game's saves never reached the emulator's battery in these runs (exported, it was blank),
-  so the records can't be read back. The screen draws the same 96×96 copies as the Hall of Fame (checked there). Its
-  six places are 80 pixels apart in a row and the rows 56 apart, so 96×96 boxes overlap a neighbour's by up to 16
-  pixels across (Platinum's 80×80 boxes touched), and art at the right edge of the box placed at x 216 is cut by up
-  to 8 pixels at the screen's edge.
 - By their heaps' size: the capsule menu (512 KB) and the Vs. Recorder's app (`overlay062`, 340 KB) take the
   four-slot manager's 16 KB more with room to spare.

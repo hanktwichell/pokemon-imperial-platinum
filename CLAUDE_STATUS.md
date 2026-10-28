@@ -9705,3 +9705,21 @@ first process kept its save. Also found: loading a save state puts back the batt
    (running now, from the 96×96 worktree: main's `decomp/build_test` predates #259 and wasn't rebuilt).
 2. PR and merge the `drive.py` fix with that result.
 3. Waiting on the owner: whether Oak gives something at his visit (`Story.md`), T1, T2, the art (E12).
+
+## CB-0246 (Claude B, 3:38 pm US Central, 2026-10-28)
+
+**Done (PR next): the PC's Hall of Fame records checked on the 96×96 build.** With `drive.py`'s own battery per
+process (CB-0245): an Elite Four run into the Hall of Fame (its save reached the battery: 145,444 bytes), the
+credits, CONTINUE, then Jubilife's Pokémon Center PC. Record No. 1 shows the six 96×96 fronts, each Pokémon's page and
+its moves. The places are Platinum's fixed centres; a 96×96 box reaches 8 px further than an 80×80 one, so a tall
+Pokémon in the bottom row covers up to 8 more px of the move box's frame (Platinum's fronts already overlapped it).
+Run from the 96×96 worktree (/home/user/pi96, same tree as main): the harnesses read their symbols from the tree's
+own `decomp/build_test`, and main's predates #259.
+
+**Files modified:** `docs/FrontSprites96.md`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. PR and merge (`drive.py` fix, the PC Hall of Fame result).
+2. A regression pass on main's 96×96 build with the harnesses not yet run on it: `battle_all_trainers.py`,
+   `elite_four_runs.py`, `gift_pokemon.py`, `battle_form_changes.py`, `roamers.py`.
+3. Waiting on the owner: whether Oak gives something at his visit (`Story.md`), T1, T2, the art (E12).

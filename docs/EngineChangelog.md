@@ -3,6 +3,23 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Test harnesses keep their in-game saves; the PC's Hall of Fame checked
+
+Nothing changes for players.
+- **`tools/test/drive.py`: each process keeps the emulator's battery in a folder of its own** (`XDG_CONFIG_HOME`,
+  removed when the process ends). py-desmume reads and writes the battery file, `~/.config/desmume/<rom name>.dsv`,
+  while the game runs, so every harness process on a ROM named `pokeplatinum.us.nds` shared one battery, and each new
+  `Driver` wrote a blank one into it. The Hall of Fame's save was lost this way while the battle suite ran beside it,
+  and the PC said its Hall of Fame records were corrupted.
+- How it was found: an in-game save from a fresh boot reached the battery (123,610 bytes written), and so did one
+  after loading a save state (49,434 more). With two processes, the first one's save read back blank once the second
+  started; with the fix it kept it, and `~/.config/desmume` isn't touched.
+- Loading a save state puts back the battery the state was saved with (`tools/test/README.md`).
+
+Verified (test build, 96×96 fronts): an Elite Four run into the Hall of Fame, the credits, CONTINUE, then Jubilife's
+Pokémon Center PC. Its Hall of Fame shows record No. 1 with the six 96×96 fronts, each Pokémon's page and its moves
+(`docs/FrontSprites96.md`).
+
 ## 96×96 front sprites
 
 For players (owner, 2026-10-28; `docs/FrontSprites96.md`):
