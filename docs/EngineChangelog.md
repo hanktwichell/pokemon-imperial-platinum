@@ -3,6 +3,21 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## 96×96 fronts: the playtest harnesses on the new build
+
+Nothing changes for players. More of the playtest harnesses ran on the 96×96 fronts build (`docs/FrontSprites96.md`;
+test build, from a new game's bedroom), and all of them pass:
+- `battle_all_trainers.py`: 1,039 of 1,039 trainers ok.
+- `elite_four_runs.py`: 13 of 13 runs ok.
+- `battle_form_changes.py`: 211 of 211 cases ok.
+- `gift_pokemon.py`: 45 of 45 gifts ok.
+- `roamers.py`: no problems. All 8 roamers were released, met and battled, Fezandipiti was caught and stopped
+  roaming, and the Marking Map showed the 6 still roaming.
+- `talk_to_objects.py`: 254 of 254 objects ok or not there (139 run their script to its end, 111 are hidden on a new
+  game, 4 are stand-ins).
+- No harness reported a heap problem.
+- The 96×96 PR had already run the battle mechanics suite (526 of 526) and `battle_all_species.py` (1,472 of 1,472).
+
 ## Test harnesses keep their in-game saves; the PC's Hall of Fame checked
 
 Nothing changes for players.
