@@ -145,4 +145,5 @@ Show the middle 80×80 of a 96×96 front (the old 2D functions; safe, art past i
 window (an 80×80 frame; Mom's Eevee checked), the GTS listing, the Union Room trade card, the Mystery Gift card, the
 Great Marsh binoculars, Rowan's intro, `ov64`.
 
-Still to check: the PC's Hall of Fame records, and the battle videos' heap. The capsule menu's heap is 512 KB.
+Still to check: the PC's Hall of Fame records. Not run in the game, by their heaps' size: the capsule menu (512 KB)
+and the Vs. Recorder's app (`overlay062`, 340 KB) take the four-slot manager's 16 KB more with room to spare.
