@@ -21,7 +21,11 @@ registered and showing, the next time the field sets up the bottom screen.
 Also: `LegendaryTriggers.md`'s open issue "Cosmog can flee" is gone. Cosmog has not learned Teleport since
 2026-10-24.
 
-Verified (test build): ROAMER_RESULT
+Verified (test build):
+- `roamers.py`: everything as before (104 flights, 24 surveys with roamers, 40 crossings, 8 of 8 roamers battled,
+  Zeraora caught), and "marking map: 6 roaming, 6 roamer icons on the Pokétch". Glastrier (knocked out) and Zeraora
+  (caught) show no icon. No problems.
+- A check from a saved state with all 8 released: 8 icons, two of them on the same spot (two roamers on Route 216).
 
 ## Oak's visit plays after the first Hall of Fame
 
