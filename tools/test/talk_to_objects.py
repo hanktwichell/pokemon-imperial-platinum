@@ -81,6 +81,8 @@ SCENES_SEEN = {
 # Scripts that run longer: the Battleground's Battle Marathon is 24 battles in a row.
 LONG_SCRIPTS = {('events_battleground', 'LOCALID_SOVEREIGN_MARATHON_GUIDE'): 300000}
 WARP = {'header': 0, 'x': 2, 'z': 4, 'dir': 6}  # struct SovereignTestWarpTarget
+# Surfable water's tile behaviours (sTileBehaviorFlags, src/map_tile_behavior.c), bridges over water aside.
+WATER = {0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x19, 0x22, 0x2a, 0x50, 0x51, 0x52, 0x53}
 FACE = {(0, -1): 0, (0, 1): 1, (-1, 0): 2, (1, 0): 3}  # enum FaceDirection: the step from the player to the object
 # The hour the clock reads (gSovereignTestClock, which takes the hour + 1): the day, so a result doesn't change with
 # the time the test runs at (Route 212's policemen are out only at night).
@@ -130,18 +132,27 @@ STORY = {
         (SIEGE, 4), ('FLAG_DEFEATED_TRAINER_SOVEREIGN_GRUNT_MANSION_OFFICE', 1)],
     ('events_pokemon_mansion', 'LOCALID_SOVEREIGN_HAPPINY'): [
         (SIEGE, 4), ('FLAG_DEFEATED_TRAINER_SOVEREIGN_GRUNT_MANSION_ROOM_3', 1)],
+    ('events_pokemon_mansion', 'LOCALID_SOVEREIGN_CLEFAIRY_3'): [
+        (SIEGE, 4), ('FLAG_DEFEATED_TRAINER_SOVEREIGN_GRUNT_MANSION_ROOM_2', 1)],
     **{('events_pokemon_mansion', f'LOCALID_SOVEREIGN_{who}'): [(SIEGE, 3)]
-       for who in ('GRUNT_OFFICE', 'GRUNT_ROOM_1', 'GRUNT_ROOM_3', 'GRUNT_TRIO', 'RIVAL')},
+       for who in ('GRUNT_OFFICE', 'GRUNT_ROOM_1', 'GRUNT_ROOM_2', 'GRUNT_ROOM_3', 'GRUNT_TRIO', 'GRUNT_EAST',
+                   'GRUNT_GARDEN', 'RIVAL')},
     ('events_pokemon_mansion_office', 'LOCALID_LEGENDARY_MANAPHY'): [(SIEGE, 7)],
     ('events_pokemon_mansion_office', 'LOCALID_SOVEREIGN_MAID'): [(SIEGE, 6)],
+    ('events_route_208', 'LOCALID_LEGENDARY_RAIKOU'): CYRUS,
+    ('events_route_209_lost_tower_5f', 'LOCALID_LEGENDARY_HO_OH'): [('ITEM_RAINBOW_WING', 1)],
     ('events_route_211_east', 'LOCALID_LEGENDARY_ENTEI'): CYRUS,
-    ('events_route_212_north', 'LOCALID_SOVEREIGN_GRUNT_2'): [(SIEGE, 3)],
-    ('events_route_212_north', 'LOCALID_SOVEREIGN_GRUNT_3'): [(SIEGE, 3)],
+    **{('events_route_212_north', f'LOCALID_SOVEREIGN_GRUNT_{i}'): [(SIEGE, 3)] for i in (1, 2, 3)},
+    ('events_route_212_north', 'LOCALID_LEGENDARY_WO_CHIEN'): [('FLAG_SOVEREIGN_PULLED_STAKE_1', 1),
+                                                               ('FLAG_SOVEREIGN_PULLED_STAKE_2', 1)],
+    ('events_route_213', 'LOCALID_LEGENDARY_SUICUNE'): CYRUS,
     ('events_route_214', 'LOCALID_LEGENDARY_TING_LU'): [('FLAG_SOVEREIGN_PULLED_STAKE_5', 1),
                                                         ('FLAG_SOVEREIGN_PULLED_STAKE_6', 1)],
     ('events_route_215', 'LOCALID_LEGENDARY_ZEKROM'): [('ITEM_DARK_STONE', 1), ('HOUR', 22)],
     ('events_route_220', 'LOCALID_LEGENDARY_LUGIA'): [('ITEM_SILVER_WING', 1)],
     ('events_route_228', 'LOCALID_LEGENDARY_LANDORUS'): [('SPECIES_TORNADUS', 50), ('SPECIES_THUNDURUS', 50)],
+    ('events_route_228_rock_peak_ruins', 'LOCALID_LEGENDARY_REGIDRAGO'): [
+        ('SPECIES_REGIROCK', 50), ('SPECIES_REGICE', 50), ('SPECIES_REGISTEEL', 50)],
     ('events_sendoff_spring', 'LOCALID_LEGENDARY_KORAIDON'): [('VAR_SOVEREIGN_PARADOX_ANCIENT', 0x3ff)],
     ('events_sendoff_spring', 'LOCALID_LEGENDARY_MIRAIDON'): [('VAR_SOVEREIGN_PARADOX_FUTURE', 0x3ff)],
     ('events_solaceon_ruins_room_6_northwest_dead_end', 'LOCALID_LEGENDARY_HOOPA'): [('ITEM_PRISON_BOTTLE', 1)],
@@ -149,7 +160,11 @@ STORY = {
     ('events_stark_mountain_room_1', 'LOCALID_LEGENDARY_GROUDON'): ORBS,
     ('events_valley_windworks_building', 'LOCALID_LEGENDARY_REGIELEKI'): [
         ('SPECIES_REGIROCK', 50), ('SPECIES_REGICE', 50), ('SPECIES_REGISTEEL', 50)],
+    # Her visit is a scene on the way in, which ends with her leaving: that's what this runs (she's NOSCRIPT after).
+    ('events_twinleaf_town_player_house_1f', 'LOCALID_SOVEREIGN_ELDER'): [('VAR_PLAYER_HOUSE_POSTGAME_STATE', 1)],
+    ('events_valley_windworks_outside', 'LOCALID_LEGENDARY_ZAPDOS'): CYRUS,
     ('events_veilstone_city', 'LOCALID_LEGENDARY_DEOXYS'): [('FLAG_SOVEREIGN_DEOXYS_SENSED', 1)],
+    ('events_victory_road_2f', 'LOCALID_LEGENDARY_MOLTRES'): CYRUS,
 }
 PARTY = 6  # the test save's party
 
@@ -221,7 +236,8 @@ def stand_next_to(maps, matrix, grid, warps, taken, x, z, dirs=DIRS, enter=False
         levels = (False, True) if enter else (False,)
         if enter and not any((x, z, e) in seen for e in levels):
             continue
-        for d in dirs:
+        # Land first: the warp puts the player on a water tile on foot, not surfing (Rayquaza's waterfall pool).
+        for d in sorted(dirs, key=lambda d: (maps.tile(matrix, x - d[0], z - d[1]) or 0) & 0xff in WATER):
             p = (x - d[0], z - d[1])
             if p not in blocked and p not in inside and any((p + (e,)) in seen
                                                             and can_turn(maps, matrix, p[0], p[1], e, d) for e in levels):
