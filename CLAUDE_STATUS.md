@@ -9320,10 +9320,9 @@ log, the ROM space tool) is merged. This one takes the field tests past a new ga
   - `gSovereignTestBagItem`;
   - 16 `gSovereignTestVar` slots.
 - **With `--chronicles --unhide`:**
-  - The object test: 246 of 254 run to their end, with no failure. Every Chronicle legendary and stake, Renegade's
-    legendaries, the Mansion siege, Manaphy's Egg, and Celebi and its portals.
-  - The 8 left: six Totems (their own test warps), the elder (a scene on the way in) and the Lati rock (Cresselia on
-    its tile).
+  - The object test: 252 of 254 run to their end, with no failure. Every Chronicle legendary and stake, Renegade's
+    legendaries, the Mansion siege, Manaphy's Egg, Celebi and its portals, and all eleven Totem trials.
+  - The 2 left: the elder (her visit is a scene on the way in) and the Lati rock (Cresselia on its tile).
   - The sign test: 88 of 88.
 - No game bug turned up.
 
@@ -9337,6 +9336,6 @@ log, the ROM space tool) is merged. This one takes the field tests past a new ga
    - T1 (boss teams), T2 (the developer battle and Henry's text), the art (E12);
    - Burn Up and Double Shock, and the special evolutions;
    - `Story.md`'s open calls on Oak's visit.
-2. Totems in the object test: their trials need the story up to each one (badges, Galactic events). Their story
-   state could go in `STORY` too, so the `--chronicles --unhide` pass covers all 254.
-3. Run the other harnesses (trainers, species, gifts, Elite Four) again on the next build that changes battle code.
+2. Run the other harnesses (trainers, species, gifts, Elite Four) again on the next build that changes battle code.
+3. The Lati rock in the object test: `STORY` could mark Cresselia caught and the Lunar Wing taken, so its own script
+   runs instead of Cresselia's.

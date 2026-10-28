@@ -16,7 +16,7 @@ The test's new options:
   - it clears the object's own hide flag;
   - for a legendary, the scripts count every other species as caught and its own as not caught;
   - it sets what the map's own scripts check as the map loads (`STORY`): flags and vars (the siege's state, pulled
-    stakes, Steven's Orbs, Cyrus beaten, Celebi's memories), an item in the bag (the Light and Dark Stones, the Silver
+    stakes, Steven's Orbs, Cyrus beaten, Celebi's memories, each Totem trial's point in the story), an item in the bag (the Light and Dark Stones, the Silver
     and Rainbow Wings, the Prison Bottle), Pokémon in the party (Keldeo's three, Carbink, the Regis, Tornadus and
     Thundurus), or the hour (Zekrom at night).
 - A wandering NPC gets four more tries before it counts as not there. Floaroma's trade Beauty walked off her tile, and
@@ -42,12 +42,11 @@ Verified (test build, main at 98a0f233 with these hooks):
     its Master Ball (219,760 frames).
   - The sign test: 88 of 88.
 - **With `--chronicles --unhide`:**
-  - The object test: 246 of 254 run to their end. That includes every Chronicle legendary and stake, Renegade's
-    legendaries, the siege's grunts, rival and Clefairy, Manaphy's Egg, Celebi's eight portals and Celebi, and Kyogre,
-    Groudon and Rayquaza.
-  - The eight left: the six Totems not yet open on this save, which have test warps of their own; the Celestic elder,
-    whose visit runs as a scene on the way in and ends with her leaving; and the Lati rock, which Cresselia stands on
-    until she's caught.
+  - The object test: 252 of 254 run to their end. That includes every Chronicle legendary and stake, Renegade's
+    legendaries, the siege's grunts, rival and Clefairy, Manaphy's Egg, Celebi's eight portals and Celebi, Kyogre,
+    Groudon and Rayquaza, and all eleven Totem trials.
+  - The two left: the Celestic elder, whose visit runs as a scene on the way in and ends with her leaving; and the
+    Lati rock, which Cresselia stands on until she's caught.
   - The sign test: 88 of 88.
 
 ## Story beats: the Archivist suspects the Sovereign, and the park keeper's log

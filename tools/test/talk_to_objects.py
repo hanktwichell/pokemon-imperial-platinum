@@ -100,7 +100,7 @@ UNHIDE = False
 # as the map loads (its OnTransition script): (events, object id) -> [(name, value)]. A name is a flag or var to set
 # (at most twelve: gSovereignTestVar[4] to [15]), an item to put in the bag (ITEM_*, at most one), a Pokémon to add to
 # the party at that level (SPECIES_*, at most three, after the party is cut to make room) or HOUR (the clock's hour).
-# Totems are left out: their trials have test warps of their own (sSovereignTestWarps).
+# A Totem's trial opens at its point in the story (data/totem_trials.yaml); the Badges come from --chronicles.
 SIEGE = 'VAR_SOVEREIGN_MANSION_SIEGE_STATE'  # 3: at the Mansion's door; 4: the grunt trio beaten
 ORBS = [('FLAG_SOVEREIGN_STEVEN_GAVE_ORBS', 1)]
 CYRUS = [('FLAG_DEFEATED_TRAINER_GALACTIC_BOSS_CYRUS_DISTORTION_WORLD', 1)]
@@ -115,14 +115,18 @@ STORY = {
         for leader in ('FALKNER', 'BUGSY', 'WHITNEY', 'MORTY', 'CHUCK', 'JASMINE', 'PRYCE', 'CLAIR')],
     **{('events_eterna_forest', f'LOCALID_SOVEREIGN_TIME_PORTAL_{i}'): [('VAR_SOVEREIGN_CELEBI_STATE', 2)]
        for i in range(1, 9)},
+    ('events_floaroma_meadow', 'LOCALID_TOTEM_RIBOMBEE'): [('VAR_VALLEY_WINDWORKS_STATE', 2)],
     ('events_fuego_ironworks_building', 'LOCALID_LEGENDARY_RESHIRAM'): [('ITEM_LIGHT_STONE', 1)],
+    ('events_fuego_ironworks_outside', 'LOCALID_TOTEM_SALAZZLE'): [('VAR_CELESTIC_TOWN_STATE', 1)],
     ('events_fuego_ironworks_outside', 'LOCALID_LEGENDARY_CHI_YU'): [('FLAG_SOVEREIGN_PULLED_STAKE_7', 1),
                                                                      ('FLAG_SOVEREIGN_PULLED_STAKE_8', 1)],
     ('events_galactic_hq_laboratory', 'LOCALID_LEGENDARY_GENESECT'): [('FLAG_SOVEREIGN_GENESECT_FREED', 1)],
     ('events_lake_valor', 'LOCALID_LEGENDARY_KELDEO'): [('SPECIES_COBALION', 50), ('SPECIES_TERRAKION', 50),
                                                          ('SPECIES_VIRIZION', 50)],
+    ('events_mt_coronet_6f', 'LOCALID_TOTEM_KOMMO_O'): [('FLAG_DEFEATED_GALACTIC_HQ_CONTROL_ROOM_SATURN', 1)],
     ('events_mt_coronet_b1f', 'LOCALID_LEGENDARY_KYOGRE'): ORBS,
     ('events_mt_coronet_outside_north', 'LOCALID_LEGENDARY_ARTICUNO'): CYRUS,
+    ('events_old_chateau_dining_area', 'LOCALID_TOTEM_MIMIKYU'): [('FLAG_TEAM_GALACTIC_LEFT_ETERNA_BUILDING', 1)],
     ('events_oreburgh_mine_b2f', 'LOCALID_LEGENDARY_DIANCIE'): [('SPECIES_CARBINK', 50)],
     ('events_pokemon_league', 'LOCALID_LEGENDARY_RAYQUAZA'): ORBS,
     ('events_pokemon_mansion', 'LOCALID_SOVEREIGN_CLEFAIRY_1'): [(SIEGE, 4)],
@@ -164,7 +168,10 @@ STORY = {
     ('events_twinleaf_town_player_house_1f', 'LOCALID_SOVEREIGN_ELDER'): [('VAR_PLAYER_HOUSE_POSTGAME_STATE', 1)],
     ('events_valley_windworks_outside', 'LOCALID_LEGENDARY_ZAPDOS'): CYRUS,
     ('events_veilstone_city', 'LOCALID_LEGENDARY_DEOXYS'): [('FLAG_SOVEREIGN_DEOXYS_SENSED', 1)],
+    ('events_veilstone_city_galactic_warehouse', 'LOCALID_TOTEM_RATICATE'): [
+        ('VAR_VEILSTONE_CITY_GALACTIC_WAREHOUSE_STATE', 2)],
     ('events_victory_road_2f', 'LOCALID_LEGENDARY_MOLTRES'): CYRUS,
+    ('events_vista_lighthouse', 'LOCALID_TOTEM_TOGEDEMARU'): [('VAR_DISTORTION_WORLD_PROGRESS', 10)],
 }
 PARTY = 6  # the test save's party
 
