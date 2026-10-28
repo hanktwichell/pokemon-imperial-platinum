@@ -21,7 +21,7 @@ knocked out), its message log (gSovereignTestMessageLog: every message the battl
 tools/test/battle_mechanics_expected.json (--record writes them). The battle's clock starts on the frame its first
 message comes up (inputs, pokes and the frame limit count from it), so a case plays the same from any save state. A
 battle cut off at its frame limit can still get a few frames further on another build (a longer animation), so there
-the messages are compared up to the last turn both began, and the HP logs as far as both go. A comment above a case,
+the messages are compared up to the last turn both began, and each battler's HP changes as far as both go. A comment above a case,
 and the batch's entry in EngineChangelog.md, say what its battle showed when the change was made. A change that makes
 a battle use the random numbers differently (or take a different number of frames to start) can change a damage roll,
 a critical hit or who moves first, so read a difference before calling it a bug, and re-record the case (--record
@@ -338,9 +338,23 @@ def same_start(a, b):
     return a[:n] == b[:n]
 
 
+def hp_tracks(hp):
+    """Each battler's HP, change by change: the HP log is sampled every few frames, so two battlers' HP changing in the
+    same moment (a hit and its recoil) can be one entry of the log in one run and two in another."""
+    tracks = []
+    for b in range(len(hp[0]) if hp else 0):
+        track = []
+        for row in hp:
+            if not track or track[-1] != row[b]:
+                track.append(row[b])
+        tracks.append(track)
+    return tracks
+
+
 def compare(name, got, expected):
     """'ok', 'NEW' or 'DIFF', with the lines that explain a DIFF. Two battles cut off at the frame limit match when
-    their messages agree up to the last turn they began (whole_turns) and one's HP log is the start of the other's."""
+    their messages agree up to the last turn they began (whole_turns) and each battler's HP changes (hp_tracks) in one
+    are the start of the other's; the messages give the order of the battlers' changes."""
     want = expected.get(name)
     if got['result'] == 'HANG':
         return 'HANG', []
@@ -356,7 +370,9 @@ def compare(name, got, expected):
         notes += ['    ' + m for m in want['messages']]
         notes.append('  got')
         notes += ['    ' + m for m in got['messages']]
-    if not (same_start(got['hp'], want['hp']) if limit else got['hp'] == want['hp']):
+    got_hp, want_hp = hp_tracks(got['hp']), hp_tracks(want['hp'])
+    if not (len(got_hp) == len(want_hp) and all(same_start(g, w) for g, w in zip(got_hp, want_hp)) if limit
+            else got_hp == want_hp):
         notes.append(f"  HP: expected {want['hp']}")
         notes.append(f"  got {got['hp']}")
     return ('DIFF' if notes else 'ok'), notes

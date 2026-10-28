@@ -135,7 +135,8 @@ CASES = [
          wild_species='CHARIZARD', wild_level=30, survive=1),
     dict(name='power_shift', lead='SNORLAX', lead_move='POWER_SHIFT', foe_move='SPLASH', survive=1),
     dict(name='spicy_extract', lead='SCOVILLAIN', lead_move='SPICY_EXTRACT', foe_move='SPLASH', survive=1),
-    dict(name='fillet_away', lead='SNORLAX', lead_move='FILLET_AWAY', foe_move='SPLASH', nogod=1, survive=1),
+    dict(name='fillet_away', lead='SNORLAX', lead_move='FILLET_AWAY', all_moves=1, foe_move='SPLASH', nogod=1,
+         survive=1),
     dict(name='take_heart', lead='CHANSEY', lead_move='TAKE_HEART', foe_move='TOXIC', survive=1),
     dict(name='topsy_turvy', lead='SNORLAX', lead_move='TOPSY_TURVY', foe_move='SWORDS_DANCE', survive=1),
     dict(name='reflect_type', lead='SNORLAX', lead_move='REFLECT_TYPE', foe_move='SPLASH', survive=1),
@@ -234,8 +235,8 @@ CASES = [
     dict(name='obstruct', lead='SNORLAX', lead_move='TACKLE', foe_move='OBSTRUCT', survive=1),
     dict(name='silk_trap', lead='SNORLAX', lead_move='TACKLE', foe_move='SILK_TRAP', survive=1),
     dict(name='burning_bulwark', lead='SNORLAX', lead_move='TACKLE', foe_move='BURNING_BULWARK', survive=1),
-    dict(name='mat_block', lead='JOLTEON', lead_move='MAT_BLOCK', foe_move='TACKLE', wild_species='SLOWPOKE',
-         wild_level=50, survive=1),
+    dict(name='mat_block', lead='JOLTEON', lead_move='MAT_BLOCK', all_moves=1, foe_move='TACKLE',
+         wild_species='SLOWPOKE', wild_level=50, survive=1),
     dict(name='crafty_shield', lead='JOLTEON', lead_move='CRAFTY_SHIELD', foe_move='GROWL', wild_species='SLOWPOKE',
          wild_level=50, survive=1),
     dict(name='wide_guard', lead='JOLTEON', lead_move='WIDE_GUARD', foe_move='GROWL', wild_species='SLOWPOKE',
@@ -412,7 +413,7 @@ CASES = [
     dict(name='ion_deluge', lead='GARCHOMP', lead_move='ION_DELUGE', foe_move='TACKLE', nogod=1),
     dict(name='plasma_fists', lead='GARCHOMP', lead_move='PLASMA_FISTS', foe_move='TACKLE', wild_level=5, nogod=1,
          survive=1),
-    dict(name='fairy_lock', lead='SNORLAX', lead_move='FAIRY_LOCK', foe_move='SPLASH'),
+    dict(name='fairy_lock', lead='SNORLAX', lead_move='FAIRY_LOCK', all_moves=1, foe_move='SPLASH'),
     dict(name='octolock', lead='SNORLAX', lead_move='OCTOLOCK', foe_move='SPLASH'),
     dict(name='octolock_ghost', lead='SNORLAX', lead_move='OCTOLOCK', foe_move='SPLASH', wild_species='GENGAR'),
     dict(name='spotlight_single', lead='SNORLAX', lead_move='SPOTLIGHT', foe_move='SPLASH'),
@@ -503,8 +504,10 @@ CASES = [
          trainer='BELLE_AND_PA_AVA_AND_MATT', partner='SNORLAX', partner_moves=['GROWL'] * 4, nogod=1),
     dict(name='shell_trap_order', lead='TURTONATOR', lead_move='SHELL_TRAP', all_moves=1,
          trainer='BELLE_AND_PA_AVA_AND_MATT', partner='JOLTEON', partner_moves=['GROWL'] * 4, nogod=1),
+    # Receiver takes fainted Pikachu's Static (before frame 5000); it stops before the Pokémon sent in next acts, as the
+    # taps pick its move's target by the frame (the ally or a foe).
     dict(name='receiver', lead='PASSIMIAN', lead_move='SPLASH', all_moves=1, trainer='BELLE_AND_PA_AVA_AND_MATT',
-         partner='PIKACHU', partner_level=5, partner_moves=['SPLASH'] * 4, nogod=1),
+         partner='PIKACHU', partner_level=5, partner_moves=['SPLASH'] * 4, nogod=1, stop_at=6500),
 
     # Mega Sol, Growth and Ripen check
     dict(name='wb_megasol_rain', lead='MEGANIUM', lead_move='WEATHER_BALL', all_moves=1, lead_ability='MEGA_SOL',
@@ -726,8 +729,10 @@ CASES = [
          wild_species='SNORLAX', nogod=1, survive=3),
     dict(name='bind', lead='BLISSEY', lead_level=80, lead_move='SPLASH', all_moves=1, foe_move='FIRE_SPIN', nogod=1,
          survive=8),
+    # Grip Claw: Fire Spin binds Blissey for seven turns, and it faints (about frame 7900); it stops before the Pokémon
+    # sent in next act, as the taps pick their moves by the frame.
     dict(name='bind_claw', lead='BLISSEY', lead_level=80, lead_move='SPLASH', all_moves=1, foe_move='FIRE_SPIN',
-         wild_item='GRIP_CLAW', nogod=1, survive=10),
+         wild_item='GRIP_CLAW', nogod=1, survive=10, stop_at=8000),
     dict(name='bind_band', lead='BLISSEY', lead_level=80, lead_move='SPLASH', all_moves=1, foe_move='FIRE_SPIN',
          wild_item='BINDING_BAND', nogod=1, survive=8),
     dict(name='fling_cloak', lead='GARCHOMP', lead_move='FLING', all_moves=1, item='COVERT_CLOAK',

@@ -9645,3 +9645,23 @@ of Fame) is merged. This one adds the last untested roamer path to `roamers.py`:
    follow in a later change).
 3. Waiting on the owner: the frame question above; whether Oak gives something at his visit (`Story.md`), T1, T2,
    the art (E12).
+
+## CB-0243 (Claude B, 10:06 am US Central, 2026-10-28)
+
+**Done:** PR #257 merged (Sludge Wave's animation, Mega and Primal backs, the battle mechanics suite); CI's docs job had
+caught `gen_moves.py` copying a borrowed animation over Sludge Wave's own (`HANDWRITTEN_ANIMS` now).
+
+**In progress (branch `claude/sweet-wright-rk4wl1`, PR next):** the suite, run on the 96×96 fronts build, matched 520 of
+526 with the same mechanics: the taps picked another move or target in five battles (their timing), and one HP log split
+two simultaneous changes. HP is now compared per battler (`hp_tracks`); `fillet_away`, `mat_block`, `fairy_lock`
+use `all_moves`; `receiver` and `bind_claw` stop before the next Pokémon sent in chooses. Re-recorded and verified
+from a second state.
+
+**Files modified:** `tools/test/battle_mechanics.py`, `tools/test/battle_mechanics_cases.py`,
+`tools/test/battle_mechanics_expected.json`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. PR and merge this; then merge main into `wip-96fronts`, check the five cases on the 96×96 build, and open the 96×96
+   fronts PR (all its screens checked; `docs/FrontSprites96.md`).
+2. Waiting on the owner: the Pokédex/PC frame question (CB-0242).
+3. Waiting on the owner: whether Oak gives something at his visit (`Story.md`), T1, T2, the art (E12).
