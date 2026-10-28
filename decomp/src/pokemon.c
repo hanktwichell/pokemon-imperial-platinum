@@ -53,6 +53,7 @@
 #include "unk_02017038.h"
 #include "unk_02092494.h"
 
+#include "data/sovereign_form_backs.h"
 #include "data/sovereign_form_sprites.h"
 #include "data/sovereign_forms.h"
 
@@ -2908,6 +2909,30 @@ void BoxPokemon_BuildSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, BoxPo
 #define POKEGRA_BACK_PALETTE_BASE ((NATIONAL_DEX_COUNT + 1) * 6)
 // Then three files (front image, normal and shiny palette) for each Sovereign form with a front of its own.
 #define POKEGRA_FORM_SPRITE_BASE  (POKEGRA_BACK_PALETTE_BASE + (NATIONAL_DEX_COUNT + 1) * 2)
+// Then three files (back image, normal and shiny palette) for each Sovereign form with a back of its own.
+#define POKEGRA_FORM_BACK_BASE    (POKEGRA_FORM_SPRITE_BASE + SOVEREIGN_FORM_SPRITE_COUNT * 3)
+
+// Sovereign: the number (plus 1) of a form's own back sprite in pl_pokegra, or 0 if it uses its species' back
+// (tools/sprites/convert_form_backs.py: the Mega and Primal backs of the "DPPt Style Gen VI and Beyond" pack). Its
+// y offset, when it has one, is in *yOffset.
+static u16 SovereignForm_BackSprite(u16 species, u8 form, u8 *yOffset)
+{
+    if (form == 0) {
+        return 0;
+    }
+
+    for (int i = 0; i < SOVEREIGN_FORM_COUNT; i++) {
+        if (sSovereignForms[i].species == species && sSovereignForms[i].form == form) {
+            if (sSovereignFormBack[i] != 0 && yOffset != NULL) {
+                *yOffset = sSovereignFormBackYOffset[i];
+            }
+
+            return sSovereignFormBack[i];
+        }
+    }
+
+    return 0;
+}
 
 // Sovereign: the number (plus 1) of a form's own front sprite in pl_pokegra, or 0 if it uses its species' sprite.
 // A female gets the form's female front where it has one (Hisuian Sneasel). A shiny gets a shiny drawn apart from
@@ -2959,6 +2984,7 @@ void BuildPokemonSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 speci
     spriteTemplate->dummy = 0;
     spriteTemplate->personality = 0;
     u16 formSprite = SovereignForm_FrontSprite(species, form, gender, shiny);
+    u16 formBack = SovereignForm_BackSprite(species, form, NULL);
     form = Pokemon_SanitizeFormId(species, form);
 
     switch (species) {
@@ -3064,11 +3090,19 @@ void BuildPokemonSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 speci
         }
     }
 
-    // Sovereign: a form with a front of its own (convert_form_sprites.py); its back is still the species'.
+    // Sovereign: a form with a front of its own (convert_form_sprites.py), or a back of its own
+    // (convert_form_backs.py).
     if (formSprite != 0 && face == FACE_FRONT) {
         spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_POKEGRA;
         spriteTemplate->character = POKEGRA_FORM_SPRITE_BASE + (formSprite - 1) * 3;
         spriteTemplate->palette = POKEGRA_FORM_SPRITE_BASE + (formSprite - 1) * 3 + 1 + shiny;
+        spriteTemplate->spindaSpots = 0;
+    }
+
+    if (formBack != 0 && face == FACE_BACK) {
+        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_POKEGRA;
+        spriteTemplate->character = POKEGRA_FORM_BACK_BASE + (formBack - 1) * 3;
+        spriteTemplate->palette = POKEGRA_FORM_BACK_BASE + (formBack - 1) * 3 + 1 + shiny;
         spriteTemplate->spindaSpots = 0;
     }
 }
@@ -3326,6 +3360,13 @@ u8 BoxPokemon_SpriteYOffset(BoxPokemon *boxMon, u8 face, BOOL preferDP)
 
 u8 LoadPokemonSpriteYOffset(u16 species, u8 gender, u8 face, u8 form, u32 personality)
 {
+    u8 formBackYOffset;
+
+    // Sovereign: a form's own back sits by its own offset.
+    if (face == FACE_BACK && SovereignForm_BackSprite(species, form, &formBackYOffset) != 0) {
+        return formBackYOffset;
+    }
+
     form = Pokemon_SanitizeFormId(species, form);
 
     enum NarcID narcID;

@@ -193,6 +193,50 @@ void FieldInput_Update(FieldInput *input, FieldSystem *fieldSystem, u16 pressedK
 static int sSovereignTestBattleResult;
 static u8 sSovereignTestTotemTrial;
 
+// Test build only: with a harness's battle seed set (gSovereignTestBattleSeed), the field's random numbers start from it
+// and every party Pokémon is made again from them (the same species, level, form, moves, item, hidden ability and
+// friendship), so its personality and IVs, and the lead's, partner's and wild Pokémon's made after it, are the same
+// from any save state.
+static void SovereignTest_SeedParty(FieldSystem *fieldSystem)
+{
+    Party *party = SaveData_GetParty(fieldSystem->saveData);
+
+    LCRNG_SetSeed(gSovereignTestBattleSeed);
+    MTRNG_SetSeed(gSovereignTestBattleSeed);
+
+    for (int slot = 0; slot < Party_GetCurrentCount(party); slot++) {
+        Pokemon *mon = Party_GetPokemonBySlotIndex(party, slot);
+        u16 species = Pokemon_GetValue(mon, MON_DATA_SPECIES, NULL);
+        u8 level = Pokemon_GetValue(mon, MON_DATA_LEVEL, NULL);
+        u32 form = Pokemon_GetValue(mon, MON_DATA_FORM, NULL);
+        u32 item = Pokemon_GetValue(mon, MON_DATA_HELD_ITEM, NULL);
+        u32 hiddenAbility = Pokemon_GetValue(mon, MON_DATA_HAS_HIDDEN_ABILITY, NULL);
+        u32 friendship = Pokemon_GetValue(mon, MON_DATA_FRIENDSHIP, NULL);
+        u16 moves[LEARNED_MOVES_MAX];
+
+        if (Pokemon_GetValue(mon, MON_DATA_IS_EGG, NULL)) {
+            continue;
+        }
+
+        for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+            moves[i] = Pokemon_GetValue(mon, MON_DATA_MOVE1 + i, NULL);
+        }
+
+        Pokemon_InitWith(mon, species, level, INIT_IVS_RANDOM, FALSE, 0, OTID_NOT_SET, 0);
+        UpdateMonStatusAndTrainerInfo(mon, SaveData_GetTrainerInfo(fieldSystem->saveData), 0, 0, HEAP_ID_FIELD2);
+        Pokemon_SetValue(mon, MON_DATA_FORM, &form);
+        Pokemon_SetValue(mon, MON_DATA_HAS_HIDDEN_ABILITY, &hiddenAbility);
+        Pokemon_SetValue(mon, MON_DATA_FRIENDSHIP, &friendship);
+        Pokemon_CalcAbility(mon);
+        Pokemon_CalcLevelAndStats(mon);
+        Pokemon_SetValue(mon, MON_DATA_HELD_ITEM, &item);
+
+        for (int i = 0; i < LEARNED_MOVES_MAX; i++) {
+            Pokemon_ResetMoveSlot(mon, moves[i], i);
+        }
+    }
+}
+
 // The moves a test lead knows: Moonblast, Dazzling Gleam, Play Rough (the moves the battle harnesses pick) and
 // Draining Kiss.
 static const u16 sSovereignTestFairyMoves[LEARNED_MOVES_MAX] = { MOVE_MOONBLAST, MOVE_DAZZLING_GLEAM, MOVE_PLAY_ROUGH, MOVE_DRAINING_KISS };
@@ -387,6 +431,10 @@ static BOOL SovereignTest_BattleTask(FieldTask *task)
     int *state = FieldTask_GetState(task);
 
     if (*state == 0) {
+        if (gSovereignTestBattleSeed) {
+            SovereignTest_SeedParty(FieldTask_GetFieldSystem(task));
+        }
+
         if (gSovereignTestLead.species != SPECIES_NONE) {
             SovereignTest_SetLead(FieldTask_GetFieldSystem(task));
         }

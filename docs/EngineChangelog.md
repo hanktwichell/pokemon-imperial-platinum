@@ -3,6 +3,58 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Sludge Wave's own animation, Mega and Primal backs, and a battle mechanics test suite
+
+For players:
+- **Sludge Wave** has an animation of its own (it used Surf's). It's Surf's wave in a deep purple with Sludge Wave's
+  own background, then Sludge Bomb's splashes on each target while the screen glows purple (the owner's idea,
+  `EngineRoadmap.md` row 11). `tools/engine/gen_moves.py` leaves its hand-written `anim.s` alone (`HANDWRITTEN_ANIMS`).
+- **41 Mega Evolutions and both Primal Reversions** have back sprites of their own, normal and shiny, from the
+  owner's "DPPt Style Gen VI and Beyond" pack (`tools/sprites/convert_form_backs.py`). The pack draws DS sprites at
+  twice size; each 2×2 block becomes one pixel of its most common colour. Each back sits by its own y offset. Mega
+  Mawile's back is drawn bigger than a DS sprite and is left out; the Megas the pack has no back for keep their
+  species' back (`EngineRoadmap.md` row 17 lists them).
+- **Shiny Iron Crown** shows its own front. `make_pl_pokegra.py` split the form sprite list on spaces, so the folder
+  "399-1023-Iron Crown-shiny" was never packed and the sprite read past the end of the form sprites. It reads the list
+  by lines now, and `check_battle_sprites.py` checks every list against its folders.
+- **The cartridge grows to 256 MB when it has to** (owner, 2026-10-28). `tools/nitrorom` already writes the smallest
+  size the content fits, so nothing changes in the build; decision 6's fallback (no cries for the new species) is gone
+  (`ProjectStatus.md`, `TechnicalDesign.md` §7b, `tools/test/rom_space.py`).
+
+For testing:
+- **`tools/test/battle_mechanics.py`**: the battles made to check each move, ability and held-item change (items 11,
+  the Platinum audits, the later fixes), 526 of them in `battle_mechanics_cases.py`, now one suite. It plays each
+  battle in the test build and compares how it ended, every message it printed and every change of HP with the ones
+  recorded in `battle_mechanics_expected.json`. A case's comment says what it checks. `--record` writes the expected
+  results, `--jobs N` runs N emulators. Each battle's clock starts on the frame its first message comes up, and every
+  input and poke counts from there, so a case plays the same from any save state (counted from the SELECT press, a
+  Pokémon sent in after a faint picked a different move from another state). A battle cut off at its frame limit is
+  compared up to the last turn it began, so a later build whose battle takes a few frames more still matches.
+- Test-build hooks (`include/sovereign_test.h`): `gSovereignTestMessageLog` keeps every battle message;
+  `gSovereignTestBattleMons` points at the battlers' data; `gSovereignTestBattleSeed` fixes the battle's random seed
+  (it comes from the clock otherwise) and makes the test party again from it, so the party's IVs and personalities,
+  and so every number, are the same from any save state; `gSovereignTestNoExp` gives no EXP, as god mode does, so no
+  level-up or new-move prompt waits on an answer (the suite's taps answered one differently from another state);
+  `gSovereignTestPlayerTile` is the player's tile.
+- `drive.py`'s `pos()` reads the player's tile from that hook in the build's map file, in place of fixed addresses
+  that had gone stale; `roamers.py` counts the Marking Map walk's steps with it.
+- `roamers.py`'s catch throws the Master Ball once the battle's message log shows "What will ... do?", in place of
+  after a fixed 900 frames: in the rain on Route 215 the battle's intro ran past 1,000 frames, the touches came too
+  early, and the roamer fled uncaught. The first flight after the walk checks the roamers against the route the walk
+  ended on (it used the last route flown to, and called a roamer that moved there wrong).
+
+Verified (test build):
+- Sludge Wave in battle (purple wave, background and splashes); the Mega and Primal backs normal and shiny in battle
+  (a sheet of all 43); `check_battle_sprites.py` passes, with every form list matching its folders.
+- `battle_all_trainers.py --jobs 3` on the Burn Up build: 1038 of 1039 battles ended. `SOVEREIGN_TEST` ran out of
+  frames there and ended alone in 10,980 frames (the battles' seeds came from the clock then).
+- `battle_mechanics.py --jobs 4`: the 526 battles recorded from the bedroom of a new game and played again from the
+  Jubilife Pokémon Center: all 526 match (321 ended, 205 cut off at their frame limit). An earlier recording, with
+  EXP, matched in 525 from a second state: in the other, Starly's new-move prompt after the battle was answered the
+  other way, hence `gSovereignTestNoExp`.
+- `roamers.py`: no problems (the Master Ball throw waits for the prompt; the flight after the walk).
+- `battle_all_species.py --jobs 4`: 1472 of 1472 species and forms ok.
+
 ## Roamers on the Pokétch's Marking Map tested
 
 Nothing changes for players. The roamer test (`tools/test/roamers.py`) now also checks the Pokétch's Marking Map, as its

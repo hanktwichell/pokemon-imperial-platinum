@@ -5,6 +5,7 @@
 
 #include "constants/battle.h"
 #include "constants/battle/battle_script.h"
+#include "constants/charcode.h"
 #include "constants/game_options.h"
 #include "constants/heap.h"
 #include "constants/items.h"
@@ -1610,6 +1611,24 @@ void Battle_SetDefaultBlend(void)
     G2_BlendNone();
 }
 
+#ifdef SOVEREIGN_TEST
+// Test build only (include/sovereign_test.h): the battle's messages, written down as they are printed.
+struct SovereignTestMessageLog gSovereignTestMessageLog;
+
+static void SovereignTest_LogMessage(const String *string)
+{
+    const charcode_t *c = String_GetData(string);
+
+    while (gSovereignTestMessageLog.length < SOVEREIGN_TEST_MESSAGE_LOG_CHARS - 1 && *c != CHAR_EOS) {
+        gSovereignTestMessageLog.chars[gSovereignTestMessageLog.length++] = *c++;
+    }
+
+    if (gSovereignTestMessageLog.length < SOVEREIGN_TEST_MESSAGE_LOG_CHARS) {
+        gSovereignTestMessageLog.chars[gSovereignTestMessageLog.length++] = CHAR_EOS;
+    }
+}
+#endif
+
 u8 BattleMessage_PrintTrainerMessage(BattleSystem *battleSys, int trainerID, int battler, enum TrainerMessageType msgType, int renderDelay)
 {
     Window *window = BattleSystem_GetWindow(battleSys, 0);
@@ -1626,6 +1645,9 @@ u8 BattleMessage_PrintTrainerMessage(BattleSystem *battleSys, int trainerID, int
             }
 
             Window_FillTilemap(window, 0xFF);
+#ifdef SOVEREIGN_TEST
+            SovereignTest_LogMessage(string);
+#endif
             printerID = Text_AddPrinterWithParams(window, FONT_MESSAGE, string, 0, 0, renderDelay, BattleMessage_Callback);
             String_Free(string);
         } else {
@@ -1657,6 +1679,10 @@ u8 BattleMessage_PrintTrainerMessage(BattleSystem *battleSys, int trainerID, int
 
             Window_FillTilemap(window, 0xFF);
 
+#ifdef SOVEREIGN_TEST
+            SovereignTest_LogMessage(string);
+#endif
+
             printerID = Text_AddPrinterWithParams(window, FONT_MESSAGE, string, 0, 0, renderDelay, BattleMessage_Callback);
             String_Free(string);
             MessageLoader_Free(loader);
@@ -1664,6 +1690,9 @@ u8 BattleMessage_PrintTrainerMessage(BattleSystem *battleSys, int trainerID, int
     } else {
         Trainer_LoadMessage(trainerID, msgType, battleSys->msgBuffer, HEAP_ID_BATTLE);
         Window_FillTilemap(window, 0xFF);
+#ifdef SOVEREIGN_TEST
+        SovereignTest_LogMessage(battleSys->msgBuffer);
+#endif
         printerID = Text_AddPrinterWithParams(window, FONT_MESSAGE, battleSys->msgBuffer, 0, 0, renderDelay, BattleMessage_Callback);
     }
 
@@ -1679,6 +1708,10 @@ u8 BattleMessage_Print(BattleSystem *battleSys, MessageLoader *msgLoader, Battle
     BattleMessage_Format(battleSys, msgLoader, battleMsg);
 
     Window_FillTilemap(textWindow, 0xFF);
+
+#ifdef SOVEREIGN_TEST
+    SovereignTest_LogMessage(battleSys->msgBuffer);
+#endif
 
     return Text_AddPrinterWithParams(textWindow, FONT_MESSAGE, battleSys->msgBuffer, 0, 0, renderDelay, BattleMessage_Callback);
 }

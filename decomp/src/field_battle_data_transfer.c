@@ -45,6 +45,7 @@
 #include "rtc.h"
 #include "save_player.h"
 #include "savedata.h"
+#include "sovereign_test.h"
 #include "string_gf.h"
 #include "system.h"
 #include "system_data.h"
@@ -119,6 +120,12 @@ FieldBattleDTO *FieldBattleDTO_New(enum HeapID heapID, u32 battleType)
         + time.hour * 0x10000
         + (time.minute + time.second) * 0x1000000
         + gSystem.vblankCounter;
+
+#ifdef SOVEREIGN_TEST
+    if (gSovereignTestBattleSeed) { // a harness's own seed, so the battle plays the same every run
+        dto->seed = gSovereignTestBattleSeed;
+    }
+#endif
 
     if (CommSys_IsInitialized() == TRUE) {
         for (i = 0; i < CommSys_ConnectedCount(); i++) {

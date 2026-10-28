@@ -891,6 +891,8 @@ u8 gSovereignTestPlayerBattleForm;
 u8 gSovereignTestLeadFormAfter;
 u8 gSovereignTestGodMode;
 u8 gSovereignTestFoeSurvivesTurns;
+u32 gSovereignTestBattleSeed;
+u8 gSovereignTestNoExp;
 u16 gSovereignTestCaughtAllBut;
 u8 gSovereignTestRareWildRoll;
 u16 gSovereignTestRoamerRelease;

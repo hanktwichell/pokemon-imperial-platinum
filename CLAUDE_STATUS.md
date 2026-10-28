@@ -9545,3 +9545,103 @@ of Fame) is merged. This one adds the last untested roamer path to `roamers.py`:
 2. Waiting on the owner: whether Oak gives something at his visit (`Story.md`), T1 (boss teams), T2 (the developer
    battle and Henry's text), the art (E12).
 3. `drive.py`'s `pos()` could read the player's position from the field instead of fixed addresses, for later tests.
+
+## CB-0240 (Claude B, 12:10 am US Central, 2026-10-28)
+
+**In progress (branch `claude/sweet-wright-rk4wl1`, no PR yet):** PR #256 (CB-0239, the Marking Map check) is merged.
+- **Sludge Wave's animation** is now Surf's in purple (the owner's idea, `EngineRoadmap.md` row 11): Surf's wave sprite
+  with its own palette (`sludge_wave.pal`, as Muddy Water does in brown), the scrolling water blended toward purple,
+  Sludge Bomb's splash and a purple tint on the targets. Checked in battle frame by frame next to Surf.
+- **Test-build hooks:** `gSovereignTestPlayerTile` (`drive.py`'s `pos()` works again; `roamers.py` now checks every
+  Marking Map step moves the player), `gSovereignTestMessageLog` (every battle message, as printed),
+  `gSovereignTestBattleMons` (the battle's Pokémon and the field offsets a harness pokes) and
+  `gSovereignTestBattleSeed` (a fixed battle seed: the game seeds each battle from the clock, so test battles varied
+  from run to run).
+- **`tools/test/battle_mechanics.py`:** a regression suite from the ~100 one-off battle checks made since item 11
+  (526 cases after merging repeats, `battle_mechanics_cases.py`). Each case's end, messages and HP are compared with
+  the recorded ones (`battle_mechanics_expected.json`). The first recording is running.
+- **All-trainers regression** (the Burn Up build, before these changes): 1038 of 1039 ok. TRAINER_SOVEREIGN_TEST ran
+  out of frames (18,400) in the parallel run; alone it ended in 10,980 (earlier runs: 10,780 to 15,800). Its Lv. 100
+  doubles battle varies with the clock-seeded RNG; not a regression.
+
+**Files modified so far:** `decomp/res/moves/sludge_wave/anim.s`, `decomp/res/graphics/battle/moves/` (`sludge_wave.pal`,
+`anim_nclr.order`, `meson.build`), `decomp/include/sovereign_test.h`, `decomp/src/field_system.c`,
+`decomp/src/battle/battle_system.c`, `decomp/src/battle/battle_controller_player.c`,
+`decomp/src/field_battle_data_transfer.c`, `decomp/src/script_manager.c`, `tools/test/drive.py`,
+`tools/test/roamers.py`, `tools/test/battle_mechanics.py`, `tools/test/battle_mechanics_cases.py`,
+`tools/test/README.md`, `docs/MoveChecklist.md`, `docs/EngineRoadmap.md`
+
+**Next 3 steps:**
+1. Finish the suite's recording, read the recorded battles against what each batch checked, run it a second time
+   (all must pass), then `battle_all_species.py` and `roamers.py` on this build; PR.
+2. Waiting on the owner: whether Oak gives something at his visit (`Story.md`), T1, T2, the art (E12).
+3. The suite leaves out the 11 checks that switch Pokémon through the party menu (Emergency Exit after hazards,
+   Healing Wish, Run Away); they need the menu driving of their own scripts.
+
+## CB-0241 (Claude B, 2:56 am US Central, 2026-10-28)
+
+**In progress (branch `claude/sweet-wright-rk4wl1`, no PR yet).**
+- **Battle mechanics suite:** the first full recording (526 cases) and a second run from another save state showed
+  that a case could play differently from another state: inputs counted from the SELECT press, and the field takes a
+  few frames more or less to start the battle, so a Pokémon sent in after a faint could pick another move
+  (`glaive_rush`). The battle's clock now starts on the frame its first message comes up; four such cases now play
+  identically from both states. A battle cut off at its frame limit is compared up to the last turn it began. The
+  suite is being recorded again with this.
+- **Cartridge:** the owner's 256 MB decision is recorded (`ProjectStatus.md` decision 6, `TechnicalDesign.md` §7b,
+  `tools/test/rom_space.py`): `tools/nitrorom` already picks the smallest size the ROM fits, so the cartridge grows by
+  itself past 128 MB; decision 6's fallback (no cries for the new species) is gone.
+- **96×96 fronts (task for the owner's 2026-10-28 request), on a local branch until every screen is checked:** PokeAPI's
+  Black/White fronts for #1–493 and Platinum's own forms (Unown, Deoxys, Rotom, Arceus...), #494+ and the Sovereign
+  forms at 96×96, signed y offsets, 96×96 slots in the 3D sprite manager, 96×96 2D copies (battle, Hall of Fame, PC
+  Hall of Fame, trade, HM cut-in, Frontier scene sprites), and the meson option `platinum_fronts` to go back to
+  Platinum's fronts for #1–493. Checked in the game so far: battle (fronts, Double Team's copies, Extrasensory's BG
+  copy, fainting), an Elite Four run into the Hall of Fame, a trade, Surf's cut-in, an evolution, the summary screen,
+  and a `platinum_fronts` build. `docs/FrontSprites96.md` keeps the list.
+
+**Files modified so far (this branch, since CB-0240):** `tools/test/battle_mechanics.py`,
+`tools/test/battle_mechanics_expected.json` (being recorded), `docs/EngineChangelog.md`, `docs/ProjectStatus.md`,
+`docs/TechnicalDesign.md`, `tools/test/rom_space.py`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Finish the suite's recording, run it from a second state (all must pass), then `battle_all_species.py` and
+   `roamers.py`; PR and merge.
+2. 96×96 fronts: check the Battle Factory (its heap), contests, the PC boxes and the PC's Hall of Fame records; then a
+   PR of its own.
+3. Waiting on the owner: whether Oak gives something at his visit (`Story.md`), T1, T2, the art (E12).
+
+## CB-0242 (Claude B, 7:57 am US Central, 2026-10-28)
+
+**Done (branch `claude/sweet-wright-rk4wl1`, PR next):**
+- **Battle mechanics suite:** a run from a second save state matched 525 of 526: in `darts_split` the battle was the
+  same, but Starly levelled up from the shared EXP after it and the harness's taps answered its new-move prompt the
+  other way. New test-build hook `gSovereignTestNoExp` (no EXP, as in god mode), set for every case. Recorded again
+  from a new game's bedroom; played again from the Jubilife Pokémon Center: **all 526 match** (321 ended, 205 at
+  their frame limit). Against the earlier recording, 45 cases changed: 19 lost only EXP messages, 24 cut-off battles
+  got a few turns further, `parabolic_charge`'s HP log merged two changes in one sample, and `receiver` played
+  differently from its 50th message on (the new recording and its replay from the second state agree).
+- The case groups' comments name the changelog entry each battle checks.
+- **Roamer test** (`roamers.py`), now with no problems: the catch's Master Ball waits for "What will ... do?" in the
+  battle's message log (in Route 215's rain the fixed 900 frames were too few, and the roamer fled); an empty log
+  reads as no messages (py-desmume gives an empty slice as one byte); the first flight after the walk is checked
+  against the route the walk ended on.
+- **96×96 fronts (local branch `wip-96fronts`, not pushed):** checked the script's Pokémon preview window, the egg hatch,
+  the starter choice, the Pokédex (list, entry, size page), the Battle Hall's banner, the poffin cutscene and the
+  summary screen. One-slot sprite managers for the preview window, the poffin cutscene (its 64 KB heap would have
+  run out: 36 KB short) and the summary screen (44 KB free instead of 14). A review of the change found two bugs,
+  both fixed and checked: the dress-up kept a negative front y offset in a `u8` (Zekrom drawn below the screen in a
+  visual competition), and the acting competition's stand-in sprite was cleared only in part. The PC's Hall of Fame
+  records couldn't be reached: the game's saves never reach the emulator's battery in these runs.
+- **Question for the owner (pinned):** a 96×96 front whose art reaches past the middle 80×80 (420 of 2,402 front
+  images: Ho-Oh, Lugia, Zekrom...) draws up to 8 pixels over the border of the Pokédex's and the PC boxes' 80×80
+  frames. Keep the art whole over the border (as now), or clip it to the frame?
+
+**Files modified (this branch, since CB-0241):** `decomp/include/sovereign_test.h`, `decomp/src/script_manager.c`,
+`decomp/src/battle/battle_script.c`, `tools/test/battle_mechanics.py`, `tools/test/battle_mechanics_cases.py`,
+`tools/test/battle_mechanics_expected.json`, `tools/test/roamers.py`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. `battle_all_species.py --jobs 4` (running), then PR and merge.
+2. 96×96 fronts: merge main into `wip-96fronts`, its changelog entry, then a PR of its own (the frame question can
+   follow in a later change).
+3. Waiting on the owner: the frame question above; whether Oak gives something at his visit (`Story.md`), T1, T2,
+   the art (E12).

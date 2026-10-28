@@ -633,9 +633,12 @@ implemented.
 - Platinum's 493 cries (the sound archive's `WAVE_ARC_PV###` wave archives) take 4,846,452 bytes, 9,830 on average.
   The 532 new species' cries at that average would take about 5.2 MB and leave about 4.5 MB.
 - So the cries fit, if they're converted to Platinum's own sample rate and format. PokeAPI's are longer and of higher
-  quality, so the converter has to shorten and resample them. That and what the rest of E12 still adds (female, form
-  and Mega sprites, icons) decide whether decision 6's fallback, no cries for the new species, is ever needed. Rerun the
-  tool after each big addition.
+  quality, so the converter has to shorten and resample them.
+- **The cartridge grows to 256 MB when it has to** (owner, 2026-10-28). `tools/nitrorom` writes the smallest capacity
+  the content fits (`sealheader` in `src/packer.c`: 128 KB << n, up to 2 GB for the PROM storage type Platinum's
+  header uses), so the ROM becomes a 256 MB cartridge by itself once the data passes 128 MB; there's nothing to set.
+  Decision 6's old fallback (no cries for the new species) is gone. Rerun the tool after each big addition to see
+  where the ROM stands.
 
 ### 8. Testing
 - After every build, `python3 tools/test/check_battle_scripts.py decomp` (CI runs it).

@@ -19,6 +19,7 @@ STATE_IN is an emulator save state, "-" for a fresh boot, or sav:FILE to boot fr
 Requires py-desmume and Pillow; run with SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy when headless.
 """
 import os
+import re
 import struct
 import sys
 import tempfile
@@ -31,12 +32,23 @@ KEYS = {"A": Keys.KEY_A, "B": Keys.KEY_B, "X": Keys.KEY_X, "Y": Keys.KEY_Y, "L":
         "LEFT": Keys.KEY_LEFT, "RIGHT": Keys.KEY_RIGHT}
 
 
-# Player tile coordinates (u16 x, then u16 z 8 bytes later), found by RAM search on this build; they stay put
-# across map changes. If they ever read wrong after a code change, re-find them by searching RAM for a known
-# position (e.g. a map's arrival warp) before and after a one-tile step.
+# The test build writes the player's tile (u16 x, then u16 z) to gSovereignTestPlayerTile each field frame; pos()
+# finds it in the symbol map next to the ROM (build_test/main.nef.xMAP). Other builds fall back to these addresses,
+# found once by RAM search; they went stale as code changed (they read (0, 0) by 2026-10-27). To re-find them,
+# search RAM for a known position (e.g. a map's arrival warp) before and after a one-tile step.
 PLAYER_X_ADDR = 0x021C6026
 PLAYER_Z_ADDR = 0x021C602E
 SDL_INIT_AUDIO, SDL_INIT_EVENTS = 0x10, 0x4000
+
+
+def player_tile_symbol(rom):
+    """gSovereignTestPlayerTile's address from the symbol map next to the ROM, or None (not a test build)."""
+    xmap = os.path.join(os.path.dirname(os.path.abspath(rom)), "main.nef.xMAP")
+    if not os.path.exists(xmap):
+        return None
+    with open(xmap, encoding="utf-8", errors="replace") as f:
+        m = re.search(r"^\s*([0-9A-F]{8}) [0-9A-F]{8} \.bss\s+gSovereignTestPlayerTile\b", f.read(), re.M)
+    return int(m.group(1), 16) if m else None
 
 
 class Driver:
@@ -44,6 +56,7 @@ class Driver:
         self.emu = DeSmuME()
         self.emu.open(rom)
         self.emu.volume_set(0)
+        self.tile_addr = player_tile_symbol(rom)
         if not battery and not state:
             # py-desmume keeps the battery in ~/.config/desmume/<rom>.dsv and loads it on every boot, so a "fresh"
             # boot would CONTINUE the last in-game save. Boot with a blank 4 Mbit battery instead.
@@ -86,8 +99,9 @@ class Driver:
 
     def pos(self):
         mem = self.emu.memory.unsigned
-        x = struct.unpack("<H", bytes(mem[PLAYER_X_ADDR:PLAYER_X_ADDR + 2]))[0]
-        z = struct.unpack("<H", bytes(mem[PLAYER_Z_ADDR:PLAYER_Z_ADDR + 2]))[0]
+        x_addr, z_addr = (self.tile_addr, self.tile_addr + 2) if self.tile_addr else (PLAYER_X_ADDR, PLAYER_Z_ADDR)
+        x = struct.unpack("<H", bytes(mem[x_addr:x_addr + 2]))[0]
+        z = struct.unpack("<H", bytes(mem[z_addr:z_addr + 2]))[0]
         return x, z
 
     def screenshot(self):

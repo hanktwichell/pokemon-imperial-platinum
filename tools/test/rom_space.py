@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
 """How much room the ROM has left, and what the Pokémon cries take.
 
-The cartridge size is in the ROM header (byte 0x14: 128 KB << n) and the part in use at 0x80. Platinum's cries are the
-sound archive's WAVE_ARC_PV### wave archives (decomp/res/sound/pl_sound_data.json names them). This prints the free
-space, the cries' total and average size, and what the new species' cries would take at that average (decision 6:
-the cries for #494-1025 come last, and dropping them all is the fallback if the space runs out).
+The cartridge size is in the ROM header (byte 0x14: 128 KB << n) and the part in use at 0x80. tools/nitrorom writes the
+smallest size the content fits, so the cartridge grows from 128 MB to 256 MB by itself once the data passes 128 MB
+(owner, 2026-10-28). Platinum's cries are the sound archive's WAVE_ARC_PV### wave archives
+(decomp/res/sound/pl_sound_data.json names them). This prints the free space, the cries' total and average size, and
+what the new species' cries would take at that average (decision 6: the cries for #494-1025 come last).
 
 Usage: python3 tools/test/rom_space.py decomp [ROM]   (ROM defaults to decomp/build/pokeplatinum.us.nds)
 """
@@ -49,6 +50,8 @@ def main():
     need = average * NEW_SPECIES
     print(f'Cries: {len(cries)} wave archives, {sum(cries):,} bytes, {average:,} on average')
     print(f'{NEW_SPECIES} new cries at that average: about {need:,} bytes; {free - need:,} would be left')
+    if need > free:
+        print(f'(past {capacity // 2**20} MiB the cartridge doubles to {capacity * 2 // 2**20} MiB by itself)')
 
 
 if __name__ == '__main__':

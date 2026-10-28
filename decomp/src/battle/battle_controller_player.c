@@ -2,6 +2,7 @@
 
 #include "nitro/types.h"
 #include <nitro.h>
+#include <stddef.h>
 #include <string.h>
 
 #include "constants/battle.h"
@@ -187,6 +188,11 @@ static const BattleControlFunc sBattleControlCommands[] = {
     [BATTLE_CONTROL_END_WAIT] = BattleControllerPlayer_EndWait
 };
 
+#ifdef SOVEREIGN_TEST
+// Test build only (include/sovereign_test.h): where the battle's Pokémon are, for harnesses.
+struct SovereignTestBattleMons gSovereignTestBattleMons;
+#endif
+
 void *BattleContext_New(BattleSystem *battleSys)
 {
     BattleContext *battleContext = Heap_Alloc(HEAP_ID_BATTLE, sizeof(BattleContext));
@@ -199,6 +205,24 @@ void *BattleContext_New(BattleSystem *battleSys)
 
     MoveTable_Load(&battleContext->aiContext.moveTable);
     battleContext->aiContext.itemTable = ItemTable_Load(HEAP_ID_BATTLE);
+
+#ifdef SOVEREIGN_TEST
+    gSovereignTestBattleMons = (struct SovereignTestBattleMons) {
+        .mons = battleContext->battleMons,
+        .size = sizeof(BattleMon),
+        .moves = offsetof(BattleMon, moves),
+        .statBoosts = offsetof(BattleMon, statBoosts),
+        .types = offsetof(BattleMon, type1),
+        .ability = offsetof(BattleMon, ability),
+        .ppCur = offsetof(BattleMon, ppCur),
+        .friendship = offsetof(BattleMon, friendship),
+        .curHP = offsetof(BattleMon, curHP),
+        .maxHP = offsetof(BattleMon, maxHP),
+        .status = offsetof(BattleMon, status),
+        .statusVolatile = offsetof(BattleMon, statusVolatile),
+        .heldItem = offsetof(BattleMon, heldItem),
+    };
+#endif
 
     return battleContext;
 }
@@ -222,6 +246,10 @@ BOOL BattleContext_Main(BattleSystem *battleSys, BattleContext *battleCtx)
 
 void BattleContext_Free(BattleContext *battleCtx)
 {
+#ifdef SOVEREIGN_TEST
+    gSovereignTestBattleMons.mons = NULL;
+#endif
+
     Heap_Free(battleCtx->aiContext.itemTable);
     Heap_Free(battleCtx);
 }

@@ -1,0 +1,75 @@
+# 96×96 front sprites — plan
+
+**Owner, 2026-10-28:** every Pokémon's front sprite becomes PokeAPI's 96×96 front, shown at full size instead of shrunk
+to 80×80 (the shrink broke the outlines of 113 form fronts and 103 species fronts: Primal Kyogre, the Megas). For
+#1–493 that means PokeAPI's Black/White fronts, with a build option to go back to Platinum's own fronts (and their
+second animation frame). Back sprites stay 80×80. The cartridge grows to 256 MB when the data passes 128 MB
+(`tools/nitrorom` picks the size from the content; nothing to force).
+
+Status: planned. This file is the map of what has to change, from a read-through of every place that loads or draws a
+battle sprite (2026-10-28). Line numbers are as of that day.
+
+## The sprite as stored and drawn today
+
+- A battle sprite is a 160×80 4bpp image: two 80×80 frames side by side, 6400 bytes, scrambled
+  (`PokemonSprite_DecryptPt`/`DecryptDP` in `src/pokemon_sprite.c`, which assume 6400 bytes). `nitrogfx` scrambles any
+  size, and `tools/scripts/make_pl_pokegra.py` packs any PNG, so the tools need no change.
+- **3D path** (`PokemonSpriteManager`, `src/pokemon_sprite.c`): one 256×256 texture (32 KB) holds four sprites (slots
+  0–2 stacked at rows 0/80/160, slot 3 split at x 160) and the shadows. Each screen reserves 0x8000 bytes of texture VRAM
+  for it. Used by the battle, summary, Pokédex, PC, evolution, egg hatch, trade, contests, Battle Factory, starter
+  choice, game opening, poffin cutscene, capsule menu, battle recorder.
+- **2D path** (`src/character_sprite.c`): copies 10×10 tiles of frame 0 into OAM, split 64×64 + strips. Used by battle
+  sprite copies (move animations, Transform, Substitute), Hall of Fame, PC Hall of Fame, trade room, GTS, Mystery Gift,
+  HM cut-in, Great Marsh binoculars, Battle Frontier scenes, the script Pokémon preview window, the trade BG.
+- **Placement:** each species' y offset (`height.narc`, from `sprite_data.json`) is the clear rows under the art in the
+  80 box; the battle adds it to the sprite's centre y. Elevation and shadow come from `pl_poke_data`.
+
+## Design
+
+- **Slots of 96×96, mixed sizes:** a 96×96 two-frame slot is 192×96. Keep the 256-px texture width (row stride 0x80)
+  and stack four slots at rows 0/96/192/288, shadows at x 192–255. Declare 256×512, use 384 rows: 0xC000 (48 KB).
+- **The loader reads each sprite's size** from its NCGR (`charData->W/H`) and puts an 80×80 sprite centred in its slot
+  (8 px each side: one tile), so every 80×80 sprite (all backs, Platinum's fronts when chosen, the DP archives the
+  contests use) lands exactly where it does today.
+- **Decrypt by size** (a size argument for `PokemonSprite_DecryptPt/DP`; six call sites).
+- **y offsets keep meaning "relative to an 80 box centred in the slot"**, so all existing data stays valid. A 96-tall
+  front with fewer than 8 clear rows under it needs a negative offset: store offsets signed (`height.narc` and the u8
+  readers) or clamp such art up by a few rows.
+- **2D copies:** 12×12-tile copies, OAM cells 64×64 + 32×64 + 64×32 + 32×32 (144 tiles, 4608 bytes); an 80×80 sprite
+  placed at tile (1,1). Some placeholder cells come from prebuilt archives (`tradelist.narc`, `worldtrade.narc`,
+  `field_cutin.narc`, the `pl_batt_bg.narc` tilemaps 262–265): build those in code or patch the archives.
+- **Option for #1–493:** a meson option picks Platinum's fronts (kept untouched in `res/pokemon/<species>/`) or the
+  96×96 fronts for #1–493 when packing `pl_pokegra`.
+
+## What changes where
+
+- **Core rework:** `src/pokemon_sprite.c` (layout, per-sprite size, centring, flips/mosaic, both coordinate tables,
+  decrypt size, Spinda spots' stride and frame offset); `src/character_sprite.c` and `include/character_sprite.h`
+  (12×12 regions, normalising 80×80 into 12×12, decrypt, Spinda).
+- **Texture VRAM reservations 0x8000 → 0xC000:** `battle/battle_main.c:1469`, `unk_0207C63C.c:73`,
+  `cutscenes/egg_hatch/graphics.c:92`, `applications/capsule_menu/graphics.c:359`, `game_opening/ov77_021D25B0.c:802`,
+  `applications/pokedex/pokedex_graphics.c:689`, `choose_starter/choose_starter_app.c:86`,
+  `overlay017/ov17_0223B140.c:525`, `ov17_0223CB1C.c:539`, `ov17_0224F4D4.c:549`; dress-up key 0x2800 → 0x3000
+  (`overlay022/ov22_02255094.c:89, 293`); the trade sequence's 0x4000 still fits slot 0.
+- **3200 → 4608-byte buffers and OAM uploads:** `battle_main.c:545`, `battle_display.c:5892`, `ov17_022413D8.c`,
+  `ov17_02250744.c:202`, `hall_of_fame.c`, `pc_hall_of_fame/display.c`, `trade_room` (`defs.h:140`,
+  `application.c:936, 1270`), `gts_application/screens/listing.c:551–563`, `main_menu/main_menu_util.c:69–587`,
+  `overlay006/hm_cut_in.c:2090–2123`, `overlay006/great_marsh_lookout_sprite.c:135`, `overlay104/ov104_02231F74.c:796–809`,
+  `render_window.c:870–1001`, `trade_sequence/main.c:493–543`, `battle_anim/battle_anim_system.c` (1657–1764, 1919,
+  3950).
+- **Battle animations that assume the 80 frame:** `battle_anim/script_funcs_1.c` (Snatch, partial draw, Sketch),
+  `script_funcs_2.c` (Extrasensory, Drill Peck, Acid Armor, Spite, Memento), `script_funcs_3.c` (Rotate, off-screen
+  moves, partial draws), `battle_anim_helpers.c:509`; the fainting partial draw (`battle_display.c:5087`).
+- **Dress-up / contests** (`overlay022`): hit tests and sizes hard-coded to 80; they use the DP archives for #1–493,
+  which stay 80×80.
+- **Pokédex height check:** per-species scale and position data tuned for 80.
+
+## Risks to check first (a battle-only prototype on Primal Kyogre and Mega Rayquaza)
+
+1. **Upload time:** the manager uploads its whole texture during VBlank on every sprite change; 48 KB instead of 32 KB
+   may not fit. Upload only the slot that changed.
+2. **Heap:** +16 KB per manager. Tight: Battle Factory (128 KB heap), the trade phases (96 KB), the dance contest (four
+   managers).
+3. **OBJ VRAM:** the battle (64 KB, up to 9 sprite copies at 4608 bytes) and the Hall of Fame (about 59 of 64 KB).
+4. **On screen:** evolution's letterbox is 80 px tall; a 96-wide foe at doubles x 216 runs 8 px off the right edge;
+   contest results and the PC Hall of Fame space sprites 56–80 px apart.

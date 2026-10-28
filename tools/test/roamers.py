@@ -30,17 +30,18 @@ the field writes it down (gSovereignTestRoamers). Then:
   - knocked out: it no longer roams, and its state is defeated (2), which the next Hall of Fame resets so the Legend
     Archivist releases it again;
   - either way, every roamer that was on the map has left it.
-- **Catching:** it flies on until a roamer still roaming is on the map, battles it, and throws a Master Ball from the
-  battle's bag (gSovereignTestBagItem put it there; CATCH_TAPS), as a player would on its first turn: an item comes
-  before its escape. Then it declines the nickname (NICKNAME_NO) and the Pokémon goes to the PC (the party is full).
+- **Catching:** it flies on until a roamer still roaming is on the map, battles it, and once the battle asks "What
+  will ... do?" (its message log, gSovereignTestMessageLog) throws a Master Ball from the battle's bag
+  (gSovereignTestBagItem put it there; CATCH_TAPS), as a player would on its first turn: an item comes before its
+  escape. Then it declines the nickname (NICKNAME_NO) and the Pokémon goes to the PC (the party is full).
   Afterwards it must no longer roam, its state var must be captured (1), which the Legend Archivist never releases
   again, and every roamer that was on the map must have left it.
 - **Marking Map:** it flies to MARKING_MAP's town with the Pokétch on and showing the Marking Map
-  (gSovereignTestPoketchApp), and walks there: the map looks a roamer up only while the player walks (from the 5th
-  step on, CheckPositionsUpdated). Then each roamer still roaming must have its icon on the Pokétch at its route's
-  place (PoketchMap_GetPositionFromMapID), read from the sub screen's OAM over the icons' blink, and no other roamer
-  icon may show: not the one knocked out, not the one caught. A screenshot of both screens is saved
-  (marking_map.png).
+  (gSovereignTestPoketchApp), and walks there, each step moving the player a tile (drive.py's pos()): the map looks a
+  roamer up only while the player walks (from the 5th step on, CheckPositionsUpdated). Then each roamer still roaming
+  must have its icon on the Pokétch at its route's place (PoketchMap_GetPositionFromMapID), read from the sub screen's
+  OAM over the icons' blink, and no other roamer icon may show: not the one knocked out, not the one caught. A
+  screenshot of both screens is saved (marking_map.png).
 
 Needs what wild_forms.py needs. From the repo root:
     SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 tools/test/roamers.py \\
@@ -54,6 +55,7 @@ import struct
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from battle_mechanics import LOG_CHARS, charmap, decode_log, log_length  # noqa: E402
 from talk_to_objects import (DECOMP, FRAME_LIMIT, HOUR, SYMBOLS, header_names, play_out, symbols, u32,  # noqa: E402
                              var_ids, warp)
 from wild_forms import MON_SIZE, SURVEY, TERRAINS, cases, run_survey, species_names  # noqa: E402
@@ -63,7 +65,10 @@ ROAMER_SIZE = struct.calcsize(ROAMER)
 SURVEY_ROAMERS_BATTLE = 2  # SOVEREIGN_TEST_SURVEY_ROAMERS_BATTLE
 ROAMER_STATE_ROAMING, ROAMER_STATE_CAPTURED, ROAMER_STATE_DEFEATED = 0, 1, 2  # constants/roamer_states.h
 ITEM_MASTER_BALL = 1
-BATTLE_INTRO_FRAMES = 900  # the battle's intro, to "What will ... do?", which then waits for the player
+# The battle's intro, to "What will ... do?" (which then waits for the player): at most this many frames (a weather's
+# message makes it longer: rain on Route 215 took past 1000), then a little more for the menu to come up.
+BATTLE_INTRO_FRAMES = 3000
+MENU_FRAMES = 60
 # Touches (x, y, frames held) that throw the Master Ball: BAG, the Poké Balls pocket, the Master Ball (the pocket's
 # second entry, after the test save's Poké Balls) and USE. The items in a pocket only take a touch held a while.
 CATCH_TAPS = ((40, 170, 10), (192, 56, 10), (192, 40, 30), (110, 174, 30))
@@ -171,13 +176,30 @@ def walk_across(d, sym, step, to_header):
     return False
 
 
+def wait_for_prompt(d, sym, chars):
+    """Run the battle until the last message in its log (gSovereignTestMessageLog, cleared before the battle) is
+    "What will ... do?", and the menu is up. Returns the frames it took, or None after BATTLE_INTRO_FRAMES."""
+    log = sym['gSovereignTestMessageLog']
+    for frames in range(0, BATTLE_INTRO_FRAMES, 10):
+        length = min(log_length(d, sym), LOG_CHARS)
+        # py-desmume's memory gives an empty slice as the byte at its start (a number), so none is read.
+        raw = bytes(d.emu.memory.unsigned[log + 2:log + 2 + 2 * length]) if length else b''
+        messages = decode_log([raw[i] | raw[i + 1] << 8 for i in range(0, len(raw), 2)], chars)
+        if messages and messages[-1].startswith('What will'):
+            d.run(MENU_FRAMES)
+            return frames
+        d.run(10)
+    return None
+
+
 def main():
     from drive import Driver
 
     rom, state, out = sys.argv[1:4]
     os.makedirs(out, exist_ok=True)
     sym = symbols(SYMBOLS + ('gSovereignTestWildSurvey', 'gSovereignTestRoamers', 'gSovereignTestRoamerRelease',
-                             'gSovereignTestSurveyRoamers', 'gSovereignTestWatch', 'gSovereignTestPoketchApp'))
+                             'gSovereignTestSurveyRoamers', 'gSovereignTestWatch', 'gSovereignTestPoketchApp',
+                             'gSovereignTestMessageLog'))
     names, ids, species = slot_names(), header_names(), species_names()
     expected = slot_species()
     slots = [names.index(s) for s in released()]
@@ -330,6 +352,7 @@ def main():
                         say(f'walking: crossing {crossing + 1} from {where(here)}: {name(slot)} went from '
                             f'{where(before[slot][0])} to {where(roamers[slot][0])}', True)
                 here, there, ahead = there, here, (-ahead[0], -ahead[1])
+            flight['left'] = here  # the next flight leaves the route the walk ended on
             total = nearby_moves + random_moves
             share = random_moves / total if total else 0
             say(f'walking: {crossing + 1} crossings, {total} moves: {nearby_moves} to a route nearby, {random_moves} '
@@ -393,12 +416,14 @@ def main():
         # Catching: a roamer still roaming, caught with a Master Ball from the battle's bag.
         mem.write_short(sym['gSovereignTestBagItem'], ITEM_MASTER_BALL)  # the next flight puts it in the bag
         roaming = [s for s in slots if read_roamers(d, sym)[s][0]]
+        mem.write_short(sym['gSovereignTestMessageLog'], 0)
         started = start_battle(roaming, flight['flown'] + FLIGHTS_MAX) if roaming else None
         if not started:
             say(f'catching: no roamer still roaming met in {FLIGHTS_MAX} flights', True)
         else:
             slot, header_id, roamers = started
-            d.run(BATTLE_INTRO_FRAMES)
+            if wait_for_prompt(d, sym, charmap()) is None:
+                say(f'catching: no "What will ... do?" in {BATTLE_INTRO_FRAMES} frames', True)
             for x, y, frames in CATCH_TAPS:
                 d.touch(x, y, frames=frames, after=150)
             free = 0
@@ -427,9 +452,14 @@ def main():
         if result != 'ok':
             say(f'marking map: the flight to {town} failed: {result} {frames}', True)
         else:
+            walked = 0
             for key in ['RIGHT'] * steps + ['LEFT'] * steps:
+                before = d.pos()
                 d.press(key, frames=16, after=8)
                 play_out(d, sym, FRAME_LIMIT, ids.index(town), press_a=False)  # the Repel running out: A uses another
+                walked += d.pos() != before
+            if walked < 2 * steps:
+                say(f'marking map: walked only {walked} of {2 * steps} steps', True)
             d.run(60)
             d.screenshot().save(os.path.join(out, 'marking_map.png'))
             roamers = read_roamers(d, sym)

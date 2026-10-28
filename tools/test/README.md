@@ -27,7 +27,8 @@ The playtest harnesses run the test ROM, which has hooks for them (`decomp/inclu
 - `build_test_rom.sh` builds it into `decomp/build_test/`.
 - `new_game.sh` makes a save state in the player's bedroom on a new game. Make a new one after every rebuild: a state
   holds the old code in RAM.
-- `drive.py` drives the ROM from a state with a list of button presses. Its `Driver` is what the harnesses use.
+- `drive.py` drives the ROM from a state with a list of button presses. Its `Driver` is what the harnesses use. On the
+  test build its `pos()` (and the `pos` and `step:` actions) read the player's tile from `gSovereignTestPlayerTile`.
 - `boot_smoke.py` boots a ROM headlessly. CI runs it on the shipping ROM.
 
 ## Playtest harnesses (test build, local)
@@ -40,6 +41,7 @@ one and reports **HEAP**. The times are rough.
 | `battle_all_trainers.py` | every trainer: party matches its JSON, the battle ends | ~2 h with `--jobs 4` |
 | `battle_all_species.py` | every species and form as a wild Pokémon | ~1 h with 4 jobs |
 | `battle_form_changes.py` | Megas, Primals, Ultra Burst, in-battle forms, form-change items | ~1 h |
+| `battle_mechanics.py` | the battle checks made for each move, ability and held-item change (526 cases in `battle_mechanics_cases.py`): each battle's messages and HP against the ones recorded in `battle_mechanics_expected.json` | ~1 h with 4 jobs |
 | `battle_evolutions.py` | every evolution that involves a form | ~25 min in 4 parts |
 | `battle_eggs.py` | every form bred in the Day Care and hatched | ~1 h in 4 parts |
 | `sprite_check.py` | contact sheets of #494–1025's battle sprites in a battle (front and back, normal and shiny), to check by eye | ~40 min in 4 parts |
@@ -53,8 +55,8 @@ one and reports **HEAP**. The times are rough.
 | `visit_changed_maps.py` | every changed map loads and the field runs | ~1 h |
 | `pokedex_area.py` | the Pokédex's area map for the species given, as screenshots to check by eye | ~15 s a species |
 
-Most take `--part I/N` (`battle_all_trainers.py` and `battle_all_species.py` take `--jobs N`) to split a run
-across processes, one per core.
+Most take `--part I/N` (`battle_all_trainers.py`, `battle_all_species.py` and `battle_mechanics.py` take `--jobs N`)
+to split a run across processes, one per core.
 
 ## Other
 

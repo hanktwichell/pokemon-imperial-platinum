@@ -1,16 +1,64 @@
 #include "macros/btlanimcmd.inc"
 
+// Sovereign (owner idea, EngineRoadmap.md row 11): Surf's wave and scrolling water, recoloured purple. The wave sprite
+// has its own palette (sludge_wave.pal, Surf's recoloured, as Muddy Water does), and the water background is blended
+// toward purple as it loads, then back once the move is over. Sludge Bomb's splash marks the hit.
 L_0:
     LoadParticleResource 0, sludge_bomb_spa
-    CreateEmitterEx 0, 1, 2, EMITTER_CB_SET_POS_TO_ATTACKER
-    Func_MoveEmitterA2BParabolic 1, 0, 0, 0, 14, 64
-    PlayLoopedSoundEffectC SEQ_SE_DP_W145B_sseq, 2, 4
-    Delay 10
+    InitSpriteManager 0, 2, 1, 1, 1, 1, 0, 0
+    LoadCharResObj 0, surf_NCGR_lz
+    LoadPlttRes 0, sludge_wave_NCLR, 1
+    LoadCellResObj 0, surf_cell_NCER_lz
+    LoadAnimResObj 0, surf_anim_NANR_lz
+    AddSprite 0, 0, surf_NCGR_lz, sludge_wave_NCLR, surf_cell_NCER_lz, surf_anim_NANR_lz, 0, 0
+    AddSprite 0, 1, surf_NCGR_lz, sludge_wave_NCLR, surf_cell_NCER_lz, surf_anim_NANR_lz, 0, 0
+    PlaySoundEffectL SEQ_SE_DP_W057_sseq
+    Func_Surf 0
+    WaitForAnimTasks
+    FreeSpriteManager 0
+    Func_ScrollCustomBg 48, 0, 256, -6, 6, TRUE, 20, 45
+    Func_FadeBg FADE_BG_TYPE_EFFECT, 0, 11, 11, BATTLE_COLOR_PURPLE
+    PlaySoundEffectC SEQ_SE_DP_W057B_sseq
+    Delay 15
     PlayLoopedSoundEffectR SEQ_SE_DP_W092D_sseq, 2, 12
     CreateEmitter 0, 1, EMITTER_CB_SET_POS_TO_DEFENDER
     CreateEmitter 0, 0, EMITTER_CB_SET_POS_TO_DEFENDER
-    Delay 5
-    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 2, BATTLE_COLOR_PURPLE, 14, 0
+    JumpIfFriendlyFire L_1
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_PURPLE, 10, 10
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER_PARTNER, 0, 1, BATTLE_COLOR_PURPLE, 10, 10
+    Func_FadeBattlerSprite BATTLE_ANIM_ATTACKER_PARTNER, 0, 1, BATTLE_COLOR_PURPLE, 10, 10
+    Func_Shake 2, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITES | BATTLE_ANIM_NOT_ATTACKER
+    WaitForAnimTasks
     WaitForAllEmitters
     UnloadParticleSystem 0
+    Func_FadeBg FADE_BG_TYPE_EFFECT, 0, 0, 0, BATTLE_COLOR_PURPLE
+    WaitForAnimTasks
+    End
+
+L_1:
+    JumpIfBattlerSide BATTLER_ROLE_ATTACKER, L_2, L_3
+    End
+
+L_2:
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_PURPLE, 10, 10
+    Func_FadeBattlerSprite BATTLE_ANIM_BATTLER_ENEMY_1, 0, 1, BATTLE_COLOR_PURPLE, 10, 10
+    Func_FadeBattlerSprite BATTLE_ANIM_BATTLER_ENEMY_2, 0, 1, BATTLE_COLOR_PURPLE, 10, 10
+    Func_Shake 2, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITES | BATTLE_ANIM_NOT_ATTACKER
+    WaitForAnimTasks
+    WaitForAllEmitters
+    UnloadParticleSystem 0
+    Func_FadeBg FADE_BG_TYPE_EFFECT, 0, 0, 0, BATTLE_COLOR_PURPLE
+    WaitForAnimTasks
+    End
+
+L_3:
+    Func_FadeBattlerSprite BATTLE_ANIM_DEFENDER, 0, 1, BATTLE_COLOR_PURPLE, 10, 10
+    Func_FadeBattlerSprite BATTLE_ANIM_BATTLER_PLAYER_1, 0, 1, BATTLE_COLOR_PURPLE, 10, 10
+    Func_FadeBattlerSprite BATTLE_ANIM_BATTLER_PLAYER_2, 0, 1, BATTLE_COLOR_PURPLE, 10, 10
+    Func_Shake 2, 0, 1, 6, BATTLE_ANIM_BATTLER_SPRITES | BATTLE_ANIM_NOT_ATTACKER
+    WaitForAnimTasks
+    WaitForAllEmitters
+    UnloadParticleSystem 0
+    Func_FadeBg FADE_BG_TYPE_EFFECT, 0, 0, 0, BATTLE_COLOR_PURPLE
+    WaitForAnimTasks
     End
