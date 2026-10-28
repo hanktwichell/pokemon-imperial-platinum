@@ -193,6 +193,14 @@ struct SovereignTestItemUse {
     u16 moves[2][4]; // the lead's moves after each use
 };
 
+// A var a harness watches: while var is set, the field writes its value down while it is free (field_system.c).
+#define SOVEREIGN_TEST_WATCHES 8
+
+struct SovereignTestWatch {
+    u16 var;
+    u16 value;
+};
+
 // A roaming slot (generated/roaming_slots.txt), written down while the field is free (field_system.c).
 struct SovereignTestRoamer {
     u16 mapHeaderID; // the map it is on, or 0 when it isn't roaming
@@ -273,13 +281,17 @@ extern u16 gSovereignTestCaughtAllBut;
 // When set, the rare wild encounters' roll (SovereignRareWild_TryFillEncounterTable, data/sovereign_rare_wild.yaml) is
 // this minus 1 instead of a random number from 0 to 99, so a test can pick each of a map's entries.
 extern u8 gSovereignTestRareWildRoll;
+// The vars harnesses watch (see struct SovereignTestWatch).
+extern struct SovereignTestWatch gSovereignTestWatch[SOVEREIGN_TEST_WATCHES];
 // Each roaming slot: where it is and what it is (see struct SovereignTestRoamer).
 extern struct SovereignTestRoamer gSovereignTestRoamers[ROAMING_SLOT_MAX];
 // When set, the next SELECT+L+R first releases these roaming slots (bit 0 the first...), as the Legend Archivist's
 // ActivateRoamingPokemon does.
 extern u16 gSovereignTestRoamerRelease;
 // When set, a wild survey (gSovereignTestWildSurvey) meets the roaming Pokémon on the map too, as a step in the grass
-// would, and records them as it records the others.
+// would, and records them as it records the others. With SOVEREIGN_TEST_SURVEY_ROAMERS_BATTLE, the first roamer met
+// is battled for real too, and the survey ends there.
+#define SOVEREIGN_TEST_SURVEY_ROAMERS_BATTLE 2
 extern u8 gSovereignTestSurveyRoamers;
 #endif
 
