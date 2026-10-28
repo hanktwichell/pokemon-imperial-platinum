@@ -484,10 +484,15 @@ BOOL WildEncounters_TryWildEncounter(FieldSystem *fieldSystem)
                 FieldBattleDTO_Init(battleParams, fieldSystem);
                 AddRoamerToEnemyParty(encounterFieldParams.trainerID, roamer, battleParams);
 #ifdef SOVEREIGN_TEST
-                if (surveyRoamers) { // a survey with the roamers (tools/test/roamers.py) writes it down, with no battle
+                if (surveyRoamers) { // a survey with the roamers (tools/test/roamers.py) writes it down
                     SovereignTest_RecordWildParty(battleParams);
-                    FieldBattleDTO_Free(battleParams);
-                    return FALSE;
+
+                    if (gSovereignTestSurveyRoamers != SOVEREIGN_TEST_SURVEY_ROAMERS_BATTLE) { // with no battle
+                        FieldBattleDTO_Free(battleParams);
+                        return FALSE;
+                    }
+
+                    gSovereignTestWildSurvey.wanted = 0; // or battles the first one met, and the survey ends there
                 }
 #endif
                 RadarChain_Clear(fieldSystem->chain);

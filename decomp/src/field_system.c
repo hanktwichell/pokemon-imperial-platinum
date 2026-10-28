@@ -39,6 +39,7 @@
 #include "pokeradar.h"
 #include "roaming_pokemon.h"
 #include "savedata.h"
+#include "script_manager.h"
 #include "sovereign_test.h"
 #include "special_encounter.h"
 #include "system.h"
@@ -214,6 +215,7 @@ u32 gSovereignTestIdleFrames;
 u32 gSovereignTestIdleMapHeaderID;
 struct SovereignTestParty gSovereignTestParty;
 struct SovereignTestRoamer gSovereignTestRoamers[ROAMING_SLOT_MAX];
+struct SovereignTestWatch gSovereignTestWatch[SOVEREIGN_TEST_WATCHES];
 
 static void SovereignTest_NoteParty(FieldSystem *fieldSystem)
 {
@@ -271,6 +273,12 @@ static BOOL HandleInputsEventsAndProcesses(FieldSystem *fieldSystem)
         }
 
         SovereignTest_NoteRoamers(fieldSystem);
+
+        for (int i = 0; i < SOVEREIGN_TEST_WATCHES; i++) {
+            if (gSovereignTestWatch[i].var != 0) {
+                gSovereignTestWatch[i].value = *FieldSystem_GetVarPointer(fieldSystem, gSovereignTestWatch[i].var);
+            }
+        }
     }
 #endif
 
