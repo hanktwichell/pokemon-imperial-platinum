@@ -13,17 +13,19 @@ is back. Some options are poked into the battle's Pokémon once they are in it (
 the test build): abilities, held items, HP, friendship, statuses.
 
 Every battle starts from the same random seed (gSovereignTestBattleSeed; the game seeds a battle from the clock), so a
-case plays the same on every run of one build. What a battle did is how it ended ('ended': the field came back;
-'limit': it was still on at the case's frame limit, as for a foe that can't be knocked out), its message log
-(gSovereignTestMessageLog: every message the battle printed, in order) and its HP log (each change of the battlers'
-current HP). A case passes when all three match the ones recorded for it in tools/test/battle_mechanics_expected.json
-(--record writes them). The battle's clock starts on the frame its first message comes up (inputs, pokes and the frame
-limit count from it), so a case plays the same from any save state. A battle cut off at its frame limit can still get
-a few frames further on another build (a longer animation), so there the messages are compared up to the last turn
-both began, and the HP logs as far as both go. A comment above a case, and the batch's entry in EngineChangelog.md, say what its battle
-showed when the change was made. A change that makes a battle use the random numbers differently (or take a different
-number of frames to start) can change a damage roll, a critical hit or who moves first, so read a difference before
-calling it a bug, and re-record the case (--record CASE) once it's understood.
+case plays the same on every run of one build. No EXP is gained (gSovereignTestNoExp), so no level-up or new-move
+prompt waits on an answer that would depend on the frame the harness's input lands on. What a battle did is how it
+ended ('ended': the field came back; 'limit': it was still on at the case's frame limit, as for a foe that can't be
+knocked out), its message log (gSovereignTestMessageLog: every message the battle printed, in order) and its HP log
+(each change of the battlers' current HP). A case passes when all three match the ones recorded for it in
+tools/test/battle_mechanics_expected.json (--record writes them). The battle's clock starts on the frame its first
+message comes up (inputs, pokes and the frame limit count from it), so a case plays the same from any save state. A
+battle cut off at its frame limit can still get a few frames further on another build (a longer animation), so there
+the messages are compared up to the last turn both began, and the HP logs as far as both go. A comment above a case,
+and the batch's entry in EngineChangelog.md, say what its battle showed when the change was made. A change that makes
+a battle use the random numbers differently (or take a different number of frames to start) can change a damage roll,
+a critical hit or who moves first, so read a difference before calling it a bug, and re-record the case (--record
+CASE) once it's understood.
 
 Results per case: ok, DIFF (the end, messages or HP differ; both shown), NEW (nothing recorded for it), HANG (the
 frame counter stopped). A case that doesn't end normally also saves a screenshot.
@@ -59,7 +61,7 @@ LOG_CHARS = 8192  # SOVEREIGN_TEST_MESSAGE_LOG_CHARS
 START_FRAMES = 1800  # the most frames from SELECT to the battle's first message
 SYMBOLS = ('gSovereignTestLead', 'gSovereignTestWild', 'gSovereignTestGodMode', 'gSystem', 'gSovereignTestIdleFrames',
            'gSovereignTestFoeSurvivesTurns', 'gSovereignTestPartner', 'gSovereignTestBattleTrainer',
-           'gSovereignTestMessageLog', 'gSovereignTestBattleMons', 'gSovereignTestBattleSeed')
+           'gSovereignTestMessageLog', 'gSovereignTestBattleMons', 'gSovereignTestBattleSeed', 'gSovereignTestNoExp')
 SEED = 0x5EED5EED  # every case's battle seed (gSovereignTestBattleSeed), so each battle plays the same every run
 # The player's lead, the foe (or the first foe), the player's partner and the second foe (doubles)
 LEAD_B, FOE_B, PARTNER_B, FOE2_B = 0, 1, 2, 3
@@ -168,6 +170,7 @@ def setup(d, sym, case, names):
     mem.write_byte(wild + WILD['level'], case.get('wild_level', 100))
     mem.write_short(wild + WILD['move'], moves.index('MOVE_' + case.get('foe_move', 'TACKLE')))
     mem.write_byte(sym['gSovereignTestGodMode'], 0 if case.get('nogod') else 1)
+    mem.write_byte(sym['gSovereignTestNoExp'], 1)  # no level-up or new-move prompts, whose answers depend on timing
     if case.get('throw'):
         mem.write_byte(wild + WILD['balls'], 5)
     if doubles:

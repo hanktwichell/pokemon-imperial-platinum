@@ -650,7 +650,8 @@ CASES = [
          trainer='SOVEREIGN_TEST', partner='FLORGES', partner_level=50, partner_moves=['SPLASH'] * 4, nogod=1,
          stop_at=9000),
 
-    # Item 11 and 12b (Champions' Sheer Force): an Eject Button and Emergency Exit still work against a Sheer Force move.
+    # Item 11 and 12b (Champions' Sheer Force): an Eject Button and Emergency Exit still work against a Sheer Force
+    # move.
     dict(name='sf_eject', lead='SNORLAX', lead_move='SPLASH', all_moves=1, item='EJECT_BUTTON', foe_move='EMBER',
          wild_species='NIDOKING', wild_level=50, wild_ability='SHEER_FORCE', nogod=1),
     dict(name='sf_ee_wild', lead='NIDOKING', lead_move='EMBER', all_moves=1, lead_ability='SHEER_FORCE',

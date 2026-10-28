@@ -2261,8 +2261,9 @@ static BOOL BtlCmd_CalcExpGain(BattleSystem *battleSys, BattleContext *battleCtx
     jump = BattleScript_Read(battleCtx);
 
 #ifdef SOVEREIGN_TEST
-    // Test build only: no EXP in god mode, so no level-up or new-move prompts (include/sovereign_test.h).
-    if (gSovereignTestGodMode) {
+    // Test build only: no EXP in god mode or with gSovereignTestNoExp, so no level-up or new-move prompts
+    // (include/sovereign_test.h).
+    if (gSovereignTestGodMode || gSovereignTestNoExp) {
         BattleScript_Iter(battleCtx, jump);
         return FALSE;
     }

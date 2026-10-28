@@ -33,7 +33,9 @@ For testing:
 - Test-build hooks (`include/sovereign_test.h`): `gSovereignTestMessageLog` keeps every battle message;
   `gSovereignTestBattleMons` points at the battlers' data; `gSovereignTestBattleSeed` fixes the battle's random seed
   (it comes from the clock otherwise) and makes the test party again from it, so the party's IVs and personalities,
-  and so every number, are the same from any save state; `gSovereignTestPlayerTile` is the player's tile.
+  and so every number, are the same from any save state; `gSovereignTestNoExp` gives no EXP, as god mode does, so no
+  level-up or new-move prompt waits on an answer (the suite's taps answered one differently from another state);
+  `gSovereignTestPlayerTile` is the player's tile.
 - `drive.py`'s `pos()` reads the player's tile from that hook in the build's map file, in place of fixed addresses
   that had gone stale; `roamers.py` counts the Marking Map walk's steps with it.
 - `roamers.py`'s catch throws the Master Ball once the battle's message log shows "What will ... do?", in place of
