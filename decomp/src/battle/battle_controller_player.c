@@ -6623,7 +6623,9 @@ static void BattleSystem_RecordCommand(BattleSystem *battleSys, BattleContext *b
             }
         }
     }
-}// Sovereign (item 11): moves that thaw out a frozen user (Gen IX's defrost moves).
+}
+
+// Sovereign (item 11): moves that thaw out a frozen user (Gen IX's defrost moves).
 static BOOL Sovereign_MoveThawsUser(int move, int moveEffect)
 {
     switch (move) {

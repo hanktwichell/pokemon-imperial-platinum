@@ -20,7 +20,6 @@ in CI on every PR.
   - the boss team compositions (T1);
   - the art (E12);
   - the developer battle (T2);
-  - Burn Up and Double Shock, and the special evolutions (decision 20);
   - the playthrough.
 
 **To a first playable version:** the engine work that doesn't wait on the owner is done. What's left waits on the
@@ -37,7 +36,7 @@ owner (the list above): the boss teams, the art, the developer battle's text and
 | E1 | Own save signature, ROM title/banner "Pokémon Sovereign Platinum" | ✅ done (PR #7) |
 | E14 | Approved QoL | ✅ 7 of 8 done (IV/EV viewer, Repel prompt, HM-free field moves, Gen VI+ breeding, Mints sold on Route 208, the Battle Tower Ability researcher with the Ability Capsule/Patch items, the Infinite Repel with its ON tag in the bag; all tested in-game). The 8th, the type-effectiveness indicator, is shelved by the owner |
 | — | Test build (`tools/test/build_test_rom.sh`): test party at new game, SELECT = wild battle, SELECT+R = trainer battle | ✅ working |
-| E3 | All 919 moves, ID = official number; 373 new moves exact, 0 approximate, 7 placeholder (`MoveChecklist.md`; Platinum's own moves follow Gen V–IX, `PlatinumMoveAudit.md`) | ✅ done (PR #9); tested in battle. The 7 placeholders: the Pledges and Ally Switch (Claude A), Burn Up and Double Shock (owner), Revival Blessing (left out) |
+| E3 | All 919 moves, ID = official number; 375 new moves exact, 0 approximate, 5 placeholder (`MoveChecklist.md`; Platinum's own moves follow Gen V–IX, `PlatinumMoveAudit.md`) | ✅ done (PR #9); tested in battle. The 5 placeholders: the Pledges and Ally Switch (Claude A), Revival Blessing (left out) |
 | E5 | Gen IX stats, types and learnsets for #1–493 and forms; 32-bit learnset entries | ✅ done (PR #9); tested in battle |
 | E2/E4 | All 314 abilities, ID = official number (191 new: `AbilityChecklist.md`); Hidden Ability slot and flag | ✅ done; tested on the summary screen. Every new ability works in battle except Embody Aspect and Teraform Zero (they need Terastallization) |
 | 10b | Battle mechanics → Pokémon Champions (IVs/EVs unchanged); rules in `BattleMechanics.md` | ✅ every rule built or marked not adopted: the core rules (status, dynamic speed, crits, weather, Snow, Fake Out, move values) and the ability, item and move changes (item 11; the last, Run Away and Sheer Force, CB-0207) |
@@ -122,8 +121,7 @@ Made by the owner (2026-10-22):
 19. **Trade evolutions follow Renegade's system** (owner, 2026-10-22, after briefly considering a Link Stone): plain
     trade evolutions evolve at Level 36, and trade-with-item evolutions by using the item like a stone.
 20. **Special evolutions** (Gholdengo's 999 coins, Malamar's upside-down console and other conditions Gen IV can't
-    check) are to be discussed with the owner later. Until then the methods in `EvolutionChanges_Sovereign.md`
-    stand.
+    check) keep the methods in `EvolutionChanges_Sovereign.md` (owner, 2026-10-28: "Special evos look good").
 21. **After E7/E8, the next focus is the Pokédex** (owner, 2026-10-22): every new Pokémon is in the dex, and a dex
     number never shows "???".
     - The **National Dex is unlocked when Rowan gives the player the Pokédex**.
@@ -299,7 +297,6 @@ Open:
   `docs/OverworldSpriteSizes.md`). Until then each is a placeholder from its PokeAPI front sprite.
 - Regional Forms Park: when it opens (now after the Hall of Fame; `Story.md` suggests Oak's visit). The zones and
   levels are decided (decision 41).
-- Special evolutions (decision 20): owner discussion pending.
 - The developer battle: Lv. 100 at Spear Pillar, leads Charizard-Y + Venusaur, custom weather-control AI (`DeveloperBattle.md`). Opponent: Sovereign Henry (decision 23). Open: text, sprites (owner's sprite coming soon).
 - Front sprites and the part 2 shiny pack (owner is sourcing them).
   - Source to check for E12 (owner, 2026-10-23): **thesonicgameryt** on DeviantArt,

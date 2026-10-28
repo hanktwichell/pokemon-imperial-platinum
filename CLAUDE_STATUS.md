@@ -9440,3 +9440,46 @@ This one adds real battles to it: each of the eight roamers is battled once.
 2. Untested roamer paths: catching one (a Poké Ball through the bag's battle menu), and the Pokétch's Marking Map with
    all 8 shown.
 3. Run the other harnesses (trainers, species, gifts, Elite Four) again on the next build that changes battle code.
+
+## CB-0237 (Claude B, 10:40 am US Central, 2026-10-28)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #253 (CB-0236, roamer battles) is merged. This
+one does two things.
+- **Burn Up and Double Shock** (owner, 2026-10-28: "make a hidden typeless state that only those two moves set"):
+  - Each fails unless the user has the move's type.
+  - After the hit, the user loses that type until it switches out. A dual-type user keeps its other type. A mono-type
+    user becomes typeless, a new battle-only type (`TYPE_SOVEREIGN_TYPELESS` = 18) that no chart entry matches, so
+    everything hits it neutrally.
+  - Arceus and Silvally keep their types.
+  - Built with a new effect (`BATTLE_EFFECT_SOVEREIGN_BURN_OUT_HIT`, effect script 400) and subscript
+    (`subscript_sovereign_burn_out.s`), with six new battle strings. The trainer AI rates the move useless without the
+    type.
+  - Checked in battle with Centiskorch, Pawmot, Arcanine and Jolteon: each gets its type change and message, then "But
+    it failed!" on every later use. The typeless ones take neutral hits where they took super-effective ones before.
+  - Today only Sizzlipede, Centiskorch (Fire/Bug) and Pawmot (Electric/Fighting) learn these moves, all by level-up,
+    so the typeless state only matters for a Pokémon that gets the move another way (Sketch, Mimic, Transform).
+- **The roamer test catches one:** a Master Ball through the battle bag. Munkidori on Route 209 was caught: off every
+  map, state "captured". No problems (806 s).
+- Decision 20 is settled (owner, 2026-10-28: "Special evos look good"): the current special evolution methods stand.
+- Test and release builds pass; the data and docs regenerate unchanged.
+
+**Files modified:**
+- `decomp/include/constants/battle.h`, `decomp/src/battle/battle_controller_player.c`,
+  `decomp/src/battle/battle_script.c`, `decomp/src/battle/trainer_ai/trainer_ai.c`
+- `decomp/res/battle/scripts/effects/effect_script_0400.s` (new), `effects/meson.build`,
+  `decomp/res/battle/scripts/subscripts/subscript_sovereign_burn_out.s` (new), `subscripts/meson.build`,
+  `subscripts/sub_seq.order`
+- `decomp/generated/battle_move_subscript_ptrs.txt`, `battle_subscripts.txt`, `move_battle_effects.txt`,
+  `decomp/include/data/move_side_effect_subscripts.h`
+- `decomp/res/text/battle_strings.json`, `decomp/res/moves/burn_up/data.json`, `decomp/res/moves/double_shock/data.json`
+- `tools/engine/gen9_move_fixes.py`, `docs/MoveChecklist.md`
+- `tools/test/roamers.py`, `tools/test/README.md`
+- `docs/EngineChangelog.md`, `docs/EngineRoadmap.md` (rows 11 and 18), `docs/ProjectStatus.md` (E3, decision 20, the
+  waiting list), `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. The owner, 2026-10-28: "Trigger this stuff on first hall of fame": Oak's visit (`Story.md`) and the Regional Forms
+   Park's opening move to the first Hall of Fame. Next PR.
+2. Waiting on the owner: T1 (boss teams), T2 (the developer battle and Henry's text), the art (E12).
+3. Run the other harnesses (trainers, species, gifts, Elite Four) again on the next build that changes battle code;
+   the Pokétch's Marking Map with all 8 roamers is still untested.

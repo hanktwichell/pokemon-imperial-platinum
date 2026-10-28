@@ -3,6 +3,38 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Burn Up and Double Shock burn out the user's type; a roamer caught in the test
+
+**Burn Up and Double Shock** (item 11; the owner, 2026-10-28) now work as in Gen IX:
+- Burn Up fails ("But it failed!") unless the user is Fire-type, and Double Shock unless it is Electric-type.
+- After the hit, the user loses that type until it switches out, with "[Pokémon] burned itself out!" or "[Pokémon]
+  used up all its electricity!":
+  - a dual-type user keeps only its other type (Centiskorch, Fire/Bug, is then Bug; Pawmot, Electric/Fighting, is
+    then Fighting);
+  - a user with no other type becomes **typeless**, the main games' "???": a new battle-only type
+    (`TYPE_SOVEREIGN_TYPELESS`) that only these two moves set. No type chart entry matches it, so every move hits it
+    neutrally and none of its moves get STAB from it. No Pokémon learns either move as a mono-type today; Fire or
+    Electric Pokémon could get them by Sketch, Mimic, Transform or a tutor later.
+  - Arceus and Silvally keep their types (their types can't be changed, as in the main games).
+- Burn Up still thaws the user.
+- The trainer AI rates the move useless when its Pokémon lacks the type. Revelation Dance by a typeless user is
+  Normal-type.
+
+The roamer test (`tools/test/roamers.py`) also **catches** a roamer now: it battles one, throws a Master Ball through
+the battle bag, says No to the nickname and pages through the Pokédex entry. The caught roamer must be off every map
+with its state var "captured", and every roamer that was on the map must have left it.
+
+Verified (test build):
+- A battle for each kind of user (a scratch harness on the test build):
+  - Centiskorch (Fire/Bug → Bug/Bug) and Pawmot (Electric/Fighting → Fighting/Fighting): the message after the first
+    hit, then "But it failed!" on every later use.
+  - Arcanine (Fire → typeless): the wild Ninjask's Water Gun was super effective before Burn Up and neutral after.
+  - Jolteon (Electric → typeless): the same with Mud-Slap.
+- `roamers.py`: everything as before, and "munkidori on route_209: caught, no longer roaming, state captured". No
+  problems (806 s).
+- Test and release builds pass. The data regenerates unchanged; `MoveChecklist.md`: 375 exact, 5 placeholders (the
+  Pledges, Ally Switch and Revival Blessing).
+
 ## Roamer battles tested
 
 Nothing changes for players. The roamer test (`tools/test/roamers.py`) now also battles each of the eight roamers once,
