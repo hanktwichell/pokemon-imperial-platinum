@@ -119,5 +119,11 @@ Show the middle 80×80 of a 96×96 front (the old 2D functions; safe, art past i
 window (an 80×80 frame), the GTS listing, the Union Room trade card, the Mystery Gift card, the Great Marsh
 binoculars, Rowan's intro, `ov64`.
 
-Still to check: the PC's Hall of Fame records, the Battle Frontier's scene sprites, contests, the egg hatch scene,
-the Pokédex's size comparison; and the heaps of every other screen with a sprite manager (the PC boxes ran out).
+- Practice contests (Hearthome's Contest Hall): the visual, dance and acting competitions run as on the 80×80 build.
+  The lowest free space: the dress-up's heap 69,268 bytes (48,792 on the 80×80 build), the dance's 84,432 (18,968),
+  the acting's 141,216 (169,980).
+- A wild battle: the battle heap 315,060 bytes free at the lowest (342,620).
+
+Still to check: the PC's Hall of Fame records, the Battle Frontier's scene sprites, the egg hatch scene, the
+Pokédex's size comparison, and the heaps of the other screens with a sprite manager (starter choice, capsule
+menu, poffin cutscene, battle videos).
