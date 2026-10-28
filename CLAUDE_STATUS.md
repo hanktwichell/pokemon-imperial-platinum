@@ -9513,3 +9513,35 @@ on first hall of fame").
    and Henry's text) and the art (E12) also wait on the owner.
 2. Run the other harnesses (trainers, species, gifts, Elite Four) again on the next build that changes battle code.
 3. The Pokétch's Marking Map with all 8 roamers is still untested.
+
+## CB-0239 (Claude B, 11:10 pm US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #255 (CB-0238, Oak's visit after the first Hall
+of Fame) is merged. This one adds the last untested roamer path to `roamers.py`: the Pokétch's Marking Map.
+- New test-build hook, `gSovereignTestPoketchApp`: the next time the field sets up the bottom screen, the Pokétch is on
+  with that app registered and showing (`src/overlay005/ov5_021EA714.c`).
+- The test flies to Twinleaf Town with the Marking Map showing and walks 6 steps there and back. The map looks a
+  roamer up only while the player walks (from the 5th step on, vanilla). Then each roamer still roaming must have
+  its icon at its route's place, read from the sub screen's OAM over the icons' blink, and no other icon may show.
+- Result: 6 roaming, 6 icons, the knocked-out and caught ones not shown; 0 problems. All 29 roaming routes have a
+  place on the Pokétch's map.
+- Things learned on the way: the Marking Map's icons and cursor blink (one OAM read can miss them); the test save's
+  Super Repel runs out in towns too, and its prompt stops a walk; `drive.py`'s `pos()` reads (0, 0) in this build
+  (its fixed addresses are stale), so nothing should rely on it.
+- `LegendaryTriggers.md`: the stale open issue "Cosmog can flee" is gone (no Teleport since 2026-10-24).
+- Checked for the typeless type (CB-0237): no code uses a battler's type to index a table, so type 18 can't read
+  past one; every use compares types or goes through the type chart, where it matches nothing (neutral).
+- The all-trainers regression on this build (Burn Up and Double Shock changed battle code) is running: 224 of 1041
+  done when last checked, all ok. Results in the next entry.
+
+**Files modified:**
+- `decomp/include/sovereign_test.h`, `decomp/src/script_manager.c`, `decomp/src/overlay005/ov5_021EA714.c` (test-build
+  hook)
+- `tools/test/roamers.py`, `tools/test/README.md`
+- `docs/EngineChangelog.md`, `docs/EngineRoadmap.md` (row 18), `docs/LegendaryTriggers.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Finish the all-trainers regression on this build, then `battle_all_species.py`; record the results.
+2. Waiting on the owner: whether Oak gives something at his visit (`Story.md`), T1 (boss teams), T2 (the developer
+   battle and Henry's text), the art (E12).
+3. `drive.py`'s `pos()` could read the player's position from the field instead of fixed addresses, for later tests.

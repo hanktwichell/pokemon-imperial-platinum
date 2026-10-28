@@ -35,6 +35,12 @@ the field writes it down (gSovereignTestRoamers). Then:
   before its escape. Then it declines the nickname (NICKNAME_NO) and the Pokémon goes to the PC (the party is full).
   Afterwards it must no longer roam, its state var must be captured (1), which the Legend Archivist never releases
   again, and every roamer that was on the map must have left it.
+- **Marking Map:** it flies to MARKING_MAP's town with the Pokétch on and showing the Marking Map
+  (gSovereignTestPoketchApp), and walks there: the map looks a roamer up only while the player walks (from the 5th
+  step on, CheckPositionsUpdated). Then each roamer still roaming must have its icon on the Pokétch at its route's
+  place (PoketchMap_GetPositionFromMapID), read from the sub screen's OAM over the icons' blink, and no other roamer
+  icon may show: not the one knocked out, not the one caught. A screenshot of both screens is saved
+  (marking_map.png).
 
 Needs what wild_forms.py needs. From the repo root:
     SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 tools/test/roamers.py \\
@@ -70,6 +76,11 @@ MEET_SHARE = (0.25, 0.75)  # of a survey's encounters; 50% expected, so 12 to 36
 WALK = ('MAP_HEADER_ROUTE_212_NORTH', 'MAP_HEADER_ROUTE_212_SOUTH', (459, 830), (0, 1))
 CROSSINGS = 40
 RANDOM_SHARE = 0.15  # of the moves walking makes; 1/16 expected
+# The Marking Map check: a town (no wild Pokémon, so no roamer meets the player there), the tile it starts on, and the
+# walk (steps right, then back left).
+MARKING_MAP = ('MAP_HEADER_TWINLEAF_TOWN', (106, 877), 6)
+SUB_OAM = 0x07000400  # the sub screen's OAM, which the Pokétch draws its sprites into
+MAP_ICON_CORNER = 16  # a Marking Map icon's cell is 32x32, placed by its middle
 FACE = {(0, -1): 0, (0, 1): 1, (-1, 0): 2, (1, 0): 3}  # enum FaceDirection
 KEY = {(0, -1): 'UP', (0, 1): 'DOWN', (-1, 0): 'LEFT', (1, 0): 'RIGHT'}
 
@@ -112,6 +123,35 @@ def routes():
     return headers, nearby
 
 
+def poketch_app(name):
+    apps = [line.strip() for line in open(os.path.join(DECOMP, 'generated', 'poketch_apps.txt')) if line.strip()]
+    return apps.index(name)
+
+
+def marking_map_places():
+    """{map ID: (x, y)} where the Marking Map shows a roamer on that map (PoketchMap_GetPositionFromMapID)."""
+    text = open(os.path.join(DECOMP, 'src', 'applications', 'poketch', 'poketch_map.c'), encoding='utf-8').read()
+    table = text[text.index('PoketchMap_GetPositionFromMapID'):]
+    return {int(m): (int(x), int(y)) for m, x, y in
+            re.findall(r'\{ MAP_(\d+), (\d+), (\d+) \}', table[:table.index('};')])}
+
+
+def sub_screen_sprites(d):
+    """The sub screen's sprites on the screen: [(x, y, tile)]. The map's icons blink, so this looks over two seconds
+    and keeps the frame that shows the most."""
+    mem = d.emu.memory.unsigned
+    best = []
+    for _ in range(30):
+        d.run(4)
+        shown = []
+        for i in range(128):
+            attr0, attr1, attr2 = struct.unpack('<HHH', bytes(mem[SUB_OAM + i * 8:SUB_OAM + i * 8 + 6]))
+            if (attr0 >> 8) & 3 != 2 and (attr0 & 0xff) < 192:  # not disabled, and not parked below the screen
+                shown.append((attr1 & 0x1ff, attr0 & 0xff, attr2 & 0x3ff))
+        best = shown if len(shown) > len(best) else best
+    return best
+
+
 def read_roamers(d, sym):
     mem = d.emu.memory.unsigned
     base = sym['gSovereignTestRoamers']
@@ -137,7 +177,7 @@ def main():
     rom, state, out = sys.argv[1:4]
     os.makedirs(out, exist_ok=True)
     sym = symbols(SYMBOLS + ('gSovereignTestWildSurvey', 'gSovereignTestRoamers', 'gSovereignTestRoamerRelease',
-                             'gSovereignTestSurveyRoamers', 'gSovereignTestWatch'))
+                             'gSovereignTestSurveyRoamers', 'gSovereignTestWatch', 'gSovereignTestPoketchApp'))
     names, ids, species = slot_names(), header_names(), species_names()
     expected = slot_species()
     slots = [names.index(s) for s in released()]
@@ -379,6 +419,38 @@ def main():
                 f'BAD: then on {where(after[slot][0]) if after[slot][0] else "no map (not roaming)"}, state {state}' +
                 (f'; still here: {stayed}' if stayed else '') + ('' if free >= 2 else '; the battle never ended') +
                 f' (screenshot: catch_{name(slot)}.png)'), not ok)
+
+        # The Pokétch's Marking Map: the roamers still roaming, each at its route's place.
+        town, (x, z), steps = MARKING_MAP
+        mem.write_byte(sym['gSovereignTestPoketchApp'], poketch_app('POKETCH_APPID_MARKINGMAP') + 1)
+        result, frames = warp(d, sym, ids.index(town), x, z, 0)
+        if result != 'ok':
+            say(f'marking map: the flight to {town} failed: {result} {frames}', True)
+        else:
+            for key in ['RIGHT'] * steps + ['LEFT'] * steps:
+                d.press(key, frames=16, after=8)
+                play_out(d, sym, FRAME_LIMIT, ids.index(town), press_a=False)  # the Repel running out: A uses another
+            d.run(60)
+            d.screenshot().save(os.path.join(out, 'marking_map.png'))
+            roamers = read_roamers(d, sym)
+            roaming = [s for s in slots if roamers[s][0]]
+            places = marking_map_places()
+            want = {}
+            for slot in roaming:
+                place = places.get(roamers[slot][0])
+                if not place:
+                    say(f'marking map: {name(slot)} roams on {where(roamers[slot][0])}, which has no place on it', True)
+                    continue
+                want.setdefault((place[0] - MAP_ICON_CORNER, place[1] - MAP_ICON_CORNER), []).append(slot)
+            shown = sub_screen_sprites(d)
+            tiles = {tile for sx, sy, tile in shown if (sx, sy) in want}
+            icons = [(sx, sy) for sx, sy, tile in shown if tile in tiles]
+            missing = [name(s) for spot, at in want.items() for s in at[icons.count(spot):]]
+            extra = len(icons) - sum(len(at) for at in want.values()) + len(missing)
+            ok = not missing and not extra
+            say(f'marking map: {len(roaming)} roaming, {len(icons)} roamer icons on the Pokétch'
+                + ('' if ok else f'; BAD: missing {missing}, {extra} more')
+                + ' (screenshot: marking_map.png)', not ok)
 
         say(f'{bad} problems')
     sys.exit(1 if bad else 0)

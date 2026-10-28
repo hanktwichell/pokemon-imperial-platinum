@@ -895,6 +895,7 @@ u16 gSovereignTestCaughtAllBut;
 u8 gSovereignTestRareWildRoll;
 u16 gSovereignTestRoamerRelease;
 u8 gSovereignTestSurveyRoamers;
+u8 gSovereignTestPoketchApp;
 
 void SovereignTest_WarpNext(FieldSystem *fieldSystem)
 {

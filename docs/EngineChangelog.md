@@ -3,6 +3,30 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Roamers on the Pokétch's Marking Map tested
+
+Nothing changes for players. The roamer test (`tools/test/roamers.py`) now also checks the Pokétch's Marking Map, as its
+last part:
+- It flies to Twinleaf Town with the Pokétch on and showing the Marking Map, and walks six steps there and back. A
+  town has no wild Pokémon, so no roamer can meet the player on the way. The map looks a roamer up only while the
+  player walks (Platinum's own rule: from the 5th step on).
+- Then each roamer still roaming must have its icon on the Pokétch at its route's place (the Pokétch's table of map
+  positions), read from the sub screen's sprites. No other roamer icon may show: not the one knocked out, not the
+  one caught. The icons blink, so it reads them over two seconds.
+- Statically, all 29 routes a roamer can go to have a place on the Pokétch's map.
+
+Test-build hook (`include/sovereign_test.h`): `gSovereignTestPoketchApp` turns the Pokétch on, with that app
+registered and showing, the next time the field sets up the bottom screen.
+
+Also: `LegendaryTriggers.md`'s open issue "Cosmog can flee" is gone. Cosmog has not learned Teleport since
+2026-10-24.
+
+Verified (test build):
+- `roamers.py`: everything as before (104 flights, 24 surveys with roamers, 40 crossings, 8 of 8 roamers battled,
+  Zeraora caught), and "marking map: 6 roaming, 6 roamer icons on the Pokétch". Glastrier (knocked out) and Zeraora
+  (caught) show no icon. No problems.
+- A check from a saved state with all 8 released: 8 icons, two of them on the same spot (two roamers on Route 216).
+
 ## Oak's visit plays after the first Hall of Fame
 
 The owner's call on `Story.md`'s Oak scene (2026-10-27: "Trigger this stuff on first hall of fame"). The scene in

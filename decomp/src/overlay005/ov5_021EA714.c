@@ -13,6 +13,10 @@
 #include "system_flags.h"
 #include "vars_flags.h"
 
+#ifdef SOVEREIGN_TEST
+#include "sovereign_test.h"
+#endif
+
 FS_EXTERN_OVERLAY(poketch_unavailable);
 FS_EXTERN_OVERLAY(poketch);
 
@@ -27,6 +31,15 @@ void ov5_021EA728(FieldSystem *fieldSystem)
 {
     Poketch *poketch = SaveData_GetPoketch(fieldSystem->saveData);
     VarsFlags *varsFlags = SaveData_GetVarsFlags(fieldSystem->saveData);
+
+#ifdef SOVEREIGN_TEST
+    if (gSovereignTestPoketchApp) { // here, as the bottom screen is set up, so its shutdown later matches it
+        Poketch_Enable(poketch);
+        Poketch_RegisterApp(poketch, gSovereignTestPoketchApp - 1);
+        poketch->appIndex = gSovereignTestPoketchApp - 1;
+        gSovereignTestPoketchApp = 0;
+    }
+#endif
 
     if (Poketch_IsEnabled(poketch)
         && (SystemFlag_CheckPoketchHidden(varsFlags) == 0)) {
