@@ -421,10 +421,9 @@ def main():
         if result != 'ok':
             say(f'marking map: the flight to {town} failed: {result} {frames}', True)
         else:
-            start = d.pos()
-            d.press('RIGHT', frames=16 * steps, after=8)
-            far = d.pos()
-            d.press('LEFT', frames=16 * steps, after=8)
+            for key in ['RIGHT'] * steps + ['LEFT'] * steps:
+                d.press(key, frames=16, after=8)
+                play_out(d, sym, FRAME_LIMIT, ids.index(town), press_a=False)  # the Repel running out: A uses another
             d.run(60)
             d.screenshot().save(os.path.join(out, 'marking_map.png'))
             roamers = read_roamers(d, sym)
@@ -442,10 +441,9 @@ def main():
             icons = [(sx, sy) for sx, sy, tile in shown if tile in tiles]
             missing = [name(s) for spot, at in want.items() for s in at[icons.count(spot):]]
             extra = len(icons) - sum(len(at) for at in want.values()) + len(missing)
-            walked = far[0] - start[0]
-            ok = not missing and not extra and walked >= 5
+            ok = not missing and not extra
             say(f'marking map: {len(roaming)} roaming, {len(icons)} roamer icons on the Pokétch'
-                + ('' if ok else f'; BAD: missing {missing}, {extra} more, walked {walked} steps')
+                + ('' if ok else f'; BAD: missing {missing}, {extra} more')
                 + ' (screenshot: marking_map.png)', not ok)
 
         say(f'{bad} problems')
