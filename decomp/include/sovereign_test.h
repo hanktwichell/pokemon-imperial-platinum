@@ -293,6 +293,9 @@ extern u16 gSovereignTestRoamerRelease;
 // is battled for real too, and the survey ends there.
 #define SOVEREIGN_TEST_SURVEY_ROAMERS_BATTLE 2
 extern u8 gSovereignTestSurveyRoamers;
+// When set, the next time the field sets up the bottom screen (on entering a map), the Pokétch is on, with this app
+// (enum PoketchAppID + 1) registered and showing (tools/test/roamers.py: the Marking Map).
+extern u8 gSovereignTestPoketchApp;
 #endif
 
 #endif // POKEPLATINUM_SOVEREIGN_TEST_H
