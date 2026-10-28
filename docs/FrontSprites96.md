@@ -108,7 +108,8 @@ Checked in the test build (2026-10-28):
 - A `platinum_fronts` build: #1–493 and their forms show Platinum's fronts, #494+ and the Megas 96×96.
 - The Battle Factory's rental screen (a single Lv. 50 challenge): the Factory app's heap is at least 14,048 bytes free
   throughout (30,432 on the 80×80 build: the sprite manager's buffer is 16 KB bigger), and a rental's summary screen
-  14,712 (31,088). `tools/test/heap_check.py`'s `heap_free` reads them.
+  14,712 (31,088) before the summary screen kept one slot (below). `tools/test/heap_check.py`'s `heap_free` reads
+  them.
 - Screens that show one Pokémon at a time keep a texture of one slot (`PokemonSpriteManager_NewOneSlot`, 12 KB where
   the four-slot manager takes 48 and Platinum's took 32): the dress-up and its photos, and the PC boxes. Found by
   heap checks: with the four-slot manager the PC boxes' graphics heap ran out (9,336 bytes free, then a hang; 27,552
