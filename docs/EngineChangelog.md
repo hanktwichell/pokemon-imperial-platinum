@@ -53,6 +53,7 @@ Verified (test build):
   EXP, matched in 525 from a second state: in the other, Starly's new-move prompt after the battle was answered the
   other way, hence `gSovereignTestNoExp`.
 - `roamers.py`: no problems (the Master Ball throw waits for the prompt; the flight after the walk).
+- `battle_all_species.py --jobs 4`: 1472 of 1472 species and forms ok.
 
 ## Roamers on the Pokétch's Marking Map tested
 
