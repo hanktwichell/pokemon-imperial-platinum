@@ -145,5 +145,12 @@ Show the middle 80×80 of a 96×96 front (the old 2D functions; safe, art past i
 window (an 80×80 frame; Mom's Eevee checked), the GTS listing, the Union Room trade card, the Mystery Gift card, the
 Great Marsh binoculars, Rowan's intro, `ov64`.
 
-Still to check: the PC's Hall of Fame records. Not run in the game, by their heaps' size: the capsule menu (512 KB)
-and the Vs. Recorder's app (`overlay062`, 340 KB) take the four-slot manager's 16 KB more with room to spare.
+Not run in the game:
+- The PC's Hall of Fame records: an Elite Four run into the Hall of Fame and its save, then the PC, which said the
+  records were corrupted. The game's saves never reached the emulator's battery in these runs (exported, it was blank),
+  so the records can't be read back. The screen draws the same 96×96 copies as the Hall of Fame (checked there). Its
+  six places are 80 pixels apart in a row and the rows 56 apart, so 96×96 boxes overlap a neighbour's by up to 16
+  pixels across (Platinum's 80×80 boxes touched), and art at the right edge of the box placed at x 216 is cut by up
+  to 8 pixels at the screen's edge.
+- By their heaps' size: the capsule menu (512 KB) and the Vs. Recorder's app (`overlay062`, 340 KB) take the
+  four-slot manager's 16 KB more with room to spare.
