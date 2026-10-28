@@ -1267,8 +1267,6 @@ void PokemonSpriteManager_ClearHideShadows(PokemonSpriteManager *monSpriteMan, u
     monSpriteMan->hideShadows &= (value ^ -1);
 }
 
-// Copies a sprite's two frames (an 80x80 or 96x96 pair, its width and height in pixels) into its slot, centred,
-// flipped or with mosaic as its transforms say.
 // Sovereign: one side of a partial draw (offset and length in the 80x80 box): an end on the box's edge moves out to the
 // edge of the 96x96 slot. A partial draw that would show nothing still shows nothing.
 static void PokemonSprite_WidenPartialDraw(int *offset, int *length)
@@ -1292,6 +1290,8 @@ static void PokemonSprite_WidenPartialDraw(int *offset, int *length)
     *length = end - start;
 }
 
+// Copies a sprite's two frames (an 80x80 or 96x96 pair, its width and height in pixels) into its slot, centred,
+// flipped or with mosaic as its transforms say.
 static void CopySpriteToSlot(u8 *slotData, const u8 *rawCharData, int width, int height, const PokemonSpriteTransforms *transforms)
 {
     int frameBytes = width / NUM_MON_SPRITE_FRAMES_H / 2;
