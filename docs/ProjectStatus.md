@@ -129,9 +129,10 @@ Made by the owner (2026-10-22):
     - The **Sinnoh dex is cosmetic**: a view inside the Pokédex only. This replaces the "Sinnoh dex stays" part of
       decision 6 for numbering.
     - The other things Platinum gated on the National Dex flag (some wild encounters, Pal Park, the post-game
-      story) now open at the Hall of Fame. Rowan's event for a complete Sinnoh dex (Oak, the Poké Radar) has its own
-      flag. Its dialogue is rewritten from `Story.md`'s draft (CB-0231): no upgrade, and Oak tells of the Regional
-      Forms Park.
+      story) now open at the Hall of Fame. Oak's visit to Rowan's lab (Platinum's event for a complete Sinnoh dex)
+      has its own flag. Its dialogue is rewritten from `Story.md`'s draft (CB-0231): no upgrade, and Oak tells of the
+      Regional Forms Park. It plays after the first Hall of Fame (owner, 2026-10-27: "Trigger this stuff on first
+      hall of fame"): Mom says Rowan called, and the scene starts when the player talks to him (CB-0238).
 22. **Pal Park is removed, along with the GBA "Migrate" option** (owner, 2026-10-22; it can't work in a ROM hack).
     Its grounds on Route 221 become the **Regional Forms Park**: Pal Park's four areas (field, forest, mountain, sea)
     become Alola, Galar, Hisui and Paldea zones where the 59 regional forms (decision 16) live as wild Pokémon. The
@@ -295,8 +296,6 @@ Made by the owner (2026-10-22):
 Open:
 - **Overworld sprites for the legendaries:** the owner draws them and sorts the rest of the sizes (decision 40,
   `docs/OverworldSpriteSizes.md`). Until then each is a placeholder from its PokeAPI front sprite.
-- Regional Forms Park: when it opens (now after the Hall of Fame; `Story.md` suggests Oak's visit). The zones and
-  levels are decided (decision 41).
 - The developer battle: Lv. 100 at Spear Pillar, leads Charizard-Y + Venusaur, custom weather-control AI (`DeveloperBattle.md`). Opponent: Sovereign Henry (decision 23). Open: text, sprites (owner's sprite coming soon).
 - Front sprites and the part 2 shiny pack (owner is sourcing them).
   - Source to check for E12 (owner, 2026-10-23): **thesonicgameryt** on DeviantArt,

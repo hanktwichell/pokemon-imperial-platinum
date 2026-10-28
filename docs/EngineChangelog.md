@@ -3,6 +3,41 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Oak's visit plays after the first Hall of Fame
+
+The owner's call on `Story.md`'s Oak scene (2026-10-27: "Trigger this stuff on first hall of fame"). The scene in
+Rowan's lab used to wait for a complete Sinnoh Pokédex. It now plays after the first Hall of Fame, when the Regional
+Forms Park it tells of opens.
+
+For players:
+- **At home**, the first time the player wakes after the Hall of Fame, Mom ends her news about the rival with "Oh, and
+  Professor Rowan called. He'd like you to stop by his lab in Sandgem Town. It sounded important, dear!"
+- **In the lab**, talking to Rowan after the Hall of Fame starts the scene. Rowan opens with "Ah, [player]! Word came
+  to me from the Pokémon League. You've entered the Hall of Fame! Splendid work. I knew you had it in you." Then Oak
+  walks in, as before.
+  - Rowan introduces the player as "This youngster has just become Sinnoh's new Champion." In place of "has filled
+    every page of the Sinnoh Pokédex for me".
+  - The rest is the scene CB-0231 wrote. Afterwards Rowan says "The world is immense…" as before.
+- **A complete Sinnoh Pokédex** no longer brings Oak. Rowan's rating for it ends "[player], this will help my studies
+  immensely!" in place of "I need to see you at my lab. I'll be waiting!", since he rates it in person.
+- The Poké Radar gift that followed Oak is gone. Every player has had it from Rowan in Sandgem Town since the start
+  (E10), so it could never be given there.
+- Oak still gives nothing (`Story.md`'s third call is open).
+
+Code:
+- `FLAG_SOVEREIGN_SHOWED_ROWAN_SINNOH_DEX` is renamed `FLAG_SOVEREIGN_OAK_VISITED` (same flag).
+- The lab script checks `FLAG_GAME_COMPLETED` in place of the Sinnoh dex. Platinum's complete-dex branch (its Yes/No
+  and "Excellent work" lines) and the Poké Radar branch are removed.
+- Mom's post-game sequence calls `TwinleafTownPlayerHouse1F_SovereignRowanCalled` while Oak hasn't visited.
+
+Verified (test build, a scratch harness from a new game with the hooks setting the story):
+- After the Hall of Fame: Rowan's new line, then Oak's whole scene to its end; talking again gives "The world is
+  immense".
+- Before it: Rowan rates the Pokédex, and Oak doesn't come.
+- At home after it: the elder's scene, Mom's word about the rival, then Rowan's call.
+- `talk_to_objects.py --postgame` on the house and the lab: 3 of 3 ok. Test and release builds pass, and the CI field
+  checks pass.
+
 ## Burn Up and Double Shock burn out the user's type; a roamer caught in the test
 
 **Burn Up and Double Shock** (item 11; the owner, 2026-10-27) now work as in Gen IX:
