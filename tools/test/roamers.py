@@ -30,6 +30,11 @@ the field writes it down (gSovereignTestRoamers). Then:
   - knocked out: it no longer roams, and its state is defeated (2), which the next Hall of Fame resets so the Legend
     Archivist releases it again;
   - either way, every roamer that was on the map has left it.
+- **Catching:** it flies on until a roamer still roaming is on the map, battles it, and throws a Master Ball from the
+  battle's bag (gSovereignTestBagItem put it there; CATCH_TAPS), as a player would on its first turn: an item comes
+  before its escape. Then it declines the nickname (NICKNAME_NO) and the Pokémon goes to the PC (the party is full).
+  Afterwards it must no longer roam, its state var must be captured (1), which the Legend Archivist never releases
+  again, and every roamer that was on the map must have left it.
 
 Needs what wild_forms.py needs. From the repo root:
     SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 tools/test/roamers.py \\
@@ -50,7 +55,14 @@ from wild_forms import MON_SIZE, SURVEY, TERRAINS, cases, run_survey, species_na
 ROAMER = '<HBBHHI'  # struct SovereignTestRoamer: map, route index, level, species, HP, personality
 ROAMER_SIZE = struct.calcsize(ROAMER)
 SURVEY_ROAMERS_BATTLE = 2  # SOVEREIGN_TEST_SURVEY_ROAMERS_BATTLE
-ROAMER_STATE_ROAMING, ROAMER_STATE_DEFEATED = 0, 2  # constants/roamer_states.h
+ROAMER_STATE_ROAMING, ROAMER_STATE_CAPTURED, ROAMER_STATE_DEFEATED = 0, 1, 2  # constants/roamer_states.h
+ITEM_MASTER_BALL = 1
+BATTLE_INTRO_FRAMES = 900  # the battle's intro, to "What will ... do?", which then waits for the player
+# Touches (x, y, frames held) that throw the Master Ball: BAG, the Poké Balls pocket, the Master Ball (the pocket's
+# second entry, after the test save's Poké Balls) and USE. The items in a pocket only take a touch held a while.
+CATCH_TAPS = ((40, 170, 10), (192, 56, 10), (192, 40, 30), (110, 174, 30))
+NICKNAME_NO = (128, 140)  # the nickname prompt's No; a touch there also pages through the text and the Pokédex entry
+CATCH_TOUCHES = 300
 FLIGHTS_MAX = 300
 MEET_TIMES = 2
 MEET_SHARE = (0.25, 0.75)  # of a survey's encounters; 50% expected, so 12 to 36 of 48 is more than 3 sd either way
@@ -287,28 +299,41 @@ def main():
         watch = sym['gSovereignTestWatch']
         for i, slot in enumerate(slots):  # struct SovereignTestWatch: var, value
             mem.write_short(watch + 4 * i, variables[f'VAR_ROAMING_{names[slot][len("ROAMING_SLOT_"):]}_STATE'])
+
+        def state_of(slot):
+            at = watch + 4 * slots.index(slot) + 2
+            return struct.unpack('<H', bytes(mem.unsigned[at:at + 2]))[0]
+
+        def start_battle(wanted, limit):
+            """Fly on until one of the wanted roamers is on the map, and battle the first roamer the survey meets
+            there. Returns (its slot, the map's header ID, the roamers before), or None after limit flights."""
+            while flight['flown'] < limit:
+                flown = fly()
+                if not flown:
+                    return None
+                header_id, terrain, roamers = flown
+                if not any(roamers[slot][0] == header_id for slot in wanted):
+                    continue
+                mem.write_byte(sym['gSovereignTestSurveyRoamers'], SURVEY_ROAMERS_BATTLE)
+                count = run_survey(d, survey, terrain_index.index(terrain))
+                mem.write_byte(sym['gSovereignTestSurveyRoamers'], 0)
+                at = survey + SURVEY['mons'] + (count - 1) * MON_SIZE
+                last = struct.unpack('<IHBB', bytes(mem.unsigned[at:at + MON_SIZE])) if count > 0 else None
+                here = {(roamers[s][3], roamers[s][2], roamers[s][5]): s for s in slots if roamers[s][0] == header_id}
+                slot = here.get((last[1], last[3], last[0])) if last else None
+                if slot is not None:  # else no roamer was met in the survey's encounters, so no battle
+                    return slot, header_id, roamers
+            return None
+
         battled = {}
         limit = flight['flown'] + FLIGHTS_MAX
-        while flight['flown'] < limit and len(battled) < len(slots):
-            flown = fly()
-            if not flown:
+        while len(battled) < len(slots):
+            started = start_battle([s for s in slots if s not in battled], limit)
+            if not started:
                 break
-            header_id, terrain, roamers = flown
-            if not any(roamers[slot][0] == header_id and slot not in battled for slot in slots):
-                continue
-            mem.write_byte(sym['gSovereignTestSurveyRoamers'], SURVEY_ROAMERS_BATTLE)
-            count = run_survey(d, survey, terrain_index.index(terrain))
-            mem.write_byte(sym['gSovereignTestSurveyRoamers'], 0)
-            at = survey + SURVEY['mons'] + (count - 1) * MON_SIZE
-            last = struct.unpack('<IHBB', bytes(mem.unsigned[at:at + MON_SIZE])) if count > 0 else None
-            met_here = {(roamers[s][3], roamers[s][2], roamers[s][5]): s for s in slots if roamers[s][0] == header_id}
-            slot = met_here.get((last[1], last[3], last[0])) if last else None
-            if slot is None:
-                continue  # no roamer met in the survey's encounters, so no battle
+            slot, header_id, roamers = started
             result, frames = play_out(d, sym, FRAME_LIMIT, header_id, press_a=False)
-            after = read_roamers(d, sym)
-            state = struct.unpack('<H', bytes(mem.unsigned[watch + 4 * slots.index(slot) + 2:
-                                                           watch + 4 * slots.index(slot) + 4]))[0]
+            after, state = read_roamers(d, sym), state_of(slot)
             stayed = [name(s) for s in slots if after[s][0] == header_id]
             fled = after[slot][0] != 0
             battled[slot] = 'fled' if fled else 'knocked out'
@@ -324,6 +349,35 @@ def main():
                     f' (screenshot: battle_{name(slot)}.png)', True)
         say(f'battles: {len(battled)} of {len(slots)} roamers battled: ' +
             ', '.join(f'{name(s)} {battled[s]}' for s in slots if s in battled), len(battled) < len(slots))
+
+        # Catching: a roamer still roaming, caught with a Master Ball from the battle's bag.
+        mem.write_short(sym['gSovereignTestBagItem'], ITEM_MASTER_BALL)  # the next flight puts it in the bag
+        roaming = [s for s in slots if read_roamers(d, sym)[s][0]]
+        started = start_battle(roaming, flight['flown'] + FLIGHTS_MAX) if roaming else None
+        if not started:
+            say(f'catching: no roamer still roaming met in {FLIGHTS_MAX} flights', True)
+        else:
+            slot, header_id, roamers = started
+            d.run(BATTLE_INTRO_FRAMES)
+            for x, y, frames in CATCH_TAPS:
+                d.touch(x, y, frames=frames, after=150)
+            free = 0
+            for touches in range(CATCH_TOUCHES):
+                before = u32(d, sym['gSovereignTestIdleFrames'])
+                d.touch(*NICKNAME_NO, frames=10, after=30)
+                free = free + 1 if u32(d, sym['gSovereignTestIdleFrames']) - before >= 30 else 0
+                if free >= 2:
+                    break
+            after, state = read_roamers(d, sym), state_of(slot)
+            stayed = [name(s) for s in slots if after[s][0] == header_id]
+            ok = free >= 2 and not after[slot][0] and state == ROAMER_STATE_CAPTURED and not stayed
+            if not ok:
+                d.screenshot().save(os.path.join(out, f'catch_{name(slot)}.png'))
+            say(f'catching: {name(slot)} on {where(header_id)}: ' + (
+                'caught, no longer roaming, state captured' if ok else
+                f'BAD: then on {where(after[slot][0]) if after[slot][0] else "no map (not roaming)"}, state {state}' +
+                (f'; still here: {stayed}' if stayed else '') + ('' if free >= 2 else '; the battle never ended') +
+                f' (screenshot: catch_{name(slot)}.png)'), not ok)
 
         say(f'{bad} problems')
     sys.exit(1 if bad else 0)
