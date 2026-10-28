@@ -116,6 +116,10 @@ Checked in the test build (2026-10-28):
   crashed as it started. The script's Pokémon preview window also makes one (and draws nothing with it): Mom's Eevee
   in Twinleaf took 60,576 bytes of the field heap (4) with the four-slot manager, 23,712 with one slot (44,188 on
   the 80×80 build).
+- The poffin cutscene (a Poffin fed from the Poffin Case) and the summary screen keep one slot too. The cutscene's
+  heap is 64 KB: with one slot it has 20,332 bytes free at the lowest (9,032 on the 80×80 build); the four-slot
+  manager takes 36,864 bytes more, so it would run out. The summary screen (all six of the party, switching from
+  one to the next) 44,516 (30,080); with four slots it had 13,692, and 14,712 in the Battle Factory's rentals.
 - Practice contests (Hearthome's Contest Hall): the visual, dance and acting competitions run as on the 80×80 build.
   The lowest free space: the dress-up's heap 69,268 bytes (48,792 on the 80×80 build), the dance's 84,432 (18,968),
   the acting's 141,216 (169,980).
@@ -141,5 +145,4 @@ Show the middle 80×80 of a 96×96 front (the old 2D functions; safe, art past i
 window (an 80×80 frame; Mom's Eevee checked), the GTS listing, the Union Room trade card, the Mystery Gift card, the
 Great Marsh binoculars, Rowan's intro, `ov64`.
 
-Still to check: the PC's Hall of Fame records, and the heaps of the other screens with a sprite manager (capsule
-menu, poffin cutscene, battle videos).
+Still to check: the PC's Hall of Fame records, and the battle videos' heap. The capsule menu's heap is 512 KB.
