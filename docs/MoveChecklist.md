@@ -29,7 +29,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 479 | Smack Down | Rock | `SOVEREIGN_SMACK_DOWN` | exact | Sovereign effect: grounds the target until it switches out; reaches a Pokémon in the air and stops its Fly or Bounce |
 | 480 | Storm Throw | Fighting | `HIT` | exact | Sovereign effect: always a critical hit |
 | 481 | Flame Burst | Fire | `SOVEREIGN_FLAME_BURST` | exact | Sovereign effect: the target's ally takes 1/16 of its max HP |
-| 482 | Sludge Wave | Poison | `POISON_HIT` | exact |  |
+| 482 | Sludge Wave | Poison | `POISON_HIT` | exact | animation: Surf's wave and water, recoloured purple (owner idea) |
 | 483 | Quiver Dance | Bug | `SOVEREIGN_QUIVER_DANCE` | exact | Sovereign effect: user Sp. Atk +1, user Sp. Def +1, user Speed +1 |
 | 484 | Heavy Slam | Steel | `HIT` | exact | Sovereign effect: power from the user/target weight ratio (40-120) |
 | 485 | Synchronoise | Psychic | `HIT` | exact | Sovereign effect: only affects targets that share a type with the user |

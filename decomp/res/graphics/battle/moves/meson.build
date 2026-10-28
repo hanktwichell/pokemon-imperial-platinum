@@ -203,6 +203,7 @@ manual_pal_files = files(
 manual_pal_files_2 = files(
     'surf.pal',
     'muddy_water.pal',
+    'sludge_wave.pal',
 )
 
 # Special NCGRs:

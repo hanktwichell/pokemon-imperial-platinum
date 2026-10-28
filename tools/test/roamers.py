@@ -36,11 +36,11 @@ the field writes it down (gSovereignTestRoamers). Then:
   Afterwards it must no longer roam, its state var must be captured (1), which the Legend Archivist never releases
   again, and every roamer that was on the map must have left it.
 - **Marking Map:** it flies to MARKING_MAP's town with the Pokétch on and showing the Marking Map
-  (gSovereignTestPoketchApp), and walks there: the map looks a roamer up only while the player walks (from the 5th
-  step on, CheckPositionsUpdated). Then each roamer still roaming must have its icon on the Pokétch at its route's
-  place (PoketchMap_GetPositionFromMapID), read from the sub screen's OAM over the icons' blink, and no other roamer
-  icon may show: not the one knocked out, not the one caught. A screenshot of both screens is saved
-  (marking_map.png).
+  (gSovereignTestPoketchApp), and walks there, each step moving the player a tile (drive.py's pos()): the map looks a
+  roamer up only while the player walks (from the 5th step on, CheckPositionsUpdated). Then each roamer still roaming
+  must have its icon on the Pokétch at its route's place (PoketchMap_GetPositionFromMapID), read from the sub screen's
+  OAM over the icons' blink, and no other roamer icon may show: not the one knocked out, not the one caught. A
+  screenshot of both screens is saved (marking_map.png).
 
 Needs what wild_forms.py needs. From the repo root:
     SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 tools/test/roamers.py \\
@@ -427,9 +427,14 @@ def main():
         if result != 'ok':
             say(f'marking map: the flight to {town} failed: {result} {frames}', True)
         else:
+            walked = 0
             for key in ['RIGHT'] * steps + ['LEFT'] * steps:
+                before = d.pos()
                 d.press(key, frames=16, after=8)
                 play_out(d, sym, FRAME_LIMIT, ids.index(town), press_a=False)  # the Repel running out: A uses another
+                walked += d.pos() != before
+            if walked < 2 * steps:
+                say(f'marking map: walked only {walked} of {2 * steps} steps', True)
             d.run(60)
             d.screenshot().save(os.path.join(out, 'marking_map.png'))
             roamers = read_roamers(d, sym)

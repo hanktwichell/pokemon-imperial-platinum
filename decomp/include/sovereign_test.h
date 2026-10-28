@@ -196,6 +196,16 @@ struct SovereignTestItemUse {
 // A var a harness watches: while var is set, the field writes its value down while it is free (field_system.c).
 #define SOVEREIGN_TEST_WATCHES 8
 
+// The battle's messages as they are printed (the message box's, trainer lines too): their characters one after another,
+// each message ending in CHAR_EOS, until the log is full (battle_system.c). A harness sets length to 0 to start over
+// (tools/test/battle_mechanics.py).
+#define SOVEREIGN_TEST_MESSAGE_LOG_CHARS 8192
+
+struct SovereignTestMessageLog {
+    u16 length;
+    u16 chars[SOVEREIGN_TEST_MESSAGE_LOG_CHARS];
+};
+
 struct SovereignTestWatch {
     u16 var;
     u16 value;
@@ -256,6 +266,27 @@ extern u8 gSovereignTestFoeSurvivesTurns;
 // The frames the field map has run with no task (no script, warp or battle), and the map it was on (field_system.c).
 extern u32 gSovereignTestIdleFrames;
 extern u32 gSovereignTestIdleMapHeaderID;
+extern struct SovereignTestMessageLog gSovereignTestMessageLog;
+// While a battle runs, where its Pokémon are (BattleContext's battleMons, NULL between battles), with the size of one and
+// the offsets a harness reads and pokes (BattleContext_New; tools/test/battle_mechanics.py).
+struct SovereignTestBattleMons {
+    void *mons;
+    u16 size;
+    u16 moves;
+    u16 statBoosts;
+    u16 types;
+    u16 ability;
+    u16 ppCur;
+    u16 friendship;
+    u16 curHP;
+    u16 maxHP;
+    u16 status;
+    u16 statusVolatile;
+    u16 heldItem;
+};
+extern struct SovereignTestBattleMons gSovereignTestBattleMons;
+// The player's tile (x, then z) on the field map, each frame the field map runs (field_system.c; drive.py's pos()).
+extern u16 gSovereignTestPlayerTile[2];
 // The party, written down when a harness asks (see struct SovereignTestParty), so it can check a gift.
 extern struct SovereignTestParty gSovereignTestParty;
 // When set, the next SELECT+L+R first leaves only this many Pokémon in the party (the first ones), to make room for

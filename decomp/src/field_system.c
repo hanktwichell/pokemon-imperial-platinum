@@ -33,6 +33,7 @@
 #include "map_matrix.h"
 #include "overlay_manager.h"
 #include "party.h"
+#include "player_avatar.h"
 #include "player_move.h"
 #include "pokedex_memory.h"
 #include "pokemon.h"
@@ -213,6 +214,7 @@ static void ExecuteAndCleanupIfDone(ApplicationManager **appManPtr)
 // battle) and the map it was on; test harnesses read them to tell when the player is free to move.
 u32 gSovereignTestIdleFrames;
 u32 gSovereignTestIdleMapHeaderID;
+u16 gSovereignTestPlayerTile[2];
 struct SovereignTestParty gSovereignTestParty;
 struct SovereignTestRoamer gSovereignTestRoamers[ROAMING_SLOT_MAX];
 struct SovereignTestWatch gSovereignTestWatch[SOVEREIGN_TEST_WATCHES];
@@ -264,6 +266,11 @@ static void SovereignTest_NoteRoamers(FieldSystem *fieldSystem)
 static BOOL HandleInputsEventsAndProcesses(FieldSystem *fieldSystem)
 {
 #ifdef SOVEREIGN_TEST
+    if (fieldSystem->runningFieldMap && fieldSystem->playerAvatar != NULL) {
+        gSovereignTestPlayerTile[0] = PlayerAvatar_GetXPos(fieldSystem->playerAvatar);
+        gSovereignTestPlayerTile[1] = PlayerAvatar_GetZPos(fieldSystem->playerAvatar);
+    }
+
     if (fieldSystem->runningFieldMap && FieldSystem_IsRunningTask(fieldSystem) == FALSE) {
         gSovereignTestIdleFrames++;
         gSovereignTestIdleMapHeaderID = fieldSystem->location->mapHeaderID;
