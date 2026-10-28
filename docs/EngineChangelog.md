@@ -3,6 +3,29 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Rare wild encounters tested; Carbink's stopgap removed
+
+For players:
+- **Carbink** outside Stark Mountain comes only from the map's own table now: tall grass, 5%, Lv. 67. Its rare wild
+  stopgap (CB-0045, an extra 5% once the Kalos Chronicle opened, Lv. 66–68) was there only until the planned wild
+  tables were ported. They have been (E10 part 1), with Carbink in that slot, so the stopgap's own note said to remove
+  it. Diancie still needs a Carbink in the party.
+
+The new test, `tools/test/rare_wild.py`:
+- It checks each rare wild entry (`data/sovereign_rare_wild.yaml`: the ten Ultra Beasts, 26 map entries) through the
+  real encounter code, with `wild_forms.py`'s survey (48 encounters, no battle).
+- The roll is fixed at the start of the entry's share (`gSovereignTestRareWildRoll`, test build only), so every
+  encounter lands on it.
+- **Gate met** (every Chronicle open, every species caught): every Pokémon made must be that Ultra Beast, at its level.
+- **Gate not met** (a new game): none may be.
+- In the test build, the gate's catch check counts `gSovereignTestCaughtAllBut` too.
+
+Verified (test build):
+- `rare_wild.py`: 26 of 26 entries, 52 surveys, all as above.
+- The first run, with Carbink still in, found that a new game already met Carbink outside Stark Mountain: the table
+  slot. That's what showed the stopgap was no longer needed.
+- Test and release builds pass.
+
 ## Field tests reach the post-game: every hidden object put on its map
 
 Nothing changes for players. The object test (`tools/test/talk_to_objects.py`) only ran on a new game, so about 110 of

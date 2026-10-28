@@ -88,7 +88,7 @@ Covers **90** species.
 - **Level:** 55
 - **Location:** Oreburgh Mine B2F (west nook)
 - **How:** Bring a Carbink to the mine's back wall.
-- **Built:** Diancie (CB-0041), level 55: in the nook by Oreburgh Mine B2F's west wall (2, 22) while the Kalos Chronicle is open and a Carbink is in the party, until it's caught. Carbink is wild outside Stark Mountain (5%, Lv. 66-68) from the Kalos Chronicle's opening, a stopgap in data/sovereign_rare_wild.yaml until the planned wild tables are ported (CB-0045; before it, no Carbink could be had). **Changed from the plan** (owner, 2026-10-23): the mine's lowest floor, B2F, in place of a new B3F room.
+- **Built:** Diancie (CB-0041), level 55: in the nook by Oreburgh Mine B2F's west wall (2, 22) while the Kalos Chronicle is open and a Carbink is in the party, until it's caught. Carbink is wild outside Stark Mountain (grass, 5%, Lv. 67), from the ported wild tables (E10 part 1), which replaced the rare wild stopgap of CB-0045 (removed in CB-0234). **Changed from the plan** (owner, 2026-10-23): the mine's lowest floor, B2F, in place of a new B3F room.
 
 ### Unbound Mischief
 - **Pokémon:** #720 Hoopa
