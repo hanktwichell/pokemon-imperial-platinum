@@ -15,7 +15,8 @@ struct SovereignTestWarpTarget {
 // Vars and flags the next test warp sets first, so a harness can mark a story scene as seen or a part of the story as
 // done. With no warp target set, the SELECT+L+R only sets them (a map's own local vars are cleared as the player comes
 // in, so they are set after).
-#define SOVEREIGN_TEST_VARS 4
+#define SOVEREIGN_TEST_VARS 16
+#define SOVEREIGN_TEST_PARTY_ADDS 3
 
 struct SovereignTestVar {
     u16 var; // when set: a var, or a flag (below VARS_START), which a value of 0 clears and any other sets
@@ -240,8 +241,11 @@ extern struct SovereignTestParty gSovereignTestParty;
 // When set, the next SELECT+L+R first leaves only this many Pokémon in the party (the first ones), to make room for
 // gifts.
 extern u8 gSovereignTestPartyKeep;
-// When species is set, the next SELECT+L+R first adds this Pokémon to the party (after gSovereignTestPartyKeep).
-extern struct SovereignTestPartyAdd gSovereignTestPartyAdd;
+// For each one whose species is set, the next SELECT+L+R first adds that Pokémon to the party (after
+// gSovereignTestPartyKeep).
+extern struct SovereignTestPartyAdd gSovereignTestPartyAdd[SOVEREIGN_TEST_PARTY_ADDS];
+// When set, the next SELECT+L+R first puts one of this item in the bag.
+extern u16 gSovereignTestBagItem;
 // When set, the next SELECT+L+R first gives the player these badges (bit 0 the Coal Badge... bit 7 the Beacon Badge).
 extern u8 gSovereignTestBadges;
 // The menus scripts have shown, and the last one's kind (see struct SovereignTestMenu).
@@ -251,6 +255,9 @@ extern struct SovereignTestMenu gSovereignTestMenu;
 extern struct SovereignTestScripts gSovereignTestScripts;
 // The trainer battles started, and how each ended (see struct SovereignTestTrainerBattles).
 extern struct SovereignTestTrainerBattles gSovereignTestTrainerBattles;
+// When set, scripts count every species but this one as caught (SovereignCheckSpeciesCaught), so a legendary whose
+// static encounter waits on others being caught (and on its own not being caught) is on its map.
+extern u16 gSovereignTestCaughtAllBut;
 #endif
 
 #endif // POKEPLATINUM_SOVEREIGN_TEST_H

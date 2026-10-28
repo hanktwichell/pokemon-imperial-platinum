@@ -19,7 +19,9 @@ that it ran.
 
 Needs what talk_to_objects.py needs. From the repo root:
     SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 tools/test/signs_and_triggers.py \\
-        decomp/build_test/pokeplatinum.us.nds STATE OUT_DIR [--part I/N] [EVENTS ...]
+        decomp/build_test/pokeplatinum.us.nds STATE OUT_DIR [--part I/N] [--postgame | --chronicles] [EVENTS ...]
+--postgame and --chronicles work as in talk_to_objects.py: all eight Badges and the Hall of Fame on the way in, and with
+--chronicles every Chronicle open too.
 """
 import json
 import os
