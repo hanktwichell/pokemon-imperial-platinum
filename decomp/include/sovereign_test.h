@@ -263,8 +263,9 @@ extern u8 gSovereignTestGodMode;
 // In god mode, a foe loses no HP in the battle's first this many turns, so the form changes at the end of a turn have one
 // to happen in, and it gets to use its move (BtlCmd_UpdateHealthBarValue).
 extern u8 gSovereignTestFoeSurvivesTurns;
-// When set, every battle's random numbers start from this seed instead of one from the clock, so a battle plays the same
-// on every run (FieldBattleDTO_New; tools/test/battle_mechanics.py).
+// When set, every battle's random numbers start from this seed instead of one from the clock, and a test battle first
+// makes the party again from it (field_control.c), so a battle plays the same on every run and from any save state
+// (FieldBattleDTO_New; tools/test/battle_mechanics.py).
 extern u32 gSovereignTestBattleSeed;
 // The frames the field map has run with no task (no script, warp or battle), and the map it was on (field_system.c).
 extern u32 gSovereignTestIdleFrames;
