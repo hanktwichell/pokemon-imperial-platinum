@@ -120,11 +120,13 @@ Checked in the test build (2026-10-28):
   The lowest free space: the dress-up's heap 69,268 bytes (48,792 on the 80×80 build), the dance's 84,432 (18,968),
   the acting's 141,216 (169,980).
 - A wild battle: the battle heap 315,060 bytes free at the lowest (342,620).
+- The egg hatch scene (the Trainers' School Egg, an Elekid): the hatched Pokémon's 96×96 front whole, the scene's heap
+  46,772 bytes free at the lowest (63,160).
 
 Show the middle 80×80 of a 96×96 front (the old 2D functions; safe, art past it is cut): the script's Pokémon preview
 window (an 80×80 frame; Mom's Eevee checked), the GTS listing, the Union Room trade card, the Mystery Gift card, the
 Great Marsh binoculars, Rowan's intro, `ov64`.
 
-Still to check: the PC's Hall of Fame records, the Battle Frontier's scene sprites, the egg hatch scene, the
-Pokédex's size comparison, and the heaps of the other screens with a sprite manager (starter choice, capsule
-menu, poffin cutscene, battle videos).
+Still to check: the PC's Hall of Fame records, the Battle Frontier's scene sprites, the Pokédex's size comparison,
+and the heaps of the other screens with a sprite manager (starter choice, capsule menu, poffin cutscene, battle
+videos).
