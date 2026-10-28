@@ -6,6 +6,7 @@
 #include "font.h"
 #include "gx_layers.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "software_sprite.h"
 #include "sprite_transfer.h"
 #include "sys_task.h"
@@ -686,7 +687,7 @@ static void NewPokemonSprite(PokedexGraphicData *pokedexGraphicData, enum HeapID
 {
     pokedexGraphicData->spriteMan = PokemonSpriteManager_New(heapID);
 
-    NNSGfdTexKey texKey = NNS_GfdAllocTexVram(0x8000, 0, 0);
+    NNSGfdTexKey texKey = NNS_GfdAllocTexVram(POKEMON_SPRITE_TEX_VRAM_SIZE, 0, 0);
     NNSGfdPlttKey plttKey = NNS_GfdAllocPlttVram(0x80, 0, NNS_GFD_ALLOC_FROM_LOW);
 
     PokemonSpriteManager_SetCharBaseAddrAndSize(pokedexGraphicData->spriteMan, NNS_GfdGetTexKeyAddr(texKey), NNS_GfdGetTexKeySize(texKey));

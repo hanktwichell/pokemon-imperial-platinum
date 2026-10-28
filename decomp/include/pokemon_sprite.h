@@ -11,6 +11,11 @@
 
 #define MAX_MON_SPRITES 4
 
+// Sovereign (docs/FrontSprites96.md): the texture VRAM a PokemonSpriteManager's sprites take (each sprite a 96x96 slot
+// per frame, four of them), and what its first slot alone takes (with the shadows), for a screen showing one sprite.
+#define POKEMON_SPRITE_TEX_VRAM_SIZE      0xC000
+#define POKEMON_SPRITE_ONE_SLOT_VRAM_SIZE 0x3000
+
 typedef struct PokemonSprite PokemonSprite;
 typedef struct PokemonSpriteTransforms PokemonSpriteTransforms;
 
@@ -175,6 +180,7 @@ void PokemonSprite_DrawSpindaSpots(u8 *rawCharData, u32 personality, BOOL isAnim
 void PokemonSprite_DecryptPt(u8 *rawCharData);
 void PokemonSprite_DecryptDP(u8 *rawCharData);
 void PokemonSprite_Decrypt(u8 *rawCharData, enum NarcID narcID);
+void PokemonSprite_DecryptSized(u8 *rawCharData, enum NarcID narcID, u32 sizeBytes);
 
 inline void PokemonSpriteManager_HideShadows(PokemonSpriteManager *monSpriteMan)
 {

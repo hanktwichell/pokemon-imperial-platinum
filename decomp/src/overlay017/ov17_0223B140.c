@@ -522,7 +522,7 @@ static void ov17_0223B884(void)
     NNSGfdPlttKey v1;
     u32 v2, v3;
 
-    v0 = NNS_GfdAllocTexVram(0x2000 * 4, 0, 0);
+    v0 = NNS_GfdAllocTexVram(POKEMON_SPRITE_TEX_VRAM_SIZE, 0, 0);
     v1 = NNS_GfdAllocPlttVram(0x20 * 4, 0, 0);
 
     GF_ASSERT(v0 != NNS_GFD_ALLOC_ERROR_TEXKEY);

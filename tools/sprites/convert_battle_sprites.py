@@ -116,8 +116,8 @@ def paired_palettes(pairs):
         centers = [tuple(v & 0xF8 for v in c) for c in centers]
     slot = {k: 1 + min(range(len(centers)), key=lambda i: dist(k, centers[i])) for k in counts}
     indexed = []
-    for keys in keyed:
-        out = Image.new("P", (80, 80), 0)
+    for (normal, _), keys in zip(pairs, keyed):
+        out = Image.new("P", normal.size, 0)
         out.putdata([0 if k is None else slot[k] for k in keys])
         indexed.append(out)
     pal = [c[:3] for c in centers] + [(0, 0, 0)] * (15 - len(centers))
@@ -133,9 +133,10 @@ def write_pal(path, transparent, pal):
 
 
 def two_frames(indexed, pal):
-    out = Image.new("P", (160, 80), 0)
+    """The sprite's two frames (the same picture twice) side by side: 160x80, or 192x96 for a 96x96 front."""
+    out = Image.new("P", (indexed.width * 2, indexed.height), 0)
     out.paste(indexed, (0, 0))
-    out.paste(indexed, (80, 0))
+    out.paste(indexed, (indexed.width, 0))
     # The game unscrambles a battle sprite with a key read from its first four pixels (PokemonSprite_DecryptPt), so
     # they must stay transparent or the sprite comes out as noise (Samurott's horn tip, Talonflame's wing tip).
     for x in range(4):

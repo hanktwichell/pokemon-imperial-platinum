@@ -25,6 +25,7 @@
 #include "narc.h"
 #include "overlay_manager.h"
 #include "particle_system.h"
+#include "pokemon_sprite.h"
 #include "render_oam.h"
 #include "screen_fade.h"
 #include "sound.h"
@@ -799,7 +800,7 @@ static void ov77_021D2A58(UnkStruct_ov77_021D2E9C *param0)
 
     param0->unk_10 = G3DPipeline_Init(param0->heapID, TEXTURE_VRAM_SIZE_128K, PALETTE_VRAM_SIZE_64K, ov77_021D2AA0);
 
-    v0 = NNS_GfdAllocTexVram(0x2000 * 4, 0, 0);
+    v0 = NNS_GfdAllocTexVram(POKEMON_SPRITE_TEX_VRAM_SIZE, 0, 0);
     v1 = NNS_GfdAllocPlttVram(0x20 * 4, 0, NNS_GFD_ALLOC_FROM_LOW);
     v2 = NNS_GfdGetTexKeyAddr(v0);
     v3 = NNS_GfdGetPlttKeyAddr(v1);

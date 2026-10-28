@@ -86,7 +86,7 @@ void ov22_022550D4(UnkStruct_ov22_0225A0E4 *param0)
     param0->unk_5C = NARC_ctor(NARC_INDEX_GRAPHIC__IMAGECLIP, HEAP_ID_14);
 
     ov22_02255748(param0, &v0);
-    ov22_02255C24(param0, HEAP_ID_14, 0x2800, 0x20);
+    ov22_02255C24(param0, HEAP_ID_14, POKEMON_SPRITE_ONE_SLOT_VRAM_SIZE, 0x20);
     ov22_022559B4(param0);
     ov22_02255BF4(param0, HEAP_ID_13);
     ov22_022559F8(param0);
@@ -290,7 +290,7 @@ int ov22_02255420(NNSG2dCharacterData *param0, int param1, int param2, int param
 void ov22_0225547C(UnkStruct_ov22_0225A0E4 *param0, const SoftwareSpriteManagerTemplate *param1, enum HeapID heapID)
 {
     ov22_02255748(param0, param1);
-    ov22_02255C24(param0, heapID, 0x2800, 0x20);
+    ov22_02255C24(param0, heapID, POKEMON_SPRITE_ONE_SLOT_VRAM_SIZE, 0x20);
     PokemonSpriteManager_SetExcludeIdentity(param0->unk_20, 1);
     ov22_02255BF4(param0, heapID);
 }

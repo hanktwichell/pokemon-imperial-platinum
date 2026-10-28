@@ -1466,7 +1466,7 @@ static void FreeG3DPipelineBuffers(G3DPipelineBuffers *pipelineBuffers)
 
 static void BattleMain_InitParticleSystem(void)
 {
-    NNSGfdTexKey texKey = NNS_GfdAllocTexVram(0x2000 * 4, 0, 0);
+    NNSGfdTexKey texKey = NNS_GfdAllocTexVram(POKEMON_SPRITE_TEX_VRAM_SIZE, 0, 0);
     NNSGfdPlttKey plttKey = NNS_GfdAllocPlttVram(0x20 * (4 + 2), 0, 0);
 
     GF_ASSERT(texKey != NNS_GFD_ALLOC_ERROR_TEXKEY);
