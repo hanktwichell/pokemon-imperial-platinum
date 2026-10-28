@@ -9545,3 +9545,35 @@ of Fame) is merged. This one adds the last untested roamer path to `roamers.py`:
 2. Waiting on the owner: whether Oak gives something at his visit (`Story.md`), T1 (boss teams), T2 (the developer
    battle and Henry's text), the art (E12).
 3. `drive.py`'s `pos()` could read the player's position from the field instead of fixed addresses, for later tests.
+
+## CB-0240 (Claude B, 12:10 am US Central, 2026-10-28)
+
+**In progress (branch `claude/sweet-wright-rk4wl1`, no PR yet):** PR #256 (CB-0239, the Marking Map check) is merged.
+- **Sludge Wave's animation** is now Surf's in purple (the owner's idea, `EngineRoadmap.md` row 11): Surf's wave sprite
+  with its own palette (`sludge_wave.pal`, as Muddy Water does in brown), the scrolling water blended toward purple,
+  Sludge Bomb's splash and a purple tint on the targets. Checked in battle frame by frame next to Surf.
+- **Test-build hooks:** `gSovereignTestPlayerTile` (`drive.py`'s `pos()` works again; `roamers.py` now checks every
+  Marking Map step moves the player), `gSovereignTestMessageLog` (every battle message, as printed),
+  `gSovereignTestBattleMons` (the battle's Pokémon and the field offsets a harness pokes) and
+  `gSovereignTestBattleSeed` (a fixed battle seed: the game seeds each battle from the clock, so test battles varied
+  from run to run).
+- **`tools/test/battle_mechanics.py`:** a regression suite from the ~100 one-off battle checks made since item 11
+  (526 cases after merging repeats, `battle_mechanics_cases.py`). Each case's end, messages and HP are compared with
+  the recorded ones (`battle_mechanics_expected.json`). The first recording is running.
+- **All-trainers regression** (the Burn Up build, before these changes): 1038 of 1039 ok. TRAINER_SOVEREIGN_TEST ran
+  out of frames (18,400) in the parallel run; alone it ended in 10,980 (earlier runs: 10,780 to 15,800). Its Lv. 100
+  doubles battle varies with the clock-seeded RNG; not a regression.
+
+**Files modified so far:** `decomp/res/moves/sludge_wave/anim.s`, `decomp/res/graphics/battle/moves/` (`sludge_wave.pal`,
+`anim_nclr.order`, `meson.build`), `decomp/include/sovereign_test.h`, `decomp/src/field_system.c`,
+`decomp/src/battle/battle_system.c`, `decomp/src/battle/battle_controller_player.c`,
+`decomp/src/field_battle_data_transfer.c`, `decomp/src/script_manager.c`, `tools/test/drive.py`,
+`tools/test/roamers.py`, `tools/test/battle_mechanics.py`, `tools/test/battle_mechanics_cases.py`,
+`tools/test/README.md`, `docs/MoveChecklist.md`, `docs/EngineRoadmap.md`
+
+**Next 3 steps:**
+1. Finish the suite's recording, read the recorded battles against what each batch checked, run it a second time
+   (all must pass), then `battle_all_species.py` and `roamers.py` on this build; PR.
+2. Waiting on the owner: whether Oak gives something at his visit (`Story.md`), T1, T2, the art (E12).
+3. The suite leaves out the 11 checks that switch Pokémon through the party menu (Emergency Exit after hazards,
+   Healing Wish, Run Away); they need the menu driving of their own scripts.
