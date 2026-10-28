@@ -9483,3 +9483,33 @@ one does two things.
 2. Waiting on the owner: T1 (boss teams), T2 (the developer battle and Henry's text), the art (E12).
 3. Run the other harnesses (trainers, species, gifts, Elite Four) again on the next build that changes battle code;
    the Pokétch's Marking Map with all 8 roamers is still untested.
+
+## CB-0238 (Claude B, 9:55 pm US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #254 (CB-0237, Burn Up/Double Shock and the
+roamer catch) is merged. This one moves Oak's visit to the first Hall of Fame (owner, 2026-10-27: "Trigger this stuff
+on first hall of fame").
+- Mom, the first time the player wakes after the Hall of Fame (after the elder and the rival news): "Oh, and Professor
+  Rowan called. He'd like you to stop by his lab in Sandgem Town."
+- Rowan, talked to after the Hall of Fame: a new line about the Hall of Fame, then Oak's scene (CB-0231's text), with
+  "This youngster has just become Sinnoh's new Champion" in place of the Sinnoh Pokédex line.
+- A complete Sinnoh Pokédex no longer brings Oak. Rowan's rating for it no longer asks the player to come to his lab.
+- The Regional Forms Park already opened at the first Hall of Fame, so it opens with the scene's timing as asked.
+- `FLAG_SOVEREIGN_SHOWED_ROWAN_SINNOH_DEX` is renamed `FLAG_SOVEREIGN_OAK_VISITED`. The dead branches (Platinum's
+  complete-dex Yes/No, the Poké Radar every player already has) are removed.
+- Checked in the test build: the scene after the Hall of Fame, no Oak before it, Mom's line, and
+  `talk_to_objects.py --postgame` on both maps. Test and release builds pass.
+- Still open in `Story.md`: should Oak give the player something? He gives nothing for now.
+
+**Files modified:**
+- `decomp/res/field/scripts/scripts_sandgem_town_pokemon_research_lab.s`,
+  `decomp/res/field/scripts/scripts_twinleaf_town_player_house_1f.s`, `decomp/generated/vars_flags.txt`
+- `decomp/res/text/sandgem_town_pokemon_research_lab.json`, `decomp/res/text/twinleaf_town_player_house_1f.json`,
+  `decomp/res/text/pokedex_ratings.json`
+- `docs/Story.md`, `docs/ProjectStatus.md` (decision 21, the open list), `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. The owner: should Oak give something at the visit (`Story.md`, call 3)? T1 (boss teams), T2 (the developer battle
+   and Henry's text) and the art (E12) also wait on the owner.
+2. Run the other harnesses (trainers, species, gifts, Elite Four) again on the next build that changes battle code.
+3. The Pokétch's Marking Map with all 8 roamers is still untested.

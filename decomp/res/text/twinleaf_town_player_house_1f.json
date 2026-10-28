@@ -495,6 +495,15 @@
         "Do you want to give a nickname to\n",
         "this EEVEE?"
       ]
+    },
+    {
+      "id": "TwinleafTownPlayerHouse1F_Text_SovereignRowanCalled",
+      "en_US": [
+        "Mom: Oh, and Professor Rowan called.\n",
+        "He’d like you to stop by his lab\f",
+        "in Sandgem Town.\r",
+        "It sounded important, dear!"
+      ]
     }
   ]
 }

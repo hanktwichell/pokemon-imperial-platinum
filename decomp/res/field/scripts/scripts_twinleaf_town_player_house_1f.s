@@ -99,6 +99,7 @@ TwinleafTownPlayerHouse1F_DoMomPostgameSequence:
     CallIfEq VAR_RESULT, TRUE, TwinleafTownPlayerHouse1F_RivalCameLookingForYou
     CallIfEq VAR_RESULT, FALSE, TwinleafTownPlayerHouse1F_IsYourProjectComingAlong
     WaitButton
+    CallIfUnset FLAG_SOVEREIGN_OAK_VISITED, TwinleafTownPlayerHouse1F_SovereignRowanCalled
     CloseMessage
 TwinleafTownPlayerHouse1F_PostgameRelease:
     ReleaseAll
@@ -129,6 +130,13 @@ TwinleafTownPlayerHouse1F_SovereignElderVisit:
 TwinleafTownPlayerHouse1F_SovereignElder:
     NPCMessage TwinleafTownPlayerHouse1F_Text_SovereignElderGoodbye
     End
+
+@ Sovereign (Story.md; the owner, 2026-10-27): after the first Hall of Fame, Rowan has asked to see the player, and
+@ Oak's visit plays when they talk to him (SandgemTownLab_SovereignHallOfFame).
+TwinleafTownPlayerHouse1F_SovereignRowanCalled:
+    Message TwinleafTownPlayerHouse1F_Text_SovereignRowanCalled
+    WaitButton
+    Return
 
     .balign 4, 0
 TwinleafTownPlayerHouse1F_Movement_SovereignElderApproach:

@@ -213,17 +213,27 @@ to complete the National Pokédex", and both Pal Park lines. Rowan still gives t
 
 **Built (CB-0231):** the scene now plays this draft (`EngineChangelog.md`).
 - Oak keeps Platinum's longer greeting to the player before the new lines.
-- Until the owner decides the three calls below, the game keeps what it does now: the trigger is a complete Sinnoh
-  Pokédex, the park opens after the Hall of Fame, and Oak gives nothing. Oak's lines fit that: he says where the park
-  is, not that it's open.
+- **The trigger is the first Hall of Fame** (owner, 2026-10-27: "Trigger this stuff on first hall of fame"; built in
+  CB-0238). The park opens then too, as it already did.
+  - The first time the player wakes at home after the Hall of Fame, after the Celestic elder and Mom's word about the
+    rival, Mom adds: **"Oh, and Professor Rowan called. He'd like you to stop by his lab in Sandgem Town. It sounded
+    important, dear!"**
+  - In the lab, Rowan opens with **"Ah, {PLAYER}! Word came to me from the Pokémon League. You've entered the Hall of
+    Fame! Splendid work. I knew you had it in you."** Oak then walks in as before.
+  - Rowan introduces the player as **"This youngster has just become Sinnoh's new Champion."** (in place of "has
+    filled every page of the Sinnoh Pokédex for me").
+  - A complete Sinnoh Pokédex no longer brings Oak. Rowan's rating for it ends **"{PLAYER}, this will help my studies
+    immensely!"** in place of "I need to see you at my lab. I'll be waiting!".
+  - The Poké Radar gift that followed Oak is gone: Rowan gives it in Sandgem Town at the start (E10).
+- Oak still gives nothing (call 3 below is open).
 - With it:
   - Oak's PC rating at 410 caught asks about the Regional Forms Park;
   - the TV commercial advertises the park once it opens;
   - the map's name reads "Regional Forms Park".
 
-**Engineering:** the scene's check changes from "National Dex off" to a new "Oak's visit seen" flag. The Fight Area
-blockade it lifts and the `FLAG_GAME_COMPLETED` step stay. If the Regional Forms Park opens with this scene, it
-sets that flag too.
+**Engineering:** the scene's check changes from "National Dex off" to its own flag, `FLAG_SOVEREIGN_OAK_VISITED`
+(named `FLAG_SOVEREIGN_SHOWED_ROWAN_SINNOH_DEX` until CB-0238), and it plays when `FLAG_GAME_COMPLETED` is set. The
+Fight Area blockade it lifts stays (the Fight Area's own scene lifts it first, as the National Dex is always on).
 
 **Route 221 text:**
 - "Pal Park isn't open yet. We're still setting up." → **"The park isn't open yet. We're still setting up."**
@@ -245,9 +255,9 @@ on. Pal Park's lobby and the GBA Migrate text go with Pal Park (decision 22); th
 advertises the Regional Forms Park (CB-0231).
 
 Owner's call:
-1. Keep the trigger at a complete Sinnoh Pokédex, or move it (e.g. the first Hall of Fame)?
-2. Should the park open with this scene, or earlier or later? This also settles the open Regional Forms Park question.
-3. Since there's no upgrade any more, should Oak give the player something?
+1. ~~Keep the trigger at a complete Sinnoh Pokédex, or move it?~~ The first Hall of Fame (owner, 2026-10-27).
+2. ~~Should the park open with this scene, or earlier or later?~~ At the first Hall of Fame too (owner, 2026-10-27).
+3. Since there's no upgrade any more, should Oak give the player something? (Open; he gives nothing for now.)
 
 ## Engineering notes
 

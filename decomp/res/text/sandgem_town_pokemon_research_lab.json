@@ -689,6 +689,26 @@
         "Do you want to give a nickname to\n",
         "this Piplup?"
       ]
+    },
+    {
+      "id": "SandgemTownLab_Text_SovereignHallOfFame",
+      "en_US": [
+        "Rowan: Ah, {STRVAR_1 3, 0, 0}!\r",
+        "Word came to me from the Pokémon\n",
+        "League. You’ve entered the Hall\f",
+        "of Fame!\r",
+        "Splendid work. I knew you had it\n",
+        "in you.\r"
+      ]
+    },
+    {
+      "id": "SandgemTownLab_Text_SovereignIntroduceTheChampion",
+      "en_US": [
+        "Professor Oak, let me introduce you\n",
+        "to my young assistant.\r",
+        "This youngster has just become\n",
+        "Sinnoh’s new Champion.\r"
+      ]
     }
   ]
 }

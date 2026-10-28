@@ -51,12 +51,11 @@ SandgemTownLab_IncreaseExitedDistortionWorldState:
     Return
 
 SandgemTownLab_ProfRowanReactToPokedex:
-    // Sovereign (decision 21): the National Dex comes with the Pokédex, so the event for a complete Sinnoh dex
-    // (Oak's visit and the Poké Radar) has its own flag.
-    GoToIfSet FLAG_SOVEREIGN_SHOWED_ROWAN_SINNOH_DEX, SandgemTownLab_ManyMorePokemon
-    GoToIfUnset FLAG_FIRST_ARRIVAL_ETERNA_CITY, SandgemTownLab_CheckShouldRatePokedex
-    CheckLocalDexCompleted VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, SandgemTownLab_ShowCompleteLocalDex
+    // Sovereign (decision 21; the owner, 2026-10-27): the National Dex comes with the Pokédex, so Oak's visit has its
+    // own flag, and it plays the first time the player talks to Rowan after the first Hall of Fame (Platinum: on
+    // showing him a complete Sinnoh Pokédex). Mom sends the player here (TwinleafTownPlayerHouse1F_SovereignRowanCalled).
+    GoToIfSet FLAG_SOVEREIGN_OAK_VISITED, SandgemTownLab_ManyMorePokemon
+    GoToIfSet FLAG_GAME_COMPLETED, SandgemTownLab_SovereignHallOfFame
 SandgemTownLab_CheckShouldRatePokedex:
     GoToIfGe VAR_SANDGEM_TOWN_STATE, 2, SandgemTownLab_CheckPokedexRatings
     BufferPlayerName 0
@@ -477,39 +476,9 @@ SandgemTownLab_Refrigerator:
     EventMessage SandgemTownLab_Text_FilledWithTastySweets
     End
 
-SandgemTownLab_ShowCompleteLocalDex:
-    GoToIfSet FLAG_SHOWN_COMPLETE_LOCAL_DEX, SandgemTownLab_MetEverySinnohPokemon
-    GoTo SandgemTownLab_YouveComeToShowProgress
-    End
-
-SandgemTownLab_MetEverySinnohPokemon:
+SandgemTownLab_SovereignHallOfFame:
     BufferPlayerName 0
-    Message SandgemTownLab_Text_MetEverySinnohPokemon
-    CloseMessage
-    GoTo SandgemTownLab_EnableNationalDex
-    End
-
-SandgemTownLab_YouveComeToShowProgress:
-    BufferPlayerName 0
-    Message SandgemTownLab_Text_YouveComeToShowProgress
-    ShowYesNoMenu VAR_RESULT
-    GoToIfEq VAR_RESULT, MENU_NO, SandgemTownLab_WhatsWrong
-    GoTo SandgemTownLab_SoYouveSeenAllPokemon
-    End
-
-SandgemTownLab_WhatsWrong:
-    Message SandgemTownLab_Text_WhatsWrong
-    WaitButton
-    CloseMessage
-    ReleaseAll
-    End
-
-SandgemTownLab_SoYouveSeenAllPokemon:
-    GetLocalDexSeenCount VAR_RESULT
-    BufferNumber 0, VAR_RESULT
-    Message SandgemTownLab_Text_SoYouveSeenXPokemon
-    BufferPlayerName 0
-    Message SandgemTownLab_Text_ExcellentWork
+    Message SandgemTownLab_Text_SovereignHallOfFame
     CloseMessage
     GoTo SandgemTownLab_EnableNationalDex
     End
@@ -532,7 +501,7 @@ SandgemTownLab_EnableNationalDex:
     ApplyMovement LOCALID_PROF_ROWAN, SandgemTownLab_Movement_ProfRowanTurnOnSpot
     WaitMovement
     WaitTime 15, VAR_RESULT
-    Message SandgemTownLab_Text_IntroduceYouToMyAssistant
+    Message SandgemTownLab_Text_SovereignIntroduceTheChampion
     CloseMessage
     ApplyMovement LOCALID_PROF_OAK, SandgemTownLab_Movement_ProfOakWalkToPlayer
     ApplyMovement LOCALID_PLAYER, SandgemTownLab_Movement_PlayerFaceProfOak
@@ -544,7 +513,7 @@ SandgemTownLab_EnableNationalDex:
     Message SandgemTownLab_Text_SovereignOakYouAlreadyCarryNationalDex
     CallIfSet FLAG_GAME_COMPLETED, SandgemTownLab_GameCompletedReturn
     CallIfGe VAR_FIGHT_AREA_STATE, 2, SandgemTownLab_HideFightAreaBlockade
-    SetFlag FLAG_SOVEREIGN_SHOWED_ROWAN_SINNOH_DEX
+    SetFlag FLAG_SOVEREIGN_OAK_VISITED
     SetNationalDexEnabled
     Message SandgemTownLab_Text_SovereignRowanRightToWorry
     Message SandgemTownLab_Text_SovereignOakOddOnesGatherOnRoute221
@@ -557,23 +526,7 @@ SandgemTownLab_EnableNationalDex:
     Message SandgemTownLab_Text_OffHeGoes
     CloseMessage
     WaitTime 15, VAR_RESULT
-    // Sovereign (E10): the player has had the Poké Radar since Rowan gave it in Sandgem Town.
-    CheckItem ITEM_POKE_RADAR, 1, VAR_RESULT
-    GoToIfEq VAR_RESULT, TRUE, SandgemTownLab_SovereignAlreadyHasPokeRadar
-    ApplyMovement LOCALID_PLAYER, SandgemTownLab_Movement_PlayerWalkBackToProfRowan
-    WaitMovement
-    BufferPlayerName 0
-    Message SandgemTownLab_Text_GiftForCompletingSinnohPokedex
-    SetVar VAR_0x8004, ITEM_POKE_RADAR
-    SetVar VAR_0x8005, 1
-    Common_GiveItemQuantity
-    Message SandgemTownLab_Text_ThatsThePokemonRadar
-    WaitButton
-    CloseMessage
-    ReleaseAll
-    End
-
-SandgemTownLab_SovereignAlreadyHasPokeRadar:
+    // Sovereign (E10): no Poké Radar here. Rowan gives it in Sandgem Town at the start.
     ReleaseAll
     End
 
@@ -668,12 +621,6 @@ SandgemTownLab_Movement_PlayerMoveAwayForProfOak:
 SandgemTownLab_Movement_PlayerFaceProfOak:
     Delay8
     WalkOnSpotNormalSouth
-    EndMovement
-
-    .balign 4, 0
-SandgemTownLab_Movement_PlayerWalkBackToProfRowan:
-    WalkNormalEast
-    WalkOnSpotNormalNorth
     EndMovement
 
     .balign 4, 0
