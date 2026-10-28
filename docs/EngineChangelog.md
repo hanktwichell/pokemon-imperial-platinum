@@ -40,7 +40,8 @@ For testing:
   that had gone stale; `roamers.py` counts the Marking Map walk's steps with it.
 - `roamers.py`'s catch throws the Master Ball once the battle's message log shows "What will ... do?", in place of
   after a fixed 900 frames: in the rain on Route 215 the battle's intro ran past 1,000 frames, the touches came too
-  early, and the roamer fled uncaught.
+  early, and the roamer fled uncaught. The first flight after the walk checks the roamers against the route the walk
+  ended on (it used the last route flown to, and called a roamer that moved there wrong).
 
 Verified (test build):
 - Sludge Wave in battle (purple wave, background and splashes); the Mega and Primal backs normal and shiny in battle

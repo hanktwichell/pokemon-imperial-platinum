@@ -352,6 +352,7 @@ def main():
                         say(f'walking: crossing {crossing + 1} from {where(here)}: {name(slot)} went from '
                             f'{where(before[slot][0])} to {where(roamers[slot][0])}', True)
                 here, there, ahead = there, here, (-ahead[0], -ahead[1])
+            flight['left'] = here  # the next flight leaves the route the walk ended on
             total = nearby_moves + random_moves
             share = random_moves / total if total else 0
             say(f'walking: {crossing + 1} crossings, {total} moves: {nearby_moves} to a route nearby, {random_moves} '
