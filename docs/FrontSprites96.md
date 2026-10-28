@@ -130,7 +130,8 @@ Checked in the test build (2026-10-28):
   drawn over that border, by up to 8 pixels (Ho-Oh's wings and tail). That is 420 of the 2,402 96×96 front images
   (32 of the 541 for #1–493 and their forms: Lugia, Kyogre, Ho-Oh, Zapdos, Tentacruel...; and many of #494+: Zekrom,
   Yveltal, Xerneas).
-  **Open question for the owner:** keep the art whole over the frame's border (as now), or clip it to the frame
+  The PC boxes' Pokémon panel is the same kind of frame (Garchomp, Turtwig and Starly checked, inside it).
+  **Open question for the owner:** keep the art whole over these frames' borders (as now), or clip it to the frame
   (`PokemonSprite_SetPartialDraw`, the art past the middle 80×80 cut, like the 2D screens below)?
 
 Show the middle 80×80 of a 96×96 front (the old 2D functions; safe, art past it is cut): the script's Pokémon preview
