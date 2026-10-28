@@ -46,7 +46,7 @@ Verified (test build), with each screen's heap against the 80×80 build:
 For players:
 - **Sludge Wave** has an animation of its own (it used Surf's). It's Surf's wave in a deep purple with Sludge Wave's
   own background, then Sludge Bomb's splashes on each target while the screen glows purple (the owner's idea,
-  `EngineRoadmap.md` row 11).
+  `EngineRoadmap.md` row 11). `tools/engine/gen_moves.py` leaves its hand-written `anim.s` alone (`HANDWRITTEN_ANIMS`).
 - **41 Mega Evolutions and both Primal Reversions** have back sprites of their own, normal and shiny, from the
   owner's "DPPt Style Gen VI and Beyond" pack (`tools/sprites/convert_form_backs.py`). The pack draws DS sprites at
   twice size; each 2×2 block becomes one pixel of its most common colour. Each back sits by its own y offset. Mega
