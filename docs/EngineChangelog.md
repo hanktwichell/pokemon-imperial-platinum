@@ -3,6 +3,28 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Roamer battles tested
+
+Nothing changes for players. The roamer test (`tools/test/roamers.py`) now also battles each of the eight roamers once,
+for real:
+- the battle starts as a step in the grass would start it, and plays out with god mode on (a foe hit loses all its HP);
+- a roamer flees on its first turn in speed order, as in Platinum (where a faster lead can trap one first), so the
+  roamers faster than the test party's lead flee, and Glastrier, slower, is knocked out first;
+- afterwards, each must be where its outcome puts it:
+  - **fled:** still roaming, with the HP it had, its state var still "roaming";
+  - **knocked out:** no longer roaming, its state var "defeated" (the next Hall of Fame resets it, and the Legend
+    Archivist then releases it again);
+  - either way, every roamer that was on the map has left it.
+
+Test-build hooks for it (`include/sovereign_test.h`):
+- `SOVEREIGN_TEST_SURVEY_ROAMERS_BATTLE`: the survey battles the first roamer it meets, through `Encounter_NewVsWild`.
+- `gSovereignTestWatch`: vars the field writes down for a harness (here each roamer's state var).
+
+Verified (test build):
+- `roamers.py`: everything as before (149 flights, 36 surveys with roamers, 40 crossings), and 8 of 8 roamers battled:
+  7 fled, Glastrier knocked out, each as above. No problems.
+- Test and release builds pass.
+
 ## Roaming legendaries tested
 
 Nothing changes for players. The scripts release eight roamers (the Legend Archivist's Zeraora, Tornadus, Thundurus,

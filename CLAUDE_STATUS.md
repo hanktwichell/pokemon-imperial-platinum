@@ -9406,3 +9406,37 @@ Calyrex's steeds. No test had followed them, as the wild survey skipped roamers.
 2. A roamer battle has no test: after a battle, a roamer that was caught or fainted should stop roaming, and one that
    fled should keep its HP (`roamer_after_battle.c`). The Pokétch's Marking Map should show all 8 too.
 3. Run the other harnesses (trainers, species, gifts, Elite Four) again on the next build that changes battle code.
+
+## CB-0236 (Claude B, 8:45 pm US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #252 (CB-0235, the roamer test) is merged.
+This one adds real battles to it: each of the eight roamers is battled once.
+- **How:** with `SOVEREIGN_TEST_SURVEY_ROAMERS_BATTLE`, the survey battles the first roamer it meets through
+  `Encounter_NewVsWild`, as a step in the grass would. God mode is on.
+- **What it found:** a roamer flees on its first turn in speed order, as in Platinum. So the seven faster than the test
+  party's lead (Garchomp) flee, and Glastrier (Speed 30) is knocked out first. That is the game's own rule, not a bug,
+  and it covers both outcomes.
+- **Checks after the battle:**
+  - fled: still roaming, same HP, state var "roaming";
+  - knocked out: not roaming, state var "defeated";
+  - every roamer that was on the map has left it.
+  The state vars are read through a new hook, `gSovereignTestWatch`.
+- **Result:** 8 of 8 battled (7 fled, Glastrier knocked out), the rest of the test as before. No problems.
+- I also read the after-battle code and the scripts: all 8 species set their state vars, the Hall of Fame resets each
+  defeated one, and the Archivist releases each reset one again.
+- Test and release builds pass.
+
+**Files modified:**
+- `tools/test/roamers.py`, `tools/test/README.md`
+- `decomp/include/sovereign_test.h`, `decomp/src/field_system.c`, `decomp/src/overlay006/wild_encounters.c` (test
+  build hooks)
+- `docs/EngineChangelog.md`, `docs/EngineRoadmap.md` (row 18), `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Anything the owner asks for. Waiting on the owner:
+   - T1 (boss teams), T2 (the developer battle and Henry's text), the art (E12);
+   - Burn Up and Double Shock, and the special evolutions;
+   - `Story.md`'s open calls on Oak's visit.
+2. Untested roamer paths: catching one (a Poké Ball through the bag's battle menu), and the Pokétch's Marking Map with
+   all 8 shown.
+3. Run the other harnesses (trainers, species, gifts, Elite Four) again on the next build that changes battle code.
