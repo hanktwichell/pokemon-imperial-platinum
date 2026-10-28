@@ -12,16 +12,18 @@ The harness taps the bottom screen's first move slot (and A) whenever the battle
 is back. Some options are poked into the battle's Pokémon once they are in it (gSovereignTestBattleMons, offsets from
 the test build): abilities, held items, HP, friendship, statuses.
 
-What a battle did is its message log (gSovereignTestMessageLog: every message the battle printed, in order) and its HP
-log (each change of the four battlers' current HP). A case passes when both match the expected ones in
-tools/test/battle_mechanics_expected.json. That file was recorded (--record) on a build where each case had been
-checked, and each case's `checks` says what to look for in its messages. Battles are deterministic for one build and
-state; a change that makes the battle use the random numbers differently (or take a different number of frames before
-it starts) can change a damage roll, a critical hit or a speed tie, so read a difference before calling it a bug, and
-re-record (--record CASE ...) once it's understood.
+Every battle starts from the same random seed (gSovereignTestBattleSeed; the game seeds a battle from the clock), so a
+case plays the same on every run of one build. What a battle did is how it ended ('ended': the field came back;
+'limit': it was still on at the case's frame limit, as for a foe that can't be knocked out), its message log
+(gSovereignTestMessageLog: every message the battle printed, in order) and its HP log (each change of the battlers'
+current HP). A case passes when all three match the ones recorded for it in tools/test/battle_mechanics_expected.json
+(--record writes them). A comment above a case, and the batch's entry in EngineChangelog.md, say what its battle
+showed when the change was made. A change that makes a battle use the random numbers differently (or take a different
+number of frames to start) can change a damage roll, a critical hit or who moves first, so read a difference before
+calling it a bug, and re-record the case (--record CASE) once it's understood.
 
-Results per case: ok, DIFF (messages or HP differ; both shown), NEW (no expected record), HANG (the frame counter
-stopped), STUCK (the battle didn't end in the frame limit).
+Results per case: ok, DIFF (the end, messages or HP differ; both shown), NEW (nothing recorded for it), HANG (the
+frame counter stopped). A case that doesn't end normally also saves a screenshot.
 
 Usage (repo root, with SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy):
   python3 tools/test/battle_mechanics.py decomp/build_test/pokeplatinum.us.nds STATE OUT [--jobs N] [--record]
@@ -53,7 +55,8 @@ MON_FIELDS = ('size', 'moves', 'statBoosts', 'types', 'ability', 'ppCur', 'frien
 LOG_CHARS = 8192  # SOVEREIGN_TEST_MESSAGE_LOG_CHARS
 SYMBOLS = ('gSovereignTestLead', 'gSovereignTestWild', 'gSovereignTestGodMode', 'gSystem', 'gSovereignTestIdleFrames',
            'gSovereignTestFoeSurvivesTurns', 'gSovereignTestPartner', 'gSovereignTestBattleTrainer',
-           'gSovereignTestMessageLog', 'gSovereignTestBattleMons')
+           'gSovereignTestMessageLog', 'gSovereignTestBattleMons', 'gSovereignTestBattleSeed')
+SEED = 0x5EED5EED  # every case's battle seed (gSovereignTestBattleSeed), so each battle plays the same every run
 # The player's lead, the foe (or the first foe), the player's partner and the second foe (doubles)
 LEAD_B, FOE_B, PARTNER_B, FOE2_B = 0, 1, 2, 3
 
@@ -76,12 +79,16 @@ def charmap():
 
 
 def decode_log(codes, chars):
-    messages, cur = [], []
+    """The messages, one string each. What follows a format code (0xFFFE) is left out: the prompt "What will X do?"
+    ends in one, with codes for the touch screen."""
+    messages, cur, skip = [], [], False
     for c in codes:
         if c == 0xFFFF:
             messages.append(' '.join(''.join(cur).split()))
-            cur = []
-        else:
+            cur, skip = [], False
+        elif c == 0xFFFE:
+            skip = True
+        elif not skip:
             cur.append(chars.get(c, '{%04X}' % c))
     return messages
 
@@ -175,6 +182,7 @@ def setup(d, sym, case, names):
                                 moves.index('MOVE_' + case.get('partner_moves', ['SPLASH'] * 4)[slot]))
             mem.write_byte(partner + PARTNER['hp'], 100)
     mem.write_short(sym['gSovereignTestMessageLog'], 0)
+    mem.write_long(sym['gSovereignTestBattleSeed'], SEED)
     d.press('SELECT+R' if doubles else 'SELECT')
 
 
@@ -204,7 +212,7 @@ def poke_start(b, case, names):
             b.write(FOE2_B, 'ability', abilities.index('ABILITY_' + case['foe2_ability']), 2)
 
 
-def run_case(d, sym, case, state, names, chars):
+def run_case(d, sym, case, state, names, chars, out):
     d.load_state(state)
     d.run(30)
     setup(d, sym, case, names)
@@ -213,7 +221,7 @@ def run_case(d, sym, case, state, names, chars):
     lead_sp = names['species'].index('SPECIES_' + case['lead'])
     frames, stalled, started, idle, poked = 0, 0, False, 0, False
     vblank = u32(d, sym['gSystem'] + VBLANK_COUNTER)
-    result, hplog, last, foe_pp = 'STUCK', [], None, None
+    result, hplog, last, foe_pp = 'limit', [], None, None
     state_ = {'hits': 0, 'drops': 0}
     limit = case.get('stop_at', (14000 if 'trainer' in case else 4000) + 1000 * case.get('survive', 0))
     while frames < limit:
@@ -270,8 +278,10 @@ def run_case(d, sym, case, state, names, chars):
         elif started:
             idle += 1
             if idle >= 2:
-                result = 'ok'
+                result = 'ended'
                 break
+    if result != 'ended':
+        d.screenshot().save(os.path.join(out, f"{case['name']}_{result}.png"))
     log = sym['gSovereignTestMessageLog']
     length = d.emu.memory.unsigned[log] | d.emu.memory.unsigned[log + 1] << 8
     raw = bytes(d.emu.memory.unsigned[log + 2:log + 2 + 2 * min(length, LOG_CHARS)])
@@ -294,11 +304,13 @@ def pick(args):
 def compare(name, got, expected):
     """'ok', 'NEW' or 'DIFF', with the lines that explain a DIFF."""
     want = expected.get(name)
-    if got['result'] != 'ok':
-        return got['result'], []
+    if got['result'] == 'HANG':
+        return 'HANG', []
     if want is None:
         return 'NEW', []
     notes = []
+    if got['result'] != want['result']:
+        notes.append(f"  the battle: expected {want['result']}, got {got['result']}")
     if got['messages'] != want['messages']:
         notes.append('  messages: expected')
         notes += ['    ' + m for m in want['messages']]
@@ -352,7 +364,7 @@ def main():
     path = os.path.join(out, f'got_{worker[0]}.json' if worker else 'got.json')
     got = {}
     for c in mine:
-        got[c['name']] = run_case(d, sym, c, state, names, chars)
+        got[c['name']] = run_case(d, sym, c, state, names, chars, out)
         with open(path, 'w') as f:
             json.dump(got, f, indent=1)
         if not worker:
@@ -380,12 +392,12 @@ def report(cases, got, out, record):
     if record:
         for c in cases:
             g = got.get(c['name'])
-            if g and g['result'] == 'ok':
-                expected[c['name']] = {'messages': g['messages'], 'hp': g['hp']}
+            if g and g['result'] != 'HANG':
+                expected[c['name']] = {'result': g['result'], 'messages': g['messages'], 'hp': g['hp']}
         with open(EXPECTED, 'w') as f:
             json.dump(dict(sorted(expected.items())), f, indent=1, ensure_ascii=False)
             f.write('\n')
-        print('recorded', sum(1 for c in cases if got.get(c['name'], {}).get('result') == 'ok'), 'cases')
+        print('recorded', sum(1 for c in cases if got.get(c['name'], {}).get('result') not in (None, 'HANG')), 'cases')
 
 
 if __name__ == '__main__':
