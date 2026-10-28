@@ -40,6 +40,7 @@
 #include "party.h"
 #include "pokedex.h"
 #include "pokemon.h"
+#include "roaming_pokemon.h"
 #include "sovereign_test.h"
 #include "special_encounter.h"
 #include "system_vars.h"
@@ -892,6 +893,8 @@ u8 gSovereignTestGodMode;
 u8 gSovereignTestFoeSurvivesTurns;
 u16 gSovereignTestCaughtAllBut;
 u8 gSovereignTestRareWildRoll;
+u16 gSovereignTestRoamerRelease;
+u8 gSovereignTestSurveyRoamers;
 
 void SovereignTest_WarpNext(FieldSystem *fieldSystem)
 {
@@ -936,6 +939,14 @@ void SovereignTest_WarpNext(FieldSystem *fieldSystem)
     }
 
     gSovereignTestBadges = 0;
+
+    for (u8 slot = 0; slot < ROAMING_SLOT_MAX; slot++) {
+        if (gSovereignTestRoamerRelease & (1 << slot)) {
+            RoamingPokemon_ActivateSlot(fieldSystem->saveData, slot);
+        }
+    }
+
+    gSovereignTestRoamerRelease = 0;
 
     BOOL setVar = FALSE;
 

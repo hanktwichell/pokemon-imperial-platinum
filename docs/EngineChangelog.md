@@ -3,6 +3,34 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Roaming legendaries tested
+
+Nothing changes for players. The scripts release eight roamers (the Legend Archivist's Zeraora, Tornadus, Thundurus,
+Okidogi, Munkidori, Fezandipiti, Glastrier and Spectrier), and no test followed them, as the wild survey skipped
+roamers.
+
+The new test, `tools/test/roamers.py`:
+- **Release:** it releases every slot a script releases, as the script command does, and checks each slot's species,
+  level and HP. No other slot roams.
+- **Flying:** it flies from route to route. Each flight must move every roamer to another route of the 29, never to
+  the one the player left.
+- **Meeting:** when roamers are on the player's map, it runs the wild survey there with the roamers in it, as a step in
+  the grass. About half the encounters must be a roamer on that map (the game's 50%), and each must be that roamer
+  itself: its species, level and personality.
+- **Walking:** it walks back and forth across the border between Route 212's two halves. Each crossing must move every
+  roamer to a route next to its own or, about one time in 16, anywhere; never to the route the player left.
+
+Test-build hooks for it (`include/sovereign_test.h`):
+- `gSovereignTestRoamers`: each roaming slot as the field writes it down (its map, route, species, level, HP and
+  personality).
+- `gSovereignTestRoamerRelease`: slots the next test warp releases.
+- `gSovereignTestSurveyRoamers`: the survey meets roamers too.
+
+Verified (test build):
+- `roamers.py`: the 8 slots released, 133 flights (1,064 moves), 36 surveys with roamers on the map (each roamer met in
+  2 to 8 of them), 40 crossings (320 moves: 309 to a route nearby, 11 elsewhere). No problems.
+- Test and release builds pass.
+
 ## Rare wild encounters tested; Carbink's stopgap removed
 
 For players:

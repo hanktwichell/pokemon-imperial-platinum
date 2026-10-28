@@ -37,8 +37,10 @@
 #include "pokedex_memory.h"
 #include "pokemon.h"
 #include "pokeradar.h"
+#include "roaming_pokemon.h"
 #include "savedata.h"
 #include "sovereign_test.h"
+#include "special_encounter.h"
 #include "system.h"
 #include "unk_0209C370.h"
 
@@ -211,6 +213,7 @@ static void ExecuteAndCleanupIfDone(ApplicationManager **appManPtr)
 u32 gSovereignTestIdleFrames;
 u32 gSovereignTestIdleMapHeaderID;
 struct SovereignTestParty gSovereignTestParty;
+struct SovereignTestRoamer gSovereignTestRoamers[ROAMING_SLOT_MAX];
 
 static void SovereignTest_NoteParty(FieldSystem *fieldSystem)
 {
@@ -237,6 +240,23 @@ static void SovereignTest_NoteParty(FieldSystem *fieldSystem)
 
     gSovereignTestParty.wanted = FALSE;
 }
+
+static void SovereignTest_NoteRoamers(FieldSystem *fieldSystem)
+{
+    SpecialEncounter *speEnc = SaveData_GetSpecialEncounters(fieldSystem->saveData);
+
+    for (u8 slot = 0; slot < ROAMING_SLOT_MAX; slot++) {
+        struct SovereignTestRoamer *noted = &gSovereignTestRoamers[slot];
+        Roamer *roamer = SpecialEncounter_GetRoamer(speEnc, slot);
+
+        noted->routeIndex = SpecialEncounter_GetRoamerRouteIndex(speEnc, slot);
+        noted->mapHeaderID = SpecialEncounter_IsRoamerActive(speEnc, slot) ? RoamingPokemon_GetRouteFromId(noted->routeIndex) : 0;
+        noted->level = Roamer_GetData(roamer, ROAMER_DATA_LEVEL);
+        noted->species = Roamer_GetData(roamer, ROAMER_DATA_SPECIES);
+        noted->hp = Roamer_GetData(roamer, ROAMER_DATA_CURRENT_HP);
+        noted->personality = Roamer_GetData(roamer, ROAMER_DATA_PERSONALITY);
+    }
+}
 #endif
 
 static BOOL HandleInputsEventsAndProcesses(FieldSystem *fieldSystem)
@@ -249,6 +269,8 @@ static BOOL HandleInputsEventsAndProcesses(FieldSystem *fieldSystem)
         if (gSovereignTestParty.wanted) {
             SovereignTest_NoteParty(fieldSystem);
         }
+
+        SovereignTest_NoteRoamers(fieldSystem);
     }
 #endif
 

@@ -2,6 +2,8 @@
 #define POKEPLATINUM_SOVEREIGN_TEST_H
 
 #ifdef SOVEREIGN_TEST
+#include "generated/roaming_slots.h"
+
 // Test build only (meson -Dsovereign_test=true): hooks that test harnesses in tools/test read and write through the
 // build's symbol map (build_test/main.nef.xMAP). They are in the static ARM9, so loading an overlay doesn't clear them.
 
@@ -191,6 +193,16 @@ struct SovereignTestItemUse {
     u16 moves[2][4]; // the lead's moves after each use
 };
 
+// A roaming slot (generated/roaming_slots.txt), written down while the field is free (field_system.c).
+struct SovereignTestRoamer {
+    u16 mapHeaderID; // the map it is on, or 0 when it isn't roaming
+    u8 routeIndex; // its place in RoamingPokemonRoutes (roaming_pokemon.c)
+    u8 level;
+    u16 species;
+    u16 hp; // its HP now
+    u32 personality;
+};
+
 // When mapHeaderID is set, the next SELECT+L+R warps here instead of to the next test location (script_manager.c).
 extern struct SovereignTestWarpTarget gSovereignTestWarpTarget;
 // When wanted is set, the next SELECT+L+R runs the map's wild encounter of that terrain that many times instead, with no
@@ -261,6 +273,14 @@ extern u16 gSovereignTestCaughtAllBut;
 // When set, the rare wild encounters' roll (SovereignRareWild_TryFillEncounterTable, data/sovereign_rare_wild.yaml) is
 // this minus 1 instead of a random number from 0 to 99, so a test can pick each of a map's entries.
 extern u8 gSovereignTestRareWildRoll;
+// Each roaming slot: where it is and what it is (see struct SovereignTestRoamer).
+extern struct SovereignTestRoamer gSovereignTestRoamers[ROAMING_SLOT_MAX];
+// When set, the next SELECT+L+R first releases these roaming slots (bit 0 the first...), as the Legend Archivist's
+// ActivateRoamingPokemon does.
+extern u16 gSovereignTestRoamerRelease;
+// When set, a wild survey (gSovereignTestWildSurvey) meets the roaming Pokémon on the map too, as a step in the grass
+// would, and records them as it records the others.
+extern u8 gSovereignTestSurveyRoamers;
 #endif
 
 #endif // POKEPLATINUM_SOVEREIGN_TEST_H
