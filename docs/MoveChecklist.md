@@ -6,9 +6,9 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 
 | | Count |
 |---|---|
-| exact | 373 |
+| exact | 375 |
 | approximate | 0 |
-| placeholder | 7 |
+| placeholder | 5 |
 | removed | 72 |
 
 ## New moves (#468–919)
@@ -229,7 +229,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 679 | Lunge | Bug | `LOWER_ATTACK_HIT` | exact | Sovereign effect: target Attack -1 (100%) |
 | 680 | Fire Lash | Fire | `LOWER_DEFENSE_HIT` | exact | Sovereign effect: target Defense -1 (100%) |
 | 681 | Power Trip | Dark | `HIT` | exact | Sovereign effect: power 20 + 20 per positive stat stage on the user |
-| 682 | Burn Up | Fire | `HIT` | placeholder | has its own mechanic in Gen IX; plain hit |
+| 682 | Burn Up | Fire | `SOVEREIGN_BURN_OUT_HIT` | exact | Sovereign effect: fails unless the user is Fire-type; after the hit, the user loses the Fire type (typeless if it had no other; until it switches out); thaws the user |
 | 683 | Speed Swap | Psychic | `SOVEREIGN_SPEED_SWAP` | exact | Sovereign effect: the user and target swap their Speed stats |
 | 684 | Smart Strike | Steel | `BYPASS_ACCURACY` | exact |  |
 | 685 | Purify | Poison | `SOVEREIGN_PURIFY` | exact | Sovereign effect: heals the target's status condition, then the user regains 1/2 of its max HP |
@@ -439,7 +439,7 @@ Move ID = official move number. **exact**: the move behaves as in Gen IX (within
 | 889 | Rage Fist | Ghost | `HIT` | exact | Sovereign effect: 50 more power for each hit the user has taken since it came in (Champions), up to 350 |
 | 890 | Armor Cannon | Fire | `DEF_SPD_DOWN_HIT` | exact | Sovereign effect: user Defense and Sp. Def -1 |
 | 891 | Bitter Blade | Fire | `RECOVER_HALF_DAMAGE_DEALT` | exact | Sovereign effect: drains half the damage dealt |
-| 892 | Double Shock | Electric | `HIT` | placeholder | special behaviour not reproduced yet; plain hit |
+| 892 | Double Shock | Electric | `SOVEREIGN_BURN_OUT_HIT` | exact | Sovereign effect: fails unless the user is Electric-type; after the hit, the user loses the Electric type (typeless if it had no other; until it switches out) |
 | 893 | Gigaton Hammer | Steel | `HIT` | exact | Sovereign effect: can't be used twice in a row |
 | 894 | Comeuppance | Dark | `METAL_BURST` | exact | Sovereign effect: returns 1.5x the damage taken |
 | 895 | Aqua Cutter | Water | `HIGH_CRITICAL` | exact | Sovereign effect: high critical-hit ratio |

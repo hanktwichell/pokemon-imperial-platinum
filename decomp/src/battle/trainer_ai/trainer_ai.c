@@ -3109,6 +3109,10 @@ static int AI_RateSovereignMoveOnFoe(BattleSystem *battleSys, BattleContext *bat
         return (battleCtx->sovereignAteBerry[attacker] & FlagIndex(battleCtx->selectedPartySlot[attacker])) == FALSE
             ? AI_SOVEREIGN_MOVE_USELESS
             : AI_SOVEREIGN_MOVE_NO_RATING;
+    case MOVE_BURN_UP:
+        return MON_IS_NOT_TYPE(attacker, TYPE_FIRE) ? AI_SOVEREIGN_MOVE_USELESS : AI_SOVEREIGN_MOVE_NO_RATING;
+    case MOVE_DOUBLE_SHOCK:
+        return MON_IS_NOT_TYPE(attacker, TYPE_ELECTRIC) ? AI_SOVEREIGN_MOVE_USELESS : AI_SOVEREIGN_MOVE_NO_RATING;
     case MOVE_DARK_VOID: // only Darkrai can use it (effect_script_0001.s)
         return user->species != SPECIES_DARKRAI ? AI_SOVEREIGN_MOVE_USELESS : AI_SOVEREIGN_MOVE_NO_RATING;
     }

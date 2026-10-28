@@ -172,6 +172,10 @@
 #define TYPE_MULTI_DOUBLE_DAMAGE    80
 #define TYPE_MULTI_QUADRUPLE_DAMAGE 160
 
+// Sovereign (item 11): a battler's type slot after Burn Up or Double Shock burned out its only type. It is no type in the
+// type chart, so moves hit it neutrally and none of its moves get STAB from it (the main games' "???").
+#define TYPE_SOVEREIGN_TYPELESS 18
+
 #define SOUNDPROOF_SLOT_1 (1 << 0)
 #define SOUNDPROOF_SLOT_2 (1 << 1)
 #define NO_PARTNER_SLOT_1 (1 << 2)

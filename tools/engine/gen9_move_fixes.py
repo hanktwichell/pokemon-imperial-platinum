@@ -368,6 +368,11 @@ MOVES = {
                          " damage dealt"),
     "sky_drop": ("SOVEREIGN_SKY_DROP", 0, "carries the target up for a turn (out of reach, can't move or switch), then"
                  " drops it; fails on 200 kg or more, no damage to Flying types"),
+    # The owner (2026-10-28): the main games' typeless state, a battle-only type of its own (TYPE_SOVEREIGN_TYPELESS).
+    "burn_up": ("SOVEREIGN_BURN_OUT_HIT", 0, "fails unless the user is Fire-type; after the hit, the user loses the Fire"
+                " type (typeless if it had no other; until it switches out); thaws the user"),
+    "double_shock": ("SOVEREIGN_BURN_OUT_HIT", 0, "fails unless the user is Electric-type; after the hit, the user loses"
+                     " the Electric type (typeless if it had no other; until it switches out)"),
     # Commander.
     "order_up": (None, 0, "with a Tatsugiri in the user's mouth (Commander), the user's Attack (Curly Form), Defense"
                  " (Droopy) or Speed (Stretchy) +1 after the hit"),

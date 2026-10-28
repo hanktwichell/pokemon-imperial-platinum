@@ -365,7 +365,8 @@ def main():
             for touches in range(CATCH_TOUCHES):
                 before = u32(d, sym['gSovereignTestIdleFrames'])
                 d.touch(*NICKNAME_NO, frames=10, after=30)
-                free = free + 1 if u32(d, sym['gSovereignTestIdleFrames']) - before >= 30 else 0
+                # A busy outdoor map runs the field every other frame (talk_to_objects.start_warp).
+                free = free + 1 if u32(d, sym['gSovereignTestIdleFrames']) - before >= 10 else 0
                 if free >= 2:
                     break
             after, state = read_roamers(d, sym), state_of(slot)

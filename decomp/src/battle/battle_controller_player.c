@@ -3859,6 +3859,12 @@ static int BattleControllerPlayer_CheckMoveHitOverrides(BattleSystem *battleSys,
         battleCtx->moveStatusFlags |= MOVE_STATUS_FAILED;
     }
 
+    // Sovereign (item 11): Burn Up and Double Shock fail unless the user has the type they burn out (subscript_sovereign_burn_out.s).
+    if ((move == MOVE_BURN_UP && MON_IS_NOT_TYPE(attacker, TYPE_FIRE))
+        || (move == MOVE_DOUBLE_SHOCK && MON_IS_NOT_TYPE(attacker, TYPE_ELECTRIC))) {
+        battleCtx->moveStatusFlags |= MOVE_STATUS_FAILED;
+    }
+
     // Sovereign (item 11): Queenly Majesty, Dazzling and Armor Tail block foes' priority moves aimed at their side.
     if (attacker != defender
         && BattleSystem_GetBattlerSide(battleSys, attacker) != BattleSystem_GetBattlerSide(battleSys, defender)
