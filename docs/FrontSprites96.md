@@ -124,6 +124,11 @@ Checked in the test build (2026-10-28):
   The lowest free space: the dress-up's heap 69,268 bytes (48,792 on the 80×80 build), the dance's 84,432 (18,968),
   the acting's 141,216 (169,980).
 - A wild battle: the battle heap 315,060 bytes free at the lowest (342,620).
+- A practice visual competition with Zekrom (#644, its front's y offset −6): its 96×96 front in the dress-up and on
+  stage. Before the fix the dress-up kept the offset in a `u8` (250), so Zekrom was drawn below the screen there
+  (`UnkStruct_ov22_022596B0`'s margins are signed now).
+- The acting competition's stand-in defender (a blank copy that move animations copy from) is cleared whole; only its
+  first 3,200 bytes were, so the bottom of a 96×96 copy could show leftover memory.
 - The egg hatch scene (the Trainers' School Egg, an Elekid): the hatched Pokémon's 96×96 front whole, the scene's heap
   46,772 bytes free at the lowest (63,160).
 - The Battle Hall (a single challenge with Garchomp, three battles): the battle room's banner shows the Pokémon's
