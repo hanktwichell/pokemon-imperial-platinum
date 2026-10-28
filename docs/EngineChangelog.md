@@ -39,7 +39,10 @@ Verified (test build), with each screen's heap against the 80×80 build:
   Surf's cut-in; an evolution; the summary screen; the Pokédex (list, entry, size page); the egg hatch; the starter
   choice; the Battle Factory and the Battle Hall; the PC boxes; practice visual, dance and acting contests (with
   Zekrom in the visual one); the poffin cutscene; Mom's Eevee's preview window; a `platinum_fronts` build.
-- RESULTS
+- `battle_mechanics.py`: all 526 battles match the main build's recording (a full run from a new game; the five cases
+  the timing fix changed, and the two whose HP logs had split, from a second state too). Before that fix, 520 of 526
+  matched: the same mechanics, with the harness's taps landing on another move or target.
+- ALL_SPECIES
 
 ## Battle mechanics suite: steadier against a build's timing
 
