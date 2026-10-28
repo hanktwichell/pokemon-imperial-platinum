@@ -9,7 +9,7 @@ in CI on every PR.
   - items and Mega Evolution;
   - every Pokémon form;
   - the approved QoL list (E14);
-  - the Renegade port (E10), apart from two owner questions;
+  - the Renegade port (E10);
   - the Sovereign story, Totem trials, post-game legendaries and Elite Four format (E11);
   - the Pokémon Champions battle rules (10b);
   - the exact Gen IX move and ability effects (item 11), apart from the few listed in `EngineRoadmap.md` row 11;
@@ -20,6 +20,7 @@ in CI on every PR.
   - the boss team compositions (T1);
   - the art (E12);
   - the developer battle (T2);
+  - whether Oak gives the player something at his visit (`Story.md`, the owner's call 3);
   - the playthrough.
 
 **To a first playable version:** the engine work that doesn't wait on the owner is done. What's left waits on the
@@ -44,7 +45,7 @@ owner (the list above): the boss teams, the art, the developer battle's text and
 | E7 | Items (Mega Stones, new held/evolution items) | ✅ done: 245 items with icons, evolution items, Mints, Ability Capsule/Patch, the Infinite Repel (see `EngineRoadmap.md` row 9) |
 | E8 | Mega Evolution / Primal Reversion | ✅ done: 99 forms, battle flow, MEGA button, Primal Reversion, animation and symbols (row 10) |
 | E9 | Extended trainer data (natures, EVs, abilities, forms) | ✅ done: `docs/TrainerFormat.md` |
-| E10 / E11 | Renegade port; Sovereign content (encounters, E4 format, gifts, post-game) | 🟡 E10: Renegade's encounters, trainers, items, NPCs, gifts and legendary events are ported (41 parts); two owner questions remain (Open list). E11: the Totem trials, the story beats, the Chronicles post-game legendaries and the Elite Four format are in; the doubles teams wait on T1 (rows 14 and 15) |
+| E10 / E11 | Renegade port; Sovereign content (encounters, E4 format, gifts, post-game) | 🟡 E10: Renegade's encounters, trainers, items, NPCs, gifts and legendary events are ported (41 parts); the owner's two questions are answered and built (Route 224 before the League, decision 46; Darach and the Tea mid-game, decision 47). E11: the Totem trials, the story beats, the Chronicles post-game legendaries and the Elite Four format are in; the doubles teams wait on T1 (rows 14 and 15) |
 | E12 | Graphics (convert sprites, icons) | 🟡 the battle sprites of #494–1025 are in (the owner's relabelled pack, `docs/BattleSpriteImport.md`); female, form and Mega sprites and real icons still to come (`EngineRoadmap.md` row 17) |
 | T1 | Boss team compositions with the owner's Mega picks; revise all boss teams | deferred by the owner until the engine features are done |
 | T2 | Developer final battle (Red-style double battle) | team received (`DeveloperBattle.md`); waiting on trainer text, sprites and level |
