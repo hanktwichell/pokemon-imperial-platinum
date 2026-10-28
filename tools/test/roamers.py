@@ -36,10 +36,11 @@ the field writes it down (gSovereignTestRoamers). Then:
   Afterwards it must no longer roam, its state var must be captured (1), which the Legend Archivist never releases
   again, and every roamer that was on the map must have left it.
 - **Marking Map:** it flies to MARKING_MAP's town with the Pokétch on and showing the Marking Map
-  (gSovereignTestPoketchApp), and walks there: the map looks a roamer up only while the player walks (every 5th step,
-  CheckPositionsUpdated). Then each roamer still roaming must have its icon on the Pokétch at its route's place
-  (PoketchMap_GetPositionFromMapID), read from the sub screen's OAM, and no other roamer icon may show: not the one
-  knocked out, not the one caught. A screenshot of both screens is saved (marking_map.png).
+  (gSovereignTestPoketchApp), and walks there: the map looks a roamer up only while the player walks (from the 5th
+  step on, CheckPositionsUpdated). Then each roamer still roaming must have its icon on the Pokétch at its route's
+  place (PoketchMap_GetPositionFromMapID), read from the sub screen's OAM over the icons' blink, and no other roamer
+  icon may show: not the one knocked out, not the one caught. A screenshot of both screens is saved
+  (marking_map.png).
 
 Needs what wild_forms.py needs. From the repo root:
     SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 tools/test/roamers.py \\
@@ -136,14 +137,19 @@ def marking_map_places():
 
 
 def sub_screen_sprites(d):
-    """The sub screen's sprites on the screen: [(x, y, tile)]."""
+    """The sub screen's sprites on the screen: [(x, y, tile)]. The map's icons blink, so this looks over two seconds
+    and keeps the frame that shows the most."""
     mem = d.emu.memory.unsigned
-    shown = []
-    for i in range(128):
-        attr0, attr1, attr2 = struct.unpack('<HHH', bytes(mem[SUB_OAM + i * 8:SUB_OAM + i * 8 + 6]))
-        if (attr0 >> 8) & 3 != 2 and (attr0 & 0xff) < 192:  # not disabled, and not parked below the screen
-            shown.append((attr1 & 0x1ff, attr0 & 0xff, attr2 & 0x3ff))
-    return shown
+    best = []
+    for _ in range(30):
+        d.run(4)
+        shown = []
+        for i in range(128):
+            attr0, attr1, attr2 = struct.unpack('<HHH', bytes(mem[SUB_OAM + i * 8:SUB_OAM + i * 8 + 6]))
+            if (attr0 >> 8) & 3 != 2 and (attr0 & 0xff) < 192:  # not disabled, and not parked below the screen
+                shown.append((attr1 & 0x1ff, attr0 & 0xff, attr2 & 0x3ff))
+        best = shown if len(shown) > len(best) else best
+    return best
 
 
 def read_roamers(d, sym):
