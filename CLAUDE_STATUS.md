@@ -9608,3 +9608,40 @@ of Fame) is merged. This one adds the last untested roamer path to `roamers.py`:
 2. 96×96 fronts: check the Battle Factory (its heap), contests, the PC boxes and the PC's Hall of Fame records; then a
    PR of its own.
 3. Waiting on the owner: whether Oak gives something at his visit (`Story.md`), T1, T2, the art (E12).
+
+## CB-0242 (Claude B, 7:57 am US Central, 2026-10-28)
+
+**Done (branch `claude/sweet-wright-rk4wl1`, PR next):**
+- **Battle mechanics suite:** a run from a second save state matched 525 of 526: in `darts_split` the battle was the
+  same, but Starly levelled up from the shared EXP after it and the harness's taps answered its new-move prompt the
+  other way. New test-build hook `gSovereignTestNoExp` (no EXP, as in god mode), set for every case. Recorded again
+  from a new game's bedroom; played again from the Jubilife Pokémon Center: **all 526 match** (321 ended, 205 at
+  their frame limit). Against the earlier recording, 45 cases changed: 19 lost only EXP messages, 24 cut-off battles
+  got a few turns further, `parabolic_charge`'s HP log merged two changes in one sample, and `receiver` played
+  differently from its 50th message on (the new recording and its replay from the second state agree).
+- The case groups' comments name the changelog entry each battle checks.
+- **Roamer test** (`roamers.py`), now with no problems: the catch's Master Ball waits for "What will ... do?" in the
+  battle's message log (in Route 215's rain the fixed 900 frames were too few, and the roamer fled); an empty log
+  reads as no messages (py-desmume gives an empty slice as one byte); the first flight after the walk is checked
+  against the route the walk ended on.
+- **96×96 fronts (local branch `wip-96fronts`, not pushed):** checked the script's Pokémon preview window, the egg hatch,
+  the starter choice, the Pokédex (list, entry, size page), the Battle Hall's banner, the poffin cutscene and the
+  summary screen. One-slot sprite managers for the preview window, the poffin cutscene (its 64 KB heap would have
+  run out: 36 KB short) and the summary screen (44 KB free instead of 14). A review of the change found two bugs,
+  both fixed and checked: the dress-up kept a negative front y offset in a `u8` (Zekrom drawn below the screen in a
+  visual competition), and the acting competition's stand-in sprite was cleared only in part. The PC's Hall of Fame
+  records couldn't be reached: the game's saves never reach the emulator's battery in these runs.
+- **Question for the owner (pinned):** a 96×96 front whose art reaches past the middle 80×80 (420 of 2,402 front
+  images: Ho-Oh, Lugia, Zekrom...) draws up to 8 pixels over the border of the Pokédex's and the PC boxes' 80×80
+  frames. Keep the art whole over the border (as now), or clip it to the frame?
+
+**Files modified (this branch, since CB-0241):** `decomp/include/sovereign_test.h`, `decomp/src/script_manager.c`,
+`decomp/src/battle/battle_script.c`, `tools/test/battle_mechanics.py`, `tools/test/battle_mechanics_cases.py`,
+`tools/test/battle_mechanics_expected.json`, `tools/test/roamers.py`, `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. `battle_all_species.py --jobs 4` (running), then PR and merge.
+2. 96×96 fronts: merge main into `wip-96fronts`, its changelog entry, then a PR of its own (the frame question can
+   follow in a later change).
+3. Waiting on the owner: the frame question above; whether Oak gives something at his visit (`Story.md`), T1, T2,
+   the art (E12).

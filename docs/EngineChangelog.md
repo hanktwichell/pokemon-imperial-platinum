@@ -48,7 +48,11 @@ Verified (test build):
   (a sheet of all 43); `check_battle_sprites.py` passes, with every form list matching its folders.
 - `battle_all_trainers.py --jobs 3` on the Burn Up build: 1038 of 1039 battles ended. `SOVEREIGN_TEST` ran out of
   frames there and ended alone in 10,980 frames (the battles' seeds came from the clock then).
-- `battle_mechanics.py`: SUITE_RESULTS
+- `battle_mechanics.py --jobs 4`: the 526 battles recorded from the bedroom of a new game and played again from the
+  Jubilife Pokémon Center: all 526 match (321 ended, 205 cut off at their frame limit). An earlier recording, with
+  EXP, matched in 525 from a second state: in the other, Starly's new-move prompt after the battle was answered the
+  other way, hence `gSovereignTestNoExp`.
+- `roamers.py`: no problems (the Master Ball throw waits for the prompt; the flight after the walk).
 
 ## Roamers on the Pokétch's Marking Map tested
 
