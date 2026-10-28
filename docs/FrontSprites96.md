@@ -122,11 +122,20 @@ Checked in the test build (2026-10-28):
 - A wild battle: the battle heap 315,060 bytes free at the lowest (342,620).
 - The egg hatch scene (the Trainers' School Egg, an Elekid): the hatched Pokémon's 96×96 front whole, the scene's heap
   46,772 bytes free at the lowest (63,160).
+- The starter choice (Route 201's briefcase): the chosen starter's 96×96 front in its bubble; the app's heap 48,500
+  bytes free at the lowest (64,884).
+- The Pokédex: the list, the entry and the size page (Turtwig, Garchomp; the height check's silhouette is the 96×96
+  front, at about the same height against the player's as Platinum's). Its frame (the list's and the entry's) is
+  80×80 inside, Platinum's sprite size, with a 7-pixel border: a front whose art reaches past the middle 80×80 is
+  drawn over that border, by up to 8 pixels (Ho-Oh's wings and tail). That is 420 of the 2,402 96×96 front images
+  (32 of the 541 for #1–493 and their forms: Lugia, Kyogre, Ho-Oh, Zapdos, Tentacruel...; and many of #494+: Zekrom,
+  Yveltal, Xerneas).
+  **Open question for the owner:** keep the art whole over the frame's border (as now), or clip it to the frame
+  (`PokemonSprite_SetPartialDraw`, the art past the middle 80×80 cut, like the 2D screens below)?
 
 Show the middle 80×80 of a 96×96 front (the old 2D functions; safe, art past it is cut): the script's Pokémon preview
 window (an 80×80 frame; Mom's Eevee checked), the GTS listing, the Union Room trade card, the Mystery Gift card, the
 Great Marsh binoculars, Rowan's intro, `ov64`.
 
-Still to check: the PC's Hall of Fame records, the Battle Frontier's scene sprites, the Pokédex's size comparison,
-and the heaps of the other screens with a sprite manager (starter choice, capsule menu, poffin cutscene, battle
-videos).
+Still to check: the PC's Hall of Fame records, the Battle Frontier's scene sprites, and the heaps of the other
+screens with a sprite manager (capsule menu, poffin cutscene, battle videos).
