@@ -181,7 +181,9 @@ def wait_for_prompt(d, sym, chars):
     "What will ... do?", and the menu is up. Returns the frames it took, or None after BATTLE_INTRO_FRAMES."""
     log = sym['gSovereignTestMessageLog']
     for frames in range(0, BATTLE_INTRO_FRAMES, 10):
-        raw = bytes(d.emu.memory.unsigned[log + 2:log + 2 + 2 * min(log_length(d, sym), LOG_CHARS)])
+        length = min(log_length(d, sym), LOG_CHARS)
+        # py-desmume's memory gives an empty slice as the byte at its start (a number), so none is read.
+        raw = bytes(d.emu.memory.unsigned[log + 2:log + 2 + 2 * length]) if length else b''
         messages = decode_log([raw[i] | raw[i + 1] << 8 for i in range(0, len(raw), 2)], chars)
         if messages and messages[-1].startswith('What will'):
             d.run(MENU_FRAMES)
