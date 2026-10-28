@@ -3,6 +3,53 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Field tests reach the post-game: every hidden object put on its map
+
+Nothing changes for players. The object test (`tools/test/talk_to_objects.py`) only ran on a new game, so about 110 of
+the 254 added objects were hidden there and never talked to: the post-game NPCs, the Chronicles' legendaries and
+stakes, Renegade's legendary events, the Pokémon Mansion siege. Now it can put them on their maps.
+
+The test's new options:
+- `--postgame`: all eight Badges and the Hall of Fame on the way in.
+- `--chronicles`: that, and every Chronicle open (`VAR_SOVEREIGN_CHRONICLE` 5).
+- `--unhide` puts each hidden object on its map:
+  - it clears the object's own hide flag;
+  - for a legendary, the scripts count every other species as caught and its own as not caught;
+  - it sets what the map's own scripts check as the map loads (`STORY`): flags and vars (the siege's state, pulled
+    stakes, Steven's Orbs, Cyrus beaten, Celebi's memories), an item in the bag (the Light and Dark Stones, the Silver
+    and Rainbow Wings, the Prison Bottle), Pokémon in the party (Keldeo's three, Carbink, the Regis, Tornadus and
+    Thundurus), or the hour (Zekrom at night).
+- A wandering NPC gets four more tries before it counts as not there. Floaroma's trade Beauty walked off her tile, and
+  her trade had never been checked.
+- The sign test (`signs_and_triggers.py`) takes `--postgame` and `--chronicles` too.
+
+Two fixes to the test:
+- The tile finder tries land before water. A warp puts the player on water on foot, so Rayquaza was talked to from
+  the pool beside it, where nothing answers. From the strip of land below the waterfall its battle runs, as a player
+  would meet it. No other object's or sign's tile changes.
+- The sign test shares the object test's symbols, so it needs the test build these hooks are in.
+
+Test build hooks (`include/sovereign_test.h`):
+- `gSovereignTestCaughtAllBut` (`SovereignCheckSpeciesCaught`).
+- `gSovereignTestPartyAdd` takes three Pokémon, and `gSovereignTestBagItem` puts an item in the bag.
+- `gSovereignTestVar` has 16 slots instead of 4.
+
+Verified (test build, main at 98a0f233 with these hooks):
+- **New game:**
+  - The object test (before the wander retries): 138 of 254 run to their end. The others aren't there (112: hidden on
+    a new game, and Floaroma's wandering Beauty) or another object stands on their tile until later (4). No hang, no
+    stuck script, no heap problem. The 24-battle Battle Marathon runs to
+    its Master Ball (219,760 frames).
+  - The sign test: 88 of 88.
+- **With `--chronicles --unhide`:**
+  - The object test: 246 of 254 run to their end. That includes every Chronicle legendary and stake, Renegade's
+    legendaries, the siege's grunts, rival and Clefairy, Manaphy's Egg, Celebi's eight portals and Celebi, and Kyogre,
+    Groudon and Rayquaza.
+  - The eight left: the six Totems not yet open on this save, which have test warps of their own; the Celestic elder,
+    whose visit runs as a scene on the way in and ends with her leaving; and the Lati rock, which Cresselia stands on
+    until she's caught.
+  - The sign test: 88 of 88.
+
 ## Story beats: the Archivist suspects the Sovereign, and the park keeper's log
 
 These are two beats from `docs/Story.md`'s list for after the Hall of Fame that weren't built yet.

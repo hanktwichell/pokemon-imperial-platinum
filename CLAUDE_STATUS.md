@@ -9295,3 +9295,48 @@ merged. This one adds two story beats from `docs/Story.md`'s list for after the 
 3. Story items not built yet need the owner:
    - the Spear Pillar throne glimpse and the throne room (a map change, with T2);
    - the Sovereign title (with Henry's battle).
+
+## CB-0233 (Claude B, 7:15 pm US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #249 (CB-0232: the Archivist's hints, the park
+log, the ROM space tool) is merged. This one takes the field tests past a new game:
+- **The field regression on main 98a0f233** (new game):
+  - `talk_to_objects.py`: 138 of 254 run to their end, 112 not there, 4 stand-ins. No failure. The Battle Marathon
+    runs all 24 battles.
+  - `signs_and_triggers.py`: 88 of 88.
+- **New options for the object test:**
+  - `--postgame`: the Badges and the Hall of Fame.
+  - `--chronicles`: that plus every Chronicle open.
+  - `--unhide`: puts each hidden object on its map. It clears the object's hide flag, makes every species but a
+    legendary's own count as caught, and sets the story state its map checks (`STORY`: flags and vars, a bag item,
+    party members, the hour).
+  - The sign test takes `--postgame` and `--chronicles`.
+- **Wandering NPCs** get four more tries (Floaroma's trade Beauty).
+- **The tile finder tries land before water.** Rayquaza had been talked to from its pool. From the land below, its
+  battle runs: it was never checked in game before (CB-0088 checked Kyogre and Groudon).
+- **Test build hooks:**
+  - `gSovereignTestCaughtAllBut`;
+  - three `gSovereignTestPartyAdd` slots;
+  - `gSovereignTestBagItem`;
+  - 16 `gSovereignTestVar` slots.
+- **With `--chronicles --unhide`:**
+  - The object test: 246 of 254 run to their end, with no failure. Every Chronicle legendary and stake, Renegade's
+    legendaries, the Mansion siege, Manaphy's Egg, and Celebi and its portals.
+  - The 8 left: six Totems (their own test warps), the elder (a scene on the way in) and the Lati rock (Cresselia on
+    its tile).
+  - The sign test: 88 of 88.
+- No game bug turned up.
+
+**Files modified:**
+- `tools/test/talk_to_objects.py`, `tools/test/signs_and_triggers.py`, `tools/test/README.md`
+- `decomp/include/sovereign_test.h`, `decomp/src/script_manager.c`, `decomp/src/scrcmd.c` (test build only)
+- `docs/EngineChangelog.md`, `docs/EngineRoadmap.md` (row 18), `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Anything the owner asks for. Waiting on the owner:
+   - T1 (boss teams), T2 (the developer battle and Henry's text), the art (E12);
+   - Burn Up and Double Shock, and the special evolutions;
+   - `Story.md`'s open calls on Oak's visit.
+2. Totems in the object test: their trials need the story up to each one (badges, Galactic events). Their story
+   state could go in `STORY` too, so the `--chronicles --unhide` pass covers all 254.
+3. Run the other harnesses (trainers, species, gifts, Elite Four) again on the next build that changes battle code.
