@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
 """Check that every battle sprite the game builds from res/pokemon/ can be shown.
 
-Each species' {male,female}_{front,back}.png, each 96x96 front of #1-493 in res/pokemon/sovereign_fronts96/, each
-form's front.png in res/pokemon/sovereign_form_sprites/ and back.png in res/pokemon/sovereign_form_backs/, must be an
-indexed image of two frames side by side with palette indices 0-15: 160x80 (two 80x80 frames), or for a front also
-192x96 (two 96x96 frames). Its first four pixels must be clear (index 0): the game unscrambles a sprite with a key it
-takes from them (PokemonSprite_DecryptPt), so a sprite whose art reaches the top-left corner comes out as noise in
-battle (Talonflame's back did, and Samurott's PokeAPI front). tools/sprites/convert_battle_sprites.py,
-convert_fronts96.py, convert_form_sprites.py and convert_form_backs.py clear them.
+Each species' {male,female}_{front,back}.png, each 96x96 front of #1-493 in res/pokemon/sovereign_fronts96/ (and of
+Platinum's forms in its forms/), each form's front.png in res/pokemon/sovereign_form_sprites/ and back.png in
+res/pokemon/sovereign_form_backs/, must be an indexed image of two frames side by side with palette indices 0-15:
+160x80 (two 80x80 frames), or for a front also 192x96 (two 96x96 frames). Its first four pixels must be clear (index
+0): the game unscrambles a sprite with a key it takes from them (PokemonSprite_DecryptPt), so a sprite whose art
+reaches the top-left corner comes out as noise in battle (Talonflame's back did, and Samurott's PokeAPI front).
+tools/sprites/convert_battle_sprites.py, convert_fronts96.py, convert_form_sprites.py and convert_form_backs.py clear
+them.
 
 Each form folder's order.txt (the order make_pl_pokegra.py packs them in, one folder a line) must list every folder
 there once, each with its image and both palettes: the game finds a form's sprite by its place in that order.
@@ -18,6 +19,11 @@ import os
 import sys
 
 from PIL import Image
+
+
+# The folders of form sprites, each with an order.txt, and each form's image there.
+FORM_FOLDERS = (("sovereign_form_sprites", "front.png"), ("sovereign_form_backs", "back.png"),
+                (os.path.join("sovereign_fronts96", "forms"), "front.png"))
 
 
 def problems(path):
@@ -46,7 +52,7 @@ def sprites(root):
         for species in sorted(os.listdir(fronts96)):
             for gender in ("male", "female"):
                 yield os.path.join(fronts96, species, f"{gender}_front.png")
-    for folder, image in (("sovereign_form_sprites", "front.png"), ("sovereign_form_backs", "back.png")):
+    for folder, image in FORM_FOLDERS:
         forms = os.path.join(root, folder)
         if os.path.isdir(forms):
             for form in sorted(os.listdir(forms)):
@@ -57,7 +63,7 @@ def sprites(root):
 def order_problems(root):
     """Each form folder's order.txt against the folders there."""
     out = []
-    for folder, image in (("sovereign_form_sprites", "front.png"), ("sovereign_form_backs", "back.png")):
+    for folder, image in FORM_FOLDERS:
         forms = os.path.join(root, folder)
         if not os.path.isdir(forms):
             continue
