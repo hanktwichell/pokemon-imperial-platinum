@@ -144,7 +144,7 @@ enum HeapSize {
     HEAP_SIZE_POKETCH_MAIN = 0xC000,
     HEAP_SIZE_POKETCH_APP = 0xC000,
     HEAP_SIZE_BOX_DATA = 0x4000,
-    HEAP_SIZE_BOX_GRAPHICS = 0x3C000,
+    HEAP_SIZE_BOX_GRAPHICS = 0x3C000 + 0x8000, // Sovereign: the 96x96 sprite manager's bigger buffer (docs/FrontSprites96.md)
 
     HEAP_SIZE_FIELD1 = 0x20000,
     HEAP_SIZE_FIELD2 = 0x1C000,
