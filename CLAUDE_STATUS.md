@@ -9577,3 +9577,34 @@ of Fame) is merged. This one adds the last untested roamer path to `roamers.py`:
 2. Waiting on the owner: whether Oak gives something at his visit (`Story.md`), T1, T2, the art (E12).
 3. The suite leaves out the 11 checks that switch Pokémon through the party menu (Emergency Exit after hazards,
    Healing Wish, Run Away); they need the menu driving of their own scripts.
+
+## CB-0241 (Claude B, 2:56 am US Central, 2026-10-28)
+
+**In progress (branch `claude/sweet-wright-rk4wl1`, no PR yet).**
+- **Battle mechanics suite:** the first full recording (526 cases) and a second run from another save state showed
+  that a case could play differently from another state: inputs counted from the SELECT press, and the field takes a
+  few frames more or less to start the battle, so a Pokémon sent in after a faint could pick another move
+  (`glaive_rush`). The battle's clock now starts on the frame its first message comes up; four such cases now play
+  identically from both states. A battle cut off at its frame limit is compared up to the last turn it began. The
+  suite is being recorded again with this.
+- **Cartridge:** the owner's 256 MB decision is recorded (`ProjectStatus.md` decision 6, `TechnicalDesign.md` §7b,
+  `tools/test/rom_space.py`): `tools/nitrorom` already picks the smallest size the ROM fits, so the cartridge grows by
+  itself past 128 MB; decision 6's fallback (no cries for the new species) is gone.
+- **96×96 fronts (task for the owner's 2026-10-28 request), on a local branch until every screen is checked:** PokeAPI's
+  Black/White fronts for #1–493 and Platinum's own forms (Unown, Deoxys, Rotom, Arceus...), #494+ and the Sovereign
+  forms at 96×96, signed y offsets, 96×96 slots in the 3D sprite manager, 96×96 2D copies (battle, Hall of Fame, PC
+  Hall of Fame, trade, HM cut-in, Frontier scene sprites), and the meson option `platinum_fronts` to go back to
+  Platinum's fronts for #1–493. Checked in the game so far: battle (fronts, Double Team's copies, Extrasensory's BG
+  copy, fainting), an Elite Four run into the Hall of Fame, a trade, Surf's cut-in, an evolution, the summary screen,
+  and a `platinum_fronts` build. `docs/FrontSprites96.md` keeps the list.
+
+**Files modified so far (this branch, since CB-0240):** `tools/test/battle_mechanics.py`,
+`tools/test/battle_mechanics_expected.json` (being recorded), `docs/EngineChangelog.md`, `docs/ProjectStatus.md`,
+`docs/TechnicalDesign.md`, `tools/test/rom_space.py`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Finish the suite's recording, run it from a second state (all must pass), then `battle_all_species.py` and
+   `roamers.py`; PR and merge.
+2. 96×96 fronts: check the Battle Factory (its heap), contests, the PC boxes and the PC's Hall of Fame records; then a
+   PR of its own.
+3. Waiting on the owner: whether Oak gives something at his visit (`Story.md`), T1, T2, the art (E12).
