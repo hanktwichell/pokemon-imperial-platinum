@@ -13,14 +13,19 @@ is back. Some options are poked into the battle's Pokémon once they are in it (
 the test build): abilities, held items, HP, friendship, statuses.
 
 Every battle starts from the same random seed (gSovereignTestBattleSeed; the game seeds a battle from the clock), so a
-case plays the same on every run of one build. What a battle did is how it ended ('ended': the field came back;
-'limit': it was still on at the case's frame limit, as for a foe that can't be knocked out), its message log
-(gSovereignTestMessageLog: every message the battle printed, in order) and its HP log (each change of the battlers'
-current HP). A case passes when all three match the ones recorded for it in tools/test/battle_mechanics_expected.json
-(--record writes them). A comment above a case, and the batch's entry in EngineChangelog.md, say what its battle
-showed when the change was made. A change that makes a battle use the random numbers differently (or take a different
-number of frames to start) can change a damage roll, a critical hit or who moves first, so read a difference before
-calling it a bug, and re-record the case (--record CASE) once it's understood.
+case plays the same on every run of one build. No EXP is gained (gSovereignTestNoExp), so no level-up or new-move
+prompt waits on an answer that would depend on the frame the harness's input lands on. What a battle did is how it
+ended ('ended': the field came back; 'limit': it was still on at the case's frame limit, as for a foe that can't be
+knocked out), its message log (gSovereignTestMessageLog: every message the battle printed, in order) and its HP log
+(each change of the battlers' current HP). A case passes when all three match the ones recorded for it in
+tools/test/battle_mechanics_expected.json (--record writes them). The battle's clock starts on the frame its first
+message comes up (inputs, pokes and the frame limit count from it), so a case plays the same from any save state. A
+battle cut off at its frame limit can still get a few frames further on another build (a longer animation), so there
+the messages are compared up to the last turn both began, and the HP logs as far as both go. A comment above a case,
+and the batch's entry in EngineChangelog.md, say what its battle showed when the change was made. A change that makes
+a battle use the random numbers differently (or take a different number of frames to start) can change a damage roll,
+a critical hit or who moves first, so read a difference before calling it a bug, and re-record the case (--record
+CASE) once it's understood.
 
 Results per case: ok, DIFF (the end, messages or HP differ; both shown), NEW (nothing recorded for it), HANG (the
 frame counter stopped). A case that doesn't end normally also saves a screenshot.
@@ -53,9 +58,10 @@ PARTNER = {'species': 0, 'level': 3, 'moves': 4, 'hp': 12}
 MON_FIELDS = ('size', 'moves', 'statBoosts', 'types', 'ability', 'ppCur', 'friendship', 'curHP', 'maxHP', 'status',
               'statusVolatile', 'heldItem')
 LOG_CHARS = 8192  # SOVEREIGN_TEST_MESSAGE_LOG_CHARS
+START_FRAMES = 1800  # the most frames from SELECT to the battle's first message
 SYMBOLS = ('gSovereignTestLead', 'gSovereignTestWild', 'gSovereignTestGodMode', 'gSystem', 'gSovereignTestIdleFrames',
            'gSovereignTestFoeSurvivesTurns', 'gSovereignTestPartner', 'gSovereignTestBattleTrainer',
-           'gSovereignTestMessageLog', 'gSovereignTestBattleMons', 'gSovereignTestBattleSeed')
+           'gSovereignTestMessageLog', 'gSovereignTestBattleMons', 'gSovereignTestBattleSeed', 'gSovereignTestNoExp')
 SEED = 0x5EED5EED  # every case's battle seed (gSovereignTestBattleSeed), so each battle plays the same every run
 # The player's lead, the foe (or the first foe), the player's partner and the second foe (doubles)
 LEAD_B, FOE_B, PARTNER_B, FOE2_B = 0, 1, 2, 3
@@ -164,6 +170,7 @@ def setup(d, sym, case, names):
     mem.write_byte(wild + WILD['level'], case.get('wild_level', 100))
     mem.write_short(wild + WILD['move'], moves.index('MOVE_' + case.get('foe_move', 'TACKLE')))
     mem.write_byte(sym['gSovereignTestGodMode'], 0 if case.get('nogod') else 1)
+    mem.write_byte(sym['gSovereignTestNoExp'], 1)  # no level-up or new-move prompts, whose answers depend on timing
     if case.get('throw'):
         mem.write_byte(wild + WILD['balls'], 5)
     if doubles:
@@ -212,10 +219,21 @@ def poke_start(b, case, names):
             b.write(FOE2_B, 'ability', abilities.index('ABILITY_' + case['foe2_ability']), 2)
 
 
+def log_length(d, sym):
+    log = sym['gSovereignTestMessageLog']
+    return d.emu.memory.unsigned[log] | d.emu.memory.unsigned[log + 1] << 8
+
+
 def run_case(d, sym, case, state, names, chars, out):
     d.load_state(state)
     d.run(30)
     setup(d, sym, case, names)
+    # The battle's clock starts on the frame its first message comes up: every input, poke and the frame limit count
+    # from there, so a case plays the same from any save state (the field takes more or fewer frames to start it).
+    for _ in range(START_FRAMES):
+        if log_length(d, sym):
+            break
+        d.run(1)
     b = Battle(d, sym)
     count = 4 if 'trainer' in case else 2
     lead_sp = names['species'].index('SPECIES_' + case['lead'])
@@ -283,7 +301,7 @@ def run_case(d, sym, case, state, names, chars, out):
     if result != 'ended':
         d.screenshot().save(os.path.join(out, f"{case['name']}_{result}.png"))
     log = sym['gSovereignTestMessageLog']
-    length = d.emu.memory.unsigned[log] | d.emu.memory.unsigned[log + 1] << 8
+    length = log_length(d, sym)
     raw = bytes(d.emu.memory.unsigned[log + 2:log + 2 + 2 * min(length, LOG_CHARS)])
     codes = [raw[i] | raw[i + 1] << 8 for i in range(0, len(raw), 2)]
     return {'result': result, 'messages': decode_log(codes, chars), 'hp': hplog}
@@ -301,22 +319,44 @@ def pick(args):
     return out
 
 
+def whole_turns(messages):
+    """The messages of a battle cut off at its frame limit up to the last time it asked for a move ("What will ...
+    do?", once): where the limit falls in the turn after that moves with any change to how many frames the battle
+    takes."""
+    asks = [i for i, m in enumerate(messages) if m.startswith('What will ')]
+    if not asks:
+        return messages
+    out = messages[:asks[-1] + 1]
+    while len(out) > 1 and out[-1] == out[-2]:
+        out.pop()
+    return out
+
+
+def same_start(a, b):
+    """Whether the shorter list is the start of the longer one."""
+    n = min(len(a), len(b))
+    return a[:n] == b[:n]
+
+
 def compare(name, got, expected):
-    """'ok', 'NEW' or 'DIFF', with the lines that explain a DIFF."""
+    """'ok', 'NEW' or 'DIFF', with the lines that explain a DIFF. Two battles cut off at the frame limit match when
+    their messages agree up to the last turn they began (whole_turns) and one's HP log is the start of the other's."""
     want = expected.get(name)
     if got['result'] == 'HANG':
         return 'HANG', []
     if want is None:
         return 'NEW', []
     notes = []
+    limit = got['result'] == want['result'] == 'limit'
     if got['result'] != want['result']:
         notes.append(f"  the battle: expected {want['result']}, got {got['result']}")
-    if got['messages'] != want['messages']:
+    if not (same_start(whole_turns(got['messages']), whole_turns(want['messages'])) if limit
+            else got['messages'] == want['messages']):
         notes.append('  messages: expected')
         notes += ['    ' + m for m in want['messages']]
         notes.append('  got')
         notes += ['    ' + m for m in got['messages']]
-    if got['hp'] != want['hp']:
+    if not (same_start(got['hp'], want['hp']) if limit else got['hp'] == want['hp']):
         notes.append(f"  HP: expected {want['hp']}")
         notes.append(f"  got {got['hp']}")
     return ('DIFF' if notes else 'ok'), notes

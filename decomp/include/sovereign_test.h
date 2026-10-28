@@ -267,12 +267,15 @@ extern u8 gSovereignTestFoeSurvivesTurns;
 // makes the party again from it (field_control.c), so a battle plays the same on every run and from any save state
 // (FieldBattleDTO_New; tools/test/battle_mechanics.py).
 extern u32 gSovereignTestBattleSeed;
+// While set, no EXP is gained in battle, as in god mode, so there are no level-up or new-move prompts to answer
+// (BtlCmd_CalcExpGain), whose answers depend on the frame a harness's input lands on (tools/test/battle_mechanics.py).
+extern u8 gSovereignTestNoExp;
 // The frames the field map has run with no task (no script, warp or battle), and the map it was on (field_system.c).
 extern u32 gSovereignTestIdleFrames;
 extern u32 gSovereignTestIdleMapHeaderID;
 extern struct SovereignTestMessageLog gSovereignTestMessageLog;
-// While a battle runs, where its Pokémon are (BattleContext's battleMons, NULL between battles), with the size of one and
-// the offsets a harness reads and pokes (BattleContext_New; tools/test/battle_mechanics.py).
+// While a battle runs, where its Pokémon are (BattleContext's battleMons, NULL between battles), with the size of one
+// and the offsets a harness reads and pokes (BattleContext_New; tools/test/battle_mechanics.py).
 struct SovereignTestBattleMons {
     void *mons;
     u16 size;

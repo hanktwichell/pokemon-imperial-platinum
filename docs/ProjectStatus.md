@@ -76,8 +76,9 @@ Made by the owner (2026-10-22):
 4. Options: level cap, Infinite Rare Candy (needs the cap), party Exp. Share, music volume, all in the normal OPTIONS list.
 5. QoL proposals 1–6, 8, 9 and 11 approved; #7 kept as a proposal; #10 dropped.
 6. The Sinnoh dex stays as in Platinum; the National Dex holds all 1025. Cries for new species come from PokeAPI's archive.
-   They are added last of all; until then the new species are silent, and dropping every cry is the fallback if
-   space runs out (2026-10-22).
+   They are added last of all; until then the new species are silent (2026-10-22). Space no longer limits them: the
+   cartridge grows from 128 MB to 256 MB once the data passes 128 MB (owner, 2026-10-28; `tools/nitrorom` picks the
+   size from the content), so the earlier fallback of dropping every cry is gone.
 7. Boss team compositions wait until the engine features are done (T1).
 8. A Red-style developer final battle will be added (T2). It gets a custom AI; the trainer AI is also reviewed for double battles (12b).
 9. No Z-Moves, Max Moves, Dynamax or Gigantamax.
