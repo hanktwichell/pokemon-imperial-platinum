@@ -849,7 +849,7 @@ static void CreatePokemonPreviewSprite(PokemonPreview *preview, u8 x, u8 y)
 
 static void LoadAndDrawPokemonPreviewSprite(SpriteResourceManager *param0, u16 species, u8 gender)
 {
-    void *buf = PokemonSpriteManager_New(param0->heapID);
+    void *buf = PokemonSpriteManager_NewOneSlot(param0->heapID); // Sovereign: one slot (it draws nothing; the preview is a 2D copy)
 
     PokemonSpriteTemplate sprite;
     BuildPokemonSpriteTemplate(&sprite, species, gender, FACE_FRONT, FALSE, NULL, NULL);
@@ -859,7 +859,7 @@ static void LoadAndDrawPokemonPreviewSprite(SpriteResourceManager *param0, u16 s
 
 static void LoadAndDrawPokemonPreviewSpriteFromStruct(SpriteResourceManager *param0, Pokemon *mon)
 {
-    void *buf = PokemonSpriteManager_New(param0->heapID);
+    void *buf = PokemonSpriteManager_NewOneSlot(param0->heapID); // Sovereign: one slot (it draws nothing; the preview is a 2D copy)
 
     PokemonSpriteTemplate sprite;
     Pokemon_BuildSpriteTemplate(&sprite, mon, FACE_FRONT);
