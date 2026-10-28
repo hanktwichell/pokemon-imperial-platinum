@@ -333,19 +333,6 @@
    "SNORLAX took the kind offer!",
    "SNORLAX used Headbutt!",
    "The foe’s MILTANK fainted!",
-   "JOLTEON gained 1413 Exp. Points!",
-   "SNORLAX gained 1413 Exp. Points!",
-   "STARLY gained 706 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!",
-   "STARLY grew to Lv. 8!",
-   "STARLY grew to Lv. 9!",
-   "STARLY learned Wing Attack!",
-   "STARLY grew to Lv. 10!",
-   "STARLY grew to Lv. 11!",
-   "GALLADE gained 706 Exp. Points!",
-   "ARCHALUDON gained 706 Exp. Points!",
-   "DITTO gained 706 Exp. Points!",
    "The foe’s TAUROS used Horn Attack!",
    "What will JOLTEON do?",
    "What will JOLTEON do?",
@@ -1691,21 +1678,7 @@
    "GALLADE’s attack!",
    "ARCHALUDON’s attack!",
    "It’s super effective!",
-   "The wild ALAKAZAM fainted!",
-   "GEODUDE gained 1328 Exp. Points!",
-   "TURTWIG gained 664 Exp. Points!",
-   "TURTWIG grew to Lv. 16!",
-   "STARLY gained 664 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!",
-   "STARLY grew to Lv. 8!",
-   "STARLY grew to Lv. 9!",
-   "STARLY learned Wing Attack!",
-   "STARLY grew to Lv. 10!",
-   "STARLY grew to Lv. 11!",
-   "GALLADE gained 664 Exp. Points!",
-   "ARCHALUDON gained 664 Exp. Points!",
-   "DITTO gained 664 Exp. Points!"
+   "The wild ALAKAZAM fainted!"
   ],
   "hp": [
    [
@@ -3597,13 +3570,10 @@
    "DONDOZO used Order Up!",
    "DONDOZO’s Attack rose!",
    "The foe’s TAUROS fainted!",
-   "TATSUGIRI gained 1491 Exp. Points!",
-   "DONDOZO gained 1491 Exp. Points!",
-   "STARLY gained 745 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!",
-   "STARLY grew to Lv. 8!",
-   "STARLY grew to Lv. 9!"
+   "The foe’s MILTANK used Headbutt!",
+   "The attack of the foe’s MILTANK missed!",
+   "What will DONDOZO do?",
+   "What will DONDOZO do?"
   ],
   "hp": [
    [
@@ -3687,10 +3657,9 @@
    "The foe’s TAUROS used Horn Attack!",
    "TATSUGIRI used Water Gun!",
    "The foe’s TAUROS fainted!",
-   "TATSUGIRI gained 1491 Exp. Points!",
-   "STARLY gained 745 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!"
+   "The foe’s MILTANK used Headbutt!",
+   "What will TATSUGIRI do?",
+   "What will TATSUGIRI do?"
   ],
   "hp": [
    [
@@ -3743,6 +3712,12 @@
    ],
    [
     54,
+    0,
+    151,
+    54
+   ],
+   [
+    21,
     0,
     151,
     54
@@ -5433,18 +5408,6 @@
    "It’s not very effective...",
    "Hit 1 time(s)!",
    "The foe’s MAGNETON fainted!",
-   "DRAGAPULT gained 1035 Exp. Points!",
-   "SNORLAX gained 1035 Exp. Points!",
-   "STARLY gained 517 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!",
-   "STARLY grew to Lv. 8!",
-   "STARLY grew to Lv. 9!",
-   "STARLY learned Wing Attack!",
-   "STARLY grew to Lv. 10!",
-   "GALLADE gained 517 Exp. Points!",
-   "ARCHALUDON gained 517 Exp. Points!",
-   "DITTO gained 517 Exp. Points!",
    "SNORLAX used Growl!",
    "The foe’s KIRLIA’s Attack fell!",
    "The foe’s KIRLIA used Psybeam!",
@@ -5531,7 +5494,24 @@
    "What will DRAGAPULT do?",
    "There’s no PP left for this move!",
    "What will DRAGAPULT do?",
-   "There’s no PP left for this move!"
+   "There’s no PP left for this move!",
+   "What will DRAGAPULT do?",
+   "There’s no PP left for this move!",
+   "What will DRAGAPULT do?",
+   "There’s no PP left for this move!",
+   "What will DRAGAPULT do?",
+   "There’s no PP left for this move!",
+   "What will DRAGAPULT do?",
+   "There’s no PP left for this move!",
+   "What will DRAGAPULT do?",
+   "There’s no PP left for this move!",
+   "What will DRAGAPULT do?",
+   "There’s no PP left for this move!",
+   "What will DRAGAPULT do?",
+   "There’s no PP left for this move!",
+   "What will DRAGAPULT do?",
+   "There’s no PP left for this move!",
+   "What will DRAGAPULT do?"
   ],
   "hp": [
    [
@@ -5647,18 +5627,6 @@
    "It’s not very effective...",
    "The foe’s MAGNETON fainted!",
    "It doesn’t affect the foe’s KIRLIA...",
-   "DRAGAPULT gained 1035 Exp. Points!",
-   "SNORLAX gained 1035 Exp. Points!",
-   "STARLY gained 517 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!",
-   "STARLY grew to Lv. 8!",
-   "STARLY grew to Lv. 9!",
-   "STARLY learned Wing Attack!",
-   "STARLY grew to Lv. 10!",
-   "GALLADE gained 517 Exp. Points!",
-   "ARCHALUDON gained 517 Exp. Points!",
-   "DITTO gained 517 Exp. Points!",
    "SNORLAX used Growl!",
    "The foe’s KIRLIA’s Attack fell!",
    "The foe’s KIRLIA used Psybeam!",
@@ -5737,43 +5705,6 @@
    "DRAGAPULT used Dragon Darts!",
    "The foe’s TAUROS fainted!",
    "The foe’s MILTANK fainted!",
-   "DRAGAPULT gained 1491 Exp. Points!",
-   "SNORLAX gained 1491 Exp. Points!",
-   "STARLY gained 745 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!",
-   "STARLY grew to Lv. 8!",
-   "STARLY grew to Lv. 9!",
-   "STARLY learned Wing Attack!",
-   "STARLY grew to Lv. 10!",
-   "STARLY grew to Lv. 11!",
-   "GALLADE gained 745 Exp. Points!",
-   "ARCHALUDON gained 745 Exp. Points!",
-   "DITTO gained 745 Exp. Points!",
-   "DRAGAPULT gained 1413 Exp. Points!",
-   "SNORLAX gained 1413 Exp. Points!",
-   "STARLY gained 706 Exp. Points!",
-   "STARLY grew to Lv. 12!",
-   "STARLY grew to Lv. 13!",
-   "STARLY wants to learn the move Double Team.",
-   "But STARLY can’t learn more than four moves.",
-   "Make it forget another move?",
-   "Well, then...",
-   "Should this Pokémon give up on learning this new move?",
-   "STARLY wants to learn the move Double Team.",
-   "But STARLY can’t learn more than four moves.",
-   "Make it forget another move?",
-   "Well, then...",
-   "Should this Pokémon give up on learning this new move?",
-   "STARLY wants to learn the move Double Team.",
-   "But STARLY can’t learn more than four moves.",
-   "Make it forget another move?",
-   "Well, then...",
-   "Should this Pokémon give up on learning this new move?",
-   "STARLY did not learn Double Team.",
-   "GALLADE gained 706 Exp. Points!",
-   "ARCHALUDON gained 706 Exp. Points!",
-   "DITTO gained 706 Exp. Points!",
    "Player defeated Belle & Pa Ava & Matt!",
    "Matt: Parent-and-child power couldn’t get the job done.",
    "Ava: Oh, sheesh!",
@@ -6649,15 +6580,7 @@
    "What will GALLADE do?",
    "GALLADE used Aerial Ace!",
    "It’s not very effective...",
-   "The wild GEODUDE fainted!",
-   "GOLISOPOD gained 208 Exp. Points!",
-   "TURTWIG gained 104 Exp. Points!",
-   "STARLY gained 104 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!",
-   "GALLADE gained 208 Exp. Points!",
-   "ARCHALUDON gained 104 Exp. Points!",
-   "DITTO gained 104 Exp. Points!"
+   "The wild GEODUDE fainted!"
   ],
   "hp": [
    [
@@ -6989,7 +6912,7 @@
   ]
  },
  "electrify": {
-  "result": "limit",
+  "result": "ended",
   "messages": [
    "A wild NINJASK appeared!",
    "Go! GARCHOMP!",
@@ -7017,14 +6940,7 @@
    "What will GARCHOMP do?",
    "What will GARCHOMP do?",
    "GARCHOMP used Play Rough!",
-   "The wild NINJASK fainted!",
-   "GARCHOMP gained 110 Exp. Points!",
-   "TURTWIG gained 55 Exp. Points!",
-   "STARLY gained 55 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "GALLADE gained 55 Exp. Points!",
-   "ARCHALUDON gained 55 Exp. Points!",
-   "DITTO gained 55 Exp. Points!"
+   "The wild NINJASK fainted!"
   ],
   "hp": [
    [
@@ -7314,7 +7230,7 @@
   ]
  },
  "enigma_plain": {
-  "result": "limit",
+  "result": "ended",
   "messages": [
    "A wild NINJASK appeared!",
    "Go! MEGANIUM!",
@@ -7346,10 +7262,7 @@
    "But nothing happened!",
    "MEGANIUM used Rock Throw!",
    "It’s super effective!",
-   "The wild NINJASK fainted!",
-   "MEGANIUM gained 2214 Exp. Points!",
-   "TURTWIG gained 1107 Exp. Points!",
-   "TURTWIG grew to Lv. 16!"
+   "The wild NINJASK fainted!"
   ],
   "hp": [
    [
@@ -7379,7 +7292,7 @@
   ]
  },
  "enigma_ripen": {
-  "result": "limit",
+  "result": "ended",
   "messages": [
    "A wild NINJASK appeared!",
    "Go! MEGANIUM!",
@@ -7408,14 +7321,7 @@
    "But nothing happened!",
    "MEGANIUM used Rock Throw!",
    "It’s super effective!",
-   "The wild NINJASK fainted!",
-   "MEGANIUM gained 2214 Exp. Points!",
-   "TURTWIG gained 1107 Exp. Points!",
-   "TURTWIG grew to Lv. 16!",
-   "TURTWIG grew to Lv. 17!",
-   "TURTWIG wants to learn the move Curse.",
-   "But TURTWIG can’t learn more than four moves.",
-   "Make it forget another move?"
+   "The wild NINJASK fainted!"
   ],
   "hp": [
    [
@@ -7700,23 +7606,6 @@
    "ALAKAZAM used Expanding Force!",
    "The foe’s MINUN fainted!",
    "The foe’s PLUSLE fainted!",
-   "ALAKAZAM gained 385 Exp. Points!",
-   "ESPEON gained 385 Exp. Points!",
-   "STARLY gained 192 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!",
-   "STARLY grew to Lv. 8!",
-   "GALLADE gained 192 Exp. Points!",
-   "ARCHALUDON gained 192 Exp. Points!",
-   "DITTO gained 192 Exp. Points!",
-   "ALAKAZAM gained 385 Exp. Points!",
-   "ESPEON gained 385 Exp. Points!",
-   "STARLY gained 192 Exp. Points!",
-   "STARLY grew to Lv. 9!",
-   "STARLY learned Wing Attack!",
-   "GALLADE gained 192 Exp. Points!",
-   "ARCHALUDON gained 192 Exp. Points!",
-   "DITTO gained 192 Exp. Points!",
    "Player defeated Twins Liv & Liz!",
    "Liv: Oh, oh, oh?",
    "Liz: Oh, but, wait!",
@@ -8120,7 +8009,7 @@
   ]
  },
  "fillet_away": {
-  "result": "limit",
+  "result": "ended",
   "messages": [
    "A wild NINJASK appeared!",
    "Go! SNORLAX!",
@@ -8153,8 +8042,7 @@
    "The wild NINJASK used Splash!",
    "But nothing happened!",
    "SNORLAX used Play Rough!",
-   "The wild NINJASK fainted!",
-   "SNORLAX gained 2214 Exp. Points!"
+   "The wild NINJASK fainted!"
   ],
   "hp": [
    [
@@ -8444,7 +8332,7 @@
   ]
  },
  "flail_10_blissey": {
-  "result": "limit",
+  "result": "ended",
   "messages": [
    "A wild BLISSEY appeared!",
    "Go! GEODUDE!",
@@ -8468,41 +8356,7 @@
    "The wild BLISSEY used Splash!",
    "But nothing happened!",
    "GEODUDE used Flail!",
-   "The wild BLISSEY fainted!",
-   "GEODUDE gained 3642 Exp. Points!",
-   "TURTWIG gained 1821 Exp. Points!",
-   "TURTWIG grew to Lv. 16!",
-   "TURTWIG grew to Lv. 17!",
-   "TURTWIG wants to learn the move Curse.",
-   "But TURTWIG can’t learn more than four moves.",
-   "Make it forget another move?",
-   "Which move should be forgotten?",
-   "1,",
-   "TURTWIG forgot how to use Withdraw.",
-   "And...",
-   "TURTWIG learned Curse!",
-   "TURTWIG grew to Lv. 18!",
-   "STARLY gained 1821 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!",
-   "STARLY grew to Lv. 8!",
-   "STARLY grew to Lv. 9!",
-   "STARLY learned Wing Attack!",
-   "STARLY grew to Lv. 10!",
-   "STARLY grew to Lv. 11!",
-   "STARLY grew to Lv. 12!",
-   "STARLY grew to Lv. 13!",
-   "STARLY wants to learn the move Double Team.",
-   "But STARLY can’t learn more than four moves.",
-   "Make it forget another move?",
-   "Well, then...",
-   "Should this Pokémon give up on learning this new move?",
-   "STARLY wants to learn the move Double Team.",
-   "But STARLY can’t learn more than four moves.",
-   "Make it forget another move?",
-   "Well, then...",
-   "Should this Pokémon give up on learning this new move?",
-   "STARLY wants to learn the move Double Team."
+   "The wild BLISSEY fainted!"
   ],
   "hp": [
    [
@@ -8557,7 +8411,7 @@
   ]
  },
  "flail_11_blissey": {
-  "result": "limit",
+  "result": "ended",
   "messages": [
    "A wild BLISSEY appeared!",
    "Go! GEODUDE!",
@@ -8586,35 +8440,7 @@
    "The wild BLISSEY used Splash!",
    "But nothing happened!",
    "GEODUDE used Flail!",
-   "The wild BLISSEY fainted!",
-   "GEODUDE gained 3642 Exp. Points!",
-   "TURTWIG gained 1821 Exp. Points!",
-   "TURTWIG grew to Lv. 16!",
-   "TURTWIG grew to Lv. 17!",
-   "TURTWIG wants to learn the move Curse.",
-   "But TURTWIG can’t learn more than four moves.",
-   "Make it forget another move?",
-   "Which move should be forgotten?",
-   "1,",
-   "TURTWIG forgot how to use Withdraw.",
-   "And...",
-   "TURTWIG learned Curse!",
-   "TURTWIG grew to Lv. 18!",
-   "STARLY gained 1821 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!",
-   "STARLY grew to Lv. 8!",
-   "STARLY grew to Lv. 9!",
-   "STARLY learned Wing Attack!",
-   "STARLY grew to Lv. 10!",
-   "STARLY grew to Lv. 11!",
-   "STARLY grew to Lv. 12!",
-   "STARLY grew to Lv. 13!",
-   "STARLY wants to learn the move Double Team.",
-   "But STARLY can’t learn more than four moves.",
-   "Make it forget another move?",
-   "Well, then...",
-   "Should this Pokémon give up on learning this new move?"
+   "The wild BLISSEY fainted!"
   ],
   "hp": [
    [
@@ -8658,27 +8484,10 @@
    "SNORLAX used Flame Burst!",
    "The bursting flame hit the foe’s PLUSLE!",
    "The foe’s MINUN fainted!",
-   "SNORLAX gained 385 Exp. Points!",
-   "SHUCKLE gained 385 Exp. Points!",
-   "STARLY gained 192 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!",
-   "STARLY grew to Lv. 8!",
-   "GALLADE gained 192 Exp. Points!",
-   "ARCHALUDON gained 192 Exp. Points!",
-   "DITTO gained 192 Exp. Points!",
    "The foe’s PLUSLE used Switcheroo!",
    "But it failed!",
    "SHUCKLE used Rock Slide!",
    "The foe’s PLUSLE fainted!",
-   "SNORLAX gained 385 Exp. Points!",
-   "SHUCKLE gained 385 Exp. Points!",
-   "STARLY gained 192 Exp. Points!",
-   "STARLY grew to Lv. 9!",
-   "STARLY learned Wing Attack!",
-   "GALLADE gained 192 Exp. Points!",
-   "ARCHALUDON gained 192 Exp. Points!",
-   "DITTO gained 192 Exp. Points!",
    "Player defeated Twins Liv & Liz!",
    "Liv: Oh, oh, oh?",
    "Liz: Oh, but, wait!",
@@ -8997,7 +8806,7 @@
   ]
  },
  "fling_target_cudchew": {
-  "result": "limit",
+  "result": "ended",
   "messages": [
    "A wild FARIGIRAF appeared!",
    "Go! MACHAMP!",
@@ -9037,41 +8846,7 @@
    "The wild FARIGIRAF used Splash!",
    "But nothing happened!",
    "MACHAMP used Karate Chop!",
-   "The wild FARIGIRAF fainted!",
-   "MACHAMP gained 2185 Exp. Points!",
-   "TURTWIG gained 1092 Exp. Points!",
-   "TURTWIG grew to Lv. 16!",
-   "TURTWIG grew to Lv. 17!",
-   "TURTWIG wants to learn the move Curse.",
-   "But TURTWIG can’t learn more than four moves.",
-   "Make it forget another move?",
-   "Well, then...",
-   "Should this Pokémon give up on learning this new move?",
-   "TURTWIG wants to learn the move Curse.",
-   "But TURTWIG can’t learn more than four moves.",
-   "Make it forget another move?",
-   "Well, then...",
-   "Should this Pokémon give up on learning this new move?",
-   "TURTWIG wants to learn the move Curse.",
-   "But TURTWIG can’t learn more than four moves.",
-   "Make it forget another move?",
-   "Well, then...",
-   "Should this Pokémon give up on learning this new move?",
-   "TURTWIG wants to learn the move Curse.",
-   "But TURTWIG can’t learn more than four moves.",
-   "Make it forget another move?",
-   "Well, then...",
-   "Should this Pokémon give up on learning this new move?",
-   "TURTWIG wants to learn the move Curse.",
-   "But TURTWIG can’t learn more than four moves.",
-   "Make it forget another move?",
-   "Which move should be forgotten?",
-   "1,",
-   "TURTWIG forgot how to use Withdraw.",
-   "And...",
-   "TURTWIG learned Curse!",
-   "STARLY gained 1092 Exp. Points!",
-   "STARLY grew to Lv. 6!"
+   "The wild FARIGIRAF fainted!"
   ],
   "hp": [
    [
@@ -10444,21 +10219,7 @@
    "What will SNORLAX do?",
    "The wild NINJASK used Tackle!",
    "SNORLAX used Glaive Rush!",
-   "The wild NINJASK fainted!",
-   "SNORLAX gained 1328 Exp. Points!",
-   "TURTWIG gained 664 Exp. Points!",
-   "TURTWIG grew to Lv. 16!",
-   "STARLY gained 664 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!",
-   "STARLY grew to Lv. 8!",
-   "STARLY grew to Lv. 9!",
-   "STARLY learned Wing Attack!",
-   "STARLY grew to Lv. 10!",
-   "STARLY grew to Lv. 11!",
-   "GALLADE gained 664 Exp. Points!",
-   "ARCHALUDON gained 664 Exp. Points!",
-   "DITTO gained 664 Exp. Points!"
+   "The wild NINJASK fainted!"
   ],
   "hp": [
    [
@@ -11622,8 +11383,7 @@
    "EXPLOUD is hurt by poison!",
    "What will EXPLOUD do?",
    "What will EXPLOUD do?",
-   "The wild NINJASK used Toxic!",
-   "EXPLOUD is already poisoned."
+   "The wild NINJASK used Toxic!"
   ],
   "hp": [
    [
@@ -15340,18 +15100,7 @@
    "What will GEODUDE do?",
    "GEODUDE used Me First!",
    "GEODUDE used Tackle!",
-   "The wild SLOWPOKE fainted!",
-   "GEODUDE gained 707 Exp. Points!",
-   "TURTWIG gained 353 Exp. Points!",
-   "STARLY gained 353 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!",
-   "STARLY grew to Lv. 8!",
-   "STARLY grew to Lv. 9!",
-   "STARLY learned Wing Attack!",
-   "GALLADE gained 353 Exp. Points!",
-   "ARCHALUDON gained 353 Exp. Points!",
-   "DITTO gained 353 Exp. Points!"
+   "The wild SLOWPOKE fainted!"
   ],
   "hp": [
    [
@@ -15512,31 +15261,7 @@
    "What will GARCHOMP do?",
    "What will GARCHOMP do?",
    "GARCHOMP used Earthquake!",
-   "The wild SNORLAX fainted!",
-   "GARCHOMP gained 2200 Exp. Points!",
-   "TURTWIG gained 1100 Exp. Points!",
-   "TURTWIG grew to Lv. 16!",
-   "TURTWIG grew to Lv. 17!",
-   "TURTWIG wants to learn the move Curse.",
-   "But TURTWIG can’t learn more than four moves.",
-   "Make it forget another move?",
-   "Which move should be forgotten?",
-   "1,",
-   "TURTWIG forgot how to use Withdraw.",
-   "And...",
-   "TURTWIG learned Curse!",
-   "STARLY gained 1100 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!",
-   "STARLY grew to Lv. 8!",
-   "STARLY grew to Lv. 9!",
-   "STARLY learned Wing Attack!",
-   "STARLY grew to Lv. 10!",
-   "STARLY grew to Lv. 11!",
-   "STARLY grew to Lv. 12!",
-   "GALLADE gained 1100 Exp. Points!",
-   "ARCHALUDON gained 1100 Exp. Points!",
-   "DITTO gained 1100 Exp. Points!"
+   "The wild SNORLAX fainted!"
   ],
   "hp": [
    [
@@ -18312,6 +18037,10 @@
    [
     99,
     211
+   ],
+   [
+    47,
+    211
    ]
   ]
  },
@@ -19113,15 +18842,6 @@
    "SNORLAX used High Horsepower!",
    "It’s super effective!",
    "The foe’s MINUN fainted!",
-   "SNORLAX gained 385 Exp. Points!",
-   "SNORLAX gained 385 Exp. Points!",
-   "STARLY gained 192 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!",
-   "STARLY grew to Lv. 8!",
-   "GALLADE gained 192 Exp. Points!",
-   "ARCHALUDON gained 192 Exp. Points!",
-   "DITTO gained 192 Exp. Points!",
    "SNORLAX used ParabolcCharge!",
    "SNORLAX had its energy drained!",
    "It’s not very effective...",
@@ -19138,14 +18858,6 @@
    "The foe’s PLUSLE had its energy drained!",
    "The foe’s PLUSLE fainted!",
    "SNORLAX had its energy drained!",
-   "SNORLAX gained 385 Exp. Points!",
-   "SNORLAX gained 385 Exp. Points!",
-   "STARLY gained 192 Exp. Points!",
-   "STARLY grew to Lv. 9!",
-   "STARLY learned Wing Attack!",
-   "GALLADE gained 192 Exp. Points!",
-   "ARCHALUDON gained 192 Exp. Points!",
-   "DITTO gained 192 Exp. Points!",
    "Player defeated Twins Liv & Liz!",
    "Liv: Oh, oh, oh?",
    "Liz: Oh, but, wait!",
@@ -19162,12 +18874,6 @@
     116,
     0,
     226,
-    44
-   ],
-   [
-    116,
-    0,
-    213,
     44
    ],
    [
@@ -19671,31 +19377,7 @@
    "But nothing happened!",
    "PIKACHU used Pika Papow!",
    "It’s super effective!",
-   "The wild NINJASK fainted!",
-   "PIKACHU gained 2214 Exp. Points!",
-   "TURTWIG gained 1107 Exp. Points!",
-   "TURTWIG grew to Lv. 16!",
-   "TURTWIG grew to Lv. 17!",
-   "TURTWIG wants to learn the move Curse.",
-   "But TURTWIG can’t learn more than four moves.",
-   "Make it forget another move?",
-   "Which move should be forgotten?",
-   "1,",
-   "TURTWIG forgot how to use Withdraw.",
-   "And...",
-   "TURTWIG learned Curse!",
-   "STARLY gained 1107 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!",
-   "STARLY grew to Lv. 8!",
-   "STARLY grew to Lv. 9!",
-   "STARLY learned Wing Attack!",
-   "STARLY grew to Lv. 10!",
-   "STARLY grew to Lv. 11!",
-   "STARLY grew to Lv. 12!",
-   "GALLADE gained 1107 Exp. Points!",
-   "ARCHALUDON gained 1107 Exp. Points!",
-   "DITTO gained 1107 Exp. Points!"
+   "The wild NINJASK fainted!"
   ],
   "hp": [
    [
@@ -19752,31 +19434,7 @@
    "But nothing happened!",
    "PIKACHU used Thunderbolt!",
    "It’s super effective!",
-   "The wild NINJASK fainted!",
-   "PIKACHU gained 2214 Exp. Points!",
-   "TURTWIG gained 1107 Exp. Points!",
-   "TURTWIG grew to Lv. 16!",
-   "TURTWIG grew to Lv. 17!",
-   "TURTWIG wants to learn the move Curse.",
-   "But TURTWIG can’t learn more than four moves.",
-   "Make it forget another move?",
-   "Which move should be forgotten?",
-   "1,",
-   "TURTWIG forgot how to use Withdraw.",
-   "And...",
-   "TURTWIG learned Curse!",
-   "STARLY gained 1107 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!",
-   "STARLY grew to Lv. 8!",
-   "STARLY grew to Lv. 9!",
-   "STARLY learned Wing Attack!",
-   "STARLY grew to Lv. 10!",
-   "STARLY grew to Lv. 11!",
-   "STARLY grew to Lv. 12!",
-   "GALLADE gained 1107 Exp. Points!",
-   "ARCHALUDON gained 1107 Exp. Points!",
-   "DITTO gained 1107 Exp. Points!"
+   "The wild NINJASK fainted!"
   ],
   "hp": [
    [
@@ -19811,14 +19469,7 @@
    "GARCHOMP used Plasma Fists!",
    "It’s super effective!",
    "A deluge of ions showers the battlefield!",
-   "The wild NINJASK fainted!",
-   "GARCHOMP gained 110 Exp. Points!",
-   "TURTWIG gained 55 Exp. Points!",
-   "STARLY gained 55 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "GALLADE gained 55 Exp. Points!",
-   "ARCHALUDON gained 55 Exp. Points!",
-   "DITTO gained 55 Exp. Points!"
+   "The wild NINJASK fainted!"
   ],
   "hp": [
    [
@@ -20053,25 +19704,8 @@
    "SNORLAX used High Horsepower!",
    "It’s super effective!",
    "The foe’s MINUN fainted!",
-   "SNORLAX gained 385 Exp. Points!",
-   "SNORLAX gained 385 Exp. Points!",
-   "STARLY gained 192 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!",
-   "STARLY grew to Lv. 8!",
-   "GALLADE gained 192 Exp. Points!",
-   "ARCHALUDON gained 192 Exp. Points!",
-   "DITTO gained 192 Exp. Points!",
    "SNORLAX used Pollen Puff!",
    "The foe’s PLUSLE fainted!",
-   "SNORLAX gained 385 Exp. Points!",
-   "SNORLAX gained 385 Exp. Points!",
-   "STARLY gained 192 Exp. Points!",
-   "STARLY grew to Lv. 9!",
-   "STARLY learned Wing Attack!",
-   "GALLADE gained 192 Exp. Points!",
-   "ARCHALUDON gained 192 Exp. Points!",
-   "DITTO gained 192 Exp. Points!",
    "Player defeated Twins Liv & Liz!",
    "Liv: Oh, oh, oh?",
    "Liz: Oh, but, wait!",
@@ -20977,18 +20611,7 @@
    "What will SNORLAX do?",
    "SNORLAX used Rage Fist!",
    "It’s super effective!",
-   "The wild SLOWPOKE fainted!",
-   "SNORLAX gained 848 Exp. Points!",
-   "TURTWIG gained 424 Exp. Points!",
-   "STARLY gained 424 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!",
-   "STARLY grew to Lv. 8!",
-   "STARLY grew to Lv. 9!",
-   "STARLY learned Wing Attack!",
-   "GALLADE gained 424 Exp. Points!",
-   "ARCHALUDON gained 424 Exp. Points!",
-   "DITTO gained 424 Exp. Points!"
+   "The wild SLOWPOKE fainted!"
   ],
   "hp": [
    [
@@ -21125,58 +20748,15 @@
    "The foe’s MILTANK used Zen Headbutt!",
    "It’s super effective!",
    "GALLADE used Aerial Ace!",
+   "What will PASSIMIAN do?",
+   "What will PASSIMIAN do?",
+   "What will GALLADE do?",
+   "What will GALLADE do?",
+   "The foe’s TAUROS used Zen Headbutt!",
    "It’s super effective!",
    "PASSIMIAN fainted!",
-   "Go! ARCHALUDON!",
-   "What will ARCHALUDON do?",
-   "What will ARCHALUDON do?",
-   "What will GALLADE do?",
-   "What will GALLADE do?",
-   "ARCHALUDON used Iron Defense!",
-   "ARCHALUDON’s Defense sharply rose!",
-   "The foe’s TAUROS used Horn Attack!",
-   "The foe’s MILTANK used Heal Bell!",
-   "A bell chimed!",
-   "GALLADE used Aerial Ace!",
-   "What will ARCHALUDON do?",
-   "What will ARCHALUDON do?",
-   "What will GALLADE do?",
-   "What will GALLADE do?",
-   "ARCHALUDON used Iron Defense!",
-   "ARCHALUDON’s Defense sharply rose!",
-   "The foe’s TAUROS used Horn Attack!",
-   "The foe’s MILTANK used Heal Bell!",
-   "A bell chimed!",
-   "GALLADE used Aerial Ace!",
-   "What will ARCHALUDON do?",
-   "What will ARCHALUDON do?",
-   "What will GALLADE do?",
-   "What will GALLADE do?",
-   "ARCHALUDON used Focus Energy!",
-   "ARCHALUDON is getting pumped!",
-   "The foe’s TAUROS used Assurance!",
-   "ARCHALUDON’s Stamina raised its Defense!",
-   "The foe’s MILTANK used Heal Bell!",
-   "A bell chimed!",
-   "GALLADE used False Swipe!",
-   "It’s not very effective...",
-   "ARCHALUDON’s Stamina raised its Defense!",
-   "What will ARCHALUDON do?",
-   "What will ARCHALUDON do?",
-   "What will GALLADE do?",
-   "What will GALLADE do?",
-   "ARCHALUDON used Iron Defense!",
-   "ARCHALUDON’s Defense won’t go higher!",
-   "The foe’s TAUROS used Assurance!",
-   "The foe’s MILTANK used Heal Bell!",
-   "A bell chimed!",
-   "GALLADE used Aerial Ace!",
-   "What will ARCHALUDON do?",
-   "What will ARCHALUDON do?",
-   "What will GALLADE do?",
-   "What will GALLADE do?",
-   "ARCHALUDON used Iron Defense!",
-   "ARCHALUDON’s Defense won’t go higher!"
+   "The foe’s MILTANK used Zen Headbutt!",
+   "GALLADE used False Swipe!"
   ],
   "hp": [
    [
@@ -21228,64 +20808,28 @@
     109
    ],
    [
+    19,
+    77,
+    82,
+    109
+   ],
+   [
     0,
-    96,
+    77,
     82,
     109
    ],
    [
-    151,
-    96,
-    82,
+    0,
+    77,
+    51,
     109
    ],
    [
-    151,
-    96,
-    45,
-    109
-   ],
-   [
-    151,
-    78,
-    45,
-    109
-   ],
-   [
-    151,
-    78,
-    5,
-    109
-   ],
-   [
-    151,
-    61,
-    5,
-    109
-   ],
-   [
-    147,
-    61,
-    5,
-    109
-   ],
-   [
-    146,
-    61,
-    5,
-    109
-   ],
-   [
-    143,
-    61,
-    5,
-    109
-   ],
-   [
-    143,
-    43,
-    5,
-    109
+    0,
+    77,
+    51,
+    98
    ]
   ]
  },
@@ -21874,25 +21418,8 @@
    "But it failed!",
    "JOLTEON used Round!",
    "The foe’s MINUN fainted!",
-   "JOLTEON gained 385 Exp. Points!",
-   "SNORLAX gained 385 Exp. Points!",
-   "STARLY gained 192 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!",
-   "STARLY grew to Lv. 8!",
-   "GALLADE gained 192 Exp. Points!",
-   "ARCHALUDON gained 192 Exp. Points!",
-   "DITTO gained 192 Exp. Points!",
    "SNORLAX used Round!",
    "The foe’s PLUSLE fainted!",
-   "JOLTEON gained 385 Exp. Points!",
-   "SNORLAX gained 385 Exp. Points!",
-   "STARLY gained 192 Exp. Points!",
-   "STARLY grew to Lv. 9!",
-   "STARLY learned Wing Attack!",
-   "GALLADE gained 192 Exp. Points!",
-   "ARCHALUDON gained 192 Exp. Points!",
-   "DITTO gained 192 Exp. Points!",
    "Player defeated Twins Liv & Liz!",
    "Liv: Oh, oh, oh?",
    "Liz: Oh, but, wait!",
@@ -21942,19 +21469,6 @@
    "What will SNORLAX do?",
    "JOLTEON used Round!",
    "The foe’s TAUROS fainted!",
-   "JOLTEON gained 1491 Exp. Points!",
-   "SNORLAX gained 1491 Exp. Points!",
-   "STARLY gained 745 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!",
-   "STARLY grew to Lv. 8!",
-   "STARLY grew to Lv. 9!",
-   "STARLY learned Wing Attack!",
-   "STARLY grew to Lv. 10!",
-   "STARLY grew to Lv. 11!",
-   "GALLADE gained 745 Exp. Points!",
-   "ARCHALUDON gained 745 Exp. Points!",
-   "DITTO gained 745 Exp. Points!",
    "The foe’s MILTANK used Headbutt!",
    "SNORLAX used Splash!",
    "But nothing happened!",
@@ -22015,19 +21529,6 @@
    "JOLTEON used Round!",
    "SNORLAX used Round!",
    "The foe’s TAUROS fainted!",
-   "JOLTEON gained 1491 Exp. Points!",
-   "SNORLAX gained 1491 Exp. Points!",
-   "STARLY gained 745 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!",
-   "STARLY grew to Lv. 8!",
-   "STARLY grew to Lv. 9!",
-   "STARLY learned Wing Attack!",
-   "STARLY grew to Lv. 10!",
-   "STARLY grew to Lv. 11!",
-   "GALLADE gained 745 Exp. Points!",
-   "ARCHALUDON gained 745 Exp. Points!",
-   "DITTO gained 745 Exp. Points!",
    "The foe’s MILTANK used Headbutt!",
    "What will JOLTEON do?",
    "What will JOLTEON do?"
@@ -22206,7 +21707,7 @@
   ]
  },
  "salt_cure_ng_moves10b": {
-  "result": "limit",
+  "result": "ended",
   "messages": [
    "A wild NINJASK appeared!",
    "Go! SNORLAX!",
@@ -22232,11 +21733,7 @@
    "The wild NINJASK used Splash!",
    "But nothing happened!",
    "SNORLAX used Play Rough!",
-   "The wild NINJASK fainted!",
-   "SNORLAX gained 2214 Exp. Points!",
-   "TURTWIG gained 1107 Exp. Points!",
-   "TURTWIG grew to Lv. 16!",
-   "TURTWIG grew to Lv. 17!"
+   "The wild NINJASK fainted!"
   ],
   "hp": [
    [
@@ -23957,19 +23454,6 @@
    "The foe’s TAUROS used Horn Attack!",
    "TURTONATOR used Shell Trap!",
    "The foe’s TAUROS fainted!",
-   "TURTONATOR gained 1491 Exp. Points!",
-   "SNORLAX gained 1491 Exp. Points!",
-   "STARLY gained 745 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!",
-   "STARLY grew to Lv. 8!",
-   "STARLY grew to Lv. 9!",
-   "STARLY learned Wing Attack!",
-   "STARLY grew to Lv. 10!",
-   "STARLY grew to Lv. 11!",
-   "GALLADE gained 745 Exp. Points!",
-   "ARCHALUDON gained 745 Exp. Points!",
-   "DITTO gained 745 Exp. Points!",
    "The foe’s MILTANK used Headbutt!",
    "SNORLAX flinched!",
    "What will TURTONATOR do?",
@@ -24017,22 +23501,6 @@
    "The foe’s MILTANK used Zen Headbutt!",
    "TURTONATOR used Shell Trap!",
    "The foe’s MILTANK fainted!",
-   "TURTONATOR gained 1413 Exp. Points!",
-   "SNORLAX gained 1413 Exp. Points!",
-   "STARLY gained 706 Exp. Points!",
-   "STARLY grew to Lv. 12!",
-   "STARLY grew to Lv. 13!",
-   "STARLY wants to learn the move Double Team.",
-   "But STARLY can’t learn more than four moves.",
-   "Make it forget another move?",
-   "Which move should be forgotten?",
-   "1,",
-   "STARLY forgot how to use Quick Attack.",
-   "And...",
-   "STARLY learned Double Team!",
-   "GALLADE gained 706 Exp. Points!",
-   "ARCHALUDON gained 706 Exp. Points!",
-   "DITTO gained 706 Exp. Points!",
    "Player defeated Belle & Pa Ava & Matt!",
    "Matt: Parent-and-child power couldn’t get the job done.",
    "Ava: Oh, sheesh!",
@@ -24120,19 +23588,6 @@
    "The foe’s TAUROS used Horn Attack!",
    "TURTONATOR used Shell Trap!",
    "The foe’s TAUROS fainted!",
-   "TURTONATOR gained 1491 Exp. Points!",
-   "JOLTEON gained 1491 Exp. Points!",
-   "STARLY gained 745 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!",
-   "STARLY grew to Lv. 8!",
-   "STARLY grew to Lv. 9!",
-   "STARLY learned Wing Attack!",
-   "STARLY grew to Lv. 10!",
-   "STARLY grew to Lv. 11!",
-   "GALLADE gained 745 Exp. Points!",
-   "ARCHALUDON gained 745 Exp. Points!",
-   "DITTO gained 745 Exp. Points!",
    "The foe’s MILTANK used Headbutt!",
    "What will TURTONATOR do?",
    "What will TURTONATOR do?",
@@ -24224,7 +23679,25 @@
    "The foe’s MILTANK’s Attack won’t go lower!",
    "The foe’s MILTANK used Stomp!",
    "TURTONATOR used Shell Trap!",
-   "But there was no PP left for the move!"
+   "But there was no PP left for the move!",
+   "What will TURTONATOR do?",
+   "What will TURTONATOR do?",
+   "What will JOLTEON do?",
+   "What will JOLTEON do?",
+   "TURTONATOR set a shell trap!",
+   "JOLTEON used Growl!",
+   "The foe’s MILTANK’s Attack won’t go lower!",
+   "The foe’s MILTANK used Zen Headbutt!",
+   "TURTONATOR used Shell Trap!",
+   "But there was no PP left for the move!",
+   "What will TURTONATOR do?",
+   "What will TURTONATOR do?",
+   "What will JOLTEON do?",
+   "What will JOLTEON do?",
+   "TURTONATOR set a shell trap!",
+   "JOLTEON used Growl!",
+   "The foe’s MILTANK’s Attack won’t go lower!",
+   "The foe’s MILTANK used Stomp!"
   ],
   "hp": [
    [
@@ -24277,6 +23750,12 @@
    ],
    [
     116,
+    0,
+    95,
+    27
+   ],
+   [
+    113,
     0,
     95,
     27
@@ -24615,19 +24094,6 @@
    "It’s not very effective...",
    "SHUCKLE used Round!",
    "The foe’s TAUROS fainted!",
-   "SHUCKLE gained 1491 Exp. Points!",
-   "SNORLAX gained 1491 Exp. Points!",
-   "STARLY gained 745 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!",
-   "STARLY grew to Lv. 8!",
-   "STARLY grew to Lv. 9!",
-   "STARLY learned Wing Attack!",
-   "STARLY grew to Lv. 10!",
-   "STARLY grew to Lv. 11!",
-   "GALLADE gained 745 Exp. Points!",
-   "ARCHALUDON gained 745 Exp. Points!",
-   "DITTO gained 745 Exp. Points!",
    "What will SHUCKLE do?",
    "What will SHUCKLE do?"
   ],
@@ -28034,21 +27500,7 @@
    "What will SOLGALEO do?",
    "What will SOLGALEO do?",
    "SOLGALEO used Sunsteel Strike!",
-   "The wild SHEDINJA fainted!",
-   "SOLGALEO gained 1357 Exp. Points!",
-   "TURTWIG gained 678 Exp. Points!",
-   "TURTWIG grew to Lv. 16!",
-   "STARLY gained 678 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!",
-   "STARLY grew to Lv. 8!",
-   "STARLY grew to Lv. 9!",
-   "STARLY learned Wing Attack!",
-   "STARLY grew to Lv. 10!",
-   "STARLY grew to Lv. 11!",
-   "GALLADE gained 678 Exp. Points!",
-   "ARCHALUDON gained 678 Exp. Points!",
-   "DITTO gained 678 Exp. Points!"
+   "The wild SHEDINJA fainted!"
   ],
   "hp": [
    [
@@ -29191,7 +28643,8 @@
    "The wild NINJASK used Splash!",
    "But nothing happened!",
    "MEGANIUM used Synthesis!",
-   "But there was no PP left for the move!"
+   "But there was no PP left for the move!",
+   "The wild NINJASK’s Speed Boost raised its Speed!"
   ],
   "hp": [
    [
@@ -29355,18 +28808,7 @@
    "What will GEODUDE do?",
    "What will GEODUDE do?",
    "GEODUDE used Tackle!",
-   "The wild SLOWPOKE fainted!",
-   "GEODUDE gained 707 Exp. Points!",
-   "TURTWIG gained 353 Exp. Points!",
-   "STARLY gained 353 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!",
-   "STARLY grew to Lv. 8!",
-   "STARLY grew to Lv. 9!",
-   "STARLY learned Wing Attack!",
-   "GALLADE gained 353 Exp. Points!",
-   "ARCHALUDON gained 353 Exp. Points!",
-   "DITTO gained 353 Exp. Points!"
+   "The wild SLOWPOKE fainted!"
   ],
   "hp": [
    [
@@ -30668,7 +30110,7 @@
   ]
  },
  "thief_swords_dance": {
-  "result": "limit",
+  "result": "ended",
   "messages": [
    "A wild NINJASK appeared!",
    "Go! GENGAR!",
@@ -30692,26 +30134,7 @@
    "The wild NINJASK’s Attack sharply rose!",
    "GENGAR used Spectral Thief!",
    "GENGAR stole the target’s boosted stats!",
-   "The wild NINJASK fainted!",
-   "GENGAR gained 2214 Exp. Points!",
-   "TURTWIG gained 1107 Exp. Points!",
-   "TURTWIG grew to Lv. 16!",
-   "TURTWIG grew to Lv. 17!",
-   "TURTWIG wants to learn the move Curse.",
-   "But TURTWIG can’t learn more than four moves.",
-   "Make it forget another move?",
-   "Which move should be forgotten?",
-   "1,",
-   "TURTWIG forgot how to use Withdraw.",
-   "And...",
-   "TURTWIG learned Curse!",
-   "STARLY gained 1107 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!",
-   "STARLY grew to Lv. 8!",
-   "STARLY grew to Lv. 9!",
-   "STARLY learned Wing Attack!",
-   "STARLY grew to Lv. 10!"
+   "The wild NINJASK fainted!"
   ],
   "hp": [
    [
@@ -31161,20 +30584,7 @@
    "NINJASK is hurt by poison!",
    "NINJASK used Dig!",
    "It’s super effective!",
-   "The wild GENGAR fainted!",
-   "TURTWIG gained 678 Exp. Points!",
-   "TURTWIG grew to Lv. 16!",
-   "STARLY gained 678 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!",
-   "STARLY grew to Lv. 8!",
-   "STARLY grew to Lv. 9!",
-   "STARLY learned Wing Attack!",
-   "STARLY grew to Lv. 10!",
-   "STARLY grew to Lv. 11!",
-   "GALLADE gained 678 Exp. Points!",
-   "ARCHALUDON gained 678 Exp. Points!",
-   "DITTO gained 678 Exp. Points!"
+   "The wild GENGAR fainted!"
   ],
   "hp": [
    [
@@ -32409,7 +31819,7 @@
   ]
  },
  "veevee_255": {
-  "result": "limit",
+  "result": "ended",
   "messages": [
    "A wild NINJASK appeared!",
    "Go! EEVEE!",
@@ -32448,30 +31858,7 @@
    "The wild NINJASK used Splash!",
    "But nothing happened!",
    "EEVEE used Veevee Volley!",
-   "The wild NINJASK fainted!",
-   "EEVEE gained 2214 Exp. Points!",
-   "TURTWIG gained 1107 Exp. Points!",
-   "TURTWIG grew to Lv. 16!",
-   "TURTWIG grew to Lv. 17!",
-   "TURTWIG wants to learn the move Curse.",
-   "But TURTWIG can’t learn more than four moves.",
-   "Make it forget another move?",
-   "Which move should be forgotten?",
-   "1,",
-   "TURTWIG forgot how to use Absorb.",
-   "And...",
-   "TURTWIG learned Curse!",
-   "STARLY gained 1107 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!",
-   "STARLY grew to Lv. 8!",
-   "STARLY grew to Lv. 9!",
-   "STARLY learned Wing Attack!",
-   "STARLY grew to Lv. 10!",
-   "STARLY grew to Lv. 11!",
-   "STARLY grew to Lv. 12!",
-   "GALLADE gained 1107 Exp. Points!",
-   "ARCHALUDON gained 1107 Exp. Points!"
+   "The wild NINJASK fainted!"
   ],
   "hp": [
    [
@@ -32625,29 +32012,7 @@
    "But nothing happened!",
    "MEGANIUM used Weather Ball!",
    "It’s super effective!",
-   "The wild NINJASK fainted!",
-   "MEGANIUM gained 2214 Exp. Points!",
-   "TURTWIG gained 1107 Exp. Points!",
-   "TURTWIG grew to Lv. 16!",
-   "TURTWIG grew to Lv. 17!",
-   "TURTWIG wants to learn the move Curse.",
-   "But TURTWIG can’t learn more than four moves.",
-   "Make it forget another move?",
-   "Well, then...",
-   "Should this Pokémon give up on learning this new move?",
-   "TURTWIG did not learn Curse.",
-   "STARLY gained 1107 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!",
-   "STARLY grew to Lv. 8!",
-   "STARLY grew to Lv. 9!",
-   "STARLY learned Wing Attack!",
-   "STARLY grew to Lv. 10!",
-   "STARLY grew to Lv. 11!",
-   "STARLY grew to Lv. 12!",
-   "GALLADE gained 1107 Exp. Points!",
-   "ARCHALUDON gained 1107 Exp. Points!",
-   "DITTO gained 1107 Exp. Points!"
+   "The wild NINJASK fainted!"
   ],
   "hp": [
    [
@@ -32669,7 +32034,7 @@
   ]
  },
  "wb_megasol_rain": {
-  "result": "limit",
+  "result": "ended",
   "messages": [
    "A wild NINJASK appeared!",
    "Go! MEGANIUM!",
@@ -32695,25 +32060,7 @@
    "But it failed!",
    "MEGANIUM used Weather Ball!",
    "It’s super effective!",
-   "The wild NINJASK fainted!",
-   "MEGANIUM gained 2214 Exp. Points!",
-   "TURTWIG gained 1107 Exp. Points!",
-   "TURTWIG grew to Lv. 16!",
-   "TURTWIG grew to Lv. 17!",
-   "TURTWIG wants to learn the move Curse.",
-   "But TURTWIG can’t learn more than four moves.",
-   "Make it forget another move?",
-   "Which move should be forgotten?",
-   "1,",
-   "TURTWIG forgot how to use Withdraw.",
-   "And...",
-   "TURTWIG learned Curse!",
-   "STARLY gained 1107 Exp. Points!",
-   "STARLY grew to Lv. 6!",
-   "STARLY grew to Lv. 7!",
-   "STARLY grew to Lv. 8!",
-   "STARLY grew to Lv. 9!",
-   "STARLY learned Wing Attack!"
+   "The wild NINJASK fainted!"
   ],
   "hp": [
    [
@@ -32735,7 +32082,7 @@
   ]
  },
  "wb_plain_rain": {
-  "result": "limit",
+  "result": "ended",
   "messages": [
    "A wild NINJASK appeared!",
    "Go! MEGANIUM!",
@@ -32772,12 +32119,7 @@
    "The wild NINJASK used Rain Dance!",
    "But it failed!",
    "MEGANIUM used Weather Ball!",
-   "The wild NINJASK fainted!",
-   "MEGANIUM gained 2214 Exp. Points!",
-   "TURTWIG gained 1107 Exp. Points!",
-   "TURTWIG grew to Lv. 16!",
-   "TURTWIG grew to Lv. 17!",
-   "TURTWIG wants to learn the move Curse."
+   "The wild NINJASK fainted!"
   ],
   "hp": [
    [
