@@ -258,6 +258,9 @@ extern struct SovereignTestTrainerBattles gSovereignTestTrainerBattles;
 // When set, scripts count every species but this one as caught (SovereignCheckSpeciesCaught), so a legendary whose
 // static encounter waits on others being caught (and on its own not being caught) is on its map.
 extern u16 gSovereignTestCaughtAllBut;
+// When set, the rare wild encounters' roll (SovereignRareWild_TryFillEncounterTable, data/sovereign_rare_wild.yaml) is
+// this minus 1 instead of a random number from 0 to 99, so a test can pick each of a map's entries.
+extern u8 gSovereignTestRareWildRoll;
 #endif
 
 #endif // POKEPLATINUM_SOVEREIGN_TEST_H

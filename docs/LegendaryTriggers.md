@@ -69,8 +69,8 @@ The Archivist gives the DNA Splicers once Kyurem is caught.
 | Hoopa | static | Solaceon Ruins Room 6, north-west dead end (2, 3) | 55 | `ITEM_PRISON_BOTTLE` in the bag (the Archivist gives it) | Other legends |
 | Volcanion | static | Stark Mountain room 2, the north-east dead-end tunnel (73, 15) | 60 | var ≥ 2 | Other legends |
 
-Carbink for Diancie: wild outside Stark Mountain, 5%, Lv. 66–68, from the Kalos Chronicle's opening. It's a stopgap
-until the planned wild tables (`data/encounters_sovereign.json`) are ported; before CB-0045 no Carbink could be had.
+Carbink for Diancie: wild outside Stark Mountain (tall grass, 5%, Lv. 67), from the ported wild tables. The rare wild
+stopgap that gave it before the port (CB-0045) is gone (CB-0234).
 
 ## Alola Chronicle (var 3)
 

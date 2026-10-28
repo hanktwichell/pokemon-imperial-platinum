@@ -16,9 +16,6 @@ gates:
   ultra:
     text: Necrozma is caught
     caught: NECROZMA
-  kalos:
-    text: the Kalos Chronicle is open
-    chronicle: 2
 
 encounters:
   # ---------------------------------------------------------------- Ultra Beasts (the maps they stood on)
@@ -48,9 +45,3 @@ encounters:
      hint: "outside Stark Mountain"}
   - {species: POIPOLE, gate: ultra, rate: 2, terrain: land, level: 40, maps: [ROUTE_230],
      hint: "in the grass of Route 230, east of the Fight Area"}
-  # ---------------------------------------------------------------- Stopgap (not decision 28)
-  # Carbink, which Diancie needs in the party (Oreburgh Mine B2F). The wild tables are still vanilla, and the plan's
-  # Carbink (data/encounters_sovereign.json: Stark Mountain outside, grass slot 7, 5%, Lv. 66-68) comes with their
-  # port (E10/E11). Remove this entry then.
-  - {species: CARBINK, gate: kalos, rate: 5, terrain: land, level: [66, 68], maps: [STARK_MOUNTAIN_OUTSIDE],
-     hint: "outside Stark Mountain (a stopgap until the wild tables are ported)"}

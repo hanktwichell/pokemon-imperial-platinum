@@ -891,6 +891,7 @@ u8 gSovereignTestLeadFormAfter;
 u8 gSovereignTestGodMode;
 u8 gSovereignTestFoeSurvivesTurns;
 u16 gSovereignTestCaughtAllBut;
+u8 gSovereignTestRareWildRoll;
 
 void SovereignTest_WarpNext(FieldSystem *fieldSystem)
 {

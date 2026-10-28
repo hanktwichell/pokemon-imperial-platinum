@@ -283,6 +283,16 @@ static void RegionalFormsPark_FillEncounterTable(FieldSystem *fieldSystem, Encou
 // Sovereign (decision 28): the Ultra Beasts and a few others are rare wild encounters
 // (data/sovereign_rare_wild.yaml). One roll per encounter picks one of the map's entries whose gate is met, by its
 // rate, and fills every slot with it, so the usual slot rules (Repel, Intimidate, Hustle...) still apply.
+static BOOL SovereignRareWild_Caught(const Pokedex *pokedex, u16 species)
+{
+#ifdef SOVEREIGN_TEST
+    if (gSovereignTestCaughtAllBut != SPECIES_NONE) {
+        return species != gSovereignTestCaughtAllBut;
+    }
+#endif
+    return Pokedex_HasCaughtSpecies(pokedex, species);
+}
+
 static void SovereignRareWild_TryFillEncounterTable(FieldSystem *fieldSystem, EncounterSlot *encounterTable, int numSlots, u8 terrain)
 {
     u16 chronicle = *VarsFlags_GetVarAddress(SaveData_GetVarsFlags(fieldSystem->saveData), VAR_SOVEREIGN_CHRONICLE);
@@ -296,12 +306,17 @@ static void SovereignRareWild_TryFillEncounterTable(FieldSystem *fieldSystem, En
             continue;
         }
 
-        if (entry->caughtSpecies != SPECIES_NONE && !Pokedex_HasCaughtSpecies(pokedex, entry->caughtSpecies)) {
+        if (entry->caughtSpecies != SPECIES_NONE && !SovereignRareWild_Caught(pokedex, entry->caughtSpecies)) {
             continue;
         }
 
         if (roll < 0) {
             roll = LCRNG_RandMod(100);
+#ifdef SOVEREIGN_TEST
+            if (gSovereignTestRareWildRoll != 0) {
+                roll = gSovereignTestRareWildRoll - 1;
+            }
+#endif
         }
 
         if (roll >= entry->rate) {

@@ -9338,3 +9338,37 @@ log, the ROM space tool) is merged. This one takes the field tests past a new ga
    - `Story.md`'s open calls on Oak's visit.
 2. Run the other harnesses (trainers, species, gifts, Elite Four) again on the next build that changes battle code.
 3. The same story setup for the sign test (`--unhide` there): signs and triggers that wait on the story.
+
+## CB-0234 (Claude B, 7:41 pm US Central, 2026-10-27)
+
+**Just implemented (PR for branch `claude/sweet-wright-rk4wl1`):** PR #250 (CB-0233, the field tests past a new
+game) is merged. This one adds a test for the rare wild encounters, which no test had reached: their gates (Necrozma
+caught, or a Chronicle) are never met on a new game, and their roll is 2–5%.
+- **`tools/test/rare_wild.py`:** for each entry and map in `data/sovereign_rare_wild.yaml`, it runs
+  `wild_forms.py`'s survey with the rare roll fixed on the entry (`gSovereignTestRareWildRoll`, test build only):
+  - gate met (every Chronicle open, every species caught): every Pokémon made is the entry's, at its level;
+  - gate not met (a new game): none is.
+- **Result:** 26 of 26 entries, the ten Ultra Beasts, 52 surveys, all right.
+- **Carbink's stopgap is gone.** The first run found Carbink outside Stark Mountain on a new game. It comes from the
+  ported wild table (slot 7, 5%, Lv. 67), which is the plan's Carbink, so CB-0045's rare entry (an extra 5% once the
+  Kalos Chronicle opened) was redundant. Its own note said to remove it once the tables were ported. Diancie still
+  needs a Carbink in the party, and the Archivist's hint ("CARBINK live outside Stark Mountain") still holds.
+- Test and release builds pass.
+
+**Files modified:**
+- `tools/test/rare_wild.py` (new), `tools/test/README.md`
+- `decomp/src/overlay006/wild_encounters.c`, `decomp/include/sovereign_test.h`, `decomp/src/script_manager.c`
+  (test build hooks)
+- `data/sovereign_rare_wild.yaml`, `tools/engine/gen_rare_wild.py`, `decomp/include/data/sovereign_rare_wild.h` and
+  `docs/RareWildEncounters.md` (generated)
+- `data/postgame_legendaries.yaml`, `docs/PostgameLegendaries.md` (generated), `docs/LegendaryTriggers.md`
+- `docs/EngineChangelog.md`, `docs/EngineRoadmap.md` (row 18), `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Anything the owner asks for. Waiting on the owner:
+   - T1 (boss teams), T2 (the developer battle and Henry's text), the art (E12);
+   - Burn Up and Double Shock, and the special evolutions;
+   - `Story.md`'s open calls on Oak's visit.
+2. The roamers (the Archivist's releases) have no test either: check they move between maps and that each meeting
+   is the right Pokémon.
+3. Run the other harnesses (trainers, species, gifts, Elite Four) again on the next build that changes battle code.
