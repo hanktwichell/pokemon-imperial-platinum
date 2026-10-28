@@ -1343,9 +1343,10 @@ static void BattleScript_CalcMoveDamage(BattleSystem *battleSys, BattleContext *
         battleCtx->moveType = Sovereign_TerrainPulseType(battleCtx, battleCtx->attacker);
     }
 
-    // Sovereign (item 11): Revelation Dance takes the user's primary type.
+    // Sovereign (item 11): Revelation Dance takes the user's primary type (Normal from a typeless user: a move needs a
+    // type, for its animation's palette too).
     if (battleCtx->moveCur == MOVE_REVELATION_DANCE) {
-        battleCtx->moveType = ATTACKING_MON.type1;
+        battleCtx->moveType = ATTACKING_MON.type1 == TYPE_SOVEREIGN_TYPELESS ? TYPE_NORMAL : ATTACKING_MON.type1;
     }
 
     // Sovereign (FM): Aura Wheel is Dark-type from a Hangry Morpeko.

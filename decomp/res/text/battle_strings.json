@@ -11269,6 +11269,48 @@
         "The foe’s {STRVAR_1 1, 0, 0} is switched out\n",
         "with the Eject Pack!"
       ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignBurnedItselfOut_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} burned\n",
+        "itself out!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignBurnedItselfOut_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}\n",
+        "burned itself out!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignBurnedItselfOut_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}\n",
+        "burned itself out!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignUsedUpAllItsElectricity_Ally",
+      "en_US": [
+        "{STRVAR_1 1, 0, 0} used up\n",
+        "all its electricity!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignUsedUpAllItsElectricity_Wild",
+      "en_US": [
+        "The wild {STRVAR_1 1, 0, 0}\n",
+        "used up all its electricity!"
+      ]
+    },
+    {
+      "id": "BattleStrings_Text_SovereignUsedUpAllItsElectricity_Foe",
+      "en_US": [
+        "The foe’s {STRVAR_1 1, 0, 0}\n",
+        "used up all its electricity!"
+      ]
     }
   ]
 }

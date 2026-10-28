@@ -253,5 +253,6 @@ static const int sSideEffectSubscripts[] = {
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_TELEPORT_SWITCH] = subscript_sovereign_teleport_switch,
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_TAIL_GLOW] = subscript_sovereign_stats_tail_glow,
     [MOVE_SUBSCRIPT_PTR_SOVEREIGN_HOWL] = subscript_sovereign_howl,
+    [MOVE_SUBSCRIPT_PTR_SOVEREIGN_BURN_OUT] = subscript_sovereign_burn_out,
 };
 // clang-format on
