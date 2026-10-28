@@ -120,6 +120,10 @@ SOVEREIGN_EFFECTS = {
 # Moves whose script.s (battle message) and anim.s (two-part charge/attack animation) are written by hand; the
 # generator leaves both files alone.
 HANDWRITTEN_SCRIPTS = {"electro_shot", "meteor_beam", "sky_drop", "freeze_shock", "ice_burn", "geomancy"}
+# Moves whose anim.s alone is written by hand (the generator leaves it alone), with the checklist's note on it.
+HANDWRITTEN_ANIMS = {
+    "sludge_wave": "own animation: Surf's wave in deep purple, then Sludge Bomb's splashes (owner idea)",
+}
 # Descriptions written by hand: every flavor text is too long for the 5-line box, or says less than the move does.
 DESCRIPTIONS = {
     "electro_shot": "The user gathers electricity, raising its Sp. Atk, then attacks next turn.",
@@ -461,6 +465,8 @@ def main():
                 "contest": {"effect": "CONTEST_EFFECT_BASIC",
                             "type": CONTEST_TYPES.get(r["contest_type_id"], "CONTEST_TYPE_COOL")},
             }
+            if stem in HANDWRITTEN_ANIMS:
+                note = "; ".join(n for n in (note, HANDWRITTEN_ANIMS[stem]) if n)
             rows.append((mid, name, type_ident.capitalize(), eff[len("BATTLE_EFFECT_"):], fid, note))
         d = os.path.join(MOVES_DIR, stem)
         os.makedirs(d, exist_ok=True)
@@ -469,7 +475,8 @@ def main():
             f.write("\n")
         if stem not in HANDWRITTEN_SCRIPTS:
             shutil.copyfile(script_src, os.path.join(d, "script.s"))
-            shutil.copyfile(os.path.join(MOVES_DIR, anim, "anim.s"), os.path.join(d, "anim.s"))
+            if stem not in HANDWRITTEN_ANIMS:
+                shutil.copyfile(os.path.join(MOVES_DIR, anim, "anim.s"), os.path.join(d, "anim.s"))
         out_consts.append("MOVE_" + stem.upper())
 
     assert len(out_consts) == LAST_MOVE + 1 and len(set(out_consts)) == len(out_consts)
