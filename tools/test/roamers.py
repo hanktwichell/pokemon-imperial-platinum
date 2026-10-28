@@ -21,10 +21,15 @@ the field writes it down (gSovereignTestRoamers). Then:
   most RANDOM_SHARE. What starts on a crossing plays out first (the test save's Repel wearing off: A uses another).
 - **Battles:** it flies on until it has battled each roamer once, for real: a survey with SURVEY_ROAMERS_BATTLE starts
   a battle with the first roamer it meets (through Encounter_NewVsWild, as a step in the grass would), and the battle
-  plays out as talk_to_objects.py plays a script out. A roamer flees at once (its AI, AI_FLAG_ROAMING_POKEMON), so
-  afterwards (RoamerAfterBattle_UpdateRoamers) it must still roam, with the HP it had, and every roamer that was on the
-  map must have left it. Its state var (VAR_ROAMING_<NAME>_STATE, read through gSovereignTestWatch) must still be 0,
-  roaming: the Legend Archivist releases it again only once a Hall of Fame resets a knocked-out one.
+  plays out as talk_to_objects.py plays a script out (god mode: a foe hit loses all its HP). A roamer's AI
+  (AI_FLAG_ROAMING_POKEMON) flees on its first turn, in speed order, as in Platinum, where a faster lead can trap one
+  first. So one faster than the test party's lead flees, and one slower is knocked out first. Afterwards
+  (RoamerAfterBattle_UpdateRoamers), its state var (VAR_ROAMING_<NAME>_STATE, read through gSovereignTestWatch) and
+  where it is must match:
+  - fled: it still roams, with the HP it had, and its state is still roaming (0);
+  - knocked out: it no longer roams, and its state is defeated (2), which the next Hall of Fame resets so the Legend
+    Archivist releases it again;
+  - either way, every roamer that was on the map has left it.
 
 Needs what wild_forms.py needs. From the repo root:
     SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy python3 tools/test/roamers.py \\
@@ -45,6 +50,7 @@ from wild_forms import MON_SIZE, SURVEY, TERRAINS, cases, run_survey, species_na
 ROAMER = '<HBBHHI'  # struct SovereignTestRoamer: map, route index, level, species, HP, personality
 ROAMER_SIZE = struct.calcsize(ROAMER)
 SURVEY_ROAMERS_BATTLE = 2  # SOVEREIGN_TEST_SURVEY_ROAMERS_BATTLE
+ROAMER_STATE_ROAMING, ROAMER_STATE_DEFEATED = 0, 2  # constants/roamer_states.h
 FLIGHTS_MAX = 300
 MEET_TIMES = 2
 MEET_SHARE = (0.25, 0.75)  # of a survey's encounters; 50% expected, so 12 to 36 of 48 is more than 3 sd either way
@@ -281,7 +287,7 @@ def main():
         watch = sym['gSovereignTestWatch']
         for i, slot in enumerate(slots):  # struct SovereignTestWatch: var, value
             mem.write_short(watch + 4 * i, variables[f'VAR_ROAMING_{names[slot][len("ROAMING_SLOT_"):]}_STATE'])
-        battled = set()
+        battled = {}
         limit = flight['flown'] + FLIGHTS_MAX
         while flight['flown'] < limit and len(battled) < len(slots):
             flown = fly()
@@ -304,15 +310,20 @@ def main():
             state = struct.unpack('<H', bytes(mem.unsigned[watch + 4 * slots.index(slot) + 2:
                                                            watch + 4 * slots.index(slot) + 4]))[0]
             stayed = [name(s) for s in slots if after[s][0] == header_id]
-            battled.add(slot)
-            if result != 'ok' or not after[slot][0] or after[slot][4] != roamers[slot][4] or stayed or state:
+            fled = after[slot][0] != 0
+            battled[slot] = 'fled' if fled else 'knocked out'
+            if fled:
+                ok = after[slot][4] == roamers[slot][4] and state == ROAMER_STATE_ROAMING
+            else:
+                ok = not after[slot][4] and state == ROAMER_STATE_DEFEATED
+            if result != 'ok' or not ok or stayed:
                 d.screenshot().save(os.path.join(out, f'battle_{name(slot)}.png'))
                 say(f'battle with {name(slot)} on {where(header_id)}: {result} after {frames} frames; then on '
                     f'{where(after[slot][0]) if after[slot][0] else "no map (not roaming)"}, HP {roamers[slot][4]} '
                     f'to {after[slot][4]}, state {state}' + (f'; still here: {stayed}' if stayed else '') +
                     f' (screenshot: battle_{name(slot)}.png)', True)
-        say(f'battles: {len(battled)} of {len(slots)} roamers battled ({", ".join(name(s) for s in sorted(battled))})',
-            len(battled) < len(slots))
+        say(f'battles: {len(battled)} of {len(slots)} roamers battled: ' +
+            ', '.join(f'{name(s)} {battled[s]}' for s in slots if s in battled), len(battled) < len(slots))
 
         say(f'{bad} problems')
     sys.exit(1 if bad else 0)
