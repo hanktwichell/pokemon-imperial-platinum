@@ -106,10 +106,13 @@ Checked in the test build (2026-10-28):
 - Surf's HM cut-in; an evolution by Rare Candy (Charmander to Charmeleon, no heap assert); the summary screen; the
   Pokédex entry.
 - A `platinum_fronts` build: #1–493 and their forms show Platinum's fronts, #494+ and the Megas 96×96.
+- The Battle Factory's rental screen (a single Lv. 50 challenge): the Factory app's heap is at least 14,048 bytes free
+  throughout (30,432 on the 80×80 build: the sprite manager's buffer is 16 KB bigger), and a rental's summary screen
+  14,712 (31,088). `tools/test/heap_check.py`'s `heap_free` reads them.
 
 Show the middle 80×80 of a 96×96 front (the old 2D functions; safe, art past it is cut): the script's Pokémon preview
 window (an 80×80 frame), the GTS listing, the Union Room trade card, the Mystery Gift card, the Great Marsh
 binoculars, Rowan's intro, `ov64`.
 
-Still to check: the PC's Hall of Fame records, the Battle Frontier's scene sprites and the Battle Factory (its heap),
-contests (the dance contest runs four sprite managers), the PC boxes, the Pokédex's size comparison.
+Still to check: the PC's Hall of Fame records, the Battle Frontier's scene sprites, contests, the PC boxes, the
+Pokédex's size comparison.
