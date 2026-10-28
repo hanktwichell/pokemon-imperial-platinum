@@ -3,6 +3,44 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## 96×96 front sprites
+
+For players (owner, 2026-10-28; `docs/FrontSprites96.md`):
+- **Every front sprite is shown at 96×96**, its full size, instead of being shrunk to 80×80 (the shrink broke the
+  outlines of the Megas, Primal Kyogre and about 200 other fronts). #1–493 and the forms Platinum draws (Unown, Castform,
+  Deoxys, Burmy, Wormadam, Cherrim, Shellos, Gastrodon, Rotom, Giratina, Shaymin, Arceus) use PokeAPI's Black/White
+  fronts; #494–1025 and Sovereign's forms keep the fronts they had, now whole. Spinda keeps Platinum's front (its
+  spots). Back sprites stay 80×80.
+- **Placement:** each front sits by its own y offset, now signed: 144 of the 1,473 96×96 fronts reach below the 80×80
+  box (Dialga, Ho-Oh, Zekrom, Xerneas...), and their feet still meet the platform.
+- **Going back:** `meson configure -Dplatinum_fronts=true` packs Platinum's own fronts for #1–493 and their forms again,
+  with their second animation frame and offsets. #494+ and the Sovereign forms stay 96×96 either way.
+
+Code:
+- `pokemon_sprite.c`: the 3D sprite manager's texture holds 96×96 slots (rows 0/96/192/288, the shadows at x 192;
+  48 KB, `POKEMON_SPRITE_TEX_VRAM_SIZE`); an 80×80 sprite (a back, Platinum's fronts, the contests' DP sprites) sits
+  in the middle of its slot, where it was. Sprites are decrypted by their size. Partial draws (fainting, Dig) reach
+  the slot's edge. `PokemonSpriteManager_NewOneSlot` keeps one slot (12 KB) for the screens that show one Pokémon at a
+  time: the summary screen, the PC boxes, the dress-up and its photos, the poffin cutscene, the script's Pokémon
+  preview window.
+- `character_sprite.c`: 96×96 copies of frame 0 into OAM (144 tiles; cells `misc/pokesprite_96*` for the 32K, 64K and
+  128K OBJ modes) for battle (move animations, Transform, the BG copy), contests, the Hall of Fame, the PC's Hall of
+  Fame, the trade cutscene, the HM cut-in and the Battle Hall's banner. The other 2D screens (the preview window, the
+  GTS, the Union Room, Mystery Gift, the Great Marsh binoculars, Rowan's intro) show the middle 80×80.
+- Texture reservations of 0x8000 become 0xC000; 3,200-byte copy buffers become 4,608.
+- The dress-up keeps a front's y offset signed (Zekrom was drawn below the screen in a visual competition), and the
+  acting competition's stand-in sprite is cleared whole.
+- Tools: `tools/sprites/fetch_pokeapi_fronts.py`, `convert_fronts96.py`; `convert_battle_sprites.py`,
+  `convert_form_sprites.py` and `make_pl_pokegra.py` (`--platinum-fronts`) updated; `check_battle_sprites.py` checks
+  the 96×96 folders; `tools/test/heap_check.py`'s `heap_free`.
+
+Verified (test build), with each screen's heap against the 80×80 build:
+- Battle (every kind of front, Double Team, Extrasensory, fainting); an Elite Four run into the Hall of Fame; a trade;
+  Surf's cut-in; an evolution; the summary screen; the Pokédex (list, entry, size page); the egg hatch; the starter
+  choice; the Battle Factory and the Battle Hall; the PC boxes; practice visual, dance and acting contests (with
+  Zekrom in the visual one); the poffin cutscene; Mom's Eevee's preview window; a `platinum_fronts` build.
+- RESULTS
+
 ## Sludge Wave's own animation, Mega and Primal backs, and a battle mechanics test suite
 
 For players:

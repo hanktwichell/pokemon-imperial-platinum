@@ -1,4 +1,4 @@
-# 96×96 front sprites — plan
+# 96×96 front sprites
 
 **Owner, 2026-10-28:** every Pokémon's front sprite becomes PokeAPI's 96×96 front, shown at full size instead of shrunk
 to 80×80 (the shrink broke the outlines of 113 form fronts and 103 species fronts: Primal Kyogre, the Megas). For
@@ -6,9 +6,9 @@ to 80×80 (the shrink broke the outlines of 113 form fronts and 103 species fron
 second animation frame). Back sprites stay 80×80. The cartridge grows to 256 MB when the data passes 128 MB
 (`tools/nitrorom` picks the size from the content; nothing to force).
 
-Status: in progress (2026-10-28), on a local branch until every screen is checked. This file began as the map of what
-has to change, from a read-through of every place that loads or draws a battle sprite; line numbers are as of that
-day. **Where it stands** is at the end.
+Status: done in the test build (2026-10-28); one question for the owner is open (the Pokédex's and the PC boxes'
+frames, under **Where it stands** at the end). This file began as the map of what had to change, from a read-through of
+every place that loads or draws a battle sprite; line numbers are as of that day.
 
 ## The sprite as stored and drawn today
 
