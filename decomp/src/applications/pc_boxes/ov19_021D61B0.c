@@ -237,7 +237,7 @@ BOOL BoxGraphics_Load(UnkStruct_ov19_021D61B0 **param0, const BoxApplication *pa
             Graphics_LoadPartialPaletteFromOpenNARC(boxGraphicsNarc, 26, NNS_G2D_VRAM_TYPE_2DMAIN, 0, 10, &(v0->unk_1A8));
             Font_UseImmediateGlyphAccess(FONT_SYSTEM, 10);
 
-            v0->unk_1BC = PokemonSpriteManager_New(HEAP_ID_BOX_GRAPHICS);
+            v0->unk_1BC = PokemonSpriteManager_NewOneSlot(HEAP_ID_BOX_GRAPHICS); // Sovereign: it shows one Pokemon
 
             for (v1 = 0; v1 < 4; v1++) {
                 v0->unk_08[v1] = NULL;

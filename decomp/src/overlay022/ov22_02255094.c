@@ -781,7 +781,7 @@ static void ov22_02255C14(UnkStruct_ov22_0225A0E4 *param0)
 
 static void ov22_02255C24(UnkStruct_ov22_0225A0E4 *param0, enum HeapID heapID, int param2, int param3)
 {
-    param0->unk_20 = PokemonSpriteManager_New(heapID);
+    param0->unk_20 = PokemonSpriteManager_NewOneSlot(heapID); // Sovereign: it shows one Pokemon
     param0->unk_24 = NNS_GfdAllocTexVram(param2, 0, 0);
     param0->unk_28 = NNS_GfdAllocPlttVram(param3, 0, NNS_GFD_ALLOC_FROM_LOW);
 

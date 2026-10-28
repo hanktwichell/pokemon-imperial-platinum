@@ -109,10 +109,11 @@ Checked in the test build (2026-10-28):
 - The Battle Factory's rental screen (a single Lv. 50 challenge): the Factory app's heap is at least 14,048 bytes free
   throughout (30,432 on the 80×80 build: the sprite manager's buffer is 16 KB bigger), and a rental's summary screen
   14,712 (31,088). `tools/test/heap_check.py`'s `heap_free` reads them.
-- The PC boxes (Jubilife's PC, Deposit): with the 16 KB bigger buffer the boxes' graphics heap ran out (9,336 bytes
-  free, then a hang; 27,552 on the 80×80 build). `HEAP_SIZE_BOX_GRAPHICS` is 32 KB bigger (0x44000; the three places
-  that made it again with the number 245760 use the constant now): 43,936 bytes free at least, the application heap it
-  comes from still 69,108.
+- Screens that show one Pokémon at a time keep a texture of one slot (`PokemonSpriteManager_NewOneSlot`, 12 KB where
+  the four-slot manager takes 48 and Platinum's took 32): the dress-up and its photos, and the PC boxes. Found by
+  heap checks: with the four-slot manager the PC boxes' graphics heap ran out (9,336 bytes free, then a hang; 27,552
+  on the 80×80 build), and a practice dance contest, which makes a dress-up photo for each of the four contestants,
+  crashed as it started.
 
 Show the middle 80×80 of a 96×96 front (the old 2D functions; safe, art past it is cut): the script's Pokémon preview
 window (an 80×80 frame), the GTS listing, the Union Room trade card, the Mystery Gift card, the Great Marsh

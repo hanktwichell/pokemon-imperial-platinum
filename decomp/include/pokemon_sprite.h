@@ -129,6 +129,7 @@ typedef struct PokemonSpriteManager {
     u8 needLoadChar;
     u8 needLoadPltt;
     u8 excludeIdentity;
+    u8 numSlots; // Sovereign: the sprites it can show (PokemonSpriteManager_NewOneSlot)
     u32 hideShadows; // curiously, this field is treated like a bitmask, but it only ever uses a value of 0 or 1
 } PokemonSpriteManager;
 
@@ -145,6 +146,8 @@ typedef struct {
 } PokemonSpriteTaskAnim;
 
 void *PokemonSpriteManager_New(enum HeapID heapID);
+// Sovereign: a manager that shows one sprite (in slot 0), with a texture of one slot (POKEMON_SPRITE_ONE_SLOT_VRAM_SIZE).
+void *PokemonSpriteManager_NewOneSlot(enum HeapID heapID);
 void PokemonSpriteManager_DrawSprites(PokemonSpriteManager *monSpriteMan);
 void PokemonSpriteManager_Free(PokemonSpriteManager *monSpriteMan);
 void PokemonSprite_InitAnim(PokemonSprite *monSprite, int dummy);

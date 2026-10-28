@@ -340,17 +340,21 @@ static u8 SwapNybbles(u8 value);
 static void TryDrawSpindaSpots(PokemonSprite *monSprite, u8 *rawCharData);
 static void PokemonSprite_WidenPartialDraw(int *offset, int *length);
 
-void *PokemonSpriteManager_New(enum HeapID heapID)
+// Sovereign: a manager of numSlots sprites keeps a texture of numSlots slots (96 rows each), so one that shows a single
+// sprite (PokemonSpriteManager_NewOneSlot) takes 12 KB instead of 48.
+static void *PokemonSpriteManager_NewWithSlots(enum HeapID heapID, int numSlots)
 {
     PokemonSpriteManager *monSpriteMan = Heap_Alloc(heapID, sizeof(PokemonSpriteManager));
+    u32 charBufSize = numSlots * MAN_SLOT_CHAR_OFFSET;
 
     monSpriteMan->heapID = heapID;
     monSpriteMan->dummy330 = 0;
+    monSpriteMan->numSlots = numSlots;
     monSpriteMan->charBaseAddr = 0;
-    monSpriteMan->charSize = MON_SPRITE_CHAR_BUF_SIZE;
+    monSpriteMan->charSize = charBufSize;
     monSpriteMan->plttBaseAddr = 0;
     monSpriteMan->plttSize = PALETTE_SIZE_BYTES * MAX_MON_SPRITES;
-    monSpriteMan->charRawData = Heap_Alloc(heapID, MON_SPRITE_CHAR_BUF_SIZE);
+    monSpriteMan->charRawData = Heap_Alloc(heapID, charBufSize);
     monSpriteMan->plttRawData = Heap_Alloc(heapID, MON_SPRITE_PLTT_BUF_SIZE);
 
     MI_CpuClearFast(monSpriteMan->plttRawData, sizeof(u32));
@@ -377,7 +381,7 @@ void *PokemonSpriteManager_New(enum HeapID heapID)
     rawCharData = charData->pRawData;
 
     PokemonSprite_DecryptPt(rawCharData);
-    MI_CpuFill8(&monSpriteMan->charRawData[0], rawCharData[0], MON_SPRITE_CHAR_BUF_SIZE);
+    MI_CpuFill8(&monSpriteMan->charRawData[0], rawCharData[0], charBufSize);
 
     // the three shadows, 64x16 each, one above the other at the top left of their sheet
     for (int i = 0; i < MAN_SHADOW_ROWS; i++) {
@@ -392,6 +396,16 @@ void *PokemonSpriteManager_New(enum HeapID heapID)
     monSpriteMan->needLoadPltt = TRUE;
 
     return monSpriteMan;
+}
+
+void *PokemonSpriteManager_New(enum HeapID heapID)
+{
+    return PokemonSpriteManager_NewWithSlots(heapID, MAX_MON_SPRITES);
+}
+
+void *PokemonSpriteManager_NewOneSlot(enum HeapID heapID)
+{
+    return PokemonSpriteManager_NewWithSlots(heapID, 1);
 }
 
 void PokemonSpriteManager_DrawSprites(PokemonSpriteManager *monSpriteMan)
@@ -559,19 +573,20 @@ BOOL PokemonSprite_IsAnimActive(PokemonSprite *monSprite)
 PokemonSprite *PokemonSpriteManager_CreateSprite(PokemonSpriteManager *monSpriteMan, PokemonSpriteTemplate *spriteTemplate, int x, int y, int z, int polygonID, SpriteAnimFrame *animFrames, PokemonSpriteCallback *callback)
 {
     int i;
-    for (i = 0; i < MAX_MON_SPRITES; i++) {
+    for (i = 0; i < monSpriteMan->numSlots; i++) {
         if (monSpriteMan->sprites[i].active == FALSE) {
             break;
         }
     }
 
-    GF_ASSERT(i != MAX_MON_SPRITES);
+    GF_ASSERT(i != monSpriteMan->numSlots);
 
     return PokemonSpriteManager_CreateSpriteAtIndex(monSpriteMan, spriteTemplate, x, y, z, polygonID, i, animFrames, callback);
 }
 
 PokemonSprite *PokemonSpriteManager_CreateSpriteAtIndex(PokemonSpriteManager *monSpriteMan, PokemonSpriteTemplate *spriteTemplate, int x, int y, int z, int polygonID, int index, SpriteAnimFrame *animFrames, PokemonSpriteCallback *callback)
 {
+    GF_ASSERT(index < monSpriteMan->numSlots);
     GF_ASSERT(monSpriteMan->sprites[index].active == FALSE);
 
     MI_CpuClearFast(&monSpriteMan->sprites[index], sizeof(PokemonSprite));
