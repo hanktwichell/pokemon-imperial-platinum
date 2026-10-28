@@ -542,7 +542,7 @@ static void BattleMain_InitGraphics(ApplicationManager *appMan)
     battleSys->windows = Window_New(HEAP_ID_BATTLE, 3);
 
     for (idx = 0; idx < 4; idx++) {
-        battleSys->pokemonSpriteDataArray[idx].tiles = Heap_Alloc(HEAP_ID_BATTLE, 32 * 10 * 10);
+        battleSys->pokemonSpriteDataArray[idx].tiles = Heap_Alloc(HEAP_ID_BATTLE, MON_SPRITE_96_SIZE_BYTES);
     }
 
     VramTransfer_New(64, HEAP_ID_BATTLE);
@@ -1466,7 +1466,7 @@ static void FreeG3DPipelineBuffers(G3DPipelineBuffers *pipelineBuffers)
 
 static void BattleMain_InitParticleSystem(void)
 {
-    NNSGfdTexKey texKey = NNS_GfdAllocTexVram(0x2000 * 4, 0, 0);
+    NNSGfdTexKey texKey = NNS_GfdAllocTexVram(POKEMON_SPRITE_TEX_VRAM_SIZE, 0, 0);
     NNSGfdPlttKey plttKey = NNS_GfdAllocPlttVram(0x20 * (4 + 2), 0, 0);
 
     GF_ASSERT(texKey != NNS_GFD_ALLOC_ERROR_TEXKEY);

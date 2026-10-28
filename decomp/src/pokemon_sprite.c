@@ -19,24 +19,27 @@
 #define MAX_MON_SHADOWS         2
 #define MAX_MON_SPRITE_PALETTES (MAX_MON_SPRITES + MAX_MON_SHADOWS)
 
-#define MON_SPRITE_CHAR_BUF_TILES_W 32
-#define MON_SPRITE_CHAR_BUF_TILES_H 32
+// Sovereign (docs/FrontSprites96.md): a sprite's frames are drawn from 96x96 slots, so a front can be 96x96; an 80x80
+// sprite sits centred in its slot, where it was drawn before. The four sprites' slots are stacked down a 256-pixel-wide
+// texture (two frames side by side, 96 rows each), the shadows to their right: 384 rows in all, in a texture declared
+// 512 rows tall.
+#define NUM_MON_SPRITE_FRAMES_H 2
+#define NUM_MON_SPRITE_FRAMES_V 1
+
+#define MON_SPRITE_SLOT_SIZE   96
+#define MON_SPRITE_SLOT_MARGIN ((MON_SPRITE_SLOT_SIZE - MON_SPRITE_FRAME_WIDTH) / 2)
+
+#define MON_SPRITE_CHAR_BUF_TILES_W     32
+#define MON_SPRITE_CHAR_BUF_TILES_H     (MON_SPRITE_SLOT_SIZE * MAX_MON_SPRITES / TILE_HEIGHT_PIXELS)
 
 #define MON_SPRITE_CHAR_BUF_SIZE (MON_SPRITE_CHAR_BUF_TILES_W * MON_SPRITE_CHAR_BUF_TILES_H * TILE_SIZE_4BPP)
 #define MON_SPRITE_PLTT_BUF_SIZE (MAX_MON_SPRITE_PALETTES * PALETTE_SIZE_BYTES)
 
-#define NCGR_Y_OFFSET   0x50
-#define MAN_Y_OFFSET    0x80
-#define MAN_CHAR_OFFSET 0x2800
-// the last mon sprite doesn't follow the pattern of char data offsets that the other three do
-// it has two different offsets depending on the x value
-#define MAN_LAST_SPRITE_CHAR_OFFSET_1 0x50
-#define MAN_LAST_SPRITE_CHAR_OFFSET_2 0x2828
-
-#define MAN_SHADOW_CHAR_OFFSET 0x5050
-
-#define NUM_MON_SPRITE_FRAMES_H 2
-#define NUM_MON_SPRITE_FRAMES_V 1
+#define NCGR_Y_OFFSET        0x50 // an 80x80 sprite's row (two frames), in bytes
+#define MAN_Y_OFFSET         0x80 // the texture's row, in bytes
+#define MAN_SLOT_CHAR_OFFSET (MON_SPRITE_SLOT_SIZE * MAN_Y_OFFSET)
+#define MAN_SHADOW_X         (MON_SPRITE_SLOT_SIZE * NUM_MON_SPRITE_FRAMES_H)
+#define MAN_SHADOW_ROWS      (SHADOW_SPRITE_FRAME_HEIGHT * 3)
 
 #define MON_SPRITE_WIDTH  (MON_SPRITE_FRAME_WIDTH * NUM_MON_SPRITE_FRAMES_H)
 #define MON_SPRITE_HEIGHT (MON_SPRITE_FRAME_HEIGHT * NUM_MON_SPRITE_FRAMES_V)
@@ -303,91 +306,30 @@ static const SpindaSpotCoords *sSpindaSpotCoords[MAX_SPINDA_SPOTS] = {
     sSpindaSpot3Coords,
 };
 
+#define SLOT_TEXTURE_COORDS(slot, frame)                                                      \
+    {                                                                                         \
+        (frame) * MON_SPRITE_SLOT_SIZE, (slot) * MON_SPRITE_SLOT_SIZE,                        \
+            ((frame) + 1) * MON_SPRITE_SLOT_SIZE, ((slot) + 1) * MON_SPRITE_SLOT_SIZE \
+    }
+
 static const int sMonSpriteTextureCoords[MAX_MON_SPRITES][NUM_MON_SPRITE_FRAMES_H][4] = {
-    {
-        {
-            0,
-            0,
-            MON_SPRITE_FRAME_WIDTH,
-            MON_SPRITE_FRAME_HEIGHT,
-        },
-        {
-            MON_SPRITE_FRAME_WIDTH,
-            0,
-            MON_SPRITE_FRAME_WIDTH * 2,
-            MON_SPRITE_FRAME_HEIGHT,
-        },
-    },
-    {
-        {
-            0,
-            MON_SPRITE_FRAME_HEIGHT,
-            MON_SPRITE_FRAME_WIDTH,
-            MON_SPRITE_FRAME_HEIGHT * 2,
-        },
-        {
-            MON_SPRITE_FRAME_WIDTH,
-            MON_SPRITE_FRAME_HEIGHT,
-            MON_SPRITE_FRAME_WIDTH * 2,
-            MON_SPRITE_FRAME_HEIGHT * 2,
-        },
-    },
-    {
-        {
-            0,
-            MON_SPRITE_FRAME_HEIGHT * 2,
-            MON_SPRITE_FRAME_WIDTH,
-            MON_SPRITE_FRAME_HEIGHT * 3,
-        },
-        {
-            MON_SPRITE_FRAME_WIDTH,
-            MON_SPRITE_FRAME_HEIGHT * 2,
-            MON_SPRITE_FRAME_WIDTH * 2,
-            MON_SPRITE_FRAME_HEIGHT * 3,
-        },
-    },
-    {
-        {
-            MON_SPRITE_FRAME_WIDTH * 2,
-            0,
-            MON_SPRITE_FRAME_WIDTH * 3,
-            MON_SPRITE_FRAME_HEIGHT,
-        },
-        {
-            MON_SPRITE_FRAME_WIDTH * 2,
-            MON_SPRITE_FRAME_HEIGHT,
-            MON_SPRITE_FRAME_WIDTH * 3,
-            MON_SPRITE_FRAME_HEIGHT * 2,
-        },
-    },
+    { SLOT_TEXTURE_COORDS(0, 0), SLOT_TEXTURE_COORDS(0, 1) },
+    { SLOT_TEXTURE_COORDS(1, 0), SLOT_TEXTURE_COORDS(1, 1) },
+    { SLOT_TEXTURE_COORDS(2, 0), SLOT_TEXTURE_COORDS(2, 1) },
+    { SLOT_TEXTURE_COORDS(3, 0), SLOT_TEXTURE_COORDS(3, 1) },
 };
 
+#define SHADOW_TEXTURE_COORDS(row)                                                                        \
+    {                                                                                                     \
+        MAN_SHADOW_X, (row) * SHADOW_SPRITE_FRAME_HEIGHT, MAN_SHADOW_X + SHADOW_SPRITE_FRAME_WIDTH, \
+            ((row) + 1) * SHADOW_SPRITE_FRAME_HEIGHT                                                    \
+    }
+
 static const int sShadowTextureCoords[MAX_SHADOW_SIZES][4] = {
-    [SHADOW_SIZE_NONE] = {
-        // these values are essentially meaningless because the shadow is hidden
-        MON_SPRITE_FRAME_WIDTH * 2,
-        MON_SPRITE_FRAME_HEIGHT * 2,
-        MON_SPRITE_FRAME_WIDTH * 2 + SHADOW_SPRITE_FRAME_WIDTH,
-        MON_SPRITE_FRAME_HEIGHT * 2 + SHADOW_SPRITE_FRAME_HEIGHT,
-    },
-    [SHADOW_SIZE_SMALL] = {
-        MON_SPRITE_FRAME_WIDTH * 2,
-        MON_SPRITE_FRAME_HEIGHT * 2,
-        MON_SPRITE_FRAME_WIDTH * 2 + SHADOW_SPRITE_FRAME_WIDTH,
-        MON_SPRITE_FRAME_HEIGHT * 2 + SHADOW_SPRITE_FRAME_HEIGHT,
-    },
-    [SHADOW_SIZE_MEDIUM] = {
-        MON_SPRITE_FRAME_WIDTH * 2,
-        MON_SPRITE_FRAME_HEIGHT * 2 + SHADOW_SPRITE_FRAME_HEIGHT,
-        MON_SPRITE_FRAME_WIDTH * 2 + SHADOW_SPRITE_FRAME_WIDTH,
-        MON_SPRITE_FRAME_HEIGHT * 2 + SHADOW_SPRITE_FRAME_HEIGHT * 2,
-    },
-    [SHADOW_SIZE_LARGE] = {
-        MON_SPRITE_FRAME_WIDTH * 2,
-        MON_SPRITE_FRAME_HEIGHT * 2 + SHADOW_SPRITE_FRAME_HEIGHT * 2,
-        MON_SPRITE_FRAME_WIDTH * 2 + SHADOW_SPRITE_FRAME_WIDTH,
-        MON_SPRITE_FRAME_HEIGHT * 2 + SHADOW_SPRITE_FRAME_HEIGHT * 3,
-    },
+    [SHADOW_SIZE_NONE] = SHADOW_TEXTURE_COORDS(0), // meaningless: the shadow is hidden
+    [SHADOW_SIZE_SMALL] = SHADOW_TEXTURE_COORDS(0),
+    [SHADOW_SIZE_MEDIUM] = SHADOW_TEXTURE_COORDS(1),
+    [SHADOW_SIZE_LARGE] = SHADOW_TEXTURE_COORDS(2),
 };
 
 static void BufferPokemonSpriteCharData(PokemonSpriteManager *monSpriteMan);
@@ -396,18 +338,24 @@ static void TickPokemonSpriteAnim(PokemonSprite *monSprite);
 static void PokemonSprite_TickAnim(PokemonSprite *monSprite);
 static u8 SwapNybbles(u8 value);
 static void TryDrawSpindaSpots(PokemonSprite *monSprite, u8 *rawCharData);
+static void PokemonSprite_WidenPartialDraw(int *offset, int *length);
+static BOOL IsUnscaled(int scale);
 
-void *PokemonSpriteManager_New(enum HeapID heapID)
+// Sovereign: a manager of numSlots sprites keeps a texture of numSlots slots (96 rows each), so one that shows a single
+// sprite (PokemonSpriteManager_NewOneSlot) takes 12 KB instead of 48.
+static void *PokemonSpriteManager_NewWithSlots(enum HeapID heapID, int numSlots)
 {
     PokemonSpriteManager *monSpriteMan = Heap_Alloc(heapID, sizeof(PokemonSpriteManager));
+    u32 charBufSize = numSlots * MAN_SLOT_CHAR_OFFSET;
 
     monSpriteMan->heapID = heapID;
     monSpriteMan->dummy330 = 0;
+    monSpriteMan->numSlots = numSlots;
     monSpriteMan->charBaseAddr = 0;
-    monSpriteMan->charSize = MON_SPRITE_CHAR_BUF_SIZE;
+    monSpriteMan->charSize = charBufSize;
     monSpriteMan->plttBaseAddr = 0;
     monSpriteMan->plttSize = PALETTE_SIZE_BYTES * MAX_MON_SPRITES;
-    monSpriteMan->charRawData = Heap_Alloc(heapID, MON_SPRITE_CHAR_BUF_SIZE);
+    monSpriteMan->charRawData = Heap_Alloc(heapID, charBufSize);
     monSpriteMan->plttRawData = Heap_Alloc(heapID, MON_SPRITE_PLTT_BUF_SIZE);
 
     MI_CpuClearFast(monSpriteMan->plttRawData, sizeof(u32));
@@ -434,11 +382,12 @@ void *PokemonSpriteManager_New(enum HeapID heapID)
     rawCharData = charData->pRawData;
 
     PokemonSprite_DecryptPt(rawCharData);
-    MI_CpuFill8(&monSpriteMan->charRawData[0], rawCharData[0], MON_SPRITE_CHAR_BUF_SIZE);
+    MI_CpuFill8(&monSpriteMan->charRawData[0], rawCharData[0], charBufSize);
 
-    for (int i = 0; i < MON_SPRITE_HEIGHT; i++) {
-        for (int j = 0; j < MON_SPRITE_WIDTH / 4; j++) {
-            monSpriteMan->charRawData[i * MAN_Y_OFFSET + j + MAN_SHADOW_CHAR_OFFSET] = rawCharData[i * NCGR_Y_OFFSET + j];
+    // the three shadows, 64x16 each, one above the other at the top left of their sheet
+    for (int i = 0; i < MAN_SHADOW_ROWS; i++) {
+        for (int j = 0; j < SHADOW_SPRITE_FRAME_WIDTH / 2; j++) {
+            monSpriteMan->charRawData[i * MAN_Y_OFFSET + MAN_SHADOW_X / 2 + j] = rawCharData[i * NCGR_Y_OFFSET + j];
         }
     }
 
@@ -448,6 +397,16 @@ void *PokemonSpriteManager_New(enum HeapID heapID)
     monSpriteMan->needLoadPltt = TRUE;
 
     return monSpriteMan;
+}
+
+void *PokemonSpriteManager_New(enum HeapID heapID)
+{
+    return PokemonSpriteManager_NewWithSlots(heapID, MAX_MON_SPRITES);
+}
+
+void *PokemonSpriteManager_NewOneSlot(enum HeapID heapID)
+{
+    return PokemonSpriteManager_NewWithSlots(heapID, 1);
 }
 
 void PokemonSpriteManager_DrawSprites(PokemonSpriteManager *monSpriteMan)
@@ -489,25 +448,59 @@ void PokemonSpriteManager_DrawSprites(PokemonSpriteManager *monSpriteMan)
             G3_MaterialColorSpecEmi(GX_RGB(16, 16, 16), GX_RGB(0, 0, 0), FALSE);
             G3_PolygonAttr(GX_LIGHTMASK_NONE, GX_POLYGONMODE_MODULATE, GX_CULL_NONE, monSpriteMan->sprites[i].polygonID, monSpriteMan->sprites[i].transforms.alpha, 0);
 
-            if (monSpriteMan->sprites[i].transforms.partialDraw) {
-                u0 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][0] + monSpriteMan->sprites[i].transforms.drawXOffset;
-                u1 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][0] + monSpriteMan->sprites[i].transforms.drawXOffset + monSpriteMan->sprites[i].transforms.drawWidth;
-                v0 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][1] + monSpriteMan->sprites[i].transforms.drawYOffset;
-                v1 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][1] + monSpriteMan->sprites[i].transforms.drawYOffset + monSpriteMan->sprites[i].transforms.drawHeight;
+            BOOL clipped = monSpriteMan->sprites[i].transforms.clipToFrame
+                && monSpriteMan->sprites[i].transforms.partialDraw == FALSE
+                && IsUnscaled(monSpriteMan->sprites[i].transforms.scaleX)
+                && IsUnscaled(monSpriteMan->sprites[i].transforms.scaleY);
+
+            if (monSpriteMan->sprites[i].transforms.partialDraw || clipped) {
+                // The drawn part is given in the 80x80 box centred in the slot; a side of it on the box's edge stands
+                // for the slot's edge, so a 96x96 sprite keeps the parts outside the box.
+                int drawX = monSpriteMan->sprites[i].transforms.drawXOffset;
+                int drawY = monSpriteMan->sprites[i].transforms.drawYOffset;
+                int drawW = monSpriteMan->sprites[i].transforms.drawWidth;
+                int drawH = monSpriteMan->sprites[i].transforms.drawHeight;
+
+                if (clipped) {
+                    // The frame's rows, clipFrameY down in the box (within the slot), and the box's columns.
+                    int top = monSpriteMan->sprites[i].transforms.clipFrameY;
+                    int bottom = top + MON_SPRITE_FRAME_HEIGHT;
+
+                    if (top < -MON_SPRITE_SLOT_MARGIN) {
+                        top = -MON_SPRITE_SLOT_MARGIN;
+                    }
+
+                    if (bottom > MON_SPRITE_FRAME_HEIGHT + MON_SPRITE_SLOT_MARGIN) {
+                        bottom = MON_SPRITE_FRAME_HEIGHT + MON_SPRITE_SLOT_MARGIN;
+                    }
+
+                    drawX = 0;
+                    drawW = MON_SPRITE_FRAME_WIDTH;
+                    drawY = top;
+                    drawH = bottom - top;
+                } else {
+                    PokemonSprite_WidenPartialDraw(&drawX, &drawW);
+                    PokemonSprite_WidenPartialDraw(&drawY, &drawH);
+                }
+
+                u0 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][0] + MON_SPRITE_SLOT_MARGIN + drawX;
+                u1 = u0 + drawW;
+                v0 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][1] + MON_SPRITE_SLOT_MARGIN + drawY;
+                v1 = v0 + drawH;
 
                 NNS_G2dDrawSpriteFast(
-                    monSpriteMan->sprites[i].transforms.xCenter - MON_SPRITE_FRAME_WIDTH / 2 + monSpriteMan->sprites[i].transforms.drawXOffset + monSpriteMan->sprites[i].transforms.xOffset,
-                    monSpriteMan->sprites[i].transforms.yCenter - MON_SPRITE_FRAME_HEIGHT / 2 + monSpriteMan->sprites[i].transforms.drawYOffset + monSpriteMan->sprites[i].transforms.yOffset - monSpriteMan->sprites[i].shadow.height,
+                    monSpriteMan->sprites[i].transforms.xCenter - MON_SPRITE_FRAME_WIDTH / 2 + drawX + monSpriteMan->sprites[i].transforms.xOffset,
+                    monSpriteMan->sprites[i].transforms.yCenter - MON_SPRITE_FRAME_HEIGHT / 2 + drawY + monSpriteMan->sprites[i].transforms.yOffset - monSpriteMan->sprites[i].shadow.height,
                     monSpriteMan->sprites[i].transforms.zCenter + monSpriteMan->sprites[i].transforms.zOffset,
-                    monSpriteMan->sprites[i].transforms.drawWidth,
-                    monSpriteMan->sprites[i].transforms.drawHeight,
+                    drawW,
+                    drawH,
                     u0,
                     v0,
                     u1,
                     v1);
             } else {
-                width = (MON_SPRITE_FRAME_WIDTH * monSpriteMan->sprites[i].transforms.scaleX) >> MON_AFFINE_SHIFT;
-                height = (MON_SPRITE_FRAME_HEIGHT * monSpriteMan->sprites[i].transforms.scaleY) >> MON_AFFINE_SHIFT;
+                width = (MON_SPRITE_SLOT_SIZE * monSpriteMan->sprites[i].transforms.scaleX) >> MON_AFFINE_SHIFT;
+                height = (MON_SPRITE_SLOT_SIZE * monSpriteMan->sprites[i].transforms.scaleY) >> MON_AFFINE_SHIFT;
                 u0 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][0];
                 u1 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][2];
                 v0 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][1];
@@ -605,19 +598,20 @@ BOOL PokemonSprite_IsAnimActive(PokemonSprite *monSprite)
 PokemonSprite *PokemonSpriteManager_CreateSprite(PokemonSpriteManager *monSpriteMan, PokemonSpriteTemplate *spriteTemplate, int x, int y, int z, int polygonID, SpriteAnimFrame *animFrames, PokemonSpriteCallback *callback)
 {
     int i;
-    for (i = 0; i < MAX_MON_SPRITES; i++) {
+    for (i = 0; i < monSpriteMan->numSlots; i++) {
         if (monSpriteMan->sprites[i].active == FALSE) {
             break;
         }
     }
 
-    GF_ASSERT(i != MAX_MON_SPRITES);
+    GF_ASSERT(i != monSpriteMan->numSlots);
 
     return PokemonSpriteManager_CreateSpriteAtIndex(monSpriteMan, spriteTemplate, x, y, z, polygonID, i, animFrames, callback);
 }
 
 PokemonSprite *PokemonSpriteManager_CreateSpriteAtIndex(PokemonSpriteManager *monSpriteMan, PokemonSpriteTemplate *spriteTemplate, int x, int y, int z, int polygonID, int index, SpriteAnimFrame *animFrames, PokemonSpriteCallback *callback)
 {
+    GF_ASSERT(index < monSpriteMan->numSlots);
     GF_ASSERT(monSpriteMan->sprites[index].active == FALSE);
 
     MI_CpuClearFast(&monSpriteMan->sprites[index], sizeof(PokemonSprite));
@@ -1086,6 +1080,12 @@ void PokemonSprite_SetPartialDraw(PokemonSprite *monSprite, int xOffset, int yOf
     monSprite->transforms.drawHeight = height;
 }
 
+void PokemonSprite_ClipToFrame(PokemonSprite *monSprite, int frameY)
+{
+    monSprite->transforms.clipToFrame = TRUE;
+    monSprite->transforms.clipFrameY = frameY;
+}
+
 void PokemonSprite_StartFade(PokemonSprite *monSprite, int initAlpha, int targetAlpha, int delay, int color)
 {
     monSprite->transforms.fadeActive = TRUE;
@@ -1269,12 +1269,15 @@ void PokemonSpriteManager_UpdateCharAndPltt(PokemonSpriteManager *monSpriteMan)
 
         NNS_G2dInitImageProxy(&monSpriteMan->imageProxy);
 
-        monSpriteMan->charData.H = MON_SPRITE_CHAR_BUF_TILES_H;
+        // NitroSystem sizes a texture up to 256 rows, so the texture is declared 512 rows tall here; only charSize bytes
+        // (the rows in use) are loaded.
+        monSpriteMan->charData.H = MON_SPRITE_CHAR_BUF_TILES_W;
         monSpriteMan->charData.W = MON_SPRITE_CHAR_BUF_TILES_W;
         monSpriteMan->charData.szByte = monSpriteMan->charSize;
         monSpriteMan->charData.pRawData = monSpriteMan->charRawData;
 
         NNS_G2dLoadImage2DMapping(&monSpriteMan->charData, monSpriteMan->charBaseAddr, NNS_G2D_VRAM_TYPE_3DMAIN, &monSpriteMan->imageProxy);
+        monSpriteMan->imageProxy.attr.sizeT = GX_TEXSIZE_T512;
     }
 
     if (monSpriteMan->needLoadPltt) {
@@ -1310,15 +1313,85 @@ void PokemonSpriteManager_ClearHideShadows(PokemonSpriteManager *monSpriteMan, u
     monSpriteMan->hideShadows &= (value ^ -1);
 }
 
+// Sovereign: one side of a partial draw (offset and length in the 80x80 box): an end on the box's edge moves out to the
+// edge of the 96x96 slot. A partial draw that would show nothing still shows nothing.
+// Sovereign: a scale of 1, flipped or not (PokemonSprite_ClipToFrame clips only such a sprite).
+static BOOL IsUnscaled(int scale)
+{
+    return scale == MON_AFFINE_SCALE(1) || scale == -MON_AFFINE_SCALE(1);
+}
+
+static void PokemonSprite_WidenPartialDraw(int *offset, int *length)
+{
+    int start = *offset;
+    int end = *offset + *length;
+
+    if (*length <= 0) {
+        return;
+    }
+
+    if (start <= 0) {
+        start = -MON_SPRITE_SLOT_MARGIN;
+    }
+
+    if (end >= MON_SPRITE_FRAME_WIDTH) {
+        end = MON_SPRITE_FRAME_WIDTH + MON_SPRITE_SLOT_MARGIN;
+    }
+
+    *offset = start;
+    *length = end - start;
+}
+
+// Copies a sprite's two frames (an 80x80 or 96x96 pair, its width and height in pixels) into its slot, centred,
+// flipped or with mosaic as its transforms say.
+static void CopySpriteToSlot(u8 *slotData, const u8 *rawCharData, int width, int height, const PokemonSpriteTransforms *transforms)
+{
+    int frameBytes = width / NUM_MON_SPRITE_FRAMES_H / 2;
+    int srcStride = width / 2;
+    int marginX = (MON_SPRITE_SLOT_SIZE - width / NUM_MON_SPRITE_FRAMES_H) / 4;
+    int marginY = (MON_SPRITE_SLOT_SIZE - height) / 2;
+    int mosaic = transforms->mosaicIntensity;
+
+    for (int y = 0; y < MON_SPRITE_SLOT_SIZE; y++) {
+        MI_CpuClear8(&slotData[y * MAN_Y_OFFSET], MON_SPRITE_SLOT_SIZE * NUM_MON_SPRITE_FRAMES_H / 2);
+    }
+
+    for (int frame = 0; frame < NUM_MON_SPRITE_FRAMES_H; frame++) {
+        u8 *dest = &slotData[marginY * MAN_Y_OFFSET + frame * MON_SPRITE_SLOT_SIZE / 2 + marginX];
+        const u8 *src = &rawCharData[frame * frameBytes];
+
+        for (int y = 0; y < height; y++) {
+            int srcY = transforms->flipV ? height - 1 - y : y;
+
+            for (int x = 0; x < frameBytes; x++) {
+                if (transforms->flipH) {
+                    dest[y * MAN_Y_OFFSET + x] = SwapNybbles(src[srcY * srcStride + frameBytes - 1 - x]);
+                } else if (transforms->flipV) {
+                    dest[y * MAN_Y_OFFSET + x] = src[srcY * srcStride + x];
+                } else if (mosaic) {
+                    if (y % (mosaic * 2)) {
+                        dest[y * MAN_Y_OFFSET + x] = dest[(y - 1) * MAN_Y_OFFSET + x];
+                    } else if (x % mosaic) {
+                        dest[y * MAN_Y_OFFSET + x] = dest[y * MAN_Y_OFFSET + x - 1];
+                    } else {
+                        dest[y * MAN_Y_OFFSET + x] = (src[y * srcStride + x] & 0xF) | (src[y * srcStride + x] & 0xF) << 4;
+                    }
+                } else {
+                    dest[y * MAN_Y_OFFSET + x] = src[y * srcStride + x];
+                }
+            }
+        }
+    }
+}
+
 static void BufferPokemonSpriteCharData(PokemonSpriteManager *monSpriteMan)
 {
     NNSG2dCharacterData *charData;
-    int i, y, x;
     u8 *rawCharData;
     void *ncgrFile;
     u8 needLoadChar = FALSE;
 
-    for (i = 0; i < MAX_MON_SPRITES; i++) {
+    for (int i = 0; i < MAX_MON_SPRITES; i++) {
         if (monSpriteMan->sprites[i].active && monSpriteMan->sprites[i].needReloadChar) {
             monSpriteMan->sprites[i].needReloadChar = FALSE;
 
@@ -1333,88 +1406,9 @@ static void BufferPokemonSpriteCharData(PokemonSpriteManager *monSpriteMan)
 
             rawCharData = charData->pRawData;
 
-            PokemonSprite_Decrypt(rawCharData, monSpriteMan->sprites[i].template.narcID);
+            PokemonSprite_DecryptSized(rawCharData, monSpriteMan->sprites[i].template.narcID, charData->szByte);
             TryDrawSpindaSpots(&monSpriteMan->sprites[i], rawCharData);
-
-            if (i == 3) {
-                for (y = 0; y < MON_SPRITE_HEIGHT; y++) {
-                    for (x = 0; x < MON_SPRITE_WIDTH / 2; x++) {
-                        if (x < MON_SPRITE_WIDTH / 4) {
-                            if (monSpriteMan->sprites[i].transforms.flipH && monSpriteMan->sprites[i].transforms.flipV) {
-                                monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + MAN_LAST_SPRITE_CHAR_OFFSET_1] = SwapNybbles(rawCharData[((MON_SPRITE_HEIGHT - 1) - y) * NCGR_Y_OFFSET + ((MON_SPRITE_WIDTH / 4 - 1) - x)]);
-                            } else if (monSpriteMan->sprites[i].transforms.flipH) {
-                                monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + MAN_LAST_SPRITE_CHAR_OFFSET_1] = SwapNybbles(rawCharData[y * NCGR_Y_OFFSET + ((MON_SPRITE_WIDTH / 4 - 1) - x)]);
-                            } else if (monSpriteMan->sprites[i].transforms.flipV) {
-                                monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + MAN_LAST_SPRITE_CHAR_OFFSET_1] = rawCharData[((MON_SPRITE_HEIGHT - 1) - y) * NCGR_Y_OFFSET + x];
-                            } else if (monSpriteMan->sprites[i].transforms.mosaicIntensity) {
-                                if (y % (monSpriteMan->sprites[i].transforms.mosaicIntensity * 2)) {
-                                    monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + MAN_LAST_SPRITE_CHAR_OFFSET_1] = monSpriteMan->charRawData[(y - 1) * MAN_Y_OFFSET + x + MAN_LAST_SPRITE_CHAR_OFFSET_1];
-                                } else {
-                                    if (x % (monSpriteMan->sprites[i].transforms.mosaicIntensity)) {
-                                        monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + MAN_LAST_SPRITE_CHAR_OFFSET_1] = monSpriteMan->charRawData[y * MAN_Y_OFFSET + (x - 1) + MAN_LAST_SPRITE_CHAR_OFFSET_1];
-                                    } else {
-                                        monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + MAN_LAST_SPRITE_CHAR_OFFSET_1] = ((rawCharData[y * NCGR_Y_OFFSET + x] & 0xF) | (rawCharData[y * NCGR_Y_OFFSET + x] & 0xF) << 4);
-                                    }
-                                }
-                            } else {
-                                monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + MAN_LAST_SPRITE_CHAR_OFFSET_1] = rawCharData[y * NCGR_Y_OFFSET + x];
-                            }
-                        } else {
-                            if (monSpriteMan->sprites[i].transforms.flipH && monSpriteMan->sprites[i].transforms.flipV) {
-                                monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + MAN_LAST_SPRITE_CHAR_OFFSET_2] = SwapNybbles(rawCharData[((MON_SPRITE_HEIGHT - 1) - y) * NCGR_Y_OFFSET + ((MON_SPRITE_WIDTH / 2 - 1) - (x - MON_SPRITE_WIDTH / 4))]);
-                            } else if (monSpriteMan->sprites[i].transforms.flipH) {
-                                monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + MAN_LAST_SPRITE_CHAR_OFFSET_2] = SwapNybbles(rawCharData[y * NCGR_Y_OFFSET + ((MON_SPRITE_WIDTH / 2 - 1) - (x - MON_SPRITE_WIDTH / 4))]);
-                            } else if (monSpriteMan->sprites[i].transforms.flipV) {
-                                monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + MAN_LAST_SPRITE_CHAR_OFFSET_2] = rawCharData[((MON_SPRITE_HEIGHT - 1) - y) * NCGR_Y_OFFSET + x];
-                            } else if (monSpriteMan->sprites[i].transforms.mosaicIntensity) {
-                                if (y % (monSpriteMan->sprites[i].transforms.mosaicIntensity * 2)) {
-                                    monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + MAN_LAST_SPRITE_CHAR_OFFSET_2] = monSpriteMan->charRawData[(y - 1) * MAN_Y_OFFSET + x + MAN_LAST_SPRITE_CHAR_OFFSET_2];
-                                } else {
-                                    if (x % (monSpriteMan->sprites[i].transforms.mosaicIntensity)) {
-                                        monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + MAN_LAST_SPRITE_CHAR_OFFSET_2] = monSpriteMan->charRawData[y * MAN_Y_OFFSET + (x - 1) + MAN_LAST_SPRITE_CHAR_OFFSET_2];
-                                    } else {
-                                        monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + MAN_LAST_SPRITE_CHAR_OFFSET_2] = ((rawCharData[y * NCGR_Y_OFFSET + x] & 0xF) | (rawCharData[y * NCGR_Y_OFFSET + x] & 0xF) << 4);
-                                    }
-                                }
-                            } else {
-                                monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + MAN_LAST_SPRITE_CHAR_OFFSET_2] = rawCharData[y * NCGR_Y_OFFSET + x];
-                            }
-                        }
-                    }
-                }
-            } else {
-                for (y = 0; y < MON_SPRITE_HEIGHT; y++) {
-                    for (x = 0; x < MON_SPRITE_WIDTH / 2; x++) {
-                        if (monSpriteMan->sprites[i].transforms.flipH && monSpriteMan->sprites[i].transforms.flipV) {
-                            if (x < MON_SPRITE_WIDTH / 4) {
-                                monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + i * MAN_CHAR_OFFSET] = SwapNybbles(rawCharData[((MON_SPRITE_HEIGHT - 1) - y) * NCGR_Y_OFFSET + ((MON_SPRITE_WIDTH / 4 - 1) - x)]);
-                            } else {
-                                monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + i * MAN_CHAR_OFFSET] = SwapNybbles(rawCharData[((MON_SPRITE_HEIGHT - 1) - y) * NCGR_Y_OFFSET + ((MON_SPRITE_WIDTH / 2 - 1) - (x - MON_SPRITE_WIDTH / 4))]);
-                            }
-                        } else if (monSpriteMan->sprites[i].transforms.flipH) {
-                            if (x < MON_SPRITE_WIDTH / 4) {
-                                monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + i * MAN_CHAR_OFFSET] = SwapNybbles(rawCharData[y * NCGR_Y_OFFSET + ((MON_SPRITE_WIDTH / 4 - 1) - x)]);
-                            } else {
-                                monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + i * MAN_CHAR_OFFSET] = SwapNybbles(rawCharData[y * NCGR_Y_OFFSET + ((MON_SPRITE_WIDTH / 2 - 1) - (x - MON_SPRITE_WIDTH / 4))]);
-                            }
-                        } else if (monSpriteMan->sprites[i].transforms.flipV) {
-                            monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + i * MAN_CHAR_OFFSET] = rawCharData[((MON_SPRITE_HEIGHT - 1) - y) * NCGR_Y_OFFSET + x];
-                        } else if (monSpriteMan->sprites[i].transforms.mosaicIntensity) {
-                            if (y % (monSpriteMan->sprites[i].transforms.mosaicIntensity * 2)) {
-                                monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + i * MAN_CHAR_OFFSET] = monSpriteMan->charRawData[(y - 1) * MAN_Y_OFFSET + x + i * MAN_CHAR_OFFSET];
-                            } else {
-                                if (x % (monSpriteMan->sprites[i].transforms.mosaicIntensity)) {
-                                    monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + i * MAN_CHAR_OFFSET] = monSpriteMan->charRawData[y * MAN_Y_OFFSET + (x - 1) + i * MAN_CHAR_OFFSET];
-                                } else {
-                                    monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + i * MAN_CHAR_OFFSET] = ((rawCharData[y * NCGR_Y_OFFSET + x] & 0xF) | (rawCharData[y * NCGR_Y_OFFSET + x] & 0xF) << 4);
-                                }
-                            }
-                        } else {
-                            monSpriteMan->charRawData[y * MAN_Y_OFFSET + x + i * MAN_CHAR_OFFSET] = rawCharData[y * NCGR_Y_OFFSET + x];
-                        }
-                    }
-                }
-            }
+            CopySpriteToSlot(&monSpriteMan->charRawData[i * MAN_SLOT_CHAR_OFFSET], rawCharData, charData->W * TILE_WIDTH_PIXELS, charData->H * TILE_HEIGHT_PIXELS, &monSpriteMan->sprites[i].transforms);
 
             Heap_Free(ncgrFile);
         }
@@ -1582,33 +1576,50 @@ static u16 PokemonSprite_LCRNGNext(u32 *seed)
     return (u16)(*seed / LCRNG_DIVISOR);
 }
 
-void PokemonSprite_DecryptPt(u8 *rawCharData)
+// Sovereign: a sprite's whole image is scrambled (nitrogfx -encodefronttoback), whatever its size; sizeBytes is its
+// pixel data's size (6400 for an 80x80 pair, 9216 for a 96x96 one).
+static void PokemonSprite_DecryptPtSized(u8 *rawCharData, u32 sizeBytes)
 {
     u16 *charData = (u16 *)rawCharData;
     u32 seed = *charData;
 
-    for (int i = 0; i < (20 * 10 * 32) / 2; i++) {
+    for (int i = 0; i < sizeBytes / 2; i++) {
         charData[i] ^= seed;
         PokemonSprite_LCRNGNext(&seed);
     }
+}
+
+static void PokemonSprite_DecryptDPSized(u8 *rawCharData, u32 sizeBytes)
+{
+    u16 *charData = (u16 *)rawCharData;
+    u32 seed = charData[sizeBytes / 2 - 1];
+
+    for (int i = sizeBytes / 2 - 1; i > -1; i--) {
+        charData[i] ^= seed;
+        PokemonSprite_LCRNGNext(&seed);
+    }
+}
+
+void PokemonSprite_DecryptPt(u8 *rawCharData)
+{
+    PokemonSprite_DecryptPtSized(rawCharData, MON_SPRITE_FRAME_MAX_SIZE_BYTES * NUM_MON_SPRITE_FRAMES_H);
 }
 
 void PokemonSprite_DecryptDP(u8 *rawCharData)
 {
-    u16 *charData = (u16 *)rawCharData;
-    u32 seed = charData[(20 * 10 * 32) / 2 - 1];
-
-    for (int i = (20 * 10 * 32) / 2 - 1; i > -1; i--) {
-        charData[i] ^= seed;
-        PokemonSprite_LCRNGNext(&seed);
-    }
+    PokemonSprite_DecryptDPSized(rawCharData, MON_SPRITE_FRAME_MAX_SIZE_BYTES * NUM_MON_SPRITE_FRAMES_H);
 }
 
 void PokemonSprite_Decrypt(u8 *rawCharData, enum NarcID narcID)
 {
+    PokemonSprite_DecryptSized(rawCharData, narcID, MON_SPRITE_FRAME_MAX_SIZE_BYTES * NUM_MON_SPRITE_FRAMES_H);
+}
+
+void PokemonSprite_DecryptSized(u8 *rawCharData, enum NarcID narcID, u32 sizeBytes)
+{
     if (narcID == NARC_INDEX_POKETOOL__POKEGRA__POKEGRA || narcID == NARC_INDEX_POKETOOL__POKEGRA__OTHERPOKE) {
-        PokemonSprite_DecryptDP(rawCharData);
+        PokemonSprite_DecryptDPSized(rawCharData, sizeBytes);
     } else {
-        PokemonSprite_DecryptPt(rawCharData);
+        PokemonSprite_DecryptPtSized(rawCharData, sizeBytes);
     }
 }

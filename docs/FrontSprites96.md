@@ -1,4 +1,4 @@
-# 96×96 front sprites — plan
+# 96×96 front sprites
 
 **Owner, 2026-10-28:** every Pokémon's front sprite becomes PokeAPI's 96×96 front, shown at full size instead of shrunk
 to 80×80 (the shrink broke the outlines of 113 form fronts and 103 species fronts: Primal Kyogre, the Megas). For
@@ -6,8 +6,8 @@ to 80×80 (the shrink broke the outlines of 113 form fronts and 103 species fron
 second animation frame). Back sprites stay 80×80. The cartridge grows to 256 MB when the data passes 128 MB
 (`tools/nitrorom` picks the size from the content; nothing to force).
 
-Status: planned. This file is the map of what has to change, from a read-through of every place that loads or draws a
-battle sprite (2026-10-28). Line numbers are as of that day.
+Status: done in the test build (2026-10-28); **Where it stands** is at the end. This file began as the map of what had
+to change, from a read-through of every place that loads or draws a battle sprite; line numbers are as of that day.
 
 ## The sprite as stored and drawn today
 
@@ -73,3 +73,88 @@ battle sprite (2026-10-28). Line numbers are as of that day.
 3. **OBJ VRAM:** the battle (64 KB, up to 9 sprite copies at 4608 bytes) and the Hall of Fame (about 59 of 64 KB).
 4. **On screen:** evolution's letterbox is 80 px tall; a 96-wide foe at doubles x 216 runs 8 px off the right edge;
    contest results and the PC Hall of Fame space sprites 56–80 px apart.
+
+## Where it stands
+
+Done (test build):
+- **Data.** `tools/sprites/fetch_pokeapi_fronts.py` fetches PokeAPI's fronts for #1–493 and for the forms Platinum keeps
+  in `pl_otherpoke.narc` (Unown, Castform, Deoxys, Burmy, Wormadam, Cherrim, Shellos, Gastrodon, Rotom, Giratina,
+  Shaymin, Arceus); `convert_fronts96.py` makes them game sprites in `res/pokemon/sovereign_fronts96/` (480 species,
+  76 forms). `convert_battle_sprites.py` and `convert_form_sprites.py` keep #494–1025's and the Sovereign forms'
+  fronts at 96×96. Spinda keeps Platinum's front (its spots).
+- **The option.** `meson configure -Dplatinum_fronts=true` packs Platinum's own fronts for #1–493 and their forms again
+  (`make_pl_pokegra.py --platinum-fronts`, `SOVEREIGN_PLATINUM_FRONTS`), with their offsets from `height.narc` and
+  their second animation frame. #494–1025 and the Sovereign forms stay 96×96 either way.
+- **y offsets are signed** (`LoadPokemonSpriteYOffset` and its callers): 144 of the 1473 96×96 fronts reach below
+  the 80×80 box (Dialga, Ho-Oh, Zekrom, Xerneas...). The 96×96 fronts' offsets are in `sovereign_fronts96.h`,
+  `sovereign_form_sprites.h` and, for #494+, `height.narc` (read as signed).
+- **3D sprites** (`pokemon_sprite.c`): 96×96 slots; a partial draw (fainting, Dig...) whose side is on the 80×80 box's
+  edge reaches the slot's edge.
+- **2D copies** at 96×96 (`CharacterSprite_LoadPokemonSprite96`, cells `misc/pokesprite_96*` in the battle sprite
+  archive for the 32K, 64K and 128K OBJ modes): battle (move animations, Transform, the BG copy), Hall of Fame, PC Hall
+  of Fame, the trade cutscene, the HM cut-in, the Battle Frontier's scene sprites. Contests share the battle's.
+- The dress-up reads the 80×80 box in the middle of a 96×96 sprite; evolution's band is 96 rows tall.
+- The HM cut-in's band stays 80 rows tall (Platinum's art for it): a tall front loses a few rows at its edges there.
+
+Checked in the test build (2026-10-28):
+- Battle: fronts of all kinds (#1–493, #494+, Megas and Primals, Platinum's forms such as Unown, Deoxys, Rotom,
+  Arceus), feet on the platform for the fronts with a negative offset (Dialga), Double Team's copies, Extrasensory's
+  BG copy, fainting.
+- An Elite Four run into the Hall of Fame: each Pokémon's panel and the closing group picture.
+- A trade (the Meister's on Route 226): every phase, the heaps intact after it.
+- Surf's HM cut-in; an evolution by Rare Candy (Charmander to Charmeleon, no heap assert); the summary screen; the
+  Pokédex entry.
+- A `platinum_fronts` build: #1–493 and their forms show Platinum's fronts, #494+ and the Megas 96×96.
+- The Battle Factory's rental screen (a single Lv. 50 challenge): the Factory app's heap is at least 14,048 bytes free
+  throughout (30,432 on the 80×80 build: the sprite manager's buffer is 16 KB bigger), and a rental's summary screen
+  14,712 (31,088) before the summary screen kept one slot (below). `tools/test/heap_check.py`'s `heap_free` reads
+  them.
+- Screens that show one Pokémon at a time keep a texture of one slot (`PokemonSpriteManager_NewOneSlot`, 12 KB where
+  the four-slot manager takes 48 and Platinum's took 32): the dress-up and its photos, and the PC boxes. Found by
+  heap checks: with the four-slot manager the PC boxes' graphics heap ran out (9,336 bytes free, then a hang; 27,552
+  on the 80×80 build), and a practice dance contest, which makes a dress-up photo for each of the four contestants,
+  crashed as it started. The script's Pokémon preview window also makes one (and draws nothing with it): Mom's Eevee
+  in Twinleaf took 60,576 bytes of the field heap (4) with the four-slot manager, 23,712 with one slot (44,188 on
+  the 80×80 build).
+- The poffin cutscene (a Poffin fed from the Poffin Case) and the summary screen keep one slot too. The cutscene's
+  heap is 64 KB: with one slot it has 20,332 bytes free at the lowest (9,032 on the 80×80 build); the four-slot
+  manager takes 36,864 bytes more, so it would run out. The summary screen (all six of the party, switching from
+  one to the next) 44,516 (30,080); with four slots it had 13,692, and 14,712 in the Battle Factory's rentals.
+- Practice contests (Hearthome's Contest Hall): the visual, dance and acting competitions run as on the 80×80 build.
+  The lowest free space: the dress-up's heap 69,268 bytes (48,792 on the 80×80 build), the dance's 84,432 (18,968),
+  the acting's 141,216 (169,980).
+- A wild battle: the battle heap 315,060 bytes free at the lowest (342,620).
+- A practice visual competition with Zekrom (#644, its front's y offset −6): its 96×96 front in the dress-up and on
+  stage. Before the fix the dress-up kept the offset in a `u8` (250), so Zekrom was drawn below the screen there
+  (`UnkStruct_ov22_022596B0`'s margins are signed now).
+- The acting competition's stand-in defender (a blank copy that move animations copy from) is cleared whole; only its
+  first 3,200 bytes were, so the bottom of a 96×96 copy could show leftover memory.
+- The egg hatch scene (the Trainers' School Egg, an Elekid): the hatched Pokémon's 96×96 front whole, the scene's heap
+  46,772 bytes free at the lowest (63,160).
+- The Battle Hall (a single challenge with Garchomp, three battles): the battle room's banner shows the Pokémon's
+  96×96 front whole (the Frontier scene sprite, `ov104_02232CE0`); the battle heap 243,876 bytes free at the lowest
+  (265,884).
+- The starter choice (Route 201's briefcase): the chosen starter's 96×96 front in its bubble; the app's heap 48,500
+  bytes free at the lowest (64,884).
+- The Pokédex: the list, the entry and the size page (Turtwig, Garchomp; the height check's silhouette is the 96×96
+  front, at about the same height against the player's as Platinum's). Its frame (the list's and the entry's) is
+  80×80 inside, Platinum's sprite size, with a 7-pixel border, and the PC boxes' Pokémon panel is the same kind of
+  frame. 420 of the 2,402 96×96 front images have art past the middle 80×80 (Ho-Oh, Lugia, Zekrom, Yveltal...), up to
+  8 pixels over such a border. **Owner, 2026-10-28: clip it to the frame.** `PokemonSprite_ClipToFrame` draws only what
+  lies in the frame (the Pokédex's sprites, its "registered" screen and the PC boxes' panel); a scaled sprite is drawn
+  whole, so the height check's silhouette keeps all its art. Checked with Ho-Oh in the Pokédex's list and entry, its
+  "registered" screen after a catch, and the PC boxes' panel.
+
+Show the middle 80×80 of a 96×96 front (the old 2D functions; safe, art past it is cut): the script's Pokémon preview
+window (an 80×80 frame; Mom's Eevee checked), the GTS listing, the Union Room trade card, the Mystery Gift card, the
+Great Marsh binoculars, Rowan's intro, `ov64`.
+
+Not run in the game:
+- The PC's Hall of Fame records: an Elite Four run into the Hall of Fame and its save, then the PC, which said the
+  records were corrupted. The game's saves never reached the emulator's battery in these runs (exported, it was blank),
+  so the records can't be read back. The screen draws the same 96×96 copies as the Hall of Fame (checked there). Its
+  six places are 80 pixels apart in a row and the rows 56 apart, so 96×96 boxes overlap a neighbour's by up to 16
+  pixels across (Platinum's 80×80 boxes touched), and art at the right edge of the box placed at x 216 is cut by up
+  to 8 pixels at the screen's edge.
+- By their heaps' size: the capsule menu (512 KB) and the Vs. Recorder's app (`overlay062`, 340 KB) take the
+  four-slot manager's 16 KB more with room to spare.

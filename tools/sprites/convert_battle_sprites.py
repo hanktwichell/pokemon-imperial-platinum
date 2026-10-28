@@ -5,10 +5,12 @@ Reads a dex-folder pack (NNNN-Name/{front,back,shiny_front,shiny_back}.png) and,
 decomp/res/pokemon/<species>/{male,female}_{front,back}.png, normal.pal, shiny.pal and the y offsets in
 sprite_data.json. Species #1-493 (Renegade Platinum's sprites) are never touched.
 
-DS rules: each frame is 80x80; front and back share one palette of 15 colours plus transparency (index 0); the
-shiny sprite is the same pixels with a second palette, so each shiny colour is the one the shiny sprite has
-where the normal sprite uses that index. Art bigger than 80x80 is scaled down (nearest neighbour) and reported.
-The PNG holds two 80x80 frames side by side; both get the same picture.
+DS rules: a back is 80x80 and a front 96x96 (PokeAPI's fronts at full size; a front from the pack is cut to 80x80);
+front and back each have a palette of 15 colours plus transparency (index 0); the shiny sprite is the same pixels
+with a second palette, so each shiny colour is the one the shiny sprite has where the normal sprite uses that index.
+Back art bigger than 80x80 is scaled down (nearest neighbour) and reported. The PNG holds two frames side by side;
+both get the same picture. A 96x96 front's y offset counts the clear rows under the art in the 80x80 box centred in
+it (negative when the art reaches below that box).
 
 Writes docs/BattleSpriteImport.md: what was scaled, how many colours each species had, and shinies that
 didn't line up.
@@ -116,8 +118,8 @@ def paired_palettes(pairs):
         centers = [tuple(v & 0xF8 for v in c) for c in centers]
     slot = {k: 1 + min(range(len(centers)), key=lambda i: dist(k, centers[i])) for k in counts}
     indexed = []
-    for keys in keyed:
-        out = Image.new("P", (80, 80), 0)
+    for (normal, _), keys in zip(pairs, keyed):
+        out = Image.new("P", normal.size, 0)
         out.putdata([0 if k is None else slot[k] for k in keys])
         indexed.append(out)
     pal = [c[:3] for c in centers] + [(0, 0, 0)] * (15 - len(centers))
@@ -133,9 +135,10 @@ def write_pal(path, transparent, pal):
 
 
 def two_frames(indexed, pal):
-    out = Image.new("P", (160, 80), 0)
+    """The sprite's two frames (the same picture twice) side by side: 160x80, or 192x96 for a 96x96 front."""
+    out = Image.new("P", (indexed.width * 2, indexed.height), 0)
     out.paste(indexed, (0, 0))
-    out.paste(indexed, (80, 0))
+    out.paste(indexed, (indexed.width, 0))
     # The game unscrambles a battle sprite with a key read from its first four pixels (PokemonSprite_DecryptPt), so
     # they must stay transparent or the sprite comes out as noise (Samurott's horn tip, Talonflame's wing tip).
     for x in range(4):
@@ -145,8 +148,9 @@ def two_frames(indexed, pal):
 
 
 def bottom_blank(indexed):
+    """The clear rows under the art in the 80x80 box (centred in a 96x96 front; negative below that box)."""
     bb = indexed.getbbox()
-    return 80 - bb[3] if bb else 0
+    return (80 + (indexed.height - 80) // 2) - bb[3] if bb else 0
 
 
 def main():
@@ -178,6 +182,12 @@ def main():
             continue
         frames, notes = {}, []
         for face in ("front", "back"):
+            if face == "front" and ims[face].size == (96, 96):
+                frames[face] = ims[face]
+                sh = ims.get("shiny_front")
+                if sh is not None and sh.size == ims[face].size:
+                    frames["shiny_front"] = sh
+                continue
             box, scale = window(ims[face])
             frames[face] = cut(ims[face], box, scale)
             sh = ims.get(f"shiny_{face}")
@@ -187,11 +197,17 @@ def main():
                 notes.append(f"{face} scaled to {round(scale * 100)}%")
         # A female front of its own (a visible gender difference) shares the front palette with the male one.
         if "female_front" in ims:
-            box, scale = window(ims["female_front"])
-            frames["female_front"] = cut(ims["female_front"], box, scale)
-            sh = ims.get("female_shiny_front")
-            if sh is not None and sh.size == ims["female_front"].size:
-                frames["female_shiny_front"] = cut(sh, box, scale)
+            if ims["female_front"].size == frames["front"].size:
+                frames["female_front"] = ims["female_front"]
+                sh = ims.get("female_shiny_front")
+                if sh is not None and sh.size == ims["female_front"].size:
+                    frames["female_shiny_front"] = sh
+            else:
+                box, scale = window(ims["female_front"])
+                frames["female_front"] = cut(ims["female_front"], box, scale)
+                sh = ims.get("female_shiny_front")
+                if sh is not None and sh.size == ims["female_front"].size:
+                    frames["female_shiny_front"] = cut(sh, box, scale)
         # Front and back each get their own 15 colours (back_*.pal; make_pl_pokegra.py packs them separately).
         pals, spals, indexed, ncol = {}, {}, {}, {}
         for face in ("front", "back"):

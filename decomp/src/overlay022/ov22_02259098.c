@@ -20,12 +20,25 @@ static int ov22_0225936C(char *param0, int param1);
 static void ov22_02259448(TouchScreenRect *rect, int param1, int param2, int param3, int param4);
 static void ov22_022593B8(char *param0, int param1, int param2, UnkStruct_ov22_022596B0 *param3);
 
+// Sovereign: the dress-up works in an 80x80 box; a 96x96 front has it in the middle, this many pixels in.
+static int MonSpriteBoxMargin(const NNSG2dCharacterData *charData)
+{
+    return (charData->H * 8 - MON_SPRITE_FRAME_HEIGHT) / 2;
+}
+
+// The first byte of that box in the sprite's pixels (two to a byte).
+static char *MonSpriteBox(const NNSG2dCharacterData *charData)
+{
+    int margin = MonSpriteBoxMargin(charData);
+    return (char *)charData->pRawData + (margin * charData->W * 8 + margin) / 2;
+}
+
 void ov22_02259098(UnkStruct_ov22_0225A0E4 *param0, PokemonSpriteTemplate *param1)
 {
     void *v0 = LoadMemberFromNARC(param1->narcID, param1->character, 0, 14, 0);
     NNSG2dCharacterData *v1 = ov22_02255340(param0, v0, (100 + 18));
 
-    PokemonSprite_Decrypt((u8 *)v1->pRawData, param1->narcID);
+    PokemonSprite_DecryptSized((u8 *)v1->pRawData, param1->narcID, v1->szByte);
 }
 
 void ov22_022590C0(UnkStruct_020298D8 *param0, PokemonSpriteManager *param1, Pokemon *param2, PokemonSpriteTemplate *param3, int param4)
@@ -57,19 +70,19 @@ void ov22_022590D4(UnkStruct_020298D8 *param0, PokemonSpriteManager *param1, Pok
     }
 
     {
-        u8 v3 = Pokemon_DPSpriteYOffset(param2, 2);
+        s8 v3 = Pokemon_DPSpriteYOffset(param2, 2);
         void *v4;
         NNSG2dCharacterData *v5;
 
         v4 = LoadMemberFromNARC(param3->narcID, param3->character, 0, param4, 0);
 
         NNS_G2dGetUnpackedCharacterData(v4, &v5);
-        PokemonSprite_Decrypt((u8 *)v5->pRawData, param3->narcID);
+        PokemonSprite_DecryptSized((u8 *)v5->pRawData, param3->narcID, v5->szByte);
 
         if (param5 == 0) {
-            ov22_022593B8(v5->pRawData, v5->W * 8, v5->H * 8, &param0->unk_08);
+            ov22_022593B8(MonSpriteBox(v5), v5->W * 8, v5->H * 8, &param0->unk_08);
         } else {
-            param0->unk_08.unk_00 = ov22_0225936C(v5->pRawData, v5->W * 8);
+            param0->unk_08.unk_00 = ov22_0225936C(MonSpriteBox(v5), v5->W * 8);
             param0->unk_08.unk_01 = param0->unk_08.unk_00;
             param0->unk_08.unk_03 = v3;
             param0->unk_08.unk_02 = v3;
@@ -154,7 +167,7 @@ BOOL ov22_02259278(UnkStruct_020298D8 *param0, int *param1, int *param2, NNSG2dC
     *param1 = gSystem.touchX - v3;
     *param2 = gSystem.touchY - v4;
 
-    v0 = ov22_02255420(param3, *param1, *param2, 0);
+    v0 = ov22_02255420(param3, *param1 + MonSpriteBoxMargin(param3), *param2 + MonSpriteBoxMargin(param3), 0);
 
     if (v0 == 0) {
         return 1;
@@ -184,7 +197,7 @@ BOOL ov22_022592F0(UnkStruct_020298D8 *param0, int param1, int param2, NNSG2dCha
     param1 -= v3;
     param2 -= v4;
 
-    v0 = ov22_02255420(param3, param1, param2, 0);
+    v0 = ov22_02255420(param3, param1 + MonSpriteBoxMargin(param3), param2 + MonSpriteBoxMargin(param3), 0);
 
     if (v0 == 0) {
         return 1;

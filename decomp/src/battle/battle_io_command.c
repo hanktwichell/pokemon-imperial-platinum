@@ -706,7 +706,7 @@ static void BtlIOCmd_ChangeWeatherForm(BattleSystem *battleSys, BattlerData *bat
         PokemonSprite_StartFade(battlerData->monSprite, heldAlpha, heldAlpha, 0, PokemonSprite_GetAttribute(battlerData->monSprite, MON_SPRITE_FADE_TARGET_COLOR));
     }
 
-    CharacterSprite_LoadPokemonSprite(monSpriteTemplatePtr->narcID, monSpriteTemplatePtr->character, HEAP_ID_BATTLE, PokemonSpriteData_GetTiles(BattleSystem_GetPokemonSpriteData(battleSys), battlerData->battler), message->personality, FALSE, face, monSpriteTemplatePtr->spindaSpots);
+    CharacterSprite_LoadPokemonSprite96(monSpriteTemplatePtr->narcID, monSpriteTemplatePtr->character, HEAP_ID_BATTLE, 0, PokemonSpriteData_GetTiles(BattleSystem_GetPokemonSpriteData(battleSys), battlerData->battler), message->personality, FALSE, face, monSpriteTemplatePtr->spindaSpots);
 
     PokemonSpriteData_SetNarcID(BattleSystem_GetPokemonSpriteData(battleSys), battlerData->battler, monSpriteTemplatePtr->narcID);
     PokemonSpriteData_SetPalette(BattleSystem_GetPokemonSpriteData(battleSys), battlerData->battler, monSpriteTemplatePtr->palette);

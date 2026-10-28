@@ -621,11 +621,13 @@ implemented.
 ### 7. Graphics
 - Gen IV battle sprites: 80×80 per frame, two frames per sheet (160×80), 4bpp, **one 16-colour palette shared by the
   front and back sprite**, plus a shiny palette with the **same index order**.
+- Sovereign (2026-10-28): fronts are 96×96 (192×96 sheets) with palettes of their own; backs stay 80×80. The engine
+  draws from 96×96 slots and puts an 80×80 sprite in the middle of one (`docs/FrontSprites96.md`).
 - The owner-supplied "DPPt Style Gen VI and Beyond" pack provides **back sprites only** (normal + shiny, 2× scale).
   `data/sprite_index.csv` flags each file's colour count and whether it's a clean 2× upscale. Conversion steps:
   downscale 2× (nearest), quantise to ≤15 colours + transparency, then build a **shared** palette with the matching front
   sprite (fronts still needed) and remap the shiny back to the same indices.
-- Mega Garchomp Z's owner-supplied front art is 116×95 px and must be redrawn to fit 80×80.
+- Mega Garchomp Z's owner-supplied front art is 116×95 px and must be redrawn to fit 96×96.
 
 ### 7b. ROM space (measured 2026-10-27, `tools/test/rom_space.py`)
 - The cartridge is 128 MiB (134,217,728 bytes). The release ROM uses 124,449,340 of them, so 9,768,388 bytes (9.3

@@ -228,7 +228,7 @@ void BattleDisplay_InitTaskSetEncounter(BattleSystem *battleSys, BattlerData *ba
     SpriteAnimFrame animFrames[MAX_ANIMATION_FRAMES];
     MonEncounterData *monEncounterData;
     int battleType = BattleSystem_GetBattleType(battleSys);
-    u8 yOffset;
+    s8 yOffset;
     s8 height;
     s8 shadowXOffset;
     u8 shadowSize;
@@ -323,7 +323,7 @@ typedef struct MonShowData {
     u8 battlerType;
     u8 state;
     u8 face;
-    u8 yOffset;
+    s8 yOffset;
     u16 species;
     enum PokemonCryMod cryMod;
     u8 selectedPartySlot;
@@ -445,7 +445,7 @@ typedef struct MonReturnData {
     u8 battler;
     u8 battlerType;
     u8 state;
-    u8 yOffset;
+    s8 yOffset;
     u8 unused;
     u16 capturedBall;
     int isSubstitute;
@@ -483,7 +483,7 @@ typedef struct OpenCaptureBallData {
     u8 battler;
     u8 battlerType;
     u8 state;
-    u8 yOffset;
+    s8 yOffset;
     u8 unused_0D;
     u16 unused_0E;
 } OpenCaptureBallData;
@@ -2606,9 +2606,12 @@ static void Task_OpenCaptureBall(SysTask *task, void *data)
         PokemonSprite_AddAttribute(captureOpenBallData->monSprite, MON_SPRITE_SCALE_X, -0x20);
         PokemonSprite_AddAttribute(captureOpenBallData->monSprite, MON_SPRITE_SCALE_Y, -0x20);
 
-        if (captureOpenBallData->yOffset) {
+        if (captureOpenBallData->yOffset > 0) {
             captureOpenBallData->yOffset--;
             PokemonSprite_AddAttribute(captureOpenBallData->monSprite, MON_SPRITE_Y_CENTER, -1);
+        } else if (captureOpenBallData->yOffset < 0) { // Sovereign: a 96x96 front can sit above the 80x80 box's floor
+            captureOpenBallData->yOffset++;
+            PokemonSprite_AddAttribute(captureOpenBallData->monSprite, MON_SPRITE_Y_CENTER, 1);
         }
 
         if (PokemonSprite_GetAttribute(captureOpenBallData->monSprite, MON_SPRITE_SCALE_X) <= 0) {
@@ -5889,7 +5892,7 @@ void BattleDisplay_SovereignSetAbsentBattler(BattleSystem *battleSys, int battle
     BuildPokemonSpriteTemplate(&spriteTemplate, SPECIES_NONE, GENDER_MALE, FACE_BACK, FALSE, 0, 0);
     PokemonSpriteData_SetNarcID(spriteData, battler, spriteTemplate.narcID);
     PokemonSpriteData_SetPalette(spriteData, battler, spriteTemplate.palette);
-    MI_CpuClear8(PokemonSpriteData_GetTiles(spriteData, battler), 32 * 10 * 10);
+    MI_CpuClear8(PokemonSpriteData_GetTiles(spriteData, battler), MON_SPRITE_96_SIZE_BYTES);
 }
 
 HealthBox *BattlerData_GetHealthBox(BattlerData *battlerData)
@@ -5929,7 +5932,7 @@ static PokemonSprite *BattleDisplay_NewPokemonSprite(BattleSystem *battleSys, Po
         face = FACE_BACK;
     }
 
-    CharacterSprite_LoadPokemonSprite(spriteTemplate->narcID, spriteTemplate->character, HEAP_ID_BATTLE, tiles, spriteTemplate->personality, FALSE, face, spriteTemplate->spindaSpots);
+    CharacterSprite_LoadPokemonSprite96(spriteTemplate->narcID, spriteTemplate->character, HEAP_ID_BATTLE, 0, tiles, spriteTemplate->personality, FALSE, face, spriteTemplate->spindaSpots);
     PokemonSpriteData_SetNarcID(BattleSystem_GetPokemonSpriteData(battleSys), battler, spriteTemplate->narcID);
     PokemonSpriteData_SetPalette(BattleSystem_GetPokemonSpriteData(battleSys), battler, spriteTemplate->palette);
     PokemonSpriteData_SetYOffset(BattleSystem_GetPokemonSpriteData(battleSys), battler, yOffset);

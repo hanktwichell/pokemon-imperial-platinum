@@ -77,7 +77,7 @@ static void SetupSprite(PoffinCutsceneMonSprite *monSprite, PoffinCutscenePokemo
 {
     PokemonSpriteTemplate spriteTemplate;
 
-    monSprite->spriteMan = PokemonSpriteManager_New(heapID);
+    monSprite->spriteMan = PokemonSpriteManager_NewOneSlot(heapID); // Sovereign: it shows one Pokemon (a 64 KB heap)
 
     Pokemon_BuildSpriteTemplate(&spriteTemplate, mon->baseMon, 2);
 

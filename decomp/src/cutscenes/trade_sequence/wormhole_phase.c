@@ -1,6 +1,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/graphics.h"
+
 #include "cutscenes/trade_sequence/main.h"
 
 #include "bg_window.h"
@@ -232,9 +234,11 @@ static void TradeWormholePhase_InitGraphics(TradeWormholePhase *twPhase)
     Bg_FillTilemapRect(twPhase->bgConfig, 5, 200, 0, 0, 32, 64, 0);
     Bg_FillTilemapRect(twPhase->bgConfig, 2, 200, 0, 0, 32, 64, 0);
 
-    TradeSequence_LoadPokemonPlatform(twPhase->sequenceData, 0, 1, 14, 20, 0);
-    TradeSequence_LoadPokemonPlatform(twPhase->sequenceData, 0, 5, 14, 20, 0);
-    TradeSequence_LoadPokemonPlatform(twPhase->sequenceData, 1, 2, 15, 2, 0);
+    // Sovereign: 96x96 copies, a tile left of where the 80x80 ones were; TradeWormholePhase_SetBgScroll moves them
+    // up the other tile.
+    TradeSequence_LoadPokemonPlatform(twPhase->sequenceData, 0, 1, 14, 20 - 1, 0);
+    TradeSequence_LoadPokemonPlatform(twPhase->sequenceData, 0, 5, 14, 20 - 1, 0);
+    TradeSequence_LoadPokemonPlatform(twPhase->sequenceData, 1, 2, 15, 2 - 1, 0);
 
     Bg_CopyTilemapBufferToVRAM(twPhase->bgConfig, 1);
     Bg_CopyTilemapBufferToVRAM(twPhase->bgConfig, 5);
@@ -258,8 +262,8 @@ static void TradeWormholePhase_FreeGraphics(TradeWormholePhase *twPhase)
 
 static void TradeWormholePhase_SetBgScroll(BgConfig *bgConfig, int bg1Scroll, int bg2Scroll)
 {
-    bg2Scroll &= 0x1ff;
-    bg1Scroll &= 0x1ff;
+    bg2Scroll = (bg2Scroll + MON_SPRITE_96_MARGIN) & 0x1ff;
+    bg1Scroll = (bg1Scroll + MON_SPRITE_96_MARGIN) & 0x1ff;
 
     Bg_SetOffset(bgConfig, BG_LAYER_MAIN_2, 3, bg2Scroll);
     Bg_SetOffset(bgConfig, BG_LAYER_MAIN_1, 3, bg1Scroll);

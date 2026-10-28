@@ -4,12 +4,14 @@
 Reads assets/sprites/packs/pokeapi_fronts/forms/<stem>-<form dir>/{front,shiny_front}.png for every entry of
 sSovereignForms that has one (Megas, Primals, regional, battle, item, Totem, cosmetic and female forms) (include/data/sovereign_forms.h, with the folder names from
 tools/dataproc/src/sovereign_forms.inc, in the same order), converts each to DS format the way
-convert_battle_sprites.py does (80x80, its own 15-colour palette, the shiny palette taken pixel by pixel), and writes:
+convert_battle_sprites.py does (at full size, 96x96, with its own 15-colour palette, the shiny palette taken pixel by
+pixel), and writes:
 
   decomp/res/pokemon/sovereign_form_sprites/<k>-<stem>-<dir>/{front.png, front.png.key, normal.pal, shiny.pal}
   decomp/res/pokemon/sovereign_form_sprites/order.txt      one folder per line; make_pl_pokegra.py packs them in order
   decomp/res/pokemon/sovereign_form_sprites/meson.build    the pngs, so pl_pokegra.narc rebuilds when they change
-  decomp/include/data/sovereign_form_sprites.h             sSovereignFormSprite[i]: sprite number + 1, or 0 for none
+  decomp/include/data/sovereign_form_sprites.h             sSovereignFormSprite[i]: sprite number + 1, or 0 for none;
+                                                            sSovereignFormSpriteYOffset[n]: sprite n's y offset
 
 The back sprite stays the base species' (no back art for these forms yet).
 
@@ -29,7 +31,8 @@ import shutil
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from convert_battle_sprites import cut, paired_palettes, two_frames, window, write_pal  # noqa: E402
+from convert_battle_sprites import paired_palettes, two_frames, write_pal  # noqa: E402
+from convert_fronts96 import y_offset  # noqa: E402
 from collections import Counter  # noqa: E402
 
 from PIL import Image  # noqa: E402
@@ -75,19 +78,19 @@ def main():
         shutil.rmtree(OUT)
     os.makedirs(OUT)
     table, female, shiny_of, female_shiny, species_shiny, order, report = {}, {}, {}, {}, [], [], []
+    offsets = []
 
     def convert(front_png, shiny_png, folder, name):
         """Convert one front (and its shiny) into sovereign_form_sprites/<number>-<folder>; its number + 1.
 
         With shiny_png None, the front is a shiny drawn on its own and both palettes are its colours."""
-        im = Image.open(front_png).convert("RGBA")
-        box, scale = window(im)
-        front = cut(im, box, scale)
+        front = Image.open(front_png).convert("RGBA")
+        assert front.size == (96, 96), (front_png, front.size)
         shiny = None
         if shiny_png and os.path.exists(shiny_png):
             sh = Image.open(shiny_png).convert("RGBA")
-            if sh.size == im.size:
-                shiny = cut(sh, box, scale)
+            if sh.size == front.size:
+                shiny = sh
         pal, spal, (indexed,), ncol = paired_palettes([(front, shiny)])
         folder = f"{len(order):03}-{folder}"
         out = os.path.join(OUT, folder)
@@ -97,9 +100,9 @@ def main():
         write_pal(os.path.join(out, "normal.pal"), (0, 0, 0), pal)
         write_pal(os.path.join(out, "shiny.pal"), (0, 0, 0), spal)
         order.append(folder)
-        notes = [f"{ncol} colours" if ncol > 15 else "", f"scaled to {round(scale * 100)}%" if scale < 1 else ""]
-        if any(notes):
-            report.append(f"{name}: " + ", ".join(n for n in notes if n))
+        offsets.append(y_offset(indexed))
+        if ncol > 15:
+            report.append(f"{name}: {ncol} colours")
         return len(order)
 
     def own_shiny(front_png, shiny_png, folder, name):
@@ -174,7 +177,13 @@ def main():
                 "static const struct {\n    u16 species;\n    u16 female;\n    u16 sprite;\n} sSpeciesShinyFront[] = {\n")
         for sp, fem, sh in species_shiny:
             f.write(f"    {{ {sp}, {fem}, {sh} }},\n")
-        f.write("};\n\n#define SOVEREIGN_FORM_SPRITE_COUNT " + str(len(order)) + "\n\n#endif\n")
+        f.write("};\n\n#define SOVEREIGN_FORM_SPRITE_COUNT " + str(len(order)) + "\n\n"
+                "// Each sprite's y offset: the clear rows under the art in the 80x80 box centred in the 96x96 sprite, negative\n"
+                "// when the art reaches below that box (LoadPokemonSpriteYOffset).\n"
+                "static const s8 sSovereignFormSpriteYOffset[SOVEREIGN_FORM_SPRITE_COUNT] = {\n")
+        for k in range(0, len(offsets), 16):
+            f.write("    " + " ".join(f"{v}," for v in offsets[k:k + 16]) + "\n")
+        f.write("};\n\n#endif\n")
     print(f"{len(order)} form sprites")
     for r in report:
         print(" ", r)

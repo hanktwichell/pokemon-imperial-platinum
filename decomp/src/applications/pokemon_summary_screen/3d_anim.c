@@ -320,7 +320,7 @@ void PokemonSummaryScreen_InitMaxAndDeltaConditionRects(PokemonSummaryScreen *su
 
 void PokemonSummaryScreen_LoadMonSprite(PokemonSummaryScreen *summaryScreen)
 {
-    summaryScreen->monSprite.spriteManager = PokemonSpriteManager_New(HEAP_ID_POKEMON_SUMMARY_SCREEN);
+    summaryScreen->monSprite.spriteManager = PokemonSpriteManager_NewOneSlot(HEAP_ID_POKEMON_SUMMARY_SCREEN); // Sovereign: it shows one Pokemon
 
     void *monData = PokemonSummaryScreen_MonData(summaryScreen);
 

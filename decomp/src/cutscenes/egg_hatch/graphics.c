@@ -89,7 +89,7 @@ static void G3DPipelineCallback(void)
 
 void EggHatch_ZeroParticleSystem(void)
 {
-    NNSGfdTexKey texKey = NNS_GfdAllocTexVram(0x8000, FALSE, 0);
+    NNSGfdTexKey texKey = NNS_GfdAllocTexVram(POKEMON_SPRITE_TEX_VRAM_SIZE, FALSE, 0);
     NNSGfdPlttKey plttKey = NNS_GfdAllocPlttVram(0x80, FALSE, 0);
 
     GF_ASSERT(texKey != NNS_GFD_ALLOC_ERROR_TEXKEY);

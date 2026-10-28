@@ -32,6 +32,7 @@
 #include "system.h"
 #include "text.h"
 
+#include "res/graphics/battle/sprites.naix"
 #include "res/text/bank/pc_hall_of_fame.h"
 
 typedef struct PCHallOfFameApp {
@@ -53,7 +54,7 @@ typedef struct PCHallOfFameApp {
     String *unk_1F4;
     String *unk_1F8;
     Pokemon *mon;
-    u8 unk_200[3200];
+    u8 unk_200[MON_SPRITE_96_SIZE_BYTES];
 } PCHallOfFameApp;
 
 static void ov87_021D11AC(void *param0);
@@ -442,8 +443,8 @@ static void ov87_021D1818(PCHallOfFameApp *pcHallOfFameApp)
     NNSG2dAnimBankData *animBank;
     int unused;
 
-    pcHallOfFameApp->cellBank = Graphics_GetCellBank(27, 77, FALSE, &cellBank, HEAP_ID_PC_HALL_OF_FAME);
-    pcHallOfFameApp->animBank = Graphics_GetAnimBank(27, 78, FALSE, &animBank, HEAP_ID_PC_HALL_OF_FAME);
+    pcHallOfFameApp->cellBank = Graphics_GetCellBank(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, misc_pokesprite_96_cell_NCER, FALSE, &cellBank, HEAP_ID_PC_HALL_OF_FAME);
+    pcHallOfFameApp->animBank = Graphics_GetAnimBank(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, misc_single_frame_anim_NANR, FALSE, &animBank, HEAP_ID_PC_HALL_OF_FAME);
 
     MI_CpuClearFast(pcHallOfFameApp->unk_200, sizeof(pcHallOfFameApp->unk_200));
 
@@ -503,13 +504,13 @@ static void ov87_021D18A0(PCHallOfFameApp *pcHallOfFameApp, NNSG2dCellDataBank *
     v2.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     v2.heapID = HEAP_ID_PC_HALL_OF_FAME;
 
-    v7 = Graphics_GetCharData(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 76, 0, &v5, HEAP_ID_PC_HALL_OF_FAME);
+    v7 = Graphics_GetCharData(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, misc_pokesprite_96_NCGR, 0, &v5, HEAP_ID_PC_HALL_OF_FAME);
     v8 = Graphics_GetPlttData(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, 75, &v6, HEAP_ID_PC_HALL_OF_FAME);
 
     for (i = 0; i < MAX_PARTY_SIZE; i++) {
         NNS_G2dInitImageProxy(&v3);
         NNS_G2dInitImagePaletteProxy(&v4);
-        NNS_G2dLoadImage1DMapping(v5, i * 3200, NNS_G2D_VRAM_TYPE_2DMAIN, &v3);
+        NNS_G2dLoadImage1DMapping(v5, i * MON_SPRITE_96_SIZE_BYTES, NNS_G2D_VRAM_TYPE_2DMAIN, &v3);
         NNS_G2dLoadPalette(v6, i * 0x20, NNS_G2D_VRAM_TYPE_2DMAIN, &v4);
 
         v2.position.x = spriteCoordinates[i].x << FX32_SHIFT;
@@ -526,7 +527,6 @@ static void ov87_021D18A0(PCHallOfFameApp *pcHallOfFameApp, NNSG2dCellDataBank *
 
 static void PCHallOfFame_DrawAllPokemon(PCHallOfFameApp *pcHallOfFameApp)
 {
-    static const TileRegion tileRegion = FRAME_0_REGION;
     PokemonSpriteTemplate spriteTemplate;
     const PCHallOfFameScreen *pcHallOfFameScreen;
     int i;
@@ -537,10 +537,10 @@ static void PCHallOfFame_DrawAllPokemon(PCHallOfFameApp *pcHallOfFameApp)
         Pokemon_InitWith(pcHallOfFameApp->mon, pcHallOfFameScreen->pokemon[i].species, pcHallOfFameScreen->pokemon[i].level, INIT_IVS_RANDOM, TRUE, pcHallOfFameScreen->pokemon[i].personality, OTID_SET, pcHallOfFameScreen->pokemon[i].OTID);
         Pokemon_SetValue(pcHallOfFameApp->mon, MON_DATA_FORM, (void *)(&(pcHallOfFameScreen->pokemon[i].form)));
         Pokemon_BuildSpriteTemplate(&spriteTemplate, pcHallOfFameApp->mon, FACE_FRONT);
-        CharacterSprite_LoadPokemonSpriteRegion(spriteTemplate.narcID, spriteTemplate.character, HEAP_ID_PC_HALL_OF_FAME, &tileRegion, pcHallOfFameApp->unk_200, pcHallOfFameScreen->pokemon[i].personality, FALSE, FACE_FRONT, pcHallOfFameScreen->pokemon[i].species);
+        CharacterSprite_LoadPokemonSprite96(spriteTemplate.narcID, spriteTemplate.character, HEAP_ID_PC_HALL_OF_FAME, 0, pcHallOfFameApp->unk_200, pcHallOfFameScreen->pokemon[i].personality, FALSE, FACE_FRONT, pcHallOfFameScreen->pokemon[i].species);
 
         DC_FlushRange(pcHallOfFameApp->unk_200, sizeof(pcHallOfFameApp->unk_200));
-        GX_LoadOBJ(pcHallOfFameApp->unk_200, 3200 * i, 3200);
+        GX_LoadOBJ(pcHallOfFameApp->unk_200, MON_SPRITE_96_SIZE_BYTES * i, MON_SPRITE_96_SIZE_BYTES);
 
         Graphics_LoadPalette(spriteTemplate.narcID, spriteTemplate.palette, PAL_LOAD_MAIN_OBJ, i * 0x20, 0x20, HEAP_ID_PC_HALL_OF_FAME);
 

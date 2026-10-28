@@ -6,6 +6,7 @@
 #include "font.h"
 #include "gx_layers.h"
 #include "pokemon.h"
+#include "pokemon_sprite.h"
 #include "software_sprite.h"
 #include "sprite_transfer.h"
 #include "sys_task.h"
@@ -157,6 +158,9 @@ void PokedexGraphics_LoadPokemonSprite(PokedexGraphicData *pokedexGraphicData, e
     }
 
     pokedexGraphicData->pokemonSprite[spriteIndex] = PokemonSpriteManager_CreateSprite(pokedexGraphicData->spriteMan, &spriteTemplate, x, y + yOffset, 0, 0, NULL, NULL);
+    // Sovereign: a 96x96 front is cut at the 80x80 frame, centred at y (owner, 2026-10-28); the height check's scaled
+    // silhouette is drawn whole.
+    PokemonSprite_ClipToFrame(pokedexGraphicData->pokemonSprite[spriteIndex], -yOffset);
 }
 
 void PokemonGraphics_SetSpriteCenterXY(PokedexGraphicData *pokedexGraphicData, int x, int y, int spriteIndex)
@@ -686,7 +690,7 @@ static void NewPokemonSprite(PokedexGraphicData *pokedexGraphicData, enum HeapID
 {
     pokedexGraphicData->spriteMan = PokemonSpriteManager_New(heapID);
 
-    NNSGfdTexKey texKey = NNS_GfdAllocTexVram(0x8000, 0, 0);
+    NNSGfdTexKey texKey = NNS_GfdAllocTexVram(POKEMON_SPRITE_TEX_VRAM_SIZE, 0, 0);
     NNSGfdPlttKey plttKey = NNS_GfdAllocPlttVram(0x80, 0, NNS_GFD_ALLOC_FROM_LOW);
 
     PokemonSpriteManager_SetCharBaseAddrAndSize(pokedexGraphicData->spriteMan, NNS_GfdGetTexKeyAddr(texKey), NNS_GfdGetTexKeySize(texKey));

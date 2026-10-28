@@ -27,6 +27,9 @@ argparser.add_argument('-p', '--private-dir',
 argparser.add_argument('-o', '--output-dir',
                        required=True,
                        help='Path to the output directory (where the NARC will be made)')
+argparser.add_argument('--platinum-fronts',
+                       action='store_true',
+                       help="Pack Platinum's fronts for species #1-493 instead of the 96x96 ones")
 args = argparser.parse_args()
 
 source_dir = pathlib.Path(args.source_dir)
@@ -34,6 +37,19 @@ private_dir = pathlib.Path(args.private_dir)
 output_dir = pathlib.Path(args.output_dir)
 
 private_dir.mkdir(parents=True, exist_ok=True)
+
+# Sovereign: species #1-493 take their 96x96 fronts and front palettes from sovereign_fronts96/NNNN-<species>/
+# (tools/sprites/convert_fronts96.py) unless --platinum-fronts; their backs keep Platinum's palette (the "zback"
+# palettes below fall back to the species' normal.pal/shiny.pal).
+fronts96_dir = source_dir / 'sovereign_fronts96'
+
+
+def front_dir(i, subdir):
+    folder = fronts96_dir / f'{i:04}-{subdir}'
+    if args.platinum_fronts or not folder.is_dir():
+        return source_dir / subdir
+    return folder
+
 
 for i, subdir in enumerate(SPECIES_DIRS):
     # Do not attempt to process either egg or bad_egg
@@ -43,7 +59,7 @@ for i, subdir in enumerate(SPECIES_DIRS):
     j = 0
     for face in ['back', 'front']:
         for gender in ['female', 'male']:
-            source_file = source_dir / subdir / f'{gender}_{face}.png'
+            source_file = (front_dir(i, subdir) if face == 'front' else source_dir / subdir) / f'{gender}_{face}.png'
             target_file = private_dir / f'{i:04}-{j:02}.NCGR'
 
             if source_file.exists():
@@ -64,8 +80,8 @@ for i, subdir in enumerate(SPECIES_DIRS):
         shutil.copy(source_dir / 'none/shiny_pal.NCLR', private_dir / '0000-05.NCLR')
         continue
 
-    normal_pal_src = source_dir / subdir / 'normal.pal'
-    shiny_pal_src = source_dir / subdir / 'shiny.pal'
+    normal_pal_src = front_dir(i, subdir) / 'normal.pal'
+    shiny_pal_src = front_dir(i, subdir) / 'shiny.pal'
 
     subprocess.run([
         args.nitrogfx,
@@ -153,6 +169,33 @@ for k, folder in enumerate((back_dir / 'order.txt').read_text().splitlines()):
             '-nopad',
             '-comp', '10'
         ])
+
+# Sovereign: then, unless --platinum-fronts, three files (front image, normal and shiny palette) for each form Platinum
+# keeps in pl_otherpoke.narc (Unown's letters, Deoxys's formes, Arceus's types...), with a 96x96 front of its own, in
+# sovereign_fronts96/forms/order.txt's order (tools/sprites/convert_fronts96.py); "zgen4" sorts after "zformback".
+# BuildPokemonSpriteTemplate reads them at POKEGRA_GEN4_FORM_BASE + front * 3.
+for stale in private_dir.glob('zgen4-*'):
+    stale.unlink()
+
+gen4_dir = fronts96_dir / 'forms'
+if not args.platinum_fronts:
+    for k, folder in enumerate((gen4_dir / 'order.txt').read_text().splitlines()):
+        subprocess.run([
+            args.nitrogfx,
+            gen4_dir / folder / 'front.png',
+            private_dir / f'zgen4-{k:03}-0.NCGR',
+            '-encodefronttoback',
+            '-scan',
+        ])
+        for n, name in enumerate(['normal', 'shiny'], start=1):
+            subprocess.run([
+                args.nitrogfx,
+                gen4_dir / folder / f'{name}.pal',
+                private_dir / f'zgen4-{k:03}-{n}.NCLR',
+                '-bitdepth', '8',
+                '-nopad',
+                '-comp', '10'
+            ])
 
 subprocess.run([
     args.narc,

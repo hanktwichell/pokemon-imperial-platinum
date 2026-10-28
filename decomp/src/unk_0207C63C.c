@@ -10,6 +10,7 @@
 #include "gx_layers.h"
 #include "heap.h"
 #include "particle_system.h"
+#include "pokemon_sprite.h"
 #include "spl.h"
 #include "unk_0202419C.h"
 
@@ -70,7 +71,7 @@ void sub_0207C730(void)
     NNSGfdPlttKey v1;
     u32 v2, v3;
 
-    v0 = NNS_GfdAllocTexVram(0x2000 * 4, 0, 0);
+    v0 = NNS_GfdAllocTexVram(POKEMON_SPRITE_TEX_VRAM_SIZE, 0, 0);
     v1 = NNS_GfdAllocPlttVram(0x20 * (4 + 1), 0, 0);
 
     GF_ASSERT(v0 != NNS_GFD_ALLOC_ERROR_TEXKEY);

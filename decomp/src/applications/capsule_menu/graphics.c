@@ -28,6 +28,7 @@
 #include "particle_system.h"
 #include "pokemon.h"
 #include "pokemon_icon.h"
+#include "pokemon_sprite.h"
 #include "render_window.h"
 #include "screen_fade.h"
 #include "sprite.h"
@@ -356,7 +357,7 @@ void CapsuleGraphics_AllocTexPlttVram(void)
     NNSGfdPlttKey plttKey;
     u32 texKeyAddr, plttKeyAddr;
 
-    texKey = NNS_GfdAllocTexVram(0x8000, 0, 0);
+    texKey = NNS_GfdAllocTexVram(POKEMON_SPRITE_TEX_VRAM_SIZE, 0, 0);
     plttKey = NNS_GfdAllocPlttVram(0x80, 0, 0);
 
     GF_ASSERT(texKey != NNS_GFD_ALLOC_ERROR_TEXKEY);

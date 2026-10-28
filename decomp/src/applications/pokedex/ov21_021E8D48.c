@@ -745,7 +745,9 @@ static PokemonSprite *ov21_021E99E0(PokemonSpriteManager *param0, Pokemon *param
     PokemonSpriteTemplate v0;
 
     Pokemon_BuildSpriteTemplate(&v0, param1, 2);
-    return PokemonSpriteManager_CreateSprite(param0, &v0, param2, param3, 0, 0, NULL, NULL);
+    PokemonSprite *sprite = PokemonSpriteManager_CreateSprite(param0, &v0, param2, param3, 0, 0, NULL, NULL);
+    PokemonSprite_ClipToFrame(sprite, 0); // Sovereign: a 96x96 front is cut at the entry's 80x80 frame
+    return sprite;
 }
 
 static void ov21_021E9A0C(int param0)

@@ -473,7 +473,7 @@ u8 Pokemon_SanitizeFormId(u16 monSpecies, u8 monForm);
  * @param face
  * @return Y-offset applied to the sprite-face on display
  */
-u8 Pokemon_SpriteYOffset(Pokemon *mon, u8 face);
+s8 Pokemon_SpriteYOffset(Pokemon *mon, u8 face);
 
 /**
  * @brief Load the Y-offset applied to a Pokemon's DP sprite-face on display.
@@ -482,7 +482,7 @@ u8 Pokemon_SpriteYOffset(Pokemon *mon, u8 face);
  * @param face
  * @return Y-offset applied to the DP sprite-face on display
  */
-u8 Pokemon_DPSpriteYOffset(Pokemon *mon, u8 face);
+s8 Pokemon_DPSpriteYOffset(Pokemon *mon, u8 face);
 
 /**
  * @brief Load the Y-offset applied to a Pokemon's sprite-face on display.
@@ -492,7 +492,7 @@ u8 Pokemon_DPSpriteYOffset(Pokemon *mon, u8 face);
  * @param preferDP  If TRUE, prefer Diamond/Pearl sprites, where possible
  * @return Y-offset applied to the sprite-face on display
  */
-u8 BoxPokemon_SpriteYOffset(BoxPokemon *boxMon, u8 face, BOOL preferDP);
+s8 BoxPokemon_SpriteYOffset(BoxPokemon *boxMon, u8 face, BOOL preferDP);
 
 /**
  * @brief Load the Y-offset applied to a Pokemon's sprite-face on display.
@@ -504,7 +504,7 @@ u8 BoxPokemon_SpriteYOffset(BoxPokemon *boxMon, u8 face, BOOL preferDP);
  * @param personality   The Pokemon's personality value
  * @return Y-offset applied to the sprite-face on display
  */
-u8 LoadPokemonSpriteYOffset(u16 species, u8 gender, u8 face, u8 form, u32 personality);
+s8 LoadPokemonSpriteYOffset(u16 species, u8 gender, u8 face, u8 form, u32 personality);
 void SpriteSystem_SetTrainerFrontSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 param1);
 ManagedSprite *SpriteSystem_NewManagedSpriteTrainer(SpriteSystem *spriteSys, SpriteManager *spriteMan, PaletteData *paletteData, int x, int y, enum TrainerClass trainerClass, int face, int battlerType, enum HeapID heapID);
 void SpriteSystem_SetTrainerClassGraphicsIndex(enum TrainerClass trainerClass, int face, TrainerClassGraphicIndex *trainerClassGraphicIndex);
