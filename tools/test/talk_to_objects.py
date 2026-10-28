@@ -99,7 +99,8 @@ UNHIDE = False
 # With --unhide, what puts an object on its map when its map's own scripts set its map-local hide flag from the story
 # as the map loads (its OnTransition script): (events, object id) -> [(name, value)]. A name is a flag or var to set
 # (at most twelve: gSovereignTestVar[4] to [15]), an item to put in the bag (ITEM_*, at most one), a Pokémon to add to
-# the party at that level (SPECIES_*, at most three, after the party is cut to make room) or HOUR (the clock's hour).
+# the party at that level (SPECIES_*, at most three, after the party is cut to make room), HOUR (the clock's hour) or
+# CAUGHT (every species counts as caught, for an object that waits on a legendary's catch).
 # A Totem's trial opens at its point in the story (data/totem_trials.yaml); the Badges come from --chronicles.
 SIEGE = 'VAR_SOVEREIGN_MANSION_SIEGE_STATE'  # 3: at the Mansion's door; 4: the grunt trio beaten
 ORBS = [('FLAG_SOVEREIGN_STEVEN_GAVE_ORBS', 1)]
@@ -120,6 +121,9 @@ STORY = {
     ('events_fuego_ironworks_outside', 'LOCALID_TOTEM_SALAZZLE'): [('VAR_CELESTIC_TOWN_STATE', 1)],
     ('events_fuego_ironworks_outside', 'LOCALID_LEGENDARY_CHI_YU'): [('FLAG_SOVEREIGN_PULLED_STAKE_7', 1),
                                                                      ('FLAG_SOVEREIGN_PULLED_STAKE_8', 1)],
+    ('events_fullmoon_island_forest', 'LOCALID_SOVEREIGN_LATI_ROCK'): [
+        ('FLAG_OBTAINED_FULLMOON_ISLAND_FOREST_LUNAR_WING', 1), ('FLAG_HIDE_FULLMOON_ISLAND_FOREST_CRESSELIA', 1),
+        ('CAUGHT', 1)],
     ('events_galactic_hq_laboratory', 'LOCALID_LEGENDARY_GENESECT'): [('FLAG_SOVEREIGN_GENESECT_FREED', 1)],
     ('events_lake_valor', 'LOCALID_LEGENDARY_KELDEO'): [('SPECIES_COBALION', 50), ('SPECIES_TERRAKION', 50),
                                                          ('SPECIES_VIRIZION', 50)],
@@ -500,6 +504,8 @@ def main():
                             d.emu.memory.write_short(sym['gSovereignTestBagItem'], items.index(name))
                         elif name == 'HOUR':
                             d.emu.memory.write_byte(sym['gSovereignTestClock'], value + 1)
+                        elif name == 'CAUGHT':
+                            d.emu.memory.write_short(sym['gSovereignTestCaughtAllBut'], 0xffff)  # no species
 
                 result, frames = arrive(d, sym, state, variables, events, header, way_in, x, z, face, unhide)
                 if result == 'ok':
