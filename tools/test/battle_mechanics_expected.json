@@ -2201,50 +2201,7 @@
    "BLISSEY used Splash!",
    "But nothing happened!",
    "BLISSEY is hurt by Fire Spin!",
-   "BLISSEY fainted!",
-   "Use next Pokémon?",
-   "Go! GALLADE!",
-   "What will GALLADE do?",
-   "What will GALLADE do?",
-   "The wild NINJASK used Fire Spin!",
-   "GALLADE was trapped in the vortex!",
-   "GALLADE used Aerial Ace!",
-   "It’s super effective!",
-   "GALLADE is hurt by Fire Spin!",
-   "What will GALLADE do?",
-   "What will GALLADE do?",
-   "The wild NINJASK used Fire Spin!",
-   "The wild NINJASK’s attack missed!",
-   "GALLADE used Aerial Ace!",
-   "It’s super effective!",
-   "GALLADE is hurt by Fire Spin!",
-   "What will GALLADE do?",
-   "What will GALLADE do?",
-   "The wild NINJASK used Fire Spin!",
-   "The wild NINJASK’s attack missed!",
-   "GALLADE used False Swipe!",
-   "GALLADE is hurt by Fire Spin!",
-   "What will GALLADE do?",
-   "What will GALLADE do?",
-   "The wild NINJASK used Fire Spin!",
-   "GALLADE fainted!",
-   "Use next Pokémon?",
-   "Can’t escape!",
-   "You’re in charge, ARCHALUDON!",
-   "What will ARCHALUDON do?",
-   "What will ARCHALUDON do?",
-   "The wild NINJASK used Fire Spin!",
-   "ARCHALUDON was trapped in the vortex!",
-   "ARCHALUDON’s Stamina raised its Defense!",
-   "ARCHALUDON used Iron Defense!",
-   "ARCHALUDON’s Defense sharply rose!",
-   "ARCHALUDON is hurt by Fire Spin!",
-   "What will ARCHALUDON do?",
-   "What will ARCHALUDON do?",
-   "The wild NINJASK used Fire Spin!",
-   "The wild NINJASK’s attack missed!",
-   "ARCHALUDON used Iron Defense!",
-   "ARCHALUDON’s Defense sharply rose!"
+   "BLISSEY fainted!"
   ],
   "hp": [
    [
@@ -2298,54 +2255,6 @@
    [
     0,
     235
-   ],
-   [
-    82,
-    235
-   ],
-   [
-    35,
-    235
-   ],
-   [
-    35,
-    207
-   ],
-   [
-    25,
-    207
-   ],
-   [
-    25,
-    179
-   ],
-   [
-    15,
-    179
-   ],
-   [
-    15,
-    171
-   ],
-   [
-    5,
-    171
-   ],
-   [
-    0,
-    171
-   ],
-   [
-    151,
-    171
-   ],
-   [
-    105,
-    171
-   ],
-   [
-    87,
-    171
    ]
   ]
  },
@@ -7633,7 +7542,7 @@
   ]
  },
  "fairy_lock": {
-  "result": "ended",
+  "result": "limit",
   "messages": [
    "A wild NINJASK appeared!",
    "Go! SNORLAX!",
@@ -7669,17 +7578,30 @@
    "What will SNORLAX do?",
    "The wild NINJASK used Splash!",
    "But nothing happened!",
-   "SNORLAX used Play Rough!",
-   "The wild NINJASK fainted!"
+   "SNORLAX used Fairy Lock!",
+   "No one will be able to run away during the next turn!",
+   "The wild NINJASK’s Speed Boost raised its Speed!",
+   "What will SNORLAX do?",
+   "What will SNORLAX do?",
+   "The wild NINJASK used Splash!",
+   "But nothing happened!",
+   "SNORLAX used Fairy Lock!",
+   "But it failed!",
+   "The wild NINJASK’s Speed Boost raised its Speed!",
+   "What will SNORLAX do?",
+   "What will SNORLAX do?",
+   "The wild NINJASK used Splash!",
+   "But nothing happened!",
+   "SNORLAX used Fairy Lock!",
+   "No one will be able to run away during the next turn!",
+   "What will SNORLAX do?",
+   "What will SNORLAX do?",
+   "The wild NINJASK used Splash!"
   ],
   "hp": [
    [
     233,
     235
-   ],
-   [
-    233,
-    0
    ]
   ]
  },
@@ -8009,7 +7931,7 @@
   ]
  },
  "fillet_away": {
-  "result": "ended",
+  "result": "limit",
   "messages": [
    "A wild NINJASK appeared!",
    "Go! SNORLAX!",
@@ -8035,14 +7957,26 @@
    "What will SNORLAX do?",
    "The wild NINJASK used Splash!",
    "But nothing happened!",
-   "SNORLAX used Play Rough!",
+   "SNORLAX used Fillet Away!",
+   "But it failed!",
    "The wild NINJASK’s Speed Boost raised its Speed!",
    "What will SNORLAX do?",
    "What will SNORLAX do?",
    "The wild NINJASK used Splash!",
    "But nothing happened!",
-   "SNORLAX used Play Rough!",
-   "The wild NINJASK fainted!"
+   "SNORLAX used Fillet Away!",
+   "But it failed!",
+   "The wild NINJASK’s Speed Boost raised its Speed!",
+   "What will SNORLAX do?",
+   "What will SNORLAX do?",
+   "The wild NINJASK used Splash!",
+   "But nothing happened!",
+   "SNORLAX used Fillet Away!",
+   "But it failed!",
+   "The wild NINJASK’s Speed Boost raised its Speed!",
+   "What will SNORLAX do?",
+   "What will SNORLAX do?",
+   "The wild NINJASK used Splash!"
   ],
   "hp": [
    [
@@ -8056,14 +7990,6 @@
    [
     1,
     235
-   ],
-   [
-    1,
-    90
-   ],
-   [
-    1,
-    0
    ]
   ]
  },
@@ -14737,7 +14663,7 @@
   ]
  },
  "mat_block": {
-  "result": "ended",
+  "result": "limit",
   "messages": [
    "A wild SLOWPOKE appeared!",
    "Go! JOLTEON!",
@@ -14774,17 +14700,58 @@
    "The wild SLOWPOKE used Tackle!",
    "What will JOLTEON do?",
    "What will JOLTEON do?",
-   "JOLTEON used Play Rough!",
-   "The wild SLOWPOKE fainted!"
+   "JOLTEON used Mat Block!",
+   "But it failed!",
+   "The wild SLOWPOKE used Tackle!",
+   "What will JOLTEON do?",
+   "What will JOLTEON do?",
+   "JOLTEON used Mat Block!",
+   "But it failed!",
+   "The wild SLOWPOKE used Tackle!",
+   "What will JOLTEON do?",
+   "What will JOLTEON do?",
+   "JOLTEON used Mat Block!",
+   "But it failed!",
+   "The wild SLOWPOKE used Tackle!",
+   "What will JOLTEON do?",
+   "What will JOLTEON do?",
+   "JOLTEON used Mat Block!",
+   "But it failed!",
+   "The wild SLOWPOKE used Tackle!",
+   "What will JOLTEON do?",
+   "What will JOLTEON do?",
+   "JOLTEON used Mat Block!",
+   "But it failed!",
+   "The wild SLOWPOKE used Tackle!",
+   "What will JOLTEON do?",
+   "What will JOLTEON do?",
+   "JOLTEON used Mat Block!",
+   "But it failed!",
+   "The wild SLOWPOKE used Tackle!",
+   "What will JOLTEON do?",
+   "What will JOLTEON do?",
+   "JOLTEON used Mat Block!",
+   "But it failed!",
+   "The wild SLOWPOKE used Tackle!",
+   "What will JOLTEON do?",
+   "What will JOLTEON do?",
+   "JOLTEON used Mat Block!",
+   "But it failed!",
+   "The wild SLOWPOKE used Tackle!",
+   "What will JOLTEON do?",
+   "What will JOLTEON do?",
+   "JOLTEON used Mat Block!",
+   "But it failed!",
+   "The wild SLOWPOKE used Tackle!",
+   "What will JOLTEON do?",
+   "What will JOLTEON do?",
+   "JOLTEON used Mat Block!",
+   "But it failed!"
   ],
   "hp": [
    [
     138,
     151
-   ],
-   [
-    138,
-    0
    ]
   ]
  },
@@ -20743,20 +20710,7 @@
    "What will GALLADE do?",
    "The foe’s TAUROS used Zen Headbutt!",
    "It’s super effective!",
-   "PASSIMIAN used Splash!",
-   "But nothing happened!",
-   "The foe’s MILTANK used Zen Headbutt!",
-   "It’s super effective!",
-   "GALLADE used Aerial Ace!",
-   "What will PASSIMIAN do?",
-   "What will PASSIMIAN do?",
-   "What will GALLADE do?",
-   "What will GALLADE do?",
-   "The foe’s TAUROS used Zen Headbutt!",
-   "It’s super effective!",
-   "PASSIMIAN fainted!",
-   "The foe’s MILTANK used Zen Headbutt!",
-   "GALLADE used False Swipe!"
+   "PASSIMIAN used Splash!"
   ],
   "hp": [
    [
@@ -20800,36 +20754,6 @@
     96,
     82,
     109
-   ],
-   [
-    19,
-    96,
-    82,
-    109
-   ],
-   [
-    19,
-    77,
-    82,
-    109
-   ],
-   [
-    0,
-    77,
-    82,
-    109
-   ],
-   [
-    0,
-    77,
-    51,
-    109
-   ],
-   [
-    0,
-    77,
-    51,
-    98
    ]
   ]
  },

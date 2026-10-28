@@ -3,6 +3,21 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Battle mechanics suite: steadier against a build's timing
+
+Nothing changes for players. Run on the 96×96 fronts build, whose battles take a few frames more or less, the suite
+(`tools/test/battle_mechanics.py`) matched 520 of 526: the mechanics were the same, but the harness's taps, which
+move to another place every 2000 frames, picked another move or target in five battles, and one HP log split two
+changes of the same moment into two entries. Now:
+- Each battler's HP changes are compared on their own (`hp_tracks`), so the moment the log samples doesn't matter; the
+  messages give their order.
+- `fillet_away`, `mat_block` and `fairy_lock` fill the lead's four slots with the move they check (`all_moves`).
+- `receiver` and `bind_claw` stop (`stop_at`) after what they check, before the next Pokémon sent in chooses a move.
+
+Verified (test build): the five cases recorded again from a new game's bedroom and played from the Jubilife Pokémon
+Center match, with `gravity_ends_tk` and `parabolic_charge` (the two whose HP logs had split); the 96×96 build's run
+matches in all 521 other cases.
+
 ## Sludge Wave's own animation, Mega and Primal backs, and a battle mechanics test suite
 
 For players:
