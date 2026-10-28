@@ -122,6 +122,9 @@ Checked in the test build (2026-10-28):
 - A wild battle: the battle heap 315,060 bytes free at the lowest (342,620).
 - The egg hatch scene (the Trainers' School Egg, an Elekid): the hatched Pokémon's 96×96 front whole, the scene's heap
   46,772 bytes free at the lowest (63,160).
+- The Battle Hall (a single challenge with Garchomp, three battles): the battle room's banner shows the Pokémon's
+  96×96 front whole (the Frontier scene sprite, `ov104_02232CE0`); the battle heap 243,876 bytes free at the lowest
+  (265,884).
 - The starter choice (Route 201's briefcase): the chosen starter's 96×96 front in its bubble; the app's heap 48,500
   bytes free at the lowest (64,884).
 - The Pokédex: the list, the entry and the size page (Turtwig, Garchomp; the height check's silhouette is the 96×96
@@ -138,5 +141,5 @@ Show the middle 80×80 of a 96×96 front (the old 2D functions; safe, art past i
 window (an 80×80 frame; Mom's Eevee checked), the GTS listing, the Union Room trade card, the Mystery Gift card, the
 Great Marsh binoculars, Rowan's intro, `ov64`.
 
-Still to check: the PC's Hall of Fame records, the Battle Frontier's scene sprites, and the heaps of the other
-screens with a sprite manager (capsule menu, poffin cutscene, battle videos).
+Still to check: the PC's Hall of Fame records, and the heaps of the other screens with a sprite manager (capsule
+menu, poffin cutscene, battle videos).
