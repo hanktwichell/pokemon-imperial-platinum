@@ -15,11 +15,14 @@ Actions (space-separated):
 Usage:
   python3 tools/test/drive.py ROM STATE_IN|-|sav:FILE STATE_OUT OUT_DIR action...
 STATE_IN is an emulator save state, "-" for a fresh boot, or sav:FILE to boot fresh with a battery save
-(use this after rebuilding: save states hold the old code in RAM, battery saves don't).
+(use this after rebuilding: save states hold the old code in RAM, battery saves don't). A save state also holds the
+battery as it was when the state was saved, and loading the state puts that battery back.
 Requires py-desmume and Pillow; run with SDL_VIDEODRIVER=dummy SDL_AUDIODRIVER=dummy when headless.
 """
+import atexit
 import os
 import re
+import shutil
 import struct
 import sys
 import tempfile
@@ -40,6 +43,14 @@ PLAYER_X_ADDR = 0x021C6026
 PLAYER_Z_ADDR = 0x021C602E
 SDL_INIT_AUDIO, SDL_INIT_EVENTS = 0x10, 0x4000
 
+# py-desmume keeps the battery in $XDG_CONFIG_HOME/desmume/<rom name>.dsv (~/.config by default) and reads and writes
+# that file while the game runs, so every process on a ROM of the same name shared one battery: a new Driver's blank
+# battery wiped the in-game saves of the ones still running (the Hall of Fame's save, while the battle suite ran in
+# parallel). Each process keeps its batteries in a folder of its own, set before the emulator first looks it up.
+CONFIG_DIR = tempfile.mkdtemp(prefix="desmume-")
+os.environ["XDG_CONFIG_HOME"] = CONFIG_DIR
+atexit.register(shutil.rmtree, CONFIG_DIR, True)
+
 
 def player_tile_symbol(rom):
     """gSovereignTestPlayerTile's address from the symbol map next to the ROM, or None (not a test build)."""
@@ -58,8 +69,8 @@ class Driver:
         self.emu.volume_set(0)
         self.tile_addr = player_tile_symbol(rom)
         if not battery and not state:
-            # py-desmume keeps the battery in ~/.config/desmume/<rom>.dsv and loads it on every boot, so a "fresh"
-            # boot would CONTINUE the last in-game save. Boot with a blank 4 Mbit battery instead.
+            # py-desmume loads the battery file (CONFIG_DIR) on every boot, so a "fresh" boot would CONTINUE the last
+            # in-game save. Boot with a blank 4 Mbit battery instead.
             battery = os.path.join(tempfile.mkdtemp(), "blank.sav")
             with open(battery, "wb") as f:
                 f.write(b"\xff" * (512 * 1024))

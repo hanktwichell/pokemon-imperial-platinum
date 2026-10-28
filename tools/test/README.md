@@ -29,6 +29,9 @@ The playtest harnesses run the test ROM, which has hooks for them (`decomp/inclu
   holds the old code in RAM.
 - `drive.py` drives the ROM from a state with a list of button presses. Its `Driver` is what the harnesses use. On the
   test build its `pos()` (and the `pos` and `step:` actions) read the player's tile from `gSovereignTestPlayerTile`.
+- Each process that imports `drive.py` keeps the emulator's battery (the in-game saves) in a folder of its own,
+  removed when the process ends. It used to be one file per ROM name (`~/.config/desmume/<rom>.dsv`), and harnesses
+  run side by side wiped each other's saves. A save state holds the battery as it was when the state was saved.
 - `boot_smoke.py` boots a ROM headlessly. CI runs it on the shipping ROM.
 
 ## Playtest harnesses (test build, local)
