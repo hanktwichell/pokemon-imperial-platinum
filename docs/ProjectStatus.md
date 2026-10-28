@@ -121,7 +121,7 @@ Made by the owner (2026-10-22):
 19. **Trade evolutions follow Renegade's system** (owner, 2026-10-22, after briefly considering a Link Stone): plain
     trade evolutions evolve at Level 36, and trade-with-item evolutions by using the item like a stone.
 20. **Special evolutions** (Gholdengo's 999 coins, Malamar's upside-down console and other conditions Gen IV can't
-    check) keep the methods in `EvolutionChanges_Sovereign.md` (owner, 2026-10-28: "Special evos look good").
+    check) keep the methods in `EvolutionChanges_Sovereign.md` (owner, 2026-10-27: "Special evos look good").
 21. **After E7/E8, the next focus is the Pokédex** (owner, 2026-10-22): every new Pokémon is in the dex, and a dex
     number never shows "???".
     - The **National Dex is unlocked when Rowan gives the player the Pokédex**.

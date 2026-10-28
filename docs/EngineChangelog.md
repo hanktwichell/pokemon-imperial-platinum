@@ -5,7 +5,7 @@ players and the verification that was run.
 
 ## Burn Up and Double Shock burn out the user's type; a roamer caught in the test
 
-**Burn Up and Double Shock** (item 11; the owner, 2026-10-28) now work as in Gen IX:
+**Burn Up and Double Shock** (item 11; the owner, 2026-10-27) now work as in Gen IX:
 - Burn Up fails ("But it failed!") unless the user is Fire-type, and Double Shock unless it is Electric-type.
 - After the hit, the user loses that type until it switches out, with "[Pokémon] burned itself out!" or "[Pokémon]
   used up all its electricity!":
