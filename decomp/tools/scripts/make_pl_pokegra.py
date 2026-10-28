@@ -170,6 +170,33 @@ for k, folder in enumerate((back_dir / 'order.txt').read_text().splitlines()):
             '-comp', '10'
         ])
 
+# Sovereign: then, unless --platinum-fronts, three files (front image, normal and shiny palette) for each form Platinum
+# keeps in pl_otherpoke.narc (Unown's letters, Deoxys's formes, Arceus's types...), with a 96x96 front of its own, in
+# sovereign_fronts96/forms/order.txt's order (tools/sprites/convert_fronts96.py); "zgen4" sorts after "zformback".
+# BuildPokemonSpriteTemplate reads them at POKEGRA_GEN4_FORM_BASE + front * 3.
+for stale in private_dir.glob('zgen4-*'):
+    stale.unlink()
+
+gen4_dir = fronts96_dir / 'forms'
+if not args.platinum_fronts:
+    for k, folder in enumerate((gen4_dir / 'order.txt').read_text().splitlines()):
+        subprocess.run([
+            args.nitrogfx,
+            gen4_dir / folder / 'front.png',
+            private_dir / f'zgen4-{k:03}-0.NCGR',
+            '-encodefronttoback',
+            '-scan',
+        ])
+        for n, name in enumerate(['normal', 'shiny'], start=1):
+            subprocess.run([
+                args.nitrogfx,
+                gen4_dir / folder / f'{name}.pal',
+                private_dir / f'zgen4-{k:03}-{n}.NCLR',
+                '-bitdepth', '8',
+                '-nopad',
+                '-comp', '10'
+            ])
+
 subprocess.run([
     args.narc,
     '--create',

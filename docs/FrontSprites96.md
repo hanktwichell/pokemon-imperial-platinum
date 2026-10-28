@@ -6,8 +6,9 @@ to 80×80 (the shrink broke the outlines of 113 form fronts and 103 species fron
 second animation frame). Back sprites stay 80×80. The cartridge grows to 256 MB when the data passes 128 MB
 (`tools/nitrorom` picks the size from the content; nothing to force).
 
-Status: planned. This file is the map of what has to change, from a read-through of every place that loads or draws a
-battle sprite (2026-10-28). Line numbers are as of that day.
+Status: in progress (2026-10-28), on a local branch until every screen is checked. This file began as the map of what
+has to change, from a read-through of every place that loads or draws a battle sprite; line numbers are as of that
+day. **Where it stands** is at the end.
 
 ## The sprite as stored and drawn today
 
@@ -73,3 +74,32 @@ battle sprite (2026-10-28). Line numbers are as of that day.
 3. **OBJ VRAM:** the battle (64 KB, up to 9 sprite copies at 4608 bytes) and the Hall of Fame (about 59 of 64 KB).
 4. **On screen:** evolution's letterbox is 80 px tall; a 96-wide foe at doubles x 216 runs 8 px off the right edge;
    contest results and the PC Hall of Fame space sprites 56–80 px apart.
+
+## Where it stands
+
+Done (test build):
+- **Data.** `tools/sprites/fetch_pokeapi_fronts.py` fetches PokeAPI's fronts for #1–493 and for the forms Platinum keeps
+  in `pl_otherpoke.narc` (Unown, Castform, Deoxys, Burmy, Wormadam, Cherrim, Shellos, Gastrodon, Rotom, Giratina,
+  Shaymin, Arceus); `convert_fronts96.py` makes them game sprites in `res/pokemon/sovereign_fronts96/` (480 species,
+  76 forms). `convert_battle_sprites.py` and `convert_form_sprites.py` keep #494–1025's and the Sovereign forms'
+  fronts at 96×96. Spinda keeps Platinum's front (its spots).
+- **The option.** `meson configure -Dplatinum_fronts=true` packs Platinum's own fronts for #1–493 and their forms again
+  (`make_pl_pokegra.py --platinum-fronts`, `SOVEREIGN_PLATINUM_FRONTS`), with their offsets from `height.narc` and
+  their second animation frame. #494–1025 and the Sovereign forms stay 96×96 either way.
+- **y offsets are signed** (`LoadPokemonSpriteYOffset` and its callers): 144 of the 1473 96×96 fronts reach below the 80×80 box
+  (Dialga, Ho-Oh, Zekrom, Xerneas...). The 96×96 fronts' offsets are in `sovereign_fronts96.h`,
+  `sovereign_form_sprites.h` and, for #494+, `height.narc` (read as signed).
+- **3D sprites** (`pokemon_sprite.c`): 96×96 slots; a partial draw (fainting, Dig...) whose side is on the 80×80 box's
+  edge reaches the slot's edge.
+- **2D copies** at 96×96 (`CharacterSprite_LoadPokemonSprite96`, cells `misc/pokesprite_96*` in the battle sprite
+  archive for the 32K, 64K and 128K OBJ modes): battle (move animations, Transform, the BG copy), Hall of Fame, PC Hall
+  of Fame, the trade cutscene, the HM cut-in, the Battle Frontier's scene sprites. Contests share the battle's.
+- The dress-up reads the 80×80 box in the middle of a 96×96 sprite; evolution's band is 96 rows tall.
+- Checked in battle: fronts, Double Team's copies, Extrasensory's BG copy, fainting.
+
+Show the middle 80×80 of a 96×96 front (the old 2D functions; safe, art past it is cut): the script's Pokémon preview
+window (an 80×80 frame), the GTS listing, the Union Room trade card, the Mystery Gift card, the Great Marsh
+binoculars, Rowan's intro, `ov64`.
+
+Still to check: the Hall of Fame, PC Hall of Fame, trade, HM cut-in and Frontier screens in the game; a
+`platinum_fronts` build; heaps and VRAM on the tight screens (Battle Factory, the trade phases, the dance contest).

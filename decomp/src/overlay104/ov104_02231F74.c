@@ -51,6 +51,8 @@
 #include "system.h"
 #include "text.h"
 
+#include "res/graphics/battle/sprites.naix"
+
 #define LIST_MENU_ENTRY_NO_ALT_TEXT 0xFF
 #define LIST_MENU_BUILDER_HEADER    0xFA
 #define LIST_MENU_MAX_DISPLAY       8
@@ -757,9 +759,10 @@ void ov104_02232CE0(FrontierGraphics *param0, Pokemon *param1, enum HeapID heapI
 
         v6 = NARC_ctor(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, heapID);
 
-        SpriteSystem_LoadCharResObjFromOpenNarc(v0, v1, v6, 112, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
+        // Sovereign: a 96x96 copy (an 80x80 sprite sits in the middle).
+        SpriteSystem_LoadCharResObjFromOpenNarc(v0, v1, v6, misc_pokesprite_96_128k_NCGR, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, param3);
         SpriteSystem_LoadPaletteBufferFromOpenNarc(v2, PLTTBUF_MAIN_OBJ, v0, v1, v6, 111, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 1, param3);
-        SpriteSystem_LoadCellResObjFromOpenNarc(v0, v1, v6, 113, FALSE, param3);
+        SpriteSystem_LoadCellResObjFromOpenNarc(v0, v1, v6, misc_pokesprite_96_128k_cell_NCER, FALSE, param3);
         SpriteSystem_LoadAnimResObjFromOpenNarc(v0, v1, v6, 114, FALSE, param3);
         NARC_dtor(v6);
     }
@@ -791,12 +794,12 @@ void ov104_02232CE0(FrontierGraphics *param0, Pokemon *param1, enum HeapID heapI
     {
         u32 personality, species;
 
-        v4 = Heap_Alloc(heapID, 10 * 10 * ((8 / 2) * 8));
+        v4 = Heap_Alloc(heapID, MON_SPRITE_96_SIZE_BYTES);
         personality = Pokemon_GetValue(param1, MON_DATA_PERSONALITY, NULL);
         species = Pokemon_GetValue(param1, MON_DATA_SPECIES, NULL);
 
         Pokemon_BuildSpriteTemplate(&v3, param1, 2);
-        CharacterSprite_LoadPokemonSpriteRect(v3.narcID, v3.character, heapID, 0, 0, 10, 10, v4, personality, FALSE, 2, species);
+        CharacterSprite_LoadPokemonSprite96(v3.narcID, v3.character, heapID, 0, v4, personality, FALSE, 2, species);
     }
 
     {
@@ -805,8 +808,8 @@ void ov104_02232CE0(FrontierGraphics *param0, Pokemon *param1, enum HeapID heapI
         int v13;
 
         v11 = Sprite_GetImageProxy(v5->sprite);
-        DC_FlushRange(v4, sizeof(10 * 10 * ((8 / 2) * 8)));
-        GX_LoadOBJ(v4, v11->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN], 10 * 10 * ((8 / 2) * 8));
+        DC_FlushRange(v4, MON_SPRITE_96_SIZE_BYTES);
+        GX_LoadOBJ(v4, v11->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN], MON_SPRITE_96_SIZE_BYTES);
 
         v12 = Sprite_GetPaletteProxy(v5->sprite);
         v13 = PlttTransfer_GetPlttOffset(v12, NNS_G2D_VRAM_TYPE_2DMAIN);

@@ -99,4 +99,6 @@ static const s8 sSovereignFormBackYOffset[SOVEREIGN_FORM_COUNT] = {
     [49] = 0,
 };
 
+#define SOVEREIGN_FORM_BACK_COUNT 43
+
 #endif

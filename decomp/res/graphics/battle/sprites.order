@@ -350,3 +350,7 @@ healthbox/sovereign_mega_icon_cell.NCER.lz
 healthbox/sovereign_mega_icon_anim.NANR.lz
 misc/pokesprite_96.NCGR
 misc/pokesprite_96_cell.NCER
+misc/pokesprite_96_32k.NCGR
+misc/pokesprite_96_32k_cell.NCER
+misc/pokesprite_96_128k.NCGR
+misc/pokesprite_96_128k_cell.NCER

@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """Check that every battle sprite the game builds from res/pokemon/ can be shown.
 
-Each species' {male,female}_{front,back}.png, each form's front.png in res/pokemon/sovereign_form_sprites/ and back.png
-in res/pokemon/sovereign_form_backs/, must be an indexed 160x80 image (two 80x80 frames) with palette indices 0-15. Its first four pixels must be clear
-(index 0): the game unscrambles a sprite with a key it takes from them (PokemonSprite_DecryptPt), so a sprite whose
-art reaches the top-left corner comes out as noise in battle (Talonflame's back did, and Samurott's PokeAPI front).
-tools/sprites/convert_battle_sprites.py, convert_form_sprites.py and convert_form_backs.py clear them.
+Each species' {male,female}_{front,back}.png, each 96x96 front of #1-493 in res/pokemon/sovereign_fronts96/, each
+form's front.png in res/pokemon/sovereign_form_sprites/ and back.png in res/pokemon/sovereign_form_backs/, must be an
+indexed image of two frames side by side with palette indices 0-15: 160x80 (two 80x80 frames), or for a front also
+192x96 (two 96x96 frames). Its first four pixels must be clear (index 0): the game unscrambles a sprite with a key it
+takes from them (PokemonSprite_DecryptPt), so a sprite whose art reaches the top-left corner comes out as noise in
+battle (Talonflame's back did, and Samurott's PokeAPI front). tools/sprites/convert_battle_sprites.py,
+convert_fronts96.py, convert_form_sprites.py and convert_form_backs.py clear them.
 
 Each form folder's order.txt (the order make_pl_pokegra.py packs them in, one folder a line) must list every folder
 there once, each with its image and both palettes: the game finds a form's sprite by its place in that order.
@@ -22,8 +24,9 @@ def problems(path):
     im = Image.open(path)
     if im.mode != "P":
         return [f"mode {im.mode}, not indexed"]
-    if im.size != (160, 80):
-        return [f"size {im.size}, not 160x80"]
+    sizes = [(160, 80), (192, 96)] if os.path.basename(path).endswith("front.png") else [(160, 80)]
+    if im.size not in sizes:
+        return [f"size {im.size}, not " + " or ".join(f"{w}x{h}" for w, h in sizes)]
     out = []
     if max(im.get_flattened_data()) > 15:
         out.append("palette index over 15")
@@ -38,6 +41,11 @@ def sprites(root):
         for face in ("front", "back"):
             for gender in ("male", "female"):
                 yield os.path.join(root, species, f"{gender}_{face}.png")
+    fronts96 = os.path.join(root, "sovereign_fronts96")
+    if os.path.isdir(fronts96):
+        for species in sorted(os.listdir(fronts96)):
+            for gender in ("male", "female"):
+                yield os.path.join(fronts96, species, f"{gender}_front.png")
     for folder, image in (("sovereign_form_sprites", "front.png"), ("sovereign_form_backs", "back.png")):
         forms = os.path.join(root, folder)
         if os.path.isdir(forms):

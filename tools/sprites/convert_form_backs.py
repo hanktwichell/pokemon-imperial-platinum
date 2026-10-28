@@ -123,7 +123,7 @@ def main():
                 "static const s8 sSovereignFormBackYOffset[SOVEREIGN_FORM_COUNT] = {\n")
         for i in sorted(offsets):
             f.write(f"    [{i}] = {offsets[i]},\n")
-        f.write("};\n\n#endif\n")
+        f.write("};\n\n#define SOVEREIGN_FORM_BACK_COUNT " + str(len(order)) + "\n\n#endif\n")
     print(f"{len(order)} form backs")
     print("\n".join(report))
 

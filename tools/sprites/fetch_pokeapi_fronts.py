@@ -6,8 +6,9 @@ For each species, from the PokeAPI sprites repository (https://github.com/PokeAP
   sprites/pokemon/shiny/<dex>.png         -> shiny_front.png
   sprites/pokemon/female/<dex>.png        -> female_front.png         (species drawn differently as females)
   sprites/pokemon/shiny/female/<dex>.png  -> female_shiny_front.png
-into assets/sprites/packs/pokeapi_fronts_bw/NNNN-Name/. Files already there are kept (delete one to fetch it again).
-tools/sprites/convert_fronts96.py converts them for the game.
+into assets/sprites/packs/pokeapi_fronts_bw/NNNN-Name/, and the fronts and shiny fronts of the forms Platinum keeps in
+pl_otherpoke.narc (FORMS) into pokeapi_fronts_bw/forms/<SPECIES>-<form>/. Files already there are kept (delete one to
+fetch it again). tools/sprites/convert_fronts96.py converts them for the game.
 
 Usage: python3 -I tools/sprites/fetch_pokeapi_fronts.py
 """
@@ -24,15 +25,33 @@ BASE = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon
 FILES = {"front.png": "", "shiny_front.png": "shiny/", "female_front.png": "female/",
          "female_shiny_front.png": "shiny/female/"}
 LAST = 493
+# The forms whose sprites come from pl_otherpoke.narc (BuildPokemonSpriteTemplate), in the game's form order: each
+# one's file name in PokeAPI's sprites/pokemon/ (a form's own name, or the number PokeAPI gives that form).
+ARCEUS_TYPES = ("fighting", "flying", "poison", "ground", "rock", "bug", "ghost", "steel", "unknown", "fire", "water",
+                "grass", "electric", "psychic", "ice", "dragon", "dark")
+FORMS = {
+    "UNOWN": ["201"] + [f"201-{c}" for c in "bcdefghijklmnopqrstuvwxyz"] + ["201-exclamation", "201-question"],
+    "CASTFORM": ["351", "10013", "10014", "10015"],
+    "DEOXYS": ["386", "10001", "10002", "10003"],
+    "BURMY": ["412", "412-sandy", "412-trash"],
+    "WORMADAM": ["413", "10004", "10005"],
+    "CHERRIM": ["421", "421-sunshine"],
+    "SHELLOS": ["422", "422-east"],
+    "GASTRODON": ["423", "423-east"],
+    "ROTOM": ["479", "10008", "10009", "10010", "10011", "10012"],
+    "GIRATINA": ["487", "10007"],
+    "SHAYMIN": ["492", "10006"],
+    "ARCEUS": ["493"] + [f"493-{t}" for t in ARCEUS_TYPES],
+}
 
 
 def fetch(job):
-    dex, folder, name, sub = job
+    stem, folder, name, sub = job
     path = os.path.join(folder, name)
     if os.path.exists(path):
         return path, "kept"
     try:
-        with urllib.request.urlopen(f"{BASE}{sub}{dex}.png", timeout=60) as r:
+        with urllib.request.urlopen(f"{BASE}{sub}{stem}.png", timeout=60) as r:
             data = r.read()
     except urllib.error.HTTPError as e:
         if e.code == 404:
@@ -53,6 +72,11 @@ def main():
         folder = os.path.join(OUT, f"{dex:04}-{r['name']}")
         os.makedirs(folder, exist_ok=True)
         jobs += [(dex, folder, name, sub) for name, sub in FILES.items()]
+    for species, stems in FORMS.items():
+        for form, stem in enumerate(stems):
+            folder = os.path.join(OUT, "forms", f"{species}-{form}")
+            os.makedirs(folder, exist_ok=True)
+            jobs += [(stem, folder, name, FILES[name]) for name in ("front.png", "shiny_front.png")]
     counts = {}
     with ThreadPoolExecutor(8) as pool:
         for path, result in pool.map(fetch, jobs):

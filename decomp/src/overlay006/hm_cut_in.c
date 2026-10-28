@@ -4,6 +4,7 @@
 #include <nitro/fx/fx_const.h>
 #include <nitro/types.h>
 
+#include "constants/graphics.h"
 #include "constants/heap.h"
 
 #include "struct_decls/map_object.h"
@@ -32,6 +33,8 @@
 #include "sprite_util.h"
 #include "sys_task.h"
 #include "sys_task_manager.h"
+
+#include "res/graphics/battle/sprites.naix"
 
 typedef struct HMCutIn {
     int state;
@@ -1780,7 +1783,8 @@ static void CutIn_LoadSpriteResources(HMCutIn *cutIn, NARC *narc)
 
     i++;
     // Cell Index 2: Player's Pokemon
-    cutIn->cellSource[i] = SpriteResourceCollection_AddFrom(cutIn->cellLocation, narc, 6, FALSE, 3, SPRITE_RESOURCE_CELL, HEAP_ID_FIELD1);
+    // Sovereign: a 96x96 copy's cell (an 80x80 sprite sits in the middle), in place of field_cutin's 80x80 one.
+    cutIn->cellSource[i] = SpriteResourceCollection_Add(cutIn->cellLocation, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, misc_pokesprite_96_32k_cell_NCER, FALSE, 3, SPRITE_RESOURCE_CELL, HEAP_ID_FIELD1);
 
     // Animation Index 0: White Clouds
     for (i = 0; i < 1; i++) {
@@ -2087,12 +2091,12 @@ static void CutIn_BuildPokemonSpriteTemplate(HMCutIn *cutIn, PokemonSpriteTempla
 
 static void *CutIn_GetPokemonSpriteSource(Pokemon *mon, PokemonSpriteTemplate *spriteTemplate, enum HeapID heapID)
 {
-    void *spriteSource = Heap_Alloc(HEAP_ID_FIELD1, (32 * 10) * 10);
+    void *spriteSource = Heap_Alloc(HEAP_ID_FIELD1, MON_SPRITE_96_SIZE_BYTES);
 
     GF_ASSERT(spriteSource != NULL);
 
     int personality = Pokemon_GetValue(mon, MON_DATA_PERSONALITY, NULL);
-    CharacterSprite_LoadPokemonSprite(spriteTemplate->narcID, spriteTemplate->character, heapID, spriteSource, personality, FALSE, 2, spriteTemplate->spindaSpots);
+    CharacterSprite_LoadPokemonSprite96(spriteTemplate->narcID, spriteTemplate->character, heapID, 0, spriteSource, personality, FALSE, 2, spriteTemplate->spindaSpots);
 
     return spriteSource;
 }
@@ -2105,7 +2109,7 @@ static void *CutIn_GetPokemonPaletteSource(PokemonSpriteTemplate *spriteTemplate
 
 static SpriteResource *CutIn_GetParticleCharResource(HMCutIn *cutIn, NARC *narc)
 {
-    SpriteResource *spriteResource = SpriteResourceCollection_AddTilesFrom(cutIn->charLocation, narc, 5, FALSE, 3, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD1);
+    SpriteResource *spriteResource = SpriteResourceCollection_AddTiles(cutIn->charLocation, NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_OBJ, misc_pokesprite_96_32k_NCGR, FALSE, 3, NNS_G2D_VRAM_TYPE_2DMAIN, HEAP_ID_FIELD1);
     return spriteResource;
 }
 
@@ -2119,8 +2123,8 @@ static void CutIn_LoadPokemonChar(HMCutIn *cutIn, void *pokemonSpriteSource)
     imageProxy = SpriteTransfer_GetImageProxy(charResource);
     imageLocationInSource = NNS_G2dGetImageLocation(imageProxy, NNS_G2D_VRAM_TYPE_2DMAIN);
 
-    DC_FlushRange((void *)pokemonSpriteSource, (32 * 10) * 10);
-    GX_LoadOBJ(pokemonSpriteSource, imageLocationInSource, (32 * 10) * 10);
+    DC_FlushRange((void *)pokemonSpriteSource, MON_SPRITE_96_SIZE_BYTES);
+    GX_LoadOBJ(pokemonSpriteSource, imageLocationInSource, MON_SPRITE_96_SIZE_BYTES);
 }
 
 static SpriteResource *CutIn_GetPlayerMalePlttResource(HMCutIn *cutIn, NARC *narc)

@@ -30,6 +30,18 @@ battle_sprites += [
   ),
 
   ncgr_cell_gen.process(
+    files('pokesprite_96_32k.png'),
+    preserve_path_from: base_directory,
+    extra_args: [ '-bitdepth', '4', '-clobbersize', '-mappingtype', '32' ],
+  ),
+
+  ncgr_cell_gen.process(
+    files('pokesprite_96_128k.png'),
+    preserve_path_from: base_directory,
+    extra_args: [ '-bitdepth', '4', '-clobbersize', '-mappingtype', '128' ],
+  ),
+
+  ncgr_cell_gen.process(
     files('pokesprite_2.png'),
     preserve_path_from: base_directory,
     extra_args: [ '-convertTo4Bpp', '-clobbersize', '-mappingtype', '128' ],
@@ -47,7 +59,7 @@ battle_sprites += [
   ),
 
   ncer_gen.process(
-    files('pokesprite_1_cell.json', 'pokesprite_2_cell.json', 'pokesprite_96_cell.json'),
+    files('pokesprite_1_cell.json', 'pokesprite_2_cell.json', 'pokesprite_96_cell.json', 'pokesprite_96_32k_cell.json', 'pokesprite_96_128k_cell.json'),
     preserve_path_from: base_directory,
   ),
 

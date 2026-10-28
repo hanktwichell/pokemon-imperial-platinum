@@ -2912,6 +2912,24 @@ void BoxPokemon_BuildSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, BoxPo
 #define POKEGRA_FORM_SPRITE_BASE  (POKEGRA_BACK_PALETTE_BASE + (NATIONAL_DEX_COUNT + 1) * 2)
 // Then three files (back image, normal and shiny palette) for each Sovereign form with a back of its own.
 #define POKEGRA_FORM_BACK_BASE    (POKEGRA_FORM_SPRITE_BASE + SOVEREIGN_FORM_SPRITE_COUNT * 3)
+// Then, unless the meson option platinum_fronts, three files (front image, normal and shiny palette) for each form
+// Platinum keeps in pl_otherpoke (sGen4FormFront96).
+#define POKEGRA_GEN4_FORM_BASE    (POKEGRA_FORM_BACK_BASE + SOVEREIGN_FORM_BACK_COUNT * 3)
+
+// Sovereign: the number of a form's 96x96 front among those (sGen4FormFront96), or -1: Unown's letters, Deoxys's
+// formes, Arceus's types and the other forms Platinum keeps in pl_otherpoke. -1 with Platinum's fronts.
+static int Gen4Form_Front96(u16 species, u8 form)
+{
+#ifndef SOVEREIGN_PLATINUM_FRONTS
+    for (int i = 0; i < NELEMS(sGen4FormFront96); i++) {
+        if (sGen4FormFront96[i].species == species && sGen4FormFront96[i].form == form) {
+            return i;
+        }
+    }
+#endif
+
+    return -1;
+}
 
 // Sovereign: the number (plus 1) of a form's own back sprite in pl_pokegra, or 0 if it uses its species' back
 // (tools/sprites/convert_form_backs.py: the Mega and Primal backs of the "DPPt Style Gen VI and Beyond" pack). Its
@@ -3105,6 +3123,15 @@ void BuildPokemonSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, u16 speci
         spriteTemplate->character = POKEGRA_FORM_BACK_BASE + (formBack - 1) * 3;
         spriteTemplate->palette = POKEGRA_FORM_BACK_BASE + (formBack - 1) * 3 + 1 + shiny;
         spriteTemplate->spindaSpots = 0;
+    }
+
+    // Sovereign: a 96x96 front for the forms kept in pl_otherpoke (their backs stay there).
+    int gen4Front = Gen4Form_Front96(species, form);
+
+    if (gen4Front >= 0 && formSprite == 0 && face == FACE_FRONT) {
+        spriteTemplate->narcID = NARC_INDEX_POKETOOL__POKEGRA__PL_POKEGRA;
+        spriteTemplate->character = POKEGRA_GEN4_FORM_BASE + gen4Front * 3;
+        spriteTemplate->palette = POKEGRA_GEN4_FORM_BASE + gen4Front * 3 + 1 + shiny;
     }
 }
 
@@ -3375,6 +3402,12 @@ s8 LoadPokemonSpriteYOffset(u16 species, u8 gender, u8 face, u8 form, u32 person
 
         if (formSprite != 0) {
             return sSovereignFormSpriteYOffset[formSprite - 1];
+        }
+
+        int gen4Front = Gen4Form_Front96(species, Pokemon_SanitizeFormId(species, form));
+
+        if (gen4Front >= 0) {
+            return sGen4FormFront96[gen4Front].yOffset;
         }
 
 #ifndef SOVEREIGN_PLATINUM_FRONTS

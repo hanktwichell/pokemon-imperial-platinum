@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/graphics.h"
+
 #include "generated/evolution_methods.h"
 #include "generated/game_records.h"
 #include "generated/items.h"
@@ -365,7 +367,8 @@ static void Evolution_Main(EvolutionData *evolutionData)
         }
         break;
     case EVOLUTION_STATE_CLAMP_IN:
-        if (evolutionData->windowTop < 40) {
+        // Sovereign: the band closes in to 96 rows (it was 80), the height of a 96x96 front.
+        if (evolutionData->windowTop < (160 - MON_SPRITE_96_SIZE) / 2) {
             evolutionData->windowTop += 2;
             evolutionData->windowBottom -= 2;
         }
