@@ -36,6 +36,9 @@ For testing:
   and so every number, are the same from any save state; `gSovereignTestPlayerTile` is the player's tile.
 - `drive.py`'s `pos()` reads the player's tile from that hook in the build's map file, in place of fixed addresses
   that had gone stale; `roamers.py` counts the Marking Map walk's steps with it.
+- `roamers.py`'s catch throws the Master Ball once the battle's message log shows "What will ... do?", in place of
+  after a fixed 900 frames: in the rain on Route 215 the battle's intro ran past 1,000 frames, the touches came too
+  early, and the roamer fled uncaught.
 
 Verified (test build):
 - Sludge Wave in battle (purple wave, background and splashes); the Mega and Primal backs normal and shiny in battle

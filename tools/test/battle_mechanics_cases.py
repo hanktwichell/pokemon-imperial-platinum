@@ -371,7 +371,7 @@ CASES = [
     dict(name='occa_pouch', lead='SCIZOR', lead_move='TACKLE', item='OCCA_BERRY', hp=60, lead_ability='CHEEK_POUCH',
          foe_move='EMBER', nogod=1, survive=1),
 
-    # Item 11 (Hospitality, Costar: a double battle)
+    # Item 11 (Hospitality, Costar, Curious Medicine: a double battle)
     dict(name='hospitality', lead='SNORLAX', lead_move='TACKLE', hp=50, trainer='TWINS_LIV_AND_LIZ',
          partner='SINISTCHA'),
     dict(name='hospitality_full', lead='SNORLAX', lead_move='TACKLE', trainer='TWINS_LIV_AND_LIZ',
@@ -383,7 +383,8 @@ CASES = [
     dict(name='curious_medicine', lead='SLOWKING', lead_move='TACKLE', form=1, trainer='TWINS_LIV_AND_LIZ',
          partner='SNORLAX'),
 
-    # Moves batch 11a check
+    # Item 11 (moves, batch 11a): Chilly Reception, Doodle, Core Enforcer; Gen IX's ability lists (Role Play, Gastro
+    # Acid, Entrainment)
     dict(name='chilly', lead='CETITAN', lead_move='CHILLY_RECEPTION', foe_move='SPLASH'),
     dict(name='chilly_snowing', lead='CETITAN', lead_move='CHILLY_RECEPTION', foe_move='HAIL'),
     dict(name='doodle', lead='SMEARGLE', lead_move='DOODLE', foe_move='SPLASH', wild_ability='SPEED_BOOST'),
@@ -405,7 +406,7 @@ CASES = [
     dict(name='entrainment', lead='SMEARGLE', lead_move='ENTRAINMENT', lead_ability='INTIMIDATE',
          foe_move='SPLASH'),
 
-    # Moves batch 11b check
+    # Item 11 (moves, batch 11b): Electrify, Ion Deluge, Plasma Fists, Fairy Lock, Octolock, Spotlight, Teatime
     dict(name='electrify', lead='GARCHOMP', lead_move='ELECTRIFY', foe_move='TACKLE', wild_level=5, nogod=1),
     dict(name='electrify_late', lead='GARCHOMP', lead_move='ELECTRIFY', foe_move='TACKLE', nogod=1),
     dict(name='ion_deluge', lead='GARCHOMP', lead_move='ION_DELUGE', foe_move='TACKLE', nogod=1),
@@ -419,13 +420,13 @@ CASES = [
          wild_item='ORAN_BERRY'),
     dict(name='teatime_none', lead='SNORLAX', lead_move='TEATIME', foe_move='SPLASH'),
 
-    # Item 11 (Hospitality, Costar: a double battle)
+    # Item 11 (moves, batch 11b) in a double battle: Spotlight, Teatime
     dict(name='spotlight', lead='SNORLAX', lead_move='SPOTLIGHT', all_moves=1, trainer='TWINS_LIV_AND_LIZ',
          partner='SNORLAX'),
     dict(name='teatime_doubles', lead='SNORLAX', lead_move='TEATIME', all_moves=1, item='SITRUS_BERRY', hp=60,
          trainer='TWINS_LIV_AND_LIZ', partner='SNORLAX'),
 
-    # Moves batch 11a check
+    # Item 11: Skill Swap, Simple Beam and Worry Seed use Gen IX's ability lists
     dict(name='skill_swap', lead='SMEARGLE', lead_move='SKILL_SWAP', foe_move='SPLASH', wild_ability='SPEED_BOOST'),
     dict(name='skill_swap_wonder_guard', lead='SMEARGLE', lead_move='SKILL_SWAP', foe_move='SPLASH',
          wild_species='SHEDINJA'),
@@ -434,6 +435,8 @@ CASES = [
     dict(name='worry_seed', lead='SMEARGLE', lead_move='WORRY_SEED', foe_move='SPLASH', wild_ability='SPEED_BOOST'),
     dict(name='worry_seed_insomnia', lead='SMEARGLE', lead_move='WORRY_SEED', foe_move='SPLASH',
          wild_ability='INSOMNIA'),
+
+    # Item 11 (moves, batch 12): Shell Side Arm, Autotomize, Flame Burst
     dict(name='shell_side_arm_physical', lead='SNORLAX', lead_move='SHELL_SIDE_ARM', foe_move='SPLASH',
          wild_item='ROCKY_HELMET', nogod=1, survive=1),
     dict(name='shell_side_arm_special', lead='ALAKAZAM', lead_move='SHELL_SIDE_ARM', foe_move='SPLASH',
@@ -441,7 +444,7 @@ CASES = [
     dict(name='autotomize', lead='SNORLAX', lead_move='AUTOTOMIZE', foe_move='SPLASH'),
     dict(name='flame_burst_single', lead='SNORLAX', lead_move='FLAME_BURST', foe_move='SPLASH', nogod=1, survive=1),
 
-    # Item 11 (Hospitality, Costar: a double battle)
+    # Item 11 (moves, batch 12) in a double battle: Flame Burst, Pollen Puff, Parabolic Charge
     dict(name='flame_burst', lead='SNORLAX', lead_move='FLAME_BURST', all_moves=1, trainer='TWINS_LIV_AND_LIZ',
          partner='SHUCKLE', nogod=1),
     dict(name='pollen_puff_ally', lead='SNORLAX', lead_move='POLLEN_PUFF', all_moves=1, trainer='TWINS_LIV_AND_LIZ',
@@ -450,6 +453,8 @@ CASES = [
          partner='SNORLAX', nogod=1),
     dict(name='parabolic_charge', lead='SNORLAX', lead_move='PARABOLIC_CHARGE', all_moves=1, hp=50,
          trainer='TWINS_LIV_AND_LIZ', partner='SNORLAX', nogod=1),
+
+    # Item 11: Round and Expanding Force in double battles; turn order after After You
     dict(name='round', lead='JOLTEON', lead_move='ROUND', all_moves=1, trainer='TWINS_LIV_AND_LIZ',
          partner='SNORLAX', partner_moves=['ROUND'] * 4, nogod=1),
     dict(name='expanding_force', lead='ALAKAZAM', lead_move='EXPANDING_FORCE', all_moves=1,
@@ -464,6 +469,8 @@ CASES = [
          partner='SNORLAX', partner_moves=['ROUND'] * 4, nogod=1),
     dict(name='shuckle_plain', lead='SHUCKLE', lead_move='ROUND', all_moves=1, trainer='BELLE_AND_PA_AVA_AND_MATT',
          partner='SNORLAX', partner_moves=['GROWL'] * 4, nogod=1),
+
+    # Item 11: Dragon Darts in double battles
     dict(name='darts_split', lead='DRAGAPULT', lead_move='DRAGON_DARTS', all_moves=1,
          trainer='BELLE_AND_PA_AVA_AND_MATT', partner='SNORLAX', partner_moves=['GROWL'] * 4, nogod=1),
     dict(name='darts_at_magneton', lead='DRAGAPULT', lead_move='DRAGON_DARTS', all_moves=1,
@@ -472,7 +479,7 @@ CASES = [
          trainer='INTERVIEWERS_ROXY_AND_OLI', partner='SNORLAX', partner_moves=['GROWL'] * 4, nogod=1, taps=[[64,
          60]]),
 
-    # Moves batch 11a check
+    # Item 11: Powder
     dict(name='powder_flamethrower', lead='VIVILLON', lead_move='POWDER', foe_move='FLAMETHROWER',
          wild_species='CHARIZARD', wild_level=60, nogod=1, survive=2),
     dict(name='powder_magic_guard', lead='VIVILLON', lead_move='POWDER', foe_move='FLAMETHROWER',
@@ -480,18 +487,18 @@ CASES = [
     dict(name='powder_grass', lead='VIVILLON', lead_move='POWDER', foe_move='FLAMETHROWER', wild_species='VENUSAUR',
          wild_level=60, nogod=1, survive=2),
 
-    # Item 11 (Hospitality, Costar: a double battle)
+    # Item 11: Powder in a double battle
     dict(name='powder_heat_wave', lead='VIVILLON', lead_move='POWDER', all_moves=1,
          trainer='BELLE_AND_PA_AVA_AND_MATT', partner='SNORLAX', partner_moves=['HEAT_WAVE'] * 4, nogod=1,
          taps=[[190, 112]]),
 
-    # Moves batch 11a check
+    # Item 11: Spectral Thief
     dict(name='thief_swords_dance', lead='GENGAR', lead_move='SPECTRAL_THIEF', all_moves=1, foe_move='SWORDS_DANCE',
          nogod=1, survive=2),
     dict(name='thief_contrary', lead='GENGAR', lead_move='SPECTRAL_THIEF', all_moves=1, lead_ability='CONTRARY',
          foe_move='SWORDS_DANCE', nogod=1, survive=2),
 
-    # Item 11 (Hospitality, Costar: a double battle)
+    # Item 11: Shell Trap in a double battle; Receiver
     dict(name='shell_trap_doubles', lead='TURTONATOR', lead_move='SHELL_TRAP', all_moves=1,
          trainer='BELLE_AND_PA_AVA_AND_MATT', partner='SNORLAX', partner_moves=['GROWL'] * 4, nogod=1),
     dict(name='shell_trap_order', lead='TURTONATOR', lead_move='SHELL_TRAP', all_moves=1,
@@ -570,24 +577,26 @@ CASES = [
          trainer='BELLE_AND_PA_AVA_AND_MATT', partner='FLORGES', partner_level=50, partner_moves=['SPLASH'] * 4,
          partner_item='LEFTOVERS', partner_ability='FLOWER_VEIL', foe_items=['NORMAL_GEM', 'LEFTOVERS'],
          foe2_ability='SYMBIOSIS', nogod=1),
+
+    # Item 11: Illusion (a foe's disguise in a double battle)
     dict(name='illusion_foe', lead='MEGANIUM', lead_move='ICY_WIND', all_moves=1,
          trainer='BELLE_AND_PA_AVA_AND_MATT', partner='FLORGES', partner_level=50, partner_moves=['SPLASH'] * 4,
          nogod=1, stop_at=2700),
 
-    # Dancer check
+    # Item 11: Illusion (a wild Pokémon's Gastro Acid, a hit)
     dict(name='illusion_gastro', lead='ZOROARK', lead_move='SPLASH', all_moves=1, foe_move='GASTRO_ACID',
          wild_level=20, nogod=1, survive=2),
     dict(name='illusion', lead='ZOROARK', lead_move='SPLASH', all_moves=1, foe_move='TACKLE', wild_level=20,
          nogod=1, survive=2),
 
-    # Symbiosis check
+    # Item 11: Commander and Order Up
     dict(name='commander', lead='TATSUGIRI', lead_move='SPLASH', all_moves=1, trainer='BELLE_AND_PA_AVA_AND_MATT',
          partner='DONDOZO', partner_level=50, partner_moves=['ORDER_UP'] * 4, nogod=1, stop_at=6000),
     dict(name='commander_end', lead='TATSUGIRI', lead_move='WATER_GUN', all_moves=1,
          trainer='BELLE_AND_PA_AVA_AND_MATT', partner='DONDOZO', partner_level=50, partner_moves=['ORDER_UP'] * 4,
          partner_hp=1, nogod=1, stop_at=6000),
 
-    # Dancer check
+    # Item 11: Sky Drop, and Smack Down against Pokémon in the air
     dict(name='skydrop', lead='BRAVIARY', lead_move='SKY_DROP', all_moves=1, foe_move='TACKLE',
          wild_species='GEODUDE', wild_level=20, survive=3),
     dict(name='skydrop_heavy', lead='BRAVIARY', lead_move='SKY_DROP', all_moves=1, foe_move='TACKLE',
@@ -604,12 +613,15 @@ CASES = [
          wild_species='JOLTEON', survive=2),
     dict(name='smackdown_fly', lead='BRAVIARY', lead_move='FLY', all_moves=1, foe_move='SMACK_DOWN',
          wild_species='JOLTEON', survive=3),
+
+    # Item 11: Emergency Exit after indirect damage (Life Orb, poison)
     dict(name='ee_lifeorb', lead='GOLISOPOD', lead_move='TACKLE', all_moves=1, item='LIFE_ORB', hp=55,
          foe_move='SPLASH', wild_species='GEODUDE', wild_level=20, nogod=1, survive=2),
     dict(name='ee_toxic', lead='GOLISOPOD', lead_move='SPLASH', all_moves=1, hp=60, foe_move='TOXIC',
          wild_species='GEODUDE', wild_level=20, nogod=1, survive=5),
 
-    # Symbiosis check
+    # 12b (trainer AI): the test trainer's double battle (Mega Charizard and Venusaur): the Gen V+ moves, support on
+    # the partner, the second Pokémon
     dict(name='ai_absorb', lead='SNORLAX', lead_level=100, lead_move='MUD_SLAP', all_moves=1,
          trainer='SOVEREIGN_TEST', partner='FLORGES', partner_level=50, partner_moves=['SPLASH'] * 4, nogod=1,
          stop_at=9000),
@@ -638,19 +650,22 @@ CASES = [
          trainer='SOVEREIGN_TEST', partner='FLORGES', partner_level=50, partner_moves=['SPLASH'] * 4, nogod=1,
          stop_at=9000),
 
-    # Platinum bug fixes check: Fire Fang and Shadow Force vs Wonder Guard, Rage's volatile clear.
+    # Item 11 and 12b (Champions' Sheer Force): an Eject Button and Emergency Exit still work against a Sheer Force move.
     dict(name='sf_eject', lead='SNORLAX', lead_move='SPLASH', all_moves=1, item='EJECT_BUTTON', foe_move='EMBER',
          wild_species='NIDOKING', wild_level=50, wild_ability='SHEER_FORCE', nogod=1),
     dict(name='sf_ee_wild', lead='NIDOKING', lead_move='EMBER', all_moves=1, lead_ability='SHEER_FORCE',
          foe_move='SPLASH', wild_species='GOLISOPOD', wild_level=30, nogod=1, survive=4),
+    # Item 11 (sound moves): Soundproof doesn't stop its holder's own Clangorous Soul, and Heal Bell cures its user.
     dict(name='cs_soundproof', lead='KOMMO_O', lead_move='CLANGOROUS_SOUL', all_moves=1, lead_ability='SOUNDPROOF',
          foe_move='SPLASH', wild_species='GEODUDE', wild_level=20, nogod=1, survive=1),
     dict(name='hb_soundproof', lead='EXPLOUD', lead_move='HEAL_BELL', all_moves=1, lead_ability='SOUNDPROOF',
          foe_move='TOXIC', wild_species='NINJASK', wild_level=100, nogod=1, survive=2),
+    # Emergency Exit: a wild Golisopod flees, the player's switches out.
     dict(name='ee_wild_flee', lead='RATICATE', lead_move='SUPER_FANG', all_moves=1, foe_move='SPLASH',
          wild_species='GOLISOPOD', wild_level=30, nogod=1, survive=2),
     dict(name='ee_hit_switch', lead='GOLISOPOD', lead_move='SPLASH', all_moves=1, foe_move='SUPER_FANG',
          wild_species='RATICATE', wild_level=100, nogod=1, survive=2),
+    # Platinum bug fixes check: Fire Fang and Shadow Force vs Wonder Guard, Rage's volatile clear.
     dict(name='ff_wg', lead='GROWLITHE', lead_move='FIRE_FANG', all_moves=1, foe_move='SPLASH',
          wild_species='GEODUDE', wild_level=100, wild_ability='WONDER_GUARD', nogod=1, survive=1),
     dict(name='sf_wg', lead='GIRATINA', lead_move='SHADOW_FORCE', all_moves=1, foe_move='SPLASH',
