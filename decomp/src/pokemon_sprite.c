@@ -338,6 +338,7 @@ static void TickPokemonSpriteAnim(PokemonSprite *monSprite);
 static void PokemonSprite_TickAnim(PokemonSprite *monSprite);
 static u8 SwapNybbles(u8 value);
 static void TryDrawSpindaSpots(PokemonSprite *monSprite, u8 *rawCharData);
+static void PokemonSprite_WidenPartialDraw(int *offset, int *length);
 
 void *PokemonSpriteManager_New(enum HeapID heapID)
 {
@@ -433,18 +434,27 @@ void PokemonSpriteManager_DrawSprites(PokemonSpriteManager *monSpriteMan)
             G3_PolygonAttr(GX_LIGHTMASK_NONE, GX_POLYGONMODE_MODULATE, GX_CULL_NONE, monSpriteMan->sprites[i].polygonID, monSpriteMan->sprites[i].transforms.alpha, 0);
 
             if (monSpriteMan->sprites[i].transforms.partialDraw) {
-                // the drawn part is given in the 80x80 box centred in the slot
-                u0 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][0] + MON_SPRITE_SLOT_MARGIN + monSpriteMan->sprites[i].transforms.drawXOffset;
-                u1 = u0 + monSpriteMan->sprites[i].transforms.drawWidth;
-                v0 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][1] + MON_SPRITE_SLOT_MARGIN + monSpriteMan->sprites[i].transforms.drawYOffset;
-                v1 = v0 + monSpriteMan->sprites[i].transforms.drawHeight;
+                // The drawn part is given in the 80x80 box centred in the slot; a side of it on the box's edge stands
+                // for the slot's edge, so a 96x96 sprite keeps the parts outside the box.
+                int drawX = monSpriteMan->sprites[i].transforms.drawXOffset;
+                int drawY = monSpriteMan->sprites[i].transforms.drawYOffset;
+                int drawW = monSpriteMan->sprites[i].transforms.drawWidth;
+                int drawH = monSpriteMan->sprites[i].transforms.drawHeight;
+
+                PokemonSprite_WidenPartialDraw(&drawX, &drawW);
+                PokemonSprite_WidenPartialDraw(&drawY, &drawH);
+
+                u0 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][0] + MON_SPRITE_SLOT_MARGIN + drawX;
+                u1 = u0 + drawW;
+                v0 = sMonSpriteTextureCoords[i][monSpriteMan->sprites[i].currSpriteFrame][1] + MON_SPRITE_SLOT_MARGIN + drawY;
+                v1 = v0 + drawH;
 
                 NNS_G2dDrawSpriteFast(
-                    monSpriteMan->sprites[i].transforms.xCenter - MON_SPRITE_FRAME_WIDTH / 2 + monSpriteMan->sprites[i].transforms.drawXOffset + monSpriteMan->sprites[i].transforms.xOffset,
-                    monSpriteMan->sprites[i].transforms.yCenter - MON_SPRITE_FRAME_HEIGHT / 2 + monSpriteMan->sprites[i].transforms.drawYOffset + monSpriteMan->sprites[i].transforms.yOffset - monSpriteMan->sprites[i].shadow.height,
+                    monSpriteMan->sprites[i].transforms.xCenter - MON_SPRITE_FRAME_WIDTH / 2 + drawX + monSpriteMan->sprites[i].transforms.xOffset,
+                    monSpriteMan->sprites[i].transforms.yCenter - MON_SPRITE_FRAME_HEIGHT / 2 + drawY + monSpriteMan->sprites[i].transforms.yOffset - monSpriteMan->sprites[i].shadow.height,
                     monSpriteMan->sprites[i].transforms.zCenter + monSpriteMan->sprites[i].transforms.zOffset,
-                    monSpriteMan->sprites[i].transforms.drawWidth,
-                    monSpriteMan->sprites[i].transforms.drawHeight,
+                    drawW,
+                    drawH,
                     u0,
                     v0,
                     u1,
@@ -1259,6 +1269,29 @@ void PokemonSpriteManager_ClearHideShadows(PokemonSpriteManager *monSpriteMan, u
 
 // Copies a sprite's two frames (an 80x80 or 96x96 pair, its width and height in pixels) into its slot, centred,
 // flipped or with mosaic as its transforms say.
+// Sovereign: one side of a partial draw (offset and length in the 80x80 box): an end on the box's edge moves out to the
+// edge of the 96x96 slot. A partial draw that would show nothing still shows nothing.
+static void PokemonSprite_WidenPartialDraw(int *offset, int *length)
+{
+    int start = *offset;
+    int end = *offset + *length;
+
+    if (*length <= 0) {
+        return;
+    }
+
+    if (start <= 0) {
+        start = -MON_SPRITE_SLOT_MARGIN;
+    }
+
+    if (end >= MON_SPRITE_FRAME_WIDTH) {
+        end = MON_SPRITE_FRAME_WIDTH + MON_SPRITE_SLOT_MARGIN;
+    }
+
+    *offset = start;
+    *length = end - start;
+}
+
 static void CopySpriteToSlot(u8 *slotData, const u8 *rawCharData, int width, int height, const PokemonSpriteTransforms *transforms)
 {
     int frameBytes = width / NUM_MON_SPRITE_FRAMES_H / 2;

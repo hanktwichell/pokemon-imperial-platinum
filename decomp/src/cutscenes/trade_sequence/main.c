@@ -3,6 +3,8 @@
 #include <nitro.h>
 #include <string.h>
 
+#include "constants/graphics.h"
+
 #include "overlay006/struct_npc_trade_animation_template.h"
 
 #include "bg_window.h"
@@ -490,11 +492,10 @@ void TradeSequence_LoadPokemonBGTiles(TradeSequenceData *sequenceData, int pokem
     u32 tileBufferSize;
     void *tileBuffer;
 
-    tileBufferSize = (loadBothFrames) ? 0x20 * 200 : 0x20 * 100;
+    tileBufferSize = (loadBothFrames) ? MON_SPRITE_96_SIZE_BYTES * 2 : MON_SPRITE_96_SIZE_BYTES;
     tileBuffer = Heap_AllocAtEnd(HEAP_ID_TRADE_SEQUENCE, tileBufferSize);
 
     if (tileBuffer) {
-        TileRegion tileRegion = FRAME_0_REGION;
         BoxPokemon *boxMon;
         BOOL wasEncrypted;
         u32 personality;
@@ -508,11 +509,13 @@ void TradeSequence_LoadPokemonBGTiles(TradeSequenceData *sequenceData, int pokem
         personality = BoxPokemon_GetValue(boxMon, MON_DATA_PERSONALITY, NULL);
         species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES, NULL);
 
+        // Sovereign: 96x96 copies (an 80x80 sprite in the middle), shown by the tilemap of TradeSequence_LoadPokemonPlatform.
+        CharacterSprite_LoadPokemonSprite96(template.narcID, template.character, HEAP_ID_TRADE_SEQUENCE, 0, tileBuffer, personality, loadBothFrames, FACE_FRONT, species);
+
         if (loadBothFrames) {
-            tileRegion.width *= 2;
+            CharacterSprite_LoadPokemonSprite96(template.narcID, template.character, HEAP_ID_TRADE_SEQUENCE, 1, (u8 *)tileBuffer + MON_SPRITE_96_SIZE_BYTES, personality, loadBothFrames, FACE_FRONT, species);
         }
 
-        CharacterSprite_LoadPokemonSpriteRegion(template.narcID, template.character, HEAP_ID_TRADE_SEQUENCE, &tileRegion, tileBuffer, personality, loadBothFrames, FACE_FRONT, species);
         DC_FlushRange(tileBuffer, tileBufferSize);
         Bg_LoadTiles(sequenceData->bgConfig, bgLayer, tileBuffer, tileBufferSize, 0);
 
@@ -524,25 +527,30 @@ void TradeSequence_LoadPokemonBGTiles(TradeSequenceData *sequenceData, int pokem
     Graphics_LoadPalette(template.narcID, template.palette, paletteBank, paletteSlot * 0x20, 0x20, HEAP_ID_TRADE_SEQUENCE);
 }
 
+// Sovereign: the tilemap of a Pokemon's 96x96 copy (TradeSequence_LoadPokemonBGTiles), its top-left tile at
+// (tilemapX, tilemapY), mirrored for a receiving Pokemon shown flipped; built here in place of pl_batt_bg's 262 and
+// 263, made for 80x80 copies.
 void TradeSequence_LoadPokemonPlatform(TradeSequenceData *sequenceData, int pokemonIndex, u32 bgLayer, u32 paletteIdx, u32 tilemapX, u32 tilemapY)
 {
-    void *screenBuffer;
-    NNSG2dScreenData *screenData;
-    u32 narcMemberIdx;
+    const TileRegion cells[] = MON_SPRITE_96_CELLS;
+    u16 tilemap[MON_SPRITE_96_SIZE_TILES];
+    BOOL flip = pokemonIndex != 0 && sequenceData->flipSprite;
+    u16 tile = 0;
 
-    if (pokemonIndex == 0) {
-        narcMemberIdx = 262;
-    } else {
-        narcMemberIdx = (sequenceData->flipSprite) ? 263 : 262;
+    for (int i = 0; i < NELEMS(cells); i++) {
+        for (int y = cells[i].y; y < cells[i].y + cells[i].height; y++) {
+            for (int x = cells[i].x; x < cells[i].x + cells[i].width; x++) {
+                if (flip) {
+                    tilemap[y * MON_SPRITE_96_TILES + MON_SPRITE_96_TILES - 1 - x] = tile++ | 0x400;
+                } else {
+                    tilemap[y * MON_SPRITE_96_TILES + x] = tile++;
+                }
+            }
+        }
     }
 
-    screenBuffer = Graphics_GetScrnData(NARC_INDEX_BATTLE__GRAPHIC__PL_BATT_BG, narcMemberIdx, FALSE, &screenData, HEAP_ID_TRADE_SEQUENCE);
-
-    if (screenBuffer) {
-        Bg_CopyToTilemapRect(sequenceData->bgConfig, bgLayer, tilemapX, tilemapY, 10, 10, screenData->rawData, 0, 0, 32, 32);
-        Bg_ChangeTilemapRectPalette(sequenceData->bgConfig, bgLayer, tilemapX, tilemapY, 10, 10, paletteIdx);
-        Heap_Free(screenBuffer);
-    }
+    Bg_LoadToTilemapRect(sequenceData->bgConfig, bgLayer, tilemap, tilemapX, tilemapY, MON_SPRITE_96_TILES, MON_SPRITE_96_TILES);
+    Bg_ChangeTilemapRectPalette(sequenceData->bgConfig, bgLayer, tilemapX, tilemapY, MON_SPRITE_96_TILES, MON_SPRITE_96_TILES, paletteIdx);
 }
 
 void SpriteAnimResources_Load(SpriteAnimResources *animResources, u32 narcID, u32 cellMemberIdx, u32 animMemberIdx)

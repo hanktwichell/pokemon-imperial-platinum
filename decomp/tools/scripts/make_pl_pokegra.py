@@ -27,6 +27,9 @@ argparser.add_argument('-p', '--private-dir',
 argparser.add_argument('-o', '--output-dir',
                        required=True,
                        help='Path to the output directory (where the NARC will be made)')
+argparser.add_argument('--platinum-fronts',
+                       action='store_true',
+                       help="Pack Platinum's fronts for species #1-493 instead of the 96x96 ones")
 args = argparser.parse_args()
 
 source_dir = pathlib.Path(args.source_dir)
@@ -34,6 +37,19 @@ private_dir = pathlib.Path(args.private_dir)
 output_dir = pathlib.Path(args.output_dir)
 
 private_dir.mkdir(parents=True, exist_ok=True)
+
+# Sovereign: species #1-493 take their 96x96 fronts and front palettes from sovereign_fronts96/NNNN-<species>/
+# (tools/sprites/convert_fronts96.py) unless --platinum-fronts; their backs keep Platinum's palette (the "zback"
+# palettes below fall back to the species' normal.pal/shiny.pal).
+fronts96_dir = source_dir / 'sovereign_fronts96'
+
+
+def front_dir(i, subdir):
+    folder = fronts96_dir / f'{i:04}-{subdir}'
+    if args.platinum_fronts or not folder.is_dir():
+        return source_dir / subdir
+    return folder
+
 
 for i, subdir in enumerate(SPECIES_DIRS):
     # Do not attempt to process either egg or bad_egg
@@ -43,7 +59,7 @@ for i, subdir in enumerate(SPECIES_DIRS):
     j = 0
     for face in ['back', 'front']:
         for gender in ['female', 'male']:
-            source_file = source_dir / subdir / f'{gender}_{face}.png'
+            source_file = (front_dir(i, subdir) if face == 'front' else source_dir / subdir) / f'{gender}_{face}.png'
             target_file = private_dir / f'{i:04}-{j:02}.NCGR'
 
             if source_file.exists():
@@ -64,8 +80,8 @@ for i, subdir in enumerate(SPECIES_DIRS):
         shutil.copy(source_dir / 'none/shiny_pal.NCLR', private_dir / '0000-05.NCLR')
         continue
 
-    normal_pal_src = source_dir / subdir / 'normal.pal'
-    shiny_pal_src = source_dir / subdir / 'shiny.pal'
+    normal_pal_src = front_dir(i, subdir) / 'normal.pal'
+    shiny_pal_src = front_dir(i, subdir) / 'shiny.pal'
 
     subprocess.run([
         args.nitrogfx,

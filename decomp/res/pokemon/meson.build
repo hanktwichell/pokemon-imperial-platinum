@@ -106,6 +106,7 @@ form_sprites_order = form_registry[2]
 # (tools/sprites/convert_form_backs.py).
 subdir('sovereign_form_sprites')
 subdir('sovereign_form_backs')
+subdir('sovereign_fronts96')
 
 foreach species : species_dirnames
     subdir(species)
@@ -312,6 +313,7 @@ pl_pokegra_narc = custom_target('pl_pokegra.narc',
         '--source-dir', '@CURRENT_SOURCE_DIR@',
         '--private-dir', '@PRIVATE_DIR@',
         '--output-dir', '@OUTDIR@',
+        get_option('platinum_fronts') ? [ '--platinum-fronts' ] : [],
     ],
 )
 

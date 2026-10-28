@@ -54,6 +54,7 @@
 #include "unk_02092494.h"
 
 #include "data/sovereign_form_backs.h"
+#include "data/sovereign_fronts96.h"
 #include "data/sovereign_form_sprites.h"
 #include "data/sovereign_forms.h"
 
@@ -270,7 +271,7 @@ static u16 Pokemon_GetNatureStatValue(u8 monNature, u16 monStatValue, u8 statTyp
 static u8 BoxPokemon_IsShiny(BoxPokemon *boxMon);
 static inline BOOL Pokemon_InlineIsPersonalityShiny(u32 monOTID, u32 monPersonality);
 static void BuildPokemonSpriteTemplateDP(PokemonSpriteTemplate *spriteTemplate, u16 species, u8 gender, u8 face, u8 shiny, u8 form, u32 personality);
-static u8 LoadPokemonDPSpriteHeight(u16 species, u8 gender, u8 face, u8 form, u32 personality);
+static s8 LoadPokemonDPSpriteHeight(u16 species, u8 gender, u8 face, u8 form, u32 personality);
 static void BoxPokemon_SetDefaultMoves(BoxPokemon *boxMon);
 static u16 BoxPokemon_AddMove(BoxPokemon *boxMon, u16 moveID);
 static void BoxPokemon_ReplaceMove(BoxPokemon *boxMon, u16 moveID);
@@ -2915,7 +2916,7 @@ void BoxPokemon_BuildSpriteTemplate(PokemonSpriteTemplate *spriteTemplate, BoxPo
 // Sovereign: the number (plus 1) of a form's own back sprite in pl_pokegra, or 0 if it uses its species' back
 // (tools/sprites/convert_form_backs.py: the Mega and Primal backs of the "DPPt Style Gen VI and Beyond" pack). Its
 // y offset, when it has one, is in *yOffset.
-static u16 SovereignForm_BackSprite(u16 species, u8 form, u8 *yOffset)
+static u16 SovereignForm_BackSprite(u16 species, u8 form, s8 *yOffset)
 {
     if (form == 0) {
         return 0;
@@ -3324,17 +3325,17 @@ static void BuildPokemonSpriteTemplateDP(PokemonSpriteTemplate *spriteTemplate, 
     }
 }
 
-u8 Pokemon_SpriteYOffset(Pokemon *mon, u8 face)
+s8 Pokemon_SpriteYOffset(Pokemon *mon, u8 face)
 {
     return BoxPokemon_SpriteYOffset(&mon->box, face, FALSE);
 }
 
-u8 Pokemon_DPSpriteYOffset(Pokemon *mon, u8 face)
+s8 Pokemon_DPSpriteYOffset(Pokemon *mon, u8 face)
 {
     return BoxPokemon_SpriteYOffset(&mon->box, face, TRUE);
 }
 
-u8 BoxPokemon_SpriteYOffset(BoxPokemon *boxMon, u8 face, BOOL preferDP)
+s8 BoxPokemon_SpriteYOffset(BoxPokemon *boxMon, u8 face, BOOL preferDP)
 {
     u16 species = BoxPokemon_GetValue(boxMon, MON_DATA_SPECIES_OR_EGG, NULL);
     u8 gender = BoxPokemon_GetGender(boxMon);
@@ -3358,13 +3359,29 @@ u8 BoxPokemon_SpriteYOffset(BoxPokemon *boxMon, u8 face, BOOL preferDP)
     return LoadPokemonSpriteYOffset(species, gender, face, form, personality);
 }
 
-u8 LoadPokemonSpriteYOffset(u16 species, u8 gender, u8 face, u8 form, u32 personality)
+s8 LoadPokemonSpriteYOffset(u16 species, u8 gender, u8 face, u8 form, u32 personality)
 {
-    u8 formBackYOffset;
+    s8 formBackYOffset;
 
     // Sovereign: a form's own back sits by its own offset.
     if (face == FACE_BACK && SovereignForm_BackSprite(species, form, &formBackYOffset) != 0) {
         return formBackYOffset;
+    }
+
+    // Sovereign: so does a form's own front, and a 96x96 front of species #1-493 (tools/sprites/convert_fronts96.py;
+    // the meson option platinum_fronts keeps Platinum's fronts and their offsets). #494 on have theirs in height.narc.
+    if (face == FACE_FRONT) {
+        u16 formSprite = SovereignForm_FrontSprite(species, form, gender, FALSE);
+
+        if (formSprite != 0) {
+            return sSovereignFormSpriteYOffset[formSprite - 1];
+        }
+
+#ifndef SOVEREIGN_PLATINUM_FRONTS
+        if (species <= SPECIES_ARCEUS && sFront96YOffset[species][gender == GENDER_FEMALE] != FRONT96_NONE) {
+            return sFront96YOffset[species][gender == GENDER_FEMALE];
+        }
+#endif
     }
 
     form = Pokemon_SanitizeFormId(species, form);
@@ -3448,12 +3465,12 @@ u8 LoadPokemonSpriteYOffset(u16 species, u8 gender, u8 face, u8 form, u32 person
         break;
     }
 
-    u8 result;
+    s8 result;
     NARC_ReadWholeMemberByIndexPair(&result, narcID, memberIndex);
     return result;
 }
 
-static u8 LoadPokemonDPSpriteHeight(u16 species, u8 gender, u8 face, u8 form, u32 personality)
+static s8 LoadPokemonDPSpriteHeight(u16 species, u8 gender, u8 face, u8 form, u32 personality)
 {
     // TODO enum values?
     form = Pokemon_SanitizeFormId(species, form);
@@ -3552,7 +3569,7 @@ static u8 LoadPokemonDPSpriteHeight(u16 species, u8 gender, u8 face, u8 form, u3
         break;
     }
 
-    u8 result;
+    s8 result;
     NARC_ReadWholeMemberByIndexPair(&result, narcID, memberIndex);
     return result;
 }

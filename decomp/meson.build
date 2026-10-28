@@ -82,6 +82,10 @@ if get_option('sovereign_test')
     pokeplatinum_args += '-DSOVEREIGN_TEST'
 endif
 
+if get_option('platinum_fronts')
+    pokeplatinum_args += '-DSOVEREIGN_PLATINUM_FRONTS'
+endif
+
 if get_option('logging_enabled')
     pokeplatinum_args += [
         '-DLOGGING_ENABLED',

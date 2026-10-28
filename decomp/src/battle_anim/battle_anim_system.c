@@ -29,6 +29,7 @@
 #include "overlay017/ov17_022413D8.h"
 
 #include "bg_window.h"
+#include "character_sprite.h"
 #include "graphics.h"
 #include "heap.h"
 #include "inlines.h"
@@ -49,6 +50,8 @@
 #include "sys_task_manager.h"
 #include "system.h"
 #include "vram_transfer.h"
+
+#include "res/graphics/battle/sprites.naix"
 
 #define BATTLE_ANIM_SCRIPT_RES_ID(MEMBER_IDX)  (MEMBER_IDX + 5000)
 #define BATTLE_ANIM_SCRIPT_MAX_SFX_WAIT_FRAMES 90 // 3s
@@ -1654,8 +1657,8 @@ static void BattleAnimSystem_BgTrackingTaskFunc(SysTask *task, void *param)
     s16 y = PokemonSprite_GetAttribute(trackingTask->data.sprite, MON_SPRITE_Y_CENTER);
     y -= PokemonSprite_GetAttribute(trackingTask->data.sprite, MON_SPRITE_SHADOW_HEIGHT);
 
-    Bg_SetOffset(trackingTask->bg, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_X, -(x - 40));
-    Bg_SetOffset(trackingTask->bg, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_Y, -(y - 40));
+    Bg_SetOffset(trackingTask->bg, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_X, -(x - MON_SPRITE_96_SIZE / 2));
+    Bg_SetOffset(trackingTask->bg, BG_LAYER_MAIN_2, BG_OFFSET_UPDATE_SET_Y, -(y - MON_SPRITE_96_SIZE / 2));
 }
 
 void BattleAnimSystem_CancelTrackingTask(BattleAnimSystem *system, enum BattleAnimTrackingTask task)
@@ -1685,6 +1688,41 @@ static void BattleAnimScriptCmd_Nop1(BattleAnimSystem *)
     return;
 }
 
+// Sovereign: the tilemap that shows a battler's 96x96 copy (its tiles in the OAM cell order of MON_SPRITE_96_CELLS)
+// in the top-left corner of the 512x512 BG, mirrored when flip, in place of pl_batt_bg's 264 and 265 (made for
+// 80x80 copies). The tile after the copy's, cleared, fills the rest.
+static void BattleAnimSystem_LoadPokemonSpriteTilemap(BattleAnimSystem *system, BOOL flip)
+{
+    const TileRegion cells[] = MON_SPRITE_96_CELLS;
+    u16 palette = BATTLE_BG_PALETTE_MON_SPRITE << 12;
+    u32 size = 64 * 64 * sizeof(u16);
+    u16 *tilemap = Heap_Alloc(system->heapID, size);
+    u16 tile = 0;
+
+    for (int i = 0; i < 64 * 64; i++) {
+        tilemap[i] = MON_SPRITE_96_SIZE_TILES | palette;
+    }
+
+    for (int i = 0; i < NELEMS(cells); i++) {
+        for (int y = cells[i].y; y < cells[i].y + cells[i].height; y++) {
+            for (int x = cells[i].x; x < cells[i].x + cells[i].width; x++) {
+                if (flip) {
+                    tilemap[y * 32 + MON_SPRITE_96_TILES - 1 - x] = tile++ | palette | 0x400;
+                } else {
+                    tilemap[y * 32 + x] = tile++ | palette;
+                }
+            }
+        }
+    }
+
+    if (Bg_GetTilemapBuffer(system->bgConfig, BATTLE_BG_BASE) != NULL) {
+        Bg_LoadTilemapBuffer(system->bgConfig, BATTLE_BG_BASE, tilemap, size);
+    }
+
+    Bg_CopyTilemapBufferRangeToVRAM(system->bgConfig, BATTLE_BG_BASE, tilemap, size, 0);
+    Heap_Free(tilemap);
+}
+
 static void BattleAnimScriptCmd_LoadPokemonSpriteIntoBg(BattleAnimSystem *system)
 {
     void *charData = NULL;
@@ -1703,18 +1741,13 @@ static void BattleAnimScriptCmd_LoadPokemonSpriteIntoBg(BattleAnimSystem *system
     charData = system->context->pokemonSpriteData[battler]->tiles;
     int form = system->context->battlerForms[battler];
 
-    int memberIndex;
-    if ((BattleAnimSystem_IsContest(system) == TRUE) && (IsFormSymmetrical(BattleAnimSystem_GetBattlerSpecies(system, battler), form) == TRUE)) {
-        memberIndex = 265;
-    } else {
-        memberIndex = 264;
-    }
+    BOOL flip = BattleAnimSystem_IsContest(system) == TRUE && IsFormSymmetrical(BattleAnimSystem_GetBattlerSpecies(system, battler), form) == TRUE;
 
     u8 *bgTiles = Bg_GetCharPtr(BATTLE_BG_BASE);
     MI_CpuFill8(bgTiles, 0, 10 * 10 * 2 * TILE_SIZE_4BPP);
 
     Bg_ToggleLayer(BATTLE_BG_BASE, FALSE);
-    Bg_LoadTiles(system->bgConfig, BATTLE_BG_BASE, charData, 10 * 10 * ((8 / 2) * 8), 0);
+    Bg_LoadTiles(system->bgConfig, BATTLE_BG_BASE, charData, MON_SPRITE_96_SIZE_BYTES, 0);
     PaletteData_LoadBufferFromFileStart(
         system->paletteData,
         narcID,
@@ -1724,15 +1757,7 @@ static void BattleAnimScriptCmd_LoadPokemonSpriteIntoBg(BattleAnimSystem *system
         0,
         PLTT_DEST(BATTLE_BG_PALETTE_MON_SPRITE));
 
-    Graphics_LoadTilemapToBgLayerFromOpenNARC(
-        system->arcs[BATTLE_ANIM_SYSTEM_ARC_BATT_BG],
-        memberIndex,
-        system->bgConfig,
-        BATTLE_BG_BASE,
-        0,
-        0,
-        FALSE,
-        system->heapID);
+    BattleAnimSystem_LoadPokemonSpriteTilemap(system, flip);
 
     if (trackBattler == TRUE) {
         system->bgTrackingTask = Heap_Alloc(system->heapID, sizeof(SpriteTrackingTask));
@@ -1748,8 +1773,8 @@ static void BattleAnimScriptCmd_LoadPokemonSpriteIntoBg(BattleAnimSystem *system
     s16 y = PokemonSprite_GetAttribute(BattleAnimSystem_GetBattlerSprite(system, battler), MON_SPRITE_Y_CENTER);
     y -= PokemonSprite_GetAttribute(BattleAnimSystem_GetBattlerSprite(system, battler), MON_SPRITE_SHADOW_HEIGHT);
 
-    Bg_SetOffset(system->bgConfig, BATTLE_BG_BASE, BG_OFFSET_UPDATE_SET_X, -(x - (MON_SPRITE_FRAME_WIDTH / 2)));
-    Bg_SetOffset(system->bgConfig, BATTLE_BG_BASE, BG_OFFSET_UPDATE_SET_Y, -(y - (MON_SPRITE_FRAME_HEIGHT / 2)));
+    Bg_SetOffset(system->bgConfig, BATTLE_BG_BASE, BG_OFFSET_UPDATE_SET_X, -(x - MON_SPRITE_96_SIZE / 2));
+    Bg_SetOffset(system->bgConfig, BATTLE_BG_BASE, BG_OFFSET_UPDATE_SET_Y, -(y - MON_SPRITE_96_SIZE / 2));
 
     Bg_ToggleLayer(BATTLE_BG_BASE, TRUE);
     Bg_SetPriority(BATTLE_BG_BASE, BattleAnimSystem_GetPokemonSpritePriority(system));
@@ -1803,7 +1828,7 @@ static void BattleAnimScriptCmd_LoadPokemonSpriteDummyResources(BattleAnimSystem
         system->context->spriteSystem,
         system->pokemonSpriteManager,
         system->arcs[BATTLE_ANIM_SYSTEM_ARC_BATT_OBJ],
-        76,
+        misc_pokesprite_96_NCGR,
         FALSE,
         NNS_G2D_VRAM_TYPE_2DMAIN,
         resourceIDs[SPRITE_RESOURCE_PLTT]);
@@ -1824,7 +1849,7 @@ static void BattleAnimScriptCmd_LoadPokemonSpriteDummyResources(BattleAnimSystem
         system->context->spriteSystem,
         system->pokemonSpriteManager,
         system->arcs[BATTLE_ANIM_SYSTEM_ARC_BATT_OBJ],
-        77,
+        misc_pokesprite_96_cell_NCER,
         FALSE,
         resourceIDs[SPRITE_RESOURCE_CELL]);
 
@@ -1916,7 +1941,7 @@ static void BattleAnimScriptCmd_AddPokemonSprite(BattleAnimSystem *system)
             NNS_GFD_DST_2D_OBJ_CHAR_MAIN,
             proxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN],
             charData,
-            10 * 10 * ((8 / 2) * 8));
+            MON_SPRITE_96_SIZE_BYTES);
     }
 
     if (BattleAnimSystem_GetBattlerSprite(system, battler) != NULL) {
@@ -3862,9 +3887,9 @@ BattleMonOBJData *BattleMonOBJData_New(BattleSystem *battleSys, enum HeapID heap
             spriteResIDs[4] = 0;
             spriteResIDs[5] = 0;
 
-            SpriteSystem_LoadCharResObjFromOpenNarc(btlMonObjData->spriteContext.spriteSys, btlMonObjData->spriteContext.spriteMan, spriteNarc, 76, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, spriteResIDs[SPRITE_RESOURCE_CHAR]);
+            SpriteSystem_LoadCharResObjFromOpenNarc(btlMonObjData->spriteContext.spriteSys, btlMonObjData->spriteContext.spriteMan, spriteNarc, misc_pokesprite_96_NCGR, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, spriteResIDs[SPRITE_RESOURCE_CHAR]);
             SpriteSystem_LoadPaletteBufferFromOpenNarc(btlMonObjData->spriteContext.plttData, 2, btlMonObjData->spriteContext.spriteSys, btlMonObjData->spriteContext.spriteMan, spriteNarc, 75, FALSE, NNS_G2D_VRAM_TYPE_2DMAIN, 1, spriteResIDs[SPRITE_RESOURCE_PLTT]);
-            SpriteSystem_LoadCellResObjFromOpenNarc(btlMonObjData->spriteContext.spriteSys, btlMonObjData->spriteContext.spriteMan, spriteNarc, 77, FALSE, spriteResIDs[SPRITE_RESOURCE_CELL]);
+            SpriteSystem_LoadCellResObjFromOpenNarc(btlMonObjData->spriteContext.spriteSys, btlMonObjData->spriteContext.spriteMan, spriteNarc, misc_pokesprite_96_cell_NCER, FALSE, spriteResIDs[SPRITE_RESOURCE_CELL]);
             SpriteSystem_LoadAnimResObjFromOpenNarc(btlMonObjData->spriteContext.spriteSys, btlMonObjData->spriteContext.spriteMan, spriteNarc, 78, FALSE, spriteResIDs[SPRITE_RESOURCE_ANIM]);
         }
 
@@ -3947,7 +3972,7 @@ BattleMonOBJData *BattleMonOBJData_New(BattleSystem *battleSys, enum HeapID heap
                     NNSG2dImageProxy *imageProxy;
 
                     imageProxy = Sprite_GetImageProxy(managedSprite->sprite);
-                    VramTransfer_Request(NNS_GFD_DST_2D_OBJ_CHAR_MAIN, imageProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN], tiles, 10 * 10 * ((8 / 2) * 8));
+                    VramTransfer_Request(NNS_GFD_DST_2D_OBJ_CHAR_MAIN, imageProxy->vramLocation.baseAddrOfVram[NNS_G2D_VRAM_TYPE_2DMAIN], tiles, MON_SPRITE_96_SIZE_BYTES);
                 }
 
                 if (pokemonSprite != NULL) {

@@ -120,7 +120,7 @@ def main():
         for i in sorted(table):
             f.write(f"    [{i}] = {table[i]},\n")
         f.write("};\n\n// Its back's y offset (the clear rows under the art), for LoadPokemonSpriteYOffset.\n"
-                "static const u8 sSovereignFormBackYOffset[SOVEREIGN_FORM_COUNT] = {\n")
+                "static const s8 sSovereignFormBackYOffset[SOVEREIGN_FORM_COUNT] = {\n")
         for i in sorted(offsets):
             f.write(f"    [{i}] = {offsets[i]},\n")
         f.write("};\n\n#endif\n")

@@ -53,7 +53,7 @@ static const u16 sSovereignFormBack[SOVEREIGN_FORM_COUNT] = {
 };
 
 // Its back's y offset (the clear rows under the art), for LoadPokemonSpriteYOffset.
-static const u8 sSovereignFormBackYOffset[SOVEREIGN_FORM_COUNT] = {
+static const s8 sSovereignFormBackYOffset[SOVEREIGN_FORM_COUNT] = {
     [0] = 0,
     [1] = 0,
     [2] = 0,

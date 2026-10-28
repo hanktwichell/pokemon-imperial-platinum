@@ -57,7 +57,7 @@ void ov22_022590D4(UnkStruct_020298D8 *param0, PokemonSpriteManager *param1, Pok
     }
 
     {
-        u8 v3 = Pokemon_DPSpriteYOffset(param2, 2);
+        s8 v3 = Pokemon_DPSpriteYOffset(param2, 2);
         void *v4;
         NNSG2dCharacterData *v5;
 

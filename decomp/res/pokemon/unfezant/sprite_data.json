@@ -1,7 +1,7 @@
 {
     "front": {
         "y_offset": {
-            "female": 11,
+            "female": 5,
             "male": 5
         },
         "addl_y_offset": 16,

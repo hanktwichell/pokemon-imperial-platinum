@@ -611,8 +611,8 @@ static void ProcSpriteOffsets(dp_node sprite, size_t species, enum GenderRatio r
     const bool hasFemale = ratio != GENDER_RATIO_MALE_ONLY && ratio != GENDER_RATIO_NO_GENDER;
     const u8   backF     = hasFemale ? dp_u8_at(sprite, ".back.y_offset.female") : 0;
     const u8   backM     = hasMale ? dp_u8_at(sprite, ".back.y_offset.male") : 0;
-    const u8   frontF    = hasFemale ? dp_u8_at(sprite, ".front.y_offset.female") : 0;
-    const u8   frontM    = hasMale ? dp_u8_at(sprite, ".front.y_offset.male") : 0;
+    const s8   frontF    = hasFemale ? dp_s8_at(sprite, ".front.y_offset.female") : 0;
+    const s8   frontM    = hasMale ? dp_s8_at(sprite, ".front.y_offset.male") : 0;
 
     // Each species has 4 members; a gender the species can't have gets an empty one.
     Archive_Pack(A_SPRITE_OFFSETS, &backF,  hasFemale ? sizeof(backF)  : 0);

@@ -37,6 +37,7 @@
 #include "text.h"
 #include "trainer_info.h"
 
+#include "res/graphics/battle/sprites.naix"
 #include "res/text/bank/hall_of_fame.h"
 
 #define ROW_HEIGHT 16
@@ -79,7 +80,7 @@ typedef struct HallOfFameMan {
     int slotIndexes[MAX_PARTY_SIZE];
     int species[MAX_PARTY_SIZE];
     u32 forms[MAX_PARTY_SIZE];
-    u8 unk_310[6400];
+    u8 unk_310[MON_SPRITE_96_SIZE_BYTES];
     Camera *camera;
     VecFx32 position;
     CameraAngle cameraAngle;
@@ -777,7 +778,7 @@ static void ov86_0223BA44(HallOfFameMan *hallOfFameMan)
     RenderOam_Init(0, 128, 0, 32, 0, 128, 0, 32, HEAP_ID_HALL_OF_FAME);
 
     hallOfFameMan->spriteList = SpriteList_InitRendering(64, &hallOfFameMan->g2dRenderer, HEAP_ID_HALL_OF_FAME);
-    hallOfFameMan->unk_1D0 = Graphics_GetCellBankFromOpenNARC(narc, 77, FALSE, &cellBank, HEAP_ID_HALL_OF_FAME);
+    hallOfFameMan->unk_1D0 = Graphics_GetCellBankFromOpenNARC(narc, misc_pokesprite_96_cell_NCER, FALSE, &cellBank, HEAP_ID_HALL_OF_FAME);
     hallOfFameMan->unk_1D4 = Graphics_GetAnimBankFromOpenNARC(narc, 78, FALSE, &animBank, HEAP_ID_HALL_OF_FAME);
 
     ov86_0223BAC8(hallOfFameMan, cellBank, animBank, narc);
@@ -788,10 +789,6 @@ static void ov86_0223BA44(HallOfFameMan *hallOfFameMan)
 
 static void ov86_0223BAC8(HallOfFameMan *hallOfFameMan, NNSG2dCellDataBank *cellBank, NNSG2dAnimBankData *animBank, NARC *narc)
 {
-    static const TileRegion tileRegions[2] = {
-        FRAME_0_REGION,
-        FRAME_1_REGION
-    };
     PokemonSpriteTemplate spriteTemplate;
     SpriteResourcesHeader resourceHeader;
     SpriteListTemplate spriteListTemplate;
@@ -823,13 +820,13 @@ static void ov86_0223BAC8(HallOfFameMan *hallOfFameMan, NNSG2dCellDataBank *cell
     spriteListTemplate.vramType = NNS_G2D_VRAM_TYPE_2DMAIN;
     spriteListTemplate.heapID = HEAP_ID_HALL_OF_FAME;
 
-    ncgrBuffer = Graphics_GetCharDataFromOpenNARC(narc, 76, FALSE, &charData, HEAP_ID_HALL_OF_FAME);
+    ncgrBuffer = Graphics_GetCharDataFromOpenNARC(narc, misc_pokesprite_96_NCGR, FALSE, &charData, HEAP_ID_HALL_OF_FAME);
     nclrBuffer = Graphics_GetPlttDataFromOpenNARC(narc, 75, &paletteData, HEAP_ID_HALL_OF_FAME);
 
     for (i = 0; i < hallOfFameMan->monCount; i++) {
         NNS_G2dInitImageProxy(&imageProxy);
         NNS_G2dInitImagePaletteProxy(&paletteProxy);
-        NNS_G2dLoadImage1DMapping(charData, i * 2 * 3200, NNS_G2D_VRAM_TYPE_2DMAIN, &imageProxy);
+        NNS_G2dLoadImage1DMapping(charData, i * 2 * MON_SPRITE_96_SIZE_BYTES, NNS_G2D_VRAM_TYPE_2DMAIN, &imageProxy);
         NNS_G2dLoadPalette(paletteData, i * 0x20, NNS_G2D_VRAM_TYPE_2DMAIN, &paletteProxy);
 
         spriteListTemplate.priority = 1 + i;
@@ -842,10 +839,10 @@ static void ov86_0223BAC8(HallOfFameMan *hallOfFameMan, NNSG2dCellDataBank *cell
         hallOfFameMan->species[i] = Pokemon_GetValue((Pokemon *)mon, MON_DATA_SPECIES, NULL);
         hallOfFameMan->forms[i] = Pokemon_GetValue((Pokemon *)mon, MON_DATA_FORM, NULL);
 
-        CharacterSprite_LoadPokemonSpriteRegion(spriteTemplate.narcID,
+        CharacterSprite_LoadPokemonSprite96(spriteTemplate.narcID,
             spriteTemplate.character,
             HEAP_ID_HALL_OF_FAME,
-            &tileRegions[0],
+            0,
             hallOfFameMan->unk_310,
             Pokemon_GetValue((Pokemon *)mon,
                 MON_DATA_PERSONALITY,
@@ -854,13 +851,13 @@ static void ov86_0223BAC8(HallOfFameMan *hallOfFameMan, NNSG2dCellDataBank *cell
             FACE_FRONT,
             hallOfFameMan->species[i]);
 
-        DC_FlushRange(hallOfFameMan->unk_310, 3200);
-        GX_LoadOBJ(hallOfFameMan->unk_310, i * 2 * 3200, 3200);
+        DC_FlushRange(hallOfFameMan->unk_310, MON_SPRITE_96_SIZE_BYTES);
+        GX_LoadOBJ(hallOfFameMan->unk_310, i * 2 * MON_SPRITE_96_SIZE_BYTES, MON_SPRITE_96_SIZE_BYTES);
 
-        CharacterSprite_LoadPokemonSpriteRegion(spriteTemplate.narcID,
+        CharacterSprite_LoadPokemonSprite96(spriteTemplate.narcID,
             spriteTemplate.character,
             HEAP_ID_HALL_OF_FAME,
-            &tileRegions[1],
+            1,
             hallOfFameMan->unk_310,
             Pokemon_GetValue((Pokemon *)mon,
                 MON_DATA_PERSONALITY,
@@ -869,8 +866,8 @@ static void ov86_0223BAC8(HallOfFameMan *hallOfFameMan, NNSG2dCellDataBank *cell
             FACE_FRONT,
             hallOfFameMan->species[i]);
 
-        DC_FlushRange(hallOfFameMan->unk_310, 3200);
-        GX_LoadOBJ(hallOfFameMan->unk_310, i * 2 * 3200 + 3200, 3200);
+        DC_FlushRange(hallOfFameMan->unk_310, MON_SPRITE_96_SIZE_BYTES);
+        GX_LoadOBJ(hallOfFameMan->unk_310, i * 2 * MON_SPRITE_96_SIZE_BYTES + MON_SPRITE_96_SIZE_BYTES, MON_SPRITE_96_SIZE_BYTES);
 
         Graphics_LoadPalette(spriteTemplate.narcID, spriteTemplate.palette, 1, i * 0x20, 0x20, HEAP_ID_HALL_OF_FAME);
         PokemonSprite_LoadAnimFrames(hallOfFameMan->narc, &hallOfFameMan->animFrames[i][0], hallOfFameMan->species[i], 1);
@@ -878,14 +875,14 @@ static void ov86_0223BAC8(HallOfFameMan *hallOfFameMan, NNSG2dCellDataBank *cell
 
     NNS_G2dInitImageProxy(&imageProxy);
     NNS_G2dInitImagePaletteProxy(&paletteProxy);
-    NNS_G2dLoadImage1DMapping(charData, 38400, NNS_G2D_VRAM_TYPE_2DMAIN, &imageProxy);
+    NNS_G2dLoadImage1DMapping(charData, MAX_PARTY_SIZE * 2 * MON_SPRITE_96_SIZE_BYTES, NNS_G2D_VRAM_TYPE_2DMAIN, &imageProxy);
     NNS_G2dLoadPalette(paletteData, 192, NNS_G2D_VRAM_TYPE_2DMAIN, &paletteProxy);
 
     SpriteSystem_SetTrainerClassGraphicsIndex((TrainerInfo_Gender(hallOfFameMan->displayData->trainerInfo) == GENDER_FEMALE) ? TRAINER_CLASS_PLAYER_FEMALE : TRAINER_CLASS_PLAYER_MALE, FACE_FRONT, &v4);
-    CharacterSprite_LoadSpriteRegion(v4.narcID, v4.scan, HEAP_ID_HALL_OF_FAME, &tileRegions[0], hallOfFameMan->unk_310);
+    CharacterSprite_LoadSprite96(v4.narcID, v4.scan, HEAP_ID_HALL_OF_FAME, 0, hallOfFameMan->unk_310);
 
-    DC_FlushRange(hallOfFameMan->unk_310, 3200);
-    GX_LoadOBJ(hallOfFameMan->unk_310, 38400, 3200);
+    DC_FlushRange(hallOfFameMan->unk_310, MON_SPRITE_96_SIZE_BYTES);
+    GX_LoadOBJ(hallOfFameMan->unk_310, MAX_PARTY_SIZE * 2 * MON_SPRITE_96_SIZE_BYTES, MON_SPRITE_96_SIZE_BYTES);
 
     Graphics_LoadPalette(v4.narcID, v4.palette, 1, 192, 0x20, HEAP_ID_HALL_OF_FAME);
 
@@ -1215,7 +1212,7 @@ static void HallOfFame_InitPokemonAnimation(HallOfFameMan *hallOfFameMan, int mo
     pokemonAnimation->imageProxies[1] = pokemonAnimation->imageProxies[0];
 
     NNS_G2dInitImageProxy(&pokemonAnimation->imageProxies[1]);
-    NNS_G2dSetImageLocation(&(pokemonAnimation->imageProxies[1]), NNS_G2D_VRAM_TYPE_2DMAIN, monIndex * 2 * 3200 + 3200);
+    NNS_G2dSetImageLocation(&(pokemonAnimation->imageProxies[1]), NNS_G2D_VRAM_TYPE_2DMAIN, monIndex * 2 * MON_SPRITE_96_SIZE_BYTES + MON_SPRITE_96_SIZE_BYTES);
 
     hallOfFameMan->tasks[taskID] = SysTask_Start(HallOfFame_PlayPokemonAnimation, pokemonAnimation, 0);
 }

@@ -497,7 +497,7 @@ void ov17_022415E4(UnkStruct_ov17_0223F88C *param0)
     for (int i = 0; i < CONTEST_NUM_PARTICIPANTS; i++) {
         GF_ASSERT(param0->pokemonSpriteDataArray[i].tiles == NULL);
 
-        param0->pokemonSpriteDataArray[i].tiles = Heap_Alloc(HEAP_ID_21, (32 * 10 * 10));
+        param0->pokemonSpriteDataArray[i].tiles = Heap_Alloc(HEAP_ID_21, MON_SPRITE_96_SIZE_BYTES);
         param0->unk_08[i] = sub_02095484(param0->unk_04, i, param0->unk_00->contestMons[i], 0, &param0->pokemonSpriteDataArray[i], HEAP_ID_21, (256 - 40) - 32 * i, (104 + 8) - 32 * i, -0x200);
 
         PokemonSprite_SetAttribute(param0->unk_08[i], MON_SPRITE_HIDE, 1);
@@ -513,7 +513,7 @@ void ov17_022415E4(UnkStruct_ov17_0223F88C *param0)
 
     GF_ASSERT(param0->pokemonSpriteData.tiles == NULL);
 
-    param0->pokemonSpriteData.tiles = Heap_Alloc(HEAP_ID_21, (32 * 10 * 10));
+    param0->pokemonSpriteData.tiles = Heap_Alloc(HEAP_ID_21, MON_SPRITE_96_SIZE_BYTES);
     param0->pokemonSpriteData.palette = param0->pokemonSpriteDataArray[0].palette;
     param0->pokemonSpriteData.narcID = param0->pokemonSpriteDataArray[0].narcID;
 

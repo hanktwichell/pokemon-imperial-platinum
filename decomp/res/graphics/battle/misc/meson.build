@@ -18,7 +18,7 @@ battle_sprites += [
   ),
 
   ncgr_cell_gen.process(
-    files('pokesprite_1.png'),
+    files('pokesprite_1.png', 'pokesprite_96.png'),
     preserve_path_from: base_directory,
     extra_args: [ '-bitdepth', '4', '-clobbersize', '-mappingtype', '64' ],
   ),
@@ -47,7 +47,7 @@ battle_sprites += [
   ),
 
   ncer_gen.process(
-    files('pokesprite_1_cell.json', 'pokesprite_2_cell.json'),
+    files('pokesprite_1_cell.json', 'pokesprite_2_cell.json', 'pokesprite_96_cell.json'),
     preserve_path_from: base_directory,
   ),
 

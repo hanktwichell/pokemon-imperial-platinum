@@ -593,7 +593,7 @@ void BattleAnimScriptFunc_RolePlay(BattleAnimSystem *system)
     }
 
     u8 defender = BattleAnimSystem_GetDefender(ctx->common.battleAnimSys);
-    u8 defenderYOffset = LoadPokemonSpriteYOffset(
+    s8 defenderYOffset = LoadPokemonSpriteYOffset(
         BattleAnimSystem_GetBattlerSpecies(ctx->common.battleAnimSys, defender),
         BattleAnimSystem_GetBattlerGender(ctx->common.battleAnimSys, defender),
         face,

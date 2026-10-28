@@ -48,6 +48,15 @@ enum DSScreen {
 #define MON_SPRITE_FRAME_MAX_SIZE_TILES (MON_SPRITE_FRAME_WIDTH_TILES * MON_SPRITE_FRAME_HEIGHT_TILES)
 #define MON_SPRITE_FRAME_MAX_SIZE_BYTES (TILE_SIZE_4BPP * MON_SPRITE_FRAME_MAX_SIZE_TILES)
 
+// Sovereign: a front sprite can be 96x96 (PokeAPI's fronts at full size). The 2D copies of a sprite
+// (CharacterSprite_LoadPokemonSprite96) are 96x96 too: 144 tiles in the order of the OAM cells that draw them, 64x64,
+// 32x64, 64x32 and 32x32; an 80x80 sprite sits in the middle, MON_SPRITE_96_MARGIN pixels in from each edge.
+#define MON_SPRITE_96_TILES      12
+#define MON_SPRITE_96_SIZE       (MON_SPRITE_96_TILES * TILE_WIDTH_PIXELS)
+#define MON_SPRITE_96_MARGIN     ((MON_SPRITE_96_SIZE - MON_SPRITE_FRAME_WIDTH) / 2)
+#define MON_SPRITE_96_SIZE_TILES (MON_SPRITE_96_TILES * MON_SPRITE_96_TILES)
+#define MON_SPRITE_96_SIZE_BYTES (TILE_SIZE_4BPP * MON_SPRITE_96_SIZE_TILES)
+
 #define MON_AFFINE_SHIFT    8
 #define MON_AFFINE_SCALE(i) (i << MON_AFFINE_SHIFT)
 

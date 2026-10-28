@@ -24,6 +24,25 @@ static void CharacterSprite_CopyTileFromUntiledArray(const u8 *src, u8 *dest, in
     }
 }
 
+// Sovereign: a sprite's frames are 80x80 (10 tiles) or, for a 96x96 front, 96x96 (12 tiles), side by side. The callers
+// of the 80x80 functions below ask for tiles in 80x80 frames; in a 96x96 sprite they get the 80x80 box in the middle of
+// each frame.
+static int CharacterSprite_SourceCol(const NNSG2dCharacterData *charData, int col)
+{
+    int frameTiles = charData->H;
+
+    if (frameTiles != MON_SPRITE_96_TILES) {
+        return col;
+    }
+
+    return (col / MON_SPRITE_FRAME_WIDTH_TILES) * frameTiles + (frameTiles - MON_SPRITE_FRAME_WIDTH_TILES) / 2 + col % MON_SPRITE_FRAME_WIDTH_TILES;
+}
+
+static int CharacterSprite_SourceRow(const NNSG2dCharacterData *charData, int row)
+{
+    return charData->H == MON_SPRITE_96_TILES ? row + (MON_SPRITE_96_TILES - MON_SPRITE_FRAME_HEIGHT_TILES) / 2 : row;
+}
+
 static void CharacterSprite_LoadSpriteData(enum NarcID narcID, int narcIdx, enum HeapID heapID, NNSG2dCharacterData **charData)
 {
     BOOL success;
@@ -57,7 +76,7 @@ static void CharacterSprite_TileUntiledPokemonSprite(int x, int y, int width, in
 
     for (int row = y; row < (y + height); row++) {
         for (int col = x; col < (x + width); col++) {
-            startIndex = (col * TILE_WIDTH_4BPP) + (row * spriteWidth * 8);
+            startIndex = (CharacterSprite_SourceCol(monSpriteData, col) * TILE_WIDTH_4BPP) + (CharacterSprite_SourceRow(monSpriteData, row) * spriteWidth * 8);
             CharacterSprite_CopyTileFromUntiledArray(untiledSpriteData, tiledData, &startIndex, &tiledDataOffset, TILE_WIDTH_4BPP, spriteWidth);
         }
     }
@@ -92,7 +111,7 @@ static void CharacterSprite_LoadTiledPokemonSprite(enum NarcID narcID, int narcI
     NNSG2dCharacterData *monSpriteData = NULL;
 
     CharacterSprite_LoadSpriteData(narcID, narcIdx, heapID, &monSpriteData);
-    PokemonSprite_Decrypt(monSpriteData->pRawData, narcID);
+    PokemonSprite_DecryptSized(monSpriteData->pRawData, narcID, monSpriteData->szByte);
 
     speciesIsSpinda = CharacterSprite_SpeciesIsSpinda(species);
 
@@ -136,7 +155,7 @@ void CharacterSprite_LoadTiledData(enum NarcID narcID, int narcIdx, enum HeapID 
     tileWidth = TILE_WIDTH_4BPP;
     untiledSpriteData = characterData->pRawData;
 
-    PokemonSprite_Decrypt(untiledSpriteData, narcID);
+    PokemonSprite_DecryptSized(untiledSpriteData, narcID, characterData->szByte);
 
     tiledData = dest;
     spriteWidth = (characterData->W * tileWidth);
@@ -146,7 +165,7 @@ void CharacterSprite_LoadTiledData(enum NarcID narcID, int narcIdx, enum HeapID 
 
     for (int row = y; row < (y + height); row++) {
         for (int col = x; col < (x + width); col++) {
-            spriteIndex = (col * tileWidth) + (row * spriteWidth * 8);
+            spriteIndex = (CharacterSprite_SourceCol(characterData, col) * tileWidth) + (CharacterSprite_SourceRow(characterData, row) * spriteWidth * 8);
             CharacterSprite_CopyTileFromUntiledArray(untiledSpriteData, tiledData, &spriteIndex, &tiledDataOffset, tileWidth, spriteWidth);
         }
     }
@@ -279,4 +298,72 @@ void CharacterSprite_LoadPokemonSprite(enum NarcID narcID, int narcIdx, enum Hea
     const TileRegion region = FRAME_0_REGION;
 
     CharacterSprite_LoadPokemonSpriteRegion(narcID, narcIdx, heapID, &region, destPtr, personality, isAnimated, face, species);
+}
+
+static const TileRegion sCells96[] = MON_SPRITE_96_CELLS;
+
+// Sovereign: frame `frame` of an untiled sprite (80x80 or 96x96 frames side by side) as the 144 tiles of a 96x96
+// sprite in OAM cell order (sCells96); an 80x80 frame sits in the middle.
+static void CharacterSprite_TileFrame96(const NNSG2dCharacterData *charData, int frame, u8 *dest)
+{
+    const u8 *raw = charData->pRawData;
+    int frameTiles = charData->H;
+    int margin = (MON_SPRITE_96_TILES - frameTiles) / 2;
+    int rowBytes = charData->W * TILE_WIDTH_4BPP;
+
+    for (int i = 0; i < NELEMS(sCells96); i++) {
+        for (int ty = sCells96[i].y; ty < sCells96[i].y + sCells96[i].height; ty++) {
+            for (int tx = sCells96[i].x; tx < sCells96[i].x + sCells96[i].width; tx++) {
+                int sx = tx - margin;
+                int sy = ty - margin;
+
+                if (sx < 0 || sy < 0 || sx >= frameTiles || sy >= frameTiles) {
+                    memset(dest, 0, TILE_SIZE_4BPP);
+                    dest += TILE_SIZE_4BPP;
+                    continue;
+                }
+
+                const u8 *src = raw + sy * TILE_HEIGHT_PIXELS * rowBytes + (frame * frameTiles + sx) * TILE_WIDTH_4BPP;
+
+                for (int row = 0; row < TILE_HEIGHT_PIXELS; row++) {
+                    memcpy(dest, src, TILE_WIDTH_4BPP);
+                    dest += TILE_WIDTH_4BPP;
+                    src += rowBytes;
+                }
+            }
+        }
+    }
+}
+
+void CharacterSprite_LoadPokemonSprite96(enum NarcID narcID, int narcIdx, enum HeapID heapID, int frame, void *dest, u32 personality, BOOL isAnimated, int face, enum Species species)
+{
+    NNSG2dCharacterData *monSpriteData = NULL;
+    void *ncgrFile = NARC_AllocAndReadWholeMemberByIndexPair(narcID, narcIdx, heapID);
+
+    GF_ASSERT(ncgrFile != NULL);
+    BOOL success = NNS_G2dGetUnpackedCharacterData(ncgrFile, &monSpriteData);
+    GF_ASSERT(success != FALSE);
+
+    PokemonSprite_DecryptSized(monSpriteData->pRawData, narcID, monSpriteData->szByte);
+
+    if (face == FACE_FRONT && CharacterSprite_SpeciesIsSpinda(species) == TRUE) {
+        PokemonSprite_DrawSpindaSpots(monSpriteData->pRawData, personality, isAnimated);
+    }
+
+    CharacterSprite_TileFrame96(monSpriteData, frame, dest);
+    Heap_Free(ncgrFile);
+}
+
+void CharacterSprite_LoadSprite96(enum NarcID narcID, int narcIdx, enum HeapID heapID, int frame, void *dest)
+{
+    NNSG2dCharacterData *charData = NULL;
+    void *ncgrFile = NARC_AllocAndReadWholeMemberByIndexPair(narcID, narcIdx, heapID);
+
+    GF_ASSERT(ncgrFile != NULL);
+    BOOL success = NNS_G2dGetUnpackedCharacterData(ncgrFile, &charData);
+    GF_ASSERT(success != FALSE);
+
+    PokemonSprite_DecryptSized(charData->pRawData, narcID, charData->szByte);
+    CharacterSprite_TileFrame96(charData, frame, dest);
+    Heap_Free(ncgrFile);
 }

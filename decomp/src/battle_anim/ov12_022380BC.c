@@ -94,7 +94,7 @@ static void ov12_022380DC(BattlerSpriteContext *battlerSpriteCtx, int param1, in
     *v1 = v0;
 
     PokemonSprite_ScheduleReloadFromNARC(battlerSpriteCtx->sprites[battlerSpriteCtx->targetBattler]);
-    CharacterSprite_LoadPokemonSprite(v1->narcID, v1->character, heapID, battlerSpriteCtx->pokemonSpriteData[battlerSpriteCtx->targetBattler]->tiles, v7, FALSE, v4, v1->spindaSpots);
+    CharacterSprite_LoadPokemonSprite96(v1->narcID, v1->character, heapID, 0, battlerSpriteCtx->pokemonSpriteData[battlerSpriteCtx->targetBattler]->tiles, v7, FALSE, v4, v1->spindaSpots);
 
     battlerSpriteCtx->pokemonSpriteData[battlerSpriteCtx->targetBattler]->narcID = v1->narcID;
     battlerSpriteCtx->pokemonSpriteData[battlerSpriteCtx->targetBattler]->palette = v1->palette;
@@ -144,7 +144,7 @@ void ov12_022382BC(BattlerSpriteContext *battlerSpriteCtx, enum HeapID heapID)
         v3 = 0;
     }
 
-    CharacterSprite_LoadPokemonSprite(v0->narcID, v0->character, heapID, battlerSpriteCtx->pokemonSpriteData[battlerSpriteCtx->targetBattler]->tiles, v5, FALSE, v3, v0->spindaSpots);
+    CharacterSprite_LoadPokemonSprite96(v0->narcID, v0->character, heapID, 0, battlerSpriteCtx->pokemonSpriteData[battlerSpriteCtx->targetBattler]->tiles, v5, FALSE, v3, v0->spindaSpots);
 
     battlerSpriteCtx->pokemonSpriteData[battlerSpriteCtx->targetBattler]->narcID = v0->narcID;
     battlerSpriteCtx->pokemonSpriteData[battlerSpriteCtx->targetBattler]->palette = v0->palette;
@@ -183,7 +183,7 @@ void ov12_02238390(BattlerSpriteContext *battlerSpriteCtx, enum HeapID heapID)
     *v1 = v0;
 
     PokemonSprite_ScheduleReloadFromNARC(battlerSpriteCtx->sprites[battlerSpriteCtx->targetBattler]);
-    CharacterSprite_LoadSpriteFrame0(v1->narcID, v1->character, heapID, battlerSpriteCtx->pokemonSpriteData[battlerSpriteCtx->targetBattler]->tiles);
+    CharacterSprite_LoadSprite96(v1->narcID, v1->character, heapID, 0, battlerSpriteCtx->pokemonSpriteData[battlerSpriteCtx->targetBattler]->tiles);
 
     battlerSpriteCtx->pokemonSpriteData[battlerSpriteCtx->targetBattler]->narcID = v0.narcID;
     battlerSpriteCtx->pokemonSpriteData[battlerSpriteCtx->targetBattler]->palette = v0.palette;

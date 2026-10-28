@@ -199,7 +199,7 @@ void ov17_02250744(UnkStruct_ov17_0224FCA0 *param0)
 
         GF_ASSERT(param0->unk_10.pokemonSpriteDataArray[v1].tiles == NULL);
 
-        param0->unk_10.pokemonSpriteDataArray[v1].tiles = Heap_Alloc(HEAP_ID_24, (32 * 10 * 10));
+        param0->unk_10.pokemonSpriteDataArray[v1].tiles = Heap_Alloc(HEAP_ID_24, MON_SPRITE_96_SIZE_BYTES);
         param0->unk_10.unk_08[v1] = sub_02095484(param0->unk_10.unk_04, v0, param0->unk_10.unk_00->contestMons[v1], 2, &param0->unk_10.pokemonSpriteDataArray[v1], HEAP_ID_24, Unk_ov17_02254BF4[v0][0], Unk_ov17_02254BF4[v0][1], Unk_ov17_02254BF4[v0][2]);
     }
 }

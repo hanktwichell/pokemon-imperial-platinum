@@ -249,7 +249,7 @@ static void FashionCase_Init(FashionCase *fashionCase)
 
 static void GetMonXYPositions(Pokemon *mon, u8 *xPos, u8 *yPos)
 {
-    u8 yOffset = Pokemon_DPSpriteYOffset(mon, FACE_FRONT);
+    s8 yOffset = Pokemon_DPSpriteYOffset(mon, FACE_FRONT);
 
     *xPos = 192 - (8 * 8);
     *yPos = (16 + 129) - ((80 / 2) - yOffset) + -4;
