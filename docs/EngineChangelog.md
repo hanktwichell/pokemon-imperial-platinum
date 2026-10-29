@@ -15,6 +15,16 @@ test build, from a new game's bedroom), and all of them pass:
   roaming, and the Marking Map showed the 6 still roaming.
 - `talk_to_objects.py`: 254 of 254 objects ok or not there (139 run their script to its end, 111 are hidden on a new
   game, 4 are stand-ins).
+- `battle_evolutions.py`: 255 of 255 evolutions ok.
+- `battle_eggs.py`: 794 of 794 Eggs ok.
+- `wild_forms.py`: no problems (19,104 wild Pokémon made through the encounter code).
+- `rare_wild.py`: no problems (26 entries).
+- `signs_and_triggers.py`: 88 of 88 ok.
+- `visit_changed_maps.py`: all 183 maps load. 176 are idle at once. 7 open on a scene, as in the 2026-10-25 run:
+  - with `--scene`, the Contest Hall lobby, the Sandgem lab and the Battleground end idle;
+  - Cynthia's battle, the Hall of Fame and its credits, and Stark Mountain's Galactic battle and Charon scene were
+    still running at the frame limit, changing in every screenshot.
+  - The Regional Forms Park lobby (Pal Park's) no longer opens on a scene.
 - No harness reported a heap problem.
 - The 96×96 PR had already run the battle mechanics suite (526 of 526) and `battle_all_species.py` (1,472 of 1,472).
 
