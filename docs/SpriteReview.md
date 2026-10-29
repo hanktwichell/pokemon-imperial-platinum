@@ -95,12 +95,12 @@ and shiny (1,064 battles), and with `--forms` the 376 forms with a front of thei
 front is whole and stands on its platform. The backs are as above (the 9
 Bulbasaur backs, Reshiram's lavender back, Vivillon's pattern). Two things are new:
 
-**Tall fronts reach above the screen (owner's call).** A front's y offset puts its feet on the platform, and a
+**Tall fronts reached above the screen (fixed).** A front's y offset puts its feet on the platform, and a
 floating Pokémon's elevation (`addl_y_offset`) lifts it above its shadow. Platinum places the foe's sprite centre at
 y 50, and the second foe of a double battle at y 42. A 96×96 box is 8 rows taller than Platinum's 80×80 one, so a
-tall front, or a floating one, now starts above the screen and loses its top rows. Celesteela's box starts at y −22
+tall front, or a floating one, started above the screen and lost its top rows. Celesteela's box started at y −22
 (measured in its battle shot; the y offset −8 and elevation 16 give the same).
-- **Single battles (and the first foe in doubles): 66 fronts are cut,** by up to 22 rows. Platinum's own fronts
+- **Single battles (and the first foe in doubles): 66 fronts were cut,** by up to 22 rows. Platinum's own fronts
   never were.
   - 22 rows: Celesteela, Yveltal. 20: Hisuian Braviary. 18: Galarian Weezing. 17: Sigilyph. 15: Mega Altaria,
     Talonflame. 14: Therian Tornadus. 13: Therian Landorus, Mega Rayquaza. 10: Archeops. 9: Ho-Oh. 8: Braviary,
@@ -112,13 +112,13 @@ tall front, or a floating one, now starts above the screen and loses its top row
     Lugia, Sirfetch'd, Mega Staraptor, Cramorant, Mega Drampa, Overqwil, Mega Victreebel, Mega Blaziken, Mega
     Chimecho, Hoopa Unbound, Pheromosa, Stakataka, Mega Steelix, Tornadus, Kingambit, White Kyurem, Landorus, Dawn
     Wings Necrozma, Noivern, Therian Thundurus, Unfezant, Wyrdeer and Zekrom.
-- **The second foe of a double battle: 167 fronts are cut,** by up to 30 rows. Platinum's own fronts were cut there
+- **The second foe of a double battle: 167 fronts were cut,** by up to 30 rows. Platinum's own fronts were cut there
   too, but only 6 of them and by up to 7 rows: Lugia, Ho-Oh, Pidgeotto, Rayquaza, Fearow and Moltres.
-- **The choices**, mocked up below from Celesteela's battle shot:
-  - **A.** Keep the cut.
-  - **B.** Move such a front down until its top is on screen. A floating one floats lower; a standing one's feet sit
-    lower on the platform (by up to 22 pixels in singles, 30 for the second foe in doubles).
-  - **C.** Shrink only these fronts, enough to fit (Celesteela to 77%).
+- **The choices** (mocked up below from Celesteela's battle shot) were to keep the cut, move such fronts down, or
+  shrink them. **The owner's call (2026-10-29): shrink them, moving them down first so they shrink less.**
+  `tools/sprites/fit_front96.py` does it (`docs/FrontSprites96.md`): 92 fronts only move down, 77 also shrink
+  (Celesteela and Yveltal to 81%, the smallest), and no front is cut any more, as the second foe of a double battle
+  either.
 
 ![Celesteela and Yveltal in battle](sprite_review/top_cut_96.png)
 

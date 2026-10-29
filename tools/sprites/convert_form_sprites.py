@@ -13,7 +13,8 @@ pixel), and writes:
   decomp/include/data/sovereign_form_sprites.h             sSovereignFormSprite[i]: sprite number + 1, or 0 for none;
                                                             sSovereignFormSpriteYOffset[n]: sprite n's y offset
 
-The back sprite stays the base species' (no back art for these forms yet).
+The back sprite stays the base species' (no back art for these forms yet). A front that would reach above the top of
+the battle screen is moved down and, if that isn't enough, shrunk (fit_front96.py), with its species' elevation.
 
 Some of PokeAPI's shiny fronts are drawn apart from the normal front (Florges, Vivillon, the Furfrou trims...), so a
 palette swap of the normal front can't show them. Where more than 10% of the pixels don't follow one normal-to-shiny
@@ -32,7 +33,7 @@ import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from convert_battle_sprites import paired_palettes, two_frames, write_pal  # noqa: E402
-from convert_fronts96 import y_offset  # noqa: E402
+from convert_fronts96 import fitted  # noqa: E402
 from collections import Counter  # noqa: E402
 
 from PIL import Image  # noqa: E402
@@ -80,10 +81,11 @@ def main():
     table, female, shiny_of, female_shiny, species_shiny, order, report = {}, {}, {}, {}, [], [], []
     offsets = []
 
-    def convert(front_png, shiny_png, folder, name):
+    def convert(front_png, shiny_png, folder, name, species):
         """Convert one front (and its shiny) into sovereign_form_sprites/<number>-<folder>; its number + 1.
 
-        With shiny_png None, the front is a shiny drawn on its own and both palettes are its colours."""
+        With shiny_png None, the front is a shiny drawn on its own and both palettes are its colours. species is the
+        folder in res/pokemon/ whose elevation it takes."""
         front = Image.open(front_png).convert("RGBA")
         assert front.size == (96, 96), (front_png, front.size)
         shiny = None
@@ -92,6 +94,7 @@ def main():
             if sh.size == front.size:
                 shiny = sh
         pal, spal, (indexed,), ncol = paired_palettes([(front, shiny)])
+        indexed, offset = fitted(indexed, species, name, report)
         folder = f"{len(order):03}-{folder}"
         out = os.path.join(OUT, folder)
         os.makedirs(out)
@@ -100,16 +103,16 @@ def main():
         write_pal(os.path.join(out, "normal.pal"), (0, 0, 0), pal)
         write_pal(os.path.join(out, "shiny.pal"), (0, 0, 0), spal)
         order.append(folder)
-        offsets.append(y_offset(indexed))
+        offsets.append(offset)
         if ncol > 15:
             report.append(f"{name}: {ncol} colours")
         return len(order)
 
-    def own_shiny(front_png, shiny_png, folder, name):
+    def own_shiny(front_png, shiny_png, folder, name, species):
         """The shiny's own sprite number + 1 where it isn't a palette swap of the front, else 0."""
         if not (os.path.exists(front_png) and os.path.exists(shiny_png)) or misaligned(front_png, shiny_png) <= 0.1:
             return 0
-        return convert(shiny_png, None, folder + "-shiny", name + " (shiny)")
+        return convert(shiny_png, None, folder + "-shiny", name + " (shiny)", species)
 
     for i, stem, d, kind, name in forms():
         src = os.path.join(SRC, f"{stem}-{d}")
@@ -117,26 +120,30 @@ def main():
             if kind.startswith("SOVEREIGN_FORM_MEGA"):
                 report.append(f"{name}: no PokeAPI front, keeps the base sprite")
             continue
-        table[i] = convert(os.path.join(src, "front.png"), os.path.join(src, "shiny_front.png"), f"{stem}-{d}", name)
+        table[i] = convert(os.path.join(src, "front.png"), os.path.join(src, "shiny_front.png"), f"{stem}-{d}", name,
+                           stem)
         # A female front of its own (a visible gender difference in this form, e.g. Hisuian Sneasel).
         if os.path.exists(os.path.join(src, "female_front.png")):
             female[i] = convert(os.path.join(src, "female_front.png"), os.path.join(src, "female_shiny_front.png"),
-                                f"{stem}-{d}-female", name + " (female)")
-        sh = own_shiny(os.path.join(src, "front.png"), os.path.join(src, "shiny_front.png"), f"{stem}-{d}", name)
+                                f"{stem}-{d}-female", name + " (female)", stem)
+        sh = own_shiny(os.path.join(src, "front.png"), os.path.join(src, "shiny_front.png"), f"{stem}-{d}", name, stem)
         if sh:
             shiny_of[i] = sh
         if os.path.exists(os.path.join(src, "female_front.png")):
             sh = own_shiny(os.path.join(src, "female_front.png"), os.path.join(src, "female_shiny_front.png"),
-                           f"{stem}-{d}-female", name + " (female)")
+                           f"{stem}-{d}-female", name + " (female)", stem)
             if sh:
                 female_shiny[i] = sh
+    species_dirs = [n.strip()[len("SPECIES_"):].lower() for n in open(os.path.join(DECOMP, "generated", "species.txt"))
+                    if n.strip()]
     for d in sorted(os.listdir(FRONTS)):
         m = re.match(r"(\d{4})-", d)
         if not m:
             continue
         for female_flag, prefix in ((0, ""), (1, "female_")):
             sh = own_shiny(os.path.join(FRONTS, d, f"{prefix}front.png"),
-                           os.path.join(FRONTS, d, f"{prefix}shiny_front.png"), d + ("-female" if female_flag else ""), d)
+                           os.path.join(FRONTS, d, f"{prefix}shiny_front.png"), d + ("-female" if female_flag else ""), d,
+                           species_dirs[int(m.group(1))])
             if sh:
                 # 2: either gender (the species has no female front of its own, e.g. Florges, all female).
                 both = not female_flag and not os.path.exists(os.path.join(FRONTS, d, "female_front.png"))
