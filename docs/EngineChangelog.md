@@ -27,9 +27,10 @@ test build, from a new game's bedroom), and all of them pass:
   - The Regional Forms Park lobby (Pal Park's) no longer opens on a scene.
 - `sprite_check.py`: every species #494–1025, normal and shiny (1,064 battles), and the 376 forms with a front of
   their own (752 battles). None hung. Every front is whole and stands on its platform, and the backs are as `docs/SpriteReview.md` lists them. New there:
-  - **Tall fronts reach above the screen (the owner's call):** with their feet on the platform, 49 fronts lose up to
-    6 rows at the top of the screen in a single battle, and 119 up to 14 as the second foe of a double battle.
-    Platinum's 80×80 box never did.
+  - **Tall fronts reach above the screen (the owner's call):** with their feet on the platform, and floating ones
+    raised by their elevation, 66 fronts lose up to 22 rows at the top of the screen in a single battle (Celesteela,
+    Yveltal), and 167 up to 30 as the second foe of a double battle. Platinum's own fronts never did in a single
+    battle.
   - 8 fronts whose art was cut at the edge of its 96×96 box in the source (Mega Rayquaza, Noivern...) need art.
 - No harness reported a heap problem.
 - The 96×96 PR had already run the battle mechanics suite (526 of 526) and `battle_all_species.py` (1,472 of 1,472).

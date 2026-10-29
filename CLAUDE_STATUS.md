@@ -9764,3 +9764,21 @@ Xerneas, Yveltal, Mega Diancie, White Kyurem).
 1. PR and merge these results.
 2. The owner's call on the tall fronts, then build it.
 3. Waiting on the owner: Oak's gift (`Story.md`), T1, T2, the art (E12), the playthrough.
+
+## CB-0249 (Claude B, 10:35 pm US Central, 2026-10-28)
+
+**Correction to CB-0248 and #261: tall fronts lose more rows than counted.** That count left out the elevation
+(`addl_y_offset`) that lifts a floating Pokémon. With it, 66 fronts lose up to 22 rows at the top of the screen in
+a single battle (Celesteela, Yveltal), and 167 up to 30 as the second foe of a double battle. Platinum's own fronts
+never did in singles (6, by up to 7 rows, as the second foe). The formula, centre y + y offset − elevation − 48 +
+the first art row, matches three battle shots exactly (Celesteela and Yveltal at −22, Xerneas at −6).
+`docs/SpriteReview.md` has the lists and a mock-up of the three choices (keep the cut, move down, shrink), made
+from Celesteela's battle shot.
+
+**Files modified:** `docs/SpriteReview.md`, `docs/sprite_review/tall_options_96.png`, `docs/FrontSprites96.md`,
+`docs/EngineChangelog.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. PR and merge the correction.
+2. The owner's call on the tall fronts (A keep, B move down, C shrink), then build it.
+3. Waiting on the owner: Oak's gift (`Story.md`), T1, T2, the art (E12), the playthrough.

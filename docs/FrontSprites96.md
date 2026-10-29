@@ -163,7 +163,8 @@ Not run in the game:
   four-slot manager's 16 KB more with room to spare.
 
 Open, the owner's call (2026-10-29): **tall fronts reach above the screen in battle.** With its feet on the
-platform, a front whose art fills its 96×96 box starts above the screen: 49 fronts lose up to 6 rows in a single
-battle, and 119 up to 14 as the second foe of a double battle (y 42). Platinum's 80×80 box never did. They can keep
-the cut, move down until their top is on screen (their feet then sit lower on the platform), or be shrunk.
-`docs/SpriteReview.md` lists them, with a picture.
+platform, and a floating Pokémon raised by its elevation, a front whose art fills its 96×96 box starts above the
+screen: 66 fronts lose up to 22 rows in a single battle (Celesteela, Yveltal), and 167 up to 30 as the second foe of
+a double battle (y 42). Platinum's own fronts never did in singles (6, by up to 7 rows, as the second foe). They can
+keep the cut, move down until their top is on screen, or be shrunk. `docs/SpriteReview.md` lists them, with a
+mock-up of each choice.
