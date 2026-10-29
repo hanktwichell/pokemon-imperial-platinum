@@ -3,6 +3,33 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## Tall 96×96 fronts fit the battle screen
+
+For players (owner, 2026-10-29: "shrink the big sprites that get cut. maybe move them down too so we don't have to
+shrink em as much"; decision 51):
+- **No front is cut at the top of the battle screen any more.** With the 96×96 fronts, 66 tall or floating fronts
+  lost up to 22 rows there in a single battle (Celesteela, Yveltal), and 167 up to 30 as the second foe of a double
+  battle.
+- **How each fits:** it moves down first, by up to 4 pixels (a standing Pokémon's feet stay above the player's HP
+  box), and a floating one also by up to half its elevation, so it still floats. Then what is left is shrunk.
+  - 92 fronts only move down.
+  - 77 also shrink, to 91% at the median. Celesteela and Yveltal shrink most, to 81%.
+- Shrinking removes whole rows and columns, choosing the ones most like their neighbour so outlines stay whole. It
+  keeps the palette indices, so the shiny colours still fit, and the feet stay where they were.
+
+Code (`docs/FrontSprites96.md`):
+- `tools/sprites/fit_front96.py` fits a front where the second foe of a double battle stands (y 42), the highest a
+  foe's sprite sits.
+- `convert_fronts96.py`, `convert_battle_sprites.py` and `convert_form_sprites.py` call it on every 96×96 front they
+  write, and add the move to its y offset. Run again on the same packs, they give the same files.
+
+Verified (test build):
+- Every one of the 2,425 96×96 fronts (female fronts, the Gen 4 forms, Sovereign's forms and the shinies drawn
+  apart included) now starts on screen at y 42 and at y 50, by its art, y offset and elevation.
+- In battle, Celesteela, Yveltal, Sigilyph, Talonflame and Mega Rayquaza show whole and still float above their
+  shadows (`docs/sprite_review/tall_fit_96.png`).
+- `check_battle_sprites.py`: 5,344 battle sprites, no problems.
+
 ## 96×96 fronts: the playtest harnesses on the new build
 
 Nothing changes for players. More of the playtest harnesses ran on the 96×96 fronts build (`docs/FrontSprites96.md`;

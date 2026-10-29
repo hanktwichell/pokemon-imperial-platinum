@@ -9782,3 +9782,26 @@ from Celesteela's battle shot.
 1. PR and merge the correction.
 2. The owner's call on the tall fronts (A keep, B move down, C shrink), then build it.
 3. Waiting on the owner: Oak's gift (`Story.md`), T1, T2, the art (E12), the playthrough.
+
+## CB-0250 (Claude B, 10:51 pm US Central, 2026-10-28)
+
+**Done (PR #262 next): tall 96×96 fronts fit the battle screen** (owner, 2026-10-29: "shrink the big sprites that get
+cut. maybe move them down too so we don't have to shrink em as much"; decision 51). `tools/sprites/fit_front96.py`
+fits every 96×96 front where the second foe of a double battle stands (y 42). It moves the front down by up to 4 px,
+and a floating one also by up to half its elevation; then it shrinks what is left, removing the rows and columns most
+like their neighbour and keeping palette indices and the feet. The three sprite converters call it, so a re-run gives
+the same files. 92 fronts only move down, 77 also shrink (median 91%, Celesteela and Yveltal 81%). Checked: all 2,425
+fronts start on screen at y 42 and y 50; in battle Celesteela, Yveltal, Sigilyph, Talonflame and Mega Rayquaza show
+whole; `check_battle_sprites.py` passes.
+
+**Files modified:** `tools/sprites/fit_front96.py` (new), `convert_fronts96.py`, `convert_battle_sprites.py`,
+`convert_form_sprites.py`, 103 front PNGs and 64 `sprite_data.json` under `decomp/res/pokemon/`,
+`decomp/include/data/sovereign_fronts96.h`, `sovereign_form_sprites.h`, `docs/BattleSpriteImport.md`,
+`docs/FrontSprites96.md`, `docs/SpriteReview.md` (+ `sprite_review/tall_fit_96.png`), `docs/ProjectStatus.md`
+(decision 51), `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge #262 when CI passes.
+2. If the owner wants less shrink or less movement, the limits are `MOVE_DOWN` and the elevation share in
+   `fit_front96.py`; re-run the three converters.
+3. Waiting on the owner: Oak's gift (`Story.md`), T1, T2, the art (E12), the playthrough.

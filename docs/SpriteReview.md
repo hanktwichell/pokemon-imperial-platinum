@@ -124,6 +124,8 @@ tall front, or a floating one, started above the screen and lost its top rows. C
 
 ![The three choices for Celesteela](sprite_review/tall_options_96.png)
 
+![Before and after the fit, in battle](sprite_review/tall_fit_96.png)
+
 **Art cut at the 96×96 box's edge.** A scan of every 96×96 front for art on its top, left or right edge finds 50. Most
 only touch the edge (a flame, a tail tip), as some of Black and White's own sprites do (Lugia, Zekrom). These are cut:
 
