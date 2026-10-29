@@ -10,7 +10,8 @@ front and back each have a palette of 15 colours plus transparency (index 0); th
 with a second palette, so each shiny colour is the one the shiny sprite has where the normal sprite uses that index.
 Back art bigger than 80x80 is scaled down (nearest neighbour) and reported. The PNG holds two frames side by side;
 both get the same picture. A 96x96 front's y offset counts the clear rows under the art in the 80x80 box centred in
-it (negative when the art reaches below that box).
+it (negative when the art reaches below that box). A front that would reach above the top of the battle screen is
+moved down and, if that isn't enough, shrunk (fit_front96.py).
 
 Writes docs/BattleSpriteImport.md: what was scaled, how many colours each species had, and shinies that
 didn't line up.
@@ -27,6 +28,9 @@ import sys
 from collections import Counter, defaultdict
 
 from PIL import Image
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from fit_front96 import fit  # noqa: E402
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 POKEMON = os.path.join(ROOT, "decomp", "res", "pokemon")
@@ -218,6 +222,19 @@ def main():
             indexed.update(zip(group, images))
             if f"shiny_{face}" not in frames:
                 notes.append(f"no shiny {face}")
+        # A 96x96 front that would reach above the top of the battle screen moves down and, if need be, shrinks
+        # (fit_front96.py); its y offset gets the move.
+        elevation = 16 if floats(dex, rows) else 0
+        down = {}
+        for g in ("front", "female_front"):
+            if g in indexed and indexed[g].height == 96:
+                before = indexed[g].getbbox()
+                indexed[g], down[g] = fit(indexed[g], bottom_blank(indexed[g]), elevation)
+                after = indexed[g].getbbox()
+                if down[g]:
+                    height, was = after[3] - after[1], before[3] - before[1]
+                    shrunk = f", shrunk to {round(100 * height / was)}%" if height < was else ""
+                    notes.append(f"{g.replace('_', ' ')} moved down {down[g]}{shrunk} to fit the battle screen")
         # Shiny sprites whose shape doesn't match the normal one (a different pose or crop).
         for face in ("front", "back"):
             sh = frames.get(f"shiny_{face}")
@@ -242,10 +259,12 @@ def main():
         sd_path = os.path.join(dst, "sprite_data.json")
         sd = json.load(open(sd_path, encoding="utf-8"))
         for face in ("front", "back"):
-            off = bottom_blank(indexed[face])
-            female = bottom_blank(indexed["female_front"]) if face == "front" and "female_front" in indexed else off
+            off = bottom_blank(indexed[face]) + down.get(face, 0)
+            female = off
+            if face == "front" and "female_front" in indexed:
+                female = bottom_blank(indexed["female_front"]) + down.get("female_front", 0)
             sd[face]["y_offset"] = {"female": female, "male": off}
-        sd["front"]["addl_y_offset"] = 16 if floats(dex, rows) else 0
+        sd["front"]["addl_y_offset"] = elevation
         width = indexed["front"].getbbox()
         width = (width[2] - width[0]) if width else 0
         sd["shadow"]["size"] = "SHADOW_SIZE_SMALL" if width < 40 else "SHADOW_SIZE_MEDIUM" if width < 64 else "SHADOW_SIZE_LARGE"

@@ -162,8 +162,17 @@ Not run in the game:
 - By their heaps' size: the capsule menu (512 KB) and the Vs. Recorder's app (`overlay062`, 340 KB) take the
   four-slot manager's 16 KB more with room to spare.
 
-Open, the owner's call (2026-10-29): **tall fronts reach above the screen in battle.** With its feet on the
-platform, a front whose art fills its 96×96 box starts above the screen: 49 fronts lose up to 6 rows in a single
-battle, and 119 up to 14 as the second foe of a double battle (y 42). Platinum's 80×80 box never did. They can keep
-the cut, move down until their top is on screen (their feet then sit lower on the platform), or be shrunk.
-`docs/SpriteReview.md` lists them, with a picture.
+**Tall fronts fit the battle screen** (owner, 2026-10-29: "shrink the big sprites that get cut. maybe move them down
+too so we don't have to shrink em as much"). With its feet on the platform, and a floating Pokémon raised by its
+elevation, a front whose art fills its 96×96 box started above the screen: 66 fronts lost up to 22 rows in a single
+battle (Celesteela, Yveltal), and 167 up to 30 as the second foe of a double battle (y 42). Platinum's own fronts never
+did in singles (6, by up to 7 rows, as the second foe). `tools/sprites/fit_front96.py` now fits every front at the
+second foe's place, the highest:
+- it moves the front down, by up to 4 pixels (a standing Pokémon's feet stay above the player's HP box, at y 94), and
+  a floating one also by up to half its elevation, so it still floats;
+- what is left, it shrinks: it removes rows, and columns in proportion, choosing the ones most like their neighbour
+  so outlines stay whole, keeps the palette indices (the shiny palette still fits) and keeps the feet where they
+  were.
+- 169 fronts changed: 92 only move down, 77 also shrink (to 91% at the median; Celesteela and Yveltal to 81%, the
+  smallest). `convert_fronts96.py`, `convert_battle_sprites.py` and `convert_form_sprites.py` call it on every 96×96
+  front they write, so the fit comes back each time the fronts are converted again.

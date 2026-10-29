@@ -12,7 +12,9 @@ Reads assets/sprites/packs/pokeapi_fronts_bw/NNNN-Name/{front, shiny_front, fema
 - a gendered species gets female_front.png (PokeAPI's female front, or the male one where they look alike), a
   genderless one only male_front.png, the same files as its Platinum folder has;
 - its y offset, the clear rows under the art, counted in the 80x80 box centred in the 96x96 sprite (88 minus the
-  art's bottom row), as sprite_data.json's are for 80x80 sprites; art reaching below that box gets a negative one.
+  art's bottom row), as sprite_data.json's are for 80x80 sprites; art reaching below that box gets a negative one;
+- a front that would reach above the top of the battle screen is moved down and, if that isn't enough, shrunk
+  (fit_front96.py).
 
 Platinum's fronts and palettes in res/pokemon/<species>/ stay as they are: the back keeps using Platinum's palette,
 and the meson option platinum_fronts packs Platinum's fronts again (tools/scripts/make_pl_pokegra.py).
@@ -38,8 +40,11 @@ import shutil
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import json  # noqa: E402
+
 from convert_battle_sprites import paired_palettes, two_frames, write_pal  # noqa: E402
 from fetch_pokeapi_fronts import FORMS  # noqa: E402
+from fit_front96 import fit  # noqa: E402
 
 from PIL import Image  # noqa: E402
 
@@ -70,6 +75,24 @@ def y_offset(indexed):
     return 88 - bb[3] if bb else 0
 
 
+def elevation(name):
+    """How far the species' sprite floats above its shadow (sprite_data.json's addl_y_offset)."""
+    with open(os.path.join(POKEMON, name, "sprite_data.json"), encoding="utf-8") as f:
+        return json.load(f)["front"]["addl_y_offset"]
+
+
+def fitted(indexed, name, what, report):
+    """The front fitted on the battle screen (fit_front96.py) and its y offset; a line in the report if it changed."""
+    before = indexed.getbbox()
+    indexed, down = fit(indexed, y_offset(indexed), elevation(name))
+    after = indexed.getbbox()
+    if down:
+        height, was = after[3] - after[1], before[3] - before[1]
+        shrunk = f", shrunk to {round(100 * height / was)}%" if height < was else ""
+        report.append(f"{what}: moved down {down}{shrunk} (fit_front96.py)")
+    return indexed, y_offset(indexed) + down
+
+
 def main():
     if os.path.isdir(OUT):
         shutil.rmtree(OUT)
@@ -95,6 +118,8 @@ def main():
         pal, spal, images, ncol = paired_palettes(group)
         if ncol > 15:
             report.append(f"{const}: {ncol} colours, reduced to 15")
+        fits = [fitted(im, name, const + (" (female)" if k else ""), report) for k, im in enumerate(images)]
+        images = [im for im, _ in fits]
         if shiny is None:
             report.append(f"{const}: no shiny front (its shiny palette is the normal one)")
         folder = f"{dex:04}-{name}"
@@ -111,8 +136,8 @@ def main():
             shutil.copyfile(os.path.join(src, fname + ".key"), os.path.join(out, fname + ".key"))
         write_pal(os.path.join(out, "normal.pal"), (0, 0, 0), pal)
         write_pal(os.path.join(out, "shiny.pal"), (0, 0, 0), spal)
-        male = y_offset(images[0])
-        offsets[dex] = (male, y_offset(images[1]) if len(images) > 1 else male)
+        male = fits[0][1]
+        offsets[dex] = (male, fits[1][1] if len(fits) > 1 else male)
         folders.append((folder, sorted(files)))
 
     # The forms kept in pl_otherpoke.narc: a 96x96 front for each, packed after the other form sprites.
@@ -127,6 +152,7 @@ def main():
             pal, spal, (indexed,), ncol = paired_palettes([(front, shiny)])
             if ncol > 15:
                 report.append(f"{const} form {form}: {ncol} colours, reduced to 15")
+            indexed, offset = fitted(indexed, const.lower(), f"{const} form {form}", report)
             folder = f"{len(gen4_order):03}-{const.lower()}-{form}"
             out = os.path.join(OUT, "forms", folder)
             os.makedirs(out)
@@ -135,7 +161,7 @@ def main():
             write_pal(os.path.join(out, "normal.pal"), (0, 0, 0), pal)
             write_pal(os.path.join(out, "shiny.pal"), (0, 0, 0), spal)
             gen4_order.append(folder)
-            gen4.append((const, form, y_offset(indexed)))
+            gen4.append((const, form, offset))
     with open(os.path.join(OUT, "forms", "order.txt"), "w") as f:
         f.write("".join(o + "\n" for o in gen4_order))
 

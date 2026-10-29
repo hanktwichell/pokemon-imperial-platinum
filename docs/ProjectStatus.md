@@ -294,6 +294,11 @@ Made by the owner (2026-10-22):
     "mandatory"), Partner Pikachu as the deliveryman's gift (his costume and cap Pikachu go), and Furfrou's trims at
     the Hearthome groomer for now. Done (CA-0067): those forms are set only by trainer data, Milcery always
     evolves into the base Alcremie, and the deliveryman's list is down to nine.
+51. **Tall 96×96 fronts are moved down, then shrunk, to fit the battle screen** (owner, 2026-10-29: "shrink the big
+    sprites that get cut. maybe move them down too so we don't have to shrink em as much"). A front that would reach
+    above the screen, where the second foe of a double battle stands, moves down by up to 4 pixels (a floating one
+    also by up to half its elevation), and the rest is shrunk (`tools/sprites/fit_front96.py`,
+    `docs/FrontSprites96.md`). Done (CB-0250): 92 fronts only move down, 77 also shrink.
 
 Open:
 - **Overworld sprites for the legendaries:** the owner draws them and sorts the rest of the sizes (decision 40,

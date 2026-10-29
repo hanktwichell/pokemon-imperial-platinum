@@ -31,7 +31,7 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 518 | Musharna | converted | 12 / 10 | yes |  |
 | 519 | Pidove | converted | 15 / 15 | yes |  |
 | 520 | Tranquill | converted | 15 / 11 | yes |  |
-| 521 | Unfezant | converted | 15 / 14 | yes |  |
+| 521 | Unfezant | converted | 15 / 14 | yes | front moved down 9 to fit the battle screen; female front moved down 3 to fit the battle screen |
 | 522 | Blitzle | converted | 13 / 13 | yes |  |
 | 523 | Zebstrika | converted | 14 / 11 | yes |  |
 | 524 | Roggenrola | converted | 10 / 7 | yes |  |
@@ -71,13 +71,13 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 558 | Crustle | converted | 13 / 6 | yes |  |
 | 559 | Scraggy | converted | 14 / 14 | yes |  |
 | 560 | Scrafty | converted | 15 / 13 | yes |  |
-| 561 | Sigilyph | converted | 13 / 12 | yes |  |
+| 561 | Sigilyph | converted | 13 / 12 | yes | front moved down 12, shrunk to 86% to fit the battle screen |
 | 562 | Yamask | converted | 11 / 8 | yes |  |
 | 563 | Cofagrigus | converted | 13 / 9 | yes |  |
 | 564 | Tirtouga | converted | 11 / 7 | yes |  |
 | 565 | Carracosta | converted | 12 / 11 | yes |  |
 | 566 | Archen | converted | 13 / 13 | yes |  |
-| 567 | Archeops | converted | 15 / 14 | yes |  |
+| 567 | Archeops | converted | 15 / 14 | yes | front moved down 12, shrunk to 93% to fit the battle screen |
 | 568 | Trubbish | converted | 14 / 11 | yes |  |
 | 569 | Garbodor | converted | 14 / 9 | yes |  |
 | 570 | Zorua | converted | 10 / 7 | yes |  |
@@ -122,10 +122,10 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 609 | Chandelure | converted | 10 / 9 | yes |  |
 | 610 | Axew | converted | 14 / 14 | yes |  |
 | 611 | Fraxure | converted | 15 / 12 | yes |  |
-| 612 | Haxorus | converted | 13 / 9 | yes |  |
+| 612 | Haxorus | converted | 13 / 9 | yes | front moved down 3 to fit the battle screen |
 | 613 | Cubchoo | converted | 13 / 13 | yes |  |
 | 614 | Beartic | converted | 10 / 7 | yes |  |
-| 615 | Cryogonal | converted | 14 / 10 | yes |  |
+| 615 | Cryogonal | converted | 14 / 10 | yes | front moved down 4 to fit the battle screen |
 | 616 | Shelmet | converted | 13 / 10 | yes |  |
 | 617 | Accelgor | converted | 13 / 12 | yes |  |
 | 618 | Stunfisk | converted | 15 / 12 | yes |  |
@@ -138,24 +138,24 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 625 | Bisharp | converted | 15 / 13 | yes |  |
 | 626 | Bouffalant | converted | 15 / 10 | yes |  |
 | 627 | Rufflet | converted | 13 / 9 | yes |  |
-| 628 | Braviary | converted | 15 / 14 | yes |  |
+| 628 | Braviary | converted | 15 / 14 | yes | front moved down 12, shrunk to 95% to fit the battle screen |
 | 629 | Vullaby | converted | 13 / 11 | yes |  |
-| 630 | Mandibuzz | converted | 15 / 14 | yes |  |
+| 630 | Mandibuzz | converted | 15 / 14 | yes | front moved down 3 to fit the battle screen |
 | 631 | Heatmor | converted | 11 / 10 | yes |  |
 | 632 | Durant | converted | 9 / 9 | yes |  |
 | 633 | Deino | converted | 12 / 10 | yes |  |
 | 634 | Zweilous | converted | 13 / 7 | yes |  |
-| 635 | Hydreigon | converted | 13 / 10 | yes |  |
+| 635 | Hydreigon | converted | 13 / 10 | yes | front moved down 12 to fit the battle screen |
 | 636 | Larvesta | converted | 15 / 13 | yes |  |
 | 637 | Volcarona | converted | 15 / 12 | yes |  |
 | 638 | Cobalion | converted | 15 / 14 | yes |  |
 | 639 | Terrakion | converted | 15 / 13 | yes |  |
 | 640 | Virizion | converted | 14 / 12 | yes |  |
-| 641 | Tornadus | converted | 14 / 13 | yes |  |
-| 642 | Thundurus | converted | 15 / 13 | yes |  |
+| 641 | Tornadus | converted | 14 / 13 | yes | front moved down 10 to fit the battle screen |
+| 642 | Thundurus | converted | 15 / 13 | yes | front moved down 7 to fit the battle screen |
 | 643 | Reshiram | converted | 6 / 6 | yes |  |
-| 644 | Zekrom | converted | 12 / 9 | yes |  |
-| 645 | Landorus | converted | 14 / 13 | yes |  |
+| 644 | Zekrom | converted | 12 / 9 | yes | front moved down 4, shrunk to 95% to fit the battle screen |
+| 645 | Landorus | converted | 14 / 13 | yes | front moved down 9 to fit the battle screen |
 | 646 | Kyurem | converted | 14 / 13 | yes |  |
 | 647 | Keldeo | converted | 15 / 15 | yes |  |
 | 648 | Meloetta | converted | 15 / 13 | yes |  |
@@ -165,7 +165,7 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 652 | Chesnaught | converted | 14 / 13 | yes |  |
 | 653 | Fennekin | converted | 11 / 10 | yes |  |
 | 654 | Braixen | converted | 13 / 12 | yes |  |
-| 655 | Delphox | converted | 15 / 14 | yes |  |
+| 655 | Delphox | converted | 15 / 14 | yes | front moved down 4, shrunk to 97% to fit the battle screen |
 | 656 | Froakie | converted | 10 / 8 | yes |  |
 | 657 | Frogadier | converted | 12 / 12 | yes |  |
 | 658 | Greninja | converted | 15 / 15 | yes |  |
@@ -173,7 +173,7 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 660 | Diggersby | converted | 12 / 9 | yes |  |
 | 661 | Fletchling | converted | 11 / 13 | yes |  |
 | 662 | Fletchinder | converted | 14 / 13 | yes |  |
-| 663 | Talonflame | converted | 11 / 11 | yes | back scaled to 88% |
+| 663 | Talonflame | converted | 11 / 11 | yes | back scaled to 88%; front moved down 12, shrunk to 88% to fit the battle screen |
 | 664 | Scatterbug | converted | 10 / 8 | yes |  |
 | 665 | Spewpa | converted | 13 / 12 | yes |  |
 | 666 | Vivillon | converted | 19 / 14 | yes | shiny front doesn't line up (44% of pixels) |
@@ -197,11 +197,11 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 684 | Swirlix | converted | 9 / 6 | yes |  |
 | 685 | Slurpuff | converted | 11 / 11 | yes |  |
 | 686 | Inkay | converted | 15 / 14 | yes |  |
-| 687 | Malamar | converted | 13 / 14 | yes |  |
+| 687 | Malamar | converted | 13 / 14 | yes | front moved down 4 to fit the battle screen |
 | 688 | Binacle | converted | 13 / 12 | yes |  |
 | 689 | Barbaracle | converted | 15 / 13 | yes |  |
 | 690 | Skrelp | converted | 12 / 12 | yes |  |
-| 691 | Dragalge | converted | 14 / 14 | yes |  |
+| 691 | Dragalge | converted | 14 / 14 | yes | front moved down 2 to fit the battle screen |
 | 692 | Clauncher | converted | 11 / 11 | yes |  |
 | 693 | Clawitzer | converted | 13 / 12 | yes |  |
 | 694 | Helioptile | converted | 11 / 8 | yes |  |
@@ -209,7 +209,7 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 696 | Tyrunt | converted | 10 / 10 | yes |  |
 | 697 | Tyrantrum | converted | 12 / 12 | yes | back scaled to 87% |
 | 698 | Amaura | converted | 12 / 12 | yes |  |
-| 699 | Aurorus | converted | 15 / 18 | yes |  |
+| 699 | Aurorus | converted | 15 / 18 | yes | front moved down 4 to fit the battle screen |
 | 700 | Sylveon | converted | 12 / 11 | yes |  |
 | 701 | Hawlucha | converted | 15 / 15 | yes |  |
 | 702 | Dedenne | converted | 11 / 7 | yes |  |
@@ -219,19 +219,19 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 706 | Goodra | converted | 15 / 13 | yes |  |
 | 707 | Klefki | converted | 15 / 15 | yes |  |
 | 708 | Phantump | converted | 10 / 8 | yes |  |
-| 709 | Trevenant | converted | 11 / 9 | yes |  |
+| 709 | Trevenant | converted | 11 / 9 | yes | front moved down 3 to fit the battle screen |
 | 710 | Pumpkaboo | converted | 10 / 8 | yes |  |
 | 711 | Gourgeist | converted | 14 / 9 | yes |  |
 | 712 | Bergmite | converted | 13 / 9 | yes |  |
 | 713 | Avalugg | converted | 13 / 12 | yes |  |
 | 714 | Noibat | converted | 12 / 11 | yes |  |
-| 715 | Noivern | converted | 15 / 13 | yes |  |
-| 716 | Xerneas | converted | 9 / 8 | yes |  |
-| 717 | Yveltal | converted | 14 / 12 | yes |  |
-| 718 | Zygarde | converted | 10 / 9 | yes |  |
+| 715 | Noivern | converted | 15 / 13 | yes | front moved down 9 to fit the battle screen |
+| 716 | Xerneas | converted | 9 / 8 | yes | front moved down 4, shrunk to 90% to fit the battle screen |
+| 717 | Yveltal | converted | 14 / 12 | yes | front moved down 12, shrunk to 81% to fit the battle screen |
+| 718 | Zygarde | converted | 10 / 9 | yes | front moved down 4, shrunk to 98% to fit the battle screen |
 | 719 | Diancie | converted | 14 / 12 | yes |  |
 | 720 | Hoopa | converted | 15 / 14 | yes |  |
-| 721 | Volcanion | converted | 15 / 10 | yes |  |
+| 721 | Volcanion | converted | 15 / 10 | yes | front moved down 3 to fit the battle screen |
 | 722 | Rowlet | converted | 14 / 12 | yes |  |
 | 723 | Dartrix | converted | 13 / 14 | yes |  |
 | 724 | Decidueye | converted | 15 / 13 | yes |  |
@@ -283,7 +283,7 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 770 | Palossand | converted | 11 / 11 | yes |  |
 | 771 | Pyukumuku | converted | 11 / 10 | yes |  |
 | 772 | Type: Null | converted | 14 / 14 | yes |  |
-| 773 | Silvally | converted | 14 / 10 | yes |  |
+| 773 | Silvally | converted | 14 / 10 | yes | front moved down 1 to fit the battle screen |
 | 774 | Minior | converted | 10 / 11 | yes |  |
 | 775 | Komala | converted | 14 / 14 | yes |  |
 | 776 | Turtonator | converted | 14 / 13 | yes |  |
@@ -301,21 +301,21 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 788 | Tapu Fini | converted | 14 / 13 | yes |  |
 | 789 | Cosmog | converted | 15 / 14 | yes |  |
 | 790 | Cosmoem | converted | 14 / 13 | yes |  |
-| 791 | Solgaleo | converted | 15 / 14 | yes |  |
-| 792 | Lunala | converted | 14 / 12 | yes |  |
+| 791 | Solgaleo | converted | 15 / 14 | yes | front moved down 3 to fit the battle screen |
+| 792 | Lunala | converted | 14 / 12 | yes | front moved down 4 to fit the battle screen |
 | 793 | Nihilego | converted | 9 / 9 | yes |  |
-| 794 | Buzzwole | converted | 15 / 15 | yes | back scaled to 83% |
-| 795 | Pheromosa | converted | 15 / 11 | yes | back scaled to 87% |
-| 796 | Xurkitree | converted | 14 / 15 | yes | back scaled to 84% |
-| 797 | Celesteela | converted | 12 / 12 | yes | back scaled to 83% |
+| 794 | Buzzwole | converted | 15 / 15 | yes | back scaled to 83%; front moved down 4, shrunk to 90% to fit the battle screen |
+| 795 | Pheromosa | converted | 15 / 11 | yes | back scaled to 87%; front moved down 4, shrunk to 93% to fit the battle screen |
+| 796 | Xurkitree | converted | 14 / 15 | yes | back scaled to 84%; front moved down 4, shrunk to 90% to fit the battle screen |
+| 797 | Celesteela | converted | 12 / 12 | yes | back scaled to 83%; front moved down 12, shrunk to 81% to fit the battle screen |
 | 798 | Kartana | converted | 13 / 12 | yes |  |
 | 799 | Guzzlord | converted | 13 / 7 | yes | back scaled to 83% |
-| 800 | Necrozma | converted | 13 / 8 | yes |  |
+| 800 | Necrozma | converted | 13 / 8 | yes | front moved down 3 to fit the battle screen |
 | 801 | Magearna | converted | 15 / 13 | yes |  |
 | 802 | Marshadow | converted | 10 / 4 | yes |  |
 | 803 | Poipole | converted | 13 / 10 | yes |  |
-| 804 | Naganadel | converted | 14 / 14 | yes | back scaled to 92% |
-| 805 | Stakataka | converted | 11 / 9 | yes | back scaled to 85% |
+| 804 | Naganadel | converted | 14 / 14 | yes | back scaled to 92%; front moved down 4, shrunk to 99% to fit the battle screen |
+| 805 | Stakataka | converted | 11 / 9 | yes | back scaled to 85%; front moved down 4, shrunk to 93% to fit the battle screen |
 | 806 | Blacephalon | converted | 13 / 14 | yes |  |
 | 807 | Zeraora | converted | 12 / 12 | yes | shiny front doesn't line up (18% of pixels) |
 | 808 | Meltan | converted | 15 / 14 | yes |  |
@@ -332,8 +332,8 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 819 | Skwovet | converted | 12 / 9 | yes |  |
 | 820 | Greedent | converted | 14 / 7 | yes |  |
 | 821 | Rookidee | converted | 15 / 10 | yes |  |
-| 822 | Corvisquire | converted | 14 / 10 | yes |  |
-| 823 | Corviknight | converted | 13 / 13 | yes |  |
+| 822 | Corvisquire | converted | 14 / 10 | yes | front moved down 1 to fit the battle screen |
+| 823 | Corviknight | converted | 13 / 13 | yes | front moved down 2 to fit the battle screen |
 | 824 | Blipbug | converted | 13 / 12 | yes |  |
 | 825 | Dottler | converted | 14 / 8 | yes |  |
 | 826 | Orbeetle | converted | 15 / 8 | yes |  |
@@ -349,17 +349,17 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 836 | Boltund | converted | 15 / 12 | yes |  |
 | 837 | Rolycoly | converted | 13 / 8 | yes |  |
 | 838 | Carkol | converted | 13 / 10 | yes |  |
-| 839 | Coalossal | converted | 15 / 11 | yes |  |
+| 839 | Coalossal | converted | 15 / 11 | yes | front moved down 1 to fit the battle screen |
 | 840 | Applin | converted | 13 / 13 | yes |  |
 | 841 | Flapple | converted | 15 / 14 | yes |  |
 | 842 | Appletun | converted | 14 / 13 | yes |  |
 | 843 | Silicobra | converted | 12 / 10 | yes |  |
 | 844 | Sandaconda | converted | 12 / 9 | yes |  |
-| 845 | Cramorant | converted | 14 / 12 | yes |  |
+| 845 | Cramorant | converted | 14 / 12 | yes | front moved down 11 to fit the battle screen |
 | 846 | Arrokuda | converted | 14 / 14 | yes |  |
 | 847 | Barraskewda | converted | 13 / 12 | yes | back scaled to 95% |
 | 848 | Toxel | converted | 14 / 10 | yes |  |
-| 849 | Toxtricity | converted | 12 / 12 | yes |  |
+| 849 | Toxtricity | converted | 12 / 12 | yes | front moved down 2 to fit the battle screen |
 | 850 | Sizzlipede | converted | 13 / 11 | yes |  |
 | 851 | Centiskorch | converted | 14 / 12 | yes |  |
 | 852 | Clobbopus | converted | 12 / 8 | yes |  |
@@ -374,8 +374,8 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 861 | Grimmsnarl | converted | 14 / 8 | yes |  |
 | 862 | Obstagoon | converted | 13 / 13 | yes |  |
 | 863 | Perrserker | converted | 14 / 10 | yes |  |
-| 864 | Cursola | converted | 14 / 9 | yes | back scaled to 93% |
-| 865 | Sirfetch’d | converted | 14 / 13 | yes | back scaled to 86% |
+| 864 | Cursola | converted | 14 / 9 | yes | back scaled to 93%; front moved down 4, shrunk to 99% to fit the battle screen |
+| 865 | Sirfetch’d | converted | 14 / 13 | yes | back scaled to 86%; front moved down 4, shrunk to 91% to fit the battle screen |
 | 866 | Mr. Rime | converted | 15 / 9 | yes |  |
 | 867 | Runerigus | converted | 9 / 6 | yes | back scaled to 90% |
 | 868 | Milcery | converted | 7 / 5 | yes |  |
@@ -399,23 +399,23 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 886 | Drakloak | converted | 15 / 10 | yes |  |
 | 887 | Dragapult | converted | 15 / 13 | yes |  |
 | 888 | Zacian | converted | 12 / 13 | yes |  |
-| 889 | Zamazenta | converted | 12 / 12 | yes |  |
-| 890 | Eternatus | converted | 15 / 8 | yes |  |
+| 889 | Zamazenta | converted | 12 / 12 | yes | front moved down 4, shrunk to 96% to fit the battle screen |
+| 890 | Eternatus | converted | 15 / 8 | yes | front moved down 4 to fit the battle screen |
 | 891 | Kubfu | converted | 13 / 9 | yes |  |
 | 892 | Urshifu | converted | 13 / 13 | yes |  |
 | 893 | Zarude | converted | 15 / 8 | yes |  |
 | 894 | Regieleki | converted | 11 / 10 | yes | back scaled to 86% |
 | 895 | Regidrago | converted | 14 / 11 | yes |  |
-| 896 | Glastrier | converted | 8 / 9 | yes | back scaled to 98% |
+| 896 | Glastrier | converted | 8 / 9 | yes | back scaled to 98%; front moved down 1 to fit the battle screen |
 | 897 | Spectrier | converted | 11 / 11 | yes | back scaled to 98% |
-| 898 | Calyrex | converted | 13 / 13 | yes |  |
-| 899 | Wyrdeer | converted | 15 / 12 | yes |  |
+| 898 | Calyrex | converted | 13 / 13 | yes | front moved down 3 to fit the battle screen |
+| 899 | Wyrdeer | converted | 15 / 12 | yes | front moved down 4, shrunk to 95% to fit the battle screen |
 | 900 | Kleavor | converted | 12 / 11 | yes |  |
 | 901 | Ursaluna | converted | 15 / 9 | yes |  |
 | 902 | Basculegion | converted | 14 / 12 | yes |  |
 | 903 | Sneasler | converted | 15 / 13 | yes |  |
-| 904 | Overqwil | converted | 15 / 13 | yes |  |
-| 905 | Enamorus | converted | 15 / 12 | yes |  |
+| 904 | Overqwil | converted | 15 / 13 | yes | front moved down 4, shrunk to 92% to fit the battle screen |
+| 905 | Enamorus | converted | 15 / 12 | yes | front moved down 12, shrunk to 95% to fit the battle screen |
 | 906 | Sprigatito | converted | 11 / 10 | yes |  |
 | 907 | Floragato | converted | 12 / 10 | yes |  |
 | 908 | Meowscarada | converted | 12 / 9 | yes |  |
@@ -444,10 +444,10 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 931 | Squawkabilly | converted | 15 / 13 | yes |  |
 | 932 | Nacli | converted | 14 / 10 | yes |  |
 | 933 | Naclstack | converted | 13 / 14 | yes |  |
-| 934 | Garganacl | converted | 13 / 6 | yes |  |
+| 934 | Garganacl | converted | 13 / 6 | yes | front moved down 4, shrunk to 98% to fit the battle screen |
 | 935 | Charcadet | converted | 15 / 15 | yes |  |
 | 936 | Armarouge | converted | 15 / 11 | yes |  |
-| 937 | Ceruledge | converted | 15 / 13 | yes |  |
+| 937 | Ceruledge | converted | 15 / 13 | yes | front moved down 1 to fit the battle screen |
 | 938 | Tadbulb | converted | 12 / 10 | yes |  |
 | 939 | Bellibolt | converted | 15 / 9 | yes |  |
 | 940 | Wattrel | converted | 15 / 13 | yes |  |
@@ -472,7 +472,7 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 959 | Tinkaton | converted | 14 / 12 | yes |  |
 | 960 | Wiglett | converted | 12 / 9 | yes |  |
 | 961 | Wugtrio | converted | 14 / 10 | yes |  |
-| 962 | Bombirdier | converted | 14 / 11 | yes |  |
+| 962 | Bombirdier | converted | 14 / 11 | yes | front moved down 2 to fit the battle screen |
 | 963 | Finizen | converted | 14 / 9 | yes |  |
 | 964 | Palafin | converted | 15 / 10 | yes |  |
 | 965 | Varoom | converted | 14 / 14 | yes |  |
@@ -483,7 +483,7 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 970 | Glimmora | converted | 14 / 9 | yes |  |
 | 971 | Greavard | converted | 13 / 13 | yes |  |
 | 972 | Houndstone | converted | 13 / 12 | yes |  |
-| 973 | Flamigo | converted | 11 / 11 | yes |  |
+| 973 | Flamigo | converted | 11 / 11 | yes | front moved down 4 to fit the battle screen |
 | 974 | Cetoddle | converted | 10 / 4 | yes |  |
 | 975 | Cetitan | converted | 12 / 10 | yes |  |
 | 976 | Veluza | converted | 14 / 13 | yes |  |
@@ -491,34 +491,34 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 978 | Tatsugiri | converted | 13 / 11 | yes |  |
 | 979 | Annihilape | converted | 14 / 8 | yes |  |
 | 980 | Clodsire | converted | 8 / 8 | yes |  |
-| 981 | Farigiraf | converted | 15 / 13 | yes |  |
+| 981 | Farigiraf | converted | 15 / 13 | yes | front moved down 3 to fit the battle screen |
 | 982 | Dudunsparce | converted | 14 / 12 | yes |  |
-| 983 | Kingambit | converted | 15 / 11 | yes |  |
+| 983 | Kingambit | converted | 15 / 11 | yes | front moved down 4, shrunk to 95% to fit the battle screen |
 | 984 | Great Tusk | converted | 15 / 12 | yes |  |
 | 985 | Scream Tail | converted | 14 / 7 | yes |  |
 | 986 | Brute Bonnet | converted | 15 / 11 | yes |  |
 | 987 | Flutter Mane | converted | 14 / 14 | yes |  |
-| 988 | Slither Wing | converted | 15 / 14 | yes |  |
+| 988 | Slither Wing | converted | 15 / 14 | yes | front moved down 3 to fit the battle screen |
 | 989 | Sandy Shocks | converted | 15 / 14 | yes |  |
 | 990 | Iron Treads | converted | 13 / 11 | yes |  |
 | 991 | Iron Bundle | converted | 15 / 14 | yes |  |
 | 992 | Iron Hands | converted | 15 / 14 | yes |  |
-| 993 | Iron Jugulis | converted | 15 / 6 | yes |  |
+| 993 | Iron Jugulis | converted | 15 / 6 | yes | front moved down 4 to fit the battle screen |
 | 994 | Iron Moth | converted | 15 / 10 | yes |  |
 | 995 | Iron Thorns | converted | 12 / 10 | yes |  |
 | 996 | Frigibax | converted | 14 / 12 | yes |  |
 | 997 | Arctibax | converted | 14 / 10 | yes |  |
 | 998 | Baxcalibur | converted | 12 / 9 | yes |  |
 | 999 | Gimmighoul | converted | 15 / 12 | yes |  |
-| 1000 | Gholdengo | converted | 14 / 9 | yes |  |
-| 1001 | Wo-Chien | converted | 15 / 14 | yes |  |
+| 1000 | Gholdengo | converted | 14 / 9 | yes | front moved down 1 to fit the battle screen |
+| 1001 | Wo-Chien | converted | 15 / 14 | yes | front moved down 4 to fit the battle screen |
 | 1002 | Chien-Pao | converted | 15 / 13 | yes |  |
 | 1003 | Ting-Lu | converted | 17 / 13 | yes | shiny front doesn't line up (13% of pixels) |
 | 1004 | Chi-Yu | converted | 15 / 15 | yes |  |
 | 1005 | Roaring Moon | converted | 15 / 14 | yes |  |
-| 1006 | Iron Valiant | converted | 15 / 14 | yes |  |
-| 1007 | Koraidon | converted | 14 / 15 | yes |  |
-| 1008 | Miraidon | converted | 15 / 12 | yes |  |
+| 1006 | Iron Valiant | converted | 15 / 14 | yes | front moved down 1 to fit the battle screen |
+| 1007 | Koraidon | converted | 14 / 15 | yes | front moved down 4, shrunk to 91% to fit the battle screen |
+| 1008 | Miraidon | converted | 15 / 12 | yes | front moved down 4 to fit the battle screen |
 | 1009 | Walking Wake | converted | 15 / 14 | yes |  |
 | 1010 | Iron Leaves | converted | 15 / 14 | yes |  |
 | 1011 | Dipplin | converted | 15 / 10 | yes |  |
@@ -528,11 +528,11 @@ Written by `tools/sprites/convert_battle_sprites.py` from `assets/sprites/packs/
 | 1015 | Munkidori | converted | 11 / 14 | yes |  |
 | 1016 | Fezandipiti | converted | 14 / 14 | yes |  |
 | 1017 | Ogerpon | converted | 15 / 10 | yes |  |
-| 1018 | Archaludon | converted | 14 / 13 | yes |  |
+| 1018 | Archaludon | converted | 14 / 13 | yes | front moved down 4, shrunk to 98% to fit the battle screen |
 | 1019 | Hydrapple | converted | 15 / 14 | yes |  |
-| 1020 | Gouging Fire | converted | 15 / 10 | yes |  |
-| 1021 | Raging Bolt | converted | 15 / 14 | yes |  |
+| 1020 | Gouging Fire | converted | 15 / 10 | yes | front moved down 2 to fit the battle screen |
+| 1021 | Raging Bolt | converted | 15 / 14 | yes | front moved down 4, shrunk to 90% to fit the battle screen |
 | 1022 | Iron Boulder | converted | 15 / 15 | yes |  |
-| 1023 | Iron Crown | converted | 16 / 14 | yes | shiny front doesn't line up (23% of pixels) |
+| 1023 | Iron Crown | converted | 16 / 14 | yes | front moved down 1 to fit the battle screen; shiny front doesn't line up (23% of pixels) |
 | 1024 | Terapagos | converted | 15 / 14 | yes |  |
 | 1025 | Pecharunt | converted | 14 / 12 | yes |  |

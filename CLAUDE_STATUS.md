@@ -9764,3 +9764,44 @@ Xerneas, Yveltal, Mega Diancie, White Kyurem).
 1. PR and merge these results.
 2. The owner's call on the tall fronts, then build it.
 3. Waiting on the owner: Oak's gift (`Story.md`), T1, T2, the art (E12), the playthrough.
+
+## CB-0249 (Claude B, 10:35 pm US Central, 2026-10-28)
+
+**Correction to CB-0248 and #261: tall fronts lose more rows than counted.** That count left out the elevation
+(`addl_y_offset`) that lifts a floating Pokémon. With it, 66 fronts lose up to 22 rows at the top of the screen in
+a single battle (Celesteela, Yveltal), and 167 up to 30 as the second foe of a double battle. Platinum's own fronts
+never did in singles (6, by up to 7 rows, as the second foe). The formula, centre y + y offset − elevation − 48 +
+the first art row, matches three battle shots exactly (Celesteela and Yveltal at −22, Xerneas at −6).
+`docs/SpriteReview.md` has the lists and a mock-up of the three choices (keep the cut, move down, shrink), made
+from Celesteela's battle shot.
+
+**Files modified:** `docs/SpriteReview.md`, `docs/sprite_review/tall_options_96.png`, `docs/FrontSprites96.md`,
+`docs/EngineChangelog.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. PR and merge the correction.
+2. The owner's call on the tall fronts (A keep, B move down, C shrink), then build it.
+3. Waiting on the owner: Oak's gift (`Story.md`), T1, T2, the art (E12), the playthrough.
+
+## CB-0250 (Claude B, 10:51 pm US Central, 2026-10-28)
+
+**Done (PR #262 next): tall 96×96 fronts fit the battle screen** (owner, 2026-10-29: "shrink the big sprites that get
+cut. maybe move them down too so we don't have to shrink em as much"; decision 51). `tools/sprites/fit_front96.py`
+fits every 96×96 front where the second foe of a double battle stands (y 42). It moves the front down by up to 4 px,
+and a floating one also by up to half its elevation; then it shrinks what is left, removing the rows and columns most
+like their neighbour and keeping palette indices and the feet. The three sprite converters call it, so a re-run gives
+the same files. 92 fronts only move down, 77 also shrink (median 91%, Celesteela and Yveltal 81%). Checked: all 2,425
+fronts start on screen at y 42 and y 50; in battle Celesteela, Yveltal, Sigilyph, Talonflame and Mega Rayquaza show
+whole; `check_battle_sprites.py` passes.
+
+**Files modified:** `tools/sprites/fit_front96.py` (new), `convert_fronts96.py`, `convert_battle_sprites.py`,
+`convert_form_sprites.py`, 103 front PNGs and 64 `sprite_data.json` under `decomp/res/pokemon/`,
+`decomp/include/data/sovereign_fronts96.h`, `sovereign_form_sprites.h`, `docs/BattleSpriteImport.md`,
+`docs/FrontSprites96.md`, `docs/SpriteReview.md` (+ `sprite_review/tall_fit_96.png`), `docs/ProjectStatus.md`
+(decision 51), `docs/EngineChangelog.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Merge #262 when CI passes.
+2. If the owner wants less shrink or less movement, the limits are `MOVE_DOWN` and the elevation share in
+   `fit_front96.py`; re-run the three converters.
+3. Waiting on the owner: Oak's gift (`Story.md`), T1, T2, the art (E12), the playthrough.

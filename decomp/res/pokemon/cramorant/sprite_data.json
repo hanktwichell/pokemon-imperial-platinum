@@ -1,8 +1,8 @@
 {
     "front": {
         "y_offset": {
-            "female": 4,
-            "male": 4
+            "female": 15,
+            "male": 15
         },
         "addl_y_offset": 16,
         "animation": 13,
