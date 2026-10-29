@@ -9723,3 +9723,22 @@ own `decomp/build_test`, and main's predates #259.
 2. A regression pass on main's 96×96 build with the harnesses not yet run on it: `battle_all_trainers.py`,
    `elite_four_runs.py`, `gift_pokemon.py`, `battle_form_changes.py`, `roamers.py`.
 3. Waiting on the owner: whether Oak gives something at his visit (`Story.md`), T1, T2, the art (E12).
+
+## CB-0247 (Claude B, 7:03 pm US Central, 2026-10-28)
+
+**Merged:** #260 (each harness process keeps its own emulator battery; the PC's Hall of Fame records checked on the
+96×96 build). `docs/ProjectStatus.md`: the two E10 owner questions were answered by decisions 46 and 47 (both built);
+Oak's gift (`Story.md` call 3) added to "Waiting on the owner".
+
+**Regression pass on the 96×96 build (in progress, from /home/user/pi96 at main's tree; main's `decomp/build_test`
+predates #259):** all pass so far. Trainers 1,039 of 1,039, Elite Four 13 of 13, form changes 211 of 211, gifts 45 of 45,
+roamers no problems, objects 254 of 254 ok or not there, evolutions 255 of 255. Running: eggs, then wild forms, rare
+wild, signs and triggers, changed maps, sprite contact sheets. The container restarted twice during the pass;
+the scratch runners resume (finished parts are skipped). `--part I/N` counts from 0.
+
+**Files modified:** `docs/EngineChangelog.md`, `docs/ProjectStatus.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. Finish the regression pass, add the rest to the changelog entry, PR and merge.
+2. Look at the sprite contact sheets by eye.
+3. Waiting on the owner: Oak's gift (`Story.md`), T1, T2, the art (E12), the playthrough.
