@@ -3,6 +3,37 @@
 Changes made to the pret/pokeplatinum decompilation in `decomp/`, newest first. Each entry lists what changed for
 players and the verification that was run.
 
+## 96×96 fronts: the playtest harnesses on the new build
+
+Nothing changes for players. More of the playtest harnesses ran on the 96×96 fronts build (`docs/FrontSprites96.md`;
+test build, from a new game's bedroom), and all of them pass:
+- `battle_all_trainers.py`: 1,039 of 1,039 trainers ok.
+- `elite_four_runs.py`: 13 of 13 runs ok.
+- `battle_form_changes.py`: 211 of 211 cases ok.
+- `gift_pokemon.py`: 45 of 45 gifts ok.
+- `roamers.py`: no problems. All 8 roamers were released, met and battled, Fezandipiti was caught and stopped
+  roaming, and the Marking Map showed the 6 still roaming.
+- `talk_to_objects.py`: 254 of 254 objects ok or not there (139 run their script to its end, 111 are hidden on a new
+  game, 4 are stand-ins).
+- `battle_evolutions.py`: 255 of 255 evolutions ok.
+- `battle_eggs.py`: 794 of 794 Eggs ok.
+- `wild_forms.py`: no problems (19,104 wild Pokémon made through the encounter code).
+- `rare_wild.py`: no problems (26 entries).
+- `signs_and_triggers.py`: 88 of 88 ok.
+- `visit_changed_maps.py`: all 183 maps load. 176 are idle at once. 7 open on a scene, as in the 2026-10-25 run:
+  - with `--scene`, the Contest Hall lobby, the Sandgem lab and the Battleground end idle;
+  - Cynthia's battle, the Hall of Fame and its credits, and Stark Mountain's Galactic battle and Charon scene were
+    still running at the frame limit, changing in every screenshot.
+  - The Regional Forms Park lobby (Pal Park's) no longer opens on a scene.
+- `sprite_check.py`: every species #494–1025, normal and shiny (1,064 battles), and the 376 forms with a front of
+  their own (752 battles). None hung. Every front is whole and stands on its platform, and the backs are as `docs/SpriteReview.md` lists them. New there:
+  - **Tall fronts reach above the screen (the owner's call):** with their feet on the platform, 49 fronts lose up to
+    6 rows at the top of the screen in a single battle, and 119 up to 14 as the second foe of a double battle.
+    Platinum's 80×80 box never did.
+  - 8 fronts whose art was cut at the edge of its 96×96 box in the source (Mega Rayquaza, Noivern...) need art.
+- No harness reported a heap problem.
+- The 96×96 PR had already run the battle mechanics suite (526 of 526) and `battle_all_species.py` (1,472 of 1,472).
+
 ## Test harnesses keep their in-game saves; the PC's Hall of Fame checked
 
 Nothing changes for players.
