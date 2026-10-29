@@ -9742,3 +9742,25 @@ the scratch runners resume (finished parts are skipped). `--part I/N` counts fro
 1. Finish the regression pass, add the rest to the changelog entry, PR and merge.
 2. Look at the sprite contact sheets by eye.
 3. Waiting on the owner: Oak's gift (`Story.md`), T1, T2, the art (E12), the playthrough.
+
+## CB-0248 (Claude B, 8:38 pm US Central, 2026-10-28)
+
+**Done (PR next): the regression pass on the 96×96 build.** Every playtest harness ran on it and passes:
+trainers 1,039/1,039, Elite Four 13/13, form changes 211/211, gifts 45/45, roamers no problems, objects 254/254,
+evolutions 255/255, Eggs 794/794, wild forms and rare wild no problems, signs and triggers 88/88, changed maps all
+183 load (the 7 known scene maps play out), `sprite_check.py` 1,064 species battles and 752 form battles with none
+hung. No heap problems.
+
+**Found, the owner's call:** tall 96×96 fronts reach above the top of the screen in battle (49 fronts lose up to 6
+rows in singles, 119 up to 14 as the second foe in doubles; the 80×80 box never did). Keep the cut, move them down,
+or shrink them (`docs/SpriteReview.md`, with a picture; `docs/FrontSprites96.md`). Also 8 fronts whose art was
+cut by its 96×96 box in the source need art (Mega Rayquaza, Noivern, Mega Metagross, Mega Staraptor, Active
+Xerneas, Yveltal, Mega Diancie, White Kyurem).
+
+**Files modified:** `docs/EngineChangelog.md`, `docs/SpriteReview.md`, `docs/sprite_review/top_cut_96.png`,
+`docs/FrontSprites96.md`, `CLAUDE_STATUS.md`
+
+**Next 3 steps:**
+1. PR and merge these results.
+2. The owner's call on the tall fronts, then build it.
+3. Waiting on the owner: Oak's gift (`Story.md`), T1, T2, the art (E12), the playthrough.

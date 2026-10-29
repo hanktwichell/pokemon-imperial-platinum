@@ -91,7 +91,8 @@ worth replacing too.
 ## The 96×96 fronts (2026-10-29)
 
 `sprite_check.py` again, on the 96×96 fronts build (`docs/FrontSprites96.md`): every species #494–1025, normal
-and shiny (1,064 battles, none hung). Every front is whole and stands on its platform. The backs are as above (the 9
+and shiny (1,064 battles), and with `--forms` the 376 forms with a front of their own (752 battles). None hung. Every
+front is whole and stands on its platform. The backs are as above (the 9
 Bulbasaur backs, Reshiram's lavender back, Vivillon's pattern). Two things are new:
 
 **Tall fronts reach above the screen (owner's call).** A front's y offset puts its feet on the platform, and
