@@ -88,6 +88,45 @@ worth replacing too.
 
 `battle_form_changes.py` covers those changes in battle.
 
+## The 96×96 fronts (2026-10-29)
+
+`sprite_check.py` again, on the 96×96 fronts build (`docs/FrontSprites96.md`): every species #494–1025, normal
+and shiny (1,064 battles, none hung). Every front is whole and stands on its platform. The backs are as above (the 9
+Bulbasaur backs, Reshiram's lavender back, Vivillon's pattern). Two things are new:
+
+**Tall fronts reach above the screen (owner's call).** A front's y offset puts its feet on the platform, and
+Platinum's 80×80 box then always stayed at least 2 pixels below the top of the screen. A 96×96 box is 8 rows taller,
+so a tall front whose feet reach its bottom row now starts above the screen, and its top rows are cut. Platinum
+places the foe's sprite centre at y 50, and the second foe of a double battle at y 42:
+- **Singles (and the first foe in doubles):** 49 fronts lose up to 6 rows. 6 rows: Buzzwole, Celesteela, Raging
+  Bolt, Xerneas (both modes), Xurkitree, Yveltal, Complete Zygarde, Dusk Mane Necrozma, and the Megas of Barbaracle,
+  Baxcalibur, Blaziken, Chandelure, Crabominable, Emboar, Glimmora, Golurk, Malamar, Pyroar, Rayquaza, Scolipede and
+  Victreebel. 5 or fewer: Mega Diancie, Alolan Exeggutor, Black Kyurem, Crowned Zacian, Hisuian Braviary, Mega
+  Froslass, Koraidon, Sirfetch'd, Mega Staraptor, Mega Drampa, Overqwil, Galarian Weezing, Mega Altaria, Origin
+  Dialga, Hoopa Unbound, Pheromosa, Stakataka, Ho-Oh, Kingambit, White Kyurem, Mega Meganium, Dawn Wings Necrozma,
+  Sigilyph, Wyrdeer and Zekrom.
+- **The second foe of a double battle:** 119 fronts lose up to 14 rows.
+- The choices: keep the cut; move such a front down until its top is on screen, so its feet sit up to 6 pixels
+  lower on the platform (14 for the second foe in doubles); or shrink only these fronts.
+
+![Celesteela and Yveltal in battle](sprite_review/top_cut_96.png)
+
+**Art cut at the 96×96 box's edge.** A scan of every 96×96 front for art on its top, left or right edge finds 50. Most
+only touch the edge (a flame, a tail tip), as some of Black and White's own sprites do (Lugia, Zekrom). These are cut:
+
+| Pokémon | Where |
+|---|---|
+| Mega Rayquaza | its body on the left, its whiskers at the top |
+| Noivern | both wingtips |
+| Mega Metagross | both arms |
+| Mega Staraptor | both wingtips |
+| Xerneas (Active Mode) | the tips of its antlers |
+| Yveltal | the tops of its wings |
+| Mega Diancie | the sides of its veil |
+| White Kyurem | its right wing |
+
+They need art drawn to fit 96×96 (E12). The 80×80 build shrank the same art, so they were cut there too.
+
 ## Likely wrong, worth a look
 
 | # | Pokémon | Sprite | What I see |

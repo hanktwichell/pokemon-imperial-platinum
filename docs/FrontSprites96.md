@@ -161,3 +161,9 @@ Great Marsh binoculars, Rowan's intro, `ov64`.
 Not run in the game:
 - By their heaps' size: the capsule menu (512 KB) and the Vs. Recorder's app (`overlay062`, 340 KB) take the
   four-slot manager's 16 KB more with room to spare.
+
+Open, the owner's call (2026-10-29): **tall fronts reach above the screen in battle.** With its feet on the
+platform, a front whose art fills its 96×96 box starts above the screen: 49 fronts lose up to 6 rows in a single
+battle, and 119 up to 14 as the second foe of a double battle (y 42). Platinum's 80×80 box never did. They can keep
+the cut, move down until their top is on screen (their feet then sit lower on the platform), or be shrunk.
+`docs/SpriteReview.md` lists them, with a picture.

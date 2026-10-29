@@ -25,6 +25,12 @@ test build, from a new game's bedroom), and all of them pass:
   - Cynthia's battle, the Hall of Fame and its credits, and Stark Mountain's Galactic battle and Charon scene were
     still running at the frame limit, changing in every screenshot.
   - The Regional Forms Park lobby (Pal Park's) no longer opens on a scene.
+- `sprite_check.py`: every species #494–1025, normal and shiny (1,064 battles, none hung). Every front is whole and
+  stands on its platform, and the backs are as `docs/SpriteReview.md` lists them. New there:
+  - **Tall fronts reach above the screen (the owner's call):** with their feet on the platform, 49 fronts lose up to
+    6 rows at the top of the screen in a single battle, and 119 up to 14 as the second foe of a double battle.
+    Platinum's 80×80 box never did.
+  - 8 fronts whose art was cut at the edge of its 96×96 box in the source (Mega Rayquaza, Noivern...) need art.
 - No harness reported a heap problem.
 - The 96×96 PR had already run the battle mechanics suite (526 of 526) and `battle_all_species.py` (1,472 of 1,472).
 
