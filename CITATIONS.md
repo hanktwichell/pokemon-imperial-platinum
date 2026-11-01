@@ -286,3 +286,10 @@ https://www.deviantart.com/thesonicgameryt/art/Custom-Sprite-%7C-Mega-Garchomp-Z
 | Mega Evolution presentation (animation spec in `docs/MegaEvolution.md`) | Pokémon Unbound (Skeli and team) and Pokémon Insurgence (Deukhoofd and team) |
 | Proposed QoL features in `docs/QualityOfLife.md` | Pokémon Unbound, Radical Red (soupercell), Sacred Gold / Storm Silver (Drayano), Pokémon Insurgence |
 | Approach for expanding a Gen IV engine | hg-engine (BluRosie and contributors), https://github.com/BluRosie/hg-engine |
+
+### PokeAPI cries (#494–1025)
+Location: `assets/audio/cries/<dex>.wav` (the cry of each species, converted to the DS format: 16-bit mono 10512 Hz) and
+`decomp/res/pokemon/<species>/cry.wav`. From PokeAPI's cry archive (https://github.com/PokeAPI/cries,
+`cries/pokemon/latest/<dex>.ogg`, the current games' cries). The cries are © Nintendo / Game Freak / The Pokémon
+Company; PokeAPI collects them. Converted with `ffmpeg -ac 1 -ar 10512 -c:a pcm_s16le`; each species' `cry.txt` is
+Platinum's standard cry parameters.
